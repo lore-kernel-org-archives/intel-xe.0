@@ -4,45 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9ED4C4167B
-	for <intel-xe@archiver.kernel.org>; Sat,  9 Dec 2023 20:56:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F67BC4167B
+	for <intel-xe@archiver.kernel.org>; Sat,  9 Dec 2023 22:08:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4ED1610E262;
-	Sat,  9 Dec 2023 20:56:18 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05FD610E262
- for <intel-xe@lists.freedesktop.org>; Sat,  9 Dec 2023 20:56:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE21410E2FA;
+	Sat,  9 Dec 2023 22:08:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FC9C10E2F1
+ for <intel-xe@lists.freedesktop.org>; Sat,  9 Dec 2023 22:08:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702155376; x=1733691376;
- h=date:from:to:cc:subject:message-id;
- bh=wia8VaaU9tvNv5EWUv7TK1/jyOLOOqu0Js0qjflv5FY=;
- b=P5tRsOctI0P7Sd7Vb2CI9+7yEFpQeEZKdR6ADIBMdCNbrst1H1fjSdzP
- NCr7oKhKQcK4X+YUDUyt/83+zYJEkGZ8/UOuFHaPJm2X4E8YtZ2zozYOs
- uuMZPPTFSyxWrt+V6ADmdbt9tbDy9SW0jq6JKiGLzzml2zj6RrwmnfUI8
- KUzp6YWgHIfFrg0o3ovbY86LlFS9XkBUsIAY/KXhzYBn6MlmTQjVrD/By
- uAy7nEvdxkh+EknPQn6SJRb2KByHrgAU7aUDISa10tN2BykLa/2n0Hnkb
- 4xU0rwsWS7h8lNmyOtkrBauozCURs9ez5HN/okyh/3oWnemd3bFGsCQVE w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10919"; a="374033600"
-X-IronPort-AV: E=Sophos;i="6.04,264,1695711600"; d="scan'208";a="374033600"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2023 12:56:15 -0800
+ t=1702159699; x=1733695699;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=YaFUXNbBtaqUvdEWk5/wtGou8FeKsG9QoVoYIcZahYk=;
+ b=JgSXApTQdgNK20W5FZivAmvMKQYXsCDhvuckYh0bKSwxUevm3BH4yStB
+ vTHoQObYBAsVipKY61La8aKD3pLbcgUEu4EAxvooaOeFoyDBzTorxlSfw
+ ukNlaXa+AZccdaG9LsAWmj3hq1rTHywtpJ7sV4fJLUVWqFUEnkaCcBNTp
+ iMCp3qBu+xvRcAO4lPSX5cAFwPoHNs28ryNnTFDtp7mC2TPlbXY/fWJ13
+ VJKVXmQoJkWPet1ss6EBV4ZVhO36eIFIhNzXZhzmvAEzfUStavunHy7TT
+ zBgzLFVYUIbocI88hV4d+x/aW/R/GH6+jDWVv+VnnlQKOlFXdcBd02aln Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10919"; a="394265192"
+X-IronPort-AV: E=Sophos;i="6.04,264,1695711600"; d="scan'208";a="394265192"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2023 14:08:18 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10919"; a="890565318"
-X-IronPort-AV: E=Sophos;i="6.04,264,1695711600"; d="scan'208";a="890565318"
+X-IronPort-AV: E=McAfee;i="6600,9927,10919"; a="801493114"
+X-IronPort-AV: E=Sophos;i="6.04,264,1695711600"; d="scan'208";a="801493114"
 Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
- by fmsmga002.fm.intel.com with ESMTP; 09 Dec 2023 12:56:14 -0800
+ by orsmga008.jf.intel.com with ESMTP; 09 Dec 2023 14:07:34 -0800
 Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1rC4Mu-000FwS-1W;
- Sat, 09 Dec 2023 20:56:12 +0000
-Date: Sun, 10 Dec 2023 04:55:20 +0800
+ (envelope-from <lkp@intel.com>) id 1rC5Tw-000G15-1D;
+ Sat, 09 Dec 2023 22:07:32 +0000
+Date: Sun, 10 Dec 2023 06:06:56 +0800
 From: kernel test robot <lkp@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [drm-xe:drm-xe-next] BUILD REGRESSION
- 1fc141d1f445b8e5ab4ff14645b0482dd98460b9
-Message-ID: <202312100417.gJ806aqC-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: [drm-xe:drm-xe-next 897/1053]
+ drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h:55:24: error:
+ implicit declaration of function 'readq'; did you mean 'readb'?
+Message-ID: <202312100637.R8yMm5VH-lkp@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,128 +57,155 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org,
+ oe-kbuild-all@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: 1fc141d1f445b8e5ab4ff14645b0482dd98460b9  drm/xe: Add frequency throttle reasons sysfs attributes
+tree:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+head:   1fc141d1f445b8e5ab4ff14645b0482dd98460b9
+commit: 0931b43873794c814a4a6fe1868b61edfe993b67 [897/1053] drm/xe/display: Implement display support
+config: arc-allmodconfig (https://download.01.org/0day-ci/archive/20231210/202312100637.R8yMm5VH-lkp@intel.com/config)
+compiler: arceb-elf-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231210/202312100637.R8yMm5VH-lkp@intel.com/reproduce)
 
-Error/Warning reports:
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202312100637.R8yMm5VH-lkp@intel.com/
 
-https://lore.kernel.org/oe-kbuild-all/202312092339.jUV164nY-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202312100223.2IyYhSLJ-lkp@intel.com
+All errors (new ones prefixed by >>):
 
-Error/Warning: (recently discovered and may have been fixed)
+   In file included from drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:15,
+                    from drivers/gpu/drm/xe/xe_display.c:16:
+   drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h: In function 'i915_gem_object_read_from_page':
+>> drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h:55:24: error: implicit declaration of function 'readq'; did you mean 'readb'? [-Werror=implicit-function-declaration]
+      55 |                 *ptr = readq((void __iomem *)(virtual + ofs));
+         |                        ^~~~~
+         |                        readb
+   cc1: some warnings being treated as errors
+--
+   In file included from drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:15,
+                    from drivers/gpu/drm/xe/display/intel_fbdev_fb.c:13:
+   drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h: In function 'i915_gem_object_read_from_page':
+>> drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h:55:24: error: implicit declaration of function 'readq'; did you mean 'readb'? [-Werror=implicit-function-declaration]
+      55 |                 *ptr = readq((void __iomem *)(virtual + ofs));
+         |                        ^~~~~
+         |                        readb
+   drivers/gpu/drm/xe/display/intel_fbdev_fb.c: In function 'intel_fbdev_fb_alloc':
+   drivers/gpu/drm/xe/display/intel_fbdev_fb.c:72:28: error: implicit declaration of function 'intel_bo_to_drm_bo' [-Werror=implicit-function-declaration]
+      72 |         drm_gem_object_put(intel_bo_to_drm_bo(obj));
+         |                            ^~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/xe/display/intel_fbdev_fb.c:72:28: warning: passing argument 1 of 'drm_gem_object_put' makes pointer from integer without a cast [-Wint-conversion]
+      72 |         drm_gem_object_put(intel_bo_to_drm_bo(obj));
+         |                            ^~~~~~~~~~~~~~~~~~~~~~~
+         |                            |
+         |                            int
+   In file included from include/drm/ttm/ttm_bo.h:34,
+                    from drivers/gpu/drm/xe/xe_bo_types.h:12,
+                    from drivers/gpu/drm/xe/xe_bo.h:11,
+                    from drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h:11:
+   include/drm/drm_gem.h:501:43: note: expected 'struct drm_gem_object *' but argument is of type 'int'
+     501 | drm_gem_object_put(struct drm_gem_object *obj)
+         |                    ~~~~~~~~~~~~~~~~~~~~~~~^~~
+   drivers/gpu/drm/xe/display/intel_fbdev_fb.c: In function 'intel_fbdev_fb_fill_info':
+   drivers/gpu/drm/xe/display/intel_fbdev_fb.c:101:52: error: invalid type argument of '->' (have 'int')
+     101 |         info->screen_size = intel_bo_to_drm_bo(obj)->size;
+         |                                                    ^~
+   cc1: some warnings being treated as errors
+--
+   In file included from drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:15,
+                    from drivers/gpu/drm/i915/display/intel_display_trace.h:16,
+                    from drivers/gpu/drm/i915/display/intel_atomic_plane.c:46:
+   drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h: In function 'i915_gem_object_read_from_page':
+>> drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h:55:24: error: implicit declaration of function 'readq'; did you mean 'readb'? [-Werror=implicit-function-declaration]
+      55 |                 *ptr = readq((void __iomem *)(virtual + ofs));
+         |                        ^~~~~
+         |                        readb
+   drivers/gpu/drm/i915/display/intel_atomic_plane.c: In function 'intel_prepare_plane_fb':
+   drivers/gpu/drm/i915/display/intel_atomic_plane.c:1099:51: error: implicit declaration of function 'intel_bo_to_drm_bo' [-Werror=implicit-function-declaration]
+    1099 |                         ret = add_dma_resv_fences(intel_bo_to_drm_bo(old_obj)->resv,
+         |                                                   ^~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/display/intel_atomic_plane.c:1099:78: error: invalid type argument of '->' (have 'int')
+    1099 |                         ret = add_dma_resv_fences(intel_bo_to_drm_bo(old_obj)->resv,
+         |                                                                              ^~
+   cc1: some warnings being treated as errors
+--
+   In file included from drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:15,
+                    from drivers/gpu/drm/i915/display/intel_de.h:9,
+                    from drivers/gpu/drm/i915/display/intel_cursor.c:17:
+   drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h: In function 'i915_gem_object_read_from_page':
+>> drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h:55:24: error: implicit declaration of function 'readq'; did you mean 'readb'? [-Werror=implicit-function-declaration]
+      55 |                 *ptr = readq((void __iomem *)(virtual + ofs));
+         |                        ^~~~~
+         |                        readb
+   In file included from drivers/gpu/drm/i915/display/intel_cursor.c:22:
+   drivers/gpu/drm/i915/display/intel_frontbuffer.h: At top level:
+   drivers/gpu/drm/i915/display/intel_frontbuffer.h:46:28: error: field 'write' has incomplete type
+      46 |         struct i915_active write;
+         |                            ^~~~~
+   cc1: some warnings being treated as errors
+--
+   In file included from drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:15,
+                    from drivers/gpu/drm/i915/display/intel_fbdev.c:48:
+   drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h: In function 'i915_gem_object_read_from_page':
+>> drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h:55:24: error: implicit declaration of function 'readq'; did you mean 'readb'? [-Werror=implicit-function-declaration]
+      55 |                 *ptr = readq((void __iomem *)(virtual + ofs));
+         |                        ^~~~~
+         |                        readb
+   In file included from drivers/gpu/drm/i915/display/intel_fbdev.c:54:
+   drivers/gpu/drm/i915/display/intel_frontbuffer.h: At top level:
+   drivers/gpu/drm/i915/display/intel_frontbuffer.h:46:28: error: field 'write' has incomplete type
+      46 |         struct i915_active write;
+         |                            ^~~~~
+   drivers/gpu/drm/i915/display/intel_fbdev.c: In function 'intel_fbdev_init_bios':
+   drivers/gpu/drm/i915/display/intel_fbdev.c:335:21: error: implicit declaration of function 'intel_bo_to_drm_bo' [-Werror=implicit-function-declaration]
+     335 |                 if (intel_bo_to_drm_bo(obj)->size > max_size) {
+         |                     ^~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/display/intel_fbdev.c:335:44: error: invalid type argument of '->' (have 'int')
+     335 |                 if (intel_bo_to_drm_bo(obj)->size > max_size) {
+         |                                            ^~
+   drivers/gpu/drm/i915/display/intel_fbdev.c:340:59: error: invalid type argument of '->' (have 'int')
+     340 |                         max_size = intel_bo_to_drm_bo(obj)->size;
+         |                                                           ^~
+   cc1: some warnings being treated as errors
 
-drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h:55:10: error: call to undeclared function 'readq'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-drivers/gpu/drm/xe/xe_gt_freq.c:202:30: warning: variable 'err' is uninitialized when used here [-Wuninitialized]
 
-Error/Warning ids grouped by kconfigs:
+vim +55 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
 
-gcc_recent_errors
-|-- arm-randconfig-003-20231210
-|   `-- WARNING:modpost:missing-MODULE_DESCRIPTION()-in-drivers-nvme-common-nvme-common.o
-|-- arm64-randconfig-001-20231210
-|   `-- WARNING:modpost:missing-MODULE_DESCRIPTION()-in-drivers-char-hw_random-nomadik-rng.o
-|-- i386-buildonly-randconfig-006-20231209
-|   |-- WARNING:modpost:missing-MODULE_DESCRIPTION()-in-drivers-fpga-tests-fpga-bridge-test.o
-|   |-- WARNING:modpost:missing-MODULE_DESCRIPTION()-in-drivers-fpga-tests-fpga-mgr-test.o
-|   `-- WARNING:modpost:missing-MODULE_DESCRIPTION()-in-drivers-fpga-tests-fpga-region-test.o
-|-- i386-randconfig-002-20231209
-|   |-- WARNING:modpost:missing-MODULE_DESCRIPTION()-in-drivers-fpga-tests-fpga-bridge-test.o
-|   |-- WARNING:modpost:missing-MODULE_DESCRIPTION()-in-drivers-fpga-tests-fpga-mgr-test.o
-|   `-- WARNING:modpost:missing-MODULE_DESCRIPTION()-in-drivers-fpga-tests-fpga-region-test.o
-|-- nios2-randconfig-002-20231210
-|   `-- WARNING:modpost:missing-MODULE_DESCRIPTION()-in-drivers-char-hw_random-nomadik-rng.o
-|-- parisc-randconfig-001-20231210
-|   `-- WARNING:modpost:missing-MODULE_DESCRIPTION()-in-drivers-char-hw_random-nomadik-rng.o
-|-- s390-allmodconfig
-|   |-- WARNING:modpost:missing-MODULE_DESCRIPTION()-in-drivers-char-hw_random-nomadik-rng.o
-|   |-- WARNING:modpost:missing-MODULE_DESCRIPTION()-in-drivers-char-hw_random-st-rng.o
-|   `-- WARNING:modpost:missing-MODULE_DESCRIPTION()-in-drivers-nvme-common-nvme-common.o
-|-- sparc-allmodconfig
-|   `-- drivers-gpu-drm-xe-xe_lrc.c:warning:CTX_VALID-redefined
-|-- sparc64-allmodconfig
-|   `-- drivers-gpu-drm-xe-xe_lrc.c:warning:CTX_VALID-redefined
-|-- sparc64-allyesconfig
-|   `-- drivers-gpu-drm-xe-xe_lrc.c:warning:CTX_VALID-redefined
-`-- x86_64-allnoconfig
-    `-- drivers-gpu-drm-xe-tests-xe_pci.c:kunit-test-bug.h-is-included-more-than-once.
-clang_recent_errors
-|-- hexagon-randconfig-002-20231210
-|   |-- WARNING:modpost:missing-MODULE_DESCRIPTION()-in-drivers-fpga-tests-fpga-bridge-test.o
-|   |-- WARNING:modpost:missing-MODULE_DESCRIPTION()-in-drivers-fpga-tests-fpga-mgr-test.o
-|   |-- WARNING:modpost:missing-MODULE_DESCRIPTION()-in-drivers-fpga-tests-fpga-region-test.o
-|   `-- WARNING:modpost:missing-MODULE_DESCRIPTION()-in-drivers-nvme-common-nvme-common.o
-`-- i386-allmodconfig
-    |-- drivers-gpu-drm-xe-compat-i915-headers-gem-i915_gem_object.h:error:call-to-undeclared-function-readq-ISO-C99-and-later-do-not-support-implicit-function-declarations
-    `-- drivers-gpu-drm-xe-xe_gt_freq.c:warning:variable-err-is-uninitialized-when-used-here
-
-elapsed time: 1473m
-
-configs tested: 58
-configs skipped: 0
-
-tested configs:
-arc                   randconfig-001-20231210   gcc  
-arc                   randconfig-002-20231210   gcc  
-arm                   randconfig-001-20231210   gcc  
-arm                   randconfig-002-20231210   gcc  
-arm                   randconfig-003-20231210   gcc  
-arm                   randconfig-004-20231210   gcc  
-arm64                 randconfig-001-20231210   gcc  
-arm64                 randconfig-002-20231210   gcc  
-arm64                 randconfig-003-20231210   gcc  
-arm64                 randconfig-004-20231210   gcc  
-csky                  randconfig-001-20231210   gcc  
-csky                  randconfig-002-20231210   gcc  
-hexagon               randconfig-001-20231210   clang
-hexagon               randconfig-002-20231210   clang
-i386                             allmodconfig   clang
-i386                              allnoconfig   clang
-i386                             allyesconfig   clang
-i386         buildonly-randconfig-001-20231209   gcc  
-i386         buildonly-randconfig-002-20231209   gcc  
-i386         buildonly-randconfig-003-20231209   gcc  
-i386         buildonly-randconfig-004-20231209   gcc  
-i386         buildonly-randconfig-005-20231209   gcc  
-i386         buildonly-randconfig-006-20231209   gcc  
-i386                                defconfig   gcc  
-i386                  randconfig-001-20231209   gcc  
-i386                  randconfig-002-20231209   gcc  
-i386                  randconfig-003-20231209   gcc  
-i386                  randconfig-004-20231209   gcc  
-i386                  randconfig-005-20231209   gcc  
-i386                  randconfig-006-20231209   gcc  
-i386                  randconfig-011-20231209   clang
-i386                  randconfig-012-20231209   clang
-i386                  randconfig-013-20231209   clang
-i386                  randconfig-014-20231209   clang
-i386                  randconfig-015-20231209   clang
-i386                  randconfig-016-20231209   clang
-loongarch             randconfig-001-20231210   gcc  
-loongarch             randconfig-002-20231210   gcc  
-nios2                 randconfig-001-20231210   gcc  
-nios2                 randconfig-002-20231210   gcc  
-parisc                randconfig-001-20231210   gcc  
-parisc                randconfig-002-20231210   gcc  
-powerpc               randconfig-001-20231210   gcc  
-powerpc               randconfig-002-20231210   gcc  
-powerpc               randconfig-003-20231210   gcc  
-s390                             allmodconfig   gcc  
-s390                             allyesconfig   gcc  
-sh                               allmodconfig   gcc  
-sh                               allyesconfig   gcc  
-sparc                            allmodconfig   gcc  
-sparc64                          allmodconfig   gcc  
-sparc64                          allyesconfig   gcc  
-um                               allmodconfig   clang
-um                               allyesconfig   clang
-x86_64                            allnoconfig   gcc  
-x86_64                           allyesconfig   clang
-x86_64                              defconfig   gcc  
-x86_64                          rhel-8.3-rust   clang
+    33	
+    34	static inline int i915_gem_object_read_from_page(struct xe_bo *bo,
+    35						  u32 ofs, u64 *ptr, u32 size)
+    36	{
+    37		struct ttm_bo_kmap_obj map;
+    38		void *virtual;
+    39		bool is_iomem;
+    40		int ret;
+    41	
+    42		XE_WARN_ON(size != 8);
+    43	
+    44		ret = xe_bo_lock(bo, true);
+    45		if (ret)
+    46			return ret;
+    47	
+    48		ret = ttm_bo_kmap(&bo->ttm, ofs >> PAGE_SHIFT, 1, &map);
+    49		if (ret)
+    50			goto out_unlock;
+    51	
+    52		ofs &= ~PAGE_MASK;
+    53		virtual = ttm_kmap_obj_virtual(&map, &is_iomem);
+    54		if (is_iomem)
+  > 55			*ptr = readq((void __iomem *)(virtual + ofs));
+    56		else
+    57			*ptr = *(u64 *)(virtual + ofs);
+    58	
+    59		ttm_bo_kunmap(&map);
+    60	out_unlock:
+    61		xe_bo_unlock(bo);
+    62		return ret;
+    63	}
+    64	
 
 -- 
 0-DAY CI Kernel Test Service
