@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1753BC4167B
-	for <intel-xe@archiver.kernel.org>; Sun, 10 Dec 2023 18:07:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C558C10DCE
+	for <intel-xe@archiver.kernel.org>; Sun, 10 Dec 2023 18:07:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D238610E32C;
-	Sun, 10 Dec 2023 18:07:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D221410E32D;
+	Sun, 10 Dec 2023 18:07:46 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B230410E32C
- for <intel-xe@lists.freedesktop.org>; Sun, 10 Dec 2023 18:07:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E48EE10E32C
+ for <intel-xe@lists.freedesktop.org>; Sun, 10 Dec 2023 18:07:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702231663; x=1733767663;
+ t=1702231665; x=1733767665;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qufJ8dSoHBynNrnV1gJvCpXhccMZMcR4vTcF4vQPRTA=;
- b=a7Sq8EiYcJWpNEeaPMYEp/W6OuAHDQF9nkWaAmillXeCNQFsRuuAK6O9
- aiROxZNlSrt9bS4+fxZodLG1X7fg17QQVmjOPAjNdBWBqYQT430mMzZR9
- g4Z3nds6/lJrQb8MmDtKNN45OFUgIzd1OaMJ9J155NBVtMinshHGrOC0B
- 40yU67jVcOLT2bI5mCpu/Rbw7ZLm8iDsFZU3WfM/tflsFaUr8MsKSHbYc
- TW/+MBradEGaQw8XtTarqlXP1BTjI294IuCnCdNi7I87eYBWnaDH4HN05
- MDgUuB8bNj0pebculMzXLGcOwufD5YwqTZ9OfwzQmup01a+aMMhG16DNM A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10920"; a="1437959"
+ bh=E0obZI1O0FH0qmh+bJLy3/a0mfb0uzUCyKtp/zI8yn4=;
+ b=bTgdmS5mC4Z16ev/3y8EhiijFMs8bCL4JxxUYQVTgBe+C47VO6cGD0uq
+ liz4gNroBtSJvarvoh1i2PF43AjBygfEToUCsztYELmGOiD9Dg8G7E42B
+ 6XPCVfBxSXooKtcbsGD+gOiWWwLEgt2fz+119MIUAVwm1VkwhYQTn76do
+ OjwcZ9TF2HBy0vQI4ZMgFaMJIKvfeK0y2ajZEwJYmNgPnt0yXKnapbyKB
+ jsUxDwBl6VQ8KqCh5aQoQKt80MZ0vy3tlqueYuamk5tV8hdMyuz4s8HeZ
+ Ybl9jAfBKCtRihEiDJYyMaFp4bERYy+7wvUwTLJ+q7WYdoLk4vc+kI46a w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10920"; a="1437961"
 X-IronPort-AV: E=Sophos;i="6.04,266,1695711600"; 
-   d="scan'208";a="1437959"
+   d="scan'208";a="1437961"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2023 10:07:43 -0800
+ 10 Dec 2023 10:07:45 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10920"; a="843229499"
-X-IronPort-AV: E=Sophos;i="6.04,266,1695711600"; d="scan'208";a="843229499"
+X-IronPort-AV: E=McAfee;i="6600,9927,10920"; a="843229514"
+X-IronPort-AV: E=Sophos;i="6.04,266,1695711600"; d="scan'208";a="843229514"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.143.192])
  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2023 10:07:40 -0800
+ 10 Dec 2023 10:07:42 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 2/8] drm/xe: Use GT oriented functions to report TLB timeout
-Date: Sun, 10 Dec 2023 19:06:53 +0100
-Message-Id: <20231210180659.1615-3-michal.wajdeczko@intel.com>
+Subject: [PATCH 3/8] drm/xe: Introduce GuC Doorbells Manager
+Date: Sun, 10 Dec 2023 19:06:54 +0100
+Message-Id: <20231210180659.1615-4-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20231210180659.1615-1-michal.wajdeczko@intel.com>
 References: <20231210180659.1615-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -57,66 +58,396 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We track TLB invalidation seqno per GT and we have GT oriented
-message helpers, so it's better to use GT oriented log functions.
+The GFX doorbell solution provides a mechanism for submission of
+workload to the graphics hardware by a ring3 application without
+the penalty of ring transition for each workload submission.
+
+This feature is not currently used by the Linux drivers, but in
+SR-IOV mode the doorbells are treated as shared resource and the
+PF driver must be able to provision exclusive range of doorbells
+IDs across all anabled VFs.
+
+Introduce simple GuC doorbell ID manager that will be used by the
+PF driver for VFs provisioning and can later be used by submission
+code once we are ready to switch from H2G based notifications to
+doorbells mechanism.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/Makefile        |   1 +
+ drivers/gpu/drm/xe/xe_guc_db_mgr.c | 255 +++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_db_mgr.h |  24 +++
+ drivers/gpu/drm/xe/xe_guc_types.h  |  15 ++
+ drivers/gpu/drm/xe/xe_uc.c         |   5 +
+ 5 files changed, 300 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_db_mgr.c
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_db_mgr.h
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-index 7eef23a00d77..e3a4131ebb58 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-@@ -8,6 +8,7 @@
- #include "abi/guc_actions_abi.h"
- #include "xe_device.h"
- #include "xe_gt.h"
-+#include "xe_gt_printk.h"
- #include "xe_guc.h"
- #include "xe_guc_ct.h"
- #include "xe_trace.h"
-@@ -30,8 +31,8 @@ static void xe_gt_tlb_fence_timeout(struct work_struct *work)
- 			break;
- 
- 		trace_xe_gt_tlb_invalidation_fence_timeout(fence);
--		drm_err(&gt_to_xe(gt)->drm, "gt%d: TLB invalidation fence timeout, seqno=%d recv=%d",
--			gt->info.id, fence->seqno, gt->tlb_invalidation.seqno_recv);
-+		xe_gt_err(gt, "TLB invalidation fence timeout, seqno=%d recv=%d",
-+			  fence->seqno, gt->tlb_invalidation.seqno_recv);
- 
- 		list_del(&fence->link);
- 		fence->base.error = -ETIME;
-@@ -312,9 +313,7 @@ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
-  */
- int xe_gt_tlb_invalidation_wait(struct xe_gt *gt, int seqno)
- {
--	struct xe_device *xe = gt_to_xe(gt);
- 	struct xe_guc *guc = &gt->uc.guc;
--	struct drm_printer p = drm_err_printer(__func__);
- 	int ret;
- 
- 	/*
-@@ -325,8 +324,10 @@ int xe_gt_tlb_invalidation_wait(struct xe_gt *gt, int seqno)
- 				 tlb_invalidation_seqno_past(gt, seqno),
- 				 TLB_TIMEOUT);
- 	if (!ret) {
--		drm_err(&xe->drm, "gt%d: TLB invalidation time'd out, seqno=%d, recv=%d\n",
--			gt->info.id, seqno, gt->tlb_invalidation.seqno_recv);
-+		struct drm_printer p = xe_gt_err_printer(gt);
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index f4ae063a7005..0c2e247dc188 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -84,6 +84,7 @@ xe-y += xe_bb.o \
+ 	xe_guc.o \
+ 	xe_guc_ads.o \
+ 	xe_guc_ct.o \
++	xe_guc_db_mgr.o \
+ 	xe_guc_debugfs.o \
+ 	xe_guc_hwconfig.o \
+ 	xe_guc_log.o \
+diff --git a/drivers/gpu/drm/xe/xe_guc_db_mgr.c b/drivers/gpu/drm/xe/xe_guc_db_mgr.c
+new file mode 100644
+index 000000000000..ab7b143066c9
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_guc_db_mgr.c
+@@ -0,0 +1,255 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2023 Intel Corporation
++ */
 +
-+		xe_gt_err(gt, "TLB invalidation time'd out, seqno=%d, recv=%d\n",
-+			  seqno, gt->tlb_invalidation.seqno_recv);
- 		xe_guc_ct_print(&guc->ct, &p, true);
- 		return -ETIME;
- 	}
++#include <linux/bitmap.h>
++#include <linux/mutex.h>
++
++#include <drm/drm_managed.h>
++
++#include "regs/xe_guc_regs.h"
++
++#include "xe_assert.h"
++#include "xe_gt_printk.h"
++#include "xe_guc.h"
++#include "xe_guc_db_mgr.h"
++#include "xe_guc_types.h"
++
++/**
++ * DOC: GuC Doorbells
++ *
++ * The GFX doorbell solution provides a mechanism for submission of workload
++ * to the graphics hardware by a ring3 application without the penalty of
++ * ring transition for each workload submission.
++ *
++ * In SR-IOV mode, the doorbells are treated as shared resource and PF must
++ * be able to provision exclusive range of IDs across VFs, which may want to
++ * use this feature.
++ */
++
++static struct xe_guc *dbm_to_guc(struct xe_guc_db_mgr *dbm)
++{
++	return container_of(dbm, struct xe_guc, dbm);
++}
++
++static struct xe_gt *dbm_to_gt(struct xe_guc_db_mgr *dbm)
++{
++	return guc_to_gt(dbm_to_guc(dbm));
++}
++
++static struct xe_device *dbm_to_xe(struct xe_guc_db_mgr *dbm)
++{
++	return gt_to_xe(dbm_to_gt(dbm));
++}
++
++#define dbm_assert(_dbm, _cond)		xe_gt_assert(dbm_to_gt(_dbm), _cond)
++#define dbm_mutex(_dbm)			(&dbm_to_guc(_dbm)->submission_state.lock)
++
++static void __fini_dbm(struct drm_device *drm, void *arg)
++{
++	struct xe_guc_db_mgr *dbm = arg;
++	unsigned int weight;
++
++	lockdep_assert_held(dbm_mutex(dbm));
++
++	weight = bitmap_weight(dbm->bitmap, dbm->count);
++	if (weight) {
++		struct drm_printer p = xe_gt_info_printer(dbm_to_gt(dbm));
++
++		xe_gt_err(dbm_to_gt(dbm), "GuC doorbell manager unclean (%u/%u)\n",
++			  weight, dbm->count);
++		xe_guc_db_mgr_print(dbm, &p, 1);
++	}
++
++	bitmap_free(dbm->bitmap);
++	dbm->bitmap = NULL;
++	dbm->count = 0;
++}
++
++/**
++ * xe_guc_db_mgr_init() - Initialize GuC Doorbell Manager.
++ * @dbm: the &xe_guc_db_mgr to initialize
++ * @count: number of doorbells to manage
++ *
++ * The bare-metal or PF driver can pass ~0 as &count to indicate that all
++ * doorbells supported by the hardware are available for use.
++ *
++ * Only VF's drivers will have to provide explicit number of doorbells IDs
++ * that they can use.
++ * 
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_guc_db_mgr_init(struct xe_guc_db_mgr *dbm, unsigned int count)
++{
++	int ret;
++
++	if (count == ~0)
++		count = GUC_NUM_DOORBELLS;
++
++	dbm_assert(dbm, !dbm->bitmap);
++	dbm_assert(dbm, count <= GUC_NUM_DOORBELLS);
++
++	if (!count)
++		goto done;
++
++	dbm->bitmap = bitmap_zalloc(count, GFP_KERNEL);
++	if (!dbm->bitmap)
++		return -ENOMEM;
++	dbm->count = count;
++
++	ret = drmm_add_action_or_reset(&dbm_to_xe(dbm)->drm, __fini_dbm, dbm);
++	if (ret)
++		return ret;
++done:
++	xe_gt_dbg(dbm_to_gt(dbm), "using %u doorbell(s)\n", dbm->count);
++	return 0;
++}
++
++static int dbm_reserve_chunk_locked(struct xe_guc_db_mgr *dbm,
++				    unsigned int count, unsigned int spare)
++{
++	unsigned int used;
++	int index;
++
++	dbm_assert(dbm, count);
++	dbm_assert(dbm, count <= GUC_NUM_DOORBELLS);
++	dbm_assert(dbm, dbm->count <= GUC_NUM_DOORBELLS);
++	lockdep_assert_held(dbm_mutex(dbm));
++
++	if (!dbm->count)
++		return -ENODATA;
++
++	if (spare) {
++		used = bitmap_weight(dbm->bitmap, dbm->count);
++		if (used + count + spare > dbm->count)
++			return -EDQUOT;
++	}
++
++	index = bitmap_find_next_zero_area(dbm->bitmap, dbm->count, 0, count, 0);
++	if (index >= dbm->count)
++		return -ENOSPC;
++
++	bitmap_set(dbm->bitmap, index, count);
++
++	return index;
++}
++
++static void dbm_release_chunk_locked(struct xe_guc_db_mgr *dbm,
++				     unsigned int start, unsigned int count)
++{
++	dbm_assert(dbm, count);
++	dbm_assert(dbm, count <= GUC_NUM_DOORBELLS);
++	dbm_assert(dbm, dbm->count);
++	dbm_assert(dbm, dbm->count <= GUC_NUM_DOORBELLS);
++	lockdep_assert_held(dbm_mutex(dbm));
++
++	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
++		unsigned int n;
++
++		for (n = 0; n < count; n++)
++			dbm_assert(dbm, test_bit(start + n, dbm->bitmap));
++	}
++	bitmap_clear(dbm->bitmap, start, count);
++}
++
++/**
++ * xe_guc_db_mgr_reserve_id_locked() - Reserve a single GuC Doorbell ID.
++ * @dbm: the &xe_guc_db_mgr
++ *
++ * This function expects that submission lock is already taken.
++ *
++ * Return: ID of the allocated GuC doorbell or a negative error code on failure.
++ */
++int xe_guc_db_mgr_reserve_id_locked(struct xe_guc_db_mgr *dbm)
++{
++	return dbm_reserve_chunk_locked(dbm, 1, 0);
++}
++
++/**
++ * xe_guc_db_mgr_release_id_locked() - Release a single GuC Doorbell ID.
++ * @dbm: the &xe_guc_db_mgr
++ * @id: the GuC Doorbell ID to release
++ *
++ * This function expects that submission lock is already taken.
++ */
++void xe_guc_db_mgr_release_id_locked(struct xe_guc_db_mgr *dbm, unsigned int id)
++{
++	return dbm_release_chunk_locked(dbm, id, 1);
++}
++
++/**
++ * xe_guc_db_mgr_reserve_range() - Reserve a range of GuC Doorbell IDs.
++ * @dbm: the &xe_guc_db_mgr 
++ * @count: number of GuC doorbell IDs to reserve
++ * @spare: number of GuC doorbell IDs to keep available
++ *
++ * This function is dedicated for the for use by the PF which expects that
++ * allocated range for the VF will be contiguous and that there will be at
++ * least &spare IDs still available for the PF use after this reservation.
++ *
++ * Return: starting ID of the allocated GuC doorbell ID range or
++ *         a negative error code on failure.
++ */
++int xe_guc_db_mgr_reserve_range(struct xe_guc_db_mgr *dbm,
++				unsigned int count, unsigned int spare)
++{
++	int ret;
++
++	mutex_lock(dbm_mutex(dbm));
++	ret = dbm_reserve_chunk_locked(dbm, count, spare);
++	mutex_unlock(dbm_mutex(dbm));
++
++	return ret;
++}
++
++/**
++ * xe_guc_db_mgr_release_range() - Release a range of Doorbell IDs.
++ * @dbm: the &xe_guc_db_mgr 
++ * @start: the starting ID of GuC doorbell ID range to release
++ * @count: number of GuC doorbell IDs to release
++ */
++void xe_guc_db_mgr_release_range(struct xe_guc_db_mgr *dbm,
++				 unsigned int start, unsigned int count)
++{
++	mutex_lock(dbm_mutex(dbm));
++	dbm_release_chunk_locked(dbm, start, count);
++	mutex_unlock(dbm_mutex(dbm));
++}
++
++/**
++ * xe_guc_db_mgr_print() - Print GuC Doorbell Manager.
++ * @dbm: the &xe_guc_db_mgr to print
++ * @p: the &drm_printer to print to
++ * @indent: tab indentation level
++ */
++void xe_guc_db_mgr_print(struct xe_guc_db_mgr *dbm,
++			 struct drm_printer *p, int indent)
++{
++	unsigned int rs, re;
++	unsigned int total;
++
++	drm_printf_indent(p, indent, "count: %u\n", dbm->count);
++	if (!dbm->bitmap)
++		return;
++
++	mutex_lock(dbm_mutex(dbm));
++
++	total = 0;
++	for_each_clear_bitrange(rs, re, dbm->bitmap, dbm->count) {
++		drm_printf_indent(p, indent, "available range: %u..%u (%u)\n",
++				  rs, re - 1, re - rs);
++		total += re - rs;
++	}
++	drm_printf_indent(p, indent, "available total: %u\n", total);
++
++	total = 0;
++	for_each_set_bitrange(rs, re, dbm->bitmap, dbm->count) {
++		drm_printf_indent(p, indent, "reserved range: %u..%u (%u)\n",
++				  rs, re - 1, re - rs);
++		total += re - rs;
++	}
++	drm_printf_indent(p, indent, "reserved total: %u\n", total);
++
++	mutex_unlock(dbm_mutex(dbm));
++}
+diff --git a/drivers/gpu/drm/xe/xe_guc_db_mgr.h b/drivers/gpu/drm/xe/xe_guc_db_mgr.h
+new file mode 100644
+index 000000000000..9bbc1bca97cb
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_guc_db_mgr.h
+@@ -0,0 +1,24 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _XE_GUC_DB_MGR_H_
++#define _XE_GUC_DB_MGR_H_
++
++struct drm_printer;
++struct xe_guc_db_mgr;
++
++int xe_guc_db_mgr_init(struct xe_guc_db_mgr *dbm, unsigned int count);
++
++int xe_guc_db_mgr_get_one_locked(struct xe_guc_db_mgr *dbm);
++void xe_guc_db_mgr_put_one_locked(struct xe_guc_db_mgr *dbm, unsigned int pos);
++
++int xe_guc_db_mgr_get_many(struct xe_guc_db_mgr *dbm,
++			   unsigned int count, unsigned int spare);
++void xe_guc_db_mgr_put_many(struct xe_guc_db_mgr *dbm,
++			    unsigned int start, unsigned int count);
++
++void xe_guc_db_mgr_print(struct xe_guc_db_mgr *dbm, struct drm_printer *p, int indent);
++
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
+index cd80802e8918..16de203c62a7 100644
+--- a/drivers/gpu/drm/xe/xe_guc_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_types.h
+@@ -17,6 +17,19 @@
+ #include "xe_guc_pc_types.h"
+ #include "xe_uc_fw_types.h"
+ 
++/**
++ * struct xe_guc_db_mgr - GuC Doorbells Manager.
++ *
++ * Note: GuC Doorbells Manager is relying on &xe_guc::submission_state.lock
++ * to protect its members.
++ */
++struct xe_guc_db_mgr {
++	/** @count: number of doorbells to manage */
++	unsigned int count;
++	/** @bitmap: bitmap to track allocated doorbells */
++	unsigned long *bitmap;
++};
++
+ /**
+  * struct xe_guc - Graphic micro controller
+  */
+@@ -31,6 +44,8 @@ struct xe_guc {
+ 	struct xe_guc_ct ct;
+ 	/** @pc: GuC Power Conservation */
+ 	struct xe_guc_pc pc;
++	/** @dbm: GuC Doorbell Manager */
++	struct xe_guc_db_mgr dbm;
+ 	/** @submission_state: GuC submission state */
+ 	struct {
+ 		/** @exec_queue_lookup: Lookup an xe_engine from guc_id */
+diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+index 25e1ddfd2f86..a7ede72f6a16 100644
+--- a/drivers/gpu/drm/xe/xe_uc.c
++++ b/drivers/gpu/drm/xe/xe_uc.c
+@@ -9,6 +9,7 @@
+ #include "xe_gsc.h"
+ #include "xe_gt.h"
+ #include "xe_guc.h"
++#include "xe_guc_db_mgr.h"
+ #include "xe_guc_pc.h"
+ #include "xe_guc_submit.h"
+ #include "xe_huc.h"
+@@ -56,6 +57,10 @@ int xe_uc_init(struct xe_uc *uc)
+ 	if (ret)
+ 		goto err;
+ 
++	ret = xe_guc_db_mgr_init(&uc->guc.dbm, ~0);
++	if (ret)
++		goto err;
++
+ 	ret = xe_guc_submit_init(&uc->guc);
+ 	if (ret)
+ 		goto err;
 -- 
 2.25.1
 
