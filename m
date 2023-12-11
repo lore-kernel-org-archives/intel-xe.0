@@ -4,57 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F759C4167B
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Dec 2023 16:49:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5C55C4167B
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Dec 2023 16:49:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 505EE10E488;
-	Mon, 11 Dec 2023 16:49:12 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF3CA10E488
- for <intel-xe@lists.freedesktop.org>; Mon, 11 Dec 2023 16:49:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F32210E488;
+	Mon, 11 Dec 2023 16:49:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3162E10E488
+ for <intel-xe@lists.freedesktop.org>; Mon, 11 Dec 2023 16:49:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702313351; x=1733849351;
+ t=1702313397; x=1733849397;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=gHPSZwhjxLHg76QwrBk/kihH6BX8ykYp4+EUMbG/xzc=;
- b=iOepwbJKSPUpvzkAxrZDhlu35wb6YiFHQValIkCkDkE08jZd9YPF7JTh
- LOqxSLeV+fHUDSmpuDICV1nF/Y+J5gQcRS7fO/W+57YubE2vPE64YCyvj
- upD4i8U0LLjyY2SKTWSkODeoVHM8B7YZj8oU9T+ek9m4Y/HY19sOl3LPf
- 0NLseUnahBMM8lm23w5HQgoekvwGITdVI7hskrkq35BXZghpPojfUaJP0
- wlpAPsBjclX1m0jwP8JsU/l+1o5V6XUAQ6AYAzf6yLJAA3ol8ZhOO9Jet
- ThvTHPHTpA9ZYwCfYlp4OiGZ1c4nuelQ09+e86qTODvkqGqJv0p4jE09b w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="1748695"
-X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; 
-   d="scan'208";a="1748695"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2023 08:49:07 -0800
+ bh=4hO35fsmGzImIwUtwLMUMrbTKSBNpFSJkJBEUSmkXjg=;
+ b=mz4ibnOwXln6NLzyGKOpz5Dx8dxcx19pyz4yb9VKpyHliTrcBd3kkKYC
+ 36Fqwg1frV2oiL+8NMCXKTm9zmzlcfqv/ZK/9kN3E0ZbDFuITz05/ANYP
+ J1BmdofOBYo7ejV5zvYRE3ipp6hOlirmyDeR88qW9U1wipfd9lcNIm52c
+ HuN2BLELfEI2ExHb2yDrtMhH7N7tJLAB8B0GFV6xqfml/NX1T7vVN0L0D
+ z8k/ro3cO/zWaIYrKThavr32ye4jwe9/atria1mDRvxnfboUikXcNpKVz
+ 0emVuYp1N+5INXy7KfFC+GRptJGtjH1hhg+K0DseTu+iP9xjw8fENTiPG g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="374184971"
+X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; d="scan'208";a="374184971"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2023 08:49:55 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="1020303473"
-X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; d="scan'208";a="1020303473"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmsmga006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 11 Dec 2023 08:49:06 -0800
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="839094833"
+X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; d="scan'208";a="839094833"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmsmga008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 11 Dec 2023 08:49:51 -0800
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 11 Dec 2023 08:49:06 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ 15.1.2507.35; Mon, 11 Dec 2023 08:49:51 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Mon, 11 Dec 2023 08:49:06 -0800
+ 15.1.2507.35; Mon, 11 Dec 2023 08:49:50 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Mon, 11 Dec 2023 08:49:50 -0800
 Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Mon, 11 Dec 2023 08:49:03 -0800
+ 15.1.2507.35; Mon, 11 Dec 2023 08:49:50 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cL515HrHLGnrVcGR8XdMSaQX3Av3Q8apOpkzdKZvHzi5iS0QyzFNrJkOBVXDe1mDaBR/+iZmZO/MaZ9Atr8oP+56etBkVOPXd7mL5Gz1xWwco+FQSkylKhmdJyFkwmDKg8flIAf7KgiBvSn1Id7wijALaEIawEDlKCkCkgRo5o24FqkFck969FojFy5XlFKvgomlInTm7WEXxOLrcp9AVTTBybnE+7VpSxlx3JB0YiyDblHaEGjOH3u5k+utQpVXY85Fx40GUChX9VBLS140+PARGSaspK6hEoonkVhJVlxOYfwfTgVcVUffVVM+dVHc9Fm3RrgaoyyOxHSJ7ZBbeA==
+ b=J7H7Zqj7r8uAwD+XPf8d+L/P1qAIOr8ai6iGt4XlaFUArS8ncqgTQPwobqjN6GZA373shZhz0AqigzPbl3QO+jsh7vRqW18Q3VIO+95UjF84blTMGlV25+khGfYupfMAzmLofoLX+oExj317zyKLorC/ufQu2bXQ60ofnJMbKcPTsFvDHmSWRCRg6TOCTPeECkWpKP0sLmD2lCJ1JIWDGIxPixwvHXTVPxwlslA1hDOM2rZ//T6u3QTHLXzqbq5fWOGz7Oppfi3LvlVeGKQkaO0ThB/pFJXV8YnvhGcTCa4BIIPX4pxGQYM9mNZ4qczWh8Oq4rBk25/LTc3EGpqLYA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cTRrE7noG7xIKJlcgJwHm50kGgZvnL8IsYz4TCFopoQ=;
- b=jnxnjWUxTULu3q0TmcV18OAy2WrzLCuZA+JdrUQ9+oMSl5nDp2JwBO0EEjWt2oafw6rT9th9ZYw37/fR5IKaafP9g/fseDeHWVm914Z9akUyjuCnbpx0NN+TM0cKsYl4axwZLmyhTvaOIQGYCBfbifYJCRsMtTi7bEAS1us2HtETTrRtWBMlo75vcoBsV2oKic2BfLPxRfpxKghyN0w+rji1v3+CgJzLjp1BBvgHT/Ne15oBm+oDxaI2+ERCBpJ0sa0/Bwu2wDz/WVr+cAbKp6ahYfUZdLBV+rCt4VTBHIblUG1LFIwt+yPJIUi6hNA7+8+zf4Il1yFq2tiqVF9tow==
+ bh=20NLD2uzIUrg7WC6vXWiD9+KcZh4LitndkjTEV9gof8=;
+ b=Sj1I/1Z8Rsqugqsad/6z13ACN01VoWKNA0i1MncuJ0bF/PvtnxG7D9u2nLKARG7F170EqSsaM8J149Dc+EvLGUr06oDbwVADRStgZXXcPikUNOT1gnCZbLXZ+p252bk4KvgWC2eyDIKELIThcToNKHcHrvWKCfHt3by42mZTcztzvJM+FJ1v6WxL41pg4raPJ+dvHgqHcUGxxVnoBRGTvS6UXJKJGlu1qv4vuvEfovRGB5In3/++2DRU41XqB3dCi2kS0yg2lcSjbkidsFn5Z7WDsX4mLUzjH81HJCFeRJleou6fRti5LPVh3KWkVWCs7stwVrI5DJiLSY52JNbk0g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -64,78 +67,78 @@ Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
  by PH0PR11MB5596.namprd11.prod.outlook.com (2603:10b6:510:eb::23)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.32; Mon, 11 Dec
- 2023 16:49:00 +0000
+ 2023 16:49:45 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::b9a8:8221:e4a1:4cda]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::b9a8:8221:e4a1:4cda%4]) with mapi id 15.20.7068.031; Mon, 11 Dec 2023
- 16:49:00 +0000
-Date: Mon, 11 Dec 2023 16:49:15 +0000
+ 16:49:45 +0000
+Date: Mon, 11 Dec 2023 16:50:00 +0000
 From: Matthew Brost <matthew.brost@intel.com>
 To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
 Subject: Re: [RFC PATCH 7/7] drm/xe/uapi: Uniform async vs sync handling
-Message-ID: <ZXc9i98QKBNPE1u9@DUT025-TGLU.fm.intel.com>
+Message-ID: <ZXc9uPuOAW4lBoHQ@DUT025-TGLU.fm.intel.com>
 References: <20231207055729.438642-1-matthew.brost@intel.com>
  <20231207055729.438642-8-matthew.brost@intel.com>
  <d7c25d14-fa14-4426-57a4-276675c7b2f9@linux.intel.com>
- <ZXLluT3zXZFEH8V3@DUT025-TGLU.fm.intel.com>
- <4a814fc8-6e05-c5fb-8ff5-492a6e14aebc@linux.intel.com>
+ <ZXMK7OpGuejR5Fdv@DUT025-TGLU.fm.intel.com>
+ <3c7903bd-fb88-0958-a093-d54de009ece6@linux.intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <4a814fc8-6e05-c5fb-8ff5-492a6e14aebc@linux.intel.com>
-X-ClientProxiedBy: BYAPR03CA0023.namprd03.prod.outlook.com
- (2603:10b6:a02:a8::36) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <3c7903bd-fb88-0958-a093-d54de009ece6@linux.intel.com>
+X-ClientProxiedBy: SJ0PR03CA0093.namprd03.prod.outlook.com
+ (2603:10b6:a03:333::8) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH0PR11MB5596:EE_
-X-MS-Office365-Filtering-Correlation-Id: dbbd96dd-7d39-461a-2ee4-08dbfa691340
+X-MS-Office365-Filtering-Correlation-Id: a17938f1-ed19-4c55-3c2a-08dbfa692e3b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: RpqxL/qsByqjqdF5BQ7e2iYmLzNGyucHkjswc1f9bDKs+Yg2wRdHI9pC7WbwckNpc9u9gMiYALGWyh8IOj+ezChssSANJJpsIAlsTqXFITVoO1vQQeoAg90rGhSvppCFx3phRVnYNeZnd0XTBxUGxzM1ENrKQ3buyjBZwSFKKJ0uaugDD+cvGCOyjSijwXcG9ncrIDkFcujzVlPz0oB6mrzo/+itImsGxNvmdu7IE0KkHKN7sTaNGrbqaR1+JzblfI7RchhRhPhYODeRKzXsqS/XnCKye0fXfppn7VVNX6FkiYXdGiG0J1R7EDwUHS4L0LJAiir4TCZrkHMuC5GfJkGM1vWv7cPqBhFgPC1mZBN0N8z3Zaq3UcFYH0mL3uuYCcUWnBM34VQC1VzqL+mgrVTcps0PHfxg6Jmd4ZesS4Ymj1644O6r41ycu7Pt/v+RjmVESh0nA+fKSy3/yS2U7IziIK2PH8nwwgMgHkm9SMAnVsjgec8RpNyOXPFd50NGhQBuWKlQc9mhklUAjiLAB2KCotZuJ7mI+no1OL4Oh6YIywTv1keHcoJP/M2LH66UEhADkQU7pjsMF8LE5lM6NVYLKIqUSBPmTkB7L8qyX34=
+X-Microsoft-Antispam-Message-Info: fR4m1BzhBFLKdE91RPecweTDNxFJEBb67HUpEx0JCbqIxXlXILjr8u19hHOWggQcGqFjsm6nm+lUYefXu2HrW4s75Uuu/q9ty+8iohr2+rvdrFmE9cgl080Vo7aEyRQ7+qyeRVLSIj0ezHnUvPz1W1rsP3LBCLGfAMCsnW+/T+xrMUmLO4Vt8+IGTDdtozUM5UrgC2qp1Lj5GeB7YG3a1h8JUnTs95aBlh+KKYbUO6/xq6upXCLlnlKxCU4kuqgqGiR3anNDvI7hamXIhDdwLw3uvptv4zZ9TLB1bSix+4s0jJJymmzdy8L/2QnqvAA1QKpiBiwhnWvTBTH4deURypttj7+tNLY+2f0lwgQK0j+XZuHbi+c4lb8qABXNNo0O49Gi0+VUNj/Gx0kgdAxBPFXc0arSmMg4MlrQ9FkeAcubha4ZJF6Gz2FyA4MbZfXe6BlVRSC5bvK5XNxibDOG+QZn3Jy0sKiuJwoZyRelZEh2X53gHewookopAiB/iv8PxnrIcRj2lEyclEKUIeGPTyjO0xmJQxvoy/EkvC7/RkBFWmgPKs7rlBCvXYWir1i3t1CAvSgaNNAWBnvJPwO8Tj4PYnG4g5FyKQ+484oD5dI=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(376002)(39860400002)(136003)(396003)(366004)(346002)(230273577357003)(230173577357003)(230922051799003)(1800799012)(186009)(64100799003)(451199024)(30864003)(2906002)(41300700001)(38100700002)(86362001)(82960400001)(6512007)(26005)(6666004)(478600001)(53546011)(6486002)(83380400001)(6506007)(66574015)(966005)(4326008)(5660300002)(44832011)(316002)(6916009)(66556008)(66476007)(66946007)(54906003)(8676002)(8936002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?kM7BvzgFZRRMjWW9k3NAIkXStSo5hcoyPc6qSiea0B/MI/NY3WpH50UnsW?=
- =?iso-8859-1?Q?+lp6GH+MNLXmwyPBFAylaKETDI2I9pXJn1wfdZmDTgClHHeaExivIpaiJc?=
- =?iso-8859-1?Q?89sMToQ7vS2injiyeHmM00QPKbBLKqTJq7l3ycW9VOBxUcAaOKoONZRZsI?=
- =?iso-8859-1?Q?IrztcSdFSWiuvwHd4ZiQFwfrckGptK1F9qVPLspzE56BrYfE+sXqv29xMH?=
- =?iso-8859-1?Q?q1DS76xgQvmcCsERnf5fFA57zh/beBkUv7egrCXhKxiNfjYMZSjmT8FTwT?=
- =?iso-8859-1?Q?K4o2/devzdNz+QL1CCudQD7jNmxbKcsFtleIvUurCcmOHntY86U2GSPKcW?=
- =?iso-8859-1?Q?uFvKhUVFBOOyLTtjV3bvhnY9f9Q/xf4hhLdEAuAcU2lRRZexP4mEfuPynj?=
- =?iso-8859-1?Q?TTqzhqcMnq0rxBSt2IldZZBZSTyTZaMzSywvMfthMAwTHJ7Hfi95I3IbLq?=
- =?iso-8859-1?Q?VFfDHOrbOC7ON0In2Gilw/IfzGEu3Wync7IMha7mxcMh15cah1lXbO/P/h?=
- =?iso-8859-1?Q?unrRuMPd01Js/+gtW+zlxYZWNSlmON3d6hgP2xUD1YnIEeaklRsr4mXL1k?=
- =?iso-8859-1?Q?ZD8GedycjeKRc9Db17bGWfeQnQTtE3b1PW4aFYE0exRFgs0wYHgXjOnwf3?=
- =?iso-8859-1?Q?Qc3Jg9MRu91aK5UQOeHUJfyH2es31oe/FfdPY/ljeH3pgjkqjpfW9ivIsY?=
- =?iso-8859-1?Q?YNmpP5wQwAzDIRGsL5NMv6xWrDkmB0uuVnVjCH3sY+VbEWI71CBeqlcV6/?=
- =?iso-8859-1?Q?XTBYMxfIQQrAu52feuVN1SZtwexyWL7r5vjEUbUDa/6MUj40WHQhw59mTs?=
- =?iso-8859-1?Q?003nW7KTQJNgiiwrptdWplLKxvRelLquG3AyW0N0ViUZy5sdErFFtPmlvl?=
- =?iso-8859-1?Q?bI7x0b2g0b5Ce0dHlusXKgXmhDLIxvYstpxfZvlWZgZELsCRjQl3YRKiAq?=
- =?iso-8859-1?Q?OM3HItHSjdmuYq7Wf2oY1okxMhxhxINLY9hyqEGzJ62E76a6s7Gi525PJl?=
- =?iso-8859-1?Q?sd35Xsad5y54T7hN9zhJ0GxvJxlJmuZeN8n93/ZYijSgPPiLpR2mnugCMh?=
- =?iso-8859-1?Q?qWGp6k4m9vtQ4b9sL5cRLjepspYfSZx0pbsvDYAkcrYFDcCTcZQoYd+7jk?=
- =?iso-8859-1?Q?d4GnxuUNJTUOIBTQ13FeIucbq+KxCRhke6hf73L2zIEfPtnshvtdAnReTz?=
- =?iso-8859-1?Q?q86P0l0w9xmZqHo5X2klE92l4ZLS4nf2tA+htXusoaCnbKwbNuuxq+Pjaf?=
- =?iso-8859-1?Q?nVriPHezYxY5mJ6NTh3UKkfjAMD+4S3JBzK7uTs4YP5pPW/EheXGW9gdRk?=
- =?iso-8859-1?Q?kOJEJ0HYoZ8AN3FVgmEkCqgKz7gSV0ZUiY0QJaFG2XA9cagMWCRS/hoF2x?=
- =?iso-8859-1?Q?lxVBMekZ3tKoxMVnvV8NbWfFZpFC9iHSJJ/jAzmKsjqkULHu46el05cRPj?=
- =?iso-8859-1?Q?/u4VvduyBg/r7IZc7ANaRdHTgb2ryEYwZnuwa1KeOAcdKgPZn6c5fYkdrV?=
- =?iso-8859-1?Q?3mB+2hz4ntUf2OYuGWdOIAmnIY/55b3w6CvwiDEwQWLKM3dfr5IorgvcLP?=
- =?iso-8859-1?Q?vacJwxWLTF62mDbJSSvstVLc1ir7IxgQ3i88mPisGkmne++MUszzkLtgbX?=
- =?iso-8859-1?Q?xA2hOHt7yfDQ2u8kehArKvQHUtwMmbx/NQXsXMFERVKjTahtM3xwnUog?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?DFGZTC2x7JXQbFeTzPdp8ZrFkSUVQILJpGgY87vJF0HCjeKdoXIM7J/W0c?=
+ =?iso-8859-1?Q?siYKHBliC7XDpDtQf+9xkyC7O0jeIfSjXEF7C63svKnLqer9+Pw/2iNiDc?=
+ =?iso-8859-1?Q?RnHhmjslOZ9lajy1fnb7XM6oCb19t5z3ylvp942w43B6faeNbZy13FgGjx?=
+ =?iso-8859-1?Q?lUQG1d0MSEZrzGAMfapGfgKcWxC5OsVBYaKKnKRvzWlEuZ9+/iXQSKeDzY?=
+ =?iso-8859-1?Q?CfO6wXI8v40WsMQOLD9cV53pFbMuEdpSfJH0NyifEEVYkvPY12eC0OQAB7?=
+ =?iso-8859-1?Q?MrBeyS/f5L4mlCWIfbzAPGl1VQ5ingwsP/iJxjO1YxzDWsIk88orYSrtfB?=
+ =?iso-8859-1?Q?Ln/1lYI/G+hlEU/Ls8qekLXlQwCypj8gLe3GOHXoa0LhbCc6A26KbMWv6B?=
+ =?iso-8859-1?Q?aHAbajZjv/00LRHnH23Y/b1AA+iYT2/IInKV6dG5zHf4bNTe0YbozTKU/Z?=
+ =?iso-8859-1?Q?q2Igq5xmCQakJA1yzUbDIEoL4Lkoeo11EPSlNL/CO/hy+T61K/QxMwlxjF?=
+ =?iso-8859-1?Q?K/A2f/ogTjjs+T2Zy1AAuUgUHUVudnOxglIUXsCvtZf35gdppP6Kso08UF?=
+ =?iso-8859-1?Q?GlwUWkgXW8bxhMv3beeUJ0JTnX7XWGgxlNNh2dO5vdRuPyLgA1uHw2d1hX?=
+ =?iso-8859-1?Q?7/Qc7xHrca/RWsEzgl8xhONXH6DLDx18YrkveflGHIi6AOjrWGh/rvEj3k?=
+ =?iso-8859-1?Q?mayoIW0NzKTJqQnTPCvG8Va5vt3Oyz61v3zZBnTLeeNKvqw20PDjpA7/1d?=
+ =?iso-8859-1?Q?tDS2n6eG5jJkC7u/CDDyYa/VT3ZcpT3oaoKH9dQqgmfrysLp2z7SzG9w1A?=
+ =?iso-8859-1?Q?fsiVBN5cIpJDIOEpr4LLLP0XX24CW7iVJzoBy5nh4WN8fzD/4t1CA0rUYh?=
+ =?iso-8859-1?Q?Sv2BTy4d7hfvq25TslFAZVsmW1/26U81PziGAZ8Q2kDLNeLY/7R2GqLEsG?=
+ =?iso-8859-1?Q?KT0U43djTHxLT/WEj2eFjiPjSwvYIH0MofzLW4efK/4A9L/G48dtzeqL8w?=
+ =?iso-8859-1?Q?VXZsBytO4CdnM9VYZYQp0bWX4P7t8veVRAg2BOaeJcZBDBo+7amUmM/Iej?=
+ =?iso-8859-1?Q?cEf3L9hwZ0JCcpL7xdbfDtzDwMMonxhHRelcSbibdakoN+tzXvBKRpbiDh?=
+ =?iso-8859-1?Q?2KqszbwMd/jfqMYR6+8/XiuscCliB8bO2O5nQqO4eSFoMsHISUVwXvLQdE?=
+ =?iso-8859-1?Q?e2DkXsNEaPrqJRqYZIwC9oyQHVjqUbgh8kFDlBQNZzXPlI03jwgU3ZjLq8?=
+ =?iso-8859-1?Q?N34bkCl8XA9qi+7VH5eyJnMgPyGDlLA9I+Qwsy8kCCPVvDYhEe6SFmfyV1?=
+ =?iso-8859-1?Q?rIhjuewHTKZlfVflr+6X63QrKYJ09gCdIkI19jDLub7n/Ei2LFge8Mm1OT?=
+ =?iso-8859-1?Q?2vjLu/jPYcZwGyl82l42uRNs9q6DBBnDLHXEs/xGVirPNUHNC2EjEKvYvJ?=
+ =?iso-8859-1?Q?DkHbIcL+zcBGF2QtcbQzoMjyS7N78O6uGBSQiJRE3kXpXJh+KJqWUjaF1j?=
+ =?iso-8859-1?Q?89GzPIAG8E/Iibi7NpY8AHLjHd52iZvWv3+Ylk9B47uOjJECXFw4ukkxM+?=
+ =?iso-8859-1?Q?8ZBWHDfCVUqBQVUJOlyA21b+5cf0bk3RymiWgxqyutOertU060B/5Jnxus?=
+ =?iso-8859-1?Q?87LiwSXE66Aol1wolauVoL+OX/DS2tvMpvh3sWB/EOCEUUZccBHTf31Q?=
  =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: dbbd96dd-7d39-461a-2ee4-08dbfa691340
+X-MS-Exchange-CrossTenant-Network-Message-Id: a17938f1-ed19-4c55-3c2a-08dbfa692e3b
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2023 16:49:00.6059 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2023 16:49:45.8597 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XGm8lZbUohVjavoBc9OlLYRKTP983kR1j8nT5J0XW2AoGJ/eFaX/EwivrUx55HLSclkX5gtWFJxIOFxe7At51A==
+X-MS-Exchange-CrossTenant-UserPrincipalName: md+a7KMXcaP3gckxniggo8u6x7DLubKcHpdEUvZz3ds8F98x9CceFj1U+U/QahJudj8RifSEKvF/HuZrwTJUAQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5596
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -154,10 +157,12 @@ Cc: Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Dec 11, 2023 at 04:43:06PM +0100, Thomas Hellström wrote:
+On Mon, Dec 11, 2023 at 04:34:54PM +0100, Thomas Hellström wrote:
 > 
-> On 12/8/23 10:45, Matthew Brost wrote:
+> On 12/8/23 13:24, Matthew Brost wrote:
 > > On Fri, Dec 08, 2023 at 04:00:37PM +0100, Thomas Hellström wrote:
+> > Missed a comment, addressing below.
+> > 
 > > > On 12/7/23 06:57, Matthew Brost wrote:
 > > > > Remove concept of async vs sync VM bind queues, rather make async vs
 > > > > sync a per IOCTL choice. Since this is per IOCTL, it makes sense to have
@@ -270,120 +275,6 @@ On Mon, Dec 11, 2023 at 04:43:06PM +0100, Thomas Hellström wrote:
 > > > extension to the ioctl and activate sync if present? (Just throwing up ideas
 > > > here).
 > > > 
-> > Hmm, forgot about this. A cookie is fairly easy, what about something like this:
-> > 
-> >   807 /**
-> >   808  * struct drm_xe_syncs - In / out syncs for IOCTLs.
-> >   809  */
-> >   810 struct drm_xe_syncs {
-> >   811         /** @num_syncs: amount of syncs to wait on */
-> >   812         __u32 num_syncs;
-> >   813
-> >   814         /*
-> >   815          * Block in IOCTL until operation complete, num_syncs MBZ if set.
-> >   816          */
-> >   817 #define DRM_XE_SYNCS_IN_FLAG_WAIT_FOR_OP (1 << 0)
-> >   818         /** @in_flags: Input Sync flags */
-> >   819         __u16 in_flags;
-> >   820
-> >   821         /*
-> >   822          * IOCTL operation has started (no need for user to resubmit on
-> >   823          * -ERESTARTSYS)
-> >   824          */
-> >   825 #define DRM_XE_SYNCS_OUT_FLAG_OP_COMMITTED (1 << 0)
-> >   826         /** @out_flags: Output Sync flags */
-> >   827         __u16 out_flags;
-> >   828
-> >   829         /** @syncs: pointer to struct drm_xe_sync array */
-> >   830         __u64 syncs;
-> >   831
-> >   832         /** @reserved: Reserved */
-> >   833         __u64 reserved[2];
-> >   834 };
-> > 
-> > DRM_XE_SYNCS_OUT_FLAG_OP_COMMITTED gets set in exec / bind IOCTL after
-> > the job is committed or in the of zero ops last-fence updated on the
-> > queue. Note that for binds we don't yet do 1 job per IOCTL but after
-> > landing some version of [1]
-> > 
-> > After DRM_XE_SYNCS_OUT_FLAG_OP_COMMITTED is set we return -ERESTARTSYS if
-> > the wait is interrupted and -EINTR is still
-> > DRM_XE_SYNCS_OUT_FLAG_OP_COMMITTED (interrupted before job is
-> > committed).
-> > 
-> > I'd rather go with patch as we have to change the uAPI here regardless
-> > so we might as well make this complete.
-> > 
-> > Matt
-> > 
-> > [1] https://patchwork.freedesktop.org/series/125608/
-> 
-> Yeah as we discussed in the meeting that means making the ioctl RW instead
-> of W with some copying overhead.
-> 
-> I also think we should leave the EXEC ioctl out of this, meaning just having
-> a single field in the VM_BIND ioctl. Basically the reason is that waiting
-> like this after submission is a bit weird and does not align well with how
-> -EINTR is typically used.
-> 
-
-I kinda like uniform behavior between exec and binds with the behavior
-defined in a common sync structure. 
-
-> So either a pointer to a cookie in the ioctl,
-> 
-
-What about:
-
-119 > >   807 /**
-120 > >   808  * struct drm_xe_syncs - In / out syncs for IOCTLs.
-121 > >   809  */
-122 > >   810 struct drm_xe_syncs {
-123 > >   811         /** @num_syncs: amount of syncs to wait on */
-124 > >   812         __u32 num_syncs;
-125 > >   813
-126 > >   814         /*
-127 > >   815          * Block in IOCTL until operation complete, num_syncs MBZ if set.
-128 > >   816          */
-129 > >   817 #define DRM_XE_SYNCS_IN_FLAG_WAIT_FOR_OP (1 << 0)
-130 > >   818         /** @flags: Sync flags */
-131 > >   819         __u32 in_flags;
-132 > >   820
-138 > >   826         /** @cookie: userptr cookie written back with non-zero value once operation committed, only valid when IOCTL returns -EINTR */
-139 > >   827         __u64 cookie;
-140 > >   828
-141 > >   829         /** @syncs: pointer to struct drm_xe_sync array */
-142 > >   830         __u64 syncs;
-143 > >   831
-144 > >   832         /** @reserved: Reserved */
-145 > >   833         __u64 reserved[2];
-146 > >   834 };
-
-Also if cookie is 0, we wait uninterruptable once the op is committed?
-
-> or perhaps dig up again the idea we had of mostly waiting before the
-> submission:
-> 
-> 1) Pull out the last_op fence for the queue from under the relevant lock.
-> 2) Wait for all dependencies without any locks.
-> 3) Lock, and (optionally) if the last_op fence changed, wait for it.
-> 4) Submit
-> 5) Wait for completion uninterruptible.
-> 
-
-We can always change the internal implementation to something like this
-after [1]. That series makes refactors like this quite a bit easier.
-
-Matt
-
-[1] https://patchwork.freedesktop.org/series/125608/ 
-
-> I actually like this last one best, but we'd recommend UMD to uses
-> out-fences whenever possible.
-> 
-> Thoughts?
-> 
-> > 
 > > > >    			dma_fence_put(fence);
 > > > >    		}
 > > > > @@ -331,42 +346,51 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
@@ -545,7 +436,25 @@ Matt
 > > > >    		dma_fence_wait(fence, true);
 > > > It looks like we're dropping the error return code here.
 > > > 
-> > > 
+> > I am aware of this. This is fixed in the larger refactor of the VM bind
+> > error handling [1]. The idea with this series is land the uAPI and get
+> > the implementation 100% correct in the larger follow up series.
+> > 
+> > Matt
+> > 
+> > [1] https://patchwork.freedesktop.org/series/125608/
+> 
+> Then I think we should wait uninterruptible until that is complete.
+> 
+> /Thomas
+> 
+
+That's an options, let's settle on the uAPI and then figure out the implementaion details / plan.
+
+Matt
+
+> 
+> > 
 > > > >    	dma_fence_put(fence);
 > > > > @@ -1923,7 +1915,6 @@ static int xe_vm_unbind(struct xe_vm *vm, struct xe_vma *vma,
 > > > >    #define ALL_DRM_XE_VM_CREATE_FLAGS (DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE | \
