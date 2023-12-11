@@ -4,137 +4,141 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F7CBC4332F
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Dec 2023 23:12:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6C03C4332F
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Dec 2023 23:16:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBC9510E52D;
-	Mon, 11 Dec 2023 23:12:44 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A94CD10E528
- for <intel-xe@lists.freedesktop.org>; Mon, 11 Dec 2023 23:12:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8324E10E523;
+	Mon, 11 Dec 2023 23:16:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8371410E523
+ for <intel-xe@lists.freedesktop.org>; Mon, 11 Dec 2023 23:16:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702336364; x=1733872364;
+ t=1702336568; x=1733872568;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=0jfjVs3KoyfC+6CW2fcaPdeBuYLBB3VMTIFBvxitMRw=;
- b=AgCRmjNKolc8c4cJy1wU1WbQSgz4SD45jjmSoM3cIOtRrax0A/k1z4+A
- VTGkCzCivj6fZrg+Roa8O/YqBi8veTN26stvjY/fN+VLfb9EoC3Oe17vP
- 4pAW5e488yfZ4hS+gSk1UlKx6KWFbKWOCHtD9dR9w/qgqK5+9iVv4i8AD
- Ce0NGzuQkOlJfI+UbexFeafH0PGVqdNb0gwdAK687Jmq2NHqroChCeqEg
- bczCABwOSJwgzYbWPMr7H5RuuJM846pyNuUbl+XgCilLUX60KK5RIssPm
- Ijbc64McUrG9YF8X3M2L4S1L3RVGIK/0940l/KXL+lsCKUT1ga7CyvSmn Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="8085929"
+ bh=gUlLa99uKKOj/ZhJ6qME7H+Wh0PE2yhjCza+SDhIrTA=;
+ b=TPOEyoaUGQxNKYO6VMHcde3aKIdCYYizx9n3F4fcVfu5YrPHGl/eSZnt
+ ZiqbgxX1bwo+c7lK5qwgBnq7c8ajOuQa+c/0To9KP65/BWbyZuTtpJXJf
+ rYc+wxZi2KancxikUWCUkeKqxFubK7oxD82KhV9McyvFY7f/sjkxFnKdP
+ 6Pmuol2hHCIalg2VfX43ib3RvlfRmyueVnlubwL1cB5FLtrQP2psMUjBN
+ RoyDlu3mxfDrBFN8VCVJ3dRrS/Y9DJj8v2g2NWMIPABI9hZfAJ2Nomyqv
+ TsVIcyqND3Vb9y5neCk+If+LtznDvSU3VlUnF9fUwhKVl3guFZUadwnVO g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="1563441"
 X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; 
-   d="scan'208";a="8085929"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2023 15:12:44 -0800
+   d="scan'208";a="1563441"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2023 15:16:08 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="802223405"
-X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; d="scan'208";a="802223405"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 11 Dec 2023 15:12:43 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="946518888"
+X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; d="scan'208";a="946518888"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 11 Dec 2023 15:16:07 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 11 Dec 2023 15:12:42 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.35; Mon, 11 Dec 2023 15:16:06 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Mon, 11 Dec 2023 15:12:42 -0800
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.35; Mon, 11 Dec 2023 15:16:06 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Mon, 11 Dec 2023 15:16:06 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.40) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Mon, 11 Dec 2023 15:12:42 -0800
+ 15.1.2507.35; Mon, 11 Dec 2023 15:16:04 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=m1ULVUPZ1xjVcAYHam/PLBW/bsYTKrjrQxxaB3XQUb+14FpNvlGcvv0vqQQBG77+rDQ357UUUX8gOl8vkIV/v9ii+y8z2c94JTumLdRcE/Vh2tZtXbC6HGhBKdO7s01yo/1b58TFR19C8zJK85DqqFvTt1cD9Pfy6kMilqVmuNsfIBFccvBbCBPV3gOvR1e43BL9ek5a0ypQMK96PYnKu+mZ1Rb1TLxgZpugftUZbPHAT/PcQnGlUyjw205PgDg0xtc+ndHeLkQMebg1hGlsN+PmmUzHy8ncTgSLaqYPC/Cq1cjlLd4IN+TJWqE3iZ7l6HDrM9T+ESBu7CUgYp0bWg==
+ b=i1s4bPSQFzUZ5WhD3LsOF5iugV4zRQ4v0Y46utV3DCQNENARfh236o4oLmH0Rkp0sRAM8Zo01JSBxUALGu+Eh1hTfqJb3u69ygiNACFbSTglFQi7kbfR3g2wpZv34QjDNfObxkr9kNygck6H8BD+2fT7kcc6NPJ8oqex/fq6FRg4CwLyxUl/7K5yx/vg1XtSpIOJn3alMpSLIhVeGQ5ksFsBO2Zlm71vf21gTp5HQJrQ+D8d82m6wsgbE687SKPN6zTSvD//ktt3fraHariiXpXZalLc21cOqmNJZqjP/PdbaXZANq2ngzyfbgS0HSybfNFt6bJ9zz38BNbkMY0tnA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ovCpJPKdDpmwJhNI8yjZXiOAPfcsf6AY9CmDvG/X1wI=;
- b=QOUM+fJ51U7HGdOzg7KTDCrjFeQYNSNa7DoWOMQX8I0FHTB2nqDqWiym+tqhYb84sVQpIhhjEZ3SH6f/tATQ0jPkNj19t4eSBuU/N1pZaIEYaQL0AWGeEWpqI1rQrdAY3713tSt6Rwrg5nk82nvpD2m81obYHNRBgsCMAoK4679H7DmUdSj5XccuOdRi2lujGfbMgSdYbxX+i4G4mEhj9hYo562XTTHeNjsT3+kzlZJpim4+k8nCD0hTniPTXxyqFZ2Uc8HS79i9dm17zNIwe+vAzG+e8NSMsvM3BV1RSUqMDM+53CwxewrMYdvO7IdDq8DmKEsdw60bwCUniIaN3Q==
+ bh=K0C/BYsYpvL2b1vYwM6Mc0dzWxUPESCVp/Y5V8CjA/k=;
+ b=V8oT82kzUJi7KlMDQwu94HKig/aT0wLoimN5/HicRB0rCHkL0/6gWv9NdH5j6e7y9yJnkk078qKkyV190xEfsK10lI8hM3Q1+rzzPeKu0o7HfIfjBFu3UYEmiDboEIJgjoFH9W8KBpOaZIkA/vrFo+vvBxZwBrlhirpiu5PLLNKVVDpeh4F8KJhR4V8/UdsFgP5pGIwpZ6YCVjUB5Ooj5LDFKJq/Wnc8zMUv7MbDTE0F4buG1sl/LmjJYm4RhZjIgp0BOB3OGl3xUQKi21sM1uAz4tw/Qq5OezKVd6vlIOvykDY5Apkh4GSVbOBP4cpwrv9LVZhlcurM2SJhghXnJg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by PH7PR11MB6882.namprd11.prod.outlook.com (2603:10b6:510:201::17) with
+ by DM4PR11MB5375.namprd11.prod.outlook.com (2603:10b6:5:396::18) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.32; Mon, 11 Dec
- 2023 23:12:35 +0000
+ 2023 23:16:02 +0000
 Received: from DS0PR11MB8182.namprd11.prod.outlook.com
  ([fe80::4f1d:17b5:88b5:76b0]) by DS0PR11MB8182.namprd11.prod.outlook.com
  ([fe80::4f1d:17b5:88b5:76b0%7]) with mapi id 15.20.7068.033; Mon, 11 Dec 2023
- 23:12:35 +0000
-Date: Mon, 11 Dec 2023 15:12:33 -0800
+ 23:16:02 +0000
+Date: Mon, 11 Dec 2023 15:15:59 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: Re: [PATCH v7 01/10] drm/xe/xe2: Determine bios enablement for flat
- ccs on igfx
-Message-ID: <20231211231233.GB1327160@mdroper-desk1.amr.corp.intel.com>
+Subject: Re: [PATCH v7 02/10] drm/xe/xe2: Modify main memory to ccs memory
+ ratio.
+Message-ID: <20231211231559.GC1327160@mdroper-desk1.amr.corp.intel.com>
 References: <20231211134356.1645973-1-himal.prasad.ghimiray@intel.com>
- <20231211134356.1645973-2-himal.prasad.ghimiray@intel.com>
+ <20231211134356.1645973-3-himal.prasad.ghimiray@intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231211134356.1645973-2-himal.prasad.ghimiray@intel.com>
-X-ClientProxiedBy: BY5PR13CA0005.namprd13.prod.outlook.com
- (2603:10b6:a03:180::18) To DS0PR11MB8182.namprd11.prod.outlook.com
+In-Reply-To: <20231211134356.1645973-3-himal.prasad.ghimiray@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0012.namprd03.prod.outlook.com
+ (2603:10b6:a03:33a::17) To DS0PR11MB8182.namprd11.prod.outlook.com
  (2603:10b6:8:163::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|PH7PR11MB6882:EE_
-X-MS-Office365-Filtering-Correlation-Id: ee1597f0-6d80-4c39-21d8-08dbfa9ea916
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|DM4PR11MB5375:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2c4ddd64-0b5f-49fa-c3d9-08dbfa9f2450
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: CG/qHu6osHQh4oAqpnpyfzaxbumNEpsLYPc2kBFNUqWgIaGzlYmiO/9/l5GzcYEz1oN6AQXG3+cjzI28kuhF3HhjabDxEKhBR9X4ZgXMmDdQ3zQa1VpAnEVOXsYTnFGr05znkm8tspPbmbpEbBidzvIfL9kDMxOrEJ19YH8yoSw2QgBmbLq6gm0fjFfWW3F+YZHwYHi//RUK7mjIe/8M5mJaXIf2NJDxRU5VQeLptXE6quNIuHj0DHwkmvw2ENahx2M6LiCcPClgO2s9su8N9o0uzhVMzqorX6Tucd3f+x5erBwTE6lLPyHn4ovRxD8QOpZLzRBQL1Qg/HdR1RolYD7NW0g/nI+lDdXeNQn5NsU7hervnTM5rjHdN1ZrRrN2MGTVyBjXlcEwWryoczqxX0XPg7YY1DSf1X47x7/yCmpXit7K1hFTRLhGWsR7azbyuqQh9luSKJRvAo9tqZLsMHO6et+AnYuihqhwNkTr1kHH4MwKBT83yeee35TC0hwNp+3GPdTo4Y09cdY4lZDZA6QgM1ysso7JWYpQ7EBqYaIDQdTbHOYHgpOQ9su3POSG
+X-Microsoft-Antispam-Message-Info: L341sVtPC36Wz2EM8OoFcmmdxDThFV/og5bygPMLVpV4aZDlF+0qXhJU/RaihPHXudlVmw98G6xkjUmgnvphx34E0NbfS/OC7pfW4T8kZNuUit0xd1Pdb9SudpcY3k2b4pvee9MlIrxR9A4S10WaS7ukhkPyVX1JVo+IJBFmqhrAQEIbXbMIsxi8Z4C972+enhNCTt33ND6VuDUkT3JeYy4FUS1xNcibsw1vbWcn9d03yHwN1qNjJNYi4PsMGivXoY4gaeDQe5qTtb6ew/lpzHKD0O7Q20SSjtL7CxWphx52+25BRxdLDL4BvfVDGD46oV+S5gZEUjDZ4EpMWmJKGZlrrBSQpglhcNkjNhNyuBIrRRBtlJOLEiUlKW5hi5QrswcqZdzdiiyK/6akxMo4i/lnmotbGZazIMArZ/BLuqexyjOt8Qjl/QcqvM+03P8IYZLqvFwBQuAREUqWcX1Ar2pmTLg8ygkfNa9/O/SFEC15idquXKwZ/ZUdwKwQ0N9P8RJEICC5A3lSw3xN7BGNN3QF9jBF2MWubJ85lxg4BOUn1H7eiDfr4NGfqFD1iXVo
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(136003)(346002)(376002)(39860400002)(396003)(366004)(230922051799003)(186009)(451199024)(1800799012)(64100799003)(41300700001)(66574015)(1076003)(26005)(83380400001)(82960400001)(33656002)(86362001)(38100700002)(5660300002)(316002)(8936002)(8676002)(6862004)(4326008)(2906002)(6512007)(6506007)(6636002)(66476007)(66946007)(66556008)(478600001)(6486002);
+ SFS:(13230031)(376002)(366004)(346002)(136003)(39860400002)(396003)(230922051799003)(451199024)(186009)(64100799003)(1800799012)(41300700001)(66574015)(1076003)(26005)(83380400001)(82960400001)(86362001)(33656002)(38100700002)(5660300002)(316002)(8676002)(8936002)(6862004)(4326008)(6636002)(2906002)(6666004)(6512007)(6506007)(66476007)(66946007)(66556008)(478600001)(6486002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?DCEtomx7XMC0khpGaXdz/lxQ1b0eiGpijL6Mf6V854uAlqdu2hUR0bMm3i?=
- =?iso-8859-1?Q?qEw+rmdL6zCkvsz1+uurBRBsvo25yn71c6B5GUw8OuC8JF5kJ2vPO94NeX?=
- =?iso-8859-1?Q?1XRVuZUPaImu0pTsS8uunJBD1vMnzDCeoxT3i7Vd3zhO2IqkDfGZFL4wUn?=
- =?iso-8859-1?Q?44B2+ad6vklujIHmjzHfXtkfo+ezy69YLeEABn7TMIQZyj8pH1h+X4IVWQ?=
- =?iso-8859-1?Q?HJT6VmSDpI/g1FwgS6c4EV/eGi6FrICvrcdrw59eIGSyFi34r6NzwpwRLE?=
- =?iso-8859-1?Q?cTEAOIz7QIcj/jHDh7Km8TW2VbAfOcZeGnMtPTsO8kjPLE6KnH691iM1Df?=
- =?iso-8859-1?Q?hd5OpspDNf48gFkA1nyYUh7d1Z2KGZq1EuIWMVBYZt9pSIVYDlIi2e+VXZ?=
- =?iso-8859-1?Q?E9hYWPIG9crQIa+uF0MoCg0L561xqKgWedqEs+7RYdKK4L0x+Z4HlzXKPJ?=
- =?iso-8859-1?Q?ISfh8e/+6xWJw0jndSUfafV6MrhUoxKkdpPKlOjOpOenxI5HwyJcDVZpMM?=
- =?iso-8859-1?Q?QoB+d234N8Fh2VHdlZMOOG8dU9J4/jqHXvYZbtlgyeeZPTmX3xGe5tHK47?=
- =?iso-8859-1?Q?wQs+bhlzurii0hf8BZgJljv/j6Sih4kilIk8BUVGeauYZz3lnHBNfcXAdf?=
- =?iso-8859-1?Q?17WyacRBtUtOTcdFstEWJkRGZ39+spyyyZLwwvxNb54b+l2Yy5oeT1mGdt?=
- =?iso-8859-1?Q?tyQpdG1TuRcIUv9zcz4EZjpNTNdDXwgNQtmfPJF1AChWOVN2F6w/epAREA?=
- =?iso-8859-1?Q?KCqYGqSKetUZKv37rSZhUGjWZD0hsKLoJfoiOtCB6oZbQ1SbFsrpffZ8vv?=
- =?iso-8859-1?Q?535EraRE9K3SIny9TmG0FN8MkEgNbxucJ39sDQc/iHZa0nCCGUACI71WKM?=
- =?iso-8859-1?Q?KakO7eG8vbZHzGIlUZqhytM9OVutqQJNL7/GlgwR1Q5jOpkZUQnxLnWXBB?=
- =?iso-8859-1?Q?IXHrkdNDpv+3RZ7ZY+4N6RBjRY9QSc2xEivb076fh8doYMRk2qhuL8Yc21?=
- =?iso-8859-1?Q?tO62D/HJRIGH/QXuFLfWFKWDSDz9ZQOV9O51ptYHQNuaYV4+MJEa/SNMBJ?=
- =?iso-8859-1?Q?2kVaUSDCKRa/sUT5CBhz+MMwmARYW8Q1smpJAmUaPt66b2galVo3EvDpTT?=
- =?iso-8859-1?Q?BaQytSVG1FbIHdLo8M6UtJY15XcmlaJgADZlj/XH8dvV1HVM4cOLwxFZ4W?=
- =?iso-8859-1?Q?lhm/jkv//pMVchUlBBdfIKVroxhhxGiyCzDWIbs5cPk/tY3MQ1+704NG18?=
- =?iso-8859-1?Q?9Duu6HKxt6sKvpbsQGO/zMuEv7jsecoyzAwifGEHpV93RCJTEV1R8YcznS?=
- =?iso-8859-1?Q?nkVHZTSvq/zLTKgua4Xjxu1s3I7MwKZD+5qshWoHWQ4xjP/tImrUz7snkE?=
- =?iso-8859-1?Q?LI5enpEMk1DT2pBnFV1doGsmJvE+wnlGoF4wXxhZxcWUFbsWv+yv6n007k?=
- =?iso-8859-1?Q?RlThYgYNoTQ1gqz6hfIrEVa7banbMAquavCfNJ0OwBCFWYtkyBA8ApWKuV?=
- =?iso-8859-1?Q?DU8lhKDds0tuZT50++kZf1MPSXJufwQWGtVG2FR6EVicTX/RHsnnTfv6bx?=
- =?iso-8859-1?Q?wO4pGEou+teoQqZzdwGbQaLy6m8NKcBYRCP4aPtt1F+Pf5nvosuvJaWW+w?=
- =?iso-8859-1?Q?TxWTovinF/df4wJ6kSo0CBz/dlrW4lSaOO3SI2G58LwJfMwC24vS4h9w?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?pcyxLrrpVD5AEHdg2Mwzn0vih3ibn+H8U2nRqDz2eLO4E6NNIo9QoElAZr?=
+ =?iso-8859-1?Q?CzQJIcEeZWYjh2tOHnVCKvjVWcCLDOnIfApJefNiXPRUqVBKZV7veKowb9?=
+ =?iso-8859-1?Q?4IUUm+IvuG1tOJ5hDjU7unonekxd+aHxseAGaIF4qzcLMWd8BYWkE0DaoG?=
+ =?iso-8859-1?Q?CRpPzUZ7Lg2oLhgbtKOheggD6cF3tMgV0kmqwh/ixFlfVliRRuKqzHbgby?=
+ =?iso-8859-1?Q?ZuudX96yqNqxZpOdEAjT6ZJdo/FmDXWGyd7YWA5fyaelbbFTVc7rd89Mex?=
+ =?iso-8859-1?Q?aMReHa77DrRcCytfNrcDiQmMMFn2/6Mi6m/WSltNStsexBQEwbfnlHMUsW?=
+ =?iso-8859-1?Q?Z2G3p+0XOb091esDu/j5ZF9YLlf6t6KAFxWgxRMBL9tYfuPfIEjCQ79fUD?=
+ =?iso-8859-1?Q?WG+g/cyTENVTrUc24GY7RD4f0YTae8fdxF0y/RISDVtuPn44EtjnGHGdst?=
+ =?iso-8859-1?Q?oXcMPXPB1H9g/Blaxnj2yyBojb4tJ1tOpZOvCYYgV+2FQp8n4LO0rcKgBU?=
+ =?iso-8859-1?Q?reRprGD/OYyAP/IPfPMlnKl/aXK3O0Vkiwfyej5C8lkAywIdE6psXtAO0M?=
+ =?iso-8859-1?Q?btgYIjdbQoNpVvRthmbFVUbnRL0wANyy/fs34V2Y7kJPeHxSvHOYxPNtdn?=
+ =?iso-8859-1?Q?0QdMY07phcWytnfXM7gaIX0U7YBxgAPZwwKChZJ/WXyUB6W5n1tr7qOGMW?=
+ =?iso-8859-1?Q?4LWDmRm96F90GBFI1io1NKar7NXMOs0zSozw+RAYOVr/8SLLr7Czm8lMRs?=
+ =?iso-8859-1?Q?hNykWgKlJE3VUBcNv0AV8hI/5dzt2Le3DuOwLIxWHOIhSGpMDRMGEbGDbg?=
+ =?iso-8859-1?Q?0f6j9oCC34s89stk0DtHPpjA511VshM0E8X3Xo4Rdw6OddzyGOAsU8mv7Q?=
+ =?iso-8859-1?Q?Eh8J2BNCnuWyvbT5eOP7Xwn6BwcHevhBGfTIszE/Gtwds8m9ldHq4Mx2QD?=
+ =?iso-8859-1?Q?NzI48ne8wnFu3h+zAswdGi0OIHVA391mxmtGvN9KJl0e9lMrOUzv4ILlRx?=
+ =?iso-8859-1?Q?D3qSjJEibZhrahLely1ItjmYAPNA6Oo8NcNdREDnkqSwJtnfLCxaytpvLJ?=
+ =?iso-8859-1?Q?d6W+DXA0ipfIQBlAe+qs9U9yExe8+7AOmyT4qDI+RPjBEZJEgnpK8+LDS+?=
+ =?iso-8859-1?Q?+idUHk5oU6RDKcHlRqua/XtARXfuFXAVFNO0MBhNSZ+NIrOKWwEFY1H9Pj?=
+ =?iso-8859-1?Q?48UXbKMtsQchQwnorsqx6h4q3c7fIxDaJdcw810wWboAMDn91nlzcEm0mE?=
+ =?iso-8859-1?Q?MOBER+oOUMU1MVMs0kSFo3QZkSUuVslqL3v9S8PFgZZe67IXfGvE6iG82A?=
+ =?iso-8859-1?Q?7OiBxaxKPFpxjncnwH6ZzCSmi2NZM2ZuCPJngEqEcc9KmXz1lvdQHBIste?=
+ =?iso-8859-1?Q?rDvctaScpiiSR5RItE4PkL9RfiqCJzv55fp+CqVTTz1n1+ZpBVn2DEEhkl?=
+ =?iso-8859-1?Q?gilOVQzShQ+KwDHFoI5R+qfGG6gOwQSDd/fHN+0QTYcwWT4NyClmJbPySP?=
+ =?iso-8859-1?Q?2Q8tpj6HsK/2hv9yqCb/SCd2nTiTGJugo1CZwEp4Z+PfDZq6pauNiTybRm?=
+ =?iso-8859-1?Q?WGZr/V8mk/NrenCG9eoLGbqYKgrajvsbDTfHwxAaWHEqH1x4sfPSQvXwkn?=
+ =?iso-8859-1?Q?xV6fEGGOrARajwXbSf4eETRDrIJXrksVi8o4A7FADqY5gB5V+IfhBLyA?=
  =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: ee1597f0-6d80-4c39-21d8-08dbfa9ea916
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2c4ddd64-0b5f-49fa-c3d9-08dbfa9f2450
 X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2023 23:12:35.3063 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2023 23:16:02.3521 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: RCflnzyt60u1HEnViCTJ+WbUsKBdH9MAuV0xvscLjd/xODT3vZyg0hIQ49VtBdnP0sEi5us75QC7BqJLKjVrDALXGgpCRsUP6QjwziegNtg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6882
+X-MS-Exchange-CrossTenant-UserPrincipalName: Dfk33jZIhNuNP3CyhPFQxZePRzy4ffW2l0E/O9O9Zf/MdmH4t3p/MlQIZNyIAFEK55Ho7s73KDLXN5E/wP6YjuPiPmh504E3Cmk0zhOJF3w=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5375
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -151,120 +155,57 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Dec 11, 2023 at 07:13:47PM +0530, Himal Prasad Ghimiray wrote:
-> If bios disables flat ccs on igfx make has_flat_ccs as 0 and notify
-> via drm_info.
-
-s/drm_info/drm_dbg/
-
+On Mon, Dec 11, 2023 at 07:13:48PM +0530, Himal Prasad Ghimiray wrote:
+> On xe2 platforms each byte of CCS data now represents 512 bytes of
+> main memory data.
 > 
-> Bspec:59255
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> ---
+>  drivers/gpu/drm/xe/regs/xe_gpu_commands.h | 2 +-
+>  drivers/gpu/drm/xe/xe_device.c            | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+> index f1c5bf203b3d..1f9c32e694c6 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+> @@ -16,7 +16,7 @@
+>  #define   XY_CTRL_SURF_MOCS_MASK	GENMASK(31, 26)
+>  #define   XE2_XY_CTRL_SURF_MOCS_INDEX_MASK	GENMASK(31, 28)
+>  #define   NUM_CCS_BYTES_PER_BLOCK	256
+> -#define   NUM_BYTES_PER_CCS_BYTE	256
+> +#define   NUM_BYTES_PER_CCS_BYTE(_xe)	(GRAPHICS_VER(_xe) >= 20 ? 512 : 256)
 
-I think I asked on an earlier revision, but if there's a more general
-bspec page about FlatCCS handling, we should include that since this
-register detail page doesn't give any meaningful information on its own.
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-For example, what's the difference between the enable bit in this
-register (0x8800) and the one in XEHP_FLAT_CCS_BASE_ADDR (0x4910), which
-is a register that the driver is already using on DG2 (and which still
-exists on Xe2)?  In fact, is it pre-existing a driver bug that we
-haven't been checking that CCS was enabled on DG2?
+for the time being, but longer term I don't think we want this
+definition in the "xe_gpu_commands.h" header at all since it's not
+actually related to the GPU instruction.  This is is a more general
+device characteristic that should be moved somewhere else, possibly to a
+field in the device info structures.
 
 
 Matt
 
-> 
-> v2:
->  - Release forcewake.
->  - Add registers in order.
->  - drop dgfx condition and only add it back in the future
-> when the support for an Xe2 dgpu will be added.
-> - Use drm_dbg instead of drm_info. (Matt)
-> 
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> ---
->  drivers/gpu/drm/xe/regs/xe_gt_regs.h |  3 +++
->  drivers/gpu/drm/xe/xe_device.c       | 30 ++++++++++++++++++++++++++++
->  2 files changed, 33 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> index 5f5a72e9d0d8..f5bf4c6d1761 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> @@ -162,6 +162,9 @@
->  #define XEHP_SQCM				XE_REG_MCR(0x8724)
->  #define   EN_32B_ACCESS				REG_BIT(30)
+>  #define   NUM_CCS_BLKS_PER_XFER		1024
 >  
-> +#define XE2_FLAT_CCS_BASE_RANGE_LOWER		XE_REG_MCR(0x8800)
-> +#define   XE2_FLAT_CCS_ENABLE			REG_BIT(0)
-> +
->  #define GSCPSMI_BASE				XE_REG(0x880c)
->  
->  #define	MIRROR_FUSE3				XE_REG(0x9118)
+>  #define XY_FAST_COLOR_BLT_CMD		(2 << 29 | 0x44 << 22)
 > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index 2e0b2e40d8f3..91f5807d2d20 100644
+> index 91f5807d2d20..f8e1b809f944 100644
 > --- a/drivers/gpu/drm/xe/xe_device.c
 > +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -16,6 +16,7 @@
->  #include <drm/xe_drm.h>
->  
->  #include "regs/xe_regs.h"
-> +#include "regs/xe_gt_regs.h"
->  #include "xe_bo.h"
->  #include "xe_debugfs.h"
->  #include "xe_display.h"
-> @@ -26,6 +27,7 @@
->  #include "xe_exec.h"
->  #include "xe_ggtt.h"
->  #include "xe_gt.h"
-> +#include "xe_gt_mcr.h"
->  #include "xe_irq.h"
->  #include "xe_mmio.h"
->  #include "xe_module.h"
-> @@ -401,6 +403,30 @@ int xe_device_probe_early(struct xe_device *xe)
->  	return 0;
+> @@ -615,7 +615,7 @@ void xe_device_wmb(struct xe_device *xe)
+>  u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size)
+>  {
+>  	return xe_device_has_flat_ccs(xe) ?
+> -		DIV_ROUND_UP(size, NUM_BYTES_PER_CCS_BYTE) : 0;
+> +		DIV_ROUND_UP(size, NUM_BYTES_PER_CCS_BYTE(xe)) : 0;
 >  }
 >  
-> +static int xe_device_set_has_flat_ccs(struct  xe_device *xe)
-> +{
-> +	u32 reg;
-> +	int err;
-> +
-> +	if (GRAPHICS_VER(xe) < 20 || !xe->info.has_flat_ccs)
-> +		return 0;
-> +
-> +	struct xe_gt *gt = xe_root_mmio_gt(xe);
-> +
-> +	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-> +	if (err)
-> +		return err;
-> +
-> +	reg = xe_gt_mcr_unicast_read_any(gt, XE2_FLAT_CCS_BASE_RANGE_LOWER);
-> +	xe->info.has_flat_ccs = (reg & XE2_FLAT_CCS_ENABLE);
-> +
-> +	if (!xe->info.has_flat_ccs)
-> +		drm_dbg(&xe->drm,
-> +			 "Flat CCS has been disabled in bios, May lead to performance impact");
-> +
-> +	return xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
-> +}
-> +
->  int xe_device_probe(struct xe_device *xe)
->  {
->  	struct xe_tile *tile;
-> @@ -456,6 +482,10 @@ int xe_device_probe(struct xe_device *xe)
->  			goto err_irq_shutdown;
->  	}
->  
-> +	err = xe_device_set_has_flat_ccs(xe);
-> +	if (err)
-> +		return err;
-> +
->  	err = xe_mmio_probe_vram(xe);
->  	if (err)
->  		goto err_irq_shutdown;
+>  bool xe_device_mem_access_ongoing(struct xe_device *xe)
 > -- 
 > 2.25.1
 > 
