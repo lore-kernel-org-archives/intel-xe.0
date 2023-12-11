@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B404C10F05
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CB21C10DC3
 	for <intel-xe@archiver.kernel.org>; Mon, 11 Dec 2023 13:36:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F14F710E421;
-	Mon, 11 Dec 2023 13:36:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 344E610E425;
+	Mon, 11 Dec 2023 13:36:16 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FD1210E408
- for <intel-xe@lists.freedesktop.org>; Mon, 11 Dec 2023 13:36:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00ED210E421
+ for <intel-xe@lists.freedesktop.org>; Mon, 11 Dec 2023 13:36:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702301771; x=1733837771;
+ t=1702301775; x=1733837775;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=CbRRY+dEsDurTdmDJgYpTiGIZVgY39Tdw5MxZiOhoFE=;
- b=QshlV3nephP1S42/GVaVsIckBCq92a0gJK4+fpoi8fRXi0NOVYZVEunm
- tVoG6MmKjihmgpwTvImQRRLuawh7A4oV3GYmipKCWpB4CfNgq9QyBjzgm
- kwa2X1OGQRMmgg+Oxf6CKpNvcv3JLmEOZ07o14TrL2yVytK6CbDCp1eJm
- +y2eA/YKtqNuEsH4YUQGTlLO11/kX3bMrOutVl83LUnwkYjVTjs/1CZSU
- FUGTvJOPzo3zj89sUmTUPtG2IxcyLd4aW3OJfnvMTyWxWCPkjOnzzKPKz
- h/MDT2CeJmgBLU+w3temTi+1PfJfb+a+0myHSLDkh2co5/7mBBKEB6yzV g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="1715590"
+ bh=Hztb9llgEK9k6D5RtKJZT7253VEgMO9IijwFIueVQAo=;
+ b=kONVmIuwN8Up1Nv9rvmxbJmcSTHBa8TnCvtn4KYm+8J/uyZCwUug2P1r
+ eEVGYRoKeVGEiJTQ7pXBHAjqPA52pCQRbzY3Dy08X8klO5alITdO+k7vS
+ 7SrEZOra/X3/5Ug6i+tjoC3CtMEA64ceQIFTbFJCkbGvIEytEyiWceOoU
+ VioECXAKAZpsTt9Caz94j6adptrCEoMZLJBod2m/OrKlXYlbTzHFl3wgo
+ yqe2gSuv5iuf413zR9dQdcGCSh8eS8dxPyMaUTxan0b0FIR3gLMboCuKz
+ dURkq5kQcXXIQVpIAFb+HQfh0kI41KDPhpT3ZY+cdGlCp/R+vK4YbBQLk w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="1715594"
 X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; 
-   d="scan'208";a="1715590"
+   d="scan'208";a="1715594"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2023 05:36:11 -0800
+ 11 Dec 2023 05:36:15 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="946324769"
-X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; d="scan'208";a="946324769"
+X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="946324783"
+X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; d="scan'208";a="946324783"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orsmga005.jf.intel.com with ESMTP; 11 Dec 2023 05:36:09 -0800
+ by orsmga005.jf.intel.com with ESMTP; 11 Dec 2023 05:36:12 -0800
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v7 02/10] drm/xe/xe2: Modify main memory to ccs memory ratio.
-Date: Mon, 11 Dec 2023 19:13:48 +0530
-Message-Id: <20231211134356.1645973-3-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v7 04/10] drm/xe/xe2: Updates on XY_CTRL_SURF_COPY_BLT
+Date: Mon, 11 Dec 2023 19:13:50 +0530
+Message-Id: <20231211134356.1645973-5-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20231211134356.1645973-1-himal.prasad.ghimiray@intel.com>
 References: <20231211134356.1645973-1-himal.prasad.ghimiray@intel.com>
@@ -61,44 +61,88 @@ Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On xe2 platforms each byte of CCS data now represents 512 bytes of
-main memory data.
+- The XY_CTRL_SURF_COPY_BLT instruction operationg on ccs data expects
+size in pages of main memory for which CCS data should be copied.
+- The bitfield representing copy size in XY_CTRL_SURF_COPY_BLT has
+shifted one bit higher in the instruction.
+
+v2:
+ - Fix the num_pages for ccs size calculation.
+ - Address nits (Thomas)
+
+v3:
+- Use FIELD_PREP and FIELD_FIT instead of shifts and numbers.(Matt)
 
 Cc: Matt Roper <matthew.d.roper@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gpu_commands.h | 2 +-
- drivers/gpu/drm/xe/xe_device.c            | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_gpu_commands.h |  5 ++---
+ drivers/gpu/drm/xe/xe_migrate.c           | 21 +++++++++++++++------
+ 2 files changed, 17 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-index f1c5bf203b3d..1f9c32e694c6 100644
+index 1f9c32e694c6..a255946b6f77 100644
 --- a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
 +++ b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-@@ -16,7 +16,7 @@
+@@ -11,13 +11,12 @@
+ #define XY_CTRL_SURF_COPY_BLT		((2 << 29) | (0x48 << 22) | 3)
+ #define   SRC_ACCESS_TYPE_SHIFT		21
+ #define   DST_ACCESS_TYPE_SHIFT		20
+-#define   CCS_SIZE_MASK			0x3FF
+-#define   CCS_SIZE_SHIFT		8
++#define   CCS_SIZE_MASK			GENMASK(17, 8)
++#define   XE2_CCS_SIZE_MASK		GENMASK(18, 9)
  #define   XY_CTRL_SURF_MOCS_MASK	GENMASK(31, 26)
  #define   XE2_XY_CTRL_SURF_MOCS_INDEX_MASK	GENMASK(31, 28)
  #define   NUM_CCS_BYTES_PER_BLOCK	256
--#define   NUM_BYTES_PER_CCS_BYTE	256
-+#define   NUM_BYTES_PER_CCS_BYTE(_xe)	(GRAPHICS_VER(_xe) >= 20 ? 512 : 256)
- #define   NUM_CCS_BLKS_PER_XFER		1024
+ #define   NUM_BYTES_PER_CCS_BYTE(_xe)	(GRAPHICS_VER(_xe) >= 20 ? 512 : 256)
+-#define   NUM_CCS_BLKS_PER_XFER		1024
  
  #define XY_FAST_COLOR_BLT_CMD		(2 << 29 | 0x44 << 22)
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 91f5807d2d20..f8e1b809f944 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -615,7 +615,7 @@ void xe_device_wmb(struct xe_device *xe)
- u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size)
- {
- 	return xe_device_has_flat_ccs(xe) ?
--		DIV_ROUND_UP(size, NUM_BYTES_PER_CCS_BYTE) : 0;
-+		DIV_ROUND_UP(size, NUM_BYTES_PER_CCS_BYTE(xe)) : 0;
- }
+ #define   XY_FAST_COLOR_BLT_DEPTH_32	(2 << 19)
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index be2a92dee52c..cb9f00697115 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -526,21 +526,30 @@ static void emit_copy_ccs(struct xe_gt *gt, struct xe_bb *bb,
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	u32 *cs = bb->cs + bb->len;
+ 	u32 num_ccs_blks;
++	u32 num_pages;
++	u32 ccs_copy_size;
+ 	u32 mocs;
  
- bool xe_device_mem_access_ongoing(struct xe_device *xe)
+-	num_ccs_blks = DIV_ROUND_UP(xe_device_ccs_bytes(gt_to_xe(gt), size),
+-				    NUM_CCS_BYTES_PER_BLOCK);
+-	xe_gt_assert(gt, num_ccs_blks <= NUM_CCS_BLKS_PER_XFER);
++	if (GRAPHICS_VERx100(xe) >= 2000) {
++		num_pages = DIV_ROUND_UP(size, XE_PAGE_SIZE);
++		xe_gt_assert(gt, FIELD_FIT(XE2_CCS_SIZE_MASK, num_pages - 1));
+ 
+-	if (GRAPHICS_VERx100(xe) >= 2000)
++		ccs_copy_size = REG_FIELD_PREP(XE2_CCS_SIZE_MASK, num_pages - 1);
+ 		mocs = FIELD_PREP(XE2_XY_CTRL_SURF_MOCS_INDEX_MASK, gt->mocs.uc_index);
+-	else
++
++	} else {
++		num_ccs_blks = DIV_ROUND_UP(xe_device_ccs_bytes(gt_to_xe(gt), size),
++					    NUM_CCS_BYTES_PER_BLOCK);
++		xe_gt_assert(gt, FIELD_FIT(CCS_SIZE_MASK, num_ccs_blks - 1));
++
++		ccs_copy_size = REG_FIELD_PREP(CCS_SIZE_MASK, num_ccs_blks - 1);
+ 		mocs = FIELD_PREP(XY_CTRL_SURF_MOCS_MASK, gt->mocs.uc_index);
++	}
+ 
+ 	*cs++ = XY_CTRL_SURF_COPY_BLT |
+ 		(src_is_indirect ? 0x0 : 0x1) << SRC_ACCESS_TYPE_SHIFT |
+ 		(dst_is_indirect ? 0x0 : 0x1) << DST_ACCESS_TYPE_SHIFT |
+-		((num_ccs_blks - 1) & CCS_SIZE_MASK) << CCS_SIZE_SHIFT;
++		ccs_copy_size;
+ 	*cs++ = lower_32_bits(src_ofs);
+ 	*cs++ = upper_32_bits(src_ofs) | mocs;
+ 	*cs++ = lower_32_bits(dst_ofs);
 -- 
 2.25.1
 
