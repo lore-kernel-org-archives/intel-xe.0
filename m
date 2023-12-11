@@ -4,54 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05D25C4167B
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Dec 2023 15:43:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41E14C4167B
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Dec 2023 16:23:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE5E810E477;
-	Mon, 11 Dec 2023 15:43:15 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9CCF10E470
- for <intel-xe@lists.freedesktop.org>; Mon, 11 Dec 2023 15:43:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1021B10E4B4;
+	Mon, 11 Dec 2023 16:23:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2172C10E4B4
+ for <intel-xe@lists.freedesktop.org>; Mon, 11 Dec 2023 16:23:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702309393; x=1733845393;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=ZXBFDt/gkcIMkjPYia83F2ROQ9Dz15K4wveVhFuRWQ0=;
- b=SLN8cZ6vh5OP0V50LPE554UvznC0d1fWB/eomLYM9/EvR0vuw9DSUnQ8
- FykeKtUGr6IEm5YtdJXNE9bA0vRLxmA2IGR66PgTVPrK7lhUUbQA0bHlP
- sRXQVBW3yr3NseFkOqVcRIe/pwwJEUocVoAvmB2eLQl0HyXzmcdr4Kw5N
- jVxukNe4G1QFM4QUFIJCpLoO+O6aQ0bF2AJCRfi0Ev2A1YJU55UT1ky7T
- 9SoV90C4ZDUXrBpNQqct55bjdIN/cOq7IyM4At7AlA8SHCV0yhvpOvjAB
- ERaSRbcjea+LQSyCWHUZUdz/Vv2UHpV7DNR4DGvPpvMjtoKKBXrAdFTkk g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="1535119"
-X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; 
-   d="scan'208";a="1535119"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2023 07:43:13 -0800
+ t=1702311831; x=1733847831;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=252NLz21hVuOK3c4eopTqRFXzgz3JfiL+hqxtO4mg+s=;
+ b=IjL7f6xeSTpslQTi3kf4NnC5/6dpSvBEP55ZNSqjUl2hJgluXul9d81t
+ HejkUiGHJwjIpoYvfu6iIPmWSlpJvkB1Y8BoLgEUuuyRdBuIFNxKavHSL
+ l+gXykeoTF/vx1/Ak5NLbugE0ZJxcXbcgQd1uL+ZPTKKQhD/aqes9ereO
+ LBSHm9eU7SkBvJuEBT58L8bZVms2o5dydImkyFKwkv457G7BQa/8aaW+1
+ nzlkDpHlUVA71ks3GZlAWGpBQ+n7A+Ir0oD8hOEKf2DCjCZdLRqG4lAeL
+ mLze29x+ASQcpjgSpTiv5ztOPeB4BeM9I+dlaol8nlX6TJtX9KPP7GB/u g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="480867959"
+X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; d="scan'208";a="480867959"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2023 08:23:50 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="1104506847"
-X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; d="scan'208";a="1104506847"
-Received: from jkubalek-mobl.ger.corp.intel.com (HELO [10.249.254.236])
- ([10.249.254.236])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2023 07:43:09 -0800
-Message-ID: <4a814fc8-6e05-c5fb-8ff5-492a6e14aebc@linux.intel.com>
-Date: Mon, 11 Dec 2023 16:43:06 +0100
+X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; d="scan'208";a="17591505"
+Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.jf.intel.com)
+ ([10.165.21.138])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2023 08:23:50 -0800
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH i-g-t] tests/xe: Remove xe_perf_pmu
+Date: Mon, 11 Dec 2023 08:23:44 -0800
+Message-ID: <20231211162344.2790092-1-ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [RFC PATCH 7/7] drm/xe/uapi: Uniform async vs sync handling
-Content-Language: en-US
-To: Matthew Brost <matthew.brost@intel.com>
-References: <20231207055729.438642-1-matthew.brost@intel.com>
- <20231207055729.438642-8-matthew.brost@intel.com>
- <d7c25d14-fa14-4426-57a4-276675c7b2f9@linux.intel.com>
- <ZXLluT3zXZFEH8V3@DUT025-TGLU.fm.intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <ZXLluT3zXZFEH8V3@DUT025-TGLU.fm.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,737 +55,374 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org,
+Cc: Francois Dugast <francois.dugast@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Group busyness uapi implemented in PMU in the kernel has been discontinued
+and will be replaced by a different group busyness uapi and a different
+implementation. Because of this, we are proposing to remove the PMU code
+from the kernel, till the correct uapi is implemented. Therefore drop the
+corresponding IGT too, since it caters to the old uapi.
 
-On 12/8/23 10:45, Matthew Brost wrote:
-> On Fri, Dec 08, 2023 at 04:00:37PM +0100, Thomas Hellström wrote:
->> On 12/7/23 06:57, Matthew Brost wrote:
->>> Remove concept of async vs sync VM bind queues, rather make async vs
->>> sync a per IOCTL choice. Since this is per IOCTL, it makes sense to have
->>> a singular flag IOCTL rather than per VM bind op flag too. Add
->>> DRM_XE_SYNCS_FLAG_WAIT_FOR_OP which is an input sync flag to support
->>> this. Support this new flag for both the VM bind IOCTL and the exec
->>> IOCTL to match behavior.
->>>
->>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>> Cc: Francois Dugast <francois.dugast@intel.com>
->>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->>> ---
->>>    drivers/gpu/drm/xe/xe_exec.c             |  58 ++++++++----
->>>    drivers/gpu/drm/xe/xe_exec_queue.c       |   7 +-
->>>    drivers/gpu/drm/xe/xe_exec_queue_types.h |   2 -
->>>    drivers/gpu/drm/xe/xe_vm.c               | 110 ++++++++++-------------
->>>    drivers/gpu/drm/xe/xe_vm_types.h         |  15 ++--
->>>    include/uapi/drm/xe_drm.h                |  56 +++++++-----
->>>    6 files changed, 129 insertions(+), 119 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
->>> index 92b0da6580e8..c62cabfaa112 100644
->>> --- a/drivers/gpu/drm/xe/xe_exec.c
->>> +++ b/drivers/gpu/drm/xe/xe_exec.c
->>> @@ -130,12 +130,15 @@ static int xe_exec_begin(struct drm_exec *exec, struct xe_vm *vm)
->>>    	return err;
->>>    }
->>> +#define ALL_DRM_XE_SYNCS_FLAGS (DRM_XE_SYNCS_FLAG_WAIT_FOR_OP)
->>> +
->>>    int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->>>    {
->>>    	struct xe_device *xe = to_xe_device(dev);
->>>    	struct xe_file *xef = to_xe_file(file);
->>>    	struct drm_xe_exec *args = data;
->>> -	struct drm_xe_sync __user *syncs_user = u64_to_user_ptr(args->syncs);
->>> +	struct drm_xe_sync __user *syncs_user =
->>> +		u64_to_user_ptr(args->syncs.syncs);
->>>    	u64 __user *addresses_user = u64_to_user_ptr(args->address);
->>>    	struct xe_exec_queue *q;
->>>    	struct xe_sync_entry *syncs = NULL;
->>> @@ -143,15 +146,18 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->>>    	struct drm_exec exec;
->>>    	u32 i, num_syncs = 0;
->>>    	struct xe_sched_job *job;
->>> -	struct dma_fence *rebind_fence;
->>> +	struct dma_fence *rebind_fence, *job_fence;
->>>    	struct xe_vm *vm;
->>> -	bool write_locked;
->>> +	bool write_locked, skip_job_put = false;
->>> +	bool wait = args->syncs.flags & DRM_XE_SYNCS_FLAG_WAIT_FOR_OP;
->>>    	ktime_t end = 0;
->>>    	int err = 0;
->>>    	if (XE_IOCTL_DBG(xe, args->extensions) ||
->>> -	    XE_IOCTL_DBG(xe, args->pad[0] || args->pad[1] || args->pad[2]) ||
->>> -	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
->>> +	    XE_IOCTL_DBG(xe, args->pad || args->pad2[0] || args->pad2[1] || args->pad2[2]) ||
->>> +	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]) ||
->>> +	    XE_IOCTL_DBG(xe, args->syncs.flags & ~ALL_DRM_XE_SYNCS_FLAGS) ||
->>> +	    XE_IOCTL_DBG(xe, wait && args->syncs.num_syncs))
->>>    		return -EINVAL;
->>>    	q = xe_exec_queue_lookup(xef, args->exec_queue_id);
->>> @@ -170,8 +176,9 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->>>    		goto err_exec_queue;
->>>    	}
->>> -	if (args->num_syncs) {
->>> -		syncs = kcalloc(args->num_syncs, sizeof(*syncs), GFP_KERNEL);
->>> +	if (args->syncs.num_syncs) {
->>> +		syncs = kcalloc(args->syncs.num_syncs, sizeof(*syncs),
->>> +				GFP_KERNEL);
->>>    		if (!syncs) {
->>>    			err = -ENOMEM;
->>>    			goto err_exec_queue;
->>> @@ -180,7 +187,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->>>    	vm = q->vm;
->>> -	for (i = 0; i < args->num_syncs; i++) {
->>> +	for (i = 0; i < args->syncs.num_syncs; i++) {
->>>    		err = xe_sync_entry_parse(xe, xef, &syncs[num_syncs++],
->>>    					  &syncs_user[i], SYNC_PARSE_FLAG_EXEC |
->>>    					  (xe_vm_in_lr_mode(vm) ?
->>> @@ -245,9 +252,17 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->>>    				err = PTR_ERR(fence);
->>>    				goto err_exec;
->>>    			}
->>> +
->>>    			for (i = 0; i < num_syncs; i++)
->>>    				xe_sync_entry_signal(&syncs[i], NULL, fence);
->>> +
->>>    			xe_exec_queue_last_fence_set(q, vm, fence);
->>> +			if (wait) {
->>> +				long timeout = dma_fence_wait(fence, true);
->>> +
->>> +				if (timeout < 0)
->>> +					err = -EINTR;
->>> +			}
->> Here it looks like we will rerun the same IOCTL again if we return -EINTR.
->> The user-space expected action on -EINTR is to just restart the IOCTL
->> without any argument changes. Solution is to add an ioctl argument cookie
->> (or to skip sync vm binds and have the user just use the 0 batch buffers /
->> vm_binds calls or wait for an out-fence). If you go for the cookie solution
->> then IMO we should keep the -ERESTARTSYS returned from dma_fence_wait()
->> since it's converted to -EINTR on return-to-user-space, and the kernel
->> restarts the IOCTL automatically if there was no requested-for-delivery
->> signal pending.
->>
->> I think the simplest solution at this point is to skip the sync behaviour,
->> in particular if we enable the 0 batch / bind possibility.
->>
->> If we still want to provide it, we could add a cookie address as an
->> extension to the ioctl and activate sync if present? (Just throwing up ideas
->> here).
->>
-> Hmm, forgot about this. A cookie is fairly easy, what about something like this:
->
->   807 /**
->   808  * struct drm_xe_syncs - In / out syncs for IOCTLs.
->   809  */
->   810 struct drm_xe_syncs {
->   811         /** @num_syncs: amount of syncs to wait on */
->   812         __u32 num_syncs;
->   813
->   814         /*
->   815          * Block in IOCTL until operation complete, num_syncs MBZ if set.
->   816          */
->   817 #define DRM_XE_SYNCS_IN_FLAG_WAIT_FOR_OP (1 << 0)
->   818         /** @in_flags: Input Sync flags */
->   819         __u16 in_flags;
->   820
->   821         /*
->   822          * IOCTL operation has started (no need for user to resubmit on
->   823          * -ERESTARTSYS)
->   824          */
->   825 #define DRM_XE_SYNCS_OUT_FLAG_OP_COMMITTED (1 << 0)
->   826         /** @out_flags: Output Sync flags */
->   827         __u16 out_flags;
->   828
->   829         /** @syncs: pointer to struct drm_xe_sync array */
->   830         __u64 syncs;
->   831
->   832         /** @reserved: Reserved */
->   833         __u64 reserved[2];
->   834 };
->
-> DRM_XE_SYNCS_OUT_FLAG_OP_COMMITTED gets set in exec / bind IOCTL after
-> the job is committed or in the of zero ops last-fence updated on the
-> queue. Note that for binds we don't yet do 1 job per IOCTL but after
-> landing some version of [1]
->
-> After DRM_XE_SYNCS_OUT_FLAG_OP_COMMITTED is set we return -ERESTARTSYS if
-> the wait is interrupted and -EINTR is still
-> DRM_XE_SYNCS_OUT_FLAG_OP_COMMITTED (interrupted before job is
-> committed).
->
-> I'd rather go with patch as we have to change the uAPI here regardless
-> so we might as well make this complete.
->
-> Matt
->
-> [1] https://patchwork.freedesktop.org/series/125608/
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ tests/intel/xe_perf_pmu.c | 331 --------------------------------------
+ tests/meson.build         |   1 -
+ 2 files changed, 332 deletions(-)
+ delete mode 100644 tests/intel/xe_perf_pmu.c
 
-Yeah as we discussed in the meeting that means making the ioctl RW 
-instead of W with some copying overhead.
+diff --git a/tests/intel/xe_perf_pmu.c b/tests/intel/xe_perf_pmu.c
+deleted file mode 100644
+index 42cf62729142..000000000000
+--- a/tests/intel/xe_perf_pmu.c
++++ /dev/null
+@@ -1,331 +0,0 @@
+-// SPDX-License-Identifier: MIT
+-/*
+- * Copyright © 2021 Intel Corporation
+- */
+-
+-/**
+- * TEST: Basic tests for verify pmu perf interface
+- * Category: Hardware building block
+- * Sub-category: pmu interface
+- * Functionality: pmu
+- * Test category: functionality test
+- */
+-
+-#include <fcntl.h>
+-#include <string.h>
+-
+-#include "igt.h"
+-#include "lib/igt_syncobj.h"
+-#include "lib/intel_reg.h"
+-#include "lib/igt_perf.h"
+-#include "xe_drm.h"
+-#include "xe/xe_ioctl.h"
+-#include "xe/xe_query.h"
+-#include "xe/xe_spin.h"
+-
+-#define MAX_INSTANCE 9
+-
+-static uint64_t pmu_read(int fd)
+-{
+-	uint64_t  data[2];
+-
+-	igt_assert_eq(read(fd, data, sizeof(data)), sizeof(data));
+-
+-	return data[0];
+-}
+-
+-static int open_pmu(int fd, uint64_t config)
+-{
+-	int perf_fd;
+-
+-	perf_fd = perf_xe_open(fd, config);
+-	igt_skip_on(perf_fd < 0 && errno == ENODEV);
+-	igt_assert(perf_fd >= 0);
+-
+-	return perf_fd;
+-}
+-
+-static uint64_t engine_group_get_config(int gt, int class)
+-{
+-	uint64_t config;
+-
+-	switch (class) {
+-	case DRM_XE_ENGINE_CLASS_COPY:
+-		config = DRM_XE_PMU_COPY_GROUP_BUSY(gt);
+-		break;
+-	case DRM_XE_ENGINE_CLASS_RENDER:
+-	case DRM_XE_ENGINE_CLASS_COMPUTE:
+-		config = DRM_XE_PMU_RENDER_GROUP_BUSY(gt);
+-		break;
+-	case DRM_XE_ENGINE_CLASS_VIDEO_DECODE:
+-	case DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE:
+-		config = DRM_XE_PMU_MEDIA_GROUP_BUSY(gt);
+-		break;
+-	}
+-
+-	return config;
+-}
+-
+-/**
+- * Test: Basic test for measure the active time when engine of any class active
+- *
+- * SUBTEST: any-engine-group-busy
+- * Description:
+- *      Run a test to measure the global activity time by submitting
+- *      the WL to all existing engines.
+- * Run type: FULL
+- *
+- */
+-static void test_any_engine_busyness(int fd, struct drm_xe_engine_class_instance *eci)
+-{
+-	uint32_t vm;
+-	uint64_t addr = 0x1a0000;
+-	struct drm_xe_sync sync[2] = {
+-		{ .type = DRM_XE_SYNC_TYPE_SYNCOBJ, .flags = DRM_XE_SYNC_FLAG_SIGNAL, },
+-		{ .type = DRM_XE_SYNC_TYPE_SYNCOBJ, .flags = DRM_XE_SYNC_FLAG_SIGNAL, },
+-	};
+-	struct drm_xe_exec exec = {
+-		.num_batch_buffer = 1,
+-		.num_syncs = 2,
+-		.syncs = to_user_pointer(sync),
+-	};
+-	uint32_t exec_queue;
+-	uint32_t syncobj;
+-	size_t bo_size;
+-	uint32_t bo = 0;
+-	struct xe_spin *spin;
+-	struct xe_spin_opts spin_opts = { .addr = addr, .preempt = false };
+-	uint32_t pmu_fd;
+-	uint64_t count, idle;
+-
+-	vm = xe_vm_create(fd, DRM_XE_VM_CREATE_FLAG_ASYNC_DEFAULT, 0);
+-	bo_size = sizeof(*spin);
+-	bo_size = ALIGN(bo_size + xe_cs_prefetch_size(fd),
+-			xe_get_default_alignment(fd));
+-
+-	bo = xe_bo_create(fd, vm, bo_size, vram_if_possible(fd, eci->gt_id), 0);
+-	spin = xe_bo_map(fd, bo, bo_size);
+-
+-	exec_queue = xe_exec_queue_create(fd, vm, eci, 0);
+-	syncobj = syncobj_create(fd, 0);
+-
+-	sync[0].handle = syncobj_create(fd, 0);
+-	xe_vm_bind_async(fd, vm, 0, bo, 0, addr, bo_size, sync, 1);
+-
+-	pmu_fd = open_pmu(fd, DRM_XE_PMU_ANY_ENGINE_GROUP_BUSY(eci->gt_id));
+-	idle = pmu_read(pmu_fd);
+-	igt_assert(!idle);
+-
+-	xe_spin_init(spin, &spin_opts);
+-
+-	sync[0].flags &= ~DRM_XE_SYNC_FLAG_SIGNAL;
+-	sync[1].flags |= DRM_XE_SYNC_FLAG_SIGNAL;
+-	sync[1].handle = syncobj;
+-
+-	exec.exec_queue_id = exec_queue;
+-	exec.address = addr;
+-	xe_exec(fd, &exec);
+-
+-	xe_spin_wait_started(spin);
+-	usleep(50000);
+-
+-	igt_assert(!syncobj_wait(fd, &syncobj, 1, 1, 0, NULL));
+-	xe_spin_end(spin);
+-
+-	igt_assert(syncobj_wait(fd, &syncobj, 1, INT64_MAX, 0, NULL));
+-	igt_assert(syncobj_wait(fd, &sync[0].handle, 1, INT64_MAX, 0, NULL));
+-
+-	sync[0].flags |= DRM_XE_SYNC_FLAG_SIGNAL;
+-	xe_vm_unbind_async(fd, vm, 0, 0, addr, bo_size, sync, 1);
+-	igt_assert(syncobj_wait(fd, &sync[0].handle, 1, INT64_MAX, 0, NULL));
+-
+-	syncobj_destroy(fd, sync[0].handle);
+-	syncobj_destroy(fd, syncobj);
+-
+-	count = pmu_read(pmu_fd);
+-	igt_assert_lt_u64(idle, count);
+-	igt_debug("Incrementing counter all-busy-group %ld ns\n", count);
+-
+-	xe_exec_queue_destroy(fd, exec_queue);
+-	munmap(spin, bo_size);
+-	gem_close(fd, bo);
+-	xe_vm_destroy(fd, vm);
+-	close(pmu_fd);
+-}
+-
+-/**
+- * Test: Basic test for measure the active time across engine class
+- *
+- * SUBTEST: render-busy
+- * Description:
+- *	Run a test to measure the active engine class time by submitting the
+- *	WL to all instances of a class
+- * Run type: FULL
+- *
+- * SUBTEST: compute-busy
+- * Description: Run copy-group-busy test
+- * Run type: FULL
+- *
+- * SUBTEST: copy-busy
+- * Description: Run copy-group-busy test
+- * Run type: FULL
+- *
+- * SUBTEST: vcs-busy
+- * Description: Run copy-group-busy test
+- * Run type: FULL
+- *
+- * SUBTEST: vecs-busy
+- * Description: Run copy-group-busy test
+- * Run type: FULL
+- *
+- */
+-
+-static void test_engine_group_busyness(int fd, int gt, int class, const char *name)
+-{
+-	uint32_t vm;
+-	uint64_t addr = 0x1a0000;
+-	struct drm_xe_sync sync[2] = {
+-		{ .type = DRM_XE_SYNC_TYPE_SYNCOBJ, .flags = DRM_XE_SYNC_FLAG_SIGNAL, },
+-		{ .type = DRM_XE_SYNC_TYPE_SYNCOBJ, .flags = DRM_XE_SYNC_FLAG_SIGNAL, },
+-	};
+-	struct drm_xe_exec exec = {
+-		.num_batch_buffer = 1,
+-		.num_syncs = 2,
+-		.syncs = to_user_pointer(sync),
+-	};
+-	uint32_t exec_queues[MAX_INSTANCE];
+-	uint32_t syncobjs[MAX_INSTANCE];
+-	int    pmu_fd;
+-	size_t bo_size;
+-	uint32_t bo = 0, i = 0;
+-	struct {
+-		struct xe_spin spin;
+-	} *data;
+-	struct xe_spin_opts spin_opts = { .addr = addr, .preempt = false };
+-	struct drm_xe_engine_class_instance *hwe;
+-	struct drm_xe_engine_class_instance eci[MAX_INSTANCE];
+-	int num_placements = 0;
+-	uint64_t config, count, idle;
+-
+-	config = engine_group_get_config(gt, class);
+-
+-	xe_for_each_engine(fd, hwe) {
+-		if (hwe->engine_class != class || hwe->gt_id != gt)
+-			continue;
+-
+-		eci[num_placements++] = *hwe;
+-	}
+-
+-	igt_skip_on_f(!num_placements, "Engine class:%d gt:%d not enabled on this platform\n",
+-		      class, gt);
+-
+-	vm = xe_vm_create(fd, DRM_XE_VM_CREATE_FLAG_ASYNC_DEFAULT, 0);
+-	bo_size = sizeof(*data) * num_placements;
+-	bo_size = ALIGN(bo_size + xe_cs_prefetch_size(fd), xe_get_default_alignment(fd));
+-
+-	bo = xe_bo_create(fd, vm, bo_size, vram_if_possible(fd, gt), 0);
+-	data = xe_bo_map(fd, bo, bo_size);
+-
+-	for (i = 0; i < num_placements; i++) {
+-		struct drm_xe_exec_queue_create create = {
+-			.vm_id = vm,
+-			.width = 1,
+-			.num_placements = num_placements,
+-			.instances = to_user_pointer(eci),
+-		};
+-
+-		igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_XE_EXEC_QUEUE_CREATE,
+-					&create), 0);
+-		exec_queues[i] = create.exec_queue_id;
+-		syncobjs[i] = syncobj_create(fd, 0);
+-	};
+-
+-	sync[0].handle = syncobj_create(fd, 0);
+-	xe_vm_bind_async(fd, vm, 0, bo, 0, addr, bo_size, sync, 1);
+-
+-	pmu_fd = open_pmu(fd, config);
+-	idle = pmu_read(pmu_fd);
+-	igt_assert(!idle);
+-
+-	for (i = 0; i < num_placements; i++) {
+-		spin_opts.addr = addr + (char *)&data[i].spin - (char *)data;
+-		xe_spin_init(&data[i].spin, &spin_opts);
+-		sync[0].flags &= ~DRM_XE_SYNC_FLAG_SIGNAL;
+-		sync[1].flags |= DRM_XE_SYNC_FLAG_SIGNAL;
+-		sync[1].handle = syncobjs[i];
+-
+-		exec.exec_queue_id = exec_queues[i];
+-		exec.address = spin_opts.addr;
+-		xe_exec(fd, &exec);
+-		xe_spin_wait_started(&data[i].spin);
+-	}
+-
+-	for (i = 0; i < num_placements; i++) {
+-		xe_spin_end(&data[i].spin);
+-		igt_assert(syncobj_wait(fd, &syncobjs[i], 1, INT64_MAX, 0,
+-					NULL));
+-	}
+-
+-	igt_assert(syncobj_wait(fd, &sync[0].handle, 1, INT64_MAX, 0, NULL));
+-
+-	sync[0].flags |= DRM_XE_SYNC_FLAG_SIGNAL;
+-	xe_vm_unbind_async(fd, vm, 0, 0, addr, bo_size, sync, 1);
+-	igt_assert(syncobj_wait(fd, &sync[0].handle, 1, INT64_MAX, 0, NULL));
+-
+-
+-	syncobj_destroy(fd, sync[0].handle);
+-	for (i = 0; i < num_placements; i++) {
+-		syncobj_destroy(fd, syncobjs[i]);
+-		xe_exec_queue_destroy(fd, exec_queues[i]);
+-	}
+-
+-	count = pmu_read(pmu_fd);
+-	igt_assert_lt_u64(idle, count);
+-	igt_debug("Incrementing counter %s-gt-%d  %ld ns\n", name, gt, count);
+-
+-	munmap(data, bo_size);
+-	gem_close(fd, bo);
+-	xe_vm_destroy(fd, vm);
+-	close(pmu_fd);
+-}
+-
+-igt_main
+-{
+-	struct drm_xe_engine_class_instance *hwe;
+-	const struct section {
+-		const char *name;
+-		int class;
+-	} sections[] = {
+-		{ "render-busy", DRM_XE_ENGINE_CLASS_RENDER },
+-		{ "compute-busy", DRM_XE_ENGINE_CLASS_COMPUTE },
+-		{ "copy-busy", DRM_XE_ENGINE_CLASS_COPY },
+-		{ "vcs-busy", DRM_XE_ENGINE_CLASS_VIDEO_DECODE },
+-		{ "vecs-busy", DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE },
+-		{ NULL },
+-	};
+-	int gt;
+-	int class;
+-	int fd;
+-
+-	igt_fixture {
+-		fd = drm_open_driver(DRIVER_XE);
+-		xe_device_get(fd);
+-	}
+-
+-	for (const struct section *s = sections; s->name; s++) {
+-		igt_subtest_f("%s", s->name)
+-			xe_for_each_gt(fd, gt)
+-				xe_for_each_engine_class(class)
+-					if (class == s->class)
+-						test_engine_group_busyness(fd, gt, class, s->name);
+-	}
+-
+-	igt_subtest("any-engine-group-busy")
+-		xe_for_each_engine(fd, hwe)
+-			test_any_engine_busyness(fd, hwe);
+-
+-	igt_fixture {
+-		xe_device_put(fd);
+-		close(fd);
+-	}
+-}
+diff --git a/tests/meson.build b/tests/meson.build
+index f6cfbcf5ef9f..4430ca739275 100644
+--- a/tests/meson.build
++++ b/tests/meson.build
+@@ -305,7 +305,6 @@ intel_xe_progs = [
+ 	'xe_pm',
+ 	'xe_pm_residency',
+ 	'xe_prime_self_import',
+-	'xe_perf_pmu',
+ 	'xe_query',
+ 	'xe_sysfs_tile',
+ 	'xe_uevent',
+-- 
+2.41.0
 
-I also think we should leave the EXEC ioctl out of this, meaning just 
-having a single field in the VM_BIND ioctl. Basically the reason is that 
-waiting like this after submission is a bit weird and does not align 
-well with how -EINTR is typically used.
-
-So either a pointer to a cookie in the ioctl,
-
-or perhaps dig up again the idea we had of mostly waiting before the 
-submission:
-
-1) Pull out the last_op fence for the queue from under the relevant lock.
-2) Wait for all dependencies without any locks.
-3) Lock, and (optionally) if the last_op fence changed, wait for it.
-4) Submit
-5) Wait for completion uninterruptible.
-
-I actually like this last one best, but we'd recommend UMD to uses 
-out-fences whenever possible.
-
-Thoughts?
-
->
->>>    			dma_fence_put(fence);
->>>    		}
->>> @@ -331,42 +346,51 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->>>    	 * the job and let the DRM scheduler / backend clean up the job.
->>>    	 */
->>>    	xe_sched_job_arm(job);
->>> +	job_fence = &job->drm.s_fence->finished;
->>> +	if (wait)
->>> +		dma_fence_get(job_fence);
->>>    	if (!xe_vm_in_lr_mode(vm)) {
->>>    		/* Block userptr invalidations / BO eviction */
->>> -		dma_resv_add_fence(&vm->resv,
->>> -				   &job->drm.s_fence->finished,
->>> +		dma_resv_add_fence(&vm->resv, job_fence,
->>>    				   DMA_RESV_USAGE_BOOKKEEP);
->>>    		/*
->>>    		 * Make implicit sync work across drivers, assuming all external
->>>    		 * BOs are written as we don't pass in a read / write list.
->>>    		 */
->>> -		xe_vm_fence_all_extobjs(vm, &job->drm.s_fence->finished,
->>> -					DMA_RESV_USAGE_WRITE);
->>> +		xe_vm_fence_all_extobjs(vm, job_fence, DMA_RESV_USAGE_WRITE);
->>>    	}
->>>    	for (i = 0; i < num_syncs; i++)
->>> -		xe_sync_entry_signal(&syncs[i], job,
->>> -				     &job->drm.s_fence->finished);
->>> +		xe_sync_entry_signal(&syncs[i], job, job_fence);
->>>    	if (xe_exec_queue_is_lr(q))
->>>    		q->ring_ops->emit_job(job);
->>>    	if (!xe_vm_in_lr_mode(vm))
->>> -		xe_exec_queue_last_fence_set(q, vm, &job->drm.s_fence->finished);
->>> +		xe_exec_queue_last_fence_set(q, vm, job_fence);
->>>    	xe_sched_job_push(job);
->>>    	xe_vm_reactivate_rebind(vm);
->>> -	if (!err && !xe_vm_in_lr_mode(vm)) {
->>> +	if (!xe_vm_in_lr_mode(vm)) {
->>>    		spin_lock(&xe->ttm.lru_lock);
->>>    		ttm_lru_bulk_move_tail(&vm->lru_bulk_move);
->>>    		spin_unlock(&xe->ttm.lru_lock);
->>>    	}
->>> +	skip_job_put = true;
->>> +	if (wait) {
->>> +		long timeout = dma_fence_wait(job_fence, true);
->>> +
->>> +		dma_fence_put(job_fence);
->>> +		if (timeout < 0)
->>> +			err = -EINTR;
->>> +	}
->>> +
->>>    err_repin:
->>>    	if (!xe_vm_in_lr_mode(vm))
->>>    		up_read(&vm->userptr.notifier_lock);
->>>    err_put_job:
->>> -	if (err)
->>> +	if (err && !skip_job_put)
->>>    		xe_sched_job_put(job);
->>>    err_exec:
->>>    	drm_exec_fini(&exec);
->>> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
->>> index 3911d14522ee..98776d02d634 100644
->>> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
->>> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
->>> @@ -625,10 +625,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
->>>    	if (XE_IOCTL_DBG(xe, eci[0].gt_id >= xe->info.gt_count))
->>>    		return -EINVAL;
->>> -	if (eci[0].engine_class >= DRM_XE_ENGINE_CLASS_VM_BIND_ASYNC) {
->>> -		bool sync = eci[0].engine_class ==
->>> -			DRM_XE_ENGINE_CLASS_VM_BIND_SYNC;
->>> -
->>> +	if (eci[0].engine_class == DRM_XE_ENGINE_CLASS_VM_BIND) {
->>>    		for_each_gt(gt, xe, id) {
->>>    			struct xe_exec_queue *new;
->>> @@ -654,8 +651,6 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
->>>    						   args->width, hwe,
->>>    						   EXEC_QUEUE_FLAG_PERSISTENT |
->>>    						   EXEC_QUEUE_FLAG_VM |
->>> -						   (sync ? 0 :
->>> -						    EXEC_QUEUE_FLAG_VM_ASYNC) |
->>>    						   (id ?
->>>    						    EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD :
->>>    						    0));
->>> diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
->>> index 52f0927d0d9b..c78f6e8b41c4 100644
->>> --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
->>> +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
->>> @@ -74,8 +74,6 @@ struct xe_exec_queue {
->>>    #define EXEC_QUEUE_FLAG_VM			BIT(4)
->>>    /* child of VM queue for multi-tile VM jobs */
->>>    #define EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD	BIT(5)
->>> -/* VM jobs for this queue are asynchronous */
->>> -#define EXEC_QUEUE_FLAG_VM_ASYNC		BIT(6)
->>>    	/**
->>>    	 * @flags: flags for this exec queue, should statically setup aside from ban
->>> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
->>> index cf2eb44a71db..4b0c976c003a 100644
->>> --- a/drivers/gpu/drm/xe/xe_vm.c
->>> +++ b/drivers/gpu/drm/xe/xe_vm.c
->>> @@ -1433,9 +1433,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
->>>    			struct xe_gt *gt = tile->primary_gt;
->>>    			struct xe_vm *migrate_vm;
->>>    			struct xe_exec_queue *q;
->>> -			u32 create_flags = EXEC_QUEUE_FLAG_VM |
->>> -				((flags & XE_VM_FLAG_ASYNC_DEFAULT) ?
->>> -				EXEC_QUEUE_FLAG_VM_ASYNC : 0);
->>> +			u32 create_flags = EXEC_QUEUE_FLAG_VM;
->>>    			if (!vm->pt_root[id])
->>>    				continue;
->>> @@ -1835,16 +1833,10 @@ xe_vm_bind_vma(struct xe_vma *vma, struct xe_exec_queue *q,
->>>    	return ERR_PTR(err);
->>>    }
->>> -static bool xe_vm_sync_mode(struct xe_vm *vm, struct xe_exec_queue *q)
->>> -{
->>> -	return q ? !(q->flags & EXEC_QUEUE_FLAG_VM_ASYNC) :
->>> -		!(vm->flags & XE_VM_FLAG_ASYNC_DEFAULT);
->>> -}
->>> -
->>>    static int __xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma,
->>>    			struct xe_exec_queue *q, struct xe_sync_entry *syncs,
->>>    			u32 num_syncs, bool immediate, bool first_op,
->>> -			bool last_op)
->>> +			bool last_op, bool async)
->>>    {
->>>    	struct dma_fence *fence;
->>>    	struct xe_exec_queue *wait_exec_queue = to_wait_exec_queue(vm, q);
->>> @@ -1870,7 +1862,7 @@ static int __xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma,
->>>    	if (last_op)
->>>    		xe_exec_queue_last_fence_set(wait_exec_queue, vm, fence);
->>> -	if (last_op && xe_vm_sync_mode(vm, q))
->>> +	if (last_op && !async)
->>>    		dma_fence_wait(fence, true);
->>>    	dma_fence_put(fence);
->>> @@ -1880,7 +1872,7 @@ static int __xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma,
->>>    static int xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma, struct xe_exec_queue *q,
->>>    		      struct xe_bo *bo, struct xe_sync_entry *syncs,
->>>    		      u32 num_syncs, bool immediate, bool first_op,
->>> -		      bool last_op)
->>> +		      bool last_op, bool async)
->>>    {
->>>    	int err;
->>> @@ -1894,12 +1886,12 @@ static int xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma, struct xe_exec_queue
->>>    	}
->>>    	return __xe_vm_bind(vm, vma, q, syncs, num_syncs, immediate, first_op,
->>> -			    last_op);
->>> +			    last_op, async);
->>>    }
->>>    static int xe_vm_unbind(struct xe_vm *vm, struct xe_vma *vma,
->>>    			struct xe_exec_queue *q, struct xe_sync_entry *syncs,
->>> -			u32 num_syncs, bool first_op, bool last_op)
->>> +			u32 num_syncs, bool first_op, bool last_op, bool async)
->>>    {
->>>    	struct dma_fence *fence;
->>>    	struct xe_exec_queue *wait_exec_queue = to_wait_exec_queue(vm, q);
->>> @@ -1914,7 +1906,7 @@ static int xe_vm_unbind(struct xe_vm *vm, struct xe_vma *vma,
->>>    	xe_vma_destroy(vma, fence);
->>>    	if (last_op)
->>>    		xe_exec_queue_last_fence_set(wait_exec_queue, vm, fence);
->>> -	if (last_op && xe_vm_sync_mode(vm, q))
->>> +	if (last_op && !async)
->>>    		dma_fence_wait(fence, true);
->> It looks like we're dropping the error return code here.
->>
->>
->>>    	dma_fence_put(fence);
->>> @@ -1923,7 +1915,6 @@ static int xe_vm_unbind(struct xe_vm *vm, struct xe_vma *vma,
->>>    #define ALL_DRM_XE_VM_CREATE_FLAGS (DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE | \
->>>    				    DRM_XE_VM_CREATE_FLAG_LR_MODE | \
->>> -				    DRM_XE_VM_CREATE_FLAG_ASYNC_DEFAULT | \
->>>    				    DRM_XE_VM_CREATE_FLAG_FAULT_MODE)
->>>    int xe_vm_create_ioctl(struct drm_device *dev, void *data,
->>> @@ -1977,8 +1968,6 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
->>>    		flags |= XE_VM_FLAG_SCRATCH_PAGE;
->>>    	if (args->flags & DRM_XE_VM_CREATE_FLAG_LR_MODE)
->>>    		flags |= XE_VM_FLAG_LR_MODE;
->>> -	if (args->flags & DRM_XE_VM_CREATE_FLAG_ASYNC_DEFAULT)
->>> -		flags |= XE_VM_FLAG_ASYNC_DEFAULT;
->>>    	if (args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE)
->>>    		flags |= XE_VM_FLAG_FAULT_MODE;
->>> @@ -2062,7 +2051,7 @@ static const u32 region_to_mem_type[] = {
->>>    static int xe_vm_prefetch(struct xe_vm *vm, struct xe_vma *vma,
->>>    			  struct xe_exec_queue *q, u32 region,
->>>    			  struct xe_sync_entry *syncs, u32 num_syncs,
->>> -			  bool first_op, bool last_op)
->>> +			  bool first_op, bool last_op, bool async)
->>>    {
->>>    	struct xe_exec_queue *wait_exec_queue = to_wait_exec_queue(vm, q);
->>>    	int err;
->>> @@ -2077,7 +2066,7 @@ static int xe_vm_prefetch(struct xe_vm *vm, struct xe_vma *vma,
->>>    	if (vma->tile_mask != (vma->tile_present & ~vma->usm.tile_invalidated)) {
->>>    		return xe_vm_bind(vm, vma, q, xe_vma_bo(vma), syncs, num_syncs,
->>> -				  true, first_op, last_op);
->>> +				  true, first_op, last_op, async);
->>>    	} else {
->>>    		int i;
->>> @@ -2400,6 +2389,8 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
->>>    		}
->>>    		op->q = q;
->>> +		if (async)
->>> +			op->flags |= XE_VMA_OP_ASYNC;
->>>    		switch (op->base.op) {
->>>    		case DRM_GPUVA_OP_MAP:
->>> @@ -2538,7 +2529,8 @@ static int op_execute(struct drm_exec *exec, struct xe_vm *vm,
->>>    				 op->syncs, op->num_syncs,
->>>    				 op->map.immediate || !xe_vm_in_fault_mode(vm),
->>>    				 op->flags & XE_VMA_OP_FIRST,
->>> -				 op->flags & XE_VMA_OP_LAST);
->>> +				 op->flags & XE_VMA_OP_LAST,
->>> +				 op->flags & XE_VMA_OP_ASYNC);
->>>    		break;
->>>    	case DRM_GPUVA_OP_REMAP:
->>>    	{
->>> @@ -2552,7 +2544,8 @@ static int op_execute(struct drm_exec *exec, struct xe_vm *vm,
->>>    					   op->num_syncs,
->>>    					   op->flags & XE_VMA_OP_FIRST,
->>>    					   op->flags & XE_VMA_OP_LAST &&
->>> -					   !prev && !next);
->>> +					   !prev && !next,
->>> +					   op->flags & XE_VMA_OP_ASYNC);
->>>    			if (err)
->>>    				break;
->>>    			op->remap.unmap_done = true;
->>> @@ -2563,7 +2556,8 @@ static int op_execute(struct drm_exec *exec, struct xe_vm *vm,
->>>    			err = xe_vm_bind(vm, op->remap.prev, op->q,
->>>    					 xe_vma_bo(op->remap.prev), op->syncs,
->>>    					 op->num_syncs, true, false,
->>> -					 op->flags & XE_VMA_OP_LAST && !next);
->>> +					 op->flags & XE_VMA_OP_LAST && !next,
->>> +					 op->flags & XE_VMA_OP_ASYNC);
->>>    			op->remap.prev->gpuva.flags &= ~XE_VMA_LAST_REBIND;
->>>    			if (err)
->>>    				break;
->>> @@ -2576,7 +2570,8 @@ static int op_execute(struct drm_exec *exec, struct xe_vm *vm,
->>>    					 xe_vma_bo(op->remap.next),
->>>    					 op->syncs, op->num_syncs,
->>>    					 true, false,
->>> -					 op->flags & XE_VMA_OP_LAST);
->>> +					 op->flags & XE_VMA_OP_LAST,
->>> +					 op->flags & XE_VMA_OP_ASYNC);
->>>    			op->remap.next->gpuva.flags &= ~XE_VMA_LAST_REBIND;
->>>    			if (err)
->>>    				break;
->>> @@ -2588,13 +2583,15 @@ static int op_execute(struct drm_exec *exec, struct xe_vm *vm,
->>>    	case DRM_GPUVA_OP_UNMAP:
->>>    		err = xe_vm_unbind(vm, vma, op->q, op->syncs,
->>>    				   op->num_syncs, op->flags & XE_VMA_OP_FIRST,
->>> -				   op->flags & XE_VMA_OP_LAST);
->>> +				   op->flags & XE_VMA_OP_LAST,
->>> +				   op->flags & XE_VMA_OP_ASYNC);
->>>    		break;
->>>    	case DRM_GPUVA_OP_PREFETCH:
->>>    		err = xe_vm_prefetch(vm, vma, op->q, op->prefetch.region,
->>>    				     op->syncs, op->num_syncs,
->>>    				     op->flags & XE_VMA_OP_FIRST,
->>> -				     op->flags & XE_VMA_OP_LAST);
->>> +				     op->flags & XE_VMA_OP_LAST,
->>> +				     op->flags & XE_VMA_OP_ASYNC);
->>>    		break;
->>>    	default:
->>>    		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
->>> @@ -2808,16 +2805,16 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
->>>    #ifdef TEST_VM_ASYNC_OPS_ERROR
->>>    #define SUPPORTED_FLAGS	\
->>> -	(FORCE_ASYNC_OP_ERROR | DRM_XE_VM_BIND_FLAG_ASYNC | \
->>> -	 DRM_XE_VM_BIND_FLAG_READONLY | DRM_XE_VM_BIND_FLAG_IMMEDIATE | \
->>> -	 DRM_XE_VM_BIND_FLAG_NULL | 0xffff)
->>> +	(FORCE_ASYNC_OP_ERROR | DRM_XE_VM_BIND_FLAG_READONLY | \
->>> +	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | DRM_XE_VM_BIND_FLAG_NULL | 0xffff)
->>>    #else
->>>    #define SUPPORTED_FLAGS	\
->>> -	(DRM_XE_VM_BIND_FLAG_ASYNC | DRM_XE_VM_BIND_FLAG_READONLY | \
->>> +	(DRM_XE_VM_BIND_FLAG_READONLY | \
->>>    	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | DRM_XE_VM_BIND_FLAG_NULL | \
->>>    	 0xffff)
->>>    #endif
->>>    #define XE_64K_PAGE_MASK 0xffffull
->>> +#define ALL_DRM_XE_SYNCS_FLAGS (DRM_XE_SYNCS_FLAG_WAIT_FOR_OP)
->>>    #define MAX_BINDS	512	/* FIXME: Picking random upper limit */
->>> @@ -2829,7 +2826,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
->>>    	int err;
->>>    	int i;
->>> -	if (XE_IOCTL_DBG(xe, args->pad || args->pad2) ||
->>> +	if (XE_IOCTL_DBG(xe, args->pad) ||
->>>    	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
->>>    		return -EINVAL;
->>> @@ -2857,6 +2854,14 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
->>>    		*bind_ops = &args->bind;
->>>    	}
->>> +	*async = !(args->syncs.flags & DRM_XE_SYNCS_FLAG_WAIT_FOR_OP);
->>> +
->>> +	if (XE_IOCTL_DBG(xe, args->syncs.flags & ~ALL_DRM_XE_SYNCS_FLAGS) ||
->>> +	    XE_IOCTL_DBG(xe, !*async && args->syncs.num_syncs)) {
->>> +		err = -EINVAL;
->>> +		goto free_bind_ops;
->>> +	}
->>> +
->>>    	for (i = 0; i < args->num_binds; ++i) {
->>>    		u64 range = (*bind_ops)[i].range;
->>>    		u64 addr = (*bind_ops)[i].addr;
->>> @@ -2887,18 +2892,6 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
->>>    			goto free_bind_ops;
->>>    		}
->>> -		if (i == 0) {
->>> -			*async = !!(flags & DRM_XE_VM_BIND_FLAG_ASYNC);
->>> -			if (XE_IOCTL_DBG(xe, !*async && args->num_syncs)) {
->>> -				err = -EINVAL;
->>> -				goto free_bind_ops;
->>> -			}
->>> -		} else if (XE_IOCTL_DBG(xe, *async !=
->>> -					!!(flags & DRM_XE_VM_BIND_FLAG_ASYNC))) {
->>> -			err = -EINVAL;
->>> -			goto free_bind_ops;
->>> -		}
->>> -
->>>    		if (XE_IOCTL_DBG(xe, op > DRM_XE_VM_BIND_OP_PREFETCH) ||
->>>    		    XE_IOCTL_DBG(xe, flags & ~SUPPORTED_FLAGS) ||
->>>    		    XE_IOCTL_DBG(xe, obj && is_null) ||
->>> @@ -2951,7 +2944,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
->>>    static int vm_bind_ioctl_signal_fences(struct xe_vm *vm,
->>>    				       struct xe_exec_queue *q,
->>>    				       struct xe_sync_entry *syncs,
->>> -				       int num_syncs)
->>> +				       int num_syncs, bool async)
->>>    {
->>>    	struct dma_fence *fence;
->>>    	int i, err = 0;
->>> @@ -2967,7 +2960,7 @@ static int vm_bind_ioctl_signal_fences(struct xe_vm *vm,
->>>    	xe_exec_queue_last_fence_set(to_wait_exec_queue(vm, q), vm,
->>>    				     fence);
->>> -	if (xe_vm_sync_mode(vm, q)) {
->>> +	if (!async) {
->>>    		long timeout = dma_fence_wait(fence, true);
->>>    		if (timeout < 0)
->>> @@ -3001,7 +2994,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->>>    	if (err)
->>>    		return err;
->>> -	if (XE_IOCTL_DBG(xe, args->pad || args->pad2) ||
->>> +	if (XE_IOCTL_DBG(xe, args->pad) ||
->>>    	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
->>>    		return -EINVAL;
->>> @@ -3016,12 +3009,6 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->>>    			err = -EINVAL;
->>>    			goto put_exec_queue;
->>>    		}
->>> -
->>> -		if (XE_IOCTL_DBG(xe, args->num_binds && async !=
->>> -				 !!(q->flags & EXEC_QUEUE_FLAG_VM_ASYNC))) {
->>> -			err = -EINVAL;
->>> -			goto put_exec_queue;
->>> -		}
->>>    	}
->>>    	vm = xe_vm_lookup(xef, args->vm_id);
->>> @@ -3030,14 +3017,6 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->>>    		goto put_exec_queue;
->>>    	}
->>> -	if (!args->exec_queue_id) {
->>> -		if (XE_IOCTL_DBG(xe, args->num_binds && async !=
->>> -				 !!(vm->flags & XE_VM_FLAG_ASYNC_DEFAULT))) {
->>> -			err = -EINVAL;
->>> -			goto put_vm;
->>> -		}
->>> -	}
->>> -
->>>    	err = down_write_killable(&vm->lock);
->>>    	if (err)
->>>    		goto put_vm;
->>> @@ -3127,16 +3106,16 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->>>    		}
->>>    	}
->>> -	if (args->num_syncs) {
->>> -		syncs = kcalloc(args->num_syncs, sizeof(*syncs), GFP_KERNEL);
->>> +	if (args->syncs.num_syncs) {
->>> +		syncs = kcalloc(args->syncs.num_syncs, sizeof(*syncs), GFP_KERNEL);
->>>    		if (!syncs) {
->>>    			err = -ENOMEM;
->>>    			goto put_obj;
->>>    		}
->>>    	}
->>> -	syncs_user = u64_to_user_ptr(args->syncs);
->>> -	for (num_syncs = 0; num_syncs < args->num_syncs; num_syncs++) {
->>> +	syncs_user = u64_to_user_ptr(args->syncs.syncs);
->>> +	for (num_syncs = 0; num_syncs < args->syncs.num_syncs; num_syncs++) {
->>>    		err = xe_sync_entry_parse(xe, xef, &syncs[num_syncs],
->>>    					  &syncs_user[num_syncs],
->>>    					  (xe_vm_in_lr_mode(vm) ?
->>> @@ -3210,7 +3189,8 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->>>    	vm_bind_ioctl_ops_unwind(vm, ops, args->num_binds);
->>>    free_syncs:
->>>    	if (err == -ENODATA)
->>> -		err = vm_bind_ioctl_signal_fences(vm, q, syncs, num_syncs);
->>> +		err = vm_bind_ioctl_signal_fences(vm, q, syncs, num_syncs,
->>> +						  async);
->>>    	while (num_syncs--)
->>>    		xe_sync_entry_cleanup(&syncs[num_syncs]);
->>> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
->>> index 23abdfd8622f..ce8b9bde7e9c 100644
->>> --- a/drivers/gpu/drm/xe/xe_vm_types.h
->>> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
->>> @@ -167,13 +167,12 @@ struct xe_vm {
->>>    	 */
->>>    #define XE_VM_FLAG_64K			BIT(0)
->>>    #define XE_VM_FLAG_LR_MODE		BIT(1)
->>> -#define XE_VM_FLAG_ASYNC_DEFAULT	BIT(2)
->>> -#define XE_VM_FLAG_MIGRATION		BIT(3)
->>> -#define XE_VM_FLAG_SCRATCH_PAGE		BIT(4)
->>> -#define XE_VM_FLAG_FAULT_MODE		BIT(5)
->>> -#define XE_VM_FLAG_BANNED		BIT(6)
->>> -#define XE_VM_FLAG_TILE_ID(flags)	FIELD_GET(GENMASK(8, 7), flags)
->>> -#define XE_VM_FLAG_SET_TILE_ID(tile)	FIELD_PREP(GENMASK(8, 7), (tile)->id)
->>> +#define XE_VM_FLAG_MIGRATION		BIT(2)
->>> +#define XE_VM_FLAG_SCRATCH_PAGE		BIT(3)
->>> +#define XE_VM_FLAG_FAULT_MODE		BIT(4)
->>> +#define XE_VM_FLAG_BANNED		BIT(5)
->>> +#define XE_VM_FLAG_TILE_ID(flags)	FIELD_GET(GENMASK(7, 6), flags)
->>> +#define XE_VM_FLAG_SET_TILE_ID(tile)	FIELD_PREP(GENMASK(7, 6), (tile)->id)
->>>    	unsigned long flags;
->>>    	/** @composite_fence_ctx: context composite fence */
->>> @@ -385,6 +384,8 @@ enum xe_vma_op_flags {
->>>    	XE_VMA_OP_PREV_COMMITTED	= BIT(3),
->>>    	/** @XE_VMA_OP_NEXT_COMMITTED: Next VMA operation committed */
->>>    	XE_VMA_OP_NEXT_COMMITTED	= BIT(4),
->>> +	/** @XE_VMA_OP_ASYNC: operation is async */
->>> +	XE_VMA_OP_ASYNC			= BIT(5),
->>>    };
->>>    /** struct xe_vma_op - VMA operation */
->>> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
->>> index eb03a49c17a1..fd8172fe2d9a 100644
->>> --- a/include/uapi/drm/xe_drm.h
->>> +++ b/include/uapi/drm/xe_drm.h
->>> @@ -141,8 +141,7 @@ struct drm_xe_engine_class_instance {
->>>    	 * Kernel only classes (not actual hardware engine class). Used for
->>>    	 * creating ordered queues of VM bind operations.
->>>    	 */
->>> -#define DRM_XE_ENGINE_CLASS_VM_BIND_ASYNC	5
->>> -#define DRM_XE_ENGINE_CLASS_VM_BIND_SYNC	6
->>> +#define DRM_XE_ENGINE_CLASS_VM_BIND		5
->>>    	__u16 engine_class;
->>>    	__u16 engine_instance;
->>> @@ -660,7 +659,6 @@ struct drm_xe_vm_create {
->>>    	 * still enable recoverable pagefaults if supported by the device.
->>>    	 */
->>>    #define DRM_XE_VM_CREATE_FLAG_LR_MODE	        (1 << 1)
->>> -#define DRM_XE_VM_CREATE_FLAG_ASYNC_DEFAULT	(1 << 2)
->>>    	/*
->>>    	 * DRM_XE_VM_CREATE_FLAG_FAULT_MODE requires also
->>>    	 * DRM_XE_VM_CREATE_FLAG_LR_MODE. It allows memory to be allocated
->>> @@ -668,7 +666,7 @@ struct drm_xe_vm_create {
->>>    	 * The xe driver internally uses recoverable pagefaults to implement
->>>    	 * this.
->>>    	 */
->>> -#define DRM_XE_VM_CREATE_FLAG_FAULT_MODE	(1 << 3)
->>> +#define DRM_XE_VM_CREATE_FLAG_FAULT_MODE	(1 << 2)
->>>    	/** @flags: Flags */
->>>    	__u32 flags;
->>> @@ -776,12 +774,11 @@ struct drm_xe_vm_bind_op {
->>>    	__u32 op;
->>>    #define DRM_XE_VM_BIND_FLAG_READONLY	(1 << 0)
->>> -#define DRM_XE_VM_BIND_FLAG_ASYNC	(1 << 1)
->>>    	/*
->>>    	 * Valid on a faulting VM only, do the MAP operation immediately rather
->>>    	 * than deferring the MAP to the page fault handler.
->>>    	 */
->>> -#define DRM_XE_VM_BIND_FLAG_IMMEDIATE	(1 << 2)
->>> +#define DRM_XE_VM_BIND_FLAG_IMMEDIATE	(1 << 1)
->>>    	/*
->>>    	 * When the NULL flag is set, the page tables are setup with a special
->>>    	 * bit which indicates writes are dropped and all reads return zero.  In
->>> @@ -789,7 +786,7 @@ struct drm_xe_vm_bind_op {
->>>    	 * operations, the BO handle MBZ, and the BO offset MBZ. This flag is
->>>    	 * intended to implement VK sparse bindings.
->>>    	 */
->>> -#define DRM_XE_VM_BIND_FLAG_NULL	(1 << 3)
->>> +#define DRM_XE_VM_BIND_FLAG_NULL	(1 << 2)
->>>    	/** @flags: Bind flags */
->>>    	__u32 flags;
->>> @@ -807,6 +804,27 @@ struct drm_xe_vm_bind_op {
->>>    	__u64 reserved[3];
->>>    };
->>> +/**
->>> + * struct drm_xe_syncs - In / out syncs for IOCTLs.
->>> + */
->>> +struct drm_xe_syncs {
->>> +	/** @num_syncs: amount of syncs to wait on */
->>> +	__u32 num_syncs;
->>> +
->>> +	/*
->>> +	 * Block in IOCTL until operation complete, num_syncs MBZ if set.
->>> +	 */
->>> +#define DRM_XE_SYNCS_FLAG_WAIT_FOR_OP (1 << 0)
->>> +	/** @flags: Sync flags */
->>> +	__u32 flags;
->>> +
->>> +	/** @syncs: pointer to struct drm_xe_sync array */
->>> +	__u64 syncs;
->>> +
->>> +	/** @reserved: Reserved */
->>> +	__u64 reserved[2];
->>> +};
->>> +
->>>    struct drm_xe_vm_bind {
->>>    	/** @extensions: Pointer to the first extension struct, if any */
->>>    	__u64 extensions;
->>> @@ -838,14 +856,8 @@ struct drm_xe_vm_bind {
->>>    		__u64 vector_of_binds;
->>>    	};
->>> -	/** @pad: MBZ */
->>> -	__u32 pad2;
->>> -
->>> -	/** @num_syncs: amount of syncs to wait on */
->>> -	__u32 num_syncs;
->>> -
->>> -	/** @syncs: pointer to struct drm_xe_sync array */
->>> -	__u64 syncs;
->>> +	/** @syncs: syncs for bind */
->>> +	struct drm_xe_syncs syncs;
->>>    	/** @reserved: Reserved */
->>>    	__u64 reserved[2];
->>> @@ -974,14 +986,14 @@ struct drm_xe_exec {
->>>    	/** @extensions: Pointer to the first extension struct, if any */
->>>    	__u64 extensions;
->>> +	/** @pad: MBZ */
->>> +	__u32 pad;
->>> +
->>>    	/** @exec_queue_id: Exec queue ID for the batch buffer */
->>>    	__u32 exec_queue_id;
->>> -	/** @num_syncs: Amount of struct drm_xe_sync in array. */
->>> -	__u32 num_syncs;
->>> -
->>> -	/** @syncs: Pointer to struct drm_xe_sync array. */
->>> -	__u64 syncs;
->>> +	/** @syncs: syncs for exec */
->>> +	struct drm_xe_syncs syncs;
->>>    	/**
->>>    	 * @address: address of batch buffer if num_batch_buffer == 1 or an
->>> @@ -995,8 +1007,8 @@ struct drm_xe_exec {
->>>    	 */
->>>    	__u16 num_batch_buffer;
->>> -	/** @pad: MBZ */
->>> -	__u16 pad[3];
->>> +	/** @pad2: MBZ */
->>> +	__u16 pad2[3];
->>>    	/** @reserved: Reserved */
->>>    	__u64 reserved[2];
