@@ -4,45 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79A83C4167B
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Dec 2023 10:17:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4388CC4167B
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Dec 2023 10:17:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31FE910E3A2;
-	Mon, 11 Dec 2023 10:17:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0189D10E42A;
+	Mon, 11 Dec 2023 10:17:37 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54A0010E3A2
- for <intel-xe@lists.freedesktop.org>; Mon, 11 Dec 2023 10:17:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AEC3610E401
+ for <intel-xe@lists.freedesktop.org>; Mon, 11 Dec 2023 10:17:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702289851; x=1733825851;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=1SB8g6nCbxHvFvmE56nMAYuSV+yPfOGIMi7kpQlnI68=;
- b=KwwTqNvyNPk+VcjZV79QNCTYHtLFH/wn0IdgG+VCROl0eXnHlNDwVkmu
- pj6an5F92EEfjrKOeSOlNtBlbBR7Qm5fvX85sNN5RlbeEPemqpUOzS5u1
- GQpG5MGyJPexpSVhXmtfYPIRoYBYPJ5BZSJPqLX026wnF4mCekgS6WvlU
- EuW5yNiBNORkOntO+QeSrNJQJ3G4epc9/T1hc7eYgHkTX3v2YTMQW2uqN
- aqpHE4MABYyAf1w4iH/JDhB129M79U0BmYn5zC+YNBxUpyGIQjRyf/bNa
- SuKIGuOOEa/AVdvkB3K3li6w9gMEF9oTMt4EZYaL4MDMFNIexxvznhMQz w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10920"; a="480816304"
-X-IronPort-AV: E=Sophos;i="6.04,267,1695711600"; d="scan'208";a="480816304"
+ t=1702289854; x=1733825854;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=qufJ8dSoHBynNrnV1gJvCpXhccMZMcR4vTcF4vQPRTA=;
+ b=bG8442w2nY5rG+4/C73zXHET0Wq3SACLDFdVC/q5boWbcOo1eVjtm0gp
+ KuUF2ZTJzMK3ZPAXoWZRWvfpTHgHFw3be7MrdUmyUfNr0kbWvw+Midm3G
+ yOWqpqfkP9fXe70T/f5BBtymN7BRPgSki74tGt2M7oBEKxv2ATDHa3kEy
+ +rVccjDAFnh3B122imkS2GGqC/pbJ2biDTyZ5ciW00HQPVyrmI95bMYKW
+ 3ALE25PtR3bhKWzc/JXGTLvmyOzKE7d11bVDr1VPUu8kxvUEa87WKK1gi
+ +e8IXKEpgM3yrWgHpkLa+vEAnDzLIZF8UN8dG3oCRVT1PovLo6/tDtS4t A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10920"; a="480816308"
+X-IronPort-AV: E=Sophos;i="6.04,267,1695711600"; d="scan'208";a="480816308"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2023 02:17:30 -0800
+ 11 Dec 2023 02:17:34 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10920"; a="766321874"
-X-IronPort-AV: E=Sophos;i="6.04,267,1695711600"; d="scan'208";a="766321874"
+X-IronPort-AV: E=McAfee;i="6600,9927,10920"; a="766321885"
+X-IronPort-AV: E=Sophos;i="6.04,267,1695711600"; d="scan'208";a="766321885"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.159.144])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2023 02:17:29 -0800
+ 11 Dec 2023 02:17:32 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 0/9] Introduce GuC Doorbells Manager
-Date: Mon, 11 Dec 2023 11:17:10 +0100
-Message-Id: <20231211101719.1659-1-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 2/9] drm/xe: Use GT oriented functions to report TLB timeout
+Date: Mon, 11 Dec 2023 11:17:12 +0100
+Message-Id: <20231211101719.1659-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20231211101719.1659-1-michal.wajdeczko@intel.com>
+References: <20231211101719.1659-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -55,50 +56,66 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce simple GuC doorbells ID manager that will be used by the
-PF driver for VFs provisioning and can later be used by submission
-code once we are ready to switch from H2G based notifications to
-doorbells mechanism.
+We track TLB invalidation seqno per GT and we have GT oriented
+message helpers, so it's better to use GT oriented log functions.
 
-As preparation steps, improve existing logging and kunit code that
-is used by the new code.
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
 
-Michal Wajdeczko (9):
-  drm/xe: Add GT oriented drm_printers
-  drm/xe: Use GT oriented functions to report TLB timeout
-  drm/xe: Introduce GuC Doorbells Manager
-  drm/xe/kunit: Set SR-IOV mode of the fake device
-  drm/xe/kunit: Define helper functions to allocate mock device
-  drm/xe/kunit: Use xe kunit helpers in RTP test
-  drm/xe/kunit: Use xe kunit helpers in WA test
-  drm/xe/kunit: Enable CONFIG_LOCKDEP in tests
-  drm/xe/kunit: Add GuC Doorbells Manager tests
-
- drivers/gpu/drm/xe/.kunitconfig               |   5 +
- drivers/gpu/drm/xe/Makefile                   |   4 +
- drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c | 199 +++++++++++++
- drivers/gpu/drm/xe/tests/xe_kunit_helpers.c   |  85 ++++++
- drivers/gpu/drm/xe/tests/xe_kunit_helpers.h   |  19 ++
- drivers/gpu/drm/xe/tests/xe_pci.c             |   3 +
- drivers/gpu/drm/xe/tests/xe_pci_test.h        |   2 +
- drivers/gpu/drm/xe/tests/xe_rtp_test.c        |  36 +--
- drivers/gpu/drm/xe/tests/xe_wa_test.c         |  24 +-
- drivers/gpu/drm/xe/xe_gt_printk.h             |  44 +++
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c   |  13 +-
- drivers/gpu/drm/xe/xe_guc_db_mgr.c            | 261 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_db_mgr.h            |  22 ++
- drivers/gpu/drm/xe/xe_guc_types.h             |  15 +
- drivers/gpu/drm/xe/xe_uc.c                    |   5 +
- 15 files changed, 675 insertions(+), 62 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c
- create mode 100644 drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
- create mode 100644 drivers/gpu/drm/xe/tests/xe_kunit_helpers.h
- create mode 100644 drivers/gpu/drm/xe/xe_guc_db_mgr.c
- create mode 100644 drivers/gpu/drm/xe/xe_guc_db_mgr.h
-
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index 7eef23a00d77..e3a4131ebb58 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -8,6 +8,7 @@
+ #include "abi/guc_actions_abi.h"
+ #include "xe_device.h"
+ #include "xe_gt.h"
++#include "xe_gt_printk.h"
+ #include "xe_guc.h"
+ #include "xe_guc_ct.h"
+ #include "xe_trace.h"
+@@ -30,8 +31,8 @@ static void xe_gt_tlb_fence_timeout(struct work_struct *work)
+ 			break;
+ 
+ 		trace_xe_gt_tlb_invalidation_fence_timeout(fence);
+-		drm_err(&gt_to_xe(gt)->drm, "gt%d: TLB invalidation fence timeout, seqno=%d recv=%d",
+-			gt->info.id, fence->seqno, gt->tlb_invalidation.seqno_recv);
++		xe_gt_err(gt, "TLB invalidation fence timeout, seqno=%d recv=%d",
++			  fence->seqno, gt->tlb_invalidation.seqno_recv);
+ 
+ 		list_del(&fence->link);
+ 		fence->base.error = -ETIME;
+@@ -312,9 +313,7 @@ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+  */
+ int xe_gt_tlb_invalidation_wait(struct xe_gt *gt, int seqno)
+ {
+-	struct xe_device *xe = gt_to_xe(gt);
+ 	struct xe_guc *guc = &gt->uc.guc;
+-	struct drm_printer p = drm_err_printer(__func__);
+ 	int ret;
+ 
+ 	/*
+@@ -325,8 +324,10 @@ int xe_gt_tlb_invalidation_wait(struct xe_gt *gt, int seqno)
+ 				 tlb_invalidation_seqno_past(gt, seqno),
+ 				 TLB_TIMEOUT);
+ 	if (!ret) {
+-		drm_err(&xe->drm, "gt%d: TLB invalidation time'd out, seqno=%d, recv=%d\n",
+-			gt->info.id, seqno, gt->tlb_invalidation.seqno_recv);
++		struct drm_printer p = xe_gt_err_printer(gt);
++
++		xe_gt_err(gt, "TLB invalidation time'd out, seqno=%d, recv=%d\n",
++			  seqno, gt->tlb_invalidation.seqno_recv);
+ 		xe_guc_ct_print(&guc->ct, &p, true);
+ 		return -ETIME;
+ 	}
 -- 
 2.25.1
 
