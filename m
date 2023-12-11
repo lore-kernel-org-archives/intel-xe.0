@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1AAFDC10F05
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Dec 2023 13:34:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFDB3C4167B
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Dec 2023 13:34:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D826310E423;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C59CC10E422;
 	Mon, 11 Dec 2023 13:34:44 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AE6110E403
- for <intel-xe@lists.freedesktop.org>; Mon, 11 Dec 2023 13:34:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A5DC10E40A
+ for <intel-xe@lists.freedesktop.org>; Mon, 11 Dec 2023 13:34:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702301670; x=1733837670;
+ t=1702301674; x=1733837674;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Hztb9llgEK9k6D5RtKJZT7253VEgMO9IijwFIueVQAo=;
- b=fVWxOSFMTA4cR+I5C4PNmkNPEyGfISx5kPssEfFbFC7V09KAGAiDQGX0
- NZXUak4Hd4F0wVXP7OedG4sVUK8eOFr+152p4bZkfLWxomHrsxxecXqW/
- 1/glPBY1a8tY0ETtRcyfaTv9JPOocC6s4sCJ65bxewj0/RbJvWoreG4Cg
- r+OThwpsq/lPxegVhxMjjZPVE0oE12dtw6pbsT1WmRzLmPdubpHKM4ccT
- F/2b+Ec8qC/uESKXnG8g/9bonmloiE3m8uplscBt3cO+Fi5prWuvNpZr0
- JmdEH43Eu/4ifaqtWCZCs/RISaPUttSwK0dpKR+f7rHfksUEIs4emZ/s+ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="461126591"
-X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; d="scan'208";a="461126591"
+ bh=6d5yZKJB9dF6CELM0cBRa8bBBfss4rLZEtD6aA7ENZ4=;
+ b=CA5z8oWlXJdFhGjKBXwrJ7dRXAgDIpWI79Oj3OG/VGAssPf8wOfPfSND
+ 5rlBSdxO6a0JXluaARlTW36D35s6+Gb2mwsH0HvKwfgc2YV+h8Nu8Asf9
+ 0rYzzj+u8LscaDuwxr6TiWUnUBPLBXoEfbiazuy3ExiT6V/1e9J0/O7Ea
+ 2jauXpoGrFvsgQN8EjQUkgUdLZzRDVcIJAozL1yJ4aGyjZzn6F9FcvLKz
+ 5ZibTMCuiLlgxm9TvbOb4mIBcQyfbap0Yo5G9cNn/eE307xpjOQiOdNnu
+ B436uSif6UrF6GmtYipbkKZimcHz6J7JMoVuVCg0pB+wl+Ebt1XYLrxhB A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="461126626"
+X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; d="scan'208";a="461126626"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2023 05:33:41 -0800
+ 11 Dec 2023 05:34:03 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10920"; a="722788051"
-X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; d="scan'208";a="722788051"
+X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="722788084"
+X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; d="scan'208";a="722788084"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orsmga003.jf.intel.com with ESMTP; 11 Dec 2023 05:33:39 -0800
+ by orsmga003.jf.intel.com with ESMTP; 11 Dec 2023 05:33:49 -0800
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v7 04/10] drm/xe/xe2: Updates on XY_CTRL_SURF_COPY_BLT
-Date: Mon, 11 Dec 2023 19:11:17 +0530
-Message-Id: <20231211134123.1645793-5-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v7 09/10] drm/xe/xe2: Modify xe_bo_test for system memory
+Date: Mon, 11 Dec 2023 19:11:22 +0530
+Message-Id: <20231211134123.1645793-10-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20231211134123.1645793-1-himal.prasad.ghimiray@intel.com>
 References: <20231211134123.1645793-1-himal.prasad.ghimiray@intel.com>
@@ -60,88 +60,133 @@ Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-- The XY_CTRL_SURF_COPY_BLT instruction operationg on ccs data expects
-size in pages of main memory for which CCS data should be copied.
-- The bitfield representing copy size in XY_CTRL_SURF_COPY_BLT has
-shifted one bit higher in the instruction.
+Modify test to valid ccs clear and copy during evict/restore on
+igfx.
 
 v2:
- - Fix the num_pages for ccs size calculation.
- - Address nits (Thomas)
-
-v3:
-- Use FIELD_PREP and FIELD_FIT instead of shifts and numbers.(Matt)
+ -Vram is associated with tiles not with gt. Use tile based iterator
+for ccs_test_run_gt. (Matt)
 
 Cc: Matt Roper <matthew.d.roper@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gpu_commands.h |  5 ++---
- drivers/gpu/drm/xe/xe_migrate.c           | 21 +++++++++++++++------
- 2 files changed, 17 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_bo.c | 44 ++++++++++++++++++++------------
+ 1 file changed, 27 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-index 1f9c32e694c6..a255946b6f77 100644
---- a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-@@ -11,13 +11,12 @@
- #define XY_CTRL_SURF_COPY_BLT		((2 << 29) | (0x48 << 22) | 3)
- #define   SRC_ACCESS_TYPE_SHIFT		21
- #define   DST_ACCESS_TYPE_SHIFT		20
--#define   CCS_SIZE_MASK			0x3FF
--#define   CCS_SIZE_SHIFT		8
-+#define   CCS_SIZE_MASK			GENMASK(17, 8)
-+#define   XE2_CCS_SIZE_MASK		GENMASK(18, 9)
- #define   XY_CTRL_SURF_MOCS_MASK	GENMASK(31, 26)
- #define   XE2_XY_CTRL_SURF_MOCS_INDEX_MASK	GENMASK(31, 28)
- #define   NUM_CCS_BYTES_PER_BLOCK	256
- #define   NUM_BYTES_PER_CCS_BYTE(_xe)	(GRAPHICS_VER(_xe) >= 20 ? 512 : 256)
--#define   NUM_CCS_BLKS_PER_XFER		1024
+diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
+index 549ab343de80..412b2e7ce40c 100644
+--- a/drivers/gpu/drm/xe/tests/xe_bo.c
++++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+@@ -14,7 +14,7 @@
+ #include "xe_pci.h"
+ #include "xe_pm.h"
  
- #define XY_FAST_COLOR_BLT_CMD		(2 << 29 | 0x44 << 22)
- #define   XY_FAST_COLOR_BLT_DEPTH_32	(2 << 19)
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index be2a92dee52c..cb9f00697115 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -526,21 +526,30 @@ static void emit_copy_ccs(struct xe_gt *gt, struct xe_bb *bb,
- 	struct xe_device *xe = gt_to_xe(gt);
- 	u32 *cs = bb->cs + bb->len;
- 	u32 num_ccs_blks;
-+	u32 num_pages;
-+	u32 ccs_copy_size;
- 	u32 mocs;
+-static int ccs_test_migrate(struct xe_gt *gt, struct xe_bo *bo,
++static int ccs_test_migrate(struct xe_tile *tile, struct xe_bo *bo,
+ 			    bool clear, u64 get_val, u64 assign_val,
+ 			    struct kunit *test)
+ {
+@@ -36,7 +36,7 @@ static int ccs_test_migrate(struct xe_gt *gt, struct xe_bo *bo,
  
--	num_ccs_blks = DIV_ROUND_UP(xe_device_ccs_bytes(gt_to_xe(gt), size),
--				    NUM_CCS_BYTES_PER_BLOCK);
--	xe_gt_assert(gt, num_ccs_blks <= NUM_CCS_BLKS_PER_XFER);
-+	if (GRAPHICS_VERx100(xe) >= 2000) {
-+		num_pages = DIV_ROUND_UP(size, XE_PAGE_SIZE);
-+		xe_gt_assert(gt, FIELD_FIT(XE2_CCS_SIZE_MASK, num_pages - 1));
+ 	/* Optionally clear bo *and* CCS data in VRAM. */
+ 	if (clear) {
+-		fence = xe_migrate_clear(gt_to_tile(gt)->migrate, bo, bo->ttm.resource);
++		fence = xe_migrate_clear(tile->migrate, bo, bo->ttm.resource);
+ 		if (IS_ERR(fence)) {
+ 			KUNIT_FAIL(test, "Failed to submit bo clear.\n");
+ 			return PTR_ERR(fence);
+@@ -91,7 +91,7 @@ static int ccs_test_migrate(struct xe_gt *gt, struct xe_bo *bo,
+ 	}
  
--	if (GRAPHICS_VERx100(xe) >= 2000)
-+		ccs_copy_size = REG_FIELD_PREP(XE2_CCS_SIZE_MASK, num_pages - 1);
- 		mocs = FIELD_PREP(XE2_XY_CTRL_SURF_MOCS_INDEX_MASK, gt->mocs.uc_index);
--	else
+ 	/* Check last CCS value, or at least last value in page. */
+-	offset = xe_device_ccs_bytes(gt_to_xe(gt), bo->size);
++	offset = xe_device_ccs_bytes(tile_to_xe(tile), bo->size);
+ 	offset = min_t(u32, offset, PAGE_SIZE) / sizeof(u64) - 1;
+ 	if (cpu_map[offset] != get_val) {
+ 		KUNIT_FAIL(test,
+@@ -108,39 +108,45 @@ static int ccs_test_migrate(struct xe_gt *gt, struct xe_bo *bo,
+ 	return ret;
+ }
+ 
+-static void ccs_test_run_gt(struct xe_device *xe, struct xe_gt *gt,
+-			    struct kunit *test)
++static void ccs_test_run_tile(struct xe_device *xe, struct xe_tile *tile,
++			      struct kunit *test)
+ {
+ 	struct xe_bo *bo;
+-	u32 vram_bit;
 +
-+	} else {
-+		num_ccs_blks = DIV_ROUND_UP(xe_device_ccs_bytes(gt_to_xe(gt), size),
-+					    NUM_CCS_BYTES_PER_BLOCK);
-+		xe_gt_assert(gt, FIELD_FIT(CCS_SIZE_MASK, num_ccs_blks - 1));
+ 	int ret;
+ 
+ 	/* TODO: Sanity check */
+-	vram_bit = XE_BO_CREATE_VRAM0_BIT << gt_to_tile(gt)->id;
+-	kunit_info(test, "Testing gt id %u vram id %u\n", gt->info.id,
+-		   gt_to_tile(gt)->id);
++	unsigned int bo_flags = XE_BO_CREATE_VRAM_IF_DGFX(tile);
 +
-+		ccs_copy_size = REG_FIELD_PREP(CCS_SIZE_MASK, num_ccs_blks - 1);
- 		mocs = FIELD_PREP(XY_CTRL_SURF_MOCS_MASK, gt->mocs.uc_index);
++	if (IS_DGFX(xe))
++		kunit_info(test, "Testing vram id %u\n", tile->id);
++	else
++		kunit_info(test, "Testing system memory\n");
++
++	bo = xe_bo_create_user(xe, NULL, NULL, SZ_1M, DRM_XE_GEM_CPU_CACHING_WC,
++			       ttm_bo_type_device, bo_flags);
++
++	xe_bo_lock(bo, false);
+ 
+-	bo = xe_bo_create_locked(xe, NULL, NULL, SZ_1M, ttm_bo_type_device,
+-				 vram_bit);
+ 	if (IS_ERR(bo)) {
+ 		KUNIT_FAIL(test, "Failed to create bo.\n");
+ 		return;
+ 	}
+ 
+ 	kunit_info(test, "Verifying that CCS data is cleared on creation.\n");
+-	ret = ccs_test_migrate(gt, bo, false, 0ULL, 0xdeadbeefdeadbeefULL,
++	ret = ccs_test_migrate(tile, bo, false, 0ULL, 0xdeadbeefdeadbeefULL,
+ 			       test);
+ 	if (ret)
+ 		goto out_unlock;
+ 
+ 	kunit_info(test, "Verifying that CCS data survives migration.\n");
+-	ret = ccs_test_migrate(gt, bo, false, 0xdeadbeefdeadbeefULL,
++	ret = ccs_test_migrate(tile, bo, false, 0xdeadbeefdeadbeefULL,
+ 			       0xdeadbeefdeadbeefULL, test);
+ 	if (ret)
+ 		goto out_unlock;
+ 
+ 	kunit_info(test, "Verifying that CCS data can be properly cleared.\n");
+-	ret = ccs_test_migrate(gt, bo, true, 0ULL, 0ULL, test);
++	ret = ccs_test_migrate(tile, bo, true, 0ULL, 0ULL, test);
+ 
+ out_unlock:
+ 	xe_bo_unlock(bo);
+@@ -150,7 +156,7 @@ static void ccs_test_run_gt(struct xe_device *xe, struct xe_gt *gt,
+ static int ccs_test_run_device(struct xe_device *xe)
+ {
+ 	struct kunit *test = xe_cur_kunit();
+-	struct xe_gt *gt;
++	struct xe_tile *tile;
+ 	int id;
+ 
+ 	if (!xe_device_has_flat_ccs(xe)) {
+@@ -160,8 +166,12 @@ static int ccs_test_run_device(struct xe_device *xe)
+ 
+ 	xe_device_mem_access_get(xe);
+ 
+-	for_each_gt(gt, xe, id)
+-		ccs_test_run_gt(xe, gt, test);
++	for_each_tile(tile, xe, id) {
++		/* For igfx run only for primary tile */
++		if (!IS_DGFX(xe) && id > 0)
++			continue;
++		ccs_test_run_tile(xe, tile, test);
 +	}
  
- 	*cs++ = XY_CTRL_SURF_COPY_BLT |
- 		(src_is_indirect ? 0x0 : 0x1) << SRC_ACCESS_TYPE_SHIFT |
- 		(dst_is_indirect ? 0x0 : 0x1) << DST_ACCESS_TYPE_SHIFT |
--		((num_ccs_blks - 1) & CCS_SIZE_MASK) << CCS_SIZE_SHIFT;
-+		ccs_copy_size;
- 	*cs++ = lower_32_bits(src_ofs);
- 	*cs++ = upper_32_bits(src_ofs) | mocs;
- 	*cs++ = lower_32_bits(dst_ofs);
+ 	xe_device_mem_access_put(xe);
+ 
 -- 
 2.25.1
 
