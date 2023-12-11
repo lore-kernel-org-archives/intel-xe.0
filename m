@@ -4,46 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41E14C4167B
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Dec 2023 16:23:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9566EC4167B
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Dec 2023 16:29:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1021B10E4B4;
-	Mon, 11 Dec 2023 16:23:53 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2172C10E4B4
- for <intel-xe@lists.freedesktop.org>; Mon, 11 Dec 2023 16:23:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6245610E4BB;
+	Mon, 11 Dec 2023 16:29:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BF5C10E4BB
+ for <intel-xe@lists.freedesktop.org>; Mon, 11 Dec 2023 16:29:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702311831; x=1733847831;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=252NLz21hVuOK3c4eopTqRFXzgz3JfiL+hqxtO4mg+s=;
- b=IjL7f6xeSTpslQTi3kf4NnC5/6dpSvBEP55ZNSqjUl2hJgluXul9d81t
- HejkUiGHJwjIpoYvfu6iIPmWSlpJvkB1Y8BoLgEUuuyRdBuIFNxKavHSL
- l+gXykeoTF/vx1/Ak5NLbugE0ZJxcXbcgQd1uL+ZPTKKQhD/aqes9ereO
- LBSHm9eU7SkBvJuEBT58L8bZVms2o5dydImkyFKwkv457G7BQa/8aaW+1
- nzlkDpHlUVA71ks3GZlAWGpBQ+n7A+Ir0oD8hOEKf2DCjCZdLRqG4lAeL
- mLze29x+ASQcpjgSpTiv5ztOPeB4BeM9I+dlaol8nlX6TJtX9KPP7GB/u g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="480867959"
-X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; d="scan'208";a="480867959"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2023 08:23:50 -0800
+ t=1702312179; x=1733848179;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=roVJLAxJz51TG0LTkHbiy2itSC2nfh++nvEXelAHJaY=;
+ b=ToE6v6KiJBhIb05sio9QQQX8xIWbPbrGUcUKwDqcHXu6CPxL9vBC+wKQ
+ TjHyedROFRKDmKLzuRPzOr9Vq3x4B2e7VSj6eDCwPk/Oa6YP628g9sw0S
+ mbJleSfeAgT67Zqtp+fioaMhmM+d7jIVuue8P7rwumtJjGVNLtlCXlK4s
+ jlSa5O33FAmd7nZc9NTAwNidZggV4PMAfCFy1U81cScqwSET8mPrHYffb
+ VjBrWBwizWhZdaxuPmw7M93z4Xkgrj5LWKv5rX4ZnYQheCX/CLC8ClHOh
+ KBi4v+Y7ggnjHLudO02kYSCJvRDNnXQzrKmGzlOh/2JGU0itltWc5nrLK Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="461149800"
+X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; d="scan'208";a="461149800"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2023 08:29:38 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; d="scan'208";a="17591505"
-Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.jf.intel.com)
- ([10.165.21.138])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2023 08:23:50 -0800
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH i-g-t] tests/xe: Remove xe_perf_pmu
-Date: Mon, 11 Dec 2023 08:23:44 -0800
-Message-ID: <20231211162344.2790092-1-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.41.0
+X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="722862500"
+X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; d="scan'208";a="722862500"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 11 Dec 2023 08:29:38 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 11 Dec 2023 08:29:38 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 11 Dec 2023 08:29:38 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Mon, 11 Dec 2023 08:29:38 -0800
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.168)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Mon, 11 Dec 2023 08:29:35 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JcWXhjcWDy7jAkkaOhR8pe+rgNjWpzfP4YCBRcEnIWyF/LfQu8JeaOEESlcB/CBAcTnPmIHd+vsVm8BPkTelBBwHAEzT/d2j9UftejRcDTs+UYTNcroloD8AtHE4tH/Up0F2icgbboxphLBFCLmV8i26VQemjvcnMN/frOsCxF8/mNbATBb+8ab5GxsjS7uKC+crSJP3uwySkGextgTELHbqoZkGowX01vjfsSwcQ9lsYF9HiRuaw0ITe41DYmhFJnIKVI55bF1EFbxrKhVHzHM7n1AM5boTTEQVAXH+4vWVrnwkXClWsV3nudfPuzGyVtnaRFNY7y8bjMLZf8TsTA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=roVJLAxJz51TG0LTkHbiy2itSC2nfh++nvEXelAHJaY=;
+ b=RhoIx/ndAFTQ7VWt+xfYkd5br8WqjyzIgL7TytKuPZW8DfFYU1nLLycHlx2T4d/qeua+vUceAy/+4Ptt9CoN/JJygKTe5NGLyelvDnLkYRGNrBOyiFpx0shidpqXqNnr9FPW8tZFhGIEbLu5Ur9grFEAHfZaHV1SXGYxtYdo0p0GmiVtt9XeZFQZdRBA65D6oLOSWXoOA/+G9YizagyUCyRfC4meIRgyo5ToYtcy3vt+o1w6khk4hG6Km4JTyJQpWitIK/AnOmSXsoHqMOPfP37kfUS8nKBmMxccV171A0uIFDdzn60JHjCEobCk9ZX4lkheGLqlrvAxguPKTPEihg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by DS0PR11MB7879.namprd11.prod.outlook.com (2603:10b6:8:f7::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.33; Mon, 11 Dec
+ 2023 16:29:33 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::b870:a8ae:c4f1:c39b]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::b870:a8ae:c4f1:c39b%4]) with mapi id 15.20.7068.031; Mon, 11 Dec 2023
+ 16:29:33 +0000
+Date: Mon, 11 Dec 2023 10:29:31 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Subject: Re: [PATCH] drm/xe/pmu: Remove PMU from Xe till uapi is finalized
+Message-ID: <tm7cscylygtne5tv2xv7u27bneokjrepgqtyogppft6eqsncfg@ef7wrbtvxcgu>
+References: <20231209224352.2720403-1-ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20231209224352.2720403-1-ashutosh.dixit@intel.com>
+X-ClientProxiedBy: BY5PR04CA0006.namprd04.prod.outlook.com
+ (2603:10b6:a03:1d0::16) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DS0PR11MB7879:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7e232e3f-ccb7-4ae1-51da-08dbfa665b98
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: kQMi/OCpXerd+n8HOeQi44H3keiKJpmVlXWql4HYWpxQfl7gatgj1rAYh+F4uVFzyQN9+6JQbVlNnQURyiyDvWdkyqZjtF9VTAA+rmtEX0kwHvmAuc/bMNPSuLZU4EJ2GMB8Qaw7UGAv158nTkHipSeyfmmc00w9h8Yz+N6gfHtu6LjuGuiBhSsOUKhEw6dsNHphAYsCSy62etYuNKQDgxbWuluLvmoSK2GCs5vpB0CEGzTIjHsJiir3ZSVPWQMQOTwQuhDEHT56LsXdU3FGMuffQGVs2GlVFhb7EguMUVRWI3To55y2/NeqepxB+gUzWTNZdSEqH6jwHdNyzVyyi23jBgPmJdFTWr5fvhaufWToeDL5gFXgBemPRKzu/3I1gpkMSIvrJ+yXIU8h4tJDkWt1k/C3o7zKof09JiJX2cmGcV2gkgdaKOOaf9Ejgi1RpjgE9Afu2MkZPnSp5cjXN9t4bvkd4Z2EfC8K7HqV36n/NsRE5jdyqxPw/2kvmvQyWetF0NmpUnTYpIIM46GqoPcDY1Jz+j17wCVHWcGh8dNUB+5vYWWxsoItnYXDmioa
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7916004)(39860400002)(346002)(366004)(376002)(396003)(136003)(230922051799003)(1800799012)(451199024)(64100799003)(186009)(9686003)(6512007)(33716001)(6506007)(5660300002)(26005)(107886003)(66946007)(6636002)(6486002)(66476007)(66556008)(4744005)(2906002)(82960400001)(41300700001)(478600001)(86362001)(8676002)(8936002)(4326008)(6862004)(316002)(38100700002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?rvq3VYnruVjGb7EAKrYFYJWzsBrcsSyiuZHlpz7+5SBLr5SGrzbNhkUAMn9s?=
+ =?us-ascii?Q?jW8DSZcBlydQHgAvekYU9KqW7E8rotvg1QqOenowhQ6qsypGsy8+N23jxgKK?=
+ =?us-ascii?Q?mWqHQMsbg5KejGUfySXBU40yI7iaCYoKI7ZbAOw1vmIvq3L6XwosrMLegMdb?=
+ =?us-ascii?Q?CzL6C0rzZxlbrdyqBlGdn34Mm4qddSQ5yW72GhRCaypIdko9ugfqUYacvOKP?=
+ =?us-ascii?Q?StGw+lUKEd0bjDh5q456vldMsCEIUOWLlfyRDRFsaATEoAMKvLKZuNbZcK6/?=
+ =?us-ascii?Q?xcf1jr5ysdfEnI1Byx3ES9iAESvxpiIQq+1RHwNhwdyoFJXdPESgfc2Pi+qJ?=
+ =?us-ascii?Q?t7J1JTputNamp86TMjOGR8JFo8uPd07FLiT2zwqxbEX7MMWVT84GMiuj0QK9?=
+ =?us-ascii?Q?tkA+1Y/CHIWUrzEcDmubMth/LCvgxIjGQD1CIzjyEnE8FoSAxE9PH3a4DU57?=
+ =?us-ascii?Q?VagcmF/3wGjA/NtSVpg2uiMYq9klhF5mjWZ7X4VKN1LzTYGvZY39cYE67ci5?=
+ =?us-ascii?Q?9YqsHjpzt06hjtZoNZby/nAN6c3ddNcaW2cH4Sd9wub5pV+DbXkiJ/qQ60uM?=
+ =?us-ascii?Q?bWL64DBk9F/CVFS+Rfld6imP10/6VA7sl6ilZSI/tvbEMEbBpXdTmZu8wBu4?=
+ =?us-ascii?Q?n0nYwfKNQZViuRFLvncODJmlTIhseqCNMOXUJ2Abxg9HKPD6roftpKx0Sx2B?=
+ =?us-ascii?Q?6sGGRimt/QMZBcGwJC1GilLlbWIgIdn5bf+ne41QyRGhDAEr3D3d9e5jFmos?=
+ =?us-ascii?Q?eF1gYkccte+JkbORvS2RpEf7z49Wabx/dmJxJRNbsA67wCS7VTurtoUXbzOK?=
+ =?us-ascii?Q?GZQ9ZEFlMDQZ/C6MnajrbLbD5UEo4BnUvt4iFGBumryQROGtPdalZYbNHTsG?=
+ =?us-ascii?Q?Rmw+Bmmg8+sC8pQffCjBjYBuROXfUq4oqTpL/k8t8zRnDKjsUkaoJQHTmiBl?=
+ =?us-ascii?Q?xWx8VBejBMMpLM+BYDa+yX0OnZvrYeo5+d4N2QAXzaGlqKdM1KgoJgTGThjy?=
+ =?us-ascii?Q?h8i4lxIjK5BXYJCTjQi1ArLH9BybPBmRd/6qzgMNYlu5UIZko94qis1JirI4?=
+ =?us-ascii?Q?k80r7LeKAO8FeK4yHkR6Pe5TjQiwSITipOekAUKxwtOEjdeDpwzJnB/NGW4Z?=
+ =?us-ascii?Q?EqAa/Ivc+U00o95R2IvuxghLpSKngCcd3Rl9vAzVLksBhUItPu3xeBVL+rZX?=
+ =?us-ascii?Q?1LSFaEDpX3T7yO2QnWqLSPAF/TlhGuttGKBY2rD3lzG/ncSvk+m8NcHYATKM?=
+ =?us-ascii?Q?N1oN8rkcGTMLkp8KRN3z3/UE4iN6CgOrh6ztohiWBoMJ7F7BVEMT1cG/UqnB?=
+ =?us-ascii?Q?/Dafgf9V1z1rXpCvkmRl+ZEZfr/0z3rCKrDc+HCap9UI17kECFwRv2ag6EWl?=
+ =?us-ascii?Q?edNwJ4FMsyRnA8K1Q9FoK7x5805GEDAFc9pNZwwyV7W/VZXtgaGazkf3GbpR?=
+ =?us-ascii?Q?zTQfUYy4aedFaqTv/wv2DahiEG+JFkyccBmtsMe+o/j54uG08dDSdpHqm8Ex?=
+ =?us-ascii?Q?P/IWsbJmY8bwcDCu1xxYqgvvwPz1zlo5NlLwTchnCUTPrSbXfxyWm4+9mcf8?=
+ =?us-ascii?Q?VtT6OZQrWHPzT8eIhOGXvl8OIztbxEkL7Yzrsg401xSPeMXrm+mV3BBsuyZo?=
+ =?us-ascii?Q?hA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7e232e3f-ccb7-4ae1-51da-08dbfa665b98
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2023 16:29:33.4957 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: zDkJYebyZsQDKEMcsbTheSW2oMJ/MRcoSwt4g3HmppIATShmMNbcpOvFApMWuh4gWhltrAKWGwcy7Q1sV5bCI/T43j+8egCrGyxqBYXAJy8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7879
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,374 +146,18 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Francois Dugast <francois.dugast@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: francois.dugast@intel.com, intel-xe@lists.freedesktop.org, Rodrigo
+ Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Group busyness uapi implemented in PMU in the kernel has been discontinued
-and will be replaced by a different group busyness uapi and a different
-implementation. Because of this, we are proposing to remove the PMU code
-from the kernel, till the correct uapi is implemented. Therefore drop the
-corresponding IGT too, since it caters to the old uapi.
+On Sat, Dec 09, 2023 at 02:43:52PM -0800, Ashutosh Dixit wrote:
+>PMU uapi is likely to change in the future. Till the uapi is finalized,
+>remove PMU from Xe. PMU can be re-added after uapi is finalized.
+>
+>Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
----
- tests/intel/xe_perf_pmu.c | 331 --------------------------------------
- tests/meson.build         |   1 -
- 2 files changed, 332 deletions(-)
- delete mode 100644 tests/intel/xe_perf_pmu.c
 
-diff --git a/tests/intel/xe_perf_pmu.c b/tests/intel/xe_perf_pmu.c
-deleted file mode 100644
-index 42cf62729142..000000000000
---- a/tests/intel/xe_perf_pmu.c
-+++ /dev/null
-@@ -1,331 +0,0 @@
--// SPDX-License-Identifier: MIT
--/*
-- * Copyright © 2021 Intel Corporation
-- */
--
--/**
-- * TEST: Basic tests for verify pmu perf interface
-- * Category: Hardware building block
-- * Sub-category: pmu interface
-- * Functionality: pmu
-- * Test category: functionality test
-- */
--
--#include <fcntl.h>
--#include <string.h>
--
--#include "igt.h"
--#include "lib/igt_syncobj.h"
--#include "lib/intel_reg.h"
--#include "lib/igt_perf.h"
--#include "xe_drm.h"
--#include "xe/xe_ioctl.h"
--#include "xe/xe_query.h"
--#include "xe/xe_spin.h"
--
--#define MAX_INSTANCE 9
--
--static uint64_t pmu_read(int fd)
--{
--	uint64_t  data[2];
--
--	igt_assert_eq(read(fd, data, sizeof(data)), sizeof(data));
--
--	return data[0];
--}
--
--static int open_pmu(int fd, uint64_t config)
--{
--	int perf_fd;
--
--	perf_fd = perf_xe_open(fd, config);
--	igt_skip_on(perf_fd < 0 && errno == ENODEV);
--	igt_assert(perf_fd >= 0);
--
--	return perf_fd;
--}
--
--static uint64_t engine_group_get_config(int gt, int class)
--{
--	uint64_t config;
--
--	switch (class) {
--	case DRM_XE_ENGINE_CLASS_COPY:
--		config = DRM_XE_PMU_COPY_GROUP_BUSY(gt);
--		break;
--	case DRM_XE_ENGINE_CLASS_RENDER:
--	case DRM_XE_ENGINE_CLASS_COMPUTE:
--		config = DRM_XE_PMU_RENDER_GROUP_BUSY(gt);
--		break;
--	case DRM_XE_ENGINE_CLASS_VIDEO_DECODE:
--	case DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE:
--		config = DRM_XE_PMU_MEDIA_GROUP_BUSY(gt);
--		break;
--	}
--
--	return config;
--}
--
--/**
-- * Test: Basic test for measure the active time when engine of any class active
-- *
-- * SUBTEST: any-engine-group-busy
-- * Description:
-- *      Run a test to measure the global activity time by submitting
-- *      the WL to all existing engines.
-- * Run type: FULL
-- *
-- */
--static void test_any_engine_busyness(int fd, struct drm_xe_engine_class_instance *eci)
--{
--	uint32_t vm;
--	uint64_t addr = 0x1a0000;
--	struct drm_xe_sync sync[2] = {
--		{ .type = DRM_XE_SYNC_TYPE_SYNCOBJ, .flags = DRM_XE_SYNC_FLAG_SIGNAL, },
--		{ .type = DRM_XE_SYNC_TYPE_SYNCOBJ, .flags = DRM_XE_SYNC_FLAG_SIGNAL, },
--	};
--	struct drm_xe_exec exec = {
--		.num_batch_buffer = 1,
--		.num_syncs = 2,
--		.syncs = to_user_pointer(sync),
--	};
--	uint32_t exec_queue;
--	uint32_t syncobj;
--	size_t bo_size;
--	uint32_t bo = 0;
--	struct xe_spin *spin;
--	struct xe_spin_opts spin_opts = { .addr = addr, .preempt = false };
--	uint32_t pmu_fd;
--	uint64_t count, idle;
--
--	vm = xe_vm_create(fd, DRM_XE_VM_CREATE_FLAG_ASYNC_DEFAULT, 0);
--	bo_size = sizeof(*spin);
--	bo_size = ALIGN(bo_size + xe_cs_prefetch_size(fd),
--			xe_get_default_alignment(fd));
--
--	bo = xe_bo_create(fd, vm, bo_size, vram_if_possible(fd, eci->gt_id), 0);
--	spin = xe_bo_map(fd, bo, bo_size);
--
--	exec_queue = xe_exec_queue_create(fd, vm, eci, 0);
--	syncobj = syncobj_create(fd, 0);
--
--	sync[0].handle = syncobj_create(fd, 0);
--	xe_vm_bind_async(fd, vm, 0, bo, 0, addr, bo_size, sync, 1);
--
--	pmu_fd = open_pmu(fd, DRM_XE_PMU_ANY_ENGINE_GROUP_BUSY(eci->gt_id));
--	idle = pmu_read(pmu_fd);
--	igt_assert(!idle);
--
--	xe_spin_init(spin, &spin_opts);
--
--	sync[0].flags &= ~DRM_XE_SYNC_FLAG_SIGNAL;
--	sync[1].flags |= DRM_XE_SYNC_FLAG_SIGNAL;
--	sync[1].handle = syncobj;
--
--	exec.exec_queue_id = exec_queue;
--	exec.address = addr;
--	xe_exec(fd, &exec);
--
--	xe_spin_wait_started(spin);
--	usleep(50000);
--
--	igt_assert(!syncobj_wait(fd, &syncobj, 1, 1, 0, NULL));
--	xe_spin_end(spin);
--
--	igt_assert(syncobj_wait(fd, &syncobj, 1, INT64_MAX, 0, NULL));
--	igt_assert(syncobj_wait(fd, &sync[0].handle, 1, INT64_MAX, 0, NULL));
--
--	sync[0].flags |= DRM_XE_SYNC_FLAG_SIGNAL;
--	xe_vm_unbind_async(fd, vm, 0, 0, addr, bo_size, sync, 1);
--	igt_assert(syncobj_wait(fd, &sync[0].handle, 1, INT64_MAX, 0, NULL));
--
--	syncobj_destroy(fd, sync[0].handle);
--	syncobj_destroy(fd, syncobj);
--
--	count = pmu_read(pmu_fd);
--	igt_assert_lt_u64(idle, count);
--	igt_debug("Incrementing counter all-busy-group %ld ns\n", count);
--
--	xe_exec_queue_destroy(fd, exec_queue);
--	munmap(spin, bo_size);
--	gem_close(fd, bo);
--	xe_vm_destroy(fd, vm);
--	close(pmu_fd);
--}
--
--/**
-- * Test: Basic test for measure the active time across engine class
-- *
-- * SUBTEST: render-busy
-- * Description:
-- *	Run a test to measure the active engine class time by submitting the
-- *	WL to all instances of a class
-- * Run type: FULL
-- *
-- * SUBTEST: compute-busy
-- * Description: Run copy-group-busy test
-- * Run type: FULL
-- *
-- * SUBTEST: copy-busy
-- * Description: Run copy-group-busy test
-- * Run type: FULL
-- *
-- * SUBTEST: vcs-busy
-- * Description: Run copy-group-busy test
-- * Run type: FULL
-- *
-- * SUBTEST: vecs-busy
-- * Description: Run copy-group-busy test
-- * Run type: FULL
-- *
-- */
--
--static void test_engine_group_busyness(int fd, int gt, int class, const char *name)
--{
--	uint32_t vm;
--	uint64_t addr = 0x1a0000;
--	struct drm_xe_sync sync[2] = {
--		{ .type = DRM_XE_SYNC_TYPE_SYNCOBJ, .flags = DRM_XE_SYNC_FLAG_SIGNAL, },
--		{ .type = DRM_XE_SYNC_TYPE_SYNCOBJ, .flags = DRM_XE_SYNC_FLAG_SIGNAL, },
--	};
--	struct drm_xe_exec exec = {
--		.num_batch_buffer = 1,
--		.num_syncs = 2,
--		.syncs = to_user_pointer(sync),
--	};
--	uint32_t exec_queues[MAX_INSTANCE];
--	uint32_t syncobjs[MAX_INSTANCE];
--	int    pmu_fd;
--	size_t bo_size;
--	uint32_t bo = 0, i = 0;
--	struct {
--		struct xe_spin spin;
--	} *data;
--	struct xe_spin_opts spin_opts = { .addr = addr, .preempt = false };
--	struct drm_xe_engine_class_instance *hwe;
--	struct drm_xe_engine_class_instance eci[MAX_INSTANCE];
--	int num_placements = 0;
--	uint64_t config, count, idle;
--
--	config = engine_group_get_config(gt, class);
--
--	xe_for_each_engine(fd, hwe) {
--		if (hwe->engine_class != class || hwe->gt_id != gt)
--			continue;
--
--		eci[num_placements++] = *hwe;
--	}
--
--	igt_skip_on_f(!num_placements, "Engine class:%d gt:%d not enabled on this platform\n",
--		      class, gt);
--
--	vm = xe_vm_create(fd, DRM_XE_VM_CREATE_FLAG_ASYNC_DEFAULT, 0);
--	bo_size = sizeof(*data) * num_placements;
--	bo_size = ALIGN(bo_size + xe_cs_prefetch_size(fd), xe_get_default_alignment(fd));
--
--	bo = xe_bo_create(fd, vm, bo_size, vram_if_possible(fd, gt), 0);
--	data = xe_bo_map(fd, bo, bo_size);
--
--	for (i = 0; i < num_placements; i++) {
--		struct drm_xe_exec_queue_create create = {
--			.vm_id = vm,
--			.width = 1,
--			.num_placements = num_placements,
--			.instances = to_user_pointer(eci),
--		};
--
--		igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_XE_EXEC_QUEUE_CREATE,
--					&create), 0);
--		exec_queues[i] = create.exec_queue_id;
--		syncobjs[i] = syncobj_create(fd, 0);
--	};
--
--	sync[0].handle = syncobj_create(fd, 0);
--	xe_vm_bind_async(fd, vm, 0, bo, 0, addr, bo_size, sync, 1);
--
--	pmu_fd = open_pmu(fd, config);
--	idle = pmu_read(pmu_fd);
--	igt_assert(!idle);
--
--	for (i = 0; i < num_placements; i++) {
--		spin_opts.addr = addr + (char *)&data[i].spin - (char *)data;
--		xe_spin_init(&data[i].spin, &spin_opts);
--		sync[0].flags &= ~DRM_XE_SYNC_FLAG_SIGNAL;
--		sync[1].flags |= DRM_XE_SYNC_FLAG_SIGNAL;
--		sync[1].handle = syncobjs[i];
--
--		exec.exec_queue_id = exec_queues[i];
--		exec.address = spin_opts.addr;
--		xe_exec(fd, &exec);
--		xe_spin_wait_started(&data[i].spin);
--	}
--
--	for (i = 0; i < num_placements; i++) {
--		xe_spin_end(&data[i].spin);
--		igt_assert(syncobj_wait(fd, &syncobjs[i], 1, INT64_MAX, 0,
--					NULL));
--	}
--
--	igt_assert(syncobj_wait(fd, &sync[0].handle, 1, INT64_MAX, 0, NULL));
--
--	sync[0].flags |= DRM_XE_SYNC_FLAG_SIGNAL;
--	xe_vm_unbind_async(fd, vm, 0, 0, addr, bo_size, sync, 1);
--	igt_assert(syncobj_wait(fd, &sync[0].handle, 1, INT64_MAX, 0, NULL));
--
--
--	syncobj_destroy(fd, sync[0].handle);
--	for (i = 0; i < num_placements; i++) {
--		syncobj_destroy(fd, syncobjs[i]);
--		xe_exec_queue_destroy(fd, exec_queues[i]);
--	}
--
--	count = pmu_read(pmu_fd);
--	igt_assert_lt_u64(idle, count);
--	igt_debug("Incrementing counter %s-gt-%d  %ld ns\n", name, gt, count);
--
--	munmap(data, bo_size);
--	gem_close(fd, bo);
--	xe_vm_destroy(fd, vm);
--	close(pmu_fd);
--}
--
--igt_main
--{
--	struct drm_xe_engine_class_instance *hwe;
--	const struct section {
--		const char *name;
--		int class;
--	} sections[] = {
--		{ "render-busy", DRM_XE_ENGINE_CLASS_RENDER },
--		{ "compute-busy", DRM_XE_ENGINE_CLASS_COMPUTE },
--		{ "copy-busy", DRM_XE_ENGINE_CLASS_COPY },
--		{ "vcs-busy", DRM_XE_ENGINE_CLASS_VIDEO_DECODE },
--		{ "vecs-busy", DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE },
--		{ NULL },
--	};
--	int gt;
--	int class;
--	int fd;
--
--	igt_fixture {
--		fd = drm_open_driver(DRIVER_XE);
--		xe_device_get(fd);
--	}
--
--	for (const struct section *s = sections; s->name; s++) {
--		igt_subtest_f("%s", s->name)
--			xe_for_each_gt(fd, gt)
--				xe_for_each_engine_class(class)
--					if (class == s->class)
--						test_engine_group_busyness(fd, gt, class, s->name);
--	}
--
--	igt_subtest("any-engine-group-busy")
--		xe_for_each_engine(fd, hwe)
--			test_any_engine_busyness(fd, hwe);
--
--	igt_fixture {
--		xe_device_put(fd);
--		close(fd);
--	}
--}
-diff --git a/tests/meson.build b/tests/meson.build
-index f6cfbcf5ef9f..4430ca739275 100644
---- a/tests/meson.build
-+++ b/tests/meson.build
-@@ -305,7 +305,6 @@ intel_xe_progs = [
- 	'xe_pm',
- 	'xe_pm_residency',
- 	'xe_prime_self_import',
--	'xe_perf_pmu',
- 	'xe_query',
- 	'xe_sysfs_tile',
- 	'xe_uevent',
--- 
-2.41.0
+Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
+Lucas De Marchi
