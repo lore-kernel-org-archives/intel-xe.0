@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30154C4167B
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Dec 2023 15:35:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05D25C4167B
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Dec 2023 15:43:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7FE310E483;
-	Mon, 11 Dec 2023 15:35:01 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CEC710E483
- for <intel-xe@lists.freedesktop.org>; Mon, 11 Dec 2023 15:34:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE5E810E477;
+	Mon, 11 Dec 2023 15:43:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9CCF10E470
+ for <intel-xe@lists.freedesktop.org>; Mon, 11 Dec 2023 15:43:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702308899; x=1733844899;
+ t=1702309393; x=1733845393;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=ndlUMSug5ptZdzCNXJJ9X0RHnoSuO1xjdIsEjgoNJQs=;
- b=OQDKvIerjxi5WKfiz0pLnYMtiyiQ7UmurPVrjpkh3s71gqO00ExXtXU/
- f1vCzgq/Ju0rhjQ7pPE2MzbaJD3hoznA2Vytc9Ce7Us7KingH49hO/tRb
- sIqC+PH4/ISx0SKJfgcQA6ILx5b6dXjx0xILNJ0ytoYpFdLQzCirCChIT
- OawIW8eJp7mKys8sbFCeyq07PZJxuq+Zx3hwMiVvIgyvuGXQbGHpjWts0
- RHUzTvrRwmlSW+wPY1yawpTVLyVg50R3aqgFct5eB0noELHYNtpsiRzWz
- W8rsXGKuwJxB/nlJlc3UgHXSa6I7qvjcUS+gtRKaXYhfHOcQkgHhPCRlJ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="16216843"
-X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; d="scan'208";a="16216843"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2023 07:34:59 -0800
+ bh=ZXBFDt/gkcIMkjPYia83F2ROQ9Dz15K4wveVhFuRWQ0=;
+ b=SLN8cZ6vh5OP0V50LPE554UvznC0d1fWB/eomLYM9/EvR0vuw9DSUnQ8
+ FykeKtUGr6IEm5YtdJXNE9bA0vRLxmA2IGR66PgTVPrK7lhUUbQA0bHlP
+ sRXQVBW3yr3NseFkOqVcRIe/pwwJEUocVoAvmB2eLQl0HyXzmcdr4Kw5N
+ jVxukNe4G1QFM4QUFIJCpLoO+O6aQ0bF2AJCRfi0Ev2A1YJU55UT1ky7T
+ 9SoV90C4ZDUXrBpNQqct55bjdIN/cOq7IyM4At7AlA8SHCV0yhvpOvjAB
+ ERaSRbcjea+LQSyCWHUZUdz/Vv2UHpV7DNR4DGvPpvMjtoKKBXrAdFTkk g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="1535119"
+X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; 
+   d="scan'208";a="1535119"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2023 07:43:13 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; d="scan'208";a="17589110"
+X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="1104506847"
+X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; d="scan'208";a="1104506847"
 Received: from jkubalek-mobl.ger.corp.intel.com (HELO [10.249.254.236])
  ([10.249.254.236])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2023 07:34:57 -0800
-Message-ID: <3c7903bd-fb88-0958-a093-d54de009ece6@linux.intel.com>
-Date: Mon, 11 Dec 2023 16:34:54 +0100
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2023 07:43:09 -0800
+Message-ID: <4a814fc8-6e05-c5fb-8ff5-492a6e14aebc@linux.intel.com>
+Date: Mon, 11 Dec 2023 16:43:06 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.1
 Subject: Re: [RFC PATCH 7/7] drm/xe/uapi: Uniform async vs sync handling
+Content-Language: en-US
 To: Matthew Brost <matthew.brost@intel.com>
 References: <20231207055729.438642-1-matthew.brost@intel.com>
  <20231207055729.438642-8-matthew.brost@intel.com>
  <d7c25d14-fa14-4426-57a4-276675c7b2f9@linux.intel.com>
- <ZXMK7OpGuejR5Fdv@DUT025-TGLU.fm.intel.com>
-Content-Language: en-US
+ <ZXLluT3zXZFEH8V3@DUT025-TGLU.fm.intel.com>
 From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <ZXMK7OpGuejR5Fdv@DUT025-TGLU.fm.intel.com>
+In-Reply-To: <ZXLluT3zXZFEH8V3@DUT025-TGLU.fm.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,10 +70,8 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 12/8/23 13:24, Matthew Brost wrote:
+On 12/8/23 10:45, Matthew Brost wrote:
 > On Fri, Dec 08, 2023 at 04:00:37PM +0100, Thomas Hellström wrote:
-> Missed a comment, addressing below.
->
 >> On 12/7/23 06:57, Matthew Brost wrote:
 >>> Remove concept of async vs sync VM bind queues, rather make async vs
 >>> sync a per IOCTL choice. Since this is per IOCTL, it makes sense to have
@@ -184,6 +184,79 @@ On 12/8/23 13:24, Matthew Brost wrote:
 >> extension to the ioctl and activate sync if present? (Just throwing up ideas
 >> here).
 >>
+> Hmm, forgot about this. A cookie is fairly easy, what about something like this:
+>
+>   807 /**
+>   808  * struct drm_xe_syncs - In / out syncs for IOCTLs.
+>   809  */
+>   810 struct drm_xe_syncs {
+>   811         /** @num_syncs: amount of syncs to wait on */
+>   812         __u32 num_syncs;
+>   813
+>   814         /*
+>   815          * Block in IOCTL until operation complete, num_syncs MBZ if set.
+>   816          */
+>   817 #define DRM_XE_SYNCS_IN_FLAG_WAIT_FOR_OP (1 << 0)
+>   818         /** @in_flags: Input Sync flags */
+>   819         __u16 in_flags;
+>   820
+>   821         /*
+>   822          * IOCTL operation has started (no need for user to resubmit on
+>   823          * -ERESTARTSYS)
+>   824          */
+>   825 #define DRM_XE_SYNCS_OUT_FLAG_OP_COMMITTED (1 << 0)
+>   826         /** @out_flags: Output Sync flags */
+>   827         __u16 out_flags;
+>   828
+>   829         /** @syncs: pointer to struct drm_xe_sync array */
+>   830         __u64 syncs;
+>   831
+>   832         /** @reserved: Reserved */
+>   833         __u64 reserved[2];
+>   834 };
+>
+> DRM_XE_SYNCS_OUT_FLAG_OP_COMMITTED gets set in exec / bind IOCTL after
+> the job is committed or in the of zero ops last-fence updated on the
+> queue. Note that for binds we don't yet do 1 job per IOCTL but after
+> landing some version of [1]
+>
+> After DRM_XE_SYNCS_OUT_FLAG_OP_COMMITTED is set we return -ERESTARTSYS if
+> the wait is interrupted and -EINTR is still
+> DRM_XE_SYNCS_OUT_FLAG_OP_COMMITTED (interrupted before job is
+> committed).
+>
+> I'd rather go with patch as we have to change the uAPI here regardless
+> so we might as well make this complete.
+>
+> Matt
+>
+> [1] https://patchwork.freedesktop.org/series/125608/
+
+Yeah as we discussed in the meeting that means making the ioctl RW 
+instead of W with some copying overhead.
+
+I also think we should leave the EXEC ioctl out of this, meaning just 
+having a single field in the VM_BIND ioctl. Basically the reason is that 
+waiting like this after submission is a bit weird and does not align 
+well with how -EINTR is typically used.
+
+So either a pointer to a cookie in the ioctl,
+
+or perhaps dig up again the idea we had of mostly waiting before the 
+submission:
+
+1) Pull out the last_op fence for the queue from under the relevant lock.
+2) Wait for all dependencies without any locks.
+3) Lock, and (optionally) if the last_op fence changed, wait for it.
+4) Submit
+5) Wait for completion uninterruptible.
+
+I actually like this last one best, but we'd recommend UMD to uses 
+out-fences whenever possible.
+
+Thoughts?
+
+>
 >>>    			dma_fence_put(fence);
 >>>    		}
 >>> @@ -331,42 +346,51 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
@@ -345,20 +418,7 @@ On 12/8/23 13:24, Matthew Brost wrote:
 >>>    		dma_fence_wait(fence, true);
 >> It looks like we're dropping the error return code here.
 >>
-> I am aware of this. This is fixed in the larger refactor of the VM bind
-> error handling [1]. The idea with this series is land the uAPI and get
-> the implementation 100% correct in the larger follow up series.
->
-> Matt
->
-> [1] https://patchwork.freedesktop.org/series/125608/
-
-Then I think we should wait uninterruptible until that is complete.
-
-/Thomas
-
-
->
+>>
 >>>    	dma_fence_put(fence);
 >>> @@ -1923,7 +1915,6 @@ static int xe_vm_unbind(struct xe_vm *vm, struct xe_vma *vma,
 >>>    #define ALL_DRM_XE_VM_CREATE_FLAGS (DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE | \
