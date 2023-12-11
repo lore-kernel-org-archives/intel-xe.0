@@ -4,52 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 279B3C4167B
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Dec 2023 07:01:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76E91C4167B
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Dec 2023 08:51:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B722910E14D;
-	Mon, 11 Dec 2023 07:01:07 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 487D910E14D
- for <intel-xe@lists.freedesktop.org>; Mon, 11 Dec 2023 07:01:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 051DE10E361;
+	Mon, 11 Dec 2023 08:51:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80CA210E361
+ for <intel-xe@lists.freedesktop.org>; Mon, 11 Dec 2023 08:51:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702278066; x=1733814066;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=mG1Ul2/+aDCcc/l923OCS/M1lla05Wcs7emPROv3/wU=;
- b=ZHrQKdjGzMrTKAiykvzsrXtPty2qLDc2c2hPy/WnsCUa5j6fmH2smYZ7
- fyDyUlY1KTWUuQ0VwG37VggmHIH+ntjCTblfmyU+Zy1ZKqYEN2w4o2lDC
- 4//jr6/2Xbq4ZtHTOh8N1LVdukidtPw2V6eUJ2qHXkH0d7K+htncTUQiO
- 5lYyP5enb0Irk6WDy3kK2bOsaNWOor9+bEeWRONV8B8YCLVAeJYKsVRt2
- tO+Q0m+Tfl6eXZSGm5AqbzYSR56CEHcp6PR6zSEAzF4JyjRI1d4jHXPsJ
- OS8mP6vxG5ZOczx64R/btAB1gkRlCt/LDEXkVWbCCprABHcj1S6lC8N0j g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10920"; a="16153928"
-X-IronPort-AV: E=Sophos;i="6.04,267,1695711600"; d="scan'208";a="16153928"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2023 23:01:05 -0800
+ t=1702284663; x=1733820663;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=YABgfv3vKiVjxyMHlT5beDFjfJGB/h+NVxOTqfS8ck4=;
+ b=mEsq/Up1gXeTqVL+qGLbkr370wFuF5I+NHw5L649LsEPSOB3Tr4+k/R1
+ jO1GPlqbwbdiOcg5OAzFsJf71aiYQwVNdLzNESvORnqT5aYES+od/BjPw
+ 6hUxOrT7XFfziJC5jmqoNTpjaFoWBo1vIZG70xntk4QK3YcbYjzggfJpm
+ NSAmGpz53+JX3fdgrg0uwhvSMKrnxbWk8cAb+5UOURBZUssUfRVeQcvUA
+ +0mg1VNKNZ5PFv5cZFlv3Qtps+cJewNqpV+5bK5rQHEImgmKaNO7HcwkW
+ +LJovp7FB6V6BI8Od8z2WYDQHrdCYISzx1PRFo9SaBF6Sr3RFej5m/jli w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10920"; a="385021981"
+X-IronPort-AV: E=Sophos;i="6.04,267,1695711600"; d="scan'208";a="385021981"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2023 00:51:02 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,267,1695711600"; d="scan'208";a="17570782"
-Received: from aravind-dev.iind.intel.com (HELO [10.145.162.146])
- ([10.145.162.146])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2023 23:01:03 -0800
-Message-ID: <7f3effe8-1526-45be-9bd8-71e179f54305@linux.intel.com>
-Date: Mon, 11 Dec 2023 12:33:51 +0530
+X-IronPort-AV: E=McAfee;i="6600,9927,10920"; a="838944881"
+X-IronPort-AV: E=Sophos;i="6.04,267,1695711600"; d="scan'208";a="838944881"
+Received: from kbalak2x-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.63.68])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2023 00:51:00 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 2/2] fixup! drm/xe/display: Implement display support
+In-Reply-To: <20231208204246.958662-2-rodrigo.vivi@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20231208204246.958662-1-rodrigo.vivi@intel.com>
+ <20231208204246.958662-2-rodrigo.vivi@intel.com>
+Date: Mon, 11 Dec 2023 10:50:58 +0200
+Message-ID: <8734w9yvf1.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/pmu: Remove PMU from Xe till uapi is finalized
-Content-Language: en-US
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-References: <20231209224352.2720403-1-ashutosh.dixit@intel.com>
- <87msujhtu3.wl-ashutosh.dixit@intel.com>
- <aecbe74c-af61-4ea8-984b-c7d5ff3133c1@linux.intel.com>
- <87il55i6uz.wl-ashutosh.dixit@intel.com>
-From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-In-Reply-To: <87il55i6uz.wl-ashutosh.dixit@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,65 +58,50 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: francois.dugast@intel.com, Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-On 12/11/23 12:05, Dixit, Ashutosh wrote:
-
-Hi Ashutosh,
-> On Sun, 10 Dec 2023 22:04:25 -0800, Aravind Iddamsetty wrote:
-> Hi Aravind,
+On Fri, 08 Dec 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> Adjust to display changes that already landed on drm-next for a smooth
+> rebase.
 >
->> On 12/10/23 04:22, Dixit, Ashutosh wrote:
->>> On Sat, 09 Dec 2023 14:43:52 -0800, Ashutosh Dixit wrote:
->>>> PMU uapi is likely to change in the future. Till the uapi is finalized,
->>>> remove PMU from Xe. PMU can be re-added after uapi is finalized.
->> Hi Ashutosh,
->>
->> Is it possible to have the infra as it is and just remove the events
->> part.
-> If you want to send a patch which can do this cleanly please go ahead. I
-> was trying it but it was looking odd that the infra is there but no events
-> were exposed.
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Ya agree with you it won't look nice without any events, a piece of unused code.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-so acking your patch to remove it.
+and ack for merging both
 
-Acked-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-
-I believe we should also drop the corresponding IGT test xe_perf_pmu.
-
-Thanks,
-Aravind.
+> ---
+>  drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 7 -------
+>  1 file changed, 7 deletions(-)
 >
->> As there is follow on series from Riana which uses the infra
->> https://patchwork.freedesktop.org/series/126919/.  or the other
->> alternative would be for Riana to bring in the infra as part of her
->> series.
-> So that is why I thought it would be easier if deleted the whole thing now
-> and later Riana or Umesh could add an initial patch, authored by you, which
-> adds the PMU infrastructure and then add their part in separate patches.
->
-> Thanks.
-> --
-> Ashutosh
->
->>> Complete removal of PMU for now is probably preferable than what was done
->>> in:
->>>
->>> https://patchwork.freedesktop.org/series/127590/
->>>
->>> Also, it is probably preferable to remove PMU code via a rebase, but if
->>> that is time consuming, adding this patch will remove PMU code.
->>>
->>> I was trying to send a series of 'fixup' patches, but that seemed difficult
->>> because a large number of patches have touched non-PMU files, so all those
->>> patches will need to be fixed up.
->>>
->>> Thanks.
->>> --
->>> Ashutosh
+> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+> index 8e67f38e98fd..5d2a77b52db4 100644
+> --- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+> +++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+> @@ -98,11 +98,7 @@ static inline struct drm_i915_private *kdev_to_i915(struct device *kdev)
+>  #define IP_VER(ver, rel)                ((ver) << 8 | (rel))
+>  
+>  #define INTEL_DISPLAY_ENABLED(xe) (HAS_DISPLAY((xe)) && !intel_opregion_headless_sku((xe)))
+> -#define DISPLAY_VER(i915)	(DISPLAY_RUNTIME_INFO(i915)->ip.ver)
+> -#define DISPLAY_VER_FULL(i915)	IP_VER(DISPLAY_RUNTIME_INFO(i915)->ip.ver, \
+> -				       DISPLAY_RUNTIME_INFO(i915)->ip.rel)
+>  
+> -#define IS_DISPLAY_VER(xe, first, last) ((DISPLAY_VER(xe) >= first && DISPLAY_VER(xe) <= last))
+>  #define IS_GRAPHICS_VER(xe, first, last) \
+>  	((xe)->info.graphics_verx100 >= first * 100 && \
+>  	 (xe)->info.graphics_verx100 <= (last*100 + 99))
+> @@ -220,9 +216,6 @@ struct i915_sched_attr {
+>  #define pdev_to_i915 pdev_to_xe_device
+>  #define RUNTIME_INFO(xe)		(&(xe)->info.i915_runtime)
+>  
+> -#define DISPLAY_INFO(xe)		((xe)->display.info.__device_info)
+> -#define DISPLAY_RUNTIME_INFO(xe)	(&(xe)->display.info.__runtime_info)
+> -
+>  #define FORCEWAKE_ALL XE_FORCEWAKE_ALL
+>  #define HPD_STORM_DEFAULT_THRESHOLD 50
+
+-- 
+Jani Nikula, Intel
