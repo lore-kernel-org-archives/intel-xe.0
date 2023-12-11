@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4388CC4167B
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Dec 2023 10:17:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6ADE1C10F07
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Dec 2023 10:17:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0189D10E42A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8FE410E401;
 	Mon, 11 Dec 2023 10:17:37 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AEC3610E401
- for <intel-xe@lists.freedesktop.org>; Mon, 11 Dec 2023 10:17:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C7A110E3A2
+ for <intel-xe@lists.freedesktop.org>; Mon, 11 Dec 2023 10:17:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702289854; x=1733825854;
+ t=1702289852; x=1733825852;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qufJ8dSoHBynNrnV1gJvCpXhccMZMcR4vTcF4vQPRTA=;
- b=bG8442w2nY5rG+4/C73zXHET0Wq3SACLDFdVC/q5boWbcOo1eVjtm0gp
- KuUF2ZTJzMK3ZPAXoWZRWvfpTHgHFw3be7MrdUmyUfNr0kbWvw+Midm3G
- yOWqpqfkP9fXe70T/f5BBtymN7BRPgSki74tGt2M7oBEKxv2ATDHa3kEy
- +rVccjDAFnh3B122imkS2GGqC/pbJ2biDTyZ5ciW00HQPVyrmI95bMYKW
- 3ALE25PtR3bhKWzc/JXGTLvmyOzKE7d11bVDr1VPUu8kxvUEa87WKK1gi
- +e8IXKEpgM3yrWgHpkLa+vEAnDzLIZF8UN8dG3oCRVT1PovLo6/tDtS4t A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10920"; a="480816308"
-X-IronPort-AV: E=Sophos;i="6.04,267,1695711600"; d="scan'208";a="480816308"
+ bh=SQOHthUyGC5Go4Zkm/jlfkvFDo1cPqUbBOvYpNt5iEw=;
+ b=YlOuWZtSHVXFzJq/ovDl1b3RgIiRQyKOFf7iCUM6rziv/fhZTvtE5FY2
+ 3ksaoCQgmOBfB7WBjfYa9OMOZRgZrcFVjHhw2MrSDhKBDTZxq4YWm0P4/
+ R3NuwotoRuzPc3Rvi+kYcBMZfJlMe9JBp6HWeRdR7GH1BRJZAat17tfJy
+ u0Bfz9Mt/c/9zPIZDLwIZDGrIZXhWag4lQypAxtj9MKzf5vGFwDdPFZK1
+ fRQK8Kw38+cwKw7vfDZRQ4Z7Er26UlksPVCEhMOdp3hkrqSlJEULaLYaK
+ JhOc4exdAqIujMaPWC1LXweO9u0oFkELNpyxgFkNhY8fdsWyb2sq2UjZd g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10920"; a="480816306"
+X-IronPort-AV: E=Sophos;i="6.04,267,1695711600"; d="scan'208";a="480816306"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2023 02:17:34 -0800
+ 11 Dec 2023 02:17:32 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10920"; a="766321885"
-X-IronPort-AV: E=Sophos;i="6.04,267,1695711600"; d="scan'208";a="766321885"
+X-IronPort-AV: E=McAfee;i="6600,9927,10920"; a="766321880"
+X-IronPort-AV: E=Sophos;i="6.04,267,1695711600"; d="scan'208";a="766321880"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.159.144])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2023 02:17:32 -0800
+ 11 Dec 2023 02:17:30 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 2/9] drm/xe: Use GT oriented functions to report TLB timeout
-Date: Mon, 11 Dec 2023 11:17:12 +0100
-Message-Id: <20231211101719.1659-3-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 1/9] drm/xe: Add GT oriented drm_printers
+Date: Mon, 11 Dec 2023 11:17:11 +0100
+Message-Id: <20231211101719.1659-2-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20231211101719.1659-1-michal.wajdeczko@intel.com>
 References: <20231211101719.1659-1-michal.wajdeczko@intel.com>
@@ -56,66 +56,76 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We track TLB invalidation seqno per GT and we have GT oriented
-message helpers, so it's better to use GT oriented log functions.
+Instead of using generic drm_err_printer() that just adds static
+prefix, or drm_info_printer() that outputs only device name, add
+new helpers that create dedicated drm_printers that use our GT
+oriented xe_gt_err() and xe_gt_info() functions.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_printk.h | 44 +++++++++++++++++++++++++++++++
+ 1 file changed, 44 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-index 7eef23a00d77..e3a4131ebb58 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-@@ -8,6 +8,7 @@
- #include "abi/guc_actions_abi.h"
- #include "xe_device.h"
- #include "xe_gt.h"
-+#include "xe_gt_printk.h"
- #include "xe_guc.h"
- #include "xe_guc_ct.h"
- #include "xe_trace.h"
-@@ -30,8 +31,8 @@ static void xe_gt_tlb_fence_timeout(struct work_struct *work)
- 			break;
+diff --git a/drivers/gpu/drm/xe/xe_gt_printk.h b/drivers/gpu/drm/xe/xe_gt_printk.h
+index 5991bcadd47e..195f45b10c41 100644
+--- a/drivers/gpu/drm/xe/xe_gt_printk.h
++++ b/drivers/gpu/drm/xe/xe_gt_printk.h
+@@ -43,4 +43,48 @@
+ #define xe_gt_WARN_ON_ONCE(_gt, _condition) \
+ 	xe_gt_WARN_ONCE((_gt), _condition, "%s(%s)", "gt_WARN_ON_ONCE", __stringify(_condition))
  
- 		trace_xe_gt_tlb_invalidation_fence_timeout(fence);
--		drm_err(&gt_to_xe(gt)->drm, "gt%d: TLB invalidation fence timeout, seqno=%d recv=%d",
--			gt->info.id, fence->seqno, gt->tlb_invalidation.seqno_recv);
-+		xe_gt_err(gt, "TLB invalidation fence timeout, seqno=%d recv=%d",
-+			  fence->seqno, gt->tlb_invalidation.seqno_recv);
- 
- 		list_del(&fence->link);
- 		fence->base.error = -ETIME;
-@@ -312,9 +313,7 @@ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
-  */
- int xe_gt_tlb_invalidation_wait(struct xe_gt *gt, int seqno)
- {
--	struct xe_device *xe = gt_to_xe(gt);
- 	struct xe_guc *guc = &gt->uc.guc;
--	struct drm_printer p = drm_err_printer(__func__);
- 	int ret;
- 
- 	/*
-@@ -325,8 +324,10 @@ int xe_gt_tlb_invalidation_wait(struct xe_gt *gt, int seqno)
- 				 tlb_invalidation_seqno_past(gt, seqno),
- 				 TLB_TIMEOUT);
- 	if (!ret) {
--		drm_err(&xe->drm, "gt%d: TLB invalidation time'd out, seqno=%d, recv=%d\n",
--			gt->info.id, seqno, gt->tlb_invalidation.seqno_recv);
-+		struct drm_printer p = xe_gt_err_printer(gt);
++static inline void __drm_printfn_xe_gt_err(struct drm_printer *p, struct va_format *vaf)
++{
++	struct xe_gt *gt = p->arg;
 +
-+		xe_gt_err(gt, "TLB invalidation time'd out, seqno=%d, recv=%d\n",
-+			  seqno, gt->tlb_invalidation.seqno_recv);
- 		xe_guc_ct_print(&guc->ct, &p, true);
- 		return -ETIME;
- 	}
++	xe_gt_err(gt, "%pV", vaf);
++}
++
++static inline void __drm_printfn_xe_gt_info(struct drm_printer *p, struct va_format *vaf)
++{
++	struct xe_gt *gt = p->arg;
++
++	xe_gt_info(gt, "%pV", vaf);
++}
++
++/**
++ * xe_gt_err_printer - Construct a &drm_printer that outputs to xe_gt_err()
++ * @gt: the &xe_gt pointer to use in xe_gt_err()
++ *
++ * Return: The &drm_printer object.
++ */
++static inline struct drm_printer xe_gt_err_printer(struct xe_gt *gt)
++{
++	struct drm_printer p = {
++		.printfn = __drm_printfn_xe_gt_err,
++		.arg = gt,
++	};
++	return p;
++}
++
++/**
++ * xe_gt_info_printer - Construct a &drm_printer that outputs to xe_gt_info()
++ * @gt: the &xe_gt pointer to use in xe_gt_info()
++ *
++ * Return: The &drm_printer object.
++ */
++static inline struct drm_printer xe_gt_info_printer(struct xe_gt *gt)
++{
++	struct drm_printer p = {
++		.printfn = __drm_printfn_xe_gt_info,
++		.arg = gt,
++	};
++	return p;
++}
++
+ #endif
 -- 
 2.25.1
 
