@@ -4,47 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9573CC4167B
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Dec 2023 18:18:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79604C4167B
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Dec 2023 18:30:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5164A10E687;
-	Tue, 12 Dec 2023 18:18:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 489AD10E1FA;
+	Tue, 12 Dec 2023 18:30:18 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3409110E679
- for <intel-xe@lists.freedesktop.org>; Tue, 12 Dec 2023 18:17:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FD5010E1FA
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Dec 2023 18:30:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702405078; x=1733941078;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=lP46Iz+fJHUPDM2zumr3H2Dm659QlVXwoga3/0gw3r8=;
- b=XRfql32+p39wpovKTyvoQ/qHeECr42N3bee6NONMaInu80rSRNdNxtLJ
- 1A9qGyCyyHU1nHjn7lbQ1/aXYtgbEWL1uUJVv9bzN7oBkX2JPl4yUfjjr
- jkVQgUqZk9hn/scHwG5sHlL6y7LjIhswq41JkuFuv19nwg+xE1iAMT/cl
- jRWjerng6OIM/wrHYuEVG3aHIbkx5atDJEGespvMzFmyByJzvQ0uTL0+z
- fFA30b3QKWJBwphLSvMR5fnyZI/fNYWoOCi7P4orcmtD9Je6R8K5dadL9
- G/W9WFwB6IpREsNkF7xGrUygqBpNl11nn0q36nEAfMG2Xs+UzcrTSpFMK A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="425968032"
-X-IronPort-AV: E=Sophos;i="6.04,271,1695711600"; d="scan'208";a="425968032"
+ t=1702405816; x=1733941816;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=OmzP9T7njd9eH/xm9La+mbNCxl1D9iyC12s3RYUe0dw=;
+ b=dUCR43z5ysiPhujGhRvc7TCxS+jhQjUKtAmIJa833lIgAPn5z0XEMX02
+ 88wKadyDP7zp0lVkAav5o/UWPhAlszZY4wGUvMKBZGHwABTZLDiJMrhmf
+ XolZCdH0aqT7yOU6Cl0N/eFjtwlHZmJnmbL7eoOx6Y6y/82VRoyWgRD1T
+ Wqm8+a2q+p1GPezwwsmyDJhlXihVq5BXdl2y/4IWp2MCpdtNfk6bvv345
+ BSjGWzyElnudGnhgP0WYIecoAzuQ8ZZNYvICmK+mNJzD3qRv2xO7r/Mcn
+ Ur78QYordcl/n0Zysvh6uaFPBhUESTFzfk6K/Xmzz74pHB86ULON0JV3I g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="425970679"
+X-IronPort-AV: E=Sophos;i="6.04,271,1695711600"; d="scan'208";a="425970679"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2023 10:17:57 -0800
+ 12 Dec 2023 10:30:15 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="749806440"
-X-IronPort-AV: E=Sophos;i="6.04,271,1695711600"; d="scan'208";a="749806440"
-Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orsmga006.jf.intel.com with ESMTP; 12 Dec 2023 10:17:56 -0800
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v8 08/10] drm/xe/xe2: Handle flat ccs move for igfx.
-Date: Tue, 12 Dec 2023 23:55:31 +0530
-Message-Id: <20231212182533.1722705-9-himal.prasad.ghimiray@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231212182533.1722705-1-himal.prasad.ghimiray@intel.com>
-References: <20231212182533.1722705-1-himal.prasad.ghimiray@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="749809365"
+X-IronPort-AV: E=Sophos;i="6.04,271,1695711600"; d="scan'208";a="749809365"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 12 Dec 2023 10:30:15 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 12 Dec 2023 10:30:14 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Tue, 12 Dec 2023 10:30:14 -0800
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Tue, 12 Dec 2023 10:30:14 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=J4acetL5061lkKdXuaf89fzX/t0SlbnOUfYdpy3aep12ZA/YtlVb4V9wuPio66LibyTUHZhDL0lQy97mTVmwNPixP93Zwvs2zuR6h0lOGBXJjN2Aue+M2ERxkgJWaZrAhmYixMGfw+VTlJtFo3nJXrVtbfri5jA0TSgx0wskq+6KRPdpd+68+efQDUDxQ+z4oUDvoG2bUyjJ4xN0j0LL0xwjpU7NOzeRLnnJeNZGUCcLCkUilw3B6+rery2+fGqnVFPk5koKfcLfG92foEFMHKSGxK6iEFGPQg1Pwez8U+J65vrbTLmboGNzN3ZGg0fSKK8sMH6pj5FJ8RKbYg38pA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=N09YyZT3nJXWdd7oW8LI8FF+nCVDhsoj8mpbRkaoclI=;
+ b=oJ+F/1eFg1tLTxuESrheK6kSfcYFodanOpyyJqVh413x9ptC52qIbmMaxeWJNzz0/bk8HATUeNXiVhB5WITpxUmhtsVWn7kRY3tsyIRTTkqxJd1L+YmSjUFIRCC2i/52qfLv3No1XXp1t51bXFf7zWwOJt9zE1pGMN7KUb+1Tv1zBtAvoIwTg27LOrqbnyfZnyEf4glBPRShPbU83tD0MbRaUYaZBrllrSHDHmRDVmg3rh91XR6cqM6EFMbS1SVB+s4+28dZsrRv1yL4jWr6oA11bz7JGxf8vvL54Qsnke3KjM4KN8zs/JIsxO/fK6iRxDhlhxvWfD+Cfw9cQZtqYw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by DS0PR11MB7482.namprd11.prod.outlook.com (2603:10b6:8:14a::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.32; Tue, 12 Dec
+ 2023 18:30:12 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::ada2:f954:a3a5:6179]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::ada2:f954:a3a5:6179%5]) with mapi id 15.20.7091.022; Tue, 12 Dec 2023
+ 18:30:12 +0000
+Date: Tue, 12 Dec 2023 13:30:08 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Subject: Re: [PATCH 2/2] fixup! drm/xe/uapi: Reject bo creation of unaligned
+ size
+Message-ID: <ZXimsPIKlMnbVAUX@intel.com>
+References: <20231212040102.2888700-1-ashutosh.dixit@intel.com>
+ <20231212040102.2888700-3-ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231212040102.2888700-3-ashutosh.dixit@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0049.namprd03.prod.outlook.com
+ (2603:10b6:a03:33e::24) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|DS0PR11MB7482:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3ef79720-e51b-4088-6c65-08dbfb406098
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ll17IiCjW9x+2MWI8agPbrrVYUWmkk+crz/ENjlEtmTGOL2a9QJhgZKokNG6R7Md14qMkgPJV/ke+W2DLB8F8dGoppTuKJg+xucQd8o2+/iNEMF2bWqEuBu4r1Mn6KPnHduLV5Dphv09Rq2vW45zkbd0vk5oMtdLWlBgxKKy1IdhgksZDsgKKKheZnpJwEzS2cc13C5Ts/4xczFOTy5ho6s5kV4l5Mpuw7f9Y8+w1dY3DYfnCjlZbFfPKy5J3SM6JjOGdb3X94kb9ZVNSprdC5ehiJsQZ/HqfXCkuofGnbBeqr38+FqjJYbrr3hJO4y8IbvaQpffPFhqUbicihxg/bDQW60Ec1EdRuoQV6kmhvPluoWrv6Z3h1+zbjv8ZbyUWjERlz+HcznHSCJS55QE7+zUCJPfa0PxMGcOAd7NugQkOmNYseor83O/qaaNYmK9Smv0AlekXHsOkAwQ5uihDiRzh+0cCTXDgz0sO73qnlAnExmekZhovnjUBeF9wi+WPOGShDMJVC14xZLqrdTdZuubGE3LhZBsaniPpWqDbBnG/etyLYAI08sGjOkmG1Nd
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366004)(396003)(346002)(39860400002)(376002)(136003)(230922051799003)(1800799012)(64100799003)(451199024)(186009)(2616005)(26005)(107886003)(82960400001)(66556008)(36756003)(38100700002)(86362001)(83380400001)(44832011)(5660300002)(6506007)(6512007)(41300700001)(8676002)(8936002)(6862004)(6486002)(66946007)(66476007)(6636002)(316002)(6666004)(37006003)(2906002)(4326008)(4744005)(478600001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?Uo5fwHvzt+WPpH+oDo8+pteAjOaLKpbHlcHJsEuf9yflerlaFHDa++bVFk?=
+ =?iso-8859-1?Q?abP8Ya7q9gqgaMcfGwi5+K5/QwFJeLV77hKkkGavy5yW/nT83QCem5iMrK?=
+ =?iso-8859-1?Q?a1aygJrIc/l4ZGifQ1xvnu4APMnfBln25Dg/LPmVVZlKf/MRrWjg1VT7EU?=
+ =?iso-8859-1?Q?I1NIji0PDt3LWw/WpiU+QskTj/HMmjOLTLlL5BDuJ32kf0Zp76pITmBiSd?=
+ =?iso-8859-1?Q?zveM+NxHFYmcQycKqcshhW0SmoZAmOONxpCUU5PK/9bcAGb/XCSPB2YB2h?=
+ =?iso-8859-1?Q?JGjzHCPLFzph/a1DoVMoomXswcu17rPs0ML6QwxGhE/JWGQJz3qIZB9xVZ?=
+ =?iso-8859-1?Q?AEW2S0/4ZACQWRqnsRI7sO4aTnSNwk7Ui+db9EUE1PaPjsyYIcAow3MPb7?=
+ =?iso-8859-1?Q?2yrmk9GWoV9kErug6BfqJdoAz0/g8XdjuvdstSZ9f1YTFO6Nc7ip2oyaO9?=
+ =?iso-8859-1?Q?Zo9yTWC8tMh4pkE+7htroDk2w9FyYwoagMXgoxO0OyO4MBfIXlratZmxA7?=
+ =?iso-8859-1?Q?z8tGBmrHUoDIWgfmoPgQbF8Nj5HIqDgZBcU5GhYTTK/RhQGVj/bXKqji5q?=
+ =?iso-8859-1?Q?Q0dVj3yqhNY2DeC4YNwfDaPc0/hijnys2fH2u1jraeIlGwenN/m8/YuP6H?=
+ =?iso-8859-1?Q?nS/FmnDlwW3I1zHsPtybekpuNmq8DxE5RIg/8JUybaJNsJin0kU3ebhJQ/?=
+ =?iso-8859-1?Q?p8L9/fl2W/QqnZHRpZY66bRUZeh2MmVZp8FQ2SCukVRaOotSWVtTP7WhQs?=
+ =?iso-8859-1?Q?vJ93itb65ptYzN6h0gwIv2hcZoWLUjgu40qL6aaeor1LO3zkxtdGilWyKZ?=
+ =?iso-8859-1?Q?nTKlWO3gnrsIraGMsMS4tXac6qhVBdQp6aQH3DVuP4MeQZU0xQmdDC2lHM?=
+ =?iso-8859-1?Q?qtgP5Da8UACPIipnrYSukEiWzD/fODIwIFVyWkJXYEY+fa/Mpv75Hr7GQ4?=
+ =?iso-8859-1?Q?qRCB6b3Ka+q5gp27+NPgtQocLmj6JovXRL0/9E/S2Z8xTTCNR+LMjeujLe?=
+ =?iso-8859-1?Q?SMAyXxfXkKNI9osSf5RbYxT3cKwhe4aNlQQvrRjhOslgjNtQvzI9Td6JWD?=
+ =?iso-8859-1?Q?FGTzQABzC66yEmqPUa8KlYOwGrWmmhMLubYu95xEEsnTxj/29q7o7Gye8Y?=
+ =?iso-8859-1?Q?/wmW5sJCkY9cqlyKfxDtt2LgPpq74dTGOiW/WFS67aYv5tIO2RVJchS82P?=
+ =?iso-8859-1?Q?KnCYo+lllRaA9G8WxsjlEorygSz3lTX0Ow2ptAXyfEJHejwVcmvWrxLKRU?=
+ =?iso-8859-1?Q?yoyGtYN/dH8gpy471llBm5yGEpf+0h3hPUntb8N3shJlkLunsC7VBPNgd5?=
+ =?iso-8859-1?Q?KQxd1/7CWuXzHaBk3DnVf5LBU/4tAkkieWdg99hdhEgnrqFo74ikw7HQpq?=
+ =?iso-8859-1?Q?DVnpprHjjUN1pIyV1CXuWVOzmbWzapQH6DfMcjk07tOy8zCvyrFyNASHF3?=
+ =?iso-8859-1?Q?qD6daKbj/xL+gPZSIxwCCKkBYnuTGn/rJc4czzFld2ALdVGIQ7Oe+Vth0z?=
+ =?iso-8859-1?Q?gtWahYsh49GrcsyEEJw8iDiiOZGIbqJFYAtNQvPh65EZhRotMMZjglFH6Y?=
+ =?iso-8859-1?Q?yHP7MSgbE3JBDfTny21Uzf6mRAo88gT2YQgyQUusGyeSrPj51OazEJB4Lx?=
+ =?iso-8859-1?Q?1Uwn9wCx9zFi+f0A2DMfY9Q3zNM7qJ6j65?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3ef79720-e51b-4088-6c65-08dbfb406098
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Dec 2023 18:30:12.1626 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: nUiWLnPgmzniYfn1xG3kZfo59T8Jfuomd4nWkI8VDET0pJK/m04lmPCgPAga7cUB3jAUeViqSjk1ieQR34gPhA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7482
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,342 +145,34 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-- Clear flat ccs during user bo creation.
-- copy ccs meta data between flat ccs and bo during eviction and
-restore.
-- Add a bool field ccs_cleared in bo, true means ccs region of bo is
-already cleared.
+On Mon, Dec 11, 2023 at 08:01:02PM -0800, Ashutosh Dixit wrote:
+> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 
-v2:
- - Rebase.
+I'm pushing this patch right now separate from the PMU uapi since
+we need to stop the fixup rigth now in order to rebase onto drm-next
+and fix the 'Fixes:' tags for good.
 
-v3:
- - Maintain order of xe_bo_move_notify for ttm_bo_type_sg.
-
-v4:
- - xe_migrate_copy can be used to copy src to dst bo on igfx too.
-Add a bool which handles only ccs metadata copy.
-
-v5:
-- on dgfx ccs should be cleared even if the bo is not compression enabled.
-
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
- drivers/gpu/drm/xe/tests/xe_migrate.c |  4 +-
- drivers/gpu/drm/xe/xe_bo.c            | 33 +++++++++-----
- drivers/gpu/drm/xe/xe_bo_types.h      |  4 ++
- drivers/gpu/drm/xe/xe_migrate.c       | 64 +++++++++++++++------------
- drivers/gpu/drm/xe/xe_migrate.h       |  3 +-
- 5 files changed, 66 insertions(+), 42 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-index d6c23441632a..7a32faa2f688 100644
---- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-@@ -152,7 +152,7 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
- 
- 	expected = 0xc0c0c0c0c0c0c0c0;
- 	fence = xe_migrate_copy(m, remote, bo, remote->ttm.resource,
--				bo->ttm.resource);
-+				bo->ttm.resource, false);
- 	if (!sanity_fence_failed(xe, fence, big ? "Copying big bo remote -> vram" :
- 				 "Copying small bo remote -> vram", test)) {
- 		retval = xe_map_rd(xe, &bo->vmap, 0, u64);
-@@ -169,7 +169,7 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
- 	xe_map_memset(xe, &bo->vmap, 0, 0xc0, bo->size);
- 
- 	fence = xe_migrate_copy(m, bo, remote, bo->ttm.resource,
--				remote->ttm.resource);
-+				remote->ttm.resource, false);
- 	if (!sanity_fence_failed(xe, fence, big ? "Copying big bo vram -> remote" :
- 				 "Copying small bo vram -> remote", test)) {
- 		retval = xe_map_rd(xe, &remote->vmap, 0, u64);
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index c10aa5a63a70..7c0037aecff3 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -627,10 +627,11 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 	bool move_lacks_source;
- 	bool tt_has_data;
- 	bool needs_clear;
-+	bool handle_system_ccs = (!IS_DGFX(xe) && xe_bo_needs_ccs_pages(bo) &&
-+				  ttm && ttm_tt_is_populated(ttm)) ? true : false;
- 	int ret = 0;
--
--	/* Bo creation path, moving to system or TT. No clearing required. */
--	if (!old_mem && ttm) {
-+	/* Bo creation path, moving to system or TT. */
-+	if ((!old_mem && ttm) && !handle_system_ccs) {
- 		ttm_bo_move_null(ttm_bo, new_mem);
- 		return 0;
- 	}
-@@ -645,14 +646,18 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 	tt_has_data = ttm && (ttm_tt_is_populated(ttm) ||
- 			      (ttm->page_flags & TTM_TT_FLAG_SWAPPED));
- 
--	move_lacks_source = !mem_type_is_vram(old_mem_type) && !tt_has_data;
-+	move_lacks_source = handle_system_ccs ? (!bo->ccs_cleared)  :
-+						(!mem_type_is_vram(old_mem_type) && !tt_has_data);
- 
- 	needs_clear = (ttm && ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC) ||
- 		(!ttm && ttm_bo->type == ttm_bo_type_device);
- 
--	if ((move_lacks_source && !needs_clear) ||
--	    (old_mem_type == XE_PL_SYSTEM &&
--	     new_mem->mem_type == XE_PL_TT)) {
-+	if ((move_lacks_source && !needs_clear)) {
-+		ttm_bo_move_null(ttm_bo, new_mem);
-+		goto out;
-+	}
-+
-+	if (old_mem_type == XE_PL_SYSTEM && new_mem->mem_type == XE_PL_TT && !handle_system_ccs) {
- 		ttm_bo_move_null(ttm_bo, new_mem);
- 		goto out;
- 	}
-@@ -683,8 +688,11 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 			ret = timeout;
- 			goto out;
- 		}
--		ttm_bo_move_null(ttm_bo, new_mem);
--		goto out;
-+
-+		if (!handle_system_ccs) {
-+			ttm_bo_move_null(ttm_bo, new_mem);
-+			goto out;
-+		}
- 	}
- 
- 	if (!move_lacks_source &&
-@@ -705,6 +713,8 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 		migrate = mem_type_to_migrate(xe, new_mem->mem_type);
- 	else if (mem_type_is_vram(old_mem_type))
- 		migrate = mem_type_to_migrate(xe, old_mem_type);
-+	else
-+		migrate = xe->tiles[0].migrate;
- 
- 	xe_assert(xe, migrate);
- 
-@@ -747,8 +757,8 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 		if (move_lacks_source)
- 			fence = xe_migrate_clear(migrate, bo, new_mem);
- 		else
--			fence = xe_migrate_copy(migrate,
--						bo, bo, old_mem, new_mem);
-+			fence = xe_migrate_copy(migrate, bo, bo, old_mem,
-+						new_mem, handle_system_ccs);
- 		if (IS_ERR(fence)) {
- 			ret = PTR_ERR(fence);
- 			xe_device_mem_access_put(xe);
-@@ -1234,6 +1244,7 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
- 			return bo;
- 	}
- 
-+	bo->ccs_cleared = false;
- 	bo->tile = tile;
- 	bo->size = size;
- 	bo->flags = flags;
-diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-index f71dbc518958..64c2249a4e40 100644
---- a/drivers/gpu/drm/xe/xe_bo_types.h
-+++ b/drivers/gpu/drm/xe/xe_bo_types.h
-@@ -79,6 +79,10 @@ struct xe_bo {
- 	struct llist_node freed;
- 	/** @created: Whether the bo has passed initial creation */
- 	bool created;
-+
-+	/** @ccs_cleared */
-+	bool ccs_cleared;
-+
- 	/**
- 	 * @cpu_caching: CPU caching mode. Currently only used for userspace
- 	 * objects.
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index ceb0d4f3615d..d2f3381d6806 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -574,14 +574,14 @@ static u64 xe_migrate_batch_base(struct xe_migrate *m, bool usm)
- 
- static u32 xe_migrate_ccs_copy(struct xe_migrate *m,
- 			       struct xe_bb *bb,
--			       u64 src_ofs, bool src_is_vram,
--			       u64 dst_ofs, bool dst_is_vram, u32 dst_size,
-+			       u64 src_ofs, bool src_is_indirect,
-+			       u64 dst_ofs, bool dst_is_indirect, u32 dst_size,
- 			       u64 ccs_ofs, bool copy_ccs)
- {
- 	struct xe_gt *gt = m->tile->primary_gt;
- 	u32 flush_flags = 0;
- 
--	if (xe_device_has_flat_ccs(gt_to_xe(gt)) && !copy_ccs && dst_is_vram) {
-+	if (xe_device_has_flat_ccs(gt_to_xe(gt)) && !copy_ccs && dst_is_indirect) {
- 		/*
- 		 * If the src is already in vram, then it should already
- 		 * have been cleared by us, or has been populated by the
-@@ -590,28 +590,24 @@ static u32 xe_migrate_ccs_copy(struct xe_migrate *m,
- 		 * Otherwise if the bo doesn't have any CCS metadata attached,
- 		 * we still need to clear it for security reasons.
- 		 */
--		u64 ccs_src_ofs =  src_is_vram ? src_ofs : m->cleared_mem_ofs;
-+		u64 ccs_src_ofs =  src_is_indirect ? src_ofs : m->cleared_mem_ofs;
- 
- 		emit_copy_ccs(gt, bb,
- 			      dst_ofs, true,
--			      ccs_src_ofs, src_is_vram, dst_size);
-+			      ccs_src_ofs, src_is_indirect, dst_size);
- 
- 		flush_flags = MI_FLUSH_DW_CCS;
- 	} else if (copy_ccs) {
--		if (!src_is_vram)
-+		if (!src_is_indirect)
- 			src_ofs = ccs_ofs;
--		else if (!dst_is_vram)
-+		else if (!dst_is_indirect)
- 			dst_ofs = ccs_ofs;
- 
--		/*
--		 * At the moment, we don't support copying CCS metadata from
--		 * system to system.
--		 */
--		xe_gt_assert(gt, src_is_vram || dst_is_vram);
-+		xe_gt_assert(gt, src_is_indirect || dst_is_indirect);
- 
--		emit_copy_ccs(gt, bb, dst_ofs, dst_is_vram, src_ofs,
--			      src_is_vram, dst_size);
--		if (dst_is_vram)
-+		emit_copy_ccs(gt, bb, dst_ofs, dst_is_indirect, src_ofs,
-+			      src_is_indirect, dst_size);
-+		if (dst_is_indirect)
- 			flush_flags = MI_FLUSH_DW_CCS;
- 	}
- 
-@@ -627,6 +623,7 @@ static u32 xe_migrate_ccs_copy(struct xe_migrate *m,
-  * the buffer object @dst is currently bound to.
-  * @src: The source TTM resource.
-  * @dst: The dst TTM resource.
-+ * @copy_only_ccs: If true copy only CCS metadata
-  *
-  * Copies the contents of @src to @dst: On flat CCS devices,
-  * the CCS metadata is copied as well if needed, or if not present,
-@@ -640,7 +637,8 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 				  struct xe_bo *src_bo,
- 				  struct xe_bo *dst_bo,
- 				  struct ttm_resource *src,
--				  struct ttm_resource *dst)
-+				  struct ttm_resource *dst,
-+				  bool copy_only_ccs)
- {
- 	struct xe_gt *gt = m->tile->primary_gt;
- 	struct xe_device *xe = gt_to_xe(gt);
-@@ -652,6 +650,8 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 	u64 src_L0, dst_L0;
- 	int pass = 0;
- 	int err;
-+	bool src_is_pltt = src->mem_type == XE_PL_TT;
-+	bool dst_is_pltt = dst->mem_type == XE_PL_TT;
- 	bool src_is_vram = mem_type_is_vram(src->mem_type);
- 	bool dst_is_vram = mem_type_is_vram(dst->mem_type);
- 	bool copy_ccs = xe_device_has_flat_ccs(xe) &&
-@@ -716,8 +716,8 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 		}
- 
- 		/* Add copy commands size here */
--		batch_size += EMIT_COPY_DW +
--			(xe_device_has_flat_ccs(xe) ? EMIT_COPY_CCS_DW : 0);
-+		batch_size += ((copy_only_ccs) ? 0 : EMIT_COPY_DW) +
-+			((xe_device_has_flat_ccs(xe) ? EMIT_COPY_CCS_DW : 0));
- 
- 		bb = xe_bb_new(gt, batch_size, usm);
- 		if (IS_ERR(bb)) {
-@@ -743,10 +743,13 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
- 		update_idx = bb->len;
- 
--		emit_copy(gt, bb, src_L0_ofs, dst_L0_ofs, src_L0,
--			  XE_PAGE_SIZE);
--		flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_vram,
--						  dst_L0_ofs, dst_is_vram,
-+		if (!copy_only_ccs)
-+			emit_copy(gt, bb, src_L0_ofs, dst_L0_ofs, src_L0, XE_PAGE_SIZE);
-+
-+		flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs,
-+						  IS_DGFX(xe) ? src_is_vram : src_is_pltt,
-+						  dst_L0_ofs,
-+						  IS_DGFX(xe) ? dst_is_vram : dst_is_pltt,
- 						  src_L0, ccs_ofs, copy_ccs);
- 
- 		mutex_lock(&m->job_mutex);
-@@ -919,6 +922,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 	bool clear_vram = mem_type_is_vram(dst->mem_type);
- 	struct xe_gt *gt = m->tile->primary_gt;
- 	struct xe_device *xe = gt_to_xe(gt);
-+	bool clear_system_ccs = (xe_bo_needs_ccs_pages(bo) && !IS_DGFX(xe)) ? true : false;
- 	struct dma_fence *fence = NULL;
- 	u64 size = bo->size;
- 	struct xe_res_cursor src_it;
-@@ -951,9 +955,10 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 		batch_size = 2 +
- 			pte_update_size(m, clear_vram, src, &src_it,
- 					&clear_L0, &clear_L0_ofs, &clear_L0_pt,
--					emit_clear_cmd_len(gt), 0,
-+					clear_system_ccs ? 0 : emit_clear_cmd_len(gt), 0,
- 					avail_pts);
--		if (xe_device_has_flat_ccs(xe) && clear_vram)
-+
-+		if (xe_device_has_flat_ccs(xe))
- 			batch_size += EMIT_COPY_CCS_DW;
- 
- 		/* Clear commands */
-@@ -968,7 +973,6 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 		}
- 
- 		size -= clear_L0;
--
- 		/* Preemption is enabled again by the ring ops. */
- 		if (!clear_vram) {
- 			emit_pte(m, bb, clear_L0_pt, clear_vram, true, &src_it, clear_L0,
-@@ -979,9 +983,10 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
- 		update_idx = bb->len;
- 
--		emit_clear(gt, bb, clear_L0_ofs, clear_L0, XE_PAGE_SIZE,
--			   clear_vram);
--		if (xe_device_has_flat_ccs(xe) && clear_vram) {
-+		if (!clear_system_ccs)
-+			emit_clear(gt, bb, clear_L0_ofs, clear_L0, XE_PAGE_SIZE, clear_vram);
-+
-+		if (xe_device_has_flat_ccs(xe)) {
- 			emit_copy_ccs(gt, bb, clear_L0_ofs, true,
- 				      m->cleared_mem_ofs, false, clear_L0);
- 			flush_flags = MI_FLUSH_DW_CCS;
-@@ -1038,6 +1043,9 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 		return ERR_PTR(err);
- 	}
- 
-+	if (clear_system_ccs)
-+		bo->ccs_cleared = true;
-+
- 	return fence;
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
-index c729241776ad..951f19318ea4 100644
---- a/drivers/gpu/drm/xe/xe_migrate.h
-+++ b/drivers/gpu/drm/xe/xe_migrate.h
-@@ -85,7 +85,8 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 				  struct xe_bo *src_bo,
- 				  struct xe_bo *dst_bo,
- 				  struct ttm_resource *src,
--				  struct ttm_resource *dst);
-+				  struct ttm_resource *dst,
-+				  bool copy_only_ccs);
- 
- struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 				   struct xe_bo *bo,
--- 
-2.25.1
-
+> ---
+>  drivers/gpu/drm/xe/tests/xe_dma_buf.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf.c b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
+> index bb6f6424e06f6..9f6d571d7fa9c 100644
+> --- a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
+> +++ b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
+> @@ -3,6 +3,8 @@
+>   * Copyright � 2022 Intel Corporation
+>   */
+>  
+> +#include <drm/xe_drm.h>
+> +
+>  #include <kunit/test.h>
+>  #include <kunit/visibility.h>
+>  
+> -- 
+> 2.41.0
+> 
