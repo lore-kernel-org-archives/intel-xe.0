@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0D92C4332F
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Dec 2023 02:06:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBCA3C4332F
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Dec 2023 02:08:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5453A10E10F;
-	Tue, 12 Dec 2023 02:06:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEC7110E147;
+	Tue, 12 Dec 2023 02:08:50 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4D82210E10F;
- Tue, 12 Dec 2023 02:06:33 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 171FE10E147;
+ Tue, 12 Dec 2023 02:08:49 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 43CCEAADED;
- Tue, 12 Dec 2023 02:06:33 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8753635065228133078=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 079E1AADED;
+ Tue, 12 Dec 2023 02:08:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5B01/13=5D?=
- =?utf-8?q?_drm/sched=3A_Rename_drm=5Fsched=5Fget=5Fcleanup=5Fjob_to_be_more?=
- =?utf-8?q?_descriptive?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Remove_vra?=
+ =?utf-8?q?m_size_info_from_sysfs?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Date: Tue, 12 Dec 2023 02:06:33 -0000
-Message-ID: <170234679318.31292.18119826109758963243@emeril.freedesktop.org>
+Date: Tue, 12 Dec 2023 02:08:49 -0000
+Message-ID: <170234692900.31293.13217780127607212324@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20231212001045.1099517-1-rodrigo.vivi@intel.com>
-In-Reply-To: <20231212001045.1099517-1-rodrigo.vivi@intel.com>
+References: <20231212002058.1105898-1-rodrigo.vivi@intel.com>
+In-Reply-To: <20231212002058.1105898-1-rodrigo.vivi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,180 +44,17 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8753635065228133078==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: series starting with [01/13] drm/sched: Rename drm_sched_get_cleanup_job to be more descriptive
-URL   : https://patchwork.freedesktop.org/series/127651/
+Series: drm/xe: Remove vram size info from sysfs
+URL   : https://patchwork.freedesktop.org/series/127652/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-568-b76c0e2128dd79ee1609d0d389e040c6e7499261_BAT -> xe-pw-127651v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-127651v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:
-    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([i915#2346])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-568-b76c0e2128dd79ee1609d0d389e040c6e7499261/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127651v1/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [PASS][3] -> [FAIL][4] ([Intel XE#480])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-568-b76c0e2128dd79ee1609d0d389e040c6e7499261/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127651v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:
-    - bat-adlp-7:         [FAIL][5] ([i915#2346]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-568-b76c0e2128dd79ee1609d0d389e040c6e7499261/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127651v1/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [FAIL][7] ([Intel XE#480]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-568-b76c0e2128dd79ee1609d0d389e040c6e7499261/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127651v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  
-#### Warnings ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [DMESG-WARN][9] ([Intel XE#282] / [i915#2017]) -> [DMESG-FAIL][10] ([Intel XE#282] / [i915#2017])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-568-b76c0e2128dd79ee1609d0d389e040c6e7499261/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127651v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [Intel XE#282]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/282
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
-  [i915#2017]: https://gitlab.freedesktop.org/drm/intel/issues/2017
-  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: f622e36ea fixup! drm/xe/display: Implement display support
+=== git am output follows ===
+Applying: drm/xe: Remove vram size info from sysfs
 
 
-Build changes
--------------
-
-  * Linux: xe-568-b76c0e2128dd79ee1609d0d389e040c6e7499261 -> xe-pw-127651v1
-
-  IGT_7635: 0b796be8ce05cb2070ce5136d248f438c962d11e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-568-b76c0e2128dd79ee1609d0d389e040c6e7499261: b76c0e2128dd79ee1609d0d389e040c6e7499261
-  xe-pw-127651v1: 127651v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127651v1/index.html
-
---===============8753635065228133078==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [01/13] drm/sched: Rename drm_sched_get_cleanup_job to be more descriptive</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/127651/">https://patchwork.freedesktop.org/series/127651/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127651v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127651v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-568-b76c0e2128dd79ee1609d0d389e040c6e7499261_BAT -&gt; xe-pw-127651v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-127651v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-568-b76c0e2128dd79ee1609d0d389e040c6e7499261/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127651v1/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-568-b76c0e2128dd79ee1609d0d389e040c6e7499261/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127651v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-568-b76c0e2128dd79ee1609d0d389e040c6e7499261/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127651v1/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-568-b76c0e2128dd79ee1609d0d389e040c6e7499261/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127651v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-568-b76c0e2128dd79ee1609d0d389e040c6e7499261/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/282">Intel XE#282</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2017">i915#2017</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127651v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/282">Intel XE#282</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2017">i915#2017</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-568-b76c0e2128dd79ee1609d0d389e040c6e7499261 -&gt; xe-pw-127651v1</li>
-</ul>
-<p>IGT_7635: 0b796be8ce05cb2070ce5136d248f438c962d11e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-568-b76c0e2128dd79ee1609d0d389e040c6e7499261: b76c0e2128dd79ee1609d0d389e040c6e7499261<br />
-  xe-pw-127651v1: 127651v1</p>
-
-</body>
-</html>
-
---===============8753635065228133078==--
