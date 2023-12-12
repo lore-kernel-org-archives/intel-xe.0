@@ -4,42 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37C2BC4332F
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Dec 2023 18:17:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6502C4332F
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Dec 2023 18:18:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0255310E667;
-	Tue, 12 Dec 2023 18:17:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7833F10E679;
+	Tue, 12 Dec 2023 18:18:02 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5732C10E667
- for <intel-xe@lists.freedesktop.org>; Tue, 12 Dec 2023 18:17:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABC2710E679
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Dec 2023 18:18:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702405076; x=1733941076;
+ t=1702405080; x=1733941080;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NWVYCoj13per4KU/F/aAKDBYGPo4kXyC0/baZXRvUZQ=;
- b=hWyzIoZw0cWcG6MI9Le0mv84DX0kOpu2Mvmhy9YuoCTvF51Vo3WRioEi
- FjZTW7/1KbLyD69a4z6MO7vn4MtN8U100No/t3sIj5hJKmDirW13kzAzu
- N9vGAw3m6UEwB7ijHg9lEhJbk5MMsu4dtSRL1TgNU/Jybza69347MLqvt
- 0FMHXQc2fptEQ3oOLit6KqUrwysaXg5J9vKGqIgcOtPGmWEMy0L0L3fZ6
- GN+aTKuDzEn5Xwqxm5gixUAj7FrTzJLerwJd3lLeOSS3mNfxQ5JoPHjJV
- yvb9+uxzGLCiUlDyHvza5uF9r2Lfns7Vag9nVPkJA9cHLQ/tuZOcGU+tZ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="425968030"
-X-IronPort-AV: E=Sophos;i="6.04,271,1695711600"; d="scan'208";a="425968030"
+ bh=6d5yZKJB9dF6CELM0cBRa8bBBfss4rLZEtD6aA7ENZ4=;
+ b=VSI9985lF+JYzh+8qAakNF5nGGb+F18EoQMYxvG1UFP21iG72Fk1fS5J
+ cvERVdoeHD5HkuZn0pHwIGzJuLTkf1PugJ85amKnRd3Rq2sbAr6J0pqFu
+ 88uvUvobb2BYDt2S0mpcvPYooCTgdAC+fQKz0zefQrCwtVrtONXf8XA8x
+ sPQ7ZsavfqF+VpWIbacNjt59b5l2LmBJAA6DTu7zHpnrE6I/vpdJEnSkL
+ A82+2+7/nzz88HwZCnK6p0gVPvG10jwCrypBMehX49RRPHc+IGQ1dc5Gt
+ qsiLtGwwN4dYnSfJKrxcL93TsVej+Qnp6AWpDQfsoO3lHaAeLWiIcXJkw w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="425968039"
+X-IronPort-AV: E=Sophos;i="6.04,271,1695711600"; d="scan'208";a="425968039"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2023 10:17:55 -0800
+ 12 Dec 2023 10:18:00 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="749806436"
-X-IronPort-AV: E=Sophos;i="6.04,271,1695711600"; d="scan'208";a="749806436"
+X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="749806446"
+X-IronPort-AV: E=Sophos;i="6.04,271,1695711600"; d="scan'208";a="749806446"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orsmga006.jf.intel.com with ESMTP; 12 Dec 2023 10:17:54 -0800
+ by orsmga006.jf.intel.com with ESMTP; 12 Dec 2023 10:17:58 -0800
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v8 07/10] drm/xe/xe2: Update emit_pte to use compression
- enabled PAT index
-Date: Tue, 12 Dec 2023 23:55:30 +0530
-Message-Id: <20231212182533.1722705-8-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v8 09/10] drm/xe/xe2: Modify xe_bo_test for system memory
+Date: Tue, 12 Dec 2023 23:55:32 +0530
+Message-Id: <20231212182533.1722705-10-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20231212182533.1722705-1-himal.prasad.ghimiray@intel.com>
 References: <20231212182533.1722705-1-himal.prasad.ghimiray@intel.com>
@@ -57,128 +56,136 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For indirect accessed buffer use compression enabled PAT index.
+Modify test to valid ccs clear and copy during evict/restore on
+igfx.
 
 v2:
- - Fix parameter name.
+ -Vram is associated with tiles not with gt. Use tile based iterator
+for ccs_test_run_gt. (Matt)
 
-v3:
- - use a relevant define instead of fix number.
-
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
 Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_migrate.c |  2 +-
- drivers/gpu/drm/xe/xe_migrate.c       | 21 +++++++++++++++------
- drivers/gpu/drm/xe/xe_pat.c           |  1 +
- drivers/gpu/drm/xe/xe_pt_types.h      |  1 +
- 4 files changed, 18 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_bo.c | 44 ++++++++++++++++++++------------
+ 1 file changed, 27 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-index 47fcd6e6b777..d6c23441632a 100644
---- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-@@ -330,7 +330,7 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
- 	else
- 		xe_res_first_sg(xe_bo_sg(pt), 0, pt->size, &src_it);
+diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
+index 549ab343de80..412b2e7ce40c 100644
+--- a/drivers/gpu/drm/xe/tests/xe_bo.c
++++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+@@ -14,7 +14,7 @@
+ #include "xe_pci.h"
+ #include "xe_pm.h"
  
--	emit_pte(m, bb, NUM_KERNEL_PDE - 1, xe_bo_is_vram(pt),
-+	emit_pte(m, bb, NUM_KERNEL_PDE - 1, xe_bo_is_vram(pt), false,
- 		 &src_it, XE_PAGE_SIZE, pt);
- 
- 	run_sanity_job(m, xe, bb, bb->len, "Writing PTE for our fake PT", test);
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 85eec61fa685..ceb0d4f3615d 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -422,15 +422,24 @@ static u32 pte_update_size(struct xe_migrate *m,
- 
- static void emit_pte(struct xe_migrate *m,
- 		     struct xe_bb *bb, u32 at_pt,
--		     bool is_vram,
-+		     bool is_vram, bool is_comp_pte,
- 		     struct xe_res_cursor *cur,
- 		     u32 size, struct xe_bo *bo)
+-static int ccs_test_migrate(struct xe_gt *gt, struct xe_bo *bo,
++static int ccs_test_migrate(struct xe_tile *tile, struct xe_bo *bo,
+ 			    bool clear, u64 get_val, u64 assign_val,
+ 			    struct kunit *test)
  {
--	u16 pat_index = tile_to_xe(m->tile)->pat.idx[XE_CACHE_WB];
-+	struct xe_device *xe = tile_to_xe(m->tile);
-+
-+	u16 pat_index;
- 	u32 ptes;
- 	u64 ofs = at_pt * XE_PAGE_SIZE;
- 	u64 cur_ofs;
+@@ -36,7 +36,7 @@ static int ccs_test_migrate(struct xe_gt *gt, struct xe_bo *bo,
  
-+	/* Indirect access needs compression enabled uncached PAT index */
-+	if (GRAPHICS_VERx100(xe) >= 2000)
-+		pat_index = is_comp_pte ? xe->pat.idx[XE_CACHE_NONE_COMPRESSION] :
-+					  xe->pat.idx[XE_CACHE_NONE];
+ 	/* Optionally clear bo *and* CCS data in VRAM. */
+ 	if (clear) {
+-		fence = xe_migrate_clear(gt_to_tile(gt)->migrate, bo, bo->ttm.resource);
++		fence = xe_migrate_clear(tile->migrate, bo, bo->ttm.resource);
+ 		if (IS_ERR(fence)) {
+ 			KUNIT_FAIL(test, "Failed to submit bo clear.\n");
+ 			return PTR_ERR(fence);
+@@ -91,7 +91,7 @@ static int ccs_test_migrate(struct xe_gt *gt, struct xe_bo *bo,
+ 	}
+ 
+ 	/* Check last CCS value, or at least last value in page. */
+-	offset = xe_device_ccs_bytes(gt_to_xe(gt), bo->size);
++	offset = xe_device_ccs_bytes(tile_to_xe(tile), bo->size);
+ 	offset = min_t(u32, offset, PAGE_SIZE) / sizeof(u64) - 1;
+ 	if (cpu_map[offset] != get_val) {
+ 		KUNIT_FAIL(test,
+@@ -108,39 +108,45 @@ static int ccs_test_migrate(struct xe_gt *gt, struct xe_bo *bo,
+ 	return ret;
+ }
+ 
+-static void ccs_test_run_gt(struct xe_device *xe, struct xe_gt *gt,
+-			    struct kunit *test)
++static void ccs_test_run_tile(struct xe_device *xe, struct xe_tile *tile,
++			      struct kunit *test)
+ {
+ 	struct xe_bo *bo;
+-	u32 vram_bit;
++
+ 	int ret;
+ 
+ 	/* TODO: Sanity check */
+-	vram_bit = XE_BO_CREATE_VRAM0_BIT << gt_to_tile(gt)->id;
+-	kunit_info(test, "Testing gt id %u vram id %u\n", gt->info.id,
+-		   gt_to_tile(gt)->id);
++	unsigned int bo_flags = XE_BO_CREATE_VRAM_IF_DGFX(tile);
++
++	if (IS_DGFX(xe))
++		kunit_info(test, "Testing vram id %u\n", tile->id);
 +	else
-+		pat_index = xe->pat.idx[XE_CACHE_WB];
++		kunit_info(test, "Testing system memory\n");
 +
- 	/*
- 	 * FIXME: Emitting VRAM PTEs to L0 PTs is forbidden. Currently
- 	 * we're only emitting VRAM PTEs during sanity tests, so when
-@@ -717,19 +726,19 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 		}
++	bo = xe_bo_create_user(xe, NULL, NULL, SZ_1M, DRM_XE_GEM_CPU_CACHING_WC,
++			       ttm_bo_type_device, bo_flags);
++
++	xe_bo_lock(bo, false);
  
- 		if (!src_is_vram)
--			emit_pte(m, bb, src_L0_pt, src_is_vram, &src_it, src_L0,
-+			emit_pte(m, bb, src_L0_pt, src_is_vram, true, &src_it, src_L0,
- 				 src_bo);
- 		else
- 			xe_res_next(&src_it, src_L0);
+-	bo = xe_bo_create_locked(xe, NULL, NULL, SZ_1M, ttm_bo_type_device,
+-				 vram_bit);
+ 	if (IS_ERR(bo)) {
+ 		KUNIT_FAIL(test, "Failed to create bo.\n");
+ 		return;
+ 	}
  
- 		if (!dst_is_vram)
--			emit_pte(m, bb, dst_L0_pt, dst_is_vram, &dst_it, src_L0,
-+			emit_pte(m, bb, dst_L0_pt, dst_is_vram, true, &dst_it, src_L0,
- 				 dst_bo);
- 		else
- 			xe_res_next(&dst_it, src_L0);
+ 	kunit_info(test, "Verifying that CCS data is cleared on creation.\n");
+-	ret = ccs_test_migrate(gt, bo, false, 0ULL, 0xdeadbeefdeadbeefULL,
++	ret = ccs_test_migrate(tile, bo, false, 0ULL, 0xdeadbeefdeadbeefULL,
+ 			       test);
+ 	if (ret)
+ 		goto out_unlock;
  
- 		if (copy_system_ccs)
--			emit_pte(m, bb, ccs_pt, false, &ccs_it, ccs_size, src_bo);
-+			emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src_bo);
+ 	kunit_info(test, "Verifying that CCS data survives migration.\n");
+-	ret = ccs_test_migrate(gt, bo, false, 0xdeadbeefdeadbeefULL,
++	ret = ccs_test_migrate(tile, bo, false, 0xdeadbeefdeadbeefULL,
+ 			       0xdeadbeefdeadbeefULL, test);
+ 	if (ret)
+ 		goto out_unlock;
  
- 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
- 		update_idx = bb->len;
-@@ -962,7 +971,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 	kunit_info(test, "Verifying that CCS data can be properly cleared.\n");
+-	ret = ccs_test_migrate(gt, bo, true, 0ULL, 0ULL, test);
++	ret = ccs_test_migrate(tile, bo, true, 0ULL, 0ULL, test);
  
- 		/* Preemption is enabled again by the ring ops. */
- 		if (!clear_vram) {
--			emit_pte(m, bb, clear_L0_pt, clear_vram, &src_it, clear_L0,
-+			emit_pte(m, bb, clear_L0_pt, clear_vram, true, &src_it, clear_L0,
- 				 bo);
- 		} else {
- 			xe_res_next(&src_it, clear_L0);
-diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-index 1892ff81086f..1ff6bc79e7d4 100644
---- a/drivers/gpu/drm/xe/xe_pat.c
-+++ b/drivers/gpu/drm/xe/xe_pat.c
-@@ -387,6 +387,7 @@ void xe_pat_init_early(struct xe_device *xe)
- 		xe->pat.idx[XE_CACHE_NONE] = 3;
- 		xe->pat.idx[XE_CACHE_WT] = 15;
- 		xe->pat.idx[XE_CACHE_WB] = 2;
-+		xe->pat.idx[XE_CACHE_NONE_COMPRESSION] = 12; /*Applicable on xe2 and beyond */
- 	} else if (xe->info.platform == XE_METEORLAKE) {
- 		xe->pat.ops = &xelpg_pat_ops;
- 		xe->pat.table = xelpg_pat_table;
-diff --git a/drivers/gpu/drm/xe/xe_pt_types.h b/drivers/gpu/drm/xe/xe_pt_types.h
-index 82cbf1ef8e57..cee70cb0f014 100644
---- a/drivers/gpu/drm/xe/xe_pt_types.h
-+++ b/drivers/gpu/drm/xe/xe_pt_types.h
-@@ -18,6 +18,7 @@ enum xe_cache_level {
- 	XE_CACHE_NONE,
- 	XE_CACHE_WT,
- 	XE_CACHE_WB,
-+	XE_CACHE_NONE_COMPRESSION, /*UC + COH_NONE + COMPRESSION */
- 	__XE_CACHE_LEVEL_COUNT,
- };
+ out_unlock:
+ 	xe_bo_unlock(bo);
+@@ -150,7 +156,7 @@ static void ccs_test_run_gt(struct xe_device *xe, struct xe_gt *gt,
+ static int ccs_test_run_device(struct xe_device *xe)
+ {
+ 	struct kunit *test = xe_cur_kunit();
+-	struct xe_gt *gt;
++	struct xe_tile *tile;
+ 	int id;
+ 
+ 	if (!xe_device_has_flat_ccs(xe)) {
+@@ -160,8 +166,12 @@ static int ccs_test_run_device(struct xe_device *xe)
+ 
+ 	xe_device_mem_access_get(xe);
+ 
+-	for_each_gt(gt, xe, id)
+-		ccs_test_run_gt(xe, gt, test);
++	for_each_tile(tile, xe, id) {
++		/* For igfx run only for primary tile */
++		if (!IS_DGFX(xe) && id > 0)
++			continue;
++		ccs_test_run_tile(xe, tile, test);
++	}
+ 
+ 	xe_device_mem_access_put(xe);
  
 -- 
 2.25.1
