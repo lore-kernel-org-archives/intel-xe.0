@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F304C4167B
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Dec 2023 21:01:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D1C6C38147
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Dec 2023 21:01:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12DDA10E6A0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0F1A10E6AC;
 	Tue, 12 Dec 2023 21:01:29 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8B5810E69D
- for <intel-xe@lists.freedesktop.org>; Tue, 12 Dec 2023 21:01:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B99A510E69D
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Dec 2023 21:01:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702414886; x=1733950886;
+ t=1702414884; x=1733950884;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9HcnOc0sirdfS2rDO76IAQFC3Llbzk5shcbkRyGrmA8=;
- b=CSfbiLiiWiPIf68wg/sXjqc8P+nYrMJP45GtKhjNHJmqxhWcpTySJxeh
- 7wfoIzsEPkXY6y19xM/x0c2pB8y+zyBRdNSip7ht0tvMGryHmqGaa8yd/
- 59k0O9038nQVIkuFn4SxQ+//U/78MzG4f5AvqpHLOlTiZ1gAKAFeYdxS+
- X33unaZn+RzrozgZwetUj5JfqT5r+dLJTb+1eKtqnHx+lV8V09u46V+cL
- oroBBrxYX1dE5SKwx5Ivh+qFo8je8gQXCT4/44VoWb6aTz5dOIjMY/SmB
- S/AjLbW/EXmUNJV/ffV2Qi2e2I04o2+dO3xdsT6EferEEAZV/APkJ+pRZ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="397654619"
-X-IronPort-AV: E=Sophos;i="6.04,271,1695711600"; d="scan'208";a="397654619"
+ bh=NR8tpqXZqAgrDKyi7cEw+ufkdGIYssXrCw+prHsUtT4=;
+ b=XRUFnnudPREGTLov4O1VEyExGo4ctMvocO8lVwh2OYDbWnCckvQLKKdg
+ mXiVRdVy8tieRbIoWtiXUSRImF62t3tzQj0HRyj2RVgJjYnx1HHPzY5la
+ fH433Erdh2AvhbRbCVnrX5kFYrZQbdxK/tC6/9mart1oD/tUkDiHLecF5
+ 2lunNaaRH2ZamnCQ2GNU+eCYNKs9dWqfe55/dhaxo5gEEu6jDEdHA2qqx
+ K4GANaCQpVZBD0mvUdI3GWNbLCMSU1olUMvjxWaS84x32+ZKOpSAiXsLL
+ ++5gulEMircY1olRvXEZP0R9pCPJFsffbOyKlXshwRbuW3NRpyTGZnVve g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="397654591"
+X-IronPort-AV: E=Sophos;i="6.04,271,1695711600"; d="scan'208";a="397654591"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2023 13:01:26 -0800
+ 12 Dec 2023 13:01:18 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="917417232"
-X-IronPort-AV: E=Sophos;i="6.04,271,1695711600"; d="scan'208";a="917417232"
+X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="917417164"
+X-IronPort-AV: E=Sophos;i="6.04,271,1695711600"; d="scan'208";a="917417164"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.128.218])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2023 13:01:25 -0800
+ 12 Dec 2023 13:01:16 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 09/10] drm/xe/vf: Setup memory based interrupts in GuC
-Date: Tue, 12 Dec 2023 22:00:53 +0100
-Message-Id: <20231212210054.1747-10-michal.wajdeczko@intel.com>
+Subject: [PATCH 04/10] drm/xe: Update LRC context layout definitions
+Date: Tue, 12 Dec 2023 22:00:48 +0100
+Message-Id: <20231212210054.1747-5-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20231212210054.1747-1-michal.wajdeczko@intel.com>
 References: <20231212210054.1747-1-michal.wajdeczko@intel.com>
@@ -59,50 +59,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When Memory Based Interrupts are used, the VF driver must provide
-to the GuC references to the Source and Status Report Pages.
+The new memory based interrupt processing uses additional entries
+in the context.  Add required definitions.
 
+Bspec: 45585
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_lrc_layout.h | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 482cb0df9f15..85096741cb3b 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -22,8 +22,10 @@
- #include "xe_guc_log.h"
- #include "xe_guc_pc.h"
- #include "xe_guc_submit.h"
-+#include "xe_memirq.h"
- #include "xe_mmio.h"
- #include "xe_platform_types.h"
-+#include "xe_sriov.h"
- #include "xe_uc.h"
- #include "xe_uc_fw.h"
- #include "xe_wa.h"
-@@ -574,10 +576,20 @@ static void guc_enable_irq(struct xe_guc *guc)
+diff --git a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+index 4be81abc86ad..1825d8f79db6 100644
+--- a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
++++ b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+@@ -14,4 +14,13 @@
+ #define CTX_PDP0_UDW			(0x30 + 1)
+ #define CTX_PDP0_LDW			(0x32 + 1)
  
- int xe_guc_enable_communication(struct xe_guc *guc)
- {
-+	struct xe_device *xe = guc_to_xe(guc);
- 	int err;
- 
- 	guc_enable_irq(guc);
- 
-+	if (IS_SRIOV_VF(xe) && xe_device_has_memirq(xe)) {
-+		struct xe_gt *gt = guc_to_gt(guc);
-+		struct xe_tile *tile = gt_to_tile(gt);
++#define CTX_LRM_INT_MASK_ENABLE		0x50
++#define CTX_INT_MASK_ENABLE_REG		(CTX_LRM_INT_MASK_ENABLE + 1)
++#define CTX_INT_MASK_ENABLE_PTR		(CTX_LRM_INT_MASK_ENABLE + 2)
++#define CTX_LRI_INT_REPORT_PTR		0x55
++#define CTX_INT_STATUS_REPORT_REG	(CTX_LRI_INT_REPORT_PTR + 1)
++#define CTX_INT_STATUS_REPORT_PTR	(CTX_LRI_INT_REPORT_PTR + 2)
++#define CTX_INT_SRC_REPORT_REG		(CTX_LRI_INT_REPORT_PTR + 3)
++#define CTX_INT_SRC_REPORT_PTR		(CTX_LRI_INT_REPORT_PTR + 4)
 +
-+		err = xe_memirq_init_guc(&tile->sriov.vf.memirq, guc);
-+		if (err)
-+			return err;
-+	}
-+
- 	xe_mmio_rmw32(guc_to_gt(guc), PMINTRMSK,
- 		      ARAT_EXPIRED_INTRMSK, 0);
- 
+ #endif
 -- 
 2.25.1
 
