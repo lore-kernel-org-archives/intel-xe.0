@@ -4,30 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF7B6C4332F
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Dec 2023 11:07:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5164C4332F
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Dec 2023 12:23:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8608810E1E4;
-	Tue, 12 Dec 2023 11:07:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2FF9B10E1E4;
- Tue, 12 Dec 2023 11:07:11 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 27567AA917;
- Tue, 12 Dec 2023 11:07:11 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5055229251782062533=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8ABA910E5DA;
+	Tue, 12 Dec 2023 12:23:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F8F010E5DA
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Dec 2023 12:23:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1702383828; x=1733919828;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=CEcaTCWkIPhjMkaFgmESoZUPCbW19bdKmRWacLX1bWc=;
+ b=mFWc4iYg3KmtVQnqLliGVIVeotHE5txmx7/zTess1hYT05ZwypmeC8YQ
+ 3k6eoPRNgCQVftBJ1lqiLIjyMSCy4uEN3/pqMS6PPBqOAbu9INH/XS47/
+ TUMIqJupZphzqiXiPIxzfubfT+IeFyfpybNP94JQ/Hbdelv2SujiY0RHZ
+ wI4SrttGb/ShDnjF4wJHergNrd/o9DxVo49fgUL9Ap81VfnCy4J7AB65O
+ YVCKH/yeRajRbUHszcHIw9IeUudES5RgMViIfXYv7UTwVSCi4hy4DQM/n
+ YLHjh21qqvRR8wXk2hxdJrgcUX7SplN0e+raarnqPlIPN7sVtIVCNSES1 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="8166598"
+X-IronPort-AV: E=Sophos;i="6.04,270,1695711600"; 
+   d="scan'208";a="8166598"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2023 04:23:47 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="766809292"
+X-IronPort-AV: E=Sophos;i="6.04,270,1695711600"; d="scan'208";a="766809292"
+Received: from skallurr-mobl1.ger.corp.intel.com (HELO [10.249.254.140])
+ ([10.249.254.140])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2023 04:23:45 -0800
+Message-ID: <e7a7381c-1d0b-c0f1-b7b1-c5c57b2f5773@linux.intel.com>
+Date: Tue, 12 Dec 2023 13:23:43 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_Use_DRM=5FGPUVM_helpers_for_the_?=
- =?utf-8?q?vm_evict_and_exobj_lists?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Tue, 12 Dec 2023 11:07:11 -0000
-Message-ID: <170237923113.31293.1992807722068163319@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231212100144.6833-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20231212100144.6833-1-thomas.hellstrom@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v7 01/10] drm/xe/xe2: Determine bios enablement for flat
+ ccs on igfx
+Content-Language: en-US
+To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20231211134356.1645973-1-himal.prasad.ghimiray@intel.com>
+ <20231211134356.1645973-2-himal.prasad.ghimiray@intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20231211134356.1645973-2-himal.prasad.ghimiray@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,160 +64,109 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5055229251782062533==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 12/11/23 14:43, Himal Prasad Ghimiray wrote:
+> If bios disables flat ccs on igfx make has_flat_ccs as 0 and notify
+> via drm_info.
+>
+> Bspec:59255
+>
+> v2:
+>   - Release forcewake.
+>   - Add registers in order.
+>   - drop dgfx condition and only add it back in the future
+> when the support for an Xe2 dgpu will be added.
+> - Use drm_dbg instead of drm_info. (Matt)
+>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 
-Series: Use DRM_GPUVM helpers for the vm evict and exobj lists
-URL   : https://patchwork.freedesktop.org/series/127675/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from xe-570-0c30a1b58ce6096e5d6a6c9ba32961c345fab7c8_BAT -> xe-pw-127675v1_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-127675v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-127675v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (4 -> 1)
-------------------------------
-
-  ERROR: It appears as if the changes made in xe-pw-127675v1_BAT prevented too many machines from booting.
-
-  Missing    (3): bat-pvc-2 bat-dg2-oem2 bat-atsm-2 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-127675v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_create@create-execqueues-noleak:
-    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#524])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-570-0c30a1b58ce6096e5d6a6c9ba32961c345fab7c8/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127675v1/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html
-
-  
-#### Warnings ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [DMESG-FAIL][3] ([Intel XE#282] / [i915#2017]) -> [DMESG-FAIL][4] ([Intel XE#1033] / [i915#2017])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-570-0c30a1b58ce6096e5d6a6c9ba32961c345fab7c8/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127675v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [Intel XE#1033]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033
-  [Intel XE#282]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/282
-  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
-  [i915#2017]: https://gitlab.freedesktop.org/drm/intel/issues/2017
+Acked-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
 
-Build changes
--------------
-
-  * IGT: IGT_7635 -> IGT_7636
-  * Linux: xe-570-0c30a1b58ce6096e5d6a6c9ba32961c345fab7c8 -> xe-pw-127675v1
-
-  IGT_7635: 0b796be8ce05cb2070ce5136d248f438c962d11e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_7636: 7636
-  xe-570-0c30a1b58ce6096e5d6a6c9ba32961c345fab7c8: 0c30a1b58ce6096e5d6a6c9ba32961c345fab7c8
-  xe-pw-127675v1: 127675v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127675v1/index.html
-
---===============5055229251782062533==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Use DRM_GPUVM helpers for the vm evict and exobj lists</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/127675/">https://patchwork.freedesktop.org/series/127675/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127675v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127675v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-570-0c30a1b58ce6096e5d6a6c9ba32961c345fab7c8_BAT -&gt; xe-pw-127675v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-127675v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-127675v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (4 -&gt; 1)</h2>
-<p>ERROR: It appears as if the changes made in xe-pw-127675v1_BAT prevented too many machines from booting.</p>
-<p>Missing    (3): bat-pvc-2 bat-dg2-oem2 bat-atsm-2 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-127675v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_create@create-execqueues-noleak:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-570-0c30a1b58ce6096e5d6a6c9ba32961c345fab7c8/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127675v1/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/524">Intel XE#524</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-570-0c30a1b58ce6096e5d6a6c9ba32961c345fab7c8/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/282">Intel XE#282</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2017">i915#2017</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127675v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033">Intel XE#1033</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2017">i915#2017</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7635 -&gt; IGT_7636</li>
-<li>Linux: xe-570-0c30a1b58ce6096e5d6a6c9ba32961c345fab7c8 -&gt; xe-pw-127675v1</li>
-</ul>
-<p>IGT_7635: 0b796be8ce05cb2070ce5136d248f438c962d11e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_7636: 7636<br />
-  xe-570-0c30a1b58ce6096e5d6a6c9ba32961c345fab7c8: 0c30a1b58ce6096e5d6a6c9ba32961c345fab7c8<br />
-  xe-pw-127675v1: 127675v1</p>
-
-</body>
-</html>
-
---===============5055229251782062533==--
+> ---
+>   drivers/gpu/drm/xe/regs/xe_gt_regs.h |  3 +++
+>   drivers/gpu/drm/xe/xe_device.c       | 30 ++++++++++++++++++++++++++++
+>   2 files changed, 33 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> index 5f5a72e9d0d8..f5bf4c6d1761 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> @@ -162,6 +162,9 @@
+>   #define XEHP_SQCM				XE_REG_MCR(0x8724)
+>   #define   EN_32B_ACCESS				REG_BIT(30)
+>   
+> +#define XE2_FLAT_CCS_BASE_RANGE_LOWER		XE_REG_MCR(0x8800)
+> +#define   XE2_FLAT_CCS_ENABLE			REG_BIT(0)
+> +
+>   #define GSCPSMI_BASE				XE_REG(0x880c)
+>   
+>   #define	MIRROR_FUSE3				XE_REG(0x9118)
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index 2e0b2e40d8f3..91f5807d2d20 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -16,6 +16,7 @@
+>   #include <drm/xe_drm.h>
+>   
+>   #include "regs/xe_regs.h"
+> +#include "regs/xe_gt_regs.h"
+>   #include "xe_bo.h"
+>   #include "xe_debugfs.h"
+>   #include "xe_display.h"
+> @@ -26,6 +27,7 @@
+>   #include "xe_exec.h"
+>   #include "xe_ggtt.h"
+>   #include "xe_gt.h"
+> +#include "xe_gt_mcr.h"
+>   #include "xe_irq.h"
+>   #include "xe_mmio.h"
+>   #include "xe_module.h"
+> @@ -401,6 +403,30 @@ int xe_device_probe_early(struct xe_device *xe)
+>   	return 0;
+>   }
+>   
+> +static int xe_device_set_has_flat_ccs(struct  xe_device *xe)
+> +{
+> +	u32 reg;
+> +	int err;
+> +
+> +	if (GRAPHICS_VER(xe) < 20 || !xe->info.has_flat_ccs)
+> +		return 0;
+> +
+> +	struct xe_gt *gt = xe_root_mmio_gt(xe);
+> +
+> +	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+> +	if (err)
+> +		return err;
+> +
+> +	reg = xe_gt_mcr_unicast_read_any(gt, XE2_FLAT_CCS_BASE_RANGE_LOWER);
+> +	xe->info.has_flat_ccs = (reg & XE2_FLAT_CCS_ENABLE);
+> +
+> +	if (!xe->info.has_flat_ccs)
+> +		drm_dbg(&xe->drm,
+> +			 "Flat CCS has been disabled in bios, May lead to performance impact");
+> +
+> +	return xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
+> +}
+> +
+>   int xe_device_probe(struct xe_device *xe)
+>   {
+>   	struct xe_tile *tile;
+> @@ -456,6 +482,10 @@ int xe_device_probe(struct xe_device *xe)
+>   			goto err_irq_shutdown;
+>   	}
+>   
+> +	err = xe_device_set_has_flat_ccs(xe);
+> +	if (err)
+> +		return err;
+> +
+>   	err = xe_mmio_probe_vram(xe);
+>   	if (err)
+>   		goto err_irq_shutdown;
