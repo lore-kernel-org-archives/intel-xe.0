@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB988C4332F
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Dec 2023 12:52:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D4F9C4332F
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Dec 2023 12:52:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 601D110E5DD;
-	Tue, 12 Dec 2023 12:52:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BBAA10E5E5;
+	Tue, 12 Dec 2023 12:52:32 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 10BA510E5DD;
- Tue, 12 Dec 2023 12:52:18 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C7FE610E5E5;
+ Tue, 12 Dec 2023 12:52:30 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 093EFA7E03;
- Tue, 12 Dec 2023 12:52:18 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id C3F59A7E03;
+ Tue, 12 Dec 2023 12:52:30 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Use_DRM=5FGPUVM_help?=
- =?utf-8?q?ers_for_the_vm_evict_and_exobj_lists_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Use_DRM=5FGPUVM_helpers_f?=
+ =?utf-8?q?or_the_vm_evict_and_exobj_lists_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Tue, 12 Dec 2023 12:52:18 -0000
-Message-ID: <170238553800.31293.9441561789581454773@emeril.freedesktop.org>
+Date: Tue, 12 Dec 2023 12:52:30 -0000
+Message-ID: <170238555079.31291.16646220119705056087@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231212100144.6833-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20231212100144.6833-1-thomas.hellstrom@linux.intel.com>
@@ -52,10 +52,30 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 0c30a1b58 drm/xe: Fix lockdep warning in xe_force_wake calls
-=== git am output follows ===
-Applying: drm/xe: Use DRM GPUVM helpers for external- and evicted objects
-Applying: drm/xe: Use DRM_GPUVM_RESV_PROTECTED for gpuvm
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6030b24c1386b00de8187b5fb987e283a57b372a
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 379cd34b1d458e2c1771d4921a4ece373419b646
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Tue Dec 12 11:01:44 2023 +0100
+
+    drm/xe: Use DRM_GPUVM_RESV_PROTECTED for gpuvm
+    
+    Use DRM_GPUVM_RESV_PROTECTED to use corse-grained locking for the
+    evict and external object list.
+    Since we are already holding the relevant RESV locks, for now at least,
+    we don't need the fine-grained locking.
+    
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch 0c30a1b58ce6096e5d6a6c9ba32961c345fab7c8 drm-intel
+57840d4b6 drm/xe: Use DRM GPUVM helpers for external- and evicted objects
+379cd34b1 drm/xe: Use DRM_GPUVM_RESV_PROTECTED for gpuvm
 
 
