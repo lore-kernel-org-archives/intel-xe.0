@@ -4,24 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F8A1C4332F
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Dec 2023 14:21:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B32AFC4332F
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Dec 2023 14:23:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02C7C10E1E1;
-	Tue, 12 Dec 2023 14:21:01 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3B7010E1E1
- for <intel-xe@lists.freedesktop.org>; Tue, 12 Dec 2023 14:20:56 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 2/2] fixup! drm/xe/uapi: Reject bo creation of unaligned size
-Date: Tue, 12 Dec 2023 15:20:45 +0100
-Message-Id: <20231212142045.22182-2-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20231212142045.22182-1-maarten.lankhorst@linux.intel.com>
-References: <20231212142045.22182-1-maarten.lankhorst@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 836C510E5E5;
+	Tue, 12 Dec 2023 14:23:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AAF1C10E5E5;
+ Tue, 12 Dec 2023 14:23:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A132FAADE4;
+ Tue, 12 Dec 2023 14:23:03 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
+ =?utf-8?q?_=5B1/2=5D_fixup!_drm/xe/uc=3A_Store_firmware_binary_in_system-me?=
+ =?utf-8?q?mory_backed_BO?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Date: Tue, 12 Dec 2023 14:23:03 -0000
+Message-ID: <170239098362.31291.8852967159325827802@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231212142045.22182-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20231212142045.22182-1-maarten.lankhorst@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,30 +40,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maarten Lankhorst <dev@lankhorst.se>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Maarten Lankhorst <dev@lankhorst.se>
+== Series Details ==
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_bo.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: series starting with [1/2] fixup! drm/xe/uc: Store firmware binary in system-memory backed BO
+URL   : https://patchwork.freedesktop.org/series/127688/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 7e25c8b7a01a..9cc78986dbd3 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1574,7 +1574,7 @@ struct xe_bo *xe_managed_bo_create_pin_map(struct xe_device *xe, struct xe_tile
- struct xe_bo *xe_managed_bo_create_from_data(struct xe_device *xe, struct xe_tile *tile,
- 					     const void *data, size_t size, u32 flags)
- {
--	struct xe_bo *bo = xe_managed_bo_create_pin_map(xe, tile, size, flags);
-+	struct xe_bo *bo = xe_managed_bo_create_pin_map(xe, tile, ALIGN(size, PAGE_SIZE), flags);
- 
- 	if (IS_ERR(bo))
- 		return bo;
--- 
-2.40.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 0c30a1b58 drm/xe: Fix lockdep warning in xe_force_wake calls
+=== git am output follows ===
+Applying: fixup! drm/xe/uc: Store firmware binary in system-memory backed BO
+Applying: fixup! drm/xe/uapi: Reject bo creation of unaligned size
+
 
