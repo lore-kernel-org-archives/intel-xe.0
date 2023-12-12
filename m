@@ -4,47 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80F62C4332F
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Dec 2023 01:06:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FAE9C4167D
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Dec 2023 01:06:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5362210E53A;
-	Tue, 12 Dec 2023 01:06:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D53010E53C;
+	Tue, 12 Dec 2023 01:06:02 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD1AD10E53A
- for <intel-xe@lists.freedesktop.org>; Tue, 12 Dec 2023 01:05:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFDB910E53A
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Dec 2023 01:05:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702343157; x=1733879157;
+ t=1702343158; x=1733879158;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=vvv/ydN+rqFifttsMHxJbuhiJZKodscJs4nRquGpL3k=;
- b=Xbk3cb8hKV0/bVWlr0EKLxyMe2TNDbSqrWok1/GyMDySuryaE94PCxbn
- xUbAvbQlXcO7BbUNAV74nFEvwT0tWptCZ3d+L8orf7RoRIE0Tl8IgvIbf
- x5+aADr/ty/uVYd5vqVxUp6PAY9clYm0Ie3XsuQWezbcBPByRlaqEMJm6
- tzG4wIB3be+aIS3BxfaOjn0NCsdIjlbBZ3oj7CLp4ZwxM6PFjFDzIvid1
- fEoEd0t8HMI9V0Dkr/t4rPEEDrFL38sgFDYiLydkn9qm8c57JdZCkjNLS
- g1sTV4rOLpwvNCiyte3D0WSo7FbMU/guGAXDHcEX4jaiDMdQ1/AnU9wUi g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="459047679"
-X-IronPort-AV: E=Sophos;i="6.04,269,1695711600"; d="scan'208";a="459047679"
+ bh=mWdo1ocfe0Y4JFqrfcRHJz2VX6PpS6n9COQKL0Qs50k=;
+ b=hWxKwqj2kNMg6HI/UdSAp9nORVtnSiTO/sFzpmWiDmcZa+X3MW+D7yEu
+ YgUS5YVauOGj7CpDcYSsSkU5kFdh+ggcR9E7L2ri6/9EDKHg93Yc7AyLF
+ hnKFmTCrQN5gJBsyBf6kX+4in2xHVwbbMXBT5eWZIIMcmqfkBigHsXSoV
+ I6pJz/YrQavAVqiAKYQv9S7kG9t8Z4Y45AbRkS4IUJsguVoVlqx4/3jzP
+ YNrJy+PNO0FI2IUhdJkO713i4an0jbAJYFMl7FcYSaZQ9fun/uQZXOczp
+ ZKLh+prVsdsam7VhdR8BFG0/Gl//HqmT7/VP6ILweFdzR0dZdWYvK1B9d A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="459047681"
+X-IronPort-AV: E=Sophos;i="6.04,269,1695711600"; d="scan'208";a="459047681"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2023 17:05:57 -0800
+ 11 Dec 2023 17:05:58 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="917078938"
-X-IronPort-AV: E=Sophos;i="6.04,269,1695711600"; d="scan'208";a="917078938"
+X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="917078942"
+X-IronPort-AV: E=Sophos;i="6.04,269,1695711600"; d="scan'208";a="917078942"
 Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2023 17:05:57 -0800
+ 11 Dec 2023 17:05:58 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 1/2] drm/xe/gsc: Initialize GSC proxy
-Date: Mon, 11 Dec 2023 17:05:58 -0800
-Message-ID: <20231212010600.3479465-2-daniele.ceraolospurio@intel.com>
+Subject: [PATCH 2/2] drm/xe/gsc: add support for GSC proxy interrupt
+Date: Mon, 11 Dec 2023 17:05:59 -0800
+Message-ID: <20231212010600.3479465-3-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20231212010600.3479465-1-daniele.ceraolospurio@intel.com>
 References: <20231212010600.3479465-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,861 +59,376 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The GSC uC needs to communicate with the CSME to perform certain
-operations. Since the GSC can't perform this communication directly on
-platforms where it is integrated in GT, the graphics driver needs to
-transfer the messages from GSC to CSME and back. The proxy flow must be
-manually started after the GSC is loaded to signal to GSC that we're
-ready to handle its messages and allow it to query its init data from
-CSME.
+The GSC notifies us of a proxy request via the HECI2 interrupt. The
+interrupt must be enabled both in the HECI layer and in our usual gt irq
+programming; for the latter, the interrupt is enabled via the same enable
+register as the GSC CS, but it does have its own mask register. When the
+interrupt is received, we also need to de-assert it in both layers.
 
-Note that the component must be removed before the pci_remove call
-completes, so we can't use a drmm helper for it and we need to instead
-perform the cleanup as part of the removal flow.
+The handling of the proxy request is deferred to the same worker that we
+use for GSC load. New flags have been added to distinguish between the
+init case and the proxy interrupt.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
 Cc: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile                   |   1 +
- .../gpu/drm/xe/abi/gsc_proxy_commands_abi.h   |  44 ++
- drivers/gpu/drm/xe/xe_device.c                |  22 +-
- drivers/gpu/drm/xe/xe_gsc.c                   |  49 +-
- drivers/gpu/drm/xe/xe_gsc.h                   |   1 +
- drivers/gpu/drm/xe/xe_gsc_proxy.c             | 448 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_gsc_proxy.h             |  17 +
- drivers/gpu/drm/xe/xe_gsc_types.h             |  23 +
- drivers/gpu/drm/xe/xe_gt.c                    |   5 +
- drivers/gpu/drm/xe/xe_gt.h                    |   1 +
- drivers/gpu/drm/xe/xe_uc.c                    |   6 +
- drivers/gpu/drm/xe/xe_uc.h                    |   1 +
- 12 files changed, 604 insertions(+), 14 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/abi/gsc_proxy_commands_abi.h
- create mode 100644 drivers/gpu/drm/xe/xe_gsc_proxy.c
- create mode 100644 drivers/gpu/drm/xe/xe_gsc_proxy.h
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |  2 +
+ drivers/gpu/drm/xe/xe_gsc.c          | 26 +++++++--
+ drivers/gpu/drm/xe/xe_gsc_proxy.c    | 81 +++++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_gsc_proxy.h    |  3 ++
+ drivers/gpu/drm/xe/xe_gsc_types.h    |  9 ++++
+ drivers/gpu/drm/xe/xe_irq.c          | 44 +++++++++++----
+ 6 files changed, 143 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index f4ae063a7005..bb6a5f44a05f 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -68,6 +68,7 @@ xe-y += xe_bb.o \
- 	xe_ggtt.o \
- 	xe_gpu_scheduler.o \
- 	xe_gsc.o \
-+	xe_gsc_proxy.o \
- 	xe_gsc_submit.o \
- 	xe_gt.o \
- 	xe_gt_ccs_mode.o \
-diff --git a/drivers/gpu/drm/xe/abi/gsc_proxy_commands_abi.h b/drivers/gpu/drm/xe/abi/gsc_proxy_commands_abi.h
-new file mode 100644
-index 000000000000..80bbf06a3eb8
---- /dev/null
-+++ b/drivers/gpu/drm/xe/abi/gsc_proxy_commands_abi.h
-@@ -0,0 +1,44 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef _ABI_GSC_PROXY_COMMANDS_ABI_H
-+#define _ABI_GSC_PROXY_COMMANDS_ABI_H
-+
-+#include <linux/types.h>
-+
-+/* Heci client ID for proxy commands */
-+#define HECI_MEADDRESS_PROXY 10
-+
-+/* FW-defined proxy header */
-+struct xe_gsc_proxy_header {
-+	/*
-+	 * hdr:
-+	 * Bits 0-7: type of the proxy message (see enum xe_gsc_proxy_type)
-+	 * Bits 8-15: rsvd
-+	 * Bits 16-31: length in bytes of the payload following the proxy header
-+	 */
-+	u32 hdr;
-+#define GSC_PROXY_TYPE		 GENMASK(7, 0)
-+#define GSC_PROXY_PAYLOAD_LENGTH GENMASK(31, 16)
-+
-+	u32 source;		/* Source of the Proxy message */
-+	u32 destination;	/* Destination of the Proxy message */
-+#define GSC_PROXY_ADDRESSING_KMD  0x10000
-+#define GSC_PROXY_ADDRESSING_GSC  0x20000
-+#define GSC_PROXY_ADDRESSING_CSME 0x30000
-+
-+	u32 status;		/* Command status */
-+} __packed;
-+
-+/* FW-defined proxy types */
-+enum xe_gsc_proxy_type {
-+	GSC_PROXY_MSG_TYPE_PROXY_INVALID = 0,
-+	GSC_PROXY_MSG_TYPE_PROXY_QUERY = 1,
-+	GSC_PROXY_MSG_TYPE_PROXY_PAYLOAD = 2,
-+	GSC_PROXY_MSG_TYPE_PROXY_END = 3,
-+	GSC_PROXY_MSG_TYPE_PROXY_NOTIFICATION = 4,
-+};
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 2e0b2e40d8f3..3e97bc5a5b48 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -25,6 +25,7 @@
- #include "xe_exec_queue.h"
- #include "xe_exec.h"
- #include "xe_ggtt.h"
-+#include "xe_gsc_proxy.h"
- #include "xe_gt.h"
- #include "xe_irq.h"
- #include "xe_mmio.h"
-@@ -406,6 +407,7 @@ int xe_device_probe(struct xe_device *xe)
- 	struct xe_tile *tile;
- 	struct xe_gt *gt;
- 	int err;
-+	u8 last_gt;
- 	u8 id;
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 5f5a72e9d0d8..9f5f2150034a 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -450,6 +450,7 @@
+ #define   INTR_ENGINE_CLASS(x)			REG_FIELD_GET(GENMASK(18, 16), x)
+ #define   INTR_ENGINE_INTR(x)			REG_FIELD_GET(GENMASK(15, 0), x)
+ #define   OTHER_GUC_INSTANCE			0
++#define   OTHER_HECI2_INSTANCE			3
+ #define   OTHER_GSC_INSTANCE			6
  
- 	xe_pat_init_early(xe);
-@@ -480,16 +482,18 @@ int xe_device_probe(struct xe_device *xe)
- 		goto err_irq_shutdown;
- 
- 	for_each_gt(gt, xe, id) {
-+		last_gt = id;
-+
- 		err = xe_gt_init(gt);
- 		if (err)
--			goto err_irq_shutdown;
-+			goto err_fini_gt;
- 	}
- 
- 	xe_heci_gsc_init(xe);
- 
- 	err = xe_display_init(xe);
- 	if (err)
--		goto err_irq_shutdown;
-+		goto err_fini_gt;
- 
- 	err = drm_dev_register(&xe->drm, 0);
- 	if (err)
-@@ -512,6 +516,14 @@ int xe_device_probe(struct xe_device *xe)
- err_fini_display:
- 	xe_display_driver_remove(xe);
- 
-+err_fini_gt:
-+	for_each_gt(gt, xe, id) {
-+		if (id < last_gt)
-+			xe_gt_remove(gt);
-+		else
-+			break;
-+	}
-+
- err_irq_shutdown:
- 	xe_irq_shutdown(xe);
- err:
-@@ -529,12 +541,18 @@ static void xe_device_remove_display(struct xe_device *xe)
- 
- void xe_device_remove(struct xe_device *xe)
- {
-+	struct xe_gt *gt;
-+	u8 id;
-+
- 	xe_device_remove_display(xe);
- 
- 	xe_display_fini(xe);
- 
- 	xe_heci_gsc_fini(xe);
- 
-+	for_each_gt(gt, xe, id)
-+		xe_gt_remove(gt);
-+
- 	xe_irq_shutdown(xe);
- }
- 
+ #define RENDER_COPY_INTR_ENABLE			XE_REG(0x190030)
+@@ -462,6 +463,7 @@
+ #define VCS0_VCS1_INTR_MASK			XE_REG(0x1900a8)
+ #define VCS2_VCS3_INTR_MASK			XE_REG(0x1900ac)
+ #define VECS0_VECS1_INTR_MASK			XE_REG(0x1900d0)
++#define HECI2_RSVD_INTR_MASK			XE_REG(0x1900e4)
+ #define GUC_SG_INTR_MASK			XE_REG(0x1900e8)
+ #define GPM_WGBOXPERF_INTR_MASK			XE_REG(0x1900ec)
+ #define GUNIT_GSC_INTR_MASK			XE_REG(0x1900f4)
 diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
-index a8a895cf4b44..38e9dd3129bd 100644
+index 38e9dd3129bd..630ccf3604c4 100644
 --- a/drivers/gpu/drm/xe/xe_gsc.c
 +++ b/drivers/gpu/drm/xe/xe_gsc.c
-@@ -13,6 +13,7 @@
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_exec_queue.h"
-+#include "xe_gsc_proxy.h"
- #include "xe_gsc_submit.h"
- #include "xe_gt.h"
- #include "xe_gt_printk.h"
-@@ -242,7 +243,29 @@ static int gsc_upload(struct xe_gsc *gsc)
- 	if (err)
- 		return err;
+@@ -275,16 +275,27 @@ static void gsc_work(struct work_struct *work)
+ 	struct xe_gsc *gsc = container_of(work, typeof(*gsc), work);
+ 	struct xe_gt *gt = gsc_to_gt(gsc);
+ 	struct xe_device *xe = gt_to_xe(gt);
++	u32 actions;
+ 	int ret;
  
--	xe_gt_dbg(gt, "GSC FW async load completed\n");
-+	return 0;
-+}
++	spin_lock_irq(&gsc->lock);
++	actions = gsc->work_actions;
++	gsc->work_actions = 0;
++	spin_unlock_irq(&gsc->lock);
 +
-+static int gsc_upload_and_init(struct xe_gsc *gsc)
-+{
-+	struct xe_gt *gt = gsc_to_gt(gsc);
-+	int ret;
-+
-+	ret = gsc_upload(gsc);
-+	if (ret)
-+		return ret;
-+
-+	xe_uc_fw_change_status(&gsc->fw, XE_UC_FIRMWARE_TRANSFERRED);
-+
-+	/* HuC auth failure is not fatal */
-+	if (xe_huc_is_authenticated(&gt->uc.huc, XE_HUC_AUTH_VIA_GUC))
-+		xe_huc_auth(&gt->uc.huc, XE_HUC_AUTH_VIA_GSC);
-+
-+	ret = xe_gsc_proxy_start(gsc);
-+	if (ret)
-+		return ret;
-+
-+	xe_gt_dbg(gt, "GSC FW async load and proxy init completed\n");
- 
- 	return 0;
- }
-@@ -257,19 +280,12 @@ static void gsc_work(struct work_struct *work)
  	xe_device_mem_access_get(xe);
  	xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
  
--	ret = gsc_upload(gsc);
--	if (ret && ret != -EEXIST) {
-+	ret = gsc_upload_and_init(gsc);
-+	if (ret && ret != -EEXIST)
- 		xe_uc_fw_change_status(&gsc->fw, XE_UC_FIRMWARE_LOAD_FAIL);
--		goto out;
--	}
--
--	xe_uc_fw_change_status(&gsc->fw, XE_UC_FIRMWARE_TRANSFERRED);
-+	else
-+		xe_uc_fw_change_status(&gsc->fw, XE_UC_FIRMWARE_RUNNING);
+-	ret = gsc_upload_and_init(gsc);
+-	if (ret && ret != -EEXIST)
+-		xe_uc_fw_change_status(&gsc->fw, XE_UC_FIRMWARE_LOAD_FAIL);
+-	else
+-		xe_uc_fw_change_status(&gsc->fw, XE_UC_FIRMWARE_RUNNING);
++	if (actions & GSC_ACTION_FW_LOAD) {
++		ret = gsc_upload_and_init(gsc);
++		if (ret && ret != -EEXIST)
++			xe_uc_fw_change_status(&gsc->fw, XE_UC_FIRMWARE_LOAD_FAIL);
++		else
++			xe_uc_fw_change_status(&gsc->fw, XE_UC_FIRMWARE_RUNNING);
++	}
++
++	if (actions & GSC_ACTION_SW_PROXY)
++		xe_gsc_proxy_request_handler(gsc);
  
--	/* HuC auth failure is not fatal */
--	if (xe_huc_is_authenticated(&gt->uc.huc, XE_HUC_AUTH_VIA_GUC))
--		xe_huc_auth(&gt->uc.huc, XE_HUC_AUTH_VIA_GSC);
--
--out:
  	xe_force_wake_put(gt_to_fw(gt), XE_FW_GSC);
  	xe_device_mem_access_put(xe);
- }
-@@ -302,6 +318,10 @@ int xe_gsc_init(struct xe_gsc *gsc)
- 	else if (ret)
- 		goto out;
+@@ -298,6 +309,7 @@ int xe_gsc_init(struct xe_gsc *gsc)
  
-+	ret = xe_gsc_proxy_init(gsc);
-+	if (ret && ret != -ENODEV)
-+		goto out;
+ 	gsc->fw.type = XE_UC_FW_TYPE_GSC;
+ 	INIT_WORK(&gsc->work, gsc_work);
++	spin_lock_init(&gsc->lock);
+ 
+ 	/* The GSC uC is only available on the media GT */
+ 	if (tile->media_gt && (gt != tile->media_gt)) {
+@@ -421,6 +433,10 @@ void xe_gsc_load_start(struct xe_gsc *gsc)
+ 		return;
+ 	}
+ 
++	spin_lock_irq(&gsc->lock);
++	gsc->work_actions |= GSC_ACTION_FW_LOAD;
++	spin_unlock_irq(&gsc->lock);
 +
- 	return 0;
- 
- out:
-@@ -410,6 +430,11 @@ void xe_gsc_wait_for_worker_completion(struct xe_gsc *gsc)
- 		flush_work(&gsc->work);
+ 	queue_work(gsc->wq, &gsc->work);
  }
- 
-+void xe_gsc_remove(struct xe_gsc *gsc)
-+{
-+	xe_gsc_proxy_remove(gsc);
-+}
-+
- /*
-  * wa_14015076503: if the GSC FW is loaded, we need to alert it before doing a
-  * GSC engine reset by writing a notification bit in the GS1 register and then
-diff --git a/drivers/gpu/drm/xe/xe_gsc.h b/drivers/gpu/drm/xe/xe_gsc.h
-index bc1ef7f31ea2..c6fb32e3fd79 100644
---- a/drivers/gpu/drm/xe/xe_gsc.h
-+++ b/drivers/gpu/drm/xe/xe_gsc.h
-@@ -14,6 +14,7 @@ int xe_gsc_init(struct xe_gsc *gsc);
- int xe_gsc_init_post_hwconfig(struct xe_gsc *gsc);
- void xe_gsc_wait_for_worker_completion(struct xe_gsc *gsc);
- void xe_gsc_load_start(struct xe_gsc *gsc);
-+void xe_gsc_remove(struct xe_gsc *gsc);
- 
- void xe_gsc_wa_14015076503(struct xe_gt *gt, bool prep);
  
 diff --git a/drivers/gpu/drm/xe/xe_gsc_proxy.c b/drivers/gpu/drm/xe/xe_gsc_proxy.c
-new file mode 100644
-index 000000000000..0983b4903cc7
---- /dev/null
+index 0983b4903cc7..0c8212fe4845 100644
+--- a/drivers/gpu/drm/xe/xe_gsc_proxy.c
 +++ b/drivers/gpu/drm/xe/xe_gsc_proxy.c
-@@ -0,0 +1,448 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#include "xe_gsc_proxy.h"
-+
-+#include <linux/component.h>
-+#include <linux/delay.h>
-+
-+#include <drm/drm_managed.h>
-+#include <drm/i915_component.h>
-+#include <drm/i915_gsc_proxy_mei_interface.h>
-+
-+#include "abi/gsc_proxy_commands_abi.h"
-+#include "regs/xe_gsc_regs.h"
-+#include "xe_bo.h"
-+#include "xe_gsc.h"
-+#include "xe_gsc_submit.h"
-+#include "xe_gt.h"
-+#include "xe_gt_printk.h"
-+#include "xe_map.h"
-+#include "xe_mmio.h"
-+
-+/*
-+ * GSC proxy:
-+ * The GSC uC needs to communicate with the CSME to perform certain operations.
-+ * Since the GSC can't perform this communication directly on platforms where it
-+ * is integrated in GT, the graphics driver needs to transfer the messages from
-+ * GSC to CSME and back. The proxy flow must be manually started after the GSC
-+ * is loaded to signal to GSC that we're ready to handle its messages and allow
-+ * it to query its init data from CSME; GSC will then trigger an HECI2 interrupt
-+ * if it needs to send messages to CSME again.
-+ * The proxy flow is as follow:
-+ * 1 - Xe submits a request to GSC asking for the message to CSME
-+ * 2 - GSC replies with the proxy header + payload for CSME
-+ * 3 - Xe sends the reply from GSC as-is to CSME via the mei proxy component
-+ * 4 - CSME replies with the proxy header + payload for GSC
-+ * 5 - Xe submits a request to GSC with the reply from CSME
-+ * 6 - GSC replies either with a new header + payload (same as step 2, so we
-+ *     restart from there) or with an end message.
-+ */
-+
-+/*
-+ * The component should load quite quickly in most cases, but it could take
-+ * a bit. Using a very big timeout just to cover the worst case scenario
-+ */
-+#define GSC_PROXY_INIT_TIMEOUT_MS 20000
-+
-+/* shorthand define for code compactness */
-+#define PROXY_HDR_SIZE (sizeof(struct xe_gsc_proxy_header))
-+
-+/* the protocol supports up to 32K in each direction */
-+#define GSC_PROXY_BUFFER_SIZE SZ_32K
-+#define GSC_PROXY_CHANNEL_SIZE (GSC_PROXY_BUFFER_SIZE * 2)
-+
-+static struct xe_gt *
-+gsc_to_gt(struct xe_gsc *gsc)
-+{
-+	return container_of(gsc, struct xe_gt, uc.gsc);
-+}
-+
-+static inline struct xe_device *kdev_to_xe(struct device *kdev)
-+{
-+	return dev_get_drvdata(kdev);
-+}
-+
-+static bool gsc_proxy_init_done(struct xe_gsc *gsc)
+@@ -21,6 +21,7 @@
+ #include "xe_gt_printk.h"
+ #include "xe_map.h"
+ #include "xe_mmio.h"
++#include "xe_pm.h"
+ 
+ /*
+  * GSC proxy:
+@@ -74,6 +75,30 @@ static bool gsc_proxy_init_done(struct xe_gsc *gsc)
+ 	       HECI1_FWSTS1_PROXY_STATE_NORMAL;
+ }
+ 
++static void __gsc_proxy_irq_rmw(struct xe_gsc *gsc, u32 clr, u32 set)
 +{
 +	struct xe_gt *gt = gsc_to_gt(gsc);
-+	u32 fwsts1 = xe_mmio_read32(gt, HECI_FWSTS1(MTL_GSC_HECI1_BASE));
 +
-+	return REG_FIELD_GET(HECI1_FWSTS1_CURRENT_STATE, fwsts1) ==
-+	       HECI1_FWSTS1_PROXY_STATE_NORMAL;
++	/* make sure we never accidentally write the RST bit */
++	clr |= HECI_H_CSR_RST;
++
++	xe_mmio_rmw32(gt, HECI_H_CSR(MTL_GSC_HECI2_BASE), clr, set);
 +}
 +
-+static int proxy_send_to_csme(struct xe_gsc *gsc, u32 size)
++static void gsc_proxy_irq_clear(struct xe_gsc *gsc)
++{
++	/* The status bit is cleared by writing to it */
++	__gsc_proxy_irq_rmw(gsc, 0, HECI_H_CSR_IS);
++}
++
++static void gsc_proxy_irq_toggle(struct xe_gsc *gsc, bool enabled)
++{
++	u32 set = enabled ? HECI_H_CSR_IE : 0;
++	u32 clr = enabled ? 0 : HECI_H_CSR_IE;
++
++	__gsc_proxy_irq_rmw(gsc, clr, set);
++}
++
+ static int proxy_send_to_csme(struct xe_gsc *gsc, u32 size)
+ {
+ 	struct xe_gt *gt = gsc_to_gt(gsc);
+@@ -260,7 +285,7 @@ static int proxy_query(struct xe_gsc *gsc)
+ 	return ret < 0 ? ret : 0;
+ }
+ 
+-static int gsc_proxy_request_handler(struct xe_gsc *gsc)
++int xe_gsc_proxy_request_handler(struct xe_gsc *gsc)
+ {
+ 	struct xe_gt *gt = gsc_to_gt(gsc);
+ 	int slept;
+@@ -282,12 +307,36 @@ static int gsc_proxy_request_handler(struct xe_gsc *gsc)
+ 		xe_gt_err(gt, "GSC proxy component not bound!\n");
+ 		err = -EIO;
+ 	} else {
++		/*
++		 * clear the pending interrupt and allow new proxy requests to
++		 * be generated while we handle the current one
++		 */
++		gsc_proxy_irq_clear(gsc);
+ 		err = proxy_query(gsc);
+ 	}
+ 	mutex_unlock(&gsc->proxy.mutex);
+ 	return err;
+ }
+ 
++void xe_gsc_proxy_irq_handler(struct xe_gsc *gsc, u32 iir)
 +{
 +	struct xe_gt *gt = gsc_to_gt(gsc);
-+	struct i915_gsc_proxy_component *comp = gsc->proxy.component;
-+	int ret;
 +
-+	ret = comp->ops->send(comp->mei_dev, gsc->proxy.to_csme, size);
-+	if (ret < 0) {
-+		xe_gt_err(gt, "Failed to send CSME proxy message\n");
-+		return ret;
-+	}
++	if (unlikely(!iir))
++		return;
 +
-+	ret = comp->ops->recv(comp->mei_dev, gsc->proxy.from_csme, GSC_PROXY_BUFFER_SIZE);
-+	if (ret < 0) {
-+		xe_gt_err(gt, "Failed to receive CSME proxy message\n");
-+		return ret;
-+	}
-+
-+	return ret;
-+}
-+
-+static int proxy_send_to_gsc(struct xe_gsc *gsc, u32 size)
-+{
-+	struct xe_gt *gt = gsc_to_gt(gsc);
-+	u64 addr_in = xe_bo_ggtt_addr(gsc->proxy.bo);
-+	u64 addr_out = addr_in + GSC_PROXY_BUFFER_SIZE;
-+	int err;
-+
-+	/* the message must contain at least the gsc and proxy headers */
-+	if (size > GSC_PROXY_BUFFER_SIZE) {
-+		xe_gt_err(gt, "Invalid GSC proxy message size: %u\n", size);
-+		return -EINVAL;
-+	}
-+
-+	err = xe_gsc_pkt_submit_kernel(gsc, addr_in, size,
-+				       addr_out, GSC_PROXY_BUFFER_SIZE);
-+	if (err) {
-+		xe_gt_err(gt, "Failed to submit gsc proxy rq (%pe)\n", ERR_PTR(err));
-+		return err;
-+	}
-+
-+	return 0;
-+}
-+
-+static int validate_proxy_header(struct xe_gsc_proxy_header *header,
-+				 u32 source, u32 dest, u32 max_size)
-+{
-+	u32 type = FIELD_GET(GSC_PROXY_TYPE, header->hdr);
-+	u32 length = FIELD_GET(GSC_PROXY_PAYLOAD_LENGTH, header->hdr);
-+
-+	if (header->destination != dest || header->source != source)
-+		return -ENOEXEC;
-+
-+	if (length + PROXY_HDR_SIZE > max_size)
-+		return -E2BIG;
-+
-+	switch (type) {
-+	case GSC_PROXY_MSG_TYPE_PROXY_PAYLOAD:
-+		if (length > 0)
-+			break;
-+		fallthrough;
-+	case GSC_PROXY_MSG_TYPE_PROXY_INVALID:
-+		return -EIO;
-+	default:
-+		break;
-+	}
-+
-+	return 0;
-+}
-+
-+#define proxy_header_wr(xe_, map_, offset_, field_, val_) \
-+	xe_map_wr_field(xe_, map_, offset_, struct xe_gsc_proxy_header, field_, val_)
-+
-+#define proxy_header_rd(xe_, map_, offset_, field_) \
-+	xe_map_rd_field(xe_, map_, offset_, struct xe_gsc_proxy_header, field_)
-+
-+u32 emit_proxy_header(struct xe_device *xe, struct iosys_map *map, u32 offset)
-+{
-+	xe_map_memset(xe, map, offset, 0, PROXY_HDR_SIZE);
-+
-+	proxy_header_wr(xe, map, offset, hdr,
-+			FIELD_PREP(GSC_PROXY_TYPE, GSC_PROXY_MSG_TYPE_PROXY_QUERY) |
-+			FIELD_PREP(GSC_PROXY_PAYLOAD_LENGTH, 0));
-+
-+	proxy_header_wr(xe, map, offset, source, GSC_PROXY_ADDRESSING_KMD);
-+	proxy_header_wr(xe, map, offset, destination, GSC_PROXY_ADDRESSING_GSC);
-+	proxy_header_wr(xe, map, offset, status, 0);
-+
-+	return offset + PROXY_HDR_SIZE;
-+}
-+
-+static int proxy_query(struct xe_gsc *gsc)
-+{
-+	struct xe_gt *gt = gsc_to_gt(gsc);
-+	struct xe_device *xe = gt_to_xe(gt);
-+	struct xe_gsc_proxy_header *to_csme_hdr = gsc->proxy.to_csme;
-+	void *to_csme_payload = gsc->proxy.to_csme + PROXY_HDR_SIZE;
-+	u32 wr_offset;
-+	u32 rd_offset;
-+	u32 size;
-+	int ret;
-+
-+	wr_offset = xe_gsc_emit_header(xe, &gsc->proxy.to_gsc, 0,
-+				       HECI_MEADDRESS_PROXY, 0, PROXY_HDR_SIZE);
-+	wr_offset = emit_proxy_header(xe, &gsc->proxy.to_gsc, wr_offset);
-+
-+	size = wr_offset;
-+
-+	while (1) {
-+		/* clear the GSC response header space */
-+		xe_map_memset(xe, &gsc->proxy.from_gsc, 0, 0, SZ_4K);
-+
-+		/* send proxy message to GSC */
-+		ret = proxy_send_to_gsc(gsc, size);
-+		if (ret)
-+			goto proxy_error;
-+
-+		/* check the reply from GSC */
-+		ret = xe_gsc_read_out_header(xe, &gsc->proxy.from_gsc, 0,
-+					     PROXY_HDR_SIZE, &rd_offset);
-+		if (ret) {
-+			xe_gt_err(gt, "Invalid gsc header in proxy reply (%pe)\n",
-+				  ERR_PTR(ret));
-+			goto proxy_error;
-+		}
-+
-+		/* copy the proxy header reply from GSC */
-+		xe_map_memcpy_from(xe, to_csme_hdr, &gsc->proxy.from_gsc,
-+				   rd_offset, PROXY_HDR_SIZE);
-+
-+		/* stop if this was the last message */
-+		if (FIELD_GET(GSC_PROXY_TYPE, to_csme_hdr->hdr) == GSC_PROXY_MSG_TYPE_PROXY_END)
-+			break;
-+
-+		/* make sure the GSC-to-CSME proxy header is sane */
-+		ret = validate_proxy_header(to_csme_hdr,
-+					    GSC_PROXY_ADDRESSING_GSC,
-+					    GSC_PROXY_ADDRESSING_CSME,
-+					    GSC_PROXY_BUFFER_SIZE - rd_offset);
-+		if (ret) {
-+			xe_gt_err(gt, "invalid GSC to CSME proxy header! (%pe)\n",
-+				  ERR_PTR(ret));
-+			goto proxy_error;
-+		}
-+
-+		/* copy the rest of the message */
-+		size = FIELD_GET(GSC_PROXY_PAYLOAD_LENGTH, to_csme_hdr->hdr);
-+		xe_map_memcpy_from(xe, to_csme_payload, &gsc->proxy.from_gsc,
-+				   rd_offset + PROXY_HDR_SIZE, size);
-+
-+		/* send the GSC message to the CSME */
-+		ret = proxy_send_to_csme(gsc, size + PROXY_HDR_SIZE);
-+		if (ret < 0)
-+			goto proxy_error;
-+
-+		/* reply size from CSME, including the proxy header */
-+		size = ret;
-+		if (size < PROXY_HDR_SIZE) {
-+			xe_gt_err(gt, "CSME to GSC proxy msg too small: 0x%x\n", size);
-+			goto proxy_error;
-+		}
-+
-+		/* make sure the CSME-to-GSC proxy header is sane */
-+		ret = validate_proxy_header(gsc->proxy.from_csme,
-+					    GSC_PROXY_ADDRESSING_CSME,
-+					    GSC_PROXY_ADDRESSING_GSC,
-+					    GSC_PROXY_BUFFER_SIZE - rd_offset);
-+		if (ret) {
-+			xe_gt_err(gt, "invalid CSME to GSC proxy header! %d\n", ret);
-+			goto proxy_error;
-+		}
-+
-+		/* Emit a new header for sending the reply to the GSC */
-+		wr_offset = xe_gsc_emit_header(xe, &gsc->proxy.to_gsc, 0,
-+					       HECI_MEADDRESS_PROXY, 0, size);
-+
-+		/* copy the CSME reply and update the total msg size to include the GSC header */
-+		xe_map_memcpy_to(xe, &gsc->proxy.to_gsc, wr_offset, gsc->proxy.from_csme, size);
-+
-+		size += wr_offset;
-+	}
-+
-+proxy_error:
-+	return ret < 0 ? ret : 0;
-+}
-+
-+static int gsc_proxy_request_handler(struct xe_gsc *gsc)
-+{
-+	struct xe_gt *gt = gsc_to_gt(gsc);
-+	int slept;
-+	int err;
-+
-+	if (!gsc->proxy.component_added)
-+		return -ENODEV;
-+
-+	/* when GSC is loaded, we can queue this before the component is bound */
-+	for (slept = 0; slept < GSC_PROXY_INIT_TIMEOUT_MS; slept += 100) {
-+		if (gsc->proxy.component)
-+			break;
-+
-+		msleep(100);
-+	}
-+
-+	mutex_lock(&gsc->proxy.mutex);
 +	if (!gsc->proxy.component) {
-+		xe_gt_err(gt, "GSC proxy component not bound!\n");
-+		err = -EIO;
-+	} else {
-+		err = proxy_query(gsc);
++		xe_gt_err(gt, "GSC proxy irq received without the component being bound!\n");
++		return;
 +	}
-+	mutex_unlock(&gsc->proxy.mutex);
-+	return err;
++
++	spin_lock(&gsc->lock);
++	gsc->work_actions |= GSC_ACTION_SW_PROXY;
++	spin_unlock(&gsc->lock);
++
++	queue_work(gsc->wq, &gsc->work);
 +}
 +
-+static int xe_gsc_proxy_component_bind(struct device *xe_kdev,
-+				       struct device *mei_kdev, void *data)
-+{
-+	struct xe_device *xe = kdev_to_xe(xe_kdev);
-+	struct xe_gt *gt = xe->tiles[0].media_gt;
-+	struct xe_gsc *gsc = &gt->uc.gsc;
+ static int xe_gsc_proxy_component_bind(struct device *xe_kdev,
+ 				       struct device *mei_kdev, void *data)
+ {
+@@ -420,22 +469,42 @@ void xe_gsc_proxy_remove(struct xe_gsc *gsc)
+ {
+ 	struct xe_gt *gt = gsc_to_gt(gsc);
+ 	struct xe_device *xe = gt_to_xe(gt);
++	int err = 0;
+ 
+-	if (gsc->proxy.component_added) {
+-		component_del(xe->drm.dev, &xe_gsc_proxy_component_ops);
+-		gsc->proxy.component_added = false;
+-	}
++	if (!gsc->proxy.component_added)
++		return;
 +
-+	mutex_lock(&gsc->proxy.mutex);
-+	gsc->proxy.component = data;
-+	gsc->proxy.component->mei_dev = mei_kdev;
-+	mutex_unlock(&gsc->proxy.mutex);
++	/* disable HECI2 IRQs */
++	xe_pm_runtime_get(xe);
++	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
++	if (err)
++		xe_gt_err(gt, "failed to get forcewake to disable GSC interrupts\n");
 +
-+	return 0;
-+}
++	/* try do disable irq even if forcewake failed */
++	gsc_proxy_irq_toggle(gsc, false);
 +
-+static void xe_gsc_proxy_component_unbind(struct device *xe_kdev,
-+					  struct device *mei_kdev, void *data)
-+{
-+	struct xe_device *xe = kdev_to_xe(xe_kdev);
-+	struct xe_gt *gt = xe->tiles[0].media_gt;
-+	struct xe_gsc *gsc = &gt->uc.gsc;
++	if (!err)
++		xe_force_wake_put(gt_to_fw(gt), XE_FW_GSC);
++	xe_pm_runtime_put(xe);
 +
 +	xe_gsc_wait_for_worker_completion(gsc);
 +
-+	mutex_lock(&gsc->proxy.mutex);
-+	gsc->proxy.component = NULL;
-+	mutex_unlock(&gsc->proxy.mutex);
-+}
++	component_del(xe->drm.dev, &xe_gsc_proxy_component_ops);
++	gsc->proxy.component_added = false;
+ }
+ 
+ int xe_gsc_proxy_start(struct xe_gsc *gsc)
+ {
+ 	int err;
+ 
++	/* enable the proxy interrupt in the GSC shim layer */
++	gsc_proxy_irq_toggle(gsc, true);
 +
-+static const struct component_ops xe_gsc_proxy_component_ops = {
-+	.bind   = xe_gsc_proxy_component_bind,
-+	.unbind = xe_gsc_proxy_component_unbind,
-+};
-+
-+static void proxy_channel_free(struct drm_device *drm, void *arg)
-+{
-+	struct xe_gsc *gsc = arg;
-+
-+	if (!gsc->proxy.bo)
-+		return;
-+
-+	if (gsc->proxy.to_csme) {
-+		kfree(gsc->proxy.to_csme);
-+		gsc->proxy.to_csme = NULL;
-+		gsc->proxy.from_csme = NULL;
-+	}
-+
-+	if (gsc->proxy.bo) {
-+		iosys_map_clear(&gsc->proxy.to_gsc);
-+		iosys_map_clear(&gsc->proxy.from_gsc);
-+		xe_bo_unpin_map_no_vm(gsc->proxy.bo);
-+		gsc->proxy.bo = NULL;
-+	}
-+}
-+
-+static int proxy_channel_alloc(struct xe_gsc *gsc)
-+{
-+	struct xe_gt *gt = gsc_to_gt(gsc);
-+	struct xe_tile *tile = gt_to_tile(gt);
-+	struct xe_device *xe = gt_to_xe(gt);
-+	struct xe_bo *bo;
-+	void *csme;
-+	int err;
-+
-+	csme = kzalloc(GSC_PROXY_CHANNEL_SIZE, GFP_KERNEL);
-+	if (!csme)
-+		return -ENOMEM;
-+
-+	bo = xe_bo_create_pin_map(xe, tile, NULL, GSC_PROXY_CHANNEL_SIZE,
-+				  ttm_bo_type_kernel,
-+				  XE_BO_CREATE_SYSTEM_BIT |
-+				  XE_BO_CREATE_GGTT_BIT);
-+	if (IS_ERR(bo)) {
-+		kfree(csme);
-+		return PTR_ERR(bo);
-+	}
-+
-+	gsc->proxy.bo = bo;
-+	gsc->proxy.to_gsc = IOSYS_MAP_INIT_OFFSET(&bo->vmap, 0);
-+	gsc->proxy.from_gsc = IOSYS_MAP_INIT_OFFSET(&bo->vmap, GSC_PROXY_BUFFER_SIZE);
-+	gsc->proxy.to_csme = csme;
-+	gsc->proxy.from_csme = csme + GSC_PROXY_BUFFER_SIZE;
-+
-+	err = drmm_add_action_or_reset(&xe->drm, proxy_channel_free, gsc);
-+	if (err)
-+		return err;
-+
-+	return 0;
-+}
-+
-+int xe_gsc_proxy_init(struct xe_gsc *gsc)
-+{
-+	int err;
-+	struct xe_gt *gt = gsc_to_gt(gsc);
-+	struct xe_tile *tile = gt_to_tile(gt);
-+	struct xe_device *xe = tile_to_xe(tile);
-+
-+	mutex_init(&gsc->proxy.mutex);
-+
-+	if (!IS_ENABLED(CONFIG_INTEL_MEI_GSC_PROXY)) {
-+		xe_gt_info(gt, "can't init GSC proxy due to missing mei component\n");
-+		return -ENODEV;
-+	}
-+
-+	/* no multi-tile devices with this feature yet */
-+	if (tile->id > 0) {
-+		xe_gt_err(gt, "unexpected GSC proxy init on tile %u\n", tile->id);
-+		return -EINVAL;
-+	}
-+
-+	err = proxy_channel_alloc(gsc);
-+	if (err)
-+		return err;
-+
-+	err = component_add_typed(xe->drm.dev, &xe_gsc_proxy_component_ops,
-+				  I915_COMPONENT_GSC_PROXY);
-+	if (err < 0) {
-+		xe_gt_err(gt, "Failed to add GSC_PROXY component (%pe)\n", ERR_PTR(err));
-+		return err;
-+	}
-+
-+	gsc->proxy.component_added = true;
-+
-+	/* the component must be removed before unload, so can't use drmm for cleanup */
-+
-+	return 0;
-+}
-+
-+void xe_gsc_proxy_remove(struct xe_gsc *gsc)
-+{
-+	struct xe_gt *gt = gsc_to_gt(gsc);
-+	struct xe_device *xe = gt_to_xe(gt);
-+
-+	if (gsc->proxy.component_added) {
-+		component_del(xe->drm.dev, &xe_gsc_proxy_component_ops);
-+		gsc->proxy.component_added = false;
-+	}
-+}
-+
-+int xe_gsc_proxy_start(struct xe_gsc *gsc)
-+{
-+	int err;
-+
-+	/*
-+	 * The handling of the first proxy request must be manually triggered to
-+	 * notify the GSC that we're ready to support the proxy flow.
-+	 */
-+	err = gsc_proxy_request_handler(gsc);
-+	if (err)
-+		return err;
-+
-+	if (!gsc_proxy_init_done(gsc)) {
-+		xe_gt_err(gsc_to_gt(gsc), "GSC FW reports proxy init not completed\n");
-+		return -EIO;
-+	}
-+
-+	return 0;
-+}
+ 	/*
+ 	 * The handling of the first proxy request must be manually triggered to
+ 	 * notify the GSC that we're ready to support the proxy flow.
+ 	 */
+-	err = gsc_proxy_request_handler(gsc);
++	err = xe_gsc_proxy_request_handler(gsc);
+ 	if (err)
+ 		return err;
+ 
 diff --git a/drivers/gpu/drm/xe/xe_gsc_proxy.h b/drivers/gpu/drm/xe/xe_gsc_proxy.h
-new file mode 100644
-index 000000000000..5dc6321efbaf
---- /dev/null
+index 5dc6321efbaf..908f9441f093 100644
+--- a/drivers/gpu/drm/xe/xe_gsc_proxy.h
 +++ b/drivers/gpu/drm/xe/xe_gsc_proxy.h
-@@ -0,0 +1,17 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
+@@ -14,4 +14,7 @@ int xe_gsc_proxy_init(struct xe_gsc *gsc);
+ void xe_gsc_proxy_remove(struct xe_gsc *gsc);
+ int xe_gsc_proxy_start(struct xe_gsc *gsc);
+ 
++int xe_gsc_proxy_request_handler(struct xe_gsc *gsc);
++void xe_gsc_proxy_irq_handler(struct xe_gsc *gsc, u32 iir);
 +
-+#ifndef _XE_GSC_PROXY_H_
-+#define _XE_GSC_PROXY_H_
-+
-+#include <linux/types.h>
-+
-+struct xe_gsc;
-+
-+int xe_gsc_proxy_init(struct xe_gsc *gsc);
-+void xe_gsc_proxy_remove(struct xe_gsc *gsc);
-+int xe_gsc_proxy_start(struct xe_gsc *gsc);
-+
-+#endif
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_gsc_types.h b/drivers/gpu/drm/xe/xe_gsc_types.h
-index 57fefd66a7ea..645166adae1f 100644
+index 645166adae1f..310f25809798 100644
 --- a/drivers/gpu/drm/xe/xe_gsc_types.h
 +++ b/drivers/gpu/drm/xe/xe_gsc_types.h
-@@ -7,11 +7,15 @@
- #define _XE_GSC_TYPES_H_
- 
+@@ -9,6 +9,7 @@
  #include <linux/workqueue.h>
-+#include <linux/iosys-map.h>
-+#include <linux/mutex.h>
-+#include <linux/types.h>
+ #include <linux/iosys-map.h>
+ #include <linux/mutex.h>
++#include <linux/spinlock.h>
+ #include <linux/types.h>
  
  #include "xe_uc_fw_types.h"
- 
- struct xe_bo;
- struct xe_exec_queue;
-+struct i915_gsc_proxy_component;
- 
- /**
-  * struct xe_gsc - GSC
-@@ -34,6 +38,25 @@ struct xe_gsc {
- 
+@@ -39,6 +40,14 @@ struct xe_gsc {
  	/** @work: delayed load and proxy handling work */
  	struct work_struct work;
+ 
++	/** @lock: protects access to the work_actions mask */
++	spinlock_t lock;
 +
-+	struct {
-+		/** @component: struct for communication with mei component */
-+		struct i915_gsc_proxy_component *component;
-+		/** @mutex: protects the component binding and usage */
-+		struct mutex mutex;
-+		/** @component_added: whether the component has been added */
-+		bool component_added;
-+		/** @bo: object to store message to and from the GSC */
-+		struct xe_bo *bo;
-+		/** @to_gsc: map of the memory used to send messages to the GSC */
-+		struct iosys_map to_gsc;
-+		/** @from_gsc: map of the memory used to recv messages from the GSC */
-+		struct iosys_map from_gsc;
-+		/** @to_csme: pointer to the memory used to send messages to CSME */
-+		void *to_csme;
-+		/** @from_csme: pointer to the memory used to recv messages from CSME */
-+		void *from_csme;
-+	} proxy;
- };
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index dfd9cf01a5d5..6dd6f0d3c508 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -78,6 +78,11 @@ void xe_gt_sanitize(struct xe_gt *gt)
- 	gt->uc.guc.submission_state.enabled = false;
- }
- 
-+void xe_gt_remove(struct xe_gt *gt)
-+{
-+	xe_uc_remove(&gt->uc);
-+}
++	/** @work_actions: mask of actions to be performed in the work */
++	u32 work_actions;
++#define GSC_ACTION_FW_LOAD BIT(0)
++#define GSC_ACTION_SW_PROXY BIT(1)
 +
- static void gt_fini(struct drm_device *drm, void *arg)
- {
- 	struct xe_gt *gt = arg;
-diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-index f3c780bd266d..5e5a812e58ef 100644
---- a/drivers/gpu/drm/xe/xe_gt.h
-+++ b/drivers/gpu/drm/xe/xe_gt.h
-@@ -41,6 +41,7 @@ int xe_gt_suspend(struct xe_gt *gt);
- int xe_gt_resume(struct xe_gt *gt);
- void xe_gt_reset_async(struct xe_gt *gt);
- void xe_gt_sanitize(struct xe_gt *gt);
-+void xe_gt_remove(struct xe_gt *gt);
- 
- /**
-  * xe_gt_any_hw_engine_by_reset_domain - scan the list of engines and return the
-diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
-index 25e1ddfd2f86..d83bb62d0250 100644
---- a/drivers/gpu/drm/xe/xe_uc.c
-+++ b/drivers/gpu/drm/xe/xe_uc.c
-@@ -7,6 +7,7 @@
- 
- #include "xe_device.h"
- #include "xe_gsc.h"
-+#include "xe_gsc_proxy.h"
+ 	struct {
+ 		/** @component: struct for communication with mei component */
+ 		struct i915_gsc_proxy_component *component;
+diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+index d1f5ba4bb745..de7cc6e611a2 100644
+--- a/drivers/gpu/drm/xe/xe_irq.c
++++ b/drivers/gpu/drm/xe/xe_irq.c
+@@ -15,6 +15,7 @@
+ #include "xe_display.h"
+ #include "xe_drv.h"
  #include "xe_gt.h"
++#include "xe_gsc_proxy.h"
  #include "xe_guc.h"
- #include "xe_guc_pc.h"
-@@ -256,3 +257,8 @@ int xe_uc_suspend(struct xe_uc *uc)
+ #include "xe_hw_engine.h"
+ #include "xe_mmio.h"
+@@ -129,6 +130,7 @@ void xe_irq_enable_hwe(struct xe_gt *gt)
+ 	u32 ccs_mask, bcs_mask;
+ 	u32 irqs, dmask, smask;
+ 	u32 gsc_mask = 0;
++	u32 heci_mask = 0;
  
- 	return xe_guc_suspend(&uc->guc);
- }
+ 	if (xe_device_uc_enabled(xe)) {
+ 		irqs = GT_RENDER_USER_INTERRUPT |
+@@ -178,14 +180,23 @@ void xe_irq_enable_hwe(struct xe_gt *gt)
+ 		xe_mmio_write32(gt, VCS2_VCS3_INTR_MASK, ~dmask);
+ 		xe_mmio_write32(gt, VECS0_VECS1_INTR_MASK, ~dmask);
+ 
+-		if (xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_OTHER))
++		/*
++		 * the heci2 interrupt is enabled via the same register as the
++		 * GSCCS interrupts, but it has its own mask register.
++		 */
++		if (xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_OTHER)) {
+ 			gsc_mask = irqs;
+-		else if (HAS_HECI_GSCFI(xe))
++			heci_mask = GSC_IRQ_INTF(1);
++		} else if (HAS_HECI_GSCFI(xe)) {
+ 			gsc_mask = GSC_IRQ_INTF(1);
++		}
 +
-+void xe_uc_remove(struct xe_uc *uc)
-+{
-+	xe_gsc_remove(&uc->gsc);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_uc.h b/drivers/gpu/drm/xe/xe_uc.h
-index 5d5110c0c834..e4d4e3c99f0e 100644
---- a/drivers/gpu/drm/xe/xe_uc.h
-+++ b/drivers/gpu/drm/xe/xe_uc.h
-@@ -20,5 +20,6 @@ int xe_uc_stop(struct xe_uc *uc);
- int xe_uc_start(struct xe_uc *uc);
- int xe_uc_suspend(struct xe_uc *uc);
- int xe_uc_sanitize_reset(struct xe_uc *uc);
-+void xe_uc_remove(struct xe_uc *uc);
+ 		if (gsc_mask) {
+-			xe_mmio_write32(gt, GUNIT_GSC_INTR_ENABLE, gsc_mask);
++			xe_mmio_write32(gt, GUNIT_GSC_INTR_ENABLE, gsc_mask | heci_mask);
+ 			xe_mmio_write32(gt, GUNIT_GSC_INTR_MASK, ~gsc_mask);
+ 		}
++		if (heci_mask)
++			xe_mmio_write32(gt, HECI2_RSVD_INTR_MASK, ~(heci_mask << 16));
+ 	}
+ }
  
- #endif
+@@ -232,6 +243,8 @@ gt_other_irq_handler(struct xe_gt *gt, const u8 instance, const u16 iir)
+ 		return xe_guc_irq_handler(&gt->uc.guc, iir);
+ 	if (instance == OTHER_MEDIA_GUC_INSTANCE && xe_gt_is_media_type(gt))
+ 		return xe_guc_irq_handler(&gt->uc.guc, iir);
++	if (instance == OTHER_HECI2_INSTANCE && xe_gt_is_media_type(gt))
++		return xe_gsc_proxy_irq_handler(&gt->uc.gsc, iir);
+ 
+ 	if (instance != OTHER_GUC_INSTANCE &&
+ 	    instance != OTHER_MEDIA_GUC_INSTANCE) {
+@@ -249,15 +262,23 @@ static struct xe_gt *pick_engine_gt(struct xe_tile *tile,
+ 	if (MEDIA_VER(xe) < 13)
+ 		return tile->primary_gt;
+ 
+-	if (class == XE_ENGINE_CLASS_VIDEO_DECODE ||
+-	    class == XE_ENGINE_CLASS_VIDEO_ENHANCE)
++	switch (class) {
++	case XE_ENGINE_CLASS_VIDEO_DECODE:
++	case XE_ENGINE_CLASS_VIDEO_ENHANCE:
+ 		return tile->media_gt;
+-
+-	if (class == XE_ENGINE_CLASS_OTHER &&
+-	    (instance == OTHER_MEDIA_GUC_INSTANCE || instance == OTHER_GSC_INSTANCE))
+-		return tile->media_gt;
+-
+-	return tile->primary_gt;
++	case XE_ENGINE_CLASS_OTHER:
++		switch (instance) {
++		case OTHER_MEDIA_GUC_INSTANCE:
++		case OTHER_GSC_INSTANCE:
++		case OTHER_HECI2_INSTANCE:
++			return tile->media_gt;
++		default:
++			break;
++		};
++		fallthrough;
++	default:
++		return tile->primary_gt;
++	}
+ }
+ 
+ static void gt_irq_handler(struct xe_tile *tile,
+@@ -484,6 +505,7 @@ static void gt_irq_reset(struct xe_tile *tile)
+ 	    HAS_HECI_GSCFI(tile_to_xe(tile))) {
+ 		xe_mmio_write32(mmio, GUNIT_GSC_INTR_ENABLE, 0);
+ 		xe_mmio_write32(mmio, GUNIT_GSC_INTR_MASK, ~0);
++		xe_mmio_write32(mmio, HECI2_RSVD_INTR_MASK, ~0);
+ 	}
+ 
+ 	xe_mmio_write32(mmio, GPM_WGBOXPERF_INTR_ENABLE, 0);
 -- 
 2.43.0
 
