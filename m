@@ -4,135 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4037BC4332F
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Dec 2023 00:45:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 448CBC4332F
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Dec 2023 00:55:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED8B610E141;
-	Tue, 12 Dec 2023 00:45:35 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 827E210E141
- for <intel-xe@lists.freedesktop.org>; Tue, 12 Dec 2023 00:45:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AC4F10E539;
+	Tue, 12 Dec 2023 00:55:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3113E10E539
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Dec 2023 00:55:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702341933; x=1733877933;
+ t=1702342545; x=1733878545;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=IJ5n4/wIpO190XWSMtyUP4opbbsYn7UBcTBtprzoThQ=;
- b=aQ92nE1lz1x7SCS0Pbl/GgX5EmrWH1isLK93OgTPDNce+07ZHwjaI8c1
- XEkyxYmr3StJY6AcMrLkxCiWeL2HMnKG+a6iJRbB7WfgjlW3fvX0g+C8g
- tGbYQB6mbhqrPctkobFRBfOdR3P6Mxv/xOXQxyQe/cq9rgHwbh717Ajy+
- Kw3Iz3vYnDw6IyHI5rdIyxt3Xrbbrz7TGjdRY+QY7xerm8A6J9zQwLuMy
- YImo99MJF2W1mh8WJo+KEgIcHqddP9OBFeFPnZeV6KGlrfl5E7U2Ji6XQ
- QQ90kU1jzypjQG/DdDGOcKCrO4Bs0Ymg+zBzmZnJ40G2K8XEGCa74nkh8 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="374238131"
-X-IronPort-AV: E=Sophos;i="6.04,269,1695711600"; d="scan'208";a="374238131"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2023 16:45:33 -0800
+ in-reply-to:mime-version;
+ bh=9ed8l6f1XD3Klkc+wkfmi1P7phrXgD1yeGU7KMujWXg=;
+ b=M+xYK3j21ukzAmR8zJYVv6v4K4vbL/PblJmRKKxCwu/46OVFBQ3R3zFd
+ oDvvSOoerAir5s7SXvxAlm5BwWurZkayOLO1Vg1kONGWd4KkBUfNqhvTg
+ htMfXdreUK1LUb4FOpjZEBlL8yJ90ynBincDtymZ2SY0DnisGxvH4VTja
+ 5+WruYFo8UV2wpbX3fbKlbgN1b8yLmPU0c9ttz81U/adqyFM1yxXAzZ6O
+ unAO3l+2/nmnfXuCdlTsKqWwM0vi/XTKKFdOBhUBC000G9EEsJKPqRkSi
+ 0cUOdVae1lowTb87zMsm7XyhgHpRT8i2vCI4EOhWwKCJb7m/HzE+nCgDQ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="425858439"
+X-IronPort-AV: E=Sophos;i="6.04,269,1695711600"; d="scan'208";a="425858439"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2023 16:55:43 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="773312811"
-X-IronPort-AV: E=Sophos;i="6.04,269,1695711600"; d="scan'208";a="773312811"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 11 Dec 2023 16:45:32 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.04,269,1695711600"; d="scan'208";a="21303897"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 11 Dec 2023 16:55:43 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 11 Dec 2023 16:45:32 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.35; Mon, 11 Dec 2023 16:55:42 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Mon, 11 Dec 2023 16:45:32 -0800
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.35; Mon, 11 Dec 2023 16:55:42 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Mon, 11 Dec 2023 16:55:42 -0800
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.169)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Mon, 11 Dec 2023 16:45:31 -0800
+ 15.1.2507.35; Mon, 11 Dec 2023 16:55:41 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=N3qYbh5zD0lMDXwrq/QD9eI+BTN0nMeXZU7K4d7J0iQVCDonRWE9Qj2QE1DMDxd6Hq/0Pr9AvW6I3ZnSTnwXORh+PCY92m4TciEOcyS97Ql8g35YUKT6VohSb1ARjl0GvNZp5Dqe9tzbiXnmNpm4aI61OHSU87R3NpfNXoiLPtCAjBedDuHzeAI1Jdt0XPj/yWDf411cUDB29D9FHcoS4MIM6WSYOxWLCZLQefj1vZFhAtuVf34kP89y2wnbPWB5AKQhqoIRyRwa2CKpiBbbLgPE8x0Tlk9rC0C+BHl0yY1pD5J+GDrs1qp6NiIqjm+g5tm71D+7h5BTJkvFbtaWdQ==
+ b=faOiB2BJ6IqpUunGrUvIAaX0sGGS/s2+xNKrVRxjk3az3+TnswRlahH+LRhgK/45iPgxWOaz1jOjToI9Lixl3fb94pAp3RTcs1QubL4yxRfimGFhQaZsACz7GDVxuRb22UgUuZ1s3eEHH3x8exfO8SfjtcX0UEOQRxUw0pvbVpIg00ehrxOzhEsGbtEmpL3PIh2+Ms0Z8MO5z7zITrOZFXbcpS8bQ9DZm26kTOx5AAxbY364Q/h0/Iv/VRR35EfNAfqg3VxCfIBz9pYoS7MwNJSHkhTQOnAPNhqQjpu+1VGuQSoR6lxJDolbiXX7iVFzg3VjB1b52+TwtiEMEGy6cw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Jv0cmRJsvDnt6ReClmvoK4cPPedLGJD4HSdzY4S1kRw=;
- b=RzuUTehb7klu9mXAxyY2DAf8v16sDA5CFIhEPagb239oI+oeAAlrcUOj4LqEeT30igoJctqeJL5kG1/4wZlPCO3G/pBpy5XVgPUDg0mrlL6bPmxc1yXzuWxne80hvtOOhzgbtVSaCmHwUy4LfiNCoEE4ebTjQxm6qshV36gXfeJeZvJCTOu1y5GHLEb0NIVNX74xFfp097bwP8tlu4UCRUWEwntF5Kx0aV0qxwqPrrwnapaa55JrtmMJ1haQwPI+Dj7GVZtUhGlkesfOcGVdtG8/2wyVLIeXantMNiLAe94j8zCGRZMYd+wO2bXK+Tnlu4RQfFyopKI2Om8VRQCERQ==
+ bh=WmqhEEo2xrQBhl9ddcuHxRhAyed/Drv3sFSdiZo3Cb4=;
+ b=PFYgrvNm2RfhmZB+FmjyIz/dz1RNF21CmOEmJK9nLhbumdoBObD9rDEpRoDO2WDNdJlmlWVL6uBKLle8xZOzjzLi4+QZnbSpNUxLJIdROhDZUtmje0CEin8cPohSZxJDchlKlasY8qvGTFGh5STum6BqrV3MrjfWtaPmlECpyUCqsQfyt0N7sunyH9DLBbR9ah6zr2Q4ey9DPJ9i2sTyarAuufl3oVLkeNOW5zaNPut0A1BDmDDLlF1TNj9ozIWs83UR4EGu4KjzOp2b0JlfIy1dacFGYjBkr2b3YOaiNLRR3r5pYHQT7uXv1kfxGyGRdpQGPOq1QcyK3i/31iLwJw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by CH3PR11MB8774.namprd11.prod.outlook.com (2603:10b6:610:1cd::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.33; Tue, 12 Dec
- 2023 00:45:29 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::4f1d:17b5:88b5:76b0]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::4f1d:17b5:88b5:76b0%7]) with mapi id 15.20.7068.033; Tue, 12 Dec 2023
- 00:45:29 +0000
-Date: Mon, 11 Dec 2023 16:45:27 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: Re: [PATCH v7 04/10] drm/xe/xe2: Updates on XY_CTRL_SURF_COPY_BLT
-Message-ID: <20231212004527.GE1327160@mdroper-desk1.amr.corp.intel.com>
-References: <20231211134356.1645973-1-himal.prasad.ghimiray@intel.com>
- <20231211134356.1645973-5-himal.prasad.ghimiray@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by SJ0PR11MB7154.namprd11.prod.outlook.com (2603:10b6:a03:48d::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.32; Tue, 12 Dec
+ 2023 00:55:33 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::b9a8:8221:e4a1:4cda]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::b9a8:8221:e4a1:4cda%4]) with mapi id 15.20.7068.031; Tue, 12 Dec 2023
+ 00:55:33 +0000
+Date: Tue, 12 Dec 2023 00:55:46 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH 13/13] fixup! drm/xe: Introduce a new DRM driver for
+ Intel GPUs
+Message-ID: <ZXevkl91lcXdwkWA@DUT025-TGLU.fm.intel.com>
+References: <20231212001045.1099517-1-rodrigo.vivi@intel.com>
+ <20231212001045.1099517-13-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231211134356.1645973-5-himal.prasad.ghimiray@intel.com>
-X-ClientProxiedBy: BY5PR13CA0034.namprd13.prod.outlook.com
- (2603:10b6:a03:180::47) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+In-Reply-To: <20231212001045.1099517-13-rodrigo.vivi@intel.com>
+X-ClientProxiedBy: BYAPR05CA0089.namprd05.prod.outlook.com
+ (2603:10b6:a03:e0::30) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|CH3PR11MB8774:EE_
-X-MS-Office365-Filtering-Correlation-Id: d038912c-d723-4c5a-acbf-08dbfaaba3c0
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SJ0PR11MB7154:EE_
+X-MS-Office365-Filtering-Correlation-Id: 40ea8c9e-ee98-4747-eb89-08dbfaad0b4a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: IY1Xf96hvXQRfLHPk/eGneIueB4YocnJVKZQnWEdalr9l63MLWUz3K/bPK1Mu38U8QWce9PXSpqL1gfpHXkai7KWh4AW7Yvj4OamPmd8oNQj+R7MKlhqMs7VZIdzRzbS+eR3SFiAkrVrHi9EnDeXYY4RGFSUnWBIiCBSoJAqNlgpnHdOmYm12aqnJ6RJdhyTX+4kkaFKEAULoJaSlGAjJ7zjWYEqZxerAfdsRFgjY0LaNOYVhgUYHqK0QZNCpOhG0t7nK9X5QxKsj946ZQLe8ukRYcZzO0t6dBHrEKPHIM/U0k27KVIfz8bw8RI0LURkDzR5+jeK+YT/syvham1PKFaP6FC+xytHnxa+7tB+Bw6pUmM4ycgTxh5Bz3vYFKjCjvbAf9HfrBjxWN7+IG6B2F9dhBg3Q8homyb3rLWwNHGCuESUj5PdgXlX03GCQKtZjNuzRiMOw6XzP/sUw+28b8tx2WdxdcO/nBOVsEDRRn3kQ13Uov/xPEB6a0AAMtVfjXV24nB9ewhbXuAojrT9XbS0HlIx/0OBP/DufbBhb89/olppubTA6Jlo2SF4CK4L
+X-Microsoft-Antispam-Message-Info: yceHmG85nK3EQwHpaBzeM+CqxA4vuWsZ3T9PDErXNdioV52mAkiOfMHgPmdduYhRcuwi8BoKzR4O22v6HpMe2z04P7mt83omqySMnSSqO/iKDvDy+CNKYw6hCpQfqIukRDLdbMBCRWslIbeFk1ZB0D6/HaTHlnWbSdA7dz+1hTLGu577ORdf5c+ffspn4AsPH9OPdAsQiGtl+GskmD7bvgHo8AjGdZVM3t1PrSDLT4BOgfReqr6dgyGfKTG2PXQLywU2kN+WNtaJpvoWbA6L0yWUwQZ6atAWWu1C3qtOizzb/bGi+o5K27Iz9JazCKkqTuJBdCQ2iMUKlGu0S+OU3+wj7125SheosqwQcxKHqfeHn6XfEO89IRfJkWTbCTUXp5eZA34YlgQMB+qUMx7jEmYPV42024TxluJM+czj5Xkqns1RvVxZu7AXav5/Sfrw2dTiDp6STmm2Apx7UgRpie17avFggtIyBIjc3Joi3E47bcVsT2c0dMjZWuVjFxcm1jN3CUS60oGvlOpB90DEhixeJYKPc+RjXtBiPyIvEwUuQMqDr7TJyb5ysrJnco4b
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366004)(396003)(136003)(346002)(39860400002)(376002)(230922051799003)(451199024)(186009)(64100799003)(1800799012)(66574015)(26005)(83380400001)(6506007)(6512007)(1076003)(5660300002)(6862004)(8676002)(4326008)(8936002)(41300700001)(2906002)(6486002)(478600001)(316002)(66946007)(6636002)(66556008)(66476007)(38100700002)(33656002)(86362001)(82960400001);
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376002)(136003)(346002)(39860400002)(396003)(366004)(230922051799003)(451199024)(186009)(1800799012)(64100799003)(41300700001)(26005)(83380400001)(82960400001)(86362001)(38100700002)(5660300002)(316002)(8936002)(6862004)(4326008)(8676002)(2906002)(30864003)(6666004)(6512007)(6506007)(6636002)(44832011)(66476007)(66556008)(66946007)(478600001)(6486002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?QAgAq2EbMGt11D2mEG9KW4MP2xckuZOyQ/p9BvysLykI/pc3nt2T6uIy3U?=
- =?iso-8859-1?Q?CWr3zXx+68BhbkwakBxbjJwUZlDKn9VKmjbPiOnlc8vMBzLJbk93wK5+h6?=
- =?iso-8859-1?Q?X1LvUhKAYU2V1bA20RAABvOaBf3rOjNg0A1xD5Zlhk6/HpIaSWdKgryTt1?=
- =?iso-8859-1?Q?BZGlDqGuohTBdJsIJ7x4cJEu2o3QzOu/LctNVDtjclzgBSCsO+0rd2SQtR?=
- =?iso-8859-1?Q?vHXCJy7zO7k9ZQ+AvrCQ8ic10Au37MEYy78NYmGf17Z21LUijY+intPYMD?=
- =?iso-8859-1?Q?mkbsurhgPUWZ01Tn16CfYVk8QYRq4Fm6TZhkLBlrPTjHaDJlzSj+jypqK2?=
- =?iso-8859-1?Q?sTfqTDvzM6klTeXPbAvtnmjOn64ccJT+1uyMz0wHv66h8z5VTTxDfDvo/o?=
- =?iso-8859-1?Q?JwbbkhnqFdvtsKGsI4JqhgKciJRqmefOBETbkLGNwCNvqp+DpSaDaNkBYw?=
- =?iso-8859-1?Q?J+eiWrngW6NtYuNDKlAFRBmosYV8iV+DkqyAEk+VS3sYGpUcMCNsdJq8C0?=
- =?iso-8859-1?Q?F9YLpXtissJ1ve7wk7zdzqh8bm9pHoW3JHlQHnesJT9bN6KdQAWicyx4FZ?=
- =?iso-8859-1?Q?jJOD2SQ6ZCGMmKEdXj47uvR2mYOF+Cuhbosu3mUoshRApOTmD9spzIPM9X?=
- =?iso-8859-1?Q?v8k3OYsd+TEumd3W+LjoU+03ItYa9Na/QnSTY0Kfp/sk/eUEplME5ArIil?=
- =?iso-8859-1?Q?sFRbTkkWdwHEyTgTELaGMgU0D00dN2qJRUkHIDJ6yCvwBWDeRLn48892h7?=
- =?iso-8859-1?Q?aiGDD5lx5QsZSL7uKgvArLKo07uPl1RlKkWUtzfLxrg1nfoZ+rRxI/fzJV?=
- =?iso-8859-1?Q?HDywNugQVB2W/fkyD5UnyiLrOlr+fK+Mavg+e82xrSkmMGlv50UAt8GbtM?=
- =?iso-8859-1?Q?xQ//War0PqA+7EduxneEOoepqIxncyUMbKxi9qoKAKPc/FL3YcCpJTqhTi?=
- =?iso-8859-1?Q?dD66GV1L3qGBLNLAvtSmoAP2zhIE+xxPEtuInN0jgDBkGXI8MUQ5TOPWWC?=
- =?iso-8859-1?Q?uZOXH8B6NNe2F/EsktA1+GtQoNwuMHB/HobsO59rQz6JcrsC9HLgOtz8Eh?=
- =?iso-8859-1?Q?goxua2mHMLB+3fdiYdzOgyXv/X9uXmufG3zitPbO6lSpB3eeazBupNqyFK?=
- =?iso-8859-1?Q?dZQn1ZUxGnVAMZS5QzjhTaly6FQEL7ehsTV1fPOLd0HgmsoVTs1CiXGzbf?=
- =?iso-8859-1?Q?UNY/cyRz2fCkmNRW/0We9FRS7mDG1ucpcPK39kY8YysSnzPl2x3zvpw/z/?=
- =?iso-8859-1?Q?ew+IFrO7ihjlD26cI9XZ2v5zK3HjAb2WLz74/XQPv/Y999iGQ3ABppX1DH?=
- =?iso-8859-1?Q?oueraJg4Vz9XFQq8E5vq8OVbPi64UMTFQ5JnKHt6Tc6Cdl1iUj6W2qfnhE?=
- =?iso-8859-1?Q?1TPAcJ9XurdNI3gWDxPa1mW2lgk6HGYWD2qgAuVdrSg8IwSOtuqZVC5+iT?=
- =?iso-8859-1?Q?LyGIXNyIf1QtSuKKrRJcKrdKmnjEgGLtdMr5R8LGvpWJojETjnsZGp3E2V?=
- =?iso-8859-1?Q?vgNl1gk2fXH/s+0rNKTatZOcIwGimBtOJ7K7NS09VXaNuFK8qsu0T8ejil?=
- =?iso-8859-1?Q?6QdQH3YlkdL6ulF9xGcB8ceVxal07+WLPWbCsYr16d9+oPC71VoqKCsh8b?=
- =?iso-8859-1?Q?4U6mh/nzY5br4SneGPQxPlP27dr2mRlgIV0NApvLEGTbar/u+e5EdryA?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d038912c-d723-4c5a-acbf-08dbfaaba3c0
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?L+Zt/Dbv2ar28a/hxKAL/CN5rQ/O6/gBC+f3+m5RzYHyYnUyQrKyU636TEEN?=
+ =?us-ascii?Q?K8TvsOV/pkRiBNPeuiB7DKkwLgqzW0cGNcsdbc6Sn9B/IK+u74JlV1Wy0mtv?=
+ =?us-ascii?Q?nLQzZyUIOCJycjGSGaUqk7K/2711Qf9DIcxbtOOiN6/pFwl0S2WZk+4LxVgL?=
+ =?us-ascii?Q?5PWA9WBfN8tfu0FRAN2VYASjeKoWeKc2VE/hd5l190JZJqmwI78kWEQHkJ/Z?=
+ =?us-ascii?Q?pR0HOPwmcx7j0veotSUiUSJrD+aSs5N7jdd0CmgnZs7ssZac2I1c6HsfmrK3?=
+ =?us-ascii?Q?Sdi6Gg06rS1ACAHFy43cjZaerONbza/s11Ce7p/t9faCNKROaErl4SQkBT4D?=
+ =?us-ascii?Q?cN5U0yQlIy+i7ywF2qKJVRJQbF0008NDl6TPtTMousQm7u0K1iRshqnJIi0I?=
+ =?us-ascii?Q?/pri18TUB9Nn5eskuc19qKMPCVmUb5tR2kujVmVgAIX+e2tMT0GOTWJi9wLY?=
+ =?us-ascii?Q?W1LPZj+id/yC10aOxNn2raZqyKJYr/0QWiChEMDcucqVUfKegS1kCo3Uz8jG?=
+ =?us-ascii?Q?OVqDnx7gVABEky88i6KyVY64KymxN/W0okO/1NbrMTo9r8vvehZ8Ysq6vdyH?=
+ =?us-ascii?Q?I0AbxW/kO56YblKEo1BAygjGGWYhOVeYN2PWmr6I/2Hpjgehubv42Tun6Ahi?=
+ =?us-ascii?Q?UuMikjP5C/w+VBO0yG0YI0taJ41iHAVSZd2MpD/67Pax6IjmrH22NIxupLXV?=
+ =?us-ascii?Q?o3Z9GG0bk+Ojr5T8+GHnsjOU0dcRF9M7iJ18sJAbl6M2ty4ccS85dmCdfE/W?=
+ =?us-ascii?Q?DA3oQJR1b2sMiuIIPgfLuLDV9/7Bh3kvatjauisTI/6FAglZ7AK0HHZ2PBv4?=
+ =?us-ascii?Q?Z7x/wsY2U/ocHfgK/F7fUc9iVMfvin6/vq9UWamaEyVS4bJCoZO7+h4aW7Mn?=
+ =?us-ascii?Q?twLOny2DaC1awozI+/kPdQikfVK3vjjoxum/muSNpoqHBsMqcSfGL+R+ujPP?=
+ =?us-ascii?Q?VRxrAInchCyxb4yfxJf1iCw+9zZC5mjjIbhujcY9OGxHMIPY0Glq4lVv34J0?=
+ =?us-ascii?Q?61OoZpC9R6vTTHNigLI/hF1/9mIDfd3sh0/3OzTsPe0NjXemvF3RJLlGz/aB?=
+ =?us-ascii?Q?G/RFoNtKTczdrUh0b3xPMxZacnITwbmyN36tEMgGSWFiOoFyVzgk4VxlReh1?=
+ =?us-ascii?Q?Zc4hl7Ekj8Etat+gX3vGHcCVBjSpwAdtdjKr2pXBkv90ZSEo4bTaPuRNOjgA?=
+ =?us-ascii?Q?ssmFQw7gyFlq318x76Pd1VTagd3VN6fUr6IlKIMKlEs8rqV3k8eB7ZqtQuPR?=
+ =?us-ascii?Q?04EEkDYNvHTbwbpkRhLKCwAfTZYLpx36BNAujzjioCIZgLqUgp2ix4R1CjXv?=
+ =?us-ascii?Q?Kyv1T8UrhxDol7HsQFOJHbfAIUp5GPMkg88BgFxfDChlOj3tFo4/KGLw8qUK?=
+ =?us-ascii?Q?wiNKPcug3pAqmlyvHtfVSJLU+ZKYa5XtGYA1ANOdRzjx2ohrOuGuZVxZoJqY?=
+ =?us-ascii?Q?4X8WkIYq6EOyxEwOGyVRV3Rwp1TPs4aCqisHmZ8FAvUU9Y/TyxsfvOfe+Ga5?=
+ =?us-ascii?Q?4bbiwXT4mVjOiiOEypaxdS+KY47zNDBXFTw5f6f9AcwWZq0lfcCkotEPY1mZ?=
+ =?us-ascii?Q?AhDZDSui5I683U9ZemThoVb4rE0eS9C+IHpYEq+ugtLSlsHiWmyXyNhI6DHD?=
+ =?us-ascii?Q?Kw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 40ea8c9e-ee98-4747-eb89-08dbfaad0b4a
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Dec 2023 00:45:29.8106 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Dec 2023 00:55:33.0229 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Kv015MT5jA6WoCAdEHz0zVsIlg5hrCoJJj4Zue+QnOP7zP+phBNKftltCNrsVixocJlYn0m8DWTgfmNvPugJxepxIrtO+BrXnkW1xMf74O8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8774
+X-MS-Exchange-CrossTenant-UserPrincipalName: KUNFHEDCGPUX4W6Z9MyejESbwQyzrXqbun6JI0kSt99h1FCEvYb8Y71E5qGjIms9Ldat5GLAXOyIcstZattJJQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB7154
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -149,102 +151,335 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Dec 11, 2023 at 07:13:50PM +0530, Himal Prasad Ghimiray wrote:
-> - The XY_CTRL_SURF_COPY_BLT instruction operationg on ccs data expects
-
-s/operationg/operating/
-
-Otherwise,
-
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-
-> size in pages of main memory for which CCS data should be copied.
-> - The bitfield representing copy size in XY_CTRL_SURF_COPY_BLT has
-> shifted one bit higher in the instruction.
+On Mon, Dec 11, 2023 at 07:10:45PM -0500, Rodrigo Vivi wrote:
+> Adjust to recent drm-scheduler changes that already landed in drm-next
 > 
-> v2:
->  - Fix the num_pages for ccs size calculation.
->  - Address nits (Thomas)
-> 
-> v3:
-> - Use FIELD_PREP and FIELD_FIT instead of shifts and numbers.(Matt)
-> 
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > ---
->  drivers/gpu/drm/xe/regs/xe_gpu_commands.h |  5 ++---
->  drivers/gpu/drm/xe/xe_migrate.c           | 21 +++++++++++++++------
->  2 files changed, 17 insertions(+), 9 deletions(-)
+>  drivers/gpu/drm/xe/xe_exec_queue.c          |  8 +++----
+>  drivers/gpu/drm/xe/xe_exec_queue.h          |  2 +-
+>  drivers/gpu/drm/xe/xe_exec_queue_types.h    | 14 ++++++++++--
+>  drivers/gpu/drm/xe/xe_execlist.c            | 25 +++++++++------------
+>  drivers/gpu/drm/xe/xe_execlist_types.h      |  6 ++---
+>  drivers/gpu/drm/xe/xe_gpu_scheduler.h       |  2 +-
+>  drivers/gpu/drm/xe/xe_gpu_scheduler_types.h |  1 -
+>  drivers/gpu/drm/xe/xe_guc_submit.c          | 18 +++++++--------
+>  drivers/gpu/drm/xe/xe_migrate.c             |  2 +-
+>  drivers/gpu/drm/xe/xe_sched_job.c           |  2 +-
+>  10 files changed, 43 insertions(+), 37 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-> index 1f9c32e694c6..a255946b6f77 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-> @@ -11,13 +11,12 @@
->  #define XY_CTRL_SURF_COPY_BLT		((2 << 29) | (0x48 << 22) | 3)
->  #define   SRC_ACCESS_TYPE_SHIFT		21
->  #define   DST_ACCESS_TYPE_SHIFT		20
-> -#define   CCS_SIZE_MASK			0x3FF
-> -#define   CCS_SIZE_SHIFT		8
-> +#define   CCS_SIZE_MASK			GENMASK(17, 8)
-> +#define   XE2_CCS_SIZE_MASK		GENMASK(18, 9)
->  #define   XY_CTRL_SURF_MOCS_MASK	GENMASK(31, 26)
->  #define   XE2_XY_CTRL_SURF_MOCS_INDEX_MASK	GENMASK(31, 28)
->  #define   NUM_CCS_BYTES_PER_BLOCK	256
->  #define   NUM_BYTES_PER_CCS_BYTE(_xe)	(GRAPHICS_VER(_xe) >= 20 ? 512 : 256)
-> -#define   NUM_CCS_BLKS_PER_XFER		1024
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+> index 91d67f4da2cc..85bc25fe99ed 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+> @@ -219,17 +219,17 @@ struct xe_exec_queue *xe_exec_queue_lookup(struct xe_file *xef, u32 id)
+>  	return q;
+>  }
 >  
->  #define XY_FAST_COLOR_BLT_CMD		(2 << 29 | 0x44 << 22)
->  #define   XY_FAST_COLOR_BLT_DEPTH_32	(2 << 19)
+> -enum drm_sched_priority
+> +enum xe_exec_queue_priority
+>  xe_exec_queue_device_get_max_priority(struct xe_device *xe)
+>  {
+> -	return capable(CAP_SYS_NICE) ? DRM_SCHED_PRIORITY_HIGH :
+> -				       DRM_SCHED_PRIORITY_NORMAL;
+> +	return capable(CAP_SYS_NICE) ? XE_EXEC_QUEUE_PRIORITY_HIGH :
+> +				       XE_EXEC_QUEUE_PRIORITY_NORMAL;
+>  }
+>  
+>  static int exec_queue_set_priority(struct xe_device *xe, struct xe_exec_queue *q,
+>  				   u64 value, bool create)
+>  {
+> -	if (XE_IOCTL_DBG(xe, value > DRM_SCHED_PRIORITY_HIGH))
+> +	if (XE_IOCTL_DBG(xe, value > XE_EXEC_QUEUE_PRIORITY_HIGH))
+>  		return -EINVAL;
+>  
+>  	if (XE_IOCTL_DBG(xe, value > xe_exec_queue_device_get_max_priority(xe)))
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
+> index 8b587d1b2c2c..d959cc4a1a82 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue.h
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue.h
+> @@ -57,7 +57,7 @@ int xe_exec_queue_destroy_ioctl(struct drm_device *dev, void *data,
+>  				struct drm_file *file);
+>  int xe_exec_queue_get_property_ioctl(struct drm_device *dev, void *data,
+>  				     struct drm_file *file);
+> -enum drm_sched_priority xe_exec_queue_device_get_max_priority(struct xe_device *xe);
+> +enum xe_exec_queue_priority xe_exec_queue_device_get_max_priority(struct xe_device *xe);
+>  
+>  void xe_exec_queue_last_fence_put(struct xe_exec_queue *e, struct xe_vm *vm);
+>  void xe_exec_queue_last_fence_put_unlocked(struct xe_exec_queue *e);
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> index 5ba47a5cfdbd..6826feb650f3 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> @@ -21,6 +21,16 @@ struct xe_guc_exec_queue;
+>  struct xe_hw_engine;
+>  struct xe_vm;
+>  
+> +enum xe_exec_queue_priority {
+> +	XE_EXEC_QUEUE_PRIORITY_UNSET = -2, /* For execlist usage only */
+> +	XE_EXEC_QUEUE_PRIORITY_LOW = 0,
+> +	XE_EXEC_QUEUE_PRIORITY_NORMAL,
+> +	XE_EXEC_QUEUE_PRIORITY_HIGH,
+> +	XE_EXEC_QUEUE_PRIORITY_KERNEL,
+> +
+> +	XE_EXEC_QUEUE_PRIORITY_COUNT
+> +};
+> +
+>  /**
+>   * struct xe_exec_queue - Execution queue
+>   *
+> @@ -43,7 +53,7 @@ struct xe_exec_queue {
+>  	/** @class: class of this exec queue */
+>  	enum xe_engine_class class;
+>  	/** @priority: priority of this exec queue */
+> -	enum xe_sched_priority priority;
+> +	enum xe_exec_queue_priority priority;
+>  	/**
+>  	 * @logical_mask: logical mask of where job submitted to exec queue can run
+>  	 */
+> @@ -182,7 +192,7 @@ struct xe_exec_queue_ops {
+>  	void (*fini)(struct xe_exec_queue *q);
+>  	/** @set_priority: Set priority for exec queue */
+>  	int (*set_priority)(struct xe_exec_queue *q,
+> -			    enum drm_sched_priority priority);
+> +			    enum xe_exec_queue_priority priority);
+>  	/** @set_timeslice: Set timeslice for exec queue */
+>  	int (*set_timeslice)(struct xe_exec_queue *q, u32 timeslice_us);
+>  	/** @set_preempt_timeout: Set preemption timeout for exec queue */
+> diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+> index e8754adfc52a..d82b50de144e 100644
+> --- a/drivers/gpu/drm/xe/xe_execlist.c
+> +++ b/drivers/gpu/drm/xe/xe_execlist.c
+> @@ -33,8 +33,6 @@
+>  #define XEHP_SW_CTX_ID_SHIFT  39
+>  #define XEHP_SW_CTX_ID_WIDTH  16
+>  
+> -#define XE_SCHED_PRIORITY_UNSET -2
+> -
+>  #define SW_CTX_ID \
+>  	GENMASK_ULL(SW_CTX_ID_WIDTH + SW_CTX_ID_SHIFT - 1, \
+>  		    SW_CTX_ID_SHIFT)
+> @@ -154,7 +152,7 @@ static void __xe_execlist_port_start_next_active(struct xe_execlist_port *port)
+>  			list_del(&exl->active_link);
+>  
+>  			if (xe_execlist_is_idle(exl)) {
+> -				exl->active_priority = XE_SCHED_PRIORITY_UNSET;
+> +				exl->active_priority = XE_EXEC_QUEUE_PRIORITY_UNSET;
+>  				continue;
+>  			}
+>  
+> @@ -202,7 +200,7 @@ static void xe_execlist_port_irq_handler(struct xe_hw_engine *hwe,
+>  }
+>  
+>  static void xe_execlist_port_wake_locked(struct xe_execlist_port *port,
+> -					 enum drm_sched_priority priority)
+> +					 enum xe_exec_queue_priority priority)
+>  {
+>  	xe_execlist_port_assert_held(port);
+>  
+> @@ -215,22 +213,22 @@ static void xe_execlist_port_wake_locked(struct xe_execlist_port *port,
+>  static void xe_execlist_make_active(struct xe_execlist_exec_queue *exl)
+>  {
+>  	struct xe_execlist_port *port = exl->port;
+> -	enum drm_sched_priority priority = exl->entity.priority;
+> +	enum xe_exec_queue_priority priority = exl->active_priority;
+>  
+> -	XE_WARN_ON(priority == XE_SCHED_PRIORITY_UNSET);
+> +	XE_WARN_ON(priority == XE_EXEC_QUEUE_PRIORITY_UNSET);
+>  	XE_WARN_ON(priority < 0);
+>  	XE_WARN_ON(priority >= ARRAY_SIZE(exl->port->active));
+>  
+>  	spin_lock_irq(&port->lock);
+>  
+>  	if (exl->active_priority != priority &&
+> -	    exl->active_priority != XE_SCHED_PRIORITY_UNSET) {
+> +	    exl->active_priority != XE_EXEC_QUEUE_PRIORITY_UNSET) {
+>  		/* Priority changed, move it to the right list */
+>  		list_del(&exl->active_link);
+> -		exl->active_priority = XE_SCHED_PRIORITY_UNSET;
+> +		exl->active_priority = XE_EXEC_QUEUE_PRIORITY_UNSET;
+>  	}
+>  
+> -	if (exl->active_priority == XE_SCHED_PRIORITY_UNSET) {
+> +	if (exl->active_priority == XE_EXEC_QUEUE_PRIORITY_UNSET) {
+>  		exl->active_priority = priority;
+>  		list_add_tail(&exl->active_link, &port->active[priority]);
+>  	}
+> @@ -344,14 +342,13 @@ static int execlist_exec_queue_init(struct xe_exec_queue *q)
+>  		goto err_free;
+>  
+>  	sched = &exl->sched;
+> -	err = drm_sched_entity_init(&exl->entity, DRM_SCHED_PRIORITY_MIN,
+> -				    &sched, 1, NULL);
+> +	err = drm_sched_entity_init(&exl->entity, 0, &sched, 1, NULL);
+>  	if (err)
+>  		goto err_sched;
+>  
+>  	exl->port = q->hwe->exl_port;
+>  	exl->has_run = false;
+> -	exl->active_priority = XE_SCHED_PRIORITY_UNSET;
+> +	exl->active_priority = XE_EXEC_QUEUE_PRIORITY_UNSET;
+>  	q->execlist = exl;
+>  	q->entity = &exl->entity;
+>  
+> @@ -378,7 +375,7 @@ static void execlist_exec_queue_fini_async(struct work_struct *w)
+>  	xe_assert(xe, !xe_device_uc_enabled(xe));
+>  
+>  	spin_lock_irqsave(&exl->port->lock, flags);
+> -	if (WARN_ON(exl->active_priority != XE_SCHED_PRIORITY_UNSET))
+> +	if (WARN_ON(exl->active_priority != XE_EXEC_QUEUE_PRIORITY_UNSET))
+>  		list_del(&exl->active_link);
+>  	spin_unlock_irqrestore(&exl->port->lock, flags);
+>  
+> @@ -403,7 +400,7 @@ static void execlist_exec_queue_fini(struct xe_exec_queue *q)
+>  }
+>  
+>  static int execlist_exec_queue_set_priority(struct xe_exec_queue *q,
+> -					    enum drm_sched_priority priority)
+> +					    enum xe_exec_queue_priority priority)
+>  {
+>  	/* NIY */
+>  	return 0;
+> diff --git a/drivers/gpu/drm/xe/xe_execlist_types.h b/drivers/gpu/drm/xe/xe_execlist_types.h
+> index ee1fccd4ee8b..f94bbf4c53e4 100644
+> --- a/drivers/gpu/drm/xe/xe_execlist_types.h
+> +++ b/drivers/gpu/drm/xe/xe_execlist_types.h
+> @@ -10,7 +10,7 @@
+>  #include <linux/spinlock.h>
+>  #include <linux/workqueue.h>
+>  
+> -#include <drm/gpu_scheduler.h>
+> +#include "xe_exec_queue_types.h"
+>  
+>  struct xe_hw_engine;
+>  struct xe_execlist_exec_queue;
+> @@ -20,7 +20,7 @@ struct xe_execlist_port {
+>  
+>  	spinlock_t lock;
+>  
+> -	struct list_head active[DRM_SCHED_PRIORITY_COUNT];
+> +	struct list_head active[XE_EXEC_QUEUE_PRIORITY_COUNT];
+>  
+>  	u32 last_ctx_id;
+>  
+> @@ -42,7 +42,7 @@ struct xe_execlist_exec_queue {
+>  
+>  	struct work_struct fini_async;
+>  
+> -	enum drm_sched_priority active_priority;
+> +	enum xe_exec_queue_priority active_priority;
+>  	struct list_head active_link;
+>  };
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+> index ea785bcd3eb2..10c6bb9c9386 100644
+> --- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+> +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+> @@ -63,7 +63,7 @@ static inline int
+>  xe_sched_entity_init(struct xe_sched_entity *entity,
+>  		     struct xe_gpu_scheduler *sched)
+>  {
+> -	return drm_sched_entity_init(entity, DRM_SCHED_PRIORITY_MIN,
+> +	return drm_sched_entity_init(entity, 0,
+>  				     (struct drm_gpu_scheduler **)&sched,
+>  				     1, NULL);
+>  }
+> diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h b/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
+> index 86133835d4d1..6731b13da8bb 100644
+> --- a/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
+> +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
+> @@ -53,6 +53,5 @@ struct xe_gpu_scheduler {
+>  
+>  #define xe_sched_entity		drm_sched_entity
+>  #define xe_sched_policy		drm_sched_policy
+> -#define xe_sched_priority	drm_sched_priority
+>  
+>  #endif
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> index 46b132ee1d3a..ad5e19ecd33c 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -410,25 +410,25 @@ MAKE_EXEC_QUEUE_POLICY_ADD(preemption_timeout, PREEMPTION_TIMEOUT)
+>  MAKE_EXEC_QUEUE_POLICY_ADD(priority, SCHEDULING_PRIORITY)
+>  #undef MAKE_EXEC_QUEUE_POLICY_ADD
+>  
+> -static const int xe_sched_prio_to_guc[] = {
+> -	[DRM_SCHED_PRIORITY_MIN] = GUC_CLIENT_PRIORITY_NORMAL,
+> -	[DRM_SCHED_PRIORITY_NORMAL] = GUC_CLIENT_PRIORITY_KMD_NORMAL,
+> -	[DRM_SCHED_PRIORITY_HIGH] = GUC_CLIENT_PRIORITY_HIGH,
+> -	[DRM_SCHED_PRIORITY_KERNEL] = GUC_CLIENT_PRIORITY_KMD_HIGH,
+> +static const int xe_exec_queue_prio_to_guc[] = {
+> +	[XE_EXEC_QUEUE_PRIORITY_LOW] = GUC_CLIENT_PRIORITY_NORMAL,
+> +	[XE_EXEC_QUEUE_PRIORITY_NORMAL] = GUC_CLIENT_PRIORITY_KMD_NORMAL,
+> +	[XE_EXEC_QUEUE_PRIORITY_HIGH] = GUC_CLIENT_PRIORITY_HIGH,
+> +	[XE_EXEC_QUEUE_PRIORITY_KERNEL] = GUC_CLIENT_PRIORITY_KMD_HIGH,
+>  };
+>  
+>  static void init_policies(struct xe_guc *guc, struct xe_exec_queue *q)
+>  {
+>  	struct exec_queue_policy policy;
+>  	struct xe_device *xe = guc_to_xe(guc);
+> -	enum xe_sched_priority prio = q->priority;
+> +	enum xe_exec_queue_priority prio = q->priority;
+>  	u32 timeslice_us = q->sched_props.timeslice_us;
+>  	u32 preempt_timeout_us = q->sched_props.preempt_timeout_us;
+>  
+>  	xe_assert(xe, exec_queue_registered(q));
+>  
+>  	__guc_exec_queue_policy_start_klv(&policy, q->guc->id);
+> -	__guc_exec_queue_policy_add_priority(&policy, xe_sched_prio_to_guc[prio]);
+> +	__guc_exec_queue_policy_add_priority(&policy, xe_exec_queue_prio_to_guc[prio]);
+>  	__guc_exec_queue_policy_add_execution_quantum(&policy, timeslice_us);
+>  	__guc_exec_queue_policy_add_preemption_timeout(&policy, preempt_timeout_us);
+>  
+> @@ -1227,7 +1227,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+>  	err = xe_sched_entity_init(&ge->entity, sched);
+>  	if (err)
+>  		goto err_sched;
+> -	q->priority = DRM_SCHED_PRIORITY_NORMAL;
+> +	q->priority = XE_EXEC_QUEUE_PRIORITY_NORMAL;
+>  
+>  	if (xe_exec_queue_is_lr(q))
+>  		INIT_WORK(&q->guc->lr_tdr, xe_guc_exec_queue_lr_cleanup);
+> @@ -1293,7 +1293,7 @@ static void guc_exec_queue_fini(struct xe_exec_queue *q)
+>  }
+>  
+>  static int guc_exec_queue_set_priority(struct xe_exec_queue *q,
+> -				       enum xe_sched_priority priority)
+> +				       enum xe_exec_queue_priority priority)
+>  {
+>  	struct xe_sched_msg *msg;
+>  
 > diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-> index be2a92dee52c..cb9f00697115 100644
+> index be2a92dee52c..2ca927f3fb2a 100644
 > --- a/drivers/gpu/drm/xe/xe_migrate.c
 > +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> @@ -526,21 +526,30 @@ static void emit_copy_ccs(struct xe_gt *gt, struct xe_bb *bb,
->  	struct xe_device *xe = gt_to_xe(gt);
->  	u32 *cs = bb->cs + bb->len;
->  	u32 num_ccs_blks;
-> +	u32 num_pages;
-> +	u32 ccs_copy_size;
->  	u32 mocs;
+> @@ -398,7 +398,7 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
+>  		return ERR_CAST(m->q);
+>  	}
+>  	if (xe->info.has_usm)
+> -		m->q->priority = DRM_SCHED_PRIORITY_KERNEL;
+> +		m->q->priority = XE_EXEC_QUEUE_PRIORITY_KERNEL;
 >  
-> -	num_ccs_blks = DIV_ROUND_UP(xe_device_ccs_bytes(gt_to_xe(gt), size),
-> -				    NUM_CCS_BYTES_PER_BLOCK);
-> -	xe_gt_assert(gt, num_ccs_blks <= NUM_CCS_BLKS_PER_XFER);
-> +	if (GRAPHICS_VERx100(xe) >= 2000) {
-> +		num_pages = DIV_ROUND_UP(size, XE_PAGE_SIZE);
-> +		xe_gt_assert(gt, FIELD_FIT(XE2_CCS_SIZE_MASK, num_pages - 1));
+>  	mutex_init(&m->job_mutex);
 >  
-> -	if (GRAPHICS_VERx100(xe) >= 2000)
-> +		ccs_copy_size = REG_FIELD_PREP(XE2_CCS_SIZE_MASK, num_pages - 1);
->  		mocs = FIELD_PREP(XE2_XY_CTRL_SURF_MOCS_INDEX_MASK, gt->mocs.uc_index);
-> -	else
-> +
-> +	} else {
-> +		num_ccs_blks = DIV_ROUND_UP(xe_device_ccs_bytes(gt_to_xe(gt), size),
-> +					    NUM_CCS_BYTES_PER_BLOCK);
-> +		xe_gt_assert(gt, FIELD_FIT(CCS_SIZE_MASK, num_ccs_blks - 1));
-> +
-> +		ccs_copy_size = REG_FIELD_PREP(CCS_SIZE_MASK, num_ccs_blks - 1);
->  		mocs = FIELD_PREP(XY_CTRL_SURF_MOCS_MASK, gt->mocs.uc_index);
-> +	}
+> diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
+> index b467d5bfa4ac..a9c7ae815bec 100644
+> --- a/drivers/gpu/drm/xe/xe_sched_job.c
+> +++ b/drivers/gpu/drm/xe/xe_sched_job.c
+> @@ -104,7 +104,7 @@ struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
+>  	kref_init(&job->refcount);
+>  	xe_exec_queue_get(job->q);
 >  
->  	*cs++ = XY_CTRL_SURF_COPY_BLT |
->  		(src_is_indirect ? 0x0 : 0x1) << SRC_ACCESS_TYPE_SHIFT |
->  		(dst_is_indirect ? 0x0 : 0x1) << DST_ACCESS_TYPE_SHIFT |
-> -		((num_ccs_blks - 1) & CCS_SIZE_MASK) << CCS_SIZE_SHIFT;
-> +		ccs_copy_size;
->  	*cs++ = lower_32_bits(src_ofs);
->  	*cs++ = upper_32_bits(src_ofs) | mocs;
->  	*cs++ = lower_32_bits(dst_ofs);
+> -	err = drm_sched_job_init(&job->drm, q->entity, NULL);
+> +	err = drm_sched_job_init(&job->drm, q->entity, 1, NULL);
+>  	if (err)
+>  		goto err_free;
+>  
 > -- 
-> 2.25.1
+> 2.43.0
 > 
-
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
