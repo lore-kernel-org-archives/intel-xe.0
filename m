@@ -4,42 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3EDBC4332F
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Dec 2023 21:01:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44432C4332F
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Dec 2023 21:01:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AB7210E695;
-	Tue, 12 Dec 2023 21:01:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE20810E69E;
+	Tue, 12 Dec 2023 21:01:24 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F259510E685
- for <intel-xe@lists.freedesktop.org>; Tue, 12 Dec 2023 21:01:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 416D710E69E
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Dec 2023 21:01:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702414874; x=1733950874;
+ t=1702414884; x=1733950884;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zAcG2UYfrvOOxbhbG2lWeYirBgWlOUqhZLmpTdy/NWY=;
- b=LiXpXZ59OXE57s9zjdhLxFVK7/pwOg8ErGnxiEQ/u7Nb7hEz3Nvc15b6
- epBTg2JWktaOMiUklN0YrYK1izivMmfnRpfOhcELZfzJLY0cYUVAvEkH0
- fLY9+p0p4VbkD2xLNlqZBFdor1ezSsZKrxS3l6dF+yHmjOZSlUQHQQQuo
- aiTZ429t2PW6os8H56kD702oD++RPMvSDfmknaZLnehAWGsR2RPmeP+0U
- xQFhSQHfnqcDvQb9RHBiNnu+KIBNMwyi95L9mxx8oJUl6sKPAXiSJkmHZ
- XXPrRt3OlBwqmfaLOEamRGJfOs3XqgDF3pYSEh4KSPcXr5lBz4V3+x9iv w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="397654575"
-X-IronPort-AV: E=Sophos;i="6.04,271,1695711600"; d="scan'208";a="397654575"
+ bh=R3X+QajrLAow+ZKfGApyRimH+Ej4zSsP+CbAOUJj5As=;
+ b=Rq2Z7RUCIqd6iB+RIqAqn3IbkATkabzBrMBJdBuStKUjs27jjc+4oyDW
+ 7i6opuw5PUoGqrlaQQAcHuwLob8bI//lH8hEH4edxtaxBjOrJ7koXRdFs
+ l9PUi3L5WD0pXvCsyj6MOm+NxoIu8ejJe9cRcxFBNwm/GDkZqj6ekH0/R
+ UJVUCvmhLNj/IuAmh03xI/oOKubpmMxyURoV8R7nxJ/p+qTxnWXJtAxSZ
+ JlObLu0JW9bgqZrzan6JauThCL3dQmFTW5YzBAR6ckVzmwi9jjOg5K41f
+ 9gq7rrYOcLkwN3WNBO3Fxovrp44g27dy+V+9y1/f8PfUaA+o1a0c1wqF6 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="397654585"
+X-IronPort-AV: E=Sophos;i="6.04,271,1695711600"; d="scan'208";a="397654585"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2023 13:01:13 -0800
+ 12 Dec 2023 13:01:16 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="917417144"
-X-IronPort-AV: E=Sophos;i="6.04,271,1695711600"; d="scan'208";a="917417144"
+X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="917417156"
+X-IronPort-AV: E=Sophos;i="6.04,271,1695711600"; d="scan'208";a="917417156"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.128.218])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2023 13:01:12 -0800
+ 12 Dec 2023 13:01:15 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 01/10] drm/xe: Add device flag for memory based IRQ support
-Date: Tue, 12 Dec 2023 22:00:45 +0100
-Message-Id: <20231212210054.1747-2-michal.wajdeczko@intel.com>
+Subject: [PATCH 03/10] drm/xe: Define registers used by memory based irq
+ processing
+Date: Tue, 12 Dec 2023 22:00:47 +0100
+Message-Id: <20231212210054.1747-4-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20231212210054.1747-1-michal.wajdeczko@intel.com>
 References: <20231212210054.1747-1-michal.wajdeczko@intel.com>
@@ -59,71 +60,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The register based interrupts infrastructure does not scale
-efficiently to allow delivering interrupts to a large number
-of virtual machines. Memory based interrupt reporting provides
-an efficient and scalable infrastructure.
+The RING_INT_SRC_RPT_PTR register points to a cacheline in memory
+to which an engine must report as source of interrupt prior to
+generating an interrupt to the host.
 
-Define device flag to indicate which platforms will use memory
-based interrupts for delivering interrupts to VFs.
+The RING_INT_STATUS_RPT_PTR register points to the first cacheline
+of the Interrupt Status Report (ISR) page (4KB) in graphics memory
+to which all engines report their interrupt status.
 
-Bspec: 50829
+The RING_IMR register has the interrupt enables and interrupt masks
+for an engine.
+
+We will refer to these registers shortly.
+
+Bspec: 45963, 45964, 45965
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.h       | 5 +++++
- drivers/gpu/drm/xe/xe_device_types.h | 2 ++
- drivers/gpu/drm/xe/xe_pci.c          | 2 ++
- 3 files changed, 9 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index 3da83b233206..0b158d0d04e4 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -168,6 +168,11 @@ static inline bool xe_device_has_sriov(struct xe_device *xe)
- 	return xe->info.has_sriov;
- }
+diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+index 3942db268b01..5e15c707e017 100644
+--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+@@ -39,8 +39,10 @@
+ #define RING_MI_MODE(base)			XE_REG((base) + 0x9c)
+ #define RING_NOPID(base)			XE_REG((base) + 0x94)
  
-+static inline bool xe_device_has_memirq(struct xe_device *xe)
-+{
-+	return xe->info.has_memirq;
-+}
-+
- u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size);
++#define RING_INT_SRC_RPT_PTR(base)		XE_REG((base) + 0xa4)
+ #define RING_IMR(base)				XE_REG((base) + 0xa8)
+ #define   RING_MAX_NONPRIV_SLOTS  12
++#define RING_INT_STATUS_RPT_PTR(base)		XE_REG((base) + 0xac)
  
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index d1a48456e9a3..0c48e3686837 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -259,6 +259,8 @@ struct xe_device {
- 		u8 has_flat_ccs:1;
- 		/** @has_llc: Device has a shared CPU+GPU last level cache */
- 		u8 has_llc:1;
-+		/** @has_memirq: Using memory based IRQ */
-+		u8 has_memirq:1;
- 		/** @has_mmio_ext: Device has extra MMIO address range */
- 		u8 has_mmio_ext:1;
- 		/** @has_range_tlb_invalidation: Has range based TLB invalidations */
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 260e8a6034a7..11559669cb8a 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -64,6 +64,7 @@ struct xe_device_desc {
- 	u8 has_display:1;
- 	u8 has_heci_gscfi:1;
- 	u8 has_llc:1;
-+	u8 has_memirq:1;
- 	u8 has_mmio_ext:1;
- 	u8 has_sriov:1;
- 	u8 skip_guc_pc:1;
-@@ -551,6 +552,7 @@ static int xe_info_init_early(struct xe_device *xe,
- 	xe->info.is_dgfx = desc->is_dgfx;
- 	xe->info.has_heci_gscfi = desc->has_heci_gscfi;
- 	xe->info.has_llc = desc->has_llc;
-+	xe->info.has_memirq = desc->has_memirq;
- 	xe->info.has_mmio_ext = desc->has_mmio_ext;
- 	xe->info.has_sriov = desc->has_sriov;
- 	xe->info.skip_guc_pc = desc->skip_guc_pc;
+ #define RING_EIR(base)				XE_REG((base) + 0xb0)
+ #define RING_EMR(base)				XE_REG((base) + 0xb4)
 -- 
 2.25.1
 
