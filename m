@@ -4,42 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44BBBC4332F
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Dec 2023 18:17:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84F55C4167D
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Dec 2023 18:17:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BB7810E04C;
-	Tue, 12 Dec 2023 18:17:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52A3410E201;
+	Tue, 12 Dec 2023 18:17:47 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92EA110E04C
- for <intel-xe@lists.freedesktop.org>; Tue, 12 Dec 2023 18:17:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18E6810E04C
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Dec 2023 18:17:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702405063; x=1733941063;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=RVJqio7BEMTlseUawLaCCqwyi23yZLBtY80I7cD7UmI=;
- b=ESGjiurfmg1/6rNLRrEKFPL9lMPe/mYQKfCTb5p67wjo+pZZoNYGmvSP
- z0+CTxsV3EKUnocZmlgEvbJ5pYZekhdDd0nQCkUuRAVfRlXDn01V/0Fci
- h+8tv5c9u9xf0aFa3bWPC6D+/71phL+AiA9aI58wFbvJFg6IVvmIcwTBe
- DQzXEO73kYUFoVWPn9x9jIADqcgMoUPVvSKwvimEG/paGUVtCwtDwn9Zs
- VuXCJrBRZXddhFMudNexV56qOLrp2CGGf/f5BOPGr72ugqKEjlA8Fi1jf
- boapqwHzZRm2S3Ux6mjVIbU/CYD0o3oCZGKf3+LlSG4XwcwgL/guvJ3Yv g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="425967985"
-X-IronPort-AV: E=Sophos;i="6.04,271,1695711600"; d="scan'208";a="425967985"
+ t=1702405065; x=1733941065;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=+yZP2EQ9WPhWKRDGeiw7QleHnkYblCGQ+6btSR84FrA=;
+ b=Ft3anZWT9WQjdVuvy7Ozce87ommQCaZFdMXgVArPwZy2eFvkAJOyZ7Eh
+ 5eMP+0ICuXW3f0GarIH8rGoKd8GPLA0U+DNzzXBZL5m54XZ5KE8iEnFO7
+ 9LINo309UHIvc5Gf92FvM8hGSHPDz28rm5ysCzoj8ebtvEpiGT0PV6JVG
+ 1DYUg4xOySz4xF8JHdoADr352RP6jYc1aMxUcahfIsKndXl37N5amyJV1
+ 7xOa6+b3K/DBM8ydnwlSuIr5Tq0MBX1VftHFispRIaw0TvzklqIGQhC5J
+ 0o7pq9taZjD5M1bHzXNuvhIxRDAib1u7tDvwsjVgr9WGD0yh3yLUeHcHQ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="425967990"
+X-IronPort-AV: E=Sophos;i="6.04,271,1695711600"; d="scan'208";a="425967990"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2023 10:17:42 -0800
+ 12 Dec 2023 10:17:44 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="749806337"
-X-IronPort-AV: E=Sophos;i="6.04,271,1695711600"; d="scan'208";a="749806337"
+X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="749806345"
+X-IronPort-AV: E=Sophos;i="6.04,271,1695711600"; d="scan'208";a="749806345"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orsmga006.jf.intel.com with ESMTP; 12 Dec 2023 10:17:40 -0800
+ by orsmga006.jf.intel.com with ESMTP; 12 Dec 2023 10:17:42 -0800
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v8 00/10] Enable compression handling on LNL.
-Date: Tue, 12 Dec 2023 23:55:23 +0530
-Message-Id: <20231212182533.1722705-1-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v8 01/10] drm/xe/xe2: Determine bios enablement for flat ccs
+ on igfx
+Date: Tue, 12 Dec 2023 23:55:24 +0530
+Message-Id: <20231212182533.1722705-2-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20231212182533.1722705-1-himal.prasad.ghimiray@intel.com>
+References: <20231212182533.1722705-1-himal.prasad.ghimiray@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -58,54 +61,106 @@ Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe2 igfx platform supports compression and firmware reserves 1/512th of 
-system memory for ccs pool and programs the configuration registers.
-The configuration register must be read during driver initialization and 
-should notify via drm_dbg if compression is disabled.
+If bios disables flat ccs on igfx make has_flat_ccs as 0 and notify
+via drm_dbg.
 
-The firmware allocated ccs pool is directly inaccesible to driver and can
-only be read/write using XY_CTRL_SURF_COPY_BLT commands. To support ccs
-metadata handling, driver allocates extra memory in bo. 
+Bspec:59255
 
-During bo creation the ccs region needs to be cleared for security.
-During the eviction (buffer movement from gpu domain to system domain) 
-ccs metadata is copied from flat ccs to extra memory allocated in bo and
-during restore(buffer movement from system domain to gpu domain) ccs
-metadata is copied from extra pages in bo to flat ccs region.
+v2:
+ - Release forcewake.
+ - Add registers in order.
+ - drop dgfx condition and only add it back in the future
+when the support for an Xe2 dgpu will be added.
+- Use drm_dbg instead of drm_info. (Matt)
 
-Series enables flat ccs on xe2 igfx platforms and handles clearing and
-copy of ccs metadata during bo creation and xe_bo_move respectively.
+v3:
+ - Address nit(Matt)
 
 Cc: Matt Roper <matthew.d.roper@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Acked-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |  3 +++
+ drivers/gpu/drm/xe/xe_device.c       | 30 ++++++++++++++++++++++++++++
+ 2 files changed, 33 insertions(+)
 
-Himal Prasad Ghimiray (10):
-  drm/xe/xe2: Determine bios enablement for flat ccs on igfx
-  drm/xe/xe2: Modify main memory to ccs memory ratio.
-  drm/xe/xe2: Allocate extra pages for ccs during bo create
-  drm/xe/xe2: Updates on XY_CTRL_SURF_COPY_BLT
-  drm/xe/xe_migrate: Use NULL 1G PTE mapped at 255GiB VA for ccs clear
-  drm/xe/xe2: Update chunk size for each iteration of ccs copy
-  drm/xe/xe2: Update emit_pte to use compression enabled PAT index
-  drm/xe/xe2: Handle flat ccs move for igfx.
-  drm/xe/xe2: Modify xe_bo_test for system memory
-  drm/xe/xe2: Support flat ccs
-
- drivers/gpu/drm/xe/regs/xe_gpu_commands.h |   7 +-
- drivers/gpu/drm/xe/regs/xe_gt_regs.h      |   3 +
- drivers/gpu/drm/xe/tests/xe_bo.c          |  44 +++--
- drivers/gpu/drm/xe/tests/xe_migrate.c     |   6 +-
- drivers/gpu/drm/xe/xe_bo.c                |  56 +++---
- drivers/gpu/drm/xe/xe_bo_types.h          |   4 +
- drivers/gpu/drm/xe/xe_device.c            |  32 +++-
- drivers/gpu/drm/xe/xe_migrate.c           | 202 +++++++++++-----------
- drivers/gpu/drm/xe/xe_migrate.h           |   3 +-
- drivers/gpu/drm/xe/xe_pat.c               |   1 +
- drivers/gpu/drm/xe/xe_pci.c               |   2 +-
- drivers/gpu/drm/xe/xe_pt_types.h          |   1 +
- 12 files changed, 210 insertions(+), 151 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 5f5a72e9d0d8..f5bf4c6d1761 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -162,6 +162,9 @@
+ #define XEHP_SQCM				XE_REG_MCR(0x8724)
+ #define   EN_32B_ACCESS				REG_BIT(30)
+ 
++#define XE2_FLAT_CCS_BASE_RANGE_LOWER		XE_REG_MCR(0x8800)
++#define   XE2_FLAT_CCS_ENABLE			REG_BIT(0)
++
+ #define GSCPSMI_BASE				XE_REG(0x880c)
+ 
+ #define	MIRROR_FUSE3				XE_REG(0x9118)
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 2e0b2e40d8f3..c819e22f827f 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -16,6 +16,7 @@
+ #include <drm/xe_drm.h>
+ 
+ #include "regs/xe_regs.h"
++#include "regs/xe_gt_regs.h"
+ #include "xe_bo.h"
+ #include "xe_debugfs.h"
+ #include "xe_display.h"
+@@ -26,6 +27,7 @@
+ #include "xe_exec.h"
+ #include "xe_ggtt.h"
+ #include "xe_gt.h"
++#include "xe_gt_mcr.h"
+ #include "xe_irq.h"
+ #include "xe_mmio.h"
+ #include "xe_module.h"
+@@ -401,6 +403,30 @@ int xe_device_probe_early(struct xe_device *xe)
+ 	return 0;
+ }
+ 
++static int xe_device_set_has_flat_ccs(struct  xe_device *xe)
++{
++	u32 reg;
++	int err;
++
++	if (GRAPHICS_VER(xe) < 20 || !xe->info.has_flat_ccs)
++		return 0;
++
++	struct xe_gt *gt = xe_root_mmio_gt(xe);
++
++	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
++	if (err)
++		return err;
++
++	reg = xe_gt_mcr_unicast_read_any(gt, XE2_FLAT_CCS_BASE_RANGE_LOWER);
++	xe->info.has_flat_ccs = (reg & XE2_FLAT_CCS_ENABLE);
++
++	if (!xe->info.has_flat_ccs)
++		drm_dbg(&xe->drm,
++			"Flat CCS has been disabled in bios, May lead to performance impact");
++
++	return xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
++}
++
+ int xe_device_probe(struct xe_device *xe)
+ {
+ 	struct xe_tile *tile;
+@@ -456,6 +482,10 @@ int xe_device_probe(struct xe_device *xe)
+ 			goto err_irq_shutdown;
+ 	}
+ 
++	err = xe_device_set_has_flat_ccs(xe);
++	if (err)
++		return err;
++
+ 	err = xe_mmio_probe_vram(xe);
+ 	if (err)
+ 		goto err_irq_shutdown;
 -- 
 2.25.1
 
