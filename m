@@ -4,141 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFDA9C4332F
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Dec 2023 04:14:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA045C4332F
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Dec 2023 04:34:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A9BB10E248;
-	Wed, 13 Dec 2023 04:14:07 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1826E10E248
- for <intel-xe@lists.freedesktop.org>; Wed, 13 Dec 2023 04:14:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B07B10E24C;
+	Wed, 13 Dec 2023 04:34:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2D3C10E24C
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 Dec 2023 04:34:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702440845; x=1733976845;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=55jghtl8JcN3v7FO/jypAqFEkXrjLy8Q15Nu7IALDzA=;
- b=lnNcidEqvO3PmJrf+nq0DX9cnlZwiR+GIzuZ8DND7VsRbRFvlyW9sqDV
- +dscnp1julkR5G7P24h0N2ENDwQPpvMJbRoJKG+ZPaM9BEIzxK86GdRdU
- T/uvWSdCTxo1eWUd1XZ+do9qE7grmtwscDxiL27dOr5ce1IXze8w66Ghi
- 2dLnpQwYL2iQg0B2WK1je539P2L393YE4IQ81lWxoDK+5YctoMS9cWpIU
- UagY/IP3Nf7pHvlnSXPCsjFKlkkiBrLo7A/zWUHCdnTBb3t+MDCkS3yZv
- IibLge7IdN9R7f3puxGgFFz1xPR4BvbOrGMFKDIFSI/3xGZRvVLRZnL5D w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="394660838"
-X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; d="scan'208";a="394660838"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2023 20:14:04 -0800
+ t=1702442096; x=1733978096;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=JtaNiTDRwZdAZ+XylUnuxrTOUBY+yAO/twcuEkO2nF0=;
+ b=LIW7oo+AZLHozNPVEkE9Cf1w/7XYUBArJEIO9kOnvxpkzHXIlydhxidN
+ EhWCs/aSNWUV3NHKFEprvoWddGyJDyGmvXKSRtK9f8EV0JevL7l1iJdG3
+ mv2g2DJfTXaETerU22qjHRJqbs6QlgBBebFjyB+YR/EQSTTgww1MBtYZD
+ BwPPClBqSqdDd5oI3FKGundGPw8cusCxu5bgouI7sSGgYYimYaBb+s3lX
+ G6oz79oq1Cj2AwhLRJ1YY0K906cuBROS18H5PnzuFoVAhQXPN5aQNWO0t
+ VzgvMbS31APWlAZi1eNrMza84m2vcrgx83vqf1OqdEUXhScUKPmMm9zP0 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="2084731"
+X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; 
+   d="scan'208";a="2084731"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2023 20:34:55 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="749966423"
-X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; d="scan'208";a="749966423"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 12 Dec 2023 20:14:03 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 12 Dec 2023 20:14:02 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 12 Dec 2023 20:14:01 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 12 Dec 2023 20:14:01 -0800
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.40) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 12 Dec 2023 20:14:01 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aeQL4X2NaRZp3i+tcA6e3mzuaEte6ULZ/VOIaYPiCyOTuleMt0zq5RuGXH3dcdREaURnkYT6wpUDplLRTBqEAIAhd200JeyAi7XJBfqu0Gn93YeIzRKbHokqLiOyEHSlgwurodSpLLDnWt0GhJTLEHsAWKA7NAhRJk5l1FGU3ytkPGB86rW9vZ4bDWsG+F3LO7BffdxnZmvTNsRKYLrTL33yxBxvNq1OObMQuBiLId4CdipoYHg6jXRXCt6DqbLKVR3b/qDzUIDklf6ZUtdDUK1YFqV7A8SLb5m2LuqmR61ASuOGbs5po8TuIWY7OUBlpXgzsdrzE4mcwBhYfDJxyQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ag2TeA+Sn5/oRZjd25XroQicXKnp5y+lV9bwq0OxBAg=;
- b=UnwbLT7UNIrVTVw6eI6hxBBJ5+AIPeaSL8ARMPf7YGU89HxOLkmP/p4pEjDcs2rnADEegnG+KAm0/2pFcuPGBzFVPX8O8f0Qsuacdaa5HO8GCx+S8SyVUW1UijUwVlb5zCTwjZ45qr4Huvpworgn0r/39VGQwIxCpBHUu97H4Njfp2mgn6fuuR9n4RXIq5uXgrD9gWGZF7TKQCkHKh68SwR5aD8WECYy7roU86KphY/n9WhSUoHNnYhYtwR2amwwCS12T/haGsQRoq06gzlykRZzbrguLVfAsa8NfDtcpjobRl7SzWRQRdoXp2aS2fwRhVKqp5CGsU26X1ZbGUt+EQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SJ1PR11MB6204.namprd11.prod.outlook.com (2603:10b6:a03:459::19)
- by DM3PR11MB8670.namprd11.prod.outlook.com (2603:10b6:0:3d::6) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7091.26; Wed, 13 Dec 2023 04:13:59 +0000
-Received: from SJ1PR11MB6204.namprd11.prod.outlook.com
- ([fe80::1944:44bf:d17a:a508]) by SJ1PR11MB6204.namprd11.prod.outlook.com
- ([fe80::1944:44bf:d17a:a508%6]) with mapi id 15.20.7068.031; Wed, 13 Dec 2023
- 04:13:59 +0000
-From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
-To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/xe: Remove vram size info from sysfs
-Thread-Topic: [PATCH] drm/xe: Remove vram size info from sysfs
-Thread-Index: AQHaLJEx2khPekE0FEWWPo7DPrY6Y7Cml9mg
-Date: Wed, 13 Dec 2023 04:13:59 +0000
-Message-ID: <SJ1PR11MB620471C7291527E350731CC0818DA@SJ1PR11MB6204.namprd11.prod.outlook.com>
-References: <20231212002058.1105898-1-rodrigo.vivi@intel.com>
-In-Reply-To: <20231212002058.1105898-1-rodrigo.vivi@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ1PR11MB6204:EE_|DM3PR11MB8670:EE_
-x-ms-office365-filtering-correlation-id: 0ca72ffc-878e-4d31-afc2-08dbfb91eec6
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: /cYTgUCWYJ/DPYOhbrONJG7WrzM+hbVfnVfkMjGZQjB3qRHMuRfRCu20SFj+JSYzsE2BOZhYonJ0lT8Y0eYnuNCkwooQzS8IQd/aA6yN2xRj1gBYreDRJa6JanrDd80GEVu2XKwPDHw4YJX2uvRatJ5cUlX8lU8sGDM5Kowi3c3zJtKJHhk44XUqDzHcEUFa7AR/utu32IulsYJvNkoUgDh/J8vPfVPVVpVZXZOe6zHic7Ny86i/FQo5RMCGeTcWp40af6uZiAJrbPkB5tUeCWlHrm/KVx3pA/DdXMC2ABXxSI5qd8woBWeZTWWSUcUW4kAU2YXe/5yHs+5J+josXZ3ZiENaWRQkw0QbSbUsdeTJnOIg+W8l6C3VSuvuwynRY5TfGif1p5744Cw+MFFpwQDh3I1FPK++1ZIjEuaZeZ1yzavWq6BlHDKG48eyMSz80me5fydkBi7xqcNiBbBXI0XVyiRHYSxmSHzW5YuN6wUmj+QN/TCCUkQ40ptbqxZq9Uca7dwgW6Xf1GEza6baO+bAORm9hD5qZOUWlpR+66eyRWpxmeY6d9+Rfpb8yxjJqa5nPcXmnaKIHHaHamufHeu1QUA8bBvuJyjLxXlK+DiVHvmqj8VfojVDKRmzquJv
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ1PR11MB6204.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(136003)(39860400002)(346002)(396003)(376002)(366004)(230922051799003)(451199024)(64100799003)(1800799012)(186009)(55016003)(9686003)(7696005)(6506007)(71200400001)(107886003)(82960400001)(86362001)(33656002)(38070700009)(38100700002)(5660300002)(8936002)(8676002)(52536014)(4326008)(83380400001)(53546011)(122000001)(66476007)(66446008)(64756008)(54906003)(76116006)(66556008)(110136005)(66946007)(41300700001)(2906002)(316002)(478600001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?auMfY82X41rRMiGqCq8kpCnuisIWKspFb24yy+lPhDDtfNs24ahsi/lCsPOS?=
- =?us-ascii?Q?OIw6tldArK/Ha3YAOYcpkKx/e+3CSqfpvHTl2Hh76dXjxS7SiYz/HsDlsUjp?=
- =?us-ascii?Q?Sm1d7Je9vLtBz9Mn/3ABrWDBwaDSsRGPvnSFUHU7mxHbEJdXzU8+oq9NjIO5?=
- =?us-ascii?Q?bpgfyO1zqj9VDL8Gi6KSKRyJTtL3cInM0HcISUQHHxWDLgGHK8AWAYPwmaLs?=
- =?us-ascii?Q?mRe+et5MdrDFDEzwVvr/QcKOuhLbGIo27+IxiC/aKKPmJFrfYBiDVxFZiK2D?=
- =?us-ascii?Q?miSLU4ogMoAKBGeRSXkN950bR496SW1EDeej0TJH6yPFwQ9AJQI+i6ULAKTS?=
- =?us-ascii?Q?B89w2RAkWIFiY2D0ydxjQSy1Yq1SFC3M/vTnNJmKL2SoxfsdXgKjsVoQueMu?=
- =?us-ascii?Q?AudpqpzW6a/pEpbbTC2NuV6F0hs9z6marYSTAXG5GDWX1oN33srE1jwt3EAX?=
- =?us-ascii?Q?cfC8kjRWMiGZp6V8ZNv/5bMVF0lSoy2cE5Y2Dyf45VCCzJMM8Q9PaoxAXGvj?=
- =?us-ascii?Q?gdWEPK8oOUc73FMaX5+JI2spqZqH4a4Q91RSWNxsUZea448Yrqdf93HT9K5H?=
- =?us-ascii?Q?9LxVO/PXUFm0/mPe5MB31gT4SBii+xK2bslKd/WKGDik8fTJD+Ufu7QZ/hGx?=
- =?us-ascii?Q?QV6oiNi+ZtJTYbkF6gRUcg2CbneMKiQ3N1eMbPc9giZzV6Pv7ZTkgp6I8SHe?=
- =?us-ascii?Q?P7jr6mZa5WREYuGwTaaUw3MP1i61jbW5eJe7Y9MjzW3RkfKueEeMXGl3bK3m?=
- =?us-ascii?Q?JP1A2UPtdr1nJ1RxE+3UJRzLug1P20LdS3PHyy3fqWGFz3sM/ykpLiV3sMsy?=
- =?us-ascii?Q?Db5PHZuCAKja8Mhq0/mXhmmYt1A/W7QWhh4aHb0zdoAJrTjOp3lOVJRSU8YD?=
- =?us-ascii?Q?+jxMGch4xdM+KJ9exz26QTUfSBiR8uvTaTiVHNf6+kDjvB7RxcdmDbP7G5Hl?=
- =?us-ascii?Q?wDuZyd0ins1/jYQ7pKZF+ADw2DuV0W2++J4EeeoFeX504x0TiVQHhxWtZc68?=
- =?us-ascii?Q?ylWLXqkPvhIpVJW1VnShwAbeZJxs2qgBAtn5UyLsLCQlU3KnCvXIaDvWKOn8?=
- =?us-ascii?Q?JI8Yt1LNUZSf0v18w4akdrgTL1sQABDirQgV4xhVt4+ztxzhgLfkx0ynJZfD?=
- =?us-ascii?Q?68HpYaRCUj5yignAFL007X3p/+dCHbN/F7AM6HK47n1isbJoMz8dQBLJjEhD?=
- =?us-ascii?Q?UN/7p6i9Wz/prsT+VzXFOsZIm7wIRTcsS/WsDGsNu5BnaeLjjh1QW99G3Vb/?=
- =?us-ascii?Q?F7UImHbzN7A5hvGFVoLOshrUTIdP80HGidWpo1itADngbkTbGT0d5QZzmOGd?=
- =?us-ascii?Q?7iSgWv9YDS+WynbqyJGuVj6Y7pNmGiNTJEOHSIj39vIsEC93l8/6prjVhSbw?=
- =?us-ascii?Q?vooztv0/O+V78DhGZQW5ljwMPnZ/YvjyDayVcCltLkHqWS7ZN2jFJzT1Q1Fv?=
- =?us-ascii?Q?jgBHOzt4H2FsOKX/Rqcy4srffY3TE6r+9C2pk4exO7KLNtwhfouQTDcjB58U?=
- =?us-ascii?Q?OiAQHw9icmcBFkTLKyS6xdQFl91jXr5n1CXJNBci8bHkQbySctHS9ebq/sqx?=
- =?us-ascii?Q?lvchzMV5WKQ3tN1VskgLi15A55DbXUtQFfI6MIdnwDOE0reJrpqt4WX7jUYf?=
- =?us-ascii?Q?xK6PjPEekjGsx++Y2LaJpPr9ekiq8O4EJnDZo4qmOCot?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; d="scan'208";a="21789188"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2023 20:34:55 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Subject: [PATCH v2] drm/xe/uapi: Uniform async vs sync handling
+Date: Tue, 12 Dec 2023 20:35:17 -0800
+Message-Id: <20231213043517.609363-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6204.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0ca72ffc-878e-4d31-afc2-08dbfb91eec6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Dec 2023 04:13:59.7646 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 7PeY0OxBi0xLpjjfF3eelHU5ZSoiX9+yMgj3Q8MI1UhdtLElZVeWUtbRTB0FrHcxQrS3LIpuiho3X7nIxS0SUn4ikLLOJWSwL8Yrj/yWFrM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PR11MB8670
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,84 +55,563 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Roper, Matthew D" <matthew.d.roper@intel.com>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Remove concept of async vs sync VM bind queues, rather make async vs
+sync a per IOCTL choice. Since this is per IOCTL, it makes sense to have
+a singular flag IOCTL rather than per VM bind op flag too. Add
+DRM_XE_SYNCS_FLAG_WAIT_FOR_OP which is an input sync flag to support
+this. Support this new flag for both the VM bind IOCTL only with a path
+to support this for execs too.
 
+v2: Add cookie, move sync wait outside of any locks.
 
-> -----Original Message-----
-> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Rodr=
-igo
-> Vivi
-> Sent: Tuesday, December 12, 2023 5:51 AM
-> To: intel-xe@lists.freedesktop.org
-> Cc: Roper, Matthew D <matthew.d.roper@intel.com>; Vivi, Rodrigo
-> <rodrigo.vivi@intel.com>
-> Subject: [PATCH] drm/xe: Remove vram size info from sysfs
->=20
-> This information is already part of the query IOCTL.
-> Let's not duplicate it here in the sysfs.
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_exec.c             |  12 ++-
+ drivers/gpu/drm/xe/xe_exec_queue.c       |   7 +-
+ drivers/gpu/drm/xe/xe_exec_queue_types.h |   2 -
+ drivers/gpu/drm/xe/xe_vm.c               | 116 +++++++++++------------
+ drivers/gpu/drm/xe/xe_vm_types.h         |  13 ++-
+ include/uapi/drm/xe_drm.h                |  64 ++++++++-----
+ 6 files changed, 109 insertions(+), 105 deletions(-)
 
-This patch was on request from L0 as they wanted actual VRAM size including=
- reserved portion. We should check with UMD team if they require this sysfs=
- or not. I will check.
-
-Tejas
->=20
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_tile_sysfs.c | 23 +----------------------
->  1 file changed, 1 insertion(+), 22 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.c
-> b/drivers/gpu/drm/xe/xe_tile_sysfs.c
-> index 16376607c68f..0f8d3e7fce46 100644
-> --- a/drivers/gpu/drm/xe/xe_tile_sysfs.c
-> +++ b/drivers/gpu/drm/xe/xe_tile_sysfs.c
-> @@ -20,20 +20,6 @@ static const struct kobj_type xe_tile_sysfs_kobj_type =
-=3D {
->  	.sysfs_ops =3D &kobj_sysfs_ops,
->  };
->=20
-> -static ssize_t
-> -physical_vram_size_bytes_show(struct device *kdev, struct device_attribu=
-te
-> *attr,
-> -			      char *buf)
-> -{
-> -	struct xe_tile *tile =3D kobj_to_tile(&kdev->kobj);
-> -
-> -	return sysfs_emit(buf, "%llu\n", tile->mem.vram.actual_physical_size);
-> -}
-> -
-> -static DEVICE_ATTR_RO(physical_vram_size_bytes);
-> -
-> -static const struct attribute *physical_memsize_attr =3D
-> -	&dev_attr_physical_vram_size_bytes.attr;
-> -
->  static void tile_sysfs_fini(struct drm_device *drm, void *arg)  {
->  	struct xe_tile *tile =3D arg;
-> @@ -64,15 +50,8 @@ void xe_tile_sysfs_init(struct xe_tile *tile)
->=20
->  	tile->sysfs =3D &kt->base;
->=20
-> -	if (IS_DGFX(xe) && xe->info.platform !=3D XE_DG1 &&
-> -	    sysfs_create_file(tile->sysfs, physical_memsize_attr))
-> -		drm_warn(&xe->drm,
-> -			 "Sysfs creation to read addr_range per tile failed\n");
-> -
->  	err =3D drmm_add_action_or_reset(&xe->drm, tile_sysfs_fini, tile);
-> -	if (err) {
-> +	if (err)
->  		drm_warn(&xe->drm, "%s: drmm_add_action_or_reset
-> failed, err: %d\n",
->  			 __func__, err);
-> -		return;
-> -	}
->  }
-> --
-> 2.43.0
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index ba92e5619da3..8a1530dab65f 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -104,7 +104,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	struct xe_device *xe = to_xe_device(dev);
+ 	struct xe_file *xef = to_xe_file(file);
+ 	struct drm_xe_exec *args = data;
+-	struct drm_xe_sync __user *syncs_user = u64_to_user_ptr(args->syncs);
++	struct drm_xe_sync __user *syncs_user = u64_to_user_ptr(args->syncs.syncs);
+ 	u64 __user *addresses_user = u64_to_user_ptr(args->address);
+ 	struct xe_exec_queue *q;
+ 	struct xe_sync_entry *syncs = NULL;
+@@ -120,7 +120,9 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	int err = 0;
+ 
+ 	if (XE_IOCTL_DBG(xe, args->extensions) ||
+-	    XE_IOCTL_DBG(xe, args->pad[0] || args->pad[1] || args->pad[2]) ||
++	    XE_IOCTL_DBG(xe, args->pad || args->pad2[0] || args->pad2[1] || args->pad2[2]) ||
++	    XE_IOCTL_DBG(xe, args->syncs.flags) ||
++	    XE_IOCTL_DBG(xe, args->syncs.cookie) ||
+ 	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+ 		return -EINVAL;
+ 
+@@ -140,8 +142,8 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		goto err_exec_queue;
+ 	}
+ 
+-	if (args->num_syncs) {
+-		syncs = kcalloc(args->num_syncs, sizeof(*syncs), GFP_KERNEL);
++	if (args->syncs.num_syncs) {
++		syncs = kcalloc(args->syncs.num_syncs, sizeof(*syncs), GFP_KERNEL);
+ 		if (!syncs) {
+ 			err = -ENOMEM;
+ 			goto err_exec_queue;
+@@ -150,7 +152,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 
+ 	vm = q->vm;
+ 
+-	for (i = 0; i < args->num_syncs; i++) {
++	for (i = 0; i < args->syncs.num_syncs; i++) {
+ 		err = xe_sync_entry_parse(xe, xef, &syncs[num_syncs++],
+ 					  &syncs_user[i], SYNC_PARSE_FLAG_EXEC |
+ 					  (xe_vm_in_lr_mode(vm) ?
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index eeb9605dd45f..a25d67971fdd 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -625,10 +625,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ 	if (XE_IOCTL_DBG(xe, eci[0].gt_id >= xe->info.gt_count))
+ 		return -EINVAL;
+ 
+-	if (eci[0].engine_class >= DRM_XE_ENGINE_CLASS_VM_BIND_ASYNC) {
+-		bool sync = eci[0].engine_class ==
+-			DRM_XE_ENGINE_CLASS_VM_BIND_SYNC;
+-
++	if (eci[0].engine_class == DRM_XE_ENGINE_CLASS_VM_BIND) {
+ 		for_each_gt(gt, xe, id) {
+ 			struct xe_exec_queue *new;
+ 
+@@ -654,8 +651,6 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ 						   args->width, hwe,
+ 						   EXEC_QUEUE_FLAG_PERSISTENT |
+ 						   EXEC_QUEUE_FLAG_VM |
+-						   (sync ? 0 :
+-						    EXEC_QUEUE_FLAG_VM_ASYNC) |
+ 						   (id ?
+ 						    EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD :
+ 						    0));
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index c7aefa1c8c31..0f7f6cded4a3 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -84,8 +84,6 @@ struct xe_exec_queue {
+ #define EXEC_QUEUE_FLAG_VM			BIT(4)
+ /* child of VM queue for multi-tile VM jobs */
+ #define EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD	BIT(5)
+-/* VM jobs for this queue are asynchronous */
+-#define EXEC_QUEUE_FLAG_VM_ASYNC		BIT(6)
+ 
+ 	/**
+ 	 * @flags: flags for this exec queue, should statically setup aside from ban
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 2f3df9ee67c9..ab38685d2daf 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1343,9 +1343,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 			struct xe_gt *gt = tile->primary_gt;
+ 			struct xe_vm *migrate_vm;
+ 			struct xe_exec_queue *q;
+-			u32 create_flags = EXEC_QUEUE_FLAG_VM |
+-				((flags & XE_VM_FLAG_ASYNC_DEFAULT) ?
+-				EXEC_QUEUE_FLAG_VM_ASYNC : 0);
++			u32 create_flags = EXEC_QUEUE_FLAG_VM;
+ 
+ 			if (!vm->pt_root[id])
+ 				continue;
+@@ -1712,12 +1710,6 @@ xe_vm_bind_vma(struct xe_vma *vma, struct xe_exec_queue *q,
+ 	return ERR_PTR(err);
+ }
+ 
+-static bool xe_vm_sync_mode(struct xe_vm *vm, struct xe_exec_queue *q)
+-{
+-	return q ? !(q->flags & EXEC_QUEUE_FLAG_VM_ASYNC) :
+-		!(vm->flags & XE_VM_FLAG_ASYNC_DEFAULT);
+-}
+-
+ static int __xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma,
+ 			struct xe_exec_queue *q, struct xe_sync_entry *syncs,
+ 			u32 num_syncs, bool immediate, bool first_op,
+@@ -1747,8 +1739,6 @@ static int __xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma,
+ 
+ 	if (last_op)
+ 		xe_exec_queue_last_fence_set(wait_exec_queue, vm, fence);
+-	if (last_op && xe_vm_sync_mode(vm, q))
+-		dma_fence_wait(fence, true);
+ 	dma_fence_put(fence);
+ 
+ 	return 0;
+@@ -1791,8 +1781,6 @@ static int xe_vm_unbind(struct xe_vm *vm, struct xe_vma *vma,
+ 	xe_vma_destroy(vma, fence);
+ 	if (last_op)
+ 		xe_exec_queue_last_fence_set(wait_exec_queue, vm, fence);
+-	if (last_op && xe_vm_sync_mode(vm, q))
+-		dma_fence_wait(fence, true);
+ 	dma_fence_put(fence);
+ 
+ 	return 0;
+@@ -1800,7 +1788,6 @@ static int xe_vm_unbind(struct xe_vm *vm, struct xe_vma *vma,
+ 
+ #define ALL_DRM_XE_VM_CREATE_FLAGS (DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE | \
+ 				    DRM_XE_VM_CREATE_FLAG_LR_MODE | \
+-				    DRM_XE_VM_CREATE_FLAG_ASYNC_DEFAULT | \
+ 				    DRM_XE_VM_CREATE_FLAG_FAULT_MODE)
+ 
+ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+@@ -1854,8 +1841,6 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+ 		flags |= XE_VM_FLAG_SCRATCH_PAGE;
+ 	if (args->flags & DRM_XE_VM_CREATE_FLAG_LR_MODE)
+ 		flags |= XE_VM_FLAG_LR_MODE;
+-	if (args->flags & DRM_XE_VM_CREATE_FLAG_ASYNC_DEFAULT)
+-		flags |= XE_VM_FLAG_ASYNC_DEFAULT;
+ 	if (args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE)
+ 		flags |= XE_VM_FLAG_FAULT_MODE;
+ 
+@@ -2263,8 +2248,7 @@ static int xe_vma_op_commit(struct xe_vm *vm, struct xe_vma_op *op)
+ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
+ 				   struct drm_gpuva_ops *ops,
+ 				   struct xe_sync_entry *syncs, u32 num_syncs,
+-				   struct list_head *ops_list, bool last,
+-				   bool async)
++				   struct list_head *ops_list, bool last)
+ {
+ 	struct xe_vma_op *last_op = NULL;
+ 	struct drm_gpuva_op *__op;
+@@ -2696,16 +2680,16 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
+ 
+ #ifdef TEST_VM_ASYNC_OPS_ERROR
+ #define SUPPORTED_FLAGS	\
+-	(FORCE_ASYNC_OP_ERROR | DRM_XE_VM_BIND_FLAG_ASYNC | \
+-	 DRM_XE_VM_BIND_FLAG_READONLY | DRM_XE_VM_BIND_FLAG_IMMEDIATE | \
+-	 DRM_XE_VM_BIND_FLAG_NULL | 0xffff)
++	(FORCE_ASYNC_OP_ERROR | DRM_XE_VM_BIND_FLAG_READONLY | \
++	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | DRM_XE_VM_BIND_FLAG_NULL | 0xffff)
+ #else
+ #define SUPPORTED_FLAGS	\
+-	(DRM_XE_VM_BIND_FLAG_ASYNC | DRM_XE_VM_BIND_FLAG_READONLY | \
++	(DRM_XE_VM_BIND_FLAG_READONLY | \
+ 	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | DRM_XE_VM_BIND_FLAG_NULL | \
+ 	 0xffff)
+ #endif
+ #define XE_64K_PAGE_MASK 0xffffull
++#define ALL_DRM_XE_SYNCS_FLAGS (DRM_XE_SYNCS_FLAG_WAIT_FOR_OP)
+ 
+ #define MAX_BINDS	512	/* FIXME: Picking random upper limit */
+ 
+@@ -2717,7 +2701,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+ 	int err;
+ 	int i;
+ 
+-	if (XE_IOCTL_DBG(xe, args->pad || args->pad2) ||
++	if (XE_IOCTL_DBG(xe, args->pad) ||
+ 	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+ 		return -EINVAL;
+ 
+@@ -2745,6 +2729,14 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+ 		*bind_ops = &args->bind;
+ 	}
+ 
++	*async = !(args->syncs.flags & DRM_XE_SYNCS_FLAG_WAIT_FOR_OP);
++
++	if (XE_IOCTL_DBG(xe, args->syncs.flags & ~ALL_DRM_XE_SYNCS_FLAGS) ||
++	    XE_IOCTL_DBG(xe, !*async && args->syncs.num_syncs)) {
++		err = -EINVAL;
++		goto free_bind_ops;
++	}
++
+ 	for (i = 0; i < args->num_binds; ++i) {
+ 		u64 range = (*bind_ops)[i].range;
+ 		u64 addr = (*bind_ops)[i].addr;
+@@ -2775,18 +2767,6 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+ 			goto free_bind_ops;
+ 		}
+ 
+-		if (i == 0) {
+-			*async = !!(flags & DRM_XE_VM_BIND_FLAG_ASYNC);
+-			if (XE_IOCTL_DBG(xe, !*async && args->num_syncs)) {
+-				err = -EINVAL;
+-				goto free_bind_ops;
+-			}
+-		} else if (XE_IOCTL_DBG(xe, *async !=
+-					!!(flags & DRM_XE_VM_BIND_FLAG_ASYNC))) {
+-			err = -EINVAL;
+-			goto free_bind_ops;
+-		}
+-
+ 		if (XE_IOCTL_DBG(xe, op > DRM_XE_VM_BIND_OP_PREFETCH) ||
+ 		    XE_IOCTL_DBG(xe, flags & ~SUPPORTED_FLAGS) ||
+ 		    XE_IOCTL_DBG(xe, obj && is_null) ||
+@@ -2854,12 +2834,25 @@ static int vm_bind_ioctl_signal_fences(struct xe_vm *vm,
+ 
+ 	xe_exec_queue_last_fence_set(to_wait_exec_queue(vm, q), vm,
+ 				     fence);
++	dma_fence_put(fence);
+ 
+-	if (xe_vm_sync_mode(vm, q)) {
+-		long timeout = dma_fence_wait(fence, true);
++	return err;
++}
+ 
+-		if (timeout < 0)
+-			err = -EINTR;
++static int vm_bind_ioctl_sync_wait(struct xe_vm *vm,
++				   struct dma_fence *fence,
++				   u64 __user *cookie)
++{
++	long timeout;
++	int err = 0;
++
++	timeout = dma_fence_wait(fence, true);
++	if (timeout < 0) {
++		u64 value = 1;
++
++		err = -ERESTARTSYS;
++		if (copy_to_user(cookie, &value, sizeof(value)))
++			err = -EFAULT;
+ 	}
+ 
+ 	dma_fence_put(fence);
+@@ -2875,6 +2868,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	struct drm_xe_sync __user *syncs_user;
+ 	struct xe_bo **bos = NULL;
+ 	struct drm_gpuva_ops **ops = NULL;
++	struct dma_fence *fence = NULL;
+ 	struct xe_vm *vm;
+ 	struct xe_exec_queue *q = NULL;
+ 	u32 num_syncs;
+@@ -2889,7 +2883,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	if (err)
+ 		return err;
+ 
+-	if (XE_IOCTL_DBG(xe, args->pad || args->pad2) ||
++	if (XE_IOCTL_DBG(xe, args->pad) ||
+ 	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+ 		return -EINVAL;
+ 
+@@ -2904,12 +2898,6 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 			err = -EINVAL;
+ 			goto put_exec_queue;
+ 		}
+-
+-		if (XE_IOCTL_DBG(xe, args->num_binds && async !=
+-				 !!(q->flags & EXEC_QUEUE_FLAG_VM_ASYNC))) {
+-			err = -EINVAL;
+-			goto put_exec_queue;
+-		}
+ 	}
+ 
+ 	vm = xe_vm_lookup(xef, args->vm_id);
+@@ -2918,14 +2906,6 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		goto put_exec_queue;
+ 	}
+ 
+-	if (!args->exec_queue_id) {
+-		if (XE_IOCTL_DBG(xe, args->num_binds && async !=
+-				 !!(vm->flags & XE_VM_FLAG_ASYNC_DEFAULT))) {
+-			err = -EINVAL;
+-			goto put_vm;
+-		}
+-	}
+-
+ 	err = down_write_killable(&vm->lock);
+ 	if (err)
+ 		goto put_vm;
+@@ -3015,16 +2995,16 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		}
+ 	}
+ 
+-	if (args->num_syncs) {
+-		syncs = kcalloc(args->num_syncs, sizeof(*syncs), GFP_KERNEL);
++	if (args->syncs.num_syncs) {
++		syncs = kcalloc(args->syncs.num_syncs, sizeof(*syncs), GFP_KERNEL);
+ 		if (!syncs) {
+ 			err = -ENOMEM;
+ 			goto put_obj;
+ 		}
+ 	}
+ 
+-	syncs_user = u64_to_user_ptr(args->syncs);
+-	for (num_syncs = 0; num_syncs < args->num_syncs; num_syncs++) {
++	syncs_user = u64_to_user_ptr(args->syncs.syncs);
++	for (num_syncs = 0; num_syncs < args->syncs.num_syncs; num_syncs++) {
+ 		err = xe_sync_entry_parse(xe, xef, &syncs[num_syncs],
+ 					  &syncs_user[num_syncs],
+ 					  (xe_vm_in_lr_mode(vm) ?
+@@ -3060,8 +3040,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 
+ 		err = vm_bind_ioctl_ops_parse(vm, q, ops[i], syncs, num_syncs,
+ 					      &ops_list,
+-					      i == args->num_binds - 1,
+-					      async);
++					      i == args->num_binds - 1);
+ 		if (err)
+ 			goto unwind_ops;
+ 	}
+@@ -3077,7 +3056,10 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		xe_exec_queue_get(q);
+ 
+ 	err = vm_bind_ioctl_ops_execute(vm, &ops_list);
+-
++	if (!err && !async) {
++		fence = xe_exec_queue_last_fence_get(to_wait_exec_queue(vm, q), vm);
++		dma_fence_get(fence);
++	}
+ 	up_write(&vm->lock);
+ 
+ 	if (q)
+@@ -3092,13 +3074,19 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	if (args->num_binds > 1)
+ 		kfree(bind_ops);
+ 
+-	return err;
++	return fence ? vm_bind_ioctl_sync_wait(vm, fence, u64_to_user_ptr(args->syncs.cookie)) :
++		err;
+ 
+ unwind_ops:
+ 	vm_bind_ioctl_ops_unwind(vm, ops, args->num_binds);
+ free_syncs:
+-	if (err == -ENODATA)
++	if (err == -ENODATA) {
+ 		err = vm_bind_ioctl_signal_fences(vm, q, syncs, num_syncs);
++		if (!async) {
++			fence = xe_exec_queue_last_fence_get(to_wait_exec_queue(vm, q), vm);
++			dma_fence_get(fence);
++		}
++	}
+ 	while (num_syncs--)
+ 		xe_sync_entry_cleanup(&syncs[num_syncs]);
+ 
+@@ -3108,6 +3096,8 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		xe_bo_put(bos[i]);
+ release_vm_lock:
+ 	up_write(&vm->lock);
++	if (fence)
++		err = vm_bind_ioctl_sync_wait(vm, fence, u64_to_user_ptr(args->syncs.cookie));
+ put_vm:
+ 	xe_vm_put(vm);
+ put_exec_queue:
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 2e023596cb15..63e8a50b88e9 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -138,13 +138,12 @@ struct xe_vm {
+ 	 */
+ #define XE_VM_FLAG_64K			BIT(0)
+ #define XE_VM_FLAG_LR_MODE		BIT(1)
+-#define XE_VM_FLAG_ASYNC_DEFAULT	BIT(2)
+-#define XE_VM_FLAG_MIGRATION		BIT(3)
+-#define XE_VM_FLAG_SCRATCH_PAGE		BIT(4)
+-#define XE_VM_FLAG_FAULT_MODE		BIT(5)
+-#define XE_VM_FLAG_BANNED		BIT(6)
+-#define XE_VM_FLAG_TILE_ID(flags)	FIELD_GET(GENMASK(8, 7), flags)
+-#define XE_VM_FLAG_SET_TILE_ID(tile)	FIELD_PREP(GENMASK(8, 7), (tile)->id)
++#define XE_VM_FLAG_MIGRATION		BIT(2)
++#define XE_VM_FLAG_SCRATCH_PAGE		BIT(3)
++#define XE_VM_FLAG_FAULT_MODE		BIT(4)
++#define XE_VM_FLAG_BANNED		BIT(5)
++#define XE_VM_FLAG_TILE_ID(flags)	FIELD_GET(GENMASK(7, 6), flags)
++#define XE_VM_FLAG_SET_TILE_ID(tile)	FIELD_PREP(GENMASK(7, 6), (tile)->id)
+ 	unsigned long flags;
+ 
+ 	/** @composite_fence_ctx: context composite fence */
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 0895e4d2a981..d72e4441cc80 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -140,8 +140,7 @@ struct drm_xe_engine_class_instance {
+ 	 * Kernel only classes (not actual hardware engine class). Used for
+ 	 * creating ordered queues of VM bind operations.
+ 	 */
+-#define DRM_XE_ENGINE_CLASS_VM_BIND_ASYNC	5
+-#define DRM_XE_ENGINE_CLASS_VM_BIND_SYNC	6
++#define DRM_XE_ENGINE_CLASS_VM_BIND		5
+ 	/** @engine_class: engine class id */
+ 	__u16 engine_class;
+ 	/** @engine_instance: engine instance id */
+@@ -661,7 +660,6 @@ struct drm_xe_vm_create {
+ 	 * still enable recoverable pagefaults if supported by the device.
+ 	 */
+ #define DRM_XE_VM_CREATE_FLAG_LR_MODE	        (1 << 1)
+-#define DRM_XE_VM_CREATE_FLAG_ASYNC_DEFAULT	(1 << 2)
+ 	/*
+ 	 * DRM_XE_VM_CREATE_FLAG_FAULT_MODE requires also
+ 	 * DRM_XE_VM_CREATE_FLAG_LR_MODE. It allows memory to be allocated
+@@ -669,7 +667,7 @@ struct drm_xe_vm_create {
+ 	 * The xe driver internally uses recoverable pagefaults to implement
+ 	 * this.
+ 	 */
+-#define DRM_XE_VM_CREATE_FLAG_FAULT_MODE	(1 << 3)
++#define DRM_XE_VM_CREATE_FLAG_FAULT_MODE	(1 << 2)
+ 	/** @flags: Flags */
+ 	__u32 flags;
+ 
+@@ -777,12 +775,11 @@ struct drm_xe_vm_bind_op {
+ 	__u32 op;
+ 
+ #define DRM_XE_VM_BIND_FLAG_READONLY	(1 << 0)
+-#define DRM_XE_VM_BIND_FLAG_ASYNC	(1 << 1)
+ 	/*
+ 	 * Valid on a faulting VM only, do the MAP operation immediately rather
+ 	 * than deferring the MAP to the page fault handler.
+ 	 */
+-#define DRM_XE_VM_BIND_FLAG_IMMEDIATE	(1 << 2)
++#define DRM_XE_VM_BIND_FLAG_IMMEDIATE	(1 << 1)
+ 	/*
+ 	 * When the NULL flag is set, the page tables are setup with a special
+ 	 * bit which indicates writes are dropped and all reads return zero.  In
+@@ -790,7 +787,7 @@ struct drm_xe_vm_bind_op {
+ 	 * operations, the BO handle MBZ, and the BO offset MBZ. This flag is
+ 	 * intended to implement VK sparse bindings.
+ 	 */
+-#define DRM_XE_VM_BIND_FLAG_NULL	(1 << 3)
++#define DRM_XE_VM_BIND_FLAG_NULL	(1 << 2)
+ 	/** @flags: Bind flags */
+ 	__u32 flags;
+ 
+@@ -808,6 +805,35 @@ struct drm_xe_vm_bind_op {
+ 	__u64 reserved[3];
+ };
+ 
++/**
++ * struct drm_xe_syncs - In / out syncs for IOCTLs.
++ */
++struct drm_xe_syncs {
++	/** @num_syncs: amount of syncs to wait on */
++	__u32 num_syncs;
++
++	/*
++	 * Block in IOCTL until operation complete, num_syncs MBZ if set.
++	 */
++#define DRM_XE_SYNCS_FLAG_WAIT_FOR_OP (1 << 0)
++	/** @flags: Sync flags */
++	__u32 flags;
++
++	/**
++	 * @cookie: pointer which is written with an non-zero value if IOCTL
++	 * operation has been committed but the wait for completion
++	 * (DRM_XE_SYNCS_FLAG_WAIT_FOR_OP is set) is interrupted. Value only
++	 * valid when IOCTL returns -EINTR or -ERESTARTSYS.
++	 */
++	__u64 cookie;
++
++	/** @syncs: pointer to struct drm_xe_sync array */
++	__u64 syncs;
++
++	/** @reserved: Reserved */
++	__u64 reserved[2];
++};
++
+ struct drm_xe_vm_bind {
+ 	/** @extensions: Pointer to the first extension struct, if any */
+ 	__u64 extensions;
+@@ -839,14 +865,8 @@ struct drm_xe_vm_bind {
+ 		__u64 vector_of_binds;
+ 	};
+ 
+-	/** @pad: MBZ */
+-	__u32 pad2;
+-
+-	/** @num_syncs: amount of syncs to wait on */
+-	__u32 num_syncs;
+-
+-	/** @syncs: pointer to struct drm_xe_sync array */
+-	__u64 syncs;
++	/** @syncs: syncs for bind */
++	struct drm_xe_syncs syncs;
+ 
+ 	/** @reserved: Reserved */
+ 	__u64 reserved[2];
+@@ -975,14 +995,14 @@ struct drm_xe_exec {
+ 	/** @extensions: Pointer to the first extension struct, if any */
+ 	__u64 extensions;
+ 
++	/** @pad: MBZ */
++	__u32 pad;
++
+ 	/** @exec_queue_id: Exec queue ID for the batch buffer */
+ 	__u32 exec_queue_id;
+ 
+-	/** @num_syncs: Amount of struct drm_xe_sync in array. */
+-	__u32 num_syncs;
+-
+-	/** @syncs: Pointer to struct drm_xe_sync array. */
+-	__u64 syncs;
++	/** @syncs: syncs for exec */
++	struct drm_xe_syncs syncs;
+ 
+ 	/**
+ 	 * @address: address of batch buffer if num_batch_buffer == 1 or an
+@@ -996,8 +1016,8 @@ struct drm_xe_exec {
+ 	 */
+ 	__u16 num_batch_buffer;
+ 
+-	/** @pad: MBZ */
+-	__u16 pad[3];
++	/** @pad2: MBZ */
++	__u16 pad2[3];
+ 
+ 	/** @reserved: Reserved */
+ 	__u64 reserved[2];
+-- 
+2.34.1
 
