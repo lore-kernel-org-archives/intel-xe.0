@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B912C4332F
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Dec 2023 01:06:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6A00C4332F
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Dec 2023 01:06:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 638DA10E229;
-	Wed, 13 Dec 2023 01:06:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79A4810E1FA;
+	Wed, 13 Dec 2023 01:06:15 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7CD5210E1FA;
- Wed, 13 Dec 2023 01:06:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9C9FB10E1FA;
+ Wed, 13 Dec 2023 01:06:13 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 74A84AADDD;
- Wed, 13 Dec 2023 01:06:02 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 99FE1AADDD;
+ Wed, 13 Dec 2023 01:06:13 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Remove_dup?=
- =?utf-8?q?licate_RING=5FMAX=5FNONPRIV=5FSLOTS_definition?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Remove_duplicat?=
+ =?utf-8?q?e_RING=5FMAX=5FNONPRIV=5FSLOTS_definition?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Wed, 13 Dec 2023 01:06:02 -0000
-Message-ID: <170242956244.10264.10491552024340904577@emeril.freedesktop.org>
+Date: Wed, 13 Dec 2023 01:06:13 -0000
+Message-ID: <170242957362.10260.12091879339873797465@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231212215603.2041841-2-matthew.d.roper@intel.com>
 In-Reply-To: <20231212215603.2041841-2-matthew.d.roper@intel.com>
@@ -52,9 +52,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: b7e6b29e6 drm/xe: Allow num_batch_buffer / num_binds == 0 in IOCTLs
-=== git am output follows ===
-Applying: drm/xe: Remove duplicate RING_MAX_NONPRIV_SLOTS definition
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6030b24c1386b00de8187b5fb987e283a57b372a
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1f75fb5388f7eb6ebc2c8bc745daf0d8ecee455d
+Author: Matt Roper <matthew.d.roper@intel.com>
+Date:   Tue Dec 12 13:56:04 2023 -0800
+
+    drm/xe: Remove duplicate RING_MAX_NONPRIV_SLOTS definition
+    
+    The engine register header wound up with two definitions for
+    RING_MAX_NONPRIV_SLOTS, likely due to a rebase mistake.  Keep the
+    definition that's in an appropriate place (i.e., with the
+    FORCE_TO_NONPRIV register definition) and remove the other.
+    
+    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch b7e6b29e607e7c75765d77d4ae315dec580d1ccc drm-intel
+1f75fb538 drm/xe: Remove duplicate RING_MAX_NONPRIV_SLOTS definition
 
 
