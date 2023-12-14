@@ -4,60 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AB5DC4332F
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Dec 2023 09:43:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA1EBC4167D
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Dec 2023 10:28:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08B5A10E0AE;
-	Thu, 14 Dec 2023 09:43:42 +0000 (UTC)
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com
- [IPv6:2a00:1450:4864:20::230])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DF4810E0AE
- for <intel-xe@lists.freedesktop.org>; Thu, 14 Dec 2023 09:43:41 +0000 (UTC)
-Received: by mail-lj1-x230.google.com with SMTP id
- 38308e7fff4ca-2ca0715f0faso109549151fa.0
- for <intel-xe@lists.freedesktop.org>; Thu, 14 Dec 2023 01:43:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1702547019; x=1703151819; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=j46Ou4TCFcBmvpwYY1O/nIyAKM5wBJvA7qCQ7kSb6CU=;
- b=CUHJ+kbCAbck40AtcBvyh5OSFlqaKWxX89xp3+Gv9dkmRBivVkplSJHd/BbLESPstH
- FaM7/uLxS9jKS9CJVpI+nX0N1m+bv+r8El75U2Gr/gEfBn04kmQZjHDIj7gSL6goqFFm
- W/IQDgo4O/a3VqpPpF3lBGy49nsBULMknrGZlvITpPLbAoHVN5/Mt1lyrQLGM2uFvKF5
- Mh1s3mBlqNVxcQ3TdhYEUZF245LG0LKDd62i6IbfW3bzF2ok0JWyhYD/Iip0jYqN1y9v
- t3EMBgxZk0K8F/bQLbHKhI9pwiK45K33qX416L34jrZwOo4QU+a1+0O6SA+3OR7873GB
- iPNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1702547019; x=1703151819;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=j46Ou4TCFcBmvpwYY1O/nIyAKM5wBJvA7qCQ7kSb6CU=;
- b=HjmwxHPH6PItaasxL9E6GJ3ZO7Son00c61Unzyqas4Q6YZnkUQRKoBLnIqynGHaFPb
- TzG13nK53kIZNSJRDdR//8C0uuth7/BtSkn3SLTolN+94QSaCrAs5WEvVTlEB0vDmPwq
- AxaS2NI6mlJCEomHuNLsRs/+n2ES+3J65dCpJAcu0AhwKSCqVEjij896t9+Mj8ZT1FWF
- qwyUEkkZPSNkTj+n3ldGni8hFse0NSXQx8y20i8rl4M383lYxAw0gfuZdE9bGoij6vYP
- veiFCoXjMgrwYfTy03FWbzyBeMrlpOfbaITt6WAIMHx1JSMieD61Hi5jUl/Y5qfN8nX0
- L5nw==
-X-Gm-Message-State: AOJu0YzU2kHr6DA+STgRVu+TLHu/TvnJ57a9zX+S3Cu++fVRr/f8/x5/
- wO1nMXCOacUvMr7sAbbKGh9l2VryQg1jv2wyPErf11kDwcI=
-X-Google-Smtp-Source: AGHT+IELfSOaBGV+vuSf0+AheP7UryeYKh3iAN+Er9hT718xAkkvCzz/OCmtglXIwwuwDTaij7mS4T5/bmM4bAogXEw=
-X-Received: by 2002:a2e:82c7:0:b0:2ca:a19:f21e with SMTP id
- n7-20020a2e82c7000000b002ca0a19f21emr3553086ljh.80.1702547018946; Thu, 14 Dec
- 2023 01:43:38 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5120610E092;
+	Thu, 14 Dec 2023 10:28:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9380510E092
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Dec 2023 10:28:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1702549717; x=1734085717;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=CJ9kcWA//sYHL1BXwVgRlpFbobBmbNyxPZSG9ZIqt70=;
+ b=kk/PnZixY27sv8w4r8eSVxetoLcqFzM03/9F9uSE4IQsh08RADlYdgqU
+ XOHsxCzwP2HXbuG+aJqM0Qj7Cf3p9Lt45HzjDBJUumzN7B/Zpqar5dmLL
+ cpJC5EwU5I9a3N4bJIT6rO9H+E2OPtaL/AvFok6IvsBX3OcoIdpvP0cUT
+ TrDx/RnC/+xru3NRlsJnEK9yatJv3yFJTpNH+HiwQYAAf7HnPcmPY7DAQ
+ rPy0cGNgze+svAPZyN9L9ZfxXuSq4WcrFCdunHaTNUmwfgwUpbzDG2moP
+ unN07R7a3jhUsLNfHTcZYOQ3rrj4v9VtrOvaMPftBn7BHjeTQDH85l48l g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10923"; a="461565951"
+X-IronPort-AV: E=Sophos;i="6.04,275,1695711600"; d="scan'208";a="461565951"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2023 02:28:37 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10923"; a="1105653391"
+X-IronPort-AV: E=Sophos;i="6.04,275,1695711600"; d="scan'208";a="1105653391"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+ by fmsmga005.fm.intel.com with ESMTP; 14 Dec 2023 02:28:35 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1rDixE-000Lv5-3C;
+ Thu, 14 Dec 2023 10:28:32 +0000
+Date: Thu, 14 Dec 2023 18:27:56 +0800
+From: kernel test robot <lkp@intel.com>
+To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Subject: [drm-xe:drm-xe-next 2/10] xe_device.c:undefined reference to
+ `__aeabi_uldivmod'
+Message-ID: <202312141859.Qn7S2Ieo-lkp@intel.com>
 MIME-Version: 1.0
-References: <20231212002058.1105898-1-rodrigo.vivi@intel.com>
- <SJ1PR11MB620471C7291527E350731CC0818DA@SJ1PR11MB6204.namprd11.prod.outlook.com>
- <ca95972f-2d5d-4fc6-bca3-e80f984e79cf@linux.intel.com>
- <5403be007f18a7df3e3dacb283794a4fb60185e0.camel@intel.com>
- <63d56a37-5460-4c32-abf7-7860f358023d@linux.intel.com>
-In-Reply-To: <63d56a37-5460-4c32-abf7-7860f358023d@linux.intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Thu, 14 Dec 2023 09:43:11 +0000
-Message-ID: <CAM0jSHO+qYFYEPKetsCY+U7xcDX7N3J75K848RPjpqqB_h+cHw@mail.gmail.com>
-Subject: Re: [PATCH] drm/xe: Remove vram size info from sysfs
-To: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,131 +56,34 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Roper, Matthew D" <matthew.d.roper@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org,
+ oe-kbuild-all@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 14 Dec 2023 at 05:56, Aravind Iddamsetty
-<aravind.iddamsetty@linux.intel.com> wrote:
->
->
-> On 12/13/23 21:23, Vivi, Rodrigo wrote:
-> > On Wed, 2023-12-13 at 10:48 +0530, Aravind Iddamsetty wrote:
-> >> On 12/13/23 09:43, Upadhyay, Tejas wrote:
-> >>>> -----Original Message-----
-> >>>> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf
-> >>>> Of Rodrigo
-> >>>> Vivi
-> >>>> Sent: Tuesday, December 12, 2023 5:51 AM
-> >>>> To: intel-xe@lists.freedesktop.org
-> >>>> Cc: Roper, Matthew D <matthew.d.roper@intel.com>; Vivi, Rodrigo
-> >>>> <rodrigo.vivi@intel.com>
-> >>>> Subject: [PATCH] drm/xe: Remove vram size info from sysfs
-> >>>>
-> >>>> This information is already part of the query IOCTL.
-> >>>> Let's not duplicate it here in the sysfs.
-> >>> This patch was on request from L0 as they wanted actual VRAM size
-> >>> including reserved portion. We should check with UMD team if they
-> >>> require this sysfs or not. I will check.
-> >> Hi Rodrigo,
-> >>
-> >> As Tejas mentioned the sysfs interface exposes the total physical
-> >> vram including the stolen size which is needed by sysman, in the
-> >> IOCTL only usable size(without stolen) is exposed.
-> > I have removed it now so we can discuss better and ensure that we
-> > are taking the best uapi decisions that are acceptable and won't
-> > break the compatibility later after we are merged upstream.
-> >
-> > The time to break was now, so I removed.
-> >
-> > But we can continue with the discussion and see what is the best
-> > approach.
-> >
-> > My first question would be: why does Level0 needs to know the stolen
-> > size? So, why we don't add that information along with the query uapi?
-> As part of their memory property API(device property) it needs the total memory on the
-> card not just the usable.
->
-> https://spec.oneapi.io/level-zero/latest/sysman/api.html#_CPPv4N20zes_mem_properties_t12physicalSizeE
->
-> >
-> > It would be really awkward to see a value in the sysfs as total memory
-> > and a completely different value on the query ioclt? this stolen part
-> > apparently needs to be more transparent then, no?!
-> The query IOCTL is to show the usable memory for the application to know how much it can request hence stolen is removed.
-> while the sysfs is like a device property to show total memory on card.
+tree:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+head:   5cd1893366708380854f4694ae57417192458a6b
+commit: a97c51fffc4b750eebfb784842d58de04da96be7 [2/10] drm/xe/xe2: Modify main memory to ccs memory ratio.
+config: arm-allyesconfig (https://download.01.org/0day-ci/archive/20231214/202312141859.Qn7S2Ieo-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231214/202312141859.Qn7S2Ieo-lkp@intel.com/reproduce)
 
-What about making region.total_size be the actual physical size, and
-then s/region.used/region.avail/ which is then just the static usable
-size, or if perfmon_capable() it is the live usable size?
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202312141859.Qn7S2Ieo-lkp@intel.com/
 
->
->
-> Thanks,
-> Aravind.
-> >
-> >>
-> >> Thanks,
-> >> Aravind.
-> >>> Tejas
-> >>>> Cc: Matt Roper <matthew.d.roper@intel.com>
-> >>>> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> >>>> ---
-> >>>>  drivers/gpu/drm/xe/xe_tile_sysfs.c | 23 +----------------------
-> >>>>  1 file changed, 1 insertion(+), 22 deletions(-)
-> >>>>
-> >>>> diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.c
-> >>>> b/drivers/gpu/drm/xe/xe_tile_sysfs.c
-> >>>> index 16376607c68f..0f8d3e7fce46 100644
-> >>>> --- a/drivers/gpu/drm/xe/xe_tile_sysfs.c
-> >>>> +++ b/drivers/gpu/drm/xe/xe_tile_sysfs.c
-> >>>> @@ -20,20 +20,6 @@ static const struct kobj_type
-> >>>> xe_tile_sysfs_kobj_type = {
-> >>>>         .sysfs_ops = &kobj_sysfs_ops,
-> >>>>  };
-> >>>>
-> >>>> -static ssize_t
-> >>>> -physical_vram_size_bytes_show(struct device *kdev, struct
-> >>>> device_attribute
-> >>>> *attr,
-> >>>> -                             char *buf)
-> >>>> -{
-> >>>> -       struct xe_tile *tile = kobj_to_tile(&kdev->kobj);
-> >>>> -
-> >>>> -       return sysfs_emit(buf, "%llu\n", tile-
-> >>>>> mem.vram.actual_physical_size);
-> >>>> -}
-> >>>> -
-> >>>> -static DEVICE_ATTR_RO(physical_vram_size_bytes);
-> >>>> -
-> >>>> -static const struct attribute *physical_memsize_attr =
-> >>>> -       &dev_attr_physical_vram_size_bytes.attr;
-> >>>> -
-> >>>>  static void tile_sysfs_fini(struct drm_device *drm, void *arg)
-> >>>> {
-> >>>>         struct xe_tile *tile = arg;
-> >>>> @@ -64,15 +50,8 @@ void xe_tile_sysfs_init(struct xe_tile *tile)
-> >>>>
-> >>>>         tile->sysfs = &kt->base;
-> >>>>
-> >>>> -       if (IS_DGFX(xe) && xe->info.platform != XE_DG1 &&
-> >>>> -           sysfs_create_file(tile->sysfs,
-> >>>> physical_memsize_attr))
-> >>>> -               drm_warn(&xe->drm,
-> >>>> -                        "Sysfs creation to read addr_range per
-> >>>> tile failed\n");
-> >>>> -
-> >>>>         err = drmm_add_action_or_reset(&xe->drm, tile_sysfs_fini,
-> >>>> tile);
-> >>>> -       if (err) {
-> >>>> +       if (err)
-> >>>>                 drm_warn(&xe->drm, "%s: drmm_add_action_or_reset
-> >>>> failed, err: %d\n",
-> >>>>                          __func__, err);
-> >>>> -               return;
-> >>>> -       }
-> >>>>  }
-> >>>> --
-> >>>> 2.43.0
+All errors (new ones prefixed by >>):
+
+   arm-linux-gnueabi-ld: drivers/gpu/drm/xe/xe_device.o: in function `xe_device_ccs_bytes':
+>> xe_device.c:(.text+0x1e28): undefined reference to `__aeabi_uldivmod'
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for INTEL_MEI_ME
+   Depends on [n]: X86 && PCI [=y]
+   Selected by [y]:
+   - INTEL_MEI_HDCP [=y] && (DRM_I915 [=n] || DRM_XE [=y])
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
