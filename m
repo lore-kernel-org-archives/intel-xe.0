@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 292BAC4332F
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Dec 2023 19:02:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E262C3DA7A
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Dec 2023 19:02:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4AA210E218;
-	Thu, 14 Dec 2023 19:02:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A42E110E28D;
+	Thu, 14 Dec 2023 19:02:16 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78E2810E28D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 786DD10E0EB
  for <intel-xe@lists.freedesktop.org>; Thu, 14 Dec 2023 19:00:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1702580449; x=1734116449;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=YhVd4AwAU1vBwOazYy/N2L6xVP3f7nexCOgPyULlldM=;
- b=SlRtlqMkEh82V1K+1a3GXGxaDQQTStcH6GQXdQXC8zNjrx918HU9meK6
- bY6YCYhYxmpJvg95Ad92fD3j3CBFo4lhkGygsWxBRgLQyjVjNbO1N/1w7
- 8O/Qw5Yt7H22aR8Sz2taEVb3jVV5seV0p2XAh0egND/91b9UrnsMklZqy
- xi3rz978r7ixccdKwxQe0Avywo7u7ffbyD8ZmT2rCvsC92lV/sEGdAXUS
- BXyThqbJOBmLmfhouUG2nva9v8nLKecUjVigFegv8PzFFLy4JT1ksTZWG
- 5RV6NpGJTe5Ok5/TjRcbAeB5Y/pNTUGLVN/igk8o++R6A/zARgVMZgVos A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="399006381"
-X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; d="scan'208";a="399006381"
+ bh=YTKgVpjZl6e1Jx1RvTiR+G8GYYsL5Hh6tlI1IfiqCFk=;
+ b=IU/sESsDhK5onVfHBKfYIezkVfqXV0RXcd4OevSI6YMWnEmQ/SOivLqx
+ 9sQwbQ37QzCd+lj5eFDqZ2ZVrJb7nPow5FeTwJbmebru4TLvmAE1uGF7B
+ nMqAKPoch9zO1N4SwB6CVMIFQHhbRZGNN/yjelobblrgsOnJVyeuW1Rva
+ UkbWjxHHdU9CRsdGPgfXxA7W7rob9eyi3ueIiZ7P2TbUTrFG8KTGqohwS
+ BgevIVB557tkB+R184uBAZCZuLJhpDVyVfk3fKyVqqA0eVLh3Rf30ExII
+ E3JoeXW2j7t94Wtj34fFLWDZe/NVeccrUBbnZDorQD5nGQMhg81cA7ePe g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="399006389"
+X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; d="scan'208";a="399006389"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2023 11:00:20 -0800
+ 14 Dec 2023 11:00:22 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; d="scan'208";a="15964777"
+X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; d="scan'208";a="15964781"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.128.198])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2023 11:00:19 -0800
+ 14 Dec 2023 11:00:21 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 03/10] drm/xe: Update LRC context layout definitions
-Date: Thu, 14 Dec 2023 19:59:48 +0100
-Message-Id: <20231214185955.1791-4-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 04/10] drm/xe: Update definition of GT_INTR_DW
+Date: Thu, 14 Dec 2023 19:59:49 +0100
+Message-Id: <20231214185955.1791-5-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20231214185955.1791-1-michal.wajdeczko@intel.com>
 References: <20231214185955.1791-1-michal.wajdeczko@intel.com>
@@ -59,34 +59,36 @@ Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The new memory based interrupt processing uses additional entries
-in the context.  Add required definitions.
+Add bits definitions that we will be using in upcoming patch.
 
-Bspec: 45585, 60184
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_lrc_layout.h | 9 +++++++++
+v2: drop MTL/XEHPC prefixes (Matt)
+---
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 9 +++++++++
  1 file changed, 9 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-index 4be81abc86ad..1825d8f79db6 100644
---- a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-+++ b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-@@ -14,4 +14,13 @@
- #define CTX_PDP0_UDW			(0x30 + 1)
- #define CTX_PDP0_LDW			(0x32 + 1)
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index f5bf4c6d1761..cf7e4fb5837d 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -440,6 +440,15 @@
+ #define   VOLTAGE_MASK				REG_GENMASK(10, 0)
  
-+#define CTX_LRM_INT_MASK_ENABLE		0x50
-+#define CTX_INT_MASK_ENABLE_REG		(CTX_LRM_INT_MASK_ENABLE + 1)
-+#define CTX_INT_MASK_ENABLE_PTR		(CTX_LRM_INT_MASK_ENABLE + 2)
-+#define CTX_LRI_INT_REPORT_PTR		0x55
-+#define CTX_INT_STATUS_REPORT_REG	(CTX_LRI_INT_REPORT_PTR + 1)
-+#define CTX_INT_STATUS_REPORT_PTR	(CTX_LRI_INT_REPORT_PTR + 2)
-+#define CTX_INT_SRC_REPORT_REG		(CTX_LRI_INT_REPORT_PTR + 3)
-+#define CTX_INT_SRC_REPORT_PTR		(CTX_LRI_INT_REPORT_PTR + 4)
-+
- #endif
+ #define GT_INTR_DW(x)				XE_REG(0x190018 + ((x) * 4))
++#define   INTR_GSC				REG_BIT(31)
++#define   INTR_GUC				REG_BIT(25)
++#define   INTR_MGUC				REG_BIT(24)
++#define   INTR_BCS8				REG_BIT(23)
++#define   INTR_BCS(x)				REG_BIT(15 - (x))
++#define   INTR_CCS(x)				REG_BIT(4 + (x))
++#define   INTR_RCS0				REG_BIT(0)
++#define   INTR_VECS(x)				REG_BIT(31 - (x))
++#define   INTR_VCS(x)				REG_BIT(x)
+ 
+ #define GUC_SG_INTR_ENABLE			XE_REG(0x190038)
+ #define   ENGINE1_MASK				REG_GENMASK(31, 16)
 -- 
 2.25.1
 
