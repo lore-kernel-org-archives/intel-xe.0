@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 719D1C4332F
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Dec 2023 00:55:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF5F4C4332F
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Dec 2023 00:55:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AC3710E8AF;
-	Thu, 14 Dec 2023 00:55:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 87B2810E8AF;
+	Thu, 14 Dec 2023 00:55:24 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3918810E8AF;
- Thu, 14 Dec 2023 00:55:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id DAEBF10E8B2;
+ Thu, 14 Dec 2023 00:55:22 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 10426AADF8;
- Thu, 14 Dec 2023 00:55:10 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id D8282AADF8;
+ Thu, 14 Dec 2023 00:55:22 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/uapi=3A_Remov?=
- =?utf-8?q?e_sync_binds_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/uapi=3A_Remove_syn?=
+ =?utf-8?q?c_binds_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Thu, 14 Dec 2023 00:55:10 -0000
-Message-ID: <170251531003.19957.2425552228716951425@emeril.freedesktop.org>
+Date: Thu, 14 Dec 2023 00:55:22 -0000
+Message-ID: <170251532288.19957.17860222398555283325@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231214000845.632439-1-matthew.brost@intel.com>
 In-Reply-To: <20231214000845.632439-1-matthew.brost@intel.com>
@@ -52,9 +52,34 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 5cd189336 drm/xe/xe2: Support flat ccs
-=== git am output follows ===
-Applying: drm/xe/uapi: Remove sync binds
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6030b24c1386b00de8187b5fb987e283a57b372a
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 23eb362e21da7f4795fafe4d1f888763a8f6f808
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Wed Dec 13 16:08:45 2023 -0800
+
+    drm/xe/uapi: Remove sync binds
+    
+    Remove concept of async vs sync VM bind queues, rather make all binds
+    async. As part of this clean up add drm_xe_syncs structure to
+    encapsulate all parts of syncs. This structure is shared between the
+    exec and bind IOCTLs. The structure has extra bits for a path to support
+    syncs IOCTLs in the future.
+    
+    v2: Send correct version
+    
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Cc: Francois Dugast <francois.dugast@intel.com>
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 5cd1893366708380854f4694ae57417192458a6b drm-intel
+23eb362e2 drm/xe/uapi: Remove sync binds
 
 
