@@ -4,138 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92789C4332F
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Dec 2023 16:46:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61C43C4332F
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Dec 2023 17:11:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6304510E1BF;
-	Thu, 14 Dec 2023 16:46:17 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0302510E1C0
- for <intel-xe@lists.freedesktop.org>; Thu, 14 Dec 2023 16:46:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEE4F10E0A9;
+	Thu, 14 Dec 2023 17:11:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D08C710E0A9
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Dec 2023 17:11:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702572374; x=1734108374;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=dSBwzvEt8QOhSqTF0WVr0tJMjUNPWSrjMNVch1NnCis=;
- b=WAh3I+bZuAtonYkjqmLYaFzmSn3oGkpZMG/V/QLKkBALnBhZQbYvngHI
- G9lwpHC0TWFfE0Ts2hFNrvMywmw3qHSy4cL7PnamG+FreqYyiEuywXfWU
- bREznchaxCVZQpOQe5pp4Ia2JziQv17phr/ye0EGyfxhVYit6a6BrgZ8u
- ufwcEInj27AmVNPATSIManVd1RPoug7OmT3WAY1W+3mvCeg6LcyVb1L3h
- Nr2QL7SQW5+OxM2THyPtxwh484J4fhlx7O8oVZRYriyOrae7RdhtjiD21
- k6VSJ4frPSFYl/rByRCGCh1Vx3skbI4+JW6w271lmTXInATtB0akp/4Tb A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="2303255"
+ t=1702573873; x=1734109873;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=wEbHOGdD+lNuhpGak+YDAkEyjhMRWiOHcgS7un+s5SQ=;
+ b=dqdC1zLHKvoBjQPLs6/U04XbtUg0XUBokeUoh30ioH3+EurycMZ4J5Nd
+ fDFv80qAQIpIGgIDZnZQZZl4jyokmb+eDozYdYuZPIVAwdFcI8KuQy4pu
+ 5KhvLs2bbtj19BSpFKSesHB3dpvrHQFIJXWjBGN2OyP18Z4yCGTE1eOEY
+ e0VTu565zSGYJY8e0DoIJt5pyxrlydgj1Yuoodq0AFt0nEskQvVc9uwfC
+ mEI/pdRJoCt0XefL0x0wL493owmxyVmsCEUARcV2iF1yOgp/qgyBoJ9gt
+ 4IZ52EimWuj3BwPNja1sD5UrAeOa9jQSI2ijRe4Ruhq1EmvspvCqhcBnR Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="1969972"
 X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; 
-   d="scan'208";a="2303255"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2023 08:46:11 -0800
+   d="scan'208";a="1969972"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2023 09:06:52 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="947635870"
-X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; d="scan'208";a="947635870"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 14 Dec 2023 08:46:11 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 14 Dec 2023 08:46:10 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Thu, 14 Dec 2023 08:46:10 -0800
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.169)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 14 Dec 2023 08:46:10 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VZeGZKn81zafdiINNPIg8Y1KoyON5gPk9mRzb9RClNHXrzzggJy/kSdz7GXjNXZTwkMtl5cakRos5AlowDhaAFirQP5kytDmIUo4GdPIahuRLXGO9/Gk/kEUTuGZq+myRT4dmX9wIABMmol6V9uU3WWNaXyVLRgR4N4eMlLxKZTw1+W4RX2ZVohXPVGO4vBL4glolCug7rhV2NeOedibDsyAxLUey5+BSMb2SMhoUV0CGg5m2Q+dcSSyu9N5N35KN0jjpUpAYFXxFuXnnupK/wxQOpLzf1k9T0dTqkslv/tlVHnXvHYBanEaYngoxDDDi5TeNZYxsMMz1BaIm5e4jw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8bPmkH8tSxvGdGZraqfeoP5eyd+2dtFIDsv5hVgivpE=;
- b=DhKf0fSsvoxT2o8DcbeDs+WJte7cmI5CYM4Oy46TXraMzYSKD/F3LLI1/LTKdtsCcnZmtBVHwNoXpWBdsRmiONXYOuat1UvXmX+G1+6JYdEatGCual7QDRG/59hHYq22q4DSFTvQ+lpFbjQjVKnUJKRYEsmc4IfjGhJNPlhCRm8syp2lHq+N7oxkZnwKh1eCLX/JIyVjFa9pBNkzZBaUajrB5hSC6VuAO5MNRthK2/zI5riqN8d1ydFd7DlUtwxMtt9qwYvbLXVoFI41A+zWsqu85t96CCXosSuOVk1eT4eEyPuYun8n+t/Ys7OO9biYS/8vsd08vGo3uQR5XsGL7g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by SA3PR11MB7582.namprd11.prod.outlook.com (2603:10b6:806:31e::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.28; Thu, 14 Dec
- 2023 16:46:03 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::b870:a8ae:c4f1:c39b]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::b870:a8ae:c4f1:c39b%4]) with mapi id 15.20.7091.028; Thu, 14 Dec 2023
- 16:46:03 +0000
-Date: Thu, 14 Dec 2023 10:45:59 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Francois Dugast <francois.dugast@intel.com>
-Subject: Re: [PATCH v1 09/14] drm/xe/uapi: More uAPI documentation additions
- and cosmetic updates
-Message-ID: <x372auciffcjchrgqo4k35orpocaycb4kpx2p4zxjwnrfoji5o@gkwsy7tnlebg>
-References: <20231207135009.7-1-francois.dugast@intel.com>
- <20231207135009.7-10-francois.dugast@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231207135009.7-10-francois.dugast@intel.com>
-X-ClientProxiedBy: BY3PR04CA0011.namprd04.prod.outlook.com
- (2603:10b6:a03:217::16) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="774438845"
+X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; d="scan'208";a="774438845"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2023 09:06:50 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Subject: [PATCH v3] drm/xe/uapi: Remove sync binds
+Date: Thu, 14 Dec 2023 09:07:14 -0800
+Message-Id: <20231214170714.648790-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SA3PR11MB7582:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3ce12f15-110a-409b-2382-08dbfcc428cb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: MsYzn5G7eTd+cumsPobW5sIDrGTGEscFAU/4b8o9Wwd2LFYYq/TMeMQOIvDGV7E/QsnD8IV1ttycLTYDQCRy+fsoGnNI/wvRhizuBvh1rB2a6Juq74sZfXV0/YQjWafK1WOd09JeeZBRHOVcyByvedS2z+b+OBSNwoezK4ltf/3mY498hkgZjmxhYfgE5dDpvKYEzw+lg9XHsObh2pGy0BjBYFXVSU59wAz8VYnuJNCvtUPiqPovGpdg31uolMON5fanwB4u3vFdpnVYq5Q5zsezoPYzqKk3xvIVkQFx88CT1zA6etkTz8ovszyk3U5a1GMO1q3erD9ZJMEciIR3pYVWQaa2KYG8W+u8I8zJO3+fcqFX7cwRviE+ZVVx8fAnWCkXFdgUvRypgFvZ3Bla4VxhNz69t2cyavDJHqLsDcmfrSXSb/oVPHueW6TKLn9C3DgonYE6vTTREKjlnJcZmyQtblGqjpvWaFHZRJxM08wHyTrRWlbPOlcLZhTM9c/oPdtcaBHHcdy23gRoqay4FA88y3JNyD/O1szVIyixLULdqpISl6oB5eonjE1F7zjI
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(136003)(366004)(376002)(39860400002)(396003)(346002)(230922051799003)(186009)(451199024)(64100799003)(1800799012)(9686003)(5660300002)(6512007)(478600001)(2906002)(6666004)(6486002)(83380400001)(107886003)(26005)(66556008)(66476007)(316002)(6636002)(66946007)(8676002)(8936002)(6862004)(4326008)(6506007)(86362001)(33716001)(38100700002)(41300700001)(82960400001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?uOoP4D7s82Pi3vCIIjx3whLKa4vXkNDA/DmZWr+mev+g24TPCiLnEhglQM?=
- =?iso-8859-1?Q?WcfUZa7/gL2wdd0sCZbWb6u+yU77RbeqdD5BB7wTu6VV0pO3QydX1naqqW?=
- =?iso-8859-1?Q?fqVcuYBcc72/dOQMiotGLQf6BmKKIQd7CWxRbscsMV/urvEegyhSWHwNXB?=
- =?iso-8859-1?Q?cWkRLE5+TmfjJhvYvcs1TWoAvM0EjP6oeNQDHpP+FTufbTKnWhijiU6cIQ?=
- =?iso-8859-1?Q?YM31HbcmBID+0rn0q43CPzJILja/KExiNCZYq6RVYEoKoC4vz7CC/kPKmf?=
- =?iso-8859-1?Q?jKWs+kmc3wk1OVgowgyWv7LaQeycLaMA80pQY9Es6l2ogloexmMdXUoD4r?=
- =?iso-8859-1?Q?m+U015WB8fqCPfVLh0zL1nPR2lGy8RrTTViT4mTZSr9qh4e90iIBAz02Pq?=
- =?iso-8859-1?Q?w7Be8FLmXro9nB+Il7HXaYZDiOH7B98o9m3awFcaZjh/5fO42VOt0UOFNC?=
- =?iso-8859-1?Q?1HRu0TLk1D+5deWum6o9w3wWQUkgb0o5obrNYdzeCQI2ncV9ZM8N91F25u?=
- =?iso-8859-1?Q?f5wDRjirPtk7+wHJ4aroIKQigfSKyhJxyyFpP0tUJRHAVepS/pYaisroHc?=
- =?iso-8859-1?Q?Y7YnN2fP0qsqwDuRGDvZEs0XugbSQ7M8xn3LlhhOYaIWWlw1s2ohlc3SCh?=
- =?iso-8859-1?Q?D1+VbG60scglMd/TuKnZRUFYTkb6BK4KLRM+mDPyllqyFfx0v63Yhqc8oc?=
- =?iso-8859-1?Q?BQokfEhZo5QSmOqwHBdyxa9f2KO6Lhx4svZLGn/f0oIf2S4GZ9mhPmy9/Q?=
- =?iso-8859-1?Q?SHM48niTpLQb31KE80H/TTZHzEJGudt5s3vItMTVfxcgY++Kdi1u/FZPIm?=
- =?iso-8859-1?Q?9WTZdIV2TD1tQHeMG+Cvoz2x4d21uJHRVXOeKWCwkcIqmayd5/DB9Q5uwP?=
- =?iso-8859-1?Q?F9S2Hred8Folzjp4fQp877Mi5sbz/kMGgEHDp889yYCv+PL0FjMyHzQJyC?=
- =?iso-8859-1?Q?a0ArIgTMi3WwdqXrnWt4/OszZR85Mg4qCPuBPQy5bWbq/ilxDg9lFbbaSu?=
- =?iso-8859-1?Q?crQGP5JIjmpah0AsU+vCTnXzPB/qouwcw5pJjQIpRsCeMbyx3COw21VCiY?=
- =?iso-8859-1?Q?NlTZkvltCLPVHGJa1wGxm/zqPa7jWSb1Zu+L2wAJcT7dYMX/z4bXC0n0Ko?=
- =?iso-8859-1?Q?xASwT2mUsd3Lrpk/WJ4BrAiDkkKK9JlGStrUvaZhWX26SkKRhPTf+41RRv?=
- =?iso-8859-1?Q?yobbd5KmECx+V40+7QRJ7Ypt5457bAmpmJsEsnZcgfJHN5DihVNa+JIIBF?=
- =?iso-8859-1?Q?0amZiQqlHhqfAiFEMcXJsuWKZ7ILjOPTq0UgOQfryCcdavpcATlwqk8nxa?=
- =?iso-8859-1?Q?gJJb3VLs+XDKWxTsdnLWg0+fwm0ndeGDcNbdmiXVd/FQZfwVGy5eNw7S+m?=
- =?iso-8859-1?Q?gdZsfTkcJ/pq0x93C2Hel/TCz+V0uvso7fSYU1PO0P4hnArtOq9oSZDZYW?=
- =?iso-8859-1?Q?z3SAocX08BoPZdB1tBMr73G4EJHmDycmUptbkeRP48A714DeoFxktXaLQo?=
- =?iso-8859-1?Q?/QPnpA/pX2PHPST79BfdYDj3iNdaptbf7wnlobTqavoj0gZBV9tujDkFvw?=
- =?iso-8859-1?Q?pCWQ4Ffz+DtHi6CTocydjrS8WdvS/6+Z9HXcvpZ3b/ZeD40omhQLRZe6SO?=
- =?iso-8859-1?Q?cgLT/6sCWnBYxbWTAXK19zgQQ8Cu2fO3CQbEZYWBluQxX/bWX8yZ8e3Q?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3ce12f15-110a-409b-2382-08dbfcc428cb
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Dec 2023 16:46:03.3981 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: V2g9YQ71x0O5ZPmsiBbc3bongPMcrFJvxDgONMVpGwXPWINceWGNMyHQGMs2iyyG86bPaKc2dHIvWmvmiQmjftzEU6CQCndNPwHZaK3p66Y=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB7582
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,151 +56,349 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Dec 07, 2023 at 01:50:04PM +0000, Francois Dugast wrote:
->From: Rodrigo Vivi <rodrigo.vivi@intel.com>
->
->No functional change in this patch.
->
->Let's ensure all of our structs are documented and with a certain
->standard. Also, let's have an overview and list of IOCTLs as the
->very beginning of the generated HTML doc.
->
->Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
->Signed-off-by: Francois Dugast <francois.dugast@intel.com>
->---
-> include/uapi/drm/xe_drm.h | 48 +++++++++++++++++++++++++++++++++------
-> 1 file changed, 41 insertions(+), 7 deletions(-)
->
->diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
->index b36f3bd53611..55cb22b2c7e2 100644
->--- a/include/uapi/drm/xe_drm.h
->+++ b/include/uapi/drm/xe_drm.h
->@@ -25,6 +25,28 @@ extern "C" {
->  *   6. PMU
->  */
->
->+/**
->+ * DOC: Xe uAPI Overview
+Remove concept of async vs sync VM bind queues, rather make all binds
+async.
 
-not sure about the lowercase u. Isn't that used when it refers to 
-�, like in uC (microcontroller)?
+The following bits have dropped from the uAPI:
+DRM_XE_ENGINE_CLASS_VM_BIND_ASYNC
+DRM_XE_ENGINE_CLASS_VM_BIND_SYNC
+DRM_XE_VM_CREATE_FLAG_ASYNC_DEFAULT
+DRM_XE_VM_BIND_FLAG_ASYNC
 
->+ *
->+ * This section aims to describe the Xe's IOCTL entries, its structs, and other
->+ * Xe related uAPI such as uevents and PMU (Platform Monitoring Unit) related
->+ * entries and usage.
->+ *
->+ * List of supported IOCTLs:
->+ *  - &DRM_IOCTL_XE_DEVICE_QUERY
->+ *  - &DRM_IOCTL_XE_GEM_CREATE
->+ *  - &DRM_IOCTL_XE_GEM_MMAP_OFFSET
->+ *  - &DRM_IOCTL_XE_VM_CREATE
->+ *  - &DRM_IOCTL_XE_VM_DESTROY
->+ *  - &DRM_IOCTL_XE_VM_BIND
->+ *  - &DRM_IOCTL_XE_EXEC
->+ *  - &DRM_IOCTL_XE_EXEC_QUEUE_CREATE
->+ *  - &DRM_IOCTL_XE_EXEC_QUEUE_DESTROY
->+ *  - &DRM_IOCTL_XE_EXEC_QUEUE_GET_PROPERTY
->+ *  - &DRM_IOCTL_XE_WAIT_USER_FENCE
->+ *
+To implement sync binds the UMD is expected to use the out-fence
+interface.
 
-stray newline
+v2: Send correct version
+v3: Drop drm_xe_syncs
 
->+ */
->+
-> /*
->  * xe specific ioctls.
->  *
->@@ -59,7 +81,10 @@ extern "C" {
-> #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
->
-> /**
->- * struct xe_user_extension - Base class for defining a chain of extensions
->+ * DOC: Xe IOCT Extensions
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_exec_queue.c       |  7 +--
+ drivers/gpu/drm/xe/xe_exec_queue_types.h |  2 -
+ drivers/gpu/drm/xe/xe_vm.c               | 75 +++---------------------
+ drivers/gpu/drm/xe/xe_vm_types.h         | 13 ++--
+ include/uapi/drm/xe_drm.h                | 11 ++--
+ 5 files changed, 20 insertions(+), 88 deletions(-)
 
-IOCTL
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index eeb9605dd45f..a25d67971fdd 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -625,10 +625,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ 	if (XE_IOCTL_DBG(xe, eci[0].gt_id >= xe->info.gt_count))
+ 		return -EINVAL;
+ 
+-	if (eci[0].engine_class >= DRM_XE_ENGINE_CLASS_VM_BIND_ASYNC) {
+-		bool sync = eci[0].engine_class ==
+-			DRM_XE_ENGINE_CLASS_VM_BIND_SYNC;
+-
++	if (eci[0].engine_class == DRM_XE_ENGINE_CLASS_VM_BIND) {
+ 		for_each_gt(gt, xe, id) {
+ 			struct xe_exec_queue *new;
+ 
+@@ -654,8 +651,6 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ 						   args->width, hwe,
+ 						   EXEC_QUEUE_FLAG_PERSISTENT |
+ 						   EXEC_QUEUE_FLAG_VM |
+-						   (sync ? 0 :
+-						    EXEC_QUEUE_FLAG_VM_ASYNC) |
+ 						   (id ?
+ 						    EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD :
+ 						    0));
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index c7aefa1c8c31..0f7f6cded4a3 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -84,8 +84,6 @@ struct xe_exec_queue {
+ #define EXEC_QUEUE_FLAG_VM			BIT(4)
+ /* child of VM queue for multi-tile VM jobs */
+ #define EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD	BIT(5)
+-/* VM jobs for this queue are asynchronous */
+-#define EXEC_QUEUE_FLAG_VM_ASYNC		BIT(6)
+ 
+ 	/**
+ 	 * @flags: flags for this exec queue, should statically setup aside from ban
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 2f3df9ee67c9..322c1eccecca 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1343,9 +1343,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 			struct xe_gt *gt = tile->primary_gt;
+ 			struct xe_vm *migrate_vm;
+ 			struct xe_exec_queue *q;
+-			u32 create_flags = EXEC_QUEUE_FLAG_VM |
+-				((flags & XE_VM_FLAG_ASYNC_DEFAULT) ?
+-				EXEC_QUEUE_FLAG_VM_ASYNC : 0);
++			u32 create_flags = EXEC_QUEUE_FLAG_VM;
+ 
+ 			if (!vm->pt_root[id])
+ 				continue;
+@@ -1712,12 +1710,6 @@ xe_vm_bind_vma(struct xe_vma *vma, struct xe_exec_queue *q,
+ 	return ERR_PTR(err);
+ }
+ 
+-static bool xe_vm_sync_mode(struct xe_vm *vm, struct xe_exec_queue *q)
+-{
+-	return q ? !(q->flags & EXEC_QUEUE_FLAG_VM_ASYNC) :
+-		!(vm->flags & XE_VM_FLAG_ASYNC_DEFAULT);
+-}
+-
+ static int __xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma,
+ 			struct xe_exec_queue *q, struct xe_sync_entry *syncs,
+ 			u32 num_syncs, bool immediate, bool first_op,
+@@ -1747,8 +1739,6 @@ static int __xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma,
+ 
+ 	if (last_op)
+ 		xe_exec_queue_last_fence_set(wait_exec_queue, vm, fence);
+-	if (last_op && xe_vm_sync_mode(vm, q))
+-		dma_fence_wait(fence, true);
+ 	dma_fence_put(fence);
+ 
+ 	return 0;
+@@ -1791,8 +1781,6 @@ static int xe_vm_unbind(struct xe_vm *vm, struct xe_vma *vma,
+ 	xe_vma_destroy(vma, fence);
+ 	if (last_op)
+ 		xe_exec_queue_last_fence_set(wait_exec_queue, vm, fence);
+-	if (last_op && xe_vm_sync_mode(vm, q))
+-		dma_fence_wait(fence, true);
+ 	dma_fence_put(fence);
+ 
+ 	return 0;
+@@ -1800,7 +1788,6 @@ static int xe_vm_unbind(struct xe_vm *vm, struct xe_vma *vma,
+ 
+ #define ALL_DRM_XE_VM_CREATE_FLAGS (DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE | \
+ 				    DRM_XE_VM_CREATE_FLAG_LR_MODE | \
+-				    DRM_XE_VM_CREATE_FLAG_ASYNC_DEFAULT | \
+ 				    DRM_XE_VM_CREATE_FLAG_FAULT_MODE)
+ 
+ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+@@ -1854,8 +1841,6 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+ 		flags |= XE_VM_FLAG_SCRATCH_PAGE;
+ 	if (args->flags & DRM_XE_VM_CREATE_FLAG_LR_MODE)
+ 		flags |= XE_VM_FLAG_LR_MODE;
+-	if (args->flags & DRM_XE_VM_CREATE_FLAG_ASYNC_DEFAULT)
+-		flags |= XE_VM_FLAG_ASYNC_DEFAULT;
+ 	if (args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE)
+ 		flags |= XE_VM_FLAG_FAULT_MODE;
+ 
+@@ -2263,8 +2248,7 @@ static int xe_vma_op_commit(struct xe_vm *vm, struct xe_vma_op *op)
+ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
+ 				   struct drm_gpuva_ops *ops,
+ 				   struct xe_sync_entry *syncs, u32 num_syncs,
+-				   struct list_head *ops_list, bool last,
+-				   bool async)
++				   struct list_head *ops_list, bool last)
+ {
+ 	struct xe_vma_op *last_op = NULL;
+ 	struct drm_gpuva_op *__op;
+@@ -2696,23 +2680,22 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
+ 
+ #ifdef TEST_VM_ASYNC_OPS_ERROR
+ #define SUPPORTED_FLAGS	\
+-	(FORCE_ASYNC_OP_ERROR | DRM_XE_VM_BIND_FLAG_ASYNC | \
+-	 DRM_XE_VM_BIND_FLAG_READONLY | DRM_XE_VM_BIND_FLAG_IMMEDIATE | \
+-	 DRM_XE_VM_BIND_FLAG_NULL | 0xffff)
++	(FORCE_ASYNC_OP_ERROR | DRM_XE_VM_BIND_FLAG_READONLY | \
++	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | DRM_XE_VM_BIND_FLAG_NULL | 0xffff)
+ #else
+ #define SUPPORTED_FLAGS	\
+-	(DRM_XE_VM_BIND_FLAG_ASYNC | DRM_XE_VM_BIND_FLAG_READONLY | \
++	(DRM_XE_VM_BIND_FLAG_READONLY | \
+ 	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | DRM_XE_VM_BIND_FLAG_NULL | \
+ 	 0xffff)
+ #endif
+ #define XE_64K_PAGE_MASK 0xffffull
++#define ALL_DRM_XE_SYNCS_FLAGS (DRM_XE_SYNCS_FLAG_WAIT_FOR_OP)
+ 
+ #define MAX_BINDS	512	/* FIXME: Picking random upper limit */
+ 
+ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+ 				    struct drm_xe_vm_bind *args,
+-				    struct drm_xe_vm_bind_op **bind_ops,
+-				    bool *async)
++				    struct drm_xe_vm_bind_op **bind_ops)
+ {
+ 	int err;
+ 	int i;
+@@ -2775,18 +2758,6 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+ 			goto free_bind_ops;
+ 		}
+ 
+-		if (i == 0) {
+-			*async = !!(flags & DRM_XE_VM_BIND_FLAG_ASYNC);
+-			if (XE_IOCTL_DBG(xe, !*async && args->num_syncs)) {
+-				err = -EINVAL;
+-				goto free_bind_ops;
+-			}
+-		} else if (XE_IOCTL_DBG(xe, *async !=
+-					!!(flags & DRM_XE_VM_BIND_FLAG_ASYNC))) {
+-			err = -EINVAL;
+-			goto free_bind_ops;
+-		}
+-
+ 		if (XE_IOCTL_DBG(xe, op > DRM_XE_VM_BIND_OP_PREFETCH) ||
+ 		    XE_IOCTL_DBG(xe, flags & ~SUPPORTED_FLAGS) ||
+ 		    XE_IOCTL_DBG(xe, obj && is_null) ||
+@@ -2854,14 +2825,6 @@ static int vm_bind_ioctl_signal_fences(struct xe_vm *vm,
+ 
+ 	xe_exec_queue_last_fence_set(to_wait_exec_queue(vm, q), vm,
+ 				     fence);
+-
+-	if (xe_vm_sync_mode(vm, q)) {
+-		long timeout = dma_fence_wait(fence, true);
+-
+-		if (timeout < 0)
+-			err = -EINTR;
+-	}
+-
+ 	dma_fence_put(fence);
+ 
+ 	return err;
+@@ -2881,18 +2844,13 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	struct xe_sync_entry *syncs = NULL;
+ 	struct drm_xe_vm_bind_op *bind_ops;
+ 	LIST_HEAD(ops_list);
+-	bool async;
+ 	int err;
+ 	int i;
+ 
+-	err = vm_bind_ioctl_check_args(xe, args, &bind_ops, &async);
++	err = vm_bind_ioctl_check_args(xe, args, &bind_ops);
+ 	if (err)
+ 		return err;
+ 
+-	if (XE_IOCTL_DBG(xe, args->pad || args->pad2) ||
+-	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+-		return -EINVAL;
+-
+ 	if (args->exec_queue_id) {
+ 		q = xe_exec_queue_lookup(xef, args->exec_queue_id);
+ 		if (XE_IOCTL_DBG(xe, !q)) {
+@@ -2904,12 +2862,6 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 			err = -EINVAL;
+ 			goto put_exec_queue;
+ 		}
+-
+-		if (XE_IOCTL_DBG(xe, args->num_binds && async !=
+-				 !!(q->flags & EXEC_QUEUE_FLAG_VM_ASYNC))) {
+-			err = -EINVAL;
+-			goto put_exec_queue;
+-		}
+ 	}
+ 
+ 	vm = xe_vm_lookup(xef, args->vm_id);
+@@ -2918,14 +2870,6 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		goto put_exec_queue;
+ 	}
+ 
+-	if (!args->exec_queue_id) {
+-		if (XE_IOCTL_DBG(xe, args->num_binds && async !=
+-				 !!(vm->flags & XE_VM_FLAG_ASYNC_DEFAULT))) {
+-			err = -EINVAL;
+-			goto put_vm;
+-		}
+-	}
+-
+ 	err = down_write_killable(&vm->lock);
+ 	if (err)
+ 		goto put_vm;
+@@ -3060,8 +3004,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 
+ 		err = vm_bind_ioctl_ops_parse(vm, q, ops[i], syncs, num_syncs,
+ 					      &ops_list,
+-					      i == args->num_binds - 1,
+-					      async);
++					      i == args->num_binds - 1);
+ 		if (err)
+ 			goto unwind_ops;
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 2e023596cb15..63e8a50b88e9 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -138,13 +138,12 @@ struct xe_vm {
+ 	 */
+ #define XE_VM_FLAG_64K			BIT(0)
+ #define XE_VM_FLAG_LR_MODE		BIT(1)
+-#define XE_VM_FLAG_ASYNC_DEFAULT	BIT(2)
+-#define XE_VM_FLAG_MIGRATION		BIT(3)
+-#define XE_VM_FLAG_SCRATCH_PAGE		BIT(4)
+-#define XE_VM_FLAG_FAULT_MODE		BIT(5)
+-#define XE_VM_FLAG_BANNED		BIT(6)
+-#define XE_VM_FLAG_TILE_ID(flags)	FIELD_GET(GENMASK(8, 7), flags)
+-#define XE_VM_FLAG_SET_TILE_ID(tile)	FIELD_PREP(GENMASK(8, 7), (tile)->id)
++#define XE_VM_FLAG_MIGRATION		BIT(2)
++#define XE_VM_FLAG_SCRATCH_PAGE		BIT(3)
++#define XE_VM_FLAG_FAULT_MODE		BIT(4)
++#define XE_VM_FLAG_BANNED		BIT(5)
++#define XE_VM_FLAG_TILE_ID(flags)	FIELD_GET(GENMASK(7, 6), flags)
++#define XE_VM_FLAG_SET_TILE_ID(tile)	FIELD_PREP(GENMASK(7, 6), (tile)->id)
+ 	unsigned long flags;
+ 
+ 	/** @composite_fence_ctx: context composite fence */
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 0895e4d2a981..60814ab4c26a 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -140,8 +140,7 @@ struct drm_xe_engine_class_instance {
+ 	 * Kernel only classes (not actual hardware engine class). Used for
+ 	 * creating ordered queues of VM bind operations.
+ 	 */
+-#define DRM_XE_ENGINE_CLASS_VM_BIND_ASYNC	5
+-#define DRM_XE_ENGINE_CLASS_VM_BIND_SYNC	6
++#define DRM_XE_ENGINE_CLASS_VM_BIND		5
+ 	/** @engine_class: engine class id */
+ 	__u16 engine_class;
+ 	/** @engine_instance: engine instance id */
+@@ -661,7 +660,6 @@ struct drm_xe_vm_create {
+ 	 * still enable recoverable pagefaults if supported by the device.
+ 	 */
+ #define DRM_XE_VM_CREATE_FLAG_LR_MODE	        (1 << 1)
+-#define DRM_XE_VM_CREATE_FLAG_ASYNC_DEFAULT	(1 << 2)
+ 	/*
+ 	 * DRM_XE_VM_CREATE_FLAG_FAULT_MODE requires also
+ 	 * DRM_XE_VM_CREATE_FLAG_LR_MODE. It allows memory to be allocated
+@@ -669,7 +667,7 @@ struct drm_xe_vm_create {
+ 	 * The xe driver internally uses recoverable pagefaults to implement
+ 	 * this.
+ 	 */
+-#define DRM_XE_VM_CREATE_FLAG_FAULT_MODE	(1 << 3)
++#define DRM_XE_VM_CREATE_FLAG_FAULT_MODE	(1 << 2)
+ 	/** @flags: Flags */
+ 	__u32 flags;
+ 
+@@ -777,12 +775,11 @@ struct drm_xe_vm_bind_op {
+ 	__u32 op;
+ 
+ #define DRM_XE_VM_BIND_FLAG_READONLY	(1 << 0)
+-#define DRM_XE_VM_BIND_FLAG_ASYNC	(1 << 1)
+ 	/*
+ 	 * Valid on a faulting VM only, do the MAP operation immediately rather
+ 	 * than deferring the MAP to the page fault handler.
+ 	 */
+-#define DRM_XE_VM_BIND_FLAG_IMMEDIATE	(1 << 2)
++#define DRM_XE_VM_BIND_FLAG_IMMEDIATE	(1 << 1)
+ 	/*
+ 	 * When the NULL flag is set, the page tables are setup with a special
+ 	 * bit which indicates writes are dropped and all reads return zero.  In
+@@ -790,7 +787,7 @@ struct drm_xe_vm_bind_op {
+ 	 * operations, the BO handle MBZ, and the BO offset MBZ. This flag is
+ 	 * intended to implement VK sparse bindings.
+ 	 */
+-#define DRM_XE_VM_BIND_FLAG_NULL	(1 << 3)
++#define DRM_XE_VM_BIND_FLAG_NULL	(1 << 2)
+ 	/** @flags: Bind flags */
+ 	__u32 flags;
+ 
+-- 
+2.34.1
 
->+ *
->+ * Before detailing the IOCTLs and its structs, it is important to highlight
->+ * that every IOCTL in Xe is extensible.
->  *
->  * Many interfaces need to grow over time. In most cases we can simply
->  * extend the struct and have userspace pass in more data. Another option,
->@@ -93,7 +118,10 @@ extern "C" {
->  * Typically the struct xe_user_extension would be embedded in some uAPI
-
-			  ^ to be renamed to drm_xe_...
-
->  * struct, and in this case we would feed it the head of the chain(i.e ext1),
->  * which would then apply all of the above extensions.
->- *
->+*/
->+
->+/**
->+ * struct xe_user_extension - Base class for defining a chain of extensions
->  */
-> struct xe_user_extension {
-> 	/**
->@@ -123,7 +151,10 @@ struct xe_user_extension {
-> };
->
-> /**
->- * struct drm_xe_ext_set_property - XE set property extension
->+ * struct drm_xe_ext_set_property - Generic set property extension
->+ *
->+ * A generic struct that could allow any of the Xe's IOCTL to be extended
-
-IMO looks better in the present tense: s/that could allow/that allows/
-
-
-other than these nits,
-
-
-	Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-thanks
-Lucas De Marchi
-
->+ * with a set_property operation.
->  */
-> struct drm_xe_ext_set_property {
-> 	/** @base: base user extension */
->@@ -294,7 +325,7 @@ struct drm_xe_mem_region {
-> 	 * here will always be zero).
-> 	 */
-> 	__u64 cpu_visible_used;
->-	/** @reserved: MBZ */
->+	/** @reserved: Reserved */
-> 	__u64 reserved[6];
-> };
->
->@@ -1051,8 +1082,8 @@ struct drm_xe_sync {
-> 		__u32 handle;
->
-> 		/**
->-		 * @addr: Address of user fence. When sync passed in via exec
->-		 * IOCTL this a GPU address in the VM. When sync passed in via
->+		 * @addr: Address of user fence. When sync is passed in via exec
->+		 * IOCTL this is a GPU address in the VM. When sync passed in via
-> 		 * VM bind IOCTL this is a user pointer. In either case, it is
-> 		 * the users responsibility that this address is present and
-> 		 * mapped when the user fence is signalled. Must be qword
->@@ -1061,7 +1092,10 @@ struct drm_xe_sync {
-> 		__u64 addr;
-> 	};
->
->-	/** @timeline_value: Timeline point of the sync object */
->+	/**
->+	 * @timeline_value: Input for the timeline sync object. Needs to be
->+	 * different than 0 when used with %DRM_XE_SYNC_FLAG_TIMELINE_SYNCOBJ.
->+	 */
-> 	__u64 timeline_value;
->
-> 	/** @reserved: Reserved */
->-- 
->2.34.1
->
