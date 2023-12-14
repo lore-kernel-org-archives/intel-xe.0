@@ -4,45 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45266C4332F
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Dec 2023 18:47:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97D5EC4332F
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Dec 2023 19:00:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05FF310E92D;
-	Thu, 14 Dec 2023 18:47:41 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79F1810E265
- for <intel-xe@lists.freedesktop.org>; Thu, 14 Dec 2023 18:47:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6141810E993;
+	Thu, 14 Dec 2023 19:00:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E6E510E2EA
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Dec 2023 19:00:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702579648; x=1734115648;
+ t=1702580424; x=1734116424;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rTA7lTNqOsEVSSjsJq4cv0a/pDGsazNY1GsJhug6WXE=;
- b=XNI9tj3tc5RDr7wcDpny0UFOJurqDbSUh6YFHvP4d8mkWqEoM7iQC746
- ZI9FenWadVYtVVMIWKzPtnojkpswwj00kBuAVQ7LdCsSu/L+2RWMVpDbG
- vPmwq8bxxHxs1iuY3cxC6gBmaf82apSjP01lMm9E5bRelHuwh/YFXwzHs
- spDgDISBQyRQcNrHMZc/8f1aUyFYs97eTqqFh7zMVduigzEC09iTxMtyR
- U8GULy17hzY/5nDZC1JW0fyCKwIMPJ/OJNgAGFaawzN84/fxeLVuONF5v
- 0tbdVPue1LEiSsBeFZslwQvo30RorRybT8C4vXu3gTMn/ZdVs+SQAZp/A Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="397953931"
-X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; d="scan'208";a="397953931"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2023 10:47:12 -0800
+ bh=kxVDgvRhZ5SIRERFUnRW/cwd6L+UnPo3+7s9zj7NQJM=;
+ b=aN1d1iV/7rBBuZRFqmJtdpYGblV9qgDHE4v0sCJtLfwxT0A91ueCabRo
+ OtQ8yqNBy50q2zbUvA2TTBvRuP/oUKAwiVXDBudOJkBi99s761AKmsrfA
+ qtXj6kH7i4y+vb3USh0Na1MFpsL1gcjmYZsNKyWu4asu2mIIGYgcnTsfU
+ fk27IdNmi8i//1ZbBJ9TJK6s37FJdfJPuivJBeIP7XvAgbZuCvBLgrd7L
+ ewh9sn4nwY5Y45Fq1knvVlOH6huvbrZixg3Z03ZTNkOo7CSltfG5A0mmL
+ uRJupS64jBu1K80AntEAcmeobBh7jd0eAS1nIriE6MPyLX2tJLayKYF4J Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="399006371"
+X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; d="scan'208";a="399006371"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2023 11:00:17 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="892581838"
-X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; d="scan'208";a="892581838"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.131])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2023 10:47:11 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
+X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; d="scan'208";a="15964768"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.128.198])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2023 11:00:16 -0800
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 3/8] drm/xe: Fix whitespace in register definitions
-Date: Thu, 14 Dec 2023 10:47:03 -0800
-Message-ID: <20231214184659.2249559-13-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231214184659.2249559-10-matthew.d.roper@intel.com>
-References: <20231214184659.2249559-10-matthew.d.roper@intel.com>
+Subject: [PATCH v2 01/10] drm/xe: Add command MI_LOAD_REGISTER_MEM
+Date: Thu, 14 Dec 2023 19:59:46 +0100
+Message-Id: <20231214185955.1791-2-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20231214185955.1791-1-michal.wajdeczko@intel.com>
+References: <20231214185955.1791-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -56,51 +55,60 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Our register headers use tabs to align the definition values.  Convert a
-few definitions that were using spaces instead.
+We will need this shortly during context state preparation.
 
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_engine_regs.h | 4 ++--
- drivers/gpu/drm/xe/regs/xe_regs.h        | 6 +++---
- 2 files changed, 5 insertions(+), 5 deletions(-)
+v2: update dump_mi_command (Matt)
+---
+ drivers/gpu/drm/xe/instructions/xe_mi_commands.h |  3 +++
+ drivers/gpu/drm/xe/xe_lrc.c                      | 14 ++++++++++++++
+ 2 files changed, 17 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-index e109ef912706..7f82bef3a0db 100644
---- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-@@ -136,8 +136,8 @@
- #define   PREEMPT_GPGPU_LEVEL_MASK		PREEMPT_GPGPU_LEVEL(1, 1)
- #define   PREEMPT_3D_OBJECT_LEVEL		REG_BIT(0)
+diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+index 1cfa96167fde..c74ceb550dce 100644
+--- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
++++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+@@ -56,6 +56,9 @@
+ #define   MI_FLUSH_IMM_QW		REG_FIELD_PREP(MI_FLUSH_DW_LEN_DW, 5 - 2)
+ #define   MI_FLUSH_DW_USE_GTT		REG_BIT(2)
  
--#define VDBOX_CGCTL3F08(base)                  XE_REG((base) + 0x3f08)
--#define   CG3DDISHRS_CLKGATE_DIS               REG_BIT(5)
-+#define VDBOX_CGCTL3F08(base)			XE_REG((base) + 0x3f08)
-+#define   CG3DDISHRS_CLKGATE_DIS		REG_BIT(5)
++#define MI_LOAD_REGISTER_MEM		(__MI_INSTR(0x29) | XE_INSTR_NUM_DW(4))
++#define   MI_LRM_USE_GGTT		REG_BIT(22)
++
+ #define MI_BATCH_BUFFER_START		__MI_INSTR(0x31)
  
- #define VDBOX_CGCTL3F10(base)			XE_REG((base) + 0x3f10)
- #define   IECPUNIT_CLKGATE_DIS			REG_BIT(22)
-diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
-index 4ac71b605487..4b427ec8cbff 100644
---- a/drivers/gpu/drm/xe/regs/xe_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_regs.h
-@@ -34,9 +34,9 @@
- #define XEHPC_BCS7_RING_BASE			0x3ec000
- #define XEHPC_BCS8_RING_BASE			0x3ee000
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index d6dfbd0bdc70..c8e242d8fb09 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -966,6 +966,20 @@ static int dump_mi_command(struct drm_printer *p,
+ 			drm_printf(p, " - %#6x = %#010x\n", dw[i], dw[i + 1]);
+ 		return numdw;
  
--#define DG1_GSC_HECI2_BASE                      0x00259000
--#define PVC_GSC_HECI2_BASE                      0x00285000
--#define DG2_GSC_HECI2_BASE                      0x00374000
-+#define DG1_GSC_HECI2_BASE			0x00259000
-+#define PVC_GSC_HECI2_BASE			0x00285000
-+#define DG2_GSC_HECI2_BASE			0x00374000
- 
- #define GSCCS_RING_BASE				0x11a000
- #define   GT_WAIT_SEMAPHORE_INTERRUPT		REG_BIT(11)
++	case MI_LOAD_REGISTER_MEM & MI_OPCODE:
++		drm_printf(p, "[%#010x] MI_LOAD_REGISTER_MEM: %s%s\n",
++			   inst_header,
++			   dw[0] & MI_LRI_LRM_CS_MMIO ? "CS_MMIO " : "",
++			   dw[0] & MI_LRM_USE_GGTT ? "USE_GGTT " : "");
++		if (numdw == 4)
++			drm_printf(p, " - %#6x = %#010llx\n",
++				   dw[1], ((u64)(dw[3]) << 32 | (u64)(dw[2])));
++		else
++			drm_printf(p, " - %*ph (%s)\n",
++				   (int)sizeof(u32) * (numdw - 1), dw + 1,
++				   numdw < 4 ? "truncated" : "malformed");
++		return numdw;
++
+ 	case MI_FORCE_WAKEUP:
+ 		drm_printf(p, "[%#010x] MI_FORCE_WAKEUP\n", inst_header);
+ 		return numdw;
 -- 
-2.43.0
+2.25.1
 
