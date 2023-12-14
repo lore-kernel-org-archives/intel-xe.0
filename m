@@ -4,30 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FEA6C4332F
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Dec 2023 00:17:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAFA2C4167B
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Dec 2023 00:18:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EADCA10E870;
-	Thu, 14 Dec 2023 00:17:11 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4382810E870;
- Thu, 14 Dec 2023 00:17:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3F20BA7E03;
- Thu, 14 Dec 2023 00:17:10 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7179B10E882;
+	Thu, 14 Dec 2023 00:18:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C62F10E882
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Dec 2023 00:18:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1702513090; x=1734049090;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=5L7YPJ05Ig9QxDE8RLf/YJ2e6wD5bAGLMoOCO5n1OtY=;
+ b=RKEoCpxwrszhZAQglC+glkKbFr0vub7Fd/j0FahPjPSHVQf5e8lZJt9s
+ fsS7dKOT3Jr8d8EmXNBm46X7Icbv201HR1vBYynyogR6hDTeTw6uvobYW
+ 8ff9GKp0F6bRopp0VRJBvB/RRT/HggmquM6E8aFQiRNJHBdtOkJsmGUfL
+ t2OyXglZEQPSbBpOBhr5Xl3XecfHEYvwhUOfJpzrK5fSZWsV3GGKWrZpi
+ viDlizoLPj2RvxKesz6FyEbmUHE6ym5l/GAHlU+9hQOR/B7s6AYI+hzFx
+ hbzWFJO87jHj0yUXfQih+zW21zTieV6qC4RsP2XhWwVnxes6BeeVpYmso Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10923"; a="398882349"
+X-IronPort-AV: E=Sophos;i="6.04,274,1695711600"; d="scan'208";a="398882349"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2023 16:18:09 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10923"; a="1021315182"
+X-IronPort-AV: E=Sophos;i="6.04,274,1695711600"; d="scan'208";a="1021315182"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmsmga006.fm.intel.com with ESMTP; 13 Dec 2023 16:18:05 -0800
+Received: from [10.249.145.20] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.145.20])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 4F77036C15;
+ Thu, 14 Dec 2023 00:18:03 +0000 (GMT)
+Message-ID: <92cf6cdf-3857-4442-9859-e5b6a31f0fd9@intel.com>
+Date: Thu, 14 Dec 2023 01:18:02 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EHooks=3A_success_for_drm/xe/uapi=3A_Remove_sync_bin?=
- =?utf-8?q?ds?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Thu, 14 Dec 2023 00:17:10 -0000
-Message-ID: <170251303025.19958.4473509713353949453@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231214000524.632290-1-matthew.brost@intel.com>
-In-Reply-To: <20231214000524.632290-1-matthew.brost@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 07/10] drm/xe/vf: Introduce Memory Based Interrupts Handler
+Content-Language: en-US
+To: Matt Roper <matthew.d.roper@intel.com>
+References: <20231212210054.1747-1-michal.wajdeczko@intel.com>
+ <20231212210054.1747-8-michal.wajdeczko@intel.com>
+ <20231213001551.GN1327160@mdroper-desk1.amr.corp.intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20231213001551.GN1327160@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,537 +63,656 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/xe/uapi: Remove sync binds
-URL   : https://patchwork.freedesktop.org/series/127780/
-State : success
-
-== Summary ==
-
-run-parts: executing /workspace/ci/hooks/00-showenv
-+ pwd
-+ ls -la
-/workspace
-total 908
-drwxrwxr-x 12 1003 1003   4096 Dec 14 00:16 .
-drwxr-xr-x  1 root root   4096 Dec 14 00:16 ..
--rw-rw-r--  1 1003 1003 802554 Dec 14 00:16 build.log
--rw-rw-r--  1 1003 1003   1178 Dec 14 00:08 checkpatch.log
-drwxrwxr-x  5 1003 1003   4096 Dec 14 00:06 ci
-drwxrwxr-x  9 1003 1003   4096 Dec 14 00:06 docker
-drwxrwxr-x  8 1003 1003   4096 Dec 14 00:06 .git
--rw-rw-r--  1 1003 1003    190 Dec 14 00:08 git_apply.log
-drwxrwxr-x  4 1003 1003   4096 Dec 14 00:06 .github
--rw-rw-r--  1 1003 1003    233 Dec 14 00:06 .groovylintrc.json
--rw-rw-r--  1 1003 1003     78 Dec 14 00:16 hooks.log
-drwxrwxr-x 31 1003 1003   4096 Dec 14 00:16 kernel
--rw-rw-r--  1 1003 1003  20403 Dec 14 00:08 kernel.mbox
--rw-rw-r--  1 1003 1003  29462 Dec 14 00:09 kunit.log
--rw-rw-r--  1 1003 1003     48 Dec 14 00:08 parent.tag
-drwxrwxr-x 44 1003 1003   4096 Dec 14 00:06 pipelines
--rw-rw-r--  1 1003 1003    793 Dec 14 00:06 README.adoc
-drwxrwxr-x  3 1003 1003   4096 Dec 14 00:06 scripts
-drwxrwxr-x  3 1003 1003   4096 Dec 14 00:06 src
-drwxrwxr-x  2 1003 1003   4096 Dec 14 00:06 vars
-drwxrwxr-x  2 1003 1003   4096 Dec 14 00:06 .vscode
-+ uname -a
-Linux 9c99d5808758 5.4.0-164-generic #181-Ubuntu SMP Fri Sep 1 13:41:22 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
-+ export
-+ grep -Ei '(^|\W)CI_'
-declare -x CI_KERNEL_BUILD_DIR="/workspace/kernel/build64-default"
-declare -x CI_KERNEL_SRC_DIR="/workspace/kernel"
-declare -x CI_TOOLS_SRC_DIR="/workspace/ci"
-declare -x CI_WORKSPACE_DIR="/workspace"
-+ '[' -n /workspace ']'
-+ git_args='-C /workspace/kernel'
-+ git_log_args=
-+ git --no-pager -C /workspace/kernel log --format=oneline --abbrev-commit
-bcfc97642 drm/xe/uapi: Remove sync binds
-5cd189336 drm/xe/xe2: Support flat ccs
-run-parts: executing /workspace/ci/hooks/10-build-W1
-+ SRC_DIR=/workspace/kernel
-+ RESTORE_DISPLAY_CONFIG=0
-+ '[' -n /workspace/kernel/build64-default ']'
-+ BUILD_DIR=/workspace/kernel/build64-default
-+ cd /workspace/kernel
-++ nproc
-+ make -j48 O=/workspace/kernel/build64-default modules_prepare
-make[1]: Entering directory '/workspace/kernel/build64-default'
-  GEN     Makefile
-  UPD     include/config/kernel.release
-  UPD     include/generated/compile.h
-  UPD     include/generated/utsrelease.h
-  DESCEND objtool
-  HOSTCC  /workspace/kernel/build64-default/tools/objtool/fixdep.o
-  CALL    ../scripts/checksyscalls.sh
-  HOSTLD  /workspace/kernel/build64-default/tools/objtool/fixdep-in.o
-  LINK    /workspace/kernel/build64-default/tools/objtool/fixdep
-  INSTALL libsubcmd_headers
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/exec-cmd.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/help.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/pager.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/parse-options.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/run-command.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/subcmd-config.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/sigchain.o
-  LD      /workspace/kernel/build64-default/tools/objtool/libsubcmd/libsubcmd-in.o
-  AR      /workspace/kernel/build64-default/tools/objtool/libsubcmd/libsubcmd.a
-  CC      /workspace/kernel/build64-default/tools/objtool/weak.o
-  CC      /workspace/kernel/build64-default/tools/objtool/check.o
-  CC      /workspace/kernel/build64-default/tools/objtool/special.o
-  CC      /workspace/kernel/build64-default/tools/objtool/builtin-check.o
-  CC      /workspace/kernel/build64-default/tools/objtool/elf.o
-  CC      /workspace/kernel/build64-default/tools/objtool/objtool.o
-  CC      /workspace/kernel/build64-default/tools/objtool/orc_gen.o
-  CC      /workspace/kernel/build64-default/tools/objtool/orc_dump.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libstring.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libctype.o
-  CC      /workspace/kernel/build64-default/tools/objtool/str_error_r.o
-  CC      /workspace/kernel/build64-default/tools/objtool/librbtree.o
-  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/special.o
-  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/decode.o
-  LD      /workspace/kernel/build64-default/tools/objtool/arch/x86/objtool-in.o
-  LD      /workspace/kernel/build64-default/tools/objtool/objtool-in.o
-  LINK    /workspace/kernel/build64-default/tools/objtool/objtool
-make[1]: Leaving directory '/workspace/kernel/build64-default'
-++ nproc
-+ make -j48 O=/workspace/kernel/build64-default M=drivers/gpu/drm/xe W=1
-make[1]: Entering directory '/workspace/kernel/build64-default'
-  CC [M]  drivers/gpu/drm/xe/xe_bb.o
-  CC [M]  drivers/gpu/drm/xe/xe_bo.o
-  CC [M]  drivers/gpu/drm/xe/xe_bo_evict.o
-  CC [M]  drivers/gpu/drm/xe/xe_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_devcoredump.o
-  CC [M]  drivers/gpu/drm/xe/xe_device.o
-  CC [M]  drivers/gpu/drm/xe/xe_device_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_dma_buf.o
-  CC [M]  drivers/gpu/drm/xe/xe_drm_client.o
-  CC [M]  drivers/gpu/drm/xe/xe_exec.o
-  CC [M]  drivers/gpu/drm/xe/xe_execlist.o
-  CC [M]  drivers/gpu/drm/xe/xe_exec_queue.o
-  CC [M]  drivers/gpu/drm/xe/xe_force_wake.o
-  CC [M]  drivers/gpu/drm/xe/xe_ggtt.o
-  CC [M]  drivers/gpu/drm/xe/xe_gpu_scheduler.o
-  HOSTCC  drivers/gpu/drm/xe/xe_gen_wa_oob
-  CC [M]  drivers/gpu/drm/xe/xe_gsc_submit.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_ccs_mode.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_clock.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_freq.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_idle.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_mcr.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_pagefault.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_throttle_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_tlb_invalidation.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_topology.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_ads.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_ct.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_hwconfig.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_log.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_pc.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_submit.o
-  CC [M]  drivers/gpu/drm/xe/xe_heci_gsc.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_engine.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_huc.o
-  CC [M]  drivers/gpu/drm/xe/xe_huc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_irq.o
-  CC [M]  drivers/gpu/drm/xe/xe_lrc.o
-  CC [M]  drivers/gpu/drm/xe/xe_mmio.o
-  CC [M]  drivers/gpu/drm/xe/xe_mocs.o
-  CC [M]  drivers/gpu/drm/xe/xe_module.o
-  CC [M]  drivers/gpu/drm/xe/xe_pat.o
-  CC [M]  drivers/gpu/drm/xe/xe_pci.o
-  CC [M]  drivers/gpu/drm/xe/xe_pcode.o
-  CC [M]  drivers/gpu/drm/xe/xe_pm.o
-  CC [M]  drivers/gpu/drm/xe/xe_preempt_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_pt.o
-  CC [M]  drivers/gpu/drm/xe/xe_pt_walk.o
-  CC [M]  drivers/gpu/drm/xe/xe_query.o
-  CC [M]  drivers/gpu/drm/xe/xe_range_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_reg_sr.o
-  CC [M]  drivers/gpu/drm/xe/xe_reg_whitelist.o
-  CC [M]  drivers/gpu/drm/xe/xe_rtp.o
-  CC [M]  drivers/gpu/drm/xe/xe_sa.o
-  CC [M]  drivers/gpu/drm/xe/xe_sched_job.o
-  CC [M]  drivers/gpu/drm/xe/xe_step.o
-  CC [M]  drivers/gpu/drm/xe/xe_sync.o
-  CC [M]  drivers/gpu/drm/xe/xe_tile.o
-  CC [M]  drivers/gpu/drm/xe/xe_tile_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_trace.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_sys_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_vram_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_tuning.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc_fw.o
-  CC [M]  drivers/gpu/drm/xe/xe_wopcm.o
-  CC [M]  drivers/gpu/drm/xe/xe_wait_user_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_hwmon.o
-  CC [M]  drivers/gpu/drm/xe/xe_sriov.o
-  CC [M]  drivers/gpu/drm/xe/xe_lmtt.o
-  CC [M]  drivers/gpu/drm/xe/xe_lmtt_2l.o
-  CC [M]  drivers/gpu/drm/xe/xe_lmtt_ml.o
-  CC [M]  drivers/gpu/drm/xe/xe_display.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_fb_pin.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_hdcp_gsc.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_plane_initial.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_display_rps.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_display_misc.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_dsb_buffer.o
-  CC [M]  drivers/gpu/drm/xe/display/intel_fbdev_fb.o
-  CC [M]  drivers/gpu/drm/xe/display/intel_fb_bo.o
-  CC [M]  drivers/gpu/drm/xe/display/ext/i915_irq.o
-  CC [M]  drivers/gpu/drm/xe/display/ext/i915_utils.o
-  CC [M]  drivers/gpu/drm/xe/i915-soc/intel_dram.o
-  CC [M]  drivers/gpu/drm/xe/i915-soc/intel_pch.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/icl_dsi.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_atomic.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_atomic_plane.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_audio.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_backlight.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_bios.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_bw.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_cdclk.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_color.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_combo_phy.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_connector.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_crtc.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_crtc_state_dump.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_cursor.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_cx0_phy.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_ddi.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_ddi_buf_trans.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_debugfs_params.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_device.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_driver.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_irq.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_params.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_power.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_power_map.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_power_well.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_trace.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_wa.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dkl_phy.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dmc.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_aux.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_aux_backlight.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_hdcp.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_link_training.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_mst.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dpll.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dpll_mgr.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dpt_common.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_drrs.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dsb.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dsi.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dsi_dcs_backlight.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dsi_vbt.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fb.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fbc.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fdi.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fifo_underrun.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_frontbuffer.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_global_state.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_gmbus.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hdcp.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hdmi.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hotplug.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hotplug_irq.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hti.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_link_bw.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_lspcon.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_modeset_lock.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_modeset_setup.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_modeset_verify.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_panel.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_pipe_crc.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_pmdemand.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_pps.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_psr.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_qp_tables.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_quirks.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_snps_phy.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_tc.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_vblank.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_vdsc.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_vga.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_vrr.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_wm.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/skl_scaler.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/skl_universal_plane.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/skl_watermark.o
-  CC [M]  drivers/gpu/drm/xe/xe_pmu.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_acpi.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_opregion.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fbdev.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/gsc_command_header_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_errors_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/gsc_mkhi_commands_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_communication_mmio_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_actions_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_bo_test.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_messages_abi.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_gem.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_vma_types.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_irq.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/vlv_sideband_reg.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_mocs_test.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_wakeref.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_pcode.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_reg_defs.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_trace.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_reg.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_active_types.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_pci_test.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_utils.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_config.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/vlv_sideband.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_mchbar_regs.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_gpu_error.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/soc/intel_pch.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/soc/intel_dram.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/soc/intel_gmch.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_vgpu.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_fixed.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_wa_test.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_step.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_uc_fw.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_pci_config.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_lmem.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_mman.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_frontbuffer.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/gt/intel_rps.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_clock_gating.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_gt_types.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_active.h
-  HDRTEST drivers/gpu/drm/xe/display/intel_fb_bo.h
-  HDRTEST drivers/gpu/drm/xe/display/intel_fbdev_fb.h
-  HDRTEST drivers/gpu/drm/xe/instructions/xe_instr_defs.h
-  HDRTEST drivers/gpu/drm/xe/instructions/xe_gsc_commands.h
-  HDRTEST drivers/gpu/drm/xe/instructions/xe_gfxpipe_commands.h
-  HDRTEST drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_gsc_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_reg_defs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_guc_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_gt_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_sriov_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_engine_regs.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_pci_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_migrate_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_dma_buf_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_mocs_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_bo_test.h
-  HDRTEST drivers/gpu/drm/xe/xe_assert.h
-  HDRTEST drivers/gpu/drm/xe/xe_bb.h
-  HDRTEST drivers/gpu/drm/xe/xe_bb_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_evict.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_devcoredump.h
-  HDRTEST drivers/gpu/drm/xe/xe_devcoredump_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_device.h
-  HDRTEST drivers/gpu/drm/xe/xe_device_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_device_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_display.h
-  HDRTEST drivers/gpu/drm/xe/xe_dma_buf.h
-  HDRTEST drivers/gpu/drm/xe/xe_drm_client.h
-  HDRTEST drivers/gpu/drm/xe/xe_drv.h
-  HDRTEST drivers/gpu/drm/xe/xe_exec.h
-  HDRTEST drivers/gpu/drm/xe/xe_exec_queue.h
-  HDRTEST drivers/gpu/drm/xe/xe_exec_queue_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_execlist.h
-  HDRTEST drivers/gpu/drm/xe/xe_execlist_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_force_wake.h
-  HDRTEST drivers/gpu/drm/xe/xe_force_wake_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_ggtt.h
-  HDRTEST drivers/gpu/drm/xe/xe_ggtt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gpu_scheduler.h
-  HDRTEST drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gsc.h
-  HDRTEST drivers/gpu/drm/xe/xe_gsc_submit.h
-  HDRTEST drivers/gpu/drm/xe/xe_gsc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_ccs_mode.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_clock.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_freq.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_idle.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_idle_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_mcr.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_pagefault.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_printk.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_sysfs_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_tlb_invalidation_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_topology.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ads.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ads_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ct.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ct_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_fwif.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_hwconfig.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_log.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_log_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_pc.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_pc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_submit.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_submit_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_heci_gsc.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_fence_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_hwmon.h
-  HDRTEST drivers/gpu/drm/xe/xe_irq.h
-  HDRTEST drivers/gpu/drm/xe/xe_lmtt.h
-  HDRTEST drivers/gpu/drm/xe/xe_lmtt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_lrc.h
-  HDRTEST drivers/gpu/drm/xe/xe_lrc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_macros.h
-  HDRTEST drivers/gpu/drm/xe/xe_map.h
-  HDRTEST drivers/gpu/drm/xe/xe_migrate.h
-  HDRTEST drivers/gpu/drm/xe/xe_migrate_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_mmio.h
-  HDRTEST drivers/gpu/drm/xe/xe_mocs.h
-  HDRTEST drivers/gpu/drm/xe/xe_module.h
-  HDRTEST drivers/gpu/drm/xe/xe_pat.h
-  HDRTEST drivers/gpu/drm/xe/xe_pci.h
-  HDRTEST drivers/gpu/drm/xe/xe_pci_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pcode.h
-  HDRTEST drivers/gpu/drm/xe/xe_pcode_api.h
-  HDRTEST drivers/gpu/drm/xe/xe_platform_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pm.h
-  HDRTEST drivers/gpu/drm/xe/xe_pmu.h
-  HDRTEST drivers/gpu/drm/xe/xe_pmu_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_preempt_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_preempt_fence_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt_walk.h
-  HDRTEST drivers/gpu/drm/xe/xe_query.h
-  HDRTEST drivers/gpu/drm/xe/xe_range_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_sr.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_sr_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_whitelist.h
-  HDRTEST drivers/gpu/drm/xe/xe_res_cursor.h
-  HDRTEST drivers/gpu/drm/xe/xe_ring_ops.h
-  HDRTEST drivers/gpu/drm/xe/xe_ring_ops_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_rtp.h
-  HDRTEST drivers/gpu/drm/xe/xe_rtp_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sa.h
-  HDRTEST drivers/gpu/drm/xe/xe_sa_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sched_job.h
-  HDRTEST drivers/gpu/drm/xe/xe_sched_job_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sriov.h
-  HDRTEST drivers/gpu/drm/xe/xe_sriov_printk.h
-  HDRTEST drivers/gpu/drm/xe/xe_sriov_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_step.h
-  HDRTEST drivers/gpu/drm/xe/xe_step_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sync.h
-  HDRTEST drivers/gpu/drm/xe/xe_sync_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_tile.h
-  HDRTEST drivers/gpu/drm/xe/xe_tile_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_tile_sysfs_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_trace.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_sys_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_tuning.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw_abi.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_wa.h
-  HDRTEST drivers/gpu/drm/xe/xe_wait_user_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_wopcm.h
-  HDRTEST drivers/gpu/drm/xe/xe_wopcm_types.h
-  GEN     xe_wa_oob.c xe_wa_oob.h
-  GEN     xe_wa_oob.c xe_wa_oob.h
-  CC [M]  drivers/gpu/drm/xe/xe_gsc.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc.o
-  CC [M]  drivers/gpu/drm/xe/xe_migrate.o
-  CC [M]  drivers/gpu/drm/xe/xe_ring_ops.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_stolen_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_vm.o
-  CC [M]  drivers/gpu/drm/xe/xe_wa.o
-  LD [M]  drivers/gpu/drm/xe/xe.o
-  MODPOST drivers/gpu/drm/xe/Module.symvers
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/xe/tests/xe_mocs_test.o
-  CC [M]  drivers/gpu/drm/xe/xe.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_bo_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_mocs_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_pci_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_wa_test.mod.o
-  LD [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_bo_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_wa_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_mocs_test.ko
-  LD [M]  drivers/gpu/drm/xe/xe.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_pci_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.ko
-make[1]: Leaving directory '/workspace/kernel/build64-default'
-run-parts: executing /workspace/ci/hooks/20-kernel-doc
-+ SRC_DIR=/workspace/kernel
-+ cd /workspace/kernel
-+ find drivers/gpu/drm/xe/ -name '*.[ch]' -not -path 'drivers/gpu/drm/xe/display/*'
-+ xargs ./scripts/kernel-doc -Werror -none include/uapi/drm/xe_drm.h
-All hooks done
 
 
+On 13.12.2023 01:15, Matt Roper wrote:
+> On Tue, Dec 12, 2023 at 10:00:51PM +0100, Michal Wajdeczko wrote:
+>> The register based interrupts infrastructure does not scale
+>> efficiently to allow delivering interrupts to a large number
+>> of virtual machines. Memory based interrupt reporting provides
+>> an efficient and scalable infrastructure.
+>>
+>> Define handler to read and dispatch memory based interrupts.
+>> We will use this handler in upcoming patch.
+>>
+>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> ---
+>>  drivers/gpu/drm/xe/Makefile          |   4 +-
+>>  drivers/gpu/drm/xe/xe_device.c       |   7 +
+>>  drivers/gpu/drm/xe/xe_device_types.h |   5 +
+>>  drivers/gpu/drm/xe/xe_memirq.c       | 429 +++++++++++++++++++++++++++
+>>  drivers/gpu/drm/xe/xe_memirq.h       |  26 ++
+>>  drivers/gpu/drm/xe/xe_memirq_types.h |  37 +++
+>>  6 files changed, 507 insertions(+), 1 deletion(-)
+>>  create mode 100644 drivers/gpu/drm/xe/xe_memirq.c
+>>  create mode 100644 drivers/gpu/drm/xe/xe_memirq.h
+>>  create mode 100644 drivers/gpu/drm/xe/xe_memirq_types.h
+>>
+>> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+>> index f4ae063a7005..3be7ed101d7b 100644
+>> --- a/drivers/gpu/drm/xe/Makefile
+>> +++ b/drivers/gpu/drm/xe/Makefile
+>> @@ -137,7 +137,9 @@ xe-y += xe_bb.o \
+>>  xe-$(CONFIG_HWMON) += xe_hwmon.o
+>>  
+>>  # graphics virtualization (SR-IOV) support
+>> -xe-y += xe_sriov.o
+>> +xe-y += \
+>> +	xe_memirq.o \
+>> +	xe_sriov.o
+>>  
+>>  xe-$(CONFIG_PCI_IOV) += \
+>>  	xe_lmtt.o \
+>> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+>> index 2e0b2e40d8f3..a66a7640279d 100644
+>> --- a/drivers/gpu/drm/xe/xe_device.c
+>> +++ b/drivers/gpu/drm/xe/xe_device.c
+>> @@ -27,12 +27,14 @@
+>>  #include "xe_ggtt.h"
+>>  #include "xe_gt.h"
+>>  #include "xe_irq.h"
+>> +#include "xe_memirq.h"
+>>  #include "xe_mmio.h"
+>>  #include "xe_module.h"
+>>  #include "xe_pat.h"
+>>  #include "xe_pcode.h"
+>>  #include "xe_pm.h"
+>>  #include "xe_query.h"
+>> +#include "xe_sriov.h"
+>>  #include "xe_tile.h"
+>>  #include "xe_ttm_stolen_mgr.h"
+>>  #include "xe_ttm_sys_mgr.h"
+>> @@ -430,6 +432,11 @@ int xe_device_probe(struct xe_device *xe)
+>>  		err = xe_ggtt_init_early(tile->mem.ggtt);
+>>  		if (err)
+>>  			return err;
+>> +		if (IS_SRIOV_VF(xe)) {
+>> +			err = xe_memirq_init(&tile->sriov.vf.memirq);
+>> +			if (err)
+>> +				return err;
+>> +		}
+>>  	}
+>>  
+>>  	err = drmm_add_action_or_reset(&xe->drm, xe_driver_flr_fini, xe);
+>> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+>> index 0c48e3686837..9cb86b5c9187 100644
+>> --- a/drivers/gpu/drm/xe/xe_device_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+>> @@ -16,6 +16,7 @@
+>>  #include "xe_heci_gsc.h"
+>>  #include "xe_gt_types.h"
+>>  #include "xe_lmtt_types.h"
+>> +#include "xe_memirq_types.h"
+>>  #include "xe_platform_types.h"
+>>  #include "xe_pt_types.h"
+>>  #include "xe_pmu.h"
+>> @@ -193,6 +194,10 @@ struct xe_tile {
+>>  			/** @sriov.pf.lmtt: Local Memory Translation Table. */
+>>  			struct xe_lmtt lmtt;
+>>  		} pf;
+>> +		struct {
+>> +			/** @sriov.vf.memirq: Memory Based Interrupts. */
+>> +			struct xe_memirq memirq;
+>> +		} vf;
+>>  	} sriov;
+>>  
+>>  	/** @migrate: Migration helper for vram blits and clearing */
+>> diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
+>> new file mode 100644
+>> index 000000000000..cdc63dd29dd1
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/xe/xe_memirq.c
+>> @@ -0,0 +1,429 @@
+>> +// SPDX-License-Identifier: MIT
+>> +/*
+>> + * Copyright © 2023 Intel Corporation
+>> + */
+>> +
+>> +#include <drm/drm_managed.h>
+>> +
+>> +#include "regs/xe_gt_regs.h"
+>> +#include "regs/xe_guc_regs.h"
+>> +#include "regs/xe_regs.h"
+>> +
+>> +#include "xe_assert.h"
+>> +#include "xe_bo.h"
+>> +#include "xe_device.h"
+>> +#include "xe_device_types.h"
+>> +#include "xe_gt.h"
+>> +#include "xe_gt_printk.h"
+>> +#include "xe_guc.h"
+>> +#include "xe_hw_engine.h"
+>> +#include "xe_map.h"
+>> +#include "xe_memirq.h"
+>> +#include "xe_sriov.h"
+>> +#include "xe_sriov_printk.h"
+>> +
+>> +#define memirq_assert(m, condition)	xe_tile_assert(memirq_to_tile(m), condition)
+>> +#define memirq_debug(m, msg...)		xe_sriov_dbg_verbose(memirq_to_xe(m), "MEMIRQ: " msg)
+>> +
+>> +static struct xe_tile *memirq_to_tile(struct xe_memirq *memirq)
+>> +{
+>> +	return container_of(memirq, struct xe_tile, sriov.vf.memirq);
+>> +}
+>> +
+>> +static struct xe_device *memirq_to_xe(struct xe_memirq *memirq)
+>> +{
+>> +	return tile_to_xe(memirq_to_tile(memirq));
+>> +}
+>> +
+>> +static const char *guc_name(struct xe_guc *guc)
+>> +{
+>> +	return xe_gt_is_media_type(guc_to_gt(guc)) ? "media GuC" : "GuC";
+>> +}
+>> +
+>> +/**
+>> + * DOC: Memory Based Interrupts
+>> + *
+>> + * MMIO register based interrupts infrastructure used for non-virtualized mode
+>> + * or SRIOV-8 (which supports 8 Virtual Functions) does not scale efficiently
+>> + * to allow delivering interrupts to a large number of Virtual machines or
+>> + * containers. Memory based interrupt status reporting provides an efficient
+>> + * and scalable infrastructure.
+>> + *
+>> + * For memory based interrupt status reporting hardware sequence is:
+>> + *  * Engine writes the interrupt event to memory
+>> + *    (Pointer to memory location is provided by SW. This memory surface must
+>> + *    be mapped to system memory and must be marked as un-cacheable (UC) on
+>> + *    Graphics IP Caches)
+>> + *  * Engine triggers an interrupt to host.
+>> + */
+>> +
+>> +/**
+>> + * DOC: Memory Based Interrupts Page Layout
+>> + *
+>> + * `Memory Based Interrupts`_ requires three different objects, which are
+>> + * called "page" in the specs, even if they aren't page-sized or aligned.
+>> + *
+>> + * To simplify the code we allocate a single page size object and then use
+>> + * offsets to embedded "pages". The address of those "pages" are then
+>> + * programmed in the HW via LRI and LRM in the context image.
+>> + *
+>> + * - _`Interrupt Status Report Page`: this page contains the interrupt
+>> + *   status vectors for each unit. Each bit in the interrupt vectors is
+>> + *   converted to a byte, with the byte being set to 0xFF when an
+>> + *   interrupt is triggered; interrupt vectors are 16b big so each unit
+>> + *   gets 16B. One space is reserved for each bit in one of the
+>> + *   GT_INTR_DWx registers, so this object needs a total of 1024B.
+>> + *   This object needs to be 4KiB aligned.
+>> + *
+>> + * - _`Interrupt Source Report Page`: this is the equivalent of the
+>> + *   GEN11_GT_INTR_DWx registers, with each bit in those registers being
+>> + *   mapped to a byte here. The offsets are the same, just bytes instead
+>> + *   of bits. This object needs to be cacheline aligned.
+>> + *
+>> + * - Interrupt Mask: the HW needs a location to fetch the interrupt
+>> + *   mask vector to be used by the LRM in the context, so we just use
+>> + *   the next available space in the interrupt page.
+>> + *
+>> + * ::
+>> + *
+>> + *   0x0000   +===========+  <== Interrupt Status Report Page
+>> + *            |           |
+>> + *            |           |     ____ +----+----------------+
+>> + *            |           |    /     |  0 | USER INTERRUPT |
+>> + *            +-----------+ __/      |  1 |                |
+>> + *            |  HWE(n)   | __       |    | CTX SWITCH     |
+>> + *            +-----------+   \      |    | WAIT SEMAPHORE |
+>> + *            |           |    \____ | 15 |                |
+>> + *            |           |          +----+----------------+
+>> + *            |           |
+>> + *   0x0400   +===========+  <== Interrupt Source Report Page
+>> + *            |  HWE(0)   |
+>> + *            |  HWE(1)   |
+>> + *            |           |
+>> + *            |  HWE(x)   |
+>> + *   0x0440   +===========+  <== Interrupt Enable Mask
+>> + *            |           |
+>> + *            |           |
+>> + *            +-----------+
+>> + */
+>> +
+>> +static void __release_xe_bo(struct drm_device *drm, void *arg)
+>> +{
+>> +	struct xe_bo *bo = arg;
+>> +
+>> +	xe_bo_unpin_map_no_vm(bo);
+>> +}
+>> +
+>> +static int memirq_alloc_pages(struct xe_memirq *memirq)
+>> +{
+>> +	struct xe_device *xe = memirq_to_xe(memirq);
+>> +	struct xe_tile *tile = memirq_to_tile(memirq);
+>> +	struct xe_bo *bo;
+>> +	int err;
+>> +
+>> +	BUILD_BUG_ON(!IS_ALIGNED(XE_MEMIRQ_SOURCE_OFFSET, SZ_64));
+>> +	BUILD_BUG_ON(!IS_ALIGNED(XE_MEMIRQ_STATUS_OFFSET, SZ_4K));
+>> +
+>> +	/* XXX: convert to managed bo */
+>> +	bo = xe_bo_create_pin_map(xe, tile, NULL, SZ_4K,
+>> +				  ttm_bo_type_kernel,
+>> +				  XE_BO_CREATE_SYSTEM_BIT |
+>> +				  XE_BO_CREATE_GGTT_BIT |
+>> +				  XE_BO_NEEDS_CPU_ACCESS);
+> 
+> One other thing I see mentioned on bspec 50829 is that the memory must
+> be marked un-cacheable on the graphics caches.  As far as I can see, we
+> always map stuff into the GGTT with a GPU:WB PAT index in
+> xe_ggtt_map_bo().  Unless I'm forgetting something we might need to pass
+> down a new flag that will give us an uncached mapping?
+
+thanks for reminding me about this (I've already copied this requirement
+to the comment above, but missed to update the code)
+
+> 
+>> +	if (IS_ERR(bo)) {
+>> +		err = PTR_ERR(bo);
+>> +		goto out;
+>> +	}
+>> +
+>> +	memirq_assert(memirq, !xe_bo_is_vram(bo));
+>> +	memirq_assert(memirq, !memirq->bo);
+>> +
+>> +	iosys_map_memset(&bo->vmap, 0, 0, SZ_4K);
+>> +
+>> +	memirq->bo = bo;
+>> +	memirq->source = IOSYS_MAP_INIT_OFFSET(&bo->vmap, XE_MEMIRQ_SOURCE_OFFSET);
+>> +	memirq->status = IOSYS_MAP_INIT_OFFSET(&bo->vmap, XE_MEMIRQ_STATUS_OFFSET);
+>> +	memirq->mask = IOSYS_MAP_INIT_OFFSET(&bo->vmap, XE_MEMIRQ_ENABLE_OFFSET);
+>> +
+>> +	memirq_assert(memirq, !memirq->source.is_iomem);
+>> +	memirq_assert(memirq, !memirq->status.is_iomem);
+>> +	memirq_assert(memirq, !memirq->mask.is_iomem);
+>> +
+>> +	memirq_debug(memirq, "page offsets: source %#x status %#x\n",
+>> +		     xe_memirq_source_ptr(memirq), xe_memirq_status_ptr(memirq));
+>> +
+>> +	return drmm_add_action_or_reset(&xe->drm, __release_xe_bo, memirq->bo);
+>> +
+>> +out:
+>> +	xe_sriov_err(memirq_to_xe(memirq),
+>> +		     "Failed to allocate memirq page (%pe)\n", ERR_PTR(err));
+>> +	return err;
+>> +}
+>> +
+>> +static void memirq_set_enable(struct xe_memirq *memirq, bool enable)
+>> +{
+>> +	iosys_map_wr(&memirq->mask, 0, u32, enable ? GENMASK(15, 0) : 0);
+>> +
+>> +	memirq->enabled = enable;
+>> +}
+>> +
+>> +/**
+>> + * xe_memirq_init - Initialize data used by `Memory Based Interrupts`_.
+>> + * @memirq: the &xe_memirq to initialize
+>> + *
+>> + * Allocate `Interrupt Source Report Page`_ and `Interrupt Status Report Page`_
+>> + * used by `Memory Based Interrupts`_.
+>> + *
+>> + * These allocations are managed and will be implicitly released on unload.
+>> + *
+>> + * Note: This function shall be called only by the VF driver.
+>> + *
+>> + * If this function fails then VF driver will be able to operate correctly.
+> 
+> Will?  Or won't?
+
+oops
+
+> 
+>> + * If `Memory Based Interrupts`_ are not used this function will return 0.
+>> + *
+>> + * Return: 0 on success or a negative error code on failure.
+>> + */
+>> +int xe_memirq_init(struct xe_memirq *memirq)
+>> +{
+>> +	struct xe_device *xe = memirq_to_xe(memirq);
+>> +	int err;
+>> +
+>> +	memirq_assert(memirq, IS_SRIOV_VF(xe));
+>> +
+>> +	if (!xe_device_has_memirq(xe))
+>> +		return 0;
+>> +
+>> +	err = memirq_alloc_pages(memirq);
+>> +	if (unlikely(err))
+>> +		return err;
+>> +
+>> +	/* we need to start with all irqs enabled */
+>> +	memirq_set_enable(memirq, true);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +/**
+>> + * xe_memirq_source_ptr - Get GGTT's offset of the `Interrupt Source Report Page`_.
+>> + * @memirq: the &xe_memirq to query
+>> + *
+>> + * Shall be called only on VF driver when `Memory Based Interrupts`_ are used
+>> + * and xe_memirq_init() didn't fail.
+>> + *
+>> + * Return: GGTT's offset of the `Interrupt Source Report Page`_.
+>> + */
+>> +u32 xe_memirq_source_ptr(struct xe_memirq *memirq)
+>> +{
+>> +	memirq_assert(memirq, IS_SRIOV_VF(memirq_to_xe(memirq)));
+>> +	memirq_assert(memirq, xe_device_has_memirq(memirq_to_xe(memirq)));
+>> +	memirq_assert(memirq, memirq->bo);
+>> +
+>> +	return xe_bo_ggtt_addr(memirq->bo) + XE_MEMIRQ_SOURCE_OFFSET;
+>> +}
+>> +
+>> +/**
+>> + * xe_memirq_status_ptr - Get GGTT's offset of the `Interrupt Status Report Page`_.
+>> + * @memirq: the &xe_memirq to query
+>> + *
+>> + * Shall be called only on VF driver when `Memory Based Interrupts`_ are used
+>> + * and xe_memirq_init() didn't fail.
+>> + *
+>> + * Return: GGTT's offset of the `Interrupt Status Report Page`_.
+>> + */
+>> +u32 xe_memirq_status_ptr(struct xe_memirq *memirq)
+>> +{
+>> +	memirq_assert(memirq, IS_SRIOV_VF(memirq_to_xe(memirq)));
+>> +	memirq_assert(memirq, xe_device_has_memirq(memirq_to_xe(memirq)));
+>> +	memirq_assert(memirq, memirq->bo);
+>> +
+>> +	return xe_bo_ggtt_addr(memirq->bo) + XE_MEMIRQ_STATUS_OFFSET;
+>> +}
+>> +
+>> +/**
+>> + * xe_memirq_enable_ptr - Get GGTT's offset of the Interrupt Enable Mask.
+>> + * @memirq: the &xe_memirq to query
+>> + *
+>> + * Shall be called only on VF driver when `Memory Based Interrupts`_ are used
+>> + * and xe_memirq_init() didn't fail.
+>> + *
+>> + * Return: GGTT's offset of the Interrupt Enable Mask.
+>> + */
+>> +u32 xe_memirq_enable_ptr(struct xe_memirq *memirq)
+>> +{
+>> +	memirq_assert(memirq, IS_SRIOV_VF(memirq_to_xe(memirq)));
+>> +	memirq_assert(memirq, xe_device_has_memirq(memirq_to_xe(memirq)));
+>> +	memirq_assert(memirq, memirq->bo);
+>> +
+>> +	return xe_bo_ggtt_addr(memirq->bo) + XE_MEMIRQ_ENABLE_OFFSET;
+>> +}
+>> +
+>> +/**
+>> + * xe_memirq_init_guc - Prepare GuC for `Memory Based Interrupts`_.
+>> + * @memirq: the &xe_memirq
+>> + * @guc: the &xe_guc to setup
+>> + *
+>> + * Register `Interrupt Source Report Page`_ and `Interrupt Status Report Page`_
+>> + * to be used by the GuC when `Memory Based Interrupts`_ are required.
+>> + *
+>> + * Shall be called only on VF driver when `Memory Based Interrupts`_ are used
+>> + * and xe_memirq_init() didn't fail.
+>> + *
+>> + * Return: 0 on success or a negative error code on failure.
+>> + */
+>> +int xe_memirq_init_guc(struct xe_memirq *memirq, struct xe_guc *guc)
+> 
+> We don't actually use this function yet in this patch; maybe it would
+> fit better in the later patch where we call this during GuC IRQ
+> initialization?
+
+this is true also for other functions below, but I wanted to benefit
+from currently relaxed rules and don't split the code too much, as it
+should be still relatively easy to review, and it won't cause any
+regression yet as it will stay disabled until we turn on has_sriov flag
+at the end of SR-IOV enabling
+
+> 
+>> +{
+>> +	bool is_media = xe_gt_is_media_type(guc_to_gt(guc));
+>> +	u32 offset = is_media ? ilog2(MTL_INTR_MGUC) : ilog2(INTR_GUC);
+>> +	u32 source, status;
+>> +	int err;
+>> +
+>> +	memirq_assert(memirq, IS_SRIOV_VF(memirq_to_xe(memirq)));
+>> +	memirq_assert(memirq, xe_device_has_memirq(memirq_to_xe(memirq)));
+>> +	memirq_assert(memirq, memirq->bo);
+>> +
+>> +	source = xe_memirq_source_ptr(memirq) + offset;
+>> +	status = xe_memirq_status_ptr(memirq) + offset * SZ_16;
+>> +
+>> +	err = xe_guc_self_cfg64(guc, GUC_KLV_SELF_CFG_MEMIRQ_SOURCE_ADDR_KEY,
+>> +				source);
+> 
+> At first I thought it might be a mistake that we're using 64-bits for a
+> GGTT address, but after checking the GuC interface spec, this does
+> indeed seem to be correct, even though source/status will only ever be
+> 32-bit offsets.
+
+yes, in new SRIOV GUC ABI, all GGTT offsets are defined as 64-bit
+
+> 
+> 
+> Matt
+> 
+>> +	if (unlikely(err))
+>> +		goto failed;
+>> +
+>> +	err = xe_guc_self_cfg64(guc, GUC_KLV_SELF_CFG_MEMIRQ_STATUS_ADDR_KEY,
+>> +				status);
+>> +	if (unlikely(err))
+>> +		goto failed;
+>> +
+>> +	return 0;
+>> +
+>> +failed:
+>> +	xe_sriov_err(memirq_to_xe(memirq),
+>> +		     "Failed to setup report pages in %s (%pe)\n",
+>> +		     guc_name(guc), ERR_PTR(err));
+>> +	return err;
+>> +}
+>> +
+>> +/**
+>> + * xe_memirq_reset - Disable processing of `Memory Based Interrupts`_.
+>> + * @memirq: struct xe_memirq
+>> + *
+>> + * This is part of the driver IRQ setup flow.
+>> + *
+>> + * This function shall only be used by the VF driver on platforms that use
+>> + * `Memory Based Interrupts`_.
+>> + */
+>> +void xe_memirq_reset(struct xe_memirq *memirq)
+>> +{
+>> +	memirq_assert(memirq, IS_SRIOV_VF(memirq_to_xe(memirq)));
+>> +	memirq_assert(memirq, xe_device_has_memirq(memirq_to_xe(memirq)));
+>> +
+>> +	if (memirq->bo)
+>> +		memirq_set_enable(memirq, false);
+>> +}
+>> +
+>> +/**
+>> + * xe_memirq_postinstall - Enable processing of `Memory Based Interrupts`_.
+>> + * @memirq: the &xe_memirq
+>> + *
+>> + * This is part of the driver IRQ setup flow.
+>> + *
+>> + * This function shall only be used by the VF driver on platforms that use
+>> + * `Memory Based Interrupts`_.
+>> + */
+>> +void xe_memirq_postinstall(struct xe_memirq *memirq)
+>> +{
+>> +	memirq_assert(memirq, IS_SRIOV_VF(memirq_to_xe(memirq)));
+>> +	memirq_assert(memirq, xe_device_has_memirq(memirq_to_xe(memirq)));
+>> +
+>> +	if (memirq->bo)
+>> +		memirq_set_enable(memirq, true);
+>> +}
+>> +
+>> +static bool memirq_received(struct xe_memirq *memirq, struct iosys_map *vector,
+>> +			    u16 offset, const char *name)
+>> +{
+>> +	u8 value;
+>> +
+>> +	value = iosys_map_rd(vector, offset, u8);
+>> +	if (value) {
+>> +		if (value != 0xff)
+>> +			xe_sriov_err_ratelimited(memirq_to_xe(memirq),
+>> +						 "Unexpected memirq value %#x from %s at %u\n",
+>> +						 value, name, offset);
+>> +		iosys_map_wr(vector, offset, u8, 0x00);
+>> +	}
+>> +
+>> +	return value;
+>> +}
+>> +
+>> +static void memirq_dispatch_engine(struct xe_memirq *memirq, struct iosys_map *status,
+>> +				   struct xe_hw_engine *hwe)
+>> +{
+>> +	memirq_debug(memirq, "STATUS %s %*ph\n", hwe->name, 16, status->vaddr);
+>> +
+>> +	if (memirq_received(memirq, status, ilog2(GT_RENDER_USER_INTERRUPT), hwe->name))
+>> +		xe_hw_engine_handle_irq(hwe, GT_RENDER_USER_INTERRUPT);
+>> +}
+>> +
+>> +static void memirq_dispatch_guc(struct xe_memirq *memirq, struct iosys_map *status,
+>> +				struct xe_guc *guc)
+>> +{
+>> +	const char *name = guc_name(guc);
+>> +
+>> +	memirq_debug(memirq, "STATUS %s %*ph\n", name, 16, status->vaddr);
+>> +
+>> +	if (memirq_received(memirq, status, ilog2(GUC_INTR_GUC2HOST), name))
+>> +		xe_guc_irq_handler(guc, GUC_INTR_GUC2HOST);
+>> +}
+>> +
+>> +/**
+>> + * xe_memirq_handler - The `Memory Based Interrupts`_ Handler.
+>> + * @memirq: the &xe_memirq
+>> + *
+>> + * This function reads and dispatches `Memory Based Interrupts`.
+>> + */
+>> +void xe_memirq_handler(struct xe_memirq *memirq)
+>> +{
+>> +	struct xe_device *xe = memirq_to_xe(memirq);
+>> +	struct xe_tile *tile = memirq_to_tile(memirq);
+>> +	struct xe_hw_engine *hwe;
+>> +	enum xe_hw_engine_id id;
+>> +	struct iosys_map map;
+>> +	unsigned int gtid;
+>> +	struct xe_gt *gt;
+>> +
+>> +	if (!memirq->bo)
+>> +		return;
+>> +
+>> +	memirq_assert(memirq, !memirq->source.is_iomem);
+>> +	memirq_debug(memirq, "SOURCE %*ph\n", 32, memirq->source.vaddr);
+>> +	memirq_debug(memirq, "SOURCE %*ph\n", 32, memirq->source.vaddr + 32);
+>> +
+>> +	for_each_gt(gt, xe, gtid) {
+>> +		if (gt->tile != tile)
+>> +			continue;
+>> +
+>> +		for_each_hw_engine(hwe, gt, id) {
+>> +			if (memirq_received(memirq, &memirq->source, hwe->irq_offset, "SRC")) {
+>> +				map = IOSYS_MAP_INIT_OFFSET(&memirq->status,
+>> +							    hwe->irq_offset * SZ_16);
+>> +				memirq_dispatch_engine(memirq, &map, hwe);
+>> +			}
+>> +		}
+>> +	}
+>> +
+>> +	/* GuC and media GuC (if present) must be checked separately */
+>> +
+>> +	if (memirq_received(memirq, &memirq->source, ilog2(INTR_GUC), "SRC")) {
+>> +		map = IOSYS_MAP_INIT_OFFSET(&memirq->status, ilog2(INTR_GUC) * SZ_16);
+>> +		memirq_dispatch_guc(memirq, &map, &tile->primary_gt->uc.guc);
+>> +	}
+>> +
+>> +	if (!tile->media_gt)
+>> +		return;
+>> +
+>> +	if (memirq_received(memirq, &memirq->source, ilog2(MTL_INTR_MGUC), "SRC")) {
+>> +		map = IOSYS_MAP_INIT_OFFSET(&memirq->status, ilog2(MTL_INTR_MGUC) * SZ_16);
+>> +		memirq_dispatch_guc(memirq, &map, &tile->media_gt->uc.guc);
+>> +	}
+>> +}
+>> diff --git a/drivers/gpu/drm/xe/xe_memirq.h b/drivers/gpu/drm/xe/xe_memirq.h
+>> new file mode 100644
+>> index 000000000000..2d40d03c3095
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/xe/xe_memirq.h
+>> @@ -0,0 +1,26 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +/*
+>> + * Copyright © 2023 Intel Corporation
+>> + */
+>> +
+>> +#ifndef _XE_MEMIRQ_H_
+>> +#define _XE_MEMIRQ_H_
+>> +
+>> +#include <linux/types.h>
+>> +
+>> +struct xe_guc;
+>> +struct xe_memirq;
+>> +
+>> +int xe_memirq_init(struct xe_memirq *memirq);
+>> +
+>> +u32 xe_memirq_source_ptr(struct xe_memirq *memirq);
+>> +u32 xe_memirq_status_ptr(struct xe_memirq *memirq);
+>> +u32 xe_memirq_enable_ptr(struct xe_memirq *memirq);
+>> +
+>> +void xe_memirq_reset(struct xe_memirq *memirq);
+>> +void xe_memirq_postinstall(struct xe_memirq *memirq);
+>> +void xe_memirq_handler(struct xe_memirq *memirq);
+>> +
+>> +int xe_memirq_init_guc(struct xe_memirq *memirq, struct xe_guc *guc);
+>> +
+>> +#endif
+>> diff --git a/drivers/gpu/drm/xe/xe_memirq_types.h b/drivers/gpu/drm/xe/xe_memirq_types.h
+>> new file mode 100644
+>> index 000000000000..625b6b8736cc
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/xe/xe_memirq_types.h
+>> @@ -0,0 +1,37 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +/*
+>> + * Copyright © 2023 Intel Corporation
+>> + */
+>> +
+>> +#ifndef _XE_MEMIRQ_TYPES_H_
+>> +#define _XE_MEMIRQ_TYPES_H_
+>> +
+>> +#include <linux/iosys-map.h>
+>> +
+>> +struct xe_bo;
+>> +
+>> +/* ISR */
+>> +#define XE_MEMIRQ_STATUS_OFFSET		0x0
+>> +/* IIR */
+>> +#define XE_MEMIRQ_SOURCE_OFFSET		0x400
+>> +/* IMR */
+>> +#define XE_MEMIRQ_ENABLE_OFFSET		0x440
+>> +
+>> +/**
+>> + * struct xe_memirq - Data used by the `Memory Based Interrupts`_.
+>> + *
+>> + * @bo: buffer object with `Memory Based Interrupts Page Layout`_.
+>> + * @source: iosys pointer to `Interrupt Source Report Page`_.
+>> + * @status: iosys pointer to `Interrupt Status Report Page`_.
+>> + * @mask: iosys pointer to Interrupt Enable Mask.
+>> + * @enabled: internal flag used to control processing of the interrupts.
+>> + */
+>> +struct xe_memirq {
+>> +	struct xe_bo *bo;
+>> +	struct iosys_map source;
+>> +	struct iosys_map status;
+>> +	struct iosys_map mask;
+>> +	bool enabled;
+>> +};
+>> +
+>> +#endif
+>> -- 
+>> 2.25.1
+>>
+> 
