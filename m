@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5BFDC4332F
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Dec 2023 12:59:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4CDEC4332F
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Dec 2023 12:59:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D8B910E195;
-	Thu, 14 Dec 2023 12:59:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7094310E17C;
+	Thu, 14 Dec 2023 12:59:47 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2AD3410E195;
- Thu, 14 Dec 2023 12:59:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 98AE510E17C;
+ Thu, 14 Dec 2023 12:59:44 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1E324A3ECB;
- Thu, 14 Dec 2023 12:59:15 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8CC9FA3ECB;
+ Thu, 14 Dec 2023 12:59:44 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Engine_Busyness_=28r?=
- =?utf-8?q?ev3=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Engine_Busyness_=28rev3?=
+ =?utf-8?q?=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Riana Tauro" <riana.tauro@intel.com>
-Date: Thu, 14 Dec 2023 12:59:15 -0000
-Message-ID: <170255875509.19957.11063128483917194621@emeril.freedesktop.org>
+Date: Thu, 14 Dec 2023 12:59:44 -0000
+Message-ID: <170255878457.19958.14351784996884853454@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231214113144.251726-1-riana.tauro@intel.com>
 In-Reply-To: <20231214113144.251726-1-riana.tauro@intel.com>
@@ -48,25 +48,91 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Engine Busyness (rev3)
 URL   : https://patchwork.freedesktop.org/series/126919/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 5cd189336 drm/xe/xe2: Support flat ccs
-=== git am output follows ===
-.git/rebase-apply/patch:662: new blank line at EOF.
-+
-warning: 1 line adds whitespace errors.
-Applying: drm/xe/pmu: Remove PMU from Xe till uapi is finalized
-Applying: fixup! drm/xe/uapi: Reject bo creation of unaligned size
-Applying: drm/xe: Move user engine class mappings to functions
-Applying: RFC drm/xe/guc: Add interface for engine busyness ticks
-Applying: RFC drm/xe/uapi: Add configs for Engine busyness
-Applying: RFC drm/xe/pmu: Enable PMU interface and add engine busyness counter
-Applying: RFC drm/xe/guc: Add PMU counter for total active ticks
-Applying: RFC drm/xe/guc: Expose engine busyness only for supported GuC version
-Applying: RFC drm/xe/guc: Dynamically enable/disable engine busyness stats
-Applying: RFC drm/xe/guc: Handle runtime suspend issues for engine busyness
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6030b24c1386b00de8187b5fb987e283a57b372a
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d0d03f749f168812909448c5249aa820f8c2dda3
+Author: Riana Tauro <riana.tauro@intel.com>
+Date:   Thu Dec 14 17:01:44 2023 +0530
+
+    RFC drm/xe/guc: Handle runtime suspend issues for engine busyness
+    
+    1) During runtime suspend, when card enters D3hot, values read
+        from the shared memory maintained by GuC returns 0xFF.
+        Waking up for every perf read when
+        device is runtime suspended causes power penality.
+        Store the last read busy ticks and total active ticks and return
+        these values when suspended
+    
+     2) When the device is runtime resumed, guc is loaded again. If pmu
+        interface was opened to collect busyness events, the guc stats
+        have to be re-enabled to resume collection after suspend.
+        Disable/enable guc stats if pmu is opened and is already collecting
+        busyness events and device gets runtime suspended/resumed.
+    
+    Signed-off-by: Riana Tauro <riana.tauro@intel.com>
++ /mt/dim checkpatch 5cd1893366708380854f4694ae57417192458a6b drm-intel
+b8621025e drm/xe/pmu: Remove PMU from Xe till uapi is finalized
+-:117: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#117: 
+deleted file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 114 lines checked
+71e8da255 fixup! drm/xe/uapi: Reject bo creation of unaligned size
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+3ed2e2616 drm/xe: Move user engine class mappings to functions
+723eca7ed RFC drm/xe/guc: Add interface for engine busyness ticks
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:111: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#111: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 275 lines checked
+3c45b8729 RFC drm/xe/uapi: Add configs for Engine busyness
+95abe0af1 RFC drm/xe/pmu: Enable PMU interface and add engine busyness counter
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:118: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#118: 
+new file mode 100644
+
+-:457: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#457: FILE: drivers/gpu/drm/xe/xe_pmu.c:335:
++						      __DRM_XE_PMU_ENGINE(j, xe_hw_engine_to_user_class(hwe->class),
+
+total: 0 errors, 2 warnings, 0 checks, 664 lines checked
+a847a8ef7 RFC drm/xe/guc: Add PMU counter for total active ticks
+bfeb74340 RFC drm/xe/guc: Expose engine busyness only for supported GuC version
+159c5db3f RFC drm/xe/guc: Dynamically enable/disable engine busyness stats
+d0d03f749 RFC drm/xe/guc: Handle runtime suspend issues for engine busyness
 
 
