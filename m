@@ -4,147 +4,134 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B754DC4332F
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Dec 2023 22:07:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F069BC4167B
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Dec 2023 22:08:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AB4289208;
-	Thu, 14 Dec 2023 22:07:25 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 332A489208
- for <intel-xe@lists.freedesktop.org>; Thu, 14 Dec 2023 22:07:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9BD810E0F8;
+	Thu, 14 Dec 2023 22:08:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E04B910E0F8
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Dec 2023 22:08:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702591641; x=1734127641;
+ t=1702591697; x=1734127697;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=KEieEtyx53RvSIUKmlCkQBTLVOZErkvONrOHHpraQZI=;
- b=KTdDe9J7UlgmzNv1wVlvzukf+FZhULihpeL0QVhaujANjfDiVIGZV9T9
- AhURLOM1qoZSBAQ4Uc6tnwiv2v6PCX840PkZcxIg+L4Z6mB9KKuHRhMMl
- dCLoo5pnhiRqihPrXAKsCa4Dy9YSAyAwDPrJrqw1f8L6uqFJ1bEV8vvC7
- 2pK0H9vGUbVzMEBCZa4ykDB8HB0mHhc12rYS6/4VIgItEKlTLzMcrEgfg
- +ARN3wRsGOajmsxLwJEhBR5CvF8hFE6K0xIwh+7Lu4zv8SBhu/o5jhXSB
- 2RgPzDBxVpxRJ+W5nOyw7U3aPhI0ybDxSx9IzftK1cYwyQQ0XkZl/Mw4s A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="461657119"
-X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; d="scan'208";a="461657119"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2023 14:07:16 -0800
+ in-reply-to:mime-version;
+ bh=46B6cid5idgkuqFd1l9Z1b1brceuZ6isF49jWCYQi8E=;
+ b=EsKCRpns97S4rBi1ldPgyNwC1cIxy1Rqjv66uYsRnvu+Y0sY7q8K9nts
+ Z2DwfWTYAliN/LSBxOXkhPcd816kGsWcaEYdfJqut98qYMk95Ixev5u3E
+ v/YBhJHVt2KfcpOEjRmZygIkZVAY33ILghZ5EDM7miLYp0ruN7Mn/J0EE
+ EnuJ8c3Y55oVr3X/bquicSleMFMZTSqiEhvm9qy+qWKX2wC7UgBG7de/z
+ 0bGhQ/2PBu7J/SYELq+Uilqb8N1SMKRMHIv2UEv1K9aXMvCk4EdMIqiDe
+ radlrEnnAijCKu08e0LhLxha+XGiAxgky9YOdXieyD/34vSmj+j1fqUlM g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="399031839"
+X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; d="scan'208";a="399031839"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2023 14:08:17 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="778046283"
-X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; d="scan'208";a="778046283"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmsmga007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 14 Dec 2023 14:07:16 -0800
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="750697952"
+X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; d="scan'208";a="750697952"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orsmga006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 14 Dec 2023 14:08:17 -0800
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 14 Dec 2023 14:07:15 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ 15.1.2507.35; Thu, 14 Dec 2023 14:08:16 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Thu, 14 Dec 2023 14:07:15 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.101)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Thu, 14 Dec 2023 14:08:16 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 14 Dec 2023 14:07:15 -0800
+ 15.1.2507.35; Thu, 14 Dec 2023 14:08:16 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UU67fYasNt+1rkOO6YluNadFNTrwdDKb0rhDEyhUa/e1Uu2heGNLMTd+JVddER1ZwOGppV/l9MFnSjBbo/s1ECXwnMkQ+ChmMtgQCEYNAhuSzQnqSxtK/vvCpW5ltuyf8ykw4CHAAafV4CELUS0SjPs3aBtrFhU3/xaBk5YMVxsBpY65MwHtDbdhgq0vfNea5R3GDCXDSFwXgGaSDNxTltW8Z/YFIge+zHEPYH9h23+RIKtooYspAGdKHNTrjWvWYFyI7KZLOzYhDDdBdxoj9Q4BHVJ5nRkejxjpmcZPcnSMK/0nylNwT1n87wZf92A51YbgTwq/9qOHcobcJlarRA==
+ b=OOHbiLUxLEl2+bbg5fd18qhm767HSvZur+c29YCwKv8Fh+8sm6yLpO33Z72RQHZcxO8Yp0bWdcSebOXGiROWeEdzpFwMXZt+AMkNhZq2on+x/Y9HsZZsCY6/KDG/B3V27/Mo1o4nIyRCY6vwGsDIR3lwgmVh4Od7OGdF6h0aFpiW/CJOp9DRepGH6MONg5dVF/Ydx8zj50eWY5MbxcCkxJzFw+aPId69zIRo6mCrCX5QVxwFQAMdlAwmsbuAx9Mf66ACZcNKkKsoJPGezNG9NsQ7U7j0dxKrJa2rUwQgo9CJE8vc3KLsjm2Oslll7WKK8bVmv/zfI1PgNp+lqAsLmg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3nd/ca27/UJJP9jlvPrkFag8F0P5dK4+PRQW0LDlBe0=;
- b=XhEKcJtMfM0a4aq4v0gN/87DQ1fAS8ni+iUZISS1Tvf8Id2nS/00hhcLmKvLPBsmQ0FC2s4vVwWR4IhfZe45WE97vbP28nPgLrir11ZFLy+/IUJtcE1Ie/4h8bbrs39lq2U/tGlOybqL7iumcVM5FXZs5fyli1nJAKnMsYsiRQgUzjRon7qhDrerMcAi9lFNpxE7kSXYIf5OGwzZnmoiOkEBomDQSSyjMhvgTF83Sfdb8uiRoVTPbqHYcxSB9DjqQhtt1USWYMEyXN5Jvb7yEMqV+eY3mzUT9zgtLun5IEvByTs3SfCjQr+PavlUoUwjgx93cLrx7JG148WZWBq5Dg==
+ bh=0aVl7iYhvrg83A5kAgLUE+n0IN9gc6F48S0v4p+yi4I=;
+ b=fK0OxkdsTPaXl/vwSy4/heG0vIkttcnWVoYCB6NUKDvYNu8SND8cfY7BpLTAcQF8UCZSWgApvHvjJgqe8h5ilETyY4EBye2n08yp4ojNMrl3xFDLyELUd5sny5dau2UT3seoQ/1nYchpWG+/92H+kxNA+1qW2nquSPG+yIwz12cBNw3BF1Rqs3uEc3tULovlefNplq1LQ4lJATBKbvJ33xt+mlAoY32vNL2GfYKGcbzhAdMkX+cIqH5/5LEUO+uF8YVFAmVCsXNUZTIb8h5UjCcyqM5jMzAW57uR0rLJsC7VOiYWYzbIAGkqL6hdqnShrjLIX1SrhEL3KZYF+sbQ4A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY8PR11MB7828.namprd11.prod.outlook.com (2603:10b6:930:78::8)
- by SJ2PR11MB7600.namprd11.prod.outlook.com (2603:10b6:a03:4cd::6) with
- Microsoft SMTP Server (version=TLS1_2,
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by SJ0PR11MB5134.namprd11.prod.outlook.com (2603:10b6:a03:2de::17)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.28; Thu, 14 Dec
- 2023 22:07:11 +0000
-Received: from CY8PR11MB7828.namprd11.prod.outlook.com
- ([fe80::7d36:1951:b896:cb37]) by CY8PR11MB7828.namprd11.prod.outlook.com
- ([fe80::7d36:1951:b896:cb37%7]) with mapi id 15.20.7091.028; Thu, 14 Dec 2023
- 22:07:11 +0000
-Date: Thu, 14 Dec 2023 23:07:04 +0100
-From: Francois Dugast <francois.dugast@intel.com>
-To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-Subject: Re: [Intel-xe] [PATCH v1 06/12] drm/xe: Rename
- XE_RESET_FAILED_UEVENT to XE_RESET_REQUIRED_UEVENT.
-Message-ID: <ZXt8iDrqOsNxYzTD@fdugast-desk.home>
-References: <20231020045533.1425375-1-himal.prasad.ghimiray@intel.com>
- <20231020045533.1425375-7-himal.prasad.ghimiray@intel.com>
- <5361d832-4cd4-46aa-a7db-d79fefb484cd@intel.com>
- <MW4PR11MB7056305C687566443052B8E2B3DAA@MW4PR11MB7056.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="utf-8"
+ 2023 22:08:09 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::b870:a8ae:c4f1:c39b]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::b870:a8ae:c4f1:c39b%4]) with mapi id 15.20.7091.028; Thu, 14 Dec 2023
+ 22:08:09 +0000
+Date: Thu, 14 Dec 2023 16:08:05 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Subject: Re: [PATCH 4/8] drm/xe: Move engine base offsets to engine register
+ header
+Message-ID: <erqtupimibq5rxeqr2k3o642xpjawy3r4wzmlxppxqfdcgpgw2@xpfltkcdex7o>
+References: <20231214184659.2249559-10-matthew.d.roper@intel.com>
+ <20231214184659.2249559-14-matthew.d.roper@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <MW4PR11MB7056305C687566443052B8E2B3DAA@MW4PR11MB7056.namprd11.prod.outlook.com>
-Organization: Intel Corporation
-X-ClientProxiedBy: FR0P281CA0175.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:b4::9) To CY8PR11MB7828.namprd11.prod.outlook.com
- (2603:10b6:930:78::8)
+In-Reply-To: <20231214184659.2249559-14-matthew.d.roper@intel.com>
+X-ClientProxiedBy: BYAPR02CA0005.namprd02.prod.outlook.com
+ (2603:10b6:a02:ee::18) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY8PR11MB7828:EE_|SJ2PR11MB7600:EE_
-X-MS-Office365-Filtering-Correlation-Id: 72e6c795-c116-40d0-1ccd-08dbfcf10535
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SJ0PR11MB5134:EE_
+X-MS-Office365-Filtering-Correlation-Id: fd448d65-ae5d-42c1-807a-08dbfcf12829
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ItVhy7owfVtlk8ex8AE6YpWA17ZYCLnGJHOtTZiFLDbqc97SbtKMC6awSG7Ehkci7j30bQEBAzx/gp6LZygYhOwDpWe3S6aqradjW+gyG2Zjmi7RNpbnwdOy2OQfAnCh9B3Wyu4bAmrQjCZt0nLH0NH3g4PABfMqvq57YwDQ9TRtQV6+bUhY3ObxlDxkPTE5BL6YtARjv94xJ4nEP958zAcLeqRXiAAKAn6HYtoNHcSEcM0FREaNc6Ad9+4Wmx91jInpOi2JQF+gsmdCNMX+WO8hmjPYbbZl06+5jP/E4PYQVeYYmgJxWImkcnL+vO6sqZVREisthqXiiszlbDww8J0UHKQUAG2sF87pq1Nb6VHoDRzxUxg136jfJW7JdFyyjsGF8hdbKTIsUfSSfpoQOAaV6wzXLNaXNia1e84pjIgRt+E7GYhmlNX7comvG3VVyOKlkzF9IGL8Ts39TaJ17GWLAhAm50jPTUQ2spqAyiBMcsHB4frAVzJK7BKCoVCPvQMvhtnyjsFUX8nZRGMGHR0ttJja5pcpEI7kR5mdKmbXdgkj7H7ev6BAQqODlf/f
+X-Microsoft-Antispam-Message-Info: cIfKI4GZe3Qd4vtSRuFJM31Z7B6CN70MEtttcZOQgSxuQz06krQewTtrqs8l4MwJR/vcN9dIRFW5yqXzZPoPCYfnYVn8Jz4d5Cuc5+RdcVgTcze55P6ysrd8sVFL+TVbVhF2pT/9PWqS1WQGxiyIn9vyzCU0Zn9wEhEi3QCnBTe+bZBJy9FFKA7jYUj+XRBEfGH43HNTaWF6yt1v5PzBL4jFYLrF2egYKuAY/oFYz2qwQnm9Q4yTKvpDX/pk/CZ3qphwmPm6niT/4h61swuLIKuGt+1DqQqpfxGyKccQLuYtHRix4P0tN/J68zx2g2WDU3EjRqKxFj8r9RFLz1bplfuO3KCobFIM/RYwLpTHc/X/+73HydYxg5B4YWAYuA6MSead775i0AnWvkgizyyNCP+2mOTutJy5kNMOXwsJUq78JeF2jPCtjMWCmDRak6ad7cOvZ0C6LL4W8kQgqKJsu5Lp0QUPexSfJI77LIs5RO01VvQyQ+PTTk72mLWxtcmtYC3mkPfS+8nsm+aYLX2vpfLcRi9w9tJZ75ZmNPXBPvfLBT8UfHVk3UpYh1SrUWmU
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY8PR11MB7828.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366004)(136003)(396003)(39860400002)(346002)(376002)(230922051799003)(451199024)(64100799003)(186009)(1800799012)(86362001)(4326008)(2906002)(6862004)(8676002)(8936002)(44832011)(5660300002)(41300700001)(36756003)(53546011)(6506007)(6666004)(36916002)(9686003)(26005)(6512007)(478600001)(83380400001)(6486002)(38100700002)(107886003)(66946007)(316002)(6636002)(54906003)(66476007)(66556008)(82960400001);
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7916004)(346002)(366004)(396003)(39860400002)(136003)(376002)(230922051799003)(1800799012)(451199024)(186009)(64100799003)(38100700002)(86362001)(82960400001)(6512007)(9686003)(26005)(6506007)(66946007)(478600001)(6666004)(6486002)(66476007)(66556008)(8676002)(316002)(6636002)(83380400001)(6862004)(4326008)(8936002)(41300700001)(33716001)(5660300002)(2906002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SDJJUUpsMmdKZk1yWnpkZGdBaGNVN1dwWWlFZExrbGdBZzN5TW15c1p6T1ZO?=
- =?utf-8?B?Y3lublFRSlIyR3VGOTA1aG1zd0oxaGpJMXhvTERPVllCUFBQZWU2Rm93NW1o?=
- =?utf-8?B?U2xFZXRPeVNOeGlFWllzaWxDK2xxRHNWZVp5OFREemJhc1R5MmNtbnQrVnhm?=
- =?utf-8?B?Nm9pY0NqVTViNHB3MllEeVpOVGtJVG9aL2Z5bzVRSTFUQmtjeXV4OElOS2d4?=
- =?utf-8?B?dnZKbVNrVDB5N284c0ZYMVFPYXRGa1FEWkdOOUMxckRkQy9OaGkrYTRZY0V0?=
- =?utf-8?B?dkIwNlFKaHFVcndOU2I0UEk0bXI5SnVYc2dwdis5Y3pPb1hlTTFQMVFna1g1?=
- =?utf-8?B?d1RWNElvNjhpZDVqdGNZRkgxUjBuQkRXNjM3YW1UUTc4K2hwWlpLNHk2b2N6?=
- =?utf-8?B?ZFczSGJMaXJRaXFnbE9hdmVyR1RWMXRqWUJiM1R6c0drU2ZVU0JPMWxJNGo2?=
- =?utf-8?B?YVJyT05DU2RyOTlBZTM5bjhGc1UvdGx5ZUE0ek1ZRnJrcXdQU0Q0UGtGSGdB?=
- =?utf-8?B?SUZVM2lTc3krNEdkSUV4OEIvS21YYmdaQWxzcVRyb0pwbG9oWXF6a295U3Vl?=
- =?utf-8?B?R3Q3OHp5Y2lWeFhjL3kyN0lTNHF3TzN1L0YwUzdnbGgvQjV1dkZFeWdEMUNx?=
- =?utf-8?B?V2JYRUx1SHNmamhTSVkwTFFON04rM25ua2NDb0xNRW1YaVk5Qy80bW1TSjRq?=
- =?utf-8?B?WEpUcnFDazYvWkorTEZybnBYbzhYUW5jMWlEU0RIY1lCMmd4bEZyQmZhZGRK?=
- =?utf-8?B?dWpBU0F6Wjdia21iU3pocjZyb2ptajlSZ0ZESURWZWhHL0F3eG9TTER0VHVU?=
- =?utf-8?B?bE1ZN0xXWlZ6djl5d3BmR29ZSVEvYnd6T1UyenA0YkFQdUlaNlg5WFRBK2pl?=
- =?utf-8?B?ckVRSFZpOUFxYnVLelIwQjFwQnhOeXRCbWkrQjdCQjh5NkpiclE3WG9KV2F0?=
- =?utf-8?B?dXJhY29RdFFleExlK3hGU1hTK2xhQ245SEwraXdvaURrRXdNdndwOVBHZE9U?=
- =?utf-8?B?QjJTcDc1bUdGZFpzODhldzNNUG9LLzlPajZHNmlTd0VDRUNjNWdhNG1KK0tt?=
- =?utf-8?B?OVIrOENOVjZQSktEZy8wa1ZjbFpxeDFaU2hGeHc2dFZIWnc2VFpYL0IwbVdw?=
- =?utf-8?B?SzdBaFlRRmN2NDNnTG5LOHpwVDBPTEhzb2NzbHdwN0FsWEpqWVRvc1dyMGxr?=
- =?utf-8?B?MDBBcCtCdjR3NXZONmxnbkI0eHBGditnQnFPbTg2MGQ5V1Z6UzFVYjRjZW0x?=
- =?utf-8?B?bjIwdHYyYzJmTmZnZEY3WGsrMjRUVWJDME5UbWN5eHNwK2VxTWlZVmg3ck5B?=
- =?utf-8?B?ZFROLzUvN25Oc2pQdnJSVERBY1RVbC9CUDdsN3lTOVFlNlA5Sy9NeWEvQUxN?=
- =?utf-8?B?dWRnT2JzZWo5aklaRytNL2FFeDU1N3lPRUorZWRxc0syT3ZHRUY5UE5wR3ZW?=
- =?utf-8?B?UTZBOC93cjY4WWhzMGdoYmdaU0dxRkRIV3hoVUh0bW9IU3RSWU93YlYxTCtY?=
- =?utf-8?B?N0Z1RFF0MlA0Zm9hMlY5c1pMeXoyejBqcmNIT1BINlB2clFiSDVsYldQcGhv?=
- =?utf-8?B?T0wxVDUzWHRCVlBScmh2OHExV3liWDRGVlpsZ3A1WHlrMUxaUHdGVk82V0N1?=
- =?utf-8?B?a25WVTFFdUgzN056QW1kRmYrSVR3RlVIMlpEVUlhNWhMR2E1YWJLZVVSUHp5?=
- =?utf-8?B?RlZPRDJKYVV5am1ZdEdER1B3Sy9nWnZvaW5SR0M2U29WUmI0Q09IU0VpRG8x?=
- =?utf-8?B?K3oxMGc4aWNRWGlKYkNyRVZ6NG9yZlM2ejdVYThKTXhoYzVJalA3QklWVDcr?=
- =?utf-8?B?NzgvQmpGeGY0WHFxM1dMRkhLc1RVeVJEcSs1c0RJZURpbHpPRXErWkIwck5o?=
- =?utf-8?B?TWNmUGprOWx0VStYQXRYN0JjcTd3WXRRSThMYlpyeFY1L3JNbDJlZnFIOEtU?=
- =?utf-8?B?MXUxeHRFWUdEVWpsSUtDOU1saUlDaE11Wmp2T285MmUrRHRiMGNrKzlIUnJB?=
- =?utf-8?B?UWtrT0FpTzllTEtIQUNtbTJ3K214RVd1VXVna0h3WTJFRU9oMXp6dEVlb0U1?=
- =?utf-8?B?Vmp3WXlMSGFtNm9IR1psT1M3cUIwR2dmUVNvdTFyeEQ5SW5vQlhFWS9zYXVk?=
- =?utf-8?B?ZHg3Q0lEVFZubDlDU1lNdnNyd0dRYUtpZzVJK0R0UEVvVW84TEpWV3I3SXdH?=
- =?utf-8?B?SUE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 72e6c795-c116-40d0-1ccd-08dbfcf10535
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB7828.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?gTefTdVi+HMPSP12Mld8GZsWpZvutb9l/DnVG2mVb6A9pONTlK/hQKzh5wFu?=
+ =?us-ascii?Q?cO5vVyLk/kfPCVmYzBVe5U3Hcn6SnWwwpBzwK/I5nz0G5pCKbKeitj5XXCQW?=
+ =?us-ascii?Q?HvG5GIiGJEcVqssTfKdFZh34XmcuW1p9lVRcdb+GlBte3ak/WBlM7WHBUNJM?=
+ =?us-ascii?Q?g8f+WlTXa3Sl/zGVJSXrKw5BbQUWNj9AgCkUVUQOn894WwNVDGnmB3dDmOje?=
+ =?us-ascii?Q?V/sIqRMbB6ri4rwoVySw/Pelhel6iCgZFZjtcKRNH1ZaR6+BnWOdPNWpbF/a?=
+ =?us-ascii?Q?6rE0f7bUsCJFgm0IjvGCMmP72Oht/2gZzOIryO2o5bnK+RSOd52xPFNS74Mh?=
+ =?us-ascii?Q?uZQW7FVm70Owvhfy2VHNkThs7mqjhl0YrkZpScCI7Ivasfsc+Jzon7uLhtOP?=
+ =?us-ascii?Q?xy4RkmgdJ6pIqUEO2SKJt+YOlFDj5UYL+rGJsL9dHYh9/dUdKsNyed9MK03y?=
+ =?us-ascii?Q?Is768/smV9zvX9EkDozFT2FRcSz8u9qHmFFiQcv3ZGrcraS/HRMdjrEcR80F?=
+ =?us-ascii?Q?pfdOdnEi2ONoPeOfxFoksZhS36/G5bCv/sOGHgpxDJ9Tns6QmgQQdF2Mu+1m?=
+ =?us-ascii?Q?Wq/k1ryaxyPRe4+vKC9C4I76WSe9ghSlDJR7ih4qFtVACqbXPo4nKT/L87FH?=
+ =?us-ascii?Q?0v7BFW/CHckgxaHxx+uvvI0QWj5BDd5c8e+ZOuM5EV4iK+tqpTcvTDGGqNsg?=
+ =?us-ascii?Q?4GeRKBLb1kKIhU3xQF3HUDeR587BtTsaFZh+4prKfai34X3DIvYhKNEK0NMI?=
+ =?us-ascii?Q?oZOSrs+e3G2zwg9RPbSMRV1IgS124B2S2o2W6q0yEGiNjNphB0xBQ4c/bLKt?=
+ =?us-ascii?Q?YO4IBVe/aZyXI2tY9PLhGMvejp1U/c+tM/sJ+CW6GPeI5lVyCYSyPYYUGQdk?=
+ =?us-ascii?Q?bAC1ubggzkD2k46ouuPJ0ewzXIldE/gKCtXe4+MNi1VeEG9iQ5HZ0OV+OMWo?=
+ =?us-ascii?Q?84U0dISGTIUOwyMF922p852cbc2Z2LLjITrhfDuZhv96wyJwl1MkeVUVDuQE?=
+ =?us-ascii?Q?SpEQJdC9ZvtYY/A4HABbpDjoene9xDPMuESJszauGYixFdNE/HuR7BrK9vLV?=
+ =?us-ascii?Q?7Fo8l3TJOYnvYsFtVrjYRgdUlGTJ4v3ziwqrAuKz1qwpL41yI7DEblr1u3VP?=
+ =?us-ascii?Q?sNE6lXaWTdFOhwTWCnrwJUHEJRbZVVWM4T7Suz9F8sGFMh722ToSguOLkhFT?=
+ =?us-ascii?Q?ft+9qFizjcc4N13aJQl4Oc+tHCyK+xU+HAfwfMMQZtN3QWNha6/o/yyrWAL6?=
+ =?us-ascii?Q?+TT+yqhY6JSde6xh6H8A9WJX3YQzRyOE7PXaJVRVp0u6JSN9h9BJxN+2KkaX?=
+ =?us-ascii?Q?O8OtB/EdefRo+1VfQL0CuxrMKMqPsKeRcBtmhTOiqvJ0xtP6wtvjHTWXyktz?=
+ =?us-ascii?Q?jCVa0AQc+zafAKYh1zUGTjVq8lbzw9qIkljX9sZoX6Tv1Kx9PiSeXvIn1BN9?=
+ =?us-ascii?Q?GlER+i65xWLvQgyWABg0OAXP2SyG19SK29q1bi+gHKVJG+momjcRxpq5urlA?=
+ =?us-ascii?Q?1wKzePdjAunPOtrFUBN9LYho1vDRf2HR+mpNdWL08F7rv1V+PRZIEfidELO+?=
+ =?us-ascii?Q?NNDRQja4nPSN6MnL6bVg2YuNuEDJ8meV0zUjPoEBVQVZ6Ag3p6kyXYexyG6T?=
+ =?us-ascii?Q?vg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: fd448d65-ae5d-42c1-807a-08dbfcf12829
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Dec 2023 22:07:11.2541 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Dec 2023 22:08:09.5769 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: D2PIwmZ7/FDZCzw1sil9dvYvWnBIm1EO5W95ydCfBND4Y0yeR+33G8TBSCmmYpqdjnauActird7CTkER5KHHVEYv1WYWFleNNkcxekFpbFo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7600
+X-MS-Exchange-CrossTenant-UserPrincipalName: Ik6B6CCGv9UakjDRPl5mmtBepprdD2rR3pT96AO73ofrt01ired+uP5NeZd6n0cNysxqH9Ysa1K2hh3c9le1H2kFDQ4kM79zeabnNLVfJR8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5134
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -157,122 +144,117 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: lucas.demarchi@intel.com,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- rodrigo.vivi@intel.com
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sat, Oct 21, 2023 at 11:22:31AM +0000, Ghimiray, Himal Prasad wrote:
-> 
-> 
-> ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-> From: Welty, Brian <brian.welty@intel.com>
-> Sent: Saturday, October 21, 2023 12:17:01 am
-> To: Ghimiray, Himal Prasad <himal.prasad.ghimiray@intel.com>;
-> intel-xe@lists.freedesktop.org <intel-xe@lists.freedesktop.org>
-> Cc: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-> Subject: Re: [PATCH v1 06/12] drm/xe: Rename XE_RESET_FAILED_UEVENT to
-> XE_RESET_REQUIRED_UEVENT.
-> 
-> 
-> 
-> On 10/19/2023 9:55 PM, Himal Prasad Ghimiray wrote:
-> > DEVICE_STATUS=NEEDS_RESET will be used for other reasons apart from
-> > gt reset failure. Hence use more generic uevent name and provide reason
-> > for reset along with the uevent.
-> 
-> Looks good to me.
-> Reviewed-by: Brian Welty <brian.welty@intel.com>
-> 
-> But as I mention in other email, this looks unsafe if 2 GT resets are
-> happening (and fail) concurrently.  uevent will be overwritten/corrupted.
-> But can fix separate from this patch.
-> 
-> Hi Brian,
-> 
-> Thanks for the review and input. 
-> Will work on the input in separate patch.
-> 
-> BR
-> Himal Ghimiray 
+On Thu, Dec 14, 2023 at 10:47:04AM -0800, Matt Roper wrote:
+>These offsets are primarily used as parameters for the engine register
+>definitions, so it makes more sense to define them in the engine header
+>rather than the general register header.
+>
+>Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+>---
+> drivers/gpu/drm/xe/regs/xe_engine_regs.h | 33 ++++++++++++++++++++++++
+> drivers/gpu/drm/xe/regs/xe_regs.h        | 28 --------------------
+> 2 files changed, 33 insertions(+), 28 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+>index 7f82bef3a0db..5592774fc690 100644
+>--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+>+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+>@@ -10,6 +10,39 @@
+>
+> #include "regs/xe_reg_defs.h"
+>
+>+/*
+>+ * These *_BASE values represent the MMIO offset where each hardware engine's
+>+ * registers start.  The other definitions in this header are parameterized
+>+ * macros that will take one of these values as a parameter.
+>+ */
+>+#define RENDER_RING_BASE			0x02000
+>+#define BSD_RING_BASE				0x1c0000
+>+#define BSD2_RING_BASE				0x1c4000
+>+#define BSD3_RING_BASE				0x1d0000
+>+#define BSD4_RING_BASE				0x1d4000
+>+#define XEHP_BSD5_RING_BASE			0x1e0000
+>+#define XEHP_BSD6_RING_BASE			0x1e4000
+>+#define XEHP_BSD7_RING_BASE			0x1f0000
+>+#define XEHP_BSD8_RING_BASE			0x1f4000
+>+#define VEBOX_RING_BASE				0x1c8000
+>+#define VEBOX2_RING_BASE			0x1d8000
+>+#define XEHP_VEBOX3_RING_BASE			0x1e8000
+>+#define XEHP_VEBOX4_RING_BASE			0x1f8000
+>+#define COMPUTE0_RING_BASE			0x1a000
+>+#define COMPUTE1_RING_BASE			0x1c000
+>+#define COMPUTE2_RING_BASE			0x1e000
+>+#define COMPUTE3_RING_BASE			0x26000
+>+#define BLT_RING_BASE				0x22000
+>+#define XEHPC_BCS1_RING_BASE			0x3e0000
+>+#define XEHPC_BCS2_RING_BASE			0x3e2000
+>+#define XEHPC_BCS3_RING_BASE			0x3e4000
+>+#define XEHPC_BCS4_RING_BASE			0x3e6000
+>+#define XEHPC_BCS5_RING_BASE			0x3e8000
+>+#define XEHPC_BCS6_RING_BASE			0x3ea000
+>+#define XEHPC_BCS7_RING_BASE			0x3ec000
+>+#define XEHPC_BCS8_RING_BASE			0x3ee000
+>+#define GSCCS_RING_BASE				0x11a000
+>+
+> #define RING_TAIL(base)				XE_REG((base) + 0x30)
+>
+> #define RING_HEAD(base)				XE_REG((base) + 0x34)
+>diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
+>index 4b427ec8cbff..b7d3b42ec003 100644
+>--- a/drivers/gpu/drm/xe/regs/xe_regs.h
+>+++ b/drivers/gpu/drm/xe/regs/xe_regs.h
+>@@ -7,38 +7,10 @@
+>
+> #include "regs/xe_reg_defs.h"
+>
+>-#define RENDER_RING_BASE			0x02000
+>-#define BSD_RING_BASE				0x1c0000
+>-#define BSD2_RING_BASE				0x1c4000
+>-#define BSD3_RING_BASE				0x1d0000
+>-#define BSD4_RING_BASE				0x1d4000
+>-#define XEHP_BSD5_RING_BASE			0x1e0000
+>-#define XEHP_BSD6_RING_BASE			0x1e4000
+>-#define XEHP_BSD7_RING_BASE			0x1f0000
+>-#define XEHP_BSD8_RING_BASE			0x1f4000
+>-#define VEBOX_RING_BASE				0x1c8000
+>-#define VEBOX2_RING_BASE			0x1d8000
+>-#define XEHP_VEBOX3_RING_BASE			0x1e8000
+>-#define XEHP_VEBOX4_RING_BASE			0x1f8000
+>-#define COMPUTE0_RING_BASE			0x1a000
+>-#define COMPUTE1_RING_BASE			0x1c000
+>-#define COMPUTE2_RING_BASE			0x1e000
+>-#define COMPUTE3_RING_BASE			0x26000
+>-#define BLT_RING_BASE				0x22000
+>-#define XEHPC_BCS1_RING_BASE			0x3e0000
+>-#define XEHPC_BCS2_RING_BASE			0x3e2000
+>-#define XEHPC_BCS3_RING_BASE			0x3e4000
+>-#define XEHPC_BCS4_RING_BASE			0x3e6000
+>-#define XEHPC_BCS5_RING_BASE			0x3e8000
+>-#define XEHPC_BCS6_RING_BASE			0x3ea000
+>-#define XEHPC_BCS7_RING_BASE			0x3ec000
+>-#define XEHPC_BCS8_RING_BASE			0x3ee000
+>-
+> #define DG1_GSC_HECI2_BASE			0x00259000
+> #define PVC_GSC_HECI2_BASE			0x00285000
+> #define DG2_GSC_HECI2_BASE			0x00374000
+>
+>-#define GSCCS_RING_BASE				0x11a000
+> #define   GT_WAIT_SEMAPHORE_INTERRUPT		REG_BIT(11)
+> #define   GT_CONTEXT_SWITCH_INTERRUPT		REG_BIT(8)
+> #define   GT_RENDER_PIPECTL_NOTIFY_INTERRUPT	REG_BIT(4)
 
-Hi,
+humn... these bit definitions seem misplaced, but it's unrelated to this
+patch, so:
 
-This patch modifies the uAPI, which we are trying to cleanup and finalize. What is the plan
-for this series? Would it be possible to extract a minimal patch with the uAPI change only?
 
-Thanks,
-Francois
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-> 
-> >
-> > Cc: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-> > Cc: Brian Welty <brian.welty@intel.com>
-> > Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> > ---
-> >   drivers/gpu/drm/xe/xe_gt.c | 13 +++++++------
-> >   include/uapi/drm/xe_drm.h  | 17 ++++++++++++-----
-> >   2 files changed, 19 insertions(+), 11 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> > index 74e1f47bd401..91e0a9a7f1cd 100644
-> > --- a/drivers/gpu/drm/xe/xe_gt.c
-> > +++ b/drivers/gpu/drm/xe/xe_gt.c
-> > @@ -545,16 +545,17 @@ static int do_gt_restart(struct xe_gt *gt)
-> >  
-> >   static void xe_uevent_gt_reset_failure(struct pci_dev *pdev, u8 tile_id, u8
-> gt_id)
-> >   {
-> > -     char *reset_event[4];
-> > +     char *reset_event[5];
-> >  
-> > -     reset_event[0] = XE_RESET_FAILED_UEVENT "=NEEDS_RESET";
-> > -     reset_event[1] = kasprintf(GFP_KERNEL, "TILE_ID=%d", tile_id);
-> > -     reset_event[2] = kasprintf(GFP_KERNEL, "GT_ID=%d", gt_id);
-> > -     reset_event[3] = NULL;
-> > +     reset_event[0] = XE_RESET_REQUIRED_UEVENT;
-> > +     reset_event[1] = XE_RESET_REQUIRED_UEVENT_REASON_GT;
-> > +     reset_event[2] = kasprintf(GFP_KERNEL, "TILE_ID=%d", tile_id);
-> > +     reset_event[3] = kasprintf(GFP_KERNEL, "GT_ID=%d", gt_id);
-> > +     reset_event[4] = NULL;
-> >        kobject_uevent_env(&pdev->dev.kobj, KOBJ_CHANGE, reset_event);
-> >  
-> > -     kfree(reset_event[1]);
-> >        kfree(reset_event[2]);
-> > +     kfree(reset_event[3]);
-> >   }
-> >  
-> >   static int gt_reset(struct xe_gt *gt)
-> > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> > index 24bf8f0f52e8..ae1b1c7528d5 100644
-> > --- a/include/uapi/drm/xe_drm.h
-> > +++ b/include/uapi/drm/xe_drm.h
-> > @@ -19,12 +19,19 @@ extern "C" {
-> >   /**
-> >    * DOC: uevent generated by xe on it's pci node.
-> >    *
-> > - * XE_RESET_FAILED_UEVENT - Event is generated when attempt to reset gt
-> > - * fails. The value supplied with the event is always "NEEDS_RESET".
-> > - * Additional information supplied is tile id and gt id of the gt unit for
-> > - * which reset has failed.
-> > + * XE_RESET_REQUIRED_UEVENT - Event is generated when device needs reset.
-> > + * The REASON is provided along with the event for which reset is required.
-> > + * On the basis of REASONS, additional information might be supplied.
-> >    */
-> > -#define XE_RESET_FAILED_UEVENT "DEVICE_STATUS"
-> > +#define XE_RESET_REQUIRED_UEVENT        "DEVICE_STATUS=NEEDS_RESET"
-> > +
-> > +/**
-> > + * XE_RESET_REQUIRED_UEVENT_REASON_GT - Reason provided to
-> XE_RESET_REQUIRED_UEVENT
-> > + * incase of gt reset failure. The additional information supplied is tile
-> id and
-> > + * gt id of the gt unit for which reset has failed.
-> > + */
-> > +#define XE_RESET_REQUIRED_UEVENT_REASON_GT    "REASON=GT_RESET_FAILED"
-> > +
-> >  
-> >   /**
-> >    * struct xe_user_extension - Base class for defining a chain of extensions
-> 
+Lucas De Marchi
+
+>-- 
+>2.43.0
+>
