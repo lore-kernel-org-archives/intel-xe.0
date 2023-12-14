@@ -4,42 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23494C4167B
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Dec 2023 11:25:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75BB5C4167B
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Dec 2023 11:25:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04E6610E90D;
-	Thu, 14 Dec 2023 11:24:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97E8510E92D;
+	Thu, 14 Dec 2023 11:25:02 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D50310E904
- for <intel-xe@lists.freedesktop.org>; Thu, 14 Dec 2023 11:24:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E21E610E90D
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Dec 2023 11:24:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702553073; x=1734089073;
+ t=1702553086; x=1734089086;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=j1SdQrA2CA6NM4z5XlGnd08aZUwlr+69ejUDAt+GOn8=;
- b=N3+xUlbtWcDR67vUf26KZ5K1PjQkXiQPDzmMH2N4XCf+SY4e2v51vyrc
- 0/aQHzgzX0fFsyWmWyigcbKRy7CW6vU7RH6OsO1DzFYc5cwuN9OtF3V5b
- 1lHEKTYGctU6ausP+rwO3FhzB6ScykYB2TfYGe5IX2WQMDr0tVn8kdLON
- 4XuGaYsMptWSHlEvoGV6S9WX7zHIZjGiLoGjG8ZQ5+1SmCyFyT5FiFgaP
- 4Q2QN00ZfO1XYgloSBThu2Mj4eLNewlfjxlXEn8i/Ww1EYjvau4/w+rCq
- pWLbhR9c7mA3qrIBbd0weq9WtyJihHK3+W+LK9AlWluq/w5avmcZbY+f4 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10923"; a="1940167"
+ bh=8jUmUKWHaZVTC190p+Jb5nfDvLdAtE1gBiyXTGWWx8I=;
+ b=L6iz0gBYzTQPGQljyRSfzqBczty7dIttOVZlOX+zopOKnJjuCUNDYdNw
+ CThmqdLD41wQq+2P+olrzr7XKAWvzNbu+4rDx7Bvat4t+om3AFcQW8D5e
+ /TByvawWc8WKa/k1nsCvi+HAVrhoMYGond5drLdyNyog2vL5qCqR5/fdr
+ 90nCwJTNJQLGflUzYEUmRJQlGCS+l/tDVIGKk45XaQWJYeXBL7O8TUjmD
+ z+ZLFfAZkBgrcfJqnnX1clWiOwRnXMO1d3VbhhiNW+uLVkoYBuVOm9B/l
+ WvBzqaJuXE09+7MsGEYmL/E+Oh51V+qXCixGWwGWcafvW8WHSz92vlmI7 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10923"; a="1940176"
 X-IronPort-AV: E=Sophos;i="6.04,275,1695711600"; 
-   d="scan'208";a="1940167"
+   d="scan'208";a="1940176"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2023 03:24:33 -0800
+ 14 Dec 2023 03:24:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,275,1695711600"; d="scan'208";a="17714165"
+X-IronPort-AV: E=Sophos;i="6.04,275,1695711600"; d="scan'208";a="17714182"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2023 03:24:31 -0800
+ 14 Dec 2023 03:24:44 -0800
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 03/10] drm/xe: Move user engine class mappings to functions
-Date: Thu, 14 Dec 2023 17:01:37 +0530
-Message-Id: <20231214113144.251726-4-riana.tauro@intel.com>
+Subject: [PATCH v3 08/10] RFC drm/xe/guc: Expose engine busyness only for
+ supported GuC version
+Date: Thu, 14 Dec 2023 17:01:42 +0530
+Message-Id: <20231214113144.251726-9-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20231214113144.251726-1-riana.tauro@intel.com>
 References: <20231214113144.251726-1-riana.tauro@intel.com>
@@ -59,191 +60,196 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move user engine class <-> hw engine class to function
-calls so that it can be used in different files.
+Guc version numbers are 8 bits only so convert to 32 bit 8.8.8
+to allow version comparisions. use compatibility version
+for the same.
 
-No functional changes.
+Engine busyness is supported only on GuC versions >= 70.11.1.
+Allow enabling/reading engine busyness only on supported
+GuC versions. Warn once if not supported.
 
-v2: change array to function
+v2: rebase
+    fix guc comparison error (Matthew Brost)
+    add a macro for guc version comparison
 
-Cc: Matthew Brost <matthew.brost@intel.com>
+v3: do not show pmu counters if guc engine busyness
+    is not supported
+
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c | 19 ++----------
- drivers/gpu/drm/xe/xe_hw_engine.c  | 50 ++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_hw_engine.h  |  3 ++
- drivers/gpu/drm/xe/xe_query.c      | 23 ++------------
- 4 files changed, 57 insertions(+), 38 deletions(-)
+ drivers/gpu/drm/xe/xe_gt.c                  | 11 ++++++
+ drivers/gpu/drm/xe/xe_gt.h                  |  1 +
+ drivers/gpu/drm/xe/xe_guc_engine_busyness.c | 41 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_engine_busyness.h |  2 +-
+ drivers/gpu/drm/xe/xe_pmu.c                 | 12 ++++--
+ 5 files changed, 63 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index eeb9605dd45f..98b1da77f8be 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -482,31 +482,16 @@ static int exec_queue_user_extensions(struct xe_device *xe, struct xe_exec_queue
- 	return 0;
- }
- 
--static const enum xe_engine_class user_to_xe_engine_class[] = {
--	[DRM_XE_ENGINE_CLASS_RENDER] = XE_ENGINE_CLASS_RENDER,
--	[DRM_XE_ENGINE_CLASS_COPY] = XE_ENGINE_CLASS_COPY,
--	[DRM_XE_ENGINE_CLASS_VIDEO_DECODE] = XE_ENGINE_CLASS_VIDEO_DECODE,
--	[DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE] = XE_ENGINE_CLASS_VIDEO_ENHANCE,
--	[DRM_XE_ENGINE_CLASS_COMPUTE] = XE_ENGINE_CLASS_COMPUTE,
--};
--
- static struct xe_hw_engine *
- find_hw_engine(struct xe_device *xe,
- 	       struct drm_xe_engine_class_instance eci)
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 0e131b699a54..d946e51a3a06 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -818,3 +818,14 @@ u64 xe_gt_total_active_ticks(struct xe_gt *gt)
  {
--	u32 idx;
--
--	if (eci.engine_class > ARRAY_SIZE(user_to_xe_engine_class))
--		return NULL;
- 
- 	if (eci.gt_id >= xe->info.gt_count)
- 		return NULL;
- 
--	idx = array_index_nospec(eci.engine_class,
--				 ARRAY_SIZE(user_to_xe_engine_class));
--
- 	return xe_gt_hw_engine(xe_device_get_gt(xe, eci.gt_id),
--			       user_to_xe_engine_class[idx],
-+			       xe_hw_engine_from_user_class(eci.engine_class),
- 			       eci.engine_instance, true);
+ 	return xe_guc_engine_busyness_active_ticks(&gt->uc.guc);
  }
- 
-@@ -532,7 +517,7 @@ static u32 bind_exec_queue_logical_mask(struct xe_device *xe, struct xe_gt *gt,
- 			continue;
- 
- 		if (hwe->class ==
--		    user_to_xe_engine_class[DRM_XE_ENGINE_CLASS_COPY])
-+		    xe_hw_engine_from_user_class(DRM_XE_ENGINE_CLASS_COPY))
- 			logical_mask |= BIT(hwe->logical_instance);
- 	}
- 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 86b863b99065..5b529324c89f 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -264,6 +264,56 @@ static u32 hw_engine_mmio_read32(struct xe_hw_engine *hwe, struct xe_reg reg)
- 	return xe_mmio_read32(hwe->gt, reg);
- }
- 
-+/**
-+ * xe_hw_engine_to_user_class - converts xe hw engine to user engine class
-+ * @engine_class: hw engine class
-+ *
-+ * Returns: user engine class on success, -1 on error
-+ */
-+u16 xe_hw_engine_to_user_class(enum xe_engine_class engine_class)
-+{
-+	switch (engine_class) {
-+	case XE_ENGINE_CLASS_RENDER:
-+		return DRM_XE_ENGINE_CLASS_RENDER;
-+	case XE_ENGINE_CLASS_COPY:
-+		return DRM_XE_ENGINE_CLASS_COPY;
-+	case XE_ENGINE_CLASS_VIDEO_DECODE:
-+		return DRM_XE_ENGINE_CLASS_VIDEO_DECODE;
-+	case XE_ENGINE_CLASS_VIDEO_ENHANCE:
-+		return DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE;
-+	case XE_ENGINE_CLASS_COMPUTE:
-+		return DRM_XE_ENGINE_CLASS_COMPUTE;
-+	default:
-+		XE_WARN_ON(engine_class);
-+		return -1;
-+	}
-+}
 +
 +/**
-+ * xe_hw_engine_from_user_class - converts xe user engine class to hw engine class
-+ * @engine_class: user engine class
++ * xe_gt_engine_busyness_supported - Checks support for engine busyness
++ * @gt: GT structure
 + *
-+ * Returns: hw engine class on success
++ * Returns true if engine busyness is supported, false otherwise.
 + */
-+enum xe_engine_class xe_hw_engine_from_user_class(u16 engine_class)
++bool xe_gt_engine_busyness_supported(struct xe_gt *gt)
 +{
-+	switch (engine_class) {
-+	case DRM_XE_ENGINE_CLASS_RENDER:
-+		return XE_ENGINE_CLASS_RENDER;
-+	case DRM_XE_ENGINE_CLASS_COPY:
-+		return XE_ENGINE_CLASS_COPY;
-+	case DRM_XE_ENGINE_CLASS_VIDEO_DECODE:
-+		return XE_ENGINE_CLASS_VIDEO_DECODE;
-+	case DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE:
-+		return XE_ENGINE_CLASS_VIDEO_ENHANCE;
-+	case DRM_XE_ENGINE_CLASS_COMPUTE:
-+		return XE_ENGINE_CLASS_COMPUTE;
-+	default:
-+		XE_WARN_ON(engine_class);
-+		return XE_ENGINE_CLASS_MAX;
-+	}
++	return xe_guc_engine_busyness_supported(&gt->uc.guc);
++}
+diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+index 7e7828b12acd..41ed52c8b704 100644
+--- a/drivers/gpu/drm/xe/xe_gt.h
++++ b/drivers/gpu/drm/xe/xe_gt.h
+@@ -42,6 +42,7 @@ int xe_gt_resume(struct xe_gt *gt);
+ void xe_gt_reset_async(struct xe_gt *gt);
+ void xe_gt_sanitize(struct xe_gt *gt);
+ 
++bool xe_gt_engine_busyness_supported(struct xe_gt *gt);
+ u64 xe_gt_engine_busy_ticks(struct xe_gt *gt, struct xe_hw_engine *hwe);
+ u64 xe_gt_total_active_ticks(struct xe_gt *gt);
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_guc_engine_busyness.c b/drivers/gpu/drm/xe/xe_guc_engine_busyness.c
+index 4c24f51f2fa3..c40625f41ae5 100644
+--- a/drivers/gpu/drm/xe/xe_guc_engine_busyness.c
++++ b/drivers/gpu/drm/xe/xe_guc_engine_busyness.c
+@@ -32,6 +32,9 @@
+  * engine busyness % = (ticks_engine / ticks_gt) * 100
+  */
+ 
++/* GuC version number components are only 8-bit, so converting to a 32bit 8.8.8 */
++#define GUC_VER(maj, min, pat)	(((maj) << 16) | ((min) << 8) | (pat))
++
+ static void guc_engine_busyness_usage_map(struct xe_guc *guc,
+ 					  struct xe_hw_engine *hwe,
+ 					  struct iosys_map *engine_map,
+@@ -110,6 +113,10 @@ static void guc_engine_busyness_enable_stats(struct xe_guc *guc)
+ 	struct xe_device *xe = guc_to_xe(guc);
+ 	int ret;
+ 
++	/* Engine busyness supported only on GuC >= 70.11.1 */
++	if (!xe_guc_engine_busyness_supported(guc))
++		return;
++
+ 	ret = xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action), 0, 0);
+ 	if (ret)
+ 		drm_err(&xe->drm, "Failed to enable usage stats %pe", ERR_PTR(ret));
+@@ -122,6 +129,28 @@ static void guc_engine_busyness_fini(struct drm_device *drm, void *arg)
+ 	xe_bo_unpin_map_no_vm(guc->busy.bo);
+ }
+ 
++/*
++ * xe_guc_engine_busynes_supported- check if engine busyness is supported
++ * @guc: The GuC object
++ *
++ * Engine busyness is supported only above guc 70.11.1
++ *
++ * Returns true if supported, false otherwise
++ */
++bool xe_guc_engine_busyness_supported(struct xe_guc *guc)
++{
++	struct xe_uc_fw *uc_fw = &guc->fw;
++	struct xe_uc_fw_version *version = &uc_fw->versions.found[XE_UC_FW_VER_COMPATIBILITY];
++
++	if (GUC_VER(version->major, version->minor, version->patch) >= GUC_VER(1, 3, 1))
++		return true;
++
++	drm_WARN_ON_ONCE(&guc_to_xe(guc)->drm,
++			 "Engine busyness not supported in this GuC version\n");
++
++	return false;
 +}
 +
- void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe)
+ /*
+  * xe_guc_engine_busyness_active_ticks - Gets the total active ticks
+  * @guc: The GuC object
+@@ -132,6 +161,10 @@ u64 xe_guc_engine_busyness_active_ticks(struct xe_guc *guc)
  {
- 	u32 ccs_mask =
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
-index 71968ee2f600..89ca96063644 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.h
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.h
-@@ -62,6 +62,9 @@ void xe_hw_engine_print(struct xe_hw_engine *hwe, struct drm_printer *p);
- void xe_hw_engine_setup_default_lrc_state(struct xe_hw_engine *hwe);
+ 	u64 ticks_gt;
  
- bool xe_hw_engine_is_reserved(struct xe_hw_engine *hwe);
-+enum xe_engine_class xe_hw_engine_from_user_class(u16 engine_class);
-+u16 xe_hw_engine_to_user_class(enum xe_engine_class engine_class);
++	/* Engine busyness supported only on GuC >= 70.11.1 */
++	if (!xe_guc_engine_busyness_supported(guc))
++		return 0;
 +
- static inline bool xe_hw_engine_is_valid(struct xe_hw_engine *hwe)
- {
- 	return hwe->name;
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 56d61bf596b2..8b28cc376fff 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -22,22 +22,6 @@
- #include "xe_mmio.h"
- #include "xe_ttm_vram_mgr.h"
+ 	guc_engine_busyness_get_usage(guc, NULL, NULL, &ticks_gt);
  
--static const u16 xe_to_user_engine_class[] = {
--	[XE_ENGINE_CLASS_RENDER] = DRM_XE_ENGINE_CLASS_RENDER,
--	[XE_ENGINE_CLASS_COPY] = DRM_XE_ENGINE_CLASS_COPY,
--	[XE_ENGINE_CLASS_VIDEO_DECODE] = DRM_XE_ENGINE_CLASS_VIDEO_DECODE,
--	[XE_ENGINE_CLASS_VIDEO_ENHANCE] = DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE,
--	[XE_ENGINE_CLASS_COMPUTE] = DRM_XE_ENGINE_CLASS_COMPUTE,
--};
--
--static const enum xe_engine_class user_to_xe_engine_class[] = {
--	[DRM_XE_ENGINE_CLASS_RENDER] = XE_ENGINE_CLASS_RENDER,
--	[DRM_XE_ENGINE_CLASS_COPY] = XE_ENGINE_CLASS_COPY,
--	[DRM_XE_ENGINE_CLASS_VIDEO_DECODE] = XE_ENGINE_CLASS_VIDEO_DECODE,
--	[DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE] = XE_ENGINE_CLASS_VIDEO_ENHANCE,
--	[DRM_XE_ENGINE_CLASS_COMPUTE] = XE_ENGINE_CLASS_COMPUTE,
--};
--
- static size_t calc_hw_engine_info_size(struct xe_device *xe)
+ 	return ticks_gt;
+@@ -149,6 +182,10 @@ u64 xe_guc_engine_busyness_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
  {
- 	struct xe_hw_engine *hwe;
-@@ -139,10 +123,7 @@ query_engine_cycles(struct xe_device *xe,
- 	if (!gt)
- 		return -EINVAL;
+ 	u64 ticks_engine;
  
--	if (eci->engine_class >= ARRAY_SIZE(user_to_xe_engine_class))
--		return -EINVAL;
++	/* Engine busyness supported only on GuC >= 70.11.1 */
++	if (!xe_guc_engine_busyness_supported(guc))
++		return 0;
++
+ 	guc_engine_busyness_get_usage(guc, hwe, &ticks_engine, NULL);
+ 
+ 	return ticks_engine;
+@@ -172,6 +209,10 @@ int xe_guc_engine_busyness_init(struct xe_guc *guc)
+ 	u32 size;
+ 	int err;
+ 
++	/* Engine busyness supported only on GuC >= 70.11.1 */
++	if (!xe_guc_engine_busyness_supported(guc))
++		return 0;
++
+ 	/* Initialization already done */
+ 	if (guc->busy.bo)
+ 		return 0;
+diff --git a/drivers/gpu/drm/xe/xe_guc_engine_busyness.h b/drivers/gpu/drm/xe/xe_guc_engine_busyness.h
+index 57325910ebc4..e3c74e0236af 100644
+--- a/drivers/gpu/drm/xe/xe_guc_engine_busyness.h
++++ b/drivers/gpu/drm/xe/xe_guc_engine_busyness.h
+@@ -14,5 +14,5 @@ struct xe_guc;
+ int xe_guc_engine_busyness_init(struct xe_guc *guc);
+ u64 xe_guc_engine_busyness_active_ticks(struct xe_guc *guc);
+ u64 xe_guc_engine_busyness_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe);
 -
--	hwe = xe_gt_hw_engine(gt, user_to_xe_engine_class[eci->engine_class],
-+	hwe = xe_gt_hw_engine(gt, xe_hw_engine_from_user_class(eci->engine_class),
- 			      eci->engine_instance, true);
++bool xe_guc_engine_busyness_supported(struct xe_guc *guc);
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
+index 74212d8c5434..9c8591d59b54 100644
+--- a/drivers/gpu/drm/xe/xe_pmu.c
++++ b/drivers/gpu/drm/xe/xe_pmu.c
+@@ -55,14 +55,16 @@ static int
+ config_status(struct xe_device *xe, u64 config)
+ {
+ 	unsigned int gt_id = config_gt_id(config);
++	struct xe_gt *gt = xe_device_get_gt(xe, gt_id);
+ 
+ 	if (gt_id >= XE_PMU_MAX_GT)
+ 		return -ENOENT;
+ 
+-	if (config_counter(config) == DRM_XE_PMU_TOTAL_ACTIVE_TICKS(0))
+-		return 0;
++	if (config_counter(config) == DRM_XE_PMU_TOTAL_ACTIVE_TICKS(0) &&
++	    !xe_gt_engine_busyness_supported(gt))
++		return -ENOENT;
+ 
+-	return -ENOENT;
++	return 0;
+ }
+ 
+ static int engine_event_status(struct xe_hw_engine *hwe,
+@@ -71,6 +73,10 @@ static int engine_event_status(struct xe_hw_engine *hwe,
  	if (!hwe)
- 		return -EINVAL;
-@@ -208,7 +189,7 @@ static int query_engines(struct xe_device *xe,
- 				continue;
+ 		return -ENODEV;
  
- 			engines->engines[i].instance.engine_class =
--				xe_to_user_engine_class[hwe->class];
-+				xe_hw_engine_to_user_class(hwe->class);
- 			engines->engines[i].instance.engine_instance =
- 				hwe->logical_instance;
- 			engines->engines[i].instance.gt_id = gt->info.id;
++	if (sample == DRM_XE_PMU_SAMPLE_BUSY_TICKS &&
++	    !xe_gt_engine_busyness_supported(hwe->gt))
++		return -ENOENT;
++
+ 	/* Other engine events will be added, XE_ENGINE_SAMPLE_COUNT will be changed */
+ 	return (sample >= DRM_XE_PMU_SAMPLE_BUSY_TICKS && sample < XE_ENGINE_SAMPLE_COUNT)
+ 		? 0 : -ENOENT;
 -- 
 2.40.0
 
