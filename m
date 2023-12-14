@@ -4,63 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5083FC4332F
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Dec 2023 10:53:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A390BC4332F
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Dec 2023 10:57:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA10D10E05D;
-	Thu, 14 Dec 2023 10:52:57 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C76310E937
- for <intel-xe@lists.freedesktop.org>; Thu, 14 Dec 2023 10:52:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B71510E08E;
+	Thu, 14 Dec 2023 10:57:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6F3710E188
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Dec 2023 10:57:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702551172; x=1734087172;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=STk45TWvMGNul9gQdJ99zr2eLJe+cQzKgaaJlrKzYU4=;
- b=kyhoyd6JuaK8trF3ZNFz+8NY6MjacBD7fN4yVk6/Yrw+dt6fF6T3sGCz
- nz7YXz9SVUYhI/rOP7pCbP10vKw3bpZAZHtn1+HBtLpEXV9Mq+uVMwNjj
- Dyh6IBR5r8dyvpFltkWO7LiS6L+rSZha/qDCtNMjWLSlqDUy/jqKoGezx
- DeB8St/6C+Q6nNjgcD4yojadOhZiBh3WolQ5Zl1jazIuj/AyWYqofCNZ2
- o7T3z0jp8QR38hAx9fGuUT2sJ9+J4F/x8WfmIIlJdC9YCF9dbEgwRdusD
- +JnibhhcjdOBwsCgIz8ErPoMJkdDKX3lpmjN6v1IrNGSJ3ICYOUCAL5qb A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10923"; a="1937117"
+ t=1702551439; x=1734087439;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=TQhxa576YH88CUjtdHxHaWIbKADSeyWhdyyvCWrTwfA=;
+ b=m+3j8CunpdV0jP2aKMpvlDB4fjvkocJL5+BcDN6HiVQmTzOIg74plzTA
+ 46OFr3jmjxS+B4aGBQTkHbI7BuQ1TNZDljbyT/7LU+p3fJnTS3xBfkIp0
+ zHk7ThbTNYmvEl3l3jQqHddjLtirtM6MnFL0gHra4C0ox+0V1Io3wrmQQ
+ sWeE+bdjhkHJ6iuJVgGOtZwa3y0IgXS3/BuA9zgP6WJFFQV9ijVag4We8
+ eQJpgtIXJWiBcdTIpyBLHwc9Rx4Y2QDtbgZNfsOdhSizGLyA0qJOGziAt
+ ae56RclJspLCXdvpDcvuOHgKJGoiAQ4NWU00oov3i0/MDS18hVPnmyrCb w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10923"; a="8499797"
 X-IronPort-AV: E=Sophos;i="6.04,275,1695711600"; 
-   d="scan'208";a="1937117"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2023 02:52:50 -0800
+   d="scan'208";a="8499797"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2023 02:57:16 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,275,1695711600"; d="scan'208";a="15803876"
-Received: from ahashmi-mobl.ger.corp.intel.com (HELO [10.249.254.167])
- ([10.249.254.167])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2023 02:52:48 -0800
-Message-ID: <73570f06-3b5b-5aa2-a536-ae8bfb5eb02e@linux.intel.com>
-Date: Thu, 14 Dec 2023 11:52:18 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10923"; a="774320098"
+X-IronPort-AV: E=Sophos;i="6.04,275,1695711600"; d="scan'208";a="774320098"
+Received: from suja-super-server.iind.intel.com ([10.145.169.64])
+ by orsmga002.jf.intel.com with ESMTP; 14 Dec 2023 02:57:13 -0800
+From: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [v4] drm/xe: Add vram frequency sysfs attributes
+Date: Thu, 14 Dec 2023 16:41:59 +0530
+Message-Id: <20231214111159.149984-1-sujaritha.sundaresan@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [Intel-xe] LLC configurating, mmap and bo cache management
- questions
-Content-Language: en-US
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- "Hellstrom, Thomas" <thomas.hellstrom@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-References: <02c74379-6513-40cc-a195-c4eeb7a7fd79@linux.intel.com>
- <c16bc9f7bd18f531136ebbcf6504d497db9a793a.camel@intel.com>
- <eaa44445-21e2-4b9f-95a0-6b7395203900@linux.intel.com>
- <36e0e059e0f74ca7c55b2647658456fabe26420d.camel@intel.com>
- <2990cd86-7238-4ea9-a9aa-5ab624bea572@linux.intel.com>
- <7fe7d21d-77fc-6163-47d2-944906974cdb@linux.intel.com>
- <ed5c155b-ef9f-449a-a94c-df37afb8c8fd@linux.intel.com>
- <5831c125-3b32-05fe-a195-082f6231b4e5@linux.intel.com>
- <7637f53e-8886-4d3f-9e08-07b0f117b882@linux.intel.com>
- <07922208-1e3c-6bea-1e2d-5215bd33b38a@linux.intel.com>
- <6be6abc3-9a2b-48aa-8ca1-6ffa7d444f2c@linux.intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <6be6abc3-9a2b-48aa-8ca1-6ffa7d444f2c@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,313 +54,162 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Auld, Matthew" <matthew.auld@intel.com>, "Santa,
- Carlos" <carlos.santa@intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+Cc: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>,
+ rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Add vram frequency sysfs attributes under the below hierarchy;
 
-On 12/14/23 09:10, Tvrtko Ursulin wrote:
->
-> On 13/12/2023 20:11, Thomas Hellström wrote:
->>
->> On 12/13/23 18:50, Tvrtko Ursulin wrote:
->>>
->>> On 13/12/2023 17:27, Thomas Hellström wrote:
->>>>
->>>> On 12/13/23 12:55, Tvrtko Ursulin wrote:
->>>>>
->>>>> On 07/12/2023 12:01, Thomas Hellström wrote:
->>>>>>
->>>>>> On 12/7/23 12:11, Tvrtko Ursulin wrote:
->>>>>>>
->>>>>>> On 06/12/2023 11:46, Hellstrom, Thomas wrote:
->>>>>>>> Hi, Tvrtko.
->>>>>>>>
->>>>>>>> On Wed, 2023-12-06 at 10:58 +0000, Tvrtko Ursulin wrote:
->>>>>>>>>
->>>>>>>>> Hi Thomas,
->>>>>>>>>
->>>>>>>>> On 06/12/2023 08:26, Hellstrom, Thomas wrote:
->>>>>>>>>> On Tue, 2023-12-05 at 14:19 +0000, Tvrtko Ursulin wrote:
->>>>>>>>>>>
->>>>>>>>>>> Hi,
->>>>>>>>>>>
->>>>>>>>>>> We are working on adding xe support to ChromeOS minigbm and 
->>>>>>>>>>> have
->>>>>>>>>>> a
->>>>>>>>>>> couple questions.
->>>>>>>>>>>
->>>>>>>>>>> If I follow things correctly with xe mmap caching mode is fixed
->>>>>>>>>>> to
->>>>>>>>>>> object caching modes set at bo create. For framebuffers it will
->>>>>>>>>>> be WC
->>>>>>>>>>> and for the rest userspace can choose WB or WC via
->>>>>>>>>>> drm_xe_gem_create->cpu_caching. (Unless discrete, when WB 
->>>>>>>>>>> cannot
->>>>>>>>>>> be
->>>>>>>>>>> used
->>>>>>>>>>> at all.)
->>>>>>>>>>>
->>>>>>>>>>> AFAICT minigbm basically cares about two transition points. 
->>>>>>>>>>> Lets
->>>>>>>>>>> call
->>>>>>>>>>> them CPU access begin and end.
->>>>>>>>>>>
->>>>>>>>>>> 1)
->>>>>>>>>>> When a bo is mmapped it wants to invalidate the cache, which
->>>>>>>>>>> looks to
->>>>>>>>>>> be
->>>>>>>>>>> about making sure all GPU writes have landed to the backing
->>>>>>>>>>> store. In
->>>>>>>>>>> the i915 world that translates to the set_domain ioctl.
->>>>>>>>>>>
->>>>>>>>>>> What is the uapi for this with xe, or it is somehow 
->>>>>>>>>>> guaranteed to
->>>>>>>>>>> not
->>>>>>>>>>> be
->>>>>>>>>>> needed?
->>>>>>>>>>
->>>>>>>>>> Signalling a user-fence or dma-fence obtained as an out-fence 
->>>>>>>>>> from
->>>>>>>>>> an
->>>>>>>>>> exec call will guarantee GPU caches are flushed. Currently I 
->>>>>>>>>> don't
->>>>>>>>>> think there is anything like gem wait in the uAPI, although 
->>>>>>>>>> Matt is
->>>>>>>>>> just about to add functionality to wait on all outstanding 
->>>>>>>>>> work on
->>>>>>>>>> an
->>>>>>>>>> exec_queue.
->>>>>>>>>
->>>>>>>>> Problem I see is there are no execs or therefore fences in the
->>>>>>>>> minigbm
->>>>>>>>> ABI. It's just buffers, created or imported, CPU access and some
->>>>>>>>> other
->>>>>>>>> stuff.
->>>>>>>>>
->>>>>>>>> And it is quite extensively used in the OS so I assume it has 
->>>>>>>>> to work
->>>>>>>>> (I
->>>>>>>>> mean the invalidation/flushing was not put in there for no 
->>>>>>>>> reason),
->>>>>>>>> in
->>>>>>>>> other words, where the i915 backend today does
->>>>>>>>> DRM_I915_GEM_SET_DOMAIN
->>>>>>>>> on "cpu access begin", which is buffer based, I am not clear 
->>>>>>>>> how to
->>>>>>>>> implement that with xe.
->>>>>>>>>
->>>>>>>>> For the outstanding work you mention, since you say it is about
->>>>>>>>> exec_queue, I assume again it will not work purely with 
->>>>>>>>> buffers? If
->>>>>>>>> so
->>>>>>>>> it probably won't be useful for minigbm.
->>>>>>>>>
->>>>>>>>> Also if I look at all the other minigbm backends, I see a mix of
->>>>>>>>> behaviours:
->>>>>>>>>
->>>>>>>>>    * msm and vc4 appear to not concern themselves with any of 
->>>>>>>>> this.
->>>>>>>>>
->>>>>>>>>    * rockchip appears to be doing full bounce buffering via 
->>>>>>>>> memcpy on
->>>>>>>>> CPU
->>>>>>>>> access begin/end.
->>>>>>>>>
->>>>>>>>>    * i915 and amdgpu respectively use
->>>>>>>>> DRM_I915_GEM_SET_DOMAIN/DRM_AMDGPU_GEM_WAIT_IDLE (also buffer 
->>>>>>>>> based,
->>>>>>>>> not
->>>>>>>>> execution queue). Andgpu curiously does not do any flushing on 
->>>>>>>>> CPU
->>>>>>>>> access end.
->>>>>>>>>
->>>>>>>>> Digging into git history, both DRM_I915_GEM_SET_DOMAIN on CPU 
->>>>>>>>> access
->>>>>>>>> begin and clflushing on end were added to fix various CTS test
->>>>>>>>> failures.
->>>>>>>>> So I guess we could also wait and see what happens there. If 
->>>>>>>>> those or
->>>>>>>>> some will be failing with xe too then propose adding some new 
->>>>>>>>> uapi.
->>>>>>>>> Or
->>>>>>>>> if manual testing will start reporting visual corruption in 
->>>>>>>>> the UI
->>>>>>>>> elements or such.
->>>>>>>>
->>>>>>>> Indeed it sounds like we'd need a DRM_XE_GEM_WAIT_IDLE, similar to
->>>>>>>> AMDGPU for this use-case. I'll bring that up for discussion.
->>>>>>>
->>>>>>> Thanks!
->>>>>>>
->>>>>>>>>>> 2)
->>>>>>>>>>> When a bo is unmapped, or CPU access finished, it wants to 
->>>>>>>>>>> flush
->>>>>>>>>>> the
->>>>>>>>>>> CPU
->>>>>>>>>>> caches. That is /almost/ completely a CPU operation, where it
->>>>>>>>>>> just
->>>>>>>>>>> needs
->>>>>>>>>>> to either clflush or invalidate the WC buffer respectively, if
->>>>>>>>>>> not
->>>>>>>>>>> the
->>>>>>>>>>> fact that clflush can be skipped on platforms with LLC.
->>>>>>>>>>>
->>>>>>>>>>> I did not see an equivalent of an I915_PARAM_HAS_LLC in xe? 
->>>>>>>>>>> Did I
->>>>>>>>>>> miss
->>>>>>>>>>> it or what it is the plan for querying this detail?
->>>>>>>>>>
->>>>>>>>>> XeKMD is generally coherent, except if UMD selects a GPU PAT 
->>>>>>>>>> index
->>>>>>>>>> with
->>>>>>>>>> limited coherency together with WB instead of WC memory. In that
->>>>>>>>>> case,
->>>>>>>>>> UMD is responsible for doing the needed CLFLUSH-ing, whereas KMD
->>>>>>>>>> only
->>>>>>>>>> ensures initial clearing of the pages is CLFLUSHED for security
->>>>>>>>>> reasons.
->>>>>>>>>>
->>>>>>>>>> I'm not 100% sure if UMD can actually select WB with limited
->>>>>>>>>> coherency
->>>>>>>>>> PAT index in the initial uAPI revision, but Matthew has received
->>>>>>>>>> requests for that so any additional input here on performance
->>>>>>>>>> implications is appreciated.
->>>>>>>>>>
->>>>>>>>>> The thinking here is otherwise that GPU PAT indices with limited
->>>>>>>>>> coherency should be used together with WC memory in the same
->>>>>>>>>> situations
->>>>>>>>>> as VRAM/LMEM is used on DGFX.
->>>>>>>>>
->>>>>>>>> Hm okay, this would be the VM BIND side of things which deals 
->>>>>>>>> with
->>>>>>>>> GPU
->>>>>>>>> PATs. From the CPU side it is just CPU caching modes implicitly
->>>>>>>>> selected
->>>>>>>>> via DRM_XE_GEM_CPU_CACHING_WB/WC.
->>>>>>>>>
->>>>>>>>> The question about the analogue of I915_PARAM_HAS_LLC was 
->>>>>>>>> AFAIU about
->>>>>>>>> a
->>>>>>>>> performance optimisation where UMD is deciding whether it is 
->>>>>>>>> okay to
->>>>>>>>> skip issuing clflush for the mapped bo if 
->>>>>>>>> DRM_XE_GEM_CPU_CACHING_WB
->>>>>>>>> was
->>>>>>>>> used. (If DRM_XE_GEM_CPU_CACHING_WC was used it obviously only 
->>>>>>>>> needs
->>>>>>>>> to
->>>>>>>>> flush the write combine buffer.)
->>>>>>>>>
->>>>>>>>> Looking at what Mesa is doing it appears it is not using
->>>>>>>>> I915_PARAM_HAS_LLC but has its own device info tables. So I guess
->>>>>>>>> minigbm xe backend will have to do the same if xe will not 
->>>>>>>>> provide
->>>>>>>>> the
->>>>>>>>> analogue query.
->>>>>>>>
->>>>>>>> IMO clflushing in this case should never be needed, (Again, 
->>>>>>>> similar to
->>>>>>>> AMD). Whatever renders from / to those buffers should make sure 
->>>>>>>> they
->>>>>>>> are clflushed before or while accessing them. How is a 
->>>>>>>> rendering API
->>>>>>>> made aware of these bos? Are they imported using drm prime?
->>>>>>>
->>>>>>> Yes they can be imported via drm prime. It's a quite a huge code 
->>>>>>> base with a few abstractions and quite hard to figure out all 
->>>>>>> possible paths. There are gbm_bo_map paths in the host and vm 
->>>>>>> compositors (Exo and Sommelier), Skia library, camera pipeline, 
->>>>>>> maybe more.
->>>>>>>
->>>>>>> You mean specifically on the "cpu access end" part of the story 
->>>>>>> flushing would never be needed? Regardless of llc and !llc, wb 
->>>>>>> or wc mappings, imported or native buffer? What mechanism would 
->>>>>>> next in the pipeline (after CPU access) use to ensure the flush?
->>>>>>>
->>>>>> Currently we're not supporting any older !LLC hardware, and with 
->>>>>> newer !LLC hardware, we're only allowing at least 1-way coherency 
->>>>>> with dma-bufs, meaning the GPU will acquire the cache line when 
->>>>>> accessing the bo. If the bo is not a dma-buf, and the GPU wants 
->>>>>> to access it in non-coherent mode, we're currently enforcing WC 
->>>>>> cpu-mappings.
->>>>>>
->>>>>> So:
->>>>>> igfx with shared LLC: Not a problem (always coherent)
->>>>>> dgfx: Not a problem (always coherent)
->>>>>> newer igfx WO shared LLC (KMD is enforcing coherent access).
->>>>>>
->>>>>> Now this may of course, as mentions, have performance 
->>>>>> implications compared to previous igfx solutions, depending on 
->>>>>> how it all is written, but should have similar performance 
->>>>>> characteristics as dgfx. If we want to change this and relax the 
->>>>>> coherency enforcement and resort to CLFLUSHes again,  could UMD 
->>>>>> communicate the need for this in the same way it communicates the 
->>>>>> format of the gbm_bos?
->>>>>
->>>>> I think it is probably not needed. If minigbm will know mmap is 
->>>>> always WC on MTL then it can know that all it needs to do to flush 
->>>>> is flush the write-combine buffer. So the logic in minigbm xe 
->>>>> backend "cpu access end" would be like:
->>>>>
->>>>> xe_bo_flush(...)
->>>>> {
->>>>>   if (dgfx || (igfx && !llc))
->>>>>     __builtin_ia32_sfence();
->>>>> }
->>>>>
->>>>> Does that sound right to you?
->>>>>
->>>>> So far on the i915 backend this explicit sfence was not even there 
->>>>> in the mmap_wc case, which I guess possibly works because 
->>>>> something is likely to trigger the flush implicitly inside the 
->>>>> complexities of the call stack anyway.
->>>>
->>>> IIRC WC buffers are flushed also on uncached register writes (does 
->>>> that include updating the ring tail perhapsl?).
->>>
->>> If next in chain is the GPU I guess so. It would indeed be a typical 
->>> use case but for correctness it probably needs a sfence since AFAIU 
->>> write-combine buffer is per CPU core.
->>>
->>>> It might also be that these gbm_bos are created WB and the igfx PAT 
->>>> is set to 1-way coherency. What code creates those gbm_bos?
->>>
->>> Minigbm on behalf of various callers. It is based on the allocation 
->>> flags such as will it be for scanout, protected content, modifiers 
->>> and such.
->>>
->>> When scanout is request we will set DRM_XE_GEM_CREATE_FLAG_SCANOUT. 
->>> Which would mean scanount bos will be WC and the rest WB-1-way when 
->>> mmaped.
->>>
->>>> I figure for dgfx at least we don't want any intel 
->>>> platform-specific code in the stack if possible....
->>>
->>> True, would have to be platform specific.
->>
->> So if we unconditionally add an sfence, I wouldn't expect the 
->> overhead to be significant even if it's not strictly needed? Or have 
->> the gbm_bo_create() forward to gbm_bo_map() whether the bo was 
->> created WC?
->
-> Unconditional is most probably fine I agree.
->
-> Otherwise the map does have the information of how the object was 
-> created so that part wouldn't be a problem 
-> (https://github.com/intel/minigbm/blob/10d9a651375efa3592ab95431783984c28a30ad4/i915.c#L529). 
-> It is just if we wanted the LLC presence it would be extra work.
+/device/tile#/freq0
+		|-rp0_freq
+		|-rpn_freq
 
-Regarding 2) There is some internal resistance to exposing a legacy gem 
-wait. Does GBM always alias the gbm_bo as a dma-buf? Would it be 
-possible to use the  DMA_BUF_IOCTL_SYNC ioctl for this?
+v2: Drop "vram" from attribute names (Rodrigo)
 
-/Thomas
+v3: Add documentation for new sysfs (Riana)
+    Drop prefix from XEHP_PCODE_FREQUENCY_CONFIG (Riana)
 
+v4: Create sysfs under tile#/freq0 after removal of
+    physical_memsize attrbute
 
->
-> Regards,
->
-> Tvrtko
->
+Signed-off-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pcode_api.h  |  8 +++
+ drivers/gpu/drm/xe/xe_tile_sysfs.c | 80 ++++++++++++++++++++++++++++++
+ 2 files changed, 88 insertions(+)
+
+diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
+index 5935cfe30204..26ceb8c0c010 100644
+--- a/drivers/gpu/drm/xe/xe_pcode_api.h
++++ b/drivers/gpu/drm/xe/xe_pcode_api.h
+@@ -42,6 +42,14 @@
+ #define	    POWER_SETUP_I1_SHIFT		6	/* 10.6 fixed point format */
+ #define	    POWER_SETUP_I1_DATA_MASK		REG_GENMASK(15, 0)
+ 
++ #define   PCODE_FREQUENCY_CONFIG		0x6e
++/* PCODE_FREQUENCY_CONFIG sub-commands (param1) */
++#define     PCODE_MBOX_FC_SC_READ_FUSED_P0	0x0
++#define     PCODE_MBOX_FC_SC_READ_FUSED_PN	0x1
++/* PCODE_MBOX_DOMAIN_* - mailbox domain IDs */
++/* PCODE_FREQUENCY_CONFIG param2 */
++#define     PCODE_MBOX_DOMAIN_HBM		0x2
++
+ struct pcode_err_decode {
+ 	int errno;
+ 	const char *str;
+diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.c b/drivers/gpu/drm/xe/xe_tile_sysfs.c
+index 0f8d3e7fce46..45518442ed15 100644
+--- a/drivers/gpu/drm/xe/xe_tile_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_tile_sysfs.c
+@@ -7,9 +7,23 @@
+ #include <linux/sysfs.h>
+ #include <drm/drm_managed.h>
+ 
++#include "xe_gt_types.h"
++#include "xe_pcode.h"
++#include "xe_pcode_api.h"
+ #include "xe_tile.h"
+ #include "xe_tile_sysfs.h"
+ 
++#define GT_FREQUENCY_MULTIPLIER	50
++
++/**
++ * DOC: Xe Tile sysfs
++ *
++ * Provides sysfs entries for memory related frequency in tile
++ *
++ * device/tile#/freq0/rp0_freq - The Render Performance 0 level, which is the maximum one.
++ * device/tile#/freq0/rpn_freq - The Render Performance N level, which is the minimal one.
++ */
++
+ static void xe_tile_sysfs_kobj_release(struct kobject *kobj)
+ {
+ 	kfree(kobj);
+@@ -20,10 +34,68 @@ static const struct kobj_type xe_tile_sysfs_kobj_type = {
+ 	.sysfs_ops = &kobj_sysfs_ops,
+ };
+ 
++static ssize_t rp0_freq_show(struct device *kdev, struct device_attribute *attr,
++			     char *buf)
++{
++	struct xe_tile *tile = kobj_to_tile(&kdev->kobj);
++	struct xe_gt *gt = tile->primary_gt;
++	u32 val, mbox;
++	int err;
++
++	mbox = REG_FIELD_PREP(PCODE_MB_COMMAND, PCODE_FREQUENCY_CONFIG)
++		| REG_FIELD_PREP(PCODE_MB_PARAM1, PCODE_MBOX_FC_SC_READ_FUSED_P0)
++		| REG_FIELD_PREP(PCODE_MB_PARAM2, PCODE_MBOX_DOMAIN_HBM);
++
++	err = xe_pcode_read(gt, mbox, &val, NULL);
++	if (err)
++		return err;
++
++	/* data_out - Fused P0 for domain ID in units of 50 MHz */
++	val *= GT_FREQUENCY_MULTIPLIER;
++
++	return sysfs_emit(buf, "%u\n", val);
++}
++static DEVICE_ATTR_RO(rp0_freq);
++
++static ssize_t rpn_freq_show(struct device *kdev, struct device_attribute *attr,
++			     char *buf)
++{
++	struct xe_tile *tile = kobj_to_tile(&kdev->kobj);
++	struct xe_gt *gt = tile->primary_gt;
++	u32 val, mbox;
++	int err;
++
++	mbox = REG_FIELD_PREP(PCODE_MB_COMMAND, PCODE_FREQUENCY_CONFIG)
++		| REG_FIELD_PREP(PCODE_MB_PARAM1, PCODE_MBOX_FC_SC_READ_FUSED_PN)
++		| REG_FIELD_PREP(PCODE_MB_PARAM2, PCODE_MBOX_DOMAIN_HBM);
++
++	err = xe_pcode_read(gt, mbox, &val, NULL);
++	if (err)
++		return err;
++
++	/* data_out - Fused Pn for domain ID in units of 50 MHz */
++	val *= GT_FREQUENCY_MULTIPLIER;
++
++	return sysfs_emit(buf, "%u\n", val);
++}
++static DEVICE_ATTR_RO(rpn_freq);
++
++static struct attribute *freq_attrs[] = {
++	&dev_attr_rp0_freq.attr,
++	&dev_attr_rpn_freq.attr,
++	NULL
++};
++
++static const struct attribute_group freq_group_attrs = {
++	.name = "freq0",
++	.attrs = freq_attrs,
++};
++
+ static void tile_sysfs_fini(struct drm_device *drm, void *arg)
+ {
+ 	struct xe_tile *tile = arg;
+ 
++	sysfs_remove_group(tile->sysfs, &freq_group_attrs);
+ 	kobject_put(tile->sysfs);
+ }
+ 
+@@ -50,6 +122,14 @@ void xe_tile_sysfs_init(struct xe_tile *tile)
+ 
+ 	tile->sysfs = &kt->base;
+ 
++	if (xe->info.platform == XE_PVC) {
++		err = sysfs_create_group(tile->sysfs, &freq_group_attrs);
++		if (err) {
++			drm_warn(&xe->drm, "failed to register vram freq sysfs, err: %d\n", err);
++			return;
++		}
++	}
++
+ 	err = drmm_add_action_or_reset(&xe->drm, tile_sysfs_fini, tile);
+ 	if (err)
+ 		drm_warn(&xe->drm, "%s: drmm_add_action_or_reset failed, err: %d\n",
+-- 
+2.25.1
+
