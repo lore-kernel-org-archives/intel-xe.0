@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B599C4167D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 292BAC4332F
 	for <intel-xe@archiver.kernel.org>; Thu, 14 Dec 2023 19:02:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C437410E256;
-	Thu, 14 Dec 2023 19:02:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4AA210E218;
+	Thu, 14 Dec 2023 19:02:14 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 959E210E994
- for <intel-xe@lists.freedesktop.org>; Thu, 14 Dec 2023 19:00:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78E2810E28D
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Dec 2023 19:00:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702580452; x=1734116452;
+ t=1702580449; x=1734116449;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=CU4Af30af6Zjn7B1jJtapksbA3Ig4i/Wh3RnqeTnCfA=;
- b=Z+vGZJqn5TVs5S9C32wU7OtNI/XCDYX0i9xLBLhSom9Sc5vAH7OZk0ZQ
- g8PZDhDDncVEhLZwyO0FdIkXQoS0pPAMvcBxIeOZUVT1eSzYVlDx/triZ
- JVHUoy8ys3V+a6YTnrmegCMeaEc86mzApPmvfNs+JCSVJVjwyqT0bAM5g
- kGo8fODDOlYN9hBh+wDsbPAVyvbPJcxYy4/gntkQ6oVFA6xHQHeyDZBc1
- rgv9TXbJ3kU0k5NpKlvgqvxjV8kwLEZLxoumy/zc8pEarL5a3sYhDm6Kz
- eDsZfmBmpxGiqMVen6ptbOt94gsfeWfNWdKip8Q4z03xgwMPmVp0Nroxm g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="399006428"
-X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; d="scan'208";a="399006428"
+ bh=YhVd4AwAU1vBwOazYy/N2L6xVP3f7nexCOgPyULlldM=;
+ b=SlRtlqMkEh82V1K+1a3GXGxaDQQTStcH6GQXdQXC8zNjrx918HU9meK6
+ bY6YCYhYxmpJvg95Ad92fD3j3CBFo4lhkGygsWxBRgLQyjVjNbO1N/1w7
+ 8O/Qw5Yt7H22aR8Sz2taEVb3jVV5seV0p2XAh0egND/91b9UrnsMklZqy
+ xi3rz978r7ixccdKwxQe0Avywo7u7ffbyD8ZmT2rCvsC92lV/sEGdAXUS
+ BXyThqbJOBmLmfhouUG2nva9v8nLKecUjVigFegv8PzFFLy4JT1ksTZWG
+ 5RV6NpGJTe5Ok5/TjRcbAeB5Y/pNTUGLVN/igk8o++R6A/zARgVMZgVos A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="399006381"
+X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; d="scan'208";a="399006381"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2023 11:00:29 -0800
+ 14 Dec 2023 11:00:20 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; d="scan'208";a="15964812"
+X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; d="scan'208";a="15964777"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.128.198])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2023 11:00:28 -0800
+ 14 Dec 2023 11:00:19 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 09/10] drm/xe/vf: Setup memory based interrupts in GuC
-Date: Thu, 14 Dec 2023 19:59:54 +0100
-Message-Id: <20231214185955.1791-10-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 03/10] drm/xe: Update LRC context layout definitions
+Date: Thu, 14 Dec 2023 19:59:48 +0100
+Message-Id: <20231214185955.1791-4-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20231214185955.1791-1-michal.wajdeczko@intel.com>
 References: <20231214185955.1791-1-michal.wajdeczko@intel.com>
@@ -59,51 +59,34 @@ Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When Memory Based Interrupts are used, the VF driver must provide
-to the GuC references to the Source and Status Report Pages.
+The new memory based interrupt processing uses additional entries
+in the context.  Add required definitions.
 
+Bspec: 45585, 60184
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_lrc_layout.h | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 482cb0df9f15..85096741cb3b 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -22,8 +22,10 @@
- #include "xe_guc_log.h"
- #include "xe_guc_pc.h"
- #include "xe_guc_submit.h"
-+#include "xe_memirq.h"
- #include "xe_mmio.h"
- #include "xe_platform_types.h"
-+#include "xe_sriov.h"
- #include "xe_uc.h"
- #include "xe_uc_fw.h"
- #include "xe_wa.h"
-@@ -574,10 +576,20 @@ static void guc_enable_irq(struct xe_guc *guc)
+diff --git a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+index 4be81abc86ad..1825d8f79db6 100644
+--- a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
++++ b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+@@ -14,4 +14,13 @@
+ #define CTX_PDP0_UDW			(0x30 + 1)
+ #define CTX_PDP0_LDW			(0x32 + 1)
  
- int xe_guc_enable_communication(struct xe_guc *guc)
- {
-+	struct xe_device *xe = guc_to_xe(guc);
- 	int err;
- 
- 	guc_enable_irq(guc);
- 
-+	if (IS_SRIOV_VF(xe) && xe_device_has_memirq(xe)) {
-+		struct xe_gt *gt = guc_to_gt(guc);
-+		struct xe_tile *tile = gt_to_tile(gt);
++#define CTX_LRM_INT_MASK_ENABLE		0x50
++#define CTX_INT_MASK_ENABLE_REG		(CTX_LRM_INT_MASK_ENABLE + 1)
++#define CTX_INT_MASK_ENABLE_PTR		(CTX_LRM_INT_MASK_ENABLE + 2)
++#define CTX_LRI_INT_REPORT_PTR		0x55
++#define CTX_INT_STATUS_REPORT_REG	(CTX_LRI_INT_REPORT_PTR + 1)
++#define CTX_INT_STATUS_REPORT_PTR	(CTX_LRI_INT_REPORT_PTR + 2)
++#define CTX_INT_SRC_REPORT_REG		(CTX_LRI_INT_REPORT_PTR + 3)
++#define CTX_INT_SRC_REPORT_PTR		(CTX_LRI_INT_REPORT_PTR + 4)
 +
-+		err = xe_memirq_init_guc(&tile->sriov.vf.memirq, guc);
-+		if (err)
-+			return err;
-+	}
-+
- 	xe_mmio_rmw32(guc_to_gt(guc), PMINTRMSK,
- 		      ARAT_EXPIRED_INTRMSK, 0);
- 
+ #endif
 -- 
 2.25.1
 
