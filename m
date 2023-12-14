@@ -4,41 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97D5EC4332F
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Dec 2023 19:00:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 893D4C4332F
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Dec 2023 19:01:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6141810E993;
-	Thu, 14 Dec 2023 19:00:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45B0A10E0EB;
+	Thu, 14 Dec 2023 19:01:11 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E6E510E2EA
- for <intel-xe@lists.freedesktop.org>; Thu, 14 Dec 2023 19:00:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85FF010E95A
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Dec 2023 19:00:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702580424; x=1734116424;
+ t=1702580425; x=1734116425;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kxVDgvRhZ5SIRERFUnRW/cwd6L+UnPo3+7s9zj7NQJM=;
- b=aN1d1iV/7rBBuZRFqmJtdpYGblV9qgDHE4v0sCJtLfwxT0A91ueCabRo
- OtQ8yqNBy50q2zbUvA2TTBvRuP/oUKAwiVXDBudOJkBi99s761AKmsrfA
- qtXj6kH7i4y+vb3USh0Na1MFpsL1gcjmYZsNKyWu4asu2mIIGYgcnTsfU
- fk27IdNmi8i//1ZbBJ9TJK6s37FJdfJPuivJBeIP7XvAgbZuCvBLgrd7L
- ewh9sn4nwY5Y45Fq1knvVlOH6huvbrZixg3Z03ZTNkOo7CSltfG5A0mmL
- uRJupS64jBu1K80AntEAcmeobBh7jd0eAS1nIriE6MPyLX2tJLayKYF4J Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="399006371"
-X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; d="scan'208";a="399006371"
+ bh=6n11/BvFZaeN6/dodo67BzvvCCgGnVt5oNh0SKNpOKo=;
+ b=IVcEWPgewfzEKwsga66A6mkYshlqC6zFbCeFE8kGladTUnu3+3OvS1Vx
+ Cv2bNpfBde0zlNNjQVb9NIRlBinf0gLwLyljF+geQ+lmmYeVAChfWmDuy
+ 5c+11svy2gLjIfmxPVWvT3d/CuyOCwm3wwSRWAFS5iPfSba/uOZJb2ITT
+ 1oh1MvNnOw3CnrkDm+9hv+ZsKuuvTSA/dHJtjjoKMTeYmnqm1CEQKYDEK
+ jLopAlZ7jDc8pjWIg+ZXjN+xP2IDv1FzPXTQC7C/qTh73kEalca7Odf+d
+ iRI2rNsDr0YgvCb2XDUk2OUrwiLImdPKpCiv5CIOLpBhxT/UYgUIxjDYn A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="399006378"
+X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; d="scan'208";a="399006378"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2023 11:00:17 -0800
+ 14 Dec 2023 11:00:19 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; d="scan'208";a="15964768"
+X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; d="scan'208";a="15964772"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.128.198])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2023 11:00:16 -0800
+ 14 Dec 2023 11:00:17 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 01/10] drm/xe: Add command MI_LOAD_REGISTER_MEM
-Date: Thu, 14 Dec 2023 19:59:46 +0100
-Message-Id: <20231214185955.1791-2-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 02/10] drm/xe: Define registers used by memory based irq
+ processing
+Date: Thu, 14 Dec 2023 19:59:47 +0100
+Message-Id: <20231214185955.1791-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20231214185955.1791-1-michal.wajdeczko@intel.com>
 References: <20231214185955.1791-1-michal.wajdeczko@intel.com>
@@ -59,56 +60,40 @@ Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We will need this shortly during context state preparation.
+The RING_INT_SRC_RPT_PTR register points to a cacheline in memory
+to which an engine must report as source of interrupt prior to
+generating an interrupt to the host.
 
+The RING_INT_STATUS_RPT_PTR register points to the first cacheline
+of the Interrupt Status Report (ISR) page (4KB) in graphics memory
+to which all engines report their interrupt status.
+
+The RING_IMR register has the interrupt enables and interrupt masks
+for an engine.
+
+We will refer to these registers shortly.
+
+Bspec: 45963, 45964, 45965
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
 ---
-v2: update dump_mi_command (Matt)
----
- drivers/gpu/drm/xe/instructions/xe_mi_commands.h |  3 +++
- drivers/gpu/drm/xe/xe_lrc.c                      | 14 ++++++++++++++
- 2 files changed, 17 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-index 1cfa96167fde..c74ceb550dce 100644
---- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-+++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-@@ -56,6 +56,9 @@
- #define   MI_FLUSH_IMM_QW		REG_FIELD_PREP(MI_FLUSH_DW_LEN_DW, 5 - 2)
- #define   MI_FLUSH_DW_USE_GTT		REG_BIT(2)
+diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+index 1a857c4edcf5..1f7501032baf 100644
+--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+@@ -39,7 +39,9 @@
+ #define RING_MI_MODE(base)			XE_REG((base) + 0x9c)
+ #define RING_NOPID(base)			XE_REG((base) + 0x94)
  
-+#define MI_LOAD_REGISTER_MEM		(__MI_INSTR(0x29) | XE_INSTR_NUM_DW(4))
-+#define   MI_LRM_USE_GGTT		REG_BIT(22)
-+
- #define MI_BATCH_BUFFER_START		__MI_INSTR(0x31)
++#define RING_INT_SRC_RPT_PTR(base)		XE_REG((base) + 0xa4)
+ #define RING_IMR(base)				XE_REG((base) + 0xa8)
++#define RING_INT_STATUS_RPT_PTR(base)		XE_REG((base) + 0xac)
  
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index d6dfbd0bdc70..c8e242d8fb09 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -966,6 +966,20 @@ static int dump_mi_command(struct drm_printer *p,
- 			drm_printf(p, " - %#6x = %#010x\n", dw[i], dw[i + 1]);
- 		return numdw;
- 
-+	case MI_LOAD_REGISTER_MEM & MI_OPCODE:
-+		drm_printf(p, "[%#010x] MI_LOAD_REGISTER_MEM: %s%s\n",
-+			   inst_header,
-+			   dw[0] & MI_LRI_LRM_CS_MMIO ? "CS_MMIO " : "",
-+			   dw[0] & MI_LRM_USE_GGTT ? "USE_GGTT " : "");
-+		if (numdw == 4)
-+			drm_printf(p, " - %#6x = %#010llx\n",
-+				   dw[1], ((u64)(dw[3]) << 32 | (u64)(dw[2])));
-+		else
-+			drm_printf(p, " - %*ph (%s)\n",
-+				   (int)sizeof(u32) * (numdw - 1), dw + 1,
-+				   numdw < 4 ? "truncated" : "malformed");
-+		return numdw;
-+
- 	case MI_FORCE_WAKEUP:
- 		drm_printf(p, "[%#010x] MI_FORCE_WAKEUP\n", inst_header);
- 		return numdw;
+ #define RING_EIR(base)				XE_REG((base) + 0xb0)
+ #define RING_EMR(base)				XE_REG((base) + 0xb4)
 -- 
 2.25.1
 
