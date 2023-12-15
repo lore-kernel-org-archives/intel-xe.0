@@ -4,30 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF2A1C46CA2
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Dec 2023 21:38:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6094AC4167B
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Dec 2023 21:45:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7947210E05C;
-	Fri, 15 Dec 2023 21:38:32 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2DB3410E05C;
- Fri, 15 Dec 2023 21:38:30 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 258E9A7E03;
- Fri, 15 Dec 2023 21:38:30 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2729429840676072233=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F46710EAA9;
+	Fri, 15 Dec 2023 21:45:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AF7A10EAA9
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Dec 2023 21:45:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1702676737; x=1734212737;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=iZA+bu/GD3RO5maI2axsQ6aWbKwSz1k2RnNUX7S8xN8=;
+ b=aT3Btzop4x+ZkaSAenWEDhBGQFJ9tBtIMMKE6xA3eiMv7VbxsRWLAlDu
+ ivaJIKNWuq8WaCncLG2ekGelvLLL8/NlZ0yxHKP++an3+cEdQDuVEKbVw
+ DHXa+iMO29RuMgoH4OnEBL3nFtO/DqqgelV62FbcdtleZkfnQDUgy3ulL
+ hKQVAHpqEXOVD4An8WakQ5rJPaZAVZe3FwZinopDxtVHCvzBKrgpxShPN
+ ZDfvrepa0kID7SLBjfST51VgCcUsUxtMqFxzf09H57vUGHEIoIQzDQPLx
+ 5Zv4hUeaBR6L7b48yJdzqaVoC0+vVel9yVl1/dpvVm8HhO0Mqdsu7n/pO Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10925"; a="2418940"
+X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; 
+   d="scan'208";a="2418940"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2023 13:45:37 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10925"; a="918577699"
+X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; d="scan'208";a="918577699"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.131])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2023 13:45:36 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH v2] drm/xe/dg2: Drop pre-production workarounds
+Date: Fri, 15 Dec 2023 13:45:31 -0800
+Message-ID: <20231215214531.2576215-2-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/display=3A_Fix_dummy_=5F?=
- =?utf-8?q?=5Fi915=5Finject=5Fprobe=5Ferror=28=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Fri, 15 Dec 2023 21:38:30 -0000
-Message-ID: <170267631013.27831.4677597853198939922@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231215203331.3297341-1-lucas.demarchi@intel.com>
-In-Reply-To: <20231215203331.3297341-1-lucas.demarchi@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,181 +55,371 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2729429840676072233==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Pre-production hardware is anything before C0 (for DG2-G10), before B1
+(for DG2-G11), or before A1 (for DG2-G12).  Workarounds specific to such
+hardware was already removed from i915 in commit eaeb4b361452
+("drm/i915/dg2: Drop pre-production GT workarounds") and there's even
+less value keeping these around in the Xe driver.
 
-== Series Details ==
+v2:
+ - Drop Wa_14011441408 from xe_mocs.c.  (Gustavo)
+ - Drop Wa_14010648519, Wa_14010198302, and Wa_1608949956 which were
+   mis-implemented; they were only supposed to apply to early steppings
+   of DG2-G10, but were being applied unconditionally on all DG2.
+   (Gustavo)
+ - Drop reference to Wa_16011620976; the implementation stays because it
+   still matches Wa_22015475538.  (Gustavo)
 
-Series: drm/xe/display: Fix dummy __i915_inject_probe_error()
-URL   : https://patchwork.freedesktop.org/series/127890/
-State : success
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc.c        |   8 +-
+ drivers/gpu/drm/xe/xe_mocs.c       |  23 +---
+ drivers/gpu/drm/xe/xe_wa.c         | 174 +----------------------------
+ drivers/gpu/drm/xe/xe_wa_oob.rules |   7 +-
+ 4 files changed, 5 insertions(+), 207 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 482cb0df9f15..76b31d542e1a 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -133,13 +133,10 @@ static u32 guc_ctl_wa_flags(struct xe_guc *guc)
+ 	if (XE_WA(gt, 22012773006))
+ 		flags |= GUC_WA_POLLCS;
+ 
+-	if (XE_WA(gt, 16011759253))
+-		flags |= GUC_WA_GAM_CREDITS;
+-
+ 	if (XE_WA(gt, 14014475959))
+ 		flags |= GUC_WA_HOLD_CCS_SWITCHOUT;
+ 
+-	if (XE_WA(gt, 22011391025) || XE_WA(gt, 14012197797))
++	if (XE_WA(gt, 22011391025))
+ 		flags |= GUC_WA_DUAL_QUEUE;
+ 
+ 	/*
+@@ -150,9 +147,6 @@ static u32 guc_ctl_wa_flags(struct xe_guc *guc)
+ 	if (GRAPHICS_VERx100(xe) < 1270)
+ 		flags |= GUC_WA_PRE_PARSER;
+ 
+-	if (XE_WA(gt, 16011777198))
+-		flags |= GUC_WA_RCS_RESET_BEFORE_RC6;
+-
+ 	if (XE_WA(gt, 22012727170) || XE_WA(gt, 22012727685))
+ 		flags |= GUC_WA_CONTEXT_ISOLATION;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
+index ef79552e4f2f..d205d684d809 100644
+--- a/drivers/gpu/drm/xe/xe_mocs.c
++++ b/drivers/gpu/drm/xe/xe_mocs.c
+@@ -290,18 +290,6 @@ static const struct xe_mocs_entry dg2_mocs_desc[] = {
+ 	MOCS_ENTRY(3, 0, L3_3_WB | L3_LKUP(1)),
+ };
+ 
+-static const struct xe_mocs_entry dg2_mocs_desc_g10_ax[] = {
+-	/* Wa_14011441408: Set Go to Memory for MOCS#0 */
+-	MOCS_ENTRY(0, 0, L3_1_UC | L3_GLBGO(1) | L3_LKUP(1)),
+-	/* UC - Coherent; GO:Memory */
+-	MOCS_ENTRY(1, 0, L3_1_UC | L3_GLBGO(1) | L3_LKUP(1)),
+-	/* UC - Non-Coherent; GO:Memory */
+-	MOCS_ENTRY(2, 0, L3_1_UC | L3_GLBGO(1)),
+-
+-	/* WB - LC */
+-	MOCS_ENTRY(3, 0, L3_3_WB | L3_LKUP(1)),
+-};
+-
+ static const struct xe_mocs_entry pvc_mocs_desc[] = {
+ 	/* Error */
+ 	MOCS_ENTRY(0, 0, L3_3_WB),
+@@ -409,15 +397,8 @@ static unsigned int get_mocs_settings(struct xe_device *xe,
+ 		info->unused_entries_index = 1;
+ 		break;
+ 	case XE_DG2:
+-		if (xe->info.subplatform == XE_SUBPLATFORM_DG2_G10 &&
+-		    xe->info.step.graphics >= STEP_A0 &&
+-		    xe->info.step.graphics <= STEP_B0) {
+-			info->size = ARRAY_SIZE(dg2_mocs_desc_g10_ax);
+-			info->table = dg2_mocs_desc_g10_ax;
+-		} else {
+-			info->size = ARRAY_SIZE(dg2_mocs_desc);
+-			info->table = dg2_mocs_desc;
+-		}
++		info->size = ARRAY_SIZE(dg2_mocs_desc);
++		info->table = dg2_mocs_desc;
+ 		info->uc_index = 1;
+ 		info->n_entries = XELP_NUM_MOCS_ENTRIES;
+ 		info->unused_entries_index = 3;
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index 5f61dd87c586..7d6b86d602c8 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -125,13 +125,6 @@ static const struct xe_rtp_entry_sr gt_was[] = {
+ 
+ 	/* DG2 */
+ 
+-	{ XE_RTP_NAME("16010515920"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10),
+-		       GRAPHICS_STEP(A0, B0),
+-		       ENGINE_CLASS(VIDEO_DECODE)),
+-	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F18(0), ALNUNIT_CLKGATE_DIS)),
+-	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
+-	},
+ 	{ XE_RTP_NAME("22010523718"),
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10)),
+ 	  XE_RTP_ACTIONS(SET(UNSLICE_UNIT_LEVEL_CLKGATE, CG3DDISCFEG_CLKGATE_DIS))
+@@ -140,61 +133,6 @@ static const struct xe_rtp_entry_sr gt_was[] = {
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10)),
+ 	  XE_RTP_ACTIONS(SET(SUBSLICE_UNIT_LEVEL_CLKGATE, DSS_ROUTER_CLKGATE_DIS))
+ 	},
+-	{ XE_RTP_NAME("14012362059"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0)),
+-	  XE_RTP_ACTIONS(SET(XEHP_MERT_MOD_CTRL, FORCE_MISS_FTLB))
+-	},
+-	{ XE_RTP_NAME("14012362059"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), GRAPHICS_STEP(A0, B0)),
+-	  XE_RTP_ACTIONS(SET(XEHP_MERT_MOD_CTRL, FORCE_MISS_FTLB))
+-	},
+-	{ XE_RTP_NAME("14010948348"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0)),
+-	  XE_RTP_ACTIONS(SET(UNSLCGCTL9430, MSQDUNIT_CLKGATE_DIS))
+-	},
+-	{ XE_RTP_NAME("14011037102"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0)),
+-	  XE_RTP_ACTIONS(SET(UNSLCGCTL9444, LTCDD_CLKGATE_DIS))
+-	},
+-	{ XE_RTP_NAME("14011371254"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0)),
+-	  XE_RTP_ACTIONS(SET(XEHP_SLICE_UNIT_LEVEL_CLKGATE, NODEDSS_CLKGATE_DIS))
+-	},
+-	{ XE_RTP_NAME("14011431319"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0)),
+-	  XE_RTP_ACTIONS(SET(UNSLCGCTL9440,
+-			     GAMTLBOACS_CLKGATE_DIS |
+-			     GAMTLBVDBOX7_CLKGATE_DIS | GAMTLBVDBOX6_CLKGATE_DIS |
+-			     GAMTLBVDBOX5_CLKGATE_DIS | GAMTLBVDBOX4_CLKGATE_DIS |
+-			     GAMTLBVDBOX3_CLKGATE_DIS | GAMTLBVDBOX2_CLKGATE_DIS |
+-			     GAMTLBVDBOX1_CLKGATE_DIS | GAMTLBVDBOX0_CLKGATE_DIS |
+-			     GAMTLBKCR_CLKGATE_DIS | GAMTLBGUC_CLKGATE_DIS |
+-			     GAMTLBBLT_CLKGATE_DIS),
+-			 SET(UNSLCGCTL9444,
+-			     GAMTLBGFXA0_CLKGATE_DIS | GAMTLBGFXA1_CLKGATE_DIS |
+-			     GAMTLBCOMPA0_CLKGATE_DIS | GAMTLBCOMPA1_CLKGATE_DIS |
+-			     GAMTLBCOMPB0_CLKGATE_DIS | GAMTLBCOMPB1_CLKGATE_DIS |
+-			     GAMTLBCOMPC0_CLKGATE_DIS | GAMTLBCOMPC1_CLKGATE_DIS |
+-			     GAMTLBCOMPD0_CLKGATE_DIS | GAMTLBCOMPD1_CLKGATE_DIS |
+-			     GAMTLBMERT_CLKGATE_DIS |
+-			     GAMTLBVEBOX3_CLKGATE_DIS | GAMTLBVEBOX2_CLKGATE_DIS |
+-			     GAMTLBVEBOX1_CLKGATE_DIS | GAMTLBVEBOX0_CLKGATE_DIS))
+-	},
+-	{ XE_RTP_NAME("14010569222"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0)),
+-	  XE_RTP_ACTIONS(SET(UNSLICE_UNIT_LEVEL_CLKGATE, GAMEDIA_CLKGATE_DIS))
+-	},
+-	{ XE_RTP_NAME("14011028019"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0)),
+-	  XE_RTP_ACTIONS(SET(SSMCGCTL9530, RTFUNIT_CLKGATE_DIS))
+-	},
+-	{ XE_RTP_NAME("14010680813"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0)),
+-	  XE_RTP_ACTIONS(SET(XEHP_GAMSTLB_CTRL,
+-			     CONTROL_BLOCK_CLKGATE_DIS |
+-			     EGRESS_BLOCK_CLKGATE_DIS |
+-			     TAG_BLOCK_CLKGATE_DIS))
+-	},
+ 	{ XE_RTP_NAME("14014830051"),
+ 	  XE_RTP_RULES(PLATFORM(DG2)),
+ 	  XE_RTP_ACTIONS(CLR(SARB_CHICKEN1, COMP_CKN_IN))
+@@ -212,10 +150,6 @@ static const struct xe_rtp_entry_sr gt_was[] = {
+ 			     INVALIDATION_BROADCAST_MODE_DIS |
+ 			     GLOBAL_INVALIDATION_MODE))
+ 	},
+-	{ XE_RTP_NAME("14010648519"),
+-	  XE_RTP_RULES(PLATFORM(DG2)),
+-	  XE_RTP_ACTIONS(SET(XEHP_L3NODEARBCFG, XEHP_LNESPARE))
+-	},
+ 
+ 	/* PVC */
+ 
+@@ -376,13 +310,6 @@ static const struct xe_rtp_entry_sr engine_was[] = {
+ 	  XE_RTP_ACTIONS(SET(VFG_PREEMPTION_CHICKEN,
+ 			     POLYGON_TRIFAN_LINELOOP_DISABLE))
+ 	},
+-	{ XE_RTP_NAME("22012826095, 22013059131"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(B0, C0),
+-		       FUNC(xe_rtp_match_first_render_or_compute)),
+-	  XE_RTP_ACTIONS(FIELD_SET(LSC_CHICKEN_BIT_0_UDW,
+-				   MAXREQS_PER_BANK,
+-				   REG_FIELD_PREP(MAXREQS_PER_BANK, 2)))
+-	},
+ 	{ XE_RTP_NAME("22012826095, 22013059131"),
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G11),
+ 		       FUNC(xe_rtp_match_first_render_or_compute)),
+@@ -390,28 +317,11 @@ static const struct xe_rtp_entry_sr engine_was[] = {
+ 				   MAXREQS_PER_BANK,
+ 				   REG_FIELD_PREP(MAXREQS_PER_BANK, 2)))
+ 	},
+-	{ XE_RTP_NAME("22013059131"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(B0, C0),
+-		       FUNC(xe_rtp_match_first_render_or_compute)),
+-	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0, FORCE_1_SUB_MESSAGE_PER_FRAGMENT))
+-	},
+ 	{ XE_RTP_NAME("22013059131"),
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G11),
+ 		       FUNC(xe_rtp_match_first_render_or_compute)),
+ 	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0, FORCE_1_SUB_MESSAGE_PER_FRAGMENT))
+ 	},
+-	{ XE_RTP_NAME("14010918519"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0),
+-		       FUNC(xe_rtp_match_first_render_or_compute)),
+-	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0_UDW,
+-			     FORCE_SLM_FENCE_SCOPE_TO_TILE |
+-			     FORCE_UGM_FENCE_SCOPE_TO_TILE,
+-			     /*
+-			      * Ignore read back as it always returns 0 in these
+-			      * steps
+-			      */
+-			     .read_mask = 0))
+-	},
+ 	{ XE_RTP_NAME("14015227452"),
+ 	  XE_RTP_RULES(PLATFORM(DG2),
+ 		       FUNC(xe_rtp_match_first_render_or_compute)),
+@@ -428,21 +338,11 @@ static const struct xe_rtp_entry_sr engine_was[] = {
+ 		       FUNC(xe_rtp_match_first_render_or_compute)),
+ 	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0_UDW, UGM_FRAGMENT_THRESHOLD_TO_3))
+ 	},
+-	{ XE_RTP_NAME("16011620976, 22015475538"),
++	{ XE_RTP_NAME("22015475538"),
+ 	  XE_RTP_RULES(PLATFORM(DG2),
+ 		       FUNC(xe_rtp_match_first_render_or_compute)),
+ 	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0_UDW, DIS_CHAIN_2XSIMD8))
+ 	},
+-	{ XE_RTP_NAME("22012654132"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, C0),
+-		       FUNC(xe_rtp_match_first_render_or_compute)),
+-	  XE_RTP_ACTIONS(SET(CACHE_MODE_SS, ENABLE_PREFETCH_INTO_IC,
+-			     /*
+-			      * Register can't be read back for verification on
+-			      * DG2 due to Wa_14012342262
+-			      */
+-			     .read_mask = 0))
+-	},
+ 	{ XE_RTP_NAME("22012654132"),
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G11),
+ 		       FUNC(xe_rtp_match_first_render_or_compute)),
+@@ -461,68 +361,11 @@ static const struct xe_rtp_entry_sr engine_was[] = {
+ 	  XE_RTP_RULES(PLATFORM(DG2), ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(ROW_CHICKEN2, DISABLE_READ_SUPPRESSION))
+ 	},
+-	{ XE_RTP_NAME("14013392000"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), GRAPHICS_STEP(A0, B0),
+-		       ENGINE_CLASS(RENDER)),
+-	  XE_RTP_ACTIONS(SET(ROW_CHICKEN2, ENABLE_LARGE_GRF_MODE))
+-	},
+-	{ XE_RTP_NAME("14012419201"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0),
+-		       ENGINE_CLASS(RENDER)),
+-	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4,
+-			     DISABLE_HDR_PAST_PAYLOAD_HOLD_FIX))
+-	},
+-	{ XE_RTP_NAME("14012419201"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), GRAPHICS_STEP(A0, B0),
+-		       ENGINE_CLASS(RENDER)),
+-	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4,
+-			     DISABLE_HDR_PAST_PAYLOAD_HOLD_FIX))
+-	},
+-	{ XE_RTP_NAME("1308578152"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(B0, C0),
+-		       ENGINE_CLASS(RENDER),
+-		       FUNC(xe_rtp_match_first_gslice_fused_off)),
+-	  XE_RTP_ACTIONS(CLR(CS_DEBUG_MODE1(RENDER_RING_BASE),
+-			     REPLAY_MODE_GRANULARITY))
+-	},
+ 	{ XE_RTP_NAME("22010960976, 14013347512"),
+ 	  XE_RTP_RULES(PLATFORM(DG2), ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(CLR(XEHP_HDC_CHICKEN0,
+ 			     LSC_L1_FLUSH_CTL_3D_DATAPORT_FLUSH_EVENTS_MASK))
+ 	},
+-	{ XE_RTP_NAME("1608949956, 14010198302"),
+-	  XE_RTP_RULES(PLATFORM(DG2), ENGINE_CLASS(RENDER)),
+-	  XE_RTP_ACTIONS(SET(ROW_CHICKEN,
+-			     MDQ_ARBITRATION_MODE | UGM_BACKUP_MODE))
+-	},
+-	{ XE_RTP_NAME("22010430635"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0),
+-		       ENGINE_CLASS(RENDER)),
+-	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4,
+-			     DISABLE_GRF_CLEAR))
+-	},
+-	{ XE_RTP_NAME("14013202645"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(B0, C0),
+-		       ENGINE_CLASS(RENDER)),
+-	  XE_RTP_ACTIONS(SET(RT_CTRL, DIS_NULL_QUERY))
+-	},
+-	{ XE_RTP_NAME("14013202645"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), GRAPHICS_STEP(A0, B0),
+-		       ENGINE_CLASS(RENDER)),
+-	  XE_RTP_ACTIONS(SET(RT_CTRL, DIS_NULL_QUERY))
+-	},
+-	{ XE_RTP_NAME("22012532006"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, C0),
+-		       ENGINE_CLASS(RENDER)),
+-	  XE_RTP_ACTIONS(SET(HALF_SLICE_CHICKEN7,
+-			     DG2_DISABLE_ROUND_ENABLE_ALLOW_FOR_SSLA))
+-	},
+-	{ XE_RTP_NAME("22012532006"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), GRAPHICS_STEP(A0, B0),
+-		       ENGINE_CLASS(RENDER)),
+-	  XE_RTP_ACTIONS(SET(HALF_SLICE_CHICKEN7,
+-			     DG2_DISABLE_ROUND_ENABLE_ALLOW_FOR_SSLA))
+-	},
+ 	{ XE_RTP_NAME("14015150844"),
+ 	  XE_RTP_RULES(PLATFORM(DG2), FUNC(xe_rtp_match_first_render_or_compute)),
+ 	  XE_RTP_ACTIONS(SET(XEHP_HDC_CHICKEN0, DIS_ATOMIC_CHAINING_TYPED_WRITES,
+@@ -652,21 +495,6 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
+ 
+ 	/* DG2 */
+ 
+-	{ XE_RTP_NAME("16011186671"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), GRAPHICS_STEP(A0, B0)),
+-	  XE_RTP_ACTIONS(CLR(VFLSKPD, DIS_MULT_MISS_RD_SQUASH),
+-			 SET(VFLSKPD, DIS_OVER_FETCH_CACHE))
+-	},
+-	{ XE_RTP_NAME("14010469329"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0)),
+-	  XE_RTP_ACTIONS(SET(XEHP_COMMON_SLICE_CHICKEN3,
+-			     XEHP_DUAL_SIMD8_SEQ_MERGE_DISABLE))
+-	},
+-	{ XE_RTP_NAME("14010698770, 22010613112, 22010465075"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0)),
+-	  XE_RTP_ACTIONS(SET(XEHP_COMMON_SLICE_CHICKEN3,
+-			     DISABLE_CPS_AWARE_COLOR_PIPE))
+-	},
+ 	{ XE_RTP_NAME("16013271637"),
+ 	  XE_RTP_RULES(PLATFORM(DG2)),
+ 	  XE_RTP_ACTIONS(SET(XEHP_SLICE_COMMON_ECO_CHICKEN1,
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 727bdc429212..e73b84e01ea1 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -1,13 +1,8 @@
+ 22012773006	GRAPHICS_VERSION_RANGE(1200, 1250)
+-16011759253	SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0)
+ 14014475959	GRAPHICS_VERSION_RANGE(1270, 1271), GRAPHICS_STEP(A0, B0)
+ 		PLATFORM(DG2)
+ 22011391025	PLATFORM(DG2)
+-14012197797	PLATFORM(DG2), GRAPHICS_STEP(A0, B0)
+-16011777198	SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, C0)
+-		SUBPLATFORM(DG2, G11), GRAPHICS_STEP(A0, B0)
+-22012727170	SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, C0)
+-		SUBPLATFORM(DG2, G11)
++22012727170	SUBPLATFORM(DG2, G11)
+ 22012727685	SUBPLATFORM(DG2, G11)
+ 16015675438	PLATFORM(PVC)
+ 		SUBPLATFORM(DG2, G10)
+-- 
+2.43.0
 
-CI Bug Log - changes from xe-581-bfe165d757b20c5983930ecd2826d91d1758a28a_BAT -> xe-pw-127890v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (3 -> 3)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-127890v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#480]) +2 other tests fail
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-581-bfe165d757b20c5983930ecd2826d91d1758a28a/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127890v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  * igt@xe_prime_self_import@basic-with_fd_dup:
-    - bat-atsm-2:         [PASS][3] -> [FAIL][4] ([Intel XE#999])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-581-bfe165d757b20c5983930ecd2826d91d1758a28a/bat-atsm-2/igt@xe_prime_self_import@basic-with_fd_dup.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127890v1/bat-atsm-2/igt@xe_prime_self_import@basic-with_fd_dup.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3:
-    - bat-dg2-oem2:       [FAIL][5] ([Intel XE#480]) -> [PASS][6] +2 other tests pass
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-581-bfe165d757b20c5983930ecd2826d91d1758a28a/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127890v1/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3.html
-
-  * igt@xe_create@create-execqueues-noleak:
-    - bat-adlp-7:         [FAIL][7] ([Intel XE#524]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-581-bfe165d757b20c5983930ecd2826d91d1758a28a/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127890v1/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html
-    - bat-atsm-2:         [FAIL][9] ([Intel XE#524]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-581-bfe165d757b20c5983930ecd2826d91d1758a28a/bat-atsm-2/igt@xe_create@create-execqueues-noleak.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127890v1/bat-atsm-2/igt@xe_create@create-execqueues-noleak.html
-
-  
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
-  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
-  [Intel XE#999]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/999
-
-
-Build changes
--------------
-
-  * IGT: IGT_7643 -> IGT_7644
-  * Linux: xe-581-bfe165d757b20c5983930ecd2826d91d1758a28a -> xe-pw-127890v1
-
-  IGT_7643: ced22f8bf4263ff395dc852c86b682e62a7a1c1b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_7644: 2a2b716161007f885855d6dfcb90b526183e624e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-581-bfe165d757b20c5983930ecd2826d91d1758a28a: bfe165d757b20c5983930ecd2826d91d1758a28a
-  xe-pw-127890v1: 127890v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127890v1/index.html
-
---===============2729429840676072233==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/display: Fix dummy __i915_inject_probe_error()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/127890/">https://patchwork.freedesktop.org/series/127890/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127890v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127890v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-581-bfe165d757b20c5983930ecd2826d91d1758a28a_BAT -&gt; xe-pw-127890v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (3 -&gt; 3)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-127890v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-581-bfe165d757b20c5983930ecd2826d91d1758a28a/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127890v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) +2 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_prime_self_import@basic-with_fd_dup:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-581-bfe165d757b20c5983930ecd2826d91d1758a28a/bat-atsm-2/igt@xe_prime_self_import@basic-with_fd_dup.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127890v1/bat-atsm-2/igt@xe_prime_self_import@basic-with_fd_dup.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/999">Intel XE#999</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-581-bfe165d757b20c5983930ecd2826d91d1758a28a/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127890v1/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3.html">PASS</a> +2 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_create@create-execqueues-noleak:</p>
-<ul>
-<li>
-<p>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-581-bfe165d757b20c5983930ecd2826d91d1758a28a/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/524">Intel XE#524</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127890v1/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html">PASS</a></p>
-</li>
-<li>
-<p>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-581-bfe165d757b20c5983930ecd2826d91d1758a28a/bat-atsm-2/igt@xe_create@create-execqueues-noleak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/524">Intel XE#524</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127890v1/bat-atsm-2/igt@xe_create@create-execqueues-noleak.html">PASS</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7643 -&gt; IGT_7644</li>
-<li>Linux: xe-581-bfe165d757b20c5983930ecd2826d91d1758a28a -&gt; xe-pw-127890v1</li>
-</ul>
-<p>IGT_7643: ced22f8bf4263ff395dc852c86b682e62a7a1c1b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_7644: 2a2b716161007f885855d6dfcb90b526183e624e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-581-bfe165d757b20c5983930ecd2826d91d1758a28a: bfe165d757b20c5983930ecd2826d91d1758a28a<br />
-  xe-pw-127890v1: 127890v1</p>
-
-</body>
-</html>
-
---===============2729429840676072233==--
