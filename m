@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DA31C46CC5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B84CC41535
 	for <intel-xe@archiver.kernel.org>; Fri, 15 Dec 2023 15:46:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEB4910EA5F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC3EF10EA5E;
 	Fri, 15 Dec 2023 15:46:28 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FC4D10EA4C
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Dec 2023 15:46:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DA0510EA58
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Dec 2023 15:46:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702655180; x=1734191180;
+ t=1702655181; x=1734191181;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=IRVmD4/SkIA+WuI9CfcQHd0Z6lyUo7OtGQofIKuihO4=;
- b=jdGgnKFTDDGYw1iVC3Vvjud7BESJyzvZahoUi40k5iBJgNIJbypXcdAy
- oduhfdJ5y3N3bfeHoVeEAXIUURN1J//+GVYz9iFyEwyIFsoyy0SbrzxlK
- GZOpAUJSs8j+cUfJYZTH7ax9eeMuqwT2dZsrKFG+zKcFoYIPcR/876rws
- kFvdHFI3z9RhGwes/kTzwkFXP4rJkmdgpjFzy4dNNeRHOhDbUKWewH3Nr
- tPUZ1thzCIw7on2XjFPlOqKXhqkDjky8S00T/B+1mzN8c2Q9H/bUv0UKQ
- Gdqj8yMXX3Df/CPLHc++Ah2hmzAmiFMXkMX8TOR2DgIicKAg338PKC1iA Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="2141862"
+ bh=GiaVSNiBwe7c5/fDMAf6rNe810BQR4W+rE+Un+rTmyo=;
+ b=Nw9SQfj/iG/XY4ruMysLMaoFAkTfPTsFtWWVl6kT+ZV1x7NFfbL+VVrZ
+ uvJPY6GvOPY6UqZZ2WN7O0XKiSuETAHY49yC0TJpvw4/7IbkYlkIeMx+q
+ Vbnli1d2UEoZJSO0Fk2Hvv+zKk/1/ImKwpkvwk09bzb+v/OOuP2yqmdQf
+ LQouZGFaFWMhaJb+MQ8WT/Zae23OMXFRWefW0ps7DYaRDBTflcFIZfe7w
+ O3Ek3OkGIn4wnW/EFCg7gp3qznpHDxGqfFEFXwaARq3xPzIoazZp4QcV8
+ t+kz1DnAbcBxMykyMsqUaelF2JNaULPnOg9OZbqz6173AzkqWANaRwJ15 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="2141863"
 X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; 
-   d="scan'208";a="2141862"
+   d="scan'208";a="2141863"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2023 07:46:20 -0800
+ 15 Dec 2023 07:46:21 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; d="scan'208";a="16324496"
+X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; d="scan'208";a="16324503"
 Received: from sdiolatz-mobl.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.252.48.85])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2023 07:46:20 -0800
+ 15 Dec 2023 07:46:21 -0800
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v1 11/21] drm/xe/uapi: Document drm_xe_query_config keys
-Date: Fri, 15 Dec 2023 15:45:43 +0000
-Message-Id: <20231215154553.7-12-francois.dugast@intel.com>
+Subject: [PATCH v1 12/21] drm/xe/uapi: Document DRM_XE_DEVICE_QUERY_HWCONFIG
+Date: Fri, 15 Dec 2023 15:45:44 +0000
+Message-Id: <20231215154553.7-13-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231215154553.7-1-francois.dugast@intel.com>
 References: <20231215154553.7-1-francois.dugast@intel.com>
@@ -62,52 +62,32 @@ Cc: Francois Dugast <francois.dugast@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Provide a description of the keys used the struct
-drm_xe_query_config info array.
+Add a documentation on the content and format of when using query type
+DRM_XE_DEVICE_QUERY_HWCONFIG. The list of keys can be found in IGT
+under lib/intel_hwconfig_types.h.
 
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/637
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- include/uapi/drm/xe_drm.h | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+ include/uapi/drm/xe_drm.h | 5 +++++
+ 1 file changed, 5 insertions(+)
 
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index d759e04e00ee..9c43bc258f10 100644
+index 9c43bc258f10..70b42466a811 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -350,11 +350,31 @@ struct drm_xe_query_config {
- 	/** @pad: MBZ */
- 	__u32 pad;
- 
+@@ -537,6 +537,11 @@ struct drm_xe_device_query {
+ #define DRM_XE_DEVICE_QUERY_MEM_REGIONS		1
+ #define DRM_XE_DEVICE_QUERY_CONFIG		2
+ #define DRM_XE_DEVICE_QUERY_GT_LIST		3
 +	/*
-+	 * Device ID (lower 16 bits) and the device revision (next
-+	 * 8 bits)
++	 * Query type to retrieve the hardware configuration of the device
++	 * such as information on slices, memory, caches, and so on. It is
++	 * provided as a table of attributes (key / value).
 +	 */
- #define DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID	0
-+	/*
-+	 * Flags describing the device configuration, see list below
-+	 */
- #define DRM_XE_QUERY_CONFIG_FLAGS			1
-+	/*
-+	 * Flag is set if the device has usable VRAM
-+	 */
- 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM	(1 << 0)
-+	/*
-+	 * Minimal memory alignment required by this device,
-+	 * typically SZ_4K or SZ_64K
-+	 */
- #define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
-+	/*
-+	 * Maximum bits of a virtual address
-+	 */
- #define DRM_XE_QUERY_CONFIG_VA_BITS			3
-+	/*
-+	 * Value of the highest available exec queue priority
-+	 */
- #define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
- 	/** @info: array of elements containing the config info */
- 	__u64 info[];
+ #define DRM_XE_DEVICE_QUERY_HWCONFIG		4
+ #define DRM_XE_DEVICE_QUERY_GT_TOPOLOGY		5
+ #define DRM_XE_DEVICE_QUERY_ENGINE_CYCLES	6
 -- 
 2.34.1
 
