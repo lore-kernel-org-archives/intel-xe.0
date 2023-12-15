@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16275C46CA2
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Dec 2023 15:46:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6FB1C46CC5
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Dec 2023 15:46:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CED7F10EA4C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B240C10EA53;
 	Fri, 15 Dec 2023 15:46:20 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9781810EA40
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Dec 2023 15:46:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D16B410EA37
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Dec 2023 15:46:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702655173; x=1734191173;
+ t=1702655169; x=1734191169;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=IyxOI0NEHq5TV2UVwrHEQZRUqMXP3mWHLWR2/VIVWsQ=;
- b=QbZD5sWr3TkBMRl5f9CpxbLYkcl78PPVC05l3a7MMO09DNXt2I8VSmr7
- v04u6fSlsHQ6GK31QfbWswO4+qYPSSnEFK8KSEjTLptjZvA8anS9wOE69
- DKiepVZaj85/UoKUZFKsMaxJTZKXGkwU4FT9VP1+2QBBzklFq/ceD14Oh
- 8NVmdrM028Kd8LCCjGe6XeM+QX0r/sQV+/LxJPq/1Epg2QHGPCPh5cJ1x
- /RbTr8UoVEaNuEv5zT5dmQeMTSovf9A8NbBVz164rAw52yvGI253T+c/7
- TES9iPZDcfOSukTIBVd2y9jQ2TeetaObgiZMNjBtP6fzJSnVcW+ac+sX6 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="2141854"
+ bh=nuRGq1AbfHLgHLfuoejpR61lSY0kYG2faSgRKEgUblc=;
+ b=TD98yVWwVgzdit/fn4ffKiVgpJOpYO0LIlvKF+LDenoC/2m5l7HZ92S2
+ 9KJRD3pK+eDKF3b4PEbRkHDa6tNRSQuMXRQbp36wXFpSEXqbPTZwvRwpV
+ E+bWrNGksa4uwKkhSOTQrAvtwtCBuevdQk7ZcGpDp7VMWq8rKs29LbLhO
+ sim2kkwcOn6C83Cb0zMLG8I+m2X617fq2V09H5m8TKAbi+oe3GyxVHYRd
+ hMTNH1hIg2JDCAoIyAoZVNYbgWJiTY5S2sXrSsnvpxksnwMQwCK+FTR/J
+ vFv47+7x74igfcnPAzUl2aOj5W+hU2aiXdcptvFp7GLm0M92zfTbXduf8 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="2141842"
 X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; 
-   d="scan'208";a="2141854"
+   d="scan'208";a="2141842"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2023 07:46:13 -0800
+ 15 Dec 2023 07:46:05 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; d="scan'208";a="16324442"
+X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; d="scan'208";a="16324376"
 Received: from sdiolatz-mobl.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.252.48.85])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2023 07:46:12 -0800
+ 15 Dec 2023 07:46:04 -0800
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v1 06/21] drm/xe/uapi: Ensure every uapi struct has drm_xe
- prefix
-Date: Fri, 15 Dec 2023 15:45:38 +0000
-Message-Id: <20231215154553.7-7-francois.dugast@intel.com>
+Subject: [PATCH v1 01/21] drm/xe/uapi: add exec_queue_id member to
+ drm_xe_wait_user_fence structure
+Date: Fri, 15 Dec 2023 15:45:33 +0000
+Message-Id: <20231215154553.7-2-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231215154553.7-1-francois.dugast@intel.com>
 References: <20231215154553.7-1-francois.dugast@intel.com>
@@ -59,105 +59,171 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Cc: Francois Dugast <francois.dugast@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+From: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
 
-To ensure consistency and avoid possible later conflicts,
-let's add drm_xe prefix to xe_user_extension struct.
+remove the num_engines/instances members from drm_xe_wait_user_fence
+structure and add a exec_queue_id member
 
-Cc: Francois Dugast <francois.dugast@intel.com>
-Suggested-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Right now this is only checking if the engine list is sane and nothing
+else. In the end every operation with this IOCTL is a soft check.
+So, let's formalize that and only use this IOCTL to wait on the fence.
+
+exec_queue_id member will help to user space to get proper error code
+from kernel while in exec_queue reset
+
+Signed-off-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+Acked-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Francois Dugast <francois.dugast@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c |  2 +-
- include/uapi/drm/xe_drm.h          | 18 +++++++++---------
- 2 files changed, 10 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/xe/xe_wait_user_fence.c | 65 +------------------------
+ include/uapi/drm/xe_drm.h               | 17 ++-----
+ 2 files changed, 7 insertions(+), 75 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index eeb9605dd45f..aa478c66edbb 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -453,7 +453,7 @@ static int exec_queue_user_extensions(struct xe_device *xe, struct xe_exec_queue
- 				      u64 extensions, int ext_number, bool create)
- {
- 	u64 __user *address = u64_to_user_ptr(extensions);
--	struct xe_user_extension ext;
-+	struct drm_xe_user_extension ext;
- 	int err;
- 	u32 idx;
+diff --git a/drivers/gpu/drm/xe/xe_wait_user_fence.c b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+index 4d5c2555ce41..59af65b6ed89 100644
+--- a/drivers/gpu/drm/xe/xe_wait_user_fence.c
++++ b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+@@ -50,37 +50,7 @@ static int do_compare(u64 addr, u64 value, u64 mask, u16 op)
+ 	return passed ? 0 : 1;
+ }
  
+-static const enum xe_engine_class user_to_xe_engine_class[] = {
+-	[DRM_XE_ENGINE_CLASS_RENDER] = XE_ENGINE_CLASS_RENDER,
+-	[DRM_XE_ENGINE_CLASS_COPY] = XE_ENGINE_CLASS_COPY,
+-	[DRM_XE_ENGINE_CLASS_VIDEO_DECODE] = XE_ENGINE_CLASS_VIDEO_DECODE,
+-	[DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE] = XE_ENGINE_CLASS_VIDEO_ENHANCE,
+-	[DRM_XE_ENGINE_CLASS_COMPUTE] = XE_ENGINE_CLASS_COMPUTE,
+-};
+-
+-static int check_hw_engines(struct xe_device *xe,
+-			    struct drm_xe_engine_class_instance *eci,
+-			    int num_engines)
+-{
+-	int i;
+-
+-	for (i = 0; i < num_engines; ++i) {
+-		enum xe_engine_class user_class =
+-			user_to_xe_engine_class[eci[i].engine_class];
+-
+-		if (eci[i].gt_id >= xe->info.tile_count)
+-			return -EINVAL;
+-
+-		if (!xe_gt_hw_engine(xe_device_get_gt(xe, eci[i].gt_id),
+-				     user_class, eci[i].engine_instance, true))
+-			return -EINVAL;
+-	}
+-
+-	return 0;
+-}
+-
+-#define VALID_FLAGS	(DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP | \
+-			 DRM_XE_UFENCE_WAIT_FLAG_ABSTIME)
++#define VALID_FLAGS	DRM_XE_UFENCE_WAIT_FLAG_ABSTIME
+ #define MAX_OP		DRM_XE_UFENCE_WAIT_OP_LTE
+ 
+ static long to_jiffies_timeout(struct xe_device *xe,
+@@ -132,16 +102,13 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
+ 	struct xe_device *xe = to_xe_device(dev);
+ 	DEFINE_WAIT_FUNC(w_wait, woken_wake_function);
+ 	struct drm_xe_wait_user_fence *args = data;
+-	struct drm_xe_engine_class_instance eci[XE_HW_ENGINE_MAX_INSTANCE];
+-	struct drm_xe_engine_class_instance __user *user_eci =
+-		u64_to_user_ptr(args->instances);
+ 	u64 addr = args->addr;
+ 	int err;
+-	bool no_engines = args->flags & DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP;
+ 	long timeout;
+ 	ktime_t start;
+ 
+ 	if (XE_IOCTL_DBG(xe, args->extensions) || XE_IOCTL_DBG(xe, args->pad) ||
++	    XE_IOCTL_DBG(xe, args->pad2) ||
+ 	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+ 		return -EINVAL;
+ 
+@@ -151,41 +118,13 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
+ 	if (XE_IOCTL_DBG(xe, args->op > MAX_OP))
+ 		return -EINVAL;
+ 
+-	if (XE_IOCTL_DBG(xe, no_engines &&
+-			 (args->num_engines || args->instances)))
+-		return -EINVAL;
+-
+-	if (XE_IOCTL_DBG(xe, !no_engines && !args->num_engines))
+-		return -EINVAL;
+-
+ 	if (XE_IOCTL_DBG(xe, addr & 0x7))
+ 		return -EINVAL;
+ 
+-	if (XE_IOCTL_DBG(xe, args->num_engines > XE_HW_ENGINE_MAX_INSTANCE))
+-		return -EINVAL;
+-
+-	if (!no_engines) {
+-		err = copy_from_user(eci, user_eci,
+-				     sizeof(struct drm_xe_engine_class_instance) *
+-			     args->num_engines);
+-		if (XE_IOCTL_DBG(xe, err))
+-			return -EFAULT;
+-
+-		if (XE_IOCTL_DBG(xe, check_hw_engines(xe, eci,
+-						      args->num_engines)))
+-			return -EINVAL;
+-	}
+-
+ 	timeout = to_jiffies_timeout(xe, args);
+ 
+ 	start = ktime_get();
+ 
+-	/*
+-	 * FIXME: Very simple implementation at the moment, single wait queue
+-	 * for everything. Could be optimized to have a wait queue for every
+-	 * hardware engine. Open coding as 'do_compare' can sleep which doesn't
+-	 * work with the wait_event_* macros.
+-	 */
+ 	add_wait_queue(&xe->ufence_wq, &w_wait);
+ 	for (;;) {
+ 		err = do_compare(addr, args->value, args->mask, args->op);
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index e1e8fb1846ea..87ff6eaa788e 100644
+index 0895e4d2a981..5a8e3b326347 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -27,7 +27,7 @@ extern "C" {
- #define DRM_XE_RESET_FAILED_UEVENT "DEVICE_STATUS"
+@@ -1031,8 +1031,7 @@ struct drm_xe_wait_user_fence {
+ 	/** @op: wait operation (type of comparison) */
+ 	__u16 op;
  
- /**
-- * struct xe_user_extension - Base class for defining a chain of extensions
-+ * struct drm_xe_user_extension - Base class for defining a chain of extensions
-  *
-  * Many interfaces need to grow over time. In most cases we can simply
-  * extend the struct and have userspace pass in more data. Another option,
-@@ -45,29 +45,29 @@ extern "C" {
-  *
-  * .. code-block:: C
-  *
-- *	struct xe_user_extension ext3 {
-+ *	struct drm_xe_user_extension ext3 {
-  *		.next_extension = 0, // end
-  *		.name = ...,
-  *	};
-- *	struct xe_user_extension ext2 {
-+ *	struct drm_xe_user_extension ext2 {
-  *		.next_extension = (uintptr_t)&ext3,
-  *		.name = ...,
-  *	};
-- *	struct xe_user_extension ext1 {
-+ *	struct drm_xe_user_extension ext1 {
-  *		.next_extension = (uintptr_t)&ext2,
-  *		.name = ...,
-  *	};
-  *
-- * Typically the struct xe_user_extension would be embedded in some uAPI
-+ * Typically the struct drm_xe_user_extension would be embedded in some uAPI
-  * struct, and in this case we would feed it the head of the chain(i.e ext1),
-  * which would then apply all of the above extensions.
-  *
-  */
--struct xe_user_extension {
-+struct drm_xe_user_extension {
- 	/**
- 	 * @next_extension:
- 	 *
--	 * Pointer to the next struct xe_user_extension, or zero if the end.
-+	 * Pointer to the next struct drm_xe_user_extension, or zero if the end.
+-#define DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP	(1 << 0)	/* e.g. Wait on VM bind */
+-#define DRM_XE_UFENCE_WAIT_FLAG_ABSTIME	(1 << 1)
++#define DRM_XE_UFENCE_WAIT_FLAG_ABSTIME	(1 << 0)
+ 	/** @flags: wait flags */
+ 	__u16 flags;
+ 
+@@ -1065,17 +1064,11 @@ struct drm_xe_wait_user_fence {
  	 */
- 	__u64 next_extension;
+ 	__s64 timeout;
  
-@@ -78,7 +78,7 @@ struct xe_user_extension {
- 	 *
- 	 * Also note that the name space for this is not global for the whole
- 	 * driver, but rather its scope/meaning is limited to the specific piece
--	 * of uAPI which has embedded the struct xe_user_extension.
-+	 * of uAPI which has embedded the struct drm_xe_user_extension.
- 	 */
- 	__u32 name;
+-	/**
+-	 * @num_engines: number of engine instances to wait on, must be zero
+-	 * when DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP set
+-	 */
+-	__u64 num_engines;
++	/** @exec_queue_id: exec_queue_id returned from xe_exec_queue_create_ioctl */
++	__u32 exec_queue_id;
  
-@@ -625,7 +625,7 @@ struct drm_xe_gem_mmap_offset {
- /** struct drm_xe_ext_set_property - XE set property extension */
- struct drm_xe_ext_set_property {
- 	/** @base: base user extension */
--	struct xe_user_extension base;
-+	struct drm_xe_user_extension base;
+-	/**
+-	 * @instances: user pointer to array of drm_xe_engine_class_instance to
+-	 * wait on, must be NULL when DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP set
+-	 */
+-	__u64 instances;
++	/** @pad2: MBZ */
++	__u32 pad2;
  
- 	/** @property: property to set */
- 	__u32 property;
+ 	/** @reserved: Reserved */
+ 	__u64 reserved[2];
 -- 
 2.34.1
 
