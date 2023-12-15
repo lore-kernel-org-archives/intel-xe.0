@@ -4,50 +4,37 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAA0DC4167B
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Dec 2023 10:13:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82CB3C46CA2
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Dec 2023 10:31:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B0E010E0D2;
-	Fri, 15 Dec 2023 10:13:01 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E72D010E0D2
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Dec 2023 10:12:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702635178; x=1734171178;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=CVhlRBwVujD5KEwhtT6R18juX2eqQHTg60puG9hrjMg=;
- b=iNagX9zDD8AiDrBTc8dzSCTS4UDUPOy9aXuJMYRZ6+0QVxhRjx4zWDhf
- VTK3UdA/ZGORI40E58AgeaTM3zO8ByAMjNf5WOY5woUjU/CpYKmlN1qD0
- 4r5gDRG2sLX6/pbsS3G1F/16+90R92IPBRmAgxwyuF+5dizde2bHP6DJc
- Av2aYprth32EBPxrGrWhT6FbwURP7A2MnNGikrPrVXQaiz9lOB7neTTge
- dMJDrfBFopvh0sT3PCdJdv4pL91nKc712neI8/sdeyXiegiZJjAS13E0o
- T7ZoL9dJrC7HK5g+2IT3MAiVROswraNERsRygHBT0z9y/gzL11dpKFqPP Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="394998486"
-X-IronPort-AV: E=Sophos;i="6.04,278,1695711600"; d="scan'208";a="394998486"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2023 02:12:58 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="1021889677"
-X-IronPort-AV: E=Sophos;i="6.04,278,1695711600"; d="scan'208";a="1021889677"
-Received: from aravind-dev.iind.intel.com (HELO [10.145.162.146])
- ([10.145.162.146])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2023 02:12:56 -0800
-Message-ID: <c35a24b1-dee6-4e73-9d1b-970e43e9a700@linux.intel.com>
-Date: Fri, 15 Dec 2023 15:45:45 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/uapi: Remove reset uevent for now
-Content-Language: en-US
-To: Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org
-References: <20231215094329.7-1-francois.dugast@intel.com>
-From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-In-Reply-To: <20231215094329.7-1-francois.dugast@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4784310E9A9;
+	Fri, 15 Dec 2023 10:31:53 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7207210E320;
+ Fri, 15 Dec 2023 10:31:51 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id CD56562521;
+ Fri, 15 Dec 2023 10:31:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F301EC433C8;
+ Fri, 15 Dec 2023 10:31:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1702636310;
+ bh=vFbU2tFE37clXv2Xl5gB2YnceDfRmJ14hCYQib0idGw=;
+ h=Date:From:To:Subject:In-Reply-To:References:Cc:From;
+ b=IGrUXIxJovTU0LyzSnY5KAkgmcpMBYQxuXeISlBsJDNYrp/zEdCE8y0PAQGnzAh2B
+ En0ApJAbZdjS35gQZoKuH7UjBW+C9V8hcUyhYvOZBQypuTrN7cUVDqjjKWs8gy5obs
+ KIDNzTxVAe0Y3640AUwN9bPr6cDVHWhQg1eQ9iRp1Jw2uiNnJ0aS+0NPL+TOk2xKlX
+ SqinmlYo1FLc2ZW8YWIf5m9VBtUlKDSZADH4n5VDYmQ8v9L/1s48PRagAOKy3T1Nbh
+ PGRfz/o9QDv0lPInXzk6qhy1JqXpI3Op3ddgnADRRe3ePutHDzuwt3dz1CE4Ua6hNf
+ Liogtyiqbqbzg==
+Message-ID: <bfbffc035ccc1da6c224aebea128764e@kernel.org>
+Date: Fri, 15 Dec 2023 10:31:47 +0000
+From: "Maxime Ripard" <mripard@kernel.org>
+To: =?utf-8?b?TWljaGHFgiBXaW5pYXJza2k=?= <michal.winiarski@intel.com>
+Subject: Re: [PATCH v3 1/3] drm/managed: Add drmm_release_action
+In-Reply-To: <20231211220939.215024-2-michal.winiarski@intel.com>
+References: <20231211220939.215024-2-michal.winiarski@intel.com>
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,100 +46,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>,
+ =?utf-8?b?TWHDrXJhIENhbmFs?= <mcanal@igalia.com>, Javier
+ Martinez Canillas <javierm@redhat.com>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>, Daniel
+ Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@gmail.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Mon, 11 Dec 2023 23:09:37 +0100, Micha=C5=82 Winiarski wrote:
+> Similar to devres equivalent, it allows to call the "release" action
+> directly and remove the resource from the managed resources list.
+>=20
+> Signed-off-by: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
 
-On 12/15/23 15:13, Francois Dugast wrote:
-> From: Rodrigo Vivi <rodrigo.vivi@intel.com>
->
-> This kernel uevent is getting removed for now. It will come
-> back later with a better future proof name.
->
-> v2: Rebase (Francois Dugast)
-as mentioned in IGT series we need to drop this commit as well
+Reviewed-by: Maxime Ripard <mripard@kernel.org>
 
-14a663d83da2 drm/xe: Introduce fault injection for gt reset.
-
-Thanks,
-Aravind.
-
->
-> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Francois Dugast <francois.dugast@intel.com>
-> Cc: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_gt.c | 18 ------------------
->  include/uapi/drm/xe_drm.h  | 11 -----------
->  2 files changed, 29 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index f5d18e98f8b6..3af2adec1295 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -589,20 +589,6 @@ static int do_gt_restart(struct xe_gt *gt)
->  	return 0;
->  }
->  
-> -static void xe_uevent_gt_reset_failure(struct pci_dev *pdev, u8 tile_id, u8 gt_id)
-> -{
-> -	char *reset_event[4];
-> -
-> -	reset_event[0] = DRM_XE_RESET_FAILED_UEVENT "=NEEDS_RESET";
-> -	reset_event[1] = kasprintf(GFP_KERNEL, "TILE_ID=%d", tile_id);
-> -	reset_event[2] = kasprintf(GFP_KERNEL, "GT_ID=%d", gt_id);
-> -	reset_event[3] = NULL;
-> -	kobject_uevent_env(&pdev->dev.kobj, KOBJ_CHANGE, reset_event);
-> -
-> -	kfree(reset_event[1]);
-> -	kfree(reset_event[2]);
-> -}
-> -
->  static int gt_reset(struct xe_gt *gt)
->  {
->  	int err;
-> @@ -659,10 +645,6 @@ static int gt_reset(struct xe_gt *gt)
->  err_fail:
->  	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
->  
-> -	/* Notify userspace about gt reset failure */
-> -	xe_uevent_gt_reset_failure(to_pci_dev(gt_to_xe(gt)->drm.dev),
-> -				   gt_to_tile(gt)->id, gt->info.id);
-> -
->  	gt_to_xe(gt)->needs_flr_on_fini = true;
->  
->  	return err;
-> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> index b905ab16aa40..8c35ec43faef 100644
-> --- a/include/uapi/drm/xe_drm.h
-> +++ b/include/uapi/drm/xe_drm.h
-> @@ -20,7 +20,6 @@ extern "C" {
->   *   2. Extension definition and helper structs
->   *   3. IOCTL's Query structs in the order of the Query's entries.
->   *   4. The rest of IOCTL structs in the order of IOCTL declaration.
-> - *   5. uEvents
->   */
->  
->  /**
-> @@ -1341,16 +1340,6 @@ struct drm_xe_wait_user_fence {
->  	__u64 reserved[2];
->  };
->  
-> -/**
-> - * DOC: uevent generated by xe on it's pci node.
-> - *
-> - * DRM_XE_RESET_FAILED_UEVENT - Event is generated when attempt to reset gt
-> - * fails. The value supplied with the event is always "NEEDS_RESET".
-> - * Additional information supplied is tile id and gt id of the gt unit for
-> - * which reset has failed.
-> - */
-> -#define DRM_XE_RESET_FAILED_UEVENT "DEVICE_STATUS"
-> -
->  #if defined(__cplusplus)
->  }
->  #endif
+Thanks!
+Maxime
