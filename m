@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB583C46CA2
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73A30C35274
 	for <intel-xe@archiver.kernel.org>; Fri, 15 Dec 2023 15:46:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E47410EA54;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FCC910EA58;
 	Fri, 15 Dec 2023 15:46:28 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1432D10EA45
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Dec 2023 15:46:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 318B110EA66
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Dec 2023 15:46:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702655179; x=1734191179;
+ t=1702655185; x=1734191185;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=D16Zbi88/TlfNxhPiBhP/PqoPf97C0MbrbUgdI4ssgQ=;
- b=OYs4tLqMBd93KThobMu/HYJZq1IC2wKea3gwuJZjzBwKWlZInnp9PwjG
- GibVsX2ztS/BFcjR8kCtMY0bRnrV9LvojiQVZ4wOSxFh2mP0tY0C9zlYX
- Wt3heLdRavdiKRORCgmXAq8P5XKUXZ0WXbOvmZ8eARpcu1AvR0eb5AeiD
- WhoksEhsKwOGNLkc3Ih6PKEB6f0lhDsknL7SVnkyFP2lezZdUkd1Lpguh
- lHbnj3cdcJWBCEzL8Hlxm2O+uysxs0XrHB2A5aGc8r+S1Ipxa4Z8lDndv
- Ff4yIwrl4od/XCSlWXegpauPfFps5MHZb/91BnI8LEJy7BGVtUFz/mLmt g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="2141861"
+ bh=4Hn4CWHnadcHn383luHPP5TV9v0V+mSNKTvULidLK5I=;
+ b=DH5ctbvzBCdnlmRTLPrkkRZGh6FjnbM/0clPGZA1HDVcXUtm/HpEypOR
+ OA77+AY5pACZ3Jxl2DxxhwXTHs3y2iO9I2VESjZ0GBbJ7jI0/08x4bETn
+ QEyeHAKzDuWLZEQ3QTS7uTCELcdCMzD0AgmnT2q3TDxr1SSZeqGgVX6o+
+ Oscvw3dJWW3a5CZzYLkd8vgNGbckO6H2ImY68iAmICgcs15c4Qj56Hvvr
+ cfJm6OuvqcqucHfKJIy+bAQL3qqtVuOiw31zgWewfXt+d02Sg3iCrXOgZ
+ GaezmOH+VuRJQ+aiDC5Vo4hzkkyuSvBYjYQ7KpAR54+XAwjHLrJJel9Xj A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="2141866"
 X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; 
-   d="scan'208";a="2141861"
+   d="scan'208";a="2141866"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2023 07:46:18 -0800
+ 15 Dec 2023 07:46:24 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; d="scan'208";a="16324489"
+X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; d="scan'208";a="16324526"
 Received: from sdiolatz-mobl.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.252.48.85])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2023 07:46:18 -0800
+ 15 Dec 2023 07:46:23 -0800
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v1 10/21] drm/xe/uapi: Document use of size in
- drm_xe_device_query
-Date: Fri, 15 Dec 2023 15:45:42 +0000
-Message-Id: <20231215154553.7-11-francois.dugast@intel.com>
+Subject: [PATCH v1 14/21] drm/xe/uapi: Order sections
+Date: Fri, 15 Dec 2023 15:45:46 +0000
+Message-Id: <20231215154553.7-15-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231215154553.7-1-francois.dugast@intel.com>
 References: <20231215154553.7-1-francois.dugast@intel.com>
@@ -59,42 +58,357 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Cc: Francois Dugast <francois.dugast@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Document the behavior of the driver for IOCTL DRM_IOCTL_XE_DEVICE_QUERY
-depending on the size value provided in struct drm_xe_device_query.
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
+This patch doesn't modify any text or uapi entries themselves.
+It only move things up and down aiming a better organization of the uAPI.
+
+While fixing the documentation I noticed that query_engine_cs_cycles
+was in the middle of the memory_region info. Then I noticed more
+mismatches on the order when compared to the order of the IOCTL
+and QUERY entries declaration. So this patch aims to bring some
+order to the uAPI so it gets easier to read and the documentation
+generated in the end is able to tell a consistent story.
+
+Overall order:
+
+1. IOCTL definition
+2. Extension definition and helper structs
+3. IOCTL's Query structs in the order of the Query's entries.
+4. The rest of IOCTL structs in the order of IOCTL declaration.
+5. uEvents
+
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- include/uapi/drm/xe_drm.h | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
+ include/uapi/drm/xe_drm.h | 252 ++++++++++++++++++++------------------
+ 1 file changed, 130 insertions(+), 122 deletions(-)
 
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index d7893ccbbf8c..d759e04e00ee 100644
+index 4c11dec57a83..b62dd51fa895 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -467,9 +467,15 @@ struct drm_xe_query_topology_mask {
+@@ -12,19 +12,48 @@
+ extern "C" {
+ #endif
+ 
+-/* Please note that modifications to all structs defined here are
++/*
++ * Please note that modifications to all structs defined here are
+  * subject to backwards-compatibility constraints.
++ * Sections in this file are organized as follows:
++ *   1. IOCTL definition
++ *   2. Extension definition and helper structs
++ *   3. IOCTL's Query structs in the order of the Query's entries.
++ *   4. The rest of IOCTL structs in the order of IOCTL declaration.
++ *   5. uEvents
+  */
+ 
+-/**
+- * DOC: uevent generated by xe on it's pci node.
++/*
++ * xe specific ioctls.
+  *
+- * DRM_XE_RESET_FAILED_UEVENT - Event is generated when attempt to reset gt
+- * fails. The value supplied with the event is always "NEEDS_RESET".
+- * Additional information supplied is tile id and gt id of the gt unit for
+- * which reset has failed.
++ * The device specific ioctl range is [DRM_COMMAND_BASE, DRM_COMMAND_END) ie
++ * [0x40, 0xa0) (a0 is excluded). The numbers below are defined as offset
++ * against DRM_COMMAND_BASE and should be between [0x0, 0x60).
+  */
+-#define DRM_XE_RESET_FAILED_UEVENT "DEVICE_STATUS"
++#define DRM_XE_DEVICE_QUERY		0x00
++#define DRM_XE_GEM_CREATE		0x01
++#define DRM_XE_GEM_MMAP_OFFSET		0x02
++#define DRM_XE_VM_CREATE		0x03
++#define DRM_XE_VM_DESTROY		0x04
++#define DRM_XE_VM_BIND			0x05
++#define DRM_XE_EXEC_QUEUE_CREATE	0x06
++#define DRM_XE_EXEC_QUEUE_DESTROY	0x07
++#define DRM_XE_EXEC_QUEUE_GET_PROPERTY	0x08
++#define DRM_XE_EXEC			0x09
++#define DRM_XE_WAIT_USER_FENCE		0x0a
++/* Must be kept compact -- no holes */
++
++#define DRM_IOCTL_XE_DEVICE_QUERY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_DEVICE_QUERY, struct drm_xe_device_query)
++#define DRM_IOCTL_XE_GEM_CREATE			DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_GEM_CREATE, struct drm_xe_gem_create)
++#define DRM_IOCTL_XE_GEM_MMAP_OFFSET		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_GEM_MMAP_OFFSET, struct drm_xe_gem_mmap_offset)
++#define DRM_IOCTL_XE_VM_CREATE			DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_CREATE, struct drm_xe_vm_create)
++#define DRM_IOCTL_XE_VM_DESTROY			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_DESTROY, struct drm_xe_vm_destroy)
++#define DRM_IOCTL_XE_VM_BIND			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_BIND, struct drm_xe_vm_bind)
++#define DRM_IOCTL_XE_EXEC_QUEUE_CREATE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_CREATE, struct drm_xe_exec_queue_create)
++#define DRM_IOCTL_XE_EXEC_QUEUE_DESTROY		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_DESTROY, struct drm_xe_exec_queue_destroy)
++#define DRM_IOCTL_XE_EXEC_QUEUE_GET_PROPERTY	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_GET_PROPERTY, struct drm_xe_exec_queue_get_property)
++#define DRM_IOCTL_XE_EXEC			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
++#define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
+ 
+ /**
+  * struct drm_xe_user_extension - Base class for defining a chain of extensions
+@@ -90,37 +119,25 @@ struct drm_xe_user_extension {
+ 	__u32 pad;
+ };
+ 
+-/*
+- * xe specific ioctls.
+- *
+- * The device specific ioctl range is [DRM_COMMAND_BASE, DRM_COMMAND_END) ie
+- * [0x40, 0xa0) (a0 is excluded). The numbers below are defined as offset
+- * against DRM_COMMAND_BASE and should be between [0x0, 0x60).
++/**
++ * struct drm_xe_ext_set_property - XE set property extension
+  */
+-#define DRM_XE_DEVICE_QUERY		0x00
+-#define DRM_XE_GEM_CREATE		0x01
+-#define DRM_XE_GEM_MMAP_OFFSET		0x02
+-#define DRM_XE_VM_CREATE		0x03
+-#define DRM_XE_VM_DESTROY		0x04
+-#define DRM_XE_VM_BIND			0x05
+-#define DRM_XE_EXEC_QUEUE_CREATE	0x06
+-#define DRM_XE_EXEC_QUEUE_DESTROY	0x07
+-#define DRM_XE_EXEC_QUEUE_GET_PROPERTY	0x08
+-#define DRM_XE_EXEC			0x09
+-#define DRM_XE_WAIT_USER_FENCE		0x0a
+-/* Must be kept compact -- no holes */
++struct drm_xe_ext_set_property {
++	/** @base: base user extension */
++	struct drm_xe_user_extension base;
+ 
+-#define DRM_IOCTL_XE_DEVICE_QUERY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_DEVICE_QUERY, struct drm_xe_device_query)
+-#define DRM_IOCTL_XE_GEM_CREATE			DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_GEM_CREATE, struct drm_xe_gem_create)
+-#define DRM_IOCTL_XE_GEM_MMAP_OFFSET		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_GEM_MMAP_OFFSET, struct drm_xe_gem_mmap_offset)
+-#define DRM_IOCTL_XE_VM_CREATE			DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_CREATE, struct drm_xe_vm_create)
+-#define DRM_IOCTL_XE_VM_DESTROY			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_DESTROY, struct drm_xe_vm_destroy)
+-#define DRM_IOCTL_XE_VM_BIND			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_BIND, struct drm_xe_vm_bind)
+-#define DRM_IOCTL_XE_EXEC_QUEUE_CREATE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_CREATE, struct drm_xe_exec_queue_create)
+-#define DRM_IOCTL_XE_EXEC_QUEUE_DESTROY		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_DESTROY, struct drm_xe_exec_queue_destroy)
+-#define DRM_IOCTL_XE_EXEC_QUEUE_GET_PROPERTY	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_GET_PROPERTY, struct drm_xe_exec_queue_get_property)
+-#define DRM_IOCTL_XE_EXEC			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
+-#define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
++	/** @property: property to set */
++	__u32 property;
++
++	/** @pad: MBZ */
++	__u32 pad;
++
++	/** @value: property value */
++	__u64 value;
++
++	/** @reserved: Reserved */
++	__u64 reserved[2];
++};
+ 
+ /**
+  * struct drm_xe_engine_class_instance - instance of an engine class
+@@ -274,57 +291,6 @@ struct drm_xe_mem_region {
+ 	__u64 reserved[6];
+ };
+ 
+-/**
+- * struct drm_xe_query_engine_cycles - correlate CPU and GPU timestamps
+- *
+- * If a query is made with a struct drm_xe_device_query where .query is equal to
+- * DRM_XE_DEVICE_QUERY_ENGINE_CYCLES, then the reply uses struct drm_xe_query_engine_cycles
+- * in .data. struct drm_xe_query_engine_cycles is allocated by the user and
+- * .data points to this allocated structure.
+- *
+- * The query returns the engine cycles, which along with GT's @reference_clock,
+- * can be used to calculate the engine timestamp. In addition the
+- * query returns a set of cpu timestamps that indicate when the command
+- * streamer cycle count was captured.
+- */
+-struct drm_xe_query_engine_cycles {
+-	/**
+-	 * @eci: This is input by the user and is the engine for which command
+-	 * streamer cycles is queried.
+-	 */
+-	struct drm_xe_engine_class_instance eci;
+-
+-	/**
+-	 * @clockid: This is input by the user and is the reference clock id for
+-	 * CPU timestamp. For definition, see clock_gettime(2) and
+-	 * perf_event_open(2). Supported clock ids are CLOCK_MONOTONIC,
+-	 * CLOCK_MONOTONIC_RAW, CLOCK_REALTIME, CLOCK_BOOTTIME, CLOCK_TAI.
+-	 */
+-	__s32 clockid;
+-
+-	/** @width: Width of the engine cycle counter in bits. */
+-	__u32 width;
+-
+-	/**
+-	 * @engine_cycles: Engine cycles as read from its register
+-	 * at 0x358 offset.
+-	 */
+-	__u64 engine_cycles;
+-
+-	/**
+-	 * @cpu_timestamp: CPU timestamp in ns. The timestamp is captured before
+-	 * reading the engine_cycles register using the reference clockid set by the
+-	 * user.
+-	 */
+-	__u64 cpu_timestamp;
+-
+-	/**
+-	 * @cpu_delta: Time delta in ns captured around reading the lower dword
+-	 * of the engine_cycles register.
+-	 */
+-	__u64 cpu_delta;
+-};
+-
+ /**
+  * struct drm_xe_query_mem_regions - describe memory regions
+  *
+@@ -482,6 +448,57 @@ struct drm_xe_query_topology_mask {
+ 	__u8 mask[];
+ };
+ 
++/**
++ * struct drm_xe_query_engine_cycles - correlate CPU and GPU timestamps
++ *
++ * If a query is made with a struct drm_xe_device_query where .query is equal to
++ * DRM_XE_DEVICE_QUERY_ENGINE_CYCLES, then the reply uses struct drm_xe_query_engine_cycles
++ * in .data. struct drm_xe_query_engine_cycles is allocated by the user and
++ * .data points to this allocated structure.
++ *
++ * The query returns the engine cycles, which along with GT's @reference_clock,
++ * can be used to calculate the engine timestamp. In addition the
++ * query returns a set of cpu timestamps that indicate when the command
++ * streamer cycle count was captured.
++ */
++struct drm_xe_query_engine_cycles {
++	/**
++	 * @eci: This is input by the user and is the engine for which command
++	 * streamer cycles is queried.
++	 */
++	struct drm_xe_engine_class_instance eci;
++
++	/**
++	 * @clockid: This is input by the user and is the reference clock id for
++	 * CPU timestamp. For definition, see clock_gettime(2) and
++	 * perf_event_open(2). Supported clock ids are CLOCK_MONOTONIC,
++	 * CLOCK_MONOTONIC_RAW, CLOCK_REALTIME, CLOCK_BOOTTIME, CLOCK_TAI.
++	 */
++	__s32 clockid;
++
++	/** @width: Width of the engine cycle counter in bits. */
++	__u32 width;
++
++	/**
++	 * @engine_cycles: Engine cycles as read from its register
++	 * at 0x358 offset.
++	 */
++	__u64 engine_cycles;
++
++	/**
++	 * @cpu_timestamp: CPU timestamp in ns. The timestamp is captured before
++	 * reading the engine_cycles register using the reference clockid set by the
++	 * user.
++	 */
++	__u64 cpu_timestamp;
++
++	/**
++	 * @cpu_delta: Time delta in ns captured around reading the lower dword
++	 * of the engine_cycles register.
++	 */
++	__u64 cpu_delta;
++};
++
+ /**
   * struct drm_xe_device_query - Input of &DRM_IOCTL_XE_DEVICE_QUERY - main
   * structure to query device information
+@@ -668,26 +685,6 @@ struct drm_xe_gem_mmap_offset {
+ 	__u64 reserved[2];
+ };
+ 
+-/**
+- * struct drm_xe_ext_set_property - XE set property extension
+- */
+-struct drm_xe_ext_set_property {
+-	/** @base: base user extension */
+-	struct drm_xe_user_extension base;
+-
+-	/** @property: property to set */
+-	__u32 property;
+-
+-	/** @pad: MBZ */
+-	__u32 pad;
+-
+-	/** @value: property value */
+-	__u64 value;
+-
+-	/** @reserved: Reserved */
+-	__u64 reserved[2];
+-};
+-
+ /**
+  * struct drm_xe_vm_create - Input of &DRM_IOCTL_XE_VM_CREATE
   *
-- * If size is set to 0, the driver fills it with the required size for the
-- * requested type of data to query. If size is equal to the required size,
-- * the queried information is copied into data.
-+ * The user selects the type of data to query among DRM_XE_DEVICE_QUERY_*
-+ * and sets the value in the query member. This determines the type of
-+ * the structure provided by the driver in data, among struct drm_xe_query_*.
+@@ -976,6 +973,20 @@ struct drm_xe_exec_queue_create {
+ 	__u64 reserved[2];
+ };
+ 
++/**
++ * struct drm_xe_exec_queue_destroy - Input of &DRM_IOCTL_XE_EXEC_QUEUE_DESTROY
++ */
++struct drm_xe_exec_queue_destroy {
++	/** @exec_queue_id: Exec queue ID */
++	__u32 exec_queue_id;
++
++	/** @pad: MBZ */
++	__u32 pad;
++
++	/** @reserved: Reserved */
++	__u64 reserved[2];
++};
++
+ /**
+  * struct drm_xe_exec_queue_get_property - Input of &DRM_IOCTL_XE_EXEC_QUEUE_GET_PROPERTY
+  *
+@@ -1000,20 +1011,6 @@ struct drm_xe_exec_queue_get_property {
+ 	__u64 reserved[2];
+ };
+ 
+-/**
+- * struct drm_xe_exec_queue_destroy - Input of &DRM_IOCTL_XE_EXEC_QUEUE_DESTROY
+- */
+-struct drm_xe_exec_queue_destroy {
+-	/** @exec_queue_id: Exec queue ID */
+-	__u32 exec_queue_id;
+-
+-	/** @pad: MBZ */
+-	__u32 pad;
+-
+-	/** @reserved: Reserved */
+-	__u64 reserved[2];
+-};
+-
+ /**
+  * struct drm_xe_sync - sync object
+  *
+@@ -1180,6 +1177,17 @@ struct drm_xe_wait_user_fence {
+ 	/** @reserved: Reserved */
+ 	__u64 reserved[2];
+ };
++
++/**
++ * DOC: uevent generated by xe on it's pci node.
 + *
-+ * If size is set to 0, the driver fills it with the required size for
-+ * the requested type of data to query. If size is equal to the required
-+ * size, the queried information is copied into data. If size is set to
-+ * a value different from 0 and different from the required size, the
-+ * IOCTL call returns -EINVAL.
-  *
-  * For example the following code snippet allows retrieving and printing
-  * information about the device engines with DRM_XE_DEVICE_QUERY_ENGINES:
++ * DRM_XE_RESET_FAILED_UEVENT - Event is generated when attempt to reset gt
++ * fails. The value supplied with the event is always "NEEDS_RESET".
++ * Additional information supplied is tile id and gt id of the gt unit for
++ * which reset has failed.
++ */
++#define DRM_XE_RESET_FAILED_UEVENT "DEVICE_STATUS"
++
+ #if defined(__cplusplus)
+ }
+ #endif
 -- 
 2.34.1
 
