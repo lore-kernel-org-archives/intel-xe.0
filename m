@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6DF0C35274
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Dec 2023 15:46:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1618C41535
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Dec 2023 15:46:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9686610EA45;
-	Fri, 15 Dec 2023 15:46:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99CDD10EA4D;
+	Fri, 15 Dec 2023 15:46:20 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62AE510EA45
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEB6E10EA45
  for <intel-xe@lists.freedesktop.org>; Fri, 15 Dec 2023 15:46:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702655177; x=1734191177;
+ t=1702655178; x=1734191178;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZLral9v1qUndO3emCQuoKKBCQraktZsZs8ztyYzlF6Q=;
- b=aXOFRUFCvWhNKkEHDLPmPuJz9lOAZQVv/n7otfyPjgDWhYDZ/gROORQ0
- WJiLIRuCZfzh4TEVXjT1uZIaRLzpJw9t2N8XJLcxBN+0/OcQRr0A0gsdz
- v01NkS/v0FoemjzvoG3O7PExF6b5ETfsUYKJOCvDkSwLNBeyOl57eh8nD
- qEAOOHNKKyGCS7yI1uVIjztIqgz8+UCfbtKr/gG6nYGoeKggoYskcgRTz
- QQcLwFeEsJA+hfZ6evNJ7ofIQBTmL35ijpT+73Wcl4quBkzB5aUDrhIWN
- ppjEtFZe0n0XS+6+v42SaRXYrcQr0B6sMl3qBOo56vVHb35/tRtG6HlHt Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="2141858"
+ bh=hVPGgmGSsQ+LU05SN6XguQsStqOjLxrThUAZrp3juvg=;
+ b=eZAMaWRiw+1P+zpsBTrvck8iPymaLyHKy7dx3qG4iGvTL6FJtvUxSZ0O
+ lhwSNS4GTQ/Of3xNRpatQwZXIR5vBILNmR12T+QOF6ov8gh+brGfNNC3+
+ EbO46F9n7NrjOtAtya2K342OeJR9TEXeDv2sCaW4V9tYuwDXCeJ7iPJdr
+ cexQI8VW1u7u9sF7JHi1syZOoJ/sBx9J1tpsrlpWrL3Oiwu5Bkrvu/lYi
+ /LNxw93+ivX/xhObCuHbhpul5I2gNb7R/nPUq4Ar7khF5mNyA5A7+lQhe
+ CG9b9XHvS/Ye8OKCyt2mM86UmT35SuQaJcb7QiueFR3sY01FcMlT3mWAI w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="2141860"
 X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; 
-   d="scan'208";a="2141858"
+   d="scan'208";a="2141860"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2023 07:46:16 -0800
+ 15 Dec 2023 07:46:17 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; d="scan'208";a="16324463"
+X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; d="scan'208";a="16324484"
 Received: from sdiolatz-mobl.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.252.48.85])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2023 07:46:16 -0800
+ 15 Dec 2023 07:46:17 -0800
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v1 08/21] drm/xe/uapi: Add a comment to each struct
-Date: Fri, 15 Dec 2023 15:45:40 +0000
-Message-Id: <20231215154553.7-9-francois.dugast@intel.com>
+Subject: [PATCH v1 09/21] drm/xe/uapi: Add missing documentation for struct
+ members
+Date: Fri, 15 Dec 2023 15:45:41 +0000
+Message-Id: <20231215154553.7-10-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231215154553.7-1-francois.dugast@intel.com>
 References: <20231215154553.7-1-francois.dugast@intel.com>
@@ -62,160 +63,61 @@ Cc: Francois Dugast <francois.dugast@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a comment to each struct to complete documentation, ensure all
-struct appear in the kernel doc, and bind structs to IOCTLs.
+This removes the documentation build warnings below:
+
+	include/uapi/drm/xe_drm.h:828: warning: Function parameter or \
+	member 'pad2' not described in 'drm_xe_vm_bind_op'
+	include/uapi/drm/xe_drm.h:875: warning: Function parameter or \
+	member 'pad2' not described in 'drm_xe_vm_bind'
+	include/uapi/drm/xe_drm.h:1006: warning: Function parameter or \
+	member 'handle' not described in 'drm_xe_sync'
+	include/uapi/drm/xe_drm.h:1006: warning: Function parameter or \
+	member 'timeline_value' not described in 'drm_xe_sync'
 
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- include/uapi/drm/xe_drm.h | 43 ++++++++++++++++++++++++++++++++++++---
- 1 file changed, 40 insertions(+), 3 deletions(-)
+ include/uapi/drm/xe_drm.h | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 2338d87dcb7d..43cacb168091 100644
+index 43cacb168091..d7893ccbbf8c 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -464,7 +464,8 @@ struct drm_xe_query_topology_mask {
- };
+@@ -816,7 +816,7 @@ struct drm_xe_vm_bind_op {
+ 	 */
+ 	__u32 prefetch_mem_region_instance;
  
- /**
-- * struct drm_xe_device_query - main structure to query device information
-+ * struct drm_xe_device_query - Input of &DRM_IOCTL_XE_DEVICE_QUERY - main
-+ * structure to query device information
-  *
-  * If size is set to 0, the driver fills it with the required size for the
-  * requested type of data to query. If size is equal to the required size,
-@@ -526,6 +527,10 @@ struct drm_xe_device_query {
- 	__u64 reserved[2];
- };
+-	/** @pad: MBZ */
++	/** @pad2: MBZ */
+ 	__u32 pad2;
  
-+/**
-+ * struct drm_xe_gem_create - Input of &DRM_IOCTL_XE_GEM_CREATE - A structure for
-+ * gem creation
-+ */
- struct drm_xe_gem_create {
- 	/** @extensions: Pointer to the first extension struct, if any */
- 	__u64 extensions;
-@@ -604,6 +609,9 @@ struct drm_xe_gem_create {
- 	__u64 reserved[2];
- };
+ 	/** @reserved: Reserved */
+@@ -857,7 +857,7 @@ struct drm_xe_vm_bind {
+ 		__u64 vector_of_binds;
+ 	};
  
-+/**
-+ * struct drm_xe_gem_mmap_offset - Input of &DRM_IOCTL_XE_GEM_MMAP_OFFSET
-+ */
- struct drm_xe_gem_mmap_offset {
- 	/** @extensions: Pointer to the first extension struct, if any */
- 	__u64 extensions;
-@@ -621,7 +629,9 @@ struct drm_xe_gem_mmap_offset {
- 	__u64 reserved[2];
- };
+-	/** @pad: MBZ */
++	/** @pad2: MBZ */
+ 	__u32 pad2;
  
--/** struct drm_xe_ext_set_property - XE set property extension */
-+/**
-+ * struct drm_xe_ext_set_property - XE set property extension
-+ */
- struct drm_xe_ext_set_property {
- 	/** @base: base user extension */
- 	struct drm_xe_user_extension base;
-@@ -639,6 +649,9 @@ struct drm_xe_ext_set_property {
- 	__u64 reserved[2];
- };
+ 	/** @num_syncs: amount of syncs to wait on */
+@@ -982,6 +982,7 @@ struct drm_xe_sync {
+ 	__u32 flags;
  
-+/**
-+ * struct drm_xe_vm_create - Input of &DRM_IOCTL_XE_VM_CREATE
-+ */
- struct drm_xe_vm_create {
- 	/** @extensions: Pointer to the first extension struct, if any */
- 	__u64 extensions;
-@@ -677,6 +690,9 @@ struct drm_xe_vm_create {
- 	__u64 reserved[2];
- };
+ 	union {
++		/** @handle: Handle for the object */
+ 		__u32 handle;
  
-+/**
-+ * struct drm_xe_vm_destroy - Input of &DRM_IOCTL_XE_VM_DESTROY
-+ */
- struct drm_xe_vm_destroy {
- 	/** @vm_id: VM ID */
- 	__u32 vm_id;
-@@ -688,6 +704,9 @@ struct drm_xe_vm_destroy {
- 	__u64 reserved[2];
- };
+ 		/**
+@@ -995,6 +996,7 @@ struct drm_xe_sync {
+ 		__u64 addr;
+ 	};
  
-+/**
-+ * struct drm_xe_vm_bind_op
-+ */
- struct drm_xe_vm_bind_op {
- 	/** @extensions: Pointer to the first extension struct, if any */
- 	__u64 extensions;
-@@ -804,6 +823,9 @@ struct drm_xe_vm_bind_op {
- 	__u64 reserved[3];
- };
++	/** @timeline_value: Timeline point of the sync object */
+ 	__u64 timeline_value;
  
-+/**
-+ * struct drm_xe_vm_bind - Input of &DRM_IOCTL_XE_VM_BIND
-+ */
- struct drm_xe_vm_bind {
- 	/** @extensions: Pointer to the first extension struct, if any */
- 	__u64 extensions;
-@@ -862,6 +884,9 @@ struct drm_xe_vm_bind {
- /* Monitor 64MB contiguous region with 2M sub-granularity */
- #define DRM_XE_ACC_GRANULARITY_64M 3
- 
-+/**
-+ * struct drm_xe_exec_queue_create - Input of &DRM_IOCTL_XE_EXEC_QUEUE_CREATE
-+ */
- struct drm_xe_exec_queue_create {
- #define DRM_XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY		0
- #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY		0
-@@ -904,6 +929,9 @@ struct drm_xe_exec_queue_create {
- 	__u64 reserved[2];
- };
- 
-+/**
-+ * struct drm_xe_exec_queue_get_property - Input of &DRM_IOCTL_XE_EXEC_QUEUE_GET_PROPERTY
-+ */
- struct drm_xe_exec_queue_get_property {
- 	/** @extensions: Pointer to the first extension struct, if any */
- 	__u64 extensions;
-@@ -922,6 +950,9 @@ struct drm_xe_exec_queue_get_property {
- 	__u64 reserved[2];
- };
- 
-+/**
-+ * struct drm_xe_exec_queue_destroy - Input of &DRM_IOCTL_XE_EXEC_QUEUE_DESTROY
-+ */
- struct drm_xe_exec_queue_destroy {
- 	/** @exec_queue_id: Exec queue ID */
- 	__u32 exec_queue_id;
-@@ -933,6 +964,9 @@ struct drm_xe_exec_queue_destroy {
- 	__u64 reserved[2];
- };
- 
-+/**
-+ * struct drm_xe_sync
-+ */
- struct drm_xe_sync {
- 	/** @extensions: Pointer to the first extension struct, if any */
- 	__u64 extensions;
-@@ -967,6 +1001,9 @@ struct drm_xe_sync {
- 	__u64 reserved[2];
- };
- 
-+/**
-+ * struct drm_xe_exec - Input of &DRM_IOCTL_XE_EXEC
-+ */
- struct drm_xe_exec {
- 	/** @extensions: Pointer to the first extension struct, if any */
- 	__u64 extensions;
-@@ -1000,7 +1037,7 @@ struct drm_xe_exec {
- };
- 
- /**
-- * struct drm_xe_wait_user_fence - wait user fence
-+ * struct drm_xe_wait_user_fence - Input of &DRM_IOCTL_XE_WAIT_USER_FENCE
-  *
-  * Wait on user fence, XE will wake-up on every HW engine interrupt in the
-  * instances list and check if user fence is complete::
+ 	/** @reserved: Reserved */
 -- 
 2.34.1
 
