@@ -4,57 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D1D1C35274
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Dec 2023 12:38:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9859C35274
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Dec 2023 12:54:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 548BE10E9FD;
-	Fri, 15 Dec 2023 12:38:39 +0000 (UTC)
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com
- [IPv6:2607:f8b0:4864:20::333])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D46EC10E9FD
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Dec 2023 12:38:37 +0000 (UTC)
-Received: by mail-ot1-x333.google.com with SMTP id
- 46e09a7af769-6d9e756cf32so547257a34.2
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Dec 2023 04:38:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1702643917; x=1703248717; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=TbjpTO7sQ0to+cvJJSpxr57uJYyPq3EmFLux1XjLqKM=;
- b=Y6jQjzNV9OWiizKsAF04106v1Tu0ssiap3gYwx4mPScT07whv0MvTW4tc+oCUnSG2a
- UhZMf4lUyFuPFpNEbngjaGY4sBIbxThDAL22EBERWljAKJGxrOyWpZaoDNAL1vRttiW5
- iUEqG1W4hkCKkOhQWxAaVYb3iQwwz2Tlx8W9/APsf9tyLouDMMm5JNQbs8IiCO7R+Njj
- pNU8NNLNfZi56tei0KVtiHy13W0M/dwva2FWEjl5LHMZ/mqrs02uD3p9pZDmBtEkzsDh
- MssZf6sa6wIDzNrU/Ji2s/5evVsIGfERLb6AeHy0BuoVb6hoQO0Qm4TJfn7DARJ6z2Q2
- xhAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1702643917; x=1703248717;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=TbjpTO7sQ0to+cvJJSpxr57uJYyPq3EmFLux1XjLqKM=;
- b=taj7X9ppuM3aCj2urW15mPsj4/0oyZJrhzCR26/TpJMtvPvQb+Tfm6IrkXIjsWCmaa
- 8BpOGFgzNH8kN+LF9PK0YmyPzSoG6fvYJauxzrjiJ8jCoEU5vRQRnVnA3rzUtnMrvbXO
- vBf+NW+yaClZ78mobP0JKtf5Rzm5707zX/eYMVCAf+NReNhUy5Xm1vKKudm19pRwKaBB
- 1KBiShpLTQ1t5Y4CgSbEq8is48kbpU/wXaVXhwZRNvn27QcWdEH4BeeGI6nZk5A0Uf3R
- wxvmWTkuCggBv5Pr2yGZKyZnyA9MFPwPaKVCDDTlq35cB7tYf3+NusbsnTp5wFHsLugV
- /pbQ==
-X-Gm-Message-State: AOJu0YyTIK/d/6NAbujMOwo9DMTz7/xMgLLyUWyr4TNucjfaqVIaJ33v
- KnwjJYsavuhQXv67FXnEafRBgLVTsbrNSVTE6vA=
-X-Google-Smtp-Source: AGHT+IGOzTJGp4gd4O+PWlZv69O/PCY1ShG7X3CRHKGBidmn01EJ25hxy00cNCA3cTVzSveFLF2MtIZGCTFGACY+fAg=
-X-Received: by 2002:a05:6830:914:b0:6d9:a4d6:a50e with SMTP id
- v20-20020a056830091400b006d9a4d6a50emr13080792ott.75.1702643916764; Fri, 15
- Dec 2023 04:38:36 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50AFF10EA06;
+	Fri, 15 Dec 2023 12:54:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF7EC10EA06
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Dec 2023 12:54:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1702644889; x=1734180889;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=c/PW2sEbzhRXaatY6nse+WGtV04rF4AykIY3iFFfcGw=;
+ b=O9EtEmrok/JYKNZv0554rAN22cjeKuoGDS3O8RJ9rUDNECHiWpYGJe7F
+ fcvq1w5qijjYNaqEURdaprjsA3UXMKPZY1mK+Gn2uuy1BEfac7WLfqj0/
+ 4QMbmdJi2a960ak79/bXXgRG4flxVvppp+jVAsyaVU2cv4xtoJ7ToWaqR
+ FHLtE6sIn7t3qEpeyjIom0ufV/D2LR3s1Nc7iHSmHhblj6qB1AAJjfOe/
+ GREQwReoHpH2Zl7tIYOKDgKctGezwQZtxmNZzazhum3evSMLpQaqiZu11
+ DsBnUrv4oNEhF4jTUI3IUHHjNrKUSJqbhAFoyYtAqbAaH869wwaqyi7+h A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="2123428"
+X-IronPort-AV: E=Sophos;i="6.04,278,1695711600"; 
+   d="scan'208";a="2123428"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2023 04:54:48 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="840652026"
+X-IronPort-AV: E=Sophos;i="6.04,278,1695711600"; d="scan'208";a="840652026"
+Received: from dstacken-mobl1.ger.corp.intel.com (HELO fedora..)
+ ([10.249.254.176])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2023 04:54:47 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH] drm/xe/migrate: Fix CCS copy for small VRAM copy chunks
+Date: Fri, 15 Dec 2023 13:54:36 +0100
+Message-ID: <20231215125436.41135-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-References: <20231215094329.7-1-francois.dugast@intel.com>
- <c35a24b1-dee6-4e73-9d1b-970e43e9a700@linux.intel.com>
-In-Reply-To: <c35a24b1-dee6-4e73-9d1b-970e43e9a700@linux.intel.com>
-From: Rodrigo Vivi <rodrigo.vivi@gmail.com>
-Date: Fri, 15 Dec 2023 07:38:25 -0500
-Message-ID: <CABVU7+v2nsj0b4FX8s1txfZTyX8pqXVj3SOL5fiq7UK_1vXzqg@mail.gmail.com>
-Subject: Re: [PATCH] drm/xe/uapi: Remove reset uevent for now
-To: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-Content-Type: multipart/alternative; boundary="000000000000d6918a060c8bad5e"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,260 +57,181 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Francois Dugast <francois.dugast@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---000000000000d6918a060c8bad5e
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Since the migrate code is using the identity map for addressing VRAM,
+copy chunks may become as small as 64K if the VRAM resource is fragmented.
 
-On Fri, Dec 15, 2023 at 5:13=E2=80=AFAM Aravind Iddamsetty <
-aravind.iddamsetty@linux.intel.com> wrote:
+However, a chunk size smaller that 1MiB may lead to the *next* chunk's
+offset into the CCS metadata backup memory may not be page-aligned, and
+the XY_CTRL_SURF_COPY_BLT command can't handle that, and even if it could,
+the current code doesn't handle the offset calculaton correctly.
 
->
-> On 12/15/23 15:13, Francois Dugast wrote:
-> > From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> >
-> > This kernel uevent is getting removed for now. It will come
-> > back later with a better future proof name.
-> >
-> > v2: Rebase (Francois Dugast)
-> as mentioned in IGT series we need to drop this commit as well
->
-> 14a663d83da2 drm/xe: Introduce fault injection for gt reset.
->
+To fix this, make sure we align the size of VRAM copy chunks to 1MiB. If
+the remaining data to copy is smaller than that, that's not a problem,
+so use the remaining size. If the VRAM copy cunk becomes fragmented due
+to the size alignment restriction, don't use the identity map, but instead
+emit PTEs into the page-table like we do for system memory.
 
-No need for dropping that. We are going to restore the uevent soon. But
-with the proper final name.
-The problem is only with the uapi because we won=E2=80=99t be able to renam=
-e or
-change when we are in-tree.
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/xe/tests/xe_migrate.c |  2 +-
+ drivers/gpu/drm/xe/xe_migrate.c       | 67 ++++++++++++++++-----------
+ 2 files changed, 40 insertions(+), 29 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+index 47fcd6e6b777..5f5b416dc88c 100644
+--- a/drivers/gpu/drm/xe/tests/xe_migrate.c
++++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+@@ -331,7 +331,7 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+ 		xe_res_first_sg(xe_bo_sg(pt), 0, pt->size, &src_it);
+ 
+ 	emit_pte(m, bb, NUM_KERNEL_PDE - 1, xe_bo_is_vram(pt),
+-		 &src_it, XE_PAGE_SIZE, pt);
++		 &src_it, XE_PAGE_SIZE, pt->ttm.resource);
+ 
+ 	run_sanity_job(m, xe, bb, bb->len, "Writing PTE for our fake PT", test);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 2ca927f3fb2a..0b8a33116322 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -411,14 +411,31 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
+ 
+ static u64 xe_migrate_res_sizes(struct xe_res_cursor *cur)
+ {
+-	/*
+-	 * For VRAM we use identity mapped pages so we are limited to current
+-	 * cursor size. For system we program the pages ourselves so we have no
+-	 * such limitation.
+-	 */
+-	return min_t(u64, MAX_PREEMPTDISABLE_TRANSFER,
+-		     mem_type_is_vram(cur->mem_type) ? cur->size :
+-		     cur->remaining);
++	u64 size = min_t(u64, MAX_PREEMPTDISABLE_TRANSFER, cur->remaining);
++
++	if (mem_type_is_vram(cur->mem_type)) {
++		/*
++		 * VRAM we want to blit in chunks with sizes aligned to
++		 * 1MiB in order for the offset to CCS metadata to be
++		 * page-aligned. If it's the last chunk it may be smaller.
++		 *
++		 * Another constraint is that we need to limit the blit to
++		 * the VRAM block size, unless size is smaller than 1MiB.
++		 */
++		u64 chunk = max_t(u64, cur->size, SZ_1M);
++
++		size = min_t(u64, size, chunk);
++		if (size > SZ_1M)
++			size = round_down(size, SZ_1M);
++	}
++
++	return size;
++}
++
++static bool xe_migrate_avoid_identity(u64 size, const struct xe_res_cursor *cur)
++{
++	/* The chunk is fragmented. Hence can't use identity map. */
++	return cur->size < size;
+ }
+ 
+ static u32 pte_update_size(struct xe_migrate *m,
+@@ -431,7 +448,7 @@ static u32 pte_update_size(struct xe_migrate *m,
+ 	u32 cmds = 0;
+ 
+ 	*L0_pt = pt_ofs;
+-	if (!is_vram) {
++	if (!is_vram || xe_migrate_avoid_identity(*L0, cur)) {
+ 		/* Clip L0 to available size */
+ 		u64 size = min(*L0, (u64)avail_pts * SZ_2M);
+ 		u64 num_4k_pages = DIV_ROUND_UP(size, XE_PAGE_SIZE);
+@@ -461,20 +478,13 @@ static void emit_pte(struct xe_migrate *m,
+ 		     struct xe_bb *bb, u32 at_pt,
+ 		     bool is_vram,
+ 		     struct xe_res_cursor *cur,
+-		     u32 size, struct xe_bo *bo)
++		     u32 size, struct ttm_resource *res)
+ {
+ 	u16 pat_index = tile_to_xe(m->tile)->pat.idx[XE_CACHE_WB];
+ 	u32 ptes;
+ 	u64 ofs = at_pt * XE_PAGE_SIZE;
+ 	u64 cur_ofs;
+ 
+-	/*
+-	 * FIXME: Emitting VRAM PTEs to L0 PTs is forbidden. Currently
+-	 * we're only emitting VRAM PTEs during sanity tests, so when
+-	 * that's moved to a Kunit test, we should condition VRAM PTEs
+-	 * on running tests.
+-	 */
+-
+ 	ptes = DIV_ROUND_UP(size, XE_PAGE_SIZE);
+ 
+ 	while (ptes) {
+@@ -498,10 +508,10 @@ static void emit_pte(struct xe_migrate *m,
+ 				if ((m->q->vm->flags & XE_VM_FLAG_64K) &&
+ 				    !(cur_ofs & (16 * 8 - 1))) {
+ 					xe_tile_assert(m->tile, IS_ALIGNED(addr, SZ_64K));
+-					flags |= XE_PTE_PS64;
+ 				}
+ 
+-				addr += vram_region_gpu_offset(bo->ttm.resource);
++				addr += vram_region_gpu_offset(res);
++				flags |= XE_PTE_PS64;
+ 				devmem = true;
+ 			}
+ 
+@@ -730,6 +740,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 						      &ccs_ofs, &ccs_pt, 0,
+ 						      2 * NUM_PT_PER_BLIT,
+ 						      NUM_PT_PER_BLIT);
++			xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE));
+ 		}
+ 
+ 		/* Add copy commands size here */
+@@ -742,20 +753,20 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 			goto err_sync;
+ 		}
+ 
+-		if (!src_is_vram)
++		if (!src_is_vram || xe_migrate_avoid_identity(src_L0, &src_it))
+ 			emit_pte(m, bb, src_L0_pt, src_is_vram, &src_it, src_L0,
+-				 src_bo);
++				 src);
+ 		else
+ 			xe_res_next(&src_it, src_L0);
+ 
+-		if (!dst_is_vram)
++		if (!dst_is_vram || xe_migrate_avoid_identity(src_L0, &dst_it))
+ 			emit_pte(m, bb, dst_L0_pt, dst_is_vram, &dst_it, src_L0,
+-				 dst_bo);
++				 dst);
+ 		else
+ 			xe_res_next(&dst_it, src_L0);
+ 
+ 		if (copy_system_ccs)
+-			emit_pte(m, bb, ccs_pt, false, &ccs_it, ccs_size, src_bo);
++			emit_pte(m, bb, ccs_pt, false, &ccs_it, ccs_size, src);
+ 
+ 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+ 		update_idx = bb->len;
+@@ -984,12 +995,12 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 		size -= clear_L0;
+ 
+ 		/* Preemption is enabled again by the ring ops. */
+-		if (!clear_vram) {
++		if (!clear_vram || xe_migrate_avoid_identity(clear_L0, &src_it))
+ 			emit_pte(m, bb, clear_L0_pt, clear_vram, &src_it, clear_L0,
+-				 bo);
+-		} else {
++				 dst);
++		else
+ 			xe_res_next(&src_it, clear_L0);
+-		}
++
+ 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+ 		update_idx = bb->len;
+ 
+-- 
+2.42.0
 
-
-
-> Thanks,
-> Aravind.
->
-> >
-> > Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> > Cc: Francois Dugast <francois.dugast@intel.com>
-> > Cc: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-> > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_gt.c | 18 ------------------
-> >  include/uapi/drm/xe_drm.h  | 11 -----------
-> >  2 files changed, 29 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> > index f5d18e98f8b6..3af2adec1295 100644
-> > --- a/drivers/gpu/drm/xe/xe_gt.c
-> > +++ b/drivers/gpu/drm/xe/xe_gt.c
-> > @@ -589,20 +589,6 @@ static int do_gt_restart(struct xe_gt *gt)
-> >       return 0;
-> >  }
-> >
-> > -static void xe_uevent_gt_reset_failure(struct pci_dev *pdev, u8
-> tile_id, u8 gt_id)
-> > -{
-> > -     char *reset_event[4];
-> > -
-> > -     reset_event[0] =3D DRM_XE_RESET_FAILED_UEVENT "=3DNEEDS_RESET";
-> > -     reset_event[1] =3D kasprintf(GFP_KERNEL, "TILE_ID=3D%d", tile_id)=
-;
-> > -     reset_event[2] =3D kasprintf(GFP_KERNEL, "GT_ID=3D%d", gt_id);
-> > -     reset_event[3] =3D NULL;
-> > -     kobject_uevent_env(&pdev->dev.kobj, KOBJ_CHANGE, reset_event);
-> > -
-> > -     kfree(reset_event[1]);
-> > -     kfree(reset_event[2]);
-> > -}
-> > -
-> >  static int gt_reset(struct xe_gt *gt)
-> >  {
-> >       int err;
-> > @@ -659,10 +645,6 @@ static int gt_reset(struct xe_gt *gt)
-> >  err_fail:
-> >       xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
-> >
-> > -     /* Notify userspace about gt reset failure */
-> > -     xe_uevent_gt_reset_failure(to_pci_dev(gt_to_xe(gt)->drm.dev),
-> > -                                gt_to_tile(gt)->id, gt->info.id);
-> > -
-> >       gt_to_xe(gt)->needs_flr_on_fini =3D true;
-> >
-> >       return err;
-> > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> > index b905ab16aa40..8c35ec43faef 100644
-> > --- a/include/uapi/drm/xe_drm.h
-> > +++ b/include/uapi/drm/xe_drm.h
-> > @@ -20,7 +20,6 @@ extern "C" {
-> >   *   2. Extension definition and helper structs
-> >   *   3. IOCTL's Query structs in the order of the Query's entries.
-> >   *   4. The rest of IOCTL structs in the order of IOCTL declaration.
-> > - *   5. uEvents
-> >   */
-> >
-> >  /**
-> > @@ -1341,16 +1340,6 @@ struct drm_xe_wait_user_fence {
-> >       __u64 reserved[2];
-> >  };
-> >
-> > -/**
-> > - * DOC: uevent generated by xe on it's pci node.
-> > - *
-> > - * DRM_XE_RESET_FAILED_UEVENT - Event is generated when attempt to
-> reset gt
-> > - * fails. The value supplied with the event is always "NEEDS_RESET".
-> > - * Additional information supplied is tile id and gt id of the gt unit
-> for
-> > - * which reset has failed.
-> > - */
-> > -#define DRM_XE_RESET_FAILED_UEVENT "DEVICE_STATUS"
-> > -
-> >  #if defined(__cplusplus)
-> >  }
-> >  #endif
->
-
---000000000000d6918a060c8bad5e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div><br></div><div><br></div><div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Fri, Dec 15, 2023 at 5:13=E2=80=AFAM Aravi=
-nd Iddamsetty &lt;<a href=3D"mailto:aravind.iddamsetty@linux.intel.com">ara=
-vind.iddamsetty@linux.intel.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
-ing-left:1ex"><br>
-On 12/15/23 15:13, Francois Dugast wrote:<br>
-&gt; From: Rodrigo Vivi &lt;<a href=3D"mailto:rodrigo.vivi@intel.com" targe=
-t=3D"_blank">rodrigo.vivi@intel.com</a>&gt;<br>
-&gt;<br>
-&gt; This kernel uevent is getting removed for now. It will come<br>
-&gt; back later with a better future proof name.<br>
-&gt;<br>
-&gt; v2: Rebase (Francois Dugast)<br>
-as mentioned in IGT series we need to drop this commit as well<br>
-<br>
-14a663d83da2 drm/xe: Introduce fault injection for gt reset.<br>
-</blockquote><div dir=3D"auto"><br></div><div dir=3D"auto">No need for drop=
-ping that. We are going to restore the uevent soon. But with the proper fin=
-al name.</div><div dir=3D"auto">The problem is only with the uapi because w=
-e won=E2=80=99t be able to rename or change when we are in-tree.</div><div =
-dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></=
-div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-lef=
-t:1px #ccc solid;padding-left:1ex"><br>
-Thanks,<br>
-Aravind.<br>
-<br>
-&gt;<br>
-&gt; Cc: Himal Prasad Ghimiray &lt;<a href=3D"mailto:himal.prasad.ghimiray@=
-intel.com" target=3D"_blank">himal.prasad.ghimiray@intel.com</a>&gt;<br>
-&gt; Cc: Lucas De Marchi &lt;<a href=3D"mailto:lucas.demarchi@intel.com" ta=
-rget=3D"_blank">lucas.demarchi@intel.com</a>&gt;<br>
-&gt; Cc: Francois Dugast &lt;<a href=3D"mailto:francois.dugast@intel.com" t=
-arget=3D"_blank">francois.dugast@intel.com</a>&gt;<br>
-&gt; Cc: Aravind Iddamsetty &lt;<a href=3D"mailto:aravind.iddamsetty@linux.=
-intel.com" target=3D"_blank">aravind.iddamsetty@linux.intel.com</a>&gt;<br>
-&gt; Signed-off-by: Rodrigo Vivi &lt;<a href=3D"mailto:rodrigo.vivi@intel.c=
-om" target=3D"_blank">rodrigo.vivi@intel.com</a>&gt;<br>
-&gt; Signed-off-by: Francois Dugast &lt;<a href=3D"mailto:francois.dugast@i=
-ntel.com" target=3D"_blank">francois.dugast@intel.com</a>&gt;<br>
-&gt; ---<br>
-&gt;=C2=A0 drivers/gpu/drm/xe/xe_gt.c | 18 ------------------<br>
-&gt;=C2=A0 include/uapi/drm/xe_drm.h=C2=A0 | 11 -----------<br>
-&gt;=C2=A0 2 files changed, 29 deletions(-)<br>
-&gt;<br>
-&gt; diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c<b=
-r>
-&gt; index f5d18e98f8b6..3af2adec1295 100644<br>
-&gt; --- a/drivers/gpu/drm/xe/xe_gt.c<br>
-&gt; +++ b/drivers/gpu/drm/xe/xe_gt.c<br>
-&gt; @@ -589,20 +589,6 @@ static int do_gt_restart(struct xe_gt *gt)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0return 0;<br>
-&gt;=C2=A0 }<br>
-&gt;=C2=A0 <br>
-&gt; -static void xe_uevent_gt_reset_failure(struct pci_dev *pdev, u8 tile_=
-id, u8 gt_id)<br>
-&gt; -{<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0char *reset_event[4];<br>
-&gt; -<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0reset_event[0] =3D DRM_XE_RESET_FAILED_UEVENT &qu=
-ot;=3DNEEDS_RESET&quot;;<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0reset_event[1] =3D kasprintf(GFP_KERNEL, &quot;TI=
-LE_ID=3D%d&quot;, tile_id);<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0reset_event[2] =3D kasprintf(GFP_KERNEL, &quot;GT=
-_ID=3D%d&quot;, gt_id);<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0reset_event[3] =3D NULL;<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0kobject_uevent_env(&amp;pdev-&gt;dev.kobj, KOBJ_C=
-HANGE, reset_event);<br>
-&gt; -<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0kfree(reset_event[1]);<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0kfree(reset_event[2]);<br>
-&gt; -}<br>
-&gt; -<br>
-&gt;=C2=A0 static int gt_reset(struct xe_gt *gt)<br>
-&gt;=C2=A0 {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0int err;<br>
-&gt; @@ -659,10 +645,6 @@ static int gt_reset(struct xe_gt *gt)<br>
-&gt;=C2=A0 err_fail:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0xe_gt_err(gt, &quot;reset failed (%pe)\n&quo=
-t;, ERR_PTR(err));<br>
-&gt;=C2=A0 <br>
-&gt; -=C2=A0 =C2=A0 =C2=A0/* Notify userspace about gt reset failure */<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0xe_uevent_gt_reset_failure(to_pci_dev(gt_to_xe(gt=
-)-&gt;<a href=3D"http://drm.dev" rel=3D"noreferrer" target=3D"_blank">drm.d=
-ev</a>),<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 gt_to_tile(gt)-&gt;id, gt-&gt;<a=
- href=3D"http://info.id" rel=3D"noreferrer" target=3D"_blank">info.id</a>);=
-<br>
-&gt; -<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0gt_to_xe(gt)-&gt;needs_flr_on_fini =3D true;=
-<br>
-&gt;=C2=A0 <br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0return err;<br>
-&gt; diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h<br>
-&gt; index b905ab16aa40..8c35ec43faef 100644<br>
-&gt; --- a/include/uapi/drm/xe_drm.h<br>
-&gt; +++ b/include/uapi/drm/xe_drm.h<br>
-&gt; @@ -20,7 +20,6 @@ extern &quot;C&quot; {<br>
-&gt;=C2=A0 =C2=A0*=C2=A0 =C2=A02. Extension definition and helper structs<b=
-r>
-&gt;=C2=A0 =C2=A0*=C2=A0 =C2=A03. IOCTL&#39;s Query structs in the order of=
- the Query&#39;s entries.<br>
-&gt;=C2=A0 =C2=A0*=C2=A0 =C2=A04. The rest of IOCTL structs in the order of=
- IOCTL declaration.<br>
-&gt; - *=C2=A0 =C2=A05. uEvents<br>
-&gt;=C2=A0 =C2=A0*/<br>
-&gt;=C2=A0 <br>
-&gt;=C2=A0 /**<br>
-&gt; @@ -1341,16 +1340,6 @@ struct drm_xe_wait_user_fence {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 reserved[2];<br>
-&gt;=C2=A0 };<br>
-&gt;=C2=A0 <br>
-&gt; -/**<br>
-&gt; - * DOC: uevent generated by xe on it&#39;s pci node.<br>
-&gt; - *<br>
-&gt; - * DRM_XE_RESET_FAILED_UEVENT - Event is generated when attempt to re=
-set gt<br>
-&gt; - * fails. The value supplied with the event is always &quot;NEEDS_RES=
-ET&quot;.<br>
-&gt; - * Additional information supplied is tile id and gt id of the gt uni=
-t for<br>
-&gt; - * which reset has failed.<br>
-&gt; - */<br>
-&gt; -#define DRM_XE_RESET_FAILED_UEVENT &quot;DEVICE_STATUS&quot;<br>
-&gt; -<br>
-&gt;=C2=A0 #if defined(__cplusplus)<br>
-&gt;=C2=A0 }<br>
-&gt;=C2=A0 #endif<br>
-</blockquote></div></div>
-
---000000000000d6918a060c8bad5e--
