@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E65FBC46CA2
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Dec 2023 16:25:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AED4C4332F
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Dec 2023 16:25:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B099E10EA50;
-	Fri, 15 Dec 2023 16:25:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6990F10EA59;
+	Fri, 15 Dec 2023 16:25:23 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BB1F10EA4C
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Dec 2023 16:25:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B2F910EA59
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Dec 2023 16:25:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702657515; x=1734193515;
+ t=1702657520; x=1734193520;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=WHvBUTVyxtGHnBxPft1Iwz/vDANyxLXC/pHUQ39rO0I=;
- b=JFHaaDQLNBDAGzkIk+YDjt5/gNOvcxlXnYfc1SyRxMdogxgqe7lOBePI
- xu3Ix63VHErPegBZueriCCefqNgkz1YaPHA9hDU6YdadLOKWgvHbggF1T
- FTkPUYn8Z5rtkxNUmXY55Bn6doNzdAgYTEop213bJL322tT/CzQIanMva
- dZAII1m0HthHuruIOFcYAYaeCAf2hhaLZ3O+ubImImARJTJDEsqkM/t0p
- KGn5Oj+qKfiChtA3+AdHDoKRuPxoa1pW7APTjL+FgNkuNaXVXJMEEH2Ey
- Eyk+qTcWTejOapAqb0R1ojZsIbMualfv2lDe+dwsDx1WOn3OaEfLK+0YJ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="459617412"
-X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; d="scan'208";a="459617412"
+ bh=hH948CJDekHsmoI9AioUeZeRNUHtEL1wZyhPkyoo1BA=;
+ b=Vf0GxwI7mL6ybdFf2yoBJdAeS/CK8hWT7YRzk4mbwJLxW8G1hdpuiZGY
+ UtQ/htis7Xq1/9IH1IZyDPbqi/J1nySgCLbXWtPu9r4ldn7COSTn2LNFm
+ WIV9g4dLOb4cGWDCEC1yUgeSC74xOqYCDRIY0tcCP343tXqctyc6qEiqj
+ x0u+kRJae/D7AIBsmcsHHmUcJdMHFMYRHnuY9untXWR5OTxStmPwJ5UhQ
+ KC0inpCIUZUgNHXEiQH7cNaDoVoglEb6gj2eLOhARchost+Ae+eiymbGa
+ huzzbQf7MqX01lytDQxC77eIH5Wg3fSzu1RTLH8CztzxYfwFWTIh2yx4U Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="459617428"
+X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; d="scan'208";a="459617428"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2023 08:25:15 -0800
+ 15 Dec 2023 08:25:20 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="1021984074"
-X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; d="scan'208";a="1021984074"
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="1021984106"
+X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; d="scan'208";a="1021984106"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.144.211])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2023 08:25:13 -0800
+ 15 Dec 2023 08:25:18 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 01/10] drm/xe: Add GT oriented drm_printers
-Date: Fri, 15 Dec 2023 17:24:53 +0100
-Message-Id: <20231215162502.1879-2-michal.wajdeczko@intel.com>
+Subject: [PATCH v4 04/10] drm/xe/kunit: Set SR-IOV mode of the fake device
+Date: Fri, 15 Dec 2023 17:24:56 +0100
+Message-Id: <20231215162502.1879-5-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20231215162502.1879-1-michal.wajdeczko@intel.com>
 References: <20231215162502.1879-1-michal.wajdeczko@intel.com>
@@ -56,76 +56,60 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Instead of using generic drm_err_printer() that just adds static
-prefix, or drm_info_printer() that outputs only device name, add
-new helpers that create dedicated drm_printers that use our GT
-oriented xe_gt_err() and xe_gt_info() functions.
+We want to add code that will check the driver's SR-IOV mode.
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
+Update xe_pci_fake_device_init() and struct xe_pci_fake_data to
+either explicitly specify desired SR-IOV mode of the fake device
+or fallback to the default bare-metal mode.
+
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_printk.h | 44 +++++++++++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
+v2: set mode before activating stub (Lucas)
+---
+ drivers/gpu/drm/xe/tests/xe_pci.c      | 3 +++
+ drivers/gpu/drm/xe/tests/xe_pci_test.h | 2 ++
+ 2 files changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_printk.h b/drivers/gpu/drm/xe/xe_gt_printk.h
-index 5991bcadd47e..195f45b10c41 100644
---- a/drivers/gpu/drm/xe/xe_gt_printk.h
-+++ b/drivers/gpu/drm/xe/xe_gt_printk.h
-@@ -43,4 +43,48 @@
- #define xe_gt_WARN_ON_ONCE(_gt, _condition) \
- 	xe_gt_WARN_ONCE((_gt), _condition, "%s(%s)", "gt_WARN_ON_ONCE", __stringify(_condition))
+diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
+index 602793644f61..f62809ca8b51 100644
+--- a/drivers/gpu/drm/xe/tests/xe_pci.c
++++ b/drivers/gpu/drm/xe/tests/xe_pci.c
+@@ -156,6 +156,9 @@ int xe_pci_fake_device_init(struct xe_device *xe)
+ 		return -ENODEV;
  
-+static inline void __drm_printfn_xe_gt_err(struct drm_printer *p, struct va_format *vaf)
-+{
-+	struct xe_gt *gt = p->arg;
+ done:
++	xe->sriov.__mode = data && data->sriov_mode ?
++			   data->sriov_mode : XE_SRIOV_MODE_NONE;
 +
-+	xe_gt_err(gt, "%pV", vaf);
-+}
-+
-+static inline void __drm_printfn_xe_gt_info(struct drm_printer *p, struct va_format *vaf)
-+{
-+	struct xe_gt *gt = p->arg;
-+
-+	xe_gt_info(gt, "%pV", vaf);
-+}
-+
-+/**
-+ * xe_gt_err_printer - Construct a &drm_printer that outputs to xe_gt_err()
-+ * @gt: the &xe_gt pointer to use in xe_gt_err()
-+ *
-+ * Return: The &drm_printer object.
-+ */
-+static inline struct drm_printer xe_gt_err_printer(struct xe_gt *gt)
-+{
-+	struct drm_printer p = {
-+		.printfn = __drm_printfn_xe_gt_err,
-+		.arg = gt,
-+	};
-+	return p;
-+}
-+
-+/**
-+ * xe_gt_info_printer - Construct a &drm_printer that outputs to xe_gt_info()
-+ * @gt: the &xe_gt pointer to use in xe_gt_info()
-+ *
-+ * Return: The &drm_printer object.
-+ */
-+static inline struct drm_printer xe_gt_info_printer(struct xe_gt *gt)
-+{
-+	struct drm_printer p = {
-+		.printfn = __drm_printfn_xe_gt_info,
-+		.arg = gt,
-+	};
-+	return p;
-+}
-+
- #endif
+ 	kunit_activate_static_stub(test, read_gmdid, fake_read_gmdid);
+ 
+ 	xe_info_init_early(xe, desc, subplatform_desc);
+diff --git a/drivers/gpu/drm/xe/tests/xe_pci_test.h b/drivers/gpu/drm/xe/tests/xe_pci_test.h
+index 811ffe5bd9fd..f40dcec83992 100644
+--- a/drivers/gpu/drm/xe/tests/xe_pci_test.h
++++ b/drivers/gpu/drm/xe/tests/xe_pci_test.h
+@@ -9,6 +9,7 @@
+ #include <linux/types.h>
+ 
+ #include "xe_platform_types.h"
++#include "xe_sriov_types.h"
+ 
+ struct xe_device;
+ struct xe_graphics_desc;
+@@ -23,6 +24,7 @@ void xe_call_for_each_graphics_ip(xe_graphics_fn xe_fn);
+ void xe_call_for_each_media_ip(xe_media_fn xe_fn);
+ 
+ struct xe_pci_fake_data {
++	enum xe_sriov_mode sriov_mode;
+ 	enum xe_platform platform;
+ 	enum xe_subplatform subplatform;
+ 	u32 graphics_verx100;
 -- 
 2.25.1
 
