@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0548CC35274
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Dec 2023 15:46:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D9ABC46CC6
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Dec 2023 15:46:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C02AE10EA40;
-	Fri, 15 Dec 2023 15:46:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0933710EA62;
+	Fri, 15 Dec 2023 15:46:37 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F92F10EA40
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Dec 2023 15:46:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18A6210EA40
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Dec 2023 15:46:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702655194; x=1734191194;
+ t=1702655193; x=1734191193;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=FIvVOP/Aee0nMHzyUTe8wLXAbuPzEYPEou2sUsiYG1U=;
- b=V/5IxkWSUDQFkxh056kOiwOyZSu4oxZH5sIBcEK7wR0HYAJ1x95/EaRg
- r6lnxX2BaFgc/ykMC+pFevVUVJ7r2n8Sg8KQBywZ42g283H6mCg3VOlDZ
- e5dpwBah+rOSTVnJoFvyPDkKKe9vcoWEx5KvnpVyQ7T7M6x+0zVU5TiUR
- c+eHnNK3kBiDkO72e3L0cZKn4PFI4BcVhRE6MnvgDwOvmNig6NK1Kb+ze
- 6NOf60nqWaLV3nEjWgwYcNTAtL9KDkpk/iC+wb4uIuc/0pu8udgA1IRGP
- 6c+rZ0LtBAHhE2nXHTVcfSXb476lHLwsI1SlA35O8ON6Hb9TizFgQdikI A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="2141882"
+ bh=jzkalR1UIt90Iu7rsUqeGMF2vCJu/5kowhP1veE0GNU=;
+ b=dGwvusMk89Sl38a53/SFN6D43SVd9AbGBe0klVtrcI0NsdVPKG1uZur1
+ g7Y0BsY5yy/y4pObT2YjTptJOwy84S78bcz1r9TS01WYtITm65PJ2pgSX
+ 1s4wXlTqhDwpzPVW5CrCzO563oVVzwi0WzIVj+xm77YgUgp+ow9mg3vuN
+ fqaLTKQuVegBUnuuMsY/Ntgmk73lbXXFsWgr6hQEkwPYTUCQUzVtkOD1u
+ uD47TBlRJKazQWe5Dv6TbORxlXBW/YMCFpMGq8hg52sUc0Sv+KcrlDzFJ
+ 6gmb89PMn/PhnV0HjECHW+9Lr9nQBGXQ154rdQDNBBErcfzdPktaWyPfG w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="2141879"
 X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; 
-   d="scan'208";a="2141882"
+   d="scan'208";a="2141879"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2023 07:46:34 -0800
+ 15 Dec 2023 07:46:32 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; d="scan'208";a="16324590"
+X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; d="scan'208";a="16324580"
 Received: from sdiolatz-mobl.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.252.48.85])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2023 07:46:33 -0800
+ 15 Dec 2023 07:46:32 -0800
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v1 21/21] drm/xe/uapi: Remove reset uevent for now
-Date: Fri, 15 Dec 2023 15:45:53 +0000
-Message-Id: <20231215154553.7-22-francois.dugast@intel.com>
+Subject: [PATCH v1 20/21] drm/xe/uapi: Move DRM_XE_ACC_GRANULARITY_* where
+ they are used
+Date: Fri, 15 Dec 2023 15:45:52 +0000
+Message-Id: <20231215154553.7-21-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231215154553.7-1-francois.dugast@intel.com>
 References: <20231215154553.7-1-francois.dugast@intel.com>
@@ -57,96 +58,60 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Francois Dugast <francois.dugast@intel.com>,
+Cc: Francois Dugast <francois.dugast@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Bring those defines close to the context where they can be used. Also
+apply indentation as it is done for other subsets of defines.
 
-This kernel uevent is getting removed for now. It will come
-back later with a better future proof name.
-
-v2: Rebase (Francois Dugast)
-
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Francois Dugast <francois.dugast@intel.com>
-Cc: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.c | 18 ------------------
- include/uapi/drm/xe_drm.h  | 11 -----------
- 2 files changed, 29 deletions(-)
+ include/uapi/drm/xe_drm.h | 22 ++++++++--------------
+ 1 file changed, 8 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index f5d18e98f8b6..3af2adec1295 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -589,20 +589,6 @@ static int do_gt_restart(struct xe_gt *gt)
- 	return 0;
- }
- 
--static void xe_uevent_gt_reset_failure(struct pci_dev *pdev, u8 tile_id, u8 gt_id)
--{
--	char *reset_event[4];
--
--	reset_event[0] = DRM_XE_RESET_FAILED_UEVENT "=NEEDS_RESET";
--	reset_event[1] = kasprintf(GFP_KERNEL, "TILE_ID=%d", tile_id);
--	reset_event[2] = kasprintf(GFP_KERNEL, "GT_ID=%d", gt_id);
--	reset_event[3] = NULL;
--	kobject_uevent_env(&pdev->dev.kobj, KOBJ_CHANGE, reset_event);
--
--	kfree(reset_event[1]);
--	kfree(reset_event[2]);
--}
--
- static int gt_reset(struct xe_gt *gt)
- {
- 	int err;
-@@ -659,10 +645,6 @@ static int gt_reset(struct xe_gt *gt)
- err_fail:
- 	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
- 
--	/* Notify userspace about gt reset failure */
--	xe_uevent_gt_reset_failure(to_pci_dev(gt_to_xe(gt)->drm.dev),
--				   gt_to_tile(gt)->id, gt->info.id);
--
- 	gt_to_xe(gt)->needs_flr_on_fini = true;
- 
- 	return err;
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 919aa72c4481..9fa3ae324731 100644
+index 8a69abea0725..919aa72c4481 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -20,7 +20,6 @@ extern "C" {
-  *   2. Extension definition and helper structs
-  *   3. IOCTL's Query structs in the order of the Query's entries.
-  *   4. The rest of IOCTL structs in the order of IOCTL declaration.
-- *   5. uEvents
-  */
- 
- /**
-@@ -1341,16 +1340,6 @@ struct drm_xe_wait_user_fence {
+@@ -1020,20 +1020,6 @@ struct drm_xe_vm_bind {
  	__u64 reserved[2];
  };
  
--/**
-- * DOC: uevent generated by xe on it's pci node.
-- *
-- * DRM_XE_RESET_FAILED_UEVENT - Event is generated when attempt to reset gt
-- * fails. The value supplied with the event is always "NEEDS_RESET".
-- * Additional information supplied is tile id and gt id of the gt unit for
-- * which reset has failed.
-- */
--#define DRM_XE_RESET_FAILED_UEVENT "DEVICE_STATUS"
+-/* For use with DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_GRANULARITY */
 -
- #if defined(__cplusplus)
- }
- #endif
+-/* Monitor 128KB contiguous region with 4K sub-granularity */
+-#define DRM_XE_ACC_GRANULARITY_128K 0
+-
+-/* Monitor 2MB contiguous region with 64KB sub-granularity */
+-#define DRM_XE_ACC_GRANULARITY_2M 1
+-
+-/* Monitor 16MB contiguous region with 512KB sub-granularity */
+-#define DRM_XE_ACC_GRANULARITY_16M 2
+-
+-/* Monitor 64MB contiguous region with 2M sub-granularity */
+-#define DRM_XE_ACC_GRANULARITY_64M 3
+-
+ /**
+  * struct drm_xe_exec_queue_create - Input of &DRM_IOCTL_XE_EXEC_QUEUE_CREATE
+  *
+@@ -1066,6 +1052,14 @@ struct drm_xe_exec_queue_create {
+ #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_TRIGGER		5
+ #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_NOTIFY		6
+ #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_GRANULARITY	7
++/* Monitor 128KB contiguous region with 4K sub-granularity */
++#define     DRM_XE_ACC_GRANULARITY_128K				0
++/* Monitor 2MB contiguous region with 64KB sub-granularity */
++#define     DRM_XE_ACC_GRANULARITY_2M				1
++/* Monitor 16MB contiguous region with 512KB sub-granularity */
++#define     DRM_XE_ACC_GRANULARITY_16M				2
++/* Monitor 64MB contiguous region with 2M sub-granularity */
++#define     DRM_XE_ACC_GRANULARITY_64M				3
+ 
+ 	/** @extensions: Pointer to the first extension struct, if any */
+ 	__u64 extensions;
 -- 
 2.34.1
 
