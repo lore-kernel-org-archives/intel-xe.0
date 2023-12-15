@@ -4,57 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C23FC4332F
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Dec 2023 03:54:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D599C4332F
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Dec 2023 04:04:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE70510E319;
-	Fri, 15 Dec 2023 03:54:45 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46A7910E310
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Dec 2023 03:54:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F17F810E02E;
+	Fri, 15 Dec 2023 04:04:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B27B910E02E
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Dec 2023 04:04:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702612482; x=1734148482;
+ t=1702613043; x=1734149043;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=a/+wenEL30QxlEeWASEp5d1zNXfxPCpOZV4k5nQ50mw=;
- b=Pqraqw6G3yPI7FVRy9vtwOUm12tLgEy7fTF/s87u6bVDjX2SF8NBlZ7K
- iq+vcIX+bnidlj4u7zh0j4/XIfXGd6twJ4JGEA4CYq+mW6CaMsadRA7qO
- ceC625H65yIlXBlR/VkuzPdsr1SVnvzLWjX4FZtuBUEyhZRtqYObXEZBS
- Ak7/bYAIrIcjsqumVi/MEietyfMPi2tG1DyW9UBKpmF6ch52bVVycw84T
- 5jhv/ZZbb1N5AfhAB6BfRGs8tPed/m7hLvHp82ISCSRN+TvmO/v6GKrEr
- z8NLjGA00BCuXUAOgxAF5gwG7sjCyQz3p/SxKQEWMIyNKgUxSfmgf8tN6 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="375373814"
-X-IronPort-AV: E=Sophos;i="6.04,277,1695711600"; d="scan'208";a="375373814"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2023 19:54:41 -0800
+ bh=V//9vUeolZ9mQ2bPaYqxUSfOquxXbDh+CflP331gYWE=;
+ b=KmyiKyjsWgcsy5+kZ1c2Ha2polVXPAIpCcaOl/IFDkkcVSYqy5lUJ0bB
+ xVfXsVITr/eb+FCBfvD4L4z7WGDXu0qdgfNT9tEMUJA0r8ET6SInSnTPU
+ c/zdrJ65qlPdrr/JzxsmxFFw0pQrqbCK85nCa5jOJUMVwUao6VG/TnMUv
+ J2EcuzDzdd68ChomNQwebnhwWDsNb8Svg4Z8VnoI00bi4V0eAlx4YV6c3
+ OtleEBYbefePCExHasd/b7bsoUoRQcTuTPTWgE2L0asTVyw3RZ7yBDacS
+ wptE1aFf4NlNdKsh+k6Sfs7Cd0hfV22EPQrxReInPVQBlraQVmozUe4Lf g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="461689635"
+X-IronPort-AV: E=Sophos;i="6.04,277,1695711600"; d="scan'208";a="461689635"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2023 20:04:02 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="840523427"
-X-IronPort-AV: E=Sophos;i="6.04,277,1695711600"; d="scan'208";a="840523427"
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="767835901"
+X-IronPort-AV: E=Sophos;i="6.04,277,1695711600"; d="scan'208";a="767835901"
 Received: from aravind-dev.iind.intel.com (HELO [10.145.162.146])
  ([10.145.162.146])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2023 19:54:39 -0800
-Message-ID: <570f2e30-1fa1-48bd-a7de-8d6a03cbd9bd@linux.intel.com>
-Date: Fri, 15 Dec 2023 09:27:28 +0530
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2023 20:04:00 -0800
+Message-ID: <0998a123-7852-49ab-941a-7b3c9acb2b11@linux.intel.com>
+Date: Fri, 15 Dec 2023 09:36:49 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Remove vram size info from sysfs
+Subject: Re: [PATCH v1 08/14] drm/xe/uapi: Order sections
 Content-Language: en-US
-To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>,
- Matthew Auld <matthew.william.auld@gmail.com>
-References: <20231212002058.1105898-1-rodrigo.vivi@intel.com>
- <SJ1PR11MB620471C7291527E350731CC0818DA@SJ1PR11MB6204.namprd11.prod.outlook.com>
- <ca95972f-2d5d-4fc6-bca3-e80f984e79cf@linux.intel.com>
- <5403be007f18a7df3e3dacb283794a4fb60185e0.camel@intel.com>
- <63d56a37-5460-4c32-abf7-7860f358023d@linux.intel.com>
- <CAM0jSHO+qYFYEPKetsCY+U7xcDX7N3J75K848RPjpqqB_h+cHw@mail.gmail.com>
- <SJ1PR11MB62048929FA571D9D817EA3D08193A@SJ1PR11MB6204.namprd11.prod.outlook.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Francois Dugast <francois.dugast@intel.com>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+References: <20231207135009.7-1-francois.dugast@intel.com>
+ <20231207135009.7-9-francois.dugast@intel.com>
+ <6bqke2ogy77tiprn6hifcyy57yclahjpi4ueeuatxmtfuvmwt7@qypor7sctqx7>
 From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-In-Reply-To: <SJ1PR11MB62048929FA571D9D817EA3D08193A@SJ1PR11MB6204.namprd11.prod.outlook.com>
+In-Reply-To: <6bqke2ogy77tiprn6hifcyy57yclahjpi4ueeuatxmtfuvmwt7@qypor7sctqx7>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,144 +63,81 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Roper, Matthew D" <matthew.d.roper@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On 12/15/23 02:27, Lucas De Marchi wrote:
 
-On 12/15/23 07:50, Upadhyay, Tejas wrote:
->
->> -----Original Message-----
->> From: Matthew Auld <matthew.william.auld@gmail.com>
->> Sent: Thursday, December 14, 2023 3:13 PM
->> To: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
->> Cc: Vivi, Rodrigo <rodrigo.vivi@intel.com>; intel-xe@lists.freedesktop.org;
->> Upadhyay, Tejas <tejas.upadhyay@intel.com>; Roper, Matthew D
->> <matthew.d.roper@intel.com>
->> Subject: Re: [PATCH] drm/xe: Remove vram size info from sysfs
+Hi  Lucas,
+
+> On Thu, Dec 07, 2023 at 01:50:03PM +0000, Francois Dugast wrote:
+>> From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 >>
->> On Thu, 14 Dec 2023 at 05:56, Aravind Iddamsetty
->> <aravind.iddamsetty@linux.intel.com> wrote:
->>>
->>> On 12/13/23 21:23, Vivi, Rodrigo wrote:
->>>> On Wed, 2023-12-13 at 10:48 +0530, Aravind Iddamsetty wrote:
->>>>> On 12/13/23 09:43, Upadhyay, Tejas wrote:
->>>>>>> -----Original Message-----
->>>>>>> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf
->>>>>>> Of Rodrigo Vivi
->>>>>>> Sent: Tuesday, December 12, 2023 5:51 AM
->>>>>>> To: intel-xe@lists.freedesktop.org
->>>>>>> Cc: Roper, Matthew D <matthew.d.roper@intel.com>; Vivi, Rodrigo
->>>>>>> <rodrigo.vivi@intel.com>
->>>>>>> Subject: [PATCH] drm/xe: Remove vram size info from sysfs
->>>>>>>
->>>>>>> This information is already part of the query IOCTL.
->>>>>>> Let's not duplicate it here in the sysfs.
->>>>>> This patch was on request from L0 as they wanted actual VRAM size
->>>>>> including reserved portion. We should check with UMD team if they
->>>>>> require this sysfs or not. I will check.
->>>>> Hi Rodrigo,
->>>>>
->>>>> As Tejas mentioned the sysfs interface exposes the total physical
->>>>> vram including the stolen size which is needed by sysman, in the
->>>>> IOCTL only usable size(without stolen) is exposed.
->>>> I have removed it now so we can discuss better and ensure that we
->>>> are taking the best uapi decisions that are acceptable and won't
->>>> break the compatibility later after we are merged upstream.
->>>>
->>>> The time to break was now, so I removed.
->>>>
->>>> But we can continue with the discussion and see what is the best
->>>> approach.
->>>>
->>>> My first question would be: why does Level0 needs to know the stolen
->>>> size? So, why we don't add that information along with the query uapi?
->>> As part of their memory property API(device property) it needs the
->>> total memory on the card not just the usable.
->>>
->>> https://spec.oneapi.io/level-zero/latest/sysman/api.html#_CPPv4N20zes_
->>> mem_properties_t12physicalSizeE
->>>
->>>> It would be really awkward to see a value in the sysfs as total
->>>> memory and a completely different value on the query ioclt? this
->>>> stolen part apparently needs to be more transparent then, no?!
->>> The query IOCTL is to show the usable memory for the application to know
->> how much it can request hence stolen is removed.
->>> while the sysfs is like a device property to show total memory on card.
->> What about making region.total_size be the actual physical size, and then
->> s/region.used/region.avail/ which is then just the static usable size, or if
->> perfmon_capable() it is the live usable size?
-> I think it should be ok KMD pow, but need agreement with consumer of this, I have email thread going on this as well as on JIRA filed. I will loop everyone there.
+>> This patch doesn't modify any text or uapi entries themselves.
+>> It only move things up and down aiming a better organization of the uAPI.
+>>
+>> While fixing the documentation I noticed that query_engine_cs_cycles
+>> was in the middle of the memory_region info. Then I noticed more
+>> mismatches on the order when compared to the order of the IOCTL
+>> and QUERY entries declaration. So this patch aims to bring some
+>> order to the uAPI so it gets easier to read and the documentation
+>> generated in the end is able to tell a consistent story.
+>>
+>> Overall order:
+>>
+>> 1. IOCTL definition
+>> 2. Extension definition and helper structs
+>> 3. IOCTL's Query structs in the order of the Query's entries.
+>> 4. The rest of IOCTL structs in the order of IOCTL declaration.
+>> 5. uEvents
+>> 6. PMU
+>>
+>> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+>> ---
+>> include/uapi/drm/xe_drm.h | 255 ++++++++++++++++++++------------------
+>> 1 file changed, 132 insertions(+), 123 deletions(-)
+>>
+>> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+>> index f9178fe024a5..b36f3bd53611 100644
+>> --- a/include/uapi/drm/xe_drm.h
+>> +++ b/include/uapi/drm/xe_drm.h
+>> @@ -12,19 +12,51 @@
+>> extern "C" {
+>> #endif
+>>
+<snip>
+>> +/**
+>> + * DOC: uevent generated by xe on its pci node.
+>> + *
+>> + * DRM_XE_RESET_FAILED_UEVENT - Event is generated when attempt to reset gt
+>> + * fails. The value supplied with the event is always "NEEDS_RESET".
+>> + * Additional information supplied is tile id and gt id of the gt unit for
+>> + * which reset has failed.
+>> + */
+>> +#define DRM_XE_RESET_FAILED_UEVENT "DEVICE_STATUS"
+>
+> Unrelated to this.... Aravind has a patch renaming this to make it
+> future proof. We will need to either rename it now, or remove and leave
+> its addition for later.
 
-To reiterate it always suggested to expose sysfs if possible to avoid unnecessarily opening a device handle and waking the device at least for sysman needs.
+it was actual Himal who sent a patch to rework this.
+
+@Himal what's your plan on this.
 
 Thanks,
 Aravind.
-
-
 >
-> Tejas
->>>
->>> Thanks,
->>> Aravind.
->>>>> Thanks,
->>>>> Aravind.
->>>>>> Tejas
->>>>>>> Cc: Matt Roper <matthew.d.roper@intel.com>
->>>>>>> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>>>>>> ---
->>>>>>>  drivers/gpu/drm/xe/xe_tile_sysfs.c | 23 +----------------------
->>>>>>>  1 file changed, 1 insertion(+), 22 deletions(-)
->>>>>>>
->>>>>>> diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.c
->>>>>>> b/drivers/gpu/drm/xe/xe_tile_sysfs.c
->>>>>>> index 16376607c68f..0f8d3e7fce46 100644
->>>>>>> --- a/drivers/gpu/drm/xe/xe_tile_sysfs.c
->>>>>>> +++ b/drivers/gpu/drm/xe/xe_tile_sysfs.c
->>>>>>> @@ -20,20 +20,6 @@ static const struct kobj_type
->>>>>>> xe_tile_sysfs_kobj_type = {
->>>>>>>         .sysfs_ops = &kobj_sysfs_ops,  };
->>>>>>>
->>>>>>> -static ssize_t
->>>>>>> -physical_vram_size_bytes_show(struct device *kdev, struct
->>>>>>> device_attribute *attr,
->>>>>>> -                             char *buf)
->>>>>>> -{
->>>>>>> -       struct xe_tile *tile = kobj_to_tile(&kdev->kobj);
->>>>>>> -
->>>>>>> -       return sysfs_emit(buf, "%llu\n", tile-
->>>>>>>> mem.vram.actual_physical_size);
->>>>>>> -}
->>>>>>> -
->>>>>>> -static DEVICE_ATTR_RO(physical_vram_size_bytes);
->>>>>>> -
->>>>>>> -static const struct attribute *physical_memsize_attr =
->>>>>>> -       &dev_attr_physical_vram_size_bytes.attr;
->>>>>>> -
->>>>>>>  static void tile_sysfs_fini(struct drm_device *drm, void *arg) {
->>>>>>>         struct xe_tile *tile = arg; @@ -64,15 +50,8 @@ void
->>>>>>> xe_tile_sysfs_init(struct xe_tile *tile)
->>>>>>>
->>>>>>>         tile->sysfs = &kt->base;
->>>>>>>
->>>>>>> -       if (IS_DGFX(xe) && xe->info.platform != XE_DG1 &&
->>>>>>> -           sysfs_create_file(tile->sysfs,
->>>>>>> physical_memsize_attr))
->>>>>>> -               drm_warn(&xe->drm,
->>>>>>> -                        "Sysfs creation to read addr_range per
->>>>>>> tile failed\n");
->>>>>>> -
->>>>>>>         err = drmm_add_action_or_reset(&xe->drm, tile_sysfs_fini,
->>>>>>> tile);
->>>>>>> -       if (err) {
->>>>>>> +       if (err)
->>>>>>>                 drm_warn(&xe->drm, "%s: drmm_add_action_or_reset
->>>>>>> failed, err: %d\n",
->>>>>>>                          __func__, err);
->>>>>>> -               return;
->>>>>>> -       }
->>>>>>>  }
->>>>>>> --
->>>>>>> 2.43.0
+>
+> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>
+>
+> Lucas De Marchi
+>
+>> /**
+>>  * DOC: XE PMU event config IDs
+>>  *
+>> -- 
+>> 2.34.1
+>>
