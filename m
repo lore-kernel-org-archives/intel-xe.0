@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C0BEC4332F
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Dec 2023 17:01:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1811BC4332F
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Dec 2023 17:02:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9F0C10EA55;
-	Fri, 15 Dec 2023 17:01:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5F3D10EA6F;
+	Fri, 15 Dec 2023 17:02:21 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2D26010EA55;
- Fri, 15 Dec 2023 17:01:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3C29210EA72;
+ Fri, 15 Dec 2023 17:02:20 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 24A55AADE0;
- Fri, 15 Dec 2023 17:01:49 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 33D48AADE0;
+ Fri, 15 Dec 2023 17:02:20 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_uAPI_Alignment_-_Mor?=
- =?utf-8?q?e_cleanup_before_upstream?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_uAPI_Alignment_-_More_cle?=
+ =?utf-8?q?anup_before_upstream?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Francois Dugast" <francois.dugast@intel.com>
-Date: Fri, 15 Dec 2023 17:01:49 -0000
-Message-ID: <170265970911.27834.16439080634476220156@emeril.freedesktop.org>
+Date: Fri, 15 Dec 2023 17:02:20 -0000
+Message-ID: <170265974020.27833.4035350489550365670@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231215154553.7-1-francois.dugast@intel.com>
 In-Reply-To: <20231215154553.7-1-francois.dugast@intel.com>
@@ -48,33 +48,222 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: uAPI Alignment - More cleanup before upstream
 URL   : https://patchwork.freedesktop.org/series/127878/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: d25c0edf6 drm/xe: Enable W=1 warnings by default
-=== git am output follows ===
-Applying: drm/xe/uapi: add exec_queue_id member to drm_xe_wait_user_fence structure
-Applying: drm/xe/uapi: Return correct error code for xe_wait_user_fence_ioctl
-Applying: drm/xe/uapi: Remove DRM_IOCTL_XE_EXEC_QUEUE_SET_PROPERTY
-Applying: drm/xe/uapi: Remove DRM_XE_UFENCE_WAIT_MASK_*
-Applying: drm/xe/pmu: Remove PMU from Xe till uapi is finalized
-Applying: drm/xe/uapi: Ensure every uapi struct has drm_xe prefix
-Applying: drm/xe/uapi: Remove sync binds
-Applying: drm/xe/uapi: Add a comment to each struct
-Applying: drm/xe/uapi: Add missing documentation for struct members
-Applying: drm/xe/uapi: Document use of size in drm_xe_device_query
-Applying: drm/xe/uapi: Document drm_xe_query_config keys
-Applying: drm/xe/uapi: Document DRM_XE_DEVICE_QUERY_HWCONFIG
-Applying: drm/xe/uapi: Make constant comments visible in kernel doc
-Applying: drm/xe/uapi: Order sections
-Applying: drm/xe/uapi: More uAPI documentation additions and cosmetic updates
-Applying: drm/xe/uapi: Document the memory_region bitmask
-Applying: drm/xe/uapi: Add block diagram of a device
-Applying: drm/xe/uapi: Add examples of user space code
-Applying: drm/xe/uapi: Move CPU_CACHING defines before doc
-Applying: drm/xe/uapi: Move DRM_XE_ACC_GRANULARITY_* where they are used
-Applying: drm/xe/uapi: Remove reset uevent for now
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6030b24c1386b00de8187b5fb987e283a57b372a
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6ab86b1feece1cd0d72454f172545af9798b66ed
+Author: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Date:   Fri Dec 15 15:45:53 2023 +0000
+
+    drm/xe/uapi: Remove reset uevent for now
+    
+    This kernel uevent is getting removed for now. It will come
+    back later with a better future proof name.
+    
+    v2: Rebase (Francois Dugast)
+    
+    Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+    Cc: Francois Dugast <francois.dugast@intel.com>
+    Cc: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+    Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+    Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch d25c0edf65307f50c5fb98e6790b548962ae75ed drm-intel
+e10c77bf8 drm/xe/uapi: add exec_queue_id member to drm_xe_wait_user_fence structure
+1bc436777 drm/xe/uapi: Return correct error code for xe_wait_user_fence_ioctl
+9d0ed1b17 drm/xe/uapi: Remove DRM_IOCTL_XE_EXEC_QUEUE_SET_PROPERTY
+7a53163c1 drm/xe/uapi: Remove DRM_XE_UFENCE_WAIT_MASK_*
+f6e13f449 drm/xe/pmu: Remove PMU from Xe till uapi is finalized
+-:130: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#130: 
+deleted file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 122 lines checked
+5f0109d78 drm/xe/uapi: Ensure every uapi struct has drm_xe prefix
+8f789069e drm/xe/uapi: Remove sync binds
+cdbbe7017 drm/xe/uapi: Add a comment to each struct
+419303dae drm/xe/uapi: Add missing documentation for struct members
+608ff3680 drm/xe/uapi: Document use of size in drm_xe_device_query
+a1df093ef drm/xe/uapi: Document drm_xe_query_config keys
+270b7ca27 drm/xe/uapi: Document DRM_XE_DEVICE_QUERY_HWCONFIG
+38a4f61ee drm/xe/uapi: Make constant comments visible in kernel doc
+0246e36dd drm/xe/uapi: Order sections
+-:75: WARNING:LONG_LINE: line length of 124 exceeds 100 columns
+#75: FILE: include/uapi/drm/xe_drm.h:46:
++#define DRM_IOCTL_XE_DEVICE_QUERY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_DEVICE_QUERY, struct drm_xe_device_query)
+
+-:76: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
+#76: FILE: include/uapi/drm/xe_drm.h:47:
++#define DRM_IOCTL_XE_GEM_CREATE			DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_GEM_CREATE, struct drm_xe_gem_create)
+
+-:77: WARNING:LONG_LINE: line length of 130 exceeds 100 columns
+#77: FILE: include/uapi/drm/xe_drm.h:48:
++#define DRM_IOCTL_XE_GEM_MMAP_OFFSET		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_GEM_MMAP_OFFSET, struct drm_xe_gem_mmap_offset)
+
+-:78: WARNING:LONG_LINE: line length of 118 exceeds 100 columns
+#78: FILE: include/uapi/drm/xe_drm.h:49:
++#define DRM_IOCTL_XE_VM_CREATE			DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_CREATE, struct drm_xe_vm_create)
+
+-:79: WARNING:LONG_LINE: line length of 119 exceeds 100 columns
+#79: FILE: include/uapi/drm/xe_drm.h:50:
++#define DRM_IOCTL_XE_VM_DESTROY			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_DESTROY, struct drm_xe_vm_destroy)
+
+-:80: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
+#80: FILE: include/uapi/drm/xe_drm.h:51:
++#define DRM_IOCTL_XE_VM_BIND			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_BIND, struct drm_xe_vm_bind)
+
+-:81: WARNING:LONG_LINE: line length of 134 exceeds 100 columns
+#81: FILE: include/uapi/drm/xe_drm.h:52:
++#define DRM_IOCTL_XE_EXEC_QUEUE_CREATE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_CREATE, struct drm_xe_exec_queue_create)
+
+-:82: WARNING:LONG_LINE: line length of 135 exceeds 100 columns
+#82: FILE: include/uapi/drm/xe_drm.h:53:
++#define DRM_IOCTL_XE_EXEC_QUEUE_DESTROY		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_DESTROY, struct drm_xe_exec_queue_destroy)
+
+-:83: WARNING:LONG_LINE: line length of 146 exceeds 100 columns
+#83: FILE: include/uapi/drm/xe_drm.h:54:
++#define DRM_IOCTL_XE_EXEC_QUEUE_GET_PROPERTY	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_GET_PROPERTY, struct drm_xe_exec_queue_get_property)
+
+-:84: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#84: FILE: include/uapi/drm/xe_drm.h:55:
++#define DRM_IOCTL_XE_EXEC			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
+
+-:85: WARNING:LONG_LINE: line length of 130 exceeds 100 columns
+#85: FILE: include/uapi/drm/xe_drm.h:56:
++#define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
+
+total: 0 errors, 11 warnings, 0 checks, 307 lines checked
+d89ec28c8 drm/xe/uapi: More uAPI documentation additions and cosmetic updates
+4434cb4a7 drm/xe/uapi: Document the memory_region bitmask
+6bf95c185 drm/xe/uapi: Add block diagram of a device
+-:41: WARNING:LONG_LINE_COMMENT: line length of 209 exceeds 100 columns
+#41: FILE: include/uapi/drm/xe_drm.h:34:
++ *   ┌──────────────────────────────────────────────────────────────────┐
+
+-:42: WARNING:LONG_LINE_COMMENT: line length of 203 exceeds 100 columns
+#42: FILE: include/uapi/drm/xe_drm.h:35:
++ *   │ ┌──────────────────────────────────────────────────┐ ┌─────────┐ │
+
+-:43: WARNING:LONG_LINE_COMMENT: line length of 163 exceeds 100 columns
+#43: FILE: include/uapi/drm/xe_drm.h:36:
++ *   │ │        ┌───────────────────────┐   ┌─────┐       │ │ ┌─────┐ │ │
+
+-:44: WARNING:LONG_LINE_COMMENT: line length of 103 exceeds 100 columns
+#44: FILE: include/uapi/drm/xe_drm.h:37:
++ *   │ │        │         VRAM0         ├───┤ ... │       │ │ │VRAM1│ │ │
+
+-:45: WARNING:LONG_LINE_COMMENT: line length of 157 exceeds 100 columns
+#45: FILE: include/uapi/drm/xe_drm.h:38:
++ *   │ │        └───────────┬───────────┘   └─GT1─┘       │ │ └──┬──┘ │ │
+
+-:46: WARNING:LONG_LINE_COMMENT: line length of 195 exceeds 100 columns
+#46: FILE: include/uapi/drm/xe_drm.h:39:
++ *   │ │ ┌──────────────────┴───────────────────────────┐ │ │ ┌──┴──┐ │ │
+
+-:47: WARNING:LONG_LINE_COMMENT: line length of 177 exceeds 100 columns
+#47: FILE: include/uapi/drm/xe_drm.h:40:
++ *   │ │ │ ┌─────────────────────┐  ┌─────────────────┐ │ │ │ │     │ │ │
+
+-:48: WARNING:LONG_LINE_COMMENT: line length of 161 exceeds 100 columns
+#48: FILE: include/uapi/drm/xe_drm.h:41:
++ *   │ │ │ │ ┌──┐ ┌──┐ ┌──┐ ┌──┐ │  │ ┌─────┐ ┌─────┐ │ │ │ │ │     │ │ │
+
+-:49: WARNING:LONG_LINE_COMMENT: line length of 125 exceeds 100 columns
+#49: FILE: include/uapi/drm/xe_drm.h:42:
++ *   │ │ │ │ │EU│ │EU│ │EU│ │EU│ │  │ │RCS0 │ │BCS0 │ │ │ │ │ │     │ │ │
+
+-:50: WARNING:LONG_LINE_COMMENT: line length of 161 exceeds 100 columns
+#50: FILE: include/uapi/drm/xe_drm.h:43:
++ *   │ │ │ │ └──┘ └──┘ └──┘ └──┘ │  │ └─────┘ └─────┘ │ │ │ │ │     │ │ │
+
+-:51: WARNING:LONG_LINE_COMMENT: line length of 161 exceeds 100 columns
+#51: FILE: include/uapi/drm/xe_drm.h:44:
++ *   │ │ │ │ ┌──┐ ┌──┐ ┌──┐ ┌──┐ │  │ ┌─────┐ ┌─────┐ │ │ │ │ │     │ │ │
+
+-:52: WARNING:LONG_LINE_COMMENT: line length of 125 exceeds 100 columns
+#52: FILE: include/uapi/drm/xe_drm.h:45:
++ *   │ │ │ │ │EU│ │EU│ │EU│ │EU│ │  │ │VCS0 │ │VCS1 │ │ │ │ │ │     │ │ │
+
+-:53: WARNING:LONG_LINE_COMMENT: line length of 161 exceeds 100 columns
+#53: FILE: include/uapi/drm/xe_drm.h:46:
++ *   │ │ │ │ └──┘ └──┘ └──┘ └──┘ │  │ └─────┘ └─────┘ │ │ │ │ │     │ │ │
+
+-:54: WARNING:LONG_LINE_COMMENT: line length of 161 exceeds 100 columns
+#54: FILE: include/uapi/drm/xe_drm.h:47:
++ *   │ │ │ │ ┌──┐ ┌──┐ ┌──┐ ┌──┐ │  │ ┌─────┐ ┌─────┐ │ │ │ │ │     │ │ │
+
+-:55: WARNING:LONG_LINE_COMMENT: line length of 125 exceeds 100 columns
+#55: FILE: include/uapi/drm/xe_drm.h:48:
++ *   │ │ │ │ │EU│ │EU│ │EU│ │EU│ │  │ │VECS0│ │VECS1│ │ │ │ │ │ ... │ │ │
+
+-:56: WARNING:LONG_LINE_COMMENT: line length of 161 exceeds 100 columns
+#56: FILE: include/uapi/drm/xe_drm.h:49:
++ *   │ │ │ │ └──┘ └──┘ └──┘ └──┘ │  │ └─────┘ └─────┘ │ │ │ │ │     │ │ │
+
+-:57: WARNING:LONG_LINE_COMMENT: line length of 161 exceeds 100 columns
+#57: FILE: include/uapi/drm/xe_drm.h:50:
++ *   │ │ │ │ ┌──┐ ┌──┐ ┌──┐ ┌──┐ │  │ ┌─────┐ ┌─────┐ │ │ │ │ │     │ │ │
+
+-:58: WARNING:LONG_LINE_COMMENT: line length of 125 exceeds 100 columns
+#58: FILE: include/uapi/drm/xe_drm.h:51:
++ *   │ │ │ │ │EU│ │EU│ │EU│ │EU│ │  │ │CCS0 │ │CCS1 │ │ │ │ │ │     │ │ │
+
+-:59: WARNING:LONG_LINE_COMMENT: line length of 161 exceeds 100 columns
+#59: FILE: include/uapi/drm/xe_drm.h:52:
++ *   │ │ │ │ └──┘ └──┘ └──┘ └──┘ │  │ └─────┘ └─────┘ │ │ │ │ │     │ │ │
+
+-:60: WARNING:LONG_LINE_COMMENT: line length of 165 exceeds 100 columns
+#60: FILE: include/uapi/drm/xe_drm.h:53:
++ *   │ │ │ └─────────DSS─────────┘  │ ┌─────┐ ┌─────┐ │ │ │ │ │     │ │ │
+
+-:61: WARNING:LONG_LINE_COMMENT: line length of 105 exceeds 100 columns
+#61: FILE: include/uapi/drm/xe_drm.h:54:
++ *   │ │ │                          │ │CCS2 │ │CCS3 │ │ │ │ │ │     │ │ │
+
+-:62: WARNING:LONG_LINE_COMMENT: line length of 167 exceeds 100 columns
+#62: FILE: include/uapi/drm/xe_drm.h:55:
++ *   │ │ │ ┌─────┐ ┌─────┐ ┌─────┐  │ └─────┘ └─────┘ │ │ │ │ │     │ │ │
+
+-:63: WARNING:LONG_LINE_COMMENT: line length of 109 exceeds 100 columns
+#63: FILE: include/uapi/drm/xe_drm.h:56:
++ *   │ │ │ │ ... │ │ ... │ │ ... │  │                 │ │ │ │ │     │ │ │
+
+-:64: WARNING:LONG_LINE_COMMENT: line length of 141 exceeds 100 columns
+#64: FILE: include/uapi/drm/xe_drm.h:57:
++ *   │ │ │ └─DSS─┘ └─DSS─┘ └─DSS─┘  └─────Engines─────┘ │ │ │ │     │ │ │
+
+-:65: WARNING:LONG_LINE_COMMENT: line length of 183 exceeds 100 columns
+#65: FILE: include/uapi/drm/xe_drm.h:58:
++ *   │ │ └───────────────────────────GT0────────────────┘ │ │ └─GT2─┘ │ │
+
+-:66: WARNING:LONG_LINE_COMMENT: line length of 181 exceeds 100 columns
+#66: FILE: include/uapi/drm/xe_drm.h:59:
++ *   │ └────────────────────────────Tile0─────────────────┘ └─ Tile1──┘ │
+
+-:67: WARNING:LONG_LINE_COMMENT: line length of 195 exceeds 100 columns
+#67: FILE: include/uapi/drm/xe_drm.h:60:
++ *   └─────────────────────────────Device0───────┬──────────────────────┘
+
+-:69: WARNING:LONG_LINE_COMMENT: line length of 136 exceeds 100 columns
+#69: FILE: include/uapi/drm/xe_drm.h:62:
++ *                        ───────────────────────┴────────── PCI bus
+
+total: 0 errors, 28 warnings, 0 checks, 45 lines checked
+54dea9831 drm/xe/uapi: Add examples of user space code
+75eaab3eb drm/xe/uapi: Move CPU_CACHING defines before doc
+9ea83a241 drm/xe/uapi: Move DRM_XE_ACC_GRANULARITY_* where they are used
+6ab86b1fe drm/xe/uapi: Remove reset uevent for now
 
 
