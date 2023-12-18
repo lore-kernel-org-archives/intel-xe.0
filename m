@@ -4,45 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 802A7C46CA2
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Dec 2023 21:27:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70CF1C35274
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Dec 2023 21:59:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FD5810E2C6;
-	Mon, 18 Dec 2023 21:27:33 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84ABA10E2C6
- for <intel-xe@lists.freedesktop.org>; Mon, 18 Dec 2023 21:27:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702934851; x=1734470851;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=CgPtM/O4HVx6Tvlr6koutyFt+9biKBxGttQb00cOQ+k=;
- b=F6UvgKGv1OyTfflHCOF+nUkbhoSTw3fSOc2rztv1s3jq6wpvrILSWQs8
- zGl8jXxtopKAGyvKcb3ETUOmjel4hyyoUzxDDzThDQ0fkSG+gbGt8v+33
- LnCy8iLUDb36uzsElgElrv6r6HBggkqdR9tMth3RVVXcMJZl4vBXrRe8x
- jIYhfAtvZUwFlZdq50fD4mO9xRDfiUDoLsg5ftD0fJqDl0HlIKBnwDini
- 6YLJ0GfG/ee7+1cJEMRnjnOZVx9tK+r4Ln8zZWgyacS8Y20uoxl2nO48A
- iEUGi6UO0fFZQ3SajAKbVI7DOhIvNWdGjo0lmS8CkdNr0Q7BWFHAtMev3 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="394448800"
-X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="394448800"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2023 13:27:30 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="1107101559"
-X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="1107101559"
-Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2023 13:27:29 -0800
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/xe: Remove ci-only GuC FW definitions
-Date: Mon, 18 Dec 2023 13:27:47 -0800
-Message-ID: <20231218212747.1136433-1-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C99210E153;
+	Mon, 18 Dec 2023 21:59:34 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4332710E153;
+ Mon, 18 Dec 2023 21:59:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3BC47AA915;
+ Mon, 18 Dec 2023 21:59:33 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1622685875792824433=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Fix_warning_on_impossi?=
+ =?utf-8?q?ble_condition?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Mon, 18 Dec 2023 21:59:33 -0000
+Message-ID: <170293677321.12103.511209435257617310@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231218163301.3453285-1-lucas.demarchi@intel.com>
+In-Reply-To: <20231218163301.3453285-1-lucas.demarchi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,51 +39,140 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-As part of the FW definitions, we declare each blob as required via the
-MODULE_FIRMWARE() macro. This causes the initramfs update (or equivalent
-process) to look for the blobs on disk when the kernel is installed;
-therefore, we need to make sure that all FWs we define are available in
-linux-firmware.
+--===============1622685875792824433==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-We currently don't plan to push the PVC and LNL blobs to linux-firmware,
-so we need to remove them from the list. we can then re-add them in the
-topic/core-for-CI branch until we're ready to push them to the official
-repo.
+== Series Details ==
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
+Series: drm/xe: Fix warning on impossible condition
+URL   : https://patchwork.freedesktop.org/series/127932/
+State : success
 
-This patch is intended to be added to the PR sent for drm-next, with a
-revert of it being added to topic/core-for-CI afterwards. It is expected
-that PVC CI will fail due to the lack of FW, but the other platforms
-should still work.
+== Summary ==
 
-Note that this patch remove the last uses of the mmp FWs, but the
-support for those has been left in because we do plan to use mmp tags
-for early FW drops in the CI branch.
+CI Bug Log - changes from xe-584-16f9e14e9101e3250294fc3ccb0acb35cd75532d_BAT -> xe-pw-127932v1_BAT
+====================================================
 
- drivers/gpu/drm/xe/xe_uc_fw.c | 2 --
- 1 file changed, 2 deletions(-)
+Summary
+-------
 
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index 73d6938c921d..9dff96dfe455 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -102,9 +102,7 @@ struct fw_blobs_by_type {
- };
- 
- #define XE_GUC_FIRMWARE_DEFS(fw_def, mmp_ver, major_ver)			\
--	fw_def(LUNARLAKE,	mmp_ver(xe,	guc,	lnl,	70, 6, 8))	\
- 	fw_def(METEORLAKE,	major_ver(i915,	guc,	mtl,	70, 7))		\
--	fw_def(PVC,		mmp_ver(xe,	guc,	pvc,	70, 9, 1))	\
- 	fw_def(DG2,		major_ver(i915,	guc,	dg2,	70, 5))		\
- 	fw_def(DG1,		major_ver(i915,	guc,	dg1,	70, 5))		\
- 	fw_def(ALDERLAKE_N,	major_ver(i915,	guc,	tgl,	70, 5))		\
--- 
-2.43.0
+  **SUCCESS**
 
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-127932v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-adlp-7:         [FAIL][1] ([Intel XE#480]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-584-16f9e14e9101e3250294fc3ccb0acb35cd75532d/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127932v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-dp3:
+    - bat-dg2-oem2:       [FAIL][3] ([Intel XE#906]) -> [PASS][4] +2 other tests pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-584-16f9e14e9101e3250294fc3ccb0acb35cd75532d/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@d-dp3.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127932v1/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@d-dp3.html
+
+  
+  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+  [Intel XE#906]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/906
+
+
+Build changes
+-------------
+
+  * Linux: xe-584-16f9e14e9101e3250294fc3ccb0acb35cd75532d -> xe-pw-127932v1
+
+  IGT_7645: dfa7c0983c9f0cec68fe289dca5f40d3ca00712d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-584-16f9e14e9101e3250294fc3ccb0acb35cd75532d: 16f9e14e9101e3250294fc3ccb0acb35cd75532d
+  xe-pw-127932v1: 127932v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127932v1/index.html
+
+--===============1622685875792824433==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Fix warning on impossible condition</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/127932/">https://patchwork.freedesktop.org/series/127932/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127932v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127932v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-584-16f9e14e9101e3250294fc3ccb0acb35cd75532d_BAT -&gt; xe-pw-127932v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-127932v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-584-16f9e14e9101e3250294fc3ccb0acb35cd75532d/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127932v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@d-dp3:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-584-16f9e14e9101e3250294fc3ccb0acb35cd75532d/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@d-dp3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/906">Intel XE#906</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127932v1/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@d-dp3.html">PASS</a> +2 other tests pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-584-16f9e14e9101e3250294fc3ccb0acb35cd75532d -&gt; xe-pw-127932v1</li>
+</ul>
+<p>IGT_7645: dfa7c0983c9f0cec68fe289dca5f40d3ca00712d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-584-16f9e14e9101e3250294fc3ccb0acb35cd75532d: 16f9e14e9101e3250294fc3ccb0acb35cd75532d<br />
+  xe-pw-127932v1: 127932v1</p>
+
+</body>
+</html>
+
+--===============1622685875792824433==--
