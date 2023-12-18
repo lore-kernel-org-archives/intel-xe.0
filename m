@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D90EC46CD3
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A139C46CD4
 	for <intel-xe@archiver.kernel.org>; Mon, 18 Dec 2023 19:00:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C225A10E39F;
-	Mon, 18 Dec 2023 19:00:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CEA510E3AD;
+	Mon, 18 Dec 2023 19:00:49 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0361310E392
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4E4110E3AE
  for <intel-xe@lists.freedesktop.org>; Mon, 18 Dec 2023 19:00:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1702926047; x=1734462047;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=LbmQKewkzJmvyHZh1u2p+otB4WCF/K2DjzqxPMc8caY=;
- b=SfXvvd7cBHDuDA5cJu6fD5bhCbolGYE3us06xhot8RNR0tTV1BbAGq4i
- Tm6NdaF8Tcvo6AfMbSJTFT2kmpHQgtrZfITEyJCK6NdEVOtoO8QM6virH
- hxK8GfDPcEvXe1M/nntp7798JUYjBz4BbyjRfJbX3H4/LkuNn03UvHpSa
- u2sfgHB2VX5+x1U7vpAYmrU0SA1FIYRtDvZJH5LTfTDWNCjj7haTC+e5s
- eH12dGDuEM9PKYYlH0pGMollRXOkXWlH5frnF1vN6giBXiJh3SOhm5gN5
- hFS3CRGlGwGUFSeYN2me1D/QZrMChEy7+r0EbHBBrP+5v0qwOxTPX4g8W Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="461984335"
-X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="461984335"
+ bh=ea+XzXiqWQmLYX06q/1X1HL9Gv7sZFoLI16VQRkb0WA=;
+ b=j6/Y0budcWtHyb8mtjgUtUxh2p3l4eKptxU819FZz4XJcqYb+uib5Dqx
+ q4DxK3xNM5ehzGjttoUQ09VWunyGaesJPXvbeBUHSG6VOMYYWkSriVYA8
+ peU4HW9xh0eJ3ILCcdLbTYwpIYxZnHgoXWoG7faaYgWi0dchowo6B2p+P
+ 48qT7Xqi+CkwHvRMuKx6xyoccElsDtP6rVlKxkQGD9N5T8KN/GQc8LXfB
+ /tNizjq++vmM5yhZfHPekpBybCsMUJ3koAqvx/C3s/TZu0k2CVodpIIpq
+ /BAA8z8Vqf+Tzk+2ek1BNj1DtROXPyzUxJynfKz7//qyZGLOL7Hzy9kYr A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="461984325"
+X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="461984325"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2023 08:53:57 -0800
+ 18 Dec 2023 08:53:53 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="779157437"
-X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="779157437"
+X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="779157427"
+X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="779157427"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.130.107])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2023 08:53:56 -0800
+ 18 Dec 2023 08:53:52 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v2 06/10] drm/xe: Add XE_BO_NEEDS_UC flag to force UC mode
- instead WB
-Date: Mon, 18 Dec 2023 17:53:40 +0100
-Message-Id: <20231218165344.458-7-michal.wajdeczko@intel.com>
+Subject: [CI v2 02/10] drm/xe: Define registers used by memory based irq
+ processing
+Date: Mon, 18 Dec 2023 17:53:36 +0100
+Message-Id: <20231218165344.458-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20231218165344.458-1-michal.wajdeczko@intel.com>
 References: <20231218165344.458-1-michal.wajdeczko@intel.com>
@@ -60,46 +60,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When we map BO in GGTT, then by default we are using PAT index
-that corresponds to XE_CACHE_WB but ppcoming feature will require
-use of the PAT index of the XE_CACHE_UC.  Define new BO flag that
-could be used during BO creation to force alternate caching.
+The RING_INT_SRC_RPT_PTR register points to a cacheline in memory
+to which an engine must report as source of interrupt prior to
+generating an interrupt to the host.
 
-Cc: Matt Roper <matthew.d.roper@intel.com>
+The RING_INT_STATUS_RPT_PTR register points to the first cacheline
+of the Interrupt Status Report (ISR) page (4KB) in graphics memory
+to which all engines report their interrupt status.
+
+The RING_IMR register has the interrupt enables and interrupt masks
+for an engine.
+
+We will refer to these registers shortly.
+
+Bspec: 45963, 45964, 45965
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-Link: https://lore.kernel.org/r/20231214185955.1791-7-michal.wajdeczko@intel.com
+Link: https://lore.kernel.org/r/20231214185955.1791-3-michal.wajdeczko@intel.com
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.h   | 1 +
- drivers/gpu/drm/xe/xe_ggtt.c | 3 ++-
- 2 files changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 9b1279aca127..97b32528c600 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -44,6 +44,7 @@
- #define XE_BO_FIXED_PLACEMENT_BIT	BIT(11)
- #define XE_BO_PAGETABLE			BIT(12)
- #define XE_BO_NEEDS_CPU_ACCESS		BIT(13)
-+#define XE_BO_NEEDS_UC			BIT(14)
- /* this one is trigger internally only */
- #define XE_BO_INTERNAL_TEST		BIT(30)
- #define XE_BO_INTERNAL_64K		BIT(31)
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 3efd2d066bf7..c639dbf3bdd2 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -334,7 +334,8 @@ int xe_ggtt_insert_special_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
+diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+index 5592774fc690..bd9c956f48a7 100644
+--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+@@ -75,7 +75,9 @@
+ #define FF_THREAD_MODE(base)			XE_REG((base) + 0xa0)
+ #define   FF_TESSELATION_DOP_GATE_DISABLE	BIT(19)
  
- void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
- {
--	u16 pat_index = tile_to_xe(ggtt->tile)->pat.idx[XE_CACHE_WB];
-+	u16 cache_mode = bo->flags & XE_BO_NEEDS_UC ? XE_CACHE_NONE : XE_CACHE_WB;
-+	u16 pat_index = tile_to_xe(ggtt->tile)->pat.idx[cache_mode];
- 	u64 start = bo->ggtt_node.start;
- 	u64 offset, pte;
++#define RING_INT_SRC_RPT_PTR(base)		XE_REG((base) + 0xa4)
+ #define RING_IMR(base)				XE_REG((base) + 0xa8)
++#define RING_INT_STATUS_RPT_PTR(base)		XE_REG((base) + 0xac)
  
+ #define RING_EIR(base)				XE_REG((base) + 0xb0)
+ #define RING_EMR(base)				XE_REG((base) + 0xb4)
 -- 
 2.25.1
 
