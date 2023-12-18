@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C86FAC35274
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Dec 2023 13:09:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAA97C35274
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Dec 2023 13:09:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E6AE10E129;
-	Mon, 18 Dec 2023 13:09:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80FC610E22B;
+	Mon, 18 Dec 2023 13:09:36 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 57E2D10E129;
- Mon, 18 Dec 2023 13:09:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 528C410E1B4;
+ Mon, 18 Dec 2023 13:09:35 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3C936A02F0;
- Mon, 18 Dec 2023 13:09:21 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4F68AA02F0;
+ Mon, 18 Dec 2023 13:09:35 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_CCS_mode_c?=
- =?utf-8?q?ode_cleanup?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_CCS_mode_code_c?=
+ =?utf-8?q?leanup?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
-Date: Mon, 18 Dec 2023 13:09:21 -0000
-Message-ID: <170290496121.12104.6076101298284399197@emeril.freedesktop.org>
+Date: Mon, 18 Dec 2023 13:09:35 -0000
+Message-ID: <170290497532.12106.5086568480714722733@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231216214120.7394-1-niranjana.vishwanathapura@intel.com>
 In-Reply-To: <20231216214120.7394-1-niranjana.vishwanathapura@intel.com>
@@ -48,15 +48,41 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: CCS mode code cleanup
 URL   : https://patchwork.freedesktop.org/series/127905/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: c54005fdd Merge remote-tracking branch 'drm-intel/topic/core-for-CI' into drm-xe-next
-=== git am output follows ===
-Applying: drm/xe: Cleanup CCS mode related code
-Applying: drm/xe: Rename num_slices to num_cslices
-Applying: drm/xe: Add kernel-doc for CCS mode selection
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6030b24c1386b00de8187b5fb987e283a57b372a
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 394e387ef54ac5d4e30ed3a35238d7d51332bac6
+Author: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Date:   Sat Dec 16 13:41:18 2023 -0800
+
+    drm/xe: Add kernel-doc for CCS mode selection
+    
+    Move all CCS mode documentation including that of sysfs
+    interfaces to a single kernel-doc section.
+    
+    Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
++ /mt/dim checkpatch c54005fdd0347a17088e7ff78070a55bf9103bc4 drm-intel
+c7f6cdc3e drm/xe: Cleanup CCS mode related code
+9c0e03c7b drm/xe: Rename num_slices to num_cslices
+394e387ef drm/xe: Add kernel-doc for CCS mode selection
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:24: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#24: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 74 lines checked
 
 
