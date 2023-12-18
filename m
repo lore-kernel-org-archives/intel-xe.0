@@ -4,30 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C042C35274
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Dec 2023 18:50:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E45AEC35274
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Dec 2023 18:58:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE50B10E10A;
-	Mon, 18 Dec 2023 18:50:03 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id CAE5610E10A;
- Mon, 18 Dec 2023 18:49:32 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C25DDA02F0;
- Mon, 18 Dec 2023 18:49:32 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3380261941897887699=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id B095489D30;
+	Mon, 18 Dec 2023 18:58:05 +0000 (UTC)
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDB0110E1B4
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Dec 2023 18:57:27 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sin.source.kernel.org (Postfix) with ESMTP id 50A11CE0EE1;
+ Mon, 18 Dec 2023 18:57:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33B97C433CC;
+ Mon, 18 Dec 2023 18:57:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1702925844;
+ bh=naWCIvEvEYAGR9D+SB7trHx4NFczsGHbAbhUSikK+Iw=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=AuIRk08SsI+UpAyDSVo0ImPh8Fn19MhReuLtOioVxSzWtF1i0+dC5GJGD3swpkezQ
+ QSGB18YfBE5H3m7mAv/Pe75BclcdpDGUhq+8l6EeI8ZdDN1Uog33DF+wk3n7lkTUR5
+ 13WTlvMEKY8xrNlyERBRRI67LO2J7II30ZyDqWNXZcjwpShwPg1lxzYQlBFUfxd/f5
+ j4grjaKAHP+2h/W8/9Vsmycgm1RcaZHnK4zdEDp0T7CQwQ+F0tTYUmQclhRiZhY/hI
+ mYDxGY5aFtXSCAJl7Yo+0g+onRqLXwujflynuPrRl0FiQ/rjNr79zWco5wu+HsHPgl
+ VkT3vP2IHOt5Q==
+Date: Mon, 18 Dec 2023 11:57:22 -0700
+From: Nathan Chancellor <nathan@kernel.org>
+To: kernel test robot <lkp@intel.com>
+Subject: Re: [drm-xe:drm-xe-next 989/1016]
+ drivers/gpu/drm/xe/xe_wait_user_fence.c:46:2: warning: variable 'passed' is
+ used uninitialized whenever switch default is taken
+Message-ID: <20231218185722.GA2863043@dev-arch.thelio-3990X>
+References: <202312170357.KPSinwPs-lkp@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/guc=3A_Use_FAST=5FREQUEST?=
- =?utf-8?q?_for_non-blocking_H2G_messages_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Date: Mon, 18 Dec 2023 18:49:32 -0000
-Message-ID: <170292537278.12103.286775844104300402@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231206211441.3092072-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20231206211441.3092072-1-daniele.ceraolospurio@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <202312170357.KPSinwPs-lkp@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,126 +50,59 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, llvm@lists.linux.dev,
+ Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org,
+ oe-kbuild-all@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3380261941897887699==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Sun, Dec 17, 2023 at 03:28:47AM +0800, kernel test robot wrote:
+> tree:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+> head:   c54005fdd0347a17088e7ff78070a55bf9103bc4
+> commit: ad7d86415578e1a5deedb0ceed5c281f7367d66d [989/1016] drm/xe: Enable W=1 warnings by default
+> config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20231217/202312170357.KPSinwPs-lkp@intel.com/config)
+> compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
+> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231217/202312170357.KPSinwPs-lkp@intel.com/reproduce)
+> 
+> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202312170357.KPSinwPs-lkp@intel.com/
+> 
+> All warnings (new ones prefixed by >>):
+> 
+>    warning: unknown warning option '-Wrestrict' [-Wunknown-warning-option]
+>    warning: unknown warning option '-Wpacked-not-aligned'; did you mean '-Wpacked-non-pod'? [-Wunknown-warning-option]
+>    warning: unknown warning option '-Wformat-overflow'; did you mean '-Wshift-overflow'? [-Wunknown-warning-option]
+>    warning: unknown warning option '-Wformat-truncation' [-Wunknown-warning-option]
+>    warning: unknown warning option '-Wstringop-overflow'; did you mean '-Wshift-overflow'? [-Wunknown-warning-option]
+>    warning: unknown warning option '-Wstringop-truncation'; did you mean '-Wstring-concatenation'? [-Wunknown-warning-option]
 
-== Series Details ==
+I am not sure why these warnings are even showing up in the first place,
+they are wrapped with cc-option, which should be catching that they are
+not supported... Is 0day doing something funky with KCFLAGS?
+Regardless...
 
-Series: drm/xe/guc: Use FAST_REQUEST for non-blocking H2G messages (rev4)
-URL   : https://patchwork.freedesktop.org/series/126495/
-State : success
+> >> drivers/gpu/drm/xe/xe_wait_user_fence.c:46:2: warning: variable 'passed' is used uninitialized whenever switch default is taken [-Wsometimes-uninitialized]
+>            default:
+>            ^~~~~~~
+>    drivers/gpu/drm/xe/xe_wait_user_fence.c:50:9: note: uninitialized use occurs here
+>            return passed ? 0 : 1;
+>                   ^~~~~~
+>    drivers/gpu/drm/xe/xe_wait_user_fence.c:21:13: note: initialize the variable 'passed' to silence this warning
+>            bool passed;
+>                       ^
+>                        = 0
+>    7 warnings generated.
 
-== Summary ==
+I was surprised that this was not caught sooner as
+-Wsometimes-uninitialized is a part of -Wall but it looks like
+drivers/gpu/drm/xe/Makefile was forked from the i915 Makefile before
+commit 43192617f781 ("drm/i915: Enable -Wsometimes-uninitialized") was
+added. It is good to see that the warnings are aligned now so that
+trivial uninitialized warnings can be caught by clang because they are
+disabled for GCC since commit 78a5255ffb6a ("Stop the ad-hoc games with
+-Wno-maybe-initialized") in 5.7. Will this be fixed as a separate patch?
 
-CI Bug Log - changes from xe-584-16f9e14e9101e3250294fc3ccb0acb35cd75532d_BAT -> xe-pw-126495v4_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 3)
-------------------------------
-
-  Missing    (1): bat-dg2-oem2 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-126495v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [FAIL][1] ([Intel XE#480]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-584-16f9e14e9101e3250294fc3ccb0acb35cd75532d/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126495v4/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
-
-
-Build changes
--------------
-
-  * Linux: xe-584-16f9e14e9101e3250294fc3ccb0acb35cd75532d -> xe-pw-126495v4
-
-  IGT_7645: dfa7c0983c9f0cec68fe289dca5f40d3ca00712d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-584-16f9e14e9101e3250294fc3ccb0acb35cd75532d: 16f9e14e9101e3250294fc3ccb0acb35cd75532d
-  xe-pw-126495v4: 126495v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126495v4/index.html
-
---===============3380261941897887699==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Use FAST_REQUEST for non-blocking H2G messages (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126495/">https://patchwork.freedesktop.org/series/126495/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126495v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126495v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-584-16f9e14e9101e3250294fc3ccb0acb35cd75532d_BAT -&gt; xe-pw-126495v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 3)</h2>
-<p>Missing    (1): bat-dg2-oem2 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-126495v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-584-16f9e14e9101e3250294fc3ccb0acb35cd75532d/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126495v4/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-584-16f9e14e9101e3250294fc3ccb0acb35cd75532d -&gt; xe-pw-126495v4</li>
-</ul>
-<p>IGT_7645: dfa7c0983c9f0cec68fe289dca5f40d3ca00712d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-584-16f9e14e9101e3250294fc3ccb0acb35cd75532d: 16f9e14e9101e3250294fc3ccb0acb35cd75532d<br />
-  xe-pw-126495v4: 126495v4</p>
-
-</body>
-</html>
-
---===============3380261941897887699==--
+Cheers,
+Nathan
