@@ -4,47 +4,138 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CA5CC46CD3
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Dec 2023 18:19:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19B44C35274
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Dec 2023 18:20:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D14F710E23D;
-	Mon, 18 Dec 2023 18:19:38 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6EAC810E23D
- for <intel-xe@lists.freedesktop.org>; Mon, 18 Dec 2023 18:19:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5A0210E28C;
+	Mon, 18 Dec 2023 18:20:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7996010E28C
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Dec 2023 18:20:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702923569; x=1734459569;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=LEC7ZO4YWdWqpZmotIx4FuaXzNetkatVETNJ+iKoGeE=;
- b=Fy+buuMXOUiINkyINt2NBCYdWz+z2fAVCq/6TEjD1lyBVFqpYMP///ld
- zLTI1FSgv3G+nMmEFhq0obKgrPEHji8RiluoM0CXKzo6DcOlnwVoya1xn
- yIbtsup+3Nz/clGBdKYdOlwDz512YlplB6UTKEVog/qViIcAeECm3XPut
- luWouFG7FttXvfi2FJQHZD3VJpGAk/DRNOh1rD3/BZv5t9Rge3ivmlpLI
- jZiIQ7hLBjBgajQdy5M7TIU2JZ+zrImSqzuwWnEiEpkiM1AJPxkF6DHBN
- AOJEpN4mN+hl6SccoV1oYeFqGqoh6NmwN7eC8wyFiVV4NDqx0L57Y8Ys3 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10927"; a="385937830"
-X-IronPort-AV: E=Sophos;i="6.04,285,1695711600"; d="scan'208";a="385937830"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2023 06:29:44 -0800
+ t=1702923620; x=1734459620;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=TD9+gzLSdRutrT7jUNFKI43xVdrCbbYKldil5uKK6vU=;
+ b=IL48KsuCCXXDjUtAu2ZcHIDfaXdtKG7Cnztp++sFDA0+yVNGOiRMqhbx
+ apCwGVMRKBNpCrriyrnR/pshIKpnu0PpYC8bqPtvnqXjvXpw8kkgXC9iG
+ FGLkgdxRjnPfd7fswbQf5XVrlJYBFJCciOHNvruEmi/YaJ/2mRJAJWL3n
+ +m1+tzEGcArhoEjMAJi/E/7RI21eWiksq08IMFHeUiPWnZNT77IcQughy
+ yzSwCAwZclmE1IVY5E06zFsFflGRVDmnilVlONfkxwDMJsIbPAdbM90h6
+ sN0BMZU9zD5U86EhlDztg+yczBatfht2eWVo6A7x/Yfl4WTvql1qjVEw6 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="8985448"
+X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; 
+   d="scan'208";a="8985448"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2023 09:11:22 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10927"; a="841502515"
-X-IronPort-AV: E=Sophos;i="6.04,285,1695711600"; d="scan'208";a="841502515"
-Received: from janlundk-mobl.ger.corp.intel.com (HELO fedora..)
- ([10.249.254.171])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2023 06:29:42 -0800
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4] drm/xe/migrate: Fix CCS copy for small VRAM copy chunks
-Date: Mon, 18 Dec 2023 15:29:33 +0100
-Message-ID: <20231218142933.8571-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.42.0
+X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="779164063"
+X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="779164063"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 18 Dec 2023 09:11:22 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 18 Dec 2023 09:11:21 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 18 Dec 2023 09:11:07 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Mon, 18 Dec 2023 09:11:07 -0800
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.40) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Mon, 18 Dec 2023 09:10:57 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BrZ4bARD9NU+ARifmlBYuk/YT9oVhCqmBkGaLGw+tTvEcI02WHBPaIPgRq70Bc5P47MKlzw7kHMG0Vb+CaQE/8pBDzLRZ0XrarrIEWWnukSrszl369l/AtevEck8pe/7ZBADq9tQsnLkAR9AfjhmiBZNReL7RJPKELz1J/zmRznFBZef3lJQBz20KdijQaQo1tFkMLQTSxJss0lp3j3Pgl0b1UJj4l7GWBQZvNy2J32hyaLpgKg60bs4DUtAGJ6LmhVfiMwRPaLF6GdJKGwW89q0KU0e8MxKWzX6I3fs5WA26mKUL6eMOk2L4qgaCZdeP5bwxjGc1Bk0vh/wgogRNA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=krsELYfmHRm/78jlI9XYkqKXlQ+UoGzS3IwM/VuZgEE=;
+ b=j6WCTmwkA44O+uoYTv0pTZP4ilSAO+11ngdWdYrVsACcb+Juru1km51tp1o3EFJMrFFqO7fysqwUCStqI1C8tE4aMJ04Uf1m5fxiflhse18FCNB7uru6r3o0fUPQKi9CoX1Z9wzL0xUil5+aYGz20FsBG0af6xmVcib3i9VhaTJdOFrlzQm0Guo/yr17AZU8vyBof2VfiNdqQMd7MIU75HZG9Kk3eVFGRRP/mK4jTWEKywzrVOeJmZJh8RcVxjHd5Qeg+AH+EszOqEzdXGlmlPzxOrqpzjfgCN+2tyhyN3YPqc91K1FRLcaAvohOxYD3f6OJy9Y9/PUkARSYpOOXTA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by DM4PR11MB6189.namprd11.prod.outlook.com (2603:10b6:8:ae::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.38; Mon, 18 Dec
+ 2023 17:10:55 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::b870:a8ae:c4f1:c39b]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::b870:a8ae:c4f1:c39b%4]) with mapi id 15.20.7091.034; Mon, 18 Dec 2023
+ 17:10:55 +0000
+Date: Mon, 18 Dec 2023 11:10:53 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Subject: Re: [PATCH v2] drm/xe: Fix UBSAN splat in add_preempt_fences()
+Message-ID: <nx6k4krsw7stwm4gl54livsfxx3rntdlm67btiz7ny52f4eb7h@ry34d3vkjr6d>
+References: <20231215230203.719244-1-matthew.brost@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20231215230203.719244-1-matthew.brost@intel.com>
+X-ClientProxiedBy: BYAPR04CA0009.namprd04.prod.outlook.com
+ (2603:10b6:a03:40::22) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DM4PR11MB6189:EE_
+X-MS-Office365-Filtering-Correlation-Id: 55fae053-9931-4502-dffd-08dbffec4bc0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ji7aK/MwQS9DqhJcgRkUwdRMBl6O8ZqCp5ysTGQXwilbkuimCg7fpFDhZm2YsLwIHG6Sjh67zqe9vyhxW/qVvzl0G0+j3r0csX5VS3GpZ9CTlOApEuFaL4f9eyxs+WwPxRhdGkWjvQy9OwV2D/5NaSAoy7N7FwuczZYiYZjybM9EKDGdyLARsfnN1kPFQdJLEyxkZO9HmKuxX1qxReAjZtuHir4xiRWKwN4xQ6SE9hqnYKew/gNO0QfmJhtTbzJilbmOp/Y4nQTIesUqkH4jXlF96N7OhTzj1ca9MYgar0ExhszwlsEE2fZKRM7bdJuVxB326zoK3Nl93ZABXXDxKvmzEZsDPXSHPsVzJCI7mKBayP1ysOC4iV1Lr6PNHNgOU3ph8e1nz5RNIoNUy40olSo5MNjwFOPSXT23xcrTqUvcGUNjJuGZl4aze7WkYYZxc8Ya39edNItX4AUowIK+2ZlJ0a05o97VIqo6VE2qdZiMo1cOXQN19hDsBidOw/eH0E1r3zAvlHlctI14ACl2h2pBCcUXXReZWV1LaNZ5SRItAPQeIHdNsHI5r3XSwdUu
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7916004)(346002)(376002)(39860400002)(396003)(136003)(366004)(230922051799003)(1800799012)(451199024)(64100799003)(186009)(6506007)(6512007)(9686003)(26005)(5660300002)(83380400001)(478600001)(2906002)(8676002)(8936002)(6862004)(4326008)(33716001)(6486002)(66556008)(66946007)(6636002)(316002)(66476007)(41300700001)(38100700002)(82960400001)(86362001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?0Xx9xeJOaitHxq4t/H/UZGYN3Yp/S9aMATCVK+nxJhnUbibiX8QgtPd9bt4g?=
+ =?us-ascii?Q?f5/jDJUM7yvVbJ1GoxTEV4Qf8JGZ7pJjemq64TIG87/bV9siViy9Fr632rHy?=
+ =?us-ascii?Q?pqupXLBbZR+cRikI4DFIld+h9J/8mrsWhVn2TLPLOKYtAwR3iBZhH/nudFS8?=
+ =?us-ascii?Q?HxJ4DErEvo84WchDXtGcN9hxv6w8FR23PSrpE7ZfwmqcDQwnh4N1u2svf10D?=
+ =?us-ascii?Q?9m9P/umDRRmlz5ttunDBc1BI0uZx0dyKrchIbwiZUMt6Dxi9dyw8Icm6+NN3?=
+ =?us-ascii?Q?Bc3lc9oXaZpz1a3nuJgbJoOwl9OSLFiSc8HvJzIeIONeWcWKIWjqkNq2bZ3V?=
+ =?us-ascii?Q?iF7azdd5tiyhdfMfSI600h3oonlX0eDVY1aK6oXGVO+3xu6lm4NYIef/qVCl?=
+ =?us-ascii?Q?9T2CR3KAwGFEosoXNCPwS4hHEINJxrx+pHWOLu34iP2WKSxZtgcsdFjIKsx/?=
+ =?us-ascii?Q?9Bsw/wD1EMDvNbJsqrspbWir/kxkKC/M0xQ68rQ0UMvb0ENcw0MTYVSdxPwD?=
+ =?us-ascii?Q?zK+GPgt5RLjhOWi/VZt9WtYzJDJ84BDC2wraWUndDHuURfrm2RPVrHp3zFUm?=
+ =?us-ascii?Q?GhEnZ438U8lDQYFMHPxZMjRG13LpgzNyjEVGkGc5VedcVcYSLTjrkrpF3NUn?=
+ =?us-ascii?Q?d73sFZRmPHfAgj+Bj5gtY//62cm9t6kOZuKTggV7IYFD4h8VcGheeweSspKx?=
+ =?us-ascii?Q?NO/dQXi5ecDF/L8L0/tE4XrluuYFbwKFLA081FxiLM6atYyak9V69DRKvLUV?=
+ =?us-ascii?Q?nHCe6npLGLAx+H0iOrCJFi3aCMXP2GuV50aBJQFUzAvGuc3Yx1GNmn7LdUb3?=
+ =?us-ascii?Q?W4NPVEmh1VfhbjPbJxQWh4NlFNrp4t7msGUmRKXcqddQXaVOPV9q0SDH2W/S?=
+ =?us-ascii?Q?Qd8/q7XQqx4IvAXe6g40jKKU7NHRT9Xqf0/nWN+RhqyLRp/tdgowLltYFkLu?=
+ =?us-ascii?Q?sOQp6kSS8mzYZ6CDrooOPrS6E80BkX7IFjQNB3JzMV+QRdLOVCd5px06dMyw?=
+ =?us-ascii?Q?j+P8/6Vssjo4uOvFEA3SjPG1FNiP8IPHkSUufu6XspLO+L2g7kkuAjq9brJw?=
+ =?us-ascii?Q?an33bZrtvaII+lV4E6NQ4+hEWS7peK+s0n+yQavh+dlC53rF9BhXDUclocWU?=
+ =?us-ascii?Q?6tIK4onTPYfm81XcV/kHVoMH/9XFluGstpJ+e26rVlAuckUm1nzYTWDqif70?=
+ =?us-ascii?Q?yaJM/wMSTD2B1PlYFENya1jNASvQbZSRt+KkpkqKD3BldXDTjLe5tj9HZ9ba?=
+ =?us-ascii?Q?3XtSVm/T0K2OPji0aLiIz2bYGUci7ZqFbuzngzo7ev847rGHjDiRNEs+zzXn?=
+ =?us-ascii?Q?cABttEVYfham8GNDSEyIEyuaa+vwORqgdVw4x5c6swkPhcs/77Kmj3tbcdI2?=
+ =?us-ascii?Q?JGpYF0i01kW/QXJ0VJK4h5XvjJw4d3IIfMj3REXB4iMKJr8pXqzcxEs2uAlG?=
+ =?us-ascii?Q?ruDt/06GaWnR8St3EtR9e54vUwGAsGdUJbS7auNKpLXyPadkZmzrb3FYJUj9?=
+ =?us-ascii?Q?VHKC3hzTZjjvHL0MpnVvJNKZ72k1egBRUGGZfifTxuO2UwRbRhGyqBkxDkMZ?=
+ =?us-ascii?Q?ktyFFT99N5gnpNHXIzPmrG/W+swyYoFBfGA38F8xhJScYoQVSOFL2L6PBhVO?=
+ =?us-ascii?Q?2g=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 55fae053-9931-4502-dffd-08dbffec4bc0
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2023 17:10:55.3094 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: cD0axE3yZLu+Qt6s+2whYVW5tnjXEm2UzEHVPiZLdteT4ZQslt6C77GmzN88UjKttKnODN34p2mu812pZVNoE77Ipm5LZSP9ZxRKoh3tqn4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6189
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,295 +147,76 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Since the migrate code is using the identity map for addressing VRAM,
-copy chunks may become as small as 64K if the VRAM resource is fragmented.
+On Fri, Dec 15, 2023 at 03:02:03PM -0800, Matthew Brost wrote:
+>add_preempt_fences() calls dma_resv_reserve_fences() with num_fences ==
+>0 resulting in the below UBSAN splat. Short circuit add_preempt_fences()
+>if num_fences == 0.
+>
+>[   58.652241] ================================================================================
+>[   58.660736] UBSAN: shift-out-of-bounds in ./include/linux/log2.h:57:13
+>[   58.667281] shift exponent 64 is too large for 64-bit type 'long unsigned int'
+>[   58.674539] CPU: 2 PID: 1170 Comm: xe_gpgpu_fill Not tainted 6.6.0-rc3-guc+ #630
+>[   58.674545] Hardware name: Intel Corporation Tiger Lake Client Platform/TigerLake U DDR4 SODIMM RVP, BIOS TGLSFWI1.R00.3243.A01.2006102133 06/10/2020
+>[   58.674547] Call Trace:
+>[   58.674548]  <TASK>
+>[   58.674550]  dump_stack_lvl+0x92/0xb0
+>[   58.674555]  __ubsan_handle_shift_out_of_bounds+0x15a/0x300
+>[   58.674559]  ? rcu_is_watching+0x12/0x60
+>[   58.674564]  ? software_resume+0x141/0x210
+>[   58.674575]  ? new_vma+0x44b/0x600 [xe]
+>[   58.674606]  dma_resv_reserve_fences.cold+0x40/0x66
+>[   58.674612]  new_vma+0x4b3/0x600 [xe]
+>[   58.674638]  xe_vm_bind_ioctl+0xffd/0x1e00 [xe]
+>[   58.674663]  ? __pfx_xe_vm_bind_ioctl+0x10/0x10 [xe]
+>[   58.674680]  drm_ioctl_kernel+0xc1/0x170
+>[   58.674686]  ? __pfx_xe_vm_bind_ioctl+0x10/0x10 [xe]
+>[   58.674703]  drm_ioctl+0x247/0x4c0
+>[   58.674709]  ? find_held_lock+0x2b/0x80
+>[   58.674716]  __x64_sys_ioctl+0x8c/0xb0
+>[   58.674720]  do_syscall_64+0x3c/0x90
+>[   58.674723]  entry_SYSCALL_64_after_hwframe+0x6e/0xd8
+>[   58.674727] RIP: 0033:0x7fce4bd1aaff
+>[   58.674730] Code: 00 48 89 44 24 18 31 c0 48 8d 44 24 60 c7 04 24 10 00 00 00 48 89 44 24 08 48 8d 44 24 20 48 89 44 24 10 b8 10 00 00 00 0f 05 <41> 89 c0 3d 00 f0 ff ff 77 1f 48 8b 44 24 18 64 48 2b 04 25 28 00
+>[   58.674731] RSP: 002b:00007ffc57434050 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+>[   58.674734] RAX: ffffffffffffffda RBX: 00007ffc574340e0 RCX: 00007fce4bd1aaff
+>[   58.674736] RDX: 00007ffc574340e0 RSI: 0000000040886445 RDI: 0000000000000003
+>[   58.674737] RBP: 0000000040886445 R08: 0000000000000002 R09: 00007ffc574341b0
+>[   58.674739] R10: 000055de43eb3780 R11: 0000000000000246 R12: 00007ffc574340e0
+>[   58.674740] R13: 0000000000000003 R14: 00007ffc574341b0 R15: 0000000000000001
+>[   58.674747]  </TASK>
+>[   58.674748] ================================================================================
+>
+>Fixes: 099192666a18 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+>Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-However, a chunk size smaller that 1MiB may lead to the *next* chunk's
-offset into the CCS metadata backup memory may not be page-aligned, and
-the XY_CTRL_SURF_COPY_BLT command can't handle that, and even if it could,
-the current code doesn't handle the offset calculaton correctly.
+Applied to drm-xe-next, thanks.
 
-To fix this, make sure we align the size of VRAM copy chunks to 1MiB. If
-the remaining data to copy is smaller than that, that's not a problem,
-so use the remaining size. If the VRAM copy cunk becomes fragmented due
-to the size alignment restriction, don't use the identity map, but instead
-emit PTEs into the page-table like we do for system memory.
+Lucas De Marchi
 
-v2:
-- Rebase
-v3:
-- Future proof somewhat by taking into account the real data size to
-  flat CCS metadata size ratio. (Matt Roper)
-- Invert a couple of if-statements for better readability.
-- Fix support for 4K-granularity VRAM sizes. (Tested on DG1).
-v4:
-- Fix up code comments
-- Fix debug printout format typo.
-
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Matthew Auld <matthew.william.auld@gmail.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/tests/xe_migrate.c |   2 +-
- drivers/gpu/drm/xe/xe_migrate.c       | 128 ++++++++++++++++----------
- 2 files changed, 80 insertions(+), 50 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-index 7a32faa2f688..a6523df0f1d3 100644
---- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-@@ -331,7 +331,7 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
- 		xe_res_first_sg(xe_bo_sg(pt), 0, pt->size, &src_it);
- 
- 	emit_pte(m, bb, NUM_KERNEL_PDE - 1, xe_bo_is_vram(pt), false,
--		 &src_it, XE_PAGE_SIZE, pt);
-+		 &src_it, XE_PAGE_SIZE, pt->ttm.resource);
- 
- 	run_sanity_job(m, xe, bb, bb->len, "Writing PTE for our fake PT", test);
- 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index adf1dab5eba2..d8fff0403f74 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -62,6 +62,8 @@ struct xe_migrate {
- 	 * out of the pt_bo.
- 	 */
- 	struct drm_suballoc_manager vm_update_sa;
-+	/** @min_chunk_size: For dgfx, Minimum chunk size */
-+	u64 min_chunk_size;
- };
- 
- #define MAX_PREEMPTDISABLE_TRANSFER SZ_8M /* Around 1ms. */
-@@ -364,6 +366,19 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
- 	if (err)
- 		return ERR_PTR(err);
- 
-+	if (IS_DGFX(xe)) {
-+		if (xe_device_has_flat_ccs(xe))
-+			/* min chunk size corresponds to 4K of CCS Metadata */
-+			m->min_chunk_size = SZ_4K * SZ_64K /
-+				xe_device_ccs_bytes(xe, SZ_64K);
-+		else
-+			/* Somewhat arbitrary to avoid a huge amount of blits */
-+			m->min_chunk_size = SZ_64K;
-+		m->min_chunk_size = roundup_pow_of_two(m->min_chunk_size);
-+		drm_dbg(&xe->drm, "Migrate min chunk size is 0x%08llx\n",
-+			(unsigned long long)m->min_chunk_size);
-+	}
-+
- 	return m;
- }
- 
-@@ -375,16 +390,35 @@ static u64 max_mem_transfer_per_pass(struct xe_device *xe)
- 	return MAX_PREEMPTDISABLE_TRANSFER;
- }
- 
--static u64 xe_migrate_res_sizes(struct xe_device *xe, struct xe_res_cursor *cur)
-+static u64 xe_migrate_res_sizes(struct xe_migrate *m, struct xe_res_cursor *cur)
- {
--	/*
--	 * For VRAM we use identity mapped pages so we are limited to current
--	 * cursor size. For system we program the pages ourselves so we have no
--	 * such limitation.
--	 */
--	return min_t(u64, max_mem_transfer_per_pass(xe),
--		     mem_type_is_vram(cur->mem_type) ? cur->size :
--		     cur->remaining);
-+	struct xe_device *xe = tile_to_xe(m->tile);
-+	u64 size = min_t(u64, max_mem_transfer_per_pass(xe), cur->remaining);
-+
-+	if (mem_type_is_vram(cur->mem_type)) {
-+		/*
-+		 * VRAM we want to blit in chunks with sizes aligned to
-+		 * min_chunk_size in order for the offset to CCS metadata to be
-+		 * page-aligned. If it's the last chunk it may be smaller.
-+		 *
-+		 * Another constraint is that we need to limit the blit to
-+		 * the VRAM block size, unless size is smaller than
-+		 * min_chunk_size.
-+		 */
-+		u64 chunk = max_t(u64, cur->size, m->min_chunk_size);
-+
-+		size = min_t(u64, size, chunk);
-+		if (size > m->min_chunk_size)
-+			size = round_down(size, m->min_chunk_size);
-+	}
-+
-+	return size;
-+}
-+
-+static bool xe_migrate_allow_identity(u64 size, const struct xe_res_cursor *cur)
-+{
-+	/* If the chunk is not fragmented, allow identity map. */
-+	return cur->size >= size;
- }
- 
- static u32 pte_update_size(struct xe_migrate *m,
-@@ -397,7 +431,12 @@ static u32 pte_update_size(struct xe_migrate *m,
- 	u32 cmds = 0;
- 
- 	*L0_pt = pt_ofs;
--	if (!is_vram) {
-+	if (is_vram && xe_migrate_allow_identity(*L0, cur)) {
-+		/* Offset into identity map. */
-+		*L0_ofs = xe_migrate_vram_ofs(tile_to_xe(m->tile),
-+					      cur->start + vram_region_gpu_offset(res));
-+		cmds += cmd_size;
-+	} else {
- 		/* Clip L0 to available size */
- 		u64 size = min(*L0, (u64)avail_pts * SZ_2M);
- 		u64 num_4k_pages = DIV_ROUND_UP(size, XE_PAGE_SIZE);
-@@ -413,11 +452,6 @@ static u32 pte_update_size(struct xe_migrate *m,
- 
- 		/* Each chunk has a single blit command */
- 		cmds += cmd_size;
--	} else {
--		/* Offset into identity map. */
--		*L0_ofs = xe_migrate_vram_ofs(tile_to_xe(m->tile),
--					      cur->start + vram_region_gpu_offset(res));
--		cmds += cmd_size;
- 	}
- 
- 	return cmds;
-@@ -427,10 +461,10 @@ static void emit_pte(struct xe_migrate *m,
- 		     struct xe_bb *bb, u32 at_pt,
- 		     bool is_vram, bool is_comp_pte,
- 		     struct xe_res_cursor *cur,
--		     u32 size, struct xe_bo *bo)
-+		     u32 size, struct ttm_resource *res)
- {
- 	struct xe_device *xe = tile_to_xe(m->tile);
--
-+	struct xe_vm *vm = m->q->vm;
- 	u16 pat_index;
- 	u32 ptes;
- 	u64 ofs = at_pt * XE_PAGE_SIZE;
-@@ -443,13 +477,6 @@ static void emit_pte(struct xe_migrate *m,
- 	else
- 		pat_index = xe->pat.idx[XE_CACHE_WB];
- 
--	/*
--	 * FIXME: Emitting VRAM PTEs to L0 PTs is forbidden. Currently
--	 * we're only emitting VRAM PTEs during sanity tests, so when
--	 * that's moved to a Kunit test, we should condition VRAM PTEs
--	 * on running tests.
--	 */
--
- 	ptes = DIV_ROUND_UP(size, XE_PAGE_SIZE);
- 
- 	while (ptes) {
-@@ -469,20 +496,22 @@ static void emit_pte(struct xe_migrate *m,
- 
- 			addr = xe_res_dma(cur) & PAGE_MASK;
- 			if (is_vram) {
--				/* Is this a 64K PTE entry? */
--				if ((m->q->vm->flags & XE_VM_FLAG_64K) &&
--				    !(cur_ofs & (16 * 8 - 1))) {
--					xe_tile_assert(m->tile, IS_ALIGNED(addr, SZ_64K));
-+				if (vm->flags & XE_VM_FLAG_64K) {
-+					u64 va = cur_ofs * XE_PAGE_SIZE / 8;
-+
-+					xe_assert(xe, (va & (SZ_64K - 1)) ==
-+						  (addr & (SZ_64K - 1)));
-+
- 					flags |= XE_PTE_PS64;
- 				}
- 
--				addr += vram_region_gpu_offset(bo->ttm.resource);
-+				addr += vram_region_gpu_offset(res);
- 				devmem = true;
- 			}
- 
--			addr = m->q->vm->pt_ops->pte_encode_addr(m->tile->xe,
--								 addr, pat_index,
--								 0, devmem, flags);
-+			addr = vm->pt_ops->pte_encode_addr(m->tile->xe,
-+							   addr, pat_index,
-+							   0, devmem, flags);
- 			bb->cs[bb->len++] = lower_32_bits(addr);
- 			bb->cs[bb->len++] = upper_32_bits(addr);
- 
-@@ -694,8 +723,8 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 		bool usm = xe->info.has_usm;
- 		u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
- 
--		src_L0 = xe_migrate_res_sizes(xe, &src_it);
--		dst_L0 = xe_migrate_res_sizes(xe, &dst_it);
-+		src_L0 = xe_migrate_res_sizes(m, &src_it);
-+		dst_L0 = xe_migrate_res_sizes(m, &dst_it);
- 
- 		drm_dbg(&xe->drm, "Pass %u, sizes: %llu & %llu\n",
- 			pass++, src_L0, dst_L0);
-@@ -716,6 +745,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 						      &ccs_ofs, &ccs_pt, 0,
- 						      2 * avail_pts,
- 						      avail_pts);
-+			xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE));
- 		}
- 
- 		/* Add copy commands size here */
-@@ -728,20 +758,20 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 			goto err_sync;
- 		}
- 
--		if (!src_is_vram)
--			emit_pte(m, bb, src_L0_pt, src_is_vram, true, &src_it, src_L0,
--				 src_bo);
--		else
-+		if (src_is_vram && xe_migrate_allow_identity(src_L0, &src_it))
- 			xe_res_next(&src_it, src_L0);
--
--		if (!dst_is_vram)
--			emit_pte(m, bb, dst_L0_pt, dst_is_vram, true, &dst_it, src_L0,
--				 dst_bo);
- 		else
-+			emit_pte(m, bb, src_L0_pt, src_is_vram, true, &src_it, src_L0,
-+				 src);
-+
-+		if (dst_is_vram && xe_migrate_allow_identity(src_L0, &dst_it))
- 			xe_res_next(&dst_it, src_L0);
-+		else
-+			emit_pte(m, bb, dst_L0_pt, dst_is_vram, true, &dst_it, src_L0,
-+				 dst);
- 
- 		if (copy_system_ccs)
--			emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src_bo);
-+			emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
- 
- 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
- 		update_idx = bb->len;
-@@ -950,7 +980,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 		bool usm = xe->info.has_usm;
- 		u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
- 
--		clear_L0 = xe_migrate_res_sizes(xe, &src_it);
-+		clear_L0 = xe_migrate_res_sizes(m, &src_it);
- 
- 		drm_dbg(&xe->drm, "Pass %u, size: %llu\n", pass++, clear_L0);
- 
-@@ -977,12 +1007,12 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 
- 		size -= clear_L0;
- 		/* Preemption is enabled again by the ring ops. */
--		if (!clear_vram) {
--			emit_pte(m, bb, clear_L0_pt, clear_vram, true, &src_it, clear_L0,
--				 bo);
--		} else {
-+		if (clear_vram && xe_migrate_allow_identity(clear_L0, &src_it))
- 			xe_res_next(&src_it, clear_L0);
--		}
-+		else
-+			emit_pte(m, bb, clear_L0_pt, clear_vram, true, &src_it, clear_L0,
-+				 dst);
-+
- 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
- 		update_idx = bb->len;
- 
--- 
-2.42.0
-
+>---
+> drivers/gpu/drm/xe/xe_vm.c | 3 +++
+> 1 file changed, 3 insertions(+)
+>
+>diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+>index 322c1eccecca..1ca917b8315c 100644
+>--- a/drivers/gpu/drm/xe/xe_vm.c
+>+++ b/drivers/gpu/drm/xe/xe_vm.c
+>@@ -279,6 +279,9 @@ static int add_preempt_fences(struct xe_vm *vm, struct xe_bo *bo)
+> 	struct xe_exec_queue *q;
+> 	int err;
+>
+>+	if (!vm->preempt.num_exec_queues)
+>+		return 0;
+>+
+> 	err = xe_bo_lock(bo, true);
+> 	if (err)
+> 		return err;
+>-- 
+>2.34.1
+>
