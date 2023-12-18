@@ -4,48 +4,131 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 695AFC35274
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Dec 2023 19:01:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E266C46CA2
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Dec 2023 19:01:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 363F710E380;
-	Mon, 18 Dec 2023 19:01:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D57A10E277;
+	Mon, 18 Dec 2023 19:01:36 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0652910E3AD
- for <intel-xe@lists.freedesktop.org>; Mon, 18 Dec 2023 19:00:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A797B10E39F
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Dec 2023 19:00:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1702926047; x=1734462047;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=O8T3sZSgelPIfUCezvBk3Rq7QJuQJ3eQWhgHcwcL7Xw=;
- b=S7+MYMBRcMF13iMJwipRB0AMZ7JLC1psO1qT71rKnrclisswvSfIFT0U
- 7Zv69DzMvtjVePpwZ8148Y4nNfK/MrsEn+F5bKNjwb+QtOF1g8bKVn+Jt
- walBQNGMt6yYvTk+r2eXy1m2F8+Mb7DVNGonEAK8i8M32xFSrdztwWSwB
- aVCxSm6w7GP4ocrFIcKl6YNb9aj6fZ7GCqrJD4VgSCGqwdD0vSCqpqAFs
- Nq73o6+vp8dfA4O8u1ltDzLwvLJFr5MLTvqrs4bWalEJu24Dp6E5KiUAf
- cojDKpkT085WGX3XiMg1ajMcx3D1qu2walWD8ex3ZhbmqkgIbAsH0ZBte w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="461984336"
-X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="461984336"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ h=from:to:cc:subject:date:message-id:
+ content-transfer-encoding:mime-version;
+ bh=AWmwo8So8ZpIHpRcUdA/SZA7GXrQncwIehqjHaIS4do=;
+ b=a28AeHLNu/eGYyxakw6/Mc1qFeMyc+fMnSpo6X9wNkZMwep48aC7YIzz
+ OQpgtCI8TlrnoJteoIULHzktA9t4JVK/gkShGYZQu2KL1IE9gKV+AblIR
+ im024PjdoF1RarRq63ArS2dmC0IPKP3ZpGKs32X3yr47H1xxmMuzRMfhL
+ rpb9/Vhz7X/c+f+jIbsW5WyBNDCn29noVgORRQgPMBuzbF6l6UHasDUMH
+ 8yYed+YvYzstfu8cjOE67iuhHxMMeHhD14kfBWYSnj8R+yZWFipLZ6LRf
+ 1u8EK4ZZaPqIaGkN/OVw/6wXOMWcoc5hh9R44OIpmXxfqkwp5KhspLVYt A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="461981716"
+X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="461981716"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2023 08:53:58 -0800
+ 18 Dec 2023 08:38:30 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="779157442"
-X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="779157442"
-Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.130.107])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2023 08:53:57 -0800
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [CI v2 07/10] drm/xe/vf: Introduce Memory Based Interrupts Handler
-Date: Mon, 18 Dec 2023 17:53:41 +0100
-Message-Id: <20231218165344.458-8-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20231218165344.458-1-michal.wajdeczko@intel.com>
-References: <20231218165344.458-1-michal.wajdeczko@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="841544191"
+X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="841544191"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmsmga008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 18 Dec 2023 08:38:29 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 18 Dec 2023 08:38:28 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Mon, 18 Dec 2023 08:38:28 -0800
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.169)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Mon, 18 Dec 2023 08:38:28 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=IAVu+CwYpv0FH2xnUXcvJLHzXJ9vhSXE4d2VLdav3jVwZ5AXpnA/du2gaT5/6LjzoVf6F1x9Z55J2jcEzhNErihgBb50PpDUegAQZzqmT6h++HyEN+wNJWjVo5pJJQg3iX2s7UiF6rkdQAXfzl3IrI9RmN5i2g9cSLNVc5W+hI3mRdq5t6H52Wwa5qbxb4tUU+TsreHDtJLBgu7lDipjRzc8Nzmc3Tq9AQICcp2jl0+/KwXTmOJkO8BntcvRtBkULABJd1lIxBOpsnjE4qLKgM3PzJqFyNYZFDWzm4IkGKn/KfThuBinjdE1nLFm6/0zK3Ef+rbOpRqogqMYErr8eQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NTDiWbdRnccaf+em3sqpluHDzbsYlFxSWE17yGhifAE=;
+ b=B/jn/sF/Hs9d40rDacFa0gkerAnZynKjuIaL6j72OGE9oEeMzPvFIlu/oKZUaS3CEBKu8Ew+OK3NPByYoLzpRqNXK12+/4WT9wnzfynv58tTQ09nqOLngt61B3ZD6TsQWUIxNE/ijNIeDncdWdIcCeUzFYR0jt0cnsSpWbcGDmA3oJMBgI1JvqOSp9GCygqujxNVixkAwTzn5tSUiCblK5fT5qNbGuulR59nHS7blTICITsPmPPSX4kr4cSCSlOSNP8tp8mKf2K9LNU2+2BOgrdf0rM4IrrJg1e5cWBrtPrsLGiBXMFp6zUYDft7Kgv0QUMCi8IBXMjS9qqBnc/9Yw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by SJ0PR11MB5198.namprd11.prod.outlook.com (2603:10b6:a03:2ad::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.38; Mon, 18 Dec
+ 2023 16:38:25 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::ada2:f954:a3a5:6179]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::ada2:f954:a3a5:6179%5]) with mapi id 15.20.7091.034; Mon, 18 Dec 2023
+ 16:38:25 +0000
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Subject: [PATCH] drm/xe: Ensure 'passed' variable is always initialized
+Date: Mon, 18 Dec 2023 11:38:18 -0500
+Message-ID: <20231218163818.1700983-1-rodrigo.vivi@intel.com>
+X-Mailer: git-send-email 2.43.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BY3PR05CA0028.namprd05.prod.outlook.com
+ (2603:10b6:a03:254::33) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|SJ0PR11MB5198:EE_
+X-MS-Office365-Filtering-Correlation-Id: 66ada3bc-eb1e-4aab-2a51-08dbffe7c162
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: voaSP8iyzydp1j7zGNiFy6pEqrbR2qWC9bIlPk4rx8YAALYMZ45AvuF8I7xrBIfR2kI7NrwHE0r2dsWoalOJIAy6ru8BOhdqZtS20URrAJ09DhMr3rm/piHX5DbIiIhV3cvbcF4NBMwtMKAgVC4UGXCUQkRvLhIj21N3rSiBJaLGInvrUamEeFOcKpzOFnNXXjzrYPf/LHcQtaLAQsmRqQuTDIJDEwWynI5dFIqnDuIHaOPnPofcqR2MmH8Nq7RSUTzijkOw5pM+KQMjif9ADS9mGHsMn+cHJlqkCo8W83KVMfh7qxWrMn0sW3uTaCZw1zZgEEG15dbVhPz/Bxg63042TLYqFpfGENGrR0RyitBu2nY5Uldzxm88P1GzI6rfFCoOzgM5IclHxYBPugs5Eoco2IzWIadZmqhuvnSXDS/Ktzk+ysnkuF7r8GbM0PJZtknK+/IUuD0XQRA1QWRo+XuAW2ET93Go8fRXUVbCpYFhBkImnvo1T9ueNbLHEhpducmPn5RYkBqRvBcYQL2/ibCNG9e1naE+HwCa55nBczoIlaaU/0MMm5GR/c+OX/6mCEOi1kTDlKDH/ZM3yMj3BLXXINFgbjwHk1A0LygafPMRdIgFINA5ynfsf0m8Znud
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(346002)(366004)(39860400002)(396003)(376002)(136003)(230922051799003)(230273577357003)(230173577357003)(64100799003)(186009)(1800799012)(451199024)(1076003)(107886003)(26005)(2616005)(6666004)(82960400001)(36756003)(86362001)(38100700002)(83380400001)(44832011)(5660300002)(6512007)(6506007)(966005)(8936002)(8676002)(4326008)(66556008)(66946007)(316002)(54906003)(6486002)(6916009)(66476007)(41300700001)(2906002)(478600001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?0NrXPFfsaczhjiEWqGTfWoMSbyzk3VaAJj3hN9Gw6rnI7YFuqnss8a0QVGvu?=
+ =?us-ascii?Q?ciw+bhVxJCS9/NBq6rkMGOLDZezmX54iPeyg7+Z++j5WF3KISbeNgv15aXa3?=
+ =?us-ascii?Q?mTzxZdWgGmjyGtiQx2rSRSdMfUpyBKnLSLhE2dcOR0nIbsp45f9l2WVH1luI?=
+ =?us-ascii?Q?OyZX0++qAqQFjS+gFlM0wwBTDX5c2U//JAfESpqPHpBmH/Lq/2PWRHQFR8e2?=
+ =?us-ascii?Q?GKLiusDsAaRbX3hqOuJShtTd/PGwOGTC91+hdek0vESrlgQGLvJqf26cCgId?=
+ =?us-ascii?Q?iJ2rc1HV6YJJj1lVsdq17q79LBd170YZyS3a9AUV+wk4suHTBntQkAYO1h03?=
+ =?us-ascii?Q?6AfYUIj4r72Lef++GbVwx42Aol/F2mEMyM8JfzuDH54Tlu38uJnkUu8TAo8a?=
+ =?us-ascii?Q?aVHIa87uOdC6Qh2Tcyd51GY4Rta8YacnRfY1nR47K2IF4x5ao90YynrAcJPc?=
+ =?us-ascii?Q?4qjrAkcu0400ZpGNlsbhGrh0EZJB2XXJB69UGoZUj73qgiQpyVg6zJVsuNkf?=
+ =?us-ascii?Q?tDbydlr8ev9VpRyfpwW5veB8zyzukOth1Rp3OnLNUMrtbBC9OuWZ3Ti11XCz?=
+ =?us-ascii?Q?Rk5aUPbuizBos069hsNMdK6V43dD5gISECa1rC611pw9ztzYA8XxH8Vb+9yU?=
+ =?us-ascii?Q?oNNJ9jD+IWYzGJOeSudXS37BI5IyLZ0TnhYlN5NEepJiSPiZa8l50db/igOx?=
+ =?us-ascii?Q?ijqiqfBjc7wvWHagQWpz+lHNl/8Jjg7q1uZbRFEymp5/G+qYYtYAZw1avzx0?=
+ =?us-ascii?Q?zfiUk783DTVP4fVj5fMPbR6xUI7YuhlRxBswpA9AZ8bNdTegFxZL9gqmWG1A?=
+ =?us-ascii?Q?ao7LaGWxU+C5VdY0LL5KEnaskJjpt2dJqgCZtJuw/2xABFKAVpTtdO6tv3BV?=
+ =?us-ascii?Q?t9rAwzp0a+pALhRUmLrhDOEjHjIQbX9e61pNJTo3GgSgGeRY/kNqVfFV1UX1?=
+ =?us-ascii?Q?hON3x+VHXXl81KmPQlJL2k4ZCDZwdRI8eUyJbxOaLU0z3GaajHE3XdkNG1/1?=
+ =?us-ascii?Q?kRs7kumvZASZgyu8akUemtMpJv2cPZ4fKBdtclezujST8llwK4pohZJaZDLm?=
+ =?us-ascii?Q?ucwLsaHL43cH/7+pxDGhZNAbX909HV2zG4vxaSFOijsHkhex8TzrDpJeKhWZ?=
+ =?us-ascii?Q?5lR4zg3zS4GmJWm6LzwdgKthb6QcVsozSawTtqlb6iJPyka9rkt22wqqWdx8?=
+ =?us-ascii?Q?Ju519EpaFJEzXAEUU/99yiLbYXRuFkwrn89WqHT/Aoz2P47sB/r/4AbntHsP?=
+ =?us-ascii?Q?BWr2Jb+93E4TnNPqZ7QQGcBocGgI2idZm/tf7qCtO2AUWfUSAg50oGlUSPAU?=
+ =?us-ascii?Q?JIad7fCnxkUEkWQ6fzLdt6q89xy5p7+mMMEGUxDgIbKfkwpI4my+pLy7M554?=
+ =?us-ascii?Q?IjApMZCOA5DWgT7y7iakpbNkzcAcvwb4tgcOu+5IAtWMgmY3/Bbp5G1msW3m?=
+ =?us-ascii?Q?punHdcnTDYDsusmAEDqlpYg5ruus6pO517KY6rWGWyW3peWc/lK4s3iWzq1t?=
+ =?us-ascii?Q?FrwYXYaRoiWCJXCbeMp8ZR1K/v2tN79aaKmgCDMwMsYIX/7F8az5qc8ScXg9?=
+ =?us-ascii?Q?fuSsL1ymeSTaDh5jBF5fA0iVKVV6oD/jXjbuel8P?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 66ada3bc-eb1e-4aab-2a51-08dbffe7c162
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2023 16:38:25.2399 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: p5H7oXJE1KNiSspi2sjH/iN8pdDaeSVKBxASBBLTZpyH1dPCNtJCzOWXKKkBL+MTzOSVeRFsoB5FvFAw3B1AQg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5198
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,630 +140,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ kernel test robot <lkp@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The register based interrupts infrastructure does not scale
-efficiently to allow delivering interrupts to a large number
-of virtual machines. Memory based interrupt reporting provides
-an efficient and scalable infrastructure.
+Although the path should be impossible, some static analyzers
+and compilers might not like the fact that there is a path
+where 'passed' variable is not initialized.
 
-Define handler to read and dispatch memory based interrupts.
-We will use this handler in upcoming patch.
-
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-Link: https://lore.kernel.org/r/20231214185955.1791-8-michal.wajdeczko@intel.com
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202312170357.KPSinwPs-lkp@intel.com/
+Fixes: ad7d86415578 ("drm/xe: Enable W=1 warnings by default")
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile          |   4 +-
- drivers/gpu/drm/xe/xe_device.c       |   7 +
- drivers/gpu/drm/xe/xe_device.h       |   5 +
- drivers/gpu/drm/xe/xe_device_types.h |   5 +
- drivers/gpu/drm/xe/xe_memirq.c       | 430 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_memirq.h       |  26 ++
- drivers/gpu/drm/xe/xe_memirq_types.h |  37 +++
- 7 files changed, 513 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/xe/xe_memirq.c
- create mode 100644 drivers/gpu/drm/xe/xe_memirq.h
- create mode 100644 drivers/gpu/drm/xe/xe_memirq_types.h
+ drivers/gpu/drm/xe/xe_wait_user_fence.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 53bd2a8ba1ae..9214915d9566 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -146,7 +146,9 @@ xe-y += xe_bb.o \
- xe-$(CONFIG_HWMON) += xe_hwmon.o
+diff --git a/drivers/gpu/drm/xe/xe_wait_user_fence.c b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+index b0a7896f7fcb6..b2e76331bfa73 100644
+--- a/drivers/gpu/drm/xe/xe_wait_user_fence.c
++++ b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+@@ -19,7 +19,7 @@ static int do_compare(u64 addr, u64 value, u64 mask, u16 op)
+ {
+ 	u64 rvalue;
+ 	int err;
+-	bool passed;
++	bool passed = 0;
  
- # graphics virtualization (SR-IOV) support
--xe-y += xe_sriov.o
-+xe-y += \
-+	xe_memirq.o \
-+	xe_sriov.o
- 
- xe-$(CONFIG_PCI_IOV) += \
- 	xe_lmtt.o \
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index d9ae77fe7382..86867d42d532 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -29,12 +29,14 @@
- #include "xe_gt.h"
- #include "xe_gt_mcr.h"
- #include "xe_irq.h"
-+#include "xe_memirq.h"
- #include "xe_mmio.h"
- #include "xe_module.h"
- #include "xe_pat.h"
- #include "xe_pcode.h"
- #include "xe_pm.h"
- #include "xe_query.h"
-+#include "xe_sriov.h"
- #include "xe_tile.h"
- #include "xe_ttm_stolen_mgr.h"
- #include "xe_ttm_sys_mgr.h"
-@@ -456,6 +458,11 @@ int xe_device_probe(struct xe_device *xe)
- 		err = xe_ggtt_init_early(tile->mem.ggtt);
- 		if (err)
- 			return err;
-+		if (IS_SRIOV_VF(xe)) {
-+			err = xe_memirq_init(&tile->sriov.vf.memirq);
-+			if (err)
-+				return err;
-+		}
- 	}
- 
- 	err = drmm_add_action_or_reset(&xe->drm, xe_driver_flr_fini, xe);
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index 3da83b233206..af8ac2e9e270 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -168,6 +168,11 @@ static inline bool xe_device_has_sriov(struct xe_device *xe)
- 	return xe->info.has_sriov;
- }
- 
-+static inline bool xe_device_has_memirq(struct xe_device *xe)
-+{
-+	return GRAPHICS_VERx100(xe) >= 1250;
-+}
-+
- u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size);
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index c45ef17b3473..71f23ac365e6 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -16,6 +16,7 @@
- #include "xe_heci_gsc.h"
- #include "xe_gt_types.h"
- #include "xe_lmtt_types.h"
-+#include "xe_memirq_types.h"
- #include "xe_platform_types.h"
- #include "xe_pt_types.h"
- #include "xe_sriov_types.h"
-@@ -192,6 +193,10 @@ struct xe_tile {
- 			/** @sriov.pf.lmtt: Local Memory Translation Table. */
- 			struct xe_lmtt lmtt;
- 		} pf;
-+		struct {
-+			/** @sriov.vf.memirq: Memory Based Interrupts. */
-+			struct xe_memirq memirq;
-+		} vf;
- 	} sriov;
- 
- 	/** @migrate: Migration helper for vram blits and clearing */
-diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
-new file mode 100644
-index 000000000000..76e95535d7f6
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_memirq.c
-@@ -0,0 +1,430 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#include <drm/drm_managed.h>
-+
-+#include "regs/xe_gt_regs.h"
-+#include "regs/xe_guc_regs.h"
-+#include "regs/xe_regs.h"
-+
-+#include "xe_assert.h"
-+#include "xe_bo.h"
-+#include "xe_device.h"
-+#include "xe_device_types.h"
-+#include "xe_gt.h"
-+#include "xe_gt_printk.h"
-+#include "xe_guc.h"
-+#include "xe_hw_engine.h"
-+#include "xe_map.h"
-+#include "xe_memirq.h"
-+#include "xe_sriov.h"
-+#include "xe_sriov_printk.h"
-+
-+#define memirq_assert(m, condition)	xe_tile_assert(memirq_to_tile(m), condition)
-+#define memirq_debug(m, msg...)		xe_sriov_dbg_verbose(memirq_to_xe(m), "MEMIRQ: " msg)
-+
-+static struct xe_tile *memirq_to_tile(struct xe_memirq *memirq)
-+{
-+	return container_of(memirq, struct xe_tile, sriov.vf.memirq);
-+}
-+
-+static struct xe_device *memirq_to_xe(struct xe_memirq *memirq)
-+{
-+	return tile_to_xe(memirq_to_tile(memirq));
-+}
-+
-+static const char *guc_name(struct xe_guc *guc)
-+{
-+	return xe_gt_is_media_type(guc_to_gt(guc)) ? "media GuC" : "GuC";
-+}
-+
-+/**
-+ * DOC: Memory Based Interrupts
-+ *
-+ * MMIO register based interrupts infrastructure used for non-virtualized mode
-+ * or SRIOV-8 (which supports 8 Virtual Functions) does not scale efficiently
-+ * to allow delivering interrupts to a large number of Virtual machines or
-+ * containers. Memory based interrupt status reporting provides an efficient
-+ * and scalable infrastructure.
-+ *
-+ * For memory based interrupt status reporting hardware sequence is:
-+ *  * Engine writes the interrupt event to memory
-+ *    (Pointer to memory location is provided by SW. This memory surface must
-+ *    be mapped to system memory and must be marked as un-cacheable (UC) on
-+ *    Graphics IP Caches)
-+ *  * Engine triggers an interrupt to host.
-+ */
-+
-+/**
-+ * DOC: Memory Based Interrupts Page Layout
-+ *
-+ * `Memory Based Interrupts`_ requires three different objects, which are
-+ * called "page" in the specs, even if they aren't page-sized or aligned.
-+ *
-+ * To simplify the code we allocate a single page size object and then use
-+ * offsets to embedded "pages". The address of those "pages" are then
-+ * programmed in the HW via LRI and LRM in the context image.
-+ *
-+ * - _`Interrupt Status Report Page`: this page contains the interrupt
-+ *   status vectors for each unit. Each bit in the interrupt vectors is
-+ *   converted to a byte, with the byte being set to 0xFF when an
-+ *   interrupt is triggered; interrupt vectors are 16b big so each unit
-+ *   gets 16B. One space is reserved for each bit in one of the
-+ *   GT_INTR_DWx registers, so this object needs a total of 1024B.
-+ *   This object needs to be 4KiB aligned.
-+ *
-+ * - _`Interrupt Source Report Page`: this is the equivalent of the
-+ *   GEN11_GT_INTR_DWx registers, with each bit in those registers being
-+ *   mapped to a byte here. The offsets are the same, just bytes instead
-+ *   of bits. This object needs to be cacheline aligned.
-+ *
-+ * - Interrupt Mask: the HW needs a location to fetch the interrupt
-+ *   mask vector to be used by the LRM in the context, so we just use
-+ *   the next available space in the interrupt page.
-+ *
-+ * ::
-+ *
-+ *   0x0000   +===========+  <== Interrupt Status Report Page
-+ *            |           |
-+ *            |           |     ____ +----+----------------+
-+ *            |           |    /     |  0 | USER INTERRUPT |
-+ *            +-----------+ __/      |  1 |                |
-+ *            |  HWE(n)   | __       |    | CTX SWITCH     |
-+ *            +-----------+   \      |    | WAIT SEMAPHORE |
-+ *            |           |    \____ | 15 |                |
-+ *            |           |          +----+----------------+
-+ *            |           |
-+ *   0x0400   +===========+  <== Interrupt Source Report Page
-+ *            |  HWE(0)   |
-+ *            |  HWE(1)   |
-+ *            |           |
-+ *            |  HWE(x)   |
-+ *   0x0440   +===========+  <== Interrupt Enable Mask
-+ *            |           |
-+ *            |           |
-+ *            +-----------+
-+ */
-+
-+static void __release_xe_bo(struct drm_device *drm, void *arg)
-+{
-+	struct xe_bo *bo = arg;
-+
-+	xe_bo_unpin_map_no_vm(bo);
-+}
-+
-+static int memirq_alloc_pages(struct xe_memirq *memirq)
-+{
-+	struct xe_device *xe = memirq_to_xe(memirq);
-+	struct xe_tile *tile = memirq_to_tile(memirq);
-+	struct xe_bo *bo;
-+	int err;
-+
-+	BUILD_BUG_ON(!IS_ALIGNED(XE_MEMIRQ_SOURCE_OFFSET, SZ_64));
-+	BUILD_BUG_ON(!IS_ALIGNED(XE_MEMIRQ_STATUS_OFFSET, SZ_4K));
-+
-+	/* XXX: convert to managed bo */
-+	bo = xe_bo_create_pin_map(xe, tile, NULL, SZ_4K,
-+				  ttm_bo_type_kernel,
-+				  XE_BO_CREATE_SYSTEM_BIT |
-+				  XE_BO_CREATE_GGTT_BIT |
-+				  XE_BO_NEEDS_UC |
-+				  XE_BO_NEEDS_CPU_ACCESS);
-+	if (IS_ERR(bo)) {
-+		err = PTR_ERR(bo);
-+		goto out;
-+	}
-+
-+	memirq_assert(memirq, !xe_bo_is_vram(bo));
-+	memirq_assert(memirq, !memirq->bo);
-+
-+	iosys_map_memset(&bo->vmap, 0, 0, SZ_4K);
-+
-+	memirq->bo = bo;
-+	memirq->source = IOSYS_MAP_INIT_OFFSET(&bo->vmap, XE_MEMIRQ_SOURCE_OFFSET);
-+	memirq->status = IOSYS_MAP_INIT_OFFSET(&bo->vmap, XE_MEMIRQ_STATUS_OFFSET);
-+	memirq->mask = IOSYS_MAP_INIT_OFFSET(&bo->vmap, XE_MEMIRQ_ENABLE_OFFSET);
-+
-+	memirq_assert(memirq, !memirq->source.is_iomem);
-+	memirq_assert(memirq, !memirq->status.is_iomem);
-+	memirq_assert(memirq, !memirq->mask.is_iomem);
-+
-+	memirq_debug(memirq, "page offsets: source %#x status %#x\n",
-+		     xe_memirq_source_ptr(memirq), xe_memirq_status_ptr(memirq));
-+
-+	return drmm_add_action_or_reset(&xe->drm, __release_xe_bo, memirq->bo);
-+
-+out:
-+	xe_sriov_err(memirq_to_xe(memirq),
-+		     "Failed to allocate memirq page (%pe)\n", ERR_PTR(err));
-+	return err;
-+}
-+
-+static void memirq_set_enable(struct xe_memirq *memirq, bool enable)
-+{
-+	iosys_map_wr(&memirq->mask, 0, u32, enable ? GENMASK(15, 0) : 0);
-+
-+	memirq->enabled = enable;
-+}
-+
-+/**
-+ * xe_memirq_init - Initialize data used by `Memory Based Interrupts`_.
-+ * @memirq: the &xe_memirq to initialize
-+ *
-+ * Allocate `Interrupt Source Report Page`_ and `Interrupt Status Report Page`_
-+ * used by `Memory Based Interrupts`_.
-+ *
-+ * These allocations are managed and will be implicitly released on unload.
-+ *
-+ * Note: This function shall be called only by the VF driver.
-+ *
-+ * If this function fails then VF driver won't be able to operate correctly.
-+ * If `Memory Based Interrupts`_ are not used this function will return 0.
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
-+int xe_memirq_init(struct xe_memirq *memirq)
-+{
-+	struct xe_device *xe = memirq_to_xe(memirq);
-+	int err;
-+
-+	memirq_assert(memirq, IS_SRIOV_VF(xe));
-+
-+	if (!xe_device_has_memirq(xe))
-+		return 0;
-+
-+	err = memirq_alloc_pages(memirq);
-+	if (unlikely(err))
-+		return err;
-+
-+	/* we need to start with all irqs enabled */
-+	memirq_set_enable(memirq, true);
-+
-+	return 0;
-+}
-+
-+/**
-+ * xe_memirq_source_ptr - Get GGTT's offset of the `Interrupt Source Report Page`_.
-+ * @memirq: the &xe_memirq to query
-+ *
-+ * Shall be called only on VF driver when `Memory Based Interrupts`_ are used
-+ * and xe_memirq_init() didn't fail.
-+ *
-+ * Return: GGTT's offset of the `Interrupt Source Report Page`_.
-+ */
-+u32 xe_memirq_source_ptr(struct xe_memirq *memirq)
-+{
-+	memirq_assert(memirq, IS_SRIOV_VF(memirq_to_xe(memirq)));
-+	memirq_assert(memirq, xe_device_has_memirq(memirq_to_xe(memirq)));
-+	memirq_assert(memirq, memirq->bo);
-+
-+	return xe_bo_ggtt_addr(memirq->bo) + XE_MEMIRQ_SOURCE_OFFSET;
-+}
-+
-+/**
-+ * xe_memirq_status_ptr - Get GGTT's offset of the `Interrupt Status Report Page`_.
-+ * @memirq: the &xe_memirq to query
-+ *
-+ * Shall be called only on VF driver when `Memory Based Interrupts`_ are used
-+ * and xe_memirq_init() didn't fail.
-+ *
-+ * Return: GGTT's offset of the `Interrupt Status Report Page`_.
-+ */
-+u32 xe_memirq_status_ptr(struct xe_memirq *memirq)
-+{
-+	memirq_assert(memirq, IS_SRIOV_VF(memirq_to_xe(memirq)));
-+	memirq_assert(memirq, xe_device_has_memirq(memirq_to_xe(memirq)));
-+	memirq_assert(memirq, memirq->bo);
-+
-+	return xe_bo_ggtt_addr(memirq->bo) + XE_MEMIRQ_STATUS_OFFSET;
-+}
-+
-+/**
-+ * xe_memirq_enable_ptr - Get GGTT's offset of the Interrupt Enable Mask.
-+ * @memirq: the &xe_memirq to query
-+ *
-+ * Shall be called only on VF driver when `Memory Based Interrupts`_ are used
-+ * and xe_memirq_init() didn't fail.
-+ *
-+ * Return: GGTT's offset of the Interrupt Enable Mask.
-+ */
-+u32 xe_memirq_enable_ptr(struct xe_memirq *memirq)
-+{
-+	memirq_assert(memirq, IS_SRIOV_VF(memirq_to_xe(memirq)));
-+	memirq_assert(memirq, xe_device_has_memirq(memirq_to_xe(memirq)));
-+	memirq_assert(memirq, memirq->bo);
-+
-+	return xe_bo_ggtt_addr(memirq->bo) + XE_MEMIRQ_ENABLE_OFFSET;
-+}
-+
-+/**
-+ * xe_memirq_init_guc - Prepare GuC for `Memory Based Interrupts`_.
-+ * @memirq: the &xe_memirq
-+ * @guc: the &xe_guc to setup
-+ *
-+ * Register `Interrupt Source Report Page`_ and `Interrupt Status Report Page`_
-+ * to be used by the GuC when `Memory Based Interrupts`_ are required.
-+ *
-+ * Shall be called only on VF driver when `Memory Based Interrupts`_ are used
-+ * and xe_memirq_init() didn't fail.
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
-+int xe_memirq_init_guc(struct xe_memirq *memirq, struct xe_guc *guc)
-+{
-+	bool is_media = xe_gt_is_media_type(guc_to_gt(guc));
-+	u32 offset = is_media ? ilog2(INTR_MGUC) : ilog2(INTR_GUC);
-+	u32 source, status;
-+	int err;
-+
-+	memirq_assert(memirq, IS_SRIOV_VF(memirq_to_xe(memirq)));
-+	memirq_assert(memirq, xe_device_has_memirq(memirq_to_xe(memirq)));
-+	memirq_assert(memirq, memirq->bo);
-+
-+	source = xe_memirq_source_ptr(memirq) + offset;
-+	status = xe_memirq_status_ptr(memirq) + offset * SZ_16;
-+
-+	err = xe_guc_self_cfg64(guc, GUC_KLV_SELF_CFG_MEMIRQ_SOURCE_ADDR_KEY,
-+				source);
-+	if (unlikely(err))
-+		goto failed;
-+
-+	err = xe_guc_self_cfg64(guc, GUC_KLV_SELF_CFG_MEMIRQ_STATUS_ADDR_KEY,
-+				status);
-+	if (unlikely(err))
-+		goto failed;
-+
-+	return 0;
-+
-+failed:
-+	xe_sriov_err(memirq_to_xe(memirq),
-+		     "Failed to setup report pages in %s (%pe)\n",
-+		     guc_name(guc), ERR_PTR(err));
-+	return err;
-+}
-+
-+/**
-+ * xe_memirq_reset - Disable processing of `Memory Based Interrupts`_.
-+ * @memirq: struct xe_memirq
-+ *
-+ * This is part of the driver IRQ setup flow.
-+ *
-+ * This function shall only be used by the VF driver on platforms that use
-+ * `Memory Based Interrupts`_.
-+ */
-+void xe_memirq_reset(struct xe_memirq *memirq)
-+{
-+	memirq_assert(memirq, IS_SRIOV_VF(memirq_to_xe(memirq)));
-+	memirq_assert(memirq, xe_device_has_memirq(memirq_to_xe(memirq)));
-+
-+	if (memirq->bo)
-+		memirq_set_enable(memirq, false);
-+}
-+
-+/**
-+ * xe_memirq_postinstall - Enable processing of `Memory Based Interrupts`_.
-+ * @memirq: the &xe_memirq
-+ *
-+ * This is part of the driver IRQ setup flow.
-+ *
-+ * This function shall only be used by the VF driver on platforms that use
-+ * `Memory Based Interrupts`_.
-+ */
-+void xe_memirq_postinstall(struct xe_memirq *memirq)
-+{
-+	memirq_assert(memirq, IS_SRIOV_VF(memirq_to_xe(memirq)));
-+	memirq_assert(memirq, xe_device_has_memirq(memirq_to_xe(memirq)));
-+
-+	if (memirq->bo)
-+		memirq_set_enable(memirq, true);
-+}
-+
-+static bool memirq_received(struct xe_memirq *memirq, struct iosys_map *vector,
-+			    u16 offset, const char *name)
-+{
-+	u8 value;
-+
-+	value = iosys_map_rd(vector, offset, u8);
-+	if (value) {
-+		if (value != 0xff)
-+			xe_sriov_err_ratelimited(memirq_to_xe(memirq),
-+						 "Unexpected memirq value %#x from %s at %u\n",
-+						 value, name, offset);
-+		iosys_map_wr(vector, offset, u8, 0x00);
-+	}
-+
-+	return value;
-+}
-+
-+static void memirq_dispatch_engine(struct xe_memirq *memirq, struct iosys_map *status,
-+				   struct xe_hw_engine *hwe)
-+{
-+	memirq_debug(memirq, "STATUS %s %*ph\n", hwe->name, 16, status->vaddr);
-+
-+	if (memirq_received(memirq, status, ilog2(GT_RENDER_USER_INTERRUPT), hwe->name))
-+		xe_hw_engine_handle_irq(hwe, GT_RENDER_USER_INTERRUPT);
-+}
-+
-+static void memirq_dispatch_guc(struct xe_memirq *memirq, struct iosys_map *status,
-+				struct xe_guc *guc)
-+{
-+	const char *name = guc_name(guc);
-+
-+	memirq_debug(memirq, "STATUS %s %*ph\n", name, 16, status->vaddr);
-+
-+	if (memirq_received(memirq, status, ilog2(GUC_INTR_GUC2HOST), name))
-+		xe_guc_irq_handler(guc, GUC_INTR_GUC2HOST);
-+}
-+
-+/**
-+ * xe_memirq_handler - The `Memory Based Interrupts`_ Handler.
-+ * @memirq: the &xe_memirq
-+ *
-+ * This function reads and dispatches `Memory Based Interrupts`.
-+ */
-+void xe_memirq_handler(struct xe_memirq *memirq)
-+{
-+	struct xe_device *xe = memirq_to_xe(memirq);
-+	struct xe_tile *tile = memirq_to_tile(memirq);
-+	struct xe_hw_engine *hwe;
-+	enum xe_hw_engine_id id;
-+	struct iosys_map map;
-+	unsigned int gtid;
-+	struct xe_gt *gt;
-+
-+	if (!memirq->bo)
-+		return;
-+
-+	memirq_assert(memirq, !memirq->source.is_iomem);
-+	memirq_debug(memirq, "SOURCE %*ph\n", 32, memirq->source.vaddr);
-+	memirq_debug(memirq, "SOURCE %*ph\n", 32, memirq->source.vaddr + 32);
-+
-+	for_each_gt(gt, xe, gtid) {
-+		if (gt->tile != tile)
-+			continue;
-+
-+		for_each_hw_engine(hwe, gt, id) {
-+			if (memirq_received(memirq, &memirq->source, hwe->irq_offset, "SRC")) {
-+				map = IOSYS_MAP_INIT_OFFSET(&memirq->status,
-+							    hwe->irq_offset * SZ_16);
-+				memirq_dispatch_engine(memirq, &map, hwe);
-+			}
-+		}
-+	}
-+
-+	/* GuC and media GuC (if present) must be checked separately */
-+
-+	if (memirq_received(memirq, &memirq->source, ilog2(INTR_GUC), "SRC")) {
-+		map = IOSYS_MAP_INIT_OFFSET(&memirq->status, ilog2(INTR_GUC) * SZ_16);
-+		memirq_dispatch_guc(memirq, &map, &tile->primary_gt->uc.guc);
-+	}
-+
-+	if (!tile->media_gt)
-+		return;
-+
-+	if (memirq_received(memirq, &memirq->source, ilog2(INTR_MGUC), "SRC")) {
-+		map = IOSYS_MAP_INIT_OFFSET(&memirq->status, ilog2(INTR_MGUC) * SZ_16);
-+		memirq_dispatch_guc(memirq, &map, &tile->media_gt->uc.guc);
-+	}
-+}
-diff --git a/drivers/gpu/drm/xe/xe_memirq.h b/drivers/gpu/drm/xe/xe_memirq.h
-new file mode 100644
-index 000000000000..2d40d03c3095
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_memirq.h
-@@ -0,0 +1,26 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef _XE_MEMIRQ_H_
-+#define _XE_MEMIRQ_H_
-+
-+#include <linux/types.h>
-+
-+struct xe_guc;
-+struct xe_memirq;
-+
-+int xe_memirq_init(struct xe_memirq *memirq);
-+
-+u32 xe_memirq_source_ptr(struct xe_memirq *memirq);
-+u32 xe_memirq_status_ptr(struct xe_memirq *memirq);
-+u32 xe_memirq_enable_ptr(struct xe_memirq *memirq);
-+
-+void xe_memirq_reset(struct xe_memirq *memirq);
-+void xe_memirq_postinstall(struct xe_memirq *memirq);
-+void xe_memirq_handler(struct xe_memirq *memirq);
-+
-+int xe_memirq_init_guc(struct xe_memirq *memirq, struct xe_guc *guc);
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_memirq_types.h b/drivers/gpu/drm/xe/xe_memirq_types.h
-new file mode 100644
-index 000000000000..625b6b8736cc
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_memirq_types.h
-@@ -0,0 +1,37 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef _XE_MEMIRQ_TYPES_H_
-+#define _XE_MEMIRQ_TYPES_H_
-+
-+#include <linux/iosys-map.h>
-+
-+struct xe_bo;
-+
-+/* ISR */
-+#define XE_MEMIRQ_STATUS_OFFSET		0x0
-+/* IIR */
-+#define XE_MEMIRQ_SOURCE_OFFSET		0x400
-+/* IMR */
-+#define XE_MEMIRQ_ENABLE_OFFSET		0x440
-+
-+/**
-+ * struct xe_memirq - Data used by the `Memory Based Interrupts`_.
-+ *
-+ * @bo: buffer object with `Memory Based Interrupts Page Layout`_.
-+ * @source: iosys pointer to `Interrupt Source Report Page`_.
-+ * @status: iosys pointer to `Interrupt Status Report Page`_.
-+ * @mask: iosys pointer to Interrupt Enable Mask.
-+ * @enabled: internal flag used to control processing of the interrupts.
-+ */
-+struct xe_memirq {
-+	struct xe_bo *bo;
-+	struct iosys_map source;
-+	struct iosys_map status;
-+	struct iosys_map mask;
-+	bool enabled;
-+};
-+
-+#endif
+ 	err = copy_from_user(&rvalue, u64_to_user_ptr(addr), sizeof(rvalue));
+ 	if (err)
 -- 
-2.25.1
+2.43.0
 
