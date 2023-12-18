@@ -4,34 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24488C46CD3
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Dec 2023 19:16:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D31CC46CD4
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Dec 2023 19:16:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEB8410E418;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D094E10E41D;
 	Mon, 18 Dec 2023 19:16:21 +0000 (UTC)
 Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9987310E434;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 981C710E433;
  Mon, 18 Dec 2023 19:16:19 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by ams.source.kernel.org (Postfix) with ESMTP id 39FAAB80E60;
- Mon, 18 Dec 2023 12:10:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AF17C433C7;
- Mon, 18 Dec 2023 12:09:58 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTP id CB4E1B80EC3;
+ Mon, 18 Dec 2023 14:27:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F266C433C7;
+ Mon, 18 Dec 2023 14:27:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1702901401;
- bh=6h0Zju9s54mKzhuiTQNTEB51hOyXl0Ab80IiL92w9FY=;
+ s=k20201202; t=1702909668;
+ bh=gzT81jgcmjihsJlgUeXCezD90taz/b/3Ls9zeZlw9q4=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=XAYk0yr3Q7pKbG3iD3tRHevoZU3iEyY672fpHofmeAxj26RwIE4IPWv89JET2stbD
- HMNnyTKGaveKEtwsnMjEC+qj1BUwhNdFJQ4OjsmGYamXttZ1oZmVNL51JNq65Erzdt
- bczjlRQPdZX06AGaaYPjWSNmo6/HMNHlg77ezEsoPuu4MtLF8DDpObK98DCJfMCugS
- R+BrOcqXPoPT7B86ozqBowcTbbdxZim/90j3pZi4Fl0GA7Cg43oDlImvrxsPNXHkLM
- agr2HPAT4TxTppOEHgKuLSkNCNAF06D1mj8QRNlvmj+RI59IpiqfclaQPqNpTRqrex
- BVmy75zEgQthA==
-Date: Mon, 18 Dec 2023 14:09:54 +0200
+ b=nHhvvFwr67mvtCOIpXyd2UEXa+VEI6aOdqeLr2Mn0zGAsw+V13guO5i2nzbQBBCCw
+ 92rZNZSNq5LuWcEnsdfN6VyUlZ8+0jLmXiYyp2vMmrtOtOlosyOpq3jAIWouD561d7
+ 1/9GIc1WYOFCKBiUcUxky/uvCsVCIEPpBEEb38ITaZiJGuYuH9MZxE6co1sov4zJkR
+ YawYqCHcYvAixirJUWCYB/j5V0VeJJ/pMw66ejq9SZSTafWk9S45OxwPrwbpPdgtp2
+ 8YYw0ZqJgr7BtBdMsTlA0REKUtCLGAtoxT3Yfn5vBnJJz/Xv1CMSHpYkZRL588PUf8
+ cUazEd7K7gcNg==
+Date: Mon, 18 Dec 2023 16:27:40 +0200
 From: Oded Gabbay <ogabbay@kernel.org>
 To: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Subject: Re: [PULL] drm-xe-next
-Message-ID: <ZYA2knZmNKb9lSsT@ogabbay-vm-u22.habana-labs.com>
+Message-ID: <ZYBW3AlYwV+tMPDC@ogabbay-vm-u22.habana-labs.com>
 References: <ZXzTA75G5VhCrDis@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
@@ -83,6 +83,8 @@ On Fri, Dec 15, 2023 at 05:28:19PM -0500, Rodrigo Vivi wrote:
 > 
 > Thanks,
 > Rodrigo.
+(Sorry for sending again but my kernel.org smtp definition was wrong and ml rejected my email)
+
 Hi Rodrigo,
 You and the team did a great job on bringing the driver to this stage. Congrats!
 
