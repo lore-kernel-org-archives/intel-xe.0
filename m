@@ -4,30 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DB7DC35274
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Dec 2023 19:36:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D3B0C35274
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Dec 2023 19:38:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D68C310E399;
-	Mon, 18 Dec 2023 19:36:45 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DA53F10E2DE;
- Mon, 18 Dec 2023 19:36:44 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D7109AADF8;
- Mon, 18 Dec 2023 19:36:44 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC0BB10E38D;
+	Mon, 18 Dec 2023 19:38:01 +0000 (UTC)
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com
+ [209.85.208.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D34C710E38D
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Dec 2023 19:37:59 +0000 (UTC)
+Received: by mail-lj1-f176.google.com with SMTP id
+ 38308e7fff4ca-2cc7ba7d12eso3292721fa.3
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Dec 2023 11:37:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1702928278; x=1703533078; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Ai8VwBCA9bCkOeX2HQ8N2cQDKJSbPq60EjOvvJro5AI=;
+ b=CD51j5d/3AnFPSjcCq4CGlAbAjHP6eLB/z4BfMhJE14Ez5Ue+pIV0KQw4t9ovEToTl
+ W5gsgxMwrC5SLV4+zmm3muis5auJwWeYGYUnwpiAGqZWEtGilREoOcJhFgUcWQBI2VyZ
+ FnPQUfdIibu2X0mihNWxkmN4I1gpB+HEwkmtlhkAGtlTrzCvTpuSazEZijsb35iemCX7
+ iaUJUriijRKQJ/jVPuYC9YAthogVOsdCiM7NQkLuuTq8gJScFAtZ7l+lG2XnWYb+X3Hc
+ 3H4z48zjXRyov2cqtQ9G8rLKPGcARKOjJjsIKZV0fph7PUF0IgYZnTyn+ChPKDQIvsQa
+ i90A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1702928278; x=1703533078;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=Ai8VwBCA9bCkOeX2HQ8N2cQDKJSbPq60EjOvvJro5AI=;
+ b=iDFC16Vd6OEHThnAAVU7mCALHlJIZclMSt0LVEhNbZFmNaf4KZIGPYTj8qvh+Cfsun
+ iw0YQVyZJmg+4m3FcuDccDZEBjqPhAsekmn505BvUO0CCe/zmp8huiHWUBlm7TmSzDr+
+ MkZjhFFIl5hShiLUNy5k4jEpeaZ7/DTrYtktwHDN7EZxbD0oupoKvAUoofcYhYNzgSuf
+ wQtGAsQwi4oiTSZUi9jS0bsrFtIKGB8haJFOgUVOtRJ7j0NF9FekyrkycHfAKop6oec3
+ 35sR5Av4OsNgYl4iEXUJp8vPTqQQnc7LbI89r8IGuuBXAI0Ar5M2iGtt4AMbLJHXOsHL
+ JKoQ==
+X-Gm-Message-State: AOJu0YwG1L8QFyQF+7LU2a8bFS4eBStbqoA61WtDeqIxgIQuIxjkunvl
+ Xp+ImxKMTL9SosANSSj955I78/GKQJg+BYLGRwc=
+X-Google-Smtp-Source: AGHT+IE1I+3Rfkdbqn9P5NcHcFq5ui9IBJb+u9CxSux6vtzqUFr8mn1PRPU/Aboor+0a2ufvEZB8ctFoGK6u0laGFqY=
+X-Received: by 2002:a05:651c:1a11:b0:2cc:7db2:acb8 with SMTP id
+ by17-20020a05651c1a1100b002cc7db2acb8mr1369ljb.107.1702928277395; Mon, 18 Dec
+ 2023 11:37:57 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EHooks=3A_success_for_drm/xe/migrate=3A_Fix_CCS_copy?=
- =?utf-8?q?_for_small_VRAM_copy_chunks_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Mon, 18 Dec 2023 19:36:44 -0000
-Message-ID: <170292820487.12104.11887860407876659163@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
 References: <20231218142933.8571-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20231218142933.8571-1-thomas.hellstrom@linux.intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Mon, 18 Dec 2023 19:37:30 +0000
+Message-ID: <CAM0jSHMq+NKYU+9aWfjAjxZGOr5HNGuVitu_F4xWu_a0Hzxspg@mail.gmail.com>
+Subject: Re: [PATCH v4] drm/xe/migrate: Fix CCS copy for small VRAM copy chunks
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,534 +67,359 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 18 Dec 2023 at 14:29, Thomas Hellstr=C3=B6m
+<thomas.hellstrom@linux.intel.com> wrote:
+>
+> Since the migrate code is using the identity map for addressing VRAM,
+> copy chunks may become as small as 64K if the VRAM resource is fragmented=
+.
+>
+> However, a chunk size smaller that 1MiB may lead to the *next* chunk's
+> offset into the CCS metadata backup memory may not be page-aligned, and
+> the XY_CTRL_SURF_COPY_BLT command can't handle that, and even if it could=
+,
+> the current code doesn't handle the offset calculaton correctly.
+>
+> To fix this, make sure we align the size of VRAM copy chunks to 1MiB. If
+> the remaining data to copy is smaller than that, that's not a problem,
+> so use the remaining size. If the VRAM copy cunk becomes fragmented due
+> to the size alignment restriction, don't use the identity map, but instea=
+d
+> emit PTEs into the page-table like we do for system memory.
+>
+> v2:
+> - Rebase
+> v3:
+> - Future proof somewhat by taking into account the real data size to
+>   flat CCS metadata size ratio. (Matt Roper)
+> - Invert a couple of if-statements for better readability.
+> - Fix support for 4K-granularity VRAM sizes. (Tested on DG1).
+> v4:
+> - Fix up code comments
+> - Fix debug printout format typo.
+>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Matthew Auld <matthew.william.auld@gmail.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> ---
+>  drivers/gpu/drm/xe/tests/xe_migrate.c |   2 +-
+>  drivers/gpu/drm/xe/xe_migrate.c       | 128 ++++++++++++++++----------
+>  2 files changed, 80 insertions(+), 50 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/t=
+ests/xe_migrate.c
+> index 7a32faa2f688..a6523df0f1d3 100644
+> --- a/drivers/gpu/drm/xe/tests/xe_migrate.c
+> +++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+> @@ -331,7 +331,7 @@ static void xe_migrate_sanity_test(struct xe_migrate =
+*m, struct kunit *test)
+>                 xe_res_first_sg(xe_bo_sg(pt), 0, pt->size, &src_it);
+>
+>         emit_pte(m, bb, NUM_KERNEL_PDE - 1, xe_bo_is_vram(pt), false,
+> -                &src_it, XE_PAGE_SIZE, pt);
+> +                &src_it, XE_PAGE_SIZE, pt->ttm.resource);
+>
+>         run_sanity_job(m, xe, bb, bb->len, "Writing PTE for our fake PT",=
+ test);
+>
+> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migr=
+ate.c
+> index adf1dab5eba2..d8fff0403f74 100644
+> --- a/drivers/gpu/drm/xe/xe_migrate.c
+> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> @@ -62,6 +62,8 @@ struct xe_migrate {
+>          * out of the pt_bo.
+>          */
+>         struct drm_suballoc_manager vm_update_sa;
+> +       /** @min_chunk_size: For dgfx, Minimum chunk size */
+> +       u64 min_chunk_size;
+>  };
+>
+>  #define MAX_PREEMPTDISABLE_TRANSFER SZ_8M /* Around 1ms. */
+> @@ -364,6 +366,19 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *t=
+ile)
+>         if (err)
+>                 return ERR_PTR(err);
+>
+> +       if (IS_DGFX(xe)) {
+> +               if (xe_device_has_flat_ccs(xe))
+> +                       /* min chunk size corresponds to 4K of CCS Metada=
+ta */
+> +                       m->min_chunk_size =3D SZ_4K * SZ_64K /
+> +                               xe_device_ccs_bytes(xe, SZ_64K);
+> +               else
+> +                       /* Somewhat arbitrary to avoid a huge amount of b=
+lits */
+> +                       m->min_chunk_size =3D SZ_64K;
+> +               m->min_chunk_size =3D roundup_pow_of_two(m->min_chunk_siz=
+e);
+> +               drm_dbg(&xe->drm, "Migrate min chunk size is 0x%08llx\n",
+> +                       (unsigned long long)m->min_chunk_size);
+> +       }
+> +
+>         return m;
+>  }
+>
+> @@ -375,16 +390,35 @@ static u64 max_mem_transfer_per_pass(struct xe_devi=
+ce *xe)
+>         return MAX_PREEMPTDISABLE_TRANSFER;
+>  }
+>
+> -static u64 xe_migrate_res_sizes(struct xe_device *xe, struct xe_res_curs=
+or *cur)
+> +static u64 xe_migrate_res_sizes(struct xe_migrate *m, struct xe_res_curs=
+or *cur)
+>  {
+> -       /*
+> -        * For VRAM we use identity mapped pages so we are limited to cur=
+rent
+> -        * cursor size. For system we program the pages ourselves so we h=
+ave no
+> -        * such limitation.
+> -        */
+> -       return min_t(u64, max_mem_transfer_per_pass(xe),
+> -                    mem_type_is_vram(cur->mem_type) ? cur->size :
+> -                    cur->remaining);
+> +       struct xe_device *xe =3D tile_to_xe(m->tile);
+> +       u64 size =3D min_t(u64, max_mem_transfer_per_pass(xe), cur->remai=
+ning);
+> +
+> +       if (mem_type_is_vram(cur->mem_type)) {
+> +               /*
+> +                * VRAM we want to blit in chunks with sizes aligned to
+> +                * min_chunk_size in order for the offset to CCS metadata=
+ to be
+> +                * page-aligned. If it's the last chunk it may be smaller=
+.
+> +                *
+> +                * Another constraint is that we need to limit the blit t=
+o
+> +                * the VRAM block size, unless size is smaller than
+> +                * min_chunk_size.
+> +                */
+> +               u64 chunk =3D max_t(u64, cur->size, m->min_chunk_size);
+> +
+> +               size =3D min_t(u64, size, chunk);
+> +               if (size > m->min_chunk_size)
+> +                       size =3D round_down(size, m->min_chunk_size);
+> +       }
+> +
+> +       return size;
 
-Series: drm/xe/migrate: Fix CCS copy for small VRAM copy chunks (rev3)
-URL   : https://patchwork.freedesktop.org/series/127874/
-State : success
+Patch makes sense. Just one question here.
 
-== Summary ==
+Say you have 1G object, but it is ultra fragmented into 64K only
+pages. IIUC cur->remaining would be 1G, and cur->size would be 64K.
+But with that chunk=3D1M and the returned size=3D1M? Shouldn't the
+returned size be 64K in this case?
 
-run-parts: executing /workspace/ci/hooks/00-showenv
-+ pwd
-+ ls -la
-/workspace
-total 916
-drwxrwxr-x 12 1003 1003   4096 Dec 18 19:36 .
-drwxr-xr-x  1 root root   4096 Dec 18 19:36 ..
--rw-rw-r--  1 1003 1003 815714 Dec 18 19:36 build.log
--rw-rw-r--  1 1003 1003   2113 Dec 18 19:27 checkpatch.log
-drwxrwxr-x  5 1003 1003   4096 Dec 18 19:25 ci
-drwxrwxr-x  9 1003 1003   4096 Dec 18 19:25 docker
-drwxrwxr-x  8 1003 1003   4096 Dec 18 19:25 .git
--rw-rw-r--  1 1003 1003    234 Dec 18 19:27 git_apply.log
-drwxrwxr-x  4 1003 1003   4096 Dec 18 19:25 .github
--rw-rw-r--  1 1003 1003    233 Dec 18 19:25 .groovylintrc.json
--rw-rw-r--  1 1003 1003     78 Dec 18 19:36 hooks.log
-drwxrwxr-x 31 1003 1003   4096 Dec 18 19:36 kernel
--rw-rw-r--  1 1003 1003  10290 Dec 18 19:27 kernel.mbox
--rw-rw-r--  1 1003 1003  31208 Dec 18 19:28 kunit.log
--rw-rw-r--  1 1003 1003     48 Dec 18 19:27 parent.tag
-drwxrwxr-x 44 1003 1003   4096 Dec 18 19:25 pipelines
--rw-rw-r--  1 1003 1003    793 Dec 18 19:25 README.adoc
-drwxrwxr-x  3 1003 1003   4096 Dec 18 19:25 scripts
-drwxrwxr-x  3 1003 1003   4096 Dec 18 19:25 src
-drwxrwxr-x  2 1003 1003   4096 Dec 18 19:25 vars
-drwxrwxr-x  2 1003 1003   4096 Dec 18 19:25 .vscode
-+ uname -a
-Linux 8617abd75692 5.4.0-164-generic #181-Ubuntu SMP Fri Sep 1 13:41:22 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
-+ export
-+ grep -Ei '(^|\W)CI_'
-declare -x CI_KERNEL_BUILD_DIR="/workspace/kernel/build64-default"
-declare -x CI_KERNEL_SRC_DIR="/workspace/kernel"
-declare -x CI_TOOLS_SRC_DIR="/workspace/ci"
-declare -x CI_WORKSPACE_DIR="/workspace"
-+ '[' -n /workspace ']'
-+ git_args='-C /workspace/kernel'
-+ git_log_args=
-+ git --no-pager -C /workspace/kernel log --format=oneline --abbrev-commit
-ec0cd7afa drm/xe/migrate: Fix CCS copy for small VRAM copy chunks
-16f9e14e9 drm/xe: Fix UBSAN splat in add_preempt_fences()
-run-parts: executing /workspace/ci/hooks/10-build-W1
-+ SRC_DIR=/workspace/kernel
-+ RESTORE_DISPLAY_CONFIG=0
-+ '[' -n /workspace/kernel/build64-default ']'
-+ BUILD_DIR=/workspace/kernel/build64-default
-+ cd /workspace/kernel
-++ nproc
-+ make -j48 O=/workspace/kernel/build64-default modules_prepare
-make[1]: Entering directory '/workspace/kernel/build64-default'
-  GEN     Makefile
-  UPD     include/generated/compile.h
-  UPD     include/config/kernel.release
-mkdir -p /workspace/kernel/build64-default/tools/objtool && make O=/workspace/kernel/build64-default subdir=tools/objtool --no-print-directory -C objtool 
-  UPD     include/generated/utsrelease.h
-  HOSTCC  /workspace/kernel/build64-default/tools/objtool/fixdep.o
-  CALL    ../scripts/checksyscalls.sh
-  HOSTLD  /workspace/kernel/build64-default/tools/objtool/fixdep-in.o
-  LINK    /workspace/kernel/build64-default/tools/objtool/fixdep
-  INSTALL libsubcmd_headers
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/exec-cmd.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/help.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/pager.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/parse-options.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/run-command.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/sigchain.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/subcmd-config.o
-  LD      /workspace/kernel/build64-default/tools/objtool/libsubcmd/libsubcmd-in.o
-  AR      /workspace/kernel/build64-default/tools/objtool/libsubcmd/libsubcmd.a
-  CC      /workspace/kernel/build64-default/tools/objtool/weak.o
-  CC      /workspace/kernel/build64-default/tools/objtool/check.o
-  CC      /workspace/kernel/build64-default/tools/objtool/special.o
-  CC      /workspace/kernel/build64-default/tools/objtool/builtin-check.o
-  CC      /workspace/kernel/build64-default/tools/objtool/elf.o
-  CC      /workspace/kernel/build64-default/tools/objtool/objtool.o
-  CC      /workspace/kernel/build64-default/tools/objtool/orc_gen.o
-  CC      /workspace/kernel/build64-default/tools/objtool/orc_dump.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libstring.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libctype.o
-  CC      /workspace/kernel/build64-default/tools/objtool/str_error_r.o
-  CC      /workspace/kernel/build64-default/tools/objtool/librbtree.o
-  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/special.o
-  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/decode.o
-  LD      /workspace/kernel/build64-default/tools/objtool/arch/x86/objtool-in.o
-  LD      /workspace/kernel/build64-default/tools/objtool/objtool-in.o
-  LINK    /workspace/kernel/build64-default/tools/objtool/objtool
-make[1]: Leaving directory '/workspace/kernel/build64-default'
-++ nproc
-+ make -j48 O=/workspace/kernel/build64-default M=drivers/gpu/drm/xe W=1
-make[1]: Entering directory '/workspace/kernel/build64-default'
-  CC [M]  drivers/gpu/drm/xe/xe_bb.o
-  CC [M]  drivers/gpu/drm/xe/xe_bo.o
-  CC [M]  drivers/gpu/drm/xe/xe_bo_evict.o
-  CC [M]  drivers/gpu/drm/xe/xe_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_devcoredump.o
-  CC [M]  drivers/gpu/drm/xe/xe_device.o
-  CC [M]  drivers/gpu/drm/xe/xe_device_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_dma_buf.o
-  CC [M]  drivers/gpu/drm/xe/xe_drm_client.o
-  CC [M]  drivers/gpu/drm/xe/xe_exec.o
-  CC [M]  drivers/gpu/drm/xe/xe_execlist.o
-  CC [M]  drivers/gpu/drm/xe/xe_exec_queue.o
-  CC [M]  drivers/gpu/drm/xe/xe_force_wake.o
-  CC [M]  drivers/gpu/drm/xe/xe_ggtt.o
-  CC [M]  drivers/gpu/drm/xe/xe_gpu_scheduler.o
-  HOSTCC  drivers/gpu/drm/xe/xe_gen_wa_oob
-  CC [M]  drivers/gpu/drm/xe/xe_gsc_submit.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_ccs_mode.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_clock.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_freq.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_idle.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_mcr.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_pagefault.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_throttle_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_tlb_invalidation.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_topology.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_ads.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_ct.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_hwconfig.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_log.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_pc.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_submit.o
-  CC [M]  drivers/gpu/drm/xe/xe_heci_gsc.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_engine.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_huc.o
-  CC [M]  drivers/gpu/drm/xe/xe_huc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_irq.o
-  CC [M]  drivers/gpu/drm/xe/xe_lrc.o
-  CC [M]  drivers/gpu/drm/xe/xe_mmio.o
-  CC [M]  drivers/gpu/drm/xe/xe_mocs.o
-  CC [M]  drivers/gpu/drm/xe/xe_module.o
-  CC [M]  drivers/gpu/drm/xe/xe_pat.o
-  CC [M]  drivers/gpu/drm/xe/xe_pci.o
-  CC [M]  drivers/gpu/drm/xe/xe_pcode.o
-  CC [M]  drivers/gpu/drm/xe/xe_pm.o
-  CC [M]  drivers/gpu/drm/xe/xe_preempt_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_pt.o
-  CC [M]  drivers/gpu/drm/xe/xe_pt_walk.o
-  CC [M]  drivers/gpu/drm/xe/xe_query.o
-  CC [M]  drivers/gpu/drm/xe/xe_range_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_reg_sr.o
-  CC [M]  drivers/gpu/drm/xe/xe_reg_whitelist.o
-  CC [M]  drivers/gpu/drm/xe/xe_sa.o
-  CC [M]  drivers/gpu/drm/xe/xe_rtp.o
-  CC [M]  drivers/gpu/drm/xe/xe_sched_job.o
-  CC [M]  drivers/gpu/drm/xe/xe_step.o
-  CC [M]  drivers/gpu/drm/xe/xe_sync.o
-  CC [M]  drivers/gpu/drm/xe/xe_tile.o
-  CC [M]  drivers/gpu/drm/xe/xe_tile_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_trace.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_sys_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_vram_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_tuning.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc_fw.o
-  CC [M]  drivers/gpu/drm/xe/xe_wait_user_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_wopcm.o
-  CC [M]  drivers/gpu/drm/xe/xe_hwmon.o
-  CC [M]  drivers/gpu/drm/xe/xe_sriov.o
-  CC [M]  drivers/gpu/drm/xe/xe_lmtt.o
-  CC [M]  drivers/gpu/drm/xe/xe_lmtt_2l.o
-  CC [M]  drivers/gpu/drm/xe/xe_lmtt_ml.o
-  CC [M]  drivers/gpu/drm/xe/xe_display.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_fb_pin.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_hdcp_gsc.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_plane_initial.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_display_rps.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_display_misc.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_dsb_buffer.o
-  CC [M]  drivers/gpu/drm/xe/display/intel_fbdev_fb.o
-  CC [M]  drivers/gpu/drm/xe/display/intel_fb_bo.o
-  CC [M]  drivers/gpu/drm/xe/display/ext/i915_irq.o
-  CC [M]  drivers/gpu/drm/xe/display/ext/i915_utils.o
-  CC [M]  drivers/gpu/drm/xe/i915-soc/intel_dram.o
-  CC [M]  drivers/gpu/drm/xe/i915-soc/intel_pch.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/icl_dsi.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_atomic.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_atomic_plane.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_audio.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_backlight.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_bios.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_bw.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_cdclk.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_color.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_combo_phy.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_connector.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_crtc.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_crtc_state_dump.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_cursor.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_cx0_phy.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_ddi.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_ddi_buf_trans.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_debugfs_params.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_device.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_driver.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_irq.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_params.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_power.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_power_map.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_power_well.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_trace.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_wa.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dkl_phy.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dmc.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_aux.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_aux_backlight.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_hdcp.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_link_training.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_mst.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dpll.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dpll_mgr.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dpt_common.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_drrs.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dsb.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dsi.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dsi_dcs_backlight.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dsi_vbt.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fb.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fbc.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fdi.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fifo_underrun.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_frontbuffer.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_global_state.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_gmbus.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hdcp.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hdmi.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hotplug.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hotplug_irq.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hti.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_link_bw.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_lspcon.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_modeset_lock.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_modeset_setup.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_modeset_verify.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_panel.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_pipe_crc.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_pmdemand.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_pps.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_psr.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_qp_tables.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_quirks.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_snps_phy.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_tc.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_vblank.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_vdsc.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_vga.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_vrr.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_wm.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/skl_scaler.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/skl_universal_plane.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/skl_watermark.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_acpi.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_opregion.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fbdev.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/gsc_command_header_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_errors_abi.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_bo_test.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.o
-  HDRTEST drivers/gpu/drm/xe/abi/gsc_mkhi_commands_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_mocs_test.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_communication_mmio_abi.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_pci_test.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_actions_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_messages_abi.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_gem.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_vma_types.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_wa_test.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_irq.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/vlv_sideband_reg.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_wakeref.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_pcode.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_reg_defs.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_trace.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_reg.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_active_types.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_utils.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_config.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/vlv_sideband.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_mchbar_regs.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_gpu_error.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/soc/intel_pch.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/soc/intel_dram.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/soc/intel_gmch.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_vgpu.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_fixed.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_step.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_uc_fw.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_pci_config.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_lmem.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_mman.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_frontbuffer.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/gt/intel_rps.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_clock_gating.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_gt_types.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_active.h
-  HDRTEST drivers/gpu/drm/xe/display/intel_fb_bo.h
-  HDRTEST drivers/gpu/drm/xe/display/intel_fbdev_fb.h
-  HDRTEST drivers/gpu/drm/xe/instructions/xe_instr_defs.h
-  HDRTEST drivers/gpu/drm/xe/instructions/xe_gsc_commands.h
-  HDRTEST drivers/gpu/drm/xe/instructions/xe_gfxpipe_commands.h
-  HDRTEST drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_gsc_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_reg_defs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_guc_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_gt_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_sriov_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_engine_regs.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_pci_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_migrate_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_dma_buf_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_mocs_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_bo_test.h
-  HDRTEST drivers/gpu/drm/xe/xe_assert.h
-  HDRTEST drivers/gpu/drm/xe/xe_bb.h
-  HDRTEST drivers/gpu/drm/xe/xe_bb_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_evict.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_devcoredump.h
-  HDRTEST drivers/gpu/drm/xe/xe_devcoredump_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_device.h
-  HDRTEST drivers/gpu/drm/xe/xe_device_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_device_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_display.h
-  HDRTEST drivers/gpu/drm/xe/xe_dma_buf.h
-  HDRTEST drivers/gpu/drm/xe/xe_drm_client.h
-  HDRTEST drivers/gpu/drm/xe/xe_drv.h
-  HDRTEST drivers/gpu/drm/xe/xe_exec.h
-  HDRTEST drivers/gpu/drm/xe/xe_exec_queue.h
-  HDRTEST drivers/gpu/drm/xe/xe_exec_queue_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_execlist.h
-  HDRTEST drivers/gpu/drm/xe/xe_execlist_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_force_wake.h
-  HDRTEST drivers/gpu/drm/xe/xe_force_wake_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_ggtt.h
-  HDRTEST drivers/gpu/drm/xe/xe_ggtt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gpu_scheduler.h
-  HDRTEST drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gsc.h
-  HDRTEST drivers/gpu/drm/xe/xe_gsc_submit.h
-  HDRTEST drivers/gpu/drm/xe/xe_gsc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_ccs_mode.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_clock.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_freq.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_idle.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_idle_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_mcr.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_pagefault.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_printk.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_sysfs_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_tlb_invalidation_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_topology.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ads.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ads_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ct.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ct_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_fwif.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_hwconfig.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_log.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_log_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_pc.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_pc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_submit.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_submit_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_heci_gsc.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_fence_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_irq.h
-  HDRTEST drivers/gpu/drm/xe/xe_hwmon.h
-  HDRTEST drivers/gpu/drm/xe/xe_lmtt.h
-  HDRTEST drivers/gpu/drm/xe/xe_lmtt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_lrc.h
-  HDRTEST drivers/gpu/drm/xe/xe_lrc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_macros.h
-  HDRTEST drivers/gpu/drm/xe/xe_map.h
-  HDRTEST drivers/gpu/drm/xe/xe_migrate.h
-  HDRTEST drivers/gpu/drm/xe/xe_migrate_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_mmio.h
-  HDRTEST drivers/gpu/drm/xe/xe_mocs.h
-  HDRTEST drivers/gpu/drm/xe/xe_module.h
-  HDRTEST drivers/gpu/drm/xe/xe_pat.h
-  HDRTEST drivers/gpu/drm/xe/xe_pci.h
-  HDRTEST drivers/gpu/drm/xe/xe_pci_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pcode.h
-  HDRTEST drivers/gpu/drm/xe/xe_pcode_api.h
-  HDRTEST drivers/gpu/drm/xe/xe_platform_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pm.h
-  HDRTEST drivers/gpu/drm/xe/xe_preempt_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_preempt_fence_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt_walk.h
-  HDRTEST drivers/gpu/drm/xe/xe_query.h
-  HDRTEST drivers/gpu/drm/xe/xe_range_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_sr.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_sr_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_whitelist.h
-  HDRTEST drivers/gpu/drm/xe/xe_res_cursor.h
-  HDRTEST drivers/gpu/drm/xe/xe_ring_ops.h
-  HDRTEST drivers/gpu/drm/xe/xe_ring_ops_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_rtp.h
-  HDRTEST drivers/gpu/drm/xe/xe_rtp_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sa.h
-  HDRTEST drivers/gpu/drm/xe/xe_sa_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sched_job.h
-  HDRTEST drivers/gpu/drm/xe/xe_sched_job_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sriov.h
-  HDRTEST drivers/gpu/drm/xe/xe_sriov_printk.h
-  HDRTEST drivers/gpu/drm/xe/xe_sriov_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_step.h
-  HDRTEST drivers/gpu/drm/xe/xe_step_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sync.h
-  HDRTEST drivers/gpu/drm/xe/xe_sync_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_tile.h
-  HDRTEST drivers/gpu/drm/xe/xe_tile_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_tile_sysfs_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_trace.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_sys_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_tuning.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw_abi.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_wa.h
-  HDRTEST drivers/gpu/drm/xe/xe_wait_user_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_wopcm.h
-  HDRTEST drivers/gpu/drm/xe/xe_wopcm_types.h
-  GEN     xe_wa_oob.c xe_wa_oob.h
-  GEN     xe_wa_oob.c xe_wa_oob.h
-  CC [M]  drivers/gpu/drm/xe/xe_gsc.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc.o
-  CC [M]  drivers/gpu/drm/xe/xe_migrate.o
-  CC [M]  drivers/gpu/drm/xe/xe_ring_ops.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_stolen_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_vm.o
-  CC [M]  drivers/gpu/drm/xe/xe_wa.o
-  LD [M]  drivers/gpu/drm/xe/xe.o
-  MODPOST drivers/gpu/drm/xe/Module.symvers
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/xe/tests/xe_mocs_test.o
-  CC [M]  drivers/gpu/drm/xe/xe.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_bo_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_mocs_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_pci_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_wa_test.mod.o
-  LD [M]  drivers/gpu/drm/xe/tests/xe_wa_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_mocs_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_bo_test.ko
-  LD [M]  drivers/gpu/drm/xe/xe.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_pci_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.ko
-make[1]: Leaving directory '/workspace/kernel/build64-default'
-run-parts: executing /workspace/ci/hooks/20-kernel-doc
-+ SRC_DIR=/workspace/kernel
-+ cd /workspace/kernel
-+ find drivers/gpu/drm/xe/ -name '*.[ch]' -not -path 'drivers/gpu/drm/xe/display/*'
-+ xargs ./scripts/kernel-doc -Werror -none include/uapi/drm/xe_drm.h
-All hooks done
-
-
+> +}
+> +
+> +static bool xe_migrate_allow_identity(u64 size, const struct xe_res_curs=
+or *cur)
+> +{
+> +       /* If the chunk is not fragmented, allow identity map. */
+> +       return cur->size >=3D size;
+>  }
+>
+>  static u32 pte_update_size(struct xe_migrate *m,
+> @@ -397,7 +431,12 @@ static u32 pte_update_size(struct xe_migrate *m,
+>         u32 cmds =3D 0;
+>
+>         *L0_pt =3D pt_ofs;
+> -       if (!is_vram) {
+> +       if (is_vram && xe_migrate_allow_identity(*L0, cur)) {
+> +               /* Offset into identity map. */
+> +               *L0_ofs =3D xe_migrate_vram_ofs(tile_to_xe(m->tile),
+> +                                             cur->start + vram_region_gp=
+u_offset(res));
+> +               cmds +=3D cmd_size;
+> +       } else {
+>                 /* Clip L0 to available size */
+>                 u64 size =3D min(*L0, (u64)avail_pts * SZ_2M);
+>                 u64 num_4k_pages =3D DIV_ROUND_UP(size, XE_PAGE_SIZE);
+> @@ -413,11 +452,6 @@ static u32 pte_update_size(struct xe_migrate *m,
+>
+>                 /* Each chunk has a single blit command */
+>                 cmds +=3D cmd_size;
+> -       } else {
+> -               /* Offset into identity map. */
+> -               *L0_ofs =3D xe_migrate_vram_ofs(tile_to_xe(m->tile),
+> -                                             cur->start + vram_region_gp=
+u_offset(res));
+> -               cmds +=3D cmd_size;
+>         }
+>
+>         return cmds;
+> @@ -427,10 +461,10 @@ static void emit_pte(struct xe_migrate *m,
+>                      struct xe_bb *bb, u32 at_pt,
+>                      bool is_vram, bool is_comp_pte,
+>                      struct xe_res_cursor *cur,
+> -                    u32 size, struct xe_bo *bo)
+> +                    u32 size, struct ttm_resource *res)
+>  {
+>         struct xe_device *xe =3D tile_to_xe(m->tile);
+> -
+> +       struct xe_vm *vm =3D m->q->vm;
+>         u16 pat_index;
+>         u32 ptes;
+>         u64 ofs =3D at_pt * XE_PAGE_SIZE;
+> @@ -443,13 +477,6 @@ static void emit_pte(struct xe_migrate *m,
+>         else
+>                 pat_index =3D xe->pat.idx[XE_CACHE_WB];
+>
+> -       /*
+> -        * FIXME: Emitting VRAM PTEs to L0 PTs is forbidden. Currently
+> -        * we're only emitting VRAM PTEs during sanity tests, so when
+> -        * that's moved to a Kunit test, we should condition VRAM PTEs
+> -        * on running tests.
+> -        */
+> -
+>         ptes =3D DIV_ROUND_UP(size, XE_PAGE_SIZE);
+>
+>         while (ptes) {
+> @@ -469,20 +496,22 @@ static void emit_pte(struct xe_migrate *m,
+>
+>                         addr =3D xe_res_dma(cur) & PAGE_MASK;
+>                         if (is_vram) {
+> -                               /* Is this a 64K PTE entry? */
+> -                               if ((m->q->vm->flags & XE_VM_FLAG_64K) &&
+> -                                   !(cur_ofs & (16 * 8 - 1))) {
+> -                                       xe_tile_assert(m->tile, IS_ALIGNE=
+D(addr, SZ_64K));
+> +                               if (vm->flags & XE_VM_FLAG_64K) {
+> +                                       u64 va =3D cur_ofs * XE_PAGE_SIZE=
+ / 8;
+> +
+> +                                       xe_assert(xe, (va & (SZ_64K - 1))=
+ =3D=3D
+> +                                                 (addr & (SZ_64K - 1)));
+> +
+>                                         flags |=3D XE_PTE_PS64;
+>                                 }
+>
+> -                               addr +=3D vram_region_gpu_offset(bo->ttm.=
+resource);
+> +                               addr +=3D vram_region_gpu_offset(res);
+>                                 devmem =3D true;
+>                         }
+>
+> -                       addr =3D m->q->vm->pt_ops->pte_encode_addr(m->til=
+e->xe,
+> -                                                                addr, pa=
+t_index,
+> -                                                                0, devme=
+m, flags);
+> +                       addr =3D vm->pt_ops->pte_encode_addr(m->tile->xe,
+> +                                                          addr, pat_inde=
+x,
+> +                                                          0, devmem, fla=
+gs);
+>                         bb->cs[bb->len++] =3D lower_32_bits(addr);
+>                         bb->cs[bb->len++] =3D upper_32_bits(addr);
+>
+> @@ -694,8 +723,8 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *=
+m,
+>                 bool usm =3D xe->info.has_usm;
+>                 u32 avail_pts =3D max_mem_transfer_per_pass(xe) / LEVEL0_=
+PAGE_TABLE_ENCODE_SIZE;
+>
+> -               src_L0 =3D xe_migrate_res_sizes(xe, &src_it);
+> -               dst_L0 =3D xe_migrate_res_sizes(xe, &dst_it);
+> +               src_L0 =3D xe_migrate_res_sizes(m, &src_it);
+> +               dst_L0 =3D xe_migrate_res_sizes(m, &dst_it);
+>
+>                 drm_dbg(&xe->drm, "Pass %u, sizes: %llu & %llu\n",
+>                         pass++, src_L0, dst_L0);
+> @@ -716,6 +745,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *=
+m,
+>                                                       &ccs_ofs, &ccs_pt, =
+0,
+>                                                       2 * avail_pts,
+>                                                       avail_pts);
+> +                       xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE)=
+);
+>                 }
+>
+>                 /* Add copy commands size here */
+> @@ -728,20 +758,20 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate=
+ *m,
+>                         goto err_sync;
+>                 }
+>
+> -               if (!src_is_vram)
+> -                       emit_pte(m, bb, src_L0_pt, src_is_vram, true, &sr=
+c_it, src_L0,
+> -                                src_bo);
+> -               else
+> +               if (src_is_vram && xe_migrate_allow_identity(src_L0, &src=
+_it))
+>                         xe_res_next(&src_it, src_L0);
+> -
+> -               if (!dst_is_vram)
+> -                       emit_pte(m, bb, dst_L0_pt, dst_is_vram, true, &ds=
+t_it, src_L0,
+> -                                dst_bo);
+>                 else
+> +                       emit_pte(m, bb, src_L0_pt, src_is_vram, true, &sr=
+c_it, src_L0,
+> +                                src);
+> +
+> +               if (dst_is_vram && xe_migrate_allow_identity(src_L0, &dst=
+_it))
+>                         xe_res_next(&dst_it, src_L0);
+> +               else
+> +                       emit_pte(m, bb, dst_L0_pt, dst_is_vram, true, &ds=
+t_it, src_L0,
+> +                                dst);
+>
+>                 if (copy_system_ccs)
+> -                       emit_pte(m, bb, ccs_pt, false, false, &ccs_it, cc=
+s_size, src_bo);
+> +                       emit_pte(m, bb, ccs_pt, false, false, &ccs_it, cc=
+s_size, src);
+>
+>                 bb->cs[bb->len++] =3D MI_BATCH_BUFFER_END;
+>                 update_idx =3D bb->len;
+> @@ -950,7 +980,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate =
+*m,
+>                 bool usm =3D xe->info.has_usm;
+>                 u32 avail_pts =3D max_mem_transfer_per_pass(xe) / LEVEL0_=
+PAGE_TABLE_ENCODE_SIZE;
+>
+> -               clear_L0 =3D xe_migrate_res_sizes(xe, &src_it);
+> +               clear_L0 =3D xe_migrate_res_sizes(m, &src_it);
+>
+>                 drm_dbg(&xe->drm, "Pass %u, size: %llu\n", pass++, clear_=
+L0);
+>
+> @@ -977,12 +1007,12 @@ struct dma_fence *xe_migrate_clear(struct xe_migra=
+te *m,
+>
+>                 size -=3D clear_L0;
+>                 /* Preemption is enabled again by the ring ops. */
+> -               if (!clear_vram) {
+> -                       emit_pte(m, bb, clear_L0_pt, clear_vram, true, &s=
+rc_it, clear_L0,
+> -                                bo);
+> -               } else {
+> +               if (clear_vram && xe_migrate_allow_identity(clear_L0, &sr=
+c_it))
+>                         xe_res_next(&src_it, clear_L0);
+> -               }
+> +               else
+> +                       emit_pte(m, bb, clear_L0_pt, clear_vram, true, &s=
+rc_it, clear_L0,
+> +                                dst);
+> +
+>                 bb->cs[bb->len++] =3D MI_BATCH_BUFFER_END;
+>                 update_idx =3D bb->len;
+>
+> --
+> 2.42.0
+>
