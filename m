@@ -4,46 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F6F4C46CD4
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Dec 2023 19:07:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F9B9C35274
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Dec 2023 19:09:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B1CF10E3C3;
-	Mon, 18 Dec 2023 19:07:20 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFAB110E371
- for <intel-xe@lists.freedesktop.org>; Mon, 18 Dec 2023 19:06:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 361BD10E391;
+	Mon, 18 Dec 2023 19:09:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17C7710E391
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Dec 2023 19:09:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702926398; x=1734462398;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=w9MLdeGYLz7XyFLjplMq7sOUMh83gKlYOl6lDHn3uOA=;
- b=jSVZLLtraF2d3IlRrNV/MKkKhvMiUZ+Vct3MqcWBaBA5AW/aAGgCBn0s
- posTIoKxUmv3dOUwjuSzJaXbWYn0itJUJYyyk9ZNxLK43EBi+MWhYE6wM
- 9iUcHaW/Zl0UVjCueEo/hCylrzu2LsYvId5wO7Uao4zYu/yMoEga3X64j
- LbuPP/Xj+SHzFKJo6WlbkkEnHqR31rjs5IUSgNDG1FCA7bImdAyKzU2Z6
- nl2thvR0JXToVl4bkoJxACg92sIX5LN2W9TjYQEl1v8FSbZ+iQ2efKTgY
- hsGkvxRLJdZCMHZnqZ46EeaF4a8Ymf+cf8SWdSLMojyV5uYfqy45IIbI3 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="399382180"
-X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="399382180"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2023 11:06:38 -0800
+ t=1702926553; x=1734462553;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=XW54xTACFG2WjqMXImyIw4478WvcOpQUTTBCfnKfNrg=;
+ b=M4A1ITgugJomurk3HA+qtmXpjO0tNRwyIqgZazPX4Hx5imRfBzQB37tb
+ tGe97Y4CK1nfemJKxvNY9vFj1TjyZbbhdVCT436iSl1r+9DF4scifNc+I
+ b5GXkHsQJU6IREkBF1/Jk/uP0cH/rL+gkuGnUu1ps2ZEBIrwPDHYW1e3d
+ 6VX0Pgyb7ajT1zsLNFCf64u5LX4BWJbPnDsu1Vxjc1xCn4ACTtl9+widI
+ +H21pOcJJE5AxwyFt0sdssGQ5aEbHXhVTf+wRUDz6/2TGU9fNHG4d6ynx
+ 1V3Ww4WYYMJ1U9TkWGNzJvuPgO7M6fUVezBn9nx2HPT4qEXFzJdWbGaw8 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10927"; a="8863879"
+X-IronPort-AV: E=Sophos;i="6.04,285,1695711600"; 
+   d="scan'208";a="8863879"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2023 04:57:07 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="866330864"
-X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="866330864"
-Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.130.107])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2023 11:06:37 -0800
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10927"; a="725317671"
+X-IronPort-AV: E=Sophos;i="6.04,285,1695711600"; d="scan'208";a="725317671"
+Received: from janlundk-mobl.ger.corp.intel.com (HELO fedora..)
+ ([10.249.254.171])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2023 04:57:04 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v5 01/10] drm/xe: Add GT oriented drm_printers
-Date: Mon, 18 Dec 2023 20:06:20 +0100
-Message-Id: <20231218190629.502-2-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20231218190629.502-1-michal.wajdeczko@intel.com>
-References: <20231218190629.502-1-michal.wajdeczko@intel.com>
+Subject: [PATCH v3] drm/xe/migrate: Fix CCS copy for small VRAM copy chunks
+Date: Mon, 18 Dec 2023 13:56:54 +0100
+Message-ID: <20231218125654.6292-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -56,77 +57,291 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Instead of using generic drm_err_printer() that just adds static
-prefix, or drm_info_printer() that outputs only device name, add
-new helpers that create dedicated drm_printers that use our GT
-oriented xe_gt_err() and xe_gt_info() functions.
+Since the migrate code is using the identity map for addressing VRAM,
+copy chunks may become as small as 64K if the VRAM resource is fragmented.
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+However, a chunk size smaller that 1MiB may lead to the *next* chunk's
+offset into the CCS metadata backup memory may not be page-aligned, and
+the XY_CTRL_SURF_COPY_BLT command can't handle that, and even if it could,
+the current code doesn't handle the offset calculaton correctly.
+
+To fix this, make sure we align the size of VRAM copy chunks to 1MiB. If
+the remaining data to copy is smaller than that, that's not a problem,
+so use the remaining size. If the VRAM copy cunk becomes fragmented due
+to the size alignment restriction, don't use the identity map, but instead
+emit PTEs into the page-table like we do for system memory.
+
+v2:
+- Rebase
+v3:
+- Future proof somewhat by taking into account the real data size to
+  flat CCS metadata size ratio. (Matt Roper)
+- Invert a couple of if-statements for better readability.
+- Fix support for 4K-granularity VRAM sizes. (Tested on DG1).
+
 Cc: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Matthew Auld <matthew.william.auld@gmail.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
-v2: rename helpers to follow the header name (Lucas)
----
- drivers/gpu/drm/xe/xe_gt_printk.h | 44 +++++++++++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
+ drivers/gpu/drm/xe/tests/xe_migrate.c |   2 +-
+ drivers/gpu/drm/xe/xe_migrate.c       | 127 ++++++++++++++++----------
+ 2 files changed, 79 insertions(+), 50 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_printk.h b/drivers/gpu/drm/xe/xe_gt_printk.h
-index 5991bcadd47e..c2b004d3f48e 100644
---- a/drivers/gpu/drm/xe/xe_gt_printk.h
-+++ b/drivers/gpu/drm/xe/xe_gt_printk.h
-@@ -43,4 +43,48 @@
- #define xe_gt_WARN_ON_ONCE(_gt, _condition) \
- 	xe_gt_WARN_ONCE((_gt), _condition, "%s(%s)", "gt_WARN_ON_ONCE", __stringify(_condition))
+diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+index 7a32faa2f688..a6523df0f1d3 100644
+--- a/drivers/gpu/drm/xe/tests/xe_migrate.c
++++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+@@ -331,7 +331,7 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+ 		xe_res_first_sg(xe_bo_sg(pt), 0, pt->size, &src_it);
  
-+static inline void __xe_gt_printfn_err(struct drm_printer *p, struct va_format *vaf)
-+{
-+	struct xe_gt *gt = p->arg;
+ 	emit_pte(m, bb, NUM_KERNEL_PDE - 1, xe_bo_is_vram(pt), false,
+-		 &src_it, XE_PAGE_SIZE, pt);
++		 &src_it, XE_PAGE_SIZE, pt->ttm.resource);
+ 
+ 	run_sanity_job(m, xe, bb, bb->len, "Writing PTE for our fake PT", test);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index adf1dab5eba2..e6ba58615677 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -62,6 +62,8 @@ struct xe_migrate {
+ 	 * out of the pt_bo.
+ 	 */
+ 	struct drm_suballoc_manager vm_update_sa;
++	/** @min_chunk_size: For dgfx, Minimum chunk size */
++	u64 min_chunk_size;
+ };
+ 
+ #define MAX_PREEMPTDISABLE_TRANSFER SZ_8M /* Around 1ms. */
+@@ -364,6 +366,19 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
+ 	if (err)
+ 		return ERR_PTR(err);
+ 
++	if (IS_DGFX(xe)) {
++		if (xe_device_has_flat_ccs(xe))
++			/* min chunk size corresponds to 4K of CCS Metadata */
++			m->min_chunk_size = SZ_4K * SZ_64K /
++				xe_device_ccs_bytes(xe, SZ_64K);
++		else
++			/* Somewhat arbitrary to avoid a huge amount of blits */
++			m->min_chunk_size = SZ_64K;
++		m->min_chunk_size = roundup_pow_of_two(m->min_chunk_size);
++		drm_dbg(&xe->drm, "Migrate min chunk size is 0x%018llx\n",
++			(unsigned long long)m->min_chunk_size);
++	}
 +
-+	xe_gt_err(gt, "%pV", vaf);
+ 	return m;
+ }
+ 
+@@ -375,16 +390,34 @@ static u64 max_mem_transfer_per_pass(struct xe_device *xe)
+ 	return MAX_PREEMPTDISABLE_TRANSFER;
+ }
+ 
+-static u64 xe_migrate_res_sizes(struct xe_device *xe, struct xe_res_cursor *cur)
++static u64 xe_migrate_res_sizes(struct xe_migrate *m, struct xe_res_cursor *cur)
+ {
+-	/*
+-	 * For VRAM we use identity mapped pages so we are limited to current
+-	 * cursor size. For system we program the pages ourselves so we have no
+-	 * such limitation.
+-	 */
+-	return min_t(u64, max_mem_transfer_per_pass(xe),
+-		     mem_type_is_vram(cur->mem_type) ? cur->size :
+-		     cur->remaining);
++	struct xe_device *xe = tile_to_xe(m->tile);
++	u64 size = min_t(u64, max_mem_transfer_per_pass(xe), cur->remaining);
++
++	if (mem_type_is_vram(cur->mem_type)) {
++		/*
++		 * VRAM we want to blit in chunks with sizes aligned to
++		 * 1MiB in order for the offset to CCS metadata to be
++		 * page-aligned. If it's the last chunk it may be smaller.
++		 *
++		 * Another constraint is that we need to limit the blit to
++		 * the VRAM block size, unless size is smaller than 1MiB.
++		 */
++		u64 chunk = max_t(u64, cur->size, m->min_chunk_size);
++
++		size = min_t(u64, size, chunk);
++		if (size > m->min_chunk_size)
++			size = round_down(size, m->min_chunk_size);
++	}
++
++	return size;
 +}
 +
-+static inline void __xe_gt_printfn_info(struct drm_printer *p, struct va_format *vaf)
++static bool xe_migrate_allow_identity(u64 size, const struct xe_res_cursor *cur)
 +{
-+	struct xe_gt *gt = p->arg;
++	/* The chunk is fragmented. Hence can't use identity map. */
++	return cur->size >= size;
+ }
+ 
+ static u32 pte_update_size(struct xe_migrate *m,
+@@ -397,7 +430,12 @@ static u32 pte_update_size(struct xe_migrate *m,
+ 	u32 cmds = 0;
+ 
+ 	*L0_pt = pt_ofs;
+-	if (!is_vram) {
++	if (is_vram && xe_migrate_allow_identity(*L0, cur)) {
++		/* Offset into identity map. */
++		*L0_ofs = xe_migrate_vram_ofs(tile_to_xe(m->tile),
++					      cur->start + vram_region_gpu_offset(res));
++		cmds += cmd_size;
++	} else {
+ 		/* Clip L0 to available size */
+ 		u64 size = min(*L0, (u64)avail_pts * SZ_2M);
+ 		u64 num_4k_pages = DIV_ROUND_UP(size, XE_PAGE_SIZE);
+@@ -413,11 +451,6 @@ static u32 pte_update_size(struct xe_migrate *m,
+ 
+ 		/* Each chunk has a single blit command */
+ 		cmds += cmd_size;
+-	} else {
+-		/* Offset into identity map. */
+-		*L0_ofs = xe_migrate_vram_ofs(tile_to_xe(m->tile),
+-					      cur->start + vram_region_gpu_offset(res));
+-		cmds += cmd_size;
+ 	}
+ 
+ 	return cmds;
+@@ -427,10 +460,10 @@ static void emit_pte(struct xe_migrate *m,
+ 		     struct xe_bb *bb, u32 at_pt,
+ 		     bool is_vram, bool is_comp_pte,
+ 		     struct xe_res_cursor *cur,
+-		     u32 size, struct xe_bo *bo)
++		     u32 size, struct ttm_resource *res)
+ {
+ 	struct xe_device *xe = tile_to_xe(m->tile);
+-
++	struct xe_vm *vm = m->q->vm;
+ 	u16 pat_index;
+ 	u32 ptes;
+ 	u64 ofs = at_pt * XE_PAGE_SIZE;
+@@ -443,13 +476,6 @@ static void emit_pte(struct xe_migrate *m,
+ 	else
+ 		pat_index = xe->pat.idx[XE_CACHE_WB];
+ 
+-	/*
+-	 * FIXME: Emitting VRAM PTEs to L0 PTs is forbidden. Currently
+-	 * we're only emitting VRAM PTEs during sanity tests, so when
+-	 * that's moved to a Kunit test, we should condition VRAM PTEs
+-	 * on running tests.
+-	 */
+-
+ 	ptes = DIV_ROUND_UP(size, XE_PAGE_SIZE);
+ 
+ 	while (ptes) {
+@@ -469,20 +495,22 @@ static void emit_pte(struct xe_migrate *m,
+ 
+ 			addr = xe_res_dma(cur) & PAGE_MASK;
+ 			if (is_vram) {
+-				/* Is this a 64K PTE entry? */
+-				if ((m->q->vm->flags & XE_VM_FLAG_64K) &&
+-				    !(cur_ofs & (16 * 8 - 1))) {
+-					xe_tile_assert(m->tile, IS_ALIGNED(addr, SZ_64K));
++				if (vm->flags & XE_VM_FLAG_64K) {
++					u64 va = cur_ofs * XE_PAGE_SIZE / 8;
 +
-+	xe_gt_info(gt, "%pV", vaf);
-+}
++					xe_assert(xe, (va & (SZ_64K - 1)) ==
++						  (addr & (SZ_64K - 1)));
 +
-+/**
-+ * xe_gt_err_printer - Construct a &drm_printer that outputs to xe_gt_err()
-+ * @gt: the &xe_gt pointer to use in xe_gt_err()
-+ *
-+ * Return: The &drm_printer object.
-+ */
-+static inline struct drm_printer xe_gt_err_printer(struct xe_gt *gt)
-+{
-+	struct drm_printer p = {
-+		.printfn = __xe_gt_printfn_err,
-+		.arg = gt,
-+	};
-+	return p;
-+}
+ 					flags |= XE_PTE_PS64;
+ 				}
+ 
+-				addr += vram_region_gpu_offset(bo->ttm.resource);
++				addr += vram_region_gpu_offset(res);
+ 				devmem = true;
+ 			}
+ 
+-			addr = m->q->vm->pt_ops->pte_encode_addr(m->tile->xe,
+-								 addr, pat_index,
+-								 0, devmem, flags);
++			addr = vm->pt_ops->pte_encode_addr(m->tile->xe,
++							   addr, pat_index,
++							   0, devmem, flags);
+ 			bb->cs[bb->len++] = lower_32_bits(addr);
+ 			bb->cs[bb->len++] = upper_32_bits(addr);
+ 
+@@ -694,8 +722,8 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 		bool usm = xe->info.has_usm;
+ 		u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
+ 
+-		src_L0 = xe_migrate_res_sizes(xe, &src_it);
+-		dst_L0 = xe_migrate_res_sizes(xe, &dst_it);
++		src_L0 = xe_migrate_res_sizes(m, &src_it);
++		dst_L0 = xe_migrate_res_sizes(m, &dst_it);
+ 
+ 		drm_dbg(&xe->drm, "Pass %u, sizes: %llu & %llu\n",
+ 			pass++, src_L0, dst_L0);
+@@ -716,6 +744,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 						      &ccs_ofs, &ccs_pt, 0,
+ 						      2 * avail_pts,
+ 						      avail_pts);
++			xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE));
+ 		}
+ 
+ 		/* Add copy commands size here */
+@@ -728,20 +757,20 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 			goto err_sync;
+ 		}
+ 
+-		if (!src_is_vram)
+-			emit_pte(m, bb, src_L0_pt, src_is_vram, true, &src_it, src_L0,
+-				 src_bo);
+-		else
++		if (src_is_vram && xe_migrate_allow_identity(src_L0, &src_it))
+ 			xe_res_next(&src_it, src_L0);
+-
+-		if (!dst_is_vram)
+-			emit_pte(m, bb, dst_L0_pt, dst_is_vram, true, &dst_it, src_L0,
+-				 dst_bo);
+ 		else
++			emit_pte(m, bb, src_L0_pt, src_is_vram, true, &src_it, src_L0,
++				 src);
 +
-+/**
-+ * xe_gt_info_printer - Construct a &drm_printer that outputs to xe_gt_info()
-+ * @gt: the &xe_gt pointer to use in xe_gt_info()
-+ *
-+ * Return: The &drm_printer object.
-+ */
-+static inline struct drm_printer xe_gt_info_printer(struct xe_gt *gt)
-+{
-+	struct drm_printer p = {
-+		.printfn = __xe_gt_printfn_info,
-+		.arg = gt,
-+	};
-+	return p;
-+}
++		if (dst_is_vram && xe_migrate_allow_identity(src_L0, &dst_it))
+ 			xe_res_next(&dst_it, src_L0);
++		else
++			emit_pte(m, bb, dst_L0_pt, dst_is_vram, true, &dst_it, src_L0,
++				 dst);
+ 
+ 		if (copy_system_ccs)
+-			emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src_bo);
++			emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
+ 
+ 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+ 		update_idx = bb->len;
+@@ -950,7 +979,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 		bool usm = xe->info.has_usm;
+ 		u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
+ 
+-		clear_L0 = xe_migrate_res_sizes(xe, &src_it);
++		clear_L0 = xe_migrate_res_sizes(m, &src_it);
+ 
+ 		drm_dbg(&xe->drm, "Pass %u, size: %llu\n", pass++, clear_L0);
+ 
+@@ -977,12 +1006,12 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 
+ 		size -= clear_L0;
+ 		/* Preemption is enabled again by the ring ops. */
+-		if (!clear_vram) {
+-			emit_pte(m, bb, clear_L0_pt, clear_vram, true, &src_it, clear_L0,
+-				 bo);
+-		} else {
++		if (clear_vram && xe_migrate_allow_identity(clear_L0, &src_it))
+ 			xe_res_next(&src_it, clear_L0);
+-		}
++		else
++			emit_pte(m, bb, clear_L0_pt, clear_vram, true, &src_it, clear_L0,
++				 dst);
 +
- #endif
+ 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+ 		update_idx = bb->len;
+ 
 -- 
-2.25.1
+2.42.0
 
