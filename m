@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12F9FC4706C
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Dec 2023 19:01:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE129C46CD8
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Dec 2023 19:01:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B448410E3DF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B38E710E37F;
 	Mon, 18 Dec 2023 19:01:01 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B934810E3AD
- for <intel-xe@lists.freedesktop.org>; Mon, 18 Dec 2023 19:00:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21C7410E3C2
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Dec 2023 19:00:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702926047; x=1734462047;
+ t=1702926048; x=1734462048;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=4+KO61VaXosFXqWXPVH2T1Ozq1udKxmr+Y4kjMAXD18=;
- b=VFOwSE+OPWtCVCI9jOZiB9jDw7iZz+8AQJIrOyp24o3qRChI7Y+CeK7w
- OutlfcVb57Dq1P9VFKFE+ddKdJMMfOJC+VXbDZpL2nukq985JYxFJJ8Z3
- j1EOzdUpuzd3lCB/sacc3xTh+TVB7S2NOKrG6sDWb/eCwv/dpzJGg4eEf
- dWBsr7GkuZ9C7OYlACkfy6nzx2r4flCexd2lwy6FT2tOxkJhsPZm2DR5T
- BWE1KGteE5xkDHCXIkR+STNpJ4HVHYCYVFA5MpAbKGJgQdsHd6xr7sKE6
- ofsEaVrfMstbXh6JfnSzjRnUwL5/OKlZQEw/mvL+rzUp+e/yMkOMQ/j9S g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="461984324"
-X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="461984324"
+ bh=XBntlVls0WMfwvISPU4j0IzPL1+tVvj6NuekA1KINnY=;
+ b=P8AIu3UYmuVuFMaYsVy6ID//U/GvRnVQdNdSIrU3NnQfJ28mLgswlrJE
+ +TGTv/G4WF9yI07lStUZg3FVhfULky3lxBcXmzFdQO5M5uE57HDQCLaQj
+ 8/pwSRJjSoNWeq9CjQTri3b/IrhjOOZ2r1znKDm4GaDuK3Bf5ZVNhn3IN
+ X3zNAL+Iv3ClBOCqZgtkjvOpmbPX5jT0WDg0YXXsi6pu/saYM7J9YdNij
+ VKosepCcy81efruqXkNPWJIoKKftbGrJbwomrFjN7vwnzuJr63fw4bgPL
+ e1blN75v9ueho2+bSkQD3jiapxvV3XrFyZAkSdMJlxxMf6E2CVOS6+Sog w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="461984344"
+X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="461984344"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2023 08:53:53 -0800
+ 18 Dec 2023 08:54:01 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="779157426"
-X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="779157426"
+X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="779157449"
+X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="779157449"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.130.107])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2023 08:53:51 -0800
+ 18 Dec 2023 08:54:00 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v2 01/10] drm/xe: Add command MI_LOAD_REGISTER_MEM
-Date: Mon, 18 Dec 2023 17:53:35 +0100
-Message-Id: <20231218165344.458-2-michal.wajdeczko@intel.com>
+Subject: [CI v2 10/10] drm/xe/vf: Add VF specific interrupt handler
+Date: Mon, 18 Dec 2023 17:53:44 +0100
+Message-Id: <20231218165344.458-11-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20231218165344.458-1-michal.wajdeczko@intel.com>
 References: <20231218165344.458-1-michal.wajdeczko@intel.com>
@@ -59,56 +59,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We will need this shortly during context state preparation.
+There are small differences in handling of the register based
+interrupts on the VF driver as some registers are not accessible
+to the VF driver. Additionally VFs must support Memory Based
+Interrupts. Add VF specific interrupt handler for this.
 
 Cc: Matt Roper <matthew.d.roper@intel.com>
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-Link: https://lore.kernel.org/r/20231214185955.1791-2-michal.wajdeczko@intel.com
+Link: https://lore.kernel.org/r/20231214185955.1791-11-michal.wajdeczko@intel.com
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/instructions/xe_mi_commands.h |  3 +++
- drivers/gpu/drm/xe/xe_lrc.c                      | 14 ++++++++++++++
- 2 files changed, 17 insertions(+)
+ drivers/gpu/drm/xe/xe_irq.c | 71 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 71 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-index 1cfa96167fde..c74ceb550dce 100644
---- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-+++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-@@ -56,6 +56,9 @@
- #define   MI_FLUSH_IMM_QW		REG_FIELD_PREP(MI_FLUSH_DW_LEN_DW, 5 - 2)
- #define   MI_FLUSH_DW_USE_GTT		REG_BIT(2)
+diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+index d1f5ba4bb745..907c8ff0fa21 100644
+--- a/drivers/gpu/drm/xe/xe_irq.c
++++ b/drivers/gpu/drm/xe/xe_irq.c
+@@ -17,7 +17,9 @@
+ #include "xe_gt.h"
+ #include "xe_guc.h"
+ #include "xe_hw_engine.h"
++#include "xe_memirq.h"
+ #include "xe_mmio.h"
++#include "xe_sriov.h"
  
-+#define MI_LOAD_REGISTER_MEM		(__MI_INSTR(0x29) | XE_INSTR_NUM_DW(4))
-+#define   MI_LRM_USE_GGTT		REG_BIT(22)
+ /*
+  * Interrupt registers for a unit are always consecutive and ordered
+@@ -498,6 +500,9 @@ static void xelp_irq_reset(struct xe_tile *tile)
+ 
+ 	gt_irq_reset(tile);
+ 
++	if (IS_SRIOV_VF(tile_to_xe(tile)))
++		return;
 +
- #define MI_BATCH_BUFFER_START		__MI_INSTR(0x31)
+ 	mask_and_disable(tile, PCU_IRQ_OFFSET);
+ }
  
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index b7fa3831b684..44586e612eaf 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -964,6 +964,20 @@ static int dump_mi_command(struct drm_printer *p,
- 			drm_printf(p, " - %#6x = %#010x\n", dw[i], dw[i + 1]);
- 		return numdw;
+@@ -508,6 +513,9 @@ static void dg1_irq_reset(struct xe_tile *tile)
  
-+	case MI_LOAD_REGISTER_MEM & MI_OPCODE:
-+		drm_printf(p, "[%#010x] MI_LOAD_REGISTER_MEM: %s%s\n",
-+			   inst_header,
-+			   dw[0] & MI_LRI_LRM_CS_MMIO ? "CS_MMIO " : "",
-+			   dw[0] & MI_LRM_USE_GGTT ? "USE_GGTT " : "");
-+		if (numdw == 4)
-+			drm_printf(p, " - %#6x = %#010llx\n",
-+				   dw[1], ((u64)(dw[3]) << 32 | (u64)(dw[2])));
+ 	gt_irq_reset(tile);
+ 
++	if (IS_SRIOV_VF(tile_to_xe(tile)))
++		return;
++
+ 	mask_and_disable(tile, PCU_IRQ_OFFSET);
+ }
+ 
+@@ -518,11 +526,34 @@ static void dg1_irq_reset_mstr(struct xe_tile *tile)
+ 	xe_mmio_write32(mmio, GFX_MSTR_IRQ, ~0);
+ }
+ 
++static void vf_irq_reset(struct xe_device *xe)
++{
++	struct xe_tile *tile;
++	unsigned int id;
++
++	xe_assert(xe, IS_SRIOV_VF(xe));
++
++	if (GRAPHICS_VERx100(xe) < 1210)
++		xelp_intr_disable(xe);
++	else
++		xe_assert(xe, xe_device_has_memirq(xe));
++
++	for_each_tile(tile, xe, id) {
++		if (xe_device_has_memirq(xe))
++			xe_memirq_reset(&tile->sriov.vf.memirq);
 +		else
-+			drm_printf(p, " - %*ph (%s)\n",
-+				   (int)sizeof(u32) * (numdw - 1), dw + 1,
-+				   numdw < 4 ? "truncated" : "malformed");
-+		return numdw;
++			gt_irq_reset(tile);
++	}
++}
 +
- 	case MI_FORCE_WAKEUP:
- 		drm_printf(p, "[%#010x] MI_FORCE_WAKEUP\n", inst_header);
- 		return numdw;
+ static void xe_irq_reset(struct xe_device *xe)
+ {
+ 	struct xe_tile *tile;
+ 	u8 id;
+ 
++	if (IS_SRIOV_VF(xe))
++		return vf_irq_reset(xe);
++
+ 	for_each_tile(tile, xe, id) {
+ 		if (GRAPHICS_VERx100(xe) >= 1210)
+ 			dg1_irq_reset(tile);
+@@ -545,8 +576,26 @@ static void xe_irq_reset(struct xe_device *xe)
+ 	}
+ }
+ 
++static void vf_irq_postinstall(struct xe_device *xe)
++{
++	struct xe_tile *tile;
++	unsigned int id;
++
++	for_each_tile(tile, xe, id)
++		if (xe_device_has_memirq(xe))
++			xe_memirq_postinstall(&tile->sriov.vf.memirq);
++
++	if (GRAPHICS_VERx100(xe) < 1210)
++		xelp_intr_enable(xe, true);
++	else
++		xe_assert(xe, xe_device_has_memirq(xe));
++}
++
+ static void xe_irq_postinstall(struct xe_device *xe)
+ {
++	if (IS_SRIOV_VF(xe))
++		return vf_irq_postinstall(xe);
++
+ 	xe_display_irq_postinstall(xe, xe_root_mmio_gt(xe));
+ 
+ 	/*
+@@ -563,8 +612,30 @@ static void xe_irq_postinstall(struct xe_device *xe)
+ 		xelp_intr_enable(xe, true);
+ }
+ 
++static irqreturn_t vf_mem_irq_handler(int irq, void *arg)
++{
++	struct xe_device *xe = arg;
++	struct xe_tile *tile;
++	unsigned int id;
++
++	spin_lock(&xe->irq.lock);
++	if (!xe->irq.enabled) {
++		spin_unlock(&xe->irq.lock);
++		return IRQ_NONE;
++	}
++	spin_unlock(&xe->irq.lock);
++
++	for_each_tile(tile, xe, id)
++		xe_memirq_handler(&tile->sriov.vf.memirq);
++
++	return IRQ_HANDLED;
++}
++
+ static irq_handler_t xe_irq_handler(struct xe_device *xe)
+ {
++	if (IS_SRIOV_VF(xe) && xe_device_has_memirq(xe))
++		return vf_mem_irq_handler;
++
+ 	if (GRAPHICS_VERx100(xe) >= 1210)
+ 		return dg1_irq_handler;
+ 	else
 -- 
 2.25.1
 
