@@ -4,46 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 225C1C46CD3
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Dec 2023 19:07:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67500C35274
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Dec 2023 19:07:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D407610E3B6;
-	Mon, 18 Dec 2023 19:07:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DBE810E3BF;
+	Mon, 18 Dec 2023 19:07:20 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B1E610E371
- for <intel-xe@lists.freedesktop.org>; Mon, 18 Dec 2023 19:06:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40E1410E370
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Dec 2023 19:06:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702926403; x=1734462403;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=0xOR+DwY+zAloK80OncXTn+oMh1qalor0xFJCwU9irU=;
- b=keplRyYJ7ELtC3Pi876oyAdTu4WRssDyEh0DW1YG82HS5hHeilYpmI0j
- 1eqmvqWmwBa8TmIqU4cwfby1F8yMP+KQF34mS9nn05QA+PUPMhwwJB1sN
- 4z4o70c2ip3xAgDdXDPGgZ/bGMaxUYgmvpFo3jfhY7+bQblK/C7WLF5Yh
- fjDbPQK39hMxPvkTB6veL8/3RNBQ8oQHh//O2ZpLWOrCgdtDolbPhneuI
- ktok5L8fLOX1KPPAahkk0Ivqev4IBy+qE1x5oqaRI7lWQg5+DOkBh8Mhp
- mOD0w4X/PpM36Y5GVJL6cXbnZ3fwcpqAaOy6QzXrwaDwDLcD4/lwFzxza g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="399382192"
-X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="399382192"
+ t=1702926398; x=1734462398;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zeVIsdTdVntCdY5jOKYG55JKrmHR2Gxc8OvwcuFmDVE=;
+ b=IRE/8zEEXfB4zIUUthZGchj8nrcRUqtkczH1MK7DEVr54QSsUxrWk2zY
+ 9vliScugnPqCh7ImDfRwqjVPFBuN5OWid8e/ieLSFHTH1yFK5ljel8gh2
+ W67gWupHpzDEE7ORL/+J28i3FWBnN34vmK5sf3qKYAd1dFYXOGyP6D0xW
+ 9Q11TQ9asPHngkN14moCY5YS444mQN4uQY2najeGDw6OzRUc+5agmK9rX
+ P4FJ6XdPLqZJWFppcvXaljxQ0iz7O+4iyPtruQMVCrcNUcwq+xtNTWAlh
+ kmSRJKyhCmaIQJdCJYtK+jRoIU9bYiQ4HsdHID56HdBcb5EvYNXT1oei5 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="399382177"
+X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="399382177"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2023 11:06:42 -0800
+ 18 Dec 2023 11:06:37 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="866330873"
-X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="866330873"
+X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="866330860"
+X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="866330860"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.130.107])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2023 11:06:42 -0800
+ 18 Dec 2023 11:06:36 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v5 05/10] drm/xe/kunit: Define helper functions to allocate
- fake xe device
-Date: Mon, 18 Dec 2023 20:06:24 +0100
-Message-Id: <20231218190629.502-6-michal.wajdeczko@intel.com>
+Subject: [PATCH RESEND v5 00/10] Introduce GuC Doorbells Manager
+Date: Mon, 18 Dec 2023 20:06:19 +0100
+Message-Id: <20231218190629.502-1-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20231218190629.502-1-michal.wajdeczko@intel.com>
-References: <20231218190629.502-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -61,143 +58,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There will be more KUnit tests added that will require fake device.
-Define generic helper functions to avoid code duplications.
+Introduce simple GuC doorbells ID manager that will be used by the
+PF driver for VFs provisioning and can later be used by submission
+code once we are ready to switch from H2G based notifications to
+doorbells mechanism.
 
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/Makefile                 |  3 +
- drivers/gpu/drm/xe/tests/xe_kunit_helpers.c | 80 +++++++++++++++++++++
- drivers/gpu/drm/xe/tests/xe_kunit_helpers.h | 17 +++++
- 3 files changed, 100 insertions(+)
+As preparation steps, improve existing logging and kunit code that
+is used by the new code.
+
+v5: rename drm printfn helpers to follow the header name (Lucas)
+
+Michal Wajdeczko (10):
+  drm/xe: Add GT oriented drm_printers
+  drm/xe: Report TLB timeout using GT oriented functions
+  drm/xe: Introduce GuC Doorbells Manager
+  drm/xe/kunit: Set SR-IOV mode of the fake device
+  drm/xe/kunit: Define helper functions to allocate fake xe device
+  drm/xe/kunit: Restore test->priv when done with fake xe device
+  drm/xe/kunit: Use xe kunit helper in RTP test
+  drm/xe/kunit: Use xe kunit helper in WA test
+  drm/xe/kunit: Enable CONFIG_LOCKDEP in tests
+  drm/xe/kunit: Add GuC Doorbells Manager tests
+
+ drivers/gpu/drm/xe/.kunitconfig               |   5 +
+ drivers/gpu/drm/xe/Makefile                   |   4 +
+ drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c | 201 ++++++++++++++
+ drivers/gpu/drm/xe/tests/xe_kunit_helpers.c   |  90 ++++++
+ drivers/gpu/drm/xe/tests/xe_kunit_helpers.h   |  17 ++
+ drivers/gpu/drm/xe/tests/xe_pci.c             |   3 +
+ drivers/gpu/drm/xe/tests/xe_pci_test.h        |   2 +
+ drivers/gpu/drm/xe/tests/xe_rtp_test.c        |   5 +-
+ drivers/gpu/drm/xe/tests/xe_wa_test.c         |   5 +-
+ drivers/gpu/drm/xe/xe_gt_printk.h             |  44 +++
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c   |  13 +-
+ drivers/gpu/drm/xe/xe_guc_db_mgr.c            | 261 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_db_mgr.h            |  22 ++
+ drivers/gpu/drm/xe/xe_guc_types.h             |  15 +
+ drivers/gpu/drm/xe/xe_uc.c                    |   5 +
+ 15 files changed, 680 insertions(+), 12 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c
  create mode 100644 drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
  create mode 100644 drivers/gpu/drm/xe/tests/xe_kunit_helpers.h
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_db_mgr.c
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_db_mgr.h
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index d29649b788c5..b0190c975841 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -154,6 +154,9 @@ xe-$(CONFIG_PCI_IOV) += \
- 	xe_lmtt_2l.o \
- 	xe_lmtt_ml.o
- 
-+xe-$(CONFIG_DRM_XE_KUNIT_TEST) += \
-+	tests/xe_kunit_helpers.o
-+
- # i915 Display compat #defines and #includes
- subdir-ccflags-$(CONFIG_DRM_XE_DISPLAY) += \
- 	-I$(srctree)/$(src)/display/ext \
-diff --git a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
-new file mode 100644
-index 000000000000..6d72dbf06139
---- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
-@@ -0,0 +1,80 @@
-+// SPDX-License-Identifier: GPL-2.0 AND MIT
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#include <kunit/test.h>
-+#include <kunit/static_stub.h>
-+#include <kunit/visibility.h>
-+
-+#include <drm/drm_drv.h>
-+#include <drm/drm_kunit_helpers.h>
-+
-+#include "tests/xe_kunit_helpers.h"
-+#include "tests/xe_pci_test.h"
-+#include "xe_device_types.h"
-+
-+/**
-+ * xe_kunit_helper_alloc_xe_device - Allocate a &xe_device for a KUnit test.
-+ * @test: the &kunit where this &xe_device will be used
-+ * @dev: The parent device object
-+ *
-+ * This function allocates xe_device using drm_kunit_helper_alloc_device().
-+ * The xe_device allocation is managed by the test.
-+ *
-+ * @dev should be allocated using drm_kunit_helper_alloc_device().
-+ *
-+ * This function uses KUNIT_ASSERT to detect any allocation failures.
-+ *
-+ * Return: A pointer to the new &xe_device.
-+ */
-+struct xe_device *xe_kunit_helper_alloc_xe_device(struct kunit *test,
-+						  struct device *dev)
-+{
-+	struct xe_device *xe;
-+
-+	xe = drm_kunit_helper_alloc_drm_device(test, dev,
-+					       struct xe_device,
-+					       drm, DRIVER_GEM);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, xe);
-+	return xe;
-+}
-+EXPORT_SYMBOL_IF_KUNIT(xe_kunit_helper_alloc_xe_device);
-+
-+/**
-+ * xe_kunit_helper_xe_device_test_init - Prepare a &xe_device for a KUnit test.
-+ * @test: the &kunit where this fake &xe_device will be used
-+ *
-+ * This function allocates and initializes a fake &xe_device and stores its
-+ * pointer as &kunit.priv to allow the test code to access it.
-+ *
-+ * This function can be directly used as custom implementation of
-+ * &kunit_suite.init.
-+ *
-+ * It is possible to prepare specific variant of the fake &xe_device by passing
-+ * in &kunit.priv pointer to the struct xe_pci_fake_data supplemented with
-+ * desired parameters prior to calling this function.
-+ *
-+ * This function uses KUNIT_ASSERT to detect any failures.
-+ *
-+ * Return: Always 0.
-+ */
-+int xe_kunit_helper_xe_device_test_init(struct kunit *test)
-+{
-+	struct xe_device *xe;
-+	struct device *dev;
-+	int err;
-+
-+	dev = drm_kunit_helper_alloc_device(test);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, dev);
-+
-+	xe = xe_kunit_helper_alloc_xe_device(test, dev);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, xe);
-+
-+	err = xe_pci_fake_device_init(xe);
-+	KUNIT_ASSERT_EQ(test, err, 0);
-+
-+	test->priv = xe;
-+	return 0;
-+}
-+EXPORT_SYMBOL_IF_KUNIT(xe_kunit_helper_xe_device_test_init);
-diff --git a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.h b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.h
-new file mode 100644
-index 000000000000..067a1babf049
---- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.h
-@@ -0,0 +1,17 @@
-+/* SPDX-License-Identifier: GPL-2.0 AND MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef _XE_KUNIT_HELPERS_H_
-+#define _XE_KUNIT_HELPERS_H_
-+
-+struct device;
-+struct kunit;
-+struct xe_device;
-+
-+struct xe_device *xe_kunit_helper_alloc_xe_device(struct kunit *test,
-+						  struct device *dev);
-+int xe_kunit_helper_xe_device_test_init(struct kunit *test);
-+
-+#endif
 -- 
 2.25.1
 
