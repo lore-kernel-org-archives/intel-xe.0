@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21F66C35274
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Dec 2023 19:07:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA977C35274
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Dec 2023 19:07:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7A1E10E279;
-	Mon, 18 Dec 2023 19:07:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7903F10E3A8;
+	Mon, 18 Dec 2023 19:07:15 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 678CC10E37D
- for <intel-xe@lists.freedesktop.org>; Mon, 18 Dec 2023 19:06:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29D9010E381
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Dec 2023 19:06:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702926406; x=1734462406;
+ t=1702926402; x=1734462402;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=9wXxOP0OKExcz8AcCoVQbVce90LjHq3TCVy//xKmfPc=;
- b=S/mB+SPfkazHIe8RWk2H8VcMRIeuGK3xwKrfKtEzljH3D0MfFwfROvr3
- vMC1/M/XXJGP6LvuggvyzsHNg69OkxhXT9BrDjjuvJadFBMoMOxLo/d3k
- 7ksDD4d0xau1WOWBDXCATZeOysfU8RuJvRubSn6xUD19hNa6Va5j3LafJ
- ArlgVLXsbvpuRxqohxHQWr8AGNiR3h+EsSslaG0lFg8z6Ercr4JYqDnM2
- qJpX2Vl8wqHGpFKNbrhwzO9fE7hF0A6KajJ1VS6d3RepYHzJLeYxDFx6U
- fcvLbJR4/z5szfETYHC9uStfweTfuDrmPLdHwcF1kY1j7D2WNLtpTasop w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="399382199"
-X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="399382199"
+ bh=xDTLWYc49V8H4e8O/YCcTZWFxSRkTo/ct/69pRC3hSs=;
+ b=VVEaGxzAksmMAuVpidUfYKdNvOeboQ7fPoBPma3QnS5qvesMFIan/4Al
+ bNHKGLvu2tpugEoz58YdZbUlblgJQP6Ok2HvB42UQ8c/lLmtNfw5pUeZ8
+ 1PfXv9xuBf/8FuoySJp18YdjSPiR7z/17YffC9QUxmmztsiuR3eUKLPyZ
+ Jsppa/43NKaU9FRVz54LQ8bQwGt1i7GMSCDytrC0uFQNafkttycX37BuG
+ W4NEUC1w6V/pJHLmrKWRfzsibJ87Gxo/EcFh++Y1uwP1n4Lf8j25ld2DM
+ 5CVx2VUIQkfg7q0Y/hWr8CqlBXQb8eClAifLdfZus9Uhix8cgRZI1kePz Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="399382191"
+X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="399382191"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2023 11:06:46 -0800
+ 18 Dec 2023 11:06:41 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="866330883"
-X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="866330883"
+X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="866330872"
+X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="866330872"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.130.107])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2023 11:06:45 -0800
+ 18 Dec 2023 11:06:41 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v5 08/10] drm/xe/kunit: Use xe kunit helper in WA test
-Date: Mon, 18 Dec 2023 20:06:27 +0100
-Message-Id: <20231218190629.502-9-michal.wajdeczko@intel.com>
+Subject: [PATCH v5 04/10] drm/xe/kunit: Set SR-IOV mode of the fake device
+Date: Mon, 18 Dec 2023 20:06:23 +0100
+Message-Id: <20231218190629.502-5-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20231218190629.502-1-michal.wajdeczko@intel.com>
 References: <20231218190629.502-1-michal.wajdeczko@intel.com>
@@ -59,38 +59,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use xe helper code to allocate fake xe device.
+We want to add code that will check the driver's SR-IOV mode.
+
+Update xe_pci_fake_device_init() and struct xe_pci_fake_data to
+either explicitly specify desired SR-IOV mode of the fake device
+or fallback to the default bare-metal mode.
 
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_wa_test.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_pci.c      | 3 +++
+ drivers/gpu/drm/xe/tests/xe_pci_test.h | 2 ++
+ 2 files changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_wa_test.c b/drivers/gpu/drm/xe/tests/xe_wa_test.c
-index a53c22a19582..3d7f3ef62ae9 100644
---- a/drivers/gpu/drm/xe/tests/xe_wa_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_wa_test.c
+diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
+index 602793644f61..f62809ca8b51 100644
+--- a/drivers/gpu/drm/xe/tests/xe_pci.c
++++ b/drivers/gpu/drm/xe/tests/xe_pci.c
+@@ -156,6 +156,9 @@ int xe_pci_fake_device_init(struct xe_device *xe)
+ 		return -ENODEV;
+ 
+ done:
++	xe->sriov.__mode = data && data->sriov_mode ?
++			   data->sriov_mode : XE_SRIOV_MODE_NONE;
++
+ 	kunit_activate_static_stub(test, read_gmdid, fake_read_gmdid);
+ 
+ 	xe_info_init_early(xe, desc, subplatform_desc);
+diff --git a/drivers/gpu/drm/xe/tests/xe_pci_test.h b/drivers/gpu/drm/xe/tests/xe_pci_test.h
+index 811ffe5bd9fd..f40dcec83992 100644
+--- a/drivers/gpu/drm/xe/tests/xe_pci_test.h
++++ b/drivers/gpu/drm/xe/tests/xe_pci_test.h
 @@ -9,6 +9,7 @@
- #include <kunit/test.h>
+ #include <linux/types.h>
  
- #include "xe_device.h"
-+#include "xe_kunit_helpers.h"
- #include "xe_pci_test.h"
- #include "xe_reg_sr.h"
- #include "xe_tuning.h"
-@@ -108,9 +109,7 @@ static int xe_wa_test_init(struct kunit *test)
- 	dev = drm_kunit_helper_alloc_device(test);
- 	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, dev);
+ #include "xe_platform_types.h"
++#include "xe_sriov_types.h"
  
--	xe = drm_kunit_helper_alloc_drm_device(test, dev,
--					       struct xe_device,
--					       drm, DRIVER_GEM);
-+	xe = xe_kunit_helper_alloc_xe_device(test, dev);
- 	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, xe);
+ struct xe_device;
+ struct xe_graphics_desc;
+@@ -23,6 +24,7 @@ void xe_call_for_each_graphics_ip(xe_graphics_fn xe_fn);
+ void xe_call_for_each_media_ip(xe_media_fn xe_fn);
  
- 	test->priv = &data;
+ struct xe_pci_fake_data {
++	enum xe_sriov_mode sriov_mode;
+ 	enum xe_platform platform;
+ 	enum xe_subplatform subplatform;
+ 	u32 graphics_verx100;
 -- 
 2.25.1
 
