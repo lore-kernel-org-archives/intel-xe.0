@@ -4,30 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6991CC41535
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Dec 2023 08:29:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A14CC46CA2
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Dec 2023 08:41:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3F1610E2B1;
-	Tue, 19 Dec 2023 08:29:11 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9B95610E2B1;
- Tue, 19 Dec 2023 08:29:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 93124AADEB;
- Tue, 19 Dec 2023 08:29:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7994154297844396829=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB4E18920E;
+	Tue, 19 Dec 2023 08:41:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC8768920E
+ for <intel-xe@lists.freedesktop.org>; Tue, 19 Dec 2023 08:41:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1702975270; x=1734511270;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=RIp6V0RNpkf1i895oGMwpDmWIIn994iAGj3aMBYZW5c=;
+ b=XH6JuALtw8gVL2y1Mb7D5W5hATbNXX3OEHrgmJZCFFBk6trbGID4xhs6
+ JCdfEmzuGICkglS22oeO7QyrZquNpqDhb5RKNpXBSDwyPF+Yh9gzgpK9n
+ VPLhuHyS2XlM5QPVWFxUA47aiLxBrIKXXGIHRScKOhKPx627i/2pdTQwS
+ IJoB2F4DNWlx2ZSPgQbR1Y1Q4r4WVpalJIvoczsBNbhr9V0yIOnkZ8uq4
+ 3m6DEGTaws+Z9kcFBlzfo2ecs3tIhUkj6WAEymYGYqHdPnhKtVzVrrHXn
+ zsNYk/o26MlfFhZPVHoy7yFzD9oKvDp/f5fqeXGumWU4GtMuDGZLin9UP w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="375117472"
+X-IronPort-AV: E=Sophos;i="6.04,287,1695711600"; d="scan'208";a="375117472"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2023 00:41:09 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="1023068534"
+X-IronPort-AV: E=Sophos;i="6.04,287,1695711600"; d="scan'208";a="1023068534"
+Received: from binis42x-mobl.gar.corp.intel.com (HELO [10.249.254.179])
+ ([10.249.254.179])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2023 00:41:08 -0800
+Message-ID: <f2905b10-417c-7c12-9fc4-9075ed56e3c6@linux.intel.com>
+Date: Tue, 19 Dec 2023 09:41:05 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/xelpg=3A_Extend_Wa=5F1401?=
- =?utf-8?q?9877138_for_Graphics_12=2E7?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
-Date: Tue, 19 Dec 2023 08:29:10 -0000
-Message-ID: <170297455054.17583.14078792397737015497@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231219070018.8931-1-tejas.upadhyay@intel.com>
-In-Reply-To: <20231219070018.8931-1-tejas.upadhyay@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v4] drm/xe/migrate: Fix CCS copy for small VRAM copy chunks
+To: Matthew Auld <matthew.william.auld@gmail.com>
+References: <20231218142933.8571-1-thomas.hellstrom@linux.intel.com>
+ <CAM0jSHMq+NKYU+9aWfjAjxZGOr5HNGuVitu_F4xWu_a0Hzxspg@mail.gmail.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <CAM0jSHMq+NKYU+9aWfjAjxZGOr5HNGuVitu_F4xWu_a0Hzxspg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,156 +61,314 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7994154297844396829==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 12/18/23 20:37, Matthew Auld wrote:
+> On Mon, 18 Dec 2023 at 14:29, Thomas Hellström
+> <thomas.hellstrom@linux.intel.com> wrote:
+>> Since the migrate code is using the identity map for addressing VRAM,
+>> copy chunks may become as small as 64K if the VRAM resource is fragmented.
+>>
+>> However, a chunk size smaller that 1MiB may lead to the *next* chunk's
+>> offset into the CCS metadata backup memory may not be page-aligned, and
+>> the XY_CTRL_SURF_COPY_BLT command can't handle that, and even if it could,
+>> the current code doesn't handle the offset calculaton correctly.
+>>
+>> To fix this, make sure we align the size of VRAM copy chunks to 1MiB. If
+>> the remaining data to copy is smaller than that, that's not a problem,
+>> so use the remaining size. If the VRAM copy cunk becomes fragmented due
+>> to the size alignment restriction, don't use the identity map, but instead
+>> emit PTEs into the page-table like we do for system memory.
+>>
+>> v2:
+>> - Rebase
+>> v3:
+>> - Future proof somewhat by taking into account the real data size to
+>>    flat CCS metadata size ratio. (Matt Roper)
+>> - Invert a couple of if-statements for better readability.
+>> - Fix support for 4K-granularity VRAM sizes. (Tested on DG1).
+>> v4:
+>> - Fix up code comments
+>> - Fix debug printout format typo.
+>>
+>> Cc: Matt Roper <matthew.d.roper@intel.com>
+>> Cc: Matthew Auld <matthew.william.auld@gmail.com>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/tests/xe_migrate.c |   2 +-
+>>   drivers/gpu/drm/xe/xe_migrate.c       | 128 ++++++++++++++++----------
+>>   2 files changed, 80 insertions(+), 50 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+>> index 7a32faa2f688..a6523df0f1d3 100644
+>> --- a/drivers/gpu/drm/xe/tests/xe_migrate.c
+>> +++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+>> @@ -331,7 +331,7 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+>>                  xe_res_first_sg(xe_bo_sg(pt), 0, pt->size, &src_it);
+>>
+>>          emit_pte(m, bb, NUM_KERNEL_PDE - 1, xe_bo_is_vram(pt), false,
+>> -                &src_it, XE_PAGE_SIZE, pt);
+>> +                &src_it, XE_PAGE_SIZE, pt->ttm.resource);
+>>
+>>          run_sanity_job(m, xe, bb, bb->len, "Writing PTE for our fake PT", test);
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+>> index adf1dab5eba2..d8fff0403f74 100644
+>> --- a/drivers/gpu/drm/xe/xe_migrate.c
+>> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+>> @@ -62,6 +62,8 @@ struct xe_migrate {
+>>           * out of the pt_bo.
+>>           */
+>>          struct drm_suballoc_manager vm_update_sa;
+>> +       /** @min_chunk_size: For dgfx, Minimum chunk size */
+>> +       u64 min_chunk_size;
+>>   };
+>>
+>>   #define MAX_PREEMPTDISABLE_TRANSFER SZ_8M /* Around 1ms. */
+>> @@ -364,6 +366,19 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
+>>          if (err)
+>>                  return ERR_PTR(err);
+>>
+>> +       if (IS_DGFX(xe)) {
+>> +               if (xe_device_has_flat_ccs(xe))
+>> +                       /* min chunk size corresponds to 4K of CCS Metadata */
+>> +                       m->min_chunk_size = SZ_4K * SZ_64K /
+>> +                               xe_device_ccs_bytes(xe, SZ_64K);
+>> +               else
+>> +                       /* Somewhat arbitrary to avoid a huge amount of blits */
+>> +                       m->min_chunk_size = SZ_64K;
+>> +               m->min_chunk_size = roundup_pow_of_two(m->min_chunk_size);
+>> +               drm_dbg(&xe->drm, "Migrate min chunk size is 0x%08llx\n",
+>> +                       (unsigned long long)m->min_chunk_size);
+>> +       }
+>> +
+>>          return m;
+>>   }
+>>
+>> @@ -375,16 +390,35 @@ static u64 max_mem_transfer_per_pass(struct xe_device *xe)
+>>          return MAX_PREEMPTDISABLE_TRANSFER;
+>>   }
+>>
+>> -static u64 xe_migrate_res_sizes(struct xe_device *xe, struct xe_res_cursor *cur)
+>> +static u64 xe_migrate_res_sizes(struct xe_migrate *m, struct xe_res_cursor *cur)
+>>   {
+>> -       /*
+>> -        * For VRAM we use identity mapped pages so we are limited to current
+>> -        * cursor size. For system we program the pages ourselves so we have no
+>> -        * such limitation.
+>> -        */
+>> -       return min_t(u64, max_mem_transfer_per_pass(xe),
+>> -                    mem_type_is_vram(cur->mem_type) ? cur->size :
+>> -                    cur->remaining);
+>> +       struct xe_device *xe = tile_to_xe(m->tile);
+>> +       u64 size = min_t(u64, max_mem_transfer_per_pass(xe), cur->remaining);
+>> +
+>> +       if (mem_type_is_vram(cur->mem_type)) {
+>> +               /*
+>> +                * VRAM we want to blit in chunks with sizes aligned to
+>> +                * min_chunk_size in order for the offset to CCS metadata to be
+>> +                * page-aligned. If it's the last chunk it may be smaller.
+>> +                *
+>> +                * Another constraint is that we need to limit the blit to
+>> +                * the VRAM block size, unless size is smaller than
+>> +                * min_chunk_size.
+>> +                */
+>> +               u64 chunk = max_t(u64, cur->size, m->min_chunk_size);
+>> +
+>> +               size = min_t(u64, size, chunk);
+>> +               if (size > m->min_chunk_size)
+>> +                       size = round_down(size, m->min_chunk_size);
+>> +       }
+>> +
+>> +       return size;
+> Patch makes sense. Just one question here.
+>
+> Say you have 1G object, but it is ultra fragmented into 64K only
+> pages. IIUC cur->remaining would be 1G, and cur->size would be 64K.
+> But with that chunk=1M and the returned size=1M? Shouldn't the
+> returned size be 64K in this case?
 
-Series: drm/xe/xelpg: Extend Wa_14019877138 for Graphics 12.7
-URL   : https://patchwork.freedesktop.org/series/127955/
-State : success
+No, in that case we actually set up a 1M blit, but the fragmentation is 
+handled in xe_migrate_allow_identity(); Instead of using the identity 
+mapping for VRAM, we actually emit PTEs for that 1M chunk.
 
-== Summary ==
-
-CI Bug Log - changes from xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c_BAT -> xe-pw-127955v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-127955v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_prime_self_import@basic-with_fd_dup:
-    - bat-atsm-2:         [PASS][1] -> [FAIL][2] ([Intel XE#999])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c/bat-atsm-2/igt@xe_prime_self_import@basic-with_fd_dup.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127955v1/bat-atsm-2/igt@xe_prime_self_import@basic-with_fd_dup.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:
-    - bat-adlp-7:         [FAIL][3] ([i915#2346]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127955v1/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:
-    - bat-adlp-7:         [FAIL][5] ([Intel XE#480]) -> [PASS][6] +2 other tests pass
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127955v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
-
-  
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
-  [Intel XE#999]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/999
-  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
+/Thomas
 
 
-Build changes
--------------
-
-  * Linux: xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c -> xe-pw-127955v1
-
-  IGT_7647: c5db51a88823962e79d41cff10fe1bdd8ea92d89 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c: 84e5d706cb0c11f2948a9f16d9e31ad5256b641c
-  xe-pw-127955v1: 127955v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127955v1/index.html
-
---===============7994154297844396829==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/xelpg: Extend Wa_14019877138 for Graphics 12.7</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/127955/">https://patchwork.freedesktop.org/series/127955/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127955v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127955v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c_BAT -&gt; xe-pw-127955v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-127955v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_prime_self_import@basic-with_fd_dup:<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c/bat-atsm-2/igt@xe_prime_self_import@basic-with_fd_dup.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127955v1/bat-atsm-2/igt@xe_prime_self_import@basic-with_fd_dup.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/999">Intel XE#999</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127955v1/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127955v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html">PASS</a> +2 other tests pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c -&gt; xe-pw-127955v1</li>
-</ul>
-<p>IGT_7647: c5db51a88823962e79d41cff10fe1bdd8ea92d89 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c: 84e5d706cb0c11f2948a9f16d9e31ad5256b641c<br />
-  xe-pw-127955v1: 127955v1</p>
-
-</body>
-</html>
-
---===============7994154297844396829==--
+>
+>> +}
+>> +
+>> +static bool xe_migrate_allow_identity(u64 size, const struct xe_res_cursor *cur)
+>> +{
+>> +       /* If the chunk is not fragmented, allow identity map. */
+>> +       return cur->size >= size;
+>>   }
+>>
+>>   static u32 pte_update_size(struct xe_migrate *m,
+>> @@ -397,7 +431,12 @@ static u32 pte_update_size(struct xe_migrate *m,
+>>          u32 cmds = 0;
+>>
+>>          *L0_pt = pt_ofs;
+>> -       if (!is_vram) {
+>> +       if (is_vram && xe_migrate_allow_identity(*L0, cur)) {
+>> +               /* Offset into identity map. */
+>> +               *L0_ofs = xe_migrate_vram_ofs(tile_to_xe(m->tile),
+>> +                                             cur->start + vram_region_gpu_offset(res));
+>> +               cmds += cmd_size;
+>> +       } else {
+>>                  /* Clip L0 to available size */
+>>                  u64 size = min(*L0, (u64)avail_pts * SZ_2M);
+>>                  u64 num_4k_pages = DIV_ROUND_UP(size, XE_PAGE_SIZE);
+>> @@ -413,11 +452,6 @@ static u32 pte_update_size(struct xe_migrate *m,
+>>
+>>                  /* Each chunk has a single blit command */
+>>                  cmds += cmd_size;
+>> -       } else {
+>> -               /* Offset into identity map. */
+>> -               *L0_ofs = xe_migrate_vram_ofs(tile_to_xe(m->tile),
+>> -                                             cur->start + vram_region_gpu_offset(res));
+>> -               cmds += cmd_size;
+>>          }
+>>
+>>          return cmds;
+>> @@ -427,10 +461,10 @@ static void emit_pte(struct xe_migrate *m,
+>>                       struct xe_bb *bb, u32 at_pt,
+>>                       bool is_vram, bool is_comp_pte,
+>>                       struct xe_res_cursor *cur,
+>> -                    u32 size, struct xe_bo *bo)
+>> +                    u32 size, struct ttm_resource *res)
+>>   {
+>>          struct xe_device *xe = tile_to_xe(m->tile);
+>> -
+>> +       struct xe_vm *vm = m->q->vm;
+>>          u16 pat_index;
+>>          u32 ptes;
+>>          u64 ofs = at_pt * XE_PAGE_SIZE;
+>> @@ -443,13 +477,6 @@ static void emit_pte(struct xe_migrate *m,
+>>          else
+>>                  pat_index = xe->pat.idx[XE_CACHE_WB];
+>>
+>> -       /*
+>> -        * FIXME: Emitting VRAM PTEs to L0 PTs is forbidden. Currently
+>> -        * we're only emitting VRAM PTEs during sanity tests, so when
+>> -        * that's moved to a Kunit test, we should condition VRAM PTEs
+>> -        * on running tests.
+>> -        */
+>> -
+>>          ptes = DIV_ROUND_UP(size, XE_PAGE_SIZE);
+>>
+>>          while (ptes) {
+>> @@ -469,20 +496,22 @@ static void emit_pte(struct xe_migrate *m,
+>>
+>>                          addr = xe_res_dma(cur) & PAGE_MASK;
+>>                          if (is_vram) {
+>> -                               /* Is this a 64K PTE entry? */
+>> -                               if ((m->q->vm->flags & XE_VM_FLAG_64K) &&
+>> -                                   !(cur_ofs & (16 * 8 - 1))) {
+>> -                                       xe_tile_assert(m->tile, IS_ALIGNED(addr, SZ_64K));
+>> +                               if (vm->flags & XE_VM_FLAG_64K) {
+>> +                                       u64 va = cur_ofs * XE_PAGE_SIZE / 8;
+>> +
+>> +                                       xe_assert(xe, (va & (SZ_64K - 1)) ==
+>> +                                                 (addr & (SZ_64K - 1)));
+>> +
+>>                                          flags |= XE_PTE_PS64;
+>>                                  }
+>>
+>> -                               addr += vram_region_gpu_offset(bo->ttm.resource);
+>> +                               addr += vram_region_gpu_offset(res);
+>>                                  devmem = true;
+>>                          }
+>>
+>> -                       addr = m->q->vm->pt_ops->pte_encode_addr(m->tile->xe,
+>> -                                                                addr, pat_index,
+>> -                                                                0, devmem, flags);
+>> +                       addr = vm->pt_ops->pte_encode_addr(m->tile->xe,
+>> +                                                          addr, pat_index,
+>> +                                                          0, devmem, flags);
+>>                          bb->cs[bb->len++] = lower_32_bits(addr);
+>>                          bb->cs[bb->len++] = upper_32_bits(addr);
+>>
+>> @@ -694,8 +723,8 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+>>                  bool usm = xe->info.has_usm;
+>>                  u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
+>>
+>> -               src_L0 = xe_migrate_res_sizes(xe, &src_it);
+>> -               dst_L0 = xe_migrate_res_sizes(xe, &dst_it);
+>> +               src_L0 = xe_migrate_res_sizes(m, &src_it);
+>> +               dst_L0 = xe_migrate_res_sizes(m, &dst_it);
+>>
+>>                  drm_dbg(&xe->drm, "Pass %u, sizes: %llu & %llu\n",
+>>                          pass++, src_L0, dst_L0);
+>> @@ -716,6 +745,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+>>                                                        &ccs_ofs, &ccs_pt, 0,
+>>                                                        2 * avail_pts,
+>>                                                        avail_pts);
+>> +                       xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE));
+>>                  }
+>>
+>>                  /* Add copy commands size here */
+>> @@ -728,20 +758,20 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+>>                          goto err_sync;
+>>                  }
+>>
+>> -               if (!src_is_vram)
+>> -                       emit_pte(m, bb, src_L0_pt, src_is_vram, true, &src_it, src_L0,
+>> -                                src_bo);
+>> -               else
+>> +               if (src_is_vram && xe_migrate_allow_identity(src_L0, &src_it))
+>>                          xe_res_next(&src_it, src_L0);
+>> -
+>> -               if (!dst_is_vram)
+>> -                       emit_pte(m, bb, dst_L0_pt, dst_is_vram, true, &dst_it, src_L0,
+>> -                                dst_bo);
+>>                  else
+>> +                       emit_pte(m, bb, src_L0_pt, src_is_vram, true, &src_it, src_L0,
+>> +                                src);
+>> +
+>> +               if (dst_is_vram && xe_migrate_allow_identity(src_L0, &dst_it))
+>>                          xe_res_next(&dst_it, src_L0);
+>> +               else
+>> +                       emit_pte(m, bb, dst_L0_pt, dst_is_vram, true, &dst_it, src_L0,
+>> +                                dst);
+>>
+>>                  if (copy_system_ccs)
+>> -                       emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src_bo);
+>> +                       emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
+>>
+>>                  bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+>>                  update_idx = bb->len;
+>> @@ -950,7 +980,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+>>                  bool usm = xe->info.has_usm;
+>>                  u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
+>>
+>> -               clear_L0 = xe_migrate_res_sizes(xe, &src_it);
+>> +               clear_L0 = xe_migrate_res_sizes(m, &src_it);
+>>
+>>                  drm_dbg(&xe->drm, "Pass %u, size: %llu\n", pass++, clear_L0);
+>>
+>> @@ -977,12 +1007,12 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+>>
+>>                  size -= clear_L0;
+>>                  /* Preemption is enabled again by the ring ops. */
+>> -               if (!clear_vram) {
+>> -                       emit_pte(m, bb, clear_L0_pt, clear_vram, true, &src_it, clear_L0,
+>> -                                bo);
+>> -               } else {
+>> +               if (clear_vram && xe_migrate_allow_identity(clear_L0, &src_it))
+>>                          xe_res_next(&src_it, clear_L0);
+>> -               }
+>> +               else
+>> +                       emit_pte(m, bb, clear_L0_pt, clear_vram, true, &src_it, clear_L0,
+>> +                                dst);
+>> +
+>>                  bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+>>                  update_idx = bb->len;
+>>
+>> --
+>> 2.42.0
+>>
