@@ -4,48 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C293C35274
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Dec 2023 01:18:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18DBDC35274
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Dec 2023 03:00:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5063F10E3CC;
-	Tue, 19 Dec 2023 01:18:09 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23BE410E3CC
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Dec 2023 01:18:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E27AD10E16C;
+	Tue, 19 Dec 2023 03:00:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52C3110E16C
+ for <intel-xe@lists.freedesktop.org>; Tue, 19 Dec 2023 03:00:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702948689; x=1734484689;
+ t=1702954813; x=1734490813;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=lnMBNUusMeQi5i0xXJvzQd94cCeVA0kLXax9o2G41LI=;
- b=C0Hx57RbS/PaP7+V/dpprsJU4bJWR3yCCDorN9g3kmXL59MFNDC8QwEz
- bZR4qyZ+O8+lwth4T5nvxfMmq0qH65itUnUV9qOIxKCSP+Zj6MX+GiKAs
- bo8MTvKlL/EX9pCjRqFpjyWvSOScqtbFSpIVirAdd381H7xL6zaGXHcdR
- 3qE1FTuRW6giBa1PVGJUKIuWbATXIS7AJdezZfN4LY3wpQDMNAwQvs0Jw
- dgsxh43L81C2rpUlSJi/Wy+58F5pHeKfWtBPT1AlaW7wu2p3+tTmunJwS
- pgxfIcioaD0rZCe6ZYanXp7BXjLe4jm5OKbInEYqTCnjqJvlsigavMvy8 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="2423952"
-X-IronPort-AV: E=Sophos;i="6.04,287,1695711600"; 
-   d="scan'208";a="2423952"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2023 17:18:08 -0800
+ bh=rS7PJJNeJnBXl/otI7vbjRjURXwyZNfnX3np46sZXDE=;
+ b=Yr5xROVE/B6TPKkUAI5P9Z8GO/0OnYtMruqwwcR9Zb/Z1t7DJL8XZy9v
+ CqCHoNlRyCKFvyy0eQjY9txBxUZ1IReKS5u6cS9t7jUDYLfAXP3a5asu4
+ USjUTLnrZM+0QiwLhF4M8hpQl1ilcvoEm4gRV7dgzsKfoyJteaq/DC2LQ
+ mpbFeKhQ5qKrm7y8Win0tosWHqGHGG1xpX/mHHkMGtgOQ9e2fEgLFAqx9
+ aZqUgB9/RHDuly0QcKgU7YTrjo0my9BLF3FldM9xJEcMRruwZumH9SZFE
+ jlNY+PZZFZNfQg3yyEsuokq8cVDyNWqnvlyWxJf8CqfcF8D/aGqVCvUA4 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="14288060"
+X-IronPort-AV: E=Sophos;i="6.04,287,1695711600"; d="scan'208";a="14288060"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2023 19:00:12 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="769032908"
-X-IronPort-AV: E=Sophos;i="6.04,287,1695711600"; d="scan'208";a="769032908"
+X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="949021272"
+X-IronPort-AV: E=Sophos;i="6.04,287,1695711600"; d="scan'208";a="949021272"
 Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
  ([10.209.85.106])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2023 17:18:07 -0800
-Date: Mon, 18 Dec 2023 17:17:54 -0800
-Message-ID: <878r5ruh19.wl-ashutosh.dixit@intel.com>
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2023 19:00:11 -0800
+Date: Mon, 18 Dec 2023 18:59:57 -0800
+Message-ID: <875y0uvqvm.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: Re: [PATCH 04/17] drm/xe/oa/uapi: Add OA data formats
-In-Reply-To: <ZYDtyQDmFh/FadOm@unerlige-ril>
-References: <20231208064329.2387604-1-ashutosh.dixit@intel.com>
- <20231208064329.2387604-5-ashutosh.dixit@intel.com>
- <ZYDtyQDmFh/FadOm@unerlige-ril>
+To: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 07/17] drm/xe/oa/uapi: Define and parse OA stream
+ properties
+In-Reply-To: <20231208064329.2387604-8-ashutosh.dixit@intel.com>
+References: <20231208064329.2387604-1-ashutosh.dixit@intel.com>	<20231208064329.2387604-8-ashutosh.dixit@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/29.1 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -62,116 +60,32 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: Harish Chegondi <harish.chegondi@intel.com>, gzadicario@habana.ai,
+ Robert Krzemien <robert.krzemien@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 18 Dec 2023 17:11:37 -0800, Umesh Nerlige Ramappa wrote:
+On Thu, 07 Dec 2023 22:43:19 -0800, Ashutosh Dixit wrote:
 >
+> +	/**
+> +	 * @DRM_XE_OA_PROPERTY_OPEN_FLAGS: CLOEXEC and NONBLOCK flags are
+> +	 * directly applied to returned OA fd. DISABLED opens the OA stream in a
+> +	 * DISABLED state (see @DRM_XE_PERF_IOCTL_ENABLE).
+> +	 */
+> +	DRM_XE_OA_PROPERTY_OPEN_FLAGS,
+> +#define DRM_XE_OA_FLAG_FD_CLOEXEC	(1 << 0)
+> +#define DRM_XE_OA_FLAG_FD_NONBLOCK	(1 << 1)
+> +#define DRM_XE_OA_FLAG_DISABLED		(1 << 2)
 
-Hi Umesh,
+I am wondering why these flags should be part of this uapi:
 
-> > +enum xe_oa_format_name {
-> > +	XE_OA_FORMAT_C4_B8 = 7,
->
-> 7? Leaving room for old formats? Not sure if it adds any value. Do you
-> anticipate this driver being supported on pre-gen12? If not, IMO, we should
-> just start with 0 OR 1 (if you want to use 0 for some special case.
->
-> rest of it, lgtm,
-> Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+* O_CLOEXEC and O_NONBLOCK can be set on the returned stream fd using fcntl
+  (see man 2 fcntl)
+* DRM_XE_OA_FLAG_DISABLED can just be a stream open property, doesn't need
+  to be a fd flag.
 
-Yes good point, I'll fix this up. The OA format uapi does need review but
-that's a later patch.
+Comments?
 
 Thanks.
 --
 Ashutosh
-
-
->
-> Umesh
->
-> > +
-> > +	/* Gen8+ */
-> > +	XE_OA_FORMAT_A12,
-> > +	XE_OA_FORMAT_A12_B8_C8,
-> > +	XE_OA_FORMAT_A32u40_A4u32_B8_C8,
-> > +
-> > +	/* DG2 */
-> > +	XE_OAR_FORMAT_A32u40_A4u32_B8_C8,
-> > +	XE_OA_FORMAT_A24u40_A14u32_B8_C8,
-> > +
-> > +	/* DG2/MTL OAC */
-> > +	XE_OAC_FORMAT_A24u64_B8_C8,
-> > +	XE_OAC_FORMAT_A22u32_R2u32_B8_C8,
-> > +
-> > +	/* MTL OAM */
-> > +	XE_OAM_FORMAT_MPEC8u64_B8_C8,
-> > +	XE_OAM_FORMAT_MPEC8u32_B8_C8,
-> > +
-> > +	/* Xe2+ */
-> > +	XE_OA_FORMAT_PEC64u64,
-> > +	XE_OA_FORMAT_PEC64u64_B8_C8,
-> > +	XE_OA_FORMAT_PEC64u32,
-> > +	XE_OA_FORMAT_PEC32u64_G1,
-> > +	XE_OA_FORMAT_PEC32u32_G1,
-> > +	XE_OA_FORMAT_PEC32u64_G2,
-> > +	XE_OA_FORMAT_PEC32u32_G2,
-> > +	XE_OA_FORMAT_PEC36u64_G1_32_G2_4,
-> > +	XE_OA_FORMAT_PEC36u64_G1_4_G2_32,
-> > +
-> > +	XE_OA_FORMAT_MAX,
-> > +};
-> > +
-> > +/**
-> > + * struct xe_oa_format - Format fields for supported OA formats
-> > + */
-> > +struct xe_oa_format {
-> > +	u32 counter_select;
-> > +	int size;
-> > +	int type;
-> > +	enum xe_oa_report_header header;
-> > +	u16 counter_size;
-> > +	u16 bc_report;
-> > +};
-> > +
-> > +/**
-> > + * struct xe_oa - OA device level information
-> > + */
-> > +struct xe_oa {
-> > +	/** @xe: back pointer to xe device */
-> > +	struct xe_device *xe;
-> > +
-> > +	/** @oa_formats: tracks all OA formats across platforms */
-> > +	const struct xe_oa_format *oa_formats;
-> > +
-> > +#define FORMAT_MASK_SIZE DIV_ROUND_UP(XE_OA_FORMAT_MAX - 1, BITS_PER_LONG)
-> > +
-> > +	/** @format_mask: tracks valid OA formats for a platform */
-> > +	unsigned long format_mask[FORMAT_MASK_SIZE];
-> > +};
-> > +#endif
-> > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> > index 3539e0781d700..5bfb2d5aba12a 100644
-> > --- a/include/uapi/drm/xe_drm.h
-> > +++ b/include/uapi/drm/xe_drm.h
-> > @@ -1175,6 +1175,16 @@ enum drm_xe_perf_ioctls {
-> >	DRM_XE_PERF_IOCTL_CONFIG = _IO('i', 0x2),
-> > };
-> >
-> > +/** enum drm_xe_oa_format_type - OA format types */
-> > +enum drm_xe_oa_format_type {
-> > +	DRM_XE_OA_FMT_TYPE_OAG,
-> > +	DRM_XE_OA_FMT_TYPE_OAR,
-> > +	DRM_XE_OA_FMT_TYPE_OAM,
-> > +	DRM_XE_OA_FMT_TYPE_OAC,
-> > +	DRM_XE_OA_FMT_TYPE_OAM_MPEC,
-> > +	DRM_XE_OA_FMT_TYPE_PEC,
-> > +};
-> > +
-> > #if defined(__cplusplus)
-> > }
-> > #endif
-> > -- 2.41.0
-> >
