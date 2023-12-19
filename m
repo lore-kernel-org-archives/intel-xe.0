@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1837DC35274
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Dec 2023 00:08:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74633C46CCD
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Dec 2023 00:08:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D892210E3AD;
-	Tue, 19 Dec 2023 00:08:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2582E10E3AA;
+	Tue, 19 Dec 2023 00:08:18 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A516810E3AD;
- Tue, 19 Dec 2023 00:07:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id ECF6D10E3AA;
+ Tue, 19 Dec 2023 00:08:16 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9BCA9AADD5;
- Tue, 19 Dec 2023 00:07:59 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id E9720AADD5;
+ Tue, 19 Dec 2023 00:08:16 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Introduce_VF_specifi?=
- =?utf-8?q?c_interrupts_handler_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Introduce_VF_specific_int?=
+ =?utf-8?q?errupts_handler_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Date: Tue, 19 Dec 2023 00:07:59 -0000
-Message-ID: <170294447961.17583.5120574086748997550@emeril.freedesktop.org>
+Date: Tue, 19 Dec 2023 00:08:16 -0000
+Message-ID: <170294449695.17580.9127007554138890407@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231218165344.458-1-michal.wajdeczko@intel.com>
 In-Reply-To: <20231218165344.458-1-michal.wajdeczko@intel.com>
@@ -48,22 +48,61 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Introduce VF specific interrupts handler (rev3)
 URL   : https://patchwork.freedesktop.org/series/127715/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 84e5d706c drm/xe/dg2: Drop pre-production workarounds
-=== git am output follows ===
-Applying: drm/xe: Add command MI_LOAD_REGISTER_MEM
-Applying: drm/xe: Define registers used by memory based irq processing
-Applying: drm/xe: Update LRC context layout definitions
-Applying: drm/xe: Update definition of GT_INTR_DW
-Applying: drm/xe: Define IRQ offsets used by HW engines
-Applying: drm/xe: Add XE_BO_NEEDS_UC flag to force UC mode instead WB
-Applying: drm/xe/vf: Introduce Memory Based Interrupts Handler
-Applying: drm/xe/vf: Update LRC with memory based interrupts data
-Applying: drm/xe/vf: Setup memory based interrupts in GuC
-Applying: drm/xe/vf: Add VF specific interrupt handler
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6030b24c1386b00de8187b5fb987e283a57b372a
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b712de828c5d57e77201db017ccb48243b8c7e9d
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Mon Dec 18 17:53:44 2023 +0100
+
+    drm/xe/vf: Add VF specific interrupt handler
+    
+    There are small differences in handling of the register based
+    interrupts on the VF driver as some registers are not accessible
+    to the VF driver. Additionally VFs must support Memory Based
+    Interrupts. Add VF specific interrupt handler for this.
+    
+    Cc: Matt Roper <matthew.d.roper@intel.com>
+    Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+    Link: https://lore.kernel.org/r/20231214185955.1791-11-michal.wajdeczko@intel.com
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
++ /mt/dim checkpatch 84e5d706cb0c11f2948a9f16d9e31ad5256b641c drm-intel
+03cec8243 drm/xe: Add command MI_LOAD_REGISTER_MEM
+c9476a496 drm/xe: Define registers used by memory based irq processing
+0b03507e2 drm/xe: Update LRC context layout definitions
+c2a084ed7 drm/xe: Update definition of GT_INTR_DW
+1709111f6 drm/xe: Define IRQ offsets used by HW engines
+cfadcbf42 drm/xe: Add XE_BO_NEEDS_UC flag to force UC mode instead WB
+a109647f3 drm/xe/vf: Introduce Memory Based Interrupts Handler
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:105: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#105: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 556 lines checked
+1d1965940 drm/xe/vf: Update LRC with memory based interrupts data
+35f3f9020 drm/xe/vf: Setup memory based interrupts in GuC
+b712de828 drm/xe/vf: Add VF specific interrupt handler
 
 
