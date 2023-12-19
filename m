@@ -4,53 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0608BC46CCD
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Dec 2023 15:33:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13CA9C46CA2
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Dec 2023 16:05:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8C0610E2F4;
-	Tue, 19 Dec 2023 15:33:44 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03FFF10E2F4
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Dec 2023 15:33:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB2CE10E2F7;
+	Tue, 19 Dec 2023 16:05:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67B9110E2F7;
+ Tue, 19 Dec 2023 16:05:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703000024; x=1734536024;
- h=message-id:date:mime-version:subject:to:references:cc:
- from:in-reply-to:content-transfer-encoding;
- bh=9FFB77Kdu+QSMNL4aWpH9OLX0QDX5ipCQvXA2hMYMDw=;
- b=TrcrQ+bki5EhIVbcE/BIQzWS0Ugkl7n4Bic8UUQgVUJjFge1yBe3BmZ9
- qxuIXC30bZKJj7sww24U7lscHEOUP3Ga62JNYCYEU7oepLCLbXm+K3Far
- kND/qrfAOKb3usdJgGAVHHe1yIcIB9oUBoOk2bormGJGWYIDAwbIulrzQ
- jiLbzacSwkPRdGGZ6c25DEVnepiE0/J/IzEwjfX3Ap71BOBWIg0WthEA3
- V8/aDMF9bGvfiljfbhwQzrD5FoPEmGn2W5tI9ELyXvBrVwUw+sZGYjPj7
- 1mOQxR+zf9k1XzXHg872vIBAEbJq2PS3cGMdv6rXBhtsHplMC/O3IEYvV A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10929"; a="9121615"
-X-IronPort-AV: E=Sophos;i="6.04,288,1695711600"; 
-   d="scan'208";a="9121615"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2023 07:33:43 -0800
+ t=1703001947; x=1734537947;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=E/4G/640BLyW6ewtFRM5tFKJC3TzPRtX941yRQny8NE=;
+ b=V+kLbLv2RO972TuPWkCEc/Cd1ZzYk+TarAeOAWDDyTS4ObKeD8vJL/n+
+ iQt3uk2QVL3LVbgcANSwRfYcp37PeTsx0fJDmHtylZk+5l2YwzezjLY0D
+ aLB9SNhuQ7SUkERh0WMSAvTvMLzAVGN8yTYDaxkEXfr/f0ACRHuVXUlWr
+ /+VRurTtJoOWLNY0M+mDq+JPg2XKh/ugg96PXEkFYkXruAOwOEWdHuEiw
+ cuyy6h0mcEpONCV/Sv0gtOdsJKK3INhBfQYhleT6y+OUGeuEEWmaPLTRI
+ pyxpI09Mnsc7TKzoCyEEr9mk31tYkbR6VET9qDLVlyQPzL8RouKzKntMP w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10929"; a="394561372"
+X-IronPort-AV: E=Sophos;i="6.04,288,1695711600"; d="scan'208";a="394561372"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2023 08:05:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10929"; a="846380759"
-X-IronPort-AV: E=Sophos;i="6.04,288,1695711600"; d="scan'208";a="846380759"
-Received: from hasifnax-mobl1.gar.corp.intel.com (HELO [10.249.254.69])
+X-IronPort-AV: E=McAfee;i="6600,9927,10929"; a="919658780"
+X-IronPort-AV: E=Sophos;i="6.04,288,1695711600"; d="scan'208";a="919658780"
+Received: from hasifnax-mobl1.gar.corp.intel.com (HELO fedora..)
  ([10.249.254.69])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2023 07:33:42 -0800
-Message-ID: <4f98d3d5-5d8c-a173-bd15-195d062f6ba5@linux.intel.com>
-Date: Tue, 19 Dec 2023 16:33:40 +0100
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2023 08:05:43 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH] locking/ww_mutex: Adjust to lockdep nest_lock requirements
+Date: Tue, 19 Dec 2023 17:05:24 +0100
+Message-ID: <20231219160524.3646-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH RESEND v5 00/10] Introduce GuC Doorbells Manager
-Content-Language: en-US
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20231218190629.502-1-michal.wajdeczko@intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20231218190629.502-1-michal.wajdeczko@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,60 +56,120 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Peter Zijlstra <peterz@infradead.org>, Boqun Feng <boqun.feng@gmail.com>,
+ Maarten Lankhorst <maarten@lankhorst.se>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Ingo Molnar <mingo@redhat.com>,
+ Waiman Long <longman@redhat.com>, Will Deacon <will@kernel.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Michal,
+When using mutex_acquire_nest() with a nest_lock, lockdep refcounts the
+number of acquired lockdep_maps of mutexes of the same class, and also
+keeps a pointer to the first acquired lockdep_map of a class. That pointer
+is then used for various comparison-, printing- and checking purposes,
+but there is no mechanism to actively ensure that lockdep_map stays in
+memory. Instead, a warning is printed if the lockdep_map is freed and
+there are still held locks of the same lock class, even if the lockdep_map
+itself has been released.
 
-On 12/18/23 20:06, Michal Wajdeczko wrote:
-> Introduce simple GuC doorbells ID manager that will be used by the
-> PF driver for VFs provisioning and can later be used by submission
-> code once we are ready to switch from H2G based notifications to
-> doorbells mechanism.
->
-> As preparation steps, improve existing logging and kunit code that
-> is used by the new code.
->
-> v5: rename drm printfn helpers to follow the header name (Lucas)
->
-> Michal Wajdeczko (10):
->    drm/xe: Add GT oriented drm_printers
->    drm/xe: Report TLB timeout using GT oriented functions
->    drm/xe: Introduce GuC Doorbells Manager
->    drm/xe/kunit: Set SR-IOV mode of the fake device
->    drm/xe/kunit: Define helper functions to allocate fake xe device
->    drm/xe/kunit: Restore test->priv when done with fake xe device
->    drm/xe/kunit: Use xe kunit helper in RTP test
->    drm/xe/kunit: Use xe kunit helper in WA test
->    drm/xe/kunit: Enable CONFIG_LOCKDEP in tests
->    drm/xe/kunit: Add GuC Doorbells Manager tests
+In the context of WW/WD transactions that means that if a user unlocks
+and frees a ww_mutex from within an ongoing ww transaction, and that
+mutex happens to be the first ww_mutex grabbed in the transaction,
+such a warning is printed and there might be a risk of a UAF.
 
-These kunit changes are neither motivated nor very well described in the 
-cover letter, nor do they align well with the series titles. Those 
-should've been posted as a separate series?
+Note that this is only problem when lockdep is enabled and affects only
+dereferences of struct lockdep_map.
 
-/Thomas
+Adjust to this by adding a fake lockdep_map to the acquired context and
+make sure it is the first acquired lockdep map of the associated
+ww_mutex class. Then hold it for the duration of the WW/WD transaction.
 
->   drivers/gpu/drm/xe/.kunitconfig               |   5 +
->   drivers/gpu/drm/xe/Makefile                   |   4 +
->   drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c | 201 ++++++++++++++
->   drivers/gpu/drm/xe/tests/xe_kunit_helpers.c   |  90 ++++++
->   drivers/gpu/drm/xe/tests/xe_kunit_helpers.h   |  17 ++
->   drivers/gpu/drm/xe/tests/xe_pci.c             |   3 +
->   drivers/gpu/drm/xe/tests/xe_pci_test.h        |   2 +
->   drivers/gpu/drm/xe/tests/xe_rtp_test.c        |   5 +-
->   drivers/gpu/drm/xe/tests/xe_wa_test.c         |   5 +-
->   drivers/gpu/drm/xe/xe_gt_printk.h             |  44 +++
->   drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c   |  13 +-
->   drivers/gpu/drm/xe/xe_guc_db_mgr.c            | 261 ++++++++++++++++++
->   drivers/gpu/drm/xe/xe_guc_db_mgr.h            |  22 ++
->   drivers/gpu/drm/xe/xe_guc_types.h             |  15 +
->   drivers/gpu/drm/xe/xe_uc.c                    |   5 +
->   15 files changed, 680 insertions(+), 12 deletions(-)
->   create mode 100644 drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c
->   create mode 100644 drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
->   create mode 100644 drivers/gpu/drm/xe/tests/xe_kunit_helpers.h
->   create mode 100644 drivers/gpu/drm/xe/xe_guc_db_mgr.c
->   create mode 100644 drivers/gpu/drm/xe/xe_guc_db_mgr.h
->
+This has the side effect that trying to lock a ww mutex *without* a
+ww_acquire_context but where a such context has been acquire, we'd see
+a lockdep splat. The test-ww_mutex.c selftest attempts to do that, so
+modify that particular test to not acquire a ww_acquire_context if it
+is not going to be used.
+
+Cc: Peter Zijlstra <peterz@infradead.org>
+Cc: Ingo Molnar <mingo@redhat.com>
+Cc: Will Deacon <will@kernel.org>
+Cc: Waiman Long <longman@redhat.com>
+Cc: Boqun Feng <boqun.feng@gmail.com>
+Cc: Maarten Lankhorst <maarten@lankhorst.se>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ include/linux/ww_mutex.h       | 14 ++++++++++++++
+ kernel/locking/test-ww_mutex.c |  6 ++++--
+ 2 files changed, 18 insertions(+), 2 deletions(-)
+
+diff --git a/include/linux/ww_mutex.h b/include/linux/ww_mutex.h
+index bb763085479a..a401a2f31a77 100644
+--- a/include/linux/ww_mutex.h
++++ b/include/linux/ww_mutex.h
+@@ -65,6 +65,16 @@ struct ww_acquire_ctx {
+ #endif
+ #ifdef CONFIG_DEBUG_LOCK_ALLOC
+ 	struct lockdep_map dep_map;
++	/**
++	 * @first_lock_dep_map: fake lockdep_map for first locked ww_mutex.
++	 *
++	 * lockdep requires the lockdep_map for the first locked ww_mutex
++	 * in a ww transaction to remain in memory until all ww_mutexes of
++	 * the transaction have been unlocked. Ensure this by keeping a
++	 * fake locked ww_mutex lockdep map between ww_acquire_init() and
++	 * ww_acquire_fini().
++	 */
++	struct lockdep_map first_lock_dep_map;
+ #endif
+ #ifdef CONFIG_DEBUG_WW_MUTEX_SLOWPATH
+ 	unsigned int deadlock_inject_interval;
+@@ -146,7 +156,10 @@ static inline void ww_acquire_init(struct ww_acquire_ctx *ctx,
+ 	debug_check_no_locks_freed((void *)ctx, sizeof(*ctx));
+ 	lockdep_init_map(&ctx->dep_map, ww_class->acquire_name,
+ 			 &ww_class->acquire_key, 0);
++	lockdep_init_map(&ctx->first_lock_dep_map, ww_class->mutex_name,
++			 &ww_class->mutex_key, 0);
+ 	mutex_acquire(&ctx->dep_map, 0, 0, _RET_IP_);
++	mutex_acquire_nest(&ctx->first_lock_dep_map, 0, 0, &ctx->dep_map, _RET_IP_);
+ #endif
+ #ifdef CONFIG_DEBUG_WW_MUTEX_SLOWPATH
+ 	ctx->deadlock_inject_interval = 1;
+@@ -185,6 +198,7 @@ static inline void ww_acquire_done(struct ww_acquire_ctx *ctx)
+ static inline void ww_acquire_fini(struct ww_acquire_ctx *ctx)
+ {
+ #ifdef CONFIG_DEBUG_LOCK_ALLOC
++	mutex_release(&ctx->first_lock_dep_map, _THIS_IP_);
+ 	mutex_release(&ctx->dep_map, _THIS_IP_);
+ #endif
+ #ifdef DEBUG_WW_MUTEXES
+diff --git a/kernel/locking/test-ww_mutex.c b/kernel/locking/test-ww_mutex.c
+index 78719e1ef1b1..c688131ed8f4 100644
+--- a/kernel/locking/test-ww_mutex.c
++++ b/kernel/locking/test-ww_mutex.c
+@@ -62,7 +62,8 @@ static int __test_mutex(unsigned int flags)
+ 	int ret;
+ 
+ 	ww_mutex_init(&mtx.mutex, &ww_class);
+-	ww_acquire_init(&ctx, &ww_class);
++	if (flags & TEST_MTX_CTX)
++		ww_acquire_init(&ctx, &ww_class);
+ 
+ 	INIT_WORK_ONSTACK(&mtx.work, test_mutex_work);
+ 	init_completion(&mtx.ready);
+@@ -90,7 +91,8 @@ static int __test_mutex(unsigned int flags)
+ 		ret = wait_for_completion_timeout(&mtx.done, TIMEOUT);
+ 	}
+ 	ww_mutex_unlock(&mtx.mutex);
+-	ww_acquire_fini(&ctx);
++	if (flags & TEST_MTX_CTX)
++		ww_acquire_fini(&ctx);
+ 
+ 	if (ret) {
+ 		pr_err("%s(flags=%x): mutual exclusion failure\n",
+-- 
+2.42.0
+
