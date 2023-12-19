@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD6E0C41535
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Dec 2023 04:21:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9E60C41535
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Dec 2023 04:58:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3B2510E172;
-	Tue, 19 Dec 2023 04:21:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CCF910E3DF;
+	Tue, 19 Dec 2023 04:58:11 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id ADA3C10E172;
- Tue, 19 Dec 2023 04:21:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id A4A8010E3DF;
+ Tue, 19 Dec 2023 04:58:09 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8EA53AADD5;
- Tue, 19 Dec 2023 04:21:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4333639848367960406=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id A1106AADE4;
+ Tue, 19 Dec 2023 04:58:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Ensure_=27passed=27_va?=
- =?utf-8?q?riable_is_always_initialized?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Introduce_GuC_Doorbe?=
+ =?utf-8?q?lls_Manager_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Date: Tue, 19 Dec 2023 04:21:31 -0000
-Message-ID: <170295969154.17583.16343096144872799901@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Date: Tue, 19 Dec 2023 04:58:09 -0000
+Message-ID: <170296188965.17580.12728818103244199695@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20231218163818.1700983-1-rodrigo.vivi@intel.com>
-In-Reply-To: <20231218163818.1700983-1-rodrigo.vivi@intel.com>
+References: <20231218190629.502-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20231218190629.502-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,176 +44,26 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4333639848367960406==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Ensure 'passed' variable is always initialized
-URL   : https://patchwork.freedesktop.org/series/127934/
+Series: Introduce GuC Doorbells Manager (rev5)
+URL   : https://patchwork.freedesktop.org/series/127608/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c_BAT -> xe-pw-127934v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-127934v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#480])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127934v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [PASS][3] -> [DMESG-WARN][4] ([Intel XE#1033])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127934v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:
-    - bat-adlp-7:         [FAIL][5] ([i915#2346]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127934v1/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:
-    - bat-adlp-7:         [FAIL][7] ([Intel XE#480]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127934v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
-
-  * igt@xe_create@create-execqueues-noleak:
-    - bat-adlp-7:         [FAIL][9] ([Intel XE#524]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127934v1/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html
-
-  
-  [Intel XE#1033]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
-  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
-  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 84e5d706c drm/xe/dg2: Drop pre-production workarounds
+=== git am output follows ===
+Applying: drm/xe: Add GT oriented drm_printers
+Applying: drm/xe: Report TLB timeout using GT oriented functions
+Applying: drm/xe: Introduce GuC Doorbells Manager
+Applying: drm/xe/kunit: Set SR-IOV mode of the fake device
+Applying: drm/xe/kunit: Define helper functions to allocate fake xe device
+Applying: drm/xe/kunit: Restore test->priv when done with fake xe device
+Applying: drm/xe/kunit: Use xe kunit helper in RTP test
+Applying: drm/xe/kunit: Use xe kunit helper in WA test
+Applying: drm/xe/kunit: Enable CONFIG_LOCKDEP in tests
+Applying: drm/xe/kunit: Add GuC Doorbells Manager tests
 
 
-Build changes
--------------
-
-  * Linux: xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c -> xe-pw-127934v1
-
-  IGT_7647: c5db51a88823962e79d41cff10fe1bdd8ea92d89 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c: 84e5d706cb0c11f2948a9f16d9e31ad5256b641c
-  xe-pw-127934v1: 127934v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127934v1/index.html
-
---===============4333639848367960406==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Ensure &#39;passed&#39; variable is always initialized</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/127934/">https://patchwork.freedesktop.org/series/127934/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127934v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127934v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c_BAT -&gt; xe-pw-127934v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-127934v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127934v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127934v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033">Intel XE#1033</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127934v1/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127934v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_create@create-execqueues-noleak:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/524">Intel XE#524</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127934v1/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c -&gt; xe-pw-127934v1</li>
-</ul>
-<p>IGT_7647: c5db51a88823962e79d41cff10fe1bdd8ea92d89 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-586-84e5d706cb0c11f2948a9f16d9e31ad5256b641c: 84e5d706cb0c11f2948a9f16d9e31ad5256b641c<br />
-  xe-pw-127934v1: 127934v1</p>
-
-</body>
-</html>
-
---===============4333639848367960406==--
