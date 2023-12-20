@@ -4,131 +4,135 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D0FEC3DA6E
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Dec 2023 16:49:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 709BCC3DA6E
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Dec 2023 16:56:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5524C10E5E9;
-	Wed, 20 Dec 2023 16:49:17 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7489110E5EA
- for <intel-xe@lists.freedesktop.org>; Wed, 20 Dec 2023 16:49:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1956010E170;
+	Wed, 20 Dec 2023 16:56:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D44C710E170
+ for <intel-xe@lists.freedesktop.org>; Wed, 20 Dec 2023 16:56:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703090956; x=1734626956;
+ t=1703091371; x=1734627371;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=8iq6HK56irF3bZ1R0gmcnP0C20lQKBlI+fATHBTWBgw=;
- b=nP2aTy60b4b2Sp6ZZB8XPHGcPTBnC7l+g1Szz7TL7Qgj4kESWXYfzdkP
- TSzrbYvs4zS4NYWZ9MWSIexDlrG5pTtdvto3JzKgmXcMSA/wLcsFeq7wf
- AT6qDwH89VrumtxZdhBdWMrdLgZW7xHAlIOEXUPFuTrbqU/1nY6dDWCnn
- x6VZxUFljlp2CNMOgnCcL3UratrDZLlji3Z7gTdBNE6VmNbKCYeYTyghD
- wjZr3MkkwfFBp1ZXMetWi5GyAO3z2xk1ZKQLFEy8ATSXbTsf47Yr9h+rC
- fCKnjGmMklsS6Ckr9UmlaLiCL0iH2LLMHF8iFRDyQaVBBGSfsT2nKBp3C A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="14530485"
-X-IronPort-AV: E=Sophos;i="6.04,291,1695711600"; d="scan'208";a="14530485"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2023 08:49:16 -0800
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=R0JqXTDEHd+K5wC3nGCos4EKlPmkQFNGp7pVA+iussA=;
+ b=L4xQQAZCx0Nrd/BJ2t6/EuLvnO6LuGTrdGI5gNKoBPvd6xCsKr1y2ycI
+ Q4Q8hZJdNjAl68N/7NeDKwIHQ8x0rYXsU3Y5jsMzfz3TPfvjMWFdCIGpG
+ +9JRcAeF67qR6NC23htILYCVLbOEV4+B9z5l+LKBsalEZl0WBQy8iyOhg
+ KTPLLaLzt0MLQeJn59O1vDvHWaifqyo32bUM8OHzNW2k1ZGaZQEksO1DI
+ 7XEQ73BqQ6Y/wNLNFdQdMhVMeaWxwcpSjSNT23q3mvrJdB+KJ8FUZFzoL
+ bdkf8Jsa4Ndj6U9fNo5lU1uz3GvvBPeYjb1719c8WIfCUT1o5t6MLdoZY Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="375331451"
+X-IronPort-AV: E=Sophos;i="6.04,291,1695711600"; d="scan'208";a="375331451"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2023 08:56:11 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="726135103"
-X-IronPort-AV: E=Sophos;i="6.04,291,1695711600"; d="scan'208";a="726135103"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 20 Dec 2023 08:49:15 -0800
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="894766967"
+X-IronPort-AV: E=Sophos;i="6.04,291,1695711600"; d="scan'208";a="894766967"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 20 Dec 2023 08:56:07 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 20 Dec 2023 08:49:15 -0800
+ 15.1.2507.35; Wed, 20 Dec 2023 08:56:07 -0800
 Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 20 Dec 2023 08:49:15 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
+ 15.1.2507.35 via Frontend Transport; Wed, 20 Dec 2023 08:56:07 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
  by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 20 Dec 2023 08:49:15 -0800
+ 15.1.2507.35; Wed, 20 Dec 2023 08:56:06 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=brCxTYSKVzVD8TShssqX7YuWWiJ1rU3Tn0zJa5Q1QXx2oM14IR2cHjYxFgEzrNdFBW1CkDmeLxybMTFZrUdWShX+PS7op7agkAGzO9uaQCBz6CIT0QK2MPkoC+6wgchyDIJX3m1Z0RIvt20INGV4ZZIWHaWvXKt3KaS6klkei6IjlvfLuiKyPzzFiXs09EfXNaManDvf02M70mjMRlgeeA8anMFOjoM7MjRtzUT4zgkhudFjckGxV6quCcDjAWzCBgJXWVc/hzVfzvXXLy2RDUIXtIaTz/qIdGG8uCwRCtflAeyVuQtzDw2BzYCCkBYG6iCC1UGDnJePjnNfVk8WuQ==
+ b=WAOl67tI06dMT+NIO002j0lyThG5ypIqN9DO7XVf+F1lkON2iW+rCIJrN8aybU1ml9GLpCX1PwXHy8ZTbEm5LGLX1wDXfT1Ju5fSMTbqkD9VKxTfSoH9FEsXFCmvw+F6SBQnFXyYpgFpak/fTJgn9c0iTvCsKiNbUJ50OHoOILbDb7OukyV0g2yxnA3KK9V+M0pIVtY8kvy2VjTBiUylU/HEnMlPiZij81gLZlzD92k/GmA8bamtQGW3iWva3v7RXJiOXp1Bc/y20CugJ5sJcpWBFGLxK8dR3TzMV6LJ7o/ohC5zinplMEnHc7uOe1k0XL6R0rxotu8HIbn9/qGchg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=T2O4vNba84ZpAzuSh3JQhsRrIqxdZlHwwhXgTpIgZ1s=;
- b=ApXIGWvwPLciWJR+Q4KVlT1ARux2qbaO2PJb1WTn05fzIhYyUIamMs89wYYvmO3I2VfBpM/0W8iyaVpcsXJWt/tW32bBCEaLOow4osnS4BP+kmbh1ycQjAD0ZVwoZuZlrkktgjPVdL6m4hfMAvCkhiHOna84bdQc32ixUs9e6/TSHnRGKDJzIgve/C5zu3UNv9ib6UQogfLURj3S8ig5/vrM0eQqqehkaqKfc5p/kA6/ffrisFnZpWB4UAMkd3MVVcVxZ63nTXhzI03x8lhFhZUoTW7oLVtDCeeJXbfgTe3lq/1oHg44b+NA9JwPt2L9mHwnytcyX/uzhY5N4hpYOQ==
+ bh=ZZcjtBRHcCY0Ge4jk8hTErNIuGDQVwp8CY8Qtt1tdBM=;
+ b=VhLiX5arBADRa6ST8Xe9sTEajikSgoqFC2DY3vlDL3Aqlp3LLbw/4hEgMhwY9Gu3a9PWdhQU1pjiSqsQEpr+vN5cQcsu5I4cemK4jbun9C7j2c2JhZs2tHVZFURkA0DXG0v15RrUKyWCAhZKRtNV8UsfuLrUiCCoYuCJvjjOUY1cezZdmXL/x2W9vop61u5dtG+R+LobeSQbEI12im4zmtXlAL6x23EGzjXAnN7aA4URoS+2BnYMN2dzMDYC5/D3WiE4eC6QQ9xIVty5E1Av3JxK0BtESyW2cclCkYkq5TwT+uLsoSH64+5N2zFhdI45213HjGQ9TFe03E1h5yAZSg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by SJ0PR11MB6743.namprd11.prod.outlook.com (2603:10b6:a03:47c::19)
+ by PH0PR11MB4952.namprd11.prod.outlook.com (2603:10b6:510:40::15)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.38; Wed, 20 Dec
- 2023 16:49:12 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7113.18; Wed, 20 Dec
+ 2023 16:56:04 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::ada2:f954:a3a5:6179]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::ada2:f954:a3a5:6179%5]) with mapi id 15.20.7091.034; Wed, 20 Dec 2023
- 16:49:10 +0000
-Date: Wed, 20 Dec 2023 11:49:06 -0500
+ 16:56:04 +0000
+Date: Wed, 20 Dec 2023 11:56:01 -0500
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
-Subject: Re: [v5 1/3] drm/xe: Add vram frequency sysfs attributes
-Message-ID: <ZYMbAvUzYlbuNq0d@intel.com>
+Subject: Re: [PATCH 2/3] drm/xe: Add base balance sysfs attributes
+Message-ID: <ZYMcoWPtLEuJST4w@intel.com>
 References: <20231219100711.645011-1-sujaritha.sundaresan@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+ <20231219100711.645011-2-sujaritha.sundaresan@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <20231219100711.645011-1-sujaritha.sundaresan@intel.com>
-X-ClientProxiedBy: SJ0PR05CA0093.namprd05.prod.outlook.com
- (2603:10b6:a03:334::8) To MN0PR11MB6059.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231219100711.645011-2-sujaritha.sundaresan@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0240.namprd03.prod.outlook.com
+ (2603:10b6:a03:39f::35) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|SJ0PR11MB6743:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6e10442c-1f9f-4cb2-8c59-08dc017b96de
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|PH0PR11MB4952:EE_
+X-MS-Office365-Filtering-Correlation-Id: d97a0a9b-8399-4ac3-7cda-08dc017c8daa
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: sy63U2DzWrx9ahoiDYQTJT6hDSPHnQ5n8rWSeFQy/0d3IPC9caRWkVRpTzQOIbT+pPksQjL4E76kHt7jWGGwoIaemngQvA8PfD8wmpio8mAezsp89g6LAba25s/rzbQmRA9tGUkw+RRC6Y9OxoCvrRLWRFJptCPqyGe/48wRrsy39bMDY+DNBVCATu6jRaRYvmY/d92TKliLuVY7tz84HmMJInenY91Nz4kSQf7j0AVO7y6rrPARHJPNgTbqlqVcj5pqRb4dTiVjz3cc97JIbCuhfE74hp3Tqep2vHUyCnHuhk5LnMK1BYwikGGOjrAS+x1wrm11DsA2M3HVxTjsLwaOJ25cM1+15ZRjZRaKnr8IZwmsWBPVY0LHNZFNY9K8101iqzSZXK/qdg4YmK4g7YHR5BWimWq/5oir+29AAo4XLZpgN3lqKAFVAnvR1yARo1WnRcSL2YXA0h30SX4KGQSs8OFa24ZeH9eU5wytB2to/O60790HYb9nENa3tMIfKDMlDxf1x6+SQ0TDM/ACC5LkHVfAAChPnqnQq4tt4vh8GEFyUKsWMMTco4zM8OHi
+X-Microsoft-Antispam-Message-Info: 3wLJ69rnTxiGStZHsLethsunjjC9Ouq+5qXhC+077yTg4EV1Muhv8GLdnkNno+KOmpGlmBI83CXBFrhfuXvVhhX+/kM0+AZfNMylvB9qO2ME5QSfg2CUqSxufihkxWDQQXuxS5oiNSfeTQf09WzNStPj9lLIWsI/SsTpsgXwzkZK30SDDKXF4YIEvwvIZpys+By7v46MiNC7PPyI2GVHyLEMm+iU6W/SQyWnlX5YPJPG5X0VMoRLxkGg/8DTWfwfTvLW73H3LwrXG+YcYULzqst85UtQwJRpeV1QURkzXuzEwSoACfFNPHE8OQvlCn8eY4GH/b2tx/Dgaj/mz5IO+rGEZYmvrmqv5w62B4gXpl2RpPv+v7+XF3f4RMuHkaSrtj+ipK2uHPxudvOOQ+JyJacnCk8mZ8GHKT7Uezl5XtDca6aQZXCmZOctxVPHykkt3K2TbC3gnmEGeXtAv4cG19gyQt0mNJM/GzKwHhCKH11ksrAUoYKs42D+IUaQLVaNEkdH1Ug8HVH6RqLIbBCdu5h74YF1xC/ieTbk6xGz8vrALFuDrqOdqMbe28jEg/3Y
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(346002)(366004)(376002)(396003)(39860400002)(136003)(230922051799003)(1800799012)(186009)(451199024)(64100799003)(2616005)(6512007)(26005)(38100700002)(83380400001)(6862004)(4326008)(8936002)(316002)(8676002)(6486002)(2906002)(44832011)(37006003)(5660300002)(6506007)(41300700001)(6636002)(6666004)(478600001)(66476007)(66556008)(66946007)(36756003)(86362001)(82960400001);
+ SFS:(13230031)(39860400002)(346002)(366004)(376002)(396003)(136003)(230922051799003)(186009)(64100799003)(451199024)(1800799012)(478600001)(6636002)(37006003)(66946007)(66556008)(66476007)(316002)(38100700002)(82960400001)(6666004)(86362001)(41300700001)(6506007)(6512007)(36756003)(5660300002)(4326008)(26005)(6862004)(44832011)(83380400001)(8936002)(2616005)(8676002)(2906002)(6486002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ACLUqkuT/e6d3w68ffgZa24ScRf9ftGVHJ2hOMwLFH3AmcEVI3u9UI/a4sKU?=
- =?us-ascii?Q?oGcczRdVR+cgUy+7EPTUQCa0NqjxRGkBjjm/kERe2d1aGyXYV6Xv6rJJDnX0?=
- =?us-ascii?Q?7rU5GTqZTdTBgPoOITb8cq9YiupiHeNgv+7eqNs9rfkllQaYYwGS8wOxRzvB?=
- =?us-ascii?Q?2L2CDk7KiUZblFoy6OPhw+5SqrQ0ypE/utUI0/jYUsSBq4di/Q7/KQz4gxkP?=
- =?us-ascii?Q?OabFvEjfUUklmaO+yfKLGYDtIlkHY/YkM2w3CZQ40X0DyOhHc5NxSn2IcPv1?=
- =?us-ascii?Q?d6GL4xdkSLAHJV5z3UvwEYyIyXo4Ymba+CPf9n/lP6AVVSZxKaPWTC07UIl5?=
- =?us-ascii?Q?8aj6BiF87ebXCAROluTcc6C9ToMzc1ed50dAIRxciGu48H2L3CmaXdpqIPNp?=
- =?us-ascii?Q?F8xcblJUCmruL79QiGoxvsjIMyLhCmyw//APfYTgzx5P+Y4jQAj0GLarUjFH?=
- =?us-ascii?Q?+y6RYewTrzqMFb7D/BFiFFr3u5ShI2C/dMnCJy/C7nIR/LS7cHURX6cCjXhZ?=
- =?us-ascii?Q?VIx02J4Fh3NR1CK1p5ZdMHJdYHmlgeKHdKz0tCIs3gVi2tEupeCvqVhaUsaR?=
- =?us-ascii?Q?ncWx2ZZuXGG2b8PunGJbzzm5HwFUANhNzrVXOWdRFvgusGFyd2kllP+MaJ3z?=
- =?us-ascii?Q?Vpn6GbKnDghi6a9rpgseAU098N6hwtVdDFVsUhUesZHey5SAkwL4TXnruzlm?=
- =?us-ascii?Q?2JwwQh15SRCdBlyKfh8yjb6i5MdQ9mlRrG4Tj9qhm+c7FlQKxC0SqQyu6ANF?=
- =?us-ascii?Q?/U8puVUeuOWrxyr5+a83NX1Nd1yrs5dhaFGIfmCWM4yMFvm3CNPfihYPhcwk?=
- =?us-ascii?Q?w4kGWqYp2SoTX/3nzwpCapJuScM7uIjkmNx94kaHe91KUm81RBSMpJJWrk9+?=
- =?us-ascii?Q?fxsZ03O5sMbB//R8c6AnzRm9md3F7ERcIJlggMhOWUVejCRL0sDCtlG5m43z?=
- =?us-ascii?Q?6Uy/U81/YRlUyjfnv/WxvvvqT4ethMQR5L2Ghii5ZEdP2Qb3vZloeKF8y+23?=
- =?us-ascii?Q?uJm8jmIGfRGHEPOB/SRye16g5lLTnZ/FKQfkQRRuxOCpqx8R/jfs/y+RcNT9?=
- =?us-ascii?Q?PKlIIxpAZv+4u2q8nZ1ju/oq4cA0PLogs6iIEbrm7dyXC22my6djBbg9diAA?=
- =?us-ascii?Q?mZseAl+JJzv3YWDcq6xaMltGrjkD5yORKcC2GBQ0XQjRcZ3Q3kq31GBV/ech?=
- =?us-ascii?Q?WU/AJ0cIVAtjKxet3dMhLpltLK6RtpUCWZG7bsDE0rIMLmVp+McBFGhz6eMM?=
- =?us-ascii?Q?rFlF6ZU0F+84PDwGke8U8SPp7yt5NAKVSKPBpeLZsW5Flq4bIjrCdRzAulQX?=
- =?us-ascii?Q?h3MUKqxAUQKgFj8uoDgKROzygIV4OmqjmqtAfFuHVakJcRCGivMj0z1Xar/q?=
- =?us-ascii?Q?zDsj+Np+jkic474IL0cGl+dsW119m2ZonbEnR7f0BjZNR9z7acL6jxxhY/Zp?=
- =?us-ascii?Q?uO3YwSqujDjh6/xg79OGslocjxizg5dZaGUB895XAp5bugVafGOuCqCKdiy5?=
- =?us-ascii?Q?vzLEeX41oHRRqwAR1hilXZNUPdHtt4hNmg30Zop0c4Em+Sew37r9r886TFX0?=
- =?us-ascii?Q?JMHoQH7lS9mYR+igCEchTCprgoqFpGx1aDVcHt3B?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6e10442c-1f9f-4cb2-8c59-08dc017b96de
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?JR1i4Odyg6Cnyyk3VW7DchQt52tw/gHw9gqbMjEjND5MkPurIsR6+g1j0B?=
+ =?iso-8859-1?Q?8ykyQ7nN/pLFg3APs2YZSFib9Xv/NTzBDf7ZazEqLJiKGrLgMqC3kXEiJl?=
+ =?iso-8859-1?Q?4ylV9Oajarmu1Nesi1gWo/lUQKL3/hQpJHB14lv89SUcYayNktiCp3hPjW?=
+ =?iso-8859-1?Q?FrSjNfnTaXXsqobkbDnzIlL10oD1jM9iZwh3GxZ9hRzqvZ+55OzyM+a5Ur?=
+ =?iso-8859-1?Q?UpgsfRcHDMZUcjMx6qcLmVAROyMhZqQ92MAn/YvB0jHRaLn1bRMO2wWh7Q?=
+ =?iso-8859-1?Q?jn4MpJTlZyy2MxsCmMVv/ZfcmGH9MHvg3fJyY9YphgGaFLQXXg4nw8/Y1Z?=
+ =?iso-8859-1?Q?EYqU/Hcx/iu+qnirPX0Hd+crmpYfav1+yBBaGtjS5a9JDYjIUFmaUpB4YN?=
+ =?iso-8859-1?Q?4niU6VPLoXkV3vq/9iqrHkfyYlf55SAO0aSGhxOMm0Om0a9sFajI0KYvMj?=
+ =?iso-8859-1?Q?YYL05E1qa5f32341BJ37edJwGVbQFKvAJXY9C/yZ2TMuzflCTGFlNH1Vye?=
+ =?iso-8859-1?Q?y1s4S5MKYhResczTUCuUa6GrQIf9ylAbSBZStiDivVLOYpI1rHNLZoFm2Q?=
+ =?iso-8859-1?Q?afnXpoZ9JrvImr7iBbDS2YZZuSxDA3MprcwG7rIu6BEEfdyBn4CfWtU8h7?=
+ =?iso-8859-1?Q?g5GVbhr0CTzOHhD+5o4S2CAUmZVNCdEi8IHl+rdm7ghrAbKlc029k15M+B?=
+ =?iso-8859-1?Q?SaXGdllgb5kKEfn3oE3BWemFh0Dn4yWw54t8xMkV/n2l31BDqDZm53htaQ?=
+ =?iso-8859-1?Q?z1mrZ1rfvIQAMnDIqrJHDfoRIBOkh1lRolMDY6K63cSYMXHsRSo8KOJrjp?=
+ =?iso-8859-1?Q?qlvTA4kJg/wy+7LQiFmpcyPE3IwjKlpFxnCfhc3CdaQzkibAq4Ev3LCgYf?=
+ =?iso-8859-1?Q?h0GJzc+XZTlcbP6DSfPJ6ostZIBizNTDSmLrwZ9AptIr9zctUPZ5x5fWfl?=
+ =?iso-8859-1?Q?9T8dOK4AanVhnz7Upl1xmyBQbubQ0obDyZxBEVm5CpMbfu2mZQYMLXfz54?=
+ =?iso-8859-1?Q?gn3LvvAIFHmU+2os3GpvgIpY2wL/AxaPJTdlrk2NPU8TTOY/S7Fo48MAD9?=
+ =?iso-8859-1?Q?cewD38/6u1TX+13vduB4Bqx6noPAZfio9TsinYwhZmlPezJAFfUFoqLrrR?=
+ =?iso-8859-1?Q?hTpkppbCtnTYdyXEZ7jgotVUoyt59Q6mS+ngTw909dTBXJgtEvTabvtNZE?=
+ =?iso-8859-1?Q?DiHsfzhDezy6nH2evw5ylEDLHWgoYfQ59Aqdbmf6ZxvfqbgJ+ZHV2EujCt?=
+ =?iso-8859-1?Q?dlplhAytkgLJo0llD5VA8ebThzy+ea7cFamfluxwKi3aRlP1YbPr1+4c9n?=
+ =?iso-8859-1?Q?bJASFaG2zrpWDN0wtofbDf04Gy/pq0uWTTyAVk2pwKvl/L+BSoXELMoiQR?=
+ =?iso-8859-1?Q?ScPdRBv6FG1qWJHnRHfKiXTvIBDOGtKCstSuVfWaCikfVpvANg6/MdG4IL?=
+ =?iso-8859-1?Q?hj2MBsN3/p9QLGEmmRt8pw5VR2XhKUNaV61tRrEH0ZBK2QZsYZY7OsX1xy?=
+ =?iso-8859-1?Q?2CIEkmtR6lYoPfS7s28MD9PgwlI7nbrHolxM47MzL2uJgIZy2KpyKpetOr?=
+ =?iso-8859-1?Q?zlXYbdzHnNIYyQ6YOtl69C10ZFwoCHaZgTUqDpUnuekUz5MR5k7z0sIbjz?=
+ =?iso-8859-1?Q?u1ulrd4KmSWfgpR3ypKCQLIjXNhezjtY1VkSzscGihj2ov5pR7z05BcQ?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: d97a0a9b-8399-4ac3-7cda-08dc017c8daa
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Dec 2023 16:49:10.6666 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Dec 2023 16:56:04.6814 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cbd/eFaBahJWIjMl4DPLRU4vkcIjLO6TyonXkCXy2VpQ/dZKH3yl+7avwPvDHOWh+VpHXEr94ca3WOaAK7iu5A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6743
+X-MS-Exchange-CrossTenant-UserPrincipalName: U2cWaDTEwXptVpEUCVZ3X6BZ9dV7zL/5ri+69t1qEJ9jvySgCf0bi3Gu28gDhgecBXMqEMFogXTMD4cziCs2MA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4952
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -145,187 +149,309 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Dec 19, 2023 at 03:37:09PM +0530, Sujaritha Sundaresan wrote:
-> Add vram frequency sysfs attributes under the below hierarchy;
+On Tue, Dec 19, 2023 at 03:37:10PM +0530, Sujaritha Sundaresan wrote:
+> Add sysfs attributes for base balance in gt.
 > 
-> /device/tile#/memory/freq0
-> 			|-rp0_freq
-> 			|-rpn_freq
-> 
-> v2: Drop "vram" from attribute names (Rodrigo)
-> 
-> v3: Add documentation for new sysfs (Riana)
->     Drop prefix from XEHP_PCODE_FREQUENCY_CONFIG (Riana)
-> 
-> v4: Create sysfs under tile#/freq0 after removal of
->     physical_memsize attrbute
-> 
-> v5: Revert back to creating sysfs under tile#/memory/freq0
->     Remove definition of GT_FREQUENCY_MULTIPLIER (Rodrigo)
+> device/tile#gt#/freq0/balance
+> 			|- base_freq_factor
+> 			|- base_freq_factor.scale
+> 			|- base_rp0_freq
+> 			|- base_rpn_freq
 > 
 > Signed-off-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_pcode_api.h  |  8 +++
->  drivers/gpu/drm/xe/xe_tile_sysfs.c | 86 ++++++++++++++++++++++++++++++
->  2 files changed, 94 insertions(+)
+>  drivers/gpu/drm/xe/Makefile              |   1 +
+>  drivers/gpu/drm/xe/xe_gt_balance_sysfs.c | 181 +++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_gt_balance_sysfs.h |  17 +++
+
+I always have a mixed feelings with the _sysfs sufix.
+I believe we should only use that in the case that the only
+thing that that component is doing is to provide and handle
+the sysfs objects themselves.
+
+if it provides key hw functionalities, that should be
+the main part of it. Sysfs is just a consequence on how
+that is exposed...
+
+like xe_gt_idle is better then xe_gt_idle_sysfs,
+I believe simply xe_gt_balance is enough here.
+
+>  drivers/gpu/drm/xe/xe_gt_freq.c          |   3 +
+>  drivers/gpu/drm/xe/xe_pcode_api.h        |   5 +
+>  5 files changed, 207 insertions(+)
+>  create mode 100644 drivers/gpu/drm/xe/xe_gt_balance_sysfs.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_gt_balance_sysfs.h
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
-> index 5935cfe30204..4076a4e9daf3 100644
-> --- a/drivers/gpu/drm/xe/xe_pcode_api.h
-> +++ b/drivers/gpu/drm/xe/xe_pcode_api.h
-> @@ -42,6 +42,14 @@
->  #define	    POWER_SETUP_I1_SHIFT		6	/* 10.6 fixed point format */
->  #define	    POWER_SETUP_I1_DATA_MASK		REG_GENMASK(15, 0)
->  
-> +#define   PCODE_FREQUENCY_CONFIG		0x6e
-> +/* PCODE_FREQUENCY_CONFIG sub-commands (param1) */
-> +#define     PCODE_MBOX_FC_SC_READ_FUSED_P0	0x0
-> +#define     PCODE_MBOX_FC_SC_READ_FUSED_PN	0x1
-> +/* PCODE_MBOX_DOMAIN_* - mailbox domain IDs */
-> +/* PCODE_FREQUENCY_CONFIG param2 */
-
-let's keep some consistency here.
-probably a single like like
-
-/* Frequency Config Sub Commands (param1) */
-above
-
-and
-
-/* Domain IDs (param2) */
-here
-
-> +#define     PCODE_MBOX_DOMAIN_HBM		0x2
-> +
->  struct pcode_err_decode {
->  	int errno;
->  	const char *str;
-> diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.c b/drivers/gpu/drm/xe/xe_tile_sysfs.c
-> index 0f8d3e7fce46..1d34912e6184 100644
-> --- a/drivers/gpu/drm/xe/xe_tile_sysfs.c
-> +++ b/drivers/gpu/drm/xe/xe_tile_sysfs.c
-> @@ -7,9 +7,21 @@
->  #include <linux/sysfs.h>
->  #include <drm/drm_managed.h>
->  
-> +#include "xe_gt_types.h"
-> +#include "xe_pcode.h"
-> +#include "xe_pcode_api.h"
->  #include "xe_tile.h"
->  #include "xe_tile_sysfs.h"
->  
-> +/**
-> + * DOC: Xe Tile sysfs
-> + *
-> + * Provides sysfs entries for frequency in tile
-> + *
-> + * device/tile#/memory/freq0/rp0_freq - The Render Performance 0 level, which is the maximum one.
-> + * device/tile#/memory/freq0/rpn_freq - The Render Performance N level, which is the minimal one.
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 53bd2a8ba1ae..64bfd3d6eab4 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -87,6 +87,7 @@ xe-y += xe_bb.o \
+>  	xe_gt_mcr.o \
+>  	xe_gt_pagefault.o \
+>  	xe_gt_sysfs.o \
+> +	xe_gt_balance_sysfs.o \
+>  	xe_gt_throttle_sysfs.o \
+>  	xe_gt_tlb_invalidation.o \
+>  	xe_gt_topology.o \
+> diff --git a/drivers/gpu/drm/xe/xe_gt_balance_sysfs.c b/drivers/gpu/drm/xe/xe_gt_balance_sysfs.c
+> new file mode 100644
+> index 000000000000..054b90ca128d
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_gt_balance_sysfs.c
+> @@ -0,0 +1,181 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2023 Intel Corporation
 > + */
 > +
->  static void xe_tile_sysfs_kobj_release(struct kobject *kobj)
->  {
->  	kfree(kobj);
-> @@ -20,6 +32,65 @@ static const struct kobj_type xe_tile_sysfs_kobj_type = {
->  	.sysfs_ops = &kobj_sysfs_ops,
->  };
->  
-> +static ssize_t rp0_freq_show(struct device *kdev, struct device_attribute *attr,
-> +			     char *buf)
+> +#include <drm/drm_managed.h>
+> +
+> +#include <regs/xe_reg_defs.h>
+> +#include "xe_device.h"
+> +#include "xe_gt.h"
+> +#include "xe_gt_balance_sysfs.h"
+> +#include "xe_gt_sysfs.h"
+> +#include "xe_pcode.h"
+> +#include "xe_pcode_api.h"
+> +#include "xe_mmio.h"
+> +
+> +/**
+> + * DOC: Xe GT Balance
+> + *
+> + * Provides sysfs entries for balance frequency in GT
+> + *
+> + * device/tile#/gt#/freq0/balance/base_freq_factor - Base frequency factor
+> + * device/tile#/gt#/freq0/balance/base_freq_factor.scale - Base frequency factor scale
+> + * device/tile#/gt#/freq0/balance/base_rp0_freq - Base Render Performance 0 level frequency
+> + * device/tile#//gt#/freq0/balance/base_rpn_freq - Base Render Performance N level frequency
+> + */
+> +
+> +#define GT_FREQUENCY_MULTIPLIER	50
+> +
+> +#define U8_8_VAL_MASK           0xffff
+> +#define U8_8_SCALE_TO_VALUE     "0.00390625"
+
+I believe we should get the explanation in intel_gt_sysfs_pm.c
+about how these values are actually used and add to the kernel
+doc above.
+
+I mean:
+ * Scaling for multipliers (aka frequency factors).
+...
+
+> +
+> +static struct xe_gt *
+> +dev_to_gt(struct device *dev)
 > +{
-> +	struct kobject *kobj = &kdev->kobj;
-> +	struct xe_tile *tile = kobj_to_tile(kobj->parent);
-> +	struct xe_gt *gt = tile->primary_gt;
+> +	return kobj_to_gt(dev->kobj.parent);
+> +}
+> +
+> +static ssize_t freq_factor_scale_show(struct device *dev,
+> +				      struct device_attribute *attr,
+> +				      char *buff)
+> +{
+> +	return sysfs_emit(buff, "%s\n", U8_8_SCALE_TO_VALUE);
+> +}
+> +
+> +static ssize_t base_freq_factor_show(struct device *dev,
+> +				     struct device_attribute *attr,
+> +				     char *buff)
+> +{
+> +	struct xe_gt *gt = dev_to_gt(dev);
+> +	u32 val, mbox;
+> +	int err;
+> +
+> +	mbox = REG_FIELD_PREP(PCODE_MB_COMMAND, PCODE_QOS_MULTIPLIER_GET)
+> +		| REG_FIELD_PREP(PCODE_MB_PARAM1, PCODE_MBOX_DOMAIN_CHIPLET)
+> +		| REG_FIELD_PREP(PCODE_MB_PARAM2, PCODE_MBOX_DOMAIN_BASE);
+> +
+> +	err = xe_pcode_read(gt, mbox, &val, NULL);
+> +	if (err)
+> +		return err;
+> +
+> +	val &= U8_8_VAL_MASK;
+> +
+> +	return sysfs_emit(buff, "%u\n", val);
+> +}
+> +
+> +static ssize_t base_freq_factor_store(struct device *dev,
+> +				      struct device_attribute *attr,
+> +				      const char *buff, size_t count)
+> +{
+> +	struct xe_gt *gt = dev_to_gt(dev);
+> +	u32 val, mbox;
+> +	int err;
+> +
+> +	err = kstrtou32(buff, 0, &val);
+> +	if (err)
+> +		return err;
+> +
+> +	if (val > U8_8_VAL_MASK)
+> +		return -EINVAL;
+> +
+> +	mbox = REG_FIELD_PREP(PCODE_MB_COMMAND, PCODE_QOS_MULTIPLIER_SET)
+> +		| REG_FIELD_PREP(PCODE_MB_PARAM1, PCODE_MBOX_DOMAIN_CHIPLET)
+> +		| REG_FIELD_PREP(PCODE_MB_PARAM2, PCODE_MBOX_DOMAIN_BASE);
+> +
+> +	err = xe_pcode_write(gt, mbox, val);
+> +	if (err)
+> +		return err;
+> +
+> +	return count;
+> +}
+> +static DEVICE_ATTR_RW(base_freq_factor);
+> +static struct device_attribute dev_attr_base_freq_factor_scale =
+> +	__ATTR(base_freq_factor.scale, 0444, freq_factor_scale_show, NULL);
+> +
+> +static ssize_t base_rp0_freq_show(struct device *dev, struct device_attribute *attr,
+> +				  char *buff)
+> +{
+> +	struct xe_gt *gt = dev_to_gt(dev);
 > +	u32 val, mbox;
 > +	int err;
 > +
 > +	mbox = REG_FIELD_PREP(PCODE_MB_COMMAND, PCODE_FREQUENCY_CONFIG)
 > +		| REG_FIELD_PREP(PCODE_MB_PARAM1, PCODE_MBOX_FC_SC_READ_FUSED_P0)
-> +		| REG_FIELD_PREP(PCODE_MB_PARAM2, PCODE_MBOX_DOMAIN_HBM);
+> +		| REG_FIELD_PREP(PCODE_MB_PARAM2, PCODE_MBOX_DOMAIN_BASE);
 > +
 > +	err = xe_pcode_read(gt, mbox, &val, NULL);
 > +	if (err)
 > +		return err;
 > +
 > +	/* data_out - Fused P0 for domain ID in units of 50 MHz */
-> +	val *= 50;
+> +	val *= GT_FREQUENCY_MULTIPLIER;
 > +
-> +	return sysfs_emit(buf, "%u\n", val);
+> +	return sysfs_emit(buff, "%u\n", val);
 > +}
-> +static DEVICE_ATTR_RO(rp0_freq);
+> +static DEVICE_ATTR_RO(base_rp0_freq);
 > +
-> +static ssize_t rpn_freq_show(struct device *kdev, struct device_attribute *attr,
-> +			     char *buf)
+> +static ssize_t base_rpn_freq_show(struct device *dev, struct device_attribute *attr,
+> +				  char *buff)
 > +{
-> +	struct kobject *kobj = &kdev->kobj;
-> +	struct xe_tile *tile = kobj_to_tile(kobj->parent);
-> +	struct xe_gt *gt = tile->primary_gt;
+> +	struct xe_gt *gt = dev_to_gt(dev);
 > +	u32 val, mbox;
 > +	int err;
 > +
 > +	mbox = REG_FIELD_PREP(PCODE_MB_COMMAND, PCODE_FREQUENCY_CONFIG)
 > +		| REG_FIELD_PREP(PCODE_MB_PARAM1, PCODE_MBOX_FC_SC_READ_FUSED_PN)
-> +		| REG_FIELD_PREP(PCODE_MB_PARAM2, PCODE_MBOX_DOMAIN_HBM);
+> +		| REG_FIELD_PREP(PCODE_MB_PARAM2, PCODE_MBOX_DOMAIN_BASE);
 > +
 > +	err = xe_pcode_read(gt, mbox, &val, NULL);
 > +	if (err)
 > +		return err;
 > +
 > +	/* data_out - Fused Pn for domain ID in units of 50 MHz */
-> +	val *= 50;
+> +	val *= GT_FREQUENCY_MULTIPLIER;
 > +
-> +	return sysfs_emit(buf, "%u\n", val);
+> +	return sysfs_emit(buff, "%u\n", val);
 > +}
-> +static DEVICE_ATTR_RO(rpn_freq);
+> +static DEVICE_ATTR_RO(base_rpn_freq);
 > +
-> +static struct attribute *freq_attrs[] = {
-> +	&dev_attr_rp0_freq.attr,
-> +	&dev_attr_rpn_freq.attr,
+> +static struct attribute *balance_attrs[] = {
+> +	&dev_attr_base_freq_factor.attr,
+> +	&dev_attr_base_freq_factor_scale.attr,
+> +	&dev_attr_base_rp0_freq.attr,
+> +	&dev_attr_base_rpn_freq.attr,
 > +	NULL
 > +};
 > +
-> +static const struct attribute_group freq_group_attrs = {
-> +	.name = "freq0",
-> +	.attrs = freq_attrs,
+> +static const struct attribute_group balance_group_attrs = {
+> +	.name = "balance",
+> +	.attrs = balance_attrs,
 > +};
 > +
->  static void tile_sysfs_fini(struct drm_device *drm, void *arg)
->  {
->  	struct xe_tile *tile = arg;
-> @@ -32,6 +103,7 @@ void xe_tile_sysfs_init(struct xe_tile *tile)
->  	struct xe_device *xe = tile_to_xe(tile);
->  	struct device *dev = xe->drm.dev;
->  	struct kobj_tile *kt;
-> +	struct kobject *kobj;
->  	int err;
->  
->  	kt = kzalloc(sizeof(*kt), GFP_KERNEL);
-> @@ -50,6 +122,20 @@ void xe_tile_sysfs_init(struct xe_tile *tile)
->  
->  	tile->sysfs = &kt->base;
->  
-> +	if (xe->info.platform == XE_PVC) {
-> +		kobj = kobject_create_and_add("memory", tile->sysfs);
-> +		if (!kobj)
-> +			drm_warn(&xe->drm, "%s failed, err: %d\n", __func__, -ENOMEM);
-
-Please do not make up the error here. If it is a single error return by
-the function we should probably do something like
- drm_warn(&xe->drm, "failed to add Tile memory directory\n");
-
-> +	}
+> +static void gt_balance_sysfs_fini(struct drm_device *drm, void *arg)
+> +{
+> +	struct xe_gt *gt = arg;
+> +	struct xe_device *xe = gt_to_xe(gt);
 > +
-> +	if (kobj && xe->info.platform == XE_PVC) {
-> +		err = sysfs_create_group(kobj, &freq_group_attrs);
+> +	if (xe->info.platform == XE_PVC)
+> +		sysfs_remove_group(gt->freq, &balance_group_attrs);
+> +}
+> +
+> +void xe_gt_balance_sysfs_init(struct xe_gt *gt)
+> +{
+> +	struct xe_device *xe = gt_to_xe(gt);
+> +	int err;
+> +
+> +	if (xe->info.platform == XE_PVC) {
+> +		err = sysfs_create_group(gt->freq, &balance_group_attrs);
 > +		if (err) {
-> +			drm_warn(&xe->drm, "failed to register vram freq sysfs, err: %d\n", err);
+> +			drm_warn(&xe->drm, "failed to register throttle sysfs, err: %d\n", err);
 > +			return;
 > +		}
 > +	}
 > +
->  	err = drmm_add_action_or_reset(&xe->drm, tile_sysfs_fini, tile);
->  	if (err)
->  		drm_warn(&xe->drm, "%s: drmm_add_action_or_reset failed, err: %d\n",
+> +	err = drmm_add_action_or_reset(&xe->drm, gt_balance_sysfs_fini, gt);
+> +	if (err) {
+> +		drm_warn(&xe->drm, "%s: drmm_add_action_or_reset failed, err: %d\n",
+> +			 __func__, err);
+> +		sysfs_remove_group(gt->freq, &balance_group_attrs);
+> +	}
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_gt_balance_sysfs.h b/drivers/gpu/drm/xe/xe_gt_balance_sysfs.h
+> new file mode 100644
+> index 000000000000..39cec5223cf3
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_gt_balance_sysfs.h
+> @@ -0,0 +1,17 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2023 Intel Corporation
+> + */
+> +
+> +#ifndef _XE_GT_BALANCE_SYSFS_H_
+> +#define _XE_GT_BALANCE_SYSFS_H_
+> +
+> +#include <drm/drm_managed.h>
+> +
+> +#include "xe_device.h"
+> +#include "xe_gt.h"
+> +
+> +void xe_gt_balance_sysfs_init(struct xe_gt *gt);
+> +
+> +#endif /* _XE_GT_BALANCE_SYSFS_H_ */
+> +
+> diff --git a/drivers/gpu/drm/xe/xe_gt_freq.c b/drivers/gpu/drm/xe/xe_gt_freq.c
+> index 08eabcafe7bc..5b0e4fc402ec 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_freq.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_freq.c
+> @@ -13,6 +13,7 @@
+>  
+>  #include "xe_device_types.h"
+>  #include "xe_gt_sysfs.h"
+> +#include "xe_gt_balance_sysfs.h"
+>  #include "xe_gt_throttle_sysfs.h"
+>  #include "xe_guc_pc.h"
+>  
+> @@ -215,5 +216,7 @@ void xe_gt_freq_init(struct xe_gt *gt)
+>  		drm_warn(&xe->drm,  "failed to add freq attrs to %s, err: %d\n",
+>  			 kobject_name(gt->freq), err);
+>  
+> +	xe_gt_balance_sysfs_init(gt);
+> +
+>  	xe_gt_throttle_sysfs_init(gt);
+>  }
+> diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
+> index 4076a4e9daf3..87213b52df4a 100644
+> --- a/drivers/gpu/drm/xe/xe_pcode_api.h
+> +++ b/drivers/gpu/drm/xe/xe_pcode_api.h
+> @@ -49,6 +49,11 @@
+>  /* PCODE_MBOX_DOMAIN_* - mailbox domain IDs */
+>  /* PCODE_FREQUENCY_CONFIG param2 */
+>  #define     PCODE_MBOX_DOMAIN_HBM		0x2
+> +#define     PCODE_MBOX_DOMAIN_CHIPLET		0x6
+> +#define     PCODE_MBOX_DOMAIN_BASE		0x8
+> +#define   PCODE_QOS_MULTIPLIER_SET		0x67
+> +/* See PCODE_MBOX_DOMAIN_* - mailbox domain IDs - param1 and 2 */
+
+this comment seems off here...
+
+> +#define   PCODE_QOS_MULTIPLIER_GET		0x66
+>  
+>  struct pcode_err_decode {
+>  	int errno;
 > -- 
 > 2.25.1
 > 
