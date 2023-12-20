@@ -4,38 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53FA2C3DA6E
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Dec 2023 18:35:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12270C46CCD
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Dec 2023 18:35:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E00CA10E242;
-	Wed, 20 Dec 2023 18:35:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D45FE10E25B;
+	Wed, 20 Dec 2023 18:35:06 +0000 (UTC)
 Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 071DC10E25B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0698610E242
  for <intel-xe@lists.freedesktop.org>; Wed, 20 Dec 2023 18:35:02 +0000 (UTC)
 Received: internal info suppressed
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
- t=1703097293; bh=FVZjkkhzjWM0smiM/CuFajNUtyydHC2zaBTl9p15wBY=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=hptlZEWp6RxRngXjT3+b86iy+hxLQtWr71TFb/0A3PMijSgfSyxsOZkMzH5XRkBKy
- lmS98yzClZu+nQ91YIjGdQVcqfEutTB+8FnBtbKDiu3Cz3xZJ9DSRbrzwhCyvP2BOB
- tkGfEkGwTbJiDILsuWGLgdZUrTcWOEs/DEcIKxxR2qHIuKnfnhFNsVpdb6SdRN6urw
- Ncffs7ol4e0OOQaHTMyQORnphcziaLPu0c2v0QGEJRFRYAw1oIpi+2+tl35g0YuZZ/
- Lk7WVP8Spr4iMVCzV0GEsyGxjntEFTI1uWbNurXSXRWFv7Au0sTce8kCAnaN/A6SoR
- wIZZdxsUsqWzg==
+ t=1703097293; bh=sb2d79nw+iMmqlBWN7HXQlIdGycXZ12vmz2x8Xe18HQ=;
+ h=From:To:Cc:Subject:Date:From;
+ b=mAUiR0Ze5HhlgFCVKTkQZ+kCGj1ZEPdlaFSNVYkbalwKpPtakuTFbxkYn7B5wnLju
+ MQ3HWGGM/eoVOkvNjYgh2BqK9VWwpMQVziUX/oEScIi3CrzlK84k893bXjeDko2cQT
+ bXwDh0UcoabxMvY8xAQPzAtryWMs6UVk0gyDGtfz8D8J2fXLCFn+n1MZrxT3Y9ElIz
+ 6J8x+FZR0AHqSpG1Gy3WU3EOBoLDh5y/flPcxSLbd/BiK2YgItYYphWQXcBXZhdsge
+ BDrHhAUdiV4gv4PKanFv8JYdNlDbjBZ0Z7k+DCLmuplZNAeicNwPx5Eve2DjAXSzHA
+ ePECZzVKEILmA==
 Received: from kelbaz-vm-u22.habana-labs.com (localhost [127.0.0.1])
  by kelbaz-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP
- id 3BKIYmTT297608; Wed, 20 Dec 2023 20:34:48 +0200
+ id 3BKIYmTS297608; Wed, 20 Dec 2023 20:34:48 +0200
 From: Koby Elbaz <kelbaz@habana.ai>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 2/2] drm/xe: restore xe_mmio_ioctl as the ioctl handler of
- the mmio debugfs file
-Date: Wed, 20 Dec 2023 20:34:47 +0200
-Message-Id: <20231220183447.297585-2-kelbaz@habana.ai>
+Subject: [PATCH v2 1/2] drm/xe: add a new debugfs file - mmio
+Date: Wed, 20 Dec 2023 20:34:46 +0200
+Message-Id: <20231220183447.297585-1-kelbaz@habana.ai>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231220183447.297585-1-kelbaz@habana.ai>
-References: <20231220183447.297585-1-kelbaz@habana.ai>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -52,199 +48,51 @@ Cc: daniel@ffwll.ch, rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The drm mmio ioctl handler (xe_mmio_ioctl) wasn't needed anymore,
-and therefore, recently removed.
-Nevertheless, it is now restored for debugging purposes to function
-as the ioctl handler of the 'mmio' debugfs file.
-Note, that the non-admin user's limited mmio access (aka, whitelist),
-was removed being irrelevant anymore, now that a user using debugfs
-must anyway have root permission to use it.
+Now that the former mmio handlers are fully removed, this
+debugfs file will be used for mmio access (read/write)
+through the debugfs ioctl file operation.
 
 Signed-off-by: Koby Elbaz <kelbaz@habana.ai>
 ---
-Changes in v2: removed whitelist support for non-admin users
-
- drivers/gpu/drm/xe/xe_debugfs.c      | 107 ++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_debugfs_mmio.h |  44 +++++++++++
- 2 files changed, 150 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/xe/xe_debugfs_mmio.h
+ drivers/gpu/drm/xe/xe_debugfs.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index c24637ff09d8..a4381e3d7d37 100644
+index c56fd7d59f05..c24637ff09d8 100644
 --- a/drivers/gpu/drm/xe/xe_debugfs.c
 +++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -13,6 +13,10 @@
- #include "xe_device.h"
- #include "xe_gt_debugfs.h"
- #include "xe_step.h"
-+#include "xe_debugfs_mmio.h"
-+#include "xe_mmio.h"
-+#include "regs/xe_regs.h"
-+#include "regs/xe_engine_regs.h"
- 
- #ifdef CONFIG_DRM_XE_DEBUG
- #include "xe_bo_evict.h"
-@@ -97,8 +101,109 @@ static int forcewake_release(struct inode *inode, struct file *file)
+@@ -97,12 +97,22 @@ static int forcewake_release(struct inode *inode, struct file *file)
  	return 0;
  }
  
--static long xe_debugfs_mmio_ioctl(struct file *f, unsigned int cmd, unsigned long arg)
-+static int _xe_debugfs_mmio_ioctl(struct xe_device *xe, struct xe_debugfs_mmio_ioctl_data *args)
- {
-+	struct xe_gt *gt = xe_root_mmio_gt(xe);
-+	unsigned int bits_flag, bytes;
-+	struct xe_reg reg;
-+	int ret = 0;
-+
-+	if (XE_IOCTL_DBG(xe, args->extensions) ||
-+	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
-+		return -EINVAL;
-+
-+	if (XE_IOCTL_DBG(xe, args->flags & ~XE_DEBUGFS_MMIO_VALID_FLAGS))
-+		return -EINVAL;
-+
-+	if (XE_IOCTL_DBG(xe, !(args->flags & XE_DEBUGFS_MMIO_WRITE) && args->value))
-+		return -EINVAL;
-+
-+	bits_flag = args->flags & XE_DEBUGFS_MMIO_BITS_MASK;
-+	bytes = 1 << bits_flag;
-+	if (XE_IOCTL_DBG(xe, args->addr + bytes > xe->mmio.size))
-+		return -EINVAL;
-+
-+	/*
-+	 * TODO: allow distinction between XE_REG / XE_REG_EXT to
-+	 * handle registers from both MMIO & MMIO_EXT space.
-+	 */
-+
-+	/*
-+	 * TODO: migrate to xe_gt_mcr to lookup the mmio range and handle
-+	 * multicast registers. Steering would need uapi extension.
-+	 */
-+	reg = XE_REG(args->addr);
-+
-+	xe_device_mem_access_get(xe);
-+	xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-+
-+	if (args->flags & XE_DEBUGFS_MMIO_WRITE) {
-+		switch (bits_flag) {
-+		case XE_DEBUGFS_MMIO_32BIT:
-+			if (XE_IOCTL_DBG(xe, args->value > U32_MAX)) {
-+				ret = -EINVAL;
-+				goto exit;
-+			}
-+			xe_mmio_write32(gt, reg, args->value);
-+			break;
-+		default:
-+			drm_dbg(&xe->drm, "Invalid MMIO bit size");
-+			fallthrough;
-+		case XE_DEBUGFS_MMIO_8BIT: /* TODO */
-+		case XE_DEBUGFS_MMIO_16BIT: /* TODO */
-+			ret = -EOPNOTSUPP;
-+			goto exit;
-+		}
-+	}
-+
-+	if (args->flags & XE_DEBUGFS_MMIO_READ) {
-+		switch (bits_flag) {
-+		case XE_DEBUGFS_MMIO_32BIT:
-+			args->value = xe_mmio_read32(gt, reg);
-+			break;
-+		case XE_DEBUGFS_MMIO_64BIT:
-+			args->value = xe_mmio_read64_2x32(gt, reg);
-+			break;
-+		default:
-+			drm_dbg(&xe->drm, "Invalid MMIO bit size");
-+			fallthrough;
-+		case XE_DEBUGFS_MMIO_8BIT: /* TODO */
-+		case XE_DEBUGFS_MMIO_16BIT: /* TODO */
-+			ret = -EOPNOTSUPP;
-+		}
-+	}
-+
-+exit:
-+	xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-+	xe_device_mem_access_put(xe);
-+
-+	return ret;
++static long xe_debugfs_mmio_ioctl(struct file *f, unsigned int cmd, unsigned long arg)
++{
++	return 0;
 +}
 +
-+static long xe_debugfs_mmio_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
-+{
-+	struct xe_device *xe = file_inode(filp)->i_private;
-+	struct xe_debugfs_mmio_ioctl_data mmio_data;
-+	int ret;
-+
-+	if (cmd == XE_DEBUGFS_MMIO_IOCTL) {
-+		ret = copy_from_user(&mmio_data, (struct xe_debugfs_mmio_ioctl_data __user *)arg,
-+				sizeof(mmio_data));
-+		if (ret)
-+			return -EFAULT;
-+
-+		ret = _xe_debugfs_mmio_ioctl(xe, &mmio_data);
-+		if (ret)
-+			return ret;
-+
-+		ret = copy_to_user((struct xe_debugfs_mmio_ioctl_data __user *)arg,
-+				&mmio_data, sizeof(mmio_data));
-+		if (ret)
-+			return -EFAULT;
-+	} else {
-+		return -EINVAL;
-+	}
-+
- 	return 0;
- }
+ static const struct file_operations forcewake_all_fops = {
+ 	.owner = THIS_MODULE,
+ 	.open = forcewake_open,
+ 	.release = forcewake_release,
+ };
  
-diff --git a/drivers/gpu/drm/xe/xe_debugfs_mmio.h b/drivers/gpu/drm/xe/xe_debugfs_mmio.h
-new file mode 100644
-index 000000000000..52590b5aca0e
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_debugfs_mmio.h
-@@ -0,0 +1,44 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef _XE_DEBUGFS_MMIO_H_
-+#define _XE_DEBUGFS_MMIO_H_
-+
-+#include <drm/drm.h>
-+
-+#define XE_DEBUGFS_MMIO_8BIT		0x0
-+#define XE_DEBUGFS_MMIO_16BIT		0x1
-+#define XE_DEBUGFS_MMIO_32BIT		0x2
-+#define XE_DEBUGFS_MMIO_64BIT		0x3
-+#define XE_DEBUGFS_MMIO_BITS_MASK	0x3
-+#define XE_DEBUGFS_MMIO_READ		0x4
-+#define XE_DEBUGFS_MMIO_WRITE		0x8
-+
-+#define XE_DEBUGFS_MMIO_VALID_FLAGS (\
-+	XE_DEBUGFS_MMIO_BITS_MASK |\
-+	XE_DEBUGFS_MMIO_READ |\
-+	XE_DEBUGFS_MMIO_WRITE)
-+
-+struct xe_debugfs_mmio_ioctl_data {
-+	/** @extensions: Pointer to the first extension struct, if any */
-+	__u64 extensions;
-+
-+	__u32 addr;
-+
-+	__u32 flags;
-+
-+	__u64 value;
-+
-+	/** @reserved: Reserved */
-+	__u64 reserved[2];
++static const struct file_operations mmio_fops = {
++	.owner = THIS_MODULE,
++	.unlocked_ioctl = xe_debugfs_mmio_ioctl,
 +};
 +
-+#define XE_DEBUGFS_MMIO_IOCTL_NR	0x00
+ void xe_debugfs_register(struct xe_device *xe)
+ {
+ 	struct ttm_device *bdev = &xe->ttm;
+@@ -141,6 +151,8 @@ void xe_debugfs_register(struct xe_device *xe)
+ 	for_each_gt(gt, xe, id)
+ 		xe_gt_debugfs_register(gt);
+ 
++	debugfs_create_file("mmio", 0644, root, xe, &mmio_fops);
 +
-+#define XE_DEBUGFS_MMIO_IOCTL \
-+	_IOWR(0x20, XE_DEBUGFS_MMIO_IOCTL_NR, struct xe_debugfs_mmio_ioctl_data)
-+
-+
-+#endif /* _XE_DEBUGFS_MMIO_H_ */
+ #ifdef CONFIG_FAULT_INJECTION
+ 	fault_create_debugfs_attr("fail_gt_reset", root, &gt_reset_failure);
+ #endif
 -- 
 2.34.1
 
