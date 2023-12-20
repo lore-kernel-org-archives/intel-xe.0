@@ -4,52 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F4AEC3DA6E
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Dec 2023 16:17:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1C30C3DA6E
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Dec 2023 16:19:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA75710E0E8;
-	Wed, 20 Dec 2023 16:17:54 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 459E910E0E8
- for <intel-xe@lists.freedesktop.org>; Wed, 20 Dec 2023 16:17:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65E5310E0E8;
+	Wed, 20 Dec 2023 16:19:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D39D10E0E8
+ for <intel-xe@lists.freedesktop.org>; Wed, 20 Dec 2023 16:19:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703089073; x=1734625073;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Cx+3SOiMlszIe9vsKnWWlSRO9ylL/ViuuFWknQwDtMA=;
- b=iFwQdvE3Q52zuTX+KWmDHnXdeW63Qzx+tXn5fBCjqGAq4kwhKZqPrXRq
- pIkt3ulc+Zpq1PJjTfpgJTjN6pgx8/KqsnMsHwRpHPbXzvm0SwzFS5APF
- dBUEMBhDoWy0WyVNX9QDU4vTZIYjv1dZzCtDowE5XaVk2XR9j88pV+tR6
- iLXfvUwFc6gszapWIVO6M8vIclIT+xnbTPw9xNs0SXs77J8WXKsG0usyL
- ID6uJeXkJBCCUxcmpkZ7f7s1WUhmjjXyqLs5mWiWRfpKl8j7A1YCkqog3
- djNYV8Eo2doYHQR+HbilQiAT2/ikAg8niQl5i/TnWzMTjcqbsWpOxDm6+ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="2664300"
-X-IronPort-AV: E=Sophos;i="6.04,291,1695711600"; 
-   d="scan'208";a="2664300"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2023 08:17:52 -0800
+ t=1703089170; x=1734625170;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=al51hFAmS1wQ5fT3vB5z4tTqKYYJyHiMQC+rx6a9sB0=;
+ b=TxGHldKzxj+YDobZG7X7KiiXzslfM/JuaQmdHkPZ1eSJYpp98xmVTmZJ
+ oPpjFFmAXVg0ul0hn37ikO/fYgt3XnmpjJz9upvMHGs7L6Q1NeI3upybN
+ Xz2wf2IM8iV0XVXAc4c0hQ3busbriHKksD/dwo6DdIHlzC93ly8DKFhHY
+ AVGSKqSxPFQKKTPkqJ1dRD8Ye9gt21P9snK+5knWNOSpOMXB7DVGnZ485
+ BnVtmEUd7KY6R3iQ1S4JCK5u7kG/CYP0HexmYrUMCF+B32lTGG7S4TZqF
+ TsqyBLuPa4f8JS1+af2qEFOZX4LadKXOuiPU3hX65D9heqKfTS3vzMUoW w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="482023165"
+X-IronPort-AV: E=Sophos;i="6.04,291,1695711600"; d="scan'208";a="482023165"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2023 08:19:30 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="726126984"
-X-IronPort-AV: E=Sophos;i="6.04,291,1695711600"; d="scan'208";a="726126984"
-Received: from sbint17x-mobl.gar.corp.intel.com (HELO [10.249.254.75])
- ([10.249.254.75])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2023 08:17:51 -0800
-Message-ID: <a3ec9850-19eb-c99d-eafa-ad7eda8cb796@linux.intel.com>
-Date: Wed, 20 Dec 2023 17:17:49 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="846780847"
+X-IronPort-AV: E=Sophos;i="6.04,291,1695711600"; d="scan'208";a="846780847"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2023 08:19:29 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH] drm/xe: Remove uninitialized variable from warning
+Date: Wed, 20 Dec 2023 08:19:23 -0800
+Message-Id: <20231220161923.3740489-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH] drm/xe/vm: Fix an error path
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-References: <20231220144214.2077-1-thomas.hellstrom@linux.intel.com>
- <xha45ldvurbfzou45zdtcygtczipw3dfw3jkokqx3oxfvrk7iu@4kswrmq6qrx2>
-Content-Language: en-US
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <xha45ldvurbfzou45zdtcygtczipw3dfw3jkokqx3oxfvrk7iu@4kswrmq6qrx2>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,73 +54,41 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dafna Hirschfeld <dhirschfeld@habana.ai>, intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+"err" is not initialized when failing to create and add the freq0 sysfs
+file. Remove it from the message. This fixes the following warning with
+clang:
 
-On 12/20/23 17:13, Lucas De Marchi wrote:
-> On Wed, Dec 20, 2023 at 03:42:14PM +0100, Thomas Hellström wrote:
->> If using the VM_BIND_OP_UNMAP_ALL without any bound vmas for the
->> vm, we will end up dereferencin an uninitialized variable and leak a
->
-> dereferencing
->
->> bo lock. Fix this.
->>
->> Reported-by: Dafna Hirschfeld <dhirschfeld@habana.ai>
->> Closes: 
->> https://lore.kernel.org/intel-xe/jrwua7ckbiozfcaodx4gg2h4taiuxs53j5zlpf3qzvyhyiyl2d@pbs3plurokrj/
->> Suggested-by: Dafna Hirschfeld <dhirschfeld@habana.ai>
->> Fixes: 9f232f4ae249 ("drm/xe: Port Xe to GPUVA")
->>
->
-> ^ this newline needs to be removed so `git log --format="%(trailers)"'
-> shows everything, not only your s-o-b.
-Will fix these.
->
->> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> ---
->> drivers/gpu/drm/xe/xe_vm.c | 8 +++++---
->> 1 file changed, 5 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
->> index 1ca917b8315c..127842656a23 100644
->> --- a/drivers/gpu/drm/xe/xe_vm.c
->> +++ b/drivers/gpu/drm/xe/xe_vm.c
->> @@ -2063,9 +2063,11 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, 
->> struct xe_bo *bo,
->>         if (err)
->>             return ERR_PTR(err);
->>
->> -        vm_bo = drm_gpuvm_bo_find(&vm->gpuvm, obj);
->> -        if (!vm_bo)
->> -            break;
->> +        vm_bo = drm_gpuvm_bo_obtain(&vm->gpuvm, obj);
->
-> if the issue with that we don't have any bound vmas, why are we going to
-> create a new one just to be released?
+	../drivers/gpu/drm/xe/xe_gt_freq.c:202:30: error: variable 'err' is uninitialized when used here [-Werror,-Wuninitialized]
+				 kobject_name(gt->sysfs), err);
+							  ^~~
 
-The expected outcome of this operation, AFAICT is, rather than to error, 
-to create  an ops with an empty list of operations, so we could in 
-theory kmalloc ops and just initialize its list. However that would be 
-fragile and second-guessing what gpuvm does internally, so I opted for 
-this solution instead.
+Fixes: fc5b7e3efff3 ("drm/xe: Create a xe_gt_freq component for raw management and sysfs")
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_freq.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-/Thomas
+diff --git a/drivers/gpu/drm/xe/xe_gt_freq.c b/drivers/gpu/drm/xe/xe_gt_freq.c
+index 08eabcafe7bc..3adfa6686e7c 100644
+--- a/drivers/gpu/drm/xe/xe_gt_freq.c
++++ b/drivers/gpu/drm/xe/xe_gt_freq.c
+@@ -198,8 +198,8 @@ void xe_gt_freq_init(struct xe_gt *gt)
+ 
+ 	gt->freq = kobject_create_and_add("freq0", gt->sysfs);
+ 	if (!gt->freq) {
+-		drm_warn(&xe->drm, "failed to add freq0 directory to %s, err: %d\n",
+-			 kobject_name(gt->sysfs), err);
++		drm_warn(&xe->drm, "failed to add freq0 directory to %s\n",
++			 kobject_name(gt->sysfs));
+ 		return;
+ 	}
+ 
+-- 
+2.40.1
 
-
-
->
-> Lucas De Marchi
->
->> +        if (IS_ERR(vm_bo)) {
->> +            xe_bo_unlock(bo);
->> +            return ERR_CAST(vm_bo);
->> +        }
->>
->>         ops = drm_gpuvm_bo_unmap_ops_create(vm_bo);
->>         drm_gpuvm_bo_put(vm_bo);
->> -- 
->> 2.42.0
->>
