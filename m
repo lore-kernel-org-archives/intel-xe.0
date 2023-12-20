@@ -4,54 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36CB3C3DA6E
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Dec 2023 17:10:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53FA2C3DA6E
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Dec 2023 18:35:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCF5E10E232;
-	Wed, 20 Dec 2023 17:10:51 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCB4110E170;
- Wed, 20 Dec 2023 17:10:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703092250; x=1734628250;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=MRftkw61N1IaDOYcEBtyXLKhv8bLSWH5WdBRNa3VVsg=;
- b=fMOYzYGthQL9O/VKzvzDK/RiJOTkHepw3DUe0NIYscTIsGPAbame5M3k
- 1Q9Xuzj325t1vxEJFNbAtDxidMS1uRCNNoTuP7OhPDRGV4B55mL88Joni
- 6USo5vk1xDkgaVFvDLKi4EYlHWIaMJeVoZ5HcMUMKUSmJTR0DeaoTaoNk
- wHNdHFBGEGZl3KuIqRuuSWqJhjXxari9zhLQlxyZWAp1qIjV6kN5CckFL
- j9f4rC3tPyOModUbprzkNurQd4qBkCdS5D4gFc1ecsvYxz2Hnpi/RXL1f
- RfHwHH4apuZb+/VKA6x03H3QM5Hl/X0+Ts1RyyNi8XAL2jkjW4WEtWxcS Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="3079416"
-X-IronPort-AV: E=Sophos;i="6.04,291,1695711600"; 
-   d="scan'208";a="3079416"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2023 09:10:42 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="810669421"
-X-IronPort-AV: E=Sophos;i="6.04,291,1695711600"; d="scan'208";a="810669421"
-Received: from kabdulsa-mobl.gar.corp.intel.com (HELO [10.249.254.197])
- ([10.249.254.197])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2023 09:10:39 -0800
-Message-ID: <1f60119f-a083-258f-20b6-237f67a81ca4@linux.intel.com>
-Date: Wed, 20 Dec 2023 18:10:35 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id E00CA10E242;
+	Wed, 20 Dec 2023 18:35:04 +0000 (UTC)
+Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 071DC10E25B
+ for <intel-xe@lists.freedesktop.org>; Wed, 20 Dec 2023 18:35:02 +0000 (UTC)
+Received: internal info suppressed
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
+ t=1703097293; bh=FVZjkkhzjWM0smiM/CuFajNUtyydHC2zaBTl9p15wBY=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=hptlZEWp6RxRngXjT3+b86iy+hxLQtWr71TFb/0A3PMijSgfSyxsOZkMzH5XRkBKy
+ lmS98yzClZu+nQ91YIjGdQVcqfEutTB+8FnBtbKDiu3Cz3xZJ9DSRbrzwhCyvP2BOB
+ tkGfEkGwTbJiDILsuWGLgdZUrTcWOEs/DEcIKxxR2qHIuKnfnhFNsVpdb6SdRN6urw
+ Ncffs7ol4e0OOQaHTMyQORnphcziaLPu0c2v0QGEJRFRYAw1oIpi+2+tl35g0YuZZ/
+ Lk7WVP8Spr4iMVCzV0GEsyGxjntEFTI1uWbNurXSXRWFv7Au0sTce8kCAnaN/A6SoR
+ wIZZdxsUsqWzg==
+Received: from kelbaz-vm-u22.habana-labs.com (localhost [127.0.0.1])
+ by kelbaz-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP
+ id 3BKIYmTT297608; Wed, 20 Dec 2023 20:34:48 +0200
+From: Koby Elbaz <kelbaz@habana.ai>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH v2 2/2] drm/xe: restore xe_mmio_ioctl as the ioctl handler of
+ the mmio debugfs file
+Date: Wed, 20 Dec 2023 20:34:47 +0200
+Message-Id: <20231220183447.297585-2-kelbaz@habana.ai>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231220183447.297585-1-kelbaz@habana.ai>
+References: <20231220183447.297585-1-kelbaz@habana.ai>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH] drm/xe/vm: Fix an error path
-Content-Language: en-US
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-References: <20231220144214.2077-1-thomas.hellstrom@linux.intel.com>
- <xha45ldvurbfzou45zdtcygtczipw3dfw3jkokqx3oxfvrk7iu@4kswrmq6qrx2>
- <a3ec9850-19eb-c99d-eafa-ad7eda8cb796@linux.intel.com>
- <fgz7xxwduilcxjtqig4lfbmjphb4drwhemdc5m3rsrcev3fbwu@fciw2gey3xsv>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <fgz7xxwduilcxjtqig4lfbmjphb4drwhemdc5m3rsrcev3fbwu@fciw2gey3xsv>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,100 +48,203 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dafna Hirschfeld <dhirschfeld@habana.ai>,
- Danilo Krummrich <dakr@redhat.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: daniel@ffwll.ch, rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+The drm mmio ioctl handler (xe_mmio_ioctl) wasn't needed anymore,
+and therefore, recently removed.
+Nevertheless, it is now restored for debugging purposes to function
+as the ioctl handler of the 'mmio' debugfs file.
+Note, that the non-admin user's limited mmio access (aka, whitelist),
+was removed being irrelevant anymore, now that a user using debugfs
+must anyway have root permission to use it.
 
-On 12/20/23 17:29, Lucas De Marchi wrote:
-> On Wed, Dec 20, 2023 at 05:17:49PM +0100, Thomas Hellström wrote:
->>
->> On 12/20/23 17:13, Lucas De Marchi wrote:
->>> On Wed, Dec 20, 2023 at 03:42:14PM +0100, Thomas Hellström wrote:
->>>> If using the VM_BIND_OP_UNMAP_ALL without any bound vmas for the
->>>> vm, we will end up dereferencin an uninitialized variable and leak a
->>>
->>> dereferencing
->>>
->>>> bo lock. Fix this.
->>>>
->>>> Reported-by: Dafna Hirschfeld <dhirschfeld@habana.ai>
->>>> Closes: 
->>>> https://lore.kernel.org/intel-xe/jrwua7ckbiozfcaodx4gg2h4taiuxs53j5zlpf3qzvyhyiyl2d@pbs3plurokrj/
->>>> Suggested-by: Dafna Hirschfeld <dhirschfeld@habana.ai>
->>>> Fixes: 9f232f4ae249 ("drm/xe: Port Xe to GPUVA")
->>>>
->>>
->>> ^ this newline needs to be removed so `git log --format="%(trailers)"'
->>> shows everything, not only your s-o-b.
->> Will fix these.
->>>
->>>> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>>> ---
->>>> drivers/gpu/drm/xe/xe_vm.c | 8 +++++---
->>>> 1 file changed, 5 insertions(+), 3 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
->>>> index 1ca917b8315c..127842656a23 100644
->>>> --- a/drivers/gpu/drm/xe/xe_vm.c
->>>> +++ b/drivers/gpu/drm/xe/xe_vm.c
->>>> @@ -2063,9 +2063,11 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, 
->>>> struct xe_bo *bo,
->>>>         if (err)
->>>>             return ERR_PTR(err);
->>>>
->>>> -        vm_bo = drm_gpuvm_bo_find(&vm->gpuvm, obj);
->>>> -        if (!vm_bo)
->>>> -            break;
->>>> +        vm_bo = drm_gpuvm_bo_obtain(&vm->gpuvm, obj);
->>>
->>> if the issue with that we don't have any bound vmas, why are we 
->>> going to
->>> create a new one just to be released?
->>
->> The expected outcome of this operation, AFAICT is, rather than to 
->> error, to create  an ops with an empty list of operations, so we 
->> could in theory kmalloc ops and just initialize its list. However 
->> that would be fragile and second-guessing what gpuvm does internally, 
->> so I opted for this solution instead.
->
-> ok,
->
-> Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
->
-> Adding dri-devel and Danilo to Cc as it looks like we are the first
-> users of this api.
->
-> The NULL vs ptr-error between _find and _obtain looked suspicious when I
-> first looked, but they match the current implementation.
->
-> thanks
-> Lucas De Marchi
+Signed-off-by: Koby Elbaz <kelbaz@habana.ai>
+---
+Changes in v2: removed whitelist support for non-admin users
 
-Thanks for reviewing, Lucas.
+ drivers/gpu/drm/xe/xe_debugfs.c      | 107 ++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_debugfs_mmio.h |  44 +++++++++++
+ 2 files changed, 150 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_debugfs_mmio.h
 
-/Thomas
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index c24637ff09d8..a4381e3d7d37 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -13,6 +13,10 @@
+ #include "xe_device.h"
+ #include "xe_gt_debugfs.h"
+ #include "xe_step.h"
++#include "xe_debugfs_mmio.h"
++#include "xe_mmio.h"
++#include "regs/xe_regs.h"
++#include "regs/xe_engine_regs.h"
+ 
+ #ifdef CONFIG_DRM_XE_DEBUG
+ #include "xe_bo_evict.h"
+@@ -97,8 +101,109 @@ static int forcewake_release(struct inode *inode, struct file *file)
+ 	return 0;
+ }
+ 
+-static long xe_debugfs_mmio_ioctl(struct file *f, unsigned int cmd, unsigned long arg)
++static int _xe_debugfs_mmio_ioctl(struct xe_device *xe, struct xe_debugfs_mmio_ioctl_data *args)
+ {
++	struct xe_gt *gt = xe_root_mmio_gt(xe);
++	unsigned int bits_flag, bytes;
++	struct xe_reg reg;
++	int ret = 0;
++
++	if (XE_IOCTL_DBG(xe, args->extensions) ||
++	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
++		return -EINVAL;
++
++	if (XE_IOCTL_DBG(xe, args->flags & ~XE_DEBUGFS_MMIO_VALID_FLAGS))
++		return -EINVAL;
++
++	if (XE_IOCTL_DBG(xe, !(args->flags & XE_DEBUGFS_MMIO_WRITE) && args->value))
++		return -EINVAL;
++
++	bits_flag = args->flags & XE_DEBUGFS_MMIO_BITS_MASK;
++	bytes = 1 << bits_flag;
++	if (XE_IOCTL_DBG(xe, args->addr + bytes > xe->mmio.size))
++		return -EINVAL;
++
++	/*
++	 * TODO: allow distinction between XE_REG / XE_REG_EXT to
++	 * handle registers from both MMIO & MMIO_EXT space.
++	 */
++
++	/*
++	 * TODO: migrate to xe_gt_mcr to lookup the mmio range and handle
++	 * multicast registers. Steering would need uapi extension.
++	 */
++	reg = XE_REG(args->addr);
++
++	xe_device_mem_access_get(xe);
++	xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++
++	if (args->flags & XE_DEBUGFS_MMIO_WRITE) {
++		switch (bits_flag) {
++		case XE_DEBUGFS_MMIO_32BIT:
++			if (XE_IOCTL_DBG(xe, args->value > U32_MAX)) {
++				ret = -EINVAL;
++				goto exit;
++			}
++			xe_mmio_write32(gt, reg, args->value);
++			break;
++		default:
++			drm_dbg(&xe->drm, "Invalid MMIO bit size");
++			fallthrough;
++		case XE_DEBUGFS_MMIO_8BIT: /* TODO */
++		case XE_DEBUGFS_MMIO_16BIT: /* TODO */
++			ret = -EOPNOTSUPP;
++			goto exit;
++		}
++	}
++
++	if (args->flags & XE_DEBUGFS_MMIO_READ) {
++		switch (bits_flag) {
++		case XE_DEBUGFS_MMIO_32BIT:
++			args->value = xe_mmio_read32(gt, reg);
++			break;
++		case XE_DEBUGFS_MMIO_64BIT:
++			args->value = xe_mmio_read64_2x32(gt, reg);
++			break;
++		default:
++			drm_dbg(&xe->drm, "Invalid MMIO bit size");
++			fallthrough;
++		case XE_DEBUGFS_MMIO_8BIT: /* TODO */
++		case XE_DEBUGFS_MMIO_16BIT: /* TODO */
++			ret = -EOPNOTSUPP;
++		}
++	}
++
++exit:
++	xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++	xe_device_mem_access_put(xe);
++
++	return ret;
++}
++
++static long xe_debugfs_mmio_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
++{
++	struct xe_device *xe = file_inode(filp)->i_private;
++	struct xe_debugfs_mmio_ioctl_data mmio_data;
++	int ret;
++
++	if (cmd == XE_DEBUGFS_MMIO_IOCTL) {
++		ret = copy_from_user(&mmio_data, (struct xe_debugfs_mmio_ioctl_data __user *)arg,
++				sizeof(mmio_data));
++		if (ret)
++			return -EFAULT;
++
++		ret = _xe_debugfs_mmio_ioctl(xe, &mmio_data);
++		if (ret)
++			return ret;
++
++		ret = copy_to_user((struct xe_debugfs_mmio_ioctl_data __user *)arg,
++				&mmio_data, sizeof(mmio_data));
++		if (ret)
++			return -EFAULT;
++	} else {
++		return -EINVAL;
++	}
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_debugfs_mmio.h b/drivers/gpu/drm/xe/xe_debugfs_mmio.h
+new file mode 100644
+index 000000000000..52590b5aca0e
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_debugfs_mmio.h
+@@ -0,0 +1,44 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _XE_DEBUGFS_MMIO_H_
++#define _XE_DEBUGFS_MMIO_H_
++
++#include <drm/drm.h>
++
++#define XE_DEBUGFS_MMIO_8BIT		0x0
++#define XE_DEBUGFS_MMIO_16BIT		0x1
++#define XE_DEBUGFS_MMIO_32BIT		0x2
++#define XE_DEBUGFS_MMIO_64BIT		0x3
++#define XE_DEBUGFS_MMIO_BITS_MASK	0x3
++#define XE_DEBUGFS_MMIO_READ		0x4
++#define XE_DEBUGFS_MMIO_WRITE		0x8
++
++#define XE_DEBUGFS_MMIO_VALID_FLAGS (\
++	XE_DEBUGFS_MMIO_BITS_MASK |\
++	XE_DEBUGFS_MMIO_READ |\
++	XE_DEBUGFS_MMIO_WRITE)
++
++struct xe_debugfs_mmio_ioctl_data {
++	/** @extensions: Pointer to the first extension struct, if any */
++	__u64 extensions;
++
++	__u32 addr;
++
++	__u32 flags;
++
++	__u64 value;
++
++	/** @reserved: Reserved */
++	__u64 reserved[2];
++};
++
++#define XE_DEBUGFS_MMIO_IOCTL_NR	0x00
++
++#define XE_DEBUGFS_MMIO_IOCTL \
++	_IOWR(0x20, XE_DEBUGFS_MMIO_IOCTL_NR, struct xe_debugfs_mmio_ioctl_data)
++
++
++#endif /* _XE_DEBUGFS_MMIO_H_ */
+-- 
+2.34.1
 
-
-
->
->>
->> /Thomas
->>
->>
->>
->>>
->>> Lucas De Marchi
->>>
->>>> +        if (IS_ERR(vm_bo)) {
->>>> +            xe_bo_unlock(bo);
->>>> +            return ERR_CAST(vm_bo);
->>>> +        }
->>>>
->>>>         ops = drm_gpuvm_bo_unmap_ops_create(vm_bo);
->>>>         drm_gpuvm_bo_put(vm_bo);
->>>> -- 
->>>> 2.42.0
->>>>
