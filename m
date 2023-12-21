@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDE70C46CD2
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Dec 2023 04:28:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2A1BC4706C
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Dec 2023 04:28:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF0B010E65B;
-	Thu, 21 Dec 2023 04:28:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4D4710E65C;
+	Thu, 21 Dec 2023 04:28:24 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7665010E653;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECE6D10E658;
  Thu, 21 Dec 2023 04:28:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1703132902; x=1734668902;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kFTI+4vG3BRrNxkKNlzHPA05bP2aYXoRLJZ0TZub+CI=;
- b=BbGTmMDEDOU6tY+F396cFQmCC2ozUAGAEBUdCTVz4dyC7Njf767KDcYI
- 5L9AgNXp+30g0j7xBzeKvOHMG8333+E/djqDatbsxMzTXFA05Go7XrU0v
- mznhc6EllwegivTb/8lD8exgSoO2mmjz+3HFJQ1EY87IPxHR9DJuVS6Z2
- zSmY6zsuPNR4K1r8RCVzDCuUlPcWyPEEg5R3KKHfPjy29XWDPCYnyBW0d
- Y813gcQOEI9xolHaJxAqE12T/CBkXAd10rstxVbYV8Hn3ZOkYuf7QbubU
- xmLTWiGXmEvZ/iSv1nccHNHn0/ASdRyDnu5miSnmqTzIKY3W42JTfKB9l Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="427069766"
-X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="427069766"
+ bh=468vXP6XMA+Ped90HBw+ujY2GwFKDU6DLNg9OR9HBxA=;
+ b=WH5s/lQ8yPWVvxZ0F88tYxL77jafZhXHtckxeMGeBGn3KrR55kGF69NL
+ vs3jLBUP1QsgEWgrgQQzMZaJ1BrBwQle/SGM5cUp9LhTBfXUluHiy28vK
+ GWg5500ancfQXqsgyMaORXRm6fbyrKqjK5I8iUHSVZIlCqEruW5gaEXWQ
+ Li75p4Le0rt2e1C1RXIW0J8PgB5BOUBMW56z21Czp4tFR3+id4cQzm27N
+ X79q/RQVPNps7nw2kCV/VWK+8U/Fv7fqFbvldNUJTtWeB4769IwRlJjzU
+ vY9nVqGjS/ztc+F7GAURKy5HJLbPhj50FpyU65kjoY4y79HOK1ZkPOSjY A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="427069773"
+X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="427069773"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Dec 2023 20:28:22 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="805481358"
-X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="805481358"
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="805481376"
+X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="805481376"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Dec 2023 20:28:20 -0800
 From: Oak Zeng <oak.zeng@intel.com>
 To: dri-devel@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH 07/22] drm/xe/svm: Add helper for binding hmm range to gpu
-Date: Wed, 20 Dec 2023 23:37:57 -0500
-Message-Id: <20231221043812.3783313-8-oak.zeng@intel.com>
+Subject: [PATCH 13/22] drm/xe/svm: Handle CPU page fault
+Date: Wed, 20 Dec 2023 23:38:03 -0500
+Message-Id: <20231221043812.3783313-14-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20231221043812.3783313-1-oak.zeng@intel.com>
 References: <20231221043812.3783313-1-oak.zeng@intel.com>
@@ -61,212 +61,403 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add helper function xe_bind_svm_range to bind a svm range
-to gpu. A temporary xe_vma is created locally to re-use
-existing page table update functions which are vma-based.
+Under the picture of svm, CPU and GPU program share one same
+virtual address space. The backing store of this virtual address
+space can be either in system memory or device memory. Since GPU
+device memory is remaped as DEVICE_PRIVATE, CPU can't access it.
+Any CPU access to device memory causes a page fault. Implement
+a page fault handler to migrate memory back to system memory and
+map it to CPU page table so the CPU program can proceed.
 
-The svm page table update lock design is different from
-userptr and bo page table update. A xe_pt_svm_pre_commit
-function is introduced for svm range pre-commitment.
-
-A hmm_range pointer is added to xe_vma struct.
+Also unbind this page from GPU side, and free the original GPU
+device page
 
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Co-developed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@intel.com>
 Cc: Brian Welty <brian.welty@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pt.c       | 101 ++++++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_pt.h       |   4 ++
- drivers/gpu/drm/xe/xe_vm_types.h |  10 +++
- 3 files changed, 113 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_device_types.h |  12 ++
+ drivers/gpu/drm/xe/xe_svm.h          |   8 +-
+ drivers/gpu/drm/xe/xe_svm_devmem.c   |  10 +-
+ drivers/gpu/drm/xe/xe_svm_migrate.c  | 230 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_svm_range.c    |  27 ++++
+ 5 files changed, 280 insertions(+), 7 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_svm_migrate.c
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index de1030a47588..65cfac88ab2f 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -17,6 +17,7 @@
- #include "xe_trace.h"
- #include "xe_ttm_stolen_mgr.h"
- #include "xe_vm.h"
-+#include "xe_svm.h"
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index c67c28f04d2f..ac77996bebe6 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -555,4 +555,16 @@ struct xe_file {
+ 	struct xe_drm_client *client;
+ };
  
- struct xe_pt_dir {
- 	struct xe_pt pt;
-@@ -617,7 +618,10 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
- 	xe_bo_assert_held(bo);
- 
- 	if (!xe_vma_is_null(vma)) {
--		if (xe_vma_is_userptr(vma))
-+		if (vma->svm_sg)
-+			xe_res_first_sg(vma->svm_sg, 0, xe_vma_size(vma),
-+					&curs);
-+		else if (xe_vma_is_userptr(vma))
- 			xe_res_first_sg(vma->userptr.sg, 0, xe_vma_size(vma),
- 					&curs);
- 		else if (xe_bo_is_vram(bo) || xe_bo_is_stolen(bo))
-@@ -1046,6 +1050,28 @@ static int xe_pt_userptr_pre_commit(struct xe_migrate_pt_update *pt_update)
- 	return 0;
- }
- 
-+static int xe_pt_svm_pre_commit(struct xe_migrate_pt_update *pt_update)
++static inline struct xe_tile *mem_region_to_tile(struct xe_mem_region *mr)
 +{
-+	struct xe_vma *vma = pt_update->vma;
-+	struct hmm_range *range = vma->hmm_range;
-+
-+	if (mmu_interval_read_retry(range->notifier,
-+		    range->notifier_seq)) {
-+		/*
-+		 * FIXME: is this really necessary? We didn't update GPU
-+		 * page table yet...
-+		 */
-+		xe_vm_invalidate_vma(vma);
-+		return -EAGAIN;
-+	}
-+	return 0;
++	return container_of(mr, struct xe_tile, mem.vram);
 +}
 +
-+static const struct xe_migrate_pt_update_ops svm_bind_ops = {
-+	.populate = xe_vm_populate_pgtable,
-+	.pre_commit = xe_pt_svm_pre_commit,
-+};
-+
- static const struct xe_migrate_pt_update_ops bind_ops = {
- 	.populate = xe_vm_populate_pgtable,
- 	.pre_commit = xe_pt_pre_commit,
-@@ -1197,7 +1223,8 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
- 	struct xe_vm_pgtable_update entries[XE_VM_MAX_LEVEL * 2 + 1];
- 	struct xe_pt_migrate_pt_update bind_pt_update = {
- 		.base = {
--			.ops = xe_vma_is_userptr(vma) ? &userptr_bind_ops : &bind_ops,
-+			.ops = vma->svm_sg ? &svm_bind_ops :
-+					(xe_vma_is_userptr(vma) ? &userptr_bind_ops : &bind_ops),
- 			.vma = vma,
- 			.tile_id = tile->id,
- 		},
-@@ -1651,3 +1678,73 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queu
++static inline u64 vram_pfn_to_dpa(struct xe_mem_region *mr, u64 pfn)
++{
++	u64 dpa;
++	u64 offset = (pfn << PAGE_SHIFT) - mr->hpa_base;
++	dpa = mr->dpa_base + offset;
++	return dpa;
++}
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index 8551df2b9780..6b93055934f8 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -12,8 +12,10 @@
+ #include <linux/rbtree_types.h>
+ #include <linux/interval_tree.h>
+ #include <linux/hashtable.h>
++#include <linux/mm_types.h>
+ #include <linux/types.h>
+ #include <linux/hmm.h>
++#include <linux/mm.h>
+ #include "xe_device_types.h"
  
- 	return fence;
+ struct xe_vm;
+@@ -66,16 +68,20 @@ struct xe_svm_range {
+ 	struct interval_tree_node inode;
+ };
+ 
++vm_fault_t xe_devm_migrate_to_ram(struct vm_fault *vmf);
+ void xe_destroy_svm(struct xe_svm *svm);
+ struct xe_svm *xe_create_svm(struct xe_vm *vm);
+ struct xe_svm *xe_lookup_svm_by_mm(struct mm_struct *mm);
+ struct xe_svm_range *xe_svm_range_from_addr(struct xe_svm *svm,
+ 								unsigned long addr);
++bool xe_svm_range_belongs_to_vma(struct mm_struct *mm,
++								struct xe_svm_range *range,
++								struct vm_area_struct *vma);
++
+ int xe_svm_build_sg(struct hmm_range *range, struct sg_table *st);
+ int xe_svm_devm_add(struct xe_tile *tile, struct xe_mem_region *mem);
+ void xe_svm_devm_remove(struct xe_device *xe, struct xe_mem_region *mem);
+ 
+-
+ int xe_devm_alloc_pages(struct xe_tile *tile,
+ 						unsigned long npages,
+ 						struct list_head *blocks,
+diff --git a/drivers/gpu/drm/xe/xe_svm_devmem.c b/drivers/gpu/drm/xe/xe_svm_devmem.c
+index 5cd54dde4a9d..01f8385ebb5b 100644
+--- a/drivers/gpu/drm/xe/xe_svm_devmem.c
++++ b/drivers/gpu/drm/xe/xe_svm_devmem.c
+@@ -11,13 +11,16 @@
+ #include <linux/dma-fence.h>
+ #include <linux/bitops.h>
+ #include <linux/bitmap.h>
++#include <linux/kernel.h>
++#include <linux/slab.h>
+ #include <drm/drm_buddy.h>
+-
+ #include "xe_device_types.h"
+ #include "xe_trace.h"
+ #include "xe_migrate.h"
+ #include "xe_ttm_vram_mgr_types.h"
+ #include "xe_assert.h"
++#include "xe_pt.h"
++#include "xe_svm.h"
+ 
+ /**
+  * struct xe_svm_block_meta - svm uses this data structure to manage each
+@@ -137,11 +140,6 @@ void xe_devm_free_blocks(struct list_head *blocks)
+ 		free_block(block);
  }
+ 
+-static vm_fault_t xe_devm_migrate_to_ram(struct vm_fault *vmf)
+-{
+-	return 0;
+-}
+-
+ void xe_devm_page_free(struct page *page)
+ {
+ 	struct drm_buddy_block *block =
+diff --git a/drivers/gpu/drm/xe/xe_svm_migrate.c b/drivers/gpu/drm/xe/xe_svm_migrate.c
+new file mode 100644
+index 000000000000..3be26da33aa3
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_svm_migrate.c
+@@ -0,0 +1,230 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#include <linux/gfp.h>
++#include <linux/migrate.h>
++#include <linux/dma-mapping.h>
++#include <linux/dma-fence.h>
++#include <linux/bitops.h>
++#include <linux/bitmap.h>
++#include <linux/kernel.h>
++#include <linux/slab.h>
++#include <drm/drm_buddy.h>
++#include "xe_device_types.h"
++#include "xe_trace.h"
++#include "xe_migrate.h"
++#include "xe_ttm_vram_mgr_types.h"
++#include "xe_assert.h"
++#include "xe_pt.h"
++#include "xe_svm.h"
++
 +
 +/**
-+ * xe_bind_svm_range() - bind an address range to vm
++ * alloc_host_page() - allocate one host page for the fault vma
 + *
-+ * @vm: the vm to bind this address range
-+ * @tile: the tile to bind this address range to
-+ * @range: a hmm_range which includes all the information
-+ * needed for binding: virtual address range and physical
-+ * pfns to back up this virtual address range.
-+ * @flags: the binding flags to set in pte
++ * @dev: (GPU) device that will access the allocated page
++ * @vma: the fault vma that we need allocate page for
++ * @addr: the fault address. The allocated page is for this address
++ * @dma_addr: used to output the dma address of the allocated page.
++ * This dma address will be used for gpu to access this page. GPU
++ * access host page through a dma mapped address.
++ * @pfn: used to output the pfn of the allocated page.
 + *
-+ * This is a helper function used by svm sub-system
-+ * to bind a svm range to gpu vm. svm sub-system
-+ * doesn't have xe_vma, thus helpers such as
-+ * __xe_pt_bind_vma can't be used directly. So this
-+ * helper is written for svm sub-system to use.
++ * This function allocate one host page for the specified vma. It
++ * also does some prepare work for GPU to access this page, such
++ * as map this page to iommu (by calling dma_map_page).
 + *
-+ * This is a synchronous function. When this function
-+ * returns, either the svm range is bound to GPU, or
-+ * error happened.
++ * When this function returns, the page is locked.
 + *
-+ * Return: 0 for success or error code for failure
-+ * If -EAGAIN returns, it means mmu notifier was called (
-+ * aka there was concurrent cpu page table update) during
-+ * this function, caller has to retry hmm_range_fault
++ * Return struct page pointer when success
++ * NULL otherwise
 + */
-+int xe_bind_svm_range(struct xe_vm *vm, struct xe_tile *tile,
-+			struct hmm_range *range, u64 flags)
++static struct page *alloc_host_page(struct device *dev,
++							 struct vm_area_struct *vma,
++							 unsigned long addr,
++							 dma_addr_t *dma_addr,
++							 unsigned long *pfn)
 +{
-+	struct dma_fence *fence = NULL;
-+	struct xe_svm *svm = vm->svm;
-+	int ret = 0;
-+	/*
-+	 * Create a temp vma to reuse page table helpers such as
-+	 * __xe_pt_bind_vma
-+	 */
-+	struct xe_vma vma = {
-+		.gpuva = {
-+			.va = {
-+				.addr = range->start,
-+				.range = range->end - range->start + 1,
-+			},
-+			.vm = &vm->gpuvm,
-+			.flags = flags,
-+		},
-+		.tile_mask = 0x1 << tile->id,
-+		.hmm_range = range,
-+	};
++	struct page *page;
 +
-+	xe_svm_build_sg(range, &vma.svm_sgt);
-+	vma.svm_sg = &vma.svm_sgt;
++	page = alloc_page_vma(GFP_HIGHUSER, vma, addr);
++	if (unlikely(!page))
++		return NULL;
 +
-+	mutex_lock(&svm->mutex);
-+	if (mmu_interval_read_retry(range->notifier, range->notifier_seq)) {
-+		ret = -EAGAIN;
-+		goto unlock;
++	/**Lock page per hmm requirement, see hmm.rst*/
++	lock_page(page);
++	*dma_addr = dma_map_page(dev, page, 0, PAGE_SIZE, DMA_FROM_DEVICE);
++	if (unlikely(dma_mapping_error(dev, *dma_addr))) {
++		unlock_page(page);
++		__free_page(page);
++		return NULL;
 +	}
-+	fence = __xe_pt_bind_vma(tile, &vma, vm->q[tile->id], NULL, 0, false);
 +
-+unlock:
-+	mutex_unlock(&svm->mutex);
-+	sg_free_table(vma.svm_sg);
++	*pfn = migrate_pfn(page_to_pfn(page));
++	return page;
++}
 +
-+	if (IS_ERR(fence))
++static void free_host_page(struct page *page)
++{
++	unlock_page(page);
++	put_page(page);
++}
++
++static inline struct xe_mem_region *page_to_mem_region(struct page *page)
++{
++	return container_of(page->pgmap, struct xe_mem_region, pagemap);
++}
++
++/**
++ * migrate_page_vram_to_ram() - migrate one page from vram to ram
++ *
++ * @vma: The vma that the page is mapped to
++ * @addr: The virtual address that the page is mapped to
++ * @src_pfn: src page's page frame number
++ * @dst_pfn: used to return dstination page (in system ram)'s pfn
++ *
++ * Allocate one page in system ram and copy memory from device memory
++ * to system ram.
++ *
++ * Return: 0 if this page is already in sram (no need to migrate)
++ * 1: successfully migrated this page from vram to sram.
++ * error code otherwise
++ */
++static int migrate_page_vram_to_ram(struct vm_area_struct *vma, unsigned long addr,
++						unsigned long src_pfn, unsigned long *dst_pfn)
++{
++	struct xe_mem_region *mr;
++	struct xe_tile *tile;
++	struct xe_device *xe;
++	struct device *dev;
++	dma_addr_t dma_addr = 0;
++	struct dma_fence *fence;
++	struct page *host_page;
++	struct page *src_page;
++	u64 src_dpa;
++
++	src_page = migrate_pfn_to_page(src_pfn);
++	if (unlikely(!src_page || !(src_pfn & MIGRATE_PFN_MIGRATE)))
++		return 0;
++
++	mr = page_to_mem_region(src_page);
++	tile = mem_region_to_tile(mr);
++	xe = tile_to_xe(tile);
++	dev = xe->drm.dev;
++
++	src_dpa = vram_pfn_to_dpa(mr, src_pfn);
++	host_page = alloc_host_page(dev, vma, addr, &dma_addr, dst_pfn);
++	if (!host_page)
++		return -ENOMEM;
++
++	fence = xe_migrate_svm(tile->migrate, src_dpa, true,
++						dma_addr, false, PAGE_SIZE);
++	if (IS_ERR(fence)) {
++		dma_unmap_page(dev, dma_addr, PAGE_SIZE, DMA_FROM_DEVICE);
++		free_host_page(host_page);
 +		return PTR_ERR(fence);
++	}
 +
 +	dma_fence_wait(fence, false);
 +	dma_fence_put(fence);
-+	return ret;
++	dma_unmap_page(dev, dma_addr, PAGE_SIZE, DMA_FROM_DEVICE);
++	return 1;
 +}
-diff --git a/drivers/gpu/drm/xe/xe_pt.h b/drivers/gpu/drm/xe/xe_pt.h
-index 71a4fbfcff43..775d08707466 100644
---- a/drivers/gpu/drm/xe/xe_pt.h
-+++ b/drivers/gpu/drm/xe/xe_pt.h
-@@ -17,6 +17,8 @@ struct xe_sync_entry;
- struct xe_tile;
- struct xe_vm;
- struct xe_vma;
-+struct xe_svm;
-+struct hmm_range;
- 
- /* Largest huge pte is currently 1GiB. May become device dependent. */
- #define MAX_HUGEPTE_LEVEL 2
-@@ -45,4 +47,6 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queu
- 
- bool xe_pt_zap_ptes(struct xe_tile *tile, struct xe_vma *vma);
- 
-+int xe_bind_svm_range(struct xe_vm *vm, struct xe_tile *tile,
-+			struct hmm_range *range, u64 flags);
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 037fb7168c63..deefe2364667 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -21,6 +21,7 @@ struct xe_svm;
- struct xe_bo;
- struct xe_sync_entry;
- struct xe_vm;
-+struct hmm_range;
- 
- #define TEST_VM_ASYNC_OPS_ERROR
- #define FORCE_ASYNC_OP_ERROR	BIT(31)
-@@ -112,6 +113,15 @@ struct xe_vma {
- 	 * user pointers
- 	 */
- 	struct xe_userptr userptr;
 +
-+	/**
-+	 * @svm_sgt: a scatter gather table to save svm virtual address range's
-+	 * pfns
-+	 */
-+	struct sg_table svm_sgt;
-+	struct sg_table *svm_sg;
-+	/** hmm range of this pt update, used by svm */
-+	struct hmm_range *hmm_range;
- };
++/**
++ * xe_devmem_migrate_to_ram() - Migrate memory back to sram on CPU page fault
++ *
++ * @vmf: cpu vm fault structure, contains fault information such as vma etc.
++ *
++ * Note, this is in CPU's vm fault handler, caller holds the mmap read lock.
++ * FIXME: relook the lock design here. Is there any deadlock?
++ *
++ * This function migrate one svm range which contains the fault address to sram.
++ * We try to maintain a 1:1 mapping b/t the vma and svm_range (i.e., create one
++ * svm range for one vma initially and try not to split it). So this scheme end
++ * up migrate at the vma granularity. This might not be the best performant scheme
++ * when GPU is in the picture.
++ *
++ * This can be tunned with a migration granularity for  performance, for example,
++ * migration 2M for each CPU page fault, or let user specify how much to migrate.
++ * But this is more complicated as this scheme requires vma and svm_range splitting.
++ *
++ * This function should also update GPU page table, so the fault virtual address
++ * points to the same sram location from GPU side. This is TBD.
++ *
++ * Return:
++ * 0 on success
++ * VM_FAULT_SIGBUS: failed to migrate page to system memory, application
++ * will be signaled a SIGBUG
++ */
++vm_fault_t xe_devm_migrate_to_ram(struct vm_fault *vmf)
++{
++	struct xe_mem_region *mr = page_to_mem_region(vmf->page);
++	struct xe_tile *tile = mem_region_to_tile(mr);
++	struct xe_device *xe = tile_to_xe(tile);
++	struct vm_area_struct *vma = vmf->vma;
++	struct mm_struct *mm = vma->vm_mm;
++	struct xe_svm *svm = xe_lookup_svm_by_mm(mm);
++	struct xe_svm_range *range = xe_svm_range_from_addr(svm, vmf->address);
++	struct xe_vm *vm = svm->vm;
++	u64 npages = (range->end - range->start) >> PAGE_SHIFT;
++	unsigned long addr = range->start;
++	vm_fault_t ret = 0;
++	void *buf;
++	int i;
++
++	struct migrate_vma migrate_vma = {
++		.vma		= vmf->vma,
++		.start		= range->start,
++		.end		= range->end,
++		.pgmap_owner	= xe->drm.dev,
++		.flags		= MIGRATE_VMA_SELECT_DEVICE_PRIVATE,
++		.fault_page = vmf->page,
++	};
++
++	xe_assert(xe, IS_ALIGNED(vmf->address, PAGE_SIZE));
++	xe_assert(xe, IS_ALIGNED(range->start, PAGE_SIZE));
++	xe_assert(xe, IS_ALIGNED(range->end, PAGE_SIZE));
++	/**FIXME: in case of vma split, svm range might not belongs to one vma*/
++	xe_assert(xe, xe_svm_range_belongs_to_vma(mm, range, vma));
++
++	buf = kvcalloc(npages, 2* sizeof(*migrate_vma.src), GFP_KERNEL);
++	migrate_vma.src = buf;
++	migrate_vma.dst = buf + npages;
++	if (migrate_vma_setup(&migrate_vma) < 0) {
++		ret = VM_FAULT_SIGBUS;
++		goto free_buf;
++	}
++
++	if (!migrate_vma.cpages)
++		goto free_buf;
++
++	for (i = 0; i < npages; i++) {
++		ret = migrate_page_vram_to_ram(vma, addr, migrate_vma.src[i],
++							migrate_vma.dst + i);
++		if (ret < 0) {
++			ret = VM_FAULT_SIGBUS;
++			break;
++		}
++
++		/** Migration has been successful, unbind src page from gpu,
++		 *  and free source page
++		 */
++		if (ret == 1) {
++			struct page *src_page = migrate_pfn_to_page(migrate_vma.src[i]);
++
++			xe_invalidate_svm_range(vm, addr, PAGE_SIZE);
++			xe_devm_page_free(src_page);
++		}
++
++		addr += PAGE_SIZE;
++	}
++
++	migrate_vma_pages(&migrate_vma);
++	migrate_vma_finalize(&migrate_vma);
++free_buf:
++	kvfree(buf);
++	return 0;
++}
+diff --git a/drivers/gpu/drm/xe/xe_svm_range.c b/drivers/gpu/drm/xe/xe_svm_range.c
+index d8251d38f65e..b32c32f60315 100644
+--- a/drivers/gpu/drm/xe/xe_svm_range.c
++++ b/drivers/gpu/drm/xe/xe_svm_range.c
+@@ -5,7 +5,9 @@
  
- struct xe_device;
+ #include <linux/interval_tree.h>
+ #include <linux/container_of.h>
++#include <linux/mm_types.h>
+ #include <linux/mutex.h>
++#include <linux/mm.h>
+ #include "xe_svm.h"
+ 
+ /**
+@@ -30,3 +32,28 @@ struct xe_svm_range *xe_svm_range_from_addr(struct xe_svm *svm,
+ 
+ 	return container_of(node, struct xe_svm_range, inode);
+ }
++
++/**
++ * xe_svm_range_belongs_to_vma() - determine a virtual address range
++ * belongs to a vma or not
++ *
++ * @mm: the mm of the virtual address range
++ * @range: the svm virtual address range
++ * @vma: the vma to determine the range
++ *
++ * Returns true if range belongs to vma
++ * false otherwise
++ */
++bool xe_svm_range_belongs_to_vma(struct mm_struct *mm,
++								struct xe_svm_range *range,
++								struct vm_area_struct *vma)
++{
++	struct vm_area_struct *vma1, *vma2;
++	unsigned long start = range->start;
++	unsigned long end = range->end;
++
++	vma1  = find_vma_intersection(mm, start, start + 4);
++	vma2  = find_vma_intersection(mm, end - 4, end);
++
++	return (vma1 == vma) && (vma2 == vma);
++}
 -- 
 2.26.3
 
