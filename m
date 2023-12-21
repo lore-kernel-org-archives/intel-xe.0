@@ -4,44 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B8A0C46CD8
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Dec 2023 04:28:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDE70C46CD2
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Dec 2023 04:28:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E249A10E666;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF0B010E65B;
 	Thu, 21 Dec 2023 04:28:23 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F19910E638;
- Thu, 21 Dec 2023 04:28:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7665010E653;
+ Thu, 21 Dec 2023 04:28:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703132901; x=1734668901;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=XsD+CouNVfYyOKjUTc4xzY+lYi6ZqUSxZpfOe8aBdhU=;
- b=Tk3X00/xbS+sXoLjFSRL4vz5pyQsWtf7XFmGquCT8Uk+iNb9B+Q4sKDf
- xyt4AKDCWbba1vkGSVzqTG9iZRh+F15Ae8u671fcaGjWoytYbvMi0gydt
- h6ZRB7fUZ3KH1zRHH+O+3ZHhRY2QUvBFwM0H/kQqU84MUqsOBDF65Gwi/
- qdHr1+SbrCbuXKt444ww02/o3Uu+UVLcma2y2rcia1ZGB7vhXN67eNWQ/
- 8YQLDs3JBUcwI5HUHjVokxLJeQRKVNgB17i9YJ9YiCqJEfPAfGHglo+zO
- Q2KNikjZ9Sde42OLjgevmoQ+E5UdfilTd64mQEcC3XqkjE6ou9THjyV/S w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="427069759"
-X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="427069759"
+ t=1703132902; x=1734668902;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=kFTI+4vG3BRrNxkKNlzHPA05bP2aYXoRLJZ0TZub+CI=;
+ b=BbGTmMDEDOU6tY+F396cFQmCC2ozUAGAEBUdCTVz4dyC7Njf767KDcYI
+ 5L9AgNXp+30g0j7xBzeKvOHMG8333+E/djqDatbsxMzTXFA05Go7XrU0v
+ mznhc6EllwegivTb/8lD8exgSoO2mmjz+3HFJQ1EY87IPxHR9DJuVS6Z2
+ zSmY6zsuPNR4K1r8RCVzDCuUlPcWyPEEg5R3KKHfPjy29XWDPCYnyBW0d
+ Y813gcQOEI9xolHaJxAqE12T/CBkXAd10rstxVbYV8Hn3ZOkYuf7QbubU
+ xmLTWiGXmEvZ/iSv1nccHNHn0/ASdRyDnu5miSnmqTzIKY3W42JTfKB9l Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="427069766"
+X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="427069766"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2023 20:28:20 -0800
+ 20 Dec 2023 20:28:22 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="805481336"
-X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="805481336"
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="805481358"
+X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="805481358"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Dec 2023 20:28:20 -0800
 From: Oak Zeng <oak.zeng@intel.com>
 To: dri-devel@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH 00/22] XeKmd basic SVM support
-Date: Wed, 20 Dec 2023 23:37:50 -0500
-Message-Id: <20231221043812.3783313-1-oak.zeng@intel.com>
+Subject: [PATCH 07/22] drm/xe/svm: Add helper for binding hmm range to gpu
+Date: Wed, 20 Dec 2023 23:37:57 -0500
+Message-Id: <20231221043812.3783313-8-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
+In-Reply-To: <20231221043812.3783313-1-oak.zeng@intel.com>
+References: <20231221043812.3783313-1-oak.zeng@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -59,106 +61,212 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is the very basic SVM (shared virtual memory) support in XeKmd
-driver. SVM allows the programmer to use a shaed virtual address space
-between CPU program and GPU program. It abstracts away from the user
-the location of the backing memory in a mixed CPU and GPU programming
-environment.
+Add helper function xe_bind_svm_range to bind a svm range
+to gpu. A temporary xe_vma is created locally to re-use
+existing page table update functions which are vma-based.
 
-This work is based on previous I915 SVM implementation mainly from
-Niranjana Vishwanathapura and Oak Zeng, which has never been upstreamed
-before. This is our first attempt to upstream this work.
+The svm page table update lock design is different from
+userptr and bo page table update. A xe_pt_svm_pre_commit
+function is introduced for svm range pre-commitment.
 
-This implementation depends on Linux kernel HMM support. See some key
-designs in patch #1.
+A hmm_range pointer is added to xe_vma struct.
 
-We are aware there are currently some effort to implement SVM using
-GMEM(generalized memory management,
-see https://lore.kernel.org/dri-devel/20231128125025.4449-1-weixi.zhu@huawei.com/)
-We are open to this new method if it can be merged to upstream kernel.
-Before that, we think it is still safer to support SVM through HMM.
+Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@intel.com>
+Cc: Brian Welty <brian.welty@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pt.c       | 101 ++++++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_pt.h       |   4 ++
+ drivers/gpu/drm/xe/xe_vm_types.h |  10 +++
+ 3 files changed, 113 insertions(+), 2 deletions(-)
 
-This series only has basic SVM support. We think it is better to post
-this series earlier so we can get more eyes on it. Below are the works
-that is planned or ongoing:
-
-*Testing: We are working on the igt test right now. Some part of this
-series, especially the gpu page table update(patch #7, #8) and migration
-function (patch #10) need some debug to make it work.
-
-*Virtual address range based memory attributes and hints: We plan to
-expose uAPI for user to set memory attributes such as preferred location
-or migration granularity etc to a virtual address range. This is
-important to tune SVM performance.
-
-*GPU vram eviction: One key design choice of this series is, SVM
-layer allocate GPU memory directly from drm buddy allocator, instead
-of from xe vram manager. There is no BO (buffer object) concept
-in this implementation. The key benefit of this approach is we can
-migrate memory at page granularity easily. This also means SVM bypasses
-TTM's memory eviction logic. But we want the SVM memory and BO driver
-memory can mutually evicted each other. We have some prove of concept
-work to rework TTM resource manager for this purpose, see
-https://lore.kernel.org/dri-devel/20231102043306.2931989-1-oak.zeng@intel.com/
-We will continue work on that series then implement SVM's eviction
-function based on the concept of shared drm LRU list b/t SVM and TTM/BO
-driver.
-
-Oak Zeng (22):
-  drm/xe/svm: Add SVM document
-  drm/xe/svm: Add svm key data structures
-  drm/xe/svm: create xe svm during vm creation
-  drm/xe/svm: Trace svm creation
-  drm/xe/svm: add helper to retrieve svm range from address
-  drm/xe/svm: Introduce a helper to build sg table from hmm range
-  drm/xe/svm: Add helper for binding hmm range to gpu
-  drm/xe/svm: Add helper to invalidate svm range from GPU
-  drm/xe/svm: Remap and provide memmap backing for GPU vram
-  drm/xe/svm: Introduce svm migration function
-  drm/xe/svm: implement functions to allocate and free device memory
-  drm/xe/svm: Trace buddy block allocation and free
-  drm/xe/svm: Handle CPU page fault
-  drm/xe/svm: trace svm range migration
-  drm/xe/svm: Implement functions to register and unregister mmu
-    notifier
-  drm/xe/svm: Implement the mmu notifier range invalidate callback
-  drm/xe/svm: clean up svm range during process exit
-  drm/xe/svm: Move a few structures to xe_gt.h
-  drm/xe/svm: migrate svm range to vram
-  drm/xe/svm: Populate svm range
-  drm/xe/svm: GPU page fault support
-  drm/xe/svm: Add DRM_XE_SVM kernel config entry
-
- Documentation/gpu/xe/index.rst       |   1 +
- Documentation/gpu/xe/xe_svm.rst      |   8 +
- drivers/gpu/drm/xe/Kconfig           |  22 ++
- drivers/gpu/drm/xe/Makefile          |   5 +
- drivers/gpu/drm/xe/xe_device_types.h |  20 ++
- drivers/gpu/drm/xe/xe_gt.h           |  20 ++
- drivers/gpu/drm/xe/xe_gt_pagefault.c |  28 +--
- drivers/gpu/drm/xe/xe_migrate.c      | 213 +++++++++++++++++
- drivers/gpu/drm/xe/xe_migrate.h      |   7 +
- drivers/gpu/drm/xe/xe_mmio.c         |  12 +
- drivers/gpu/drm/xe/xe_pt.c           | 134 ++++++++++-
- drivers/gpu/drm/xe/xe_pt.h           |   5 +
- drivers/gpu/drm/xe/xe_svm.c          | 324 +++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_svm.h          | 115 +++++++++
- drivers/gpu/drm/xe/xe_svm_devmem.c   | 232 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_svm_doc.h      | 121 ++++++++++
- drivers/gpu/drm/xe/xe_svm_migrate.c  | 345 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_svm_range.c    | 227 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_trace.h        |  71 +++++-
- drivers/gpu/drm/xe/xe_vm.c           |   7 +
- drivers/gpu/drm/xe/xe_vm_types.h     |  12 +
- 21 files changed, 1904 insertions(+), 25 deletions(-)
- create mode 100644 Documentation/gpu/xe/xe_svm.rst
- create mode 100644 drivers/gpu/drm/xe/xe_svm.c
- create mode 100644 drivers/gpu/drm/xe/xe_svm.h
- create mode 100644 drivers/gpu/drm/xe/xe_svm_devmem.c
- create mode 100644 drivers/gpu/drm/xe/xe_svm_doc.h
- create mode 100644 drivers/gpu/drm/xe/xe_svm_migrate.c
- create mode 100644 drivers/gpu/drm/xe/xe_svm_range.c
-
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index de1030a47588..65cfac88ab2f 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -17,6 +17,7 @@
+ #include "xe_trace.h"
+ #include "xe_ttm_stolen_mgr.h"
+ #include "xe_vm.h"
++#include "xe_svm.h"
+ 
+ struct xe_pt_dir {
+ 	struct xe_pt pt;
+@@ -617,7 +618,10 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
+ 	xe_bo_assert_held(bo);
+ 
+ 	if (!xe_vma_is_null(vma)) {
+-		if (xe_vma_is_userptr(vma))
++		if (vma->svm_sg)
++			xe_res_first_sg(vma->svm_sg, 0, xe_vma_size(vma),
++					&curs);
++		else if (xe_vma_is_userptr(vma))
+ 			xe_res_first_sg(vma->userptr.sg, 0, xe_vma_size(vma),
+ 					&curs);
+ 		else if (xe_bo_is_vram(bo) || xe_bo_is_stolen(bo))
+@@ -1046,6 +1050,28 @@ static int xe_pt_userptr_pre_commit(struct xe_migrate_pt_update *pt_update)
+ 	return 0;
+ }
+ 
++static int xe_pt_svm_pre_commit(struct xe_migrate_pt_update *pt_update)
++{
++	struct xe_vma *vma = pt_update->vma;
++	struct hmm_range *range = vma->hmm_range;
++
++	if (mmu_interval_read_retry(range->notifier,
++		    range->notifier_seq)) {
++		/*
++		 * FIXME: is this really necessary? We didn't update GPU
++		 * page table yet...
++		 */
++		xe_vm_invalidate_vma(vma);
++		return -EAGAIN;
++	}
++	return 0;
++}
++
++static const struct xe_migrate_pt_update_ops svm_bind_ops = {
++	.populate = xe_vm_populate_pgtable,
++	.pre_commit = xe_pt_svm_pre_commit,
++};
++
+ static const struct xe_migrate_pt_update_ops bind_ops = {
+ 	.populate = xe_vm_populate_pgtable,
+ 	.pre_commit = xe_pt_pre_commit,
+@@ -1197,7 +1223,8 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
+ 	struct xe_vm_pgtable_update entries[XE_VM_MAX_LEVEL * 2 + 1];
+ 	struct xe_pt_migrate_pt_update bind_pt_update = {
+ 		.base = {
+-			.ops = xe_vma_is_userptr(vma) ? &userptr_bind_ops : &bind_ops,
++			.ops = vma->svm_sg ? &svm_bind_ops :
++					(xe_vma_is_userptr(vma) ? &userptr_bind_ops : &bind_ops),
+ 			.vma = vma,
+ 			.tile_id = tile->id,
+ 		},
+@@ -1651,3 +1678,73 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queu
+ 
+ 	return fence;
+ }
++
++/**
++ * xe_bind_svm_range() - bind an address range to vm
++ *
++ * @vm: the vm to bind this address range
++ * @tile: the tile to bind this address range to
++ * @range: a hmm_range which includes all the information
++ * needed for binding: virtual address range and physical
++ * pfns to back up this virtual address range.
++ * @flags: the binding flags to set in pte
++ *
++ * This is a helper function used by svm sub-system
++ * to bind a svm range to gpu vm. svm sub-system
++ * doesn't have xe_vma, thus helpers such as
++ * __xe_pt_bind_vma can't be used directly. So this
++ * helper is written for svm sub-system to use.
++ *
++ * This is a synchronous function. When this function
++ * returns, either the svm range is bound to GPU, or
++ * error happened.
++ *
++ * Return: 0 for success or error code for failure
++ * If -EAGAIN returns, it means mmu notifier was called (
++ * aka there was concurrent cpu page table update) during
++ * this function, caller has to retry hmm_range_fault
++ */
++int xe_bind_svm_range(struct xe_vm *vm, struct xe_tile *tile,
++			struct hmm_range *range, u64 flags)
++{
++	struct dma_fence *fence = NULL;
++	struct xe_svm *svm = vm->svm;
++	int ret = 0;
++	/*
++	 * Create a temp vma to reuse page table helpers such as
++	 * __xe_pt_bind_vma
++	 */
++	struct xe_vma vma = {
++		.gpuva = {
++			.va = {
++				.addr = range->start,
++				.range = range->end - range->start + 1,
++			},
++			.vm = &vm->gpuvm,
++			.flags = flags,
++		},
++		.tile_mask = 0x1 << tile->id,
++		.hmm_range = range,
++	};
++
++	xe_svm_build_sg(range, &vma.svm_sgt);
++	vma.svm_sg = &vma.svm_sgt;
++
++	mutex_lock(&svm->mutex);
++	if (mmu_interval_read_retry(range->notifier, range->notifier_seq)) {
++		ret = -EAGAIN;
++		goto unlock;
++	}
++	fence = __xe_pt_bind_vma(tile, &vma, vm->q[tile->id], NULL, 0, false);
++
++unlock:
++	mutex_unlock(&svm->mutex);
++	sg_free_table(vma.svm_sg);
++
++	if (IS_ERR(fence))
++		return PTR_ERR(fence);
++
++	dma_fence_wait(fence, false);
++	dma_fence_put(fence);
++	return ret;
++}
+diff --git a/drivers/gpu/drm/xe/xe_pt.h b/drivers/gpu/drm/xe/xe_pt.h
+index 71a4fbfcff43..775d08707466 100644
+--- a/drivers/gpu/drm/xe/xe_pt.h
++++ b/drivers/gpu/drm/xe/xe_pt.h
+@@ -17,6 +17,8 @@ struct xe_sync_entry;
+ struct xe_tile;
+ struct xe_vm;
+ struct xe_vma;
++struct xe_svm;
++struct hmm_range;
+ 
+ /* Largest huge pte is currently 1GiB. May become device dependent. */
+ #define MAX_HUGEPTE_LEVEL 2
+@@ -45,4 +47,6 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queu
+ 
+ bool xe_pt_zap_ptes(struct xe_tile *tile, struct xe_vma *vma);
+ 
++int xe_bind_svm_range(struct xe_vm *vm, struct xe_tile *tile,
++			struct hmm_range *range, u64 flags);
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 037fb7168c63..deefe2364667 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -21,6 +21,7 @@ struct xe_svm;
+ struct xe_bo;
+ struct xe_sync_entry;
+ struct xe_vm;
++struct hmm_range;
+ 
+ #define TEST_VM_ASYNC_OPS_ERROR
+ #define FORCE_ASYNC_OP_ERROR	BIT(31)
+@@ -112,6 +113,15 @@ struct xe_vma {
+ 	 * user pointers
+ 	 */
+ 	struct xe_userptr userptr;
++
++	/**
++	 * @svm_sgt: a scatter gather table to save svm virtual address range's
++	 * pfns
++	 */
++	struct sg_table svm_sgt;
++	struct sg_table *svm_sg;
++	/** hmm range of this pt update, used by svm */
++	struct hmm_range *hmm_range;
+ };
+ 
+ struct xe_device;
 -- 
 2.26.3
 
