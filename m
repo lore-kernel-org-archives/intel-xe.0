@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10053C46CD8
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Dec 2023 22:28:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47E0DC4706C
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Dec 2023 22:28:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B91910E733;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7EC310E735;
 	Thu, 21 Dec 2023 22:28:22 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46D0410E722;
- Thu, 21 Dec 2023 22:28:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB56110E71C;
+ Thu, 21 Dec 2023 22:28:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1703197695; x=1734733695;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3sFxOzignG7QJ8LUvSkwRZ0eN/kd+CsuzD/vIyAotPY=;
- b=lYOXOEuqH48D3jbxOdCVBP0iC3bvCrLm0mmfjEuun/AafRJg/23C59R/
- EDyHWWMpnhDOzkgOzYmZRJRW0KzojhO09XRbz9TZl8vo0BIMtIcByB2G1
- K9sq9zDQTIZtzZJX1GrJD56mK2Nni34aXljgGBUXp8fqi42+QCQZpnRPJ
- lA9Hk3gkaHfKTT6FSwnU04DAMXHQ5lfHSc0uyj8H0eCxUcZTJ3FJgdD4j
- CE7U61+FGn8f0fd1zFEBURWpS1nYlJMPs4KUFPP1OhVk6PA1AtSvtuLer
- 2G66m3bSqsWA9wYBWRWCY9RETcGBeu9L5/HuhP4w7b3Cot0uqShMx5lRk A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="2876535"
+ bh=G6FwInhmVgslPiDEh7NzRcFZRdFlcS3bGJvtIQWy4Cc=;
+ b=aLNb5q4Wyv4JM8yf3QB8wNOjTsl2AQOEUTG0QAKuqyqBJzTbgqKwb74/
+ +lLsAbxMaSEsd1L9DzOhNxOkgKOVfaal//zKyCX96i5NLGfVVFPqXXE3d
+ wo6Q9ESsH7ky7zMAgtwQ9Z+FdghjWz5LOt+RU+GR6WE32ySm0+nyUG+o5
+ ZbUP8IToDZucQScy0HCRwpmOYDijAp+0JpiMQSLaaRV/NiXKpJyevf3T2
+ /xGu+4FtgH76zAuL+a/0Hp3TJTbgHXZqn0FHd9Wch0IMq774tyOghejFV
+ bkphLzy2a6LPfdaBdbfCC8CddaAjLOu3UDeU48a6IsqgAdYyEUBsYDWXO w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="2876527"
 X-IronPort-AV: E=Sophos;i="6.04,294,1695711600"; 
-   d="scan'208";a="2876535"
+   d="scan'208";a="2876527"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2023 14:28:15 -0800
+ 21 Dec 2023 14:28:14 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="920458225"
-X-IronPort-AV: E=Sophos;i="6.04,294,1695711600"; d="scan'208";a="920458225"
+X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="920458219"
+X-IronPort-AV: E=Sophos;i="6.04,294,1695711600"; d="scan'208";a="920458219"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Dec 2023 14:28:14 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 6/6] drm/xe: Enable 32bits build
-Date: Thu, 21 Dec 2023 14:28:09 -0800
-Message-Id: <20231221222809.4123220-7-lucas.demarchi@intel.com>
+Subject: [PATCH 4/6] drm/xe/display: Avoid calling readq()
+Date: Thu, 21 Dec 2023 14:28:07 -0800
+Message-Id: <20231221222809.4123220-5-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20231221222809.4123220-1-lucas.demarchi@intel.com>
 References: <20231221222809.4123220-1-lucas.demarchi@intel.com>
@@ -63,26 +63,50 @@ Cc: daniel.vetter@ffwll.ch, Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that all the issues with 32bits are fixed, enable it again.
+readq() is not available in 32bits. iosys-map already has the logic in
+place to use read u64 in all cases, so simply add a helper variable for
+using that.
 
+Fixes: 44e694958b95 ("drm/xe/display: Implement display support")
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/Kconfig | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h   | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-index a53b0fdc15a7..5b3da06e7ba3 100644
---- a/drivers/gpu/drm/xe/Kconfig
-+++ b/drivers/gpu/drm/xe/Kconfig
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0-only
- config DRM_XE
- 	tristate "Intel Xe Graphics"
--	depends on DRM && PCI && MMU && (m || (y && KUNIT=y)) && 64BIT
-+	depends on DRM && PCI && MMU && (m || (y && KUNIT=y))
- 	select INTERVAL_TREE
- 	# we need shmfs for the swappable backing store, and in particular
- 	# the shmem_readpage() which depends upon tmpfs
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
+index 5f19550cc845..6739dadaf1a9 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
+@@ -7,6 +7,7 @@
+ #define _I915_GEM_OBJECT_H_
+ 
+ #include <linux/types.h>
++#include <linux/iosys-map.h>
+ 
+ #include "xe_bo.h"
+ 
+@@ -36,6 +37,7 @@ static inline int i915_gem_object_read_from_page(struct xe_bo *bo,
+ {
+ 	struct ttm_bo_kmap_obj map;
+ 	void *virtual;
++	struct iosys_map vaddr;
+ 	bool is_iomem;
+ 	int ret;
+ 
+@@ -52,10 +54,11 @@ static inline int i915_gem_object_read_from_page(struct xe_bo *bo,
+ 	ofs &= ~PAGE_MASK;
+ 	virtual = ttm_kmap_obj_virtual(&map, &is_iomem);
+ 	if (is_iomem)
+-		*ptr = readq((void __iomem *)(virtual + ofs));
++		iosys_map_set_vaddr_iomem(&vaddr, (void __iomem *)(virtual));
+ 	else
+-		*ptr = *(u64 *)(virtual + ofs);
++		iosys_map_set_vaddr(&vaddr, virtual);
+ 
++	*ptr = iosys_map_rd(&vaddr, ofs, u64);
+ 	ttm_bo_kunmap(&map);
+ out_unlock:
+ 	xe_bo_unlock(bo);
 -- 
 2.40.1
 
