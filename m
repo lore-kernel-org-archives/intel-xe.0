@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6ADCC46CD2
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Dec 2023 04:28:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F2A7C46CD3
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Dec 2023 04:28:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0830810E669;
-	Thu, 21 Dec 2023 04:28:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D704210E661;
+	Thu, 21 Dec 2023 04:28:23 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39BF010E65B;
- Thu, 21 Dec 2023 04:28:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AB0810E638;
+ Thu, 21 Dec 2023 04:28:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703132903; x=1734668903;
+ t=1703132902; x=1734668902;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=GJo+44jDv+g6nOzMQZgGJ5rlhefDr6WjxKA4AakuTqs=;
- b=JIkzV1YEU+Z2+PTVJ2FAbhayj78NMf8kD6tWrZsXOOEjincd+D88TUop
- DCfnSBaRy9CbvgcV2fYbFA/+zwDRz49hxhMbSOhxBiLIhqAGBeLeHmUQh
- BNV5reu2siVgT74rrO8zBVyVXID2Iy5UXRjJLM01j9/ZyCzhmSb4q7Js2
- AQBPR3FWGkNAw0TE1X4ibDEkedkSEjVMr/sRsuKpRk+y4e+LP3CiEkZuy
- qn1gXdXkAyPYkMzLb3tibCG+nT+uUTNFTWeVINPL/w7Y7jv7P18MUUaJY
- MinLDx6ivT7M4LpLIxiwqxDQG3OmdlzGsfHJnnGACx0q/wYHP+mFax9jj Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="427069777"
-X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="427069777"
+ bh=7Dq1kI5bDtk1FZgTD5fpOED/D+/k0o0UZYIn9HvhAPM=;
+ b=Z3whQpVsjlY4IgJKiCiABMSBuPeqXcPq5p7buDITUPJgW9coBt0B1Uq9
+ HtUWyu4XF7EhuklWkcmoHP8XACGV8JWzHHrUcrmYap1uIIKhKOkCYvTpN
+ a5FdwNB4Y/GQ9p4vYPc8PlHcB9XdpYuOOdj7XTraYz7RR7J1dhQqETmsN
+ J58wL9rVdU53cz7nBVbIRXC+97i2/85DTBa8pTW43DDriKtclw1djkvjm
+ 4MySwZLPi4UYeORbOAZ5Bt4HbzDXXAqHSOZ5n0m/SZF8vAs40djcQUBIN
+ /iFIaFwQT0wTFdJRvdHowhFVyYZEJLtloKi9char5Nfi3jvqN9MSBLckw Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="427069763"
+X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="427069763"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2023 20:28:22 -0800
+ 20 Dec 2023 20:28:21 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="805481388"
-X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="805481388"
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="805481349"
+X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="805481349"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2023 20:28:21 -0800
+ 20 Dec 2023 20:28:20 -0800
 From: Oak Zeng <oak.zeng@intel.com>
 To: dri-devel@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH 17/22] drm/xe/svm: clean up svm range during process exit
-Date: Wed, 20 Dec 2023 23:38:07 -0500
-Message-Id: <20231221043812.3783313-18-oak.zeng@intel.com>
+Subject: [PATCH 04/22] drm/xe/svm: Trace svm creation
+Date: Wed, 20 Dec 2023 23:37:54 -0500
+Message-Id: <20231221043812.3783313-5-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20231221043812.3783313-1-oak.zeng@intel.com>
 References: <20231221043812.3783313-1-oak.zeng@intel.com>
@@ -61,10 +61,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Clean up svm range during process exit: Zap GPU page table of
-the svm process on process exit; unregister all the mmu interval
-notifiers which are registered before; free svm range and svm
-data structure.
+xe_vm tracepoint is extended to also print svm.
 
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
@@ -72,93 +69,33 @@ Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@intel.com>
 Cc: Brian Welty <brian.welty@intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.c       | 24 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_svm.h       |  1 +
- drivers/gpu/drm/xe/xe_svm_range.c | 17 +++++++++++++++++
- 3 files changed, 42 insertions(+)
+ drivers/gpu/drm/xe/xe_trace.h | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 6393251c0051..5772bfcf7da4 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -9,6 +9,8 @@
- #include <linux/hmm.h>
- #include <linux/scatterlist.h>
- #include "xe_pt.h"
-+#include "xe_assert.h"
-+#include "xe_vm_types.h"
+diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+index 95163c303f3e..63867c0fa848 100644
+--- a/drivers/gpu/drm/xe/xe_trace.h
++++ b/drivers/gpu/drm/xe/xe_trace.h
+@@ -467,15 +467,17 @@ DECLARE_EVENT_CLASS(xe_vm,
+ 		    TP_STRUCT__entry(
+ 			     __field(u64, vm)
+ 			     __field(u32, asid)
++			     __field(u64, svm)
+ 			     ),
  
- DEFINE_HASHTABLE(xe_svm_table, XE_MAX_SVM_PROCESS);
+ 		    TP_fast_assign(
+ 			   __entry->vm = (unsigned long)vm;
+ 			   __entry->asid = vm->usm.asid;
++			   __entry->svm = (unsigned long)vm->svm;
+ 			   ),
  
-@@ -19,9 +21,31 @@ DEFINE_HASHTABLE(xe_svm_table, XE_MAX_SVM_PROCESS);
-  */
- void xe_destroy_svm(struct xe_svm *svm)
- {
-+#define MAX_SVM_RANGE (1024*1024)
-+	struct xe_svm_range **range_array;
-+	struct interval_tree_node *node;
-+	struct xe_svm_range *range;
-+	int i = 0;
-+
-+	range_array = kzalloc(sizeof(struct xe_svm_range *) * MAX_SVM_RANGE,
-+							GFP_KERNEL);
-+	node = interval_tree_iter_first(&svm->range_tree, 0, ~0ULL);
-+	while (node) {
-+		range = container_of(node, struct xe_svm_range, inode);
-+		xe_svm_range_prepare_destroy(range);
-+		node = interval_tree_iter_next(node, 0, ~0ULL);
-+		xe_assert(svm->vm->xe, i < MAX_SVM_RANGE);
-+		range_array[i++] = range;
-+	}
-+
-+	/** Free range (thus range->inode) while traversing above is not safe */
-+	for(; i >= 0; i--)
-+		kfree(range_array[i]);
-+
- 	hash_del_rcu(&svm->hnode);
- 	mutex_destroy(&svm->mutex);
- 	kfree(svm);
-+	kfree(range_array);
- }
+-		    TP_printk("vm=0x%016llx, asid=0x%05x",  __entry->vm,
+-			      __entry->asid)
++		    TP_printk("vm=0x%016llx, asid=0x%05x, svm=0x%016llx",  __entry->vm,
++			      __entry->asid, __entry->svm)
+ );
  
- /**
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index 0038f98c0cc7..5b3bd2c064f5 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -90,6 +90,7 @@ bool xe_svm_range_belongs_to_vma(struct mm_struct *mm,
- 								struct vm_area_struct *vma);
- void xe_svm_range_unregister_mmu_notifier(struct xe_svm_range *range);
- int xe_svm_range_register_mmu_notifier(struct xe_svm_range *range);
-+void xe_svm_range_prepare_destroy(struct xe_svm_range *range);
- 
- int xe_svm_build_sg(struct hmm_range *range, struct sg_table *st);
- int xe_svm_devm_add(struct xe_tile *tile, struct xe_mem_region *mem);
-diff --git a/drivers/gpu/drm/xe/xe_svm_range.c b/drivers/gpu/drm/xe/xe_svm_range.c
-index 53dd3be7ab9f..dfb4660dc26f 100644
---- a/drivers/gpu/drm/xe/xe_svm_range.c
-+++ b/drivers/gpu/drm/xe/xe_svm_range.c
-@@ -165,3 +165,20 @@ int xe_svm_range_register_mmu_notifier(struct xe_svm_range *range)
- 	range->mmu_notifier_registered = true;
- 	return ret;
- }
-+
-+/**
-+ * xe_svm_range_prepare_destroy() - prepare work to destroy a svm range
-+ *
-+ * @range: the svm range to destroy
-+ *
-+ * prepare for a svm range destroy: Zap this range from GPU, unregister mmu
-+ * notifier.
-+ */
-+void xe_svm_range_prepare_destroy(struct xe_svm_range *range)
-+{
-+	struct xe_vm *vm = range->svm->vm;
-+	unsigned long length = range->end - range->start;
-+
-+	xe_invalidate_svm_range(vm, range->start, length);
-+	xe_svm_range_unregister_mmu_notifier(range);
-+}
+ DEFINE_EVENT(xe_vm, xe_vm_kill,
 -- 
 2.26.3
 
