@@ -4,57 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C40BDC35274
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Dec 2023 09:36:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 591FBC35274
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Dec 2023 13:12:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72F5E10E6C2;
-	Thu, 21 Dec 2023 09:36:47 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15CFE10E6B6
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Dec 2023 09:36:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FC5310E6C9;
+	Thu, 21 Dec 2023 13:12:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02D7810E6C9;
+ Thu, 21 Dec 2023 13:12:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703151405; x=1734687405;
+ t=1703164363; x=1734700363;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=ZZIsvRlk8VAmwycPJ74vCd6QO4Yh/zBUTWPBgp/xe9c=;
- b=TTnyeA9P+Au6aKmMUWFRUic4equToQZU7qXbq7+FOn9b/dUH6hST2r9V
- khGodtvYtLIP9DCTqRJLAp4ao+k1N59MJ9CEaBwIz7xscJtvMWDOMYapW
- TuIAGO+pCr2W9sEfKH+gC6QWWrrCifxjYZi0IxQdtrrqibbDLyp/lrakU
- Z+aynGQhdCJ7Fgrd4cFYz5DGwYwrZAD7JnW4Qfq2mnBVepOAiwKmTxzLN
- zg+kAYJmsPMbii2E+1JZzAFodV5bCRgAr3SsWzSx2q1c75c48PLGYQ24n
- yae0yZI0WO77A0uyp62HWnen/2kc034QogJ5lS/FRRCk6jMcdPpXINEU5 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="394840698"
-X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="394840698"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2023 01:36:44 -0800
+ bh=QSOjoEbB8/433LtyJ7GGVvd7TWmC8vJSHwhnl322DEk=;
+ b=WjyWGvb9Uek8k6Slrk2dHi/RUgQBkBTHP7IoFKXES0Gi1FiEifc4pSaJ
+ gBHG9C8Ewq+A5Z+vQ3iNa7F1E1Wa3MGLy+IhLHOJGxWOHJ3ZJJ+ovTLd3
+ lNrDgs7h7WwZAsV54ZakahVkCDNro7rJEdx2mefKadvK/DWlyloDc03TH
+ Mlyn8/KtAgMFqP0/HgjpL3mzdli0RD0xObIUlZkjTJhunetfTHAIgLueH
+ qtRzEhChUprMei4MLuEUWdix2MHWDxNHIuPY7d3XfVTo0U9iY7rB7oZYq
+ poiTCwBM/R0FzQAvnSBC/UTvMMVZtdrVK2O7uw7NGxXoUMqYMhqUZZTAN w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="427123865"
+X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="427123865"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Dec 2023 05:12:42 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="847056185"
-X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="847056185"
-Received: from amcgui4x-mobl.ger.corp.intel.com (HELO [10.213.235.205])
- ([10.213.235.205])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2023 01:36:43 -0800
-Message-ID: <ebcec5e0-236c-4cd9-b676-d7ca7d46cb10@linux.intel.com>
-Date: Thu, 21 Dec 2023 09:36:41 +0000
+X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="24953399"
+Received: from lapeders-mobl1.ger.corp.intel.com (HELO [10.249.254.203])
+ ([10.249.254.203])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Dec 2023 05:12:40 -0800
+Message-ID: <9e9df7dc-5b6f-8eeb-4580-51244c135946@linux.intel.com>
+Date: Thu, 21 Dec 2023 14:12:14 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/8] Engine Busyness
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 00/11] Introduce drm evictable lru
+To: Oak Zeng <oak.zeng@intel.com>, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, =?UTF-8?Q?Christian_K=c3=b6nig?=
+ <christian.koenig@amd.com>
+References: <20231102043306.2931989-1-oak.zeng@intel.com>
 Content-Language: en-US
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-References: <20231207125802.3730165-1-riana.tauro@intel.com>
- <4c5c2902-9503-465e-8a59-d17d75d8781f@linux.intel.com>
- <ZXpgwiRQ7z3cTE3V@unerlige-ril>
- <b753ccd6-3417-4da1-b3d3-a16aad6588bc@linux.intel.com>
- <ZYJ9U7/Y0uqq/Ygw@unerlige-ril>
- <b1573816-c1f6-4958-8171-d5c43a3d2766@linux.intel.com>
- <ZYN/mkkRT+oFJLSo@unerlige-ril>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <ZYN/mkkRT+oFJLSo@unerlige-ril>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20231102043306.2931989-1-oak.zeng@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,151 +61,173 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: felix.kuehling@amd.com, airlied@gmail.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi Oak, Christian
 
-On 20/12/2023 23:58, Umesh Nerlige Ramappa wrote:
-> On Wed, Dec 20, 2023 at 09:00:34AM +0000, Tvrtko Ursulin wrote:
->>
->> On 20/12/2023 05:36, Umesh Nerlige Ramappa wrote:
->>> On Thu, Dec 14, 2023 at 08:06:46AM +0000, Tvrtko Ursulin wrote:
->>>>
->>>> On 14/12/2023 01:56, Umesh Nerlige Ramappa wrote:
->>>>> On Thu, Dec 07, 2023 at 02:45:47PM +0000, Tvrtko Ursulin wrote:
->>>>>>
->>>>>> Hi,
->>>>>>
->>>>>> On 07/12/2023 12:57, Riana Tauro wrote:
->>>>>>> GuC provides engine busyness ticks as a 64 bit counter which count
->>>>>>> as clock ticks. These counters are maintained in a
->>>>>>> shared memory buffer and internally updated on a continuous basis.
->>>>>>>
->>>>>>> GuC also provides a periodically total active ticks that GT has been
->>>>>>> active for. This counter is exposed to the user such that 
->>>>>>> busyness can
->>>>>>> be calculated as a percentage using
->>>>>>>
->>>>>>> busyness % = (engine active ticks/total active ticks) * 100.
->>>>>>
->>>>>> I think I've asked this before but don't remember it was clarified 
->>>>>> - what are the semantics of "active" with total active ticks? In 
->>>>>> other words considering activity timelines like:
->>>>>>
->>>>>> 1)
->>>>>>     0          1s
->>>>>> rcs0 |xxxxx-----|
->>>>>> bcs0 |-----xxxxx|
->>>>>>
->>>>>> 2)
->>>>>>     0          1s
->>>>>> rcs0 |xxxxx-----|
->>>>>> bcs0 |xxxxx-----|
->>>>>>
->>>>>> Assuming 1s sampling, would the above formula correctly say 50% 
->>>>>> for both engines in both cases?
->>>>>
->>>>> Yes. What is the significance of case 2? Are you saying rcs and bcs 
->>>>> are executing in parallel?
->>>>
->>>> In parallel yes. Complete overlap, no overlap, or any overlap of 
->>>> activity in between the two.
->>>
->>> GuC accumulates this on context switches, so the overlap does not 
->>> matter.
->>>
->>>>
->>>>> Either ways, when total active ticks is queried it would provide 
->>>>> the latest value of the active time (does not depend on gt 
->>>>> park/unpark since the value is either obtained on demand from GuC 
->>>>> or is a value that is frequently updated by GuC.
->>>>>
->>>>> The duration of context (in to out) is accumulated for the each 
->>>>> engine.
->>>>
->>>> But why is the total *active* tick moving during the 0.5s - 1s time 
->>>> of the 2nd diagram though? What does it mean by "active" if nothing 
->>>> was active during that period?
->>>
->>> VF was still using it's allotted time and hence was active.
->>
->> And if we leave SR-IOV out for a moment?
-> 
-> Then it is just a periodically sampled (by GuC) value of GT ticks. The 
-> period being 100ms.
-> 
->>
->> "GuC also provides a periodically total active ticks that GT has been 
->> active for."
->>
->> How many time worth of total GT active ticks does GuC report in 
->> diagram 2 above?
-> 
-> Every 100ms we would see an updated value. For the duration of 0.5s, it 
-> would be 500ms. Sampled at 1s, it will be 1000ms. Until 0.5s it should 
-> be 100% busyness but there is an error margin of 100ms. From then on, 
-> the busyness % will decrease as time progresses. The error margin is 
-> more pronounced for very short workloads, so IGTs were changed to use 2s 
-> batch durations rather than 500ms. Haven't checked if IGTs have been 
-> posted yet though.
+On 11/2/23 05:32, Oak Zeng wrote:
+> We plan to implement xe driver's shared virtual memory
+> manager (aka SVM) without buffer object concept. This
+> means we won't build our shared virtual memory manager
+> upon TTM infrastructure like amdgpu does.
+>
+> Even though this approach is more efficient, it does
+> create a problem for memory eviction when there is
+> memory pressure: memory allocated by SVM and memory
+> allocated by TTM should be able to mutually evict
+> from each other. TTM's resource manager maintains
+> a LRU list for each memory type and this list is used
+> to pick up the memory eviction victim. Since we don't
+> use TTM for SVM implementation, SVM allocated memory
+> can't be added to TTM resource manager's LRU list. Thus
+> SVM allocated memory and TTM allocated memory are not
+> mutually evictable.
+>
+> See more discussion on this topic here:
+> https://www.spinics.net/lists/dri-devel/msg410740.html
+>
+> This series solve this problem by creating a shared
+> LRU list b/t SVM and TTM, or any other resource manager.
+>
+> The basic idea is, abstract a drm_lru_entity structure
+> which is supposed to be embedded in ttm_resource structure,
+> or any other resource manager. The resource LRU list is a
+> list of drm_lru_entity. drm_lru_entity has eviction function
+> pointers which can be used to call back drivers' specific
+> eviction function to evict a memory resource.
+>
+> Introduce global drm_lru_manager to struct drm_device
+> to manage LRU lists. Each memory type or memory region
+> can have a LRU list. TTM resource manager's LRU list functions
+> including bulk move functions are moved to drm lru manager.
+> drm lru manager provides a evict_first function to evict
+> the first memory resource from LRU list. This function can
+> be called from TTM, SVM or any other resource manager, so
+> all the memory allocated in the drm sub-system can be mutually
+> evicted.
+>
+> The lru_lock is also moved from struct ttm_device to struct
+> drm_device.
+>
+> Opens:
+> 1) memory accounting: currently the ttm resource manager's
+> memory accounting functions is kept at ttm resource manager.
+> Since memory accounting should be cross TTM and SVM, it should
+> be ideally in the drm lru manager layer. This will be polished
+> in the future.
+>
+> 2) eviction callback function interface: The current eviction
+> function interface is designed to meet TTM memory eviction
+> requirements. When SVM is in the picture, this interface
+> need to be futher tunned to meet SVM requirement also.
+>
+> This series is not tested and it is only compiled for xe
+> driver. Some minor changes are needed for other driver
+> such as amdgpu, nouveau etc. I intended to send this out
+> as a request for comment series to get some early feedback,
+> to see whether this is the right direction to go. I will
+> futher polish this series after a direction is agreed.
+>
+> Oak Zeng (11):
+>    drm/ttm: re-parameter ttm_device_init
+>    drm: move lru_lock from ttm_device to drm_device
+>    drm: introduce drm evictable LRU
+>    drm: Add evict function pointer to drm lru entity
+>    drm: Replace ttm macros with drm macros
+>    drm/ttm: Set lru manager to ttm resource manager
+>    drm/ttm: re-parameterize a few ttm functions
+>    drm: Initialize drm lru manager
+>    drm/ttm: Use drm LRU manager iterator
+>    drm/ttm: Implement ttm memory evict functions
+>    drm/ttm: Write ttm functions using drm lru manager functions
+>
+>   drivers/gpu/drm/Makefile                      |   1 +
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c   |   6 +
+>   .../gpu/drm/amd/amdgpu/amdgpu_preempt_mgr.c   |   6 +
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       |  10 +-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c        |   6 +-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h        |   2 +-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c  |  10 +-
+>   drivers/gpu/drm/drm_drv.c                     |   1 +
+>   drivers/gpu/drm/drm_evictable_lru.c           | 266 ++++++++++++++++++
+>   drivers/gpu/drm/drm_gem_vram_helper.c         |  10 +-
+>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c       |   6 +-
+>   drivers/gpu/drm/i915/i915_ttm_buddy_manager.c |  10 +
+>   drivers/gpu/drm/i915/intel_region_ttm.c       |   4 +-
+>   drivers/gpu/drm/i915/selftests/mock_region.c  |   2 +-
+>   drivers/gpu/drm/loongson/lsdc_ttm.c           |  10 +-
+>   drivers/gpu/drm/nouveau/nouveau_ttm.c         |  22 +-
+>   drivers/gpu/drm/qxl/qxl_ttm.c                 |   6 +-
+>   drivers/gpu/drm/radeon/radeon_ttm.c           |  10 +-
+>   drivers/gpu/drm/ttm/tests/ttm_device_test.c   |   2 +-
+>   drivers/gpu/drm/ttm/tests/ttm_kunit_helpers.c |   2 +-
+>   drivers/gpu/drm/ttm/ttm_bo.c                  | 247 ++++++++++++----
+>   drivers/gpu/drm/ttm/ttm_bo_util.c             |  20 +-
+>   drivers/gpu/drm/ttm/ttm_bo_vm.c               |   2 +-
+>   drivers/gpu/drm/ttm/ttm_device.c              |  55 ++--
+>   drivers/gpu/drm/ttm/ttm_module.h              |   3 +-
+>   drivers/gpu/drm/ttm/ttm_range_manager.c       |  14 +-
+>   drivers/gpu/drm/ttm/ttm_resource.c            | 242 +++-------------
+>   drivers/gpu/drm/ttm/ttm_sys_manager.c         |   8 +-
+>   drivers/gpu/drm/vmwgfx/vmwgfx_bo.c            |   2 +-
+>   drivers/gpu/drm/vmwgfx/vmwgfx_bo.h            |   2 +-
+>   drivers/gpu/drm/vmwgfx/vmwgfx_drv.c           |   6 +-
+>   .../gpu/drm/vmwgfx/vmwgfx_system_manager.c    |   6 +
+>   drivers/gpu/drm/xe/xe_bo.c                    |  48 ++--
+>   drivers/gpu/drm/xe/xe_bo.h                    |   5 +-
+>   drivers/gpu/drm/xe/xe_device.c                |   2 +-
+>   drivers/gpu/drm/xe/xe_dma_buf.c               |   4 +-
+>   drivers/gpu/drm/xe/xe_exec.c                  |   6 +-
+>   drivers/gpu/drm/xe/xe_migrate.c               |   6 +-
+>   drivers/gpu/drm/xe/xe_res_cursor.h            |  10 +-
+>   drivers/gpu/drm/xe/xe_ttm_sys_mgr.c           |   8 +-
+>   drivers/gpu/drm/xe/xe_ttm_vram_mgr.c          |  18 +-
+>   drivers/gpu/drm/xe/xe_vm.c                    |   6 +-
+>   drivers/gpu/drm/xe/xe_vm_types.h              |   2 +-
+>   include/drm/drm_device.h                      |  12 +
+>   include/drm/drm_evictable_lru.h               | 260 +++++++++++++++++
+>   include/drm/ttm/ttm_bo.h                      |  10 +-
+>   include/drm/ttm/ttm_device.h                  |  13 +-
+>   include/drm/ttm/ttm_range_manager.h           |  17 +-
+>   include/drm/ttm/ttm_resource.h                | 117 +++-----
+>   49 files changed, 1042 insertions(+), 501 deletions(-)
+>   create mode 100644 drivers/gpu/drm/drm_evictable_lru.c
+>   create mode 100644 include/drm/drm_evictable_lru.h
+>
+Some additional comments after looking through this patchset and the 
+comments.
 
-Sorry somehow it is still not clear to me. :)
+1) General: IMO a good start.
 
-GuC updates the GT total active ticks _constantly_? With a 100ms 
-sampling so like:
+2) Where should this reside? I'm not a big fan of *prescribing* that a 
+component should be part of a specific device structure. IMO that leads 
+to dumping the whole drm namespace into this component rather than to 
+keep it isolated with as few dependencies as possible. I would make the 
+part that should reside in the drm device a "struct drm_lru_device", and 
+the resource base class a "struct drm_lru_resource". Whether the drm 
+device then wants to embed the struct drm_lru_device (nice if you need 
+this component) or have a pointer to it (nice if you don't need this 
+component) and whether the ttm_device should subclass the drm device 
+becomes pretty orthogonal to the actual implementation, and we'd avoid 
+hard to follow code cross-references all over the place. The drm_gpuvm 
+IMO did a good job with this, but I know there are other opinions on 
+this, and I don't want it to become a blocker.
 
-a)
+3) Christian's comment about cursors into the LRU for LRU traversal restart
+This is quickly becoming a must for the Xe driver, and a very-nice to 
+have for a working TTM shrinker, but I think we should start to bring 
+what we have in TTM currently over and do the cursors as a separate 
+task. I have it pretty much on top of my priority list currently. Both 
+downstream i915 and drm_gpuvm have a way to handle this nicely by 
+permutating the LRU list just before the lock needs to be released, so I 
+was thinking something similar. The complication would be the bulk move 
+tracking.
 
-  while (true)
-    if (gt_active)
-       gt_total_active += 100ms
-    sleep(100ms)
+4) The struct drm_lru_evict_ctx - This one needs to be common across all 
+users since it's set up by the evictor and used by the evictee ops.
 
-Or b):
-
-  while (true)
-    gt_total_active += 100ms
-    sleep(100ms)
+/Thomas
 
 
-?
-
-If a) then diagram 2) above would show 50% rcs0, no? (When sampled at 
-T=0 and T=1s and deltas calculated.)
-
-If b) then "...total active ticks that GT has been active for." uses a 
-different definition of "GT active" than I am assuming? Like no relation 
-to whether any of the engines is used, just the fact GuC is loaded and 
-running?
-
-Regards,
-
-Tvrtko
-
-> 
-> Regards,
-> Umesh
-> 
->>
->> Regards,
->>
->> Tvrtko
->>
->>>
->>> Regards,
->>> Umesh
->>>
->>>>
->>>>>> I am also curious if there are plans to add support to 
->>>>>> intel_gpu_top in which case please copy me on the required 
->>>>>> refactorings.
->>>>>>
->>>>>
->>>>> Certainly. It's in the works.
->>>>
->>>> Cool.
->>>>
->>>> Regards,
->>>>
->>>> Tvrtko
