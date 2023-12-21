@@ -4,56 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB3C1C3DA6E
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Dec 2023 00:50:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0A96C3DA6E
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Dec 2023 00:52:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42CBA10E646;
-	Thu, 21 Dec 2023 00:50:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B692D10E02B;
+	Thu, 21 Dec 2023 00:52:25 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CFF210E644
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Dec 2023 00:50:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1012710E02B
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 Dec 2023 00:52:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703119814; x=1734655814;
+ t=1703119944; x=1734655944;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=V08LbT0IvNv3XSUKj04MYamCZSEph7Ul2RJ1YXzgxLE=;
- b=c5uEM1OrZEqNnakwzgvDn1co8+98GmUQq/ihMvUUyTN+kgaMWWJ3Uzi8
- TXOtxvRy5+mcMtfmtT2PWAs2ol80quvkCrr1zQx77pH4PmzsZgT4atCe4
- L3jqLzE8bT7sUDwZhZDWQDKe1lVo6WE8ZjgqgzlLJMsUkxfOzzaWUFbGm
- Xln4pVTxuWNF47rYpEbCWlys3Xjotk5QIb2ibrN6X0ZpzpXAJSahzZbI9
- RnrH0LCry7PjthBGAO9YuJM4mnb1xu7la3oDtyzhgVutZxP53vKnMfNmf
- 9u62ORvWNFGjhSBNScRSqQu7TBUi4lmWwWoEZfLU6oMCtpV1Rxq1ReMW0 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="380886204"
-X-IronPort-AV: E=Sophos;i="6.04,292,1695711600"; d="scan'208";a="380886204"
+ in-reply-to:mime-version;
+ bh=Ly0M7JDMrNz8IM9z8wNre0HY9zfCqy1k7A5YXT5DfzM=;
+ b=MBn3QAG4b6BwoM03AIL4z4Vkr5PHZXp6s1NsabmKSfZrJAgrn5eiTtQ9
+ 10TT2PONHcVz49VVxZ/HvqCLoyd4UHAOa7wBqpJsOpeHVkQiOqETMSBjP
+ /H//+bt+gXVt6eH4zmjD6eFvVtD/pFWAmEZD4Hsu13HHuPIwlyx5CZyzS
+ m13mJjVo9WOQqBndbPW1bYatddzzZCx07Qq4SqhcHllWZZ+Ve+cV8kyPx
+ 9mfZcNPQAyX0P9y9eLr0F62Jerj7lI7XVP/1NxWi0U26NKhdW+3gHh6fr
+ AQHkNJgPWujpdGtognpnObB8+6sOjfCP70VK98C1KK9AY9sqK4ChqTnbQ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="380886453"
+X-IronPort-AV: E=Sophos;i="6.04,292,1695711600"; d="scan'208";a="380886453"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2023 16:50:13 -0800
+ 20 Dec 2023 16:52:24 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="780023325"
-X-IronPort-AV: E=Sophos;i="6.04,292,1695711600"; d="scan'208";a="780023325"
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="780023968"
+X-IronPort-AV: E=Sophos;i="6.04,292,1695711600"; d="scan'208";a="780023968"
 Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
  by fmsmga007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 20 Dec 2023 16:50:13 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ 20 Dec 2023 16:52:24 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
  fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 20 Dec 2023 16:50:13 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2507.35; Wed, 20 Dec 2023 16:52:24 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 20 Dec 2023 16:50:13 -0800
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.169)
+ 15.1.2507.35; Wed, 20 Dec 2023 16:52:23 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Wed, 20 Dec 2023 16:52:23 -0800
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
  by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 20 Dec 2023 16:50:13 -0800
+ 15.1.2507.35; Wed, 20 Dec 2023 16:52:23 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MLRC+wBja+wZjgkpRqF2/qH5smcFqK+RKmpay0DUMUyX8bRMSvPYV+4GWOp8mPBuqdx8zOK44QMJO/zPPsqH3FRtTP/lK7KyrA8jMulvgz7mHILh+DZPIJScsiBVpgupOpispLxGMpgU80szbm6zXjUst1/HaUXVrlMn4oziK8ibsB3kA2t8tpTuMsdS6zYSnXwi7BEMVVbbqa9yGFM5K4DZOCtJTJBskV2ALpdfzbiPOCk6y7j1xVyCqzD/w9RdFqLlVIlO9D7QD0X6ub8G9Fogg7Tuo5n0/6hd2o75wRbgA9Xaje4hA50z3HaKred84AiPsa+73Yq1JGmATpBlEA==
+ b=HVYtmxqV64d0uj3iiEW2MuePH/EXVfCaafxckk5EljlWL5ycWsTq03MLZbVzh8/7s1XXNcJWLPI0oyermT0DDdm6FkXzszqL5xIJykzJc/4xOT/z5xVob6xyh55/JnW2Y244d1flJuY3ctQ8f8Y0aVEIj7d+cu4leKVmOeBKOc7tm9htVbRBCZTJxhsd0XeUljXZsADqlnjYZ8Vs7hsV9vSl3wDVnjhHMv+Y1Xqm1G9eDxC1rLG9hvpHLiYNmhSEsZr9+D+BeZU+msig0uJIBiTjKE8WidU9efoV7OX197tAnPx5csObRA6sBZ1TsS42w3RTNe7OH7lLR8ZV20xk0w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZPjvS6ns3JUeyOP7VwazTx+xhrtMZRc8Th2Il660CxY=;
- b=d/CqtaU8ZP4608D2GzI6EoGQKdJPkuqsTYC3ePv+g4bpT77lMwbA/1xw1sO5Uz2iPDOkHTLOp2uzIRaQZDbaSZdirLKBoYAPUJyW/d195pJJHwZybAtm13Z6dLW8NfFAswpXvWRZtmTO5SXtOrCvcIo8DJPvNAeMPZyJ3lfbkTT+ZcGwEUpGmMrr0UgnYDQOvedfYG/C+sEJbXgA8ciusg6ZBrMj2KC8pC7UpTHc1TV+94a51mo6shx826t1cHSBGw7VPtEGa5dEyqoaEW360P0kQFlWkmcBEMzv62dw9Z9CixhQrIzUwx51ae5QywdQxTzj4ax8PTJz/jazfDwZKA==
+ bh=OHdRPhXFwOX+eH3EWUQolwAdpjL4wgVOmXEOzYglVuo=;
+ b=j/i5sXa4fIFz7I7b91fNkzeeDQaQRCyraYmTvVcW9AKCP49fGJ7noKL08rgC5fNK0EnIvBSjf3YvE1ZXSlQdGTruWFX7CNDBjHKTWAXg6ZrfwIvk+DriBWU0A8tBOJ4Uvd4x4HtzhzBrYFustj8/pEPSHViCNf/iEnu0legilUcPq9OANhVInXgDRJJuYUPGxUP06VV+zfn+aD/FC29DkYo7qZWG8Ee9QotlbttN95jdWX7KAEBWpGYo6zW2JbHoxmasKmoNPAj0GLq8QPoPTJkEGe3m2Z2fi6A4Epyo2XE7q4q6jLvokGYCe6RqPV0AwQde4yuzxPzXrw6yN8TrSA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -63,84 +67,83 @@ Received: from DM6PR11MB2987.namprd11.prod.outlook.com (2603:10b6:5:65::14) by
  SA3PR11MB7436.namprd11.prod.outlook.com (2603:10b6:806:307::6) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7091.37; Thu, 21 Dec 2023 00:50:10 +0000
+ 15.20.7091.37; Thu, 21 Dec 2023 00:52:10 +0000
 Received: from DM6PR11MB2987.namprd11.prod.outlook.com
  ([fe80::e73e:dcc0:c5bb:49b9]) by DM6PR11MB2987.namprd11.prod.outlook.com
  ([fe80::e73e:dcc0:c5bb:49b9%7]) with mapi id 15.20.7113.016; Thu, 21 Dec 2023
- 00:50:10 +0000
-Date: Wed, 20 Dec 2023 16:49:59 -0800
+ 00:52:10 +0000
+Date: Wed, 20 Dec 2023 16:52:07 -0800
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: Riana Tauro <riana.tauro@intel.com>
-Subject: Re: [PATCH v2 2/8] RFC drm/xe/guc: Add interface for engine busyness
- ticks
-Message-ID: <ZYOLtyll4gC9RHyh@unerlige-ril>
+Subject: Re: [PATCH v2 3/8] RFC drm/xe/guc: Expose engine busyness only for
+ supported GuC version
+Message-ID: <ZYOML1pbxg8akc1D@unerlige-ril>
 References: <20231207125802.3730165-1-riana.tauro@intel.com>
- <20231207125802.3730165-3-riana.tauro@intel.com>
+ <20231207125802.3730165-4-riana.tauro@intel.com>
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231207125802.3730165-3-riana.tauro@intel.com>
-X-ClientProxiedBy: MW4PR04CA0332.namprd04.prod.outlook.com
- (2603:10b6:303:8a::7) To DM6PR11MB2987.namprd11.prod.outlook.com
+In-Reply-To: <20231207125802.3730165-4-riana.tauro@intel.com>
+X-ClientProxiedBy: MW4PR04CA0221.namprd04.prod.outlook.com
+ (2603:10b6:303:87::16) To DM6PR11MB2987.namprd11.prod.outlook.com
  (2603:10b6:5:65::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: DM6PR11MB2987:EE_|SA3PR11MB7436:EE_
-X-MS-Office365-Filtering-Correlation-Id: 32ef703f-d32d-406d-26f5-08dc01bec893
+X-MS-Office365-Filtering-Correlation-Id: 0dc3d5fd-4e63-4f35-691a-08dc01bf0fff
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: VWsKawFcgRQhohhHTcab4AbAMaMeAeBF+P8uPskIKcoLyG//N1kmwrhAqAOOkkaydTZEEdg1TRn+eP59C5LwXClH8c6LbpGEhKhE9rS6K2mUbh+D29o+8nGWulVO8OKUlwuN9/atoJWWnuZiROa7Ohe+YQDTl8FJr6fHpZ9OScTIUs9Uos5zxthFDe9zARnKQTo3OaLCIGgF/p2y+J6ks83sQ90Fq9Aw2F1LW+CJ2UfUFbkR1KPHswyPAEz+pNokplcFRZE45UF2DDJHeaogwRIXPW3cVPh0Sy3v0hRcxIkS0sUwPHzt2BKAbagsp3LQsnBGV37F8wBKkROGoQWmMhYo3h7Cmh6mEOdQKkDh729pXf/On3s/NxBkTLr7YCGgLgzJedL65SCm1A/9YTJkSVhpBOXK1lS0pWLOtFUzZz+o+ekdNle7nG/0/vSJgBONBrYR2J5Yousp06jWVzQGRxk5b+sWoArKW376xUmCzdIRqohbl9GQEZFQG1EGeeZx33hPgj9a4zuxjByPdwJJwg+KFZjSTreJpB/psdFc1kERoORFmJHlRlVpfwCOQZLQ
+X-Microsoft-Antispam-Message-Info: ZyeZlbF1sw6xfTmJ3zVlT47tpk0LvZczS+RACgBqi9TkSgSjFYFAdFi4Bo3TYdYJtVxY/j8JKKaBfBAkCMAF5l4q26q8WNgQ1P9/8cU+6RESeQqi6wNIJ079lmPZcyfqxE6J21F3l3W0xmksddEVi5tLAPIme+MYAJ1nP6l3fjEuCy8SFuI6r6FpNtMga/xlt2seBOtbH0Mgp0BH9lcynibxgUfx6xFHfrUazbG1z9XjW/bjS58Wb+NSSmaD/10YAutkAoxtp3XTSA3saGkothCu5rA5h2o3h95yZsFU76Ar9Yi7gEnfsmlsn9TEHqBeFgcTMciy7MRyY+kTN90lg5O3VgHSZOgpUkQwDP1CEX/6pKWJD1KuyU65QyJDgH1JBlpIFNh0zXrLzorh2EgOkKdus7xKTVOk1BcK3HTWnZOTvu24fgJEsbHZhl0SoBkTzRrhgBoYfvokS/Iq0y6eY6wPHyPgxYV3emhDzDgFu70Ju0Qr0GQZzIIcTOaKL0AfP7gWSeONQ9Bk0A6wLfWr2lStfwN7bzUcKbigEdIOTEYNHL1w8LCev6DpyD+SplUS
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR11MB2987.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(346002)(366004)(396003)(39860400002)(136003)(376002)(230922051799003)(1800799012)(451199024)(186009)(64100799003)(6862004)(26005)(8676002)(5660300002)(6512007)(30864003)(9686003)(6636002)(6666004)(41300700001)(6506007)(33716001)(478600001)(2906002)(8936002)(4326008)(316002)(66556008)(66476007)(66946007)(6486002)(82960400001)(86362001)(38100700002)(83380400001);
+ SFS:(13230031)(7916004)(346002)(366004)(396003)(39860400002)(136003)(376002)(230922051799003)(1800799012)(451199024)(186009)(64100799003)(6862004)(26005)(8676002)(5660300002)(6512007)(9686003)(6636002)(6666004)(41300700001)(6506007)(33716001)(478600001)(2906002)(8936002)(4326008)(316002)(66556008)(66476007)(66946007)(6486002)(82960400001)(86362001)(38100700002)(83380400001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YzBUNjQyazAxK2tTN3VyOGpPei9QL2JPdTdnbGdSc2NiNHNNMUd2c0t3TS91?=
- =?utf-8?B?alJDTFJNQU13NklHaklGQWlKYkRxMGM5Mk55blNybUVOL0U3T2tuMWI1UXc4?=
- =?utf-8?B?TXdIMFJtdnd5N2xKYUFXdXVWUnlYeFh2MG8wUmZJdkNxc2QxbDNPUUFxSmJR?=
- =?utf-8?B?ei8rWU1rZEdJZWw3MU9uSlZxOVdSQUQ1K1NicUhkb3FZZVNLWWp6YjQyMW5a?=
- =?utf-8?B?MERmYlZKQWYxUE80djVwVEx1Nk9yUzFUWWcyY2NmVkhQUHlHWWZDTHZZKzBq?=
- =?utf-8?B?Yzk0NFA5Y3MwcDdLTFN3TEhqSEROcks4NC9Na05md1dVZHhZc0x0cEgvRmZl?=
- =?utf-8?B?ZUpRSGNScWw1ZFpwZEx2aVA0cHpZbnkwY2pVWUVYcHFoditDSThFTVRNMVkv?=
- =?utf-8?B?YnJ1M0FKeVFaYU5DS2JjcjltTGMzNXc0Y1hZNTNMekk2WXRXdk9BY3ZjTHls?=
- =?utf-8?B?ZWs5QTN0V1R3N2JGOERXeTU0cWdOcDlKVDZ6alp0N2lDNXcwcjVyRWxOWld4?=
- =?utf-8?B?ZjNzMmJGYXdQVjdwMXJwdXNneG9pdXlYOUVUREF3Ty9BWkQrdGlxWDNCbUVr?=
- =?utf-8?B?WlAyMnZ6Z0VYOVlNWC9EbkkxRG51MWtCT0pXdmNNaml6WnhBYmpJOTlZNVQ4?=
- =?utf-8?B?Vld2TXVmMXhYQ0NEVHByL1dqSXJLSFFiSDlCTkRrTFBlVHRGTE1kQlNGTHBp?=
- =?utf-8?B?V3pObVhpc0hoQ2NUSDZZRGZ6cWRLekVVVDVDUGhrZGljTndjVzZINWhwcFVs?=
- =?utf-8?B?TlQ5NnI1MjhTWlArMDRYM2tTRTJPZXJXaExmZG5VNURlQjJTUUhZWUtNY1BT?=
- =?utf-8?B?MUgzV3RydXRwMXc1OWVQT0NOdjZZN2gzVmZxOEx1MXdkOVRnT0hIZ3M3VERz?=
- =?utf-8?B?RWw3dnRGaXNXcTV6TlpEUXdEUDdoOC9mVWxDenpleUZvZFhLZFZMdWpmZGdG?=
- =?utf-8?B?TFlZcldVRTVTN0dOb2FJcHJVdVdsRk04VXJheDFRcnk5Rkl1aEJzQlhXbmhk?=
- =?utf-8?B?dUMvWFhhWEh4MS9WOUtWUlAwWlRUb2h0Wm5EL2dEZ3JIZnFTa0pXMDNGd2cy?=
- =?utf-8?B?MGJCL2U0SU5VajNaRCszRnB3ZC9hSnJpSDc2RWRzR3llZXFyTGlLUW9rSTNN?=
- =?utf-8?B?a1ZYWGdsUEFnMXVSaVhNVUo4MTNMTk0wYkorZllKZzdibUdrMGgzTGxITXF1?=
- =?utf-8?B?SHpkT0h5U0xvSXFUWVY4TUxYTmt0SVZ2VmMwQ3l6MytXbjJPcVZ0OE9OR1Ji?=
- =?utf-8?B?bGhDejAyZDR4TEZ5WGcyamU1VGt6eXFDa2hGTjR0NGhuSUt0ZjBjUFlBZHJG?=
- =?utf-8?B?M1Npc1N0NXdiczVHNXNJVHFTLzdQY0xVUjhjamVyRnhxSVcvcXRlRWpJL3Fz?=
- =?utf-8?B?cnZzRGsrTjE5VG11UTR2b25RKzlzMkZJbzcycU5MY0RhaGhRRU1RUFpZNWdl?=
- =?utf-8?B?bkZvKzF3b2ZlbVdZeUN2Tzh1OXUwL1N2RlFsVU1GcitHWGpJNE83eVZFOVNY?=
- =?utf-8?B?RjJCUWRsLy9qQXE5czIrb1VQSmNYNDB0MzlqMjQxVEtoeWtBd3dYNXRmNVc1?=
- =?utf-8?B?MnVTQ3c2MkZmd3Q4NE1nelYxdFNNMWFueW5EdFlKUzk2Wnh3OXRoOERzVkkr?=
- =?utf-8?B?TEVvOHpITFlzWkpZSCtsZ3YyaHZrNG5talZ6amhoNWZrS1BHRDRxRFhhQVpY?=
- =?utf-8?B?OUtOSGZBcGtxa2VIRTFpVFFuUEtUemZGaHFoSzVzREhrMUEyNU8rRlFjSzds?=
- =?utf-8?B?V1FBV0sxY3Fma2E5TGpja1E1anZZN1c4a09sVjl2dUhzS2hRckRRRDQxM1NG?=
- =?utf-8?B?ZXhBODNrYUZ1TmZteE95NFE5djFRdXlDL3BQd25jN1ZxdXZ5NDlyaHFGVmdj?=
- =?utf-8?B?UFY5eHI1VHhhYjRlRXVQcFJObU4zYkY1TStuUSt2Yldpa3Byc0ZGTFFHTWx5?=
- =?utf-8?B?dkhDQXRZZXJiNmtocFNIQnpYTDV6RkltZFVVekNwdGpPWE1PSmRHWXBuSDhF?=
- =?utf-8?B?NEpqSi9hSmREY0NRcWhqbVJoQ3pZREh0RlhCcDlYM1VMcnNjb1I2YVlzRmRv?=
- =?utf-8?B?QnMramR5M2RKRDZCbjEyeE5Ta3JINVY3TllOekMzN256c0hDRkFncjdGdGsv?=
- =?utf-8?B?SWJsakMrOFRISTNGRjNKeUNPanoyNm8rdm42OW83a1QxZ3JIWG5RR1VodCtu?=
- =?utf-8?Q?cLF6GPEqs+nE8VjgtMhX+1o=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 32ef703f-d32d-406d-26f5-08dc01bec893
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?LzdPZUFkand4cllkVGp1aWxnS2tZeFJXSVpnWXFzZFh3TW43MzhlZUoyL0hU?=
+ =?utf-8?B?WFdFek9JWXFuMlRGblZEcXY2ZkgwaEE4TjMzTkhQSlhFVUw3UFgwMnhaYXAz?=
+ =?utf-8?B?NlVJdW5zNkZncTBiaWdOTm53S2lsUWR6WHRieStURjZEaGY5RngxMXpURlNY?=
+ =?utf-8?B?ZDdDVzZVV0lWbnpsRllXZGsySkJaWEVFM2RQMXlTaFZsdzFDaDBDaEdiTFpo?=
+ =?utf-8?B?TFhJcm9ORlE5U0JLdE9jVnowSGhpMDhNdGJiQXpzcmhmbk9uamliMThUWjZh?=
+ =?utf-8?B?eStwWS9VU2dKeTIyMHRZMHY3ajkrdDhIbGw0c3ZXWlBtbWQ2TkhGK3lWdUZT?=
+ =?utf-8?B?aHFtTU9vbnJBQTZoZ2wycXBRcUhIbGk1RTREdEVFZlpmVDRXcGc0VTFIMXJQ?=
+ =?utf-8?B?WEhvYlo3RlE4OEltWm1sRDBaWGdoY01FWkRhNk0vMjc4bHZvNkhKY1VKeUh5?=
+ =?utf-8?B?M1JuMFJhR1hwWUdYQm9FdDFxbWJKcjlkUm1zbjJGZnQ5WWs5Vm9Ibk9nWTl4?=
+ =?utf-8?B?MjV6d3lFK3FRQ2U5UzZZSWczWnNoMHBBWWJIQ1pGbXpPbDZ5S3p4eVBqU1JQ?=
+ =?utf-8?B?SnVWWWloUTFvQ2dhZnVJMFZhbTR3WWdmaXNzV3NWSlV1ZHRVei9KYWNwUXZS?=
+ =?utf-8?B?RmhFUXJVb20wcWRlYUY4d3I3aUtKMERpNmp4ck4veWdiZXRJQjZCa042OTVV?=
+ =?utf-8?B?d1AyUGl5Rkh2eE9LR3dwV2JPRnZGVExuWURaUkFyUjlxaGRWQVBISkFZd3FF?=
+ =?utf-8?B?VmFYSlJwc3FuODMyU1NCOWNCdUpNVmcybzNweE9HYWhjM1NMem9qWXpHQisv?=
+ =?utf-8?B?RnhjdnNPdGRVWUVXOG9BQmNjTXBRb1hwNnU3U0s1YlRWZlhGTys1eTV6SEQ4?=
+ =?utf-8?B?Rmg5RkIxSkY2R01FcVpBbmtJRnMrWjVJWTdDMkZSNnRtMWRvSkZMOENqaXpr?=
+ =?utf-8?B?dnM2RXNESG15NFJlUHRzVW5tdlNWR3AyWFo3TnBTa0NoUncxWkhVQ0ZjN0ZI?=
+ =?utf-8?B?cFFEVjRISFc1NllBUWVFTGJ5U3ZCb3U0QXNwYnpEVVhKRSt4WGVNLzR6UlVl?=
+ =?utf-8?B?a296S2t0YllvelE1MUlZUGFYY3AyaVYvMkMxSi9tSTU0dC9UUlN2NmJNelhx?=
+ =?utf-8?B?MmZUV3hCbDBzbzVMb1Z0aGh1TGsySzhlbWRaWUthN2o3VFJtemVhMFNhS1hz?=
+ =?utf-8?B?bnFBeTBTajVha3cwbk43WkxHdHZUVzNUemJFaUFEeFBiaFNzMU45K1YxSFN3?=
+ =?utf-8?B?dW8vcnVWUllYckZlRXJoQlZCYU16UFNxQzJkSm5EY2lJT29BeHdyWGtJSlJ6?=
+ =?utf-8?B?UDJBSkxKUm9WbFNCWVBGalBaVFRPUGg0ZkpHcDNYdWtNajR4R0RUYUxqWlJ4?=
+ =?utf-8?B?dU9ScVN3SmdmSGdRajdrYXQzWUhRaTRnM0J4UUdtbVhRY3p5UGtLR05KWVg0?=
+ =?utf-8?B?d3FQcm5vaG1KeFRJSnRUa1dzdkJsQm12RitITlFBZjFRcnlBU0tVWUszcjl1?=
+ =?utf-8?B?dHlUZTdFaDhjbGpOMDhRWEZtQmFLUi9ZZjdLYXhBVzZidFU1T1huczZ1YWkx?=
+ =?utf-8?B?M2RqTGd2dmlabWg2TURjdHdkd0lnNUd0K0NSQ0xqalY0ME5ydWN2clhnK1Zx?=
+ =?utf-8?B?dnVNR3U0RUNnakVMSVZlRDhKT2N4RW5MZFBSOGNZbmdFdnVwSWE0VVh1Qk9r?=
+ =?utf-8?B?RzlnUzdmdlFHUmx4b0FBblpkdXZHV2lIdW50QlkvelJVRFcvRDZlTHpSQlhv?=
+ =?utf-8?B?NFR5ZGt1TXNGVmdrWTh1bVdLcG8yUENZMEJPTngrc0NaSEpTTlhDVENvUWt0?=
+ =?utf-8?B?QVpWVUFuQ1cwUVIyMDBsUmgwb252WjhsVllqRzh2Qlp1emZ0bm5HLzlKU0ZN?=
+ =?utf-8?B?TEJOZmpuWEgvY0NiQWlHYW45WlBrYUxHYkRUdmZaZjhxMXYwZlljVlZpS2ZS?=
+ =?utf-8?B?LytlUU5GTnRXeVU3SzY0K3VsTlVqNG9hbWlURFhWa05ZNTczakY5MklJSDhY?=
+ =?utf-8?B?MFFyT2oyT2VtRVJUc3ovektZZEY1K2NtKy9nZmFmU0NwUEEreS9mQ2ROV0hJ?=
+ =?utf-8?B?NFpocXF5SmFrYnVaaVNMRDVTOHdKWlZWdVNaK05XMTc4Rks3YTZQOVBoa0Ro?=
+ =?utf-8?B?R0FhbXlsYnE1SUJ1ZVZhWGVBNzRWOUJuU2IxN01wc0wvVndraS9ZbTIrTjVI?=
+ =?utf-8?Q?yn0r6n23ZEQjZxjwVmSge38=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0dc3d5fd-4e63-4f35-691a-08dc01bf0fff
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2987.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Dec 2023 00:50:10.2245 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Dec 2023 00:52:10.0264 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DJ6OIaUx3pTQhKNMGONSSJ0p0Etzzv+CpPxSuxCozcbbIrLrJoRnKt6aCJ83o6743svYYmhcz7DrjUHBPASS4+eudGfFhNewBAmLkTXkRIA=
+X-MS-Exchange-CrossTenant-UserPrincipalName: BcsWKuW5J5jRkChoIoCoM6dGeE8tVa+8+z/zUN8IOYO5QFNpbL9ahAoExO32CzzLjd9T1fbDY7c1nOfww1EzLge2mI0poYGhysFY6ikWf7c=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB7436
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -158,371 +161,95 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Dec 07, 2023 at 06:27:56PM +0530, Riana Tauro wrote:
->GuC provides engine busyness ticks as a 64 bit counter which count
->as clock ticks. These counters are maintained in a
->shared memory buffer and updated on a continuous basis.
+On Thu, Dec 07, 2023 at 06:27:57PM +0530, Riana Tauro wrote:
+>Guc version numbers are 8 bits only so convert to 32 bit 8.8.8
+>to allow version comparisions. use compatibility version
+>for the same.
 >
->Add functions that initialize Engine busyness and get
->the current accumulated busyness.
+>Engine busyness is supported only on GuC versions >= 70.11.1.
+>Allow enabling/reading engine busyness only on supported
+>GuC versions. Warn once if not supported.
 >
+>v2: rebase
+>    fix guc comparison error (Matthew Brost)
+>    add a macro for guc version comparison
+>
+>Cc: John Harrison <John.C.Harrison@Intel.com>
+>Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 >Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 >---
-> drivers/gpu/drm/xe/Makefile                 |   1 +
-> drivers/gpu/drm/xe/abi/guc_actions_abi.h    |   1 +
-> drivers/gpu/drm/xe/xe_gt.c                  |  13 ++
-> drivers/gpu/drm/xe/xe_gt.h                  |   2 +
-> drivers/gpu/drm/xe/xe_guc.c                 |   7 +
-> drivers/gpu/drm/xe/xe_guc_engine_busyness.c | 153 ++++++++++++++++++++
-> drivers/gpu/drm/xe/xe_guc_engine_busyness.h |  17 +++
-> drivers/gpu/drm/xe/xe_guc_fwif.h            |  15 ++
-> drivers/gpu/drm/xe/xe_guc_types.h           |   6 +
-> 9 files changed, 215 insertions(+)
-> create mode 100644 drivers/gpu/drm/xe/xe_guc_engine_busyness.c
-> create mode 100644 drivers/gpu/drm/xe/xe_guc_engine_busyness.h
->
->diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
->index 86691f3b9077..7418e6a07bc8 100644
->--- a/drivers/gpu/drm/xe/Makefile
->+++ b/drivers/gpu/drm/xe/Makefile
->@@ -83,6 +83,7 @@ xe-y += xe_bb.o \
-> 	xe_guc_ads.o \
-> 	xe_guc_ct.o \
-> 	xe_guc_debugfs.o \
->+	xe_guc_engine_busyness.o \
-> 	xe_guc_hwconfig.o \
-> 	xe_guc_log.o \
-> 	xe_guc_pc.o \
->diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
->index 3062e0e0d467..d87681ca89bc 100644
->--- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
->+++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
->@@ -139,6 +139,7 @@ enum xe_guc_action {
-> 	XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC = 0x4601,
-> 	XE_GUC_ACTION_CLIENT_SOFT_RESET = 0x5507,
-> 	XE_GUC_ACTION_SET_ENG_UTIL_BUFF = 0x550A,
->+	XE_GUC_ACTION_SET_DEVICE_ENGINE_UTILIZATION = 0x550C,
-> 	XE_GUC_ACTION_NOTIFY_MEMORY_CAT_ERROR = 0x6000,
-> 	XE_GUC_ACTION_REPORT_PAGE_FAULT_REQ_DESC = 0x6002,
-> 	XE_GUC_ACTION_PAGE_FAULT_RES_DESC = 0x6003,
->diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
->index 154d6c7072b9..3d735b66f60d 100644
->--- a/drivers/gpu/drm/xe/xe_gt.c
->+++ b/drivers/gpu/drm/xe/xe_gt.c
->@@ -31,6 +31,7 @@
-> #include "xe_gt_sysfs.h"
-> #include "xe_gt_tlb_invalidation.h"
-> #include "xe_gt_topology.h"
->+#include "xe_guc_engine_busyness.h"
-> #include "xe_guc_exec_queue_types.h"
-> #include "xe_guc_pc.h"
-> #include "xe_hw_fence.h"
->@@ -783,3 +784,15 @@ struct xe_hw_engine *xe_gt_any_hw_engine_by_reset_domain(struct xe_gt *gt,
->
-> 	return NULL;
-> }
->+
->+/**
->+ * xe_gt_engine_busy_ticks - Return current accumulated engine busyness ticks
->+ * @gt: GT structure
->+ * @hwe: Xe HW engine to report on
->+ *
->+ * Returns accumulated ticks @hwe was busy since engine stats were enabled.
->+ */
->+u64 xe_gt_engine_busy_ticks(struct xe_gt *gt, struct xe_hw_engine *hwe)
->+{
->+	return xe_guc_engine_busyness_ticks(&gt->uc.guc, hwe);
->+}
->diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
->index a818cc9c8fd0..2e3cd7031287 100644
->--- a/drivers/gpu/drm/xe/xe_gt.h
->+++ b/drivers/gpu/drm/xe/xe_gt.h
->@@ -42,6 +42,8 @@ int xe_gt_resume(struct xe_gt *gt);
-> void xe_gt_reset_async(struct xe_gt *gt);
-> void xe_gt_sanitize(struct xe_gt *gt);
->
->+u64 xe_gt_engine_busy_ticks(struct xe_gt *gt, struct xe_hw_engine *hwe);
->+
-> /**
->  * xe_gt_any_hw_engine_by_reset_domain - scan the list of engines and return the
->  * first that matches the same reset domain as @class
->diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
->index 482cb0df9f15..6116aaea936f 100644
->--- a/drivers/gpu/drm/xe/xe_guc.c
->+++ b/drivers/gpu/drm/xe/xe_guc.c
->@@ -18,6 +18,7 @@
-> #include "xe_gt.h"
-> #include "xe_guc_ads.h"
-> #include "xe_guc_ct.h"
->+#include "xe_guc_engine_busyness.h"
-> #include "xe_guc_hwconfig.h"
-> #include "xe_guc_log.h"
-> #include "xe_guc_pc.h"
->@@ -306,9 +307,15 @@ int xe_guc_init_post_hwconfig(struct xe_guc *guc)
->
-> int xe_guc_post_load_init(struct xe_guc *guc)
-> {
->+	int err;
->+
-> 	xe_guc_ads_populate_post_load(&guc->ads);
-> 	guc->submission_state.enabled = true;
->
->+	err = xe_guc_engine_busyness_init(guc);
->+	if (err)
->+		return err;
->+
-> 	return 0;
-> }
+> drivers/gpu/drm/xe/xe_guc_engine_busyness.c | 29 +++++++++++++++++++++
+> 1 file changed, 29 insertions(+)
 >
 >diff --git a/drivers/gpu/drm/xe/xe_guc_engine_busyness.c b/drivers/gpu/drm/xe/xe_guc_engine_busyness.c
->new file mode 100644
->index 000000000000..287429e31e6c
->--- /dev/null
+>index 287429e31e6c..431d1ca59d2f 100644
+>--- a/drivers/gpu/drm/xe/xe_guc_engine_busyness.c
 >+++ b/drivers/gpu/drm/xe/xe_guc_engine_busyness.c
->@@ -0,0 +1,153 @@
->+// SPDX-License-Identifier: MIT
->+/*
->+ * Copyright © 2023 Intel Corporation
->+ */
->+#include "xe_guc_engine_busyness.h"
+>@@ -23,6 +23,23 @@
+>  * engine busyness ticks (ticks_engine) : clock ticks for which engine was active
+>  */
+>
+>+/* GuC version number components are only 8-bit, so converting to a 32bit 8.8.8 */
+>+#define GUC_VER(maj, min, pat)	(((maj) << 16) | ((min) << 8) | (pat))
 >+
->+#include <drm/drm_managed.h>
->+
->+#include "abi/guc_actions_abi.h"
->+#include "xe_bo.h"
->+#include "xe_guc.h"
->+#include "xe_guc_ct.h"
->+
->+/**
->+ * DOC: Xe GuC Engine Busyness
->+ *
->+ * GuC >= 70.11.1 maintains busyness counters in a shared memory buffer for each
->+ * engine on a continuous basis. The counters are all 64 bits and count in clock
->+ * ticks. The values are updated on context switch events and periodicaly on a
->+ * timer internal to GuC. The update rate is guaranteed to be at least 2Hz (but with
->+ * a caveat that is not real time, best effort only).
->+ *
->+ * engine busyness ticks (ticks_engine) : clock ticks for which engine was active
->+ */
->+
->+static void guc_engine_busyness_usage_map(struct xe_guc *guc,
->+					  struct xe_hw_engine *hwe,
->+					  struct iosys_map *engine_map)
-
-indent slightly off
-
+>+static bool guc_engine_busyness_supported(struct xe_guc *guc)
 >+{
->+	struct iosys_map *map;
->+	size_t offset;
->+	u32 instance;
->+	u8 guc_class;
+>+	struct xe_uc_fw *uc_fw = &guc->fw;
+>+	struct xe_uc_fw_version *version = &uc_fw->versions.found[XE_UC_FW_VER_COMPATIBILITY];
 >+
->+	guc_class = xe_engine_class_to_guc_class(hwe->class);
->+	instance = hwe->logical_instance;
+>+	if (GUC_VER(version->major, version->minor, version->patch) >= GUC_VER(1, 3, 1))
+>+		return true;
 >+
->+	map = &guc->busy.bo->vmap;
+>+	drm_WARN_ON_ONCE(&guc_to_xe(guc)->drm,
+>+			 "Engine busyness not supported in this GuC version\n");
 >+
->+	offset = offsetof(struct guc_engine_observation_data,
->+			  engine_data[guc_class][instance]);
->+
->+	*engine_map = IOSYS_MAP_INIT_OFFSET(map, offset);
+>+	return false;
 >+}
 >+
->+static void guc_engine_busyness_get_usage(struct xe_guc *guc,
->+					  struct xe_hw_engine *hwe,
->+					  u64 *_ticks_engine)
-
-I would swap the _ between the local ticks_engine and the one passed to 
-the function or better just use a different name for the local variable.
-
->+{
->+	struct iosys_map engine_map;
->+	u64 ticks_engine = 0;
->+	int i = 0;
+> static void guc_engine_busyness_usage_map(struct xe_guc *guc,
+> 					  struct xe_hw_engine *hwe,
+> 					  struct iosys_map *engine_map)
+>@@ -80,6 +97,10 @@ static void guc_engine_busyness_enable_stats(struct xe_guc *guc)
+> 	struct xe_device *xe = guc_to_xe(guc);
+> 	int ret;
+>
+>+	/* Engine busyness supported only on GuC >= 70.11.1 */
+>+	if (!guc_engine_busyness_supported(guc))
+>+		return;
 >+
->+	guc_engine_busyness_usage_map(guc, hwe, &engine_map);
->+
->+#define read_engine_usage(map_, field_) \
->+	iosys_map_rd_field(map_, 0, struct guc_engine_data, field_)
->+
->+	do {
->+		ticks_engine = read_engine_usage(&engine_map, total_execution_ticks);
->+
->+		if (read_engine_usage(&engine_map, total_execution_ticks) == ticks_engine)
->+			break;
->+	} while (++i < 6);
->+
->+#undef read_engine_usage
->+
->+	if (_ticks_engine)
->+		*_ticks_engine = ticks_engine;
->+}
->+
->+static void guc_engine_busyness_enable_stats(struct xe_guc *guc)
->+{
->+	u32 ggtt_addr = xe_bo_ggtt_addr(guc->busy.bo);
->+	u32 action[] = {
->+		XE_GUC_ACTION_SET_DEVICE_ENGINE_UTILIZATION,
->+		ggtt_addr,
->+		0,
->+	};
->+	struct xe_device *xe = guc_to_xe(guc);
->+	int ret;
->+
->+	ret = xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action), 0, 0);
->+	if (ret)
->+		drm_err(&xe->drm, "Failed to enable usage stats %pe", ERR_PTR(ret));
->+}
->+
->+static void guc_engine_busyness_fini(struct drm_device *drm, void *arg)
->+{
->+	struct xe_guc *guc = arg;
->+
->+	xe_bo_unpin_map_no_vm(guc->busy.bo);
->+}
->+
->+/*
->+ * xe_guc_engine_busyness_ticks - Gets current accumulated
->+ *				  engine busyness ticks
->+ * @guc: The GuC object
->+ * @hwe: Xe HW Engine
->+ *
->+ * Returns current acculumated ticks @hwe was busy when engine stats are enabled.
->+ */
->+u64 xe_guc_engine_busyness_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
->+{
->+	u64 ticks_engine;
->+
->+	guc_engine_busyness_get_usage(guc, hwe, &ticks_engine);
->+
->+	return ticks_engine;
->+}
->+
->+/*
->+ * xe_guc_engine_busyness_init - Initializes the GuC Engine Busyness
->+ * @guc: The GuC object
->+ *
->+ * Initialize GuC engine busyness, only called once during driver load
->+ * Supported only on GuC >= 70.11.1
->+ *
->+ * Return: 0 on success, negative error code on error.
->+ */
->+int xe_guc_engine_busyness_init(struct xe_guc *guc)
->+{
->+	struct xe_device *xe = guc_to_xe(guc);
->+	struct xe_gt *gt = guc_to_gt(guc);
->+	struct xe_tile *tile = gt_to_tile(gt);
->+	struct xe_bo *bo;
->+	u32 size;
->+	int err;
->+
->+	/* Initialization already done */
->+	if (guc->busy.bo)
+> 	ret = xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action), 0, 0);
+> 	if (ret)
+> 		drm_err(&xe->drm, "Failed to enable usage stats %pe", ERR_PTR(ret));
+>@@ -104,6 +125,10 @@ u64 xe_guc_engine_busyness_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
+> {
+> 	u64 ticks_engine;
+>
+>+	/* Engine busyness supported only on GuC >= 70.11.1 */
+>+	if (!guc_engine_busyness_supported(guc))
 >+		return 0;
 >+
->+	size = PAGE_ALIGN(sizeof(struct guc_engine_observation_data));
->+
->+	bo = xe_bo_create_pin_map(xe, tile, NULL, size,
->+				  ttm_bo_type_kernel,
->+				  XE_BO_CREATE_VRAM_IF_DGFX(tile) |
->+				  XE_BO_CREATE_GGTT_BIT);
->+
->+	if (IS_ERR(bo))
->+		return PTR_ERR(bo);
->+
->+	guc->busy.bo = bo;
->+
->+	guc_engine_busyness_enable_stats(guc);
->+
->+	err = drmm_add_action_or_reset(&xe->drm, guc_engine_busyness_fini, guc);
-
-Wondering if we need to store the busyness values prior to reset and 
-restore them afterwards. Depends on what type of reset this is. Does 
-this reset GuC as well?
-
->+	if (err)
->+		return err;
->+
->+	return 0;
->+}
->diff --git a/drivers/gpu/drm/xe/xe_guc_engine_busyness.h b/drivers/gpu/drm/xe/xe_guc_engine_busyness.h
->new file mode 100644
->index 000000000000..d70f06209896
->--- /dev/null
->+++ b/drivers/gpu/drm/xe/xe_guc_engine_busyness.h
->@@ -0,0 +1,17 @@
->+/* SPDX-License-Identifier: MIT */
->+/*
->+ * Copyright © 2023 Intel Corporation
->+ */
->+
->+#ifndef _XE_GUC_ENGINE_BUSYNESS_H_
->+#define _XE_GUC_ENGINE_BUSYNESS_H_
->+
->+#include <linux/types.h>
->+
->+struct xe_hw_engine;
->+struct xe_guc;
->+
->+int xe_guc_engine_busyness_init(struct xe_guc *guc);
->+u64 xe_guc_engine_busyness_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe);
->+
->+#endif
->diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
->index 4dd5a88a7826..c8ca5fe97614 100644
->--- a/drivers/gpu/drm/xe/xe_guc_fwif.h
->+++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
->@@ -37,6 +37,7 @@
-> #define GUC_COMPUTE_CLASS		4
-> #define GUC_GSC_OTHER_CLASS		5
-> #define GUC_LAST_ENGINE_CLASS		GUC_GSC_OTHER_CLASS
->+#define GUC_MAX_OAG_COUNTERS		8
-> #define GUC_MAX_ENGINE_CLASSES		16
-> #define GUC_MAX_INSTANCES_PER_CLASS	32
+> 	guc_engine_busyness_get_usage(guc, hwe, &ticks_engine);
 >
->@@ -222,6 +223,20 @@ struct guc_engine_usage {
-> 	struct guc_engine_usage_record engines[GUC_MAX_ENGINE_CLASSES][GUC_MAX_INSTANCES_PER_CLASS];
-> } __packed;
+> 	return ticks_engine;
+>@@ -127,6 +152,10 @@ int xe_guc_engine_busyness_init(struct xe_guc *guc)
+> 	u32 size;
+> 	int err;
 >
->+/* Engine busyness stats */
->+struct guc_engine_data {
->+	u64 total_execution_ticks;
->+	u64 reserved;
->+} __packed;
->+
->+struct guc_engine_observation_data {
->+	struct guc_engine_data engine_data[GUC_MAX_ENGINE_CLASSES][GUC_MAX_INSTANCES_PER_CLASS];
->+	u64 oag_busy_data[GUC_MAX_OAG_COUNTERS];
->+	u64 total_active_ticks;
->+	u64 gt_timestamp;
->+	u64 reserved1;
->+} __packed;
->+
-> /* This action will be programmed in C1BC - SOFT_SCRATCH_15_REG */
-> enum xe_guc_recv_message {
-> 	XE_GUC_RECV_MSG_CRASH_DUMP_POSTED = BIT(1),
->diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
->index cd80802e8918..4e9602301aed 100644
->--- a/drivers/gpu/drm/xe/xe_guc_types.h
->+++ b/drivers/gpu/drm/xe/xe_guc_types.h
->@@ -70,6 +70,12 @@ struct xe_guc {
-> 		u32 size;
-> 	} hwconfig;
->
->+	/** @busy: Engine busyness */
->+	struct {
->+		/** @bo: GGTT buffer object of engine busyness that is shared with GuC */
->+		struct xe_bo *bo;
->+	} busy;
->+
-> 	/**
-> 	 * @notify_reg: Register which is written to notify GuC of H2G messages
-> 	 */
+>+	/* Engine busyness supported only on GuC >= 70.11.1 */
 
-Except for some minor comments above, this lgtm,
+I think the comment can reside in the helper function and you can delete 
+is here and other places where this is called.
 
+With that, this is
 Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
 
->-- 2.40.0
+>+	if (!guc_engine_busyness_supported(guc))
+>+		return 0;
+>+
+> 	/* Initialization already done */
+> 	if (guc->busy.bo)
+> 		return 0;
+>-- 
+>2.40.0
 >
