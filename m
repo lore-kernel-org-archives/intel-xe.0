@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D126C46CD8
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70F28C4706C
 	for <intel-xe@archiver.kernel.org>; Thu, 21 Dec 2023 04:28:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 850C610E67B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACB6410E67C;
 	Thu, 21 Dec 2023 04:28:29 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C8FD10E654;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94E6810E65E;
  Thu, 21 Dec 2023 04:28:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1703132903; x=1734668903;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8g4drANwyulLrmFls9iiZYQ/UPta8PRTj4VT7Sr2nDg=;
- b=MVi0rwGOeeWB37XolY2qk6jcqd/O+ash4ifYiE2slvvOirBHMu8ZN/Uu
- qgP30B9wO9fBdxsIR3SPbWJp7lD68pAKzi3LRfa3ym8bw2tdhS2QqrMs7
- GM/DwjE43yrZQkVj0ZXv7HbnrmKIakSXfIDgChPr1ZkMHhyEhTePhx11u
- t0ZX9i/AXlFEPIHYJjiheGFe8p7CV5q3yncJw17j94EFzgW208Zuu+oBO
- f05Lw4bqMWkVIL+w5SHgvPpsDhl0NHImCfu35nhKhLIEOk6nYtyuLhVha
- Ny2QHjjwUa6sMCAqIj4YXme979Wxy0/vMcPC9YbQRpJGC9w5J0JStVYuY A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="427069776"
-X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="427069776"
+ bh=JAifNztFGJdHbvn7TBEiRLW9QX1gnP6AASCF9p0qNJc=;
+ b=PZ+EeN4Wafeq/LNKrq2cFodB+ZWIBzEZ9YLI7SLVmKxMaey6LmSL8JI0
+ CqzWejMMylM9u71g+KrAWBMdmWVrJzjHsm1eL6ymgSLgqYq1Rf68eOQo1
+ GVSiNtvHEXQLjOCFeGOUf2T9tj2hNYwdoRCjMGQlSxNQtSlK2VlQZZvMd
+ CmaT+p3U/93hGHJXqVhzn9e0l7b+NU/gQUIDYFwQg+WBoSnbWBsLpxLo2
+ rOm2HNWtC/ke7+PxIZkO0878nqyjkTDiH7ZRGb1etnuQpNqn7/U+KP/ZA
+ 5iuQVGn+OkWDG5bshbBi+hG+icRxiIj/vd86Psd3JgMyQAlujGTE5dySz A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="427069782"
+X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="427069782"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2023 20:28:22 -0800
+ 20 Dec 2023 20:28:23 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="805481385"
-X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="805481385"
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="805481402"
+X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="805481402"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Dec 2023 20:28:21 -0800
 From: Oak Zeng <oak.zeng@intel.com>
 To: dri-devel@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH 16/22] drm/xe/svm: Implement the mmu notifier range invalidate
- callback
-Date: Wed, 20 Dec 2023 23:38:06 -0500
-Message-Id: <20231221043812.3783313-17-oak.zeng@intel.com>
+Subject: [PATCH 22/22] drm/xe/svm: Add DRM_XE_SVM kernel config entry
+Date: Wed, 20 Dec 2023 23:38:12 -0500
+Message-Id: <20231221043812.3783313-23-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20231221043812.3783313-1-oak.zeng@intel.com>
 References: <20231221043812.3783313-1-oak.zeng@intel.com>
@@ -62,25 +61,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To mirror the CPU page table from GPU side, we register a mmu interval
-notifier (in the coming patch of this series). Core mm call back to
-GPU driver whenever there is a change to certain virtual address range,
-i.e., range is released or unmapped by user etc.
-
-This patch implemented the GPU driver callback function for such mmu
-interval notifier. In the callback function we unbind the address
-range from GPU if it is unmapped from CPU side, thus we mirror the
-CPU page table change.
-
-We also unregister the mmu interval notifier from core mm in the case
-of munmap event. But we can't unregister mmu notifier directly from the
-mmu notifier range invalidation callback function. The reason is, during
-a munmap (see kernel function vm_munmap), a mmap_write_lock is held, but
-unregister mmu notifier (calling mmu_interval_notifier_remove) also requires
-a mmap_write_lock of the current process.
-
-Thus, we start a kernel worker to unregister mmu interval notifier on a
-MMU_NOTIFY_UNMAP event.
+DRM_XE_SVM kernel config entry is added so
+xe svm feature can be configured before kernel
+compilation.
 
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 Co-developed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
@@ -89,91 +72,101 @@ Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@intel.com>
 Cc: Brian Welty <brian.welty@intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.c       |  1 +
- drivers/gpu/drm/xe/xe_svm.h       |  1 -
- drivers/gpu/drm/xe/xe_svm_range.c | 37 ++++++++++++++++++++++++++++++-
- 3 files changed, 37 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/Kconfig   | 22 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/Makefile  |  5 +++++
+ drivers/gpu/drm/xe/xe_mmio.c |  5 +++++
+ drivers/gpu/drm/xe/xe_vm.c   |  2 ++
+ 4 files changed, 34 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index ab3cc2121869..6393251c0051 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -8,6 +8,7 @@
- #include "xe_svm.h"
- #include <linux/hmm.h>
- #include <linux/scatterlist.h>
-+#include "xe_pt.h"
+diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+index 5b3da06e7ba3..a57f0972e9ae 100644
+--- a/drivers/gpu/drm/xe/Kconfig
++++ b/drivers/gpu/drm/xe/Kconfig
+@@ -83,6 +83,28 @@ config DRM_XE_FORCE_PROBE
  
- DEFINE_HASHTABLE(xe_svm_table, XE_MAX_SVM_PROCESS);
+ 	  Use "!*" to block the probe of the driver for all known devices.
  
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index 90e665f2bfc6..0038f98c0cc7 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -54,7 +54,6 @@ struct xe_svm {
- struct xe_svm_range {
- 	/** @svm: pointer of the xe_svm that this range belongs to */
- 	struct xe_svm *svm;
--
- 	/** @notifier: The mmu interval notifer used to keep track of CPU
- 	 * side address range change. Driver will get a callback with this
- 	 * notifier if anything changed from CPU side, such as range is
-diff --git a/drivers/gpu/drm/xe/xe_svm_range.c b/drivers/gpu/drm/xe/xe_svm_range.c
-index 286d5f7d6ecd..53dd3be7ab9f 100644
---- a/drivers/gpu/drm/xe/xe_svm_range.c
-+++ b/drivers/gpu/drm/xe/xe_svm_range.c
-@@ -10,6 +10,7 @@
- #include <linux/mutex.h>
- #include <linux/mm.h>
- #include "xe_svm.h"
-+#include "xe_pt.h"
++config DRM_XE_SVM
++    bool "Enable Shared Virtual Memory support in xe"
++    depends on DRM_XE
++    depends on ARCH_ENABLE_MEMORY_HOTPLUG
++    depends on ARCH_ENABLE_MEMORY_HOTREMOVE
++    depends on MEMORY_HOTPLUG
++    depends on MEMORY_HOTREMOVE
++    depends on ARCH_HAS_PTE_DEVMAP
++    depends on SPARSEMEM_VMEMMAP
++    depends on ZONE_DEVICE
++    depends on DEVICE_PRIVATE
++    depends on MMU
++    select HMM_MIRROR
++    select MMU_NOTIFIER
++    default y
++    help
++      Choose this option if you want Shared Virtual Memory (SVM)
++      support in xe. With SVM, virtual address space is shared
++	  between CPU and GPU. This means any virtual address such
++	  as malloc or mmap returns, variables on stack, or global
++	  memory pointers, can be used for GPU transparently.
++
+ menu "drm/Xe Debugging"
+ depends on DRM_XE
+ depends on EXPERT
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index df8601d6a59f..b75bdbc5e42c 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -282,6 +282,11 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	i915-display/skl_universal_plane.o \
+ 	i915-display/skl_watermark.o
  
- /**
-  * xe_svm_range_from_addr() - retrieve svm_range contains a virtual address
-@@ -59,8 +60,42 @@ bool xe_svm_range_belongs_to_vma(struct mm_struct *mm,
- 	return (vma1 == vma) && (vma2 == vma);
++xe-$(CONFIG_DRM_XE_SVM) += xe_svm.o \
++						   xe_svm_devmem.o \
++						   xe_svm_range.o \
++						   xe_svm_migrate.o
++
+ ifeq ($(CONFIG_ACPI),y)
+ 	xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 		i915-display/intel_acpi.o \
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index cfe25a3c7059..7c95f675ed92 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -286,7 +286,9 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+ 		}
+ 
+ 		io_size -= min_t(u64, tile_size, io_size);
++#if IS_ENABLED(CONFIG_DRM_XE_SVM)
+ 		xe_svm_devm_add(tile, &tile->mem.vram);
++#endif
+ 	}
+ 
+ 	xe->mem.vram.actual_physical_size = total_size;
+@@ -361,8 +363,11 @@ static void mmio_fini(struct drm_device *drm, void *arg)
+ 	pci_iounmap(to_pci_dev(xe->drm.dev), xe->mmio.regs);
+ 	if (xe->mem.vram.mapping)
+ 		iounmap(xe->mem.vram.mapping);
++
++#if IS_ENABLED(CONFIG_DRM_XE_SVM)
+ 	for_each_tile(tile, xe, id) {
+ 		xe_svm_devm_remove(xe, &tile->mem.vram);
++#endif
+ 	}
  }
  
-+static bool xe_svm_range_invalidate(struct mmu_interval_notifier *mni,
-+				      const struct mmu_notifier_range *range,
-+				      unsigned long cur_seq)
-+{
-+	struct xe_svm_range *svm_range =
-+		container_of(mni, struct xe_svm_range, notifier);
-+	struct xe_svm *svm = svm_range->svm;
-+	unsigned long length = range->end - range->start;
-+
-+	/*
-+	 * MMU_NOTIFY_RELEASE is called upon process exit to notify driver
-+	 * to release any process resources, such as zap GPU page table
-+	 * mapping or unregister mmu notifier etc. We already clear GPU
-+	 * page table  and unregister mmu notifier in in xe_destroy_svm,
-+	 * upon process exit. So just simply return here.
-+	 */
-+	if (range->event == MMU_NOTIFY_RELEASE)
-+		return true;
-+
-+	if (mmu_notifier_range_blockable(range))
-+		mutex_lock(&svm->mutex);
-+	else if (!mutex_trylock(&svm->mutex))
-+		return false;
-+
-+	mmu_interval_set_seq(mni, cur_seq);
-+	xe_invalidate_svm_range(svm->vm, range->start, length);
-+	mutex_unlock(&svm->mutex);
-+
-+	if (range->event == MMU_NOTIFY_UNMAP)
-+		queue_work(system_unbound_wq, &svm_range->unregister_notifier_work);
-+
-+	return true;
-+}
-+
- static const struct mmu_interval_notifier_ops xe_svm_mni_ops = {
--	.invalidate = NULL,
-+	.invalidate = xe_svm_range_invalidate,
- };
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 3c301a5c7325..12d82f2fc195 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1376,7 +1376,9 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 		xe->usm.num_vm_in_non_fault_mode++;
+ 	mutex_unlock(&xe->usm.lock);
  
- /**
++#if IS_ENABLED(CONFIG_DRM_XE_SVM)
+ 	vm->svm = xe_create_svm(vm);
++#endif
+ 	trace_xe_vm_create(vm);
+ 
+ 	return vm;
 -- 
 2.26.3
 
