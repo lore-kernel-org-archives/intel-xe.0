@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37755C4706C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6ADCC46CD2
 	for <intel-xe@archiver.kernel.org>; Thu, 21 Dec 2023 04:28:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B645110E654;
-	Thu, 21 Dec 2023 04:28:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0830810E669;
+	Thu, 21 Dec 2023 04:28:24 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCF2910E652;
- Thu, 21 Dec 2023 04:28:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39BF010E65B;
+ Thu, 21 Dec 2023 04:28:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703132902; x=1734668902;
+ t=1703132903; x=1734668903;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=CRd9mzkVVErXnHEn4RtHqNseTZ1Uw+rVOrQ+69kVv1M=;
- b=VPRp5m0tvYibwmqhXGy3ZPMKUfWdU/ynN5fbbytqPOIgYmKfjN2JzZeh
- dxB6fFkTViUSLkQGOm/0c8t3SYhJlGRnkFR0R2NbJb76OuImJig6p4Cqc
- ByUV14RIW1/adV7qjunsQqtpYNm8TA8auI7PQZ4hhlRMnhtHsPxYZ2AJf
- sJIPcOMhb4zpoNGGmhh+2AymJZLKsgRDl/HxADsmX2ixzbg72aXSpKHvR
- jcHhQ8J1B5lmx5KmmA7+/4BLlBBrnnJ74B2G+7zsftA+YuQCIbvlEBrMQ
- 4CTaAsKEW6Ym97AL5karwgoaIwIrLpsy5jzn9ZWfvak6imKplbmIAtQ3B w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="427069770"
-X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="427069770"
+ bh=GJo+44jDv+g6nOzMQZgGJ5rlhefDr6WjxKA4AakuTqs=;
+ b=JIkzV1YEU+Z2+PTVJ2FAbhayj78NMf8kD6tWrZsXOOEjincd+D88TUop
+ DCfnSBaRy9CbvgcV2fYbFA/+zwDRz49hxhMbSOhxBiLIhqAGBeLeHmUQh
+ BNV5reu2siVgT74rrO8zBVyVXID2Iy5UXRjJLM01j9/ZyCzhmSb4q7Js2
+ AQBPR3FWGkNAw0TE1X4ibDEkedkSEjVMr/sRsuKpRk+y4e+LP3CiEkZuy
+ qn1gXdXkAyPYkMzLb3tibCG+nT+uUTNFTWeVINPL/w7Y7jv7P18MUUaJY
+ MinLDx6ivT7M4LpLIxiwqxDQG3OmdlzGsfHJnnGACx0q/wYHP+mFax9jj Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="427069777"
+X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="427069777"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Dec 2023 20:28:22 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="805481366"
-X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="805481366"
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="805481388"
+X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="805481388"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2023 20:28:20 -0800
+ 20 Dec 2023 20:28:21 -0800
 From: Oak Zeng <oak.zeng@intel.com>
 To: dri-devel@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH 10/22] drm/xe/svm: Introduce svm migration function
-Date: Wed, 20 Dec 2023 23:38:00 -0500
-Message-Id: <20231221043812.3783313-11-oak.zeng@intel.com>
+Subject: [PATCH 17/22] drm/xe/svm: clean up svm range during process exit
+Date: Wed, 20 Dec 2023 23:38:07 -0500
+Message-Id: <20231221043812.3783313-18-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20231221043812.3783313-1-oak.zeng@intel.com>
 References: <20231221043812.3783313-1-oak.zeng@intel.com>
@@ -61,13 +61,10 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce xe_migrate_svm function for data migration.
-This function is similar to xe_migrate_copy function
-but has different parameters. Instead of BO and ttm
-resource parameters, it has source and destination
-buffer's dpa address as parameter. This function is
-intended to be used by svm sub-system which doesn't
-have BO and TTM concept.
+Clean up svm range during process exit: Zap GPU page table of
+the svm process on process exit; unregister all the mmu interval
+notifiers which are registered before; free svm range and svm
+data structure.
 
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
@@ -75,266 +72,93 @@ Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@intel.com>
 Cc: Brian Welty <brian.welty@intel.com>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 213 ++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_migrate.h |   7 ++
- 2 files changed, 220 insertions(+)
+ drivers/gpu/drm/xe/xe_svm.c       | 24 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_svm.h       |  1 +
+ drivers/gpu/drm/xe/xe_svm_range.c | 17 +++++++++++++++++
+ 3 files changed, 42 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index adf1dab5eba2..425de8e44deb 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -387,6 +387,37 @@ static u64 xe_migrate_res_sizes(struct xe_device *xe, struct xe_res_cursor *cur)
- 		     cur->remaining);
- }
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 6393251c0051..5772bfcf7da4 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -9,6 +9,8 @@
+ #include <linux/hmm.h>
+ #include <linux/scatterlist.h>
+ #include "xe_pt.h"
++#include "xe_assert.h"
++#include "xe_vm_types.h"
  
-+/**
-+ * pte_update_cmd_size() - calculate the batch buffer command size
-+ * to update a flat page table.
-+ *
-+ * @size: The virtual address range size of the page table to update
-+ *
-+ * The page table to update is supposed to be a flat 1 level page
-+ * table with all entries pointing to 4k pages.
-+ *
-+ * Return the number of dwords of the update command
-+ */
-+static u32 pte_update_cmd_size(u64 size)
-+{
-+	u32 dword;
-+	u64 entries = DIV_ROUND_UP(size, XE_PAGE_SIZE);
-+
-+	XE_WARN_ON(size > MAX_PREEMPTDISABLE_TRANSFER);
-+	/*
-+	 * MI_STORE_DATA_IMM command is used to update page table. Each
-+	 * instruction can update maximumly 0x1ff pte entries. To update
-+	 * n (n <= 0x1ff) pte entries, we need:
-+	 * 1 dword for the MI_STORE_DATA_IMM command header (opcode etc)
-+	 * 2 dword for the page table's physical location
-+	 * 2*n dword for value of pte to fill (each pte entry is 2 dwords)
-+	 */
-+	dword = (1 + 2) * DIV_ROUND_UP(entries, 0x1ff);
-+	dword += entries * 2;
-+
-+	return dword;
-+}
-+
- static u32 pte_update_size(struct xe_migrate *m,
- 			   bool is_vram,
- 			   struct ttm_resource *res,
-@@ -492,6 +523,48 @@ static void emit_pte(struct xe_migrate *m,
- 	}
- }
+ DEFINE_HASHTABLE(xe_svm_table, XE_MAX_SVM_PROCESS);
  
-+/**
-+ * build_pt_update_batch_sram() - build batch buffer commands to update
-+ * migration vm page table for system memory
-+ *
-+ * @m: The migration context
-+ * @bb: The batch buffer which hold the page table update commands
-+ * @pt_offset: The offset of page table to update, in byte
-+ * @dpa: device physical address you want the page table to point to
-+ * @size: size of the virtual address space you want the page table to cover
-+ */
-+static void build_pt_update_batch_sram(struct xe_migrate *m,
-+		     struct xe_bb *bb, u32 pt_offset,
-+		     u64 dpa, u32 size)
-+{
-+	u16 pat_index = tile_to_xe(m->tile)->pat.idx[XE_CACHE_WB];
-+	u32 ptes;
-+
-+	ptes = DIV_ROUND_UP(size, XE_PAGE_SIZE);
-+	while (ptes) {
-+		u32 chunk = min(0x1ffU, ptes);
-+
-+		bb->cs[bb->len++] = MI_STORE_DATA_IMM | MI_SDI_NUM_QW(chunk);
-+		bb->cs[bb->len++] = pt_offset;
-+		bb->cs[bb->len++] = 0;
-+
-+		pt_offset += chunk * 8;
-+		ptes -= chunk;
-+
-+		while (chunk--) {
-+			u64 addr;
-+
-+			addr = dpa & PAGE_MASK;
-+			addr = m->q->vm->pt_ops->pte_encode_addr(m->tile->xe,
-+								 addr, pat_index,
-+								 0, false, 0);
-+			bb->cs[bb->len++] = lower_32_bits(addr);
-+			bb->cs[bb->len++] = upper_32_bits(addr);
-+			dpa += XE_PAGE_SIZE;
-+		}
-+	}
-+}
-+
- #define EMIT_COPY_CCS_DW 5
- static void emit_copy_ccs(struct xe_gt *gt, struct xe_bb *bb,
- 			  u64 dst_ofs, bool dst_is_indirect,
-@@ -808,6 +881,146 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 	return fence;
- }
- 
-+/**
-+ * xe_migrate_svm() - A migrate function used by SVM subsystem
-+ *
-+ * @m: The migration context
-+ * @src_dpa: device physical start address of source, from GPU's point of view
-+ * @src_is_vram: True if source buffer is in vram.
-+ * @dst_dpa: device physical start address of destination, from GPU's point of view
-+ * @dst_is_vram: True if destination buffer is in vram.
-+ * @size: The size of data to copy.
-+ *
-+ * Copy @size bytes of data from @src_dpa to @dst_dpa. The functionality
-+ * and behavior of this function is similar to xe_migrate_copy function, but
-+ * the interface is different. This function is a helper function supposed to
-+ * be used by SVM subsytem. Since in SVM subsystem there is no buffer object
-+ * and ttm, there is no src/dst bo as function input. Instead, we directly use
-+ * src/dst's physical address as function input.
-+ *
-+ * Since the back store of any user malloc'ed or mmap'ed memory can be placed in
-+ * system  memory, it can not be compressed. Thus this function doesn't need
-+ * to consider copy CCS (compression control surface) data as xe_migrate_copy did.
-+ *
-+ * This function assumes the source buffer and destination buffer are all physically
-+ * contiguous.
-+ *
-+ * We use gpu blitter to copy data. Source and destination are first mapped to
-+ * migration vm which is a flat one level (L0) page table, then blitter is used to
-+ * perform the copy.
-+ *
-+ * Return: Pointer to a dma_fence representing the last copy batch, or
-+ * an error pointer on failure. If there is a failure, any copy operation
-+ * started by the function call has been synced.
-+ */
-+struct dma_fence *xe_migrate_svm(struct xe_migrate *m,
-+				  u64 src_dpa,
-+				  bool src_is_vram,
-+				  u64 dst_dpa,
-+				  bool dst_is_vram,
-+				  u64 size)
-+{
-+#define NUM_PT_PER_BLIT (MAX_PREEMPTDISABLE_TRANSFER / SZ_2M)
-+	struct xe_gt *gt = m->tile->primary_gt;
-+	struct xe_device *xe = gt_to_xe(gt);
-+	struct dma_fence *fence = NULL;
-+	u64 src_L0_ofs, dst_L0_ofs;
-+	u64 round_update_size;
-+	/* A slot is a 4K page of page table, covers 2M virtual address*/
-+	u32 pt_slot;
-+	int err;
-+
-+	while (size) {
-+		u32 batch_size = 2; /* arb_clear() + MI_BATCH_BUFFER_END */
-+		struct xe_sched_job *job;
-+		struct xe_bb *bb;
-+		u32 update_idx;
-+
-+		/* Maximumly copy MAX_PREEMPTDISABLE_TRANSFER bytes. Why?*/
-+		round_update_size = min_t(u64, size, MAX_PREEMPTDISABLE_TRANSFER);
-+
-+		/* src pte update*/
-+		if (!src_is_vram)
-+			batch_size += pte_update_cmd_size(round_update_size);
-+		/* dst pte update*/
-+		if (!dst_is_vram)
-+			batch_size += pte_update_cmd_size(round_update_size);
-+
-+		/* Copy command size*/
-+		batch_size += EMIT_COPY_DW;
-+
-+		bb = xe_bb_new(gt, batch_size, true);
-+		if (IS_ERR(bb)) {
-+			err = PTR_ERR(bb);
-+			goto err_sync;
-+		}
-+
-+		if (!src_is_vram) {
-+			pt_slot = 0;
-+			build_pt_update_batch_sram(m, bb, pt_slot * XE_PAGE_SIZE,
-+					src_dpa, round_update_size);
-+			src_L0_ofs = xe_migrate_vm_addr(pt_slot, 0);
-+		}
-+		else
-+			src_L0_ofs = xe_migrate_vram_ofs(xe, src_dpa);
-+
-+		if (!dst_is_vram) {
-+			pt_slot = NUM_PT_PER_BLIT;
-+			build_pt_update_batch_sram(m, bb, pt_slot * XE_PAGE_SIZE,
-+					dst_dpa, round_update_size);
-+			dst_L0_ofs = xe_migrate_vm_addr(pt_slot, 0);
-+		}
-+		else
-+			dst_L0_ofs = xe_migrate_vram_ofs(xe, dst_dpa);
-+
-+
-+		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
-+		update_idx = bb->len;
-+
-+		emit_copy(gt, bb, src_L0_ofs, dst_L0_ofs, round_update_size,
-+			  XE_PAGE_SIZE);
-+
-+		mutex_lock(&m->job_mutex);
-+		job = xe_bb_create_migration_job(m->q, bb,
-+						 xe_migrate_batch_base(m, true),
-+						 update_idx);
-+		if (IS_ERR(job)) {
-+			err = PTR_ERR(job);
-+			goto err;
-+		}
-+
-+		xe_sched_job_add_migrate_flush(job, 0);
-+		xe_sched_job_arm(job);
-+		dma_fence_put(fence);
-+		fence = dma_fence_get(&job->drm.s_fence->finished);
-+		xe_sched_job_push(job);
-+		dma_fence_put(m->fence);
-+		m->fence = dma_fence_get(fence);
-+
-+		mutex_unlock(&m->job_mutex);
-+
-+		xe_bb_free(bb, fence);
-+		size -= round_update_size;
-+		src_dpa += round_update_size;
-+		dst_dpa += round_update_size;
-+		continue;
-+
-+err:
-+		mutex_unlock(&m->job_mutex);
-+		xe_bb_free(bb, NULL);
-+
-+err_sync:
-+		/* Sync partial copy if any. FIXME: under job_mutex? */
-+		if (fence) {
-+			dma_fence_wait(fence, false);
-+			dma_fence_put(fence);
-+		}
-+
-+		return ERR_PTR(err);
-+	}
-+
-+	return fence;
-+}
- static void emit_clear_link_copy(struct xe_gt *gt, struct xe_bb *bb, u64 src_ofs,
- 				 u32 size, u32 pitch)
+@@ -19,9 +21,31 @@ DEFINE_HASHTABLE(xe_svm_table, XE_MAX_SVM_PROCESS);
+  */
+ void xe_destroy_svm(struct xe_svm *svm)
  {
-diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
-index 951f19318ea4..a532760ae1fa 100644
---- a/drivers/gpu/drm/xe/xe_migrate.h
-+++ b/drivers/gpu/drm/xe/xe_migrate.h
-@@ -88,6 +88,13 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 				  struct ttm_resource *dst,
- 				  bool copy_only_ccs);
- 
-+struct dma_fence *xe_migrate_svm(struct xe_migrate *m,
-+				  u64 src_dpa,
-+				  bool src_is_vram,
-+				  u64 dst_dpa,
-+				  bool dst_is_vram,
-+				  u64 size);
++#define MAX_SVM_RANGE (1024*1024)
++	struct xe_svm_range **range_array;
++	struct interval_tree_node *node;
++	struct xe_svm_range *range;
++	int i = 0;
 +
- struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 				   struct xe_bo *bo,
- 				   struct ttm_resource *dst);
++	range_array = kzalloc(sizeof(struct xe_svm_range *) * MAX_SVM_RANGE,
++							GFP_KERNEL);
++	node = interval_tree_iter_first(&svm->range_tree, 0, ~0ULL);
++	while (node) {
++		range = container_of(node, struct xe_svm_range, inode);
++		xe_svm_range_prepare_destroy(range);
++		node = interval_tree_iter_next(node, 0, ~0ULL);
++		xe_assert(svm->vm->xe, i < MAX_SVM_RANGE);
++		range_array[i++] = range;
++	}
++
++	/** Free range (thus range->inode) while traversing above is not safe */
++	for(; i >= 0; i--)
++		kfree(range_array[i]);
++
+ 	hash_del_rcu(&svm->hnode);
+ 	mutex_destroy(&svm->mutex);
+ 	kfree(svm);
++	kfree(range_array);
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index 0038f98c0cc7..5b3bd2c064f5 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -90,6 +90,7 @@ bool xe_svm_range_belongs_to_vma(struct mm_struct *mm,
+ 								struct vm_area_struct *vma);
+ void xe_svm_range_unregister_mmu_notifier(struct xe_svm_range *range);
+ int xe_svm_range_register_mmu_notifier(struct xe_svm_range *range);
++void xe_svm_range_prepare_destroy(struct xe_svm_range *range);
+ 
+ int xe_svm_build_sg(struct hmm_range *range, struct sg_table *st);
+ int xe_svm_devm_add(struct xe_tile *tile, struct xe_mem_region *mem);
+diff --git a/drivers/gpu/drm/xe/xe_svm_range.c b/drivers/gpu/drm/xe/xe_svm_range.c
+index 53dd3be7ab9f..dfb4660dc26f 100644
+--- a/drivers/gpu/drm/xe/xe_svm_range.c
++++ b/drivers/gpu/drm/xe/xe_svm_range.c
+@@ -165,3 +165,20 @@ int xe_svm_range_register_mmu_notifier(struct xe_svm_range *range)
+ 	range->mmu_notifier_registered = true;
+ 	return ret;
+ }
++
++/**
++ * xe_svm_range_prepare_destroy() - prepare work to destroy a svm range
++ *
++ * @range: the svm range to destroy
++ *
++ * prepare for a svm range destroy: Zap this range from GPU, unregister mmu
++ * notifier.
++ */
++void xe_svm_range_prepare_destroy(struct xe_svm_range *range)
++{
++	struct xe_vm *vm = range->svm->vm;
++	unsigned long length = range->end - range->start;
++
++	xe_invalidate_svm_range(vm, range->start, length);
++	xe_svm_range_unregister_mmu_notifier(range);
++}
 -- 
 2.26.3
 
