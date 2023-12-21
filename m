@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38357C4706E
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Dec 2023 04:28:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 631DFC46CD3
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Dec 2023 04:28:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D216710E681;
-	Thu, 21 Dec 2023 04:28:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 845D810E682;
+	Thu, 21 Dec 2023 04:28:40 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E379410E654;
- Thu, 21 Dec 2023 04:28:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F75A10E65D;
+ Thu, 21 Dec 2023 04:28:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703132902; x=1734668902;
+ t=1703132903; x=1734668903;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=f40+dO32XfCQXtj0bJ18zsnoVP4q5bzdJvLh70FVUGk=;
- b=fiLhHv252zYocMHIcUWrpHBEpa8ZL2qGdWN2B/mnzJgIkjCVtnefDous
- URTfVkEHyOfb4bOTH2X2cdK3tyxUTRpLnqoDW8ML+Y2hPX+1lv0xdKFXh
- I8nBNl0m466IwwEly1QnDDWWZSh+uxFfHM/iJu95fkknLBNyRaDELrs4Z
- 4eBvmVdcytXBxTcor7LWhu23mOHqWmSuH4k5WbGm703h+dUK9J3LkkoF4
- +Tqr7/H27P5WE9XrKBZBdQQhA+sxwRZRWXV+IxgP36hWlcb9erbiOmuej
- kne+cQlZYG5X6DseXtDz2YA+FH+AlNiqArYQenKLkx+lzWCc3Y0cqjfyy A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="427069772"
-X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="427069772"
+ bh=a0vZtfrN9UpAC/iAia0pPxlZcWsaf9Idjir8E7djVZM=;
+ b=A8DSnDx4uDgPDe1ITmdq7Ae7Nt81SIQ/HLw9sk4ex+Hxd9EK8H+H7e6b
+ lqC41SkU4pNzMSNTQtmGYabwkrYBI6Uio6GRFzQsxbrfjQLIciEAhCYlc
+ PjnnXKLhRFdr96a+0NlgbL0wNuRRqiemegiM0JyiAGVWg+8W4yH8mop3f
+ h5V0muziVMNylXrt9FOGZoIIGYhwu+Tk1cTm1LCBqWLkaeIJCgpphEuB7
+ BoLmm4RXFY0cMtHXUtQD1+L2hV8st2QRmR3vgGb/98s5TSbBVJNcNhzKO
+ 5W3DR2eC9H2JReolDEMCnRFJettW3y5Q+xZoSMLydhZ7e6vI2smZZBKtw g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="427069780"
+X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="427069780"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2023 20:28:22 -0800
+ 20 Dec 2023 20:28:23 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="805481372"
-X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="805481372"
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="805481397"
+X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="805481397"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2023 20:28:20 -0800
+ 20 Dec 2023 20:28:21 -0800
 From: Oak Zeng <oak.zeng@intel.com>
 To: dri-devel@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH 12/22] drm/xe/svm: Trace buddy block allocation and free
-Date: Wed, 20 Dec 2023 23:38:02 -0500
-Message-Id: <20231221043812.3783313-13-oak.zeng@intel.com>
+Subject: [PATCH 20/22] drm/xe/svm: Populate svm range
+Date: Wed, 20 Dec 2023 23:38:10 -0500
+Message-Id: <20231221043812.3783313-21-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20231221043812.3783313-1-oak.zeng@intel.com>
 References: <20231221043812.3783313-1-oak.zeng@intel.com>
@@ -61,93 +61,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Add a helper function svm_populate_range to populate
+a svm range. This functions calls hmm_range_fault
+to read CPU page tables and populate all pfns of this
+virtual address range into an array, saved in hmm_range::
+hmm_pfns. This is prepare work to bind a svm range to
+GPU. The hmm_pfns array will be used for the GPU binding.
+
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Co-developed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@intel.com>
 Cc: Brian Welty <brian.welty@intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm_devmem.c |  5 ++++-
- drivers/gpu/drm/xe/xe_trace.h      | 35 ++++++++++++++++++++++++++++++
- 2 files changed, 39 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_svm.c | 61 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 61 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_svm_devmem.c b/drivers/gpu/drm/xe/xe_svm_devmem.c
-index 445e0e1bc3b4..5cd54dde4a9d 100644
---- a/drivers/gpu/drm/xe/xe_svm_devmem.c
-+++ b/drivers/gpu/drm/xe/xe_svm_devmem.c
-@@ -95,6 +95,7 @@ int xe_devm_alloc_pages(struct xe_tile *tile,
- 		block->private = meta;
- 		block_pfn_first =
- 					block_offset_to_pfn(mr, drm_buddy_block_offset(block));
-+		trace_xe_buddy_block_alloc(block, size, block_pfn_first);
- 		for(i = 0; i < pages_per_block; i++) {
- 			struct page *page;
- 
-@@ -159,8 +160,10 @@ void xe_devm_page_free(struct page *page)
- 
- 	xe_assert(tile->xe, i < pages_per_block);
- 	clear_bit(i, meta->bitmap);
--	if (bitmap_empty(meta->bitmap, pages_per_block))
-+	if (bitmap_empty(meta->bitmap, pages_per_block)) {
- 		free_block(block);
-+		trace_xe_buddy_block_free(block, size, block_pfn_first);
-+	}
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 44d4f4216a93..0c13690a19f5 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -145,3 +145,64 @@ int xe_svm_build_sg(struct hmm_range *range,
+ 	sg_mark_end(sg);
+ 	return 0;
  }
- 
- static const struct dev_pagemap_ops xe_devm_pagemap_ops = {
-diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-index 63867c0fa848..50380f5173ca 100644
---- a/drivers/gpu/drm/xe/xe_trace.h
-+++ b/drivers/gpu/drm/xe/xe_trace.h
-@@ -11,6 +11,7 @@
- 
- #include <linux/tracepoint.h>
- #include <linux/types.h>
-+#include <drm/drm_buddy.h>
- 
- #include "xe_bo_types.h"
- #include "xe_exec_queue_types.h"
-@@ -600,6 +601,40 @@ DEFINE_EVENT_PRINT(xe_guc_ctb, xe_guc_ctb_g2h,
- 
- );
- 
-+DECLARE_EVENT_CLASS(xe_buddy_block,
-+               TP_PROTO(struct drm_buddy_block *block, u64 size, u64 pfn),
-+               TP_ARGS(block, size, pfn),
 +
-+               TP_STRUCT__entry(
-+                               __field(u64, block)
-+                               __field(u64, header)
-+                               __field(u64, size)
-+                               __field(u64, pfn)
-+               ),
++/** Populate physical pages of a virtual address range
++ * This function also read mmu notifier sequence # (
++ * mmu_interval_read_begin), for the purpose of later
++ * comparison (through mmu_interval_read_retry).
++ * This must be called with mmap read or write lock held.
++ *
++ * This function alloates hmm_range->hmm_pfns, it is caller's
++ * responsibility to free it.
++ *
++ * @svm_range: The svm range to populate
++ * @hmm_range: pointer to hmm_range struct. hmm_rang->hmm_pfns
++ * will hold the populated pfns.
++ * @write: populate pages with write permission
++ *
++ * returns: 0 for succuss; negative error no on failure
++ */
++static int svm_populate_range(struct xe_svm_range *svm_range,
++			    struct hmm_range *hmm_range, bool write)
++{
++	unsigned long timeout =
++		jiffies + msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
++	unsigned long *pfns, flags = HMM_PFN_REQ_FAULT;
++	u64 npages;
++	int ret;
 +
-+               TP_fast_assign(
-+                               __entry->block = (u64)block;
-+                               __entry->header = block->header;
-+                               __entry->size = size;
-+                               __entry->pfn = pfn;
-+               ),
++	mmap_assert_locked(svm_range->svm->mm);
 +
-+               TP_printk("xe svm: allocated block %llx, block header %llx, size %llx, pfn %llx\n",
-+                       __entry->block, __entry->header, __entry->size, __entry->pfn)
-+);
++	npages = ((svm_range->end - 1) >> PAGE_SHIFT) -
++						(svm_range->start >> PAGE_SHIFT) + 1;
++	pfns = kvmalloc_array(npages, sizeof(*pfns), GFP_KERNEL);
++	if (unlikely(!pfns))
++		return -ENOMEM;
 +
++	if (write)
++		flags |= HMM_PFN_REQ_WRITE;
 +
-+DEFINE_EVENT(xe_buddy_block, xe_buddy_block_alloc,
-+               TP_PROTO(struct drm_buddy_block *block, u64 size, u64 pfn),
-+               TP_ARGS(block, size, pfn)
-+);
++	memset64((u64 *)pfns, (u64)flags, npages);
++	hmm_range->hmm_pfns = pfns;
++	hmm_range->notifier_seq = mmu_interval_read_begin(&svm_range->notifier);
++	hmm_range->notifier = &svm_range->notifier;
++	hmm_range->start = svm_range->start;
++	hmm_range->end = svm_range->end;
++	hmm_range->pfn_flags_mask = HMM_PFN_REQ_FAULT | HMM_PFN_REQ_WRITE;
++	hmm_range->dev_private_owner = svm_range->svm->vm->xe->drm.dev;
 +
++	while (true) {
++		ret = hmm_range_fault(hmm_range);
++		if (time_after(jiffies, timeout))
++			goto free_pfns;
 +
-+DEFINE_EVENT(xe_buddy_block, xe_buddy_block_free,
-+               TP_PROTO(struct drm_buddy_block *block, u64 size, u64 pfn),
-+               TP_ARGS(block, size, pfn)
-+);
++		if (ret == -EBUSY)
++			continue;
++		break;
++	}
 +
- #endif
- 
- /* This part must be outside protection */
++free_pfns:
++	if (ret)
++		kvfree(pfns);
++	return ret;
++}
 -- 
 2.26.3
 
