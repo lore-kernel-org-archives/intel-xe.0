@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3019C46CCD
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Dec 2023 22:28:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10053C46CD8
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Dec 2023 22:28:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B77BC10E731;
-	Thu, 21 Dec 2023 22:28:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B91910E733;
+	Thu, 21 Dec 2023 22:28:22 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 804E810E716;
- Thu, 21 Dec 2023 22:28:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46D0410E722;
+ Thu, 21 Dec 2023 22:28:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703197694; x=1734733694;
+ t=1703197695; x=1734733695;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=XmD6xMGWVeq1qWnVvU1CNrzCFsAIQn1lcBHypKh9pHI=;
- b=Io5IcS7barAWzd3bLWiSBLldVxYzY4mAWtXUTgeUcBbnz0CkKH4zD/er
- uW4nDaXylrr18zC3eR19TyyiRMgb5wBX/vxO2lyFq/d45S4YuwYp8kSwq
- lqnkxmWDRdl/QjF6jfIw9XnmsKBZBwPd+qLroL8wejD66Jla/rGY0eibt
- UCq8zdSy11++WhW6WuR9ARO+cgeNceuEk5EZs25UjHGkKFTrFa0yOygcy
- l9Emh8lYnuHEfXla7WS0o8RSLLo1pLXppwNPUatjO21dujxTATSDYh87Z
- s+DUPQj6SEcOKM2m6CTUU/DLXQRAWlxrpEEEsQeQCA3g9SEm8M95XFbLv Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="2876519"
+ bh=3sFxOzignG7QJ8LUvSkwRZ0eN/kd+CsuzD/vIyAotPY=;
+ b=lYOXOEuqH48D3jbxOdCVBP0iC3bvCrLm0mmfjEuun/AafRJg/23C59R/
+ EDyHWWMpnhDOzkgOzYmZRJRW0KzojhO09XRbz9TZl8vo0BIMtIcByB2G1
+ K9sq9zDQTIZtzZJX1GrJD56mK2Nni34aXljgGBUXp8fqi42+QCQZpnRPJ
+ lA9Hk3gkaHfKTT6FSwnU04DAMXHQ5lfHSc0uyj8H0eCxUcZTJ3FJgdD4j
+ CE7U61+FGn8f0fd1zFEBURWpS1nYlJMPs4KUFPP1OhVk6PA1AtSvtuLer
+ 2G66m3bSqsWA9wYBWRWCY9RETcGBeu9L5/HuhP4w7b3Cot0uqShMx5lRk A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="2876535"
 X-IronPort-AV: E=Sophos;i="6.04,294,1695711600"; 
-   d="scan'208";a="2876519"
+   d="scan'208";a="2876535"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2023 14:28:14 -0800
+ 21 Dec 2023 14:28:15 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="920458213"
-X-IronPort-AV: E=Sophos;i="6.04,294,1695711600"; d="scan'208";a="920458213"
+X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="920458225"
+X-IronPort-AV: E=Sophos;i="6.04,294,1695711600"; d="scan'208";a="920458225"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2023 14:28:13 -0800
+ 21 Dec 2023 14:28:14 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 2/6] drm/xe: Use _ULL for u64 division
-Date: Thu, 21 Dec 2023 14:28:05 -0800
-Message-Id: <20231221222809.4123220-3-lucas.demarchi@intel.com>
+Subject: [PATCH 6/6] drm/xe: Enable 32bits build
+Date: Thu, 21 Dec 2023 14:28:09 -0800
+Message-Id: <20231221222809.4123220-7-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20231221222809.4123220-1-lucas.demarchi@intel.com>
 References: <20231221222809.4123220-1-lucas.demarchi@intel.com>
@@ -63,27 +63,26 @@ Cc: daniel.vetter@ffwll.ch, Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use DIV_ROUND_UP_ULL() so it also works on 32bit build.
+Now that all the issues with 32bits are fixed, enable it again.
 
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 2 +-
+ drivers/gpu/drm/xe/Kconfig | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 86867d42d532..3f0dcf54277b 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -620,7 +620,7 @@ void xe_device_wmb(struct xe_device *xe)
- u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size)
- {
- 	return xe_device_has_flat_ccs(xe) ?
--		DIV_ROUND_UP(size, NUM_BYTES_PER_CCS_BYTE(xe)) : 0;
-+		DIV_ROUND_UP_ULL(size, NUM_BYTES_PER_CCS_BYTE(xe)) : 0;
- }
- 
- bool xe_device_mem_access_ongoing(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+index a53b0fdc15a7..5b3da06e7ba3 100644
+--- a/drivers/gpu/drm/xe/Kconfig
++++ b/drivers/gpu/drm/xe/Kconfig
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ config DRM_XE
+ 	tristate "Intel Xe Graphics"
+-	depends on DRM && PCI && MMU && (m || (y && KUNIT=y)) && 64BIT
++	depends on DRM && PCI && MMU && (m || (y && KUNIT=y))
+ 	select INTERVAL_TREE
+ 	# we need shmfs for the swappable backing store, and in particular
+ 	# the shmem_readpage() which depends upon tmpfs
 -- 
 2.40.1
 
