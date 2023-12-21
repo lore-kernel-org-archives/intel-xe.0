@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69A07C4706C
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Dec 2023 22:28:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3019C46CCD
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Dec 2023 22:28:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B832A10E732;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B77BC10E731;
 	Thu, 21 Dec 2023 22:28:21 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 128BF10E718;
- Thu, 21 Dec 2023 22:28:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 804E810E716;
+ Thu, 21 Dec 2023 22:28:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703197695; x=1734733695;
+ t=1703197694; x=1734733694;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8K/h1/j4SNbUYxEYWeTpA8KkHoZAgBmuZ8QW30qjzF4=;
- b=KvPByV5lTreEXNsOWmk5W0S1icsdWPg2nNa1hd+YCr3taNcPd7kZLYm/
- ONz0BfAKwEH3klmxL0V2yVMAQpZUZmXAlkLKNejCNm8I9aQcFhWcwv6Ac
- s9IH51HNFFiL2N6odIFIhV8upI56OeHtEqP6eNMiQt7ukb1T05Gdd/UM6
- iPF+g1jysXuWqXXo3sFO0gCFEvaS6uAjKtKNoLOD7HD9PUTq6FXHPbNtM
- xOTElAdxFP5fr/Ty//5qJLvzdq1mieBY7pnB83RR3XmkLybkOkUKYRgpq
- nYaa0U8zgQWdHc1vIPT5Lz8eAjGK7SzZZ+LVXtnlvX27rOuf6Ct34jFqE w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="2876531"
+ bh=XmD6xMGWVeq1qWnVvU1CNrzCFsAIQn1lcBHypKh9pHI=;
+ b=Io5IcS7barAWzd3bLWiSBLldVxYzY4mAWtXUTgeUcBbnz0CkKH4zD/er
+ uW4nDaXylrr18zC3eR19TyyiRMgb5wBX/vxO2lyFq/d45S4YuwYp8kSwq
+ lqnkxmWDRdl/QjF6jfIw9XnmsKBZBwPd+qLroL8wejD66Jla/rGY0eibt
+ UCq8zdSy11++WhW6WuR9ARO+cgeNceuEk5EZs25UjHGkKFTrFa0yOygcy
+ l9Emh8lYnuHEfXla7WS0o8RSLLo1pLXppwNPUatjO21dujxTATSDYh87Z
+ s+DUPQj6SEcOKM2m6CTUU/DLXQRAWlxrpEEEsQeQCA3g9SEm8M95XFbLv Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="2876519"
 X-IronPort-AV: E=Sophos;i="6.04,294,1695711600"; 
-   d="scan'208";a="2876531"
+   d="scan'208";a="2876519"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2023 14:28:15 -0800
+ 21 Dec 2023 14:28:14 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="920458222"
-X-IronPort-AV: E=Sophos;i="6.04,294,1695711600"; d="scan'208";a="920458222"
+X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="920458213"
+X-IronPort-AV: E=Sophos;i="6.04,294,1695711600"; d="scan'208";a="920458213"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2023 14:28:14 -0800
+ 21 Dec 2023 14:28:13 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 5/6] drm/xe: Fix cast on trace variable
-Date: Thu, 21 Dec 2023 14:28:08 -0800
-Message-Id: <20231221222809.4123220-6-lucas.demarchi@intel.com>
+Subject: [PATCH 2/6] drm/xe: Use _ULL for u64 division
+Date: Thu, 21 Dec 2023 14:28:05 -0800
+Message-Id: <20231221222809.4123220-3-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20231221222809.4123220-1-lucas.demarchi@intel.com>
 References: <20231221222809.4123220-1-lucas.demarchi@intel.com>
@@ -63,30 +63,27 @@ Cc: daniel.vetter@ffwll.ch, Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Cast the pointer to unsigned long and let it be implicitly extended to
-u64. This fixes the build on 32bits arch.
+Use DIV_ROUND_UP_ULL() so it also works on 32bit build.
 
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_trace.h | 2 +-
+ drivers/gpu/drm/xe/xe_device.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-index 95163c303f3e..e4e7262191ad 100644
---- a/drivers/gpu/drm/xe/xe_trace.h
-+++ b/drivers/gpu/drm/xe/xe_trace.h
-@@ -31,7 +31,7 @@ DECLARE_EVENT_CLASS(xe_gt_tlb_invalidation_fence,
- 			     ),
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 86867d42d532..3f0dcf54277b 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -620,7 +620,7 @@ void xe_device_wmb(struct xe_device *xe)
+ u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size)
+ {
+ 	return xe_device_has_flat_ccs(xe) ?
+-		DIV_ROUND_UP(size, NUM_BYTES_PER_CCS_BYTE(xe)) : 0;
++		DIV_ROUND_UP_ULL(size, NUM_BYTES_PER_CCS_BYTE(xe)) : 0;
+ }
  
- 		    TP_fast_assign(
--			   __entry->fence = (u64)fence;
-+			   __entry->fence = (unsigned long)fence;
- 			   __entry->seqno = fence->seqno;
- 			   ),
- 
+ bool xe_device_mem_access_ongoing(struct xe_device *xe)
 -- 
 2.40.1
 
