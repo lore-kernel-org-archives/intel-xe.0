@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70F28C4706C
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Dec 2023 04:28:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38357C4706E
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Dec 2023 04:28:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACB6410E67C;
-	Thu, 21 Dec 2023 04:28:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D216710E681;
+	Thu, 21 Dec 2023 04:28:34 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94E6810E65E;
- Thu, 21 Dec 2023 04:28:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E379410E654;
+ Thu, 21 Dec 2023 04:28:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703132903; x=1734668903;
+ t=1703132902; x=1734668902;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=JAifNztFGJdHbvn7TBEiRLW9QX1gnP6AASCF9p0qNJc=;
- b=PZ+EeN4Wafeq/LNKrq2cFodB+ZWIBzEZ9YLI7SLVmKxMaey6LmSL8JI0
- CqzWejMMylM9u71g+KrAWBMdmWVrJzjHsm1eL6ymgSLgqYq1Rf68eOQo1
- GVSiNtvHEXQLjOCFeGOUf2T9tj2hNYwdoRCjMGQlSxNQtSlK2VlQZZvMd
- CmaT+p3U/93hGHJXqVhzn9e0l7b+NU/gQUIDYFwQg+WBoSnbWBsLpxLo2
- rOm2HNWtC/ke7+PxIZkO0878nqyjkTDiH7ZRGb1etnuQpNqn7/U+KP/ZA
- 5iuQVGn+OkWDG5bshbBi+hG+icRxiIj/vd86Psd3JgMyQAlujGTE5dySz A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="427069782"
-X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="427069782"
+ bh=f40+dO32XfCQXtj0bJ18zsnoVP4q5bzdJvLh70FVUGk=;
+ b=fiLhHv252zYocMHIcUWrpHBEpa8ZL2qGdWN2B/mnzJgIkjCVtnefDous
+ URTfVkEHyOfb4bOTH2X2cdK3tyxUTRpLnqoDW8ML+Y2hPX+1lv0xdKFXh
+ I8nBNl0m466IwwEly1QnDDWWZSh+uxFfHM/iJu95fkknLBNyRaDELrs4Z
+ 4eBvmVdcytXBxTcor7LWhu23mOHqWmSuH4k5WbGm703h+dUK9J3LkkoF4
+ +Tqr7/H27P5WE9XrKBZBdQQhA+sxwRZRWXV+IxgP36hWlcb9erbiOmuej
+ kne+cQlZYG5X6DseXtDz2YA+FH+AlNiqArYQenKLkx+lzWCc3Y0cqjfyy A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="427069772"
+X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="427069772"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2023 20:28:23 -0800
+ 20 Dec 2023 20:28:22 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="805481402"
-X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="805481402"
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="805481372"
+X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="805481372"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2023 20:28:21 -0800
+ 20 Dec 2023 20:28:20 -0800
 From: Oak Zeng <oak.zeng@intel.com>
 To: dri-devel@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH 22/22] drm/xe/svm: Add DRM_XE_SVM kernel config entry
-Date: Wed, 20 Dec 2023 23:38:12 -0500
-Message-Id: <20231221043812.3783313-23-oak.zeng@intel.com>
+Subject: [PATCH 12/22] drm/xe/svm: Trace buddy block allocation and free
+Date: Wed, 20 Dec 2023 23:38:02 -0500
+Message-Id: <20231221043812.3783313-13-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20231221043812.3783313-1-oak.zeng@intel.com>
 References: <20231221043812.3783313-1-oak.zeng@intel.com>
@@ -61,112 +61,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-DRM_XE_SVM kernel config entry is added so
-xe svm feature can be configured before kernel
-compilation.
-
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-Co-developed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@intel.com>
 Cc: Brian Welty <brian.welty@intel.com>
 ---
- drivers/gpu/drm/xe/Kconfig   | 22 ++++++++++++++++++++++
- drivers/gpu/drm/xe/Makefile  |  5 +++++
- drivers/gpu/drm/xe/xe_mmio.c |  5 +++++
- drivers/gpu/drm/xe/xe_vm.c   |  2 ++
- 4 files changed, 34 insertions(+)
+ drivers/gpu/drm/xe/xe_svm_devmem.c |  5 ++++-
+ drivers/gpu/drm/xe/xe_trace.h      | 35 ++++++++++++++++++++++++++++++
+ 2 files changed, 39 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-index 5b3da06e7ba3..a57f0972e9ae 100644
---- a/drivers/gpu/drm/xe/Kconfig
-+++ b/drivers/gpu/drm/xe/Kconfig
-@@ -83,6 +83,28 @@ config DRM_XE_FORCE_PROBE
+diff --git a/drivers/gpu/drm/xe/xe_svm_devmem.c b/drivers/gpu/drm/xe/xe_svm_devmem.c
+index 445e0e1bc3b4..5cd54dde4a9d 100644
+--- a/drivers/gpu/drm/xe/xe_svm_devmem.c
++++ b/drivers/gpu/drm/xe/xe_svm_devmem.c
+@@ -95,6 +95,7 @@ int xe_devm_alloc_pages(struct xe_tile *tile,
+ 		block->private = meta;
+ 		block_pfn_first =
+ 					block_offset_to_pfn(mr, drm_buddy_block_offset(block));
++		trace_xe_buddy_block_alloc(block, size, block_pfn_first);
+ 		for(i = 0; i < pages_per_block; i++) {
+ 			struct page *page;
  
- 	  Use "!*" to block the probe of the driver for all known devices.
+@@ -159,8 +160,10 @@ void xe_devm_page_free(struct page *page)
  
-+config DRM_XE_SVM
-+    bool "Enable Shared Virtual Memory support in xe"
-+    depends on DRM_XE
-+    depends on ARCH_ENABLE_MEMORY_HOTPLUG
-+    depends on ARCH_ENABLE_MEMORY_HOTREMOVE
-+    depends on MEMORY_HOTPLUG
-+    depends on MEMORY_HOTREMOVE
-+    depends on ARCH_HAS_PTE_DEVMAP
-+    depends on SPARSEMEM_VMEMMAP
-+    depends on ZONE_DEVICE
-+    depends on DEVICE_PRIVATE
-+    depends on MMU
-+    select HMM_MIRROR
-+    select MMU_NOTIFIER
-+    default y
-+    help
-+      Choose this option if you want Shared Virtual Memory (SVM)
-+      support in xe. With SVM, virtual address space is shared
-+	  between CPU and GPU. This means any virtual address such
-+	  as malloc or mmap returns, variables on stack, or global
-+	  memory pointers, can be used for GPU transparently.
-+
- menu "drm/Xe Debugging"
- depends on DRM_XE
- depends on EXPERT
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index df8601d6a59f..b75bdbc5e42c 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -282,6 +282,11 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	i915-display/skl_universal_plane.o \
- 	i915-display/skl_watermark.o
- 
-+xe-$(CONFIG_DRM_XE_SVM) += xe_svm.o \
-+						   xe_svm_devmem.o \
-+						   xe_svm_range.o \
-+						   xe_svm_migrate.o
-+
- ifeq ($(CONFIG_ACPI),y)
- 	xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 		i915-display/intel_acpi.o \
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index cfe25a3c7059..7c95f675ed92 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -286,7 +286,9 @@ int xe_mmio_probe_vram(struct xe_device *xe)
- 		}
- 
- 		io_size -= min_t(u64, tile_size, io_size);
-+#if IS_ENABLED(CONFIG_DRM_XE_SVM)
- 		xe_svm_devm_add(tile, &tile->mem.vram);
-+#endif
- 	}
- 
- 	xe->mem.vram.actual_physical_size = total_size;
-@@ -361,8 +363,11 @@ static void mmio_fini(struct drm_device *drm, void *arg)
- 	pci_iounmap(to_pci_dev(xe->drm.dev), xe->mmio.regs);
- 	if (xe->mem.vram.mapping)
- 		iounmap(xe->mem.vram.mapping);
-+
-+#if IS_ENABLED(CONFIG_DRM_XE_SVM)
- 	for_each_tile(tile, xe, id) {
- 		xe_svm_devm_remove(xe, &tile->mem.vram);
-+#endif
- 	}
+ 	xe_assert(tile->xe, i < pages_per_block);
+ 	clear_bit(i, meta->bitmap);
+-	if (bitmap_empty(meta->bitmap, pages_per_block))
++	if (bitmap_empty(meta->bitmap, pages_per_block)) {
+ 		free_block(block);
++		trace_xe_buddy_block_free(block, size, block_pfn_first);
++	}
  }
  
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 3c301a5c7325..12d82f2fc195 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1376,7 +1376,9 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- 		xe->usm.num_vm_in_non_fault_mode++;
- 	mutex_unlock(&xe->usm.lock);
+ static const struct dev_pagemap_ops xe_devm_pagemap_ops = {
+diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+index 63867c0fa848..50380f5173ca 100644
+--- a/drivers/gpu/drm/xe/xe_trace.h
++++ b/drivers/gpu/drm/xe/xe_trace.h
+@@ -11,6 +11,7 @@
  
-+#if IS_ENABLED(CONFIG_DRM_XE_SVM)
- 	vm->svm = xe_create_svm(vm);
-+#endif
- 	trace_xe_vm_create(vm);
+ #include <linux/tracepoint.h>
+ #include <linux/types.h>
++#include <drm/drm_buddy.h>
  
- 	return vm;
+ #include "xe_bo_types.h"
+ #include "xe_exec_queue_types.h"
+@@ -600,6 +601,40 @@ DEFINE_EVENT_PRINT(xe_guc_ctb, xe_guc_ctb_g2h,
+ 
+ );
+ 
++DECLARE_EVENT_CLASS(xe_buddy_block,
++               TP_PROTO(struct drm_buddy_block *block, u64 size, u64 pfn),
++               TP_ARGS(block, size, pfn),
++
++               TP_STRUCT__entry(
++                               __field(u64, block)
++                               __field(u64, header)
++                               __field(u64, size)
++                               __field(u64, pfn)
++               ),
++
++               TP_fast_assign(
++                               __entry->block = (u64)block;
++                               __entry->header = block->header;
++                               __entry->size = size;
++                               __entry->pfn = pfn;
++               ),
++
++               TP_printk("xe svm: allocated block %llx, block header %llx, size %llx, pfn %llx\n",
++                       __entry->block, __entry->header, __entry->size, __entry->pfn)
++);
++
++
++DEFINE_EVENT(xe_buddy_block, xe_buddy_block_alloc,
++               TP_PROTO(struct drm_buddy_block *block, u64 size, u64 pfn),
++               TP_ARGS(block, size, pfn)
++);
++
++
++DEFINE_EVENT(xe_buddy_block, xe_buddy_block_free,
++               TP_PROTO(struct drm_buddy_block *block, u64 size, u64 pfn),
++               TP_ARGS(block, size, pfn)
++);
++
+ #endif
+ 
+ /* This part must be outside protection */
 -- 
 2.26.3
 
