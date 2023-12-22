@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA170C46CD8
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Dec 2023 07:38:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0C86C41535
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Dec 2023 07:38:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E6F410E756;
-	Fri, 22 Dec 2023 07:38:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62E3310E757;
+	Fri, 22 Dec 2023 07:38:50 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3E4D10E756
- for <intel-xe@lists.freedesktop.org>; Fri, 22 Dec 2023 07:38:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2046410E757
+ for <intel-xe@lists.freedesktop.org>; Fri, 22 Dec 2023 07:38:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703230723; x=1734766723;
+ t=1703230728; x=1734766728;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=f7/edHrwEFxeNKW2bk5ko8pZAG7jJxCdBbt2Zn2TlPg=;
- b=SNCzGQs1D2sP24mKuPRjSPCAdTNxP/m7RbT0xWOfgH93w38+7JUpnc8i
- hgc4qKByjzYxxuWO+wjIAewdYhykGR6+xGzsnKuBodMDms3X9E32+LIAZ
- 5Z10GPEBZDuAX4PKz/WgVoXZZEy36KXZCPw3N3ASEr2J9OJlVrnc9VKe7
- nvz1Pw/6xUABVgrBv4yucgKcYjRD5HhvxPC9Ex6VxgvEwXEoUnS8XTzhv
- y1zalHUzoHOgQQ91ofQNCrmS8v/mD5BDYKe8soqYO0hircyrY/ujuzdkh
- YG5i8o7SAtq0a/bwzeS7R9/f6VmZ475GSZ46LCOuqyqOIihiVizGHsyld w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="9481006"
+ bh=AV55bNHGD4AvBm5dHT943Goh3vSUsljWnfG7PQxzHRI=;
+ b=Qfal7s0/GSQCKAnSG9HuXMEEHz0croIY8qoYeFJmPYemQ8UEwqThUkbH
+ ELMrliYINZYbOJJRo+v6e/4sb4TDaYdesE++JH8oQEJmwOr/+kMkhO2A1
+ VK7KZkYqzCcbP1CZuAUSEc8pccwZgrYa2QFmkg08ZSHllDOn/s2F0keGI
+ 4UaqDq/T+skT/OqECyp5yKca/nEA1xoqKdsUisLj06nm+q5AZclji4Ahy
+ viw1UADCXta2blW12bnBEew74hCSxTgszqz8K4d7YzLuBeYVDNsRcr4BM
+ PIy/9jHu13ITQLd1v/SM9Mq+rQ74t65EE+jm8HdS2LPAA9Xq9QEK9Y/9t Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="9481031"
 X-IronPort-AV: E=Sophos;i="6.04,294,1695711600"; 
-   d="scan'208";a="9481006"
+   d="scan'208";a="9481031"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2023 23:38:42 -0800
+ 21 Dec 2023 23:38:48 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="920582575"
-X-IronPort-AV: E=Sophos;i="6.04,294,1695711600"; d="scan'208";a="920582575"
+X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="920582591"
+X-IronPort-AV: E=Sophos;i="6.04,294,1695711600"; d="scan'208";a="920582591"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2023 23:38:39 -0800
+ 21 Dec 2023 23:38:45 -0800
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 1/8] drm/xe: Move user engine class mappings to functions
-Date: Fri, 22 Dec 2023 13:15:55 +0530
-Message-Id: <20231222074602.817518-2-riana.tauro@intel.com>
+Subject: [PATCH v4 3/8] drm/xe/uapi: Add configs for Engine busyness
+Date: Fri, 22 Dec 2023 13:15:57 +0530
+Message-Id: <20231222074602.817518-4-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20231222074602.817518-1-riana.tauro@intel.com>
 References: <20231222074602.817518-1-riana.tauro@intel.com>
@@ -60,201 +60,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move user engine class <-> hw engine class to function
-calls so that it can be used in different files.
+GuC provides engine busyness ticks as a 64 bit counter which count
+as clock ticks.
 
-No functional changes.
+Add configs to the uapi to expose Engine busyness via PMU.
 
-v2: change array to function
+v2: add "__" prefix for internal helpers
+    add a simple helper for application usage (Aravind)
+
 v3: rebase
-    add header xe_drm
+    change internal uapi pmu config helpers (Umesh)
 
-Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c | 19 ++---------
- drivers/gpu/drm/xe/xe_hw_engine.c  | 51 ++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_hw_engine.h  |  3 ++
- drivers/gpu/drm/xe/xe_query.c      | 23 ++------------
- 4 files changed, 58 insertions(+), 38 deletions(-)
+ include/uapi/drm/xe_drm.h | 41 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 44fe8097b7cd..366f5714c6f7 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -482,31 +482,16 @@ static int exec_queue_user_extensions(struct xe_device *xe, struct xe_exec_queue
- 	return 0;
- }
- 
--static const enum xe_engine_class user_to_xe_engine_class[] = {
--	[DRM_XE_ENGINE_CLASS_RENDER] = XE_ENGINE_CLASS_RENDER,
--	[DRM_XE_ENGINE_CLASS_COPY] = XE_ENGINE_CLASS_COPY,
--	[DRM_XE_ENGINE_CLASS_VIDEO_DECODE] = XE_ENGINE_CLASS_VIDEO_DECODE,
--	[DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE] = XE_ENGINE_CLASS_VIDEO_ENHANCE,
--	[DRM_XE_ENGINE_CLASS_COMPUTE] = XE_ENGINE_CLASS_COMPUTE,
--};
--
- static struct xe_hw_engine *
- find_hw_engine(struct xe_device *xe,
- 	       struct drm_xe_engine_class_instance eci)
- {
--	u32 idx;
--
--	if (eci.engine_class > ARRAY_SIZE(user_to_xe_engine_class))
--		return NULL;
- 
- 	if (eci.gt_id >= xe->info.gt_count)
- 		return NULL;
- 
--	idx = array_index_nospec(eci.engine_class,
--				 ARRAY_SIZE(user_to_xe_engine_class));
--
- 	return xe_gt_hw_engine(xe_device_get_gt(xe, eci.gt_id),
--			       user_to_xe_engine_class[idx],
-+			       xe_hw_engine_from_user_class(eci.engine_class),
- 			       eci.engine_instance, true);
- }
- 
-@@ -532,7 +517,7 @@ static u32 bind_exec_queue_logical_mask(struct xe_device *xe, struct xe_gt *gt,
- 			continue;
- 
- 		if (hwe->class ==
--		    user_to_xe_engine_class[DRM_XE_ENGINE_CLASS_COPY])
-+		    xe_hw_engine_from_user_class(DRM_XE_ENGINE_CLASS_COPY))
- 			logical_mask |= BIT(hwe->logical_instance);
- 	}
- 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 832989c83a25..ab78019b44ff 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -6,6 +6,7 @@
- #include "xe_hw_engine.h"
- 
- #include <drm/drm_managed.h>
-+#include <drm/xe_drm.h>
- 
- #include "regs/xe_engine_regs.h"
- #include "regs/xe_gt_regs.h"
-@@ -290,6 +291,56 @@ static u32 hw_engine_mmio_read32(struct xe_hw_engine *hwe, struct xe_reg reg)
- 	return xe_mmio_read32(hwe->gt, reg);
- }
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 9fa3ae324731..f8456cda5cda 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -1340,6 +1340,47 @@ struct drm_xe_wait_user_fence {
+ 	__u64 reserved[2];
+ };
  
 +/**
-+ * xe_hw_engine_to_user_class - converts xe hw engine to user engine class
-+ * @engine_class: hw engine class
++ * DOC: XE PMU event config IDs
 + *
-+ * Returns: user engine class on success, -1 on error
++ * Check 'man perf_event_open' to use the ID's DRM_XE_PMU_XXXX listed in xe_drm.h
++ * in 'struct perf_event_attr' as part of perf_event_open syscall to read a
++ * particular event.
++ *
 + */
-+u16 xe_hw_engine_to_user_class(enum xe_engine_class engine_class)
-+{
-+	switch (engine_class) {
-+	case XE_ENGINE_CLASS_RENDER:
-+		return DRM_XE_ENGINE_CLASS_RENDER;
-+	case XE_ENGINE_CLASS_COPY:
-+		return DRM_XE_ENGINE_CLASS_COPY;
-+	case XE_ENGINE_CLASS_VIDEO_DECODE:
-+		return DRM_XE_ENGINE_CLASS_VIDEO_DECODE;
-+	case XE_ENGINE_CLASS_VIDEO_ENHANCE:
-+		return DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE;
-+	case XE_ENGINE_CLASS_COMPUTE:
-+		return DRM_XE_ENGINE_CLASS_COMPUTE;
-+	default:
-+		XE_WARN_ON(engine_class);
-+		return -1;
-+	}
-+}
 +
 +/**
-+ * xe_hw_engine_from_user_class - converts xe user engine class to hw engine class
-+ * @engine_class: user engine class
-+ *
-+ * Returns: hw engine class on success
++ * enum drm_xe_pmu_engine_sample - Supported PMU engine samples
 + */
-+enum xe_engine_class xe_hw_engine_from_user_class(u16 engine_class)
-+{
-+	switch (engine_class) {
-+	case DRM_XE_ENGINE_CLASS_RENDER:
-+		return XE_ENGINE_CLASS_RENDER;
-+	case DRM_XE_ENGINE_CLASS_COPY:
-+		return XE_ENGINE_CLASS_COPY;
-+	case DRM_XE_ENGINE_CLASS_VIDEO_DECODE:
-+		return XE_ENGINE_CLASS_VIDEO_DECODE;
-+	case DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE:
-+		return XE_ENGINE_CLASS_VIDEO_ENHANCE;
-+	case DRM_XE_ENGINE_CLASS_COMPUTE:
-+		return XE_ENGINE_CLASS_COMPUTE;
-+	default:
-+		XE_WARN_ON(engine_class);
-+		return XE_ENGINE_CLASS_MAX;
-+	}
-+}
++enum drm_xe_pmu_engine_sample {
++	/** @DRM_XE_PMU_SAMPLE_BUSY_TICKS: Engine busy ticks */
++	DRM_XE_PMU_SAMPLE_BUSY_TICKS = 0,
++};
 +
- void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe)
- {
- 	u32 ccs_mask =
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
-index 71968ee2f600..89ca96063644 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.h
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.h
-@@ -62,6 +62,9 @@ void xe_hw_engine_print(struct xe_hw_engine *hwe, struct drm_printer *p);
- void xe_hw_engine_setup_default_lrc_state(struct xe_hw_engine *hwe);
- 
- bool xe_hw_engine_is_reserved(struct xe_hw_engine *hwe);
-+enum xe_engine_class xe_hw_engine_from_user_class(u16 engine_class);
-+u16 xe_hw_engine_to_user_class(enum xe_engine_class engine_class);
++/*
++ * Top bits of every counter are GT id.
++ */
++#define __DRM_XE_PMU_GT_SHIFT (56)
++#define __DRM_XE_PMU_SAMPLE_BITS (4)
++#define __DRM_XE_PMU_SAMPLE_INSTANCE_BITS (8)
++#define __DRM_XE_PMU_CLASS_SHIFT \
++	(__DRM_XE_PMU_SAMPLE_BITS + __DRM_XE_PMU_SAMPLE_INSTANCE_BITS)
 +
- static inline bool xe_hw_engine_is_valid(struct xe_hw_engine *hwe)
- {
- 	return hwe->name;
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 9b35673b286c..d4793e79e283 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -22,22 +22,6 @@
- #include "xe_mmio.h"
- #include "xe_ttm_vram_mgr.h"
- 
--static const u16 xe_to_user_engine_class[] = {
--	[XE_ENGINE_CLASS_RENDER] = DRM_XE_ENGINE_CLASS_RENDER,
--	[XE_ENGINE_CLASS_COPY] = DRM_XE_ENGINE_CLASS_COPY,
--	[XE_ENGINE_CLASS_VIDEO_DECODE] = DRM_XE_ENGINE_CLASS_VIDEO_DECODE,
--	[XE_ENGINE_CLASS_VIDEO_ENHANCE] = DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE,
--	[XE_ENGINE_CLASS_COMPUTE] = DRM_XE_ENGINE_CLASS_COMPUTE,
--};
--
--static const enum xe_engine_class user_to_xe_engine_class[] = {
--	[DRM_XE_ENGINE_CLASS_RENDER] = XE_ENGINE_CLASS_RENDER,
--	[DRM_XE_ENGINE_CLASS_COPY] = XE_ENGINE_CLASS_COPY,
--	[DRM_XE_ENGINE_CLASS_VIDEO_DECODE] = XE_ENGINE_CLASS_VIDEO_DECODE,
--	[DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE] = XE_ENGINE_CLASS_VIDEO_ENHANCE,
--	[DRM_XE_ENGINE_CLASS_COMPUTE] = XE_ENGINE_CLASS_COMPUTE,
--};
--
- static size_t calc_hw_engine_info_size(struct xe_device *xe)
- {
- 	struct xe_hw_engine *hwe;
-@@ -139,10 +123,7 @@ query_engine_cycles(struct xe_device *xe,
- 	if (!gt)
- 		return -EINVAL;
- 
--	if (eci->engine_class >= ARRAY_SIZE(user_to_xe_engine_class))
--		return -EINVAL;
--
--	hwe = xe_gt_hw_engine(gt, user_to_xe_engine_class[eci->engine_class],
-+	hwe = xe_gt_hw_engine(gt, xe_hw_engine_from_user_class(eci->engine_class),
- 			      eci->engine_instance, true);
- 	if (!hwe)
- 		return -EINVAL;
-@@ -208,7 +189,7 @@ static int query_engines(struct xe_device *xe,
- 				continue;
- 
- 			engines->engines[i].instance.engine_class =
--				xe_to_user_engine_class[hwe->class];
-+				xe_hw_engine_to_user_class(hwe->class);
- 			engines->engines[i].instance.engine_instance =
- 				hwe->logical_instance;
- 			engines->engines[i].instance.gt_id = gt->info.id;
++#define __DRM_XE_PMU_GT_EVENT(gt, x) \
++	(((__u64)(x)) | ((__u64)(gt) << __DRM_XE_PMU_GT_SHIFT))
++
++#define __DRM_XE_PMU_ENGINE(class, instance, sample) \
++	(((class) << __DRM_XE_PMU_CLASS_SHIFT | \
++	(instance) << __DRM_XE_PMU_SAMPLE_BITS | \
++	(sample)))
++
++#define __DRM_XE_PMU_OTHER(gt, x) \
++	(__DRM_XE_PMU_GT_EVENT(gt, 0xfffff) + 1 + (x))
++
++#define DRM_XE_PMU_ENGINE_BUSY_TICKS(gt, class, instance) \
++	__DRM_XE_PMU_GT_EVENT(gt, __DRM_XE_PMU_ENGINE(class, instance, \
++						      DRM_XE_PMU_SAMPLE_BUSY_TICKS))
++
+ #if defined(__cplusplus)
+ }
+ #endif
 -- 
 2.40.0
 
