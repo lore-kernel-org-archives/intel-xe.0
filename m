@@ -4,148 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCDEDC41535
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Dec 2023 18:18:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD015C41535
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Dec 2023 18:22:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 745DD10E7F7;
-	Fri, 22 Dec 2023 18:18:50 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D494710E7F7
- for <intel-xe@lists.freedesktop.org>; Fri, 22 Dec 2023 18:18:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67BA310E801;
+	Fri, 22 Dec 2023 18:22:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF6B210E801
+ for <intel-xe@lists.freedesktop.org>; Fri, 22 Dec 2023 18:21:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703269128; x=1734805128;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=5wG2YbOROGeEF6YTAlg1iEKDd+yPEnzeDYGXSoEBKpA=;
- b=O4MSmf7DHGIY3WlEr87o3GSb7oQx9GfwP3IciG7PtcKVHiNavVQhJbTy
- 5xKkwOSLw5wdgcPeJPUGikUnzJfd+amTWPAvU0XI6fLu9RtY9xl8cCZVd
- iPmaeF+r0IvVnaWMYIsyET3NLXZa8MNbTaQOThC1x3HwD+xEUoymemTbB
- 8DmxrDrEjFiO81urmkxWlNRiQFXyKoMFCPmeqJn+l50fzRi1Hy38BpoXP
- 3YQqJaCESx7/tDVSihUTj3+YMZF1irJi6w7xGUhLslJOf6MPwN2oX8Or8
- QIQGGIr6RbNnqAPk5ClZljARllumUdRVLBHjog3eD54Fdkk7Zz/by/stP A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10932"; a="395885465"
-X-IronPort-AV: E=Sophos;i="6.04,297,1695711600"; d="scan'208";a="395885465"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2023 10:18:47 -0800
+ t=1703269319; x=1734805319;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=sokEYKpA2smiYWAlxcDN4iudT7OmjTcEy1cUg0lUHVc=;
+ b=IgaNSpkYdsjMDtK2+qZdue/PQ3Gi8ZQEwvrzX5RCcET22sA95I14RVI4
+ oApjRfadxY6SWyMl/kix71sYF1IYU7ygNsc36EVw/JX1nJyH6IhoLPmPE
+ p19JzwXvzq3i97axpNOX+evKfgbDGkyHOERraVW9WEklAUlzawz2nRAE6
+ f79r3OTFBk8uYX6waPSgS1EohMqU61PJteQfgXc2QXdHaDzO1uRh8sV5M
+ 4Xksqo0h6Uj9U+4wKRefVWircS0b/Pl3tLzWGyvJJhYSEu5du8wrOEJTP
+ 5xE981Apz6jMHSlsVGkfZI8CXItYAyLgH2i6ckzQvjI3csDTgDR2NCc/A Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10932"; a="375634472"
+X-IronPort-AV: E=Sophos;i="6.04,297,1695711600"; d="scan'208";a="375634472"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2023 10:21:59 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10932"; a="770356626"
-X-IronPort-AV: E=Sophos;i="6.04,297,1695711600"; d="scan'208";a="770356626"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 22 Dec 2023 10:18:47 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 22 Dec 2023 10:18:46 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Fri, 22 Dec 2023 10:18:46 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Fri, 22 Dec 2023 10:18:46 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NrGCzX71tXs1iB0f2rgzHyP3uBsHUqCVBC/UFytUwqb9w9Cmjhr4X2bC+QwHjUm04v4qjfecpAfg41tu4KTewKJ8C917NhiZXsvRXeEPZmfpxVU0c0vOtIg3H0I6eI1DRAaGSbX8NF3/1AmA/OQX/k/hFVMzr9VgBtgBWksKk25Jff7QJqLs0U2D/aIjYSU2XMOsHSy4vb2oEa22eJyQeQBO7aMixUUX/R60Ze7uULuekGRqJaZ/DRHz6vFDRSgGEjuDQY+X3DqP+8VF4yDOUBeRqy6WWPa6XWC4rJahcqKmGMIqXQkJaMM8ejJDbNQTAmgsGWFAb7NAp8c6g4TpBg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5wG2YbOROGeEF6YTAlg1iEKDd+yPEnzeDYGXSoEBKpA=;
- b=j9CWYqmhNXywtbmTpi+RNg08+bYGpAvhAnz05sWDqSvpxBWpeHnIidUNhstHwvWvssjYZOzOg9vodoT9K39u52VUcxLVldjUOcK/xIcyVFS5d9xd73B5SeRmZJZk5avD9fTblOrxC96FSbB0AQ5LRKP4MVNRm5Gf/3O1f6mg1nx0P8sNW+/CcmiaihdspyK/8XXqAH6uFU4J7QfQxVdy7+XJ9ZGJMkM2NxgCGdWjkQ4EKs+rAq9JMWVp7OGJrp8XYOyyZ1KAn/OdpMRTXVks33sSbNCGY4I0A1xRlWTdkBIbF/H4uzRsqG5+e4rtYgBwzsQn6GZ+UO9hEvwjUC+gzA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM6PR11MB3114.namprd11.prod.outlook.com (2603:10b6:5:6d::11) by
- SA1PR11MB8328.namprd11.prod.outlook.com (2603:10b6:806:376::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7113.21; Fri, 22 Dec
- 2023 18:18:43 +0000
-Received: from DM6PR11MB3114.namprd11.prod.outlook.com
- ([fe80::83fd:c944:e8ef:8adf]) by DM6PR11MB3114.namprd11.prod.outlook.com
- ([fe80::83fd:c944:e8ef:8adf%4]) with mapi id 15.20.7113.019; Fri, 22 Dec 2023
- 18:18:43 +0000
-From: "Hellstrom, Thomas" <thomas.hellstrom@intel.com>
-To: "Nilawar, Badal" <badal.nilawar@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v5] drm/xe/dgfx: Release mmap mappings on rpm suspend
-Thread-Topic: [PATCH v5] drm/xe/dgfx: Release mmap mappings on rpm suspend
-Thread-Index: AQHaNP3LvSpraa3KKEma8/nw9n1hX7C1nJmA
-Date: Fri, 22 Dec 2023 18:18:43 +0000
-Message-ID: <5f3e24ea47e628e7f156774ce684633097b1c9a9.camel@intel.com>
-References: <20231222175036.373201-1-badal.nilawar@intel.com>
-In-Reply-To: <20231222175036.373201-1-badal.nilawar@intel.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.46.4 (3.46.4-1.fc37) 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM6PR11MB3114:EE_|SA1PR11MB8328:EE_
-x-ms-office365-filtering-correlation-id: 6cad49d7-d402-452e-114c-08dc031a6e1d
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: I3luMtQsep4FjlyiHuhKNVpJmrpHT8TyrkYi5KFzpgLqGvGa9QLQ9yosU1LAEObMh2g4QiqiaVPTmORUCg7abUzTohBiisQz1KZ4UsfwBYYJKLlQAirWatFjYLc8yOcZ4Yl/1S1oCvr+qHr83MukBVRGzavLoL8DTQP4r3no42q7kjWfa6ITpMGfDjg9tyGIgVkPRxXqf+fCuxpuWyK5KXS+T9KoY3Xob+Iv7HmzU4UbSQJKuex7WS+wzuImJ+dSb3SKGY/8mDxF7hlO2j1WYwzrerPdzclq43wHihKytPw5Nh8a+m2qD9pgE/jHesXFLZKk9J6vzkZNmuDMnh2HbZ9s4vmrdlLVWXwnWH2p150hiGEkW1koYX79RtYst+vbCWe64t7NNfMaATrkkiJ2UXzJ1kOHRJRSEL4YnPDe+LAcYdzSI02rrIslLRTVJi7wOb9cPq41mq7mV783G3M12bs+IbWJAQZNdiqSPin1THNisqV4wxO31TazDUN3xaaG9BpZrvojiQ051pIu0LXR0MrogIbHftm3D7Z0qo8CidVs9wzEnSNob3EKWIqfzKRkORwSko7LD6FEPBMVgdn1lDBiz9V5pRwQOoXSmMmLHlggKvcKa0stFdxeUqJ36Ucj
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR11MB3114.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(366004)(376002)(346002)(39860400002)(136003)(230922051799003)(186009)(1800799012)(64100799003)(451199024)(71200400001)(5660300002)(6512007)(6506007)(478600001)(15650500001)(6486002)(83380400001)(66574015)(26005)(2616005)(107886003)(91956017)(76116006)(4326008)(8936002)(8676002)(122000001)(38070700009)(41300700001)(2906002)(86362001)(38100700002)(66946007)(66446008)(64756008)(66476007)(66556008)(316002)(110136005)(82960400001)(4001150100001)(36756003);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?QndOczA4U25pTDNHVTEvYy95cmh1TktSRzljcjdGSnlXVDhURmZKRzVBSW5H?=
- =?utf-8?B?TEYyMHF2ZGZzK3J3RG9BWkhseUM4L1lHcWJtaTFzQzE4ai9mbkREYUgyRFl5?=
- =?utf-8?B?bkF3RUdwUWxqVWhNWGxwV3VTWnYxb0dPdGdiMjNaanBOdjdEL0ltQmxiUlVk?=
- =?utf-8?B?WEdQa2tjd0lCU3dPbldTOHVPU0ZqMjJQUzhya1FtMGN0V2trV3g3c20rWmtD?=
- =?utf-8?B?NERPYTJwY3VBbXlCMnZndHdGZ3JqSzRQbWtHZWQxaEc1Skc3cUhrUFU4a1ZN?=
- =?utf-8?B?Wm84RHpGWEl0Vkd3blVUWm1PYTJsZHp2UXVGMklXOWtYeEl3bU1xeFJRUjVy?=
- =?utf-8?B?YVFnaVo4OWZoTk0weVJ5R3pTVDd2K1ZjUGE2VzJ2cWp0UmgzQnBSWThYM2FZ?=
- =?utf-8?B?R0JxZ0hlUThHalJCUjFiQmJDQVhXZTZIY2NRdG4wT1AzSWF3OFdQb04rdHM4?=
- =?utf-8?B?QlJwMFJmVWZmc2hEZGdxTWo2eDQ2SmgzY0xtT3JMMUJyMHBXbEFhb0p0Sklz?=
- =?utf-8?B?a3RyZnRTSG1LS2VYZ3M1a0VqQkNkSHhIemo1bGNKeTdXQ1FpdG5yODVidU1x?=
- =?utf-8?B?eXk3ZkZ4NTgyNVVmS3A2UmJuM3RxYURHMXJja2dtWWpLUHUvZHdFTmlhU0tJ?=
- =?utf-8?B?TUVFUG4zR09JUFJ5RHFEK25aaGpveUZ1NWRrb2U0TFlPR0dCeldib3RiZGR2?=
- =?utf-8?B?dklaZnNxY2o4cWJNdGhMSXVWYmk0eWVuWVQ1MnhvNG1yOC9TODE4eW5xVlRG?=
- =?utf-8?B?YUZHczdiVzJMYUdaRGpld0pQNytWTENzRXh0WDg5YmtCL2xXYzQ1YThSWWZN?=
- =?utf-8?B?TFNSTGluUE5EbFpVYVpnM0ExWW1Vd0hyQjd4bkwvS0FpV0lneTFNdVc3a29S?=
- =?utf-8?B?SWd1bEs3Ukl2dUg1eHdBR09HdHpoWklHM1cwdldwaTVvUUFCKzNVQmx1RktG?=
- =?utf-8?B?SFRYL1lPZ1kvNkw1QkFPUHRmd205Q2tRcjFMVXcwbTdiUmM5a3NlUmRCMzJQ?=
- =?utf-8?B?aDZUSHd4WWpKUzhhRCtoMjFNZzh0MTJGeklXcTBCdzZDblAwU1NadkszRFor?=
- =?utf-8?B?bjB3bGYwZnBUMmxTMXpyaDRIa01JN3VUM04wU1pUcERyNmRsM2pONnZ6R1RT?=
- =?utf-8?B?d1R2MUQzNjk5U3lhbE92N2tjS1JiaUhJSlpieWdvWUJ1VnF1N1RuZnZoZjN4?=
- =?utf-8?B?ZXpkVkFnZHhvS1AzZWhnNWZMei9VRHlORE5KdVZKazFmVlNLVGVkYVhhTXh4?=
- =?utf-8?B?ZEh5OVNmS2RlazlpdW1KMTZWdGpzdTBwV2xHL1dyb2xFaDJuSVVCS01xaXJs?=
- =?utf-8?B?cWxkclBxZmMweWxXZ3Z4Qmc0SUVWbXBEeHh3THJtN0duUHRFenZvNTYzY0pR?=
- =?utf-8?B?QzB2T09xOTBLazBtSVlyREhlUFJRN21raHhCMEVnaWhSZG1XZDVaOFFMRnRy?=
- =?utf-8?B?UHBESkxReFI1cXBPbjZyWk81amh1dUtlTzBkVytQN3I5aGhQV2puOWVQUGth?=
- =?utf-8?B?Y2c5eVpyR2x1K0tKaXdOZkk0eFZoYS9PTWRIU0U5UENZQVZtckk0SE5ESmRs?=
- =?utf-8?B?bUF4bjJadWJsV3VDN1doVGJXcUlwZ1hhczVpdjFsa0lYUHFrREQ4OTh1M1ZI?=
- =?utf-8?B?ZFdHY1pLMVNqOG5kQWY3cndaaklPYWVkTFFUS0s3M0V4ekdIQWExVWMxSGNH?=
- =?utf-8?B?ZnFaZ1A0MGdCczRyckF1UTIzWElMTmV3VXNqQnpJTTlmVXhuamxJalMvbUhz?=
- =?utf-8?B?S05HbGg2TjFZWlBxN2VMbXE1dExrakIrSzQrZWlMem5INGJFaHFuQ08rSUVy?=
- =?utf-8?B?ek82bUVLM2NWaWQwUnRTaUY3Z2NsaE1WVFpodUR0SDdpaysvMFZsOHZxVFQ3?=
- =?utf-8?B?SlYwZW5XSk9WZ1hIT0Z0UmU0WVdCL0ZaWDNya0ZDMU5rOVJWU1dlN0o4Mno5?=
- =?utf-8?B?QWdTenFWK2hGZU9haHRyNkhhYXhMN2o2KzVwMUFTQmd6aC9VYXB5TFFDMVJz?=
- =?utf-8?B?UStqaFRyUjIvYlJFT3FMQmFQLzdMYnpxeEhMcU8welZDS0hLSGVWT1c1L2Jw?=
- =?utf-8?B?ZmVQbTRzVlZWMEs5QUdnL0M2cFZmMGhsakRhd3VjcEI3R3VIb0tIdWNwbUpm?=
- =?utf-8?B?eGd5K3JJbmlkZ0hqdWZJajI1MzE0VUZqY2NiRGxOZXYxTFBTYzhoVjM0TENr?=
- =?utf-8?Q?TdW8j/SgfynSHEP8pXX7uqQ=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <00A24F1E32B44A489CA8FB2DEFED46DF@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=McAfee;i="6600,9927,10932"; a="777104922"
+X-IronPort-AV: E=Sophos;i="6.04,297,1695711600"; d="scan'208";a="777104922"
+Received: from vnaughto-mobl.ger.corp.intel.com (HELO [10.252.31.39])
+ ([10.252.31.39])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2023 10:21:57 -0800
+Message-ID: <cc783ab2-29e6-4edd-ac8a-068b0299c739@intel.com>
+Date: Fri, 22 Dec 2023 18:21:54 +0000
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3114.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6cad49d7-d402-452e-114c-08dc031a6e1d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Dec 2023 18:18:43.0987 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ZxgNI+O9g5V1uJPEGFF1EZgp6fGZqjgJqSiffv+3UScF7wJ4LbYvpE2bQqCkf2rJ6c0cpGo4OvO50Zyodt6K2TdTnlj0BxZq5bSf4zysS3c=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8328
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5] drm/xe/dgfx: Release mmap mappings on rpm suspend
+Content-Language: en-GB
+To: Badal Nilawar <badal.nilawar@intel.com>, intel-xe@lists.freedesktop.org
+References: <20231222175036.373201-1-badal.nilawar@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20231222175036.373201-1-badal.nilawar@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,235 +59,311 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+Cc: thomas.hellstrom@intel.com, rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAyMDIzLTEyLTIyIGF0IDIzOjIwICswNTMwLCBCYWRhbCBOaWxhd2FyIHdyb3RlOgo+
-IFJlbGVhc2UgYWxsIG1tYXAgbWFwcGluZ3MgZm9yIGFsbCB2cmFtIG9iamVjdHMgd2hpY2ggYXJl
-IGFzc29jaWF0ZWQKPiB3aXRoIHVzZXJmYXVsdCBzdWNoIHRoYXQsIHdoaWxlIHBjaWUgZnVuY3Rp
-b24gaW4gRDNob3QsIGFueSBhY2Nlc3MKPiB0byBtZW1vcnkgbWFwcGluZ3Mgd2lsbCByYWlzZSBh
-IHVzZXJmYXVsdC4KPiAKPiBVcG9uIHVzZXJmYXVsdCwgaW4gb3JkZXIgdG8gYWNjZXNzIG1lbW9y
-eSBtYXBwaW5ncywgaWYgZ3JhcGhpY3MKPiBmdW5jdGlvbiBpcyBpbiBEMyB0aGVuIHJ1bnRpbWUg
-cmVzdW1lIG9mIGRncHUgd2lsbCBiZSB0cmlnZ2VyZWQgdG8KPiB0cmFuc2l0aW9uIHRvIEQwLgo+
-IAo+IHYyOgo+IMKgIC0gQXZvaWQgaW9tZW0gY2hlY2sgYmVmb3JlIGJvIG1pZ3JhdGlvbiBjaGVj
-ayBhcyBibyBjYW4gbWlncmF0ZQo+IMKgwqDCoCB0byBzeXN0ZW0gbWVtb3J5IChNYXR0aGV3IEF1
-bGQpCj4gdjM6Cj4gwqAgLSBEZWxldGUgYm8gdXNlcmZhdWx0IGxpbmsgZHVyaW5nIGJvIGRlc3Ry
-b3kKPiDCoCAtIFVwb24gYm8gbW92ZSAodnJhbS1zbWVtKSwgZG8gYm8gdXNlcmZhdWx0IGxpbmsg
-ZGVsZXRpb24gaW4KPiDCoMKgwqAgeGVfYm9fbW92ZV9ub3RpZnkgaW5zdGVhZCBvZiB4ZV9ib19t
-b3ZlIChUaG9tYXMgSGVsbHN0csO2bSkKPiDCoCAtIEdyYWIgbG9jayBpbiBycG0gaG9vayB3aGls
-ZSBkZWxldGluZyBibyB1c2VyZmF1bHQgbGluayAoTWF0dGhldwo+IEF1bGQpCj4gdjQ6Cj4gwqAg
-LSBBZGQga2VybmVsIGRvYyBhbmQgd3JhcCB2cmFtX3VzZXJmYXVsdCByZWxhdGVkCj4gwqDCoMKg
-IHN0dWZmIGluIHRoZSBzdHJ1Y3R1cmUgKE1hdHRoZXcgQXVsZCkKPiDCoCAtIEdldCBycG0gd2Fr
-ZXJlZiBiZWZvcmUgdGFraW5nIGRtYSByZXNlcnZlIGxvY2sgKE1hdHRoZXcgQXVsZCkKPiDCoCAt
-IEluIHN1c3BlbmQgcGF0aCBhcHBseSBsb2NrIGZvciBlbnRpcmUgbGlzdCBvcAo+IMKgwqDCoCBp
-bmNsdWRpbmcgbGlzdCBpdGVyYXRpb24gKE1hdHRoZXcgQXVsZCkKPiB2NToKPiDCoCAtIFVzZSBt
-dXRleCBsb2NrIGluc3RlYWQgb2Ygc3BpbiBsb2NrCj4gCj4gQ2M6IFJvZHJpZ28gVml2aSA8cm9k
-cmlnby52aXZpQGludGVsLmNvbT4KPiBDYzogTWF0dGhldyBBdWxkIDxtYXR0aGV3LmF1bGRAaW50
-ZWwuY29tPgo+IENjOiBBbnNodW1hbiBHdXB0YSA8YW5zaHVtYW4uZ3VwdGFAaW50ZWwuY29tPgo+
-IFNpZ25lZC1vZmYtYnk6IEJhZGFsIE5pbGF3YXIgPGJhZGFsLm5pbGF3YXJAaW50ZWwuY29tPgoK
-QWNrZWQtYnk6IFRob21hcyBIZWxsc3Ryw7ZtIDx0aG9tYXMuaGVsbHN0cm9tQGxpbnV4LmludGVs
-LmNvbT4gI0ZvciB0aGUKeGVfYm9fbW92ZV9ub3RpZnkoKSBjaGFuZ2VzLgoKPiAtLS0KPiDCoGRy
-aXZlcnMvZ3B1L2RybS94ZS94ZV9iby5jwqDCoMKgwqDCoMKgwqDCoMKgwqAgfCA1Nwo+ICsrKysr
-KysrKysrKysrKysrKysrKysrKysrLS0KPiDCoGRyaXZlcnMvZ3B1L2RybS94ZS94ZV9iby5owqDC
-oMKgwqDCoMKgwqDCoMKgwqAgfMKgIDIgKwo+IMKgZHJpdmVycy9ncHUvZHJtL3hlL3hlX2JvX3R5
-cGVzLmjCoMKgwqDCoCB8IDEwICsrKysrCj4gwqBkcml2ZXJzL2dwdS9kcm0veGUveGVfZGV2aWNl
-X3R5cGVzLmggfCAxMiArKysrKysKPiDCoGRyaXZlcnMvZ3B1L2RybS94ZS94ZV9wY2kuY8KgwqDC
-oMKgwqDCoMKgwqDCoCB8wqAgMiArCj4gwqBkcml2ZXJzL2dwdS9kcm0veGUveGVfcG0uY8KgwqDC
-oMKgwqDCoMKgwqDCoMKgIHwgMTcgKysrKysrKysrCj4gwqBkcml2ZXJzL2dwdS9kcm0veGUveGVf
-cG0uaMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoCAxICsKPiDCoDcgZmlsZXMgY2hhbmdlZCwgOTcg
-aW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL3hlL3hlX2JvLmMgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfYm8uYwo+IGluZGV4IDhl
-NGEzYjFmNmI5My4uNGZkM2EyMjk3NTVjIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS94
-ZS94ZV9iby5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2JvLmMKPiBAQCAtNTg2LDYg
-KzU4Niw4IEBAIHN0YXRpYyBpbnQgeGVfYm9fbW92ZV9ub3RpZnkoc3RydWN0IHhlX2JvICpibywK
-PiDCoHsKPiDCoMKgwqDCoMKgwqDCoMKgc3RydWN0IHR0bV9idWZmZXJfb2JqZWN0ICp0dG1fYm8g
-PSAmYm8tPnR0bTsKPiDCoMKgwqDCoMKgwqDCoMKgc3RydWN0IHhlX2RldmljZSAqeGUgPSB0dG1f
-dG9feGVfZGV2aWNlKHR0bV9iby0+YmRldik7Cj4gK8KgwqDCoMKgwqDCoMKgc3RydWN0IHR0bV9y
-ZXNvdXJjZSAqb2xkX21lbSA9IHR0bV9iby0+cmVzb3VyY2U7Cj4gK8KgwqDCoMKgwqDCoMKgdTMy
-IG9sZF9tZW1fdHlwZSA9IG9sZF9tZW0gPyBvbGRfbWVtLT5tZW1fdHlwZSA6Cj4gWEVfUExfU1lT
-VEVNOwo+IMKgwqDCoMKgwqDCoMKgwqBpbnQgcmV0Owo+IMKgCj4gwqDCoMKgwqDCoMKgwqDCoC8q
-Cj4gQEAgLTYwNSw2ICs2MDcsMTggQEAgc3RhdGljIGludCB4ZV9ib19tb3ZlX25vdGlmeShzdHJ1
-Y3QgeGVfYm8gKmJvLAo+IMKgwqDCoMKgwqDCoMKgwqBpZiAodHRtX2JvLT5iYXNlLmRtYV9idWYg
-JiYgIXR0bV9iby0+YmFzZS5pbXBvcnRfYXR0YWNoKQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgZG1hX2J1Zl9tb3ZlX25vdGlmeSh0dG1fYm8tPmJhc2UuZG1hX2J1Zik7Cj4gwqAK
-PiArwqDCoMKgwqDCoMKgwqAvKgo+ICvCoMKgwqDCoMKgwqDCoCAqIFRUTSBoYXMgYWxyZWFkeSBu
-dWtlZCB0aGUgbW1hcCBmb3IgdXMgKHNlZQo+IHR0bV9ib191bm1hcF92aXJ0dWFsKSwKPiArwqDC
-oMKgwqDCoMKgwqAgKiBzbyBpZiB3ZSBtb3ZlZCBmcm9tIFZSQU0gbWFrZSBzdXJlIHRvIHVubGlu
-ayB0aGlzIGZyb20gdGhlCj4gdXNlcmZhdWx0Cj4gK8KgwqDCoMKgwqDCoMKgICogdHJhY2tpbmcu
-Cj4gK8KgwqDCoMKgwqDCoMKgICovCj4gK8KgwqDCoMKgwqDCoMKgaWYgKG1lbV90eXBlX2lzX3Zy
-YW0ob2xkX21lbV90eXBlKSkgewo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBtdXRl
-eF9sb2NrKCZ4ZS0+bWVtX2FjY2Vzcy52cmFtX3VzZXJmYXVsdC5sb2NrKTsKPiArwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgaWYgKCFsaXN0X2VtcHR5KCZiby0+dnJhbV91c2VyZmF1bHQu
-bGluaykpCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBs
-aXN0X2RlbF9pbml0KCZiby0+dnJhbV91c2VyZmF1bHQubGluayk7Cj4gK8KgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoG11dGV4X3VubG9jaygmeGUtPm1lbV9hY2Nlc3MudnJhbV91c2VyZmF1
-bHQubG9jayk7Cj4gK8KgwqDCoMKgwqDCoMKgfQo+ICsKPiDCoMKgwqDCoMKgwqDCoMKgcmV0dXJu
-IDA7Cj4gwqB9Cj4gwqAKPiBAQCAtMTA2Myw2ICsxMDc3LDExIEBAIHN0YXRpYyB2b2lkIHhlX3R0
-bV9ib19kZXN0cm95KHN0cnVjdAo+IHR0bV9idWZmZXJfb2JqZWN0ICp0dG1fYm8pCj4gwqDCoMKg
-wqDCoMKgwqDCoGlmIChiby0+dm0gJiYgeGVfYm9faXNfdXNlcihibykpCj4gwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqB4ZV92bV9wdXQoYm8tPnZtKTsKPiDCoAo+ICvCoMKgwqDCoMKg
-wqDCoG11dGV4X2xvY2soJnhlLT5tZW1fYWNjZXNzLnZyYW1fdXNlcmZhdWx0LmxvY2spOwo+ICvC
-oMKgwqDCoMKgwqDCoGlmICghbGlzdF9lbXB0eSgmYm8tPnZyYW1fdXNlcmZhdWx0LmxpbmspKQo+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBsaXN0X2RlbCgmYm8tPnZyYW1fdXNlcmZh
-dWx0LmxpbmspOwo+ICvCoMKgwqDCoMKgwqDCoG11dGV4X3VubG9jaygmeGUtPm1lbV9hY2Nlc3Mu
-dnJhbV91c2VyZmF1bHQubG9jayk7Cj4gKwo+IMKgwqDCoMKgwqDCoMKgwqBrZnJlZShibyk7Cj4g
-wqB9Cj4gwqAKPiBAQCAtMTExMCwxNiArMTEyOSwyMCBAQCBzdGF0aWMgdm1fZmF1bHRfdCB4ZV9n
-ZW1fZmF1bHQoc3RydWN0Cj4gdm1fZmF1bHQgKnZtZikKPiDCoHsKPiDCoMKgwqDCoMKgwqDCoMKg
-c3RydWN0IHR0bV9idWZmZXJfb2JqZWN0ICp0Ym8gPSB2bWYtPnZtYS0+dm1fcHJpdmF0ZV9kYXRh
-Owo+IMKgwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgZHJtX2RldmljZSAqZGRldiA9IHRiby0+YmFzZS5k
-ZXY7Cj4gK8KgwqDCoMKgwqDCoMKgc3RydWN0IHhlX2RldmljZSAqeGUgPSB0b194ZV9kZXZpY2Uo
-ZGRldik7Cj4gK8KgwqDCoMKgwqDCoMKgc3RydWN0IHhlX2JvICpibyA9IHR0bV90b194ZV9ibyh0
-Ym8pOwo+ICvCoMKgwqDCoMKgwqDCoGJvb2wgbmVlZHNfcnBtID0gYm8tPmZsYWdzICYgWEVfQk9f
-Q1JFQVRFX1ZSQU1fTUFTSzsKPiDCoMKgwqDCoMKgwqDCoMKgdm1fZmF1bHRfdCByZXQ7Cj4gwqDC
-oMKgwqDCoMKgwqDCoGludCBpZHgsIHIgPSAwOwo+IMKgCj4gK8KgwqDCoMKgwqDCoMKgaWYgKG5l
-ZWRzX3JwbSkKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgeGVfZGV2aWNlX21lbV9h
-Y2Nlc3NfZ2V0KHhlKTsKPiArCj4gwqDCoMKgwqDCoMKgwqDCoHJldCA9IHR0bV9ib192bV9yZXNl
-cnZlKHRibywgdm1mKTsKPiDCoMKgwqDCoMKgwqDCoMKgaWYgKHJldCkKPiAtwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIHJldDsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgZ290byBvdXQ7Cj4gwqAKPiDCoMKgwqDCoMKgwqDCoMKgaWYgKGRybV9kZXZfZW50ZXIo
-ZGRldiwgJmlkeCkpIHsKPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgc3RydWN0IHhl
-X2JvICpibyA9IHR0bV90b194ZV9ibyh0Ym8pOwo+IC0KPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoHRyYWNlX3hlX2JvX2NwdV9mYXVsdChibyk7Cj4gwqAKPiDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoGlmIChzaG91bGRfbWlncmF0ZV90b19zeXN0ZW0oYm8pKSB7Cj4g
-QEAgLTExMzcsMTAgKzExNjAsMjUgQEAgc3RhdGljIHZtX2ZhdWx0X3QgeGVfZ2VtX2ZhdWx0KHN0
-cnVjdAo+IHZtX2ZhdWx0ICp2bWYpCj4gwqDCoMKgwqDCoMKgwqDCoH0gZWxzZSB7Cj4gwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXQgPSB0dG1fYm9fdm1fZHVtbXlfcGFnZSh2bWYs
-IHZtZi0+dm1hLQo+ID52bV9wYWdlX3Byb3QpOwo+IMKgwqDCoMKgwqDCoMKgwqB9Cj4gKwo+IMKg
-wqDCoMKgwqDCoMKgwqBpZiAocmV0ID09IFZNX0ZBVUxUX1JFVFJZICYmICEodm1mLT5mbGFncyAm
-Cj4gRkFVTFRfRkxBR19SRVRSWV9OT1dBSVQpKQo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqByZXR1cm4gcmV0Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBnb3RvIG91
-dDsKPiArwqDCoMKgwqDCoMKgwqAvKgo+ICvCoMKgwqDCoMKgwqDCoCAqIHR0bV9ib192bV9yZXNl
-cnZlKCkgYWxyZWFkeSBoYXMgZG1hX3Jlc3ZfbG9jay4KPiArwqDCoMKgwqDCoMKgwqAgKi8KPiAr
-wqDCoMKgwqDCoMKgwqBpZiAocmV0ID09IFZNX0ZBVUxUX05PUEFHRSAmJiBsaXN0X2VtcHR5KCZi
-by0KPiA+dnJhbV91c2VyZmF1bHQubGluaykpIHsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgaWYgKHRiby0+cmVzb3VyY2UtPmJ1cy5pc19pb21lbSkgewo+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgbXV0ZXhfbG9jaygmeGUtCj4gPm1lbV9h
-Y2Nlc3MudnJhbV91c2VyZmF1bHQubG9jayk7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqBsaXN0X2FkZCgmYm8tPnZyYW1fdXNlcmZhdWx0LmxpbmssICZ4
-ZS0KPiA+bWVtX2FjY2Vzcy52cmFtX3VzZXJmYXVsdC5saXN0KTsKPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoG11dGV4X3VubG9jaygmeGUtCj4gPm1lbV9h
-Y2Nlc3MudnJhbV91c2VyZmF1bHQubG9jayk7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoH0KPiArwqDCoMKgwqDCoMKgwqB9Cj4gwqAKPiDCoMKgwqDCoMKgwqDCoMKgZG1hX3Jlc3Zf
-dW5sb2NrKHRiby0+YmFzZS5yZXN2KTsKPiArb3V0Ogo+ICvCoMKgwqDCoMKgwqDCoGlmIChuZWVk
-c19ycG0pCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHhlX2RldmljZV9tZW1fYWNj
-ZXNzX3B1dCh4ZSk7Cj4gKwo+IMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gcmV0Owo+IMKgfQo+IMKg
-Cj4gQEAgLTEyNTQsNiArMTI5Miw3IEBAIHN0cnVjdCB4ZV9ibyAqX19feGVfYm9fY3JlYXRlX2xv
-Y2tlZChzdHJ1Y3QKPiB4ZV9kZXZpY2UgKnhlLCBzdHJ1Y3QgeGVfYm8gKmJvLAo+IMKgI2lmZGVm
-IENPTkZJR19QUk9DX0ZTCj4gwqDCoMKgwqDCoMKgwqDCoElOSVRfTElTVF9IRUFEKCZiby0+Y2xp
-ZW50X2xpbmspOwo+IMKgI2VuZGlmCj4gK8KgwqDCoMKgwqDCoMKgSU5JVF9MSVNUX0hFQUQoJmJv
-LT52cmFtX3VzZXJmYXVsdC5saW5rKTsKPiDCoAo+IMKgwqDCoMKgwqDCoMKgwqBkcm1fZ2VtX3By
-aXZhdGVfb2JqZWN0X2luaXQoJnhlLT5kcm0sICZiby0+dHRtLmJhc2UsIHNpemUpOwo+IMKgCj4g
-QEAgLTIyNjQsNiArMjMwMywxNiBAQCBpbnQgeGVfYm9fZHVtYl9jcmVhdGUoc3RydWN0IGRybV9m
-aWxlCj4gKmZpbGVfcHJpdiwKPiDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIGVycjsKPiDCoH0KPiDC
-oAo+ICt2b2lkIHhlX2JvX3J1bnRpbWVfcG1fcmVsZWFzZV9tbWFwX29mZnNldChzdHJ1Y3QgeGVf
-Ym8gKmJvKQo+ICt7Cj4gK8KgwqDCoMKgwqDCoMKgc3RydWN0IHR0bV9idWZmZXJfb2JqZWN0ICp0
-Ym8gPSAmYm8tPnR0bTsKPiArwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgdHRtX2RldmljZSAqYmRldiA9
-IHRiby0+YmRldjsKPiArCj4gK8KgwqDCoMKgwqDCoMKgZHJtX3ZtYV9ub2RlX3VubWFwKCZ0Ym8t
-PmJhc2Uudm1hX25vZGUsIGJkZXYtPmRldl9tYXBwaW5nKTsKPiArCj4gK8KgwqDCoMKgwqDCoMKg
-bGlzdF9kZWwoJmJvLT52cmFtX3VzZXJmYXVsdC5saW5rKTsKPiArfQo+ICsKPiDCoCNpZiBJU19F
-TkFCTEVEKENPTkZJR19EUk1fWEVfS1VOSVRfVEVTVCkKPiDCoCNpbmNsdWRlICJ0ZXN0cy94ZV9i
-by5jIgo+IMKgI2VuZGlmCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9iby5o
-IGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2JvLmgKPiBpbmRleCA5N2IzMjUyOGM2MDAuLjM1MGNj
-NzNjYWRmOCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfYm8uaAo+ICsrKyBi
-L2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9iby5oCj4gQEAgLTI0OSw2ICsyNDksOCBAQCBpbnQgeGVf
-Z2VtX2NyZWF0ZV9pb2N0bChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAo+IHZvaWQgKmRhdGEsCj4g
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgc3RydWN0IGRy
-bV9maWxlICpmaWxlKTsKPiDCoGludCB4ZV9nZW1fbW1hcF9vZmZzZXRfaW9jdGwoc3RydWN0IGRy
-bV9kZXZpY2UgKmRldiwgdm9pZCAqZGF0YSwKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzdHJ1Y3QgZHJtX2ZpbGUgKmZpbGUpOwo+ICt2
-b2lkIHhlX2JvX3J1bnRpbWVfcG1fcmVsZWFzZV9tbWFwX29mZnNldChzdHJ1Y3QgeGVfYm8gKmJv
-KTsKPiArCj4gwqBpbnQgeGVfYm9fZHVtYl9jcmVhdGUoc3RydWN0IGRybV9maWxlICpmaWxlX3By
-aXYsCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHN0cnVjdCBk
-cm1fZGV2aWNlICpkZXYsCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIHN0cnVjdCBkcm1fbW9kZV9jcmVhdGVfZHVtYiAqYXJncyk7Cj4gZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS94ZS94ZV9ib190eXBlcy5oCj4gYi9kcml2ZXJzL2dwdS9kcm0veGUveGVf
-Ym9fdHlwZXMuaAo+IGluZGV4IDY0YzIyNDlhNGU0MC4uYjRlNDRmYWI5Y2QyIDEwMDY0NAo+IC0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9ib190eXBlcy5oCj4gKysrIGIvZHJpdmVycy9ncHUv
-ZHJtL3hlL3hlX2JvX3R5cGVzLmgKPiBAQCAtODgsNiArODgsMTYgQEAgc3RydWN0IHhlX2JvIHsK
-PiDCoMKgwqDCoMKgwqDCoMKgICogb2JqZWN0cy4KPiDCoMKgwqDCoMKgwqDCoMKgICovCj4gwqDC
-oMKgwqDCoMKgwqDCoHUxNiBjcHVfY2FjaGluZzsKPiArCj4gK8KgwqDCoMKgwqDCoMKgLyoqCj4g
-K8KgwqDCoMKgwqDCoMKgICogQHZyYW1fdXNlcmZhdWx0OiBFbmNhcHN1bGF0ZSB2cmFtX3VzZXJm
-YXVsdCByZWxhdGVkIHN0dWZmCj4gK8KgwqDCoMKgwqDCoMKgICovCj4gK8KgwqDCoMKgwqDCoMKg
-c3RydWN0IHsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgLyoqIEBsaW5rOiBMaW5r
-IGludG8gQG1lbV9hY2Nlc3MudnJhbV91c2VyZmF1bHQubGlzdAo+ICovCj4gK8KgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoHN0cnVjdCBsaXN0X2hlYWQgbGluazsKPiArwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgLyoqIEBjb3VudDogV2hldGhlciBibyBpcwo+IEBtZW1fYWNjZXNz
-LnZyYW1fdXNlcmZhdWx0Lmxpc3QgKi8KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-dW5zaWduZWQgaW50IGNvdW50Owo+ICvCoMKgwqDCoMKgwqDCoH0gdnJhbV91c2VyZmF1bHQ7Cj4g
-wqB9Owo+IMKgCj4gwqAjZGVmaW5lIGludGVsX2JvX3RvX2RybV9ibyhibykgKCYoYm8pLT50dG0u
-YmFzZSkKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2RldmljZV90eXBlcy5o
-Cj4gYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfZGV2aWNlX3R5cGVzLmgKPiBpbmRleCA3MWYyM2Fj
-MzY1ZTYuLmUyN2MyMjExNzI4ZiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0veGUveGVf
-ZGV2aWNlX3R5cGVzLmgKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfZGV2aWNlX3R5cGVz
-LmgKPiBAQCAtMzg1LDYgKzM4NSwxOCBAQCBzdHJ1Y3QgeGVfZGV2aWNlIHsKPiDCoMKgwqDCoMKg
-wqDCoMKgc3RydWN0IHsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoC8qKiBAcmVm
-OiByZWYgY291bnQgb2YgbWVtb3J5IGFjY2Vzc2VzICovCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqBhdG9taWNfdCByZWY7Cj4gKwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAvKiogQHZyYW1fdXNlcmZhdWx0OiBFbmNhcHN1bGF0ZSB2cmFtX3VzZXJmYXVsdAo+IHJl
-bGF0ZWQgc3R1ZmYgKi8KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgc3RydWN0IHsK
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoC8qKiBAbG9j
-azogUHJvdGVjdHMgYWNjZXNzIHRvCj4gQHZyYW1fdXNlZmF1bHQubGlzdCAqLwo+ICvCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgc3RydWN0IG11dGV4IGxvY2s7
-Cj4gKwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgLyoq
-Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKsKgIEBs
-aXN0OiBLZWVwIGxpc3Qgb2YgdXNlcmZhdWx0ZWQgdnJhbSBibywKPiB3aGljaCByZXF1aXJlIHRv
-IHJlbGVhc2UgdGhlaXIKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCAqwqAgbW1hcCBtYXBwaW5ncyBhdCBydW50aW1lIHN1c3BlbmQgcGF0aC4KPiArwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAqLwo+ICvCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgc3RydWN0IGxpc3RfaGVhZCBs
-aXN0Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB9IHZyYW1fdXNlcmZhdWx0Owo+
-IMKgwqDCoMKgwqDCoMKgwqB9IG1lbV9hY2Nlc3M7Cj4gwqAKPiDCoMKgwqDCoMKgwqDCoMKgLyoq
-Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9wY2kuYwo+IGIvZHJpdmVycy9n
-cHUvZHJtL3hlL3hlX3BjaS5jCj4gaW5kZXggMWY5OTczNTNhNzhmLi40ZGU3OWE3YzVkYzIgMTAw
-NjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX3BjaS5jCj4gKysrIGIvZHJpdmVycy9n
-cHUvZHJtL3hlL3hlX3BjaS5jCj4gQEAgLTc3NSw2ICs3NzUsOCBAQCBzdGF0aWMgaW50IHhlX3Bj
-aV9wcm9iZShzdHJ1Y3QgcGNpX2RldiAqcGRldiwKPiBjb25zdCBzdHJ1Y3QgcGNpX2RldmljZV9p
-ZCAqZW50KQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgc3RyX3llc19ubyh4ZV9k
-ZXZpY2VfaGFzX3NyaW92KHhlKSksCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB4
-ZV9zcmlvdl9tb2RlX3RvX3N0cmluZyh4ZV9kZXZpY2Vfc3Jpb3ZfbW9kZSh4ZSkpKTsKPiDCoAo+
-ICvCoMKgwqDCoMKgwqDCoHhlX3BtX2luaXRfZWFybHkoeGUpOwo+ICsKPiDCoMKgwqDCoMKgwqDC
-oMKgZXJyID0geGVfZGV2aWNlX3Byb2JlKHhlKTsKPiDCoMKgwqDCoMKgwqDCoMKgaWYgKGVycikK
-PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJldHVybiBlcnI7Cj4gZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9wbS5jIGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX3Bt
-LmMKPiBpbmRleCBiNDI5YzI4NzZhNzYuLjgxNjZiNDVmODNkOCAxMDA2NDQKPiAtLS0gYS9kcml2
-ZXJzL2dwdS9kcm0veGUveGVfcG0uYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9wbS5j
-Cj4gQEAgLTE2Myw2ICsxNjMsMTIgQEAgc3RhdGljIHZvaWQgeGVfcG1fcnVudGltZV9pbml0KHN0
-cnVjdCB4ZV9kZXZpY2UKPiAqeGUpCj4gwqDCoMKgwqDCoMKgwqDCoHBtX3J1bnRpbWVfcHV0KGRl
-dik7Cj4gwqB9Cj4gwqAKPiArdm9pZCB4ZV9wbV9pbml0X2Vhcmx5KHN0cnVjdCB4ZV9kZXZpY2Ug
-KnhlKQo+ICt7Cj4gK8KgwqDCoMKgwqDCoMKgSU5JVF9MSVNUX0hFQUQoJnhlLT5tZW1fYWNjZXNz
-LnZyYW1fdXNlcmZhdWx0Lmxpc3QpOwo+ICvCoMKgwqDCoMKgwqDCoGRybW1fbXV0ZXhfaW5pdCgm
-eGUtPmRybSwgJnhlLQo+ID5tZW1fYWNjZXNzLnZyYW1fdXNlcmZhdWx0LmxvY2spOwo+ICt9Cj4g
-Kwo+IMKgdm9pZCB4ZV9wbV9pbml0KHN0cnVjdCB4ZV9kZXZpY2UgKnhlKQo+IMKgewo+IMKgwqDC
-oMKgwqDCoMKgwqBzdHJ1Y3QgcGNpX2RldiAqcGRldiA9IHRvX3BjaV9kZXYoeGUtPmRybS5kZXYp
-Owo+IEBAIC0yMTQsNiArMjIwLDcgQEAgc3RydWN0IHRhc2tfc3RydWN0Cj4gKnhlX3BtX3JlYWRf
-Y2FsbGJhY2tfdGFzayhzdHJ1Y3QgeGVfZGV2aWNlICp4ZSkKPiDCoAo+IMKgaW50IHhlX3BtX3J1
-bnRpbWVfc3VzcGVuZChzdHJ1Y3QgeGVfZGV2aWNlICp4ZSkKPiDCoHsKPiArwqDCoMKgwqDCoMKg
-wqBzdHJ1Y3QgeGVfYm8gKmJvLCAqb247Cj4gwqDCoMKgwqDCoMKgwqDCoHN0cnVjdCB4ZV9ndCAq
-Z3Q7Cj4gwqDCoMKgwqDCoMKgwqDCoHU4IGlkOwo+IMKgwqDCoMKgwqDCoMKgwqBpbnQgZXJyID0g
-MDsKPiBAQCAtMjQ3LDYgKzI1NCwxNiBAQCBpbnQgeGVfcG1fcnVudGltZV9zdXNwZW5kKHN0cnVj
-dCB4ZV9kZXZpY2UgKnhlKQo+IMKgwqDCoMKgwqDCoMKgwqAgKi8KPiDCoMKgwqDCoMKgwqDCoMKg
-bG9ja19tYXBfYWNxdWlyZSgmeGVfZGV2aWNlX21lbV9hY2Nlc3NfbG9ja2RlcF9tYXApOwo+IMKg
-Cj4gK8KgwqDCoMKgwqDCoMKgLyoKPiArwqDCoMKgwqDCoMKgwqAgKiBBcHBseWluZyBsb2NrIGZv
-ciBlbnRpcmUgbGlzdCBvcCBhcyB4ZV90dG1fYm9fZGVzdHJveSBhbmQKPiB4ZV9ib19tb3ZlX25v
-dGlmeQo+ICvCoMKgwqDCoMKgwqDCoCAqIGFsc28gY2hlY2tzIGFuZCBkZWxldHMgYm8gZW50cnkg
-ZnJvbSB1c2VyIGZhdWx0IGxpc3QuCj4gK8KgwqDCoMKgwqDCoMKgICovCj4gK8KgwqDCoMKgwqDC
-oMKgbXV0ZXhfbG9jaygmeGUtPm1lbV9hY2Nlc3MudnJhbV91c2VyZmF1bHQubG9jayk7Cj4gK8Kg
-wqDCoMKgwqDCoMKgbGlzdF9mb3JfZWFjaF9lbnRyeV9zYWZlKGJvLCBvbiwKPiArwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgJnhl
-LT5tZW1fYWNjZXNzLnZyYW1fdXNlcmZhdWx0Lmxpc3QsCj4gdnJhbV91c2VyZmF1bHQubGluaykK
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgeGVfYm9fcnVudGltZV9wbV9yZWxlYXNl
-X21tYXBfb2Zmc2V0KGJvKTsKPiArwqDCoMKgwqDCoMKgwqBtdXRleF91bmxvY2soJnhlLT5tZW1f
-YWNjZXNzLnZyYW1fdXNlcmZhdWx0LmxvY2spOwo+ICsKPiDCoMKgwqDCoMKgwqDCoMKgaWYgKHhl
-LT5kM2NvbGQuYWxsb3dlZCkgewo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZXJy
-ID0geGVfYm9fZXZpY3RfYWxsKHhlKTsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oGlmIChlcnIpCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9wbS5oIGIvZHJp
-dmVycy9ncHUvZHJtL3hlL3hlX3BtLmgKPiBpbmRleCA2YjkwMzFmN2FmMjQuLjY0YTk3YzY3MjZh
-NyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfcG0uaAo+ICsrKyBiL2RyaXZl
-cnMvZ3B1L2RybS94ZS94ZV9wbS5oCj4gQEAgLTIwLDYgKzIwLDcgQEAgc3RydWN0IHhlX2Rldmlj
-ZTsKPiDCoGludCB4ZV9wbV9zdXNwZW5kKHN0cnVjdCB4ZV9kZXZpY2UgKnhlKTsKPiDCoGludCB4
-ZV9wbV9yZXN1bWUoc3RydWN0IHhlX2RldmljZSAqeGUpOwo+IMKgCj4gK3ZvaWQgeGVfcG1faW5p
-dF9lYXJseShzdHJ1Y3QgeGVfZGV2aWNlICp4ZSk7Cj4gwqB2b2lkIHhlX3BtX2luaXQoc3RydWN0
-IHhlX2RldmljZSAqeGUpOwo+IMKgdm9pZCB4ZV9wbV9ydW50aW1lX2Zpbmkoc3RydWN0IHhlX2Rl
-dmljZSAqeGUpOwo+IMKgaW50IHhlX3BtX3J1bnRpbWVfc3VzcGVuZChzdHJ1Y3QgeGVfZGV2aWNl
-ICp4ZSk7Cgo=
+On 22/12/2023 17:50, Badal Nilawar wrote:
+> Release all mmap mappings for all vram objects which are associated
+> with userfault such that, while pcie function in D3hot, any access
+> to memory mappings will raise a userfault.
+> 
+> Upon userfault, in order to access memory mappings, if graphics
+> function is in D3 then runtime resume of dgpu will be triggered to
+> transition to D0.
+> 
+> v2:
+>    - Avoid iomem check before bo migration check as bo can migrate
+>      to system memory (Matthew Auld)
+> v3:
+>    - Delete bo userfault link during bo destroy
+>    - Upon bo move (vram-smem), do bo userfault link deletion in
+>      xe_bo_move_notify instead of xe_bo_move (Thomas Hellström)
+>    - Grab lock in rpm hook while deleting bo userfault link (Matthew Auld)
+> v4:
+>    - Add kernel doc and wrap vram_userfault related
+>      stuff in the structure (Matthew Auld)
+>    - Get rpm wakeref before taking dma reserve lock (Matthew Auld)
+>    - In suspend path apply lock for entire list op
+>      including list iteration (Matthew Auld)
+> v5:
+>    - Use mutex lock instead of spin lock
+> 
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_bo.c           | 57 ++++++++++++++++++++++++++--
+>   drivers/gpu/drm/xe/xe_bo.h           |  2 +
+>   drivers/gpu/drm/xe/xe_bo_types.h     | 10 +++++
+>   drivers/gpu/drm/xe/xe_device_types.h | 12 ++++++
+>   drivers/gpu/drm/xe/xe_pci.c          |  2 +
+>   drivers/gpu/drm/xe/xe_pm.c           | 17 +++++++++
+>   drivers/gpu/drm/xe/xe_pm.h           |  1 +
+>   7 files changed, 97 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 8e4a3b1f6b93..4fd3a229755c 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -586,6 +586,8 @@ static int xe_bo_move_notify(struct xe_bo *bo,
+>   {
+>   	struct ttm_buffer_object *ttm_bo = &bo->ttm;
+>   	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
+> +	struct ttm_resource *old_mem = ttm_bo->resource;
+> +	u32 old_mem_type = old_mem ? old_mem->mem_type : XE_PL_SYSTEM;
+>   	int ret;
+>   
+>   	/*
+> @@ -605,6 +607,18 @@ static int xe_bo_move_notify(struct xe_bo *bo,
+>   	if (ttm_bo->base.dma_buf && !ttm_bo->base.import_attach)
+>   		dma_buf_move_notify(ttm_bo->base.dma_buf);
+>   
+> +	/*
+> +	 * TTM has already nuked the mmap for us (see ttm_bo_unmap_virtual),
+> +	 * so if we moved from VRAM make sure to unlink this from the userfault
+> +	 * tracking.
+> +	 */
+> +	if (mem_type_is_vram(old_mem_type)) {
+> +		mutex_lock(&xe->mem_access.vram_userfault.lock);
+> +		if (!list_empty(&bo->vram_userfault.link))
+> +			list_del_init(&bo->vram_userfault.link);
+> +		mutex_unlock(&xe->mem_access.vram_userfault.lock);
+> +	}
+> +
+>   	return 0;
+>   }
+>   
+> @@ -1063,6 +1077,11 @@ static void xe_ttm_bo_destroy(struct ttm_buffer_object *ttm_bo)
+>   	if (bo->vm && xe_bo_is_user(bo))
+>   		xe_vm_put(bo->vm);
+>   
+> +	mutex_lock(&xe->mem_access.vram_userfault.lock);
+> +	if (!list_empty(&bo->vram_userfault.link))
+> +		list_del(&bo->vram_userfault.link);
+> +	mutex_unlock(&xe->mem_access.vram_userfault.lock);
+> +
+>   	kfree(bo);
+>   }
+>   
+> @@ -1110,16 +1129,20 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
+>   {
+>   	struct ttm_buffer_object *tbo = vmf->vma->vm_private_data;
+>   	struct drm_device *ddev = tbo->base.dev;
+> +	struct xe_device *xe = to_xe_device(ddev);
+> +	struct xe_bo *bo = ttm_to_xe_bo(tbo);
+> +	bool needs_rpm = bo->flags & XE_BO_CREATE_VRAM_MASK;
+>   	vm_fault_t ret;
+>   	int idx, r = 0;
+>   
+> +	if (needs_rpm)
+> +		xe_device_mem_access_get(xe);
+> +
+>   	ret = ttm_bo_vm_reserve(tbo, vmf);
+>   	if (ret)
+> -		return ret;
+> +		goto out;
+>   
+>   	if (drm_dev_enter(ddev, &idx)) {
+> -		struct xe_bo *bo = ttm_to_xe_bo(tbo);
+> -
+>   		trace_xe_bo_cpu_fault(bo);
+>   
+>   		if (should_migrate_to_system(bo)) {
+> @@ -1137,10 +1160,25 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
+>   	} else {
+>   		ret = ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
+>   	}
+> +
+>   	if (ret == VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
+> -		return ret;
+> +		goto out;
+> +	/*
+> +	 * ttm_bo_vm_reserve() already has dma_resv_lock.
+> +	 */
+> +	if (ret == VM_FAULT_NOPAGE && list_empty(&bo->vram_userfault.link)) {
+
+Maybe consider moving the list_empty() under the lock, or at least this 
+deserves a comment to explain why it is safe, since vram_userfault.list 
+is not held.
+
+> +		if (tbo->resource->bus.is_iomem) {
+
+Maybe clearer to write as: mem_type_is_vram(tbo->resource->mem_type)
+
+> +			mutex_lock(&xe->mem_access.vram_userfault.lock);
+> +			list_add(&bo->vram_userfault.link, &xe->mem_access.vram_userfault.list);
+> +			mutex_unlock(&xe->mem_access.vram_userfault.lock);
+> +		}
+> +	}
+>   
+>   	dma_resv_unlock(tbo->base.resv);
+> +out:
+> +	if (needs_rpm)
+> +		xe_device_mem_access_put(xe);
+> +
+>   	return ret;
+>   }
+>   
+> @@ -1254,6 +1292,7 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
+>   #ifdef CONFIG_PROC_FS
+>   	INIT_LIST_HEAD(&bo->client_link);
+>   #endif
+> +	INIT_LIST_HEAD(&bo->vram_userfault.link);
+>   
+>   	drm_gem_private_object_init(&xe->drm, &bo->ttm.base, size);
+>   
+> @@ -2264,6 +2303,16 @@ int xe_bo_dumb_create(struct drm_file *file_priv,
+>   	return err;
+>   }
+>   
+> +void xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo)
+> +{
+> +	struct ttm_buffer_object *tbo = &bo->ttm;
+> +	struct ttm_device *bdev = tbo->bdev;
+> +
+> +	drm_vma_node_unmap(&tbo->base.vma_node, bdev->dev_mapping);
+> +
+> +	list_del(&bo->vram_userfault.link);
+
+list_del_init(), otherwise list_empty() above won't work AFAIK.
+
+> +}
+> +
+>   #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+>   #include "tests/xe_bo.c"
+>   #endif
+> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+> index 97b32528c600..350cc73cadf8 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.h
+> +++ b/drivers/gpu/drm/xe/xe_bo.h
+> @@ -249,6 +249,8 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+>   			struct drm_file *file);
+>   int xe_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
+>   			     struct drm_file *file);
+> +void xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo);
+> +
+>   int xe_bo_dumb_create(struct drm_file *file_priv,
+>   		      struct drm_device *dev,
+>   		      struct drm_mode_create_dumb *args);
+> diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+> index 64c2249a4e40..b4e44fab9cd2 100644
+> --- a/drivers/gpu/drm/xe/xe_bo_types.h
+> +++ b/drivers/gpu/drm/xe/xe_bo_types.h
+> @@ -88,6 +88,16 @@ struct xe_bo {
+>   	 * objects.
+>   	 */
+>   	u16 cpu_caching;
+> +
+> +	/**
+> +	 * @vram_userfault: Encapsulate vram_userfault related stuff
+> +	 */
+> +	struct {
+> +		/** @link: Link into @mem_access.vram_userfault.list */
+> +		struct list_head link;
+> +		/** @count: Whether bo is @mem_access.vram_userfault.list */
+> +		unsigned int count;
+
+Looks to be unused now.
+
+> +	} vram_userfault;
+>   };
+>   
+>   #define intel_bo_to_drm_bo(bo) (&(bo)->ttm.base)
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index 71f23ac365e6..e27c2211728f 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -385,6 +385,18 @@ struct xe_device {
+>   	struct {
+>   		/** @ref: ref count of memory accesses */
+>   		atomic_t ref;
+> +
+> +		/** @vram_userfault: Encapsulate vram_userfault related stuff */
+> +		struct {
+> +			/** @lock: Protects access to @vram_usefault.list */
+
+Could do with comment to explain why not a spinlock i.e sleeping.
+
+Otherwise,
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+
+> +			struct mutex lock;
+> +
+> +			/**
+> +			 *  @list: Keep list of userfaulted vram bo, which require to release their
+> +			 *  mmap mappings at runtime suspend path.
+> +			 */
+> +			struct list_head list;
+> +		} vram_userfault;
+>   	} mem_access;
+>   
+>   	/**
+> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> index 1f997353a78f..4de79a7c5dc2 100644
+> --- a/drivers/gpu/drm/xe/xe_pci.c
+> +++ b/drivers/gpu/drm/xe/xe_pci.c
+> @@ -775,6 +775,8 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+>   		str_yes_no(xe_device_has_sriov(xe)),
+>   		xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
+>   
+> +	xe_pm_init_early(xe);
+> +
+>   	err = xe_device_probe(xe);
+>   	if (err)
+>   		return err;
+> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+> index b429c2876a76..8166b45f83d8 100644
+> --- a/drivers/gpu/drm/xe/xe_pm.c
+> +++ b/drivers/gpu/drm/xe/xe_pm.c
+> @@ -163,6 +163,12 @@ static void xe_pm_runtime_init(struct xe_device *xe)
+>   	pm_runtime_put(dev);
+>   }
+>   
+> +void xe_pm_init_early(struct xe_device *xe)
+> +{
+> +	INIT_LIST_HEAD(&xe->mem_access.vram_userfault.list);
+> +	drmm_mutex_init(&xe->drm, &xe->mem_access.vram_userfault.lock);
+> +}
+> +
+>   void xe_pm_init(struct xe_device *xe)
+>   {
+>   	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+> @@ -214,6 +220,7 @@ struct task_struct *xe_pm_read_callback_task(struct xe_device *xe)
+>   
+>   int xe_pm_runtime_suspend(struct xe_device *xe)
+>   {
+> +	struct xe_bo *bo, *on;
+>   	struct xe_gt *gt;
+>   	u8 id;
+>   	int err = 0;
+> @@ -247,6 +254,16 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
+>   	 */
+>   	lock_map_acquire(&xe_device_mem_access_lockdep_map);
+>   
+> +	/*
+> +	 * Applying lock for entire list op as xe_ttm_bo_destroy and xe_bo_move_notify
+> +	 * also checks and delets bo entry from user fault list.
+> +	 */
+> +	mutex_lock(&xe->mem_access.vram_userfault.lock);
+> +	list_for_each_entry_safe(bo, on,
+> +				 &xe->mem_access.vram_userfault.list, vram_userfault.link)
+> +		xe_bo_runtime_pm_release_mmap_offset(bo);
+> +	mutex_unlock(&xe->mem_access.vram_userfault.lock);
+> +
+>   	if (xe->d3cold.allowed) {
+>   		err = xe_bo_evict_all(xe);
+>   		if (err)
+> diff --git a/drivers/gpu/drm/xe/xe_pm.h b/drivers/gpu/drm/xe/xe_pm.h
+> index 6b9031f7af24..64a97c6726a7 100644
+> --- a/drivers/gpu/drm/xe/xe_pm.h
+> +++ b/drivers/gpu/drm/xe/xe_pm.h
+> @@ -20,6 +20,7 @@ struct xe_device;
+>   int xe_pm_suspend(struct xe_device *xe);
+>   int xe_pm_resume(struct xe_device *xe);
+>   
+> +void xe_pm_init_early(struct xe_device *xe);
+>   void xe_pm_init(struct xe_device *xe);
+>   void xe_pm_runtime_fini(struct xe_device *xe);
+>   int xe_pm_runtime_suspend(struct xe_device *xe);
