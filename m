@@ -4,58 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BB91C41535
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Dec 2023 09:41:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 295B6C41535
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Dec 2023 10:51:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E25A10E77C;
-	Fri, 22 Dec 2023 09:41:51 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7591210E763
- for <intel-xe@lists.freedesktop.org>; Fri, 22 Dec 2023 09:41:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A091710E03B;
+	Fri, 22 Dec 2023 10:51:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CE3B10E03B
+ for <intel-xe@lists.freedesktop.org>; Fri, 22 Dec 2023 10:51:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703238109; x=1734774109;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=w0SZiGICZmAEm2M6xq/SK/8/pZ0PHobSw8ADDzcD8gA=;
- b=H12p+lL6sov483ANgJ1CcE0e24SZKTlHWpnsk86tA3tdAxr+pvQOztp2
- sNknmIqNq69YFjG1pXLO9Or0aOzE6WbiQ+SdTGcWrvXW6vP+SJABM6//J
- opnrQxOfp+FVix/SSETCk3RegWMdi1CjkQwuZr9owChh2T8tkAHFd9hwi
- 90CDz41jqnLMV7/CLhG4/wfGpe/JUzUCfyi8X0KHWUQgspxhDoyAXzCLx
- DUP4nvEMWg561XCR/z8udXPdVhD3K9+kbMHdp/GjzFzgDqU1uaxLkkbA+
- 2Pwy/Z/MDMkBGpmAnCfe+ncK7k4j1VnznBlrQBtirt9S9s22RFc8QYVyQ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="395837779"
-X-IronPort-AV: E=Sophos;i="6.04,296,1695711600"; d="scan'208";a="395837779"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2023 01:41:48 -0800
+ t=1703242299; x=1734778299;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=bJJymXjpet9A3WPpkMJauIEH6fEAtFK3ezEqZpgIf/4=;
+ b=Qiicy8y9p6/t9c2UEq78hGBv4MN0pf/I1BRPNdvF5PKNxf+T6ctYd5FA
+ vTmm+x+EYacbSAmAZIeF5zYKbsE+1EyaxJEN60aP6Ph6RWJ1uGt9CaJ5p
+ YB6dqnctCezNRhOYC2Uhu8EJZWN0pB2ZqO228jtjdkDf2soalZDMVsOVl
+ rvk6oB0UL2DjZ+NU4C43HpvjSE8K7Dr284mS8sv9u2WxLYuspPmL6hy6p
+ 1GsycTX4H0karRo0gqARgV3twtFH4QMOc1ZwwcDghWtKu9CRHkxccr/lU
+ 8MhsZyFew0kjXDT5sXb6O07l3nNxt4K6v7uXfAHp2gWlrAxW0uNgDnliM g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="3359598"
+X-IronPort-AV: E=Sophos;i="6.04,296,1695711600"; 
+   d="scan'208";a="3359598"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2023 02:51:39 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="900376205"
-X-IronPort-AV: E=Sophos;i="6.04,296,1695711600"; d="scan'208";a="900376205"
-Received: from rajvende-mobl1.ger.corp.intel.com (HELO [10.213.219.31])
- ([10.213.219.31])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2023 01:41:47 -0800
-Message-ID: <78064135-b8d6-4394-a3d5-379803463cbd@linux.intel.com>
-Date: Fri, 22 Dec 2023 09:41:45 +0000
+X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="920612799"
+X-IronPort-AV: E=Sophos;i="6.04,296,1695711600"; d="scan'208";a="920612799"
+Received: from suja-super-server.iind.intel.com ([10.145.169.64])
+ by fmsmga001.fm.intel.com with ESMTP; 22 Dec 2023 02:51:36 -0800
+From: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [v6] drm/xe: Add vram frequency sysfs attributes
+Date: Fri, 22 Dec 2023 16:36:31 +0530
+Message-Id: <20231222110631.999517-1-sujaritha.sundaresan@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/8] Engine Busyness
-Content-Language: en-US
-To: "Nerlige Ramappa, Umesh" <umesh.nerlige.ramappa@intel.com>
-References: <20231207125802.3730165-1-riana.tauro@intel.com>
- <4c5c2902-9503-465e-8a59-d17d75d8781f@linux.intel.com>
- <ZXpgwiRQ7z3cTE3V@unerlige-ril>
- <b753ccd6-3417-4da1-b3d3-a16aad6588bc@linux.intel.com>
- <ZYJ9U7/Y0uqq/Ygw@unerlige-ril>
- <b1573816-c1f6-4958-8171-d5c43a3d2766@linux.intel.com>
- <ZYN/mkkRT+oFJLSo@unerlige-ril>
- <ebcec5e0-236c-4cd9-b676-d7ca7d46cb10@linux.intel.com>
- <B7964DAC-797C-4E73-9140-A1DEE800389B@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <B7964DAC-797C-4E73-9140-A1DEE800389B@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,136 +54,176 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>,
+ rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Add vram frequency sysfs attributes under the below hierarchy;
 
-On 21/12/2023 13:17, Nerlige Ramappa, Umesh wrote:
->> On Dec 21, 2023, at 1:36 AM, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
->>
->> ﻿
->>> On 20/12/2023 23:58, Umesh Nerlige Ramappa wrote:
->>>> On Wed, Dec 20, 2023 at 09:00:34AM +0000, Tvrtko Ursulin wrote:
->>>>
->>>> On 20/12/2023 05:36, Umesh Nerlige Ramappa wrote:
->>>>> On Thu, Dec 14, 2023 at 08:06:46AM +0000, Tvrtko Ursulin wrote:
->>>>>>
->>>>>> On 14/12/2023 01:56, Umesh Nerlige Ramappa wrote:
->>>>>>> On Thu, Dec 07, 2023 at 02:45:47PM +0000, Tvrtko Ursulin wrote:
->>>>>>>>
->>>>>>>> Hi,
->>>>>>>>
->>>>>>>> On 07/12/2023 12:57, Riana Tauro wrote:
->>>>>>>>> GuC provides engine busyness ticks as a 64 bit counter which count
->>>>>>>>> as clock ticks. These counters are maintained in a
->>>>>>>>> shared memory buffer and internally updated on a continuous basis.
->>>>>>>>>
->>>>>>>>> GuC also provides a periodically total active ticks that GT has been
->>>>>>>>> active for. This counter is exposed to the user such that busyness can
->>>>>>>>> be calculated as a percentage using
->>>>>>>>>
->>>>>>>>> busyness % = (engine active ticks/total active ticks) * 100.
->>>>>>>>
->>>>>>>> I think I've asked this before but don't remember it was clarified - what are the semantics of "active" with total active ticks? In other words considering activity timelines like:
->>>>>>>>
->>>>>>>> 1)
->>>>>>>>      0          1s
->>>>>>>> rcs0 |xxxxx-----|
->>>>>>>> bcs0 |-----xxxxx|
->>>>>>>>
->>>>>>>> 2)
->>>>>>>>      0          1s
->>>>>>>> rcs0 |xxxxx-----|
->>>>>>>> bcs0 |xxxxx-----|
->>>>>>>>
->>>>>>>> Assuming 1s sampling, would the above formula correctly say 50% for both engines in both cases?
->>>>>>>
->>>>>>> Yes. What is the significance of case 2? Are you saying rcs and bcs are executing in parallel?
->>>>>>
->>>>>> In parallel yes. Complete overlap, no overlap, or any overlap of activity in between the two.
->>>>>
->>>>> GuC accumulates this on context switches, so the overlap does not matter.
->>>>>
->>>>>>
->>>>>>> Either ways, when total active ticks is queried it would provide the latest value of the active time (does not depend on gt park/unpark since the value is either obtained on demand from GuC or is a value that is frequently updated by GuC.
->>>>>>>
->>>>>>> The duration of context (in to out) is accumulated for the each engine.
->>>>>>
->>>>>> But why is the total *active* tick moving during the 0.5s - 1s time of the 2nd diagram though? What does it mean by "active" if nothing was active during that period?
->>>>>
->>>>> VF was still using it's allotted time and hence was active.
->>>>
->>>> And if we leave SR-IOV out for a moment?
->>> Then it is just a periodically sampled (by GuC) value of GT ticks. The period being 100ms.
->>>>
->>>> "GuC also provides a periodically total active ticks that GT has been active for."
->>>>
->>>> How many time worth of total GT active ticks does GuC report in diagram 2 above?
->>> Every 100ms we would see an updated value. For the duration of 0.5s, it would be 500ms. Sampled at 1s, it will be 1000ms. Until 0.5s it should be 100% busyness but there is an error margin of 100ms. From then on, the busyness % will decrease as time progresses. The error margin is more pronounced for very short workloads, so IGTs were changed to use 2s batch durations rather than 500ms. Haven't checked if IGTs have been posted yet though.
->>
->> Sorry somehow it is still not clear to me. :)
->>
->> GuC updates the GT total active ticks _constantly_? With a 100ms sampling so like:
->>
->> a)
->>
->> while (true)
->>    if (gt_active)
->>       gt_total_active += 100ms
->>    sleep(100ms)
->>
->> Or b):
->>
->> while (true)
->>    gt_total_active += 100ms
->>    sleep(100ms)
->>
->>
->> ?
->>
->> If a) then diagram 2) above would show 50% rcs0, no? (When sampled at T=0 and T=1s and deltas calculated.)
->>
->> If b) then "...total active ticks that GT has been active for." uses a different definition of "GT active" than I am assuming? Like no relation to whether any of the engines is used, just the fact GuC is loaded and running?
-> 
-> it's (b). Correct, maybe the comment should be changed to reflect this.
+/device/tile#/memory/freq0
+			|-max_freq
+			|-min_freq
 
-Ah cool then and yes, possibly not call it "gt active time" but simply 
-some sort of a clock. Is it a GT or GuC clock and when it resets would 
-determine the exact best naming.
+v2: Drop "vram" from attribute names (Rodrigo)
 
-Regards,
+v3: Add documentation for new sysfs (Riana)
+    Drop prefix from XEHP_PCODE_FREQUENCY_CONFIG (Riana)
 
-Tvrtko
+v4: Create sysfs under tile#/freq0 after removal of
+    physical_memsize attrbute
 
-> 
-> Regards,
-> Umesh
-> 
->>
->> Regards,
->>
->> Tvrtko
->>
->>> Regards,
->>> Umesh
->>>>
->>>> Regards,
->>>>
->>>> Tvrtko
->>>>
->>>>>
->>>>> Regards,
->>>>> Umesh
->>>>>
->>>>>>
->>>>>>>> I am also curious if there are plans to add support to intel_gpu_top in which case please copy me on the required refactorings.
->>>>>>>>
->>>>>>>
->>>>>>> Certainly. It's in the works.
->>>>>>
->>>>>> Cool.
->>>>>>
->>>>>> Regards,
->>>>>>
->>>>>> Tvrtko
+v5: Revert back to creating sysfs under tile#/memory/freq0
+    Remove definition of GT_FREQUENCY_MULTIPLIER (Rodrigo)
+
+v6: Rename attributes to max/min_freq (Anshuman)
+    Fix review comments (Rodrigo)
+
+Signed-off-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pcode_api.h  |  7 +++
+ drivers/gpu/drm/xe/xe_tile_sysfs.c | 86 ++++++++++++++++++++++++++++++
+ 2 files changed, 93 insertions(+)
+
+diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
+index 5935cfe30204..f153ce96f69a 100644
+--- a/drivers/gpu/drm/xe/xe_pcode_api.h
++++ b/drivers/gpu/drm/xe/xe_pcode_api.h
+@@ -42,6 +42,13 @@
+ #define	    POWER_SETUP_I1_SHIFT		6	/* 10.6 fixed point format */
+ #define	    POWER_SETUP_I1_DATA_MASK		REG_GENMASK(15, 0)
+ 
++#define   PCODE_FREQUENCY_CONFIG		0x6e
++/* Frequency Config Sub Commands (param1) */
++#define     PCODE_MBOX_FC_SC_READ_FUSED_P0	0x0
++#define     PCODE_MBOX_FC_SC_READ_FUSED_PN	0x1
++/* Domain IDs (param2) */
++#define     PCODE_MBOX_DOMAIN_HBM		0x2
++
+ struct pcode_err_decode {
+ 	int errno;
+ 	const char *str;
+diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.c b/drivers/gpu/drm/xe/xe_tile_sysfs.c
+index 0f8d3e7fce46..cdc9dbbc97b0 100644
+--- a/drivers/gpu/drm/xe/xe_tile_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_tile_sysfs.c
+@@ -7,9 +7,21 @@
+ #include <linux/sysfs.h>
+ #include <drm/drm_managed.h>
+ 
++#include "xe_gt_types.h"
++#include "xe_pcode.h"
++#include "xe_pcode_api.h"
+ #include "xe_tile.h"
+ #include "xe_tile_sysfs.h"
+ 
++/**
++ * DOC: Xe Tile sysfs
++ *
++ * Provides sysfs entries for frequency in tile
++ *
++ * device/tile#/memory/freq0/max_freq - Maximum Frequency, not a configuration and read-only.
++ * device/tile#/memory/freq0/min_freq - Minimum Frequency, not a configuration and read-only.
++ */
++
+ static void xe_tile_sysfs_kobj_release(struct kobject *kobj)
+ {
+ 	kfree(kobj);
+@@ -20,6 +32,65 @@ static const struct kobj_type xe_tile_sysfs_kobj_type = {
+ 	.sysfs_ops = &kobj_sysfs_ops,
+ };
+ 
++static ssize_t max_freq_show(struct device *kdev, struct device_attribute *attr,
++			     char *buf)
++{
++	struct kobject *kobj = &kdev->kobj;
++	struct xe_tile *tile = kobj_to_tile(kobj->parent);
++	struct xe_gt *gt = tile->primary_gt;
++	u32 val, mbox;
++	int err;
++
++	mbox = REG_FIELD_PREP(PCODE_MB_COMMAND, PCODE_FREQUENCY_CONFIG)
++		| REG_FIELD_PREP(PCODE_MB_PARAM1, PCODE_MBOX_FC_SC_READ_FUSED_P0)
++		| REG_FIELD_PREP(PCODE_MB_PARAM2, PCODE_MBOX_DOMAIN_HBM);
++
++	err = xe_pcode_read(gt, mbox, &val, NULL);
++	if (err)
++		return err;
++
++	/* data_out - Fused P0 for domain ID in units of 50 MHz */
++	val *= 50;
++
++	return sysfs_emit(buf, "%u\n", val);
++}
++static DEVICE_ATTR_RO(max_freq);
++
++static ssize_t min_freq_show(struct device *kdev, struct device_attribute *attr,
++			     char *buf)
++{
++	struct kobject *kobj = &kdev->kobj;
++	struct xe_tile *tile = kobj_to_tile(kobj->parent);
++	struct xe_gt *gt = tile->primary_gt;
++	u32 val, mbox;
++	int err;
++
++	mbox = REG_FIELD_PREP(PCODE_MB_COMMAND, PCODE_FREQUENCY_CONFIG)
++		| REG_FIELD_PREP(PCODE_MB_PARAM1, PCODE_MBOX_FC_SC_READ_FUSED_PN)
++		| REG_FIELD_PREP(PCODE_MB_PARAM2, PCODE_MBOX_DOMAIN_HBM);
++
++	err = xe_pcode_read(gt, mbox, &val, NULL);
++	if (err)
++		return err;
++
++	/* data_out - Fused Pn for domain ID in units of 50 MHz */
++	val *= 50;
++
++	return sysfs_emit(buf, "%u\n", val);
++}
++static DEVICE_ATTR_RO(min_freq);
++
++static struct attribute *freq_attrs[] = {
++	&dev_attr_max_freq.attr,
++	&dev_attr_min_freq.attr,
++	NULL
++};
++
++static const struct attribute_group freq_group_attrs = {
++	.name = "freq0",
++	.attrs = freq_attrs,
++};
++
+ static void tile_sysfs_fini(struct drm_device *drm, void *arg)
+ {
+ 	struct xe_tile *tile = arg;
+@@ -32,6 +103,7 @@ void xe_tile_sysfs_init(struct xe_tile *tile)
+ 	struct xe_device *xe = tile_to_xe(tile);
+ 	struct device *dev = xe->drm.dev;
+ 	struct kobj_tile *kt;
++	struct kobject *kobj;
+ 	int err;
+ 
+ 	kt = kzalloc(sizeof(*kt), GFP_KERNEL);
+@@ -50,6 +122,20 @@ void xe_tile_sysfs_init(struct xe_tile *tile)
+ 
+ 	tile->sysfs = &kt->base;
+ 
++	if (xe->info.platform == XE_PVC) {
++		kobj = kobject_create_and_add("memory", tile->sysfs);
++		if (!kobj)
++			drm_warn(&xe->drm, "failed to add memory directory, err: %d\n", -ENOMEM);
++	}
++
++	if (kobj && xe->info.platform == XE_PVC) {
++		err = sysfs_create_group(kobj, &freq_group_attrs);
++		if (err) {
++			drm_warn(&xe->drm, "failed to register vram freq sysfs, err: %d\n", err);
++			return;
++		}
++	}
++
+ 	err = drmm_add_action_or_reset(&xe->drm, tile_sysfs_fini, tile);
+ 	if (err)
+ 		drm_warn(&xe->drm, "%s: drmm_add_action_or_reset failed, err: %d\n",
+-- 
+2.25.1
+
