@@ -4,139 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99E9BC46CD4
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Dec 2023 16:28:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CEA6C41535
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Dec 2023 17:39:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18E7210E7FF;
-	Fri, 22 Dec 2023 16:28:38 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFB4E10E798;
- Fri, 22 Dec 2023 16:28:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B429810E7F8;
+	Fri, 22 Dec 2023 17:39:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A0B210E7F8
+ for <intel-xe@lists.freedesktop.org>; Fri, 22 Dec 2023 17:39:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703262515; x=1734798515;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=BzuFRwrbvkZ5NBUall44xmhrSoW/AFp28SN1QSraeMA=;
- b=ASko+KJ+qvMVwZnou7McY709wcyKPKjnKS9cR0EsfacfgYlbzKtozB8n
- V7NOAniZXeH58k4XJwgY+9mG8f9se2V3lm1XWKKXnM9muHLZuuvPUCwqj
- Qk3JC8nicceJyLgvNLueHGEO7h8UVWH3FM4CE4pMmesIuunqV9QTezqD6
- ugf7cTde1Umt0HPZgyDp1H2ZyxAikTmNuLIZrgN3XCgVR6gLoEVii2hp8
- C7lIN271vLuFWHRrpH+aDMKHiqF3E7rfEKs9yDDbGdJziDcqRYZyu9/jO
- wnonQwazDb9DbKgJD4H1VeNm2xJDgP+82n5kCHvY8eWB+p4bd7D4yislm w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10932"; a="395024406"
-X-IronPort-AV: E=Sophos;i="6.04,297,1695711600"; d="scan'208";a="395024406"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2023 08:28:34 -0800
+ t=1703266753; x=1734802753;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=pU41pRq+N3Cbtt/m3WgpVPlaMspPiAk51qK5c0VoH3g=;
+ b=fbBTnjRU5nViSwChiO9x69E7DTwDFrmC+LObSNd7Q3gfQWI1H5j26Ve8
+ bqNcSqpyjUy62JASAm2U6bTdfqkY1i2ifshJVBCe0xMYIf1rjsOx2a+bx
+ R8P7oYfLfXpYKzdgMhty4ZENIcaeyJiGY6ttT5l3bV/4ReuUM+I8VIbPL
+ hOs2bsxb0etHzwn/U7D4CHxKOfXl+JziEvw+r7PgTZn3P+93MEdZrdgQ6
+ uj6FqwQsRXya/708BkhfGT3V8xKCrIAJN4lXxJVN931dUkR3Wv+9aCWQT
+ RSrlztLtJXqJzVt6P2FsuM6aisa5ke2HvmsklOB04xD//oe/3WdrW/vJ1 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10932"; a="14823012"
+X-IronPort-AV: E=Sophos;i="6.04,297,1695711600"; d="scan'208";a="14823012"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2023 09:39:13 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10932"; a="777081237"
-X-IronPort-AV: E=Sophos;i="6.04,297,1695711600"; d="scan'208";a="777081237"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 22 Dec 2023 08:28:34 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 22 Dec 2023 08:28:34 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 22 Dec 2023 08:28:33 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Fri, 22 Dec 2023 08:28:33 -0800
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.41) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Fri, 22 Dec 2023 08:28:33 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CwSD9dQGZ4wv9LKpATbgVAeBKCcClP9EvttYiKPm/3nS7E1d0llN6nXhgvU+0e4LKX+sPGP47oMVV6qGJP7nZehgf80kAdjtAhA4PVyWinQjCM6wOJKA52bUahbLZQT0ojEWoqyXTwrL5TWUjHURyXuNbUL/SC41yIhozu6yHPFep5FnkYn9DIWS39B6k08rVWgN8+AoJQPY0VCCzWxIuXqgLbPrjVRxZTc9PsRg/owfwY54xuXi8aMTGvVXM06PuElENclodCU9lcZkFjC1lTlIa6Q7wS/3wJ+k6u75vO+sGEOFmq+g6BYrHC72Dbdg2Z2ssIRSkuCzA1O5PsW+Jg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iEp1UxcklIkMVAC9OfGCVeb73fQNSos84FyHwc7QimI=;
- b=h+ya9PPgN6APlxtLyS73rJuiJ0xRpS5W/wmoNNapG8jDtVROY4niLDRHTSDyv6pmHuiv72NWt8pSIQwYs4yldbCjtab9g8k4sMcR1z3hoTsxMZdnMZaN+kFxL/1bAn7/2Oqsw+qI98iJWZCdu5Antx7Vnl1VotYSNp1NOCAJDkeCjVxLD8oONSTNmAFD4bAiampOka/u0lOFTxanP99HQ7rf+bOgXHgMzHbaFOvsAqPm8HH8Z9JBvujwfLRMNWuXX9Awd6c+ncPisuQyH0xzn/fZXyz7xHclAzkhcnqkGdNm8rgNi2LoTCmEM1l1GjUbWXPdd5esgCYX995A0T76Ow==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by PH8PR11MB8285.namprd11.prod.outlook.com (2603:10b6:510:1c5::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7113.18; Fri, 22 Dec
- 2023 16:28:31 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::b870:a8ae:c4f1:c39b]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::b870:a8ae:c4f1:c39b%4]) with mapi id 15.20.7113.019; Fri, 22 Dec 2023
- 16:28:31 +0000
-Date: Fri, 22 Dec 2023 10:28:27 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH] nightly.conf: Add the xe repo to drm-tip
-Message-ID: <ofbaryl76bbqcaqu2g5lvbre2ny7xtkz74eh4muunvkhcioibr@76qwoychzxmh>
-References: <20231222113640.14038-1-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231222113640.14038-1-thomas.hellstrom@linux.intel.com>
-X-ClientProxiedBy: SJ0PR13CA0134.namprd13.prod.outlook.com
- (2603:10b6:a03:2c6::19) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+X-IronPort-AV: E=McAfee;i="6600,9927,10932"; a="811370226"
+X-IronPort-AV: E=Sophos;i="6.04,297,1695711600"; d="scan'208";a="811370226"
+Received: from bnilawar-desk1.iind.intel.com ([10.145.169.158])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2023 09:39:10 -0800
+From: Badal Nilawar <badal.nilawar@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH v5] drm/xe/dgfx: Release mmap mappings on rpm suspend
+Date: Fri, 22 Dec 2023 23:20:36 +0530
+Message-Id: <20231222175036.373201-1-badal.nilawar@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|PH8PR11MB8285:EE_
-X-MS-Office365-Filtering-Correlation-Id: 85c2e656-bb5c-46d3-dc5a-08dc030b0922
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: k6hg2Jsi6c8oY9HtckwVZG7q59l6XlARmFMaIMsco82OU9473fVE9/HN9IzGNFo6s7sBTHKW52kbg6JwpGfPw42YVlmR73ANr/oF2SN8JYK7DgOOqmOG8SZzcwEKI/Ap6O4kV3em7/cNAGLuoYB7woBk5GI1HbMF3QUzWTxpsQ54r3jWlj8z1a+gEa5FBoQs9xPkTvw5mgmNchv91zbw5BNBW42lUyKv427HT1iJTDbUotWSWUSYTvwz5U/EpZcvnajtNp7pR4uD/lGtB+pGU1R2FytaRTjKkBm3R9STNMyXAImgxY5pq60TtvwqDLGe+cyK9kh9JI3k34i1IqIAM8JXYJeOrDXxLqzDhYHQgWIuPd9OVf0+GnzYNrG6Xvzn5o9znnQZV/GkcKe8/S8g/ge6EegNORmdvaBgjIiAVylWLjBARI/fveIDYlr7Lj1sNEd1CM936R6CRpYm4X8wWAK0cmrLd3qXrsuVBhi0KqZwvglUyDGA+XkDIEiXLkmYYV3k6FGLNjP+YtcgcpHoYh1OmbKPZ+Gl26yvz8OAF+Y=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(396003)(366004)(376002)(346002)(39860400002)(136003)(230922051799003)(186009)(1800799012)(451199024)(64100799003)(966005)(5660300002)(6666004)(6512007)(6506007)(478600001)(9686003)(6486002)(26005)(66574015)(83380400001)(8676002)(4326008)(8936002)(41300700001)(2906002)(86362001)(33716001)(38100700002)(66556008)(66476007)(66946007)(6916009)(316002)(82960400001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?q2Ru9M7j3pOUTN3bIEoZZOuAwkIkVAowUFjqSAOO++PPBUJjof6jLLrWXm?=
- =?iso-8859-1?Q?ooSn9fPqHtTzU9ckzah111BzT6jR4h/keIZAHRGBYC1Ls3k16uKtiH4WrE?=
- =?iso-8859-1?Q?8/x2DF4jNi4MyYx/KKu5EKEbLheNxnrGERPYE69t4aza6yNWcYpkoQjeJX?=
- =?iso-8859-1?Q?Mkaa0NEv7rAOFasmADfPmlVSobeVHLXpftGWSy0YpVirZ0QcwKXq5NwtaD?=
- =?iso-8859-1?Q?Rhz9vsSRi+fh/MaYVsFOaEnCOqP94hq8xGj9k1sQPV378FKpOqZUbf7p1o?=
- =?iso-8859-1?Q?jwNLOA3NM4rxQtyYg+rolvmWNgOKZ4Pa9xcsC1v5udV1cPb4bBVyWs0+Sn?=
- =?iso-8859-1?Q?cZxCLddWzzDbc2vv0h0lzdwOvuE9MNhrKFDUPcoX+33KHGt97/sHTQV+vQ?=
- =?iso-8859-1?Q?DxBILyo82gFC3WFfdY0hlGOWSZX/gaQUWsRFLKUHX3s1wJVgZcLXSCMEAv?=
- =?iso-8859-1?Q?GHoBTjOERUTx5H06O0k22cNWfkOkn9BZamuzn/GEKxfia4COjiA8ZjhGls?=
- =?iso-8859-1?Q?YNE7nkVe1O/Io2mOoXfQ1EoSz7RdgvkUuzZIOmxI0v2878JxRtzU5nuBtu?=
- =?iso-8859-1?Q?oigMgG7UPX/sqNsK72ZHhro8HIwOXW/VyonbNOZBwq82wlZ7QJOuBuMVTM?=
- =?iso-8859-1?Q?z4HMaVScuulViUgmow4nn2RqM4OGNI2PkZIKns73dBDavnlxMn0iL1iDPf?=
- =?iso-8859-1?Q?rVBBTouoOz5XY9GLZnYIcyX2uK9DidVr2u/TVaMhRWckU0pwQfxsZbSVWU?=
- =?iso-8859-1?Q?DgVImEcAal+tpOMa1EXC/eu5/KKeSJczXU6ZSfut0WXxAKS2RsVpq3LM2Z?=
- =?iso-8859-1?Q?Wv0npqVRm69MSXB8JQI9RDMCNSagEaUH+BesZ7JSz/adnx4/1kfJtXn+QM?=
- =?iso-8859-1?Q?tZx3HZElGyQabQC0oFj0NCQRt7JOsF9PahsUn6hy1zRoA91Qn1noD4+/tv?=
- =?iso-8859-1?Q?528RK7OQqA7txaWEsKC8OVDVt7UaiiCIPre0Xr4yhu2i5c6GrNu9d/a7Xk?=
- =?iso-8859-1?Q?+BGA4V4iv0z23aMycJkD9W6uepn9AkXS5HXri+GDW/YkkR3xvqZw2do3lJ?=
- =?iso-8859-1?Q?U3l7gRkc1H3ETCzJlaEzAXn2Z2UiMoRO/Hnf04uhz25sVa7GQ165GuPbfG?=
- =?iso-8859-1?Q?lS66McHTbwPklTIjC23oJZp2FonqX9+093W1FvOuQVT2OyfJzSQNyBlz7p?=
- =?iso-8859-1?Q?YKzIc7aS3svBwhh8tM3cqAekzrZFdeqZojD4EP7vsqMUBo9Dy37Fs84Bi3?=
- =?iso-8859-1?Q?ZABj/ZIUWLdqU82x+NitX4abyqG8A5eVR9haU/1+hplDJxDwFL5f9Zx2qR?=
- =?iso-8859-1?Q?e5KywjWDnujpx+9kiX9B7J1yre6xjW9g74/u6GVRKVyxZeWAbe/5vRWJo9?=
- =?iso-8859-1?Q?YxgpElucA9vtSmzDCzx/PePLgKFkV+jPEs81NS0vlW4AeZvdN07H3LGA1E?=
- =?iso-8859-1?Q?WVlr8P/nKp0lAAqj5EGbVYOr11QQCToojK4abT2xO4agxPTU6Nvc/FGPmp?=
- =?iso-8859-1?Q?H66HvaZovwPLt9rbXLtKz9rOahIBTvnP3BmTI5e/lisXA9F/t9m0pwS1uQ?=
- =?iso-8859-1?Q?erU3qHDkmNVw9DHYu9qAbiLfnMQOPRPV6d3ngM/VSu0E3V3AxoGAQ5UlqW?=
- =?iso-8859-1?Q?m7mivB+vnj3v2DOeIVt/ybA+ox5tZ/SlvyvRdhghPozSgL7bAHAj5XJw?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 85c2e656-bb5c-46d3-dc5a-08dc030b0922
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Dec 2023 16:28:31.4287 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XQi4A8aeGFTTfglc6WSiNqRfCY4ZWR0qxOnJwcHqa+jzu02AVZcfozOW8AnkSsHaAY4UNXhbdvUnIKwqUNiORVEG0p8sAlRYBQ/xR3YhQTs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB8285
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,69 +55,293 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, daniel.vetter@ffwll.ch,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
+Cc: thomas.hellstrom@intel.com, rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Dec 22, 2023 at 12:36:39PM +0100, Thomas Hellström wrote:
->Add the xe repo to drm-tip and the dim tools.
->For now use the sha1 of the first drm-xe-next pull request for drm-tip,
->since that branch tip is currently adapted for our CI testing.
->
->Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->Cc: Oded Gabbay <ogabbay@kernel.org>
->Cc: daniel.vetter@ffwll.ch
->Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->Cc: dim-tools@lists.freedesktop.org
->Cc: dri-devel@lists.freedesktop.org
->Cc: intel-gfx@lists.freedesktop.org
->Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Release all mmap mappings for all vram objects which are associated
+with userfault such that, while pcie function in D3hot, any access
+to memory mappings will raise a userfault.
 
+Upon userfault, in order to access memory mappings, if graphics
+function is in D3 then runtime resume of dgpu will be triggered to
+transition to D0.
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+v2:
+  - Avoid iomem check before bo migration check as bo can migrate
+    to system memory (Matthew Auld)
+v3:
+  - Delete bo userfault link during bo destroy
+  - Upon bo move (vram-smem), do bo userfault link deletion in
+    xe_bo_move_notify instead of xe_bo_move (Thomas HellstrÃ¶m)
+  - Grab lock in rpm hook while deleting bo userfault link (Matthew Auld)
+v4:
+  - Add kernel doc and wrap vram_userfault related
+    stuff in the structure (Matthew Auld)
+  - Get rpm wakeref before taking dma reserve lock (Matthew Auld)
+  - In suspend path apply lock for entire list op
+    including list iteration (Matthew Auld)
+v5:
+  - Use mutex lock instead of spin lock
 
-Lucas De Marchi
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c           | 57 ++++++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_bo.h           |  2 +
+ drivers/gpu/drm/xe/xe_bo_types.h     | 10 +++++
+ drivers/gpu/drm/xe/xe_device_types.h | 12 ++++++
+ drivers/gpu/drm/xe/xe_pci.c          |  2 +
+ drivers/gpu/drm/xe/xe_pm.c           | 17 +++++++++
+ drivers/gpu/drm/xe/xe_pm.h           |  1 +
+ 7 files changed, 97 insertions(+), 4 deletions(-)
 
->---
-> nightly.conf | 7 +++++++
-> 1 file changed, 7 insertions(+)
->
->diff --git a/nightly.conf b/nightly.conf
->index 24126b61b797..accd3ff2cc39 100644
->--- a/nightly.conf
->+++ b/nightly.conf
->@@ -24,6 +24,10 @@ git://anongit.freedesktop.org/drm-tip
-> https://anongit.freedesktop.org/git/drm/drm-tip
-> https://anongit.freedesktop.org/git/drm/drm-tip.git
-> "
->+drm_tip_repos[drm-xe]="
->+ssh://git@gitlab.freedesktop.org/drm/xe/kernel.git
->+https://gitlab.freedesktop.org/drm/xe/kernel.git
->+"
-> drm_tip_repos[drm-intel]="
-> ssh://git.freedesktop.org/git/drm/drm-intel
-> ssh://git.freedesktop.org/git/drm-intel
->@@ -65,14 +69,17 @@ drm_tip_config=(
-> 	"drm			drm-fixes"
-> 	"drm-misc		drm-misc-fixes"
-> 	"drm-intel		drm-intel-fixes"
->+	"drm-xe			drm-xe-fixes"
->
-> 	"drm			drm-next"
-> 	"drm-misc		drm-misc-next-fixes"
-> 	"drm-intel		drm-intel-next-fixes"
->+	"drm-xe			drm-xe-next-fixes"
->
-> 	"drm-misc		drm-misc-next"
-> 	"drm-intel		drm-intel-next"
-> 	"drm-intel		drm-intel-gt-next"
->+	"drm-xe			drm-xe-next b6e1b7081768"
->
-> 	"drm-intel		topic/core-for-CI"
-> 	"drm-misc		topic/i915-ttm"
->-- 
->2.42.0
->
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 8e4a3b1f6b93..4fd3a229755c 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -586,6 +586,8 @@ static int xe_bo_move_notify(struct xe_bo *bo,
+ {
+ 	struct ttm_buffer_object *ttm_bo = &bo->ttm;
+ 	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
++	struct ttm_resource *old_mem = ttm_bo->resource;
++	u32 old_mem_type = old_mem ? old_mem->mem_type : XE_PL_SYSTEM;
+ 	int ret;
+ 
+ 	/*
+@@ -605,6 +607,18 @@ static int xe_bo_move_notify(struct xe_bo *bo,
+ 	if (ttm_bo->base.dma_buf && !ttm_bo->base.import_attach)
+ 		dma_buf_move_notify(ttm_bo->base.dma_buf);
+ 
++	/*
++	 * TTM has already nuked the mmap for us (see ttm_bo_unmap_virtual),
++	 * so if we moved from VRAM make sure to unlink this from the userfault
++	 * tracking.
++	 */
++	if (mem_type_is_vram(old_mem_type)) {
++		mutex_lock(&xe->mem_access.vram_userfault.lock);
++		if (!list_empty(&bo->vram_userfault.link))
++			list_del_init(&bo->vram_userfault.link);
++		mutex_unlock(&xe->mem_access.vram_userfault.lock);
++	}
++
+ 	return 0;
+ }
+ 
+@@ -1063,6 +1077,11 @@ static void xe_ttm_bo_destroy(struct ttm_buffer_object *ttm_bo)
+ 	if (bo->vm && xe_bo_is_user(bo))
+ 		xe_vm_put(bo->vm);
+ 
++	mutex_lock(&xe->mem_access.vram_userfault.lock);
++	if (!list_empty(&bo->vram_userfault.link))
++		list_del(&bo->vram_userfault.link);
++	mutex_unlock(&xe->mem_access.vram_userfault.lock);
++
+ 	kfree(bo);
+ }
+ 
+@@ -1110,16 +1129,20 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
+ {
+ 	struct ttm_buffer_object *tbo = vmf->vma->vm_private_data;
+ 	struct drm_device *ddev = tbo->base.dev;
++	struct xe_device *xe = to_xe_device(ddev);
++	struct xe_bo *bo = ttm_to_xe_bo(tbo);
++	bool needs_rpm = bo->flags & XE_BO_CREATE_VRAM_MASK;
+ 	vm_fault_t ret;
+ 	int idx, r = 0;
+ 
++	if (needs_rpm)
++		xe_device_mem_access_get(xe);
++
+ 	ret = ttm_bo_vm_reserve(tbo, vmf);
+ 	if (ret)
+-		return ret;
++		goto out;
+ 
+ 	if (drm_dev_enter(ddev, &idx)) {
+-		struct xe_bo *bo = ttm_to_xe_bo(tbo);
+-
+ 		trace_xe_bo_cpu_fault(bo);
+ 
+ 		if (should_migrate_to_system(bo)) {
+@@ -1137,10 +1160,25 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
+ 	} else {
+ 		ret = ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
+ 	}
++
+ 	if (ret == VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
+-		return ret;
++		goto out;
++	/*
++	 * ttm_bo_vm_reserve() already has dma_resv_lock.
++	 */
++	if (ret == VM_FAULT_NOPAGE && list_empty(&bo->vram_userfault.link)) {
++		if (tbo->resource->bus.is_iomem) {
++			mutex_lock(&xe->mem_access.vram_userfault.lock);
++			list_add(&bo->vram_userfault.link, &xe->mem_access.vram_userfault.list);
++			mutex_unlock(&xe->mem_access.vram_userfault.lock);
++		}
++	}
+ 
+ 	dma_resv_unlock(tbo->base.resv);
++out:
++	if (needs_rpm)
++		xe_device_mem_access_put(xe);
++
+ 	return ret;
+ }
+ 
+@@ -1254,6 +1292,7 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
+ #ifdef CONFIG_PROC_FS
+ 	INIT_LIST_HEAD(&bo->client_link);
+ #endif
++	INIT_LIST_HEAD(&bo->vram_userfault.link);
+ 
+ 	drm_gem_private_object_init(&xe->drm, &bo->ttm.base, size);
+ 
+@@ -2264,6 +2303,16 @@ int xe_bo_dumb_create(struct drm_file *file_priv,
+ 	return err;
+ }
+ 
++void xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo)
++{
++	struct ttm_buffer_object *tbo = &bo->ttm;
++	struct ttm_device *bdev = tbo->bdev;
++
++	drm_vma_node_unmap(&tbo->base.vma_node, bdev->dev_mapping);
++
++	list_del(&bo->vram_userfault.link);
++}
++
+ #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+ #include "tests/xe_bo.c"
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 97b32528c600..350cc73cadf8 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -249,6 +249,8 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 			struct drm_file *file);
+ int xe_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
+ 			     struct drm_file *file);
++void xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo);
++
+ int xe_bo_dumb_create(struct drm_file *file_priv,
+ 		      struct drm_device *dev,
+ 		      struct drm_mode_create_dumb *args);
+diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+index 64c2249a4e40..b4e44fab9cd2 100644
+--- a/drivers/gpu/drm/xe/xe_bo_types.h
++++ b/drivers/gpu/drm/xe/xe_bo_types.h
+@@ -88,6 +88,16 @@ struct xe_bo {
+ 	 * objects.
+ 	 */
+ 	u16 cpu_caching;
++
++	/**
++	 * @vram_userfault: Encapsulate vram_userfault related stuff
++	 */
++	struct {
++		/** @link: Link into @mem_access.vram_userfault.list */
++		struct list_head link;
++		/** @count: Whether bo is @mem_access.vram_userfault.list */
++		unsigned int count;
++	} vram_userfault;
+ };
+ 
+ #define intel_bo_to_drm_bo(bo) (&(bo)->ttm.base)
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 71f23ac365e6..e27c2211728f 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -385,6 +385,18 @@ struct xe_device {
+ 	struct {
+ 		/** @ref: ref count of memory accesses */
+ 		atomic_t ref;
++
++		/** @vram_userfault: Encapsulate vram_userfault related stuff */
++		struct {
++			/** @lock: Protects access to @vram_usefault.list */
++			struct mutex lock;
++
++			/**
++			 *  @list: Keep list of userfaulted vram bo, which require to release their
++			 *  mmap mappings at runtime suspend path.
++			 */
++			struct list_head list;
++		} vram_userfault;
+ 	} mem_access;
+ 
+ 	/**
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 1f997353a78f..4de79a7c5dc2 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -775,6 +775,8 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 		str_yes_no(xe_device_has_sriov(xe)),
+ 		xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
+ 
++	xe_pm_init_early(xe);
++
+ 	err = xe_device_probe(xe);
+ 	if (err)
+ 		return err;
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index b429c2876a76..8166b45f83d8 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -163,6 +163,12 @@ static void xe_pm_runtime_init(struct xe_device *xe)
+ 	pm_runtime_put(dev);
+ }
+ 
++void xe_pm_init_early(struct xe_device *xe)
++{
++	INIT_LIST_HEAD(&xe->mem_access.vram_userfault.list);
++	drmm_mutex_init(&xe->drm, &xe->mem_access.vram_userfault.lock);
++}
++
+ void xe_pm_init(struct xe_device *xe)
+ {
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+@@ -214,6 +220,7 @@ struct task_struct *xe_pm_read_callback_task(struct xe_device *xe)
+ 
+ int xe_pm_runtime_suspend(struct xe_device *xe)
+ {
++	struct xe_bo *bo, *on;
+ 	struct xe_gt *gt;
+ 	u8 id;
+ 	int err = 0;
+@@ -247,6 +254,16 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
+ 	 */
+ 	lock_map_acquire(&xe_device_mem_access_lockdep_map);
+ 
++	/*
++	 * Applying lock for entire list op as xe_ttm_bo_destroy and xe_bo_move_notify
++	 * also checks and delets bo entry from user fault list.
++	 */
++	mutex_lock(&xe->mem_access.vram_userfault.lock);
++	list_for_each_entry_safe(bo, on,
++				 &xe->mem_access.vram_userfault.list, vram_userfault.link)
++		xe_bo_runtime_pm_release_mmap_offset(bo);
++	mutex_unlock(&xe->mem_access.vram_userfault.lock);
++
+ 	if (xe->d3cold.allowed) {
+ 		err = xe_bo_evict_all(xe);
+ 		if (err)
+diff --git a/drivers/gpu/drm/xe/xe_pm.h b/drivers/gpu/drm/xe/xe_pm.h
+index 6b9031f7af24..64a97c6726a7 100644
+--- a/drivers/gpu/drm/xe/xe_pm.h
++++ b/drivers/gpu/drm/xe/xe_pm.h
+@@ -20,6 +20,7 @@ struct xe_device;
+ int xe_pm_suspend(struct xe_device *xe);
+ int xe_pm_resume(struct xe_device *xe);
+ 
++void xe_pm_init_early(struct xe_device *xe);
+ void xe_pm_init(struct xe_device *xe);
+ void xe_pm_runtime_fini(struct xe_device *xe);
+ int xe_pm_runtime_suspend(struct xe_device *xe);
+-- 
+2.25.1
+
