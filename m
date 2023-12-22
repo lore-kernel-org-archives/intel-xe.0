@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CEA6C41535
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Dec 2023 17:39:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38515C41535
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Dec 2023 17:59:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B429810E7F8;
-	Fri, 22 Dec 2023 17:39:14 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A0B210E7F8
- for <intel-xe@lists.freedesktop.org>; Fri, 22 Dec 2023 17:39:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6BF210E83F;
+	Fri, 22 Dec 2023 17:59:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64B1110E83F
+ for <intel-xe@lists.freedesktop.org>; Fri, 22 Dec 2023 17:59:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703266753; x=1734802753;
+ t=1703267957; x=1734803957;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=pU41pRq+N3Cbtt/m3WgpVPlaMspPiAk51qK5c0VoH3g=;
- b=fbBTnjRU5nViSwChiO9x69E7DTwDFrmC+LObSNd7Q3gfQWI1H5j26Ve8
- bqNcSqpyjUy62JASAm2U6bTdfqkY1i2ifshJVBCe0xMYIf1rjsOx2a+bx
- R8P7oYfLfXpYKzdgMhty4ZENIcaeyJiGY6ttT5l3bV/4ReuUM+I8VIbPL
- hOs2bsxb0etHzwn/U7D4CHxKOfXl+JziEvw+r7PgTZn3P+93MEdZrdgQ6
- uj6FqwQsRXya/708BkhfGT3V8xKCrIAJN4lXxJVN931dUkR3Wv+9aCWQT
- RSrlztLtJXqJzVt6P2FsuM6aisa5ke2HvmsklOB04xD//oe/3WdrW/vJ1 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10932"; a="14823012"
-X-IronPort-AV: E=Sophos;i="6.04,297,1695711600"; d="scan'208";a="14823012"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2023 09:39:13 -0800
+ bh=omdeVZctGcL7KEyyzr3yaPRk95sCrGb0xaT2zdpGh7Q=;
+ b=bGYlVus64T24jexKW+Rs2q45BuQmjxs5zoz7/uo8LWqeMlw5+B83wpwD
+ KKnrft5wnd2Rday+d+ljKjZ+pZ3HYCnNkPuJIgA+GXF6DyJufzxMlgVyd
+ 5um1hQ14yFHeiIOHyax3+exMKxoHQaaU8YYSO+t1ksM9k/XHjZDZIrpOM
+ MYvKWScvT9IGTr9G/hxinqYi/NNmmw1zoapZc0RJl1El0NhskBG3hoFpc
+ BPAnsJq7sx8TgyopPUVItZAxfInWJ8+EUQUDacjVTmbOokVp2REJVt0/u
+ a1+CZYIEC3pxwqXb6ZMD6pw/Bm5ZshyKPP405RuFLY592z06MJDNSBPtj Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10932"; a="395883330"
+X-IronPort-AV: E=Sophos;i="6.04,297,1695711600"; d="scan'208";a="395883330"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2023 09:59:16 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10932"; a="811370226"
-X-IronPort-AV: E=Sophos;i="6.04,297,1695711600"; d="scan'208";a="811370226"
-Received: from bnilawar-desk1.iind.intel.com ([10.145.169.158])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2023 09:39:10 -0800
-From: Badal Nilawar <badal.nilawar@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10932"; a="847515594"
+X-IronPort-AV: E=Sophos;i="6.04,297,1695711600"; d="scan'208";a="847515594"
+Received: from ktonsber-mobl1.ger.corp.intel.com (HELO fedora..)
+ ([10.249.254.207])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2023 09:59:15 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v5] drm/xe/dgfx: Release mmap mappings on rpm suspend
-Date: Fri, 22 Dec 2023 23:20:36 +0530
-Message-Id: <20231222175036.373201-1-badal.nilawar@intel.com>
-X-Mailer: git-send-email 2.25.1
+Subject: [PATCH RESEND v2] drm/xe/vm: Fix an error path
+Date: Fri, 22 Dec 2023 18:59:04 +0100
+Message-ID: <20231222175904.16732-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -55,293 +56,47 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@intel.com, rodrigo.vivi@intel.com
+Cc: Dafna Hirschfeld <dhirschfeld@habana.ai>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Release all mmap mappings for all vram objects which are associated
-with userfault such that, while pcie function in D3hot, any access
-to memory mappings will raise a userfault.
-
-Upon userfault, in order to access memory mappings, if graphics
-function is in D3 then runtime resume of dgpu will be triggered to
-transition to D0.
+If using the VM_BIND_OP_UNMAP_ALL without any bound vmas for the
+vm, we will end up dereferencing an uninitialized variable and leak a
+bo lock. Fix this.
 
 v2:
-  - Avoid iomem check before bo migration check as bo can migrate
-    to system memory (Matthew Auld)
-v3:
-  - Delete bo userfault link during bo destroy
-  - Upon bo move (vram-smem), do bo userfault link deletion in
-    xe_bo_move_notify instead of xe_bo_move (Thomas Hellström)
-  - Grab lock in rpm hook while deleting bo userfault link (Matthew Auld)
-v4:
-  - Add kernel doc and wrap vram_userfault related
-    stuff in the structure (Matthew Auld)
-  - Get rpm wakeref before taking dma reserve lock (Matthew Auld)
-  - In suspend path apply lock for entire list op
-    including list iteration (Matthew Auld)
-v5:
-  - Use mutex lock instead of spin lock
+- Updated commit message (Lucas De Marchi)
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Anshuman Gupta <anshuman.gupta@intel.com>
-Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+Reported-by: Dafna Hirschfeld <dhirschfeld@habana.ai>
+Closes: https://lore.kernel.org/intel-xe/jrwua7ckbiozfcaodx4gg2h4taiuxs53j5zlpf3qzvyhyiyl2d@pbs3plurokrj/
+Suggested-by: Dafna Hirschfeld <dhirschfeld@habana.ai>
+Fixes: 9f232f4ae249 ("drm/xe: Port Xe to GPUVA")
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c           | 57 ++++++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_bo.h           |  2 +
- drivers/gpu/drm/xe/xe_bo_types.h     | 10 +++++
- drivers/gpu/drm/xe/xe_device_types.h | 12 ++++++
- drivers/gpu/drm/xe/xe_pci.c          |  2 +
- drivers/gpu/drm/xe/xe_pm.c           | 17 +++++++++
- drivers/gpu/drm/xe/xe_pm.h           |  1 +
- 7 files changed, 97 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 8e4a3b1f6b93..4fd3a229755c 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -586,6 +586,8 @@ static int xe_bo_move_notify(struct xe_bo *bo,
- {
- 	struct ttm_buffer_object *ttm_bo = &bo->ttm;
- 	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
-+	struct ttm_resource *old_mem = ttm_bo->resource;
-+	u32 old_mem_type = old_mem ? old_mem->mem_type : XE_PL_SYSTEM;
- 	int ret;
- 
- 	/*
-@@ -605,6 +607,18 @@ static int xe_bo_move_notify(struct xe_bo *bo,
- 	if (ttm_bo->base.dma_buf && !ttm_bo->base.import_attach)
- 		dma_buf_move_notify(ttm_bo->base.dma_buf);
- 
-+	/*
-+	 * TTM has already nuked the mmap for us (see ttm_bo_unmap_virtual),
-+	 * so if we moved from VRAM make sure to unlink this from the userfault
-+	 * tracking.
-+	 */
-+	if (mem_type_is_vram(old_mem_type)) {
-+		mutex_lock(&xe->mem_access.vram_userfault.lock);
-+		if (!list_empty(&bo->vram_userfault.link))
-+			list_del_init(&bo->vram_userfault.link);
-+		mutex_unlock(&xe->mem_access.vram_userfault.lock);
-+	}
-+
- 	return 0;
- }
- 
-@@ -1063,6 +1077,11 @@ static void xe_ttm_bo_destroy(struct ttm_buffer_object *ttm_bo)
- 	if (bo->vm && xe_bo_is_user(bo))
- 		xe_vm_put(bo->vm);
- 
-+	mutex_lock(&xe->mem_access.vram_userfault.lock);
-+	if (!list_empty(&bo->vram_userfault.link))
-+		list_del(&bo->vram_userfault.link);
-+	mutex_unlock(&xe->mem_access.vram_userfault.lock);
-+
- 	kfree(bo);
- }
- 
-@@ -1110,16 +1129,20 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
- {
- 	struct ttm_buffer_object *tbo = vmf->vma->vm_private_data;
- 	struct drm_device *ddev = tbo->base.dev;
-+	struct xe_device *xe = to_xe_device(ddev);
-+	struct xe_bo *bo = ttm_to_xe_bo(tbo);
-+	bool needs_rpm = bo->flags & XE_BO_CREATE_VRAM_MASK;
- 	vm_fault_t ret;
- 	int idx, r = 0;
- 
-+	if (needs_rpm)
-+		xe_device_mem_access_get(xe);
-+
- 	ret = ttm_bo_vm_reserve(tbo, vmf);
- 	if (ret)
--		return ret;
-+		goto out;
- 
- 	if (drm_dev_enter(ddev, &idx)) {
--		struct xe_bo *bo = ttm_to_xe_bo(tbo);
--
- 		trace_xe_bo_cpu_fault(bo);
- 
- 		if (should_migrate_to_system(bo)) {
-@@ -1137,10 +1160,25 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
- 	} else {
- 		ret = ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
- 	}
-+
- 	if (ret == VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
--		return ret;
-+		goto out;
-+	/*
-+	 * ttm_bo_vm_reserve() already has dma_resv_lock.
-+	 */
-+	if (ret == VM_FAULT_NOPAGE && list_empty(&bo->vram_userfault.link)) {
-+		if (tbo->resource->bus.is_iomem) {
-+			mutex_lock(&xe->mem_access.vram_userfault.lock);
-+			list_add(&bo->vram_userfault.link, &xe->mem_access.vram_userfault.list);
-+			mutex_unlock(&xe->mem_access.vram_userfault.lock);
-+		}
-+	}
- 
- 	dma_resv_unlock(tbo->base.resv);
-+out:
-+	if (needs_rpm)
-+		xe_device_mem_access_put(xe);
-+
- 	return ret;
- }
- 
-@@ -1254,6 +1292,7 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
- #ifdef CONFIG_PROC_FS
- 	INIT_LIST_HEAD(&bo->client_link);
- #endif
-+	INIT_LIST_HEAD(&bo->vram_userfault.link);
- 
- 	drm_gem_private_object_init(&xe->drm, &bo->ttm.base, size);
- 
-@@ -2264,6 +2303,16 @@ int xe_bo_dumb_create(struct drm_file *file_priv,
- 	return err;
- }
- 
-+void xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo)
-+{
-+	struct ttm_buffer_object *tbo = &bo->ttm;
-+	struct ttm_device *bdev = tbo->bdev;
-+
-+	drm_vma_node_unmap(&tbo->base.vma_node, bdev->dev_mapping);
-+
-+	list_del(&bo->vram_userfault.link);
-+}
-+
- #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
- #include "tests/xe_bo.c"
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 97b32528c600..350cc73cadf8 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -249,6 +249,8 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
- 			struct drm_file *file);
- int xe_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
- 			     struct drm_file *file);
-+void xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo);
-+
- int xe_bo_dumb_create(struct drm_file *file_priv,
- 		      struct drm_device *dev,
- 		      struct drm_mode_create_dumb *args);
-diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-index 64c2249a4e40..b4e44fab9cd2 100644
---- a/drivers/gpu/drm/xe/xe_bo_types.h
-+++ b/drivers/gpu/drm/xe/xe_bo_types.h
-@@ -88,6 +88,16 @@ struct xe_bo {
- 	 * objects.
- 	 */
- 	u16 cpu_caching;
-+
-+	/**
-+	 * @vram_userfault: Encapsulate vram_userfault related stuff
-+	 */
-+	struct {
-+		/** @link: Link into @mem_access.vram_userfault.list */
-+		struct list_head link;
-+		/** @count: Whether bo is @mem_access.vram_userfault.list */
-+		unsigned int count;
-+	} vram_userfault;
- };
- 
- #define intel_bo_to_drm_bo(bo) (&(bo)->ttm.base)
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 71f23ac365e6..e27c2211728f 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -385,6 +385,18 @@ struct xe_device {
- 	struct {
- 		/** @ref: ref count of memory accesses */
- 		atomic_t ref;
-+
-+		/** @vram_userfault: Encapsulate vram_userfault related stuff */
-+		struct {
-+			/** @lock: Protects access to @vram_usefault.list */
-+			struct mutex lock;
-+
-+			/**
-+			 *  @list: Keep list of userfaulted vram bo, which require to release their
-+			 *  mmap mappings at runtime suspend path.
-+			 */
-+			struct list_head list;
-+		} vram_userfault;
- 	} mem_access;
- 
- 	/**
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 1f997353a78f..4de79a7c5dc2 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -775,6 +775,8 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 		str_yes_no(xe_device_has_sriov(xe)),
- 		xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
- 
-+	xe_pm_init_early(xe);
-+
- 	err = xe_device_probe(xe);
- 	if (err)
- 		return err;
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index b429c2876a76..8166b45f83d8 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -163,6 +163,12 @@ static void xe_pm_runtime_init(struct xe_device *xe)
- 	pm_runtime_put(dev);
- }
- 
-+void xe_pm_init_early(struct xe_device *xe)
-+{
-+	INIT_LIST_HEAD(&xe->mem_access.vram_userfault.list);
-+	drmm_mutex_init(&xe->drm, &xe->mem_access.vram_userfault.lock);
-+}
-+
- void xe_pm_init(struct xe_device *xe)
- {
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-@@ -214,6 +220,7 @@ struct task_struct *xe_pm_read_callback_task(struct xe_device *xe)
- 
- int xe_pm_runtime_suspend(struct xe_device *xe)
- {
-+	struct xe_bo *bo, *on;
- 	struct xe_gt *gt;
- 	u8 id;
- 	int err = 0;
-@@ -247,6 +254,16 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
- 	 */
- 	lock_map_acquire(&xe_device_mem_access_lockdep_map);
- 
-+	/*
-+	 * Applying lock for entire list op as xe_ttm_bo_destroy and xe_bo_move_notify
-+	 * also checks and delets bo entry from user fault list.
-+	 */
-+	mutex_lock(&xe->mem_access.vram_userfault.lock);
-+	list_for_each_entry_safe(bo, on,
-+				 &xe->mem_access.vram_userfault.list, vram_userfault.link)
-+		xe_bo_runtime_pm_release_mmap_offset(bo);
-+	mutex_unlock(&xe->mem_access.vram_userfault.lock);
-+
- 	if (xe->d3cold.allowed) {
- 		err = xe_bo_evict_all(xe);
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 1ca917b8315c..127842656a23 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2063,9 +2063,11 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
  		if (err)
-diff --git a/drivers/gpu/drm/xe/xe_pm.h b/drivers/gpu/drm/xe/xe_pm.h
-index 6b9031f7af24..64a97c6726a7 100644
---- a/drivers/gpu/drm/xe/xe_pm.h
-+++ b/drivers/gpu/drm/xe/xe_pm.h
-@@ -20,6 +20,7 @@ struct xe_device;
- int xe_pm_suspend(struct xe_device *xe);
- int xe_pm_resume(struct xe_device *xe);
+ 			return ERR_PTR(err);
  
-+void xe_pm_init_early(struct xe_device *xe);
- void xe_pm_init(struct xe_device *xe);
- void xe_pm_runtime_fini(struct xe_device *xe);
- int xe_pm_runtime_suspend(struct xe_device *xe);
+-		vm_bo = drm_gpuvm_bo_find(&vm->gpuvm, obj);
+-		if (!vm_bo)
+-			break;
++		vm_bo = drm_gpuvm_bo_obtain(&vm->gpuvm, obj);
++		if (IS_ERR(vm_bo)) {
++			xe_bo_unlock(bo);
++			return ERR_CAST(vm_bo);
++		}
+ 
+ 		ops = drm_gpuvm_bo_unmap_ops_create(vm_bo);
+ 		drm_gpuvm_bo_put(vm_bo);
 -- 
-2.25.1
+2.42.0
 
