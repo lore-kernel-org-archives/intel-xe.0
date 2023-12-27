@@ -4,45 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01654C46CD2
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Dec 2023 23:59:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A3F9C46CD4
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Dec 2023 23:59:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0B4A10E109;
-	Wed, 27 Dec 2023 23:59:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98E1610E16D;
+	Wed, 27 Dec 2023 23:59:06 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFA4110E109
- for <intel-xe@lists.freedesktop.org>; Wed, 27 Dec 2023 23:59:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 646EB10E109
+ for <intel-xe@lists.freedesktop.org>; Wed, 27 Dec 2023 23:59:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1703721545; x=1735257545;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=V6+maOVcb8VRYP12n2ecZuvi7L2nVTTMrFmLo5OIB7A=;
- b=RI+qLdePSR/LQ2cah+WxOiHP11LddM1cEq7yr3tuSdzyzO/UBVH1JJ0f
- c2feajggiYgxvbQK7zyMJqzoAn1pGvRZtNYns2VOeR3f8FikwWRoyuSNt
- nr/Q4gIXhr1HzV2yVJR6Ma7irT1O2KvPm9GZe5XPMzss5IGU9hPwZPutZ
- NuGO/XaBT3vkkzot0NQbJ+/CZzvYzvpOgGEMVSj6xE8g8sEtwndVdcpP9
- SCGmdSXnSA9ZKuK5Q4d5m+ZdkX6/WfBR/iDtBQNQl9Vtcz5IPN89ASJ/Y
- DIvgov+dxN9/WpfIfLvZDBjAgZZjEAiF5zkiPUIoD6dqPVwQjf6IB0IN6 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10936"; a="3329147"
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=EX9PPTNn81KlzFWdm4vuLsaOn5fRYgVT/GVSMDmlYFQ=;
+ b=QD5IH2kLDhFBEAuuq4NtoCqqKt9pacfQv9gy5E1/W/bD0NWh0h9qklUr
+ 6jMVG00z1+27iNziI39sUmpXtEHcGHzYnrV1f2nbehzPGKUwnK+dyHJOf
+ nKd8TEQ8KrkfIgB63k/TgE1Lr5Lbu1eN2BYSCdOpIPCxNTrL+v7WcNpI3
+ 6f/8eIqx0v7KGQFPv6oKId+z3i7FwIfa7q/pNO2Idte5SAuYsTm5ksAVX
+ Y40OsklRPITHzW1zOQBHB/yMadwGtc7zo80cjKVDhyq0uWkq2Sk4CLvRo
+ /I+HwLSSdrh68Uzy+r4dKVPuhA+h9GrtLwe5YGKOJwHCHv5U+7XGL3Cdr g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10936"; a="3329149"
 X-IronPort-AV: E=Sophos;i="6.04,310,1695711600"; 
-   d="scan'208";a="3329147"
+   d="scan'208";a="3329149"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Dec 2023 15:59:04 -0800
+ 27 Dec 2023 15:59:05 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10936"; a="754589855"
-X-IronPort-AV: E=Sophos;i="6.04,310,1695711600"; d="scan'208";a="754589855"
+X-IronPort-AV: E=McAfee;i="6600,9927,10936"; a="754589857"
+X-IronPort-AV: E=Sophos;i="6.04,310,1695711600"; d="scan'208";a="754589857"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.132.129])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Dec 2023 15:59:02 -0800
+ 27 Dec 2023 15:59:04 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 00/10] Introduce Relay Communication for SR-IOV
-Date: Thu, 28 Dec 2023 00:58:28 +0100
-Message-Id: <20231227235838.212-1-michal.wajdeczko@intel.com>
+Subject: [PATCH 01/10] drm/xe: Allocate dedicated workqueue for SR-IOV workers
+Date: Thu, 28 Dec 2023 00:58:29 +0100
+Message-Id: <20231227235838.212-2-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20231227235838.212-1-michal.wajdeczko@intel.com>
+References: <20231227235838.212-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -58,78 +61,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There are scenarios where SR-IOV Virtual Function (VF) driver will
-need to get additional data that is not available over VF MMIO BAR
-nor could be queried from the GuC firmware and must be obtained
-from the Physical Function (PF) driver.
+We plan to use several workers where we might be running long
+operations. Allocate dedicated workqueue to avoid undesired
+interaction with non-virtualized workers.
 
-The communication between Virtual Function (VF) drivers and Physical
-Function (PF) drivers is based on the GuC firmware acting as a proxy
-(relay) agent.
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.c       |  4 +++
+ drivers/gpu/drm/xe/xe_device_types.h |  2 ++
+ drivers/gpu/drm/xe/xe_sriov.c        | 37 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sriov.h        |  1 +
+ 4 files changed, 44 insertions(+)
 
-  VF                           GuC                            PF
-  |                             |                             |
- [ ] VF2GUC_RELAY_TO_PF         |                             |
- [ ]-------------------------> [ ]                            |
- [ ] { rid, msg }              [ ]                            |
- [ ]                           [ ] GUC2PF_RELAY_FROM_VF       |
- [ ]                           [ ]-------------------------> [ ]
- [ ]                            |  { VFID, rid, msg }        [ ]
- [ ]                            |                            [ ]
- [ ]                            |         PF2GUC_RELAY_TO_VF [ ]
- [ ]                           [ ] <-------------------------[ ]
- [ ]                           [ ]      { VFID, rid, reply }  |
- [ ]      GUC2VF_RELAY_FROM_PF [ ]                            |
- [ ] <-------------------------[ ]                            |
-  |             { rid, reply }  |                             |
-  |                             |                             |
-
-This series only introduces necessary functions (together with basic
-kunit tests) to allow use of relay communication by the VFs drivers.
-We will start using this functionality in upcoming series.
-
-Michal Wajdeczko (10):
-  drm/xe: Allocate dedicated workqueue for SR-IOV workers
-  drm/xe: Define Virtual Function Identifier
-  drm/xe: Introduce GT-oriented SR-IOV logging macros
-  drm/xe/guc: Add helpers for HXG messages
-  drm/xe/guc: Update few GuC CTB ABI definitions
-  drm/xe/guc: Add Relay Communication ABI definitions
-  drm/xe/guc: Introduce Relay Communication for SR-IOV
-  drm/xe/kunit: Allow to replace xe_guc_ct_send_recv() with stub
-  drm/xe/kunit: Add GuC Relay kunit tests
-  drm/xe/guc: Start handling GuC Relay event messages
-
- drivers/gpu/drm/xe/Makefile                   |   1 +
- .../gpu/drm/xe/abi/guc_actions_sriov_abi.h    | 174 ++++
- .../drm/xe/abi/guc_communication_ctb_abi.h    |   3 +-
- .../gpu/drm/xe/abi/guc_relay_actions_abi.h    |  79 ++
- .../drm/xe/abi/guc_relay_communication_abi.h  | 118 +++
- drivers/gpu/drm/xe/tests/xe_guc_relay_test.c  | 522 ++++++++++
- drivers/gpu/drm/xe/xe_device.c                |   4 +
- drivers/gpu/drm/xe/xe_device_types.h          |   2 +
- drivers/gpu/drm/xe/xe_gt_sriov_printk.h       |  34 +
- drivers/gpu/drm/xe/xe_guc.c                   |   5 +
- drivers/gpu/drm/xe/xe_guc_ct.c                |  11 +
- drivers/gpu/drm/xe/xe_guc_hxg_helpers.h       | 107 ++
- drivers/gpu/drm/xe/xe_guc_relay.c             | 933 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_relay.h             |  32 +
- drivers/gpu/drm/xe/xe_guc_relay_types.h       |  36 +
- drivers/gpu/drm/xe/xe_guc_types.h             |   4 +
- drivers/gpu/drm/xe/xe_sriov.c                 |  37 +
- drivers/gpu/drm/xe/xe_sriov.h                 |   1 +
- drivers/gpu/drm/xe/xe_sriov_types.h           |  12 +
- 19 files changed, 2114 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
- create mode 100644 drivers/gpu/drm/xe/abi/guc_relay_actions_abi.h
- create mode 100644 drivers/gpu/drm/xe/abi/guc_relay_communication_abi.h
- create mode 100644 drivers/gpu/drm/xe/tests/xe_guc_relay_test.c
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_printk.h
- create mode 100644 drivers/gpu/drm/xe/xe_guc_hxg_helpers.h
- create mode 100644 drivers/gpu/drm/xe/xe_guc_relay.c
- create mode 100644 drivers/gpu/drm/xe/xe_guc_relay.h
- create mode 100644 drivers/gpu/drm/xe/xe_guc_relay_types.h
-
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 86867d42d532..004e65544e8d 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -438,6 +438,10 @@ int xe_device_probe(struct xe_device *xe)
+ 
+ 	xe_pat_init_early(xe);
+ 
++	err = xe_sriov_init(xe);
++	if (err)
++		return err;
++
+ 	xe->info.mem_region_mask = 1;
+ 	err = xe_display_init_nommio(xe);
+ 	if (err)
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 71f23ac365e6..163d889d407b 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -321,6 +321,8 @@ struct xe_device {
+ 	struct {
+ 		/** @sriov.__mode: SR-IOV mode (Don't access directly!) */
+ 		enum xe_sriov_mode __mode;
++		/** @sriov.wq: workqueue used by the virtualization workers */
++		struct workqueue_struct *wq;
+ 	} sriov;
+ 
+ 	/** @clients: drm clients info */
+diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
+index 42a0e0c917a0..4960e8f461c8 100644
+--- a/drivers/gpu/drm/xe/xe_sriov.c
++++ b/drivers/gpu/drm/xe/xe_sriov.c
+@@ -3,6 +3,8 @@
+  * Copyright © 2023 Intel Corporation
+  */
+ 
++#include <drm/drm_managed.h>
++
+ #include "xe_assert.h"
+ #include "xe_sriov.h"
+ 
+@@ -53,3 +55,38 @@ void xe_sriov_probe_early(struct xe_device *xe, bool has_sriov)
+ 		drm_info(&xe->drm, "Running in %s mode\n",
+ 			 xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
+ }
++
++static void fini_sriov(struct drm_device *drm, void *arg)
++{
++	struct xe_device *xe = arg;
++
++	destroy_workqueue(xe->sriov.wq);
++	xe->sriov.wq = NULL;
++}
++
++/**
++ * xe_sriov_init - Initialize SR-IOV specific data.
++ * @xe: the &xe_device to initialize
++ *
++ * While most of the initialization errors would be fatal for the Virtual
++ * Function (VF) device driver, in case of the Physical Function (PF) we
++ * might just limit the PF functionality and continue run as a native
++ * (non-virtualized) driver.
++ *
++ * In this function we just create dedicated workqueue that will be used
++ * by the SR-IOV specific workers.
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_sriov_init(struct xe_device *xe)
++{
++	if (!IS_SRIOV(xe))
++		return 0;
++
++	xe_assert(xe, !xe->sriov.wq);
++	xe->sriov.wq = alloc_workqueue("xe-sriov-wq", 0, 0);
++	if (!xe->sriov.wq)
++		return -ENOMEM;
++
++	return drmm_add_action_or_reset(&xe->drm, fini_sriov, xe);
++}
+diff --git a/drivers/gpu/drm/xe/xe_sriov.h b/drivers/gpu/drm/xe/xe_sriov.h
+index 5af73a3172b0..1545552162c9 100644
+--- a/drivers/gpu/drm/xe/xe_sriov.h
++++ b/drivers/gpu/drm/xe/xe_sriov.h
+@@ -13,6 +13,7 @@
+ const char *xe_sriov_mode_to_string(enum xe_sriov_mode mode);
+ 
+ void xe_sriov_probe_early(struct xe_device *xe, bool has_sriov);
++int xe_sriov_init(struct xe_device *xe);
+ 
+ static inline enum xe_sriov_mode xe_device_sriov_mode(struct xe_device *xe)
+ {
 -- 
 2.25.1
 
