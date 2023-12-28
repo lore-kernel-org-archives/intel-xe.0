@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D133C46CD2
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Dec 2023 02:12:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF720C46CD4
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Dec 2023 02:12:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0509C10E061;
-	Thu, 28 Dec 2023 02:12:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DEF310E1B5;
+	Thu, 28 Dec 2023 02:12:56 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD6B010E061
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Dec 2023 02:12:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3BD7B10E1B5
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 Dec 2023 02:12:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703729569; x=1735265569;
+ t=1703729572; x=1735265572;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=4j1a22eSnmeq+yfH+G/B8aFanoa6Vw6xEV9ccZcymnc=;
- b=g8QLIGYRjYlJy6VGXnsc585Y69Th63ZH9c76iIn8nOXGEBG9gZgjJsOQ
- kiA2PZrS/320cGef7nxG9E9i18n1atMevEO6lW9xLjrqHYasbbwg95m3h
- zwYR1IdH4u+3AHTncFTrQpVIxgcN6xLNWJGGH8DuuSw8N+X61RVBDsYLO
- A2BrlKtZgLK+UyPGqsWn3VM/ej5Cp55nj3gGt2gkzTI+0WcKadBjuYscU
- X8aDQMQ72EbICDQwbvh1e/pLT1XIktyEMuYqGyYAvfdBCndGp+8a2hfT9
- XKsz3pvFQqmQG5zewy0OI7dWJEzlGuG0UtrW1uo77M4YdIbL8DUdLsfNv g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10936"; a="482684568"
-X-IronPort-AV: E=Sophos;i="6.04,310,1695711600"; d="scan'208";a="482684568"
+ bh=FlnoGa63iqHr2tP6J+fc0bNlT7zSTCWTwkqQfRtiVBE=;
+ b=NdJjW2XZaWbIW8JLP/znC3Ws4kwT2gPhDxpEIPk6PBANbW+jqpyYw37b
+ mfYuUwzhSotFExa6swz5BE7tXnVfq9TA9a8nRV0UfLEfKS6QG3sLqM/Ns
+ uNZpox5DCBNztzj3eSS0MQIz8FW529kL+v2JLAnreZBzkkM5H8y4rO6mF
+ GNqUiNsFQag4+MNkKMDaCSZNizndBWcs6AY0BzlUCT+0R0+tDMMbJ+Jp9
+ kNGS/USL+kgsdlTR4bxUzaTHGXD1lL4pZo0jUeEbS2yNPja/5q41lgMCo
+ fptf2XDyCRdDWtk3CilNcgmpx+8CVsigaZLbnFt08YvC4ZGCzE/GVpZV0 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10936"; a="482684572"
+X-IronPort-AV: E=Sophos;i="6.04,310,1695711600"; d="scan'208";a="482684572"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Dec 2023 18:12:48 -0800
+ 27 Dec 2023 18:12:51 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10936"; a="754611046"
-X-IronPort-AV: E=Sophos;i="6.04,310,1695711600"; d="scan'208";a="754611046"
+X-IronPort-AV: E=McAfee;i="6600,9927,10936"; a="754611053"
+X-IronPort-AV: E=Sophos;i="6.04,310,1695711600"; d="scan'208";a="754611053"
 Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
  by orsmga006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 27 Dec 2023 18:12:48 -0800
+ 27 Dec 2023 18:12:51 -0800
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
  ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 27 Dec 2023 18:12:48 -0800
+ 15.1.2507.35; Wed, 27 Dec 2023 18:12:51 -0800
 Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
  orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 27 Dec 2023 18:12:48 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
+ 15.1.2507.35 via Frontend Transport; Wed, 27 Dec 2023 18:12:51 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
  by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 27 Dec 2023 18:12:47 -0800
+ 15.1.2507.35; Wed, 27 Dec 2023 18:12:51 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ebj83rPSQRbjoqSMn6JhmaVk/Rr6ThQ59vOZk1/LuhWN6ovgovznG4ddQcE5/+ZNy70P0ce/fGdga9Qle5ILHVyB2D+TUePdcSpKMGJ24KvGzPHU/pQQSXxOCVJJiq126Ud+Dgnn/3/GSrGBK4MZrqOopQHD2DqZKtfS5/o7JFiNlKyPSHbh+l+stSTjPiKtfNdTCQFos9yIqX6pFWTmVaF6QSMjXValsRZriLkmPXqUesoHtmBqvAnEceikTt+AkGSK0K6VjhCNwoMoYWfORKsrtA45oC6v9s+iP+zTIfV+Pf1eiLqSkIXbllE3Rg/pc8lXydQWvlLzLhmH4Gojiw==
+ b=T+SRC6JATJVlX4H/dmBYecXzf0/Vqkx5RqTsH/9ewOSPViL3g0XZBRszCQDm80+SQcJDMzutecsERNiRl1WpmSILx5b/9P1Cm3YmHxmJZyIUh1piXaSppk0Q/l44Oe0pZClsXYa4pStwBTcZUnJUAd7PYH+0OEWL8z5rPVP2mU9sqwz0INRQLoJo/93ehUNleiboQO7Vb25alDJkLj8IcyIAnrFMUFAjMc1xZVVhCGWc2MvSy1QfbXGhdCD/NpihyGMj/f/MgbC/nX8c2ptYnQrr7z/vypJU5ryPkLOy3BJALYUtZHyFcytU00SNLwxhzZTh0R2M5RrTVRbdxu/2lg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6nn0TSFdv+NADNpBxTc8F9xaoES6P7LJMabKOkWOfCU=;
- b=n7y3xsydiZGHuQbyWSAEHI32/El1kqoV8mOcXzf3CvqRAes3XKjTo/C4+CFle3iGujcym9Dmpr7qeut8ZG/Ad492MZQbWbKBxK+u0hQ/D6iSh9qLRusEG+RHd3BM2wbUueRvE4Cg1TfyXiiu7Hfstt9QeDKaGB4xTykEfhjPPme0KFFy4LJVbt+o46ku34WbI0d8LOuIJYqcWtqAvYD/Lh27vVh9Q+LiFHbFsY/aO6KlxfBaP0dOfbemZSTwLsN6aCWRqLbWQHDrcLPvj7zKGuAO44UgubV6yRTlX3e5IrqAo71FX0h4hV1Y9Hqi51LpfPOj8Mi6YvF+sD13968m3w==
+ bh=e5KFleBizMVu+Xm/5QQKlNTQuP7MiW8BZ2c+R84j75o=;
+ b=Kjj7L7gkWcy2YKT5U+png38Bo05u36gLQiKDiHGsZPUUI3rAOxbEfGrIZpTCUkwCJtB8ukmOJjwMTqgusbF1iiMZY1eZMLAVryFjcXyePR4jZCCFnTkpNqMxgPpyWO0sP3e78cGh5yaeNYymxa4C5ze14iAh14tIRIiE6REYiO6+XQg4E9Z8Py3SKpKQPVVka06dGpFDSSE9fm23x4fdQyPdFJbyVfoeigT5qnFVj9l8FChKMzwYV8l1nF1RSxt+L/v8j+CbbtbSZLEA1ddPbcGT0AtZLO6CBzOXsuUWDDd3bXcGKl+FKaedxmSsQ8/rFt4vw3D6S3Y1uXUY2Hyv9Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -63,72 +63,73 @@ Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
  by CO1PR11MB4833.namprd11.prod.outlook.com (2603:10b6:303:99::13)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7135.18; Thu, 28 Dec
- 2023 02:12:43 +0000
+ 2023 02:12:49 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::ada2:f954:a3a5:6179]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::ada2:f954:a3a5:6179%5]) with mapi id 15.20.7113.027; Thu, 28 Dec 2023
- 02:12:43 +0000
+ 02:12:49 +0000
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Subject: [RFC 01/20] drm/xe: Document Xe PM component
-Date: Wed, 27 Dec 2023 21:12:13 -0500
-Message-ID: <20231228021232.2366249-2-rodrigo.vivi@intel.com>
+Subject: [RFC 03/20] drm/xe: Create a xe_pm_runtime_resume_and_get variant for
+ display
+Date: Wed, 27 Dec 2023 21:12:15 -0500
+Message-ID: <20231228021232.2366249-4-rodrigo.vivi@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20231228021232.2366249-1-rodrigo.vivi@intel.com>
 References: <20231228021232.2366249-1-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: BYAPR05CA0088.namprd05.prod.outlook.com
- (2603:10b6:a03:e0::29) To MN0PR11MB6059.namprd11.prod.outlook.com
+X-ClientProxiedBy: BYAPR05CA0063.namprd05.prod.outlook.com
+ (2603:10b6:a03:74::40) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|CO1PR11MB4833:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6ee7ee52-ff99-489c-d642-08dc074a79b0
+X-MS-Office365-Filtering-Correlation-Id: 2885d8f9-a7bd-4f61-b0da-08dc074a7d52
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9UOFeQDWoIC/3jLYr9u7n2mgAntYkkDQusEtHswOYkU4EYQh4PS/0EiUuoOqG8Cm9qY2yLWoAyUS/Hj9s4ga95iHKtkIqqY6csUe8JWCCQM9Gk4RZV6TM4G4BWnthXrSLeFBLb7bEfd7y13kH9xExAt93+Zi+Nv1iIam72NZs45oUvpHQ74d2sgD2JG6fxYiWMONnwtAhjdAbDJe0xCkHFbiG3htMDaPX27F1b0xpTXQ3OPpWmQ37KPC+wqxEhB2p8yiQ1Whz5wdKELsCpbvnh+2ggQGiJn4eHDzDAacZ2WK3MzwmzSXyHj7v1OPIqDpWFG5Y2telNjzU8kOmDCUAkhJz3gGQi8pMkkul/w54IWaOKsJaNz1t4C9vU4tLSo6SgUlVrzCvRiQjvWUBf2qyxWFnC9aZpBxZZPoOkMiDWVRfGcAu56Uf93uT71pfS7z8FfB4nxyVEV24I5gxFztnDhWivEb2bS/CeJ8JTHghIMRre9cEMQgMTvtNCKIZIetXUxcYeJDziE3NxGkf6NoL2fBPVf7esBEVi/c3SdCdJB3HoerlIWp/3gpi9XNsWOV
+X-Microsoft-Antispam-Message-Info: +VE0PZEL7LohCTRoPVz74xCZYwe9LBcKVUR5q27DzKkjoEe+Bwj8QNapXLSvHdBlyRsvoWpNdf8/jxAQDPji2ZsHgYciG4w1AAeVMXflvJkbd+Q/P/y/CkyWOj/v8VSA9lsycXacxh5o8zeVfxWyUjNMveXh4pdlGp1k71F6FRTIYPMU+IfZmwOLAgyby+6d4nuOenqyRjv0GKin7FmPXKe9f4Vd+eHNgKwZQTY0hpPGq9OTTcR8rPfGkZ4L2ZIOMTwWiEtNhUAKy286R+602o9LpLsSHQTu5urIyAIG/D2qJ62adsOGiSnvyMPi9usBbm8zvpE56QpcTYKoqcjw6JzehnPWDtvxme1nloPHRGoAUFCsAzeyStcZb+KXBqXcLcteRnw6rjSM3IyGfUT2QVMPPsQ74Di87eBH81gK8timWaUhAOjhrBKcUgyW1IyvWx2escg43zXq2YK9fWBPJfrPKZnrzTEU1sKI5dOA9JpYe64vLx+uaSxDDl8OnwX7inZvIDfOp3RnZFTBSSL+7vfh2q7S7IK1aiZx/bFAAnn/uKo/sIlPa5oEIJw392ZQ
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(376002)(136003)(396003)(346002)(366004)(230922051799003)(451199024)(186009)(1800799012)(64100799003)(107886003)(2616005)(26005)(1076003)(6666004)(6512007)(6506007)(83380400001)(6916009)(478600001)(4326008)(5660300002)(8936002)(8676002)(44832011)(6486002)(66556008)(66946007)(316002)(66476007)(54906003)(38100700002)(82960400001)(86362001)(41300700001)(2906002)(36756003);
+ SFS:(13230031)(39860400002)(376002)(136003)(396003)(346002)(366004)(230922051799003)(451199024)(186009)(1800799012)(64100799003)(107886003)(2616005)(26005)(1076003)(6666004)(6512007)(6506007)(83380400001)(6916009)(478600001)(4326008)(5660300002)(8936002)(8676002)(44832011)(6486002)(66556008)(66946007)(316002)(66476007)(38100700002)(82960400001)(86362001)(41300700001)(2906002)(36756003);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?eWruXp21Z3tNU/ihjqXZVjstbDGAtmqSQ2junzPtepXH5Q2foClyq4wusnvY?=
- =?us-ascii?Q?Jn+v9xqIql6pUewcc/pmaUQTgpOWvZIwaEKHooTEVqYBigdZGwvgGqSRIl5z?=
- =?us-ascii?Q?jC3SysyXbAZ/9e6m43R5Vq1C/c/iBauW3cPJ/9gCOuj+6nGCX8+no32yZwBb?=
- =?us-ascii?Q?fpH7GYCV4GeTWnIGT5moUJCJcye4aEjXgYCx2YTDKqFLxo/aQP/2JXWhwMrq?=
- =?us-ascii?Q?Car0u3B2bead7jF2v3Nn5sK+Z+9QXicWjB59ussQ2z/8VnXDt6kzLB/y9muv?=
- =?us-ascii?Q?ERfCRbvjGoIzzD0ELZu+m1WAJpYWz95n5owsaAfxaqDraYOczXEK3KPEKb18?=
- =?us-ascii?Q?VMllmv2bMdDtEbz/fMkmybib7wRz0o9wzEk5GTfvZ7J2NShiJ4pr+yr15OuG?=
- =?us-ascii?Q?yZikE1sUOuGSP1NZVTD5HzPiedHjN9wjnauYtZS8siZdy/S5ggr0f0Mj49MB?=
- =?us-ascii?Q?AVg7UCC71BD91qQw550/ILaePkt7t93svpvBbxjhZPq/Bj7ybwRQhjb30t1K?=
- =?us-ascii?Q?Lod8k+PnL/MJmkyXyBc4joPIX24MOreIITaovuNoJ5v+YX0tplSuQqukegwX?=
- =?us-ascii?Q?zVMgHmGvEQ63bNgDbdwURyQQtRcgURmDHUbd8XVw2JIO227E8Y2+qvTjoca8?=
- =?us-ascii?Q?dct/44GHasne82FPjceCOb7TAMh7cTyJjBMQjPB1LF44o0DLKU4dhAwWbIrD?=
- =?us-ascii?Q?tqiuzoK7q+rtaUIF8LTvSX1qn4eyML42SXDXQPT5giEoHqQIrM97h+FKBU1f?=
- =?us-ascii?Q?MbBoltfw/l659EhOi4rbOOF3e9k3nuZqzJf/S6HXuCuYSOKgthv9cbhX2ksB?=
- =?us-ascii?Q?KVerrnKZ38Da4WvY/EaRzI6+Vx3Je6qj4tLKT+xtnEhOLqT58h2/v4O4Y41Y?=
- =?us-ascii?Q?E0vNQ9eiTUStGMVrROuCioAbgU9+BEP2yIRKcIeffDN+5mG5uuX5Ntg/wcpD?=
- =?us-ascii?Q?am4jRYtehFwZzudnvOI4qozOy/yUV0FkZPjSwJQm2/mR//9T8yp+y8mmu171?=
- =?us-ascii?Q?bnuE9EaWLCuiX8nvLUrLOmVZ7Z2xRZcWtdScH8ZPJc037KvG0wlvGmCnND4C?=
- =?us-ascii?Q?TLCH8Bt5j42ZIjvQwBvNsUMOqPhPZdMSjrY5CI1VDE6UKH4YGIfzPULXtRuF?=
- =?us-ascii?Q?fWfuJPAEy1ZdubfXE8g11Kvq29GtU57EsSkSlSWzENGBlj5HspvwUXJp3aQW?=
- =?us-ascii?Q?jfMGy6pEFXDJXq205xWYAU35sKs14DpFEgs3FZO80y11PdCZkzlbJhnC5Qz1?=
- =?us-ascii?Q?1jYk0DNZRA2yrPrsPVVLvXsg0yWs6runm0KalmsGdLFlCT8x/2uGss29X9lb?=
- =?us-ascii?Q?BYYoB04YRzhQSCSaUCKVHVuE9sfuvSQqznX3m4O8KY+rrbBi72zHAwgUok0s?=
- =?us-ascii?Q?SPp1sKGi72wWQvwl+NLJcb977wK4mVvDFfYnApBUQ0D39S6996+eQ4gaD+nk?=
- =?us-ascii?Q?jas3L73Z8ImTtoziHX8ODn621kLhje2QZMRjurUFCO+s2yCajhq6WPYb5RGU?=
- =?us-ascii?Q?8QQsP8hM7hLfEE4wSyPkwYDB3Vr7iC3HHIVqRFT2SUpCi2mrTHkvELJddYZx?=
- =?us-ascii?Q?qZbZGJPNGnN2AjaESSD8XRMs02w75ER84UNK/HzJ?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6ee7ee52-ff99-489c-d642-08dc074a79b0
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?zoYv0oB0Y8drHr+B35uFXj0UMsTSWixZvuDZMke5NIS6MEdR4VWbdwAvPS/h?=
+ =?us-ascii?Q?/JH4gpj54RAox+fmIHhgcsZNcncyTQU54reIcJaES3ofiFAAiSQkxXNpXMHC?=
+ =?us-ascii?Q?ZjnCZy9cLGSj6mRe1gYboE1yGSIoSRpMGhE927IQvsroW0L3IKTEDBjOgwJp?=
+ =?us-ascii?Q?rxRwFR17tZbJ8oQNMVM7yjE/94kA7mpwIvKYFM2rh/aQ5Ci/tRrnFmX7AkCZ?=
+ =?us-ascii?Q?Kc+Z4RvG720W5bOkEl4Yiipx5Aj6VosDZuiJ/KGSCPnwUwL5hN/gRMjqSqz0?=
+ =?us-ascii?Q?b7fpLmCm+mWhweqQgw3efmMOwlCCcHA3DfsZRmXnWASHh/B3QY8Wd+cFaJ/J?=
+ =?us-ascii?Q?woifKAmE4mJLLEyeZe3KzE6xmhkPn19WTjz7pIbq0lGtmpbt+G4+zMV7jaQO?=
+ =?us-ascii?Q?U7QtOy7ZShsyXWD1x7ViDTM10DffdFczB5oXP4uieOfqf4fFs+N88Yj59kZ0?=
+ =?us-ascii?Q?8avkJCHWpzzCLndnwpX/TVHnXZLuv84avMnDdEFlZmN2eh9HT6+u5/HZVFcF?=
+ =?us-ascii?Q?M2D7jbGvpWfIcEkwKzDn8xNfvKsSSj6VfeSeeFu9l3OApbkY38wyeo8L/R9R?=
+ =?us-ascii?Q?2NjxEDekZkF3Vzi5zywLwKBysVWdRfkrEJkyH178AQaOGO0xjTNrB2+XBhYT?=
+ =?us-ascii?Q?49tyXhCUbFnjHjfhM9eU0feErFBfW4aEXMztz/IdpNCNXlSDEkLqLBviJcGK?=
+ =?us-ascii?Q?I854Xo6DtWzWRAQPDt5vBuP2OYMQngTCBq9cohfKFpqMQSj9p7V2Wb3hCbhf?=
+ =?us-ascii?Q?Lo4o7roPI4u46ahbg9iTPfO66x6F2H1wEOkU2kALdAkzWqzGBOYWfK5VJrEP?=
+ =?us-ascii?Q?8EYqKp3CQNkeMFaAj/nWvXozjOhkbplUHlCIQcI6J2Ba9ASMhGzfLkKzkQjD?=
+ =?us-ascii?Q?Suw4UjVTELGWBpAh0lSY6sEnwsamxl6yexBktdthjyEwABkVJsiOOnh7f/iC?=
+ =?us-ascii?Q?6yXwdhHUCySSBNPmpB5jkctD+CBQ8Fw2yUZXBBPWn6ULsj4s97Ilewc3A3D3?=
+ =?us-ascii?Q?nZdDkU6ALjTKR4jEg+xYO0vKa5R6HvPSgsz7XL2ZoTHgBgbww8AOXfq+23Ww?=
+ =?us-ascii?Q?AGmo54gDX/ri+2y3yckJZ7jyTi4BlSsyvcL5V6sLHYgyNObiTg2mYJV3of2b?=
+ =?us-ascii?Q?l/qFx38Ght78q5kFQW4vDMV0a70Luz3Tq9JZ8iX5151EAphnFNAsLwckUxrB?=
+ =?us-ascii?Q?Qlh6NEpR67WcMdRXp/oD5pjjlsDktaZEepefrYRHBowHV5lKZcjio3FzJVWK?=
+ =?us-ascii?Q?Sqg+susrTAtJ2a/MxE0ERT1VK4feld0GfKwziUT2bE2QhcpCYTMb6BB+jJqs?=
+ =?us-ascii?Q?cu9rFaS/7FOlw/R4Me5FT/vhzXGGWyDfx/H+jHuXzTcEoMX2R4fTidXkbTgp?=
+ =?us-ascii?Q?c7TSv0dQr7D2Umnq7Wb5emCXwJqvF3TuLilqp5OehTm3umhyOJsjtLiL7Kcq?=
+ =?us-ascii?Q?KKR8ICuQN02sri7aSSk92QLs5sRn66hXvz4i29mrX/adzpi23VqFulpVABe+?=
+ =?us-ascii?Q?ff8fsWdqe8YqgtExhiGCspURrNnO6iKDsUjOa9NfigUax164dtTHouNC+9+R?=
+ =?us-ascii?Q?94kJMPHTteZRG7zfF+B9XFwkOD5SvwyyFh+5FFjZ?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2885d8f9-a7bd-4f61-b0da-08dc074a7d52
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Dec 2023 02:12:43.3014 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Dec 2023 02:12:49.2983 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: b70eOOS8WJZzDTsP/p0ofOLLw8z4R04gzlZKyiJRKj3C+ERHRjMWDki/d/RUQL8Q6rYXc6J+b/gr39aqq5u3xQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: DiQ6RxpcXkW4TxYAP+Ywaep3WbwvNZfmVxCxtlAQZWX1ur839g5OnhQh1KL5ek58ezekd8t8wr4f/rAHFcibog==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4833
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -146,205 +147,81 @@ Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Replace outdated information with a proper PM documentation.
-Already establish the rules for the runtime PM get and put that
-Xe needs to follow.
+Introduce the resume and get to fulfill the display need for checking
+if the device was actually resumed (or it is awake) and the reference
+was taken.
 
-Also add missing function documentation to all the "exported" functions.
+Then we can convert the remaining cases to a void function and have
+individual functions for individual cases.
 
-Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+Also, already start this new function protected from the runtime
+recursion, since runtime_pm will need to call for display functions
+for a proper D3Cold flow.
+
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pm.c | 107 +++++++++++++++++++++++++++++++++----
- 1 file changed, 96 insertions(+), 11 deletions(-)
+ .../gpu/drm/xe/compat-i915-headers/i915_drv.h   |  6 +-----
+ drivers/gpu/drm/xe/xe_pm.c                      | 17 +++++++++++++++++
+ drivers/gpu/drm/xe/xe_pm.h                      |  1 +
+ 3 files changed, 19 insertions(+), 5 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+index f0464dfc45cf5..c0ec888b67271 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+@@ -166,11 +166,7 @@ static inline bool intel_runtime_pm_get(struct xe_runtime_pm *pm)
+ {
+ 	struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
+ 
+-	if (xe_pm_runtime_get(xe) < 0) {
+-		xe_pm_runtime_put(xe);
+-		return false;
+-	}
+-	return true;
++	return xe_pm_runtime_resume_and_get(xe);
+ }
+ 
+ static inline bool intel_runtime_pm_get_if_in_use(struct xe_runtime_pm *pm)
 diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index b429c2876a764..a7fe69d2f442e 100644
+index 5a4d601ab0976..32db9068ac169 100644
 --- a/drivers/gpu/drm/xe/xe_pm.c
 +++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -25,21 +25,45 @@
+@@ -417,6 +417,23 @@ bool xe_pm_runtime_get_if_in_use(struct xe_device *xe)
+         return pm_runtime_get_if_in_use(xe->drm.dev) >= 0;
+ }
+ 
++/**
++ * xe_pm_runtime_resume_and_get - Resume, then get a runtime_pm ref if awake.
++ * @xe: xe device instance
++ *
++ * Returns: True if device is awake and the the reference was taken, false otherwise.
++ */
++bool xe_pm_runtime_resume_and_get(struct xe_device *xe)
++{
++	if (xe_pm_read_callback_task(xe) == current) {
++		/* The device is awake, grab the ref and move on */
++                pm_runtime_get_noresume(xe->drm.dev);
++		return true;
++	}
++
++        return pm_runtime_resume_and_get(xe->drm.dev) >= 0;
++}
++
  /**
-  * DOC: Xe Power Management
-  *
-- * Xe PM shall be guided by the simplicity.
-- * Use the simplest hook options whenever possible.
-- * Let's not reinvent the runtime_pm references and hooks.
-- * Shall have a clear separation of display and gt underneath this component.
-+ * Xe PM implements the main routines for both system level suspend states and
-+ * for the opportunistic runtime suspend states.
-  *
-- * What's next:
-+ * System Level Suspend (S-States) - In general this is OS initiated suspend
-+ * driven by ACPI for achieving S0ix (a.k.a. S2idle, freeze), S3 (suspend to ram),
-+ * S4 (disk). The main functions here are `xe_pm_suspend` and `xe_pm_resume` that
-+ * are the main point for the suspend to and resume from these states.
-  *
-- * For now s2idle and s3 are only working in integrated devices. The next step
-- * is to iterate through all VRAM's BO backing them up into the system memory
-- * before allowing the system suspend.
-+ * Runtime Suspend (D-States) - This is the opportunistic PCIe device low power
-+ * state D3. Xe PM component provides `xe_pm_runtime_suspend` and
-+ * `xe_pm_runtime_resume` systems that PCI subsystem will call before transition
-+ * to D3. Also, Xe PM provides get and put functions that Xe driver will use to
-+ * indicate activity. In order to avoid locking complications with the memory
-+ * management, whenever possible, these get and put functions needs to be called
-+ * from the higher/outer levels.
-  *
-- * Also runtime_pm needs to be here from the beginning.
-+ * The main cases that need to be protected from the outer levels are: IOCLT,
-+ * sysfs, debugfs, dma-buf sharing, GPU execution.
-  *
-- * RC6/RPS are also critical PM features. Let's start with GuCRC and GuC SLPC
-- * and no wait boost. Frequency optimizations should come on a next stage.
-+ * PCI D3 is special and can mean D3hot, where Vcc power is on for keeping memory
-+ * alive and quicker low latency resume or D3Cold where Vcc power is off for
-+ * better power savings.
-+ * The Vcc control of PCI hierarchy can only be controlled at the PCI root port
-+ * level, while the device driver can be behind multiple bridges/switches and
-+ * paired with other devices. For this reason, the PCI subsystem cannot perform
-+ * the transition towards D3Cold. The lowest runtime PM possible from the PCI
-+ * subsystem is D3hot. Then, if all these paired devices in the same root port
-+ * are in D3hot, ACPI will assist here and run its _PR3 and _OFF methods to
-+ * perform the transition from D3hot to D3cold. Xe may disallow this transition
-+ * based on runtime conditions such as VRAM usage for a quick and low latency
-+ * resume for instance.
-+ *
-+ * Intel systems are capable of taking the system to S0ix when devices are on
-+ * D3hot through the runtime PM. This is also called as 'opportunistic-S0iX'.
-+ * But in this case, the `xe_pm_suspend` and `xe_pm_resume` won't be called for
-+ * S0ix.
-+ *
-+ * This component is no responsible for GT idleness (RC6) nor GT frequency
-+ * management (RPS).
-  */
- 
- /**
-@@ -163,6 +187,12 @@ static void xe_pm_runtime_init(struct xe_device *xe)
- 	pm_runtime_put(dev);
- }
- 
-+/**
-+ * xe_pm_init - Initialize Xe Power Management
-+ * @xe: xe device instance
-+ *
-+ * This component is responsible for System and Device sleep states.
-+ */
- void xe_pm_init(struct xe_device *xe)
- {
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-@@ -183,6 +213,10 @@ void xe_pm_init(struct xe_device *xe)
- 	xe_pm_runtime_init(xe);
- }
- 
-+/**
-+ * xe_pm_runtime_fini - Finalize Runtime PM
-+ * @xe: xe device instance
-+ */
- void xe_pm_runtime_fini(struct xe_device *xe)
- {
- 	struct device *dev = xe->drm.dev;
-@@ -212,6 +246,12 @@ struct task_struct *xe_pm_read_callback_task(struct xe_device *xe)
- 	return READ_ONCE(xe->pm_callback_task);
- }
- 
-+/**
-+ * xe_pm_runtime_suspend - Prepare our device for D3hot/D3Cold
-+ * @xe: xe device instance
-+ *
-+ * Returns 0 for success, negative error code otherwise.
-+ */
- int xe_pm_runtime_suspend(struct xe_device *xe)
- {
- 	struct xe_gt *gt;
-@@ -266,6 +306,12 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
- 	return err;
- }
- 
-+/**
-+ * xe_pm_runtime_resume - Waking up from D3hot/D3Cold
-+ * @xe: xe device instance
-+ *
-+ * Returns 0 for success, negative error code otherwise.
-+ */
- int xe_pm_runtime_resume(struct xe_device *xe)
- {
- 	struct xe_gt *gt;
-@@ -317,22 +363,47 @@ int xe_pm_runtime_resume(struct xe_device *xe)
- 	return err;
- }
- 
-+/**
-+ * xe_pm_runtime_get - Get a runtime_pm reference and resume synchronously
-+ * @xe: xe device instance
-+ *
-+ * Returns: Any number grater than or equal to 0 for success, negative error
-+ * code otherwise.
-+ */
- int xe_pm_runtime_get(struct xe_device *xe)
- {
- 	return pm_runtime_get_sync(xe->drm.dev);
- }
- 
-+/**
-+ * xe_pm_runtime_put - Put the runtime_pm reference back and mark as idle
-+ * @xe: xe device instance
-+ *
-+ * Returns: Any number grater than or equal to 0 for success, negative error
-+ * code otherwise.
-+ */
- int xe_pm_runtime_put(struct xe_device *xe)
- {
- 	pm_runtime_mark_last_busy(xe->drm.dev);
- 	return pm_runtime_put(xe->drm.dev);
- }
- 
-+/**
-+ * xe_pm_runtime_get_if_active - Get a runtime_pm reference if device active
-+ * @xe: xe device instance
-+ *
-+ * Returns: Any number grater than or equal to 0 for success, negative error
-+ * code otherwise.
-+ */
- int xe_pm_runtime_get_if_active(struct xe_device *xe)
- {
- 	return pm_runtime_get_if_active(xe->drm.dev, true);
- }
- 
-+/**
-+ * xe_pm_assert_unbounded_bridge - Disable PM on unbounded pcie parent bridge
-+ * @xe: xe device instance
-+ */
- void xe_pm_assert_unbounded_bridge(struct xe_device *xe)
- {
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-@@ -347,6 +418,13 @@ void xe_pm_assert_unbounded_bridge(struct xe_device *xe)
- 	}
- }
- 
-+/**
-+ * xe_pm_set_vram_threshold - Set a vram threshold for allowing/blocking D3Cold
-+ * @xe: xe device instance
-+ * @threshold: VRAM size in bites for the D3cold threshold
-+ *
-+ * Returns 0 for success, negative error code otherwise.
-+ */
- int xe_pm_set_vram_threshold(struct xe_device *xe, u32 threshold)
- {
- 	struct ttm_resource_manager *man;
-@@ -371,6 +449,13 @@ int xe_pm_set_vram_threshold(struct xe_device *xe, u32 threshold)
- 	return 0;
- }
- 
-+/**
-+ * xe_pm_d3cold_allowed_toggle - Check conditions to toggle d3cold.allowed
-+ * @xe: xe device instance
-+ *
-+ * To be called during runtime_pm idle callback.
-+ * Check for all the D3Cold conditions ahead of runtime suspend.
-+ */
- void xe_pm_d3cold_allowed_toggle(struct xe_device *xe)
- {
- 	struct ttm_resource_manager *man;
+  * xe_pm_assert_unbounded_bridge - Disable PM on unbounded pcie parent bridge
+  * @xe: xe device instance
+diff --git a/drivers/gpu/drm/xe/xe_pm.h b/drivers/gpu/drm/xe/xe_pm.h
+index 13eebd604dd96..b812281635673 100644
+--- a/drivers/gpu/drm/xe/xe_pm.h
++++ b/drivers/gpu/drm/xe/xe_pm.h
+@@ -28,6 +28,7 @@ int xe_pm_runtime_get(struct xe_device *xe);
+ int xe_pm_runtime_put(struct xe_device *xe);
+ int xe_pm_runtime_get_if_active(struct xe_device *xe);
+ bool xe_pm_runtime_get_if_in_use(struct xe_device *xe);
++bool xe_pm_runtime_resume_and_get(struct xe_device *xe);
+ void xe_pm_assert_unbounded_bridge(struct xe_device *xe);
+ int xe_pm_set_vram_threshold(struct xe_device *xe, u32 threshold);
+ void xe_pm_d3cold_allowed_toggle(struct xe_device *xe);
 -- 
 2.43.0
 
