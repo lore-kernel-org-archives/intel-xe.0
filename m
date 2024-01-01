@@ -4,136 +4,139 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FB7BC47073
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Jan 2024 14:37:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E68ACC4706F
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Jan 2024 16:13:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C069B8825B;
-	Mon,  1 Jan 2024 14:37:31 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 582FE8825B
- for <intel-xe@lists.freedesktop.org>; Mon,  1 Jan 2024 14:37:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5B3C10E0B5;
+	Mon,  1 Jan 2024 16:13:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1045010E0B5
+ for <intel-xe@lists.freedesktop.org>; Mon,  1 Jan 2024 16:13:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704119850; x=1735655850;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=Up3zVuIHBiqrjhrJfMBKWRqo7eL/AObO+kEa6ABJlxA=;
- b=adMBwN+2J7nnL+x9VRpQTIM5BEuB+kUBRZYBP5wMmCxSLuUu2dcuohI6
- YxJpM/tpiohr/fex4xnqgOTdAOllRlrFYeOZtLYcbEZBOEuRFOK///gmL
- WTMNTVNnxsLmO9YagLVlljxQEY7SiznFQyR/34aFWcPUraPXjjCfqoNa1
- q8vhutQ763ewUb+B5kP49n5I7Ws7LfJh3g0qChSBUV9ahflELeuUoN9uf
- at7LUjx40Jy2D5i9kL9U7N9nyriau3PC3IhvgsBrDuqHCuprymHFl1nwf
- 7kWdSHtMjX3o3qwkBwfYjaV6Cv97YLcR0N22n/of3F9RP8wv3MboU1+s5 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10940"; a="18338934"
-X-IronPort-AV: E=Sophos;i="6.04,322,1695711600"; d="scan'208";a="18338934"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jan 2024 06:37:29 -0800
+ t=1704125602; x=1735661602;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=OQjNZAMKoAZma5lMDlgpy62ZAQeacQa4ndewmkVHNuw=;
+ b=jea6kSjA37QFNszhb+oBSn+oQ2Ttdyxgx7vwpjI/F4LLFCQ7zdgOhTz4
+ csBnQzSo4Vn2NzSi6U/BnVUiq44mdputLgFxwNlfHaGpRJNdCRrbiYA6F
+ iKSj9Q3Td3IuL4k6tDN3BJ9YnvHUoauKZh8lwstGno4VXQVhaJJg0WCHu
+ DrGHwG0k++UqgCt+lJyA6Pm36PSMCnL4vktFSj0CFUtXPFeBeqJAkciel
+ iJEE9XxRvTJmwpu8W7o0e0w029KZifPUOlUgyNYbtxZrVsZBekqUN8QGr
+ 8lNt9EaFY1Ykoy+M2CqD/KPRdW6JddFvBmMkEnD1efTFNeMwBjDGmfzGC w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10940"; a="3878939"
+X-IronPort-AV: E=Sophos;i="6.04,322,1695711600"; 
+   d="scan'208";a="3878939"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jan 2024 08:13:22 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10940"; a="808283722"
-X-IronPort-AV: E=Sophos;i="6.04,322,1695711600"; d="scan'208";a="808283722"
+X-IronPort-AV: E=Sophos;i="6.04,322,1695711600"; d="scan'208";a="13960040"
 Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 01 Jan 2024 06:37:27 -0800
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 01 Jan 2024 08:13:21 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
  fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 1 Jan 2024 06:37:28 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ 15.1.2507.35; Mon, 1 Jan 2024 08:13:20 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Mon, 1 Jan 2024 06:37:28 -0800
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.35; Mon, 1 Jan 2024 08:13:20 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Mon, 1 Jan 2024 08:13:20 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Mon, 1 Jan 2024 06:37:28 -0800
+ 15.1.2507.35; Mon, 1 Jan 2024 08:13:20 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=h5NWwFPHwrJLWmPgkk5Iqyj0dk6h+2bQJMDwNKSAm3tBC6zEjnVHubcM4sRgoTlphpF4ax+rCJ8ySX2X/hIkPJFTZZxG+x7Ub2scs9SkVttv5E09cMt89ucdtkQz8r4n4r9Z9vKKcYceP3Et8dG4kDZZRglsZRPY5SU12k0JWvuQSVC6iFrvNVG9ttCoTDzJVtLJ8PXMlgWJHjy/NhPa8UtO1eknbQfnnTIflGbykvReWfP6cWRVLVOJyx1xN1uq7YMpTq9N6ruSa7toxzxT19bt0IxGnExzvH+jW5TQqm7A4zXWhcbQImqt8WoBZog19zbiQWXnIDTLlRdDyQBpog==
+ b=P2bt+na3gmlnVjaaOo1hVDD+fhvkl49AgjjAikSyy4c/vUk0LkqdoKTXJyzZbdTLWFW9W4Hanx/cc+6KQAY09nGx8ax/UfBODxCzdxroM8MWHYTbosAJ7nMYCqcfzGgbLcCzR2+buIZCzsnEzYg+1Fb7OjB1ZnYjvwYsdrUItHuAmyo1abO6kXdM2mbSLhaSG+jYsTC2Li4i6A24zqCr0YVjyObqAg2ArIr0vohKiwfSeH6RzcFGqHlDl1d8qsexywSPsEpN4GkoTxg1Jypv/ASIPhmmRXQoYw6By2hL233HKNUAs+gljPksXK36LTNs0t6UilDWQQ+qSBoT2HtjCg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cPWH8GS+lSp9HPpGPQ4YLDLiyeAGrLpofOjWo13KWgc=;
- b=UVPWXcbcWGKgMEZdZyVc+34KFOWXN6yMnn6iZT3yQnC+nEsymmnPF6AiQswu2Hujf7ibuLn7MnsrIpz5mqiDrRDZuNWf2BuhG3G3WV+q3F3x21tkkYTd4vsv6Boy6Iq5nodZlKwjj7m/y1pM8R7dx7uIcYMe0J22SSGRZS4vegbIYrDWHFPata+K5RDZqN9eyrTuIix1SuG4H5CPA7l4mUCBgswU46xqjSWx+7hNkDyBpGFWHQQ6NwhbYwfAuk32B4ggVEiyQx2Lx/LE6JMCdXV/Np+O1h1CK4NtFiGs0au2lEc0TCj9h4p8SD4pViRSn38BKAI+mKj15lcipPcohQ==
+ bh=UJ6+7AIN/dSNbbtEDhkAYpIp7CgIVnvt6lQJcqH2oUw=;
+ b=KRQsaKOXgXJpVW8E8g6SuyCFwv6ITAXjttopBqY90r2Bt3UGKgtni/bMgWELZe+VzWDIoFTVHC2Uwz0fQeJZiSego+fvLYxh7VBiQvWUTgTWyxN0WOrVqGxMbz4BqZNNB4dXKaQl3FiNliP1IRNAI7yZq4CasfM7zrx4zQlKkSHhW678ORFRs5q4QhoTO3UUBuyww26n0daFetiWS5g7km1BTsNixegby3e41X3XzvXQGBlgwzzS61thy5OXR4QmrZhDYEO/i8RucuSfjNyghdDPU1xggDtkAV5sslilP3pem6/+QYTeVSs8LN3rwkqBu6Fq0TY4y/z0lEbvTEaEWg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from CY5PR11MB6211.namprd11.prod.outlook.com (2603:10b6:930:25::6)
- by BY1PR11MB8077.namprd11.prod.outlook.com (2603:10b6:a03:527::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7135.23; Mon, 1 Jan
- 2024 14:37:21 +0000
-Received: from CY5PR11MB6211.namprd11.prod.outlook.com
- ([fe80::a226:f114:4de2:5762]) by CY5PR11MB6211.namprd11.prod.outlook.com
- ([fe80::a226:f114:4de2:5762%4]) with mapi id 15.20.7135.023; Mon, 1 Jan 2024
- 14:37:21 +0000
-From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-To: "Poosa, Karthik" <karthik.poosa@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/xe/debugfs: Add support for gt synchronous force reset
-Thread-Topic: [PATCH] drm/xe/debugfs: Add support for gt synchronous force
- reset
-Thread-Index: AQHaO/c32XSTumEbpUmARO5Bf0wThLDFA+KQ
-Date: Mon, 1 Jan 2024 14:37:20 +0000
-Message-ID: <CY5PR11MB62114F7D75F8A7DBF6066A6A9562A@CY5PR11MB6211.namprd11.prod.outlook.com>
-References: <20231231144733.568481-1-karthik.poosa@intel.com>
-In-Reply-To: <20231231144733.568481-1-karthik.poosa@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY5PR11MB6211:EE_|BY1PR11MB8077:EE_
-x-ms-office365-filtering-correlation-id: a9d864ea-9dbe-4d7b-9431-08dc0ad7293a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Sz+wgcxK8eXQUpP5UOzBZa/31NPzv73wa7/OVprUUIFyqJClElwIigM4+dVSCGsXSCz7RxSGAtQcs1uSvYd0zo3JwGrqhKwKBBe7R8qDQkGLoicZaZ3/f1Tm5qIiPVDRt4/7rvBpQ75lTRx7f+Jn9U2EM/JHhY1uEHCSCtLLJkhqbDoLq27r/CNNIoLubfhIdVf192uUDYD4s9Xfaiu8SNNqvfkfZekbcbkvf24+kGaHoOG8TE8P0MoV38vA+Kmv4r/jJrelw3MruTdEUjeSeRWk+3P1enIEG72FGJ6I1H+hlQCy0D81YNVNqwihiHAVoN3IRg6qxZ706dtyUwv1Z+1v9KS8exBQY9oqP53NapVdVlvtV0yd7oUxB99P3xfDreV2+Jcw2Zy31chhA9nXFUzoQDTr7seLg+GJU6ucntcEtfUekt6TVBS5Bp1u1Mkz2WLhB121cTjDLsKzePu1fnsDmTRULfffQeFlhiaa3UQSY9P2PYVdGlwLxCryzk4N7IUbAqdr3/oPhR4rHo1LdUqpDsjmQCgnlamb5Q0zB3+HTrsm+AvK9Ex1vkXjQOYVPnQEoYAD3QJ4xefbUg3289Y2mv0LNd87aIc8YXZv/xiVTcrsiFMHLR5i7wskHzC/MPijfbk5ptFjAFRx7km+bg==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6211.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(346002)(366004)(39860400002)(136003)(376002)(396003)(230922051799003)(1800799012)(451199024)(64100799003)(186009)(55016003)(107886003)(83380400001)(26005)(86362001)(38070700009)(38100700002)(33656002)(82960400001)(4326008)(52536014)(53546011)(9686003)(71200400001)(6506007)(7696005)(66946007)(54906003)(76116006)(316002)(8676002)(8936002)(64756008)(5660300002)(122000001)(66556008)(66476007)(66446008)(2906002)(41300700001)(110136005)(478600001)(309714004);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Q4DIdHs3sAJvhzedj04lm0NllHOcfBOKOLOXqNRQmnx5htZjFudbgJwFKijl?=
- =?us-ascii?Q?iYB8YXmTKl6n9Q+o83fv8eyJ/UuPfpXngJkLCI3chV7Cn/RKsoiLktV+PAO6?=
- =?us-ascii?Q?CF8eOnLqhBccy4R69KlsEBrU/tqZVdgklN4xRvf3YFW0SLza0QMooZF7CSxo?=
- =?us-ascii?Q?n9mVEVDZAVykD8vUxeogXS39aLlK5WqfOEfMrRcOuXk1rFy6iI+baqGb+cvm?=
- =?us-ascii?Q?GI8wTA67mGTRi/77da8dYrrZKNIEBvtWPVMmGkaQ3YH7/OeQI7gHCEfsmTi1?=
- =?us-ascii?Q?oMAowhtK6CjwkL/NL+3DFn6quy0j2SOJcgwPpFDPxlyCvfrFN+uTxCQP2WXx?=
- =?us-ascii?Q?3f7vfBUxx5V/aCXeUbiXmru8BUGRmp5hSeqHBFGSRBDu+f61CJDp5q7JFCjj?=
- =?us-ascii?Q?on9HD+fqt4IKiL9i3neYjxZTtXC+bZwHoPk/GaG+S/GQMrBXOLoNEVXmII4l?=
- =?us-ascii?Q?ZPKzujACu2hfPGPPisn4WROm1dF3F6o9LQsLSoS9QyGTDiXP5OzmtPwwMPCj?=
- =?us-ascii?Q?lRnw+tn3sRMhJb/zu77726wgbqPlnWQRVTMr/oPTq7H9YL5lH1aUYp8qSk6P?=
- =?us-ascii?Q?IADgeV1ZdNJX9TW8OVqLzWlu0/y15Vi2P/9NRSvPxi314mrdouuFx3i+06UL?=
- =?us-ascii?Q?EUdPRuyQA/7UNPhqdqis54g3JLD8A66L5QwQmNDiBFlJDK3b2J8Uw3DEQtSM?=
- =?us-ascii?Q?tSbgk0mxeHeYa5DjBc/UCEWvPszz6L6OqMHZtp1/Lud5aHAsOjNtkRHkCsiF?=
- =?us-ascii?Q?JLKF/RfAjEvqjeP0JXq12woRovrlm07jFEmHinhU/M/7OEX26VbYpzbotnPW?=
- =?us-ascii?Q?ZK4sDWHCrwLEdv37LpCoiWRBEYrlvSiQxjny+HU6C5ntiikjUMhvfsxHjplq?=
- =?us-ascii?Q?cbVPaKveE27HN4eDcIBwbxTNASEgeRj0CQYb/WWL7L059566VZ+5rwdpc4d6?=
- =?us-ascii?Q?Mtuo8XmSHUjKc5Jusm9ofbUNPhR+zP92UjpjhLByZxtlp++DlKGsKqQZeuJQ?=
- =?us-ascii?Q?VrDVwoPqd9ChPF0xUS5SEVmdnO+3LCHk+7pfe/jM1zvhBcPhqyOt+EXgGmZN?=
- =?us-ascii?Q?J1uH3Faw/uxbmLLvymShzpplaGW/FEU57zCFc6FPJt+fSIZxRkU6r+UxQhjH?=
- =?us-ascii?Q?RTq8/kRwcWU+j/cN3RDUfL6ncOxPX5vZC8hRuoWnjO4xVdF3EJxT/KBnpHde?=
- =?us-ascii?Q?347l6A0eHQ23zpAxzsMvIy0eD+RfLqoSxGYTPCaZBKWo41HlHM8Y4DWMVbZ6?=
- =?us-ascii?Q?if5l+73j4Aroylk9DX7QspT4s4G4U+U+h09yTL6zF+ffCtMqTS9uFCTW8x9t?=
- =?us-ascii?Q?aaMOhcz3BrZk3L/8VyCVPDtGu+rWOCC+OXUHHdq1+Qp49uYQfJhTfJSeoErT?=
- =?us-ascii?Q?H5dv9gVe2wkx0To+qjuAvax2hw3meuYuVAyLFZR3RCT/jbbfvbxVAbUMlTNz?=
- =?us-ascii?Q?MGHzXxDWQpIh4hLNIoEzC6UhqLjTJrEAmPSJZOXW1P6+ucgE2D8vTSkEMAiz?=
- =?us-ascii?Q?yNt4DpPjyuMTmy8C2LaoY2q0zgWw2lkSgcC97hnpY93kA0q9VSA+U7V7JhU7?=
- =?us-ascii?Q?JqlWxhCpIm07wuL4Fl9wKCWqzbSMUwCo+21aVmYN?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by SJ2PR11MB7672.namprd11.prod.outlook.com (2603:10b6:a03:4cd::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7135.24; Mon, 1 Jan
+ 2024 16:13:12 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::b870:a8ae:c4f1:c39b]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::b870:a8ae:c4f1:c39b%4]) with mapi id 15.20.7135.023; Mon, 1 Jan 2024
+ 16:13:12 +0000
+Date: Mon, 1 Jan 2024 10:13:07 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Zhanjun Dong <zhanjun.dong@intel.com>
+Subject: Re: [PATCH] drm/xe/guc: Add GuC based register capture for error
+ capture
+Message-ID: <ghlyiayalybcuzmjkafap3k7xlpjwddzetpaocojgpsefmvgmr@hc635zmrb2kd>
+References: <20231229220345.1396456-1-zhanjun.dong@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231229220345.1396456-1-zhanjun.dong@intel.com>
+X-ClientProxiedBy: BYAPR07CA0079.namprd07.prod.outlook.com
+ (2603:10b6:a03:12b::20) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SJ2PR11MB7672:EE_
+X-MS-Office365-Filtering-Correlation-Id: b8e2d03c-9f6c-4dba-ccda-08dc0ae48c6e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: n6YuRkPbVWzsUFsRAsQ7zOUVPVHUdFGNQi3nKe5ECr4jJXHcJynsBTPSi8m+t/PTMako5zcFTqiKcdzrE0ifepItyMB3VZJSnHk5HH1Hrv2xf6+iUrMlYmZtyCIBXDtiiDIwPRKUiwPcLOcd12D5Wo6GZTjdlPHVA/v7cWDoZkcGZWlk17kJ8frCv2DuGl5csnGE0LQs/EMUKkJIc9FOn3pZ/PiCXrCcAuA0U4l8nCyWhCRiuvbbEo+gTpYrvAuFEw+Eq0gIZf/tXL4vg5xsWedKdgU7Qbx5XfiFAOPmEgu1bdP/Px0KZwPMwFstHpHC6+taRf13EtGe/usp3An/v9OhV1fA+jrddSd22el12ohCnLnJ+y7IGlOI0AjW5l0FJdTnKtnAzFqGInaGKjoN2+2MQ33t1LHPhapsltpxv+z/3o/jxM4A/sjTv9fSPT5LaOgjDySYjxNSiDGkV+YewC1UK2h3pOjO8ZB3e9IsBwVSE3Bm3/GUBVmlxB3Jtz+zgxkXLo/XqSnoUK2nzFVNlBX1G+7xVN7KyTa7W0gx5e/INje7ei3n4BZ2up0TqXJa
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7916004)(366004)(346002)(39860400002)(396003)(376002)(136003)(230922051799003)(451199024)(1800799012)(64100799003)(186009)(83380400001)(41300700001)(26005)(38100700002)(6862004)(33716001)(82960400001)(8676002)(8936002)(316002)(5660300002)(4326008)(30864003)(2906002)(6636002)(478600001)(6666004)(6506007)(6512007)(66476007)(66556008)(66946007)(9686003)(6486002)(86362001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?1wIpKdR/LLk2+TCiy0Ak1t+RPAR7Q8QkrKQp7FVeZHm+xFRJpIIxJaU18J?=
+ =?iso-8859-1?Q?Yj0Vbp+eyPKAosSCPDowNGcgT8yKprJ+Fdem1yv/mQinVOFALQf6jZxNe8?=
+ =?iso-8859-1?Q?9oQ/+mHzNgTqACHcVY5sQ/trSF90dz30ZOt+oeK1jYpygCyVeNp+JsNFPQ?=
+ =?iso-8859-1?Q?NwCexhvs2ilzvkl++HprQck1pNROb0skIYtF3xXSetVlOHEifh0IwvN7+z?=
+ =?iso-8859-1?Q?OAUOstklaT0wV7WTv3xQYrQCoXY7dHBiHrdR7pteWWbf4P6ts0t9q3llBf?=
+ =?iso-8859-1?Q?uxCUZMAgz+FdP+4nhYdzRFUh1OyCsOL7Z2Cnghj1mH71L6G1glP2Q2/O2X?=
+ =?iso-8859-1?Q?KvvQsUgGnyd3k6IzsZsUuGMZXC5jww5Ua+B29t+s5GWZ1QE7IhDkUIBVpg?=
+ =?iso-8859-1?Q?t9tzLYy9jj2wQifoSoBUx6ZYA60bWMr11qh5lJJ6jzT8ml4iOX7DJH706a?=
+ =?iso-8859-1?Q?aabGT3dEIYCAualpUMrPohqR5hFK1xWaP7k4e4MkVyyZRYwq1N+mHkl8jh?=
+ =?iso-8859-1?Q?Xrj1gkt3ITjVt5Xe24K5Jf5aPTqr1gp9hBsllv/OJtckDFpJWXtERN3zeI?=
+ =?iso-8859-1?Q?hsRaYRew5oRnr5dW+7zdnfu5VAjKeic99zPPnHsh2dE25/RHgziUcaoq3p?=
+ =?iso-8859-1?Q?+SnupJ9O6NjCGAcUBS2SyckCqVlC7j2U91PlbgWse2AAq7/TsBZXeOA+eL?=
+ =?iso-8859-1?Q?5uNyn6lmr1B4Tl7EVv0bi91qnOaRZLU3tmjTHgT6/clcvJX6A0acURYoAh?=
+ =?iso-8859-1?Q?p+7pVbWIKmphqYzyIWOo/10eVEQ/lW2C9cWJp7YLEnlxmV2LWhBzMz3x4X?=
+ =?iso-8859-1?Q?kCQC2fEz8B7GqUXdLfrjEVZGEPHfP1juqW3/PPoT1yy2JX3zC+unx493LB?=
+ =?iso-8859-1?Q?i7zSQpW4jiQExsRCCcKxGmJvTwJaIRygxoQV/Y//3NEBWLq0avc2X4tpOe?=
+ =?iso-8859-1?Q?22Gf3iK0Wk2eLYnd6rDeKQ+bfYdrvz2NaCTH0Dvu5ccAQ/Vl6eXcmhwoUe?=
+ =?iso-8859-1?Q?PpU5UhIoSv/tdq8HkIYQjzOz+kCOcFueVR74J0i+vr3gEU/0njqzi27JmE?=
+ =?iso-8859-1?Q?OMDYZeHTIOIsDMhWr8+gSo4FXfiUdDYxcxIGCHWENkA6BjpiqnTPwausRZ?=
+ =?iso-8859-1?Q?knYhJ/Y9sY5mWHeLbUTNn4IrJGH1e8+nCyZ+XrJO7fMkx0vHP9zgMibhNf?=
+ =?iso-8859-1?Q?uISvz04fGlLXCL//cM4N5J2h2I6CRB1fLjBbWvaa4ReiyBeqBxmJ+ryjKC?=
+ =?iso-8859-1?Q?OP7KBcyMz9qMzAHLedMrVj1Z0hih0C/LlAAyf1yk4QQbZ7Qp8zhD9nTbNB?=
+ =?iso-8859-1?Q?fqjfx84c0tDAtaOmvTmgt7EqKlk2iUHcpC8dz1jp0aQtgEtxQH/q3asrGx?=
+ =?iso-8859-1?Q?mhQmynsWLgH6UlUWMK1avvhouqgapbUnBUEfHSnbwUXP1cQ6By3ZoFoweA?=
+ =?iso-8859-1?Q?ER+xBgWSDU1P3gnTM+HCbtnEdemgWM0MtB66+BDUoUsbcyY6oC/RNxprno?=
+ =?iso-8859-1?Q?YzMYRW93MRP/fH63YjIYOt1Buwte4llFHapjYGvGaCEf8ns/uvPmHmU3gd?=
+ =?iso-8859-1?Q?6F3Gr/SgcwENdrzhessQ+EvR+liRo70lSj4UwmCmWr++toZUcRpCMr0+ZZ?=
+ =?iso-8859-1?Q?PE9IXGb36h2JsmCrJy67Qlwqa+kBXLp50GTVi2OqsV/Y5tpx5Zt/pU0w?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b8e2d03c-9f6c-4dba-ccda-08dc0ae48c6e
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6211.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a9d864ea-9dbe-4d7b-9431-08dc0ad7293a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jan 2024 14:37:20.5292 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: OPRtGvaKGMAwf25X5s/ViF4JYU645HZ1s4dU1hGSgTCXI3EZrOtwYxIP0ifE2rsWN6QdTEwd6l/WmwcoFKEeBXdCow09sndAkXciceN05l0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR11MB8077
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jan 2024 16:13:12.1938 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: t4ED6Apls6ASeEPMmTAhqyD4V7o5Bqvc3VK1uCDgK2oIWa16xeMN8Ne3OQgUyKUrsMH5SwxQ+89fM0uHULoYXsBH1ShpWDb/BkEMt9GkAlE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7672
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -146,225 +149,473 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Fri, Dec 29, 2023 at 02:03:45PM -0800, Zhanjun Dong wrote:
+>Port GuC based register capture for error capture from i915 to Xe.
+>
+>There are 3 parts in this commit:
+>. Prepare for capture registers
+>    There is a bo create at guc ads init time, that is very early
+>    and engine map is not ready, make it hard to calculate the
+>    capture buffer size, new function created for worst case size
+>    caluation. Other than that, this part basically follows the i915
+>    design.
+>. Process capture notification message
+>    Basically follows i915 design
+>. Sysfs command process.
+>    Xe switched to devcoredump, adopted command line process with
+>    captured list.
+>
+>Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+>---
+> drivers/gpu/drm/xe/Kconfig               |   11 +
+> drivers/gpu/drm/xe/Makefile              |    1 +
+> drivers/gpu/drm/xe/abi/guc_actions_abi.h |    7 +
+> drivers/gpu/drm/xe/regs/xe_engine_regs.h |   19 +
+> drivers/gpu/drm/xe/regs/xe_gt_regs.h     |   70 +
+> drivers/gpu/drm/xe/regs/xe_reg_defs.h    |    1 -
+> drivers/gpu/drm/xe/regs/xe_regs.h        |    4 +
+> drivers/gpu/drm/xe/xe_bo_types.h         |    2 +
+> drivers/gpu/drm/xe/xe_devcoredump.c      |    1 +
+> drivers/gpu/drm/xe/xe_gt_printk.h        |    3 +
+> drivers/gpu/drm/xe/xe_gt_topology.c      |    2 +
+> drivers/gpu/drm/xe/xe_gt_types.h         |    6 +
+> drivers/gpu/drm/xe/xe_guc.c              |    5 +
+> drivers/gpu/drm/xe/xe_guc_ads.c          |  255 +++-
+> drivers/gpu/drm/xe/xe_guc_ads_types.h    |    2 +
+> drivers/gpu/drm/xe/xe_guc_capture.c      | 1574 ++++++++++++++++++++++
+
+mind the reviewer. This can't really possibly be reviewed. It must be
+split in sensible chunks (that still build and work)
+
+I skimmed through this patch and think it has too much copy and paste
+from i915... it needs to be trimmed down and redesigned. Early feedback:
+
+- Any support fro graphics version < 12 to be removed
+- GEN* names are banned in xe, don't add them.
+- Each part of the driver you change as pre-requisite, should be a
+   separate patch. I will go through some examples below
+
+> drivers/gpu/drm/xe/xe_guc_capture.h      |   33 +
+> drivers/gpu/drm/xe/xe_guc_capture_fwif.h |  227 ++++
+> drivers/gpu/drm/xe/xe_guc_ct.c           |    2 +
+> drivers/gpu/drm/xe/xe_guc_fwif.h         |   69 +
+> drivers/gpu/drm/xe/xe_guc_log.c          |  179 +++
+> drivers/gpu/drm/xe/xe_guc_log.h          |   15 +
+> drivers/gpu/drm/xe/xe_guc_log_types.h    |   26 +
+> drivers/gpu/drm/xe/xe_guc_submit.c       |   22 +-
+> drivers/gpu/drm/xe/xe_guc_submit.h       |    3 +
+> drivers/gpu/drm/xe/xe_guc_types.h        |    2 +
+> drivers/gpu/drm/xe/xe_hw_engine.c        |   89 +-
+> drivers/gpu/drm/xe/xe_hw_engine_types.h  |  126 +-
+> drivers/gpu/drm/xe/xe_lrc.c              |    4 +-
+> drivers/gpu/drm/xe/xe_lrc_types.h        |    2 +
+> 30 files changed, 2632 insertions(+), 130 deletions(-)
+> create mode 100644 drivers/gpu/drm/xe/xe_guc_capture.c
+> create mode 100644 drivers/gpu/drm/xe/xe_guc_capture.h
+> create mode 100644 drivers/gpu/drm/xe/xe_guc_capture_fwif.h
+>
+>diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+>index a53b0fdc15a7..337f6b613438 100644
+>--- a/drivers/gpu/drm/xe/Kconfig
+>+++ b/drivers/gpu/drm/xe/Kconfig
+>@@ -83,6 +83,17 @@ config DRM_XE_FORCE_PROBE
+>
+> 	  Use "!*" to block the probe of the driver for all known devices.
+>
+>+config DRM_XE_CAPTURE_ERROR
+>+	bool "Enable capturing GPU state following a hang"
+>+	depends on DRM_XE
+>+	default y
+>+	help
+>+	  This option enables capturing the GPU state when a hang is detected.
+>+	  This information is vital for triaging hangs and assists in debugging.
+>+	  Please report any hang to your Intel representative to help with triaging.
+>+
+>+	  If in doubt, say "Y".
+
+do we really need a kconfig?
+
+>+
+> menu "drm/Xe Debugging"
+> depends on DRM_XE
+> depends on EXPERT
+>diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+>index df8601d6a59f..5a97b2b74d1a 100644
+>--- a/drivers/gpu/drm/xe/Makefile
+>+++ b/drivers/gpu/drm/xe/Makefile
+>@@ -92,6 +92,7 @@ xe-y += xe_bb.o \
+> 	xe_gt_topology.o \
+> 	xe_guc.o \
+> 	xe_guc_ads.o \
+>+	xe_guc_capture.o \
+> 	xe_guc_ct.o \
+> 	xe_guc_db_mgr.o \
+> 	xe_guc_debugfs.o \
+>diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+>index 3062e0e0d467..dd57620258b2 100644
+>--- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+>+++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+>@@ -182,6 +182,13 @@ enum xe_guc_sleep_state_status {
+> #define GUC_LOG_CONTROL_VERBOSITY_MASK	(0xF << GUC_LOG_CONTROL_VERBOSITY_SHIFT)
+> #define GUC_LOG_CONTROL_DEFAULT_LOGGING	(1 << 8)
+>
+>+enum intel_guc_state_capture_event_status {
+>+	INTEL_GUC_STATE_CAPTURE_EVENT_STATUS_SUCCESS = 0x0,
+>+	INTEL_GUC_STATE_CAPTURE_EVENT_STATUS_NOSPACE = 0x1,
+>+};
+>+
+>+#define INTEL_GUC_STATE_CAPTURE_EVENT_STATUS_MASK      0x000000FF
+>+
+> #define XE_GUC_TLB_INVAL_TYPE_SHIFT 0
+> #define XE_GUC_TLB_INVAL_MODE_SHIFT 8
+> /* Flush PPC or SMRO caches along with TLB invalidation request */
+>diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+>index 0b1266c88a6a..060628dbac8e 100644
+>--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+>+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+>@@ -64,10 +64,17 @@
+>
+> #define RING_ACTHD_UDW(base)			XE_REG((base) + 0x5c)
+> #define RING_DMA_FADD_UDW(base)			XE_REG((base) + 0x60)
+>+#define RING_IPEIR(base)			XE_REG((base) + 0x64)
+> #define RING_IPEHR(base)			XE_REG((base) + 0x68)
+>+#define RING_INSTDONE(base)			XE_REG((base) + 0x6c)
+>+#define RING_INSTPS(base)			XE_REG((base) + 0x70)
+>+
+> #define RING_ACTHD(base)			XE_REG((base) + 0x74)
+> #define RING_DMA_FADD(base)			XE_REG((base) + 0x78)
+> #define RING_HWS_PGA(base)			XE_REG((base) + 0x80)
+>+#define RING_CMD_BUF_CCTL(base)			XE_REG((base) + 0x84)
+>+#define IPEIR(base)				XE_REG((base) + 0x88)
+>+
+> #define RING_HWSTAM(base)			XE_REG((base) + 0x98)
+> #define RING_MI_MODE(base)			XE_REG((base) + 0x9c)
+> #define RING_NOPID(base)			XE_REG((base) + 0x94)
+>@@ -111,9 +118,18 @@
+> #define   FF_DOP_CLOCK_GATE_DISABLE		REG_BIT(1)
+> #define   REPLAY_MODE_GRANULARITY		REG_BIT(0)
+>
+>+#define RING_BBSTATE(base)			XE_REG((base) + 0x110)
+> #define RING_BBADDR(base)			XE_REG((base) + 0x140)
+> #define RING_BBADDR_UDW(base)			XE_REG((base) + 0x168)
+>
+>+#define CCID(base)				XE_REG((base) + 0x180)
+>+#define   CCID_EN				BIT(0)
+>+#define   CCID_EXTENDED_STATE_RESTORE		BIT(2)
+>+#define   CCID_EXTENDED_STATE_SAVE		BIT(3)
+>+#define RING_BB_PER_CTX_PTR(base)		XE_REG((base) + 0x1c0) /* gen8+ */
+>+#define RING_INDIRECT_CTX(base)			XE_REG((base) + 0x1c4) /* gen8+ */
+>+#define RING_INDIRECT_CTX_OFFSET(base)		XE_REG((base) + 0x1c8) /* gen8+ */
+>+
+> #define BCS_SWCTRL(base)			XE_REG((base) + 0x200, XE_REG_OPTION_MASKED)
+> #define   BCS_SWCTRL_DISABLE_256B		REG_BIT(2)
+>
+>@@ -129,6 +145,9 @@
+> #define	  CTX_CTRL_INHIBIT_SYN_CTX_SWITCH	REG_BIT(3)
+> #define	  CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT	REG_BIT(0)
+>
+>+#define GEN8_RING_PDP_UDW(base, n)		XE_REG((base) + 0x270 + (n) * 8 + 4)
+>+#define GEN8_RING_PDP_LDW(base, n)		XE_REG((base) + 0x270 + (n) * 8)
+>+
+> #define RING_MODE(base)				XE_REG((base) + 0x29c)
+> #define   GFX_DISABLE_LEGACY_MODE		REG_BIT(3)
+>
+>diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>index 6aaaf1f63c72..2546d58a7130 100644
+>--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>@@ -59,6 +59,38 @@
+>
+> #define XELP_GLOBAL_MOCS(i)			XE_REG(0x4000 + (i) * 4)
+> #define XEHP_GLOBAL_MOCS(i)			XE_REG_MCR(0x4000 + (i) * 4)
+>+
+>+#define ERROR_GEN6				XE_REG(0x40a0)
+>+
+>+#define DONE_REG				XE_REG(0x40b0)
+>+#define GEN8_PRIVATE_PAT_LO			XE_REG(0x40e0)
+>+#define GEN8_PRIVATE_PAT_HI			XE_REG(0x40e0 + 4)
+>+#define GEN10_PAT_INDEX(index)			XE_REG(0x40e0 + (index) * 4)
+>+#define BSD_HWS_PGA_GEN7			XE_REG(0x4180)
+>+
+>+#define GEN12_CCS_AUX_INV			XE_REG(0x4208)
+>+#define GEN12_VD0_AUX_INV			XE_REG(0x4218)
+>+#define GEN12_VE0_AUX_INV			XE_REG(0x4238)
+>+#define GEN12_BCS0_AUX_INV			XE_REG(0x4248)
+>+
+>+#define GEN8_RTCR				XE_REG(0x4260)
+>+#define GEN8_M1TCR				XE_REG(0x4264)
+>+#define GEN8_M2TCR				XE_REG(0x4268)
+>+#define GEN8_BTCR				XE_REG(0x426c)
+>+#define GEN8_VTCR				XE_REG(0x4270)
+>+
+>+#define BLT_HWS_PGA_GEN7			XE_REG(0x4280)
+>+
+>+#define GEN12_VD2_AUX_INV			XE_REG(0x4298)
+>+#define GEN12_CCS0_AUX_INV			XE_REG(0x42c8)
+>+#define   AUX_INV				REG_BIT(0)
+>+
+>+#define VEBOX_HWS_PGA_GEN7			XE_REG(0x4380)
+>+
+>+#define GEN12_AUX_ERR_DBG			XE_REG(0x43f4)
+>+
+>+#define GEN7_TLB_RD_ADDR			XE_REG(0x4700)
+>+
+> #define CCS_AUX_INV				XE_REG(0x4208)
+>
+> #define VD0_AUX_INV				XE_REG(0x4218)
+>@@ -73,6 +105,9 @@
+> #define WM_CHICKEN3				XE_REG_MCR(0x5588, XE_REG_OPTION_MASKED)
+> #define   HIZ_PLANE_COMPRESSION_DIS		REG_BIT(10)
+>
+>+#define GEN8_FAULT_TLB_DATA0			XE_REG(0x4b10)
+>+#define GEN8_FAULT_TLB_DATA1			XE_REG(0x4b14)
+>+
+> #define CHICKEN_RASTER_2			XE_REG_MCR(0x6208, XE_REG_OPTION_MASKED)
+> #define   TBIMR_FAST_CLIP			REG_BIT(5)
+>
+>@@ -94,6 +129,8 @@
+> #define   FF_MODE2_TDS_TIMER_MASK		REG_GENMASK(23, 16)
+> #define   FF_MODE2_TDS_TIMER_128		REG_FIELD_PREP(FF_MODE2_TDS_TIMER_MASK, 4)
+>
+>+#define XEHPG_INSTDONE_GEOM_SVG			XE_REG_MCR(0x666c)
+>+
+> #define CACHE_MODE_1				XE_REG(0x7004, XE_REG_OPTION_MASKED)
+> #define   MSAA_OPTIMIZATION_REDUC_DISABLE	REG_BIT(11)
+>
+>@@ -110,6 +147,10 @@
+> #define   FLSH_IGNORES_PSD			REG_BIT(10)
+> #define   FD_END_COLLECT			REG_BIT(5)
+>
+>+#define GEN7_SC_INSTDONE			XE_REG(0x7100)
+>+#define GEN12_SC_INSTDONE_EXTRA			XE_REG(0x7104)
+>+#define GEN12_SC_INSTDONE_EXTRA2		XE_REG(0x7108)
+>+
+> #define COMMON_SLICE_CHICKEN4			XE_REG(0x7300, XE_REG_OPTION_MASKED)
+> #define   DISABLE_TDC_LOAD_BALANCING_CALC	REG_BIT(6)
+>
+>@@ -298,6 +339,22 @@
+>
+> #define XE2LPM_L3SQCREG5			XE_REG_MCR(0xb658)
+>
+>+#define GEN12_FAULT_TLB_DATA0			XE_REG(0xceb8)
+>+#define XEHP_FAULT_TLB_DATA0			XE_REG_MCR(0xceb8)
+>+#define GEN12_FAULT_TLB_DATA1			XE_REG(0xcebc)
+>+#define XEHP_FAULT_TLB_DATA1			XE_REG_MCR(0xcebc)
+>+#define   FAULT_VA_HIGH_BITS			(0xf << 0)
+>+#define   FAULT_GTT_SEL				BIT(4)
+>+
+>+#define GEN12_RING_FAULT_REG			XE_REG(0xcec4)
+>+#define XEHP_RING_FAULT_REG			XE_REG_MCR(0xcec4)
+>+#define XELPMP_RING_FAULT_REG			XE_REG(0xcec4)
+>+#define   GEN8_RING_FAULT_ENGINE_ID(x)		(((x) >> 12) & 0x7)
+>+#define   RING_FAULT_GTTSEL_MASK		BIT(11)
+>+#define   RING_FAULT_SRCID(x)			(((x) >> 3) & 0xff)
+>+#define   RING_FAULT_FAULT_TYPE(x)		(((x) >> 1) & 0x3)
+>+#define   RING_FAULT_VALID			BIT(0)
+>+
+> #define XEHP_MERT_MOD_CTRL			XE_REG_MCR(0xcf28)
+> #define RENDER_MOD_CTRL				XE_REG_MCR(0xcf2c)
+> #define COMP_MOD_CTRL				XE_REG_MCR(0xcf30)
+>@@ -316,6 +373,13 @@
+> #define   INVALIDATION_BROADCAST_MODE_DIS	REG_BIT(12)
+> #define   GLOBAL_INVALIDATION_MODE		REG_BIT(2)
+>
+>+#define GEN12_GAM_DONE				XE_REG(0xcf68)
+>+
+>+#define GEN7_SAMPLER_INSTDONE			XE_REG(0xe160)
+>+#define GEN8_SAMPLER_INSTDONE			XE_REG_MCR(0xe160)
+>+#define GEN7_ROW_INSTDONE			XE_REG(0xe164)
+>+#define GEN8_ROW_INSTDONE			XE_REG_MCR(0xe164)
+>+
+> #define HALF_SLICE_CHICKEN5			XE_REG_MCR(0xe188, XE_REG_OPTION_MASKED)
+> #define   DISABLE_SAMPLE_G_PERFORMANCE		REG_BIT(0)
+>
+>@@ -478,10 +542,16 @@
+> #define   GT_CS_MASTER_ERROR_INTERRUPT		REG_BIT(3)
+> #define   GT_RENDER_USER_INTERRUPT		REG_BIT(0)
+>
+>+#define GEN12_SFC_DONE(n)			XE_REG(0x1cc000 + (n) * 0x1000)
+>+
+> #define PVC_GT0_PACKAGE_ENERGY_STATUS		XE_REG(0x281004)
+> #define PVC_GT0_PACKAGE_RAPL_LIMIT		XE_REG(0x281008)
+> #define PVC_GT0_PACKAGE_POWER_SKU_UNIT		XE_REG(0x281068)
+> #define PVC_GT0_PLATFORM_ENERGY_STATUS		XE_REG(0x28106c)
+> #define PVC_GT0_PACKAGE_POWER_SKU		XE_REG(0x281080)
+>
+
+- drop any GEN prefixes/suffixes
+- only add registers you're actually using
 
 
-> -----Original Message-----
-> From: Poosa, Karthik <karthik.poosa@intel.com>
-> Sent: Sunday, December 31, 2023 8:18 PM
-> To: intel-xe@lists.freedesktop.org
-> Cc: Gupta, Anshuman <anshuman.gupta@intel.com>; Nilawar, Badal
-> <badal.nilawar@intel.com>; Brost, Matthew <matthew.brost@intel.com>;
-> Vivi, Rodrigo <rodrigo.vivi@intel.com>; Poosa, Karthik
-> <karthik.poosa@intel.com>
-> Subject: [PATCH] drm/xe/debugfs: Add support for gt synchronous force res=
-et
->=20
-> This support added as igt test freq_reset_multiple fails sporadically in =
-case
-> xe_guc_pc is not started.
-> A completion is added in force_reset for this.
-> Writing non-zero to force_reset debugfs entry does synchronous reset.
-We need IGT patch as well for this patch.
->=20
-> v2:
-> - Changed wait for completion to interruptible (Anshuman).
-> - Moved timeout to xe_gt.h (Anshuman).
-> - Created a debugfs for updating timeout (Rodrigo).
->=20
-> v3:
-> - Update force_reset debugfs with write support.
->   value 0 -> async reset, non-zero -> sync reset (Matthew Brost).
->=20
-> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_gt.c         |  2 +
->  drivers/gpu/drm/xe/xe_gt_debugfs.c | 72
-> ++++++++++++++++++++++++++++--  drivers/gpu/drm/xe/xe_gt_debugfs.h
-> |  3 ++
->  drivers/gpu/drm/xe/xe_gt_types.h   |  8 ++++
->  4 files changed, 82 insertions(+), 3 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c inde=
-x
-> 3af2adec1295..c8d2c18b0c62 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -65,6 +65,7 @@ struct xe_gt *xe_gt_alloc(struct xe_tile *tile)
->=20
->  	gt->tile =3D tile;
->  	gt->ordered_wq =3D alloc_ordered_workqueue("gt-ordered-wq", 0);
-> +	init_completion(&gt->reset.done);
->=20
->  	return gt;
->  }
-> @@ -633,6 +634,7 @@ static int gt_reset(struct xe_gt *gt)
->  	xe_device_mem_access_put(gt_to_xe(gt));
->  	XE_WARN_ON(err);
->=20
-> +	complete(&gt->reset.done);
->  	xe_gt_info(gt, "reset done\n");
->=20
->  	return 0;
-> diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-> b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-> index c4b67cf09f8f..3518ab89ccfc 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-> @@ -55,15 +55,71 @@ static int hw_engines(struct seq_file *m, void *data)
->  	return 0;
->  }
->=20
-> -static int force_reset(struct seq_file *m, void *data)
-> +static int force_reset(struct xe_gt *gt, bool is_sync)
->  {
-> -	struct xe_gt *gt =3D node_to_gt(m->private);
-> +	struct xe_device *xe =3D gt_to_xe(gt);
-> +	long ret;
->=20
->  	xe_gt_reset_async(gt);
->=20
-> +	if (is_sync) {
-> +		drm_info(&xe->drm, "waiting for gt reset completion");
-> +		ret =3D wait_for_completion_interruptible_timeout(&gt-
-> >reset.done,
-> +							msecs_to_jiffies(gt-
-> >reset.timeout_ms));
-> +		if (ret <=3D 0) {
-> +			drm_err(&xe->drm, "gt reset timed out/interrputed,
-> ret %ld\n", ret);
-> +			return -ETIMEDOUT;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +ssize_t force_reset_write(struct file *f, const char __user *buf,
-> +size_t len, loff_t *offset) {
-> +	struct xe_gt *gt =3D file_inode(f)->i_private;
-> +	struct xe_device *xe =3D gt_to_xe(gt);
-> +	char arg_str[5];
-> +	size_t size;
-> +	unsigned long arg;
-> +	int ret;
-> +
-> +	size =3D min(sizeof(arg_str)-1, len);
-> +	arg =3D copy_from_user((void *)arg_str, buf, size);
-> +	if (arg < 0) {
-> +		drm_err(&xe->drm, "reading force_reset arg failed, ret %ld",
-> arg);
-> +		return arg;
-> +	}
-> +	arg_str[size] =3D '\0';
-> +
-> +	ret =3D kstrtoul(arg_str, 0, &arg);
-> +	if (ret) {
-> +		drm_err(&xe->drm, "force_reset arg parse failed, ret %d", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret =3D force_reset(gt, (arg && 1));
-How about  !!arg
- > +	if (ret !=3D 0)  {
-> +		drm_err(&xe->drm, "force_reset failed, ret %d\n", ret);
-> +		return ret;
-> +	}
-> +	return len;
-> +}
-> +
-> +ssize_t force_reset_read(struct file *f, char __user *buf, size_t len,
-> +loff_t *offset) {
-> +	struct xe_gt *gt =3D file_inode(f)->i_private;
-> +
-> +	force_reset(gt, 0);
->  	return 0;
->  }
->=20
-> +static const struct file_operations force_reset_fops =3D {
-> +	.owner =3D THIS_MODULE,
-> +	.write =3D force_reset_write,
-> +	.read =3D force_reset_read,
-> +};
-> +
->  static int sa_info(struct seq_file *m, void *data)  {
->  	struct xe_tile *tile =3D gt_to_tile(node_to_gt(m->private));
-> @@ -192,7 +248,6 @@ static int vecs_default_lrc(struct seq_file *m, void
-> *data)
->=20
->  static const struct drm_info_list debugfs_list[] =3D {
->  	{"hw_engines", hw_engines, 0},
-> -	{"force_reset", force_reset, 0},
->  	{"sa_info", sa_info, 0},
->  	{"topology", topology, 0},
->  	{"steering", steering, 0},
-> @@ -245,5 +300,16 @@ void xe_gt_debugfs_register(struct xe_gt *gt)
->  				 ARRAY_SIZE(debugfs_list),
->  				 root, minor);
->=20
-> +	gt->reset.fr_dentry =3D debugfs_create_file("force_reset", 0600, root,
-> xe,
-> +			    &force_reset_fops);
-Please use DEFINE_SHOW_STORE_ATTRIBUTE here to create rw debugfs entry.
-Use force_reset_show and force_reset_restore function name.
-> +	if (!gt->reset.fr_dentry)
-> +		drm_warn(&xe->drm, "force_reset debugfs file creation
-> failed");
-> +	d_inode(gt->reset.fr_dentry)->i_private =3D gt;
-> +
-> +	debugfs_create_u32("gt_reset_timeout_ms", 0600, root,
-> +					&gt->reset.timeout_ms);
-> +	/* set a default timeout value */
-> +	gt->reset.timeout_ms =3D 1000;
-xe_gt_debugfs_register() should only do the job of debugfs registration.
-This is odd here.
-> +
->  	xe_uc_debugfs_register(&gt->uc, root);  } diff --git
-> a/drivers/gpu/drm/xe/xe_gt_debugfs.h
-> b/drivers/gpu/drm/xe/xe_gt_debugfs.h
-> index 5a329f118a57..40adcf1822c6 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_debugfs.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.h
-> @@ -6,8 +6,11 @@
->  #ifndef _XE_GT_DEBUGFS_H_
->  #define _XE_GT_DEBUGFS_H_
->=20
-> +#include <linux/fs.h>
->  struct xe_gt;
->=20
->  void xe_gt_debugfs_register(struct xe_gt *gt);
-> +ssize_t force_reset_write(struct file *f, const char __user *buf,
-> +size_t len, loff_t *offset); ssize_t force_reset_read(struct file *f,
-> +char __user *buf, size_t len, loff_t *offset);
->=20
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h
-> b/drivers/gpu/drm/xe/xe_gt_types.h
-> index f74684660475..d6134215094b 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_types.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
-> @@ -148,6 +148,14 @@ struct xe_gt {
->  		 * code to safely flush all code paths
->  		 */
->  		struct work_struct worker;
-> +		/** @done : completion for GT reset */
-> +		struct completion done;
-> +		/** @timeout_ms : gt synchronous reset timeout in ms */
-> +		u32 timeout_ms;
-> +		/** @dentry: dentry for force_reset */
-> +		struct dentry *fr_dentry;
-> +		/** @is_sync_reset : gt reset is synchronous */
-> +		//bool is_sync_reset;
-Remove thus unused var.
+>+/* 32 fences + sign bit for FENCE_REG_NONE */
+>+#define XE_MAX_NUM_FENCE_BITS 6
+>+#define XE_MAX_NUM_FENCES (2 ^ (XE_MAX_NUM_FENCE_BITS - 1))
+>+
+> #endif
+>diff --git a/drivers/gpu/drm/xe/regs/xe_reg_defs.h b/drivers/gpu/drm/xe/regs/xe_reg_defs.h
+>index c50e7650c09a..15869c2e2a52 100644
+>--- a/drivers/gpu/drm/xe/regs/xe_reg_defs.h
+>+++ b/drivers/gpu/drm/xe/regs/xe_reg_defs.h
+>@@ -57,7 +57,6 @@ struct xe_reg_mcr {
+> 	struct xe_reg __reg;
+> };
+>
+>-
+> /**
+>  * XE_REG_OPTION_MASKED - Register is "masked", with upper 16 bits marking the
+>  * written bits on the lower 16 bits.
+>diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
+>index 2c214bb9b671..574a5a78739c 100644
+>--- a/drivers/gpu/drm/xe/regs/xe_regs.h
+>+++ b/drivers/gpu/drm/xe/regs/xe_regs.h
+>@@ -7,6 +7,10 @@
+>
+> #include "regs/xe_reg_defs.h"
+>
+>+#define EIR					XE_REG(0x20b0)
+>+
+>+#define HSW_GTT_CACHE_EN			XE_REG(0x4024)
+>+
+> #define TIMESTAMP_OVERRIDE					XE_REG(0x44074)
+> #define   TIMESTAMP_OVERRIDE_US_COUNTER_DENOMINATOR_MASK	REG_GENMASK(15, 12)
+> #define   TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_MASK		REG_GENMASK(9, 0)
+>diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+>index 64c2249a4e40..cdef4dd1ef06 100644
+>--- a/drivers/gpu/drm/xe/xe_bo_types.h
+>+++ b/drivers/gpu/drm/xe/xe_bo_types.h
+>@@ -44,6 +44,8 @@ struct xe_bo {
+> 	struct iosys_map vmap;
+> 	/** @ttm_kmap: TTM bo kmap object for internal use only. Keep off. */
+> 	struct ttm_bo_kmap_obj kmap;
+>+	/** @ads_map: contents of the GuC ADS */
+>+	struct iosys_map ads_map;
 
-Thanks,
-Anshuman Gupta.
->  	} reset;
->=20
->  	/** @tlb_invalidation: TLB invalidation state */
-> --
-> 2.25.1
 
+that would be very weird.... a map to the ADS inside each bo?? It sounds
+like a bad architecture of the feature, but grepping on this patch it
+seems this is not used at all
+
+> 	/** @pinned_link: link to present / evicted list of pinned BO */
+> 	struct list_head pinned_link;
+> #ifdef CONFIG_PROC_FS
+>diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+>index 68abc0b195be..b032d6e2cc3a 100644
+>--- a/drivers/gpu/drm/xe/xe_devcoredump.c
+>+++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+>@@ -14,6 +14,7 @@
+> #include "xe_force_wake.h"
+> #include "xe_gt.h"
+> #include "xe_guc_ct.h"
+>+#include "xe_guc_capture.h"
+> #include "xe_guc_submit.h"
+> #include "xe_hw_engine.h"
+>
+>diff --git a/drivers/gpu/drm/xe/xe_gt_printk.h b/drivers/gpu/drm/xe/xe_gt_printk.h
+>index c2b004d3f48e..107360edfcd6 100644
+>--- a/drivers/gpu/drm/xe/xe_gt_printk.h
+>+++ b/drivers/gpu/drm/xe/xe_gt_printk.h
+>@@ -22,6 +22,9 @@
+> #define xe_gt_notice(_gt, _fmt, ...) \
+> 	xe_gt_printk((_gt), notice, _fmt, ##__VA_ARGS__)
+>
+>+#define xe_gt_notice_ratelimited(_gt, _fmt, ...) \
+>+	xe_gt_printk((_gt), err_ratelimited, _fmt, ##__VA_ARGS__)
+
+if this is really need, it should be a standalone patch.
+
+>+
+> #define xe_gt_info(_gt, _fmt, ...) \
+> 	xe_gt_printk((_gt), info, _fmt, ##__VA_ARGS__)
+>
+>diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
+>index a8d7f272c30a..696e41aa5596 100644
+>--- a/drivers/gpu/drm/xe/xe_gt_topology.c
+>+++ b/drivers/gpu/drm/xe/xe_gt_topology.c
+>@@ -96,11 +96,13 @@ xe_gt_topology_init(struct xe_gt *gt)
+> 	drm_WARN_ON(&xe->drm, num_geometry_regs > 3);
+> 	drm_WARN_ON(&xe->drm, num_compute_regs > 3);
+>
+>+	gt->fuse_topo.g_dss_num_max = num_geometry_regs;
+
+wat?  dss_num_max has nothing to do with how many registers we use.
+
+> 	load_dss_mask(gt, gt->fuse_topo.g_dss_mask,
+> 		      num_geometry_regs,
+> 		      XELP_GT_GEOMETRY_DSS_ENABLE,
+> 		      XE2_GT_GEOMETRY_DSS_1,
+> 		      XE2_GT_GEOMETRY_DSS_2);
+>+	gt->fuse_topo.c_dss_num_max = num_compute_regs;
+> 	load_dss_mask(gt, gt->fuse_topo.c_dss_mask, num_compute_regs,
+> 		      XEHP_GT_COMPUTE_DSS_ENABLE,
+> 		      XEHPC_GT_COMPUTE_DSS_ENABLE_EXT,
+>diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+>index f74684660475..4c0540abfecb 100644
+>--- a/drivers/gpu/drm/xe/xe_gt_types.h
+>+++ b/drivers/gpu/drm/xe/xe_gt_types.h
+>@@ -328,6 +328,12 @@ struct xe_gt {
+>
+> 		/** @eu_mask_per_dss: EU mask per DSS*/
+> 		xe_eu_mask_t eu_mask_per_dss;
+>+		/** @g_dss_num_max: count of dual-subslices usable by geometry */
+>+		u8 g_dss_num_max;
+>+
+>+		/** @c_dss_num_max: count of dual-subslices usable by compute */
+>+		u8 c_dss_num_max;
+
+
+not really needed. check calc_topo_query_size() and xe_query.c in
+general on how to derive the info you need.
+
+Lucas De Marchi
+
+>diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
+>new file mode 100644
+>index 000000000000..ace5115cae6c
+>--- /dev/null
+>+++ b/drivers/gpu/drm/xe/xe_guc_capture.c
+>@@ -0,0 +1,1574 @@
+>+// SPDX-License-Identifier: MIT
+>+/*
+>+ * Copyright © 2021-2022 Intel Corporation
+>+ */
+>+
+>+#include <linux/types.h>
+>+
+>+#include <drm/drm_print.h>
+>+
+>+#include "abi/guc_actions_abi.h"
+>+#include "regs/xe_regs.h"
+>+#include "regs/xe_engine_regs.h"
+>+#include "regs/xe_gt_regs.h"
+>+#include "regs/xe_guc_regs.h"
+>+
+>+#include "xe_guc_capture_fwif.h"
+>+
+>+#include "xe_bo.h"
+>+#include "xe_device.h"
+>+#include "xe_exec_queue_types.h"
+>+#include "xe_hw_engine_types.h"
+>+#include "xe_gt.h"
+>+#include "xe_gt_printk.h"
+>+#include "xe_guc.h"
+>+#include "xe_guc_capture.h"
+>+#include "xe_guc_ct.h"
+>+
+>+#include "xe_guc_log.h"
+>+#include "xe_gt_mcr.h"
+>+#include "xe_guc_submit.h"
+>+#include "xe_macros.h"
+>+#include "xe_map.h"
+
+
+here you should add kernel-doc on what this feature is about, how it's used etc.
+
+
+I think this is enough feedback for now
+
+
+Lucas De Marchi
