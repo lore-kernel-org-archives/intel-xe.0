@@ -4,148 +4,156 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77E98C46CD2
-	for <intel-xe@archiver.kernel.org>; Tue,  2 Jan 2024 07:04:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB552C46CD2
+	for <intel-xe@archiver.kernel.org>; Tue,  2 Jan 2024 07:09:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21BD110E11A;
-	Tue,  2 Jan 2024 07:04:01 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 059CD10E11A
- for <intel-xe@lists.freedesktop.org>; Tue,  2 Jan 2024 07:04:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B89910E121;
+	Tue,  2 Jan 2024 07:09:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5598810E121
+ for <intel-xe@lists.freedesktop.org>; Tue,  2 Jan 2024 07:09:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704179039; x=1735715039;
+ t=1704179395; x=1735715395;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=52llKghg17N1v7E92oBwPyqIfz+KLp1HMTCvz4AjVbI=;
- b=CaqYAsYkCJpphg/3qLjHGamRzM+AG7nhmFkwzheEEnNiiX3DrCwYAFxx
- UYzRIjaz9gS90g5k7btDfs/p7XoW+6EeVgItYcSeHx9p3Voqgf/r8NZ+h
- tsEKZiCq0d6x4kwvVCk6gIxMFTej10TS2bRQ3azJL8wZTbUh/aRu/XNzi
- NytQHa6RgRVGLtMA1KfnO2E+jn7sPfMR+KHjg1BKu4y6rZ/4cDC7m9eAT
- FGaDJffWTrM+ho780A85hUBKO4nIUEQkZzU80GVTtx77Fd+rgRqjSzCVT
- VbFDlqVRwxNjCWmvnftNczJYN7vq5HCt7EYwkdLR30CwKxdL4BkTvuWP9 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10940"; a="387295242"
-X-IronPort-AV: E=Sophos;i="6.04,324,1695711600"; d="scan'208";a="387295242"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jan 2024 23:03:59 -0800
+ bh=vCiymWCaHJkLjflayBenOEF8v4MUjbFkSAACMmTj3BQ=;
+ b=A8PwGeKeCfJqU/wQAEvClQFYT1CU0eCYrY+qOEVcFmDmnoOAipSDulmY
+ a6jAUEaSv7wfPJouGcOZqLYe4d+phEp8yX6ADKksNr851Z7G2yFWx0k1B
+ REdM5aK+VHcFHLkUNjD/uKFxcCguX81s/CLyMu7HcYDEIRSgU8xLvcWts
+ 7Metj9OFe/OyHZGY+BEhGxiu0v+aTmCx1X7olI7ciB1UGp4ttDjJh4G/P
+ 9qNwj/fG1WF4E/FQiSdhyJVWU2spP+AKZ8LPLHeQ/ec6yw82N5xmwIKtr
+ xsycP3aa7VKNXxHwVh1CuT/hZuRNfTRJiMO6GjcpFHG8PQFX0vof3HQD5 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10940"; a="3923078"
+X-IronPort-AV: E=Sophos;i="6.04,324,1695711600"; 
+   d="scan'208";a="3923078"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jan 2024 23:09:54 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,324,1695711600"; d="scan'208";a="27996267"
+X-IronPort-AV: E=McAfee;i="6600,9927,10940"; a="845486690"
+X-IronPort-AV: E=Sophos;i="6.04,324,1695711600"; d="scan'208";a="845486690"
 Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 01 Jan 2024 23:03:59 -0800
+ by fmsmga008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 01 Jan 2024 23:09:53 -0800
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
  fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 1 Jan 2024 23:03:58 -0800
+ 15.1.2507.35; Mon, 1 Jan 2024 23:09:53 -0800
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 1 Jan 2024 23:03:58 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ 15.1.2507.35; Mon, 1 Jan 2024 23:09:52 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Mon, 1 Jan 2024 23:03:58 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.169)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Mon, 1 Jan 2024 23:09:52 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Mon, 1 Jan 2024 23:03:58 -0800
+ 15.1.2507.35; Mon, 1 Jan 2024 23:09:52 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ikxbavAdN6/mSOrPKMpXk94psWVCey0qfzTFee8vSkHFzpCYXrtiFkeDyfD2qj7Ro5K4bffJq4eOEKxuucKffjeKaTgeq0xdsCXlcvdAlIr35a2S8/Gtavfo8spdrzncdf7W2f1PwhSCX3TdlhpkRJGyK+omVCNsWwV/MXdsYjn1/FqQUH1UMqtZf1bmZ8vVdHbkN3jGVw77EoRrTMeEJvrqGEQkH6E0bQkb2tq3Faf136X3L4K8G9+fI+Ow4gkLtmemY2nxH4XVyRfErVZ4NeZXyjNmnn9kONrpVs9HLJxSU+750A3Cy5g0kpQL2KveBrvQiYBxWEhwavMfV37ecQ==
+ b=ZYoqrdqhY9PvqQS83avPr65zaHSHq3p8mQ7Mu+Rdy+ZSXkuTFM7JrCviwvfcLGhVqJNs1CRY8HjRLwGkQsCKIBbqz5heeIA3XzQdqH+A9MhFOau6TByWe/Wz419nhCcFHB1NyMv1mtAy3x6vLk9y65lbE48+G5OSeCYnu83ltPrPD0NXeF2tAT62Ky2CfFbrGmoW5bPOMz85Q4vD0VEQuWT/c/rfr0G9PhxWoIG1LvWUmoi5qKxap9Fb9RPvdET1IkR3L/D22pYpHFBeXpDvFz8/4Y6KywddwbC9h+HewqVX8IjPi5pLSFwenmbc8W1bWNC23wBcPTk0V9tJPQ5vTQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rSlO14q1nHSeeJCM1GighsFNk8FwHNIP3hkUhBrp1ss=;
- b=dmpLqVpHct6Ryb5siCJZFtx0cYeukg3j6KAgxmsTbyCRKO+okHr577GM0LQEuLhL0wkJX6U8Ro3hKse25kwdY9dcsuAqZ6gFZieWbDTy0qjQ+7Qmey8VkkZnEE3qMEjyCWaG5+4B3wUnsig8opPXbsDITJOiXunHKs1qZxhgQ23i8eRs293AS0QfkNDCUDg4t7Tp1H62JZkzdeUmCSWqHN4RHYLpQXW6y+49N3rODfRF41IhPWJW6otkxxN8HjvdtXEh+s5vVIqcdY6J6DNVuwKSBfaOcapvREAcYKAIwS3aY5biSk4poaqZimBCK2UevJgUoBteGR6WBCSXw8DMrg==
+ bh=Id+r8PqTkFQNF62/arRtR0xxYJA6ED2Xlahedwi8Yuw=;
+ b=NDMYd4gMZ0/WFBNeiqO4VyyKzPX15ZMpuTmxM5N9H3bXbm+xXktIlt6YcHYKpBwqOa1u9zbMtSDws/9uyC5N0CDmoMpw4c49+rVGlPuwO09AsN7grCvrvzjSlGgWvshZ5uHvCCg00MmFV/dvIEBaa1wMx6q27zjL/6jRUGfwlYA5xB8OrCQVGb0iX32W8rYpdfh5JyRj+7v0zPh+pWq6qQLK8yEf+4Z+oROAewebnG2o9G4C7VwlK3lAJCSBrKg685kan92M4jzUMlUP3U/U3hLJ1mfMw9DM+Cz/ptlNLLFOjHhWVyj/5vKUl8VKebSClpsC9bygpJFOdRQmfBtyvA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM8PR11MB5703.namprd11.prod.outlook.com (2603:10b6:8:22::5) by
- SA0PR11MB4653.namprd11.prod.outlook.com (2603:10b6:806:94::19) with
+Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
+ PH7PR11MB7124.namprd11.prod.outlook.com (2603:10b6:510:20f::6) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7135.25; Tue, 2 Jan 2024 07:03:56 +0000
-Received: from DM8PR11MB5703.namprd11.prod.outlook.com
- ([fe80::1ed2:770e:2fbb:de41]) by DM8PR11MB5703.namprd11.prod.outlook.com
- ([fe80::1ed2:770e:2fbb:de41%5]) with mapi id 15.20.7135.023; Tue, 2 Jan 2024
- 07:03:56 +0000
-Message-ID: <5f11046a-81c1-4984-bc60-ce904ff605ca@intel.com>
-Date: Tue, 2 Jan 2024 12:33:48 +0530
+ 15.20.7135.25; Tue, 2 Jan 2024 07:09:50 +0000
+Received: from DS0PR11MB7958.namprd11.prod.outlook.com
+ ([fe80::66b5:7551:319c:73d6]) by DS0PR11MB7958.namprd11.prod.outlook.com
+ ([fe80::66b5:7551:319c:73d6%7]) with mapi id 15.20.7135.023; Tue, 2 Jan 2024
+ 07:09:50 +0000
+Message-ID: <c518b135-1895-4186-8437-e33c0dd6c79f@intel.com>
+Date: Tue, 2 Jan 2024 12:39:43 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/debugfs: Add support for gt synchronous force reset
-Content-Language: en-GB
-To: "Gupta, Anshuman" <anshuman.gupta@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-References: <20231231144733.568481-1-karthik.poosa@intel.com>
- <CY5PR11MB62114F7D75F8A7DBF6066A6A9562A@CY5PR11MB6211.namprd11.prod.outlook.com>
-From: "Poosa, Karthik" <karthik.poosa@intel.com>
-In-Reply-To: <CY5PR11MB62114F7D75F8A7DBF6066A6A9562A@CY5PR11MB6211.namprd11.prod.outlook.com>
+Subject: Re: [v6] drm/xe: Add vram frequency sysfs attributes
+Content-Language: en-US
+To: "Sundaresan, Sujaritha" <sujaritha.sundaresan@intel.com>, "Gupta,
+ Anshuman" <anshuman.gupta@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+References: <20231222110631.999517-1-sujaritha.sundaresan@intel.com>
+ <CY5PR11MB6211B2AC3B3E3B1A926252219594A@CY5PR11MB6211.namprd11.prod.outlook.com>
+ <369acab0-b07e-48d3-ad90-c28969e8957e@intel.com>
+ <CY5PR11MB62110361C1C67AD8ABA5AA259598A@CY5PR11MB6211.namprd11.prod.outlook.com>
+ <9c0e0cda-5768-4c0a-973e-74ecfdf2ce8b@intel.com>
+ <CY5PR11MB62110375C2241F8AE3AFFE99959FA@CY5PR11MB6211.namprd11.prod.outlook.com>
+ <3f701189-fb71-493b-ba7f-7699df458fa1@intel.com>
+ <835dc339-16bd-4a5d-beb5-c3ab51262f8d@intel.com>
+From: Riana Tauro <riana.tauro@intel.com>
+In-Reply-To: <835dc339-16bd-4a5d-beb5-c3ab51262f8d@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN3PR01CA0069.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:99::12) To DM8PR11MB5703.namprd11.prod.outlook.com
- (2603:10b6:8:22::5)
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PN2PR01CA0249.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:21a::9) To DS0PR11MB7958.namprd11.prod.outlook.com
+ (2603:10b6:8:f9::19)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM8PR11MB5703:EE_|SA0PR11MB4653:EE_
-X-MS-Office365-Filtering-Correlation-Id: e09492c8-c8d9-41e4-ca9c-08dc0b60fc4c
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|PH7PR11MB7124:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6967aecf-842d-4006-a25b-08dc0b61cf47
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: GWpL92Gz2EMZc/S2ofjHUNZYmME56PBosNMXC2tzdw2TcQXVrc9APIQdcUwjzYH2rPiWFo+WRqNjZ1NKkg8+Kv1stde/k3AsMCkkyO2BpNjZlXj4fo+KUPDtVLBj9n9HyZKajPl2dxHs/0mWKrYFUfHTaW1d0LT7rQKMfK7/hAIH1jZckGzgaEMa8nBvp7SQK0g9TdbPXOKtrwP+HBwvbjkpuzOpBRmPo9Ysco6C8dQhlIgT3hLM8JZzFjjHO0Zr+BG+FQd3/MOlbBku8CxRYwSlVkbM3NTXGHxXtcUJuG89gJ8aBgYGaXx3/6iISzz3cXfpBbhCF15WT/dg3jk7dEQ0RJFU7OWZ6J2N0BU3kgTqTehp6uUtjLfz4i5+1oTc1+umZXbNJSgHrtkZhhruB7HfUKgLp8s2H3lcifT2t3EoGPQVgvLBswdcM1gR7vjPwYOzHDExOkhEWEx0y9MqLBqa5mDmgcoAERWb+9XNuhkYLDoCGsugpmk30ZbcSNwWjjf3dB8Hj8urdt7t/NmTWTHxeab1q81l0EsrDvjenH2v02kmn50/2RerOP6lN7B09Bo7SNEykpMxA9rupzaEZH6I7dwRBLTiFfRUcqBPqzgWvmnlQg6Ut4Wn+X4/ur191yyOUISwF5zWM/jyiiDVS/S/mV+El06VenGWHQ9DbSgpX+4QYI5Bbs6iqNpLwjgV
+X-Microsoft-Antispam-Message-Info: GpUneZo5nyNCPbqlhSkZSjseq7Pq7rW30HQApOlmBAQ/HbRNRIRUx7W2t6PrCfEWl4ZJeCDl50SPJtQWYPDppQN/VABmuBVuQgWU+n5Rg6k6dITTeLdFKeFRDN2OKYDxUxvMaDdQcYmBZkwx6VsQKVXV0PNIvqQr2gprdGW57SWT7t9NXnVoc500+j5of3X6d/R2oFaFO3TQA1dkqzqsnx+FhKv2FoL7faHk+b3lx9kU7YJqyJenNxUBFJvjYlTj/NG1quhX+ERc2pi7OrDt6uMKkfJtKMQOTI5+Cl0YWEzGnrJ8F0nf4IOkZ7D1D6adno9OnDJLHITH+We8ETSZAoTgnRHMRNXsASE4uyQl70raYpqM7KsIX9LbBgjMY6jJ2roTBfnRGabpY8Q4hJSFHMf/XgY7bJblhHKbnHSKkc2c5ei1GweZ2lVHmJTlgSZZb5pC9hIk2XzR0ExnbY+FPHDpVff1vTq3Ws0KaaeqwLo99/RkQZDOBjUpADIRDIXckOIkNJ6lqb9z7u9AVVSTtpUF5MrVxwoGKdhaaqUHHstnGwjbTmDJ/xTXJEHDvFjsIMieirB1XTE5KhNuLlhvnWvFW3hNT5ZBUcV/oJFHH0Q4rgDq65D1IoPyjDakencP4Kx3hDCwxkFMp+Bd29vwow==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM8PR11MB5703.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366004)(39860400002)(396003)(136003)(346002)(376002)(230922051799003)(451199024)(1800799012)(64100799003)(186009)(82960400001)(38100700002)(36756003)(31686004)(86362001)(31696002)(2616005)(83380400001)(107886003)(26005)(41300700001)(66476007)(66946007)(316002)(54906003)(110136005)(66556008)(478600001)(53546011)(6666004)(6506007)(6512007)(6486002)(8936002)(8676002)(5660300002)(2906002)(4326008)(45980500001)(43740500002)(309714004);
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376002)(136003)(366004)(39860400002)(346002)(396003)(230922051799003)(451199024)(1800799012)(64100799003)(186009)(82960400001)(38100700002)(36756003)(31686004)(31696002)(86362001)(6506007)(6512007)(53546011)(6666004)(83380400001)(478600001)(4326008)(66946007)(44832011)(66556008)(6486002)(66476007)(107886003)(26005)(110136005)(8936002)(8676002)(2616005)(316002)(41300700001)(2906002)(30864003)(5660300002)(45980500001)(43740500002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q2ZTQy9PWTJXSndkQVFDTzNRZTRac1d2TXo4S0tnaUVXTUlKZUJOdnJKdjFB?=
- =?utf-8?B?SnoxU3RSUFRQY0g5US9jTmVUd1lReU5hUUpmT3MwUzRMLzhvamNhTCtPb3dT?=
- =?utf-8?B?ekJpS1R1aHllZzJ6L0JBTklQTXRjVFl1Yi95ZGlKWERvNDBvWVhRd1p5U3Yy?=
- =?utf-8?B?Z1hyNHhjRVByR3dmM3JtQ1Fqa1YwaEtpeFFwMENpblNaTDB3S2o1ZW95WEpT?=
- =?utf-8?B?S0YwdGR6NjVuTUVSTndKWVorQzg1eEI3T2U0V0F5VHZ1ZDZrNHJUbkp3elgr?=
- =?utf-8?B?a08wR3ZoMVljZ216ODhSS2E1bHVBNUNlSXVMUVRYSE5WWFJuV3gvYktGWGEw?=
- =?utf-8?B?cDFqVlNrV2NPSndBZjRzVFhlb09HNzVKVmYrVEdVYVpJdWRITnhUY2x4SXFz?=
- =?utf-8?B?bFcrQ0FnQUFoUmdQcmR0Z0JHUGlieHpJOERSUVl5VGJnVkd5elA1QkhGSUZ4?=
- =?utf-8?B?aC82a1I2cTFWWTJYZzZyTGlBSnMxNzJhVENycXRsUFY0SHkrNmtodWNaNWI1?=
- =?utf-8?B?d0UzK2VkLzBmUnBwS0VEQ1lKNVI0STRBVU1OVkM5YnVPcENhUlNqZGNIZTVj?=
- =?utf-8?B?RkZRcDJJUExTREFQd1lqQjFpS3EycEVnRERPTVl3MmR5RTNJaEFOemRpU0t4?=
- =?utf-8?B?czhRVkE0N1dYQk5kOVZ5Y3JRdU80SzJZSysrS0VUWHZpOUlmUlRXOEVjRzBs?=
- =?utf-8?B?UXZLS0VaVHFZcU1BRzBLc3hudWZaN3NBa1RGQ0t3VGhqMDRjTmdOUHRzRmhh?=
- =?utf-8?B?NHhmN0tWNk9SaW9ZNmVQVzlqMnlReWVIbENTU0tzQTNQVVo3b3ZvTWdzTFVN?=
- =?utf-8?B?NFdBVU9ORTFXZnQxcE9sV3FPNjR4dzEzNW9wTVNTaXpnclVPdEdxRlJDMWNl?=
- =?utf-8?B?WTNhMnlxcXlWcExWRUhnNHRtdnE1Rk5IemZLekJhVmpxaDB2Q2FEeVZFREx5?=
- =?utf-8?B?R0N3NkZKbDNSS3YwVVlDZzRadUIrN1hpNzZjQnlqRURDa3VOTGpTdGwrN1RJ?=
- =?utf-8?B?Ti9lQzY3WGU5MzdnWk10VnRPYU9nTlcwMHRoSlNuak9mWkhnUmUyUkZYRVN3?=
- =?utf-8?B?T2dFWm9CRWJvU0V2cnVENFFwSFJDWmo3Yyt2dnk1ZDBDTEN0VXJia0NuaTNF?=
- =?utf-8?B?ZTlpZytkdG43dFE4WmVma2RIcm4xSnhRdUVyTGRZajhOZWRjVXFtSVpQMkEv?=
- =?utf-8?B?dTB3S1JweW05UWQxVVFuUWJhcmhRS2MzbCtuaHF6TW40VU9nU29pNGIzSndI?=
- =?utf-8?B?a05nQ0pVdEs2eVdGdVNkNmZqdFA0QWpVS0Eza0lScEZWUVRTWjJIdEJqNDRK?=
- =?utf-8?B?NURJRXlTNWF6WVhkM0tiUWRBeWRvQkd3ZWFyUm5EVzZXT3k4c0JIeXlrL3lk?=
- =?utf-8?B?SEticm9XK0VTRENyRFV6ZzRwRElva3RWUENpamhmTnUvV0k1WG1OclozS3gz?=
- =?utf-8?B?Nk1wTWU0TmZ1dkRKbG1KUTA3NEloMVF2c1JWUHFJZDBHbVNTYVpta3EzYncx?=
- =?utf-8?B?b3dKWTFKL1N1dnVDekpuQlJMc25qQzE5RExWRG11KzhQVndNdkl6Z1FUVlMr?=
- =?utf-8?B?ZWwrWVVmT2lRRStxMVV6RjFSclNHcUVVTERKZG1WUXV6eWpORnRlcmZYalR6?=
- =?utf-8?B?VnU3SEZpSHZTTWY0NVBSMVduV3c3WG1vL25Kbk1DL2w4cVZXOVNqUFpkMW1z?=
- =?utf-8?B?c0N1emhqU1BrQllXOE1MSGdnTndPYVRpV0pxNTMyTDZRY2tiZlQxTE40djM5?=
- =?utf-8?B?YWJIKzQ5UzVsbzhFdUw5dHhSMVkrV2FOeW56KzFJTnRBK2VtOHJmREhua0J4?=
- =?utf-8?B?UDhtVHZmYXBxY0pKVVNBeDZqelNYejFTRlhyWEJ1b21PVWxnVHM0bFIvRWZM?=
- =?utf-8?B?WHhUNWZnWHdNdzQyMS8yeTBYMnk3WGZBMjJZVkFZaW10T3BDVWFuRzRIbWdS?=
- =?utf-8?B?NmU0NWFNWXhMZ0tKeEZrQ0JmaGlwOUNNaHV6blc3MHMrbjMySjQxLzJXZEVL?=
- =?utf-8?B?M2FLZURGT0xmYTdja1N6S1hOaFpNaGxYN2dXWktQQVFiV0dPZGJySGppM0l4?=
- =?utf-8?B?YnZZQU1zQmJwWTk3RHJGd2M1UUl5cVAxdE9wT3YxazA5aHJaczlnT2QxRzhm?=
- =?utf-8?B?SEZERWNKYTRuMDd1OU84TVN2ekh6NFZjRWZLMG4yVHFvZmw3NUcyS082dW5Q?=
- =?utf-8?B?aGc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: e09492c8-c8d9-41e4-ca9c-08dc0b60fc4c
-X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5703.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VEpoS1gxMk91NzV3UUJxRlA0Mk0vMWltbWJsS0dnMWNTQUd4N0ROcjZTOG5m?=
+ =?utf-8?B?UE9MTnd0cWFBWjN0TUJidk9JaTdtbkZOUW9vK2Q4NEI2N1pRMGVNSzU3c0ly?=
+ =?utf-8?B?MGM3bmRkZVVNcmhxdWk5ZzJIL3lSbEh5NERpTVNZKzlWeDFnb3J1TUc1K1Ba?=
+ =?utf-8?B?ME5lMHdPelFqN09Tb0dRVllzTWFVK1NBaGloUVlOR2M4bWpZQzRLOGJzN1Zy?=
+ =?utf-8?B?aVNBYjZmOUJGV2EwMUZmOW5sN3ZSTmxycmpNOGFUdGtsU2dnWUxqNmE2VUpw?=
+ =?utf-8?B?Y3hyTkgxTVc3NU5TelRBNzM1T291cjBUdkpLWk0vdW94WmFLbnFjOE9WUzJJ?=
+ =?utf-8?B?WnVjZUxTRFdtSTZmMTErVVFTZ2RUeGJiUlllTGp6Vk9iYTViL2tXVzNuWndP?=
+ =?utf-8?B?QzFoRTUvT0V5clM0UUloS2piK1c3TFIzUXBrQlU0NHBmU0txRktGQzFvdEZR?=
+ =?utf-8?B?alNjMDF2MEVNcUpVYndSMlp3K3hpbkNCK1pPbHpMRS84bFV6bnNtWm5LNDFs?=
+ =?utf-8?B?NTVySnE0TjlsMmhVOW5SeXQrZmV0QU1HdjdleWtobzZnTzI1UEp1b053WnBV?=
+ =?utf-8?B?eE5aMUxSYUdVWTNrUncyUE5TSmEyZ3FzNVE3a1R4VFh1S2pFaTJYSzZ4dDZ5?=
+ =?utf-8?B?RXNsM0djTjRndFBQejZXMHVFOUdCNVV2TmY1cTRyb0dyS082anJoSlBRRHF5?=
+ =?utf-8?B?dGhGUHRlSVdENUUrTzZSRkVzdFBISVhhbWxtRnFJdmFsby9nVzRBajBpaFpj?=
+ =?utf-8?B?SE5tNVZ4MWFlbEx4TzVkWW1FMXd5U3hjTllJdktYWUVFWWMzZE5nOXRwUUJi?=
+ =?utf-8?B?c05wN011UWpRcmY1R3J1UDdRcWtIcjdISzhWTzBsTjZQTkRSbFdKbUVEUXRT?=
+ =?utf-8?B?aUJlVmNzUEFCblFhZ0VaUlNXRnBCcDNPNHdOYVQ0bFhnVzBsK01XTnU3QVl2?=
+ =?utf-8?B?c3Y2b2dXZk1VUUtYRUxtMkhWcThjWnh0ZFRGQ1NRamtVbVAvcWtRSWNPU21F?=
+ =?utf-8?B?NkVDcW1hdWVTZHZnMGFYZWdaaGU5TmpJV3h2aXkwRDFVSnE1NmhrdmsvSUtT?=
+ =?utf-8?B?YmZCaE9MaHhvOGNEd3NZZUkrNWkyWEo2WnJkOVM0Y2g5VThNdXBGSTFETTFQ?=
+ =?utf-8?B?ZWxld2JFSXBrcDVublJFZVFLbUpvaTJpK2lsTzF0dTBiMkIzNENNSmZHaVIv?=
+ =?utf-8?B?RGNZeEwrbUF1Y1ZJYW5RUXJER3FLekN3Q0lxNzZDc2k4UVB4TjNkWTZxTzNB?=
+ =?utf-8?B?VEY5THhYVVNkWnRsY2tIMUxZMFJ0MlNoVk9wZ1VDbG5SdWpqNzk2YlZ6RXVO?=
+ =?utf-8?B?dkJhdHJ5czVXT1B3ZVlGT2p0bmNGenhVZTkyTU5rOW1Ma0NFdUxBT2FHdkp2?=
+ =?utf-8?B?WlZuM01wTU5VWDhDSmZLeksvN205YUcvN1NLSmx3bi9uS29uYmkrczRPdlpk?=
+ =?utf-8?B?cEJwNjFYWXlhR2IvOWdPZG9VR0FBemNJS3RwTlpZN0owcUFKMEllcy93WkFh?=
+ =?utf-8?B?WHhkdDJXUlFvcnJMem5lV0RTMExQTUZBYmQremNMOURQWGNpdHVzWUFjcGxk?=
+ =?utf-8?B?T3drUXBoMmlMOUd2VjdKWkdrT2xUUW5oYmRKYzl1NHkxemJCcjNBZUc1N1RO?=
+ =?utf-8?B?cjlnbC9XMWIvTjV4MEM3a0RLNzE5emFjTDl1YUVDcEo4VmpXS0luZkp1RnJ1?=
+ =?utf-8?B?dnFkbksyYzhUM2ZGeGxBQXpHYzFWNEl0ZnoybzlGdGZldUFWTzVMN1ovNity?=
+ =?utf-8?B?bzFWdTRTK2ZITGljcmR5cDZJbWVEZUlzbURVUlFJa2EzSDhSZWU3Q3F2VE05?=
+ =?utf-8?B?cU5DYmdYWnBkTlkvU21JS25jeWFYSXM2SmNsbUdMYjRPcGEvV0o2dDQzYy9O?=
+ =?utf-8?B?czVyaGFrcmNENTBxUmJKSEJNQ2VpWnRoRTRoN21CVC83QlhxQ3A3aFlDQWNa?=
+ =?utf-8?B?SlAwaXlIaGM3SC81OTF3QzhwVWlqdDlTbUhqb0dNN2tYNkNUUk1SOE85eGdM?=
+ =?utf-8?B?NTJZWjhIZG00Y2JiUmg2SzFLQytGbVpvWDF3ckM3WmtJdHZKOEp6K3VpamJw?=
+ =?utf-8?B?REpXVzljZ1V3NXdxQlhURHY4ZXBwc0tBNkJuR2pJTHNVSkVJR3ZuS1JZazFr?=
+ =?utf-8?Q?nSmvaaM+XsXi/Rf9myowJ719W?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6967aecf-842d-4006-a25b-08dc0b61cf47
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jan 2024 07:03:56.1065 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jan 2024 07:09:50.1215 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qYfB/aHEvj1/yTaV1om+JD0KtJ2s/dsD1MiT0MoSKxyNTX9W2C+7WwsOUdXex/f61UGucAQZp6VoOZ5b4Zt4qQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4653
+X-MS-Exchange-CrossTenant-UserPrincipalName: XuvGlXgAVpT9ICooTi02z1mYx0rk65bJYsrtVq4Fg8+lOTt0XViwDZcknY9DZGoTwJd0YI7biMPauATQmagUUw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7124
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -162,232 +170,348 @@ Cc: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Anshuman,
 
-Please find my comments inline below.
+Hi Suja
 
-Thanks,
+On 12/28/2023 3:34 PM, Sundaresan, Sujaritha wrote:
+> 
+> On 12/27/2023 5:48 PM, Sundaresan, Sujaritha wrote:
+>>
+>> On 12/27/2023 4:26 PM, Gupta, Anshuman wrote:
+>>>
+>>>> -----Original Message-----
+>>>> From: Sundaresan, Sujaritha <sujaritha.sundaresan@intel.com>
+>>>> Sent: Wednesday, December 27, 2023 3:01 PM
+>>>> To: Gupta, Anshuman <anshuman.gupta@intel.com>; intel-
+>>>> xe@lists.freedesktop.org
+>>>> Cc: Vivi, Rodrigo <rodrigo.vivi@intel.com>
+>>>> Subject: Re: [v6] drm/xe: Add vram frequency sysfs attributes
+>>>>
+>>>>
+>>>> On 12/26/2023 7:58 PM, Gupta, Anshuman wrote:
+>>>>>> -----Original Message-----
+>>>>>> From: Sundaresan, Sujaritha <sujaritha.sundaresan@intel.com>
+>>>>>> Sent: Tuesday, December 26, 2023 10:02 AM
+>>>>>> To: Gupta, Anshuman <anshuman.gupta@intel.com>; intel-
+>>>>>> xe@lists.freedesktop.org
+>>>>>> Cc: Vivi, Rodrigo <rodrigo.vivi@intel.com>
+>>>>>> Subject: Re: [v6] drm/xe: Add vram frequency sysfs attributes
+>>>>>>
+>>>>>>
+>>>>>> On 12/22/2023 7:34 PM, Gupta, Anshuman wrote:
+>>>>>>>> -----Original Message-----
+>>>>>>>> From: Sundaresan, Sujaritha <sujaritha.sundaresan@intel.com>
+>>>>>>>> Sent: Friday, December 22, 2023 4:37 PM
+>>>>>>>> To: intel-xe@lists.freedesktop.org
+>>>>>>>> Cc: Vivi, Rodrigo <rodrigo.vivi@intel.com>; Gupta, Anshuman
+>>>>>>>> <anshuman.gupta@intel.com>; Sundaresan, Sujaritha
+>>>>>>>> <sujaritha.sundaresan@intel.com>
+>>>>>>>> Subject: [v6] drm/xe: Add vram frequency sysfs attributes
+>>>>>>>>
+>>>>>>>> Add vram frequency sysfs attributes under the below hierarchy;
+>>>>>>>>
+>>>>>>>> /device/tile#/memory/freq0
+>>>>>>>>             |-max_freq
+>>>>>>>>             |-min_freq
+>>>>>>>>
+>>>>>>>> v2: Drop "vram" from attribute names (Rodrigo)
+>>>>>>>>
+>>>>>>>> v3: Add documentation for new sysfs (Riana)
+>>>>>>>>        Drop prefix from XEHP_PCODE_FREQUENCY_CONFIG (Riana)
+>>>>>>>>
+>>>>>>>> v4: Create sysfs under tile#/freq0 after removal of
+>>>>>>>>        physical_memsize attrbute
+>>>>>>>>
+>>>>>>>> v5: Revert back to creating sysfs under tile#/memory/freq0
+>>>>>>>>        Remove definition of GT_FREQUENCY_MULTIPLIER (Rodrigo)
+>>>>>>>>
+>>>>>>>> v6: Rename attributes to max/min_freq (Anshuman)
+>>>>>>>>        Fix review comments (Rodrigo)
+>>>>>>>>
+>>>>>>>> Signed-off-by: Sujaritha Sundaresan
+>>>>>>>> <sujaritha.sundaresan@intel.com>
+>>>>>>>> ---
+>>>>>>>>     drivers/gpu/drm/xe/xe_pcode_api.h  |  7 +++
+>>>>>>>> drivers/gpu/drm/xe/xe_tile_sysfs.c | 86
+>>>>>>>> ++++++++++++++++++++++++++++++
+>>>>>>>>     2 files changed, 93 insertions(+)
+>>>>>>>>
+>>>>>>>> diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h
+>>>>>>>> b/drivers/gpu/drm/xe/xe_pcode_api.h
+>>>>>>>> index 5935cfe30204..f153ce96f69a 100644
+>>>>>>>> --- a/drivers/gpu/drm/xe/xe_pcode_api.h
+>>>>>>>> +++ b/drivers/gpu/drm/xe/xe_pcode_api.h
+>>>>>>>> @@ -42,6 +42,13 @@
+>>>>>>>>     #define        POWER_SETUP_I1_SHIFT        6    /* 10.6 fixed
+>>>>>>>> point format */
+>>>>>>>>     #define        POWER_SETUP_I1_DATA_MASK
+>>>>>>>>     REG_GENMASK(15, 0)
+>>>>>>>>
+>>>>>>>> +#define   PCODE_FREQUENCY_CONFIG        0x6e
+>>>>>>>> +/* Frequency Config Sub Commands (param1) */
+>>>>>>>> +#define     PCODE_MBOX_FC_SC_READ_FUSED_P0    0x0
+>>>>>>>> +#define     PCODE_MBOX_FC_SC_READ_FUSED_PN    0x1
+>>>>>>>> +/* Domain IDs (param2) */
+>>>>>>>> +#define     PCODE_MBOX_DOMAIN_HBM        0x2
+>>>>>>>> +
+>>>>>>>>     struct pcode_err_decode {
+>>>>>>>>         int errno;
+>>>>>>>>         const char *str;
+>>>>>>>> diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.c
+>>>>>>>> b/drivers/gpu/drm/xe/xe_tile_sysfs.c
+>>>>>>>> index 0f8d3e7fce46..cdc9dbbc97b0 100644
+>>>>>>>> --- a/drivers/gpu/drm/xe/xe_tile_sysfs.c
+>>>>>>>> +++ b/drivers/gpu/drm/xe/xe_tile_sysfs.c
+>>>>>>>> @@ -7,9 +7,21 @@
+>>>>>>>>     #include <linux/sysfs.h>
+>>>>>>>>     #include <drm/drm_managed.h>
+>>>>>>>>
+>>>>>>>> +#include "xe_gt_types.h"
+>>>>>>>> +#include "xe_pcode.h"
+>>>>>>>> +#include "xe_pcode_api.h"
+>>>>>>>>     #include "xe_tile.h"
+>>>>>>>>     #include "xe_tile_sysfs.h"
+>>>>>>>>
+>>>>>>>> +/**
+>>>>>>>> + * DOC: Xe Tile sysfs
+>>>>>>>> + *
+>>>>>>>> + * Provides sysfs entries for frequency in tile
+>>>>>>>> + *
+>>>>>>>> + * device/tile#/memory/freq0/max_freq - Maximum Frequency, not a
+>>>>>>>> configuration and read-only.
+>>>>>>> Let's increase verbosity of doc something explaining it is a fixed
+>>>>>>> fuse point not a
+>>>>>> configuration.
+>>>>>> Sure
+>>>>>>>> + * device/tile#/memory/freq0/min_freq - Minimum Frequency, not a
+>>>>>>>> configuration and read-only.
+>>>>>>>> + */
+>>>>>>>> +
+>>>>>>>>     static void xe_tile_sysfs_kobj_release(struct kobject *kobj)  {
+>>>>>>>>         kfree(kobj);
+>>>>>>>> @@ -20,6 +32,65 @@ static const struct kobj_type
+>>>>>>>> xe_tile_sysfs_kobj_type = {
+>>>>>>>>         .sysfs_ops = &kobj_sysfs_ops,
+>>>>>>>>     };
+>>>>>>>>
+>>>>>>>> +static ssize_t max_freq_show(struct device *kdev, struct
+>>>>>>>> +device_attribute
+>>>>>>>> *attr,
+>>>>>>>> +                 char *buf)
+>>>>>>>> +{
+>>>>>>>> +    struct kobject *kobj = &kdev->kobj;
+>>>>>>>> +    struct xe_tile *tile = kobj_to_tile(kobj->parent);
+>>>>>>>> +    struct xe_gt *gt = tile->primary_gt;
+>>>>>>>> +    u32 val, mbox;
+>>>>>>>> +    int err;
+>>>>>>>> +
+>>>>>>>> +    mbox = REG_FIELD_PREP(PCODE_MB_COMMAND,
+>>>>>>>> PCODE_FREQUENCY_CONFIG)
+>>>>>>>> +        | REG_FIELD_PREP(PCODE_MB_PARAM1,
+>>>>>>>> PCODE_MBOX_FC_SC_READ_FUSED_P0)
+>>>>>>>> +        | REG_FIELD_PREP(PCODE_MB_PARAM2,
+>>>>>>>> PCODE_MBOX_DOMAIN_HBM);
+>>>>>>>> +
+>>>>>>>> +    err = xe_pcode_read(gt, mbox, &val, NULL);
+>>>>>>>> +    if (err)
+>>>>>>>> +        return err;
+>>>>>>>> +
+>>>>>>>> +    /* data_out - Fused P0 for domain ID in units of 50 MHz */
+>>>>>>>> +    val *= 50;
+>>>>>>>> +
+>>>>>>>> +    return sysfs_emit(buf, "%u\n", val); } static
+>>>>>>>> +DEVICE_ATTR_RO(max_freq);
+>>>>>>>> +
+>>>>>>>> +static ssize_t min_freq_show(struct device *kdev, struct
+>>>>>>>> +device_attribute
+>>>>>>>> *attr,
+>>>>>>>> +                 char *buf)
+>>>>>>>> +{
+>>>>>>>> +    struct kobject *kobj = &kdev->kobj;
+>>>>>>>> +    struct xe_tile *tile = kobj_to_tile(kobj->parent);
+>>>>>>> If you are missing to create a kobject for freq0 , then this should
+>>>>>>> be
+>>>>>>> kobj->parent->parent.
+>>>>>> I don't think a kobject is needed for freq0, since it we are only
+>>>>>> using attribute_group for it.
+>>>>>>
+>>>>>> Similar to throttle_reasons.
+>>>>> Sure,  thanks for explanation.
+>>>>>>>> +    struct xe_gt *gt = tile->primary_gt;
+>>>>>>>> +    u32 val, mbox;
+>>>>>>>> +    int err;
+>>>>>>>> +
+>>>>>>>> +    mbox = REG_FIELD_PREP(PCODE_MB_COMMAND,
+>>>>>>>> PCODE_FREQUENCY_CONFIG)
+>>>>>>>> +        | REG_FIELD_PREP(PCODE_MB_PARAM1,
+>>>>>>>> PCODE_MBOX_FC_SC_READ_FUSED_PN)
+>>>>>>>> +        | REG_FIELD_PREP(PCODE_MB_PARAM2,
+>>>>>>>> PCODE_MBOX_DOMAIN_HBM);
+>>>>>>>> +
+>>>>>>>> +    err = xe_pcode_read(gt, mbox, &val, NULL);
+>>>>>>>> +    if (err)
+>>>>>>>> +        return err;
+>>>>>>>> +
+>>>>>>>> +    /* data_out - Fused Pn for domain ID in units of 50 MHz */
+>>>>>>>> +    val *= 50;
+>>>>>>>> +
+>>>>>>>> +    return sysfs_emit(buf, "%u\n", val); } static
+>>>>>>>> +DEVICE_ATTR_RO(min_freq);
+>>>>>>>> +
+>>>>>>>> +static struct attribute *freq_attrs[] = {
+>>>>>>>> +    &dev_attr_max_freq.attr,
+>>>>>>>> +    &dev_attr_min_freq.attr,
+>>>>>>>> +    NULL
+>>>>>>>> +};
+>>>>>>>> +
+>>>>>>>> +static const struct attribute_group freq_group_attrs = {
+>>>>>>>> +    .name = "freq0",
+>>>>>>>> +    .attrs = freq_attrs,
+>>>>>>>> +};
+>>>>>>>> +
+>>>>>>>>     static void tile_sysfs_fini(struct drm_device *drm, void 
+>>>>>>>> *arg)  {
+>>>>>>>>         struct xe_tile *tile = arg;
+>>>>>>>> @@ -32,6 +103,7 @@ void xe_tile_sysfs_init(struct xe_tile *tile)
+>>>>>>>>         struct xe_device *xe = tile_to_xe(tile);
+>>>>>>>>         struct device *dev = xe->drm.dev;
+>>>>>>>>         struct kobj_tile *kt;
+>>>>>>>> +    struct kobject *kobj;
+>>>>>>>>         int err;
+>>>>>>>>
+>>>>>>>>         kt = kzalloc(sizeof(*kt), GFP_KERNEL); @@ -50,6 +122,20 
+>>>>>>>> @@ void
+>>>>>>>> xe_tile_sysfs_init(struct xe_tile *tile)
+>>>>>>>>
+>>>>>>>>         tile->sysfs = &kt->base;
+>>>>>>>>
+>>>>>>>> +    if (xe->info.platform == XE_PVC) {
+>>>>>>>> +        kobj = kobject_create_and_add("memory", tile->sysfs);
+>>>>>>> How freq0 is getting added, I am unable to see the freq0 kobject as
+>>>>>>> per the path
+>>>>>> "device/tile#/memory/freq0/"
+>>>>>> freq0 is being added as an attribute group. It is similar to the
+>>>>>> throttle_reasons implementation.
+>>>>>>>> +        if (!kobj)
+>>>>>>>> +            drm_warn(&xe->drm, "failed to add memory
+>>>>>>>> directory, err: %d\n", -ENOMEM);
+>>>>>>>> +    }
+>>>>>>>> +
+>>>>>>>> +    if (kobj && xe->info.platform == XE_PVC) {
+>>>>>>>> +        err = sysfs_create_group(kobj, &freq_group_attrs);
+>>>>>>>> +        if (err) {
+>>>>>>>> +            drm_warn(&xe->drm, "failed to register vram freq
+>>>>>>>> sysfs, err: %d\n", err);
+>>>>>>>> +            return;
+>>>>>>>> +        }
+>>>>>>>> +    }
+>>>>>>> Don't we need sysfs cleanup and kobject_put in tile_sysfs_fini() ?
+>>>>>>> Have you made sure kmemleak won't complain here on memory leak ?
+>>>>> Check the kobject_release() , this will only get call , when all 
+>>>>> ref count of that
+>>>> kobj is being put.
+>>>>> Here you are creating a object and it will never be released.
+>>>>> Also  we need to call  the sysfs_remove_group() as well in fini 
+>>>>> function ?
+>>>>>
+>>>>> Thanks,
+>>>>> Anshuman.
+>>>> This is a bit of unique case. In this file we have two issues that 
+>>>> keeps us from
+>>>> cleaning up like others.
+>>> Current patch looks broken to me, this will leak the kobject on 
+>>> module unload.
+>>> Please check kmemleak after module unload.
+>>>> One, we need to cleanup the base tile directory here. And second, we 
+>>>> are
+>>>> creating the kobject only for PVC. If we add the "memory" kobject 
+>>>> cleanup to
+>>>> fini, we will be defining tile using kobj. This is causing an error 
+>>>> on unload,
+>>>> despite adding platform conditions on fini.
+>>> You may try by changing the type of void *arg to "memory" kob to fini 
+>>> function ?
+>>>> After testing multiple iterations of the fini function, this was the 
+>>>> cleanest way
+>>>> with no errors that worked across platforms.
+>>>>
+>>>> If needed, the only way to accommodate the kobject_put(kobj) and the
+>>>> sysfs_remove_group is to move the vram sysfs creation to a separate 
+>>>> file,
+>>>> similar to throttle_reasons and gt_freq.
+>>> I think it is needed for a functional working patch, if it can not be 
+>>> handled by using
+>>> "void *arg" in fini function.
+I think you can try something similar to the below file
+xe_hw_engine_class_sysfs.c
 
-Karthik.
+Has different functions for different hierarchy of kobjects.
 
-On 01-01-2024 20:07, Gupta, Anshuman wrote:
->
->> -----Original Message-----
->> From: Poosa, Karthik <karthik.poosa@intel.com>
->> Sent: Sunday, December 31, 2023 8:18 PM
->> To: intel-xe@lists.freedesktop.org
->> Cc: Gupta, Anshuman <anshuman.gupta@intel.com>; Nilawar, Badal
->> <badal.nilawar@intel.com>; Brost, Matthew <matthew.brost@intel.com>;
->> Vivi, Rodrigo <rodrigo.vivi@intel.com>; Poosa, Karthik
->> <karthik.poosa@intel.com>
->> Subject: [PATCH] drm/xe/debugfs: Add support for gt synchronous force reset
+Thanks
+Riana
+>>>
+>>> Thanks,
+>>> Anshuman Gupta.
 >>
->> This support added as igt test freq_reset_multiple fails sporadically in case
->> xe_guc_pc is not started.
->> A completion is added in force_reset for this.
->> Writing non-zero to force_reset debugfs entry does synchronous reset.
-> We need IGT patch as well for this patch.
->> v2:
->> - Changed wait for completion to interruptible (Anshuman).
->> - Moved timeout to xe_gt.h (Anshuman).
->> - Created a debugfs for updating timeout (Rodrigo).
+>> Since this is bit contentious even though the patch is functional, I 
+>> will move these sysfs out of xe_tile_sysfs.c to it own new file.
 >>
->> v3:
->> - Update force_reset debugfs with write support.
->>    value 0 -> async reset, non-zero -> sync reset (Matthew Brost).
+>> This should clear up everything.
 >>
->> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_gt.c         |  2 +
->>   drivers/gpu/drm/xe/xe_gt_debugfs.c | 72
->> ++++++++++++++++++++++++++++--  drivers/gpu/drm/xe/xe_gt_debugfs.h
->> |  3 ++
->>   drivers/gpu/drm/xe/xe_gt_types.h   |  8 ++++
->>   4 files changed, 82 insertions(+), 3 deletions(-)
+>> Thanks,
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c index
->> 3af2adec1295..c8d2c18b0c62 100644
->> --- a/drivers/gpu/drm/xe/xe_gt.c
->> +++ b/drivers/gpu/drm/xe/xe_gt.c
->> @@ -65,6 +65,7 @@ struct xe_gt *xe_gt_alloc(struct xe_tile *tile)
->>
->>   	gt->tile = tile;
->>   	gt->ordered_wq = alloc_ordered_workqueue("gt-ordered-wq", 0);
->> +	init_completion(&gt->reset.done);
->>
->>   	return gt;
->>   }
->> @@ -633,6 +634,7 @@ static int gt_reset(struct xe_gt *gt)
->>   	xe_device_mem_access_put(gt_to_xe(gt));
->>   	XE_WARN_ON(err);
->>
->> +	complete(&gt->reset.done);
->>   	xe_gt_info(gt, "reset done\n");
->>
->>   	return 0;
->> diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c
->> b/drivers/gpu/drm/xe/xe_gt_debugfs.c
->> index c4b67cf09f8f..3518ab89ccfc 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
->> +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
->> @@ -55,15 +55,71 @@ static int hw_engines(struct seq_file *m, void *data)
->>   	return 0;
->>   }
->>
->> -static int force_reset(struct seq_file *m, void *data)
->> +static int force_reset(struct xe_gt *gt, bool is_sync)
->>   {
->> -	struct xe_gt *gt = node_to_gt(m->private);
->> +	struct xe_device *xe = gt_to_xe(gt);
->> +	long ret;
->>
->>   	xe_gt_reset_async(gt);
->>
->> +	if (is_sync) {
->> +		drm_info(&xe->drm, "waiting for gt reset completion");
->> +		ret = wait_for_completion_interruptible_timeout(&gt-
->>> reset.done,
->> +							msecs_to_jiffies(gt-
->>> reset.timeout_ms));
->> +		if (ret <= 0) {
->> +			drm_err(&xe->drm, "gt reset timed out/interrputed,
->> ret %ld\n", ret);
->> +			return -ETIMEDOUT;
->> +		}
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +ssize_t force_reset_write(struct file *f, const char __user *buf,
->> +size_t len, loff_t *offset) {
->> +	struct xe_gt *gt = file_inode(f)->i_private;
->> +	struct xe_device *xe = gt_to_xe(gt);
->> +	char arg_str[5];
->> +	size_t size;
->> +	unsigned long arg;
->> +	int ret;
->> +
->> +	size = min(sizeof(arg_str)-1, len);
->> +	arg = copy_from_user((void *)arg_str, buf, size);
->> +	if (arg < 0) {
->> +		drm_err(&xe->drm, "reading force_reset arg failed, ret %ld",
->> arg);
->> +		return arg;
->> +	}
->> +	arg_str[size] = '\0';
->> +
->> +	ret = kstrtoul(arg_str, 0, &arg);
->> +	if (ret) {
->> +		drm_err(&xe->drm, "force_reset arg parse failed, ret %d", ret);
->> +		return ret;
->> +	}
->> +
->> +	ret = force_reset(gt, (arg && 1));
-> How about  !!arg
-&& will use a single instruction.
-
-but !! will happen with 2 instructions, so I think && would be better.
-
->   > +	if (ret != 0)  {
->> +		drm_err(&xe->drm, "force_reset failed, ret %d\n", ret);
->> +		return ret;
->> +	}
->> +	return len;
->> +}
->> +
->> +ssize_t force_reset_read(struct file *f, char __user *buf, size_t len,
->> +loff_t *offset) {
->> +	struct xe_gt *gt = file_inode(f)->i_private;
->> +
->> +	force_reset(gt, 0);
->>   	return 0;
->>   }
->>
->> +static const struct file_operations force_reset_fops = {
->> +	.owner = THIS_MODULE,
->> +	.write = force_reset_write,
->> +	.read = force_reset_read,
->> +};
->> +
->>   static int sa_info(struct seq_file *m, void *data)  {
->>   	struct xe_tile *tile = gt_to_tile(node_to_gt(m->private));
->> @@ -192,7 +248,6 @@ static int vecs_default_lrc(struct seq_file *m, void
->> *data)
->>
->>   static const struct drm_info_list debugfs_list[] = {
->>   	{"hw_engines", hw_engines, 0},
->> -	{"force_reset", force_reset, 0},
->>   	{"sa_info", sa_info, 0},
->>   	{"topology", topology, 0},
->>   	{"steering", steering, 0},
->> @@ -245,5 +300,16 @@ void xe_gt_debugfs_register(struct xe_gt *gt)
->>   				 ARRAY_SIZE(debugfs_list),
->>   				 root, minor);
->>
->> +	gt->reset.fr_dentry = debugfs_create_file("force_reset", 0600, root,
->> xe,
->> +			    &force_reset_fops);
-> Please use DEFINE_SHOW_STORE_ATTRIBUTE here to create rw debugfs entry.
-> Use force_reset_show and force_reset_restore function name.
->> +	if (!gt->reset.fr_dentry)
->> +		drm_warn(&xe->drm, "force_reset debugfs file creation
->> failed");
->> +	d_inode(gt->reset.fr_dentry)->i_private = gt;
->> +
->> +	debugfs_create_u32("gt_reset_timeout_ms", 0600, root,
->> +					&gt->reset.timeout_ms);
->> +	/* set a default timeout value */
->> +	gt->reset.timeout_ms = 1000;
-> xe_gt_debugfs_register() should only do the job of debugfs registration.
-> This is odd here.
-
-Shall I move this to xe_gt_alloc (xe_gt.c), where gt is allocated and 
-initialized.
-
->> +
->>   	xe_uc_debugfs_register(&gt->uc, root);  } diff --git
->> a/drivers/gpu/drm/xe/xe_gt_debugfs.h
->> b/drivers/gpu/drm/xe/xe_gt_debugfs.h
->> index 5a329f118a57..40adcf1822c6 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_debugfs.h
->> +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.h
->> @@ -6,8 +6,11 @@
->>   #ifndef _XE_GT_DEBUGFS_H_
->>   #define _XE_GT_DEBUGFS_H_
->>
->> +#include <linux/fs.h>
->>   struct xe_gt;
->>
->>   void xe_gt_debugfs_register(struct xe_gt *gt);
->> +ssize_t force_reset_write(struct file *f, const char __user *buf,
->> +size_t len, loff_t *offset); ssize_t force_reset_read(struct file *f,
->> +char __user *buf, size_t len, loff_t *offset);
->>
->>   #endif
->> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h
->> b/drivers/gpu/drm/xe/xe_gt_types.h
->> index f74684660475..d6134215094b 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_types.h
->> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
->> @@ -148,6 +148,14 @@ struct xe_gt {
->>   		 * code to safely flush all code paths
->>   		 */
->>   		struct work_struct worker;
->> +		/** @done : completion for GT reset */
->> +		struct completion done;
->> +		/** @timeout_ms : gt synchronous reset timeout in ms */
->> +		u32 timeout_ms;
->> +		/** @dentry: dentry for force_reset */
->> +		struct dentry *fr_dentry;
->> +		/** @is_sync_reset : gt reset is synchronous */
->> +		//bool is_sync_reset;
-> Remove thus unused var.
->
+>> Suja
+> 
+> Hi Anshuman,
+> 
+> I've moved everything to a new file called xe_vram_freq.c/h . All 
+> kmemleaks and unload/reload checks are clean.
+> 
+> Let me know if the naming works.
+> 
+> The documentation added is as below, let me know if any tweaks are needed;
+> 
+> /**
+> * DOC: Xe VRAM freq
+> *
+> * Provides sysfs entries for vram frequency in tile
+> *
+> * device/tile#/memory/freq0/max_freq - This is maximum frequency. This 
+> value is read-only as it
+> *         is the fixed fuse point P0. It is not the system
+> *         configuration frequency.
+> * device/tile#/memory/freq0/min_freq - This is minimum frequency. This 
+> value is read-only as it
+> *         is the fixed fuse point PN. It is not the system
+> *          configuration frequency.
+> */
+> 
 > Thanks,
-> Anshuman Gupta.
->>   	} reset;
+> 
+> Suja
+> 
 >>
->>   	/** @tlb_invalidation: TLB invalidation state */
->> --
->> 2.25.1
+>>>
+>>>
+>>>> Thanks,
+>>>>
+>>>> Suja
+>>>>
+>>>>>>> Thanks,
+>>>>>>> Anshuman Gupta.
+>>>>>> I have already checked for mem leaks during the cleanup. The
+>>>>>> kobject_put is not needed.
+>>>>>>
+>>>>>> Thanks,
+>>>>>>
+>>>>>> Suja
+>>>>>>
+>>>>>>>> +
+>>>>>>>>         err = drmm_add_action_or_reset(&xe->drm, 
+>>>>>>>> tile_sysfs_fini, tile);
+>>>>>>>>         if (err)
+>>>>>>>>             drm_warn(&xe->drm, "%s: drmm_add_action_or_reset 
+>>>>>>>> failed,
+>>>>>>>> err: %d\n",
+>>>>>>>> -- 
+>>>>>>>> 2.25.1
