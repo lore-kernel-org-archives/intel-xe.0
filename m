@@ -4,143 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8ED04C46CD2
-	for <intel-xe@archiver.kernel.org>; Tue,  2 Jan 2024 14:28:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FCE8C46CD2
+	for <intel-xe@archiver.kernel.org>; Tue,  2 Jan 2024 15:31:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4148710E1BD;
-	Tue,  2 Jan 2024 14:28:24 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6ACD910E1BD
- for <intel-xe@lists.freedesktop.org>; Tue,  2 Jan 2024 14:28:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E601210E0D5;
+	Tue,  2 Jan 2024 15:31:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 567D910E0D5
+ for <intel-xe@lists.freedesktop.org>; Tue,  2 Jan 2024 15:31:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704205704; x=1735741704;
- h=content-transfer-encoding:in-reply-to:references:subject:
- from:to:date:message-id:mime-version;
- bh=HmtISVJzd0GImo0j/N59fiJc4UqzhNOk5c6Z+KV/rRk=;
- b=kqjC20VAEaIwN2D552TIJDSw3mW0MJt3DgH/P2fN6GyL0LWN9mUsEhva
- KOyN7UksY97Xbxl5JFzQomUjRiDU9v32e03DoWVKMvoRnojv0QfVyR6tn
- 3mjPel8vPhi8YPFhPI6bp1BO/2N2e2K+41o69wWRMJX4SqHh1kwtudIHz
- z1cU5yWZlgIfyv0TN3P4Y9vTjlG1CgZdsIurd9ht3TDmfo/7w9TmBN8mu
- m1PkISwV+Jj6q23j7DZ/pIyKY5NrJAdGNYcHoIrwG9YyCoLGZm/qRmsPC
- d3MS19wAskJZFhzaxeBfb3izGmlaG/jM8sThswRtOZ17bR1QvT7NPW84m A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10941"; a="3719850"
-X-IronPort-AV: E=Sophos;i="6.04,325,1695711600"; 
-   d="scan'208";a="3719850"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2024 06:28:23 -0800
+ t=1704209462; x=1735745462;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=XrzRX4qCF5PQJKTgfSwo5ckULXIn0GswpFb93AVai/k=;
+ b=C3bjzvtyUWKcwx00lLfpHe2aYgWrPyOysp71Un7o+UUxRtrSIjCXTpez
+ Heg/uZjFvwyfuywMm9/n0sogqGMP5kM1Fltmhwqrohy7+UepExr0e5vOv
+ s+dKVi5WYx1mvxvp4pGDefuMBkNF4rmws41Vfveo3Gz4m5ww6mLEc8fyx
+ AqPJxfP2ij8rfLfIaXoxCf097jM0XCM7tZiwU10nDjSXkU5QR021MNDdD
+ S75KCOx9MjKpkGt4Psamjs7mqspEU+GTdGQcfOPO6BT8uYocfjC3HAM+v
+ 2ETnqRSrKLkOB2EBvEYEifSfCyQFR7Ao4/YWRjQt5LNaXLnO7br0ONAQ3 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10941"; a="461194541"
+X-IronPort-AV: E=Sophos;i="6.04,325,1695711600"; d="scan'208";a="461194541"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jan 2024 07:31:01 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,325,1695711600"; d="scan'208";a="21799643"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 02 Jan 2024 06:28:22 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 2 Jan 2024 06:28:22 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 2 Jan 2024 06:28:22 -0800
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 2 Jan 2024 06:28:22 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=c7q+vuC+9My+53wNxtIlT+KpKjiFiWeJI6Eg7yEvoX/rCBsMWE05frbtb4eIrzPH8WvvlqLcELAPoSOBD7zMBLNhzjcLdSkBLNzhPXSQsL3aq3ssw42spg+wJ2R5lNb7CRvXDt0v1fynmUWOeWFZ+/is0KndIhKJRZIaLks+xSmbuKW18AZqONIeEX39NxKkxLBe1INZ1IigAZhXh5IlMSsCr5lW9r+4RiMFLIYGvFQFX91YvHYKkrkaqHehCUHCfJPKDUfnWOsUuFH3SFNVSvcDewhqxVYhezaeoZoGcSd1Izq/A6iN7lm3npK0Wz3sr2rOpmK/GIbJ8qPPUWjEjQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SYf2fVLNmtgOb74vuIMovqKhkSMf+vd1Qfv4pSaSGvo=;
- b=BoPwPfJc02VQYPd7tEfb7oRDX7n2i6+9U5Dws3MNjHtq+tqU92jA5x9kCmRczvaKSnleoraezQCs1cBrdgYvGnoES3uQxzZvA4rOfEdX+IVX8JweVVew1TUpwAgJUttnMrMzy2lvWz4mbXhVtWJeQZkn7i/m+dFxrpf53xvbX5FeWnNutnpUYl6sseLClhKtwE2gqea+eFa6jNrDrhyKyw1SMizyIMJh6I5fBO8xPNLEfGhkHA52lAmzSSCjFufU2/65LkhO/4Tg3QAOGd5nu7e87BvVu8thAHWKsGK/kOHWQ1h5VzFp502sG/sgYhFTTA69l5/PoMqPoJaQOZd3aQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BN8PR11MB3556.namprd11.prod.outlook.com (2603:10b6:408:8d::31)
- by SN7PR11MB6601.namprd11.prod.outlook.com (2603:10b6:806:273::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7135.25; Tue, 2 Jan
- 2024 14:28:20 +0000
-Received: from BN8PR11MB3556.namprd11.prod.outlook.com
- ([fe80::ac50:a00f:447e:a3a5]) by BN8PR11MB3556.namprd11.prod.outlook.com
- ([fe80::ac50:a00f:447e:a3a5%6]) with mapi id 15.20.7159.013; Tue, 2 Jan 2024
- 14:28:20 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20231228110526.383245-1-luciano.coelho@intel.com>
-References: <20231228110526.383245-1-luciano.coelho@intel.com>
-Subject: Re: [PATCH] drm/xe/display: fix type of intel_uncore_read*() functions
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: Luca Coelho <luciano.coelho@intel.com>, <intel-xe@lists.freedesktop.org>
-Date: Tue, 2 Jan 2024 11:28:16 -0300
-Message-ID: <170420569634.33674.7537814207321369421@gjsousa-mobl2>
-User-Agent: alot/0.10
-X-ClientProxiedBy: BYAPR21CA0029.namprd21.prod.outlook.com
- (2603:10b6:a03:114::39) To BN8PR11MB3556.namprd11.prod.outlook.com
- (2603:10b6:408:8d::31)
+X-IronPort-AV: E=McAfee;i="6600,9927,10941"; a="845612785"
+X-IronPort-AV: E=Sophos;i="6.04,325,1695711600"; d="scan'208";a="845612785"
+Received: from mkuoppal-desk.fi.intel.com (HELO localhost) ([10.237.72.193])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jan 2024 07:31:00 -0800
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: "Poosa, Karthik" <karthik.poosa@intel.com>, "Gupta, Anshuman"
+ <anshuman.gupta@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/xe/debugfs: Add support for gt synchronous force reset
+In-Reply-To: <5f11046a-81c1-4984-bc60-ce904ff605ca@intel.com>
+References: <20231231144733.568481-1-karthik.poosa@intel.com>
+ <CY5PR11MB62114F7D75F8A7DBF6066A6A9562A@CY5PR11MB6211.namprd11.prod.outlook.com>
+ <5f11046a-81c1-4984-bc60-ce904ff605ca@intel.com>
+Date: Tue, 02 Jan 2024 17:26:32 +0200
+Message-ID: <878r574uzb.fsf@mkuoppal-desk>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8PR11MB3556:EE_|SN7PR11MB6601:EE_
-X-MS-Office365-Filtering-Correlation-Id: fc1bdc55-a953-43a3-f829-08dc0b9f1184
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: H/tT49Zi62RYa1/nPoOT2dQnce2Yj1m/RuPwAuyO6Qm8nU0lu91TBLRfm31GbRpxnNmLr95c8k+lIANHakq89Gdhe09PrS/1TO5NyTiwBMmovHgkU5h89tdiGn5ZZBaKMw/Jwxkf8Fr9SCIJicPvLiuJJ6vYvbMvYCzEf8/F47OfuEzMSQOcDEqlBVuAo4qUsE62Eke8GebYt0N/pa/9DR8tu5s4CJo6zHoODehpRfnD/knZqNbPbhSE8hphflr+0prFYProJzE+N3jUBwG1svCKwA5d8J8BDvq/SG5iwDzcqe6H1dZjyoAnpN0/PTVEp6eCRpri6sk39c4lc+EdNmRz3jLJ19j5jdbV6c6tl6CsZNSEB05hb5km+qM+6XPnKqEGJYgSI8B17wl9QereYVlCAYLiWX1shfrG3n9gajQ80xfG7w9E+0iVvtSXTurGYQQYcUR0YlXEKdxb0dyP2coWlneWVCmrb8rxdz+Gb7P1zq3hXpSWJJbDuHkTB/JBgRF60lYd1lW62aKabbOR2LclK0k1X3hde3EuQnHzeS3hlggTp4Pyi4I+tRDQ9wQf
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR11MB3556.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(39860400002)(376002)(346002)(136003)(396003)(366004)(230922051799003)(451199024)(186009)(1800799012)(64100799003)(6512007)(9686003)(83380400001)(26005)(8936002)(41300700001)(44832011)(5660300002)(33716001)(8676002)(4001150100001)(2906002)(478600001)(6486002)(6666004)(6506007)(66556008)(66476007)(66946007)(316002)(86362001)(82960400001)(38100700002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q3RleWN6V0pQTzJxbWNwZVB6cGRUMllza2NGT2x5aWxrbCtkUVA1ZS90d2Zr?=
- =?utf-8?B?VFFVSUF1RTh6L3Nmc3V1MG1NS2hvNy9vTFcrVkFrUytSS1gwRWduMDVZSEJw?=
- =?utf-8?B?bWhvSmp1OU1qRFRqUUtCMitwQlhnL0ZTSVg4WksvRTNaVzNHVWIwUFFGVXRF?=
- =?utf-8?B?SzJmOWUxdFAzMktJQTFSdUkvRy9DWXQ1ekZxZjI4TDExUUNFZkc4dEtoUUFu?=
- =?utf-8?B?SXNqeDhqMjVwUWJ2TERrMG1tQkMydlZhdE5GRzR2K2hnb2ZxRjVOYUlBTXMw?=
- =?utf-8?B?dXpmbmNPdHF4blZhbHpKd045d0RJZ2FEdU9Ea25kUThoUnY0QmVRTVFGSjQv?=
- =?utf-8?B?K3JDVXRKU3lwWGNQT1NyUENacVBrSHhOUWIwOW1IRVJGMGxsUnRSdGVEYng4?=
- =?utf-8?B?VU1HUjQ1UThaaTZkWWVtRE1HbUlsSUFBMnUyNVhSeDBlTS95VmRsbGQ4Qld3?=
- =?utf-8?B?VlhyaG50WEtQZWpNR3N2M2RhYnBscklMZVBsSERsb3o0NG5VWjdFY2NIYzJ4?=
- =?utf-8?B?RjFPeVdVU0lKTm15U29OWjFTcHkxWmg3Y2w4RVlSSXlUZ1hHMEhsbVVsdTll?=
- =?utf-8?B?WmhkMnprZ1NHNHNRdVV0QUpnUHFrRXcwVE85QURWRmpXM2ZNUStIak9mbk40?=
- =?utf-8?B?cWgyNmFWUXNKcUs3YVFCcTcvV0lQTGZLemhleG9oanVFZTJDVVV1eS9vbG5M?=
- =?utf-8?B?dXFUbUF2L2daOVdrdlNhSHJZWVh0WkNzZG1hR2ZMc3kzanM3c3l2eGhGS2xv?=
- =?utf-8?B?R2Jtd1MzZGU2VmxDdmk0bzM1NWJYTzlPS0xEM0UxYVhNQ21RS2V3NW9xM0Na?=
- =?utf-8?B?cFRLSWlCSjBiaWhPbzJzZzlvdUhqTSt0ZkRmcGo4SXl5YWRGMS80cm5TN0p1?=
- =?utf-8?B?cjZQa2FqSC9nVWJSTHdWWm1Iai93eExMeVdqNGJrbitiN0xIQ1lOZ2pteVN0?=
- =?utf-8?B?QzZXK0ZubXBwUXpEeWswcXFWLzZTSG5lNVZmQXZtYXlOSDcwQWdPOUxsc1lD?=
- =?utf-8?B?bDk3QVdlQmU1SmVCVCszN2RzMTVYRkNrWjFVS1NrczNXeFJuMEw2WFdqSGZq?=
- =?utf-8?B?VzcybXFEMHFtQVRUWXZQTGdKaXZCNDJKYU1QWWh3N1E3ZDJWOVYycEVyck9H?=
- =?utf-8?B?cEFTQlFOdExYUUVIenIwRmlvc1dJa2V0VmY2T3FhYkNMRTlLbVJVOWQ0MTJ5?=
- =?utf-8?B?RmNEWXg4WVpFY0RhSUJqYktLYUFBWWJCbFM1WnVFbG5hNmEzTjV0TFRNNFU5?=
- =?utf-8?B?SFUvZ3I4OUZHNGllOS9rREVESGRlMWNtOWdLQnZjOXlqSXU4dklrcVFhMFY2?=
- =?utf-8?B?eGN2MWJpY3h4VnYzTDQyT3NZT2dKUmFrTFpCQVdkcGMycTdyVGNsREMvT2VJ?=
- =?utf-8?B?dUVNOVNPZ2s3MEcvN0Z2TUUxeDhuenlkR3ZNcFN5ZUUxaUJtanV0MjNaZUhM?=
- =?utf-8?B?N1Y1a2x3dGFyWmRjdEJPaVRnNEpGQVNPQlRoTkpyNnRJY1J3YVFXaUE2VDRB?=
- =?utf-8?B?RHJUYXQxTHE2eVBoZHdJalMrbzRUcEQwa2U1SkZsWWJ4TFd4WDB1ZFdCVlU0?=
- =?utf-8?B?ZGhnY0g2NGxNUk5wZFhFc1BjalV1V09XcTlmb1RRUEpIcEllZm5QbmQ5bmVG?=
- =?utf-8?B?YmJlRHZsdTlRSTFtQXdqUHFKVDMwOWY5Rk5sV0hCaFNBcVlXUUNJL1RkN1ZI?=
- =?utf-8?B?RzR4bXVWZlpJdjREaDZ5UG8zSXoxb3NKaTBzYzdST1RIeExvUXdvWklRVlBq?=
- =?utf-8?B?WHJjUFcwNlFuWDZjYXQ0NFZFU3lYU1pSZnZ5dzI2ZHNSQUNSMHNRcU4yUnAy?=
- =?utf-8?B?YjVWWDN0UEt3aitUd3k5ZzFMeFJQdE92bXV6UEtOZFB4M3lvMXZrcmtXNlRS?=
- =?utf-8?B?VzhqN0NnNm1xQmN0R01FUUFycTNVUEM4c0hqOWtyNEpTRnA5NjVzY2YzTDFj?=
- =?utf-8?B?bmJVS251em03a2E0RlhUZ2lrNUFpNzRwb0NGVWVsRmhtVHd6WFczMjc0bS9I?=
- =?utf-8?B?SkpXc2FzZkdXMlFiRUlBazhlaXZLQWNnVUdXd2ZOb1JobUoveUFoUFlwTHcw?=
- =?utf-8?B?TVlrUGMwV1liSENvNjJLRGpqQmdRQ2ViMTJlcDB4R2lRTTQzbDFuNUlkOUlQ?=
- =?utf-8?B?YVdiWW9vR2dEbDgrMDBqY0ZFb0U1M1NKcVVmcVcwaUlHZWpMYjJtcDlOWU5D?=
- =?utf-8?B?UHc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: fc1bdc55-a953-43a3-f829-08dc0b9f1184
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR11MB3556.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jan 2024 14:28:20.3141 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4X5c2cUcxFuw7TBy9ZPfJ7lDDaJk+Uy8/748x/5oJMcoI/ownKJv2sJMl4QV/r2Xls8oOPBtOn1mIKL8YcmxmQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6601
-X-OriginatorOrg: intel.com
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,46 +59,243 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Quoting Luca Coelho (2023-12-28 08:05:26-03:00)
->Some of the backported intel_uncore_read*() functions used the wrong
->types.  Change the function declarations accordingly.
->
->Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+"Poosa, Karthik" <karthik.poosa@intel.com> writes:
 
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> Hi Anshuman,
+>
+> Please find my comments inline below.
+>
+> Thanks,
+>
+> Karthik.
+>
+> On 01-01-2024 20:07, Gupta, Anshuman wrote:
+>>
+>>> -----Original Message-----
+>>> From: Poosa, Karthik <karthik.poosa@intel.com>
+>>> Sent: Sunday, December 31, 2023 8:18 PM
+>>> To: intel-xe@lists.freedesktop.org
+>>> Cc: Gupta, Anshuman <anshuman.gupta@intel.com>; Nilawar, Badal
+>>> <badal.nilawar@intel.com>; Brost, Matthew <matthew.brost@intel.com>;
+>>> Vivi, Rodrigo <rodrigo.vivi@intel.com>; Poosa, Karthik
+>>> <karthik.poosa@intel.com>
+>>> Subject: [PATCH] drm/xe/debugfs: Add support for gt synchronous force reset
+>>>
+>>> This support added as igt test freq_reset_multiple fails sporadically in case
+>>> xe_guc_pc is not started.
+>>> A completion is added in force_reset for this.
+>>> Writing non-zero to force_reset debugfs entry does synchronous reset.
+>> We need IGT patch as well for this patch.
+>>> v2:
+>>> - Changed wait for completion to interruptible (Anshuman).
+>>> - Moved timeout to xe_gt.h (Anshuman).
+>>> - Created a debugfs for updating timeout (Rodrigo).
+>>>
+>>> v3:
+>>> - Update force_reset debugfs with write support.
+>>>    value 0 -> async reset, non-zero -> sync reset (Matthew Brost).
+>>>
+>>> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/xe/xe_gt.c         |  2 +
+>>>   drivers/gpu/drm/xe/xe_gt_debugfs.c | 72
+>>> ++++++++++++++++++++++++++++--  drivers/gpu/drm/xe/xe_gt_debugfs.h
+>>> |  3 ++
+>>>   drivers/gpu/drm/xe/xe_gt_types.h   |  8 ++++
+>>>   4 files changed, 82 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c index
+>>> 3af2adec1295..c8d2c18b0c62 100644
+>>> --- a/drivers/gpu/drm/xe/xe_gt.c
+>>> +++ b/drivers/gpu/drm/xe/xe_gt.c
+>>> @@ -65,6 +65,7 @@ struct xe_gt *xe_gt_alloc(struct xe_tile *tile)
+>>>
+>>>   	gt->tile = tile;
+>>>   	gt->ordered_wq = alloc_ordered_workqueue("gt-ordered-wq", 0);
+>>> +	init_completion(&gt->reset.done);
+>>>
+>>>   	return gt;
+>>>   }
+>>> @@ -633,6 +634,7 @@ static int gt_reset(struct xe_gt *gt)
+>>>   	xe_device_mem_access_put(gt_to_xe(gt));
+>>>   	XE_WARN_ON(err);
+>>>
+>>> +	complete(&gt->reset.done);
+>>>   	xe_gt_info(gt, "reset done\n");
+>>>
+>>>   	return 0;
+>>> diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c
+>>> b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+>>> index c4b67cf09f8f..3518ab89ccfc 100644
+>>> --- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
+>>> +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+>>> @@ -55,15 +55,71 @@ static int hw_engines(struct seq_file *m, void *data)
+>>>   	return 0;
+>>>   }
+>>>
+>>> -static int force_reset(struct seq_file *m, void *data)
+>>> +static int force_reset(struct xe_gt *gt, bool is_sync)
+>>>   {
+>>> -	struct xe_gt *gt = node_to_gt(m->private);
+>>> +	struct xe_device *xe = gt_to_xe(gt);
+>>> +	long ret;
+>>>
+>>>   	xe_gt_reset_async(gt);
+>>>
+>>> +	if (is_sync) {
+>>> +		drm_info(&xe->drm, "waiting for gt reset completion");
+>>> +		ret = wait_for_completion_interruptible_timeout(&gt-
+>>>> reset.done,
+>>> +							msecs_to_jiffies(gt-
+>>>> reset.timeout_ms));
+>>> +		if (ret <= 0) {
+>>> +			drm_err(&xe->drm, "gt reset timed out/interrputed,
+>>> ret %ld\n", ret);
+>>> +			return -ETIMEDOUT;
+>>> +		}
+>>> +	}
+>>> +
+>>> +	return 0;
+>>> +}
+>>> +
+>>> +ssize_t force_reset_write(struct file *f, const char __user *buf,
+>>> +size_t len, loff_t *offset) {
+>>> +	struct xe_gt *gt = file_inode(f)->i_private;
+>>> +	struct xe_device *xe = gt_to_xe(gt);
+>>> +	char arg_str[5];
+>>> +	size_t size;
+>>> +	unsigned long arg;
+>>> +	int ret;
+>>> +
+>>> +	size = min(sizeof(arg_str)-1, len);
+>>> +	arg = copy_from_user((void *)arg_str, buf, size);
+>>> +	if (arg < 0) {
+>>> +		drm_err(&xe->drm, "reading force_reset arg failed, ret %ld",
+>>> arg);
+>>> +		return arg;
+>>> +	}
+>>> +	arg_str[size] = '\0';
+>>> +
+>>> +	ret = kstrtoul(arg_str, 0, &arg);
+>>> +	if (ret) {
+>>> +		drm_err(&xe->drm, "force_reset arg parse failed, ret %d", ret);
+>>> +		return ret;
+>>> +	}
+>>> +
+>>> +	ret = force_reset(gt, (arg && 1));
+>> How about  !!arg
+> && will use a single instruction.
+>
+> but !! will happen with 2 instructions, so I think && would be better.
 
->---
-> drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h | 6 +++---
-> 1 file changed, 3 insertions(+), 3 deletions(-)
+This is not in a hotpath, more readable is better.
+-Mika
+
+
 >
->diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h b/drive=
-rs/gpu/drm/xe/compat-i915-headers/intel_uncore.h
->index cd26ddc0f69e..ef79793caa72 100644
->--- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
->+++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
->@@ -25,15 +25,15 @@ static inline u32 intel_uncore_read(struct intel_uncor=
-e *uncore,
->         return xe_mmio_read32(__compat_uncore_to_gt(uncore), reg);
-> }
->=20
->-static inline u32 intel_uncore_read8(struct intel_uncore *uncore,
->-                                     i915_reg_t i915_reg)
->+static inline u8 intel_uncore_read8(struct intel_uncore *uncore,
->+                                    i915_reg_t i915_reg)
-> {
->         struct xe_reg reg =3D XE_REG(i915_mmio_reg_offset(i915_reg));
->=20
->         return xe_mmio_read8(__compat_uncore_to_gt(uncore), reg);
-> }
->=20
->-static inline u32 intel_uncore_read16(struct intel_uncore *uncore,
->+static inline u16 intel_uncore_read16(struct intel_uncore *uncore,
->                                       i915_reg_t i915_reg)
-> {
->         struct xe_reg reg =3D XE_REG(i915_mmio_reg_offset(i915_reg));
->--=20
->2.39.2
+>>   > +	if (ret != 0)  {
+>>> +		drm_err(&xe->drm, "force_reset failed, ret %d\n", ret);
+>>> +		return ret;
+>>> +	}
+>>> +	return len;
+>>> +}
+>>> +
+>>> +ssize_t force_reset_read(struct file *f, char __user *buf, size_t len,
+>>> +loff_t *offset) {
+>>> +	struct xe_gt *gt = file_inode(f)->i_private;
+>>> +
+>>> +	force_reset(gt, 0);
+>>>   	return 0;
+>>>   }
+>>>
+>>> +static const struct file_operations force_reset_fops = {
+>>> +	.owner = THIS_MODULE,
+>>> +	.write = force_reset_write,
+>>> +	.read = force_reset_read,
+>>> +};
+>>> +
+>>>   static int sa_info(struct seq_file *m, void *data)  {
+>>>   	struct xe_tile *tile = gt_to_tile(node_to_gt(m->private));
+>>> @@ -192,7 +248,6 @@ static int vecs_default_lrc(struct seq_file *m, void
+>>> *data)
+>>>
+>>>   static const struct drm_info_list debugfs_list[] = {
+>>>   	{"hw_engines", hw_engines, 0},
+>>> -	{"force_reset", force_reset, 0},
+>>>   	{"sa_info", sa_info, 0},
+>>>   	{"topology", topology, 0},
+>>>   	{"steering", steering, 0},
+>>> @@ -245,5 +300,16 @@ void xe_gt_debugfs_register(struct xe_gt *gt)
+>>>   				 ARRAY_SIZE(debugfs_list),
+>>>   				 root, minor);
+>>>
+>>> +	gt->reset.fr_dentry = debugfs_create_file("force_reset", 0600, root,
+>>> xe,
+>>> +			    &force_reset_fops);
+>> Please use DEFINE_SHOW_STORE_ATTRIBUTE here to create rw debugfs entry.
+>> Use force_reset_show and force_reset_restore function name.
+>>> +	if (!gt->reset.fr_dentry)
+>>> +		drm_warn(&xe->drm, "force_reset debugfs file creation
+>>> failed");
+>>> +	d_inode(gt->reset.fr_dentry)->i_private = gt;
+>>> +
+>>> +	debugfs_create_u32("gt_reset_timeout_ms", 0600, root,
+>>> +					&gt->reset.timeout_ms);
+>>> +	/* set a default timeout value */
+>>> +	gt->reset.timeout_ms = 1000;
+>> xe_gt_debugfs_register() should only do the job of debugfs registration.
+>> This is odd here.
 >
+> Shall I move this to xe_gt_alloc (xe_gt.c), where gt is allocated and 
+> initialized.
+>
+>>> +
+>>>   	xe_uc_debugfs_register(&gt->uc, root);  } diff --git
+>>> a/drivers/gpu/drm/xe/xe_gt_debugfs.h
+>>> b/drivers/gpu/drm/xe/xe_gt_debugfs.h
+>>> index 5a329f118a57..40adcf1822c6 100644
+>>> --- a/drivers/gpu/drm/xe/xe_gt_debugfs.h
+>>> +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.h
+>>> @@ -6,8 +6,11 @@
+>>>   #ifndef _XE_GT_DEBUGFS_H_
+>>>   #define _XE_GT_DEBUGFS_H_
+>>>
+>>> +#include <linux/fs.h>
+>>>   struct xe_gt;
+>>>
+>>>   void xe_gt_debugfs_register(struct xe_gt *gt);
+>>> +ssize_t force_reset_write(struct file *f, const char __user *buf,
+>>> +size_t len, loff_t *offset); ssize_t force_reset_read(struct file *f,
+>>> +char __user *buf, size_t len, loff_t *offset);
+>>>
+>>>   #endif
+>>> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h
+>>> b/drivers/gpu/drm/xe/xe_gt_types.h
+>>> index f74684660475..d6134215094b 100644
+>>> --- a/drivers/gpu/drm/xe/xe_gt_types.h
+>>> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
+>>> @@ -148,6 +148,14 @@ struct xe_gt {
+>>>   		 * code to safely flush all code paths
+>>>   		 */
+>>>   		struct work_struct worker;
+>>> +		/** @done : completion for GT reset */
+>>> +		struct completion done;
+>>> +		/** @timeout_ms : gt synchronous reset timeout in ms */
+>>> +		u32 timeout_ms;
+>>> +		/** @dentry: dentry for force_reset */
+>>> +		struct dentry *fr_dentry;
+>>> +		/** @is_sync_reset : gt reset is synchronous */
+>>> +		//bool is_sync_reset;
+>> Remove thus unused var.
+>>
+>> Thanks,
+>> Anshuman Gupta.
+>>>   	} reset;
+>>>
+>>>   	/** @tlb_invalidation: TLB invalidation state */
+>>> --
+>>> 2.25.1
