@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58DC4C3DA6E
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Jan 2024 19:24:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8813DC3DA6E
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Jan 2024 19:24:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F29710E2D2;
-	Wed,  3 Jan 2024 19:24:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53EAC10E355;
+	Wed,  3 Jan 2024 19:24:56 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4377B10E358;
- Wed,  3 Jan 2024 19:24:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 880F010E355;
+ Wed,  3 Jan 2024 19:24:55 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/xe2=3A_Use_XE?=
- =?utf-8?q?=5FCACHE=5FWB_pat_index_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/xe2=3A_Use_XE=5FCA?=
+ =?utf-8?q?CHE=5FWB_pat_index_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-Date: Wed, 03 Jan 2024 19:24:44 -0000
-Message-ID: <170430988427.151.26565669872774625@5338d5abeb45>
+Date: Wed, 03 Jan 2024 19:24:55 -0000
+Message-ID: <170430989555.151.14118635850113176684@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240102165142.853141-1-himal.prasad.ghimiray@intel.com>
 In-Reply-To: <20240102165142.853141-1-himal.prasad.ghimiray@intel.com>
@@ -48,9 +48,33 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 7b3b98d03 drm/xe/xe2: Add workaround 16020183090
-=== git am output follows ===
-Applying: drm/xe/xe2: Use XE_CACHE_WB pat index
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6030b24c1386b00de8187b5fb987e283a57b372a
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 74b7c1537d40ebe97671fbb44f8d99d2012fb25b
+Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Date:   Tue Jan 2 22:21:42 2024 +0530
+
+    drm/xe/xe2: Use XE_CACHE_WB pat index
+    
+    Use XE_CACHE_WB pat index by default on xe2 platforms and use
+    XE_CACHE_NONE_COMPRESSION pat index only if buffer supports
+    compression and indirect access of flat ccs.
+    
+    Fixes the broken "xe_migrate_test kunit test" on LNL.
+    
+    v2
+    - Fix the argument to emit_pte, pass the bool directly. (Thomas)
+    
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
++ /mt/dim checkpatch 7b3b98d034784b125bad7aca46f9e7a3cfcde45a drm-intel
+74b7c1537 drm/xe/xe2: Use XE_CACHE_WB pat index
 
 
