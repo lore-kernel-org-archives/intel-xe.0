@@ -4,53 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7314C47074
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Jan 2024 11:08:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96CDCC47079
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Jan 2024 11:48:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89B7210E255;
-	Wed,  3 Jan 2024 11:08:58 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8ACDB10E255
- for <intel-xe@lists.freedesktop.org>; Wed,  3 Jan 2024 11:08:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704280138; x=1735816138;
- h=message-id:subject:from:to:date:in-reply-to:references:
- content-transfer-encoding:mime-version;
- bh=hsXHjcGbTeWs//hIzI3Srvdustpp23WxfvNr8RzR78I=;
- b=PWbKjEvsI2AQSp92faSuuBWsM1p0UiuTHDnlzyS1OWHruw/R+KKP3BSm
- bOIC5hcglYmEPJmpwxn9OkcMA5oQJK5XewgqIbasboQ4hla/eyDakCKBK
- Qp/B6LEKLXDDD/QD7Q4yGUaYVMXrOIChZ9me9zkcG3MNOdjgbg+Q1B27v
- C+lYKEWtm81kt1vvZm+oFOSWy970vV09nBA5jRz10BXvTOM9a4XTEQPmy
- 2aZ6wLZ+DIhx2xc35dzhPOF5NPISehuGT0ZglgMucoc0HFn08R7sU14jZ
- EClIW16PrB51j+iq8+T7gg2CS2qEiLBhwHMlObhcOlZ26xek2zd0z785g g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10941"; a="3797183"
-X-IronPort-AV: E=Sophos;i="6.04,327,1695711600"; 
-   d="scan'208";a="3797183"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jan 2024 03:08:57 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10941"; a="756184891"
-X-IronPort-AV: E=Sophos;i="6.04,327,1695711600"; d="scan'208";a="756184891"
-Received: from ntaiyeby-mobl1.ger.corp.intel.com (HELO [10.249.254.107])
- ([10.249.254.107])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jan 2024 03:08:54 -0800
-Message-ID: <8b332e586699bc5eee1a99207019a67a9bb8dba6.camel@linux.intel.com>
-Subject: Re: [PATCH] xe/xe_bo_move: Enhance xe_bo_move trace
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: priyanka.dandamudi@intel.com, intel-xe@lists.freedesktop.org, 
- janga.rahul.kumar@intel.com, oak.zeng@intel.com, brian.welty@intel.com, 
- matthew.brost@intel.com, Zbigniew.Kempczynski@intel.com
-Date: Wed, 03 Jan 2024 12:08:51 +0100
-In-Reply-To: <20240103102959.2385010-1-priyanka.dandamudi@intel.com>
-References: <20240103102959.2385010-1-priyanka.dandamudi@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.2 (3.50.2-1.fc39) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5562610E298;
+	Wed,  3 Jan 2024 11:48:31 +0000 (UTC)
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1483F10E291;
+ Wed,  3 Jan 2024 11:48:29 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by ams.source.kernel.org (Postfix) with ESMTP id 04B09B8110F;
+ Wed,  3 Jan 2024 11:48:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10F35C433C7;
+ Wed,  3 Jan 2024 11:48:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1704282506;
+ bh=TN4lVGjd6QgiOjbr2X4wDvGDWbLRLSblB4xYrWWI6lw=;
+ h=From:To:Cc:Subject:Date:From;
+ b=Kf4DKVDsaGBDnt0o7IU4upkaXehBOSF80PmZtgxGgRffIJ1uxSqOP1/tZyXSBswG+
+ 1REoSI3SpAFR6jT2GFB2HtuZtLsi6w8pNyFOw8FPN3Cpmja0Ymiy3gZYTAzwTxKIhl
+ WR/7PQFUdC5BRh/5Dzlb9TwWA/cXneE//2OMWKuyxbO8xY5HOPdfgnDXVg38oVwsX/
+ lUury3x+DdDfHLNMhtIVnEgtYhqFTAPJTTXuPANGO+F6TsEpbeAErEo8BNzzbv9IAO
+ bVNsCnj7LORrfJ8sm6rPqMj5rVx9xwfCT35Dcbt0UrW8Gmerqs+trqLYZSmECGDRJ8
+ vhQ+2tVYB/KUw==
+From: Arnd Bergmann <arnd@kernel.org>
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Matthew Brost <matthew.brost@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH] drm/xe: circumvent bogus stringop-overflow warning
+Date: Wed,  3 Jan 2024 12:48:02 +0100
+Message-Id: <20240103114819.2913937-1-arnd@kernel.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,112 +54,52 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Arnd Bergmann <arnd@arndb.de>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+From: Arnd Bergmann <arnd@arndb.de>
 
-On Wed, 2024-01-03 at 15:59 +0530, priyanka.dandamudi@intel.com wrote:
-> From: Priyanka Dandamudi <priyanka.dandamudi@intel.com>
->=20
-> Enhanced xe_bo_move trace to be more readable.
-> It will help to show the migration details.
-> Src and dst details.
->=20
-> Cc: Oak Zeng <oak.zeng@intel.com>
-> Cc: Kempczynski Zbigniew <Zbigniew.Kempczynski@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Brian Welty <brian.welty@intel.com>
-> Signed-off-by: Priyanka Dandamudi <priyanka.dandamudi@intel.com>
-> ---
-> =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0 | 12 ++++++++++--
-> =C2=A0drivers/gpu/drm/xe/xe_trace.h | 22 +++++++++++++++++++---
-> =C2=A02 files changed, 29 insertions(+), 5 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 8e4a3b1f6b93..3fa7ca99e85b 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -613,6 +613,14 @@ static int xe_bo_move(struct ttm_buffer_object
-> *ttm_bo, bool evict,
-> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_resource *new_mem,
-> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_place *hop)
-> =C2=A0{
-> +	static const char *const
-> mem_type_to_name[TTM_NUM_MEM_TYPES]=C2=A0 =3D {
-> +		[XE_PL_SYSTEM] =3D "system",
-> +		[XE_PL_TT] =3D "gtt",
-> +		[XE_PL_VRAM0] =3D "vram0",
-> +		[XE_PL_VRAM1] =3D "vram1",
-> +		[4 ... 6] =3D NULL,
+gcc-13 warns about an array overflow that it sees but that is
+prevented by the "asid % NUM_PF_QUEUE" calculation:
 
-Can we avoid this line ^^^ and have these entries automatically
-initialized to zero.
+drivers/gpu/drm/xe/xe_gt_pagefault.c: In function 'xe_guc_pagefault_handler':
+include/linux/fortify-string.h:57:33: error: writing 16 bytes into a region of size 0 [-Werror=stringop-overflow=]
+include/linux/fortify-string.h:689:26: note: in expansion of macro '__fortify_memcpy_chk'
+  689 | #define memcpy(p, q, s)  __fortify_memcpy_chk(p, q, s,                  \
+      |                          ^~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/xe/xe_gt_pagefault.c:341:17: note: in expansion of macro 'memcpy'
+  341 |                 memcpy(pf_queue->data + pf_queue->tail, msg, len * sizeof(u32));
+      |                 ^~~~~~
+drivers/gpu/drm/xe/xe_gt_types.h:102:25: note: at offset [1144, 265324] into destination object 'tile' of size 8
 
-> +		[XE_PL_STOLEN] =3D "stolen"
-> +	};
+I found that rewriting the assignment using pointer addition rather than the
+equivalent array index calculation prevents the warning, so use that instead.
 
-Also perhaps make this extern and use it from the tracing code? That
-would mean trace_xe_bo_move() taking the integer mem_type rather than a
-string?=20
+I sent a bug report against gcc for the false positive warning.
 
-Thanks,
-Thomas
+Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Link: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=113214
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+---
+ drivers/gpu/drm/xe/xe_gt_pagefault.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-
-> =C2=A0	struct xe_device *xe =3D ttm_to_xe_device(ttm_bo->bdev);
-> =C2=A0	struct xe_bo *bo =3D ttm_to_xe_bo(ttm_bo);
-> =C2=A0	struct ttm_resource *old_mem =3D ttm_bo->resource;
-> @@ -713,8 +721,8 @@ static int xe_bo_move(struct ttm_buffer_object
-> *ttm_bo, bool evict,
-> =C2=A0		migrate =3D xe->tiles[0].migrate;
-> =C2=A0
-> =C2=A0	xe_assert(xe, migrate);
-> -
-> -	trace_xe_bo_move(bo);
-> +	trace_xe_bo_move(bo, mem_type_to_name[new_mem->mem_type],
-> +			 mem_type_to_name[old_mem_type]);
-> =C2=A0	xe_device_mem_access_get(xe);
-> =C2=A0
-> =C2=A0	if (xe_bo_is_pinned(bo) && !xe_bo_is_user(bo)) {
-> diff --git a/drivers/gpu/drm/xe/xe_trace.h
-> b/drivers/gpu/drm/xe/xe_trace.h
-> index 95163c303f3e..bfa7b2391378 100644
-> --- a/drivers/gpu/drm/xe/xe_trace.h
-> +++ b/drivers/gpu/drm/xe/xe_trace.h
-> @@ -100,9 +100,25 @@ DEFINE_EVENT(xe_bo, xe_bo_cpu_fault,
-> =C2=A0	=C2=A0=C2=A0=C2=A0=C2=A0 TP_ARGS(bo)
-> =C2=A0);
-> =C2=A0
-> -DEFINE_EVENT(xe_bo, xe_bo_move,
-> -	=C2=A0=C2=A0=C2=A0=C2=A0 TP_PROTO(struct xe_bo *bo),
-> -	=C2=A0=C2=A0=C2=A0=C2=A0 TP_ARGS(bo)
-> +TRACE_EVENT(xe_bo_move,
-> +	=C2=A0=C2=A0=C2=A0 TP_PROTO(struct xe_bo *bo, const char *new_placement=
-,
-> const char *old_placement),
-> +	=C2=A0=C2=A0=C2=A0 TP_ARGS(bo, new_placement, old_placement),
-> +	=C2=A0=C2=A0=C2=A0 TP_STRUCT__entry(
-> +		=C2=A0=C2=A0=C2=A0=C2=A0 __field(struct xe_bo *, bo)
-> +		=C2=A0=C2=A0=C2=A0=C2=A0 __field(size_t, size)
-> +		=C2=A0=C2=A0=C2=A0=C2=A0 __array(char, new_placement, 16)
-> +		=C2=A0=C2=A0=C2=A0=C2=A0 __array(char, old_placement, 16)
-> +			),
-> +
-> +	=C2=A0=C2=A0=C2=A0 TP_fast_assign(
-> +		=C2=A0=C2=A0 __entry->bo=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D bo;
-> +		=C2=A0=C2=A0 __entry->size =3D bo->size;
-> +		=C2=A0=C2=A0 strscpy(__entry->new_placement, new_placement,
-> 16);
-> +		=C2=A0=C2=A0 strscpy(__entry->old_placement, old_placement,
-> 16)
-> +		=C2=A0=C2=A0 ),
-> +	=C2=A0=C2=A0=C2=A0 TP_printk("migrate object %p [size %zu] from %s to %=
-s",
-> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 __entry->bo, __entry->size, __entry-
-> >old_placement,
-> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 __entry->new_placement)
-> =C2=A0);
-> =C2=A0
-> =C2=A0DECLARE_EVENT_CLASS(xe_exec_queue,
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index 59a70d2e0a7a..78dc08cc2bfe 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -332,7 +332,7 @@ int xe_guc_pagefault_handler(struct xe_guc *guc, u32 *msg, u32 len)
+ 		return -EPROTO;
+ 
+ 	asid = FIELD_GET(PFD_ASID, msg[1]);
+-	pf_queue = &gt->usm.pf_queue[asid % NUM_PF_QUEUE];
++	pf_queue = gt->usm.pf_queue + (asid % NUM_PF_QUEUE);
+ 
+ 	spin_lock_irqsave(&pf_queue->lock, flags);
+ 	full = pf_queue_full(pf_queue);
+-- 
+2.39.2
 
