@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF120C47073
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82049C4707B
 	for <intel-xe@archiver.kernel.org>; Wed,  3 Jan 2024 18:44:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91B1110E340;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4497310E2D1;
 	Wed,  3 Jan 2024 18:44:11 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76E7910E0BA
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52B1210E2CB
  for <intel-xe@lists.freedesktop.org>; Wed,  3 Jan 2024 18:44:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1704307449; x=1735843449;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=VPDh0C3PHWxeiZuGoySJ3VFOQ26XDw51XwopcaUbrgE=;
- b=YSPi9ZRikZYjB3UjhiEfzihcuQzrSKNMDAK2aKTqFowsuhzBuyR7iy24
- W/LvdNNb/VnGjsg5xyJRMxkJeHPc87FX4rNNJCEV/qDE1pl2zf2bTz6mA
- /D1jPQpAhgMn9EhxyYVpbpY68OJF5OYCWm8z7LpVWJ6G3HDMPiFymqI0M
- 7rng9LATTw4KA6Mkll5Gue5udvtHC9KfKD0IHrx4nQ1d0EPIfQkh6Kgu7
- O8E2/wC/NxWQN+QPaMxrDDWjUMMsDijzKHJ95XkgCpFIr+0bgFErCiCNv
- BBEWF7lCVaItNVXvzw018vgE5+aJeNg9/6bSBG6TL0KG3Ik6C9aBQ5G5N A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="3815685"
+ bh=PdImKlLireqpgA0K1wCd6T9iGIEUwnCSMFppWk4H5F4=;
+ b=a1rPaBzkO+wrnX2lAZxsjHpVcvUh80I2SHOd7XZbEf61hRopywwCXtjB
+ yDw3heJsBC0IEriBBmFoho9orcJBSJ65f/xIKm4q0d/ZGq8McXpq46S28
+ e+/r0fTykrMOjgC2oCsBkxCS6eT5dc7odAyehG//0gp1GwzMlyGw/GFet
+ +4zv7EVWF27AVVTOcOqz5cWxDZkmMLrIgCMClYOnG4IOg2+SwVyLAWro3
+ zBDXQ4mJ17G/BK3kFg8aeLYFaOxbAGGzt6g1rn7zXk9M1s/2xZW1UB/Sd
+ Jk/Ox25Im4nZw+FR7EAy4FLqx6Vq7iVJ8ZzHCwBfG9bOy6XS1sUEx6nlT g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="3815682"
 X-IronPort-AV: E=Sophos;i="6.04,328,1695711600"; 
-   d="scan'208";a="3815685"
+   d="scan'208";a="3815682"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Jan 2024 10:44:09 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="814330130"
-X-IronPort-AV: E=Sophos;i="6.04,328,1695711600"; d="scan'208";a="814330130"
+X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="814330124"
+X-IronPort-AV: E=Sophos;i="6.04,328,1695711600"; d="scan'208";a="814330124"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Jan 2024 10:44:08 -0800
 From: Brian Welty <brian.welty@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 3/5] drm/xe: Add exec_queue.sched_props.priority
-Date: Wed,  3 Jan 2024 10:44:06 -0800
-Message-ID: <20240103184408.17844-4-brian.welty@intel.com>
+Subject: [PATCH v2 1/5] drm/xe: Refactor __xe_exec_queue_create()
+Date: Wed,  3 Jan 2024 10:44:04 -0800
+Message-ID: <20240103184408.17844-2-brian.welty@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240103184408.17844-1-brian.welty@intel.com>
 References: <20240103184408.17844-1-brian.welty@intel.com>
@@ -60,115 +60,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The purpose here is to allow to optimize exec_queue_set_priority()
-in follow-on patch.  Currently it does q->ops->set_priority(...).
-But we'd like to apply exec_queue_user_extensions much earlier and
-q->ops cannot be called before __xe_exec_queue_init().
+Split __xe_exec_queue_create() into two functions, alloc and init.
 
-It will be much more efficient to instead only have to set
-q->sched_props.priority when applying user extensions. That value will
-then already be set to the user requested value. So the setting of
-default value is moved from q->ops->init() to __xe_exec_queue_alloc.
-
-v2: fix existing bug such that q->sched_props.priority is now set
-    before guc_exec_queue_add_msg() (Matt)
-    fix existing bug in that xe_migrate_init() should use exec_queue's
-    vfunc for updating priority.
+We have an issue in that exec_queue_user_extensions are applied too late.
+In the case of USM properties, these need to be set prior to xe_lrc_init().
+Refactor the logic here, so we can resolve this in follow-on. We only need
+the xe_vm_lock held during the exec_queue_init function.
 
 Signed-off-by: Brian Welty <brian.welty@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c       | 1 +
- drivers/gpu/drm/xe/xe_exec_queue_types.h | 4 ++--
- drivers/gpu/drm/xe/xe_guc_submit.c       | 7 +++----
- drivers/gpu/drm/xe/xe_migrate.c          | 2 +-
- 4 files changed, 7 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_exec_queue.c | 58 ++++++++++++++++++++----------
+ 1 file changed, 39 insertions(+), 19 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index e78b13845417..9891cddba71c 100644
+index 44fe8097b7cd..94ae87540854 100644
 --- a/drivers/gpu/drm/xe/xe_exec_queue.c
 +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -67,6 +67,7 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
- 				hwe->eclass->sched_props.preempt_timeout_us;
- 	q->sched_props.job_timeout_ms =
- 				hwe->eclass->sched_props.job_timeout_ms;
-+	q->sched_props.priority = XE_EXEC_QUEUE_PRIORITY_NORMAL;
+@@ -30,16 +30,14 @@ enum xe_exec_queue_sched_prop {
+ 	XE_EXEC_QUEUE_SCHED_PROP_MAX = 3,
+ };
  
- 	if (xe_exec_queue_is_parallel(q)) {
- 		q->parallel.composite_fence_ctx = dma_fence_context_alloc(1);
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 882eb5373980..6ae4f4e2ddca 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -52,8 +52,6 @@ struct xe_exec_queue {
- 	struct xe_vm *vm;
- 	/** @class: class of this exec queue */
- 	enum xe_engine_class class;
--	/** @priority: priority of this exec queue */
--	enum xe_exec_queue_priority priority;
- 	/**
- 	 * @logical_mask: logical mask of where job submitted to exec queue can run
- 	 */
-@@ -144,6 +142,8 @@ struct xe_exec_queue {
- 		u32 preempt_timeout_us;
- 		/** @job_timeout_ms: job timeout in milliseconds */
- 		u32 job_timeout_ms;
-+		/** @priority: priority of this exec queue */
-+		enum xe_exec_queue_priority priority;
- 	} sched_props;
- 
- 	/** @compute: compute exec queue state */
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 56c0a7bf554f..392cbde62957 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -421,7 +421,7 @@ static void init_policies(struct xe_guc *guc, struct xe_exec_queue *q)
+-static struct xe_exec_queue *__xe_exec_queue_create(struct xe_device *xe,
+-						    struct xe_vm *vm,
+-						    u32 logical_mask,
+-						    u16 width, struct xe_hw_engine *hwe,
+-						    u32 flags)
++static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
++						   struct xe_vm *vm,
++						   u32 logical_mask,
++						   u16 width, struct xe_hw_engine *hwe,
++						   u32 flags)
  {
- 	struct exec_queue_policy policy;
- 	struct xe_device *xe = guc_to_xe(guc);
--	enum xe_exec_queue_priority prio = q->priority;
-+	enum xe_exec_queue_priority prio = q->sched_props.priority;
- 	u32 timeslice_us = q->sched_props.timeslice_us;
- 	u32 preempt_timeout_us = q->sched_props.preempt_timeout_us;
+ 	struct xe_exec_queue *q;
+ 	struct xe_gt *gt = hwe->gt;
+-	int err;
+-	int i;
  
-@@ -1231,7 +1231,6 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 	err = xe_sched_entity_init(&ge->entity, sched);
- 	if (err)
- 		goto err_sched;
--	q->priority = XE_EXEC_QUEUE_PRIORITY_NORMAL;
- 
- 	if (xe_exec_queue_is_lr(q))
- 		INIT_WORK(&q->guc->lr_tdr, xe_guc_exec_queue_lr_cleanup);
-@@ -1301,15 +1300,15 @@ static int guc_exec_queue_set_priority(struct xe_exec_queue *q,
- {
- 	struct xe_sched_msg *msg;
- 
--	if (q->priority == priority || exec_queue_killed_or_banned(q))
-+	if (q->sched_props.priority == priority || exec_queue_killed_or_banned(q))
- 		return 0;
- 
- 	msg = kmalloc(sizeof(*msg), GFP_KERNEL);
- 	if (!msg)
- 		return -ENOMEM;
- 
-+	q->sched_props.priority = priority;
- 	guc_exec_queue_add_msg(q, msg, SET_SCHED_PROPS);
--	q->priority = priority;
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index adf1dab5eba2..f967fa69769e 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -356,7 +356,7 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
- 		return ERR_CAST(m->q);
+ 	/* only kernel queues can be permanent */
+ 	XE_WARN_ON((flags & EXEC_QUEUE_FLAG_PERMANENT) && !(flags & EXEC_QUEUE_FLAG_KERNEL));
+@@ -77,8 +75,23 @@ static struct xe_exec_queue *__xe_exec_queue_create(struct xe_device *xe,
+ 		q->bind.fence_seqno = XE_FENCE_INITIAL_SEQNO;
  	}
- 	if (xe->info.has_usm)
--		m->q->priority = XE_EXEC_QUEUE_PRIORITY_KERNEL;
-+		m->q->ops->set_priority(m->q, XE_EXEC_QUEUE_PRIORITY_KERNEL);
  
- 	mutex_init(&m->job_mutex);
+-	for (i = 0; i < width; ++i) {
+-		err = xe_lrc_init(q->lrc + i, hwe, q, vm, SZ_16K);
++	return q;
++}
++
++static void __xe_exec_queue_free(struct xe_exec_queue *q)
++{
++	if (q->vm)
++		xe_vm_put(q->vm);
++	kfree(q);
++}
++
++static int __xe_exec_queue_init(struct xe_exec_queue *q)
++{
++	struct xe_device *xe = gt_to_xe(q->gt);
++	int i, err;
++
++	for (i = 0; i < q->width; ++i) {
++		err = xe_lrc_init(q->lrc + i, q->hwe, q, q->vm, SZ_16K);
+ 		if (err)
+ 			goto err_lrc;
+ 	}
+@@ -95,16 +108,15 @@ static struct xe_exec_queue *__xe_exec_queue_create(struct xe_device *xe,
+ 	 * can perform GuC CT actions when needed. Caller is expected to have
+ 	 * already grabbed the rpm ref outside any sensitive locks.
+ 	 */
+-	if (!(q->flags & EXEC_QUEUE_FLAG_PERMANENT) && (q->flags & EXEC_QUEUE_FLAG_VM || !vm))
++	if (!(q->flags & EXEC_QUEUE_FLAG_PERMANENT) && (q->flags & EXEC_QUEUE_FLAG_VM || !q->vm))
+ 		drm_WARN_ON(&xe->drm, !xe_device_mem_access_get_if_ongoing(xe));
  
+-	return q;
++	return 0;
+ 
+ err_lrc:
+ 	for (i = i - 1; i >= 0; --i)
+ 		xe_lrc_finish(q->lrc + i);
+-	kfree(q);
+-	return ERR_PTR(err);
++	return err;
+ }
+ 
+ struct xe_exec_queue *xe_exec_queue_create(struct xe_device *xe, struct xe_vm *vm,
+@@ -114,16 +126,27 @@ struct xe_exec_queue *xe_exec_queue_create(struct xe_device *xe, struct xe_vm *v
+ 	struct xe_exec_queue *q;
+ 	int err;
+ 
++	q = __xe_exec_queue_alloc(xe, vm, logical_mask, width, hwe, flags);
++	if (IS_ERR(q))
++		return q;
++
+ 	if (vm) {
+ 		err = xe_vm_lock(vm, true);
+ 		if (err)
+-			return ERR_PTR(err);
++			goto err_post_alloc;
+ 	}
+-	q = __xe_exec_queue_create(xe, vm, logical_mask, width, hwe, flags);
++
++	err = __xe_exec_queue_init(q);
+ 	if (vm)
+ 		xe_vm_unlock(vm);
++	if (err)
++		goto err_post_alloc;
+ 
+ 	return q;
++
++err_post_alloc:
++	__xe_exec_queue_free(q);
++	return ERR_PTR(err);
+ }
+ 
+ struct xe_exec_queue *xe_exec_queue_create_class(struct xe_device *xe, struct xe_gt *gt,
+@@ -174,10 +197,7 @@ void xe_exec_queue_fini(struct xe_exec_queue *q)
+ 		xe_lrc_finish(q->lrc + i);
+ 	if (!(q->flags & EXEC_QUEUE_FLAG_PERMANENT) && (q->flags & EXEC_QUEUE_FLAG_VM || !q->vm))
+ 		xe_device_mem_access_put(gt_to_xe(q->gt));
+-	if (q->vm)
+-		xe_vm_put(q->vm);
+-
+-	kfree(q);
++	__xe_exec_queue_free(q);
+ }
+ 
+ void xe_exec_queue_assign_name(struct xe_exec_queue *q, u32 instance)
 -- 
 2.43.0
 
