@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F154DC47073
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jan 2024 22:20:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AA0AC4707C
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jan 2024 22:20:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADE1710E56E;
-	Thu,  4 Jan 2024 22:20:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A905A10E570;
+	Thu,  4 Jan 2024 22:20:52 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F0BD10E56A
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jan 2024 22:20:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AB7110E56E
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Jan 2024 22:20:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704406848; x=1735942848;
+ t=1704406851; x=1735942851;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=jrV7S0ulLWmESETdjIZo2jNkiRbBn0ELN8sdA0vVjus=;
- b=FlAtyIHRVzWWLIYNX998RC/YHtjNEi0dGj8+e7vNFdHZAwpWiaC3gdbd
- TJrbp6KOA/Pt80mE7JKoNFKvpO9ueSko0bX5nDTYVrcUGtb8prtAkYTyQ
- +GPH8tsuKQjIN10Hr+KTejsubFQp68zKExo2hF/Kw7i5FKGtmiPm3NJ0b
- Aup8HeXbkeYuL6dMlPeTSJ6D+oDoTRyFotdf6fkzOsk4AroYdT7A+QfmV
- eEx3sfGB7fPpGR90maO/CCxW8rJVDYv2SrfU29ohaMDUhySX7Z8FQcCdd
- wnz1lqIXPcQlh6a+g12wSmBUZ+JDWUAUNCAMR90iKyLIZgg6XtZvscOBn w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="428546868"
-X-IronPort-AV: E=Sophos;i="6.04,332,1695711600"; d="scan'208";a="428546868"
+ bh=DwLzkGl1gO/Wxyt6gWd2dMph+SFdqOSUEmUEzpuDXO8=;
+ b=Aj1ZYLBwvwkVhbtlRI1O4YtBnD5vC+2MP3JX6RnI9ZnftKIGk9EM5epk
+ mtDih7XU6xXazBAqUUDsDEuxPyqm81Z2eZDHU08YjV2hJNDgwxiBqg/JJ
+ t5i+OTSdlf2kabJu6D3PPpPpibMnZ/zyQtLnRg+2jiaTDU2DSfLbxW6Vk
+ whKSyL8yV69m8qgFTdwtmhDOrdFaIOrNmY0wz+ZC8bUWYlbHCVuC3P4d1
+ 8/q5WZJvXGh/2scTrrJq/2LRaKLZhxUrfW65HqPjc2GnmUQ41QmBRVnHN
+ siL1nh3xkiHmPNq6aL9vLmI/Zs3hIdcbuvd1SeQFzJwKpdNLT6GKuAsj6 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="428546886"
+X-IronPort-AV: E=Sophos;i="6.04,332,1695711600"; d="scan'208";a="428546886"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 14:20:47 -0800
+ 04 Jan 2024 14:20:51 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="784022811"
-X-IronPort-AV: E=Sophos;i="6.04,332,1695711600"; d="scan'208";a="784022811"
+X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="784022819"
+X-IronPort-AV: E=Sophos;i="6.04,332,1695711600"; d="scan'208";a="784022819"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.149.125])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 14:20:47 -0800
+ 04 Jan 2024 14:20:50 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 06/10] drm/xe/guc: Add Relay Communication ABI definitions
-Date: Thu,  4 Jan 2024 23:20:27 +0100
-Message-Id: <20240104222031.277-7-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 09/10] drm/xe/kunit: Add GuC Relay kunit tests
+Date: Thu,  4 Jan 2024 23:20:30 +0100
+Message-Id: <20240104222031.277-10-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240104222031.277-1-michal.wajdeczko@intel.com>
 References: <20240104222031.277-1-michal.wajdeczko@intel.com>
@@ -60,412 +60,625 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The communication between Virtual Function (VF) drivers and
-Physical Function (PF) drivers is based on the GuC firmware
-acting as a proxy (relay) agent.
-
-Add related ABI definitions that we will be using in upcoming
-patches with our GuC Relay implementation.
+Add few tests to make sure that some negative and normal use
+scenarios of the GuC Relay are implemented correctly.
 
 Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- .../gpu/drm/xe/abi/guc_actions_sriov_abi.h    | 174 ++++++++++++++++++
- .../gpu/drm/xe/abi/guc_relay_actions_abi.h    |  79 ++++++++
- .../drm/xe/abi/guc_relay_communication_abi.h  | 118 ++++++++++++
- 3 files changed, 371 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
- create mode 100644 drivers/gpu/drm/xe/abi/guc_relay_actions_abi.h
- create mode 100644 drivers/gpu/drm/xe/abi/guc_relay_communication_abi.h
+v2: relax G2H handlers if under test
+---
+ drivers/gpu/drm/xe/tests/xe_guc_relay_test.c | 522 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_relay.c            |  21 +-
+ 2 files changed, 540 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_guc_relay_test.c
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
+diff --git a/drivers/gpu/drm/xe/tests/xe_guc_relay_test.c b/drivers/gpu/drm/xe/tests/xe_guc_relay_test.c
 new file mode 100644
-index 000000000000..5496a5890847
+index 000000000000..13701451b923
 --- /dev/null
-+++ b/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
-@@ -0,0 +1,174 @@
-+/* SPDX-License-Identifier: MIT */
++++ b/drivers/gpu/drm/xe/tests/xe_guc_relay_test.c
+@@ -0,0 +1,522 @@
++// SPDX-License-Identifier: GPL-2.0 AND MIT
 +/*
 + * Copyright © 2023 Intel Corporation
 + */
 +
-+#ifndef _GUC_ACTIONS_PF_ABI_H
-+#define _GUC_ACTIONS_PF_ABI_H
++#include <kunit/static_stub.h>
++#include <kunit/test.h>
++#include <kunit/test-bug.h>
 +
-+#include "guc_communication_ctb_abi.h"
++#include "xe_device.h"
++#include "xe_kunit_helpers.h"
++#include "xe_pci_test.h"
 +
-+/**
-+ * DOC: GUC2PF_RELAY_FROM_VF
-+ *
-+ * This message is used by the GuC firmware to forward a VF2PF `Relay Message`_
-+ * received from the Virtual Function (VF) driver to this Physical Function (PF)
-+ * driver.
-+ *
-+ * This message is always sent as `CTB HXG Message`_.
-+ *
-+ *  +---+-------+--------------------------------------------------------------+
-+ *  |   | Bits  | Description                                                  |
-+ *  +===+=======+==============================================================+
-+ *  | 0 |    31 | ORIGIN = GUC_HXG_ORIGIN_GUC_                                 |
-+ *  |   +-------+--------------------------------------------------------------+
-+ *  |   | 30:28 | TYPE = GUC_HXG_TYPE_EVENT_                                   |
-+ *  |   +-------+--------------------------------------------------------------+
-+ *  |   | 27:16 | MBZ                                                          |
-+ *  |   +-------+--------------------------------------------------------------+
-+ *  |   |  15:0 | ACTION = _`XE_GUC_ACTION_GUC2PF_RELAY_FROM_VF` = 0x5100      |
-+ *  +---+-------+--------------------------------------------------------------+
-+ *  | 1 |  31:0 | **VFID** - source VF identifier                              |
-+ *  +---+-------+--------------------------------------------------------------+
-+ *  | 2 |  31:0 | **RELAY_ID** - VF/PF message ID                              |
-+ *  +---+-------+-----------------+--------------------------------------------+
-+ *  | 3 |  31:0 | **RELAY_DATA1** |                                            |
-+ *  +---+-------+-----------------+                                            |
-+ *  |...|       |                 |       [Embedded `Relay Message`_]          |
-+ *  +---+-------+-----------------+                                            |
-+ *  | n |  31:0 | **RELAY_DATAx** |                                            |
-+ *  +---+-------+-----------------+--------------------------------------------+
-+ */
-+#define XE_GUC_ACTION_GUC2PF_RELAY_FROM_VF		0x5100
++#define TEST_RID	1234
++#define TEST_VFID	5
++#define TEST_LEN	6
++#define TEST_ACTION	0xa
++#define TEST_DATA(n)	(0xd0 + (n))
 +
-+#define GUC2PF_RELAY_FROM_VF_EVENT_MSG_MIN_LEN		(GUC_HXG_EVENT_MSG_MIN_LEN + 2u)
-+#define GUC2PF_RELAY_FROM_VF_EVENT_MSG_MAX_LEN \
-+	(GUC2PF_RELAY_FROM_VF_EVENT_MSG_MIN_LEN + GUC_RELAY_MSG_MAX_LEN)
-+#define GUC2PF_RELAY_FROM_VF_EVENT_MSG_0_MBZ		GUC_HXG_EVENT_MSG_0_DATA0
-+#define GUC2PF_RELAY_FROM_VF_EVENT_MSG_1_VFID		GUC_HXG_EVENT_MSG_n_DATAn
-+#define GUC2PF_RELAY_FROM_VF_EVENT_MSG_2_RELAY_ID	GUC_HXG_EVENT_MSG_n_DATAn
-+#define GUC2PF_RELAY_FROM_VF_EVENT_MSG_3_RELAY_DATA1	GUC_HXG_EVENT_MSG_n_DATAn
-+#define GUC2PF_RELAY_FROM_VF_EVENT_MSG_n_RELAY_DATAx	GUC_HXG_EVENT_MSG_n_DATAn
-+#define GUC2PF_RELAY_FROM_VF_EVENT_MSG_NUM_RELAY_DATA	GUC_RELAY_MSG_MAX_LEN
++static int replacement_relay_get_totalvfs(struct xe_guc_relay *relay)
++{
++	return TEST_VFID;
++}
 +
-+/**
-+ * DOC: PF2GUC_RELAY_TO_VF
-+ *
-+ * This H2G message is used by the Physical Function (PF) driver to send embedded
-+ * VF2PF `Relay Message`_ to the VF.
-+ *
-+ * This action message must be sent over CTB as `CTB HXG Message`_.
-+ *
-+ *  +---+-------+--------------------------------------------------------------+
-+ *  |   | Bits  | Description                                                  |
-+ *  +===+=======+==============================================================+
-+ *  | 0 |    31 | ORIGIN = GUC_HXG_ORIGIN_HOST_                                |
-+ *  |   +-------+--------------------------------------------------------------+
-+ *  |   | 30:28 | TYPE = `GUC_HXG_TYPE_FAST_REQUEST`_                          |
-+ *  |   +-------+--------------------------------------------------------------+
-+ *  |   | 27:16 | MBZ                                                          |
-+ *  |   +-------+--------------------------------------------------------------+
-+ *  |   |  15:0 | ACTION = _`XE_GUC_ACTION_PF2GUC_RELAY_TO_VF` = 0x5101        |
-+ *  +---+-------+--------------------------------------------------------------+
-+ *  | 1 |  31:0 | **VFID** - target VF identifier                              |
-+ *  +---+-------+--------------------------------------------------------------+
-+ *  | 2 |  31:0 | **RELAY_ID** - VF/PF message ID                              |
-+ *  +---+-------+-----------------+--------------------------------------------+
-+ *  | 3 |  31:0 | **RELAY_DATA1** |                                            |
-+ *  +---+-------+-----------------+                                            |
-+ *  |...|       |                 |       [Embedded `Relay Message`_]          |
-+ *  +---+-------+-----------------+                                            |
-+ *  | n |  31:0 | **RELAY_DATAx** |                                            |
-+ *  +---+-------+-----------------+--------------------------------------------+
-+ */
-+#define XE_GUC_ACTION_PF2GUC_RELAY_TO_VF		0x5101
++static int relay_test_init(struct kunit *test)
++{
++	struct xe_pci_fake_data fake = {
++		.sriov_mode = XE_SRIOV_MODE_PF,
++		.platform = XE_TIGERLAKE, /* some random platform */
++		.subplatform = XE_SUBPLATFORM_NONE,
++	};
++	struct xe_guc_relay *relay;
++	struct xe_device *xe;
 +
-+#define PF2GUC_RELAY_TO_VF_REQUEST_MSG_MIN_LEN		(GUC_HXG_REQUEST_MSG_MIN_LEN + 2u)
-+#define PF2GUC_RELAY_TO_VF_REQUEST_MSG_MAX_LEN \
-+	(PF2GUC_RELAY_TO_VF_REQUEST_MSG_MIN_LEN + GUC_RELAY_MSG_MAX_LEN)
-+#define PF2GUC_RELAY_TO_VF_REQUEST_MSG_0_MBZ		GUC_HXG_REQUEST_MSG_0_DATA0
-+#define PF2GUC_RELAY_TO_VF_REQUEST_MSG_1_VFID		GUC_HXG_REQUEST_MSG_n_DATAn
-+#define PF2GUC_RELAY_TO_VF_REQUEST_MSG_2_RELAY_ID	GUC_HXG_REQUEST_MSG_n_DATAn
-+#define PF2GUC_RELAY_TO_VF_REQUEST_MSG_3_RELAY_DATA1	GUC_HXG_REQUEST_MSG_n_DATAn
-+#define PF2GUC_RELAY_TO_VF_REQUEST_MSG_n_RELAY_DATAx	GUC_HXG_REQUEST_MSG_n_DATAn
-+#define PF2GUC_RELAY_TO_VF_REQUEST_MSG_NUM_RELAY_DATA	GUC_RELAY_MSG_MAX_LEN
++	test->priv = &fake;
++	xe_kunit_helper_xe_device_test_init(test);
 +
-+/**
-+ * DOC: GUC2VF_RELAY_FROM_PF
-+ *
-+ * This message is used by the GuC firmware to deliver `Relay Message`_ from the
-+ * Physical Function (PF) driver to this Virtual Function (VF) driver.
-+ * See `GuC Relay Communication`_ for details.
-+ *
-+ * This message is always sent over CTB.
-+ *
-+ *  +---+-------+--------------------------------------------------------------+
-+ *  |   | Bits  | Description                                                  |
-+ *  +===+=======+==============================================================+
-+ *  | 0 |    31 | ORIGIN = GUC_HXG_ORIGIN_GUC_                                 |
-+ *  |   +-------+--------------------------------------------------------------+
-+ *  |   | 30:28 | TYPE = GUC_HXG_TYPE_EVENT_                                   |
-+ *  |   +-------+--------------------------------------------------------------+
-+ *  |   | 27:16 | MBZ                                                          |
-+ *  |   +-------+--------------------------------------------------------------+
-+ *  |   |  15:0 | ACTION = _`XE_GUC_ACTION_GUC2VF_RELAY_FROM_PF` = 0x5102      |
-+ *  +---+-------+--------------------------------------------------------------+
-+ *  | 1 |  31:0 | **RELAY_ID** - VF/PF message ID                              |
-+ *  +---+-------+-----------------+--------------------------------------------+
-+ *  | 2 |  31:0 | **RELAY_DATA1** |                                            |
-+ *  +---+-------+-----------------+                                            |
-+ *  |...|       |                 |       [Embedded `Relay Message`_]          |
-+ *  +---+-------+-----------------+                                            |
-+ *  | n |  31:0 | **RELAY_DATAx** |                                            |
-+ *  +---+-------+-----------------+--------------------------------------------+
-+ */
-+#define XE_GUC_ACTION_GUC2VF_RELAY_FROM_PF		0x5102
++	xe = test->priv;
++	KUNIT_ASSERT_EQ(test, xe_sriov_init(xe), 0);
 +
-+#define GUC2VF_RELAY_FROM_PF_EVENT_MSG_MIN_LEN		(GUC_HXG_EVENT_MSG_MIN_LEN + 1u)
-+#define GUC2VF_RELAY_FROM_PF_EVENT_MSG_MAX_LEN \
-+	(GUC2VF_RELAY_FROM_PF_EVENT_MSG_MIN_LEN + GUC_RELAY_MSG_MAX_LEN)
-+#define GUC2VF_RELAY_FROM_PF_EVENT_MSG_0_MBZ		GUC_HXG_EVENT_MSG_0_DATA0
-+#define GUC2VF_RELAY_FROM_PF_EVENT_MSG_1_RELAY_ID	GUC_HXG_EVENT_MSG_n_DATAn
-+#define GUC2VF_RELAY_FROM_PF_EVENT_MSG_n_RELAY_DATAx	GUC_HXG_EVENT_MSG_n_DATAn
-+#define GUC2VF_RELAY_FROM_PF_EVENT_MSG_NUM_RELAY_DATA	GUC_RELAY_MSG_MAX_LEN
++	relay = &xe_device_get_gt(xe, 0)->uc.guc.relay;
++	kunit_activate_static_stub(test, relay_get_totalvfs,
++				   replacement_relay_get_totalvfs);
 +
-+/**
-+ * DOC: VF2GUC_RELAY_TO_PF
-+ *
-+ * This message is used by the Virtual Function (VF) drivers to communicate with
-+ * the Physical Function (PF) driver and send `Relay Message`_ to the PF driver.
-+ * See `GuC Relay Communication`_ for details.
-+ *
-+ * This message must be sent over CTB.
-+ *
-+ *  +---+-------+--------------------------------------------------------------+
-+ *  |   | Bits  | Description                                                  |
-+ *  +===+=======+==============================================================+
-+ *  | 0 |    31 | ORIGIN = GUC_HXG_ORIGIN_HOST_                                |
-+ *  |   +-------+--------------------------------------------------------------+
-+ *  |   | 30:28 | TYPE = GUC_HXG_TYPE_REQUEST_ or GUC_HXG_TYPE_FAST_REQUEST_   |
-+ *  |   +-------+--------------------------------------------------------------+
-+ *  |   | 27:16 | MBZ                                                          |
-+ *  |   +-------+--------------------------------------------------------------+
-+ *  |   |  15:0 | ACTION = _`XE_GUC_ACTION_VF2GUC_RELAY_TO_PF` = 0x5103        |
-+ *  +---+-------+--------------------------------------------------------------+
-+ *  | 1 |  31:0 | **RELAY_ID** - VF/PF message ID                              |
-+ *  +---+-------+-----------------+--------------------------------------------+
-+ *  | 2 |  31:0 | **RELAY_DATA1** |                                            |
-+ *  +---+-------+-----------------+                                            |
-+ *  |...|       |                 |       [Embedded `Relay Message`_]          |
-+ *  +---+-------+-----------------+                                            |
-+ *  | n |  31:0 | **RELAY_DATAx** |                                            |
-+ *  +---+-------+-----------------+--------------------------------------------+
-+ */
-+#define XE_GUC_ACTION_VF2GUC_RELAY_TO_PF		0x5103
++	KUNIT_ASSERT_EQ(test, xe_guc_relay_init(relay), 0);
++	KUNIT_EXPECT_TRUE(test, relay_is_ready(relay));
++	relay->last_rid = TEST_RID - 1;
 +
-+#define VF2GUC_RELAY_TO_PF_REQUEST_MSG_MIN_LEN		(GUC_HXG_REQUEST_MSG_MIN_LEN + 1u)
-+#define VF2GUC_RELAY_TO_PF_REQUEST_MSG_MAX_LEN \
-+	(VF2GUC_RELAY_TO_PF_REQUEST_MSG_MIN_LEN + GUC_RELAY_MSG_MAX_LEN)
-+#define VF2GUC_RELAY_TO_PF_REQUEST_MSG_0_MBZ		GUC_HXG_REQUEST_MSG_0_DATA0
-+#define VF2GUC_RELAY_TO_PF_REQUEST_MSG_1_RELAY_ID	GUC_HXG_REQUEST_MSG_n_DATAn
-+#define VF2GUC_RELAY_TO_PF_REQUEST_MSG_n_RELAY_DATAx	GUC_HXG_REQUEST_MSG_n_DATAn
-+#define VF2GUC_RELAY_TO_PF_REQUEST_MSG_NUM_RELAY_DATA	GUC_RELAY_MSG_MAX_LEN
++	test->priv = relay;
++	return 0;
++}
 +
-+#endif
-diff --git a/drivers/gpu/drm/xe/abi/guc_relay_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_relay_actions_abi.h
-new file mode 100644
-index 000000000000..747e428de421
---- /dev/null
-+++ b/drivers/gpu/drm/xe/abi/guc_relay_actions_abi.h
-@@ -0,0 +1,79 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
++static const u32 TEST_MSG[TEST_LEN] = {
++	FIELD_PREP_CONST(GUC_HXG_MSG_0_ORIGIN, GUC_HXG_ORIGIN_HOST) |
++	FIELD_PREP_CONST(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_EVENT) |
++	FIELD_PREP_CONST(GUC_HXG_EVENT_MSG_0_ACTION, TEST_ACTION) |
++	FIELD_PREP_CONST(GUC_HXG_EVENT_MSG_0_DATA0, TEST_DATA(0)),
++	TEST_DATA(1), TEST_DATA(2), TEST_DATA(3), TEST_DATA(4),
++};
 +
-+#ifndef _ABI_GUC_RELAY_ACTIONS_ABI_H_
-+#define _ABI_GUC_RELAY_ACTIONS_ABI_H_
++static int replacement_xe_guc_ct_send_recv_always_fails(struct xe_guc_ct *ct,
++							const u32 *msg, u32 len,
++							u32 *response_buffer)
++{
++	struct kunit *test = kunit_get_current_test();
 +
-+/**
-+ * DOC: GuC Relay Debug Actions
-+ *
-+ * This range of action codes is reserved for debugging purposes only and should
-+ * be used only on debug builds. These actions may not be supported by the
-+ * production drivers. Their definitions could be changed in the future.
-+ *
-+ *  _`GUC_RELAY_ACTION_DEBUG_ONLY_START` = 0xDEB0
-+ *  _`GUC_RELAY_ACTION_DEBUG_ONLY_END` = 0xDEFF
-+ */
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, ct);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, msg);
++	KUNIT_ASSERT_GE(test, len, GUC_HXG_MSG_MIN_LEN);
 +
-+#define GUC_RELAY_ACTION_DEBUG_ONLY_START	0xDEB0
-+#define GUC_RELAY_ACTION_DEBUG_ONLY_END		0xDEFF
++	return -ECOMM;
++}
 +
-+/**
-+ * DOC: VFXPF_TESTLOOP
-+ *
-+ * This `Relay Message`_ is used to selftest the `GuC Relay Communication`_.
-+ *
-+ * The following opcodes are defined:
-+ * VFXPF_TESTLOOP_OPCODE_NOP_ will return no data.
-+ * VFXPF_TESTLOOP_OPCODE_BUSY_ will reply with BUSY response first.
-+ * VFXPF_TESTLOOP_OPCODE_RETRY_ will reply with RETRY response instead.
-+ * VFXPF_TESTLOOP_OPCODE_ECHO_ will return same data as received.
-+ * VFXPF_TESTLOOP_OPCODE_FAIL_ will always fail with error.
-+ *
-+ *  +---+-------+--------------------------------------------------------------+
-+ *  |   | Bits  | Description                                                  |
-+ *  +===+=======+==============================================================+
-+ *  | 0 |    31 | ORIGIN = GUC_HXG_ORIGIN_HOST_                                |
-+ *  |   +-------+--------------------------------------------------------------+
-+ *  |   | 30:28 | TYPE = GUC_HXG_TYPE_REQUEST_ or GUC_HXG_TYPE_FAST_REQUEST_   |
-+ *  |   |       | or GUC_HXG_TYPE_EVENT_                                       |
-+ *  |   +-------+--------------------------------------------------------------+
-+ *  |   | 27:16 | **OPCODE**                                                   |
-+ *  |   |       |    - _`VFXPF_TESTLOOP_OPCODE_NOP` = 0x0                      |
-+ *  |   |       |    - _`VFXPF_TESTLOOP_OPCODE_BUSY` = 0xB                     |
-+ *  |   |       |    - _`VFXPF_TESTLOOP_OPCODE_RETRY` = 0xD                    |
-+ *  |   |       |    - _`VFXPF_TESTLOOP_OPCODE_ECHO` = 0xE                     |
-+ *  |   |       |    - _`VFXPF_TESTLOOP_OPCODE_FAIL` = 0xF                     |
-+ *  |   +-------+--------------------------------------------------------------+
-+ *  |   |  15:0 | ACTION = _`IOV_ACTION_SELFTEST_RELAY`                        |
-+ *  +---+-------+--------------------------------------------------------------+
-+ *  | 1 |  31:0 | **DATA1** = optional, depends on **OPCODE**:                 |
-+ *  |   |       | for VFXPF_TESTLOOP_OPCODE_BUSY_: time in ms for reply        |
-+ *  |   |       | for VFXPF_TESTLOOP_OPCODE_FAIL_: expected error              |
-+ *  |   |       | for VFXPF_TESTLOOP_OPCODE_ECHO_: payload                     |
-+ *  +---+-------+--------------------------------------------------------------+
-+ *  |...|  31:0 | **DATAn** = only for **OPCODE** VFXPF_TESTLOOP_OPCODE_ECHO_  |
-+ *  +---+-------+--------------------------------------------------------------+
-+ *
-+ *  +---+-------+--------------------------------------------------------------+
-+ *  |   | Bits  | Description                                                  |
-+ *  +===+=======+==============================================================+
-+ *  | 0 |    31 | ORIGIN = GUC_HXG_ORIGIN_HOST_                                |
-+ *  |   +-------+--------------------------------------------------------------+
-+ *  |   | 30:28 | TYPE = GUC_HXG_TYPE_RESPONSE_SUCCESS_                        |
-+ *  |   +-------+--------------------------------------------------------------+
-+ *  |   |  27:0 | DATA0 = MBZ                                                  |
-+ *  +---+-------+--------------------------------------------------------------+
-+ *  |...|  31:0 | DATAn = only for **OPCODE** VFXPF_TESTLOOP_OPCODE_ECHO_      |
-+ *  +---+-------+--------------------------------------------------------------+
-+ */
-+#define GUC_RELAY_ACTION_VFXPF_TESTLOOP		(GUC_RELAY_ACTION_DEBUG_ONLY_START + 1)
-+#define   VFXPF_TESTLOOP_OPCODE_NOP		0x0
-+#define   VFXPF_TESTLOOP_OPCODE_BUSY		0xB
-+#define   VFXPF_TESTLOOP_OPCODE_RETRY		0xD
-+#define   VFXPF_TESTLOOP_OPCODE_ECHO		0xE
-+#define   VFXPF_TESTLOOP_OPCODE_FAIL		0xF
++static int replacement_xe_guc_ct_send_recv_expects_pf2guc_relay(struct xe_guc_ct *ct,
++								const u32 *msg, u32 len,
++								u32 *response_buffer)
++{
++	struct kunit *test = kunit_get_current_test();
 +
-+#endif
-diff --git a/drivers/gpu/drm/xe/abi/guc_relay_communication_abi.h b/drivers/gpu/drm/xe/abi/guc_relay_communication_abi.h
-new file mode 100644
-index 000000000000..f92625f04796
---- /dev/null
-+++ b/drivers/gpu/drm/xe/abi/guc_relay_communication_abi.h
-@@ -0,0 +1,118 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, ct);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, msg);
++	KUNIT_ASSERT_GE(test, len, PF2GUC_RELAY_TO_VF_REQUEST_MSG_MIN_LEN);
++	KUNIT_ASSERT_EQ(test, len, PF2GUC_RELAY_TO_VF_REQUEST_MSG_MIN_LEN + TEST_LEN);
++	KUNIT_EXPECT_EQ(test, GUC_HXG_ORIGIN_HOST, FIELD_GET(GUC_HXG_MSG_0_ORIGIN, msg[0]));
++	KUNIT_EXPECT_EQ(test, GUC_HXG_TYPE_REQUEST, FIELD_GET(GUC_HXG_MSG_0_TYPE, msg[0]));
++	KUNIT_EXPECT_EQ(test, XE_GUC_ACTION_PF2GUC_RELAY_TO_VF,
++			FIELD_GET(GUC_HXG_REQUEST_MSG_0_ACTION, msg[0]));
++	KUNIT_EXPECT_EQ(test, TEST_VFID,
++			FIELD_GET(PF2GUC_RELAY_TO_VF_REQUEST_MSG_1_VFID, msg[1]));
++	KUNIT_EXPECT_EQ(test, TEST_RID,
++			FIELD_GET(PF2GUC_RELAY_TO_VF_REQUEST_MSG_2_RELAY_ID, msg[2]));
++	KUNIT_EXPECT_MEMEQ(test, TEST_MSG, msg + PF2GUC_RELAY_TO_VF_REQUEST_MSG_MIN_LEN,
++			   sizeof(u32) * TEST_LEN);
++	return 0;
++}
 +
-+#ifndef _ABI_GUC_RELAY_COMMUNICATION_ABI_H
-+#define _ABI_GUC_RELAY_COMMUNICATION_ABI_H
++static const u32 test_guc2pf[GUC2PF_RELAY_FROM_VF_EVENT_MSG_MAX_LEN] = {
++	/* transport */
++	FIELD_PREP_CONST(GUC_HXG_MSG_0_ORIGIN, GUC_HXG_ORIGIN_GUC) |
++	FIELD_PREP_CONST(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_EVENT) |
++	FIELD_PREP_CONST(GUC_HXG_EVENT_MSG_0_ACTION, XE_GUC_ACTION_GUC2PF_RELAY_FROM_VF),
++	FIELD_PREP_CONST(GUC2PF_RELAY_FROM_VF_EVENT_MSG_1_VFID, TEST_VFID),
++	FIELD_PREP_CONST(GUC2PF_RELAY_FROM_VF_EVENT_MSG_2_RELAY_ID, TEST_RID),
++	/* payload */
++	FIELD_PREP_CONST(GUC_HXG_MSG_0_ORIGIN, GUC_HXG_ORIGIN_HOST) |
++	FIELD_PREP_CONST(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_RESPONSE_SUCCESS),
++};
 +
-+#include <linux/build_bug.h>
++static const u32 test_guc2vf[GUC2VF_RELAY_FROM_PF_EVENT_MSG_MAX_LEN] = {
++	/* transport */
++	FIELD_PREP_CONST(GUC_HXG_MSG_0_ORIGIN, GUC_HXG_ORIGIN_GUC) |
++	FIELD_PREP_CONST(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_EVENT) |
++	FIELD_PREP_CONST(GUC_HXG_EVENT_MSG_0_ACTION, XE_GUC_ACTION_GUC2VF_RELAY_FROM_PF),
++	FIELD_PREP_CONST(GUC2VF_RELAY_FROM_PF_EVENT_MSG_1_RELAY_ID, TEST_RID),
++	/* payload */
++	FIELD_PREP_CONST(GUC_HXG_MSG_0_ORIGIN, GUC_HXG_ORIGIN_HOST) |
++	FIELD_PREP_CONST(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_RESPONSE_SUCCESS),
++};
 +
-+#include "guc_actions_sriov_abi.h"
-+#include "guc_communication_ctb_abi.h"
-+#include "guc_messages_abi.h"
++static void pf_rejects_guc2pf_too_short(struct kunit *test)
++{
++	const u32 len = GUC2PF_RELAY_FROM_VF_EVENT_MSG_MIN_LEN - 1;
++	struct xe_guc_relay *relay = test->priv;
++	const u32 *msg = test_guc2pf;
 +
-+/**
-+ * DOC: GuC Relay Communication
-+ *
-+ * The communication between Virtual Function (VF) drivers and Physical Function
-+ * (PF) drivers is based on the GuC firmware acting as a proxy (relay) agent.
-+ *
-+ * To communicate with the PF driver, VF's drivers use `VF2GUC_RELAY_TO_PF`_
-+ * action that takes the `Relay Message`_ as opaque payload and requires the
-+ * relay message identifier (RID) as additional parameter.
-+ *
-+ * This identifier is used by the drivers to match related messages.
-+ *
-+ * The GuC forwards this `Relay Message`_ and its identifier to the PF driver
-+ * in `GUC2PF_RELAY_FROM_VF`_ action. This event message additionally contains
-+ * the identifier of the origin VF (VFID).
-+ *
-+ * Likewise, to communicate with the VF drivers, PF driver use
-+ * `VF2GUC_RELAY_TO_PF`_ action that in addition to the `Relay Message`_
-+ * and the relay message identifier (RID) also takes the target VF identifier.
-+ *
-+ * The GuC uses this target VFID from the message to select where to send the
-+ * `GUC2VF_RELAY_FROM_PF`_ with the embedded `Relay Message`_ with response::
-+ *
-+ *      VF                             GuC                              PF
-+ *      |                               |                               |
-+ *     [ ] VF2GUC_RELAY_TO_PF           |                               |
-+ *     [ ]---------------------------> [ ]                              |
-+ *     [ ] { rid, msg }                [ ]                              |
-+ *     [ ]                             [ ] GUC2PF_RELAY_FROM_VF         |
-+ *     [ ]                             [ ]---------------------------> [ ]
-+ *     [ ]                              |  { VFID, rid, msg }          [ ]
-+ *     [ ]                              |                              [ ]
-+ *     [ ]                              |           PF2GUC_RELAY_TO_VF [ ]
-+ *     [ ]                             [ ] <---------------------------[ ]
-+ *     [ ]                             [ ]        { VFID, rid, reply }  |
-+ *     [ ]        GUC2VF_RELAY_FROM_PF [ ]                              |
-+ *     [ ] <---------------------------[ ]                              |
-+ *      |               { rid, reply }  |                               |
-+ *      |                               |                               |
-+ *
-+ * It is also possible that PF driver will initiate communication with the
-+ * selected VF driver. The same GuC action messages will be used::
-+ *
-+ *      VF                             GuC                              PF
-+ *      |                               |                               |
-+ *      |                               |           PF2GUC_RELAY_TO_VF [ ]
-+ *      |                              [ ] <---------------------------[ ]
-+ *      |                              [ ]          { VFID, rid, msg } [ ]
-+ *      |         GUC2VF_RELAY_FROM_PF [ ]                             [ ]
-+ *     [ ] <---------------------------[ ]                             [ ]
-+ *     [ ]                { rid, msg }  |                              [ ]
-+ *     [ ]                              |                              [ ]
-+ *     [ ] VF2GUC_RELAY_TO_PF           |                              [ ]
-+ *     [ ]---------------------------> [ ]                             [ ]
-+ *      |  { rid, reply }              [ ]                             [ ]
-+ *      |                              [ ] GUC2PF_RELAY_FROM_VF        [ ]
-+ *      |                              [ ]---------------------------> [ ]
-+ *      |                               | { VFID, rid, reply }          |
-+ *      |                               |                               |
-+ */
++	KUNIT_ASSERT_EQ(test, -EPROTO, xe_guc_relay_process_guc2pf(relay, msg, len));
++}
 +
-+/**
-+ * DOC: Relay Message
-+ *
-+ * The `Relay Message`_ is used by Physical Function (PF) driver and Virtual
-+ * Function (VF) drivers to communicate using `GuC Relay Communication`_.
-+ *
-+ * Format of the `Relay Message`_ follows format of the generic `HXG Message`_.
-+ *
-+ *  +--------------------------------------------------------------------------+
-+ *  |  `Relay Message`_                                                        |
-+ *  +==========================================================================+
-+ *  |  `HXG Message`_                                                          |
-+ *  +--------------------------------------------------------------------------+
-+ *
-+ * Maximum length of the `Relay Message`_ is limited by the maximum length of
-+ * the `CTB HXG Message`_ and format of the `GUC2PF_RELAY_FROM_VF`_ message.
-+ */
++static void pf_rejects_guc2pf_too_long(struct kunit *test)
++{
++	const u32 len = GUC2PF_RELAY_FROM_VF_EVENT_MSG_MAX_LEN + 1;
++	struct xe_guc_relay *relay = test->priv;
++	const u32 *msg = test_guc2pf;
 +
-+#define GUC_RELAY_MSG_MIN_LEN GUC_HXG_MSG_MIN_LEN
-+#define GUC_RELAY_MSG_MAX_LEN \
-+	(GUC_CTB_MAX_DWORDS - GUC2PF_RELAY_FROM_VF_EVENT_MSG_MIN_LEN)
++	KUNIT_ASSERT_EQ(test, -EMSGSIZE, xe_guc_relay_process_guc2pf(relay, msg, len));
++}
 +
-+static_assert(PF2GUC_RELAY_TO_VF_REQUEST_MSG_MIN_LEN >
-+	      VF2GUC_RELAY_TO_PF_REQUEST_MSG_MIN_LEN);
++static void pf_rejects_guc2pf_no_payload(struct kunit *test)
++{
++	const u32 len = GUC2PF_RELAY_FROM_VF_EVENT_MSG_MIN_LEN;
++	struct xe_guc_relay *relay = test->priv;
++	const u32 *msg = test_guc2pf;
 +
-+/**
-+ * DOC: Relay Error Codes
-+ *
-+ * The `GuC Relay Communication`_ can be used to pass `Relay Message`_ between
-+ * drivers that run on different Operating Systems. To help in troubleshooting,
-+ * `GuC Relay Communication`_ uses error codes that mostly match errno values.
-+ */
++	KUNIT_ASSERT_EQ(test, -EPROTO, xe_guc_relay_process_guc2pf(relay, msg, len));
++}
 +
-+#define GUC_RELAY_ERROR_UNDISCLOSED			0
-+#define GUC_RELAY_ERROR_OPERATION_NOT_PERMITTED		1	/* EPERM */
-+#define GUC_RELAY_ERROR_PERMISSION_DENIED		13	/* EACCES */
-+#define GUC_RELAY_ERROR_INVALID_ARGUMENT		22	/* EINVAL */
-+#define GUC_RELAY_ERROR_INVALID_REQUEST_CODE		56	/* EBADRQC */
-+#define GUC_RELAY_ERROR_NO_DATA_AVAILABLE		61	/* ENODATA */
-+#define GUC_RELAY_ERROR_PROTOCOL_ERROR			71	/* EPROTO */
-+#define GUC_RELAY_ERROR_MESSAGE_SIZE			90	/* EMSGSIZE */
++static void pf_fails_no_payload(struct kunit *test)
++{
++	struct xe_guc_relay *relay = test->priv;
++	const u32 msg = 0;
 +
++	KUNIT_ASSERT_EQ(test, -EPROTO, relay_process_msg(relay, TEST_VFID, TEST_RID, &msg, 0));
++}
++
++static void pf_fails_bad_origin(struct kunit *test)
++{
++	struct xe_guc_relay *relay = test->priv;
++	static const u32 msg[] = {
++		FIELD_PREP_CONST(GUC_HXG_MSG_0_ORIGIN, GUC_HXG_ORIGIN_GUC) |
++		FIELD_PREP_CONST(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_RESPONSE_SUCCESS),
++	};
++	u32 len = ARRAY_SIZE(msg);
++
++	KUNIT_ASSERT_EQ(test, -EPROTO, relay_process_msg(relay, TEST_VFID, TEST_RID, msg, len));
++}
++
++static void pf_fails_bad_type(struct kunit *test)
++{
++	struct xe_guc_relay *relay = test->priv;
++	const u32 msg[] = {
++		FIELD_PREP(GUC_HXG_MSG_0_ORIGIN, GUC_HXG_ORIGIN_HOST) |
++		FIELD_PREP(GUC_HXG_MSG_0_TYPE, 4), /* only 4 is undefined */
++	};
++	u32 len = ARRAY_SIZE(msg);
++
++	KUNIT_ASSERT_EQ(test, -EBADRQC, relay_process_msg(relay, TEST_VFID, TEST_RID, msg, len));
++}
++
++static void pf_txn_reports_error(struct kunit *test)
++{
++	struct xe_guc_relay *relay = test->priv;
++	struct relay_transaction *txn;
++
++	txn = __relay_get_transaction(relay, false, TEST_VFID, TEST_RID,
++				      TEST_MSG, TEST_LEN, NULL, 0);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, txn);
++
++	kunit_activate_static_stub(test, xe_guc_ct_send_recv,
++				   replacement_xe_guc_ct_send_recv_always_fails);
++	KUNIT_EXPECT_EQ(test, -ECOMM, relay_send_transaction(relay, txn));
++
++	relay_release_transaction(relay, txn);
++}
++
++static void pf_txn_sends_pf2guc(struct kunit *test)
++{
++	struct xe_guc_relay *relay = test->priv;
++	struct relay_transaction *txn;
++
++	txn = __relay_get_transaction(relay, false, TEST_VFID, TEST_RID,
++				      TEST_MSG, TEST_LEN, NULL, 0);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, txn);
++
++	kunit_activate_static_stub(test, xe_guc_ct_send_recv,
++				   replacement_xe_guc_ct_send_recv_expects_pf2guc_relay);
++	KUNIT_ASSERT_EQ(test, 0, relay_send_transaction(relay, txn));
++
++	relay_release_transaction(relay, txn);
++}
++
++static void pf_sends_pf2guc(struct kunit *test)
++{
++	struct xe_guc_relay *relay = test->priv;
++
++	kunit_activate_static_stub(test, xe_guc_ct_send_recv,
++				   replacement_xe_guc_ct_send_recv_expects_pf2guc_relay);
++	KUNIT_ASSERT_EQ(test, 0,
++			xe_guc_relay_send_to_vf(relay, TEST_VFID,
++						TEST_MSG, TEST_LEN, NULL, 0));
++}
++
++static int replacement_xe_guc_ct_send_recv_loopback_relay(struct xe_guc_ct *ct,
++							  const u32 *msg, u32 len,
++							  u32 *response_buffer)
++{
++	struct kunit *test = kunit_get_current_test();
++	struct xe_guc_relay *relay = test->priv;
++	u32 *reply = kunit_kzalloc(test, len * sizeof(u32), GFP_KERNEL);
++	int (*guc2relay)(struct xe_guc_relay *, const u32 *, u32);
++	u32 action;
++	int err;
++
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, ct);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, msg);
++	KUNIT_ASSERT_GE(test, len, GUC_HXG_MSG_MIN_LEN);
++	KUNIT_ASSERT_EQ(test, GUC_HXG_TYPE_REQUEST,
++			FIELD_GET(GUC_HXG_MSG_0_TYPE, msg[0]));
++	KUNIT_ASSERT_GE(test, len, GUC_HXG_REQUEST_MSG_MIN_LEN);
++	KUNIT_ASSERT_NOT_NULL(test, reply);
++
++	switch (FIELD_GET(GUC_HXG_REQUEST_MSG_0_ACTION, msg[0])) {
++	case XE_GUC_ACTION_PF2GUC_RELAY_TO_VF:
++		KUNIT_ASSERT_GE(test, len, PF2GUC_RELAY_TO_VF_REQUEST_MSG_MIN_LEN);
++		action = XE_GUC_ACTION_GUC2PF_RELAY_FROM_VF;
++		guc2relay = xe_guc_relay_process_guc2pf;
++		break;
++	case XE_GUC_ACTION_VF2GUC_RELAY_TO_PF:
++		KUNIT_ASSERT_GE(test, len, VF2GUC_RELAY_TO_PF_REQUEST_MSG_MIN_LEN);
++		action = XE_GUC_ACTION_GUC2VF_RELAY_FROM_PF;
++		guc2relay = xe_guc_relay_process_guc2vf;
++		break;
++	default:
++		KUNIT_FAIL(test, "bad RELAY action %#x", msg[0]);
++		return -EINVAL;
++	}
++
++	reply[0] = FIELD_PREP(GUC_HXG_MSG_0_ORIGIN, GUC_HXG_ORIGIN_GUC) |
++		   FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_EVENT) |
++		   FIELD_PREP(GUC_HXG_EVENT_MSG_0_ACTION, action);
++	memcpy(reply + 1, msg + 1, sizeof(u32) * (len - 1));
++
++	err = guc2relay(relay, reply, len);
++	KUNIT_EXPECT_EQ(test, err, 0);
++
++	return err;
++}
++
++static void test_requires_relay_testloop(struct kunit *test)
++{
++	/*
++	 * The debug relay action GUC_RELAY_ACTION_VFXPF_TESTLOOP is available
++	 * only on builds with CONFIG_DRM_XE_DEBUG_SRIOV enabled.
++	 * See "kunit.py --kconfig_add" option if it's missing.
++	 */
++	if (!IS_ENABLED(CONFIG_DRM_XE_DEBUG_SRIOV))
++		kunit_skip(test, "requires %s\n", __stringify(CONFIG_DRM_XE_DEBUG_SRIOV));
++}
++
++static void pf_loopback_nop(struct kunit *test)
++{
++	struct xe_guc_relay *relay = test->priv;
++	u32 request[] = {
++		FIELD_PREP(GUC_HXG_MSG_0_ORIGIN, GUC_HXG_ORIGIN_HOST) |
++		FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_REQUEST) |
++		FIELD_PREP(GUC_HXG_REQUEST_MSG_0_ACTION, GUC_RELAY_ACTION_VFXPF_TESTLOOP) |
++		FIELD_PREP(GUC_HXG_REQUEST_MSG_0_DATA0, VFXPF_TESTLOOP_OPCODE_NOP),
++	};
++	u32 response[GUC_HXG_RESPONSE_MSG_MIN_LEN];
++	int ret;
++
++	test_requires_relay_testloop(test);
++
++	kunit_activate_static_stub(test, relay_kick_worker, relay_process_incoming_action);
++	kunit_activate_static_stub(test, xe_guc_ct_send_recv,
++				   replacement_xe_guc_ct_send_recv_loopback_relay);
++	ret = xe_guc_relay_send_to_vf(relay, TEST_VFID,
++				      request, ARRAY_SIZE(request),
++				      response, ARRAY_SIZE(response));
++	KUNIT_ASSERT_EQ(test, ret, GUC_HXG_RESPONSE_MSG_MIN_LEN);
++	KUNIT_EXPECT_EQ(test, FIELD_GET(GUC_HXG_MSG_0_ORIGIN, response[0]),
++			GUC_HXG_ORIGIN_HOST);
++	KUNIT_EXPECT_EQ(test, FIELD_GET(GUC_HXG_MSG_0_TYPE, response[0]),
++			GUC_HXG_TYPE_RESPONSE_SUCCESS);
++	KUNIT_EXPECT_EQ(test, FIELD_GET(GUC_HXG_RESPONSE_MSG_0_DATA0, response[0]), 0);
++}
++
++static void pf_loopback_echo(struct kunit *test)
++{
++	struct xe_guc_relay *relay = test->priv;
++	u32 request[] = {
++		FIELD_PREP(GUC_HXG_MSG_0_ORIGIN, GUC_HXG_ORIGIN_HOST) |
++		FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_REQUEST) |
++		FIELD_PREP(GUC_HXG_REQUEST_MSG_0_ACTION, GUC_RELAY_ACTION_VFXPF_TESTLOOP) |
++		FIELD_PREP(GUC_HXG_REQUEST_MSG_0_DATA0, VFXPF_TESTLOOP_OPCODE_ECHO),
++		TEST_DATA(1), TEST_DATA(2), TEST_DATA(3), TEST_DATA(4),
++	};
++	u32 response[ARRAY_SIZE(request)];
++	unsigned int n;
++	int ret;
++
++	test_requires_relay_testloop(test);
++
++	kunit_activate_static_stub(test, relay_kick_worker, relay_process_incoming_action);
++	kunit_activate_static_stub(test, xe_guc_ct_send_recv,
++				   replacement_xe_guc_ct_send_recv_loopback_relay);
++	ret = xe_guc_relay_send_to_vf(relay, TEST_VFID,
++				      request, ARRAY_SIZE(request),
++				      response, ARRAY_SIZE(response));
++	KUNIT_ASSERT_EQ(test, ret, ARRAY_SIZE(response));
++	KUNIT_EXPECT_EQ(test, FIELD_GET(GUC_HXG_MSG_0_ORIGIN, response[0]),
++			GUC_HXG_ORIGIN_HOST);
++	KUNIT_EXPECT_EQ(test, FIELD_GET(GUC_HXG_MSG_0_TYPE, response[0]),
++			GUC_HXG_TYPE_RESPONSE_SUCCESS);
++	KUNIT_EXPECT_EQ(test, FIELD_GET(GUC_HXG_RESPONSE_MSG_0_DATA0, response[0]),
++			ARRAY_SIZE(response));
++	for (n = GUC_HXG_RESPONSE_MSG_MIN_LEN; n < ret; n++)
++		KUNIT_EXPECT_EQ(test, request[n], response[n]);
++}
++
++static void pf_loopback_fail(struct kunit *test)
++{
++	struct xe_guc_relay *relay = test->priv;
++	u32 request[] = {
++		FIELD_PREP(GUC_HXG_MSG_0_ORIGIN, GUC_HXG_ORIGIN_HOST) |
++		FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_REQUEST) |
++		FIELD_PREP(GUC_HXG_REQUEST_MSG_0_ACTION, GUC_RELAY_ACTION_VFXPF_TESTLOOP) |
++		FIELD_PREP(GUC_HXG_REQUEST_MSG_0_DATA0, VFXPF_TESTLOOP_OPCODE_FAIL),
++	};
++	u32 response[GUC_HXG_RESPONSE_MSG_MIN_LEN];
++	int ret;
++
++	test_requires_relay_testloop(test);
++
++	kunit_activate_static_stub(test, relay_kick_worker, relay_process_incoming_action);
++	kunit_activate_static_stub(test, xe_guc_ct_send_recv,
++				   replacement_xe_guc_ct_send_recv_loopback_relay);
++	ret = xe_guc_relay_send_to_vf(relay, TEST_VFID,
++				      request, ARRAY_SIZE(request),
++				      response, ARRAY_SIZE(response));
++	KUNIT_ASSERT_EQ(test, ret, -EREMOTEIO);
++}
++
++static void pf_loopback_busy(struct kunit *test)
++{
++	struct xe_guc_relay *relay = test->priv;
++	u32 request[] = {
++		FIELD_PREP(GUC_HXG_MSG_0_ORIGIN, GUC_HXG_ORIGIN_HOST) |
++		FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_REQUEST) |
++		FIELD_PREP(GUC_HXG_REQUEST_MSG_0_ACTION, GUC_RELAY_ACTION_VFXPF_TESTLOOP) |
++		FIELD_PREP(GUC_HXG_REQUEST_MSG_0_DATA0, VFXPF_TESTLOOP_OPCODE_BUSY),
++		TEST_DATA(0xb),
++	};
++	u32 response[GUC_HXG_RESPONSE_MSG_MIN_LEN];
++	int ret;
++
++	test_requires_relay_testloop(test);
++
++	kunit_activate_static_stub(test, relay_testonly_nop, relay_process_incoming_action);
++	kunit_activate_static_stub(test, relay_kick_worker, relay_process_incoming_action);
++	kunit_activate_static_stub(test, xe_guc_ct_send_recv,
++				   replacement_xe_guc_ct_send_recv_loopback_relay);
++	ret = xe_guc_relay_send_to_vf(relay, TEST_VFID,
++				      request, ARRAY_SIZE(request),
++				      response, ARRAY_SIZE(response));
++	KUNIT_ASSERT_EQ(test, ret, GUC_HXG_RESPONSE_MSG_MIN_LEN);
++}
++
++static void pf_loopback_retry(struct kunit *test)
++{
++	struct xe_guc_relay *relay = test->priv;
++	u32 request[] = {
++		FIELD_PREP(GUC_HXG_MSG_0_ORIGIN, GUC_HXG_ORIGIN_HOST) |
++		FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_REQUEST) |
++		FIELD_PREP(GUC_HXG_REQUEST_MSG_0_ACTION, GUC_RELAY_ACTION_VFXPF_TESTLOOP) |
++		FIELD_PREP(GUC_HXG_REQUEST_MSG_0_DATA0, VFXPF_TESTLOOP_OPCODE_RETRY),
++		TEST_DATA(0xd), TEST_DATA(0xd),
++	};
++	u32 response[GUC_HXG_RESPONSE_MSG_MIN_LEN];
++	int ret;
++
++	test_requires_relay_testloop(test);
++
++	kunit_activate_static_stub(test, relay_kick_worker, relay_process_incoming_action);
++	kunit_activate_static_stub(test, xe_guc_ct_send_recv,
++				   replacement_xe_guc_ct_send_recv_loopback_relay);
++	ret = xe_guc_relay_send_to_vf(relay, TEST_VFID,
++				      request, ARRAY_SIZE(request),
++				      response, ARRAY_SIZE(response));
++	KUNIT_ASSERT_EQ(test, ret, GUC_HXG_RESPONSE_MSG_MIN_LEN);
++}
++
++static struct kunit_case pf_relay_test_cases[] = {
++	KUNIT_CASE(pf_rejects_guc2pf_too_short),
++	KUNIT_CASE(pf_rejects_guc2pf_too_long),
++	KUNIT_CASE(pf_rejects_guc2pf_no_payload),
++	KUNIT_CASE(pf_fails_no_payload),
++	KUNIT_CASE(pf_fails_bad_origin),
++	KUNIT_CASE(pf_fails_bad_type),
++	KUNIT_CASE(pf_txn_reports_error),
++	KUNIT_CASE(pf_txn_sends_pf2guc),
++	KUNIT_CASE(pf_sends_pf2guc),
++	KUNIT_CASE(pf_loopback_nop),
++	KUNIT_CASE(pf_loopback_echo),
++	KUNIT_CASE(pf_loopback_fail),
++	KUNIT_CASE_SLOW(pf_loopback_busy),
++	KUNIT_CASE_SLOW(pf_loopback_retry),
++	{}
++};
++
++static struct kunit_suite pf_relay_suite = {
++	.name = "pf_relay",
++	.test_cases = pf_relay_test_cases,
++	.init = relay_test_init,
++};
++
++static void vf_rejects_guc2vf_too_short(struct kunit *test)
++{
++	const u32 len = GUC2VF_RELAY_FROM_PF_EVENT_MSG_MIN_LEN - 1;
++	struct xe_guc_relay *relay = test->priv;
++	const u32 *msg = test_guc2vf;
++
++	KUNIT_ASSERT_EQ(test, -EPROTO, xe_guc_relay_process_guc2vf(relay, msg, len));
++}
++
++static void vf_rejects_guc2vf_too_long(struct kunit *test)
++{
++	const u32 len = GUC2VF_RELAY_FROM_PF_EVENT_MSG_MAX_LEN + 1;
++	struct xe_guc_relay *relay = test->priv;
++	const u32 *msg = test_guc2vf;
++
++	KUNIT_ASSERT_EQ(test, -EMSGSIZE, xe_guc_relay_process_guc2vf(relay, msg, len));
++}
++
++static void vf_rejects_guc2vf_no_payload(struct kunit *test)
++{
++	const u32 len = GUC2VF_RELAY_FROM_PF_EVENT_MSG_MIN_LEN;
++	struct xe_guc_relay *relay = test->priv;
++	const u32 *msg = test_guc2vf;
++
++	KUNIT_ASSERT_EQ(test, -EPROTO, xe_guc_relay_process_guc2vf(relay, msg, len));
++}
++
++static struct kunit_case vf_relay_test_cases[] = {
++	KUNIT_CASE(vf_rejects_guc2vf_too_short),
++	KUNIT_CASE(vf_rejects_guc2vf_too_long),
++	KUNIT_CASE(vf_rejects_guc2vf_no_payload),
++	{}
++};
++
++static struct kunit_suite vf_relay_suite = {
++	.name = "vf_relay",
++	.test_cases = vf_relay_test_cases,
++	.init = relay_test_init,
++};
++
++static void xe_drops_guc2pf_if_not_ready(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++	struct xe_guc_relay *relay = &xe_device_get_gt(xe, 0)->uc.guc.relay;
++	const u32 *msg = test_guc2pf;
++	u32 len = GUC2PF_RELAY_FROM_VF_EVENT_MSG_MIN_LEN + GUC_RELAY_MSG_MIN_LEN;
++
++	KUNIT_ASSERT_EQ(test, -ENODEV, xe_guc_relay_process_guc2pf(relay, msg, len));
++}
++
++static void xe_drops_guc2vf_if_not_ready(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++	struct xe_guc_relay *relay = &xe_device_get_gt(xe, 0)->uc.guc.relay;
++	const u32 *msg = test_guc2vf;
++	u32 len = GUC2VF_RELAY_FROM_PF_EVENT_MSG_MIN_LEN + GUC_RELAY_MSG_MIN_LEN;
++
++	KUNIT_ASSERT_EQ(test, -ENODEV, xe_guc_relay_process_guc2vf(relay, msg, len));
++}
++
++static void xe_rejects_send_if_not_ready(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++	struct xe_guc_relay *relay = &xe_device_get_gt(xe, 0)->uc.guc.relay;
++	u32 msg[GUC_RELAY_MSG_MIN_LEN];
++	u32 len = ARRAY_SIZE(msg);
++
++	KUNIT_ASSERT_EQ(test, -ENODEV, xe_guc_relay_send_to_pf(relay, msg, len, NULL, 0));
++	KUNIT_ASSERT_EQ(test, -ENODEV, relay_send_to(relay, TEST_VFID, msg, len, NULL, 0));
++}
++
++static struct kunit_case no_relay_test_cases[] = {
++	KUNIT_CASE(xe_drops_guc2pf_if_not_ready),
++	KUNIT_CASE(xe_drops_guc2vf_if_not_ready),
++	KUNIT_CASE(xe_rejects_send_if_not_ready),
++	{}
++};
++
++static struct kunit_suite no_relay_suite = {
++	.name = "no_relay",
++	.test_cases = no_relay_test_cases,
++	.init = xe_kunit_helper_xe_device_test_init,
++};
++
++kunit_test_suites(&no_relay_suite,
++		  &pf_relay_suite,
++		  &vf_relay_suite);
+diff --git a/drivers/gpu/drm/xe/xe_guc_relay.c b/drivers/gpu/drm/xe/xe_guc_relay.c
+index f39a06926cd2..b3840e387acc 100644
+--- a/drivers/gpu/drm/xe/xe_guc_relay.c
++++ b/drivers/gpu/drm/xe/xe_guc_relay.c
+@@ -8,6 +8,8 @@
+ 
+ #include <drm/drm_managed.h>
+ 
++#include <kunit/static_stub.h>
++
+ #include "abi/guc_actions_sriov_abi.h"
+ #include "abi/guc_relay_actions_abi.h"
+ #include "abi/guc_relay_communication_abi.h"
+@@ -60,6 +62,7 @@ static int relay_get_totalvfs(struct xe_guc_relay *relay)
+ 	struct xe_device *xe = relay_to_xe(relay);
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+ 
++	KUNIT_STATIC_STUB_REDIRECT(relay_get_totalvfs, relay);
+ 	return IS_SRIOV_VF(xe) ? 0 : pci_sriov_get_totalvfs(pdev);
+ }
+ 
+@@ -392,6 +395,11 @@ static u32 prepare_error_reply(u32 *msg, u32 error, u32 hint)
+ 	return GUC_HXG_FAILURE_MSG_LEN;
+ }
+ 
++static void relay_testonly_nop(struct xe_guc_relay *relay)
++{
++	KUNIT_STATIC_STUB_REDIRECT(relay_testonly_nop, relay);
++}
++
+ static int relay_send_message_and_wait(struct xe_guc_relay *relay,
+ 					struct relay_transaction *txn,
+ 					u32 *buf, u32 buf_size)
+@@ -434,8 +442,10 @@ static int relay_send_message_and_wait(struct xe_guc_relay *relay,
+ 		reinit_completion(&txn->done);
+ 		if (txn->reply == -EAGAIN)
+ 			goto resend;
+-		if (txn->reply == -EBUSY)
++		if (txn->reply == -EBUSY) {
++			relay_testonly_nop(relay);
+ 			goto wait;
++		}
+ 		if (txn->reply > 0)
+ 			ret = from_relay_error(txn->reply);
+ 		else
+@@ -752,6 +762,7 @@ static bool relay_needs_worker(struct xe_guc_relay *relay)
+ 
+ static void relay_kick_worker(struct xe_guc_relay *relay)
+ {
++	KUNIT_STATIC_STUB_REDIRECT(relay_kick_worker, relay);
+ 	queue_work(relay_to_xe(relay)->sriov.wq, &relay->worker);
+ }
+ 
+@@ -850,7 +861,7 @@ int xe_guc_relay_process_guc2vf(struct xe_guc_relay *relay, const u32 *msg, u32
+ 	relay_assert(relay, FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, msg[0]) ==
+ 		     XE_GUC_ACTION_GUC2VF_RELAY_FROM_PF);
+ 
+-	if (unlikely(!IS_SRIOV_VF(relay_to_xe(relay))))
++	if (unlikely(!IS_SRIOV_VF(relay_to_xe(relay)) && !kunit_get_current_test()))
+ 		return -EPERM;
+ 
+ 	if (unlikely(!relay_is_ready(relay)))
+@@ -896,7 +907,7 @@ int xe_guc_relay_process_guc2pf(struct xe_guc_relay *relay, const u32 *msg, u32
+ 	relay_assert(relay, FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, msg[0]) ==
+ 		     XE_GUC_ACTION_GUC2PF_RELAY_FROM_VF);
+ 
+-	if (unlikely(!IS_SRIOV_PF(relay_to_xe(relay))))
++	if (unlikely(!IS_SRIOV_PF(relay_to_xe(relay)) && !kunit_get_current_test()))
+ 		return -EPERM;
+ 
+ 	if (unlikely(!relay_is_ready(relay)))
+@@ -924,3 +935,7 @@ int xe_guc_relay_process_guc2pf(struct xe_guc_relay *relay, const u32 *msg, u32
+ 	return err;
+ }
+ #endif
++
++#if IS_BUILTIN(CONFIG_DRM_XE_KUNIT_TEST)
++#include "tests/xe_guc_relay_test.c"
 +#endif
 -- 
 2.25.1
