@@ -4,135 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B35E1C47077
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jan 2024 19:15:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F756C47073
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jan 2024 19:25:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D30210E524;
-	Thu,  4 Jan 2024 19:15:08 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 976B710E524
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jan 2024 19:15:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F11A510E50C;
+	Thu,  4 Jan 2024 19:25:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE7D910E50C
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Jan 2024 19:25:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704395707; x=1735931707;
+ t=1704396328; x=1735932328;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=kFlJyHspHvOQRLb2T8VdU8pDwIJCeznInXOiJWZzj1A=;
- b=VxVlLq3A+KRP9PNHCA4IgdNm5UckDY/dkbJ3493xDdP2gYIaQBMOObrN
- wodIOMMUsQDRQWklxeq2+XixMg+x6nf2xWQvfJ5cNeWzDO+L5TMveZaf0
- 6uyKqU7ISdBCJ1nMdE09Egqbje0wknCQMyiuxCi9OADfvgx90CVmAK+TV
- zz4Whpe2kVfN+l3Skk4lG7SGS49gHPWzG3obaYtMCDLsfLbsXPhPd3S0O
- tPmeVpdemyp3MURuyHj7LbdEpWmiZFDh3eUsodtbLyVoezdvpdDmkVqI+
- 3G/WqTEqOI5h9uoL/qkLwJdn8altscfocQIywX3Gj1xWfz6Ox78n7+DSU A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="4711024"
-X-IronPort-AV: E=Sophos;i="6.04,331,1695711600"; 
-   d="scan'208";a="4711024"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 11:15:07 -0800
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=P9lECFY20u2emnK0kxR0J91SfuiwjW2mjIWFdE3woqE=;
+ b=Jq6VT6Uufte408DiJGFCuQSBx1uVksqeOWF5o/A9YR+8yzOhTzuCpckt
+ 8IPKzDAZB+J5NUlC2GbjwNcmagkLzcyZf4KyaAgOqRlBt2a8mYqhgmGZf
+ oCnPXqy3U02YopdiAEUr+egz78mBvScWcTL9DnR7/AzrhVh7flqnyyv5+
+ 3YKihrhHoUfNieSFg1XSJKkEqN8UvgJjGESgwXAxOMydJn+SL4rErxMkC
+ BJBzWTqaZJlDb1kiYcEKegPThGL3grTRGOzyM0bd5Q1o9XACAt9acoBvC
+ ioFg6eiEyqUmowBISujXBB0OA6pmpCMKyZp1UcgIenQjNtZdZOqcGWoAt A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="394519208"
+X-IronPort-AV: E=Sophos;i="6.04,331,1695711600"; d="scan'208";a="394519208"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2024 11:25:28 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,331,1695711600"; d="scan'208";a="22602910"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 04 Jan 2024 11:15:06 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="924014069"
+X-IronPort-AV: E=Sophos;i="6.04,331,1695711600"; d="scan'208";a="924014069"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 04 Jan 2024 11:25:27 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 4 Jan 2024 11:15:05 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.35; Thu, 4 Jan 2024 11:25:27 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Thu, 4 Jan 2024 11:15:05 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.169)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Thu, 4 Jan 2024 11:25:27 -0800
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.101)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 4 Jan 2024 11:15:05 -0800
+ 15.1.2507.35; Thu, 4 Jan 2024 11:25:26 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jgnwQEFciIAYnDgqKujPrkqy/UWuTzHQJVF8GJv5XPYh/07F14qjfkAxUvoR2kf2MVvI7EZYfj3RfFLC2MmmnigusYkT3WVE6aJD6n9y1++HaalAECDOcWVs/mLbikF3X9gooBDtxyFAMf1Ip3Bx0qakNqoje6r2iGUD8hxHFyDqjXJlxlA1bQp9LFu4M/BHAiaLG3FlcLprvZ5EizjuqtRUTqkpGCOvdBVegajJFrB7c8j6YvczN9OYR7CiBrTEYUhbRSgZjQqO0RaJsz8htoO9erbUNk1qAKj+H0IPCrUZ1LCAxfmSImk+OiDs6lbzJ//2bVJX20lEiW3WAWCO+A==
+ b=BjcYI8Aa+EAHyYjhCHcJb/4wN0uz6jFpMme7pvRXIOjTnRN4VI1UkSG6dEVVg1dkr1dXCJRqzJAGKz4MqLIjnLmqB6BT3bRKqrtpQYfXsUAx+IGL0xFQIElsYohZPC33AIYKEZR5aVuIUywkpd8uyRmmygPhzvU0riCMsXRmzI4ANPG8wIe7fsCE3JUnXGAuGMnIl33twx/Ze71FOjMOyU86yPcujcH1bhYN0IsXonjva+YZNoqYBiJH6vlsAW5MNVf71vdlSahVsqRgFB2KLwzpgbuWVU/yecJ4CHWOt5XJEvZSS4YB8pPp300j4WTzVAbq7IpkEa5iACtyXZn+VQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CpE4qrEtZSbudbDMWy3PN6BZYwkiArQjVBOEJHQZT0Y=;
- b=hjNF7QnDo4VjWzHvu4AECO44N5nzJYP1kMz6O7mydnRQ4iwqiJxA4tvXdAR7qRAOzZVB85uKOXNT83AOW2QokvJdHQ8RJH8CwePgvRNcMkVaZVwx6MmnrqMdveMhIUEJGbQp8WLymqv8W4SyhGX3+WjzVkZeV5NgrTWA+Zrjge1xsIiSHvH9dysbi/5KJ9zZXVW70D2R14mCj7Aps+lD3PUlK6UZNuISUKYJBjq3AIlc4o7cjiR/ZtJsmFMxBrgKrZ1PawB8Yh3m143xd14pRmxiHaMwGP9ssEXKfCn08NObL+SL3kdVuP3Cl7Eb/M4Vt5pIDvSjhdfeojlTNl+Nrg==
+ bh=P6EDXIQvlzDO8j8EvhV7rO1JwWKFoTacesmr+HH6Ihc=;
+ b=LbKiEQDfjlpwFrxazHIr0bZT0YKbWORrxgXfqW0WrUG6s1/gsdHi4vNwZtD3hT3p/wagc/57+foWY1Wi36YlV/DrGuffpiDmsFpXzwhA2ZWJENYSq/qIcUvBBDVFfOJ1yTZ/K6noZyn8zaf1ukci5t/c2nMR8dOmMcOKJ5TYjnl783P7me/nUhPhrk36sd807EOkWAO2XSmvZGLjcIsKWMeqUET9MZK511SjCSJmZtlwjfB0p/yWEy0lZdoeV4eigJsZ25uZ1VR6pICo+h3Y92j/CvWILEGI+TCIDoQBpESbS4i8cuLl5GV1IaEWPQ+eDKz0wh2ylkof9JPj5vow7w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by DM4PR11MB6431.namprd11.prod.outlook.com (2603:10b6:8:b8::6) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7135.25; Thu, 4 Jan 2024 19:15:02 +0000
+ by PH7PR11MB8572.namprd11.prod.outlook.com (2603:10b6:510:30a::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7135.25; Thu, 4 Jan
+ 2024 19:25:25 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::b9a8:8221:e4a1:4cda]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::b9a8:8221:e4a1:4cda%4]) with mapi id 15.20.7159.015; Thu, 4 Jan 2024
- 19:15:02 +0000
-Date: Thu, 4 Jan 2024 19:14:12 +0000
+ 19:25:25 +0000
+Date: Thu, 4 Jan 2024 19:24:35 +0000
 From: Matthew Brost <matthew.brost@intel.com>
-To: "Welty, Brian" <brian.welty@intel.com>
-Subject: Re: [PATCH v2 3/5] drm/xe: Add exec_queue.sched_props.priority
-Message-ID: <ZZcDhBc72rWVB2pm@DUT025-TGLU.fm.intel.com>
-References: <20240103184408.17844-1-brian.welty@intel.com>
- <20240103184408.17844-4-brian.welty@intel.com>
- <ZZbg+5FsDPhvGzn+@DUT025-TGLU.fm.intel.com>
- <0cf6e9d0-a3fa-44f0-98e7-5cedb882ebe8@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+To: "Dandamudi, Priyanka" <priyanka.dandamudi@intel.com>
+Subject: Re: [PATCH] xe/xe_bo_move: Enhance xe_bo_move trace
+Message-ID: <ZZcF8yl2ZNH9gxEC@DUT025-TGLU.fm.intel.com>
+References: <20240103123826.2386219-1-priyanka.dandamudi@intel.com>
+ <6eaf8e85e9a99ab33de51def3fde72505da75433.camel@linux.intel.com>
+ <CH3PR11MB8434FFE4D37A01C7FE5B3A4A8D60A@CH3PR11MB8434.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <0cf6e9d0-a3fa-44f0-98e7-5cedb882ebe8@intel.com>
-X-ClientProxiedBy: BYAPR01CA0060.prod.exchangelabs.com (2603:10b6:a03:94::37)
- To PH7PR11MB6522.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CH3PR11MB8434FFE4D37A01C7FE5B3A4A8D60A@CH3PR11MB8434.namprd11.prod.outlook.com>
+X-ClientProxiedBy: BY5PR17CA0008.namprd17.prod.outlook.com
+ (2603:10b6:a03:1b8::21) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DM4PR11MB6431:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2d034435-5095-41bf-7a47-08dc0d5973ba
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH7PR11MB8572:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1bc1090a-7319-4c26-51e9-08dc0d5ae6f2
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: KpaKUrI8ZkeVnfgMP2/QALm4LI5Szw6I/dDwsUSL2mI+Y/kUzia0xF35iwKAQIoj06RVq8VKzyvUYq4gjJlI2SXPbLywdqrQ1yD8uOZQeaTEpI9+x/bd4voEX+HGRCgm3kA7v+h8XQgAPx5bwcembefqOpS79RNe/hz9Tn9pfrvaqXfrpOFcPvtPXZ2QMiYQRf/CbqmE0ml086+HidUuMv3bwcjyTK+dhLcOxH7D9MLcLCAUQXSxN0v/hwaO0b75gFn6HiQQ74fTN3qqdk3Me7WYo176u6ExTA1wqECqHBpgyNjVmf30619E00uRX2qqsSknQLg4lst+6F4z52HudwbHBvdDakJrqCf6ekbRp2HZkrkQrwJ/at1r6thXWjjFEdQ5qZTx5TgNGNMRubrmyzgb3vsnwXNJuGKy40gh+rNIkuGeB6CQhTucRdOth580hKZtEXVVmLCJAIEFs55KS3KAB69JLUPPB2LvZbON2DWPU7TdHl2cdm4zb0du0ScC7o1SbStv5OIkYtaGwFFJ3er9r1xmnEGJWnF7yM3f2DCLB6Oj+6tQBhLpl0ES6szj
+X-Microsoft-Antispam-Message-Info: Q6kbylQZcXJugo5DYUJIXsREOO541mr52uie9bbz2GzJLGgx3nlVFAd6N3suVr8fW+T1BsCd8sKANQa8Whwswuy9GINnxDXq11u97nYGt/CwFpTea7BjF0A91XHLY/JCfNV+qL9qZkeCZIA0LyBgP70p1kB2frJPKrv0WurXlS9r+7591O1rUDfZUGB5ujN7SeaHZfb5aFXmLpFE3EFCE+AXl+uhSmh8pzAXJoyYIJapvWgXeYDhthMOWQDcIUKAHzIxIrdAK/8wJsMVCPG4cwuc1qnYCoj//QFcnAqsXf//IeyD4T4YZ9OeDuK4BPHTGqSlTS00A433tWKIGieh6CvkL55sbhQn5iPZKq8cvqKdBtHo+6/x4pwZr5PmpG7G/uc93xn+ALcakGGbSXHtXCtRQUTC1lfjCFVP3slkVX5SAL5Ff5rhlAHT82XWMdqf05V49ZLs7pnMTUcEVltzM69M5vLS0Lkshp69QzBJQGRMk9o1KwzKiyN1saI9GIl8YDUPJ6O1PT8JEpwPxMn95wPCyArySmQSi5yK9mcTvY+EVfWqQfCPsV0sM+qik3Pq
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366004)(39860400002)(376002)(346002)(136003)(396003)(230922051799003)(186009)(1800799012)(64100799003)(451199024)(66946007)(6506007)(66476007)(66556008)(478600001)(82960400001)(6636002)(6486002)(6666004)(6512007)(38100700002)(26005)(316002)(53546011)(83380400001)(44832011)(8676002)(8936002)(4326008)(6862004)(2906002)(66899024)(5660300002)(86362001)(41300700001);
+ SFS:(13230031)(376002)(366004)(39860400002)(346002)(136003)(396003)(230922051799003)(64100799003)(451199024)(1800799012)(186009)(26005)(82960400001)(66574015)(66946007)(38100700002)(83380400001)(54906003)(66556008)(86362001)(6636002)(66476007)(6486002)(316002)(478600001)(6862004)(5660300002)(2906002)(44832011)(4326008)(8676002)(8936002)(6666004)(6506007)(6512007)(53546011)(41300700001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?kzT8UFBZ2U8hR9cMKOp6P717d+Ho5rvMg3yyTgVJ0Ywgc6iM/xwfWetL4Sbb?=
- =?us-ascii?Q?24hiS/oIsdePon+Pt08yyUWyfNs29jS6keMaYvMGvmZhg4TY0/1ZO5pfCuOG?=
- =?us-ascii?Q?SZuIiB+pPLWGM09EBDsw3iqUpuqkNWz7b5O210Arq1aWI2EQIqUpS1R6eccM?=
- =?us-ascii?Q?h9qxjnWxDMHZXn94LbWkZMPebqfpkAMnr7xNHyXfNih82XK+Z2Dl+nq5h+WR?=
- =?us-ascii?Q?12fvWemen2/T3ryq2kBmAHq6RjNG85R8+xi5LzfYOSLmOodAT8KD0Mnsmdnh?=
- =?us-ascii?Q?CyGBd1xwMXLUmkzWX3TMExLoqbCZXckxihNrF5sGAuUOUgTTIR7ukFV8IYMA?=
- =?us-ascii?Q?sjmwWjithFYaE2eQ4SvcqOfdVaoDdf8khkWMOmVZ2VMiPz14eSSCWVtbL5U4?=
- =?us-ascii?Q?dNdU+UmXJPpEOxsTROpUu0LZ56RTSpw+2pB43tolLTPhuPZTfdJWmD1CflJy?=
- =?us-ascii?Q?RslPH2Gnc6CoAuF+yicxBtFzLSYVDyCW+NDeGwOuiFjuEMAhS9+e4iCjw1AR?=
- =?us-ascii?Q?1ebGiBHa1mykQK8nxI47OW+ELZp6NuGRy6MpsU5j1z7FA3/OVQkqQG24fmLY?=
- =?us-ascii?Q?KB2+ZDJ2if56hx6Bl/0jerOh5+BQessw4zLxsT6U3uOHyMzmDJAKSUWZ6rfc?=
- =?us-ascii?Q?ukFquvuU5uAHBbJOXKCPToDfaQ9+z9DTeMKFeeqzh6FNAmfT2Y59hZdJi49g?=
- =?us-ascii?Q?LntxlfIJJF2w79QgoaEKqFJGXfeAo/Zi69iQtwuI2lDHYthH5Pw3JdYxGFqT?=
- =?us-ascii?Q?y1j4TZK45GV3BANY9RqcPcWju+zfptUAtqLkBMK636UJyzHrGG06h/5kspio?=
- =?us-ascii?Q?pDy5YjspAwDwStIQNFAhGDMZG5OgxhOn1FJXpQJzmrLFHNH/oXqzomKT9WGO?=
- =?us-ascii?Q?MuOQ9lDCL3VKwQqZy3JEdC9JnoGOmDcW0JOeos22Mv/P+CiZtGSZAKn0qYur?=
- =?us-ascii?Q?kFc1GjbfTuD1ZJyCexWIj08U/XlmX8qIXah1botsvQRLN0NI0Jt2LdsvuWy/?=
- =?us-ascii?Q?DaOTZOW+epWUBuVaycoZMZNQ2S/maeTyk8M7xJMTO55fbX6GJRkaWyGNFyd2?=
- =?us-ascii?Q?i6og9NuicMJ3TcoqiO5O1UcyEanFe0+LuKcauB/jpbqeMwCxAuZqFn/lqvcs?=
- =?us-ascii?Q?f4GEt1S6s7rOuK/XxUd9+FR5zKYj4o+3lE5EpN6T46OQV21YiEJ+njoCEULn?=
- =?us-ascii?Q?8Ga/QHLIZXm97n5H5oVoRWh7rpP8shkUaEbOl5Ne4E9n2WXOvQCilB+PBAZg?=
- =?us-ascii?Q?jAfx8FalbpOKRjZo7u19mwb3m4rSz2oZBwdf6T7uHg0YaWPZ7+X/kfdjXU6H?=
- =?us-ascii?Q?R52gn9KrhteuNKI16u3zFfyLVYrZuKUqC3UKfw7zeaXBDmnNy4+6UfI3kLb3?=
- =?us-ascii?Q?DPITzwiLBoXxa0o9iqziE3kKzLYjUDbJ3X3hs+bnKZa0hAYYTPuYnm3ASxmP?=
- =?us-ascii?Q?wHIjHbnUG9K/vUQ2RaKCUr+D5fdQDyMQNE+xu8vMheQtT6v/vSntc1JJU+8x?=
- =?us-ascii?Q?pPPX94SpDMMPq428HDudLYuMxeUVYdfknOrNQBOndO2ML1JF/ZsDYcITKxB2?=
- =?us-ascii?Q?JiErbSKDOyyIZdmLPl+suziDBJLtirfIYMjUDTN1M3qiBb1WGFjeMgMzFz0d?=
- =?us-ascii?Q?4A=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2d034435-5095-41bf-7a47-08dc0d5973ba
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?Cu9MMYYcOPTxrYZAwZoYlyGTwburokC5SMPQ9ldJYbSD8WpFTIst49liFL?=
+ =?iso-8859-1?Q?gptfjYICGa2AoekvQ6jY3BwLQmHaIZCWDl9wta4Lrynid03aOP8dpfsDt4?=
+ =?iso-8859-1?Q?1mNsBNO5dgZr/X/RF6V2yT6kZrO3maiQR9UYGEHe+/kDTYG/orF0A6MjA/?=
+ =?iso-8859-1?Q?bhpRCxnIkyC0yMCyG/b9RQZ2ZVDwSbVqDw5eUwQ9bU/ujjzn7NUi2pHqMf?=
+ =?iso-8859-1?Q?2KFv0Wu1r0e21n3j2CGrCOKJxGBlZqf7v3QiQehADoc//RrhIjHJk19LKj?=
+ =?iso-8859-1?Q?R59JyShJ36jRYGbaeO8ydGr/9YKe2+SSVdgA5+Lv6N+o3TTlwF8yy3WFox?=
+ =?iso-8859-1?Q?ZchLcT0muaAWOfJYhChQjiX98oHEL8mDqwxhE6+sHyR6hmGze7AKIpqwAE?=
+ =?iso-8859-1?Q?AxyC1EH1Fke4JsROUBl04kmeqnhZHhhJB1hYgCIcyHMmcOfqOyFS3g0xOv?=
+ =?iso-8859-1?Q?CO8h9X7ZE64szYQd6axIuOIb0j43Itd2+baE1lLPxzDAth6hc0h3mqFHzt?=
+ =?iso-8859-1?Q?S1mRAOUL8w3kJ+x8ksmEuIhBlFfxK4oQSVXFq5AtQxRnN+GEw+U5OEmoUK?=
+ =?iso-8859-1?Q?wBFZ5pcSfITCptOTHVsUKiBuKF8pkPNhA9iE6FEZ8/nmJ5eSQwZRyoVqFs?=
+ =?iso-8859-1?Q?LabX5DRyAr9rz7gBRy4ibJBSE+hYrXZGp72x6kaUZ2jIBPg3pY4sMzIkiI?=
+ =?iso-8859-1?Q?Y5RoLtfJOFPwHoKiEBAlv9uq1IvyVzPYpAjr9F9NxZ1homeLBOfFVwJvtx?=
+ =?iso-8859-1?Q?EAI8YNx9VMCHMVAhwo+M6SVnrKUIhdFcJyavBpeCEBrJwEjtGmsh7rgneK?=
+ =?iso-8859-1?Q?LfPRl3GdoqILvSGwot3g5JjmKwdA5CLfxisc9zOX6QMt60gKF7po2DDd5H?=
+ =?iso-8859-1?Q?oChkAUU1wpowxtpQqpCYBSAq3TjhOSj/ORm9IcDl8AlA7rOVOPg+pYwzVH?=
+ =?iso-8859-1?Q?c9oYXUqXpcFC4W3Ze9paOw53I+BzXyAz+zaPJGTUmvjT+j+9vWl2ow1BJ4?=
+ =?iso-8859-1?Q?OclyQnSiKQpEG14CY0OwTHDmC+AQffEUxqtmOb/13R6zI67hLPuJ9/3a0j?=
+ =?iso-8859-1?Q?gEP8uwWi4ad/hlIRsFWR0rLk65bGDfwH8ThIaCf6qrEhnD2+eNL5tXhQbN?=
+ =?iso-8859-1?Q?iUo3PFYCEVJ8llXR5IwdupODgGyv8A03s4k86iVEC6XgVrDgWVpkqjvU0j?=
+ =?iso-8859-1?Q?Rwj2E7XmbNPg5HGLUdXf8hpKlV7qFYWehbhH8vIq6Q0elQZyxxLe56CeQS?=
+ =?iso-8859-1?Q?CtyYvuWIv2QDxBsqoBZDZLikKTU3z8ojtaD5Du00JEU6YLPrzKmwQifFBt?=
+ =?iso-8859-1?Q?G1X6j1yjhA0ceGtxXSq27C+2cXxDpdmZgoQZ7QfD3giiT1EhXJMgbvAtiA?=
+ =?iso-8859-1?Q?T1zk6nv4FzmzVZne2dGgzzcKBrelhEBZhAJpXsuJhE9r3RvZpDpmjYQo1t?=
+ =?iso-8859-1?Q?0fq/MO0w1YX8gL6twBwE7Dz464FnK5B9JAtfxIRdrbBmZeNtyTJGuic3lE?=
+ =?iso-8859-1?Q?pU292tNezkdcBhejtBYIKauvsVRdSOfPIS0Ek0TlADDOJmaQihQ5lYvC0f?=
+ =?iso-8859-1?Q?zwMsAD62iUbEkFVVe73X3q9ySbCNxc4ed9ST7HSsMrrWXXD4zjvOUpni6N?=
+ =?iso-8859-1?Q?xAEq83TLw4qxnU7DVjKb2I6BFh5RDuc5rnT2KyyYKFkdhxtHvSNeq95w?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1bc1090a-7319-4c26-51e9-08dc0d5ae6f2
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jan 2024 19:15:02.5822 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jan 2024 19:25:25.4193 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NZ4CW6vELox/bLEy0Cz0nMas2qP/65YFWJVDvPwj7/aXAkubmeHq5xBsRoRbZBpdbxnFUZmUq0sZI2h7tbcmkw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6431
+X-MS-Exchange-CrossTenant-UserPrincipalName: xuyiFouBnu/rJcKBWcrQW8bqD1U+hkG5awnoiEgcjZF+riFUdfRrnovhYpHOARE8VDcEO6QDJfEvXTBkfBafBw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8572
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -145,149 +146,173 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jan 04, 2024 at 11:03:44AM -0800, Welty, Brian wrote:
+On Wed, Jan 03, 2024 at 02:19:52PM +0000, Dandamudi, Priyanka wrote:
 > 
 > 
-> On 1/4/2024 8:46 AM, Matthew Brost wrote:
-> > On Wed, Jan 03, 2024 at 10:44:06AM -0800, Brian Welty wrote:
-> > > The purpose here is to allow to optimize exec_queue_set_priority()
-> > > in follow-on patch.  Currently it does q->ops->set_priority(...).
-> > > But we'd like to apply exec_queue_user_extensions much earlier and
-> > > q->ops cannot be called before __xe_exec_queue_init().
-> > > 
-> > > It will be much more efficient to instead only have to set
-> > > q->sched_props.priority when applying user extensions. That value will
-> > > then already be set to the user requested value. So the setting of
-> > > default value is moved from q->ops->init() to __xe_exec_queue_alloc.
-> > > 
-> > > v2: fix existing bug such that q->sched_props.priority is now set
-> > >      before guc_exec_queue_add_msg() (Matt)
-> > >      fix existing bug in that xe_migrate_init() should use exec_queue's
-> > >      vfunc for updating priority.
-> > > 
-> > > Signed-off-by: Brian Welty <brian.welty@intel.com>
+> > -----Original Message-----
+> > From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> > Sent: Wednesday, January 3, 2024 6:52 PM
+> > To: Dandamudi, Priyanka <priyanka.dandamudi@intel.com>; intel-
+> > xe@lists.freedesktop.org; Kempczynski, Zbigniew
+> > <zbigniew.kempczynski@intel.com>; Zeng, Oak <oak.zeng@intel.com>; Welty,
+> > Brian <brian.welty@intel.com>
+> > Subject: Re: [PATCH] xe/xe_bo_move: Enhance xe_bo_move trace
+> > 
+> > Hi, Priyanka,
+> > 
+> > On Wed, 2024-01-03 at 18:08 +0530, priyanka.dandamudi@intel.com wrote:
+> > > From: Priyanka Dandamudi <priyanka.dandamudi@intel.com>
+> > >
+> > > Enhanced xe_bo_move trace to be more readable.
+> > > It will help to show the migration details.
+> > > Src and dst details.
+> > >
+> > > v2: Modify trace_xe_bo_move(), it takes the integer mem_type rather
+> > > than a string.
+> > > Make mem_type_to_name() extern, it will be used by trace.(Thomas)
+> > >
+> > > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> > > Cc: Oak Zeng <oak.zeng@intel.com>
+> > > Cc: Kempczynski Zbigniew <Zbigniew.Kempczynski@intel.com>
+> > > Cc: Matthew Brost <matthew.brost@intel.com>
+> > > Cc: Brian Welty <brian.welty@intel.com>
+> > > Signed-off-by: Priyanka Dandamudi <priyanka.dandamudi@intel.com>
 > > > ---
-> > >   drivers/gpu/drm/xe/xe_exec_queue.c       | 1 +
-> > >   drivers/gpu/drm/xe/xe_exec_queue_types.h | 4 ++--
-> > >   drivers/gpu/drm/xe/xe_guc_submit.c       | 7 +++----
-> > >   drivers/gpu/drm/xe/xe_migrate.c          | 2 +-
-> > >   4 files changed, 7 insertions(+), 7 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-> > > index e78b13845417..9891cddba71c 100644
-> > > --- a/drivers/gpu/drm/xe/xe_exec_queue.c
-> > > +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> > > @@ -67,6 +67,7 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
-> > >   				hwe->eclass->sched_props.preempt_timeout_us;
-> > >   	q->sched_props.job_timeout_ms =
-> > >   				hwe->eclass->sched_props.job_timeout_ms;
-> > > +	q->sched_props.priority = XE_EXEC_QUEUE_PRIORITY_NORMAL;
-> > >   	if (xe_exec_queue_is_parallel(q)) {
-> > >   		q->parallel.composite_fence_ctx = dma_fence_context_alloc(1);
-> > > diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> > > index 882eb5373980..6ae4f4e2ddca 100644
-> > > --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> > > +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> > > @@ -52,8 +52,6 @@ struct xe_exec_queue {
-> > >   	struct xe_vm *vm;
-> > >   	/** @class: class of this exec queue */
-> > >   	enum xe_engine_class class;
-> > > -	/** @priority: priority of this exec queue */
-> > > -	enum xe_exec_queue_priority priority;
-> > >   	/**
-> > >   	 * @logical_mask: logical mask of where job submitted to exec queue can run
-> > >   	 */
-> > > @@ -144,6 +142,8 @@ struct xe_exec_queue {
-> > >   		u32 preempt_timeout_us;
-> > >   		/** @job_timeout_ms: job timeout in milliseconds */
-> > >   		u32 job_timeout_ms;
-> > > +		/** @priority: priority of this exec queue */
-> > > +		enum xe_exec_queue_priority priority;
-> > >   	} sched_props;
-> > >   	/** @compute: compute exec queue state */
-> > > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > > index 56c0a7bf554f..392cbde62957 100644
-> > > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> > > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > > @@ -421,7 +421,7 @@ static void init_policies(struct xe_guc *guc, struct xe_exec_queue *q)
-> > >   {
-> > >   	struct exec_queue_policy policy;
-> > >   	struct xe_device *xe = guc_to_xe(guc);
-> > > -	enum xe_exec_queue_priority prio = q->priority;
-> > > +	enum xe_exec_queue_priority prio = q->sched_props.priority;
-> > >   	u32 timeslice_us = q->sched_props.timeslice_us;
-> > >   	u32 preempt_timeout_us = q->sched_props.preempt_timeout_us;
-> > > @@ -1231,7 +1231,6 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
-> > >   	err = xe_sched_entity_init(&ge->entity, sched);
-> > >   	if (err)
-> > >   		goto err_sched;
-> > > -	q->priority = XE_EXEC_QUEUE_PRIORITY_NORMAL;
-> > >   	if (xe_exec_queue_is_lr(q))
-> > >   		INIT_WORK(&q->guc->lr_tdr, xe_guc_exec_queue_lr_cleanup);
-> > > @@ -1301,15 +1300,15 @@ static int guc_exec_queue_set_priority(struct xe_exec_queue *q,
-> > >   {
-> > >   	struct xe_sched_msg *msg;
-> > > -	if (q->priority == priority || exec_queue_killed_or_banned(q))
-> > > +	if (q->sched_props.priority == priority || exec_queue_killed_or_banned(q))
-> > >   		return 0;
-> > >   	msg = kmalloc(sizeof(*msg), GFP_KERNEL);
-> > >   	if (!msg)
-> > >   		return -ENOMEM;
-> > > +	q->sched_props.priority = priority;
-> > >   	guc_exec_queue_add_msg(q, msg, SET_SCHED_PROPS);
-> > > -	q->priority = priority;
+> > >  drivers/gpu/drm/xe/xe_bo.c         |  3 +--
+> > >  drivers/gpu/drm/xe/xe_drm_client.c | 16 ++++++++--------
+> > >  drivers/gpu/drm/xe/xe_drm_client.h |  2 ++
+> > >  drivers/gpu/drm/xe/xe_trace.h      | 24 +++++++++++++++++++++---
+> > >  4 files changed, 32 insertions(+), 13 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> > > index 8e4a3b1f6b93..f7075fd86547 100644
+> > > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > > @@ -713,8 +713,7 @@ static int xe_bo_move(struct ttm_buffer_object
+> > > *ttm_bo, bool evict,
+> > >  		migrate = xe->tiles[0].migrate;
+> > >
+> > >  	xe_assert(xe, migrate);
+> > > -
+> > > -	trace_xe_bo_move(bo);
+> > > +	trace_xe_bo_move(bo, new_mem->mem_type, old_mem_type);
+> > >  	xe_device_mem_access_get(xe);
+> > >
+> > >  	if (xe_bo_is_pinned(bo) && !xe_bo_is_user(bo)) { diff --git
+> > > a/drivers/gpu/drm/xe/xe_drm_client.c
+> > > b/drivers/gpu/drm/xe/xe_drm_client.c
+> > > index 82d1305e831f..e845b7f22e38 100644
+> > > --- a/drivers/gpu/drm/xe/xe_drm_client.c
+> > > +++ b/drivers/gpu/drm/xe/xe_drm_client.c
+> > > @@ -15,6 +15,14 @@
+> > >  #include "xe_drm_client.h"
+> > >  #include "xe_trace.h"
+> > >
+> > > +const char *const mem_type_to_name[TTM_NUM_MEM_TYPES]  = {
+> > > +	[XE_PL_SYSTEM] = "system",
+> > > +	[XE_PL_TT] = "gtt",
+> > > +	[XE_PL_VRAM0] = "vram0",
+> > > +	[XE_PL_VRAM1] = "vram1",
+> > > +	[XE_PL_STOLEN] = "stolen"
+> > > +};
+> > > +
 > > 
-> > This probably should be its own patch and maybe with a Fixes tag too.
+> > Please use xe_bo.[ch] for this, since it is related to the buffer object
+> > placements, and the Xe placements are defined in xe_bo.h
 > > 
-> > >   	return 0;
-> > >   }
-> > > diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-> > > index adf1dab5eba2..f967fa69769e 100644
-> > > --- a/drivers/gpu/drm/xe/xe_migrate.c
-> > > +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> > > @@ -356,7 +356,7 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
-> > >   		return ERR_CAST(m->q);
-> > >   	}
-> > >   	if (xe->info.has_usm)
-> > > -		m->q->priority = XE_EXEC_QUEUE_PRIORITY_KERNEL;
-> > > +		m->q->ops->set_priority(m->q, XE_EXEC_QUEUE_PRIORITY_KERNEL);
+> > /Thomas
 > > 
-> > Same here.
-> 
-> Okay, will pursue....   but then I guess I'd rather pass a new flag into
-> xe_exec_queue_create() and just set the priority upfront rather than use
-> the vfunc to modify it here later.  Will code it up and see how it looks.
-> Then don't have to deal with the vfunc possibly failing.
-> 
+> The above is already declared in this program in show_meminfo(). I just moved of it to make it global.
+> Is it required again to define it in xe_bo.[ch]?
+> --Priyanka
 
-This vfunc shouldn't fail in practice and if it does it actually does
-not matter. We might want to audit the xe_exec_queue_ops return values
-and change some of these to void.
-
-> Would it be wrong to simply always use XE_EXEC_QUEUE_PRIORITY_KERNEL
-> for exec_queues created with flags:
-> 	EXEC_QUEUE_FLAG_KERNEL | EXEC_QUEUE_FLAG_PERMANENT
-> ??
-> 
-
-It seems like this works for now but need to careful going forward to
-make sure assumption is correct.
-
-Fine with it either way.
+The change to trace looks good to me. I think Thomas is saying move
+mem_type_to_name to xe_bo.c and extern to xe_bo.h.
 
 Matt
 
+> > 
+> > >  /**
+> > >   * xe_drm_client_alloc() - Allocate drm client
+> > >   * @void: No arg
+> > > @@ -131,14 +139,6 @@ static void bo_meminfo(struct xe_bo *bo,
+> > >
+> > >  static void show_meminfo(struct drm_printer *p, struct drm_file
+> > > *file)
+> > >  {
+> > > -	static const char *const
+> > > mem_type_to_name[TTM_NUM_MEM_TYPES]  = {
+> > > -		[XE_PL_SYSTEM] = "system",
+> > > -		[XE_PL_TT] = "gtt",
+> > > -		[XE_PL_VRAM0] = "vram0",
+> > > -		[XE_PL_VRAM1] = "vram1",
+> > > -		[4 ... 6] = NULL,
+> > > -		[XE_PL_STOLEN] = "stolen"
+> > > -	};
+> > >  	struct drm_memory_stats stats[TTM_NUM_MEM_TYPES] = {};
+> > >  	struct xe_file *xef = file->driver_priv;
+> > >  	struct ttm_device *bdev = &xef->xe->ttm; diff --git
+> > > a/drivers/gpu/drm/xe/xe_drm_client.h
+> > > b/drivers/gpu/drm/xe/xe_drm_client.h
+> > > index a9649aa36011..4e33d0981b6a 100644
+> > > --- a/drivers/gpu/drm/xe/xe_drm_client.h
+> > > +++ b/drivers/gpu/drm/xe/xe_drm_client.h
+> > > @@ -13,6 +13,8 @@
+> > >  #include <linux/sched.h>
+> > >  #include <linux/spinlock.h>
+> > >
+> > > +extern const char *const mem_type_to_name[];
+> > > +
+> > >  struct drm_file;
+> > >  struct drm_printer;
+> > >  struct xe_bo;
+> > > diff --git a/drivers/gpu/drm/xe/xe_trace.h
+> > > b/drivers/gpu/drm/xe/xe_trace.h index 95163c303f3e..196d277795a0
+> > > 100644
+> > > --- a/drivers/gpu/drm/xe/xe_trace.h
+> > > +++ b/drivers/gpu/drm/xe/xe_trace.h
+> > > @@ -13,6 +13,7 @@
+> > >  #include <linux/types.h>
+> > >
+> > >  #include "xe_bo_types.h"
+> > > +#include "xe_drm_client.h"
+> > >  #include "xe_exec_queue_types.h"
+> > >  #include "xe_gpu_scheduler_types.h"
+> > >  #include "xe_gt_tlb_invalidation_types.h"
+> > > @@ -100,9 +101,26 @@ DEFINE_EVENT(xe_bo, xe_bo_cpu_fault,
+> > >  	     TP_ARGS(bo)
+> > >  );
+> > >
+> > > -DEFINE_EVENT(xe_bo, xe_bo_move,
+> > > -	     TP_PROTO(struct xe_bo *bo),
+> > > -	     TP_ARGS(bo)
+> > > +TRACE_EVENT(xe_bo_move,
+> > > +	    TP_PROTO(struct xe_bo *bo, uint32_t new_placement,
+> > > uint32_t old_placement),
+> > > +	    TP_ARGS(bo, new_placement, old_placement),
+> > > +	    TP_STRUCT__entry(
+> > > +		     __field(struct xe_bo *, bo)
+> > > +		     __field(size_t, size)
+> > > +		     __field(u32, new_placement)
+> > > +		     __field(u32, old_placement)
+> > > +			),
+> > > +
+> > > +	    TP_fast_assign(
+> > > +		   __entry->bo      = bo;
+> > > +		   __entry->size = bo->size;
+> > > +		   __entry->new_placement = new_placement;
+> > > +		   __entry->old_placement = old_placement;
+> > > +
+> > > +		   ),
+> > > +	    TP_printk("migrate object %p [size %zu] from %s to %s",
+> > > +		      __entry->bo, __entry->size,
+> > > mem_type_to_name[__entry->old_placement],
+> > > +		      mem_type_to_name[__entry->new_placement])
+> > >  );
+> > >
+> > >  DECLARE_EVENT_CLASS(xe_exec_queue,
 > 
-> > 
-> > Otherwise LGTM.
-> > 
-> > Matt
-> > 
-> > >   	mutex_init(&m->job_mutex);
-> > > -- 
-> > > 2.43.0
-> > > 
