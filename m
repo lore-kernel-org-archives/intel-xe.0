@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D798AC47073
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jan 2024 22:20:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1905C4707C
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jan 2024 22:20:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9468310E560;
-	Thu,  4 Jan 2024 22:20:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96DD810E568;
+	Thu,  4 Jan 2024 22:20:47 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D686310E54F
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jan 2024 22:20:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC66010E568
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Jan 2024 22:20:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704406843; x=1735942843;
+ t=1704406844; x=1735942844;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=wBXKTsnBRewTjEIOgJdh69QIeoQzyIT8dHzyKsK9KVI=;
- b=Sa1pGxunX30+Zj09Yb5uGaI+VlyxwxkrGyzwxFYeJK1e095ljbYY10xH
- 0E8iXCLH96MN3pIc4KWIZ5W/1RA//zcGQ5r96+gcfz2MECbnYOqenUP7Z
- QI46MdOX6sDyMnm+cMRFQmKUc2mc7LMRerTG9uPmOp3ySn8GaLv4tkcXO
- l7S6CJYymOV5tTT1NaA0akeIpEXfxj130CVCrShYa3qeu6j95r/dofPCH
- iw5Mn8Oo17q9dw2YBvC6CbjqQSnZIN1JBbJ74vmSEJnSWbiDZoSAZ0Xzj
- OqgnoQHBYbC5bFjygoHg4FvEZENErmUo2Bmjg4Hj2IlywRUsBjk3N+DZF A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="428546850"
-X-IronPort-AV: E=Sophos;i="6.04,332,1695711600"; d="scan'208";a="428546850"
+ bh=9vWwwViP2cC0hEZv7kyKekObWIPM0AGF4riorbttnoA=;
+ b=iLnVMuqFqvGdufLggooWpcqjp4JXsXS42m57tJJMEElmmVk86dQ5FWgG
+ nvDv0ikl/DW+PXq0sE20JN+Z/OSVmrtAIfng8pUeiE2H4updc+DSWrxfA
+ PBMPTw2KTnKdU09EeINiMX6aqIdQRnqE26A/lc7HrRSz4BGq/9RPWbAs7
+ 4L1Q9ZSLHKh3qiwmkljR4oTiD+CFhwtrZvxa9pkEkw5XsazsQDDDW9hHA
+ Yno+XiDcZ8pf3lYSWUEIX749lleE2ojX2FUDGz6WolVc295cfZ27Q5Ove
+ WCj8JwDYNwdphXM4H0XhYS0ekS5a86I1BvMZ4Yswxh+bPg9xM+EOuhclq w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="428546851"
+X-IronPort-AV: E=Sophos;i="6.04,332,1695711600"; d="scan'208";a="428546851"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 14:20:43 -0800
+ 04 Jan 2024 14:20:44 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="784022791"
-X-IronPort-AV: E=Sophos;i="6.04,332,1695711600"; d="scan'208";a="784022791"
+X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="784022798"
+X-IronPort-AV: E=Sophos;i="6.04,332,1695711600"; d="scan'208";a="784022798"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.149.125])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 14:20:42 -0800
+ 04 Jan 2024 14:20:43 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 02/10] drm/xe: Define Virtual Function Identifier
-Date: Thu,  4 Jan 2024 23:20:23 +0100
-Message-Id: <20240104222031.277-3-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 03/10] drm/xe: Introduce GT-oriented SR-IOV logging macros
+Date: Thu,  4 Jan 2024 23:20:24 +0100
+Message-Id: <20240104222031.277-4-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240104222031.277-1-michal.wajdeczko@intel.com>
 References: <20240104222031.277-1-michal.wajdeczko@intel.com>
@@ -60,42 +60,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-According to the PCI Express specification, the SR-IOV Virtual
-Functions (VFs) are numbered starting with 1 (VF1, VF2, ...).
-Additionally, both driver and GuC will refer to Physical Function
-(PF) as VF0. Define helper macro to represent VFn and PF.
+To simplify logging and help identify SR-IOV specific messages
+related to the GT, define set of helper macros that will add
+prefix to the messages based on the current SR-IOV mode.
 
 Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
-v2: fixed typo (Piotr)
----
- drivers/gpu/drm/xe/xe_sriov_types.h | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ drivers/gpu/drm/xe/xe_gt_sriov_printk.h | 34 +++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_printk.h
 
-diff --git a/drivers/gpu/drm/xe/xe_sriov_types.h b/drivers/gpu/drm/xe/xe_sriov_types.h
-index 999a4311b98b..1a138108d139 100644
---- a/drivers/gpu/drm/xe/xe_sriov_types.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_types.h
-@@ -8,6 +8,18 @@
- 
- #include <linux/build_bug.h>
- 
-+/**
-+ * VFID - Virtual Function Identifier
-+ * @n: VF number
-+ *
-+ * Helper macro to represent Virtual Function (VF) Identifier.
-+ * VFID(0) is used as alias to the PFID that represents Physical Function.
-+ *
-+ * Note: According to PCI spec, SR-IOV VF's numbers are 1-based (VF1, VF2, ...).
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_printk.h b/drivers/gpu/drm/xe/xe_gt_sriov_printk.h
+new file mode 100644
+index 000000000000..17624b16300a
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_printk.h
+@@ -0,0 +1,34 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
 + */
-+#define VFID(n)		(n)
-+#define PFID		VFID(0)
 +
- /**
-  * enum xe_sriov_mode - SR-IOV mode
-  * @XE_SRIOV_MODE_NONE: bare-metal mode (non-virtualized)
++#ifndef _XE_GT_SRIOV_PRINTK_H_
++#define _XE_GT_SRIOV_PRINTK_H_
++
++#include "xe_gt_printk.h"
++#include "xe_sriov_printk.h"
++
++#define __xe_gt_sriov_printk(gt, _level, fmt, ...) \
++	xe_gt_printk((gt), _level, "%s" fmt, xe_sriov_printk_prefix(gt_to_xe(gt)), ##__VA_ARGS__)
++
++#define xe_gt_sriov_err(_gt, _fmt, ...) \
++	__xe_gt_sriov_printk(_gt, err, _fmt, ##__VA_ARGS__)
++
++#define xe_gt_sriov_notice(_gt, _fmt, ...) \
++	__xe_gt_sriov_printk(_gt, notice, _fmt, ##__VA_ARGS__)
++
++#define xe_gt_sriov_info(_gt, _fmt, ...) \
++	__xe_gt_sriov_printk(_gt, info, _fmt, ##__VA_ARGS__)
++
++#define xe_gt_sriov_dbg(_gt, _fmt, ...) \
++	__xe_gt_sriov_printk(_gt, dbg, _fmt, ##__VA_ARGS__)
++
++/* for low level noisy debug messages */
++#ifdef CONFIG_DRM_XE_DEBUG_SRIOV
++#define xe_gt_sriov_dbg_verbose(_gt, _fmt, ...) xe_gt_sriov_dbg(_gt, _fmt, ##__VA_ARGS__)
++#else
++#define xe_gt_sriov_dbg_verbose(_gt, _fmt, ...) typecheck(struct xe_gt *, (_gt))
++#endif
++
++#endif
 -- 
 2.25.1
 
