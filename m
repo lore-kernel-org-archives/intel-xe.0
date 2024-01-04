@@ -4,50 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36247C4707B
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jan 2024 16:25:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B3BFC47074
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jan 2024 16:42:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 385BE10E4F3;
-	Thu,  4 Jan 2024 16:25:28 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CF9510E4C9;
- Thu,  4 Jan 2024 16:25:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704385525; x=1735921525;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=aClyCFMfObtAePhOg+cx59V8fhgqwMgSP5xjB2jdBhU=;
- b=CdhOZbFub4bVbuenwrjiJFXO/rllnU8xOiIPXNYpS1yQDUAurD3UfohJ
- Z9DfjwFPZNY3UDGuh8rvB1edPbPHvPXCXqwlxY7vH5SLBWVq8RQlHUfzu
- dIiGjpycy6aOoa1CxymuwCrKq/mZJmCpkxwXh7PCkmddI5nVmh/5VmgyS
- 6mzZwo7rty6DAsUi4qywre4is8FadKURusBFQRgadiJSs9W3eMbKuybmm
- NQiEuLoneV+7i5tuSmcdadSKOyAJ8WEg6QfwypYRUzFuC8ZbRG48e52qa
- zHFS+8BamQkomP+mY2uoCsQUTCmQaPtb0CPwjmMOLKk+9ZYnvhZpQzGYe Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="428459497"
-X-IronPort-AV: E=Sophos;i="6.04,331,1695711600"; d="scan'208";a="428459497"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 08:24:21 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="903868053"
-X-IronPort-AV: E=Sophos;i="6.04,331,1695711600"; d="scan'208";a="903868053"
-Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 08:24:19 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 3/3] drm/xe: Use intel_wakeref_t in intel_runtime_pm
- functions
-Date: Thu,  4 Jan 2024 08:24:11 -0800
-Message-ID: <20240104162411.56085-3-jose.souza@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240104162411.56085-1-jose.souza@intel.com>
-References: <20240104162411.56085-1-jose.souza@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DEFB10E4CB;
+	Thu,  4 Jan 2024 16:42:59 +0000 (UTC)
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58BAB10E499;
+ Thu,  4 Jan 2024 16:42:57 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6594335039497139494=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Refactor_xe=5Fexec=5Fqueue=5Fcre?=
+ =?utf-8?q?ate_to_fix_user_extensions_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Brian Welty" <brian.welty@intel.com>
+Date: Thu, 04 Jan 2024 16:42:57 -0000
+Message-ID: <170438657736.20586.118279603012513972@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240103184408.17844-1-brian.welty@intel.com>
+In-Reply-To: <20240103184408.17844-1-brian.welty@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,55 +35,143 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now intel_wakeref_t is a unsigned long and Xe KMD version of those
-functions should use the same type, so changing from bool to
-intel_wakeref_t.
+--===============6594335039497139494==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-index 5d2a77b52db41..420eba0e4be00 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-@@ -162,18 +162,18 @@ static inline struct drm_i915_private *kdev_to_i915(struct device *kdev)
- 
- #include "intel_wakeref.h"
- 
--static inline bool intel_runtime_pm_get(struct xe_runtime_pm *pm)
-+static inline intel_wakeref_t intel_runtime_pm_get(struct xe_runtime_pm *pm)
- {
- 	struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
- 
- 	if (xe_pm_runtime_get(xe) < 0) {
- 		xe_pm_runtime_put(xe);
--		return false;
-+		return 0;
- 	}
--	return true;
-+	return 1;
- }
- 
--static inline bool intel_runtime_pm_get_if_in_use(struct xe_runtime_pm *pm)
-+static inline intel_wakeref_t intel_runtime_pm_get_if_in_use(struct xe_runtime_pm *pm)
- {
- 	struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
- 
-@@ -187,7 +187,7 @@ static inline void intel_runtime_pm_put_unchecked(struct xe_runtime_pm *pm)
- 	xe_pm_runtime_put(xe);
- }
- 
--static inline void intel_runtime_pm_put(struct xe_runtime_pm *pm, bool wakeref)
-+static inline void intel_runtime_pm_put(struct xe_runtime_pm *pm, intel_wakeref_t wakeref)
- {
- 	if (wakeref)
- 		intel_runtime_pm_put_unchecked(pm);
--- 
-2.43.0
+Series: Refactor xe_exec_queue_create to fix user extensions (rev2)
+URL   : https://patchwork.freedesktop.org/series/128128/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-598-7b3b98d034784b125bad7aca46f9e7a3cfcde45a_BAT -> xe-pw-128128v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-128128v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_create@create-execqueues-leak:
+    - bat-atsm-2:         [FAIL][1] ([Intel XE#524]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-598-7b3b98d034784b125bad7aca46f9e7a3cfcde45a/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128128v2/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
+
+  * igt@xe_create@create-execqueues-noleak:
+    - bat-adlp-7:         [FAIL][3] ([Intel XE#524]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-598-7b3b98d034784b125bad7aca46f9e7a3cfcde45a/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128128v2/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html
+
+  
+  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7651 -> IGT_7655
+  * Linux: xe-598-7b3b98d034784b125bad7aca46f9e7a3cfcde45a -> xe-pw-128128v2
+
+  IGT_7651: 02fa4cf8bcbb15f1641e862fa83e2182c6f73a63 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7655: ddf7cf40a00caa7d02f3729e1e50f78f102463d9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-598-7b3b98d034784b125bad7aca46f9e7a3cfcde45a: 7b3b98d034784b125bad7aca46f9e7a3cfcde45a
+  xe-pw-128128v2: 128128v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128128v2/index.html
+
+--===============6594335039497139494==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Refactor xe_exec_queue_create to fix user extensions (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/128128/">https://patchwork.freedesktop.org/series/128128/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128128v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128128v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-598-7b3b98d034784b125bad7aca46f9e7a3cfcde45a_BAT -&gt; xe-pw-128128v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-128128v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@xe_create@create-execqueues-leak:</p>
+<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-598-7b3b98d034784b125bad7aca46f9e7a3cfcde45a/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/524">Intel XE#524</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128128v2/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_create@create-execqueues-noleak:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-598-7b3b98d034784b125bad7aca46f9e7a3cfcde45a/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/524">Intel XE#524</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128128v2/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7651 -&gt; IGT_7655</li>
+<li>Linux: xe-598-7b3b98d034784b125bad7aca46f9e7a3cfcde45a -&gt; xe-pw-128128v2</li>
+</ul>
+<p>IGT_7651: 02fa4cf8bcbb15f1641e862fa83e2182c6f73a63 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7655: ddf7cf40a00caa7d02f3729e1e50f78f102463d9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-598-7b3b98d034784b125bad7aca46f9e7a3cfcde45a: 7b3b98d034784b125bad7aca46f9e7a3cfcde45a<br />
+  xe-pw-128128v2: 128128v2</p>
+
+</body>
+</html>
+
+--===============6594335039497139494==--
