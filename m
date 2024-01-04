@@ -4,26 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F991C47073
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jan 2024 15:53:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E124C47073
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jan 2024 16:07:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D22310E4D4;
-	Thu,  4 Jan 2024 15:53:27 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D229A10E4CD;
- Thu,  4 Jan 2024 15:53:25 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5EAC10E4CA;
+	Thu,  4 Jan 2024 16:07:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 007E010E4C3;
+ Thu,  4 Jan 2024 16:06:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1704384419; x=1735920419;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=UuF6DWBtJDXk1ZMO36KznMUEg4+dJIwhOdlFeXImyuU=;
+ b=GATi2zzPzrgD0XrxZxIJUqmU1mhELPLcATYfz8xhIYvwZVWiJqMn91N4
+ +ihMFUVAa+axHlHpwlNYDaDXGm6loQL+1k6JkBHitHYEBTBT7KOUcY1gO
+ Zhddi+/qewuxjtKtAZZ+rxOeOdhRcNOp8Z8C7spLlOYQXyv4ExwQljhl4
+ glQpazOg+Uv1Yqo6nABbxvkLWCKy3wo+dPcvPmm8AcCdaF+Eq+7kLNMRT
+ tyjzdxe8H9Vy4bU1B9F49EMkbX9E9COTKHemQNOcUASHnVTnMrT4vR72T
+ zcH7ujnp1134ssb37AOmNwlRH/oiBAvWrkWQ5ZLladlIo9vpk7ONYbOjA g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="394461073"
+X-IronPort-AV: E=Sophos;i="6.04,331,1695711600"; d="scan'208";a="394461073"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2024 08:06:06 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.04,331,1695711600"; d="scan'208";a="22534621"
+Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2024 08:06:04 -0800
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Subject: [PATCH v3 1/2] drm/i915: Disable DSB in Xe KMD
+Date: Thu,  4 Jan 2024 08:05:56 -0800
+Message-ID: <20240104160557.48496-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_Refactor_xe=5Fexec=5Fque?=
- =?utf-8?q?ue=5Fcreate_to_fix_user_extensions_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Brian Welty" <brian.welty@intel.com>
-Date: Thu, 04 Jan 2024 15:53:25 -0000
-Message-ID: <170438360586.20654.13505419067086899136@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240103184408.17844-1-brian.welty@intel.com>
-In-Reply-To: <20240103184408.17844-1-brian.welty@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,38 +55,47 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Often getting DBS overflows when starting Xorg or Wayland compositors
+when running Xe KMD.
+Issue was reported but nothing was done, so disabling DSB as whole
+until properly fixed in Xe KMD.
 
-Series: Refactor xe_exec_queue_create to fix user extensions (rev2)
-URL   : https://patchwork.freedesktop.org/series/128128/
-State : success
+v2:
+- move check to HAS_DSB(Jani)
 
-== Summary ==
+v3:
+- use IS_ENABLED(I915) check in intel_dsb_prepare()
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 7b3b98d034784b125bad7aca46f9e7a3cfcde45a
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/989
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1031
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1072
+Cc: Animesh Manna <animesh.manna@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dsb.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+index 482c28b5c2de5..a6c7122fd671d 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.c
++++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+@@ -453,6 +453,10 @@ struct intel_dsb *intel_dsb_prepare(const struct intel_crtc_state *crtc_state,
+ 	if (!HAS_DSB(i915))
+ 		return NULL;
+ 
++	/* TODO: DSB is broken in Xe KMD, so disabling it until fixed */
++	if (!IS_ENABLED(I915))
++		return NULL;
++
+ 	dsb = kzalloc(sizeof(*dsb), GFP_KERNEL);
+ 	if (!dsb)
+ 		goto out;
+-- 
+2.43.0
 
