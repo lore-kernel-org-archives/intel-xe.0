@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1905C4707C
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jan 2024 22:20:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DFB1AC47073
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jan 2024 22:20:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96DD810E568;
-	Thu,  4 Jan 2024 22:20:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADFF510E56A;
+	Thu,  4 Jan 2024 22:20:48 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC66010E568
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jan 2024 22:20:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0C4610E568
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Jan 2024 22:20:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704406844; x=1735942844;
+ t=1704406847; x=1735942847;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=9vWwwViP2cC0hEZv7kyKekObWIPM0AGF4riorbttnoA=;
- b=iLnVMuqFqvGdufLggooWpcqjp4JXsXS42m57tJJMEElmmVk86dQ5FWgG
- nvDv0ikl/DW+PXq0sE20JN+Z/OSVmrtAIfng8pUeiE2H4updc+DSWrxfA
- PBMPTw2KTnKdU09EeINiMX6aqIdQRnqE26A/lc7HrRSz4BGq/9RPWbAs7
- 4L1Q9ZSLHKh3qiwmkljR4oTiD+CFhwtrZvxa9pkEkw5XsazsQDDDW9hHA
- Yno+XiDcZ8pf3lYSWUEIX749lleE2ojX2FUDGz6WolVc295cfZ27Q5Ove
- WCj8JwDYNwdphXM4H0XhYS0ekS5a86I1BvMZ4Yswxh+bPg9xM+EOuhclq w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="428546851"
-X-IronPort-AV: E=Sophos;i="6.04,332,1695711600"; d="scan'208";a="428546851"
+ bh=g2KLmsBMnSX3j6Z3baa8s46R6F4AzxGhiklLc6uEQ1E=;
+ b=U7xCY3VXSN9DmcippUn7WNjpe0tQR1gcE50enX176WSXUWHhw+f8Sb2Y
+ Gydo0YhoRXdzbhavJwjdk2Hj1LLW3SRtrnev8cKzpZzbhiAgXZ14sJoIr
+ Xlcet+7VwCsou4z8b0afXlAhv22w0jMatzUFGjqPgJPkZauQLM9MsyqwP
+ yN7266fSSPfwtH0fZdcHfHAL+xTCNbcqAKQU9F2MaV9XuX9tjuvYr2nih
+ cXsC/ma7zKqK75tOThJI8KgMyQh/k7U8iTfVHRHYLk+sBd4P9O0kNBgwE
+ v9289kX7vxGw3Bv7WJeJZvEx3aTJeWdmWFtQIufoTsL+xD3ab1+wY3M5D w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="428546867"
+X-IronPort-AV: E=Sophos;i="6.04,332,1695711600"; d="scan'208";a="428546867"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 14:20:44 -0800
+ 04 Jan 2024 14:20:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="784022798"
-X-IronPort-AV: E=Sophos;i="6.04,332,1695711600"; d="scan'208";a="784022798"
+X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="784022805"
+X-IronPort-AV: E=Sophos;i="6.04,332,1695711600"; d="scan'208";a="784022805"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.149.125])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 14:20:43 -0800
+ 04 Jan 2024 14:20:46 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 03/10] drm/xe: Introduce GT-oriented SR-IOV logging macros
-Date: Thu,  4 Jan 2024 23:20:24 +0100
-Message-Id: <20240104222031.277-4-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 05/10] drm/xe/guc: Update few GuC CTB ABI definitions
+Date: Thu,  4 Jan 2024 23:20:26 +0100
+Message-Id: <20240104222031.277-6-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240104222031.277-1-michal.wajdeczko@intel.com>
 References: <20240104222031.277-1-michal.wajdeczko@intel.com>
@@ -60,57 +60,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To simplify logging and help identify SR-IOV specific messages
-related to the GT, define set of helper macros that will add
-prefix to the messages based on the current SR-IOV mode.
+In upcoming new GuC ABI definitions we will want to refer to max
+number of dwords that could fit into CTB HXG message. Add explicit
+definition named as GUC_CTB_MAX_DWORDS and start using it.
 
 Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_printk.h | 34 +++++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_printk.h
+ drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_printk.h b/drivers/gpu/drm/xe/xe_gt_sriov_printk.h
-new file mode 100644
-index 000000000000..17624b16300a
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_printk.h
-@@ -0,0 +1,34 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef _XE_GT_SRIOV_PRINTK_H_
-+#define _XE_GT_SRIOV_PRINTK_H_
-+
-+#include "xe_gt_printk.h"
-+#include "xe_sriov_printk.h"
-+
-+#define __xe_gt_sriov_printk(gt, _level, fmt, ...) \
-+	xe_gt_printk((gt), _level, "%s" fmt, xe_sriov_printk_prefix(gt_to_xe(gt)), ##__VA_ARGS__)
-+
-+#define xe_gt_sriov_err(_gt, _fmt, ...) \
-+	__xe_gt_sriov_printk(_gt, err, _fmt, ##__VA_ARGS__)
-+
-+#define xe_gt_sriov_notice(_gt, _fmt, ...) \
-+	__xe_gt_sriov_printk(_gt, notice, _fmt, ##__VA_ARGS__)
-+
-+#define xe_gt_sriov_info(_gt, _fmt, ...) \
-+	__xe_gt_sriov_printk(_gt, info, _fmt, ##__VA_ARGS__)
-+
-+#define xe_gt_sriov_dbg(_gt, _fmt, ...) \
-+	__xe_gt_sriov_printk(_gt, dbg, _fmt, ##__VA_ARGS__)
-+
-+/* for low level noisy debug messages */
-+#ifdef CONFIG_DRM_XE_DEBUG_SRIOV
-+#define xe_gt_sriov_dbg_verbose(_gt, _fmt, ...) xe_gt_sriov_dbg(_gt, _fmt, ##__VA_ARGS__)
-+#else
-+#define xe_gt_sriov_dbg_verbose(_gt, _fmt, ...) typecheck(struct xe_gt *, (_gt))
-+#endif
-+
-+#endif
+diff --git a/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h b/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
+index 3b83f907ece4..4aaed1cb4e12 100644
+--- a/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
+@@ -81,12 +81,13 @@ static_assert(sizeof(struct guc_ct_buffer_desc) == 64);
+ 
+ #define GUC_CTB_HDR_LEN				1u
+ #define GUC_CTB_MSG_MIN_LEN			GUC_CTB_HDR_LEN
+-#define GUC_CTB_MSG_MAX_LEN			256u
++#define GUC_CTB_MSG_MAX_LEN			(GUC_CTB_MSG_MIN_LEN + GUC_CTB_MAX_DWORDS)
+ #define GUC_CTB_MSG_0_FENCE			(0xffff << 16)
+ #define GUC_CTB_MSG_0_FORMAT			(0xf << 12)
+ #define   GUC_CTB_FORMAT_HXG			0u
+ #define GUC_CTB_MSG_0_RESERVED			(0xf << 8)
+ #define GUC_CTB_MSG_0_NUM_DWORDS		(0xff << 0)
++#define   GUC_CTB_MAX_DWORDS			255
+ 
+ /**
+  * DOC: CTB HXG Message
 -- 
 2.25.1
 
