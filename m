@@ -4,145 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00ECAC4706F
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jan 2024 04:57:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CED3FC4706F
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jan 2024 05:01:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C172D10E034;
-	Thu,  4 Jan 2024 04:57:02 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D18310E38D
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jan 2024 04:57:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9298B10E385;
+	Thu,  4 Jan 2024 05:01:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15ABF10E381
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Jan 2024 05:01:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704344221; x=1735880221;
- h=message-id:date:subject:to:references:from:cc:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=DjFCY8U+YklF4AsAsUAXUa5GlM1ndZATEaB2KMWa/DE=;
- b=BkukN4vjnGlMt2KEPLSHPAPW3xGmb247+KdqVeBAgS/fSKvYgB/AYMXx
- /pk4QJrplMgQOlJ9lPs9joc9/TLrBo1FP5+WlRVir0Rz1nq9qvPgQeoyt
- FyjBJi7qhReE2ftgx2TkB2n98SByCTU+hyoUb0+WFrfsUl3mRwLwFTNdH
- E+lRqJn9+z8Q87wLPHObEjqj3xveQCAUWo50UueVrW51Yb+YqvNDu8wEo
- Ua5NC3/UW3Gu+/vCNskntgl0dBK8jKR/eLl2XwrFhcwvBCKdKahSe0qQ7
- Ea+AiQIjRqWAszMW6vhox+nnSD34D9lHztVgqcoydyEvIEYunh8pJWukq w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="483306197"
-X-IronPort-AV: E=Sophos;i="6.04,329,1695711600"; d="scan'208";a="483306197"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jan 2024 20:57:00 -0800
+ t=1704344476; x=1735880476;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to;
+ bh=QVLWMcOe0uAVoj1KYRjOXtNulAkp0kmcG+IBey+QdLc=;
+ b=CmC5x0eOKlTaiIWbpHvJUH22Z4P7gh7eorO64/hMY7Upjqsy6vEiw5CS
+ 0HoUGg7xe3ClBo9H4QdmAsE3zN+amw6VOHEALTtwlaBkP0ikm0tWQjlai
+ V09CUZoMouo17o4g4E2fLTB8Ol+yJkdUzYe/trr6Y7JXbMMl7WuMWif0q
+ 7zhVbe9fyUADpm4wp8s+cEBK1x2ldEyVEq+uT+IWIIfh+V8PWG0LMwINR
+ UpIXDwjkGE7X9mBpQebPcQsrI7DJdz1NZmTXkILvjHCjvm5COvw7mbEhz
+ pOETDAqrwdhAtNyFmgLYa0Op8DI+m7V4JnSpB2JJuYI+SssiG71Hm4pAq Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="10517846"
+X-IronPort-AV: E=Sophos;i="6.04,329,1695711600"; d="scan'208,217";a="10517846"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jan 2024 21:01:16 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="846110536"
-X-IronPort-AV: E=Sophos;i="6.04,329,1695711600"; d="scan'208";a="846110536"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 03 Jan 2024 20:57:00 -0800
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 3 Jan 2024 20:57:00 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 3 Jan 2024 20:57:00 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.168)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 3 Jan 2024 20:57:00 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SKpw4qZbgErOVZsQDcMGIO6GmPPSDdLePmkMsk9DHfoP5I88SngIQRypAF0weJWw9lw+UEvLhqMOVP8BY4ucXqHLuPUBv7vUALo/1qJ93DvZKDusH/HLepiXjeZqb0wuHLgBKxqhrBLn9QEMISO0uIs3egLRDjE6vQiKsrecXRnT50oVm3VoBY/E1+C/df7j8Ch755lqp7L5WkYWkg+i4WAuhFjzqKWVuhftpgWGXNj0f468xjDZo4J4t52IfP78H1dM+IucHMf5vD6a8TVuubH5sUC10nP7NhgdaJrovjWLcXun9nk9fweviVqfgPAyoRSQUb+tV5OtexA2h3U+iQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jJnpyGc8wJTQmrkgTrsJCgqXlprAbkortDydmhV2e9c=;
- b=gjJaQ7kF97cLEsbNtfYpO33iqYdkY5lgCQPf1TpULjBQwEgB7dqYIQ/aFgqBrFMotslms7/aGCsF73AlWmBubXJAac84RVtVT3o0XIVm0jjiGMaZyTS+2znkdci9RORTU73XNuWZiK5pj5zLVhqIM9l8jLY9fD8Kyl7ACFIsgYES/Yd6F16MJR2u6az+i30jZSQ3WGU/LezHqhwbwv5+cwHKZ4AKNdiarmbmKajFakB9yFqgue8j5KG21/ahE1HSzK3k1/YwJFDf1bJgLEHARk8+9wRFNaZo+9+Mg6ypJCfLFGuPmbxz11H4zQeVO77/L9OuZT0KM8m/qwAxKZ8k2g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BN9PR11MB5530.namprd11.prod.outlook.com (2603:10b6:408:103::8)
- by MW3PR11MB4649.namprd11.prod.outlook.com (2603:10b6:303:5b::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7135.25; Thu, 4 Jan
- 2024 04:56:53 +0000
-Received: from BN9PR11MB5530.namprd11.prod.outlook.com
- ([fe80::7c9d:1857:d17d:53da]) by BN9PR11MB5530.namprd11.prod.outlook.com
- ([fe80::7c9d:1857:d17d:53da%3]) with mapi id 15.20.7159.013; Thu, 4 Jan 2024
- 04:56:53 +0000
-Message-ID: <dd42753d-5cda-4e95-a299-0cda55df4184@intel.com>
-Date: Thu, 4 Jan 2024 10:26:47 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Check skip_guc_pc before setting SLPC flag
-Content-Language: en-US
-To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- <intel-xe@lists.freedesktop.org>
-References: <20231222210109.533215-1-vinay.belgaumkar@intel.com>
-From: "Nilawar, Badal" <badal.nilawar@intel.com>
-In-Reply-To: <20231222210109.533215-1-vinay.belgaumkar@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN3PR01CA0015.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:95::19) To BN9PR11MB5530.namprd11.prod.outlook.com
- (2603:10b6:408:103::8)
+X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="809080093"
+X-IronPort-AV: E=Sophos;i="6.04,329,1695711600"; 
+ d="scan'208,217";a="809080093"
+Received: from aravind-dev.iind.intel.com (HELO [10.145.162.146])
+ ([10.145.162.146])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jan 2024 21:01:13 -0800
+Content-Type: multipart/alternative;
+ boundary="------------YHcizfBk08wbfTBk2mzlMVUK"
+Message-ID: <1edf70ed-4efe-4a0b-a7f9-63fce7969150@linux.intel.com>
+Date: Thu, 4 Jan 2024 10:34:04 +0530
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN9PR11MB5530:EE_|MW3PR11MB4649:EE_
-X-MS-Office365-Filtering-Correlation-Id: dafe2ab0-a1e5-4d36-80fb-08dc0ce19194
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 5E9AGMq4UZbmCSYWqanj8TD12njbmUloKcUMJDPWfGRtbgxoRii5jZcF95PyYDa0Gj9Bobij7ewiuftwb5nqcFl0VWuKOUKq61Gu/Q2eok5PAGN41sUnc+Kb5Fqkc7yvOQN8S+mzWUPQ7is3eGJMfPydCxFoenvqsRbP9u3arV85iSwrdlIfGsIX6XSmnbPZ7Odn3H52J4jepOgryLlFoMzGPABGD0p/Hb8atOpAXqs1X8mY2bE5pD3/uWxeX1AyqGRGjm2Vj01CJot6QFfKn+tnOcK8eiS7mVbYO0KpXmrSBdJA1Q98/zuYIFRMx2quilrsxFcY7d50NLu1aOmXjJEP2AkU1z6qxw8Cx9wAkghyJ7kaAUUhzOW2s/KxvXk6CPuOb7t/clhzu/edjdW1g43zlrBT5e6A5Y5H/mTXgBda0vpGSWlcYRR0e8qF8oj1fWjx0GaS33R4aAAFEyNwojFUE6p1xlvO65IOfHKlxqaLcZEhOmYGTQsXXbWSbQ7jfaetqo1RnZnmHW+57d8Ua0Y/6dHp7b1b+zWD/ftx9eWXSPI2A/GRvYa7IHJp39paq07QmbbDJ4Yzz+EKj7mtrN/9o0ZVJXnKxR5wm5k+gSLEJOwhvfrlmjMQ+iIXg441L9hD417+1ZneTdG5XGzzUA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR11MB5530.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(366004)(396003)(136003)(346002)(376002)(230922051799003)(64100799003)(1800799012)(451199024)(186009)(31686004)(107886003)(83380400001)(26005)(2616005)(6506007)(38100700002)(31696002)(86362001)(36756003)(82960400001)(6512007)(4326008)(5660300002)(6666004)(66476007)(66946007)(53546011)(8676002)(8936002)(66556008)(316002)(478600001)(41300700001)(2906002)(6486002)(43740500002)(45980500001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ckRwekxJVGlUMHdMV0VUc1d0WE5QWUZrcTZiaE9xeGxTQVNaelM3dHJOTVFJ?=
- =?utf-8?B?RTdMbVVzVGZNYSswYjIzVStqWmw3M2J2SlVXQkxnNTBoSUdlZGx5YnI5dXM4?=
- =?utf-8?B?Q25RcEdNWFVxbUpVeDZTcVBWV0I0LzVteTUwUXlsV2c1aUlpSitSeXpyRkcx?=
- =?utf-8?B?emc1TzhEbHZhcDZjR0FJUlQ5QzdrNFRVWTd5N2EvZDljSHRieGM0OGg0c2Fh?=
- =?utf-8?B?dGZmVHhqMXBIcWFaMEdBdzAzQldlOGV1YnhLRnkvMlU5OXN3MWE4eS9laFRP?=
- =?utf-8?B?MDAzNWMvWGlReGZFWFhkMkFvOC96ZTE1YzF2OXErY1RuaGZtbzZFRlhuNjhH?=
- =?utf-8?B?YWRialBOUWh5M2dCSktEaHVCYnE2VFJwYXp5QUQwQjJCcUtaRUdSSllEbnZD?=
- =?utf-8?B?bVVxaS9NZ21mYk1TOW1VR3ZtNGdkcmEzS0ZtK05yc2lQWmhuMEdNblhwUnJ1?=
- =?utf-8?B?TThTWE5lVlRzeXlDQVJuUWQvdFJLUnh1M3JtUkkwNGgwb1J4VEdzQnBpZXlw?=
- =?utf-8?B?UkoybHJBb25uMmhJKzVOcXZlUVdVTkcxSkYvb0hGNUhDVVVmMGRPRC9teEp1?=
- =?utf-8?B?NnNlRm9QUFlFVENLbjkxbFFVSTJncVFnWktXRmNqeTBaRDVYQmRUaVFVZW14?=
- =?utf-8?B?YWltY0dBRnRVVkkrMG5BN2RFTGZUMzB0ZHI4bERwMjBVWTR1L2lIczdkY0Uv?=
- =?utf-8?B?REYwSzBuZ1ZoYzd4QWdicXAxRjdGK3d0QitUK2VwZGVmblAvNFVMV3dxWGVD?=
- =?utf-8?B?TGU5L3h0dytHeUo5dDYvbDJmZEdVNjRJTnExRUpmcGhzQm9yZFc0M2hnYVNR?=
- =?utf-8?B?endKTXl6dXJLbmNxM2w0cTluTlpBdS9jVjc1aTFFVFV5b2ovdFh1VVJRUjAz?=
- =?utf-8?B?djJOM051R2pGY29XWXl3dUpzRmVzMWg0N3FEdzJ0Z1I2MjJ6ZmhMODdKamo3?=
- =?utf-8?B?YjkvenExQythY3Zyd3NvN3Q0aHN6VVR4UUQ4aWdOQmZ6VkJwelYrRTFTRlRz?=
- =?utf-8?B?Y1YrNVRMMUdsUUx4MlRaclpDOXVDRi94ZG9RWnIzZGxVcnBDY1Y5YWI1K21C?=
- =?utf-8?B?NzdyYTNLTmN2alVkdXR6Z3lHOUk4TVo5SC80WWJKcHhpR2U5b2I1VlNZeER4?=
- =?utf-8?B?eFRqM1ZMd082ZDFwRWFDRXRnTW5pMUhPQ0pnb1NBSHVGVStzV1JzRTVwZGFq?=
- =?utf-8?B?OUZ6UFFmU0l2cVI3d2FVMW5hbXVBQUJCb0xxQ0hmb0VuRG5EektJTVZUaGkv?=
- =?utf-8?B?a1Bxb1BQcW9pQkgwdEZHUE1PMWtKbUlKMm9rS0lTak9USGNpdnI0eDZDNys3?=
- =?utf-8?B?a2tFZzNsWWtFbG1vdEtDU251UU1yQ3NsblNocmJQMS9JZHpTYmkzMXh5dXBO?=
- =?utf-8?B?MGpFVlEva3kxTHJEazFDRWlaRHpSSitNQjM4RXV1MG9vMkZGZGtieUFEZzZ3?=
- =?utf-8?B?QnpzYXVEVmNvWjI4OWlRZkJxTEZkNzFyV25yRkgxc1NKRjZWY3NYTFAyQWdL?=
- =?utf-8?B?S2l1Qjl1STBZcGt6T2RpaFRweEVoSFN5L25hQjR2c0lHb3lzSmE2K05lM3Zo?=
- =?utf-8?B?b1JyMUZpanp0UWZibGNHQ0tGajhuU2NUZzZLNi9mRHZ3ZDJDVXhwL0txYllJ?=
- =?utf-8?B?alZSSUhCZ3JPNFpSaXl4Q2Q5am1BM2JKVzdMTmdpdXZNbVhSTnRHY0pVZ0d5?=
- =?utf-8?B?QjBVbE0wRmNhT2NySlgvZWJrNHRzcmFYSC9lK3lUbkpXWlQ2U21BQjB5SmND?=
- =?utf-8?B?aXp0ZE5XRXlwYUx1VytkZjNQRHptY3JLaEh1SldNc05SNDk0L0I2M2FZTU83?=
- =?utf-8?B?T1psTk9QaWUyQitOWGZWRmhGYUJxNy9wOTZtdi9jQzF2OWs2c1dRT0ptYWRj?=
- =?utf-8?B?WlNab1M2c3Jxa3BVejhkdTBBcmJRMnpsWVNhUG54dHMwamlxbzNKM1ZxTjhW?=
- =?utf-8?B?ZFhOM1VmWkFDZ0hpTE03bjdnNURXbGtOZ3l6U25UL3FxMnFlek9tazNSMFJE?=
- =?utf-8?B?TFVZSmdBSDN3TjhSQUh2cW9QSGc1Yks4Vkt3YmxpSEdaRUJUdWdNZTlLOTha?=
- =?utf-8?B?UCtEZWw2NWFzMWJnZ0ovdDBpd0owa3d1MzBaU1hSTE9seEUyOTFmOHRZa29o?=
- =?utf-8?B?SEt3b1ZPdzJrRlpzMkVWRnZHOC8vblVUMGxMNjVkUElaU0tzY01jMGJRM2pO?=
- =?utf-8?B?Unc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: dafe2ab0-a1e5-4d36-80fb-08dc0ce19194
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5530.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jan 2024 04:56:53.0486 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: BVaaqsRATD6JA4gAMNt3Q3gG5MPvfOitwQRvvLBVs8uco/mjEe2kHtcCq23o+0MOOd2FJOmAXXESnzxvYtA1qQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4649
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/8] drm/xe: Move user engine class mappings to
+ functions
+Content-Language: en-US
+To: Riana Tauro <riana.tauro@intel.com>, intel-xe@lists.freedesktop.org
+References: <20231222074602.817518-1-riana.tauro@intel.com>
+ <20231222074602.817518-2-riana.tauro@intel.com>
+From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+In-Reply-To: <20231222074602.817518-2-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,42 +62,460 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Vinay,
+This is a multi-part message in MIME format.
+--------------YHcizfBk08wbfTBk2mzlMVUK
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 23-12-2023 02:31, Vinay Belgaumkar wrote:
-> Don't set SLPC GuC feature ctl flag if skip_guc_pc is true.
-> 
-> Fixes: 975e4a3795d4 ("drm/xe: Manually setup C6 when skip_guc_pc is set")
-> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+
+On 12/22/23 13:15, Riana Tauro wrote:
+> Move user engine class <-> hw engine class to function
+> calls so that it can be used in different files.
+>
+> No functional changes.
+>
+> v2: change array to function
+> v3: rebase
+>     add header xe_drm
+>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_guc.c | 7 ++++++-
->   1 file changed, 6 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-> index 811e8b201270..0e112b144ec8 100644
-> --- a/drivers/gpu/drm/xe/xe_guc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc.c
-> @@ -62,7 +62,12 @@ static u32 guc_ctl_debug_flags(struct xe_guc *guc)
->   
->   static u32 guc_ctl_feature_flags(struct xe_guc *guc)
->   {
-> -	return GUC_CTL_ENABLE_SLPC;
-> +	u32 flags = 0;
+>  drivers/gpu/drm/xe/xe_exec_queue.c | 19 ++---------
+>  drivers/gpu/drm/xe/xe_hw_engine.c  | 51 ++++++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_hw_engine.h  |  3 ++
+>  drivers/gpu/drm/xe/xe_query.c      | 23 ++------------
+>  4 files changed, 58 insertions(+), 38 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+> index 44fe8097b7cd..366f5714c6f7 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+> @@ -482,31 +482,16 @@ static int exec_queue_user_extensions(struct xe_device *xe, struct xe_exec_queue
+>  	return 0;
+>  }
+>  
+> -static const enum xe_engine_class user_to_xe_engine_class[] = {
+> -	[DRM_XE_ENGINE_CLASS_RENDER] = XE_ENGINE_CLASS_RENDER,
+> -	[DRM_XE_ENGINE_CLASS_COPY] = XE_ENGINE_CLASS_COPY,
+> -	[DRM_XE_ENGINE_CLASS_VIDEO_DECODE] = XE_ENGINE_CLASS_VIDEO_DECODE,
+> -	[DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE] = XE_ENGINE_CLASS_VIDEO_ENHANCE,
+> -	[DRM_XE_ENGINE_CLASS_COMPUTE] = XE_ENGINE_CLASS_COMPUTE,
+> -};
+> -
+>  static struct xe_hw_engine *
+>  find_hw_engine(struct xe_device *xe,
+>  	       struct drm_xe_engine_class_instance eci)
+>  {
+> -	u32 idx;
+> -
+> -	if (eci.engine_class > ARRAY_SIZE(user_to_xe_engine_class))
+> -		return NULL;
+>  
+>  	if (eci.gt_id >= xe->info.gt_count)
+>  		return NULL;
+>  
+> -	idx = array_index_nospec(eci.engine_class,
+> -				 ARRAY_SIZE(user_to_xe_engine_class));
+> -
+>  	return xe_gt_hw_engine(xe_device_get_gt(xe, eci.gt_id),
+> -			       user_to_xe_engine_class[idx],
+> +			       xe_hw_engine_from_user_class(eci.engine_class),
+>  			       eci.engine_instance, true);
+
+in xe_gt_hw_engine introduce a check at the beginning for hw_engine_class and return NULL if it
+is XE_ENGINE_CLASS_MAX, so that we can skip for_each_hw_engine.
+>  }
+>  
+> @@ -532,7 +517,7 @@ static u32 bind_exec_queue_logical_mask(struct xe_device *xe, struct xe_gt *gt,
+>  			continue;
+>  
+>  		if (hwe->class ==
+> -		    user_to_xe_engine_class[DRM_XE_ENGINE_CLASS_COPY])
+> +		    xe_hw_engine_from_user_class(DRM_XE_ENGINE_CLASS_COPY))
+>  			logical_mask |= BIT(hwe->logical_instance);
+>  	}
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+> index 832989c83a25..ab78019b44ff 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+> @@ -6,6 +6,7 @@
+>  #include "xe_hw_engine.h"
+>  
+>  #include <drm/drm_managed.h>
+> +#include <drm/xe_drm.h>
+>  
+>  #include "regs/xe_engine_regs.h"
+>  #include "regs/xe_gt_regs.h"
+> @@ -290,6 +291,56 @@ static u32 hw_engine_mmio_read32(struct xe_hw_engine *hwe, struct xe_reg reg)
+>  	return xe_mmio_read32(hwe->gt, reg);
+>  }
+>  
+> +/**
+> + * xe_hw_engine_to_user_class - converts xe hw engine to user engine class
+> + * @engine_class: hw engine class
+> + *
+> + * Returns: user engine class on success, -1 on error
+> + */
+> +u16 xe_hw_engine_to_user_class(enum xe_engine_class engine_class)
+> +{
+> +	switch (engine_class) {
+> +	case XE_ENGINE_CLASS_RENDER:
+> +		return DRM_XE_ENGINE_CLASS_RENDER;
+> +	case XE_ENGINE_CLASS_COPY:
+> +		return DRM_XE_ENGINE_CLASS_COPY;
+> +	case XE_ENGINE_CLASS_VIDEO_DECODE:
+> +		return DRM_XE_ENGINE_CLASS_VIDEO_DECODE;
+> +	case XE_ENGINE_CLASS_VIDEO_ENHANCE:
+> +		return DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE;
+> +	case XE_ENGINE_CLASS_COMPUTE:
+> +		return DRM_XE_ENGINE_CLASS_COMPUTE;
+> +	default:
+> +		XE_WARN_ON(engine_class);
+> +		return -1;
+> +	}
+> +}
 > +
-> +	if (!(guc_to_xe(guc))->info.skip_guc_pc)
-Frequency attributes freq_min/freq_max may not work when skip_guc_pc is 
-set. freq_curr also may not work. I think these freq attributes 
-shouldn't be exposed for skip_guc_pc case.
+> +/**
+> + * xe_hw_engine_from_user_class - converts xe user engine class to hw engine class
+> + * @engine_class: user engine class
+> + *
+> + * Returns: hw engine class on success
+> + */
+> +enum xe_engine_class xe_hw_engine_from_user_class(u16 engine_class)
+> +{
+> +	switch (engine_class) {
+> +	case DRM_XE_ENGINE_CLASS_RENDER:
+> +		return XE_ENGINE_CLASS_RENDER;
+> +	case DRM_XE_ENGINE_CLASS_COPY:
+> +		return XE_ENGINE_CLASS_COPY;
+> +	case DRM_XE_ENGINE_CLASS_VIDEO_DECODE:
+> +		return XE_ENGINE_CLASS_VIDEO_DECODE;
+> +	case DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE:
+> +		return XE_ENGINE_CLASS_VIDEO_ENHANCE;
+> +	case DRM_XE_ENGINE_CLASS_COMPUTE:
+> +		return XE_ENGINE_CLASS_COMPUTE;
+> +	default:
+> +		XE_WARN_ON(engine_class);
+> +		return XE_ENGINE_CLASS_MAX;
+> +	}
+> +}
+> +
+>  void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe)
+>  {
+>  	u32 ccs_mask =
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
+> index 71968ee2f600..89ca96063644 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine.h
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine.h
+> @@ -62,6 +62,9 @@ void xe_hw_engine_print(struct xe_hw_engine *hwe, struct drm_printer *p);
+>  void xe_hw_engine_setup_default_lrc_state(struct xe_hw_engine *hwe);
+>  
+>  bool xe_hw_engine_is_reserved(struct xe_hw_engine *hwe);
+> +enum xe_engine_class xe_hw_engine_from_user_class(u16 engine_class);
+> +u16 xe_hw_engine_to_user_class(enum xe_engine_class engine_class);
+> +
+>  static inline bool xe_hw_engine_is_valid(struct xe_hw_engine *hwe)
+>  {
+>  	return hwe->name;
+> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+> index 9b35673b286c..d4793e79e283 100644
+> --- a/drivers/gpu/drm/xe/xe_query.c
+> +++ b/drivers/gpu/drm/xe/xe_query.c
+> @@ -22,22 +22,6 @@
+>  #include "xe_mmio.h"
+>  #include "xe_ttm_vram_mgr.h"
+>  
+> -static const u16 xe_to_user_engine_class[] = {
+> -	[XE_ENGINE_CLASS_RENDER] = DRM_XE_ENGINE_CLASS_RENDER,
+> -	[XE_ENGINE_CLASS_COPY] = DRM_XE_ENGINE_CLASS_COPY,
+> -	[XE_ENGINE_CLASS_VIDEO_DECODE] = DRM_XE_ENGINE_CLASS_VIDEO_DECODE,
+> -	[XE_ENGINE_CLASS_VIDEO_ENHANCE] = DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE,
+> -	[XE_ENGINE_CLASS_COMPUTE] = DRM_XE_ENGINE_CLASS_COMPUTE,
+> -};
+> -
+> -static const enum xe_engine_class user_to_xe_engine_class[] = {
+> -	[DRM_XE_ENGINE_CLASS_RENDER] = XE_ENGINE_CLASS_RENDER,
+> -	[DRM_XE_ENGINE_CLASS_COPY] = XE_ENGINE_CLASS_COPY,
+> -	[DRM_XE_ENGINE_CLASS_VIDEO_DECODE] = XE_ENGINE_CLASS_VIDEO_DECODE,
+> -	[DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE] = XE_ENGINE_CLASS_VIDEO_ENHANCE,
+> -	[DRM_XE_ENGINE_CLASS_COMPUTE] = XE_ENGINE_CLASS_COMPUTE,
+> -};
+> -
+>  static size_t calc_hw_engine_info_size(struct xe_device *xe)
+>  {
+>  	struct xe_hw_engine *hwe;
+> @@ -139,10 +123,7 @@ query_engine_cycles(struct xe_device *xe,
+>  	if (!gt)
+>  		return -EINVAL;
+>  
+> -	if (eci->engine_class >= ARRAY_SIZE(user_to_xe_engine_class))
+> -		return -EINVAL;
+> -
+> -	hwe = xe_gt_hw_engine(gt, user_to_xe_engine_class[eci->engine_class],
+> +	hwe = xe_gt_hw_engine(gt, xe_hw_engine_from_user_class(eci->engine_class),
+>  			      eci->engine_instance, true);
+
+looks like this changed, may be rebase on latest.
+>  	if (!hwe)
+>  		return -EINVAL;
+> @@ -208,7 +189,7 @@ static int query_engines(struct xe_device *xe,
+>  				continue;
+>  
+>  			engines->engines[i].instance.engine_class =
+> -				xe_to_user_engine_class[hwe->class];
+> +				xe_hw_engine_to_user_class(hwe->class);
+>  			engines->engines[i].instance.engine_instance =
+>  				hwe->logical_instance;
+>  			engines->engines[i].instance.gt_id = gt->info.id;
+
+with that addressed Reviewed-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
 
 Regards,
-Badal
-> +		flags |= GUC_CTL_ENABLE_SLPC;
-> +
-> +	return flags;
->   }
->   
->   static u32 guc_ctl_log_params_flags(struct xe_guc *guc)
+Aravind.
+--------------YHcizfBk08wbfTBk2mzlMVUK
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix"><font face="monospace">On 12/22/23
+        13:15, Riana Tauro wrote:</font><br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:20231222074602.817518-2-riana.tauro@intel.com">
+      <pre class="moz-quote-pre" wrap="">Move user engine class &lt;-&gt; hw engine class to function
+calls so that it can be used in different files.
+
+No functional changes.
+
+v2: change array to function
+v3: rebase
+    add header xe_drm
+
+Cc: Matthew Brost <a class="moz-txt-link-rfc2396E" href="mailto:matthew.brost@intel.com">&lt;matthew.brost@intel.com&gt;</a>
+Signed-off-by: Riana Tauro <a class="moz-txt-link-rfc2396E" href="mailto:riana.tauro@intel.com">&lt;riana.tauro@intel.com&gt;</a>
+---
+ drivers/gpu/drm/xe/xe_exec_queue.c | 19 ++---------
+ drivers/gpu/drm/xe/xe_hw_engine.c  | 51 ++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_hw_engine.h  |  3 ++
+ drivers/gpu/drm/xe/xe_query.c      | 23 ++------------
+ 4 files changed, 58 insertions(+), 38 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 44fe8097b7cd..366f5714c6f7 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -482,31 +482,16 @@ static int exec_queue_user_extensions(struct xe_device *xe, struct xe_exec_queue
+ 	return 0;
+ }
+ 
+-static const enum xe_engine_class user_to_xe_engine_class[] = {
+-	[DRM_XE_ENGINE_CLASS_RENDER] = XE_ENGINE_CLASS_RENDER,
+-	[DRM_XE_ENGINE_CLASS_COPY] = XE_ENGINE_CLASS_COPY,
+-	[DRM_XE_ENGINE_CLASS_VIDEO_DECODE] = XE_ENGINE_CLASS_VIDEO_DECODE,
+-	[DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE] = XE_ENGINE_CLASS_VIDEO_ENHANCE,
+-	[DRM_XE_ENGINE_CLASS_COMPUTE] = XE_ENGINE_CLASS_COMPUTE,
+-};
+-
+ static struct xe_hw_engine *
+ find_hw_engine(struct xe_device *xe,
+ 	       struct drm_xe_engine_class_instance eci)
+ {
+-	u32 idx;
+-
+-	if (eci.engine_class &gt; ARRAY_SIZE(user_to_xe_engine_class))
+-		return NULL;
+ 
+ 	if (eci.gt_id &gt;= xe-&gt;info.gt_count)
+ 		return NULL;
+ 
+-	idx = array_index_nospec(eci.engine_class,
+-				 ARRAY_SIZE(user_to_xe_engine_class));
+-
+ 	return xe_gt_hw_engine(xe_device_get_gt(xe, eci.gt_id),
+-			       user_to_xe_engine_class[idx],
++			       xe_hw_engine_from_user_class(eci.engine_class),
+ 			       eci.engine_instance, true);</pre>
+    </blockquote>
+    <br>
+    <font face="monospace">in xe_gt_hw_engine introduce a check at the
+      beginning for hw_engine_class and return NULL if it<br>
+      is <span style="white-space: pre-wrap">XE_ENGINE_CLASS_MAX, so that we can skip for_each_hw_engine.</span></font><br>
+    <blockquote type="cite"
+      cite="mid:20231222074602.817518-2-riana.tauro@intel.com">
+      <pre class="moz-quote-pre" wrap="">
+ }
+ 
+@@ -532,7 +517,7 @@ static u32 bind_exec_queue_logical_mask(struct xe_device *xe, struct xe_gt *gt,
+ 			continue;
+ 
+ 		if (hwe-&gt;class ==
+-		    user_to_xe_engine_class[DRM_XE_ENGINE_CLASS_COPY])
++		    xe_hw_engine_from_user_class(DRM_XE_ENGINE_CLASS_COPY))
+ 			logical_mask |= BIT(hwe-&gt;logical_instance);
+ 	}
+ 
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 832989c83a25..ab78019b44ff 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -6,6 +6,7 @@
+ #include "xe_hw_engine.h"
+ 
+ #include &lt;drm/drm_managed.h&gt;
++#include &lt;drm/xe_drm.h&gt;
+ 
+ #include "regs/xe_engine_regs.h"
+ #include "regs/xe_gt_regs.h"
+@@ -290,6 +291,56 @@ static u32 hw_engine_mmio_read32(struct xe_hw_engine *hwe, struct xe_reg reg)
+ 	return xe_mmio_read32(hwe-&gt;gt, reg);
+ }
+ 
++/**
++ * xe_hw_engine_to_user_class - converts xe hw engine to user engine class
++ * @engine_class: hw engine class
++ *
++ * Returns: user engine class on success, -1 on error
++ */
++u16 xe_hw_engine_to_user_class(enum xe_engine_class engine_class)
++{
++	switch (engine_class) {
++	case XE_ENGINE_CLASS_RENDER:
++		return DRM_XE_ENGINE_CLASS_RENDER;
++	case XE_ENGINE_CLASS_COPY:
++		return DRM_XE_ENGINE_CLASS_COPY;
++	case XE_ENGINE_CLASS_VIDEO_DECODE:
++		return DRM_XE_ENGINE_CLASS_VIDEO_DECODE;
++	case XE_ENGINE_CLASS_VIDEO_ENHANCE:
++		return DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE;
++	case XE_ENGINE_CLASS_COMPUTE:
++		return DRM_XE_ENGINE_CLASS_COMPUTE;
++	default:
++		XE_WARN_ON(engine_class);
++		return -1;
++	}
++}
++
++/**
++ * xe_hw_engine_from_user_class - converts xe user engine class to hw engine class
++ * @engine_class: user engine class
++ *
++ * Returns: hw engine class on success
++ */
++enum xe_engine_class xe_hw_engine_from_user_class(u16 engine_class)
++{
++	switch (engine_class) {
++	case DRM_XE_ENGINE_CLASS_RENDER:
++		return XE_ENGINE_CLASS_RENDER;
++	case DRM_XE_ENGINE_CLASS_COPY:
++		return XE_ENGINE_CLASS_COPY;
++	case DRM_XE_ENGINE_CLASS_VIDEO_DECODE:
++		return XE_ENGINE_CLASS_VIDEO_DECODE;
++	case DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE:
++		return XE_ENGINE_CLASS_VIDEO_ENHANCE;
++	case DRM_XE_ENGINE_CLASS_COMPUTE:
++		return XE_ENGINE_CLASS_COMPUTE;
++	default:
++		XE_WARN_ON(engine_class);
++		return XE_ENGINE_CLASS_MAX;
++	}
++}
++
+ void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe)
+ {
+ 	u32 ccs_mask =
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
+index 71968ee2f600..89ca96063644 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine.h
+@@ -62,6 +62,9 @@ void xe_hw_engine_print(struct xe_hw_engine *hwe, struct drm_printer *p);
+ void xe_hw_engine_setup_default_lrc_state(struct xe_hw_engine *hwe);
+ 
+ bool xe_hw_engine_is_reserved(struct xe_hw_engine *hwe);
++enum xe_engine_class xe_hw_engine_from_user_class(u16 engine_class);
++u16 xe_hw_engine_to_user_class(enum xe_engine_class engine_class);
++
+ static inline bool xe_hw_engine_is_valid(struct xe_hw_engine *hwe)
+ {
+ 	return hwe-&gt;name;
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index 9b35673b286c..d4793e79e283 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -22,22 +22,6 @@
+ #include "xe_mmio.h"
+ #include "xe_ttm_vram_mgr.h"
+ 
+-static const u16 xe_to_user_engine_class[] = {
+-	[XE_ENGINE_CLASS_RENDER] = DRM_XE_ENGINE_CLASS_RENDER,
+-	[XE_ENGINE_CLASS_COPY] = DRM_XE_ENGINE_CLASS_COPY,
+-	[XE_ENGINE_CLASS_VIDEO_DECODE] = DRM_XE_ENGINE_CLASS_VIDEO_DECODE,
+-	[XE_ENGINE_CLASS_VIDEO_ENHANCE] = DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE,
+-	[XE_ENGINE_CLASS_COMPUTE] = DRM_XE_ENGINE_CLASS_COMPUTE,
+-};
+-
+-static const enum xe_engine_class user_to_xe_engine_class[] = {
+-	[DRM_XE_ENGINE_CLASS_RENDER] = XE_ENGINE_CLASS_RENDER,
+-	[DRM_XE_ENGINE_CLASS_COPY] = XE_ENGINE_CLASS_COPY,
+-	[DRM_XE_ENGINE_CLASS_VIDEO_DECODE] = XE_ENGINE_CLASS_VIDEO_DECODE,
+-	[DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE] = XE_ENGINE_CLASS_VIDEO_ENHANCE,
+-	[DRM_XE_ENGINE_CLASS_COMPUTE] = XE_ENGINE_CLASS_COMPUTE,
+-};
+-
+ static size_t calc_hw_engine_info_size(struct xe_device *xe)
+ {
+ 	struct xe_hw_engine *hwe;
+@@ -139,10 +123,7 @@ query_engine_cycles(struct xe_device *xe,
+ 	if (!gt)
+ 		return -EINVAL;
+ 
+-	if (eci-&gt;engine_class &gt;= ARRAY_SIZE(user_to_xe_engine_class))
+-		return -EINVAL;
+-
+-	hwe = xe_gt_hw_engine(gt, user_to_xe_engine_class[eci-&gt;engine_class],
++	hwe = xe_gt_hw_engine(gt, xe_hw_engine_from_user_class(eci-&gt;engine_class),
+ 			      eci-&gt;engine_instance, true);</pre>
+    </blockquote>
+    <br>
+    <font face="monospace">looks like this changed, may be rebase on
+      latest.</font><br>
+    <blockquote type="cite"
+      cite="mid:20231222074602.817518-2-riana.tauro@intel.com">
+      <pre class="moz-quote-pre" wrap="">
+ 	if (!hwe)
+ 		return -EINVAL;
+@@ -208,7 +189,7 @@ static int query_engines(struct xe_device *xe,
+ 				continue;
+ 
+ 			engines-&gt;engines[i].instance.engine_class =
+-				xe_to_user_engine_class[hwe-&gt;class];
++				xe_hw_engine_to_user_class(hwe-&gt;class);
+ 			engines-&gt;engines[i].instance.engine_instance =
+ 				hwe-&gt;logical_instance;
+ 			engines-&gt;engines[i].instance.gt_id = gt-&gt;info.id;</pre>
+    </blockquote>
+    <br>
+    <p><font face="monospace">with that addressed Reviewed-by: Aravind
+        Iddamsetty <a class="moz-txt-link-rfc2396E" href="mailto:aravind.iddamsetty@linux.intel.com">&lt;aravind.iddamsetty@linux.intel.com&gt;</a></font></p>
+    <font face="monospace">Regards,<br>
+      Aravind.</font><br>
+    <blockquote type="cite"
+      cite="mid:20231222074602.817518-2-riana.tauro@intel.com">
+      <pre class="moz-quote-pre" wrap="">
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------YHcizfBk08wbfTBk2mzlMVUK--
