@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00B10C3DA6E
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jan 2024 01:39:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 021A3C3DA6E
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jan 2024 01:39:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EE8F10E2EF;
-	Thu,  4 Jan 2024 01:39:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1B0A10E35B;
+	Thu,  4 Jan 2024 01:39:43 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3FB910E2B0;
- Thu,  4 Jan 2024 01:39:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0E7910E2FD;
+ Thu,  4 Jan 2024 01:39:42 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Add_vram_f?=
- =?utf-8?q?requency_sysfs_attributes_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Add_vram_freque?=
+ =?utf-8?q?ncy_sysfs_attributes_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Sundaresan, Sujaritha" <sujaritha.sundaresan@intel.com>
-Date: Thu, 04 Jan 2024 01:39:29 -0000
-Message-ID: <170433236999.151.17108917019845241280@5338d5abeb45>
+Date: Thu, 04 Jan 2024 01:39:42 -0000
+Message-ID: <170433238292.151.1539653757112496734@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240102052748.1598057-1-sujaritha.sundaresan@intel.com>
 In-Reply-To: <20240102052748.1598057-1-sujaritha.sundaresan@intel.com>
@@ -44,16 +44,74 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Add vram frequency sysfs attributes (rev2)
 URL   : https://patchwork.freedesktop.org/series/127800/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 7b3b98d03 drm/xe/xe2: Add workaround 16020183090
-=== git am output follows ===
-.git/rebase-apply/patch:193: new blank line at EOF.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6030b24c1386b00de8187b5fb987e283a57b372a
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f7a155df420aa83504b6e90b836d4646f74df1e5
+Author: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+Date:   Tue Jan 2 10:57:48 2024 +0530
+
+    drm/xe: Add vram frequency sysfs attributes
+    
+    Add vram frequency sysfs attributes under the below hierarchy;
+    
+    /device/tile#/memory/freq0
+                            |-max_freq
+                            |-min_freq
+    
+    v2: Drop "vram" from attribute names (Rodrigo)
+    
+    v3: Add documentation for new sysfs (Riana)
+        Drop prefix from XEHP_PCODE_FREQUENCY_CONFIG (Riana)
+    
+    v4: Create sysfs under tile#/freq0 after removal of
+        physical_memsize attrbute
+    
+    v5: Revert back to creating sysfs under tile#/memory/freq0
+        Remove definition of GT_FREQUENCY_MULTIPLIER (Rodrigo)
+    
+    v6: Rename attributes to max/min_freq (Anshuman)
+        Fix review comments (Rodrigo)
+    
+    v7: Make docuemntation more verbose
+        Move sysfs to separate file (Anshuman)
+    
+    Signed-off-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+    Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
++ /mt/dim checkpatch 7b3b98d034784b125bad7aca46f9e7a3cfcde45a drm-intel
+f7a155df4 drm/xe: Add vram frequency sysfs attributes
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:84: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#84: 
+new file mode 100644
+
+-:213: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#213: FILE: drivers/gpu/drm/xe/xe_vram_freq.c:125:
 +
-warning: 1 line adds whitespace errors.
-Applying: drm/xe: Add vram frequency sysfs attributes
++}
+
+-:215: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#215: FILE: drivers/gpu/drm/xe/xe_vram_freq.c:127:
++
++
+
+total: 0 errors, 1 warnings, 2 checks, 178 lines checked
 
 
