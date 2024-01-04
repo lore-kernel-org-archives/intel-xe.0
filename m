@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C975C47074
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jan 2024 18:09:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD04FC47073
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jan 2024 18:09:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5048110E509;
-	Thu,  4 Jan 2024 18:09:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 991C710E509;
+	Thu,  4 Jan 2024 18:09:49 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0500A10E500;
- Thu,  4 Jan 2024 18:09:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D65F10E500;
+ Thu,  4 Jan 2024 18:09:48 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_skip_regis?=
- =?utf-8?q?ter_UC_debugfs_if_UC_disabled?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_skip_register_U?=
+ =?utf-8?q?C_debugfs_if_UC_disabled?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ohad Sharabi" <osharabi@habana.ai>
-Date: Thu, 04 Jan 2024 18:09:31 -0000
-Message-ID: <170439177101.20586.14782623064084303696@5338d5abeb45>
+Date: Thu, 04 Jan 2024 18:09:48 -0000
+Message-ID: <170439178844.20654.16744672639024874224@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240104100557.1204296-1-osharabi@habana.ai>
 In-Reply-To: <20240104100557.1204296-1-osharabi@habana.ai>
@@ -48,9 +48,28 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 7b3b98d03 drm/xe/xe2: Add workaround 16020183090
-=== git am output follows ===
-Applying: drm/xe: skip register UC debugfs if UC disabled
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6030b24c1386b00de8187b5fb987e283a57b372a
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit fd8d04ded896dc223d20df019e2f87b39ffa6886
+Author: Ohad Sharabi <osharabi@habana.ai>
+Date:   Thu Jan 4 12:05:57 2024 +0200
+
+    drm/xe: skip register UC debugfs if UC disabled
+    
+    When working with execlist we should not register the UC debugfs entries.
+    
+    Accessing those entries when UC is disabled can lead to a kernel crush
+    (NULL pointer dereference).
+    
+    Signed-off-by: Ohad Sharabi <osharabi@habana.ai>
++ /mt/dim checkpatch 7b3b98d034784b125bad7aca46f9e7a3cfcde45a drm-intel
+fd8d04ded drm/xe: skip register UC debugfs if UC disabled
 
 
