@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 813E8C47074
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jan 2024 11:10:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AB0BC47074
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jan 2024 11:10:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D2BB10E425;
-	Thu,  4 Jan 2024 11:10:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9BA710E416;
+	Thu,  4 Jan 2024 11:10:29 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C929710E421;
- Thu,  4 Jan 2024 11:10:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EB9710E416;
+ Thu,  4 Jan 2024 11:10:29 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/dgfx=3A_Relea?=
- =?utf-8?q?se_mmap_mappings_on_rpm_suspend_=28rev4=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/dgfx=3A_Release_mm?=
+ =?utf-8?q?ap_mappings_on_rpm_suspend_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Nilawar, Badal" <badal.nilawar@intel.com>
-Date: Thu, 04 Jan 2024 11:10:15 -0000
-Message-ID: <170436661582.20586.18403253718220480297@5338d5abeb45>
+Date: Thu, 04 Jan 2024 11:10:29 -0000
+Message-ID: <170436662945.20586.7965294175645773738@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20231222175036.373201-1-badal.nilawar@intel.com>
 In-Reply-To: <20231222175036.373201-1-badal.nilawar@intel.com>
@@ -48,9 +48,53 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 7b3b98d03 drm/xe/xe2: Add workaround 16020183090
-=== git am output follows ===
-Applying: drm/xe/dgfx: Release mmap mappings on rpm suspend
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6030b24c1386b00de8187b5fb987e283a57b372a
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 63cba248fb73f246030c5d2a4f9a4e7223c2281c
+Author: Badal Nilawar <badal.nilawar@intel.com>
+Date:   Fri Dec 22 23:20:36 2023 +0530
+
+    drm/xe/dgfx: Release mmap mappings on rpm suspend
+    
+    Release all mmap mappings for all vram objects which are associated
+    with userfault such that, while pcie function in D3hot, any access
+    to memory mappings will raise a userfault.
+    
+    Upon userfault, in order to access memory mappings, if graphics
+    function is in D3 then runtime resume of dgpu will be triggered to
+    transition to D0.
+    
+    v2:
+      - Avoid iomem check before bo migration check as bo can migrate
+        to system memory (Matthew Auld)
+    v3:
+      - Delete bo userfault link during bo destroy
+      - Upon bo move (vram-smem), do bo userfault link deletion in
+        xe_bo_move_notify instead of xe_bo_move (Thomas Hellström)
+      - Grab lock in rpm hook while deleting bo userfault link (Matthew Auld)
+    v4:
+      - Add kernel doc and wrap vram_userfault related
+        stuff in the structure (Matthew Auld)
+      - Get rpm wakeref before taking dma reserve lock (Matthew Auld)
+      - In suspend path apply lock for entire list op
+        including list iteration (Matthew Auld)
+    v5:
+      - Use mutex lock instead of spin lock
+    
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+    Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+    Acked-by: Thomas Hellström <thomas.hellstrom@linux.intel.com> #For the
+    Reviewed-by: Matthew Auld <matthew.auld@intel.com>
++ /mt/dim checkpatch 7b3b98d034784b125bad7aca46f9e7a3cfcde45a drm-intel
+63cba248f drm/xe/dgfx: Release mmap mappings on rpm suspend
 
 
