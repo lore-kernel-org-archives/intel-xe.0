@@ -4,47 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 711FBC47074
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jan 2024 08:08:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E87BC47074
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jan 2024 08:43:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3AF6510E3C6;
-	Thu,  4 Jan 2024 08:08:40 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3C1C10E3D4
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jan 2024 08:08:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704355720; x=1735891720;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=WDO+j/KmsGHTn19M22Xs65hENb+PV/HXcOg8qI6yPwY=;
- b=euoa8u9prNq9b7mc9rNIJRawy3vIgvYssmC2cBFfNCjXQtHatjF2hVa3
- QzNXi5oEY+fJXIcxLzJMdUE4gX7eF2HIA609vFCeSRw9j3eaIcHKOzGfz
- FlG4v3S8JkQMJonRH2tlam5KPydPRw55tRL7xPT3Zu8TxG84/2p74FMda
- bTudIo8q5cdEJ5HCT0Nr+JGJSifZ4Fq0itqPx/7n5wpxxNOcQ/yHz9sGw
- J887S1LoQf97UPXcgH1YVFfujahsoqao/vWKM5kFaBfVHZNop6QGy/iB8
- cMA1ffXMad17pc7deiuoYoaEIbE6jUgwEoiw5SFmFahbfiQIBkprODXwD g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="4511580"
-X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; 
-   d="scan'208";a="4511580"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 00:08:40 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="1111638750"
-X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; d="scan'208";a="1111638750"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 00:08:38 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-Subject: [PATCH] drm/xe: Fix exec IOCTL long running exec queue ring full
- condition
-Date: Thu,  4 Jan 2024 00:09:09 -0800
-Message-Id: <20240104080909.1271480-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCDD510E3EC;
+	Thu,  4 Jan 2024 08:43:50 +0000 (UTC)
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6905A10E3EC;
+ Thu,  4 Jan 2024 08:43:49 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6744520962848261481=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/debugfs=3A_Make_sysfs_gt_?=
+ =?utf-8?q?force_reset_synchronous_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Poosa, Karthik" <karthik.poosa@intel.com>
+Date: Thu, 04 Jan 2024 08:43:49 -0000
+Message-ID: <170435782942.1841.12457301233235280967@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20231227115820.4104261-1-karthik.poosa@intel.com>
+In-Reply-To: <20231227115820.4104261-1-karthik.poosa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,54 +35,180 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sai Gowtham Ch <sai.gowtham.ch@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The intent is to return -EWOULDBLOCK to the user if a long running exec
-queue is full during the exec IOCTL. -EWOULDBLOCK aliases to -EAGAIN
-which results in the exec IOCTL doing a retry loop. Fix this by ensuring
-the retry loop is broken when returning -EWOULDBLOCK.
+--===============6744520962848261481==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fixes: 8ae8a2e8dd21 ("drm/xe: Long running job update")
-Reported-by: Sai Gowtham Ch <sai.gowtham.ch@intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_exec.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-index d30c0d0689bc..c68e1bd15e6a 100644
---- a/drivers/gpu/drm/xe/xe_exec.c
-+++ b/drivers/gpu/drm/xe/xe_exec.c
-@@ -115,7 +115,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	struct xe_sched_job *job;
- 	struct dma_fence *rebind_fence;
- 	struct xe_vm *vm;
--	bool write_locked;
-+	bool write_locked, skip_eagain = false;
- 	ktime_t end = 0;
- 	int err = 0;
- 
-@@ -227,7 +227,8 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	}
- 
- 	if (xe_exec_queue_is_lr(q) && xe_exec_queue_ring_full(q)) {
--		err = -EWOULDBLOCK;
-+		err = -EWOULDBLOCK;	/* Aliased to -EAGAIN */
-+		skip_eagain = true;
- 		goto err_exec;
- 	}
- 
-@@ -337,7 +338,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		up_write(&vm->lock);
- 	else
- 		up_read(&vm->lock);
--	if (err == -EAGAIN)
-+	if (err == -EAGAIN && !skip_eagain)
- 		goto retry;
- err_syncs:
- 	for (i = 0; i < num_syncs; i++)
--- 
-2.34.1
+Series: drm/xe/debugfs: Make sysfs gt force reset synchronous (rev2)
+URL   : https://patchwork.freedesktop.org/series/128033/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-598-7b3b98d034784b125bad7aca46f9e7a3cfcde45a_BAT -> xe-pw-128033v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-128033v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#480]) +1 other test fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-598-7b3b98d034784b125bad7aca46f9e7a3cfcde45a/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128033v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_create@create-execqueues-noleak:
+    - bat-adlp-7:         [FAIL][3] ([Intel XE#524]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-598-7b3b98d034784b125bad7aca46f9e7a3cfcde45a/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128033v2/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html
+    - bat-atsm-2:         [FAIL][5] ([Intel XE#524]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-598-7b3b98d034784b125bad7aca46f9e7a3cfcde45a/bat-atsm-2/igt@xe_create@create-execqueues-noleak.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128033v2/bat-atsm-2/igt@xe_create@create-execqueues-noleak.html
+
+  * igt@xe_prime_self_import@basic-with_fd_dup:
+    - bat-atsm-2:         [FAIL][7] ([Intel XE#999]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-598-7b3b98d034784b125bad7aca46f9e7a3cfcde45a/bat-atsm-2/igt@xe_prime_self_import@basic-with_fd_dup.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128033v2/bat-atsm-2/igt@xe_prime_self_import@basic-with_fd_dup.html
+
+  
+#### Warnings ####
+
+  * igt@xe_create@create-execqueues-leak:
+    - bat-atsm-2:         [FAIL][9] ([Intel XE#524]) -> [FAIL][10] ([Intel XE#1099])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-598-7b3b98d034784b125bad7aca46f9e7a3cfcde45a/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128033v2/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
+
+  
+  [Intel XE#1099]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1099
+  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
+  [Intel XE#999]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/999
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7651 -> IGT_7655
+  * Linux: xe-598-7b3b98d034784b125bad7aca46f9e7a3cfcde45a -> xe-pw-128033v2
+
+  IGT_7651: 02fa4cf8bcbb15f1641e862fa83e2182c6f73a63 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7655: ddf7cf40a00caa7d02f3729e1e50f78f102463d9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-598-7b3b98d034784b125bad7aca46f9e7a3cfcde45a: 7b3b98d034784b125bad7aca46f9e7a3cfcde45a
+  xe-pw-128033v2: 128033v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128033v2/index.html
+
+--===============6744520962848261481==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/debugfs: Make sysfs gt force reset synchronous (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/128033/">https://patchwork.freedesktop.org/series/128033/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128033v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128033v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-598-7b3b98d034784b125bad7aca46f9e7a3cfcde45a_BAT -&gt; xe-pw-128033v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-128033v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-598-7b3b98d034784b125bad7aca46f9e7a3cfcde45a/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128033v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) +1 other test fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@xe_create@create-execqueues-noleak:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-598-7b3b98d034784b125bad7aca46f9e7a3cfcde45a/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/524">Intel XE#524</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128033v2/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html">PASS</a></li>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-598-7b3b98d034784b125bad7aca46f9e7a3cfcde45a/bat-atsm-2/igt@xe_create@create-execqueues-noleak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/524">Intel XE#524</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128033v2/bat-atsm-2/igt@xe_create@create-execqueues-noleak.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_prime_self_import@basic-with_fd_dup:</p>
+<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-598-7b3b98d034784b125bad7aca46f9e7a3cfcde45a/bat-atsm-2/igt@xe_prime_self_import@basic-with_fd_dup.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/999">Intel XE#999</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128033v2/bat-atsm-2/igt@xe_prime_self_import@basic-with_fd_dup.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_create@create-execqueues-leak:<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-598-7b3b98d034784b125bad7aca46f9e7a3cfcde45a/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/524">Intel XE#524</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128033v2/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1099">Intel XE#1099</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7651 -&gt; IGT_7655</li>
+<li>Linux: xe-598-7b3b98d034784b125bad7aca46f9e7a3cfcde45a -&gt; xe-pw-128033v2</li>
+</ul>
+<p>IGT_7651: 02fa4cf8bcbb15f1641e862fa83e2182c6f73a63 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7655: ddf7cf40a00caa7d02f3729e1e50f78f102463d9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-598-7b3b98d034784b125bad7aca46f9e7a3cfcde45a: 7b3b98d034784b125bad7aca46f9e7a3cfcde45a<br />
+  xe-pw-128033v2: 128033v2</p>
+
+</body>
+</html>
+
+--===============6744520962848261481==--
