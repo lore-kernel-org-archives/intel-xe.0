@@ -4,42 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34E96C47255
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jan 2024 22:20:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40562C47073
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jan 2024 22:20:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBD9E10E571;
-	Thu,  4 Jan 2024 22:20:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E44FC10E56F;
+	Thu,  4 Jan 2024 22:20:56 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69D3810E570
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jan 2024 22:20:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1ABC510E56E
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Jan 2024 22:20:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704406852; x=1735942852;
+ t=1704406850; x=1735942850;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=C/jH4WmJ1u7cK5t3oOVdJztx0U2qtQabbeYEe+xOAnM=;
- b=Fuyk7bd6rQFNfwMePlBJzrJpNxCJHKs5+ieAfsRzzhdE0pqxQPLchzsI
- 0nyYtwCH9PzASZWZHFBJjUvOUiKxlTKnaqGidXeZwqrvp4V3uRu2DIOst
- 2pHb+BYdwiFAUuGXI8WMiHvZEXm4Wy7XifBK9vpe52cSFDPLR+yFUSHA2
- fds26VRO6D5+kZvmSf80cnQZ8/bwULLPDzgSOWvP/ipcquCatQFBxVPS+
- 8lVck5/0ohflcUCLfoE2fQQC71fXankxjrhVsJSWjeEDGZ+dXvW/lcYZc
- fZQjWLfgQ+hlbdMK2aDGLMDFqIWCS9cMSg7fulHBZoWC+9s0BUdReVVAB A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="428546891"
-X-IronPort-AV: E=Sophos;i="6.04,332,1695711600"; d="scan'208";a="428546891"
+ bh=6jrJE2MUF6lZWuLFoIZ+1XUKbOnFH3nM0+i7BKZy5TQ=;
+ b=fo1sCs1+XKHY+7NJ1IHX8eOoBXJXMnyL5epcZJrWcujpDM33U7D2+Wcz
+ Dbzc46St6LZar8XiZVchmh7+mrACqQFByAV+KiJB136syqgMfbNGNR/9F
+ Ps1dWghL6sLsIX/Z3Gx0drKnQrB/cqBaKuvhB8yFUw0GFbIO2QgMGlvFo
+ bIGfaROXeSzOZ8GG34MR+8Q4IMUo/6uP4WP08dzTwxm7K9WBy22Z90sRM
+ L9iCQiQGixHcYJ4jnze4/BsHoUXuYmH0qlVCu/s652n4kISA7tM371PwN
+ 9Gz4C29VqTdRNZ9UcmaTUvIPuY0jlqXduYzRGQA2JoEszIg5IhyuNIXPQ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="428546880"
+X-IronPort-AV: E=Sophos;i="6.04,332,1695711600"; d="scan'208";a="428546880"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 14:20:52 -0800
+ 04 Jan 2024 14:20:49 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="784022821"
-X-IronPort-AV: E=Sophos;i="6.04,332,1695711600"; d="scan'208";a="784022821"
+X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="784022817"
+X-IronPort-AV: E=Sophos;i="6.04,332,1695711600"; d="scan'208";a="784022817"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.149.125])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 14:20:51 -0800
+ 04 Jan 2024 14:20:49 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 10/10] drm/xe/guc: Start handling GuC Relay event messages
-Date: Thu,  4 Jan 2024 23:20:31 +0100
-Message-Id: <20240104222031.277-11-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 08/10] drm/xe/kunit: Allow to replace xe_guc_ct_send_recv()
+ with stub
+Date: Thu,  4 Jan 2024 23:20:29 +0100
+Message-Id: <20240104222031.277-9-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240104222031.277-1-michal.wajdeczko@intel.com>
 References: <20240104222031.277-1-michal.wajdeczko@intel.com>
@@ -60,48 +61,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-GuC Relay infrastructure is ready, start handling relay messages
-from the GuC to unblock testing on the live system.
+We want to use replacement functions in upcoming kunit tests.
 
 Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/gpu/drm/xe/xe_guc_ct.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 8f208267ffc6..c29f095aa1b9 100644
+index 4cde93c18a2d..8f208267ffc6 100644
 --- a/drivers/gpu/drm/xe/xe_guc_ct.c
 +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -14,6 +14,7 @@
+@@ -9,6 +9,8 @@
+ #include <linux/circ_buf.h>
+ #include <linux/delay.h>
+ 
++#include <kunit/static_stub.h>
++
  #include <drm/drm_managed.h>
  
  #include "abi/guc_actions_abi.h"
-+#include "abi/guc_actions_sriov_abi.h"
- #include "abi/guc_klvs_abi.h"
- #include "xe_bo.h"
- #include "xe_device.h"
-@@ -22,6 +23,7 @@
- #include "xe_gt_printk.h"
- #include "xe_gt_tlb_invalidation.h"
- #include "xe_guc.h"
-+#include "xe_guc_relay.h"
- #include "xe_guc_submit.h"
- #include "xe_map.h"
- #include "xe_pm.h"
-@@ -969,6 +971,12 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
- 		ret = xe_guc_access_counter_notify_handler(guc, payload,
- 							   adj_len);
- 		break;
-+	case XE_GUC_ACTION_GUC2PF_RELAY_FROM_VF:
-+		ret = xe_guc_relay_process_guc2pf(&guc->relay, payload, adj_len);
-+		break;
-+	case XE_GUC_ACTION_GUC2VF_RELAY_FROM_PF:
-+		ret = xe_guc_relay_process_guc2vf(&guc->relay, payload, adj_len);
-+		break;
- 	default:
- 		drm_err(&xe->drm, "unexpected action 0x%04x\n", action);
- 	}
+@@ -782,6 +784,7 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ int xe_guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 			u32 *response_buffer)
+ {
++	KUNIT_STATIC_STUB_REDIRECT(xe_guc_ct_send_recv, ct, action, len, response_buffer);
+ 	return guc_ct_send_recv(ct, action, len, response_buffer, false);
+ }
+ 
 -- 
 2.25.1
 
