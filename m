@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FBC9C47073
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jan 2024 11:58:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63D44C47074
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jan 2024 11:58:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDF8210E459;
-	Thu,  4 Jan 2024 11:58:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CDD410E471;
+	Thu,  4 Jan 2024 11:58:34 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 401F310E445;
- Thu,  4 Jan 2024 11:58:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6BB210E46E;
+ Thu,  4 Jan 2024 11:58:32 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5Bv2=2C1/3=5D_drm/xe=3A_Remove_ci-only_GuC_FW_definitions?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_series_starting_with_=5Bv?=
+ =?utf-8?q?2=2C1/3=5D_drm/xe=3A_Remove_ci-only_GuC_FW_definitions?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Date: Thu, 04 Jan 2024 11:58:20 -0000
-Message-ID: <170436950026.20586.5585629660843044875@5338d5abeb45>
+Date: Thu, 04 Jan 2024 11:58:32 -0000
+Message-ID: <170436951280.20654.15822910406695157020@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20231219200023.2502159-1-daniele.ceraolospurio@intel.com>
 In-Reply-To: <20231219200023.2502159-1-daniele.ceraolospurio@intel.com>
@@ -48,11 +48,30 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 7b3b98d03 drm/xe/xe2: Add workaround 16020183090
-=== git am output follows ===
-Applying: drm/xe: Remove ci-only GuC FW definitions
-Applying: drm/xe/guc: define PVC FW
-Applying: drm/xe/guc: define LNL FW
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6030b24c1386b00de8187b5fb987e283a57b372a
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1cb7fa4fe70064d5c466c54d84a39bada35645ea
+Author: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Date:   Tue Dec 19 12:00:22 2023 -0800
+
+    drm/xe/guc: define LNL FW
+    
+    Add LNL GuC FW definition. This FW is not ready to be pushed to
+    linux-firmware yet, so this patch is for CI-only and it is meant
+    for the topic/core-for-CI branch.
+    
+    Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch 7b3b98d034784b125bad7aca46f9e7a3cfcde45a drm-intel
+ecd701dcb drm/xe: Remove ci-only GuC FW definitions
+901b63853 drm/xe/guc: define PVC FW
+1cb7fa4fe drm/xe/guc: define LNL FW
 
 
