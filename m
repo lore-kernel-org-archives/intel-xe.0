@@ -4,59 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7BD3C3DA6E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10E80C4707B
 	for <intel-xe@archiver.kernel.org>; Fri,  5 Jan 2024 17:11:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9731710E661;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA07010E666;
 	Fri,  5 Jan 2024 17:11:05 +0000 (UTC)
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com
- [IPv6:2a00:1450:4864:20::336])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB80910E5E3
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Jan 2024 12:20:27 +0000 (UTC)
-Received: by mail-wm1-x336.google.com with SMTP id
- 5b1f17b1804b1-40e3ab65709so1775625e9.3
- for <intel-xe@lists.freedesktop.org>; Fri, 05 Jan 2024 04:20:27 -0800 (PST)
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com
+ [IPv6:2a00:1450:4864:20::52d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A9D310E5E2
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 Jan 2024 12:21:05 +0000 (UTC)
+Received: by mail-ed1-x52d.google.com with SMTP id
+ 4fb4d7f45d1cf-55711962c3fso1357058a12.3
+ for <intel-xe@lists.freedesktop.org>; Fri, 05 Jan 2024 04:21:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1704457226; x=1705062026; darn=lists.freedesktop.org;
+ d=linaro.org; s=google; t=1704457263; x=1705062063; darn=lists.freedesktop.org;
  h=content-disposition:mime-version:message-id:subject:cc:to:from:date
  :from:to:cc:subject:date:message-id:reply-to;
- bh=CWCHZKbV0nCInnBBb4G3T1/9XNnm41DOrT+nUORhlYo=;
- b=adlTZbVfcL3xTudjiKCEFL8J2E3hkzsdX97ImIfNO5JCCd6T2O/jJCrliFl2epObDq
- c/lB8xg5y+0PRhN/ijuYZLMdqUhhe65Ngafvb9JkuQH/qIqWzUza+2aRPdj+t5I/Yemq
- bFPMpaSJTcxMotlwzdRIzcmp2+VJrsBj8gUx7uQMcdVSblGfrkqplBk7zVpgdg8pkScI
- dczQvFFQodh7qyPYfh8SZYqM2202PyT+g0Ayez4yVShysqO7dAcNppNfaqFOjUjUqL4c
- Hs13o5S4c1kK3TUrKQmhabkkIDOyUPSsz71ur/UQWGClx5QmNxyWn7GnZZrLxoMjpkE7
- BX2A==
+ bh=ULXh385a3mnPJgk/tkor1+4zIqDEEtXOPj7SDn2bufc=;
+ b=HUYZ0K0Zw3Zz7RzJJuHkM8eRhm5Uou0DjlXDwp/aYMckDX5kZQG322XuvmSD1Az2wf
+ u3O9znJxhJJvus8wksfYaiKItnjXYIw7zmYAtv6d/Dw2pozQl7AeTXL8zDXhtg9G6qL+
+ M1svshR9UBZFm/+vWZ0yLJjdYjbnnS+xkRpCJcV4nfHjfa+SJMkSrdPmMrR28vlh5kCc
+ eBCyemqkb4hiAcMjL6vB8uV6UBMxWKowmOB6KaSpN3WN3k+tFtfGHcdxwCOa/kJTfc/D
+ 0sOWVNx7TM+l1JZs5rDrJh/2LioFCE2im0n4HLNO9wjX8ytI+jOFPl40rnH6kunJ7ARY
+ MJcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1704457226; x=1705062026;
+ d=1e100.net; s=20230601; t=1704457263; x=1705062063;
  h=content-disposition:mime-version:message-id:subject:cc:to:from:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=CWCHZKbV0nCInnBBb4G3T1/9XNnm41DOrT+nUORhlYo=;
- b=ccLsNDnCmsSyhLykM8JOROjAFDQGHP89QfLWw8RxKbbVprG1//ReaVe+TCu2t/6co8
- yp0dc46JPhTnWfHl/qkSi13Mr2eQSwLwnhIMPKTshQ7ZpZvQLqkWNDCZi6JdttFx9FZ6
- wgsMvsEFBc338fPOsC0sazrmoVd4I5Jnji00ekJ69L7fw06uw3dJly/CV0tnptq1a2Zi
- h46fyNWMzdX2slxd3wkVPYtKofOgo09ESluPltJj0IBm44tHVuee/YxUDGn2oeZnBg4X
- KlUkhhBDgsyUdiSN6R5AbMWPqkxNKaYEKA5m3VM0xFYa7KiOAvWFGNdexun5LVVWmePO
- ly4g==
-X-Gm-Message-State: AOJu0Yy2M0Tf+MxIaa65CIn8dSsDjgYrXJNNbl75TcCsPxJ/HTnl2fI7
- 8gn35tajqoEPGluGyJ5Es6LovABFe9bsLw==
-X-Google-Smtp-Source: AGHT+IEWKVWrdQKSakz2/Ts2zXXX/VWHLXpgdrXQ5rusD+EMlDGmLVQVh6dERCys1XLkof94JDbgvQ==
-X-Received: by 2002:a05:600c:3595:b0:40d:8d45:aae4 with SMTP id
- p21-20020a05600c359500b0040d8d45aae4mr1238303wmq.173.1704457226169; 
- Fri, 05 Jan 2024 04:20:26 -0800 (PST)
+ bh=ULXh385a3mnPJgk/tkor1+4zIqDEEtXOPj7SDn2bufc=;
+ b=pM+yEg5y7zftN0g2ig1+aTuVa7b1+lA7BdjfJsq6LdTT0KemmUcyCALmqDAhF52ZfP
+ +Ry031JjXJBeHw+lPGwl3Bv+CR4K7lPGNFMQQkJxGxoJZOz4ffKGATGco8TR50GxzFA4
+ I7WWeI++pwjCOxnveVHbNizc3MmQdUWOlbxl3bzyp3h6c+Z2GmGtpqbZ6Hdniz1aBM4/
+ 8uBpKHg3SjhVGpykoJcyZZ2l3oMbCF1DGkgVbLy555AW+kgo9dOtbsOLBoQ8gJgmVvi2
+ abrBwrA239soMNdJjhHRHDyFA8pFCYYr0HLWPc9qxCXKyIp8fzg7b/s2aVO6GTiItpJj
+ 8m1Q==
+X-Gm-Message-State: AOJu0Yzb17dSTR5R7GHmxpjbY/L8JGoJSXCTsE2jQMfuDKhRtcfeO/rN
+ 3GFv2NtPUpUqtw6GalfrpY84EAbvi8yhCg==
+X-Google-Smtp-Source: AGHT+IGAtpg35p5hHMy+mIWCDSBai/c1rYYlLjRlqD1rCG2ha+IQ+Pvn7+dYR5q1mSFe0bIZIw4eLQ==
+X-Received: by 2002:a50:8a85:0:b0:556:f865:44f3 with SMTP id
+ j5-20020a508a85000000b00556f86544f3mr1130019edj.51.1704457263702; 
+ Fri, 05 Jan 2024 04:21:03 -0800 (PST)
 Received: from localhost ([102.140.209.237]) by smtp.gmail.com with ESMTPSA id
- iv20-20020a05600c549400b0040b3d8907fesm1420756wmb.29.2024.01.05.04.20.25
+ z11-20020aa7d40b000000b00556cd818dd2sm911026edq.70.2024.01.05.04.21.02
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 05 Jan 2024 04:20:25 -0800 (PST)
-Date: Fri, 5 Jan 2024 15:20:22 +0300
+ Fri, 05 Jan 2024 04:21:03 -0800 (PST)
+Date: Fri, 5 Jan 2024 15:21:00 +0300
 From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH] drm/xe: unlock on error path in xe_vm_add_compute_exec_queue()
-Message-ID: <fa88d289-9886-474d-b697-b69881b4ddbe@moroto.mountain>
+To: maarten.lankhorst@linux.intel.com
+Subject: [bug report] drm/xe/display: Implement display support
+Message-ID: <7c18b7d3-6e8b-4ce6-b20a-b0a25afece49@moroto.mountain>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
 X-Mailman-Approved-At: Fri, 05 Jan 2024 17:11:05 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,53 +68,49 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
- Lucas De Marchi <lucas.demarchi@intel.com>, linux-kernel@vger.kernel.org,
- Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>, intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Drop the "&vm->lock" before returning.
+Hello Maarten Lankhorst,
 
-Fixes: 24f947d58fe5 ("drm/xe: Use DRM GPUVM helpers for external- and evicted objects")
-Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
----
- drivers/gpu/drm/xe/xe_vm.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+The patch 44e694958b95: "drm/xe/display: Implement display support"
+from Aug 17, 2023 (linux-next), leads to the following Smatch static
+checker warning:
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 9180f2d2d71d..4aa7979fe6bf 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -332,13 +332,13 @@ int xe_vm_add_compute_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q)
- 	down_write(&vm->lock);
- 	err = drm_gpuvm_exec_lock(&vm_exec);
- 	if (err)
--		return err;
-+		goto out_up_write;
- 
- 	pfence = xe_preempt_fence_create(q, q->compute.context,
- 					 ++q->compute.seqno);
- 	if (!pfence) {
- 		err = -ENOMEM;
--		goto out_unlock;
-+		goto out_fini;
- 	}
- 
- 	list_add(&q->compute.link, &vm->preempt.exec_queues);
-@@ -361,8 +361,9 @@ int xe_vm_add_compute_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q)
- 
- 	up_read(&vm->userptr.notifier_lock);
- 
--out_unlock:
-+out_fini:
- 	drm_exec_fini(exec);
-+out_up_write:
- 	up_write(&vm->lock);
- 
- 	return err;
--- 
-2.42.0
+	drivers/gpu/drm/xe/xe_bo.c:1414 __xe_bo_create_locked()
+	error: we previously assumed 'tile' could be null (see line 1408)
 
+drivers/gpu/drm/xe/xe_bo.c
+    1404                 xe_vm_get(vm);
+    1405         bo->vm = vm;
+    1406 
+    1407         if (bo->flags & XE_BO_CREATE_GGTT_BIT) {
+    1408                 if (!tile && flags & XE_BO_CREATE_STOLEN_BIT)
+    1409                         tile = xe_device_get_root_tile(xe);
+
+Let's assume tile is NULL and XE_BO_CREATE_STOLEN_BIT is not set.
+
+    1410 
+    1411                 xe_assert(xe, tile);
+    1412 
+    1413                 if (flags & XE_BO_FIXED_PLACEMENT_BIT) {
+--> 1414                         err = xe_ggtt_insert_bo_at(tile->mem.ggtt, bo,
+                                                            ^^^^^^^^^^^^^^
+
+    1415                                                    start + bo->size, U64_MAX);
+    1416                 } else {
+    1417                         err = xe_ggtt_insert_bo(tile->mem.ggtt, bo);
+                                                         ^^^^^^^^^^^^^^
+Then we will crash.
+
+    1418                 }
+    1419                 if (err)
+    1420                         goto err_unlock_put_bo;
+    1421         }
+    1422 
+    1423         return bo;
+    1424 
+
+regards,
+dan carpenter
