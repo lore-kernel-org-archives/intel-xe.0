@@ -4,59 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8535EC47258
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BBD1C47079
 	for <intel-xe@archiver.kernel.org>; Fri,  5 Jan 2024 17:11:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E31C410E66C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C613010E639;
 	Fri,  5 Jan 2024 17:11:05 +0000 (UTC)
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com
- [IPv6:2a00:1450:4864:20::534])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4AF610E5F2
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Jan 2024 12:20:40 +0000 (UTC)
-Received: by mail-ed1-x534.google.com with SMTP id
- 4fb4d7f45d1cf-556c60c3f9aso1940900a12.3
- for <intel-xe@lists.freedesktop.org>; Fri, 05 Jan 2024 04:20:40 -0800 (PST)
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com
+ [IPv6:2a00:1450:4864:20::334])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D55E710E5E2
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 Jan 2024 12:21:35 +0000 (UTC)
+Received: by mail-wm1-x334.google.com with SMTP id
+ 5b1f17b1804b1-40e353c8d75so12655045e9.3
+ for <intel-xe@lists.freedesktop.org>; Fri, 05 Jan 2024 04:21:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1704457239; x=1705062039; darn=lists.freedesktop.org;
+ d=linaro.org; s=google; t=1704457294; x=1705062094; darn=lists.freedesktop.org;
  h=content-disposition:mime-version:message-id:subject:cc:to:from:date
  :from:to:cc:subject:date:message-id:reply-to;
- bh=VPgoGs4JCmFCXEz83XMMwyrfsqP4QMFdJVq1Hj+FDjY=;
- b=mSNt6E7cHwPW1HpT/6gSYIcUObdFm81KsCT4SYwchfSlP+AEaFm2pn8wwN4l8mMbAy
- lQcae/FC/G2964ij2iDWj7cGMOmdIDBO5qBjKM3GHUwJdlZJO1muFxKTKesAJimscFtF
- vqY/eOnJ7uGlutfOLF6V5Wj2PNcx7HE3ik2i5chRFjI8JcetYtqggAs7UN3Xbb9KB7DT
- WaAjsHC6LO4aGEQDMuEH5NqSs7TUR/WCsy7qMDLg7Bh84jA+/e99iFG9dbVWVBM8V3rf
- AxwTLkTftDtFsJs0KbCdaMg0k1B3O+1UGWXr2aZSbFlkr6n4JO3CKoYcmidNyfC8Gqgs
- E8YQ==
+ bh=qdzdLTdNjJjuQci6+69Symh+85gKlgyMSdhFghD2Gyc=;
+ b=x8UUBGT/0eO90Ppt/e6BzszWz7LvUuDhb/YMeEchVDe9O6dMkBQ0V4jV6w6AYIS7Pa
+ uMpUHIElM3XAynuxCN/BB4ILJnNujng24SkZAXEoleqtKVDjCgKSZekhOUxCQykHZX2n
+ Ih1pssdkQS2N1iMB+6M0piklV36T+yyOCV40LB1LkF8uv5RoxU1E30Hgky8EQ2fZbmfP
+ 8dsO12GmKTZRkJ9nEYb7n4vEb53syQgHx+oypt/QGsgfg4W7dYoTsqG+bjIDkqTmmYxK
+ AklC8UmDkInyBH14DTGVZRVWD1LVKhoKvrLQALQvO1FzoPCZa86jVFXTm0c9GuqPStOj
+ fHzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1704457239; x=1705062039;
+ d=1e100.net; s=20230601; t=1704457294; x=1705062094;
  h=content-disposition:mime-version:message-id:subject:cc:to:from:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=VPgoGs4JCmFCXEz83XMMwyrfsqP4QMFdJVq1Hj+FDjY=;
- b=k6kmKCQSMYhQ0p9tFkFa0KuxJWJ43nRbt0CxBUUbto2Dtt+odA+cWoLd0xeMmnxkGO
- sPQ6cOcqB0E12znuDLYgyV5pdYK6nRol/V7hugD6l0tajOqntQWKMwIWtfYoTAv13jLy
- P+E+YLGyzo3s4h9DVhUX8g2JvBS6At+3JmCYap3l9zc91MWSNkVG6qEMR17WEwffniQ1
- R4FXWWMnNDjdk0a9WOmqKuod2Tf007IFfNChePGH7b5jeiqf6Z8smMsH0GOTv6fJ75oB
- UEcIGhUlZvSOvfYsvhgL6JRn0a2+L9rPZ4/hYV1JuL+JGLi4Z1Z6w4tzl6jlXn3Ih/7H
- YpBQ==
-X-Gm-Message-State: AOJu0YwYHVQsHWcMs2Vw8lRhJqWEhq2ZrsWxC0ucut65k1ha37aBj7GA
- QT7sXoEq5J9ouYx+uWUY48T9RDxOXz6h8g==
-X-Google-Smtp-Source: AGHT+IGTi4ByJkUR6/L3sBCprInPncsNYvpNn81WSpgeD5kLCGkvWCFb+4d+d6d898+eLssOzT1V0A==
-X-Received: by 2002:a17:906:51c1:b0:a28:fa55:3597 with SMTP id
- v1-20020a17090651c100b00a28fa553597mr923237ejk.98.1704457239116; 
- Fri, 05 Jan 2024 04:20:39 -0800 (PST)
+ bh=qdzdLTdNjJjuQci6+69Symh+85gKlgyMSdhFghD2Gyc=;
+ b=apYWnZFEhP6pzZbgEuyZMXNLJMP7OrNO2a7v1U9/FV+veleTxa96Y/N8KsgNKnjpTR
+ RhnleZuJmSeoLBh13+fXEy8W0MTOk9wnlN/IdJZZApiboUAVmYvHyLVVcNPp/TauEW7b
+ bFDDe0aGQcq7KXOnfcTkuA0k86rb7Hccq/GvNSzpdl9X1GBzixb3Rc+3UyhIm/UdtG53
+ UysXd5kXWoKnsBSnjOeWw/JtHYsiT4/U2KkTKUOmOItwAZuaUkkvFjd8E1M7ZPONeu99
+ R9mTkQ3tL8ghNDf+BAWKi33O2oqFHZn7QnltTxwuVcKqzdcAzuRsNZyzOB3KyuUd+dMy
+ cdng==
+X-Gm-Message-State: AOJu0Yw1yiiNmY2E3p+6jm0I0yPeYCCWp0tKZnlnmW2hOP25rA4kfzKW
+ TsT8KVgzhhpYKqOxoPNxD3PXkm2iklVFIA==
+X-Google-Smtp-Source: AGHT+IHbjMmOV81oLmo61E2rTHp1RWD3EMWfchgyMXOZWheLxnnphRbT718LuObXwpOYGytlzfwVWg==
+X-Received: by 2002:a05:600c:1547:b0:40d:8843:d039 with SMTP id
+ f7-20020a05600c154700b0040d8843d039mr1163880wmg.68.1704457294315; 
+ Fri, 05 Jan 2024 04:21:34 -0800 (PST)
 Received: from localhost ([102.140.209.237]) by smtp.gmail.com with ESMTPSA id
- r3-20020a170906704300b00a27e4d34455sm820240ejj.183.2024.01.05.04.20.38
+ o14-20020a05600c4fce00b0040d8cd116e4sm1419233wmq.37.2024.01.05.04.21.33
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 05 Jan 2024 04:20:38 -0800 (PST)
-Date: Fri, 5 Jan 2024 15:20:35 +0300
+ Fri, 05 Jan 2024 04:21:34 -0800 (PST)
+Date: Fri, 5 Jan 2024 15:21:30 +0300
 From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH] drm/xe/selftests: Fix an error pointer dereference bug
-Message-ID: <5c0db456-2d8a-485f-875d-6408386fcaa5@moroto.mountain>
+To: matthew.brost@intel.com
+Subject: [bug report] drm/xe: shift wrapping in xe_gem_create_ioctl()
+Message-ID: <ebb5c304-106c-4c6a-a377-b6a4096238cb@moroto.mountain>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
 X-Mailman-Approved-At: Fri, 05 Jan 2024 17:11:05 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,44 +68,79 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
- dri-devel@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, linux-kernel@vger.kernel.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- intel-xe@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Check if "bo" is an error pointer before calling xe_bo_lock() on it.
+Hello Matthew Brost,
 
-Fixes: d6abc18d6693 ("drm/xe/xe2: Modify xe_bo_test for system memory")
-Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
----
- drivers/gpu/drm/xe/tests/xe_bo.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+The patch dd08ebf6c352: "drm/xe: Introduce a new DRM driver for Intel
+GPUs" from Mar 30, 2023 (linux-next), leads to the following Smatch
+static checker warning:
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
-index 412b2e7ce40c..3436fd9cf2b2 100644
---- a/drivers/gpu/drm/xe/tests/xe_bo.c
-+++ b/drivers/gpu/drm/xe/tests/xe_bo.c
-@@ -125,14 +125,13 @@ static void ccs_test_run_tile(struct xe_device *xe, struct xe_tile *tile,
- 
- 	bo = xe_bo_create_user(xe, NULL, NULL, SZ_1M, DRM_XE_GEM_CPU_CACHING_WC,
- 			       ttm_bo_type_device, bo_flags);
--
--	xe_bo_lock(bo, false);
--
- 	if (IS_ERR(bo)) {
- 		KUNIT_FAIL(test, "Failed to create bo.\n");
- 		return;
- 	}
- 
-+	xe_bo_lock(bo, false);
-+
- 	kunit_info(test, "Verifying that CCS data is cleared on creation.\n");
- 	ret = ccs_test_migrate(tile, bo, false, 0ULL, 0xdeadbeefdeadbeefULL,
- 			       test);
--- 
-2.42.0
+	drivers/gpu/drm/xe/xe_bo.c:1916 xe_gem_create_ioctl()
+	warn: potential integer overflow from user 'args->placement <<'
 
+drivers/gpu/drm/xe/xe_bo.c
+    1869 int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+    1870                         struct drm_file *file)
+    1871 {
+    1872         struct xe_device *xe = to_xe_device(dev);
+    1873         struct xe_file *xef = to_xe_file(file);
+    1874         struct drm_xe_gem_create *args = data;
+    1875         struct xe_vm *vm = NULL;
+    1876         struct xe_bo *bo;
+    1877         unsigned int bo_flags;
+    1878         u32 handle;
+    1879         int err;
+    1880 
+    1881         if (XE_IOCTL_DBG(xe, args->extensions) ||
+    1882             XE_IOCTL_DBG(xe, args->pad[0] || args->pad[1] || args->pad[2]) ||
+    1883             XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+    1884                 return -EINVAL;
+    1885 
+    1886         /* at least one valid memory placement must be specified */
+    1887         if (XE_IOCTL_DBG(xe, (args->placement & ~xe->info.mem_region_mask) ||
+    1888                          !args->placement))
+    1889                 return -EINVAL;
+    1890 
+    1891         if (XE_IOCTL_DBG(xe, args->flags &
+    1892                          ~(DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING |
+    1893                            DRM_XE_GEM_CREATE_FLAG_SCANOUT |
+    1894                            DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM)))
+    1895                 return -EINVAL;
+    1896 
+    1897         if (XE_IOCTL_DBG(xe, args->handle))
+    1898                 return -EINVAL;
+    1899 
+    1900         if (XE_IOCTL_DBG(xe, !args->size))
+    1901                 return -EINVAL;
+    1902 
+    1903         if (XE_IOCTL_DBG(xe, args->size > SIZE_MAX))
+    1904                 return -EINVAL;
+    1905 
+    1906         if (XE_IOCTL_DBG(xe, args->size & ~PAGE_MASK))
+    1907                 return -EINVAL;
+    1908 
+    1909         bo_flags = 0;
+    1910         if (args->flags & DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING)
+    1911                 bo_flags |= XE_BO_DEFER_BACKING;
+    1912 
+    1913         if (args->flags & DRM_XE_GEM_CREATE_FLAG_SCANOUT)
+    1914                 bo_flags |= XE_BO_SCANOUT_BIT;
+    1915 
+--> 1916         bo_flags |= args->placement << (ffs(XE_BO_CREATE_SYSTEM_BIT) - 1);
+                             ^^^^^^^^^^^^^^^
+Potential shift wrapping.
+
+    1917 
+    1918         if (args->flags & DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM) {
+    1919                 if (XE_IOCTL_DBG(xe, !(bo_flags & XE_BO_CREATE_VRAM_MASK)))
+    1920                         return -EINVAL;
+    1921 
+    1922                 bo_flags |= XE_BO_NEEDS_CPU_ACCESS;
+    1923         }
+    1924 
+
+regards,
+dan carpenter
