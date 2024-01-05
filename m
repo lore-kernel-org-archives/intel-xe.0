@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF707C3DA6E
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Jan 2024 17:27:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A172EC3DA6E
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Jan 2024 17:28:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3C9210E64A;
-	Fri,  5 Jan 2024 17:27:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69A5810E653;
+	Fri,  5 Jan 2024 17:28:00 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B423B10E64A;
- Fri,  5 Jan 2024 17:27:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4455610E653;
+ Fri,  5 Jan 2024 17:27:59 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Add_DRM=5F?=
- =?utf-8?q?XE=5FLOW=5FLEVEL=5FTRACEPOINTS?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Add_DRM=5FXE=5F?=
+ =?utf-8?q?LOW=5FLEVEL=5FTRACEPOINTS?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Fri, 05 Jan 2024 17:27:33 -0000
-Message-ID: <170447565373.40937.12218721498542103814@5338d5abeb45>
+Date: Fri, 05 Jan 2024 17:27:59 -0000
+Message-ID: <170447567928.40936.16183163486242644046@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240105164530.1328374-1-matthew.brost@intel.com>
 In-Reply-To: <20240105164530.1328374-1-matthew.brost@intel.com>
@@ -44,13 +44,45 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Add DRM_XE_LOW_LEVEL_TRACEPOINTS
 URL   : https://patchwork.freedesktop.org/series/128268/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 2f34bf674 drm/xe: Add mocs reset kunit
-=== git am output follows ===
-Applying: drm/xe: Add DRM_XE_LOW_LEVEL_TRACEPOINTS
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6030b24c1386b00de8187b5fb987e283a57b372a
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 3a49f60a032621fbed5649157b1a72c881ef31b3
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Fri Jan 5 08:45:30 2024 -0800
+
+    drm/xe: Add DRM_XE_LOW_LEVEL_TRACEPOINTS
+    
+    Trace events are uABI. The Xe trace events currently implemented are
+    developer only and subject to change. Hide all Xe behind
+    DRM_XE_LOW_LEVEL_TRACEPOINTS so these are free to change going forward.
+    
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 2f34bf674c7dad8d0cb6ae92d4e56805d63d0513 drm-intel
+3a49f60a0 drm/xe: Add DRM_XE_LOW_LEVEL_TRACEPOINTS
+-:25: WARNING:CONFIG_DESCRIPTION: please write a help paragraph that fully describes the config symbol
+#25: FILE: drivers/gpu/drm/xe/Kconfig.debug:109:
++config DRM_XE_LOW_LEVEL_TRACEPOINTS
++       bool "Enable low level trace events"
++       default n
++       help
++         Choose this option to enable low level trace events.
++
++	 Recomended for driver developers only.
++
++	 If in doubt, say "N".
+
+total: 0 errors, 1 warnings, 0 checks, 380 lines checked
 
 
