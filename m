@@ -4,48 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F358C46CD2
-	for <intel-xe@archiver.kernel.org>; Sat,  6 Jan 2024 16:27:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7A70C46CD2
+	for <intel-xe@archiver.kernel.org>; Sat,  6 Jan 2024 22:06:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A59C510E060;
-	Sat,  6 Jan 2024 16:27:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79BB610E040;
+	Sat,  6 Jan 2024 22:06:40 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C28310E060
- for <intel-xe@lists.freedesktop.org>; Sat,  6 Jan 2024 16:27:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB95E10E040
+ for <intel-xe@lists.freedesktop.org>; Sat,  6 Jan 2024 22:06:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704558471; x=1736094471;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=s2xOe7AnIKqVZIRBHetIwS6LF1GxLFtiXjzTZ9riLf0=;
- b=nItyOTr+X19jw6y3EvvKoJqqLO56j0N+e3KcQTopzc6FBV5JFVEHwCLf
- z37IFKTGsUHyI9GGXpzBN7ABN6vSWKoLBSl6cgiwGLAS1cwOTM/a7QdFG
- NSnl/Y3zJfPmgxo1aBkHndnUAjN5dT0qXJM0VrfVulcBEhk4SpukEQerS
- bGUrP0kudVPuZk7mGbOHsNOkVgRELZ9Ok1kq9tj3aPgnFUkOUzSetsupg
- vs260udPHntMWv0NcdDYy2idtCk4PjqjXPJEIRzXJ1H37+7nNWn/hwQuM
- F4TknNZT32U0eWCnveCm8f/qN5fVstOFhqqlsar2/ipFsqungV/msCrsj A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10945"; a="397391849"
-X-IronPort-AV: E=Sophos;i="6.04,337,1695711600"; d="scan'208";a="397391849"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ t=1704578798; x=1736114798;
+ h=date:from:to:cc:subject:message-id;
+ bh=4CU072D4Hk4tKbIMp8+GTq33rfa4k1TYmCM5DCYLt0I=;
+ b=EeRL8L6drXt+pDh4AuPYTD2YwDNmtfqofr3lLzlx6KmvBhbtxFrUxbI6
+ WtsL+xhVcrLXcMzM4FBUCuWlwZceGltXCRY08kUykNv3qsY1yBv+NKDcr
+ A5Rn/pcj5vCtv52XpHQhjlrEJE8efG0XV5dYhkITSa2F20zoFMwvkUSHp
+ CdsJ9aCrf9b6j3tJRJ9eeUt2jTLgZSYvtKIHmNZl4xteb5hPc90CZ6huc
+ w5Zq6IzwL9kDcsaNQXTHiOOyQPD2ANh678qxH0pWvZRamvs3/wJZYaueU
+ 4Ds7aV9C7uZJUVaxGhu88JHbr/bdWIaOapJi4DMBEuRgZ1n3f7tlxZ5Jj A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10945"; a="397407349"
+X-IronPort-AV: E=Sophos;i="6.04,337,1695711600"; d="scan'208";a="397407349"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2024 08:27:45 -0800
+ 06 Jan 2024 14:06:37 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10945"; a="871484904"
-X-IronPort-AV: E=Sophos;i="6.04,337,1695711600"; d="scan'208";a="871484904"
+X-IronPort-AV: E=McAfee;i="6600,9927,10945"; a="730772934"
+X-IronPort-AV: E=Sophos;i="6.04,337,1695711600"; d="scan'208";a="730772934"
 Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
- by FMSMGA003.fm.intel.com with ESMTP; 06 Jan 2024 08:27:44 -0800
+ by orsmga003.jf.intel.com with ESMTP; 06 Jan 2024 14:06:36 -0800
 Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1rM9WP-0002jQ-2X;
- Sat, 06 Jan 2024 16:27:41 +0000
-Date: Sun, 7 Jan 2024 00:27:11 +0800
+ (envelope-from <lkp@intel.com>) id 1rMEoM-00034R-0Q;
+ Sat, 06 Jan 2024 22:06:34 +0000
+Date: Sun, 07 Jan 2024 06:06:04 +0800
 From: kernel test robot <lkp@intel.com>
 To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [drm-xe:drm-xe-next 9/10] drivers/gpu/drm/xe/xe_guc_relay.c:863:52:
- error: call to undeclared function 'kunit_get_current_test'; ISO C99 and
- later do not support implicit function declarations
-Message-ID: <202401070036.60pNn4uZ-lkp@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ cca0607b6f6a21bee68c092ed7ad9f3322e54523
+Message-ID: <202401070601.ffrFymlN-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,84 +54,171 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: llvm@lists.linux.dev, intel-xe@lists.freedesktop.org,
- oe-kbuild-all@lists.linux.dev
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-head:   cca0607b6f6a21bee68c092ed7ad9f3322e54523
-commit: 27b717bac93fb9a28f37ba17f3f4aa220fedae21 [9/10] drm/xe/kunit: Add GuC Relay kunit tests
-config: x86_64-randconfig-006-20240106 (https://download.01.org/0day-ci/archive/20240107/202401070036.60pNn4uZ-lkp@intel.com/config)
-compiler: ClangBuiltLinux clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240107/202401070036.60pNn4uZ-lkp@intel.com/reproduce)
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: cca0607b6f6a21bee68c092ed7ad9f3322e54523  drm/xe: Fix compilation without CONFIG_KUNIT
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202401070036.60pNn4uZ-lkp@intel.com/
+Warning ids grouped by kconfigs:
 
-Note: the drm-xe/drm-xe-next HEAD cca0607b6f6a21bee68c092ed7ad9f3322e54523 builds fine.
-      It only hurts bisectability.
+gcc_recent_errors
+|-- i386-randconfig-003-20240106
+|   `-- WARNING:modpost:missing-MODULE_DESCRIPTION()-in-sound-soc-amd-acp-snd-acp-pci.o
+|-- loongarch-allmodconfig
+|   `-- WARNING:modpost:missing-MODULE_DESCRIPTION()-in-drivers-gpu-drm-xe-tests-xe_mocs_test.o
+`-- riscv-allmodconfig
+    `-- WARNING:modpost:missing-MODULE_DESCRIPTION()-in-drivers-gpu-drm-xe-tests-xe_mocs_test.o
+clang_recent_errors
+|-- powerpc-allmodconfig
+|   `-- WARNING:modpost:missing-MODULE_DESCRIPTION()-in-drivers-gpu-drm-xe-tests-xe_mocs_test.o
+`-- x86_64-allmodconfig
+    |-- WARNING:modpost:missing-MODULE_DESCRIPTION()-in-drivers-gpu-drm-xe-tests-xe_mocs_test.o
+    `-- WARNING:modpost:missing-MODULE_DESCRIPTION()-in-sound-soc-amd-acp-snd-acp-pci.o
 
-All errors (new ones prefixed by >>):
+elapsed time: 1453m
 
->> drivers/gpu/drm/xe/xe_guc_relay.c:863:52: error: call to undeclared function 'kunit_get_current_test'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     863 |         if (unlikely(!IS_SRIOV_VF(relay_to_xe(relay)) && !kunit_get_current_test()))
-         |                                                           ^
-   drivers/gpu/drm/xe/xe_guc_relay.c:909:52: error: call to undeclared function 'kunit_get_current_test'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     909 |         if (unlikely(!IS_SRIOV_PF(relay_to_xe(relay)) && !kunit_get_current_test()))
-         |                                                           ^
-   2 errors generated.
+configs tested: 133
+configs skipped: 0
 
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-vim +/kunit_get_current_test +863 drivers/gpu/drm/xe/xe_guc_relay.c
-
-   840	
-   841	/**
-   842	 * xe_guc_relay_process_guc2vf - Handle relay notification message from the GuC.
-   843	 * @relay: the &xe_guc_relay which will handle the message
-   844	 * @msg: message to be handled
-   845	 * @len: length of the message (in dwords)
-   846	 *
-   847	 * This function will handle relay messages received from the GuC.
-   848	 *
-   849	 * This function is can only be used if driver is running in SR-IOV mode.
-   850	 *
-   851	 * Return: 0 on success or a negative error code on failure.
-   852	 */
-   853	int xe_guc_relay_process_guc2vf(struct xe_guc_relay *relay, const u32 *msg, u32 len)
-   854	{
-   855		u32 rid;
-   856	
-   857		relay_assert(relay, len >= GUC_HXG_MSG_MIN_LEN);
-   858		relay_assert(relay, FIELD_GET(GUC_HXG_MSG_0_ORIGIN, msg[0]) == GUC_HXG_ORIGIN_GUC);
-   859		relay_assert(relay, FIELD_GET(GUC_HXG_MSG_0_TYPE, msg[0]) == GUC_HXG_TYPE_EVENT);
-   860		relay_assert(relay, FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, msg[0]) ==
-   861			     XE_GUC_ACTION_GUC2VF_RELAY_FROM_PF);
-   862	
- > 863		if (unlikely(!IS_SRIOV_VF(relay_to_xe(relay)) && !kunit_get_current_test()))
-   864			return -EPERM;
-   865	
-   866		if (unlikely(!relay_is_ready(relay)))
-   867			return -ENODEV;
-   868	
-   869		if (unlikely(len < GUC2VF_RELAY_FROM_PF_EVENT_MSG_MIN_LEN))
-   870			return -EPROTO;
-   871	
-   872		if (unlikely(len > GUC2VF_RELAY_FROM_PF_EVENT_MSG_MAX_LEN))
-   873			return -EMSGSIZE;
-   874	
-   875		if (unlikely(FIELD_GET(GUC_HXG_EVENT_MSG_0_DATA0, msg[0])))
-   876			return -EPFNOSUPPORT;
-   877	
-   878		rid = FIELD_GET(GUC2VF_RELAY_FROM_PF_EVENT_MSG_1_RELAY_ID, msg[1]);
-   879	
-   880		return relay_process_msg(relay, PFID, rid,
-   881					 msg + GUC2VF_RELAY_FROM_PF_EVENT_MSG_MIN_LEN,
-   882					 len - GUC2VF_RELAY_FROM_PF_EVENT_MSG_MIN_LEN);
-   883	}
-   884	
+tested configs:
+alpha                             allnoconfig   gcc  
+alpha                            allyesconfig   gcc  
+alpha                               defconfig   gcc  
+arc                              allmodconfig   gcc  
+arc                               allnoconfig   gcc  
+arc                              allyesconfig   gcc  
+arc                          axs103_defconfig   gcc  
+arc                                 defconfig   gcc  
+arc                            hsdk_defconfig   gcc  
+arc                   randconfig-001-20240106   gcc  
+arc                   randconfig-002-20240106   gcc  
+arm                              allmodconfig   gcc  
+arm                               allnoconfig   gcc  
+arm                          collie_defconfig   clang
+arm                                 defconfig   clang
+arm                   randconfig-001-20240106   gcc  
+arm                   randconfig-002-20240106   gcc  
+arm                   randconfig-003-20240106   gcc  
+arm                   randconfig-004-20240106   gcc  
+arm                       versatile_defconfig   clang
+arm64                             allnoconfig   gcc  
+arm64                 randconfig-001-20240106   gcc  
+arm64                 randconfig-002-20240106   gcc  
+arm64                 randconfig-003-20240106   gcc  
+arm64                 randconfig-004-20240106   gcc  
+csky                              allnoconfig   gcc  
+csky                                defconfig   gcc  
+csky                  randconfig-001-20240106   gcc  
+csky                  randconfig-002-20240106   gcc  
+hexagon                           allnoconfig   clang
+hexagon                             defconfig   clang
+hexagon               randconfig-001-20240106   clang
+hexagon               randconfig-002-20240106   clang
+i386                             allmodconfig   clang
+i386                              allnoconfig   clang
+i386                             allyesconfig   clang
+i386         buildonly-randconfig-001-20240106   gcc  
+i386         buildonly-randconfig-002-20240106   gcc  
+i386         buildonly-randconfig-003-20240106   gcc  
+i386         buildonly-randconfig-004-20240106   gcc  
+i386         buildonly-randconfig-005-20240106   gcc  
+i386         buildonly-randconfig-006-20240106   gcc  
+i386                                defconfig   gcc  
+i386                  randconfig-001-20240106   gcc  
+i386                  randconfig-002-20240106   gcc  
+i386                  randconfig-003-20240106   gcc  
+i386                  randconfig-004-20240106   gcc  
+i386                  randconfig-005-20240106   gcc  
+i386                  randconfig-006-20240106   gcc  
+i386                  randconfig-011-20240106   clang
+i386                  randconfig-012-20240106   clang
+i386                  randconfig-013-20240106   clang
+i386                  randconfig-014-20240106   clang
+i386                  randconfig-015-20240106   clang
+i386                  randconfig-016-20240106   clang
+loongarch                        allmodconfig   gcc  
+loongarch             randconfig-001-20240106   gcc  
+loongarch             randconfig-002-20240106   gcc  
+m68k                             allmodconfig   gcc  
+m68k                             allyesconfig   gcc  
+m68k                          hp300_defconfig   gcc  
+m68k                        stmark2_defconfig   gcc  
+microblaze                       allmodconfig   gcc  
+microblaze                       allyesconfig   gcc  
+mips                             allyesconfig   gcc  
+nios2                            allmodconfig   gcc  
+nios2                            allyesconfig   gcc  
+nios2                 randconfig-001-20240106   gcc  
+nios2                 randconfig-002-20240106   gcc  
+openrisc                         allyesconfig   gcc  
+parisc                           allmodconfig   gcc  
+parisc                           allyesconfig   gcc  
+parisc                randconfig-001-20240106   gcc  
+parisc                randconfig-002-20240106   gcc  
+powerpc                          allmodconfig   clang
+powerpc                          allyesconfig   clang
+powerpc               randconfig-001-20240106   gcc  
+powerpc               randconfig-002-20240106   gcc  
+powerpc               randconfig-003-20240106   gcc  
+powerpc64             randconfig-001-20240106   gcc  
+powerpc64             randconfig-002-20240106   gcc  
+powerpc64             randconfig-003-20240106   gcc  
+riscv                            allmodconfig   gcc  
+riscv                            allyesconfig   gcc  
+riscv                 randconfig-001-20240106   gcc  
+riscv                 randconfig-002-20240106   gcc  
+riscv                          rv32_defconfig   clang
+s390                             allyesconfig   gcc  
+s390                  randconfig-001-20240106   clang
+s390                  randconfig-002-20240106   clang
+sh                               allmodconfig   gcc  
+sh                               allyesconfig   gcc  
+sh                    randconfig-001-20240106   gcc  
+sh                    randconfig-002-20240106   gcc  
+sparc                            allmodconfig   gcc  
+sparc64                          allmodconfig   gcc  
+sparc64                          allyesconfig   gcc  
+sparc64               randconfig-001-20240106   gcc  
+sparc64               randconfig-002-20240106   gcc  
+um                               allmodconfig   clang
+um                               allyesconfig   clang
+um                    randconfig-001-20240106   gcc  
+um                    randconfig-002-20240106   gcc  
+x86_64                            allnoconfig   gcc  
+x86_64                           allyesconfig   clang
+x86_64       buildonly-randconfig-001-20240106   gcc  
+x86_64       buildonly-randconfig-002-20240106   gcc  
+x86_64       buildonly-randconfig-003-20240106   gcc  
+x86_64       buildonly-randconfig-004-20240106   gcc  
+x86_64       buildonly-randconfig-005-20240106   gcc  
+x86_64       buildonly-randconfig-006-20240106   gcc  
+x86_64                              defconfig   gcc  
+x86_64                randconfig-001-20240106   clang
+x86_64                randconfig-002-20240106   clang
+x86_64                randconfig-003-20240106   clang
+x86_64                randconfig-004-20240106   clang
+x86_64                randconfig-005-20240106   clang
+x86_64                randconfig-006-20240106   clang
+x86_64                randconfig-011-20240106   gcc  
+x86_64                randconfig-012-20240106   gcc  
+x86_64                randconfig-013-20240106   gcc  
+x86_64                randconfig-014-20240106   gcc  
+x86_64                randconfig-015-20240106   gcc  
+x86_64                randconfig-016-20240106   gcc  
+x86_64                randconfig-071-20240106   gcc  
+x86_64                randconfig-072-20240106   gcc  
+x86_64                randconfig-073-20240106   gcc  
+x86_64                randconfig-074-20240106   gcc  
+x86_64                randconfig-075-20240106   gcc  
+x86_64                randconfig-076-20240106   gcc  
+x86_64                          rhel-8.3-rust   clang
+xtensa                randconfig-001-20240106   gcc  
+xtensa                randconfig-002-20240106   gcc  
 
 -- 
 0-DAY CI Kernel Test Service
