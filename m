@@ -4,44 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1066EC3DA6E
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Jan 2024 23:15:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DFCEC3DA6E
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Jan 2024 23:50:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C225610E2D3;
-	Mon,  8 Jan 2024 23:15:27 +0000 (UTC)
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37F9F10E2D3
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Jan 2024 23:15:26 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by ams.source.kernel.org (Postfix) with ESMTP id C22E6B81905;
- Mon,  8 Jan 2024 23:15:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E403C433C7;
- Mon,  8 Jan 2024 23:15:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1704755724;
- bh=7KlcJVD8ZYiOIvP/KELAQLAx/l7D+V5cUHRCxDMgkEY=;
- h=Date:From:To:Cc:Subject:Reply-To:References:In-Reply-To:From;
- b=ZJ8foQrTyKniQDnjPPX687cBiNwV5nw4ShB8Muq+4lXuESkucboH5Vku4ScB+8cBy
- 0MdQgDmKl6s/jmTBscx0oGEpwgJrZkC4II30SMotD52XMKx1wLFOMsteVm6ZYxwpXJ
- TARpO+7tmxHAQSgTg6uTiGx+XoUO3HItG4GfNusKRwyDCKp9naNZIiPR9arAR9ChcJ
- jc5AWwEXiwhyaKfj1WVjCeSpB7F6N4RrHodJoQUVGz/y+9QK9oTwKkn3EdUbUvMZA+
- A2cZVFcawaROBhQYKMrnwu4AkePCUb2gRcZQ8ruRHGNNvURJU9hqekMAa1KUnJGN2v
- 3SsKrVZV57IJQ==
-Received: by paulmck-ThinkPad-P17-Gen-1.home (Postfix, from userid 1000)
- id B2278CE0C54; Mon,  8 Jan 2024 15:15:23 -0800 (PST)
-Date: Mon, 8 Jan 2024 15:15:23 -0800
-From: "Paul E. McKenney" <paulmck@kernel.org>
-To: Stephen Rothwell <sfr@canb.auug.org.au>
-Subject: Re: [BUG] allmodconfig build error in next-20240108
-Message-ID: <341a4955-0cdd-48d0-bfbd-cc6f6f09df37@paulmck-laptop>
-References: <45ad1d0f-a10f-483e-848a-76a30252edbe@paulmck-laptop>
- <20240109095757.1313b2d9@canb.auug.org.au>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3ABEA10E347;
+	Mon,  8 Jan 2024 23:50:11 +0000 (UTC)
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47A3710E345;
+ Mon,  8 Jan 2024 23:50:10 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3554330053513195362=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240109095757.1313b2d9@canb.auug.org.au>
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Check_skip=5Fguc=5Fpc_?=
+ =?utf-8?q?before_setting_SLPC_flag_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
+Date: Mon, 08 Jan 2024 23:50:10 -0000
+Message-ID: <170475781028.196237.11633257830632032939@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240108225842.966066-1-vinay.belgaumkar@intel.com>
+In-Reply-To: <20240108225842.966066-1-vinay.belgaumkar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,50 +35,157 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: paulmck@kernel.org
-Cc: lucas.dimarchi@intel.com, linux-kernel@vger.kernel.org,
- intel-xe@lists.freedesktop.org
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jan 09, 2024 at 09:57:57AM +1100, Stephen Rothwell wrote:
-> Hi Paul,
-> 
-> On Mon, 8 Jan 2024 13:33:36 -0800 "Paul E. McKenney" <paulmck@kernel.org> wrote:
-> >
-> > Recent -next trees get the following build error for allmodconfig builds:
-> > 
-> > ------------------------------------------------------------------------
-> > 
-> > drivers/gpu/drm/xe/xe_gt_pagefault.c: In function ‘xe_guc_pagefault_handler’:
-> > ./include/linux/fortify-string.h:57:33: error: writing 16 bytes into a region of  size 0 [-Werror=stringop-overflow=]
-> >    57 | #define __underlying_memcpy     __builtin_memcpy
-> >       |                                 ^
-> > ./include/linux/fortify-string.h:644:9: note: in expansion of macro ‘__underlying_memcpy’
-> >   644 |         __underlying_##op(p, q, __fortify_size); \
-> >       |         ^~~~~~~~~~~~~
-> > ./include/linux/fortify-string.h:689:26: note: in expansion of macro ‘__fortify_memcpy_chk’
-> >   689 | #define memcpy(p, q, s)  __fortify_memcpy_chk(p, q, s, \
-> >       |                          ^~~~~~~~~~~~~~~~~~~~
-> > drivers/gpu/drm/xe/xe_gt_pagefault.c:340:17: note: in expansion of macro ‘memcpy’
-> >   340 |                 memcpy(pf_queue->data + pf_queue->tail, msg, len * sizeof(u32));
-> >       |                 ^~~~~~
-> > In file included from drivers/gpu/drm/xe/xe_device_types.h:17,
-> >                  from drivers/gpu/drm/xe/xe_vm_types.h:16,
-> >                  from drivers/gpu/drm/xe/xe_bo.h:13,
-> >                  from drivers/gpu/drm/xe/xe_gt_pagefault.c:16:
-> > drivers/gpu/drm/xe/xe_gt_types.h:102:25: note: at offset [1144, 265324] into destination object ‘tile’ of size 8
-> >   102 |         struct xe_tile *tile;
-> >       |
-> 
-> Which architecture?  What compiler and version?  Anything special in your build
-> setup?  I do x86_64 allmodconfig builds all day with gcc v13.2 and I don't see
-> this failure.
+--===============3554330053513195362==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Good point!
+== Series Details ==
 
-I am using gcc version 11.3.1 20230605 (Red Hat 11.4.1-2) on x86_64.
-I see the same behavior on gcc version 8.5.0, which for all I know might
-be too old.
+Series: drm/xe: Check skip_guc_pc before setting SLPC flag (rev4)
+URL   : https://patchwork.freedesktop.org/series/128001/
+State : success
 
-							Thanx, Paul
+== Summary ==
+
+CI Bug Log - changes from xe-607-eacbcdb537a2774959d012206aba22848fdade26_BAT -> xe-pw-128001v4_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-128001v4_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
+    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#480])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-607-eacbcdb537a2774959d012206aba22848fdade26/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128001v4/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-adlp-7:         [FAIL][3] ([Intel XE#480]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-607-eacbcdb537a2774959d012206aba22848fdade26/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128001v4/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  
+#### Warnings ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [DMESG-FAIL][5] ([Intel XE#1033]) -> [DMESG-WARN][6] ([Intel XE#1033])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-607-eacbcdb537a2774959d012206aba22848fdade26/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128001v4/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  [Intel XE#1033]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033
+  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+
+
+Build changes
+-------------
+
+  * Linux: xe-607-eacbcdb537a2774959d012206aba22848fdade26 -> xe-pw-128001v4
+
+  IGT_7663: b5eca7b97430309e320874594feaeaa8e770e25e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-607-eacbcdb537a2774959d012206aba22848fdade26: eacbcdb537a2774959d012206aba22848fdade26
+  xe-pw-128001v4: 128001v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128001v4/index.html
+
+--===============3554330053513195362==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Check skip_guc_pc before setting SLPC flag (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/128001/">https://patchwork.freedesktop.org/series/128001/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128001v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128001v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-607-eacbcdb537a2774959d012206aba22848fdade26_BAT -&gt; xe-pw-128001v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-128001v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-607-eacbcdb537a2774959d012206aba22848fdade26/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128001v4/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-607-eacbcdb537a2774959d012206aba22848fdade26/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128001v4/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-607-eacbcdb537a2774959d012206aba22848fdade26/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033">Intel XE#1033</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128001v4/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033">Intel XE#1033</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-607-eacbcdb537a2774959d012206aba22848fdade26 -&gt; xe-pw-128001v4</li>
+</ul>
+<p>IGT_7663: b5eca7b97430309e320874594feaeaa8e770e25e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-607-eacbcdb537a2774959d012206aba22848fdade26: eacbcdb537a2774959d012206aba22848fdade26<br />
+  xe-pw-128001v4: 128001v4</p>
+
+</body>
+</html>
+
+--===============3554330053513195362==--
