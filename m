@@ -4,40 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE6CDC3DA6E
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Jan 2024 22:58:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FE33C3DA6E
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Jan 2024 22:58:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CD6E10E2CB;
-	Mon,  8 Jan 2024 22:58:04 +0000 (UTC)
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 195BA10E350
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Jan 2024 22:58:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1704754678;
- bh=Et58EhwEA0tDd3zujt9GnM9dv5dsfHb9ovqlvrRfljs=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=usFMCTdiVgqzfZTfu+P2BBjNYwj3OuTta4njS8C0pP9LFoQSAg+xX6rgJcxyp2Yle
- s/althnhCW++T7sAk5qG1YLbtTb9K4miFGNBQXmSFr1X4Q+BHVV3u6JFUS89O/yZ4w
- OeinwccBtUXlFaDl2h4AdRbmyk4Eu96+24qR7RWDACRWR7Q5Ll+fT+acvgfbARGBBF
- yS5MquaOttUx4MMO0Lf6ehveZL9LII0nVBbz+mWPbXBeommL1ULkxuN4NulCjEy5UW
- GuKCqjhU67D1Wm0LrkP6E206SL++A0onxEMaWmEPzMFy+5TXO1FHmZIaAIprLvTQXh
- JULkV24aFJr4w==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4T88bp2xqYz4wbr;
- Tue,  9 Jan 2024 09:57:58 +1100 (AEDT)
-Date: Tue, 9 Jan 2024 09:57:57 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: "Paul E. McKenney" <paulmck@kernel.org>
-Subject: Re: [BUG] allmodconfig build error in next-20240108
-Message-ID: <20240109095757.1313b2d9@canb.auug.org.au>
-In-Reply-To: <45ad1d0f-a10f-483e-848a-76a30252edbe@paulmck-laptop>
-References: <45ad1d0f-a10f-483e-848a-76a30252edbe@paulmck-laptop>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BED510E32A;
+	Mon,  8 Jan 2024 22:58:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A288A10E32A
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Jan 2024 22:58:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1704754739; x=1736290739;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=asbPVtRNaDLZEi4J7u/cxsdxHuepfhgCbGytNwV7C38=;
+ b=YX9vphz6oLwygnBnnix5uodBRz6Jvb0H7dzWjjecI1qQbC+lu69BggH4
+ hBudPzIt1wkfUQQgRnSN53rmht/VbpQ0aco8m6VlgadSV0ZMBV3sCOqAt
+ ZbC7+oaGe21xfgMOcY08KHk+5yIokrvcjceG4yHYL3oiZ53LDlbLSENhq
+ H/1onQDiTEdPNrb3CyO5f+YzxLq/9QrERohG/nYZ6s7PZ1jKB+b/Rp91L
+ TAXte7cRSFJ7Sh2lLxMPq7x2zNjYUn/sqWN2gC+eOUTmePvRAibqV/2pt
+ Z+2+OA6T1EoPOSX1Y8zC5HIZ3Fl55cv0uMV5B/3yLcXE2yBVLJVojNFl4 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="11512556"
+X-IronPort-AV: E=Sophos;i="6.04,181,1695711600"; d="scan'208";a="11512556"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2024 14:58:58 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.04,181,1695711600"; d="scan'208";a="29947275"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
+ by orviesa001.jf.intel.com with ESMTP; 08 Jan 2024 14:58:57 -0800
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH v3] drm/xe: Check skip_guc_pc before setting SLPC flag
+Date: Mon,  8 Jan 2024 14:58:42 -0800
+Message-Id: <20240108225842.966066-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/ADUhnR/f0fUP1Nsqi8QDnxE";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,87 +52,56 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: lucas.dimarchi@intel.com, linux-kernel@vger.kernel.org,
- intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---Sig_/ADUhnR/f0fUP1Nsqi8QDnxE
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Don't set SLPC GuC feature ctl flag if skip_guc_pc is true.
 
-Hi Paul,
+v2: Skip the freq related sysfs creation as well (Badal)
+v3: Remove unnecessary parenthesis (Lucas)
 
-On Mon, 8 Jan 2024 13:33:36 -0800 "Paul E. McKenney" <paulmck@kernel.org> w=
-rote:
->
-> Recent -next trees get the following build error for allmodconfig builds:
->=20
-> ------------------------------------------------------------------------
->=20
-> drivers/gpu/drm/xe/xe_gt_pagefault.c: In function =E2=80=98xe_guc_pagefau=
-lt_handler=E2=80=99:
-> ./include/linux/fortify-string.h:57:33: error: writing 16 bytes into a re=
-gion of =C2=A0size 0 [-Werror=3Dstringop-overflow=3D]
-> =C2=A0=C2=A0=C2=A057 | #define __underlying_memcpy =C2=A0 =C2=A0 __builti=
-n_memcpy
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0| =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 ^
-> ./include/linux/fortify-string.h:644:9: note: in expansion of macro =E2=
-=80=98__underlying_memcpy=E2=80=99
-> =C2=A0=C2=A0644 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 __underlying_##op(p, q, __f=
-ortify_size); \
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0| =C2=A0 =C2=A0 =C2=A0 =C2=A0 ^~~~~~~=
-~~~~~~
-> ./include/linux/fortify-string.h:689:26: note: in expansion of macro =E2=
-=80=98__fortify_memcpy_chk=E2=80=99
-> =C2=A0=C2=A0689 | #define memcpy(p, q, s)=C2=A0 __fortify_memcpy_chk(p, q=
-, s, \
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ^~~~~~~~~~~~~~~~~~~~
-> drivers/gpu/drm/xe/xe_gt_pagefault.c:340:17: note: in expansion of macro =
-=E2=80=98memcpy=E2=80=99
-> =C2=A0=C2=A0340 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- memcpy(pf_queue->data + pf_queue->tail, msg, len * sizeof(u32));
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0| =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 ^~~~~~
-> In file included from drivers/gpu/drm/xe/xe_device_types.h:17,
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0from drivers/gpu/drm/xe/xe_vm_types.h:16,
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0from drivers/gpu/drm/xe/xe_bo.h:13,
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0from drivers/gpu/drm/xe/xe_gt_pagefault.c:16:
-> drivers/gpu/drm/xe/xe_gt_types.h:102:25: note: at offset [1144, 265324] i=
-nto destination object =E2=80=98tile=E2=80=99 of size 8
-> =C2=A0=C2=A0102 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 struct xe_tile *tile;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0|
+Fixes: 975e4a3795d4 ("drm/xe: Manually setup C6 when skip_guc_pc is set")
+Fixes: bef52b5c7a19 ("drm/xe: Create a xe_gt_freq component for raw management and sysfs")
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_freq.c | 3 +++
+ drivers/gpu/drm/xe/xe_guc.c     | 7 ++++++-
+ 2 files changed, 9 insertions(+), 1 deletion(-)
 
-Which architecture?  What compiler and version?  Anything special in your b=
-uild
-setup?  I do x86_64 allmodconfig builds all day with gcc v13.2 and I don't =
-see
-this failure.
+diff --git a/drivers/gpu/drm/xe/xe_gt_freq.c b/drivers/gpu/drm/xe/xe_gt_freq.c
+index 3adfa6686e7c..e5b0f4ecdbe8 100644
+--- a/drivers/gpu/drm/xe/xe_gt_freq.c
++++ b/drivers/gpu/drm/xe/xe_gt_freq.c
+@@ -196,6 +196,9 @@ void xe_gt_freq_init(struct xe_gt *gt)
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	int err;
+ 
++	if (xe->info.skip_guc_pc)
++		return;
++
+ 	gt->freq = kobject_create_and_add("freq0", gt->sysfs);
+ 	if (!gt->freq) {
+ 		drm_warn(&xe->drm, "failed to add freq0 directory to %s\n",
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 311a0364bff1..6e73ebf67251 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -63,7 +63,12 @@ static u32 guc_ctl_debug_flags(struct xe_guc *guc)
+ 
+ static u32 guc_ctl_feature_flags(struct xe_guc *guc)
+ {
+-	return GUC_CTL_ENABLE_SLPC;
++	u32 flags = 0;
++
++	if (!guc_to_xe(guc)->info.skip_guc_pc)
++		flags |= GUC_CTL_ENABLE_SLPC;
++
++	return flags;
+ }
+ 
+ static u32 guc_ctl_log_params_flags(struct xe_guc *guc)
+-- 
+2.38.1
 
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/ADUhnR/f0fUP1Nsqi8QDnxE
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmWcffUACgkQAVBC80lX
-0GxIpQf8C+6WGqhvESkIIly6tjpCUu/1HJBcrCHnC+4k19bEzMzMINZ3E1cYSdnE
-x6qj+3hXIFsiA8+0DYdJBriPX8b6CFm4I4+aS/2Ux72dMB+YlFQe98Bdm3eiCWAa
-9w+T/aWevvwsFGgbhLf1whlsnEEx3KR/nZ7pwMyJpXie6NokWlSFUNt67K1odPwk
-gskrA708EFZxGNveTpY73MHh5OVsoyazS5So5SP97cy/kemdasISkr7TVBGbfFju
-3d8ww8F4YWfU6rAWSbejrkJCvbhJ2b2M0uzHF2ljdAeQUrc0cl7/iO0WzAzPwxgc
-5vDoXAbboee5bLDZThu3ggTnV8j9DA==
-=uG5V
------END PGP SIGNATURE-----
-
---Sig_/ADUhnR/f0fUP1Nsqi8QDnxE--
