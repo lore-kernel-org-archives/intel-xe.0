@@ -4,26 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01D75C46CD2
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Jan 2024 16:36:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1164EC46CD2
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Jan 2024 16:47:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A89CA10E44C;
-	Tue,  9 Jan 2024 16:36:05 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 333C610E47F;
- Tue,  9 Jan 2024 16:36:04 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2EA410E488;
+	Tue,  9 Jan 2024 16:47:54 +0000 (UTC)
+Received: from mgamail.intel.com (unknown [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B086810E488;
+ Tue,  9 Jan 2024 16:47:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1704818873; x=1736354873;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=gaEKgeWzK9tycqPLAAm+RoBb74b0rOVzaME1Qb2Pfjw=;
+ b=nsdEbqTmkqLgbqwZOgquJLhCptusZbadyajR8O6746EBQ5XMiwrCPsIW
+ b10RaksGJYc5FVEKbb/Q7EwSdDoyUpEaw39RFqMDYNoYwXFYM6M5kwnZG
+ oNleM90RdW+/7FK+QBDvPNXJPCZRSXdIfsTpVVCA9TPnvSvM4l1uDaI8T
+ Cq1rdHVrc1t33oCoZcM3oOFT4ynGOo66ayWWebxKLlIA1fy4MM3Q8ddB6
+ rS7S1SIyr+U+eldieuuqOk+U5Mr5YKB7pWHv/jalCt4Nve+I/vDgGbLVI
+ y2FEnCKykXupeP/c16sJkCXw5S2kCQ5VW9qpAx/EMALVG33GemXCO8rBk Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="388696404"
+X-IronPort-AV: E=Sophos;i="6.04,183,1695711600"; d="scan'208";a="388696404"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2024 08:47:44 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="852253484"
+X-IronPort-AV: E=Sophos;i="6.04,183,1695711600"; d="scan'208";a="852253484"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmsmga004.fm.intel.com with ESMTP; 09 Jan 2024 08:47:41 -0800
+Received: from [10.249.150.124] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.150.124])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id C8648C8375;
+ Tue,  9 Jan 2024 16:47:36 +0000 (GMT)
+Message-ID: <b48eb9f7-3986-4021-baef-35443c0294d4@intel.com>
+Date: Tue, 9 Jan 2024 17:47:36 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_nightly=2Econf=3A_Re?=
- =?utf-8?q?order_the_xe_repo_URLs?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Tue, 09 Jan 2024 16:36:04 -0000
-Message-ID: <170481816419.216242.862724076670397025@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240109150015.193368-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20240109150015.193368-1-thomas.hellstrom@linux.intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: clean up type of GUC_HXG_MSG_0_ORIGIN
+Content-Language: en-US
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+References: <ec22d742-632b-426a-ac86-62641a38c907@moroto.mountain>
+ <e5g3qkwvc3sjfpxcdvn43fiwbxthpblqgg2getxpbkd6g4lp5k@pgfm75tsg7wz>
+ <84a5c289-e2f6-4e30-a093-5a1c5b335057@intel.com>
+ <7vb3ql7z5dac3kwo7nhibh5al7wemt45ibzuyk4bpyzpltzjml@go7rtyq4m6hq>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <7vb3ql7z5dac3kwo7nhibh5al7wemt45ibzuyk4bpyzpltzjml@go7rtyq4m6hq>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,28 +64,126 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ intel-xe@lists.freedesktop.org, Dan Carpenter <dan.carpenter@linaro.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: nightly.conf: Reorder the xe repo URLs
-URL   : https://patchwork.freedesktop.org/series/128378/
-State : failure
-
-== Summary ==
-
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 1e4b117d9 drm/xe/guc: Only take actions in CT irq handler if CTs are enabled
-=== git am output follows ===
-error: nightly.conf: does not exist in index
-hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: nightly.conf: Reorder the xe repo URLs
-Patch failed at 0001 nightly.conf: Reorder the xe repo URLs
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
 
 
+On 08.01.2024 22:24, Lucas De Marchi wrote:
+> On Mon, Jan 08, 2024 at 09:46:47PM +0100, Michal Wajdeczko wrote:
+>>
+>>
+>> On 08.01.2024 15:07, Lucas De Marchi wrote:
+>>> On Mon, Jan 08, 2024 at 12:05:57PM +0300, Dan Carpenter wrote:
+>>>> The GUC_HXG_MSG_0_ORIGIN definition should be unsigned.  Currently
+>>>> it is
+>>>> defined as INT_MIN.  This doesn't cause a problem currently but it's
+>>>> still worth cleaning up.
+>>>>
+>>>> Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
+>>>
+>>> it seems there are a few more places to change to follow what was done
+>>> in commit 962bd34bb457 ("drm/i915/uc: Fix undefined behavior due to
+>>> shift overflowing the constant").
+>>>
+>>> +Michal
+>>>
+>>> Could we eventually share these abi includes with i915 so we don't
+>>> keep fixing the same thing in 2 places?
+>>
+>> it should be possible and I guess we should plan for that while
+>> discussing all this new xe driver...
+>>
+>> anyway, what about creating new intel/ folder under drm/ ?
+> 
+> include/drm/intel/?
+
+maybe, but then we will be limited to pure definitions/inlines, while I
+hope we could separate more GuC firmware specific, but still driver
+agnostic, code and place it under drivers/gpu/drm/intel/
+
+drivers/gpu/drm/intel/
+   include/
+      abi/
+         guc_actions_abi.h
+         guc_errors_abi.h
+         guc_klvs_abi.h
+   guc/
+      guc_hxg_helpers.c
+      guc_log_helpers.c
+
+note that AMD has its definitions in drm/amd/include/ not under include/
+
+> 
+>>
+>> - drm/intel/include/abi
+>>        guc_actions_abi.h
+>>        guc_klvs_abi.h
+>>        ...
+>>
+>> the only question would be what prefix should be used for macros:
+>> just GUC_ or INTEL_GUC_ or XE_GUC_ ?
+> 
+> if using a intel/ dir, probably better with INTEL_ prefix
+> 
+>>
+>> then we can also think of creating library with common helpers for GuC
+>> (for encoding/decoding HXG messages, preparing ADS, reading logs, etc)
+> 
+> with the other differences we have, I don't see much benefit,
+> particularly as it won't change for i915 wrt supported platforms.
+
+we are still using unified firmware versions across different platforms,
+so any newer firmware version drops could still be beneficial for the
+i915 and those legacy platforms
+
+> 
+>>
+>> btw, we can also consider sharing register definitions:
+>>
+>> - drm/intel/include/regs
+>>        xe_engine_regs.h
+>>        xe_gt_regs.h
+>>        xe_regs_defs.h
+> 
+> same as above, I don't think it's worth it as xe will keep adding to it
+> and it doesn't care for all the previous platforms. For those files we
+> may eventually autogen them like done by mesa.
+
+autogen sounds promising, so lets wait and once this will happen we can
+abandon xe/regs
+
+> 
+> Lucas De Marchi
+> 
+>>
+>> Michal
+>>
+>>>
+>>> Lucas De Marchi
+>>>
+>>>> ---
+>>>> drivers/gpu/drm/xe/abi/guc_messages_abi.h | 2 +-
+>>>> 1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/xe/abi/guc_messages_abi.h
+>>>> b/drivers/gpu/drm/xe/abi/guc_messages_abi.h
+>>>> index 3d199016cf88..c04606872e48 100644
+>>>> --- a/drivers/gpu/drm/xe/abi/guc_messages_abi.h
+>>>> +++ b/drivers/gpu/drm/xe/abi/guc_messages_abi.h
+>>>> @@ -40,7 +40,7 @@
+>>>>  */
+>>>>
+>>>> #define GUC_HXG_MSG_MIN_LEN            1u
+>>>> -#define GUC_HXG_MSG_0_ORIGIN            (0x1 << 31)
+>>>> +#define GUC_HXG_MSG_0_ORIGIN            (0x1U << 31)
+>>>> #define   GUC_HXG_ORIGIN_HOST            0u
+>>>> #define   GUC_HXG_ORIGIN_GUC            1u
+>>>> #define GUC_HXG_MSG_0_TYPE            (0x7 << 28)
+>>>> -- 
+>>>> 2.42.0
+>>>>
