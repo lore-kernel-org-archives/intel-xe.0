@@ -4,26 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32B67C47073
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Jan 2024 11:44:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2759DC46CD2
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Jan 2024 12:09:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4D4489F35;
-	Tue,  9 Jan 2024 11:44:16 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEE0C89F35;
- Tue,  9 Jan 2024 11:44:14 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1384014421729627176=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1BD010E3F4;
+	Tue,  9 Jan 2024 12:09:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7989A10E3F4
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 Jan 2024 12:09:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1704802188; x=1736338188;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=Xma/6nBOK3DwFw70aUvm0yMsTcA+mTTZqP+nkJO1qGI=;
+ b=DQ1bFvx7wqzcZIWSBv49slY2dR300wkrkzts8PHAGfxvd5IcMfbtCDd4
+ e89S1G2AAyhwZn4iF09sx2JkXA/5jI/J4/CrKMaFFvFBOyqloyK8348+a
+ 4Z+iFzdzLrd1I2J6Du39N3f4+k1U6pPRkiwhyVZkSQg97DQ76o2k05gqk
+ 9yE/ogdsBGFUkTAacuBw8iYDGPg//dPieLRnZ8wFofjnr5n0sftHIQLTE
+ sz4FyMxdJFNzJCHeNjcQD3hHOrFSClc77yKFKSSv0QgK/Wj3cRffQ7kU+
+ mHbD1gLLwIlYpEHjTrGeMWUIidokb8tttWLATYLp9nIYcfh5zV79ZQAmj w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="19681474"
+X-IronPort-AV: E=Sophos;i="6.04,182,1695711600"; d="scan'208";a="19681474"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2024 04:09:48 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.04,182,1695711600"; d="scan'208";a="16261833"
+Received: from tpsarve-mobl.ger.corp.intel.com (HELO [10.252.17.61])
+ ([10.252.17.61])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2024 04:09:47 -0800
+Message-ID: <40019771-542e-442a-823a-071fd8a5aab5@intel.com>
+Date: Tue, 9 Jan 2024 12:09:45 +0000
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe=3A_Add_vram_frequency_sys?=
- =?utf-8?q?fs_attributes_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sujaritha Sundaresan" <sujaritha.sundaresan@intel.com>
-Date: Tue, 09 Jan 2024 11:44:14 -0000
-Message-ID: <170480065497.215424.10029328365816130167@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240109110418.2065101-1-sujaritha.sundaresan@intel.com>
-In-Reply-To: <20240109110418.2065101-1-sujaritha.sundaresan@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC 15/20] drm/xe: Allow GuC CT fast path and worker regardless
+ of runtime_pm
+Content-Language: en-GB
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
+References: <20231228021232.2366249-1-rodrigo.vivi@intel.com>
+ <20231228021232.2366249-16-rodrigo.vivi@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20231228021232.2366249-16-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,160 +60,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1384014421729627176==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 28/12/2023 02:12, Rodrigo Vivi wrote:
+> First of all, this !ongoing && !from_runtime_functions seems a case that
+> should not happen and be bad anyway. So, let's at least stop doing
+> the workaround and if we find the case again we need to find in which
+> outer bound we need to protect this access, or another real condition.
+> 
+> On top of that we are now protecting more outer bounds instead of
+> a more granular memory access, so we might be fine. Or maybe ensure
+> that we really shut off GuC on these conditions.
+> 
+> Anyway, let's proceed with our killing of the memory_access callers
+> for now.
 
-== Series Details ==
+IIRC the main concern was that you could somehow get unsolicited CT 
+messages from GuC, so we figured it was best to ensure the device is 
+awake (and stays awake) before proceeding with accessing the device. Say 
+device enters SUSPENDING just as we get/process an unsolicited CT 
+message, or maybe CT request timed out waiting for response and caller 
+bails out dropping rpm and maybe triggering async gt reset, but turns 
+out GuC is just being slow and we do eventually get that response and 
+process it? Is that type of stuff not possible?
 
-Series: drm/xe: Add vram frequency sysfs attributes (rev5)
-URL   : https://patchwork.freedesktop.org/series/127800/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from xe-607-eacbcdb537a2774959d012206aba22848fdade26_BAT -> xe-pw-127800v5_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-127800v5_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-127800v5_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-127800v5_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_exec_fault_mode@twice-invalid-fault:
-    - bat-pvc-2:          [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-607-eacbcdb537a2774959d012206aba22848fdade26/bat-pvc-2/igt@xe_exec_fault_mode@twice-invalid-fault.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127800v5/bat-pvc-2/igt@xe_exec_fault_mode@twice-invalid-fault.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-127800v5_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [FAIL][3] ([Intel XE#480]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-607-eacbcdb537a2774959d012206aba22848fdade26/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127800v5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
-
-
-Build changes
--------------
-
-  * Linux: xe-607-eacbcdb537a2774959d012206aba22848fdade26 -> xe-pw-127800v5
-
-  IGT_7663: b5eca7b97430309e320874594feaeaa8e770e25e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-607-eacbcdb537a2774959d012206aba22848fdade26: eacbcdb537a2774959d012206aba22848fdade26
-  xe-pw-127800v5: 127800v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127800v5/index.html
-
---===============1384014421729627176==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Add vram frequency sysfs attributes (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/127800/">https://patchwork.freedesktop.org/series/127800/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127800v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127800v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-607-eacbcdb537a2774959d012206aba22848fdade26_BAT -&gt; xe-pw-127800v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-127800v5_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-127800v5_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-127800v5_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_exec_fault_mode@twice-invalid-fault:<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-607-eacbcdb537a2774959d012206aba22848fdade26/bat-pvc-2/igt@xe_exec_fault_mode@twice-invalid-fault.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127800v5/bat-pvc-2/igt@xe_exec_fault_mode@twice-invalid-fault.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-127800v5_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-607-eacbcdb537a2774959d012206aba22848fdade26/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127800v5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-607-eacbcdb537a2774959d012206aba22848fdade26 -&gt; xe-pw-127800v5</li>
-</ul>
-<p>IGT_7663: b5eca7b97430309e320874594feaeaa8e770e25e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-607-eacbcdb537a2774959d012206aba22848fdade26: eacbcdb537a2774959d012206aba22848fdade26<br />
-  xe-pw-127800v5: 127800v5</p>
-
-</body>
-</html>
-
---===============1384014421729627176==--
+> 
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_guc_ct.c | 40 ----------------------------------
+>   1 file changed, 40 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+> index 4cde93c18a2d4..7e68ef69ca8d5 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+> @@ -1096,14 +1096,8 @@ static void g2h_fast_path(struct xe_guc_ct *ct, u32 *msg, u32 len)
+>    */
+>   void xe_guc_ct_fast_path(struct xe_guc_ct *ct)
+>   {
+> -	struct xe_device *xe = ct_to_xe(ct);
+> -	bool ongoing;
+>   	int len;
+>   
+> -	ongoing = xe_device_mem_access_get_if_ongoing(ct_to_xe(ct));
+> -	if (!ongoing && xe_pm_read_callback_task(ct_to_xe(ct)) == NULL)
+> -		return;
+> -
+>   	spin_lock(&ct->fast_lock);
+>   	do {
+>   		len = g2h_read(ct, ct->fast_msg, true);
+> @@ -1111,9 +1105,6 @@ void xe_guc_ct_fast_path(struct xe_guc_ct *ct)
+>   			g2h_fast_path(ct, ct->fast_msg, len);
+>   	} while (len > 0);
+>   	spin_unlock(&ct->fast_lock);
+> -
+> -	if (ongoing)
+> -		xe_device_mem_access_put(xe);
+>   }
+>   
+>   /* Returns less than zero on error, 0 on done, 1 on more available */
+> @@ -1144,36 +1135,8 @@ static int dequeue_one_g2h(struct xe_guc_ct *ct)
+>   static void g2h_worker_func(struct work_struct *w)
+>   {
+>   	struct xe_guc_ct *ct = container_of(w, struct xe_guc_ct, g2h_worker);
+> -	bool ongoing;
+>   	int ret;
+>   
+> -	/*
+> -	 * Normal users must always hold mem_access.ref around CT calls. However
+> -	 * during the runtime pm callbacks we rely on CT to talk to the GuC, but
+> -	 * at this stage we can't rely on mem_access.ref and even the
+> -	 * callback_task will be different than current.  For such cases we just
+> -	 * need to ensure we always process the responses from any blocking
+> -	 * ct_send requests or where we otherwise expect some response when
+> -	 * initiated from those callbacks (which will need to wait for the below
+> -	 * dequeue_one_g2h()).  The dequeue_one_g2h() will gracefully fail if
+> -	 * the device has suspended to the point that the CT communication has
+> -	 * been disabled.
+> -	 *
+> -	 * If we are inside the runtime pm callback, we can be the only task
+> -	 * still issuing CT requests (since that requires having the
+> -	 * mem_access.ref).  It seems like it might in theory be possible to
+> -	 * receive unsolicited events from the GuC just as we are
+> -	 * suspending-resuming, but those will currently anyway be lost when
+> -	 * eventually exiting from suspend, hence no need to wake up the device
+> -	 * here. If we ever need something stronger than get_if_ongoing() then
+> -	 * we need to be careful with blocking the pm callbacks from getting CT
+> -	 * responses, if the worker here is blocked on those callbacks
+> -	 * completing, creating a deadlock.
+> -	 */
+> -	ongoing = xe_device_mem_access_get_if_ongoing(ct_to_xe(ct));
+> -	if (!ongoing && xe_pm_read_callback_task(ct_to_xe(ct)) == NULL)
+> -		return;
+> -
+>   	do {
+>   		mutex_lock(&ct->lock);
+>   		ret = dequeue_one_g2h(ct);
+> @@ -1187,9 +1150,6 @@ static void g2h_worker_func(struct work_struct *w)
+>   			kick_reset(ct);
+>   		}
+>   	} while (ret == 1);
+> -
+> -	if (ongoing)
+> -		xe_device_mem_access_put(ct_to_xe(ct));
+>   }
+>   
+>   static void guc_ctb_snapshot_capture(struct xe_device *xe, struct guc_ctb *ctb,
