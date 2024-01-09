@@ -4,51 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D947CC46CD2
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Jan 2024 11:41:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32B67C47073
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Jan 2024 11:44:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1C1E10E401;
-	Tue,  9 Jan 2024 11:41:40 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 484F210E401
- for <intel-xe@lists.freedesktop.org>; Tue,  9 Jan 2024 11:41:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704800499; x=1736336499;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=/8smawMCFVWrH1qMDE3XihLv0RQAojv1ascPT+0V5Dc=;
- b=R14o9A+r/HYgIV9noCNvCpGqom/pmNQFtJgnIXGfOYE5FHIuJgAu3tDg
- PE1ZuFz/eMos45WBwWpFFjohRzJNzCi3RcSYtOVvbL4ZcmBcsVgyIfY8Q
- YVAxVhtSJ5IdxMphkgtOnDUS9OXtmvk65mGtYbuO1Zg9WpxYIwRyYulrn
- AhJ9fGIfLyPrpWBGvDHwASzNKCUTJHFEdoS7MkgEDA9DUuy2l1hEiei4U
- UxwjKt/EaeOMNqUVrl3U5szAmU8JLDVT1wK/NRaI6jSmmCKj6SG1QSn+6
- J1A5O15PPAvR5qemqX7jPzgD7ehYbXbwh9cM81E80yVzKbbqd3ppqpzyB Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="484348981"
-X-IronPort-AV: E=Sophos;i="6.04,182,1695711600"; d="scan'208";a="484348981"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2024 03:41:38 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="954990807"
-X-IronPort-AV: E=Sophos;i="6.04,182,1695711600"; d="scan'208";a="954990807"
-Received: from tpsarve-mobl.ger.corp.intel.com (HELO [10.252.17.61])
- ([10.252.17.61])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2024 03:41:37 -0800
-Message-ID: <5b532ac1-65bf-4ef1-9a1a-f4f328b576d1@intel.com>
-Date: Tue, 9 Jan 2024 11:41:35 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4D4489F35;
+	Tue,  9 Jan 2024 11:44:16 +0000 (UTC)
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEE0C89F35;
+ Tue,  9 Jan 2024 11:44:14 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1384014421729627176=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 20/20] drm/xe: Mega Kill of mem_access
-Content-Language: en-GB
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
-References: <20231228021232.2366249-1-rodrigo.vivi@intel.com>
- <20231228021232.2366249-21-rodrigo.vivi@intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20231228021232.2366249-21-rodrigo.vivi@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe=3A_Add_vram_frequency_sys?=
+ =?utf-8?q?fs_attributes_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Sujaritha Sundaresan" <sujaritha.sundaresan@intel.com>
+Date: Tue, 09 Jan 2024 11:44:14 -0000
+Message-ID: <170480065497.215424.10029328365816130167@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240109110418.2065101-1-sujaritha.sundaresan@intel.com>
+In-Reply-To: <20240109110418.2065101-1-sujaritha.sundaresan@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,190 +35,160 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 28/12/2023 02:12, Rodrigo Vivi wrote:
-> All of these remaining cases should already be protected
-> by the outer bound calls of runtime_pm
-> 
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> ---
->   drivers/gpu/drm/xe/display/xe_fb_pin.c |  7 +--
->   drivers/gpu/drm/xe/tests/xe_bo.c       |  8 ----
->   drivers/gpu/drm/xe/tests/xe_mocs.c     |  4 --
->   drivers/gpu/drm/xe/xe_bo.c             |  5 ---
->   drivers/gpu/drm/xe/xe_device.c         | 59 --------------------------
->   drivers/gpu/drm/xe/xe_device.h         |  7 ---
->   drivers/gpu/drm/xe/xe_device_types.h   |  9 ----
->   drivers/gpu/drm/xe/xe_ggtt.c           |  6 ---
->   drivers/gpu/drm/xe/xe_gsc.c            |  3 --
->   drivers/gpu/drm/xe/xe_gt.c             | 17 --------
->   drivers/gpu/drm/xe/xe_huc_debugfs.c    |  2 -
->   drivers/gpu/drm/xe/xe_pat.c            | 10 -----
->   drivers/gpu/drm/xe/xe_pm.c             | 27 ------------
->   drivers/gpu/drm/xe/xe_query.c          |  4 --
->   drivers/gpu/drm/xe/xe_tile.c           | 10 ++---
->   drivers/gpu/drm/xe/xe_vm.c             |  7 ---
->   16 files changed, 5 insertions(+), 180 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> index 722c84a566073..077294ec50ece 100644
-> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> @@ -190,10 +190,9 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
->   	/* TODO: Consider sharing framebuffer mapping?
->   	 * embed i915_vma inside intel_framebuffer
->   	 */
-> -	xe_device_mem_access_get(tile_to_xe(ggtt->tile));
->   	ret = mutex_lock_interruptible(&ggtt->lock);
->   	if (ret)
-> -		goto out;
-> +		return ret;
->   
->   	align = XE_PAGE_SIZE;
->   	if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
-> @@ -241,8 +240,6 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
->   	xe_ggtt_invalidate(ggtt);
->   out_unlock:
->   	mutex_unlock(&ggtt->lock);
-> -out:
-> -	xe_device_mem_access_put(tile_to_xe(ggtt->tile));
->   	return ret;
->   }
->   
-> @@ -381,4 +378,4 @@ struct i915_address_space *intel_dpt_create(struct intel_framebuffer *fb)
->   void intel_dpt_destroy(struct i915_address_space *vm)
->   {
->   	return;
-> -}
-> \ No newline at end of file
-> +}
-> diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
-> index 412b2e7ce40cb..97b10e597f0ad 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_bo.c
-> @@ -164,8 +164,6 @@ static int ccs_test_run_device(struct xe_device *xe)
->   		return 0;
->   	}
->   
-> -	xe_device_mem_access_get(xe);
-> -
->   	for_each_tile(tile, xe, id) {
->   		/* For igfx run only for primary tile */
->   		if (!IS_DGFX(xe) && id > 0)
-> @@ -173,8 +171,6 @@ static int ccs_test_run_device(struct xe_device *xe)
->   		ccs_test_run_tile(xe, tile, test);
->   	}
->   
-> -	xe_device_mem_access_put(xe);
-> -
->   	return 0;
->   }
->   
-> @@ -336,13 +332,9 @@ static int evict_test_run_device(struct xe_device *xe)
->   		return 0;
->   	}
->   
-> -	xe_device_mem_access_get(xe);
-> -
->   	for_each_tile(tile, xe, id)
->   		evict_test_run_tile(xe, tile, test);
->   
-> -	xe_device_mem_access_put(xe);
-> -
->   	return 0;
->   }
->   
-> diff --git a/drivers/gpu/drm/xe/tests/xe_mocs.c b/drivers/gpu/drm/xe/tests/xe_mocs.c
-> index 7dd34f94e8094..a12e7e2bb5861 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_mocs.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_mocs.c
-> @@ -45,7 +45,6 @@ static void read_l3cc_table(struct xe_gt *gt,
->   
->   	struct kunit *test = xe_cur_kunit();
->   
-> -	xe_device_mem_access_get(gt_to_xe(gt));
->   	ret = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
->   	KUNIT_ASSERT_EQ_MSG(test, ret, 0, "Forcewake Failed.\n");
->   	mocs_dbg(&gt_to_xe(gt)->drm, "L3CC entries:%d\n", info->n_entries);
-> @@ -65,7 +64,6 @@ static void read_l3cc_table(struct xe_gt *gt,
->   				   XELP_LNCFCMOCS(i).addr);
->   	}
->   	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
-> -	xe_device_mem_access_put(gt_to_xe(gt));
->   }
->   
->   static void read_mocs_table(struct xe_gt *gt,
-> @@ -80,7 +78,6 @@ static void read_mocs_table(struct xe_gt *gt,
->   
->   	struct kunit *test = xe_cur_kunit();
->   
-> -	xe_device_mem_access_get(gt_to_xe(gt));
->   	ret = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
->   	KUNIT_ASSERT_EQ_MSG(test, ret, 0, "Forcewake Failed.\n");
->   	mocs_dbg(&gt_to_xe(gt)->drm, "Global MOCS entries:%d\n", info->n_entries);
-> @@ -100,7 +97,6 @@ static void read_mocs_table(struct xe_gt *gt,
->   				   XELP_GLOBAL_MOCS(i).addr);
->   	}
->   	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
-> -	xe_device_mem_access_put(gt_to_xe(gt));
->   }
->   
->   static int mocs_kernel_test_run_device(struct xe_device *xe)
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 8e4a3b1f6b938..056c65c2675d8 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -715,7 +715,6 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
->   	xe_assert(xe, migrate);
->   
->   	trace_xe_bo_move(bo);
-> -	xe_device_mem_access_get(xe);
->   
->   	if (xe_bo_is_pinned(bo) && !xe_bo_is_user(bo)) {
->   		/*
-> @@ -739,7 +738,6 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
->   
->   				if (XE_WARN_ON(new_mem->start == XE_BO_INVALID_OFFSET)) {
->   					ret = -EINVAL;
-> -					xe_device_mem_access_put(xe);
->   					goto out;
->   				}
->   
-> @@ -757,7 +755,6 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
->   						new_mem, handle_system_ccs);
->   		if (IS_ERR(fence)) {
->   			ret = PTR_ERR(fence);
-> -			xe_device_mem_access_put(xe);
->   			goto out;
->   		}
->   		if (!move_lacks_source) {
-> @@ -782,8 +779,6 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
->   		dma_fence_put(fence);
->   	}
->   
-> -	xe_device_mem_access_put(xe);
-> -
->   out:
->   	return ret;
->   
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index c1c19264a58b4..cb08a4369bb9e 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -44,12 +44,6 @@
->   #include "xe_wait_user_fence.h"
->   #include "xe_hwmon.h"
->   
-> -#ifdef CONFIG_LOCKDEP
-> -struct lockdep_map xe_device_mem_access_lockdep_map = {
-> -	.name = "xe_device_mem_access_lockdep_map"
-> -};
-> -#endif
+--===============1384014421729627176==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Did you mean to drop this? IMO we should for sure keep the lockdep 
-annotations. Otherwise it is going to be really hard to validate the 
-locking design and have reasonable confidence that we don't have 
-deadlocks lurking, or as new users come along sprinkling rpm get in the 
-wrong place.
+== Series Details ==
+
+Series: drm/xe: Add vram frequency sysfs attributes (rev5)
+URL   : https://patchwork.freedesktop.org/series/127800/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from xe-607-eacbcdb537a2774959d012206aba22848fdade26_BAT -> xe-pw-127800v5_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-127800v5_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-127800v5_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-127800v5_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_exec_fault_mode@twice-invalid-fault:
+    - bat-pvc-2:          [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-607-eacbcdb537a2774959d012206aba22848fdade26/bat-pvc-2/igt@xe_exec_fault_mode@twice-invalid-fault.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127800v5/bat-pvc-2/igt@xe_exec_fault_mode@twice-invalid-fault.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-127800v5_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-adlp-7:         [FAIL][3] ([Intel XE#480]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-607-eacbcdb537a2774959d012206aba22848fdade26/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127800v5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  
+  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+
+
+Build changes
+-------------
+
+  * Linux: xe-607-eacbcdb537a2774959d012206aba22848fdade26 -> xe-pw-127800v5
+
+  IGT_7663: b5eca7b97430309e320874594feaeaa8e770e25e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-607-eacbcdb537a2774959d012206aba22848fdade26: eacbcdb537a2774959d012206aba22848fdade26
+  xe-pw-127800v5: 127800v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127800v5/index.html
+
+--===============1384014421729627176==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Add vram frequency sysfs attributes (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/127800/">https://patchwork.freedesktop.org/series/127800/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127800v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127800v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-607-eacbcdb537a2774959d012206aba22848fdade26_BAT -&gt; xe-pw-127800v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-127800v5_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-127800v5_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-127800v5_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_exec_fault_mode@twice-invalid-fault:<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-607-eacbcdb537a2774959d012206aba22848fdade26/bat-pvc-2/igt@xe_exec_fault_mode@twice-invalid-fault.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127800v5/bat-pvc-2/igt@xe_exec_fault_mode@twice-invalid-fault.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-127800v5_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-607-eacbcdb537a2774959d012206aba22848fdade26/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127800v5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-607-eacbcdb537a2774959d012206aba22848fdade26 -&gt; xe-pw-127800v5</li>
+</ul>
+<p>IGT_7663: b5eca7b97430309e320874594feaeaa8e770e25e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-607-eacbcdb537a2774959d012206aba22848fdade26: eacbcdb537a2774959d012206aba22848fdade26<br />
+  xe-pw-127800v5: 127800v5</p>
+
+</body>
+</html>
+
+--===============1384014421729627176==--
