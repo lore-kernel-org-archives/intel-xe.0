@@ -4,46 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E44DCC46CD2
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Jan 2024 15:00:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31CD5C47073
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Jan 2024 15:10:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A408110E48E;
-	Tue,  9 Jan 2024 15:00:45 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6683810E46E;
- Tue,  9 Jan 2024 15:00:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE20D10E46E;
+	Tue,  9 Jan 2024 15:10:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56EF810E46E
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 Jan 2024 15:10:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704812445; x=1736348445;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=n/UkLKv0HswBXjjuShhHXlbm0pQPFw9AL0Mj5AYf39c=;
- b=dXrpVrHS2/DjLEeu0ClNehTpXLAnsBadgBngOTAfEYyUs83f6PilhK0U
- x/Dor47fm3I1hxho7+Ga2zBb7sIJ3zl9AolwfAjK5rqpbzZo9+33wb9Kq
- /guMiwcufIJUhivxr67HBJ8nQheLwQqD/FfcvymTCQMaUq2UrQ5Pil6wz
- apbploz3T3NNZ09tJylMS5SjH9iHRWgOejwvZGwwtEIexDOE4IBsjwSN6
- 2XLtghQz2RvgZaxMf9doiafsG+LCOZc8OaiCWtaQe0mcNBytK6QwfzHHI
- DtJBlae6VKRB6kjIo/ROaf9IOOaZvevfOtSfrFmK7l37OyplQJ6gzHF30 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="4964750"
-X-IronPort-AV: E=Sophos;i="6.04,183,1695711600"; 
-   d="scan'208";a="4964750"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2024 07:00:44 -0800
+ t=1704813039; x=1736349039;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=K2aIMv4J7T0nvgjYtpMOec/sIyAiNM/ceuzXVEy/MKU=;
+ b=VAHb5PpfWHgBmnvMp0qNThga0qMwDAPDpMMR/HBpofAq1e6z4Cw6LwIq
+ WndXhGj9J/EXOW7kELSf/4R85iBs2STS3uaQj5WKs01lvIjvYTG0dPeXM
+ KyMXlq1qoUfCbZmNaS+3TxSOSiOotr3AzeAqHS3uAog0umPL54+GjujRX
+ TIhxVHLb5Ag+yPhjR15FBrHrX7ujZDYOzDXu+Z9RjXdlIlGjgVP1hd7xI
+ eenpgCBvACw4HhhaMVLu4mt+PKQf86OXx+W5FSNR4LT08v923u0t1o/ey
+ CmZCmXMctHaOX5vTcDiqNir5wxDAhht86EHGOOtkvpfngCOC2C0XammWS g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="395391924"
+X-IronPort-AV: E=Sophos;i="6.04,183,1695711600"; d="scan'208";a="395391924"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2024 07:10:38 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="905179124"
-X-IronPort-AV: E=Sophos;i="6.04,183,1695711600"; d="scan'208";a="905179124"
-Received: from djustese-mobl.ger.corp.intel.com (HELO fedora..)
- ([10.249.254.147])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2024 07:00:42 -0800
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Subject: [PATCH] nightly.conf: Reorder the xe repo URLs
-Date: Tue,  9 Jan 2024 16:00:15 +0100
-Message-ID: <20240109150015.193368-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="872270845"
+X-IronPort-AV: E=Sophos;i="6.04,183,1695711600"; d="scan'208";a="872270845"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by FMSMGA003.fm.intel.com with ESMTP; 09 Jan 2024 07:10:36 -0800
+Received: from [10.249.150.124] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.150.124])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 7C62CB4D55
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 Jan 2024 15:10:35 +0000 (GMT)
+Message-ID: <3e64d343-9be8-4680-b3f9-a9dba5af5ff1@intel.com>
+Date: Tue, 9 Jan 2024 16:10:34 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Fix compilation without CONFIG_KUNIT
+Content-Language: en-US
+To: intel-xe@lists.freedesktop.org
+References: <20240105171947.321-1-michal.wajdeczko@intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20240105171947.321-1-michal.wajdeczko@intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -57,37 +61,54 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Select the https URL by default for xe since users may not have
-registered a gitlab ssh key yet, and may get confused by
-the corresponding error message.
 
-Suggested-by: Daniel Vetter <daniel@ffwll.ch>
-Cc: intel-xe@lists.freedesktop.org
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- nightly.conf | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/nightly.conf b/nightly.conf
-index accd3ff2cc39..84dbdb98a99f 100644
---- a/nightly.conf
-+++ b/nightly.conf
-@@ -25,8 +25,8 @@ https://anongit.freedesktop.org/git/drm/drm-tip
- https://anongit.freedesktop.org/git/drm/drm-tip.git
- "
- drm_tip_repos[drm-xe]="
--ssh://git@gitlab.freedesktop.org/drm/xe/kernel.git
- https://gitlab.freedesktop.org/drm/xe/kernel.git
-+ssh://git@gitlab.freedesktop.org/drm/xe/kernel.git
- "
- drm_tip_repos[drm-intel]="
- ssh://git.freedesktop.org/git/drm/drm-intel
--- 
-2.43.0
+On 05.01.2024 18:19, Michal Wajdeczko wrote:
+> It looks that declaration of kunit_get_current_test() was
+> available in xe_guc_relay.c only with CONFIG_KUNIT enabled.
+> If CONFIG_KUNIT is disabled we fail with:
+> 
+> In file included from ../include/linux/build_bug.h:5,
+>                  from ../include/linux/bitfield.h:10,
+>                  from ../drivers/gpu/drm/xe/xe_guc_relay.c:6:
+> ../drivers/gpu/drm/xe/xe_guc_relay.c: In function ‘xe_guc_relay_process_guc2vf’:
+> ../drivers/gpu/drm/xe/xe_guc_relay.c:863:52: error: implicit declaration of function ‘kunit_get_current_test’ [-Werror=implicit-function-declaration]
+>   863 |  if (unlikely(!IS_SRIOV_VF(relay_to_xe(relay)) && !kunit_get_current_test()))
+>       |                                                    ^~~~~~~~~~~~~~~~~~~~~~
+> ../include/linux/compiler.h:77:42: note: in definition of macro ‘unlikely’
+>    77 | # define unlikely(x) __builtin_expect(!!(x), 0)
+>       |                                          ^
+> 
+> Reported-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> Fixes: 9a2c2ecb1b77 ("drm/xe/guc: Introduce Relay Communication for SR-IOV")
 
+kernel test robot says problem was introduces by other patch, so it
+should rather be:
+
+Fixes: 27b717bac93f ("drm/xe/kunit: Add GuC Relay kunit test")
+
+and since it's already merged, also for the record:
+
+Closes:
+https://lore.kernel.org/oe-kbuild-all/202401070036.60pNn4uZ-lkp@intel.com/
+
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_guc_relay.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_guc_relay.c b/drivers/gpu/drm/xe/xe_guc_relay.c
+> index b772088979bd..c0a2d8d5d3b3 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_relay.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_relay.c
+> @@ -9,6 +9,7 @@
+>  #include <drm/drm_managed.h>
+>  
+>  #include <kunit/static_stub.h>
+> +#include <kunit/test-bug.h>
+>  
+>  #include "abi/guc_actions_sriov_abi.h"
+>  #include "abi/guc_relay_actions_abi.h"
