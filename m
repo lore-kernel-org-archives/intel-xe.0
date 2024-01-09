@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C018DC4707C
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Jan 2024 11:24:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A7FFC47073
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Jan 2024 11:24:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AE0410E41B;
-	Tue,  9 Jan 2024 11:24:40 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CD6810E41B
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4204C10E41E;
+	Tue,  9 Jan 2024 11:24:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB3A610E41E
  for <intel-xe@lists.freedesktop.org>; Tue,  9 Jan 2024 11:24:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1704799478; x=1736335478;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=rUmwhj7Z7pA6+QXb9M/OIu5tmKMrMSSxGlX60SV7Fl0=;
- b=EUDBKohF7/rlyXs3gqzf8f0LDtIXR9oYvV8QtS1LTXOSnog76ClIgE7u
- 8JGckb4H36b9Pm2eR0M6PSSZon6RBCukhmMTXIzeHQKa4V/I3HAakhY3m
- TtfBRjhBpYh6VWGnUTswyyeYI4+KPiEqh4XYaWlNOGoRvvuzszs3IkEXO
- RS+URCtO0YHAZxuimYxdlpG8cmlwdvwFEBPuVAvgOW54dQnmEyjKwptoj
- hb5J7EvK/qKMn2GSit8VawXmkvbjoeTlgNvPnOqLU9bWyqMqwnv6cKwHQ
- pNSoNa9/zjPgqjnPms0wGzlt3ziUfzQBhYPyekoIcU+q95RWEGJ7ND6B5 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="16759987"
-X-IronPort-AV: E=Sophos;i="6.04,182,1695711600"; d="scan'208";a="16759987"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2024 03:24:38 -0800
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Ketp4h3vWg4yeHv99Akibt32liNVPE1Ix9E5Cs9Aj/M=;
+ b=IGi0x6tkFGVlt6EA590EldZ3jv1aFdTtKsTYkv5Iog6qArevcO6jXtdd
+ UYFnbHjlUktErQTs8hzup6MLOH14mVR2p6QfRdy8RA8uqPguiHG94mAyX
+ JWRg2ZplLm1kvJLdQ7E1vzUZPSzBdynzIuT9MxNOdoTXJ2HhEkSU4jkSx
+ 97+Uqbo0Mn73J0D5nDGMIn3ghLYIKfiSC5/O5kK4Ef+5bdXmsch04C3Ep
+ 6zYTxby2ad4JP9CRVvkSt9BJRjWBkJB7JRC1l+g7owSpcB+fAqQlnOTlU
+ VbD9r5Zzi1gL4wSdYiPrEskt85lxuzbddmYtwsyPgv5YsnJtzF3g/+mJ7 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="5537230"
+X-IronPort-AV: E=Sophos;i="6.04,182,1695711600"; 
+   d="scan'208";a="5537230"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2024 03:24:32 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="815939516"
-X-IronPort-AV: E=Sophos;i="6.04,182,1695711600"; d="scan'208";a="815939516"
-Received: from tpsarve-mobl.ger.corp.intel.com (HELO [10.252.17.61])
- ([10.252.17.61])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2024 03:24:37 -0800
-Message-ID: <11d0bf86-c011-4761-895f-8cce0a7e071c@intel.com>
-Date: Tue, 9 Jan 2024 11:24:34 +0000
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="900737620"
+X-IronPort-AV: E=Sophos;i="6.04,182,1695711600"; d="scan'208";a="900737620"
+Received: from djustese-mobl.ger.corp.intel.com (HELO fedora..)
+ ([10.249.254.147])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2024 03:24:30 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH 2/4] drm/xe: Annotate xe_mem_region::mapping with __iomem
+Date: Tue,  9 Jan 2024 12:24:03 +0100
+Message-ID: <20240109112405.108136-3-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240109112405.108136-1-thomas.hellstrom@linux.intel.com>
+References: <20240109112405.108136-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 08/20] drm/xe: Runtime PM wake on every exec
-Content-Language: en-GB
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
-References: <20231228021232.2366249-1-rodrigo.vivi@intel.com>
- <20231228021232.2366249-9-rodrigo.vivi@intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20231228021232.2366249-9-rodrigo.vivi@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,77 +59,60 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 28/12/2023 02:12, Rodrigo Vivi wrote:
-> Let's ensure our PCI device is awaken on every GT execution to
-> the end of the execution.
-> Let's increase the runtime_pm protection and start moving
-> that to the outer bounds.
-> 
-> Let's also remove the unnecessary mem_access get/put.
-> 
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_sched_job.c | 10 +++++-----
->   1 file changed, 5 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
-> index 01106a1156ad8..0b30ec77fc5ad 100644
-> --- a/drivers/gpu/drm/xe/xe_sched_job.c
-> +++ b/drivers/gpu/drm/xe/xe_sched_job.c
-> @@ -15,6 +15,7 @@
->   #include "xe_hw_fence.h"
->   #include "xe_lrc.h"
->   #include "xe_macros.h"
-> +#include "xe_pm.h"
->   #include "xe_trace.h"
->   #include "xe_vm.h"
->   
-> @@ -67,6 +68,8 @@ static void job_free(struct xe_sched_job *job)
->   	struct xe_exec_queue *q = job->q;
->   	bool is_migration = xe_sched_job_is_migration(q);
->   
-> +	xe_pm_runtime_put(gt_to_xe(q->gt));
-> +
->   	kmem_cache_free(xe_exec_queue_is_parallel(job->q) || is_migration ?
->   			xe_sched_job_parallel_slab : xe_sched_job_slab, job);
->   }
-> @@ -86,6 +89,8 @@ struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
->   	int i, j;
->   	u32 width;
->   
-> +	xe_pm_runtime_get(gt_to_xe(q->gt));
-> +
+The pointer points to IO memory, but the __iomem annotation was
+incorrectly placed. Annotate it correctly, update its usage accordingly
+and fix the corresponding sparse error.
 
-This seems way too deep in the call chain. If this actually wakes up the 
-device we will end up with all of the same d3cold deadlock issues. Like 
-here we are for sure holding stuff like dma-resv, but the rpm callbacks 
-also want to grab it. IMO this needs to be something like 
-runtime_get_if_active(), with the upper layers already ensuring device 
-is awake (like ioctl), so here we are just keeping it awake until the 
-job is done. Or maybe this is how it is by the end of the series?
+Fixes: 0887a2e7ab62 ("drm/xe: Make xe_mem_region struct")
+Cc: Oak Zeng <oak.zeng@intel.com>
+Cc: Michael J. Ruhl <michael.j.ruhl@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c           | 4 ++--
+ drivers/gpu/drm/xe/xe_device_types.h | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
->   	/* only a kernel context can submit a vm-less job */
->   	XE_WARN_ON(!q->vm && !(q->flags & EXEC_QUEUE_FLAG_KERNEL));
->   
-> @@ -155,9 +160,6 @@ struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
->   	for (i = 0; i < width; ++i)
->   		job->batch_addr[i] = batch_addr[i];
->   
-> -	/* All other jobs require a VM to be open which has a ref */
-> -	if (unlikely(q->flags & EXEC_QUEUE_FLAG_KERNEL))
-> -		xe_device_mem_access_get(job_to_xe(job));
->   	xe_device_assert_mem_access(job_to_xe(job));
->   
->   	trace_xe_sched_job_create(job);
-> @@ -189,8 +191,6 @@ void xe_sched_job_destroy(struct kref *ref)
->   	struct xe_sched_job *job =
->   		container_of(ref, struct xe_sched_job, refcount);
->   
-> -	if (unlikely(job->q->flags & EXEC_QUEUE_FLAG_KERNEL))
-> -		xe_device_mem_access_put(job_to_xe(job));
->   	xe_exec_queue_put(job->q);
->   	dma_fence_put(job->fence);
->   	drm_sched_job_cleanup(&job->drm);
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 8e4a3b1f6b93..3cd29bd015a0 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -442,7 +442,7 @@ static int xe_ttm_io_mem_reserve(struct ttm_device *bdev,
+ 
+ 		if (vram->mapping &&
+ 		    mem->placement & TTM_PL_FLAG_CONTIGUOUS)
+-			mem->bus.addr = (u8 *)vram->mapping +
++			mem->bus.addr = (u8 __force *)vram->mapping +
+ 				mem->bus.offset;
+ 
+ 		mem->bus.offset += vram->io_start;
+@@ -734,7 +734,7 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 			/* Create a new VMAP once kernel BO back in VRAM */
+ 			if (!ret && resource_is_vram(new_mem)) {
+ 				struct xe_mem_region *vram = res_to_mem_region(new_mem);
+-				void *new_addr = vram->mapping +
++				void __iomem *new_addr = vram->mapping +
+ 					(new_mem->start << PAGE_SHIFT);
+ 
+ 				if (XE_WARN_ON(new_mem->start == XE_BO_INVALID_OFFSET)) {
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 71f23ac365e6..171e8615d184 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -98,7 +98,7 @@ struct xe_mem_region {
+ 	 */
+ 	resource_size_t actual_physical_size;
+ 	/** @mapping: pointer to VRAM mappable space */
+-	void *__iomem mapping;
++	void __iomem *mapping;
+ };
+ 
+ /**
+-- 
+2.43.0
+
