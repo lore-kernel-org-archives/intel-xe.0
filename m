@@ -4,44 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 818EFC47077
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Jan 2024 23:00:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8EE46C4706C
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Jan 2024 23:00:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46BFC10E543;
-	Tue,  9 Jan 2024 23:00:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5170C10E54C;
+	Tue,  9 Jan 2024 23:00:45 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1D1D10E53F
- for <intel-xe@lists.freedesktop.org>; Tue,  9 Jan 2024 23:00:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A269410E53F
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 Jan 2024 23:00:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704841241; x=1736377241;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=1ZdycXLooqMHDJzh6QU5hcwmFmzHsSxw1vKa9Ct85Ro=;
- b=nuaib/1Ub+OzI4d1SZLAmmDcYfM59ztiMUH2hZnZOedjxOGtw1Sn8xWX
- kvV6Ma/c/XN90t4G7Z2cTy4f3yMay1m1wDssyJH42iAwXAIpwIkepc37L
- dX5eyWBVefRf2XW9yhvq4n4TywMGNBXozaO5q3A4EoGGMZX5tRnGn7znK
- XvvEVixJFSNsom2HYPUbo/9k8WsQxSlF1YBBLfWJYfPoI3HSPvMhl9gKT
- /bmpIbkLqGZGXbHAggQ6zFJh5CJY61rBXZ4yU/bbAcqqrAE9JP5BossWX
- XaiM15NRTHHaq7uQ8ZDiAAx8kLQOhnvw08+cMtsXOD6qQ2HFdSIztXHOP Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="402133725"
-X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="402133725"
+ t=1704841242; x=1736377242;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=jTiz69vE2sz6hR6cB40P49Tc6F6YppfIvuvOs5shsP8=;
+ b=lDYyN/KkQ8hiEDLaOgh+e+s1yGiTkq/hVjJSlhlN2/dx16nqUsj84+Pl
+ jxjRkkpF7VsisnoN1v4AJkbZGht42MJ8ZgvIHnYXPAYDkU2r4DNDOCnXz
+ SjUCq3ivjejpAAhAbx1d39ywFME6wJ7PZqtMlcRf5jOZ6y7rc7/j60M6M
+ /uQgXS6UUqK+yB4IcOdeIWzHCJWtLcgX/7r83sLz2y+FKXJMLpIz5Rc3D
+ KKoDL/XDBL/d3IadB0bsTJxQi22YIrEjHhk+R1NeM0/iT/wqYZdhGPOcd
+ xFMp+U2ryUIn+RUOXDuKyLcqUWJjLtFf1TFE9ru9dtA60bbEHgh3NrTpW g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="402133729"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="402133729"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2024 15:00:41 -0800
+ 09 Jan 2024 15:00:42 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="775017400"
-X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="775017400"
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="775017410"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="775017410"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.150.124])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2024 15:00:39 -0800
+ 09 Jan 2024 15:00:41 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 1/2] drm/xe/guc: Use proper definitions while processing G2H
- events
-Date: Wed, 10 Jan 2024 00:00:14 +0100
-Message-Id: <20240109230015.365-1-michal.wajdeczko@intel.com>
+Subject: [PATCH 2/2] drm/xe/guc: Fix arguments passed to relay G2H handlers
+Date: Wed, 10 Jan 2024 00:00:15 +0100
+Message-Id: <20240109230015.365-2-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20240109230015.365-1-michal.wajdeczko@intel.com>
+References: <20240109230015.365-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -58,62 +59,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-While dispatching G2H events we should use HXG EVENT definitions,
-no need to rely on outer CTB layer definitions that forced us to
-use shifted offsets:
+By default CT code was passing just payload of th G2H event/request
+message, while Relay code expects full G2H message including HXG
+header which contains DATA0 field. Fix that.
 
-	FIELD_GET(GUC_HXG_MSG_0_xxx, msg[1])
-vs
-	FIELD_GET(GUC_HXG_MSG_0_xxx, hxg[0])
-
+Fixes: 152577060697 ("drm/xe/guc: Start handling GuC Relay event messages")
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c | 15 +++++++++------
- 1 file changed, 9 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_ct.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index c29f095aa1b9..9d1d855da229 100644
+index 9d1d855da229..721564dbfda6 100644
 --- a/drivers/gpu/drm/xe/xe_guc_ct.c
 +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -923,18 +923,21 @@ static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
- 	return ret;
- }
- 
--static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
-+static int process_g2h_msg(struct xe_guc_ct *ct, u32 *hxg, u32 len)
- {
- 	struct xe_device *xe = ct_to_xe(ct);
- 	struct xe_guc *guc = ct_to_guc(ct);
--	u32 action = FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, msg[1]);
--	u32 *payload = msg + GUC_CTB_HXG_MSG_MIN_LEN;
--	u32 adj_len = len - GUC_CTB_HXG_MSG_MIN_LEN;
-+	u32 action, adj_len;
-+	u32 *payload;
- 	int ret = 0;
- 
--	if (FIELD_GET(GUC_HXG_MSG_0_TYPE, msg[1]) != GUC_HXG_TYPE_EVENT)
-+	if (FIELD_GET(GUC_HXG_MSG_0_TYPE, hxg[0]) != GUC_HXG_TYPE_EVENT)
- 		return 0;
- 
-+	action = FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, hxg[0]);
-+	payload = hxg + GUC_HXG_EVENT_MSG_MIN_LEN;
-+	adj_len = len - GUC_HXG_EVENT_MSG_MIN_LEN;
-+
- 	switch (action) {
- 	case XE_GUC_ACTION_SCHED_CONTEXT_MODE_DONE:
- 		ret = xe_guc_sched_done_handler(guc, payload, adj_len);
-@@ -1145,7 +1148,7 @@ static int dequeue_one_g2h(struct xe_guc_ct *ct)
- 	if (unlikely(ret < 0))
- 		return ret;
- 
--	ret = process_g2h_msg(ct, ct->msg, len);
-+	ret = process_g2h_msg(ct, ct->msg + GUC_CTB_MSG_MIN_LEN, len - GUC_CTB_MSG_MIN_LEN);
- 	if (unlikely(ret < 0))
- 		return ret;
- 
-
-base-commit: 39df1f6b1259816cc42b5f2451ca5092fad340ce
+@@ -975,10 +975,10 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *hxg, u32 len)
+ 							   adj_len);
+ 		break;
+ 	case XE_GUC_ACTION_GUC2PF_RELAY_FROM_VF:
+-		ret = xe_guc_relay_process_guc2pf(&guc->relay, payload, adj_len);
++		ret = xe_guc_relay_process_guc2pf(&guc->relay, hxg, len);
+ 		break;
+ 	case XE_GUC_ACTION_GUC2VF_RELAY_FROM_PF:
+-		ret = xe_guc_relay_process_guc2vf(&guc->relay, payload, adj_len);
++		ret = xe_guc_relay_process_guc2vf(&guc->relay, hxg, len);
+ 		break;
+ 	default:
+ 		drm_err(&xe->drm, "unexpected action 0x%04x\n", action);
 -- 
 2.25.1
 
