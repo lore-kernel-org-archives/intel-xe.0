@@ -4,45 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64ACAC4706C
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Jan 2024 22:58:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 818EFC47077
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Jan 2024 23:00:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 075E410E50E;
-	Tue,  9 Jan 2024 22:58:32 +0000 (UTC)
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82B9210E50E
- for <intel-xe@lists.freedesktop.org>; Tue,  9 Jan 2024 22:58:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1704841105;
- bh=h5TC0WdyBVPE0cSR7BOyIGDgXy+nxz76g213rnQe2wc=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=fm/RBjLG4Pd5AurzmCQMZMCHDRKOtAQkXn/yTg/AbcUQ1KBoZD2DKdmtqdOxRpeuO
- 1igt4WDjMu/oZQo0QXY9IyEQfznfWKkP0Yv4ad7k1Cx/bv6k9s2Of1AL89j+Tezsdo
- HhKf9TEKmVQ+WM2rXf+Os59BkwD3uDFShlcOor8Fu+oSzfaaZK5PTQy76wH7Jsx7Qa
- wLX9uZXedqsUaVRDYccDphWrju2HfOEu+sTOnTQZt4RfejTFI+SB06mtCxROhbGsQM
- R8bh+ygVaUT5OfBLpobMvNLCHuROBqDsxN08AuYRTTzaruHgpqBMTBkIbT3eOQqCZi
- UxVrxLZlOQ1Mg==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4T8mYr6jWVz4wbR;
- Wed, 10 Jan 2024 09:58:24 +1100 (AEDT)
-Date: Wed, 10 Jan 2024 09:58:22 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: "Paul E. McKenney" <paulmck@kernel.org>
-Subject: Re: [BUG] allmodconfig build error in next-20240108
-Message-ID: <20240110095822.3ba3d979@canb.auug.org.au>
-In-Reply-To: <d61dfe52-9567-4f62-98f5-5c1e00cb4708@paulmck-laptop>
-References: <45ad1d0f-a10f-483e-848a-76a30252edbe@paulmck-laptop>
- <20240109095757.1313b2d9@canb.auug.org.au>
- <341a4955-0cdd-48d0-bfbd-cc6f6f09df37@paulmck-laptop>
- <atbx7mspjbymkzgstk4l64qz3uky3wpmx4isrfg3ixgtvebdd2@cktpe4ejfk7k>
- <20240110081155.48bb0cbd@oak>
- <d61dfe52-9567-4f62-98f5-5c1e00cb4708@paulmck-laptop>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46BFC10E543;
+	Tue,  9 Jan 2024 23:00:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1D1D10E53F
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 Jan 2024 23:00:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1704841241; x=1736377241;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=1ZdycXLooqMHDJzh6QU5hcwmFmzHsSxw1vKa9Ct85Ro=;
+ b=nuaib/1Ub+OzI4d1SZLAmmDcYfM59ztiMUH2hZnZOedjxOGtw1Sn8xWX
+ kvV6Ma/c/XN90t4G7Z2cTy4f3yMay1m1wDssyJH42iAwXAIpwIkepc37L
+ dX5eyWBVefRf2XW9yhvq4n4TywMGNBXozaO5q3A4EoGGMZX5tRnGn7znK
+ XvvEVixJFSNsom2HYPUbo/9k8WsQxSlF1YBBLfWJYfPoI3HSPvMhl9gKT
+ /bmpIbkLqGZGXbHAggQ6zFJh5CJY61rBXZ4yU/bbAcqqrAE9JP5BossWX
+ XaiM15NRTHHaq7uQ8ZDiAAx8kLQOhnvw08+cMtsXOD6qQ2HFdSIztXHOP Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="402133725"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="402133725"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2024 15:00:41 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="775017400"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="775017400"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.150.124])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2024 15:00:39 -0800
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH 1/2] drm/xe/guc: Use proper definitions while processing G2H
+ events
+Date: Wed, 10 Jan 2024 00:00:14 +0100
+Message-Id: <20240109230015.365-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/_3HAcU_.gtxEp1r51mpFW=c";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,89 +55,65 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, linux-kernel@vger.kernel.org,
- intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---Sig_/_3HAcU_.gtxEp1r51mpFW=c
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+While dispatching G2H events we should use HXG EVENT definitions,
+no need to rely on outer CTB layer definitions that forced us to
+use shifted offsets:
 
-Hi all,
+	FIELD_GET(GUC_HXG_MSG_0_xxx, msg[1])
+vs
+	FIELD_GET(GUC_HXG_MSG_0_xxx, hxg[0])
 
-On Tue, 9 Jan 2024 14:45:56 -0800 "Paul E. McKenney" <paulmck@kernel.org> w=
-rote:
->
-> On Wed, Jan 10, 2024 at 08:11:55AM +1100, Stephen Rothwell wrote:
-> >=20
-> > On Tue, 9 Jan 2024 10:58:40 -0600 Lucas De Marchi <lucas.demarchi@intel=
-.com> wrote: =20
-> > >
-> > > On Mon, Jan 08, 2024 at 03:15:23PM -0800, Paul E. McKenney wrote: =20
-> > > I could reproduce it with allmodconfig and gcc 11.4.1 from rockylinux,
-> > > but not with gcc 9.3 or 12.3. Also it's not reproduced with gcc 11.4.1
-> > > when using defconfig + CONFIG_DRM_XE  (even if  -Wstringop-overflow is
-> > > still added).
-> > >=20
-> > > I don't see a bug in the code, even if it inverts the head/tail
-> > > convention.
-> > >=20
-> > > Searching around showed this which may be relevant: https://gcc.gnu.o=
-rg/bugzilla/show_bug.cgi?id=3D101854
-> > > At least I can reproduce the same issue as in the snippet provided
-> > > (https://gcc.gnu.org/bugzilla/show_bug.cgi?id=3D101854#c7) with the b=
-uggy
-> > > compiler.
-> > >=20
-> > > So, maybe the best thing to do for now is to disable -Wstringop-overf=
-low
-> > > for gcc < 12?
-> > >=20
-> > >=20
-> > > ------8<-----
-> > > diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> > > index 6952da8979ea..0433a3c6cbfd 100644
-> > > --- a/drivers/gpu/drm/xe/Makefile
-> > > +++ b/drivers/gpu/drm/xe/Makefile
-> > > @@ -17,7 +17,7 @@ subdir-ccflags-y +=3D $(call cc-option, -Wunused-co=
-nst-variable)
-> > >   subdir-ccflags-y +=3D $(call cc-option, -Wpacked-not-aligned)
-> > >   subdir-ccflags-y +=3D $(call cc-option, -Wformat-overflow)
-> > >   subdir-ccflags-y +=3D $(call cc-option, -Wformat-truncation)
-> > > -subdir-ccflags-y +=3D $(call cc-option, -Wstringop-overflow)
-> > > +subdir-ccflags-$(call gcc-min-version, 120000) +=3D $(call cc-option=
-, -Wstringop-overflow)
-> > >   subdir-ccflags-y +=3D $(call cc-option, -Wstringop-truncation)
-> > >   # The following turn off the warnings enabled by -Wextra
-> > >   ifeq ($(findstring 2, $(KBUILD_EXTRA_WARN)),)
-> > > ------8<----- =20
->=20
-> This I did, thank you!
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_ct.c | 15 +++++++++------
+ 1 file changed, 9 insertions(+), 6 deletions(-)
 
-Maybe that line "subdir-ccflags-y +=3D $(call cc-option, -Wstringop-overflo=
-w)"
-should just be removed as the setting of that option has been moved to the
-normal C flags in the top level Makefile (out of Makefile.extrawarn).
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index c29f095aa1b9..9d1d855da229 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -923,18 +923,21 @@ static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 	return ret;
+ }
+ 
+-static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
++static int process_g2h_msg(struct xe_guc_ct *ct, u32 *hxg, u32 len)
+ {
+ 	struct xe_device *xe = ct_to_xe(ct);
+ 	struct xe_guc *guc = ct_to_guc(ct);
+-	u32 action = FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, msg[1]);
+-	u32 *payload = msg + GUC_CTB_HXG_MSG_MIN_LEN;
+-	u32 adj_len = len - GUC_CTB_HXG_MSG_MIN_LEN;
++	u32 action, adj_len;
++	u32 *payload;
+ 	int ret = 0;
+ 
+-	if (FIELD_GET(GUC_HXG_MSG_0_TYPE, msg[1]) != GUC_HXG_TYPE_EVENT)
++	if (FIELD_GET(GUC_HXG_MSG_0_TYPE, hxg[0]) != GUC_HXG_TYPE_EVENT)
+ 		return 0;
+ 
++	action = FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, hxg[0]);
++	payload = hxg + GUC_HXG_EVENT_MSG_MIN_LEN;
++	adj_len = len - GUC_HXG_EVENT_MSG_MIN_LEN;
++
+ 	switch (action) {
+ 	case XE_GUC_ACTION_SCHED_CONTEXT_MODE_DONE:
+ 		ret = xe_guc_sched_done_handler(guc, payload, adj_len);
+@@ -1145,7 +1148,7 @@ static int dequeue_one_g2h(struct xe_guc_ct *ct)
+ 	if (unlikely(ret < 0))
+ 		return ret;
+ 
+-	ret = process_g2h_msg(ct, ct->msg, len);
++	ret = process_g2h_msg(ct, ct->msg + GUC_CTB_MSG_MIN_LEN, len - GUC_CTB_MSG_MIN_LEN);
+ 	if (unlikely(ret < 0))
+ 		return ret;
+ 
 
---=20
-Cheers,
-Stephen Rothwell
+base-commit: 39df1f6b1259816cc42b5f2451ca5092fad340ce
+-- 
+2.25.1
 
---Sig_/_3HAcU_.gtxEp1r51mpFW=c
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmWdz44ACgkQAVBC80lX
-0GxlSAf+KitKCpVRdYYEKRdEri9+WN6iPfy9udxOjYbXvPKB7w74BnwjFhlT4nHT
-w+MJR13YboF8ywPZSUPhWxydE8jY+sGrIvcVZnrxTf+adobPmsJjEI2QaURxd29s
-FGILau7C3Zy+b2urEDvyEQdiQ00uOajI9p77IzIXYIgSib9If0V8aNHKF8RgsrRt
-XEnTpgQ7spiyfi7RrgiH+QXMsv0NY0KJISNnl5COaUmvTsRob98d9X1Nw4IyGK2A
-NwwDd4S2VALJrztLNdTPEnt/ijZgHXTd4xm7syOwrC4CHTdZegCy2/XTFDBHfBV6
-3+ixuhRaUxHBiZJ2M0fZJOgyYKg3cA==
-=FlIy
------END PGP SIGNATURE-----
-
---Sig_/_3HAcU_.gtxEp1r51mpFW=c--
