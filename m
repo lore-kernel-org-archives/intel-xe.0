@@ -4,26 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1CDFC3DA6E
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Jan 2024 09:19:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 902BCC47073
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Jan 2024 10:26:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F49510E727;
-	Wed, 10 Jan 2024 09:19:37 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7363710E727;
- Wed, 10 Jan 2024 09:19:36 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8101349802905187684=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 587B110E5A6;
+	Wed, 10 Jan 2024 10:26:57 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A22C910E5A6
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Jan 2024 10:26:55 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 115B6616C7;
+ Wed, 10 Jan 2024 10:26:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADA0BC433C7;
+ Wed, 10 Jan 2024 10:26:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1704882414;
+ bh=u0i2FaVQlYbTLnWyHEIAv2lNsR9XhIwGw/u5AT2iYxI=;
+ h=Date:From:To:Cc:Subject:Reply-To:References:In-Reply-To:From;
+ b=EMM4k/SMS/MJdNAJ/5RgLZiJOmTiYQxja4QuNj2EQ/gmtXKJyX+iDkJLek81nZURv
+ LqRL8dmmie0ZSNDOAaqlhlyBzqXEpoETaUFlUpMIk0tM6z5HF4kJ0qOqobNh3HIGPP
+ iB+wJ1hiyufll73xHdcLdCAMFjt2sFFED5Ch5YTsBuMdSWbjes3xC+ySZMQ1HUWDPc
+ XGGeirJBMv/FCNHQfk5Otp+IKsy91rYUN6yq4VfqXqo3E9mdvilyYvxPKmTkpXX0ve
+ nmviqBfe9YOxv+QhRqoJGcqqYaY4pqfaIjp/zFd5MjUD5UCu3Mm9wF+7PazAlF3nV6
+ oI5jhaAnHPk1Q==
+Received: by paulmck-ThinkPad-P17-Gen-1.home (Postfix, from userid 1000)
+ id 52479CE0AB0; Wed, 10 Jan 2024 02:26:54 -0800 (PST)
+Date: Wed, 10 Jan 2024 02:26:54 -0800
+From: "Paul E. McKenney" <paulmck@kernel.org>
+To: Stephen Rothwell <sfr@canb.auug.org.au>
+Subject: Re: [BUG] allmodconfig build error in next-20240108
+Message-ID: <3a10ef2b-acbe-4d80-805a-e947e15e5db3@paulmck-laptop>
+References: <45ad1d0f-a10f-483e-848a-76a30252edbe@paulmck-laptop>
+ <20240109095757.1313b2d9@canb.auug.org.au>
+ <341a4955-0cdd-48d0-bfbd-cc6f6f09df37@paulmck-laptop>
+ <atbx7mspjbymkzgstk4l64qz3uky3wpmx4isrfg3ixgtvebdd2@cktpe4ejfk7k>
+ <20240110081155.48bb0cbd@oak>
+ <d61dfe52-9567-4f62-98f5-5c1e00cb4708@paulmck-laptop>
+ <20240110095822.3ba3d979@canb.auug.org.au>
+ <3d14049c-d44c-4b33-9933-0f96055b8a70@paulmck-laptop>
+ <20240110160335.2bad7d54@oak>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe=3A_Fix_typo_in_vram_frequ?=
- =?utf-8?q?ency_sysfs_documentation?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sujaritha Sundaresan" <sujaritha.sundaresan@intel.com>
-Date: Wed, 10 Jan 2024 09:19:36 -0000
-Message-ID: <170487837646.216241.4108527564167421606@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240110074203.2169233-1-sujaritha.sundaresan@intel.com>
-In-Reply-To: <20240110074203.2169233-1-sujaritha.sundaresan@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240110160335.2bad7d54@oak>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,197 +60,72 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Reply-To: paulmck@kernel.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, linux-kernel@vger.kernel.org,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8101349802905187684==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Jan 10, 2024 at 04:03:51PM +1100, Stephen Rothwell wrote:
+> Hi Paul,
+> 
+> On Tue, 9 Jan 2024 19:46:27 -0800 "Paul E. McKenney" <paulmck@kernel.org> wrote:
+> >
+> > On Wed, Jan 10, 2024 at 09:58:22AM +1100, Stephen Rothwell wrote:
+> > >
+> > > Maybe that line "subdir-ccflags-y += $(call cc-option, -Wstringop-overflow)"
+> > > should just be removed as the setting of that option has been moved to the
+> > > normal C flags in the top level Makefile (out of Makefile.extrawarn).  
+> > 
+> > If you meant like this, no joy.  :-(
+> 
+> Actually I meant the one in drivers/gpu/drm/xe/Makefile
 
-== Series Details ==
+Like this?  That does work as shown below, thank you!
 
-Series: drm/xe: Fix typo in vram frequency sysfs documentation
-URL   : https://patchwork.freedesktop.org/series/128415/
-State : failure
+							Thanx, Paul
 
-== Summary ==
+------------------------------------------------------------------------
 
-CI Bug Log - changes from xe-613-c170f452b2634a920b2251f825648abaca53e5cb_BAT -> xe-pw-128415v1_BAT
-====================================================
+drm/xe: Fix build bug for GCC 11
 
-Summary
--------
+Building drivers/gpu/drm/xe/xe_gt_pagefault.c with GCC 11 results
+in the following build errors:
 
-  **FAILURE**
+./include/linux/fortify-string.h:57:33: error: writing 16 bytes into a region of size 0 [-Werror=stringop-overflow=]
+   57 | #define __underlying_memcpy     __builtin_memcpy
+      |                                 ^
+./include/linux/fortify-string.h:644:9: note: in expansion of macro ‘__underlying_memcpy’
+  644 |         __underlying_##op(p, q, __fortify_size);                        \
+      |         ^~~~~~~~~~~~~
+./include/linux/fortify-string.h:689:26: note: in expansion of macro ‘__fortify_memcpy_chk’
+  689 | #define memcpy(p, q, s)  __fortify_memcpy_chk(p, q, s,                  \
+      |                          ^~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/xe/xe_gt_pagefault.c:340:17: note: in expansion of macro ‘memcpy’
+  340 |                 memcpy(pf_queue->data + pf_queue->tail, msg, len * sizeof(u32));
+      |                 ^~~~~~
+In file included from drivers/gpu/drm/xe/xe_device_types.h:17,
+                 from drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from drivers/gpu/drm/xe/xe_bo.h:13,
+                 from drivers/gpu/drm/xe/xe_gt_pagefault.c:16:
+drivers/gpu/drm/xe/xe_gt_types.h:102:25: note: at offset [1144, 265324] into destination object ‘tile’ of size 8
+  102 |         struct xe_tile *tile;
+      |                         ^~~~
 
-  Serious unknown changes coming with xe-pw-128415v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-128415v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+Fix these by removing -Wstringop-overflow from drm/xe builds.
 
-  
+Suggested-by: Stephen Rothwell <sfr@rothwell.id.au>
+Signed-off-by: Paul E. McKenney <paulmck@kernel.org>
 
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-128415v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_exec_fault_mode@many-basic:
-    - bat-pvc-2:          [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-613-c170f452b2634a920b2251f825648abaca53e5cb/bat-pvc-2/igt@xe_exec_fault_mode@many-basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128415v1/bat-pvc-2/igt@xe_exec_fault_mode@many-basic.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-128415v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_create@create-execqueues-leak:
-    - bat-atsm-2:         [PASS][3] -> [FAIL][4] ([Intel XE#1099])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-613-c170f452b2634a920b2251f825648abaca53e5cb/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128415v1/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:
-    - bat-adlp-7:         [FAIL][5] ([Intel XE#480]) -> [PASS][6] +2 other tests pass
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-613-c170f452b2634a920b2251f825648abaca53e5cb/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128415v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
-
-  
-#### Warnings ####
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-adlp-7:         [FAIL][7] ([Intel XE#1066]) -> [SKIP][8] ([Intel XE#455])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-613-c170f452b2634a920b2251f825648abaca53e5cb/bat-adlp-7/igt@kms_dsc@dsc-basic.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128415v1/bat-adlp-7/igt@kms_dsc@dsc-basic.html
-
-  
-  [Intel XE#1066]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1066
-  [Intel XE#1099]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1099
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
-
-
-Build changes
--------------
-
-  * IGT: IGT_7664 -> IGT_7666
-  * Linux: xe-613-c170f452b2634a920b2251f825648abaca53e5cb -> xe-pw-128415v1
-
-  IGT_7664: 5b8a8dcca7711c73f9cfeb66b5deb27751290fb4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_7666: 5f97adfd0e1636788a6af5b592f0d15b4f1027c8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-613-c170f452b2634a920b2251f825648abaca53e5cb: c170f452b2634a920b2251f825648abaca53e5cb
-  xe-pw-128415v1: 128415v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128415v1/index.html
-
---===============8101349802905187684==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix typo in vram frequency sysfs documentation</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/128415/">https://patchwork.freedesktop.org/series/128415/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128415v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128415v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-613-c170f452b2634a920b2251f825648abaca53e5cb_BAT -&gt; xe-pw-128415v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-128415v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-128415v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-128415v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_exec_fault_mode@many-basic:<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-613-c170f452b2634a920b2251f825648abaca53e5cb/bat-pvc-2/igt@xe_exec_fault_mode@many-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128415v1/bat-pvc-2/igt@xe_exec_fault_mode@many-basic.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-128415v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_create@create-execqueues-leak:<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-613-c170f452b2634a920b2251f825648abaca53e5cb/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128415v1/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1099">Intel XE#1099</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-613-c170f452b2634a920b2251f825648abaca53e5cb/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128415v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">PASS</a> +2 other tests pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_dsc@dsc-basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-613-c170f452b2634a920b2251f825648abaca53e5cb/bat-adlp-7/igt@kms_dsc@dsc-basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1066">Intel XE#1066</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128415v1/bat-adlp-7/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7664 -&gt; IGT_7666</li>
-<li>Linux: xe-613-c170f452b2634a920b2251f825648abaca53e5cb -&gt; xe-pw-128415v1</li>
-</ul>
-<p>IGT_7664: 5b8a8dcca7711c73f9cfeb66b5deb27751290fb4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_7666: 5f97adfd0e1636788a6af5b592f0d15b4f1027c8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-613-c170f452b2634a920b2251f825648abaca53e5cb: c170f452b2634a920b2251f825648abaca53e5cb<br />
-  xe-pw-128415v1: 128415v1</p>
-
-</body>
-</html>
-
---===============8101349802905187684==--
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 53bd2a8ba1ae..efcf0ab7a1a6 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -17,7 +17,6 @@ subdir-ccflags-y += $(call cc-option, -Wunused-const-variable)
+ subdir-ccflags-y += $(call cc-option, -Wpacked-not-aligned)
+ subdir-ccflags-y += $(call cc-option, -Wformat-overflow)
+ subdir-ccflags-y += $(call cc-option, -Wformat-truncation)
+-subdir-ccflags-y += $(call cc-option, -Wstringop-overflow)
+ subdir-ccflags-y += $(call cc-option, -Wstringop-truncation)
+ # The following turn off the warnings enabled by -Wextra
+ ifeq ($(findstring 2, $(KBUILD_EXTRA_WARN)),)
