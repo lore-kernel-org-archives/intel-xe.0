@@ -4,43 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25297C4707B
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Jan 2024 15:56:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 640CEC4707B
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Jan 2024 15:57:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C67C010E614;
-	Wed, 10 Jan 2024 15:56:42 +0000 (UTC)
-Received: from sin.source.kernel.org (sin.source.kernel.org
- [IPv6:2604:1380:40e1:4800::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF72F10E614;
- Wed, 10 Jan 2024 15:56:40 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id B300ACE1CDD;
- Wed, 10 Jan 2024 15:56:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B85F1C433C7;
- Wed, 10 Jan 2024 15:56:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1704902190;
- bh=Mev9R+M1cLaYjYBU2ZgT5jQ2ZNfBaieaMpJ0LyeLUqQ=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=IeDcPZYqZH/yosqHy6J0lKKIXTr87XKELYPhOa4vt9rK8HdOlohar0v95Bx8OTdGH
- qFkCOu0OtN6mz/BohFHwbJekpq/cRig3FNJMy81gq7ZjCx4Q+GqZRFbdFk2LWKfLwU
- UqW8AC16aRfgHhoGD+CVoZibaW2tuPgF5iuMbzilseJNpgvVjFgYAZrwuFPgEB78OG
- WV0NkkyJ+qt57r+azS6oThayuTFamklZZWYXTFl52aiYMK+5hVeAsy/CZ3k7mu4Zvw
- gsotv0QM55jZHaZKlclvTSBRs5wPTZS/GgIMp2z1pttlcZwrYyX+zCDFpfpMi3TWWO
- PcI2MR49Yy+Rw==
-Date: Wed, 10 Jan 2024 16:56:27 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>
-Subject: Re: [PATCH v4 6/6] drm/tests: managed: Add a simple test for
- drmm_managed_release
-Message-ID: <2mgrb5lrm5oskkcauhdbegdb5jwhqx6unzlaltz6e2bzaqrzyr@dnkbsr3ykj7k>
-References: <20240105101324.26811-1-michal.winiarski@intel.com>
- <20240105101324.26811-7-michal.winiarski@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 299C610E628;
+	Wed, 10 Jan 2024 15:57:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8A3E10E628
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Jan 2024 15:57:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1704902225; x=1736438225;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rvp/kVnwJhbzLIhMYNE9icgdTVdBkS2at3QZ1eqDlsg=;
+ b=kVtcYfQnTR+xMx7cnpiSzDPcfAdfv1pAFhgyD3N3xHct/Ap8OWYhMvjl
+ tCC74J/XEbwtlkY8abb/xZQns4oSQ7QcmfCf/uDr5XQcjf5Hak0jwel+c
+ fRpOSErhMbn5I46ReKg7dD9orxOxpTbvagOPU7Wr9VvKNo8+GWvtLwNMd
+ ndsgpSzbM3wBvkPz9bdlJLvBZt59t43bSni+PjOWZ6qUaXQ9d/1KDGYr6
+ ib7mid9Qchx3w0eGQ/ClxmZonluELvTFJmoUDr0ky9+A5+OdIh+Uflen4
+ zHYZvIm13605NVYTdw0PedudeUBtHnfJOdgXozyr800Fu+rE9WIrdYvv0 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10948"; a="398249221"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="398249221"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2024 07:57:05 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10948"; a="925680635"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="925680635"
+Received: from lapeders-mobl1.ger.corp.intel.com (HELO fedora..)
+ ([10.249.254.28])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2024 07:57:04 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [CI 1/2] Revert "mei/hdcp: Also enable for XE"
+Date: Wed, 10 Jan 2024 16:56:44 +0100
+Message-ID: <20240110155645.523818-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="low44rvsz3fnl7ut"
-Content-Disposition: inline
-In-Reply-To: <20240105101324.26811-7-michal.winiarski@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,86 +55,42 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel@ffwll.ch>,
- =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Javier Martinez Canillas <javierm@redhat.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+This reverts commit 52383b58eb8cf7d6a090928c568dfbe5560f848a.
+---
+ drivers/misc/mei/hdcp/Kconfig    | 2 +-
+ drivers/misc/mei/hdcp/mei_hdcp.c | 3 +--
+ 2 files changed, 2 insertions(+), 3 deletions(-)
 
---low44rvsz3fnl7ut
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+diff --git a/drivers/misc/mei/hdcp/Kconfig b/drivers/misc/mei/hdcp/Kconfig
+index 2ac9148988d4..54e1c9526909 100644
+--- a/drivers/misc/mei/hdcp/Kconfig
++++ b/drivers/misc/mei/hdcp/Kconfig
+@@ -4,7 +4,7 @@
+ config INTEL_MEI_HDCP
+ 	tristate "Intel HDCP2.2 services of ME Interface"
+ 	select INTEL_MEI_ME
+-	depends on DRM_I915 || DRM_XE
++	depends on DRM_I915
+ 	help
+ 	  MEI Support for HDCP2.2 Services on Intel platforms.
+ 
+diff --git a/drivers/misc/mei/hdcp/mei_hdcp.c b/drivers/misc/mei/hdcp/mei_hdcp.c
+index 94beb5667faa..51359cc5ece9 100644
+--- a/drivers/misc/mei/hdcp/mei_hdcp.c
++++ b/drivers/misc/mei/hdcp/mei_hdcp.c
+@@ -782,8 +782,7 @@ static int mei_hdcp_component_match(struct device *dev, int subcomponent,
+ {
+ 	struct device *base = data;
+ 
+-	if (!dev->driver ||
+-	    (strcmp(dev->driver->name, "i915") && strcmp(dev->driver->name, "xe")) ||
++	if (!dev->driver || strcmp(dev->driver->name, "i915") ||
+ 	    subcomponent != I915_COMPONENT_HDCP)
+ 		return 0;
+ 
+-- 
+2.43.0
 
-On Fri, Jan 05, 2024 at 11:13:24AM +0100, Micha=C5=82 Winiarski wrote:
-> Add a simple test that checks whether the action is indeed called right
-> away and that it is not called on the final drm_dev_put().
->=20
-> Signed-off-by: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
-> ---
->  drivers/gpu/drm/tests/drm_managed_test.c | 28 ++++++++++++++++++++++++
->  1 file changed, 28 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/tests/drm_managed_test.c b/drivers/gpu/drm/t=
-ests/drm_managed_test.c
-> index c1fc1f0aac9b2..91863642efc13 100644
-> --- a/drivers/gpu/drm/tests/drm_managed_test.c
-> +++ b/drivers/gpu/drm/tests/drm_managed_test.c
-> @@ -41,6 +41,33 @@ static void drm_test_managed_run_action(struct kunit *=
-test)
->  	KUNIT_EXPECT_TRUE_MSG(test, priv->action_done, "Release action was not =
-called");
->  }
-> =20
-> +/*
-> + * The test verifies that the release action is called immediately when
-> + * drmm_release_action is called and that it is not called for a second =
-time
-> + * when the device is released.
-> + */
-> +static void drm_test_managed_release_action(struct kunit *test)
-> +{
-> +	struct managed_test_priv *priv =3D test->priv;
-> +	int ret;
-> +
-> +	ret =3D drmm_add_action_or_reset(priv->drm, drm_action, priv);
-> +	KUNIT_EXPECT_EQ(test, ret, 0);
-> +
-> +	ret =3D drm_dev_register(priv->drm, 0);
-> +	KUNIT_ASSERT_EQ(test, ret, 0);
-> +
-> +	drmm_release_action(priv->drm, drm_action, priv);
-> +	KUNIT_EXPECT_TRUE_MSG(test, priv->action_done, "Release action was not =
-called");
-> +	priv->action_done =3D false;
-> +
-> +	drm_dev_unregister(priv->drm);
-> +	drm_kunit_helper_free_device(test, priv->drm->dev);
-> +
-> +	KUNIT_EXPECT_FALSE_MSG(test, priv->action_done,
-> +			       "Unexpected release action call during cleanup");
-> +}
-> +
-
-I guess we can have something simpler if we switch action_done to a
-counter and just check that the counter didn't increase.
-
-And I think the custom messages should be removed there too.
-
-Maxime
-
---low44rvsz3fnl7ut
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZZ6+KwAKCRDj7w1vZxhR
-xTSyAP9WBatDxCR53O+71y/N+u/TGRvmdsq04Tz8iV4qA/vs8wD9E/+kUzgF0hBT
-sPyni9+ICPNJdDcxH9Yh9B/2rk4Z6AY=
-=1Mfc
------END PGP SIGNATURE-----
-
---low44rvsz3fnl7ut--
