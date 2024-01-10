@@ -4,134 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C17FC4707B
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Jan 2024 23:09:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 261F1C47073
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Jan 2024 23:15:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0090F10E5EF;
-	Wed, 10 Jan 2024 23:09:14 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52C1C10E5EF
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Jan 2024 23:09:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8F1610E639;
+	Wed, 10 Jan 2024 23:15:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7ACBA10E639
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Jan 2024 23:15:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704928152; x=1736464152;
+ t=1704928550; x=1736464550;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=BYjamHD8nqWG+iA5zFTJDUcrDchWLTvrcOGGmT/L78I=;
- b=JJZpNp37mzD1x60NAwuvE83605kU9Y541KUl3grZC+spV2er5//lPMzc
- 6pfUDTpyN3Qv5BZ2aUWXYEPh9tEZA44Sng+0ExssT9DV0dy5qzMPyXBHH
- 75UbkcSh+kkvJOd61Tpvk+oOtMGFwze/ws8tSDSNHCfpl2HG198Rp8zTk
- rYG+S15wVsbc87NPNs0u3hh/yo5YgwYmGHriyC8mIexcI3Ky8O1furAVU
- gtah3jBL0clIToaqkpJBgBWQtZjpr9hEOq+YvcVoaPiwBJEy4tXcSCM0e
- xa0NrR9c64Duw0Vc5TsGFcgAP2RbEXr3QIhdIlmwcN44eJ7TTywwN9pXF w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10949"; a="5413539"
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=utGmH5IYXnPC8J4JHrGgUVRu4v5PEqlKzsgwsi0qLRQ=;
+ b=hn1Z1gg0wliBplpTFsjujJKKeQYI39u/wnbOKYw/exF8V1jPIF8RABLJ
+ 6Snw/53yhK37COAYo+MpFqao489Pg99qPNz6BwNf4KPAvSyVJ/f1DtDjK
+ Qk3hFHnG04U1eLNUw7jBzF8Ww1rQsDwXy1JaAWlxgOF5U/rRBYmrehdUb
+ dsLA765PxbY0HZO+xJ7xfA398XWjsjIwn/fSHbuYP7FBxCZFVhPadQPFE
+ wTVl6lSUw4ZFZKYMXCpyUHOMSPuEs5Xg0iTmbzC4PBkhOVmjs7a1oVgqj
+ nQKb/GyF9Zr3IDkjASzfWafjlbpW3JtFPKDO6QeJWsXhpV0Als3hbrLvD Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10949"; a="5450896"
 X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; 
-   d="scan'208";a="5413539"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2024 15:09:12 -0800
+   d="scan'208";a="5450896"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2024 15:15:50 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10949"; a="955528631"
-X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="955528631"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 10 Jan 2024 15:09:11 -0800
+X-IronPort-AV: E=McAfee;i="6600,9927,10949"; a="1113605189"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="1113605189"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 10 Jan 2024 15:15:49 -0800
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 10 Jan 2024 15:09:11 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ 15.1.2507.35; Wed, 10 Jan 2024 15:15:49 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 10 Jan 2024 15:09:11 -0800
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Wed, 10 Jan 2024 15:15:49 -0800
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.168)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 10 Jan 2024 15:09:11 -0800
+ 15.1.2507.35; Wed, 10 Jan 2024 15:15:49 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GtdcW7SnHILSufRe9Si39VuXpFsZ5m0JchbQBNHZj+9rv5cZZ2X2Zt+b/rODMAjrzjspq3n6dc48xX3xIhr6qbbItI5DigvfEyAfQTKwfngHMQ/ymfRXe7zotmxAGLavdVyl31UNY/znt051XCiLslU9q5LFAOLSS+2i3uz1p51wakH29sQN29jDKV8mxPSBK9YR4etzYv+MgpdHU5ydKyVOga8oZ9rJq7Bb6iz2Ov5ID3L6CUdOf2AVZViJnKsy1zHx5XbdB7wBWU82sqELJivHe+gPyzk7QQYyYkzD7oM6ynvot2ZZFv7DDpnDCAMB7qFQRD9PCCZOMNR+TZxhOw==
+ b=auNZurswBEkwaZwvycFSyHQcDLFqUf/6CL8zz47hyi+JtMp6fXJMtn2Fo/MxkiGbvwOLTPPu5LT6qiH66NZZeL4smqsdV0NDjgEpQlCH5K3de9z8YvgvZKLkWHvQyD73z5Wg+pzh/1AVW/1qWSx1GlnxTg6Z78mRl/HHjMHkrgg9g2yuo2flDPzlHjoli4mzLD3Cdv1nRXZAKJ5mDmRtSpXONKtcQTbOj1GHZPL1gZAO8lRNF2/AZIY5Ev0GhUobW024hftvGOvmU2Lt3+5oT7AysV3hm9fp55hR1cRQ4y2kLiqehyHV0VIZF6C1uujOMLB94qMX7/jInQhBw1zFWQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gvKZ7G4RN2pUNc9UD4eXxk89sxeYCQ7UxMylnJwn9qQ=;
- b=WYl953q5LLum1JWs4Rlwl0Dg4EPXmUAfI7/fFExGVj0SovpnIb+uNbBhYKTE1+4c3rJ7YEBdyWa5EImMomzZV6QDMzVlfRakBQsjTAe+X43CxZUy91+ZSxeG/6JjDnpjFy06L4fTms22m61cssw7UMfDqWIXflHdnsE61lStnE04v+0bJCHrsrls2jA1dxEn/yod1sXsrXGHdDmMjV+xja/qZncDdlhf9pkb7WQzma22Kll7YqYh5fmIAPF2bZfEjd0snrAu2Vn+i/kJl9a5SnsBeyL3t21v58aZOLESB+SeNvjoZT4zMt9sGcdL3GZKROZ3Ww2ytPRIvBr2/QhOhA==
+ bh=S/NP2qmewdgMhEtIfAVtpNz2VJoTsHSMrJYYWhWCKf4=;
+ b=U1nZt/LHyc+qZneJeueJIS5ZNGOASbcD8NQueMFqYwZkk0+D4nLAdIDNByz/nQBYSyBA7Nj3Mb5QgEHteymnB0zFSDJXcfcjrvV/u+f/9VzrdGuPzLQ93+btzXlcVdxkOsYt29vGVwxdaa3ZaX3PT3ueQ8tNXb/rpcjYrjPYxOEUAO84HIaTeIcAVCMhZlAMQg3LiM06vm4il+QnpJ9BD65TCMySrfZuDDTT3tVwLQQAXu7jP2iVjSGXfoz9QpZUbf9eI+F08tvGKPSxbKiIQNF9+Curdp45bRwKVec1b9QyNkjiGVosScZbpPZZoL1ZGGRN6mUk6QIQ/qTV8FMXkQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SA1PR11MB8425.namprd11.prod.outlook.com (2603:10b6:806:385::18)
+ by BN9PR11MB5308.namprd11.prod.outlook.com (2603:10b6:408:119::13)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.23; Wed, 10 Jan
- 2024 23:09:09 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.25; Wed, 10 Jan
+ 2024 23:15:39 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::b9a8:8221:e4a1:4cda]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::b9a8:8221:e4a1:4cda%4]) with mapi id 15.20.7159.020; Wed, 10 Jan 2024
- 23:09:09 +0000
-Date: Wed, 10 Jan 2024 23:07:55 +0000
+ 23:15:38 +0000
+Date: Wed, 10 Jan 2024 23:14:23 +0000
 From: Matthew Brost <matthew.brost@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: Re: [PATCH 2/2] drm/xe/guc: Fix arguments passed to relay G2H handlers
-Message-ID: <ZZ8jSw7WdvokR5Rh@DUT025-TGLU.fm.intel.com>
-References: <20240110195951.453-1-michal.wajdeczko@intel.com>
- <20240110195951.453-2-michal.wajdeczko@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+To: Gustavo Sousa <gustavo.sousa@intel.com>
+Subject: Re: [PATCH] drm/xe: Add DRM_XE_LOW_LEVEL_TRACEPOINTS
+Message-ID: <ZZ8kz/YWBEAm2mQW@DUT025-TGLU.fm.intel.com>
+References: <20240105164530.1328374-1-matthew.brost@intel.com>
+ <170447539640.198519.6458162717929687417@gjsousa-mobl2>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <20240110195951.453-2-michal.wajdeczko@intel.com>
-X-ClientProxiedBy: BY3PR03CA0003.namprd03.prod.outlook.com
- (2603:10b6:a03:39a::8) To PH7PR11MB6522.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <170447539640.198519.6458162717929687417@gjsousa-mobl2>
+X-ClientProxiedBy: BY5PR20CA0031.namprd20.prod.outlook.com
+ (2603:10b6:a03:1f4::44) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA1PR11MB8425:EE_
-X-MS-Office365-Filtering-Correlation-Id: 88d7e889-42c7-4842-8c57-08dc123126e4
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|BN9PR11MB5308:EE_
+X-MS-Office365-Filtering-Correlation-Id: 926a7dbe-806b-4802-e43b-08dc12320e77
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: eBDIlZLmxeTVCbpLb4lgYpqB8l0O7amshSOPkGAYPolc84773Fm9DEwjlzcgV0LUFtI13f66OdOajqkmR5GV+JV5tAKRT1DKT56beXuwCYW34K+CAXY/BqPPkvQfAias19141e4QZyKf61/mj3nB21anHwe9hpoc2kA3kJuXhtnbHWENDIn77ijkVYEP+b7bOqf2J1lHIBB04DAFGW18NcIMTzIaJaGbsItmIPmsRAPlaxn+HnhpVIqfOoOYnOW+StBsthL4F/F6pf4O8WHUyugEtFZyWoX9CoVWkB2SByYZu0bi1Q5Z51VAhspHZWt6aYRhGpGYWsSqAbJvrzank0VPSSkDG7vTdIU7q0ZIvmpqZviDifvDS2NBSvLkFvp61yLPPZ1URB9ivHWNworMtxQBraO7OA5/JMiv1SD0OAZ8OlOQHYWx7WvI5NBu4n+Sw6tOJWWI4f3KPIjMkjf74BQUNqQzbrW12G7X9DuUBteE7s56hxjN5iPOruTZLTCW7DVoo38fbMUJezLgzUQ5pCfcwQUjcoISlsTzXoujy6xpuxHPjGInRfmuajWTaPfm
+X-Microsoft-Antispam-Message-Info: UE3HmwCOl6zfiMAy62xYAgcqRrstvyXekLptDqbzzScwh9BY3WL0+FJb2wjael468MBRPYjYt7hqQK/d2KUmElaA15WVn3tvAkuFaE71IjSh4Llkt6pN6QRNl6pVKoh9GbrYuaUo9/T+w/RVxGWh4Kj8YN8AFVze7Xw9jCYY3IMdr7WNkAShYze/8F4i/9kZZdM5PJP7GuKUSRQIjbzI6UzpVcoHx+eoB0eQQXjixU+uOACZ9XGYj3qDC28bl87wAa4tsrwfJjDUAHbBZy+SS+gk3imhajw+YKpWY/wwGBFlLGQYwlQJR7aOpeSoREnzkBkqwQUo60Iv/s9NJlgiOvBiF72AkFnUQ97sbh0Lky1xWbPBb0kUWrjC8gytZh/2rGFLhxW8uWgtI0n0ckSIBC+WqG64LMozbDCxvjq65qoxB1jg3QN+5bQ9FAaTYpz32Yln8RJjQ46J30JI1XFjI6gF7gCM3pCIf4nxGztHznXltfR7uqfTVaMC+/S3xN0iH9t72vr4AueU1ScuAuUc+LaRrlklLWVcI9Kq7C5z3aIdMgIb6hVG6BAE2I56Zj1D
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(346002)(366004)(396003)(136003)(39860400002)(376002)(230922051799003)(1800799012)(64100799003)(451199024)(186009)(5660300002)(2906002)(41300700001)(86362001)(38100700002)(82960400001)(4326008)(6862004)(6486002)(66556008)(6636002)(6666004)(478600001)(66946007)(66476007)(316002)(8676002)(8936002)(6506007)(6512007)(44832011)(83380400001)(26005);
+ SFS:(13230031)(376002)(136003)(39860400002)(346002)(396003)(366004)(230922051799003)(451199024)(1800799012)(186009)(64100799003)(83380400001)(66574015)(6512007)(6506007)(26005)(38100700002)(30864003)(6862004)(4326008)(8936002)(44832011)(8676002)(2906002)(66476007)(6636002)(6486002)(478600001)(5660300002)(6666004)(66556008)(316002)(41300700001)(82960400001)(66946007)(86362001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?nDNJ95RjiEWCXN2jC2Z+yagwWUjws5Xhay57PQ+lq8THhzZDstRyYU57Gu6J?=
- =?us-ascii?Q?0/ce2wrPcFl+eT8kkd6TnS1etuD8jpJtCW+U/19lWVlkVKwSZIl1iXYjGmPp?=
- =?us-ascii?Q?vsRgRpzlAVZx8tCXk/EGJa4RVCSZI+lpi7A13zX7/WXrgVBP8Qt5OSDhcAu1?=
- =?us-ascii?Q?XdGhXPJ2BkDzW8EnV3kNegs1srZzcMGQuUg0YxTCQLtthHal0bRYK2szj+Jt?=
- =?us-ascii?Q?oWtu2nn3/JZMvDTggLADc5aKltxflNK6mh9UmQwiJLx8+kUPzuibv4ynnL+B?=
- =?us-ascii?Q?GM4N5EH1KMYuI4fIoWcmQJx+ddePMwuVweBRnJiWFPCcnKGmXcurd5I1bspM?=
- =?us-ascii?Q?iFnCQ7W2f/FD2+SB1nY0THyAlaxj9hr3vDbZpQxByZH6qI+re+apzpWvNNzO?=
- =?us-ascii?Q?iPxSHWY9o8sJJ/wB04gHYTQLdKIC6w2mIxnhC2Ib2+Yi4GjS+4nnXvIk/gT+?=
- =?us-ascii?Q?75mudatVBW+FemKGJDBIDgswc8gtj430TWLDFpGQQx+ll3fwIhWxnuIt6uJp?=
- =?us-ascii?Q?XefND1nIgsOU4Fw5FQNbnMLwCInAIBunpWYs0nrE8YANPuIX3knucSqvGmJ9?=
- =?us-ascii?Q?ESVP5pj9vrrFGoetqqRo391DKJlH5W7gei9qekG/HFBOD+1HEr+kvn35P8ev?=
- =?us-ascii?Q?SgKQfMNaEuCNyTGLLAEZmidJGCzV4Ig4NybM0cwnKFSn7N5TFOWRP71/dJft?=
- =?us-ascii?Q?p42dtr7piLkrMHvCN7jfR0GSzB2/020EBWbPMokFHlw4ecGVy1DEtczVWQ1I?=
- =?us-ascii?Q?gO2lXBIDc4TB+O5FYTg+xbKuZv5VTCdE8K89hjfNmc/+KPSs6U/OviSfJgfV?=
- =?us-ascii?Q?IGKL19RT+PsQNBqFcdhRrmFANjk5SZFFZzhQOFZ/yplVXcLpAm2y34/RoOGf?=
- =?us-ascii?Q?X0nzzmiubrlwFnX8pr+eSIMurhroYSz2ySzxgxajjNJyaC+BmwB5Lha5lyGF?=
- =?us-ascii?Q?DXuxK5jYN3OIqvvSaCjPu/ffWA8OVCUrr7VyJKEr+IvIqahNdOXuITEE4j1r?=
- =?us-ascii?Q?DgJ6xwyem+7ZusUy1R/vBqZne8dRcdQVKLJVQ18WJvqEXoe1JoMlw7EV/Z2F?=
- =?us-ascii?Q?LLNP8eHV5UiRS6oncJMa9rVX94u5tPSGGRJc9sYiNpzYuRyKVQwe76EvZgLR?=
- =?us-ascii?Q?RwQkIRPKfTF8WBHGF89Woqevkj6SNgei3hoi+CVg80Mcho0o7y4GCn8SAxlx?=
- =?us-ascii?Q?+5kusK24hIXHWFCmy7UfIpaVG4nxmpZia1Ehrtk0zPr05xZv40EP67aBEuve?=
- =?us-ascii?Q?XcZt/MhTUKfTuYLeuldfcrCEHOU6EnfqZntwGKRCvHvjIwoV2F1CgdXoeSdf?=
- =?us-ascii?Q?oNqZi9irRr2xct7k1eOmDxAGa0kzhrmg2lR6JwsNZl9H/iNYO33Jv2Z0mBCF?=
- =?us-ascii?Q?0n9erGk67FNJJ9a884nR4sNZsrhCY9rd+BIoH7v+hoSrAlqKHIunOAzuc1ZI?=
- =?us-ascii?Q?8gu+AGoT6JU/38CwHWXzYn7zYcnFr3zYlnUufR9wvUutEqEZJTvv37XHUVtv?=
- =?us-ascii?Q?JYsk8a5YPj8R1KCApTzbyLuXQs3kzlwc92GyXzm0IyEQlueYQvXlMpICrqw8?=
- =?us-ascii?Q?rpr+aIeqCnVnDTIAy2/nMG50SwsT56SnP/38QH1wTaeVJ6k1Tp4CQ8mhfAWZ?=
- =?us-ascii?Q?nA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 88d7e889-42c7-4842-8c57-08dc123126e4
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?FRcbym3fuGd8k3o0bY3ntPPdHOldvdiwlsmUuHo+ct1OCmvi0Zda7FEYKc?=
+ =?iso-8859-1?Q?XMlPi/seigEJAK0+c8ilGO51gwg2J8KVNTyYBTngaQG9hJeMB6gA+jOcOM?=
+ =?iso-8859-1?Q?RCaXF4gYpj+nsdbK5OeKBdEgV5ixh9n47hImWuAELujAWmi4RdyEwvsXZg?=
+ =?iso-8859-1?Q?Lh5WsQx2Gp0X2dec+Hhy92tHPd1qj2/sON8qyLmgXoOulrQxirGtSCxS1d?=
+ =?iso-8859-1?Q?EOU8/ecPL8ZAuIrVyMj4YL6GlR7yc5ZpwqLWNmt1+eT45FAbQCO4rI+9Mt?=
+ =?iso-8859-1?Q?Cwhm7e+MzudXySY53YW6Zib++f1UYh28KQG7D6gHIntQpm20orglmOHpZ2?=
+ =?iso-8859-1?Q?9QW/c6NmPQNdoByshbLmzLxNulKKGWIwDVInicoC12jsIEO/GKgA96Jcj9?=
+ =?iso-8859-1?Q?N1GzU3Fbv/koopP/trsBuAdwnY9LAGmd3jCZpvwtHm+FWcwl5oRkV+PRte?=
+ =?iso-8859-1?Q?NSKERPmDvkTn/dSFMtC8aIcJT2fEYoXUTdNi21VpbmesJUSkEx4GdEV0jJ?=
+ =?iso-8859-1?Q?W2DnbY7sMtK5jhyrVIhqE4h0lW71X40hjCD1KUaHXD/xzOMa7EjO6XRLRP?=
+ =?iso-8859-1?Q?hNZp58QCgezwztnysovWP2pQwhjfhlOUNfIFJuN39+4kktfNOAaLZqW9bh?=
+ =?iso-8859-1?Q?co7fld5MM/i0+lEaCJMNyghtT4oOGfGa8QtZl/FE12rsechs0BU+/euDak?=
+ =?iso-8859-1?Q?/u2pKfGOPRbs44LjHIHWPT62f/v6EjWgjwRO+9MLeQmU9/VEPCEqccNMZg?=
+ =?iso-8859-1?Q?RCpV/+4paFKYUUL8SkGbRAQB/utnqzG/64jWZ6uGFGPdXHT06lgT6b4Zkr?=
+ =?iso-8859-1?Q?XLqn3tefv77LGixrp5J5jsJL8PDuCJXyHfgWuay3aehOGRr6Vm2yxM2SN5?=
+ =?iso-8859-1?Q?W4OBVd0iRV6ai/zBpfmeAAIqguZ2cvK42dgrzVFuJ6m6ETZ40xSYiOXnUQ?=
+ =?iso-8859-1?Q?ZhHiKC3fNOib6og4VJRMFG+TNXJakb5kxhwECe8gNDt6XMJJ86fc+XnxhK?=
+ =?iso-8859-1?Q?Cw47dm0GaU1igyoi2/1Y/joF2VnJGz3PSG81RU9oqKtpxZ/xIofZl/EcZn?=
+ =?iso-8859-1?Q?3tCDS5ImipzHUYlXaPaHeyJzQzqfK1KI8Yp32qLv36xMvxoKi8exTTBQjU?=
+ =?iso-8859-1?Q?3oDb9sZcoj3ee39f6bW/tL3ttcwoyv3uGc/b8lkVqk5D/9K5nhOh1ApYWm?=
+ =?iso-8859-1?Q?THmyXnJTq2NxjEtLkqfP618KK233SQlUQGytRwGNwtljNkGRoI6yZ/GhTI?=
+ =?iso-8859-1?Q?WX8BGL/EdSrAj/kjEYSLXRWSQtgWwx0WT3JjyLsYoRYwPjSTebql6zSd0X?=
+ =?iso-8859-1?Q?uNyQICz2TDQMja2bvEUGrBxFXJ1xDszlahrdqC6OgabBgF0AadeXtPiVA3?=
+ =?iso-8859-1?Q?xekKuAXp9MJFH8rGgw+iZygJjeoU/iQTAYlCVAT8GsDAJ5q5+F51jl2jz8?=
+ =?iso-8859-1?Q?40ZLbrJs6YpG0SAruRP3Gbs1pW+VDaTQX2c5bVUJDnQWDGeW0jYEYNetVG?=
+ =?iso-8859-1?Q?cIzRpVK0kaKNdes9/qupRVpZzJXNRbmjsi/CYk1Ui7egckN8MTwlDQNuQ4?=
+ =?iso-8859-1?Q?fTSm2Yd77LlXOg64sTXmLv49xGdvBtTnz1zfuJGt+oa+Tt/7WDRLgXzbIr?=
+ =?iso-8859-1?Q?opgzVhvnrl9ECvx7wV8GC6FNO6SptCkPalbIOAkbUTYzDgi6sHDmRMhg?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 926a7dbe-806b-4802-e43b-08dc12320e77
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2024 23:09:09.6078 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2024 23:15:38.1780 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aWydzUfAGt0SrI0SbuhoY0SjuZWAs/pDNC+S+rgmas6JihZb2mEfPoQzLvLkCGfZishiePgEgklyxafWUyBPvg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8425
+X-MS-Exchange-CrossTenant-UserPrincipalName: YHCdJYhgJL8JUZFlDDkaEtpvuU3WLCFy6/+arTfc2tBNADZHImINYDrVVqiOIi653mbm92MnIGVUjyRoqMHsyQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5308
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -148,41 +150,477 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jan 10, 2024 at 08:59:51PM +0100, Michal Wajdeczko wrote:
-> By default CT code was passing just payload of the G2H event
-> message, while Relay code expects full G2H message including
-> HXG header which contains DATA0 field. Fix that.
+On Fri, Jan 05, 2024 at 02:23:16PM -0300, Gustavo Sousa wrote:
+> Quoting Matthew Brost (2024-01-05 13:45:30-03:00)
+> >Trace events are uABI. The Xe trace events currently implemented are
+> >developer only and subject to change. Hide all Xe behind
+> >DRM_XE_LOW_LEVEL_TRACEPOINTS so these are free to change going forward.
+> >
+> >Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> >Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> >---
+> > drivers/gpu/drm/xe/Kconfig.debug |  10 +
+> > drivers/gpu/drm/xe/Makefile      |   4 +-
+> > drivers/gpu/drm/xe/xe_trace.h    | 339 +++++++++++++++++++++++++++++++
+> > 3 files changed, 352 insertions(+), 1 deletion(-)
+> >
+> >diff --git a/drivers/gpu/drm/xe/Kconfig.debug b/drivers/gpu/drm/xe/Kconfig.debug
+> >index 549065f57a78..a8785e71e224 100644
+> >--- a/drivers/gpu/drm/xe/Kconfig.debug
+> >+++ b/drivers/gpu/drm/xe/Kconfig.debug
+> >@@ -105,3 +105,13 @@ config DRM_XE_USERPTR_INVAL_INJECT
+> > 
+> >          Recomended for driver developers only.
+> >          If in doubt, say "N".
+> >+
+> >+config DRM_XE_LOW_LEVEL_TRACEPOINTS
+> >+       bool "Enable low level trace events"
+> >+       default n
+> >+       help
+> >+         Choose this option to enable low level trace events.
+> >+
+> >+         Recomended for driver developers only.
+> >+
+> >+         If in doubt, say "N".
+> >diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> >index 53bd2a8ba1ae..9d33e6975ba0 100644
+> >--- a/drivers/gpu/drm/xe/Makefile
+> >+++ b/drivers/gpu/drm/xe/Makefile
+> >@@ -129,7 +129,6 @@ xe-y += xe_bb.o \
+> >         xe_sync.o \
+> >         xe_tile.o \
+> >         xe_tile_sysfs.o \
+> >-        xe_trace.o \
+> >         xe_ttm_sys_mgr.o \
+> >         xe_ttm_stolen_mgr.o \
+> >         xe_ttm_vram_mgr.o \
+> >@@ -142,6 +141,9 @@ xe-y += xe_bb.o \
+> >         xe_wa.o \
+> >         xe_wopcm.o
+> > 
+> >+# trace support
+> >+xe-$(CONFIG_DRM_XE_LOW_LEVEL_TRACEPOINTS) += xe_trace.o
+> >+
+> > # graphics hardware monitoring (HWMON) support
+> > xe-$(CONFIG_HWMON) += xe_hwmon.o
+> > 
+> >diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+> >index 95163c303f3e..7163ac9b8eae 100644
+> >--- a/drivers/gpu/drm/xe/xe_trace.h
+> >+++ b/drivers/gpu/drm/xe/xe_trace.h
+> >@@ -21,6 +21,7 @@
+> > #include "xe_sched_job.h"
+> > #include "xe_vm.h"
+> > 
+> >+#if defined(CONFIG_DRM_XE_LOW_LEVEL_TRACEPOINTS)
+> > DECLARE_EVENT_CLASS(xe_gt_tlb_invalidation_fence,
+> >                     TP_PROTO(struct xe_gt_tlb_invalidation_fence *fence),
+> >                     TP_ARGS(fence),
+> >@@ -597,6 +598,344 @@ DEFINE_EVENT_PRINT(xe_guc_ctb, xe_guc_ctb_g2h,
+> >                              __entry->tail, __entry->_head)
+> > 
+> > );
+> >+#else
+> >+#if !defined(TRACE_HEADER_MULTI_READ)
 > 
-> Fixes: 152577060697 ("drm/xe/guc: Start handling GuC Relay event messages")
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-
-FWIW I do think the argument names in xe_guc_relay_process_* functions
-should be changed but not going to hold of this fix.
-
-With that:
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-
-> ---
->  drivers/gpu/drm/xe/xe_guc_ct.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> I wonder if we could have XE_* variants of the macros used above so that
+> we do not need to declare an empty trace_* function for each event
+> added.
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-> index d6b7020a2d2f..4a0c9ce13bf8 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-> @@ -984,10 +984,10 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
->  							   adj_len);
->  		break;
->  	case XE_GUC_ACTION_GUC2PF_RELAY_FROM_VF:
-> -		ret = xe_guc_relay_process_guc2pf(&guc->relay, payload, adj_len);
-> +		ret = xe_guc_relay_process_guc2pf(&guc->relay, hxg, hxg_len);
->  		break;
->  	case XE_GUC_ACTION_GUC2VF_RELAY_FROM_PF:
-> -		ret = xe_guc_relay_process_guc2vf(&guc->relay, payload, adj_len);
-> +		ret = xe_guc_relay_process_guc2vf(&guc->relay, hxg, hxg_len);
->  		break;
->  	default:
->  		drm_err(&xe->drm, "unexpected action 0x%04x\n", action);
-> -- 
-> 2.25.1
+> For example, here's is a foo.h file that I created to test the idea:
 > 
+>     #if !defined(CONFIG_DRM_XE_LOW_LEVEL_TRACEPOINTS)
+>     #define _XE_TP_PROTO(...) __VA_ARGS__
+>     #define XE_DEFINE_EVENT(__unused, __fn, __proto, ...) \
+>         static inline void trace_ ## __fn(_XE_ ## __proto) { }
+>     #else
+>     #define XE_DEFINE_EVENT(...) DEFINE_EVENT(__VA_ARGS__)
+>     #endif
+> 
+>     XE_DEFINE_EVENT(xe_gt_tlb_invalidation_fence, xe_gt_tlb_invalidation_fence_create,
+>              TP_PROTO(struct xe_gt_tlb_invalidation_fence *fence),
+>              TP_ARGS(fence)
+>     );
+> 
+> Output of `gcc -E foo.h`:
+> 
+>     # 0 "/tmp/foo.h"
+>     # 0 "<built-in>"
+>     # 0 "<command-line>"
+>     # 1 "/usr/include/stdc-predef.h" 1 3 4
+>     # 0 "<command-line>" 2
+>     # 1 "/tmp/foo.h"
+>     # 9 "/tmp/foo.h"
+>     static inline void trace_xe_gt_tlb_invalidation_fence_create(struct xe_gt_tlb_invalidation_fence *fence) { }
+>     
+>     
+>      ;
+> 
+> Output of `gcc -E -DCONFIG_DRM_XE_LOW_LEVEL_TRACEPOINTS foo.h`:
+>     # 0 "/tmp/foo.h"
+>     # 0 "<built-in>"
+>     # 0 "<command-line>"
+>     # 1 "/usr/include/stdc-predef.h" 1 3 4
+>     # 0 "<command-line>" 2
+>     # 1 "/tmp/foo.h"
+>     # 9 "/tmp/foo.h"
+>     DEFINE_EVENT(xe_gt_tlb_invalidation_fence, xe_gt_tlb_invalidation_fence_create, TP_PROTO(struct xe_gt_tlb_invalidation_fence *fence), TP_ARGS(fence))
+>     
+>     
+>      ;
+> 
+> Well, this is an isolated example, not sure it would work with the
+> kernel code. But I believe it is worth a try.
+> 
+
+I typically do not like adding magic macros like this but that is just
+my opinion. Let's get one of the maintainers opinion on this. I'll ping
+Lucas / Thomas to chime in.
+
+Matt
+
+> --
+> Gustavo Sousa
+> 
+> >+static inline void
+> >+trace_xe_gt_tlb_invalidation_fence_create(struct xe_gt_tlb_invalidation_fence *fence)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_gt_tlb_invalidation_fence_work_func(struct xe_gt_tlb_invalidation_fence *fence)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_gt_tlb_invalidation_fence_cb(struct xe_gt_tlb_invalidation_fence *fence)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_gt_tlb_invalidation_fence_send(struct xe_gt_tlb_invalidation_fence *fence)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_gt_tlb_invalidation_fence_recv(struct xe_gt_tlb_invalidation_fence *fence)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_gt_tlb_invalidation_fence_signal(struct xe_gt_tlb_invalidation_fence *fence)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_gt_tlb_invalidation_fence_timeout(struct xe_gt_tlb_invalidation_fence *fence)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_bo_cpu_fault(struct xe_bo *bo)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_bo_move(struct xe_bo *bo)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_exec_queue_create(struct xe_exec_queue *q)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_exec_queue_supress_resume(struct xe_exec_queue *q)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_exec_queue_submit(struct xe_exec_queue *q)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_exec_queue_scheduling_enable(struct xe_exec_queue *q)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_exec_queue_scheduling_disable(struct xe_exec_queue *q)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_exec_queue_scheduling_done(struct xe_exec_queue *q)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_exec_queue_register(struct xe_exec_queue *q)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_exec_queue_deregister(struct xe_exec_queue *q)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_exec_queue_deregister_done(struct xe_exec_queue *q)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_exec_queue_close(struct xe_exec_queue *q)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_exec_queue_kill(struct xe_exec_queue *q)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_exec_queue_cleanup_entity(struct xe_exec_queue *q)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_exec_queue_destroy(struct xe_exec_queue *q)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_exec_queue_reset(struct xe_exec_queue *q)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_exec_queue_memory_cat_error(struct xe_exec_queue *q)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_exec_queue_stop(struct xe_exec_queue *q)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_exec_queue_resubmit(struct xe_exec_queue *q)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_exec_queue_lr_cleanup(struct xe_exec_queue *q)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_sched_job_create(struct xe_sched_job *job)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_sched_job_exec(struct xe_sched_job *job)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_sched_job_run(struct xe_sched_job *job)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_sched_job_free(struct xe_sched_job *job)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_sched_job_timedout(struct xe_sched_job *job)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_sched_job_set_error(struct xe_sched_job *job)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_sched_job_ban(struct xe_sched_job *job)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_sched_msg_add(struct xe_sched_msg *msg)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_sched_msg_recv(struct xe_sched_msg *msg)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_hw_fence_create(struct xe_hw_fence *fence)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_hw_fence_signal(struct xe_hw_fence *fence)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_hw_fence_try_signal(struct xe_hw_fence *fence)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_hw_fence_free(struct xe_hw_fence *fence)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_vma_flush(struct xe_vma *vma)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_vma_pagefault(struct xe_vma *vma)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_vma_acc(struct xe_vma *vma)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_vma_fail(struct xe_vma *vma)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_vma_bind(struct xe_vma *vma)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_vma_pf_bind(struct xe_vma *vma)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_vma_unbind(struct xe_vma *vma)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_vma_userptr_rebind_worker(struct xe_vma *vma)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_vma_userptr_rebind_exec(struct xe_vma *vma)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_vma_rebind_worker(struct xe_vma *vma)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_vma_rebind_exec(struct xe_vma *vma)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_vma_userptr_invalidate(struct xe_vma *vma)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_vma_usm_invalidate(struct xe_vma *vma)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_vma_evict(struct xe_vma *vma)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_vma_userptr_invalidate_complete(struct xe_vma *vma)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_vm_kill(struct xe_vm *vm)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_vm_create(struct xe_vm *vm)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_vm_free(struct xe_vm *vm)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_vm_cpu_bind(struct xe_vm *vm)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_vm_restart(struct xe_vm *vm)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_vm_rebind_worker_enter(struct xe_vm *vm)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_vm_rebind_worker_retry(struct xe_vm *vm)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_vm_rebind_worker_exit(struct xe_vm *vm)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_guc_ct_h2g_flow_control(u32 _head, u32 _tail, u32 size, u32 space, u32 len)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_guc_ct_g2h_flow_control(u32 _head, u32 _tail, u32 size, u32 space, u32 len)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_guc_ctb_h2g(u8 gt_id, u32 action, u32 len, u32 _head, u32 tail)
+> >+{
+> >+}
+> >+
+> >+static inline void
+> >+trace_xe_guc_ctb_g2h(u8 gt_id, u32 action, u32 len, u32 _head, u32 tail)
+> >+{
+> >+}
+> >+#endif
+> >+#endif
+> > 
+> > #endif
+> > 
+> >-- 
+> >2.34.1
+> >
