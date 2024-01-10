@@ -4,45 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38C07C4707B
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Jan 2024 17:46:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCB89C4707C
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Jan 2024 17:46:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6CF310E79F;
-	Wed, 10 Jan 2024 17:46:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F3BB10E7A7;
+	Wed, 10 Jan 2024 17:46:45 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23F4510E79F
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Jan 2024 17:46:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A39C910E650
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Jan 2024 17:46:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704908802; x=1736444802;
+ t=1704908800; x=1736444800;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5HG+6TAjKXCyBC+Gvv5RX35GDUhhQaArQ5wlOACn0OI=;
- b=GE2RvNOgSbudhHXfXV6uobfMTeKAKKsxP1rli/e2PBjshQporwIeTmE6
- oT2Wth5Scv1WvKGK51pG3XN4oWlJVuj/PM85ezXKpMf6Z7jboaZW38Gtp
- WuSA1n23J6SdHzLZ4g8gEw2A5l5yayHbsqJHB8MlUCfr0ujbYWGlYi36T
- 3Adiu6hma5ClzwAEwrEN4WJJM+Q4doJq3lJDcgQO+E7G4PbYVLudbUbpz
- sUnw3GwSGL3411eu4xBal6wAkLkKulCMWzqQLG8vTCtXKpDQGUxLSIBt4
- Bx5nQJiPFgqXW9POS2A95ugX5fVHweru000v60SszQIoHEN9dJdVfbLvQ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10949"; a="389032013"
-X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="389032013"
+ bh=K7x4HylY/HdNkXTF8enVoAQZU+R+AO5/dzdCzzwXnrQ=;
+ b=n7OkM9/9Z2zL4YmlVy8YQQMov4LSDkMLzAb2+o4uzOBpFX4xJqAIl+dI
+ vx5g1d914M2bjV+pBtqZ12sihk9gSes+CDGmyYj9f2IkSJ/ztrY5HqF53
+ IQ6pVE3CUTYOJ9Kp5mY3MN4cVDgymGUvMneBADNTTpf1gT4fPySQRKVsg
+ VkGShUBTBfm3JAn8soA8dSPyITl6OOx2+xHo6w484shq8sUrUM55opG5A
+ ZZlWzYEQI71JSZhXAbZrGR8pKWQt6vX5pinPTYOmsSWPoR/BmEiJEB+1z
+ tmVseDG52+573iaj52DC7hMU04XMotAxE8D9A3zCsOLlACoqo1wm0+BWg w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10949"; a="389032002"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="389032002"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2024 09:46:42 -0800
+ 10 Jan 2024 09:46:40 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="24029896"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="24029886"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.134.210])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2024 09:46:41 -0800
+ 10 Jan 2024 09:46:40 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 4/4] drm/xe/guc: Use GuC ID Manager in submission code
-Date: Wed, 10 Jan 2024 18:46:22 +0100
-Message-Id: <20240110174622.409-5-michal.wajdeczko@intel.com>
+Subject: [PATCH 3/4] drm/xe/kunit: Add basic tests for GuC context ID Manager
+Date: Wed, 10 Jan 2024 18:46:21 +0100
+Message-Id: <20240110174622.409-4-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240110174622.409-1-michal.wajdeczko@intel.com>
 References: <20240110174622.409-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -58,146 +59,171 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We are ready to replace private guc_ids management code with
-separate GuC ID Manager that can be shared with upcoming SR-IOV
-PF provisioning code.
+Before we switch-over submission code to use new GuC context ID
+Manager, lets add some kunit tests to make sure that ID manager
+works as expected.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c | 36 ++++--------------------------
- drivers/gpu/drm/xe/xe_guc_types.h  |  4 ----
- drivers/gpu/drm/xe/xe_uc.c         |  5 +++++
- 3 files changed, 9 insertions(+), 36 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c | 136 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_id_mgr.c            |   4 +
+ 2 files changed, 140 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 022e93796bf8..845b03f0b6b2 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -25,6 +25,7 @@
- #include "xe_gt.h"
- #include "xe_guc.h"
- #include "xe_guc_ct.h"
-+#include "xe_guc_id_mgr.h"
- #include "xe_guc_exec_queue_types.h"
- #include "xe_guc_submit_types.h"
- #include "xe_hw_engine.h"
-@@ -235,16 +236,10 @@ static void guc_submit_fini(struct drm_device *drm, void *arg)
- 	struct xe_guc *guc = arg;
- 
- 	xa_destroy(&guc->submission_state.exec_queue_lookup);
--	ida_destroy(&guc->submission_state.guc_ids);
--	bitmap_free(guc->submission_state.guc_ids_bitmap);
- 	free_submit_wq(guc);
- 	mutex_destroy(&guc->submission_state.lock);
- }
- 
--#define GUC_ID_NUMBER_MLRC	4096
--#define GUC_ID_NUMBER_SLRC	(GUC_ID_MAX - GUC_ID_NUMBER_MLRC)
--#define GUC_ID_START_MLRC	GUC_ID_NUMBER_SLRC
--
- static const struct xe_exec_queue_ops guc_exec_queue_ops;
- 
- static void primelockdep(struct xe_guc *guc)
-@@ -267,22 +262,14 @@ int xe_guc_submit_init(struct xe_guc *guc)
- 	struct xe_gt *gt = guc_to_gt(guc);
- 	int err;
- 
--	guc->submission_state.guc_ids_bitmap =
--		bitmap_zalloc(GUC_ID_NUMBER_MLRC, GFP_KERNEL);
--	if (!guc->submission_state.guc_ids_bitmap)
--		return -ENOMEM;
--
- 	err = alloc_submit_wq(guc);
--	if (err) {
--		bitmap_free(guc->submission_state.guc_ids_bitmap);
-+	if (err)
- 		return err;
--	}
- 
- 	gt->exec_queue_ops = &guc_exec_queue_ops;
- 
- 	mutex_init(&guc->submission_state.lock);
- 	xa_init(&guc->submission_state.exec_queue_lookup);
--	ida_init(&guc->submission_state.guc_ids);
- 
- 	spin_lock_init(&guc->submission_state.suspend.lock);
- 	guc->submission_state.suspend.context = dma_fence_context_alloc(1);
-@@ -305,12 +292,7 @@ static void __release_guc_id(struct xe_guc *guc, struct xe_exec_queue *q, u32 xa
- 	for (i = 0; i < xa_count; ++i)
- 		xa_erase(&guc->submission_state.exec_queue_lookup, q->guc->id + i);
- 
--	if (xe_exec_queue_is_parallel(q))
--		bitmap_release_region(guc->submission_state.guc_ids_bitmap,
--				      q->guc->id - GUC_ID_START_MLRC,
--				      order_base_2(q->width));
--	else
--		ida_simple_remove(&guc->submission_state.guc_ids, q->guc->id);
-+	xe_guc_id_mgr_release_locked(&guc->idm, q->guc->id, order_base_2(q->width));
- }
- 
- static int alloc_guc_id(struct xe_guc *guc, struct xe_exec_queue *q)
-@@ -328,21 +310,11 @@ static int alloc_guc_id(struct xe_guc *guc, struct xe_exec_queue *q)
- 	 */
- 	lockdep_assert_held(&guc->submission_state.lock);
- 
--	if (xe_exec_queue_is_parallel(q)) {
--		void *bitmap = guc->submission_state.guc_ids_bitmap;
--
--		ret = bitmap_find_free_region(bitmap, GUC_ID_NUMBER_MLRC,
--					      order_base_2(q->width));
--	} else {
--		ret = ida_simple_get(&guc->submission_state.guc_ids, 0,
--				     GUC_ID_NUMBER_SLRC, GFP_NOWAIT);
--	}
-+	ret = xe_guc_id_mgr_reserve_locked(&guc->idm, order_base_2(q->width));
- 	if (ret < 0)
- 		return ret;
- 
- 	q->guc->id = ret;
--	if (xe_exec_queue_is_parallel(q))
--		q->guc->id += GUC_ID_START_MLRC;
- 
- 	for (i = 0; i < q->width; ++i) {
- 		ptr = xa_store(&guc->submission_state.exec_queue_lookup,
-diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
-index 04529be0917e..d2668889919f 100644
---- a/drivers/gpu/drm/xe/xe_guc_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_types.h
-@@ -68,10 +68,6 @@ struct xe_guc {
- 	struct {
- 		/** @exec_queue_lookup: Lookup an xe_engine from guc_id */
- 		struct xarray exec_queue_lookup;
--		/** @guc_ids: used to allocate new guc_ids, single-lrc */
--		struct ida guc_ids;
--		/** @guc_ids_bitmap: used to allocate new guc_ids, multi-lrc */
--		unsigned long *guc_ids_bitmap;
- 		/** @stopped: submissions are stopped */
- 		atomic_t stopped;
- 		/** @lock: protects submission state */
-diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
-index 4408ea1751e7..3a0023d3fa2c 100644
---- a/drivers/gpu/drm/xe/xe_uc.c
-+++ b/drivers/gpu/drm/xe/xe_uc.c
-@@ -10,6 +10,7 @@
- #include "xe_gt.h"
- #include "xe_guc.h"
- #include "xe_guc_db_mgr.h"
-+#include "xe_guc_id_mgr.h"
- #include "xe_guc_pc.h"
- #include "xe_guc_submit.h"
- #include "xe_huc.h"
-@@ -65,6 +66,10 @@ int xe_uc_init(struct xe_uc *uc)
- 	if (ret)
- 		goto err;
- 
-+	ret = xe_guc_id_mgr_init(&uc->guc.idm, ~0);
-+	if (ret)
-+		goto err;
+diff --git a/drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c b/drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c
+new file mode 100644
+index 000000000000..f92dd6543b79
+--- /dev/null
++++ b/drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c
+@@ -0,0 +1,136 @@
++// SPDX-License-Identifier: GPL-2.0 AND MIT
++/*
++ * Copyright © 2023 Intel Corporation
++ */
 +
- 	return 0;
- 
- err:
++#include <kunit/test.h>
++
++#include "xe_device.h"
++#include "xe_kunit_helpers.h"
++
++static int guc_id_mgr_test_init(struct kunit *test)
++{
++	struct xe_guc_id_mgr *idm;
++
++	xe_kunit_helper_xe_device_test_init(test);
++	idm = &xe_device_get_gt(test->priv, 0)->uc.guc.idm;
++
++	mutex_init(idm_mutex(idm));
++	test->priv = idm;
++	return 0;
++}
++
++static void bad_init(struct kunit *test)
++{
++	struct xe_guc_id_mgr *idm = test->priv;
++
++	KUNIT_EXPECT_EQ(test, -EINVAL, xe_guc_id_mgr_init(idm, 0));
++	KUNIT_EXPECT_EQ(test, -ERANGE, xe_guc_id_mgr_init(idm, GUC_ID_MAX + 1));
++}
++
++static void no_init(struct kunit *test)
++{
++	struct xe_guc_id_mgr *idm = test->priv;
++
++	mutex_lock(idm_mutex(idm));
++	KUNIT_EXPECT_EQ(test, -ENODATA, xe_guc_id_mgr_reserve_locked(idm, 0));
++	mutex_unlock(idm_mutex(idm));
++
++	KUNIT_EXPECT_EQ(test, -ENODATA, xe_guc_id_mgr_reserve_range(idm, 1, 1));
++}
++
++static void init_fini(struct kunit *test)
++{
++	struct xe_guc_id_mgr *idm = test->priv;
++
++	KUNIT_ASSERT_EQ(test, 0, xe_guc_id_mgr_init(idm, -1));
++	KUNIT_EXPECT_NOT_NULL(test, idm->bitmap);
++	KUNIT_EXPECT_EQ(test, idm->total, GUC_ID_MAX);
++	__fini_idm(NULL, idm);
++	KUNIT_EXPECT_NULL(test, idm->bitmap);
++	KUNIT_EXPECT_EQ(test, idm->total, 0);
++}
++
++static void check_used(struct kunit *test)
++{
++	struct xe_guc_id_mgr *idm = test->priv;
++	unsigned int n;
++
++	KUNIT_ASSERT_EQ(test, 0, xe_guc_id_mgr_init(idm, 2));
++
++	mutex_lock(idm_mutex(idm));
++
++	for (n = 0; n < idm->total; n++) {
++		kunit_info(test, "n=%u", n);
++		KUNIT_EXPECT_EQ(test, idm->used, n);
++		KUNIT_EXPECT_GE(test, idm_reserve_chunk_locked(idm, 1, 0, 0), 0);
++		KUNIT_EXPECT_EQ(test, idm->used, n + 1);
++	}
++	KUNIT_EXPECT_EQ(test, idm->used, idm->total);
++	idm_release_chunk_locked(idm, 0, idm->used);
++	KUNIT_EXPECT_EQ(test, idm->used, 0);
++
++	mutex_unlock(idm_mutex(idm));
++}
++
++static void check_quota(struct kunit *test)
++{
++	struct xe_guc_id_mgr *idm = test->priv;
++	unsigned int n;
++
++	KUNIT_ASSERT_EQ(test, 0, xe_guc_id_mgr_init(idm, 2));
++
++	mutex_lock(idm_mutex(idm));
++
++	for (n = 0; n < idm->total - 1; n++) {
++		kunit_info(test, "n=%u", n);
++		KUNIT_EXPECT_EQ(test, idm_reserve_chunk_locked(idm, 1, 0, idm->total), -EDQUOT);
++		KUNIT_EXPECT_EQ(test, idm_reserve_chunk_locked(idm, 1, 0, idm->total - n), -EDQUOT);
++		KUNIT_EXPECT_EQ(test, idm_reserve_chunk_locked(idm, idm->total - n, 0, 1), -EDQUOT);
++		KUNIT_EXPECT_GE(test, idm_reserve_chunk_locked(idm, 1, 0, 1), 0);
++	}
++	KUNIT_EXPECT_LE(test, 0, idm_reserve_chunk_locked(idm, 1, 0, 0));
++	KUNIT_EXPECT_EQ(test, idm->used, idm->total);
++	idm_release_chunk_locked(idm, 0, idm->total);
++	KUNIT_EXPECT_EQ(test, idm->used, 0);
++
++	mutex_unlock(idm_mutex(idm));
++}
++
++static void check_all(struct kunit *test)
++{
++	struct xe_guc_id_mgr *idm = test->priv;
++	unsigned int n;
++
++	KUNIT_ASSERT_EQ(test, 0, xe_guc_id_mgr_init(idm, -1));
++
++	mutex_lock(idm_mutex(idm));
++
++	for (n = 0; n < idm->total; n++)
++		KUNIT_EXPECT_LE(test, 0, idm_reserve_chunk_locked(idm, 1, 0, 0));
++	KUNIT_EXPECT_EQ(test, idm->used, idm->total);
++	for (n = 0; n < idm->total; n++)
++		idm_release_chunk_locked(idm, n, 1);
++
++	mutex_unlock(idm_mutex(idm));
++}
++
++static struct kunit_case guc_id_mgr_test_cases[] = {
++	KUNIT_CASE(bad_init),
++	KUNIT_CASE(no_init),
++	KUNIT_CASE(init_fini),
++	KUNIT_CASE(check_used),
++	KUNIT_CASE(check_quota),
++	KUNIT_CASE_SLOW(check_all),
++	{}
++};
++
++static struct kunit_suite guc_id_mgr_suite = {
++	.name = "guc_idm",
++	.test_cases = guc_id_mgr_test_cases,
++
++	.init = guc_id_mgr_test_init,
++	.exit = NULL,
++};
++
++kunit_test_suites(&guc_id_mgr_suite);
+diff --git a/drivers/gpu/drm/xe/xe_guc_id_mgr.c b/drivers/gpu/drm/xe/xe_guc_id_mgr.c
+index a6aacf92a28e..ac29ab1ce439 100644
+--- a/drivers/gpu/drm/xe/xe_guc_id_mgr.c
++++ b/drivers/gpu/drm/xe/xe_guc_id_mgr.c
+@@ -286,3 +286,7 @@ void xe_guc_id_mgr_print(struct xe_guc_id_mgr *idm, struct drm_printer *p, int i
+ 	idm_print_locked(idm, p, indent);
+ 	mutex_unlock(idm_mutex(idm));
+ }
++
++#if IS_BUILTIN(CONFIG_DRM_XE_KUNIT_TEST)
++#include "tests/xe_guc_id_mgr_test.c"
++#endif
 -- 
 2.25.1
 
