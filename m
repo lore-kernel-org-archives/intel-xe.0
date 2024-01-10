@@ -4,47 +4,145 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C60D9C4707C
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Jan 2024 15:20:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F44EC4707C
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Jan 2024 15:21:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 747C910E035;
-	Wed, 10 Jan 2024 15:20:09 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1C8410E035
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Jan 2024 15:20:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6F2510E5DC;
+	Wed, 10 Jan 2024 15:21:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C597910E5DC
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Jan 2024 15:21:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704900009; x=1736436009;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=mxnplmyxmzizqEEAvZevzVDctVP+P5kX+4B7IzWnEco=;
- b=Uug0cAsFkI1gTyJNlE5Z8XCDdpBw9GLVb/yoKE60Xbdjam1xN4VtaaD4
- M4ev+Nkj3ZHIp2O/3j9xBj18sRJo836HiMbqvLQ9ZqleTm1DwCRGBxWuF
- phWNbRic/K4IkOH2onMJ1e18Z3x7wFoNT0Lxxem9jZQVC2ZPBRsI13Fft
- d46rYWVLKS9DMM/nwPIz8XYTnpK7nJofZhrsN3yCZdoo4bbzMUXH0yERF
- X6LAjrPhOWtoiemJVo7PgszrNF/HfYIqV66+FZaP/Sf3rdoKPsaWrXKGd
- uOxlAeZv+MqHs8KkqW2M6FBKlveQDQWejB5KkknlfAQsCx9Q8I2KWAz5O Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10948"; a="5632715"
-X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; 
-   d="scan'208";a="5632715"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2024 07:20:09 -0800
+ t=1704900085; x=1736436085;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=cJ2Rfw3DkedzYKRBrq58qIII+bekXEeaTonOTD1LvGY=;
+ b=MDHzhLHEkYgtplEOZZ7WBa4TR2Lz0xKGpV7T1F+d6t38cuNL66rgVxFs
+ lI3Ho8idnOm/nPYfImwKX8+U8xDA+fpS57FqgL10Sr8vEgj7fzMe7CzqK
+ yWbPloZyZbZy87MEEmRNnTEkKF8RZeAbi4eGRDFojzUgyw+gRDZcfa0pg
+ i7gMxlADMoJknQ2Ltkh29C5CMYsQkOYUYwateKjLmk27vucer6fysOxsa
+ 7oacT64G/sixyMmae4xUIzGX32q5wzw94z31GQdQhE3JilnejJoFuTzh6
+ hLqxdg9tyQclLEjUuwP5CCOVIwxLt/yYEYXlR9hBPG7TbMHbL8AL1QX6/ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10948"; a="484732970"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="484732970"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2024 07:21:25 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10948"; a="955404675"
-X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="955404675"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2024 07:20:08 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-xe@lists.freedesktop.org>,
-	rodrigo.vivi@intel.com
-Subject: [RFC PATCH] drm/xe: PM snippet
-Date: Wed, 10 Jan 2024 07:20:33 -0800
-Message-Id: <20240110152033.1414372-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="23980222"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 10 Jan 2024 07:21:25 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 10 Jan 2024 07:21:24 -0800
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 10 Jan 2024 07:21:24 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Wed, 10 Jan 2024 07:21:24 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.101)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Wed, 10 Jan 2024 07:21:23 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gIask1KUCLvnmIqcB07eDfKJPiSwlsTy5mhA3XG8t1ljOxWpUd2wtmKQyQQdyKjRtTDQrbUuzaG/tqPpnbXX/H3c6dbw+kEgkMHy60+ydb8V3eXfif3cvvb/0dHWrx6SZdBctcufiChqZDHlZF9/7xXHF2GJME+wO/c5Pkvmal9D4KrlW4TaRdKimJLvC8Mhv1Ljt5xNjiVfx4uVqaR7sAj19UMf5rSxwWsJH7zozyZVjseATnjuYofQWHsq6iCUJ4i2BLecr9J3j7qt7CNFfEBnHgMBrd3dDohNxFfJDlVRdUok6IiKxBan7ifAoFbYsFnpygN2DECoWlSWQpE2bA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gqw4zAv4J+xCtJ4luGSCVIKbtaqxeeLwgHApJFO6OZQ=;
+ b=HwO4JRvSQ0gkfTXEZ5pGbofVVt5WN/JXZ8SrsNfxSjfxz7WwVTODf7Gfp1oPYwvkSf2jDK8HbavQ4eJ8rGU/X5tll//KdKGXydYtj2BA/wKQtwuln1tNH9xakE6SD9LG3pFQ3goGoV3/ZyjpmGBg3HTU1BMuUpuI3ftBfV9AiEr9EvxHmvnUzxB6P3mroSTiDjXaZPBSWXN0mzSjTJERIlccVlDO1UP+i5NcWfC4OYQMqoQmGnP53/oToV0wBszkD3aX+B97vGbVQOQMkwycKzLwefmjYA+MYtXmpF8d4vbSeQuFcVfnNQ91Wu2ORD1RRZ6oOZw1Jzb04/6UcBVdbA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by SA2PR11MB4924.namprd11.prod.outlook.com (2603:10b6:806:113::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.17; Wed, 10 Jan
+ 2024 15:21:16 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::b870:a8ae:c4f1:c39b]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::b870:a8ae:c4f1:c39b%4]) with mapi id 15.20.7159.020; Wed, 10 Jan 2024
+ 15:21:16 +0000
+Date: Wed, 10 Jan 2024 09:21:14 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Subject: Re: [BUG] allmodconfig build error in next-20240108
+Message-ID: <azaumdst7zwqbluhjywk336rencu5cop6vbozjiciopklz3ian@yfzizulcec5r>
+References: <341a4955-0cdd-48d0-bfbd-cc6f6f09df37@paulmck-laptop>
+ <atbx7mspjbymkzgstk4l64qz3uky3wpmx4isrfg3ixgtvebdd2@cktpe4ejfk7k>
+ <20240110081155.48bb0cbd@oak>
+ <d61dfe52-9567-4f62-98f5-5c1e00cb4708@paulmck-laptop>
+ <20240110095822.3ba3d979@canb.auug.org.au>
+ <3d14049c-d44c-4b33-9933-0f96055b8a70@paulmck-laptop>
+ <20240110160335.2bad7d54@oak>
+ <3a10ef2b-acbe-4d80-805a-e947e15e5db3@paulmck-laptop>
+ <6r2zjqbs2g3hkt3uhnglwpboalwck5ye34b6gxzmhe4gae77g7@3bzqt4s7i2qb>
+ <87o7dtusi4.fsf@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <87o7dtusi4.fsf@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0209.namprd03.prod.outlook.com
+ (2603:10b6:a03:2ef::34) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SA2PR11MB4924:EE_
+X-MS-Office365-Filtering-Correlation-Id: c0d8bbc1-360f-4b22-de14-08dc11efca26
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: z/JRp5EV76rjEopq4Q7nhI8hyhoOuut/711Tg4Hj94J3NHCJsGEYrjyyMNl/JtuqcMea7ZqcOuvn/T7IZ973Tobvw7SsyRhtZtZwavEhSUGh3Y174E+PW5dNLJjMXFW5FC74hO8vd46UXd2Yujm/iOWr6cX9yC8TzJmgAL7kwS/OCbBx/aRDuhfDvw8hXmcQoP3Czv2wpjlZKB8W5d3+8/ASkUZPV5smbwae7oURsVTVENrbGvD92RQTwyjjZiYK1PAk68JqjtBDoOQAM3tWfgzDvS7iVOaOB+MBZbNZZOwLA6taGMHQ/t6+/79ou53BmfRAP5wLfyZQWSnfEruyIzKH2ajM/XjOqA7QY1hK1vPfScBWQNAwANAfxUlvQPvSA7ZZ9DpLkxTR8iIzwbE3TpTTvU1ppGPDI/fnoM6T3siwrKxtgO6OI0FCTP7DEeeENXVGbxtiruL5n/N9gVPiV7F61yycyoEi8zRbub559sCrgYMZX0vLLc4+M5X7enDvhS2wF9oTWRmXugcQK0t3zf5NTByDnWhQunwQKcxSP6nfhQcRuudVQwpn6EA/Dfv8EWObcHUq22if2yNwAxAdFarupRW9iOBrYJeTGk2FgLTWpQaQtTQgj04ZWqjstDsf
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7916004)(376002)(396003)(346002)(366004)(136003)(39860400002)(230922051799003)(230173577357003)(230273577357003)(451199024)(1800799012)(186009)(64100799003)(5660300002)(4744005)(2906002)(86362001)(82960400001)(38100700002)(6486002)(83380400001)(33716001)(6506007)(478600001)(6512007)(9686003)(26005)(316002)(8936002)(4326008)(8676002)(41300700001)(54906003)(66946007)(6916009)(66556008)(66476007);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?JYlrzIIquAlH1v6z2o7jQKISbsV19loCqTFe3jJHJAGduk7eJ7w9DOZwvZtM?=
+ =?us-ascii?Q?6/eU72R1pdB2CJLUpGSuNCb1YiuLbxnll8eVMXezPAzfvi/sBnwxyGGP5sN9?=
+ =?us-ascii?Q?XhCrzJVqlwoCBnFgQoOVsSe6mzEnU/pRusULAOIWLYlHwIKDNEIlhLr8HPsU?=
+ =?us-ascii?Q?jND4M5l73ZsF4ADzRedyq/BL5KBZeXHbIanPE+Dislg+HKY0vdqvDbT+V/bj?=
+ =?us-ascii?Q?iEj7NJlsMcfVcptgqDfdi19NMe3NAHbJmQnfsGEvrlPay79vt5mR6fYIwb3a?=
+ =?us-ascii?Q?yroVd7NiK0WSj3MfuM10q0HJcyZ+01JRVfFkSoA11l16POUGP6bCu1iG02I3?=
+ =?us-ascii?Q?I3eeDzdDnvsoWn0WUSuY+F332m78/jkMwPrlrOOq8ay4oIszk3qKxbh4QvkU?=
+ =?us-ascii?Q?rYAsGtIMPjWo1MU/9wCg2QOUrOhTf4KQZ9cRdpzug+MIKBHsDMmZr8gK99yQ?=
+ =?us-ascii?Q?hJeeRoSgxlAzIz+samkeiLxhdlY5QUHnO6VerBIuQ84uNPoyOA61dNSLDscf?=
+ =?us-ascii?Q?azakMgQmgVyfwjrR5GJDlC8XWRVIOQaVhKn7JS6CTjB4wI8fCgACMOBUspww?=
+ =?us-ascii?Q?OUfVYupsCvyzuhdOpNp32YlmR/GROUQQHohH8IzdQTbhDR40xwSIJBCUMi7b?=
+ =?us-ascii?Q?OT55CxrC2Eoko36PE7IBLKPxj7gYb2/+R1T2xEgbpfN8wp3rLnVtGYpkgmKh?=
+ =?us-ascii?Q?e2IWg22mUVhu1a9IeRzrCfpXzp/HJvK7TdZuo/oXdTjRiVd/6o0+d5c1gs5N?=
+ =?us-ascii?Q?EtIinoM+wUs8Mqw8m4nVtg/u7BUg7In2rR+iK8laFJEuzcTT1yXj8fbRiVmH?=
+ =?us-ascii?Q?Fv2rK7Lun188mgQA/A2sbif+rbF01CGNo3syLUQ2zPVxYOIi0zqQwnECpfyK?=
+ =?us-ascii?Q?iyfAH58G781444iym+KzNQ66I8g24nuJpnlNYkg6AbNe9YUL0UkwDE31gvrb?=
+ =?us-ascii?Q?sAjqnYGS/7XraCspOT4fIaMk244pY94v4Gl+IPGgQ86DsWS01OKOguzu12Ut?=
+ =?us-ascii?Q?lx4O61h1S5JWkGC/SHkYI4x/y1u2C+M2xcpXEJi9ZdVLWHoG0decLKiqplp5?=
+ =?us-ascii?Q?7DGIyAFZBz1ZqDJZrQdyD4nT6LgsUQdlY9qJLSjEca4F4eoeZNFes52xEv/1?=
+ =?us-ascii?Q?1G+3YhyH6q5aXEhk209k2QE5pfBDTywZt11K8OXXyeCcoCa075M6Smqrl/8Q?=
+ =?us-ascii?Q?P0ZYP6FBEOKwYuQowYlPaefmpApUEP+Pu0/6Oavn7E8soyZTid8GEAETOine?=
+ =?us-ascii?Q?7xvjOCPc7Ufp+w1m/UVE0IJ3s5PWewVfQ2TXNvjSbIR6HI5GSXcZI9uoBQX1?=
+ =?us-ascii?Q?hQFROM1qzUp5KRmqDVnjdrsxWmzdoPoiCom5QDZv/CpLZpZTF4Bb54YxQXxT?=
+ =?us-ascii?Q?GDVBfj2apKhcPbicF8Xx7rVFgRHJzYD59MVAwh/+5TPJF617bjkqIGRJH0zw?=
+ =?us-ascii?Q?3Nqs5a41L87fLa8w/18QuCq0UWf4hNEFhIQinCUqNDDdRUk/cOg+kWWOIkaF?=
+ =?us-ascii?Q?YA2oeK64M76DMfR9+JnvjVqtSeOItH1zSkPM0fhFrguELeUPjhjMbzC98AU0?=
+ =?us-ascii?Q?xAP2aLor5tiQzXGFM8W7Zvd8eIPhG2FGUSMByL1R5r39BugdPOLPbcRU7zC+?=
+ =?us-ascii?Q?IA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c0d8bbc1-360f-4b22-de14-08dc11efca26
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2024 15:21:16.7714 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Fsk1tVI9qoA0dwKATLXBYJRaxt6rSiO+2r3XhEI/sDGlubGaRMpJdMU+4n43MG4hWuj3t4uJ1FLFF6sEapwLJKeusw6U1g+lj1z1toJaSv4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4924
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,138 +154,35 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>, linux-kernel@vger.kernel.org,
+ "Paul E. McKenney" <paulmck@kernel.org>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Code snippet for [1] as guide as to where to add PM refs.
+On Wed, Jan 10, 2024 at 05:18:11PM +0200, Jani Nikula wrote:
+>On Wed, 10 Jan 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>> [ This particular warning is broken on GCC11. In future changes it will
+>>    be moved to the normal C flags in the top level Makefile (out of
+>>    Makefile.extrawarn), but accounting for the compiler support. Just
+>>    remove it out of xe's forced extra warnings for now ]
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>>
+>> would you mind if I extend it to drivers/gpu/drm/i915/Makefile
+>> in the same commit or would you prefer a separate one?
+>
+>I think I'd prefer separate patches for i915 and xe. And just remove the
+>line instead of subdir-ccflags-$(call gcc-min-version, 120000) as
+>linux-next handles it properly in the top level Makefile.
 
-[1] https://patchwork.freedesktop.org/series/128044/
----
- drivers/gpu/drm/xe/xe_gt.c         |  3 +++
- drivers/gpu/drm/xe/xe_guc_ct.c     | 20 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_submit.c |  4 ++++
- drivers/gpu/drm/xe/xe_pt.c         | 10 ++++++++++
- 4 files changed, 37 insertions(+)
+yes, this is what this patch is doing, just removing the line.
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 3af2adec1295..f829a1f59d42 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -604,6 +604,7 @@ static int gt_reset(struct xe_gt *gt)
- 		goto err_fail;
- 	}
- 
-+	/* PM get */
- 	xe_gt_sanitize(gt);
- 
- 	xe_device_mem_access_get(gt_to_xe(gt));
-@@ -630,6 +631,7 @@ static int gt_reset(struct xe_gt *gt)
- 		goto err_out;
- 
- 	err = xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-+	/* PM put */
- 	xe_device_mem_access_put(gt_to_xe(gt));
- 	XE_WARN_ON(err);
- 
-@@ -641,6 +643,7 @@ static int gt_reset(struct xe_gt *gt)
- 	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
- err_msg:
- 	XE_WARN_ON(xe_uc_start(&gt->uc));
-+	/* PM put */
- 	xe_device_mem_access_put(gt_to_xe(gt));
- err_fail:
- 	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index c29f095aa1b9..fdc25b076758 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -307,6 +307,14 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
- 
- 	mutex_lock(&ct->lock);
- 	spin_lock_irq(&ct->fast_lock);
-+	/*
-+	 *  Drop ct->g2h_outstanding PM refs here, it is expected that we will
-+	 *  not transition to zero here. Note this changing with [1] but the
-+	 *  idea anytime this is set zero, drop the number of PM refs by the
-+	 *  initial value and transitioning to zero is not expected.
-+	 *
-+	 * [1] https://patchwork.freedesktop.org/series/128062/
-+	 */
- 	ct->g2h_outstanding = 0;
- 	ct->enabled = true;
- 	spin_unlock_irq(&ct->fast_lock);
-@@ -388,7 +396,13 @@ static void __g2h_reserve_space(struct xe_guc_ct *ct, u32 g2h_len, u32 num_g2h)
- 
- 		ct->ctbs.g2h.info.space -= g2h_len;
- 		ct->g2h_outstanding += num_g2h;
-+		/*
-+		 * If it is safe, ct->lock & ct->fast_lock are held, dma fencing
-+		 * path, take num_g2h PM refs here. It should be expected that
-+		 * we have at least 1.
-+		 */
- 	}
-+
- }
- 
- static void __g2h_release_space(struct xe_guc_ct *ct, u32 g2h_len)
-@@ -399,6 +413,12 @@ static void __g2h_release_space(struct xe_guc_ct *ct, u32 g2h_len)
- 
- 	ct->ctbs.g2h.info.space += g2h_len;
- 	--ct->g2h_outstanding;
-+
-+	/*
-+	 * If it is safe, ct->fast_lock is held, possible IRQ context, dma
-+	 * fencing path, drop 1 PM ref here. The PM ref can transition to zero
-+	 * here.
-+	 */
- }
- 
- static void g2h_release_space(struct xe_guc_ct *ct, u32 g2h_len)
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 54ffcfcdd41f..a64768257d51 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1168,6 +1168,8 @@ static void __guc_exec_queue_process_msg_resume(struct xe_sched_msg *msg)
- 
- static void guc_exec_queue_process_msg(struct xe_sched_msg *msg)
- {
-+	/* PM get, ref can be zero, dma-fencing path */
-+
- 	trace_xe_sched_msg_recv(msg);
- 
- 	switch (msg->opcode) {
-@@ -1186,6 +1188,8 @@ static void guc_exec_queue_process_msg(struct xe_sched_msg *msg)
- 	default:
- 		XE_WARN_ON("Unknown message type");
- 	}
-+
-+	/* PM put, ref can go to zero, dma-fencing path */
- }
- 
- static const struct drm_sched_backend_ops drm_sched_ops = {
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index de1030a47588..d2ef0a5b514e 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -1104,8 +1104,18 @@ static void invalidation_fence_work_func(struct work_struct *w)
- 	struct invalidation_fence *ifence =
- 		container_of(w, struct invalidation_fence, work);
- 
-+	/*
-+	 * PM get, ref can be zero.
-+	 *
-+	 * Ideally make this so we have at least 1 ref, maybe if we take a
-+	 * reference to the job this is attached and drop the ref after calling
-+	 * xe_gt_tlb_invalidation_vma we can ensure the device is awake?
-+	 */
-+
- 	trace_xe_gt_tlb_invalidation_fence_work_func(&ifence->base);
- 	xe_gt_tlb_invalidation_vma(ifence->gt, &ifence->base, ifence->vma);
-+
-+	/* PM put, ref can go to zero */
- }
- 
- static int invalidation_fence_init(struct xe_gt *gt,
--- 
-2.34.1
+Lucas De Marchi.
 
+>
+>BR,
+>Jani.
+>
+>
+>
+>-- 
+>Jani Nikula, Intel
