@@ -4,49 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A889C4707C
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Jan 2024 15:57:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B23F5C4707C
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Jan 2024 16:00:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2F0710E62A;
-	Wed, 10 Jan 2024 15:57:07 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91F8D10E628
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Jan 2024 15:57:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704902226; x=1736438226;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=iTzZI0F/JznFAf5ljxtHERjM7Wf4d7TqOV7Wk/OEea8=;
- b=Uy85ZBv5frnuVlcgyDhXvujSY3Slrt+wsYVH0ogQfb1U/Moa9wpbY3gi
- nCclD9EfYEK9NQWjrJlBSBtskAw2f/DTZY5tqHThug5Ok04JL6pdz9V6I
- 9YEk77t4vYdnYlBHi2HDkihTcaTymFHfs3ghaWqIkqoKs5gVVus124ksH
- yjErzoi7Sn2QiFVMrxyUfmUxxsRBeQn1IS/GxI/mA3mTVAuGFNiTCp69I
- ylpjLsm1wfvxrP2gs37Jew7LSPcyF3KPWAiGyqlVpMi/iKRRc97mtiyXB
- vfQiy6hTrGGZiaFIuATQfoGQatR01zDpMdoDy1a7LdanO1ZQs6Q63PCwg Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10948"; a="398249223"
-X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="398249223"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2024 07:57:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10948"; a="925680639"
-X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="925680639"
-Received: from lapeders-mobl1.ger.corp.intel.com (HELO fedora..)
- ([10.249.254.28])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2024 07:57:05 -0800
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [CI 2/2] Revert "mei: gsc: add support for auxiliary device created
- by Xe driver"
-Date: Wed, 10 Jan 2024 16:56:45 +0100
-Message-ID: <20240110155645.523818-2-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240110155645.523818-1-thomas.hellstrom@linux.intel.com>
-References: <20240110155645.523818-1-thomas.hellstrom@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CA1910E644;
+	Wed, 10 Jan 2024 16:00:26 +0000 (UTC)
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4297C10E644
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Jan 2024 16:00:25 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by ams.source.kernel.org (Postfix) with ESMTP id C386DB81DD2;
+ Wed, 10 Jan 2024 16:00:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20E83C433C7;
+ Wed, 10 Jan 2024 16:00:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1704902423;
+ bh=G4+lE+BH/CV70HZvdV/l6Cjg+ti6z2Et7y6eWdc6Sp4=;
+ h=Date:From:To:Cc:Subject:Reply-To:References:In-Reply-To:From;
+ b=VaUc4q9KmQ4Fj16puvilnJ6EZau5dVe0KkxQkM7aFvVgZCewCYYdtOiNk5fQQTDVh
+ 4GkuxuLnOFxINDIinAVwzaKxQJEctI7R3B6R4+D8nnv+fU8/jvNfpcf0KiHYlZlghn
+ e3aE7FP/X6BWvXK98UUp6E9nwMj5k+4u47zYwxXk3ReNrxumd4i/byGXcSR5CDR8FQ
+ xOK2nvee1b0PWCpeJEQCNN5RM2TINk1RaRk/kTlakny8GsH05JIgh0lQCvMBJca576
+ 5cPqHruiw8aixCv62BBsVYalrTWUBOI/xhhZ3pFAYXS2SLzAd7AncbppUhjLzLHMBK
+ U+tpDerlVpfDg==
+Received: by paulmck-ThinkPad-P17-Gen-1.home (Postfix, from userid 1000)
+ id A443CCE19C3; Wed, 10 Jan 2024 08:00:22 -0800 (PST)
+Date: Wed, 10 Jan 2024 08:00:22 -0800
+From: "Paul E. McKenney" <paulmck@kernel.org>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: Re: [BUG] allmodconfig build error in next-20240108
+Message-ID: <a391e9dd-bfa2-4b4c-93ca-52f2eebee72e@paulmck-laptop>
+References: <20240109095757.1313b2d9@canb.auug.org.au>
+ <341a4955-0cdd-48d0-bfbd-cc6f6f09df37@paulmck-laptop>
+ <atbx7mspjbymkzgstk4l64qz3uky3wpmx4isrfg3ixgtvebdd2@cktpe4ejfk7k>
+ <20240110081155.48bb0cbd@oak>
+ <d61dfe52-9567-4f62-98f5-5c1e00cb4708@paulmck-laptop>
+ <20240110095822.3ba3d979@canb.auug.org.au>
+ <3d14049c-d44c-4b33-9933-0f96055b8a70@paulmck-laptop>
+ <20240110160335.2bad7d54@oak>
+ <3a10ef2b-acbe-4d80-805a-e947e15e5db3@paulmck-laptop>
+ <6r2zjqbs2g3hkt3uhnglwpboalwck5ye34b6gxzmhe4gae77g7@3bzqt4s7i2qb>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <6r2zjqbs2g3hkt3uhnglwpboalwck5ye34b6gxzmhe4gae77g7@3bzqt4s7i2qb>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,36 +60,90 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: paulmck@kernel.org
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>, linux-kernel@vger.kernel.org,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This reverts commit bea27d7369855e586d22c3e45b155e8e5eecaa7f.
----
- drivers/misc/mei/gsc-me.c | 5 -----
- 1 file changed, 5 deletions(-)
+On Wed, Jan 10, 2024 at 09:00:06AM -0600, Lucas De Marchi wrote:
+> On Wed, Jan 10, 2024 at 02:26:54AM -0800, Paul E. McKenney wrote:
+> > On Wed, Jan 10, 2024 at 04:03:51PM +1100, Stephen Rothwell wrote:
+> > > Hi Paul,
+> > > 
+> > > On Tue, 9 Jan 2024 19:46:27 -0800 "Paul E. McKenney" <paulmck@kernel.org> wrote:
+> > > >
+> > > > On Wed, Jan 10, 2024 at 09:58:22AM +1100, Stephen Rothwell wrote:
+> > > > >
+> > > > > Maybe that line "subdir-ccflags-y += $(call cc-option, -Wstringop-overflow)"
+> > > > > should just be removed as the setting of that option has been moved to the
+> > > > > normal C flags in the top level Makefile (out of Makefile.extrawarn).
+> > > >
+> > > > If you meant like this, no joy.  :-(
+> > > 
+> > > Actually I meant the one in drivers/gpu/drm/xe/Makefile
+> > 
+> > Like this?  That does work as shown below, thank you!
+> > 
+> > 							Thanx, Paul
+> > 
+> > ------------------------------------------------------------------------
+> > 
+> > drm/xe: Fix build bug for GCC 11
+> > 
+> > Building drivers/gpu/drm/xe/xe_gt_pagefault.c with GCC 11 results
+> > in the following build errors:
+> > 
+> > ./include/linux/fortify-string.h:57:33: error: writing 16 bytes into a region of size 0 [-Werror=stringop-overflow=]
+> >   57 | #define __underlying_memcpy     __builtin_memcpy
+> >      |                                 ^
+> > ./include/linux/fortify-string.h:644:9: note: in expansion of macro ‘__underlying_memcpy’
+> >  644 |         __underlying_##op(p, q, __fortify_size);                        \
+> >      |         ^~~~~~~~~~~~~
+> > ./include/linux/fortify-string.h:689:26: note: in expansion of macro ‘__fortify_memcpy_chk’
+> >  689 | #define memcpy(p, q, s)  __fortify_memcpy_chk(p, q, s,                  \
+> >      |                          ^~~~~~~~~~~~~~~~~~~~
+> > drivers/gpu/drm/xe/xe_gt_pagefault.c:340:17: note: in expansion of macro ‘memcpy’
+> >  340 |                 memcpy(pf_queue->data + pf_queue->tail, msg, len * sizeof(u32));
+> >      |                 ^~~~~~
+> > In file included from drivers/gpu/drm/xe/xe_device_types.h:17,
+> >                 from drivers/gpu/drm/xe/xe_vm_types.h:16,
+> >                 from drivers/gpu/drm/xe/xe_bo.h:13,
+> >                 from drivers/gpu/drm/xe/xe_gt_pagefault.c:16:
+> > drivers/gpu/drm/xe/xe_gt_types.h:102:25: note: at offset [1144, 265324] into destination object ‘tile’ of size 8
+> >  102 |         struct xe_tile *tile;
+> >      |                         ^~~~
+> > 
+> > Fix these by removing -Wstringop-overflow from drm/xe builds.
+> > 
+> > Suggested-by: Stephen Rothwell <sfr@rothwell.id.au>
+> > Signed-off-by: Paul E. McKenney <paulmck@kernel.org>
+> 
+> [ This particular warning is broken on GCC11. In future changes it will
+>   be moved to the normal C flags in the top level Makefile (out of
+>   Makefile.extrawarn), but accounting for the compiler support. Just
+>   remove it out of xe's forced extra warnings for now ]
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> 
+> would you mind if I extend it to drivers/gpu/drm/i915/Makefile
+> in the same commit or would you prefer a separate one?
 
-diff --git a/drivers/misc/mei/gsc-me.c b/drivers/misc/mei/gsc-me.c
-index 9e558ec2ea1d..6be8f1cc052c 100644
---- a/drivers/misc/mei/gsc-me.c
-+++ b/drivers/misc/mei/gsc-me.c
-@@ -292,10 +292,6 @@ static const struct auxiliary_device_id mei_gsc_id_table[] = {
- 		.name = "i915.mei-gscfi",
- 		.driver_data = MEI_ME_GSCFI_CFG,
- 	},
--	{
--		.name = "xe.mei-gscfi",
--		.driver_data = MEI_ME_GSCFI_CFG,
--	},
- 	{
- 		/* sentinel */
- 	}
-@@ -316,6 +312,5 @@ module_auxiliary_driver(mei_gsc_driver);
- MODULE_AUTHOR("Intel Corporation");
- MODULE_ALIAS("auxiliary:i915.mei-gsc");
- MODULE_ALIAS("auxiliary:i915.mei-gscfi");
--MODULE_ALIAS("auxiliary:xe.mei-gscfi");
- MODULE_DESCRIPTION("Intel(R) Graphics System Controller");
- MODULE_LICENSE("GPL");
--- 
-2.43.0
+Whatever works best for you works for me!
 
+							Thanx, Paul
+
+> Lucas De Marchi
+> 
+> > 
+> > diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> > index 53bd2a8ba1ae..efcf0ab7a1a6 100644
+> > --- a/drivers/gpu/drm/xe/Makefile
+> > +++ b/drivers/gpu/drm/xe/Makefile
+> > @@ -17,7 +17,6 @@ subdir-ccflags-y += $(call cc-option, -Wunused-const-variable)
+> > subdir-ccflags-y += $(call cc-option, -Wpacked-not-aligned)
+> > subdir-ccflags-y += $(call cc-option, -Wformat-overflow)
+> > subdir-ccflags-y += $(call cc-option, -Wformat-truncation)
+> > -subdir-ccflags-y += $(call cc-option, -Wstringop-overflow)
+> > subdir-ccflags-y += $(call cc-option, -Wstringop-truncation)
+> > # The following turn off the warnings enabled by -Wextra
+> > ifeq ($(findstring 2, $(KBUILD_EXTRA_WARN)),)
