@@ -4,26 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0911FC47077
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Jan 2024 00:08:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A103C47077
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Jan 2024 00:43:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A316110E53D;
-	Wed, 10 Jan 2024 00:08:39 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE3AE10E536;
- Wed, 10 Jan 2024 00:08:38 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8368921282299679126=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE4E710E540;
+	Wed, 10 Jan 2024 00:43:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71A9110E540
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Jan 2024 00:43:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1704847429; x=1736383429;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6fcSr5RZa5VDIU83fsr2CJ172nNPj8kaVvcrOzMPlfc=;
+ b=kQpmz3zQO84ywbwAnr0dorK1m/Mx2ZVQUp69mLig2gbR61R/AOgF1HbK
+ xm7iH1o5fkeo4qixN0Bsdbpcx9A7XQPHSX5tfMoI8qaZCwFxtidb4PeG9
+ rM0Xk0izfpqMmeLfDLH1L1UVBSaqeeSUQB6BVGI2ztwJC4yuFwqMSYLPS
+ kWi6Xi9wsEsLSAiHLoXRxrv/R+BLvJxe8wrJFUELSjXjH7g2RmL3GEZZu
+ TRCOOPrUV9lpMxIAoKtFv928yw8sM6vZbsOOvwy++hYGitzdCL/Hboe5r
+ Gc+71UIyXmwU3nru9H5jdf3swk/fFs1fsUig8nowbVZWaHXXKNDzMZQEf g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="464767455"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="464767455"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2024 16:43:49 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="775041863"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="775041863"
+Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2024 16:43:48 -0800
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH v2 0/2] drm/xe: GSC proxy support
+Date: Tue,  9 Jan 2024 16:44:13 -0800
+Message-ID: <20240110004416.1127942-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5B1/2=5D_d?=
- =?utf-8?q?rm/xe/guc=3A_Use_proper_definitions_while_processing_G2H_events?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Date: Wed, 10 Jan 2024 00:08:38 -0000
-Message-ID: <170484531871.240792.13552467225445847446@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240109230015.365-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20240109230015.365-1-michal.wajdeczko@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,142 +54,46 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8368921282299679126==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The GSC uC needs to communicate with the CSME to perform certain
+operations. Since the GSC can't perform this communication directly on
+platforms where it is integrated in GT, the graphics driver needs to
+transfer the messages from GSC to CSME and back.
+Since the CSME is controlled by the mei driver, we need to use a mei
+component to communicate with it.
 
-== Series Details ==
+v2: better doc, comments, naming. Minor cleanups/fixes (Alan)
 
-Series: series starting with [1/2] drm/xe/guc: Use proper definitions while processing G2H events
-URL   : https://patchwork.freedesktop.org/series/128396/
-State : success
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
 
-== Summary ==
+Daniele Ceraolo Spurio (2):
+  drm/xe/gsc: Initialize GSC proxy
+  drm/xe/gsc: add support for GSC proxy interrupt
 
-CI Bug Log - changes from xe-612-0ae6ec9ac768c2ee81f8b7f153d04358e34ff0d6_BAT -> xe-pw-128396v1_BAT
-====================================================
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ .../gpu/drm/xe/abi/gsc_proxy_commands_abi.h   |  44 ++
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h          |   2 +
+ drivers/gpu/drm/xe/xe_device.c                |  22 +-
+ drivers/gpu/drm/xe/xe_gsc.c                   |  66 ++-
+ drivers/gpu/drm/xe/xe_gsc.h                   |   1 +
+ drivers/gpu/drm/xe/xe_gsc_proxy.c             | 537 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gsc_proxy.h             |  20 +
+ drivers/gpu/drm/xe/xe_gsc_submit.c            |  13 +
+ drivers/gpu/drm/xe/xe_gsc_submit.h            |   1 +
+ drivers/gpu/drm/xe/xe_gsc_types.h             |  32 ++
+ drivers/gpu/drm/xe/xe_gt.c                    |  13 +
+ drivers/gpu/drm/xe/xe_gt.h                    |   1 +
+ drivers/gpu/drm/xe/xe_irq.c                   |  44 +-
+ drivers/gpu/drm/xe/xe_uc.c                    |  14 +
+ drivers/gpu/drm/xe/xe_uc.h                    |   1 +
+ 16 files changed, 789 insertions(+), 23 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/abi/gsc_proxy_commands_abi.h
+ create mode 100644 drivers/gpu/drm/xe/xe_gsc_proxy.c
+ create mode 100644 drivers/gpu/drm/xe/xe_gsc_proxy.h
 
-Summary
--------
+-- 
+2.43.0
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-128396v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_live_ktest@bo@xe_bo-xe_ccs_migrate_kunit:
-    - bat-dg2-oem2:       [PASS][1] -> [DMESG-WARN][2] ([Intel XE#1101]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-612-0ae6ec9ac768c2ee81f8b7f153d04358e34ff0d6/bat-dg2-oem2/igt@xe_live_ktest@bo@xe_bo-xe_ccs_migrate_kunit.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128396v1/bat-dg2-oem2/igt@xe_live_ktest@bo@xe_bo-xe_ccs_migrate_kunit.html
-
-  
-#### Warnings ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#1033]) -> [DMESG-FAIL][4] ([Intel XE#1033])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-612-0ae6ec9ac768c2ee81f8b7f153d04358e34ff0d6/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128396v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [Intel XE#1033]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033
-  [Intel XE#1101]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1101
-
-
-Build changes
--------------
-
-  * Linux: xe-612-0ae6ec9ac768c2ee81f8b7f153d04358e34ff0d6 -> xe-pw-128396v1
-
-  IGT_7664: 5b8a8dcca7711c73f9cfeb66b5deb27751290fb4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-612-0ae6ec9ac768c2ee81f8b7f153d04358e34ff0d6: 0ae6ec9ac768c2ee81f8b7f153d04358e34ff0d6
-  xe-pw-128396v1: 128396v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128396v1/index.html
-
---===============8368921282299679126==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/xe/guc: Use proper definitions while processing G2H events</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/128396/">https://patchwork.freedesktop.org/series/128396/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128396v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128396v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-612-0ae6ec9ac768c2ee81f8b7f153d04358e34ff0d6_BAT -&gt; xe-pw-128396v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-128396v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_live_ktest@bo@xe_bo-xe_ccs_migrate_kunit:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-612-0ae6ec9ac768c2ee81f8b7f153d04358e34ff0d6/bat-dg2-oem2/igt@xe_live_ktest@bo@xe_bo-xe_ccs_migrate_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128396v1/bat-dg2-oem2/igt@xe_live_ktest@bo@xe_bo-xe_ccs_migrate_kunit.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1101">Intel XE#1101</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-612-0ae6ec9ac768c2ee81f8b7f153d04358e34ff0d6/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033">Intel XE#1033</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128396v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033">Intel XE#1033</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-612-0ae6ec9ac768c2ee81f8b7f153d04358e34ff0d6 -&gt; xe-pw-128396v1</li>
-</ul>
-<p>IGT_7664: 5b8a8dcca7711c73f9cfeb66b5deb27751290fb4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-612-0ae6ec9ac768c2ee81f8b7f153d04358e34ff0d6: 0ae6ec9ac768c2ee81f8b7f153d04358e34ff0d6<br />
-  xe-pw-128396v1: 128396v1</p>
-
-</body>
-</html>
-
---===============8368921282299679126==--
