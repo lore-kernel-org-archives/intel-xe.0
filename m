@@ -4,43 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66896C4707C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1526DC4707B
 	for <intel-xe@archiver.kernel.org>; Wed, 10 Jan 2024 01:24:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1853F10E570;
-	Wed, 10 Jan 2024 01:24:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CECA610E560;
+	Wed, 10 Jan 2024 01:24:08 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BC5C10E561
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Jan 2024 01:24:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDEAE10E563
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Jan 2024 01:24:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704849847; x=1736385847;
+ t=1704849846; x=1736385846;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VgupHyOU2PlVDaWXZgyu4xC44PLB68xOL7qjRi6Genk=;
- b=MkhCFMGAGuc2j8LoXGvHAtScfP0J87RDLppv31VtaH0G8nJgljPc1ise
- r63mT4No2KJzUOkYJXQ9YBTJs3OZT+h+PmbdW6GqXmfE/m0KiLV65TSj5
- Zu6W4uCjKLFTwR1WU1sTgxof25/4lYxF53oKD7Fok4c2kngP2E83IsH0q
- zskmmPhOZ01QAlXBaz+TganxsrkD0nE8YLRV/xd+8Mo8QJBDjden5tPU7
- LG9JRXLxurdkHxqVabtgf2KUj10YLylRPqqGn0dmNDOsT+FPT7zvd678h
- BBbyv/6TYpI/UGRkYSf17Q73ne1DIthXhJtFn9Y9UPdXlrKi0uZnTvmA+ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="395531960"
-X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="395531960"
+ bh=Sfh9QW43EaeLf7n7FIlDbuwYui91EHRoc9aS4IZOEu0=;
+ b=YIfxfk4VVIUyUsGp1QNLuL0VkksRAB0/efnRMzLTs0w7T1UqHXwKnFAh
+ mcnONGQSadTthb0EPCdPqusAC1TUHz484QJyhckhhf7Uqti4ir5aGcueB
+ n9z/KOvo8rJS2VcqPNVRVJ2ucNecy+HuBpXtE+80L/yLOaHsCKmn91Aqp
+ 1Fv0uMYhNHf1yp9msq2p2NNRAd+SIVvEkjojlTd9U7nDaR8k7lTMNv8yU
+ TW1XpiJZgN96h3nvclKvZA1IQru6B835CmKs4hC2cGIYz66EC3HFF8Yg6
+ lZGRcbQ96cJ+4nxXW9g1cILoxyk8reADnvKxYjTROBQ4Ir4uCvxAfPozJ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="395531959"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="395531959"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Jan 2024 17:24:06 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="955187881"
-X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="955187881"
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="955187878"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="955187878"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Jan 2024 17:24:05 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Subject: [PATCH v2 3/4] drm/xe: Add build on bug to assert access counter
- queue works
-Date: Tue,  9 Jan 2024 17:24:38 -0800
-Message-Id: <20240110012439.1400618-4-matthew.brost@intel.com>
+Subject: [PATCH v2 2/4] drm/xe: Invert page fault queue head / tail
+Date: Tue,  9 Jan 2024 17:24:37 -0800
+Message-Id: <20240110012439.1400618-3-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240110012439.1400618-1-matthew.brost@intel.com>
 References: <20240110012439.1400618-1-matthew.brost@intel.com>
@@ -61,36 +60,98 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If ACC_QUEUE_NUM_DW % ACC_MSG_LEN_DW != 0 then the access counter queue
-logic does not work when wrapping occurs. Add a build bug on to assert
-ACC_QUEUE_NUM_DW % ACC_MSG_LEN_DW == 0 to enforce this restriction and
-document the code.
-
-v2:
-- s/NUM_ACC_QUEUE/ACC_QUEUE_NUM_DW (Brian)
+Convention for queues in Linux is the producer moves the head and
+consumer moves the tail. Fix the page fault queue to conform to this
+convention.
 
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_pagefault.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/xe/xe_gt_pagefault.c | 14 +++++++-------
+ drivers/gpu/drm/xe/xe_gt_types.h     | 12 ++++++------
+ 2 files changed, 13 insertions(+), 13 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index 3ca715e2ec19..13183088401f 100644
+index 0a61e4413679..3ca715e2ec19 100644
 --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
 +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -629,6 +629,11 @@ int xe_guc_access_counter_notify_handler(struct xe_guc *guc, u32 *msg, u32 len)
- 	u32 asid;
- 	bool full;
+@@ -282,9 +282,9 @@ static bool get_pagefault(struct pf_queue *pf_queue, struct pagefault *pf)
+ 	bool ret = false;
  
-+	/*
-+	 * The below logic doesn't work unless ACC_QUEUE_NUM_DW % ACC_MSG_LEN_DW == 0
-+	 */
-+	BUILD_BUG_ON(ACC_QUEUE_NUM_DW % ACC_MSG_LEN_DW);
-+
- 	if (unlikely(len != ACC_MSG_LEN_DW))
- 		return -EPROTO;
+ 	spin_lock_irq(&pf_queue->lock);
+-	if (pf_queue->head != pf_queue->tail) {
++	if (pf_queue->tail != pf_queue->head) {
+ 		desc = (const struct xe_guc_pagefault_desc *)
+-			(pf_queue->data + pf_queue->head);
++			(pf_queue->data + pf_queue->tail);
  
+ 		pf->fault_level = FIELD_GET(PFD_FAULT_LEVEL, desc->dw0);
+ 		pf->trva_fault = FIELD_GET(XE2_PFD_TRVA_FAULT, desc->dw0);
+@@ -302,7 +302,7 @@ static bool get_pagefault(struct pf_queue *pf_queue, struct pagefault *pf)
+ 		pf->page_addr |= FIELD_GET(PFD_VIRTUAL_ADDR_LO, desc->dw2) <<
+ 			PFD_VIRTUAL_ADDR_LO_SHIFT;
+ 
+-		pf_queue->head = (pf_queue->head + PF_MSG_LEN_DW) %
++		pf_queue->tail = (pf_queue->tail + PF_MSG_LEN_DW) %
+ 			PF_QUEUE_NUM_DW;
+ 		ret = true;
+ 	}
+@@ -315,7 +315,7 @@ static bool pf_queue_full(struct pf_queue *pf_queue)
+ {
+ 	lockdep_assert_held(&pf_queue->lock);
+ 
+-	return CIRC_SPACE(pf_queue->tail, pf_queue->head, PF_QUEUE_NUM_DW) <=
++	return CIRC_SPACE(pf_queue->head, pf_queue->tail, PF_QUEUE_NUM_DW) <=
+ 		PF_MSG_LEN_DW;
+ }
+ 
+@@ -342,8 +342,8 @@ int xe_guc_pagefault_handler(struct xe_guc *guc, u32 *msg, u32 len)
+ 	spin_lock_irqsave(&pf_queue->lock, flags);
+ 	full = pf_queue_full(pf_queue);
+ 	if (!full) {
+-		memcpy(pf_queue->data + pf_queue->tail, msg, len * sizeof(u32));
+-		pf_queue->tail = (pf_queue->tail + len) % PF_QUEUE_NUM_DW;
++		memcpy(pf_queue->data + pf_queue->head, msg, len * sizeof(u32));
++		pf_queue->head = (pf_queue->head + len) % PF_QUEUE_NUM_DW;
+ 		queue_work(gt->usm.pf_wq, &pf_queue->worker);
+ 	} else {
+ 		drm_warn(&xe->drm, "PF Queue full, shouldn't be possible");
+@@ -389,7 +389,7 @@ static void pf_queue_work_func(struct work_struct *w)
+ 		send_pagefault_reply(&gt->uc.guc, &reply);
+ 
+ 		if (time_after(jiffies, threshold) &&
+-		    pf_queue->head != pf_queue->tail) {
++		    pf_queue->tail != pf_queue->head) {
+ 			queue_work(gt->usm.pf_wq, w);
+ 			break;
+ 		}
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index f74684660475..b15503dabba4 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -225,16 +225,16 @@ struct xe_gt {
+ #define PF_QUEUE_NUM_DW	128
+ 			/** @data: data in the page fault queue */
+ 			u32 data[PF_QUEUE_NUM_DW];
+-			/**
+-			 * @head: head pointer in DWs for page fault queue,
+-			 * moved by worker which processes faults.
+-			 */
+-			u16 head;
+ 			/**
+ 			 * @tail: tail pointer in DWs for page fault queue,
+-			 * moved by G2H handler.
++			 * moved by worker which processes faults (consumer).
+ 			 */
+ 			u16 tail;
++			/**
++			 * @head: head pointer in DWs for page fault queue,
++			 * moved by G2H handler (producer).
++			 */
++			u16 head;
+ 			/** @lock: protects page fault queue */
+ 			spinlock_t lock;
+ 			/** @worker: to process page faults */
 -- 
 2.34.1
 
