@@ -4,44 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6382FC3DA6E
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Jan 2024 07:26:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44177C3DA6E
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Jan 2024 07:48:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12FB310E0E2;
-	Wed, 10 Jan 2024 07:26:48 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B304F10E0E2
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Jan 2024 07:26:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704871606; x=1736407606;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=1FEatFb61qVe8Ww/d9YqZxzvLfcWUQSyBh6O9Sk90Ss=;
- b=e1YDwEyY5ILWW8zW/iPurzyGIw+t7QXyz2ZtEp1W9M0+7TJ3Fm6ZS0Xr
- MCl8jLvVfbJHlqx/DhEEfcnt2kImos5LIyfQ7eFMcs9iiTfwIpMVjae/v
- 0T9Wd4cocfV2OmStI4LojZvLBIyZji4e5rFTHhdcLCF0t2GdszjMvITZ6
- 2Vg1qEaKQzuPDzPAQ15TQwPZCojRvY3eWx4NNzVQjQfGD77H7W04U4jf0
- /amyJMYNmyziFwaZOlhmWlZL3JB/bhq3aHBNCR+G2ggn/OJmM3QXae+d+
- GVVR4gTox1Y8eyBRUiteyXl3OnVLk/l/AghHaKQQRmgsKxXsUww39jWn5 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="5185455"
-X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; 
-   d="scan'208";a="5185455"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2024 23:26:46 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="16544760"
-Received: from suja-super-server.iind.intel.com ([10.145.169.64])
- by fmviesa002.fm.intel.com with ESMTP; 09 Jan 2024 23:26:45 -0800
-From: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/xe: Fix typo in vram frequency sysfs documentation
-Date: Wed, 10 Jan 2024 13:12:03 +0530
-Message-Id: <20240110074203.2169233-1-sujaritha.sundaresan@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF45610E0D2;
+	Wed, 10 Jan 2024 07:48:45 +0000 (UTC)
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0376B10E0D2;
+ Wed, 10 Jan 2024 07:48:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3410670423455639231=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_series_starting_with_=5Bv2=2C1/2?=
+ =?utf-8?q?=5D_drm/xe/xe2=5Flpg=3A_Introduce_performance_guide_changes?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Shekhar Chauhan" <shekhar.chauhan@intel.com>
+Date: Wed, 10 Jan 2024 07:48:45 -0000
+Message-ID: <170487292501.216241.15909798155608111572@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240110061531.780038-1-shekhar.chauhan@intel.com>
+In-Reply-To: <20240110061531.780038-1-shekhar.chauhan@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,31 +35,164 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fix function naming and description for xe_vram_freq_sysfs_init
-function.
+--===============3410670423455639231==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
----
- drivers/gpu/drm/xe/xe_vram_freq.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_vram_freq.c b/drivers/gpu/drm/xe/xe_vram_freq.c
-index 733146293307..838f582e5632 100644
---- a/drivers/gpu/drm/xe/xe_vram_freq.c
-+++ b/drivers/gpu/drm/xe/xe_vram_freq.c
-@@ -96,7 +96,7 @@ static void vram_freq_sysfs_fini(struct drm_device *drm, void *arg)
- }
- 
- /*
-- * xe_vram_freq_init - Initialize vram frequency component
-+ * xe_vram_freq_sysfs_init - Initialize vram frequency sysfs component
-  * @tile: Xe Tile object
-  *
-  * It needs to be initialized after the main tile component is ready
--- 
-2.25.1
+Series: series starting with [v2,1/2] drm/xe/xe2_lpg: Introduce performance guide changes
+URL   : https://patchwork.freedesktop.org/series/128412/
+State : failure
 
+== Summary ==
+
+CI Bug Log - changes from xe-613-c170f452b2634a920b2251f825648abaca53e5cb_BAT -> xe-pw-128412v1_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-128412v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-128412v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-128412v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_exec_fault_mode@twice-userptr-invalidate-imm:
+    - bat-pvc-2:          [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-613-c170f452b2634a920b2251f825648abaca53e5cb/bat-pvc-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-imm.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128412v1/bat-pvc-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-imm.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-128412v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:
+    - bat-adlp-7:         [FAIL][3] ([Intel XE#480]) -> [PASS][4] +2 other tests pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-613-c170f452b2634a920b2251f825648abaca53e5cb/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128412v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
+
+  
+  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7664 -> IGT_7665
+  * Linux: xe-613-c170f452b2634a920b2251f825648abaca53e5cb -> xe-pw-128412v1
+
+  IGT_7664: 5b8a8dcca7711c73f9cfeb66b5deb27751290fb4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7665: 6f4e089ac1fbef39cfe77ccfcf2a4781e3df26b0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-613-c170f452b2634a920b2251f825648abaca53e5cb: c170f452b2634a920b2251f825648abaca53e5cb
+  xe-pw-128412v1: 128412v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128412v1/index.html
+
+--===============3410670423455639231==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v2,1/2] drm/xe/xe2_lpg: Introduce performance guide changes</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/128412/">https://patchwork.freedesktop.org/series/128412/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128412v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128412v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-613-c170f452b2634a920b2251f825648abaca53e5cb_BAT -&gt; xe-pw-128412v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-128412v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-128412v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-128412v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_exec_fault_mode@twice-userptr-invalidate-imm:<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-613-c170f452b2634a920b2251f825648abaca53e5cb/bat-pvc-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-imm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128412v1/bat-pvc-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-imm.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-128412v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-613-c170f452b2634a920b2251f825648abaca53e5cb/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128412v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">PASS</a> +2 other tests pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7664 -&gt; IGT_7665</li>
+<li>Linux: xe-613-c170f452b2634a920b2251f825648abaca53e5cb -&gt; xe-pw-128412v1</li>
+</ul>
+<p>IGT_7664: 5b8a8dcca7711c73f9cfeb66b5deb27751290fb4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7665: 6f4e089ac1fbef39cfe77ccfcf2a4781e3df26b0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-613-c170f452b2634a920b2251f825648abaca53e5cb: c170f452b2634a920b2251f825648abaca53e5cb<br />
+  xe-pw-128412v1: 128412v1</p>
+
+</body>
+</html>
+
+--===============3410670423455639231==--
