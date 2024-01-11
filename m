@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1F76C4725D
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jan 2024 18:33:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FFD8C47077
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jan 2024 18:34:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A275E10E926;
-	Thu, 11 Jan 2024 18:33:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C94F410E95F;
+	Thu, 11 Jan 2024 18:34:01 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6160710E926;
- Thu, 11 Jan 2024 18:33:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9679D10E95F;
+ Thu, 11 Jan 2024 18:34:00 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Allow_to_e?=
- =?utf-8?q?xclude_part_of_GGTT_from_allocations?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Allow_to_exclud?=
+ =?utf-8?q?e_part_of_GGTT_from_allocations?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Date: Thu, 11 Jan 2024 18:33:48 -0000
-Message-ID: <170499802836.290000.16878779874546760592@5338d5abeb45>
+Date: Thu, 11 Jan 2024 18:34:00 -0000
+Message-ID: <170499804061.290001.5270969587344377729@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240111182559.629-1-michal.wajdeczko@intel.com>
 In-Reply-To: <20240111182559.629-1-michal.wajdeczko@intel.com>
@@ -48,9 +48,30 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 79184e722 drm/xe/migrate: Fix CCS copy for small VRAM copy chunks
-=== git am output follows ===
-Applying: drm/xe: Allow to exclude part of GGTT from allocations
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+faa12d3432d7ef7793d934cd9338c555e95a5aad
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 454f3aeb36b630b5f8cf05d931e517623930dff8
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Thu Jan 11 19:25:59 2024 +0100
+
+    drm/xe: Allow to exclude part of GGTT from allocations
+    
+    Soon we will be required to exclude some of the GGTT addresses
+    from the allocations, since on some platforms running the SR-IOV VF
+    mode, we will be able to use only selected range of the GGTT space.
+    
+    Add helper functions to manage such GGTT range exclusions, and
+    follow the naming from the similar concept used by GVT-g.
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
++ /mt/dim checkpatch 79184e72263e91528195db01783148435c7e4fad drm-intel
+454f3aeb3 drm/xe: Allow to exclude part of GGTT from allocations
 
 
