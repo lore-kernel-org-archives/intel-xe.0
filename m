@@ -4,57 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93E66C47077
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jan 2024 07:44:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96BEFC4707B
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jan 2024 08:26:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83AB410E7F2;
-	Thu, 11 Jan 2024 07:44:14 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39A4710E7D7;
- Thu, 11 Jan 2024 07:44:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4125510E1A0;
+	Thu, 11 Jan 2024 08:26:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E07B10E1A0
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jan 2024 08:26:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704959053; x=1736495053;
- h=message-id:subject:from:to:cc:in-reply-to:references:
- content-transfer-encoding:mime-version:date;
- bh=DNNc4gN4VMyhwDSa/v/eGAro1L557ukFzFUhkHBLr44=;
- b=GD7QSRUHgV9oC9S+7jkgJZyXhkJH+oQ2P4MluoFdjfAhYDpG0CSCZ56A
- GqJs3CMBvRyM/FCYzMmQj4o+23Yv6wlpGBWxNglyx0tO5dqMZUcxjKYEL
- bg5gqDXCX5rFsRBch9UgWVnJ6Tvay0h25ZrHZ5aG0hRwnUDBE6ywzzC9U
- nQpV3X1QFmqu4guldQhKF/tniyIMvmdE9xOlqMZtr3Q+4oa9PGktNNs4W
- TSCQ4YBfja+zuQmvHwXpsx3QCJ6s5OW1e1zxcn+6MiA5Cdb2jJxwj5bxF
- vaIxce+/L+1MODgo/FfMibhU7xlCZwx0WQp7XbLll4dae3ZZ7umG7NG+R g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10949"; a="5853255"
-X-IronPort-AV: E=Sophos;i="6.04,185,1695711600"; 
-   d="scan'208";a="5853255"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2024 23:44:13 -0800
+ t=1704961617; x=1736497617;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=PvkDjRPozve4Fj4rfyFhh/+kTQ6859osprkUlMGgG5M=;
+ b=ByYEIh+nj9D/qu5OG6+OqYeYmv9YuYkWxYfq3D5155X5gXOJBydqIUuK
+ DvvqGJKIIE00jSdTPbZihNt+xp0dVJaB/Yc1l24FADHSdYO25c6QDrom4
+ rCCQLnoOLzvzC2URLeU59WOYEEpPAOU7/SxnYu3UVIL3L35LLRXOeE6+G
+ G4aK+Sr0HhtK23pNv+lAgwuZvjgNtbF51At8n5uN7rJ7uUiySunzcXw9f
+ 8+NM3XigVpT1K/pYQYn25I8wfpZa9Qa/6d5AdIWd9CtrLvKe/G3ZY83VA
+ vm/5rarefI2/iBBoOradN07W75F1knS2YR9bXI36kDuV9y8mFO+lZOInU g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10949"; a="463069074"
+X-IronPort-AV: E=Sophos;i="6.04,185,1695711600"; d="scan'208";a="463069074"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2024 00:26:57 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10949"; a="775524881"
-X-IronPort-AV: E=Sophos;i="6.04,185,1695711600"; d="scan'208";a="775524881"
-Received: from dhermamx-mobl1.amr.corp.intel.com (HELO [10.249.254.19])
- ([10.249.254.19])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2024 23:44:10 -0800
-Message-ID: <2e425df9eb24118cefbdee6f81f08e92bce6aada.camel@linux.intel.com>
-Subject: Re: [PATCH] nightly.conf: Add the xe repo to drm-tip
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>
-In-Reply-To: <6dkiwe24dlanapcudkrbionkbc2lycqqghify6rkh2oux663w4@o4ekhar7flzm>
-References: <20231222113640.14038-1-thomas.hellstrom@linux.intel.com>
- <ZYsb09nsERQFDCQl@intel.com>
- <9541c844440e8b0fc5686e19850a04c7a55745ba.camel@linux.intel.com>
- <ktdr7l23leikip3hsmbxr2iirmz5zat7wck2ib6lbijl3uybtu@4iqn3adhfzyv>
- <ZZxzn1zdye92n5C-@intel.com>
- <6dkiwe24dlanapcudkrbionkbc2lycqqghify6rkh2oux663w4@o4ekhar7flzm>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=McAfee;i="6600,9927,10949"; a="732137321"
+X-IronPort-AV: E=Sophos;i="6.04,185,1695711600"; d="scan'208";a="732137321"
+Received: from jherron-mobl2.ger.corp.intel.com (HELO [10.252.17.114])
+ ([10.252.17.114])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2024 00:26:55 -0800
+Message-ID: <93950945-3b09-4912-baf4-5c44383553aa@intel.com>
+Date: Thu, 11 Jan 2024 08:26:53 +0000
 MIME-Version: 1.0
-Date: Tue, 09 Jan 2024 14:46:03 +0100
-User-Agent: Evolution 3.50.2 (3.50.2-1.fc39) 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5] drm/xe/migrate: Fix CCS copy for small VRAM copy chunks
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20240110163415.524165-1-thomas.hellstrom@linux.intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20240110163415.524165-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,191 +60,299 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniel.vetter@ffwll.ch, intel-gfx@lists.freedesktop.org,
- dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2024-01-08 at 16:22 -0600, Lucas De Marchi wrote:
-> On Mon, Jan 08, 2024 at 05:13:51PM -0500, Rodrigo Vivi wrote:
-> > On Wed, Jan 03, 2024 at 11:59:16PM -0600, Lucas De Marchi wrote:
-> > > On Wed, Jan 03, 2024 at 02:50:57PM +0100, Thomas Hellstr=C3=B6m wrote=
-:
-> > > > On Tue, 2023-12-26 at 13:30 -0500, Rodrigo Vivi wrote:
-> > > > > On Fri, Dec 22, 2023 at 12:36:39PM +0100, Thomas Hellstr=C3=B6m
-> > > > > wrote:
-> > > > > > Add the xe repo to drm-tip and the dim tools.
-> > > > > > For now use the sha1 of the first drm-xe-next pull request
-> > > > > > for drm-
-> > > > > > tip,
-> > > > > > since that branch tip is currently adapted for our CI
-> > > > > > testing.
-> > > > > >=20
-> > > > > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > > > > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> > > > > > Cc: Oded Gabbay <ogabbay@kernel.org>
-> > > > > > Cc: daniel.vetter@ffwll.ch
-> > > > > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > > > > > Cc: dim-tools@lists.freedesktop.org
-> > > > > > Cc: dri-devel@lists.freedesktop.org
-> > > > > > Cc: intel-gfx@lists.freedesktop.org
-> > > > > > Signed-off-by: Thomas Hellstr=C3=B6m
-> > > > > > <thomas.hellstrom@linux.intel.com>
-> > > > > > ---
-> > > > > > =C2=A0nightly.conf | 7 +++++++
-> > > > > > =C2=A01 file changed, 7 insertions(+)
-> > > > > >=20
-> > > > > > diff --git a/nightly.conf b/nightly.conf
-> > > > > > index 24126b61b797..accd3ff2cc39 100644
-> > > > > > --- a/nightly.conf
-> > > > > > +++ b/nightly.conf
-> > > > > > @@ -24,6 +24,10 @@ git://anongit.freedesktop.org/drm-tip
-> > > > > > =C2=A0https://anongit.freedesktop.org/git/drm/drm-tip
-> > > > > > =C2=A0https://anongit.freedesktop.org/git/drm/drm-tip.git
-> > > > > > =C2=A0"
-> > > > > > +drm_tip_repos[drm-xe]=3D"
-> > > > > > +ssh://git@gitlab.freedesktop.org/drm/xe/kernel.git
-> > > > > > +https://gitlab.freedesktop.org/drm/xe/kernel.git
-> > > > > > +"
-> > > > > > =C2=A0drm_tip_repos[drm-intel]=3D"
-> > > > > > =C2=A0ssh://git.freedesktop.org/git/drm/drm-intel
-> > > > > > =C2=A0ssh://git.freedesktop.org/git/drm-intel
-> > > > > > @@ -65,14 +69,17 @@ drm_tip_config=3D(
-> > > > > > =C2=A0	"drm			drm-fixes"
-> > > > > > =C2=A0	"drm-misc		drm-misc-fixes"
-> > > > > > =C2=A0	"drm-intel		drm-intel-fixes"
-> > > > > > +	"drm-xe			drm-xe-fixes"
-> > > > > > =C2=A0
-> > > > > > =C2=A0	"drm			drm-next"
-> > > > > > =C2=A0	"drm-misc		drm-misc-next-fixes"
-> > > > > > =C2=A0	"drm-intel		drm-intel-next-fixes"
-> > > > > > +	"drm-xe			drm-xe-next-fixes"
-> > > > > > =C2=A0
-> > > > > > =C2=A0	"drm-misc		drm-misc-next"
-> > > > > > =C2=A0	"drm-intel		drm-intel-next"
-> > > > > > =C2=A0	"drm-intel		drm-intel-gt-next"
-> > > > > > +	"drm-xe			drm-xe-next
-> > > > > > b6e1b7081768"
-> > > > >=20
-> > > > > yeap, up to this commit nothing else should change, but
-> > > > > then we will need an extra rebase of the rest on top of
-> > > > > drm/drm-next.
-> > > > >=20
-> > > > > But then we need to decide where these following patches will
-> > > > > live:
-> > > > > 880277f31cc69 drm/xe/guc: define LNL FW
-> > > > > 2cfc5ae1b8267 drm/xe/guc: define PVC FW
-> > > > > 52383b58eb8cf mei/hdcp: Also enable for XE
-> > > > > bea27d7369855 mei: gsc: add support for auxiliary device
-> > > > > created by
-> > > > > Xe driver
-> > > > > fcb3410197f05 fault-inject: Include linux/types.h by default.
-> > > > > 8ebd9cd71f8ac drm/xe: Add PVC's PCI device IDs
-> > > > >=20
-> > > > >=20
-> > > > > Will it be the topic/core-for-CI?
-> > > > > or topic/xe-extras?
-> > > > > or what?
-> > > >=20
-> > > > This sounds to me like topic/core-for-CI? Or is there any
-> > > > drawback with
-> > > > that?
-> > >=20
-> > > I think some of them are not really a "for CI". It's more like
-> > > the
-> > > workflow we are adopting e.g. with guc/huc, not sending it to
-> > > linux-firmware
-> > > until we are confident on what version we will start officially
-> > > supporting.
-> >=20
-> > yeap, I kind of agree here, but at the same time it is our way to
-> > run
-> > our CI with the firmware blobs that we need while not final, and
-> > also
-> > this was already used for i915's MTL firmware.
->=20
-> ok
->=20
-> >=20
-> > >=20
-> > > This one can't go to topic/core-for-CI neither:
-> > > 	fcb3410197f05 fault-inject: Include linux/types.h by
-> > > default.
-> > >=20
-> > > what it would do would be that we would not see the build error
-> > > anymore,
-> > > but everyone else would (and it's not a CI-only configuration).
-> > > Unless it's merged to another branch, we shouldn't merge it.
-> >=20
-> > yeap. it is sad that we were ignored there. let's just drop this
-> > then.
-> > our driver is workarounding this bug anyway already.
->=20
-> agreed, let's drop it.
->=20
-> >=20
-> >=20
-> > >=20
-> > > "52383b58eb8cf mei/hdcp: Also enable for XE" could be material
-> > > for
-> > > topic/core-for-CI and=C2=A0 "8ebd9cd71f8ac drm/xe: Add PVC's PCI
-> > > device IDs"
-> > > could either be on that branch or another xe-specific one.
-> >=20
-> > yeap. For the MEI we probably need to ping Greg on the original
-> > submission and ask his ack so we can put that in the final drm-xe-
-> > next
-> > for good and not even include in a topic branch.
-> >=20
-> > for the PVC IDs, the topic branch could be okay as well. But if we
-> > end up with an exclusive branch for xe, then it is better there.
->=20
-> fair enough... I'm ok starting with topic/core-for-CI and if it ever
-> becomes a problem, to create a xe-specific topic branch.
+On 10/01/2024 16:34, Thomas Hellström wrote:
+> Since the migrate code is using the identity map for addressing VRAM,
+> copy chunks may become as small as 64K if the VRAM resource is fragmented.
+> 
+> However, a chunk size smaller that 1MiB may lead to the *next* chunk's
+> offset into the CCS metadata backup memory may not be page-aligned, and
+> the XY_CTRL_SURF_COPY_BLT command can't handle that, and even if it could,
+> the current code doesn't handle the offset calculaton correctly.
+> 
+> To fix this, make sure we align the size of VRAM copy chunks to 1MiB. If
+> the remaining data to copy is smaller than that, that's not a problem,
+> so use the remaining size. If the VRAM copy cunk becomes fragmented due
+> to the size alignment restriction, don't use the identity map, but instead
+> emit PTEs into the page-table like we do for system memory.
+> 
+> v2:
+> - Rebase
+> v3:
+> - Future proof somewhat by taking into account the real data size to
+>    flat CCS metadata size ratio. (Matt Roper)
+> - Invert a couple of if-statements for better readability.
+> - Fix support for 4K-granularity VRAM sizes. (Tested on DG1).
+> v4:
+> - Fix up code comments
+> - Fix debug printout format typo.
+> v5:
+> - Add a Fixes: tag.
+> 
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Matthew Auld <matthew.william.auld@gmail.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Fixes: e89b384cde62 ("drm/xe/migrate: Update emit_pte to cope with a size level than 4k")
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-Actually looking at the documented rules for core-for-CI, I think we
-should create a topic branch drm-xe/xe-for-CI or something similar that
-hold the patches that touch the xe driver. core-for-CI is meant for
-changes outside of drm and when rebased should be rooted in a linux
-upstream release or -rc. I figure we'd want xe-for-CI to be rooted in
-drm-xe-next assuming we may want to change the code these patches touch
-and quickly rebase xe-for-CI accordingly?
+r-b still applies from v4.
 
-/Thomas
-
->=20
-> thanks
-> Lucas De Marchi
->=20
-> >=20
-> > >=20
-> > > >=20
-> > > > >=20
-> > > > > Anyway, for the inclusion like this, after our CI is ready:
-> > > >=20
-> > > > Could we merge this patch already at this point, considering it
-> > > > will,
-> > > > at least for now, only update drm-tip with our fixes?
-> > >=20
-> > > ack
-> > >=20
-> > > Lucas De Marchi
-> > >=20
-> > > >=20
-> > > > Thanks,
-> > > >=20
-> > > > /Thomas
-> > > >=20
-> > > >=20
-> > > > >=20
-> > > > > Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > > >=20
-> > > > > > =C2=A0
-> > > > > > =C2=A0	"drm-intel		topic/core-for-CI"
-> > > > > > =C2=A0	"drm-misc		topic/i915-ttm"
-> > > > > > --
-> > > > > > 2.42.0
-> > > > > >=20
-> > > >=20
-
+> ---
+>   drivers/gpu/drm/xe/tests/xe_migrate.c |   2 +-
+>   drivers/gpu/drm/xe/xe_migrate.c       | 128 ++++++++++++++++----------
+>   2 files changed, 80 insertions(+), 50 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+> index 7a32faa2f688..a6523df0f1d3 100644
+> --- a/drivers/gpu/drm/xe/tests/xe_migrate.c
+> +++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+> @@ -331,7 +331,7 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+>   		xe_res_first_sg(xe_bo_sg(pt), 0, pt->size, &src_it);
+>   
+>   	emit_pte(m, bb, NUM_KERNEL_PDE - 1, xe_bo_is_vram(pt), false,
+> -		 &src_it, XE_PAGE_SIZE, pt);
+> +		 &src_it, XE_PAGE_SIZE, pt->ttm.resource);
+>   
+>   	run_sanity_job(m, xe, bb, bb->len, "Writing PTE for our fake PT", test);
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+> index 02fca8f9adc2..e05e9e7282b6 100644
+> --- a/drivers/gpu/drm/xe/xe_migrate.c
+> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> @@ -62,6 +62,8 @@ struct xe_migrate {
+>   	 * out of the pt_bo.
+>   	 */
+>   	struct drm_suballoc_manager vm_update_sa;
+> +	/** @min_chunk_size: For dgfx, Minimum chunk size */
+> +	u64 min_chunk_size;
+>   };
+>   
+>   #define MAX_PREEMPTDISABLE_TRANSFER SZ_8M /* Around 1ms. */
+> @@ -363,6 +365,19 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
+>   	if (err)
+>   		return ERR_PTR(err);
+>   
+> +	if (IS_DGFX(xe)) {
+> +		if (xe_device_has_flat_ccs(xe))
+> +			/* min chunk size corresponds to 4K of CCS Metadata */
+> +			m->min_chunk_size = SZ_4K * SZ_64K /
+> +				xe_device_ccs_bytes(xe, SZ_64K);
+> +		else
+> +			/* Somewhat arbitrary to avoid a huge amount of blits */
+> +			m->min_chunk_size = SZ_64K;
+> +		m->min_chunk_size = roundup_pow_of_two(m->min_chunk_size);
+> +		drm_dbg(&xe->drm, "Migrate min chunk size is 0x%08llx\n",
+> +			(unsigned long long)m->min_chunk_size);
+> +	}
+> +
+>   	return m;
+>   }
+>   
+> @@ -374,16 +389,35 @@ static u64 max_mem_transfer_per_pass(struct xe_device *xe)
+>   	return MAX_PREEMPTDISABLE_TRANSFER;
+>   }
+>   
+> -static u64 xe_migrate_res_sizes(struct xe_device *xe, struct xe_res_cursor *cur)
+> +static u64 xe_migrate_res_sizes(struct xe_migrate *m, struct xe_res_cursor *cur)
+>   {
+> -	/*
+> -	 * For VRAM we use identity mapped pages so we are limited to current
+> -	 * cursor size. For system we program the pages ourselves so we have no
+> -	 * such limitation.
+> -	 */
+> -	return min_t(u64, max_mem_transfer_per_pass(xe),
+> -		     mem_type_is_vram(cur->mem_type) ? cur->size :
+> -		     cur->remaining);
+> +	struct xe_device *xe = tile_to_xe(m->tile);
+> +	u64 size = min_t(u64, max_mem_transfer_per_pass(xe), cur->remaining);
+> +
+> +	if (mem_type_is_vram(cur->mem_type)) {
+> +		/*
+> +		 * VRAM we want to blit in chunks with sizes aligned to
+> +		 * min_chunk_size in order for the offset to CCS metadata to be
+> +		 * page-aligned. If it's the last chunk it may be smaller.
+> +		 *
+> +		 * Another constraint is that we need to limit the blit to
+> +		 * the VRAM block size, unless size is smaller than
+> +		 * min_chunk_size.
+> +		 */
+> +		u64 chunk = max_t(u64, cur->size, m->min_chunk_size);
+> +
+> +		size = min_t(u64, size, chunk);
+> +		if (size > m->min_chunk_size)
+> +			size = round_down(size, m->min_chunk_size);
+> +	}
+> +
+> +	return size;
+> +}
+> +
+> +static bool xe_migrate_allow_identity(u64 size, const struct xe_res_cursor *cur)
+> +{
+> +	/* If the chunk is not fragmented, allow identity map. */
+> +	return cur->size >= size;
+>   }
+>   
+>   static u32 pte_update_size(struct xe_migrate *m,
+> @@ -396,7 +430,12 @@ static u32 pte_update_size(struct xe_migrate *m,
+>   	u32 cmds = 0;
+>   
+>   	*L0_pt = pt_ofs;
+> -	if (!is_vram) {
+> +	if (is_vram && xe_migrate_allow_identity(*L0, cur)) {
+> +		/* Offset into identity map. */
+> +		*L0_ofs = xe_migrate_vram_ofs(tile_to_xe(m->tile),
+> +					      cur->start + vram_region_gpu_offset(res));
+> +		cmds += cmd_size;
+> +	} else {
+>   		/* Clip L0 to available size */
+>   		u64 size = min(*L0, (u64)avail_pts * SZ_2M);
+>   		u64 num_4k_pages = DIV_ROUND_UP(size, XE_PAGE_SIZE);
+> @@ -412,11 +451,6 @@ static u32 pte_update_size(struct xe_migrate *m,
+>   
+>   		/* Each chunk has a single blit command */
+>   		cmds += cmd_size;
+> -	} else {
+> -		/* Offset into identity map. */
+> -		*L0_ofs = xe_migrate_vram_ofs(tile_to_xe(m->tile),
+> -					      cur->start + vram_region_gpu_offset(res));
+> -		cmds += cmd_size;
+>   	}
+>   
+>   	return cmds;
+> @@ -426,10 +460,10 @@ static void emit_pte(struct xe_migrate *m,
+>   		     struct xe_bb *bb, u32 at_pt,
+>   		     bool is_vram, bool is_comp_pte,
+>   		     struct xe_res_cursor *cur,
+> -		     u32 size, struct xe_bo *bo)
+> +		     u32 size, struct ttm_resource *res)
+>   {
+>   	struct xe_device *xe = tile_to_xe(m->tile);
+> -
+> +	struct xe_vm *vm = m->q->vm;
+>   	u16 pat_index;
+>   	u32 ptes;
+>   	u64 ofs = at_pt * XE_PAGE_SIZE;
+> @@ -442,13 +476,6 @@ static void emit_pte(struct xe_migrate *m,
+>   	else
+>   		pat_index = xe->pat.idx[XE_CACHE_WB];
+>   
+> -	/*
+> -	 * FIXME: Emitting VRAM PTEs to L0 PTs is forbidden. Currently
+> -	 * we're only emitting VRAM PTEs during sanity tests, so when
+> -	 * that's moved to a Kunit test, we should condition VRAM PTEs
+> -	 * on running tests.
+> -	 */
+> -
+>   	ptes = DIV_ROUND_UP(size, XE_PAGE_SIZE);
+>   
+>   	while (ptes) {
+> @@ -468,20 +495,22 @@ static void emit_pte(struct xe_migrate *m,
+>   
+>   			addr = xe_res_dma(cur) & PAGE_MASK;
+>   			if (is_vram) {
+> -				/* Is this a 64K PTE entry? */
+> -				if ((m->q->vm->flags & XE_VM_FLAG_64K) &&
+> -				    !(cur_ofs & (16 * 8 - 1))) {
+> -					xe_tile_assert(m->tile, IS_ALIGNED(addr, SZ_64K));
+> +				if (vm->flags & XE_VM_FLAG_64K) {
+> +					u64 va = cur_ofs * XE_PAGE_SIZE / 8;
+> +
+> +					xe_assert(xe, (va & (SZ_64K - 1)) ==
+> +						  (addr & (SZ_64K - 1)));
+> +
+>   					flags |= XE_PTE_PS64;
+>   				}
+>   
+> -				addr += vram_region_gpu_offset(bo->ttm.resource);
+> +				addr += vram_region_gpu_offset(res);
+>   				devmem = true;
+>   			}
+>   
+> -			addr = m->q->vm->pt_ops->pte_encode_addr(m->tile->xe,
+> -								 addr, pat_index,
+> -								 0, devmem, flags);
+> +			addr = vm->pt_ops->pte_encode_addr(m->tile->xe,
+> +							   addr, pat_index,
+> +							   0, devmem, flags);
+>   			bb->cs[bb->len++] = lower_32_bits(addr);
+>   			bb->cs[bb->len++] = upper_32_bits(addr);
+>   
+> @@ -693,8 +722,8 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+>   		bool usm = xe->info.has_usm;
+>   		u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
+>   
+> -		src_L0 = xe_migrate_res_sizes(xe, &src_it);
+> -		dst_L0 = xe_migrate_res_sizes(xe, &dst_it);
+> +		src_L0 = xe_migrate_res_sizes(m, &src_it);
+> +		dst_L0 = xe_migrate_res_sizes(m, &dst_it);
+>   
+>   		drm_dbg(&xe->drm, "Pass %u, sizes: %llu & %llu\n",
+>   			pass++, src_L0, dst_L0);
+> @@ -715,6 +744,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+>   						      &ccs_ofs, &ccs_pt, 0,
+>   						      2 * avail_pts,
+>   						      avail_pts);
+> +			xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE));
+>   		}
+>   
+>   		/* Add copy commands size here */
+> @@ -727,20 +757,20 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+>   			goto err_sync;
+>   		}
+>   
+> -		if (!src_is_vram)
+> -			emit_pte(m, bb, src_L0_pt, src_is_vram, true, &src_it, src_L0,
+> -				 src_bo);
+> -		else
+> +		if (src_is_vram && xe_migrate_allow_identity(src_L0, &src_it))
+>   			xe_res_next(&src_it, src_L0);
+> -
+> -		if (!dst_is_vram)
+> -			emit_pte(m, bb, dst_L0_pt, dst_is_vram, true, &dst_it, src_L0,
+> -				 dst_bo);
+>   		else
+> +			emit_pte(m, bb, src_L0_pt, src_is_vram, true, &src_it, src_L0,
+> +				 src);
+> +
+> +		if (dst_is_vram && xe_migrate_allow_identity(src_L0, &dst_it))
+>   			xe_res_next(&dst_it, src_L0);
+> +		else
+> +			emit_pte(m, bb, dst_L0_pt, dst_is_vram, true, &dst_it, src_L0,
+> +				 dst);
+>   
+>   		if (copy_system_ccs)
+> -			emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src_bo);
+> +			emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
+>   
+>   		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+>   		update_idx = bb->len;
+> @@ -949,7 +979,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+>   		bool usm = xe->info.has_usm;
+>   		u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
+>   
+> -		clear_L0 = xe_migrate_res_sizes(xe, &src_it);
+> +		clear_L0 = xe_migrate_res_sizes(m, &src_it);
+>   
+>   		drm_dbg(&xe->drm, "Pass %u, size: %llu\n", pass++, clear_L0);
+>   
+> @@ -976,12 +1006,12 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+>   
+>   		size -= clear_L0;
+>   		/* Preemption is enabled again by the ring ops. */
+> -		if (!clear_vram) {
+> -			emit_pte(m, bb, clear_L0_pt, clear_vram, true, &src_it, clear_L0,
+> -				 bo);
+> -		} else {
+> +		if (clear_vram && xe_migrate_allow_identity(clear_L0, &src_it))
+>   			xe_res_next(&src_it, clear_L0);
+> -		}
+> +		else
+> +			emit_pte(m, bb, clear_L0_pt, clear_vram, true, &src_it, clear_L0,
+> +				 dst);
+> +
+>   		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+>   		update_idx = bb->len;
+>   
