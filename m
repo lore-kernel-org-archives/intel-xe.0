@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69467C4707B
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jan 2024 21:06:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D9E6C4707B
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jan 2024 22:02:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 351DA10E0C6;
-	Thu, 11 Jan 2024 21:06:52 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CF5B10E0C6
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jan 2024 21:06:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4810E10E1C1;
+	Thu, 11 Jan 2024 22:02:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7D9010E1C1
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jan 2024 22:02:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705007211; x=1736543211;
+ t=1705010562; x=1736546562;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=GevOneAd5CcmKqDPZQte3X+UTL00ySpXnJBuc2InfWg=;
- b=U9yT5QTWRihAkY4gGT0eIGHd3aip4sUeMgttQPd5IUoxRppJbcP8cHiE
- a9ng1TCwRkDqAWuzP/0S7QpXZ3ST88HTawv9ALZexyFZzsQY1d5BN30ep
- P584LF0iVRUZET3PQ64SS/mIMzS94lis6m5svdLskHMruHAntZejNajCx
- y4k8GgTQtL4BCIgwmJi4y/WFakjD4lSFPzCxf+DfznuQ9r/hGOP3oMyR0
- KMUO4G0In9Y0za1SEQ/VYazwcwwWCX/V8uQ39PdrqM8+Y6hJetkiqYhbH
- oEUh4jDpJ3XPXoxu6Ua6Avh91XsAsasez4szVXFVmeZb2gOTdkCzX0awp w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10950"; a="12479351"
-X-IronPort-AV: E=Sophos;i="6.04,187,1695711600"; d="scan'208";a="12479351"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2024 13:06:50 -0800
+ bh=rf0sDXwf+n6rth5Rns2RgX/ojIbvfVbJAQbUtH4ShB0=;
+ b=a/S74uxErvEdnYtnwhxGRpHY1GpyZRAkpLQlOjeQF18aqSfehs1GptQj
+ 1a5zzLYYg+G3v8RskJUUIODlvDPc82dQEYXQoTeoyvT0PiS55y3GGjC0E
+ wI03+7Krl8tHCrNUIQV4Jk2ojuHNVd1lvzvvBY5wGQaaWvPt8hjILpOhQ
+ aEtGmoA1pf5Y+tsgxQkL1V/8Cx7arGplke/+GlIv7W1/25XKQNJEhfwJf
+ T1UhFXrv03Ds9L/cQw8f92Bw+wyZHzXkS8YuImhp327kmBWNOycz3Od/B
+ +/Ejy+d1se6udQBQkkl5VrRSt8YLKpMjtjFSgWkXw9irrWRO3inwJwWaD g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10950"; a="389450999"
+X-IronPort-AV: E=Sophos;i="6.04,187,1695711600"; d="scan'208";a="389450999"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2024 14:02:41 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10950"; a="816857637"
-X-IronPort-AV: E=Sophos;i="6.04,187,1695711600"; d="scan'208";a="816857637"
-Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.150.229])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2024 13:06:47 -0800
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10950"; a="873170950"
+X-IronPort-AV: E=Sophos;i="6.04,187,1695711600"; d="scan'208";a="873170950"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.131])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2024 14:02:41 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2] drm/xe/guc: Use HXG definitions on HXG messages
-Date: Thu, 11 Jan 2024 22:06:32 +0100
-Message-Id: <20240111210632.717-1-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
+Subject: [PATCH] drm/xe/migrate: Cap PTEs written by MI_STORE_DATA_IMM to 510
+Date: Thu, 11 Jan 2024 14:02:38 -0800
+Message-ID: <20240111220238.1467572-2-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -54,193 +54,88 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-While parsing and processing CTB G2H messages we should extract
-underlying HXG message and use HXG definitions on such message.
-Using outer CTB layer message in HXG definitions require use of
-shifted dword index, which might be confusing:
+Although MI_STORE_DATA_IMM's "length" field is 10-bits, 0x3FE is
+considered the largest legal value accepted.  Since that instruction
+field is always encoded in (val-2) format, this translates to 0x400
+dwords for the true maximum length of the instruction.  Subtracting the
+instruction header (1 dword) and address (2 dwords), that leaves 0x3FD
+dwords (i.e., 0x1FE qwords) for PTE values.
 
-	FIELD_GET(GUC_HXG_MSG_0_xxx, msg[1])
-
-instead of:
-
-	FIELD_GET(GUC_HXG_MSG_0_xxx, hxg[0])
-
-Cc: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Bspec: 60246, 45753
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
-v2: s/msg_len_to_hxg/msg_len_to_hxg_len (Matt)
-    be consistent on hxg constness (Matt)
----
- drivers/gpu/drm/xe/xe_guc_ct.c | 72 +++++++++++++++++++++-------------
- 1 file changed, 44 insertions(+), 28 deletions(-)
+ drivers/gpu/drm/xe/xe_migrate.c | 19 ++++++++++++++-----
+ 1 file changed, 14 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index d490a4d42c01..b2cc3f993eb6 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -796,9 +796,20 @@ int xe_guc_ct_send_recv_no_fail(struct xe_guc_ct *ct, const u32 *action,
- 	return guc_ct_send_recv(ct, action, len, response_buffer, true);
- }
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 88a32b272dda..44725f978f3e 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -72,6 +72,15 @@ struct xe_migrate {
+ #define NUM_PT_SLOTS 32
+ #define LEVEL0_PAGE_TABLE_ENCODE_SIZE SZ_2M
  
-+static u32 *msg_to_hxg(u32 *msg)
-+{
-+	return msg + GUC_CTB_MSG_MIN_LEN;
-+}
++/*
++ * Although MI_STORE_DATA_IMM's "length" field is 10-bits, 0x3FE is the largest
++ * legal value accepted.  Since that instruction field is always stored in
++ * (val-2) format, this translates to 0x400 dwords for the true maximum length
++ * of the instruction.  Subtracting the instruction header (1 dword) and
++ * address (2 dwords), that leaves 0x3FD dwords (0x1FE qwords) for PTE values.
++ */
++#define MAX_PTE_PER_SDI 0x1FE
 +
-+static u32 msg_len_to_hxg_len(u32 len)
-+{
-+	return len - GUC_CTB_MSG_MIN_LEN;
-+}
-+
- static int parse_g2h_event(struct xe_guc_ct *ct, u32 *msg, u32 len)
- {
--	u32 action = FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, msg[1]);
-+	u32 *hxg = msg_to_hxg(msg);
-+	u32 action = FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, hxg[0]);
+ /**
+  * xe_tile_migrate_engine() - Get this tile's migrate engine.
+  * @tile: The tile.
+@@ -444,7 +453,7 @@ static u32 pte_update_size(struct xe_migrate *m,
+ 		*L0_ofs = xe_migrate_vm_addr(pt_ofs, 0);
  
- 	lockdep_assert_held(&ct->lock);
+ 		/* MI_STORE_DATA_IMM */
+-		cmds += 3 * DIV_ROUND_UP(num_4k_pages, 0x1ff);
++		cmds += 3 * DIV_ROUND_UP(num_4k_pages, MAX_PTE_PER_SDI);
  
-@@ -817,9 +828,10 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
- {
- 	struct xe_gt *gt =  ct_to_gt(ct);
- 	struct xe_device *xe = gt_to_xe(gt);
--	u32 response_len = len - GUC_CTB_MSG_MIN_LEN;
-+	u32 *hxg = msg_to_hxg(msg);
-+	u32 hxg_len = msg_len_to_hxg_len(len);
- 	u32 fence = FIELD_GET(GUC_CTB_MSG_0_FENCE, msg[0]);
--	u32 type = FIELD_GET(GUC_HXG_MSG_0_TYPE, msg[1]);
-+	u32 type = FIELD_GET(GUC_HXG_MSG_0_TYPE, hxg[0]);
- 	struct g2h_fence *g2h_fence;
+ 		/* PDE qwords */
+ 		cmds += num_4k_pages * 2;
+@@ -479,7 +488,7 @@ static void emit_pte(struct xe_migrate *m,
+ 	ptes = DIV_ROUND_UP(size, XE_PAGE_SIZE);
  
- 	lockdep_assert_held(&ct->lock);
-@@ -836,8 +848,8 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
- 		if (type == GUC_HXG_TYPE_RESPONSE_FAILURE)
- 			xe_gt_err(gt, "FAST_REQ H2G fence 0x%x failed! e=0x%x, h=%u\n",
- 				  fence,
--				  FIELD_GET(GUC_HXG_FAILURE_MSG_0_ERROR, msg[1]),
--				  FIELD_GET(GUC_HXG_FAILURE_MSG_0_HINT, msg[1]));
-+				  FIELD_GET(GUC_HXG_FAILURE_MSG_0_ERROR, hxg[0]),
-+				  FIELD_GET(GUC_HXG_FAILURE_MSG_0_HINT, hxg[0]));
- 		else
- 			xe_gt_err(gt, "unexpected response %u for FAST_REQ H2G fence 0x%x!\n",
- 				  type, fence);
-@@ -857,18 +869,14 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 	while (ptes) {
+-		u32 chunk = min(0x1ffU, ptes);
++		u32 chunk = min(MAX_PTE_PER_SDI, ptes);
  
- 	if (type == GUC_HXG_TYPE_RESPONSE_FAILURE) {
- 		g2h_fence->fail = true;
--		g2h_fence->error =
--			FIELD_GET(GUC_HXG_FAILURE_MSG_0_ERROR, msg[1]);
--		g2h_fence->hint =
--			FIELD_GET(GUC_HXG_FAILURE_MSG_0_HINT, msg[1]);
-+		g2h_fence->error = FIELD_GET(GUC_HXG_FAILURE_MSG_0_ERROR, hxg[0]);
-+		g2h_fence->hint = FIELD_GET(GUC_HXG_FAILURE_MSG_0_HINT, hxg[0]);
- 	} else if (type == GUC_HXG_TYPE_NO_RESPONSE_RETRY) {
- 		g2h_fence->retry = true;
--		g2h_fence->reason =
--			FIELD_GET(GUC_HXG_RETRY_MSG_0_REASON, msg[1]);
-+		g2h_fence->reason = FIELD_GET(GUC_HXG_RETRY_MSG_0_REASON, hxg[0]);
- 	} else if (g2h_fence->response_buffer) {
--		g2h_fence->response_len = response_len;
--		memcpy(g2h_fence->response_buffer, msg + GUC_CTB_MSG_MIN_LEN,
--		       response_len * sizeof(u32));
-+		g2h_fence->response_len = hxg_len;
-+		memcpy(g2h_fence->response_buffer, hxg, hxg_len * sizeof(u32));
- 	}
+ 		bb->cs[bb->len++] = MI_STORE_DATA_IMM | MI_SDI_NUM_QW(chunk);
+ 		bb->cs[bb->len++] = ofs;
+@@ -1098,7 +1107,7 @@ static void write_pgtable(struct xe_tile *tile, struct xe_bb *bb, u64 ppgtt_ofs,
+ 	 * This shouldn't be possible in practice.. might change when 16K
+ 	 * pages are used. Hence the assert.
+ 	 */
+-	xe_tile_assert(tile, update->qwords <= 0x1ff);
++	xe_tile_assert(tile, update->qwords <= MAX_PTE_PER_SDI);
+ 	if (!ppgtt_ofs)
+ 		ppgtt_ofs = xe_migrate_vram_ofs(tile_to_xe(tile),
+ 						xe_bo_addr(update->pt_bo, 0,
+@@ -1107,7 +1116,7 @@ static void write_pgtable(struct xe_tile *tile, struct xe_bb *bb, u64 ppgtt_ofs,
+ 	do {
+ 		u64 addr = ppgtt_ofs + ofs * 8;
  
- 	g2h_release_space(ct, GUC_CTB_HXG_MSG_MAX_LEN);
-@@ -884,14 +892,13 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
- static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
- {
- 	struct xe_device *xe = ct_to_xe(ct);
--	u32 hxg, origin, type;
-+	u32 *hxg = msg_to_hxg(msg);
-+	u32 origin, type;
- 	int ret;
+-		chunk = min(update->qwords, 0x1ffU);
++		chunk = min(update->qwords, MAX_PTE_PER_SDI);
  
- 	lockdep_assert_held(&ct->lock);
+ 		/* Ensure populatefn can do memset64 by aligning bb->cs */
+ 		if (!(bb->len & 1))
+@@ -1283,7 +1292,7 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+ 		batch_size = 6 + num_updates * 2;
  
--	hxg = msg[1];
--
--	origin = FIELD_GET(GUC_HXG_MSG_0_ORIGIN, hxg);
-+	origin = FIELD_GET(GUC_HXG_MSG_0_ORIGIN, hxg[0]);
- 	if (unlikely(origin != GUC_HXG_ORIGIN_GUC)) {
- 		drm_err(&xe->drm,
- 			"G2H channel broken on read, origin=%d, reset required\n",
-@@ -901,7 +908,7 @@ static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
- 		return -EPROTO;
- 	}
+ 	for (i = 0; i < num_updates; i++) {
+-		u32 num_cmds = DIV_ROUND_UP(updates[i].qwords, 0x1ff);
++		u32 num_cmds = DIV_ROUND_UP(updates[i].qwords, MAX_PTE_PER_SDI);
  
--	type = FIELD_GET(GUC_HXG_MSG_0_TYPE, hxg);
-+	type = FIELD_GET(GUC_HXG_MSG_0_TYPE, hxg[0]);
- 	switch (type) {
- 	case GUC_HXG_TYPE_EVENT:
- 		ret = parse_g2h_event(ct, msg, len);
-@@ -927,14 +934,19 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
- {
- 	struct xe_device *xe = ct_to_xe(ct);
- 	struct xe_guc *guc = ct_to_guc(ct);
--	u32 action = FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, msg[1]);
--	u32 *payload = msg + GUC_CTB_HXG_MSG_MIN_LEN;
--	u32 adj_len = len - GUC_CTB_HXG_MSG_MIN_LEN;
-+	u32 hxg_len = msg_len_to_hxg_len(len);
-+	u32 *hxg = msg_to_hxg(msg);
-+	u32 action, adj_len;
-+	u32 *payload;
- 	int ret = 0;
- 
--	if (FIELD_GET(GUC_HXG_MSG_0_TYPE, msg[1]) != GUC_HXG_TYPE_EVENT)
-+	if (FIELD_GET(GUC_HXG_MSG_0_TYPE, hxg[0]) != GUC_HXG_TYPE_EVENT)
- 		return 0;
- 
-+	action = FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, hxg[0]);
-+	payload = hxg + GUC_HXG_EVENT_MSG_MIN_LEN;
-+	adj_len = hxg_len - GUC_HXG_EVENT_MSG_MIN_LEN;
-+
- 	switch (action) {
- 	case XE_GUC_ACTION_SCHED_CONTEXT_MODE_DONE:
- 		ret = xe_guc_sched_done_handler(guc, payload, adj_len);
-@@ -995,6 +1007,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
- 	u32 tail, head, len;
- 	s32 avail;
- 	u32 action;
-+	u32 *hxg;
- 
- 	lockdep_assert_held(&ct->fast_lock);
- 
-@@ -1045,10 +1058,11 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
- 				   avail * sizeof(u32));
- 	}
- 
--	action = FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, msg[1]);
-+	hxg = msg_to_hxg(msg);
-+	action = FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, hxg[0]);
- 
- 	if (fast_path) {
--		if (FIELD_GET(GUC_HXG_MSG_0_TYPE, msg[1]) != GUC_HXG_TYPE_EVENT)
-+		if (FIELD_GET(GUC_HXG_MSG_0_TYPE, hxg[0]) != GUC_HXG_TYPE_EVENT)
- 			return 0;
- 
- 		switch (action) {
-@@ -1074,9 +1088,11 @@ static void g2h_fast_path(struct xe_guc_ct *ct, u32 *msg, u32 len)
- {
- 	struct xe_device *xe = ct_to_xe(ct);
- 	struct xe_guc *guc = ct_to_guc(ct);
--	u32 action = FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, msg[1]);
--	u32 *payload = msg + GUC_CTB_HXG_MSG_MIN_LEN;
--	u32 adj_len = len - GUC_CTB_HXG_MSG_MIN_LEN;
-+	u32 hxg_len = msg_len_to_hxg_len(len);
-+	u32 *hxg = msg_to_hxg(msg);
-+	u32 action = FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, hxg[0]);
-+	u32 *payload = hxg + GUC_HXG_MSG_MIN_LEN;
-+	u32 adj_len = hxg_len - GUC_HXG_MSG_MIN_LEN;
- 	int ret = 0;
- 
- 	switch (action) {
-
-base-commit: 3095fbb4deb0722d417b6a4ad4213e2ed9ecd052
+ 		/* align noop + MI_STORE_DATA_IMM cmd prefix */
+ 		batch_size += 4 * num_cmds + updates[i].qwords * 2;
 -- 
-2.25.1
+2.43.0
 
