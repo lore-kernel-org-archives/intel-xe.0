@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06031C47077
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jan 2024 17:07:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59537C47077
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jan 2024 17:31:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0D6810E937;
-	Thu, 11 Jan 2024 17:07:24 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B171110E937
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jan 2024 17:07:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0339F10E060;
+	Thu, 11 Jan 2024 17:31:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10B6510E060
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jan 2024 17:31:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704992843; x=1736528843;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=0lwoD0H08Xgne1Vi6lEuk4iwjP4LM2TLfxETAZBxZ1c=;
- b=iMM+sYeYglBAx3zIUWp+H31eQ2LbiLw4vLWW+WNQvFkAhnBMR3SlQWqM
- JigzHOY1lXqMSf0xNpmmH4o2t7QDcSEjJNvGLVyRBesami9SddVsWhAbt
- cr+0gp4zQO4sW/Y3MMp2x2EMlk5gTtMtLOdVgS0N8gq7U4xE3Eg51/uKD
- oacawV1nWzXQStck1RVxfI9+L/O7tvsw17CdgkclAE8fqvOiLJNGpdXHc
- ZSzfIrSHBGrGkSOuxnUIuR5VyRjBkkOC9NWFdoV0M9Eb47sCc2cdPRwM/
- JSTgswE0fTWi1kQ6yW+Q2Gt0CKMf3G4xDjEhUqpLqggumh6iTg0C1iwOQ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10950"; a="12402378"
-X-IronPort-AV: E=Sophos;i="6.04,186,1695711600"; d="scan'208";a="12402378"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2024 09:07:16 -0800
+ t=1704994317; x=1736530317;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=JBt6P9a6jdr3UpdHOKMGBsSRzgNlWpcKqWPlNn5HJrU=;
+ b=TdWKSlAXxGd/Kd4y9yD9pMiFKPEPLX5D8f+ButwMHImiaPJQKKb1uDEY
+ 1+qgGBbhKqVhz920e0hFXLFAbqu4C9uTVilri+ZhwbskZv+IHa+gVk4UG
+ pHIFA7zsFIPt7qHC/GPgz6YR7pxuWVS0pJz4rjVeMXC3Ga+igCQl7hmwW
+ ruTnY2e0PdlUFrmufGToZO3RFqzfAtmNoGjihyYXvMKW8E7AyUWCVGF1s
+ K6rV/glC9Nc92u8pUCcy9IDThEHPg4t+Pzm8CsMFhF/48bBL/C2y5hGL6
+ bJKaKguDuIUPkziXTs4pWxCzozKCksOVzqt2DWLUxKIQxUxROSa7/9lh6 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10950"; a="17535203"
+X-IronPort-AV: E=Sophos;i="6.04,186,1695711600"; d="scan'208";a="17535203"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2024 09:31:56 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10950"; a="775695789"
-X-IronPort-AV: E=Sophos;i="6.04,186,1695711600"; d="scan'208";a="775695789"
+X-IronPort-AV: E=McAfee;i="6600,9927,10950"; a="758844610"
+X-IronPort-AV: E=Sophos;i="6.04,186,1695711600"; d="scan'208";a="758844610"
 Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orsmga007.jf.intel.com with ESMTP; 11 Jan 2024 09:07:14 -0800
+ by orsmga006.jf.intel.com with ESMTP; 11 Jan 2024 09:31:54 -0800
 Received: from [10.249.150.229] (mwajdecz-MOBL.ger.corp.intel.com
  [10.249.150.229])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 91E4240DFE;
- Thu, 11 Jan 2024 17:07:13 +0000 (GMT)
-Message-ID: <cd126beb-db4e-4995-8518-f04658fd6820@intel.com>
-Date: Thu, 11 Jan 2024 18:07:12 +0100
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 6654C40E19
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jan 2024 17:31:52 +0000 (GMT)
+Message-ID: <d8663aac-8071-424b-afc8-88efd23a90a6@intel.com>
+Date: Thu, 11 Jan 2024 18:31:51 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/guc: Return CTB response length
+Subject: =?UTF-8?Q?Re=3A_=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe/guc=3A_Ret?=
+ =?UTF-8?Q?urn_CTB_response_length?=
 Content-Language: en-US
-To: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org
 References: <20240111152724.497-1-michal.wajdeczko@intel.com>
- <ZaAaDeAOPqbS7Tg6@DUT025-TGLU.fm.intel.com>
+ <170498982314.290001.7423231611964465904@5338d5abeb45>
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <ZaAaDeAOPqbS7Tg6@DUT025-TGLU.fm.intel.com>
+In-Reply-To: <170498982314.290001.7423231611964465904@5338d5abeb45>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -62,58 +63,116 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-On 11.01.2024 17:40, Matthew Brost wrote:
-> On Thu, Jan 11, 2024 at 04:27:24PM +0100, Michal Wajdeczko wrote:
->> Not all CTB responses from the GuC are fixed size and we need to
->> pass response length to the caller, if there was a response_buffer.
->> Easiest solution is to return it as positive value from all
->> xe_guc_ct_send_recv() functions.  The CTB response length is always
->> between 1 and 254 (ie. GUC_HXG_MSG_MIN_LEN and GUC_CTB_MAX_DWORDS
->> - GUC_HXG_MSG_MIN_LEN).
->>
->> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> Cc: Matthew Brost <matthew.brost@intel.com>
+On 11.01.2024 17:17, Patchwork wrote:
+> == Series Details ==
 > 
-> I has purposed a different usage of the return value [1].
+> Series: drm/xe/guc: Return CTB response length
+> URL   : https://patchwork.freedesktop.org/series/128675/
+> State : failure
 > 
-> Perhaps we just have response len as a pass by ref argument?
+> == Summary ==
+> 
+> CI Bug Log - changes from xe-618-79184e72263e91528195db01783148435c7e4fad_BAT -> xe-pw-128675v1_BAT
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **FAILURE**
+> 
+>   Serious unknown changes coming with xe-pw-128675v1_BAT absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in xe-pw-128675v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+> 
+>   
+> 
+> Participating hosts (4 -> 4)
+> ------------------------------
+> 
+>   No changes in participating hosts
+> 
+> Possible new issues
+> -------------------
+> 
+>   Here are the unknown changes that may have been introduced in xe-pw-128675v1_BAT:
+> 
+> ### IGT changes ###
+> 
+> #### Possible regressions ####
+> 
+>   * igt@xe_exec_fault_mode@twice-basic-prefetch:
+>     - bat-pvc-2:          NOTRUN -> [INCOMPLETE][1]
+>    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128675v1/bat-pvc-2/igt@xe_exec_fault_mode@twice-basic-prefetch.html
 
-no need for additional argument, we can still return data0 if there was
-no response_buffer provided, and I also have patch for this, but didn't
-send right now as it conflicts with our already in-flight HXG changes.
+"This test didn't produce any output. The machine probably rebooted
+ungracefully."
 
-Michal
+and it's not that uncommon
+anyway, it seems unrelated
 
 > 
-> Matt
+>   
+> Known issues
+> ------------
 > 
-> [1] https://patchwork.freedesktop.org/patch/541762/?series=119096&rev=1
+>   Here are the changes found in xe-pw-128675v1_BAT that come from known issues:
 > 
->> ---
->>  drivers/gpu/drm/xe/xe_guc_ct.c | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
->> index c29f095aa1b9..d490a4d42c01 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
->> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
->> @@ -780,7 +780,7 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
->>  		ret = -EIO;
->>  	}
->>  
->> -	return ret > 0 ? 0 : ret;
->> +	return ret > 0 ? response_buffer ? g2h_fence.response_len : 0 : ret;
->>  }
->>  
->>  int xe_guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
->>
->> base-commit: 79184e72263e91528195db01783148435c7e4fad
->> -- 
->> 2.25.1
->>
+> ### IGT changes ###
+> 
+> #### Issues hit ####
+> 
+>   * igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-prefetch:
+>     - bat-atsm-2:         NOTRUN -> [SKIP][2] ([Intel XE#288]) +6 other tests skip
+>    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128675v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-prefetch.html
+> 
+>   
+> #### Possible fixes ####
+> 
+>   * igt@kms_frontbuffer_tracking@basic:
+>     - bat-adlp-7:         [DMESG-FAIL][3] ([Intel XE#1033]) -> [PASS][4]
+>    [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-618-79184e72263e91528195db01783148435c7e4fad/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+>    [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128675v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+> 
+>   * igt@xe_create@create-execqueues-noleak:
+>     - bat-atsm-2:         [FAIL][5] ([Intel XE#1099]) -> [PASS][6]
+>    [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-618-79184e72263e91528195db01783148435c7e4fad/bat-atsm-2/igt@xe_create@create-execqueues-noleak.html
+>    [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128675v1/bat-atsm-2/igt@xe_create@create-execqueues-noleak.html
+> 
+>   
+> #### Warnings ####
+> 
+>   * igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:
+>     - bat-atsm-2:         [INCOMPLETE][7] ([Intel XE#506]) -> [SKIP][8] ([Intel XE#288])
+>    [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-618-79184e72263e91528195db01783148435c7e4fad/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
+>    [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128675v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
+> 
+>   
+>   [Intel XE#1033]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033
+>   [Intel XE#1099]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1099
+>   [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+>   [Intel XE#506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/506
+> 
+> 
+> Build changes
+> -------------
+> 
+>   * IGT: IGT_7669 -> IGT_7670
+>   * Linux: xe-618-79184e72263e91528195db01783148435c7e4fad -> xe-pw-128675v1
+> 
+>   IGT_7669: 418064e40ca6399700b0548983fdb679be4d855b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+>   IGT_7670: 1b32bcdb2d9965090234739aba891a90743e01c4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+>   xe-618-79184e72263e91528195db01783148435c7e4fad: 79184e72263e91528195db01783148435c7e4fad
+>   xe-pw-128675v1: 128675v1
+> 
+> == Logs ==
+> 
+> For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128675v1/index.html
+> 
