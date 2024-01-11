@@ -4,54 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97508C47077
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jan 2024 11:02:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7530C47077
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jan 2024 11:21:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52D4F10E8E0;
-	Thu, 11 Jan 2024 11:02:02 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B809410E8E0
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jan 2024 11:02:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704970920; x=1736506920;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=0A4M68WkRZToxLYJ/HYrna4/OzsW/UUCgUBxSKkly5U=;
- b=Usezu0Xy4JkqFq9Ez0+jp71YixnQ/4nuis2mwcqiWAh6IVJ9mq/HCdrc
- 0aHJ25ioqaY5TMv1eXOY2ZJKOZ7gt7LT7tObWvdjaIJQ+SbcJ3EvPs9SL
- oz6RE+gkbvvPUpWa2HQKxhdvrXWhW9eKYkhSH30jMEUc7h8jkuVXDtTdI
- cHVD/2mlcruZ2xfaL7BxoRb8iBVoFAkCqMvc7mBnIHHKT8UcfSQluB5DG
- oh7VsU08NjMllN6bZSnXjzoQOhaC4qo0j6bLQ7kNV/+4ite/LkPfq2dWR
- nJ2CgdrtImoYON5PsppcI500vHSp2NDTj4fQWOEytgn1oosK7U/h5uUha A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10949"; a="484985208"
-X-IronPort-AV: E=Sophos;i="6.04,186,1695711600"; d="scan'208";a="484985208"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2024 03:02:00 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10949"; a="732184150"
-X-IronPort-AV: E=Sophos;i="6.04,186,1695711600"; d="scan'208";a="732184150"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orsmga003.jf.intel.com with ESMTP; 11 Jan 2024 03:01:58 -0800
-Received: from [10.249.150.229] (mwajdecz-MOBL.ger.corp.intel.com
- [10.249.150.229])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 3221440E03;
- Thu, 11 Jan 2024 11:01:56 +0000 (GMT)
-Message-ID: <c779504a-d010-4c9d-9c95-fe17b8520c66@intel.com>
-Date: Thu, 11 Jan 2024 12:01:55 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74A5310E8D9;
+	Thu, 11 Jan 2024 11:21:58 +0000 (UTC)
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 090A910E8D8;
+ Thu, 11 Jan 2024 11:21:58 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] drm/xe/guc: Add more GuC CT states
-Content-Language: en-US
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20240109230149.1399302-1-matthew.brost@intel.com>
- <20240109230149.1399302-2-matthew.brost@intel.com>
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20240109230149.1399302-2-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_display_su?=
+ =?utf-8?q?pport_should_not_depend_on_EXPERT?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Thu, 11 Jan 2024 11:21:58 -0000
+Message-ID: <170497211803.271298.1242601990580368012@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240111104716.3548744-1-jani.nikula@intel.com>
+In-Reply-To: <20240111104716.3548744-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,306 +35,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+== Series Details ==
+
+Series: drm/xe: display support should not depend on EXPERT
+URL   : https://patchwork.freedesktop.org/series/128648/
+State : success
+
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 79184e722 drm/xe/migrate: Fix CCS copy for small VRAM copy chunks
+=== git am output follows ===
+Applying: drm/xe: display support should not depend on EXPERT
 
 
-On 10.01.2024 00:01, Matthew Brost wrote:
-> The Guc CT has more than enabled / disables states rather it has 4. The
-> 4 states are not initialized, disabled, stopped, and enabled. Change the
-> code to reflect this. These states will enable proper return codes from
-> functions and therefore enable proper error messages.
-> 
-> v2:
-> - s/XE_GUC_CT_STATE_DROP_MESSAGES/XE_GUC_CT_STATE_STOPPED (Michal)
-> - Add assert for CT being initialized (Michal)
-> - Fix kernel for CT state enum (Michal)
-> 
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_guc.c          |  4 +-
->  drivers/gpu/drm/xe/xe_guc_ct.c       | 56 ++++++++++++++++++++--------
->  drivers/gpu/drm/xe/xe_guc_ct.h       |  8 +++-
->  drivers/gpu/drm/xe/xe_guc_ct_types.h | 18 ++++++++-
->  4 files changed, 65 insertions(+), 21 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-> index 311a0364bff1..c28410958990 100644
-> --- a/drivers/gpu/drm/xe/xe_guc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc.c
-> @@ -656,7 +656,7 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
->  
->  	BUILD_BUG_ON(VF_SW_FLAG_COUNT != MED_VF_SW_FLAG_COUNT);
->  
-> -	xe_assert(xe, !guc->ct.enabled);
-> +	xe_assert(xe, !xe_guc_ct_enabled(&guc->ct));
-
-btw, what was the rationale to not allow MMIO communication together
-with communication over CTB ? note that GuC still monitors MMIO for new
-messages after each H2G IRQ and in upcoming VF specific scenarios we
-will have to send some acks over the MMIO, even after CTB was enabled
-
->  	xe_assert(xe, len);
->  	xe_assert(xe, len <= VF_SW_FLAG_COUNT);
->  	xe_assert(xe, len <= MED_VF_SW_FLAG_COUNT);
-> @@ -838,7 +838,7 @@ int xe_guc_stop(struct xe_guc *guc)
->  {
->  	int ret;
->  
-> -	xe_guc_ct_disable(&guc->ct);
-> +	xe_guc_ct_stop(&guc->ct);
->  
->  	ret = xe_guc_submit_stop(guc);
->  	if (ret)
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-> index c29f095aa1b9..5b122a926ccf 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-> @@ -164,6 +164,7 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
->  	if (err)
->  		return err;
->  
-> +	ct->state = XE_GUC_CT_STATE_DISABLED;
-
-maybe it's worth to assert that ct->state was UNINITIALIZED (unset)
-prior to this initialization ?
-
->  	return 0;
->  }
->  
-> @@ -283,12 +284,25 @@ static int guc_ct_control_toggle(struct xe_guc_ct *ct, bool enable)
->  	return ret > 0 ? -EPROTO : ret;
->  }
->  
-> +static void xe_guc_ct_set_state(struct xe_guc_ct *ct,
-> +				enum xe_guc_ct_state state)
-> +{
-> +	mutex_lock(&ct->lock);		/* Serialise dequeue_one_g2h() */
-> +	spin_lock_irq(&ct->fast_lock);	/* Serialise CT fast-path */
-> +
-> +	ct->g2h_outstanding = 0;
-
-we used to clear g2h_outstanding only while enabling CT, now this is
-done on every state transition - it's not what the function name says
-
-> +	ct->state = state;
-> +
-> +	spin_unlock_irq(&ct->fast_lock);
-> +	mutex_unlock(&ct->lock);
-> +}
-> +
->  int xe_guc_ct_enable(struct xe_guc_ct *ct)
->  {
->  	struct xe_device *xe = ct_to_xe(ct);
->  	int err;
->  
-> -	xe_assert(xe, !ct->enabled);
-> +	xe_assert(xe, !xe_guc_ct_enabled(ct));
->  
->  	guc_ct_ctb_h2g_init(xe, &ct->ctbs.h2g, &ct->bo->vmap);
->  	guc_ct_ctb_g2h_init(xe, &ct->ctbs.g2h, &ct->bo->vmap);
-> @@ -305,12 +319,7 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
->  	if (err)
->  		goto err_out;
->  
-> -	mutex_lock(&ct->lock);
-> -	spin_lock_irq(&ct->fast_lock);
-> -	ct->g2h_outstanding = 0;
-> -	ct->enabled = true;
-> -	spin_unlock_irq(&ct->fast_lock);
-> -	mutex_unlock(&ct->lock);
-> +	xe_guc_ct_set_state(ct, XE_GUC_CT_STATE_ENABLED);
->  
->  	smp_mb();
->  	wake_up_all(&ct->wq);
-> @@ -326,12 +335,12 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
->  
->  void xe_guc_ct_disable(struct xe_guc_ct *ct)
->  {
-> -	mutex_lock(&ct->lock); /* Serialise dequeue_one_g2h() */
-> -	spin_lock_irq(&ct->fast_lock); /* Serialise CT fast-path */
-> -	ct->enabled = false; /* Finally disable CT communication */
-> -	spin_unlock_irq(&ct->fast_lock);
-> -	mutex_unlock(&ct->lock);
-> +	xe_guc_ct_set_state(ct, XE_GUC_CT_STATE_DISABLED);
-> +}
->  
-
-shouldn't we provide kernel-doc for all public functions ?
-
-while there is no documentation for old functions, this xe_guc_ct_stop()
-is the new one so shouldn't benefit from relaxed _initial_drop_ rules.
-
-> +void xe_guc_ct_stop(struct xe_guc_ct *ct)
-> +{
-> +	xe_guc_ct_set_state(ct, XE_GUC_CT_STATE_STOPPED);
->  	xa_destroy(&ct->fence_lookup);
-
-maybe it's worth to destroy xa under the lock in xe_guc_ct_set_state()
-to protect against another ct_enable() followed by ct_send() ?
-
->  }
->  
-> @@ -507,6 +516,7 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
->  	u16 seqno;
->  	int ret;
->  
-> +	xe_assert(xe, ct->state != XE_GUC_CT_STATE_NOT_INITIALIZED);
->  	xe_assert(xe, !g2h_len || !g2h_fence);
->  	xe_assert(xe, !num_g2h || !g2h_fence);
->  	xe_assert(xe, !g2h_len || num_g2h);
-> @@ -518,11 +528,18 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
->  		goto out;
->  	}
->  
-> -	if (unlikely(!ct->enabled)) {
-> +	if (ct->state == XE_GUC_CT_STATE_DISABLED) {
->  		ret = -ENODEV;
->  		goto out;
->  	}
->  
-> +	if (ct->state == XE_GUC_CT_STATE_STOPPED) {
-> +		ret = -ECANCELED;
-> +		goto out;
-> +	}
-> +
-> +	xe_assert(xe, xe_guc_ct_enabled(ct));
-> +
->  	if (g2h_fence) {
->  		g2h_len = GUC_CTB_HXG_MSG_MAX_LEN;
->  		num_g2h = 1;
-> @@ -710,7 +727,8 @@ static bool retry_failure(struct xe_guc_ct *ct, int ret)
->  		return false;
->  
->  #define ct_alive(ct)	\
-> -	(ct->enabled && !ct->ctbs.h2g.info.broken && !ct->ctbs.g2h.info.broken)
-> +	(xe_guc_ct_enabled(ct) && !ct->ctbs.h2g.info.broken && \
-> +	 !ct->ctbs.g2h.info.broken)
-
-maybe instead of having two extra 'broken' flags better option would be
-to also add XE_GUC_CT_STATE_BROKEN as new state ?
-
->  	if (!wait_event_interruptible_timeout(ct->wq, ct_alive(ct),  HZ * 5))
->  		return false;
->  #undef ct_alive
-> @@ -996,14 +1014,20 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
->  	s32 avail;
->  	u32 action;
->  
-> +	xe_assert(xe, ct->state != XE_GUC_CT_STATE_NOT_INITIALIZED);
-
-this seems redundant as you've also added assert(enable) below
-
->  	lockdep_assert_held(&ct->fast_lock);
->  
-> -	if (!ct->enabled)
-> +	if (ct->state == XE_GUC_CT_STATE_DISABLED)
->  		return -ENODEV;
->  
-> +	if (ct->state == XE_GUC_CT_STATE_STOPPED)
-> +		return -ECANCELED;
-> +
->  	if (g2h->info.broken)
->  		return -EPIPE;
->  
-> +	xe_assert(xe, xe_guc_ct_enabled(ct));
-> +
->  	/* Calculate DW available to read */
->  	tail = desc_read(xe, g2h, tail);
->  	avail = tail - g2h->info.head;
-> @@ -1302,7 +1326,7 @@ struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct,
->  		return NULL;
->  	}
->  
-> -	if (ct->enabled) {
-> +	if (xe_guc_ct_enabled(ct)) {
->  		snapshot->ct_enabled = true;
->  		snapshot->g2h_outstanding = READ_ONCE(ct->g2h_outstanding);
->  		guc_ctb_snapshot_capture(xe, &ct->ctbs.h2g,
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-> index 9ecb67db8ec4..5083e099064f 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-> @@ -13,6 +13,7 @@ struct drm_printer;
->  int xe_guc_ct_init(struct xe_guc_ct *ct);
->  int xe_guc_ct_enable(struct xe_guc_ct *ct);
->  void xe_guc_ct_disable(struct xe_guc_ct *ct);
-> +void xe_guc_ct_stop(struct xe_guc_ct *ct);
->  void xe_guc_ct_fast_path(struct xe_guc_ct *ct);
->  
->  struct xe_guc_ct_snapshot *
-> @@ -22,9 +23,14 @@ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
->  void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot);
->  void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool atomic);
->  
-
-not sure about rules for kernel-doc for public inlines
-
-@Rodrigo ?
-
-> +static inline bool xe_guc_ct_enabled(struct xe_guc_ct *ct)
-> +{
-> +	return ct->state == XE_GUC_CT_STATE_ENABLED;
-> +}
-> +
->  static inline void xe_guc_ct_irq_handler(struct xe_guc_ct *ct)
->  {
-> -	if (!ct->enabled)
-> +	if (!xe_guc_ct_enabled(ct))
->  		return;
->  
->  	wake_up_all(&ct->wq);
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct_types.h b/drivers/gpu/drm/xe/xe_guc_ct_types.h
-> index d814d4ee3fc6..e146dbeddedb 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct_types.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct_types.h
-> @@ -72,6 +72,20 @@ struct xe_guc_ct_snapshot {
->  	struct guc_ctb_snapshot h2g;
->  };
->  
-> +/**
-> + * enum xe_guc_ct_state - CT state
-> + * @XE_GUC_CT_STATE_NOT_INITIALIZED: CT not initialized, messages not expected in this state
-
-with little effort we can drop this enum and just assert that state
-shall be non-zero, note that we never explicitly set this state, so we
-can just rely on compiler that already zeroed this field
-
-> + * @XE_GUC_CT_STATE_DISABLED: CT disabled, messages not expected in this state
-> + * @XE_GUC_CT_STATE_STOPPED: CT stopped, drop messages without errors
-> + * @XE_GUC_CT_STATE_ENABLED: CT enabled, messages sent / recieved in this state
-
-still a typo
-
--:223: WARNING:TYPO_SPELLING: 'recieved' may be misspelled - perhaps
-'received'?
-#223: FILE: drivers/gpu/drm/xe/xe_guc_ct_types.h:80:
-+ * @XE_GUC_CT_STATE_ENABLED: CT enabled, messages sent / recieved in
-this state
-                                                          ^^^^^^^^
-
-> + */
-> +enum xe_guc_ct_state {
-> +	XE_GUC_CT_STATE_NOT_INITIALIZED = 0,
-> +	XE_GUC_CT_STATE_DISABLED,
-> +	XE_GUC_CT_STATE_STOPPED,
-> +	XE_GUC_CT_STATE_ENABLED,
-> +};
-> +
->  /**
->   * struct xe_guc_ct - GuC command transport (CT) layer
->   *
-> @@ -96,8 +110,8 @@ struct xe_guc_ct {
->  	u32 g2h_outstanding;
->  	/** @g2h_worker: worker to process G2H messages */
->  	struct work_struct g2h_worker;
-> -	/** @enabled: CT enabled */
-> -	bool enabled;
-> +	/** @state: CT state */
-> +	enum xe_guc_ct_state state;
->  	/** @fence_seqno: G2H fence seqno - 16 bits used by CT */
->  	u32 fence_seqno;
->  	/** @fence_lookup: G2H fence lookup */
