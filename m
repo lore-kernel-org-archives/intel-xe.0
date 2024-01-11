@@ -4,53 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7DA9C47077
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jan 2024 11:24:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6754C47077
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jan 2024 11:29:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 667A410E8E4;
-	Thu, 11 Jan 2024 11:24:59 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8D7F10E8E1
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jan 2024 11:24:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B68F10E05B;
+	Thu, 11 Jan 2024 11:29:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A3D610E890
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jan 2024 11:29:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704972298; x=1736508298;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=yES2sNAfKND6DZevBe25v2MtBK2Ag39I2PitibsbzVk=;
- b=Gr4CB04C47gbcDF7eJvkmuiUs2Rc7fRIDemmjTjiyLfIU1bh136AakrG
- g0UfJUkCODh7l4i5f7R3t04Lxj91Ypqyf44vbLTx0BX7h161yZGGonpR7
- 2PzZ8E3ni79TIvv1P0SNDEp9Y0QEkBhp3S4xrpUdqQ0gI7No5zOdhl5A2
- VwAdtLvJzC9S2DpVvzuksmrJQU8Jp4O2N4IO5NYj1gs02hB9JCqHhmjno
- Cq91eDcIcUiirkCYIcSvT27pMeFp2zXaI/c1DNzoa+u5NsGsvf/eQv5sl
- AKbf1XBUCtNT3I+0e6blV9U2k+ajijnOlBaBpkVrW2IUarYX2MnJf4RVO g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10949"; a="5547143"
-X-IronPort-AV: E=Sophos;i="6.04,186,1695711600"; 
-   d="scan'208";a="5547143"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2024 03:24:57 -0800
+ t=1704972562; x=1736508562;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=fmVbUhKepJVRVqBmDt0KXRPn60CeT7AB2N3gOVz/dLI=;
+ b=d+Qlnras1zuJ8A7swx7tP1A7jhMw2gSJiSqmYoGKp4rI0ti55/Jy1rU+
+ xbmEzISeDNzmZ9nlxY7OMM5AeddsjCSA2lOdmp3EtHfdGQJMjh2JgK0Cu
+ MvfxC7shPE0XCMCsnOIn+O0wLkt3eqPDimVeuDitMGTr6b5V6ra+gnaU7
+ BtOR40YRUjwJV18cxXlg1l7quDKg8hG8h9j+vhY5gcIbgzIV49bqgKKW2
+ a8WBej/+ZZK0ZBtOPMB8tAIonPtzdwTPUDB+HjjXnruZQpsKpKvwz9+V0
+ 1kKIc814YGop3UxnXZx9fjQE2AAm1K+SJtQlXOL5vKuf/Ja7WxHwG/VeD g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10949"; a="484990984"
+X-IronPort-AV: E=Sophos;i="6.04,186,1695711600"; d="scan'208";a="484990984"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2024 03:29:22 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,186,1695711600"; d="scan'208";a="24297335"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa002.jf.intel.com with ESMTP; 11 Jan 2024 03:24:56 -0800
-Received: from [10.249.150.229] (mwajdecz-MOBL.ger.corp.intel.com
- [10.249.150.229])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 96D6C40E01;
- Thu, 11 Jan 2024 11:24:54 +0000 (GMT)
-Message-ID: <c357339d-e62f-425d-b70e-73b7bc828d0e@intel.com>
-Date: Thu, 11 Jan 2024 12:24:53 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10949"; a="872992991"
+X-IronPort-AV: E=Sophos;i="6.04,186,1695711600"; d="scan'208";a="872992991"
+Received: from gaertgee-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.54.206])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2024 03:29:20 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Patchwork <patchwork@emeril.freedesktop.org>
+Subject: Re: =?utf-8?Q?=E2=9C=97?= CI.checkpatch: warning for drm/xe:
+ display support should not depend on EXPERT
+In-Reply-To: <170497212931.271298.16781504254126615026@5338d5abeb45>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240111104716.3548744-1-jani.nikula@intel.com>
+ <170497212931.271298.16781504254126615026@5338d5abeb45>
+Date: Thu, 11 Jan 2024 13:29:18 +0200
+Message-ID: <87ttnkt8fl.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] drm/xe: Move TLB invalidation reset before HW reset
-Content-Language: en-US
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-References: <20240109230149.1399302-1-matthew.brost@intel.com>
- <20240109230149.1399302-3-matthew.brost@intel.com>
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20240109230149.1399302-3-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,42 +59,58 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Thu, 11 Jan 2024, Patchwork <patchwork@emeril.freedesktop.org> wrote:
+> == Series Details ==
+>
+> Series: drm/xe: display support should not depend on EXPERT
+> URL   : https://patchwork.freedesktop.org/series/128648/
+> State : warning
+>
+> == Summary ==
+>
+> + KERNEL=/kernel
+> + git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+> Cloning into 'mt'...
+> warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
+> + git -C mt rev-list -n1 origin/master
+> faa12d3432d7ef7793d934cd9338c555e95a5aad
+> + cd /kernel
+> + git config --global --add safe.directory /kernel
+> + git log -n1
+> commit 9b662af5259f4ddaac4101a7ce4ecdfe606f08b7
+> Author: Jani Nikula <jani.nikula@intel.com>
+> Date:   Thu Jan 11 12:47:16 2024 +0200
+>
+>     drm/xe: display support should not depend on EXPERT
+>     
+>     Remove the DRM_XE_DISPLAY config dependency on EXPERT. I can only
+>     presume the idea was only experts should be able to disable it, but the
+>     effect is the opposite.
+>     
+>     Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>     Reported-by: Eero Tamminen <eero.t.tamminen@intel.com>
+>     Reviewed-by: Francois Dugast <francois.dugast@intel.com>
+> + /mt/dim checkpatch 79184e72263e91528195db01783148435c7e4fad drm-intel
+> 9b662af52 drm/xe: display support should not depend on EXPERT
+> -:11: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+
+Kind of hard when it was in private. :p
+
+BR,
+Jani.
 
 
-On 10.01.2024 00:01, Matthew Brost wrote:
-> This is a software reset which can be done immediately after stopping
-> the UC.
+> #11: 
+> Reported-by: Eero Tamminen <eero.t.tamminen@intel.com>
+> Reviewed-by: Francois Dugast <francois.dugast@intel.com>
+>
+> total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+>
+>
 
-IMO there is too tight relation between TLB invalidation code and CT
-internals (TLB code uses internal CT locks) but since this is not new:
-
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-
-> 
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_gt.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index 3af2adec1295..c647f41b2751 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -619,12 +619,12 @@ static int gt_reset(struct xe_gt *gt)
->  	if (err)
->  		goto err_out;
->  
-> +	xe_gt_tlb_invalidation_reset(gt);
-> +
->  	err = do_gt_reset(gt);
->  	if (err)
->  		goto err_out;
->  
-> -	xe_gt_tlb_invalidation_reset(gt);
-> -
->  	err = do_gt_restart(gt);
->  	if (err)
->  		goto err_out;
+-- 
+Jani Nikula, Intel
