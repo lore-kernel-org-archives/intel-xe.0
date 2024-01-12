@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD500C4707C
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Jan 2024 18:55:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D107C4707C
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Jan 2024 18:55:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1FDE10EB7D;
-	Fri, 12 Jan 2024 18:55:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 582CE10EB84;
+	Fri, 12 Jan 2024 18:55:54 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14EF810EB7D;
- Fri, 12 Jan 2024 18:55:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2272610EB84;
+ Fri, 12 Jan 2024 18:55:53 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Initialize?=
- =?utf-8?q?_freq=5Flock_even_with_skip=5Fguc=5Fpc?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Initialize_freq?=
+ =?utf-8?q?=5Flock_even_with_skip=5Fguc=5Fpc?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Fri, 12 Jan 2024 18:55:37 -0000
-Message-ID: <170508573708.338258.6272065155827163157@5338d5abeb45>
+Date: Fri, 12 Jan 2024 18:55:53 -0000
+Message-ID: <170508575313.332901.6288036093874130469@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240112182949.181403-2-matthew.d.roper@intel.com>
 In-Reply-To: <20240112182949.181403-2-matthew.d.roper@intel.com>
@@ -44,13 +44,40 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Initialize freq_lock even with skip_guc_pc
 URL   : https://patchwork.freedesktop.org/series/128739/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: d1296191b drm/xe: display support should not depend on EXPERT
-=== git am output follows ===
-Applying: drm/xe: Initialize freq_lock even with skip_guc_pc
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+faa12d3432d7ef7793d934cd9338c555e95a5aad
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 709e2c1dca3879c280439cb488d3f15c7cae7535
+Author: Matt Roper <matthew.d.roper@intel.com>
+Date:   Fri Jan 12 10:29:50 2024 -0800
+
+    drm/xe: Initialize freq_lock even with skip_guc_pc
+    
+    gucpc isn't initialized when skip_guc_pc is used, but some of the sysfs
+    frequency entries still try to grab the uninitialized frequency mutex
+    before realizing that they need to bail out.  Tweak the init/fini code
+    flows so that the mutex is always initialized properly.
+    
+    Fixes: 975e4a3795d4 ("drm/xe: Manually setup C6 when skip_guc_pc is set")
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
++ /mt/dim checkpatch d1296191ba3a2fb8300d9887bd56b8613c1bc18d drm-intel
+709e2c1dc drm/xe: Initialize freq_lock even with skip_guc_pc
+-:11: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '975e4a3795d4', maybe rebased or not pulled?
+#11: 
+Fixes: 975e4a3795d4 ("drm/xe: Manually setup C6 when skip_guc_pc is set")
+
+total: 0 errors, 1 warnings, 0 checks, 26 lines checked
 
 
