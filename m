@@ -4,21 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E163C47422
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Jan 2024 12:41:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B22E5C47DA2
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Jan 2024 12:41:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FAF110EAD9;
-	Fri, 12 Jan 2024 12:41:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EFB710EAF8;
+	Fri, 12 Jan 2024 12:41:57 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se
  [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4310210EAF8
- for <intel-xe@lists.freedesktop.org>; Fri, 12 Jan 2024 12:41:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63EDD10EAF8
+ for <intel-xe@lists.freedesktop.org>; Fri, 12 Jan 2024 12:41:56 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 1/4] drm/xe: Add uapi for dumpable bos
-Date: Fri, 12 Jan 2024 13:41:45 +0100
-Message-Id: <20240112124148.166954-1-maarten.lankhorst@linux.intel.com>
+Subject: [PATCH 3/4] drm/xe: Add vm snapshot mutex for easily taking a vm
+ snapshot during devcoredump
+Date: Fri, 12 Jan 2024 13:41:47 +0100
+Message-Id: <20240112124148.166954-3-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20240112124148.166954-1-maarten.lankhorst@linux.intel.com>
+References: <20240112124148.166954-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -35,63 +38,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add the flag XE_VM_BIND_FLAG_DUMPABLE to notify devcoredump that this
-mapping should be dumped.
+The devcoredump is done in fence signaling context. Because of this, we
+cannot take any of the normal mutexes or we would invert.
 
-This is not hooked up, but the uapi should be ready before merging.
+Normal: Take vm->lock, dma_fence_wait()
+Devcoredump: from dma_fence_wait() context, take vm->lock.
 
-It's likely easier to dump the contents of the bo's at devcoredump
-readout time, so it's better if the bos will stay unmodified after
-a hang. The NEEDS_CPU_MAPPING flag is removed as requirement.
+This doesn't work, and we only care about integrity, so take the locks
+around additions and removals of vma's.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 8 +++-----
- include/uapi/drm/xe_drm.h  | 1 +
- 2 files changed, 4 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c       | 8 ++++++++
+ drivers/gpu/drm/xe/xe_vm_types.h | 5 +++++
+ 2 files changed, 13 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index a7e7a0b24099..0a3b9c0ad772 100644
+index 374ff4c6a029..e1c07c6ecbaf 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2687,12 +2687,13 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
- #ifdef TEST_VM_ASYNC_OPS_ERROR
- #define SUPPORTED_FLAGS	\
- 	(FORCE_ASYNC_OP_ERROR | DRM_XE_VM_BIND_FLAG_READONLY | \
--	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | DRM_XE_VM_BIND_FLAG_NULL | 0xffff)
-+	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | DRM_XE_VM_BIND_FLAG_NULL | \
-+	 DRM_XE_VM_BIND_FLAG_DUMPABLE | 0xffff)
- #else
- #define SUPPORTED_FLAGS	\
- 	(DRM_XE_VM_BIND_FLAG_READONLY | \
- 	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | DRM_XE_VM_BIND_FLAG_NULL | \
--	 0xffff)
-+	 DRM_XE_VM_BIND_FLAG_DUMPABLE | 0xffff)
- #endif
- #define XE_64K_PAGE_MASK 0xffffull
- #define ALL_DRM_XE_SYNCS_FLAGS (DRM_XE_SYNCS_FLAG_WAIT_FOR_OP)
-@@ -2919,9 +2920,6 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		u16 pat_index = bind_ops[i].pat_index;
- 		u16 coh_mode;
+@@ -1028,7 +1028,9 @@ static int xe_vm_insert_vma(struct xe_vm *vm, struct xe_vma *vma)
+ 	xe_assert(vm->xe, xe_vma_vm(vma) == vm);
+ 	lockdep_assert_held(&vm->lock);
  
--		if (!obj)
--			continue;
--
- 		gem_obj = drm_gem_object_lookup(file, obj);
- 		if (XE_IOCTL_DBG(xe, !gem_obj)) {
- 			err = -ENOENT;
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 50bbea0992d9..0f975f57f3e5 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -930,6 +930,7 @@ struct drm_xe_vm_bind_op {
- #define DRM_XE_VM_BIND_FLAG_READONLY	(1 << 0)
- #define DRM_XE_VM_BIND_FLAG_IMMEDIATE	(1 << 1)
- #define DRM_XE_VM_BIND_FLAG_NULL	(1 << 2)
-+#define DRM_XE_VM_BIND_FLAG_DUMPABLE	(1 << 3)
- 	/** @flags: Bind flags */
- 	__u32 flags;
++	mutex_lock(&vm->snap_mutex);
+ 	err = drm_gpuva_insert(&vm->gpuvm, &vma->gpuva);
++	mutex_unlock(&vm->snap_mutex);
+ 	XE_WARN_ON(err);	/* Shouldn't be possible */
  
+ 	return err;
+@@ -1039,7 +1041,9 @@ static void xe_vm_remove_vma(struct xe_vm *vm, struct xe_vma *vma)
+ 	xe_assert(vm->xe, xe_vma_vm(vma) == vm);
+ 	lockdep_assert_held(&vm->lock);
+ 
++	mutex_lock(&vm->snap_mutex);
+ 	drm_gpuva_remove(&vma->gpuva);
++	mutex_unlock(&vm->snap_mutex);
+ 	if (vm->usm.last_fault_vma == vma)
+ 		vm->usm.last_fault_vma = NULL;
+ }
+@@ -1266,6 +1270,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 	vm->flags = flags;
+ 
+ 	init_rwsem(&vm->lock);
++	mutex_init(&vm->snap_mutex);
+ 
+ 	INIT_LIST_HEAD(&vm->rebind_list);
+ 
+@@ -1391,6 +1396,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 	return ERR_PTR(err);
+ 
+ err_no_resv:
++	mutex_destroy(&vm->snap_mutex);
+ 	for_each_tile(tile, xe, id)
+ 		xe_range_fence_tree_fini(&vm->rftree[id]);
+ 	kfree(vm);
+@@ -1490,6 +1496,8 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 
+ 	up_write(&vm->lock);
+ 
++	mutex_destroy(&vm->snap_mutex);
++
+ 	mutex_lock(&xe->usm.lock);
+ 	if (vm->flags & XE_VM_FLAG_FAULT_MODE)
+ 		xe->usm.num_vm_in_fault_mode--;
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 2877f44bef7d..eeb293c3a170 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -157,6 +157,11 @@ struct xe_vm {
+ 	 * VM
+ 	 */
+ 	struct rw_semaphore lock;
++	/**
++	 * @snap_mutex: Mutex used to guard insertions and removals from gpuva,
++	 * so we can take a snapshot safely from devcoredump.
++	 */
++	struct mutex snap_mutex;
+ 
+ 	/**
+ 	 * @rebind_list: list of VMAs that need rebinding. Protected by the
 -- 
 2.40.1
 
