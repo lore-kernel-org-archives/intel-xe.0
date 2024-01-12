@@ -4,58 +4,147 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35FFBC4706C
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Jan 2024 08:32:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EB15C4707C
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Jan 2024 09:16:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D303B10EA95;
-	Fri, 12 Jan 2024 08:32:57 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B382910EA95;
- Fri, 12 Jan 2024 08:32:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E99B310EAAD;
+	Fri, 12 Jan 2024 09:16:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D6A510E9D8
+ for <intel-xe@lists.freedesktop.org>; Fri, 12 Jan 2024 09:16:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705048376; x=1736584376;
- h=date:from:to:cc:subject:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=uIBaFbzQVo6cx0gyGA4AtUZrVfbvJ7l+SKvNJyVor44=;
- b=DtZ9SlhfPC+O/PHtuXTxihBQKUSDinh6kkjxq5mioOEBtmFuOOkkfD+j
- QXPpgLrqktNAJ0rDyL56jbRXg5EhPVIsQS3+HT99Ga334kAar0Lm/xlCA
- JKf0hM0N67qfYUVBEuQMQrxG/Yb8ez3Kaz5+C0y4Pr4zWBLRWiDbwbYVr
- g45ClAjmZWWQPV6BuQHCK1/UiwDt+3DBoELJvGcZMUoW1JjA/nKT1Zn8b
- Goj4qSwKDsmcEgyNwOabity7h0LDgBZDS3xkT+BabgGx0XbKUkbHs6UYy
- YsvON0h3OWnIgN5DBqAGYzID3Blp5uayp3r6EQSUjYGbsAkkOyzIUidFI g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10950"; a="463398493"
-X-IronPort-AV: E=Sophos;i="6.04,188,1695711600"; d="scan'208";a="463398493"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2024 00:32:55 -0800
+ t=1705051009; x=1736587009;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=NqKIpSwr7IuFlzZJahY/eWgQrsvEbjLxsG6tnmPMPow=;
+ b=A45ehnaXJM+SSbZJjF43/YjgRIz+IMc/MkgD1K2vhQpxr9slNs6DbdyX
+ Ba/m5PdJnKsRrpPm5pZ6dAfA7VTHD89jY9tBfKIUi80kr3JUfwu8IvPC1
+ igkyqPF4bUQjO0+TTXFVmza1FH93XxiEErPGlFH2+kZSh0yrPyL2BLlRd
+ rFpNDytaJn5vVAb8kFG2QTzEHUZxFix9XKkML+VqjMQ5vmxWEP2khFdAO
+ 2wn6Zj/yiBFasyr60HhjAMZQk3fDRB8E8b84MnRnaXXWXHA3a4uvaegFy
+ d4/18X36VaSqSG0Xr1+gxM0pAdhz2E8+VK2LFQCrwSpDW8sPK+BzR6vYP w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10950"; a="485300978"
+X-IronPort-AV: E=Sophos;i="6.04,189,1695711600"; d="scan'208";a="485300978"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2024 01:16:48 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10950"; a="956048220"
-X-IronPort-AV: E=Sophos;i="6.04,188,1695711600"; d="scan'208";a="956048220"
-Received: from linux.intel.com ([10.54.29.200])
- by orsmga005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2024 00:32:55 -0800
-Received: from maurocar-mobl2 (maurocar-mobl2.ger.corp.intel.com
- [10.246.53.55])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by linux.intel.com (Postfix) with ESMTPS id 7F8AA580BF0;
- Fri, 12 Jan 2024 00:32:54 -0800 (PST)
-Date: Fri, 12 Jan 2024 09:32:52 +0100
-From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: Re: [igt-dev] [PATCH i-g-t] xe_live_ktest: Use xe_live_test kernel
- module
-Message-ID: <20240112093252.0a4bf850@maurocar-mobl2>
-In-Reply-To: <dzacvbdditbneiu3e3fmstjmttcbne44yspumpkd6sjn56jqpk@vxu7sksbqrp6>
-References: <20231205224926.2188996-1-lucas.demarchi@intel.com>
- <20231207164152.57be3d07@maurocar-mobl2>
- <3kunqgqyf7tobiwhcpvjp7rcvidrgnz2jq3qqoxjbl7kaftdq7@7hdweo57htff>
- <njwvai6cu7jwmy7lmg3vkg4jd52uq2f6es4obvdplkz43i6hpe@jqrzk4bveqqc>
- <dzacvbdditbneiu3e3fmstjmttcbne44yspumpkd6sjn56jqpk@vxu7sksbqrp6>
+X-IronPort-AV: E=McAfee;i="6600,9927,10950"; a="901924029"
+X-IronPort-AV: E=Sophos;i="6.04,189,1695711600"; d="scan'208";a="901924029"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 12 Jan 2024 01:16:48 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 12 Jan 2024 01:16:48 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 12 Jan 2024 01:16:47 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Fri, 12 Jan 2024 01:16:47 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.40) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Fri, 12 Jan 2024 01:16:47 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=OuUSNFth3hK73d1Z04Sb3wUmxqjLiDtHmsa/ZQqrc2pWxSLkjWvcfwYwkTWudRwy8HycnbinVmLCiB5+jFbxl4+77C2tBMCuELDXUHoaZBxCxiCaf+BMdAFKmqVGHk4S65bPEKYBY/2nP2MGWN5zaUdXKttshkGoZ9+h61vpY7dtP7zhlo6h38vI3+inRyhL7G7xzChpPHNaKGrTpcBnZzLOr9XvA3jZX36sloUZ2whpxlSgF0NLp2QfRnfL2e57RvROvQbkGsoaazZz2Cl7QN7UdPxvTXQhCPrwt+v+HZV+sEFW3VyJkhvmesD4LHQPvaSPS5pQN/KcmBL+53MTbQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6G291TVblVONY3Pgk840QKEWoJ2zvCCPZoCJmVcCsTg=;
+ b=YtPf+VfcsXececAjOvPXacoIHOQVmnOWfKsHWuJQYFxGF6jtT0UMjncnPiMCnGuAV47y6soKmrprFCWTIPfX78nsSHeaL0isCKA86WYVPheK7rNgB9K4hPjBqj4wnJl+s1ApeEg8uU1lrpyOjl/VMrbhMJBniY0EEuigr9SarKWtoR0QubJsBri8nsZf8WQAdqy+5OlS33Pw+VVYC4sWmONx0lGxYUETGJb7DBb7V6rra+xGTtlRluzxMKG7wiCiDcy9PzQ3Rw79gRMVUMsMbzSZ52NVPZ14GoiCLAcpRhK/hBFHGs0DQ/rQE6hJvsbC7J3wtRVAuYO7xMZ1i24pgw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
+ by MW3PR11MB4732.namprd11.prod.outlook.com (2603:10b6:303:2c::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.18; Fri, 12 Jan
+ 2024 09:16:45 +0000
+Received: from MN0PR11MB6135.namprd11.prod.outlook.com
+ ([fe80::b30b:545e:3b7f:9626]) by MN0PR11MB6135.namprd11.prod.outlook.com
+ ([fe80::b30b:545e:3b7f:9626%2]) with mapi id 15.20.7159.020; Fri, 12 Jan 2024
+ 09:16:45 +0000
+Date: Fri, 12 Jan 2024 10:16:43 +0100
+From: Piotr =?utf-8?Q?Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: Re: [PATCH] drm/xe: Fix potential deadlock in __fini_dbm
+Message-ID: <20240112091643.zl4dohob6npa4lhs@intel.com>
+References: <20240111185603.673-1-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240111185603.673-1-michal.wajdeczko@intel.com>
+X-ClientProxiedBy: DBBPR09CA0002.eurprd09.prod.outlook.com
+ (2603:10a6:10:c0::14) To MN0PR11MB6135.namprd11.prod.outlook.com
+ (2603:10b6:208:3c9::9)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|MW3PR11MB4732:EE_
+X-MS-Office365-Filtering-Correlation-Id: c6b6f353-6624-4f15-ce39-08dc134f3294
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: twWIYuP4RpTIQChofX3BG2U2HRxu4TSHVTMsTKuKz57qns27S04GV/equsrDvG0kaSq/xy/4FOJDFMb+xN2/8tPAnjAZlEuUW40whyNShik6QY6m2r9eOEsV2PLdjZhCe7WdQ/Ntkk54KTl0qgfY13+cGFl9YptOi3uZBZBvpECo+uv2350Cqdy9ZFr0H/9+t1oSk4iugiI38etUAzuGaP1knVVQv0kr8ipR5nNaA/vwzgLFDpA1JGPbg6WPLIsuC9n3pQt754vg6hRWtMUUrNeXtCSrxjHDWLur6kiDbdMAqpwfWbbaK/r1MCFtcxCTz/Je1os50yUl2Ug3ULYybyKEo6SnAmodYT5nGWimeImy1L3D0Wdhu/19OOc0LI/aGlSBxN+DkEsdgg96VgiJZzoFSCXvU3Zn2rEclOvOMTwcKSugKYED/99d/Wu98hFnJf615WjIKx3P6nFa/upd7xWUzoSVEkHetMkQKziNd+NP/uG2EfT5Q6G7TxX+pxw6Pev5nCr/QiQkfKw69m5TeQoByXdXBqi6zIma8ZQtXVPFIBl9zvEvbQcV5R+oSt3w
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376002)(346002)(366004)(396003)(39860400002)(136003)(230922051799003)(64100799003)(451199024)(1800799012)(186009)(6506007)(6512007)(2616005)(8676002)(5660300002)(8936002)(4326008)(6862004)(82960400001)(38100700002)(2906002)(66574015)(6486002)(26005)(1076003)(6636002)(66476007)(66556008)(316002)(41300700001)(37006003)(66946007)(83380400001)(36756003)(478600001)(86362001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c2k0ek5jbEpxemhGVkVvTzFUWVlzSHNIMlMrZnh1NFpnWHZiVkRjVzVOK0ZN?=
+ =?utf-8?B?NWFtZlBlcHZoUURTVUJrVmROazlUMmZnazJTcE1zakdTUWVwM3pQdDc3bEFk?=
+ =?utf-8?B?bHJoTm5ISFVZN1NBZmc0RENMaEczdTgyTGFwVURmbG1nNG52ZHJhbXQvNWZT?=
+ =?utf-8?B?L05oV0Y5b2RJMmkzMGJlOTBsc1lOcEJRTDVackJNYm5CT2JlUGEyQmtpcE8x?=
+ =?utf-8?B?YTNhRXY0bGI3WVRoZ2srVFJBNzRmUlI4dGdJSFZiQXdzc3M1SmRLMkRJRTEv?=
+ =?utf-8?B?U3N1THNkNWNPUUJrN01VcFYrWW5rK0xGb2pUWGp3SkQreXF4M3RNVjZwUVc3?=
+ =?utf-8?B?QzBRbDM3dCtNL3pGYjg1RUV6bEFDNEVrWWR6RExQZjh2cVV6eW5PeElKaG9u?=
+ =?utf-8?B?anpyWk9xcC9rNDl1U3piQlJlK2JvcTh5VVR5aEhmVjRTM2R2MlBqSytiWHVn?=
+ =?utf-8?B?Q2xGSnp2YzdEdG0zNFhxVThLUHhDUm11cHhRYlo1N2t6bHpjQUZEQ2FKNVFp?=
+ =?utf-8?B?c3VMNWZhdDluMERSMS9WQnFGMGExdlM4ZzhSN1VEOXVlaHo0dFIxUTdseTho?=
+ =?utf-8?B?Sng0cFF4TzByMkpuS29lSlBMdldwemtocUxyZHB5NmIxMkYzeTF4dVJPQXls?=
+ =?utf-8?B?UkRBWmFmMXZ5Z2hvWi9GUGQ3OTRVRm1iNWsyYmlWOFFFRko3QzdTYmZMYjJF?=
+ =?utf-8?B?OEQvanRZVHBGcjVEVitiVURla2tFSWRlSkk3RlVLWXZJTFlLMy90OEZUU1h6?=
+ =?utf-8?B?UU9QQ2ZzcHVlQ0xGTldIcFBlRERjMlg2aFhNQnlsZXpvbWI2ZUlTallrT05D?=
+ =?utf-8?B?b1h1d2tPU1JZVTgxc0VpaWFIV214MGJwaFUwRXkvWlduK3UyWWZzYTl1dkdS?=
+ =?utf-8?B?eTNKK0pCY2c1QVBTTDRZZktwUkhLN0pXQVR1SG9RaXhwWmNrcitPV0oxZXFh?=
+ =?utf-8?B?ZFNIdUFyaVdHa2VXc0I3ZjYwLzZLZUIxUklQbzUvamJ6dmdIcktHbFc5L29v?=
+ =?utf-8?B?eVMyMDZnOFY2Y3RLcFlySm5XN2NkdDNUemFQK3lHc2F0V0g4SXlmUk9aOVV3?=
+ =?utf-8?B?QzdMSG9jTUQ4M3pESmFDb2JSdEp5enNpRXRKL3YyV21xZVhOMktKL2ZXQWdq?=
+ =?utf-8?B?TUVlYkhCQm9sRzc0L2pRWGtkUWh5ZWdsOXN2YVVCeTZaT29DRUE3Sno3YUcv?=
+ =?utf-8?B?SzEydkJ1NzNOLzJLQjIzcEVHNmZqVVdhcURTZExuVm1sN3gvN3d6WHgzaDhV?=
+ =?utf-8?B?RnhEdGpnM3hKbmtNQ05qWGNNWmowZm5wNi82UXYwNGlqRjZNbGJuMVRDekJH?=
+ =?utf-8?B?aUkwVHFsb3kwNlNpdmhXQ3hXNkh2RythU3o0cUc0OTltb1gweEJGcEtqemNu?=
+ =?utf-8?B?L202QzB0cllrc1VSQmFPaGl5bVRrSndyK1kyQndBU3JQc1FXb29IRlZPZ1hQ?=
+ =?utf-8?B?OUtXbDJSMythVFUvZFBIQjM2MC9LbXpRcC9EZjZIQXFSblVvSVNCWXJxR2h0?=
+ =?utf-8?B?ejhDTlhjc2J1MDhPRGczaU5xQ012Z3FMc3BwdXJDUTlNQUp0TWJGTHBaZkV1?=
+ =?utf-8?B?RWY2aUlpK0duc0xLY1B1ZGRKWStHUzRIU0xrYnI1T0RPYWU1cVZvWGNqZlNL?=
+ =?utf-8?B?ZDcxdkJ6Q0FlZ3hyajQwNTg3NnJCNkNxVTB5M001WFg0L1FVY0pWNWV1OEkx?=
+ =?utf-8?B?Y0k0Y21YQ3YwUW51K1pyZ2svYngrd2F1NWpPMHJHekJ2bEVrZWxhZURKM0Nk?=
+ =?utf-8?B?c3ZCMjBRY1RnSlZLT2t1WmRDQkpsd2F2RTZUUGduMm8rK1Q3YmhjZVBGWjAx?=
+ =?utf-8?B?ZjAxU3p2ZUdyMlRMZjRxTEphV2hBVHlqaFg3eVRWQnFjUlp5blc4YlZWTWxX?=
+ =?utf-8?B?TTMrT3BNdTlTN1A2VGhVUFhMc2RJc0pxYkgzSzhZU1JoOVhva1E2bWNPWEJ5?=
+ =?utf-8?B?TzcrQ1Z5NUNGZFRaOTZtd09zS2RueW1xTHVmRkV5Uk02QzkzSHV2NlYyQXZs?=
+ =?utf-8?B?TjQyanVCTWFNY29LSkdsUGRmMU5DQjJYYnJSR3dGeHlsQ3VuUytRdUZLMzUw?=
+ =?utf-8?B?d2RtRy9DZ3JvZ0lKTjdGbmR3ejhjd3BvcFZYYUpMSjI1RVJMczlwMlJNRkw1?=
+ =?utf-8?B?aldERFRqVnptMUtXZmgvN3IyVnF2aEdlU0JjbEVnelZZb2ZoWWIzR3VLaDJF?=
+ =?utf-8?B?M2c9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c6b6f353-6624-4f15-ce39-08dc134f3294
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2024 09:16:45.3029 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Lk1O0WIdoUN/9XXDc8QDMqs1XHqtY/OR6kemJvpI4LQHMwadJwdJS87rWxm5echfHn+VMJXVhOAMphugy5UcPLzvcirARZ/oP1F8QEjfwDk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4732
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,202 +156,95 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 11 Jan 2024 17:45:37 -0600
-Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-
-> On Thu, Dec 21, 2023 at 04:15:23PM -0600, Lucas De Marchi wrote:
-> >On Fri, Dec 08, 2023 at 12:13:36PM -0600, Lucas De Marchi wrote:  
-> >>On Thu, Dec 07, 2023 at 04:41:52PM +0100, Mauro Carvalho Chehab wrote:  
-> >>>On Tue,  5 Dec 2023 14:49:26 -0800
-> >>>Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> >>>  
-> >>>>https://patchwork.freedesktop.org/series/126786/ groups all the live
-> >>>>tests into a single kernel module. Use that module to run any of the
-> >>>>tests triggered by igt.
-> >>>>
-> >>>>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> >>>>---
-> >>>>tests/intel/xe_live_ktest.c | 15 +++++----------
-> >>>>1 file changed, 5 insertions(+), 10 deletions(-)
-> >>>>
-> >>>>diff --git a/tests/intel/xe_live_ktest.c b/tests/intel/xe_live_ktest.c
-> >>>>index fe7b2e69f..c8bd68928 100644
-> >>>>--- a/tests/intel/xe_live_ktest.c
-> >>>>+++ b/tests/intel/xe_live_ktest.c
-> >>>>@@ -19,15 +19,10 @@
-> >>>> * Functionality: migrate
-> >>>> */
-> >>>>
-> >>>>-struct kunit_tests {
-> >>>>-	const char *kunit;
-> >>>>-	const char *name;
-> >>>>-};
-> >>>>-
-> >>>>-static const struct kunit_tests live_tests[] = {
-> >>>>-	{ "xe_bo_test",		"bo" },
-> >>>>-	{ "xe_dma_buf_test",	"dmabuf" },
-> >>>>-	{ "xe_migrate_test",	"migrate" },
-> >>>>+static const char *live_tests[] = {
-> >>>>+	"bo",
-> >>>>+	"dmabuf",
-> >>>>+	"migrate",
-> >>>>};
-> >>>>
-> >>>>igt_main
-> >>>>@@ -35,5 +30,5 @@ igt_main
-> >>>>	int i;
-> >>>>
-> >>>>	for (i = 0; i < ARRAY_SIZE(live_tests); i++)
-> >>>>-		igt_kunit(live_tests[i].kunit, live_tests[i].name, NULL);
-> >>>>+		igt_kunit("xe_live_test", live_tests[i], NULL);  
-> >>>
-> >>>This loop will modprobe xe_live_test the times. Just do something
-> >>>like:
-> >>>
-> >>>	igt_kunit("xe_live_test", "live_tests", NULL);  
-> >>
-> >>but there's no such "live_tests" suite and we want to run each of
-> >>them individually, not together.  How would you select the subtest
-> >>otherwise?  
-> >
-> >gentle ping as I want to merge the kernel patch that is blocked on this
-> >one.  
+Michal Wajdeczko <michal.wajdeczko@intel.com> wrote on czw [2024-sty-11 19:56:03 +0100]:
+> If Doorbell Manager is in unclean state during fini phase, for
+> debug purposes we try to print it's state, but we missed the fact
+> that we are already holding a lock so the xe_guc_db_mgr_print()
+> will deadlock since it also attempts to grab the same lock.
 > 
-> I did some tests today and... current situation is not very good. The
-> kunit module has the param filter_glob to filter the testsuite, but it's
-> not used at all by igt.  live_tests[i].name is more informational than
-> to really do any filtering.
-
-Yeah, that's what I would be expecting when I commented this patch. 
-Just didn't have the time yet for doing the tests. Btw, before Janusz Kernel
-patches, filter_glob were actually completely ignored with modprobe. It used
-to work only at Kernel boot time and when compiled with Kunit modules builtin.
-In practice, it was originally designed to work with kunit.py.
-
-> Another issue I see is that since we have the dep xe.ko -> kunit.ko, as
-> soon as we load xe, kunit comes as a dependency. Since kunit's param are
-> read-only, we can't really change the testsuite that will run without
-> first remove xe. Having to reload xe multiple times doesn't seem a good
-> option.
-
-The dependency between xe and kunit can be removed, but will require some
-redesign, moving all the logic calling kunit kAPI symbols out of xe.ko,
-moving them to xe_live_test & friends. This will likely require using
-some namespaced export symbol logic, to let them to call functions that
-aren't part of kAPI. Doable, but not trivial.
-
-> Some manual tests I did here. First a kernel patch:
+> Fixes: 990fe6e6ed3c ("drm/xe: Introduce GuC Doorbells Manager")
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_guc_db_mgr.c | 27 ++++++++++++++++-----------
+>  1 file changed, 16 insertions(+), 11 deletions(-)
 > 
-> 	diff --git a/lib/kunit/executor.c b/lib/kunit/executor.c
-> 	index 1236b3cd2fbb..30ed9d321c19 100644
-> 	--- a/lib/kunit/executor.c
-> 	+++ b/lib/kunit/executor.c
-> 	@@ -31,7 +31,7 @@ static char *filter_glob_param;
-> 	 static char *filter_param;
-> 	 static char *filter_action_param;
+> diff --git a/drivers/gpu/drm/xe/xe_guc_db_mgr.c b/drivers/gpu/drm/xe/xe_guc_db_mgr.c
+> index c1c04575d82d..8d9a0287df6b 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_db_mgr.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_db_mgr.c
+> @@ -46,6 +46,8 @@ static struct xe_device *dbm_to_xe(struct xe_guc_db_mgr *dbm)
+>  #define dbm_assert(_dbm, _cond)		xe_gt_assert(dbm_to_gt(_dbm), _cond)
+>  #define dbm_mutex(_dbm)			(&dbm_to_guc(_dbm)->submission_state.lock)
+>  
+> +static void dbm_print_locked(struct xe_guc_db_mgr *dbm, struct drm_printer *p, int indent);
+> +
+>  static void __fini_dbm(struct drm_device *drm, void *arg)
+>  {
+>  	struct xe_guc_db_mgr *dbm = arg;
+> @@ -59,7 +61,7 @@ static void __fini_dbm(struct drm_device *drm, void *arg)
+>  
+>  		xe_gt_err(dbm_to_gt(dbm), "GuC doorbells manager unclean (%u/%u)\n",
+>  			  weight, dbm->count);
+> -		xe_guc_db_mgr_print(dbm, &p, 1);
+> +		dbm_print_locked(dbm, &p, 1);
+>  	}
+>  
+>  	bitmap_free(dbm->bitmap);
+> @@ -219,14 +221,7 @@ void xe_guc_db_mgr_release_range(struct xe_guc_db_mgr *dbm,
+>  	mutex_unlock(dbm_mutex(dbm));
+>  }
+>  
+> -/**
+> - * xe_guc_db_mgr_print() - Print status of GuC Doorbells Manager.
+> - * @dbm: the &xe_guc_db_mgr to print
+> - * @p: the &drm_printer to print to
+> - * @indent: tab indentation level
+> - */
+> -void xe_guc_db_mgr_print(struct xe_guc_db_mgr *dbm,
+> -			 struct drm_printer *p, int indent)
+> +static void dbm_print_locked(struct xe_guc_db_mgr *dbm, struct drm_printer *p, int indent)
+>  {
+>  	unsigned int rs, re;
+>  	unsigned int total;
+> @@ -235,8 +230,6 @@ void xe_guc_db_mgr_print(struct xe_guc_db_mgr *dbm,
+>  	if (!dbm->bitmap)
+>  		return;
+>  
+> -	mutex_lock(dbm_mutex(dbm));
+> -
+>  	total = 0;
+>  	for_each_clear_bitrange(rs, re, dbm->bitmap, dbm->count) {
+>  		drm_printf_indent(p, indent, "available range: %u..%u (%u)\n",
+> @@ -252,7 +245,19 @@ void xe_guc_db_mgr_print(struct xe_guc_db_mgr *dbm,
+>  		total += re - rs;
+>  	}
+>  	drm_printf_indent(p, indent, "reserved total: %u\n", total);
+> +}
+>  
+> +/**
+> + * xe_guc_db_mgr_print() - Print status of GuC Doorbells Manager.
+> + * @dbm: the &xe_guc_db_mgr to print
+> + * @p: the &drm_printer to print to
+> + * @indent: tab indentation level
+> + */
+> +void xe_guc_db_mgr_print(struct xe_guc_db_mgr *dbm,
+> +			 struct drm_printer *p, int indent)
+> +{
+> +	mutex_lock(dbm_mutex(dbm));
+> +	dbm_print_locked(dbm, p, indent);
+>  	mutex_unlock(dbm_mutex(dbm));
+>  }
+>  
 > 
-> 	-module_param_named(filter_glob, filter_glob_param, charp, 0400);
-> 	+module_param_named(filter_glob, filter_glob_param, charp, 0600);
-> 	 MODULE_PARM_DESC(filter_glob,
-> 			"Filter which KUnit test suites/tests run at boot-time, e.g. list* or list*.*del_test");
-> 	 module_param_named(filter, filter_param, charp, 0400);
-
-Such patch needs to be reviewed by Kunit maintainers. IMO, it only
-makes sense upstream if one could do something similar to:
-
-	modprobe kunit filter_glob=none
-	modprobe -r xe_live_test
-	echo -n xe_bo > /sys/modules/kunit/parameters/filter_glob
-	<xe_bo tests executed>
-	echo -n xe_dmabuf > /sys/modules/kunit/parameters/filter_glob
-	<xe_dmabuf tests executed>
-
-e.g. if changing filter_glob would actually trigger tests, and, when
-kunit itself is loaded, the filter_glob parameter is set in a way that
-no tests will be executed.
-
-In practice, lib/kunit should use module_param_cb() to register a 
-callback that will be used to <re->trigger the tests.
-
+> base-commit: 39d854dbde14bef5cabe3cf3a49de8894cd99ba7
+> -- 
+> 2.25.1
 > 
-> Now we can filter the testsuite at will:
-> 
-> 	# modprobe xe
-> 	
-> Run only xe_bo tests:
-> 
-> 	# echo -n xe_bo > /sys/modules/kunit/parameters/filter_glob
-> 	# dmesg -C
-> 	# modprobe xe_live_test
-> 	# dmesg
-> 	[ 4064.402190] KTAP version 1
-> 	[ 4064.402195] 1..1
-> 	[ 4064.403336]     KTAP version 1
-> 	[ 4064.403339]     # Subtest: xe_bo
-> 	[ 4064.403342]     # module: xe_live_test
-> 	[ 4064.403410]     1..2
-> 	...
-> 	[ 4065.712622]     ok 2 xe_bo_evict_kunit
-> 	[ 4065.712646] # xe_bo: pass:2 fail:0 skip:0 total:2
-> 	[ 4065.712668] # Totals: pass:2 fail:0 skip:0 total:2
-> 	[ 4065.712700] ok 1 xe_bo
-> 
-> Execute all live tests:
-> 
-> 	# modprobe -r xe_live_test
-> 	# dmesg -C
-> 	# echo -n \* > /sys/modules/kunit/parameters/filter_glob
-> 	# modprobe xe_live_test
 
-See, here, filter_glob is used R/O by xe_live_test. You are
-changing it to 0600 just because xe.o (IMO incorrectly) depends on
-kunit.o.
-
-> 	# dmesg
-> 	[ 5010.536719] KTAP version 1
-> 	[ 5010.536725] 1..4
-> 	[ 5010.537618]     KTAP version 1
-> 	[ 5010.537620]     # Subtest: xe_bo
-> 	[ 5010.537623]     # module: xe_live_test
-> 	...
-> 	[ 5011.831597]     KTAP version 1
-> 	[ 5011.831599]     # Subtest: xe_dma_buf
-> 	[ 5011.831601]     # module: xe_live_test
-> 	...
-> 	[ 5011.867751]     KTAP version 1
-> 	[ 5011.867753]     # Subtest: xe_migrate
-> 	[ 5011.867755]     # module: xe_live_test
-> 	...
-> 	[ 5011.882481]     KTAP version 1
-> 	[ 5011.882483]     # Subtest: xe_mocs
-> 	[ 5011.882485]     # module: xe_live_test
-> 
-> To simplify our kunit lib, we could also rely on kunit_debugfs to list
-> tests.
-
-On such case, you should document kunit_debugfs at Documentation/ABI.
-
-> 
-> I will prepare a patch for the kunit part in the kernel.
-> 
-> Lucas De Marchi
-
-Regards,
-Mauro
-
-> 
-> >
-> >Lucas De Marchi
-> >  
-> >>
-> >>Lucas De Marchi
-> >>  
-> >>>  
-> >>>>}  
-> >>>
-> >>>Regards,
-> >>>Mauro  
+-- 
