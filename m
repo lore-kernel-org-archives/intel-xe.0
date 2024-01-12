@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C593C4725D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5346C47DA2
 	for <intel-xe@archiver.kernel.org>; Fri, 12 Jan 2024 15:27:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E209510EB43;
-	Fri, 12 Jan 2024 15:27:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B55910EB4C;
+	Fri, 12 Jan 2024 15:27:07 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AFB710EB42
- for <intel-xe@lists.freedesktop.org>; Fri, 12 Jan 2024 15:27:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8380010EB42
+ for <intel-xe@lists.freedesktop.org>; Fri, 12 Jan 2024 15:27:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705073227; x=1736609227;
+ t=1705073225; x=1736609225;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=mivy/LTZJ59A2IulqWY6Y9K8ZZw1DZkHTTlHeNxX3Jk=;
- b=MVAr4yGxtN5yT6vLMRSGz6fG676H9fG6o1bkfNmTpQKXSCo/1CvPuZYj
- CAbjIwrLg2rB3sdo5iCNKhx9Qo0Wa6EfGcClixcu/7k9awGxYzy/UvY0A
- oRdx4c2O3/Y+CqEvmk7+opyG1fzLE607HzSz7QkPAIOM2ceh+3VrdDc+w
- TAg2Gcz6JuVcHw7LvARdc+358waVuJsIUS5mIRn1tQf9lY1vbaAiNXKkk
- 5fgQBFIysupuOmisRVNzTkNx201nPgXi2UkLRcBdHggrHPWDDYjx1c90T
- AbZEV6uYfB37jgoaTBBX+LATj3PpL7+TBjLP6Iiz+QiawaoUvb4fv690y Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10951"; a="6566372"
+ bh=GeGjGDmGTJmaTHpO1UQyeXKunCzaNTAY4aPyOayktSs=;
+ b=fdXBvlxAcGT+NKVEfojbmsuj8WFhrAGTED6M1vxL4Dgdh7UZuBH7ti87
+ IAr+0zc8bTraMu9jBV/cck/FoRI3+0Upy7Z18drmujXR89+hbuIDjMcJQ
+ K2PQVuulWI8A8u99ZWhq/2GW+/agtb0P6zB06QxPfUjlmcSX0vjbdBFZQ
+ ieY8aJgr2W+vR8tdr6rU7fHIZhqWQjvQ2rXZOcz0eN1h409N+XP36BP61
+ byzER2Cdry9PUUNxUVcBn3iH78an0ieVMc7fa1oWfeXN8VqYUGMvJ9TEr
+ P6KrCzsc1rGqkUp8dvRUvHXarh9xMvagW/4aH6LtJj72iyehUwuBaD7Ib A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10951"; a="6566366"
 X-IronPort-AV: E=Sophos;i="6.04,189,1695711600"; 
-   d="scan'208";a="6566372"
+   d="scan'208";a="6566366"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2024 07:27:06 -0800
+ 12 Jan 2024 07:27:05 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10951"; a="902003188"
-X-IronPort-AV: E=Sophos;i="6.04,189,1695711600"; d="scan'208";a="902003188"
+X-IronPort-AV: E=McAfee;i="6600,9927,10951"; a="902003181"
+X-IronPort-AV: E=Sophos;i="6.04,189,1695711600"; d="scan'208";a="902003181"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.135.224])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2024 07:27:04 -0800
+ 12 Jan 2024 07:27:03 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 5/8] drm/xe/vf: Don't check if LMEM is initialized if VF
-Date: Fri, 12 Jan 2024 16:26:46 +0100
-Message-Id: <20240112152649.849-6-michal.wajdeczko@intel.com>
+Subject: [PATCH 4/8] drm/xe/vf: Don't initialize stolen memory manager if VF
+Date: Fri, 12 Jan 2024 16:26:45 +0100
+Message-Id: <20240112152649.849-5-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240112152649.849-1-michal.wajdeczko@intel.com>
 References: <20240112152649.849-1-michal.wajdeczko@intel.com>
@@ -61,48 +61,37 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-It is PF driver responsibility to verify that LMEM was correctly
-initialized, also VF drivers don't have access to GU_CNTL register.
+VF drivers don't have access to the stolen memory.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_mmio.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index c8c5d74b6e90..d8ddd64c6e8f 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -20,6 +20,7 @@
- #include "xe_gt_mcr.h"
- #include "xe_macros.h"
- #include "xe_module.h"
+diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+index e5d7d5e2bec1..662f1e9bfc65 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+@@ -19,6 +19,7 @@
+ #include "xe_gt.h"
+ #include "xe_mmio.h"
+ #include "xe_res_cursor.h"
 +#include "xe_sriov.h"
- #include "xe_tile.h"
+ #include "xe_ttm_stolen_mgr.h"
+ #include "xe_ttm_vram_mgr.h"
+ #include "xe_wa.h"
+@@ -205,7 +206,9 @@ void xe_ttm_stolen_mgr_init(struct xe_device *xe)
+ 	u64 stolen_size, io_size, pgsize;
+ 	int err;
  
- #define XEHP_MTCFG_ADDR		XE_REG(0x101800)
-@@ -363,13 +364,19 @@ static int xe_verify_lmem_ready(struct xe_device *xe)
- {
- 	struct xe_gt *gt = xe_root_mmio_gt(xe);
- 
-+	if (!IS_DGFX(xe))
-+		return 0;
-+
+-	if (IS_DGFX(xe))
 +	if (IS_SRIOV_VF(xe))
-+		return 0;
-+
- 	/*
- 	 * The boot firmware initializes local memory and assesses its health.
- 	 * If memory training fails, the punit will have been instructed to
- 	 * keep the GT powered down; we won't be able to communicate with it
- 	 * and we should not continue with driver initialization.
- 	 */
--	if (IS_DGFX(xe) && !(xe_mmio_read32(gt, GU_CNTL) & LMEM_INIT)) {
-+	if (!(xe_mmio_read32(gt, GU_CNTL) & LMEM_INIT)) {
- 		drm_err(&xe->drm, "VRAM not initialized by firmware\n");
- 		return -ENODEV;
- 	}
++		stolen_size = 0;
++	else if (IS_DGFX(xe))
+ 		stolen_size = detect_bar2_dgfx(xe, mgr);
+ 	else if (GRAPHICS_VERx100(xe) >= 1270)
+ 		stolen_size = detect_bar2_integrated(xe, mgr);
 -- 
 2.25.1
 
