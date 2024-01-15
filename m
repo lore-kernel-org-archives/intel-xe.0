@@ -4,26 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF339C47077
-	for <intel-xe@archiver.kernel.org>; Sun, 14 Jan 2024 15:55:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB226C3DA79
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Jan 2024 07:09:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78F1410E19C;
-	Sun, 14 Jan 2024 15:55:18 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A49D10E16F;
- Sun, 14 Jan 2024 15:55:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83B5410E204;
+	Mon, 15 Jan 2024 07:09:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBE7110E210;
+ Mon, 15 Jan 2024 07:08:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1705302538; x=1736838538;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to;
+ bh=Vl2A+p+f7Ngkc1O4wFcFt4QOH8THeA/5XhtkWvP3Gu8=;
+ b=LYAiqJ4t39llgT7bhjT6v7Di3RMx4CbdyytcGBqsBhPTcGTHX6rfLLa+
+ QrBx1AijbPanxRrYREUmGN1HB421TEnI9TPobigVX3p6icosV/B7NVgYS
+ Pv0Q/Xmw3OlCfybXkqExWKDKCGT9K8AulcI/LIunPpTbGPTElKxjXcDHN
+ xbkYyMysXoHUEumgQ3c398PkE2iTkMeUzJRDFapg5khMumFOUC6KPPCm5
+ SUHZE60oB3cntPbCkA3aa0nNiqNYgH506LX1VNblhpgYD4FEEe6kRapA7
+ QZn/qQR/4APK60ZggerN5ubcgYCK0JMCu3TO/xsdfixpjEWVs5sbRHOCJ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10953"; a="389998575"
+X-IronPort-AV: E=Sophos;i="6.04,196,1695711600"; 
+ d="scan'208,217";a="389998575"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jan 2024 23:08:58 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.04,196,1695711600"; d="scan'208,217";a="18066904"
+Received: from linux.intel.com ([10.54.29.200])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jan 2024 23:08:58 -0800
+Received: from linux.intel.com (maurocar-mobl2.ger.corp.intel.com
+ [10.246.33.19])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by linux.intel.com (Postfix) with ESMTPS id 79E97580D94;
+ Sun, 14 Jan 2024 23:08:57 -0800 (PST)
+Received: from localhost ([127.0.0.1])
+ by linux.intel.com with esmtp (Exim 4.96.2)
+ (envelope-from <mauro.chehab@linux.intel.com>) id 1rPI1f-004gBv-0v;
+ Mon, 15 Jan 2024 08:08:55 +0100
 Content-Type: multipart/alternative;
- boundary="===============9134502933022167030=="
+ boundary="------------gaIuI3Vx5iBBPb12CDUDuDOK"
+Message-ID: <11e1b3f4-b0ba-4095-96c6-f2bf18f27fd2@linux.intel.com>
+Date: Mon, 15 Jan 2024 08:08:55 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe/guc=3A_Remove_usage_of_th?=
- =?utf-8?q?e_deprecated_ida=5Fsimple=5Fxx=28=29_API?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Christophe JAILLET" <christophe.jaillet@wanadoo.fr>
-Date: Sun, 14 Jan 2024 15:55:17 -0000
-Message-ID: <170524771710.386536.17947346801386989884@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <d6a9ec9dc426fca372eaa1423a83632bd743c5d9.1705244938.git.christophe.jaillet@wanadoo.fr>
-In-Reply-To: <d6a9ec9dc426fca372eaa1423a83632bd743c5d9.1705244938.git.christophe.jaillet@wanadoo.fr>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [igt-dev] [PATCH i-g-t] xe_live_ktest: Use xe_live_test kernel
+ module
+Content-Language: en-US
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+References: <20231205224926.2188996-1-lucas.demarchi@intel.com>
+ <20231207164152.57be3d07@maurocar-mobl2>
+ <3kunqgqyf7tobiwhcpvjp7rcvidrgnz2jq3qqoxjbl7kaftdq7@7hdweo57htff>
+ <njwvai6cu7jwmy7lmg3vkg4jd52uq2f6es4obvdplkz43i6hpe@jqrzk4bveqqc>
+ <dzacvbdditbneiu3e3fmstjmttcbne44yspumpkd6sjn56jqpk@vxu7sksbqrp6>
+ <20240112093252.0a4bf850@maurocar-mobl2>
+ <57epajumgzrllmyufx7233yjja2c3fbs2zgfflkhcspfvwak47@h64l4uzne54h>
+From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
+In-Reply-To: <57epajumgzrllmyufx7233yjja2c3fbs2zgfflkhcspfvwak47@h64l4uzne54h>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,175 +75,63 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: igt-dev@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============9134502933022167030==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
+This is a multi-part message in MIME format.
+--------------gaIuI3Vx5iBBPb12CDUDuDOK
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 1/12/24 15:29, Lucas De Marchi wrote:
+>> On such case, you should document kunit_debugfs at Documentation/ABI.
+>
+> debugfs is not part of ABI.
 
-Series: drm/xe/guc: Remove usage of the deprecated ida_simple_xx() API
-URL   : https://patchwork.freedesktop.org/series/128758/
-State : failure
+That's arguable. Check Documentation/ABI and you'll see several debugfs 
+nodes documented there.
 
-== Summary ==
+$ ./scripts/get_abi.pl rest|grep debugfs|wc -l
+162
 
-CI Bug Log - changes from xe-629-3a1d727c0061b96ddf8e653130f94ab331e2f065_BAT -> xe-pw-128758v1_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-128758v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-128758v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-128758v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc:
-    - bat-dg2-oem2:       [PASS][1] -> [SKIP][2] +2 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-629-3a1d727c0061b96ddf8e653130f94ab331e2f065/bat-dg2-oem2/igt@kms_pipe_crc_basic@nonblocking-crc.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128758v1/bat-dg2-oem2/igt@kms_pipe_crc_basic@nonblocking-crc.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-128758v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-c-dp-3:
-    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] ([Intel XE#400] / [Intel XE#616]) +1 other test fail
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-629-3a1d727c0061b96ddf8e653130f94ab331e2f065/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-c-dp-3.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128758v1/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-c-dp-3.html
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence:
-    - bat-dg2-oem2:       [PASS][5] -> [SKIP][6] ([Intel XE#1161]) +1 other test skip
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-629-3a1d727c0061b96ddf8e653130f94ab331e2f065/bat-dg2-oem2/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128758v1/bat-dg2-oem2/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
-
-  
-  [Intel XE#1161]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1161
-  [Intel XE#400]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/400
-  [Intel XE#616]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/616
+Regards,
+Mauro
 
 
-Build changes
--------------
-
-  * Linux: xe-629-3a1d727c0061b96ddf8e653130f94ab331e2f065 -> xe-pw-128758v1
-
-  IGT_7673: 7673
-  xe-629-3a1d727c0061b96ddf8e653130f94ab331e2f065: 3a1d727c0061b96ddf8e653130f94ab331e2f065
-  xe-pw-128758v1: 128758v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128758v1/index.html
-
---===============9134502933022167030==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
+--------------gaIuI3Vx5iBBPb12CDUDuDOK
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-
 
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Remove usage of the deprecated ida_simple_xx() API</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/128758/">https://patchwork.freedesktop.org/series/128758/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128758v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128758v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-629-3a1d727c0061b96ddf8e653130f94ab331e2f065_BAT -&gt; xe-pw-128758v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-128758v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-128758v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-128758v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@kms_pipe_crc_basic@nonblocking-crc:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-629-3a1d727c0061b96ddf8e653130f94ab331e2f065/bat-dg2-oem2/igt@kms_pipe_crc_basic@nonblocking-crc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128758v1/bat-dg2-oem2/igt@kms_pipe_crc_basic@nonblocking-crc.html">SKIP</a> +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-128758v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-c-dp-3:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-629-3a1d727c0061b96ddf8e653130f94ab331e2f065/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-c-dp-3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128758v1/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-c-dp-3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/400">Intel XE#400</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/616">Intel XE#616</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-629-3a1d727c0061b96ddf8e653130f94ab331e2f065/bat-dg2-oem2/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128758v1/bat-dg2-oem2/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1161">Intel XE#1161</a>) +1 other test skip</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-629-3a1d727c0061b96ddf8e653130f94ab331e2f065 -&gt; xe-pw-128758v1</li>
-</ul>
-<p>IGT_7673: 7673<br />
-  xe-629-3a1d727c0061b96ddf8e653130f94ab331e2f065: 3a1d727c0061b96ddf8e653130f94ab331e2f065<br />
-  xe-pw-128758v1: 128758v1</p>
-
-</body>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <div class="moz-cite-prefix">On 1/12/24 15:29, Lucas De Marchi
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:57epajumgzrllmyufx7233yjja2c3fbs2zgfflkhcspfvwak47@h64l4uzne54h">
+      <blockquote type="cite" style="color: #007cff;">On such case, you
+        should document kunit_debugfs at Documentation/ABI.
+        <br>
+      </blockquote>
+      <br>
+      debugfs is not part of ABI. <br>
+    </blockquote>
+    <p>That's arguable. Check Documentation/ABI and you'll see several
+      debugfs nodes documented there.</p>
+    <p>$ ./scripts/get_abi.pl rest|grep debugfs|wc -l<br>
+      162<br>
+      <br>
+    </p>
+    <p>Regards,<br>
+      Mauro<br>
+    </p>
+    <br>
+  </body>
 </html>
 
---===============9134502933022167030==--
+--------------gaIuI3Vx5iBBPb12CDUDuDOK--
