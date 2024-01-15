@@ -4,55 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE4A4C3DA79
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Jan 2024 07:21:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B497CC3DA79
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Jan 2024 07:33:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FB0E10E206;
-	Mon, 15 Jan 2024 07:21:43 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A27D10E1FF;
- Mon, 15 Jan 2024 07:21:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F30010E173;
+	Mon, 15 Jan 2024 07:33:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7B1110E173
+ for <intel-xe@lists.freedesktop.org>; Mon, 15 Jan 2024 07:33:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705303302; x=1736839302;
+ t=1705304030; x=1736840030;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=yVqJ3Rg9lUIyC6w3Twzi1bAsXCEBs+7oXHKshgvivXU=;
- b=dxVT7A+1VnKb74cC0TzoegkaqnSlHaqSEehthkH70toZWbjrL1knVLQU
- vvfFSVUVQLMzHvK2u6gGpIYkQzisXeIKukoKzpWfuNKWgHJT1tEtel0wd
- o8rmAxR+FEUqLYfHkPSL4GC1ffv/dqIa12iId7L1IQsRd/uMZoq8Rh/OQ
- +F+Wx9AhfSdv4FrS12Dc8p3z9o44cSqTeCfZcvTYSTW4+M8D2ROrwtB0B
- uDvgRDs0UN7/MpN8m7WFZ7Q9LNEOFXu7Nsc2/CaAsf3fTK64kiddD5OBw
- 8nddFt7hLzH+C6+W2Fn9hEX+DT0lz5KiIgtIoxR20elFTbYpw6sspNfPm w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10953"; a="13030798"
-X-IronPort-AV: E=Sophos;i="6.04,196,1695711600"; d="scan'208";a="13030798"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2024 23:21:41 -0800
+ bh=JWAVpFZeffQ+wIjcr5nIap2m1ybTt3yZYl2pSOfiD/s=;
+ b=SV2k9vqCgGtfrYqsia4bGgX04U86QaK/YisnHz5Wrkkr90QiDJpZ1e5n
+ DUK151zgiQtDammvuxmrHIVruFam/cjomdh26K+dOBVC8WkSvDnZuHoLA
+ i7SuwC8li4//DcBAYRUHd43pSlbYxpgcFlABNSxLr/f2JspHM5FA/zr9K
+ JAB7XF21t2e0Yddg7xx5PKWgG8x0Uc5odq87i91vk1lsXZCj5tYwJSl0X
+ 8lbecI2pgRfDP6hblkQ1j6U8myqHSTORUqrzg8VN2yp9kKutsrMRf2vge
+ mh/JnZfOwJuqS348DWFTOMwSgcyuvLW+mbbMdRRqH1Rt63y9+8jZS+xGM g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10953"; a="12911641"
+X-IronPort-AV: E=Sophos;i="6.04,196,1695711600"; d="scan'208";a="12911641"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jan 2024 23:33:50 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10953"; a="906979845"
-X-IronPort-AV: E=Sophos;i="6.04,196,1695711600"; d="scan'208";a="906979845"
+X-IronPort-AV: E=McAfee;i="6600,9927,10953"; a="783725243"
+X-IronPort-AV: E=Sophos;i="6.04,196,1695711600"; d="scan'208";a="783725243"
 Received: from nrseife-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.54.233])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2024 23:21:39 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>
-Subject: Re: [igt-dev] [PATCH i-g-t] xe_live_ktest: Use xe_live_test kernel
- module
-In-Reply-To: <11e1b3f4-b0ba-4095-96c6-f2bf18f27fd2@linux.intel.com>
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jan 2024 23:33:47 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Francois Dugast <francois.dugast@intel.com>
+Subject: Re: [PATCH] drm/xe: display support should not depend on EXPERT
+In-Reply-To: <ZZ_JwanaiY9uehN9@fdugast-desk.home>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231205224926.2188996-1-lucas.demarchi@intel.com>
- <20231207164152.57be3d07@maurocar-mobl2>
- <3kunqgqyf7tobiwhcpvjp7rcvidrgnz2jq3qqoxjbl7kaftdq7@7hdweo57htff>
- <njwvai6cu7jwmy7lmg3vkg4jd52uq2f6es4obvdplkz43i6hpe@jqrzk4bveqqc>
- <dzacvbdditbneiu3e3fmstjmttcbne44yspumpkd6sjn56jqpk@vxu7sksbqrp6>
- <20240112093252.0a4bf850@maurocar-mobl2>
- <57epajumgzrllmyufx7233yjja2c3fbs2zgfflkhcspfvwak47@h64l4uzne54h>
- <11e1b3f4-b0ba-4095-96c6-f2bf18f27fd2@linux.intel.com>
-Date: Mon, 15 Jan 2024 09:21:35 +0200
-Message-ID: <87mst7rri8.fsf@intel.com>
+References: <20240111104716.3548744-1-jani.nikula@intel.com>
+ <87wmsgtabt.fsf@intel.com> <ZZ_JwanaiY9uehN9@fdugast-desk.home>
+Date: Mon, 15 Jan 2024 09:33:44 +0200
+Message-ID: <87jzobrqxz.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,27 +58,51 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Eero Tamminen <eero.t.tamminen@intel.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 15 Jan 2024, Mauro Carvalho Chehab <mauro.chehab@linux.intel.com> wrote:
-> On 1/12/24 15:29, Lucas De Marchi wrote:
->>> On such case, you should document kunit_debugfs at Documentation/ABI.
->>
->> debugfs is not part of ABI.
+On Thu, 11 Jan 2024, Francois Dugast <francois.dugast@intel.com> wrote:
+> On Thu, Jan 11, 2024 at 12:48:22PM +0200, Jani Nikula wrote:
+>> On Thu, 11 Jan 2024, Jani Nikula <jani.nikula@intel.com> wrote:
+>> > Remove the DRM_XE_DISPLAY config dependency on EXPERT. I can only
+>> > presume the idea was only experts should be able to disable it, but the
+>> > effect is the opposite.
+>> 
+>> Forgot to add,
+>> 
+>> Reported-by: Eero Tamminen <eero.t.tamminen@intel.com>
+>> 
+>> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 >
-> That's arguable. Check Documentation/ABI and you'll see several debugfs 
-> nodes documented there.
+> Reviewed-by: Francois Dugast <francois.dugast@intel.com>
 
-I guess you could argue documenting your debugfs under Documentation/ABI
-makes it ABI, but I'd avoid doing that. Usually we use debugfs precisely
-to avoid the burden of ABI and all the baggage that brings.
-
+Thanks, pushed to drm-xe-next.
 
 BR,
 Jani.
 
+>
+>> > ---
+>> >  drivers/gpu/drm/xe/Kconfig | 2 +-
+>> >  1 file changed, 1 insertion(+), 1 deletion(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+>> > index 1cced50d8d8c..e36ae1f0d885 100644
+>> > --- a/drivers/gpu/drm/xe/Kconfig
+>> > +++ b/drivers/gpu/drm/xe/Kconfig
+>> > @@ -47,7 +47,7 @@ config DRM_XE
+>> >  
+>> >  config DRM_XE_DISPLAY
+>> >  	bool "Enable display support"
+>> > -	depends on DRM_XE && EXPERT && DRM_XE=m
+>> > +	depends on DRM_XE && DRM_XE=m
+>> >  	select FB_IOMEM_HELPERS
+>> >  	select I2C
+>> >  	select I2C_ALGOBIT
+>> 
+>> -- 
+>> Jani Nikula, Intel
 
 -- 
 Jani Nikula, Intel
