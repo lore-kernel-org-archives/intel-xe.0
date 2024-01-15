@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B30F2C3DA79
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Jan 2024 17:17:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40E6DC3DA79
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Jan 2024 17:17:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78CC710E333;
-	Mon, 15 Jan 2024 17:17:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D07310E33E;
+	Mon, 15 Jan 2024 17:17:19 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6855510E333;
- Mon, 15 Jan 2024 17:17:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC0DB10E33E;
+ Mon, 15 Jan 2024 17:17:17 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/managed=3A_Add_d?=
- =?utf-8?q?rmm=5Frelease=5Faction_=28rev5=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/managed=3A_Add_drmm?=
+ =?utf-8?q?=5Frelease=5Faction_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>
-Date: Mon, 15 Jan 2024 17:17:04 -0000
-Message-ID: <170533902442.480178.9697206352092235000@5338d5abeb45>
+Date: Mon, 15 Jan 2024 17:17:17 -0000
+Message-ID: <170533903783.479824.17213235065283751241@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240115171351.504264-1-michal.winiarski@intel.com>
 In-Reply-To: <20240115171351.504264-1-michal.winiarski@intel.com>
@@ -48,13 +48,30 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 3a1d727c0 drm/xe: Use kstrdup while creating snapshot
-=== git am output follows ===
-Applying: drm/managed: Add drmm_release_action
-Applying: drm/tests: managed: Rename the suite name to match other DRM tests
-Applying: drm/tests: managed: Add comments about test intent
-Applying: drm/tests: managed: Extract device initialization into test init
-Applying: drm/tests: managed: Add a simple test for drmm_managed_release
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+faa12d3432d7ef7793d934cd9338c555e95a5aad
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a7746e30f57e6f4785ec4f83b9cc4ebb5e5cc845
+Author: Michał Winiarski <michal.winiarski@intel.com>
+Date:   Mon Jan 15 18:13:51 2024 +0100
+
+    drm/tests: managed: Add a simple test for drmm_managed_release
+    
+    Add a simple test that checks whether the action is called when
+    drmm_managed_release is called.
+    
+    Signed-off-by: Michał Winiarski <michal.winiarski@intel.com>
++ /mt/dim checkpatch 3a1d727c0061b96ddf8e653130f94ab331e2f065 drm-intel
+d952e1113 drm/managed: Add drmm_release_action
+2b703ec14 drm/tests: managed: Rename the suite name to match other DRM tests
+90b856c2b drm/tests: managed: Add comments about test intent
+e5f6bfd14 drm/tests: managed: Extract device initialization into test init
+a7746e30f drm/tests: managed: Add a simple test for drmm_managed_release
 
 
