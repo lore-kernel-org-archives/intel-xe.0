@@ -4,50 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DCC7C47258
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Jan 2024 13:08:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C7BAC47077
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Jan 2024 13:09:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68D9510E546;
-	Tue, 16 Jan 2024 13:08:59 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEB6910E598;
- Tue, 16 Jan 2024 13:08:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705410537; x=1736946537;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Il6I5/c5CRzVwH3EioaJ7CiY7XP+/71GxCauqv15NOs=;
- b=KXVvEShGUvZriQn4WZAepfZaSS88DM0BCGib918ApZHMKZtCiJGdTwGq
- /efOynoeLw8yxnAcxZhizLYqyLnSPBVvrOiwi85YJpkgwFSvBl1H8X7R7
- 2xEAZXR3lorGdgqvewNv6ivv2PVY9rlLc4NWuK4s0tpBLqyGUJHdHL73s
- uPPDrBvMJg/Mhstj4N2HsgFXfoMHHa7wfqvQpDrYwpXrYVoNBDrHq2izG
- O+AWk+YA1lYzZwDu9w+WnZfQ/nVzN/0/nbxtIUxn6xMPAT3HvhVCmp4EX
- HfCfLRfqzAyS1iMVXArolFMMpEmVQ9VJBpfYOWVbp9d44t2w4AQkpH41X w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10954"; a="397016169"
-X-IronPort-AV: E=Sophos;i="6.05,199,1701158400"; d="scan'208";a="397016169"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2024 05:08:30 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10954"; a="760181613"
-X-IronPort-AV: E=Sophos;i="6.05,199,1701158400"; d="scan'208";a="760181613"
-Received: from jfunnell-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.39.52])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2024 05:08:28 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org
-Subject: [PATCH 10/10] drm: remove drm_debug_printer in favor of
- drm_dbg_printer
-Date: Tue, 16 Jan 2024 15:07:35 +0200
-Message-Id: <18b5b91e62d071675a651f6f91c58f05ad74134a.1705410327.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1705410327.git.jani.nikula@intel.com>
-References: <cover.1705410327.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D36F110E542;
+	Tue, 16 Jan 2024 13:09:54 +0000 (UTC)
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59B7F10E542;
+ Tue, 16 Jan 2024 13:09:54 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/guc=3A_Enable?=
+ =?utf-8?q?_WA_14018913170_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Karthik Poosa" <karthik.poosa@intel.com>
+Date: Tue, 16 Jan 2024 13:09:54 -0000
+Message-ID: <170541059436.502240.15606496358138781758@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240116131445.2376726-1-karthik.poosa@intel.com>
+In-Reply-To: <20240116131445.2376726-1-karthik.poosa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,103 +35,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Convert the remaining drm_debug_printer users over to drm_dbg_printer,
-as it can handle the cases without struct drm_device pointer, and also
-provides drm debug category and prefix support. Remove drm_debug_printer
-altogether.
+== Series Details ==
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/drm_modeset_lock.c |  2 +-
- drivers/gpu/drm/drm_print.c        |  7 -------
- drivers/gpu/drm/ttm/ttm_bo.c       |  2 +-
- include/drm/drm_print.h            | 17 -----------------
- 4 files changed, 2 insertions(+), 26 deletions(-)
+Series: drm/xe/guc: Enable WA 14018913170 (rev2)
+URL   : https://patchwork.freedesktop.org/series/128806/
+State : success
 
-diff --git a/drivers/gpu/drm/drm_modeset_lock.c b/drivers/gpu/drm/drm_modeset_lock.c
-index 918065982db4..7694b85e75e3 100644
---- a/drivers/gpu/drm/drm_modeset_lock.c
-+++ b/drivers/gpu/drm/drm_modeset_lock.c
-@@ -91,7 +91,7 @@ static noinline depot_stack_handle_t __drm_stack_depot_save(void)
- 
- static void __drm_stack_depot_print(depot_stack_handle_t stack_depot)
- {
--	struct drm_printer p = drm_debug_printer("drm_modeset_lock");
-+	struct drm_printer p = drm_dbg_printer(NULL, DRM_UT_KMS, "drm_modeset_lock");
- 	unsigned long *entries;
- 	unsigned int nr_entries;
- 	char *buf;
-diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
-index 673b29c732ea..699b7dbffd7b 100644
---- a/drivers/gpu/drm/drm_print.c
-+++ b/drivers/gpu/drm/drm_print.c
-@@ -182,13 +182,6 @@ void __drm_printfn_info(struct drm_printer *p, struct va_format *vaf)
- }
- EXPORT_SYMBOL(__drm_printfn_info);
- 
--void __drm_printfn_debug(struct drm_printer *p, struct va_format *vaf)
--{
--	/* pr_debug callsite decorations are unhelpful here */
--	printk(KERN_DEBUG "%s %pV", p->prefix, vaf);
--}
--EXPORT_SYMBOL(__drm_printfn_debug);
--
- void __drm_printfn_dbg(struct drm_printer *p, struct va_format *vaf)
- {
- 	const struct drm_device *drm = p->arg;
-diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index edf10618fe2b..30e1fe864826 100644
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -49,7 +49,7 @@
- static void ttm_bo_mem_space_debug(struct ttm_buffer_object *bo,
- 					struct ttm_placement *placement)
- {
--	struct drm_printer p = drm_debug_printer(TTM_PFX);
-+	struct drm_printer p = drm_dbg_printer(NULL, DRM_UT_CORE, TTM_PFX);
- 	struct ttm_resource_manager *man;
- 	int i, mem_type;
- 
-diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
-index 27e23c06dad4..9cc473e5d353 100644
---- a/include/drm/drm_print.h
-+++ b/include/drm/drm_print.h
-@@ -184,7 +184,6 @@ void __drm_puts_coredump(struct drm_printer *p, const char *str);
- void __drm_printfn_seq_file(struct drm_printer *p, struct va_format *vaf);
- void __drm_puts_seq_file(struct drm_printer *p, const char *str);
- void __drm_printfn_info(struct drm_printer *p, struct va_format *vaf);
--void __drm_printfn_debug(struct drm_printer *p, struct va_format *vaf);
- void __drm_printfn_dbg(struct drm_printer *p, struct va_format *vaf);
- void __drm_printfn_err(struct drm_printer *p, struct va_format *vaf);
- 
-@@ -317,22 +316,6 @@ static inline struct drm_printer drm_info_printer(struct device *dev)
- 	return p;
- }
- 
--/**
-- * drm_debug_printer - construct a &drm_printer that outputs to pr_debug()
-- * @prefix: debug output prefix
-- *
-- * RETURNS:
-- * The &drm_printer object
-- */
--static inline struct drm_printer drm_debug_printer(const char *prefix)
--{
--	struct drm_printer p = {
--		.printfn = __drm_printfn_debug,
--		.prefix = prefix
--	};
--	return p;
--}
--
- /**
-  * drm_dbg_printer - construct a &drm_printer for drm device specific output
-  * @drm: the &struct drm_device pointer, or NULL
--- 
-2.39.2
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 3a1d727c0 drm/xe: Use kstrdup while creating snapshot
+=== git am output follows ===
+Applying: drm/xe/guc: Enable WA 14018913170
+
 
