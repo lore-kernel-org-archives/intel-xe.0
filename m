@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C7BAC47077
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Jan 2024 13:09:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B891C4706C
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Jan 2024 13:10:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D36F110E542;
-	Tue, 16 Jan 2024 13:09:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F81710E538;
+	Tue, 16 Jan 2024 13:10:09 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59B7F10E542;
- Tue, 16 Jan 2024 13:09:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58CE810E538;
+ Tue, 16 Jan 2024 13:10:07 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/guc=3A_Enable?=
- =?utf-8?q?_WA_14018913170_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/guc=3A_Enable_WA_1?=
+ =?utf-8?q?4018913170_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Karthik Poosa" <karthik.poosa@intel.com>
-Date: Tue, 16 Jan 2024 13:09:54 -0000
-Message-ID: <170541059436.502240.15606496358138781758@5338d5abeb45>
+Date: Tue, 16 Jan 2024 13:10:07 -0000
+Message-ID: <170541060736.502240.7875161381353692103@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240116131445.2376726-1-karthik.poosa@intel.com>
 In-Reply-To: <20240116131445.2376726-1-karthik.poosa@intel.com>
@@ -48,9 +48,32 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 3a1d727c0 drm/xe: Use kstrdup while creating snapshot
-=== git am output follows ===
-Applying: drm/xe/guc: Enable WA 14018913170
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+faa12d3432d7ef7793d934cd9338c555e95a5aad
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 9b7e681b7d1d86507f46e12d5938b27668197382
+Author: Karthik Poosa <karthik.poosa@intel.com>
+Date:   Tue Jan 16 18:44:45 2024 +0530
+
+    drm/xe/guc: Enable WA 14018913170
+    
+    The GuC handles the WA, the KMD just needs to set the flag to enable
+    it on the appropriate platforms.
+    
+    v2:
+      - Fixed CI checkpatch warning, alignment should match open parenthesis.
+      - Fixed GUC FW version check to use XE_UC_FW_VER_RELEASE which points to
+        current GUC FW version instead of XE_UC_FW_VER_COMPATIBILITY which
+        holds GUC FW I/F version (Badal).
+    
+    Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
++ /mt/dim checkpatch 3a1d727c0061b96ddf8e653130f94ab331e2f065 drm-intel
+9b7e681b7 drm/xe/guc: Enable WA 14018913170
 
 
