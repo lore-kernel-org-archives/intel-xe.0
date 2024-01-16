@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BCAEC4706C
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Jan 2024 13:08:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DCC7C47258
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Jan 2024 13:08:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04CFF10E590;
-	Tue, 16 Jan 2024 13:08:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68D9510E546;
+	Tue, 16 Jan 2024 13:08:59 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C79B610E58C;
- Tue, 16 Jan 2024 13:08:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEB6910E598;
+ Tue, 16 Jan 2024 13:08:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705410517; x=1736946517;
+ t=1705410537; x=1736946537;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=0F50pzjKE1YAk7Ef+fHuufqwgllCs/8+21UsBFHBFF0=;
- b=jTEk+jRXRz5KKKjAaY+zFGuwv6Hn75hN+U7WVLTsAcchZhYaIkJufVk4
- goBPKIHnIERTFLiYkKdzTI/IQ/9GbbJeA0zpfsaM3FxEyiBBBAEYi9u8j
- mLMMdMSfXJx9gd8D4uUK8Ojcn/VBH3KhVimrU4a2ixHK+7UkcuSjjbqSJ
- 2sJ23RXBvugGKguRwHmoBaRR9hrEgYv3AkqmpUqZ9zxnGyjlwMj26VvQP
- qBub9M7ik/mL0VMBKv0ZIglVHvjOk4Xx0hmOh5NkCyBCz/Xd2tU8gB2Ly
- Jp0GRNBCR56bbW/vri2FyPzEv1v4ELj23GEK07qEI4NswMgf0nb7pVfWo A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10954"; a="397016006"
-X-IronPort-AV: E=Sophos;i="6.05,199,1701158400"; d="scan'208";a="397016006"
+ bh=Il6I5/c5CRzVwH3EioaJ7CiY7XP+/71GxCauqv15NOs=;
+ b=KXVvEShGUvZriQn4WZAepfZaSS88DM0BCGib918ApZHMKZtCiJGdTwGq
+ /efOynoeLw8yxnAcxZhizLYqyLnSPBVvrOiwi85YJpkgwFSvBl1H8X7R7
+ 2xEAZXR3lorGdgqvewNv6ivv2PVY9rlLc4NWuK4s0tpBLqyGUJHdHL73s
+ uPPDrBvMJg/Mhstj4N2HsgFXfoMHHa7wfqvQpDrYwpXrYVoNBDrHq2izG
+ O+AWk+YA1lYzZwDu9w+WnZfQ/nVzN/0/nbxtIUxn6xMPAT3HvhVCmp4EX
+ HfCfLRfqzAyS1iMVXArolFMMpEmVQ9VJBpfYOWVbp9d44t2w4AQkpH41X w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10954"; a="397016169"
+X-IronPort-AV: E=Sophos;i="6.05,199,1701158400"; d="scan'208";a="397016169"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2024 05:08:20 -0800
+ 16 Jan 2024 05:08:30 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10954"; a="760181522"
-X-IronPort-AV: E=Sophos;i="6.05,199,1701158400"; d="scan'208";a="760181522"
+X-IronPort-AV: E=McAfee;i="6600,9927,10954"; a="760181613"
+X-IronPort-AV: E=Sophos;i="6.05,199,1701158400"; d="scan'208";a="760181613"
 Received: from jfunnell-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.39.52])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2024 05:08:18 -0800
+ 16 Jan 2024 05:08:28 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: dri-devel@lists.freedesktop.org
-Subject: [PATCH 08/10] drm/i915: use drm_printf() with the drm_err_printer
- intead of pr_err()
-Date: Tue, 16 Jan 2024 15:07:33 +0200
-Message-Id: <246c0c275d05c919d959983e1784e3f7347f4540.1705410327.git.jani.nikula@intel.com>
+Subject: [PATCH 10/10] drm: remove drm_debug_printer in favor of
+ drm_dbg_printer
+Date: Tue, 16 Jan 2024 15:07:35 +0200
+Message-Id: <18b5b91e62d071675a651f6f91c58f05ad74134a.1705410327.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1705410327.git.jani.nikula@intel.com>
 References: <cover.1705410327.git.jani.nikula@intel.com>
@@ -64,61 +64,98 @@ Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There's already a related drm_printer. Use it to preserve the context
-instead of a separate pr_err().
+Convert the remaining drm_debug_printer users over to drm_dbg_printer,
+as it can handle the cases without struct drm_device pointer, and also
+provides drm debug category and prefix support. Remove drm_debug_printer
+altogether.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c | 6 +++---
- drivers/gpu/drm/i915/selftests/i915_active.c        | 4 ++--
- 2 files changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/drm_modeset_lock.c |  2 +-
+ drivers/gpu/drm/drm_print.c        |  7 -------
+ drivers/gpu/drm/ttm/ttm_bo.c       |  2 +-
+ include/drm/drm_print.h            | 17 -----------------
+ 4 files changed, 2 insertions(+), 26 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-index be827318275c..ef014df4c4fc 100644
---- a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-@@ -124,7 +124,7 @@ static int __live_idle_pulse(struct intel_engine_cs *engine,
- 	if (engine_sync_barrier(engine)) {
- 		struct drm_printer m = drm_err_printer(&engine->i915->drm, "pulse");
+diff --git a/drivers/gpu/drm/drm_modeset_lock.c b/drivers/gpu/drm/drm_modeset_lock.c
+index 918065982db4..7694b85e75e3 100644
+--- a/drivers/gpu/drm/drm_modeset_lock.c
++++ b/drivers/gpu/drm/drm_modeset_lock.c
+@@ -91,7 +91,7 @@ static noinline depot_stack_handle_t __drm_stack_depot_save(void)
  
--		pr_err("%s: no heartbeat pulse?\n", engine->name);
-+		drm_printf(&m, "%s: no heartbeat pulse?\n", engine->name);
- 		intel_engine_dump(engine, &m, "%s", engine->name);
+ static void __drm_stack_depot_print(depot_stack_handle_t stack_depot)
+ {
+-	struct drm_printer p = drm_debug_printer("drm_modeset_lock");
++	struct drm_printer p = drm_dbg_printer(NULL, DRM_UT_KMS, "drm_modeset_lock");
+ 	unsigned long *entries;
+ 	unsigned int nr_entries;
+ 	char *buf;
+diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
+index 673b29c732ea..699b7dbffd7b 100644
+--- a/drivers/gpu/drm/drm_print.c
++++ b/drivers/gpu/drm/drm_print.c
+@@ -182,13 +182,6 @@ void __drm_printfn_info(struct drm_printer *p, struct va_format *vaf)
+ }
+ EXPORT_SYMBOL(__drm_printfn_info);
  
- 		err = -ETIME;
-@@ -138,8 +138,8 @@ static int __live_idle_pulse(struct intel_engine_cs *engine,
- 	if (!i915_active_is_idle(&p->active)) {
- 		struct drm_printer m = drm_err_printer(&engine->i915->drm, "pulse");
+-void __drm_printfn_debug(struct drm_printer *p, struct va_format *vaf)
+-{
+-	/* pr_debug callsite decorations are unhelpful here */
+-	printk(KERN_DEBUG "%s %pV", p->prefix, vaf);
+-}
+-EXPORT_SYMBOL(__drm_printfn_debug);
+-
+ void __drm_printfn_dbg(struct drm_printer *p, struct va_format *vaf)
+ {
+ 	const struct drm_device *drm = p->arg;
+diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+index edf10618fe2b..30e1fe864826 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo.c
++++ b/drivers/gpu/drm/ttm/ttm_bo.c
+@@ -49,7 +49,7 @@
+ static void ttm_bo_mem_space_debug(struct ttm_buffer_object *bo,
+ 					struct ttm_placement *placement)
+ {
+-	struct drm_printer p = drm_debug_printer(TTM_PFX);
++	struct drm_printer p = drm_dbg_printer(NULL, DRM_UT_CORE, TTM_PFX);
+ 	struct ttm_resource_manager *man;
+ 	int i, mem_type;
  
--		pr_err("%s: heartbeat pulse did not flush idle tasks\n",
--		       engine->name);
-+		drm_printf(&m, "%s: heartbeat pulse did not flush idle tasks\n",
-+			   engine->name);
- 		i915_active_print(&p->active, &m);
+diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
+index 27e23c06dad4..9cc473e5d353 100644
+--- a/include/drm/drm_print.h
++++ b/include/drm/drm_print.h
+@@ -184,7 +184,6 @@ void __drm_puts_coredump(struct drm_printer *p, const char *str);
+ void __drm_printfn_seq_file(struct drm_printer *p, struct va_format *vaf);
+ void __drm_puts_seq_file(struct drm_printer *p, const char *str);
+ void __drm_printfn_info(struct drm_printer *p, struct va_format *vaf);
+-void __drm_printfn_debug(struct drm_printer *p, struct va_format *vaf);
+ void __drm_printfn_dbg(struct drm_printer *p, struct va_format *vaf);
+ void __drm_printfn_err(struct drm_printer *p, struct va_format *vaf);
  
- 		err = -EINVAL;
-diff --git a/drivers/gpu/drm/i915/selftests/i915_active.c b/drivers/gpu/drm/i915/selftests/i915_active.c
-index 8886752ade63..0d89d70b9c36 100644
---- a/drivers/gpu/drm/i915/selftests/i915_active.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_active.c
-@@ -158,7 +158,7 @@ static int live_active_wait(void *arg)
- 	if (!READ_ONCE(active->retired)) {
- 		struct drm_printer p = drm_err_printer(&i915->drm, __func__);
+@@ -317,22 +316,6 @@ static inline struct drm_printer drm_info_printer(struct device *dev)
+ 	return p;
+ }
  
--		pr_err("i915_active not retired after waiting!\n");
-+		drm_printf(&p, "i915_active not retired after waiting!\n");
- 		i915_active_print(&active->base, &p);
- 
- 		err = -EINVAL;
-@@ -191,7 +191,7 @@ static int live_active_retire(void *arg)
- 	if (!READ_ONCE(active->retired)) {
- 		struct drm_printer p = drm_err_printer(&i915->drm, __func__);
- 
--		pr_err("i915_active not retired after flushing!\n");
-+		drm_printf(&p, "i915_active not retired after flushing!\n");
- 		i915_active_print(&active->base, &p);
- 
- 		err = -EINVAL;
+-/**
+- * drm_debug_printer - construct a &drm_printer that outputs to pr_debug()
+- * @prefix: debug output prefix
+- *
+- * RETURNS:
+- * The &drm_printer object
+- */
+-static inline struct drm_printer drm_debug_printer(const char *prefix)
+-{
+-	struct drm_printer p = {
+-		.printfn = __drm_printfn_debug,
+-		.prefix = prefix
+-	};
+-	return p;
+-}
+-
+ /**
+  * drm_dbg_printer - construct a &drm_printer for drm device specific output
+  * @drm: the &struct drm_device pointer, or NULL
 -- 
 2.39.2
 
