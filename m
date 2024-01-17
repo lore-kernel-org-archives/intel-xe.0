@@ -4,45 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C842C47DB1
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jan 2024 22:01:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C74FC47258
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jan 2024 22:01:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F9E210E88E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 356E010E88F;
 	Wed, 17 Jan 2024 22:01:48 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FC9C10E008;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3BDA10E88C;
  Wed, 17 Jan 2024 22:01:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705528906; x=1737064906;
+ t=1705528907; x=1737064907;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fBy/nGHk4g7eyh/WjuYu7v2iQ0vWUflQsL/txH5D3k4=;
- b=fuzobl7cEcJqCcvBEaa/03H2DIW3u/NOq0xx/tz99I2jzRmxvUDHTaL7
- DCropwkKCIoGHaWqG6ptzN3Fgt8h67vJtJs4XIhx6/1Vgy+bXVtrGF9KO
- UMGsYSlsPOT6YZW3wSSIWocf5uLUyZSzWYiaX6Ar4avluqjNz0ESw5vco
- x8vAtmXjA2pX37PqdD0mDeIUP+AwSUCNWyLS87YG63g/4VpyrPDSywjb2
- KG7YOVuYrpBBH75z/bm5EROzInD9vP66yag/DubXI+ETqjuMjghnzKvfF
- jfnKZjN/0zrv39LddrgieC0Vfs2w3bFftaVNR2N/LJerZ+rf9XYqqowgA Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="7657618"
+ bh=a0CyKgI90QVtJzTmA2DuaoGo2T/vpJ7XqCsA6jXeFbo=;
+ b=HJDg7ENA8T2Vwx/OJ5Hv6L8Y0Otw94Fj76Dl6A4SPWnHqBT3DhAtOJZ1
+ x5s8suNhnOBPa/CRcetnZPwnPNatl9xl6Wz4n/lxBE0Jdl2IukoXVSOCn
+ jFjGTL4KhvIk0/3QyI/IPwa1QT9yZxIZlQJruKjWK5oVqKsZ06oGdia40
+ ODYk1862aqwqH5tiO+RliQXHW2gLcLHmcy+iaXG2qZet41+0/UYHcYM+j
+ 3yJ0qCy4wMNQ3B6dqn4ahBAaYdUSa/XG4bIFxbEtZKh/ec7PUmnXP/JGJ
+ yxM5dQDaEbVefOryd1+bV3ZgAsPEzA+DNL4HbsCHuLc15ZWF337qnk6Av Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="7657627"
 X-IronPort-AV: E=Sophos;i="6.05,201,1701158400"; 
-   d="scan'208";a="7657618"
+   d="scan'208";a="7657627"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  17 Jan 2024 14:01:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="734089231"
-X-IronPort-AV: E=Sophos;i="6.05,201,1701158400"; d="scan'208";a="734089231"
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="734089257"
+X-IronPort-AV: E=Sophos;i="6.05,201,1701158400"; d="scan'208";a="734089257"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  17 Jan 2024 14:01:45 -0800
 From: Oak Zeng <oak.zeng@intel.com>
 To: dri-devel@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH 05/23] drm/xe/svm: add helper to retrieve svm range from
- address
-Date: Wed, 17 Jan 2024 17:12:05 -0500
-Message-Id: <20240117221223.18540-6-oak.zeng@intel.com>
+Subject: [PATCH 14/23] drm/xe/svm: trace svm range migration
+Date: Wed, 17 Jan 2024 17:12:14 -0500
+Message-Id: <20240117221223.18540-15-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240117221223.18540-1-oak.zeng@intel.com>
 References: <20240117221223.18540-1-oak.zeng@intel.com>
@@ -63,9 +62,8 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-All valid virtual address range are maintained in svm's
-range_tree. This functions iterate svm's range tree and
-return the svm range that contains specific address.
+Add function to trace svm range migration, either
+from vram to sram, or sram to vram
 
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
@@ -73,60 +71,70 @@ Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@intel.com>
 Cc: Brian Welty <brian.welty@intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.h       |  2 ++
- drivers/gpu/drm/xe/xe_svm_range.c | 32 +++++++++++++++++++++++++++++++
- 2 files changed, 34 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_svm_range.c
+ drivers/gpu/drm/xe/xe_svm_migrate.c |  1 +
+ drivers/gpu/drm/xe/xe_trace.h       | 30 +++++++++++++++++++++++++++++
+ 2 files changed, 31 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index cd3cf92f3784..3ed106ecc02b 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -67,4 +67,6 @@ struct xe_svm_range {
- void xe_destroy_svm(struct xe_svm *svm);
- struct xe_svm *xe_create_svm(struct xe_vm *vm);
- struct xe_svm *xe_lookup_svm_by_mm(struct mm_struct *mm);
-+struct xe_svm_range *xe_svm_range_from_addr(struct xe_svm *svm,
-+								unsigned long addr);
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_svm_range.c b/drivers/gpu/drm/xe/xe_svm_range.c
-new file mode 100644
-index 000000000000..d8251d38f65e
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_svm_range.c
-@@ -0,0 +1,32 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#include <linux/interval_tree.h>
-+#include <linux/container_of.h>
-+#include <linux/mutex.h>
+diff --git a/drivers/gpu/drm/xe/xe_svm_migrate.c b/drivers/gpu/drm/xe/xe_svm_migrate.c
+index 3be26da33aa3..b4df411e04f3 100644
+--- a/drivers/gpu/drm/xe/xe_svm_migrate.c
++++ b/drivers/gpu/drm/xe/xe_svm_migrate.c
+@@ -201,6 +201,7 @@ vm_fault_t xe_devm_migrate_to_ram(struct vm_fault *vmf)
+ 	if (!migrate_vma.cpages)
+ 		goto free_buf;
+ 
++	trace_xe_svm_migrate_vram_to_sram(range);
+ 	for (i = 0; i < npages; i++) {
+ 		ret = migrate_page_vram_to_ram(vma, addr, migrate_vma.src[i],
+ 							migrate_vma.dst + i);
+diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+index 50380f5173ca..960eec38aee5 100644
+--- a/drivers/gpu/drm/xe/xe_trace.h
++++ b/drivers/gpu/drm/xe/xe_trace.h
+@@ -21,6 +21,7 @@
+ #include "xe_guc_exec_queue_types.h"
+ #include "xe_sched_job.h"
+ #include "xe_vm.h"
 +#include "xe_svm.h"
+ 
+ DECLARE_EVENT_CLASS(xe_gt_tlb_invalidation_fence,
+ 		    TP_PROTO(struct xe_gt_tlb_invalidation_fence *fence),
+@@ -601,6 +602,35 @@ DEFINE_EVENT_PRINT(xe_guc_ctb, xe_guc_ctb_g2h,
+ 
+ );
+ 
++DECLARE_EVENT_CLASS(xe_svm_migrate,
++		    TP_PROTO(struct xe_svm_range *range),
++		    TP_ARGS(range),
 +
-+/**
-+ * xe_svm_range_from_addr() - retrieve svm_range contains a virtual address
-+ *
-+ * @svm: svm that the virtual address belongs to
-+ * @addr: the virtual address to retrieve svm_range for
-+ *
-+ * return the svm range found,
-+ * or NULL if no range found
-+ */
-+struct xe_svm_range *xe_svm_range_from_addr(struct xe_svm *svm,
-+									unsigned long addr)
-+{
-+	struct interval_tree_node *node;
++		    TP_STRUCT__entry(
++			     __field(u64, start)
++			     __field(u64, end)
++			     ),
 +
-+	mutex_lock(&svm->mutex);
-+	node = interval_tree_iter_first(&svm->range_tree, addr, addr);
-+	mutex_unlock(&svm->mutex);
-+	if (!node)
-+		return NULL;
++		    TP_fast_assign(
++			   __entry->start = range->start;
++			   __entry->end = range->end;
++			   ),
 +
-+	return container_of(node, struct xe_svm_range, inode);
-+}
++		    TP_printk("Migrate svm range [0x%016llx,0x%016llx)",  __entry->start,
++			      __entry->end)
++);
++
++DEFINE_EVENT(xe_svm_migrate, xe_svm_migrate_vram_to_sram,
++		    TP_PROTO(struct xe_svm_range *range),
++		    TP_ARGS(range)
++);
++
++
++DEFINE_EVENT(xe_svm_migrate, xe_svm_migrate_sram_to_vram,
++		    TP_PROTO(struct xe_svm_range *range),
++		    TP_ARGS(range)
++);
++
+ DECLARE_EVENT_CLASS(xe_buddy_block,
+                TP_PROTO(struct drm_buddy_block *block, u64 size, u64 pfn),
+                TP_ARGS(block, size, pfn),
 -- 
 2.26.3
 
