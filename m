@@ -4,140 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33A96C47422
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jan 2024 07:48:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBB09C47258
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jan 2024 08:23:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEDF810E57E;
-	Wed, 17 Jan 2024 07:48:29 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9128610E57E
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Jan 2024 07:48:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA10710E60C;
+	Wed, 17 Jan 2024 08:23:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01C4110E60C
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Jan 2024 08:23:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705477708; x=1737013708;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=/w00FIKOupuBPSzcJ/Xoc3v3QflAbWO6SpuCY77DPWM=;
- b=ZnjmP//oMpPhyZqxinRLs3Jp6p2c5Bzd3PXCv9vCWuiQvKlIKYuwxrzO
- l8TjLtvv1h/wjSVeGaoUOilicb9n+v0OjxP48EbhiIT5CFMzyC3npa9ec
- 3unz0+1n1//IW8avi1sYNVf0wDDDdppxA82htCoE0WUzReZpGjOuOxWWE
- umSFII8MCCNqgYw2iVzYvdM2JEkvTBUooGuToxfJtOsA0JW5GJuS6ehzH
- 8Te1nLO2ZGRsQN6OTHfEdzwMzqp3QiswGbWAZe25PAekDWG2EpgkDy9kY
- 53JnW3DrdO/zEeyz3FZYI/XHkfcumFQKo8RLi5FnrtHRpV0HAClLFQ3d6 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="6856007"
-X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; 
-   d="scan'208";a="6856007"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2024 23:48:08 -0800
+ t=1705479816; x=1737015816;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=a8rSljFwcEKQO57wtS9pHQHvylHfQ/BVTzajzh02JAs=;
+ b=N5j76CqqmFUol9l5yX1xHq0fylFoI//DIIsm8eB1haop3T/HsN7gjkFI
+ cxm6XI0sKyNoXNqiTBqmFtKGfbfQbVt6c5ixU4zKZri+IKIg4X13pinzT
+ YJ/J0b/cQG2FL3eRCpQPcuGhl1COGILkaChOpyV5nOtZ0ssN2fS2UQOwr
+ 2UT19sC0Hc+98JETY2mhof9Q2wtcxiCmEgEPqYbrw/uEb3izD0LUUctb3
+ taLlPkfFfAwu32D2tlAbUvUci0UN91oRj9tHRKhzOInSzXF5k/FdHLMN3
+ 9u+ZZJWcJxbOxfjf86/rd9nXbJmED4lM0mxO1S+9H5l/pi6QowMSuBNS1 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="403866278"
+X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; d="scan'208";a="403866278"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2024 00:23:36 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="874744045"
-X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; d="scan'208";a="874744045"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by FMSMGA003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 16 Jan 2024 23:48:07 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 16 Jan 2024 23:48:06 -0800
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 16 Jan 2024 23:48:06 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 16 Jan 2024 23:48:06 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.169)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 16 Jan 2024 23:48:06 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mthPs1GpZ0xXe6XXUt8UYxOriolemWs3RPe9w8ZdxXja431dXvy3FCOC+xzHB0Lrq/WVm4YrBIWTnTf4gR2MXOImVEfxL6PDIGfxXQJSxBogzyeQTwnnoRZ14hmmOP6VtegsM+8pHyAFTFwpMfIX/toi1GsH3x1G357QlCmAGKA9DAewNUcycoR/5iSIN3R6CN6KhaG5WZFFfnfauWzz/Knx5fx3zc/5RxTCU18yppAnzsEtpogcJg6xRaP9QHmy8B+Pv8Pwsgujz7RQEcdhyFDGq3ekgD2yfpuqxG2EoJB/tydsknGoa1JZ1Z2crEZ35lM5DjYp1YdoZC6yTaW5sA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DDbt/Zj4jSrxejoByLylKIffkdVSxmaaaSaOO0zNlb0=;
- b=kCzh3Am0/9rj6T83NvQaHgAC4aVUAEUb4beOdHZqMNuSSzMh7dEXd+Mf+9kdCw/GW+VOCJoi1+i57qvAijTDwY+sBypn3N4rtkPuqU856RTn6GPXwpg8VSS7mjrnw+Mx+H9xFbZjU4dWJJJq5ix6wdCLMqBpxpokr8sQBdj54/KtUmDY5YNFh5yHQ+cWG0XRrVfGx9vPM4E7UY8WKn4nR8z6cKdYEqUQz5PyGZEHt9LFinDTGtruT8aNWiZ2PiZHOngm5IsDNgbpv71hqT3gP1y6raSgMOmnSBnQBfzLW/M93TIvEm/S3uj2LlYac1j6/e+vGuH26HtlkSoT8oKAlA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB6952.namprd11.prod.outlook.com (2603:10b6:510:224::13)
- by CYYPR11MB8386.namprd11.prod.outlook.com (2603:10b6:930:bf::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.30; Wed, 17 Jan
- 2024 07:47:59 +0000
-Received: from PH8PR11MB6952.namprd11.prod.outlook.com
- ([fe80::f6ca:b25e:ebc1:10fd]) by PH8PR11MB6952.namprd11.prod.outlook.com
- ([fe80::f6ca:b25e:ebc1:10fd%4]) with mapi id 15.20.7181.026; Wed, 17 Jan 2024
- 07:47:59 +0000
-Date: Tue, 16 Jan 2024 23:47:56 -0800
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: Re: [PATCH 3/3] drm/xe: Add kernel-doc for CCS mode selection
-Message-ID: <ZaeGLEnuJuoEUbwC@nvishwa1-DESK>
-References: <20231216214120.7394-1-niranjana.vishwanathapura@intel.com>
- <20231216214120.7394-4-niranjana.vishwanathapura@intel.com>
- <auc4ho5g4vycsihlmw3cnhai36lmlxzrmsjlxtcsjrpc3qmhqz@kcw6wpnccurl>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <auc4ho5g4vycsihlmw3cnhai36lmlxzrmsjlxtcsjrpc3qmhqz@kcw6wpnccurl>
-X-ClientProxiedBy: SJ0PR03CA0072.namprd03.prod.outlook.com
- (2603:10b6:a03:331::17) To PH8PR11MB6952.namprd11.prod.outlook.com
- (2603:10b6:510:224::13)
+X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="733904986"
+X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; d="scan'208";a="733904986"
+Received: from msznigir-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.38.230])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2024 00:23:30 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Zhanjun Dong <zhanjun.dong@intel.com>, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v2] drm/xe/guc: Add register defines for GuC based
+ register capture
+In-Reply-To: <20240116231600.154097-2-zhanjun.dong@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240116231600.154097-1-zhanjun.dong@intel.com>
+ <20240116231600.154097-2-zhanjun.dong@intel.com>
+Date: Wed, 17 Jan 2024 10:23:27 +0200
+Message-ID: <87ply0qsg0.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB6952:EE_|CYYPR11MB8386:EE_
-X-MS-Office365-Filtering-Correlation-Id: 45cc5bd8-207c-42b5-570b-08dc17309ff9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: auAEVJnaxdV7T1GInXerKDq0b1dQlJJ3GnHeHcjl/ayg0SMyc7/wNuMtgJTrx/ch+bObGiExiFYvG9qC2/+GpBbQYSncO1iqHq4h9O+ukGmfvqTRobDRZ7qJAoLSQkA6XWFMKvXu8xuV7emsrc9W0qXk0qWphwfyvtIhIm5AWENHyOR6S5SHVdIGifl+18PnRSjeZp5skmlLCHaT7Mkrk2N5oH9QodBsRzBFfqcfDrP7PvDGu1XSYR4fNLa6aEPZ12x0bXEm72OXnZca3CQzwMmwyed+etDBkZ2vyB4NndFFRXAeWXZMyCN4Xf2+zp41WbiMfChqihVJPReErKZn/0EOnsZIkn82sj9OYXA/mxE4GV+W++R14BGGKG+DjdgNgiIQpdO0SqMXozXX3h43CZk8oDqY3jkFar2+f6dM+9ZIQ/woUJX2UqKDFhU7UxdBTADn5JDmLtdK1ZA/XF9gRobfXz71XXD/KlkZYEb13l+k0jr0IbbMcly81tUJOOQfKQQldx325QYAMbkANohf+RGyLM/w0bYvogKOB323IPUCkdk4luikoUVUOYEabANV
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB6952.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(39860400002)(346002)(396003)(366004)(376002)(136003)(230922051799003)(1800799012)(64100799003)(186009)(451199024)(6666004)(6512007)(6506007)(9686003)(26005)(38100700002)(86362001)(82960400001)(2906002)(41300700001)(33716001)(6862004)(4326008)(44832011)(6486002)(5660300002)(83380400001)(316002)(6636002)(478600001)(66946007)(66556008)(8936002)(8676002)(66476007);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?wu/lSU18HdjbmOEPpRkK6MMettRmcXydYAaciUQos1O9X9VZhwb5Q8lOQg6E?=
- =?us-ascii?Q?zq3vwpnRsln3GpOp0UUKD3k0dV3umDVPqJlhkqGt24qXVQyNxEapjWzdQeVF?=
- =?us-ascii?Q?itRbNk3rqgv9oCzwhamxbmQdAWS987eXsFOenA8H2MmaysKLj6eZstD1JFgq?=
- =?us-ascii?Q?9l5w8O4ziL86qoc63BL2HqCE0b0Fakszw3f3fGCH6Wjdx7ea1MBxphY4Ab7v?=
- =?us-ascii?Q?96ow4QtYF1dLVCyX6Un9pAFePBUt0J+pifdAo/bJSmIJ5JnNDVWPlOOgTUhT?=
- =?us-ascii?Q?VNzqAHNgJUwtmhTI/zN/XGpg5yYo8yNBkW6T1JZcMC4bxh9eKH01nb9+kPUF?=
- =?us-ascii?Q?KzfFZXLBUvQOtPELLsRtiPTpglSrlknLNRVuFLyyijO5pyR7g7uH3Mn4iIr8?=
- =?us-ascii?Q?WaUl4oCeiDOLsXtbZxm4tBAUfHvSRQwbtPpN4e4pMkQ0QhHm2Uy6X0uUx2+8?=
- =?us-ascii?Q?Zl9weHo3HPY146CBIHitrcz7+INEMz+oJiSVG7ttaalm5/chwuXCYRuLf6OQ?=
- =?us-ascii?Q?k1cUrT//pqRP+G1tFuUI8Sv29IpQK+MYc3hgqnPolDFISYpeLPOrnCzwJMkO?=
- =?us-ascii?Q?n6orgNkDivkd9krWcl0h7X8utCkzXAkIKIFfYDuXnaXMt0YXdnaDn3LS0pae?=
- =?us-ascii?Q?BXexpOa2rpD56b1cCryI8FYWP1e75YZoB+yI/VJuS9sQkyOroDtyHintknSM?=
- =?us-ascii?Q?nLqd5CliHxlueKBUsn/8ngFrmZMqo/bmlLDkJmIGJGlsiV3S752Y0hRdO+Ba?=
- =?us-ascii?Q?ra4/1KS0EWjtA6em2YYWxET8OgTTlvZhr9IMdKa6GvgfnVFNv6QQPMRgIQYt?=
- =?us-ascii?Q?dgz/jfPAp1u6p6Hs0JEGPfTKQzVDCMFXQthNWwY40zcZt7t4wcaXSdmg3UQq?=
- =?us-ascii?Q?HgVxQdmckQ8WioaR+IAnu0d54SCcdGmPEzfyP7VE30cPQdVx6bv7dDRgCqHP?=
- =?us-ascii?Q?ONzB+KF4ZD32XpybUk3oc/eJqz9YuOoQnqGYGC9Gl9hb+8X0qGAxiJrEOSdI?=
- =?us-ascii?Q?U2plVbhxXTmaVEROpnO1aalhK3pxrJSLxIxSlbWshg4e8xLJytlz4W1yOPvy?=
- =?us-ascii?Q?fhd8V4IW0i6QfS/atRcRE8Ijf0fcvjlPlm9g6DkQGInSAYRwUBWk0VnyyC0W?=
- =?us-ascii?Q?YEwUKabBDLLosMeX/7QeXtHienFXWfMtE4GG6WviOZUU+kIl7jC9X4BLVGPG?=
- =?us-ascii?Q?ymEnF3jmtCUvZlo6TLr+4xTzS4liEZqMXdgDByb6sxCeyX+oPlYKIe0jdrSw?=
- =?us-ascii?Q?0DHn4KJl0VA9DdKf8u9VfTeByFf5siHhhMWCrJBq47qwGvppGbIjGHSL4xEt?=
- =?us-ascii?Q?3Z8CQ6eM/tT7FJHD9VfRxhDAfUVpiCT1WEZQdlWRmQHpftbXBv2OfOK3lS17?=
- =?us-ascii?Q?1pP2v2gOJWAbOh806nAREFUooPnwKn+DR7Kg8GHFhB1PiJFkd+MQP2r4oqGD?=
- =?us-ascii?Q?Eo+By9qR2m/NAVD1rr/ukR9OykMznNG3qJS2M8f2Xxf3H7DxaHkukkG1WAqR?=
- =?us-ascii?Q?81zNAFrpXDDTILyDDzQbI/O/TfpaVQCBsnSVQk6aiG60eLylcvO8XO6YT79l?=
- =?us-ascii?Q?ES3dsdGPbcYStAjPcoXw8uDM1FWVzC0ysCh7OBzh4lYcAwgovEpvHmPC/2Pr?=
- =?us-ascii?Q?+tOR6f4xd22h14lJwVFY4AU=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 45cc5bd8-207c-42b5-570b-08dc17309ff9
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB6952.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jan 2024 07:47:59.1016 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Agrs1YJVcdy3ScHyhznt+5MYrXgwfb9v0rMILpGsxKWzcuqCAnOToWxQ4I9f8+003oSQXB4vMUn70slTQz3PmyXpeJ+gdzywURsyOiVNs7fGccYv3jpPNppFQQ1QiLjk
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR11MB8386
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,153 +60,357 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jan 16, 2024 at 04:16:14PM -0600, Lucas De Marchi wrote:
->On Sat, Dec 16, 2023 at 01:41:18PM -0800, Niranjana Vishwanathapura wrote:
->>Move all CCS mode documentation including that of sysfs
->>interfaces to a single kernel-doc section.
->>
->>Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
->>---
->>Documentation/gpu/xe/index.rst       |  1 +
->>Documentation/gpu/xe/xe_ccs_mode.rst | 14 ++++++++++++++
->>drivers/gpu/drm/xe/xe_gt_ccs_mode.c  | 28 ++++++++++++++++++++++------
->>drivers/gpu/drm/xe/xe_gt_types.h     |  7 +------
->>4 files changed, 38 insertions(+), 12 deletions(-)
->>create mode 100644 Documentation/gpu/xe/xe_ccs_mode.rst
->>
->>diff --git a/Documentation/gpu/xe/index.rst b/Documentation/gpu/xe/index.rst
->>index c224ecaee81e1..1db8d20942b4e 100644
->>--- a/Documentation/gpu/xe/index.rst
->>+++ b/Documentation/gpu/xe/index.rst
->>@@ -14,6 +14,7 @@ DG2, etc is provided to prototype the driver.
->>   xe_mm
->>   xe_map
->>   xe_migrate
->>+   xe_ccs_mode
->>   xe_cs
->>   xe_pm
->>   xe_pcode
->>diff --git a/Documentation/gpu/xe/xe_ccs_mode.rst b/Documentation/gpu/xe/xe_ccs_mode.rst
->>new file mode 100644
->>index 0000000000000..9ff07706f9739
->>--- /dev/null
->>+++ b/Documentation/gpu/xe/xe_ccs_mode.rst
->>@@ -0,0 +1,14 @@
->>+.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->>+
->>+=========
->>+CCS mode
->>+=========
->>+
->>+.. kernel-doc:: drivers/gpu/drm/xe/xe_gt_ccs_mode.c
->>+   :doc: CCS mode
->>+
->>+Internal API
->>+============
->>+
->>+.. kernel-doc:: drivers/gpu/drm/xe/xe_gt_ccs_mode.c
->>+   :internal:
->>diff --git a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
->>index 173b119a21c00..d338b0859728a 100644
->>--- a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
->>+++ b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
->>@@ -12,6 +12,27 @@
->>#include "xe_gt_sysfs.h"
->>#include "xe_mmio.h"
->>
->>+/**
->>+ * DOC: CCS mode
->>+ *
->>+ * CCS mode setting allows fixed mapping of available compute slices to
->>+ * compute engines. By default only the first available compute engine is
->>+ * enabled and all available compute slices are allocated to it.
->>+ *
->>+ * Below per-tile sysfs interfaces help user to change the CCS mode setting.
->>+ *
->>+ * 'num_cslices' - This read-only interface returns the number of compute
->>+ * slices available.
->>+ *
->>+ * 'ccs_mode' - Allows user to set the number of compute hardware engines
->>+ * to be enabled and to which allocate the available compute slices. This
->>+ * user configuration change triggers a gt reset and it is expected that
->>+ * there are no open drm clients while doing so. The user configuration
->>+ * must allow equal distribution of available compute slices to enabled
+On Tue, 16 Jan 2024, Zhanjun Dong <zhanjun.dong@intel.com> wrote:
+> Add registers defines and list of registers for GuC based error state cap=
+ture.
 >
->must allow? Shouldn't this be something like
->"Compute slices is always equally distributed to the compute engines".
->Then mention what happens when this is not possible:
+> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+> ---
+>  drivers/gpu/drm/xe/Kconfig               |  11 +++
+>  drivers/gpu/drm/xe/Makefile              |   1 +
+>  drivers/gpu/drm/xe/regs/xe_engine_regs.h |  12 +++
+>  drivers/gpu/drm/xe/regs/xe_gt_regs.h     |  20 +++++
+>  drivers/gpu/drm/xe/xe_guc.c              |   7 ++
+>  drivers/gpu/drm/xe/xe_guc_capture.c      | 101 +++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_guc_capture.h      |  19 +++++
+>  7 files changed, 171 insertions(+)
+>  create mode 100644 drivers/gpu/drm/xe/xe_guc_capture.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_guc_capture.h
 >
+> diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+> index 1b57ae38210d..236763569877 100644
+> --- a/drivers/gpu/drm/xe/Kconfig
+> +++ b/drivers/gpu/drm/xe/Kconfig
+> @@ -83,6 +83,17 @@ config DRM_XE_FORCE_PROBE
+>=20=20
+>  	  Use "!*" to block the probe of the driver for all known devices.
+>=20=20
+> +config DRM_XE_CAPTURE_ERROR
+> +	bool "Enable capturing GPU state following a hang"
+> +	depends on DRM_XE
+> +	default y
+> +	help
+> +	  This option enables capturing the GPU state when a hang is detected.
+> +	  This information is vital for triaging hangs and assists in debugging.
+> +	  Please report any hang to your Intel representative to help with tria=
+ging.
+> +
+> +	  If in doubt, say "Y".
+> +
+>  menu "drm/Xe Debugging"
+>  depends on DRM_XE
+>  depends on EXPERT
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index e16b84f79ddf..4cba24ff55e2 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -91,6 +91,7 @@ xe-y +=3D xe_bb.o \
+>  	xe_gt_topology.o \
+>  	xe_guc.o \
+>  	xe_guc_ads.o \
+> +	xe_guc_capture.o \
+>  	xe_guc_ct.o \
+>  	xe_guc_db_mgr.o \
+>  	xe_guc_debugfs.o \
+> diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/x=
+e/regs/xe_engine_regs.h
+> index 0b1266c88a6a..06015703a33e 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+> @@ -64,10 +64,16 @@
+>=20=20
+>  #define RING_ACTHD_UDW(base)			XE_REG((base) + 0x5c)
+>  #define RING_DMA_FADD_UDW(base)			XE_REG((base) + 0x60)
+> +#define RING_IPEIR(base)			XE_REG((base) + 0x64)
+>  #define RING_IPEHR(base)			XE_REG((base) + 0x68)
+> +#define RING_INSTDONE(base)			XE_REG((base) + 0x6c)
+> +#define RING_INSTPS(base)			XE_REG((base) + 0x70)
+> +
+>  #define RING_ACTHD(base)			XE_REG((base) + 0x74)
+>  #define RING_DMA_FADD(base)			XE_REG((base) + 0x78)
+>  #define RING_HWS_PGA(base)			XE_REG((base) + 0x80)
+> +#define IPEIR(base)				XE_REG((base) + 0x88)
+> +
+>  #define RING_HWSTAM(base)			XE_REG((base) + 0x98)
+>  #define RING_MI_MODE(base)			XE_REG((base) + 0x9c)
+>  #define RING_NOPID(base)			XE_REG((base) + 0x94)
+> @@ -111,9 +117,12 @@
+>  #define   FF_DOP_CLOCK_GATE_DISABLE		REG_BIT(1)
+>  #define   REPLAY_MODE_GRANULARITY		REG_BIT(0)
+>=20=20
+> +#define RING_BBSTATE(base)			XE_REG((base) + 0x110)
+>  #define RING_BBADDR(base)			XE_REG((base) + 0x140)
+>  #define RING_BBADDR_UDW(base)			XE_REG((base) + 0x168)
+>=20=20
+> +#define CCID(base)				XE_REG((base) + 0x180)
+> +
+>  #define BCS_SWCTRL(base)			XE_REG((base) + 0x200, XE_REG_OPTION_MASKED)
+>  #define   BCS_SWCTRL_DISABLE_256B		REG_BIT(2)
+>=20=20
+> @@ -129,6 +138,9 @@
+>  #define	  CTX_CTRL_INHIBIT_SYN_CTX_SWITCH	REG_BIT(3)
+>  #define	  CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT	REG_BIT(0)
+>=20=20
+> +#define RING_PDP_UDW(base, n)		XE_REG((base) + 0x270 + (n) * 8 + 4)
+> +#define RING_PDP_LDW(base, n)		XE_REG((base) + 0x270 + (n) * 8)
+> +
+>  #define RING_MODE(base)				XE_REG((base) + 0x29c)
+>  #define   GFX_DISABLE_LEGACY_MODE		REG_BIT(3)
+>=20=20
+> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/re=
+gs/xe_gt_regs.h
+> index 4017319c6300..d68a8b447842 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> @@ -67,6 +67,8 @@
+>  #define VE1_AUX_INV				XE_REG(0x42b8)
+>  #define   AUX_INV				REG_BIT(0)
+>=20=20
+> +#define AUX_ERR_DBG				XE_REG(0x43f4)
+> +
+>  #define XEHP_TILE_ADDR_RANGE(_idx)		XE_REG_MCR(0x4900 + (_idx) * 4)
+>  #define XEHP_FLAT_CCS_BASE_ADDR			XE_REG_MCR(0x4910)
+>=20=20
+> @@ -94,6 +96,8 @@
+>  #define   FF_MODE2_TDS_TIMER_MASK		REG_GENMASK(23, 16)
+>  #define   FF_MODE2_TDS_TIMER_128		REG_FIELD_PREP(FF_MODE2_TDS_TIMER_MASK=
+, 4)
+>=20=20
+> +#define XEHPG_INSTDONE_GEOM_SVG			XE_REG_MCR(0x666c)
+> +
+>  #define CACHE_MODE_1				XE_REG(0x7004, XE_REG_OPTION_MASKED)
+>  #define   MSAA_OPTIMIZATION_REDUC_DISABLE	REG_BIT(11)
+>=20=20
+> @@ -110,6 +114,10 @@
+>  #define   FLSH_IGNORES_PSD			REG_BIT(10)
+>  #define   FD_END_COLLECT			REG_BIT(5)
+>=20=20
+> +#define SC_INSTDONE				XE_REG(0x7100)
+> +#define SC_INSTDONE_EXTRA			XE_REG(0x7104)
+> +#define SC_INSTDONE_EXTRA2			XE_REG(0x7108)
+> +
+>  #define COMMON_SLICE_CHICKEN4			XE_REG(0x7300, XE_REG_OPTION_MASKED)
+>  #define   DISABLE_TDC_LOAD_BALANCING_CALC	REG_BIT(6)
+>=20=20
+> @@ -299,6 +307,11 @@
+>=20=20
+>  #define XE2LPM_L3SQCREG5			XE_REG_MCR(0xb658)
+>=20=20
+> +#define FAULT_TLB_DATA0				XE_REG(0xceb8)
+> +#define FAULT_TLB_DATA1				XE_REG(0xcebc)
+> +
+> +#define RING_FAULT_REG				XE_REG(0xcec4)
+> +
+>  #define XEHP_MERT_MOD_CTRL			XE_REG_MCR(0xcf28)
+>  #define RENDER_MOD_CTRL				XE_REG_MCR(0xcf2c)
+>  #define COMP_MOD_CTRL				XE_REG_MCR(0xcf30)
+> @@ -317,6 +330,11 @@
+>  #define   INVALIDATION_BROADCAST_MODE_DIS	REG_BIT(12)
+>  #define   GLOBAL_INVALIDATION_MODE		REG_BIT(2)
+>=20=20
+> +#define GAM_DONE				XE_REG(0xcf68)
+> +
+> +#define SAMPLER_INSTDONE			XE_REG_MCR(0xe160)
+> +#define ROW_INSTDONE				XE_REG_MCR(0xe164)
+> +
+>  #define HALF_SLICE_CHICKEN5			XE_REG_MCR(0xe188, XE_REG_OPTION_MASKED)
+>  #define   DISABLE_SAMPLE_G_PERFORMANCE		REG_BIT(0)
+>=20=20
+> @@ -482,6 +500,8 @@
+>  #define   GT_CS_MASTER_ERROR_INTERRUPT		REG_BIT(3)
+>  #define   GT_RENDER_USER_INTERRUPT		REG_BIT(0)
+>=20=20
+> +#define SFC_DONE(n)				XE_REG(0x1cc000 + (n) * 0x1000)
+> +
+>  #define PVC_GT0_PACKAGE_ENERGY_STATUS		XE_REG(0x281004)
+>  #define PVC_GT0_PACKAGE_RAPL_LIMIT		XE_REG(0x281008)
+>  #define PVC_GT0_PACKAGE_POWER_SKU_UNIT		XE_REG(0x281068)
+> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+> index 235d27b17ff9..4f9257075905 100644
+> --- a/drivers/gpu/drm/xe/xe_guc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc.c
+> @@ -17,6 +17,7 @@
+>  #include "xe_force_wake.h"
+>  #include "xe_gt.h"
+>  #include "xe_guc_ads.h"
+> +#include "xe_guc_capture.h"
+>  #include "xe_guc_ct.h"
+>  #include "xe_guc_hwconfig.h"
+>  #include "xe_guc_log.h"
+> @@ -277,6 +278,12 @@ int xe_guc_init(struct xe_guc *guc)
+>  	if (ret)
+>  		goto out;
+>=20=20
+> +#if IS_ENABLED(CONFIG_DRM_XE_CAPTURE_ERROR)
+> +	ret =3D xe_guc_capture_init(guc);
+> +	if (ret)
+> +		goto out;
+> +#endif
 
-Ok, will fix.
+No. Please make xe_guc_capture_init() a static inline no-op stub in the
+header for CONFIG_DRM_XE_CAPTURE_ERROR=3Dn. Examples of this are literally
+everywhere in kernel. Do not add conditional compilation in code.
 
->        /*
->         * Ensure number of engines specified is valid and there is an
->         * exact multiple of engines for slices.
->         */
->        num_cslices = hweight32(CCS_MASK(gt));
->        if (!num_engines || num_engines > num_cslices || num_cslices % num_engines) {
->                xe_gt_dbg(gt, "Invalid compute config, %d engines %d slices\n",
->                          num_engines, num_cslices);
->                return -EINVAL;
->        }
->
->
->So... what the user needs to know to arrive into a valid solution is
->that he must read num_cslices to be able to know what are the possible
->configurations.
->
+> +
+>  	ret =3D xe_guc_ads_init(&guc->ads);
+>  	if (ret)
+>  		goto out;
+> diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_=
+guc_capture.c
+> new file mode 100644
+> index 000000000000..0870bfd1b88d
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_guc_capture.c
+> @@ -0,0 +1,101 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright =C2=A9 2021-2022 Intel Corporation
 
-Yes, that is correct.
+It's 2024.
 
-Thanks,
-Niranjana
+> + */
+> +
+> +#include <linux/types.h>
+> +
+> +#include <drm/drm_print.h>
+> +
+> +#include "abi/guc_actions_abi.h"
+> +#include "regs/xe_regs.h"
+> +#include "regs/xe_engine_regs.h"
+> +#include "regs/xe_gt_regs.h"
+> +#include "regs/xe_guc_regs.h"
+> +
+> +#include "xe_bo.h"
+> +#include "xe_device.h"
+> +#include "xe_exec_queue_types.h"
+> +#include "xe_hw_engine_types.h"
+> +#include "xe_gt.h"
+> +#include "xe_gt_printk.h"
+> +#include "xe_guc.h"
+> +#include "xe_guc_capture.h"
+> +#include "xe_guc_ct.h"
+> +
+> +#include "xe_guc_log.h"
+> +#include "xe_gt_mcr.h"
+> +#include "xe_guc_submit.h"
+> +#include "xe_macros.h"
+> +#include "xe_map.h"
 
->
->Lucas De Marchi
->
->>+ * compute hardware engines. Reading it returns the number of compute
->>+ * hardware engines currently enabled.
->>+ */
->>+
->>#define CCS_MODE_CSLICE_WIDTH		ilog2(CCS_MODE_CSLICE_ASSIGNMENT + 1)
->>#define CCS_MODE_CSLICE(cslice, ccs)	\
->>	((ccs) << ((cslice) * CCS_MODE_CSLICE_WIDTH))
->>@@ -174,12 +195,7 @@ static void xe_gt_ccs_mode_sysfs_fini(struct drm_device *drm, void *arg)
->> * xe_gt_ccs_mode_sysfs_init - Initialize CCS mode sysfs interfaces
->> * @gt: GT structure
->> *
->>- * Through a per-gt 'ccs_mode' sysfs interface, the user can enable a fixed
->>- * number of compute hardware engines to which the available compute slices
->>- * are to be allocated. This user configuration change triggers a gt reset
->>- * and it is expected that there are no open drm clients while doing so.
->>- * The number of available compute slices is exposed to user through a per-gt
->>- * 'num_cslices' sysfs interface.
->>+ * Create per-tile CCS mode sysfs interfaces.
->> */
->>void xe_gt_ccs_mode_sysfs_init(struct xe_gt *gt)
->>{
->>diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
->>index f746846604759..9cee17506f8bc 100644
->>--- a/drivers/gpu/drm/xe/xe_gt_types.h
->>+++ b/drivers/gpu/drm/xe/xe_gt_types.h
->>@@ -185,12 +185,7 @@ struct xe_gt {
->>		spinlock_t lock;
->>	} tlb_invalidation;
->>
->>-	/**
->>-	 * @ccs_mode: Number of compute engines enabled.
->>-	 * Allows fixed mapping of available compute slices to compute engines.
->>-	 * By default only the first available compute engine is enabled and all
->>-	 * available compute slices are allocated to it.
->>-	 */
->>+	/** @ccs_mode: Number of compute engines enabled */
->>	u32 ccs_mode;
->>
->>	/** @usm: unified shared memory state */
->>-- 
->>2.43.0
->>
+Superfluous newlines, not sorted.
+
+> +
+> +#if IS_ENABLED(CONFIG_DRM_XE_CAPTURE_ERROR)
+
+Please make the build of the entire file conditional in Makefile
+instead.
+
+> +
+> +/*
+> + * Define all device tables of GuC error capture register lists
+> + * NOTE: For engine-registers, GuC only needs the register offsets
+> + *       from the engine-mmio-base
+> + */
+> +#define COMMON_XELP_BASE_GLOBAL \
+> +	{ FORCEWAKE_GT,		    0,      0, "FORCEWAKE" }, \
+> +	{ FAULT_TLB_DATA0,	    0,      0, "FAULT_TLB_DATA0" }, \
+> +	{ FAULT_TLB_DATA1,	    0,      0, "FAULT_TLB_DATA1" }, \
+> +	{ AUX_ERR_DBG,		    0,      0, "AUX_ERR_DBG" }, \
+> +	{ GAM_DONE,		    0,      0, "GAM_DONE" }, \
+> +	{ RING_FAULT_REG,	    0,      0, "FAULT_REG" }
+> +
+> +#define COMMON_BASE_ENGINE_INSTANCE \
+> +	{ RING_PSMI_CTL(0),         0,      0, "RC PSMI" }, \
+> +	{ RING_ESR(0),              0,      0, "ESR" }, \
+> +	{ RING_EMR(0),              0,      0, "EMR" }, \
+> +	{ RING_EIR(0),              0,      0, "EIR" }, \
+> +	{ RING_EXECLIST_STATUS_HI(0), 0,    0, "RING_EXECLIST_STATUS_HI" }, \
+> +	{ RING_EXECLIST_STATUS_LO(0), 0,    0, "RING_EXECLIST_STATUS_LO" }, \
+> +	{ RING_DMA_FADD(0),         0,      0, "RING_DMA_FADD_LDW" }, \
+> +	{ RING_DMA_FADD_UDW(0),     0,      0, "RING_DMA_FADD_UDW" }, \
+> +	{ RING_IPEIR(0),            0,      0, "IPEIR" }, \
+> +	{ RING_IPEHR(0),            0,      0, "IPEHR" }, \
+> +	{ RING_INSTPS(0),           0,      0, "INSTPS" }, \
+> +	{ RING_BBADDR(0),           0,      0, "RING_BBADDR_LOW32" }, \
+> +	{ RING_BBADDR_UDW(0),       0,      0, "RING_BBADDR_UP32" }, \
+> +	{ RING_BBSTATE(0),          0,      0, "BB_STATE" }, \
+> +	{ CCID(0),                  0,      0, "CCID" }, \
+> +	{ RING_ACTHD(0),            0,      0, "ACTHD_LDW" }, \
+> +	{ RING_ACTHD_UDW(0),        0,      0, "ACTHD_UDW" }, \
+> +	{ INSTPM(0),                0,      0, "INSTPM" }, \
+> +	{ RING_INSTDONE(0),         0,      0, "INSTDONE" }, \
+> +	{ RING_NOPID(0),            0,      0, "RING_NOPID" }, \
+> +	{ RING_START(0),            0,      0, "START" }, \
+> +	{ RING_HEAD(0),             0,      0, "HEAD" }, \
+> +	{ RING_TAIL(0),             0,      0, "TAIL" }, \
+> +	{ RING_CTL(0),              0,      0, "CTL" }, \
+> +	{ RING_MI_MODE(0),          0,      0, "MODE" }, \
+> +	{ RING_CONTEXT_CONTROL(0),  0,      0, "RING_CONTEXT_CONTROL" }, \
+> +	{ RING_HWS_PGA(0),          0,      0, "HWS" }, \
+> +	{ RING_MODE(0),             0,      0, "GFX_MODE" }, \
+> +	{ RING_PDP_LDW(0, 0),	    0,      0, "PDP0_LDW" }, \
+> +	{ RING_PDP_UDW(0, 0),	    0,      0, "PDP0_UDW" }, \
+> +	{ RING_PDP_LDW(0, 1),	    0,      0, "PDP1_LDW" }, \
+> +	{ RING_PDP_UDW(0, 1),	    0,      0, "PDP1_UDW" }, \
+> +	{ RING_PDP_LDW(0, 2),	    0,      0, "PDP2_LDW" }, \
+> +	{ RING_PDP_UDW(0, 2),	    0,      0, "PDP2_UDW" }, \
+> +	{ RING_PDP_LDW(0, 3),	    0,      0, "PDP3_LDW" }, \
+> +	{ RING_PDP_UDW(0, 3),	    0,      0, "PDP3_UDW" }
+> +
+> +#define COMMON_XELP_BASE_RENDER \
+> +	{ SC_INSTDONE,		    0,      0, "SC_INSTDONE" }, \
+> +	{ SC_INSTDONE_EXTRA,	    0,      0, "SC_INSTDONE_EXTRA" }, \
+> +	{ SC_INSTDONE_EXTRA2,	    0,      0, "SC_INSTDONE_EXTRA2" }
+> +
+> +#define COMMON_XELP_BASE_VEC \
+> +	{ SFC_DONE(0),		    0,      0, "SFC_DONE[0]" }, \
+> +	{ SFC_DONE(1),		    0,      0, "SFC_DONE[1]" }, \
+> +	{ SFC_DONE(2),		    0,      0, "SFC_DONE[2]" }, \
+> +	{ SFC_DONE(3),		    0,      0, "SFC_DONE[3]" }
+> +
+> +int xe_guc_capture_init(struct xe_guc *guc)
+> +{
+> +	return 0;
+> +}
+> +
+> +#endif
+> diff --git a/drivers/gpu/drm/xe/xe_guc_capture.h b/drivers/gpu/drm/xe/xe_=
+guc_capture.h
+> new file mode 100644
+> index 000000000000..35fedc78d9e2
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_guc_capture.h
+> @@ -0,0 +1,19 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright =C2=A9 2021-2021 Intel Corporation
+
+2024.
+
+> + */
+> +
+> +#ifndef _XE_GUC_CAPTURE_H
+> +#define _XE_GUC_CAPTURE_H
+> +
+> +#include <linux/types.h>
+> +#include "xe_exec_queue_types.h"
+
+You don't need either of those includes.
+
+> +
+> +struct xe_hw_engine;
+> +
+
+Superfluous newline.
+
+> +struct xe_gt;
+> +struct xe_guc;
+> +
+> +int xe_guc_capture_init(struct xe_guc *guc);
+> +
+> +#endif /* _XE_GUC_CAPTURE_H */
+
+--=20
+Jani Nikula, Intel
