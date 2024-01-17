@@ -4,44 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00774C47258
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jan 2024 22:02:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27180C47DA2
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jan 2024 22:02:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B30910E8B2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE09310E8B6;
 	Wed, 17 Jan 2024 22:01:52 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02E5810E88B;
- Wed, 17 Jan 2024 22:01:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E02810E88C;
+ Wed, 17 Jan 2024 22:01:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705528906; x=1737064906;
+ t=1705528907; x=1737064907;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=AlOXOVCXLpgvGit1r71O7c7YxkBXHQMb0obY7p8J0no=;
- b=LsN2ygL6Gzagbbcv4tWju8SvP8iZuoj31ZawUopB1fWLa5SOYEgrJZEB
- hpTtO5A7+9U7SZoPNUkMyI7JjaeffompWxmwY1R1onwje6qGmZNu0R8jO
- aPpgZjcry1CMMSdLY/irJ874N6r4XNh7wvQnymYyXWcZHtJQb/HvwCaXz
- 80UPaVwP9w7e1o1WY4iKb7LeSaXaqUojEWD0yvH6O81TDh5tlftfDu0XG
- 9sFCwvHEqCNltGHrZlGMep2MFvzsjPIJhjNOPWEBj/iy0GnIevT7uB72L
- AedLdWQkJcmpJ9WQYhffApmsiA+1hb6Yz9CMyYqPTujoDoVWRntEw/Ckb A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="7657616"
+ bh=h/lo9EvDetMIWbSZsajp3ehwEFX3EM8mkEWl3W44vQo=;
+ b=NkJGtwU8qyKYeusvz2AJKUdq62A9eP8UweceLPd7fkDHHHUDulSkpbyP
+ tjuALoI2Mis2z+9Q30QiSWkrn/6dJMx4Ff5pq1kQmIbOLIhFmFgZa51KY
+ dlXR+6R1jXkFjHXOBqMRciKCiky5bl9E+1hQUBgwQyuRqz3cOQOvRO9uH
+ 5pcXB49mfTsNVoYhbTKtZ7Qr3OYpgzO58sxkBtmkqYbA6Ijn+cYVuUkg6
+ JRau4PD09GeN88ghkXihMy6dncK3vvqsANdoqERqssLolXS9n6j9nroZz
+ wWescSyqm97m1zJfZ6QazfJKzeaj4FR2mv9bPol8c6Wjh8c3tcIxNFd4s w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="7657622"
 X-IronPort-AV: E=Sophos;i="6.05,201,1701158400"; 
-   d="scan'208";a="7657616"
+   d="scan'208";a="7657622"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  17 Jan 2024 14:01:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="734089225"
-X-IronPort-AV: E=Sophos;i="6.05,201,1701158400"; d="scan'208";a="734089225"
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="734089242"
+X-IronPort-AV: E=Sophos;i="6.05,201,1701158400"; d="scan'208";a="734089242"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  17 Jan 2024 14:01:45 -0800
 From: Oak Zeng <oak.zeng@intel.com>
 To: dri-devel@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH 03/23] drm/xe/svm: create xe svm during vm creation
-Date: Wed, 17 Jan 2024 17:12:03 -0500
-Message-Id: <20240117221223.18540-4-oak.zeng@intel.com>
+Subject: [PATCH 09/23] drm/xe/svm: Remap and provide memmap backing for GPU
+ vram
+Date: Wed, 17 Jan 2024 17:12:09 -0500
+Message-Id: <20240117221223.18540-10-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240117221223.18540-1-oak.zeng@intel.com>
 References: <20240117221223.18540-1-oak.zeng@intel.com>
@@ -62,164 +63,198 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Create the xe_svm struct during xe_vm creation.
-Add xe_svm to a global hash table so later on
-we can retrieve xe_svm using mm_struct (the key).
+Memory remap GPU vram using devm_memremap_pages, so each GPU vram
+page is backed by a struct page.
 
-Destroy svm process during xe_vm close.
+Those struct pages are created to allow hmm migrate buffer b/t
+GPU vram and CPU system memory using existing Linux migration
+mechanism (i.e., migrating b/t CPU system memory and hard disk).
 
-Also add a helper function to retrieve svm struct
-from mm struct
+This is prepare work to enable svm (shared virtual memory) through
+Linux kernel hmm framework. The memory remap's page map type is set
+to MEMORY_DEVICE_PRIVATE for now. This means even though each GPU
+vram page get a struct page and can be mapped in CPU page table,
+but such pages are treated as GPU's private resource, so CPU can't
+access them. If CPU access such page, a page fault is triggered
+and page will be migrate to system memory.
+
+For GPU device which supports coherent memory protocol b/t CPU and
+GPU (such as CXL and CAPI protocol), we can remap device memory as
+MEMORY_DEVICE_COHERENT. This is TBD.
 
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Co-developed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@intel.com>
 Cc: Brian Welty <brian.welty@intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.c | 63 +++++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_svm.h | 11 +++++++
- drivers/gpu/drm/xe/xe_vm.c  |  5 +++
- 3 files changed, 79 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_svm.c
+ drivers/gpu/drm/xe/xe_device_types.h |  8 +++
+ drivers/gpu/drm/xe/xe_mmio.c         |  7 +++
+ drivers/gpu/drm/xe/xe_svm.h          |  2 +
+ drivers/gpu/drm/xe/xe_svm_devmem.c   | 87 ++++++++++++++++++++++++++++
+ 4 files changed, 104 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_svm_devmem.c
 
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 7eda86bd4c2a..6dba5b0ab481 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -99,6 +99,14 @@ struct xe_mem_region {
+ 	resource_size_t actual_physical_size;
+ 	/** @mapping: pointer to VRAM mappable space */
+ 	void __iomem *mapping;
++	/** @pagemap: Used to remap device memory as ZONE_DEVICE */
++	struct dev_pagemap pagemap;
++	/**
++	 * @hpa_base: base host physical address
++	 *
++	 * This is generated when remap device memory as ZONE_DEVICE
++	 */
++	resource_size_t hpa_base;
+ };
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index c8c5d74b6e90..3d34dcfa3b3a 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -21,6 +21,7 @@
+ #include "xe_macros.h"
+ #include "xe_module.h"
+ #include "xe_tile.h"
++#include "xe_svm.h"
+ 
+ #define XEHP_MTCFG_ADDR		XE_REG(0x101800)
+ #define TILE_COUNT		REG_GENMASK(15, 8)
+@@ -285,6 +286,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+ 		}
+ 
+ 		io_size -= min_t(u64, tile_size, io_size);
++		xe_svm_devm_add(tile, &tile->mem.vram);
+ 	}
+ 
+ 	xe->mem.vram.actual_physical_size = total_size;
+@@ -353,10 +355,15 @@ void xe_mmio_probe_tiles(struct xe_device *xe)
+ static void mmio_fini(struct drm_device *drm, void *arg)
+ {
+ 	struct xe_device *xe = arg;
++	struct xe_tile *tile;
++	u8 id;
+ 
+ 	pci_iounmap(to_pci_dev(xe->drm.dev), xe->mmio.regs);
+ 	if (xe->mem.vram.mapping)
+ 		iounmap(xe->mem.vram.mapping);
++	for_each_tile(tile, xe, id) {
++		xe_svm_devm_remove(xe, &tile->mem.vram);
++	}
+ }
+ 
+ static int xe_verify_lmem_ready(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index 191bce6425db..b54f7714a1fc 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -72,4 +72,6 @@ struct xe_svm *xe_lookup_svm_by_mm(struct mm_struct *mm);
+ struct xe_svm_range *xe_svm_range_from_addr(struct xe_svm *svm,
+ 								unsigned long addr);
+ int xe_svm_build_sg(struct hmm_range *range, struct sg_table *st);
++int xe_svm_devm_add(struct xe_tile *tile, struct xe_mem_region *mem);
++void xe_svm_devm_remove(struct xe_device *xe, struct xe_mem_region *mem);
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_svm_devmem.c b/drivers/gpu/drm/xe/xe_svm_devmem.c
 new file mode 100644
-index 000000000000..559188471949
+index 000000000000..cf7882830247
 --- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -0,0 +1,63 @@
++++ b/drivers/gpu/drm/xe/xe_svm_devmem.c
+@@ -0,0 +1,87 @@
 +// SPDX-License-Identifier: MIT
 +/*
 + * Copyright © 2023 Intel Corporation
 + */
 +
-+#include <linux/mutex.h>
 +#include <linux/mm_types.h>
-+#include "xe_svm.h"
++#include <linux/sched/mm.h>
 +
-+DEFINE_HASHTABLE(xe_svm_table, XE_MAX_SVM_PROCESS);
++#include "xe_device_types.h"
++#include "xe_trace.h"
++
++
++static vm_fault_t xe_devm_migrate_to_ram(struct vm_fault *vmf)
++{
++	return 0;
++}
++
++static void xe_devm_page_free(struct page *page)
++{
++}
++
++static const struct dev_pagemap_ops xe_devm_pagemap_ops = {
++	.page_free = xe_devm_page_free,
++	.migrate_to_ram = xe_devm_migrate_to_ram,
++};
 +
 +/**
-+ * xe_destroy_svm() - destroy a svm process
++ * xe_svm_devm_add: Remap and provide memmap backing for device memory
++ * @tile: tile that the memory region blongs to
++ * @mr: memory region to remap
 + *
-+ * @svm: the xe_svm to destroy
++ * This remap device memory to host physical address space and create
++ * struct page to back device memory
++ *
++ * Return: 0 on success standard error code otherwise
 + */
-+void xe_destroy_svm(struct xe_svm *svm)
++int xe_svm_devm_add(struct xe_tile *tile, struct xe_mem_region *mr)
 +{
-+	hash_del_rcu(&svm->hnode);
-+	mutex_destroy(&svm->mutex);
-+	kfree(svm);
++	struct device *dev = &to_pci_dev(tile->xe->drm.dev)->dev;
++	struct resource *res;
++	void *addr;
++	int ret;
++
++	res = devm_request_free_mem_region(dev, &iomem_resource,
++					   mr->usable_size);
++	if (IS_ERR(res)) {
++		ret = PTR_ERR(res);
++		return ret;
++	}
++
++	mr->pagemap.type = MEMORY_DEVICE_PRIVATE;
++	mr->pagemap.range.start = res->start;
++	mr->pagemap.range.end = res->end;
++	mr->pagemap.nr_range = 1;
++	mr->pagemap.ops = &xe_devm_pagemap_ops;
++	mr->pagemap.owner = tile->xe->drm.dev;
++	addr = devm_memremap_pages(dev, &mr->pagemap);
++	if (IS_ERR(addr)) {
++		devm_release_mem_region(dev, res->start, resource_size(res));
++		ret = PTR_ERR(addr);
++		drm_err(&tile->xe->drm, "Failed to remap tile %d memory, errno %d\n",
++				tile->id, ret);
++		return ret;
++	}
++	mr->hpa_base = res->start;
++
++	drm_info(&tile->xe->drm, "Added tile %d memory [%llx-%llx] to devm, remapped to %pr\n",
++			tile->id, mr->io_start, mr->io_start + mr->usable_size, res);
++	return 0;
 +}
 +
 +/**
-+ * xe_create_svm() - create a svm process
-+ *
-+ * @vm: the xe_vm that we create svm process for
-+ *
-+ * Return the created xe svm struct
++ * xe_svm_devm_remove: Unmap device memory and free resources
++ * @xe: xe device
++ * @mr: memory region to remove
 + */
-+struct xe_svm *xe_create_svm(struct xe_vm *vm)
++void xe_svm_devm_remove(struct xe_device *xe, struct xe_mem_region *mr)
 +{
-+	struct mm_struct *mm = current->mm;
-+	struct xe_svm *svm;
++	struct device *dev = &to_pci_dev(xe->drm.dev)->dev;
 +
-+	svm = kzalloc(sizeof(struct xe_svm), GFP_KERNEL);
-+	svm->mm = mm;
-+	svm->vm	= vm;
-+	mutex_init(&svm->mutex);
-+	/** Add svm to global xe_svm_table hash table
-+	 *  use mm as key so later we can retrieve svm using mm
-+	 */
-+	hash_add_rcu(xe_svm_table, &svm->hnode, (uintptr_t)mm);
-+	return svm;
++	if (mr->hpa_base) {
++		devm_memunmap_pages(dev, &mr->pagemap);
++		devm_release_mem_region(dev, mr->pagemap.range.start,
++			mr->pagemap.range.end - mr->pagemap.range.start +1);
++	}
 +}
 +
-+/**
-+ * xe_lookup_svm_by_mm() - retrieve xe_svm from mm struct
-+ *
-+ * @mm: the mm struct of the svm to retrieve
-+ *
-+ * Return the xe_svm struct pointer, or NULL if fail
-+ */
-+struct xe_svm *xe_lookup_svm_by_mm(struct mm_struct *mm)
-+{
-+	struct xe_svm *svm;
-+
-+	hash_for_each_possible_rcu(xe_svm_table, svm, hnode, (uintptr_t)mm)
-+		if (svm->mm == mm)
-+			return svm;
-+
-+	return NULL;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index ba301a331f59..cd3cf92f3784 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -11,10 +11,15 @@
- #include <linux/workqueue.h>
- #include <linux/rbtree_types.h>
- #include <linux/interval_tree.h>
-+#include <linux/hashtable.h>
-+#include <linux/types.h>
- 
- struct xe_vm;
- struct mm_struct;
- 
-+#define XE_MAX_SVM_PROCESS 5 /* Maximumly support 32 SVM process*/
-+extern DECLARE_HASHTABLE(xe_svm_table, XE_MAX_SVM_PROCESS);
-+
- /**
-  * struct xe_svm - data structure to represent a shared
-  * virtual address space from device side. xe_svm, xe_vm
-@@ -35,6 +40,8 @@ struct xe_svm {
- 	 * @range_tree: Interval tree of all svm ranges in this svm
- 	 */
- 	struct rb_root_cached range_tree;
-+	/** @hnode: used to add this svm to a global xe_svm_hash table*/
-+	struct hlist_node hnode;
- };
- 
- /**
-@@ -56,4 +63,8 @@ struct xe_svm_range {
- 	/** @inode: used to link this range to svm's range_tree */
- 	struct interval_tree_node inode;
- };
-+
-+void xe_destroy_svm(struct xe_svm *svm);
-+struct xe_svm *xe_create_svm(struct xe_vm *vm);
-+struct xe_svm *xe_lookup_svm_by_mm(struct mm_struct *mm);
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index a7e7a0b24099..712fe49d8fb2 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -36,6 +36,7 @@
- #include "xe_trace.h"
- #include "generated/xe_wa_oob.h"
- #include "xe_wa.h"
-+#include "xe_svm.h"
- 
- #define TEST_VM_ASYNC_OPS_ERROR
- 
-@@ -1376,6 +1377,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- 		xe->usm.num_vm_in_non_fault_mode++;
- 	mutex_unlock(&xe->usm.lock);
- 
-+	vm->svm = xe_create_svm(vm);
- 	trace_xe_vm_create(vm);
- 
- 	return vm;
-@@ -1496,6 +1498,9 @@ void xe_vm_close_and_put(struct xe_vm *vm)
- 	for_each_tile(tile, xe, id)
- 		xe_range_fence_tree_fini(&vm->rftree[id]);
- 
-+	if (vm->svm)
-+		xe_destroy_svm(vm->svm);
-+
- 	xe_vm_put(vm);
- }
- 
 -- 
 2.26.3
 
