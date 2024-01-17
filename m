@@ -4,45 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D501CC47DAF
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jan 2024 22:02:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9344AC47258
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jan 2024 22:02:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99D5510E8AA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7263210E8A7;
 	Wed, 17 Jan 2024 22:01:51 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F4E710E88E;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC47410E893;
  Wed, 17 Jan 2024 22:01:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1705528907; x=1737064907;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=h53Z4lotbrDr8C4EGWcUwwWlUSfdukAs71sZw2Y37nk=;
- b=d82BTYDkYT65x1sKn3kGxiZRjVAmicpnrNqY88aaJbpA0AqpA9q1H/AD
- BkYZ6QmCgzfmPPkHvwmwUkKwgPJ/n5Hiw711T3R1C8DnX38XTd7oXcISr
- I1NO5zMvh9Ii+icDP4OyLuUl+21ryVEX6wC1lKgbLpZNvg5/H9fyZ1p3j
- SGPHoUZlDlkp3SinTA4YbuexOfZHikC1RMKNZO8hOdpErvBB2yXO3cRIF
- VSe63+Beugr7Bt5gGGbJ7Pxi+QF0XYXRAo77XZ0bNkhJsTwXZJT5okX6E
- 6IMe2zp7H+3FkTruM0XuvAMAOpxkAR5RDJ3dicykVQG4klri3QONhMYqk g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="7657624"
+ bh=GJo+44jDv+g6nOzMQZgGJ5rlhefDr6WjxKA4AakuTqs=;
+ b=TSNm081b46zA69eK0iOgsTM9C4J3IY0cEm2rrecS8uAJT7EwJa6Kcth3
+ FEM/bQG+Vci9ow/c0CbMTmbsLm8emJtzZwh2m5r/GpWtXZL4p1nlMH7Ty
+ 8gQzHLEK3bYsy0DpIkD4IxNaGi7UQeGYWHNagFCaI8BFddBJSdd2bNbNs
+ XwsUEXFP8Iuly6OdH7usj/RmiMnDC7BVsHcDl0jTZ91kE96ptwjphKVPT
+ UbHUTEKx8Cez319//x1FN0KcamFayWLAnlZsUNAqnwt9TR/xybkG/UTID
+ d1HHeI8T5SKqi/UOyjtm24aByhY7b0GIfPPovwuIGyTSQQhQ8GqIrlzrb Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="7657630"
 X-IronPort-AV: E=Sophos;i="6.05,201,1701158400"; 
-   d="scan'208";a="7657624"
+   d="scan'208";a="7657630"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  17 Jan 2024 14:01:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="734089248"
-X-IronPort-AV: E=Sophos;i="6.05,201,1701158400"; d="scan'208";a="734089248"
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="734089267"
+X-IronPort-AV: E=Sophos;i="6.05,201,1701158400"; d="scan'208";a="734089267"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  17 Jan 2024 14:01:45 -0800
 From: Oak Zeng <oak.zeng@intel.com>
 To: dri-devel@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH 11/23] drm/xe/svm: implement functions to allocate and free
- device memory
-Date: Wed, 17 Jan 2024 17:12:11 -0500
-Message-Id: <20240117221223.18540-12-oak.zeng@intel.com>
+Subject: [PATCH 17/23] drm/xe/svm: clean up svm range during process exit
+Date: Wed, 17 Jan 2024 17:12:17 -0500
+Message-Id: <20240117221223.18540-18-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240117221223.18540-1-oak.zeng@intel.com>
 References: <20240117221223.18540-1-oak.zeng@intel.com>
@@ -63,217 +62,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Function xe_devm_alloc_pages allocate pages from drm buddy and perform
-house keeping work for all the pages allocated, such as get a page
-refcount, keep a bitmap of all pages to denote whether a page is in
-use, put pages to a drm lru list for eviction purpose.
-
-Function xe_devm_free_blocks return all memory blocks to drm buddy
-allocator.
-
-Function xe_devm_free_page is a call back function from hmm layer. It
-is called whenever a page's refcount reaches to 1. This function clears
-the bit of this page in the bitmap. If all the bits in the bitmap is
-cleared, it means all the pages have been freed, we return all the pages
-in this memory block back to drm buddy.
+Clean up svm range during process exit: Zap GPU page table of
+the svm process on process exit; unregister all the mmu interval
+notifiers which are registered before; free svm range and svm
+data structure.
 
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-Co-developed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@intel.com>
 Cc: Brian Welty <brian.welty@intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.h        |   9 ++
- drivers/gpu/drm/xe/xe_svm_devmem.c | 146 ++++++++++++++++++++++++++++-
- 2 files changed, 154 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_svm.c       | 24 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_svm.h       |  1 +
+ drivers/gpu/drm/xe/xe_svm_range.c | 17 +++++++++++++++++
+ 3 files changed, 42 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index b54f7714a1fc..8551df2b9780 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -74,4 +74,13 @@ struct xe_svm_range *xe_svm_range_from_addr(struct xe_svm *svm,
- int xe_svm_build_sg(struct hmm_range *range, struct sg_table *st);
- int xe_svm_devm_add(struct xe_tile *tile, struct xe_mem_region *mem);
- void xe_svm_devm_remove(struct xe_device *xe, struct xe_mem_region *mem);
-+
-+
-+int xe_devm_alloc_pages(struct xe_tile *tile,
-+						unsigned long npages,
-+						struct list_head *blocks,
-+						unsigned long *pfn);
-+
-+void xe_devm_free_blocks(struct list_head *blocks);
-+void xe_devm_page_free(struct page *page);
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_svm_devmem.c b/drivers/gpu/drm/xe/xe_svm_devmem.c
-index cf7882830247..445e0e1bc3b4 100644
---- a/drivers/gpu/drm/xe/xe_svm_devmem.c
-+++ b/drivers/gpu/drm/xe/xe_svm_devmem.c
-@@ -5,18 +5,162 @@
- 
- #include <linux/mm_types.h>
- #include <linux/sched/mm.h>
-+#include <linux/gfp.h>
-+#include <linux/migrate.h>
-+#include <linux/dma-mapping.h>
-+#include <linux/dma-fence.h>
-+#include <linux/bitops.h>
-+#include <linux/bitmap.h>
-+#include <drm/drm_buddy.h>
- 
- #include "xe_device_types.h"
- #include "xe_trace.h"
-+#include "xe_migrate.h"
-+#include "xe_ttm_vram_mgr_types.h"
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 6393251c0051..5772bfcf7da4 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -9,6 +9,8 @@
+ #include <linux/hmm.h>
+ #include <linux/scatterlist.h>
+ #include "xe_pt.h"
 +#include "xe_assert.h"
++#include "xe_vm_types.h"
  
-+/**
-+ * struct xe_svm_block_meta - svm uses this data structure to manage each
-+ * block allocated from drm buddy. This will be set to the drm_buddy_block's
-+ * private field.
-+ *
-+ * @lru: used to link this block to drm's lru lists. This will be replace
-+ * with struct drm_lru_entity later.
-+ * @tile: tile from which we allocated this block
-+ * @bitmap: A bitmap of each page in this block. 1 means this page is used,
-+ * 0 means this page is idle. When all bits of this block are 0, it is time
-+ * to return this block to drm buddy subsystem.
-+ */
-+struct xe_svm_block_meta {
-+	struct list_head lru;
-+	struct xe_tile *tile;
-+	unsigned long bitmap[];
-+};
+ DEFINE_HASHTABLE(xe_svm_table, XE_MAX_SVM_PROCESS);
+ 
+@@ -19,9 +21,31 @@ DEFINE_HASHTABLE(xe_svm_table, XE_MAX_SVM_PROCESS);
+  */
+ void xe_destroy_svm(struct xe_svm *svm)
+ {
++#define MAX_SVM_RANGE (1024*1024)
++	struct xe_svm_range **range_array;
++	struct interval_tree_node *node;
++	struct xe_svm_range *range;
++	int i = 0;
 +
-+static u64 block_offset_to_pfn(struct xe_mem_region *mr, u64 offset)
-+{
-+	/** DRM buddy's block offset is 0-based*/
-+	offset += mr->hpa_base;
-+
-+	return PHYS_PFN(offset);
-+}
-+
-+/**
-+ * xe_devm_alloc_pages() - allocate device pages from buddy allocator
-+ *
-+ * @xe_tile: which tile to allocate device memory from
-+ * @npages: how many pages to allocate
-+ * @blocks: used to return the allocated blocks
-+ * @pfn: used to return the pfn of all allocated pages. Must be big enough
-+ * to hold at @npages entries.
-+ *
-+ * This function allocate blocks of memory from drm buddy allocator, and
-+ * performs initialization work: set struct page::zone_device_data to point
-+ * to the memory block; set/initialize drm_buddy_block::private field;
-+ * lock_page for each page allocated; add memory block to lru managers lru
-+ * list - this is TBD.
-+ *
-+ * return: 0 on success
-+ * error code otherwise
-+ */
-+int xe_devm_alloc_pages(struct xe_tile *tile,
-+						unsigned long npages,
-+						struct list_head *blocks,
-+						unsigned long *pfn)
-+{
-+	struct drm_buddy *mm = &tile->mem.vram_mgr->mm;
-+	struct drm_buddy_block *block, *tmp;
-+	u64 size = npages << PAGE_SHIFT;
-+	int ret = 0, i, j = 0;
-+
-+	ret = drm_buddy_alloc_blocks(mm, 0, mm->size, size, PAGE_SIZE,
-+						blocks, DRM_BUDDY_TOPDOWN_ALLOCATION);
-+
-+	if (unlikely(ret))
-+		return ret;
-+
-+	list_for_each_entry_safe(block, tmp, blocks, link) {
-+		struct xe_mem_region *mr = &tile->mem.vram;
-+		u64 block_pfn_first, pages_per_block;
-+		struct xe_svm_block_meta *meta;
-+		u32 meta_size;
-+
-+		size = drm_buddy_block_size(mm, block);
-+		pages_per_block = size >> PAGE_SHIFT;
-+		meta_size = BITS_TO_BYTES(pages_per_block) +
-+					sizeof(struct xe_svm_block_meta);
-+		meta = kzalloc(meta_size, GFP_KERNEL);
-+		bitmap_fill(meta->bitmap, pages_per_block);
-+		meta->tile = tile;
-+		block->private = meta;
-+		block_pfn_first =
-+					block_offset_to_pfn(mr, drm_buddy_block_offset(block));
-+		for(i = 0; i < pages_per_block; i++) {
-+			struct page *page;
-+
-+			pfn[j++] = block_pfn_first + i;
-+			page = pfn_to_page(block_pfn_first + i);
-+			/**Lock page per hmm requirement, see hmm.rst.*/
-+			zone_device_page_init(page);
-+			page->zone_device_data = block;
-+		}
++	range_array = kzalloc(sizeof(struct xe_svm_range *) * MAX_SVM_RANGE,
++							GFP_KERNEL);
++	node = interval_tree_iter_first(&svm->range_tree, 0, ~0ULL);
++	while (node) {
++		range = container_of(node, struct xe_svm_range, inode);
++		xe_svm_range_prepare_destroy(range);
++		node = interval_tree_iter_next(node, 0, ~0ULL);
++		xe_assert(svm->vm->xe, i < MAX_SVM_RANGE);
++		range_array[i++] = range;
 +	}
 +
-+	return ret;
-+}
++	/** Free range (thus range->inode) while traversing above is not safe */
++	for(; i >= 0; i--)
++		kfree(range_array[i]);
 +
-+/** FIXME: we locked page by calling zone_device_page_init
-+ *  inxe_dev_alloc_pages. Should we unlock pages here?
-+ */
-+static void free_block(struct drm_buddy_block *block)
-+{
-+	struct xe_svm_block_meta *meta =
-+		(struct xe_svm_block_meta *)block->private;
-+	struct xe_tile *tile  = meta->tile;
-+	struct drm_buddy *mm = &tile->mem.vram_mgr->mm;
-+
-+	kfree(block->private);
-+	drm_buddy_free_block(mm, block);
-+}
+ 	hash_del_rcu(&svm->hnode);
+ 	mutex_destroy(&svm->mutex);
+ 	kfree(svm);
++	kfree(range_array);
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index 0038f98c0cc7..5b3bd2c064f5 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -90,6 +90,7 @@ bool xe_svm_range_belongs_to_vma(struct mm_struct *mm,
+ 								struct vm_area_struct *vma);
+ void xe_svm_range_unregister_mmu_notifier(struct xe_svm_range *range);
+ int xe_svm_range_register_mmu_notifier(struct xe_svm_range *range);
++void xe_svm_range_prepare_destroy(struct xe_svm_range *range);
+ 
+ int xe_svm_build_sg(struct hmm_range *range, struct sg_table *st);
+ int xe_svm_devm_add(struct xe_tile *tile, struct xe_mem_region *mem);
+diff --git a/drivers/gpu/drm/xe/xe_svm_range.c b/drivers/gpu/drm/xe/xe_svm_range.c
+index 53dd3be7ab9f..dfb4660dc26f 100644
+--- a/drivers/gpu/drm/xe/xe_svm_range.c
++++ b/drivers/gpu/drm/xe/xe_svm_range.c
+@@ -165,3 +165,20 @@ int xe_svm_range_register_mmu_notifier(struct xe_svm_range *range)
+ 	range->mmu_notifier_registered = true;
+ 	return ret;
+ }
 +
 +/**
-+ * xe_devm_free_blocks() - free all memory blocks
++ * xe_svm_range_prepare_destroy() - prepare work to destroy a svm range
 + *
-+ * @blocks: memory blocks list head
++ * @range: the svm range to destroy
++ *
++ * prepare for a svm range destroy: Zap this range from GPU, unregister mmu
++ * notifier.
 + */
-+void xe_devm_free_blocks(struct list_head *blocks)
++void xe_svm_range_prepare_destroy(struct xe_svm_range *range)
 +{
-+	struct drm_buddy_block *block, *tmp;
++	struct xe_vm *vm = range->svm->vm;
++	unsigned long length = range->end - range->start;
 +
-+	list_for_each_entry_safe(block, tmp, blocks, link)
-+		free_block(block);
++	xe_invalidate_svm_range(vm, range->start, length);
++	xe_svm_range_unregister_mmu_notifier(range);
 +}
- 
- static vm_fault_t xe_devm_migrate_to_ram(struct vm_fault *vmf)
- {
- 	return 0;
- }
- 
--static void xe_devm_page_free(struct page *page)
-+void xe_devm_page_free(struct page *page)
- {
-+	struct drm_buddy_block *block =
-+					(struct drm_buddy_block *)page->zone_device_data;
-+	struct xe_svm_block_meta *meta =
-+					(struct xe_svm_block_meta *)block->private;
-+	struct xe_tile *tile  = meta->tile;
-+	struct xe_mem_region *mr = &tile->mem.vram;
-+	struct drm_buddy *mm = &tile->mem.vram_mgr->mm;
-+	u64 size = drm_buddy_block_size(mm, block);
-+	u64 pages_per_block = size >> PAGE_SHIFT;
-+	u64 block_pfn_first =
-+					block_offset_to_pfn(mr, drm_buddy_block_offset(block));
-+	u64 page_pfn = page_to_pfn(page);
-+	u64 i = page_pfn - block_pfn_first;
-+
-+	xe_assert(tile->xe, i < pages_per_block);
-+	clear_bit(i, meta->bitmap);
-+	if (bitmap_empty(meta->bitmap, pages_per_block))
-+		free_block(block);
- }
- 
- static const struct dev_pagemap_ops xe_devm_pagemap_ops = {
 -- 
 2.26.3
 
