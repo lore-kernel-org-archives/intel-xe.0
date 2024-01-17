@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F3F5C47DA2
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jan 2024 22:01:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7F71C47258
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jan 2024 22:01:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53B3710E890;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64CB610E893;
 	Wed, 17 Jan 2024 22:01:48 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B061010E008;
- Wed, 17 Jan 2024 22:01:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A80210E008;
+ Wed, 17 Jan 2024 22:01:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705528907; x=1737064907;
+ t=1705528906; x=1737064906;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=f40+dO32XfCQXtj0bJ18zsnoVP4q5bzdJvLh70FVUGk=;
- b=aZt/x6+RyA/pXLpjtq4KpnQVIwy5EtML49XqHxecjbkV48zaoWhV2Llr
- 6OuvPrHeLF2eRZxD4/gtRXBuJzu0Fw8DAKyhxn/O95XMav8zn8oXKkgIk
- RA/y1ri9r/1zucvNRLRV8Tx5Sde+6wlUFk/SNmN6YaMzmkGPNmyDgbhNP
- Hca5Wg5xrWiSJ/q36dnxe32cQ03qDATzLLnwaUlVeb/CqWlj0QOPEPrzk
- mn3yZUnQ4jB6dc4DSHdGurKkzF8wd91u/hx+e+RK2v9o8VTaT58cTsohT
- BRKVVjzQJoz94gUDM3wbNbhrKKo/IISBPCyMKONSJhfix8X+mkbFNBS3D g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="7657625"
+ bh=IgTg5rpRtePLupWg3aD5I7Gh2zRaE7GKcIVij7uNhNM=;
+ b=h2c8KZ/1An1OccGxJDqrffX7Ky1h5ZRlpPRIrRkGqqHXXcimXThtZxLK
+ ML2fhrqcseSpB3SUc5WJP+XQ/r/YE4Ndz/wVfySoGnmqUZyby5BspxrBS
+ N+zOKyJqDjjt75eC3KzV1eNyvU9Y84Y1IGp1UicDCqYRB9BpWT9ybUvyn
+ XX2muGL+diZiNax8DQceDYqydDr8pXzcb0oK6fHOBtNTDiM0lI/m77EIU
+ eH/8xR5XrrcG5NDei55bRihjVtMWFK2rwLYeDCuFoahyUa3VgC6nQyMHr
+ HNkR8qiqjQ34cTf+IPvrVKRde82Djuun5FcH9U3RjbwU6IqJsO6/ihlLo Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="7657614"
 X-IronPort-AV: E=Sophos;i="6.05,201,1701158400"; 
-   d="scan'208";a="7657625"
+   d="scan'208";a="7657614"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2024 14:01:46 -0800
+ 17 Jan 2024 14:01:45 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="734089252"
-X-IronPort-AV: E=Sophos;i="6.05,201,1701158400"; d="scan'208";a="734089252"
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="734089219"
+X-IronPort-AV: E=Sophos;i="6.05,201,1701158400"; d="scan'208";a="734089219"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  17 Jan 2024 14:01:45 -0800
 From: Oak Zeng <oak.zeng@intel.com>
 To: dri-devel@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH 12/23] drm/xe/svm: Trace buddy block allocation and free
-Date: Wed, 17 Jan 2024 17:12:12 -0500
-Message-Id: <20240117221223.18540-13-oak.zeng@intel.com>
+Subject: [PATCH 01/23] drm/xe/svm: Add SVM document
+Date: Wed, 17 Jan 2024 17:12:01 -0500
+Message-Id: <20240117221223.18540-2-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240117221223.18540-1-oak.zeng@intel.com>
 References: <20240117221223.18540-1-oak.zeng@intel.com>
@@ -62,93 +62,172 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Add shared virtual memory document.
+
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Co-developed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@intel.com>
 Cc: Brian Welty <brian.welty@intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm_devmem.c |  5 ++++-
- drivers/gpu/drm/xe/xe_trace.h      | 35 ++++++++++++++++++++++++++++++
- 2 files changed, 39 insertions(+), 1 deletion(-)
+ Documentation/gpu/xe/index.rst  |   1 +
+ Documentation/gpu/xe/xe_svm.rst |   8 +++
+ drivers/gpu/drm/xe/xe_svm_doc.h | 121 ++++++++++++++++++++++++++++++++
+ 3 files changed, 130 insertions(+)
+ create mode 100644 Documentation/gpu/xe/xe_svm.rst
+ create mode 100644 drivers/gpu/drm/xe/xe_svm_doc.h
 
-diff --git a/drivers/gpu/drm/xe/xe_svm_devmem.c b/drivers/gpu/drm/xe/xe_svm_devmem.c
-index 445e0e1bc3b4..5cd54dde4a9d 100644
---- a/drivers/gpu/drm/xe/xe_svm_devmem.c
-+++ b/drivers/gpu/drm/xe/xe_svm_devmem.c
-@@ -95,6 +95,7 @@ int xe_devm_alloc_pages(struct xe_tile *tile,
- 		block->private = meta;
- 		block_pfn_first =
- 					block_offset_to_pfn(mr, drm_buddy_block_offset(block));
-+		trace_xe_buddy_block_alloc(block, size, block_pfn_first);
- 		for(i = 0; i < pages_per_block; i++) {
- 			struct page *page;
- 
-@@ -159,8 +160,10 @@ void xe_devm_page_free(struct page *page)
- 
- 	xe_assert(tile->xe, i < pages_per_block);
- 	clear_bit(i, meta->bitmap);
--	if (bitmap_empty(meta->bitmap, pages_per_block))
-+	if (bitmap_empty(meta->bitmap, pages_per_block)) {
- 		free_block(block);
-+		trace_xe_buddy_block_free(block, size, block_pfn_first);
-+	}
- }
- 
- static const struct dev_pagemap_ops xe_devm_pagemap_ops = {
-diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-index 63867c0fa848..50380f5173ca 100644
---- a/drivers/gpu/drm/xe/xe_trace.h
-+++ b/drivers/gpu/drm/xe/xe_trace.h
-@@ -11,6 +11,7 @@
- 
- #include <linux/tracepoint.h>
- #include <linux/types.h>
-+#include <drm/drm_buddy.h>
- 
- #include "xe_bo_types.h"
- #include "xe_exec_queue_types.h"
-@@ -600,6 +601,40 @@ DEFINE_EVENT_PRINT(xe_guc_ctb, xe_guc_ctb_g2h,
- 
- );
- 
-+DECLARE_EVENT_CLASS(xe_buddy_block,
-+               TP_PROTO(struct drm_buddy_block *block, u64 size, u64 pfn),
-+               TP_ARGS(block, size, pfn),
+diff --git a/Documentation/gpu/xe/index.rst b/Documentation/gpu/xe/index.rst
+index c224ecaee81e..106b60aba1f0 100644
+--- a/Documentation/gpu/xe/index.rst
++++ b/Documentation/gpu/xe/index.rst
+@@ -23,3 +23,4 @@ DG2, etc is provided to prototype the driver.
+    xe_firmware
+    xe_tile
+    xe_debugging
++   xe_svm
+diff --git a/Documentation/gpu/xe/xe_svm.rst b/Documentation/gpu/xe/xe_svm.rst
+new file mode 100644
+index 000000000000..62954ba1c6f8
+--- /dev/null
++++ b/Documentation/gpu/xe/xe_svm.rst
+@@ -0,0 +1,8 @@
++.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 +
-+               TP_STRUCT__entry(
-+                               __field(u64, block)
-+                               __field(u64, header)
-+                               __field(u64, size)
-+                               __field(u64, pfn)
-+               ),
++=============
++Shared virtual memory
++=============
 +
-+               TP_fast_assign(
-+                               __entry->block = (u64)block;
-+                               __entry->header = block->header;
-+                               __entry->size = size;
-+                               __entry->pfn = pfn;
-+               ),
++.. kernel-doc:: drivers/gpu/drm/xe/xe_svm_doc.h
++   :doc: Shared virtual memory
+diff --git a/drivers/gpu/drm/xe/xe_svm_doc.h b/drivers/gpu/drm/xe/xe_svm_doc.h
+new file mode 100644
+index 000000000000..de38ee3585e4
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_svm_doc.h
+@@ -0,0 +1,121 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
 +
-+               TP_printk("xe svm: allocated block %llx, block header %llx, size %llx, pfn %llx\n",
-+                       __entry->block, __entry->header, __entry->size, __entry->pfn)
-+);
++#ifndef _XE_SVM_DOC_H_
++#define _XE_SVM_DOC_H_
 +
++/**
++ * DOC: Shared virtual memory
++ *
++ * Shared Virtual Memory (SVM) allows the programmer to use a single virtual
++ * address space shared between threads executing on CPUs and GPUs. It abstracts
++ * away from the user the location of the backing memory, and hence simplifies
++ * the user programming model. In a non-SVM memory model, user need to explicitly
++ * decide memory placement such as device or system memory, also user need to
++ * explicitly migrate memory b/t device and system memory.
++ *
++ * Interface
++ * =========
++ *
++ * SVM makes use of default OS memory allocation and mapping interface such as
++ * malloc() and mmap(). The pointer returned from malloc() and mmap() can be
++ * directly used on both CPU and GPU program.
++ *
++ * SVM also provides API to set virtual address range based memory attributes
++ * such as preferred memory location, memory migration granularity, and memory
++ * atomic attributes etc. This is similar to Linux madvise API.
++ *
++ * Basic implementation
++ * ==============
++ *
++ * XeKMD implementation is based on Linux kernel Heterogeneous Memory Management
++ * (HMM) framework. HMM’s address space mirroring support allows sharing of the
++ * address space by duplicating sections of CPU page tables in the device page
++ * tables. This enables both CPU and GPU access a physical memory location using
++ * the same virtual address.
++ *
++ * Linux kernel also provides the ability to plugin device memory to the system
++ * (as a special ZONE_DEVICE type) and allocates struct page for each device memory
++ * page.
++ *
++ * HMM also provides a mechanism to migrate pages from host to device memory and
++ * vice versa.
++ *
++ * More information on HMM can be found here.
++ * https://www.kernel.org/doc/Documentation/vm/hmm.rst
++ *
++ * Unlike the non-SVM memory allocator (such as gem_create, vm_bind etc), there
++ * is no buffer object (BO, such as struct ttm_buffer_object, struct drm_gem_object),
++ * in our SVM implementation. We delibrately choose this implementation option
++ * to achieve page granularity memory placement, validation, eviction and migration.
++ *
++ * The SVM layer directly allocate device memory from drm buddy subsystem. The
++ * memory is organized as many blocks each of which has 2^n pages. SVM subsystem
++ * then mark the usage of each page using a simple bitmap. When all pages in a
++ * block are not used anymore, SVM return this block back to drm buddy subsystem.
++ *
++ * There are 3 events which can trigger SVM subsystem in actions:
++ *
++ * 1. A mmu notifier callback
++ *
++ * Since SVM need to mirror the program's CPU virtual address space from GPU side,
++ * when program's CPU address space changes, SVM need to make an identical change
++ * from GPU side. SVM/hmm use mmu interval notifier to achieve this. SVM register
++ * a mmu interval notifier call back function to core mm, and whenever a CPU side
++ * virtual address space is changed (i.e., when a virtual address range is unmapped
++ * from CPU calling munmap), the registered callback function will be called from
++ * core mm. SVM then mirror the CPU address space change from GPU side, i.e., unmap
++ * or invalidate the virtual address range from GPU page table.
++ *
++ * 2. A GPU page fault
++ *
++ * At the very beginning of a process's life, no virtual address of the process
++ * is mapped on GPU page table. So when GPU access any virtual address of the process
++ * a GPU page fault is triggered. SVM then decide the best memory location of the
++ * fault address (mainly from performance consideration. Some times also consider
++ * correctness requirement such as whether GPU can perform atomics operation to
++ * certain memory location), migrate memory if necessary, and map the fault address
++ * to GPU page table.
++ *
++ * 3. A CPU page fault
++ *
++ * A CPU page fault is usually managed by Linux core mm. But in a CPU and GPU
++ * mix programming environment, the backing store of a virtual address range
++ * can be in GPU's local memory which is not visible to CPU (DEVICE_PRIVATE),
++ * so CPU page fault handler need to migrate such pages to system memory for
++ * CPU to be able to access them. Such memory migration is device specific.
++ * HMM has a callback function (migrate_to_ram function of the dev_pagemap_ops)
++ * for device driver to implement.
++ *
++ *
++ * Memory hints: TBD
++ * =================
++ *
++ * Memory eviction: TBD
++ * ===============
++ *
++ * Lock design
++ * ===========
++ *
++ * https://www.kernel.org/doc/Documentation/vm/hmm.rst section "Address space mirroring
++ * implemenation and API" described the locking scheme that driver writer has to
++ * respect. There are 3 lock mechanism involved in this scheme:
++ *
++ * 1. Use mmp_read/write_lock to protect VMA, cpu page table operations.  Operation such
++ * as munmap/mmap, page table update during numa balance must hold this lock. Hmm_range_fault
++ * is a helper function provided by HMM to populate the CPU page table, so it must be called
++ * with this lock
++ *
++ * 2. Use xe_svm::mutex to protect device side page table operation. Any attempt to bind an
++ * address range to GPU, or invalidate an address range from GPU, should hold this device lock
++ *
++ * 3. In the GPU page fault handler, during device page table update, we hold a xe_svm::mutex,
++ * but we don't hold the mmap_read/write_lock. So programm's address space can change during
++ * the GPU page table update. mmu notifier seq# is used to determine whether unmap happened
++ * during during device page table update, if yes, then retry.
++ *
++ */
 +
-+DEFINE_EVENT(xe_buddy_block, xe_buddy_block_alloc,
-+               TP_PROTO(struct drm_buddy_block *block, u64 size, u64 pfn),
-+               TP_ARGS(block, size, pfn)
-+);
-+
-+
-+DEFINE_EVENT(xe_buddy_block, xe_buddy_block_free,
-+               TP_PROTO(struct drm_buddy_block *block, u64 size, u64 pfn),
-+               TP_ARGS(block, size, pfn)
-+);
-+
- #endif
- 
- /* This part must be outside protection */
++#endif
 -- 
 2.26.3
 
