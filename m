@@ -4,44 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9405C47DA7
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jan 2024 22:02:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D501CC47DAF
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jan 2024 22:02:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74D6910E8A8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99D5510E8AA;
 	Wed, 17 Jan 2024 22:01:51 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEF7E10E895;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F4E710E88E;
  Wed, 17 Jan 2024 22:01:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1705528907; x=1737064907;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=TFuLDl5rjE5Z8M92BmQP1BBm1VJQTh1JMd04l6WaM4I=;
- b=ioTG3VurZBm+DSlHy9GO44V+9FetxZ6nlguHqN4pkLOLpg3QcERNPOZy
- EOuE7QZa8QwhHjbWVj6n1EkPv7DNLwVAf2+yXWhzqQXY8x77KSlOenHCx
- MC1QmUWF6zCVo3T7HZb80wZJTlh4xPqFTZfRAcpnNpJ/yWclYrRKyaBCu
- +nq3Jxl7kzQ1JpDlenz50oiydGhOd9vtoMZhcyf6VIa2QNjVCEIZKiP6R
- 0cMzXFjVZauF8DEiXiSLD353Xhabi5RNp7Q4BxXrUkKKIbjNlXXRb2HVq
- pHyQ7QTcWaN3JY/aXJShMdMiqK5Bfrmn99PA6zR8pLibMaTvGEbgGaXxA Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="7657632"
+ bh=h53Z4lotbrDr8C4EGWcUwwWlUSfdukAs71sZw2Y37nk=;
+ b=d82BTYDkYT65x1sKn3kGxiZRjVAmicpnrNqY88aaJbpA0AqpA9q1H/AD
+ BkYZ6QmCgzfmPPkHvwmwUkKwgPJ/n5Hiw711T3R1C8DnX38XTd7oXcISr
+ I1NO5zMvh9Ii+icDP4OyLuUl+21ryVEX6wC1lKgbLpZNvg5/H9fyZ1p3j
+ SGPHoUZlDlkp3SinTA4YbuexOfZHikC1RMKNZO8hOdpErvBB2yXO3cRIF
+ VSe63+Beugr7Bt5gGGbJ7Pxi+QF0XYXRAo77XZ0bNkhJsTwXZJT5okX6E
+ 6IMe2zp7H+3FkTruM0XuvAMAOpxkAR5RDJ3dicykVQG4klri3QONhMYqk g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="7657624"
 X-IronPort-AV: E=Sophos;i="6.05,201,1701158400"; 
-   d="scan'208";a="7657632"
+   d="scan'208";a="7657624"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  17 Jan 2024 14:01:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="734089273"
-X-IronPort-AV: E=Sophos;i="6.05,201,1701158400"; d="scan'208";a="734089273"
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="734089248"
+X-IronPort-AV: E=Sophos;i="6.05,201,1701158400"; d="scan'208";a="734089248"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  17 Jan 2024 14:01:45 -0800
 From: Oak Zeng <oak.zeng@intel.com>
 To: dri-devel@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH 19/23] drm/xe/svm: migrate svm range to vram
-Date: Wed, 17 Jan 2024 17:12:19 -0500
-Message-Id: <20240117221223.18540-20-oak.zeng@intel.com>
+Subject: [PATCH 11/23] drm/xe/svm: implement functions to allocate and free
+ device memory
+Date: Wed, 17 Jan 2024 17:12:11 -0500
+Message-Id: <20240117221223.18540-12-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240117221223.18540-1-oak.zeng@intel.com>
 References: <20240117221223.18540-1-oak.zeng@intel.com>
@@ -62,13 +63,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Since the source pages of the svm range can be physically none
-contiguous, and the destination vram pages can also be none
-contiguous, there is no easy way to migrate multiple pages per
-blitter command. We do page by page migration for now.
+Function xe_devm_alloc_pages allocate pages from drm buddy and perform
+house keeping work for all the pages allocated, such as get a page
+refcount, keep a bitmap of all pages to denote whether a page is in
+use, put pages to a drm lru list for eviction purpose.
 
-Migration is best effort. Even if we fail to migrate some pages,
-we will try to migrate the rest pages.
+Function xe_devm_free_blocks return all memory blocks to drm buddy
+allocator.
+
+Function xe_devm_free_page is a call back function from hmm layer. It
+is called whenever a page's refcount reaches to 1. This function clears
+the bit of this page in the bitmap. If all the bits in the bitmap is
+cleared, it means all the pages have been freed, we return all the pages
+in this memory block back to drm buddy.
 
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 Co-developed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
@@ -77,171 +84,196 @@ Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@intel.com>
 Cc: Brian Welty <brian.welty@intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.c         |   7 ++
- drivers/gpu/drm/xe/xe_svm.h         |   3 +
- drivers/gpu/drm/xe/xe_svm_migrate.c | 114 ++++++++++++++++++++++++++++
- 3 files changed, 124 insertions(+)
+ drivers/gpu/drm/xe/xe_svm.h        |   9 ++
+ drivers/gpu/drm/xe/xe_svm_devmem.c | 146 ++++++++++++++++++++++++++++-
+ 2 files changed, 154 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 5772bfcf7da4..44d4f4216a93 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -5,12 +5,19 @@
- 
- #include <linux/mutex.h>
- #include <linux/mm_types.h>
-+#include <linux/interval_tree.h>
-+#include <linux/container_of.h>
-+#include <linux/types.h>
-+#include <linux/migrate.h>
- #include "xe_svm.h"
- #include <linux/hmm.h>
- #include <linux/scatterlist.h>
- #include "xe_pt.h"
- #include "xe_assert.h"
- #include "xe_vm_types.h"
-+#include "xe_gt.h"
-+#include "xe_migrate.h"
-+#include "xe_trace.h"
- 
- DEFINE_HASHTABLE(xe_svm_table, XE_MAX_SVM_PROCESS);
- 
 diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index 5b3bd2c064f5..659bcb7927d6 100644
+index b54f7714a1fc..8551df2b9780 100644
 --- a/drivers/gpu/drm/xe/xe_svm.h
 +++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -80,6 +80,9 @@ struct xe_svm_range {
- };
- 
- vm_fault_t xe_devm_migrate_to_ram(struct vm_fault *vmf);
-+int svm_migrate_range_to_vram(struct xe_svm_range *range,
-+							struct vm_area_struct *vma,
-+							struct xe_tile *tile);
- void xe_destroy_svm(struct xe_svm *svm);
- struct xe_svm *xe_create_svm(struct xe_vm *vm);
- struct xe_svm *xe_lookup_svm_by_mm(struct mm_struct *mm);
-diff --git a/drivers/gpu/drm/xe/xe_svm_migrate.c b/drivers/gpu/drm/xe/xe_svm_migrate.c
-index b4df411e04f3..3724ad6c7aea 100644
---- a/drivers/gpu/drm/xe/xe_svm_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_svm_migrate.c
-@@ -229,3 +229,117 @@ vm_fault_t xe_devm_migrate_to_ram(struct vm_fault *vmf)
- 	kvfree(buf);
- 	return 0;
- }
+@@ -74,4 +74,13 @@ struct xe_svm_range *xe_svm_range_from_addr(struct xe_svm *svm,
+ int xe_svm_build_sg(struct hmm_range *range, struct sg_table *st);
+ int xe_svm_devm_add(struct xe_tile *tile, struct xe_mem_region *mem);
+ void xe_svm_devm_remove(struct xe_device *xe, struct xe_mem_region *mem);
 +
++
++int xe_devm_alloc_pages(struct xe_tile *tile,
++						unsigned long npages,
++						struct list_head *blocks,
++						unsigned long *pfn);
++
++void xe_devm_free_blocks(struct list_head *blocks);
++void xe_devm_page_free(struct page *page);
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_svm_devmem.c b/drivers/gpu/drm/xe/xe_svm_devmem.c
+index cf7882830247..445e0e1bc3b4 100644
+--- a/drivers/gpu/drm/xe/xe_svm_devmem.c
++++ b/drivers/gpu/drm/xe/xe_svm_devmem.c
+@@ -5,18 +5,162 @@
+ 
+ #include <linux/mm_types.h>
+ #include <linux/sched/mm.h>
++#include <linux/gfp.h>
++#include <linux/migrate.h>
++#include <linux/dma-mapping.h>
++#include <linux/dma-fence.h>
++#include <linux/bitops.h>
++#include <linux/bitmap.h>
++#include <drm/drm_buddy.h>
+ 
+ #include "xe_device_types.h"
+ #include "xe_trace.h"
++#include "xe_migrate.h"
++#include "xe_ttm_vram_mgr_types.h"
++#include "xe_assert.h"
+ 
++/**
++ * struct xe_svm_block_meta - svm uses this data structure to manage each
++ * block allocated from drm buddy. This will be set to the drm_buddy_block's
++ * private field.
++ *
++ * @lru: used to link this block to drm's lru lists. This will be replace
++ * with struct drm_lru_entity later.
++ * @tile: tile from which we allocated this block
++ * @bitmap: A bitmap of each page in this block. 1 means this page is used,
++ * 0 means this page is idle. When all bits of this block are 0, it is time
++ * to return this block to drm buddy subsystem.
++ */
++struct xe_svm_block_meta {
++	struct list_head lru;
++	struct xe_tile *tile;
++	unsigned long bitmap[];
++};
++
++static u64 block_offset_to_pfn(struct xe_mem_region *mr, u64 offset)
++{
++	/** DRM buddy's block offset is 0-based*/
++	offset += mr->hpa_base;
++
++	return PHYS_PFN(offset);
++}
 +
 +/**
-+ * svm_migrate_range_to_vram() - migrate backing store of a va range to vram
-+ * Must be called with mmap_read_lock(mm) held.
-+ * @range: the va range to migrate. Range should only belong to one vma.
-+ * @vma: the vma that this range belongs to. @range can cover whole @vma
-+ * or a sub-range of @vma.
-+ * @tile: the destination tile which holds the new backing store of the range
++ * xe_devm_alloc_pages() - allocate device pages from buddy allocator
 + *
-+ * Returns: negative errno on faiure, 0 on success
++ * @xe_tile: which tile to allocate device memory from
++ * @npages: how many pages to allocate
++ * @blocks: used to return the allocated blocks
++ * @pfn: used to return the pfn of all allocated pages. Must be big enough
++ * to hold at @npages entries.
++ *
++ * This function allocate blocks of memory from drm buddy allocator, and
++ * performs initialization work: set struct page::zone_device_data to point
++ * to the memory block; set/initialize drm_buddy_block::private field;
++ * lock_page for each page allocated; add memory block to lru managers lru
++ * list - this is TBD.
++ *
++ * return: 0 on success
++ * error code otherwise
 + */
-+int svm_migrate_range_to_vram(struct xe_svm_range *range,
-+							struct vm_area_struct *vma,
-+							struct xe_tile *tile)
++int xe_devm_alloc_pages(struct xe_tile *tile,
++						unsigned long npages,
++						struct list_head *blocks,
++						unsigned long *pfn)
 +{
-+	struct mm_struct *mm = range->svm->mm;
-+	unsigned long start = range->start;
-+	unsigned long end = range->end;
-+	unsigned long npages = (end - start) >> PAGE_SHIFT;
-+	struct xe_mem_region *mr = &tile->mem.vram;
-+	struct migrate_vma migrate = {
-+		.vma		= vma,
-+		.start		= start,
-+		.end		= end,
-+		.pgmap_owner	= tile->xe->drm.dev,
-+		.flags          = MIGRATE_VMA_SELECT_SYSTEM,
-+	};
-+	struct device *dev = tile->xe->drm.dev;
-+	dma_addr_t *src_dma_addr;
-+	struct dma_fence *fence;
-+	struct page *src_page;
-+	LIST_HEAD(blocks);
-+	int ret = 0, i;
-+	u64 dst_dpa;
-+	void *buf;
++	struct drm_buddy *mm = &tile->mem.vram_mgr->mm;
++	struct drm_buddy_block *block, *tmp;
++	u64 size = npages << PAGE_SHIFT;
++	int ret = 0, i, j = 0;
 +
-+	mmap_assert_locked(mm);
-+	xe_assert(tile->xe, xe_svm_range_belongs_to_vma(mm, range, vma));
++	ret = drm_buddy_alloc_blocks(mm, 0, mm->size, size, PAGE_SIZE,
++						blocks, DRM_BUDDY_TOPDOWN_ALLOCATION);
 +
-+	buf = kvcalloc(npages, 2* sizeof(*migrate.src) + sizeof(*src_dma_addr),
-+					GFP_KERNEL);
-+	if(!buf)
-+		return -ENOMEM;
-+	migrate.src = buf;
-+	migrate.dst = migrate.src + npages;
-+	src_dma_addr = (dma_addr_t *) (migrate.dst + npages);
-+	ret = xe_devm_alloc_pages(tile, npages, &blocks, migrate.dst);
-+	if (ret)
-+		goto kfree_buf;
++	if (unlikely(ret))
++		return ret;
 +
-+	ret = migrate_vma_setup(&migrate);
-+	if (ret) {
-+		drm_err(&tile->xe->drm, "vma setup returned %d for range [%lx - %lx]\n",
-+				ret, start, end);
-+		goto free_dst_pages;
++	list_for_each_entry_safe(block, tmp, blocks, link) {
++		struct xe_mem_region *mr = &tile->mem.vram;
++		u64 block_pfn_first, pages_per_block;
++		struct xe_svm_block_meta *meta;
++		u32 meta_size;
++
++		size = drm_buddy_block_size(mm, block);
++		pages_per_block = size >> PAGE_SHIFT;
++		meta_size = BITS_TO_BYTES(pages_per_block) +
++					sizeof(struct xe_svm_block_meta);
++		meta = kzalloc(meta_size, GFP_KERNEL);
++		bitmap_fill(meta->bitmap, pages_per_block);
++		meta->tile = tile;
++		block->private = meta;
++		block_pfn_first =
++					block_offset_to_pfn(mr, drm_buddy_block_offset(block));
++		for(i = 0; i < pages_per_block; i++) {
++			struct page *page;
++
++			pfn[j++] = block_pfn_first + i;
++			page = pfn_to_page(block_pfn_first + i);
++			/**Lock page per hmm requirement, see hmm.rst.*/
++			zone_device_page_init(page);
++			page->zone_device_data = block;
++		}
 +	}
 +
-+	trace_xe_svm_migrate_sram_to_vram(range);
-+	/**FIXME: partial migration of a range
-+	 * print a warning for now. If this message
-+	 * is printed, we need to fall back to page by page
-+	 * migration: only migrate pages with MIGRATE_PFN_MIGRATE
-+	 */
-+	if (migrate.cpages != npages)
-+		drm_warn(&tile->xe->drm, "Partial migration for range [%lx - %lx], range is %ld pages, migrate only %ld pages\n",
-+				start, end, npages, migrate.cpages);
-+
-+	/**Migrate page by page for now.
-+	 * Both source pages and destination pages can physically not contiguous,
-+	 * there is no good way to migrate multiple pages per blitter command.
-+	 */
-+	for (i = 0; i < npages; i++) {
-+		src_page = migrate_pfn_to_page(migrate.src[i]);
-+		if (unlikely(!src_page || !(migrate.src[i] & MIGRATE_PFN_MIGRATE)))
-+			goto free_dst_page;
-+
-+		xe_assert(tile->xe, !is_zone_device_page(src_page));
-+		src_dma_addr[i] = dma_map_page(dev, src_page, 0, PAGE_SIZE, DMA_TO_DEVICE);
-+		if (unlikely(dma_mapping_error(dev, src_dma_addr[i]))) {
-+			drm_warn(&tile->xe->drm, "dma map error for host pfn %lx\n", migrate.src[i]);
-+			goto free_dst_page;
-+		}
-+		dst_dpa = vram_pfn_to_dpa(mr, migrate.dst[i]);
-+		fence = xe_migrate_svm(tile->migrate, src_dma_addr[i], false,
-+				dst_dpa, true, PAGE_SIZE);
-+		if (IS_ERR(fence)) {
-+			drm_warn(&tile->xe->drm, "migrate host page (pfn: %lx) to vram failed\n",
-+					migrate.src[i]);
-+			/**Migration is best effort. Even we failed here, we continue*/
-+			goto free_dst_page;
-+		}
-+		/**FIXME: Use the first migration's out fence as the second migration's input fence,
-+		 * and so on. Only wait the out fence of last migration?
-+		 */
-+		dma_fence_wait(fence, false);
-+		dma_fence_put(fence);
-+free_dst_page:
-+		xe_devm_page_free(pfn_to_page(migrate.dst[i]));
-+	}
-+
-+	for (i = 0; i < npages; i++)
-+		if (!(dma_mapping_error(dev, src_dma_addr[i])))
-+			dma_unmap_page(dev, src_dma_addr[i], PAGE_SIZE, DMA_TO_DEVICE);
-+
-+	migrate_vma_pages(&migrate);
-+	migrate_vma_finalize(&migrate);
-+free_dst_pages:
-+	if (ret)
-+		xe_devm_free_blocks(&blocks);
-+kfree_buf:
-+	kfree(buf);
 +	return ret;
 +}
++
++/** FIXME: we locked page by calling zone_device_page_init
++ *  inxe_dev_alloc_pages. Should we unlock pages here?
++ */
++static void free_block(struct drm_buddy_block *block)
++{
++	struct xe_svm_block_meta *meta =
++		(struct xe_svm_block_meta *)block->private;
++	struct xe_tile *tile  = meta->tile;
++	struct drm_buddy *mm = &tile->mem.vram_mgr->mm;
++
++	kfree(block->private);
++	drm_buddy_free_block(mm, block);
++}
++
++/**
++ * xe_devm_free_blocks() - free all memory blocks
++ *
++ * @blocks: memory blocks list head
++ */
++void xe_devm_free_blocks(struct list_head *blocks)
++{
++	struct drm_buddy_block *block, *tmp;
++
++	list_for_each_entry_safe(block, tmp, blocks, link)
++		free_block(block);
++}
+ 
+ static vm_fault_t xe_devm_migrate_to_ram(struct vm_fault *vmf)
+ {
+ 	return 0;
+ }
+ 
+-static void xe_devm_page_free(struct page *page)
++void xe_devm_page_free(struct page *page)
+ {
++	struct drm_buddy_block *block =
++					(struct drm_buddy_block *)page->zone_device_data;
++	struct xe_svm_block_meta *meta =
++					(struct xe_svm_block_meta *)block->private;
++	struct xe_tile *tile  = meta->tile;
++	struct xe_mem_region *mr = &tile->mem.vram;
++	struct drm_buddy *mm = &tile->mem.vram_mgr->mm;
++	u64 size = drm_buddy_block_size(mm, block);
++	u64 pages_per_block = size >> PAGE_SHIFT;
++	u64 block_pfn_first =
++					block_offset_to_pfn(mr, drm_buddy_block_offset(block));
++	u64 page_pfn = page_to_pfn(page);
++	u64 i = page_pfn - block_pfn_first;
++
++	xe_assert(tile->xe, i < pages_per_block);
++	clear_bit(i, meta->bitmap);
++	if (bitmap_empty(meta->bitmap, pages_per_block))
++		free_block(block);
+ }
+ 
+ static const struct dev_pagemap_ops xe_devm_pagemap_ops = {
 -- 
 2.26.3
 
