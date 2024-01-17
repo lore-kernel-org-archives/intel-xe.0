@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7F71C47258
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jan 2024 22:01:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9405C47DA7
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jan 2024 22:02:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64CB610E893;
-	Wed, 17 Jan 2024 22:01:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74D6910E8A8;
+	Wed, 17 Jan 2024 22:01:51 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A80210E008;
- Wed, 17 Jan 2024 22:01:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEF7E10E895;
+ Wed, 17 Jan 2024 22:01:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705528906; x=1737064906;
+ t=1705528907; x=1737064907;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=IgTg5rpRtePLupWg3aD5I7Gh2zRaE7GKcIVij7uNhNM=;
- b=h2c8KZ/1An1OccGxJDqrffX7Ky1h5ZRlpPRIrRkGqqHXXcimXThtZxLK
- ML2fhrqcseSpB3SUc5WJP+XQ/r/YE4Ndz/wVfySoGnmqUZyby5BspxrBS
- N+zOKyJqDjjt75eC3KzV1eNyvU9Y84Y1IGp1UicDCqYRB9BpWT9ybUvyn
- XX2muGL+diZiNax8DQceDYqydDr8pXzcb0oK6fHOBtNTDiM0lI/m77EIU
- eH/8xR5XrrcG5NDei55bRihjVtMWFK2rwLYeDCuFoahyUa3VgC6nQyMHr
- HNkR8qiqjQ34cTf+IPvrVKRde82Djuun5FcH9U3RjbwU6IqJsO6/ihlLo Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="7657614"
+ bh=TFuLDl5rjE5Z8M92BmQP1BBm1VJQTh1JMd04l6WaM4I=;
+ b=ioTG3VurZBm+DSlHy9GO44V+9FetxZ6nlguHqN4pkLOLpg3QcERNPOZy
+ EOuE7QZa8QwhHjbWVj6n1EkPv7DNLwVAf2+yXWhzqQXY8x77KSlOenHCx
+ MC1QmUWF6zCVo3T7HZb80wZJTlh4xPqFTZfRAcpnNpJ/yWclYrRKyaBCu
+ +nq3Jxl7kzQ1JpDlenz50oiydGhOd9vtoMZhcyf6VIa2QNjVCEIZKiP6R
+ 0cMzXFjVZauF8DEiXiSLD353Xhabi5RNp7Q4BxXrUkKKIbjNlXXRb2HVq
+ pHyQ7QTcWaN3JY/aXJShMdMiqK5Bfrmn99PA6zR8pLibMaTvGEbgGaXxA Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="7657632"
 X-IronPort-AV: E=Sophos;i="6.05,201,1701158400"; 
-   d="scan'208";a="7657614"
+   d="scan'208";a="7657632"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2024 14:01:45 -0800
+ 17 Jan 2024 14:01:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="734089219"
-X-IronPort-AV: E=Sophos;i="6.05,201,1701158400"; d="scan'208";a="734089219"
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="734089273"
+X-IronPort-AV: E=Sophos;i="6.05,201,1701158400"; d="scan'208";a="734089273"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  17 Jan 2024 14:01:45 -0800
 From: Oak Zeng <oak.zeng@intel.com>
 To: dri-devel@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH 01/23] drm/xe/svm: Add SVM document
-Date: Wed, 17 Jan 2024 17:12:01 -0500
-Message-Id: <20240117221223.18540-2-oak.zeng@intel.com>
+Subject: [PATCH 19/23] drm/xe/svm: migrate svm range to vram
+Date: Wed, 17 Jan 2024 17:12:19 -0500
+Message-Id: <20240117221223.18540-20-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240117221223.18540-1-oak.zeng@intel.com>
 References: <20240117221223.18540-1-oak.zeng@intel.com>
@@ -62,7 +62,13 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add shared virtual memory document.
+Since the source pages of the svm range can be physically none
+contiguous, and the destination vram pages can also be none
+contiguous, there is no easy way to migrate multiple pages per
+blitter command. We do page by page migration for now.
+
+Migration is best effort. Even if we fail to migrate some pages,
+we will try to migrate the rest pages.
 
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 Co-developed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
@@ -71,163 +77,171 @@ Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@intel.com>
 Cc: Brian Welty <brian.welty@intel.com>
 ---
- Documentation/gpu/xe/index.rst  |   1 +
- Documentation/gpu/xe/xe_svm.rst |   8 +++
- drivers/gpu/drm/xe/xe_svm_doc.h | 121 ++++++++++++++++++++++++++++++++
- 3 files changed, 130 insertions(+)
- create mode 100644 Documentation/gpu/xe/xe_svm.rst
- create mode 100644 drivers/gpu/drm/xe/xe_svm_doc.h
+ drivers/gpu/drm/xe/xe_svm.c         |   7 ++
+ drivers/gpu/drm/xe/xe_svm.h         |   3 +
+ drivers/gpu/drm/xe/xe_svm_migrate.c | 114 ++++++++++++++++++++++++++++
+ 3 files changed, 124 insertions(+)
 
-diff --git a/Documentation/gpu/xe/index.rst b/Documentation/gpu/xe/index.rst
-index c224ecaee81e..106b60aba1f0 100644
---- a/Documentation/gpu/xe/index.rst
-+++ b/Documentation/gpu/xe/index.rst
-@@ -23,3 +23,4 @@ DG2, etc is provided to prototype the driver.
-    xe_firmware
-    xe_tile
-    xe_debugging
-+   xe_svm
-diff --git a/Documentation/gpu/xe/xe_svm.rst b/Documentation/gpu/xe/xe_svm.rst
-new file mode 100644
-index 000000000000..62954ba1c6f8
---- /dev/null
-+++ b/Documentation/gpu/xe/xe_svm.rst
-@@ -0,0 +1,8 @@
-+.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 5772bfcf7da4..44d4f4216a93 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -5,12 +5,19 @@
+ 
+ #include <linux/mutex.h>
+ #include <linux/mm_types.h>
++#include <linux/interval_tree.h>
++#include <linux/container_of.h>
++#include <linux/types.h>
++#include <linux/migrate.h>
+ #include "xe_svm.h"
+ #include <linux/hmm.h>
+ #include <linux/scatterlist.h>
+ #include "xe_pt.h"
+ #include "xe_assert.h"
+ #include "xe_vm_types.h"
++#include "xe_gt.h"
++#include "xe_migrate.h"
++#include "xe_trace.h"
+ 
+ DEFINE_HASHTABLE(xe_svm_table, XE_MAX_SVM_PROCESS);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index 5b3bd2c064f5..659bcb7927d6 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -80,6 +80,9 @@ struct xe_svm_range {
+ };
+ 
+ vm_fault_t xe_devm_migrate_to_ram(struct vm_fault *vmf);
++int svm_migrate_range_to_vram(struct xe_svm_range *range,
++							struct vm_area_struct *vma,
++							struct xe_tile *tile);
+ void xe_destroy_svm(struct xe_svm *svm);
+ struct xe_svm *xe_create_svm(struct xe_vm *vm);
+ struct xe_svm *xe_lookup_svm_by_mm(struct mm_struct *mm);
+diff --git a/drivers/gpu/drm/xe/xe_svm_migrate.c b/drivers/gpu/drm/xe/xe_svm_migrate.c
+index b4df411e04f3..3724ad6c7aea 100644
+--- a/drivers/gpu/drm/xe/xe_svm_migrate.c
++++ b/drivers/gpu/drm/xe/xe_svm_migrate.c
+@@ -229,3 +229,117 @@ vm_fault_t xe_devm_migrate_to_ram(struct vm_fault *vmf)
+ 	kvfree(buf);
+ 	return 0;
+ }
 +
-+=============
-+Shared virtual memory
-+=============
-+
-+.. kernel-doc:: drivers/gpu/drm/xe/xe_svm_doc.h
-+   :doc: Shared virtual memory
-diff --git a/drivers/gpu/drm/xe/xe_svm_doc.h b/drivers/gpu/drm/xe/xe_svm_doc.h
-new file mode 100644
-index 000000000000..de38ee3585e4
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_svm_doc.h
-@@ -0,0 +1,121 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef _XE_SVM_DOC_H_
-+#define _XE_SVM_DOC_H_
 +
 +/**
-+ * DOC: Shared virtual memory
++ * svm_migrate_range_to_vram() - migrate backing store of a va range to vram
++ * Must be called with mmap_read_lock(mm) held.
++ * @range: the va range to migrate. Range should only belong to one vma.
++ * @vma: the vma that this range belongs to. @range can cover whole @vma
++ * or a sub-range of @vma.
++ * @tile: the destination tile which holds the new backing store of the range
 + *
-+ * Shared Virtual Memory (SVM) allows the programmer to use a single virtual
-+ * address space shared between threads executing on CPUs and GPUs. It abstracts
-+ * away from the user the location of the backing memory, and hence simplifies
-+ * the user programming model. In a non-SVM memory model, user need to explicitly
-+ * decide memory placement such as device or system memory, also user need to
-+ * explicitly migrate memory b/t device and system memory.
-+ *
-+ * Interface
-+ * =========
-+ *
-+ * SVM makes use of default OS memory allocation and mapping interface such as
-+ * malloc() and mmap(). The pointer returned from malloc() and mmap() can be
-+ * directly used on both CPU and GPU program.
-+ *
-+ * SVM also provides API to set virtual address range based memory attributes
-+ * such as preferred memory location, memory migration granularity, and memory
-+ * atomic attributes etc. This is similar to Linux madvise API.
-+ *
-+ * Basic implementation
-+ * ==============
-+ *
-+ * XeKMD implementation is based on Linux kernel Heterogeneous Memory Management
-+ * (HMM) framework. HMM’s address space mirroring support allows sharing of the
-+ * address space by duplicating sections of CPU page tables in the device page
-+ * tables. This enables both CPU and GPU access a physical memory location using
-+ * the same virtual address.
-+ *
-+ * Linux kernel also provides the ability to plugin device memory to the system
-+ * (as a special ZONE_DEVICE type) and allocates struct page for each device memory
-+ * page.
-+ *
-+ * HMM also provides a mechanism to migrate pages from host to device memory and
-+ * vice versa.
-+ *
-+ * More information on HMM can be found here.
-+ * https://www.kernel.org/doc/Documentation/vm/hmm.rst
-+ *
-+ * Unlike the non-SVM memory allocator (such as gem_create, vm_bind etc), there
-+ * is no buffer object (BO, such as struct ttm_buffer_object, struct drm_gem_object),
-+ * in our SVM implementation. We delibrately choose this implementation option
-+ * to achieve page granularity memory placement, validation, eviction and migration.
-+ *
-+ * The SVM layer directly allocate device memory from drm buddy subsystem. The
-+ * memory is organized as many blocks each of which has 2^n pages. SVM subsystem
-+ * then mark the usage of each page using a simple bitmap. When all pages in a
-+ * block are not used anymore, SVM return this block back to drm buddy subsystem.
-+ *
-+ * There are 3 events which can trigger SVM subsystem in actions:
-+ *
-+ * 1. A mmu notifier callback
-+ *
-+ * Since SVM need to mirror the program's CPU virtual address space from GPU side,
-+ * when program's CPU address space changes, SVM need to make an identical change
-+ * from GPU side. SVM/hmm use mmu interval notifier to achieve this. SVM register
-+ * a mmu interval notifier call back function to core mm, and whenever a CPU side
-+ * virtual address space is changed (i.e., when a virtual address range is unmapped
-+ * from CPU calling munmap), the registered callback function will be called from
-+ * core mm. SVM then mirror the CPU address space change from GPU side, i.e., unmap
-+ * or invalidate the virtual address range from GPU page table.
-+ *
-+ * 2. A GPU page fault
-+ *
-+ * At the very beginning of a process's life, no virtual address of the process
-+ * is mapped on GPU page table. So when GPU access any virtual address of the process
-+ * a GPU page fault is triggered. SVM then decide the best memory location of the
-+ * fault address (mainly from performance consideration. Some times also consider
-+ * correctness requirement such as whether GPU can perform atomics operation to
-+ * certain memory location), migrate memory if necessary, and map the fault address
-+ * to GPU page table.
-+ *
-+ * 3. A CPU page fault
-+ *
-+ * A CPU page fault is usually managed by Linux core mm. But in a CPU and GPU
-+ * mix programming environment, the backing store of a virtual address range
-+ * can be in GPU's local memory which is not visible to CPU (DEVICE_PRIVATE),
-+ * so CPU page fault handler need to migrate such pages to system memory for
-+ * CPU to be able to access them. Such memory migration is device specific.
-+ * HMM has a callback function (migrate_to_ram function of the dev_pagemap_ops)
-+ * for device driver to implement.
-+ *
-+ *
-+ * Memory hints: TBD
-+ * =================
-+ *
-+ * Memory eviction: TBD
-+ * ===============
-+ *
-+ * Lock design
-+ * ===========
-+ *
-+ * https://www.kernel.org/doc/Documentation/vm/hmm.rst section "Address space mirroring
-+ * implemenation and API" described the locking scheme that driver writer has to
-+ * respect. There are 3 lock mechanism involved in this scheme:
-+ *
-+ * 1. Use mmp_read/write_lock to protect VMA, cpu page table operations.  Operation such
-+ * as munmap/mmap, page table update during numa balance must hold this lock. Hmm_range_fault
-+ * is a helper function provided by HMM to populate the CPU page table, so it must be called
-+ * with this lock
-+ *
-+ * 2. Use xe_svm::mutex to protect device side page table operation. Any attempt to bind an
-+ * address range to GPU, or invalidate an address range from GPU, should hold this device lock
-+ *
-+ * 3. In the GPU page fault handler, during device page table update, we hold a xe_svm::mutex,
-+ * but we don't hold the mmap_read/write_lock. So programm's address space can change during
-+ * the GPU page table update. mmu notifier seq# is used to determine whether unmap happened
-+ * during during device page table update, if yes, then retry.
-+ *
++ * Returns: negative errno on faiure, 0 on success
 + */
++int svm_migrate_range_to_vram(struct xe_svm_range *range,
++							struct vm_area_struct *vma,
++							struct xe_tile *tile)
++{
++	struct mm_struct *mm = range->svm->mm;
++	unsigned long start = range->start;
++	unsigned long end = range->end;
++	unsigned long npages = (end - start) >> PAGE_SHIFT;
++	struct xe_mem_region *mr = &tile->mem.vram;
++	struct migrate_vma migrate = {
++		.vma		= vma,
++		.start		= start,
++		.end		= end,
++		.pgmap_owner	= tile->xe->drm.dev,
++		.flags          = MIGRATE_VMA_SELECT_SYSTEM,
++	};
++	struct device *dev = tile->xe->drm.dev;
++	dma_addr_t *src_dma_addr;
++	struct dma_fence *fence;
++	struct page *src_page;
++	LIST_HEAD(blocks);
++	int ret = 0, i;
++	u64 dst_dpa;
++	void *buf;
 +
-+#endif
++	mmap_assert_locked(mm);
++	xe_assert(tile->xe, xe_svm_range_belongs_to_vma(mm, range, vma));
++
++	buf = kvcalloc(npages, 2* sizeof(*migrate.src) + sizeof(*src_dma_addr),
++					GFP_KERNEL);
++	if(!buf)
++		return -ENOMEM;
++	migrate.src = buf;
++	migrate.dst = migrate.src + npages;
++	src_dma_addr = (dma_addr_t *) (migrate.dst + npages);
++	ret = xe_devm_alloc_pages(tile, npages, &blocks, migrate.dst);
++	if (ret)
++		goto kfree_buf;
++
++	ret = migrate_vma_setup(&migrate);
++	if (ret) {
++		drm_err(&tile->xe->drm, "vma setup returned %d for range [%lx - %lx]\n",
++				ret, start, end);
++		goto free_dst_pages;
++	}
++
++	trace_xe_svm_migrate_sram_to_vram(range);
++	/**FIXME: partial migration of a range
++	 * print a warning for now. If this message
++	 * is printed, we need to fall back to page by page
++	 * migration: only migrate pages with MIGRATE_PFN_MIGRATE
++	 */
++	if (migrate.cpages != npages)
++		drm_warn(&tile->xe->drm, "Partial migration for range [%lx - %lx], range is %ld pages, migrate only %ld pages\n",
++				start, end, npages, migrate.cpages);
++
++	/**Migrate page by page for now.
++	 * Both source pages and destination pages can physically not contiguous,
++	 * there is no good way to migrate multiple pages per blitter command.
++	 */
++	for (i = 0; i < npages; i++) {
++		src_page = migrate_pfn_to_page(migrate.src[i]);
++		if (unlikely(!src_page || !(migrate.src[i] & MIGRATE_PFN_MIGRATE)))
++			goto free_dst_page;
++
++		xe_assert(tile->xe, !is_zone_device_page(src_page));
++		src_dma_addr[i] = dma_map_page(dev, src_page, 0, PAGE_SIZE, DMA_TO_DEVICE);
++		if (unlikely(dma_mapping_error(dev, src_dma_addr[i]))) {
++			drm_warn(&tile->xe->drm, "dma map error for host pfn %lx\n", migrate.src[i]);
++			goto free_dst_page;
++		}
++		dst_dpa = vram_pfn_to_dpa(mr, migrate.dst[i]);
++		fence = xe_migrate_svm(tile->migrate, src_dma_addr[i], false,
++				dst_dpa, true, PAGE_SIZE);
++		if (IS_ERR(fence)) {
++			drm_warn(&tile->xe->drm, "migrate host page (pfn: %lx) to vram failed\n",
++					migrate.src[i]);
++			/**Migration is best effort. Even we failed here, we continue*/
++			goto free_dst_page;
++		}
++		/**FIXME: Use the first migration's out fence as the second migration's input fence,
++		 * and so on. Only wait the out fence of last migration?
++		 */
++		dma_fence_wait(fence, false);
++		dma_fence_put(fence);
++free_dst_page:
++		xe_devm_page_free(pfn_to_page(migrate.dst[i]));
++	}
++
++	for (i = 0; i < npages; i++)
++		if (!(dma_mapping_error(dev, src_dma_addr[i])))
++			dma_unmap_page(dev, src_dma_addr[i], PAGE_SIZE, DMA_TO_DEVICE);
++
++	migrate_vma_pages(&migrate);
++	migrate_vma_finalize(&migrate);
++free_dst_pages:
++	if (ret)
++		xe_devm_free_blocks(&blocks);
++kfree_buf:
++	kfree(buf);
++	return ret;
++}
 -- 
 2.26.3
 
