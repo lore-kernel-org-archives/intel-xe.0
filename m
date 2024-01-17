@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9734C47258
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jan 2024 20:23:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E216C47DA2
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jan 2024 20:24:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AFE610E81C;
-	Wed, 17 Jan 2024 20:23:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3323010E818;
+	Wed, 17 Jan 2024 20:24:02 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D45FB10E81C;
- Wed, 17 Jan 2024 20:23:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74FDD10E818;
+ Wed, 17 Jan 2024 20:24:00 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_correct_th?=
- =?utf-8?q?e_calculation_of_remaining_size_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_correct_the_cal?=
+ =?utf-8?q?culation_of_remaining_size_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: fei.yang@intel.com
-Date: Wed, 17 Jan 2024 20:23:48 -0000
-Message-ID: <170552302886.537692.2189154378887563394@5338d5abeb45>
+Date: Wed, 17 Jan 2024 20:24:00 -0000
+Message-ID: <170552304047.537693.1155211636489962625@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240116200424.651661-1-fei.yang@intel.com>
 In-Reply-To: <20240116200424.651661-1-fei.yang@intel.com>
@@ -44,13 +44,38 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: correct the calculation of remaining size (rev2)
 URL   : https://patchwork.freedesktop.org/series/128844/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 6002d529f drm-tip: 2024y-01m-17d-20h-08m-23s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: correct the calculation of remaining size
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+e7f730565356938dd6c63cd498218fdc5d6a22b0
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 456f2b6cef09bb1710e443dab90f1921adbfc152
+Author: Fei Yang <fei.yang@intel.com>
+Date:   Tue Jan 16 12:04:24 2024 -0800
+
+    drm/xe: correct the calculation of remaining size
+    
+    In function write_pgtable, the calculation of chunk in the do-while
+    loop is wrong, we should always compare against remaining size instead
+    of the total size update->qwords.
+    Also, when performing dword writes, dword length can be any value
+    from 2 to 3fe, always adding 1 is wrong.
+    
+    Signed-off-by: Fei Yang <fei.yang@intel.com>
++ /mt/dim checkpatch 6002d529f9fe420895d407e481d39b19b58ec001 drm-intel
+456f2b6ce drm/xe: correct the calculation of remaining size
+-:23: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'x' - possible side-effects?
+#23: FILE: drivers/gpu/drm/xe/instructions/xe_mi_commands.h:39:
++#define   MI_SDI_NUM_DW(x)		REG_FIELD_PREP(MI_SDI_LEN_DW, ((x) > 1) ? (x) : 2)
+
+total: 0 errors, 0 warnings, 1 checks, 16 lines checked
 
 
