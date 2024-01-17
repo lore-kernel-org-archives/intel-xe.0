@@ -4,50 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4279C47258
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jan 2024 22:02:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BC06C47DA2
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jan 2024 22:11:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E9D410E8C9;
-	Wed, 17 Jan 2024 22:01:59 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2761B10E898;
- Wed, 17 Jan 2024 22:01:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705528907; x=1737064907;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=MY8pJHnVMgBM7aazDRdEB2C96Ve/RDJicoR6dcBJDcA=;
- b=KRc22RFWV23GNUr4uacRs3VGDGZt71Mw9jWJnTEHkgBogfsLPlaB4Bey
- +wIBBQKisRWV/YOSDhVBd3fh4jD9FpgXHUVlWNYxDh1EA8OlMveuxVPP1
- ScxcNUdYB+D6PKO/4uXUdN4rrS1NoSTnkhnQEaU0O7YKEHYwnrqUQjNTW
- tAg/pAW1rNAGbHVn9pls03UyL4hhwOX4MqwNlZ3et/QeCTTuK+G5kC12G
- vTdPlIo5LW9ZGzWQUdjeGMMPaptB7xEPw9XP1ZHIbQc/3n0WprbYuarPJ
- c5RvbugUkMP+evM1gx6oofEn56mE/yT1EUFe+O1FuPbS5QiS1wEOWLukS A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="7657635"
-X-IronPort-AV: E=Sophos;i="6.05,201,1701158400"; 
-   d="scan'208";a="7657635"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2024 14:01:46 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="734089282"
-X-IronPort-AV: E=Sophos;i="6.05,201,1701158400"; d="scan'208";a="734089282"
-Received: from szeng-desk.jf.intel.com ([10.165.21.149])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2024 14:01:46 -0800
-From: Oak Zeng <oak.zeng@intel.com>
-To: dri-devel@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Subject: [PATCH 22/23] drm/xe/svm: Add DRM_XE_SVM kernel config entry
-Date: Wed, 17 Jan 2024 17:12:22 -0500
-Message-Id: <20240117221223.18540-23-oak.zeng@intel.com>
-X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20240117221223.18540-1-oak.zeng@intel.com>
-References: <20240117221223.18540-1-oak.zeng@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BF9810E87E;
+	Wed, 17 Jan 2024 22:11:59 +0000 (UTC)
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6BD910E87E;
+ Wed, 17 Jan 2024 22:11:57 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3978894734895337503=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe=3A_correct_the_calculatio?=
+ =?utf-8?q?n_of_remaining_size?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: fei.yang@intel.com
+Date: Wed, 17 Jan 2024 22:11:57 -0000
+Message-ID: <170552951774.537693.10870224400284768555@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240116195251.651321-1-fei.yang@intel.com>
+In-Reply-To: <20240116195251.651321-1-fei.yang@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,115 +35,165 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-DRM_XE_SVM kernel config entry is added so
-xe svm feature can be configured before kernel
-compilation.
+--===============3978894734895337503==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-Co-developed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@intel.com>
-Cc: Brian Welty <brian.welty@intel.com>
----
- drivers/gpu/drm/xe/Kconfig   | 22 ++++++++++++++++++++++
- drivers/gpu/drm/xe/Makefile  |  5 +++++
- drivers/gpu/drm/xe/xe_mmio.c |  5 +++++
- drivers/gpu/drm/xe/xe_vm.c   |  2 ++
- 4 files changed, 34 insertions(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-index 1b57ae38210d..6f498095a915 100644
---- a/drivers/gpu/drm/xe/Kconfig
-+++ b/drivers/gpu/drm/xe/Kconfig
-@@ -83,6 +83,28 @@ config DRM_XE_FORCE_PROBE
- 
- 	  Use "!*" to block the probe of the driver for all known devices.
- 
-+config DRM_XE_SVM
-+    bool "Enable Shared Virtual Memory support in xe"
-+    depends on DRM_XE
-+    depends on ARCH_ENABLE_MEMORY_HOTPLUG
-+    depends on ARCH_ENABLE_MEMORY_HOTREMOVE
-+    depends on MEMORY_HOTPLUG
-+    depends on MEMORY_HOTREMOVE
-+    depends on ARCH_HAS_PTE_DEVMAP
-+    depends on SPARSEMEM_VMEMMAP
-+    depends on ZONE_DEVICE
-+    depends on DEVICE_PRIVATE
-+    depends on MMU
-+    select HMM_MIRROR
-+    select MMU_NOTIFIER
-+    default y
-+    help
-+      Choose this option if you want Shared Virtual Memory (SVM)
-+      support in xe. With SVM, virtual address space is shared
-+	  between CPU and GPU. This means any virtual address such
-+	  as malloc or mmap returns, variables on stack, or global
-+	  memory pointers, can be used for GPU transparently.
-+
- menu "drm/Xe Debugging"
- depends on DRM_XE
- depends on EXPERT
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index e16b84f79ddf..ae503f7c1f94 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -283,6 +283,11 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	i915-display/skl_universal_plane.o \
- 	i915-display/skl_watermark.o
- 
-+xe-$(CONFIG_DRM_XE_SVM) += xe_svm.o \
-+						   xe_svm_devmem.o \
-+						   xe_svm_range.o \
-+						   xe_svm_migrate.o
-+
- ifeq ($(CONFIG_ACPI),y)
- 	xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 		i915-display/intel_acpi.o \
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 3d34dcfa3b3a..99810794bd94 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -286,7 +286,9 @@ int xe_mmio_probe_vram(struct xe_device *xe)
- 		}
- 
- 		io_size -= min_t(u64, tile_size, io_size);
-+#if IS_ENABLED(CONFIG_DRM_XE_SVM)
- 		xe_svm_devm_add(tile, &tile->mem.vram);
-+#endif
- 	}
- 
- 	xe->mem.vram.actual_physical_size = total_size;
-@@ -361,8 +363,11 @@ static void mmio_fini(struct drm_device *drm, void *arg)
- 	pci_iounmap(to_pci_dev(xe->drm.dev), xe->mmio.regs);
- 	if (xe->mem.vram.mapping)
- 		iounmap(xe->mem.vram.mapping);
-+
-+#if IS_ENABLED(CONFIG_DRM_XE_SVM)
- 	for_each_tile(tile, xe, id) {
- 		xe_svm_devm_remove(xe, &tile->mem.vram);
-+#endif
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 712fe49d8fb2..3bf19c92e01f 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1377,7 +1377,9 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- 		xe->usm.num_vm_in_non_fault_mode++;
- 	mutex_unlock(&xe->usm.lock);
- 
-+#if IS_ENABLED(CONFIG_DRM_XE_SVM)
- 	vm->svm = xe_create_svm(vm);
-+#endif
- 	trace_xe_vm_create(vm);
- 
- 	return vm;
--- 
-2.26.3
+Series: drm/xe: correct the calculation of remaining size
+URL   : https://patchwork.freedesktop.org/series/128844/
+State : failure
 
+== Summary ==
+
+CI Bug Log - changes from xe-641-6002d529f9fe420895d407e481d39b19b58ec001_BAT -> xe-pw-128844v1_BAT
+====================================================
+
+Summary
+-------
+
+  **WARNING**
+
+  Minor unknown changes coming with xe-pw-128844v1_BAT need to be verified
+  manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-128844v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-128844v1_BAT:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@xe_exec_fault_mode@twice-basic:
+    - bat-atsm-2:         [SKIP][1] ([Intel XE#288]) -> [SKIP][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-641-6002d529f9fe420895d407e481d39b19b58ec001/bat-atsm-2/igt@xe_exec_fault_mode@twice-basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128844v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-basic.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-128844v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-dg2-oem2:       [FAIL][3] ([Intel XE#480]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-641-6002d529f9fe420895d407e481d39b19b58ec001/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128844v1/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7678 -> IGT_7675
+  * Linux: xe-641-6002d529f9fe420895d407e481d39b19b58ec001 -> xe-pw-128844v1
+
+  IGT_7675: ffde49e0583ee5053f25a065356bce6bce91047a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7678: 9f0b63bae98fa6164dd2262f8890a964fb1fc23d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-641-6002d529f9fe420895d407e481d39b19b58ec001: 6002d529f9fe420895d407e481d39b19b58ec001
+  xe-pw-128844v1: 128844v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128844v1/index.html
+
+--===============3978894734895337503==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: correct the calculation of remaining size</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/128844/">https://patchwork.freedesktop.org/series/128844/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128844v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128844v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-641-6002d529f9fe420895d407e481d39b19b58ec001_BAT -&gt; xe-pw-128844v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>WARNING</strong></p>
+<p>Minor unknown changes coming with xe-pw-128844v1_BAT need to be verified<br />
+  manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-128844v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-128844v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_exec_fault_mode@twice-basic:<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-641-6002d529f9fe420895d407e481d39b19b58ec001/bat-atsm-2/igt@xe_exec_fault_mode@twice-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128844v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-basic.html">SKIP</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-128844v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-641-6002d529f9fe420895d407e481d39b19b58ec001/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128844v1/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7678 -&gt; IGT_7675</li>
+<li>Linux: xe-641-6002d529f9fe420895d407e481d39b19b58ec001 -&gt; xe-pw-128844v1</li>
+</ul>
+<p>IGT_7675: ffde49e0583ee5053f25a065356bce6bce91047a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7678: 9f0b63bae98fa6164dd2262f8890a964fb1fc23d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-641-6002d529f9fe420895d407e481d39b19b58ec001: 6002d529f9fe420895d407e481d39b19b58ec001<br />
+  xe-pw-128844v1: 128844v1</p>
+
+</body>
+</html>
+
+--===============3978894734895337503==--
