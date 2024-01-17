@@ -4,40 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44BD2C47422
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jan 2024 09:47:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31E1BC47258
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jan 2024 09:47:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0969410E672;
-	Wed, 17 Jan 2024 09:47:18 +0000 (UTC)
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4BEE10E672;
- Wed, 17 Jan 2024 09:47:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE71510E699;
+	Wed, 17 Jan 2024 09:47:35 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F44110E695;
+ Wed, 17 Jan 2024 09:47:34 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 2DFDFCE1B31;
- Wed, 17 Jan 2024 09:47:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 193A3C43399;
- Wed, 17 Jan 2024 09:47:13 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id 5B8B761591;
+ Wed, 17 Jan 2024 09:47:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC31AC433C7;
+ Wed, 17 Jan 2024 09:47:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1705484834;
- bh=DzKkZ7pwJrE9T6YvgnxaoBeYmKwKiuExIE8dk9CyibA=;
+ s=k20201202; t=1705484823;
+ bh=+W1QtavGg43I25Qlt8kktX9sjC8kTiEwRJDpeusCOuI=;
  h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
- b=PCTf7WkKYcQsxfBy5YaMXL+ElkORn7WfuEF8eFRn2qRb61DC+JtbEK8GFyFu8mUlw
- I1cYBv8LyBf8Ikv5AxqVrChMnQ9NKFjO3bIL7p/a3AnL2R4NL+lpb1v8eFLxf1Hb5D
- dkbaKdsyb6t5+8MZMeDJYwgJ5G+H4sRzm3GRGvUoVaAz/wbnobeCpMyTLbSXvpCCOt
- qRUTwHp0Kyurh5QmjUuA1x8xkuIVTvtpsaCpKn7db4IRokIT0svzO9o864B2EcfG5Z
- bjCTb3Pm0Ls+7VxbxW3r7wNLS+HSulQsgard3UH5d5G0nCP/WXhU3ZUU+FfggJtlIi
- GdSqHeYw/uzjw==
+ b=tuBDT7USVMJgL8Xa7Tv6d0XoAkJsWYWSsdCooC5XhNIDnwP13fjPBHxDbqUNQhxq+
+ ZqzjOpl+QbgxyBxmlewJbqOU87S9hrz7Nc3A8PmYs8KYIRF3tX9rJ2OoNKNQGR2fM6
+ n+SVYh4HQ2RVzXvQSdmoZRBwaJnINPqtDQ8SgNgDSy5AMLwQipd4izUhY786kCGJ9U
+ NHutOYBogx742ky4pvDRCf/CWWkXw2ENLKf8jvZBAvGIZTfOL3EnWfV6T769vdpvC4
+ hBASxjLOoHfrm1NBhuRfcViGEbstJpNn+L6zbFca9uPV7PE4J2LJqkf0ze7JJljARf
+ 5GuQ2lasJAHzA==
 From: Maxime Ripard <mripard@kernel.org>
 To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
  linux-kernel@vger.kernel.org, 
  =?utf-8?q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>
-In-Reply-To: <20240115171351.504264-6-michal.winiarski@intel.com>
+In-Reply-To: <20240115171351.504264-2-michal.winiarski@intel.com>
 References: <20240115171351.504264-1-michal.winiarski@intel.com>
- <20240115171351.504264-6-michal.winiarski@intel.com>
-Subject: Re: (subset) [PATCH v5 5/5] drm/tests: managed: Add a simple test
- for drmm_managed_release
-Message-Id: <170548483207.96553.13751158453989527090.b4-ty@kernel.org>
-Date: Wed, 17 Jan 2024 10:47:12 +0100
+ <20240115171351.504264-2-michal.winiarski@intel.com>
+Subject: Re: (subset) [PATCH v5 1/5] drm/managed: Add drmm_release_action
+Message-Id: <170548482051.96553.15600235735895208775.b4-ty@kernel.org>
+Date: Wed, 17 Jan 2024 10:47:00 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -60,9 +59,9 @@ Cc: Thomas Zimmermann <tzimmermann@suse.de>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 15 Jan 2024 18:13:51 +0100, Michał Winiarski wrote:
-> Add a simple test that checks whether the action is called when
-> drmm_managed_release is called.
+On Mon, 15 Jan 2024 18:13:47 +0100, Michał Winiarski wrote:
+> Similar to devres equivalent, it allows to call the "release" action
+> directly and remove the resource from the managed resources list.
 > 
 > 
 
