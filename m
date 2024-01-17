@@ -4,47 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 716E7C47258
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jan 2024 12:37:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4698EC47DA2
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jan 2024 12:38:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A29610E10E;
-	Wed, 17 Jan 2024 12:37:31 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9885F10E10E
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Jan 2024 12:37:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 065E710E067;
+	Wed, 17 Jan 2024 12:38:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1509110E067
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Jan 2024 12:38:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705495049; x=1737031049;
+ t=1705495096; x=1737031096;
  h=message-id:subject:from:to:date:in-reply-to:references:
  content-transfer-encoding:mime-version;
- bh=Pi8rPj1c6J0rLtzuk+ZuwRHQwA6HAy1hKc+wimxd4iE=;
- b=kvPCnn3eu8BJ/aBl7CLlTCXXsUxaAZ0X9C00kr44CsnQzoh1xzPcHi7p
- 2QS1D1wGLf7Yol3Cy6aiwNmqZzjzrQsIIqHBJx+7Kiv4zQoxjE9TugHa8
- NBNeXd7eJu7hB4Z7Jsac93mjHow9KyUoQk2TqB+jRiPOwo+VsggdaIXn3
- a4u3M6MssmxE0ceYxLJuTKHBuj5x6a9Y1ZQW0qrIaczInVOYF6923nvdi
- 8esGiNSY5ohUCBzTM+SNZdgR0M1A0hfSwmn2WptBH3JZgYwxkXKu5JQpu
- lid/Gqg+oo25fZmUJneNw5nkAManTYY5rqW88RWo5d4kP0hXLuj2qdxb+ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="6861111"
+ bh=fQ24mMySclHo6HZ9gJDRwz62QJ1s1KWu2svTy0B/7dU=;
+ b=h13WBCluBKMxNcDx0In+bcuOqQ+uMCpDNdkuXZzV+GhJGN800YlTb8sQ
+ RhC5oYMTj1gZVKBTzRly4gdeRJm2kWpYK9vfGc1BTeVM8NRLTMWak6xm6
+ oebADEtSjw+xqwyNKphNa01lDAT+kgnMSqDs38+wEmce9N2XUYXiVlbjj
+ yzfu9sYxskzT8+9jK0fyux2ytM0MSjF0u3+qdZMP95KOHh8R2EFH35E0r
+ meAETpHjaqbPkU28FRIlE8eMTfPOFWa5Y1d0O0G/qb2hma8nQekvblfJg
+ RWoLdjfSBUZ07Fghi8fReztQDsEAyimBld46jF2WnJ9UJjeybZB5vSNwQ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="7545820"
 X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; 
-   d="scan'208";a="6861111"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2024 04:37:29 -0800
+   d="scan'208";a="7545820"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2024 04:38:16 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="818505278"
-X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; d="scan'208";a="818505278"
+X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; d="scan'208";a="26479072"
 Received: from clanggaa-mobl.ger.corp.intel.com (HELO [10.249.254.57])
  ([10.249.254.57])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2024 04:37:28 -0800
-Message-ID: <8fc6c8bb95cf99bc6ef7cd5d4b8be559bca0710d.camel@linux.intel.com>
-Subject: Re: [PATCH 2/5] drm/xe: make heci_gsc_irq_chip const
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2024 04:38:15 -0800
+Message-ID: <53f0feffdaece8a49ace72451b568439ed5a973d.camel@linux.intel.com>
+Subject: Re: [PATCH 3/5] drm/xe: make hwmon_info const
 From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
 To: Jani Nikula <jani.nikula@intel.com>, intel-xe@lists.freedesktop.org
-Date: Wed, 17 Jan 2024 13:37:25 +0100
-In-Reply-To: <20240117122044.1544174-2-jani.nikula@intel.com>
+Date: Wed, 17 Jan 2024 13:38:12 +0100
+In-Reply-To: <20240117122044.1544174-3-jani.nikula@intel.com>
 References: <20240117122044.1544174-1-jani.nikula@intel.com>
- <20240117122044.1544174-2-jani.nikula@intel.com>
+ <20240117122044.1544174-3-jani.nikula@intel.com>
 Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
  keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
 Organization: Intel Sweden AB, Registration Number: 556189-6027
@@ -67,27 +66,39 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On Wed, 2024-01-17 at 14:20 +0200, Jani Nikula wrote:
-> The irq_chip definition can be const, make it so.
+> Make hwmon_info a const array of const pointers, and let it be placed
+> in
+> rodata.
 >=20
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+
 Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 
+>=20
 > ---
-> =C2=A0drivers/gpu/drm/xe/xe_heci_gsc.c | 2 +-
+>=20
+> Note: Lots more in this file will end up in rodata with the hwmon
+> change:
+>=20
+> https://lore.kernel.org/r/20240117114405.1506775-1-jani.nikula@intel.com
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_hwmon.c | 2 +-
 > =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
 >=20
-> diff --git a/drivers/gpu/drm/xe/xe_heci_gsc.c
-> b/drivers/gpu/drm/xe/xe_heci_gsc.c
-> index bfdd33b9b23b..1c9d38b6f5f1 100644
-> --- a/drivers/gpu/drm/xe/xe_heci_gsc.c
-> +++ b/drivers/gpu/drm/xe/xe_heci_gsc.c
-> @@ -29,7 +29,7 @@ static void heci_gsc_irq_unmask(struct irq_data *d)
-> =C2=A0	/* generic irq handling */
-> =C2=A0}
+> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c
+> b/drivers/gpu/drm/xe/xe_hwmon.c
+> index 6ef2aa1eae8b..e6acdf682d2a 100644
+> --- a/drivers/gpu/drm/xe/xe_hwmon.c
+> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+> @@ -402,7 +402,7 @@ static const struct attribute_group
+> *hwmon_groups[] =3D {
+> =C2=A0	NULL
+> =C2=A0};
 > =C2=A0
-> -static struct irq_chip heci_gsc_irq_chip =3D {
-> +static const struct irq_chip heci_gsc_irq_chip =3D {
-> =C2=A0	.name =3D "gsc_irq_chip",
-> =C2=A0	.irq_mask =3D heci_gsc_irq_mask,
-> =C2=A0	.irq_unmask =3D heci_gsc_irq_unmask,
+> -static const struct hwmon_channel_info *hwmon_info[] =3D {
+> +static const struct hwmon_channel_info * const hwmon_info[] =3D {
+> =C2=A0	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX |
+> HWMON_P_CRIT),
+> =C2=A0	HWMON_CHANNEL_INFO(curr, HWMON_C_CRIT),
+> =C2=A0	HWMON_CHANNEL_INFO(in, HWMON_I_INPUT),
 
