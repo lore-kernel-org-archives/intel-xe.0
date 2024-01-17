@@ -4,26 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DD1FC47258
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jan 2024 15:32:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56D71C47DA2
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jan 2024 15:55:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC28310E6D7;
-	Wed, 17 Jan 2024 15:32:01 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2228410E6D7;
- Wed, 17 Jan 2024 15:32:01 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1955993077048087801=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AA2910E0FC;
+	Wed, 17 Jan 2024 15:55:09 +0000 (UTC)
+Received: from mail02.habana.ai (habanamailrelay.habana.ai [213.57.90.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B43310E0FC
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Jan 2024 15:55:07 +0000 (UTC)
+Received: internal info suppressed
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
+ t=1705506900; bh=sb2d79nw+iMmqlBWN7HXQlIdGycXZ12vmz2x8Xe18HQ=;
+ h=From:To:Cc:Subject:Date:From;
+ b=k+wdu//T391SrlK5w/eA6YVEEjWVAp+FEax18tpxkQLnLuB0St+ItVO3/ieqrRCQW
+ zW48tgTKOr/DSkNT1I0e4nu41oaLFOmNkiWSuer21PecPai+/9z9gh8TZ+XR+soGIV
+ TMTAg2/WknRxGhL07+i5mTtV79JiL5hd4IRIrKhcw6e2BrtjS0mv4FQlzMchFJXST0
+ PX0SB2SsOq3/LIgq3SNLACGFbs8yrbWcRqPQ49+gUQT7yBsigXG0E49YcmgryhZvs2
+ RbyY/1/SxQTsq7RqFUTd1ou7MQ3z4YJBorNJDwtE1aBp7AIdy5sMGgwEiBu6x/1Cuz
+ KaTf9xfdWyHtA==
+Received: from kelbaz-vm-u22.habana-labs.com (localhost [127.0.0.1])
+ by kelbaz-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP
+ id 40HFssuo670951; Wed, 17 Jan 2024 17:54:54 +0200
+From: Koby Elbaz <kelbaz@habana.ai>
+To: michal.winiarski@intel.com
+Subject: [PATCH v5 1/2] drm/xe: add a new debugfs file - mmio
+Date: Wed, 17 Jan 2024 17:54:53 +0200
+Message-Id: <20240117155454.670938-1-kelbaz@habana.ai>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_series_starting_with_=5B1/5=5D_d?=
- =?utf-8?q?rm/xe=3A_make_xe=5Fttm=5Ffuncs_const?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Wed, 17 Jan 2024 15:32:01 -0000
-Message-ID: <170550552113.537518.10052043906319590653@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240117122044.1544174-1-jani.nikula@intel.com>
-In-Reply-To: <20240117122044.1544174-1-jani.nikula@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,135 +44,55 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, daniel@ffwll.ch, rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1955993077048087801==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Now that the former mmio handlers are fully removed, this
+debugfs file will be used for mmio access (read/write)
+through the debugfs ioctl file operation.
 
-== Series Details ==
+Signed-off-by: Koby Elbaz <kelbaz@habana.ai>
+---
+ drivers/gpu/drm/xe/xe_debugfs.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-Series: series starting with [1/5] drm/xe: make xe_ttm_funcs const
-URL   : https://patchwork.freedesktop.org/series/128876/
-State : failure
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index c56fd7d59f05..c24637ff09d8 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -97,12 +97,22 @@ static int forcewake_release(struct inode *inode, struct file *file)
+ 	return 0;
+ }
+ 
++static long xe_debugfs_mmio_ioctl(struct file *f, unsigned int cmd, unsigned long arg)
++{
++	return 0;
++}
++
+ static const struct file_operations forcewake_all_fops = {
+ 	.owner = THIS_MODULE,
+ 	.open = forcewake_open,
+ 	.release = forcewake_release,
+ };
+ 
++static const struct file_operations mmio_fops = {
++	.owner = THIS_MODULE,
++	.unlocked_ioctl = xe_debugfs_mmio_ioctl,
++};
++
+ void xe_debugfs_register(struct xe_device *xe)
+ {
+ 	struct ttm_device *bdev = &xe->ttm;
+@@ -141,6 +151,8 @@ void xe_debugfs_register(struct xe_device *xe)
+ 	for_each_gt(gt, xe, id)
+ 		xe_gt_debugfs_register(gt);
+ 
++	debugfs_create_file("mmio", 0644, root, xe, &mmio_fops);
++
+ #ifdef CONFIG_FAULT_INJECTION
+ 	fault_create_debugfs_attr("fail_gt_reset", root, &gt_reset_failure);
+ #endif
+-- 
+2.34.1
 
-== Summary ==
-
-CI Bug Log - changes from xe-639-b42f47ca5fff1d04fb8eb02d64520b3f338a495d_BAT -> xe-pw-128876v1_BAT
-====================================================
-
-Summary
--------
-
-  **WARNING**
-
-  Minor unknown changes coming with xe-pw-128876v1_BAT need to be verified
-  manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-128876v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-128876v1_BAT:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@xe_exec_fault_mode@twice-basic:
-    - bat-atsm-2:         [SKIP][1] ([Intel XE#288]) -> [SKIP][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-639-b42f47ca5fff1d04fb8eb02d64520b3f338a495d/bat-atsm-2/igt@xe_exec_fault_mode@twice-basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128876v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-basic.html
-
-  
-  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
-
-
-Build changes
--------------
-
-  * Linux: xe-639-b42f47ca5fff1d04fb8eb02d64520b3f338a495d -> xe-pw-128876v1
-
-  IGT_7677: 57ed393a5b5d04e985f9950a7f1546fc95f4001e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-639-b42f47ca5fff1d04fb8eb02d64520b3f338a495d: b42f47ca5fff1d04fb8eb02d64520b3f338a495d
-  xe-pw-128876v1: 128876v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128876v1/index.html
-
---===============1955993077048087801==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/5] drm/xe: make xe_ttm_funcs const</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/128876/">https://patchwork.freedesktop.org/series/128876/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128876v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128876v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-639-b42f47ca5fff1d04fb8eb02d64520b3f338a495d_BAT -&gt; xe-pw-128876v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>WARNING</strong></p>
-<p>Minor unknown changes coming with xe-pw-128876v1_BAT need to be verified<br />
-  manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-128876v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-128876v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_exec_fault_mode@twice-basic:<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-639-b42f47ca5fff1d04fb8eb02d64520b3f338a495d/bat-atsm-2/igt@xe_exec_fault_mode@twice-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128876v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-basic.html">SKIP</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-639-b42f47ca5fff1d04fb8eb02d64520b3f338a495d -&gt; xe-pw-128876v1</li>
-</ul>
-<p>IGT_7677: 57ed393a5b5d04e985f9950a7f1546fc95f4001e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-639-b42f47ca5fff1d04fb8eb02d64520b3f338a495d: b42f47ca5fff1d04fb8eb02d64520b3f338a495d<br />
-  xe-pw-128876v1: 128876v1</p>
-
-</body>
-</html>
-
---===============1955993077048087801==--
