@@ -4,138 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0A80C47DAF
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Jan 2024 18:16:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AF33C47DB3
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Jan 2024 18:40:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76E2A10E8BE;
-	Thu, 18 Jan 2024 18:16:41 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FD7E10E8BE
- for <intel-xe@lists.freedesktop.org>; Thu, 18 Jan 2024 18:16:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF50B10E8B6;
+	Thu, 18 Jan 2024 18:40:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A786110E8B6
+ for <intel-xe@lists.freedesktop.org>; Thu, 18 Jan 2024 18:40:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705601801; x=1737137801;
+ t=1705603208; x=1737139208;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=wgvJbFhMHNtIQIKL/bXnDZaY/+Dpk/kV6CAJl+cjh08=;
- b=cmARjQdcmdT/t2sRAxYOPKnxlwKku+NkCFSXUWut2Bpj6TDFYiFFcebe
- jLAlT7E8kAa2j8AnmUyKeRSE8IFDEJwetOelSHOBUUQP5Wk+aN57W/1gb
- ENatSuo7+p1InglNCs1VoIML9djwekZOiu2u2P2nj3xdjLGrBeGKUJ7Iy
- bxhqUDOTXieNyYmxU3OqDUL5eUYmc2zMV1QkiTe8o1YiPkoPSRQASy1ym
- RfUhJjB7Y87Zm9pL6hu7xmTfKBrWD26FWFrSxlrLsWVLXljATdNL/RV+s
- IAQlDNjVLXIxMI0dfGH6TvkTBvIfAvtiw14V2HzGj5+22ov7XmmZOyAvT A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="13887344"
-X-IronPort-AV: E=Sophos;i="6.05,203,1701158400"; d="scan'208";a="13887344"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2024 10:16:40 -0800
+ bh=s6fml8bC7lywEnLvUz2Xrwq49PdIKekHHKMmZSEieeM=;
+ b=ODXdW3FhjgV/F8icSxARvleVXZ7yeoCG0B4hg9BwwJVTPHzPQvZfkRv+
+ /MRo3HpHeTgYwaXaVbVrSFY+hV1foGJgLGwHzsmd+ETX3e8UtbT0mlL7L
+ kWzx2Iu0tFVlhmE7Qh7YGIS2Enplew9HURbdYF2WOuAjZj2Pd5n1TLL2y
+ YAuM83JYcZG6gkJDo5JTuuqBHD+EcEOCEguN5IOgmp6WokgmgZn0KvEwX
+ fNnLKW2jrp5v21kwNAVd5Rup9RCeYvulHn+TMx1mYMM4RkR8XnPVEvjyD
+ 7UUJEoRMvfBCgOgKGFPT+24/49SyWrISOb0ZpJs/FRI+Aissle5TA28oN Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="7629239"
+X-IronPort-AV: E=Sophos;i="6.05,203,1701158400"; 
+   d="scan'208";a="7629239"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2024 10:40:06 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="734338613"
-X-IronPort-AV: E=Sophos;i="6.05,203,1701158400"; d="scan'208";a="734338613"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 18 Jan 2024 10:16:34 -0800
+X-IronPort-AV: E=Sophos;i="6.05,203,1701158400"; 
+   d="scan'208";a="482465"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orviesa004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 18 Jan 2024 10:40:07 -0800
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 18 Jan 2024 10:16:32 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 18 Jan 2024 10:16:31 -0800
+ 15.1.2507.35; Thu, 18 Jan 2024 10:40:06 -0800
 Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Thu, 18 Jan 2024 10:16:31 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Thu, 18 Jan 2024 10:40:06 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.40) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 18 Jan 2024 10:16:31 -0800
+ 15.1.2507.35; Thu, 18 Jan 2024 10:39:57 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eRoE62Mn665ojp14k0KBOPIvmQe+T4mZ3+xzAlZ/xn9W7zaSYfMLaNNj7/1gruDfLrv2jtIYGvU7FCoLdXWliAYTBzauBYFmWEvHzeXjfIY+m3PXDJtaFCayZfKOoEx5hlEE1vnjRPVEa4P0G+P2PScHUSAZ5SW3EbH3iDaZI84OOl3C/7cnB9kSE6B8Os6q8zJsj/Bdjox21Kz4si0QSPxBO6SXrpgsUlksiwdiUEJXMhmL+OUh2cP9trFEx+iplYJE4Bm82uDGeJfRszxCxC57ZxmPAefPsgR83lfe9FbluwxxHGR/ElEDddFSHkCf2pJ3SQoJVLd/zvLhjY7RoQ==
+ b=h/WR/bkByk4xI+qrbNC98VdxyMZP4usxC0LWL7bRWm3OKCUKpxwhj5i4YOzaVyx3mFx0zNFztHYAa/R2Qah5bjuKGAsOXaXKkarN8IUrv6VD4SohlazfJxYHR9zBLv6N1yMnK+8yVg98VjEE5eBe3FyhTHFupMRO86NvZ5Z9ro3GH76tpFocBAiGrqVCyAWdX1MfV5yspCcIkHrvMkMmf8Ore7c5IMykCtjMoa7b5oPBijcSuVJFfJduXozSFHU++qXSAVrbdVfCWp7VNOFa9abQLAXByxYXR7m6R67p/6iv+1UpJqfulmlKDa9dlBdD2XODywq7pWLSfz0M6syzCg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wssCOJfVxq+ZiKSJakUsdaEsJMBTuspP0eXCiVumJwk=;
- b=IoGEJuRNNIQYsn/ds14mBS2rKcnmw8Kw4JxN89Hd4bJ/odxKvvO9DTMNxeTuAVGbypURc8iUxgzkPg7ACfZl5PPQlqVIDBeK1XMNWNkqjzS9eGxOZ2VTDwENCh0cIFf8Bok7wntxpL9b/bEfqv+/1yXdVAQo22xwJOV1zYnK/d70YGNe97Y+beM1MSBQ2dcR+zNS0SpNLATcdLsAENL2fN6n46ar0vjfDva4tvpRFB1RWpBfXRFehyKJvdNt+GdupXv0Piwe3wWTW0PpvnankTp1cJecwhdDrmR6oqtHxIFpR0/7e+WJGbuObKngCjq7NoQ+XiGDwONnUyIkhVoQkg==
+ bh=+y8/VmnHrdSifk+vsiRBRrZH1LeHK7J+1Bd6/ZNcrFk=;
+ b=Dj+tHcLeDyEAd5zd2c6ErWmMu24lFHNc84bbFWVCz38S97zkJdoZy/EOXlIqMHDl1cETQaxi1goTHfz8iIKYKvlAgi4O+Wn42J7716lobLXN2C/ZK0RvQRuioIJMrKRkob+u2Q191SneMrwZzUAAVF2Ffo5Sr6IetP6sSx341xVzetywVLBJX1Zv1O6NznJeyN+5xEMLr5yyxdAwYxbgWr61BCDxAhzw4lbpCrsGcf/VOGaq2Dud7GSNC5ClLzF6DKP+o2Yq0IaGmtDWiTy68+PKTiqzZkYOAT5f8bU8n7Ekb4Qhqyg4RYiU944agMpz+rlLHplNqVJ86rdgR1EcvA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by PH7PR11MB6401.namprd11.prod.outlook.com (2603:10b6:510:1fb::12)
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by CY8PR11MB7339.namprd11.prod.outlook.com (2603:10b6:930:9f::18)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.29; Thu, 18 Jan
- 2024 18:16:29 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::9f32:ce50:1914:e954]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::9f32:ce50:1914:e954%7]) with mapi id 15.20.7202.020; Thu, 18 Jan 2024
- 18:16:29 +0000
-Date: Thu, 18 Jan 2024 12:16:27 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: Re: [PATCH] drm/xe: Do not flood dmesg with guc log
-Message-ID: <osoxittwh6wna5rq3awbvzddqp6dsggbxg5xrfgcmft3bcut6x@y4vfqvgb4kw5>
-References: <20240117204059.345143-1-rodrigo.vivi@intel.com>
- <ztv76j5a2333n3sdl3h6nuulqcdscqcosambxe62rydprzpepz@mitp3w4jgb2o>
- <Zak2LTfFOPRulNje@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.24; Thu, 18 Jan
+ 2024 18:39:55 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::b9a8:8221:e4a1:4cda]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::b9a8:8221:e4a1:4cda%4]) with mapi id 15.20.7202.024; Thu, 18 Jan 2024
+ 18:39:55 +0000
+Date: Thu, 18 Jan 2024 18:38:14 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: Re: [PATCH 2/2] drm/xe/guc: Add kernel-doc for xe_guc_ct_send_recv()
+Message-ID: <ZalwFtTe+5fb7H3A@DUT025-TGLU.fm.intel.com>
+References: <20240112102554.761-1-michal.wajdeczko@intel.com>
+ <20240112102554.761-2-michal.wajdeczko@intel.com>
+ <ZaHHZNtB4ZEvMWJi@DUT025-TGLU.fm.intel.com>
+ <932f978f-0016-4393-93c0-aac32007e3f5@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <Zak2LTfFOPRulNje@intel.com>
-X-ClientProxiedBy: BYAPR07CA0061.namprd07.prod.outlook.com
- (2603:10b6:a03:60::38) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+In-Reply-To: <932f978f-0016-4393-93c0-aac32007e3f5@intel.com>
+X-ClientProxiedBy: BYAPR07CA0103.namprd07.prod.outlook.com
+ (2603:10b6:a03:12b::44) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|PH7PR11MB6401:EE_
-X-MS-Office365-Filtering-Correlation-Id: f56d3fea-8f46-405f-c946-08dc1851976d
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CY8PR11MB7339:EE_
+X-MS-Office365-Filtering-Correlation-Id: 70ab1933-1e73-435d-12ed-08dc1854ddcd
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3HVVQ86W+TWXJI+Ce2x3kBfjH8pMTS6EMdycyc6lMKeVRIFo//wtgGo3E/WnOO8H4PXuUK6cBoAdYe34iAqh1IVEGrImWMMUxNvDBjmaj0+zpNO+fV+/qtAZupDKwsbP9EWvVurRIQQUHxHs0vqDBpNr0ERqk2h8ThtTyCUelsiKUJEYtQnhLZT3VAMaN93L7BaamAXEfkHTPpHstNNdqxgi+EVqyduW1Sat2WlZEJQDVGlqqc/3VEtdDEjCnLHpgAS5DjFtRK5QLUTkULB1Anr1l29t9l2/R/BVbAT0T0IoGG1IC+vo5UYSeMIIbLLItubFas9M3leA3HjIBALnOQ1MHa3YMCDriCK4EtL5WKoTwwA/5cGi1u3w1HSrcjvXqzeDjtcCXcnUomzYFAv//FTVKT+VceDFmz8WltO3kDS723duNiHoWvyrSdcx96/w1vbcsxxcIeiUqrHntZ8DV12fYDoQvtT02q5geusH0CuD8nehArfd28Bhxge7goYIgz8beNk7g2KgbHNuUgVy6GYT73rjITl9xca+ELDzB4tHTViFlr5ZoEorP22pIRg+
+X-Microsoft-Antispam-Message-Info: 1y56gbcCwx2HjrzbmXLWi+MwWJb30pL34fmPaUBGg8hbmypu5fgiGgdyWgzgq3rC3k+wmgUrIqz/rfeWeFD3Y3JE4281p4bXp5CEIq6PXzVjTz1e8nOu26paoJk05lLD4FlC84RzGS6Dd6bYqFuDpKp7EUSBzi0pIotHw8APE7DN9zDBlmjyfx76qRCBC/eJcySKWC2hEJpMBi237GDpHe+fJcBE75ml618bwgoyNLGweaL6KZloQ2OXqwbSTd4YOOOqVlrzGcR338voijjFF0/r98vuRJpSgiFyboQJAMo+98Kz3eltD4SBzTGHzj5J65xXNGaX93JfvrVGaZf0BTZjAIfM5DfL6vXRz7lRunVJ0hHHbdKZWdn71VdFitZLY7b6XSmelxUiu74uoB28Pdd27KzT6xMG8YJvnRlVvgth/MDo6myZkL0dW+kS7YWsqo3xSKUWqOLtwOVPX8AdI/U3sKOSieN3TKvhtQRlxbZXPKFBoeYDvvkmD5SpZu4ADJmeKjM4NJq4p4bR8jnd82s+kEWrmnGBP0K0RtI3Uq03tQzp4/6uWB8sKF18w/Vl5CmWtyJKdzxVyBFFgpm8Nb+C42q2PxMwbe2vaDA7niE=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(39860400002)(376002)(346002)(136003)(396003)(366004)(230922051799003)(64100799003)(186009)(451199024)(1800799012)(33716001)(2906002)(26005)(41300700001)(83380400001)(86362001)(66476007)(82960400001)(66556008)(316002)(6862004)(4326008)(478600001)(38100700002)(8676002)(6636002)(66946007)(6486002)(6512007)(6506007)(8936002)(9686003)(5660300002);
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(39860400002)(136003)(396003)(366004)(376002)(346002)(230922051799003)(64100799003)(186009)(451199024)(1800799012)(66899024)(41300700001)(26005)(6512007)(83380400001)(86362001)(82960400001)(8936002)(8676002)(5660300002)(44832011)(6862004)(4326008)(53546011)(6506007)(38100700002)(66476007)(66556008)(66946007)(6636002)(316002)(2906002)(6666004)(966005)(6486002)(478600001)(67856001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?oiF0FTPyJu7kSULawUhkP1IvD1NuWHCIfdH+U2u/lhirbD9y+79pHS8EGtZQ?=
- =?us-ascii?Q?XqjWZ/ymMx8p7xk0ANeBYsyuc1aYPJjGBw4+dgKO86clSfYwz7akKtcEGUKY?=
- =?us-ascii?Q?zHqp/XKyiy27EZk1cGMbnkmehTaPRwSXNgOyICHOapUlXHPNSVy73OcdbtDJ?=
- =?us-ascii?Q?GvUL6oiKnOf7neEORD9joKfda9A9VLJkq2qBuHidbsT/Q9V+3Cv9bdpaaAYq?=
- =?us-ascii?Q?pLtC2JVo10eQc3U8NqEQcHXNepWTQnej3opniIueP/O7mJuwlhWMrSaFjTJ3?=
- =?us-ascii?Q?p0LeQE8BD3tVs4aqY3JnPGOKci4qLpX37S/EhCUG1AGfnCPmZE/b9U3xy920?=
- =?us-ascii?Q?I3jQyK0l4p+O7/sNgHQA3m3+H+XHT5Frutxxe9nuUrZFc+JbGMAOiH0391oN?=
- =?us-ascii?Q?3VjW2QJ9N4BaovYpqEi/S0KOvuaxDwUzP2Vgz4BnyY+CL/HeyJbs156I2mEn?=
- =?us-ascii?Q?eZxINo5nU5P+7pyTizvxLrEp/jheyhhUN9GyDZXtzQ3KBkLVD3xWyXgarVq1?=
- =?us-ascii?Q?RWYbJcW+yTaGY1yyyLw20e+jtRx5RZGHcXh/uI1bSX3bdZ5WjMQawe6MuXLa?=
- =?us-ascii?Q?07z8bhAOdFlrmvinEnjv9BolQqhl/UCaB3dJrxnHoxU7VofFIXY1PEwf4CBF?=
- =?us-ascii?Q?rYDHNh4REJRBcoR0YI4QgIeB60mKt7o72GNsKSktv+XogewT0h67c5QSw5o2?=
- =?us-ascii?Q?73VWvsbiemUitXf1gbPwGu4eJ4qlNZXExZp2t1WoB3B6mpCMeeOOcXUfDfiC?=
- =?us-ascii?Q?oZRrZZUNFhGTqgg58RZIXrfOPEzzY3aQC36YGnXsQ4gEXUySnQOxJHCM21ky?=
- =?us-ascii?Q?7MHykG3uchHoeKhB54NIu/WtkIm+EwzOOJYePO6kQ8ZiGiunAtS+WDF+g3S6?=
- =?us-ascii?Q?en+By9AFalI+M5DCQ/gVG45fnwATSBie4zOjWMEwh8TGmb25KYkkTm5PErL7?=
- =?us-ascii?Q?DPR1rq0+qQKFwLxFzdA0JlroIz9yORB8NLDPj9ytG9Pgrp/laykJTfA3F2a4?=
- =?us-ascii?Q?NPvTqBJkCFVso3nFg19h+hQ001sGHarnVucm16CRP/ysduUsEfgTtUD7Moro?=
- =?us-ascii?Q?Nae5Zpiv9+dBKPok1T1QRMORJn+KUzXkMJry/2LFZd+vYlQem+hstHOe0MVR?=
- =?us-ascii?Q?irKfM4Lva/bX5tehvtkwWB70Y315dn4Uki179T5oUrU54T5zqeBpINbhe4VG?=
- =?us-ascii?Q?hL3lucVAksPndTWBpVUVC9SnfZQzhr/2qkAJuz6K6/exRAQQkJ9GP8gEo3+P?=
- =?us-ascii?Q?VwWUS8h+fmCs5+vdzf7L4KTSOFeib9iNPLlq43J03kloM/jVJ1fPPMduXqKE?=
- =?us-ascii?Q?LEtAylb8m20beUay673ed8pGaNgao2dutEqnu0pqpTHMFDGMvGNQI6lMVKwU?=
- =?us-ascii?Q?XMsppuDb5QX6wgIEbvuBy0moSpJeZPgnZe6heq46iPrpSpNdfzFGAFn5CC/q?=
- =?us-ascii?Q?AjkQt/xqJBlbwhyOJilTNPBDjZkIpG2Lz4UH7HDlrZnSh22bianZ0tfO0+o+?=
- =?us-ascii?Q?MWNvr5c3Tt4nhUG/NahQJFNVkL1DDJ0i+q2Fp54VnrkuXVPDVACeb8KzAm5b?=
- =?us-ascii?Q?XLU1eSShzK7EBF5UoZLxkKazVU+HJsUiXXVAlNXi6dVdWt/tO0pHg0nsQ9Yn?=
- =?us-ascii?Q?Cw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f56d3fea-8f46-405f-c946-08dc1851976d
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Jx891LrgR1AkNbbm2X7TdfqEVN4CjJwQAxaPvbyGC/OTK7gOMsulEO3q8eDm?=
+ =?us-ascii?Q?9AluGNvv5PO1BNH0zoNnMbQNhPVP010PQnvt91ApLHqbzy9O2jQlfhzuqbEg?=
+ =?us-ascii?Q?VdZlVxQHCI1kgvvgatyAj1cA0UYnM7Td+yd5tuGnn21YxG/GwxfZJN5sE2xl?=
+ =?us-ascii?Q?6MffzSaTmFp9k1qd2I47eIhI6m/jE1GkpO/+Y8grZ7X4aVJEEBEvInIW1heu?=
+ =?us-ascii?Q?G27ef/8TJavOEFa2Mp0wCd/zC9cRRSvhyuMoNN9rMVIKrh2cXccqJn9duhMq?=
+ =?us-ascii?Q?1rVNqCsP+Y9Co3OyeNU13yGL7FzgTE15fP8NGm+d7I3piYYcaKykTeOS59wB?=
+ =?us-ascii?Q?Iv+0BsaSEavXlGVAdQKi9bVivC8mosTtTVNij/gZEC3QwM8gsplnTAFB+qqu?=
+ =?us-ascii?Q?op9HyIoYI+PIF+vURgFilxjdTzkpO8d3x6NjmueDuq9XXtk7GCT9qMDiH/mw?=
+ =?us-ascii?Q?Y3+HW7xRO1U028qTSYAzHEDuPF3zAsotY6lb0eVcNrZaLIJ1FAL4MGfKa1dr?=
+ =?us-ascii?Q?AXq2sXKB8aACC20uuR5ymq1TUHMatdduAOmI4EIkIGWFLrzOUsrGFkoLDk3A?=
+ =?us-ascii?Q?JRwHs+fbGWJA30K2ykQk9D1g+zbAvURowRxhqE/1BR2SO0sRBi4RsGZfBZnj?=
+ =?us-ascii?Q?ucxdDorBadlOL3LfD8Xt6FNQJujeuvl6q9qS+W6znBEzma0CTr6lATuHNQrk?=
+ =?us-ascii?Q?Q4GmTLKyWf/owX8WGXjX2Yc3FRnygwa25P9vvc/xTGcCgKd21JFExwJu5oxN?=
+ =?us-ascii?Q?P38KmtEBoWQG4ByVKeQEzYKfn7iL16Ok7LZvRSUvCM4nQpVbSt58syhbxvUP?=
+ =?us-ascii?Q?nAH0VJX+Lne67evztg6GL1tXeUXS9pXyrcRLvYbHZ4Lnr5kz2Bduc71eeEO/?=
+ =?us-ascii?Q?shwn21GKgMeWscokoMowQD8uMW36H3qhFkaQrA/lPEPA9qYY3FqFJo0uLQg6?=
+ =?us-ascii?Q?a8jy/UgC2s/KA1ylXj20CPSf8Z8KsoIr2aBVo0PPqpyU7qezoQwP8GdzOKJQ?=
+ =?us-ascii?Q?tfkjC/S/7f2IDvrg32dbjZUwQDvb4YBa6XpFuMPRwB+UG79ydkjy1N8nAEij?=
+ =?us-ascii?Q?HXYErBk2MwGhPeipO5kTm8ZoffNBBUxsNxMzug3lHs21bHDuVnTHvKn61lvL?=
+ =?us-ascii?Q?SuAB0Oohow1HZLacgCDwxDXrV84diEnqJhM3xS2aO6ifbLwuFcrgewOZDx7y?=
+ =?us-ascii?Q?+YYcocu7toN+8hPfVli7EpY1AsOMgvKFFJox7ySIQEXq1dGcfmSxbJNih9bb?=
+ =?us-ascii?Q?d+ah0UGF386Zy/q39HG8SbktLmK+TFvS+HfBCvNLGi3n4eaCUJD+Z+H1dYlD?=
+ =?us-ascii?Q?6jD91Wt6CWDatSzBD2+lLIVFaQUdmRtWDfJGFoO5ewMzRKr8PhD5/L4M84Uk?=
+ =?us-ascii?Q?gu2ycjMGMkHC0ceTWjW3dV6Q6vCv24YQgatpq9AJRr8cX5eWsWnC9M5/Qz4T?=
+ =?us-ascii?Q?kSxadUi6XRBpWaeO1BXVnRpLVbb5c8Wu4+llW04TMew7BpIuq3/vzljf7M29?=
+ =?us-ascii?Q?goUf5g9LeoPwqbSKBzCWkXpxiIU8mOFTGGFQXL2CggbLFCZ/rOYHL0jtmncM?=
+ =?us-ascii?Q?L3Nu62CNKqHCXE0juURlQ9+Hh45fQkm7PvRiyaeNZ76b7s/9MiT4iz+Pmi9h?=
+ =?us-ascii?Q?9w=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 70ab1933-1e73-435d-12ed-08dc1854ddcd
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2024 18:16:29.3294 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2024 18:39:55.8625 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wHL7AMpTXltk5xozS08BW3cwW/3dRy2T19E1Cmsh8geDKBaPxq80aOJns1ft1qIh5ofveRLTT4aY7VbYQxcNNrN/UdlDHtLRL7GX18ELxkY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6401
+X-MS-Exchange-CrossTenant-UserPrincipalName: N8pN+nmdZuk1CJsMaJEtzbD9WI5HC8Tr/M1o7fFm1/QxfNzltzdjTOoSv1HrEqTv+WuIkL8QR+eryAcV+i/pyg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7339
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -152,71 +150,72 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jan 18, 2024 at 09:31:09AM -0500, Rodrigo Vivi wrote:
->On Wed, Jan 17, 2024 at 05:42:00PM -0600, Lucas De Marchi wrote:
->> On Wed, Jan 17, 2024 at 03:40:59PM -0500, Rodrigo Vivi wrote:
->> > This information is already present at
->> > /sys/kernel/debug/dri/0/gt0/uc/guc_log if needed.
->>
->> but is it persisted if we couldn't load guc?
->
->well, it was there here with the same content that was spit to dmesg.
->Maybe just because I got this after a resume?
+On Sat, Jan 13, 2024 at 02:01:05PM +0100, Michal Wajdeczko wrote:
+> 
+> 
+> On 13.01.2024 00:12, Matthew Brost wrote:
+> > On Fri, Jan 12, 2024 at 11:25:54AM +0100, Michal Wajdeczko wrote:
+> >> The communication with the GuC firmware is crucial for the driver
+> >> but unfortunately it has limited documentation.  Add initial
+> > 
+> > The first sentence doesn't seem necessary.
+> 
+> can drop while pushing
+> 
 
-not sure. I remember past debugs I had to rely on the guc log being
-relayed to to kernel log when debugging issues on the golden LRC
-submission. Honestly I don't remember if that was with i915 or xe. 
+With that:
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-commit 4bc3a34f1237 ("drm/xe: Dump GuC log to dmesg on load / auth failure")
-seems to be the one adding it before drm-xe-next creation, but maybe
-we just didn't have a better alternative at the time.
-
->
->If so I would still prefer to make that persistent instead
->of the flooded dmesg that gets really messed up and hard
->to navigate to find the real useful information of the
->failures.
-
-that would be my preference too. If it works, I'm fine with that. At
-least the end user should never be exposed to that amount of info we
-print.
-
-could we add the guc log to a devcoredump if we failed earlier?
-
-Lucas De Marchi
-
->
->>
->> >
->> > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> > ---
->> > drivers/gpu/drm/xe/xe_guc.c | 1 -
->> > 1 file changed, 1 deletion(-)
->> >
->> > diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
->> > index 235d27b17ff99..2a71348c5deda 100644
->> > --- a/drivers/gpu/drm/xe/xe_guc.c
->> > +++ b/drivers/gpu/drm/xe/xe_guc.c
->> > @@ -466,7 +466,6 @@ static int guc_wait_ucode(struct xe_guc *guc)
->> > 			ret = -ENXIO;
->> > 		}
->> >
->>
->> trailing newline above
->
->not actually a newline, but I can remove that extra line there
->while removing this.
->Wonder if I also should remove the spaces between the if/else
->above this block as well... The "style" there looked strange,
->but I decided to not touch.
->
->>
->> Lucas De Marchi
->>
->> > -		xe_guc_log_print(&guc->log, &p);
->> > 	} else {
->> > 		drm_dbg(&xe->drm, "GuC successfully loaded");
->> > 	}
->> > --
->> > 2.43.0
->> >
+> > 
+> >> documentation for recently updated xe_guc_ct_send_recv().
+> >>
+> >> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> >> Cc: Matthew Brost <matthew.brost@intel.com>
+> >> ---
+> >>  drivers/gpu/drm/xe/xe_guc_ct.c | 18 ++++++++++++++++++
+> >>  1 file changed, 18 insertions(+)
+> >>
+> >> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+> >> index 4ae1a0cd9537..ee5d99456aeb 100644
+> >> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+> >> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+> >> @@ -785,6 +785,24 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
+> >>  	return ret > 0 ? response_buffer ? g2h_fence.response_len : g2h_fence.response_data : ret;
+> >>  }
+> >>  
+> >> +/**
+> >> + * xe_guc_ct_send_recv - Send and receive HXG to the GuC
+> >> + * @ct: the &xe_guc_ct
+> >> + * @action: the dword array with `HXG Request`_ message (can't be NULL)
+> > 
+> > What's the deal with the _ trailing everwhere? Is this kernel doc link thing?
+> 
+> yes, see [1]
+> 
+> [1]
+> https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#hyperlink-references
+> 
+> 
+> > 
+> > Matt
+> > 
+> >> + * @len: length of the `HXG Request`_ message (in dwords, can't be 0)
+> >> + * @response_buffer: placeholder for the `HXG Response`_ message (can be NULL)
+> >> + *
+> >> + * Send a `HXG Request`_ message to the GuC over CT communication channel and
+> >> + * blocks until GuC replies with a `HXG Response`_ message.
+> >> + *
+> >> + * For non-blocking communication with GuC use xe_guc_ct_send().
+> >> + *
+> >> + * Note: The size of &response_buffer must be at least GUC_CTB_MAX_DWORDS_.
+> >> + *
+> >> + * Return: response length (in dwords) if &response_buffer was not NULL, or
+> >> + *         DATA0 from `HXG Response`_ if &response_buffer was NULL, or
+> >> + *         a negative error code on failure.
+> >> + */
+> >>  int xe_guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
+> >>  			u32 *response_buffer)
+> >>  {
+> >> -- 
+> >> 2.25.1
+> >>
