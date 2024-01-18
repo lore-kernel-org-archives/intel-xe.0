@@ -4,135 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 278D7C47DAF
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Jan 2024 20:42:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37490C47DAF
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Jan 2024 20:58:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8AE810E92C;
-	Thu, 18 Jan 2024 20:42:20 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C51A810E8FD;
- Thu, 18 Jan 2024 20:42:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA06E10E907;
+	Thu, 18 Jan 2024 20:58:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB6FF10E8DC
+ for <intel-xe@lists.freedesktop.org>; Thu, 18 Jan 2024 20:58:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705610538; x=1737146538;
+ t=1705611518; x=1737147518;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=aFBnduirpltcw5DP+wUw92+EaR5az9SPmErGJy5crDg=;
- b=HvL8zan9yR0AbuxRauNfrXTfGEvsM1423C4iSxz4/cuMmjdJD39YKKPB
- Q9At7hBrUr+09DbkhZlERtnO30cqQBvQWJhpb3x21EVkW61LQ19Q5DnN7
- 4lj4yzO5Jxnx4JgFD0FAe5EtERQ47xn7hYpoVP8W4OHfusvK6VKmlx65z
- vhrRHcsnNzmF5vhGeUjY9n9wIrh2yo9tIz1H4vZzbacvbkMFLoZQtEFwv
- NFSt39DZCEX47453oVHlGu+KZhbtx/kYuB+eF2xjd1g2Rkk7eJTfdbw6q
- TUhUdAg+Xef5FhaaxtldWKRqDUEQVBf1v9ytI96zma6h2FIgWjlInn/Tr g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="466946582"
-X-IronPort-AV: E=Sophos;i="6.05,203,1701158400"; d="scan'208";a="466946582"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2024 12:42:17 -0800
+ bh=+Q1mQahXZDd1Q7Li1zCRmu6ZidNfLgR4cRz7uKCQ3kY=;
+ b=P0ZmO3/3Rtd4+mTN1jwoUQ5X3aaJP1vmjet0SJG2I34+7WSBY5iWbFyz
+ XroA0X1lVdOGJqcyItraaSSigNnR/ZKPtSJz4Yj3hzE1g2RF7b7buGSzQ
+ 1N5wF/mNOM7mc6EXqq/zIf6Q7Vv3DmB3kKotAvML/RNCkRCFmA/RR5OkA
+ Tk+NgRGZGTjwgkC9QFkoQdtboNTuFNsEU+tzGwMA5OMfdxUN44XSUKAfc
+ nQjCpysnPsJyavxj17CjAFD7+P+RGp3YUa1c2NaePI9Oe9l8L0YeB2Mhm
+ zZKHsaczHXgT9J1V9JjhJ+4PU0lr/Bcw+2M/lpjfyg61UkJ2CgJJxkIZX Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="7668884"
+X-IronPort-AV: E=Sophos;i="6.05,203,1701158400"; 
+   d="scan'208";a="7668884"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2024 12:58:37 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="875193211"
-X-IronPort-AV: E=Sophos;i="6.05,203,1701158400"; d="scan'208";a="875193211"
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="1031770098"
+X-IronPort-AV: E=Sophos;i="6.05,203,1701158400"; d="scan'208";a="1031770098"
 Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by FMSMGA003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 18 Jan 2024 12:42:17 -0800
+ by fmsmga006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 18 Jan 2024 12:58:36 -0800
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
  fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 18 Jan 2024 12:42:17 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ 15.1.2507.35; Thu, 18 Jan 2024 12:58:36 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Thu, 18 Jan 2024 12:42:17 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Thu, 18 Jan 2024 12:58:36 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 18 Jan 2024 12:42:17 -0800
+ 15.1.2507.35; Thu, 18 Jan 2024 12:58:36 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ctlaPICg9Yx53Tr9iUZ1mPDNowGZ+4D+OVbJtIYq1TzYfhBboLn9JrK1jhI+7LfS9rJrOHP+VZOJYzv+Zpcj+YrXzQmMgxhvXWU06Psj+fyVHLzU40NvgAf2mH+JfPy1mjNd3lK65uIJ+XeLghuZEsoWCqhhZRnMmOTnBbM5DVJjEjnv437G+PT/GGvm5BWxdkmSUuQxTsjq7vCzI7TOfKaNkgHw+LiMHzfqxsSIY0C1looh9uJS2EP0LC9Lab/v17hwCSqtARXvWcMJM8tGgMjSlDjSYodJ+GUgTZnMt+nW+GTajrP9M16CGfHQ0IOYGfPyZ4WBoysZKv3H2LhRUQ==
+ b=JJgogx9YtQj5bcifzGUxpvwjDVRv/ALhWnBG4bJfRzni+9sONdNvgiIEDHZ57moang8Q0rUYV/XWi1CGWQDXoFU8URWV/SmJgXkW33jqRMtq1AqtY5zZ/f8fKe2ohPM3JTm1Xzl3N+ocsVV3k+7QdbYku50FD4Zte2Ujt90TEiYb3w9gz0Wsb91O+Uv818iZ1Mz9UjmGPB9Lc5hDksZmW0TlUpV6ZqgV27qkbjGV+nXhWPVHUJDH9n+EqyREG2uGypNrvNwZgNRj2yeHpzChB3tEiRYDsDjahdokagQ2mP1hovgKXAghuDAza7eZiry/sa5TTyCwOFwempdCY4JDAA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lTBQZ1zFyJ+t8YQ96TeeMdl7rCnMeOBFZMbenAubg7c=;
- b=alIqngF8mun1ctwgOiSl4W9D2zjhW/W+hkh0ZIcJ/luXFPm18tV0vp2fiupZpxC3rLRu8KyXuQ4AUftHNAywVfoB1sMG6QK/W3yk0G9mGk7rueklj2mFS5aSp1//98cw88VO89hWQLSGcuVApC8lm7eEU43xOQigVa07SZ3tZ/kvWwSHFXUNOjo9O52juT+kq/ph9laQxCXyr0zZp39zHLu3uHcwIkPm937MDlcrZAucCwZLxMF76QDzgpOwv8BU1b1ioqPn/Wz8P4UePCj2COh0jChaTl8XP/ywBo6vy9P+tjV5CSh0jS225a4vslvaJTjpirDwCubk/Onapv1+1w==
+ bh=SynoSXjYLpwd4K1pb2n7JW3gbridFCIPQeIVEJ/LDr4=;
+ b=iN2n4BhUGSROb7JmkbQRroO6nU8/hQ72Dw4scK9VT3BnOv9hUl5+/n3bFOycIL+kCxN/HV2NsRSpjIRtwDD8zxKeWpkW/Wb038CwwlMboer072vu5bFrZZPCIKY+uJ7hD9d4noEGSKQPFRKLilVXISVWBh9N5XKyhNXyePi0vRTDc6YTQhP2bRtCoWcLmsZlQ+8JyZQVIGROiQ6kwYutZTLFPbQgSfljGEQqxpQackDtxR8+3wUq1iacBgfiR5MKL2ZeX5eO0O1OXtzcwyfkxiLdHOq6x3iZ6RtvuWsiaA9s3iW3PoKn5ZdmvRC2BTMb+uruQKSdHi2WTvmRw/D+Kw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by CH3PR11MB8138.namprd11.prod.outlook.com (2603:10b6:610:158::13)
+ by MW4PR11MB5892.namprd11.prod.outlook.com (2603:10b6:303:16a::16)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.24; Thu, 18 Jan
- 2024 20:42:15 +0000
+ 2024 20:58:34 +0000
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::9f32:ce50:1914:e954]) by CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::9f32:ce50:1914:e954%7]) with mapi id 15.20.7202.020; Thu, 18 Jan 2024
- 20:42:15 +0000
-Date: Thu, 18 Jan 2024 14:42:12 -0600
+ 20:58:34 +0000
+Date: Thu, 18 Jan 2024 14:58:32 -0600
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Yury Norov <yury.norov@gmail.com>
-Subject: Re: Re: [Intel-xe] [PATCH 2/3] linux/bits.h: Add fixed-width GENMASK
- and BIT macros
-Message-ID: <4ezps56sdj7fmr27ivkaqjakv4ex46f5cvmy6oqr3z6gkhiorl@us4qd53jzq34>
-References: <20230509051403.2748545-1-lucas.demarchi@intel.com>
- <20230509051403.2748545-3-lucas.demarchi@intel.com>
- <ZJOwC5LIEySpduQJ@yury-ThinkPad>
+To: Matthew Brost <matthew.brost@intel.com>
+Subject: Re: Re: Re: [PATCH] drm/xe: Do not flood dmesg with guc log
+Message-ID: <umt5wovebemjsdu64vzskml7u6cn26isgxkgyzs7dyb4yjipwe@gnmq5lt6tf33>
+References: <20240117204059.345143-1-rodrigo.vivi@intel.com>
+ <ztv76j5a2333n3sdl3h6nuulqcdscqcosambxe62rydprzpepz@mitp3w4jgb2o>
+ <Zak2LTfFOPRulNje@intel.com>
+ <osoxittwh6wna5rq3awbvzddqp6dsggbxg5xrfgcmft3bcut6x@y4vfqvgb4kw5>
+ <Zal3oznvaamLHv6x@DUT025-TGLU.fm.intel.com>
 Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <ZJOwC5LIEySpduQJ@yury-ThinkPad>
-X-ClientProxiedBy: SJ2PR07CA0002.namprd07.prod.outlook.com
- (2603:10b6:a03:505::25) To CY5PR11MB6139.namprd11.prod.outlook.com
+In-Reply-To: <Zal3oznvaamLHv6x@DUT025-TGLU.fm.intel.com>
+X-ClientProxiedBy: BYAPR11CA0045.namprd11.prod.outlook.com
+ (2603:10b6:a03:80::22) To CY5PR11MB6139.namprd11.prod.outlook.com
  (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|CH3PR11MB8138:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0f3279d8-f6f5-4923-6589-08dc1865f441
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|MW4PR11MB5892:EE_
+X-MS-Office365-Filtering-Correlation-Id: 25ffb98b-482c-4534-5238-08dc18683c2c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4gKxVznPACJFEyKqmPQtGkKxE9MesfPf9+Kdgg9dUDIXdVFxsU1Pl7lgX1cV3XZ+/JWDFHb0+h9s+YPrcBqNw7iB1I+Uzx2LpGJ4XE9PR63wZTfsDkSDXCCCQa763TMINpp9hf/g/ANVfxRG4fcRGK1xM3mF2TroabfvOHzDpFzYYzbJuC6ENVF70Rpc2DhZU3m+gBngeWyVaI+uOM8wp3jVhflP92N2YdePEH3PYHvJC0PYlNPxPRU8hPbkj4BwzvK7vgqNppo/KVbqTe+mUREjXbVdfK2YHUK1bxWkHAbzlSwr1qXT8olj4AKRl47ZrPnfwucCHLCVx8kFyAosQ4lLsjnPtyGLEtYctz23T54HMUQfQDb5ZI6MAhqOqN6oeBDx1syXeYSOCvBO+qoigKN/IDf6x+DJVH+Kr7sGZzjM5TR5ppw2Zyq7kRtDMYAiyWY3ySfEvZ8nmktD7QHeDStirNw0ayn/2kiD/caHlKeHMU9FfyWKYUdudRWcuDArOyV0e6R9lE1Io/QB91B8plEoz8xqs5EDUy5R/06vFo2UpV5hwvK0Ed5rvv7mJywD
+X-Microsoft-Antispam-Message-Info: /uQXoVYYAGWZkjoV40zjhrPZdFWRAIMc9MHEyuKCjb/gZgLRGSw4bIpuC9vd2f9OwU1u06NCKRJIn3SOlcMwkis9SQ03S5g2zOO8LCG91A+z+ZzdSa9PN54bP7RWnnwuSg54mwDHou3JTJx+B4zvA4hObSGNPXJE3YWG32GR1WKx4YXh8M9fEYUIPo3NgzuS/XbXf76jTLEbatDEVsCp2CPC8M8U6jSMRaSFqC8Pu64wlVSZ+Y4nfNl2j5VmUszHcSyQbrUlwJsOofEt65fhiO/rEHN37kmcly4I8B4jaTzSFd8oYGLe7wZrmHad+ym9ZS96wa+sC9OuhZ37kmwzoMsltgoxQCXHtlYoDik18lB2QF5FTH+Rxe6QzmdlKVOYlhYijLC2zZ1/SiDq+rTvZ1PbuwvQxbSB5n9a1ovM8dOve1AvPPbQwzKSE4uuknCwHQYllLg85VnUuKeIgR3buCXcO96DPnlkEfA/QXXnd9zi4mkRvykxuAf/yLVhUxOX/d1GQn9qB4wSVcNnEQ/1aB40kzBla/xpaOF3M9Ddh3KsWGVMZUVK5cIEtUmYs02c
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(346002)(39860400002)(136003)(376002)(366004)(396003)(230922051799003)(186009)(451199024)(64100799003)(1800799012)(26005)(478600001)(6486002)(6506007)(6512007)(9686003)(6666004)(82960400001)(316002)(66476007)(66946007)(66556008)(54906003)(83380400001)(6916009)(5660300002)(41300700001)(38100700002)(7416002)(4326008)(8936002)(8676002)(86362001)(2906002)(33716001);
+ SFS:(13230031)(7916004)(376002)(346002)(396003)(39860400002)(366004)(136003)(230922051799003)(64100799003)(451199024)(186009)(1800799012)(107886003)(26005)(83380400001)(41300700001)(478600001)(6512007)(9686003)(33716001)(6486002)(6506007)(5660300002)(82960400001)(86362001)(6636002)(66556008)(316002)(66946007)(66476007)(8676002)(6862004)(4326008)(8936002)(2906002)(38100700002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?2qaJjsUxA6Ra6osnF/4CcDhEbr99sU76ByUPAkzgZK8RnKUv4OHmzdFnOuus?=
- =?us-ascii?Q?n4jrA2gezEvxZsGe2TyhPoyvHP6WwzjhbMjOxPHwp20xbHIKjTPmIkG5Fz/i?=
- =?us-ascii?Q?MFoKte4ijRqDorl5B4vIg8O6E+RlPibmBLzzjav7+lvAUfvu2Wfe/Go6+wPJ?=
- =?us-ascii?Q?w002Trz4BDDyAHHq3RADZKhjqSBqCe0O25cH4CcxUJ86sDEzhIbSr4YF/EDD?=
- =?us-ascii?Q?ZaItPFaR0ww26jNutIsm3NOQf1LILnWNvzBA8tgciSMbIDpH8fEwz/jGaBmz?=
- =?us-ascii?Q?5B2of2nGBEKwMm/t5VHh5EOIYnAwOBSacSthc1KQzePlnxnystweNh3CSkSo?=
- =?us-ascii?Q?EOw1Y229Fn9iVvzK83OEuCeeU7bF1jJQeTPKIF/IpSLKTDpcpCUYFUmP3QkL?=
- =?us-ascii?Q?ckZF/hrZLlkkJjaHQtkhbAG2lU3hHlONFTNeYRjHH1rCSOxpapR7tHA4cEyw?=
- =?us-ascii?Q?wJPiFtRll5J/DOlzmMaQJgovmaZ5BY7IvXzqFgNO9Diul7f+KXdu6geHMhBu?=
- =?us-ascii?Q?SzQLFNEIbXARAlVkGuy2scQhF80qG55BWAe9uTypbeSkVRkYo0JhE+hXlUva?=
- =?us-ascii?Q?ksoN3VgupUZNZ4Qaw8Y2nqo/WvKQ50SMcKRvECHXeC7wnltJ0iHz9bXi2Gdu?=
- =?us-ascii?Q?3FG6JQ7FFW+C0Ai/5L7UrVEbIUV6nrmv1aMqt7ZSt1i21NfkDnBaiRPYjrOT?=
- =?us-ascii?Q?MgMCJb+Pf7B+AwQCxW2HUkovCO9dolj8j8dvNJcFDHhTHGqMcy5C2WMw8bTC?=
- =?us-ascii?Q?IYIrkTPbHxzo0TcdBdyMPs9MsoMxo7d+TUDYDb1kZjvsbKTEb1SBctGpp62u?=
- =?us-ascii?Q?YaGI8rk656+AUmlUyj0KOZmjoSSo7vPCX9BFAkV4PnPlz3tv6+SV78sLZ15k?=
- =?us-ascii?Q?Q0fqvWUwBUeABk2O7cL29OuPG7I2/2FpmdunYpDLQAp8ZCiY9qfhw9qoNruh?=
- =?us-ascii?Q?9MkGhMY84JwSIHKA7h0SEh02PlSJXgcFS+tG+o2c41bZkW6XR7xc1uGkPtmL?=
- =?us-ascii?Q?YxS7wEth4NeR3ZadVSOgG5o8beGAUP81NpdmrxhYCA8Cfy/HgqYI+CnGeyTl?=
- =?us-ascii?Q?zaVGAFrKobHQ/LphC5tmaihHESWx9v0+lfnScN4GOs+carkOU8hfyvTnQMmr?=
- =?us-ascii?Q?1tJWCuCjJau6rroc7DtD5VrLrSU6ujWvyT8DHJ4K9x69bp6kne955ZOqPBsX?=
- =?us-ascii?Q?Pb/Kc1MpWvrxDxgUCgxJSbGCkAgN8DUxYxQvC5LphEspM3KEkKuT/jjGUtkw?=
- =?us-ascii?Q?QQCgG2wuB3tk+jsR6IgaV7U0ExxWGPiNntSTX3uyYnNW8LevY2Jl4cxMoiJQ?=
- =?us-ascii?Q?t3zO/HpoSWBGvg3J90631b96rJq7DCAeFfyHFk6+lVgpsYS5nvcFn46KRgYl?=
- =?us-ascii?Q?rrXEiBU6tHVsWI1CjAQqHbT5bBKYaQ4dc4OEzxLvgwYUNKtgZKq88KTPgcKI?=
- =?us-ascii?Q?tfYGfkWz2BSjJTxRuVy+viJmryDC/jYQsIAKb7A8p4uk8ls/tZpkml1l983A?=
- =?us-ascii?Q?W6KMI/3LZmynJ52xC6E8WlxMV8On/tUGa5BPvyQ86Y3EKado//cnjuEBsyQq?=
- =?us-ascii?Q?pIopNGgh5OA7/eYbECDFNJYT/TClfU3qdJmqKcgN8S5DSB/PL09mmIIpXZEx?=
- =?us-ascii?Q?ZA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0f3279d8-f6f5-4923-6589-08dc1865f441
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Lhsc3qBZ59qMa35+8zrZHuoG/e5aHbQSam5nmYec2pk2JYohnVzxP74SsAH/?=
+ =?us-ascii?Q?awmO3fEUUZ37kuBsHI2OU+n+aAk4jzUNUkap15ZyupcYcldhLdNmFEtFXshl?=
+ =?us-ascii?Q?HEX3m9hGTZLUylIlwekdv60BNPNasWc+bYAK9nZei0GjSX6JV/DU7c3o84HJ?=
+ =?us-ascii?Q?e6h5gnBl9FwqJe8Rvs8o+l/F7uCSlUtShwvAQmfGANADkBS5AqdydCBe0KMc?=
+ =?us-ascii?Q?0H7QNcI19e2XS/YQL4HYDQ65V3Teck3y448uV4U03uvoedDdJgKgoxw2CPPO?=
+ =?us-ascii?Q?8jjyXLm43c5+obVH3TiVDhhf1blz6SWEW9Ck3eclKX4ZI5MCtdh2Ak42dbdO?=
+ =?us-ascii?Q?FTN2aqryQ5tbXwqPKmsGQHUj7JCvJjYU+daQSiY+jhEScAtHFV2NlZmAGYnl?=
+ =?us-ascii?Q?V6fS1s0mt1qhN8z9Ybb53cxLDNqIer4hrgiX6Vu2QdE9S0DV4p8QjKcbiOFK?=
+ =?us-ascii?Q?fa6xrpLQOkwJGqiBXasHQkEiVozoM5djSHPSF/tSSiWPZHPyiPYB7hGidgk0?=
+ =?us-ascii?Q?wCoPv6dfglymIoVBPkkhwd1HRZkjjjMVTJWLN5UaqSTfZu/I2eR+cn7TR4mk?=
+ =?us-ascii?Q?pnl79X+Lelpf4yOj2E+XsgLAWCm8i0YkYSqZiozvUL3TNIQ4uMn3S0ai3D/v?=
+ =?us-ascii?Q?4ZJUMTYod1JG/AK92CsQxnioT7EcJMe3BXRDpX/hhHdzBMM39E0nF1CON6kJ?=
+ =?us-ascii?Q?reYPY6jPji0m0R5FbMc4ODNvF8EGNNChjEQwa5EBoybq+TYWIgT8GRu1ELWK?=
+ =?us-ascii?Q?SKhvpQmakwH+zcz2kJqsduu31anUtv7+kRGafBp0qN0Nld8XKznUKV7jjFJj?=
+ =?us-ascii?Q?h00zzRjdPJLP7lMmGtNwKEYiSwUqN2FGGEbator/IqIrnjnmgXX8Zij3TtSd?=
+ =?us-ascii?Q?+q1lJLs97l4Bk1/aHRiRViXYeUQqrO+Z4LxNw1l0ars4C8lOrK6AMUUZ03dX?=
+ =?us-ascii?Q?PmBN5YWcIqDj7DUgP2FGT575S1AUBdf39teOBD8IozXqYN7MMpJVS3xzVYhL?=
+ =?us-ascii?Q?4WY2P9iJb0RYK0M7GRmLENVbKm6m9nnu5GHj23zm85TkrbbLN1CXL4QVD3Tj?=
+ =?us-ascii?Q?Lg9mpn5Tfx8SityyJHT+HFd1j3pVAMZ8tU9m0+hO8u8XT4AgEBQ0H57aBeuC?=
+ =?us-ascii?Q?B+mP/+75tZI2qno+lhtDB2L1zobFoq5XcgAzjvJO5qX0FZrQGDek1j1nWgOz?=
+ =?us-ascii?Q?1mCL7zL+2B/pEirhNkJkifZSbVUAsO0HaQCimVQVuKIPuIVEV1kL4q1qtekd?=
+ =?us-ascii?Q?XrekYh+uv0lZZz3lV1yepPAP3Dxr352pQ+xkf1pOnJGYsm3SHu4mXWdw7vEi?=
+ =?us-ascii?Q?l1ezLr/X4CgDiayo1NwXE1rcc2sx+6IgqrMf3jAOGbw98O9dEDrw6QX6PJjA?=
+ =?us-ascii?Q?MNMjTm5jMr8jpC4NZpjNLfzVpfyYqvRdCNRc+cq0qtXSkxPHkxlkhWKOx5fV?=
+ =?us-ascii?Q?efvD30am/ieWvpbqUNcdLW9CWFMNRJYpW9W3/aqXrIho/RSfSXbFGYXIqhHb?=
+ =?us-ascii?Q?Sg6pV58GIceZ2k7Grph2Il0t/aYcc5L71NCPSwAwUKPadYk+PL1rV79lf8E8?=
+ =?us-ascii?Q?64A0dbptcwHQLTUQiloElX8QRKXa3g9iuMtakJ8e3ZI88XahdgKeLhsCfrL1?=
+ =?us-ascii?Q?eg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 25ffb98b-482c-4534-5238-08dc18683c2c
 X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2024 20:42:15.1226 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2024 20:58:34.6283 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /slAQ2Nza63XG1A4G1DFP8HoqTxDq26517ISN4KxKMJwoMJR//DkhjRMvPua9k+9DJOLbW8vkT7uf4c26eQuurMzd+FyOeHqXFQV/bzdTco=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8138
+X-MS-Exchange-CrossTenant-UserPrincipalName: ufEDWrQZRPWL2QBlbBhzwS35PX4QLNPKg0+1lBmfOfLmdAjr9J6/kUceVOkDW2AL2T8A02fp7CcXIhV0jYtZiMfO/t0VMgbl5SstBNgBanE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB5892
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -145,201 +147,88 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, Kevin Brodsky <kevin.brodsky@arm.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Thomas
- Gleixner <tglx@linutronix.de>, Alex Deucher <alexander.deucher@amd.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Masahiro Yamada <masahiroy@kernel.org>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+On Thu, Jan 18, 2024 at 07:10:27PM +0000, Matthew Brost wrote:
+>On Thu, Jan 18, 2024 at 12:16:27PM -0600, Lucas De Marchi wrote:
+>> On Thu, Jan 18, 2024 at 09:31:09AM -0500, Rodrigo Vivi wrote:
+>> > On Wed, Jan 17, 2024 at 05:42:00PM -0600, Lucas De Marchi wrote:
+>> > > On Wed, Jan 17, 2024 at 03:40:59PM -0500, Rodrigo Vivi wrote:
+>> > > > This information is already present at
+>> > > > /sys/kernel/debug/dri/0/gt0/uc/guc_log if needed.
+>> > >
+>> > > but is it persisted if we couldn't load guc?
+>> >
+>> > well, it was there here with the same content that was spit to dmesg.
+>> > Maybe just because I got this after a resume?
+>>
+>> not sure. I remember past debugs I had to rely on the guc log being
+>> relayed to to kernel log when debugging issues on the golden LRC
+>> submission. Honestly I don't remember if that was with i915 or xe.
+>>
+>> commit 4bc3a34f1237 ("drm/xe: Dump GuC log to dmesg on load / auth failure")
+>> seems to be the one adding it before drm-xe-next creation, but maybe
+>> we just didn't have a better alternative at the time.
+>>
+>> >
+>> > If so I would still prefer to make that persistent instead
+>> > of the flooded dmesg that gets really messed up and hard
+>> > to navigate to find the real useful information of the
+>> > failures.
+>>
+>> that would be my preference too. If it works, I'm fine with that. At
+>> least the end user should never be exposed to that amount of info we
+>> print.
+>>
+>> could we add the guc log to a devcoredump if we failed earlier?
+>>
+>
+>I agree that if we can avoid flooding dmesg either via debugfs being
+>available or creating a devcoredump that is the preference.
+>
+>I added this code originally to debug failures on driver load during
+>early Xe bring up. I haven't used this in a very long time.
 
-Reviving this thread as now with xe driver merged we have 2 users for
-a fixed-width BIT/GENMASK.
+humn... Aside from that debug I mentioned, I don't remember really
+making use of this. If nobody is actively using, then maybe let's make
+it simpler and proceed with this patch. If the needs arise, then it
+should rather be added to devcoredump. Agreed?
 
-On Wed, Jun 21, 2023 at 07:20:59PM -0700, Yury Norov wrote:
->Hi Lucas, all!
 >
->(Thanks, Andy, for pointing to this thread.)
+>Matt
 >
->On Mon, May 08, 2023 at 10:14:02PM -0700, Lucas De Marchi wrote:
->> Add GENMASK_U32(), GENMASK_U16() and GENMASK_U8()  macros to create
->> masks for fixed-width types and also the corresponding BIT_U32(),
->> BIT_U16() and BIT_U8().
->
->Can you split BIT() and GENMASK() material to separate patches?
->
->> All of those depend on a new "U" suffix added to the integer constant.
->> Due to naming clashes it's better to call the macro U32. Since C doesn't
->> have a proper suffix for short and char types, the U16 and U18 variants
->> just use U32 with one additional check in the BIT_* macros to make
->> sure the compiler gives an error when the those types overflow.
->
->I feel like I don't understand the sentence...
->
->> The BIT_U16() and BIT_U8() need the help of GENMASK_INPUT_CHECK(),
->> as otherwise they would allow an invalid bit to be passed. Hence
->> implement them in include/linux/bits.h rather than together with
->> the other BIT* variants.
->
->I don't think it's a good way to go because BIT() belongs to a more basic
->level than GENMASK(). Not mentioning possible header dependency issues.
->If you need to test against tighter numeric region, I'd suggest to
->do the same trick as  GENMASK_INPUT_CHECK() does, but in uapi/linux/const.h
->directly. Something like:
->        #define _U8(x)		(CONST_GT(U8_MAX, x) + _AC(x, U))
+>> Lucas De Marchi
+>>
+>> >
+>> > >
+>> > > >
+>> > > > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> > > > ---
+>> > > > drivers/gpu/drm/xe/xe_guc.c | 1 -
+>> > > > 1 file changed, 1 deletion(-)
+>> > > >
+>> > > > diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+>> > > > index 235d27b17ff99..2a71348c5deda 100644
+>> > > > --- a/drivers/gpu/drm/xe/xe_guc.c
+>> > > > +++ b/drivers/gpu/drm/xe/xe_guc.c
+>> > > > @@ -466,7 +466,6 @@ static int guc_wait_ucode(struct xe_guc *guc)
+>> > > > 			ret = -ENXIO;
+>> > > > 		}
+>> > > >
+>> > >
+>> > > trailing newline above
+>> >
+>> > not actually a newline, but I can remove that extra line there
+>> > while removing this.
+>> > Wonder if I also should remove the spaces between the if/else
+>> > above this block as well... The "style" there looked strange,
+>> > but I decided to not touch.
 
-but then make uapi/linux/const.h include linux/build_bug.h?
-I was thinking about leaving BIT() define where it is, and add the
-fixed-width versions in this header. I was thinking uapi/linux/const.h
-was more about allowing the U/ULL suffixes for things shared with asm.
+
+not sure I follow. Looking at the code now it seems the style became
+weird because you removed xe_guc_log_print(&guc->log, &p) without
+removing the line before
 
 Lucas De Marchi
-
->
->> The following test file is is used to test this:
->>
->> 	$ cat mask.c
->> 	#include <linux/types.h>
->> 	#include <linux/bits.h>
->>
->> 	static const u32 a = GENMASK_U32(31, 0);
->> 	static const u16 b = GENMASK_U16(15, 0);
->> 	static const u8 c = GENMASK_U8(7, 0);
->> 	static const u32 x = BIT_U32(31);
->> 	static const u16 y = BIT_U16(15);
->> 	static const u8 z = BIT_U8(7);
->>
->> 	#if FAIL
->> 	static const u32 a2 = GENMASK_U32(32, 0);
->> 	static const u16 b2 = GENMASK_U16(16, 0);
->> 	static const u8 c2 = GENMASK_U8(8, 0);
->> 	static const u32 x2 = BIT_U32(32);
->> 	static const u16 y2 = BIT_U16(16);
->> 	static const u8 z2 = BIT_U8(8);
->> 	#endif
->>
->> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> ---
->>  include/linux/bits.h       | 22 ++++++++++++++++++++++
->>  include/uapi/linux/const.h |  2 ++
->>  include/vdso/const.h       |  1 +
->>  3 files changed, 25 insertions(+)
->>
->> diff --git a/include/linux/bits.h b/include/linux/bits.h
->> index 7c0cf5031abe..ff4786c99b8c 100644
->> --- a/include/linux/bits.h
->> +++ b/include/linux/bits.h
->> @@ -42,4 +42,26 @@
->>  #define GENMASK_ULL(h, l) \
->>  	(GENMASK_INPUT_CHECK(h, l) + __GENMASK_ULL(h, l))
->>
->> +#define __GENMASK_U32(h, l) \
->> +	(((~U32(0)) - (U32(1) << (l)) + 1) & \
->> +	 (~U32(0) >> (32 - 1 - (h))))
->> +#define GENMASK_U32(h, l) \
->> +	(GENMASK_INPUT_CHECK(h, l) + __GENMASK_U32(h, l))
->> +
->> +#define __GENMASK_U16(h, l) \
->> +	((U32(0xffff) - (U32(1) << (l)) + 1) & \
->> +	 (U32(0xffff) >> (16 - 1 - (h))))
->> +#define GENMASK_U16(h, l) \
->> +	(GENMASK_INPUT_CHECK(h, l) + __GENMASK_U16(h, l))
->> +
->> +#define __GENMASK_U8(h, l) \
->> +	(((U32(0xff)) - (U32(1) << (l)) + 1) & \
->> +	 (U32(0xff) >> (8 - 1 - (h))))
->> +#define GENMASK_U8(h, l) \
->> +	(GENMASK_INPUT_CHECK(h, l) + __GENMASK_U8(h, l))
->
->[...]
->
->I see nothing wrong with fixed-wight versions of GENMASK if it helps
->people to write safer code. Can you please in commit message mention
->the exact patch(es) that added a bug related to GENMASK() misuse? It
->would be easier to advocate the purpose of new API with that in mind.
->
->Regarding implementation - we should avoid copy-pasting in cases
->like this. Below is the patch that I boot-tested for x86_64 and
->compile-tested for arm64.
->
->It looks less opencoded, and maybe Andy will be less skeptical about
->this approach because of less maintenance burden. Please take it if
->you like for v2.
->
->Thanks,
->Yury
->
->From 39c5b35075df67e7d88644470ca78a3486367c02 Mon Sep 17 00:00:00 2001
->From: Yury Norov <yury.norov@gmail.com>
->Date: Wed, 21 Jun 2023 15:27:29 -0700
->Subject: [PATCH] bits: introduce fixed-type genmasks
->
->Generalize __GENMASK() to support different types, and implement
->fixed-types versions of GENMASK() based on it.
->
->Signed-off-by: Yury Norov <yury.norov@gmail.com>
->---
-> include/linux/bitops.h |  1 -
-> include/linux/bits.h   | 22 ++++++++++++----------
-> 2 files changed, 12 insertions(+), 11 deletions(-)
->
->diff --git a/include/linux/bitops.h b/include/linux/bitops.h
->index 2ba557e067fe..1db50c69cfdb 100644
->--- a/include/linux/bitops.h
->+++ b/include/linux/bitops.h
->@@ -15,7 +15,6 @@
-> #  define aligned_byte_mask(n) (~0xffUL << (BITS_PER_LONG - 8 - 8*(n)))
-> #endif
->
->-#define BITS_PER_TYPE(type)	(sizeof(type) * BITS_PER_BYTE)
-> #define BITS_TO_LONGS(nr)	__KERNEL_DIV_ROUND_UP(nr, BITS_PER_TYPE(long))
-> #define BITS_TO_U64(nr)		__KERNEL_DIV_ROUND_UP(nr, BITS_PER_TYPE(u64))
-> #define BITS_TO_U32(nr)		__KERNEL_DIV_ROUND_UP(nr, BITS_PER_TYPE(u32))
->diff --git a/include/linux/bits.h b/include/linux/bits.h
->index 7c0cf5031abe..cb94128171b2 100644
->--- a/include/linux/bits.h
->+++ b/include/linux/bits.h
->@@ -6,6 +6,8 @@
-> #include <vdso/bits.h>
-> #include <asm/bitsperlong.h>
->
->+#define BITS_PER_TYPE(type)	(sizeof(type) * BITS_PER_BYTE)
->+
-> #define BIT_MASK(nr)		(UL(1) << ((nr) % BITS_PER_LONG))
-> #define BIT_WORD(nr)		((nr) / BITS_PER_LONG)
-> #define BIT_ULL_MASK(nr)	(ULL(1) << ((nr) % BITS_PER_LONG_LONG))
->@@ -30,16 +32,16 @@
-> #define GENMASK_INPUT_CHECK(h, l) 0
-> #endif
->
->-#define __GENMASK(h, l) \
->-	(((~UL(0)) - (UL(1) << (l)) + 1) & \
->-	 (~UL(0) >> (BITS_PER_LONG - 1 - (h))))
->-#define GENMASK(h, l) \
->-	(GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))
->+#define __GENMASK(t, h, l) \
->+	(GENMASK_INPUT_CHECK(h, l) + \
->+	 (((t)~0ULL - ((t)(1) << (l)) + 1) & \
->+	 ((t)~0ULL >> (BITS_PER_TYPE(t) - 1 - (h)))))
->
->-#define __GENMASK_ULL(h, l) \
->-	(((~ULL(0)) - (ULL(1) << (l)) + 1) & \
->-	 (~ULL(0) >> (BITS_PER_LONG_LONG - 1 - (h))))
->-#define GENMASK_ULL(h, l) \
->-	(GENMASK_INPUT_CHECK(h, l) + __GENMASK_ULL(h, l))
->+#define GENMASK(h, l)		__GENMASK(unsigned long,  h, l)
->+#define GENMASK_ULL(h, l)	__GENMASK(unsigned long long, h, l)
->+#define GENMASK_U8(h, l)	__GENMASK(u8,  h, l)
->+#define GENMASK_U16(h, l)	__GENMASK(u16, h, l)
->+#define GENMASK_U32(h, l)	__GENMASK(u32, h, l)
->+#define GENMASK_U64(h, l)	__GENMASK(u64, h, l)
->
-> #endif	/* __LINUX_BITS_H */
->-- 
->2.39.2
->
