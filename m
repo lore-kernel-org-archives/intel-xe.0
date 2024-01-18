@@ -4,134 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71846C47422
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Jan 2024 23:11:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7416C47DB7
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Jan 2024 23:25:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 275DC10E1D3;
-	Thu, 18 Jan 2024 23:11:56 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18B8810E1D3
- for <intel-xe@lists.freedesktop.org>; Thu, 18 Jan 2024 23:11:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C3D410E1D3;
+	Thu, 18 Jan 2024 23:25:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCB3010E1C4;
+ Thu, 18 Jan 2024 23:25:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705619514; x=1737155514;
+ t=1705620306; x=1737156306;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=53BF3rEErXXrb92Y0M6n9MRxfb0C7U758v+SO5Y0dpI=;
- b=fqdyDnQh10FX5e8tAAO1aYwqrPZlhstoGqDH1I1FgbRBTHit4y2Z9dBM
- DX/E1GwT9CTt5I1slRQ+vM2oybaZn9eKKIlgm1otNOyDnqUK430LWZZ2p
- WuYpYSwzSShzlK0Xm6w8iIjvJXjv30ai+W4Ko/q5+FFVmQERdlJSEB3Gg
- x9mIRGcJZq3s3wN8zsznzkBnPR00LTuso0GUelevEFI0l0PdlSWMU7tio
- gGL2l98FjCfgqWvoV3YrEYVxrupKgnD4t+TSp/7CPR9Ylm1auNiatkqre
- 5gVOjVV4dKLXEV8ht1ben7ljKUewwA/llodP4lo9obeUm2gQJlIwGbulY g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="7311424"
-X-IronPort-AV: E=Sophos;i="6.05,203,1701158400"; 
-   d="scan'208";a="7311424"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2024 15:11:52 -0800
+ bh=HusR3d3PjVtSrBUqXHO9PPduynIUlrONvXQp4ztWb3U=;
+ b=MtveftFjpxJ0xddsFtJcML+ShIElAGeTM2bTWZDmuf5k3CSe+s9pqrIh
+ qW1lOREQEHSgRqw5eeaYrOgOMC9urlFvsXSxtrs0igwiOVfxFYJoCLNn4
+ 3sF96wiQYWYtL7H1AS3onD9FCimypnb0aJPMzueR4dI5/G6GW7rk23B/o
+ YY6ZdL6zSYfSPGsHk0yUy534QduatmQtb8D2dOgLmsDFrQq8XnOMctbt2
+ I9u/fcuS1hWD8LDXmEhtwu2Fa6BVdnhRYJbgsFMaCvoOpiPfmsBGimB3V
+ 0L8DDrghk/cjbB75QwvRefriIftXZWoh+rlAINaEDqtAucB8PG6gaRvc0 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="13962958"
+X-IronPort-AV: E=Sophos;i="6.05,203,1701158400"; d="scan'208";a="13962958"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2024 15:25:06 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,203,1701158400"; 
-   d="scan'208";a="501704"
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="928254052"
+X-IronPort-AV: E=Sophos;i="6.05,203,1701158400"; d="scan'208";a="928254052"
 Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 18 Jan 2024 15:11:52 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ by fmsmga001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 18 Jan 2024 15:25:05 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
  fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 18 Jan 2024 15:11:51 -0800
+ 15.1.2507.35; Thu, 18 Jan 2024 15:25:05 -0800
 Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Thu, 18 Jan 2024 15:11:51 -0800
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.41) by
+ 15.1.2507.35 via Frontend Transport; Thu, 18 Jan 2024 15:25:05 -0800
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.41) by
  edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 18 Jan 2024 15:11:51 -0800
+ 15.1.2507.35; Thu, 18 Jan 2024 15:25:05 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cA9QCSsNuYdWOQ5gk+JJDfepAaU5PgvZMflDYoOK2rLF4w/FOmNgdheYVsYJB9jbr3gs4DydM5o/IhHMti19U7Kmdf/S2NcwwAWx6LaNCrABv4Vu9qniTnrQC+MNjop9gBsWjjqc1Tlzgvmc0piY4eK3Oii4zZfS2ApaoRJVf8Msknl8Y/o5tFvzI3KGq4gDEww1wjvb8bdS3X/31QWR8OeuYxhbdmCgJv+I0y1kzG3ohIQe24095NKcqiQDzY8bBIEqVLP09puzFJIVhk23kqkGOSbvt29wDbGOe5PeEZ54u7wHv/8ls6KHYbvH5yeY1FYv1wyk8+H55TQnEr1n6w==
+ b=EYEuRmMKL6OR/nhlOtjFmmIpE9v380H0kV5WiZPbn/RTDv/Gua/vQahuBVxjnUiaCYnBkCsgML9GkVzpcc85ongChPFvhdHKrpncUxoOJubXce/QVkiLZr59D4jCv5fUxivPE0S51yxNd8KUedFrcXXsFjL31zwtddZZTGGjzH+eEqArcuIie24b5bhccBRWMgfzpvKc5+TJ+8Uq62EKL3lmh/l7I5JayUaBiHxNSVu7OMHA6C+UzMIE+Jp0ne8rGJw1WLBeEOt216OACgSXamHC5X38NOPskTupxisf2IHu87QWufXZ746VD11k3Sbc1AIclQQRj/Qx2OEjXwCHEA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=W8NyURkcxK5qh5RPdnWKpPGUrv9ApbDORv0z0CarzMs=;
- b=LXjb52GxbA6x/h86OF6B1aRBZH0KtWSFEd5INb52qohUObUuFOY6H/ctZSL61QJzmUEhxDyuGvQOV5AGRqfI8nWI7mHYhsmBSQBEYte36OtPMO5GVYSoqbiqCdKvz9rpbrrDIj34vYpYOUuOjkbBE+U+CFIvK7wHBvmJO+qv8Dz0k7V9wuGnBNbtlXegmUhjGnFwgbi29WWZLVTh4LQtL00Fih/1qC/U9OyLa5jKnkU2ZCeFTMOBhJQ4J2B+XL8mYQnkUq/Zz/ES+tSe6gBqkjcyZCcMUqsFervvH54F8QKacywPJEh2S8Eaxex4cA5sXGqjekbAC1TqM9ad9kICaw==
+ bh=R9PQVk/2ehuy/HSOfcK9VJDrb0FFd2xSbFgNNMT87pk=;
+ b=ORjqfa5Dv3+O6/EnfTo/2ebvHUIqaIY2nU0w4D7yQWm+0y9xSR0Xr8BMGJfWk0IEw4FAkZMMGmGK9kHvqPhDGkcsm9sxHlbr4Rgi/bw9ywrwlVkPpYwqCHso/ZKfNwpKO9WfShIhFszdl8qb2o18sEVgpi9btwE3jmcdIn5Sko6JitQh70G5hGbSlueJitjhZGskMV0kU/YmcN/p8Axh9CEOLMb89hQxc1E/3VQw0aNyGnRHBWJlrRDwyRJe7y3zTGSGif3s87HU41tNmRLIGTPSRPBSP1DI+Q5x1lePeZbSmbT3sD1HePg3u8ZGFP4ThQX5TR9QenHVOmeHm5MExQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by SA2PR11MB4796.namprd11.prod.outlook.com (2603:10b6:806:117::18) with
- Microsoft SMTP Server (version=TLS1_2,
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by SA2PR11MB4874.namprd11.prod.outlook.com (2603:10b6:806:f9::23)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.24; Thu, 18 Jan
- 2024 23:11:44 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::2157:7433:d32c:a8e3]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::2157:7433:d32c:a8e3%4]) with mapi id 15.20.7202.024; Thu, 18 Jan 2024
- 23:11:44 +0000
-Date: Thu, 18 Jan 2024 15:11:41 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: <fei.yang@intel.com>
-Subject: Re: [PATCH v4 1/1] drm/xe: correct the calculation of remaining size
-Message-ID: <20240118231141.GV45138@mdroper-desk1.amr.corp.intel.com>
-References: <20240118222051.790432-1-fei.yang@intel.com>
- <20240118222051.790432-2-fei.yang@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+ 2024 23:25:03 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::9f32:ce50:1914:e954]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::9f32:ce50:1914:e954%7]) with mapi id 15.20.7202.020; Thu, 18 Jan 2024
+ 23:25:03 +0000
+Date: Thu, 18 Jan 2024 17:25:00 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Yury Norov <yury.norov@gmail.com>
+Subject: Re: Re: Re: [Intel-xe] [PATCH 2/3] linux/bits.h: Add fixed-width
+ GENMASK and BIT macros
+Message-ID: <clamvpymzwiehjqd6jhuigymyg5ikxewxyeee2eae4tgzmaz7u@6rposizee3t6>
+References: <20230509051403.2748545-1-lucas.demarchi@intel.com>
+ <20230509051403.2748545-3-lucas.demarchi@intel.com>
+ <ZJOwC5LIEySpduQJ@yury-ThinkPad>
+ <4ezps56sdj7fmr27ivkaqjakv4ex46f5cvmy6oqr3z6gkhiorl@us4qd53jzq34>
+ <Zamcu7tts8mqX0b4@yury-ThinkPad>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20240118222051.790432-2-fei.yang@intel.com>
-X-ClientProxiedBy: BYAPR06CA0015.namprd06.prod.outlook.com
- (2603:10b6:a03:d4::28) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+In-Reply-To: <Zamcu7tts8mqX0b4@yury-ThinkPad>
+X-ClientProxiedBy: SJ0PR05CA0066.namprd05.prod.outlook.com
+ (2603:10b6:a03:332::11) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|SA2PR11MB4796:EE_
-X-MS-Office365-Filtering-Correlation-Id: 967ce8be-c83e-4071-3bb2-08dc187ad63e
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SA2PR11MB4874:EE_
+X-MS-Office365-Filtering-Correlation-Id: 08a23386-6489-45e1-80dd-08dc187cb28a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: VJl9WTenqOpX8oxzZxMyAeIvsUTSjnGwD1Ou/HcNUYWcXXwnlBC560XGli/sb55Ns/OK8CPoqOUgspfgaQ1HhouQzTqIxpqrGqI8aTYS8eMfWFshwCeAQzz4d6E0CMfm3RA0+dQpziWaEzszMHtkIrMSPar+INnz0HKkfUsGtoS3JBQ8g8H/4fLn6J5Z2KDsPp4vgp08J36S4wCfz4ilsrAccrj8VZapY1WWOlg2z7WYFElUYNHGPt3QdIIreS7wVqTR/ifAaAH9HDV5NNkOisthWoF4g2WrRfL8lTLbqkREgxS9q+BnzAOU7xeUCCfb1wyggwsOSJdbKMOp5pAmtipiGaEXRGpfrH0OdYZShGAY4jgluBRR1hwt9TpNDwmRywjUG0EtQ/P3JSnoz6bKtbNf1GmTyJtRVYs4iW8pIfQAYfUWjivwwDLvS8Ni6DLNDWTtRKi6aPRi+shX9ZfXnvPmRNvUz4ojoBYBUnoYQV8DF0qGoPZuPi21sqmmI9u+7JNh8j6fny9gV2yzh76Lpiv2dxNJIGQTfJJTPvFc0jzBg70ZYrnVNEHWlzqqLUaM
+X-Microsoft-Antispam-Message-Info: 3y+9RYYxFjYG6tb6QfLTIGLdvvJuRITXIMblDCCehqZYrHbgkmiX0Duh5oUokEEa7EgAGiZ+fiz70a/diyIttHZNWsDJz5xW0UmabAmEeVLaVJh0FhstMWJCuVbjypuD+lkiDCKwBZyqY+pnILusNotzvomCAFF89tMFIn5AqRp/Zkn/az8c1bcMbpWPFdal2d8KOPj5HXiFHvsK6t/IqfEl4WFBG7xd+W9IajMwcea1+4GWQgwErqCNBVDV5nXv0zkO7F9OIK1AUPksNAOnDInJ+jW4smNevggZOUCFqX3z/DDs2rhk2tMOuGQpyf4boyT0cT1+nDqEHpu8ypt38CKBVRzzGrtDZz2dfsdVzGFsIjSt9wDQwIl8wnf4+WK1hPC1izCpwO6PPePAXNoeCxsnKvUSTlRxOirgeQAGTpF4l9vJ7koRtWn70dDd/hfWHN7K/0Pg59YsrSTCbwfvyNAXiAbk+eNO3Y8RMeUFJKIt1PhihOKnKBsjPLaHYLGdOPUqhW0QseQOZzU4jQrND4CgBQXzaA8cmS6At7NIJiO//aYQak8uT9a09q3pguPv
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(376002)(346002)(396003)(366004)(136003)(230922051799003)(1800799012)(64100799003)(451199024)(186009)(6506007)(38100700002)(86362001)(33656002)(41300700001)(2906002)(82960400001)(66556008)(6636002)(66476007)(66946007)(316002)(478600001)(6512007)(6666004)(6486002)(8936002)(4326008)(8676002)(5660300002)(83380400001)(1076003)(26005)(34206002);
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7916004)(396003)(346002)(136003)(39860400002)(366004)(376002)(230922051799003)(186009)(64100799003)(451199024)(1800799012)(41300700001)(26005)(6512007)(9686003)(83380400001)(86362001)(82960400001)(7416002)(4326008)(8676002)(8936002)(5660300002)(6506007)(38100700002)(54906003)(66556008)(66946007)(316002)(6916009)(66476007)(33716001)(2906002)(6486002)(478600001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Bo4zbcxM5An6iU4o/03hPiDsE/whb95JoqdYXkzj7GVALYX+qoJNSMJSbZgr?=
- =?us-ascii?Q?mp5Vfpm0XLycHS3SBFda4WDc4rYqH9Z//AoPfj8hYj5Mr8xgZ52EqU45yFjM?=
- =?us-ascii?Q?f8roZbgSC/LCW4W4I8Zj2MYXc+Gpe4lg1RxRa7x1bkKYk4CkTdbGQjlfmScS?=
- =?us-ascii?Q?f+TuvZGDDRVMGd//tviSTiDnzyoU8QnnDtJBjtlox7wADw2k7dY2xUHMme5h?=
- =?us-ascii?Q?4h4rp1rAowOU5axdm7bgski0qpMD0Bt5OP99Qd8Fr0SCjEoqdKkN0Ca3SuWV?=
- =?us-ascii?Q?ga9+/WobSUyvr/o1FI9uZz/9ovkhmUWOErZbKsaVBmpXxSIUnpYPwsOEzFQ0?=
- =?us-ascii?Q?DBZqjF3fRiOOAXzPIYf51Bcp3zUWyexRukVZqLtN3iPfK2A0w/hOEbopIg6W?=
- =?us-ascii?Q?GUrVQm9olH4pr4jKH62Tf9oKcgmsG5khoQFmCf9f8y87GXPyZGb5O6jxZeLH?=
- =?us-ascii?Q?xeZDq4SiM63lsFNFvhFxZATp/W13njiEXuyoV4QzFN5z3GnBVIPe4ZqQYpid?=
- =?us-ascii?Q?F66R409L2JjNgYByTuX2c4roKb2j/iTaipn2RgYWzEjlBY9gY1LX3Ryga+BD?=
- =?us-ascii?Q?BExos6+GJxE+ZlUlK8fbY1vAj4gO+zDZ1Dc//4Z7d+Ak/jOdRcCqSkwT5mEJ?=
- =?us-ascii?Q?FkLInmnewfZeCNFmcD5OGZM2edmxy3flvNUmr3PAYFl06+HQlHxdJlP5bQHn?=
- =?us-ascii?Q?XLXblURuhct00PskMs8E2lP0uNUcwiiXgLjLQx7HuQSSujV6pqwwVV3N8zRe?=
- =?us-ascii?Q?eOgdDaUOj06o5TUNJ3vzm/VkRrp5WntKtTr5CT4o++oWEhD3Hh/iVK5bHN0q?=
- =?us-ascii?Q?0xCB8+RiKEu5kQaI+m8POTi7fmRhP2EDhb+gpuD9zDAX267RjNQ2u+rAPspB?=
- =?us-ascii?Q?ry15i728T1+hcDIM1CNJ+tifEeHio1B10TiMtcpIoU6Qy1mB5dcrtGvvStPp?=
- =?us-ascii?Q?skXnwIeM4ikbi8FU874NlMbFi/Y+Y6YmX6tYIuxWb31yBD4g5Lcc9S9XrmuP?=
- =?us-ascii?Q?2APJI9vAqvCjwDOK1bgwnXNVAJ6ARVpNXKBlppwvozMwr1N8d7vrYgICvZ8v?=
- =?us-ascii?Q?qrMgLOhG9T3o5YkUaNZhBb9OBiaObN8KChhOQZqr2mcMOWKuT1kP84FcNhJF?=
- =?us-ascii?Q?8qw05F+amTv7sf1+pN6Cw62Mi4YiGAxw5K8Zc4tfCSIZzz/UaOx05OtjaJG+?=
- =?us-ascii?Q?gx6GHxdCUwFX0lIEEsqfWKqXk3tt/qvxPR6C0HtPe6X5po46O2s5EOx7/yEy?=
- =?us-ascii?Q?IJfHcflVqCdcL4U/ghGo+LJ23fS0XdrjlZOVGE1C364eBOzxpcJCgDh4oQs4?=
- =?us-ascii?Q?eWl7zztX2nuZIM1SCs+91r4eFnv3l66jE+IU9jgcboc5IY5wKHrw/1+lw9Nr?=
- =?us-ascii?Q?r9a1WCrVbqaIGk+akavhRqyZkwSuLj17+4NTgeqSdbY9RCfRPulzdQbP9tPz?=
- =?us-ascii?Q?yzlPcLoGSFj02HFZKqhuFf3tbVhhEJViu9+ao+KQpdXajma+feHxxXtEocLB?=
- =?us-ascii?Q?HIL066D9+MW1XslQlCik6Lhm7aeBpE/4dVqDC5fiozE8XjvQsOixHe/JM3FS?=
- =?us-ascii?Q?wXkaRhBp/g3qXnqd0ApPhT7u93+qgZ9K8pr18OfB3YAU/NSu9PIkU0xifh5I?=
- =?us-ascii?Q?vA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 967ce8be-c83e-4071-3bb2-08dc187ad63e
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?NwGG/xDlszN1Xx6SdT7aWrfadshhOAxvU8kDvjWIoj/LD9n2vqUmLxpNRr5g?=
+ =?us-ascii?Q?5cdV/KW0tKz/ndELKcu3V5g90LItp607ynGgwphmApDZqRTZGyog0jdtkcbf?=
+ =?us-ascii?Q?Kn3j4qN0W8ttBJC9kdo81SUO8bqjT5EfHWg8vKdTGQmc40iOlO6ifOcJcdh4?=
+ =?us-ascii?Q?ryeUTcf3dEz88dtFe8mEAaCOcbDXQ39QnHbertlMTZ3ac63JwuEa5y7voojr?=
+ =?us-ascii?Q?QjbtROg8KEasYfqyqa0EbjxcG/BHMoEZWyHkoR0lNnPYakh11+ZYKfdIeI0X?=
+ =?us-ascii?Q?udlYwde+qIaE+nmoyP3YN/t9uzWCeYDWZHu1HjNvNxMKdvmIjZmE8TeiGog7?=
+ =?us-ascii?Q?rBlThclItN+rOAXQJQR8emMQGSHiNNSvxLPXNsZPjKLRj1moexafLsOezaMw?=
+ =?us-ascii?Q?0klclETMCee9cKwGdNyobxroLxUwtJh3vVMhXZ8p8N8XQLnQsgNh6XKVn4bu?=
+ =?us-ascii?Q?hXT+kJD9lNz0xyQF4ASRqQByHW4dgDWMXp3zlBLk5hwOm+HO3mUjnrYs6A69?=
+ =?us-ascii?Q?+htI1SAl2MTpdSiyrjaF3QE9Bp0x/obtpBRo2LT6ZeBdkUh9Tg7RIANh454c?=
+ =?us-ascii?Q?DkVDOC62gmbTF51Wed5czCmFFe0jI6Ws0liX4D12b8Rb3y42xojaRLfTeSKG?=
+ =?us-ascii?Q?uUcShaKaUR2+lqsGWKGVP2WwOfGqAgE2TdFXhoyx70oMNoVKYRsOo2h5kaUk?=
+ =?us-ascii?Q?z1aQo7jD8pQO7zVRYaTTwT51j1dHkXlxNDaJyuNYIgIpaf0tBywHm3FzuRqE?=
+ =?us-ascii?Q?i4Xa3S8/pOE8edd3BmymPgIrFWji5F0+MJLcEcG3QMzBWlutu96e4dM5jfbU?=
+ =?us-ascii?Q?XXSNdZ6xIgLybFWH5/VimMLvyyirpZpKpb33GAsiED+8Co8X027c0sPUubqa?=
+ =?us-ascii?Q?ZqYpeXD5NkJjTngjdRGhm41Ayl2+YuxB4I/K9OHMCI+aq8mWeUyiM1NctIOi?=
+ =?us-ascii?Q?fRRFVaul9ItLcTXvw3HuOROiunnAWw5Q/I4WoRZT+4dMydwzqq9O1mVOW4fr?=
+ =?us-ascii?Q?jMf/XK0AdBnVGtrFvfx4YHJyjQurs3eyvBT66i8R8M16WWfGzUdrEDdWY+jZ?=
+ =?us-ascii?Q?EJxaEU5I5dCU8QJ0tSifKaWya8EHcl6Bqaib7N3byJj4ymx8pXUbU9WgU1sB?=
+ =?us-ascii?Q?vL7ce882umgIYoj4v8HYUnNR6TTNwzqKTCuqMCZAVhvbB2jmh5g6rcJ16u40?=
+ =?us-ascii?Q?jkuuQh1iLOXd+FBi1bzKjzPjvah6WK3UTknwJy4x6FK7+1LQQb/A3rYYclfY?=
+ =?us-ascii?Q?K3rDXJI7SfXva4rRRrK2tDKLQSxWg0xqn3xtFHPkPVi+WZcGPt1k3hq9nMLV?=
+ =?us-ascii?Q?k4Kahwt7wSxgBV+a/0wOws/Sz0zfrXeSe32A+yHJkpOjKqaJ2PFaJ9GwGX1G?=
+ =?us-ascii?Q?71AILPGVlIZDjmKE1elFvdI0qZgqXFaqlTj4Lrnj8h94dXuu/QjjznmGsdi4?=
+ =?us-ascii?Q?/i/gAz/dPLOUKYDSNB9YD8don3AtYoe9D3oS8Bh2hw9/yvw9hmb0eQC8HEK9?=
+ =?us-ascii?Q?Ysm9+ZkDAYxzklTNcPcfNURztR65VDRZyUKWsG3iAlSoB18RuLr+/pyGjyzK?=
+ =?us-ascii?Q?gIaxhgHPiHqSQF6fn7InnCDOU2XwPs6DCTUmFRf/qmr1+5JxbNnyw5dLSH2p?=
+ =?us-ascii?Q?OA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 08a23386-6489-45e1-80dd-08dc187cb28a
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2024 23:11:44.0237 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2024 23:25:03.1986 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vroYcAtU/JwSoa4iFttOGSIe1r/M4+VRBKZrZZMTUVAaO5CybrLkET2GjqerfGvlzMBnCmOidiG6IKfewAoChTx13ej4k0ug+yNlBQKeRus=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4796
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4r13IIjrVR5nS8osaC2d7GuNh7TrZ8I55XAVFlSaj+EZ/5CFOzZ9cK2LKd67vfr/enAknRUGBoieAIV1kQmzZEPa+OwDgTwzg2mAAjLuzJA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4874
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -144,65 +147,164 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, Kevin Brodsky <kevin.brodsky@arm.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Thomas
+ Gleixner <tglx@linutronix.de>, Alex Deucher <alexander.deucher@amd.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Masahiro Yamada <masahiroy@kernel.org>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jan 18, 2024 at 02:20:51PM -0800, fei.yang@intel.com wrote:
-> From: Fei Yang <fei.yang@intel.com>
-> 
-> In function write_pgtable, the calculation of chunk in the do-while
-> loop is wrong, we should always compare against remaining size instead
-> of the total size update->qwords.
-> Also correct the assert. While one MI_STORE_DATA_IMM can take no more
-> than 0x1fe qwords, the size of the pgtable can be 512 entries.
+On Thu, Jan 18, 2024 at 01:48:43PM -0800, Yury Norov wrote:
+>On Thu, Jan 18, 2024 at 02:42:12PM -0600, Lucas De Marchi wrote:
+>> Hi,
+>>
+>> Reviving this thread as now with xe driver merged we have 2 users for
+>> a fixed-width BIT/GENMASK.
+>
+>Can you point where and why?
 
-I just saw this v4 after I merged v3 to drm-xe-next.  But the assertion
-change is logically different from the loop bound change, so it should
-probably be a separate patch anyway (and with a Fixes: marker too).
+See users of REG_GENMASK and REG_BIT in drivers/gpu/drm/i915 and
+drivers/gpu/drm/xe. I  think the register definition in the xe shows it
+in a good way:
 
-Also, it would be best to avoid using a magic number if possible
-(especially one written in the manner that makes it look like a field
-value).  It looks like we use XE_PDES in other places where we need to
-represent the number of entries inside a page table bo?
+	drivers/gpu/drm/xe/regs/xe_gt_regs.h
+
+The GPU registers are mostly 32-bit wide. We don't want to accidently do
+something like below (s/30/33/ added for illustration purposes):
+
+#define LSC_CHICKEN_BIT_0                       XE_REG_MCR(0xe7c8)
+#define   DISABLE_D8_D16_COASLESCE              REG_BIT(33)
+
+Same thing for GENMASK family of macros and for registers that are 16 or
+8 bits. See e.g. drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
 
 
-Matt
+>
+>> On Wed, Jun 21, 2023 at 07:20:59PM -0700, Yury Norov wrote:
+>> > Hi Lucas, all!
+>> >
+>> > (Thanks, Andy, for pointing to this thread.)
+>> >
+>> > On Mon, May 08, 2023 at 10:14:02PM -0700, Lucas De Marchi wrote:
+>> > > Add GENMASK_U32(), GENMASK_U16() and GENMASK_U8()  macros to create
+>> > > masks for fixed-width types and also the corresponding BIT_U32(),
+>> > > BIT_U16() and BIT_U8().
+>> >
+>> > Can you split BIT() and GENMASK() material to separate patches?
+>> >
+>> > > All of those depend on a new "U" suffix added to the integer constant.
+>> > > Due to naming clashes it's better to call the macro U32. Since C doesn't
+>> > > have a proper suffix for short and char types, the U16 and U18 variants
+>> > > just use U32 with one additional check in the BIT_* macros to make
+>> > > sure the compiler gives an error when the those types overflow.
+>> >
+>> > I feel like I don't understand the sentence...
+>> >
+>> > > The BIT_U16() and BIT_U8() need the help of GENMASK_INPUT_CHECK(),
+>> > > as otherwise they would allow an invalid bit to be passed. Hence
+>> > > implement them in include/linux/bits.h rather than together with
+>> > > the other BIT* variants.
+>> >
+>> > I don't think it's a good way to go because BIT() belongs to a more basic
+>> > level than GENMASK(). Not mentioning possible header dependency issues.
+>> > If you need to test against tighter numeric region, I'd suggest to
+>> > do the same trick as  GENMASK_INPUT_CHECK() does, but in uapi/linux/const.h
+>> > directly. Something like:
+>> >        #define _U8(x)		(CONST_GT(U8_MAX, x) + _AC(x, U))
+>>
+>> but then make uapi/linux/const.h include linux/build_bug.h?
+>> I was thinking about leaving BIT() define where it is, and add the
+>> fixed-width versions in this header. I was thinking uapi/linux/const.h
+>> was more about allowing the U/ULL suffixes for things shared with asm.
+>
+>You can't include kernel headers in uapi code. But you can try doing
+>vice-versa: implement or move the pieces you need to share to the
+>uapi/linux/const.h, and use them in the kernel code.
 
-> 
-> Signed-off-by: Fei Yang <fei.yang@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_migrate.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-> index 44725f978f3e..04e9f723d316 100644
-> --- a/drivers/gpu/drm/xe/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> @@ -1107,7 +1107,7 @@ static void write_pgtable(struct xe_tile *tile, struct xe_bb *bb, u64 ppgtt_ofs,
->  	 * This shouldn't be possible in practice.. might change when 16K
->  	 * pages are used. Hence the assert.
->  	 */
-> -	xe_tile_assert(tile, update->qwords <= MAX_PTE_PER_SDI);
-> +	xe_tile_assert(tile, update->qwords <= 0x1ff);
->  	if (!ppgtt_ofs)
->  		ppgtt_ofs = xe_migrate_vram_ofs(tile_to_xe(tile),
->  						xe_bo_addr(update->pt_bo, 0,
-> @@ -1116,7 +1116,7 @@ static void write_pgtable(struct xe_tile *tile, struct xe_bb *bb, u64 ppgtt_ofs,
->  	do {
->  		u64 addr = ppgtt_ofs + ofs * 8;
->  
-> -		chunk = min(update->qwords, MAX_PTE_PER_SDI);
-> +		chunk = min(size, MAX_PTE_PER_SDI);
->  
->  		/* Ensure populatefn can do memset64 by aligning bb->cs */
->  		if (!(bb->len & 1))
-> -- 
-> 2.25.1
-> 
+but in this CONST_GE() should trigger a BUG/static_assert
+on U8_MAX < x. AFAICS that check can't be on the uapi/ side,
+so there's nothing much left to change in uapi/linux/const.h.
 
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+I'd expect drivers to be the primary user of these fixed-width BIT
+variants, hence the proposal to do  in include/linux/bits.h.
+Ssomething like this WIP/untested diff (on top of your previous patch):
+
+
+diff --git a/include/linux/bits.h b/include/linux/bits.h
+index cb94128171b2..409cd10f7597 100644
+--- a/include/linux/bits.h
++++ b/include/linux/bits.h
+@@ -24,12 +24,16 @@
+  #define GENMASK_INPUT_CHECK(h, l) \
+  	(BUILD_BUG_ON_ZERO(__builtin_choose_expr( \
+  		__is_constexpr((l) > (h)), (l) > (h), 0)))
++#define BIT_INPUT_CHECK(type, b) \
++	((BUILD_BUG_ON_ZERO(__builtin_choose_expr( \
++		__is_constexpr(b), (b) >= BITS_PER_TYPE(type), 0))))
+  #else
+  /*
+   * BUILD_BUG_ON_ZERO is not available in h files included from asm files,
+   * disable the input check if that is the case.
+   */
+  #define GENMASK_INPUT_CHECK(h, l) 0
++#define BIT_INPUT_CHECK(type, b) 0
+  #endif
+  
+  #define __GENMASK(t, h, l) \
+@@ -44,4 +48,9 @@
+  #define GENMASK_U32(h, l)	__GENMASK(u32, h, l)
+  #define GENMASK_U64(h, l)	__GENMASK(u64, h, l)
+  
++#define BIT_U8(b)		(u8)(BIT_INPUT_CHECK(u8, b) + BIT(b))
++#define BIT_U16(b)		(u16)(BIT_INPUT_CHECK(u16, b) + BIT(b))
++#define BIT_U32(b)		(u32)(BIT_INPUT_CHECK(u32, b) + BIT(b))
++#define BIT_U64(b)		(u64)(BIT_INPUT_CHECK(u64, b) + BIT(b))
++
+  #endif	/* __LINUX_BITS_H */
+
+>
+>In the worst case, you can just implement the macro you need in the
+>uapi header, and make it working that way.
+>
+>Can you confirm that my proposal increases the kernel size? If so, is
+>there any way to fix it? If it doesn't, I'd prefer to use the
+>__GENMASK() approach.
+
+I agree on continuing with your approach. The bloat-o-meter indeed
+showed almost no difference. `size ....i915.o`  on the other hand
+increased, but then decreased when I replaced our current REG_GENMASK()
+implementation to reuse the new GENMASK_U*()
+
+	$ # test-genmask.00: before any change
+	$ # test-genmask.01: after your patch to GENMASK
+	$ # test-genmask.01: after converting drivers/gpu/drm/i915/i915_reg_defs.h
+	    to use the new macros
+	$ size build64/drivers/gpu/drm/i915/i915.o-test-genmask.*
+	   text    data     bss     dec     hex filename
+	4506628  215083    7168 4728879  48282f build64/drivers/gpu/drm/i915/i915.o-test-genmask.00
+	4511084  215083    7168 4733335  483997 build64/drivers/gpu/drm/i915/i915.o-test-genmask.01
+	4493292  215083    7168 4715543  47f417 build64/drivers/gpu/drm/i915/i915.o-test-genmask.02
+
+	$ ./scripts/bloat-o-meter  build64/drivers/gpu/drm/i915/i915.o-test-genmask.0[01]
+	add/remove: 0/0 grow/shrink: 2/1 up/down: 4/-5 (-1)
+	Function                                     old     new   delta
+	intel_drrs_activate                          399     402      +3
+	intel_psr_invalidate                         546     547      +1
+	intel_psr_flush                              880     875      -5
+	Total: Before=2980530, After=2980529, chg -0.00%
+
+	$ ./scripts/bloat-o-meter  build64/drivers/gpu/drm/i915/i915.o-test-genmask.0[12]
+	add/remove: 0/0 grow/shrink: 0/0 up/down: 0/0 (0)
+	Function                                     old     new   delta
+	Total: Before=2980529, After=2980529, chg +0.00%
+
+thanks
+Lucas De Marchi
+
+>
+>Thanks,
+>Yury
