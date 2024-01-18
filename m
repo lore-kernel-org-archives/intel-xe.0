@@ -4,65 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67520C4707B
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Jan 2024 15:29:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53CF1C4707B
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Jan 2024 15:48:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5368710E845;
-	Thu, 18 Jan 2024 15:29:11 +0000 (UTC)
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com
- [209.85.208.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB66210E853;
- Thu, 18 Jan 2024 15:29:05 +0000 (UTC)
-Received: by mail-lj1-f172.google.com with SMTP id
- 38308e7fff4ca-2ccae380df2so137759401fa.1; 
- Thu, 18 Jan 2024 07:29:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1705591683; x=1706196483; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=JrIOWj9YUHiF/hHk2O6R049ivCvXwljvABP5Y8cSNW8=;
- b=jK9bjHyuFt9shZd0mhCGWg+7dXqmB7XPLQ2r5Y2uQsPB8TpepBuVcWpS5tRTQCoDkp
- oODoOWF6kmEbaqfN+Hyex0HONlwiRMSMGz35ceOgi5uIQshriLIm9thRVEFFZgTl+EEr
- jpREowyp8dWTrFPZJ5o9TRsdvtzAF4mZykA3cXs/szuA+0Idq71WgkLiUhyuR5ETMZJe
- xI49YyHvKLdiLFWAcKZs5ijFHINpu4iRc2rB69RJ6Ty4bF0wjn4aOHN0QKUef4Ot5BsR
- CgsOMUgFDdl3imDL5jqrqiQKxFh1fin1LK39SboCSE13TQDZzrSS8b27ZcihabDyMyRs
- 5J0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1705591683; x=1706196483;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=JrIOWj9YUHiF/hHk2O6R049ivCvXwljvABP5Y8cSNW8=;
- b=qT7f4XK/gymttRTXTfNlyL66r/WB+d6nFTBU0Mgs9k+mn8xGzEXsrMJT7deL7h2qGQ
- X9WCQ533TujbhBLew6ZoWDEwkSkrrmsXCRA48N6ldTfym7hXw9Wo7UoPBTtsdmh5eXFo
- g7TIr4o5M+jOS1Pj38srBFrcdbaakLZaYwtuxf/sEzb52vD5ICAT3LpcO1xOIIygfAWV
- WndhqwBMrq9EkpLzm2nInH5mlW1tj3mh0g0cB+i0cKj1SKd74SSG57UwW/diz3z6xQZp
- Mo818qLQtxPN8v/XtjVNncB17XVVC9Sily19dgceZor7uBk1dZT9Azc3Y0Kvqw70t0cy
- zm5Q==
-X-Gm-Message-State: AOJu0Yxq2KFtRkhTWwRmBM3OM5WYnUZoXWbxZidb8M2yu/d8y/zyXEL0
- Ew9Y7LjOVIKZ3mpiHtCIy6PAFvJtuWR8/FBmsguVMKq2URn6e5SW5dVtIAKhJobt4g==
-X-Google-Smtp-Source: AGHT+IEek35PMEAMry/UOT3qQL6u1dlcl2KMtiOYMh+9Xy0gbX4MGitxrY6M6dtE1yNWxwwnRdpvBQ==
-X-Received: by 2002:a05:6512:3b92:b0:50e:7bf2:69 with SMTP id
- g18-20020a0565123b9200b0050e7bf20069mr718958lfv.94.1705591683515; 
- Thu, 18 Jan 2024 07:28:03 -0800 (PST)
-Received: from jheikkil-mobl1.. ([2001:998:22:0:96ab:4869:ae6:2c8a])
- by smtp.gmail.com with ESMTPSA id
- z1-20020ac25de1000000b0050eea9541casm672737lfq.44.2024.01.18.07.28.02
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 18 Jan 2024 07:28:03 -0800 (PST)
-From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Subject: [PATCH 4/4] drm/i915/display: On Xe2 always enable decompression with
- tile4
-Date: Thu, 18 Jan 2024 17:27:45 +0200
-Message-Id: <20240118152745.162960-5-juhapekka.heikkila@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240118152745.162960-1-juhapekka.heikkila@gmail.com>
-References: <20240118152745.162960-1-juhapekka.heikkila@gmail.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC63210E84F;
+	Thu, 18 Jan 2024 15:48:29 +0000 (UTC)
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5920410E837;
+ Thu, 18 Jan 2024 15:48:28 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Enable_ccs_compresse?=
+ =?utf-8?q?d_framebuffers_on_Xe2?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
+Date: Thu, 18 Jan 2024 15:48:28 -0000
+Message-ID: <170559290836.558271.1994090195420836264@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240118152745.162960-1-juhapekka.heikkila@gmail.com>
+In-Reply-To: <20240118152745.162960-1-juhapekka.heikkila@gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,33 +35,25 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With Xe2 always treat tile4 as if it was using flat ccs.
+== Series Details ==
 
-Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
----
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 5 +++++
- 1 file changed, 5 insertions(+)
+Series: Enable ccs compressed framebuffers on Xe2
+URL   : https://patchwork.freedesktop.org/series/128946/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 511dc1544854..43209909593f 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -948,6 +948,11 @@ static u32 skl_plane_ctl(const struct intel_crtc_state *crtc_state,
- 	if (DISPLAY_VER(dev_priv) == 13)
- 		plane_ctl |= adlp_plane_ctl_arb_slots(plane_state);
- 
-+	if (GRAPHICS_VER(dev_priv) >= 20 &&
-+	    fb->modifier == I915_FORMAT_MOD_4_TILED) {
-+		plane_ctl |= PLANE_CTL_RENDER_DECOMPRESSION_ENABLE;
-+	}
-+
- 	return plane_ctl;
- }
- 
--- 
-2.25.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 238e8655c drm-tip: 2024y-01m-18d-11h-39m-49s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: add bind time pat index to xe_bo structure
+Applying: drm/xe: store bind time pat index to xe_bo
+Applying: drm/xe/xe2: Limit ccs framebuffers to tile4 only
+Applying: drm/i915/display: On Xe2 always enable decompression with tile4
+
 
