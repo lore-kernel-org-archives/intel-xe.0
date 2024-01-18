@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E59BCC47DAF
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Jan 2024 21:52:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 196A3C47422
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Jan 2024 21:52:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D0D910E902;
-	Thu, 18 Jan 2024 21:52:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE84A10E1BF;
+	Thu, 18 Jan 2024 21:52:19 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B54410E902;
- Thu, 18 Jan 2024 21:52:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6B2310E1BF;
+ Thu, 18 Jan 2024 21:52:18 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Do_not_flo?=
- =?utf-8?q?od_dmesg_with_guc_log_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Do_not_flood_dm?=
+ =?utf-8?q?esg_with_guc_log_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Date: Thu, 18 Jan 2024 21:52:01 -0000
-Message-ID: <170561472150.558567.3974518280506721373@5338d5abeb45>
+Date: Thu, 18 Jan 2024 21:52:18 -0000
+Message-ID: <170561473874.558567.4363452057283956403@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240117204059.345143-1-rodrigo.vivi@intel.com>
 In-Reply-To: <20240117204059.345143-1-rodrigo.vivi@intel.com>
@@ -48,9 +48,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 776dc1588 drm-tip: 2024y-01m-18d-18h-33m-04s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Do not flood dmesg with guc log
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+e7f730565356938dd6c63cd498218fdc5d6a22b0
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 52f85673cbf960b422423cc26e12018a43753d28
+Author: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Date:   Thu Jan 18 16:48:56 2024 -0500
+
+    drm/xe: Do not flood dmesg with guc log
+    
+    This information is already present at
+    /sys/kernel/debug/dri/0/gt0/uc/guc_log if needed.
+    
+    v2: add missing chunk
+    v3: remove spurious line
+    
+    Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch 776dc1588b4b329dba41ded2db883fbc1bf77950 drm-intel
+52f85673c drm/xe: Do not flood dmesg with guc log
 
 
