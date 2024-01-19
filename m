@@ -4,47 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26BD3C47422
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Jan 2024 00:16:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 179DBC47DAF
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Jan 2024 00:19:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF42310E951;
-	Fri, 19 Jan 2024 00:16:17 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 592A010E949
- for <intel-xe@lists.freedesktop.org>; Fri, 19 Jan 2024 00:16:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705623368; x=1737159368;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=2Px7UqbQUr8y8PUIrx1/T2aQPQI9UX8DtOjPeYYWHOI=;
- b=ZixOsX07ytIdiBcb+nseaTd9fCZrrabXo5FjS5/yVRmALAjc2wtNH18y
- hjayy1HVY4XSRJxqXgR5m1ejRs1ARRQG5ndy5cccMqSpwBWXLPTJr5gSL
- 8X/a9d19IShWQOLbd17zPasw4NBoNxUdKfWCHs8L1GFWTwNuo7CL6ArNw
- 4NriaRvsFrdGSeoqtSacSDOMUm6ZHq0NapbfzCOzaDG3AIUi29bB8MLUC
- LVdYJMA9btZ+umJa2z0Wtt9qK/Tis16x7ZOzexlBCWJEqA4kzrUdOzBXF
- lEPETCCazuJTqHgIUwBaoPaVjITiGFzbZHIB8Z5ZYsDYk4vYmq4baEpUE g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="404373186"
-X-IronPort-AV: E=Sophos;i="6.05,203,1701158400"; d="scan'208";a="404373186"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2024 16:16:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="818924000"
-X-IronPort-AV: E=Sophos;i="6.05,203,1701158400"; d="scan'208";a="818924000"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2024 16:16:05 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 5/5] drm/xe: Enable 32bits build
-Date: Thu, 18 Jan 2024 16:16:12 -0800
-Message-Id: <20240119001612.2991381-6-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20240119001612.2991381-1-lucas.demarchi@intel.com>
-References: <20240119001612.2991381-1-lucas.demarchi@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9EFF10E93B;
+	Fri, 19 Jan 2024 00:19:05 +0000 (UTC)
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 986F010E838;
+ Fri, 19 Jan 2024 00:19:04 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Fix_32bit_build_=28r?=
+ =?utf-8?q?ev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Fri, 19 Jan 2024 00:19:04 -0000
+Message-ID: <170562354462.558566.17567355007528858185@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240119001612.2991381-1-lucas.demarchi@intel.com>
+In-Reply-To: <20240119001612.2991381-1-lucas.demarchi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,32 +35,26 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that all the issues with 32bits are fixed, enable it again.
+== Series Details ==
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/xe/Kconfig | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: Fix 32bit build (rev2)
+URL   : https://patchwork.freedesktop.org/series/128840/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-index 1b57ae38210d..1b0ef91a5d2c 100644
---- a/drivers/gpu/drm/xe/Kconfig
-+++ b/drivers/gpu/drm/xe/Kconfig
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0-only
- config DRM_XE
- 	tristate "Intel Xe Graphics"
--	depends on DRM && PCI && MMU && (m || (y && KUNIT=y)) && 64BIT
-+	depends on DRM && PCI && MMU && (m || (y && KUNIT=y))
- 	select INTERVAL_TREE
- 	# we need shmfs for the swappable backing store, and in particular
- 	# the shmem_readpage() which depends upon tmpfs
--- 
-2.40.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: ed982e1f2 drm-tip: 2024y-01m-18d-23h-31m-18s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Use _ULL for u64 division
+Applying: drm/xe/mmio: Cast to u64 when printing
+Applying: drm/xe/display: Avoid calling readq()
+Applying: drm/xe: Fix cast on trace variable
+Applying: drm/xe: Enable 32bits build
+
 
