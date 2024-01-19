@@ -4,49 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D918DC47DAF
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Jan 2024 11:42:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14C6EC4725D
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Jan 2024 11:48:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7727710E9EA;
-	Fri, 19 Jan 2024 11:42:52 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D92C510E9FA
- for <intel-xe@lists.freedesktop.org>; Fri, 19 Jan 2024 11:42:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFE5C10E9BB;
+	Fri, 19 Jan 2024 11:48:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7A8E10EA1C;
+ Fri, 19 Jan 2024 11:48:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705664571; x=1737200571;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=/uGHPPXgxeAqCaNtaqe5Uk/+ypUJzv09p+l7EfQZP+k=;
- b=aAQjUYYUndE6segaPktJVAe49zMXTRjcZMruTjKhDroV416NYI7hQSGB
- rZ4E2eVHP/B1cAtoXU6A0MEVrqlo/pYYtx7OnxYzUyfYshG6jjfBRZh7r
- 5Ule7K8QY8aelvz/3PoGDqMoi4NoKCmYfA9wKZTddmuww4WGyq4H1GswV
- HTxfEe82K1HoNRAfkLEMZs4V5gJy3O+Va0EOxlL9ckP/GuBDBszAWX+Bz
- P2yKgEZE4xIb/mazDAKi/Wf6XmpRYCHtFTSYxU8pa9Km8qnb6bXYgt438
- FWakXtJ2R1NURiBJkDvSUTiS4Cokvy/SFH5rjMNf0e0BdSm6r3RRrqeRt g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="7416165"
-X-IronPort-AV: E=Sophos;i="6.05,204,1701158400"; 
-   d="scan'208";a="7416165"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2024 03:42:45 -0800
+ t=1705664923; x=1737200923;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=xBkH5hHmuFX1Axm6Af3Bqjx93zZ4FK4wrFp87YJx5oI=;
+ b=jjMZDrRZkRp16ffUbvCbkUpUO8H/LJagx/u4PhGwn4SnmWEZaJbgDQHG
+ 3KJ4A7vi508taGz6KIEbbsdGTQLNKXHOZzvPutL2UAWj92xxcreBlL/ix
+ KJRzBVyxi9VaEIICVKMtxGror9To8iCYWr9o/vLh+xbO7/9eC9aiDoHa8
+ 3oku10qejixUSOttxqjUCKytlYivSMzxE6j83s59IGFp8vPJ8dMdz//Ap
+ k+9YYvtVuat1riWn0LO/7IPxog+L+/vGHi2otBHyESvEyfTURIVtFsP3c
+ wOS+g9mk9xLh8r4yTcJvazjO2Syzs0/aE/3YHGTp1i99nnlF7CzThB0jm Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="19309746"
+X-IronPort-AV: E=Sophos;i="6.05,204,1701158400"; d="scan'208";a="19309746"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2024 03:48:42 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="819046673"
-X-IronPort-AV: E=Sophos;i="6.05,204,1701158400"; d="scan'208";a="819046673"
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="761123724"
+X-IronPort-AV: E=Sophos;i="6.05,204,1701158400"; d="scan'208";a="761123724"
 Received: from vstill-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.39.223])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2024 03:42:42 -0800
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2024 03:48:40 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Nilawar, Badal" <badal.nilawar@intel.com>, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/xe/debugfs: Expose debugfs entry to check guc pc
- support
-In-Reply-To: <4dd696da-90ef-4612-93de-e812d0a8336e@intel.com>
+To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 3/4] drm/xe/xe2: Limit ccs framebuffers to tile4 only
+In-Reply-To: <20240118152745.162960-4-juhapekka.heikkila@gmail.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240119081852.1858212-1-badal.nilawar@intel.com>
- <4dd696da-90ef-4612-93de-e812d0a8336e@intel.com>
-Date: Fri, 19 Jan 2024 13:42:40 +0200
-Message-ID: <878r4lpn0v.fsf@intel.com>
+References: <20240118152745.162960-1-juhapekka.heikkila@gmail.com>
+ <20240118152745.162960-4-juhapekka.heikkila@gmail.com>
+Date: Fri, 19 Jan 2024 13:48:36 +0200
+Message-ID: <875xzppmqz.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -60,56 +58,62 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com, rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 19 Jan 2024, "Nilawar, Badal" <badal.nilawar@intel.com> wrote:
-> On 19-01-2024 13:48, Badal Nilawar wrote:
->> Expose debugfs entry to check if platform support GuC PC (SLPC) feature.
->> 
->> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_debugfs.c | 8 ++++++++
->>   1 file changed, 8 insertions(+)
->> 
->> diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
->> index c56fd7d59f05..2f474bf0e7c7 100644
->> --- a/drivers/gpu/drm/xe/xe_debugfs.c
->> +++ b/drivers/gpu/drm/xe/xe_debugfs.c
->> @@ -30,6 +30,13 @@ static struct xe_device *node_to_xe(struct drm_info_node *node)
->>   	return to_xe_device(node->minor->dev);
->>   }
->>   
->> +static int is_gucpc_supported(struct seq_file *m, void *data)
->> +{
->> +	struct xe_device *xe = node_to_xe(m->private);
->> +
->> +	return (int)!xe->info.skip_guc_pc;
-> Will change this to
-> return (xe->info.skip_guc_pc ? 0 : 1);
-
-What do you expect to happen when you 'cat' the debugfs file?
-
-BR,
-Jani.
-
+On Thu, 18 Jan 2024, Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com> wrote:
+> Display engine support ccs only with tile4, prevent other modifiers
+> from using compressed memory.
 >
-> Regards,
-> Badal
->> +}
->> +
->>   static int info(struct seq_file *m, void *data)
->>   {
->>   	struct xe_device *xe = node_to_xe(m->private);
->> @@ -67,6 +74,7 @@ static int info(struct seq_file *m, void *data)
->>   
->>   static const struct drm_info_list debugfs_list[] = {
->>   	{"info", info, 0},
->> +	{"is_gucpc_supported", is_gucpc_supported, 0},
->>   };
->>   
->>   static int forcewake_open(struct inode *inode, struct file *file)
+> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+> ---
+>  drivers/gpu/drm/xe/display/xe_fb_pin.c | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> index 722c84a56607..579badb8c69e 100644
+> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> @@ -13,6 +13,16 @@
+>  
+>  #include <drm/ttm/ttm_bo.h>
+>  
+> +static bool is_compressed(const struct drm_framebuffer *fb)
+> +{
+> +	struct xe_bo *bo = intel_fb_obj(fb);
+> +	struct xe_device *xe = to_xe_device(to_intel_framebuffer(fb)->base.dev);
+> +	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
+> +	u16 pat_index_compressed = tile_to_xe(ggtt->tile)->pat.idx[XE_CACHE_WT];
+> +
+> +	return (bo->pat_index == pat_index_compressed);
+> +}
+> +
+>  static void
+>  write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_ofs,
+>  		  u32 width, u32 height, u32 src_stride, u32 dst_stride)
+> @@ -349,12 +359,19 @@ void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags)
+>  int intel_plane_pin_fb(struct intel_plane_state *plane_state)
+>  {
+>  	struct drm_framebuffer *fb = plane_state->hw.fb;
+> +	struct xe_device *xe = to_xe_device(to_intel_framebuffer(fb)->base.dev);
+>  	struct xe_bo *bo = intel_fb_obj(fb);
+>  	struct i915_vma *vma;
+>  
+>  	/* We reject creating !SCANOUT fb's, so this is weird.. */
+>  	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_SCANOUT_BIT));
+>  
+> +	if (GRAPHICS_VER(xe) >= 20 && fb->modifier != I915_FORMAT_MOD_4_TILED &&
+
+Is GRAPHICS_VER correct or should that be a DISPLAY_VER instead?
+
+> +	    is_compressed(fb)) {
+> +		drm_warn(&xe->drm, "Cannot create ccs framebuffer with other than tile4 mofifier\n");
+> +		return -EINVAL;
+> +	}
+> +
+>  	vma = __xe_pin_fb_vma(to_intel_framebuffer(fb), &plane_state->view.gtt);
+>  	if (IS_ERR(vma))
+>  		return PTR_ERR(vma);
 
 -- 
 Jani Nikula, Intel
