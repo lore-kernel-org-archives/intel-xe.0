@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47944C4725D
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Jan 2024 15:41:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 227FDC47DAF
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Jan 2024 15:41:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D51010EA12;
-	Fri, 19 Jan 2024 15:41:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF66010E9FF;
+	Fri, 19 Jan 2024 15:41:47 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EDA110E193;
- Fri, 19 Jan 2024 15:41:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0638610E193;
+ Fri, 19 Jan 2024 15:41:47 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/vm=3A_bugfix_?=
- =?utf-8?q?in_xe=5Fvm=5Fcreate=5Fioctl?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/vm=3A_bugfix_in_xe?=
+ =?utf-8?q?=5Fvm=5Fcreate=5Fioctl?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Moti Haimovski" <mhaimovski@habana.ai>
-Date: Fri, 19 Jan 2024 15:41:36 -0000
-Message-ID: <170567889651.593058.10364704836889495400@5338d5abeb45>
+Date: Fri, 19 Jan 2024 15:41:47 -0000
+Message-ID: <170567890702.593058.5684925820094508326@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240118173155.3851635-1-mhaimovski@habana.ai>
 In-Reply-To: <20240118173155.3851635-1-mhaimovski@habana.ai>
@@ -48,9 +48,28 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: dd32e83fb drm-tip: 2024y-01m-19d-15h-34m-39s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/vm: bugfix in xe_vm_create_ioctl
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+e7f730565356938dd6c63cd498218fdc5d6a22b0
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b73fcfb53291dcaca0134dcf26085edd14e02712
+Author: Moti Haimovski <mhaimovski@habana.ai>
+Date:   Thu Jan 18 19:31:55 2024 +0200
+
+    drm/xe/vm: bugfix in xe_vm_create_ioctl
+    
+    Fix xe_vm_create_ioctl routine not freeing the vm-id allocated to it
+    when the function fails.
+    
+    Relates to: FSW-1360 xe_vm_create_ioctl does not free vm id on error.
+    
+    Signed-off-by: Moti Haimovski <mhaimovski@habana.ai>
++ /mt/dim checkpatch dd32e83fbea77dc8973a3aa8a6c8d460b8d103dd drm-intel
+b73fcfb53 drm/xe/vm: bugfix in xe_vm_create_ioctl
 
 
