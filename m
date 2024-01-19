@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEF9BC47DD7
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5B06C47DD8
 	for <intel-xe@archiver.kernel.org>; Fri, 19 Jan 2024 00:42:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7665A10E945;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8538E10E947;
 	Fri, 19 Jan 2024 00:42:19 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F7A010E08E
- for <intel-xe@lists.freedesktop.org>; Fri, 19 Jan 2024 00:42:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E5C710E08E
+ for <intel-xe@lists.freedesktop.org>; Fri, 19 Jan 2024 00:42:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705624930; x=1737160930;
+ t=1705624931; x=1737160931;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MJ0Q1ImJq+t36sx1oEQGq72LtclAwcDDMopLosoDwFM=;
- b=Z0CHn1NiYNxNl/DmfgTvCvFvweCW3Oiau7LOG6aR25gWTTLKDCZs/QN0
- wy3pbvOOqsqChNfor1Ct76bbdKz7zsglm97mJQWXqsGrSEkVLrHC49c6r
- vHX/7RB4KCwiL/uw4afIMwFUQQiKWcOma7cBmVjsEITvovp38aRV9NmEF
- KZKCORD2IjbXheO0XjyyYnrTymLk2tdniJ3j5LzHLqQEmsM45yH8+vVLP
- 1g3ciwokGm4wJafC1kLyjEzLYctTr4vAuw9dDiXB4leFeXDePBtlfqeki
- LXRDjYYtukGaL5iTqhUMdbLj5LqUkxdMf5IGoaacl0texquv2ZddIVjFA Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="8016590"
+ bh=ypd4Sib00yHMmsDN3AUcca2Gz5YhQa52hhIIINQtaRA=;
+ b=c7Dd6oKsK5G95190UijDesAm+Hqxtsm2nFqVjdkJAalM6BgaZF0WXZTj
+ IcPPk6DBLdF3QptHBRdq0Q2vB4QKrxbc0AI96fNH6e0sqFB9Bl9Vunh0J
+ /v0ICUIkm/IwtKcxfirYHiwD6XT873/KJhbrjok2cWOrs4v/KV6Pzbw3y
+ nQE3JhK/iUNf0Uz74LYZV7xDrPadqmw+i4so2DpsCWYaYsfxDOQdpdteC
+ Or0x7ZDbZAS5HtJSDDMdytPMICx57mt04gH5vUcFX3F/4Oam+8T2n42HZ
+ 2J24kTkn6ByW84o77k+OiT8SL0ZzcP43S1IKAmBNAKb1XIJMwzoIJfYyt w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="8016598"
 X-IronPort-AV: E=Sophos;i="6.05,203,1701158400"; 
-   d="scan'208";a="8016590"
+   d="scan'208";a="8016598"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2024 16:42:06 -0800
+ 18 Jan 2024 16:42:07 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="903999225"
-X-IronPort-AV: E=Sophos;i="6.05,203,1701158400"; d="scan'208";a="903999225"
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="903999246"
+X-IronPort-AV: E=Sophos;i="6.05,203,1701158400"; d="scan'208";a="903999246"
 Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
  by fmsmga002.fm.intel.com with ESMTP; 18 Jan 2024 16:42:06 -0800
 From: Zhanjun Dong <zhanjun.dong@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 2/9] drm/xe/guc: Expose dss per group for GuC error capture
-Date: Thu, 18 Jan 2024 16:41:56 -0800
-Message-Id: <20240119004203.393262-3-zhanjun.dong@intel.com>
+Subject: [PATCH v3 9/9] drm/xe/guc: Plumb GuC-capture into dev coredump
+Date: Thu, 18 Jan 2024 16:42:03 -0800
+Message-Id: <20240119004203.393262-10-zhanjun.dong@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240119004203.393262-1-zhanjun.dong@intel.com>
 References: <20240119004203.393262-1-zhanjun.dong@intel.com>
@@ -59,117 +59,405 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Expose helper for dss per group of mcr, GuC error capture feature
-need this info to prepare buffer required.
+Add xe_hw_engine_snapshot_from_capture to take snapshot from capture
+node list.
+Add data struct to map register to a snapshot field, although all
+field is mapped now, which means the offset could be optimized, while
+in the future, depends on system configuration, the field might not be
+consecutive. This is reserved for future.
 
 Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_mcr.c          |  2 +-
- drivers/gpu/drm/xe/xe_gt_mcr.h          |  3 +++
- drivers/gpu/drm/xe/xe_gt_topology.c     |  3 ---
- drivers/gpu/drm/xe/xe_guc_capture.c     | 29 +++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_hw_engine_types.h |  3 +++
- 5 files changed, 36 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_capture.c     |  27 ++++
+ drivers/gpu/drm/xe/xe_hw_engine.c       | 172 ++++++++++++++++++------
+ drivers/gpu/drm/xe/xe_hw_engine.h       |   4 +
+ drivers/gpu/drm/xe/xe_hw_engine_types.h | 108 ++++++++-------
+ 4 files changed, 222 insertions(+), 89 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
-index 77925b35cf8d..5874eb71cbc1 100644
---- a/drivers/gpu/drm/xe/xe_gt_mcr.c
-+++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
-@@ -295,7 +295,7 @@ static void init_steering_dss(struct xe_gt *gt)
- {
- 	unsigned int dss = min(xe_dss_mask_group_ffs(gt->fuse_topo.g_dss_mask, 0, 0),
- 			       xe_dss_mask_group_ffs(gt->fuse_topo.c_dss_mask, 0, 0));
--	unsigned int dss_per_grp = gt_to_xe(gt)->info.platform == XE_PVC ? 8 : 4;
-+	unsigned int dss_per_grp = XE_GT_MCR_DSS_PER_GROUP(gt);
- 
- 	gt->steering[DSS].group_target = dss / dss_per_grp;
- 	gt->steering[DSS].instance_target = dss % dss_per_grp;
-diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.h b/drivers/gpu/drm/xe/xe_gt_mcr.h
-index 27ca1bc880a0..91e6f14b934f 100644
---- a/drivers/gpu/drm/xe/xe_gt_mcr.h
-+++ b/drivers/gpu/drm/xe/xe_gt_mcr.h
-@@ -7,10 +7,13 @@
- #define _XE_GT_MCR_H_
- 
- #include "regs/xe_reg_defs.h"
-+#include "xe_gt_types.h"
- 
- struct drm_printer;
- struct xe_gt;
- 
-+#define XE_GT_MCR_DSS_PER_GROUP(gt) (gt_to_xe(gt)->info.platform == XE_PVC ? 8 : 4)
-+
- void xe_gt_mcr_init(struct xe_gt *gt);
- 
- void xe_gt_mcr_set_implicit_defaults(struct xe_gt *gt);
-diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
-index a8d7f272c30a..e973eeaac7f1 100644
---- a/drivers/gpu/drm/xe/xe_gt_topology.c
-+++ b/drivers/gpu/drm/xe/xe_gt_topology.c
-@@ -11,9 +11,6 @@
- #include "xe_gt.h"
- #include "xe_mmio.h"
- 
--#define XE_MAX_DSS_FUSE_BITS (32 * XE_MAX_DSS_FUSE_REGS)
--#define XE_MAX_EU_FUSE_BITS (32 * XE_MAX_EU_FUSE_REGS)
--
- static void
- load_dss_mask(struct xe_gt *gt, xe_dss_mask_t mask, int numregs, ...)
- {
 diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
-index cacd50f4718a..2e1ed5bbdd56 100644
+index 6628cfceb8c1..1364cbbe7369 100644
 --- a/drivers/gpu/drm/xe/xe_guc_capture.c
 +++ b/drivers/gpu/drm/xe/xe_guc_capture.c
-@@ -93,6 +93,35 @@
- 	{ SFC_DONE(2),		    0,      0, "SFC_DONE[2]" }, \
- 	{ SFC_DONE(3),		    0,      0, "SFC_DONE[3]" }
+@@ -169,6 +169,33 @@ static const struct __guc_mmio_reg_descr_group xe_lp_lists[] = {
+ 	{}
+ };
  
-+static void xe_gt_mcr_get_ss_steering(struct xe_gt *gt, unsigned int dss,
-+				      unsigned int *group, unsigned int *instance)
-+{
-+	int dss_per_grp = XE_GT_MCR_DSS_PER_GROUP(gt);
++struct __reg_map_descr capture_engine_reg[] = {
++	{offsetof(struct snap_shot_regs, ring_hwstam),			RING_HWSTAM(0)},
++	{offsetof(struct snap_shot_regs, ring_hws_pga),			RING_HWS_PGA(0)},
++	{offsetof(struct snap_shot_regs, ring_execlist_status_lo),	RING_EXECLIST_STATUS_LO(0)},
++	{offsetof(struct snap_shot_regs, ring_execlist_status_hi),	RING_EXECLIST_STATUS_HI(0)},
++	{offsetof(struct snap_shot_regs, ring_execlist_sq_contents_lo),	RING_EXECLIST_SQ_CONTENTS_LO(0)},
++	{offsetof(struct snap_shot_regs, ring_execlist_sq_contents_hi),	RING_EXECLIST_SQ_CONTENTS_HI(0)},
++	{offsetof(struct snap_shot_regs, ring_start),			RING_START(0)},
++	{offsetof(struct snap_shot_regs, ring_head),			RING_HEAD(0)},
++	{offsetof(struct snap_shot_regs, ring_tail),			RING_TAIL(0)},
++	{offsetof(struct snap_shot_regs, ring_ctl),			RING_CTL(0)},
++	{offsetof(struct snap_shot_regs, ring_mi_mode),			RING_MI_MODE(0)},
++	{offsetof(struct snap_shot_regs, ring_mode),			RING_MODE(0)},
++	{offsetof(struct snap_shot_regs, ring_imr),			RING_IMR(0)},
++	{offsetof(struct snap_shot_regs, ring_esr),			RING_ESR(0)},
++	{offsetof(struct snap_shot_regs, ring_emr),			RING_EMR(0)},
++	{offsetof(struct snap_shot_regs, ring_eir),			RING_EIR(0)},
++	{offsetof(struct snap_shot_regs, ring_acthd_udw),		RING_ACTHD_UDW(0)},
++	{offsetof(struct snap_shot_regs, ring_acthd),			RING_ACTHD(0)},
++	{offsetof(struct snap_shot_regs, ring_bbaddr_udw),		RING_BBADDR_UDW(0)},
++	{offsetof(struct snap_shot_regs, ring_bbaddr),			RING_BBADDR(0)},
++	{offsetof(struct snap_shot_regs, ring_dma_fadd_udw),		RING_DMA_FADD_UDW(0)},
++	{offsetof(struct snap_shot_regs, ring_dma_fadd),		RING_DMA_FADD(0)},
++	{offsetof(struct snap_shot_regs, ipehr),			RING_IPEHR(0)},
++	{offsetof(struct snap_shot_regs, rcu_mode),			RCU_MODE},
++};
 +
-+	*group = dss / dss_per_grp;
-+	*instance = dss % dss_per_grp;
-+}
+ static const char * const capture_list_type_names[] = {
+ 	"Global",
+ 	"Class",
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 3aaab507f37f..a8977a9a3453 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -17,6 +17,7 @@
+ #include "xe_gt.h"
+ #include "xe_gt_ccs_mode.h"
+ #include "xe_gt_topology.h"
++#include "xe_guc_capture.h"
+ #include "xe_hw_fence.h"
+ #include "xe_irq.h"
+ #include "xe_lrc.h"
+@@ -258,6 +259,33 @@ static const struct engine_info engine_infos[] = {
+ 	},
+ };
+ 
++struct __reg_map_descr capture_engine_reg[] = {
++	{offsetof(struct snap_shot_regs, ring_hwstam),			RING_HWSTAM(0)},
++	{offsetof(struct snap_shot_regs, ring_hws_pga),			RING_HWS_PGA(0)},
++	{offsetof(struct snap_shot_regs, ring_execlist_status_lo),	RING_EXECLIST_STATUS_LO(0)},
++	{offsetof(struct snap_shot_regs, ring_execlist_status_hi),	RING_EXECLIST_STATUS_HI(0)},
++	{offsetof(struct snap_shot_regs, ring_execlist_sq_contents_lo),	RING_EXECLIST_SQ_CONTENTS_LO(0)},
++	{offsetof(struct snap_shot_regs, ring_execlist_sq_contents_hi),	RING_EXECLIST_SQ_CONTENTS_HI(0)},
++	{offsetof(struct snap_shot_regs, ring_start),			RING_START(0)},
++	{offsetof(struct snap_shot_regs, ring_head),			RING_HEAD(0)},
++	{offsetof(struct snap_shot_regs, ring_tail),			RING_TAIL(0)},
++	{offsetof(struct snap_shot_regs, ring_ctl),			RING_CTL(0)},
++	{offsetof(struct snap_shot_regs, ring_mi_mode),			RING_MI_MODE(0)},
++	{offsetof(struct snap_shot_regs, ring_mode),			RING_MODE(0)},
++	{offsetof(struct snap_shot_regs, ring_imr),			RING_IMR(0)},
++	{offsetof(struct snap_shot_regs, ring_esr),			RING_ESR(0)},
++	{offsetof(struct snap_shot_regs, ring_emr),			RING_EMR(0)},
++	{offsetof(struct snap_shot_regs, ring_eir),			RING_EIR(0)},
++	{offsetof(struct snap_shot_regs, ring_acthd_udw),		RING_ACTHD_UDW(0)},
++	{offsetof(struct snap_shot_regs, ring_acthd),			RING_ACTHD(0)},
++	{offsetof(struct snap_shot_regs, ring_bbaddr_udw),		RING_BBADDR_UDW(0)},
++	{offsetof(struct snap_shot_regs, ring_bbaddr),			RING_BBADDR(0)},
++	{offsetof(struct snap_shot_regs, ring_dma_fadd_udw),		RING_DMA_FADD_UDW(0)},
++	{offsetof(struct snap_shot_regs, ring_dma_fadd),		RING_DMA_FADD(0)},
++	{offsetof(struct snap_shot_regs, ipehr),			RING_IPEHR(0)},
++	{offsetof(struct snap_shot_regs, rcu_mode),			RCU_MODE},
++};
 +
-+static bool xe_sseu_has_subslice(struct xe_gt *gt, int slice, int subslice)
-+{
-+	int dss_per_grp = XE_GT_MCR_DSS_PER_GROUP(gt);
-+	int index = slice * dss_per_grp + subslice;
-+
-+	return index >= XE_MAX_DSS_FUSE_BITS ? false : test_bit(index, gt->fuse_topo.g_dss_mask);
-+}
-+
-+#define _HAS_SS(ss_, gt_, group_, instance_) xe_sseu_has_subslice(gt_, group_, instance_)
-+
-+/*
-+ * Loop over each subslice/DSS and determine the group and instance IDs that
-+ * should be used to steer MCR accesses toward this DSS.
-+ */
-+#define for_each_ss_steering(ss_, gt_, group_, instance_) \
-+	for (ss_ = 0, xe_gt_mcr_get_ss_steering(gt_, 0, &group_, &instance_); \
-+	     ss_ < XE_MAX_DSS_FUSE_BITS; \
-+	     ss_++, xe_gt_mcr_get_ss_steering(gt_, ss_, &group_, &instance_)) \
-+		for_each_if(_HAS_SS(ss_, gt_, group_, instance_))
-+
- int xe_guc_capture_init(struct xe_guc *guc)
+ static void hw_engine_fini(struct drm_device *drm, void *arg)
  {
- 	return 0;
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-index dfeaaac08b7f..c258228b244f 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
-+++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-@@ -65,6 +65,9 @@ struct xe_bo;
- struct xe_execlist_port;
- struct xe_gt;
+ 	struct xe_hw_engine *hwe = arg;
+@@ -735,6 +763,102 @@ void xe_hw_engine_handle_irq(struct xe_hw_engine *hwe, u16 intr_vec)
+ 		xe_hw_fence_irq_run(hwe->fence_irq);
+ }
  
-+#define XE_MAX_DSS_FUSE_BITS (32 * XE_MAX_DSS_FUSE_REGS)
-+#define XE_MAX_EU_FUSE_BITS (32 * XE_MAX_EU_FUSE_REGS)
++#if IS_ENABLED(CONFIG_DRM_XE_CAPTURE_ERROR)
++static void cp_reg_to_snapshot(u32 offset, u32 value, struct snap_shot_regs *regs)
++{
++	int i;
++
++	for (i = 0; i < ARRAY_SIZE(capture_engine_reg); i++)
++		if (offset == capture_engine_reg[i].reg.addr) {
++			u32 *field = (u32 *)((uintptr_t)regs + capture_engine_reg[i].dst_offset);
++			*field = value;
++			return;
++		}
++}
++
++static void guc_capture_find_ecode(struct __guc_capture_parsed_output *node,
++				   struct xe_hw_engine_snapshot *snapshot)
++{
++	struct gcap_reg_list_info *reginfo;
++	struct guc_mmio_reg *regs;
++	int i;
++
++	if (!node)
++		return;
++
++	reginfo = node->reginfo + GUC_CAPTURE_LIST_TYPE_ENGINE_INSTANCE;
++	regs = reginfo->regs;
++	for (i = 0; i < reginfo->num_regs; i++)
++		cp_reg_to_snapshot(regs[i].offset, regs[i].value, &snapshot->reg);
++}
++
++/**
++ * xe_hw_engine_snapshot_from_capture - Take a quick snapshot of the HW Engine.
++ * @hwe: Xe HW Engine.
++ * @snapshot: Xe HW Engine snapshot object to save data, copied from error capture
++ *
++ * This can be printed out in a later stage like during dev_coredump
++ * analysis.
++ *
++ * Returns: None
++ */
++void
++xe_hw_engine_snapshot_from_capture(struct xe_hw_engine *hwe, struct xe_hw_engine_snapshot *snapshot)
++{
++	struct xe_gt *gt = hwe->gt;
++	struct xe_guc *guc = &gt->uc.guc;
++	struct __guc_capture_parsed_output *n, *ntmp;
++
++	if (!guc->capture)
++		return;
++
++	/*
++	 * Look for a matching GuC reported error capture node from
++	 * the internal output link-list based on engine class and instance.
++	 */
++	list_for_each_entry_safe(n, ntmp, &guc->capture->outlist, link) {
++		u32 hwe_guc_class = xe_engine_class_to_guc_class(hwe->class);
++
++		if (n->eng_class == hwe_guc_class && n->eng_inst == hwe->instance) {
++			guc_capture_find_ecode(n, snapshot);
++			list_del(&n->link);
++			return;
++		}
++	}
++}
++#else	/* IS_ENABLED(CONFIG_DRM_XE_CAPTURE_ERROR) */
++
++void
++xe_hw_engine_snapshot_from_capture(struct xe_hw_engine *hwe, struct xe_hw_engine_snapshot *snapshot)
++{
++	xe_hw_engine_snapshot_from_engine(hwe, snapshot);
++}
++
++#endif	/* IS_ENABLED(CONFIG_DRM_XE_CAPTURE_ERROR) */
++
++/**
++ * xe_hw_engine_snapshot_from_capture - Take a quick snapshot of the HW Engine.
++ * @hwe: Xe HW Engine.
++ * @snapshot: Point to the Xe HW Engine snapshot object to save data.
++ *
++ * This can be printed out in a later stage like during dev_coredump
++ * analysis.
++ *
++ * Returns: None
++ */
++void
++xe_hw_engine_snapshot_from_engine(struct xe_hw_engine *hwe, struct xe_hw_engine_snapshot *snapshot)
++{
++	int i;
++
++	for (i = 0; i < ARRAY_SIZE(capture_engine_reg); i++) {
++		u32 *field = (u32 *)((uintptr_t)&snapshot->reg + capture_engine_reg[i].dst_offset);
++		*field = hw_engine_mmio_read32(hwe, capture_engine_reg[i].reg);
++	}
++	if (snapshot->class == XE_ENGINE_CLASS_COMPUTE)
++		snapshot->reg.rcu_mode = xe_mmio_read32(hwe->gt, RCU_MODE);
++}
 +
  /**
-  * struct xe_hw_engine_class_intf - per hw engine class struct interface
+  * xe_hw_engine_snapshot_capture - Take a quick snapshot of the HW Engine.
+  * @hwe: Xe HW Engine.
+@@ -766,46 +890,16 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
+ 						    hwe->domain);
+ 	snapshot->mmio_base = hwe->mmio_base;
+ 
+-	snapshot->reg.ring_hwstam = hw_engine_mmio_read32(hwe, RING_HWSTAM(0));
+-	snapshot->reg.ring_hws_pga = hw_engine_mmio_read32(hwe,
+-							   RING_HWS_PGA(0));
+-	snapshot->reg.ring_execlist_status_lo =
+-		hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_LO(0));
+-	snapshot->reg.ring_execlist_status_hi =
+-		hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_HI(0));
+-	snapshot->reg.ring_execlist_sq_contents_lo =
+-		hw_engine_mmio_read32(hwe,
+-				      RING_EXECLIST_SQ_CONTENTS_LO(0));
+-	snapshot->reg.ring_execlist_sq_contents_hi =
+-		hw_engine_mmio_read32(hwe,
+-				      RING_EXECLIST_SQ_CONTENTS_HI(0));
+-	snapshot->reg.ring_start = hw_engine_mmio_read32(hwe, RING_START(0));
+-	snapshot->reg.ring_head =
+-		hw_engine_mmio_read32(hwe, RING_HEAD(0)) & HEAD_ADDR;
+-	snapshot->reg.ring_tail =
+-		hw_engine_mmio_read32(hwe, RING_TAIL(0)) & TAIL_ADDR;
+-	snapshot->reg.ring_ctl = hw_engine_mmio_read32(hwe, RING_CTL(0));
+-	snapshot->reg.ring_mi_mode =
+-		hw_engine_mmio_read32(hwe, RING_MI_MODE(0));
+-	snapshot->reg.ring_mode = hw_engine_mmio_read32(hwe, RING_MODE(0));
+-	snapshot->reg.ring_imr = hw_engine_mmio_read32(hwe, RING_IMR(0));
+-	snapshot->reg.ring_esr = hw_engine_mmio_read32(hwe, RING_ESR(0));
+-	snapshot->reg.ring_emr = hw_engine_mmio_read32(hwe, RING_EMR(0));
+-	snapshot->reg.ring_eir = hw_engine_mmio_read32(hwe, RING_EIR(0));
+-	snapshot->reg.ring_acthd_udw =
+-		hw_engine_mmio_read32(hwe, RING_ACTHD_UDW(0));
+-	snapshot->reg.ring_acthd = hw_engine_mmio_read32(hwe, RING_ACTHD(0));
+-	snapshot->reg.ring_bbaddr_udw =
+-		hw_engine_mmio_read32(hwe, RING_BBADDR_UDW(0));
+-	snapshot->reg.ring_bbaddr = hw_engine_mmio_read32(hwe, RING_BBADDR(0));
+-	snapshot->reg.ring_dma_fadd_udw =
+-		hw_engine_mmio_read32(hwe, RING_DMA_FADD_UDW(0));
+-	snapshot->reg.ring_dma_fadd =
+-		hw_engine_mmio_read32(hwe, RING_DMA_FADD(0));
+-	snapshot->reg.ipehr = hw_engine_mmio_read32(hwe, RING_IPEHR(0));
++#if IS_ENABLED(CONFIG_DRM_XE_CAPTURE_ERROR)
++	if (xe_device_uc_enabled(gt_to_xe(hwe->gt)))
++		xe_hw_engine_snapshot_from_capture(hwe, snapshot);
++	else
++#endif
++		xe_hw_engine_snapshot_from_engine(hwe, snapshot);
+ 
+-	if (snapshot->class == XE_ENGINE_CLASS_COMPUTE)
+-		snapshot->reg.rcu_mode = xe_mmio_read32(hwe->gt, RCU_MODE);
++	/* appy mask for ring head and tail */
++	snapshot->reg.ring_head &= HEAD_ADDR;
++	snapshot->reg.ring_tail &= TAIL_ADDR;
+ 
+ 	return snapshot;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
+index 71968ee2f600..937ce20ea8de 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine.h
+@@ -62,6 +62,10 @@ void xe_hw_engine_print(struct xe_hw_engine *hwe, struct drm_printer *p);
+ void xe_hw_engine_setup_default_lrc_state(struct xe_hw_engine *hwe);
+ 
+ bool xe_hw_engine_is_reserved(struct xe_hw_engine *hwe);
++void xe_hw_engine_snapshot_from_engine(struct xe_hw_engine *hwe,
++				       struct xe_hw_engine_snapshot *snapshot);
++void xe_hw_engine_snapshot_from_capture(struct xe_hw_engine *hwe,
++					struct xe_hw_engine_snapshot *snapshot);
+ static inline bool xe_hw_engine_is_valid(struct xe_hw_engine *hwe)
+ {
+ 	return hwe->name;
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+index c258228b244f..78447fea4efd 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+@@ -153,6 +153,63 @@ struct xe_hw_engine {
+ 	struct xe_hw_engine_class_intf *eclass;
+ };
+ 
++struct __reg_map_descr {
++	u32 dst_offset;
++	struct xe_reg reg;
++};
++
++/** @reg: Useful MMIO register snapshot */
++struct snap_shot_regs {
++	/** @ring_hwstam: RING_HWSTAM */
++	u32 ring_hwstam;
++	/** @ring_hws_pga: RING_HWS_PGA */
++	u32 ring_hws_pga;
++	/** @ring_execlist_status_lo: RING_EXECLIST_STATUS_LO */
++	u32 ring_execlist_status_lo;
++	/** @ring_execlist_status_hi: RING_EXECLIST_STATUS_HI */
++	u32 ring_execlist_status_hi;
++	/** @ring_execlist_sq_contents_lo: RING_EXECLIST_SQ_CONTENTS */
++	u32 ring_execlist_sq_contents_lo;
++	/** @ring_execlist_sq_contents_hi: RING_EXECLIST_SQ_CONTENTS + 4 */
++	u32 ring_execlist_sq_contents_hi;
++	/** @ring_start: RING_START */
++	u32 ring_start;
++	/** @ring_head: RING_HEAD */
++	u32 ring_head;
++	/** @ring_tail: RING_TAIL */
++	u32 ring_tail;
++	/** @ring_ctl: RING_CTL */
++	u32 ring_ctl;
++	/** @ring_mi_mode: RING_MI_MODE */
++	u32 ring_mi_mode;
++	/** @ring_mode: RING_MODE */
++	u32 ring_mode;
++	/** @ring_imr: RING_IMR */
++	u32 ring_imr;
++	/** @ring_esr: RING_ESR */
++	u32 ring_esr;
++	/** @ring_emr: RING_EMR */
++	u32 ring_emr;
++	/** @ring_eir: RING_EIR */
++	u32 ring_eir;
++	/** @ring_acthd_udw: RING_ACTHD_UDW */
++	u32 ring_acthd_udw;
++	/** @ring_acthd: RING_ACTHD */
++	u32 ring_acthd;
++	/** @ring_bbaddr_udw: RING_BBADDR_UDW */
++	u32 ring_bbaddr_udw;
++	/** @ring_bbaddr: RING_BBADDR */
++	u32 ring_bbaddr;
++	/** @ring_dma_fadd_udw: RING_DMA_FADD_UDW */
++	u32 ring_dma_fadd_udw;
++	/** @ring_dma_fadd: RING_DMA_FADD */
++	u32 ring_dma_fadd;
++	/** @ipehr: IPEHR */
++	u32 ipehr;
++	/** @rcu_mode: RCU_MODE */
++	u32 rcu_mode;
++};
++
+ /**
+  * struct xe_hw_engine_snapshot - Hardware engine snapshot
   *
+@@ -175,56 +232,7 @@ struct xe_hw_engine_snapshot {
+ 	/** @mmio_base: MMIO base address of this hw engine*/
+ 	u32 mmio_base;
+ 	/** @reg: Useful MMIO register snapshot */
+-	struct {
+-		/** @ring_hwstam: RING_HWSTAM */
+-		u32 ring_hwstam;
+-		/** @ring_hws_pga: RING_HWS_PGA */
+-		u32 ring_hws_pga;
+-		/** @ring_execlist_status_lo: RING_EXECLIST_STATUS_LO */
+-		u32 ring_execlist_status_lo;
+-		/** @ring_execlist_status_hi: RING_EXECLIST_STATUS_HI */
+-		u32 ring_execlist_status_hi;
+-		/** @ring_execlist_sq_contents_lo: RING_EXECLIST_SQ_CONTENTS */
+-		u32 ring_execlist_sq_contents_lo;
+-		/** @ring_execlist_sq_contents_hi: RING_EXECLIST_SQ_CONTENTS + 4 */
+-		u32 ring_execlist_sq_contents_hi;
+-		/** @ring_start: RING_START */
+-		u32 ring_start;
+-		/** @ring_head: RING_HEAD */
+-		u32 ring_head;
+-		/** @ring_tail: RING_TAIL */
+-		u32 ring_tail;
+-		/** @ring_ctl: RING_CTL */
+-		u32 ring_ctl;
+-		/** @ring_mi_mode: RING_MI_MODE */
+-		u32 ring_mi_mode;
+-		/** @ring_mode: RING_MODE */
+-		u32 ring_mode;
+-		/** @ring_imr: RING_IMR */
+-		u32 ring_imr;
+-		/** @ring_esr: RING_ESR */
+-		u32 ring_esr;
+-		/** @ring_emr: RING_EMR */
+-		u32 ring_emr;
+-		/** @ring_eir: RING_EIR */
+-		u32 ring_eir;
+-		/** @ring_acthd_udw: RING_ACTHD_UDW */
+-		u32 ring_acthd_udw;
+-		/** @ring_acthd: RING_ACTHD */
+-		u32 ring_acthd;
+-		/** @ring_bbaddr_udw: RING_BBADDR_UDW */
+-		u32 ring_bbaddr_udw;
+-		/** @ring_bbaddr: RING_BBADDR */
+-		u32 ring_bbaddr;
+-		/** @ring_dma_fadd_udw: RING_DMA_FADD_UDW */
+-		u32 ring_dma_fadd_udw;
+-		/** @ring_dma_fadd: RING_DMA_FADD */
+-		u32 ring_dma_fadd;
+-		/** @ipehr: IPEHR */
+-		u32 ipehr;
+-		/** @rcu_mode: RCU_MODE */
+-		u32 rcu_mode;
+-	} reg;
++	struct snap_shot_regs reg;
+ };
+ 
+ #endif
 -- 
 2.34.1
 
