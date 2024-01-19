@@ -4,41 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 574E7C4725D
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Jan 2024 15:19:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16663C47DAF
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Jan 2024 15:23:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A2D210E993;
-	Fri, 19 Jan 2024 15:19:32 +0000 (UTC)
-Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17F5110E883
- for <intel-xe@lists.freedesktop.org>; Thu, 18 Jan 2024 17:32:28 +0000 (UTC)
-Received: internal info suppressed
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
- t=1705599142; bh=dIMHvpJok7NYULS0Pywpc1+oGxbHmr+1IqjKDlln82c=;
- h=From:To:Cc:Subject:Date:From;
- b=URK9HwtzcwTxWKLJyTjDoMipQRaM7jI66NMTQcDxwI/+OW+1x0R4pVZ/GEvE2tA19
- 1p0aHzV+PgGb6RsNVe4pVCsTI6z0PhFLULimE9RUcHJXuoGkKAhOidASzOFy9WEyW9
- XCUyY0wmbhvui+pCR8S3JBI22zIDbzJEBl3269WpgrzK4HSGZ262lwY8QdVxuT1cVe
- 6ebWEi2ZgwSvbnA6uezIf3WDJvLeples9fKucDhuj1Z0re22vsszI+o2yaDRMjbJwn
- JaIzJG6dFJsEwgujjmqaurc23Cn5qo+Pb7f9XBgFjAfro95OMLXz1q6MUc6comhhzx
- QQ77nWr87Hv8w==
-Received: from mhaimovski-vm-u22.habana-labs.com (localhost [127.0.0.1])
- by mhaimovski-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with
- ESMTPS id 40IHWHPr3851661
- (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
- Thu, 18 Jan 2024 19:32:17 +0200
-Received: (from mhaimovski@localhost)
- by mhaimovski-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id 40IHWHfR3851660;
- Thu, 18 Jan 2024 19:32:17 +0200
-From: Moti Haimovski <mhaimovski@habana.ai>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/xe/vm: bugfix in xe_vm_create_ioctl
-Date: Thu, 18 Jan 2024 19:31:55 +0200
-Message-Id: <20240118173155.3851635-1-mhaimovski@habana.ai>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id B564D10E9FB;
+	Fri, 19 Jan 2024 15:23:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3397110E1B9;
+ Fri, 19 Jan 2024 15:23:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1705677782; x=1737213782;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=eXi/jb8QRk0avToEX29WKW4ObJmGFcuFxsnrJVnf5i8=;
+ b=aQZ0wO/rHWc4ALQ7CtIWKtyIyePnho1nJQLehDY7Jg9NLZNCxjMchH3t
+ LqD6IvhD46Sn5ik7+xPHYhamo3vXswwMELLIYmD9Izq389ssAFeDC7vI4
+ +RahciA0QyvAmxyoblRJ3oTdyXqXqxckhF4V9HiuSsXXRrK7C18YYC6XN
+ L79MC78TKCxLarjd7eh3YGVDiTqOyoQ+ikcMvfirteLRC5RBPewAruTy5
+ f0rEg3UL7zpJv9I0LE7qIqbOh6hL3bahQoZ6cGjbrt1UX44NI5EbbTunC
+ fTOO7LbaFNzgWodL8faCHN1YNDr5zvFIQwwA7eNgfKtBYqO8lTKNXsUNC w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10957"; a="7468634"
+X-IronPort-AV: E=Sophos;i="6.05,204,1701158400"; 
+   d="scan'208";a="7468634"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2024 07:23:01 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,204,1701158400"; 
+   d="scan'208";a="610354"
+Received: from amcgaura-mobl.ger.corp.intel.com (HELO [10.252.18.221])
+ ([10.252.18.221])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2024 07:23:01 -0800
+Message-ID: <5dae781f-83a3-454f-ad6a-e32774b0b2b2@intel.com>
+Date: Fri, 19 Jan 2024 15:22:58 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 19 Jan 2024 15:19:30 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] drm/xe/xe2: Limit ccs framebuffers to tile4 only
+To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+References: <20240118152745.162960-1-juhapekka.heikkila@gmail.com>
+ <20240118152745.162960-4-juhapekka.heikkila@gmail.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20240118152745.162960-4-juhapekka.heikkila@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,67 +62,107 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: mhaimovski@habana.ai
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fix xe_vm_create_ioctl routine not freeing the vm-id allocated to it
-when the function fails.
+On 18/01/2024 15:27, Juha-Pekka Heikkila wrote:
+> Display engine support ccs only with tile4, prevent other modifiers
+> from using compressed memory.
+> 
+> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+> ---
+>   drivers/gpu/drm/xe/display/xe_fb_pin.c | 17 +++++++++++++++++
+>   1 file changed, 17 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> index 722c84a56607..579badb8c69e 100644
+> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> @@ -13,6 +13,16 @@
+>   
+>   #include <drm/ttm/ttm_bo.h>
+>   
+> +static bool is_compressed(const struct drm_framebuffer *fb)
+> +{
+> +	struct xe_bo *bo = intel_fb_obj(fb);
+> +	struct xe_device *xe = to_xe_device(to_intel_framebuffer(fb)->base.dev);
+> +	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
+> +	u16 pat_index_compressed = tile_to_xe(ggtt->tile)->pat.idx[XE_CACHE_WT];
 
-Relates to: FSW-1360 xe_vm_create_ioctl does not free vm id on error.
+Why just this index? There seems to be various indexes that turn on 
+compression. How about annotating the pat index table and then have a 
+helper like xe_pat_index_has_compression(xe, pat_index)?
 
-Signed-off-by: Moti Haimovski <mhaimovski@habana.ai>
----
- drivers/gpu/drm/xe/xe_vm.c | 22 +++++++++++++---------
- 1 file changed, 13 insertions(+), 9 deletions(-)
+@@ -104,7 +104,8 @@ static const struct xe_pat_table_entry 
+xelpg_pat_table[] = {
+                         REG_FIELD_PREP(XE2_L3_POLICY, l3_policy) | \
+                         REG_FIELD_PREP(XE2_L4_POLICY, l4_policy) | \
+                         REG_FIELD_PREP(XE2_COH_MODE, __coh_mode), \
+-               .coh_mode = __coh_mode ? XE_COH_AT_LEAST_1WAY : 
+XE_COH_NONE \
++               .coh_mode = __coh_mode ? XE_COH_AT_LEAST_1WAY : 
+XE_COH_NONE, \
++               .compressed = comp_en \
+         }
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index a7e7a0b24099..8dbe13676a2f 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1855,10 +1855,8 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
- 	mutex_lock(&xef->vm.lock);
- 	err = xa_alloc(&xef->vm.xa, &id, vm, xa_limit_32b, GFP_KERNEL);
- 	mutex_unlock(&xef->vm.lock);
--	if (err) {
--		xe_vm_close_and_put(vm);
--		return err;
--	}
-+	if (err)
-+		goto err_exit;
- 
- 	if (xe->info.has_asid) {
- 		mutex_lock(&xe->usm.lock);
-@@ -1866,11 +1864,9 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
- 				      XA_LIMIT(1, XE_MAX_ASID - 1),
- 				      &xe->usm.next_asid, GFP_KERNEL);
- 		mutex_unlock(&xe->usm.lock);
--		if (err < 0) {
--			xe_vm_close_and_put(vm);
--			return err;
--		}
--		err = 0;
-+		if (err < 0)
-+			goto free_id;
+  static const struct xe_pat_table_entry xe2_pat_table[] = {
+@@ -148,6 +149,12 @@ u16 xe_pat_index_get_coh_mode(struct xe_device *xe, 
+u16 pat_index)
+         return xe->pat.table[pat_index].coh_mode;
+  }
+
++bool xe_pat_index_has_compression(struct xe_device *xe, u16 pat_index)
++{
++       WARN_ON(pat_index >= xe->pat.n_entries);
++       return xe->pat.table[pat_index].compressed;
++}
 +
- 		vm->usm.asid = asid;
- 	}
- 
-@@ -1888,6 +1884,14 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
- #endif
- 
- 	return 0;
-+
-+free_id:
-+	mutex_lock(&xef->vm.lock);
-+	xa_erase(&xef->vm.xa, id);
-+	mutex_unlock(&xef->vm.lock);
-+err_exit:
-+	xe_vm_close_and_put(vm);
-+	return err;
- }
- 
- int xe_vm_destroy_ioctl(struct drm_device *dev, void *data,
--- 
-2.34.1
+  static void program_pat(struct xe_gt *gt, const struct 
+xe_pat_table_entry table[],
+                         int n_entries)
+  {
+diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
+index fa0dfbe525cd..37666ba1aec4 100644
+--- a/drivers/gpu/drm/xe/xe_pat.h
++++ b/drivers/gpu/drm/xe/xe_pat.h
+@@ -29,6 +29,7 @@ struct xe_pat_table_entry {
+  #define XE_COH_NONE          1
+  #define XE_COH_AT_LEAST_1WAY 2
+         u16 coh_mode;
++       bool compressed;
+  };
 
+  /**
+@@ -58,4 +59,6 @@ void xe_pat_dump(struct xe_gt *gt, struct drm_printer *p);
+   */
+  u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index);
+
++bool xe_pat_index_has_compression(struct xe_device *xe, u16 pat_index);
+
+> +
+> +	return (bo->pat_index == pat_index_compressed);
+> +}
+> +
+>   static void
+>   write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_ofs,
+>   		  u32 width, u32 height, u32 src_stride, u32 dst_stride)
+> @@ -349,12 +359,19 @@ void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags)
+>   int intel_plane_pin_fb(struct intel_plane_state *plane_state)
+>   {
+>   	struct drm_framebuffer *fb = plane_state->hw.fb;
+> +	struct xe_device *xe = to_xe_device(to_intel_framebuffer(fb)->base.dev);
+>   	struct xe_bo *bo = intel_fb_obj(fb);
+>   	struct i915_vma *vma;
+>   
+>   	/* We reject creating !SCANOUT fb's, so this is weird.. */
+>   	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_SCANOUT_BIT));
+>   
+> +	if (GRAPHICS_VER(xe) >= 20 && fb->modifier != I915_FORMAT_MOD_4_TILED &&
+> +	    is_compressed(fb)) {
+> +		drm_warn(&xe->drm, "Cannot create ccs framebuffer with other than tile4 mofifier\n");
+> +		return -EINVAL;
+> +	}
+> +
+>   	vma = __xe_pin_fb_vma(to_intel_framebuffer(fb), &plane_state->view.gtt);
+>   	if (IS_ERR(vma))
+>   		return PTR_ERR(vma);
