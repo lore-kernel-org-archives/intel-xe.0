@@ -4,53 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16663C47DAF
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Jan 2024 15:23:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5169FC4725D
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Jan 2024 15:33:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B564D10E9FB;
-	Fri, 19 Jan 2024 15:23:03 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3397110E1B9;
- Fri, 19 Jan 2024 15:23:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D598410E9FD;
+	Fri, 19 Jan 2024 15:32:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2215710E9EE;
+ Fri, 19 Jan 2024 15:32:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705677782; x=1737213782;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=eXi/jb8QRk0avToEX29WKW4ObJmGFcuFxsnrJVnf5i8=;
- b=aQZ0wO/rHWc4ALQ7CtIWKtyIyePnho1nJQLehDY7Jg9NLZNCxjMchH3t
- LqD6IvhD46Sn5ik7+xPHYhamo3vXswwMELLIYmD9Izq389ssAFeDC7vI4
- +RahciA0QyvAmxyoblRJ3oTdyXqXqxckhF4V9HiuSsXXRrK7C18YYC6XN
- L79MC78TKCxLarjd7eh3YGVDiTqOyoQ+ikcMvfirteLRC5RBPewAruTy5
- f0rEg3UL7zpJv9I0LE7qIqbOh6hL3bahQoZ6cGjbrt1UX44NI5EbbTunC
- fTOO7LbaFNzgWodL8faCHN1YNDr5zvFIQwwA7eNgfKtBYqO8lTKNXsUNC w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10957"; a="7468634"
-X-IronPort-AV: E=Sophos;i="6.05,204,1701158400"; 
-   d="scan'208";a="7468634"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2024 07:23:01 -0800
+ t=1705678378; x=1737214378;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=tiTCLZdE7/4H/DrlHiQr4Vw9YkS6KE2dSeru1JD0jCA=;
+ b=You5Y24iE1o5mcNZQB8Sumlox0OQUMMELtHJcPie0U2/psg7IBxjqijY
+ 4dtFQazijyrZYfOz1wcXEOf6TXgE3tkWaKyMPeo/qzTbuqbV89ar/w91i
+ lj+jOcWPHyLJq5Ykdn08IX3G8UPzcbE1gfDVj1hqqMoPC7E5lNRi1qz4+
+ jNeelXzLLNk7Ynpv5ILoJxaQjOZ3dDZ40bQgNFE8OxzIIiI5hOzYlQvUz
+ 1C+iUa6+b0yayn0zSunGjFIGWbH+yl+Mmz2KNIFS0Zop3srKLCWbYmJsx
+ CUT+rPP+xJafWfd2JkVtoGhygcUvB2q+5tuTTsTclP4eP1/CF68FA9691 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10957"; a="14290669"
+X-IronPort-AV: E=Sophos;i="6.05,204,1701158400"; d="scan'208";a="14290669"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2024 07:32:57 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,204,1701158400"; 
-   d="scan'208";a="610354"
-Received: from amcgaura-mobl.ger.corp.intel.com (HELO [10.252.18.221])
- ([10.252.18.221])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2024 07:23:01 -0800
-Message-ID: <5dae781f-83a3-454f-ad6a-e32774b0b2b2@intel.com>
-Date: Fri, 19 Jan 2024 15:22:58 +0000
+X-IronPort-AV: E=McAfee;i="6600,9927,10957"; a="1116267651"
+X-IronPort-AV: E=Sophos;i="6.05,204,1701158400"; d="scan'208";a="1116267651"
+Received: from vstill-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.39.223])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2024 07:32:55 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>, Thomas =?utf-8?Q?Hellstr?=
+ =?utf-8?Q?=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH] drm/exec, drm/gpuvm: Prefer u32 over uint32_t
+In-Reply-To: <vmyrgwkw7zi5f234cfhl6mzkphrpmsxvb7rpruv7xbc5wjkx4d@jkxky5kmd5c2>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240119090557.6360-1-thomas.hellstrom@linux.intel.com>
+ <vmyrgwkw7zi5f234cfhl6mzkphrpmsxvb7rpruv7xbc5wjkx4d@jkxky5kmd5c2>
+Date: Fri, 19 Jan 2024 17:32:52 +0200
+Message-ID: <8734utpcd7.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] drm/xe/xe2: Limit ccs framebuffers to tile4 only
-To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-References: <20240118152745.162960-1-juhapekka.heikkila@gmail.com>
- <20240118152745.162960-4-juhapekka.heikkila@gmail.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20240118152745.162960-4-juhapekka.heikkila@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,107 +60,80 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Danilo Krummrich <dakr@redhat.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org,
+ Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 18/01/2024 15:27, Juha-Pekka Heikkila wrote:
-> Display engine support ccs only with tile4, prevent other modifiers
-> from using compressed memory.
-> 
-> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-> ---
->   drivers/gpu/drm/xe/display/xe_fb_pin.c | 17 +++++++++++++++++
->   1 file changed, 17 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> index 722c84a56607..579badb8c69e 100644
-> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> @@ -13,6 +13,16 @@
->   
->   #include <drm/ttm/ttm_bo.h>
->   
-> +static bool is_compressed(const struct drm_framebuffer *fb)
-> +{
-> +	struct xe_bo *bo = intel_fb_obj(fb);
-> +	struct xe_device *xe = to_xe_device(to_intel_framebuffer(fb)->base.dev);
-> +	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
-> +	u16 pat_index_compressed = tile_to_xe(ggtt->tile)->pat.idx[XE_CACHE_WT];
+On Fri, 19 Jan 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Fri, Jan 19, 2024 at 10:05:57AM +0100, Thomas Hellstr=C3=B6m wrote:
+>>The relatively recently introduced drm/exec utility was using uint32_t
+>>in its interface, which was then also carried over to drm/gpuvm.
+>>
+>>Prefer u32 in new code and update drm/exec and drm/gpuvm accordingly.
+>>
+>>Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+>>Cc: Danilo Krummrich <dakr@redhat.com>
+>>Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+>>---
+>> drivers/gpu/drm/drm_exec.c | 2 +-
+>> include/drm/drm_exec.h     | 4 ++--
+>> include/drm/drm_gpuvm.h    | 2 +-
+>> 3 files changed, 4 insertions(+), 4 deletions(-)
+>
+>
+> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>
+> I was surprised we have quite a few places using the c99 types rather
+> than kernel types.
+>
+> $ git grep -ce uint[0-9][0-9]_t drivers/gpu/drm/*.c
+> drivers/gpu/drm/drm_atomic.c:1
+> drivers/gpu/drm/drm_atomic_helper.c:7
+> drivers/gpu/drm/drm_atomic_state_helper.c:1
+> drivers/gpu/drm/drm_atomic_uapi.c:17
+> drivers/gpu/drm/drm_color_mgmt.c:4
+> drivers/gpu/drm/drm_connector.c:6
+> drivers/gpu/drm/drm_crtc.c:3
+> drivers/gpu/drm/drm_damage_helper.c:2
+> drivers/gpu/drm/drm_debugfs_crc.c:1
+> drivers/gpu/drm/drm_exec.c:1
+> drivers/gpu/drm/drm_fb_helper.c:10
+> drivers/gpu/drm/drm_format_helper.c:6
+> drivers/gpu/drm/drm_fourcc.c:6
+> drivers/gpu/drm/drm_framebuffer.c:5
+> drivers/gpu/drm/drm_gem.c:1
+> drivers/gpu/drm/drm_gem_dma_helper.c:1
+> drivers/gpu/drm/drm_gem_shmem_helper.c:1
+> drivers/gpu/drm/drm_gem_ttm_helper.c:1
+> drivers/gpu/drm/drm_gem_vram_helper.c:5
+> drivers/gpu/drm/drm_lease.c:6
+> drivers/gpu/drm/drm_mipi_dbi.c:3
+> drivers/gpu/drm/drm_mode_config.c:4
+> drivers/gpu/drm/drm_mode_object.c:20
+> drivers/gpu/drm/drm_modeset_helper.c:1
+> drivers/gpu/drm/drm_modeset_lock.c:1
+> drivers/gpu/drm/drm_of.c:3
+> drivers/gpu/drm/drm_plane.c:35
+> drivers/gpu/drm/drm_plane_helper.c:2
+> drivers/gpu/drm/drm_prime.c:9
+> drivers/gpu/drm/drm_probe_helper.c:3
+> drivers/gpu/drm/drm_property.c:11
+> drivers/gpu/drm/drm_simple_kms_helper.c:4
+> drivers/gpu/drm/drm_syncobj.c:26
+>
+> but maybe not worth the churn for what is already there for a long time?
 
-Why just this index? There seems to be various indexes that turn on 
-compression. How about annotating the pat index table and then have a 
-helper like xe_pat_index_has_compression(xe, pat_index)?
+Personally, I think the one time churn is worth it to unify and keep the
+codebase in kernel types only. This is basically what we did in i915
+years ago, and new c99 types don't really even creep in because there
+are zero examples around. It's natural to follow the style around you
+instead of mixing.
 
-@@ -104,7 +104,8 @@ static const struct xe_pat_table_entry 
-xelpg_pat_table[] = {
-                         REG_FIELD_PREP(XE2_L3_POLICY, l3_policy) | \
-                         REG_FIELD_PREP(XE2_L4_POLICY, l4_policy) | \
-                         REG_FIELD_PREP(XE2_COH_MODE, __coh_mode), \
--               .coh_mode = __coh_mode ? XE_COH_AT_LEAST_1WAY : 
-XE_COH_NONE \
-+               .coh_mode = __coh_mode ? XE_COH_AT_LEAST_1WAY : 
-XE_COH_NONE, \
-+               .compressed = comp_en \
-         }
+BR,
+Jani.
 
-  static const struct xe_pat_table_entry xe2_pat_table[] = {
-@@ -148,6 +149,12 @@ u16 xe_pat_index_get_coh_mode(struct xe_device *xe, 
-u16 pat_index)
-         return xe->pat.table[pat_index].coh_mode;
-  }
 
-+bool xe_pat_index_has_compression(struct xe_device *xe, u16 pat_index)
-+{
-+       WARN_ON(pat_index >= xe->pat.n_entries);
-+       return xe->pat.table[pat_index].compressed;
-+}
-+
-  static void program_pat(struct xe_gt *gt, const struct 
-xe_pat_table_entry table[],
-                         int n_entries)
-  {
-diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
-index fa0dfbe525cd..37666ba1aec4 100644
---- a/drivers/gpu/drm/xe/xe_pat.h
-+++ b/drivers/gpu/drm/xe/xe_pat.h
-@@ -29,6 +29,7 @@ struct xe_pat_table_entry {
-  #define XE_COH_NONE          1
-  #define XE_COH_AT_LEAST_1WAY 2
-         u16 coh_mode;
-+       bool compressed;
-  };
-
-  /**
-@@ -58,4 +59,6 @@ void xe_pat_dump(struct xe_gt *gt, struct drm_printer *p);
-   */
-  u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index);
-
-+bool xe_pat_index_has_compression(struct xe_device *xe, u16 pat_index);
-
-> +
-> +	return (bo->pat_index == pat_index_compressed);
-> +}
-> +
->   static void
->   write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_ofs,
->   		  u32 width, u32 height, u32 src_stride, u32 dst_stride)
-> @@ -349,12 +359,19 @@ void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags)
->   int intel_plane_pin_fb(struct intel_plane_state *plane_state)
->   {
->   	struct drm_framebuffer *fb = plane_state->hw.fb;
-> +	struct xe_device *xe = to_xe_device(to_intel_framebuffer(fb)->base.dev);
->   	struct xe_bo *bo = intel_fb_obj(fb);
->   	struct i915_vma *vma;
->   
->   	/* We reject creating !SCANOUT fb's, so this is weird.. */
->   	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_SCANOUT_BIT));
->   
-> +	if (GRAPHICS_VER(xe) >= 20 && fb->modifier != I915_FORMAT_MOD_4_TILED &&
-> +	    is_compressed(fb)) {
-> +		drm_warn(&xe->drm, "Cannot create ccs framebuffer with other than tile4 mofifier\n");
-> +		return -EINVAL;
-> +	}
-> +
->   	vma = __xe_pin_fb_vma(to_intel_framebuffer(fb), &plane_state->view.gtt);
->   	if (IS_ERR(vma))
->   		return PTR_ERR(vma);
+--=20
+Jani Nikula, Intel
