@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2379C4725D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4674C47DB7
 	for <intel-xe@archiver.kernel.org>; Sat, 20 Jan 2024 02:00:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C964110EADE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAD1C10EAE0;
 	Sat, 20 Jan 2024 02:00:31 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7E3010EACC
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 037CA10EADE
  for <intel-xe@lists.freedesktop.org>; Sat, 20 Jan 2024 02:00:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1705716031; x=1737252031;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=n0HtbEKsCKqb+hETlWubSl+vM7YOWmeNMTdQVX8FJDA=;
- b=HfAQ3VsukwizjwWAmpFAaKhoYShk66sNsO2H68U1UoB2CBOtNPfccwAx
- ndNCR4zTowygI/bkfQauUuruNCIH5enxKGMmsDGGQQ7KpPeRmwX3zHQgG
- ZcUzLqbmVoYl8DOOeG6us94fHZBXJUVlPslBs2yOEbX+m5zKoysV5kmZu
- a5rBePavcD0DiIXjk24uJvyMlcH4WzvceGiQ41WKz1f6UARqA77AORrPs
- NTP1frgGz3pu4v3Oehn9BgE4spPcohIJzCMtHXmaPf/EblzPoLRTlQYlP
- oTsGtjvl+tgHWA4LJBYYdV+pDekjlbJT0Ad5l/TXMTGLgYdbqgDW0B1Ba A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10957"; a="19472938"
-X-IronPort-AV: E=Sophos;i="6.05,206,1701158400"; d="scan'208";a="19472938"
+ bh=SSj42vxTenSMDZRBHXGmcJw+0h/B4qgCOi+xWY8aAUQ=;
+ b=f08Cqyhhj9t7h9IHahbVptwDyMKuVlW9T8y2zMfQsKYP07l3rfb15T+/
+ VngD0jzDXozfdFL80JLFz6j/NgHoki4EI1AaEhG6n7yk2OtR0+uPRNvqQ
+ kxp4fIbO7PY5X4xYZlcZ+85w1l18Z7vGzQbkM5Cv2eevtXo9/sFQvtOkd
+ KzlD/HvvsOUQV8HPDHpAuiHrdKQcQfD6MB20ywdTlzhK79Zvwr6Y2B80Y
+ yyY132NAYzBD8rdBs+91Abs8rqOLTxhJWXy7/seWmF1CDyjJmPkOAzQ26
+ ASljIa8xK0sInQQRyuHlokXn3VguAOcpvt7ZgqjJMLJIBPxB4nSWchBK+ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10957"; a="19472939"
+X-IronPort-AV: E=Sophos;i="6.05,206,1701158400"; d="scan'208";a="19472939"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 Jan 2024 18:00:31 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10957"; a="778125696"
-X-IronPort-AV: E=Sophos;i="6.05,206,1701158400"; d="scan'208";a="778125696"
+X-IronPort-AV: E=McAfee;i="6600,9927,10957"; a="778125700"
+X-IronPort-AV: E=Sophos;i="6.05,206,1701158400"; d="scan'208";a="778125700"
 Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.jf.intel.com)
  ([10.165.21.138])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 Jan 2024 18:00:30 -0800
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 03/16] drm/xe/oa/uapi: Add OA data formats
-Date: Fri, 19 Jan 2024 18:00:13 -0800
-Message-ID: <20240120020026.1261201-4-ashutosh.dixit@intel.com>
+Subject: [PATCH 04/16] drm/xe/oa/uapi: Initialize OA units
+Date: Fri, 19 Jan 2024 18:00:14 -0800
+Message-ID: <20240120020026.1261201-5-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20240120020026.1261201-1-ashutosh.dixit@intel.com>
 References: <20240120020026.1261201-1-ashutosh.dixit@intel.com>
@@ -61,367 +61,458 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add and initialize supported OA data formats for various platforms
-(including Xe2). User can request OA data in any supported format.
+Initialize OA unit data struct's for each gt during device probe. Also
+assign OA units for hardware engines.
 
-Bspec: 52198, 60942, 61101
-
-v2: Start 'xe_oa_format_name' enum from 0 (Umesh)
-    Fix error rewind with OA (Umesh)
+v2: Remove XE_OA_UNIT_OAG/XE_OA_UNIT_OAM_SAMEDIA_0 enum (Umesh)
+    Change mtl_oa_base to 0x13000 (Umesh)
+    Remove OAG_OASTATUS bits
 
 Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile          |   1 +
- drivers/gpu/drm/xe/xe_device.c       |  12 ++-
- drivers/gpu/drm/xe/xe_device_types.h |   4 +
- drivers/gpu/drm/xe/xe_module.c       |   1 +
- drivers/gpu/drm/xe/xe_oa.c           | 111 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_oa.h           |  16 ++++
- drivers/gpu/drm/xe/xe_oa_types.h     |  78 +++++++++++++++++++
- include/uapi/drm/xe_drm.h            |  10 +++
- 8 files changed, 232 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/xe/xe_oa.c
- create mode 100644 drivers/gpu/drm/xe/xe_oa.h
- create mode 100644 drivers/gpu/drm/xe/xe_oa_types.h
+ drivers/gpu/drm/xe/regs/xe_oa_regs.h    |  91 +++++++++++++
+ drivers/gpu/drm/xe/xe_gt_types.h        |   4 +
+ drivers/gpu/drm/xe/xe_hw_engine_types.h |   2 +
+ drivers/gpu/drm/xe/xe_oa.c              | 162 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_oa_types.h        |  56 ++++++++
+ include/uapi/drm/xe_drm.h               |   6 +
+ 6 files changed, 321 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/regs/xe_oa_regs.h
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 99bda12bdd165..a03691ce71760 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -111,6 +111,7 @@ xe-y += xe_bb.o \
- 	xe_mmio.o \
- 	xe_mocs.o \
- 	xe_module.o \
-+	xe_oa.o \
- 	xe_pat.o \
- 	xe_pci.o \
- 	xe_pcode.o \
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index bede669136fb6..1c3f3545b5335 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -33,6 +33,7 @@
- #include "xe_memirq.h"
- #include "xe_mmio.h"
- #include "xe_module.h"
-+#include "xe_oa.h"
- #include "xe_pat.h"
- #include "xe_pcode.h"
- #include "xe_perf.h"
-@@ -534,10 +535,14 @@ int xe_device_probe(struct xe_device *xe)
- 
- 	xe_heci_gsc_init(xe);
- 
--	err = xe_display_init(xe);
-+	err = xe_oa_init(xe);
- 	if (err)
- 		goto err_fini_gt;
- 
-+	err = xe_display_init(xe);
-+	if (err)
-+		goto err_oa_fini;
-+
- 	err = drm_dev_register(&xe->drm, 0);
- 	if (err)
- 		goto err_fini_display;
-@@ -557,6 +562,9 @@ int xe_device_probe(struct xe_device *xe)
- err_fini_display:
- 	xe_display_driver_remove(xe);
- 
-+err_oa_fini:
-+	xe_oa_fini(xe);
-+
- err_fini_gt:
- 	for_each_gt(gt, xe, id) {
- 		if (id < last_gt)
-@@ -589,6 +597,8 @@ void xe_device_remove(struct xe_device *xe)
- 
- 	xe_display_fini(xe);
- 
-+	xe_oa_fini(xe);
-+
- 	xe_heci_gsc_fini(xe);
- 
- 	for_each_gt(gt, xe, id)
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 7eda86bd4c2a4..03d4ac3446b5d 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -17,6 +17,7 @@
- #include "xe_gt_types.h"
- #include "xe_lmtt_types.h"
- #include "xe_memirq_types.h"
-+#include "xe_oa.h"
- #include "xe_platform_types.h"
- #include "xe_pt_types.h"
- #include "xe_sriov_types.h"
-@@ -455,6 +456,9 @@ struct xe_device {
- 	/** @heci_gsc: graphics security controller */
- 	struct xe_heci_gsc heci_gsc;
- 
-+	/** @oa: oa perf counter subsystem */
-+	struct xe_oa oa;
-+
- 	/** @needs_flr_on_fini: requests function-reset on fini */
- 	bool needs_flr_on_fini;
- 
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index 42085a4b56be2..b5108e66dd1ee 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -10,6 +10,7 @@
- 
- #include "xe_drv.h"
- #include "xe_hw_fence.h"
-+#include "xe_oa.h"
- #include "xe_pci.h"
- #include "xe_perf.h"
- #include "xe_sched_job.h"
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+diff --git a/drivers/gpu/drm/xe/regs/xe_oa_regs.h b/drivers/gpu/drm/xe/regs/xe_oa_regs.h
 new file mode 100644
-index 0000000000000..f2fcd50f3fcd8
+index 0000000000000..00d0c9763e8da
 --- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -0,0 +1,111 @@
-+// SPDX-License-Identifier: MIT
++++ b/drivers/gpu/drm/xe/regs/xe_oa_regs.h
+@@ -0,0 +1,91 @@
++/* SPDX-License-Identifier: MIT */
 +/*
 + * Copyright © 2023 Intel Corporation
 + */
 +
-+#include <drm/xe_drm.h>
++#ifndef __XE_OA_REGS__
++#define __XE_OA_REGS__
 +
-+#include "xe_device.h"
++#define REG_EQUAL(reg, xe_reg) ((reg) == (xe_reg.addr))
++#define REG_EQUAL_MCR(reg, xe_reg) ((reg) == (xe_reg.__reg.addr))
++
++#define RPM_CONFIG1			XE_REG(0xd04)
++#define   GT_NOA_ENABLE			REG_BIT(9)
++
++#define EU_PERF_CNTL0			XE_REG(0xe458)
++#define EU_PERF_CNTL4			XE_REG(0xe45c)
++#define EU_PERF_CNTL1			XE_REG(0xe558)
++#define EU_PERF_CNTL5			XE_REG(0xe55c)
++#define EU_PERF_CNTL2			XE_REG(0xe658)
++#define EU_PERF_CNTL6			XE_REG(0xe65c)
++#define EU_PERF_CNTL3			XE_REG(0xe758)
++
++#define OA_TLB_INV_CR			XE_REG(0xceec)
++
++/* OAR unit */
++#define OAR_OACONTROL			XE_REG(0x2960)
++#define  OAR_OACONTROL_COUNTER_SEL_MASK	REG_GENMASK(3, 1)
++#define  OAR_OACONTROL_COUNTER_ENABLE	REG_BIT(0)
++
++#define OACTXCONTROL(base) XE_REG((base) + 0x360)
++#define OAR_OASTATUS			XE_REG(0x2968)
++#define  OA_COUNTER_RESUME		REG_BIT(0)
++
++/* OAG unit */
++#define OAG_OAGLBCTXCTRL		XE_REG(0x2b28)
++#define  OAG_OAGLBCTXCTRL_TIMER_PERIOD_MASK	REG_GENMASK(7, 2)
++#define  OAG_OAGLBCTXCTRL_TIMER_ENABLE		REG_BIT(1)
++#define  OAG_OAGLBCTXCTRL_COUNTER_RESUME	REG_BIT(0)
++
++#define OAG_OAHEADPTR				XE_REG(0xdb00)
++#define  OAG_OAHEADPTR_MASK			REG_GENMASK(31, 6)
++#define OAG_OATAILPTR				XE_REG(0xdb04)
++#define  OAG_OATAILPTR_MASK			REG_GENMASK(31, 6)
++
++#define OAG_OABUFFER		XE_REG(0xdb08)
++#define  OABUFFER_SIZE_MASK	REG_GENMASK(5, 3)
++#define  OABUFFER_SIZE_128K	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 0)
++#define  OABUFFER_SIZE_256K	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 1)
++#define  OABUFFER_SIZE_512K	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 2)
++#define  OABUFFER_SIZE_1M	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 3)
++#define  OABUFFER_SIZE_2M	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 4)
++#define  OABUFFER_SIZE_4M	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 5)
++#define  OABUFFER_SIZE_8M	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 6)
++#define  OABUFFER_SIZE_16M	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 7)
++#define  OAG_OABUFFER_MEMORY_SELECT		REG_BIT(0) /* 0: PPGTT, 1: GGTT */
++
++#define OAG_OACONTROL				XE_REG(0xdaf4)
++#define  OAG_OACONTROL_OA_CCS_SELECT_MASK	REG_GENMASK(18, 16)
++#define  OAG_OACONTROL_OA_COUNTER_SEL_MASK	REG_GENMASK(4, 2)
++#define  OAG_OACONTROL_OA_COUNTER_ENABLE	REG_BIT(0)
++/* Common to all OA units */
++#define  OA_OACONTROL_REPORT_BC_MASK		REG_GENMASK(9, 9)
++#define  OA_OACONTROL_COUNTER_SIZE_MASK		REG_GENMASK(8, 8)
++
++#define OAG_OA_DEBUG XE_REG(0xdaf8, XE_REG_OPTION_MASKED)
++#define  OAG_OA_DEBUG_INCLUDE_CLK_RATIO			REG_BIT(6)
++#define  OAG_OA_DEBUG_DISABLE_CLK_RATIO_REPORTS		REG_BIT(5)
++#define  OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS	REG_BIT(1)
++
++#define OAG_OASTATUS			XE_REG(0xdafc)
++/* OAM unit */
++#define OAM_HEAD_POINTER_OFFSET			(0x1a0)
++#define OAM_TAIL_POINTER_OFFSET			(0x1a4)
++#define OAM_BUFFER_OFFSET			(0x1a8)
++#define OAM_CONTEXT_CONTROL_OFFSET		(0x1bc)
++#define OAM_CONTROL_OFFSET			(0x194)
++#define  OAM_CONTROL_COUNTER_SEL_MASK		REG_GENMASK(3, 1)
++#define OAM_DEBUG_OFFSET			(0x198)
++#define OAM_STATUS_OFFSET			(0x19c)
++#define OAM_MMIO_TRG_OFFSET			(0x1d0)
++
++#define OAM_HEAD_POINTER(base)			XE_REG((base) + OAM_HEAD_POINTER_OFFSET)
++#define OAM_TAIL_POINTER(base)			XE_REG((base) + OAM_TAIL_POINTER_OFFSET)
++#define OAM_BUFFER(base)			XE_REG((base) + OAM_BUFFER_OFFSET)
++#define OAM_CONTEXT_CONTROL(base)		XE_REG((base) + OAM_CONTEXT_CONTROL_OFFSET)
++#define OAM_CONTROL(base)			XE_REG((base) + OAM_CONTROL_OFFSET)
++#define OAM_DEBUG(base)				XE_REG((base) + OAM_DEBUG_OFFSET)
++#define OAM_STATUS(base)			XE_REG((base) + OAM_STATUS_OFFSET)
++#define OAM_MMIO_TRG(base)			XE_REG((base) + OAM_MMIO_TRG_OFFSET)
++
++#endif /* __XE_OA_REGS__ */
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index 047cde6cda107..fba3f7fd793e6 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -10,6 +10,7 @@
+ #include "xe_gt_idle_types.h"
+ #include "xe_hw_engine_types.h"
+ #include "xe_hw_fence_types.h"
 +#include "xe_oa.h"
+ #include "xe_reg_sr_types.h"
+ #include "xe_sa_types.h"
+ #include "xe_uc_types.h"
+@@ -359,6 +360,9 @@ struct xe_gt {
+ 		/** @oob: bitmap with active OOB workaroudns */
+ 		unsigned long *oob;
+ 	} wa_active;
 +
-+#define DRM_FMT(x) DRM_XE_OA_FMT_TYPE_##x
++	/** @oa: oa perf counter subsystem per gt info */
++	struct xe_oa_gt oa;
+ };
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+index dfeaaac08b7f9..3fc396bc72f0f 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+@@ -148,6 +148,8 @@ struct xe_hw_engine {
+ 	enum xe_hw_engine_id engine_id;
+ 	/** @eclass: pointer to per hw engine class interface */
+ 	struct xe_hw_engine_class_intf *eclass;
++	/** @oa_unit: oa unit for this hw engine */
++	struct xe_oa_unit *oa_unit;
+ };
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index f2fcd50f3fcd8..35a55ad8270f3 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -5,9 +5,14 @@
+ 
+ #include <drm/xe_drm.h>
+ 
++#include "regs/xe_oa_regs.h"
+ #include "xe_device.h"
++#include "xe_gt.h"
++#include "xe_mmio.h"
+ #include "xe_oa.h"
+ 
++#define XE_OA_UNIT_INVALID U32_MAX
 +
-+static const struct xe_oa_format oa_formats[] = {
-+	[XE_OA_FORMAT_C4_B8]			= { 7, 64,  DRM_FMT(OAG) },
-+	[XE_OA_FORMAT_A12]			= { 0, 64,  DRM_FMT(OAG) },
-+	[XE_OA_FORMAT_A12_B8_C8]		= { 2, 128, DRM_FMT(OAG) },
-+	[XE_OA_FORMAT_A32u40_A4u32_B8_C8]	= { 5, 256, DRM_FMT(OAG) },
-+	[XE_OAR_FORMAT_A32u40_A4u32_B8_C8]	= { 5, 256, DRM_FMT(OAR) },
-+	[XE_OA_FORMAT_A24u40_A14u32_B8_C8]	= { 5, 256, DRM_FMT(OAG) },
-+	[XE_OAC_FORMAT_A24u64_B8_C8]		= { 1, 320, DRM_FMT(OAC), HDR_64_BIT },
-+	[XE_OAC_FORMAT_A22u32_R2u32_B8_C8]	= { 2, 192, DRM_FMT(OAC), HDR_64_BIT },
-+	[XE_OAM_FORMAT_MPEC8u64_B8_C8]		= { 1, 192, DRM_FMT(OAM_MPEC), HDR_64_BIT },
-+	[XE_OAM_FORMAT_MPEC8u32_B8_C8]		= { 2, 128, DRM_FMT(OAM_MPEC), HDR_64_BIT },
-+	[XE_OA_FORMAT_PEC64u64]			= { 1, 576, DRM_FMT(PEC), HDR_64_BIT, 1, 0 },
-+	[XE_OA_FORMAT_PEC64u64_B8_C8]		= { 1, 640, DRM_FMT(PEC), HDR_64_BIT, 1, 1 },
-+	[XE_OA_FORMAT_PEC64u32]			= { 1, 320, DRM_FMT(PEC), HDR_64_BIT },
-+	[XE_OA_FORMAT_PEC32u64_G1]		= { 5, 320, DRM_FMT(PEC), HDR_64_BIT, 1, 0 },
-+	[XE_OA_FORMAT_PEC32u32_G1]		= { 5, 192, DRM_FMT(PEC), HDR_64_BIT },
-+	[XE_OA_FORMAT_PEC32u64_G2]		= { 6, 320, DRM_FMT(PEC), HDR_64_BIT, 1, 0 },
-+	[XE_OA_FORMAT_PEC32u32_G2]		= { 6, 192, DRM_FMT(PEC), HDR_64_BIT },
-+	[XE_OA_FORMAT_PEC36u64_G1_32_G2_4]	= { 3, 320, DRM_FMT(PEC), HDR_64_BIT, 1, 0 },
-+	[XE_OA_FORMAT_PEC36u64_G1_4_G2_32]	= { 4, 320, DRM_FMT(PEC), HDR_64_BIT, 1, 0 },
-+};
-+
-+static void oa_format_add(struct xe_oa *oa, enum xe_oa_format_name format)
+ #define DRM_FMT(x) DRM_XE_OA_FMT_TYPE_##x
+ 
+ static const struct xe_oa_format oa_formats[] = {
+@@ -32,6 +37,141 @@ static const struct xe_oa_format oa_formats[] = {
+ 	[XE_OA_FORMAT_PEC36u64_G1_4_G2_32]	= { 4, 320, DRM_FMT(PEC), HDR_64_BIT, 1, 0 },
+ };
+ 
++static u32 num_oa_units_per_gt(struct xe_gt *gt)
 +{
-+	__set_bit(format, oa->format_mask);
++	return 1;
 +}
 +
-+static void xe_oa_init_supported_formats(struct xe_oa *oa)
++static u32 __hwe_oam_unit(struct xe_hw_engine *hwe)
 +{
-+	switch (oa->xe->info.platform) {
-+	case XE_TIGERLAKE:
-+	case XE_ROCKETLAKE:
-+	case XE_ALDERLAKE_S:
-+	case XE_ALDERLAKE_P:
-+	case XE_ALDERLAKE_N:
-+	case XE_DG1:
-+		oa_format_add(oa, XE_OA_FORMAT_A12);
-+		oa_format_add(oa, XE_OA_FORMAT_A12_B8_C8);
-+		oa_format_add(oa, XE_OA_FORMAT_A32u40_A4u32_B8_C8);
-+		oa_format_add(oa, XE_OA_FORMAT_C4_B8);
-+		break;
++	if (GRAPHICS_VERx100(gt_to_xe(hwe->gt)) >= 1270) {
++		/*
++		 * There's 1 SAMEDIA gt and 1 OAM per SAMEDIA gt. All media slices
++		 * within the gt use the same OAM. All MTL/LNL SKUs list 1 SA MEDIA
++		 */
++		drm_WARN_ON(&gt_to_xe(hwe->gt)->drm,
++			    hwe->gt->info.type != XE_GT_TYPE_MEDIA);
 +
-+	case XE_DG2:
-+	case XE_PVC:
-+		oa_format_add(oa, XE_OAR_FORMAT_A32u40_A4u32_B8_C8);
-+		oa_format_add(oa, XE_OA_FORMAT_A24u40_A14u32_B8_C8);
-+		oa_format_add(oa, XE_OAC_FORMAT_A24u64_B8_C8);
-+		oa_format_add(oa, XE_OAC_FORMAT_A22u32_R2u32_B8_C8);
-+		break;
++		return 0;
++	}
 +
-+	case XE_METEORLAKE:
-+		oa_format_add(oa, XE_OAR_FORMAT_A32u40_A4u32_B8_C8);
-+		oa_format_add(oa, XE_OA_FORMAT_A24u40_A14u32_B8_C8);
-+		oa_format_add(oa, XE_OAC_FORMAT_A24u64_B8_C8);
-+		oa_format_add(oa, XE_OAC_FORMAT_A22u32_R2u32_B8_C8);
-+		oa_format_add(oa, XE_OAM_FORMAT_MPEC8u64_B8_C8);
-+		oa_format_add(oa, XE_OAM_FORMAT_MPEC8u32_B8_C8);
-+		break;
++	return XE_OA_UNIT_INVALID;
++}
 +
-+	case XE_LUNARLAKE:
-+		oa_format_add(oa, XE_OAM_FORMAT_MPEC8u64_B8_C8);
-+		oa_format_add(oa, XE_OAM_FORMAT_MPEC8u32_B8_C8);
-+		oa_format_add(oa, XE_OA_FORMAT_PEC64u64);
-+		oa_format_add(oa, XE_OA_FORMAT_PEC64u64_B8_C8);
-+		oa_format_add(oa, XE_OA_FORMAT_PEC64u32);
-+		oa_format_add(oa, XE_OA_FORMAT_PEC32u64_G1);
-+		oa_format_add(oa, XE_OA_FORMAT_PEC32u32_G1);
-+		oa_format_add(oa, XE_OA_FORMAT_PEC32u64_G2);
-+		oa_format_add(oa, XE_OA_FORMAT_PEC32u32_G2);
-+		oa_format_add(oa, XE_OA_FORMAT_PEC36u64_G1_32_G2_4);
-+		oa_format_add(oa, XE_OA_FORMAT_PEC36u64_G1_4_G2_32);
-+		break;
++static u32 __hwe_oa_unit(struct xe_hw_engine *hwe)
++{
++	switch (hwe->class) {
++	case XE_ENGINE_CLASS_RENDER:
++	case XE_ENGINE_CLASS_COMPUTE:
++		return 0;
++
++	case XE_ENGINE_CLASS_VIDEO_DECODE:
++	case XE_ENGINE_CLASS_VIDEO_ENHANCE:
++		return __hwe_oam_unit(hwe);
 +
 +	default:
-+		drm_err(&oa->xe->drm, "Unknown platform\n");
++		return XE_OA_UNIT_INVALID;
 +	}
 +}
 +
-+int xe_oa_init(struct xe_device *xe)
++static struct xe_oa_regs __oam_regs(u32 base)
 +{
-+	struct xe_oa *oa = &xe->oa;
++	return (struct xe_oa_regs) {
++		base,
++		OAM_HEAD_POINTER(base),
++		OAM_TAIL_POINTER(base),
++		OAM_BUFFER(base),
++		OAM_CONTEXT_CONTROL(base),
++		OAM_CONTROL(base),
++		OAM_DEBUG(base),
++		OAM_STATUS(base),
++		OAM_CONTROL_COUNTER_SEL_MASK,
++	};
++}
 +
-+	/* Support OA only with GuC submission and Gen12+ */
-+	if (XE_WARN_ON(!xe_device_uc_enabled(xe)) || XE_WARN_ON(GRAPHICS_VER(xe) < 12))
-+		return 0;
++static struct xe_oa_regs __oag_regs(void)
++{
++	return (struct xe_oa_regs) {
++		0,
++		OAG_OAHEADPTR,
++		OAG_OATAILPTR,
++		OAG_OABUFFER,
++		OAG_OAGLBCTXCTRL,
++		OAG_OACONTROL,
++		OAG_OA_DEBUG,
++		OAG_OASTATUS,
++		OAG_OACONTROL_OA_COUNTER_SEL_MASK,
++	};
++}
 +
-+	oa->xe = xe;
-+	oa->oa_formats = oa_formats;
++static void __xe_oa_init_oa_units(struct xe_gt *gt)
++{
++	const u32 mtl_oa_base[] = { 0x13000 };
++	int i, num_units = gt->oa.num_oa_units;
 +
-+	xe_oa_init_supported_formats(oa);
++	for (i = 0; i < num_units; i++) {
++		struct xe_oa_unit *u = &gt->oa.oa_unit[i];
++
++		if (gt->info.type != XE_GT_TYPE_MEDIA) {
++			u->regs = __oag_regs();
++			u->type = DRM_XE_OA_UNIT_TYPE_OAG;
++		} else if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 1270) {
++			u->regs = __oam_regs(mtl_oa_base[i]);
++			u->type = DRM_XE_OA_UNIT_TYPE_OAM;
++		}
++
++		/* Set oa_unit_ids now to ensure ids remain contiguous */
++		u->oa_unit_id = gt_to_xe(gt)->oa.oa_unit_ids++;
++	}
++}
++
++static int xe_oa_init_gt(struct xe_gt *gt)
++{
++	u32 num_oa_units = num_oa_units_per_gt(gt);
++	struct xe_hw_engine *hwe;
++	enum xe_hw_engine_id id;
++	struct xe_oa_unit *u;
++
++	u = kcalloc(num_oa_units, sizeof(*u), GFP_KERNEL);
++	if (!u)
++		return -ENOMEM;
++
++	for_each_hw_engine(hwe, gt, id) {
++		u32 index = __hwe_oa_unit(hwe);
++
++		hwe->oa_unit = NULL;
++		if (index < num_oa_units) {
++			u[index].num_engines++;
++			hwe->oa_unit = &u[index];
++		}
++	}
++
++	/*
++	 * Fused off engines can result in oa_unit's with num_engines == 0. These units
++	 * will appear in OA unit query, but no perf streams can be opened on them.
++	 */
++	gt->oa.num_oa_units = num_oa_units;
++	gt->oa.oa_unit = u;
++
++	__xe_oa_init_oa_units(gt);
++
 +	return 0;
 +}
 +
-+void xe_oa_fini(struct xe_device *xe)
++static int xe_oa_init_oa_units(struct xe_oa *oa)
 +{
-+	struct xe_oa *oa = &xe->oa;
++	struct xe_gt *gt;
++	int i, ret;
 +
-+	oa->xe = NULL;
++	for_each_gt(gt, oa->xe, i) {
++		ret = xe_oa_init_gt(gt);
++		if (ret)
++			return ret;
++	}
++
++	return 0;
 +}
-diff --git a/drivers/gpu/drm/xe/xe_oa.h b/drivers/gpu/drm/xe/xe_oa.h
-new file mode 100644
-index 0000000000000..a2f301e2be57b
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_oa.h
-@@ -0,0 +1,16 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
 +
-+#ifndef _XE_OA_H_
-+#define _XE_OA_H_
+ static void oa_format_add(struct xe_oa *oa, enum xe_oa_format_name format)
+ {
+ 	__set_bit(format, oa->format_mask);
+@@ -91,6 +231,8 @@ static void xe_oa_init_supported_formats(struct xe_oa *oa)
+ int xe_oa_init(struct xe_device *xe)
+ {
+ 	struct xe_oa *oa = &xe->oa;
++	struct xe_gt *gt;
++	int i, ret;
+ 
+ 	/* Support OA only with GuC submission and Gen12+ */
+ 	if (XE_WARN_ON(!xe_device_uc_enabled(xe)) || XE_WARN_ON(GRAPHICS_VER(xe) < 12))
+@@ -99,13 +241,33 @@ int xe_oa_init(struct xe_device *xe)
+ 	oa->xe = xe;
+ 	oa->oa_formats = oa_formats;
+ 
++	for_each_gt(gt, xe, i)
++		mutex_init(&gt->oa.gt_lock);
 +
-+#include "xe_oa_types.h"
++	ret = xe_oa_init_oa_units(oa);
++	if (ret) {
++		drm_err(&xe->drm, "OA initialization failed %d\n", ret);
++		goto exit;
++	}
 +
-+struct xe_device;
+ 	xe_oa_init_supported_formats(oa);
+ 	return 0;
++exit:
++	oa->xe = NULL;
++	return ret;
+ }
+ 
+ void xe_oa_fini(struct xe_device *xe)
+ {
+ 	struct xe_oa *oa = &xe->oa;
++	struct xe_gt *gt;
++	int i;
 +
-+int xe_oa_init(struct xe_device *xe);
-+void xe_oa_fini(struct xe_device *xe);
++	if (!oa->xe)
++		return;
 +
-+#endif
++	for_each_gt(gt, xe, i)
++		kfree(gt->oa.oa_unit);
+ 
+ 	oa->xe = NULL;
+ }
 diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
-new file mode 100644
-index 0000000000000..c5d33a47d8fa7
---- /dev/null
+index c5d33a47d8fa7..bb9a579d4529a 100644
+--- a/drivers/gpu/drm/xe/xe_oa_types.h
 +++ b/drivers/gpu/drm/xe/xe_oa_types.h
-@@ -0,0 +1,78 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
+@@ -8,6 +8,10 @@
+ 
+ #include <linux/math.h>
+ #include <linux/types.h>
++#include <linux/mutex.h>
++
++#include <drm/xe_drm.h>
++#include "regs/xe_reg_defs.h"
+ 
+ enum xe_oa_report_header {
+ 	HDR_32_BIT = 0,
+@@ -60,6 +64,55 @@ struct xe_oa_format {
+ 	u16 bc_report;
+ };
+ 
++/**
++ * struct xe_oa_regs - Registers for each OA unit
 + */
-+
-+#ifndef _XE_OA_TYPES_H_
-+#define _XE_OA_TYPES_H__
-+
-+#include <linux/math.h>
-+#include <linux/types.h>
-+
-+enum xe_oa_report_header {
-+	HDR_32_BIT = 0,
-+	HDR_64_BIT,
-+};
-+
-+enum xe_oa_format_name {
-+	XE_OA_FORMAT_C4_B8,
-+
-+	/* Gen8+ */
-+	XE_OA_FORMAT_A12,
-+	XE_OA_FORMAT_A12_B8_C8,
-+	XE_OA_FORMAT_A32u40_A4u32_B8_C8,
-+
-+	/* DG2 */
-+	XE_OAR_FORMAT_A32u40_A4u32_B8_C8,
-+	XE_OA_FORMAT_A24u40_A14u32_B8_C8,
-+
-+	/* DG2/MTL OAC */
-+	XE_OAC_FORMAT_A24u64_B8_C8,
-+	XE_OAC_FORMAT_A22u32_R2u32_B8_C8,
-+
-+	/* MTL OAM */
-+	XE_OAM_FORMAT_MPEC8u64_B8_C8,
-+	XE_OAM_FORMAT_MPEC8u32_B8_C8,
-+
-+	/* Xe2+ */
-+	XE_OA_FORMAT_PEC64u64,
-+	XE_OA_FORMAT_PEC64u64_B8_C8,
-+	XE_OA_FORMAT_PEC64u32,
-+	XE_OA_FORMAT_PEC32u64_G1,
-+	XE_OA_FORMAT_PEC32u32_G1,
-+	XE_OA_FORMAT_PEC32u64_G2,
-+	XE_OA_FORMAT_PEC32u32_G2,
-+	XE_OA_FORMAT_PEC36u64_G1_32_G2_4,
-+	XE_OA_FORMAT_PEC36u64_G1_4_G2_32,
-+
-+	XE_OA_FORMAT_MAX,
++struct xe_oa_regs {
++	u32 base;
++	struct xe_reg oa_head_ptr;
++	struct xe_reg oa_tail_ptr;
++	struct xe_reg oa_buffer;
++	struct xe_reg oa_ctx_ctrl;
++	struct xe_reg oa_ctrl;
++	struct xe_reg oa_debug;
++	struct xe_reg oa_status;
++	u32 oa_ctrl_counter_select_mask;
 +};
 +
 +/**
-+ * struct xe_oa_format - Format fields for supported OA formats
++ * struct xe_oa_unit - Hardware OA unit
 + */
-+struct xe_oa_format {
-+	u32 counter_select;
-+	int size;
-+	int type;
-+	enum xe_oa_report_header header;
-+	u16 counter_size;
-+	u16 bc_report;
++struct xe_oa_unit {
++	/** @oa_unit_id: identifier for the OA unit */
++	u16 oa_unit_id;
++
++	/** @type: Type of OA unit - OAM, OAG etc. */
++	enum drm_xe_oa_unit_type type;
++
++	/** @regs: OA registers for programming the OA unit */
++	struct xe_oa_regs regs;
++
++	/** @num_engines: number of engines attached to this OA unit */
++	u32 num_engines;
++
++	/** @exclusive_stream: The stream currently using the OA unit */
++	struct xe_oa_stream *exclusive_stream;
 +};
 +
 +/**
-+ * struct xe_oa - OA device level information
++ * struct xe_oa_gt - OA per-gt information
 + */
-+struct xe_oa {
-+	/** @xe: back pointer to xe device */
-+	struct xe_device *xe;
++struct xe_oa_gt {
++	/** @lock: lock protecting create/destroy OA streams */
++	struct mutex gt_lock;
 +
-+	/** @oa_formats: tracks all OA formats across platforms */
-+	const struct xe_oa_format *oa_formats;
++	/** @num_oa_units: number of oa units for each gt */
++	u32 num_oa_units;
 +
-+#define FORMAT_MASK_SIZE DIV_ROUND_UP(XE_OA_FORMAT_MAX - 1, BITS_PER_LONG)
-+
-+	/** @format_mask: tracks valid OA formats for a platform */
-+	unsigned long format_mask[FORMAT_MASK_SIZE];
++	/** @oa_unit: array of oa_units */
++	struct xe_oa_unit *oa_unit;
 +};
-+#endif
++
+ /**
+  * struct xe_oa - OA device level information
+  */
+@@ -74,5 +127,8 @@ struct xe_oa {
+ 
+ 	/** @format_mask: tracks valid OA formats for a platform */
+ 	unsigned long format_mask[FORMAT_MASK_SIZE];
++
++	/** @oa_unit_ids: tracks oa unit ids assigned across gt's */
++	u16 oa_unit_ids;
+ };
+ #endif
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 004c1f2d3e823..41af3361e7bee 100644
+index 41af3361e7bee..5c7529c35b907 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -1398,6 +1398,16 @@ enum drm_xe_perf_ioctls {
+@@ -1398,6 +1398,12 @@ enum drm_xe_perf_ioctls {
  	DRM_XE_PERF_IOCTL_STATUS = _IO('i', 0x3),
  };
  
-+/** enum drm_xe_oa_format_type - OA format types */
-+enum drm_xe_oa_format_type {
-+	DRM_XE_OA_FMT_TYPE_OAG,
-+	DRM_XE_OA_FMT_TYPE_OAR,
-+	DRM_XE_OA_FMT_TYPE_OAM,
-+	DRM_XE_OA_FMT_TYPE_OAC,
-+	DRM_XE_OA_FMT_TYPE_OAM_MPEC,
-+	DRM_XE_OA_FMT_TYPE_PEC,
++/** enum drm_xe_oa_unit_type - OA unit types */
++enum drm_xe_oa_unit_type {
++	DRM_XE_OA_UNIT_TYPE_OAG,
++	DRM_XE_OA_UNIT_TYPE_OAM,
 +};
 +
- #if defined(__cplusplus)
- }
- #endif
+ /** enum drm_xe_oa_format_type - OA format types */
+ enum drm_xe_oa_format_type {
+ 	DRM_XE_OA_FMT_TYPE_OAG,
 -- 
 2.41.0
 
