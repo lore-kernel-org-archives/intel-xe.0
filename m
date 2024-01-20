@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0330C4725D
-	for <intel-xe@archiver.kernel.org>; Sat, 20 Jan 2024 02:35:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC6C4C4725D
+	for <intel-xe@archiver.kernel.org>; Sat, 20 Jan 2024 02:36:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83A7810EAE0;
-	Sat, 20 Jan 2024 02:35:05 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87A8410EAE0
- for <intel-xe@lists.freedesktop.org>; Sat, 20 Jan 2024 02:35:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A213410EAE5;
+	Sat, 20 Jan 2024 02:36:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3759610EAED
+ for <intel-xe@lists.freedesktop.org>; Sat, 20 Jan 2024 02:36:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705718104; x=1737254104;
+ t=1705718198; x=1737254198;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=M+zKG03ehykpDuQ2Nfq3Qdk9SB7XWsyYerA0zy/TEpU=;
- b=VS9RDj2z0aHy2PrCltRGQP4g2tfQXujDpE8sb+TdMoueRTsc5qI5WuVX
- nqngWxhvEoe4fuMXGPZ7GoB8XSWy+iDfefKRHrdEOFZFhY7vgo6l2K0dc
- a3e7X21R7+4ZHsX/BHrhoaF3JmwRCFJvAkVVgdLuI/ONlXSq0wSYGwvhY
- lSwcesHUnSPH4NqCxToLtSJ2eSSTZUsiklvcQTSmvwatPBL9rTIqcT2ON
- oG9BYfbPKRPh1Vw09UuaEMkIzIY61vePz6slhhkCQrMajrWIYKhnAlgEM
- x6aB/vz7GupK42+OzXz3J8ZAPylc3j7RAlkqyRcmkYkLRDcJtwubAFVOS Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10957"; a="467281468"
-X-IronPort-AV: E=Sophos;i="6.05,206,1701158400"; d="scan'208";a="467281468"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2024 18:35:04 -0800
+ bh=YhUWETniWf+G/nTybIa/LkKm0tyuY9Nt8y6h375M9c8=;
+ b=jC8wyG9Aimehhd56bJ0QRK+qu1gYquDJF6tO34n2Wce8tulWJLQPVixr
+ qHajaGg2+7izAM1HdBdiuKR2jtZU84BiyLsZdifdjYGWqH9+DNQ8v8NEF
+ goQkEePY16ih+9qJKe4gV0m1ZRvTAx9pRlmc/2aN5B6mYHICmayB+J3PQ
+ tCII0AlQFc6a41Q4jshgntrYNQxvnaPsAOu7GLgj0yFw/COqBTS4MjBVf
+ LIxA9fewFUxnvbO1w194A/6ewl7um5WfiZpxUK+64Z+PV3VeEaFmFyNfX
+ nSNxn+09c8q8w+csI9RZWYid8csMr3oHEG6m/i3EzL7TYND7NsmacP95z Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10957"; a="465173532"
+X-IronPort-AV: E=Sophos;i="6.05,206,1701158400"; d="scan'208";a="465173532"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2024 18:36:37 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10957"; a="788513763"
-X-IronPort-AV: E=Sophos;i="6.05,206,1701158400"; d="scan'208";a="788513763"
+X-IronPort-AV: E=Sophos;i="6.05,206,1701158400"; 
+   d="scan'208";a="749694"
 Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.intel.com)
  ([10.165.21.138])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2024 18:35:03 -0800
-Date: Fri, 19 Jan 2024 18:35:03 -0800
-Message-ID: <857ck4d960.wl-ashutosh.dixit@intel.com>
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2024 18:36:38 -0800
+Date: Fri, 19 Jan 2024 18:36:37 -0800
+Message-ID: <855xzod93e.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 02/17] drm/xe/perf/uapi: Add perf_stream_paranoid sysctl
-In-Reply-To: <87wmtaszr0.wl-ashutosh.dixit@intel.com>
-References: <20231208064329.2387604-1-ashutosh.dixit@intel.com>	<20231208064329.2387604-3-ashutosh.dixit@intel.com>	<87wmtaszr0.wl-ashutosh.dixit@intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Subject: Re: [PATCH 03/17] drm/xe/oa/uapi: Add oa_max_sample_rate sysctl
+In-Reply-To: <ZXpTTIIl3rK5AP/+@unerlige-ril>
+References: <20231208064329.2387604-1-ashutosh.dixit@intel.com>	<20231208064329.2387604-4-ashutosh.dixit@intel.com>	<ZXpTTIIl3rK5AP/+@unerlige-ril>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -59,58 +59,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 19 Dec 2023 12:28:51 -0800, Dixit, Ashutosh wrote:
+On Wed, 13 Dec 2023 16:58:52 -0800, Umesh Nerlige Ramappa wrote:
 >
-> On Thu, 07 Dec 2023 22:43:14 -0800, Ashutosh Dixit wrote:
+> > --- a/drivers/gpu/drm/xe/xe_device.c
+> > +++ b/drivers/gpu/drm/xe/xe_device.c
+> > @@ -29,6 +29,7 @@
+> > #include "xe_irq.h"
+> > #include "xe_mmio.h"
+> > #include "xe_module.h"
+> > +#include "xe_oa.h"
+> > #include "xe_pat.h"
+> > #include "xe_pcode.h"
+> > #include "xe_perf.h"
+> > @@ -480,6 +481,10 @@ int xe_device_probe(struct xe_device *xe)
 > >
-> > +static struct ctl_table perf_ctl_table[] = {
-> > +	{
-> > +	 .procname = "perf_stream_paranoid",
-> > +	 .data = &xe_perf_stream_paranoid,
-> > +	 .maxlen = sizeof(xe_perf_stream_paranoid),
-> > +	 .mode = 0644,
-> > +	 .proc_handler = proc_dointvec_minmax,
-> > +	 .extra1 = SYSCTL_ZERO,
-> > +	 .extra2 = SYSCTL_ONE,
-> > +	 },
-> > +	{}
-> > +};
+> >	xe_heci_gsc_init(xe);
+> >
+> > +	err = xe_oa_init(xe);
+> > +	if (err)
+> > +		goto err_irq_shutdown;
 > > +
-> > +int xe_perf_sysctl_register(void)
-> > +{
-> > +	sysctl_header = register_sysctl("dev/xe", perf_ctl_table);
-> > +	return 0;
-> > +}
+> >	err = xe_display_init(xe);
+> >	if (err)
+> >		goto err_irq_shutdown;
 >
-> Any idea why this (and xe_oa_max_sample_rate) is create in /proc, rather
-> than something attached to the module?
->
-> We would want it to be per module, rather than per device, so that's one
-> reason. What are the options for creating per module params? One is
-> module_param itself. In that case this would appear in
-> "/sys/module/xe/parameters/perf_stream_paranoid" rather than in
-> "/proc/sys/dev/xe/perf_stream_paranoid".
->
-> Module params are slightly simpler to manage than /proc stuff I think. Any
-> other reason to prefer one over the other?
->
-> Comments?
+> ^ this needs to do an xe_oa_fini on failure, so should be a different/new
+> goto label.
 
-Looking into i915 history, seems these were created in /proc to follow what
-the kernel perf subsystem does. However, considering there is nothing
-common between kernel perf and xe/i915 perf subsystems, there seems to be
-little reason to have these files where the kernel subsystem places similar
-files (if the files are are indeed similar). These files might as well
-created in xe module params or device level sysfs. Module param is probably
-the least lines of code.
-
-Anyway I've left them in /proc for now and probably doesn't matter a lot,
-but I think we should think a little bit if we should move them to module
-params or sysfs.
-
-Thanks.
---
-Ashutosh
+Good point, fixed in v8. Though the "drm/xe/oa/uapi: Add oa_max_sample_rate
+sysctl" patch is gone in v8, so the change has been made in
+"drm/xe/oa/uapi: Add OA data formats".
