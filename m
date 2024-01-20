@@ -4,46 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F231C4725D
-	for <intel-xe@archiver.kernel.org>; Sat, 20 Jan 2024 02:43:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89BB1C4725D
+	for <intel-xe@archiver.kernel.org>; Sat, 20 Jan 2024 02:44:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B804810EAF5;
-	Sat, 20 Jan 2024 02:43:59 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BE1B10EAF5
- for <intel-xe@lists.freedesktop.org>; Sat, 20 Jan 2024 02:43:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32D5710EAF5;
+	Sat, 20 Jan 2024 02:44:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC9BC10EAF5
+ for <intel-xe@lists.freedesktop.org>; Sat, 20 Jan 2024 02:44:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705718639; x=1737254639;
+ t=1705718681; x=1737254681;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=bzsRtmBD7mQ/tw/hMIbW1o4Jy3E6z/JYLLr1L7U0O/4=;
- b=VsYDLf45Zpf3SNJC+xouhQ73yJDxaFQuU4lMetErE5PQilEypGwMTbSp
- UvOtWAKJs9ZlaG8wVgo16Bb3nRu1lGn7dC7wuWpzgktrQCNdIuqeKInri
- yZCxmIQ80TzPa5PobuKgjDqb/KYy/KqExlQhyHSFmTN0DsXdojQoe2zNg
- 2wxyXo5nKntZfIc1i4F9LFEPqRMmBUBPgDEu7Q078k4caobsITSCsRCcI
- RFRx+GSAKgly5bKQ/BRRkgRjldcuZ4jvsgjpHNtnCjqnjrhmfNfn8iGH/
- cFc7ojfsKqlQLBCRmp7/vZsuH2qLMll0Fi6m4z9B2/l4R0GOuClKw8x47 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10957"; a="779084"
-X-IronPort-AV: E=Sophos;i="6.05,206,1701158400"; 
-   d="scan'208";a="779084"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2024 18:43:57 -0800
+ bh=2YFKNgz/xLJB4KKfYGjcKAPsMbGW1MTC7fAjUqnYEPY=;
+ b=fUp/LJNNO69ZLyyYgr20aILdHgWt48rC6tsWj8SgaHm1OslvvMce9cv7
+ NmjnG38lgoRsDyv6HDbuhlcVW/PpkyqfYzYz8VSHQva/NkNgDfxs9nRAQ
+ UQmSq9Luhgx4N3UqOoKG3nwAyY76QFT5zuCkeVUCtYUzT1A9naOmKs7j7
+ noAT1TWS2P6rsKTp1DMY2kuET3Xwr4x795yRbW6LCIuKxe+pSCnfD+3EX
+ uEuC7DDSJVJ6/Z/zs64yGfMlzkML1+kBvJZbfqWIAOEmPrlcK2xr5s/kn
+ H9zgEC4d0nGKpJeqjIOygE1HkT8LdEUNSPqzhl0K8sVHd6v3K4hM6LzJq A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10957"; a="465174666"
+X-IronPort-AV: E=Sophos;i="6.05,206,1701158400"; d="scan'208";a="465174666"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2024 18:44:41 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.05,206,1701158400"; 
-   d="scan'208";a="732030"
+   d="scan'208";a="827830"
 Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.intel.com)
  ([10.165.21.138])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2024 18:43:57 -0800
-Date: Fri, 19 Jan 2024 18:43:56 -0800
-Message-ID: <854jf8d8r7.wl-ashutosh.dixit@intel.com>
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2024 18:44:42 -0800
+Date: Fri, 19 Jan 2024 18:44:41 -0800
+Message-ID: <8534usd8py.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: Re: [PATCH 05/17] drm/xe/oa/uapi: Initialize OA units
-In-Reply-To: <ZYHAznF+ot7+LHKw@unerlige-ril>
-References: <20231208064329.2387604-1-ashutosh.dixit@intel.com>	<20231208064329.2387604-6-ashutosh.dixit@intel.com>	<ZYHAznF+ot7+LHKw@unerlige-ril>
+Subject: Re: [PATCH 06/17] drm/xe/oa/uapi: Add/remove OA config perf ops
+In-Reply-To: <ZYHqnlasZsweeh2C@unerlige-ril>
+References: <20231208064329.2387604-1-ashutosh.dixit@intel.com>	<20231208064329.2387604-7-ashutosh.dixit@intel.com>	<ZYHqnlasZsweeh2C@unerlige-ril>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -64,158 +63,40 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 19 Dec 2023 08:11:58 -0800, Umesh Nerlige Ramappa wrote:
+On Tue, 19 Dec 2023 11:10:22 -0800, Umesh Nerlige Ramappa wrote:
 >
 
 Hi Umesh,
 
-> > diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-> > index 11662a81ef6d8..5ad3c9c78b4e9 100644
-> > --- a/drivers/gpu/drm/xe/xe_oa.c
-> > +++ b/drivers/gpu/drm/xe/xe_oa.c
-> > @@ -5,7 +5,10 @@
-> >
-> > #include <linux/sysctl.h>
-> >
-> > +#include "regs/xe_oa_regs.h"
-> > #include "xe_device.h"
-> > +#include "xe_gt.h"
-> > +#include "xe_mmio.h"
-> > #include "xe_oa.h"
-> >
-> > static int xe_oa_sample_rate_hard_limit;
-> > @@ -13,6 +16,13 @@ static u32 xe_oa_max_sample_rate = 100000;
-> >
-> > static struct ctl_table_header *sysctl_header;
-> >
-> > +enum {
-> > +	XE_OA_UNIT_OAG = 0,
-> > +	XE_OA_UNIT_OAM_SAMEDIA_0 = 0,
-> > +	XE_OA_UNIT_MAX,
-> > +	XE_OA_UNIT_INVALID = U32_MAX,
-> > +};
+> > +static bool xe_oa_reg_in_range_table(u32 addr, const struct xe_mmio_range *table)
+> > +{
+> > +	while (table->start || table->end) {
 >
-> Right now, I think the enum is not needed since we are only defining 0.
+> nit: why not start && end? I would expect both start and end defined for a
+> range.
 
-Removed in v8. There was my spiel on this part in i915 too:
+Done (it was carry over from i915).
 
-https://patchwork.freedesktop.org/patch/527601/?series=115330&rev=1#comment_955388
+Note that the plan here is to clean up these checks (remove separate
+mux/flex/b_c counter register checks) eventually, as discussed in a
+previous review. I am tracking this task but haven't got round to it
+yet. We can do this cleanup later since it doesn't affect uapi.
 
-> > +
-> > #define DRM_FMT(x) DRM_XE_OA_FMT_TYPE_##x
-> >
-> > static const struct xe_oa_format oa_formats[] = {
-> > @@ -37,6 +47,143 @@ static const struct xe_oa_format oa_formats[] = {
-> >	[XE_OA_FORMAT_PEC36u64_G1_4_G2_32]	= { 4, 320, DRM_FMT(PEC), HDR_64_BIT, 1, 0 },
-> > };
-> >
-> > +static u32 num_oa_units_per_gt(struct xe_gt *gt)
-> > +{
-> > +	return 1;
-> > +}
-> > +
-> > +static u32 __hwe_oam_unit(struct xe_hw_engine *hwe)
-> > +{
-> > +	if (GRAPHICS_VERx100(gt_to_xe(hwe->gt)) >= 1270) {
-> > +		/*
-> > +		 * There's 1 SAMEDIA gt and 1 OAM per SAMEDIA gt. All media slices
-> > +		 * within the gt use the same OAM. All MTL/LNL SKUs list 1 SA MEDIA
-> > +		 */
-> > +		drm_WARN_ON(&gt_to_xe(hwe->gt)->drm,
-> > +			    hwe->gt->info.type != XE_GT_TYPE_MEDIA);
-> > +
-> > +		return XE_OA_UNIT_OAM_SAMEDIA_0;
+> > +	/* Config id 0 is invalid, id 1 for kernel stored test config */
+>
+> kernel doesn't store a test config anymore, so the comment can be
+> updated. You can start with 1 below though, but that's up to you.
+>
+> > +	oa_config->id = idr_alloc(&oa->metrics_idr, oa_config, 2, 0, GFP_KERNEL);
+> > +	if (oa_config->id < 0) {
+> > +		drm_dbg(&oa->xe->drm, "Failed to create sysfs entry for OA config\n");
+> > +		err = oa_config->id;
+> > +		goto sysfs_err;
 > > +	}
-> > +
-> > +	return XE_OA_UNIT_INVALID;
-> > +}
-> > +
-> > +static u32 __hwe_oa_unit(struct xe_hw_engine *hwe)
-> > +{
-> > +	switch (hwe->class) {
-> > +	case XE_ENGINE_CLASS_RENDER:
-> > +	case XE_ENGINE_CLASS_COMPUTE:
-> > +		return XE_OA_UNIT_OAG;
-> > +
-> > +	case XE_ENGINE_CLASS_VIDEO_DECODE:
-> > +	case XE_ENGINE_CLASS_VIDEO_ENHANCE:
-> > +		return __hwe_oam_unit(hwe);
-> > +
-> > +	default:
-> > +		return XE_OA_UNIT_INVALID;
-> > +	}
-> > +}
-> > +
-> > +static struct xe_oa_regs __oam_regs(u32 base)
-> > +{
-> > +	return (struct xe_oa_regs) {
-> > +		base,
-> > +		OAM_HEAD_POINTER(base),
-> > +		OAM_TAIL_POINTER(base),
-> > +		OAM_BUFFER(base),
-> > +		OAM_CONTEXT_CONTROL(base),
-> > +		OAM_CONTROL(base),
-> > +		OAM_DEBUG(base),
-> > +		OAM_STATUS(base),
-> > +		OAM_CONTROL_COUNTER_SEL_MASK,
-> > +	};
-> > +}
-> > +
-> > +static struct xe_oa_regs __oag_regs(void)
-> > +{
-> > +	return (struct xe_oa_regs) {
-> > +		0,
-> > +		OAG_OAHEADPTR,
-> > +		OAG_OATAILPTR,
-> > +		OAG_OABUFFER,
-> > +		OAG_OAGLBCTXCTRL,
-> > +		OAG_OACONTROL,
-> > +		OAG_OA_DEBUG,
-> > +		OAG_OASTATUS,
-> > +		OAG_OACONTROL_OA_COUNTER_SEL_MASK,
-> > +	};
-> > +}
-> > +
-> > +static void __xe_oa_init_oa_units(struct xe_gt *gt)
-> > +{
-> > +	const u32 mtl_oa_base[] = {
-> > +		[XE_OA_UNIT_OAM_SAMEDIA_0] = 0x393000,
->
-> The base can also be 0x13000 because intel_uncore will automagically add
-> 0x380000. I prefer 0x13000 so that the media related mmio adjustments
-> happen in one place - intel_uncore. For functionality, it doesn't matter.
 
-Changed to 0x13000, since you are right, GSI steering will take care of it.
+Done, dropped comment and starting with 1 now.
 
-> > +	};
-> > +	int i, num_units = gt->oa.num_oa_units;
-> > +
-> > +	for (i = 0; i < num_units; i++) {
-> > +		struct xe_oa_unit *u = &gt->oa.oa_unit[i];
-> > +
-> > +		if (i == XE_OA_UNIT_OAG && gt->info.type != XE_GT_TYPE_MEDIA) {
->
-> This is where I feel enum can be dropped since decision can solely be made
-> with gt->info.type.
-
-Done.
-
->
-> > +			u->regs = __oag_regs();
-> > +			u->type = DRM_XE_OA_UNIT_TYPE_OAG;
-> > +		} else if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 1270) {
-> > +			u->regs = __oam_regs(mtl_oa_base[i]);
-> > +			u->type = DRM_XE_OA_UNIT_TYPE_OAM;
-> > +		}
-> > +
-> > +		/* Set oa_unit_ids now to ensure ids remain contiguous */
-> > +		u->oa_unit_id = gt_to_xe(gt)->oa.oa_unit_ids++;
-> > +	}
-> > +}
-> > +
->
-> All the above are minor comments, so with or without those addressed, this
-> is
+> minor nits above, otherwise lgtm,
 >
 > Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
