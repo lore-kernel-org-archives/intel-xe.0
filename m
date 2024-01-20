@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 059C1C4725D
-	for <intel-xe@archiver.kernel.org>; Sat, 20 Jan 2024 02:49:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D62CC4725D
+	for <intel-xe@archiver.kernel.org>; Sat, 20 Jan 2024 02:50:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C009710EAED;
-	Sat, 20 Jan 2024 02:49:23 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CABD10EAED
- for <intel-xe@lists.freedesktop.org>; Sat, 20 Jan 2024 02:49:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A1A710EAED;
+	Sat, 20 Jan 2024 02:50:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 480B710EAED
+ for <intel-xe@lists.freedesktop.org>; Sat, 20 Jan 2024 02:50:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705718963; x=1737254963;
+ t=1705719008; x=1737255008;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=FocEu/GJcr1Uk2rkkG9t/ld8kI/o0yJlwWXhO12/QPc=;
- b=iNQcZGDY6hUda/TanacgiE3GSUngxbCENVTo3s4S9Cn4A6dP9YU9JwYC
- GH7XaFpgoSitwJKrf4Rb+bZeRqaE5X1vNaW9q7bR3NF/HLjmLG5GtwGrR
- 1WkXGVa3xTou3R2PjQWgTJfoBkoU0Z6/yCjQW+Nq7ehyM2YUuLMBXhTbm
- g0tvufgXPyyq9bs9yThPyeyjjjOOnh4NBzBvA0ew93eSZ7K0vJtIGiaWp
- 51DcwxF3NctrAhnd+6hpisFDAyu0SgrPNc0ILiEnRAzASCjJoVBqzJldH
- bYRaVQ9oZDS629INU4DL1P2lVIWQ6qPt+AkRttaVtMJPFDnzZbA39lLCo g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10957"; a="398066805"
-X-IronPort-AV: E=Sophos;i="6.05,206,1701158400"; d="scan'208";a="398066805"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2024 18:49:23 -0800
+ bh=D/dI+Ax+i13u6HN8xBG63mY2kvYzFz3d+IDv9vPIaHg=;
+ b=ChF/47NREwnBZuocoU+IXwWNFhUm8PppWMII01h73drvW6EliU/OEwkS
+ 2GDEFsY09PBE6eCUKtWlRgURfF4JBa/9lfAUMHDXvFPvsgaFa6m4JwpKB
+ Y5GiESgZdNWrKvX+AMLd+Z8qnxtTrObJrNI7e3Gb1HPDIFpoxgxdgOS9c
+ RpB27yj0FymXNUei5XPvcH7TlpP6th3KTybvnchRpataeXJ/4TZJbYWmG
+ q6yqFjDbsA3gCKQWbc/vQcx3cl6ZtgT5KdBQ3BjYIjwGxBlqOfdzmn8hh
+ 6F+zxPJT4433hLAICqXrArjjiW3CMaVVoAF7XWSjcHlM8UM5GIh+14Lez w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10957"; a="779498"
+X-IronPort-AV: E=Sophos;i="6.05,206,1701158400"; 
+   d="scan'208";a="779498"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2024 18:50:07 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10957"; a="1116396406"
-X-IronPort-AV: E=Sophos;i="6.05,206,1701158400"; d="scan'208";a="1116396406"
+X-IronPort-AV: E=Sophos;i="6.05,206,1701158400"; d="scan'208";a="26912884"
 Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.intel.com)
  ([10.165.21.138])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2024 18:49:22 -0800
-Date: Fri, 19 Jan 2024 18:49:22 -0800
-Message-ID: <85zfx0btxp.wl-ashutosh.dixit@intel.com>
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2024 18:50:08 -0800
+Date: Fri, 19 Jan 2024 18:50:06 -0800
+Message-ID: <85y1ckbtwh.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: Re: [PATCH 08/17] drm/xe/oa: OA stream initialization (OAG)
-In-Reply-To: <ZYJSEb52c5Jwx1Wq@unerlige-ril>
-References: <20231208064329.2387604-1-ashutosh.dixit@intel.com>	<20231208064329.2387604-9-ashutosh.dixit@intel.com>	<ZYJSEb52c5Jwx1Wq@unerlige-ril>
+Subject: Re: [PATCH 09/17] drm/xe/oa/uapi: Expose OA stream fd
+In-Reply-To: <ZYJXCr37LMiJnxNK@unerlige-ril>
+References: <20231208064329.2387604-1-ashutosh.dixit@intel.com>	<20231208064329.2387604-10-ashutosh.dixit@intel.com>	<ZYJXCr37LMiJnxNK@unerlige-ril>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -63,53 +63,26 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 19 Dec 2023 18:31:45 -0800, Umesh Nerlige Ramappa wrote:
+On Tue, 19 Dec 2023 18:52:58 -0800, Umesh Nerlige Ramappa wrote:
 >
-
-Hi Umesh,
-
-> > diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> > index d318ec0efd7db..1b98b609f7fda 100644
-> > --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> > +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> > @@ -156,6 +156,8 @@
+> On Thu, Dec 07, 2023 at 10:43:21PM -0800, Ashutosh Dixit wrote:
+> > The OA stream open perf op returns an fd with its own file_operations for
+> > the newly initialized OA stream. These file_operations allow userspace to
+> > enable or disable the stream, as well as apply a different metric
+> > configuration for the OA stream. Userspace can also poll for data
+> > availability. OA stream initialization is completed in this commit by
+> > enabling the OA stream. When sampling is enabled this starts a hrtimer
+> > which periodically checks for data availablility.
 > >
-> > #define SQCNT1					XE_REG_MCR(0x8718)
-> > #define XELPMP_SQCNT1				XE_REG(0x8718)
-> > +#define   SQCNT1_PMON_ENABLE			REG_BIT(30)
-> > +#define   SQCNT1_OABPC				REG_BIT(29)
-> > #define   ENFORCE_RAR				REG_BIT(23)
+> > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 >
-> REG_BIT(29) indentation seems to be off
-
-Indentation is ok, I've explained this elsewhere.
-
-> > +static int xe_oa_emit_oa_config(struct xe_oa_stream *stream)
-> > +{
-> > +#define NOA_PROGRAM_ADDITIONAL_DELAY_US 500
-> > +	struct xe_oa_config_bo *oa_bo;
-> > +	int err, us = NOA_PROGRAM_ADDITIONAL_DELAY_US;
-> > +
-> > +	oa_bo = xe_oa_alloc_config_buffer(stream);
-> > +	if (IS_ERR(oa_bo)) {
-> > +		err = PTR_ERR(oa_bo);
-> > +		goto exit;
-> > +	}
-> > +
-> > +	err = xe_oa_submit_bb(stream, oa_bo->bb);
-> > +
-> > +	/* Additional empirical delay needed for NOA programming after registers are written */
-> > +	usleep_range(us, 2 * us);
->
-> Are we planning to signal user fence or something to indicate completion? I
-> haven't tracked that aspect much.
-
-Yes that's the plan. This usleep() will be removed when we implement that.
-
->
-> The reset is familiar and lgtm,
+> lgtm
 >
 > Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+
+Thanks, though the question here is can we avoid introducing the read()
+interface and can just do with mmap. For v8, I'm assuming we need read()
+too, but let's revisit afterwards.
 
 Thanks.
 --
