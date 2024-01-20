@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DD14C4725D
-	for <intel-xe@archiver.kernel.org>; Sat, 20 Jan 2024 02:51:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A9AEC47DAF
+	for <intel-xe@archiver.kernel.org>; Sat, 20 Jan 2024 02:51:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3518910EAED;
-	Sat, 20 Jan 2024 02:51:24 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DADA10EAED
- for <intel-xe@lists.freedesktop.org>; Sat, 20 Jan 2024 02:51:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F51610EAF5;
+	Sat, 20 Jan 2024 02:51:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CB7C10EAF5
+ for <intel-xe@lists.freedesktop.org>; Sat, 20 Jan 2024 02:51:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705719083; x=1737255083;
+ t=1705719090; x=1737255090;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=isX/3Iu4aKAj+T9orsx97DJu5GIoOcWH051BVQw1nNg=;
- b=MFyEETKFUb3j+U9UJSNCRLGYEeWDT4W4bD1TMnkq/HaBv88Ib5H8qfxY
- B5QV/C6AyGV3+lpEhXhAQqvLhX0KFvvzfSV+Ljobi2Ypu52K4+N95xnO3
- Y41vc7mmdbgVcMxfJR4ZpbP3LBTa1Yy80pZzLt+5yXvZHPiqkKyYIM3t7
- JwDVxxk9+bsjR4FbX+pHra/jB805xHv854nwN+dU9ybhuBL5Xea0gAxb7
- H8O3lM38jaQiKXb/xPKXO2cdrNZAXUajjvT3uKRgCG7iljFVkRex6zauW
- RgAeBJys3KVfaHUMBUPUDd0IdEqeOI07ALq8wqCGp64dHAcQZn9KqOFLV A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10957"; a="487050040"
-X-IronPort-AV: E=Sophos;i="6.05,206,1701158400"; d="scan'208";a="487050040"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2024 18:51:08 -0800
+ bh=peFHIT84QJg0VPydQqU6DkLjs+qeTkg83UyR/LdcnsE=;
+ b=OCGov/ED9Ykoi6Il4wDDwuEf9QPyum4F8GWykMjKDbe3yEBfJYF2qc9f
+ 7wy1hZzZxRrJ+I0A0hD5qF/y18VZZ63k+FWl2g0zc2OGqFQTC/+Tb4mqN
+ WQWDjrllYJE+WJC9YO4hGfQIGWgUWcjswgbnmqrbGx2/RmsfHU0kqvH8Q
+ 3B7A9kpJrsMVh9Mr9c/3cDufkYm2PSYORrZouG8UauG5ynzz24avUhvMh
+ 9tbxYKbBLAu5LHDLx+6U8JeODCObKlhVGbAgqvQz/vqRyKoP+CRel3J62
+ ruKfzBBeqatlqaaBASrQLDsPdJ51MrWqvw75/vxUHofxWcHYntZyKx7FG w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10957"; a="398066945"
+X-IronPort-AV: E=Sophos;i="6.05,206,1701158400"; d="scan'208";a="398066945"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2024 18:51:29 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10957"; a="761282659"
-X-IronPort-AV: E=Sophos;i="6.05,206,1701158400"; d="scan'208";a="761282659"
+X-IronPort-AV: E=Sophos;i="6.05,206,1701158400"; 
+   d="scan'208";a="702317"
 Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.intel.com)
  ([10.165.21.138])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2024 18:51:08 -0800
-Date: Fri, 19 Jan 2024 18:51:08 -0800
-Message-ID: <85wms4btur.wl-ashutosh.dixit@intel.com>
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2024 18:51:29 -0800
+Date: Fri, 19 Jan 2024 18:51:28 -0800
+Message-ID: <85v87obtu7.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: Re: [PATCH 11/17] drm/xe/oa: Disable overrun mode for Xe2+ OAG
-In-Reply-To: <ZYJaFBlMAjHcS7Z9@unerlige-ril>
-References: <20231208064329.2387604-1-ashutosh.dixit@intel.com>	<20231208064329.2387604-12-ashutosh.dixit@intel.com>	<ZYJaFBlMAjHcS7Z9@unerlige-ril>
+Subject: Re: [PATCH 10/17] drm/xe/oa/uapi: Read file_operation
+In-Reply-To: <ZYJZJeG3lUnFkCKU@unerlige-ril>
+References: <20231208064329.2387604-1-ashutosh.dixit@intel.com>	<20231208064329.2387604-11-ashutosh.dixit@intel.com>	<ZYJZJeG3lUnFkCKU@unerlige-ril>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -63,30 +63,42 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 19 Dec 2023 19:05:56 -0800, Umesh Nerlige Ramappa wrote:
+On Tue, 19 Dec 2023 19:01:57 -0800, Umesh Nerlige Ramappa wrote:
 >
 
 Hi Umesh,
 
-> On Thu, Dec 07, 2023 at 10:43:23PM -0800, Ashutosh Dixit wrote:
-> > Xe2+ OAG requires special handling because non-power-of-2 report sizes are
-> > not a sub-multiple of the OA buffer size and there are no partial reports
-> > at the end of the buffer. This issue is present only when overrun mode is
-> > enabled. Avoid adding this special handling by disabling overrun mode for
-> > Xe2+ OAG.
+> > +static int xe_oa_append_status(struct xe_oa_stream *stream, char __user *buf,
+> > +			       size_t count, size_t *offset,
+> > +			       enum drm_xe_oa_record_type type)
 >
-> Like you mentioned earlier, maybe disable overrun for all platforms OR have
-> the user control the setting.
-
-This patch is mostly a workaround till Xe handles this new thing in HW. But
-yes, we should see if it is possible to disable overrun mode altogether.
-
-I was actually saying have overrun mode always enabled and skip the HEAD
-pointer update (if we don't expose the read() interface). Anyway let's
-discuss some more about this. I will also check with UMD's.
-
-> Otherwise, this is
+> space/indent ^
 >
+> > +{
+> > +	struct drm_xe_oa_record_header header = { type, 0, sizeof(header) };
+> > +
+> > +	if ((count - *offset) < header.size)
+> > +		return -ENOSPC;
+> > +
+> > +	if (copy_to_user(buf + *offset, &header, sizeof(header)))
+> > +		return -EFAULT;
+> > +
+> > +	*offset += header.size;
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int xe_oa_append_sample(struct xe_oa_stream *stream, char __user *buf,
+> > +			       size_t count, size_t *offset, const u8 *report)
+>
+> space/indent ^ and a couple more places, in this patch.
+>
+> With some indents addressed, this is:
+
+Indents are fine and patches have gone through checkpatch. These indents
+may look off in the patches sometimes (say due to the additional +
+character) but in reality they are fine.
+
 > Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
 Thanks.
