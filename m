@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A9AEC47DAF
-	for <intel-xe@archiver.kernel.org>; Sat, 20 Jan 2024 02:51:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 809E4C4725D
+	for <intel-xe@archiver.kernel.org>; Sat, 20 Jan 2024 02:52:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F51610EAF5;
-	Sat, 20 Jan 2024 02:51:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A8EE10EAF8;
+	Sat, 20 Jan 2024 02:52:29 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CB7C10EAF5
- for <intel-xe@lists.freedesktop.org>; Sat, 20 Jan 2024 02:51:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EDEF10EAF8
+ for <intel-xe@lists.freedesktop.org>; Sat, 20 Jan 2024 02:52:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705719090; x=1737255090;
+ t=1705719148; x=1737255148;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=peFHIT84QJg0VPydQqU6DkLjs+qeTkg83UyR/LdcnsE=;
- b=OCGov/ED9Ykoi6Il4wDDwuEf9QPyum4F8GWykMjKDbe3yEBfJYF2qc9f
- 7wy1hZzZxRrJ+I0A0hD5qF/y18VZZ63k+FWl2g0zc2OGqFQTC/+Tb4mqN
- WQWDjrllYJE+WJC9YO4hGfQIGWgUWcjswgbnmqrbGx2/RmsfHU0kqvH8Q
- 3B7A9kpJrsMVh9Mr9c/3cDufkYm2PSYORrZouG8UauG5ynzz24avUhvMh
- 9tbxYKbBLAu5LHDLx+6U8JeODCObKlhVGbAgqvQz/vqRyKoP+CRel3J62
- ruKfzBBeqatlqaaBASrQLDsPdJ51MrWqvw75/vxUHofxWcHYntZyKx7FG w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10957"; a="398066945"
-X-IronPort-AV: E=Sophos;i="6.05,206,1701158400"; d="scan'208";a="398066945"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ bh=0CKCNvTWHf8fEcanTEiMIT23tXcbj9D2PVFws4c9MVo=;
+ b=QfSMlC5hGwkSzNQz1l++otCgNqkRNuhxNr2kPEyMtMbaYcHZDaAYPgrK
+ rrm4D8YwPxYjYZhRT8VRqON79NKN+fu9t256Ns3inaOiLMFsVOuoC9lBM
+ wn8cIFhRR5o0lxwNODffBbfemPSqEI0f65ZI6do9FRCMq/C3fOvad+GDR
+ I1ncK3BgzRZENqymTSFVN3hSup4Wpasac3epXLiOJQDSruclyUQi5qZ1q
+ sInbtCJXddJYa6xneEzD2QUIir9J0Jt/Vmuzd2DSjX4XpwHUaKjYCJi5x
+ ufmtTorECW7Il+4RCstcLAazg9d+WVGHPJx9k86sj2e3TuwUy57P2izhF w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10957"; a="398066974"
+X-IronPort-AV: E=Sophos;i="6.05,206,1701158400"; d="scan'208";a="398066974"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2024 18:51:29 -0800
+ 19 Jan 2024 18:52:28 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,206,1701158400"; 
-   d="scan'208";a="702317"
+X-IronPort-AV: E=McAfee;i="6600,9927,10957"; a="1116396810"
+X-IronPort-AV: E=Sophos;i="6.05,206,1701158400"; d="scan'208";a="1116396810"
 Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.intel.com)
  ([10.165.21.138])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2024 18:51:29 -0800
-Date: Fri, 19 Jan 2024 18:51:28 -0800
-Message-ID: <85v87obtu7.wl-ashutosh.dixit@intel.com>
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2024 18:52:27 -0800
+Date: Fri, 19 Jan 2024 18:52:27 -0800
+Message-ID: <85ttn8btsk.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: Re: [PATCH 10/17] drm/xe/oa/uapi: Read file_operation
-In-Reply-To: <ZYJZJeG3lUnFkCKU@unerlige-ril>
-References: <20231208064329.2387604-1-ashutosh.dixit@intel.com>	<20231208064329.2387604-11-ashutosh.dixit@intel.com>	<ZYJZJeG3lUnFkCKU@unerlige-ril>
+Subject: FIXME Re: [PATCH 13/17] drm/xe/oa: Add OAC support
+In-Reply-To: <ZYJ0qJnsvS1lNxch@unerlige-ril>
+References: <20231208064329.2387604-1-ashutosh.dixit@intel.com>	<20231208064329.2387604-14-ashutosh.dixit@intel.com>	<ZYJ0qJnsvS1lNxch@unerlige-ril>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -63,44 +63,222 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 19 Dec 2023 19:01:57 -0800, Umesh Nerlige Ramappa wrote:
+On Tue, 19 Dec 2023 20:59:29 -0800, Umesh Nerlige Ramappa wrote:
 >
 
 Hi Umesh,
 
-> > +static int xe_oa_append_status(struct xe_oa_stream *stream, char __user *buf,
-> > +			       size_t count, size_t *offset,
-> > +			       enum drm_xe_oa_record_type type)
->
-> space/indent ^
->
+> On Thu, Dec 07, 2023 at 10:43:25PM -0800, Ashutosh Dixit wrote:
+> > Similar to OAR, allow userspace to execute MI_REPORT_PERF_COUNT on compute
+> > engines of a specified exec queue.
+> >
+> > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > ---
+> > drivers/gpu/drm/xe/regs/xe_engine_regs.h |  1 +
+> > drivers/gpu/drm/xe/regs/xe_oa_regs.h     |  3 +
+> > drivers/gpu/drm/xe/xe_oa.c               | 81 +++++++++++++++++++++++-
+> > 3 files changed, 82 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+> > index 76c0938df05f3..045f9773f01f4 100644
+> > --- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+> > +++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+> > @@ -73,6 +73,7 @@
+> >
+> > #define RING_CONTEXT_CONTROL(base)		XE_REG((base) + 0x244, XE_REG_OPTION_MASKED)
+> > #define	  CTX_CTRL_OAC_CONTEXT_ENABLE		REG_BIT(8)
+> > +#define	  CTX_CTRL_RUN_ALONE			REG_BIT(7)
+> > #define	  CTX_CTRL_INHIBIT_SYN_CTX_SWITCH	REG_BIT(3)
+> > #define	  CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT	REG_BIT(0)
+> >
+> > diff --git a/drivers/gpu/drm/xe/regs/xe_oa_regs.h b/drivers/gpu/drm/xe/regs/xe_oa_regs.h
+> > index 7e2e875ccf80a..b66cd95b795e7 100644
+> > --- a/drivers/gpu/drm/xe/regs/xe_oa_regs.h
+> > +++ b/drivers/gpu/drm/xe/regs/xe_oa_regs.h
+> > @@ -74,6 +74,9 @@
+> > #define  OAG_OASTATUS_BUFFER_OVERFLOW	REG_BIT(1)
+> > #define  OAG_OASTATUS_REPORT_LOST	REG_BIT(0)
+> >
+> > +/* OAC unit */
+> > +#define OAC_OACONTROL			XE_REG(0x15114)
+> > +
+> > /* OAM unit */
+> > #define OAM_HEAD_POINTER_OFFSET			(0x1a0)
+> > #define OAM_TAIL_POINTER_OFFSET			(0x1a4)
+> > diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+> > index 9d653d7722d1a..42f32d4359f2c 100644
+> > --- a/drivers/gpu/drm/xe/xe_oa.c
+> > +++ b/drivers/gpu/drm/xe/xe_oa.c
+> > @@ -449,6 +449,19 @@ u32 __format_to_oactrl(const struct xe_oa_format *format, int counter_sel_mask)
+> >		REG_FIELD_PREP(OA_OACONTROL_COUNTER_SIZE_MASK, format->counter_size);
+> > }
+> >
+> > +static u32 __oa_ccs_select(struct xe_oa_stream *stream)
 > > +{
-> > +	struct drm_xe_oa_record_header header = { type, 0, sizeof(header) };
+> > +	u32 val;
 > > +
-> > +	if ((count - *offset) < header.size)
-> > +		return -ENOSPC;
+> > +	if (stream->hwe->class != XE_ENGINE_CLASS_COMPUTE)
+> > +		return 0;
 > > +
-> > +	if (copy_to_user(buf + *offset, &header, sizeof(header)))
-> > +		return -EFAULT;
-> > +
-> > +	*offset += header.size;
-> > +
-> > +	return 0;
+> > +	val = REG_FIELD_PREP(OAG_OACONTROL_OA_CCS_SELECT_MASK, stream->hwe->instance);
+> > +	xe_assert(stream->oa->xe,
+> > +		  REG_FIELD_GET(OAG_OACONTROL_OA_CCS_SELECT_MASK, val) == stream->hwe->instance);
+>
+> Why is there a need to do REG_FIELD_GET? I thought the REG_FIELD_PREP is
+> just a bitwise operation. Are you expecting coherency issues?
+
+No, the check is that hwe->instance can fit in 3 bits
+(OAG_OACONTROL_OA_CCS_SELECT_MASK).
+
+>
 > > +}
 > > +
-> > +static int xe_oa_append_sample(struct xe_oa_stream *stream, char __user *buf,
-> > +			       size_t count, size_t *offset, const u8 *report)
+> > static void xe_oa_enable(struct xe_oa_stream *stream)
+> > {
+> >	const struct xe_oa_format *format = stream->oa_buffer.format;
+> > @@ -463,7 +476,7 @@ static void xe_oa_enable(struct xe_oa_stream *stream)
+> >
+> >	regs = __oa_regs(stream);
+> >	val = __format_to_oactrl(format, regs->oa_ctrl_counter_select_mask) |
+> > -		OAG_OACONTROL_OA_COUNTER_ENABLE;
+> > +		__oa_ccs_select(stream) | OAG_OACONTROL_OA_COUNTER_ENABLE;
+> >
+> >	xe_mmio_write32(stream->gt, regs->oa_ctrl, val);
+> > }
+> > @@ -762,6 +775,64 @@ static int xe_oa_configure_oar_context(struct xe_oa_stream *stream, bool enable)
+> >	return xe_oa_modify_self(stream, regs_lri, ARRAY_SIZE(regs_lri));
+> > }
+> >
+> > +static int xe_oa_configure_oac_context(struct xe_oa_stream *stream, bool enable)
+> > +{
+> > +	const struct xe_oa_format *format = stream->oa_buffer.format;
+> > +	struct xe_lrc *lrc = &stream->exec_q->lrc[0];
+> > +	u32 regs_offset = xe_lrc_regs_offset(lrc) / sizeof(u32);
+> > +	u32 oacontrol = __format_to_oactrl(format, OAR_OACONTROL_COUNTER_SEL_MASK) |
+> > +		(enable ? OAR_OACONTROL_COUNTER_ENABLE : 0);
+> > +	struct flex regs_context[] = {
+> > +		{
+> > +			OACTXCONTROL(stream->hwe->mmio_base),
+> > +			stream->oa->ctx_oactxctrl_offset[stream->hwe->class] + 1,
+> > +			enable ? OA_COUNTER_RESUME : 0,
+> > +		},
+> > +		{
+> > +			RING_CONTEXT_CONTROL(stream->hwe->mmio_base),
+> > +			regs_offset + CTX_CONTEXT_CONTROL,
+> > +			_MASKED_FIELD(CTX_CTRL_OAC_CONTEXT_ENABLE,
+> > +				      enable ? CTX_CTRL_OAC_CONTEXT_ENABLE : 0) |
+> > +			_MASKED_FIELD(CTX_CTRL_RUN_ALONE,
+> > +				      enable ? CTX_CTRL_RUN_ALONE : 0),
+> > +		},
+> > +	};
+> > +	/* Offsets in regs_lri are not used since this configuration is applied using LRI */
+> > +	struct flex regs_lri[] = {
+> > +		{
+> > +			OAC_OACONTROL,
+> > +			OAR_OAC_OACONTROL_OFFSET + 1,
+> > +			oacontrol,
+> > +		},
+> > +	};
+> > +	int err;
+> > +
+> > +	/* Set ccs select to enable programming of OAC_OACONTROL */
+> > +	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_ctrl, __oa_ccs_select(stream));
+> > +
+> > +	/* Modify stream hwe context image with regs_context */
+> > +	err = xe_oa_modify_context(stream, &stream->exec_q->lrc[0],
+> > +				   regs_context, ARRAY_SIZE(regs_context));
+> > +	if (err)
+> > +		return err;
+> > +
+> > +	/* Apply regs_lri using LRI */
+> > +	return xe_oa_modify_self(stream, regs_lri, ARRAY_SIZE(regs_lri));
 >
-> space/indent ^ and a couple more places, in this patch.
+> I think in i915, for execlist scheduling, there was a kernel context that
+> was scheduled and when it ran, it would indicate that all other contexts
+> are done executing - kinda GPU idle. The modify self was (IMO) only needed
+> to update the kernel context in this scenario.
+
+Hmm, in i915 the modify_self uses the "pinned context" (not the kernel
+context) afaict. Anyway there are significant differences between this code
+in Xe vs the same code in i915 (due to the exclusive use of
+stream->k_exec_q in Xe).
+
+> GuC does not have a concept of kernel context (at least not in i915, not
+> sure if things changed in XE). If so, all the modify self can be dropped
+> (both from OAR and OAC).
+
+I tried replacing modify_self with an MMIO write to
+OAR_OACONTROL/OAC_OACONTROL, but it doesn't work. So it seems those
+registers can only be programmed via MI_LOAD_REGISTER commands, not by
+xe_mmio_write32.
+
+So what I have done instead is, just rename modify_self and refactor the
+code a bit.
+
+> Otherwise, this is good too, so
 >
-> With some indents addressed, this is:
-
-Indents are fine and patches have gone through checkpatch. These indents
-may look off in the patches sometimes (say due to the additional +
-character) but in reality they are fine.
-
 > Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>
+> The other query I have (unrelated to this patch) is if we need the
+> PWR_CLK_STATE state configured in all contexts. It's a bit hazy if that was
+> only needed for older gens or if it is applicable to newer
+> platforms. (gen12_configure_all_contexts() in i915).
+
+Lionel confirmed that PWR_CLK_STATE is not needed for Gen12+ (only needed
+for Gen11 and older).
 
 Thanks.
 --
 Ashutosh
+
+> > +}
+> > +
+> > +static int xe_oa_configure_oa_context(struct xe_oa_stream *stream, bool enable)
+> > +{
+> > +	switch (stream->hwe->class) {
+> > +	case XE_ENGINE_CLASS_RENDER:
+> > +		return xe_oa_configure_oar_context(stream, enable);
+> > +	case XE_ENGINE_CLASS_COMPUTE:
+> > +		return xe_oa_configure_oac_context(stream, enable);
+> > +	default:
+> > +		/* Video engines do not support MI_REPORT_PERF_COUNT */
+> > +		return 0;
+> > +	}
+> > +}
+> > +
+> > #define HAS_OA_BPC_REPORTING(xe) (GRAPHICS_VERx100(xe) >= 1255)
+> >
+> > static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
+> > @@ -781,7 +852,7 @@ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
+> >
+> >	/* disable the context save/restore or OAR counters */
+> >	if (stream->exec_q)
+> > -		xe_oa_configure_oar_context(stream, false);
+> > +		xe_oa_configure_oa_context(stream, false);
+> >
+> >	/* Make sure we disable noa to save power. */
+> >	xe_mmio_rmw32(stream->gt, RPM_CONFIG1, GT_NOA_ENABLE, 0);
+> > @@ -978,8 +1049,9 @@ static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
+> >
+> >	xe_mmio_rmw32(stream->gt, XELPMP_SQCNT1, 0, sqcnt1);
+> >
+> > +	/* Configure OAR/OAC */
+> >	if (stream->exec_q) {
+> > -		ret = xe_oa_configure_oar_context(stream, true);
+> > +		ret = xe_oa_configure_oa_context(stream, true);
+> >		if (ret)
+> >			return ret;
+> >	}
+> > @@ -1636,6 +1708,9 @@ int xe_oa_stream_open_ioctl(struct drm_device *dev, void *data, struct drm_file
+> >		param.exec_q = xe_exec_queue_lookup(xef, param.exec_queue_id);
+> >		if (XE_IOCTL_DBG(oa->xe, !param.exec_q))
+> >			return -ENOENT;
+> > +
+> > +		if (param.exec_q->width > 1)
+> > +			drm_dbg(&oa->xe->drm, "exec_q->width > 1, programming only exec_q->lrc[0]\n");
+> >	}
+> >
+> >	/*
+> > --
+> > 2.41.0
+> >
