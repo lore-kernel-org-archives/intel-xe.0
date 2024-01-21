@@ -4,40 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BE3FC47422
-	for <intel-xe@archiver.kernel.org>; Sun, 21 Jan 2024 09:02:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDA2FC47422
+	for <intel-xe@archiver.kernel.org>; Sun, 21 Jan 2024 09:06:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB3A410E1EE;
-	Sun, 21 Jan 2024 09:02:41 +0000 (UTC)
-Received: from mail02.habana.ai (habanamailrelay.habana.ai [213.57.90.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DAEF10E1EE
- for <intel-xe@lists.freedesktop.org>; Sun, 21 Jan 2024 09:02:40 +0000 (UTC)
-Received: internal info suppressed
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
- t=1705827753; bh=zBFNik1DY80WVlaQEY+WZ0aT6/23AjbTGL3mnDkexnc=;
- h=From:To:Cc:Subject:Date:From;
- b=I9YyTiKnbYC07AO1cNweUV+h7rmVod78K1wo3THMW4nuOatISgBjHMM34gRSi4LKq
- oH09wKh/DZsLWg9b/l1f6RRz2MwrE6HvTmn6RPJ7/Ca1CSGUz0+ipbvpaYg2kPUUE2
- QKq8vakkcg5i/z63+ZCluzYK4X7z6YYtMIgnvewjJj7mJKJ8bYOlw0nEJgSDJYgVP3
- dBSu/dDGD8rZkTuo3Q+ShHPaLVMqvXZsENLdj8/nBTbkV3hFdsL6crxdB4oekwPbFv
- yJ09mRoqVYlZ54RvkRp/tDFOERB1Ca5Vnf2VfeqbLlCtgclHSCKdOgOssd0rNoIqIK
- 1X2aGJIpZJDhw==
-Received: from dliberman-vm-u22.habana-labs.com (localhost [127.0.0.1])
- by dliberman-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with
- ESMTPS id 40L92SdP2072938
- (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
- Sun, 21 Jan 2024 11:02:28 +0200
-Received: (from dliberman@localhost)
- by dliberman-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id 40L92R8q2072937; 
- Sun, 21 Jan 2024 11:02:27 +0200
-From: Dani Liberman <dliberman@habana.ai>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2] drm/xe/irq: allocate all possible msix interrupts
-Date: Sun, 21 Jan 2024 11:02:14 +0200
-Message-Id: <20240121090214.2072923-1-dliberman@habana.ai>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEF4510E1CB;
+	Sun, 21 Jan 2024 09:06:14 +0000 (UTC)
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F21610E15F;
+ Sun, 21 Jan 2024 09:06:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/irq=3A_alloca?=
+ =?utf-8?q?te_all_possible_msix_interrupts_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dani Liberman" <dliberman@habana.ai>
+Date: Sun, 21 Jan 2024 09:06:13 -0000
+Message-ID: <170582797338.611528.1126091208562259335@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240121090214.2072923-1-dliberman@habana.ai>
+In-Reply-To: <20240121090214.2072923-1-dliberman@habana.ai>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,57 +35,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If platform supports MSIX, driver needs to allocate all possible
-interrupts.
+== Series Details ==
 
-v2:
-  - drop msix_cap and use the api return code instead.
-  - fix commit message.
+Series: drm/xe/irq: allocate all possible msix interrupts (rev2)
+URL   : https://patchwork.freedesktop.org/series/128832/
+State : success
 
-Cc: Ohad Sharabi <osharabi@habana.ai>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Dani Liberman <dliberman@habana.ai>
----
- drivers/gpu/drm/xe/xe_irq.c | 15 +++++++++++++--
- 1 file changed, 13 insertions(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 907c8ff0fa21..7a23d25c1062 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -662,7 +662,7 @@ int xe_irq_install(struct xe_device *xe)
- {
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 	irq_handler_t irq_handler;
--	int err, irq;
-+	int err, irq, nvec;
- 
- 	irq_handler = xe_irq_handler(xe);
- 	if (!irq_handler) {
-@@ -672,7 +672,18 @@ int xe_irq_install(struct xe_device *xe)
- 
- 	xe_irq_reset(xe);
- 
--	err = pci_alloc_irq_vectors(pdev, 1, 1, PCI_IRQ_MSI | PCI_IRQ_MSIX);
-+	nvec = pci_msix_vec_count(pdev);
-+	if (nvec <= 0) {
-+		if (nvec == -EINVAL) {
-+			/* MSIX capability is not supported in the device, using MSI */
-+			nvec = 1;
-+		} else {
-+			drm_err(&xe->drm, "MSIX: Failed getting count\n");
-+			return nvec;
-+		}
-+	}
-+
-+	err = pci_alloc_irq_vectors(pdev, nvec, nvec, PCI_IRQ_MSI | PCI_IRQ_MSIX);
- 	if (err < 0) {
- 		drm_err(&xe->drm, "MSI/MSIX: Failed to enable support %d\n", err);
- 		return err;
--- 
-2.34.1
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: b239ffd47 drm-tip: 2024y-01m-19d-21h-47m-43s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/irq: allocate all possible msix interrupts
+
 
