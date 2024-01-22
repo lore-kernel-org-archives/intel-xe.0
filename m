@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A489C47DDC
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jan 2024 21:17:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5077AC48260
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jan 2024 21:17:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E784710EF8E;
-	Mon, 22 Jan 2024 21:17:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBD7710EF8A;
+	Mon, 22 Jan 2024 21:17:29 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A57A810EF87
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Jan 2024 21:17:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D721010EF6F
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 Jan 2024 21:17:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705958245; x=1737494245;
+ t=1705958243; x=1737494243;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ENxuc2/DBPp6ziqo09xnbfIu4TwV2yq2DENVo0DoxKs=;
- b=d49AYLA55mhX7YOuDdfURYvy/+IiPvMoVXogAhnWiIQOoEROA2wA5FlO
- 9JBcfjgO4++3w3g9LkNbl2p96TUmXMphs/cHmsWdMy+KVWQHKjCA3keHV
- j7bTl/03bS52f528SMJ1hKY57NuRzvWv74W4WZVHCSX/toZI2lDLEpoHS
- EWnXmIB06Dp8suszPnlhqmx4hFYr6DrdFcCjlLLLhh1dqb+XTzvi8Wb8+
- wwGU4TYiCrXTrzTijMKidADu7011TWsp4ky2whQm7NWA6/cuIn/xvPm4l
- c9ySfXmr+W5Y69DJXjXVCfm8mFovCO6hZkiQ05ejQ1mDmdourMdhoGV3t w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="432486560"
-X-IronPort-AV: E=Sophos;i="6.05,212,1701158400"; d="scan'208";a="432486560"
+ bh=T+jDRb3QYsKXwkoqGPY/WPiASrz9C0E1l8a4OsrCrPM=;
+ b=LfOcKIYIavMup5kn4j0ZwKeW6lY6I9d4dvfXubmVbYGxXsx8jx6u5Ezu
+ WgPAqTHAw2ek6bzgnyC2bmDDXyNPVfkOocYzJNsP7UWAczddTxH0IcfQr
+ M8EsSZezEZzgT47H8AJeXlJlZ0pIsdKFp4KgijMBMkCYzxSxlxWdhWvx1
+ KsWMIxKjRx/9/uAz2VKyK95CJlR4SUM+tBxg6BZZv5z9T968oBrqkZiUb
+ Hlza4j1e7/6Mu4fSEtrmRQohzGOcECpGxNnOdMvB1abi4Ns8YsLipgoSm
+ pB8wMfe6k3+9m8SSLQsj1OOeKZmxXz7boxE1hF3I+h3/WvanrjvA1Igtv A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="432486553"
+X-IronPort-AV: E=Sophos;i="6.05,212,1701158400"; d="scan'208";a="432486553"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2024 13:17:25 -0800
+ 22 Jan 2024 13:17:23 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,212,1701158400"; d="scan'208";a="27495065"
+X-IronPort-AV: E=Sophos;i="6.05,212,1701158400"; d="scan'208";a="27495062"
 Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2024 13:17:24 -0800
+ 22 Jan 2024 13:17:22 -0800
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 5/9] drm/xe: Nuke xe from xe_devcoredump
-Date: Mon, 22 Jan 2024 13:17:05 -0800
-Message-ID: <20240122211709.224419-5-jose.souza@intel.com>
+Subject: [PATCH v2 4/9] drm/xe: Add batch buffer addresses to devcoredump
+Date: Mon, 22 Jan 2024 13:17:04 -0800
+Message-ID: <20240122211709.224419-4-jose.souza@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240122211709.224419-1-jose.souza@intel.com>
 References: <20240122211709.224419-1-jose.souza@intel.com>
@@ -60,30 +60,148 @@ Cc: Maarten Lankhorst <dev@lankhorst.se>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe is never set in xe_devcoredump but if xe_device is needed
-devcoredump_to_xe_device() can be used.
+Those addresses are necessary to Mesa tools knows where in VM are the
+batch buffers to parse and print instructions that are human readable.
 
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Maarten Lankhorst <dev@lankhorst.se>
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/xe/xe_devcoredump_types.h | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/gpu/drm/xe/xe_devcoredump.c       |  5 +++
+ drivers/gpu/drm/xe/xe_devcoredump_types.h |  3 ++
+ drivers/gpu/drm/xe/xe_sched_job.c         | 38 +++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sched_job.h         |  5 +++
+ drivers/gpu/drm/xe/xe_sched_job_types.h   |  5 +++
+ 5 files changed, 56 insertions(+)
 
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index 0f23ecc74b162..a0e3732440ab5 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -94,6 +94,9 @@ static ssize_t xe_devcoredump_read(char *buffer, loff_t offset,
+ 	xe_guc_ct_snapshot_print(coredump->snapshot.ct, &p);
+ 	xe_guc_exec_queue_snapshot_print(coredump->snapshot.ge, &p);
+ 
++	drm_printf(&p, "\n**** Job ****\n");
++	xe_sched_job_snapshot_print(coredump->snapshot.job, &p);
++
+ 	drm_printf(&p, "\n**** HW Engines ****\n");
+ 	for (i = 0; i < XE_NUM_HW_ENGINES; i++)
+ 		if (coredump->snapshot.hwe[i])
+@@ -114,6 +117,7 @@ static void xe_devcoredump_free(void *data)
+ 
+ 	xe_guc_ct_snapshot_free(coredump->snapshot.ct);
+ 	xe_guc_exec_queue_snapshot_free(coredump->snapshot.ge);
++	xe_sched_job_snapshot_free(coredump->snapshot.job);
+ 	for (i = 0; i < XE_NUM_HW_ENGINES; i++)
+ 		if (coredump->snapshot.hwe[i])
+ 			xe_hw_engine_snapshot_free(coredump->snapshot.hwe[i]);
+@@ -153,6 +157,7 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 
+ 	coredump->snapshot.ct = xe_guc_ct_snapshot_capture(&guc->ct, true);
+ 	coredump->snapshot.ge = xe_guc_exec_queue_snapshot_capture(job);
++	coredump->snapshot.job = xe_sched_job_snapshot_capture(job);
+ 
+ 	for_each_hw_engine(hwe, q->gt, id) {
+ 		if (hwe->class != q->hwe->class ||
 diff --git a/drivers/gpu/drm/xe/xe_devcoredump_types.h b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-index 9a12959ed6b14..d259119b2c980 100644
+index 7fdad9c3d3dde..9a12959ed6b14 100644
 --- a/drivers/gpu/drm/xe/xe_devcoredump_types.h
 +++ b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-@@ -47,8 +47,6 @@ struct xe_devcoredump_snapshot {
-  * for reading the information.
-  */
- struct xe_devcoredump {
--	/** @xe: Xe device. */
--	struct xe_device *xe;
- 	/** @captured: The snapshot of the first hang has already been taken. */
- 	bool captured;
- 	/** @snapshot: Snapshot is captured at time of the first crash */
+@@ -31,8 +31,11 @@ struct xe_devcoredump_snapshot {
+ 	struct xe_guc_ct_snapshot *ct;
+ 	/** @ge: Guc Engine snapshot */
+ 	struct xe_guc_submit_exec_queue_snapshot *ge;
++
+ 	/** @hwe: HW Engine snapshot array */
+ 	struct xe_hw_engine_snapshot *hwe[XE_NUM_HW_ENGINES];
++	/** @job: Snapshot of job state */
++	struct xe_sched_job_snapshot *job;
+ };
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
+index 01106a1156ad8..cde1407867db6 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job.c
++++ b/drivers/gpu/drm/xe/xe_sched_job.c
+@@ -278,3 +278,41 @@ int xe_sched_job_last_fence_add_dep(struct xe_sched_job *job, struct xe_vm *vm)
+ 
+ 	return drm_sched_job_add_dependency(&job->drm, fence);
+ }
++
++struct xe_sched_job_snapshot *
++xe_sched_job_snapshot_capture(struct xe_sched_job *job)
++{
++	struct xe_exec_queue *q = job->q;
++	struct xe_device *xe = q->gt->tile->xe;
++	struct xe_sched_job_snapshot *snapshot;
++	size_t len = sizeof(*snapshot) + (sizeof(u64) * q->width);
++	u16 i;
++
++	snapshot = kzalloc(len, GFP_ATOMIC);
++	if (!snapshot)
++		return NULL;
++
++	snapshot->batch_addr_len = q->width;
++	for (i = 0; i < q->width; i++)
++		snapshot->batch_addr[i] = xe_device_uncanonicalize_addr(xe, job->batch_addr[i]);
++
++	return snapshot;
++}
++
++void xe_sched_job_snapshot_free(struct xe_sched_job_snapshot *snapshot)
++{
++	kfree(snapshot);
++}
++
++void
++xe_sched_job_snapshot_print(struct xe_sched_job_snapshot *snapshot,
++			    struct drm_printer *p)
++{
++	u16 i;
++
++	if (!snapshot)
++		return;
++
++	for (i = 0; i < snapshot->batch_addr_len; i++)
++		drm_printf(p, "batch_addr[%u]: 0x%016llx\n", i, snapshot->batch_addr[i]);
++}
+diff --git a/drivers/gpu/drm/xe/xe_sched_job.h b/drivers/gpu/drm/xe/xe_sched_job.h
+index 34f475ba7f502..f1a660648cf00 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job.h
++++ b/drivers/gpu/drm/xe/xe_sched_job.h
+@@ -8,6 +8,7 @@
+ 
+ #include "xe_sched_job_types.h"
+ 
++struct drm_printer;
+ struct xe_vm;
+ 
+ #define XE_SCHED_HANG_LIMIT 1
+@@ -77,4 +78,8 @@ xe_sched_job_add_migrate_flush(struct xe_sched_job *job, u32 flags)
+ 
+ bool xe_sched_job_is_migration(struct xe_exec_queue *q);
+ 
++struct xe_sched_job_snapshot *xe_sched_job_snapshot_capture(struct xe_sched_job *job);
++void xe_sched_job_snapshot_free(struct xe_sched_job_snapshot *snapshot);
++void xe_sched_job_snapshot_print(struct xe_sched_job_snapshot *snapshot, struct drm_printer *p);
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
+index 71213ba9735bc..377dc6b806eb8 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job_types.h
++++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
+@@ -43,4 +43,9 @@ struct xe_sched_job {
+ 	u64 batch_addr[];
+ };
+ 
++struct xe_sched_job_snapshot {
++	u16 batch_addr_len;
++	u64 batch_addr[];
++};
++
+ #endif
 -- 
 2.43.0
 
