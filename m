@@ -4,148 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7165EC4725D
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jan 2024 07:08:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96EA7C47DAF
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jan 2024 08:21:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A3AB10E5D5;
-	Mon, 22 Jan 2024 07:08:33 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9B3A10E5D3
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Jan 2024 07:08:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0518810E0F1;
+	Mon, 22 Jan 2024 08:21:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D42A10E0F1;
+ Mon, 22 Jan 2024 08:21:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705907311; x=1737443311;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=ahhiAaHfGce4kSlfXY6RmtX2k9NMI6KHpBhgn5eEUlU=;
- b=cisYIKGQboANv2RT0zCJG/o0Z6R/FsqwE/9tB84H7mAYti8M0kgmJ8mp
- OUfhmGVqRFayCJQb6oQ3oePUj2loa/uGw4Ip/HUNJZpDOsIi7jA7GUKbD
- 8rV3ph9cP9u/Fd0GHV1UvUssDxEP1HYnr1n7ci1USQYxYetm7oV+3C8Hk
- oYGOfKhdLSXim2llNFHsr/aIGbnqLXhBucN/0dus2kMfYwU4Uyt1x0Aju
- AHezkl0iDM8AhvTrgjooHUa6TMQrZTZ/gdyJdpGhDt4i7AXACiYJBzUf9
- Cut5buKOsxUNMmh28hWOv0bgoCD1jj4xLX99Wdan0gsYZ6Na/vnjSHo9/ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10960"; a="400774872"
-X-IronPort-AV: E=Sophos;i="6.05,211,1701158400"; d="scan'208";a="400774872"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2024 23:08:29 -0800
+ t=1705911678; x=1737447678;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=FVBaX7oX3ZXeuKl41U3j1aUapAEuIUw2DPdZJJaYcrs=;
+ b=nl5vJgKqc0NWubJ5yGjsf1vNDkD+SNHg1sQQ3cpMPndFS00Z+hU8+tau
+ EdTcNqjYT+l1THeEmJ6FFqYsVc/eXQ6sdwu5bLFAvuXwhylmJuazOSLnn
+ J9p+1Hvs/0ztQ4yk1oG94lc77MwVbTp3FZE1kkXs5To5iMYrmaQzIeOnF
+ lUKyfTEQ6tTdAweQD4j2q7rciTAvMlytwB7Qk9K4E3ZogSUAL4s/tc+wG
+ Y9VeKlyWmq0MxdPeqVrKmrSKkZpXBwUx789AZK4/hO4/tzQQG795VJjCB
+ mqyVl1MwB3C/MC1/U00SXiESsNtiYqsCXW2SgmcQeapcgSNDOz5FnuQxy g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10960"; a="465406232"
+X-IronPort-AV: E=Sophos;i="6.05,211,1701158400"; d="scan'208";a="465406232"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2024 00:21:17 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10960"; a="855850375"
-X-IronPort-AV: E=Sophos;i="6.05,211,1701158400"; d="scan'208";a="855850375"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 21 Jan 2024 23:08:29 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Sun, 21 Jan 2024 23:08:29 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Sun, 21 Jan 2024 23:08:28 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Sun, 21 Jan 2024 23:08:28 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Sun, 21 Jan 2024 23:08:28 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=d6B3IudE13/ZX5AlTfUGCcfI+ZSRcEW4PefglVaVl4ztMKN+Wyy/iowrnmQx3Qst8tHJJUZ2HzfV9XA53cvngArsq/XdmFE875usmlKtfoWwFSdFXzyJOFSRY2ZXqqh812wfabY4vwuJUyW+1y3uqbCxVLQDmfyMt59pOFrr6SeWHRqKifwAMR7BzVZMcwLV/zGtV1Ov+b0B/Y3s5Hv54js9IjO2WpOFR6vOHXjiXbDm8gHs2jvvZmRTUKNJ3ps/DvPljV2sm6Wql7pOTL8UlxVRWGCWerGFXLN1Q7nMADEKrtU46sLJYZfswgWfHCjlm0Umxgl7tA+JlIouc0VOpg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2hVsZQtM5WY1r6t73lK/I91c7R8ti6gYPyBlqp8/gis=;
- b=W00VwPhTUaYbKQxl9fx7tqJTOiK0EMHzXRQwEvmAMAoFdW2joRhngLbR28JvAF3FY2fqiJvqXpRo1D41EKH1Rnw1e0Wh94QCWkbLoX9Q2HCeMonKmLQ/iGKeNOPbypFV2mHXPH70TxFYkFhlSyoZ8sBrsJ0Gn9xEH01nNPVTXFudVFi+wijFiyGUe7+GuRvgxjpK38x3fVts4zDXDDrRrKHiXfcF5aj6l5W795d/85JfYvQPkU1eCvxirMowCYKC3E2DeHah3XHuwb2Zjht7GidDXLImn62+nOe/WLEWUxdBTKnUGt82QDyvrDe2s7SSE5CEQ0SsdNXBDwp6a5EjSg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
- SA1PR11MB8575.namprd11.prod.outlook.com (2603:10b6:806:3a9::5) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7202.31; Mon, 22 Jan 2024 07:08:25 +0000
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::66b5:7551:319c:73d6]) by DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::66b5:7551:319c:73d6%7]) with mapi id 15.20.7202.033; Mon, 22 Jan 2024
- 07:08:25 +0000
-Message-ID: <11530813-d796-4e76-b268-2a020d7357f5@intel.com>
-Date: Mon, 22 Jan 2024 12:38:20 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [v2] drm/xe: Fix typo in vram frequency sysfs documentation
-To: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>,
- <intel-xe@lists.freedesktop.org>
-References: <20240117043215.2598677-1-sujaritha.sundaresan@intel.com>
-Content-Language: en-US
-From: Riana Tauro <riana.tauro@intel.com>
-In-Reply-To: <20240117043215.2598677-1-sujaritha.sundaresan@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN2PR01CA0233.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:eb::12) To DS0PR11MB7958.namprd11.prod.outlook.com
- (2603:10b6:8:f9::19)
+X-IronPort-AV: E=Sophos;i="6.05,211,1701158400"; 
+   d="scan'208";a="1103046"
+Received: from mstribae-mobl.ger.corp.intel.com (HELO [10.249.254.89])
+ ([10.249.254.89])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2024 00:21:15 -0800
+Message-ID: <f0200e2e-51c5-4bd9-a633-2e6fdc52029c@linux.intel.com>
+Date: Mon, 22 Jan 2024 09:21:13 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|SA1PR11MB8575:EE_
-X-MS-Office365-Filtering-Correlation-Id: bf87ab14-5b58-43ae-de77-08dc1b18ed61
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: N9Az/yQueRI9oe2n/tkZY92yofp4JM88Vfrl8NX3haPE3HRI1wwAr3l+qJUMs2o+OAgVSz+xtHkfjxcN+vNSzKH4qAjVqxyYU6CFiBqQgogmyaZq0FXgLWAjAnDgMMXmZyAetQEM1ZR1+eTHh03ikEuJVZ/eZfJqVkvrtQ77TQ/JMHFCFatoGrTfSCvHgrZULGHinV33hioKFD2f97xUwlF9B/GMCfMFNvc1FTfNHuMp/y8iyLAY+PNGa0H+pp+u9Dt5v15V1YzdMCVKeS9aqmBGg1YBOTSWQfXcCwZELHwY/7XtRTLF+WGc1bjv88mOaihWbqRoGl4tISmk6PzCcr0GjB6XEHP7Lgfl2ympw0APf8t6oXOiqgO4vO+bOEWzFNx3Y9BbxKYslmZkrm2cNpmZWKF4N94YLNWjljIOUggd3CKYcBwIx1XiBZUPZ2jxtrJ3Wg16wPkFv7NMEpJ+iW0cUkCR+3CVPHMZ7BDO5bLbyC+UEO5MT/27gOhSR14wFG7mGsC+CGBUr3HVvkMLieheaRHTBpxUrYkyKbqK01uxs/U8aL9vKmVWsvK/NtE1WePm7zZN9Ss5cKeQmkVBlf8J7DlhO3Z+P8Y0PCPyBzaQhKFDG2D7aaistwop1vGBuU68jChb+NTaxBLuQuK+hw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(136003)(376002)(346002)(39860400002)(366004)(396003)(230922051799003)(451199024)(186009)(1800799012)(64100799003)(31686004)(83380400001)(31696002)(86362001)(36756003)(82960400001)(53546011)(8676002)(8936002)(26005)(2616005)(38100700002)(6666004)(6506007)(66556008)(6512007)(316002)(6486002)(66946007)(66476007)(2906002)(41300700001)(478600001)(5660300002)(44832011)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VjhsYWlmMHZjcHZ4N0lmbnZVeW1XeUp5UUxXb0x2bHZlSmNQZXFCY0FpV2xD?=
- =?utf-8?B?RUUzTURYRDhkQ1MzanBTbFRramhCeHI2SDZCcm52QTNIUnR3ZGdibFE4RGtJ?=
- =?utf-8?B?T2FwV0xFQXJTVlY1dC9ZMkkzN2pDUGFjNVA4Ym9INm5vSXErUlNKdHZlMDk4?=
- =?utf-8?B?bzlhL1Awb0lyKzFSOFBodS80RG9JNnp1dGJMTUdRN1gvamtYNTVkd3lPRmxa?=
- =?utf-8?B?QkRFZ1FrZzBPVlJiSWg4ZHFGSVNhRURHQ3V1Y1pnRCtpbDZRRjVNN1JNOFlZ?=
- =?utf-8?B?SDU1dDM0a2k1eVV2blNZcGF5cXdzN3BoRGc2VjFWT2ZGdFZSZ3RTbDJBVmd4?=
- =?utf-8?B?dFFJbGFRajFEbXVybVlpeDZHQUFDN3pNRUFhbTZBeThxKzFkVmxGTzk4Z1A5?=
- =?utf-8?B?SzQ5emtTYzJPOW9Oc05iUjJ4WkhsVlRSbEE0YlQrWVk3TXBzNUNSN0s2UkZQ?=
- =?utf-8?B?UVNUVTd2dFR6MnpWUC9vQTE3TlZqbDVqanFLVWR3SGM3Um5tZ0NaVGR6RFBh?=
- =?utf-8?B?V0M0THhuSzdpNnlEdDlmUmxBRHRuZFhTRzZOTEtGOXNBaDBwOG53SzNJK2x4?=
- =?utf-8?B?R3ZLZXNHWTlZR0RJUmh6UUErUmlnZlhnU1FZNmJhc0hJZkhVMzlLTm5nQWFm?=
- =?utf-8?B?bG9kb2QxdE0wa2hTOFF4ZUFBZkl6Y3BBbG9qRHg0bjdpNjBHV05UcitDd0E0?=
- =?utf-8?B?dFlZNHNKVW1mSVQ3bDlJQVhkTy9QUFFqSFp1Q2k2TW5SMU4wUE5QOEVvUy9y?=
- =?utf-8?B?Qy9sakU4VXpkdGxzT2NnMXl1L2hGOE9BQ0ZjRExDelVPYjdhamthblhxR1dt?=
- =?utf-8?B?cWMxSk44NVlpY05uKzBINXZKMlpudXVCaC9laUpGakZuMzBrdUgyZkwrcEV0?=
- =?utf-8?B?T3Y1Z3R1L0YxSVJ3MzRjd0F0OWxwdHprSEpXMWtOb3lqL3VpN2JhUmFBQThl?=
- =?utf-8?B?T1FzVHJnVmFLcnpJQkZlTUk5eVI4NUwvOUxXdjhBUHh0Ly8vQ041ZlRpVCs5?=
- =?utf-8?B?SGg2aTlJN2hEcE9LMlRiOTNqUEphaXJGTzliakpQOWg5ZkJwOTVBUndNbExv?=
- =?utf-8?B?MDg0cFIwZ2VqQ3RFVTN1ekorUlJuRkJmTS9nWUZHMTloZjdQN2pLRjdRcTY2?=
- =?utf-8?B?dEozOE9UOUc0YWwvMVJRSDd2UUt2c3dzREFvRUFaNVorMGhwTGVLTUsrVmxX?=
- =?utf-8?B?MHdrRjdMTE9iZFhUYzNkZVE3anhaSS90K01WTGhDTGxYWVY0TVBVRnV3Y0Nh?=
- =?utf-8?B?RzNTcHJzQjc3aitreHMzVitiVkdnaVVlYmk3TTlCdjU3YmFTRmVDN2s3RUkx?=
- =?utf-8?B?QVhCT3hVY1dQUHlXcmpSQlRNYmQwVWU2Yy8wWVJiTERMZHRCTnBXa2lZWUd3?=
- =?utf-8?B?TnpCU3hrdmo2YjlLZHhFbEI0ZDlSaVM5TUhVamtPSTRIMkt6N3NvZzdnQjdH?=
- =?utf-8?B?Mmw2MDUwTlpCMXpZVHdZV0NCbERVbUcrSWpTZWxVVVRKV1BJYTNMQ2tQOXd0?=
- =?utf-8?B?dnN0Q1lhTFhld09RbEVvbW1YTGttbm5vamxQYkNScHE4M0dYOHEzS2xTa1Q0?=
- =?utf-8?B?TnlBYUtUL1FRTUFmaVNOR3NBWTZkUEJZZnk1cWtrUFhFYWtqZmU5TTRMQnFT?=
- =?utf-8?B?dThCMUNEU0JKMmNCY0djU0RjZ2czOUJudlkwWURobzFBc0VCejdNcUxOMWdD?=
- =?utf-8?B?U09mN0d6VG9UVy9xZU4zT2xXSTZZQTlEM1Z3QXR0VUlKanBTbk1lWXlFZExm?=
- =?utf-8?B?a0RxM2FBTmtJcFRxUWVyWUdvcnpGbDN1ZFZlazJsQlhxOGNzakkzZ0UxNTZM?=
- =?utf-8?B?OXNydWc1eC9NNXpTVGt6S0ZsN0FCT2VFaW44V29OQnVYekdqNVpvWlJ4UXBq?=
- =?utf-8?B?cVY2elBKN0x6VXBDL21xN0xqQ01aKzRXNEdpTVgxSFZsdnU4K3JFTytQc2NF?=
- =?utf-8?B?LzRSQjljZWF4cG5IS3czN2J1OVRkNnhuVVE1LzZnL1l2YW5mdzVqQWdoUTNs?=
- =?utf-8?B?eUJIVXUwOWxOVk5qOVFwRHVMRUNGVGhtNzJESUhsS2RQVDdJZ1ozVEJQbEQz?=
- =?utf-8?B?QWEwSkJqM2xldU9ZamlYdjhtQ3JLT2MwbEVyVW0xK25HaG4wOW0rd3FKTml5?=
- =?utf-8?Q?l9iAAxbPBWxCj24SjMWdBVO8z?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: bf87ab14-5b58-43ae-de77-08dc1b18ed61
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2024 07:08:25.6677 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qoHEH5KaOxtdjQG3bcLryIMaWFFAjWtLnC0r4V/+CqWleU5mYLA3bLLMwZRNU7wV/qgDArlrYDvh7WMl19zvJg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8575
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/exec, drm/gpuvm: Prefer u32 over uint32_t
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+References: <20240119090557.6360-1-thomas.hellstrom@linux.intel.com>
+ <vmyrgwkw7zi5f234cfhl6mzkphrpmsxvb7rpruv7xbc5wjkx4d@jkxky5kmd5c2>
+ <8734utpcd7.fsf@intel.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <8734utpcd7.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,44 +62,91 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Danilo Krummrich <dakr@redhat.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi,
+
+On 1/19/24 16:32, Jani Nikula wrote:
+> On Fri, 19 Jan 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>> On Fri, Jan 19, 2024 at 10:05:57AM +0100, Thomas Hellström wrote:
+>>> The relatively recently introduced drm/exec utility was using uint32_t
+>>> in its interface, which was then also carried over to drm/gpuvm.
+>>>
+>>> Prefer u32 in new code and update drm/exec and drm/gpuvm accordingly.
+>>>
+>>> Cc: Christian König <christian.koenig@amd.com>
+>>> Cc: Danilo Krummrich <dakr@redhat.com>
+>>> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>>> ---
+>>> drivers/gpu/drm/drm_exec.c | 2 +-
+>>> include/drm/drm_exec.h     | 4 ++--
+>>> include/drm/drm_gpuvm.h    | 2 +-
+>>> 3 files changed, 4 insertions(+), 4 deletions(-)
+>>
+>> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>>
+>> I was surprised we have quite a few places using the c99 types rather
+>> than kernel types.
+>>
+>> $ git grep -ce uint[0-9][0-9]_t drivers/gpu/drm/*.c
+>> drivers/gpu/drm/drm_atomic.c:1
+>> drivers/gpu/drm/drm_atomic_helper.c:7
+>> drivers/gpu/drm/drm_atomic_state_helper.c:1
+>> drivers/gpu/drm/drm_atomic_uapi.c:17
+>> drivers/gpu/drm/drm_color_mgmt.c:4
+>> drivers/gpu/drm/drm_connector.c:6
+>> drivers/gpu/drm/drm_crtc.c:3
+>> drivers/gpu/drm/drm_damage_helper.c:2
+>> drivers/gpu/drm/drm_debugfs_crc.c:1
+>> drivers/gpu/drm/drm_exec.c:1
+>> drivers/gpu/drm/drm_fb_helper.c:10
+>> drivers/gpu/drm/drm_format_helper.c:6
+>> drivers/gpu/drm/drm_fourcc.c:6
+>> drivers/gpu/drm/drm_framebuffer.c:5
+>> drivers/gpu/drm/drm_gem.c:1
+>> drivers/gpu/drm/drm_gem_dma_helper.c:1
+>> drivers/gpu/drm/drm_gem_shmem_helper.c:1
+>> drivers/gpu/drm/drm_gem_ttm_helper.c:1
+>> drivers/gpu/drm/drm_gem_vram_helper.c:5
+>> drivers/gpu/drm/drm_lease.c:6
+>> drivers/gpu/drm/drm_mipi_dbi.c:3
+>> drivers/gpu/drm/drm_mode_config.c:4
+>> drivers/gpu/drm/drm_mode_object.c:20
+>> drivers/gpu/drm/drm_modeset_helper.c:1
+>> drivers/gpu/drm/drm_modeset_lock.c:1
+>> drivers/gpu/drm/drm_of.c:3
+>> drivers/gpu/drm/drm_plane.c:35
+>> drivers/gpu/drm/drm_plane_helper.c:2
+>> drivers/gpu/drm/drm_prime.c:9
+>> drivers/gpu/drm/drm_probe_helper.c:3
+>> drivers/gpu/drm/drm_property.c:11
+>> drivers/gpu/drm/drm_simple_kms_helper.c:4
+>> drivers/gpu/drm/drm_syncobj.c:26
+>>
+>> but maybe not worth the churn for what is already there for a long time?
+
+This originally dates back to around or slightly after when the drm code 
+was a set of template headers with the objective of sharing code with 
+some bsds, and then I guess it also leaked. The reason I sent this patch 
+was I made a review comment of this for drm_gpuvm and then also promised 
+to send a patch against drm_exec.
+
+> Personally, I think the one time churn is worth it to unify and keep the
+> codebase in kernel types only. This is basically what we did in i915
+> years ago, and new c99 types don't really even creep in because there
+> are zero examples around. It's natural to follow the style around you
+> instead of mixing.
+
++1.
+
+/Thomas
 
 
-On 1/17/2024 10:02 AM, Sujaritha Sundaresan wrote:
-> Fix function naming and description for xe_vram_freq_sysfs_init
-> function.
-> 
-> v2: Add fixes tag (Riana)
->      Fix review comments (Lucas)
-> 
-> Fixes: 4ae3aeab32d7 ("drm/xe: Add vram frequency sysfs attributes")
-> Signed-off-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
-Looks good to me
-
-Reviewed-by: Riana Tauro <riana.tauro@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_vram_freq.c | 5 ++---
->   1 file changed, 2 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_vram_freq.c b/drivers/gpu/drm/xe/xe_vram_freq.c
-> index 733146293307..079cc283a186 100644
-> --- a/drivers/gpu/drm/xe/xe_vram_freq.c
-> +++ b/drivers/gpu/drm/xe/xe_vram_freq.c
-> @@ -95,13 +95,12 @@ static void vram_freq_sysfs_fini(struct drm_device *drm, void *arg)
->   	kobject_put(kobj);
->   }
->   
-> -/*
-> - * xe_vram_freq_init - Initialize vram frequency component
-> +/**
-> + * xe_vram_freq_sysfs_init - Initialize vram frequency sysfs component
->    * @tile: Xe Tile object
->    *
->    * It needs to be initialized after the main tile component is ready
->    */
-> -
->   void xe_vram_freq_sysfs_init(struct xe_tile *tile)
->   {
->   	struct xe_device *xe = tile_to_xe(tile);
+> BR,
+> Jani.
+>
+>
