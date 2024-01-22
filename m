@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BB86C46CD2
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BDFCC47DDC
 	for <intel-xe@archiver.kernel.org>; Mon, 22 Jan 2024 21:17:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FD4410EEE8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A9C510EF87;
 	Mon, 22 Jan 2024 21:17:36 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1A9810EF8A
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Jan 2024 21:17:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75BCF10EF96
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 Jan 2024 21:17:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705958248; x=1737494248;
+ t=1705958250; x=1737494250;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Rlj5BeaEfivBbDitJLtFgWapao+SV01gkIynPF8gRGU=;
- b=aoJ2V5Ku9kXjPWyyoyFUqScfJBuZsd+cRUPIWPiGf+yZMeHmNDyGlIkm
- ZwqcfUIsRigiSJZM6eiAj2/jQcWTTCnStUWn396gv1Clfecqvb1qfU6qE
- rVAqby8wfIwNAL6FcjM8Y6g7lI8e7NFiuL2qcHY4DOZgeSVQI2ONePT6D
- FqDAlsu8QvJt5cScHksX3C/QrMNWm905GHPL8kUNYOdZw2qyhslx9Pwdp
- rXCy1pShWt+3h2Q24us4BqpnYVqSU0+h6TAuMbHzz3EGMDdBMsUCmHsC0
- yDCASUO0yC2JEYR4QoAgqDUQs28xqUZFMdhVbg/rbQv+PTdaIBv94HjAp Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="432486569"
-X-IronPort-AV: E=Sophos;i="6.05,212,1701158400"; d="scan'208";a="432486569"
+ bh=URJ6z/oLdDPh6Le60N4WCT0I7N+rpSNB+QtS38gDvKE=;
+ b=cFlUOLvKwhOAdb234FD3qZpEaziWNg+bAZY9VcZQbDQvrf70NU1+0FW+
+ ISH9a3oqyJsTbALXNk3XPTrJIzP7SJT/e9dqRjEZgGMloegZRxpHppsi+
+ qBJxP2woIQ6tDvqwdzZNoBHv1P33mkOETZx5S/kCio3/UqLJhvMyDMDI+
+ 5rXgsWhbKZ/oK5g5lHCPzLnnjeX1ahFYea5kvowuyvlp80Kv7DGJ/D+gU
+ R/fiyxGwFvo/LH2+UsFVhDS5t++c4lf302v/F0wd2yfAUNoGKD88uMpUS
+ AYnRpJSIMh07rr25n9yprtuVug9VRDP109agt3SCXcvvhqnUbWbFYmkGr A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="432486576"
+X-IronPort-AV: E=Sophos;i="6.05,212,1701158400"; d="scan'208";a="432486576"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2024 13:17:28 -0800
+ 22 Jan 2024 13:17:30 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,212,1701158400"; d="scan'208";a="27495072"
+X-IronPort-AV: E=Sophos;i="6.05,212,1701158400"; d="scan'208";a="27495079"
 Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2024 13:17:27 -0800
+ 22 Jan 2024 13:17:29 -0800
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 7/9] drm/xe: Print more device information in devcoredump
-Date: Mon, 22 Jan 2024 13:17:07 -0800
-Message-ID: <20240122211709.224419-7-jose.souza@intel.com>
+Subject: [PATCH v2 8/9] drm/xe: Print registers spread in 2 u32 as u64
+Date: Mon, 22 Jan 2024 13:17:08 -0800
+Message-ID: <20240122211709.224419-8-jose.souza@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240122211709.224419-1-jose.souza@intel.com>
 References: <20240122211709.224419-1-jose.souza@intel.com>
@@ -60,79 +60,182 @@ Cc: Maarten Lankhorst <dev@lankhorst.se>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To properly decode batch buffer Mesa tools needs to know what
-platform is this one, for now we can do that with PCI id but
-already making it future proof by also printing GTs GMD version.
+This makes easier to use those registers when copying its values to
+calculator also makes easier for tools to parse it.
+
+To avoids padding holes in xe_hw_engine_snapshot the u64 variables
+were moved to the top of xe_hw_engine_snapshot.reg.
 
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Maarten Lankhorst <dev@lankhorst.se>
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/xe/xe_devcoredump.c |  2 ++
- drivers/gpu/drm/xe/xe_device.c      | 20 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_device.h      |  2 ++
- 3 files changed, 24 insertions(+)
+ drivers/gpu/drm/xe/xe_hw_engine.c       | 69 ++++++++++++-------------
+ drivers/gpu/drm/xe/xe_hw_engine_types.h | 30 ++++-------
+ 2 files changed, 42 insertions(+), 57 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index a0e3732440ab5..6759728c2220e 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.c
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -63,6 +63,7 @@ static ssize_t xe_devcoredump_read(char *buffer, loff_t offset,
- 				   size_t count, void *data, size_t datalen)
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 789736a34c1ba..f7d66b71f1d71 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -749,6 +749,7 @@ struct xe_hw_engine_snapshot *
+ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
  {
- 	struct xe_devcoredump *coredump = data;
-+	struct xe_device *xe = coredump_to_xe(coredump);
- 	struct xe_devcoredump_snapshot *ss;
- 	struct drm_printer p;
- 	struct drm_print_iterator iter;
-@@ -89,6 +90,7 @@ static ssize_t xe_devcoredump_read(char *buffer, loff_t offset,
- 	drm_printf(&p, "Snapshot time: %lld.%09ld\n", ts.tv_sec, ts.tv_nsec);
- 	ts = ktime_to_timespec64(ss->boot_time);
- 	drm_printf(&p, "Uptime: %lld.%09ld\n", ts.tv_sec, ts.tv_nsec);
-+	xe_device_snapshot_print(xe, &p);
+ 	struct xe_hw_engine_snapshot *snapshot;
++	u64 val;
  
- 	drm_printf(&p, "\n**** GuC CT ****\n");
- 	xe_guc_ct_snapshot_print(coredump->snapshot.ct, &p);
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index b4cdcf1b2081a..5ee78183d6c04 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -742,3 +742,23 @@ u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64 address)
- {
- 	return address & GENMASK_ULL(highest_address_bit_get(xe), 0);
- }
-+
-+void xe_device_snapshot_print(struct xe_device *xe, struct drm_printer *p)
-+{
-+	struct xe_gt *gt;
-+	u8 id;
-+
-+	drm_printf(p, "PCI ID: 0x%04x\n", xe->info.devid);
-+	drm_printf(p, "PCI revision: 0x%02x\n", xe->info.revid);
-+
-+	for_each_gt(gt, xe, id) {
-+		drm_printf(p, "GT id: %u\n", id);
-+		drm_printf(p, "\tType: %s\n",
-+			   gt->info.type == XE_GT_TYPE_MAIN ? "main" : "media");
-+		drm_printf(p, "\tIP ver: %u.%u.%u\n",
-+			   REG_FIELD_GET(GMD_ID_ARCH_MASK, gt->info.gmdid),
-+			   REG_FIELD_GET(GMD_ID_RELEASE_MASK, gt->info.gmdid),
-+			   REG_FIELD_GET(GMD_ID_REVID, gt->info.gmdid));
-+		drm_printf(p, "\tCS reference clock: %u\n", gt->info.reference_clock);
-+	}
-+}
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index ce20f6fe6219a..6212517328477 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -178,4 +178,6 @@ u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size);
- u64 xe_device_canonicalize_addr(struct xe_device *xe, u64 address);
- u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64 address);
+ 	if (!xe_hw_engine_is_valid(hwe))
+ 		return NULL;
+@@ -766,19 +767,31 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
+ 						    hwe->domain);
+ 	snapshot->mmio_base = hwe->mmio_base;
  
-+void xe_device_snapshot_print(struct xe_device *xe, struct drm_printer *p);
+-	snapshot->reg.ring_hwstam = hw_engine_mmio_read32(hwe, RING_HWSTAM(0));
+-	snapshot->reg.ring_hws_pga = hw_engine_mmio_read32(hwe,
+-							   RING_HWS_PGA(0));
+-	snapshot->reg.ring_execlist_status_lo =
++	snapshot->reg.ring_execlist_status =
+ 		hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_LO(0));
+-	snapshot->reg.ring_execlist_status_hi =
+-		hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_HI(0));
+-	snapshot->reg.ring_execlist_sq_contents_lo =
+-		hw_engine_mmio_read32(hwe,
+-				      RING_EXECLIST_SQ_CONTENTS_LO(0));
+-	snapshot->reg.ring_execlist_sq_contents_hi =
+-		hw_engine_mmio_read32(hwe,
+-				      RING_EXECLIST_SQ_CONTENTS_HI(0));
++	val = hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_HI(0));
++	snapshot->reg.ring_execlist_status |= val << 32;
 +
- #endif
++	snapshot->reg.ring_execlist_sq_contents =
++		hw_engine_mmio_read32(hwe, RING_EXECLIST_SQ_CONTENTS_LO(0));
++	val = hw_engine_mmio_read32(hwe, RING_EXECLIST_SQ_CONTENTS_HI(0));
++	snapshot->reg.ring_execlist_sq_contents |= val << 32;
++
++	snapshot->reg.ring_acthd = hw_engine_mmio_read32(hwe, RING_ACTHD(0));
++	val = hw_engine_mmio_read32(hwe, RING_ACTHD_UDW(0));
++	snapshot->reg.ring_acthd |= val << 32;
++
++	snapshot->reg.ring_bbaddr = hw_engine_mmio_read32(hwe, RING_BBADDR(0));
++	val = hw_engine_mmio_read32(hwe, RING_BBADDR_UDW(0));
++	snapshot->reg.ring_bbaddr |= val << 32;
++
++	snapshot->reg.ring_dma_fadd =
++		hw_engine_mmio_read32(hwe, RING_DMA_FADD(0));
++	val = hw_engine_mmio_read32(hwe, RING_DMA_FADD_UDW(0));
++	snapshot->reg.ring_dma_fadd |= val << 32;
++
++	snapshot->reg.ring_hwstam = hw_engine_mmio_read32(hwe, RING_HWSTAM(0));
++	snapshot->reg.ring_hws_pga = hw_engine_mmio_read32(hwe, RING_HWS_PGA(0));
+ 	snapshot->reg.ring_start = hw_engine_mmio_read32(hwe, RING_START(0));
+ 	snapshot->reg.ring_head =
+ 		hw_engine_mmio_read32(hwe, RING_HEAD(0)) & HEAD_ADDR;
+@@ -792,16 +805,6 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
+ 	snapshot->reg.ring_esr = hw_engine_mmio_read32(hwe, RING_ESR(0));
+ 	snapshot->reg.ring_emr = hw_engine_mmio_read32(hwe, RING_EMR(0));
+ 	snapshot->reg.ring_eir = hw_engine_mmio_read32(hwe, RING_EIR(0));
+-	snapshot->reg.ring_acthd_udw =
+-		hw_engine_mmio_read32(hwe, RING_ACTHD_UDW(0));
+-	snapshot->reg.ring_acthd = hw_engine_mmio_read32(hwe, RING_ACTHD(0));
+-	snapshot->reg.ring_bbaddr_udw =
+-		hw_engine_mmio_read32(hwe, RING_BBADDR_UDW(0));
+-	snapshot->reg.ring_bbaddr = hw_engine_mmio_read32(hwe, RING_BBADDR(0));
+-	snapshot->reg.ring_dma_fadd_udw =
+-		hw_engine_mmio_read32(hwe, RING_DMA_FADD_UDW(0));
+-	snapshot->reg.ring_dma_fadd =
+-		hw_engine_mmio_read32(hwe, RING_DMA_FADD(0));
+ 	snapshot->reg.ipehr = hw_engine_mmio_read32(hwe, RING_IPEHR(0));
+ 
+ 	if (snapshot->class == XE_ENGINE_CLASS_COMPUTE)
+@@ -830,14 +833,10 @@ void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
+ 		   snapshot->forcewake.domain, snapshot->forcewake.ref);
+ 	drm_printf(p, "\tHWSTAM: 0x%08x\n", snapshot->reg.ring_hwstam);
+ 	drm_printf(p, "\tRING_HWS_PGA: 0x%08x\n", snapshot->reg.ring_hws_pga);
+-	drm_printf(p, "\tRING_EXECLIST_STATUS_LO: 0x%08x\n",
+-		   snapshot->reg.ring_execlist_status_lo);
+-	drm_printf(p, "\tRING_EXECLIST_STATUS_HI: 0x%08x\n",
+-		   snapshot->reg.ring_execlist_status_hi);
+-	drm_printf(p, "\tRING_EXECLIST_SQ_CONTENTS_LO: 0x%08x\n",
+-		   snapshot->reg.ring_execlist_sq_contents_lo);
+-	drm_printf(p, "\tRING_EXECLIST_SQ_CONTENTS_HI: 0x%08x\n",
+-		   snapshot->reg.ring_execlist_sq_contents_hi);
++	drm_printf(p, "\tRING_EXECLIST_STATUS: 0x%016llx\n",
++		   snapshot->reg.ring_execlist_status);
++	drm_printf(p, "\tRING_EXECLIST_SQ_CONTENTS: 0x%016llx\n",
++		   snapshot->reg.ring_execlist_sq_contents);
+ 	drm_printf(p, "\tRING_START: 0x%08x\n", snapshot->reg.ring_start);
+ 	drm_printf(p, "\tRING_HEAD:  0x%08x\n", snapshot->reg.ring_head);
+ 	drm_printf(p, "\tRING_TAIL:  0x%08x\n", snapshot->reg.ring_tail);
+@@ -849,13 +848,9 @@ void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
+ 	drm_printf(p, "\tRING_ESR:   0x%08x\n", snapshot->reg.ring_esr);
+ 	drm_printf(p, "\tRING_EMR:   0x%08x\n", snapshot->reg.ring_emr);
+ 	drm_printf(p, "\tRING_EIR:   0x%08x\n", snapshot->reg.ring_eir);
+-	drm_printf(p, "\tACTHD:  0x%08x_%08x\n", snapshot->reg.ring_acthd_udw,
+-		   snapshot->reg.ring_acthd);
+-	drm_printf(p, "\tBBADDR: 0x%08x_%08x\n", snapshot->reg.ring_bbaddr_udw,
+-		   snapshot->reg.ring_bbaddr);
+-	drm_printf(p, "\tDMA_FADDR: 0x%08x_%08x\n",
+-		   snapshot->reg.ring_dma_fadd_udw,
+-		   snapshot->reg.ring_dma_fadd);
++	drm_printf(p, "\tACTHD:  0x%016llx\n", snapshot->reg.ring_acthd);
++	drm_printf(p, "\tBBADDR: 0x%016llx\n", snapshot->reg.ring_bbaddr);
++	drm_printf(p, "\tDMA_FADDR: 0x%016llx\n", snapshot->reg.ring_dma_fadd);
+ 	drm_printf(p, "\tIPEHR: 0x%08x\n", snapshot->reg.ipehr);
+ 	if (snapshot->class == XE_ENGINE_CLASS_COMPUTE)
+ 		drm_printf(p, "\tRCU_MODE: 0x%08x\n",
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+index dfeaaac08b7f9..d55c25fbf1371 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+@@ -173,18 +173,20 @@ struct xe_hw_engine_snapshot {
+ 	u32 mmio_base;
+ 	/** @reg: Useful MMIO register snapshot */
+ 	struct {
++		/** @ring_execlist_status: RING_EXECLIST_STATUS */
++		u64 ring_execlist_status;
++		/** @ring_execlist_sq_contents: RING_EXECLIST_SQ_CONTENTS */
++		u64 ring_execlist_sq_contents;
++		/** @ring_acthd: RING_ACTHD */
++		u64 ring_acthd;
++		/** @ring_bbaddr: RING_BBADDR */
++		u64 ring_bbaddr;
++		/** @ring_dma_fadd: RING_DMA_FADD */
++		u64 ring_dma_fadd;
+ 		/** @ring_hwstam: RING_HWSTAM */
+ 		u32 ring_hwstam;
+ 		/** @ring_hws_pga: RING_HWS_PGA */
+ 		u32 ring_hws_pga;
+-		/** @ring_execlist_status_lo: RING_EXECLIST_STATUS_LO */
+-		u32 ring_execlist_status_lo;
+-		/** @ring_execlist_status_hi: RING_EXECLIST_STATUS_HI */
+-		u32 ring_execlist_status_hi;
+-		/** @ring_execlist_sq_contents_lo: RING_EXECLIST_SQ_CONTENTS */
+-		u32 ring_execlist_sq_contents_lo;
+-		/** @ring_execlist_sq_contents_hi: RING_EXECLIST_SQ_CONTENTS + 4 */
+-		u32 ring_execlist_sq_contents_hi;
+ 		/** @ring_start: RING_START */
+ 		u32 ring_start;
+ 		/** @ring_head: RING_HEAD */
+@@ -205,18 +207,6 @@ struct xe_hw_engine_snapshot {
+ 		u32 ring_emr;
+ 		/** @ring_eir: RING_EIR */
+ 		u32 ring_eir;
+-		/** @ring_acthd_udw: RING_ACTHD_UDW */
+-		u32 ring_acthd_udw;
+-		/** @ring_acthd: RING_ACTHD */
+-		u32 ring_acthd;
+-		/** @ring_bbaddr_udw: RING_BBADDR_UDW */
+-		u32 ring_bbaddr_udw;
+-		/** @ring_bbaddr: RING_BBADDR */
+-		u32 ring_bbaddr;
+-		/** @ring_dma_fadd_udw: RING_DMA_FADD_UDW */
+-		u32 ring_dma_fadd_udw;
+-		/** @ring_dma_fadd: RING_DMA_FADD */
+-		u32 ring_dma_fadd;
+ 		/** @ipehr: IPEHR */
+ 		u32 ipehr;
+ 		/** @rcu_mode: RCU_MODE */
 -- 
 2.43.0
 
