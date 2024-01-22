@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FCDAC47DD9
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jan 2024 17:32:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DFA47C47DD9
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jan 2024 17:32:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB5D410E600;
-	Mon, 22 Jan 2024 17:32:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7807010EC6B;
+	Mon, 22 Jan 2024 17:32:32 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F17510E600;
- Mon, 22 Jan 2024 17:32:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9960F10EC5F;
+ Mon, 22 Jan 2024 17:32:31 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5B1/9=5D_drm/xe=3A_Remove_double_new_line_in_devcoredump?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5B1?=
+ =?utf-8?q?/9=5D_drm/xe=3A_Remove_double_new_line_in_devcoredump?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Date: Mon, 22 Jan 2024 17:32:09 -0000
-Message-ID: <170594472925.664419.15889204789463688816@5338d5abeb45>
+Date: Mon, 22 Jan 2024 17:32:31 -0000
+Message-ID: <170594475162.664419.17576267289517451857@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240122170445.108856-1-jose.souza@intel.com>
 In-Reply-To: <20240122170445.108856-1-jose.souza@intel.com>
@@ -44,21 +44,47 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: series starting with [1/9] drm/xe: Remove double new line in devcoredump
 URL   : https://patchwork.freedesktop.org/series/129042/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 6c50b86b2 drm-tip: 2024y-01m-22d-17h-20m-50s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Remove double new line in devcoredump
-Applying: drm/xe: Change devcoredump functions parameters to xe_sched_job
-Applying: drm/xe: Add functions to convert regular address to canonical address and back
-Applying: drm/xe: Add batch buffer addresses to devcoredump
-Applying: drm/xe: Nuke xe from xe_devcoredump
-Applying: drm/xe: Stash GMD_ID value in xe_gt
-Applying: drm/xe: Print more device information in devcoredump
-Applying: drm/xe: Print registers spread in 2 u32 as u64
-Applying: drm/xe: Remove addional spaces in devcoredump HW Engines section
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+e7f730565356938dd6c63cd498218fdc5d6a22b0
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 18c158203af87c6194df2e6599f2f02ce1aa4ed8
+Author: José Roberto de Souza <jose.souza@intel.com>
+Date:   Mon Jan 22 09:04:45 2024 -0800
+
+    drm/xe: Remove addional spaces in devcoredump HW Engines section
+    
+    I guess the indention was to keep it visually aligned but that
+    would require a lot of spaces and was not followed by other registers
+    so lets just drop it.
+    
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Maarten Lankhorst <dev@lankhorst.se>
+    Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
++ /mt/dim checkpatch 6c50b86b2afe0f6c5929aa3f48b36b31cd736ab9 drm-intel
+789e5cab3 drm/xe: Remove double new line in devcoredump
+225f8ee79 drm/xe: Change devcoredump functions parameters to xe_sched_job
+dc3718a26 drm/xe: Add functions to convert regular address to canonical address and back
+9fd1cffe5 drm/xe: Add batch buffer addresses to devcoredump
+a3ea6eba7 drm/xe: Nuke xe from xe_devcoredump
+088c2cdba drm/xe: Stash GMD_ID value in xe_gt
+2c1077d39 drm/xe: Print more device information in devcoredump
+d6f8f52ce drm/xe: Print registers spread in 2 u32 as u64
+18c158203 drm/xe: Remove addional spaces in devcoredump HW Engines section
+-:4: WARNING:TYPO_SPELLING: 'addional' may be misspelled - perhaps 'additional'?
+#4: 
+Subject: [PATCH] drm/xe: Remove addional spaces in devcoredump HW Engines
+                                ^^^^^^^^
+
+total: 0 errors, 1 warnings, 0 checks, 24 lines checked
 
 
