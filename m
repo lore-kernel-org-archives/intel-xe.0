@@ -4,61 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3ADE9C47DAF
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jan 2024 20:13:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3ECC1C47DD3
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jan 2024 20:15:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF44110E3BB;
-	Mon, 22 Jan 2024 20:13:44 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 904C110E3BB
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Jan 2024 20:13:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F246210E5E7;
+	Mon, 22 Jan 2024 20:15:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD4C010E5E7
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 Jan 2024 20:15:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705954424; x=1737490424;
+ t=1705954504; x=1737490504;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=j0ry3GrX96joZvkVDcrU0VqBY/0UVu8H1i8/d3Zbi8U=;
- b=T0+R4z6UiP4E/vT7iXxixUkOPNGWSjoAqdnnxKy0xwBe7y7BG0lzn4Sg
- caKqJxasd2dOg0F2bS7iRORvwDSzFC9SX66uhkRiaX6zWZN5euZpgD+n8
- I6QSFDAnPANdyvTsMNz9aXuBzhNXlPmhx1oQgfvEHNLMKXwlPqUNDGSKM
- tt2hOsG07QHqwcljLgMhdWIKOUBKJA3Jo+aLAkW6sOw4bRfxc347OoTMb
- jALF/PyFnRAOSFMvLwJ8Ph+RsQjr3n/5yfBIWiA5Qwdzp5TjVfxt1w9jw
- Y/Vk/ykv72TgakZAIR7m+YbBx7avS2U5T+MBT0gWr1jwxGxu8Y1qj/kLS w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="7969120"
+ bh=gpwSByBcyP8WBksBJOt/u6kBFG/2veh/zqFGdoQbG84=;
+ b=jHbt6Mi8716/Kg7tX4BSJtn0mQt2l2M2V1yDzOzDEeSb/nFmoMAIhHR3
+ prINsNpAq/BiuIvcLInPKkdPhorEWW0CcbwlOTlk87NJah2spRB2BEcmY
+ pZull6dEqHmPxf8JY3BWS1keEIJqnryYXuCx967zFe72tPgw5Y0VTMtMA
+ Af1IzqczpHo3weEOmLS1VDIVBLcbNNsuL7O66bNTrJuZfSHufkrXAAZas
+ QauCDjd41FUh+lKRtozqswSPdrbahA91U6eu6D9nu1rCGf8L98LllbJzd
+ yYlV1m8QTfEa9wE2YgKmCbw22tBp+ilOPqk9UhzMpkiI5PFRh4K5KJKm3 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="1202794"
 X-IronPort-AV: E=Sophos;i="6.05,212,1701158400"; 
-   d="scan'208";a="7969120"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2024 12:13:44 -0800
+   d="scan'208";a="1202794"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2024 12:15:03 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,212,1701158400"; 
-   d="scan'208";a="1283542"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmviesa005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 22 Jan 2024 12:13:43 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="785785236"
+X-IronPort-AV: E=Sophos;i="6.05,212,1701158400"; d="scan'208";a="785785236"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 22 Jan 2024 12:15:01 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 22 Jan 2024 12:13:42 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.35; Mon, 22 Jan 2024 12:15:01 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 22 Jan 2024 12:13:41 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2507.35; Mon, 22 Jan 2024 12:15:01 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Mon, 22 Jan 2024 12:13:41 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Mon, 22 Jan 2024 12:15:01 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Mon, 22 Jan 2024 12:13:40 -0800
+ 15.1.2507.35; Mon, 22 Jan 2024 12:15:00 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iRNz0M8tEQ6ujGUTFA5wk+QtOUQRWwOM+zHeyp2ki23TGU58D19xvWaCL/or0TNez1Rov0eFyI4FSHN3tzH7WGdjSiBTTf5Y1QeQInKXnqfbTeBkob0GtFiNOZfnVnkewmLm2jZIgPyKjG2oXZ0qAjTH9jL3/iITa8LOCkQvNCcXIlxI/R/N9bbsqpuffWAJJuez+oRvBt0riWdIEyxBRV6NxzuZUCzIWQCNMwIJXlHHgTYgPVM73hZnST1/ZHRl3wuKRAuJTRdNP7PozyKiNVk08eDhCOw8JuEAn1AOvE3dVAf6EhWQpoVVABtJa2hWoTrqW0jG7WWLf2cqUxCr/A==
+ b=Wj7E32x/YRV1g0wY5SlkREN6Ci7CCeVh1HtOHnTnqRS/A/ruJMQfR5ZTeORj/FcCVoblKfcg1W8SripJp/9kIPXZVKGi499V2wa11oL+YxOQ0H9DHPR2hRnJHBIRxpmeJxQ6wT8AUQBIVV6PsDZff1/SVrqR3tCM/XlGSE9pBua47F3oBjtZGaR2Rs/8Q3JfmHj1okKOjSvsGAU9QD4ig+eD0R/gZqIGrRX2o7wieZHGx8zhd2rL2Hq1Stmi8K+vc6Zk+S943ab+cliAOjnlNN+zfRlHcq5ThkUeXfYYO9VI22SPh8jmoMMRibO6l5WcBd1xJAWvikBH4KteGPC3dg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YgHnYYsrU3WzpGxU4rvE6X7J1TBsoUNJVlgCTz3tsgc=;
- b=F06QL0IoWiEkvAFNy7S9bMDUugF1fQ4iQAD+8NXF0jSk5lsYaue0/RZw3eBJdP3Z/2PTnIu+mv3a4eMKfmXkIMs2p35eRISebgikhAeghvcboijUf6i6Cy9MnSPPF7JFdhmVv6i6s+h+6hQ8zoEjouSGrD89UbTWwGx52pE7Swh6jspBBA0XODud9kc/4bDr7qzGYVHJefs36OI7cr/4Ggpz/msmOm2Psb9+te+PY0xVDsqMRivmiM9n+FOa1d/ts9/XnqsYXFUrxHLwXnWdqIGX20G/z4zxhbgvKjjrOOpyh/dwRcHU78yeSIn/gmuE2lKlAfEFt2Px3TcYbeTcqw==
+ bh=d75k5w3ksjeftR8ycKq5sWjOrP06eN+l6qBU8zq4ktg=;
+ b=X8++jscSi90H+b9hIoB+d819oWsI6QN1KDWxa+8PnDDbvsiHgFroBEHSWD9M9z/syDW2HjJAtkFkfnKJ5YxyFdTRcnTOMm/H1OxROAXYEJ0jjCLOkKF0GcXl38HwlHkmJeS1hyzALcCBTxmCxqcU1qEZZWTCGAJ+/hfQA4fxSjoQ3kZfeA54/G4n8uWVRi7nNxR9mOWfsM4HbCEQHwGLgUwlrbJz3sfTDH2HRXQ9UFEpu2YVwq4izH7zo8ksYV441Sf9zrPQ1SWHNyodMxpuyWlc4vBt72XCtnWuNlbbMyVEjOldT+DZq6v/7tjXGArr5FQ3xz7vHPJ/4NXhwfECWA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -68,74 +68,74 @@ Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
  by DM4PR11MB7375.namprd11.prod.outlook.com (2603:10b6:8:101::12) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.32; Mon, 22 Jan
- 2024 20:13:37 +0000
+ 2024 20:14:58 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::a7f1:384c:5d93:1d1d]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::a7f1:384c:5d93:1d1d%4]) with mapi id 15.20.7202.031; Mon, 22 Jan 2024
- 20:13:37 +0000
-Date: Mon, 22 Jan 2024 15:13:34 -0500
+ 20:14:58 +0000
+Date: Mon, 22 Jan 2024 15:14:55 -0500
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Subject: Re: [PATCH 4/9] drm/xe: Add batch buffer addresses to devcoredump
-Message-ID: <Za7MbjVITw3itEJE@intel.com>
+Subject: Re: [PATCH 8/9] drm/xe: Print registers spread in 2 u32 as u64
+Message-ID: <Za7Mv-kfTDmxQWuF@intel.com>
 References: <20240122170445.108856-1-jose.souza@intel.com>
- <20240122170445.108856-4-jose.souza@intel.com>
+ <20240122170445.108856-8-jose.souza@intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240122170445.108856-4-jose.souza@intel.com>
-X-ClientProxiedBy: BY5PR17CA0010.namprd17.prod.outlook.com
- (2603:10b6:a03:1b8::23) To MN0PR11MB6059.namprd11.prod.outlook.com
+In-Reply-To: <20240122170445.108856-8-jose.souza@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0210.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c3::35) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|DM4PR11MB7375:EE_
-X-MS-Office365-Filtering-Correlation-Id: 37ea12ff-d2b9-4743-3df7-08dc1b869e45
+X-MS-Office365-Filtering-Correlation-Id: 136d462e-9394-4847-6a99-08dc1b86ce54
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: tLKC7Wk4ij+JHBB7nYCKNQd66vdllNgFnkbIEkMb7fwJ3JLfsbAE4rAwagYqqHf/d42Bl3OnPd/MgK2naZQ2p05jVpRfPEm8ktU6RnnObpjZBD4vyPU9vIexgTVCl2zq3eEOd3dtdDS60qg6QAnxpnPhZ9oZJ45YIdHbD8CwpBnfzpk+yCfy/R/cpi8VU2W/gxlXOB+gDycKKnMZYTFl1B/cAfRClYamsJwcqyOjG8Lx1m0mTaQfqLToC7QZ/4ID/0VMoQql2h3Cd3mN8ixPIoGalkxQBGK1rsyUIDhw1K1okHgVmzUdsv91yKVer13WO6xO3eL8Wgq/Hovwcp2ShR80lQgoh9C443oHDHsgF58F5EeLhfYGkixPBYzRsmmz+iXbJVS/Nl7EwgY67KSj1D0bT86l6gjXviuiA2pXJwQf39LPbXRDwbyFKFO3PYVpy4P69Fu7oYeFk/JlxU7d8mnPJ0tyjA75nqzkqjassu8f7WObeYKknNTT2OMc/l6+DiPuwYGQWy45kQEshzC0cUV/HQ9/4h2Una7eXv+ctmF0nIE76ECbnPNk1pq/aLh/
+X-Microsoft-Antispam-Message-Info: r0nSr61TmNsYCYYqSrIRurmdoG/NFGEmFq0reUtO9HTHkxQFLth2y2XXH0w5373GhegdPdyGX9qw+nxdVmlrmh6gz1WGhE2JkJow4Jt02Mq9dRIiLHckCe/eClQH/7aPncaM6sS2rM9WK0ExsAAEEhqk3l/LSZLru2IM0QsracDwTczTJ5xD+1tICionfFjg+CtipXHYqOoVgXrKYKSFoCEPRJF0oM1i+g3oktKPMVmYmHG47T7uPOZY4LmdlRgcqQ7kFyOgdKA19Sf/kOcA9QOD7IrkIwMufc7gEfJecAye339rWkS7ODupFCNeOobhDrXJoaOHsiClx48hnDOLSys3d36THdCfdYeeuicL0upeUpMqnQXtipAblfch6P7lGHQXNRJ+37Q7QcffHtA2qUPSMeEKm/ZvaKIHvEdV9Uf5qD7PjiYJv47gGCS9JJ/JdXO2dBqaMGdpdORcAp4mX6jjY2QGcSM0C/Gotaxna1aSbYLZLio3LHU10S5Sj1vzh5F5MRi/wULMTbBy25sfv59mVlmlwPZFUTyQw20okNrDIyczE6nes55RUn/s4Zmx
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(366004)(376002)(346002)(396003)(136003)(39860400002)(230922051799003)(64100799003)(451199024)(1800799012)(186009)(6666004)(6512007)(2616005)(26005)(6506007)(86362001)(36756003)(82960400001)(44832011)(83380400001)(5660300002)(2906002)(66556008)(38100700002)(8676002)(41300700001)(8936002)(66476007)(6862004)(66946007)(6636002)(4326008)(6486002)(37006003)(316002)(478600001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?+N2kMcaQGJ0m9Tkn6XgqqcBH+GqesgJ3qPMHKnsri+P1WQdNRoHX4iW2HI?=
- =?iso-8859-1?Q?FULFt3rrm/ezEK0xs8vfcHF+f9YOVRph/wiZGAd4UuMBzUdTAXpZKNOx4u?=
- =?iso-8859-1?Q?2P4k2myigtA9bSbRiM+6Ux7pBBh46H116pp9JJ6S/DA1PUeOSYmGoDwE1O?=
- =?iso-8859-1?Q?P/zuI5UOU2b+Vpu8kZNiOywkFzEKifvP4wi61n+psuTfUaXl6U1zEvayTv?=
- =?iso-8859-1?Q?RZzhqPobkwMRMF3bkgOzrtbpANtWcQ6tHsG5ygGnZ/5JtPsT1HCecZAfFC?=
- =?iso-8859-1?Q?jGfeIf+hA7XqJXFHSv+4TCZh/q8dcIxJTyaiNP+rufA1hupfc+jnhlB35j?=
- =?iso-8859-1?Q?zDhTpa0kvUEokzIrNNw1LRTSwN0FjlK4z3kY6CsSmlJJv4PwyRuxud5D2C?=
- =?iso-8859-1?Q?Lyu4n6MBIz158bdR+8iGzxKZGU4wIuOAKuBBto1KsgAsf3qlbP3yiOiumd?=
- =?iso-8859-1?Q?qIscFt7h1s0wbsQtjs08uUHWhk2Bck82m/KeTVMaJWslE80FZ738iH6Fxn?=
- =?iso-8859-1?Q?Hc8uZt8qUYCMNxmVf4mTB7J3QV8Bhb2O99pQMZIwbCK9Lq19MR6vWfN7+r?=
- =?iso-8859-1?Q?BfUn9weSYfV+RaNaqUT0wN3U0p1IB7SaIwXSDXW50JOWIbxaJ2psIEsTH5?=
- =?iso-8859-1?Q?lm9kIj7hRTp1/eOmxg3rGpE6IBCI3HrmaaQ1B2f6qocft2yKH1WF6Y86hx?=
- =?iso-8859-1?Q?EHCQb+562+alymWiDyP6VF+Ao34CmmaSjO+SxhVEmu04bM8g/xeVBzlv3Y?=
- =?iso-8859-1?Q?39fuHM67Oa9KmJq7xYw90a7RFoN5yuoExXEXs45BuT0ItsvU0m0VBOqfva?=
- =?iso-8859-1?Q?Wk6qTgdw50wETsy454gJe3yTjMGpVACSdAwSB4rcxWQWTfzzsJFW1+6c6n?=
- =?iso-8859-1?Q?T9uPbklPSYzUKkv2tOAGjqFjP1sUR2QENlQ2u6tRfoFs7TdAkQuYPfi3DY?=
- =?iso-8859-1?Q?bJld6uHGx6XoAD9Qu+G0ZXvkMd2Iv7vB5c2pIZFeqyHgPTMLLd8mufE5uF?=
- =?iso-8859-1?Q?E6OtaMPLqHXc1j0WgX+hGnQUbfHP0GahDsNS7hQjrSPucteMdLIuhwOTbM?=
- =?iso-8859-1?Q?NTvKXlkhUoGBHxo4qIDNLeo3sKEdkQBunKTnHxQEglSeykqnKyYWJ8bghl?=
- =?iso-8859-1?Q?pPw1gcMWgLuszw/V5rmf8XhhWQ06pr2YIGMzdspbBKq/w4M9lw4HPXrXgE?=
- =?iso-8859-1?Q?SXe+CCB8gLADm6FKN1dbWPjoeEEVFT3mrWHRBZYIK+FA3/aez76keEpnbM?=
- =?iso-8859-1?Q?fA66MWZrstbldTiTKb6Xv+WZJZZeP9VsvHAyXrlWIlUvMUPHIbGk44MGHI?=
- =?iso-8859-1?Q?fWgGzhRD1BA/r9uhKhsx2lHROC0U9Sbz4QmhF0DsmgYly/AsJT/Ruv6cP2?=
- =?iso-8859-1?Q?wnniQqLzeFnPeokFiv11dDAoiZZTB++LmrEc8XWq6qKLuibg4R7EcKhC6J?=
- =?iso-8859-1?Q?pucf69HCrPUKjU2WFi8SiFH9nsoPfLet4CAyLi6HTvx2vvpBbIqHWuWTvM?=
- =?iso-8859-1?Q?P9zDlKb8sAkdwMPs4GocxzZBOR5ucD4kX85abnuij/2N3T2RUDJO7nI6Ud?=
- =?iso-8859-1?Q?JoqLCQ0z63+YjacF8m/MBznneLtG576rLJ3wE1/WO0OaDSgQS2FuoKUVHM?=
- =?iso-8859-1?Q?w4HqV0P4HyILr7Agb2BB0ZmtiEGd5aNg0w?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 37ea12ff-d2b9-4743-3df7-08dc1b869e45
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?4MdRrybdixzYK+oXqvXmka0jKLng79KXFC/sXFmSAATcyR4+je41lxC0By?=
+ =?iso-8859-1?Q?uXtouAPeKNZnjuCjR2gmIwvsrbwLTXeqJ2hAfmbSfwibOj5h+Kug1r1dVY?=
+ =?iso-8859-1?Q?KVGjAAXEFU44j6PC8F5oxiRpF49xIS6cs+57NHotMQ/NHnLnguziRaQXvy?=
+ =?iso-8859-1?Q?SAMqAGBMF2u4ahaqw1Lw+6Cm1o/N/14Z+9GheDEjsFRYNgjqCVZW1jEZv4?=
+ =?iso-8859-1?Q?KHQHzwCYASC/8fHNMOl7s+H19HI4zOg2+3r3SCoCMyg7WEM8kk3rvz9tVq?=
+ =?iso-8859-1?Q?cWk9OlNPjj6d38TnLjjD2aViDKmBe3bKwbX6IFYdoZIKLAnmBWg5OxL8mM?=
+ =?iso-8859-1?Q?zMJDkiO1d8Q1IeB83Cdi/GayaIhYvFqqMkyt3ske2D1Hhk0i3tnepzWyQ3?=
+ =?iso-8859-1?Q?4f1Lw6HBWK1DAK4R6i+ubfPyhH5GXNfvAquyIi5ktSvuiFkqUc0stctNy4?=
+ =?iso-8859-1?Q?Hz2BVAXoh8PuBizcik9rCE9BRxGuK83BTvjgwEJrfb5Q2qrhfYfA7Js4YO?=
+ =?iso-8859-1?Q?S4HQk7Crpl0gaHs6iDeJfPv9jZ3s8Ncrx/t2impWanja936gz5TMg/HOzn?=
+ =?iso-8859-1?Q?xMYpau0tNWvCgT9o24+gVYnWHDqlgbTa8GxKrAg3DCtgdOZ9Ny+5sODG6I?=
+ =?iso-8859-1?Q?pnWEertYErVu/y4P44uvLzXprNQK+2w6Pf2/QNFLeffJrAC/Gc8Iadzn63?=
+ =?iso-8859-1?Q?oUzs2wLlLWNLn8MBy4S7f1VKnSs1g/i2PnV1ZIsCJv6zk+twR9QkgFRvV3?=
+ =?iso-8859-1?Q?CWdmdo03zdQpAzwND0VAp22lChfe2EVChzSFV0g94+eYSrp04M8jmqoZyO?=
+ =?iso-8859-1?Q?z8Mb4hQzKUyPDJfKaoEMrE1TVQTDVG7mMUNMlIfpkVU74CXaH7QabJcWJw?=
+ =?iso-8859-1?Q?zUxH2lo14b8TZ1isTnLMSiQV3UUh0nkJgtoh0dYxWOzhBioYejy2CNGqh+?=
+ =?iso-8859-1?Q?2z8gYbspTb09YDUXklbaJi9cRGo2Ghzko+xXLa3vAWtG03+ZBPJSONre6z?=
+ =?iso-8859-1?Q?y7VP1qcsUkyd67Ivoaf8S43H5or9uUzWh7S+4GsFdS8IN3V/9D9kdWByJU?=
+ =?iso-8859-1?Q?T8N0qlkfFojDWmAm9ZMndJIWj8mtUePsyelN1Vh0mbG5pjGwq88LfVDj7O?=
+ =?iso-8859-1?Q?tgPvibAIT0LW955Haix1+t3SRB1tEOlBTd5NI0CuFzQuYxYq9oZ6jR9ifd?=
+ =?iso-8859-1?Q?F/2Zhc+OxfJVT9EAqAAs4UgVOH4LWBpzg/LqT2Z+W3eh7wItVERWtCWscY?=
+ =?iso-8859-1?Q?fb1SJTMrAJxuh47EGkUTX0pcvVzl3rhj6fE0aJ03mW5ETrJtApm0Bym8oo?=
+ =?iso-8859-1?Q?h+QKd5bLSYefa9GTNYtP6HwTad7sFPYJz257aEvh1vvJ2xwkRXO/C/CcvR?=
+ =?iso-8859-1?Q?DsJYP412iTT17srH2pPTg//YTtr2Cq8Wgy4d8q1oii+XUsVAvctowYRtrQ?=
+ =?iso-8859-1?Q?hx9+CF86LVCdxk/1Gg0JQqKv0z2+UC2ZAlNk8sMEerXsOqNkodYRYgRnqt?=
+ =?iso-8859-1?Q?smD4tLcHQhOun2hCLxHPa9dbTY6mCvVyqrbFmsCQn1bIgpXuZkWVT9ilcg?=
+ =?iso-8859-1?Q?QXKwZFD1xKp8IIFmcJcIeRZE7Dhm/Ic12uo+FNEdjpOY85akoqVfHOzfil?=
+ =?iso-8859-1?Q?PrOlbvB2F7gmgKdTMuhZ8GH7GRdCgZxnog?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 136d462e-9394-4847-6a99-08dc1b86ce54
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2024 20:13:37.7756 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2024 20:14:58.2889 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7ztBzaBa0Sop4KqtQb8ORQrPFQEP5DFyT+rqFUApBMRbZAGrSKfhbgPaJJds35Pc2QHfQDktKl9b63FFcP9OBw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: sN7olNTcpl1c5XyejXirStM8zrHm4Kk7HAx4WdPZsMGU3V3u+FgZ3GTUp1WXIOkgUmWpz0BIY5i6Xg+dL/aqMQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7375
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -153,9 +153,12 @@ Cc: Maarten Lankhorst <dev@lankhorst.se>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jan 22, 2024 at 09:04:40AM -0800, José Roberto de Souza wrote:
-> Those addresses are necessary to Mesa tools knows where in VM are the
-> batch buffers to parse and print instructions that are human readable.
+On Mon, Jan 22, 2024 at 09:04:44AM -0800, José Roberto de Souza wrote:
+> This makes easier to use those registers when copying its values to
+> calculator also makes easier for tools to parse it.
+> 
+> To avoids padding holes in xe_hw_engine_snapshot the u64 variables
+> were moved to the top of xe_hw_engine_snapshot.reg.
 > 
 > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > Cc: Maarten Lankhorst <dev@lankhorst.se>
@@ -164,140 +167,171 @@ On Mon, Jan 22, 2024 at 09:04:40AM -0800, José Roberto de Souza wrote:
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
 > ---
->  drivers/gpu/drm/xe/xe_devcoredump.c       |  5 +++
->  drivers/gpu/drm/xe/xe_devcoredump_types.h |  3 ++
->  drivers/gpu/drm/xe/xe_sched_job.c         | 38 +++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_sched_job.h         |  5 +++
->  drivers/gpu/drm/xe/xe_sched_job_types.h   |  5 +++
->  5 files changed, 56 insertions(+)
+>  drivers/gpu/drm/xe/xe_hw_engine.c       | 69 ++++++++++++-------------
+>  drivers/gpu/drm/xe/xe_hw_engine_types.h | 30 ++++-------
+>  2 files changed, 42 insertions(+), 57 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-> index 0f23ecc74b162..a0e3732440ab5 100644
-> --- a/drivers/gpu/drm/xe/xe_devcoredump.c
-> +++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-> @@ -94,6 +94,9 @@ static ssize_t xe_devcoredump_read(char *buffer, loff_t offset,
->  	xe_guc_ct_snapshot_print(coredump->snapshot.ct, &p);
->  	xe_guc_exec_queue_snapshot_print(coredump->snapshot.ge, &p);
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+> index 3aaab507f37fe..9fc30ecec0a26 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+> @@ -749,6 +749,7 @@ struct xe_hw_engine_snapshot *
+>  xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
+>  {
+>  	struct xe_hw_engine_snapshot *snapshot;
+> +	u64 val;
 >  
-> +	drm_printf(&p, "\n**** Job ****\n");
-> +	xe_sched_job_snapshot_print(coredump->snapshot.job, &p);
-> +
->  	drm_printf(&p, "\n**** HW Engines ****\n");
->  	for (i = 0; i < XE_NUM_HW_ENGINES; i++)
->  		if (coredump->snapshot.hwe[i])
-> @@ -114,6 +117,7 @@ static void xe_devcoredump_free(void *data)
+>  	if (!xe_hw_engine_is_valid(hwe))
+>  		return NULL;
+> @@ -766,19 +767,31 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
+>  						    hwe->domain);
+>  	snapshot->mmio_base = hwe->mmio_base;
 >  
->  	xe_guc_ct_snapshot_free(coredump->snapshot.ct);
->  	xe_guc_exec_queue_snapshot_free(coredump->snapshot.ge);
-> +	xe_sched_job_snapshot_free(coredump->snapshot.job);
->  	for (i = 0; i < XE_NUM_HW_ENGINES; i++)
->  		if (coredump->snapshot.hwe[i])
->  			xe_hw_engine_snapshot_free(coredump->snapshot.hwe[i]);
-> @@ -153,6 +157,7 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+> -	snapshot->reg.ring_hwstam = hw_engine_mmio_read32(hwe, RING_HWSTAM(0));
+> -	snapshot->reg.ring_hws_pga = hw_engine_mmio_read32(hwe,
+> -							   RING_HWS_PGA(0));
+> -	snapshot->reg.ring_execlist_status_lo =
+> +	snapshot->reg.ring_execlist_status =
+>  		hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_LO(0));
+> -	snapshot->reg.ring_execlist_status_hi =
+> -		hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_HI(0));
+> -	snapshot->reg.ring_execlist_sq_contents_lo =
+> -		hw_engine_mmio_read32(hwe,
+> -				      RING_EXECLIST_SQ_CONTENTS_LO(0));
+> -	snapshot->reg.ring_execlist_sq_contents_hi =
+> -		hw_engine_mmio_read32(hwe,
+> -				      RING_EXECLIST_SQ_CONTENTS_HI(0));
+> +	val = hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_HI(0));
+> +	snapshot->reg.ring_execlist_status |= val << 32;
+> +
+> +	snapshot->reg.ring_execlist_sq_contents =
+> +		hw_engine_mmio_read32(hwe, RING_EXECLIST_SQ_CONTENTS_LO(0));
+> +	val = hw_engine_mmio_read32(hwe, RING_EXECLIST_SQ_CONTENTS_HI(0));
+> +	snapshot->reg.ring_execlist_sq_contents |= val << 32;
+> +
+> +	snapshot->reg.ring_acthd = hw_engine_mmio_read32(hwe, RING_ACTHD(0));
+> +	val = hw_engine_mmio_read32(hwe, RING_ACTHD_UDW(0));
+> +	snapshot->reg.ring_acthd |= val << 32;
+> +
+> +	snapshot->reg.ring_bbaddr = hw_engine_mmio_read32(hwe, RING_BBADDR(0));
+> +	val = hw_engine_mmio_read32(hwe, RING_BBADDR_UDW(0));
+> +	snapshot->reg.ring_bbaddr |= val << 32;
+> +
+> +	snapshot->reg.ring_dma_fadd =
+> +		hw_engine_mmio_read32(hwe, RING_DMA_FADD(0));
+> +	val = hw_engine_mmio_read32(hwe, RING_DMA_FADD_UDW(0));
+> +	snapshot->reg.ring_dma_fadd |= val << 32;
+> +
+> +	snapshot->reg.ring_hwstam = hw_engine_mmio_read32(hwe, RING_HWSTAM(0));
+> +	snapshot->reg.ring_hws_pga = hw_engine_mmio_read32(hwe, RING_HWS_PGA(0));
+>  	snapshot->reg.ring_start = hw_engine_mmio_read32(hwe, RING_START(0));
+>  	snapshot->reg.ring_head =
+>  		hw_engine_mmio_read32(hwe, RING_HEAD(0)) & HEAD_ADDR;
+> @@ -792,16 +805,6 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
+>  	snapshot->reg.ring_esr = hw_engine_mmio_read32(hwe, RING_ESR(0));
+>  	snapshot->reg.ring_emr = hw_engine_mmio_read32(hwe, RING_EMR(0));
+>  	snapshot->reg.ring_eir = hw_engine_mmio_read32(hwe, RING_EIR(0));
+> -	snapshot->reg.ring_acthd_udw =
+> -		hw_engine_mmio_read32(hwe, RING_ACTHD_UDW(0));
+> -	snapshot->reg.ring_acthd = hw_engine_mmio_read32(hwe, RING_ACTHD(0));
+> -	snapshot->reg.ring_bbaddr_udw =
+> -		hw_engine_mmio_read32(hwe, RING_BBADDR_UDW(0));
+> -	snapshot->reg.ring_bbaddr = hw_engine_mmio_read32(hwe, RING_BBADDR(0));
+> -	snapshot->reg.ring_dma_fadd_udw =
+> -		hw_engine_mmio_read32(hwe, RING_DMA_FADD_UDW(0));
+> -	snapshot->reg.ring_dma_fadd =
+> -		hw_engine_mmio_read32(hwe, RING_DMA_FADD(0));
+>  	snapshot->reg.ipehr = hw_engine_mmio_read32(hwe, RING_IPEHR(0));
 >  
->  	coredump->snapshot.ct = xe_guc_ct_snapshot_capture(&guc->ct, true);
->  	coredump->snapshot.ge = xe_guc_exec_queue_snapshot_capture(job);
-> +	coredump->snapshot.job = xe_sched_job_snapshot_capture(job);
->  
->  	for_each_hw_engine(hwe, q->gt, id) {
->  		if (hwe->class != q->hwe->class ||
-> diff --git a/drivers/gpu/drm/xe/xe_devcoredump_types.h b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-> index 7fdad9c3d3dde..9a12959ed6b14 100644
-> --- a/drivers/gpu/drm/xe/xe_devcoredump_types.h
-> +++ b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-> @@ -31,8 +31,11 @@ struct xe_devcoredump_snapshot {
->  	struct xe_guc_ct_snapshot *ct;
->  	/** @ge: Guc Engine snapshot */
->  	struct xe_guc_submit_exec_queue_snapshot *ge;
-> +
->  	/** @hwe: HW Engine snapshot array */
->  	struct xe_hw_engine_snapshot *hwe[XE_NUM_HW_ENGINES];
-> +	/** @job: Snapshot of job state */
-> +	struct xe_sched_job_snapshot *job;
->  };
->  
->  /**
-> diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
-> index 01106a1156ad8..cde1407867db6 100644
-> --- a/drivers/gpu/drm/xe/xe_sched_job.c
-> +++ b/drivers/gpu/drm/xe/xe_sched_job.c
-> @@ -278,3 +278,41 @@ int xe_sched_job_last_fence_add_dep(struct xe_sched_job *job, struct xe_vm *vm)
->  
->  	return drm_sched_job_add_dependency(&job->drm, fence);
->  }
-> +
-> +struct xe_sched_job_snapshot *
-> +xe_sched_job_snapshot_capture(struct xe_sched_job *job)
-> +{
-> +	struct xe_exec_queue *q = job->q;
-> +	struct xe_device *xe = q->gt->tile->xe;
-> +	struct xe_sched_job_snapshot *snapshot;
-> +	size_t len = sizeof(*snapshot) + (sizeof(u64) * q->width);
-> +	u16 i;
-> +
-> +	snapshot = kzalloc(len, GFP_ATOMIC);
-> +	if (!snapshot)
-> +		return NULL;
-> +
-> +	snapshot->batch_addr_len = q->width;
-> +	for (i = 0; i < q->width; i++)
-> +		snapshot->batch_addr[i] = xe_device_uncanonicalize_addr(xe, job->batch_addr[i]);
-> +
-> +	return snapshot;
-> +}
-> +
-> +void xe_sched_job_snapshot_free(struct xe_sched_job_snapshot *snapshot)
-> +{
-> +	kfree(snapshot);
-> +}
-> +
-> +void
-> +xe_sched_job_snapshot_print(struct xe_sched_job_snapshot *snapshot,
-> +			    struct drm_printer *p)
-> +{
-> +	u16 i;
-> +
-> +	if (!snapshot)
-> +		return;
-> +
-> +	for (i = 0; i < snapshot->batch_addr_len; i++)
-> +		drm_printf(p, "batch_addr[%u]: 0x%016llx\n", i, snapshot->batch_addr[i]);
-> +}
-> diff --git a/drivers/gpu/drm/xe/xe_sched_job.h b/drivers/gpu/drm/xe/xe_sched_job.h
-> index 34f475ba7f502..f1a660648cf00 100644
-> --- a/drivers/gpu/drm/xe/xe_sched_job.h
-> +++ b/drivers/gpu/drm/xe/xe_sched_job.h
-> @@ -8,6 +8,7 @@
->  
->  #include "xe_sched_job_types.h"
->  
-> +struct drm_printer;
->  struct xe_vm;
->  
->  #define XE_SCHED_HANG_LIMIT 1
-> @@ -77,4 +78,8 @@ xe_sched_job_add_migrate_flush(struct xe_sched_job *job, u32 flags)
->  
->  bool xe_sched_job_is_migration(struct xe_exec_queue *q);
->  
-> +struct xe_sched_job_snapshot *xe_sched_job_snapshot_capture(struct xe_sched_job *job);
-> +void xe_sched_job_snapshot_free(struct xe_sched_job_snapshot *snapshot);
-> +void xe_sched_job_snapshot_print(struct xe_sched_job_snapshot *snapshot, struct drm_printer *p);
-> +
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
-> index 71213ba9735bc..377dc6b806eb8 100644
-> --- a/drivers/gpu/drm/xe/xe_sched_job_types.h
-> +++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
-> @@ -43,4 +43,9 @@ struct xe_sched_job {
->  	u64 batch_addr[];
->  };
->  
-> +struct xe_sched_job_snapshot {
-> +	u16 batch_addr_len;
-> +	u64 batch_addr[];
-> +};
-> +
->  #endif
+>  	if (snapshot->class == XE_ENGINE_CLASS_COMPUTE)
+> @@ -830,14 +833,10 @@ void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
+>  		   snapshot->forcewake.domain, snapshot->forcewake.ref);
+>  	drm_printf(p, "\tHWSTAM: 0x%08x\n", snapshot->reg.ring_hwstam);
+>  	drm_printf(p, "\tRING_HWS_PGA: 0x%08x\n", snapshot->reg.ring_hws_pga);
+> -	drm_printf(p, "\tRING_EXECLIST_STATUS_LO: 0x%08x\n",
+> -		   snapshot->reg.ring_execlist_status_lo);
+> -	drm_printf(p, "\tRING_EXECLIST_STATUS_HI: 0x%08x\n",
+> -		   snapshot->reg.ring_execlist_status_hi);
+> -	drm_printf(p, "\tRING_EXECLIST_SQ_CONTENTS_LO: 0x%08x\n",
+> -		   snapshot->reg.ring_execlist_sq_contents_lo);
+> -	drm_printf(p, "\tRING_EXECLIST_SQ_CONTENTS_HI: 0x%08x\n",
+> -		   snapshot->reg.ring_execlist_sq_contents_hi);
+> +	drm_printf(p, "\tRING_EXECLIST_STATUS: 0x%016llx\n",
+> +		   snapshot->reg.ring_execlist_status);
+> +	drm_printf(p, "\tRING_EXECLIST_SQ_CONTENTS: 0x%016llx\n",
+> +		   snapshot->reg.ring_execlist_sq_contents);
+>  	drm_printf(p, "\tRING_START: 0x%08x\n", snapshot->reg.ring_start);
+>  	drm_printf(p, "\tRING_HEAD:  0x%08x\n", snapshot->reg.ring_head);
+>  	drm_printf(p, "\tRING_TAIL:  0x%08x\n", snapshot->reg.ring_tail);
+> @@ -849,13 +848,9 @@ void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
+>  	drm_printf(p, "\tRING_ESR:   0x%08x\n", snapshot->reg.ring_esr);
+>  	drm_printf(p, "\tRING_EMR:   0x%08x\n", snapshot->reg.ring_emr);
+>  	drm_printf(p, "\tRING_EIR:   0x%08x\n", snapshot->reg.ring_eir);
+> -	drm_printf(p, "\tACTHD:  0x%08x_%08x\n", snapshot->reg.ring_acthd_udw,
+> -		   snapshot->reg.ring_acthd);
+> -	drm_printf(p, "\tBBADDR: 0x%08x_%08x\n", snapshot->reg.ring_bbaddr_udw,
+> -		   snapshot->reg.ring_bbaddr);
+> -	drm_printf(p, "\tDMA_FADDR: 0x%08x_%08x\n",
+> -		   snapshot->reg.ring_dma_fadd_udw,
+> -		   snapshot->reg.ring_dma_fadd);
+> +	drm_printf(p, "\tACTHD:  0x%016llx\n", snapshot->reg.ring_acthd);
+> +	drm_printf(p, "\tBBADDR: 0x%016llx\n", snapshot->reg.ring_bbaddr);
+> +	drm_printf(p, "\tDMA_FADDR: 0x%016llx\n", snapshot->reg.ring_dma_fadd);
+>  	drm_printf(p, "\tIPEHR: 0x%08x\n\n", snapshot->reg.ipehr);
+>  	if (snapshot->class == XE_ENGINE_CLASS_COMPUTE)
+>  		drm_printf(p, "\tRCU_MODE: 0x%08x\n",
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+> index dfeaaac08b7f9..d55c25fbf1371 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+> @@ -173,18 +173,20 @@ struct xe_hw_engine_snapshot {
+>  	u32 mmio_base;
+>  	/** @reg: Useful MMIO register snapshot */
+>  	struct {
+> +		/** @ring_execlist_status: RING_EXECLIST_STATUS */
+> +		u64 ring_execlist_status;
+> +		/** @ring_execlist_sq_contents: RING_EXECLIST_SQ_CONTENTS */
+> +		u64 ring_execlist_sq_contents;
+> +		/** @ring_acthd: RING_ACTHD */
+> +		u64 ring_acthd;
+> +		/** @ring_bbaddr: RING_BBADDR */
+> +		u64 ring_bbaddr;
+> +		/** @ring_dma_fadd: RING_DMA_FADD */
+> +		u64 ring_dma_fadd;
+>  		/** @ring_hwstam: RING_HWSTAM */
+>  		u32 ring_hwstam;
+>  		/** @ring_hws_pga: RING_HWS_PGA */
+>  		u32 ring_hws_pga;
+> -		/** @ring_execlist_status_lo: RING_EXECLIST_STATUS_LO */
+> -		u32 ring_execlist_status_lo;
+> -		/** @ring_execlist_status_hi: RING_EXECLIST_STATUS_HI */
+> -		u32 ring_execlist_status_hi;
+> -		/** @ring_execlist_sq_contents_lo: RING_EXECLIST_SQ_CONTENTS */
+> -		u32 ring_execlist_sq_contents_lo;
+> -		/** @ring_execlist_sq_contents_hi: RING_EXECLIST_SQ_CONTENTS + 4 */
+> -		u32 ring_execlist_sq_contents_hi;
+>  		/** @ring_start: RING_START */
+>  		u32 ring_start;
+>  		/** @ring_head: RING_HEAD */
+> @@ -205,18 +207,6 @@ struct xe_hw_engine_snapshot {
+>  		u32 ring_emr;
+>  		/** @ring_eir: RING_EIR */
+>  		u32 ring_eir;
+> -		/** @ring_acthd_udw: RING_ACTHD_UDW */
+> -		u32 ring_acthd_udw;
+> -		/** @ring_acthd: RING_ACTHD */
+> -		u32 ring_acthd;
+> -		/** @ring_bbaddr_udw: RING_BBADDR_UDW */
+> -		u32 ring_bbaddr_udw;
+> -		/** @ring_bbaddr: RING_BBADDR */
+> -		u32 ring_bbaddr;
+> -		/** @ring_dma_fadd_udw: RING_DMA_FADD_UDW */
+> -		u32 ring_dma_fadd_udw;
+> -		/** @ring_dma_fadd: RING_DMA_FADD */
+> -		u32 ring_dma_fadd;
+>  		/** @ipehr: IPEHR */
+>  		u32 ipehr;
+>  		/** @rcu_mode: RCU_MODE */
 > -- 
 > 2.43.0
 > 
