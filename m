@@ -4,47 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2E0CC46CD2
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jan 2024 21:17:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 400B6C46CD2
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jan 2024 21:17:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7933210EF6F;
-	Mon, 22 Jan 2024 21:17:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 006DA10EF8F;
+	Mon, 22 Jan 2024 21:17:29 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AB2A10EBBE
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Jan 2024 21:17:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53BAE10EF8A
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 Jan 2024 21:17:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705958242; x=1737494242;
+ t=1705958247; x=1737494247;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fTx9q+yJzXR/G86bUMwcQivdEPU7/LW32y+u7tQ9AGI=;
- b=i2Lf7y6KORaC78bdFUycb8VmXgyxJ7g3hl92Tt/+hrCJMD1I/C2lQU6I
- xvQ/LwXWr31uwV2MO6hp0yPo78Ikt3gmiBVtcqVVA9nTYg8tIp9rFiusw
- rNm/QFFWAT3I+4owTsxpM7DGvdAacJGg4YVSgk+XOJKvdP5114Peei4T9
- nimXN3yfdrCR2FUfqqhQf3opIU2fvGE0LyKj/Nbi02onlsWKbTXyGhYZl
- hlUawb+2ufD5sPk3ht7xmLMWqTZ+thveVvUApThJU7vatYP5OT/XycNSu
- 1DyoUVQIVY+wVHIDRGQ1mOMiAVrocMfQIhlZ1qh+VJpsWb7Eb614Hd5V1 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="432486549"
-X-IronPort-AV: E=Sophos;i="6.05,212,1701158400"; d="scan'208";a="432486549"
+ bh=rZJid86VU63omfDKiUbr8xNB8VtBpOKA9ZUS77QUS3A=;
+ b=YATxaO7j9E0RwTwvrO7sYgRIboztr//t6Y/olujv/qTqzFqbLyWVPPW4
+ FJo3LPt744+/F3DXaUSX84TF3zR4taQhK340E7V66SQ4JVx8AbAUhp/6g
+ y2BkJRBuxcQkRZntkNrIc5TSqala6U3edzCTuZvLg83NVuO1fV1vQnO0q
+ RkpmOsHVu12Fzyo6rMksG1hRuaarUiJRmiUF4FBUvukNurvIim9lZLnx9
+ 1GhhA4y2urnc1jfmCesgwtO7HW8TtIjHeAYa8H4Kcr73+Mz1+4rIQ80U6
+ iuy7RDz+GeKQPbZBIb7B5IkveOyuZCB3g1nNlTKYFba1c5p01vb+qv/bz Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="432486563"
+X-IronPort-AV: E=Sophos;i="6.05,212,1701158400"; d="scan'208";a="432486563"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2024 13:17:21 -0800
+ 22 Jan 2024 13:17:26 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,212,1701158400"; d="scan'208";a="27495059"
+X-IronPort-AV: E=Sophos;i="6.05,212,1701158400"; d="scan'208";a="27495069"
 Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2024 13:17:20 -0800
+ 22 Jan 2024 13:17:25 -0800
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 3/9] drm/xe: Add functions to convert regular address to
- canonical address and back
-Date: Mon, 22 Jan 2024 13:17:03 -0800
-Message-ID: <20240122211709.224419-3-jose.souza@intel.com>
+Subject: [PATCH v2 6/9] drm/xe: Stash GMD_ID value in xe_gt
+Date: Mon, 22 Jan 2024 13:17:06 -0800
+Message-ID: <20240122211709.224419-6-jose.souza@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240122211709.224419-1-jose.souza@intel.com>
 References: <20240122211709.224419-1-jose.souza@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -57,62 +55,54 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maarten Lankhorst <dev@lankhorst.se>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Some instructions requires canonical address like
-MI_BATCH_BUFFER_START(UMDs must call xe_exec with a canonical address
-for Xe2+).
+From: Matt Roper <matthew.d.roper@intel.com>
 
-So here adding functions to convert regular address to canonical
-address and back, the first user of this functions will be added
-in the next patches.
+Although we've stored the major and minor versions for graphics/media in
+xe_device, it will be simpler to implement the uapi version query if we
+also stash the raw register value in the GT itself.
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Cc: Stuart Summers <stuart.summers@intel.com>
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 15 +++++++++++++++
- drivers/gpu/drm/xe/xe_device.h |  3 +++
- 2 files changed, 18 insertions(+)
+ drivers/gpu/drm/xe/xe_gt.c       | 6 ++++++
+ drivers/gpu/drm/xe/xe_gt_types.h | 2 ++
+ 2 files changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index ab417f4f7d2a7..b4cdcf1b2081a 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -727,3 +727,18 @@ void xe_device_mem_access_put(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 1fe4d54409d34..47cb87f599e46 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -399,6 +399,12 @@ static int gt_fw_domain_init(struct xe_gt *gt)
+ 	/* Initialize CCS mode sysfs after early initialization of HW engines */
+ 	xe_gt_ccs_mode_sysfs_init(gt);
  
- 	xe_assert(xe, ref >= 0);
- }
++	/*
++	 * Stash hardware-reported version.  Since this register does not exist
++	 * on pre-MTL platforms, reading it there will (correctly) return 0.
++	 */
++	gt->info.gmdid = xe_mmio_read32(gt, GMD_ID);
 +
-+static inline int highest_address_bit_get(struct xe_device *xe)
-+{
-+	return xe->info.dma_mask_size > 48 ? 57 : 47;
-+}
-+
-+u64 xe_device_canonicalize_addr(struct xe_device *xe, u64 address)
-+{
-+	return sign_extend64(address, highest_address_bit_get(xe));
-+}
-+
-+u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64 address)
-+{
-+	return address & GENMASK_ULL(highest_address_bit_get(xe), 0);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index af8ac2e9e2709..ce20f6fe6219a 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -175,4 +175,7 @@ static inline bool xe_device_has_memirq(struct xe_device *xe)
+ 	err = xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
+ 	XE_WARN_ON(err);
+ 	xe_device_mem_access_put(gt_to_xe(gt));
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index 047cde6cda107..177b93a96929e 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -117,6 +117,8 @@ struct xe_gt {
+ 		 * hwconfig blob.
+ 		 */
+ 		u64 __engine_mask;
++		/** @gmdid: raw GMD_ID value from hardware */
++		u32 gmdid;
+ 	} info;
  
- u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size);
- 
-+u64 xe_device_canonicalize_addr(struct xe_device *xe, u64 address);
-+u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64 address);
-+
- #endif
+ 	/**
 -- 
 2.43.0
 
