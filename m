@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04701C47DAF
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jan 2024 17:05:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EC6BC47DAF
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jan 2024 17:05:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B907510ED09;
-	Mon, 22 Jan 2024 17:05:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60ACA10ECEB;
+	Mon, 22 Jan 2024 17:05:21 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7909710ECA3
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Jan 2024 17:05:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5C0110ECA3
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 Jan 2024 17:05:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705943112; x=1737479112;
+ t=1705943108; x=1737479108;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=g2pLn3ZlYp2pV88pqPWwINAxrC/IA75HWyDYdrBxOjU=;
- b=eTnruEc2pQ4En+1P43TJmGOwC2/xLrO8++YujzF3n5d0IgVzs9VYtGOl
- s2yuOu/h6HK4RZf9dF/R8ezhn6AGrk4qfygCUmg158laPIuWCSeynuXH/
- c2auwRK+avHQ2DXhUj4p4DL7MoLG+amw3hV1QNL14bm9heofcAuw8IR7n
- Ixv+Az9kQKR4o5SbAmc/g5G3wwn6GaK8PAV7qWdH6s6OBUZe0xdwu/Ku/
- cJKC8+WKh2dS4O3RdAny35NI16Ho90ZNtCmULkoXjBkIul60MXuSusKHV
- NCG8s6W6AZnANIKbPUAjpnZoP8gpn13bt6ARz+1IOyAw3Hpge6gUtVEgf g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="8020252"
+ bh=07VMXUwdXg+Bv0aULkSWDdqWtPxg9thXXkyUx9DrZ70=;
+ b=TkWg08p42st4EFg2MYBONBL32J2KYpFPb5YMtJqPNJuXcimNxPzOufDH
+ 3mKuI2apWVTvm8Y7MyZ9sG58FULm9GbL5TadfCXZ5c/4QCaWIIWgYxxHD
+ JL4ye/2y300dCWP+F54RII7RFlegb/yAO3aqO5QoaZWQgQSU6sy8IPcjZ
+ At/zXpTAzBX8QOrzOyfMOd2W+S6YTqci2lJJzr1mDTeEz1Pb84TW66u2e
+ 6yOPTXOcB95e0vAXvDo3qCzUH9Gomf8u4qiwa7agOejeSbyLE+L4XTYi0
+ 6q7m8lAKlx5bobS5peS3BVkP0m91pso7lu85KHvlxDhZ/BwDzCo9u1/dZ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="8020234"
 X-IronPort-AV: E=Sophos;i="6.05,211,1701158400"; 
-   d="scan'208";a="8020252"
+   d="scan'208";a="8020234"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2024 09:05:12 -0800
+ 22 Jan 2024 09:05:08 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="735228422"
-X-IronPort-AV: E=Sophos;i="6.05,211,1701158400"; d="scan'208";a="735228422"
+X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="735228318"
+X-IronPort-AV: E=Sophos;i="6.05,211,1701158400"; d="scan'208";a="735228318"
 Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2024 09:05:10 -0800
+ 22 Jan 2024 09:05:03 -0800
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 9/9] drm/xe: Remove addional spaces in devcoredump HW Engines
- section
-Date: Mon, 22 Jan 2024 09:04:45 -0800
-Message-ID: <20240122170445.108856-9-jose.souza@intel.com>
+Subject: [PATCH 5/9] drm/xe: Nuke xe from xe_devcoredump
+Date: Mon, 22 Jan 2024 09:04:41 -0800
+Message-ID: <20240122170445.108856-5-jose.souza@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240122170445.108856-1-jose.souza@intel.com>
 References: <20240122170445.108856-1-jose.souza@intel.com>
@@ -63,46 +62,46 @@ Cc: Maarten Lankhorst <dev@lankhorst.se>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-I guess the indention was to keep it visually aligned but that
-would require a lot of spaces and was not followed by other registers
-so lets just drop it.
+xe is never set in xe_devcoredump but if xe_device is needed
+devcoredump_to_xe_device() can be used.
 
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Maarten Lankhorst <dev@lankhorst.se>
 Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine.c | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_devcoredump_types.h | 2 --
+ drivers/gpu/drm/xe/xe_device.h            | 5 +++++
+ 2 files changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 9fc30ecec0a26..6927ce07bdfe7 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -838,17 +838,17 @@ void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
- 	drm_printf(p, "\tRING_EXECLIST_SQ_CONTENTS: 0x%016llx\n",
- 		   snapshot->reg.ring_execlist_sq_contents);
- 	drm_printf(p, "\tRING_START: 0x%08x\n", snapshot->reg.ring_start);
--	drm_printf(p, "\tRING_HEAD:  0x%08x\n", snapshot->reg.ring_head);
--	drm_printf(p, "\tRING_TAIL:  0x%08x\n", snapshot->reg.ring_tail);
-+	drm_printf(p, "\tRING_HEAD: 0x%08x\n", snapshot->reg.ring_head);
-+	drm_printf(p, "\tRING_TAIL: 0x%08x\n", snapshot->reg.ring_tail);
- 	drm_printf(p, "\tRING_CTL: 0x%08x\n", snapshot->reg.ring_ctl);
- 	drm_printf(p, "\tRING_MI_MODE: 0x%08x\n", snapshot->reg.ring_mi_mode);
- 	drm_printf(p, "\tRING_MODE: 0x%08x\n",
- 		   snapshot->reg.ring_mode);
--	drm_printf(p, "\tRING_IMR:   0x%08x\n", snapshot->reg.ring_imr);
--	drm_printf(p, "\tRING_ESR:   0x%08x\n", snapshot->reg.ring_esr);
--	drm_printf(p, "\tRING_EMR:   0x%08x\n", snapshot->reg.ring_emr);
--	drm_printf(p, "\tRING_EIR:   0x%08x\n", snapshot->reg.ring_eir);
--	drm_printf(p, "\tACTHD:  0x%016llx\n", snapshot->reg.ring_acthd);
-+	drm_printf(p, "\tRING_IMR: 0x%08x\n", snapshot->reg.ring_imr);
-+	drm_printf(p, "\tRING_ESR: 0x%08x\n", snapshot->reg.ring_esr);
-+	drm_printf(p, "\tRING_EMR: 0x%08x\n", snapshot->reg.ring_emr);
-+	drm_printf(p, "\tRING_EIR: 0x%08x\n", snapshot->reg.ring_eir);
-+	drm_printf(p, "\tACTHD: 0x%016llx\n", snapshot->reg.ring_acthd);
- 	drm_printf(p, "\tBBADDR: 0x%016llx\n", snapshot->reg.ring_bbaddr);
- 	drm_printf(p, "\tDMA_FADDR: 0x%016llx\n", snapshot->reg.ring_dma_fadd);
- 	drm_printf(p, "\tIPEHR: 0x%08x\n\n", snapshot->reg.ipehr);
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump_types.h b/drivers/gpu/drm/xe/xe_devcoredump_types.h
+index 9a12959ed6b14..d259119b2c980 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump_types.h
++++ b/drivers/gpu/drm/xe/xe_devcoredump_types.h
+@@ -47,8 +47,6 @@ struct xe_devcoredump_snapshot {
+  * for reading the information.
+  */
+ struct xe_devcoredump {
+-	/** @xe: Xe device. */
+-	struct xe_device *xe;
+ 	/** @captured: The snapshot of the first hang has already been taken. */
+ 	bool captured;
+ 	/** @snapshot: Snapshot is captured at time of the first crash */
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index ce20f6fe6219a..781a1aa164ecf 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -35,6 +35,11 @@ static inline struct xe_device *ttm_to_xe_device(struct ttm_device *ttm)
+ 	return container_of(ttm, struct xe_device, ttm);
+ }
+ 
++static inline struct xe_device *devcoredump_to_xe_device(struct xe_devcoredump *devcoredump)
++{
++	return container_of(devcoredump, struct xe_device, devcoredump);
++}
++
+ struct xe_device *xe_device_create(struct pci_dev *pdev,
+ 				   const struct pci_device_id *ent);
+ int xe_device_probe_early(struct xe_device *xe);
 -- 
 2.43.0
 
