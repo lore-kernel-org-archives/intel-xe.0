@@ -4,44 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02E2FC48260
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jan 2024 21:01:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2C85C47E49
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jan 2024 21:01:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE0E910EF94;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6274510EF5F;
 	Mon, 22 Jan 2024 21:01:27 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE74A10EF61
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Jan 2024 21:01:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFD8A10EF86
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 Jan 2024 21:01:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1705957286; x=1737493286;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Xxdmus6fsGvXKSq/L6AbIQyOLYuuvvSYqcfGyTRZ0GE=;
- b=Lc3N9nlnVYfU6zh0wj0+SEshGMmuDU+MGhQQFaszDzSt9E1ueuJSe7fl
- +mYXByO+xsqy9qJxKA9GjDFkjHUMXUULA0LxBDe0lS4npK+EmChCMJOhw
- 8GskfxupF4mNR67w9qXvugTEfTUUka7sXaJvB+IvJlHPdWia/lpxS2b4k
- zTDVvnfSmm3D4kSJKoQnSVPqzK9xiZDfyXtNV1k/+36cFqy+oCod8nXPX
- dmI9RaefKvLDITMWjVFXKindYXShWZXV1WTYXR4+C/YTPHOBtKRrchcnh
- 2rb+G8A1KPntJloKnV27BWANJrDFbauqOBlI26Hf4xKSg0e8fQICEgJOK A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="8000768"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=rcnNqtiXB/Tn+RVBk3weKARjUucgYlsALw6TAnXQL/k=;
+ b=hCLJY38WL+JtwhYndr9021To0UEgOKjxL9I5vT6ca9XRFXVjgbqiMYEf
+ mQC12ETQmAqzDUt0FiKMynYp+QNAbIUVNrkAz8W+g75mbSOcGLC/s/nFE
+ cTCqrHDavKlqf0BiH0swHldtMmHBfeSzrN+UMMZYdzwnghG7oa0dBDveX
+ /aJ2ioLNaisY+xPo6yiR4GyzLNYEYJss6HyJ2xwVA6UsX2UIqPZYcJ3zY
+ Vn53+645Qd5T/+ZD1KyeXn+YYy5gfA3rv+12kBYkDjKeeuQb3HTexApUd
+ QWPmDPOYXH0o/Vm5/H8s4LMgRy6tzy7vVy2p43TWYHnN+fzB2Jekb3zZ+ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="8000772"
 X-IronPort-AV: E=Sophos;i="6.05,212,1701158400"; 
-   d="scan'208";a="8000768"
+   d="scan'208";a="8000772"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2024 13:01:19 -0800
+ 22 Jan 2024 13:01:25 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.05,212,1701158400"; 
-   d="scan'208";a="1338105"
+   d="scan'208";a="1338112"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 Jan 2024 13:01:18 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Subject: [PATCH v5 0/3] GuC CT tweaks
-Date: Mon, 22 Jan 2024 13:01:53 -0800
-Message-Id: <20240122210156.1517444-1-matthew.brost@intel.com>
+Subject: [PATCH v5 2/3] drm/xe: Move TLB invalidation reset before HW reset
+Date: Mon, 22 Jan 2024 13:01:55 -0800
+Message-Id: <20240122210156.1517444-3-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240122210156.1517444-1-matthew.brost@intel.com>
+References: <20240122210156.1517444-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -58,27 +60,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Address some the issues discussed in [1].
+This is a software reset which can be done immediately after stopping
+the UC.
 
-v2: Rebase, address Michal's comments
-v3: Rebase, address Michal's comments
-v4: Rebase, address Michal's comments
-v5: Fix CI
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-[1] https://patchwork.freedesktop.org/patch/572566/?series=127982&rev=1
-
-Matthew Brost (3):
-  drm/xe/guc: Add more GuC CT states
-  drm/xe: Move TLB invalidation reset before HW reset
-  drm/xe/guc: Flush G2H handler when turning off CTs
-
- drivers/gpu/drm/xe/xe_gt.c           |  4 +-
- drivers/gpu/drm/xe/xe_guc.c          |  4 +-
- drivers/gpu/drm/xe/xe_guc_ct.c       | 89 ++++++++++++++++++++++------
- drivers/gpu/drm/xe/xe_guc_ct.h       |  8 ++-
- drivers/gpu/drm/xe/xe_guc_ct_types.h | 18 +++++-
- 5 files changed, 99 insertions(+), 24 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 1fe4d54409d3..6d1ce85fc36d 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -632,12 +632,12 @@ static int gt_reset(struct xe_gt *gt)
+ 	if (err)
+ 		goto err_out;
+ 
++	xe_gt_tlb_invalidation_reset(gt);
++
+ 	err = do_gt_reset(gt);
+ 	if (err)
+ 		goto err_out;
+ 
+-	xe_gt_tlb_invalidation_reset(gt);
+-
+ 	err = do_gt_restart(gt);
+ 	if (err)
+ 		goto err_out;
 -- 
 2.34.1
 
