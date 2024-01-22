@@ -4,47 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E678AC47E49
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jan 2024 21:17:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A363C46CD2
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jan 2024 21:26:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F25310EF96;
-	Mon, 22 Jan 2024 21:17:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3272710EFBD;
+	Mon, 22 Jan 2024 21:26:04 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1564E10EF87
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Jan 2024 21:17:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C84BB10EFBD
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 Jan 2024 21:26:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705958252; x=1737494252;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=fUeV1H+082BHr5W6FZk/quTaGrcJSNdLD6ULLQH8f7I=;
- b=WLyB2GpxdJTlQKYefbJtYbmnyCKGAPMRLDMPeNBHwWIPobYSrO4C/WA+
- ymyP+XFteifwwfB4aZ+TJrEN38UU+JxPfDwT4fPIRBKNL+LTZbzN6az6R
- F46VWnyh7QCJx2luYZKWQMROMjQxHLX5TKmEE+HHG04BlQiC9+ZDBAGEF
- 7SABYJ9ICfu/cJt35oO3de5zug5nkK62RFwnt5BoT/DNn2BVHiSn1biD1
- +HxUn5vuOWN6bq3BofmcTE6fPe7I4ZvJQdIq8MDO2ZU97kcZKu3lNZr2J
- 4dbRdlfgOKLEA0X0eIgtfkvky7jIgSHYAw8RbsnR0jHSdx4jTBJOWk0G/ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="432486584"
-X-IronPort-AV: E=Sophos;i="6.05,212,1701158400"; d="scan'208";a="432486584"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ t=1705958762; x=1737494762;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=3F5H+9tttJTctsJ6U+dCMHxQYtv9CqdY1lt9NHrZQDw=;
+ b=MjKb3S1QizLVx/OTURKbyoCFVgOIpQYOTHyOU93wl7qMOYx9MANS7W/7
+ 0lw1OeZxirju3rhjuTjtkW0Yg6c+iMZhxQRh2rzy97FkjN5RMOwvvsvdo
+ 0Mu2iazasL223trV8Ru4EQY0efXyW/yTTMUba7YmAIgPJUJ97uwdsfPur
+ jj9Af1JqPy3DEztSlbf06LiDBI9W8m03KLxn/y1jNJbcTHE18CqB7qKLm
+ lz9d4IyfsSxTjJkv8G4PtNXEaB60+BGRi4+AuVG6Hyn6R7kHpQNNFZTAv
+ 6jsO5KbB66oGGX0HzEhhbhRPh1eD2No+6gRONbQv5YTShFs620QN4FJvN Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="432488194"
+X-IronPort-AV: E=Sophos;i="6.05,212,1701158400"; d="scan'208";a="432488194"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2024 13:17:31 -0800
+ 22 Jan 2024 13:26:02 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,212,1701158400"; d="scan'208";a="27495084"
-Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2024 13:17:30 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+X-IronPort-AV: E=Sophos;i="6.05,212,1701158400"; 
+   d="scan'208";a="1432740"
+Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
+ by fmviesa004.fm.intel.com with ESMTP; 22 Jan 2024 13:26:02 -0800
+From: Zhanjun Dong <zhanjun.dong@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 9/9] drm/xe: Remove additional spaces in devcoredump HW
- Engines section
-Date: Mon, 22 Jan 2024 13:17:09 -0800
-Message-ID: <20240122211709.224419-9-jose.souza@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240122211709.224419-1-jose.souza@intel.com>
-References: <20240122211709.224419-1-jose.souza@intel.com>
+Subject: [PATCH v4 0/9] drm/xe/guc: Add GuC based register capture for error
+ capture
+Date: Mon, 22 Jan 2024 13:25:48 -0800
+Message-Id: <20240122212557.55929-1-zhanjun.dong@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -57,51 +54,73 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maarten Lankhorst <dev@lankhorst.se>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-I guess the indention was to keep it visually aligned but that
-would require a lot of spaces and was not followed by other registers
-so lets just drop it.
+Port GuC based register capture for error capture from i915 to Xe.
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/xe/xe_hw_engine.c | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+There are 3 parts in this commit:
+. Prepare for capture registers
+    There is a bo create at guc ads init time, that is very early
+    and engine map is not ready, make it hard to calculate the
+    capture buffer size, new function created for worst case size
+    caluation. Other than that, this part basically follows the i915
+    design.
+. Process capture notification message
+    Basically follows i915 design
+. Sysfs command process.
+    Xe switched to devcoredump, adopted command line process with
+    captured node list.
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index f7d66b71f1d71..0d17e32d70c87 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -838,17 +838,17 @@ void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
- 	drm_printf(p, "\tRING_EXECLIST_SQ_CONTENTS: 0x%016llx\n",
- 		   snapshot->reg.ring_execlist_sq_contents);
- 	drm_printf(p, "\tRING_START: 0x%08x\n", snapshot->reg.ring_start);
--	drm_printf(p, "\tRING_HEAD:  0x%08x\n", snapshot->reg.ring_head);
--	drm_printf(p, "\tRING_TAIL:  0x%08x\n", snapshot->reg.ring_tail);
-+	drm_printf(p, "\tRING_HEAD: 0x%08x\n", snapshot->reg.ring_head);
-+	drm_printf(p, "\tRING_TAIL: 0x%08x\n", snapshot->reg.ring_tail);
- 	drm_printf(p, "\tRING_CTL: 0x%08x\n", snapshot->reg.ring_ctl);
- 	drm_printf(p, "\tRING_MI_MODE: 0x%08x\n", snapshot->reg.ring_mi_mode);
- 	drm_printf(p, "\tRING_MODE: 0x%08x\n",
- 		   snapshot->reg.ring_mode);
--	drm_printf(p, "\tRING_IMR:   0x%08x\n", snapshot->reg.ring_imr);
--	drm_printf(p, "\tRING_ESR:   0x%08x\n", snapshot->reg.ring_esr);
--	drm_printf(p, "\tRING_EMR:   0x%08x\n", snapshot->reg.ring_emr);
--	drm_printf(p, "\tRING_EIR:   0x%08x\n", snapshot->reg.ring_eir);
--	drm_printf(p, "\tACTHD:  0x%016llx\n", snapshot->reg.ring_acthd);
-+	drm_printf(p, "\tRING_IMR: 0x%08x\n", snapshot->reg.ring_imr);
-+	drm_printf(p, "\tRING_ESR: 0x%08x\n", snapshot->reg.ring_esr);
-+	drm_printf(p, "\tRING_EMR: 0x%08x\n", snapshot->reg.ring_emr);
-+	drm_printf(p, "\tRING_EIR: 0x%08x\n", snapshot->reg.ring_eir);
-+	drm_printf(p, "\tACTHD: 0x%016llx\n", snapshot->reg.ring_acthd);
- 	drm_printf(p, "\tBBADDR: 0x%016llx\n", snapshot->reg.ring_bbaddr);
- 	drm_printf(p, "\tDMA_FADDR: 0x%016llx\n", snapshot->reg.ring_dma_fadd);
- 	drm_printf(p, "\tIPEHR: 0x%08x\n", snapshot->reg.ipehr);
+Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+
+Changes from prior revs:
+  v4:-  Move register map table to xe_hw_engine.c
+  v3:-  Remove condition compilation in code
+  v2:-  Split into multiple chunks
+
+Zhanjun Dong (9):
+  drm/xe/guc: Add register defines for GuC based register capture
+  drm/xe/guc: Expose dss per group for GuC error capture
+  drm/xe/guc: Update GuC ADS size for error capture
+  drm/xe/guc: Add XE_LP steered register lists
+  drm/xe/guc: Add capture size check in GuC log buffer
+  drm/xe/guc: Check sizing of guc_capture output
+  drm/xe/guc: Extract GuC error capture lists on G2H notification
+  drm/xe/guc: Pre-allocate output nodes for extraction
+  drm/xe/guc: Plumb GuC-capture into dev coredump
+
+ drivers/gpu/drm/xe/Kconfig               |   11 +
+ drivers/gpu/drm/xe/Makefile              |    1 +
+ drivers/gpu/drm/xe/abi/guc_actions_abi.h |    7 +
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h |   12 +
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h     |   20 +
+ drivers/gpu/drm/xe/xe_gt_mcr.c           |    2 +-
+ drivers/gpu/drm/xe/xe_gt_mcr.h           |    3 +
+ drivers/gpu/drm/xe/xe_gt_printk.h        |    3 +
+ drivers/gpu/drm/xe/xe_gt_topology.c      |    3 -
+ drivers/gpu/drm/xe/xe_guc.c              |    6 +
+ drivers/gpu/drm/xe/xe_guc_ads.c          |  226 +++-
+ drivers/gpu/drm/xe/xe_guc_ads_types.h    |    2 +
+ drivers/gpu/drm/xe/xe_guc_capture.c      | 1398 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_capture.h      |   21 +
+ drivers/gpu/drm/xe/xe_guc_capture_fwif.h |  222 ++++
+ drivers/gpu/drm/xe/xe_guc_ct.c           |    2 +
+ drivers/gpu/drm/xe/xe_guc_fwif.h         |   68 ++
+ drivers/gpu/drm/xe/xe_guc_log.c          |  179 +++
+ drivers/gpu/drm/xe/xe_guc_log.h          |   15 +
+ drivers/gpu/drm/xe/xe_guc_log_types.h    |   26 +
+ drivers/gpu/drm/xe/xe_guc_submit.c       |   22 +-
+ drivers/gpu/drm/xe/xe_guc_submit.h       |    3 +
+ drivers/gpu/drm/xe/xe_guc_types.h        |    2 +
+ drivers/gpu/drm/xe/xe_hw_engine.c        |  173 ++-
+ drivers/gpu/drm/xe/xe_hw_engine.h        |    4 +
+ drivers/gpu/drm/xe/xe_hw_engine_types.h  |  111 +-
+ 26 files changed, 2438 insertions(+), 104 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_capture.c
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_capture.h
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_capture_fwif.h
+
 -- 
-2.43.0
+2.34.1
 
