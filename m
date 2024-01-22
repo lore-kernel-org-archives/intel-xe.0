@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24B5EC47DD9
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jan 2024 16:16:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12863C47DDF
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jan 2024 16:16:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BEF1A10F51B;
-	Mon, 22 Jan 2024 16:16:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD11A10F524;
+	Mon, 22 Jan 2024 16:16:48 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1EFC10F524
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C337010F51B
  for <intel-xe@lists.freedesktop.org>; Mon, 22 Jan 2024 16:16:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1705940205; x=1737476205;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=IXl81ahTHEpLxlq9hNUKW6ZzUWUn8QYIi3A+p+3lKmw=;
- b=oJ0XmdCE10fd3RcjhM997LOYT7oJVK71nNpRipYCTNdw8T1NGTT289cL
- wZS8EAUFY8iipsO4AaUyfOyksv8mnhOBdfGCta6DJoTohrGQY8rF3e1I0
- 9nIaZV8dMDFu/Np/B1yovxIoLl/t5ckAvlrH2fWcvReZGQLvmCrMAiP3S
- lPzcZMBBmWo5r5RXba4BpurKgNZPcIMAu+hBBkjkZI0jxUsj9EBrkDfvy
- 8aJ/1GNZERKZagwomEup1R9DgFjC/sLYk/Nwy3PQBQ7eUSDTxI0FEP99/
- PEvZuS6vna9/IxSGbkAsB1CySy34P2CLVWHsg8ka7Im56HdPXdMJUMZRK Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="400902482"
-X-IronPort-AV: E=Sophos;i="6.05,211,1701158400"; d="scan'208";a="400902482"
+ bh=rcnNqtiXB/Tn+RVBk3weKARjUucgYlsALw6TAnXQL/k=;
+ b=cYVSofOWqJe/LxlmGniSDFJQIW4Lu0Y7moenpWSgqkAUXeKQT+Msk8lf
+ D4HUcRh7xKdV/evx0543kcjG12OchWYgYlT3T2NmoudgPA06e9HkS4Nwe
+ 0ZHW/EcBxYQUpeB2E/s71mTgNFsJl39r++CkIpaxH7eebUSuxiI0yFOhR
+ Yy8Ewncx6AQME5hwu2WaVERINRHJZJvMJzwVsIGj/5ChdESmtc9eukFzo
+ +1kPiJNGDsFW2yQOgqbXdOxm2oJ3dVa0nAGcPWiVaksvaYvSOjOLqw4Ql
+ uh0Bj07/Yg0M9q86/2POH874fD7YwieJIFeExgapjeOJU9H92nbIfe94q w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="400902485"
+X-IronPort-AV: E=Sophos;i="6.05,211,1701158400"; d="scan'208";a="400902485"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2024 08:16:44 -0800
+ 22 Jan 2024 08:16:45 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="929035063"
-X-IronPort-AV: E=Sophos;i="6.05,211,1701158400"; d="scan'208";a="929035063"
+X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="929035061"
+X-IronPort-AV: E=Sophos;i="6.05,211,1701158400"; d="scan'208";a="929035061"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2024 08:16:41 -0800
+ 22 Jan 2024 08:16:40 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Subject: [PATCH v4 3/3] drm/xe/guc: Flush G2H handler when turning off CTs
-Date: Mon, 22 Jan 2024 08:17:16 -0800
-Message-Id: <20240122161716.1503064-4-matthew.brost@intel.com>
+Subject: [PATCH v4 2/3] drm/xe: Move TLB invalidation reset before HW reset
+Date: Mon, 22 Jan 2024 08:17:15 -0800
+Message-Id: <20240122161716.1503064-3-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240122161716.1503064-1-matthew.brost@intel.com>
 References: <20240122161716.1503064-1-matthew.brost@intel.com>
@@ -59,61 +59,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Make sure G2H handler is not running when changing the CT state to drop
-messages or disabled. This will help prevent races in the code ensuring
-that G2H are not being processed after changing the state.
-
-v2:
-- s/flush_g2h_handler/stop_g2h_handler (Michal)
+This is a software reset which can be done immediately after stopping
+the UC.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_gt.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index a91a852dba81..4a0040ef5db7 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -340,26 +340,35 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
- 	return err;
- }
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 1fe4d54409d3..6d1ce85fc36d 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -632,12 +632,12 @@ static int gt_reset(struct xe_gt *gt)
+ 	if (err)
+ 		goto err_out;
  
-+static void stop_g2h_handler(struct xe_guc_ct *ct)
-+{
-+	cancel_work_sync(&ct->g2h_worker);
-+}
++	xe_gt_tlb_invalidation_reset(gt);
 +
-+
- /**
-  * xe_guc_ct_disable - Set GuC to disabled state
-  * @ct: the &xe_guc_ct
-  *
-- * Set GuC CT to disabled state, no outstanding g2h expected in this transition
-+ * Set GuC CT to disabled state and stop g2h handler. No outstanding g2h expected
-+ * in this transition.
-  */
- void xe_guc_ct_disable(struct xe_guc_ct *ct)
- {
- 	xe_guc_ct_set_state(ct, XE_GUC_CT_STATE_DISABLED);
-+	stop_g2h_handler(ct);
- }
+ 	err = do_gt_reset(gt);
+ 	if (err)
+ 		goto err_out;
  
- /**
-  * xe_guc_ct_stop - Set GuC to stopped state
-  * @ct: the &xe_guc_ct
-  *
-- * Set GuC CT to stopped state and clear any outstanding g2h
-+ * Set GuC CT to stopped state, stop g2h handler, and clear any outstanding g2h
-  */
- void xe_guc_ct_stop(struct xe_guc_ct *ct)
- {
- 	xe_guc_ct_set_state(ct, XE_GUC_CT_STATE_STOPPED);
-+	stop_g2h_handler(ct);
- }
- 
- static bool h2g_has_room(struct xe_guc_ct *ct, u32 cmd_len)
+-	xe_gt_tlb_invalidation_reset(gt);
+-
+ 	err = do_gt_restart(gt);
+ 	if (err)
+ 		goto err_out;
 -- 
 2.34.1
 
