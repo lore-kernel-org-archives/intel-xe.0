@@ -4,85 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58CEBC46CD2
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jan 2024 22:15:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DEC5C46CD2
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jan 2024 22:15:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 201E710F071;
-	Mon, 22 Jan 2024 22:15:06 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47F7510F077
- for <Intel-Xe@lists.freedesktop.org>; Mon, 22 Jan 2024 22:15:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D7FF10F078;
+	Mon, 22 Jan 2024 22:15:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CBE510F078
+ for <Intel-Xe@lists.freedesktop.org>; Mon, 22 Jan 2024 22:15:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705961706; x=1737497706;
+ t=1705961724; x=1737497724;
  h=message-id:date:subject:to:references:from:in-reply-to:
  content-transfer-encoding:mime-version;
- bh=sesUiyMMf6aAVClhqky3mVV2SEhPsN6SK81e8E9G2HQ=;
- b=L6lWh7I94PfhfHSHcjso30olqoR/DfqBY/1IxMlqmeHjzYXM+8NAPDB8
- IYEmv25zDtL9fRNPF7BP4KAvZU7c/iCH9daxg7AEwv3oJ04JIlrs3Rm99
- FBL7aBJUkNcBjbQKTAiyDUhLJMWtsbtN0mS9FtbdO5Et2F7wHgo6AZj/E
- XI4367L+vrMUnep93IhQ/oBn4EY0vJFtNpOudWiSBYgPNKP0AgGOdgNLh
- bsF6Z7WSaF+Jmwn5+ATKVhmxONqs9xZWgfwjyL0/IsHtomWj12gg4wY3q
- sGwWcm6EfsnUpI50pM41HU3OAMkYKmTpw4EBdg7i0vW4RIXIb+IqBiKE4 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="8452453"
-X-IronPort-AV: E=Sophos;i="6.05,212,1701158400"; 
-   d="scan'208";a="8452453"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2024 14:15:03 -0800
+ bh=MpBCulDKVSbIwEejKkWEI1cMYwYHaAAGIfUYvgWK6TI=;
+ b=fKJ54PFxBR6pt4rTFV+MjHIbvPM23jACSgET3EPvk0fq598vzjwLD7rP
+ q6XuoXDTSy/voW49MKw3NGAHISsWxuVF5jeORGqXjGP8O03JyvsbDaiBp
+ F7LVA8rNqp+2CvjgjOFG49ox8MqmZ06drDrEjcY1o/kfvqY14XLQnxiCX
+ 7Ne0B2SI14mc2M3maMVb33iJWvrwdb9cKU7IHz61kArgrPKiK33GOf4US
+ OcPutiAbglABDgY5y9PalAlYpB/niN/7mXh9PcHtjcNZX+A8Q6oocxh6M
+ FSJdT2E54+gfaJkim3P6HPLuu33V2xOGYGQXRjZZeqAT49bNZkiUxM9On A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="14684851"
+X-IronPort-AV: E=Sophos;i="6.05,212,1701158400"; d="scan'208";a="14684851"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2024 14:15:24 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="909080888"
-X-IronPort-AV: E=Sophos;i="6.05,212,1701158400"; d="scan'208";a="909080888"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 22 Jan 2024 14:15:02 -0800
+X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="876104841"
+X-IronPort-AV: E=Sophos;i="6.05,212,1701158400"; d="scan'208";a="876104841"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by FMSMGA003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 22 Jan 2024 14:15:22 -0800
 Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 22 Jan 2024 14:15:02 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ 15.1.2507.35; Mon, 22 Jan 2024 14:15:22 -0800
+Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
  ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 22 Jan 2024 14:15:01 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.35; Mon, 22 Jan 2024 14:15:21 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Mon, 22 Jan 2024 14:15:01 -0800
+ 15.1.2507.35 via Frontend Transport; Mon, 22 Jan 2024 14:15:21 -0800
 Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Mon, 22 Jan 2024 14:15:00 -0800
+ 15.1.2507.35; Mon, 22 Jan 2024 14:15:21 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Qcey7hNt3iptoIGDqj/O5ou1uMjiJh5eU/H67GzaFqETt05JY/0u/NQDEyvvGuWEr9ibPbEIvcgLbwXWLjg7Q+ThjA+9BnAKzNUCjwMvm4uCihfx30OxxsnUMDJmOkaxv/DCjwOm2jgiQcnbvlQmfQciFa7KG6ctPrVUAI4glQjKaF0iSgBKXcCRMrOIkE3jgkbwq8xr1ZB/+T8/3JfoaSFBbyjl4sqAmAcLW7QfzHC4O6URcKqBIS1qxC5tZ4ZmfTuPXbaREpbDZv3IRDuH1ZqFRFJXloY1QixQRRgsRo30w7hzKKX/UMP3NJbRFTGjjwAzawFrz00jHZpEqYzAxQ==
+ b=YENSYbHv25pj9VTHn2vN53ciPo69Nuha78ryrlZeeTtM+wXnrOTx1jsHZwDNSZjcd3JfLWKAKiY0qMwmwvrtzZrrSPZ+gV1Wc4Lok/WqDXLiGlEaRJhmjn3zbe35CLFO1zNS+L+7lBIXc4OMdHDzpPhKmWggO6UTuzzZlgvbzOKw2DbRRt2PeimGBy8W0Dgijq6Kux877+6EBsrkKnpiPDImKlTiP83uaJ0g8tKNWdqezEsmMAdPFIR4fufyafjsF8l3tg9Ooq9EHy3LeXb6FOUJf7+Ouy1G9CSWZKzRJfqa0GMMQdEDELkiA9H67eAXAp6UI/BI6VK2lI8cp0/nmg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nj1mrysjX6F54yDSWk2Wul6ETQ7P4jHOtQk8V0JPmoI=;
- b=ULPSgGT/noG3QX5eihz0XWmlqwLcukHImd8kVGRpW5iP9zJDledwoXssHVTE9Gp+or7CRpBsOXXTzspzq+yEzeNQJ3ibFHWh9ZmgbugQS7WHC53tUWhX6R2zuWegtq3OlXqnhadcKT5AF3WgLHsOBUlbTVI7HxXG4sMkcWshDEm3yuyy5a9ODXmiFUVetlmXoSeakKsBIhYwCIdYjWdsED31UMISYVju0+fNY1dUen+LSVF6nc+xSV2DcjKZysGlWBVSGf3KdeUSqHkLgkKyEaW1r+MJYaNvmlfymBqwlS591mCV/F8gbb7YMjxFmSEs76WBGwxcpeMWU722xp0Erg==
+ bh=M5Uer2B7/zmNUUWfPAVRT6g0TGjSx8MdVc1YWMjjHwU=;
+ b=NXqJ3Ri0ZszxJLeuHhRZbBNxFMFZP+DsNKBPzn+ANzn+/wItK8igum4QaVG2G8l1GxjjQUsPiXjISocb8hSXZdbnXhHi8NA7HccKmV3kB/cKuIfbZ/d6g2U9tdql4P6IBGCXwha5ZqNh54Rswxf2yJMKRoV9ff5q2G6MIQPcBuIPozFeTIwphzGwPmbnEuTce6GfNRQOlNI0smOCAViCQX7B6nWJi0Mtwk6yfjtzcksUymGIE6CvF8YRNg3O9XebG2YOXxDJRVGRE/+UYvkypIikujD7lfYpekJlNtaJm+yXjlGbGBNYA0YtTr1QnwYR9g5nBu1yVLvlF6xwOpHxWw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from SN7PR11MB7705.namprd11.prod.outlook.com (2603:10b6:806:32f::16)
- by CH3PR11MB8342.namprd11.prod.outlook.com (2603:10b6:610:167::10)
+ by MW5PR11MB5787.namprd11.prod.outlook.com (2603:10b6:303:192::7)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.32; Mon, 22 Jan
- 2024 22:14:58 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.36; Mon, 22 Jan
+ 2024 22:15:19 +0000
 Received: from SN7PR11MB7705.namprd11.prod.outlook.com
  ([fe80::83d:7cbc:ec45:cb9d]) by SN7PR11MB7705.namprd11.prod.outlook.com
  ([fe80::83d:7cbc:ec45:cb9d%7]) with mapi id 15.20.7202.034; Mon, 22 Jan 2024
- 22:14:57 +0000
-Message-ID: <069f1653-d286-4bce-84f7-e2198ba0c5e8@intel.com>
-Date: Mon, 22 Jan 2024 14:14:56 -0800
+ 22:15:18 +0000
+Message-ID: <08818e71-c687-48eb-9c38-2d28dc4e08db@intel.com>
+Date: Mon, 22 Jan 2024 14:15:18 -0800
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/xe/guc: Update to GuC firmware 70.19.1
+Subject: Re: [PATCH 1/2] drm/xe/uc: Include patch version in expectations
 Content-Language: en-US
 To: <John.C.Harrison@Intel.com>, <Intel-Xe@Lists.FreeDesktop.Org>
 References: <20240122213708.1841488-1-John.C.Harrison@Intel.com>
- <20240122213708.1841488-3-John.C.Harrison@Intel.com>
+ <20240122213708.1841488-2-John.C.Harrison@Intel.com>
 From: "Welty, Brian" <brian.welty@intel.com>
-In-Reply-To: <20240122213708.1841488-3-John.C.Harrison@Intel.com>
+In-Reply-To: <20240122213708.1841488-2-John.C.Harrison@Intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-ClientProxiedBy: SJ0PR03CA0295.namprd03.prod.outlook.com
@@ -90,62 +89,62 @@ X-ClientProxiedBy: SJ0PR03CA0295.namprd03.prod.outlook.com
  (2603:10b6:806:32f::16)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN7PR11MB7705:EE_|CH3PR11MB8342:EE_
-X-MS-Office365-Filtering-Correlation-Id: 77f187c5-f511-4ead-b971-08dc1b9791b6
+X-MS-TrafficTypeDiagnostic: SN7PR11MB7705:EE_|MW5PR11MB5787:EE_
+X-MS-Office365-Filtering-Correlation-Id: 41d7ff42-d08a-41d5-7aeb-08dc1b979e0f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: JbSaNZZ56xsaCztCZrod/bP7M8maBfw9LYRCO3/rR1wC7P03L3LhLoZvRaeyLwwzIs/QKSRAIs6iUZcWaTdsDw2EjDkOlOznQZxwVLfQdkxDV0l4cE+BlDdJILeqlAlXvQ60q7rltdRK87+lHTenF2mjPZVh85Q9uE5A4jKyu+sXwBRlVOc/coxNy6o7yRX6tY41jmZkdMTiJKUT8rLVlYqla98p/u9oU+5vkMwgHiaLqEq+RS0AGP+bjWToWdeOphYdNIGamQFdtN8Cr/4JouZwBA2pQbuJh9OqZG9ZiDHvJoNqfxMsJlADImJMFfB4w1VS7iXt6nqGyIMMLl6O/y8JhxadQ2NPO7i3lTzWcYPaYsyBEXUABspUvSghGr6HNs33CqZPwLkSW2rbyKCP0e0/M3J22pEdqp2SFO4GdV+vxuTqi+4TDEhdkQ0cpU8Ukk9TGnfVQPJenLyh/88LTCMNLas4BacEzmFpLjHGoD4H1OpYHLlneU5LBEgNK8ldqu01ADJxqslRRQmSWPY3+71H8sxDwG4nAefG1tS2idKgblgxy0n5ndZObccGkGBD4+akRaUhqUU82iPxP929gT8g4b5feQiTrftnZ3RcL9tG/5xNRirR2kbEuYnpFFVhMm4O9JAnln7dQ70/XGsOTQ==
+X-Microsoft-Antispam-Message-Info: 6V01Smem92g+mYhDGw+ZOE2/hILL8LuOrO+KNJlVIoVSMYQqeW2Lft9ckLDWYPDF4LMwB3zgO1LW+pTZeiJicNKSo/Fc+LeT5ZXNqeRLnsjBWJApdjWoidA/PoStsiJOJnDzKskbqplmz8IhHnk5G+MhjnIbaf3dglUUhB0ZVx6xn0aX1yl2m0t1+gl/vFOLxEGifCNLATz0PRYxY1guZSc9lzNeRjZpPdHcKInDUlxaIrU4DKwFyHpd+LiGTtEIeS90YdzpsstURYOfFNXCk0SfvUioPMum92IVj7yk9gRvIJN+hFgxnnlVz2TPcJiw20C1c8XHf8sZnNeJdfjdApgQeYqSacWfTCidaNLZhw8iWaH31ELuIm84eKfbgz4TdK/Be9m93857kRtzKdcD+h+QvX9AKAuF0RzUVv1nCr5q9VB4WQLXBmvoJnayovP7OneKnsMkjHJkIvhM5Pg3c5iaS6PW9NX/+lOjRAfCe1TSLCrA3XxrDrTVvL5w/JEAl4POVPSTD5bGH6F8M4NIKPIpMm0Y4i/a2AVOBt3mxMjOYupxd3e1VFEo5g+og3+/0sNZAKaiegTuh7KXDZ5nasu1bcxfoac7nGyIpZbhjNCvpYo91Bd6uMWRWqO4s2sao3RhGePun+x3yjD9yHgbKw==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SN7PR11MB7705.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(39860400002)(376002)(366004)(136003)(346002)(230922051799003)(186009)(64100799003)(1800799012)(451199024)(31686004)(26005)(6512007)(53546011)(2616005)(6506007)(36756003)(31696002)(82960400001)(38100700002)(86362001)(8936002)(8676002)(41300700001)(6486002)(2906002)(83380400001)(5660300002)(66946007)(478600001)(316002)(66556008)(66476007)(45980500001)(43740500002);
+ SFS:(13230031)(346002)(39860400002)(136003)(366004)(396003)(376002)(230922051799003)(64100799003)(186009)(1800799012)(451199024)(41300700001)(38100700002)(31686004)(82960400001)(8936002)(8676002)(6506007)(26005)(53546011)(2906002)(36756003)(6512007)(5660300002)(86362001)(6486002)(66556008)(66476007)(31696002)(316002)(478600001)(2616005)(66946007)(83380400001)(43740500002)(45980500001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YSsrbkZsRVkvcGJWajV6NEZtWjhoTVNacFUrWHVoVVl6QVNKc1gwNnJPNll6?=
- =?utf-8?B?U1c0VGVydWxZWFRYcTZueFJ6WnM1MWlGdmtNMTdicWxGUVpvMFRzYmZIRVVq?=
- =?utf-8?B?NExKeXNNWnphNFl5SVhvZkhXYWlQN3Z4L24wdHNMZUpzUG1NcTZVejVpTW9N?=
- =?utf-8?B?bGoxdFpiTTlNdXZybnZ3Tm5iUGMvK29EVDFOQWJjeFhvOU9TMmllSlVOQzZ6?=
- =?utf-8?B?OC91TjBvQURSdks3L0JwT2Y2WjZORUhtTWhvSFhaZGo3YlNZWTRuQmJyYVlk?=
- =?utf-8?B?RnQ3aUE5Sm9ZU2ZFUnh2bGJ2ZlpzVk1BTncwWEZtRVg1Y3Fzcjdpa0UzTkNV?=
- =?utf-8?B?R1R0K0d0U0NrUGl1RkM3S0Z5TlBjbmZHSWZsRFJJUUZvVGR3ckNJMmcrc0g3?=
- =?utf-8?B?L1VjZlNYRXJLd1ozRG8vN0tnOUJibnJIY2RUMVVPM0tCRW9pSUxKaEcvZzZB?=
- =?utf-8?B?R3BJa2RIVVE4RGtaT29jRmQ3b0kya2sxeGR1RnBkaWNOdXZzeVNzdk5XUGdu?=
- =?utf-8?B?NHRaZWlMZEZobW9PMTNEVnVMdUdLUkV5alVoYXFlRDZNNjRtZlliVWhkemJZ?=
- =?utf-8?B?NmVkaXYrRUJtMXE3V1RtWll5QWVvUUY3NE5ZeSswdFFQNTNHWUJGdHo2UDN6?=
- =?utf-8?B?SzdpWCtKZ2U1UkM5MWIxU0ZxNzUreEovVGYyZlUxM2x6TmsramtqK0wxVHEv?=
- =?utf-8?B?b2xEWmlsWG04cENuQ1Z6bzRMV2xtRW5iRmw2UnlEaC80cWhycTc3eE9iMWJ5?=
- =?utf-8?B?cGwrZVVEaUdKU3hicWtXRmo5bEY3T09rK2x2bVlKR3Q1cGQ3TzZrNUI0QzVq?=
- =?utf-8?B?QWZ2cDZYdkl0YlBDS0ZwdzAvbU5NSi9oaGVMRjdaNjFrbTJ4RlM2SDJaK25U?=
- =?utf-8?B?NHA0S3pNa01PalpMRitDRTNKK0pXUzYzREpRYjNUb1o5NW1IU3E1M1c4Nkxj?=
- =?utf-8?B?aHVDUXM0cXI0VEo5QmZiRUo1N0VjNnluNnd0dzVkY3FDdDdJcEJxb0c1YTlK?=
- =?utf-8?B?VmxsbHVCNlhkTS92NjYxbHB0OFpncXM3S0RKVEw3SHplRC9ZclBYOHJTSjNW?=
- =?utf-8?B?L0ZaTUNvSFh2ZSt4QWkxNUhCbEtxRTE1TnBzdzdES1dJb08rbGpXMFE2RzdW?=
- =?utf-8?B?QkFGdWo3MnNlYlAydkd1cDB4UTVIU1RDZ1N0MWtjN08yWWt3dWJMWFVZTy9Q?=
- =?utf-8?B?NnBBekRZYVpoL1dNdkxhVk0vYi94emdRNTRDdDlZKzVaU0VxcE4yaHh0bFhC?=
- =?utf-8?B?ODhwY0pXbU12SXBJMVNLZVhmOGlJMVUxV1Z1VzBWdzhHVTNBWmxrTmZ6b2F4?=
- =?utf-8?B?Vlc0dmJnNUM1LzJOaEh3Y3dneGJlNFN3TmVyakxDTlh1dXdEMlFUL2hKOFI5?=
- =?utf-8?B?YXp4VGZ4OGkzZGhCcjNvLzllZzdZa2FEZlkySmNtYThqbHIwb2xGaVl6Vit1?=
- =?utf-8?B?UTdPK0d2SzRhODZvQkU2dTdwc3ZaeFFFdjg0cGQrTDRlS0p3NFdSZ2ZuNlNx?=
- =?utf-8?B?VnltT1NhRUFqL2RyY3g5QS9wM292cTlVcG9qY09Jd2FibDluMTd2WUxsZHpl?=
- =?utf-8?B?YnVRTDVXZXhtVHYrQ1FHR2VaRDRFK2hkclVRNVkwVWRJdnZicGxVZHprNk56?=
- =?utf-8?B?alFzc2lCS092MU5WNWZ2S29ZRHUyRVlBdGt3ZE9xRURzTmVhdHlCUStVRUlz?=
- =?utf-8?B?b0U2TDRhaFpiby94SHQ2NXlqMXlndWNsRldFb1E2dWVoWjhUZzZhREljUWU5?=
- =?utf-8?B?OSttN2ZKemhhbEhONmFlQnNtamdlWFFsY1pBdnFUMk9ZOUJFRHJDSW1XS2VT?=
- =?utf-8?B?blQyVXFBVDE3TVU5RGFDQWh5RW5SRkM5N2d2eFRKaUNkR1JDVFFFOS9mSFBn?=
- =?utf-8?B?THlEcEdCcEhhcUtEOGF3R1Q4U3l6ZzVXNCsxcUxoTEphVlVMaUEzZUhxT012?=
- =?utf-8?B?UWNtR0Z4azlMSXJ0WHVrWU9reWNtZExpMDVjQ0JyRDY0M3BJSk5BNFJGOXZO?=
- =?utf-8?B?UjFUdmRjN3U1OFpieXVYUlRSZWNPUGRiR25OL3Z6UHluRnB6eHdJeVM3dmtF?=
- =?utf-8?B?VW5Ha2xYbStMK3ltSDdaZjRPallTWkNUMldYOS8rZUlXZjIzSU1yM3pYZDla?=
- =?utf-8?Q?BBPT05o2X7tsKP6z8GjDYtReA?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 77f187c5-f511-4ead-b971-08dc1b9791b6
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TWpTemJLS2YyN0ozMWZtTTE5ODB0YjdRcVNFNG1WQ0V5TXBXenFVZzZCZjNS?=
+ =?utf-8?B?U21kQWx3L2d1dlZULzVxbWRpR1FxamJ5ZE40QVVIMnVBNVhZZjl0ZC9hUlhE?=
+ =?utf-8?B?Z3pYdWtLQWJReGQrbGJFb2JtdXR1VVBPMlFLN1JVN2dXbzRzOHlCaHNGM1dJ?=
+ =?utf-8?B?WDdxYjlIUk9OY3pLTDh5YWs5ekIwcDRHZTdsZndMcVVoZldzSXZwa09NSmpF?=
+ =?utf-8?B?ZDB1SXB3Y1IwZVZ1anl6cEJhblZuRXlFVlRTUDVyc2RBTWRBdHE3dkEwRkJa?=
+ =?utf-8?B?QVcxKy9GSDJsbVdBVXAyeUprWXJrZnozTGlHQkhBeUZ5Uk1nWUtQdUJKOUJt?=
+ =?utf-8?B?WFFwZERGNGx6WGxmM2hpelNJaXJxck5SYk44WXVES1J5c1NlUDdGODkxZHZX?=
+ =?utf-8?B?MlhxVFZ0Z0FmUkdqMUJWMXMxVi9LMWR0VG1NYWtaamxJVVFiS051MU1xS2Yr?=
+ =?utf-8?B?Tmk5aGNoQTFxL1FBcFJIci9HMTJDWlBkSDUycFBiRjlPQ1BuMGtrTkVmbkll?=
+ =?utf-8?B?SjdFRHdNeE5BdGdKSWEvVFFPMWpsL1pnZzZDTVN3QWJBOTc2aFVhaTAreEU3?=
+ =?utf-8?B?WXB6NGdaSXA3RjF2WHlPWnRIa1ViRzZtUENPVUphOGdIWDN4SkdrSk81dXdZ?=
+ =?utf-8?B?ZVo2RUtuS254ME9jMTVqbGQzZmdsMFFDTzVYMEU1Tm9YWk40TnAvLzB3dytB?=
+ =?utf-8?B?UWJYZGZDc1BsbXlnbUJ3TWczczY5M0lNV0xrZ3RJbFFFTVZ5OWJKOHdlY2Zj?=
+ =?utf-8?B?MG5KUGpXVndGbnprNkFlZXhPOS9BMFpZRXpoeC9tMC9lOVB5eWZJK3JYYm45?=
+ =?utf-8?B?QS9TT2dJczZtcVdhSUVnQ3d1aS95M3RySjBaY3piUHU4Z0ZwK01PYjhwWXkx?=
+ =?utf-8?B?UUlFL2hhMmU1RlRXNEMrcjFGWkdjaXg4VmVVU0JjVWRHbGwrZXRJZ0JUaE9Y?=
+ =?utf-8?B?N1lDZ0N0bnV6a01aOG5BWWt2cWdncHZTSG9FaW5XQmh0R0VvZGRiNDJoWFBk?=
+ =?utf-8?B?cE1GVmkvZDZibHdvckp1ZnI3N3MrZ1pNMUxLSE9lRHBZMEltSmcyZ081cEpK?=
+ =?utf-8?B?cVFGcWRUdzBmUllWeXMvYUtQeEVYRW5DZ0l0eHppSkMzOExXT0NHdklEcUIx?=
+ =?utf-8?B?N2ZCTk1qdWp1ZGFnVk5uMDFXdFg4TmlraHJpS3pMQ29jeWg2T0x1K0JuYkdv?=
+ =?utf-8?B?NVI0cFV0SjhSVmlOSktvbWIvL2FiYUFKVzlhUzkyVEEvcmp5bVJBWEtyeE43?=
+ =?utf-8?B?Zm5LaGZpazFab3ZsS09DYUt3TlFwdEk4d0Q0LytCampEeGsxN3pKL3FSb0Rj?=
+ =?utf-8?B?TTVZcVFLNXJnUm41azFnSWRERDlsY0hMOHlDVXRFcmhoa215eHoxSjRGait4?=
+ =?utf-8?B?VVh2OTViRzc1RnNvYzFXUTN4YXNBbGtPMnpGZERkQ0I1VjJ3R0Fadzd2ZGNW?=
+ =?utf-8?B?a3NZaC9tYklLajY0R3hIdUJibVRQQW5jTmUraW1oQTlGUkIxc2lCMzZUZDhq?=
+ =?utf-8?B?TnVhY294KzloTmtJQU5KLzNPWFRPSldNTm5ZVEJVeTM1REFXOWhXNDlrSFha?=
+ =?utf-8?B?QXlicWdaQnN3MHR4OTZxZDdTUGpGS2IyNDJpcEVTUDQrOHk5U0xyV3ZMdyta?=
+ =?utf-8?B?cnVoTUJud2tkcTJHeUY3ODlDUFJXNVpaeFArdnVHY1NYUDdPTHpXRVpRMFJK?=
+ =?utf-8?B?T1dqQjU3bjFzdURMdkFtalMzd0prVS81aW1FazU2MERuVGVydU5NTDlDOFdj?=
+ =?utf-8?B?MTAvazR4OVlPTG1kdS9pNUJPbkt3eG9XYThrMk03b2sxV3IyMFpZY2JwQjVo?=
+ =?utf-8?B?OWFEczJEMkU4UnVWRE9GVUQvODh0QVVOakNTT0loZ3A0U1RGNjlkSmk5bjJO?=
+ =?utf-8?B?dk8xM0FCcEpHLzRKdnFveVFmamVqV1JPOWVITnRPd2RhRUFtbGh3UHBsZS9S?=
+ =?utf-8?B?QmtvYm43WXF5NmtTcDBsWGJnVkZYMzhGazZia3lqcUU2NGxuUm04SjZNVVhh?=
+ =?utf-8?B?TVpPbjZaU09VWkN6VWdveHM1ZGRIbi9ndGYrUlpmMlhrRDE5S1ZmSktyRElF?=
+ =?utf-8?B?ZjlmVjR6NUNJckFtTXo0YndPa2hOcnVwdmUrNmpLTk8rUzBTZnF0Rk51MkFw?=
+ =?utf-8?Q?GNnfIJKcVJoxpyliKVcdzesqZ?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 41d7ff42-d08a-41d5-7aeb-08dc1b979e0f
 X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB7705.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2024 22:14:57.9467 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2024 22:15:18.6516 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vaQlL0JLbVW00Clkg73Ywpic6du79Ne5o+/GeAMbfJhquQXiaLZGKlUOQPbDC+LP2RdrzXUasFL7clVCndcVjw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8342
+X-MS-Exchange-CrossTenant-UserPrincipalName: +N6/K1S7JRZeczwblN6jRqhExQ013pWmSdv5F/NAZrYw+7BlsuWrvDO1cmd0txHy0CVo1nN6cMuOZgC74ZNCrg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR11MB5787
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -166,42 +165,121 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 On 1/22/2024 1:37 PM, John.C.Harrison@Intel.com wrote:
 > From: John Harrison <John.C.Harrison@Intel.com>
 > 
-> UAPI compatibility version: 1.8.1
-
-I've wondered for awhile why was lagging behind here....
+> Patch level releases can be just as important as major level releases
+> if they fix a critical bug. So include the patch version in the
+> expectation check so the user is properly informed if they need to
+> update.
 
 Reviewed-by: Brian Welty <brian.welty@intel.com>
 
 > 
 > Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_uc_fw.c | 16 ++++++++--------
->   1 file changed, 8 insertions(+), 8 deletions(-)
+>   drivers/gpu/drm/xe/xe_uc_fw.c | 49 +++++++++++++++++++----------------
+>   1 file changed, 27 insertions(+), 22 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-> index d3f0fe2101a7..8da6cbb8c9e2 100644
+> index 9dff96dfe455..d3f0fe2101a7 100644
 > --- a/drivers/gpu/drm/xe/xe_uc_fw.c
 > +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-> @@ -103,14 +103,14 @@ struct fw_blobs_by_type {
+> @@ -92,6 +92,7 @@ struct uc_fw_entry {
+>   		const char *path;
+>   		u16 major;
+>   		u16 minor;
+> +		u16 patch;
+>   		bool full_ver_required;
+>   	};
+>   };
+> @@ -102,14 +103,14 @@ struct fw_blobs_by_type {
 >   };
 >   
 >   #define XE_GUC_FIRMWARE_DEFS(fw_def, mmp_ver, major_ver)			\
-> -	fw_def(METEORLAKE,	major_ver(i915,	guc,	mtl,	70, 7, 0))	\
-> -	fw_def(DG2,		major_ver(i915,	guc,	dg2,	70, 5, 0))	\
-> -	fw_def(DG1,		major_ver(i915,	guc,	dg1,	70, 5, 0))	\
-> -	fw_def(ALDERLAKE_N,	major_ver(i915,	guc,	tgl,	70, 5, 0))	\
-> -	fw_def(ALDERLAKE_P,	major_ver(i915,	guc,	adlp,	70, 5, 0))	\
-> -	fw_def(ALDERLAKE_S,	major_ver(i915,	guc,	tgl,	70, 5, 0))	\
-> -	fw_def(ROCKETLAKE,	major_ver(i915,	guc,	tgl,	70, 5, 0))	\
-> -	fw_def(TIGERLAKE,	major_ver(i915,	guc,	tgl,	70, 5, 0))
-> +	fw_def(METEORLAKE,	major_ver(i915,	guc,	mtl,	70, 19, 1))	\
-> +	fw_def(DG2,		major_ver(i915,	guc,	dg2,	70, 19, 1))	\
-> +	fw_def(DG1,		major_ver(i915,	guc,	dg1,	70, 19, 1))	\
-> +	fw_def(ALDERLAKE_N,	major_ver(i915,	guc,	tgl,	70, 19, 1))	\
-> +	fw_def(ALDERLAKE_P,	major_ver(i915,	guc,	adlp,	70, 19, 1))	\
-> +	fw_def(ALDERLAKE_S,	major_ver(i915,	guc,	tgl,	70, 19, 1))	\
-> +	fw_def(ROCKETLAKE,	major_ver(i915,	guc,	tgl,	70, 19, 1))	\
-> +	fw_def(TIGERLAKE,	major_ver(i915,	guc,	tgl,	70, 19, 1))
+> -	fw_def(METEORLAKE,	major_ver(i915,	guc,	mtl,	70, 7))		\
+> -	fw_def(DG2,		major_ver(i915,	guc,	dg2,	70, 5))		\
+> -	fw_def(DG1,		major_ver(i915,	guc,	dg1,	70, 5))		\
+> -	fw_def(ALDERLAKE_N,	major_ver(i915,	guc,	tgl,	70, 5))		\
+> -	fw_def(ALDERLAKE_P,	major_ver(i915,	guc,	adlp,	70, 5))		\
+> -	fw_def(ALDERLAKE_S,	major_ver(i915,	guc,	tgl,	70, 5))		\
+> -	fw_def(ROCKETLAKE,	major_ver(i915,	guc,	tgl,	70, 5))		\
+> -	fw_def(TIGERLAKE,	major_ver(i915,	guc,	tgl,	70, 5))
+> +	fw_def(METEORLAKE,	major_ver(i915,	guc,	mtl,	70, 7, 0))	\
+> +	fw_def(DG2,		major_ver(i915,	guc,	dg2,	70, 5, 0))	\
+> +	fw_def(DG1,		major_ver(i915,	guc,	dg1,	70, 5, 0))	\
+> +	fw_def(ALDERLAKE_N,	major_ver(i915,	guc,	tgl,	70, 5, 0))	\
+> +	fw_def(ALDERLAKE_P,	major_ver(i915,	guc,	adlp,	70, 5, 0))	\
+> +	fw_def(ALDERLAKE_S,	major_ver(i915,	guc,	tgl,	70, 5, 0))	\
+> +	fw_def(ROCKETLAKE,	major_ver(i915,	guc,	tgl,	70, 5, 0))	\
+> +	fw_def(TIGERLAKE,	major_ver(i915,	guc,	tgl,	70, 5, 0))
 >   
 >   #define XE_HUC_FIRMWARE_DEFS(fw_def, mmp_ver, no_ver)		\
 >   	fw_def(METEORLAKE,	no_ver(i915,	huc_gsc,	mtl))		\
+> @@ -121,24 +122,24 @@ struct fw_blobs_by_type {
+>   
+>   /* for the GSC FW we match the compatibility version and not the release one */
+>   #define XE_GSC_FIRMWARE_DEFS(fw_def, major_ver)		\
+> -	fw_def(METEORLAKE,	major_ver(i915,	gsc,	mtl,	1, 0))
+> +	fw_def(METEORLAKE,	major_ver(i915,	gsc,	mtl,	1, 0, 0))
+>   
+>   #define MAKE_FW_PATH(dir__, uc__, shortname__, version__)			\
+>   	__stringify(dir__) "/" __stringify(shortname__) "_" __stringify(uc__) version__ ".bin"
+>   
+>   #define fw_filename_mmp_ver(dir_, uc_, shortname_, a, b, c)			\
+>   	MAKE_FW_PATH(dir_, uc_, shortname_, "_" __stringify(a ## . ## b ## . ## c))
+> -#define fw_filename_major_ver(dir_, uc_, shortname_, a, b)			\
+> +#define fw_filename_major_ver(dir_, uc_, shortname_, a, b, c)			\
+>   	MAKE_FW_PATH(dir_, uc_, shortname_, "_" __stringify(a))
+>   #define fw_filename_no_ver(dir_, uc_, shortname_)				\
+>   	MAKE_FW_PATH(dir_, uc_, shortname_, "")
+>   
+>   #define uc_fw_entry_mmp_ver(dir_, uc_, shortname_, a, b, c)			\
+>   	{ fw_filename_mmp_ver(dir_, uc_, shortname_, a, b, c),			\
+> -	  a, b, true }
+> -#define uc_fw_entry_major_ver(dir_, uc_, shortname_, a, b)			\
+> -	{ fw_filename_major_ver(dir_, uc_, shortname_, a, b),			\
+> -	  a, b }
+> +	  a, b, c, true }
+> +#define uc_fw_entry_major_ver(dir_, uc_, shortname_, a, b, c)			\
+> +	{ fw_filename_major_ver(dir_, uc_, shortname_, a, b, c),		\
+> +	  a, b, c }
+>   #define uc_fw_entry_no_ver(dir_, uc_, shortname_)				\
+>   	{ fw_filename_no_ver(dir_, uc_, shortname_),				\
+>   	  0, 0 }
+> @@ -221,6 +222,7 @@ uc_fw_auto_select(struct xe_device *xe, struct xe_uc_fw *uc_fw)
+>   			uc_fw->path = entries[i].path;
+>   			uc_fw->versions.wanted.major = entries[i].major;
+>   			uc_fw->versions.wanted.minor = entries[i].minor;
+> +			uc_fw->versions.wanted.patch = entries[i].patch;
+>   			uc_fw->full_ver_required = entries[i].full_ver_required;
+>   
+>   			if (uc_fw->type == XE_UC_FW_TYPE_GSC)
+> @@ -340,19 +342,22 @@ int xe_uc_fw_check_version_requirements(struct xe_uc_fw *uc_fw)
+>   	 * Otherwise, at least the major version.
+>   	 */
+>   	if (wanted->major != found->major ||
+> -	    (uc_fw->full_ver_required && wanted->minor != found->minor)) {
+> -		drm_notice(&xe->drm, "%s firmware %s: unexpected version: %u.%u != %u.%u\n",
+> +	    (uc_fw->full_ver_required &&
+> +	     ((wanted->minor != found->minor) ||
+> +	      (wanted->patch != found->patch)))) {
+> +		drm_notice(&xe->drm, "%s firmware %s: unexpected version: %u.%u.%u != %u.%u.%u\n",
+>   			   xe_uc_fw_type_repr(uc_fw->type), uc_fw->path,
+> -			   found->major, found->minor,
+> -			   wanted->major, wanted->minor);
+> +			   found->major, found->minor, found->patch,
+> +			   wanted->major, wanted->minor, wanted->patch);
+>   		goto fail;
+>   	}
+>   
+> -	if (wanted->minor > found->minor) {
+> -		drm_notice(&xe->drm, "%s firmware (%u.%u) is recommended, but only (%u.%u) was found in %s\n",
+> +	if (wanted->minor > found->minor ||
+> +	    (wanted->minor == found->minor && wanted->patch > found->patch)) {
+> +		drm_notice(&xe->drm, "%s firmware (%u.%u.%u) is recommended, but only (%u.%u.%u) was found in %s\n",
+>   			   xe_uc_fw_type_repr(uc_fw->type),
+> -			   wanted->major, wanted->minor,
+> -			   found->major, found->minor,
+> +			   wanted->major, wanted->minor, wanted->patch,
+> +			   found->major, found->minor, found->patch,
+>   			   uc_fw->path);
+>   		drm_info(&xe->drm, "Consider updating your linux-firmware pkg or downloading from %s\n",
+>   			 XE_UC_FIRMWARE_URL);
