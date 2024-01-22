@@ -4,52 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C9FCC47DAF
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jan 2024 11:37:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6A12C4725D
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jan 2024 11:41:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B61F10ED48;
-	Mon, 22 Jan 2024 11:37:10 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B75310E104;
- Mon, 22 Jan 2024 11:37:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69EBF10EDF1;
+	Mon, 22 Jan 2024 11:41:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1ACAD10EDF1;
+ Mon, 22 Jan 2024 11:41:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705923428; x=1737459428;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=HkdE4Sh9+E/CexOqjsSwzb/DEeq4TK2MGW/8i1+yPno=;
- b=YbLsq7lUCFeNLL8JgklJIBMQkPaofGagPGAFp81RaWjZEg0CadGQ48P8
- I+1PvoE+IYbyasapgdQeiQ5iV+oGv+PW/WupBgH80NcHg5k+sFcklMijC
- XFyxZLxrVO7rsiE7alm1LKTYnWt82zN4ih5vrCGFcOWD3eIauDSQKrnSn
- 9PwHEcn+SQ3wMbvrcYFJL1T/ajvaXgNvf9xXRwXNdw13xwfjIHpnGcWSm
- eD7bkDHVFDXB3LZDITJ5+HlxGFdNuC9j1Qt0ZcQCSijqQSZaDDjlcoNNL
- 6NMH6QKxWZWc6KUmYy01/o1XOhWFd2NAx0qtv4h30pmh1/UKv5GyQAe7c A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10960"; a="22662616"
-X-IronPort-AV: E=Sophos;i="6.05,211,1701158400"; d="scan'208";a="22662616"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2024 03:37:08 -0800
+ t=1705923694; x=1737459694;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=TFWI6JTKREohL41oXLi1D5cttfNwbBSLh8m7YgHZDUg=;
+ b=HlD1XX14W4qAxTpQDZ7HeKVYqJ2Q29wwoQYLdnKRB+iq7ePh45Zma7PL
+ 3gqXSzQzTQtT1bLj3v4Smj/z8Od1yeWb5asmmiQpQHTfl1br3FOzh3O7x
+ TejuouBD2zzHxPQlNLjDESuqyVsWWUusvYohrHKVYIx94xn2z+HV7iOhj
+ iTiUHskdF4bFFQ2Xak2A3plGoqPDKjHAL0E721RSQnLKRlZecukQJ2VWN
+ OcIyRz3TT4TzD6Jl6N2dfcPlTwOFYP32nt9yNL6MtAMuafq/XAY8OuIHz
+ paxyPYb2HUzmM+P8zSTfswAfI0IUUrEBvqjPlWYi4H3SVMZK02B6qQkwK Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10960"; a="432347117"
+X-IronPort-AV: E=Sophos;i="6.05,211,1701158400"; d="scan'208";a="432347117"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2024 03:41:32 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10960"; a="1116834850"
-X-IronPort-AV: E=Sophos;i="6.05,211,1701158400"; d="scan'208";a="1116834850"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.20.214])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2024 03:37:06 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: Re: [igt-dev] [PATCH i-g-t] xe_live_ktest: Use xe_live_test kernel
- module
-Date: Mon, 22 Jan 2024 12:35:28 +0100
-Message-ID: <7633435.EvYhyI6sBW@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <dzacvbdditbneiu3e3fmstjmttcbne44yspumpkd6sjn56jqpk@vxu7sksbqrp6>
-References: <20231205224926.2188996-1-lucas.demarchi@intel.com>
- <njwvai6cu7jwmy7lmg3vkg4jd52uq2f6es4obvdplkz43i6hpe@jqrzk4bveqqc>
- <dzacvbdditbneiu3e3fmstjmttcbne44yspumpkd6sjn56jqpk@vxu7sksbqrp6>
+X-IronPort-AV: E=McAfee;i="6600,9927,10960"; a="904825864"
+X-IronPort-AV: E=Sophos;i="6.05,211,1701158400"; d="scan'208";a="904825864"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com)
+ ([10.237.72.44])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2024 03:41:26 -0800
+Received: from svinhufvud.ger.corp.intel.com (localhost [IPv6:::1])
+ by kekkonen.fi.intel.com (Postfix) with ESMTP id E3EFC11FAD4;
+ Mon, 22 Jan 2024 13:41:21 +0200 (EET)
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: linux-pm@vger.kernel.org
+Subject: [PATCH v3 0/2] Small runtime PM API changes
+Date: Mon, 22 Jan 2024 13:41:20 +0200
+Message-Id: <20240122114121.56752-1-sakari.ailus@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,180 +58,85 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-xe@lists.freedesktop.org
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, linux-pci@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Jaroslav Kysela <perex@perex.cz>,
+ Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>,
+ laurent.pinchart@ideasonboard.com, David Airlie <airlied@gmail.com>,
+ Paul Elder <paul.elder@ideasonboard.com>, linux-media@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ Mark Brown <broonie@kernel.org>,
+ Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, Alex Elder <elder@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-sound@vger.kernel.org,
+ Takashi Iwai <tiwai@suse.com>, Daniel Vetter <daniel@ffwll.ch>,
+ netdev@vger.kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Friday, 12 January 2024 00:45:37 CET Lucas De Marchi wrote:
-> On Thu, Dec 21, 2023 at 04:15:23PM -0600, Lucas De Marchi wrote:
-> >On Fri, Dec 08, 2023 at 12:13:36PM -0600, Lucas De Marchi wrote:
-> >>On Thu, Dec 07, 2023 at 04:41:52PM +0100, Mauro Carvalho Chehab wrote:
-> >>>On Tue,  5 Dec 2023 14:49:26 -0800
-> >>>Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> >>>
-> >>>>https://patchwork.freedesktop.org/series/126786/ groups all the live
-> >>>>tests into a single kernel module. Use that module to run any of the
-> >>>>tests triggered by igt.
-> >>>>
-> >>>>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> >>>>---
-> >>>>tests/intel/xe_live_ktest.c | 15 +++++----------
-> >>>>1 file changed, 5 insertions(+), 10 deletions(-)
-> >>>>
-> >>>>diff --git a/tests/intel/xe_live_ktest.c b/tests/intel/xe_live_ktest.c
-> >>>>index fe7b2e69f..c8bd68928 100644
-> >>>>--- a/tests/intel/xe_live_ktest.c
-> >>>>+++ b/tests/intel/xe_live_ktest.c
-> >>>>@@ -19,15 +19,10 @@
-> >>>> * Functionality: migrate
-> >>>> */
-> >>>>
-> >>>>-struct kunit_tests {
-> >>>>-	const char *kunit;
-> >>>>-	const char *name;
-> >>>>-};
-> >>>>-
-> >>>>-static const struct kunit_tests live_tests[] = {
-> >>>>-	{ "xe_bo_test",		"bo" },
-> >>>>-	{ "xe_dma_buf_test",	"dmabuf" },
-> >>>>-	{ "xe_migrate_test",	"migrate" },
-> >>>>+static const char *live_tests[] = {
-> >>>>+	"bo",
-> >>>>+	"dmabuf",
-> >>>>+	"migrate",
-> >>>>};
-> >>>>
-> >>>>igt_main
-> >>>>@@ -35,5 +30,5 @@ igt_main
-> >>>>	int i;
-> >>>>
-> >>>>	for (i = 0; i < ARRAY_SIZE(live_tests); i++)
-> >>>>-		igt_kunit(live_tests[i].kunit, live_tests[i].name, NULL);
-> >>>>+		igt_kunit("xe_live_test", live_tests[i], NULL);
-> >>>
-> >>>This loop will modprobe xe_live_test the times. Just do something
-> >>>like:
-> >>>
-> >>>	igt_kunit("xe_live_test", "live_tests", NULL);
-> >>
-> >>but there's no such "live_tests" suite and we want to run each of
-> >>them individually, not together.  How would you select the subtest
-> >>otherwise?
-> >
-> >gentle ping as I want to merge the kernel patch that is blocked on this
-> >one.
-> 
-> I did some tests today and... current situation is not very good. The
-> kunit module has the param filter_glob to filter the testsuite, but it's
-> not used at all by igt.  
+Hi folks,
 
-Please see https://patchwork.freedesktop.org/series/126017/.  It has been 
-blocked by the below mentioned xe -> kunit module dependency problem, but now 
-as I'm back from my 2-months leave, I'll update it and resubmit as soon as we 
-have that resolved with writable filter* module parameters.
+Here's a small but a different set of patches for making two relatively
+minor changes to runtime PM API. I restarted version numbering as this is
+meaningfully different from the previous set.
 
-> live_tests[i].name is more informational than
-> to really do any filtering.
-> 
-> Another issue I see is that since we have the dep xe.ko -> kunit.ko, as
-> soon as we load xe, kunit comes as a dependency. Since kunit's param are
-> read-only, we can't really change the testsuite that will run without
-> first remove xe. Having to reload xe multiple times doesn't seem a good
-> option.
-> 
-> Some manual tests I did here. First a kernel patch:
-> 
-> 	diff --git a/lib/kunit/executor.c b/lib/kunit/executor.c
-> 	index 1236b3cd2fbb..30ed9d321c19 100644
-> 	--- a/lib/kunit/executor.c
-> 	+++ b/lib/kunit/executor.c
-> 	@@ -31,7 +31,7 @@ static char *filter_glob_param;
-> 	 static char *filter_param;
-> 	 static char *filter_action_param;
-> 
-> 	-module_param_named(filter_glob, filter_glob_param, charp, 0400);
-> 	+module_param_named(filter_glob, filter_glob_param, charp, 0600);
-> 	 MODULE_PARM_DESC(filter_glob,
-> 			"Filter which KUnit test suites/tests run at 
-boot-time, e.g. list* or list*.*del_test");
-> 	 module_param_named(filter, filter_param, charp, 0400);
-> 
-> Now we can filter the testsuite at will:
-> 
-> 	# modprobe xe
-> 	
-> Run only xe_bo tests:
-> 
-> 	# echo -n xe_bo > /sys/modules/kunit/parameters/filter_glob
-> 	# dmesg -C
-> 	# modprobe xe_live_test
-> 	# dmesg
-> 	[ 4064.402190] KTAP version 1
-> 	[ 4064.402195] 1..1
-> 	[ 4064.403336]     KTAP version 1
-> 	[ 4064.403339]     # Subtest: xe_bo
-> 	[ 4064.403342]     # module: xe_live_test
-> 	[ 4064.403410]     1..2
-> 	...
-> 	[ 4065.712622]     ok 2 xe_bo_evict_kunit
-> 	[ 4065.712646] # xe_bo: pass:2 fail:0 skip:0 total:2
-> 	[ 4065.712668] # Totals: pass:2 fail:0 skip:0 total:2
-> 	[ 4065.712700] ok 1 xe_bo
-> 
-> Execute all live tests:
-> 
-> 	# modprobe -r xe_live_test
-> 	# dmesg -C
-> 	# echo -n \* > /sys/modules/kunit/parameters/filter_glob
-> 	# modprobe xe_live_test
-> 	# dmesg
-> 	[ 5010.536719] KTAP version 1
-> 	[ 5010.536725] 1..4
-> 	[ 5010.537618]     KTAP version 1
-> 	[ 5010.537620]     # Subtest: xe_bo
-> 	[ 5010.537623]     # module: xe_live_test
-> 	...
-> 	[ 5011.831597]     KTAP version 1
-> 	[ 5011.831599]     # Subtest: xe_dma_buf
-> 	[ 5011.831601]     # module: xe_live_test
-> 	...
-> 	[ 5011.867751]     KTAP version 1
-> 	[ 5011.867753]     # Subtest: xe_migrate
-> 	[ 5011.867755]     # module: xe_live_test
-> 	...
-> 	[ 5011.882481]     KTAP version 1
-> 	[ 5011.882483]     # Subtest: xe_mocs
-> 	[ 5011.882485]     # module: xe_live_test
-> 
-> To simplify our kunit lib, we could also rely on kunit_debugfs to list
-> tests.
+pm_runtime_get_if_active() loses its second argument as it only made sense
+to have ign_usage_count argument true.
 
-That option also sits in my IGT queue, though it requires an updated Xe CI 
-kconfig (or at least it did two months ago).
+The other change is also small but it has an effect on callers:
+pm_runtime_put_autosuspend() will, in the future, be re-purposed to
+include a call to pm_runtime_mark_last_busy() as well. Before this,
+current users of the function are moved to __pm_runtime_put_autosuspend()
+(added by this patchset) which will continue to have the current
+behaviour.
 
-Thanks,
-Janusz
+I haven't included the conversion patches in this set as I only want to do
+that once this set has been approved and merged. The tree specific patches
+can be found here, on linux-next master (there are some V4L2 patches
+there, too, please ignore them for now):
+<URL:https://git.kernel.org/pub/scm/linux/kernel/git/sailus/linux-next.git/log/?h=pm>
 
-> 
-> I will prepare a patch for the kunit part in the kernel.
-> 
-> Lucas De Marchi
-> 
-> >
-> >Lucas De Marchi
-> >
-> >>
-> >>Lucas De Marchi
-> >>
-> >>>
-> >>>>}
-> >>>
-> >>>Regards,
-> >>>Mauro
-> 
+Later on, users calling pm_runtime_mark_last_busy() immediately followed
+by __pm_runtime_put_autosuspend() will be switched back to
+pm_runtime_put_autosuspend() once its behaviour change has been done (a
+patch near top of that branch). I'll provide these once the preceding ones
+have been merged.
 
+Comments are welcome.
 
+since v2:
 
+- Rebase on v6.8-rc1 (no changes).
+
+- Add Rodrigo's Reviewed-by: to the 1st patch.
+
+since v1:
+
+- patch 1: Rename __pm_runtime_get_conditional() as
+  pm_runtime_get_conditional().
+
+- patch 1: Reword documentation on driver use of
+  pm_runtime_get_conditional().
+
+Sakari Ailus (2):
+  pm: runtime: Simplify pm_runtime_get_if_active() usage
+  pm: runtime: Add pm_runtime_put_autosuspend() replacement
+
+ Documentation/power/runtime_pm.rst      | 22 ++++++++-----
+ drivers/accel/ivpu/ivpu_pm.c            |  2 +-
+ drivers/base/power/runtime.c            | 10 ++++--
+ drivers/gpu/drm/i915/intel_runtime_pm.c |  2 +-
+ drivers/gpu/drm/xe/xe_pm.c              |  2 +-
+ drivers/media/i2c/ccs/ccs-core.c        |  2 +-
+ drivers/media/i2c/ov64a40.c             |  2 +-
+ drivers/media/i2c/thp7312.c             |  2 +-
+ drivers/net/ipa/ipa_smp2p.c             |  2 +-
+ drivers/pci/pci.c                       |  2 +-
+ include/linux/pm_runtime.h              | 44 ++++++++++++++++++++++---
+ sound/hda/hdac_device.c                 |  2 +-
+ 12 files changed, 68 insertions(+), 26 deletions(-)
+
+-- 
+2.39.2
 
