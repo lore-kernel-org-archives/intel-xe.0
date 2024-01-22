@@ -4,45 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B7BCC4725D
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jan 2024 10:14:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF3EEC4725D
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jan 2024 10:14:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C87E10EC71;
-	Mon, 22 Jan 2024 10:14:36 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A06C610EC71
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Jan 2024 10:14:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D0BF10EC72;
+	Mon, 22 Jan 2024 10:14:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 907B010EC72
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 Jan 2024 10:14:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705918475; x=1737454475;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=HKsI8G7ZokBhuJPxdKcAhtKSOFuAa5K+7wPW7xNTEqQ=;
- b=T70vJXTpi+PNGFhdivd9JWwptIiwGB66NsDTq488G4PBQGJQaU57jGK5
- DYZIV9rmrMQRgKqiG+omNJRsuFV5PGlQtz04w2jd4c2g5HcWdzJmHGJU/
- 1j5JvjDAYqBR7W1QbtdjrujrkLPWnatlRYi4TkKjiXvL71YBiyTPapolt
- qot8LkChBIt9A//L4m4Mzyj4n0WcL+1k8CTrLmlvMPepIZ60Dzh/eKtyg
- PVdtZgx7H7fxQyk8968oiMFUW6KTasuHFoe3daLwwQza4hS+pk8sq6y9o
- xN55Ul8QeL+oTJE5kQ4EJ68KEfm+FvvSmcnpLagpKH9uw8xFBiBpt9F79 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10960"; a="7833759"
+ t=1705918480; x=1737454480;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=IGQJcMQ313n7IchEADiiwaRhej+V/jmG2lYW+TuKLzU=;
+ b=kkjKHELmc2xS4+u8m7yCbAdmAnek4WDWZ5Ngvk4MIlEwjwpgKucb2O2F
+ KCQj6W/MaXfKtI3f4bq7vvANecE5zI/Tt8OMaREcaOfmHc5xA+hXh6wHX
+ 97/iOr3XyIxISLLLX35hmg9S7n5iIkQFrW+ASH178cqTegC08E8NNNumI
+ FiQbHHKSLuTYT+9IgL2JjUW1ABXiG38zjS6pSLnAj/A5ESisduevnh+ji
+ 2zlISh1UGUG3OtiPipGR6Mbv4OuKDzRr5AxpFSqn0OGKf8bsy1EERUpic
+ mpmDwoqnK4ZPq2jbIg7uffVpKZNdCpFbl4kpPYM4by5bEZ8TlENXqb8Jp w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10960"; a="8543086"
 X-IronPort-AV: E=Sophos;i="6.05,211,1701158400"; 
-   d="scan'208";a="7833759"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2024 02:14:35 -0800
+   d="scan'208";a="8543086"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2024 02:14:40 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10960"; a="908889619"
-X-IronPort-AV: E=Sophos;i="6.05,211,1701158400"; d="scan'208";a="908889619"
+X-IronPort-AV: E=McAfee;i="6600,9927,10960"; a="958689297"
+X-IronPort-AV: E=Sophos;i="6.05,211,1701158400"; d="scan'208";a="958689297"
 Received: from mshelego-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.252.40.242])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2024 02:14:32 -0800
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2024 02:14:37 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 1/2] drm/xe: move xe_display.[ch] under display/
-Date: Mon, 22 Jan 2024 12:14:27 +0200
-Message-Id: <20240122101428.2683468-1-jani.nikula@intel.com>
+Subject: [PATCH 2/2] drm/xe: drop display/ subdir from include directories
+Date: Mon, 22 Jan 2024 12:14:28 +0200
+Message-Id: <20240122101428.2683468-2-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20240122101428.2683468-1-jani.nikula@intel.com>
+References: <20240122101428.2683468-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
@@ -61,59 +63,117 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-All the other display related files are under display/ subdirectory,
-also move xe_display.[ch] there.
+There are very few places that need to include anything from under
+display/. Require the display/ prefix in #include directives, and drop
+the subdirectory from the header search path.
 
-Sort the build list while at it.
+Sort the include lists while at it.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile                   | 18 +++++++++---------
- drivers/gpu/drm/xe/{ => display}/xe_display.c |  0
- drivers/gpu/drm/xe/{ => display}/xe_display.h |  0
- 3 files changed, 9 insertions(+), 9 deletions(-)
- rename drivers/gpu/drm/xe/{ => display}/xe_display.c (100%)
- rename drivers/gpu/drm/xe/{ => display}/xe_display.h (100%)
+ drivers/gpu/drm/xe/Makefile    | 1 -
+ drivers/gpu/drm/xe/xe_device.c | 6 +++---
+ drivers/gpu/drm/xe/xe_irq.c    | 2 +-
+ drivers/gpu/drm/xe/xe_pci.c    | 2 +-
+ drivers/gpu/drm/xe/xe_pm.c     | 2 +-
+ 5 files changed, 6 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index fe8b266a9819..e06f99def559 100644
+index e06f99def559..789d310cb5bc 100644
 --- a/drivers/gpu/drm/xe/Makefile
 +++ b/drivers/gpu/drm/xe/Makefile
-@@ -185,17 +185,17 @@ $(obj)/i915-display/%.o: $(srctree)/drivers/gpu/drm/i915/display/%.c FORCE
+@@ -165,7 +165,6 @@ xe-$(CONFIG_DRM_XE_KUNIT_TEST) += \
+ subdir-ccflags-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	-I$(srctree)/$(src)/display/ext \
+ 	-I$(srctree)/$(src)/compat-i915-headers \
+-	-I$(srctree)/drivers/gpu/drm/xe/display/ \
+ 	-I$(srctree)/drivers/gpu/drm/i915/display/ \
+ 	-Ddrm_i915_gem_object=xe_bo \
+ 	-Ddrm_i915_private=xe_device
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index ab417f4f7d2a..eea0b259ae85 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -15,20 +15,21 @@
+ #include <drm/drm_print.h>
+ #include <drm/xe_drm.h>
  
- # Display code specific to xe
- xe-$(CONFIG_DRM_XE_DISPLAY) += \
--	xe_display.o \
--	display/xe_fb_pin.o \
--	display/xe_hdcp_gsc.o \
--	display/xe_plane_initial.o \
--	display/xe_display_rps.o \
-+	display/ext/i915_irq.o \
-+	display/ext/i915_utils.o \
-+	display/intel_fb_bo.o \
-+	display/intel_fbdev_fb.o \
-+	display/xe_display.o \
- 	display/xe_display_misc.o \
-+	display/xe_display_rps.o \
- 	display/xe_dsb_buffer.o \
--	display/intel_fbdev_fb.o \
--	display/intel_fb_bo.o \
--	display/ext/i915_irq.o \
--	display/ext/i915_utils.o
-+	display/xe_fb_pin.o \
-+	display/xe_hdcp_gsc.o \
-+	display/xe_plane_initial.o
++#include "display/xe_display.h"
+ #include "regs/xe_gt_regs.h"
+ #include "regs/xe_regs.h"
+ #include "xe_bo.h"
+ #include "xe_debugfs.h"
+-#include "xe_display.h"
+ #include "xe_dma_buf.h"
+ #include "xe_drm_client.h"
+ #include "xe_drv.h"
+-#include "xe_exec_queue.h"
+ #include "xe_exec.h"
++#include "xe_exec_queue.h"
+ #include "xe_ggtt.h"
+ #include "xe_gsc_proxy.h"
+ #include "xe_gt.h"
+ #include "xe_gt_mcr.h"
++#include "xe_hwmon.h"
+ #include "xe_irq.h"
+ #include "xe_memirq.h"
+ #include "xe_mmio.h"
+@@ -43,7 +44,6 @@
+ #include "xe_ttm_sys_mgr.h"
+ #include "xe_vm.h"
+ #include "xe_wait_user_fence.h"
+-#include "xe_hwmon.h"
  
- # SOC code shared with i915
- xe-$(CONFIG_DRM_XE_DISPLAY) += \
-diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-similarity index 100%
-rename from drivers/gpu/drm/xe/xe_display.c
-rename to drivers/gpu/drm/xe/display/xe_display.c
-diff --git a/drivers/gpu/drm/xe/xe_display.h b/drivers/gpu/drm/xe/display/xe_display.h
-similarity index 100%
-rename from drivers/gpu/drm/xe/xe_display.h
-rename to drivers/gpu/drm/xe/display/xe_display.h
+ #ifdef CONFIG_LOCKDEP
+ struct lockdep_map xe_device_mem_access_lockdep_map = {
+diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+index 2fd8cc26fc9f..d31e87de5a1c 100644
+--- a/drivers/gpu/drm/xe/xe_irq.c
++++ b/drivers/gpu/drm/xe/xe_irq.c
+@@ -9,10 +9,10 @@
+ 
+ #include <drm/drm_managed.h>
+ 
++#include "display/xe_display.h"
+ #include "regs/xe_gt_regs.h"
+ #include "regs/xe_regs.h"
+ #include "xe_device.h"
+-#include "xe_display.h"
+ #include "xe_drv.h"
+ #include "xe_gsc_proxy.h"
+ #include "xe_gt.h"
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index df6b3b31f419..09c50471331c 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -15,9 +15,9 @@
+ #include <drm/drm_drv.h>
+ #include <drm/xe_pciids.h>
+ 
++#include "display/xe_display.h"
+ #include "regs/xe_gt_regs.h"
+ #include "xe_device.h"
+-#include "xe_display.h"
+ #include "xe_drv.h"
+ #include "xe_gt.h"
+ #include "xe_macros.h"
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index d5f219796d7e..4d3984ae4ff1 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -10,11 +10,11 @@
+ #include <drm/drm_managed.h>
+ #include <drm/ttm/ttm_placement.h>
+ 
++#include "display/xe_display.h"
+ #include "xe_bo.h"
+ #include "xe_bo_evict.h"
+ #include "xe_device.h"
+ #include "xe_device_sysfs.h"
+-#include "xe_display.h"
+ #include "xe_ggtt.h"
+ #include "xe_gt.h"
+ #include "xe_guc.h"
 -- 
 2.39.2
 
