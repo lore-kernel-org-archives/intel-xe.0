@@ -4,51 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 135B9C47DDC
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jan 2024 09:17:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEDF8C47DDB
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jan 2024 09:56:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9956110E53E;
-	Tue, 23 Jan 2024 09:17:21 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E05E10E162;
- Tue, 23 Jan 2024 09:17:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77FFA10E0F1;
+	Tue, 23 Jan 2024 09:56:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E5EC10E0F1;
+ Tue, 23 Jan 2024 09:56:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706001440; x=1737537440;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=3RQrHW6GMTNH2GTdTqsV49Jo6+AJw+gk6XxNxQYBYrw=;
- b=FsjeNnjfG4OpqD7skZ0e+h0ettMFvNAPTrIcoNg2LSR57xpUu8H55VJ5
- 021/F0kjB7MGwfAui3BTUibL/d6jqZUybIaEyIaohiQBvvPO+me0SX6bw
- o4BYOe3lMk/wiMIlqescx+ewVet6cRrhA/Tvg4aGaZg2kRin7JW4S/Sne
- nDH/SR1Me6Px55kgo1+kUf+CKYy2B9WpzNSgvlhDQGqaXqgp4vZyLplqs
- lfqR2tQ3D6g021J3/Glaf2uOG1T2DVQKL2u6Py1DiH4vdkbSfiSBRCw43
- jsd+JI32jZHJH9uOwqF/k9HiIIVWF/I9UF5SZJOsLM7yULWEYdgKPICcs g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="8831774"
+ t=1706003815; x=1737539815;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=giqjHNiHA5lOOXvLyPmmD7zXAE91+Pqyfa9jWZiXxrk=;
+ b=GbaLFC2fWlGW9+IB6Xgf8Bxcq4EaAD4lk3qS36kTvcsDd4X2bPqySXfJ
+ FN8/q3O1seoEDpsnFF8Rg7WiEON+yJ00GR6P+UykLHekxsbKxvFcin08u
+ mf03RParLv83OxPOlkMbZCtiaSK3ZAH1M0M9pX15UZkQKEgDSCtfPfpqG
+ gHBY1tW5akeBrR89MqGFBWod9THaczH0u39CV3GVk4vQWu/YCwLii3s80
+ UlTO4750NlOWHEF+T3XK6sTXi4r//zvWIeIPCfWY7aq6+DdXnUi9sEXur
+ DHUK2abtM2AZEVOwUpIsbFA8K3S0VfUfT886WVhpMHFkp6X5yqthXQTVQ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="365653"
 X-IronPort-AV: E=Sophos;i="6.05,214,1701158400"; 
-   d="scan'208";a="8831774"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2024 01:17:17 -0800
+   d="scan'208";a="365653"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2024 01:56:54 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,214,1701158400"; d="scan'208";a="20270900"
-Received: from kogorman-mobl.ger.corp.intel.com (HELO [10.252.18.165])
- ([10.252.18.165])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2024 01:17:15 -0800
-Message-ID: <93a40023-c81e-44a7-978d-26491e790c78@intel.com>
-Date: Tue, 23 Jan 2024 09:17:13 +0000
+X-IronPort-AV: E=Sophos;i="6.05,214,1701158400"; d="scan'208";a="27962082"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com)
+ ([10.237.72.44])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2024 01:56:47 -0800
+Received: from svinhufvud.ger.corp.intel.com (localhost [IPv6:::1])
+ by kekkonen.fi.intel.com (Postfix) with ESMTP id 2554111FC49;
+ Tue, 23 Jan 2024 11:56:43 +0200 (EET)
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: linux-pm@vger.kernel.org
+Subject: [PATCH v4 0/3] Small runtime PM API changes
+Date: Tue, 23 Jan 2024 11:56:41 +0200
+Message-Id: <20240123095642.97303-1-sakari.ailus@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] drm/xe: store bind time pat index to xe_bo
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-References: <20240118152745.162960-1-juhapekka.heikkila@gmail.com>
- <20240118152745.162960-3-juhapekka.heikkila@gmail.com>
- <6333556b-60ec-4233-be50-1dcb745bb89d@intel.com> <Za9zURjbgjDUdlmJ@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <Za9zURjbgjDUdlmJ@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,69 +58,94 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, linux-pci@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Jaroslav Kysela <perex@perex.cz>,
+ Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>,
+ laurent.pinchart@ideasonboard.com, David Airlie <airlied@gmail.com>,
+ Paul Elder <paul.elder@ideasonboard.com>, linux-media@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ Mark Brown <broonie@kernel.org>,
+ Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, Alex Elder <elder@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-sound@vger.kernel.org,
+ Takashi Iwai <tiwai@suse.com>, Daniel Vetter <daniel@ffwll.ch>,
+ netdev@vger.kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 23/01/2024 08:05, Ville Syrjälä wrote:
-> On Fri, Jan 19, 2024 at 03:45:22PM +0000, Matthew Auld wrote:
->> On 18/01/2024 15:27, Juha-Pekka Heikkila wrote:
->>> Store pat index from xe_vma to xe_bo
->>>
->>> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
->>> ---
->>>    drivers/gpu/drm/xe/xe_pt.c | 4 ++++
->>>    1 file changed, 4 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
->>> index de1030a47588..4b76db698878 100644
->>> --- a/drivers/gpu/drm/xe/xe_pt.c
->>> +++ b/drivers/gpu/drm/xe/xe_pt.c
->>> @@ -1252,6 +1252,10 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
->>>    		return ERR_PTR(-ENOMEM);
->>>    	}
->>>    
->>> +	if (xe_vma_bo(vma)) {
->>> +		xe_vma_bo(vma)->pat_index = vma->pat_index;
->>
->> Multiple mappings will trash this I think. Is that OK for your usecase?
->> It can be useful to map the same resource as compressed and uncompressed
->> to facilitate in-place decompression/compression.
-> 
-> I thought the pat_index is set for the entire bo? The
-> cache_level->pat_index stuff doesn't really work otherwise
-> I don't think (assuming it works at all).
+Hi folks,
 
-AFAIK it is mostly like that in i915 because it doesn't have a vm_bind 
-interface. With Xe we have vm_bind. The pat_index is a property of the 
-ppGTT binding and therefore vma. There seem to be legitimate reasons to 
-map the same resource with different pat_index, like with 
-compressed/uncompressed. See BSpec: 58797 "double map (alias) surfaces".
+Here's a small but a different set of patches for making two relatively
+minor changes to runtime PM API. I restarted version numbering as this is
+meaningfully different from the previous set.
 
-> 
-> So dunno why this is doing anything using vmas. I think
-> what we probably need is to check/set the bo pat_index
-> at fb create time, and lock it into place (if there's
-> some mechanism by which a random userspace client could
-> change it after the fact, and thus screw up everything).
+pm_runtime_get_if_active() loses its second argument as it only made sense
+to have ign_usage_count argument true.
 
-Maybe we can seal the pat_index on first bind or something if the BO 
-underneath is marked with XE_BO_SCANOUT?
+The other change is also small but it has an effect on callers:
+pm_runtime_put_autosuspend() will, in the future, be re-purposed to
+include a call to pm_runtime_mark_last_busy() as well. Before this,
+current users of the function are moved to __pm_runtime_put_autosuspend()
+(added by this patchset) which will continue to have the current
+behaviour.
 
-> 
->>
->> Also would be good to be clear about what happens if the KMD doesn't do
->> anything to prevent compression with non-tile4? Is it just a bit of
->> display corruption or something much worse that we need to prevent? Is
->> this just a best effort check to help userspace? Otherwise it is hard to
->> evaluate how solid we need to be here in our checking to prevent this
->> scenario. For example how is binding vs display races handled? What
->> happens if the bind appears after the display check?
->>
->>> +	}
->>> +
->>>    	fence = xe_migrate_update_pgtables(tile->migrate,
->>>    					   vm, xe_vma_bo(vma), q,
->>>    					   entries, num_entries,
-> 
+I haven't included the conversion patches in this set as I only want to do
+that once this set has been approved and merged. The tree specific patches
+can be found here, on linux-next master (there are some V4L2 patches
+there, too, please ignore them for now):
+<URL:https://git.kernel.org/pub/scm/linux/kernel/git/sailus/linux-next.git/log/?
+
+Later on, users calling pm_runtime_mark_last_busy() immediately followed
+by __pm_runtime_put_autosuspend() will be switched back to
+pm_runtime_put_autosuspend() once its behaviour change has been done (a
+patch near top of that branch). I'll provide these once the preceding ones
+have been merged.
+
+Comments are welcome.
+
+since v3:
+
+- patch 1: Drop the previously added documentation on driver use of
+  pm_runtime_get_conditional().
+
+- Add a patch to make pm_runtime_get_conditional() static, including
+  switching i915 to pm_runtime_get_if_{active,in_use}.
+
+since v2:
+
+- Rebase on v6.8-rc1 (no changes).
+
+- Add Rodrigo's Reviewed-by: to the 1st patch.
+
+since v1:
+
+- patch 1: Rename __pm_runtime_get_conditional() as
+  pm_runtime_get_conditional().
+
+- patch 1: Reword documentation on driver use of
+  pm_runtime_get_conditional().
+
+Sakari Ailus (3):
+  pm: runtime: Simplify pm_runtime_get_if_active() usage
+  pm: runtime: Make pm_runtime_get_if_conditional() private
+  pm: runtime: Add pm_runtime_put_autosuspend() replacement
+
+ Documentation/power/runtime_pm.rst      | 22 +++++++++-------
+ drivers/accel/ivpu/ivpu_pm.c            |  2 +-
+ drivers/base/power/runtime.c            | 34 +++++++++++++++++++++++--
+ drivers/gpu/drm/i915/intel_runtime_pm.c |  5 +++-
+ drivers/gpu/drm/xe/xe_pm.c              |  2 +-
+ drivers/media/i2c/ccs/ccs-core.c        |  2 +-
+ drivers/media/i2c/ov64a40.c             |  2 +-
+ drivers/media/i2c/thp7312.c             |  2 +-
+ drivers/net/ipa/ipa_smp2p.c             |  2 +-
+ drivers/pci/pci.c                       |  2 +-
+ include/linux/pm_runtime.h              | 30 +++++++++++-----------
+ sound/hda/hdac_device.c                 |  2 +-
+ 12 files changed, 72 insertions(+), 35 deletions(-)
+
+-- 
+2.39.2
+
