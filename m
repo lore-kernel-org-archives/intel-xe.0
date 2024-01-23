@@ -4,78 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61A66C47258
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jan 2024 14:31:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D22AC47258
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jan 2024 15:23:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D5FC10EF0D;
-	Tue, 23 Jan 2024 14:31:12 +0000 (UTC)
-X-Greylist: delayed 569 seconds by postgrey-1.36 at gabe;
- Tue, 23 Jan 2024 14:31:10 UTC
-Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com
- [64.147.123.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A85010E7E8
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Jan 2024 14:31:10 +0000 (UTC)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
- by mailout.west.internal (Postfix) with ESMTP id F2C013200A04;
- Tue, 23 Jan 2024 09:21:36 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
- by compute5.internal (MEProxy); Tue, 23 Jan 2024 09:21:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
- :cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm2; t=1706019696;
- x=1706106096; bh=Wb2LadyDq3EncKOixdkKXF1xf+5ToI114DbbSpnU1nY=; b=
- PKayuLNrs/RNOnY9Pm3PTRTDtc1BuvHxlCD7DuFwY3X2d3w/3n1RTZ9LkQQmom3/
- w6idujhcC4sf3BbCM5+B3rKAeN6o49DZxzKkXiUHhjhwBc48BWX6QQG9FBbGrESz
- dY9isiD4klmX7hDZxIpR0XAo9bx2f3HmXbcXHrgnWu377wYBVGHNDJeydLYODUm3
- R2v4IQChjpBjq1THZkrhojBT62tPQZhhhJX7vhM3GS1LAQ5MUjk8AsVhFsBFrQgH
- doe9VBd2+6WHeaR4G96Yes5cYzvayqaI2fWvhDYf/ZZHo1Zb7cz6wduRTcnHpKrW
- 6kE0Ci1RccWeYTA5fc/t/A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1706019696; x=
- 1706106096; bh=Wb2LadyDq3EncKOixdkKXF1xf+5ToI114DbbSpnU1nY=; b=i
- aeyMu9IQJm8viLVFcRG2+AfApl0inhRKl32d9bxe+ynOLxLBL2s/6xnBdR+sart7
- wAZAjiA4uL/DTaIWBboS2/YhhyDMgMYyxOQ4f604bM7uJzQt+e/9izTFd+xJifVo
- xQ50WHbYZD/V2ZAwYra6Pek4hm9CLQF0AsKq4BVdceSEFeVHgMY+a42IjHl2qdAC
- 3tidNdDH6brWPgcA3qtQ97S9I8mHpThso03DUhwzCMsTMvIaulq1IZgWkWvjI17h
- qB/abhBsPAnPQnf0Ws70h0wwPbXzEqjR98NOYls5N0AIzgYtr4Y02V+Cwfh6GpX1
- RL81i2NKrtG69Wlsq/MXA==
-X-ME-Sender: <xms:b8uvZZutZyYhjvm11xsbDHd-yctTohxrZ96EclPn7v7Uk295CAYxIA>
- <xme:b8uvZSdJ-DzXvh4tLWbWKsloyBAkMqIGhWu0zDscTRdh84QtuWV6_vntH6OGKUGWc
- o9tQr6gGnuPR811080>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrvdekkedgieduucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdet
- rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
- htthgvrhhnpefgkeeuleegieeghfduudeltdekfeffjeeuleehleefudettddtgfevueef
- feeigeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivg
- eptdenucfrrghrrghmpehmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:b8uvZcyHxEDFbucCwS_wdJTB7xZCjv4VpoI1kQNX4uuVdNYjj6sBQw>
- <xmx:b8uvZQOGooI-lZsO5yozfuK-_cjQpfLDCPfU0iE3UrR2Mn2j9dL4qQ>
- <xmx:b8uvZZ-FoQRRZFNwPBfm4zrKoG5PrhcOqTLtRYQnZkkS4F1E545I9g>
- <xmx:cMuvZdVu3pmkvuhw0wgTNHs20QG_zyCJ2SI5aNTi4b7I7-93_VGCkA>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
- id C023DB6008D; Tue, 23 Jan 2024 09:21:35 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-119-ga8b98d1bd8-fm-20240108.001-ga8b98d1b
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B33210E832;
+	Tue, 23 Jan 2024 15:23:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E39810E844
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 Jan 2024 15:23:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706023405; x=1737559405;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=78k9yCucmlJcUShGJm1Nno9ig9keo8vK8pNrMchtynM=;
+ b=Zh9UqaRgDjDIHkBkm/bJOaG3+FHMiOXWYxKiTymW4ZR+l9A7JA1EewhT
+ hlkvJQQSmlGt3PbQcOFMZj69mNMNU6532HZzBqPZ6i+VHSjczV673bLIk
+ 1Hkvd5I4LEM7BaPSTG9gIsyscm5xwghvmEzaqky5YO9wIC/rBCTAcjj3T
+ vavI4H7YNU4PPQlUNTqzFm9yV9BY5kvy/A4WAW/5OWlowgaSrG74l1awj
+ 2fze9SNkj/rxXqUpYOSSv1bOMmJ6PEM+pAhN7fAieCfzZi09Mn8awF/T5
+ C3aKAfQxVFRI01jYgKlZWC7781Vb6cJBKKr8uiB1DnEDTKXMT9ZVEsobq Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="14906774"
+X-IronPort-AV: E=Sophos;i="6.05,214,1701158400"; d="scan'208";a="14906774"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2024 07:23:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="909322284"
+X-IronPort-AV: E=Sophos;i="6.05,214,1701158400"; d="scan'208";a="909322284"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 23 Jan 2024 07:23:24 -0800
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 23 Jan 2024 07:23:24 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Tue, 23 Jan 2024 07:23:24 -0800
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.101)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Tue, 23 Jan 2024 07:23:23 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cfA/YzF3zbzVOOhTsvqWHkKL/UO+l5d6VFW0KXH8C+HiLk6hkaZChkmbV4iqyZq2FbxpChUXxb+W4cBQoVf9F090uAKQsF2Dd/99cdP+QzPri7eyoQajPjFWtCTOpJRunijFeBVjACJt1eZpA3ea3MqnWSxIahf4vU0xZVtKIP3XQ4+nO/SEZIQc49dh8nx0cb8R6cZQBekxQn9UOXCmhtxRQamuO4eElCQ5tQsf4NdKTOFxUplRv/VW/l1EVPLbVy0qF45iHcgAXppzShnSXGLr7t4LWdMKs3SVp+B0zJ3x4tF9S0DvERKZof3VOZKrRGB0AlROUXNQvUz5Cp7Jpg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EX7YqhdPPWubvNJf7ehTNWKymG8y5ZtCXPG+finnbKk=;
+ b=AcvbTVsdgfMAks2hu5ULnDK9GXbh5kaN4aTGmqY+DaU2MiaOxYeAJjCvUHajvaE5NwpAakkbbn9awod/N88chnjsD53SqAqft1RvuNpKM1PI73qen2Dqc1zNsFrb2hChUKhNtMOYDHuInbW15P5dY2w+sOLWIN+iizxOtbCehNbeirTS3Rkhh6EiGlomFBV5qRVIoJYZuq0a7SP/3viz32yqZhsSD1F9Tv3mThhHDSroiQyFr1g3ClJb9cQgX4m61YNsFsOliDfsuuD2wypNSl2FaU8XtVDUfLMigBmqUBkF6TNOFVWslV+YshbD4JpTpQirZSLoQfuYuPHLUgQ5IA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by DS7PR11MB7833.namprd11.prod.outlook.com (2603:10b6:8:ea::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.34; Tue, 23 Jan
+ 2024 15:23:22 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::9f32:ce50:1914:e954]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::9f32:ce50:1914:e954%7]) with mapi id 15.20.7202.035; Tue, 23 Jan 2024
+ 15:23:22 +0000
+Date: Tue, 23 Jan 2024 09:23:20 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH] drm/xe: Document nested struct members according to
+ guidelines
+Message-ID: <oed2nokuzwogk5wxdom4hqzeh3mkdjgyr5wwa6imaechd5iglj@b5za27wrxweo>
+References: <20240123120840.8250-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240123120840.8250-1-thomas.hellstrom@linux.intel.com>
+X-ClientProxiedBy: SJ0PR03CA0360.namprd03.prod.outlook.com
+ (2603:10b6:a03:39c::35) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
-Message-Id: <0229fa60-2d87-4b1c-b9f0-6f04c6e4dbdd@app.fastmail.com>
-In-Reply-To: <d03e90ca-8485-4d1b-5ec1-c3398e0e8da@linux-m68k.org>
-References: <CAHk-=wiB4iHTtfZKiy5pC24uOjun4fbj4kSX0=ZnGsOXadMf6g@mail.gmail.com>
- <20240123111235.3097079-1-geert@linux-m68k.org>
- <d03e90ca-8485-4d1b-5ec1-c3398e0e8da@linux-m68k.org>
-Date: Tue, 23 Jan 2024 15:21:14 +0100
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Geert Uytterhoeven" <geert@linux-m68k.org>, linux-kernel@vger.kernel.org
-Subject: Re: Build regressions/improvements in v6.8-rc1
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DS7PR11MB7833:EE_
+X-MS-Office365-Filtering-Correlation-Id: a4fd016c-413d-4d60-a557-08dc1c273c48
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: HKQJ+/Qt6O2e4kzM7zzRgX53JyVhARm97soO4hblF/n5QsJtCkG5eur4tmPSjgnc+eAwZoK6uCTi/09dFr2+3E7yBZKW7NL3LRdnDY9vTbPUB+AzXrxrSVWUPfNZ6yGh2V5n9jKnwsDjCwsWqBiXvbifCPR0u+2h/C8L29vi9NbsDY56fZj6VdWKkL6NdqXP8wE4qJvj1LDtAvZVPR7mutbZil8iyBO1omnXtPMXtdB8cGCKyAB8ZQcezItu1uBPGBClch2Gv6C45a9dof/GW9kv10OtUBHrQ6NYFLvVQsxnucBV6pB/FfMkE2svxGBpIwSHlE97PqkSDmQr6P4aZI0r950OF97IHCzB7pXWoKjW7J5Tqg0CFGgpDblWKsscTvU399I6XpgNwAFPNP3AVNtOjOLattSanqexFJQIa6EtDXIVhJcNBHSRZIzn+a5pzcBhFYJq1PYwGeZxv7k3k0vWMt8ETAKJgjiomIfVqp/44xzJUp0eH0/8GTW3p0R1c+OXp3tCBMH43bq1Dk17GtT//YismLYN+rHJTAtLTWxRQyJ6IuCTbQ5Igtd2nIGqwa9pcsQIv2/AiAIsiTjqsahC4KvVAFJkmfyRx8hDUWWl/XUqALpuROFFyliOpKtH
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7916004)(366004)(396003)(346002)(39860400002)(136003)(376002)(230173577357003)(230273577357003)(230922051799003)(186009)(451199024)(64100799003)(1800799012)(9686003)(6506007)(478600001)(66476007)(6512007)(6916009)(66556008)(66946007)(8936002)(8676002)(316002)(6486002)(33716001)(26005)(66574015)(83380400001)(2906002)(5660300002)(4326008)(4744005)(41300700001)(82960400001)(38100700002)(86362001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?ca+zPxsrJgRKsqhaPX1FcznZ9LbuDWe3caysBA3sTSdgzpJkS2mTgXXeBA?=
+ =?iso-8859-1?Q?qxvylhYLMCwdh3u8qL5be3QTzc8fBSccpAv8LJlYXQccOTXjeTDnZSYLb6?=
+ =?iso-8859-1?Q?WCFEGjnsSOgeALw0znXDmABhOgIivrm417dwfdlK827lXcPHY6f5GM5UHF?=
+ =?iso-8859-1?Q?v7Z/hYe/doXXJWg9emCUr4NGVpPid7UsGOd6Qo80J3+UT8RnaL41fnOsAI?=
+ =?iso-8859-1?Q?qJ/OH1nmNiSCER1nOYThjYajoCvbru+Ujq8dHcVxxSlbhIpwy6haE0TLtz?=
+ =?iso-8859-1?Q?RWKl+b7kwIeOTP7z93xpFsFa8P/Q90qZ+5c76/Kf1R4tQA2xyFcb99Tqi+?=
+ =?iso-8859-1?Q?S13xliEm3SnG/M+SbH4zx0lmM6Ex/lK25BQ0P+/TItxxKTVZ/nWcPpC9Xs?=
+ =?iso-8859-1?Q?sHqYg832uBoTd6G/n+EoOMhG+q299LzHkgxA2RAy3cl0pYL3rtdt6TkSoZ?=
+ =?iso-8859-1?Q?uERW+rQ269tLpopHA7hgKATZnLJoP+CeXXz7MY6vt2EjP6T+D0walOoTVg?=
+ =?iso-8859-1?Q?uu8qhJzpgm+7St80xfCyGGwEp084sBsQD8qhAJkuHloIreno6mppPTJKff?=
+ =?iso-8859-1?Q?mk0Aa+SDrqe/0UNqXmpulXN5+FHRoqth9dwnbcms8cSfBY2Lhu8UvHy0Ap?=
+ =?iso-8859-1?Q?BI9CNedY69OIalAB6ql9h+pAQeXdzePotENFne95nsrLU38lu8+sZ1rMiB?=
+ =?iso-8859-1?Q?fhcIjzGUm65HcHrXYuSC5f7Q6P5+I58cP5z/+IBu7n2PoPo5RuYY8fF+P0?=
+ =?iso-8859-1?Q?edp2L2mHJqpShPYz7sFenxtkgFnR1cOPUzyhNKp4abetK9dB5PG1Sza9fU?=
+ =?iso-8859-1?Q?2bMawE05hzTTCk9sQF6Hqd9pORl8sPv6rGjRlmvmewTNt4XrFT2A4azKoh?=
+ =?iso-8859-1?Q?tHGNyZx/XoDX0RNHhFVGaoKc0OmvE+xtU78jBsT38JZvyrC6kWyPhLs2RO?=
+ =?iso-8859-1?Q?yIU4ytO7fBz8upWGsShI/PhggBT7/dh23KkzCUl2iWO45muC0TwkBlFqOq?=
+ =?iso-8859-1?Q?kyse4zJVl9vS/TaFRGB+RAKzxFtAVsvimHSc8xmTciplpo7SGj3id44f07?=
+ =?iso-8859-1?Q?o/KneWA2L7TJVnEiU8PuuOhfxVLXOo4kvfuuxiSzPluEWcy7V/CVnwBqP6?=
+ =?iso-8859-1?Q?cs6VgFAMnIR27Tj63wjGWfqEuwfXBWbcG6Z5m9adQclwhLf/vQ1ttl5x5v?=
+ =?iso-8859-1?Q?X4roBXRWCA3SEvZYjQjqfQw4954lWvzK/sis7FNz3RfuVJv9tWMqW8Nxne?=
+ =?iso-8859-1?Q?6eNdT81uO5PftvuXmT1jpGfZ30mDrT+8qWnVu2fm/od4pdz0JxHl1KMla/?=
+ =?iso-8859-1?Q?C6fdtDKjcE4jow5fac983Cw+EZSAjJ1FDZh8qh08ivsNtyYc33YQK6Fgok?=
+ =?iso-8859-1?Q?/rc0PVUfdY/lozEZZl1KkbWuoAkdwXUA6f/borLVV90Gut9a3JnaAhkR71?=
+ =?iso-8859-1?Q?XPnunfXsSvcJwRCK//n3AwWsQjUwHzAuUCE8a0BzisG3x4TML2ojPHj9o5?=
+ =?iso-8859-1?Q?tj4yC4d2Ou42AFkM3aqTHJAbx8odW0H6zh+cpH9s5JAeA9uC/VfbHsHB4E?=
+ =?iso-8859-1?Q?7WJCTKqyJ7HSSl1r81VJSdDLTZ/gclNm9byjvC8YRRGjeW+rQa2RSZY31w?=
+ =?iso-8859-1?Q?fXPl8JnfxkzBPlxZ/vbVmwrc71GuD4vlTj4XUCmVLtXx3bPWSeQgaEOg?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a4fd016c-413d-4d60-a557-08dc1c273c48
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2024 15:23:22.1770 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1yhyXUARror3iAs05Pbd0a5TBQZLZb8W9krPST35eHIApzUK/zQ7Xfofu2+lBa4supX+pMq1H+yApWdWdvKnsYnvmmKGz6/MmFqbPRNIxyc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB7833
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,118 +145,29 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Zankel <chris@zankel.net>, linux-scsi@vger.kernel.org,
- linux-sh@vger.kernel.org, Netdev <netdev@vger.kernel.org>,
- mpi3mr-linuxdrv.pdl@broadcom.com, qat-linux@intel.com,
- dri-devel@lists.freedesktop.org, Max Filippov <jcmvbkbc@gmail.com>,
- linux-mtd@lists.infradead.org, linux-hardening@vger.kernel.org,
- sparclinux@vger.kernel.org,
- "intel-wired-lan@lists.osuosl.org" <intel-wired-lan@lists.osuosl.org>,
- linuxppc-dev@lists.ozlabs.org, intel-xe@lists.freedesktop.org,
- linux-crypto@vger.kernel.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jan 23, 2024, at 12:45, Geert Uytterhoeven wrote:
-
->> 68 error regressions:
+On Tue, Jan 23, 2024 at 01:08:40PM +0100, Thomas Hellström wrote:
+>Document nested struct members with full names as described in
+>Documentation/doc-guide/kernel-doc.rst.
 >
->>  + /kisskb/src/arch/powerpc/sysdev/udbg_memcons.c: error: no previous=
- prototype for 'memcons_getc' [-Werror=3Dmissing-prototypes]:  =3D> 80:5
->>  + /kisskb/src/arch/powerpc/sysdev/udbg_memcons.c: error: no previous=
- prototype for 'memcons_getc_poll' [-Werror=3Dmissing-prototypes]:  =3D>=
- 57:5
->>  + /kisskb/src/arch/powerpc/sysdev/udbg_memcons.c: error: no previous=
- prototype for 'memcons_putc' [-Werror=3Dmissing-prototypes]:  =3D> 44:6
+>For this documentation we allow a column with of to make
+>it more readable.
 >
-> powerpc-gcc{5,12,13}/ppc64_book3e_allmodconfig
-
-I now sent patches for powerpc booke warnings
-
->>  + /kisskb/src/arch/sh/kernel/cpu/init.c: error: no previous prototyp=
-e for 'l2_cache_init' [-Werror=3Dmissing-prototypes]:  =3D> 99:29
+>This fixes warnings similar to:
+>drivers/gpu/drm/xe/xe_lrc_types.h:45: warning: Excess struct member 'size' description in 'xe_lrc'
 >
-> sh4-gcc1[123]/se7{619,750}_defconfig
-> sh4-gcc1[123]/sh-{all{mod,no,yes},def}config
-> sh4-gcc11/sh-allnoconfig
+>Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>Cc: Matthew Brost <matthew.brost@intel.com>
+>Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-I assume the sh maintainers will eventually get to that
 
->>  + /kisskb/src/arch/sparc/include/asm/floppy_64.h: error: no previous=
- prototype for 'sparc_floppy_irq' [-Werror=3Dmissing-prototypes]:  =3D> =
-200:13
->>  + /kisskb/src/arch/sparc/include/asm/floppy_64.h: error: no previous=
- prototype for 'sun_pci_fd_dma_callback' [-Werror=3Dmissing-prototypes]:=
-  =3D> 437:6
->
-> sparc64-gcc{5,11,12,13}/sparc64-allmodconfig
+`git show --color-words` seems sane. CI result tells it took care of all
+the warnings too.
 
-Andrew Morton did a patch for the sparc warnings, and Andreas Larsson
-is joining as a maintainer, so hopefully he can pick that up soon.
-> sparc64-gcc{5,1[123]}/sparc64-allmodconfig
->
->>  + /kisskb/src/arch/sparc/vdso/vclock_gettime.c: error: no previous p=
-rototype for '__vdso_clock_gettime' [-Werror=3Dmissing-prototypes]:  =3D=
-> 254:1
->>  + /kisskb/src/arch/sparc/vdso/vclock_gettime.c: error: no previous p=
-rototype for '__vdso_clock_gettime_stick' [-Werror=3Dmissing-prototypes]=
-:  =3D> 282:1
->>  + /kisskb/src/arch/sparc/vdso/vclock_gettime.c: error: no previous p=
-rototype=20
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-There are prototypes in include/vdso/gettime.h that should be
-used here, but unfortunately the sparc implementation does
-not match the prototypes because sparc is missing the gettime64
-support.
-
-> sparc64-gcc{5,12,13}/sparc64-{allno,def}config
-> sparc64-gcc11/sparc64-{all{mod,no},def}config
->
->>  + /kisskb/src/arch/x86/um/shared/sysdep/kernel-offsets.h: error: no =
-previous prototype for =E2=80=98foo=E2=80=99 [-Werror=3Dmissing-prototyp=
-es]:  =3D> 9:6
->
-> um-x86_64-gcc12/um-{all{mod,yes},def}config
-
-I made a patch for arch/um yesterday.
-
-> sparc64-gcc1[12]/sparc64-allmodconfig
->
->>  + /kisskb/src/drivers/scsi/mpi3mr/mpi3mr_transport.c: error: the fra=
-me size of 1680 bytes is larger than 1536 bytes [-Werror=3Dframe-larger-=
-than=3D]:  =3D> 1818:1
-
-I sent a patch in November when the regression started, missed
-the reply about needing another change
-https://lore.kernel.org/all/CAFdVvOxH4UQjww4124E2ttuTgknzkHoPxVSFOQgLfoV=
-_dkANwQ@mail.gmail.com/
-
->>  + {standard input}: Error: displacement to undefined symbol .L105 ov=
-erflows 8-bit field :  =3D> 590, 593
->>  + {standard input}: Error: displacement to undefined symbol .L135 ov=
-erflows 8-bit field :  =3D> 603
->>  + {standard input}: Error: displacement to undefined symbol .L140 ov=
-erflows 8-bit field :  =3D> 606
->>  + {standard input}: Error: displacement to undefined symbol .L76 ove=
-rflows 12-bit field:  =3D> 591, 594
->>  + {standard input}: Error: displacement to undefined symbol .L77 ove=
-rflows 8-bit field : 607 =3D> 607, 582, 585
->>  + {standard input}: Error: displacement to undefined symbol .L97 ove=
-rflows 12-bit field:  =3D> 607
->>  + {standard input}: Error: pcrel too far: 604, 590, 577, 593, 572, 5=
-69, 598, 599, 596, 610 =3D> 610, 574, 599, 569, 598, 596, 601, 590, 604,=
- 595, 572, 577, 593
->
-> SH ICE crickets
-
-Linus did a patch for the syscall, and I sent another one for
-arch/sh to prevent this from happening again:
-
-https://lore.kernel.org/all/CAHk-=3Dwjh6Cypo8WC-McXgSzCaou3UXccxB+7PVeSu=
-GR8AjCphg@mail.gmail.com/
-https://lore.kernel.org/all/07d8877b-d933-46f4-8ca4-c10ed602f37e@app.fas=
-tmail.com/
-
-Resent mine now.
-
-      Arnd
+thaks
+Lucas De Marchi
