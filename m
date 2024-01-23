@@ -4,59 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D917C47DDB
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jan 2024 08:03:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05CBBC47258
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jan 2024 08:05:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D22AA10E071;
-	Tue, 23 Jan 2024 08:03:06 +0000 (UTC)
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com
- [209.85.208.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2450A10E071
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Jan 2024 08:03:05 +0000 (UTC)
-Received: by mail-ed1-f45.google.com with SMTP id
- 4fb4d7f45d1cf-55c24a32bf4so6476a12.0
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Jan 2024 00:03:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1705996923; x=1706601723;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=FnJCxIsVaM0ENG8iGpRdjH3XEU+iKUpwEvmA/MaNadE=;
- b=b0GQAk+9W3Qar7rjS51lKOwfcLDTAOV+OkaG6UfhZiVuqbED6hXG2Xl7SQI3708MC+
- DG3IxNUvPB0NPsDCJZ5G7IvKBm1WQEi4XU556L4SeVb5nSzaVJHtMdL1M1lzwhpmfXv5
- 9SQL4PyfApCyQmKFQnY8UEkmjCy62Pr9AxJYppNtMzHNk39iOyM6BRZPMzPKNJHZlSXm
- P7PDXIVMfse5CLc7OYUJAUgpmYngGMgWJUiJXA+QCcGW32HUlyno9ztR6Cb0BcGi6Ell
- LGC8ncwJflKKMDkV3zugHOIOk47OmWo7CtNeMh3Sd5n+N8gEw6NdUFrZzSDKzwV64SZO
- YAjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1705996923; x=1706601723;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=FnJCxIsVaM0ENG8iGpRdjH3XEU+iKUpwEvmA/MaNadE=;
- b=hyFFrdgjz4HGzvofGnHibZNkklH7IT4XgyHz3OD/igIwlKahOIisNbiizpDCt0DPsq
- p4MOhICm0JNU7gdbi6DSTBhvWelC+5KMkyXOAkVTVrU4Y6/HCTpZeHWv9ojo6fWVIEUm
- PGH9lVhYTBSXa99UiPiJgYPZdPDVSarSvxLhm/0+rOldEdut9EPI3itogbW5nfoz0iKp
- /2q6bImOTcbQs4NlG36gaW54HKbxIDPGhZGtA1MRkJFz/1Q98H0PxRmeTxrAfimW8JGF
- AENJEl2Zvk3O1EguLgvnAlZ3avN07ayLfSwC4eKL6ZKAiQ/x6lh/rnrFdzCK4WG3pfs7
- u2wQ==
-X-Gm-Message-State: AOJu0YxkleW/AzKTWeuPEcUhySMIM5+Hvko/pDA1hp4sc+oUrdAehW/C
- f8x38pFQxUmuTeBydF2awuhqaOesx3miZtIn4ta0R2rbWBBQShKzQvVsSGBI9Lgf28T8KitjAbb
- Mj6UzE3i/I+e6nZsZ7GEeHZnVls3orrOO4BJj
-X-Google-Smtp-Source: AGHT+IHw+fcWf7cNiJ+13QPQH9ZjygRjYR9ob548YlDM75BXxArIprInyXSl1NW0smBFdBmu7LEbRQZd31KHJfPsTQ8=
-X-Received: by 2002:a05:6402:1ca6:b0:55a:e42c:f5cd with SMTP id
- cz6-20020a0564021ca600b0055ae42cf5cdmr104627edb.3.1705996923416; Tue, 23 Jan
- 2024 00:02:03 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45EC210E119;
+	Tue, 23 Jan 2024 08:05:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC19B10E071;
+ Tue, 23 Jan 2024 08:05:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1705997143; x=1737533143;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=ncl8uZ/+AzTaCkFTfAJRPjGYd2RIpoyU7IW9BeE4tlE=;
+ b=NIebLwWmtJemSF3FuGENwgK7ShQpz8eoYfQ15boepYQQ5pYBDDpZQzUI
+ Va0UpNkUQ1+PsE0kJcuqDPJwQQ3Krv7COJs1+Lzm1fIIQhl+0fo505yYI
+ 66oGYS9hR2Vul3Ru03OdfGywf3ifkcXruCwNGMvPIhFVVrbJAZ91XLoEy
+ UFkNm4lT9OjhCC0rDccOki71sRm/bf8YA9xdrivuH0LeK4eGMf5xUoovX
+ DwTelSktXSvctLcOPKafKvTAtAV+Tz/1Hqi2uErYD0PI7EQ4nOC0byOs+
+ h3gnb3NNoRkxniJUl5FT3KyOvqKdpyEG+eDBPS1nW/THgOC3b0RYj0GoH w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="1305439"
+X-IronPort-AV: E=Sophos;i="6.05,213,1701158400"; 
+   d="scan'208";a="1305439"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2024 00:05:42 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="820002350"
+X-IronPort-AV: E=Sophos;i="6.05,213,1701158400"; d="scan'208";a="820002350"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 23 Jan 2024 00:05:38 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 23 Jan 2024 10:05:37 +0200
+Date: Tue, 23 Jan 2024 10:05:37 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Matthew Auld <matthew.auld@intel.com>
+Subject: Re: [PATCH 2/4] drm/xe: store bind time pat index to xe_bo
+Message-ID: <Za9zURjbgjDUdlmJ@intel.com>
+References: <20240118152745.162960-1-juhapekka.heikkila@gmail.com>
+ <20240118152745.162960-3-juhapekka.heikkila@gmail.com>
+ <6333556b-60ec-4233-be50-1dcb745bb89d@intel.com>
 MIME-Version: 1.0
-References: <20240122171408.3328510-1-lucas.demarchi@intel.com>
-In-Reply-To: <20240122171408.3328510-1-lucas.demarchi@intel.com>
-From: David Gow <davidgow@google.com>
-Date: Tue, 23 Jan 2024 16:01:49 +0800
-Message-ID: <CABVgOSmjyCf5DSh+LJtaLubHN3F_mrFo=ZRk23u2PEmmkLBUjA@mail.gmail.com>
-Subject: Re: [PATCH v2] kunit: Mark filter* params as rw
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature";
- micalg=sha-256; boundary="000000000000a26ba2060f985ca1"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <6333556b-60ec-4233-be50-1dcb745bb89d@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,164 +62,60 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rae Moar <rmoar@google.com>, linux-kernel@vger.kernel.org,
- Brendan Higgins <brendan.higgins@linux.dev>, linux-kselftest@vger.kernel.org,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- kunit-dev@googlegroups.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---000000000000a26ba2060f985ca1
-Content-Type: text/plain; charset="UTF-8"
+On Fri, Jan 19, 2024 at 03:45:22PM +0000, Matthew Auld wrote:
+> On 18/01/2024 15:27, Juha-Pekka Heikkila wrote:
+> > Store pat index from xe_vma to xe_bo
+> > 
+> > Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+> > ---
+> >   drivers/gpu/drm/xe/xe_pt.c | 4 ++++
+> >   1 file changed, 4 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> > index de1030a47588..4b76db698878 100644
+> > --- a/drivers/gpu/drm/xe/xe_pt.c
+> > +++ b/drivers/gpu/drm/xe/xe_pt.c
+> > @@ -1252,6 +1252,10 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
+> >   		return ERR_PTR(-ENOMEM);
+> >   	}
+> >   
+> > +	if (xe_vma_bo(vma)) {
+> > +		xe_vma_bo(vma)->pat_index = vma->pat_index;
+> 
+> Multiple mappings will trash this I think. Is that OK for your usecase? 
+> It can be useful to map the same resource as compressed and uncompressed 
+> to facilitate in-place decompression/compression.
 
-On Tue, 23 Jan 2024 at 01:14, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->
-> By allowing the filter_glob parameter to be written to, it's possible to
-> tweak the testsuites that will be executed on new module loads. This
-> makes it easier to run specific tests without having to reload kunit and
-> provides a way to filter tests on real HW even if kunit is builtin.
-> Example for xe driver:
->
-> 1) Run just 1 test
->         # echo -n xe_bo > /sys/module/kunit/parameters/filter_glob
->         # modprobe -r xe_live_test
->         # modprobe xe_live_test
->         # ls /sys/kernel/debug/kunit/
->         xe_bo
->
-> 2) Run all tests
->         # echo \* > /sys/module/kunit/parameters/filter_glob
->         # modprobe -r xe_live_test
->         # modprobe xe_live_test
->         # ls /sys/kernel/debug/kunit/
->         xe_bo  xe_dma_buf  xe_migrate  xe_mocs
->
-> For completeness and to cover other use cases, also change filter and
-> filter_action to rw.
->
-> Link: https://lore.kernel.org/intel-xe/dzacvbdditbneiu3e3fmstjmttcbne44yspumpkd6sjn56jqpk@vxu7sksbqrp6/
-> Reviewed-by: Rae Moar <rmoar@google.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
+I thought the pat_index is set for the entire bo? The
+cache_level->pat_index stuff doesn't really work otherwise
+I don't think (assuming it works at all).
 
-This looks good to me, and works here.
+So dunno why this is doing anything using vmas. I think
+what we probably need is to check/set the bo pat_index
+at fb create time, and lock it into place (if there's
+some mechanism by which a random userspace client could
+change it after the fact, and thus screw up everything).
 
-Reviewed-by: David Gow <davidgow@google.com>
+> 
+> Also would be good to be clear about what happens if the KMD doesn't do 
+> anything to prevent compression with non-tile4? Is it just a bit of 
+> display corruption or something much worse that we need to prevent? Is 
+> this just a best effort check to help userspace? Otherwise it is hard to 
+> evaluate how solid we need to be here in our checking to prevent this 
+> scenario. For example how is binding vs display races handled? What 
+> happens if the bind appears after the display check?
+> 
+> > +	}
+> > +
+> >   	fence = xe_migrate_update_pgtables(tile->migrate,
+> >   					   vm, xe_vma_bo(vma), q,
+> >   					   entries, num_entries,
 
-Thanks,
--- David
-
->
-> Rae, I kept your r-b from v1 since the additions are just what we talked
-> about.
->
-> v2: also change filter_action and filter to rw, testing with the xe
->     module to see if filter=module=none filter_action=skip produces
->     the result expected by igt
->
->  lib/kunit/executor.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
->
-> diff --git a/lib/kunit/executor.c b/lib/kunit/executor.c
-> index 1236b3cd2fbb..371ddcee7fb5 100644
-> --- a/lib/kunit/executor.c
-> +++ b/lib/kunit/executor.c
-> @@ -31,13 +31,13 @@ static char *filter_glob_param;
->  static char *filter_param;
->  static char *filter_action_param;
->
-> -module_param_named(filter_glob, filter_glob_param, charp, 0400);
-> +module_param_named(filter_glob, filter_glob_param, charp, 0600);
->  MODULE_PARM_DESC(filter_glob,
->                 "Filter which KUnit test suites/tests run at boot-time, e.g. list* or list*.*del_test");
-> -module_param_named(filter, filter_param, charp, 0400);
-> +module_param_named(filter, filter_param, charp, 0600);
->  MODULE_PARM_DESC(filter,
->                 "Filter which KUnit test suites/tests run at boot-time using attributes, e.g. speed>slow");
-> -module_param_named(filter_action, filter_action_param, charp, 0400);
-> +module_param_named(filter_action, filter_action_param, charp, 0600);
->  MODULE_PARM_DESC(filter_action,
->                 "Changes behavior of filtered tests using attributes, valid values are:\n"
->                 "<none>: do not run filtered tests as normal\n"
-> --
-> 2.40.1
->
-
---000000000000a26ba2060f985ca1
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-MIIPqgYJKoZIhvcNAQcCoIIPmzCCD5cCAQExDzANBglghkgBZQMEAgEFADALBgkqhkiG9w0BBwGg
-gg0EMIIEtjCCA56gAwIBAgIQeAMYYHb81ngUVR0WyMTzqzANBgkqhkiG9w0BAQsFADBMMSAwHgYD
-VQQLExdHbG9iYWxTaWduIFJvb3QgQ0EgLSBSMzETMBEGA1UEChMKR2xvYmFsU2lnbjETMBEGA1UE
-AxMKR2xvYmFsU2lnbjAeFw0yMDA3MjgwMDAwMDBaFw0yOTAzMTgwMDAwMDBaMFQxCzAJBgNVBAYT
-AkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMSowKAYDVQQDEyFHbG9iYWxTaWduIEF0bGFz
-IFIzIFNNSU1FIENBIDIwMjAwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCvLe9xPU9W
-dpiHLAvX7kFnaFZPuJLey7LYaMO8P/xSngB9IN73mVc7YiLov12Fekdtn5kL8PjmDBEvTYmWsuQS
-6VBo3vdlqqXZ0M9eMkjcKqijrmDRleudEoPDzTumwQ18VB/3I+vbN039HIaRQ5x+NHGiPHVfk6Rx
-c6KAbYceyeqqfuJEcq23vhTdium/Bf5hHqYUhuJwnBQ+dAUcFndUKMJrth6lHeoifkbw2bv81zxJ
-I9cvIy516+oUekqiSFGfzAqByv41OrgLV4fLGCDH3yRh1tj7EtV3l2TngqtrDLUs5R+sWIItPa/4
-AJXB1Q3nGNl2tNjVpcSn0uJ7aFPbAgMBAAGjggGKMIIBhjAOBgNVHQ8BAf8EBAMCAYYwHQYDVR0l
-BBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMEMBIGA1UdEwEB/wQIMAYBAf8CAQAwHQYDVR0OBBYEFHzM
-CmjXouseLHIb0c1dlW+N+/JjMB8GA1UdIwQYMBaAFI/wS3+oLkUkrk1Q+mOai97i3Ru8MHsGCCsG
-AQUFBwEBBG8wbTAuBggrBgEFBQcwAYYiaHR0cDovL29jc3AyLmdsb2JhbHNpZ24uY29tL3Jvb3Ry
-MzA7BggrBgEFBQcwAoYvaHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvcm9vdC1y
-My5jcnQwNgYDVR0fBC8wLTAroCmgJ4YlaHR0cDovL2NybC5nbG9iYWxzaWduLmNvbS9yb290LXIz
-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
-7xDrOPfX3COqq162RFg/MFcGA1UdIARQME4wCQYHZ4EMAQUBATBBBgkrBgEEAaAyASgwNDAyBggr
-BgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wDAYDVR0TAQH/
-BAIwADCBmgYIKwYBBQUHAQEEgY0wgYowPgYIKwYBBQUHMAGGMmh0dHA6Ly9vY3NwLmdsb2JhbHNp
-Z24uY29tL2NhL2dzYXRsYXNyM3NtaW1lY2EyMDIwMEgGCCsGAQUFBzAChjxodHRwOi8vc2VjdXJl
-Lmdsb2JhbHNpZ24uY29tL2NhY2VydC9nc2F0bGFzcjNzbWltZWNhMjAyMC5jcnQwHwYDVR0jBBgw
-FoAUfMwKaNei6x4schvRzV2Vb4378mMwRgYDVR0fBD8wPTA7oDmgN4Y1aHR0cDovL2NybC5nbG9i
-YWxzaWduLmNvbS9jYS9nc2F0bGFzcjNzbWltZWNhMjAyMC5jcmwwDQYJKoZIhvcNAQELBQADggEB
-AK0lDd6/eSh3qHmXaw1YUfIFy07B25BEcTvWgOdla99gF1O7sOsdYaTz/DFkZI5ghjgaPJCovgla
-mRMfNcxZCfoBtsB7mAS6iOYjuwFOZxi9cv6jhfiON6b89QWdMaPeDddg/F2Q0bxZ9Z2ZEBxyT34G
-wlDp+1p6RAqlDpHifQJW16h5jWIIwYisvm5QyfxQEVc+XH1lt+taSzCfiBT0ZLgjB9Sg+zAo8ys6
-5PHxFaT2a5Td/fj5yJ5hRSrqy/nj/hjT14w3/ZdX5uWg+cus6VjiiR/5qGSZRjHt8JoApD6t6/tg
-ITv8ZEy6ByumbU23nkHTMOzzQSxczHkT+0q10/MxggJqMIICZgIBATBoMFQxCzAJBgNVBAYTAkJF
-MRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMSowKAYDVQQDEyFHbG9iYWxTaWduIEF0bGFzIFIz
-IFNNSU1FIENBIDIwMjACEAHS+TgZvH/tCq5FcDC0n9IwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZI
-hvcNAQkEMSIEIMfQcCEL9e2gmY7qF3gejMzl7bNZf08vMviHlTomVfmVMBgGCSqGSIb3DQEJAzEL
-BgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI0MDEyMzA4MDIwM1owaQYJKoZIhvcNAQkPMVww
-WjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkq
-hkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQBCZc+G
-ZDLNPLNo9+QuP3a4EFEknDYCeohu/zAlHDdGa4mCL0ExsQxR5iWW71PDBw2jACWrtdwTqJwOFexl
-yxFCxyERvhkhTH0ID/4i2txxbAAd2fS22KmlheuMxHjJ00586m64rhdKI87fbkcXYcu+bqKZbIi/
-9aNpuPOaAy5QlSGdWw7Xs1yD/YI4IQGpGmWMFamVVKhtgj5J9ejghoGpzMaphlRbTb9WFB741pEE
-YT5vctto4mOG/MjqiDb+LPp9l+H1l+bLcgKAFouSB6jehb4tjCq02iv/JBjzL3bpHqucB7iRzh/T
-OLJHehLrr6hjdasrc9nkEHUoUTu/paxE
---000000000000a26ba2060f985ca1--
+-- 
+Ville Syrjälä
+Intel
