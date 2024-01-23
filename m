@@ -4,26 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33F9DC47258
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jan 2024 17:14:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FC3FC47258
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jan 2024 17:14:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAB0F10E82E;
-	Tue, 23 Jan 2024 17:14:47 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A646910E82A;
- Tue, 23 Jan 2024 17:14:47 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB89410E7FA;
+	Tue, 23 Jan 2024 17:14:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D63710E7FA
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 Jan 2024 17:14:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706030090; x=1737566090;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=WhFYZcF83S4KwNFOX2dfVtX2xV/x1NnNR+ALjLpOsZg=;
+ b=LlGp64v34yeiCLcFIzPQscbg5NTYAC8mE5omUtU1JFvu1sM0fLsrey4g
+ a0wI0hbCjW4NkAzEqoxoOyvN2C47AIGl/1R8KWHa+Ctmba1VdPO+3sQf+
+ P2hq+bNI9yQIfVixYOCxFGdLvnAA/pGxtqtZPQ3IGVbL01xujxRnE8aPN
+ Z8vv8Ay4kfYR92Ydv4NPtG0hAnR7moJyOluZMQm7o0mvUm0wWsaigsc/w
+ NfMaTgE8cdIt8vulg07xKZm8I6H8vgFjebVHSg62JArgrq1iIzsFNi3oJ
+ 1ypWl481IuPxFGhPTdu4gHJdxzz3dyjJJAv9sDwGtmyX1B5E9r2W/l9a3 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="8342490"
+X-IronPort-AV: E=Sophos;i="6.05,214,1701158400"; 
+   d="scan'208";a="8342490"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2024 09:13:26 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="929397219"
+X-IronPort-AV: E=Sophos;i="6.05,214,1701158400"; d="scan'208";a="929397219"
+Received: from pzsolt-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.40.183])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2024 09:13:24 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: Re: Re: [PATCH 2/2] drm/xe: drop display/ subdir from include
+ directories
+In-Reply-To: <663d25vngq6zcee6vupweq7dohhmftpaggtnfl7752sn6qhdao@ypgsfn62skob>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240122101428.2683468-1-jani.nikula@intel.com>
+ <20240122101428.2683468-2-jani.nikula@intel.com>
+ <47hzp5ya6cwdcidq7cwid5ykpkn6wavxtf3ynjf3xgirbgulsc@afsk7pgae3lx>
+ <87le8hnu6r.fsf@intel.com>
+ <663d25vngq6zcee6vupweq7dohhmftpaggtnfl7752sn6qhdao@ypgsfn62skob>
+Date: Tue, 23 Jan 2024 19:13:21 +0200
+Message-ID: <87ttn4m0r2.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Only_allow_1_uf?=
- =?utf-8?q?ence_per_exec_/_bind_IOCTL?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Tue, 23 Jan 2024 17:14:47 -0000
-Message-ID: <170603008768.683882.7836250934741004047@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240123163422.1570227-1-matthew.brost@intel.com>
-In-Reply-To: <20240123163422.1570227-1-matthew.brost@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,43 +63,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 23 Jan 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Mon, Jan 22, 2024 at 07:39:56PM +0200, Jani Nikula wrote:
+>>On Mon, 22 Jan 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>>> the downside of patch 1 is now that core xe code can include any of the
+>>> display/ headers, but only xe_display.h is acceptable to keep the
+>>> interface sane.
+>>
+>>I'd say xe_display.h remains the only interface towards xe core, I don't
+>>think this patch changes that, and its location doesn't really give any
+>>guarantees. It's been a matter of sticking display/ in the include
+>>anyway, and enforcing that is a matter of maintainer vigilance.
+>
+> I just thought the previous split was slightly better: No code in xe
+> should include display/ and should rather use the xe_display.[hc]
+> interface.
+>
+> Now with #include "display/xe_display.h" spread throughout the code,
+> this could serve as example for people to start including stuff they
+> shouldn't.
+>
+> I'm not entirely opposed, so if you and others agree, please go ahead.
 
-Series: drm/xe: Only allow 1 ufence per exec / bind IOCTL
-URL   : https://patchwork.freedesktop.org/series/129095/
-State : success
+Well, at the moment you can include *anything* from under display/
+*without* the prefix, because it's all in the include path. (Although
+that will fail for DRM_XE_DISPLAY=n, but does CI even build that combo
+regularly?)
 
-== Summary ==
+I'm fine with dropping this too. I just think it makes it easier to
+check that nothing outside of display/ does any displayish things.
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-e7f730565356938dd6c63cd498218fdc5d6a22b0
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 09e9af54c901d6b59a3667cbccb3ae55202b6992
-Author: Matthew Brost <matthew.brost@intel.com>
-Date:   Tue Jan 23 08:34:22 2024 -0800
-
-    drm/xe: Only allow 1 ufence per exec / bind IOCTL
-    
-    The way exec ufences are coded only 1 ufence per IOCTL will be signaled.
-    It is possible to fix this but for current use cases 1 ufence per IOCTL
-    is sufficient. Enforce a limit of 1 ufence per IOCTL (both exec and bind
-    to be uniform).
-    
-    Cc: Mika Kahola <mika.kahola@intel.com>
-    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-+ /mt/dim checkpatch fc6b7c6ee7d786e6ed48425a2ce0e674906e4e5c drm-intel
-09e9af54c drm/xe: Only allow 1 ufence per exec / bind IOCTL
+Your call.
 
 
+BR,
+Jani.
+
+>
+> Lucas De Mrachi
+>
+>>
+>>> Or are you thinking about changing the interface?
+>>
+>>I agree the interface should be in one file only, but changing the
+>>interface is an orthogonal matter (I have no plans atm).
+>>
+>>BR,
+>>Jani.
+>>
+>>
+>>-- 
+>>Jani Nikula, Intel
+
+-- 
+Jani Nikula, Intel
