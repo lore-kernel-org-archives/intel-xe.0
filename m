@@ -4,136 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C663C47258
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jan 2024 15:24:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5245EC47258
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jan 2024 15:32:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3997010EB21;
-	Tue, 23 Jan 2024 15:24:53 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE02F10EB21
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Jan 2024 15:24:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A61B10E739;
+	Tue, 23 Jan 2024 15:32:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C1E610E822
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 Jan 2024 15:32:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706023491; x=1737559491;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=xZ8WKMVMgZavRDR6Jlraqp7zGZ+SD2cc9EVlorepyCQ=;
- b=f+yIASr6xjxjs349tZWcuZtaiUTwtc2eWOLi3HUY5xrkITOelfkoi6OP
- 8ZqfQnRV4W9r6BGmIMV3MB47o6wKWPbV726VYVEKDtbnb2vW8LyQ4IwZn
- JKBG/2kaoRpSlFmui7IrzBzMQexJ+mAV/qBWZguC9JXYkQ2jFkvgl1ddn
- jm0p74+7wlr6XHls6b1vX+vja/77igrBL0sHzizuc7XJ5ljtV5+NSCawE
- JMWs4A4XDi1/aoM506EweS2dJkq7VD8PEKnheTvsucmC7nZ6u6eq7m9bX
- ApaaHJZw7idTGZ4nlJf3siYdVu0FFH/dm8Z4BmBDojXt8Yk/VtksD2pGj g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="14907145"
-X-IronPort-AV: E=Sophos;i="6.05,214,1701158400"; d="scan'208";a="14907145"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2024 07:24:51 -0800
+ t=1706023945; x=1737559945;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=DeOeXgz6Z7RUmzcR1NA1Eh1DE3u3vm4zMsc30IVjjXs=;
+ b=YaUM3f5FvlasxPWiRphJZYnTTYHKxvZvTPm3e75PsV0IHMfRFDvw4j/4
+ TS64vgeBUI70KxKbR2DZCZdWJ4QufKkPu0WJunw6SwRGpDgoRGMcd0Owr
+ TbJ9Ha1NO9LcJVerN9ozpRxCt7OFJZL3ctFrdfLOs5odwWHxuTd/7x9fG
+ QVp0Y+/mTXU6vRemM6UUagox5dH7U36bjHKrYkBYGpgNna4za2xBHcwJd
+ HKyMi/nnZQAXrkUs3mA2DKWufr/TGFu5VasOHDnPf5dhLzrocPKmgvmyI
+ e2nL2rUzm14BXtWK/r0Z+SQKYady/AnoatE/I6gfpyEJXomvNYnHQR4aH w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="398707054"
+X-IronPort-AV: E=Sophos;i="6.05,214,1701158400"; d="scan'208";a="398707054"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2024 07:32:23 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="909322874"
-X-IronPort-AV: E=Sophos;i="6.05,214,1701158400"; d="scan'208";a="909322874"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 23 Jan 2024 07:24:46 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 23 Jan 2024 07:24:45 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 23 Jan 2024 07:24:44 -0800
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.41) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 23 Jan 2024 07:24:44 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FOeP+GMdHvF2nwMpY+IUWW1LjMU7Ejji8XHIaPqsrr9/2dNigGRJ8GmI+H3A+LMAC4iN7ylz0mmVkqvu+MZs83Nt+K0ZEDdI+lmH81xUNSzL3AeTLzcplHyXIp4Pr2sjt5v6zzTfG0wF7XJAZokomLoNrqmXmMu5hWqq9Yxr9glivs6aonsgqtCamSKxPlIihq48w2rSnPRYcJA/lEjQ4/8WJkvZBvWm1xWyPxXm4tcAZ8pGj4wzb9rJ7kYAadA4XkzYaLN9Y96QbLTBuLB5lrdZPKNWHp+zyukoBQrLKEVGXtwSXqB/NnPjauc7vAx+hjiMrEjLmv856MLqwBz2TQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3GzqSIRcBmkiV9q1hxqg9rdHqM3Ju7VfFbq0HsL3OeA=;
- b=PKYxhUNnWr+V1PiUTMGW2ZwHXuWcYR515gvQP0QAFHRUIRvxEpbiltFOUcZSO1kp2CT4nK7rdh+HOh/Z+JK+0epaYd8EInZ5qYKT9aIZOqv5eBKBtW6Beq9akkcvvLwPMYFYhrcA3+Xwvsspctl7xCAbu4gDYIBMA1zgJ1sqjDik/YuAkQjA5iRSvyN3GpG8gYx2Ti3KmMWOg5fQ8ThUETXKyZUgAnXV5gYk9NMnkRc7iIROcaLlOeMsTq2sg5AExyC86DvswpaJz7ftKX/VuuoLDxNCxJRKZ3cEiWUp6iZrRdqFo/OY9vXG6bvjiM5MN0/wlDIdw/VuU+hwyua9Pg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by DS7PR11MB7833.namprd11.prod.outlook.com (2603:10b6:8:ea::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.34; Tue, 23 Jan
- 2024 15:24:42 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::9f32:ce50:1914:e954]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::9f32:ce50:1914:e954%7]) with mapi id 15.20.7202.035; Tue, 23 Jan 2024
- 15:24:42 +0000
-Date: Tue, 23 Jan 2024 09:24:39 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH v2] drm/xe: Document nested struct members according to
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="1117287029"
+X-IronPort-AV: E=Sophos;i="6.05,214,1701158400"; d="scan'208";a="1117287029"
+Received: from krchrist-mobl2.ger.corp.intel.com (HELO fedora..)
+ ([10.249.254.96])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2024 07:32:21 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH v3] drm/xe: Document nested struct members according to
  guidelines
-Message-ID: <sikedk2l73idxkddxmpe53gefdbovbtbto5jtlfvn7rkuu5e67@ghihexhcyw7h>
-References: <20240123130000.13559-1-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240123130000.13559-1-thomas.hellstrom@linux.intel.com>
-X-ClientProxiedBy: SJ0PR05CA0139.namprd05.prod.outlook.com
- (2603:10b6:a03:33d::24) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+Date: Tue, 23 Jan 2024 16:31:47 +0100
+Message-ID: <20240123153147.27305-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DS7PR11MB7833:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9ccd3e07-268d-4e96-193f-08dc1c276bfe
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: VkyqtwYm+XODet2Zetr6EByRZVj7/10zKsjxfygkQnv7UNp//O6/RM9TW6JdqoKSfIDNJfVJuGAg8AiJPbSDl6PgHXzi7h2M7XUjGy7h7pVBmeSXmPaV/C+rHETxrNoSuBxCzU59Qgm46lqsR+kV3PEnlrZEgXNz+dRN1EElPbMoUzOCGqNi1N63+ys3G3T/PpVJaNvwf8lCTc2fgA8JHpx37Dld8JoMzJJW76+Iy3+HkAEZCchI71pch2vkFxuhtMO5doGGYphd7vOhqJcIvRt8G2+ozK/88mjIL9WkFfv8a25dmCVDFriGIn3OdRyjb1bvONqmfz1Xr1CBSlXBfC6LjUSJ95xnCblOscbxyFGVC5twAAg9oB36rMFkvxYxhgNvQCvB9xYLxAgG5gscAw0W0ZW6Se5fPXp1d//Lo2L4/wIkuU5Bz7XVi7fgqpabkpbsbRPUY1PwVxpVlK4ofa5LvOdVtmI5aZLKlTiMoMvDVoh0vxaJ7UA/RgsJ34QFjSXzTEnB3LtzdGnh3QJjWpC/dmkhbBKL7AjqcKAROOddj32jraTIBBbWfOKqz44sDXBAwLJw5wRHc0v1t4NvacDptQlonJQCGY7Dlh6ld2jfpgqS17POByWMCa6Tu0ba
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(366004)(396003)(346002)(39860400002)(136003)(376002)(230173577357003)(230273577357003)(230922051799003)(186009)(451199024)(64100799003)(1800799012)(9686003)(6506007)(478600001)(66476007)(6512007)(6916009)(66556008)(6666004)(66946007)(8936002)(8676002)(316002)(6486002)(33716001)(26005)(66574015)(83380400001)(2906002)(5660300002)(4326008)(4744005)(41300700001)(82960400001)(38100700002)(86362001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?/y+pFgIlpIhi2D/6hJz4Azr9YkMeCO6KacZTsyjvOO26A/DuJdBtyFqIuB?=
- =?iso-8859-1?Q?sa2H6fnLsXMcO5SWm1FY+XoIf7bWoKDPEQNGZ3mQ5GGy92Y8C3tjokm+SA?=
- =?iso-8859-1?Q?/aE5tlyoh2ir+rNhF1hCPM81yXOZDfux1XmTYYSZNI3caKJvMGK+yOhtQq?=
- =?iso-8859-1?Q?9rVXNBtrgm+HFMgup9NHaJtpB+TALnD+Nd/gSEAoUw3Kc+6A4HqIO9D2pe?=
- =?iso-8859-1?Q?WkKel99cbW4jkrvJ5rpyHY2NDquG+F2ura0DsfVccnFns51HgovUIQw+uI?=
- =?iso-8859-1?Q?maTbsgOmTJ4A2SljM4hmeGaZUXd3ngG9VKnyMJPygzRSBvrLP22awkVMkP?=
- =?iso-8859-1?Q?PeuFIbk+jQB+cVhAnWOm2Wp5Q3qvI0n7nVLBfNmQ/8oZeXBII5wfkdW3Su?=
- =?iso-8859-1?Q?umysDSKfRC4P1PVEZ2U8va3ALBfgSevgpLbDVnGofhRY986YR4ZUgjgyxD?=
- =?iso-8859-1?Q?sbBOQBR6Huirk3fhz/gs0jQtVuCgv7F+DHJ/JpF4Ac0D85eVtIECY976kk?=
- =?iso-8859-1?Q?CA70ozZvqEk1L4E/xaWvWFbqky3PBngSHXIso26HT7Z4BNFrzWV9zIuOsO?=
- =?iso-8859-1?Q?mNtN9IL+w3lmRzDv81FXQILo4GU/HpeB6JUctY/GfveHbtMx4g5JQbGq4z?=
- =?iso-8859-1?Q?R401UlMAgSDxob8fSON92Xv0Ni9QEgo5BJqT3ZSuvad8JaFtqoP8rYhIfP?=
- =?iso-8859-1?Q?vrRPXa7BTUjtW/l49p8lGST0dQZRMMGRx3IrtU7zYOraZEMKJ9YcjQU3mw?=
- =?iso-8859-1?Q?0ObUbVvnHE51eoGplfzJfPHggau5SrxVJQvrbQkdd2R+t3/DScmD0oYtq0?=
- =?iso-8859-1?Q?9NfwFFYTOx9c6jHolRhdYHdeV4h2rGb597EHwkEn3moHWYnecKbYiOxex6?=
- =?iso-8859-1?Q?n78bLM8UMshUQyDGswlcyh8Q1dvCSi5swWmPNyR8OyMC4iq/+rnM41cLms?=
- =?iso-8859-1?Q?wtSArN//hQVNBW7P1mg2jO0HW92CcLPZIFT5DH5nnDv7HZSCvGYGDuVnbG?=
- =?iso-8859-1?Q?Av/gu1/d8BvWAhULWRd2ZLEC33UHoxtuqCfiV36E8bybdsi6w8cAmOmlEt?=
- =?iso-8859-1?Q?75UgqOxfBLLBA9LOI70Zi2Rfg3F3SZ5d+cm3gjOjZ/VJuqwB6bogPEUAPT?=
- =?iso-8859-1?Q?KO11jQfbqlVMlQRzdJxtCPIMjKHk7m4f2IBofQ8Yz+tuAWQ//tqDAaRTDH?=
- =?iso-8859-1?Q?jt3zddpLs16ehPOVkRotudpGZgpI8IpV9NLH74DP0dcXIrcuZDu3gVvOZV?=
- =?iso-8859-1?Q?YTCTiqW7rFTPtntJvFPEofhBVvX3xKMn4yYYVv/voIu8FeUgOheCLGwY7Q?=
- =?iso-8859-1?Q?rPp8L0zzTzLvZyut9F+0WwrdbRaF+Xv+8pU+0pRcIAZYN0CQSLyuTTOSio?=
- =?iso-8859-1?Q?Gwgf9iUdLEMpFL5+mIF9q4+4IKSrFwQEdLMc0LxwFyX7YSG1EGUfs6DAO/?=
- =?iso-8859-1?Q?E+Dp14NoKhAGE2C7mcYDI0Do+eyRuBzJIC02aH2/hc/0RJ9Gz3DVC3Cg3Z?=
- =?iso-8859-1?Q?jjPzVPqc0LJeLl/sEn33M7+8pgiGGaJhlkT4p7gkI+rb4PKJSXiWLdM8RZ?=
- =?iso-8859-1?Q?qWZKvGwsxq5lm31Kz1PXqONeAXiJ4bXU6GR8EEyt9BaluAlE30U0p8Ifg4?=
- =?iso-8859-1?Q?IkxoVqScQTg4qJDUq3TI7qpfNA73/JW/kmwmC+HQegOw5Pl4v/KfF2yQ?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9ccd3e07-268d-4e96-193f-08dc1c276bfe
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2024 15:24:42.3655 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: clkXM1oBOHMGnhcz3EU2R20iFwU3dNlWFKwcA+oyJVs2D4LyYj5F/N7pLR9w4fn6nKTzx/ejVnszjswZkKrc4TgihxtoH9NANCmtzsZ5Czo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB7833
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,22 +57,1103 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jan 23, 2024 at 02:00:00PM +0100, Thomas Hellstrˆm wrote:
->Document nested struct members with full names as described in
->Documentation/doc-guide/kernel-doc.rst.
->
->For this documentation we allow a column with of to make
->it more readable.
->
->This fixes warnings similar to:
->drivers/gpu/drm/xe/xe_lrc_types.h:45: warning: Excess struct member 'size' description in 'xe_lrc'
->
->v2: Only change the documentation, not the member.
+Document nested struct members with full names as described in
+Documentation/doc-guide/kernel-doc.rst.
 
-I replied in the wrong version. Feel free to carry the r-b here.
+For this documentation we allow a column width of 100 to make
+it more readable.
 
-Lucas De Marchi
+This fixes warnings similar to:
+drivers/gpu/drm/xe/xe_lrc_types.h:45: warning: Excess struct member 'size' description in 'xe_lrc'
+
+v2:
+- Only change the documentation, not the member.
+
+v3:
+- Fix the commit message wording.
+
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device_types.h     | 159 ++++++++++++-----------
+ drivers/gpu/drm/xe/xe_exec_queue_types.h |  36 ++---
+ drivers/gpu/drm/xe/xe_gsc_types.h        |  16 +--
+ drivers/gpu/drm/xe/xe_gt_types.h         |  99 +++++++-------
+ drivers/gpu/drm/xe/xe_guc_ct_types.h     |   4 +-
+ drivers/gpu/drm/xe/xe_guc_submit_types.h |  18 +--
+ drivers/gpu/drm/xe/xe_guc_types.h        |  28 ++--
+ drivers/gpu/drm/xe/xe_hw_engine_types.h  |  70 +++++-----
+ drivers/gpu/drm/xe/xe_lrc_types.h        |   6 +-
+ drivers/gpu/drm/xe/xe_sched_job_types.h  |   6 +-
+ drivers/gpu/drm/xe/xe_uc_fw_types.h      |   9 +-
+ drivers/gpu/drm/xe/xe_wopcm_types.h      |   4 +-
+ 12 files changed, 232 insertions(+), 223 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 7eda86bd4c2a..eb2b806a1d23 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -143,10 +143,10 @@ struct xe_tile {
+ 	 * * 8MB-16MB: global GTT
+ 	 */
+ 	struct {
+-		/** @size: size of tile's MMIO space */
++		/** @mmio.size: size of tile's MMIO space */
+ 		size_t size;
+ 
+-		/** @regs: pointer to tile's MMIO space (starting with registers) */
++		/** @mmio.regs: pointer to tile's MMIO space (starting with registers) */
+ 		void __iomem *regs;
+ 	} mmio;
+ 
+@@ -156,31 +156,31 @@ struct xe_tile {
+ 	 * Each tile has its own additional 256MB (28-bit) MMIO-extension space.
+ 	 */
+ 	struct {
+-		/** @size: size of tile's additional MMIO-extension space */
++		/** @mmio_ext.size: size of tile's additional MMIO-extension space */
+ 		size_t size;
+ 
+-		/** @regs: pointer to tile's additional MMIO-extension space */
++		/** @mmio_ext.regs: pointer to tile's additional MMIO-extension space */
+ 		void __iomem *regs;
+ 	} mmio_ext;
+ 
+ 	/** @mem: memory management info for tile */
+ 	struct {
+ 		/**
+-		 * @vram: VRAM info for tile.
++		 * @mem.vram: VRAM info for tile.
+ 		 *
+ 		 * Although VRAM is associated with a specific tile, it can
+ 		 * still be accessed by all tiles' GTs.
+ 		 */
+ 		struct xe_mem_region vram;
+ 
+-		/** @vram_mgr: VRAM TTM manager */
++		/** @mem.vram_mgr: VRAM TTM manager */
+ 		struct xe_ttm_vram_mgr *vram_mgr;
+ 
+-		/** @ggtt: Global graphics translation table */
++		/** @mem.ggtt: Global graphics translation table */
+ 		struct xe_ggtt *ggtt;
+ 
+ 		/**
+-		 * @kernel_bb_pool: Pool from which batchbuffers are allocated.
++		 * @mem.kernel_bb_pool: Pool from which batchbuffers are allocated.
+ 		 *
+ 		 * Media GT shares a pool with its primary GT.
+ 		 */
+@@ -218,68 +218,68 @@ struct xe_device {
+ 
+ 	/** @info: device info */
+ 	struct intel_device_info {
+-		/** @graphics_name: graphics IP name */
++		/** @info.graphics_name: graphics IP name */
+ 		const char *graphics_name;
+-		/** @media_name: media IP name */
++		/** @info.media_name: media IP name */
+ 		const char *media_name;
+-		/** @tile_mmio_ext_size: size of MMIO extension space, per-tile */
++		/** @info.tile_mmio_ext_size: size of MMIO extension space, per-tile */
+ 		u32 tile_mmio_ext_size;
+-		/** @graphics_verx100: graphics IP version */
++		/** @info.graphics_verx100: graphics IP version */
+ 		u32 graphics_verx100;
+-		/** @media_verx100: media IP version */
++		/** @info.media_verx100: media IP version */
+ 		u32 media_verx100;
+-		/** @mem_region_mask: mask of valid memory regions */
++		/** @info.mem_region_mask: mask of valid memory regions */
+ 		u32 mem_region_mask;
+-		/** @platform: XE platform enum */
++		/** @info.platform: XE platform enum */
+ 		enum xe_platform platform;
+-		/** @subplatform: XE subplatform enum */
++		/** @info.subplatform: XE subplatform enum */
+ 		enum xe_subplatform subplatform;
+-		/** @devid: device ID */
++		/** @info.devid: device ID */
+ 		u16 devid;
+-		/** @revid: device revision */
++		/** @info.revid: device revision */
+ 		u8 revid;
+-		/** @step: stepping information for each IP */
++		/** @info.step: stepping information for each IP */
+ 		struct xe_step_info step;
+-		/** @dma_mask_size: DMA address bits */
++		/** @info.dma_mask_size: DMA address bits */
+ 		u8 dma_mask_size;
+-		/** @vram_flags: Vram flags */
++		/** @info.vram_flags: Vram flags */
+ 		u8 vram_flags;
+-		/** @tile_count: Number of tiles */
++		/** @info.tile_count: Number of tiles */
+ 		u8 tile_count;
+-		/** @gt_count: Total number of GTs for entire device */
++		/** @info.gt_count: Total number of GTs for entire device */
+ 		u8 gt_count;
+-		/** @vm_max_level: Max VM level */
++		/** @info.vm_max_level: Max VM level */
+ 		u8 vm_max_level;
+-		/** @va_bits: Maximum bits of a virtual address */
++		/** @info.va_bits: Maximum bits of a virtual address */
+ 		u8 va_bits;
+ 
+-		/** @is_dgfx: is discrete device */
++		/** @info.is_dgfx: is discrete device */
+ 		u8 is_dgfx:1;
+-		/** @has_asid: Has address space ID */
++		/** @info.has_asid: Has address space ID */
+ 		u8 has_asid:1;
+-		/** @force_execlist: Forced execlist submission */
++		/** @info.force_execlist: Forced execlist submission */
+ 		u8 force_execlist:1;
+-		/** @has_flat_ccs: Whether flat CCS metadata is used */
++		/** @info.has_flat_ccs: Whether flat CCS metadata is used */
+ 		u8 has_flat_ccs:1;
+-		/** @has_llc: Device has a shared CPU+GPU last level cache */
++		/** @info.has_llc: Device has a shared CPU+GPU last level cache */
+ 		u8 has_llc:1;
+-		/** @has_mmio_ext: Device has extra MMIO address range */
++		/** @info.has_mmio_ext: Device has extra MMIO address range */
+ 		u8 has_mmio_ext:1;
+-		/** @has_range_tlb_invalidation: Has range based TLB invalidations */
++		/** @info.has_range_tlb_invalidation: Has range based TLB invalidations */
+ 		u8 has_range_tlb_invalidation:1;
+-		/** @has_sriov: Supports SR-IOV */
++		/** @info.has_sriov: Supports SR-IOV */
+ 		u8 has_sriov:1;
+-		/** @has_usm: Device has unified shared memory support */
++		/** @info.has_usm: Device has unified shared memory support */
+ 		u8 has_usm:1;
+-		/** @enable_display: display enabled */
++		/** @info.enable_display: display enabled */
+ 		u8 enable_display:1;
+-		/** @skip_mtcfg: skip Multi-Tile configuration from MTCFG register */
++		/** @info.skip_mtcfg: skip Multi-Tile configuration from MTCFG register */
+ 		u8 skip_mtcfg:1;
+-		/** @skip_pcode: skip access to PCODE uC */
++		/** @info.skip_pcode: skip access to PCODE uC */
+ 		u8 skip_pcode:1;
+-		/** @has_heci_gscfi: device has heci gscfi */
++		/** @info.has_heci_gscfi: device has heci gscfi */
+ 		u8 has_heci_gscfi:1;
+-		/** @skip_guc_pc: Skip GuC based PM feature init */
++		/** @info.skip_guc_pc: Skip GuC based PM feature init */
+ 		u8 skip_guc_pc:1;
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+@@ -291,10 +291,10 @@ struct xe_device {
+ 
+ 	/** @irq: device interrupt state */
+ 	struct {
+-		/** @lock: lock for processing irq's on this device */
++		/** @irq.lock: lock for processing irq's on this device */
+ 		spinlock_t lock;
+ 
+-		/** @enabled: interrupts enabled on this device */
++		/** @irq.enabled: interrupts enabled on this device */
+ 		bool enabled;
+ 	} irq;
+ 
+@@ -303,17 +303,17 @@ struct xe_device {
+ 
+ 	/** @mmio: mmio info for device */
+ 	struct {
+-		/** @size: size of MMIO space for device */
++		/** @mmio.size: size of MMIO space for device */
+ 		size_t size;
+-		/** @regs: pointer to MMIO space for device */
++		/** @mmio.regs: pointer to MMIO space for device */
+ 		void __iomem *regs;
+ 	} mmio;
+ 
+ 	/** @mem: memory info for device */
+ 	struct {
+-		/** @vram: VRAM info for device */
++		/** @mem.vram: VRAM info for device */
+ 		struct xe_mem_region vram;
+-		/** @sys_mgr: system TTM manager */
++		/** @mem.sys_mgr: system TTM manager */
+ 		struct ttm_resource_manager sys_mgr;
+ 	} mem;
+ 
+@@ -327,44 +327,44 @@ struct xe_device {
+ 
+ 	/** @clients: drm clients info */
+ 	struct {
+-		/** @lock: Protects drm clients info */
++		/** @clients.lock: Protects drm clients info */
+ 		spinlock_t lock;
+ 
+-		/** @count: number of drm clients */
++		/** @clients.count: number of drm clients */
+ 		u64 count;
+ 	} clients;
+ 
+ 	/** @usm: unified memory state */
+ 	struct {
+-		/** @asid: convert a ASID to VM */
++		/** @usm.asid: convert a ASID to VM */
+ 		struct xarray asid_to_vm;
+-		/** @next_asid: next ASID, used to cyclical alloc asids */
++		/** @usm.next_asid: next ASID, used to cyclical alloc asids */
+ 		u32 next_asid;
+-		/** @num_vm_in_fault_mode: number of VM in fault mode */
++		/** @usm.num_vm_in_fault_mode: number of VM in fault mode */
+ 		u32 num_vm_in_fault_mode;
+-		/** @num_vm_in_non_fault_mode: number of VM in non-fault mode */
++		/** @usm.num_vm_in_non_fault_mode: number of VM in non-fault mode */
+ 		u32 num_vm_in_non_fault_mode;
+-		/** @lock: protects UM state */
++		/** @usm.lock: protects UM state */
+ 		struct mutex lock;
+ 	} usm;
+ 
+ 	/** @persistent_engines: engines that are closed but still running */
+ 	struct {
+-		/** @lock: protects persistent engines */
++		/** @persistent_engines.lock: protects persistent engines */
+ 		struct mutex lock;
+-		/** @list: list of persistent engines */
++		/** @persistent_engines.list: list of persistent engines */
+ 		struct list_head list;
+ 	} persistent_engines;
+ 
+ 	/** @pinned: pinned BO state */
+ 	struct {
+-		/** @lock: protected pinned BO list state */
++		/** @pinned.lock: protected pinned BO list state */
+ 		spinlock_t lock;
+-		/** @evicted: pinned kernel BO that are present */
++		/** @pinned.kernel_bo_present: pinned kernel BO that are present */
+ 		struct list_head kernel_bo_present;
+-		/** @evicted: pinned BO that have been evicted */
++		/** @pinned.evicted: pinned BO that have been evicted */
+ 		struct list_head evicted;
+-		/** @external_vram: pinned external BO in vram*/
++		/** @pinned.external_vram: pinned external BO in vram*/
+ 		struct list_head external_vram;
+ 	} pinned;
+ 
+@@ -385,21 +385,26 @@ struct xe_device {
+ 	 * triggering additional actions when they occur.
+ 	 */
+ 	struct {
+-		/** @ref: ref count of memory accesses */
++		/** @mem_access.ref: ref count of memory accesses */
+ 		atomic_t ref;
+ 
+-		/** @vram_userfault: Encapsulate vram_userfault related stuff */
++		/**
++		 * @mem_access.vram_userfault: Encapsulate vram_userfault
++		 * related stuff
++		 */
+ 		struct {
+ 			/**
+-			 * @lock: Protects access to @vram_usefault.list
+-			 * Using mutex instead of spinlock as lock is applied to entire
+-			 * list operation which may sleep
++			 * @mem_access.vram_userfault.lock: Protects access to
++			 * @vram_usefault.list Using mutex instead of spinlock
++			 * as lock is applied to entire list operation which
++			 * may sleep
+ 			 */
+ 			struct mutex lock;
+ 
+ 			/**
+-			 * @list: Keep list of userfaulted vram bo, which require to release their
+-			 * mmap mappings at runtime suspend path
++			 * @mem_access.vram_userfault.list: Keep list of userfaulted
++			 * vram bo, which require to release their mmap mappings
++			 * at runtime suspend path
+ 			 */
+ 			struct list_head list;
+ 		} vram_userfault;
+@@ -409,28 +414,28 @@ struct xe_device {
+ 	 * @pat: Encapsulate PAT related stuff
+ 	 */
+ 	struct {
+-		/** Internal operations to abstract platforms */
++		/** @pat.ops: Internal operations to abstract platforms */
+ 		const struct xe_pat_ops *ops;
+-		/** PAT table to program in the HW */
++		/** @pat.table: PAT table to program in the HW */
+ 		const struct xe_pat_table_entry *table;
+-		/** Number of PAT entries */
++		/** @pat.n_entries: Number of PAT entries */
+ 		int n_entries;
+ 		u32 idx[__XE_CACHE_LEVEL_COUNT];
+ 	} pat;
+ 
+ 	/** @d3cold: Encapsulate d3cold related stuff */
+ 	struct {
+-		/** capable: Indicates if root port is d3cold capable */
++		/** @d3cold.capable: Indicates if root port is d3cold capable */
+ 		bool capable;
+ 
+-		/** @allowed: Indicates if d3cold is a valid device state */
++		/** @d3cold.allowed: Indicates if d3cold is a valid device state */
+ 		bool allowed;
+ 
+-		/** @power_lost: Indicates if card has really lost power. */
++		/** @d3cold.power_lost: Indicates if card has really lost power. */
+ 		bool power_lost;
+ 
+ 		/**
+-		 * @vram_threshold:
++		 * @d3cold.vram_threshold:
+ 		 *
+ 		 * This represents the permissible threshold(in megabytes)
+ 		 * for vram save/restore. d3cold will be disallowed,
+@@ -439,7 +444,7 @@ struct xe_device {
+ 		 * Default threshold value is 300mb.
+ 		 */
+ 		u32 vram_threshold;
+-		/** @lock: protect vram_threshold */
++		/** @d3cold.lock: protect vram_threshold */
+ 		struct mutex lock;
+ 	} d3cold;
+ 
+@@ -547,17 +552,17 @@ struct xe_file {
+ 
+ 	/** @vm: VM state for file */
+ 	struct {
+-		/** @xe: xarray to store VMs */
++		/** @vm.xe: xarray to store VMs */
+ 		struct xarray xa;
+-		/** @lock: protects file VM state */
++		/** @vm.lock: protects file VM state */
+ 		struct mutex lock;
+ 	} vm;
+ 
+ 	/** @exec_queue: Submission exec queue state for file */
+ 	struct {
+-		/** @xe: xarray to store engines */
++		/** @exec_queue.xe: xarray to store engines */
+ 		struct xarray xa;
+-		/** @lock: protects file engine state */
++		/** @exec_queue.lock: protects file engine state */
+ 		struct mutex lock;
+ 	} exec_queue;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index e7f84dee5275..648391961fc4 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -109,9 +109,9 @@ struct xe_exec_queue {
+ 	 * @persistent: persistent exec queue state
+ 	 */
+ 	struct {
+-		/** @xef: file which this exec queue belongs to */
++		/** @persistent.xef: file which this exec queue belongs to */
+ 		struct xe_file *xef;
+-		/** @link: link in list of persistent exec queues */
++		/** @persisiten.link: link in list of persistent exec queues */
+ 		struct list_head link;
+ 	} persistent;
+ 
+@@ -120,55 +120,55 @@ struct xe_exec_queue {
+ 		 * @parallel: parallel submission state
+ 		 */
+ 		struct {
+-			/** @composite_fence_ctx: context composite fence */
++			/** @parallel.composite_fence_ctx: context composite fence */
+ 			u64 composite_fence_ctx;
+-			/** @composite_fence_seqno: seqno for composite fence */
++			/** @parallel.composite_fence_seqno: seqno for composite fence */
+ 			u32 composite_fence_seqno;
+ 		} parallel;
+ 		/**
+ 		 * @bind: bind submission state
+ 		 */
+ 		struct {
+-			/** @fence_ctx: context bind fence */
++			/** @bind.fence_ctx: context bind fence */
+ 			u64 fence_ctx;
+-			/** @fence_seqno: seqno for bind fence */
++			/** @bind.fence_seqno: seqno for bind fence */
+ 			u32 fence_seqno;
+ 		} bind;
+ 	};
+ 
+ 	/** @sched_props: scheduling properties */
+ 	struct {
+-		/** @timeslice_us: timeslice period in micro-seconds */
++		/** @sched_props.timeslice_us: timeslice period in micro-seconds */
+ 		u32 timeslice_us;
+-		/** @preempt_timeout_us: preemption timeout in micro-seconds */
++		/** @sched_props.preempt_timeout_us: preemption timeout in micro-seconds */
+ 		u32 preempt_timeout_us;
+-		/** @job_timeout_ms: job timeout in milliseconds */
++		/** @sched_props.job_timeout_ms: job timeout in milliseconds */
+ 		u32 job_timeout_ms;
+-		/** @priority: priority of this exec queue */
++		/** @sched_props.priority: priority of this exec queue */
+ 		enum xe_exec_queue_priority priority;
+ 	} sched_props;
+ 
+ 	/** @compute: compute exec queue state */
+ 	struct {
+-		/** @pfence: preemption fence */
++		/** @compute.pfence: preemption fence */
+ 		struct dma_fence *pfence;
+-		/** @context: preemption fence context */
++		/** @compute.context: preemption fence context */
+ 		u64 context;
+-		/** @seqno: preemption fence seqno */
++		/** @compute.seqno: preemption fence seqno */
+ 		u32 seqno;
+-		/** @link: link into VM's list of exec queues */
++		/** @compute.link: link into VM's list of exec queues */
+ 		struct list_head link;
+-		/** @lock: preemption fences lock */
++		/** @compute.lock: preemption fences lock */
+ 		spinlock_t lock;
+ 	} compute;
+ 
+ 	/** @usm: unified shared memory state */
+ 	struct {
+-		/** @acc_trigger: access counter trigger */
++		/** @usm.acc_trigger: access counter trigger */
+ 		u32 acc_trigger;
+-		/** @acc_notify: access counter notify */
++		/** @usm.acc_notify: access counter notify */
+ 		u32 acc_notify;
+-		/** @acc_granularity: access counter granularity */
++		/** @usm.acc_granularity: access counter granularity */
+ 		u32 acc_granularity;
+ 	} usm;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gsc_types.h b/drivers/gpu/drm/xe/xe_gsc_types.h
+index 060d0fe848ad..138d8cc0f19c 100644
+--- a/drivers/gpu/drm/xe/xe_gsc_types.h
++++ b/drivers/gpu/drm/xe/xe_gsc_types.h
+@@ -50,21 +50,21 @@ struct xe_gsc {
+ 
+ 	/** @proxy: sub-structure containing the SW proxy-related variables */
+ 	struct {
+-		/** @component: struct for communication with mei component */
++		/** @proxy.component: struct for communication with mei component */
+ 		struct i915_gsc_proxy_component *component;
+-		/** @mutex: protects the component binding and usage */
++		/** @proxy.mutex: protects the component binding and usage */
+ 		struct mutex mutex;
+-		/** @component_added: whether the component has been added */
++		/** @proxy.component_added: whether the component has been added */
+ 		bool component_added;
+-		/** @bo: object to store message to and from the GSC */
++		/** @proxy.bo: object to store message to and from the GSC */
+ 		struct xe_bo *bo;
+-		/** @to_gsc: map of the memory used to send messages to the GSC */
++		/** @proxy.to_gsc: map of the memory used to send messages to the GSC */
+ 		struct iosys_map to_gsc;
+-		/** @from_gsc: map of the memory used to recv messages from the GSC */
++		/** @proxy.from_gsc: map of the memory used to recv messages from the GSC */
+ 		struct iosys_map from_gsc;
+-		/** @to_csme: pointer to the memory used to send messages to CSME */
++		/** @proxy.to_csme: pointer to the memory used to send messages to CSME */
+ 		void *to_csme;
+-		/** @from_csme: pointer to the memory used to recv messages from CSME */
++		/** @proxy.from_csme: pointer to the memory used to recv messages from CSME */
+ 		void *from_csme;
+ 	} proxy;
+ };
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index 047cde6cda10..3caaea2ff908 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -103,16 +103,16 @@ struct xe_gt {
+ 
+ 	/** @info: GT info */
+ 	struct {
+-		/** @type: type of GT */
++		/** @info.type: type of GT */
+ 		enum xe_gt_type type;
+-		/** @id: Unique ID of this GT within the PCI Device */
++		/** @info.id: Unique ID of this GT within the PCI Device */
+ 		u8 id;
+-		/** @reference_clock: clock frequency */
++		/** @info.reference_clock: clock frequency */
+ 		u32 reference_clock;
+-		/** @engine_mask: mask of engines present on GT */
++		/** @info.engine_mask: mask of engines present on GT */
+ 		u64 engine_mask;
+ 		/**
+-		 * @__engine_mask: mask of engines present on GT read from
++		 * @info.__engine_mask: mask of engines present on GT read from
+ 		 * xe_pci.c, used to fake reading the engine_mask from the
+ 		 * hwconfig blob.
+ 		 */
+@@ -125,14 +125,14 @@ struct xe_gt {
+ 	 * specific offset, as well as their own forcewake handling.
+ 	 */
+ 	struct {
+-		/** @fw: force wake for GT */
++		/** @mmio.fw: force wake for GT */
+ 		struct xe_force_wake fw;
+ 		/**
+-		 * @adj_limit: adjust MMIO address if address is below this
++		 * @mmio.adj_limit: adjust MMIO address if address is below this
+ 		 * value
+ 		 */
+ 		u32 adj_limit;
+-		/** @adj_offset: offect to add to MMIO address when adjusting */
++		/** @mmio.adj_offset: offect to add to MMIO address when adjusting */
+ 		u32 adj_offset;
+ 	} mmio;
+ 
+@@ -144,7 +144,7 @@ struct xe_gt {
+ 	/** @reset: state for GT resets */
+ 	struct {
+ 		/**
+-		 * @worker: work so GT resets can done async allowing to reset
++		 * @reset.worker: work so GT resets can done async allowing to reset
+ 		 * code to safely flush all code paths
+ 		 */
+ 		struct work_struct worker;
+@@ -152,36 +152,37 @@ struct xe_gt {
+ 
+ 	/** @tlb_invalidation: TLB invalidation state */
+ 	struct {
+-		/** @seqno: TLB invalidation seqno, protected by CT lock */
++		/** @tlb_invalidation.seqno: TLB invalidation seqno, protected by CT lock */
+ #define TLB_INVALIDATION_SEQNO_MAX	0x100000
+ 		int seqno;
+ 		/**
+-		 * @seqno_recv: last received TLB invalidation seqno, protected by CT lock
++		 * @tlb_invalidation.seqno_recv: last received TLB invalidation seqno,
++		 * protected by CT lock
+ 		 */
+ 		int seqno_recv;
+ 		/**
+-		 * @pending_fences: list of pending fences waiting TLB
++		 * @tlb_invalidation.pending_fences: list of pending fences waiting TLB
+ 		 * invaliations, protected by CT lock
+ 		 */
+ 		struct list_head pending_fences;
+ 		/**
+-		 * @pending_lock: protects @pending_fences and updating
+-		 * @seqno_recv.
++		 * @tlb_invalidation.pending_lock: protects @tlb_invalidation.pending_fences
++		 * and updating @tlb_invalidation.seqno_recv.
+ 		 */
+ 		spinlock_t pending_lock;
+ 		/**
+-		 * @fence_tdr: schedules a delayed call to
++		 * @tlb_invalidation.fence_tdr: schedules a delayed call to
+ 		 * xe_gt_tlb_fence_timeout after the timeut interval is over.
+ 		 */
+ 		struct delayed_work fence_tdr;
+-		/** @fence_context: context for TLB invalidation fences */
++		/** @tlb_invalidation.fence_context: context for TLB invalidation fences */
+ 		u64 fence_context;
+ 		/**
+-		 * @fence_seqno: seqno to TLB invalidation fences, protected by
++		 * @tlb_invalidation.fence_seqno: seqno to TLB invalidation fences, protected by
+ 		 * tlb_invalidation.lock
+ 		 */
+ 		u32 fence_seqno;
+-		/** @lock: protects TLB invalidation fences */
++		/** @tlb_invalidation.lock: protects TLB invalidation fences */
+ 		spinlock_t lock;
+ 	} tlb_invalidation;
+ 
+@@ -196,7 +197,7 @@ struct xe_gt {
+ 	/** @usm: unified shared memory state */
+ 	struct {
+ 		/**
+-		 * @bb_pool: Pool from which batchbuffers, for USM operations
++		 * @usm.bb_pool: Pool from which batchbuffers, for USM operations
+ 		 * (e.g. migrations, fixing page tables), are allocated.
+ 		 * Dedicated pool needed so USM operations to not get blocked
+ 		 * behind any user operations which may have resulted in a
+@@ -204,67 +205,67 @@ struct xe_gt {
+ 		 */
+ 		struct xe_sa_manager *bb_pool;
+ 		/**
+-		 * @reserved_bcs_instance: reserved BCS instance used for USM
++		 * @usm.reserved_bcs_instance: reserved BCS instance used for USM
+ 		 * operations (e.g. mmigrations, fixing page tables)
+ 		 */
+ 		u16 reserved_bcs_instance;
+-		/** @pf_wq: page fault work queue, unbound, high priority */
++		/** @usm.pf_wq: page fault work queue, unbound, high priority */
+ 		struct workqueue_struct *pf_wq;
+-		/** @acc_wq: access counter work queue, unbound, high priority */
++		/** @usm.acc_wq: access counter work queue, unbound, high priority */
+ 		struct workqueue_struct *acc_wq;
+ 		/**
+-		 * @pf_queue: Page fault queue used to sync faults so faults can
++		 * @usm.pf_queue: Page fault queue used to sync faults so faults can
+ 		 * be processed not under the GuC CT lock. The queue is sized so
+ 		 * it can sync all possible faults (1 per physical engine).
+ 		 * Multiple queues exists for page faults from different VMs are
+ 		 * be processed in parallel.
+ 		 */
+ 		struct pf_queue {
+-			/** @gt: back pointer to GT */
++			/** @usm.pf_queue.gt: back pointer to GT */
+ 			struct xe_gt *gt;
+ #define PF_QUEUE_NUM_DW	128
+-			/** @data: data in the page fault queue */
++			/** @usm.pf_queue.data: data in the page fault queue */
+ 			u32 data[PF_QUEUE_NUM_DW];
+ 			/**
+-			 * @tail: tail pointer in DWs for page fault queue,
++			 * @usm.pf_queue.tail: tail pointer in DWs for page fault queue,
+ 			 * moved by worker which processes faults (consumer).
+ 			 */
+ 			u16 tail;
+ 			/**
+-			 * @head: head pointer in DWs for page fault queue,
++			 * @usm.pf_queue.head: head pointer in DWs for page fault queue,
+ 			 * moved by G2H handler (producer).
+ 			 */
+ 			u16 head;
+-			/** @lock: protects page fault queue */
++			/** @usm.pf_queue.lock: protects page fault queue */
+ 			spinlock_t lock;
+-			/** @worker: to process page faults */
++			/** @usm.pf_queue.worker: to process page faults */
+ 			struct work_struct worker;
+ #define NUM_PF_QUEUE	4
+ 		} pf_queue[NUM_PF_QUEUE];
+ 		/**
+-		 * @acc_queue: Same as page fault queue, cannot process access
++		 * @usm.acc_queue: Same as page fault queue, cannot process access
+ 		 * counters under CT lock.
+ 		 */
+ 		struct acc_queue {
+-			/** @gt: back pointer to GT */
++			/** @usm.acc_queue.gt: back pointer to GT */
+ 			struct xe_gt *gt;
+ #define ACC_QUEUE_NUM_DW	128
+-			/** @data: data in the page fault queue */
++			/** @usm.acc_queue.data: data in the page fault queue */
+ 			u32 data[ACC_QUEUE_NUM_DW];
+ 			/**
+-			 * @tail: tail pointer in DWs for access counter queue,
++			 * @usm.acc_queue.tail: tail pointer in DWs for access counter queue,
+ 			 * moved by worker which processes counters
+ 			 * (consumer).
+ 			 */
+ 			u16 tail;
+ 			/**
+-			 * @head: head pointer in DWs for access counter queue,
++			 * @usm.acc_queue.head: head pointer in DWs for access counter queue,
+ 			 * moved by G2H handler (producer).
+ 			 */
+ 			u16 head;
+-			/** @lock: protects page fault queue */
++			/** @usm.acc_queue.lock: protects page fault queue */
+ 			spinlock_t lock;
+-			/** @worker: to process access counters */
++			/** @usm.acc_queue.worker: to process access counters */
+ 			struct work_struct worker;
+ #define NUM_ACC_QUEUE	4
+ 		} acc_queue[NUM_ACC_QUEUE];
+@@ -301,7 +302,7 @@ struct xe_gt {
+ 
+ 	/** @pcode: GT's PCODE */
+ 	struct {
+-		/** @lock: protecting GT's PCODE mailbox data */
++		/** @pcode.lock: protecting GT's PCODE mailbox data */
+ 		struct mutex lock;
+ 	} pcode;
+ 
+@@ -313,32 +314,32 @@ struct xe_gt {
+ 
+ 	/** @mocs: info */
+ 	struct {
+-		/** @uc_index: UC index */
++		/** @mocs.uc_index: UC index */
+ 		u8 uc_index;
+-		/** @wb_index: WB index, only used on L3_CCS platforms */
++		/** @mocs.wb_index: WB index, only used on L3_CCS platforms */
+ 		u8 wb_index;
+ 	} mocs;
+ 
+ 	/** @fuse_topo: GT topology reported by fuse registers */
+ 	struct {
+-		/** @g_dss_mask: dual-subslices usable by geometry */
++		/** @fuse_topo.g_dss_mask: dual-subslices usable by geometry */
+ 		xe_dss_mask_t g_dss_mask;
+ 
+-		/** @c_dss_mask: dual-subslices usable by compute */
++		/** @fuse_topo.c_dss_mask: dual-subslices usable by compute */
+ 		xe_dss_mask_t c_dss_mask;
+ 
+-		/** @eu_mask_per_dss: EU mask per DSS*/
++		/** @fuse_topo.eu_mask_per_dss: EU mask per DSS*/
+ 		xe_eu_mask_t eu_mask_per_dss;
+ 	} fuse_topo;
+ 
+ 	/** @steering: register steering for individual HW units */
+ 	struct {
+-		/* @ranges: register ranges used for this steering type */
++		/** @steering.ranges: register ranges used for this steering type */
+ 		const struct xe_mmio_range *ranges;
+ 
+-		/** @group_target: target to steer accesses to */
++		/** @steering.group_target: target to steer accesses to */
+ 		u16 group_target;
+-		/** @instance_target: instance to steer accesses to */
++		/** @steering.instance_target: instance to steer accesses to */
+ 		u16 instance_target;
+ 	} steering[NUM_STEERING_TYPES];
+ 
+@@ -350,13 +351,13 @@ struct xe_gt {
+ 
+ 	/** @wa_active: keep track of active workarounds */
+ 	struct {
+-		/** @gt: bitmap with active GT workarounds */
++		/** @wa_active.gt: bitmap with active GT workarounds */
+ 		unsigned long *gt;
+-		/** @engine: bitmap with active engine workarounds */
++		/** @wa_active.engine: bitmap with active engine workarounds */
+ 		unsigned long *engine;
+-		/** @lrc: bitmap with active LRC workarounds */
++		/** @wa_active.lrc: bitmap with active LRC workarounds */
+ 		unsigned long *lrc;
+-		/** @oob: bitmap with active OOB workaroudns */
++		/** @wa_active.oob: bitmap with active OOB workaroudns */
+ 		unsigned long *oob;
+ 	} wa_active;
+ };
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct_types.h b/drivers/gpu/drm/xe/xe_guc_ct_types.h
+index d814d4ee3fc6..68c871052341 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_ct_types.h
+@@ -87,9 +87,9 @@ struct xe_guc_ct {
+ 	spinlock_t fast_lock;
+ 	/** @ctbs: buffers for sending and receiving commands */
+ 	struct {
+-		/** @send: Host to GuC (H2G, send) channel */
++		/** @ctbs.send: Host to GuC (H2G, send) channel */
+ 		struct guc_ctb h2g;
+-		/** @recv: GuC to Host (G2H, receive) channel */
++		/** @ctbs.recv: GuC to Host (G2H, receive) channel */
+ 		struct guc_ctb g2h;
+ 	} ctbs;
+ 	/** @g2h_outstanding: number of outstanding G2H */
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit_types.h b/drivers/gpu/drm/xe/xe_guc_submit_types.h
+index 649b0a852692..72fc0f42b0a5 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit_types.h
+@@ -102,9 +102,9 @@ struct xe_guc_submit_exec_queue_snapshot {
+ 
+ 	/** @sched_props: scheduling properties */
+ 	struct {
+-		/** @timeslice_us: timeslice period in micro-seconds */
++		/** @sched_props.timeslice_us: timeslice period in micro-seconds */
+ 		u32 timeslice_us;
+-		/** @preempt_timeout_us: preemption timeout in micro-seconds */
++		/** @sched_props.preempt_timeout_us: preemption timeout in micro-seconds */
+ 		u32 preempt_timeout_us;
+ 	} sched_props;
+ 
+@@ -118,11 +118,11 @@ struct xe_guc_submit_exec_queue_snapshot {
+ 
+ 	/** @guc: GuC Engine Snapshot */
+ 	struct {
+-		/** @wqi_head: work queue item head */
++		/** @guc.wqi_head: work queue item head */
+ 		u32 wqi_head;
+-		/** @wqi_tail: work queue item tail */
++		/** @guc.wqi_tail: work queue item tail */
+ 		u32 wqi_tail;
+-		/** @id: GuC id for this exec_queue */
++		/** @guc.id: GuC id for this exec_queue */
+ 		u16 id;
+ 	} guc;
+ 
+@@ -133,13 +133,13 @@ struct xe_guc_submit_exec_queue_snapshot {
+ 	bool parallel_execution;
+ 	/** @parallel: snapshot of the useful parallel scratch */
+ 	struct {
+-		/** @wq_desc: Workqueue description */
++		/** @parallel.wq_desc: Workqueue description */
+ 		struct {
+-			/** @head: Workqueue Head */
++			/** @parallel.wq_desc.head: Workqueue Head */
+ 			u32 head;
+-			/** @tail: Workqueue Tail */
++			/** @parallel.wq_desc.tail: Workqueue Tail */
+ 			u32 tail;
+-			/** @status: Workqueue Status */
++			/** @parallel.wq_desc.status: Workqueue Status */
+ 			u32 status;
+ 		} wq_desc;
+ 		/** @wq: Workqueue Items */
+diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
+index dc6059de669c..edcd1a950bd3 100644
+--- a/drivers/gpu/drm/xe/xe_guc_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_types.h
+@@ -49,40 +49,40 @@ struct xe_guc {
+ 	struct xe_guc_db_mgr dbm;
+ 	/** @submission_state: GuC submission state */
+ 	struct {
+-		/** @exec_queue_lookup: Lookup an xe_engine from guc_id */
++		/** @submission_state.exec_queue_lookup: Lookup an xe_engine from guc_id */
+ 		struct xarray exec_queue_lookup;
+-		/** @guc_ids: used to allocate new guc_ids, single-lrc */
++		/** @submission_state.guc_ids: used to allocate new guc_ids, single-lrc */
+ 		struct ida guc_ids;
+-		/** @guc_ids_bitmap: used to allocate new guc_ids, multi-lrc */
++		/** @submission_state.guc_ids_bitmap: used to allocate new guc_ids, multi-lrc */
+ 		unsigned long *guc_ids_bitmap;
+-		/** @stopped: submissions are stopped */
++		/** @submission_state.stopped: submissions are stopped */
+ 		atomic_t stopped;
+-		/** @lock: protects submission state */
++		/** @submission_state.lock: protects submission state */
+ 		struct mutex lock;
+-		/** @suspend: suspend fence state */
++		/** @submission_state.suspend: suspend fence state */
+ 		struct {
+-			/** @lock: suspend fences lock */
++			/** @submission_state.suspend.lock: suspend fences lock */
+ 			spinlock_t lock;
+-			/** @context: suspend fences context */
++			/** @submission_state.suspend.context: suspend fences context */
+ 			u64 context;
+-			/** @seqno: suspend fences seqno */
++			/** @submission_state.suspend.seqno: suspend fences seqno */
+ 			u32 seqno;
+ 		} suspend;
+ #ifdef CONFIG_PROVE_LOCKING
+ #define NUM_SUBMIT_WQ	256
+-		/** @submit_wq_pool: submission ordered workqueues pool */
++		/** @submission_state.submit_wq_pool: submission ordered workqueues pool */
+ 		struct workqueue_struct *submit_wq_pool[NUM_SUBMIT_WQ];
+-		/** @submit_wq_idx: submission ordered workqueue index */
++		/** @submission_state.submit_wq_idx: submission ordered workqueue index */
+ 		int submit_wq_idx;
+ #endif
+-		/** @enabled: submission is enabled */
++		/** @submission_state.enabled: submission is enabled */
+ 		bool enabled;
+ 	} submission_state;
+ 	/** @hwconfig: Hardware config state */
+ 	struct {
+-		/** @bo: buffer object of the hardware config */
++		/** @hwconfig.bo: buffer object of the hardware config */
+ 		struct xe_bo *bo;
+-		/** @size: size of the hardware config */
++		/** @hwconfig.size: size of the hardware config */
+ 		u32 size;
+ 	} hwconfig;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+index dfeaaac08b7f..61d9027e4665 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+@@ -79,23 +79,23 @@ struct xe_hw_engine_class_intf {
+ 	 * @defaults: default scheduling properties
+ 	 */
+ 	struct {
+-		/** @set_job_timeout: Set job timeout in ms for engine */
++		/** @sched_props.set_job_timeout: Set job timeout in ms for engine */
+ 		u32 job_timeout_ms;
+-		/** @job_timeout_min: Min job timeout in ms for engine */
++		/** @sched_props.job_timeout_min: Min job timeout in ms for engine */
+ 		u32 job_timeout_min;
+-		/** @job_timeout_max: Max job timeout in ms for engine */
++		/** @sched_props.job_timeout_max: Max job timeout in ms for engine */
+ 		u32 job_timeout_max;
+-		/** @timeslice_us: timeslice period in micro-seconds */
++		/** @sched_props.timeslice_us: timeslice period in micro-seconds */
+ 		u32 timeslice_us;
+-		/** @timeslice_min: min timeslice period in micro-seconds */
++		/** @sched_props.timeslice_min: min timeslice period in micro-seconds */
+ 		u32 timeslice_min;
+-		/** @timeslice_max: max timeslice period in micro-seconds */
++		/** @sched_props.timeslice_max: max timeslice period in micro-seconds */
+ 		u32 timeslice_max;
+-		/** @preempt_timeout_us: preemption timeout in micro-seconds */
++		/** @sched_props.preempt_timeout_us: preemption timeout in micro-seconds */
+ 		u32 preempt_timeout_us;
+-		/** @preempt_timeout_min: min preemption timeout in micro-seconds */
++		/** @sched_props.preempt_timeout_min: min preemption timeout in micro-seconds */
+ 		u32 preempt_timeout_min;
+-		/** @preempt_timeout_max: max preemption timeout in micro-seconds */
++		/** @sched_props.preempt_timeout_max: max preemption timeout in micro-seconds */
+ 		u32 preempt_timeout_max;
+ 	} sched_props, defaults;
+ };
+@@ -164,62 +164,62 @@ struct xe_hw_engine_snapshot {
+ 	u16 logical_instance;
+ 	/** @forcewake: Force Wake information snapshot */
+ 	struct {
+-		/** @domain: force wake domain of this hw engine */
++		/** @forcewake.domain: force wake domain of this hw engine */
+ 		enum xe_force_wake_domains domain;
+-		/** @ref: Forcewake ref for the above domain */
++		/** @forcewake.ref: Forcewake ref for the above domain */
+ 		int ref;
+ 	} forcewake;
+ 	/** @mmio_base: MMIO base address of this hw engine*/
+ 	u32 mmio_base;
+ 	/** @reg: Useful MMIO register snapshot */
+ 	struct {
+-		/** @ring_hwstam: RING_HWSTAM */
++		/** @reg.ring_hwstam: RING_HWSTAM */
+ 		u32 ring_hwstam;
+-		/** @ring_hws_pga: RING_HWS_PGA */
++		/** @reg.ring_hws_pga: RING_HWS_PGA */
+ 		u32 ring_hws_pga;
+-		/** @ring_execlist_status_lo: RING_EXECLIST_STATUS_LO */
++		/** @reg.ring_execlist_status_lo: RING_EXECLIST_STATUS_LO */
+ 		u32 ring_execlist_status_lo;
+-		/** @ring_execlist_status_hi: RING_EXECLIST_STATUS_HI */
++		/** @reg.ring_execlist_status_hi: RING_EXECLIST_STATUS_HI */
+ 		u32 ring_execlist_status_hi;
+-		/** @ring_execlist_sq_contents_lo: RING_EXECLIST_SQ_CONTENTS */
++		/** @reg.ring_execlist_sq_contents_lo: RING_EXECLIST_SQ_CONTENTS */
+ 		u32 ring_execlist_sq_contents_lo;
+-		/** @ring_execlist_sq_contents_hi: RING_EXECLIST_SQ_CONTENTS + 4 */
++		/** @reg.ring_execlist_sq_contents_hi: RING_EXECLIST_SQ_CONTENTS + 4 */
+ 		u32 ring_execlist_sq_contents_hi;
+-		/** @ring_start: RING_START */
++		/** @reg.ring_start: RING_START */
+ 		u32 ring_start;
+-		/** @ring_head: RING_HEAD */
++		/** @reg.ring_head: RING_HEAD */
+ 		u32 ring_head;
+-		/** @ring_tail: RING_TAIL */
++		/** @reg.ring_tail: RING_TAIL */
+ 		u32 ring_tail;
+-		/** @ring_ctl: RING_CTL */
++		/** @reg.ring_ctl: RING_CTL */
+ 		u32 ring_ctl;
+-		/** @ring_mi_mode: RING_MI_MODE */
++		/** @reg.ring_mi_mode: RING_MI_MODE */
+ 		u32 ring_mi_mode;
+-		/** @ring_mode: RING_MODE */
++		/** @reg.ring_mode: RING_MODE */
+ 		u32 ring_mode;
+-		/** @ring_imr: RING_IMR */
++		/** @reg.ring_imr: RING_IMR */
+ 		u32 ring_imr;
+-		/** @ring_esr: RING_ESR */
++		/** @reg.ring_esr: RING_ESR */
+ 		u32 ring_esr;
+-		/** @ring_emr: RING_EMR */
++		/** @reg.ring_emr: RING_EMR */
+ 		u32 ring_emr;
+-		/** @ring_eir: RING_EIR */
++		/** @reg.ring_eir: RING_EIR */
+ 		u32 ring_eir;
+-		/** @ring_acthd_udw: RING_ACTHD_UDW */
++		/** @reg.ring_acthd_udw: RING_ACTHD_UDW */
+ 		u32 ring_acthd_udw;
+-		/** @ring_acthd: RING_ACTHD */
++		/** @reg.ring_acthd: RING_ACTHD */
+ 		u32 ring_acthd;
+-		/** @ring_bbaddr_udw: RING_BBADDR_UDW */
++		/** @reg.ring_bbaddr_udw: RING_BBADDR_UDW */
+ 		u32 ring_bbaddr_udw;
+-		/** @ring_bbaddr: RING_BBADDR */
++		/** @reg.ring_bbaddr: RING_BBADDR */
+ 		u32 ring_bbaddr;
+-		/** @ring_dma_fadd_udw: RING_DMA_FADD_UDW */
++		/** @reg.ring_dma_fadd_udw: RING_DMA_FADD_UDW */
+ 		u32 ring_dma_fadd_udw;
+-		/** @ring_dma_fadd: RING_DMA_FADD */
++		/** @reg.ring_dma_fadd: RING_DMA_FADD */
+ 		u32 ring_dma_fadd;
+-		/** @ipehr: IPEHR */
++		/** @reg.ipehr: IPEHR */
+ 		u32 ipehr;
+-		/** @rcu_mode: RCU_MODE */
++		/** @reg.rcu_mode: RCU_MODE */
+ 		u32 rcu_mode;
+ 	} reg;
+ };
+diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
+index 78220336062c..24f20ed66fd1 100644
+--- a/drivers/gpu/drm/xe/xe_lrc_types.h
++++ b/drivers/gpu/drm/xe/xe_lrc_types.h
+@@ -28,11 +28,11 @@ struct xe_lrc {
+ 
+ 	/** @ring: submission ring state */
+ 	struct {
+-		/** @size: size of submission ring */
++		/** @ring.size: size of submission ring */
+ 		u32 size;
+-		/** @tail: tail of submission ring */
++		/** @ring.tail: tail of submission ring */
+ 		u32 tail;
+-		/** @old_tail: shadow of tail */
++		/** @ring.old_tail: shadow of tail */
+ 		u32 old_tail;
+ 	} ring;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
+index 71213ba9735b..8778c34d6620 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job_types.h
++++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
+@@ -30,11 +30,11 @@ struct xe_sched_job {
+ 	struct dma_fence *fence;
+ 	/** @user_fence: write back value when BB is complete */
+ 	struct {
+-		/** @used: user fence is used */
++		/** @user_fence.used: user fence is used */
+ 		bool used;
+-		/** @addr: address to write to */
++		/** @user_fence.addr: address to write to */
+ 		u64 addr;
+-		/** @value: write back value */
++		/** @user_fence.value: write back value */
+ 		u64 value;
+ 	} user_fence;
+ 	/** @migrate_flush_flags: Additional flush flags for migration jobs */
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw_types.h b/drivers/gpu/drm/xe/xe_uc_fw_types.h
+index ee914a5d8523..bc800b696866 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw_types.h
++++ b/drivers/gpu/drm/xe/xe_uc_fw_types.h
+@@ -124,11 +124,14 @@ struct xe_uc_fw {
+ 
+ 	/** @versions: FW versions wanted and found */
+ 	struct {
+-		/** @wanted: firmware version wanted by platform */
++		/** @versions.wanted: firmware version wanted by platform */
+ 		struct xe_uc_fw_version wanted;
+-		/** @wanted_type: type of firmware version wanted (release vs compatibility) */
++		/**
++		 * @versions.wanted_type: type of firmware version wanted
++		 * (release vs compatibility)
++		 */
+ 		enum xe_uc_fw_version_types wanted_type;
+-		/** @found: fw versions found in firmware blob */
++		/** @versions.found: fw versions found in firmware blob */
+ 		struct xe_uc_fw_version found[XE_UC_FW_VER_TYPE_COUNT];
+ 	} versions;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_wopcm_types.h b/drivers/gpu/drm/xe/xe_wopcm_types.h
+index 486d850c4084..99d34837c408 100644
+--- a/drivers/gpu/drm/xe/xe_wopcm_types.h
++++ b/drivers/gpu/drm/xe/xe_wopcm_types.h
+@@ -16,9 +16,9 @@ struct xe_wopcm {
+ 	u32 size;
+ 	/** @guc: GuC WOPCM Region info */
+ 	struct {
+-		/** @base: GuC WOPCM base which is offset from WOPCM base */
++		/** @guc.base: GuC WOPCM base which is offset from WOPCM base */
+ 		u32 base;
+-		/** @size: Size of the GuC WOPCM region */
++		/** @guc.size: Size of the GuC WOPCM region */
+ 		u32 size;
+ 	} guc;
+ };
+-- 
+2.43.0
+
