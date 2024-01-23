@@ -4,39 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59FE2C47DDB
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jan 2024 17:24:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 928BFC47258
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jan 2024 17:24:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B7FE10E842;
-	Tue, 23 Jan 2024 17:24:31 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F7AB10E81B;
- Tue, 23 Jan 2024 17:24:30 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 2814961E82;
- Tue, 23 Jan 2024 17:24:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70157C433C7;
- Tue, 23 Jan 2024 17:24:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1706030665;
- bh=Oyao+3/Ux6TZycEPX8L/CtZdSt0adFVr9KdQJvVkrTM=;
- h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=WeSfU2SmF+MThNV+FwS3jNLbx/lbHqp3O8rGmEOzabcSnXEgrwMlsQB9X+zP4Dj5G
- wd1fgHH0A7R0Tmo1hzTqTwsERG+4Gn3Cx5lBeFm5nnKu5zpyTImNwviF1z+B9Bs+B5
- FDxtofh709s2gjhWj2TwrRefwkgnofaBeH2IOycUb4sAH6b1twJSE7eTOxL5ZpB136
- XW94cTSytbK36zuZLvfHBZJyLBwQtXSssVanGsGSNlbp69amctnSVmvxMuZ0ytbIUw
- x0q8WUofOp/tNMPpmUcwMX0JnwNQI0b6OZ1iN5n7Qvk/bytqBMVrKlnALAAEsYlcQ0
- 7dIeV9ibAJhkg==
-Date: Tue, 23 Jan 2024 11:24:23 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Subject: Re: [PATCH v4 1/3] pm: runtime: Simplify pm_runtime_get_if_active()
- usage
-Message-ID: <20240123172423.GA317147@bhelgaas>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AE5410E843;
+	Tue, 23 Jan 2024 17:24:45 +0000 (UTC)
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F84610E843;
+ Tue, 23 Jan 2024 17:24:44 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240123095642.97303-2-sakari.ailus@linux.intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_Only_allow_1_u?=
+ =?utf-8?q?fence_per_exec_/_bind_IOCTL?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Date: Tue, 23 Jan 2024 17:24:44 -0000
+Message-ID: <170603068453.683941.3271218430743317491@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240123163422.1570227-1-matthew.brost@intel.com>
+In-Reply-To: <20240123163422.1570227-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,61 +35,38 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, linux-pci@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Jaroslav Kysela <perex@perex.cz>,
- Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>,
- laurent.pinchart@ideasonboard.com, David Airlie <airlied@gmail.com>,
- Paul Elder <paul.elder@ideasonboard.com>, linux-media@vger.kernel.org,
- linux-pm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, linux-sound@vger.kernel.org,
- Mark Brown <broonie@kernel.org>,
- Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- intel-xe@lists.freedesktop.org, Alex Elder <elder@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Takashi Iwai <tiwai@suse.com>,
- Daniel Vetter <daniel@ffwll.ch>, netdev@vger.kernel.org
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jan 23, 2024 at 11:56:42AM +0200, Sakari Ailus wrote:
-> There are two ways to opportunistically increment a device's runtime PM
-> usage count, calling either pm_runtime_get_if_active() or
-> pm_runtime_get_if_in_use(). The former has an argument to tell whether to
-> ignore the usage count or not, and the latter simply calls the former with
-> ign_usage_count set to false. The other users that want to ignore the
-> usage_count will have to explitly set that argument to true which is a bit
-> cumbersome.
-> 
-> To make this function more practical to use, remove the ign_usage_count
-> argument from the function. The main implementation is renamed as
-> pm_runtime_get_conditional().
-> 
-> Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-> Reviewed-by: Alex Elder <elder@linaro.org> # drivers/net/ipa/ipa_smp2p.c
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Acked-by: Takashi Iwai <tiwai@suse.de> # sound/
-> Reviewed-by: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com> # drivers/accel/ivpu/
-> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com> # drivers/gpu/drm/i915/
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+== Series Details ==
 
-Acked-by: Bjorn Helgaas <bhelgaas@google.com> # drivers/pci/
+Series: drm/xe: Only allow 1 ufence per exec / bind IOCTL
+URL   : https://patchwork.freedesktop.org/series/129095/
+State : success
 
-- Previous PM history uses "PM: " in the subject lines (not "pm: ").
+== Summary ==
 
-- I don't know whether it's feasible, but it would be nice if the
-  intel_pm_runtime_pm.c rework could be done in one shot instead of
-  being split between patches 1/3 and 2/3.
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast fc6b7c6ee7d786e6ed48425a2ce0e674906e4e5c
+Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
+Fast mode used, each commit won't be checked separately.
+Okay!
 
-  Maybe it could be a preliminary patch that uses the existing
-  if_active/if_in_use interfaces, followed by the trivial if_active
-  updates in this patch.  I think that would make the history easier
-  to read than having the transitory pm_runtime_get_conditional() in
-  the middle.
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-- Similarly, it would be nice if pm_runtime_get_conditional() never
-  had to be published in pm_runtime.h, instead of being temporarily
-  added there by this patch and then immediately made private by 2/3.
-  Maybe that's not practical, I dunno.
 
-Bjorn
