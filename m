@@ -4,26 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B718C47258
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jan 2024 13:51:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61A66C47258
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jan 2024 14:31:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1439710E18F;
-	Tue, 23 Jan 2024 13:51:29 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E39310E18F;
- Tue, 23 Jan 2024 13:51:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7233320304566368887=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D5FC10EF0D;
+	Tue, 23 Jan 2024 14:31:12 +0000 (UTC)
+X-Greylist: delayed 569 seconds by postgrey-1.36 at gabe;
+ Tue, 23 Jan 2024 14:31:10 UTC
+Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com
+ [64.147.123.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A85010E7E8
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 Jan 2024 14:31:10 +0000 (UTC)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+ by mailout.west.internal (Postfix) with ESMTP id F2C013200A04;
+ Tue, 23 Jan 2024 09:21:36 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+ by compute5.internal (MEProxy); Tue, 23 Jan 2024 09:21:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+ :cc:content-transfer-encoding:content-type:content-type:date
+ :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to; s=fm2; t=1706019696;
+ x=1706106096; bh=Wb2LadyDq3EncKOixdkKXF1xf+5ToI114DbbSpnU1nY=; b=
+ PKayuLNrs/RNOnY9Pm3PTRTDtc1BuvHxlCD7DuFwY3X2d3w/3n1RTZ9LkQQmom3/
+ w6idujhcC4sf3BbCM5+B3rKAeN6o49DZxzKkXiUHhjhwBc48BWX6QQG9FBbGrESz
+ dY9isiD4klmX7hDZxIpR0XAo9bx2f3HmXbcXHrgnWu377wYBVGHNDJeydLYODUm3
+ R2v4IQChjpBjq1THZkrhojBT62tPQZhhhJX7vhM3GS1LAQ5MUjk8AsVhFsBFrQgH
+ doe9VBd2+6WHeaR4G96Yes5cYzvayqaI2fWvhDYf/ZZHo1Zb7cz6wduRTcnHpKrW
+ 6kE0Ci1RccWeYTA5fc/t/A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:content-type:date:date:feedback-id:feedback-id
+ :from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1706019696; x=
+ 1706106096; bh=Wb2LadyDq3EncKOixdkKXF1xf+5ToI114DbbSpnU1nY=; b=i
+ aeyMu9IQJm8viLVFcRG2+AfApl0inhRKl32d9bxe+ynOLxLBL2s/6xnBdR+sart7
+ wAZAjiA4uL/DTaIWBboS2/YhhyDMgMYyxOQ4f604bM7uJzQt+e/9izTFd+xJifVo
+ xQ50WHbYZD/V2ZAwYra6Pek4hm9CLQF0AsKq4BVdceSEFeVHgMY+a42IjHl2qdAC
+ 3tidNdDH6brWPgcA3qtQ97S9I8mHpThso03DUhwzCMsTMvIaulq1IZgWkWvjI17h
+ qB/abhBsPAnPQnf0Ws70h0wwPbXzEqjR98NOYls5N0AIzgYtr4Y02V+Cwfh6GpX1
+ RL81i2NKrtG69Wlsq/MXA==
+X-ME-Sender: <xms:b8uvZZutZyYhjvm11xsbDHd-yctTohxrZ96EclPn7v7Uk295CAYxIA>
+ <xme:b8uvZSdJ-DzXvh4tLWbWKsloyBAkMqIGhWu0zDscTRdh84QtuWV6_vntH6OGKUGWc
+ o9tQr6gGnuPR811080>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrvdekkedgieduucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdet
+ rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
+ htthgvrhhnpefgkeeuleegieeghfduudeltdekfeffjeeuleehleefudettddtgfevueef
+ feeigeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivg
+ eptdenucfrrghrrghmpehmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:b8uvZcyHxEDFbucCwS_wdJTB7xZCjv4VpoI1kQNX4uuVdNYjj6sBQw>
+ <xmx:b8uvZQOGooI-lZsO5yozfuK-_cjQpfLDCPfU0iE3UrR2Mn2j9dL4qQ>
+ <xmx:b8uvZZ-FoQRRZFNwPBfm4zrKoG5PrhcOqTLtRYQnZkkS4F1E545I9g>
+ <xmx:cMuvZdVu3pmkvuhw0wgTNHs20QG_zyCJ2SI5aNTi4b7I7-93_VGCkA>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+ id C023DB6008D; Tue, 23 Jan 2024 09:21:35 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.11.0-alpha0-119-ga8b98d1bd8-fm-20240108.001-ga8b98d1b
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Document_nested_struct?=
- =?utf-8?q?_members_according_to_guidelines_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Tue, 23 Jan 2024 13:51:27 -0000
-Message-ID: <170601788712.682640.4930860434632101826@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240123130000.13559-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20240123130000.13559-1-thomas.hellstrom@linux.intel.com>
+Message-Id: <0229fa60-2d87-4b1c-b9f0-6f04c6e4dbdd@app.fastmail.com>
+In-Reply-To: <d03e90ca-8485-4d1b-5ec1-c3398e0e8da@linux-m68k.org>
+References: <CAHk-=wiB4iHTtfZKiy5pC24uOjun4fbj4kSX0=ZnGsOXadMf6g@mail.gmail.com>
+ <20240123111235.3097079-1-geert@linux-m68k.org>
+ <d03e90ca-8485-4d1b-5ec1-c3398e0e8da@linux-m68k.org>
+Date: Tue, 23 Jan 2024 15:21:14 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Geert Uytterhoeven" <geert@linux-m68k.org>, linux-kernel@vger.kernel.org
+Subject: Re: Build regressions/improvements in v6.8-rc1
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,107 +87,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Chris Zankel <chris@zankel.net>, linux-scsi@vger.kernel.org,
+ linux-sh@vger.kernel.org, Netdev <netdev@vger.kernel.org>,
+ mpi3mr-linuxdrv.pdl@broadcom.com, qat-linux@intel.com,
+ dri-devel@lists.freedesktop.org, Max Filippov <jcmvbkbc@gmail.com>,
+ linux-mtd@lists.infradead.org, linux-hardening@vger.kernel.org,
+ sparclinux@vger.kernel.org,
+ "intel-wired-lan@lists.osuosl.org" <intel-wired-lan@lists.osuosl.org>,
+ linuxppc-dev@lists.ozlabs.org, intel-xe@lists.freedesktop.org,
+ linux-crypto@vger.kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7233320304566368887==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, Jan 23, 2024, at 12:45, Geert Uytterhoeven wrote:
 
-== Series Details ==
+>> 68 error regressions:
+>
+>>  + /kisskb/src/arch/powerpc/sysdev/udbg_memcons.c: error: no previous=
+ prototype for 'memcons_getc' [-Werror=3Dmissing-prototypes]:  =3D> 80:5
+>>  + /kisskb/src/arch/powerpc/sysdev/udbg_memcons.c: error: no previous=
+ prototype for 'memcons_getc_poll' [-Werror=3Dmissing-prototypes]:  =3D>=
+ 57:5
+>>  + /kisskb/src/arch/powerpc/sysdev/udbg_memcons.c: error: no previous=
+ prototype for 'memcons_putc' [-Werror=3Dmissing-prototypes]:  =3D> 44:6
+>
+> powerpc-gcc{5,12,13}/ppc64_book3e_allmodconfig
 
-Series: drm/xe: Document nested struct members according to guidelines (rev2)
-URL   : https://patchwork.freedesktop.org/series/129086/
-State : success
+I now sent patches for powerpc booke warnings
 
-== Summary ==
+>>  + /kisskb/src/arch/sh/kernel/cpu/init.c: error: no previous prototyp=
+e for 'l2_cache_init' [-Werror=3Dmissing-prototypes]:  =3D> 99:29
+>
+> sh4-gcc1[123]/se7{619,750}_defconfig
+> sh4-gcc1[123]/sh-{all{mod,no,yes},def}config
+> sh4-gcc11/sh-allnoconfig
 
-CI Bug Log - changes from xe-669-741c439503ee0986a7b7c5b590cbd9813b8841f6_BAT -> xe-pw-129086v2_BAT
-====================================================
+I assume the sh maintainers will eventually get to that
 
-Summary
--------
+>>  + /kisskb/src/arch/sparc/include/asm/floppy_64.h: error: no previous=
+ prototype for 'sparc_floppy_irq' [-Werror=3Dmissing-prototypes]:  =3D> =
+200:13
+>>  + /kisskb/src/arch/sparc/include/asm/floppy_64.h: error: no previous=
+ prototype for 'sun_pci_fd_dma_callback' [-Werror=3Dmissing-prototypes]:=
+  =3D> 437:6
+>
+> sparc64-gcc{5,11,12,13}/sparc64-allmodconfig
 
-  **SUCCESS**
+Andrew Morton did a patch for the sparc warnings, and Andreas Larsson
+is joining as a maintainer, so hopefully he can pick that up soon.
+> sparc64-gcc{5,1[123]}/sparc64-allmodconfig
+>
+>>  + /kisskb/src/arch/sparc/vdso/vclock_gettime.c: error: no previous p=
+rototype for '__vdso_clock_gettime' [-Werror=3Dmissing-prototypes]:  =3D=
+> 254:1
+>>  + /kisskb/src/arch/sparc/vdso/vclock_gettime.c: error: no previous p=
+rototype for '__vdso_clock_gettime_stick' [-Werror=3Dmissing-prototypes]=
+:  =3D> 282:1
+>>  + /kisskb/src/arch/sparc/vdso/vclock_gettime.c: error: no previous p=
+rototype=20
 
-  No regressions found.
+There are prototypes in include/vdso/gettime.h that should be
+used here, but unfortunately the sparc implementation does
+not match the prototypes because sparc is missing the gettime64
+support.
 
-  
+> sparc64-gcc{5,12,13}/sparc64-{allno,def}config
+> sparc64-gcc11/sparc64-{all{mod,no},def}config
+>
+>>  + /kisskb/src/arch/x86/um/shared/sysdep/kernel-offsets.h: error: no =
+previous prototype for =E2=80=98foo=E2=80=99 [-Werror=3Dmissing-prototyp=
+es]:  =3D> 9:6
+>
+> um-x86_64-gcc12/um-{all{mod,yes},def}config
 
-Participating hosts (4 -> 4)
-------------------------------
+I made a patch for arch/um yesterday.
 
-  No changes in participating hosts
+> sparc64-gcc1[12]/sparc64-allmodconfig
+>
+>>  + /kisskb/src/drivers/scsi/mpi3mr/mpi3mr_transport.c: error: the fra=
+me size of 1680 bytes is larger than 1536 bytes [-Werror=3Dframe-larger-=
+than=3D]:  =3D> 1818:1
 
+I sent a patch in November when the regression started, missed
+the reply about needing another change
+https://lore.kernel.org/all/CAFdVvOxH4UQjww4124E2ttuTgknzkHoPxVSFOQgLfoV=
+_dkANwQ@mail.gmail.com/
 
-Changes
--------
+>>  + {standard input}: Error: displacement to undefined symbol .L105 ov=
+erflows 8-bit field :  =3D> 590, 593
+>>  + {standard input}: Error: displacement to undefined symbol .L135 ov=
+erflows 8-bit field :  =3D> 603
+>>  + {standard input}: Error: displacement to undefined symbol .L140 ov=
+erflows 8-bit field :  =3D> 606
+>>  + {standard input}: Error: displacement to undefined symbol .L76 ove=
+rflows 12-bit field:  =3D> 591, 594
+>>  + {standard input}: Error: displacement to undefined symbol .L77 ove=
+rflows 8-bit field : 607 =3D> 607, 582, 585
+>>  + {standard input}: Error: displacement to undefined symbol .L97 ove=
+rflows 12-bit field:  =3D> 607
+>>  + {standard input}: Error: pcrel too far: 604, 590, 577, 593, 572, 5=
+69, 598, 599, 596, 610 =3D> 610, 574, 599, 569, 598, 596, 601, 590, 604,=
+ 595, 572, 577, 593
+>
+> SH ICE crickets
 
-  No changes found
+Linus did a patch for the syscall, and I sent another one for
+arch/sh to prevent this from happening again:
 
+https://lore.kernel.org/all/CAHk-=3Dwjh6Cypo8WC-McXgSzCaou3UXccxB+7PVeSu=
+GR8AjCphg@mail.gmail.com/
+https://lore.kernel.org/all/07d8877b-d933-46f4-8ca4-c10ed602f37e@app.fas=
+tmail.com/
 
-Build changes
--------------
+Resent mine now.
 
-  * Linux: xe-669-741c439503ee0986a7b7c5b590cbd9813b8841f6 -> xe-pw-129086v2
-
-  IGT_7689: 1dcf4a0f9ef93bc11895f726f9cd344715737d40 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-669-741c439503ee0986a7b7c5b590cbd9813b8841f6: 741c439503ee0986a7b7c5b590cbd9813b8841f6
-  xe-pw-129086v2: 129086v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129086v2/index.html
-
---===============7233320304566368887==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Document nested struct members according to guidelines (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129086/">https://patchwork.freedesktop.org/series/129086/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129086v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129086v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-669-741c439503ee0986a7b7c5b590cbd9813b8841f6_BAT -&gt; xe-pw-129086v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-669-741c439503ee0986a7b7c5b590cbd9813b8841f6 -&gt; xe-pw-129086v2</li>
-</ul>
-<p>IGT_7689: 1dcf4a0f9ef93bc11895f726f9cd344715737d40 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-669-741c439503ee0986a7b7c5b590cbd9813b8841f6: 741c439503ee0986a7b7c5b590cbd9813b8841f6<br />
-  xe-pw-129086v2: 129086v2</p>
-
-</body>
-</html>
-
---===============7233320304566368887==--
+      Arnd
