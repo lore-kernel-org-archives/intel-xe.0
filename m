@@ -4,56 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B486EC47258
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jan 2024 07:45:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D917C47DDB
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jan 2024 08:03:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3650710E7DC;
-	Tue, 23 Jan 2024 07:45:15 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 151C710E890;
- Tue, 23 Jan 2024 07:45:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705995914; x=1737531914;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=gR1DaQBEiwp7b8LXQ3gqb1TinU2mUqOSau6sGyjnT/I=;
- b=VQVzynBSMuPdGpCDZHbogUt51Z0ZghALnoAxkvXLcb0ibyxYBC5WW2Ss
- a8MWIfKmqmZhm/sDsmHAIQkJ7lisGy+klQ5Fr+K+zLRE7hbUKzZO9Kvbf
- YkPzbpv5kKjNCcBp6DEFCsmx56v8UJs8crjxyYYESPP7sJsYYcaE8ZQbt
- lBxFQmV3dao8vEESFeLgDOISilZEHgQpWuau8EIahyqSRcuGJ3I+ZznTX
- 48tXRtKEDZmmeZ2JCmkSGXUNWMG5dAOAfJhmc3nX/CJPsXwjWaUlvBzKE
- VXIHpf8Fm8w+mGfqxxF3sLCPEdglFFFDJkfq59ilZc4VhodHIzB/o6NLT g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="1336533"
-X-IronPort-AV: E=Sophos;i="6.05,213,1701158400"; 
-   d="scan'208";a="1336533"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2024 23:45:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="909211748"
-X-IronPort-AV: E=Sophos;i="6.05,213,1701158400"; d="scan'208";a="909211748"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com)
- ([10.237.72.44])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2024 23:45:06 -0800
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
- by kekkonen.fi.intel.com (Postfix) with ESMTP id 81AD911FB9B;
- Tue, 23 Jan 2024 09:45:03 +0200 (EET)
-Date: Tue, 23 Jan 2024 07:45:03 +0000
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: "Rafael J. Wysocki" <rafael@kernel.org>
-Subject: Re: [PATCH v3 1/2] pm: runtime: Simplify pm_runtime_get_if_active()
- usage
-Message-ID: <Za9uf3icrVE6Ajbe@kekkonen.localdomain>
-References: <20240122114121.56752-2-sakari.ailus@linux.intel.com>
- <20240122181205.GA275751@bhelgaas>
- <CAJZ5v0gUpo6Shz2kQzie4XE23=fiPvD0=2yhjGptw8QbCq2SAg@mail.gmail.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D22AA10E071;
+	Tue, 23 Jan 2024 08:03:06 +0000 (UTC)
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com
+ [209.85.208.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2450A10E071
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 Jan 2024 08:03:05 +0000 (UTC)
+Received: by mail-ed1-f45.google.com with SMTP id
+ 4fb4d7f45d1cf-55c24a32bf4so6476a12.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 Jan 2024 00:03:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1705996923; x=1706601723;
+ darn=lists.freedesktop.org; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=FnJCxIsVaM0ENG8iGpRdjH3XEU+iKUpwEvmA/MaNadE=;
+ b=b0GQAk+9W3Qar7rjS51lKOwfcLDTAOV+OkaG6UfhZiVuqbED6hXG2Xl7SQI3708MC+
+ DG3IxNUvPB0NPsDCJZ5G7IvKBm1WQEi4XU556L4SeVb5nSzaVJHtMdL1M1lzwhpmfXv5
+ 9SQL4PyfApCyQmKFQnY8UEkmjCy62Pr9AxJYppNtMzHNk39iOyM6BRZPMzPKNJHZlSXm
+ P7PDXIVMfse5CLc7OYUJAUgpmYngGMgWJUiJXA+QCcGW32HUlyno9ztR6Cb0BcGi6Ell
+ LGC8ncwJflKKMDkV3zugHOIOk47OmWo7CtNeMh3Sd5n+N8gEw6NdUFrZzSDKzwV64SZO
+ YAjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1705996923; x=1706601723;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=FnJCxIsVaM0ENG8iGpRdjH3XEU+iKUpwEvmA/MaNadE=;
+ b=hyFFrdgjz4HGzvofGnHibZNkklH7IT4XgyHz3OD/igIwlKahOIisNbiizpDCt0DPsq
+ p4MOhICm0JNU7gdbi6DSTBhvWelC+5KMkyXOAkVTVrU4Y6/HCTpZeHWv9ojo6fWVIEUm
+ PGH9lVhYTBSXa99UiPiJgYPZdPDVSarSvxLhm/0+rOldEdut9EPI3itogbW5nfoz0iKp
+ /2q6bImOTcbQs4NlG36gaW54HKbxIDPGhZGtA1MRkJFz/1Q98H0PxRmeTxrAfimW8JGF
+ AENJEl2Zvk3O1EguLgvnAlZ3avN07ayLfSwC4eKL6ZKAiQ/x6lh/rnrFdzCK4WG3pfs7
+ u2wQ==
+X-Gm-Message-State: AOJu0YxkleW/AzKTWeuPEcUhySMIM5+Hvko/pDA1hp4sc+oUrdAehW/C
+ f8x38pFQxUmuTeBydF2awuhqaOesx3miZtIn4ta0R2rbWBBQShKzQvVsSGBI9Lgf28T8KitjAbb
+ Mj6UzE3i/I+e6nZsZ7GEeHZnVls3orrOO4BJj
+X-Google-Smtp-Source: AGHT+IHw+fcWf7cNiJ+13QPQH9ZjygRjYR9ob548YlDM75BXxArIprInyXSl1NW0smBFdBmu7LEbRQZd31KHJfPsTQ8=
+X-Received: by 2002:a05:6402:1ca6:b0:55a:e42c:f5cd with SMTP id
+ cz6-20020a0564021ca600b0055ae42cf5cdmr104627edb.3.1705996923416; Tue, 23 Jan
+ 2024 00:02:03 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAJZ5v0gUpo6Shz2kQzie4XE23=fiPvD0=2yhjGptw8QbCq2SAg@mail.gmail.com>
+References: <20240122171408.3328510-1-lucas.demarchi@intel.com>
+In-Reply-To: <20240122171408.3328510-1-lucas.demarchi@intel.com>
+From: David Gow <davidgow@google.com>
+Date: Tue, 23 Jan 2024 16:01:49 +0800
+Message-ID: <CABVgOSmjyCf5DSh+LJtaLubHN3F_mrFo=ZRk23u2PEmmkLBUjA@mail.gmail.com>
+Subject: Re: [PATCH v2] kunit: Mark filter* params as rw
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature";
+ micalg=sha-256; boundary="000000000000a26ba2060f985ca1"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,77 +68,164 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-pci@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Jaroslav Kysela <perex@perex.cz>,
- Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>,
- laurent.pinchart@ideasonboard.com, David Airlie <airlied@gmail.com>,
- Paul Elder <paul.elder@ideasonboard.com>, Bjorn Helgaas <helgaas@kernel.org>,
- linux-media@vger.kernel.org, linux-pm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- linux-sound@vger.kernel.org, Mark Brown <broonie@kernel.org>,
- Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- intel-xe@lists.freedesktop.org, Alex Elder <elder@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Takashi Iwai <tiwai@suse.com>,
- Daniel Vetter <daniel@ffwll.ch>, netdev@vger.kernel.org
+Cc: Rae Moar <rmoar@google.com>, linux-kernel@vger.kernel.org,
+ Brendan Higgins <brendan.higgins@linux.dev>, linux-kselftest@vger.kernel.org,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ kunit-dev@googlegroups.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Rafael, Björn,
+--000000000000a26ba2060f985ca1
+Content-Type: text/plain; charset="UTF-8"
 
-Thanks for the review.
+On Tue, 23 Jan 2024 at 01:14, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>
+> By allowing the filter_glob parameter to be written to, it's possible to
+> tweak the testsuites that will be executed on new module loads. This
+> makes it easier to run specific tests without having to reload kunit and
+> provides a way to filter tests on real HW even if kunit is builtin.
+> Example for xe driver:
+>
+> 1) Run just 1 test
+>         # echo -n xe_bo > /sys/module/kunit/parameters/filter_glob
+>         # modprobe -r xe_live_test
+>         # modprobe xe_live_test
+>         # ls /sys/kernel/debug/kunit/
+>         xe_bo
+>
+> 2) Run all tests
+>         # echo \* > /sys/module/kunit/parameters/filter_glob
+>         # modprobe -r xe_live_test
+>         # modprobe xe_live_test
+>         # ls /sys/kernel/debug/kunit/
+>         xe_bo  xe_dma_buf  xe_migrate  xe_mocs
+>
+> For completeness and to cover other use cases, also change filter and
+> filter_action to rw.
+>
+> Link: https://lore.kernel.org/intel-xe/dzacvbdditbneiu3e3fmstjmttcbne44yspumpkd6sjn56jqpk@vxu7sksbqrp6/
+> Reviewed-by: Rae Moar <rmoar@google.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
 
-On Mon, Jan 22, 2024 at 07:16:54PM +0100, Rafael J. Wysocki wrote:
-> On Mon, Jan 22, 2024 at 7:12 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
-> >
-> > On Mon, Jan 22, 2024 at 01:41:21PM +0200, Sakari Ailus wrote:
-> > > There are two ways to opportunistically increment a device's runtime PM
-> > > usage count, calling either pm_runtime_get_if_active() or
-> > > pm_runtime_get_if_in_use(). The former has an argument to tell whether to
-> > > ignore the usage count or not, and the latter simply calls the former with
-> > > ign_usage_count set to false. The other users that want to ignore the
-> > > usage_count will have to explitly set that argument to true which is a bit
-> > > cumbersome.
-> >
-> > s/explitly/explicitly/
-> >
-> > > To make this function more practical to use, remove the ign_usage_count
-> > > argument from the function. The main implementation is renamed as
-> > > pm_runtime_get_conditional().
-> > >
-> > > Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-> > > Reviewed-by: Alex Elder <elder@linaro.org> # drivers/net/ipa/ipa_smp2p.c
-> > > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > Acked-by: Takashi Iwai <tiwai@suse.de> # sound/
-> > > Reviewed-by: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com> # drivers/accel/ivpu/
-> > > Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com> # drivers/gpu/drm/i915/
-> > > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> >
-> > Acked-by: Bjorn Helgaas <bhelgaas@google.com> # drivers/pci/
-> >
-> > > -EXPORT_SYMBOL_GPL(pm_runtime_get_if_active);
-> > > +EXPORT_SYMBOL_GPL(pm_runtime_get_conditional);
-> >
-> > If pm_runtime_get_conditional() is exported, shouldn't it also be
-> > documented in Documentation/power/runtime_pm.rst?
-> >
-> > But I'm dubious about exporting it because
-> > __intel_runtime_pm_get_if_active() is the only caller, and you end up
-> > with the same pattern there that we have before this series in the PM
-> > core.  Why can't intel_runtime_pm.c be updated to use
-> > pm_runtime_get_if_active() or pm_runtime_get_if_in_use() directly, and
-> > make pm_runtime_get_conditional() static?
-> 
-> Sounds like a good suggestion to me.
+This looks good to me, and works here.
 
-The i915 driver uses both but I guess it's not too much different to check
-ignore_usecount separately than passing it to the API function?
+Reviewed-by: David Gow <davidgow@google.com>
 
-I'll add another patch to do this and moving
-pm_runtime_get_if_{active,in_use} implementations to runtime.c.
+Thanks,
+-- David
 
--- 
-Regards,
+>
+> Rae, I kept your r-b from v1 since the additions are just what we talked
+> about.
+>
+> v2: also change filter_action and filter to rw, testing with the xe
+>     module to see if filter=module=none filter_action=skip produces
+>     the result expected by igt
+>
+>  lib/kunit/executor.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/lib/kunit/executor.c b/lib/kunit/executor.c
+> index 1236b3cd2fbb..371ddcee7fb5 100644
+> --- a/lib/kunit/executor.c
+> +++ b/lib/kunit/executor.c
+> @@ -31,13 +31,13 @@ static char *filter_glob_param;
+>  static char *filter_param;
+>  static char *filter_action_param;
+>
+> -module_param_named(filter_glob, filter_glob_param, charp, 0400);
+> +module_param_named(filter_glob, filter_glob_param, charp, 0600);
+>  MODULE_PARM_DESC(filter_glob,
+>                 "Filter which KUnit test suites/tests run at boot-time, e.g. list* or list*.*del_test");
+> -module_param_named(filter, filter_param, charp, 0400);
+> +module_param_named(filter, filter_param, charp, 0600);
+>  MODULE_PARM_DESC(filter,
+>                 "Filter which KUnit test suites/tests run at boot-time using attributes, e.g. speed>slow");
+> -module_param_named(filter_action, filter_action_param, charp, 0400);
+> +module_param_named(filter_action, filter_action_param, charp, 0600);
+>  MODULE_PARM_DESC(filter_action,
+>                 "Changes behavior of filtered tests using attributes, valid values are:\n"
+>                 "<none>: do not run filtered tests as normal\n"
+> --
+> 2.40.1
+>
 
-Sakari Ailus
+--000000000000a26ba2060f985ca1
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+MIIPqgYJKoZIhvcNAQcCoIIPmzCCD5cCAQExDzANBglghkgBZQMEAgEFADALBgkqhkiG9w0BBwGg
+gg0EMIIEtjCCA56gAwIBAgIQeAMYYHb81ngUVR0WyMTzqzANBgkqhkiG9w0BAQsFADBMMSAwHgYD
+VQQLExdHbG9iYWxTaWduIFJvb3QgQ0EgLSBSMzETMBEGA1UEChMKR2xvYmFsU2lnbjETMBEGA1UE
+AxMKR2xvYmFsU2lnbjAeFw0yMDA3MjgwMDAwMDBaFw0yOTAzMTgwMDAwMDBaMFQxCzAJBgNVBAYT
+AkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMSowKAYDVQQDEyFHbG9iYWxTaWduIEF0bGFz
+IFIzIFNNSU1FIENBIDIwMjAwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCvLe9xPU9W
+dpiHLAvX7kFnaFZPuJLey7LYaMO8P/xSngB9IN73mVc7YiLov12Fekdtn5kL8PjmDBEvTYmWsuQS
+6VBo3vdlqqXZ0M9eMkjcKqijrmDRleudEoPDzTumwQ18VB/3I+vbN039HIaRQ5x+NHGiPHVfk6Rx
+c6KAbYceyeqqfuJEcq23vhTdium/Bf5hHqYUhuJwnBQ+dAUcFndUKMJrth6lHeoifkbw2bv81zxJ
+I9cvIy516+oUekqiSFGfzAqByv41OrgLV4fLGCDH3yRh1tj7EtV3l2TngqtrDLUs5R+sWIItPa/4
+AJXB1Q3nGNl2tNjVpcSn0uJ7aFPbAgMBAAGjggGKMIIBhjAOBgNVHQ8BAf8EBAMCAYYwHQYDVR0l
+BBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMEMBIGA1UdEwEB/wQIMAYBAf8CAQAwHQYDVR0OBBYEFHzM
+CmjXouseLHIb0c1dlW+N+/JjMB8GA1UdIwQYMBaAFI/wS3+oLkUkrk1Q+mOai97i3Ru8MHsGCCsG
+AQUFBwEBBG8wbTAuBggrBgEFBQcwAYYiaHR0cDovL29jc3AyLmdsb2JhbHNpZ24uY29tL3Jvb3Ry
+MzA7BggrBgEFBQcwAoYvaHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvcm9vdC1y
+My5jcnQwNgYDVR0fBC8wLTAroCmgJ4YlaHR0cDovL2NybC5nbG9iYWxzaWduLmNvbS9yb290LXIz
+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
+7xDrOPfX3COqq162RFg/MFcGA1UdIARQME4wCQYHZ4EMAQUBATBBBgkrBgEEAaAyASgwNDAyBggr
+BgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wDAYDVR0TAQH/
+BAIwADCBmgYIKwYBBQUHAQEEgY0wgYowPgYIKwYBBQUHMAGGMmh0dHA6Ly9vY3NwLmdsb2JhbHNp
+Z24uY29tL2NhL2dzYXRsYXNyM3NtaW1lY2EyMDIwMEgGCCsGAQUFBzAChjxodHRwOi8vc2VjdXJl
+Lmdsb2JhbHNpZ24uY29tL2NhY2VydC9nc2F0bGFzcjNzbWltZWNhMjAyMC5jcnQwHwYDVR0jBBgw
+FoAUfMwKaNei6x4schvRzV2Vb4378mMwRgYDVR0fBD8wPTA7oDmgN4Y1aHR0cDovL2NybC5nbG9i
+YWxzaWduLmNvbS9jYS9nc2F0bGFzcjNzbWltZWNhMjAyMC5jcmwwDQYJKoZIhvcNAQELBQADggEB
+AK0lDd6/eSh3qHmXaw1YUfIFy07B25BEcTvWgOdla99gF1O7sOsdYaTz/DFkZI5ghjgaPJCovgla
+mRMfNcxZCfoBtsB7mAS6iOYjuwFOZxi9cv6jhfiON6b89QWdMaPeDddg/F2Q0bxZ9Z2ZEBxyT34G
+wlDp+1p6RAqlDpHifQJW16h5jWIIwYisvm5QyfxQEVc+XH1lt+taSzCfiBT0ZLgjB9Sg+zAo8ys6
+5PHxFaT2a5Td/fj5yJ5hRSrqy/nj/hjT14w3/ZdX5uWg+cus6VjiiR/5qGSZRjHt8JoApD6t6/tg
+ITv8ZEy6ByumbU23nkHTMOzzQSxczHkT+0q10/MxggJqMIICZgIBATBoMFQxCzAJBgNVBAYTAkJF
+MRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMSowKAYDVQQDEyFHbG9iYWxTaWduIEF0bGFzIFIz
+IFNNSU1FIENBIDIwMjACEAHS+TgZvH/tCq5FcDC0n9IwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZI
+hvcNAQkEMSIEIMfQcCEL9e2gmY7qF3gejMzl7bNZf08vMviHlTomVfmVMBgGCSqGSIb3DQEJAzEL
+BgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI0MDEyMzA4MDIwM1owaQYJKoZIhvcNAQkPMVww
+WjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkq
+hkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQBCZc+G
+ZDLNPLNo9+QuP3a4EFEknDYCeohu/zAlHDdGa4mCL0ExsQxR5iWW71PDBw2jACWrtdwTqJwOFexl
+yxFCxyERvhkhTH0ID/4i2txxbAAd2fS22KmlheuMxHjJ00586m64rhdKI87fbkcXYcu+bqKZbIi/
+9aNpuPOaAy5QlSGdWw7Xs1yD/YI4IQGpGmWMFamVVKhtgj5J9ejghoGpzMaphlRbTb9WFB741pEE
+YT5vctto4mOG/MjqiDb+LPp9l+H1l+bLcgKAFouSB6jehb4tjCq02iv/JBjzL3bpHqucB7iRzh/T
+OLJHehLrr6hjdasrc9nkEHUoUTu/paxE
+--000000000000a26ba2060f985ca1--
