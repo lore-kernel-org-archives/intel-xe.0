@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CDD8C47258
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83B28C47DDC
 	for <intel-xe@archiver.kernel.org>; Tue, 23 Jan 2024 20:45:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E0B710E5D3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41F6A10E617;
 	Tue, 23 Jan 2024 20:45:22 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC77510E617
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Jan 2024 20:45:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D5DF10E3F2
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 Jan 2024 20:45:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706042717; x=1737578717;
+ t=1706042712; x=1737578712;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Q7y1jcLQr3zkUnsD6AdY46QtpI9RiZovc49jjIRcBVE=;
- b=Zg8ghQpQCRspaQ3Olig+O1D7xy6Jrf7pIMy6/R4MN1xzBiqPzUXNW7El
- JVD6iNkrS9AAUil9QUnkTNIlFzBu4JeL0nHz6W2kODMB7aT2WCVdcWA8p
- 0mWb+mJ+Qj2baHgZTcBY6HTazgXlEU84SyFJOAe6DlbwgYjNx+ZcKNnzb
- zlp7LHgg2DUwchvBf88/hd6qxfUAyuEM0yCEYCnkExjLORO2VJWGYegAX
- xr6aYgcRTYdN8xWDbkZhIoRjcSol9eBjnds0NX0yJwQKCf3htTxSdxJFl
- JSapb5EDTlrCkAlUP4ETBDylzIQiS36LAEig6G5w4+3aT3s4q/R2VWM0o A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="8319877"
+ bh=tXjG9y9Uq/N/rVXLdd7LJZg5AHNbxLUyOYstUlI3Ejs=;
+ b=Ie/+nA+Ru8TMAtsY03o+TxrkkEeJrhZ1MB99RvJWXlU1ZPnRu2Mlh408
+ 4juXJVS+eVe3UbVdiMX7syaw/K5xiEJbhcDf9650SBL0Y/ninEopQe1Jd
+ Px+//za+n535ARVpJPebO+0pxcfMlCMLJpahmPijuGCf7ZjMnNfLzjcvD
+ kLeczXzu45Oj46sh0QZdUXn+5X7EibLFK77fealIybRMr5ZRWZ0qfms8M
+ Fwf5ZjQTageDMW2hjrJg6ejfKQ405Xt9zLKbu2JZzzj4bVs6DxrGh8tHh
+ yKRcDp620FLupNKvtEd/IjE9X7HmVLmeyfgL7FfMjhg8oReOKu82SH8aO A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="8319863"
 X-IronPort-AV: E=Sophos;i="6.05,215,1701158400"; 
-   d="scan'208";a="8319877"
+   d="scan'208";a="8319863"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2024 12:45:16 -0800
+ 23 Jan 2024 12:45:11 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="909421988"
-X-IronPort-AV: E=Sophos;i="6.05,215,1701158400"; d="scan'208";a="909421988"
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="909421957"
+X-IronPort-AV: E=Sophos;i="6.05,215,1701158400"; d="scan'208";a="909421957"
 Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2024 12:45:14 -0800
+ 23 Jan 2024 12:45:09 -0800
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 8/9] drm/xe: Add functions to convert regular address to
- canonical address and back
-Date: Tue, 23 Jan 2024 12:44:53 -0800
-Message-ID: <20240123204454.246788-8-jose.souza@intel.com>
+Subject: [PATCH v3 5/9] drm/xe: Print more device information in devcoredump
+Date: Tue, 23 Jan 2024 12:44:50 -0800
+Message-ID: <20240123204454.246788-5-jose.souza@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240123204454.246788-1-jose.souza@intel.com>
 References: <20240123204454.246788-1-jose.souza@intel.com>
@@ -59,65 +58,81 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Maarten Lankhorst <dev@lankhorst.se>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Maarten Lankhorst <dev@lankhorst.se>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Some instructions requires canonical address like
-MI_BATCH_BUFFER_START(UMDs must call xe_exec with a canonical address
-for Xe2+).
-
-So here adding functions to convert regular address to canonical
-address and back, the first user of this functions will be added
-in the next patches.
-
-v3:
-- inline removed from highest_address_bit_get()
+To properly decode batch buffer Mesa tools needs to know what
+platform is this one, for now we can do that with PCI id but
+already making it future proof by also printing GTs GMD version.
 
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Maarten Lankhorst <dev@lankhorst.se>
-Cc: Stuart Summers <stuart.summers@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 15 +++++++++++++++
- drivers/gpu/drm/xe/xe_device.h |  3 +++
- 2 files changed, 18 insertions(+)
+ drivers/gpu/drm/xe/xe_devcoredump.c |  2 ++
+ drivers/gpu/drm/xe/xe_device.c      | 20 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_device.h      |  2 ++
+ 3 files changed, 24 insertions(+)
 
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index fd74dae292433..e701f0d07b676 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -63,6 +63,7 @@ static ssize_t xe_devcoredump_read(char *buffer, loff_t offset,
+ 				   size_t count, void *data, size_t datalen)
+ {
+ 	struct xe_devcoredump *coredump = data;
++	struct xe_device *xe = coredump_to_xe(coredump);
+ 	struct xe_devcoredump_snapshot *ss;
+ 	struct drm_printer p;
+ 	struct drm_print_iterator iter;
+@@ -89,6 +90,7 @@ static ssize_t xe_devcoredump_read(char *buffer, loff_t offset,
+ 	drm_printf(&p, "Snapshot time: %lld.%09ld\n", ts.tv_sec, ts.tv_nsec);
+ 	ts = ktime_to_timespec64(ss->boot_time);
+ 	drm_printf(&p, "Uptime: %lld.%09ld\n", ts.tv_sec, ts.tv_nsec);
++	xe_device_snapshot_print(xe, &p);
+ 
+ 	drm_printf(&p, "\n**** GuC CT ****\n");
+ 	xe_guc_ct_snapshot_print(coredump->snapshot.ct, &p);
 diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 6faa7865b1aab..c830da883732c 100644
+index ab417f4f7d2a7..6faa7865b1aab 100644
 --- a/drivers/gpu/drm/xe/xe_device.c
 +++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -747,3 +747,18 @@ void xe_device_snapshot_print(struct xe_device *xe, struct drm_printer *p)
- 		drm_printf(p, "\tCS reference clock: %u\n", gt->info.reference_clock);
- 	}
+@@ -727,3 +727,23 @@ void xe_device_mem_access_put(struct xe_device *xe)
+ 
+ 	xe_assert(xe, ref >= 0);
  }
 +
-+static int highest_address_bit_get(struct xe_device *xe)
++void xe_device_snapshot_print(struct xe_device *xe, struct drm_printer *p)
 +{
-+	return xe->info.dma_mask_size > 48 ? 57 : 47;
-+}
++	struct xe_gt *gt;
++	u8 id;
 +
-+u64 xe_device_canonicalize_addr(struct xe_device *xe, u64 address)
-+{
-+	return sign_extend64(address, highest_address_bit_get(xe));
-+}
++	drm_printf(p, "PCI ID: 0x%04x\n", xe->info.devid);
++	drm_printf(p, "PCI revision: 0x%02x\n", xe->info.revid);
 +
-+u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64 address)
-+{
-+	return address & GENMASK_ULL(highest_address_bit_get(xe), 0);
++	for_each_gt(gt, xe, id) {
++		drm_printf(p, "GT id: %u\n", id);
++		drm_printf(p, "\tType: %s\n",
++			   gt->info.type == XE_GT_TYPE_MAIN ? "main" : "media");
++		drm_printf(p, "\tIP ver: %u.%u.%u\n",
++			   REG_FIELD_GET(GMD_ID_ARCH_MASK, gt->info.gmdid),
++			   REG_FIELD_GET(GMD_ID_RELEASE_MASK, gt->info.gmdid),
++			   REG_FIELD_GET(GMD_ID_REVID, gt->info.gmdid));
++		drm_printf(p, "\tCS reference clock: %u\n", gt->info.reference_clock);
++	}
 +}
 diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index 270124da1e00e..462f59e902b12 100644
+index af8ac2e9e2709..270124da1e00e 100644
 --- a/drivers/gpu/drm/xe/xe_device.h
 +++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -177,4 +177,7 @@ u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size);
+@@ -175,4 +175,6 @@ static inline bool xe_device_has_memirq(struct xe_device *xe)
  
- void xe_device_snapshot_print(struct xe_device *xe, struct drm_printer *p);
+ u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size);
  
-+u64 xe_device_canonicalize_addr(struct xe_device *xe, u64 address);
-+u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64 address);
++void xe_device_snapshot_print(struct xe_device *xe, struct drm_printer *p);
 +
  #endif
 -- 
