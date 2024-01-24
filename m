@@ -4,140 +4,110 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41C0CC47258
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Jan 2024 15:53:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2686C47258
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Jan 2024 16:01:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F28B210F93D;
-	Thu, 25 Jan 2024 15:53:10 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F8D310ED3D
- for <intel-xe@lists.freedesktop.org>; Thu, 25 Jan 2024 15:53:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706197989; x=1737733989;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=vmOL360DZaNXRy8Cjlb7gl9tSCK82qNFVVl9zVYpoDw=;
- b=n506MoPdTpWz44v2TxQgvBHUzoNvk4aW4JD3QdlmIv5cyouukocTzbfM
- jxH6WZDWka/wBCQtFsje3Z3H1SadtJDqYNCgo0pz6SxCalyFQlKjWjNts
- iivBNjY56k+vV1AjjMa2CKcfCFrA/Ysrpi5U/ULbdE0pORURHg9mhikL+
- y0vBuNkYwT+Kiu+sFKuIHm5E+0M3dQwybSFF7vVaDPb/PdQCK5EBsxP6p
- KyxjOnyD80lsTgUY6Q5D7xPSzYb6RgOEAJ8Bvpe3fO3SadBeh31JMjO0o
- n9w9CecwTo5CvTjOh/Ai8DnY21j96LhqQxxdcZEa6O9skOv7x82FrQYBl Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="9580182"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
-   d="scan'208";a="9580182"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2024 07:53:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="21089692"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 25 Jan 2024 07:53:08 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 25 Jan 2024 07:53:07 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 25 Jan 2024 07:53:06 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Thu, 25 Jan 2024 07:53:06 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.101)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 25 Jan 2024 07:53:06 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=i4bjxAc0dZh1DEgZe+u0Dx2zWqcK5kn6kEGSyY/WqRTN8foVIO4NfFg0qidqL03XME9OUNl1RptO5Jhm6cge38riiJLmLDEDrhVWu7ebEJVslNbivQu7ME723IdKlb3mE7dNY/ekR3tyIeKPvMxBrmRBgEzJOu66GjUgLJG/RfmD7sOVgJQn9h3wnl+XV9UKbfJGXt8vevh1IHzRbfuv1dXPNWCa9O+uHFvRHkV1MYhkLlIgn57fjkFcV+knRnWNylgbp0h8Umqq5j0pmNP+EqTMwP1mxcxXEZCf9s1ITIbtfFx9sJasgG6+ibbTSFCpLGeq+wV4/S8KqIFC7LNF4A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BjfU1ZQvoSJ/OyY2tNaLaqO7+PEkl84evcYcnFUja1U=;
- b=mtUXLW9x8BByG6EF1IaWK3xfx3UjJlJ5+HE1vYqMrZURMjOBo7VITKvOV3T8BSyPg/gvo2BIk8wj/q/6StTt79CpL6UbiOZn1PG4MbZ+fJhngDVFoEf+UZM79yqbEacvUGz0Rs222nRmi+vzVyVOWbrPb3LK8lwKUfsieEbEEjxfNOkRI6FWXoqgdmlSg4WVknHHPZ4Nb5kydhWvzjkPurxQqTmvQwxOEKJbcRIQd3Tu1GK2vDnLlt6RODeSqv9i0ukgIeFK0Bxdf72qGPAtJ+LGGRWRW8lrSpuzG/gADV6t1TGgmgWpG9VJ7sp2OQDLBR0l6nOUwy5FT9/dy0N6+A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CY5PR11MB6211.namprd11.prod.outlook.com (2603:10b6:930:25::6)
- by CY8PR11MB7731.namprd11.prod.outlook.com (2603:10b6:930:75::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.26; Thu, 25 Jan
- 2024 15:53:04 +0000
-Received: from CY5PR11MB6211.namprd11.prod.outlook.com
- ([fe80::35eb:1d4b:b90f:e584]) by CY5PR11MB6211.namprd11.prod.outlook.com
- ([fe80::35eb:1d4b:b90f:e584%3]) with mapi id 15.20.7228.023; Thu, 25 Jan 2024
- 15:53:04 +0000
-From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-To: "Poosa, Karthik" <karthik.poosa@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/xe/xe_guc: Reduce a print from warn to debug
-Thread-Topic: [PATCH] drm/xe/xe_guc: Reduce a print from warn to debug
-Thread-Index: AQHaT6ShGDIaqKE+i0WJkiRMHtK9frDqrQqw
-Date: Thu, 25 Jan 2024 15:53:04 +0000
-Message-ID: <CY5PR11MB6211BC6567CD2B707BD0697A957A2@CY5PR11MB6211.namprd11.prod.outlook.com>
-References: <20240125154647.3743708-1-karthik.poosa@intel.com>
-In-Reply-To: <20240125154647.3743708-1-karthik.poosa@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY5PR11MB6211:EE_|CY8PR11MB7731:EE_
-x-ms-office365-filtering-correlation-id: 957c564d-643f-4455-9fd7-08dc1dbdb79a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 3WVycGmIK8yueisScfI8jQTSkh1yCp/KaJll4pBW8FRCK1mjmJ/pdz3hr8L1Vsb2LAVlYcb0dP826xQEqP8pH1Pw+G624NpWLJggRyY4s4RL/v8IIg5PMh6yiy4Q3zmuP2WsGGRcEAFjGsjDSTt8dehSX3cfmRkn8GcChB2NMFd7Q6qPlYPFGasBwF8uOtRZsb8mnbysf7QKh5MWYbjFR/CaFWC0iH/+5Cmz6D24mJk5dgAgd8JLoDPh1EaVY1pEMryCxsZzk0+amZiCyOEWhqlN1PiDiHTVbWnCBwZiAXp3LxDFNN7HSf8tJRfQJ81q0RuOnMhrXiIjeJ1sY7R7s9/H9XbybVBO2CI2a5qJCByF/w/y3IM4idSIniMxtp7p9tZVn4GmTIpEMHay1CF30En5wQQsXYnI/TRj1zY3c9vBMAo6MP3vz5vmGkr1QjryZOzvxVFqfk+X5Jo6YrkKdG0CZXzbIDD+49+g1ZzssXi/OYDJJKoDQSjO8el9Jri5jTHqDAr9pHLou4ClA2hDbJesZc/jS+xCwcgcae62vlvY2ggppSkN34CkhODDwF3//gZkzIe1sJLW1pbYpHdXXSiLUXoUR0AoyW4O3kKRK90m2sM43iOS8LcWb5marJ7AaCWKiJqtyZ6jBDVssEMNwWdZ7aDnW1HuuXw0kzjkiA8=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6211.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376002)(366004)(346002)(396003)(136003)(39860400002)(230922051799003)(230273577357003)(230173577357003)(64100799003)(186009)(1800799012)(451199024)(52536014)(4326008)(8936002)(33656002)(8676002)(5660300002)(76116006)(316002)(2906002)(86362001)(66556008)(110136005)(66476007)(64756008)(66946007)(66446008)(54906003)(38070700009)(478600001)(82960400001)(122000001)(53546011)(38100700002)(7696005)(71200400001)(9686003)(6506007)(83380400001)(107886003)(41300700001)(26005)(55016003);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?k3XkqRC2cQ3jGnKqD3RV/YMcuHzgeyJ5Bh21sDdcnoRJ8ifuuRkDtuANK0B0?=
- =?us-ascii?Q?ADhy4ljzvcSxRtIrhZNA4zM3A089ddLEDdUd4hxM99H9h+6J9Y3uK/yEjwBO?=
- =?us-ascii?Q?5j+Ev5d0lPP/3LcBBlztH4k3nVoSS78/AJLN9WV4Nc57N74rDMdzENKlwHEE?=
- =?us-ascii?Q?zKO61IN5jLxfNXYCoKUXrwCSOd++IzLX5NJxdt+dQinSzRKqg2hzv82TZ2Nb?=
- =?us-ascii?Q?1DVmpYRDKjQCx439xelIoa6HGNr91uNuj/ytBYcdWZLNb+24dsFLb5sXb572?=
- =?us-ascii?Q?cwyTP0UdgTTqwpxtuHflLoT3wZpJ3mHV03b5hZ4j/l+NIAF1h9RjuR/kSUmN?=
- =?us-ascii?Q?NwK3Dpr1NU1Pe7xBnOkAdu25aUvz3XSRcWWQQ/3s9gHtD04vuA9PVmHMab44?=
- =?us-ascii?Q?urSeuOO0AmSXqUUCPqwLHtUIHWyAGZijRNpUVyVldiY73b2Ji5SkdbtYR3wE?=
- =?us-ascii?Q?11SKzJL9TE2f+nv9HuF7YnACcJlV3w4OqEXj+WUVgSPVUjfGhyxanBfeTUtz?=
- =?us-ascii?Q?SjBL+XEwdl4u8RCMZq1k0GFqD8A3LQwfGokQTkZIAqNZXk+wogAmBzhwh6tz?=
- =?us-ascii?Q?7j70474N5Swyr5XjAXvCfL4toygyJCtesl8TFPxkRzi4Ke0ILLCtuMc2hH8P?=
- =?us-ascii?Q?e2sdAtTAmoqabz09Nf2KjAMUG/a/CMNMF9WWKIzlYYpNlP7jtiScHke476dv?=
- =?us-ascii?Q?JAqGQ7ukyjhZLq7SyBJAWazD2lkfy8nKgbuSpY9lVH84qtujzJrS6B0kv2Fj?=
- =?us-ascii?Q?MTWTOH/lKgPRmyNnRBcTtkM/fSHkCAmMbsukCQ3hcEJg0k5GhAA+bjvXHuud?=
- =?us-ascii?Q?pdBsqiDCkr1QJ+G6ua9TG+aBlVBJ/W44i0wh8A1plo+qv4iYSGg+zhU5JFZq?=
- =?us-ascii?Q?qpjidSKmgI0Qs1bS8wr+Vg5IeJS3Q1OYxw/hkmKM9UkYp7/2ipi0zEwmtCJQ?=
- =?us-ascii?Q?kJ5dWu+FU6CwZq+DeehZYGhYsh5ehVAYK0Q8TcHryeVmsGV4yHhxnWRlNckp?=
- =?us-ascii?Q?uMZ/BBMp9X4PDCO6PNRjCubGxCYm17NU2ruhDmxvPEEKYybdHHGJwVXnlfLb?=
- =?us-ascii?Q?xhAiziBpkoyuuVCFlQUPlbjzkFksra4+T2o8A9lQr2/RI1KTOkXCGWkczasM?=
- =?us-ascii?Q?+fSid8+hZaSYm8iVHPrmMXOAOwrKGOWe13iLQ39HQU36XtwJ0o+2ApTP1xiF?=
- =?us-ascii?Q?hajdUdT+5Ar1j7ch/ov4LWup5fTGbsi/aK5SYBzl8r1xGdWJB3NUTHMuXISP?=
- =?us-ascii?Q?6EV5fnrdNWwY4L6GYuVecD3R46TmBZCGuM8sUxzOlhiM0HuEQs+SK5HdUP7C?=
- =?us-ascii?Q?C0Nr9vb5hfezhCnr0fwOqdhjJ0cgjmzc+2cmetQ+IdKH0oUD3cllgGMZQFyN?=
- =?us-ascii?Q?3s6wXBrnhaocghM58YtVnpXi6vM053/tcCHDIipW7Y5C1YStUFSiE3xNOu6t?=
- =?us-ascii?Q?uidjSgmUrRdmqA45CM4hI+W7aoI4O/RVckKR+dJI/vvKs4N8PYqh47E0H6gp?=
- =?us-ascii?Q?B1ZZ3LOXcXjRSqMXBpNNyxXXopZUO/2zCeJE29GJ/Gsyhd0hbs7pLUt9QJLM?=
- =?us-ascii?Q?0x9QMlGEo94mv0xeq9taqR4ys/wKNKtE28uSDnPT?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE5FD10E2B4;
+	Thu, 25 Jan 2024 16:01:16 +0000 (UTC)
+X-Greylist: delayed 470 seconds by postgrey-1.36 at gabe;
+ Wed, 24 Jan 2024 14:18:35 UTC
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com
+ [210.118.77.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 148EB10EA2A
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Jan 2024 14:18:34 +0000 (UTC)
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+ by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id
+ 20240124141038euoutp02e986985e4282b8f525659cb391521d3c~tTdtIYr3k2414524145euoutp02N;
+ Wed, 24 Jan 2024 14:10:38 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com
+ 20240124141038euoutp02e986985e4282b8f525659cb391521d3c~tTdtIYr3k2414524145euoutp02N
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+ s=mail20170921; t=1706105438;
+ bh=zkEQ5uISMpJa7GnN14QnLY9o7S1m/eA6ORPUaYjIjb4=;
+ h=Date:From:To:CC:Subject:In-Reply-To:References:From;
+ b=XzjU3NWwN0PGsUY6LoL65YqqKMRDJ2RRBJKD9ewBcqx5rJSBbwGGj7VIBwZAuAoT+
+ s7DCmGWmcIffPR2bxo6UrZDZLa8s7AUIpuNI15Y1Cfb7dEOSWmZqM+VWS+Cg5jZHHY
+ I2DHh4TX/zMoGwicl56/mzVzMbZrDN2ADf3YC9As=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+ eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+ 20240124141037eucas1p1a291017c9d5c466e44869b1c5fe1e43d~tTdtBUwTQ0297802978eucas1p1w;
+ Wed, 24 Jan 2024 14:10:37 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+ eusmges1new.samsung.com (EUCPMTA) with SMTP id E1.48.09539.D5A11B56; Wed, 24
+ Jan 2024 14:10:37 +0000 (GMT)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+ eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+ 20240124141037eucas1p273082b3863f6e28c7ef2425fb8c6060c~tTdsfLTfB1657116571eucas1p2h;
+ Wed, 24 Jan 2024 14:10:37 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+ eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+ 20240124141037eusmtrp17c2c2fafe89912c3a2f9349a5a1e7997~tTdsep5872624126241eusmtrp1t;
+ Wed, 24 Jan 2024 14:10:37 +0000 (GMT)
+X-AuditID: cbfec7f2-52bff70000002543-11-65b11a5def48
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+ eusmgms1.samsung.com (EUCPMTA) with SMTP id A4.4E.09146.D5A11B56; Wed, 24
+ Jan 2024 14:10:37 +0000 (GMT)
+Received: from CAMSVWEXC02.scsc.local (unknown [106.1.227.72]) by
+ eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+ 20240124141037eusmtip24432f5d87e21d30de562606d7644eb20~tTdsQ9OIL2519725197eusmtip2W;
+ Wed, 24 Jan 2024 14:10:37 +0000 (GMT)
+Received: from localhost (106.110.32.133) by CAMSVWEXC02.scsc.local
+ (2002:6a01:e348::6a01:e348) with Microsoft SMTP Server (TLS) id 15.0.1497.2;
+ Wed, 24 Jan 2024 14:10:36 +0000
+Date: Wed, 24 Jan 2024 15:10:35 +0100
+From: Joel Granados <j.granados@samsung.com>
+To: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Subject: Re: [PATCH 02/17] drm/xe/perf/uapi: Add perf_stream_paranoid sysctl
+Message-ID: <20240124141035.brlc2hajfrdafzjp@localhost>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6211.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 957c564d-643f-4455-9fd7-08dc1dbdb79a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jan 2024 15:53:04.5850 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 5pyThvkU2cS8wPx5UtLpgnvr6LVa1Uf9acQgHZz2F9sFsi8XTVAEPX3WDvInKIv2bLRVpYqz6+liQ365gGJfgY4aqk0JCM2nf88OSCnIxzw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7731
-X-OriginatorOrg: intel.com
+Content-Type: multipart/signed; micalg="pgp-sha512";
+ protocol="application/pgp-signature"; boundary="a6yyoh62nlplw5d7"
+Content-Disposition: inline
+In-Reply-To: <20231208064329.2387604-3-ashutosh.dixit@intel.com>
+X-Originating-IP: [106.110.32.133]
+X-ClientProxiedBy: CAMSVWEXC01.scsc.local (2002:6a01:e347::6a01:e347) To
+ CAMSVWEXC02.scsc.local (2002:6a01:e348::6a01:e348)
+X-Brightmail-Tracker: H4sIAAAAAAAAA2VSa1BMYRj2nT2dPcVy2sq+hTGzlVup1mSYlGvRD4MYMxiGnfZTqI3dSsJM
+ JTKRKYu02kRbG6Wi1bibGsqWCoWkXAqjlC66iLXYPrcZ/573ubzzvDMvyxNmWziwW+ThWCGX
+ hogZK7qkfKhm+gaHi9ijrdxjdu6RfIvZn4vfU/Mp/6wbbZT/y0MV1ApqnZW3DIdsicQK97mb
+ rIKNdZnMdpVjVPONYjoGXZ+QiCxZ4DzhfkM2PxFZsUIuF4EmIYsxC0KuD8HreC8ifEJQl1qP
+ fidSVPspIugQ6FPqqD+uUyfbaDLoEWTHlA7vojlnyL311MKMGc4VajuaeGZsy02HrkfmVSzL
+ 45zAkOplpm24pZBsrKPNWMDNgic3vzIEW4Mh7c0wz+Oi4HxjFY9Ex4HOxJppS24+9DTe55Oi
+ YujvSLIgeC9U6huHewJXz4JRm4TMWeB8IW7fYuKxgfYK/a/seKhSHaaJX4XgtqmbT4Y8BDmx
+ /RRxzYH4+je/EgugPKuHT5aOhoZOa9JzNBwtSeURWgAHDwiJexLkveigk5Gj+p/L1P9cpv57
+ GaFdIfN6L/Mf7QI5Zz7wCPaBgoIuOhPxzyMRjlCGBmGlRI53uimlocoIeZBbYFjoJfTze6pM
+ Fb1XkKa9x60MUSwqQ04/wy1FeQ+QAy0Pk2OxraDBvgALBTLprmisCNuoiAjByjI0jqXFIoGz
+ bCIWckHScLwN4+1Y8VulWEuHGCr4TNEOw0LfQRf/aa3hi4eOGdVGbw9V9WpVk/Zsv3R3jsy5
+ VGsIuCsas+ibdpLMrpk/d4kknK18eErEDa5vn9y9zjbBtniZe/7A8ugMZYLzx7X6lvQLhT7p
+ I7Zavnw1UhezoChygiQp6H3gzqvGL8KRkwsf2UztDCxpDWiITDk5NWNV4Gm/S5Rd8tAdbLwH
+ 21zyb8vcFppcVzJNb5domaclhsf77lzwdDL1dQ8kd1Yu8nO816J7YqN+tUsy88QazZH6FYP7
+ 41NrfGNT7K8Vpl2+Ehe1fFRE4vM9odbd4s9M6YzagHdpOvWz70nzNMc3V3+YEn2uV6SpKXJ6
+ PmWsa2t1nLb2rZhWBksl03gKpfQHJPCe17gDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrIIsWRmVeSWpSXmKPExsVy+t/xe7qxUhtTDU684bVY0beG1eLH5hdM
+ Dkwei/e8ZPK4332cKYApSs+mKL+0JFUhI7+4xFYp2tDCSM/Q0kLPyMRSz9DYPNbKyFRJ384m
+ JTUnsyy1SN8uQS/jyrRfLAUTlSuOrbnJ1MC4U7aLkZNDQsBEYuLkViYQW0hgKaPE7k0cEHEZ
+ iY1frrJC2MISf651sXUxcgHVfGSU2P/4NSuEs4VRonn9R7AqFgFViRX7roPZbAI6Euff3GEG
+ sUUEdCXeXwLZwMHBLKAicXK6FUhYWMBHYsKfyywgNq+AucS1vb/ZII4olXjecZEVIi4ocXLm
+ E7AaZoEyiV8vp0CNkZZY/g/sTk4BB4mPt86wQ9ypJPH1TS/UzbUSn/8+Y5zAKDwLyaRZSCbN
+ QpgEEdaSuPHvJaawtsSyha+ZIWxbiXXr3rMsYGRfxSiSWlqcm55bbKhXnJhbXJqXrpecn7uJ
+ ERh/24793LyDcd6rj3qHGJk4GA8xqgB1Ptqw+gKjFEtefl6qkgjvDcl1qUK8KYmVValF+fFF
+ pTmpxYcYTYFhOJFZSjQ5H5gY8kriDc0MTA1NzCwNTC3NjJXEeT0LOhKFBNITS1KzU1MLUotg
+ +pg4OKUamKo6voW46fD2htTbhLU72KeE7zXlt4/W0Tu+PM/LsWXaqsDV+lVvGH4eebZN69uX
+ 2I6FJZ2i81wiGu7949zGnaK2v+wI2662L9OOpj6slo6csPzZjeUXAgwUJwbPTf/W8WZCnUt0
+ oGN7+PozyucdtN4Lmls/vPPnXPyu2dWlFyT1nkzpOrKB7922Le6Wv0Uuc11/3VJ/TWSzeYaM
+ 3TldT2+fVWctQ+zLvUKNJz0NnPtKJdXdcH5Gk8fRlsKwhO1i9+68SviqeXjJujkyQRmf+lT/
+ LjyQEtgn/PuX7X/blljr8483ly9c9a/4e5R2/NpiY2fGBqbCTQ+c/pfwKX+dGvboIUfy5wvV
+ T+UUVLZfUGIpzkg01GIuKk4EAL1bpg5UAwAA
+X-CMS-MailID: 20240124141037eucas1p273082b3863f6e28c7ef2425fb8c6060c
+X-Msg-Generator: CA
+X-RootMTR: 20240124141037eucas1p273082b3863f6e28c7ef2425fb8c6060c
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20240124141037eucas1p273082b3863f6e28c7ef2425fb8c6060c
+References: <20231208064329.2387604-1-ashutosh.dixit@intel.com>
+ <20231208064329.2387604-3-ashutosh.dixit@intel.com>
+ <CGME20240124141037eucas1p273082b3863f6e28c7ef2425fb8c6060c@eucas1p2.samsung.com>
+X-Mailman-Approved-At: Thu, 25 Jan 2024 16:01:16 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,55 +119,156 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "De Marchi, Lucas" <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--a6yyoh62nlplw5d7
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-
-> -----Original Message-----
-> From: Poosa, Karthik <karthik.poosa@intel.com>
-> Sent: Thursday, January 25, 2024 9:17 PM
-> To: intel-xe@lists.freedesktop.org
-> Cc: Gupta, Anshuman <anshuman.gupta@intel.com>; Nilawar, Badal
-> <badal.nilawar@intel.com>; Ceraolo Spurio, Daniele
-> <daniele.ceraolospurio@intel.com>; Harrison, John C
-> <john.c.harrison@intel.com>; De Marchi, Lucas <lucas.demarchi@intel.com>;
-> Poosa, Karthik <karthik.poosa@intel.com>
-> Subject: [PATCH] drm/xe/xe_guc: Reduce a print from warn to debug
+On Thu, Dec 07, 2023 at 10:43:14PM -0800, Ashutosh Dixit wrote:
+> Normally only superuser/root can access perf counter data. However,
+> superuser can set perf_stream_paranoid sysctl to 0 to allow non-privileged
+> users to also access perf data. perf_stream_paranoid is introduced at the
+> perf layer to allow different perf stream types to share this access
+> mechanism.
 >=20
-> Reduce debug print from warn to debug to avoid uncessary warning message =
-in
-> dmesg (Lucas).
-Please use  Suggested-by: <> tag to provide such credits.
-Thanks,
-Anshuman
->=20
-> Fixes: c5a06c9169f3 ("drm/xe/guc: Enable WA 14018913170")
-> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_guc.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/gpu/drm/xe/xe_module.c |  5 +++++
+>  drivers/gpu/drm/xe/xe_perf.c   | 28 ++++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_perf.h   |  4 ++++
+>  3 files changed, 37 insertions(+)
 >=20
-> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c in=
-dex
-> 576ff2c1fbb9..6fbeddc557af 100644
-> --- a/drivers/gpu/drm/xe/xe_guc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc.c
-> @@ -174,7 +174,7 @@ static u32 guc_ctl_wa_flags(struct xe_guc *guc)
->  		if (GUC_VER(version->major, version->minor, version->patch) >=3D
-> GUC_VER(70, 7, 0))
->  			flags |=3D GUC_WA_ENABLE_TSC_CHECK_ON_RC6;
->  		else
-> -			drm_warn(&xe->drm, "can't apply WA 14018913170,
-> GUC version expected >=3D 70.7.0, found %u %u %u\n",
-> +			drm_dbg(&xe->drm, "can't apply WA 14018913170, GUC
-> version expected
-> +>=3D 70.7.0, found %u %u %u\n",
->  				 version->major, version->minor, version-
-> >patch);
+> diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_modul=
+e.c
+> index 51bf69b7ab222..8629330d928b0 100644
+> --- a/drivers/gpu/drm/xe/xe_module.c
+> +++ b/drivers/gpu/drm/xe/xe_module.c
+> @@ -11,6 +11,7 @@
+>  #include "xe_drv.h"
+>  #include "xe_hw_fence.h"
+>  #include "xe_pci.h"
+> +#include "xe_perf.h"
+>  #include "xe_pmu.h"
+>  #include "xe_sched_job.h"
+> =20
+> @@ -71,6 +72,10 @@ static const struct init_funcs init_funcs[] =3D {
+>  		.init =3D xe_register_pci_driver,
+>  		.exit =3D xe_unregister_pci_driver,
+>  	},
+> +	{
+> +		.init =3D xe_perf_sysctl_register,
+> +		.exit =3D xe_perf_sysctl_unregister,
+> +	},
+>  };
+> =20
+>  static int __init xe_init(void)
+> diff --git a/drivers/gpu/drm/xe/xe_perf.c b/drivers/gpu/drm/xe/xe_perf.c
+> index a130076b59aa2..37538e98dcc04 100644
+> --- a/drivers/gpu/drm/xe/xe_perf.c
+> +++ b/drivers/gpu/drm/xe/xe_perf.c
+> @@ -4,9 +4,13 @@
+>   */
+> =20
+>  #include <linux/errno.h>
+> +#include <linux/sysctl.h>
+> =20
+>  #include "xe_perf.h"
+> =20
+> +u32 xe_perf_stream_paranoid =3D true;
+> +static struct ctl_table_header *sysctl_header;
+> +
+>  int xe_perf_ioctl(struct drm_device *dev, void *data, struct drm_file *f=
+ile)
+>  {
+>  	struct drm_xe_perf_param *arg =3D data;
+> @@ -19,3 +23,27 @@ int xe_perf_ioctl(struct drm_device *dev, void *data, =
+struct drm_file *file)
+>  		return -EINVAL;
 >  	}
->=20
-> --
-> 2.25.1
+>  }
+> +
+> +static struct ctl_table perf_ctl_table[] =3D {
+> +	{
+> +	 .procname =3D "perf_stream_paranoid",
+> +	 .data =3D &xe_perf_stream_paranoid,
+> +	 .maxlen =3D sizeof(xe_perf_stream_paranoid),
+> +	 .mode =3D 0644,
+> +	 .proc_handler =3D proc_dointvec_minmax,
+> +	 .extra1 =3D SYSCTL_ZERO,
+> +	 .extra2 =3D SYSCTL_ONE,
+> +	 },
+> +	{}
+We no longer need the sentinel moving forward. At the moment it will
+work with and without a sentinel. But that check will be removed within
+in the next two releases. I suggest you just remove the sentinel and end
+it like this
 
+=2E..
+  .extra2 =3D SYSCTL_ONE,
+  },
+=2E..
+
+Furthermore: isn't that space after the tab on the struct supposed to be
+a tab?
+
+best
+
+> +};
+> +
+> +int xe_perf_sysctl_register(void)
+> +{
+> +	sysctl_header =3D register_sysctl("dev/xe", perf_ctl_table);
+> +	return 0;
+> +}
+> +
+> +void xe_perf_sysctl_unregister(void)
+> +{
+> +	unregister_sysctl_table(sysctl_header);
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_perf.h b/drivers/gpu/drm/xe/xe_perf.h
+> index 254cc7cf49fef..1ff0a07ebab30 100644
+> --- a/drivers/gpu/drm/xe/xe_perf.h
+> +++ b/drivers/gpu/drm/xe/xe_perf.h
+> @@ -11,6 +11,10 @@
+>  struct drm_device;
+>  struct drm_file;
+> =20
+> +extern u32 xe_perf_stream_paranoid;
+> +
+>  int xe_perf_ioctl(struct drm_device *dev, void *data, struct drm_file *f=
+ile);
+> +int xe_perf_sysctl_register(void);
+> +void xe_perf_sysctl_unregister(void);
+> =20
+>  #endif
+> --=20
+> 2.41.0
+>=20
+
+--=20
+
+Joel Granados
+
+--a6yyoh62nlplw5d7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQGzBAABCgAdFiEErkcJVyXmMSXOyyeQupfNUreWQU8FAmWxGlUACgkQupfNUreW
+QU+aBwv7BgKlIl0+lzRGrgVm0wIER1zaT9Civs+9NKkfVOsZeoA5H274MqsiB9nD
+HCwkCg/EJWWVvPi89zXjFxa9B57JPAsrTubeA83jKK0EgGylKRAcnUBrHH2JG69w
+2KJvvEWi2usXSUg5Vr2otn38BE/XlcrASeQBDBtvsA3sZ9gSiX3wqc6LVGVJjj07
+pd0DXOgpx11biSnwt993LpLBQNqSpFF5M7sqjGhytETb31qWOc1vS0e4XVJFnQAR
+pUvaU+FVJ9r4t28fQADWDcRWO0ef8IJj6rLhxcDrEBnrKYf1NW0RF7bDS5Hq01d8
+OnjrEzBcJXiih+tmp5tDMjYjsDInT1lqOf3dkedmFFFgk/RKTfd6/dvxggd6mBpd
+g4kYJlslt8UuGVYDzRU8UPFzNBz+F89QxjMgBXq56ZCk9PC4puwXCvQm6W+TPoQS
+BUZ3kx/u8iamjBvS7K25QdCaM1CvNndq4VhFl/Zc0ILuQsvN0/bxaRcq/pSMR4Dt
+8H/PqgeH
+=pnri
+-----END PGP SIGNATURE-----
+
+--a6yyoh62nlplw5d7--
