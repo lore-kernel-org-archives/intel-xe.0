@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F91CC46CD2
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Jan 2024 07:54:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 784FFC47422
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Jan 2024 07:54:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD97E10F674;
-	Wed, 24 Jan 2024 07:54:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 432FC10F676;
+	Wed, 24 Jan 2024 07:54:53 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2474710F691;
- Wed, 24 Jan 2024 07:54:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB04110F652;
+ Wed, 24 Jan 2024 07:54:51 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/irq=3A_alloca?=
- =?utf-8?q?te_all_possible_msix_interrupts_=28rev5=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/irq=3A_allocate_al?=
+ =?utf-8?q?l_possible_msix_interrupts_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Dani Liberman" <dliberman@habana.ai>
-Date: Wed, 24 Jan 2024 07:54:40 -0000
-Message-ID: <170608288014.685200.2058000400197679342@5338d5abeb45>
+Date: Wed, 24 Jan 2024 07:54:51 -0000
+Message-ID: <170608289189.685200.7438219755393600742@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240124075058.2302235-1-dliberman@habana.ai>
 In-Reply-To: <20240124075058.2302235-1-dliberman@habana.ai>
@@ -48,9 +48,35 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 0496fe20d drm-tip: 2024y-01m-24d-05h-05m-06s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/irq: allocate all possible msix interrupts
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+b2ca823f819193c33ab811dfac08c614138d6d46
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 902eb3637a2dbcef4ab83d9b40ff2980d4c5458a
+Author: Dani Liberman <dliberman@habana.ai>
+Date:   Wed Jan 24 09:50:58 2024 +0200
+
+    drm/xe/irq: allocate all possible msix interrupts
+    
+    If platform supports MSIX, driver needs to allocate all possible
+    interrupts.
+    
+    v2:
+      - drop msix_cap and use the api return code instead.
+      - fix commit message.
+    
+    v3:
+      - pass specific type in irq flags.
+    
+    Cc: Ohad Sharabi <osharabi@habana.ai>
+    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+    Signed-off-by: Dani Liberman <dliberman@habana.ai>
++ /mt/dim checkpatch 0496fe20d8ed5e73ed186d293ef67e7bae4658eb drm-intel
+902eb3637 drm/xe/irq: allocate all possible msix interrupts
 
 
