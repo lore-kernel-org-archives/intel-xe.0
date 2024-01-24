@@ -4,22 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 299EDC46CD2
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Jan 2024 17:00:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05C58C46CD2
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Jan 2024 17:00:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA7B710EF6F;
-	Wed, 24 Jan 2024 16:59:59 +0000 (UTC)
-X-Greylist: delayed 426 seconds by postgrey-1.36 at gabe;
- Wed, 24 Jan 2024 16:59:58 UTC
+	by gabe.freedesktop.org (Postfix) with ESMTP id B239A10F73B;
+	Wed, 24 Jan 2024 17:00:28 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4624310E3AF
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Jan 2024 16:59:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 220A110F783
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Jan 2024 17:00:28 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 3/4] drm/xe: Add vm snapshot mutex for easily taking a vm
- snapshot during devcoredump
-Date: Wed, 24 Jan 2024 17:52:44 +0100
-Message-ID: <20240124165245.2660-3-maarten.lankhorst@linux.intel.com>
+Subject: [PATCH 4/4] drm/xe: Implement VM snapshot support for BO's and
+ userptr, v2.
+Date: Wed, 24 Jan 2024 17:52:45 +0100
+Message-ID: <20240124165245.2660-4-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240124165245.2660-1-maarten.lankhorst@linux.intel.com>
 References: <20240124165245.2660-1-maarten.lankhorst@linux.intel.com>
@@ -39,86 +37,369 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The devcoredump is done in fence signaling context. Because of this, we
-cannot take any of the normal mutexes or we would invert.
+Since we cannot immediately capture the BO's and userptr, perform it in
+2 stages. The immediate stage takes a reference to each BO and userptr,
+while a delayed worker captures the contents and then frees the
+reference.
 
-Normal: Take vm->lock, dma_fence_wait()
-Devcoredump: from dma_fence_wait() context, take vm->lock.
+This is required because in signaling context, no locks can be taken, no
+memory can be allocated, and no waits on userspace can be performed.
 
-This doesn't work, and we only care about integrity, so take the locks
-around additions and removals of vma's.
+With the delayed worker, all of this can be performed very easily,
+without having to resort to hacks.
+
+Changes since v1:
+- Fix crash on NULL captured vm.
+- Use ascii85_encode to capture BO contents and save some space. (Jose
+  Souza)
+- Add length to coredump output for each captured area.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c       | 8 ++++++++
- drivers/gpu/drm/xe/xe_vm_types.h | 5 +++++
- 2 files changed, 13 insertions(+)
+ drivers/gpu/drm/xe/xe_devcoredump.c       |  32 ++++-
+ drivers/gpu/drm/xe/xe_devcoredump_types.h |   8 ++
+ drivers/gpu/drm/xe/xe_vm.c                | 167 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vm.h                |   5 +
+ 4 files changed, 210 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index 68abc0b195be..4a3bbcc4f7a0 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -16,6 +16,7 @@
+ #include "xe_guc_ct.h"
+ #include "xe_guc_submit.h"
+ #include "xe_hw_engine.h"
++#include "xe_vm.h"
+ 
+ /**
+  * DOC: Xe device coredump
+@@ -58,11 +59,20 @@ static struct xe_guc *exec_queue_to_guc(struct xe_exec_queue *q)
+ 	return &q->gt->uc.guc;
+ }
+ 
++static void xe_devcoredump_deferred_snap_work(struct work_struct *work)
++{
++	struct xe_devcoredump_snapshot *ss = container_of(work, typeof(*ss), work);
++
++	xe_force_wake_get(gt_to_fw(ss->gt), XE_FORCEWAKE_ALL);
++	xe_vm_snapshot_capture_delayed(ss->vm);
++	xe_force_wake_put(gt_to_fw(ss->gt), XE_FORCEWAKE_ALL);
++}
++
+ static ssize_t xe_devcoredump_read(char *buffer, loff_t offset,
+ 				   size_t count, void *data, size_t datalen)
+ {
+ 	struct xe_devcoredump *coredump = data;
+-	struct xe_devcoredump_snapshot *ss;
++	struct xe_devcoredump_snapshot *ss = &coredump->snapshot;
+ 	struct drm_printer p;
+ 	struct drm_print_iterator iter;
+ 	struct timespec64 ts;
+@@ -72,12 +82,14 @@ static ssize_t xe_devcoredump_read(char *buffer, loff_t offset,
+ 	if (!data || !coredump_to_xe(coredump))
+ 		return -ENODEV;
+ 
++	/* Ensure delayed work is captured before continuing */
++	flush_work(&ss->work);
++
+ 	iter.data = buffer;
+ 	iter.offset = 0;
+ 	iter.start = offset;
+ 	iter.remain = count;
+ 
+-	ss = &coredump->snapshot;
+ 	p = drm_coredump_printer(&iter);
+ 
+ 	drm_printf(&p, "**** Xe Device Coredump ****\n");
+@@ -98,6 +110,10 @@ static ssize_t xe_devcoredump_read(char *buffer, loff_t offset,
+ 		if (coredump->snapshot.hwe[i])
+ 			xe_hw_engine_snapshot_print(coredump->snapshot.hwe[i],
+ 						    &p);
++	if (coredump->snapshot.vm) {
++		drm_printf(&p, "\n**** VM state ****\n");
++		xe_vm_snapshot_print(coredump->snapshot.vm, &p);
++	}
+ 
+ 	return count - iter.remain;
+ }
+@@ -111,11 +127,15 @@ static void xe_devcoredump_free(void *data)
+ 	if (!data || !coredump_to_xe(coredump))
+ 		return;
+ 
++	cancel_work_sync(&coredump->snapshot.work);
++
+ 	xe_guc_ct_snapshot_free(coredump->snapshot.ct);
+ 	xe_guc_exec_queue_snapshot_free(coredump->snapshot.ge);
+ 	for (i = 0; i < XE_NUM_HW_ENGINES; i++)
+ 		if (coredump->snapshot.hwe[i])
+ 			xe_hw_engine_snapshot_free(coredump->snapshot.hwe[i]);
++	xe_vm_snapshot_free(coredump->snapshot.vm);
++	memset(&coredump->snapshot, 0, sizeof(coredump->snapshot));
+ 
+ 	coredump->captured = false;
+ 	drm_info(&coredump_to_xe(coredump)->drm,
+@@ -137,6 +157,9 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 	ss->snapshot_time = ktime_get_real();
+ 	ss->boot_time = ktime_get_boottime();
+ 
++	ss->gt = q->gt;
++	INIT_WORK(&ss->work, xe_devcoredump_deferred_snap_work);
++
+ 	cookie = dma_fence_begin_signalling();
+ 	for (i = 0; q->width > 1 && i < XE_HW_ENGINE_MAX_INSTANCE;) {
+ 		if (adj_logical_mask & BIT(i)) {
+@@ -151,6 +174,7 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 
+ 	coredump->snapshot.ct = xe_guc_ct_snapshot_capture(&guc->ct, true);
+ 	coredump->snapshot.ge = xe_guc_exec_queue_snapshot_capture(q);
++	coredump->snapshot.vm = xe_vm_snapshot_capture(q->vm);
+ 
+ 	for_each_hw_engine(hwe, q->gt, id) {
+ 		if (hwe->class != q->hwe->class ||
+@@ -161,6 +185,9 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 		coredump->snapshot.hwe[id] = xe_hw_engine_snapshot_capture(hwe);
+ 	}
+ 
++	if (ss->vm)
++		queue_work(system_unbound_wq, &ss->work);
++
+ 	xe_force_wake_put(gt_to_fw(q->gt), XE_FORCEWAKE_ALL);
+ 	dma_fence_end_signalling(cookie);
+ }
+@@ -194,3 +221,4 @@ void xe_devcoredump(struct xe_exec_queue *q)
+ 		      xe_devcoredump_read, xe_devcoredump_free);
+ }
+ #endif
++
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump_types.h b/drivers/gpu/drm/xe/xe_devcoredump_types.h
+index 7fdad9c3d3dd..17ae3e3597b0 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump_types.h
++++ b/drivers/gpu/drm/xe/xe_devcoredump_types.h
+@@ -12,6 +12,7 @@
+ #include "xe_hw_engine_types.h"
+ 
+ struct xe_device;
++struct xe_gt;
+ 
+ /**
+  * struct xe_devcoredump_snapshot - Crash snapshot
+@@ -26,6 +27,11 @@ struct xe_devcoredump_snapshot {
+ 	/** @boot_time:  Relative boot time so the uptime can be calculated. */
+ 	ktime_t boot_time;
+ 
++	/** @gt: Affected GT, used by forcewake for delayed capture */
++	struct xe_gt *gt;
++	/** @work: Workqueue for deffered capture outside of signaling context */
++	struct work_struct work;
++
+ 	/* GuC snapshots */
+ 	/** @ct: GuC CT snapshot */
+ 	struct xe_guc_ct_snapshot *ct;
+@@ -33,6 +39,8 @@ struct xe_devcoredump_snapshot {
+ 	struct xe_guc_submit_exec_queue_snapshot *ge;
+ 	/** @hwe: HW Engine snapshot array */
+ 	struct xe_hw_engine_snapshot *hwe[XE_NUM_HW_ENGINES];
++	/** @vm: Snapshot of VM state */
++	struct xe_vm_snapshot *vm;
+ };
+ 
+ /**
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 0c2540971b17..e9672df71081 100644
+index e9672df71081..e27cf2da3f4d 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1028,7 +1028,9 @@ static int xe_vm_insert_vma(struct xe_vm *vm, struct xe_vma *vma)
- 	xe_assert(vm->xe, xe_vma_vm(vma) == vm);
- 	lockdep_assert_held(&vm->lock);
+@@ -13,6 +13,7 @@
+ #include <drm/ttm/ttm_execbuf_util.h>
+ #include <drm/ttm/ttm_tt.h>
+ #include <drm/xe_drm.h>
++#include <linux/ascii85.h>
+ #include <linux/delay.h>
+ #include <linux/kthread.h>
+ #include <linux/mm.h>
+@@ -3237,3 +3238,169 @@ int xe_analyze_vm(struct drm_printer *p, struct xe_vm *vm, int gt_id)
  
-+	mutex_lock(&vm->snap_mutex);
- 	err = drm_gpuva_insert(&vm->gpuvm, &vma->gpuva);
-+	mutex_unlock(&vm->snap_mutex);
- 	XE_WARN_ON(err);	/* Shouldn't be possible */
- 
- 	return err;
-@@ -1039,7 +1041,9 @@ static void xe_vm_remove_vma(struct xe_vm *vm, struct xe_vma *vma)
- 	xe_assert(vm->xe, xe_vma_vm(vma) == vm);
- 	lockdep_assert_held(&vm->lock);
- 
-+	mutex_lock(&vm->snap_mutex);
- 	drm_gpuva_remove(&vma->gpuva);
-+	mutex_unlock(&vm->snap_mutex);
- 	if (vm->usm.last_fault_vma == vma)
- 		vm->usm.last_fault_vma = NULL;
+ 	return 0;
  }
-@@ -1266,6 +1270,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- 	vm->flags = flags;
- 
- 	init_rwsem(&vm->lock);
-+	mutex_init(&vm->snap_mutex);
- 
- 	INIT_LIST_HEAD(&vm->rebind_list);
- 
-@@ -1391,6 +1396,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- 	return ERR_PTR(err);
- 
- err_no_resv:
-+	mutex_destroy(&vm->snap_mutex);
- 	for_each_tile(tile, xe, id)
- 		xe_range_fence_tree_fini(&vm->rftree[id]);
- 	kfree(vm);
-@@ -1490,6 +1496,8 @@ void xe_vm_close_and_put(struct xe_vm *vm)
- 
- 	up_write(&vm->lock);
- 
-+	mutex_destroy(&vm->snap_mutex);
 +
- 	mutex_lock(&xe->usm.lock);
- 	if (vm->flags & XE_VM_FLAG_FAULT_MODE)
- 		xe->usm.num_vm_in_fault_mode--;
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 2877f44bef7d..eeb293c3a170 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -157,6 +157,11 @@ struct xe_vm {
- 	 * VM
- 	 */
- 	struct rw_semaphore lock;
-+	/**
-+	 * @snap_mutex: Mutex used to guard insertions and removals from gpuva,
-+	 * so we can take a snapshot safely from devcoredump.
-+	 */
-+	struct mutex snap_mutex;
- 
- 	/**
- 	 * @rebind_list: list of VMAs that need rebinding. Protected by the
++struct xe_vm_snapshot {
++	unsigned long num_snaps;
++	struct {
++		uint64_t ofs, bo_ofs;
++		unsigned long len;
++		struct xe_bo *bo;
++		void *data;
++		struct mm_struct *mm;
++	} snap[];
++};
++
++struct xe_vm_snapshot *xe_vm_snapshot_capture(struct xe_vm *vm)
++{
++	unsigned long num_snaps = 0, i;
++	struct xe_vm_snapshot *snap = NULL;
++	struct drm_gpuva *gpuva;
++
++	if (!vm)
++		return NULL;
++
++	mutex_lock(&vm->snap_mutex);
++	drm_gpuvm_for_each_va(gpuva, &vm->gpuvm) {
++		if (gpuva->flags & XE_VMA_DUMPABLE)
++			num_snaps++;
++	}
++
++	if (num_snaps)
++		snap = kvzalloc(offsetof(struct xe_vm_snapshot, snap[num_snaps]), GFP_NOWAIT);
++	if (!snap)
++		goto out_unlock;
++
++	snap->num_snaps = num_snaps;
++	i = 0;
++	drm_gpuvm_for_each_va(gpuva, &vm->gpuvm) {
++		struct xe_vma *vma = gpuva_to_vma(gpuva);
++		struct xe_bo *bo = vma->gpuva.gem.obj ?
++			gem_to_xe_bo(vma->gpuva.gem.obj) : NULL;
++
++		if (!(gpuva->flags & XE_VMA_DUMPABLE))
++			continue;
++
++		snap->snap[i].ofs = xe_vma_start(vma);
++		snap->snap[i].len = xe_vma_size(vma);
++		if (bo) {
++			snap->snap[i].bo = xe_bo_get(bo);
++			snap->snap[i].bo_ofs = xe_vma_bo_offset(vma);
++		} else if (xe_vma_is_userptr(vma)) {
++			if (mmget_not_zero(vma->userptr.notifier.mm))
++				snap->snap[i].mm = vma->userptr.notifier.mm;
++			else
++				snap->snap[i].data = ERR_PTR(-EFAULT);
++			snap->snap[i].bo_ofs = xe_vma_userptr(vma);
++		} else {
++			snap->snap[i].data = ERR_PTR(-ENOENT);
++		}
++		i++;
++	}
++
++out_unlock:
++	mutex_unlock(&vm->snap_mutex);
++	return snap;
++}
++
++void xe_vm_snapshot_capture_delayed(struct xe_vm_snapshot *snap)
++{
++	if (!snap)
++		return;
++
++	for (int i = 0; i < snap->num_snaps; i++) {
++		struct xe_bo *bo = snap->snap[i].bo;
++		struct iosys_map src;
++		int err;
++
++		if (IS_ERR(snap->snap[i].data))
++			continue;
++
++		snap->snap[i].data = kvmalloc(snap->snap[i].len, GFP_USER);
++		if (!snap->snap[i].data) {
++			snap->snap[i].data = ERR_PTR(-ENOMEM);
++			goto cleanup_bo;
++		}
++
++		if (bo) {
++			dma_resv_lock(bo->ttm.base.resv, NULL);
++			err = ttm_bo_vmap(&bo->ttm, &src);
++			if (!err) {
++				xe_map_memcpy_from(xe_bo_device(bo),
++						   snap->snap[i].data,
++						   &src, snap->snap[i].bo_ofs,
++						   snap->snap[i].len);
++				ttm_bo_vunmap(&bo->ttm, &src);
++			}
++			dma_resv_unlock(bo->ttm.base.resv);
++		} else {
++			void __user *userptr = (void __user *)(size_t)snap->snap[i].bo_ofs;
++			kthread_use_mm(snap->snap[i].mm);
++
++			if (!copy_from_user(snap->snap[i].data, userptr, snap->snap[i].len))
++				err = 0;
++			else
++				err = -EFAULT;
++			kthread_unuse_mm(snap->snap[i].mm);
++			mmput(snap->snap[i].mm);
++			snap->snap[i].mm = NULL;
++		}
++
++		if (err) {
++			kvfree(snap->snap[i].data);
++			snap->snap[i].data = ERR_PTR(err);
++		}
++
++cleanup_bo:
++		xe_bo_put(bo);
++		snap->snap[i].bo = NULL;
++	}
++}
++
++void xe_vm_snapshot_print(struct xe_vm_snapshot *snap, struct drm_printer *p)
++{
++	unsigned long i, j;
++
++	for (i = 0; i < snap->num_snaps; i++) {
++		if (IS_ERR(snap->snap[i].data))
++			goto uncaptured;
++
++		drm_printf(p, "[%llx].length: 0x%lx\n", snap->snap[i].ofs, snap->snap[i].len);
++
++		for (j = 0; j < snap->snap[i].len; j += 64) {
++			uint32_t *val = snap->snap[i].data + j;
++			char dumped[16][ASCII85_BUFSZ];
++			const char *x[16];
++			uint32_t k;
++
++			for (k = 0; k < 16; k++)
++				x[k] = ascii85_encode(val[k], dumped[k]);
++
++			drm_printf(p, "[%llx].data: { %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s }\n",
++				   snap->snap[i].ofs + j, x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7],
++				   x[8], x[9], x[10], x[11], x[12], x[13], x[14], x[15]);
++		}
++		continue;
++
++uncaptured:
++		drm_printf(p, "Unable to capture range [%llx-%llx]: %li\n",
++			   snap->snap[i].ofs, snap->snap[i].ofs + snap->snap[i].len - 1,
++			   PTR_ERR(snap->snap[i].data));
++	}
++}
++
++void xe_vm_snapshot_free(struct xe_vm_snapshot *snap)
++{
++	unsigned long i;
++
++	if (!snap)
++		return;
++
++	for (i = 0; i < snap->num_snaps; i++) {
++		if (!IS_ERR(snap->snap[i].data))
++			kvfree(snap->snap[i].data);
++		xe_bo_put(snap->snap[i].bo);
++		if (snap->snap[i].mm)
++			mmput(snap->snap[i].mm);
++	}
++	kvfree(snap);
++}
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index e9c907cbcd89..8b061f1f753a 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -259,3 +259,8 @@ static inline void vm_dbg(const struct drm_device *dev,
+ { /* noop */ }
+ #endif
+ #endif
++
++struct xe_vm_snapshot *xe_vm_snapshot_capture(struct xe_vm *vm);
++void xe_vm_snapshot_capture_delayed(struct xe_vm_snapshot *snap);
++void xe_vm_snapshot_print(struct xe_vm_snapshot *snap, struct drm_printer *p);
++void xe_vm_snapshot_free(struct xe_vm_snapshot *snap);
 -- 
 2.43.0
 
