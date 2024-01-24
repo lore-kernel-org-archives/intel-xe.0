@@ -4,42 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62887C46CD2
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65EB8C47E49
 	for <intel-xe@archiver.kernel.org>; Wed, 24 Jan 2024 21:37:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 160A210EA6C;
-	Wed, 24 Jan 2024 21:37:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF0D110EA75;
+	Wed, 24 Jan 2024 21:37:47 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org
  [198.137.202.133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6D2D10EA6A;
- Wed, 24 Jan 2024 21:37:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D706F10EA6C
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Jan 2024 21:37:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
- Message-ID:Sender:Reply-To:Content-ID:Content-Description;
- bh=AX08+RLbDchsJTFyY1lnz5dLrmtS/OEhzEMoWtz6kyg=; b=iJJytbfpjgwsfOP6lKgV0cHI66
- BGr6bA9cPVV5+u0+oRGd/xH57eMjl/B6M3khMQAL6yvfrlUUJJ7pWJ9ulNl+9NBbLhtwTgASfht2h
- q6l+DLKMx4Ks8QxOcRQ6ObF/grcj0Lmdyy95Av1kIWgoLeDsFDFIEcUfuE8yd2oLb2P6uT0A1BoMt
- Clgs/69OQNzvyLhSzDoXxrglpqa8tbFrHvhHYj3MC0+f9JTCP8Bp5dyZbCeQYqmBh5jMHyCqZjOIC
- UTClGiWfoc9iSrDNmKjdIyNa1fqQDgxj1YdrelkthMkvksqNaald2yKe5gU/MVBlX6g2F7hWwHc0t
- cSn+M5qg==;
+ Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
+ Message-ID:Sender:Reply-To:Cc:Content-ID:Content-Description;
+ bh=YrNW8zzAMGjx4vBY5DdLvNd2jS5vGdHh9SM56Zdrp/s=; b=PwGUli+iRNd1MGUlPfUMfDvdCH
+ hHKcVRmZLUl0yt4I1R7Mmm0FjM04Ofdp30WOz9RiOjJPA33pmLBRqoLRo5NLmHiVwwzN5UPyhTh+U
+ 6EJ/RraKfeFORzCuEmodmPENSEOLoxFrnhJ6AGz52vsHjF6w6QmZZWc3HQqWZtnHlqtKEAHs+CxND
+ g2dMiDKhUQQaZ/T3/RTZhLeq9S2m8+1lml7QhfCo7OLiJ92YIY0NPYtkNbRV/oT4tJwe+dW4vUeM2
+ 5UHLTZHqbJa2CmO8DTUucPvZ7WTo9MWDeX8G/XJONQTeiMLeo3StX5EoyigJqsl0R05/Lbs27DTfZ
+ C8dB671w==;
 Received: from [50.53.50.0] (helo=[192.168.254.15])
  by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
- id 1rSku7-005ALU-0r; Wed, 24 Jan 2024 21:35:27 +0000
-Message-ID: <f16366bb-664e-4794-ad41-2c4c669190bd@infradead.org>
-Date: Wed, 24 Jan 2024 13:35:26 -0800
+ id 1rSku6-005ALU-1v; Wed, 24 Jan 2024 21:35:26 +0000
+Message-ID: <ee182014-8dc8-40dc-bbdb-bbd90c7783c3@infradead.org>
+Date: Wed, 24 Jan 2024 13:35:23 -0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: linux-next: Tree for Jan 23 (drm/xe/)
+Subject: Re: [PATCH] drm/xe: don't build debugfs files when CONFIG_DEBUG_FS=n
 Content-Language: en-US
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Stephen Rothwell <sfr@canb.auug.org.au>,
- Linux Next Mailing List <linux-next@vger.kernel.org>
-References: <20240123132929.7cb6ea4c@canb.auug.org.au>
- <152521f9-119f-4c61-b467-3e91f4aecb1a@infradead.org>
- <87le8fks3r.fsf@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>, intel-xe@lists.freedesktop.org
+References: <20240124090515.3363901-1-jani.nikula@intel.com>
 From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <87le8fks3r.fsf@intel.com>
+In-Reply-To: <20240124090515.3363901-1-jani.nikula@intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -53,47 +49,64 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-On 1/24/24 01:17, Jani Nikula wrote:
-> On Tue, 23 Jan 2024, Randy Dunlap <rdunlap@infradead.org> wrote:
->> On 1/22/24 18:29, Stephen Rothwell wrote:
->>> Hi all,
->>>
->>> News: there will be no linux-next release on Friday
->>>
->>> Changes since 20240122:
->>>
->>
->> on ARM64, when
->> DRM_I915 is not set
->> DRM_XE=m
->> DEBUG_FS is not set
->>
->> ../drivers/gpu/drm/i915/display/intel_display_debugfs.c:1091:6: error: redefinition of 'intel_display_debugfs_register'
->>  1091 | void intel_display_debugfs_register(struct drm_i915_private *i915)
->>       |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> In file included from ../drivers/gpu/drm/i915/display/intel_display_debugfs.c:19:
+On 1/24/24 01:05, Jani Nikula wrote:
+> If we unconditionally build the debugfs files, we'll get both the static
+> inline stubs from the headers and the real functions for
+> CONFIG_DEBUG_FS=n. Avoid building the debugfs files with that config.
 > 
-> Does [1] fix the issue?
+> Reported-by: Randy Dunlap <rdunlap@infradead.org>
+> Closes: https://lore.kernel.org/r/152521f9-119f-4c61-b467-3e91f4aecb1a@infradead.org
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Yes, thanks.
+Tested-by: Randy Dunlap <rdunlap@infradead.org> # build-tested
+Reviewed-by: Randy Dunlap <rdunlap@infradead.org>
 
+Thanks.
+
+> ---
+>  drivers/gpu/drm/xe/Makefile | 10 +++++++---
+>  1 file changed, 7 insertions(+), 3 deletions(-)
 > 
-> BR,
-> Jani.
-> 
-> 
-> [1] https://lore.kernel.org/r/20240124090515.3363901-1-jani.nikula@intel.com
-> 
-> 
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index fe8b266a9819..abb2be8268d0 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -222,8 +222,6 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+>  	i915-display/intel_ddi.o \
+>  	i915-display/intel_ddi_buf_trans.o \
+>  	i915-display/intel_display.o \
+> -	i915-display/intel_display_debugfs.o \
+> -	i915-display/intel_display_debugfs_params.o \
+>  	i915-display/intel_display_device.o \
+>  	i915-display/intel_display_driver.o \
+>  	i915-display/intel_display_irq.o \
+> @@ -267,7 +265,6 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+>  	i915-display/intel_modeset_setup.o \
+>  	i915-display/intel_modeset_verify.o \
+>  	i915-display/intel_panel.o \
+> -	i915-display/intel_pipe_crc.o \
+>  	i915-display/intel_pmdemand.o \
+>  	i915-display/intel_pps.o \
+>  	i915-display/intel_psr.o \
+> @@ -294,6 +291,13 @@ ifeq ($(CONFIG_DRM_FBDEV_EMULATION),y)
+>  	xe-$(CONFIG_DRM_XE_DISPLAY) += i915-display/intel_fbdev.o
+>  endif
+>  
+> +ifeq ($(CONFIG_DEBUG_FS),y)
+> +	xe-$(CONFIG_DRM_XE_DISPLAY) += \
+> +		i915-display/intel_display_debugfs.o \
+> +		i915-display/intel_display_debugfs_params.o \
+> +		i915-display/intel_pipe_crc.o
+> +endif
+> +
+>  obj-$(CONFIG_DRM_XE) += xe.o
+>  obj-$(CONFIG_DRM_XE_KUNIT_TEST) += tests/
+>  
 
 -- 
 #Randy
