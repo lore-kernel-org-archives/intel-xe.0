@@ -4,40 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65EB8C47E49
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Jan 2024 21:37:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DA08C46CD2
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Jan 2024 21:43:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF0D110EA75;
-	Wed, 24 Jan 2024 21:37:47 +0000 (UTC)
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [198.137.202.133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D706F10EA6C
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Jan 2024 21:37:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
- Message-ID:Sender:Reply-To:Cc:Content-ID:Content-Description;
- bh=YrNW8zzAMGjx4vBY5DdLvNd2jS5vGdHh9SM56Zdrp/s=; b=PwGUli+iRNd1MGUlPfUMfDvdCH
- hHKcVRmZLUl0yt4I1R7Mmm0FjM04Ofdp30WOz9RiOjJPA33pmLBRqoLRo5NLmHiVwwzN5UPyhTh+U
- 6EJ/RraKfeFORzCuEmodmPENSEOLoxFrnhJ6AGz52vsHjF6w6QmZZWc3HQqWZtnHlqtKEAHs+CxND
- g2dMiDKhUQQaZ/T3/RTZhLeq9S2m8+1lml7QhfCo7OLiJ92YIY0NPYtkNbRV/oT4tJwe+dW4vUeM2
- 5UHLTZHqbJa2CmO8DTUucPvZ7WTo9MWDeX8G/XJONQTeiMLeo3StX5EoyigJqsl0R05/Lbs27DTfZ
- C8dB671w==;
-Received: from [50.53.50.0] (helo=[192.168.254.15])
- by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
- id 1rSku6-005ALU-1v; Wed, 24 Jan 2024 21:35:26 +0000
-Message-ID: <ee182014-8dc8-40dc-bbdb-bbd90c7783c3@infradead.org>
-Date: Wed, 24 Jan 2024 13:35:23 -0800
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C68110EA6E;
+	Wed, 24 Jan 2024 21:43:15 +0000 (UTC)
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C5A310EA6E;
+ Wed, 24 Jan 2024 21:43:14 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1404361475345947230=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: don't build debugfs files when CONFIG_DEBUG_FS=n
-Content-Language: en-US
-To: Jani Nikula <jani.nikula@intel.com>, intel-xe@lists.freedesktop.org
-References: <20240124090515.3363901-1-jani.nikula@intel.com>
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20240124090515.3363901-1-jani.nikula@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/sched=3A_Drain_all_entities_?=
+ =?utf-8?q?in_DRM_sched_run_job_worker?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Date: Wed, 24 Jan 2024 21:43:14 -0000
+Message-ID: <170613259404.685200.6873455281921106256@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240124210811.1639040-1-matthew.brost@intel.com>
+In-Reply-To: <20240124210811.1639040-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,64 +35,107 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============1404361475345947230==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/sched: Drain all entities in DRM sched run job worker
+URL   : https://patchwork.freedesktop.org/series/129142/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-676-17a4bf61bc88ebf988b4782dacdb327c9bb60684_BAT -> xe-pw-129142v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
 
 
-On 1/24/24 01:05, Jani Nikula wrote:
-> If we unconditionally build the debugfs files, we'll get both the static
-> inline stubs from the headers and the real functions for
-> CONFIG_DEBUG_FS=n. Avoid building the debugfs files with that config.
-> 
-> Reported-by: Randy Dunlap <rdunlap@infradead.org>
-> Closes: https://lore.kernel.org/r/152521f9-119f-4c61-b467-3e91f4aecb1a@infradead.org
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Changes
+-------
 
-Tested-by: Randy Dunlap <rdunlap@infradead.org> # build-tested
-Reviewed-by: Randy Dunlap <rdunlap@infradead.org>
+  No changes found
 
-Thanks.
 
-> ---
->  drivers/gpu/drm/xe/Makefile | 10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> index fe8b266a9819..abb2be8268d0 100644
-> --- a/drivers/gpu/drm/xe/Makefile
-> +++ b/drivers/gpu/drm/xe/Makefile
-> @@ -222,8 +222,6 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
->  	i915-display/intel_ddi.o \
->  	i915-display/intel_ddi_buf_trans.o \
->  	i915-display/intel_display.o \
-> -	i915-display/intel_display_debugfs.o \
-> -	i915-display/intel_display_debugfs_params.o \
->  	i915-display/intel_display_device.o \
->  	i915-display/intel_display_driver.o \
->  	i915-display/intel_display_irq.o \
-> @@ -267,7 +265,6 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
->  	i915-display/intel_modeset_setup.o \
->  	i915-display/intel_modeset_verify.o \
->  	i915-display/intel_panel.o \
-> -	i915-display/intel_pipe_crc.o \
->  	i915-display/intel_pmdemand.o \
->  	i915-display/intel_pps.o \
->  	i915-display/intel_psr.o \
-> @@ -294,6 +291,13 @@ ifeq ($(CONFIG_DRM_FBDEV_EMULATION),y)
->  	xe-$(CONFIG_DRM_XE_DISPLAY) += i915-display/intel_fbdev.o
->  endif
->  
-> +ifeq ($(CONFIG_DEBUG_FS),y)
-> +	xe-$(CONFIG_DRM_XE_DISPLAY) += \
-> +		i915-display/intel_display_debugfs.o \
-> +		i915-display/intel_display_debugfs_params.o \
-> +		i915-display/intel_pipe_crc.o
-> +endif
-> +
->  obj-$(CONFIG_DRM_XE) += xe.o
->  obj-$(CONFIG_DRM_XE_KUNIT_TEST) += tests/
->  
+Build changes
+-------------
 
--- 
-#Randy
+  * Linux: xe-676-17a4bf61bc88ebf988b4782dacdb327c9bb60684 -> xe-pw-129142v1
+
+  IGT_7691: 7691
+  xe-676-17a4bf61bc88ebf988b4782dacdb327c9bb60684: 17a4bf61bc88ebf988b4782dacdb327c9bb60684
+  xe-pw-129142v1: 129142v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129142v1/index.html
+
+--===============1404361475345947230==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/sched: Drain all entities in DRM sched run job worker</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129142/">https://patchwork.freedesktop.org/series/129142/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129142v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129142v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-676-17a4bf61bc88ebf988b4782dacdb327c9bb60684_BAT -&gt; xe-pw-129142v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-676-17a4bf61bc88ebf988b4782dacdb327c9bb60684 -&gt; xe-pw-129142v1</li>
+</ul>
+<p>IGT_7691: 7691<br />
+  xe-676-17a4bf61bc88ebf988b4782dacdb327c9bb60684: 17a4bf61bc88ebf988b4782dacdb327c9bb60684<br />
+  xe-pw-129142v1: 129142v1</p>
+
+</body>
+</html>
+
+--===============1404361475345947230==--
