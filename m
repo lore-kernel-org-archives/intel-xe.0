@@ -4,86 +4,144 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 482D0C47DDB
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jan 2024 23:57:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB2D7C47258
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Jan 2024 01:30:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFF6E10F1BC;
-	Tue, 23 Jan 2024 23:57:11 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11B5610F1BC
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Jan 2024 23:57:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1706054224;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=BkAFghKlL/ClXus3OKhgyjs1xcIPZKJiBh55t/MhwH4=;
- b=K1ShbRlIsEattJYcRwQ8/25C6iIvsCHXrzPLom8p9xVbzk6JLpmD9qUisPdlqB0XrBBFyd
- vSCaEXU8DWt4ZEMcdAkt6LiCC1Wl7quqoaO7SJmLrj/HlDqxoYuAWHHBBQKh/bpZ3En53Y
- VM2EWG6Mbz4qzVHdNuSyftgfqR7QFKI=
-Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com
- [209.85.167.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-22-LZmNQDJSNZC_jccWk7cvFA-1; Tue, 23 Jan 2024 18:57:02 -0500
-X-MC-Unique: LZmNQDJSNZC_jccWk7cvFA-1
-Received: by mail-lf1-f71.google.com with SMTP id
- 2adb3069b0e04-50e7b2ac430so3549076e87.1
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Jan 2024 15:57:01 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1706054220; x=1706659020;
- h=content-transfer-encoding:in-reply-to:organization:from:references
- :cc:to:content-language:subject:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=BkAFghKlL/ClXus3OKhgyjs1xcIPZKJiBh55t/MhwH4=;
- b=r8jWSO8ZR4dJLW3+/JiBEad8GjwovcUS9Jhab6AZGjZkiEfSkYTm7EMpROYxuNBfgz
- bjH3CeU5EUUt4AK2wiAPg5jXZd6prw7LugWKW2nH+oDN6uXxi2GrESJ9kwKJFqcs8/Ib
- YdO5Mgj2Eq0GyVvoEl4QWZpa7iN0UCihFwxLcvLWqt4C+5BpTfh5ozRbpRO2VWt4DTEP
- FLz9gRzmDlifraESl8IOc0Dfj020kK30KQFwx45b9u2pIAboyLozn28Fn23LVqGAnU/U
- FdYJc8UGjpnZvy4Xd/yU/68YpFBgC28UEpI/ri/OxJF32+kttUCvdJW9PSn/EtQ/dX/2
- A0WA==
-X-Gm-Message-State: AOJu0YxvtppqS/pkYFwl4eSS9D+MRVNucPGAWdihdNaDeQOHB2p2Ihz8
- Sy0ExNH+ktMxxpFUgBYkzUCikDxKAgVZNQ/tVbVRuzi/fe6sbGjxvYSU0/obYyPZ5CYCU6qsCfO
- eR4AhsFupoEEN8sK3YVcwkMtj1XBjENsJwUxcIobcngD2qFH1N62OhLE5gNa0IIvY
-X-Received: by 2002:a05:6512:108e:b0:50e:69f0:3cda with SMTP id
- j14-20020a056512108e00b0050e69f03cdamr3943552lfg.20.1706054220524; 
- Tue, 23 Jan 2024 15:57:00 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHOS+MTjVw2oI/k4iqQvVXM5MLqN0mbRm2wOi/Ns3HFrIlhHu9JNwzw3zKMrYR4oUVVIWe9Jw==
-X-Received: by 2002:a05:6512:108e:b0:50e:69f0:3cda with SMTP id
- j14-20020a056512108e00b0050e69f03cdamr3943544lfg.20.1706054220131; 
- Tue, 23 Jan 2024 15:57:00 -0800 (PST)
-Received: from ?IPV6:2a02:810d:4b3f:ee94:abf:b8ff:feee:998b?
- ([2a02:810d:4b3f:ee94:abf:b8ff:feee:998b])
- by smtp.gmail.com with ESMTPSA id
- s7-20020a17090699c700b00a30e1f233b4sm46267ejn.128.2024.01.23.15.56.58
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 23 Jan 2024 15:56:59 -0800 (PST)
-Message-ID: <4c622af4-af92-4e95-957f-a8867925c236@redhat.com>
-Date: Wed, 24 Jan 2024 00:56:57 +0100
-MIME-Version: 1.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67FA610F4F3;
+	Wed, 24 Jan 2024 01:30:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9547B10F4F3
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Jan 2024 01:30:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706059851; x=1737595851;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=DrH41Cfmj0SK1l4G9VcoY1HZ+Q6dhwb4tpxAr8tfKcI=;
+ b=NAVbNSsqZyftBYIf3eAWaHUZ7Z9UrpWW/z5gYlGcopJdef9bqabux+CS
+ rnqeZFPbCXZQmFDQ5j06CRvGBdmIpVys30O7z9iabfnbyr69w7wM0gcAH
+ bZRI/MneV1lo32/Unk8nAc9/uvsPg88dJpMMFr4hXpOzdW+t1spx9rADT
+ a6UW0bIDFaxUSYXxfHaQNRYirKo1J8xlI8Ju6iPkOdMnvrILUUPtMx/gE
+ LsGmooJvYoJiNyJbRAUFyoeIN8Yzjg9to0dImRUpPdT6untJwBHkZTf+P
+ 4xEbz8jLxt8vpogKUJgMtD5/uTycktjfA5giuE+EGQ3vy7vVmGxmGNH/6 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="607510"
+X-IronPort-AV: E=Sophos;i="6.05,215,1701158400"; 
+   d="scan'208";a="607510"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2024 17:30:50 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,215,1701158400"; 
+   d="scan'208";a="1724561"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 23 Jan 2024 17:30:50 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 23 Jan 2024 17:30:48 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Tue, 23 Jan 2024 17:30:48 -0800
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Tue, 23 Jan 2024 17:30:49 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=a2lLj+HTdbcY5Ba4cltiKzfBnfvjZMTjqNN9qqVxvVLCvsZdRazZjnRzcz2d+OgxKBGzUB5cTbn4j9EtcdR1zOxcDS5bdlVy5v9iuBAo0zg4XpnquJRcLCCszGuEi+q5VavicBcbllz2rElROx6BSE3J0kVMNxwVWYKE7OjhIUQfvbInce7O+fZJc9AwC4SKkdyjI6JXoKQ8a5M+ILHE3VjKtpuLhg3yimpAy8yhfxlEd731g4GLlW4Qx2TFPkYXA4eG8Us9+tVKPTn0ZSnVscPA3wOez/Ez4UScIrOlFLZqL/O3JLcB6SxjMhpwZ/LLP8qFI9ofMEa6tx5POzNfAw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=W5FsNnUXct3lKL5jl4ye3cTwBqaqyeqb9N1kxf8PAoA=;
+ b=SdKOGtqWu2Tg2hgRAbcCqKY8gfi93EEcUpdS3DUaZIH+HAjaTeGPLLNM9fHDpsfGxz+YR3cQLaxI5HT3+vyoZ3e373PRwWpkC4fb1du2RZXxkN+uskDxugpk2L2IyZ5D6Q2gBm/APKxSEPQNADZIm3HVkETmu1WAHi2T1+f9iXddkLAZojd8Eik9iPLLfnxHvNIwprBhfVu9ILSFaXopDEOD3Nf1398leov8hufqAfVu0Dc3r5tEKFnhdkmazhCq55L6XwLUurljqzx33qmDZvlZcy6TtXSV8OGpOM9HNTprl/XK4mmM+S36FZudiZBY+AVahUSA1tNW8Lws6a+EcA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SN7PR11MB7705.namprd11.prod.outlook.com (2603:10b6:806:32f::16)
+ by BL3PR11MB6483.namprd11.prod.outlook.com (2603:10b6:208:3be::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.32; Wed, 24 Jan
+ 2024 01:30:46 +0000
+Received: from SN7PR11MB7705.namprd11.prod.outlook.com
+ ([fe80::83d:7cbc:ec45:cb9d]) by SN7PR11MB7705.namprd11.prod.outlook.com
+ ([fe80::83d:7cbc:ec45:cb9d%7]) with mapi id 15.20.7202.034; Wed, 24 Jan 2024
+ 01:30:45 +0000
+Message-ID: <a90caefb-46d0-43b0-8148-5182160bca08@intel.com>
+Date: Tue, 23 Jan 2024 17:30:44 -0800
 User-Agent: Mozilla Thunderbird
-Subject: Re: Making drm_gpuvm work across gpu devices
-To: "Zeng, Oak" <oak.zeng@intel.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Dave Airlie <airlied@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
- Felix Kuehling <felix.kuehling@amd.com>
-References: <20240117221223.18540-1-oak.zeng@intel.com>
- <20240117221223.18540-22-oak.zeng@intel.com>
- <ad21ec11-a9cb-4fb2-b9fd-00a4fa11525f@intel.com>
- <PH7PR11MB70049E7E6A2F40BF6282ECC292742@PH7PR11MB7004.namprd11.prod.outlook.com>
- <PH7PR11MB700440CE88BC0A94CFF8499792742@PH7PR11MB7004.namprd11.prod.outlook.com>
- <2928ce36-06a6-4bee-b115-8dd61cc41dca@amd.com>
- <SA1PR11MB699192584C01A26C781E2F9992742@SA1PR11MB6991.namprd11.prod.outlook.com>
-From: Danilo Krummrich <dakr@redhat.com>
-Organization: RedHat
-In-Reply-To: <SA1PR11MB699192584C01A26C781E2F9992742@SA1PR11MB6991.namprd11.prod.outlook.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
+Subject: Re: [PATCH] drm/xe: Only allow 1 ufence per exec / bind IOCTL
+To: Matthew Brost <matthew.brost@intel.com>, <intel-xe@lists.freedesktop.org>
+References: <20240123163422.1570227-1-matthew.brost@intel.com>
 Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: "Welty, Brian" <brian.welty@intel.com>
+In-Reply-To: <20240123163422.1570227-1-matthew.brost@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BYAPR05CA0036.namprd05.prod.outlook.com
+ (2603:10b6:a03:c0::49) To SN7PR11MB7705.namprd11.prod.outlook.com
+ (2603:10b6:806:32f::16)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN7PR11MB7705:EE_|BL3PR11MB6483:EE_
+X-MS-Office365-Filtering-Correlation-Id: 51869f00-8e02-4319-4f5d-08dc1c7c1676
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: OtwJpxxdms70eWbXVTZa34aDWTEudx/B2jPSnEnHpQcp8UEhG1cl4fgFAq5VYd8uKkwHcIqm0PX1Fgpg2va7yau/sF0jumh9b6HqIgUA1OxB0FHrDzhxovWpJnA5iAV8YyOBkDz+tNEGQEpjFZhh44TY59bNFtw2v9wCnUBvT2ETHyN4Qh3VJSw2bkksKubZUfDs208QcQqmp5iDlOctsmIOVP0Zjo0E5eeZgw97kQz5GR5gkZpPZD1l3QTOV45fVE7lXcV65dtxJW+ktADD+5rc8Icnx4yJl3z9jd9lKshXG9aJPs8R9JhJ3wCMGAitrappGZCGbCq4XCPBeHktjEtRBk2nvddNJnAoU5YLIDKtry5yzXtRal5/1m1hJQA5ykb3TyJhXvqjo5oPHoyvrNe8YDwOXVGtcg2PqOMoz0V8QmZ9RXcVa9Ib9wiNc7rcsGEJYZzTY2Y72UTofoyKzCvwEpj6qizcRff2/EN0PxV7TOxoYbJTYePurnA8Ap4jAgNe6EYBnboixk6cWNr50YNVFwtD2JK+AqufGzOy+h9Lj7z08TCnkMzGYYKDyifhJixsF25U8rAGfDh/of1QnPKMD+R76sS0w6a0+rb96aiGkMgUQdJ0k54fWV80mtkkXyp/tKMN40NxEH2O7hWDbPtVTO5j/icqXKoiuevk9UY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN7PR11MB7705.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(346002)(376002)(39860400002)(136003)(366004)(396003)(230922051799003)(186009)(1800799012)(451199024)(64100799003)(6506007)(53546011)(478600001)(107886003)(2616005)(6512007)(66476007)(316002)(8676002)(8936002)(38100700002)(82960400001)(66946007)(66556008)(4326008)(83380400001)(66574015)(86362001)(31686004)(26005)(31696002)(41300700001)(5660300002)(2906002)(36756003)(6486002)(45980500001)(43740500002)(309714004);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RDBnUkc0akVrRXllekE0dDltcFpUVUo0aGFoZXU5a3ByaDFJUkZ6ZUhxUFQ5?=
+ =?utf-8?B?bHJOWlZvUlhDL2loT1F0UjhYQ3NNZjlac1lPZGV4cStpYzZJRU04QkFGTTJv?=
+ =?utf-8?B?dUxCWWVtMkk3YU1QU0JibU5Vc0Z6S1ZOYkhOWnZJMTlDR0VjVTlkbmRVbWxJ?=
+ =?utf-8?B?WGVkWWtCN2JVTHhQQVhHbFJVYlBIT05OZ0Niem1KbUlsOHM4MlBrYndSMG9J?=
+ =?utf-8?B?TUllc0RzM3FjREVNaVpRT0wxZEpoN0tvV1BRQU5RSjVjaFVsZHcyUDloUjJs?=
+ =?utf-8?B?ZHVhWjRtTk5CUVMxdmY5M2oyQndPclQ1TWpUVVhHQ0xRTnlqb2x4SEFxYlp4?=
+ =?utf-8?B?aVZCTTgwcUIzaW41Zml6SWpYZEl2Zk9UNFN0Rjg4eFBuZmZNVjZBR0NYeXlm?=
+ =?utf-8?B?U1Zpb1V4WXU2Y3pBaVhuVjY5TTFJbnhYZ21iRGJtbFZsTDRyaE9aVUNmaExl?=
+ =?utf-8?B?dXh5MjczY2RFUWJWSUtNQVFhNEhvaTdJT3puV2ZVQmE3cmp1Nm9aVkxRbnBL?=
+ =?utf-8?B?Z2d0TE45d3hPV2xoazdOSGlrQVAvUldVb2NSeFlzWUQ0UkRTMnhkT1JFd0lz?=
+ =?utf-8?B?cWxwTm5oVEtNa2kvZlRCRzRHVk4wMnRnZHQ1V0xkU2R1dC9WT0FGaHQwbFlV?=
+ =?utf-8?B?c3pyVlVKZjdudVk4dlliWXppU1BtZ1hOaktmd2JpM3VoSjZHMnJBaHNzYzZr?=
+ =?utf-8?B?LzU1OVRDYVFnd3RTVzExR3czcXhRS0pCcFp0RTJmK3VoRDhQNjVUZU1wNDVu?=
+ =?utf-8?B?eDFoc3I2ZUw0b2czUkpLYlhQRTUvRHFYSmdqcGdyTER0bGFVN09YbnJPZ3pq?=
+ =?utf-8?B?bys3QURxOUF4elFRWVhKZVdoUFBTZE1hZlBZMXA0QXRqMUNnNGdlcEsvUDg0?=
+ =?utf-8?B?bkQxZWF4SmtzWTJ6Tk1Cd3ZrVEg2N2dRaHZrN1lxQzg3ZjZtd2NtbTJ1ZFVE?=
+ =?utf-8?B?dGZhVFlLVEo3TTlTZTd5eFlIay96S0RxQXJHUFIwa0NyWUdLZ083MEQrdHNl?=
+ =?utf-8?B?TVg2Nlo2WEdselpmc0d6OENPTCtLS2FmbUlYelBIY3B0UFkvR0ZDT0hEK29s?=
+ =?utf-8?B?MUIwTXdWYnU5aEdBRXorRVZ3Wk52cGZibHlXdjFlYVh2TXg3Y0d3VUlJVEJm?=
+ =?utf-8?B?U2Q2T3Q3eDdsYlB0T2ZRVVROdDNMRTR4eWxDUHQ3WlFmdmpmakk4SGxrQUVO?=
+ =?utf-8?B?M1F5dEVITEcvbHVpN1B6a2NocENNRFU4ajF6RXMrcUdpT2R0ZEtaRzRzMlF6?=
+ =?utf-8?B?eGQwZHM0Ukg4eXlYcDQwNktuZVRzZmtQT1FSTlE0STRXc2lMajZmaGs4MHhu?=
+ =?utf-8?B?cW1aOUdnbnBjd29CZFZsL2c4WHZlK3phRTc3dXNzMUh1NjVEemM0ZXVLMnFX?=
+ =?utf-8?B?TTBDYmcvVlNxdzJYQ0ZlSWd3N2QxZU9Qa0dsQm14REtQTjBvQTlsNEZNSFpQ?=
+ =?utf-8?B?Qm0yT2VwZjhNUllzUmhGRmRnZGFUOG81OCtRVUJ4U1dqOU9GVHEvSVF1RFRx?=
+ =?utf-8?B?dzBmY2ZoWmFiUm5DRkdsUUIyU2tyZjRoSW9GVk1yUnplQ21UdW9raFU3eXIx?=
+ =?utf-8?B?K21mVThLWUdJSXE4SW9BK3VVZFJCd0puVURkKzEySzNZd3QvOTVyZEN6Y1JZ?=
+ =?utf-8?B?MkV2V3IvK3J1eEtjRE1IcWs3TlJtVzBmWUFPaGdQQUsrWEcrUFBmSGxQdGlx?=
+ =?utf-8?B?TW1uUkpBMzBPbnhTL0hoTFl5cXRZQXBObjVPdUdja3NEVlBxYVJxTEdLcTlW?=
+ =?utf-8?B?OTBtYUgvbWxLQVFFcEY1Q3BVTHFUeHAySUxobFFOdXNjbUIzRUk3WkZTNE14?=
+ =?utf-8?B?VTMwUWdVMmV2Z0dxejhONlBYQ1o4RkpISlVLOXBkY29jVWV4VGl0dEZhWlJI?=
+ =?utf-8?B?QUF4cTBtNW10WkJGeDVzZEptdkpBUXVkeEl6WEFsQ3I5RkkxbmphUzZ4K0xN?=
+ =?utf-8?B?ZkpOR01NbUFFVmtWbTBFZUlsZkNpdFBnK1lDWHdKME5zZzZQMXpDNUFwV2k0?=
+ =?utf-8?B?M3lBSTNVZ0h5aS9HNnpSOWFaejlOQnRnbVRuQTQyNjBVbW9SVU9oZmo1NWxO?=
+ =?utf-8?B?aStvc08zZVpFUFVhU0U3QWlWaDBsK3cvaEgzMXI4YUhRaVlQdG45azZ4QXgz?=
+ =?utf-8?Q?lVe4vD5wcOoLKO6fvr2vCuBKi?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 51869f00-8e02-4319-4f5d-08dc1c7c1676
+X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB7705.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2024 01:30:45.9222 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: P1gkxD+xlJML9RFmI8QQs1pubWxw6c2YKyG9YRFLMJBQ7TTahN8hJ8lMPfU//bVLkFxBbF7ynFgxW5ubSqq0zA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB6483
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,200 +153,99 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: Mika Kahola <mika.kahola@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Oak,
 
-On 1/23/24 20:37, Zeng, Oak wrote:
-> Thanks Christian. I have some comment inline below.
-> 
-> Danilo, can you also take a look and give your feedback? Thanks.
+On 1/23/2024 8:34 AM, Matthew Brost wrote:
+> The way exec ufences are coded only 1 ufence per IOCTL will be signaled.
+> It is possible to fix this but for current use cases 1 ufence per IOCTL
+> is sufficient. Enforce a limit of 1 ufence per IOCTL (both exec and bind
+> to be uniform).
 
-I agree with everything Christian already wrote. Except for the KFD parts, which
-I'm simply not familiar with, I had exactly the same thoughts after reading your
-initial mail.
+Interesting.  Makes sense to me.
 
-Please find some more comments below.
+Reviewed-by: Brian Welty <brian.welty@intel.com>
 
-> 
->> -----Original Message-----
->> From: Christian König <christian.koenig@amd.com>
->> Sent: Tuesday, January 23, 2024 6:13 AM
->> To: Zeng, Oak <oak.zeng@intel.com>; Danilo Krummrich <dakr@redhat.com>;
->> Dave Airlie <airlied@redhat.com>; Daniel Vetter <daniel@ffwll.ch>
->> Cc: Welty, Brian <brian.welty@intel.com>; dri-devel@lists.freedesktop.org; intel-
->> xe@lists.freedesktop.org; Bommu, Krishnaiah <krishnaiah.bommu@intel.com>;
->> Ghimiray, Himal Prasad <himal.prasad.ghimiray@intel.com>;
->> Thomas.Hellstrom@linux.intel.com; Vishwanathapura, Niranjana
->> <niranjana.vishwanathapura@intel.com>; Brost, Matthew
->> <matthew.brost@intel.com>
->> Subject: Re: Making drm_gpuvm work across gpu devices
->>
->> Hi Oak,
->>
->> Am 23.01.24 um 04:21 schrieb Zeng, Oak:
->>> Hi Danilo and all,
->>>
->>> During the work of Intel's SVM code, we came up the idea of making
->> drm_gpuvm to work across multiple gpu devices. See some discussion here:
->> https://lore.kernel.org/dri-
->> devel/PH7PR11MB70049E7E6A2F40BF6282ECC292742@PH7PR11MB7004.namprd
->> 11.prod.outlook.com/
->>>
->>> The reason we try to do this is, for a SVM (shared virtual memory across cpu
->> program and all gpu program on all gpu devices) process, the address space has
->> to be across all gpu devices. So if we make drm_gpuvm to work across devices,
->> then our SVM code can leverage drm_gpuvm as well.
->>>
->>> At a first look, it seems feasible because drm_gpuvm doesn't really use the
->> drm_device *drm pointer a lot. This param is used only for printing/warning. So I
->> think maybe we can delete this drm field from drm_gpuvm.
->>>
->>> This way, on a multiple gpu device system, for one process, we can have only
->> one drm_gpuvm instance, instead of multiple drm_gpuvm instances (one for
->> each gpu device).
->>>
->>> What do you think?
->>
->> Well from the GPUVM side I don't think it would make much difference if
->> we have the drm device or not.
->>
->> But the experience we had with the KFD I think I should mention that we
->> should absolutely *not* deal with multiple devices at the same time in
->> the UAPI or VM objects inside the driver.
->>
->> The background is that all the APIs inside the Linux kernel are build
->> around the idea that they work with only one device at a time. This
->> accounts for both low level APIs like the DMA API as well as pretty high
->> level things like for example file system address space etc...
-> 
-> Yes most API are per device based.
-> 
-> One exception I know is actually the kfd SVM API. If you look at the svm_ioctl function, it is per-process based. Each kfd_process represent a process across N gpu devices. Cc Felix.
-> 
-> Need to say, kfd SVM represent a shared virtual address space across CPU and all GPU devices on the system. This is by the definition of SVM (shared virtual memory). This is very different from our legacy gpu *device* driver which works for only one device (i.e., if you want one device to access another device's memory, you will have to use dma-buf export/import etc).
-> 
-> We have the same design requirement of SVM. For anyone who want to implement the SVM concept, this is a hard requirement. Since now drm has the drm_gpuvm concept which strictly speaking is designed for one device, I want to see whether we can extend drm_gpuvm to make it work for both single device (as used in xe) and multipe devices (will be used in the SVM code). That is why I brought up this topic.
-> 
->>
->> So when you have multiple GPUs you either have an inseparable cluster of
->> them which case you would also only have one drm_device. Or you have
->> separated drm_device which also results in separate drm render nodes and
->> separate virtual address spaces and also eventually separate IOMMU
->> domains which gives you separate dma_addresses for the same page and so
->> separate GPUVM page tables....
-> 
-> I am thinking we can still make each device has its separate drm_device/render node/iommu domains/gpu page table. Just as what we have today. I am not plan to change this picture.
-> 
-> But the virtual address space will support two modes of operation:
-> 1. one drm_gpuvm per device. This is when svm is not in the picture
-> 2. all devices in the process share one single drm_gpuvm, when svm is in the picture. In xe driver design, we have to support a mixture use of legacy mode (such as gem_create and vm_bind) and svm (such as malloc'ed memory for gpu submission). So whenever SVM is in the picture, we want one single process address space across all devices. Drm_gpuvm doesn't need to be aware of those two operation modes. It is driver's responsibility to use different mode.
-> 
-> For example, in mode #1, a driver's vm structure (such as xe_vm) can inherit from drm_gpuvm. In mode #2, a driver's svm structure (xe_svm in this series: https://lore.kernel.org/dri-devel/20240117221223.18540-1-oak.zeng@intel.com/) can inherit from drm_gpuvm while each xe_vm (still a per-device based struct) will just have a pointer to the drm_gpuvm structure. This way when svm is in play, we build a 1 process:1 mm_struct:1 xe_svm:N xe_vm correlations which means shared address space across gpu devices.
-
-With a shared GPUVM structure, how do you track actual per device resources such as
-page tables? You also need to consider that the page table layout, memory mapping
-flags may vary from device to device due to different GPU chipsets or revisions.
-
-Also, if you replace the shared GPUVM structure with a pointer to a shared one,
-you may run into all kinds of difficulties due to increasing complexity in terms
-of locking, synchronization, lifetime and potential unwind operations in error paths.
-I haven't thought it through yet, but I wouldn't be surprised entirely if there are
-cases where you simply run into circular dependencies.
-
-Also, looking at the conversation in the linked patch series:
-
-<snip>
-
->> For example as hmm_range_fault brings a range from host into GPU address
->> space,  what if it was already allocated and in use by VM_BIND for
->> a GEM_CREATE allocated buffer?    That is of course application error,
->> but KMD needs to detect it, and provide one single managed address
->> space across all allocations from the application....
-
-> This is very good question. Yes agree we should check this application error. Fortunately this is doable. All vm_bind virtual address range are tracked in xe_vm/drm_gpuvm struct. In this case, we should iterate the drm_gpuvm's rb tree of *all* gpu devices (as xe_vm is for one device only) to see whether there is a conflict. Will make the change soon.
-
-<snip>
-
-How do you do that if xe_vm->gpuvm is just a pointer to the GPUVM structure within xe_svm?
 
 > 
-> This requires some changes of drm_gpuvm design:
-> 1. The drm_device *drm pointer, in mode #2 operation, this can be NULL, means this drm_gpuvm is not for specific gpu device
-> 2. The common dma_resv object: drm_gem_object *r_obj. *Does one dma_resv object allocated/initialized for one device work for all devices*? From first look, dma_resv is just some CPU structure maintaining dma-fences. So I guess it should work for all devices? I definitely need you to comment.
-
-The general rule is that drivers can share the common dma_resv across GEM objects that
-are only mapped within the VM owning the dma_resv, but never within another VM.
-
-Now, your question is whether multiple VMs can share the same common dma_resv. I think
-that calls for trouble, since it would create dependencies that simply aren't needed
-and might even introduce locking issues.
-
-However, that's optional, you can simply decide to not make use of the common dma_resv
-and all the optimizations based on it.
-
+> Cc: Mika Kahola <mika.kahola@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_exec.c | 10 +++++++++-
+>   drivers/gpu/drm/xe/xe_sync.h |  5 +++++
+>   drivers/gpu/drm/xe/xe_vm.c   | 10 +++++++++-
+>   3 files changed, 23 insertions(+), 2 deletions(-)
 > 
-> 
->>
->> It's up to you how to implement it, but I think it's pretty clear that
->> you need separate drm_gpuvm objects to manage those.
-> 
-> As explained above, I am thinking of one drm_gpuvm object across all devices when SVM is in the picture...
-> 
->>
->> That you map the same thing in all those virtual address spaces at the
->> same address is a completely different optimization problem I think.
-> 
-> Not sure I follow here... the requirement from SVM is, one virtual address points to same physical backing store. For example, whenever CPU or any GPU device access this virtual address, it refers to the same physical content. Of course the physical backing store can be migrated b/t host memory and any of the GPU's device memory, but the content should be consistent.
-
-Technically, multiple different GPUs will have separate virtual address spaces, it's
-just that you create mappings within all of them such that the same virtual address
-resolves to the same physical content on all of them.
-
-So, having a single GPUVM instance representing all of them might give the illusion of
-a single unified address space, but you still need to maintain each device's address
-space backing resources, such as page tables, separately.
-
-- Danilo
-
-> 
-> So we are mapping same physical content to the same virtual address in either cpu page table or any gpu device's page table...
-> 
->> What we could certainly do is to optimize hmm_range_fault by making
->> hmm_range a reference counted object and using it for multiple devices
->> at the same time if those devices request the same range of an mm_struct.
->>
-> 
-> Not very follow. If you are trying to resolve a multiple devices concurrent access problem, I think we should serialize concurrent device fault to one address range. The reason is, during device fault handling, we might migrate the backing store so hmm_range->hmm_pfns[] might have changed after one device access it.
-> 
->> I think if you start using the same drm_gpuvm for multiple devices you
->> will sooner or later start to run into the same mess we have seen with
->> KFD, where we moved more and more functionality from the KFD to the DRM
->> render node because we found that a lot of the stuff simply doesn't work
->> correctly with a single object to maintain the state.
-> 
-> As I understand it, KFD is designed to work across devices. A single pseudo /dev/kfd device represent all hardware gpu devices. That is why during kfd open, many pdd (process device data) is created, each for one hardware device for this process. Yes the codes are a little complicated.
-> 
-> Kfd manages the shared virtual address space in the kfd driver codes, like the split, merging etc. Here I am looking whether we can leverage the drm_gpuvm code for those functions.
-> 
-> As of the shared virtual address space across gpu devices, it is a hard requirement for svm/system allocator (aka malloc for gpu program). We need to make it work either at driver level or drm_gpuvm level. Drm_gpuvm is better because the work can be shared b/t drivers.
-> 
-> Thanks a lot,
-> Oak
-> 
->>
->> Just one more point to your original discussion on the xe list: I think
->> it's perfectly valid for an application to map something at the same
->> address you already have something else.
->>
->> Cheers,
->> Christian.
->>
->>>
->>> Thanks,
->>> Oak
-> 
-
+> diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+> index 59fd9bb40c18..952496c6260d 100644
+> --- a/drivers/gpu/drm/xe/xe_exec.c
+> +++ b/drivers/gpu/drm/xe/xe_exec.c
+> @@ -150,7 +150,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>   	u64 addresses[XE_HW_ENGINE_MAX_INSTANCE];
+>   	struct drm_gpuvm_exec vm_exec = {.extra.fn = xe_exec_fn};
+>   	struct drm_exec *exec = &vm_exec.exec;
+> -	u32 i, num_syncs = 0;
+> +	u32 i, num_syncs = 0, num_ufence = 0;
+>   	struct xe_sched_job *job;
+>   	struct dma_fence *rebind_fence;
+>   	struct xe_vm *vm;
+> @@ -196,6 +196,14 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>   					   SYNC_PARSE_FLAG_LR_MODE : 0));
+>   		if (err)
+>   			goto err_syncs;
+> +
+> +		if (xe_sync_is_ufence(&syncs[i]))
+> +			num_ufence++;
+> +	}
+> +
+> +	if (XE_IOCTL_DBG(xe, num_ufence > 1)) {
+> +		err = -EINVAL;
+> +		goto err_syncs;
+>   	}
+>   
+>   	if (xe_exec_queue_is_parallel(q)) {
+> diff --git a/drivers/gpu/drm/xe/xe_sync.h b/drivers/gpu/drm/xe/xe_sync.h
+> index d284afbe917c..f43cdcaca6c5 100644
+> --- a/drivers/gpu/drm/xe/xe_sync.h
+> +++ b/drivers/gpu/drm/xe/xe_sync.h
+> @@ -33,4 +33,9 @@ struct dma_fence *
+>   xe_sync_in_fence_get(struct xe_sync_entry *sync, int num_sync,
+>   		     struct xe_exec_queue *q, struct xe_vm *vm);
+>   
+> +static inline bool xe_sync_is_ufence(struct xe_sync_entry *sync)
+> +{
+> +	return !!sync->ufence;
+> +}
+> +
+>   #endif
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index d096a8c00bd4..8576535c4b6a 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -2851,7 +2851,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>   	struct drm_gpuva_ops **ops = NULL;
+>   	struct xe_vm *vm;
+>   	struct xe_exec_queue *q = NULL;
+> -	u32 num_syncs;
+> +	u32 num_syncs, num_ufence = 0;
+>   	struct xe_sync_entry *syncs = NULL;
+>   	struct drm_xe_vm_bind_op *bind_ops;
+>   	LIST_HEAD(ops_list);
+> @@ -2988,6 +2988,14 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>   					   SYNC_PARSE_FLAG_DISALLOW_USER_FENCE : 0));
+>   		if (err)
+>   			goto free_syncs;
+> +
+> +		if (xe_sync_is_ufence(&syncs[num_syncs]))
+> +			num_ufence++;
+> +	}
+> +
+> +	if (XE_IOCTL_DBG(xe, num_ufence > 1)) {
+> +		err = -EINVAL;
+> +		goto free_syncs;
+>   	}
+>   
+>   	if (!args->num_binds) {
