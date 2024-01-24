@@ -4,49 +4,149 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FB3CC47DDF
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Jan 2024 09:45:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 999FEC46CD2
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Jan 2024 14:04:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A54810F6DA;
-	Wed, 24 Jan 2024 09:45:31 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 382C510F6D7
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Jan 2024 09:45:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A08210F754;
+	Wed, 24 Jan 2024 14:04:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBA9D10F754;
+ Wed, 24 Jan 2024 14:04:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706089530; x=1737625530;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=hl6dnnm+WSGovcma8HS16MatTlA1/RKhK+bMVmM7gzo=;
- b=fYJw8BpjCnkxXhDB+0tIukzZuSzakVC7FstaPpJe+gO3gShSRNutDk6m
- 5zKsdSxOJsRKbYv0QOZfENHmBZ2kHCUugZeUob6mJ/GdfqVdB03qUu6wK
- eZQ3qFxqEptX7ZYjSh37sOsuL4n2/6Bs1DrGODm/aQrNBBD+F0w64wKOx
- M7Hd9Cdm34aPnisImkWGk+2zE49rCDYubQBNKcGwJNHcwfhi3sTJj6wtj
- BHm6Omxw14jyIu5qzd1n3V7jfczw3gUsGs3uQcVQoqhTiGcjNIt+Yqwzw
- bRux28s+ciDs3VMJ05FCuCFgWWUnwtWLkQLgf76CwHhpSmNCC7S1Uknzk Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="392211457"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="392211457"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2024 01:45:29 -0800
+ t=1706105055; x=1737641055;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=P+VTViZmWqpXIv8k7joAiuz0Yr6GixhrenZce8Yyo48=;
+ b=fQA0pjOtuDfbTgeUSDTqBoDRYSenEzZidXH/M/M1itMh5RC8s/VUYLVF
+ wnhoEPPSXGAwprhirGuAleHIaCXe+KabpAGge8BsfJ0fCm4Ywl4j7k64H
+ k8UUArX63+EwSrC77GBtau3j7outgDbWPKptWdFR2FMpBMuBXYkch6p/R
+ mVY4Z+MGkC25bdDClZQ0w2Pfu9DuRW57XMCIzrc7DI78p6ayh79L7d+sX
+ AqYJ4UcwJW2vpvdbbcG6j04xyECfgumzKVZUWBaKEb1MMmcUb2ELsYmhW
+ SDQyhE4UymEAiQYr10XMGlXLWumyjI40E6MoWQFL9TiEM7CHr7l9s/vvM g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="15198155"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="15198155"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2024 06:04:14 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="786363872"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="786363872"
-Received: from komalav-mobl2.gar.corp.intel.com (HELO localhost)
- ([10.252.41.195])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2024 01:45:28 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2] drm/xe: Prefer BIT/GENMASK macros over shifts
-In-Reply-To: <20240123212317.1600836-1-matthew.brost@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240123212317.1600836-1-matthew.brost@intel.com>
-Date: Wed, 24 Jan 2024 11:45:24 +0200
-Message-ID: <87il3jkqtn.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="929690627"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="929690627"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 24 Jan 2024 06:04:08 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 24 Jan 2024 06:04:00 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 24 Jan 2024 06:03:59 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Wed, 24 Jan 2024 06:03:59 -0800
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.41) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Wed, 24 Jan 2024 06:03:59 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BEND3Z4yIWIGw3aXkQiwm2uy5P2z9KdkebdUW+f9YVbElvz4lJD+voCmaFjLoyovnRZyfRgJoLOAVJJtQNknp/loa4rwkxr1fB+9is048l8fQVsC3dkb17lsa3bSsGIpanIFNhMzyLKGsEiRKYt4rrsBhHTREtHCqHXTntfJvG89p1ohfOl3EQibXwpwtlUEjrvi4pTlOuyyO+d03lu7Rvj8PLtwmbQKt0IdJq8vrcV/js7Op4UbkaFS/mT+ZAibrBiW2yoLRtf5dI0s8peI3Ko4jWdo1694sCzT9kED2CTIjGy5onzDWLhLh+4f/85CwajUnEbiwlLgEH3AiOEFwg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ek8n6iE/MsRfjvYtPNSxhXaAoEP5GuCl3KmO5NPiX0o=;
+ b=jYJkMOxTIkHbXVZ69cDh6cQpvjxcz9FWxurVdjvZAZHFIc6zhaPoDwf86T7ChZETa8iG35tJ7BmtZ+4/8SeVWcfgbBWcz345EXxVqOPpxj2fLTC05lPR7LboE93sXFbhdpT39qGSxoUjiSxo6SgzUsPDAif5PxeO0PmJj7CEBVRIjhAnwA4squ7i2NEzZ2MnXIwBWuIhipC4CNEt41vs/k6vtyrtT4JyLAMH7ZQkKAX7dJkS6dVkBnsCKJec7iwRsmIJ3MNte+s5VFWOYcgWlc4hqIuy6rp3PPp5YjuwMV/7HqjoQY5pTqfgb+P5tLnPXa4U3vDeisPGqU+ntQDdCQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by MW4PR11MB6959.namprd11.prod.outlook.com (2603:10b6:303:228::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.37; Wed, 24 Jan
+ 2024 14:03:57 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::9f32:ce50:1914:e954]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::9f32:ce50:1914:e954%7]) with mapi id 15.20.7202.035; Wed, 24 Jan 2024
+ 14:03:56 +0000
+Date: Wed, 24 Jan 2024 08:03:53 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Subject: Re: Re: [PATCH 1/3] bits: introduce fixed-type genmasks
+Message-ID: <gvkvihpcc45275idrfukjqbvgem767evrux5sx5lnh5hofqemk@ppbkcauitvwb>
+References: <20240124050205.3646390-1-lucas.demarchi@intel.com>
+ <20240124050205.3646390-2-lucas.demarchi@intel.com>
+ <87v87jkvrx.fsf@intel.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87v87jkvrx.fsf@intel.com>
+X-ClientProxiedBy: BY5PR16CA0007.namprd16.prod.outlook.com
+ (2603:10b6:a03:1a0::20) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|MW4PR11MB6959:EE_
+X-MS-Office365-Filtering-Correlation-Id: e33b601b-7c58-4c57-c7ee-08dc1ce54e2e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: E9TC1y9Gj4oY+Z1QMFwmGsR7lHcnuvDkxAsLAqjmx5usnOGUv9oudYv80o3J9D+RbD6qLtvO62qJF/kmADL5ZtN9tZJps29Js8PAloQq33+fVzL5Kv9tq6KT0AqrPbtYJrwRZ6bdU5M7FO0NNlAyiiah5rQKKI23BdTROhNoLXBWN4UoRzpufi2jEmH9u2vxzjcLeYQQyuw3Jl99ZdnRT7KdNXrABlCfrNnOZNMIVqueBjkCdQJ2rfE+MiNtxl4aRVo51dB9iWlW0rTeXeKhHTkJww8K53tPkr5+ud0cNNJr30ClWVDiFUVyBB3E23uhHiBwDRGOPQbmi0ePHH+0khAEoQxgRSTsHyu4FFGhtaLK+aVlNEE3+8ZnxHTWAkZ5u+YvNf/kwd/+UAMSAZZsOsthWzArfEFknZ/c2tumoEYlwihm7/xJqezMFa1/y1KlN1kRf3G5kEVwQPfPF9HtTWz8xfcNydygKCY0Zk/g4XQZjjkf7s091vCZI+qdmORir8MQAUBz3mykejL4ohjmrIY6lOaqROJULs3ka+/Bcg1Utvt79O2O1FrkVtyrktbZb4nqJySS/ADk64lpm6DhXrSxVt+QtAaFQ5ERmbKc4cGBvU+MqRb6Wd3K8g33LkmM
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7916004)(396003)(136003)(366004)(39860400002)(376002)(346002)(230922051799003)(186009)(1800799012)(451199024)(64100799003)(38100700002)(6506007)(316002)(54906003)(82960400001)(66946007)(66556008)(8936002)(8676002)(6916009)(66476007)(26005)(6486002)(6512007)(478600001)(83380400001)(4326008)(86362001)(6666004)(9686003)(2906002)(5660300002)(41300700001)(33716001)(27256008);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dGdPWWxNekpWZUhtTTN3U29lNWI4ZFBJS3cxRjI2WnZtVFRjcllYV2ovQ0Vz?=
+ =?utf-8?B?UXpNWXZpaTh3NUo0QzRoaG1qN01NdTBFWHNuTkR0ZThkRWpveTh5bFNFVFht?=
+ =?utf-8?B?NVc2K0QxQlVPNE9ZQ0pMdXJybktUQnBTZC8vNFRZSm54ZnhFU2V0RnpRMk9T?=
+ =?utf-8?B?N3JTa2pOdWM0enFSWjBuOFBBa0JqYlRMdWJKUS9kQWMvSUxjRkdLbHYzVytl?=
+ =?utf-8?B?d3dWQ3RhTlBQNWZmUjlYd3dvWWxDemZEWUFjZXRUbUFTNWExbElVTStzeXIx?=
+ =?utf-8?B?Y0picFlyaWU4cGdzZWlkNTY5TmNrK0dPRFo1bVI2U2YrUHh3N1gwUEszN1ZE?=
+ =?utf-8?B?SGVFSEsvS2ZycTUvREx3eGRPSEQ1SEgyODQ3bGQ0bURaR0VhNHRTWXBycDc4?=
+ =?utf-8?B?RmRkcEQxeFVhaU5BSC93bGZYaDQwRW8vZVhQN3RwL290cnhEMTBteVVac1VY?=
+ =?utf-8?B?WlUwREMzayticGt2YVRUK3kyWklUemYyYkszZ3puZ08wVmFPaTBDRHFOald5?=
+ =?utf-8?B?NW85MC9iQ0JRL0tvZW5lL2NSOEltSDB1TERLRjlCd2tuRFhPYVc1Mng2Qms2?=
+ =?utf-8?B?TjFNMGlpT1FHNFFFS1lYRmoyTURTWVJWUjJQcHRmZWlPWEh2TUd3TURwd0RE?=
+ =?utf-8?B?WVhReXpkVjQ2TWVnd0lCK2d0QUN5TnpOWE9KQk51TC8zZ2U5KzJ6UWRYdTZM?=
+ =?utf-8?B?Uk1EYmdjeTZVZ01mNTBUcGt0U0FnczZJNDFHeW1jSjhTMy95OVBsdEx6Y25E?=
+ =?utf-8?B?Zmp4eHU4dkgwZHhqMHNheTcvbXptL0ZtajNXdDNjVmN0QnpEV1Y3NGt5TjMz?=
+ =?utf-8?B?aFdFdkJqb0swMThyODdZcDJoVzBXWmFSMlFpZENzdHJoelVkZjkwbDYyOG0r?=
+ =?utf-8?B?K0ZRZFJxaTNwbUlxNUlUdkErUVpmbDAwTkpwaE5ZRHZJZkU0OHN2YkpsM3Er?=
+ =?utf-8?B?Q3ZURzBCcTM3aEprSnhyYWxZMy9YWnBQZklRMG1ra0lPSS9qU2pCdnVlWEEv?=
+ =?utf-8?B?WFNjMHp1VEpCSDE5ZGpqMDNBandFR2FTY1IzM2VUaDREK1BDNjZuUDhONEl6?=
+ =?utf-8?B?ODhnODVjRFMwK2F0cEZxbS9YS1F0b0xEYWlCZUhkSXZoektJNFZZKzNJRCtW?=
+ =?utf-8?B?K0IrN0ZOZ1lIY1I3aTZNSVRWclUyeGhwMlB6MnZ1eTFMYTY2Um1Ca0FjNEp4?=
+ =?utf-8?B?cStKVmJPWXFPWm8ybHd6SGxRZmVYVGU0OS9QSHI0T2k0Vk0rSUpWOVRrRXlB?=
+ =?utf-8?B?SlpnaDN1MzIzbW5wV3UrZnRta1VQeitXdWRPeHlIOVBkNTdsb3I3azFWSlFJ?=
+ =?utf-8?B?S2UzT0JvYStQYUVlRllHbEs5UmhkRnFVZy8rVE1oU2JZQllTMHRzZXVZRzhU?=
+ =?utf-8?B?a2d2ZUtYc0NYcEozWXBLQ0FaeUMzOVFBeUsxbUdWTU5heS8zenh3SXIzVkN3?=
+ =?utf-8?B?ZTEyYTEybUxYVjRSS2dzaW4rL0c4WDFScEtrTjRvcGptRXE4M0JBZ2JXVU1G?=
+ =?utf-8?B?OGQvbjJQUFl4VnhHcUkrMHlDYllEdGdBUnAxb0FhbUhueFloVkRRT0J4ZUZS?=
+ =?utf-8?B?aW9JdTJuWVQvdlpObWFJUHoyeEIzSm04QlJBK1VSakxmMkFoRGdCQnJaTFJL?=
+ =?utf-8?B?aWU0S2NIVXRVdk1xZG5LU29INzJpSkQ5Mi8zMzdYT3lseHltMjVtVVlJZmUv?=
+ =?utf-8?B?WkpEWTF0ZFFBaEJWRi9Bdm1TYm5tMjJWZ2o1MDBPb2w2dEJyN0d4bWI3TENK?=
+ =?utf-8?B?bUhrRGZFdXk3b3hEMm9yU3JFdnZkY3lvYmVhbGtTWDBVMDNkamRLSURhc1pW?=
+ =?utf-8?B?VDdQM01JOWJSb01zRnI1cThZUW1hb2R5YW9qVWV1TWIyeVJDWk9GNmY4NjVH?=
+ =?utf-8?B?RWJnbFlwYmRIYWcwbFRiSDdWZGpTUkxib0R6U1NwaGtid3ErNnB6R09PdVRh?=
+ =?utf-8?B?eVdjWFVhc2RUZUl3UUxUNlAwNHk3NFBtbGVNSHNxSWs4Yks3MzdqcTh5UWVC?=
+ =?utf-8?B?SHVjaXJGT29RM1NKVXVZMnUwbzYwYjFPYUJSdWM4ZmFsU09VNGM3ZVhpcEhY?=
+ =?utf-8?B?UTBnZEpYY2dWMDYySndlREZPcFhuS2lmbG9uc2VoZWJpMHNVbzJNaE1neHYr?=
+ =?utf-8?B?S055bkZ5N0ZYNkx1bUpoNGs5VFNRdGJGbHdhWHNxUEhvcnF6WGEwcHdjNVFr?=
+ =?utf-8?B?d0E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e33b601b-7c58-4c57-c7ee-08dc1ce54e2e
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2024 14:03:56.7796 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: XKBVc32HUjBY30EEWv59PV3P6JJBICK/ggbOKTl2kM9XhopRPPkRR+tQfy7tR1tGFT18SP2P2sJ7v4uQZ/Zgkf+ycBzrjOvvajTm4T9SKzM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6959
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,289 +158,56 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Yury Norov <yury.norov@gmail.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 23 Jan 2024, Matthew Brost <matthew.brost@intel.com> wrote:
-> Using BIT/GENMASK macros is a better convention than using manual shift
-> and will also fix build errors [1].
-
-One of the reasons i915 does not really use BIT and GENMASK directly is
-that their type is unsigned long, and thus their size is different on 32
-and 64 bit builds, while almost invariably you need one or the other to
-describe hardware or firmware interfaces. Not something that depends on
-the build.
-
-Using %lu or %lx as format specifier should work, but people find it
-weird to have to use that for essentially 32-bit things, and forget. And
-there's confusion when you still have stuff like:
-
-#define GUC_CTB_STATUS_NO_ERROR				0
-
-instead of 0UL i.e. some of the macros end up being unsigned long with
-variable size, and some, like this, not.
-
-I'm sure the REG_BIT and REG_GENMASK macros feel off-putting for things
-that aren't exactly registers (like the firmware interface), but let's
-hope we get Lucas' fixed-size BIT and GENMASK macros merged [1], and can
-use them.
-
-BR,
-Jani.
-
-
-[1] https://lore.kernel.org/r/20240124050205.3646390-1-lucas.demarchi@intel=
-.com
-
-
+On Wed, Jan 24, 2024 at 09:58:26AM +0200, Jani Nikula wrote:
+>On Tue, 23 Jan 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>> From: Yury Norov <yury.norov@gmail.com>
+>>
+>> Generalize __GENMASK() to support different types, and implement
+>> fixed-types versions of GENMASK() based on it. The fixed-type version
+>> allows more strict checks to the min/max values accepted, which is
+>> useful for defining registers like implemented by i915 and xe drivers
+>> with their REG_GENMASK*() macros.
 >
-> [1] http://kisskb.ellerman.id.au/kisskb/buildresult/15112475/log/
+>Mmh, the commit message says the fixed-type version allows more strict
+>checks, but none are actually added. GENMASK_INPUT_CHECK() remains the
+>same.
 >
-> v2:
-> - Include abi/*.h files (Jani / Michal)
->
-> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->  drivers/gpu/drm/xe/abi/guc_actions_abi.h      | 13 ++++----
->  drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h |  4 +--
->  .../drm/xe/abi/guc_communication_ctb_abi.h    | 14 ++++-----
->  drivers/gpu/drm/xe/abi/guc_klvs_abi.h         |  6 ++--
->  drivers/gpu/drm/xe/abi/guc_messages_abi.h     | 31 +++++++++----------
->  drivers/gpu/drm/xe/xe_guc_ct.c                |  2 +-
->  drivers/gpu/drm/xe/xe_guc_relay.c             |  2 +-
->  7 files changed, 35 insertions(+), 37 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/x=
-e/abi/guc_actions_abi.h
-> index 3062e0e0d467..083bd966829b 100644
-> --- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-> +++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-> @@ -50,8 +50,8 @@
->=20=20
->  #define HOST2GUC_SELF_CFG_REQUEST_MSG_LEN		(GUC_HXG_REQUEST_MSG_MIN_LEN =
-+ 3u)
->  #define HOST2GUC_SELF_CFG_REQUEST_MSG_0_MBZ		GUC_HXG_REQUEST_MSG_0_DATA0
-> -#define HOST2GUC_SELF_CFG_REQUEST_MSG_1_KLV_KEY		(0xffff << 16)
-> -#define HOST2GUC_SELF_CFG_REQUEST_MSG_1_KLV_LEN		(0xffff << 0)
-> +#define HOST2GUC_SELF_CFG_REQUEST_MSG_1_KLV_KEY		GENMASK(31, 16)
-> +#define HOST2GUC_SELF_CFG_REQUEST_MSG_1_KLV_LEN		GENMASK(15, 0)
->  #define HOST2GUC_SELF_CFG_REQUEST_MSG_2_VALUE32		GUC_HXG_REQUEST_MSG_n_D=
-ATAn
->  #define HOST2GUC_SELF_CFG_REQUEST_MSG_3_VALUE64		GUC_HXG_REQUEST_MSG_n_D=
-ATAn
->=20=20
-> @@ -177,15 +177,14 @@ enum xe_guc_sleep_state_status {
->  #define XE_GUC_SLEEP_STATE_INVALID_MASK 0x80000000
->  };
->=20=20
-> -#define GUC_LOG_CONTROL_LOGGING_ENABLED	(1 << 0)
-> -#define GUC_LOG_CONTROL_VERBOSITY_SHIFT	4
-> -#define GUC_LOG_CONTROL_VERBOSITY_MASK	(0xF << GUC_LOG_CONTROL_VERBOSITY=
-_SHIFT)
-> -#define GUC_LOG_CONTROL_DEFAULT_LOGGING	(1 << 8)
-> +#define GUC_LOG_CONTROL_LOGGING_ENABLED	BIT(0)
-> +#define GUC_LOG_CONTROL_VERBOSITY_MASK	GENMASK(7, 4)
-> +#define GUC_LOG_CONTROL_DEFAULT_LOGGING	BIT(8)
->=20=20
->  #define XE_GUC_TLB_INVAL_TYPE_SHIFT 0
->  #define XE_GUC_TLB_INVAL_MODE_SHIFT 8
->  /* Flush PPC or SMRO caches along with TLB invalidation request */
-> -#define XE_GUC_TLB_INVAL_FLUSH_CACHE (1 << 31)
-> +#define XE_GUC_TLB_INVAL_FLUSH_CACHE BIT(31)
->=20=20
->  enum xe_guc_tlb_invalidation_type {
->  	XE_GUC_TLB_INVAL_FULL =3D 0x0,
-> diff --git a/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h b/drivers/gpu/=
-drm/xe/abi/guc_actions_slpc_abi.h
-> index 811add10c30d..ff49f283f5c3 100644
-> --- a/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
-> +++ b/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
-> @@ -242,8 +242,8 @@ struct slpc_shared_data {
->  		(HOST2GUC_PC_SLPC_REQUEST_REQUEST_MSG_MIN_LEN + \
->  			HOST2GUC_PC_SLPC_EVENT_MAX_INPUT_ARGS)
->  #define HOST2GUC_PC_SLPC_REQUEST_MSG_0_MBZ		GUC_HXG_REQUEST_MSG_0_DATA0
-> -#define HOST2GUC_PC_SLPC_REQUEST_MSG_1_EVENT_ID		(0xff << 8)
-> -#define HOST2GUC_PC_SLPC_REQUEST_MSG_1_EVENT_ARGC	(0xff << 0)
-> +#define HOST2GUC_PC_SLPC_REQUEST_MSG_1_EVENT_ID		GENMASK(15, 8)
-> +#define HOST2GUC_PC_SLPC_REQUEST_MSG_1_EVENT_ARGC	GENMASK(7, 0)
->  #define HOST2GUC_PC_SLPC_REQUEST_MSG_N_EVENT_DATA_N	GUC_HXG_REQUEST_MSG_=
-n_DATAn
->=20=20
->  #endif
-> diff --git a/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h b/drivers=
-/gpu/drm/xe/abi/guc_communication_ctb_abi.h
-> index 4aaed1cb4e12..d7e4dd92c313 100644
-> --- a/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
-> +++ b/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
-> @@ -49,9 +49,9 @@ struct guc_ct_buffer_desc {
->  	u32 tail;
->  	u32 status;
->  #define GUC_CTB_STATUS_NO_ERROR				0
-> -#define GUC_CTB_STATUS_OVERFLOW				(1 << 0)
-> -#define GUC_CTB_STATUS_UNDERFLOW			(1 << 1)
-> -#define GUC_CTB_STATUS_MISMATCH				(1 << 2)
-> +#define GUC_CTB_STATUS_OVERFLOW				BIT(0)
-> +#define GUC_CTB_STATUS_UNDERFLOW			BIT(1)
-> +#define GUC_CTB_STATUS_MISMATCH				BIT(2)
->  	u32 reserved[13];
->  } __packed;
->  static_assert(sizeof(struct guc_ct_buffer_desc) =3D=3D 64);
-> @@ -82,11 +82,11 @@ static_assert(sizeof(struct guc_ct_buffer_desc) =3D=
-=3D 64);
->  #define GUC_CTB_HDR_LEN				1u
->  #define GUC_CTB_MSG_MIN_LEN			GUC_CTB_HDR_LEN
->  #define GUC_CTB_MSG_MAX_LEN			(GUC_CTB_MSG_MIN_LEN + GUC_CTB_MAX_DWORDS)
-> -#define GUC_CTB_MSG_0_FENCE			(0xffff << 16)
-> -#define GUC_CTB_MSG_0_FORMAT			(0xf << 12)
-> +#define GUC_CTB_MSG_0_FENCE			GENMASK(31, 16)
-> +#define GUC_CTB_MSG_0_FORMAT			GENMASK(15, 12)
->  #define   GUC_CTB_FORMAT_HXG			0u
-> -#define GUC_CTB_MSG_0_RESERVED			(0xf << 8)
-> -#define GUC_CTB_MSG_0_NUM_DWORDS		(0xff << 0)
-> +#define GUC_CTB_MSG_0_RESERVED			GENMASK(11, 8)
-> +#define GUC_CTB_MSG_0_NUM_DWORDS		GENMASK(7, 0)
->  #define   GUC_CTB_MAX_DWORDS			255
->=20=20
->  /**
-> diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/a=
-bi/guc_klvs_abi.h
-> index 47094b9b044c..076d072cb8b3 100644
-> --- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-> +++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-> @@ -31,9 +31,9 @@
->   */
->=20=20
->  #define GUC_KLV_LEN_MIN				1u
-> -#define GUC_KLV_0_KEY				(0xffff << 16)
-> -#define GUC_KLV_0_LEN				(0xffff << 0)
-> -#define GUC_KLV_n_VALUE				(0xffffffff << 0)
-> +#define GUC_KLV_0_KEY				GENMASK(31, 16)
-> +#define GUC_KLV_0_LEN				GENMASK(15, 0)
-> +#define GUC_KLV_n_VALUE				GENMASK(31, 0)
->=20=20
->  /**
->   * DOC: GuC Self Config KLVs
-> diff --git a/drivers/gpu/drm/xe/abi/guc_messages_abi.h b/drivers/gpu/drm/=
-xe/abi/guc_messages_abi.h
-> index ff888d16bd4f..7cc79c0ce3bb 100644
-> --- a/drivers/gpu/drm/xe/abi/guc_messages_abi.h
-> +++ b/drivers/gpu/drm/xe/abi/guc_messages_abi.h
-> @@ -6,6 +6,8 @@
->  #ifndef _ABI_GUC_MESSAGES_ABI_H
->  #define _ABI_GUC_MESSAGES_ABI_H
->=20=20
-> +#include <linux/bits.h>
-> +
->  /**
->   * DOC: HXG Message
->   *
-> @@ -41,10 +43,10 @@
->   */
->=20=20
->  #define GUC_HXG_MSG_MIN_LEN			1u
-> -#define GUC_HXG_MSG_0_ORIGIN			(0x1 << 31)
-> +#define GUC_HXG_MSG_0_ORIGIN			BIT(31)
->  #define   GUC_HXG_ORIGIN_HOST			0u
->  #define   GUC_HXG_ORIGIN_GUC			1u
-> -#define GUC_HXG_MSG_0_TYPE			(0x7 << 28)
-> +#define GUC_HXG_MSG_0_TYPE			GENMASK(30, 28)
->  #define   GUC_HXG_TYPE_REQUEST			0u
->  #define   GUC_HXG_TYPE_EVENT			1u
->  #define   GUC_HXG_TYPE_FAST_REQUEST		2u
-> @@ -52,8 +54,8 @@
->  #define   GUC_HXG_TYPE_NO_RESPONSE_RETRY	5u
->  #define   GUC_HXG_TYPE_RESPONSE_FAILURE		6u
->  #define   GUC_HXG_TYPE_RESPONSE_SUCCESS		7u
-> -#define GUC_HXG_MSG_0_AUX			(0xfffffff << 0)
-> -#define GUC_HXG_MSG_n_PAYLOAD			(0xffffffff << 0)
-> +#define GUC_HXG_MSG_0_AUX			GENMASK(27, 0)
-> +#define GUC_HXG_MSG_n_PAYLOAD			GENMASK(31, 0)
->=20=20
->  /**
->   * DOC: HXG Request
-> @@ -87,8 +89,8 @@
->   */
->=20=20
->  #define GUC_HXG_REQUEST_MSG_MIN_LEN		GUC_HXG_MSG_MIN_LEN
-> -#define GUC_HXG_REQUEST_MSG_0_DATA0		(0xfff << 16)
-> -#define GUC_HXG_REQUEST_MSG_0_ACTION		(0xffff << 0)
-> +#define GUC_HXG_REQUEST_MSG_0_DATA0		GENMASK(27, 16)
-> +#define GUC_HXG_REQUEST_MSG_0_ACTION		GENMASK(15, 0)
->  #define GUC_HXG_REQUEST_MSG_n_DATAn		GUC_HXG_MSG_n_PAYLOAD
->=20=20
->  /**
-> @@ -119,8 +121,8 @@
->   */
->=20=20
->  #define GUC_HXG_EVENT_MSG_MIN_LEN		GUC_HXG_MSG_MIN_LEN
-> -#define GUC_HXG_EVENT_MSG_0_DATA0		(0xfff << 16)
-> -#define GUC_HXG_EVENT_MSG_0_ACTION		(0xffff << 0)
-> +#define GUC_HXG_EVENT_MSG_0_DATA0		GENMASK(27, 16)
-> +#define GUC_HXG_EVENT_MSG_0_ACTION		GENMASK(15, 0)
->  #define GUC_HXG_EVENT_MSG_n_DATAn		GUC_HXG_MSG_n_PAYLOAD
->=20=20
->  /**
-> @@ -190,8 +192,8 @@
->   */
->=20=20
->  #define GUC_HXG_FAILURE_MSG_LEN			GUC_HXG_MSG_MIN_LEN
-> -#define GUC_HXG_FAILURE_MSG_0_HINT		(0xfff << 16)
-> -#define GUC_HXG_FAILURE_MSG_0_ERROR		(0xffff << 0)
-> +#define GUC_HXG_FAILURE_MSG_0_HINT		GENMASK(27, 16)
-> +#define GUC_HXG_FAILURE_MSG_0_ERROR		GENMASK(15, 0)
->=20=20
->  /**
->   * DOC: HXG Response
-> @@ -221,12 +223,9 @@
->  #define GUC_HXG_RESPONSE_MSG_n_DATAn		GUC_HXG_MSG_n_PAYLOAD
->=20=20
->  /* deprecated */
-> -#define INTEL_GUC_MSG_TYPE_SHIFT	28
-> -#define INTEL_GUC_MSG_TYPE_MASK		(0xF << INTEL_GUC_MSG_TYPE_SHIFT)
-> -#define INTEL_GUC_MSG_DATA_SHIFT	16
-> -#define INTEL_GUC_MSG_DATA_MASK		(0xFFF << INTEL_GUC_MSG_DATA_SHIFT)
-> -#define INTEL_GUC_MSG_CODE_SHIFT	0
-> -#define INTEL_GUC_MSG_CODE_MASK		(0xFFFF << INTEL_GUC_MSG_CODE_SHIFT)
-> +#define INTEL_GUC_MSG_TYPE_MASK		GENMASK(31, 28)
-> +#define INTEL_GUC_MSG_DATA_MASK		GENMASK(27, 16)
-> +#define INTEL_GUC_MSG_CODE_MASK		GENMASK(15, 0)
->=20=20
->  enum intel_guc_msg_type {
->  	INTEL_GUC_MSG_TYPE_REQUEST =3D 0x0,
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_c=
-t.c
-> index ee5d99456aeb..fc5cc2b2bcc5 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-> @@ -866,7 +866,7 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u=
-32 *msg, u32 len)
->  	 */
->  	if (fence & CT_SEQNO_UNTRACKED) {
->  		if (type =3D=3D GUC_HXG_TYPE_RESPONSE_FAILURE)
-> -			xe_gt_err(gt, "FAST_REQ H2G fence 0x%x failed! e=3D0x%x, h=3D%u\n",
-> +			xe_gt_err(gt, "FAST_REQ H2G fence 0x%x failed! e=3D0x%lx, h=3D%lu\n",
->  				  fence,
->  				  FIELD_GET(GUC_HXG_FAILURE_MSG_0_ERROR, hxg[0]),
->  				  FIELD_GET(GUC_HXG_FAILURE_MSG_0_HINT, hxg[0]));
-> diff --git a/drivers/gpu/drm/xe/xe_guc_relay.c b/drivers/gpu/drm/xe/xe_gu=
-c_relay.c
-> index c0a2d8d5d3b3..2d1f19270d9a 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_relay.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_relay.c
-> @@ -300,7 +300,7 @@ static int relay_send_transaction(struct xe_guc_relay=
- *relay, struct relay_trans
->  		ret =3D -EPROTO;
->  	}
->  	if (unlikely(ret < 0)) {
-> -		relay_notice(relay, "Failed to send %s.%x to GuC (%pe) %*ph ...\n",
-> +		relay_notice(relay, "Failed to send %s.%lx to GuC (%pe) %*ph ...\n",
->  			     guc_hxg_type_to_string(FIELD_GET(GUC_HXG_MSG_0_TYPE, buf[0])),
->  			     FIELD_GET(GUC_HXG_REQUEST_MSG_0_ACTION, buf[0]),
->  			     ERR_PTR(ret), (int)sizeof(u32) * txn->offset, buf);
+>Compared to the i915 and xe versions, this is more lax now. You could
+>specify GENMASK_U32(63,32) without complaints.
 
---=20
-Jani Nikula, Intel
+Doing this on top of the this series:
+
+-#define   XELPDP_PORT_M2P_COMMAND_TYPE_MASK            REG_GENMASK(30, 27)
++#define   XELPDP_PORT_M2P_COMMAND_TYPE_MASK            REG_GENMASK(62, 32)
+
+and I do get a build failure:
+
+../drivers/gpu/drm/i915/display/intel_cx0_phy.c: In function ‘__intel_cx0_read_once’:
+../include/linux/bits.h:41:31: error: left shift count >= width of type [-Werror=shift-count-overflow]
+    41 |          (((t)~0ULL - ((t)(1) << (l)) + 1) & \
+       |                               ^~
+
+
+I also tested them individually. All of these fail to build for me:
+
+1)
+-#define   XELPDP_PORT_M2P_COMMAND_TYPE_MASK            REG_GENMASK(30, 27)
++#define   XELPDP_PORT_M2P_COMMAND_TYPE_MASK            REG_GENMASK(32, 27)
+
+2)
+-#define   XELPDP_PORT_M2P_COMMAND_TYPE_MASK            REG_GENMASK(30, 27)
++#define   XELPDP_PORT_M2P_COMMAND_TYPE_MASK            REG_GENMASK(30, 31)
+
+3)
+-#define   XELPDP_PORT_M2P_COMMAND_TYPE_MASK            REG_GENMASK(30, 27)
++#define   XELPDP_PORT_M2P_COMMAND_TYPE_MASK            REG_GENMASK(30, -1)
+
+
+Lucas De Marchi
