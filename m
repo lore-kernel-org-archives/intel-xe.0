@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 196C7C47258
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Jan 2024 11:18:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D00DC47258
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Jan 2024 11:42:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD09310F8B2;
-	Thu, 25 Jan 2024 11:18:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F8EA10E17B;
+	Thu, 25 Jan 2024 11:42:35 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A08D10F8B9;
- Thu, 25 Jan 2024 11:18:51 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC02D10E17B;
+ Thu, 25 Jan 2024 11:42:33 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2313369867452813051=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_Don=27t_make_e?=
- =?utf-8?q?xec=5Fqueues_persistent_by_default?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Don=27t_make_exec=5Fqu?=
+ =?utf-8?q?eues_persistent_by_default?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Thu, 25 Jan 2024 11:18:51 -0000
-Message-ID: <170618153143.710554.12820401247688276242@5338d5abeb45>
+Date: Thu, 25 Jan 2024 11:42:33 -0000
+Message-ID: <170618295383.710554.6537041931705900113@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240125105933.5159-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20240125105933.5159-1-thomas.hellstrom@linux.intel.com>
@@ -40,6 +40,11 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============2313369867452813051==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: drm/xe: Don't make exec_queues persistent by default
@@ -48,25 +53,93 @@ State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast cad255f28ccca6529104b9497a8d7302ae7eb88a
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+CI Bug Log - changes from xe-684-cad255f28ccca6529104b9497a8d7302ae7eb88a_BAT -> xe-pw-129159v1_BAT
+====================================================
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7691 -> IGT_7692
+  * Linux: xe-684-cad255f28ccca6529104b9497a8d7302ae7eb88a -> xe-pw-129159v1
+
+  IGT_7691: 7691
+  IGT_7692: 5d9c29c620701497323bf3721146da57efa50952 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-684-cad255f28ccca6529104b9497a8d7302ae7eb88a: cad255f28ccca6529104b9497a8d7302ae7eb88a
+  xe-pw-129159v1: 129159v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129159v1/index.html
+
+--===============2313369867452813051==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Don&#x27;t make exec_queues persistent by default</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129159/">https://patchwork.freedesktop.org/series/129159/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129159v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129159v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-684-cad255f28ccca6529104b9497a8d7302ae7eb88a_BAT -&gt; xe-pw-129159v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7691 -&gt; IGT_7692</li>
+<li>Linux: xe-684-cad255f28ccca6529104b9497a8d7302ae7eb88a -&gt; xe-pw-129159v1</li>
+</ul>
+<p>IGT_7691: 7691<br />
+  IGT_7692: 5d9c29c620701497323bf3721146da57efa50952 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-684-cad255f28ccca6529104b9497a8d7302ae7eb88a: cad255f28ccca6529104b9497a8d7302ae7eb88a<br />
+  xe-pw-129159v1: 129159v1</p>
+
+</body>
+</html>
+
+--===============2313369867452813051==--
