@@ -4,55 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66235C48286
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Jan 2024 09:56:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74A3EC47258
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Jan 2024 10:59:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A2DE10F879;
-	Thu, 25 Jan 2024 09:56:11 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8D0B10F85E;
- Thu, 25 Jan 2024 09:56:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D9AA10F8AB;
+	Thu, 25 Jan 2024 10:59:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D007710F8AB
+ for <intel-xe@lists.freedesktop.org>; Thu, 25 Jan 2024 10:59:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706176569; x=1737712569;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=GxwRbE55YIwDHZtfx76YzVpE3RzFJjrHMcE6Kj92Rps=;
- b=eLLEMHa5l9foFnKJqxnQBAX8Xjvez0u2bQcWX0B4uDL/bYlufuWNjKax
- gpNojaC7pCd/FPrf/6WXQqqPaXthGP5G175UVQHKbmIV0RfgTUF3LG02H
- TSKGNpxrlhAaDbJD8i6BovARojJ0pQRXNq9xumT8shnjWG54nAaRWwnNi
- yC8lPVTFM0ROIhO7pw6STJQnzQYGy2146HBHMNCow9Q/yBI5/keDHmYaw
- D7G4uWFuDDIXvclNIHeC2SNTaDe4VRtVz22ChpX66JFQyXonZeq2f00k1
- Cy/Yv1r+VysgzYkMqmz+/w//aQzOMWwyLHMpXSxCtRhZOEK5D/brIpaQG A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="23578977"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="23578977"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2024 01:56:08 -0800
+ t=1706180388; x=1737716388;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Z6AYoEIhVlCrT0Pdchv+61LHI3BKP+7/+rtxC5PwB0M=;
+ b=I5EzIchPSzGDCzsLb4ti8wkM29lCzrbjMRoz62q6uMD2ptJE5UKt2lVs
+ mNCAxiyx2jjnJqhVAeUE8j/FwqvCoXOVhnPCVygWqexoCyZg0K3tTNj9M
+ RyD1OgeCd5PSsxkTdUuVDf7qny+xNfz9zKn7XqA1GyptU7mv/KXZT2wQn
+ W0yZob2rXv4XL/R4x/6pZtcBsFB8zStxWYf2VvHJH56XxdsumxEEEB2+P
+ u1Ln2/tYYqU5A3SUUU9YmH3MMx3GouPBsvA+TcWfprGBYo/rIWXyd8qC9
+ JWregUyIcagbmGzG3JrITenTMq29wM90xt430M2ObMsWqbcTm8LwQA2O8 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="400985320"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="400985320"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2024 02:59:48 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
-   d="scan'208";a="2188240"
-Received: from cyrillet-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.58.252])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2024 01:56:05 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>, Yury Norov <yury.norov@gmail.com>
-Subject: Re: Re: [PATCH 1/3] bits: introduce fixed-type genmasks
-In-Reply-To: <170611134445.31262.2799581830173501277@gjsousa-mobl2>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240124050205.3646390-1-lucas.demarchi@intel.com>
- <20240124050205.3646390-2-lucas.demarchi@intel.com>
- <87v87jkvrx.fsf@intel.com>
- <gvkvihpcc45275idrfukjqbvgem767evrux5sx5lnh5hofqemk@ppbkcauitvwb>
- <ZbEsfl0tGLY+xJl0@yury-ThinkPad>
- <170611134445.31262.2799581830173501277@gjsousa-mobl2>
-Date: Thu, 25 Jan 2024 11:56:01 +0200
-Message-ID: <878r4dlosu.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="909961548"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="909961548"
+Received: from clanggaa-mobl.ger.corp.intel.com (HELO fedora..)
+ ([10.249.254.242])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2024 02:59:47 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [CI] drm/xe: Don't make exec_queues persistent by default
+Date: Thu, 25 Jan 2024 11:59:33 +0100
+Message-ID: <20240125105933.5159-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,73 +56,39 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 24 Jan 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> Quoting Yury Norov (2024-01-24 12:27:58-03:00)
->>On Wed, Jan 24, 2024 at 08:03:53AM -0600, Lucas De Marchi wrote:
->>> On Wed, Jan 24, 2024 at 09:58:26AM +0200, Jani Nikula wrote:
->>> > On Tue, 23 Jan 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->>> > > From: Yury Norov <yury.norov@gmail.com>
->>> > >=20
->>> > > Generalize __GENMASK() to support different types, and implement
->>> > > fixed-types versions of GENMASK() based on it. The fixed-type versi=
-on
->>> > > allows more strict checks to the min/max values accepted, which is
->>> > > useful for defining registers like implemented by i915 and xe drive=
-rs
->>> > > with their REG_GENMASK*() macros.
->>> >=20
->>> > Mmh, the commit message says the fixed-type version allows more strict
->>> > checks, but none are actually added. GENMASK_INPUT_CHECK() remains the
->>> > same.
->>> >=20
->>> > Compared to the i915 and xe versions, this is more lax now. You could
->>> > specify GENMASK_U32(63,32) without complaints.
->>>=20
->>> Doing this on top of the this series:
->>>=20
->>> -#define   XELPDP_PORT_M2P_COMMAND_TYPE_MASK            REG_GENMASK(30,=
- 27)
->>> +#define   XELPDP_PORT_M2P_COMMAND_TYPE_MASK            REG_GENMASK(62,=
- 32)
->>>=20
->>> and I do get a build failure:
->>>=20
->>> ../drivers/gpu/drm/i915/display/intel_cx0_phy.c: In function =E2=80=98_=
-_intel_cx0_read_once=E2=80=99:
->>> ../include/linux/bits.h:41:31: error: left shift count >=3D width of ty=
-pe [-Werror=3Dshift-count-overflow]
->>>    41 |          (((t)~0ULL - ((t)(1) << (l)) + 1) & \
->>>       |                               ^~
+A first step in avoiding persistent exec_queue handling.
 
-I stand corrected.
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_exec_queue.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
->>
->>I would better include this in commit message to avoid people's
->>confusion. If it comes to v2, can you please do it and mention that
->>this trick relies on shift-count-overflow compiler check?
->
-> Wouldn't it be better to have explicit check that l and h are not out of =
-bounds
-> based on BITS_PER_TYPE() than relying on a compiler flag that could be tu=
-rned
-> off (maybe for some questionable reason, but even so)?
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index c0b7434e78f1..bee07bc29f89 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -707,7 +707,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ 			/* The migration vm doesn't hold rpm ref */
+ 			xe_device_mem_access_get(xe);
+ 
+-			flags = EXEC_QUEUE_FLAG_PERSISTENT | EXEC_QUEUE_FLAG_VM |
++			flags = EXEC_QUEUE_FLAG_VM |
+ 				(id ? EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD : 0);
+ 
+ 			migrate_vm = xe_migrate_get_vm(gt_to_tile(gt)->migrate);
+@@ -760,8 +760,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ 
+ 		q = xe_exec_queue_create(xe, vm, logical_mask,
+ 					 args->width, hwe,
+-					 xe_vm_in_lr_mode(vm) ? 0 :
+-					 EXEC_QUEUE_FLAG_PERSISTENT,
++					 0,
+ 					 args->extensions);
+ 		up_read(&vm->lock);
+ 		xe_vm_put(vm);
+-- 
+2.43.0
 
-My preference would be the explicit check, a comment in code, or an
-explanation in the commit message, in this order. Because honestly, none
-of this is obvious, and a future refactoring of GENMASK might just
-inadvertently thwart the whole check.
-
-Regardless, my main concern was moot, on the series,
-
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-
-
---=20
-Jani Nikula, Intel
