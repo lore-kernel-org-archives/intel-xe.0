@@ -4,105 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0544CC47258
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Jan 2024 09:35:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2413C47258
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Jan 2024 09:41:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7C7910F887;
-	Thu, 25 Jan 2024 09:35:21 +0000 (UTC)
-X-Greylist: delayed 649 seconds by postgrey-1.36 at gabe;
- Thu, 25 Jan 2024 09:35:19 UTC
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC50610F87E
- for <intel-xe@lists.freedesktop.org>; Thu, 25 Jan 2024 09:35:19 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 4528D22369;
- Thu, 25 Jan 2024 09:24:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
- t=1706174665; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=EbkcjcBi/PmQkSlj2pWcl6SvNBHPYJ2Vpw3KkDDWYLI=;
- b=IrtsHusb28AvG0BzQGAZMuTntHsHyENVr4lrnxCclGlSHXHno79Jd4YCaEI4PVb/vV8tCF
- KX5VFTbvl11jO9btAIRDW0fvW42n2wpnDQZ9kqykSdo0qU91A7dA6ujfVbpKeSXYHBbJ6Q
- bScJwLHT/mQ476Pd5SOsKhrCXN5NNkM=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
- s=susede2_ed25519; t=1706174665;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=EbkcjcBi/PmQkSlj2pWcl6SvNBHPYJ2Vpw3KkDDWYLI=;
- b=kv6yC6uV/6JpTrOkEmsUVwWi368svD6tyZx5QGJHEPO9Ino/hGD8cC4ahozznQOt2MEWv2
- NkIclPMdx9MBwPAA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
- t=1706174665; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=EbkcjcBi/PmQkSlj2pWcl6SvNBHPYJ2Vpw3KkDDWYLI=;
- b=IrtsHusb28AvG0BzQGAZMuTntHsHyENVr4lrnxCclGlSHXHno79Jd4YCaEI4PVb/vV8tCF
- KX5VFTbvl11jO9btAIRDW0fvW42n2wpnDQZ9kqykSdo0qU91A7dA6ujfVbpKeSXYHBbJ6Q
- bScJwLHT/mQ476Pd5SOsKhrCXN5NNkM=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
- s=susede2_ed25519; t=1706174665;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=EbkcjcBi/PmQkSlj2pWcl6SvNBHPYJ2Vpw3KkDDWYLI=;
- b=kv6yC6uV/6JpTrOkEmsUVwWi368svD6tyZx5QGJHEPO9Ino/hGD8cC4ahozznQOt2MEWv2
- NkIclPMdx9MBwPAA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 1FCDE134C3;
- Thu, 25 Jan 2024 09:24:25 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id geUaB8kosmWtTwAAD6G6ig
- (envelope-from <vbabka@suse.cz>); Thu, 25 Jan 2024 09:24:25 +0000
-Message-ID: <67f3e729-f5fc-415e-8fa0-f6df4e1336d1@suse.cz>
-Date: Thu, 25 Jan 2024 10:24:24 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FCB510E87D;
+	Thu, 25 Jan 2024 09:41:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21BFB10E900;
+ Thu, 25 Jan 2024 09:41:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706175711; x=1737711711;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=WeBZw7CQQ/b0Kuc3VgepmfjtbEo4oCwHmiOwv7/FBic=;
+ b=QrKs+fk94YkLOU4qEFPof2BS646x1aX/gITC+3v+vwonGa14Po5Joj6X
+ O2maEIYOu/jBu0UoEwwzKdoRFKQE6WCaK+Fa8ngZwygX5jDWesT/4L2So
+ 1z+ImC527vnwCG0Yw1/Fs6H4Hmr1DG/w6Z0OYEg1almLAiyB8+utcAk6/
+ 2LntatybLuLWrlNDbLmYgW+itLf+T4tHthqTq1tGkzc/7NHK4Yy/33kfg
+ TMPkvi7p3fb757WyLQBYX3fSSDM8uh05/xvsAbz0x/egxmAX28d6mondS
+ WG/FjvYUy6HyUE2dfQ5Sb/kkDJdzOrzjucsPw1xd9V9vhBibIXbUMcCfB g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="20662388"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="20662388"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2024 01:41:48 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="959789568"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="959789568"
+Received: from cyrillet-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.58.252])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2024 01:41:43 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: wangxiaoming321 <xiaoming.wang@intel.com>, lucas.demarchi@intel.com,
+ ogabbay@kernel.org, thomas.hellstrom@linux.intel.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] drm/xe/display: Fix memleak in display initialization
+In-Reply-To: <20240125063633.989944-1-xiaoming.wang@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240125063633.989944-1-xiaoming.wang@intel.com>
+Date: Thu, 25 Jan 2024 11:41:40 +0200
+Message-ID: <87bk99lpgr.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/sched: Drain all entities in DRM sched run job worker
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20240124210811.1639040-1-matthew.brost@intel.com>
-Content-Language: en-US
-From: Vlastimil Babka <vbabka@suse.cz>
-In-Reply-To: <20240124210811.1639040-1-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Bar: /
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.cz header.s=susede2_rsa header.b=IrtsHusb;
- dkim=pass header.d=suse.cz header.s=susede2_ed25519 header.b=kv6yC6uV
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Spamd-Result: default: False [-0.00 / 50.00]; RCVD_VIA_SMTP_AUTH(0.00)[];
- XM_UA_NO_VERSION(0.01)[];
- SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
- TO_DN_SOME(0.00)[]; RCVD_COUNT_THREE(0.00)[3];
- DKIM_TRACE(0.00)[suse.cz:+]; MX_GOOD(-0.01)[];
- RCPT_COUNT_SEVEN(0.00)[10]; NEURAL_HAM_SHORT(-0.20)[-1.000];
- FROM_EQ_ENVFROM(0.00)[]; MIME_TRACE(0.00)[0:+];
- BAYES_HAM(-0.00)[21.03%]; MID_RHS_MATCH_FROM(0.00)[];
- ARC_NA(0.00)[];
- R_DKIM_ALLOW(-0.20)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
- FROM_HAS_DN(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; TAGGED_RCPT(0.00)[];
- MIME_GOOD(-0.10)[text/plain]; NEURAL_HAM_LONG(-1.00)[-1.000];
- DKIM_SIGNED(0.00)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.cz:dkim,suse.cz:email,intel.com:email];
- FUZZY_BLOCKED(0.00)[rspamd.com];
- FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,amd.com,leemhuis.info];
- RCVD_TLS_ALL(0.00)[]; SUSPICIOUS_RECIPS(1.50)[]
-X-Rspamd-Queue-Id: 4528D22369
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,69 +62,70 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: ltuikov89@gmail.com, Thorsten Leemhuis <regressions@leemhuis.info>,
- Mario Limonciello <mario.limonciello@amd.com>, daniel@ffwll.ch,
- Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>, airlied@gmail.com,
- christian.koenig@amd.com
+Cc: wangxiaoming321 <xiaoming.wang@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 1/24/24 22:08, Matthew Brost wrote:
-> All entities must be drained in the DRM scheduler run job worker to
-> avoid the following case. An entity found that is ready, no job found
-> ready on entity, and run job worker goes idle with other entities + jobs
-> ready. Draining all ready entities (i.e. loop over all ready entities)
-> in the run job worker ensures all job that are ready will be scheduled.
-> 
-> Cc: Thorsten Leemhuis <regressions@leemhuis.info>
-> Reported-by: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
-> Closes: https://lore.kernel.org/all/CABXGCsM2VLs489CH-vF-1539-s3in37=bwuOWtoeeE+q26zE+Q@mail.gmail.com/
-> Reported-and-tested-by: Mario Limonciello <mario.limonciello@amd.com>
-> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3124
-> Link: https://lore.kernel.org/all/20240123021155.2775-1-mario.limonciello@amd.com/
-> Reported-by: Vlastimil Babka <vbabka@suse.cz>
+On Thu, 25 Jan 2024, wangxiaoming321 <xiaoming.wang@intel.com> wrote:
+> In the call stack xe_device_probe ->  xe_display_init_nommio -> intel_power_domains_init
+> Power_domains  hasn't been cleaned up if return error,
+> which has do the clean in i915_driver_late_release call from i915_driver_probe.
 
-Can change to Reported-and-tested-by: Vlastimil Babka <vbabka@suse.cz>
+This has nothing to do with i915_*.
 
-Thanks!
+If intel_power_domains_init() returns an error, it should have cleaned
+up after itself, not force its caller to do that. If there's an issue,
+please fix it in intel_power_domains_init().
 
-> Closes: https://lore.kernel.org/dri-devel/05ddb2da-b182-4791-8ef7-82179fd159a8@amd.com/T/#m0c31d4d1b9ae9995bb880974c4f1dbaddc33a48a
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+BR,
+Jani.
+
+
+>
+> unreferenced object 0xffff88811150ee00 (size 512):
+>   comm "systemd-udevd", pid 506, jiffies 4294674198 (age 3605.560s)
+>   hex dump (first 32 bytes):
+>     10 b4 9d a0 ff ff ff ff ff ff ff ff ff ff ff ff  ................
+>     ff ff ff ff ff ff ff ff 00 00 00 00 00 00 00 00  ................
+>   backtrace:
+>     [<ffffffff8134b901>] __kmem_cache_alloc_node+0x1c1/0x2b0
+>     [<ffffffff812c98b2>] __kmalloc+0x52/0x150
+>     [<ffffffffa08b0033>] __set_power_wells+0xc3/0x360 [xe]
+>     [<ffffffffa08562fc>] xe_display_init_nommio+0x4c/0x70 [xe]
+>     [<ffffffffa07f0d1c>] xe_device_probe+0x3c/0x5a0 [xe]
+>     [<ffffffffa082e48f>] xe_pci_probe+0x33f/0x5a0 [xe]
+>     [<ffffffff817f2187>] local_pci_probe+0x47/0xa0
+>     [<ffffffff817f3db3>] pci_device_probe+0xc3/0x1f0
+>     [<ffffffff8192f2a2>] really_probe+0x1a2/0x410
+>     [<ffffffff8192f598>] __driver_probe_device+0x78/0x160
+>     [<ffffffff8192f6ae>] driver_probe_device+0x1e/0x90
+>     [<ffffffff8192f92a>] __driver_attach+0xda/0x1d0
+>     [<ffffffff8192c95c>] bus_for_each_dev+0x7c/0xd0
+>     [<ffffffff8192e159>] bus_add_driver+0x119/0x220
+>     [<ffffffff81930d00>] driver_register+0x60/0x120
+>     [<ffffffffa05e50a0>] 0xffffffffa05e50a0
+>
+> Signed-off-by: wangxiaoming321 <xiaoming.wang@intel.com>
 > ---
->  drivers/gpu/drm/scheduler/sched_main.c | 15 +++++++--------
->  1 file changed, 7 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-> index 550492a7a031..85f082396d42 100644
-> --- a/drivers/gpu/drm/scheduler/sched_main.c
-> +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> @@ -1178,21 +1178,20 @@ static void drm_sched_run_job_work(struct work_struct *w)
->  	struct drm_sched_entity *entity;
->  	struct dma_fence *fence;
->  	struct drm_sched_fence *s_fence;
-> -	struct drm_sched_job *sched_job;
-> +	struct drm_sched_job *sched_job = NULL;
->  	int r;
+>  drivers/gpu/drm/xe/xe_display.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
+> index 74391d9b11ae..2725afba4afb 100644
+> --- a/drivers/gpu/drm/xe/xe_display.c
+> +++ b/drivers/gpu/drm/xe/xe_display.c
+> @@ -146,8 +146,10 @@ int xe_display_init_nommio(struct xe_device *xe)
+>  	intel_detect_pch(xe);
 >  
->  	if (READ_ONCE(sched->pause_submit))
->  		return;
->  
-> -	entity = drm_sched_select_entity(sched);
-> +	/* Find entity with a ready job */
-> +	while (!sched_job && (entity = drm_sched_select_entity(sched))) {
-> +		sched_job = drm_sched_entity_pop_job(entity);
-> +		if (!sched_job)
-> +			complete_all(&entity->entity_idle);
+>  	err = intel_power_domains_init(xe);
+> -	if (err)
+> +	if (err) {
+> +		intel_power_domains_cleanup(xe);
+>  		return err;
 > +	}
->  	if (!entity)
-> -		return;
-> -
-> -	sched_job = drm_sched_entity_pop_job(entity);
-> -	if (!sched_job) {
-> -		complete_all(&entity->entity_idle);
->  		return;	/* No more work */
-> -	}
 >  
->  	s_fence = sched_job->s_fence;
->  
+>  	return drmm_add_action_or_reset(&xe->drm, xe_display_fini_nommio, xe);
+>  }
 
+-- 
+Jani Nikula, Intel
