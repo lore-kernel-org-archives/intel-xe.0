@@ -4,53 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2413C47258
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Jan 2024 09:41:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66235C48286
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Jan 2024 09:56:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FCB510E87D;
-	Thu, 25 Jan 2024 09:41:52 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21BFB10E900;
- Thu, 25 Jan 2024 09:41:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A2DE10F879;
+	Thu, 25 Jan 2024 09:56:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8D0B10F85E;
+ Thu, 25 Jan 2024 09:56:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706175711; x=1737711711;
+ t=1706176569; x=1737712569;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=WeBZw7CQQ/b0Kuc3VgepmfjtbEo4oCwHmiOwv7/FBic=;
- b=QrKs+fk94YkLOU4qEFPof2BS646x1aX/gITC+3v+vwonGa14Po5Joj6X
- O2maEIYOu/jBu0UoEwwzKdoRFKQE6WCaK+Fa8ngZwygX5jDWesT/4L2So
- 1z+ImC527vnwCG0Yw1/Fs6H4Hmr1DG/w6Z0OYEg1almLAiyB8+utcAk6/
- 2LntatybLuLWrlNDbLmYgW+itLf+T4tHthqTq1tGkzc/7NHK4Yy/33kfg
- TMPkvi7p3fb757WyLQBYX3fSSDM8uh05/xvsAbz0x/egxmAX28d6mondS
- WG/FjvYUy6HyUE2dfQ5Sb/kkDJdzOrzjucsPw1xd9V9vhBibIXbUMcCfB g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="20662388"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="20662388"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2024 01:41:48 -0800
+ message-id:mime-version:content-transfer-encoding;
+ bh=GxwRbE55YIwDHZtfx76YzVpE3RzFJjrHMcE6Kj92Rps=;
+ b=eLLEMHa5l9foFnKJqxnQBAX8Xjvez0u2bQcWX0B4uDL/bYlufuWNjKax
+ gpNojaC7pCd/FPrf/6WXQqqPaXthGP5G175UVQHKbmIV0RfgTUF3LG02H
+ TSKGNpxrlhAaDbJD8i6BovARojJ0pQRXNq9xumT8shnjWG54nAaRWwnNi
+ yC8lPVTFM0ROIhO7pw6STJQnzQYGy2146HBHMNCow9Q/yBI5/keDHmYaw
+ D7G4uWFuDDIXvclNIHeC2SNTaDe4VRtVz22ChpX66JFQyXonZeq2f00k1
+ Cy/Yv1r+VysgzYkMqmz+/w//aQzOMWwyLHMpXSxCtRhZOEK5D/brIpaQG A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="23578977"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="23578977"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2024 01:56:08 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="959789568"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="959789568"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
+   d="scan'208";a="2188240"
 Received: from cyrillet-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.58.252])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2024 01:41:43 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: wangxiaoming321 <xiaoming.wang@intel.com>, lucas.demarchi@intel.com,
- ogabbay@kernel.org, thomas.hellstrom@linux.intel.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] drm/xe/display: Fix memleak in display initialization
-In-Reply-To: <20240125063633.989944-1-xiaoming.wang@intel.com>
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2024 01:56:05 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Yury Norov <yury.norov@gmail.com>
+Subject: Re: Re: [PATCH 1/3] bits: introduce fixed-type genmasks
+In-Reply-To: <170611134445.31262.2799581830173501277@gjsousa-mobl2>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240125063633.989944-1-xiaoming.wang@intel.com>
-Date: Thu, 25 Jan 2024 11:41:40 +0200
-Message-ID: <87bk99lpgr.fsf@intel.com>
+References: <20240124050205.3646390-1-lucas.demarchi@intel.com>
+ <20240124050205.3646390-2-lucas.demarchi@intel.com>
+ <87v87jkvrx.fsf@intel.com>
+ <gvkvihpcc45275idrfukjqbvgem767evrux5sx5lnh5hofqemk@ppbkcauitvwb>
+ <ZbEsfl0tGLY+xJl0@yury-ThinkPad>
+ <170611134445.31262.2799581830173501277@gjsousa-mobl2>
+Date: Thu, 25 Jan 2024 11:56:01 +0200
+Message-ID: <878r4dlosu.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,70 +64,73 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: wangxiaoming321 <xiaoming.wang@intel.com>
+Cc: intel-gfx@lists.freedesktop.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 25 Jan 2024, wangxiaoming321 <xiaoming.wang@intel.com> wrote:
-> In the call stack xe_device_probe ->  xe_display_init_nommio -> intel_power_domains_init
-> Power_domains  hasn't been cleaned up if return error,
-> which has do the clean in i915_driver_late_release call from i915_driver_probe.
+On Wed, 24 Jan 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> Quoting Yury Norov (2024-01-24 12:27:58-03:00)
+>>On Wed, Jan 24, 2024 at 08:03:53AM -0600, Lucas De Marchi wrote:
+>>> On Wed, Jan 24, 2024 at 09:58:26AM +0200, Jani Nikula wrote:
+>>> > On Tue, 23 Jan 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>>> > > From: Yury Norov <yury.norov@gmail.com>
+>>> > >=20
+>>> > > Generalize __GENMASK() to support different types, and implement
+>>> > > fixed-types versions of GENMASK() based on it. The fixed-type versi=
+on
+>>> > > allows more strict checks to the min/max values accepted, which is
+>>> > > useful for defining registers like implemented by i915 and xe drive=
+rs
+>>> > > with their REG_GENMASK*() macros.
+>>> >=20
+>>> > Mmh, the commit message says the fixed-type version allows more strict
+>>> > checks, but none are actually added. GENMASK_INPUT_CHECK() remains the
+>>> > same.
+>>> >=20
+>>> > Compared to the i915 and xe versions, this is more lax now. You could
+>>> > specify GENMASK_U32(63,32) without complaints.
+>>>=20
+>>> Doing this on top of the this series:
+>>>=20
+>>> -#define   XELPDP_PORT_M2P_COMMAND_TYPE_MASK            REG_GENMASK(30,=
+ 27)
+>>> +#define   XELPDP_PORT_M2P_COMMAND_TYPE_MASK            REG_GENMASK(62,=
+ 32)
+>>>=20
+>>> and I do get a build failure:
+>>>=20
+>>> ../drivers/gpu/drm/i915/display/intel_cx0_phy.c: In function =E2=80=98_=
+_intel_cx0_read_once=E2=80=99:
+>>> ../include/linux/bits.h:41:31: error: left shift count >=3D width of ty=
+pe [-Werror=3Dshift-count-overflow]
+>>>    41 |          (((t)~0ULL - ((t)(1) << (l)) + 1) & \
+>>>       |                               ^~
 
-This has nothing to do with i915_*.
+I stand corrected.
 
-If intel_power_domains_init() returns an error, it should have cleaned
-up after itself, not force its caller to do that. If there's an issue,
-please fix it in intel_power_domains_init().
-
-BR,
-Jani.
-
-
+>>
+>>I would better include this in commit message to avoid people's
+>>confusion. If it comes to v2, can you please do it and mention that
+>>this trick relies on shift-count-overflow compiler check?
 >
-> unreferenced object 0xffff88811150ee00 (size 512):
->   comm "systemd-udevd", pid 506, jiffies 4294674198 (age 3605.560s)
->   hex dump (first 32 bytes):
->     10 b4 9d a0 ff ff ff ff ff ff ff ff ff ff ff ff  ................
->     ff ff ff ff ff ff ff ff 00 00 00 00 00 00 00 00  ................
->   backtrace:
->     [<ffffffff8134b901>] __kmem_cache_alloc_node+0x1c1/0x2b0
->     [<ffffffff812c98b2>] __kmalloc+0x52/0x150
->     [<ffffffffa08b0033>] __set_power_wells+0xc3/0x360 [xe]
->     [<ffffffffa08562fc>] xe_display_init_nommio+0x4c/0x70 [xe]
->     [<ffffffffa07f0d1c>] xe_device_probe+0x3c/0x5a0 [xe]
->     [<ffffffffa082e48f>] xe_pci_probe+0x33f/0x5a0 [xe]
->     [<ffffffff817f2187>] local_pci_probe+0x47/0xa0
->     [<ffffffff817f3db3>] pci_device_probe+0xc3/0x1f0
->     [<ffffffff8192f2a2>] really_probe+0x1a2/0x410
->     [<ffffffff8192f598>] __driver_probe_device+0x78/0x160
->     [<ffffffff8192f6ae>] driver_probe_device+0x1e/0x90
->     [<ffffffff8192f92a>] __driver_attach+0xda/0x1d0
->     [<ffffffff8192c95c>] bus_for_each_dev+0x7c/0xd0
->     [<ffffffff8192e159>] bus_add_driver+0x119/0x220
->     [<ffffffff81930d00>] driver_register+0x60/0x120
->     [<ffffffffa05e50a0>] 0xffffffffa05e50a0
->
-> Signed-off-by: wangxiaoming321 <xiaoming.wang@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_display.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
-> index 74391d9b11ae..2725afba4afb 100644
-> --- a/drivers/gpu/drm/xe/xe_display.c
-> +++ b/drivers/gpu/drm/xe/xe_display.c
-> @@ -146,8 +146,10 @@ int xe_display_init_nommio(struct xe_device *xe)
->  	intel_detect_pch(xe);
->  
->  	err = intel_power_domains_init(xe);
-> -	if (err)
-> +	if (err) {
-> +		intel_power_domains_cleanup(xe);
->  		return err;
-> +	}
->  
->  	return drmm_add_action_or_reset(&xe->drm, xe_display_fini_nommio, xe);
->  }
+> Wouldn't it be better to have explicit check that l and h are not out of =
+bounds
+> based on BITS_PER_TYPE() than relying on a compiler flag that could be tu=
+rned
+> off (maybe for some questionable reason, but even so)?
 
--- 
+My preference would be the explicit check, a comment in code, or an
+explanation in the commit message, in this order. Because honestly, none
+of this is obvious, and a future refactoring of GENMASK might just
+inadvertently thwart the whole check.
+
+Regardless, my main concern was moot, on the series,
+
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+
+
+--=20
 Jani Nikula, Intel
