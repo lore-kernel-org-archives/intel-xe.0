@@ -4,59 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7693BC48285
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Jan 2024 02:47:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19E3FC47DDB
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Jan 2024 07:40:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EA3510EED7;
-	Fri, 26 Jan 2024 02:47:13 +0000 (UTC)
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com
- [209.85.218.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63BA610E73A;
- Fri, 26 Jan 2024 02:47:12 +0000 (UTC)
-Received: by mail-ej1-f47.google.com with SMTP id
- a640c23a62f3a-a31713c8bdbso144807866b.2; 
- Thu, 25 Jan 2024 18:47:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1706237171; x=1706841971; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=44A2+oP7sNzN6xYPE3g+bk3EKfVLFxMaTi3qVJ0M6ms=;
- b=clNXYIW+Ima0jbV2fRAOOpD3Q//FGXA6UrL+Ln5xDL7f5DpU5WWYiWoZzaJe9vhFfe
- T6MBw3svVh2oguqI1D1s9IXf7KU+Lqcp/IUKLsMVLPs0iLVtG8ruO3NOeVEhujLrX81y
- 9rCKxdIV7qjKLrwwMZeetnHMQRS8XPnSpiUHfxrnSXvPKgNTCRV2EjLKa+OU9HMFdq9x
- 6wyEd9aDmD2U1jI3tZ5VhUxL9XBoRb4ajD9p/xN9Dg8Sty2gShIk582y9G6G8wkYRJj9
- P6FBWZ95Op2Wwi7QAS98tAyTh245RRXwLkWMgqwzG/XUA4XopuIgpWsHafPPQ5p2GxVK
- CIzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1706237171; x=1706841971;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=44A2+oP7sNzN6xYPE3g+bk3EKfVLFxMaTi3qVJ0M6ms=;
- b=pIqb5/DePc4Zb4eMh0GMHf+epO9xSppBubETeAMAD1x8kxjsdSIdd5RrFtBMuDfL1i
- bWQ3OmxLTUh+AAGuLX9jlpPYp6yC8BoQ1p6Q48QFlneR9US3KZZiipS1U1UFjle+6Zoe
- FSSn5YQCF4gImWrP2EG+A7qXJYsDCsgYCXT5zZY1tHZM6MxTFcGL0SKLlLbwcr2zJgwG
- q/iQUitu84T/dEw1bb34AbQ7QN0APZvyiCRIs+vkOtLgF1PHO95RAUeEhGMwChX9anC7
- V1hqZ1Zr0Navv1a4sDuyx/L88qQFjqrw9EiX5R7Plg8NY4tQu8LSkCbvWmJ05D4YEXXs
- N0Lg==
-X-Gm-Message-State: AOJu0Yz/SUPHNXsnq0JPv3h1CkWHoly1qjXGykF7tsLnspRP6hKE+U87
- f1q0xyxtjnsBF+sTRfe8IhyQnBMHOAhSmP1ywKhM+E5wupyHLBA+TyY1w09vqZZfFXGfMRu8YHl
- 79DMpZbFEHrmk7rs7qJq47oaWMpU=
-X-Google-Smtp-Source: AGHT+IHM1Jd6kTOcFueXiZs1u+zQG2ytcerbbB2AUQRMBCssGAdKH9So4Y4hRKeGiCHzknID3AdnQi6KK72QJRw0auI=
-X-Received: by 2002:a17:906:19c9:b0:a2c:1061:c645 with SMTP id
- h9-20020a17090619c900b00a2c1061c645mr256069ejd.44.1706237170541; Thu, 25 Jan
- 2024 18:46:10 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B254E10E14F;
+	Fri, 26 Jan 2024 07:40:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED1B510E14F
+ for <intel-xe@lists.freedesktop.org>; Fri, 26 Jan 2024 07:40:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706254809; x=1737790809;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MFu8HgzcHENtLLYdUNbaaQrkceqhGyJNjiofenAk/+I=;
+ b=dlOxqooHRbG9vGbsqhmBoZQQbVX+mmdz7RC2L/RqK8HNkrn/lwzr73u0
+ KARGoKV6oWyjei6hYOGmnzCaiVYvX8etQZwzqOxjS4GQv0/nM6GXeC9Z1
+ zfkkKk2VdUExQcoU+S4SA9HxXl/64D98LX54Tc8XJCjUp5z36BxbaMvPu
+ QCdLa2VCBXmZNz7e1LjY9BXzcqmKaL4HUor4dUlYCP/lyxrFol8nf5toU
+ 8XDbDUNau/oom53ghouT/xBdqg0UTSJ7p6UowI4i9MUvdnSfAuMVANAuR
+ KqZLQvgtgdmpGzBYtJUEgrJ8B2lBfexkXyOx6gakxq7iu0yynniHHdTFt A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="1338501"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
+   d="scan'208";a="1338501"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2024 23:40:08 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="28748761"
+Received: from sinjan-super-server.iind.intel.com ([10.145.169.153])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2024 23:40:06 -0800
+From: Karthik Poosa <karthik.poosa@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH] drm/xe/hwmon: Refactor xe hwmon
+Date: Fri, 26 Jan 2024 13:18:19 +0530
+Message-Id: <20240126074819.3851075-1-karthik.poosa@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20240124210811.1639040-1-matthew.brost@intel.com>
- <67f3e729-f5fc-415e-8fa0-f6df4e1336d1@suse.cz>
- <ZbKazWaBOiRLzcNJ@DUT025-TGLU.fm.intel.com>
-In-Reply-To: <ZbKazWaBOiRLzcNJ@DUT025-TGLU.fm.intel.com>
-From: Dave Airlie <airlied@gmail.com>
-Date: Fri, 26 Jan 2024 12:45:58 +1000
-Message-ID: <CAPM=9twHZboE7-=StQg9zKkRYcaDRLUzj=J9+EmXzfMLfAz=sw@mail.gmail.com>
-Subject: Re: [PATCH] drm/sched: Drain all entities in DRM sched run job worker
-To: Matthew Brost <matthew.brost@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,85 +54,101 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: ltuikov89@gmail.com, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Thorsten Leemhuis <regressions@leemhuis.info>,
- Mario Limonciello <mario.limonciello@amd.com>, daniel@ffwll.ch,
- Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>, christian.koenig@amd.com,
- Vlastimil Babka <vbabka@suse.cz>
+Cc: Karthik Poosa <karthik.poosa@intel.com>, matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
- Just FYI I'm pulling this into drm-fixes straight as is, since if
-fixes the regression and avoids the revert, however please keep
-discussing until we are sure things are right, and we can deal with
-any fixes in a follow-up patch.
+Check latest platform first in xe_hwmon_get_reg.
+Move PVC registers to xe_mchbar_regs.h.
 
-Dave.
+Fixes: fb1b70607f73 ("drm/xe/hwmon: Expose power attributes")
+Suggested-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h     |  6 ------
+ drivers/gpu/drm/xe/regs/xe_mchbar_regs.h |  6 ++++++
+ drivers/gpu/drm/xe/xe_hwmon.c            | 24 ++++++++++++------------
+ 3 files changed, 18 insertions(+), 18 deletions(-)
 
-On Fri, 26 Jan 2024 at 03:32, Matthew Brost <matthew.brost@intel.com> wrote:
->
-> On Thu, Jan 25, 2024 at 10:24:24AM +0100, Vlastimil Babka wrote:
-> > On 1/24/24 22:08, Matthew Brost wrote:
-> > > All entities must be drained in the DRM scheduler run job worker to
-> > > avoid the following case. An entity found that is ready, no job found
-> > > ready on entity, and run job worker goes idle with other entities + jobs
-> > > ready. Draining all ready entities (i.e. loop over all ready entities)
-> > > in the run job worker ensures all job that are ready will be scheduled.
-> > >
-> > > Cc: Thorsten Leemhuis <regressions@leemhuis.info>
-> > > Reported-by: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
-> > > Closes: https://lore.kernel.org/all/CABXGCsM2VLs489CH-vF-1539-s3in37=bwuOWtoeeE+q26zE+Q@mail.gmail.com/
-> > > Reported-and-tested-by: Mario Limonciello <mario.limonciello@amd.com>
-> > > Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3124
-> > > Link: https://lore.kernel.org/all/20240123021155.2775-1-mario.limonciello@amd.com/
-> > > Reported-by: Vlastimil Babka <vbabka@suse.cz>
-> >
-> > Can change to Reported-and-tested-by: Vlastimil Babka <vbabka@suse.cz>
-> >
->
-> +1, got it.
->
-> Matt
->
-> > Thanks!
-> >
-> > > Closes: https://lore.kernel.org/dri-devel/05ddb2da-b182-4791-8ef7-82179fd159a8@amd.com/T/#m0c31d4d1b9ae9995bb880974c4f1dbaddc33a48a
-> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/scheduler/sched_main.c | 15 +++++++--------
-> > >  1 file changed, 7 insertions(+), 8 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-> > > index 550492a7a031..85f082396d42 100644
-> > > --- a/drivers/gpu/drm/scheduler/sched_main.c
-> > > +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> > > @@ -1178,21 +1178,20 @@ static void drm_sched_run_job_work(struct work_struct *w)
-> > >     struct drm_sched_entity *entity;
-> > >     struct dma_fence *fence;
-> > >     struct drm_sched_fence *s_fence;
-> > > -   struct drm_sched_job *sched_job;
-> > > +   struct drm_sched_job *sched_job = NULL;
-> > >     int r;
-> > >
-> > >     if (READ_ONCE(sched->pause_submit))
-> > >             return;
-> > >
-> > > -   entity = drm_sched_select_entity(sched);
-> > > +   /* Find entity with a ready job */
-> > > +   while (!sched_job && (entity = drm_sched_select_entity(sched))) {
-> > > +           sched_job = drm_sched_entity_pop_job(entity);
-> > > +           if (!sched_job)
-> > > +                   complete_all(&entity->entity_idle);
-> > > +   }
-> > >     if (!entity)
-> > > -           return;
-> > > -
-> > > -   sched_job = drm_sched_entity_pop_job(entity);
-> > > -   if (!sched_job) {
-> > > -           complete_all(&entity->entity_idle);
-> > >             return; /* No more work */
-> > > -   }
-> > >
-> > >     s_fence = sched_job->s_fence;
-> > >
-> >
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index cd27480f6486..15ac2d284d48 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -490,10 +490,4 @@
+ #define   GT_CS_MASTER_ERROR_INTERRUPT		REG_BIT(3)
+ #define   GT_RENDER_USER_INTERRUPT		REG_BIT(0)
+ 
+-#define PVC_GT0_PACKAGE_ENERGY_STATUS		XE_REG(0x281004)
+-#define PVC_GT0_PACKAGE_RAPL_LIMIT		XE_REG(0x281008)
+-#define PVC_GT0_PACKAGE_POWER_SKU_UNIT		XE_REG(0x281068)
+-#define PVC_GT0_PLATFORM_ENERGY_STATUS		XE_REG(0x28106c)
+-#define PVC_GT0_PACKAGE_POWER_SKU		XE_REG(0x281080)
+-
+ #endif
+diff --git a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
+index 519dd1067a19..97652b4297ff 100644
+--- a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
+@@ -41,4 +41,10 @@
+ #define   PKG_PWR_LIM_1_TIME_X			REG_GENMASK(23, 22)
+ #define   PKG_PWR_LIM_1_TIME_Y			REG_GENMASK(21, 17)
+ 
++#define PVC_GT0_PACKAGE_ENERGY_STATUS           XE_REG(0x281004)
++#define PVC_GT0_PACKAGE_RAPL_LIMIT              XE_REG(0x281008)
++#define PVC_GT0_PACKAGE_POWER_SKU_UNIT          XE_REG(0x281068)
++#define PVC_GT0_PLATFORM_ENERGY_STATUS          XE_REG(0x28106c)
++#define PVC_GT0_PACKAGE_POWER_SKU               XE_REG(0x281080)
++
+ #endif /* _XE_MCHBAR_REGS_H_ */
+diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+index 89c6f7f84b5a..c19a0daf7fd7 100644
+--- a/drivers/gpu/drm/xe/xe_hwmon.c
++++ b/drivers/gpu/drm/xe/xe_hwmon.c
+@@ -77,32 +77,32 @@ static u32 xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon_reg)
+ 
+ 	switch (hwmon_reg) {
+ 	case REG_PKG_RAPL_LIMIT:
+-		if (xe->info.platform == XE_DG2)
+-			reg = PCU_CR_PACKAGE_RAPL_LIMIT;
+-		else if (xe->info.platform == XE_PVC)
++		if (xe->info.platform == XE_PVC)
+ 			reg = PVC_GT0_PACKAGE_RAPL_LIMIT;
++		else if (xe->info.platform == XE_DG2)
++			reg = PCU_CR_PACKAGE_RAPL_LIMIT;
+ 		break;
+ 	case REG_PKG_POWER_SKU:
+-		if (xe->info.platform == XE_DG2)
+-			reg = PCU_CR_PACKAGE_POWER_SKU;
+-		else if (xe->info.platform == XE_PVC)
++		if (xe->info.platform == XE_PVC)
+ 			reg = PVC_GT0_PACKAGE_POWER_SKU;
++		else if (xe->info.platform == XE_DG2)
++			reg = PCU_CR_PACKAGE_POWER_SKU;
+ 		break;
+ 	case REG_PKG_POWER_SKU_UNIT:
+-		if (xe->info.platform == XE_DG2)
+-			reg = PCU_CR_PACKAGE_POWER_SKU_UNIT;
+-		else if (xe->info.platform == XE_PVC)
++		if (xe->info.platform == XE_PVC)
+ 			reg = PVC_GT0_PACKAGE_POWER_SKU_UNIT;
++		else if (xe->info.platform == XE_DG2)
++			reg = PCU_CR_PACKAGE_POWER_SKU_UNIT;
+ 		break;
+ 	case REG_GT_PERF_STATUS:
+ 		if (xe->info.platform == XE_DG2)
+ 			reg = GT_PERF_STATUS;
+ 		break;
+ 	case REG_PKG_ENERGY_STATUS:
+-		if (xe->info.platform == XE_DG2)
+-			reg = PCU_CR_PACKAGE_ENERGY_STATUS;
+-		else if (xe->info.platform == XE_PVC)
++		if (xe->info.platform == XE_PVC)
+ 			reg = PVC_GT0_PLATFORM_ENERGY_STATUS;
++		else if (xe->info.platform == XE_DG2)
++			reg = PCU_CR_PACKAGE_ENERGY_STATUS;
+ 		break;
+ 	default:
+ 		drm_warn(&xe->drm, "Unknown xe hwmon reg id: %d\n", hwmon_reg);
+-- 
+2.25.1
+
