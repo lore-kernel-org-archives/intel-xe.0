@@ -4,57 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8521DC47422
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Jan 2024 20:31:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C36B9C47422
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Jan 2024 20:31:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4817E10FE61;
-	Fri, 26 Jan 2024 20:31:40 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0311510FE61
- for <intel-xe@lists.freedesktop.org>; Fri, 26 Jan 2024 20:31:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8486410E2AD;
+	Fri, 26 Jan 2024 20:31:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F39C10E2AD
+ for <intel-xe@lists.freedesktop.org>; Fri, 26 Jan 2024 20:31:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706301099; x=1737837099;
+ t=1706301110; x=1737837110;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=wm9MyYVROEeKtdWJ/bojKRZPozPTI2z9izoa7OYcIdk=;
- b=bEw+Y8oSDCNwRn316xgODYc6zR1qizKo6XS5Ic1h9AZiiWewgrXZsIeu
- 7woXlQuoHLeAa815b+FmTHzkx7T9Yp0azyiMu9Q7Qn6qD4oq9o0U/qiF0
- Vrj9JPHHeS3f4+my+CN/t4mbDrVN3RUxrV6PON7EQG50bCjq4Q9xgpBxL
- CQuC4HcjRUadOnkP4a2Dbkxhbu9sOdJRGJ8ZoMZVXv2goZIDC1wAmawsZ
- byDxfvtWBzpmnZrHlEdg/OkDRps/4C9j956uHbj0FgN5GkOpm24SAf5tD
- OfzMx8aXbiPM/1ncyoVGQdL7VIfi6hMc0cHP5e9sJaetQXfFD0gYItAax A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="9948610"
+ bh=5R3pEYIwH591PFsjPSM2r2Pw/TNU72snOTa6rjOUquA=;
+ b=gwedE8i63q79JNmbL5xSxK0uVJQLzV2EWtLhJz+MjMlNaU71bsacuA8j
+ 3akFRS120ZELE0ID2sGFy+tOhzczeTU3OKbRbSz+D9WrQpykPJlKC0zqM
+ dLwykRhtttvtGHWtsocW28CnKiBBVBIPsSzQLKvVftnU/HK9pECHUBqn3
+ X/xvUH30xVLSsswmFK9aNQNN7vy91YaPOHPy+Wl6Z7kqyeCtQS5m/DOk5
+ FOh6RVDRHjfAaW7rPvfCFBhjMMNThk4vYMy0FYDcZDxYQrUGr7JuXmSp5
+ IRvx0WTwQ/yJLoAJefHFs6Cf3r6AHIqWj0TLCfZXip6/eicUfBo0P043H g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="2406249"
 X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
-   d="scan'208";a="9948610"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2024 12:31:39 -0800
+   d="scan'208";a="2406249"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2024 12:31:50 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="877482002"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="877482002"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by FMSMGA003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 26 Jan 2024 12:31:38 -0800
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="930456219"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="930456219"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmsmga001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 26 Jan 2024 12:31:49 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 26 Jan 2024 12:31:38 -0800
+ 15.1.2507.35; Fri, 26 Jan 2024 12:31:49 -0800
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 26 Jan 2024 12:31:49 -0800
 Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
  fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Fri, 26 Jan 2024 12:31:38 -0800
+ 15.1.2507.35 via Frontend Transport; Fri, 26 Jan 2024 12:31:49 -0800
 Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
  by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Fri, 26 Jan 2024 12:31:36 -0800
+ 15.1.2507.35; Fri, 26 Jan 2024 12:31:38 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kn3Rga/DvF01kDklZJk4d1T5WntaHFsL4koT2PrXnycu3hR6tlgcPYWBpVbtelRu58DYy7p9x60SFlBSSqa9OqDTje0GbEJSJtB48eN6fSWym641kQYXcyK7Q/Hby6D7FyPFKCVxAkNWup+RjLqDX/aJsp/AK5xoqmRjefnm7zx0oHVx4hjtDhwnYQJ6I+t0GnnQohAMdc/dIFDDD69NCV7BUa6FCvQhM80osYnAulRKkoP4d3IW5TwlVHlD9eFAHtIFzCEwpix0QpWIFdlNWeZH+tCr/wT0p/4KuCHA8jnpRd1GoZBBNTmfy4QjMs9fS7AT91oCM/GfMOvRlg4nYw==
+ b=aOd0EmgnbYYsLKiuDVW6szaB169c9IzMA6fZh0Tdnh8JD3I/M1MvSah4U2fvTpiFaZbtf53Gu/YsklVdQIRSoa6TAIwH7Vq5i3t6FGJ5Eyi8FTtlYD4Vil/8NmRrY9FmcIXXzpqCK5gsTNC16fZMKgZVu7r1pD2KzCOo7+XG3SBcNob/YxA+8xDrfwwFzA8aTwU06ugd+lJGbZwCaB1A285E2WXaQFLkMbOlX6AiAk4MQuAEg6eldv2Ye5Ya+zHY/2tJPGiaXjIMkLu5L0ZDFeKNFbWis0GUC8tW1c9BO9pcIpGejNuZ3HGm/pua6qtqc2Iu+c9pIyidZ8riuoazww==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8enCCT4/j2+kVeMevRNZgLmz1j/1Z/yNb4kDf3jLZQQ=;
- b=M7VHCS77jYeJskkerS+NN0NJGVPs6T9Z3w6mi5/t8+IM3wmkvq2t/k1DPTIRNElL+QTzPto2Ze+R0CyH9zxCqdcioaatHkEAZWmezdgydbUXn6cq3KzxI4TWean+nSOICv9sbNRGHs5HbyJlLYn7CziD97Q8j29Ur345zUdozaLhtEwbTacADuTyy1aGpZQpWWLn0m8/eYakaYZ720WLgFMfgzwBqCUnEq3EPYe5lk+uNe5bt2VVuMMsQ2abEPL5UWHupLzOz8x46KlOWuAtyGy7R5UBiSJNdHip/wyWHoeVT63iBmGe7KyiDy7X4O7wyKqf38tkLQKVc3SmNKPw8g==
+ bh=WbTscIFyyPPwZL5I1WZjx9DDDLuV/rbyaHZ1/TDJp+g=;
+ b=FtpjBxDG5wy/srOYure68+bqkLiNzWKPdOtVO0FqXyN9JSvoeXI46fm4S5Hi2Ngrsv9sVYYexMBGsi+KNrEMjALa/LjaaToWW91Xbs4lT1qWYAuGbpFZf1O3yfioGLdaA12ujUbZobmLPCx8+unLOiPO80Gz9BAZxsF5VSuuNxe7G3JN0kcneFryhH3SxhGRPYJlqARBCaSuYrQPSG7jgmAc9zVLfJYAcs00K3aWitc72+R5bzjoUbhlwcXstBH1EguM9bR+8lyDZwidUvZ70RvrbJ3z5lkJQmr3EsIuVGWXmO57FJ42dkCAJA+xL5afppsV0T6b8t60fylfnhQZZA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -64,73 +68,74 @@ Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
  by CYYPR11MB8407.namprd11.prod.outlook.com (2603:10b6:930:c1::11)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.22; Fri, 26 Jan
- 2024 20:31:30 +0000
+ 2024 20:31:34 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::a7f1:384c:5d93:1d1d]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::a7f1:384c:5d93:1d1d%4]) with mapi id 15.20.7228.027; Fri, 26 Jan 2024
- 20:31:30 +0000
+ 20:31:33 +0000
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Subject: [RFC 14/34] drm/xe: Runtime PM wake on every debugfs call
-Date: Fri, 26 Jan 2024 15:30:23 -0500
-Message-ID: <20240126203044.1104705-15-rodrigo.vivi@intel.com>
+Subject: [RFC 15/34] drm/xe: Replace dma_buf mem_access per direct
+ xe_pm_runtime calls
+Date: Fri, 26 Jan 2024 15:30:24 -0500
+Message-ID: <20240126203044.1104705-16-rodrigo.vivi@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240126203044.1104705-1-rodrigo.vivi@intel.com>
 References: <20240126203044.1104705-1-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0109.namprd03.prod.outlook.com
- (2603:10b6:a03:333::24) To MN0PR11MB6059.namprd11.prod.outlook.com
+X-ClientProxiedBy: SJ0PR03CA0389.namprd03.prod.outlook.com
+ (2603:10b6:a03:3a1::34) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|CYYPR11MB8407:EE_
-X-MS-Office365-Filtering-Correlation-Id: 518e4298-89ab-4268-b39d-08dc1eadc785
+X-MS-Office365-Filtering-Correlation-Id: 8d878162-5036-4acb-eeb8-08dc1eadc96d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: R5pF4ZrIDCT7KNqk7DMerBMtF+qtjLPv9UKk9sPZxidC9UYdsaGZhhGX3uxLjyFwrjpAM9mFVbkeLgtFMSrvY9mcOoQHgkUP6/FTkQG6bDi3CMBVKt43cucCkM7tzC5F9WtQFMLHwhZU9hePykyCYZ9fytRU+ctiQShN6VNkhH5R7o0t9H74jwmgySxN3rOIEWFwMZeMWsfWpZaFkjTTdNmqkshPQG26pgnWvoAlSB0sEsrMWo8AihYT6ROHWZdrU9BPDUgqID2jjjrroNdz1P+iEO79wbqz2TPYK8vKFbd6gkyJfJmBOCmY5o0hus7eSeyfU7eIDuDoqXKpM0v1HHGxNRX8fD+WHBrwGNta7ACMQ44fuDEEf0i5rHuWsRGU3MjPafkOlxPAaAL6Q85aHKg0zygmELAgdHdB3Y+AA3UbsBNwyKR97QMeuOhzUL/6nr32JFu+V2zTH14luLaPWSkh6HKBFU5L/6CoKQgG+OHfUJXIqQ9aGnN5EF6iOcXonYdkDtwxjPEIBT0puDbaIO56r1kf4zTVvKudKjHQeuyfdQ93HuxtbUyjejc9hf5a
+X-Microsoft-Antispam-Message-Info: NA6fe7LNNqu54xnYy4ZFtAyRYuS9WyzBysVctXnfNSG4oN9kXYndt54IhmuLmesOtQxv13HoPposPD5km7ko/iZSaGZvp0buQ4a5Ta2n0zfZL01g13Go5yG4mpAWKYZ8GRftCM3MofhT35YRhzdUizhzR7odLmxtVY0S0P9WozhD7gOlBYOz6oI/Elyp5WXfgyHUb2Do1zlifJAp8b7N2qf1aICofxOO24LJ4AJW/gCTFLAJFHyrqbGRo/Z1MRpRJPK6QdHoR6E8/h3aywKcNWHbbMjHq3Vq01zC5WW2y5irtSM/6x3SM7XcYoY7H2GI7nE2rAYIjelBBIvNwC72bapbV13vaK/zZrhmEbpfR5Xemb1qwj8gcHd7ArhiF8478BAo19WcLygvD28/KeMLPyr1uJAgwZRjtCwf1Fnb6Xj4If8jbeJ4XUvsj0hWRgi2l3sxc3Gz1kBojs1HeTbj4ZI1A9mAM4ERwgvqxoy7D9n1SCPepY8h3FnlKlQhl6hlt3UO/OGYnsTjLgluUVCWzSuC8leUNh7HZwruq1dueeerrteegTzAkGxLmNvumPic
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(376002)(346002)(39860400002)(136003)(396003)(366004)(230922051799003)(186009)(451199024)(64100799003)(1800799012)(38100700002)(82960400001)(6666004)(41300700001)(6486002)(478600001)(26005)(44832011)(2616005)(83380400001)(6512007)(6506007)(316002)(2906002)(4326008)(36756003)(8676002)(66556008)(5660300002)(6916009)(66946007)(66476007)(8936002)(86362001)(107886003)(1076003);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?xYUwUyZv3C5CFquIs8CemiocncE7wqkpJCA+L+ovHCEaLsYMkrxn9ZJKdFcD?=
- =?us-ascii?Q?6gW57aqRc0ukkQQBikMh5CVMYQh73ec4cFhRswDQ1pwa43yDC5FV2Uf//EgR?=
- =?us-ascii?Q?y0uWYNtOdnO8Jmlx5ZBlyCU+wf1khN76gsQRyA9rGaf+duVPZlMA0oLfVp64?=
- =?us-ascii?Q?MEwpmW6SthdequkbhCwF0Qk+8S5B8lzFDyboicIFvILkCiyTG+OZP6KepGxL?=
- =?us-ascii?Q?oC6y22KpbNmYeFU//HEcNH+sQ+w6hodDSmbc62N9HYSfgF6xOrwhkT79L2+3?=
- =?us-ascii?Q?7041X4cdqukDTOyWioo6ku29q0oNjEcgJvtBWdCkG5b7B8KdqHfIGqrA9lGb?=
- =?us-ascii?Q?jTUXnE6HyB7rGzC/8VGGVjF60WkBnmGMqPEYW9Odpd5moNSgVpVzva/BhPf+?=
- =?us-ascii?Q?kn6FaCKO0ZG4PAMB+oAzFxD8gugEonvy4VD3thLXT2fM4bKCY5Ic0tMRqjjz?=
- =?us-ascii?Q?XZUTe6SHtHVoj8EjbkBdrNTi5ypsBkESoiM3YK43/SlDizpq1QjWSGIdpoa0?=
- =?us-ascii?Q?gLz418OaHVWY4abEq5lgld1e4kWt8CznHKe2J4we6EcODTlY0BxN6ap1gd7V?=
- =?us-ascii?Q?cldW9nfvPeSbWNnhsqnkbmG76Qd7dS5SNROv4OaCdyl6pyWxNPVRF07mHwxJ?=
- =?us-ascii?Q?91W10xnOVPqx4ynR8zZfP2IwnlxzMaBApseSHumxYb/Epg+eLsF76oLqv71J?=
- =?us-ascii?Q?j5I+wVLOjGqW+Mv3hCP1Cc+qGvLAfVRapsB8kGlhTsMtU/a5pAC14ntEXDVl?=
- =?us-ascii?Q?z5n2GYw6m/Imhc7slKVK11+dMeVjg5x1PMJow5WZQaAmwKNwxkowgzDB7NCV?=
- =?us-ascii?Q?+PMbHTtYith/ciETJriM0FJmgqq7UMo39WXEHhNZnGjddi+LslikNNfaPMEF?=
- =?us-ascii?Q?nMBBe7BJ0lCiXWRQ64TtACBxGw5/+boveqpdheHPfKJiyYAe8pKk9NxXwjCk?=
- =?us-ascii?Q?l1ElV7G/He4ufBfwP0vtfu2iWpQAgUWdgKr0WrjCfd0QqvtPJXeLcbE+xi/b?=
- =?us-ascii?Q?eXX8qnky9BXeWPyhpzHznKouyf8FnxljnbuvParhJlZOoNt1J8tMZCYd2W3O?=
- =?us-ascii?Q?RaOhqOP1dqR/gmkM4awqwgjJDXxTOxC6uZqrjA73JQ0+IC9TQpsU3kg+KYhc?=
- =?us-ascii?Q?/ETPj652iDDq1G6KMbfnQV2s8DggZP0frct0Oa4Oek+JBfPl7VJ3w8RUaqtg?=
- =?us-ascii?Q?jcyiQAGDE8oTnle/sb82yIB00cZGP5+6oa6tK2lLrdeMidEIAmU2YcgWMBp/?=
- =?us-ascii?Q?XEEZQB0NfBnQqQfb7llfhwW3z4XYkzA0yvWiF95ws3UWkRiv9zjLgX+YQiiY?=
- =?us-ascii?Q?5WjV60khb7OQwyK0PHz6tSWl2MS4sdROwHwDRxEvWOv2NGEw2xv6m5FfuT9J?=
- =?us-ascii?Q?xOa/rfH+8BZ+9ZkR/9MfJXlqVaDoFhMVcjf9rUgzs8mbQ4ChqW9/9BHrI1O3?=
- =?us-ascii?Q?TmmsR1rNjPYq8I/nOV07gKt/7EqA1P/TvbCjcO8NJRaJ0yz0OK/+zu7Sd+v2?=
- =?us-ascii?Q?W9Ajyk+9UisQWG3LK9tmFQ2voA7gMhTnT2Z/C09zk3upUBhLBRHYwut7pmxP?=
- =?us-ascii?Q?HsRpXF0loz3p+f2tRlrSO4HgMQCHHayrd5gbSfkf36vIYlRRPiEPHmVktMui?=
- =?us-ascii?Q?GA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 518e4298-89ab-4268-b39d-08dc1eadc785
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?iX6DfIgKlpP7wSXAYjx1rVX9rs2vGGMdn/rdhAkhUpwWZxLevXiCHWR8WBB3?=
+ =?us-ascii?Q?ZTvFHRsn3sYdtgt3h222oNz6Tb9741WX/n4QtiDIodtITLesBp1xhPK36M1+?=
+ =?us-ascii?Q?Zl/DJ9sH+PDeBHpvuOdCu6cnyodkJ3MVsJ2hJPog2Not5cfQmVWAnPu0A3od?=
+ =?us-ascii?Q?eSyI32KcW08LWfxGODdrZQLDCv2tYVOxmNdTePxNBRIHC9jeeMnNpiz8CUhU?=
+ =?us-ascii?Q?I9cEiSCybORY0zOfHwD8ANcr/SkR1Ye5jgWnQg06d8CRAvDBB9GiK9loO63W?=
+ =?us-ascii?Q?/SQ7dFzTdbRzibyiu+xmKwvBXaNaAHYZCDv20CUtAl0x2f3yGlvsV+ywBGgz?=
+ =?us-ascii?Q?2S3yDzX7ESUll0wfFLOjM36R5x0MvYUZS2xq7RBNDHdhKp6erq/+PWeBROFe?=
+ =?us-ascii?Q?dvZfxgCuuxU4Jc/Q+vN1ezkPht3byila1u3Q1gwmE06NgE+x9bsvsHF08VzP?=
+ =?us-ascii?Q?OgOLQkUKAhXxtYJypLc8OoQWQUxgAqA1a2ZpDknslFh4TWTquoRc3bS57rAH?=
+ =?us-ascii?Q?C3k2BR7QrCWYUo+8+EHbn35z3LSxIqBDu5xqND7s5NzDBz+jWLkvO+ANLBJu?=
+ =?us-ascii?Q?Ko5YZWIipNn9q8sOCCzH6QK7HfxMME30sbZBe7ZrWVsD9MhAxdi4gDyTZ/VR?=
+ =?us-ascii?Q?f2DJNl8cBtq4msL89E5LpMpVVJhLkhWfjHhpYi9CkW7RTY7L2ImrS0kXnrAW?=
+ =?us-ascii?Q?na3C/755kIlMYdr8C7X+foKo8MDgOUNefMM6CSFZI9Q6J385PykHF8FNgzCO?=
+ =?us-ascii?Q?rtrsob28ndJz+5htBYW48Dr7xAnMxrGwXu1GdqXayJFpTNpYWS3f00k0qKqJ?=
+ =?us-ascii?Q?jsGzWPD6FCjbliplBK7F2IuVg9DRXEz+pR25A9ttf8F8zEFZMApeegELG7Bn?=
+ =?us-ascii?Q?mduJ5zY854R0KP/dz+YkEjsKls399+jMHJOcoHI4Dmn2CyB5CylCQnwdfaBt?=
+ =?us-ascii?Q?mi5N0Q+zclAnqlr79o/kQtEFRpAdqfqUgbEN7oize/GK9xUkERKC+Q2lth+u?=
+ =?us-ascii?Q?Ao8Z/I3aeIZ+6T0oiXL4leqLdYsI5veOuyLJB6tAN6GAmwj7CEVHK4sy/u7S?=
+ =?us-ascii?Q?fBfJpthYpd/bhl4C96Nv/58oF2PTVpMoMpkN9V0ZXOu9YsiNAr8L08sjP3Dp?=
+ =?us-ascii?Q?CyrIdEgmHMes7UbqVDTI4H3ooYDKNJQLaprOLQrXEud6q6vWwqDH6OtW6Iev?=
+ =?us-ascii?Q?/Aym7k+SmaZ9K4RCtV/37V9YpXD5uPjDq7SOofOsfOgwkDgMNqLdMnndIHcx?=
+ =?us-ascii?Q?hIrpbtmW2BbVAHA4xEUXgqTVtyYsbmQLZFdGRjrH99SkbHueeD1J6NZGqtf+?=
+ =?us-ascii?Q?crmY3vxPik5szDNSbtHyccAm07naEZ3VtcS/gsHMai0pSmf4LPzZfUlLQnNf?=
+ =?us-ascii?Q?Z+jQPOPCZDdJ4cK7ze7CLGXFXTGldra+OiIuHqp14cNlElEwpqdkNle2hcUy?=
+ =?us-ascii?Q?78IlzDsk6ciZ1N3qmgrPthP9BR0NE0MSM2glnM7pFCnq8u7dvG/PUhrA2bP1?=
+ =?us-ascii?Q?jCXu+lVuGQDDZrTi8M3VRw13Y0Dk3MGb4Re8acCnwcjWKJ1TpRvU5fX2kOzV?=
+ =?us-ascii?Q?cJdu5/HjoWA3hP7FSLmCnZqVbO8QiyO+SnXPkIbfB9j5Bmgjj6ZR+CismEDU?=
+ =?us-ascii?Q?rw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8d878162-5036-4acb-eeb8-08dc1eadc96d
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2024 20:31:30.8027 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2024 20:31:33.9602 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 26oALHg9B2l9PG2XpgFvTzeHtbsxR2b/B5X9+I914lNlYSopTkpf6fEw6ua6T7zvsaw4P5oIMlIZ7Z3g0t59Rw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: R2k7XZXfD9ehpaJd97k20aECeNjh8VFBLFC4FRLiiQ8PIbzFXSClG8EBtd5f6zxHjdwKQbRtmp346cE7wFOJMg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR11MB8407
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -148,340 +153,45 @@ Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Let's ensure our PCI device is awaken on every debugfs call.
-Let's increase the runtime_pm protection and start moving
-that to the outer bounds.
-
-Also remove the mem_access get_put helpers, now that they are not
-needed anymore.
+Continue on the path to entirely remove mem_access helpers in
+favor of the direct xe_pm_runtime calls. This item is one of
+the direct outer bounds of the protection.
 
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_debugfs.c     | 10 +++---
- drivers/gpu/drm/xe/xe_gt_debugfs.c  | 53 ++++++++++++++++++++++++++---
- drivers/gpu/drm/xe/xe_guc_debugfs.c |  9 ++---
- drivers/gpu/drm/xe/xe_huc_debugfs.c |  5 +--
- drivers/gpu/drm/xe/xe_ttm_sys_mgr.c |  5 ++-
- 5 files changed, 66 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/xe/xe_dma_buf.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index 01db5b27bec5..8abdf3c17e1d 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -12,6 +12,7 @@
+diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
+index da2627ed6ae7..5b26af21e029 100644
+--- a/drivers/gpu/drm/xe/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+@@ -16,6 +16,7 @@
+ #include "tests/xe_test.h"
  #include "xe_bo.h"
  #include "xe_device.h"
- #include "xe_gt_debugfs.h"
 +#include "xe_pm.h"
- #include "xe_step.h"
+ #include "xe_ttm_vram_mgr.h"
+ #include "xe_vm.h"
  
- #ifdef CONFIG_DRM_XE_DEBUG
-@@ -37,6 +38,8 @@ static int info(struct seq_file *m, void *data)
- 	struct xe_gt *gt;
- 	u8 id;
+@@ -33,7 +34,7 @@ static int xe_dma_buf_attach(struct dma_buf *dmabuf,
+ 	if (!attach->peer2peer && !xe_bo_can_migrate(gem_to_xe_bo(obj), XE_PL_TT))
+ 		return -EOPNOTSUPP;
  
-+	xe_pm_runtime_get(xe);
-+
- 	drm_printf(&p, "graphics_verx100 %d\n", xe->info.graphics_verx100);
- 	drm_printf(&p, "media_verx100 %d\n", xe->info.media_verx100);
- 	drm_printf(&p, "stepping G:%s M:%s D:%s B:%s\n",
-@@ -63,6 +66,7 @@ static int info(struct seq_file *m, void *data)
- 			   gt->info.engine_mask);
- 	}
- 
-+	xe_pm_runtime_put(xe);
+-	xe_device_mem_access_get(to_xe_device(obj->dev));
++	xe_pm_runtime_get(to_xe_device(obj->dev));
  	return 0;
  }
  
-@@ -76,8 +80,7 @@ static int forcewake_open(struct inode *inode, struct file *file)
- 	struct xe_gt *gt;
- 	u8 id;
- 
--	xe_device_mem_access_get(xe);
--
-+	xe_pm_runtime_get(xe);
- 	for_each_gt(gt, xe, id)
- 		XE_WARN_ON(xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL));
- 
-@@ -92,8 +95,7 @@ static int forcewake_release(struct inode *inode, struct file *file)
- 
- 	for_each_gt(gt, xe, id)
- 		XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
--
--	xe_device_mem_access_put(xe);
-+	xe_pm_runtime_put(xe);
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-index c4b67cf09f8f..6b4dc2927727 100644
---- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-@@ -18,6 +18,7 @@
- #include "xe_lrc.h"
- #include "xe_macros.h"
- #include "xe_pat.h"
-+#include "xe_pm.h"
- #include "xe_reg_sr.h"
- #include "xe_reg_whitelist.h"
- #include "xe_uc_debugfs.h"
-@@ -37,10 +38,10 @@ static int hw_engines(struct seq_file *m, void *data)
- 	enum xe_hw_engine_id id;
- 	int err;
- 
--	xe_device_mem_access_get(xe);
-+	xe_pm_runtime_get(xe);
- 	err = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
- 	if (err) {
--		xe_device_mem_access_put(xe);
-+		xe_pm_runtime_put(xe);
- 		return err;
- 	}
- 
-@@ -48,7 +49,7 @@ static int hw_engines(struct seq_file *m, void *data)
- 		xe_hw_engine_print(hwe, &p);
- 
- 	err = xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
--	xe_device_mem_access_put(xe);
-+	xe_pm_runtime_put(xe);
- 	if (err)
- 		return err;
- 
-@@ -59,18 +60,23 @@ static int force_reset(struct seq_file *m, void *data)
+@@ -42,7 +43,7 @@ static void xe_dma_buf_detach(struct dma_buf *dmabuf,
  {
- 	struct xe_gt *gt = node_to_gt(m->private);
+ 	struct drm_gem_object *obj = attach->dmabuf->priv;
  
-+	xe_pm_runtime_get(gt_to_xe(gt));
- 	xe_gt_reset_async(gt);
-+	xe_pm_runtime_put(gt_to_xe(gt));
- 
- 	return 0;
+-	xe_device_mem_access_put(to_xe_device(obj->dev));
++	xe_pm_runtime_put(to_xe_device(obj->dev));
  }
  
- static int sa_info(struct seq_file *m, void *data)
- {
--	struct xe_tile *tile = gt_to_tile(node_to_gt(m->private));
-+	struct xe_gt *gt = node_to_gt(m->private);
-+	struct xe_tile *tile = gt_to_tile(gt);
- 	struct drm_printer p = drm_seq_file_printer(m);
- 
-+	xe_pm_runtime_get(gt_to_xe(gt));
- 	drm_suballoc_dump_debug_info(&tile->mem.kernel_bb_pool->base, &p,
- 				     tile->mem.kernel_bb_pool->gpu_addr);
-+	xe_pm_runtime_put(gt_to_xe(gt));
- 
- 	return 0;
- }
-@@ -80,7 +86,9 @@ static int topology(struct seq_file *m, void *data)
- 	struct xe_gt *gt = node_to_gt(m->private);
- 	struct drm_printer p = drm_seq_file_printer(m);
- 
-+	xe_pm_runtime_get(gt_to_xe(gt));
- 	xe_gt_topology_dump(gt, &p);
-+	xe_pm_runtime_put(gt_to_xe(gt));
- 
- 	return 0;
- }
-@@ -90,7 +98,9 @@ static int steering(struct seq_file *m, void *data)
- 	struct xe_gt *gt = node_to_gt(m->private);
- 	struct drm_printer p = drm_seq_file_printer(m);
- 
-+	xe_pm_runtime_get(gt_to_xe(gt));
- 	xe_gt_mcr_steering_dump(gt, &p);
-+	xe_pm_runtime_put(gt_to_xe(gt));
- 
- 	return 0;
- }
-@@ -99,8 +109,13 @@ static int ggtt(struct seq_file *m, void *data)
- {
- 	struct xe_gt *gt = node_to_gt(m->private);
- 	struct drm_printer p = drm_seq_file_printer(m);
-+	int ret;
-+
-+	xe_pm_runtime_get(gt_to_xe(gt));
-+	ret = xe_ggtt_dump(gt_to_tile(gt)->mem.ggtt, &p);
-+	xe_pm_runtime_put(gt_to_xe(gt));
- 
--	return xe_ggtt_dump(gt_to_tile(gt)->mem.ggtt, &p);
-+	return ret;
- }
- 
- static int register_save_restore(struct seq_file *m, void *data)
-@@ -110,6 +125,8 @@ static int register_save_restore(struct seq_file *m, void *data)
- 	struct xe_hw_engine *hwe;
- 	enum xe_hw_engine_id id;
- 
-+	xe_pm_runtime_get(gt_to_xe(gt));
-+
- 	xe_reg_sr_dump(&gt->reg_sr, &p);
- 	drm_printf(&p, "\n");
- 
-@@ -127,6 +144,8 @@ static int register_save_restore(struct seq_file *m, void *data)
- 	for_each_hw_engine(hwe, gt, id)
- 		xe_reg_whitelist_dump(&hwe->reg_whitelist, &p);
- 
-+	xe_pm_runtime_put(gt_to_xe(gt));
-+
- 	return 0;
- }
- 
-@@ -135,7 +154,9 @@ static int workarounds(struct seq_file *m, void *data)
- 	struct xe_gt *gt = node_to_gt(m->private);
- 	struct drm_printer p = drm_seq_file_printer(m);
- 
-+	xe_pm_runtime_get(gt_to_xe(gt));
- 	xe_wa_dump(gt, &p);
-+	xe_pm_runtime_put(gt_to_xe(gt));
- 
- 	return 0;
- }
-@@ -145,48 +166,70 @@ static int pat(struct seq_file *m, void *data)
- 	struct xe_gt *gt = node_to_gt(m->private);
- 	struct drm_printer p = drm_seq_file_printer(m);
- 
-+	xe_pm_runtime_get(gt_to_xe(gt));
- 	xe_pat_dump(gt, &p);
-+	xe_pm_runtime_put(gt_to_xe(gt));
- 
- 	return 0;
- }
- 
- static int rcs_default_lrc(struct seq_file *m, void *data)
- {
-+	struct xe_gt *gt = node_to_gt(m->private);
- 	struct drm_printer p = drm_seq_file_printer(m);
- 
-+	xe_pm_runtime_get(gt_to_xe(gt));
- 	xe_lrc_dump_default(&p, node_to_gt(m->private), XE_ENGINE_CLASS_RENDER);
-+	xe_pm_runtime_put(gt_to_xe(gt));
-+
- 	return 0;
- }
- 
- static int ccs_default_lrc(struct seq_file *m, void *data)
- {
-+	struct xe_gt *gt = node_to_gt(m->private);
- 	struct drm_printer p = drm_seq_file_printer(m);
- 
-+	xe_pm_runtime_get(gt_to_xe(gt));
- 	xe_lrc_dump_default(&p, node_to_gt(m->private), XE_ENGINE_CLASS_COMPUTE);
-+	xe_pm_runtime_put(gt_to_xe(gt));
-+
- 	return 0;
- }
- 
- static int bcs_default_lrc(struct seq_file *m, void *data)
- {
-+	struct xe_gt *gt = node_to_gt(m->private);
- 	struct drm_printer p = drm_seq_file_printer(m);
- 
-+	xe_pm_runtime_get(gt_to_xe(gt));
- 	xe_lrc_dump_default(&p, node_to_gt(m->private), XE_ENGINE_CLASS_COPY);
-+	xe_pm_runtime_put(gt_to_xe(gt));
-+
- 	return 0;
- }
- 
- static int vcs_default_lrc(struct seq_file *m, void *data)
- {
-+	struct xe_gt *gt = node_to_gt(m->private);
- 	struct drm_printer p = drm_seq_file_printer(m);
- 
-+	xe_pm_runtime_get(gt_to_xe(gt));
- 	xe_lrc_dump_default(&p, node_to_gt(m->private), XE_ENGINE_CLASS_VIDEO_DECODE);
-+	xe_pm_runtime_put(gt_to_xe(gt));
-+
- 	return 0;
- }
- 
- static int vecs_default_lrc(struct seq_file *m, void *data)
- {
-+	struct xe_gt *gt = node_to_gt(m->private);
- 	struct drm_printer p = drm_seq_file_printer(m);
- 
-+	xe_pm_runtime_get(gt_to_xe(gt));
- 	xe_lrc_dump_default(&p, node_to_gt(m->private), XE_ENGINE_CLASS_VIDEO_ENHANCE);
-+	xe_pm_runtime_put(gt_to_xe(gt));
-+
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_debugfs.c b/drivers/gpu/drm/xe/xe_guc_debugfs.c
-index ffd7d53bcc42..d3822cbea273 100644
---- a/drivers/gpu/drm/xe/xe_guc_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_guc_debugfs.c
-@@ -14,6 +14,7 @@
- #include "xe_guc_ct.h"
- #include "xe_guc_log.h"
- #include "xe_macros.h"
-+#include "xe_pm.h"
- 
- static struct xe_guc *node_to_guc(struct drm_info_node *node)
- {
-@@ -26,9 +27,9 @@ static int guc_info(struct seq_file *m, void *data)
- 	struct xe_device *xe = guc_to_xe(guc);
- 	struct drm_printer p = drm_seq_file_printer(m);
- 
--	xe_device_mem_access_get(xe);
-+	xe_pm_runtime_get(xe);
- 	xe_guc_print_info(guc, &p);
--	xe_device_mem_access_put(xe);
-+	xe_pm_runtime_put(xe);
- 
- 	return 0;
- }
-@@ -39,9 +40,9 @@ static int guc_log(struct seq_file *m, void *data)
- 	struct xe_device *xe = guc_to_xe(guc);
- 	struct drm_printer p = drm_seq_file_printer(m);
- 
--	xe_device_mem_access_get(xe);
-+	xe_pm_runtime_get(xe);
- 	xe_guc_log_print(&guc->log, &p);
--	xe_device_mem_access_put(xe);
-+	xe_pm_runtime_put(xe);
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/xe/xe_huc_debugfs.c b/drivers/gpu/drm/xe/xe_huc_debugfs.c
-index 18585a7eeb9d..3a888a40188b 100644
---- a/drivers/gpu/drm/xe/xe_huc_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_huc_debugfs.c
-@@ -12,6 +12,7 @@
- #include "xe_gt.h"
- #include "xe_huc.h"
- #include "xe_macros.h"
-+#include "xe_pm.h"
- 
- static struct xe_gt *
- huc_to_gt(struct xe_huc *huc)
-@@ -36,9 +37,9 @@ static int huc_info(struct seq_file *m, void *data)
- 	struct xe_device *xe = huc_to_xe(huc);
- 	struct drm_printer p = drm_seq_file_printer(m);
- 
--	xe_device_mem_access_get(xe);
-+	xe_pm_runtime_get(xe);
- 	xe_huc_print_info(huc, &p);
--	xe_device_mem_access_put(xe);
-+	xe_pm_runtime_put(xe);
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-index 3e1fa0c832ca..9844a8edbfe1 100644
---- a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-@@ -73,7 +73,10 @@ static void xe_ttm_sys_mgr_del(struct ttm_resource_manager *man,
- static void xe_ttm_sys_mgr_debug(struct ttm_resource_manager *man,
- 				 struct drm_printer *printer)
- {
--
-+	/*
-+	 * This function is called by debugfs entry and would require
-+	 * pm_runtime_{get,put} wrappers around any operation.
-+	 */
- }
- 
- static const struct ttm_resource_manager_func xe_ttm_sys_mgr_func = {
+ static int xe_dma_buf_pin(struct dma_buf_attachment *attach)
 -- 
 2.43.0
 
