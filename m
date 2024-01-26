@@ -4,53 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD738C47DDB
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Jan 2024 21:06:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8210C47DDF
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Jan 2024 21:09:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15EA410FEA4;
-	Fri, 26 Jan 2024 21:06:04 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFB2910FEA3;
- Fri, 26 Jan 2024 21:06:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706303163; x=1737839163;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=wHN4PS9PmLhc4EmzQ9WRGbrb9ei1hpSHS/Xfm6v0BSY=;
- b=P6ZnTJzP4Ix+C6pnKlbqbTk/HsDZSI/72RM73/ObtIES8omE8INQ44RN
- 42T1rzRpy0U690WMhiwv1HyWzbMFYsR2k5hSGDEIdU9GQhzJuq8J21GYp
- hyTGjPy4Eq8+GJkuvsmMfN2tPC4P44nELpoSirjbo6c9SLJ/apuIKW25V
- 3h5/peZwb/zqyvF6ENB65gfqupMLL3mSnGqjaOBF4/L+aqfDGStBUOYTH
- JD0/CE2+DOA64QT4SxbjPlvPLGJ8j1iO/gDgH/pBu/siLTSVt+gAeiyWo
- voGaSUVjki7d9k9kH5jnL2+WVVAvKF+W4Nz+KwbiFye493rUdxO2Qwjcx Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="2414007"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
-   d="scan'208";a="2414007"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2024 13:05:29 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="877489357"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="877489357"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.21.53])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2024 13:05:27 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: Re: [PATCH i-g-t 0/3] lib/kunit: Support writable filter* parameters
- of kunit module
-Date: Fri, 26 Jan 2024 22:05:25 +0100
-Message-ID: <7620076.EvYhyI6sBW@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <2221731.72vocr9iq0@jkrzyszt-mobl2.ger.corp.intel.com>
-References: <20240125165749.15599-5-janusz.krzysztofik@linux.intel.com>
- <kiflqa7ksoazk52b7ffmzktapvtx3yayqqmqm6gulylvdu7mx3@dzp5fpbsblty>
- <2221731.72vocr9iq0@jkrzyszt-mobl2.ger.corp.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6152310FEAB;
+	Fri, 26 Jan 2024 21:09:32 +0000 (UTC)
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com
+ [209.85.167.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D26F10FEAA;
+ Fri, 26 Jan 2024 21:09:30 +0000 (UTC)
+Received: by mail-lf1-f50.google.com with SMTP id
+ 2adb3069b0e04-5102b00c2cdso404412e87.3; 
+ Fri, 26 Jan 2024 13:09:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1706303308; x=1706908108; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=ddM7dM5sERIiSASDCmMAMm6Wqis5zem3ge5Q7aEhjYU=;
+ b=Mu1/ZMjMP8QLdRRqGAMNSltGqa4qSSaPjNl/O1uf52j47rEBNB/p+tUjcorTvn0xx0
+ dI02TH9S5xgAOMaKQx11e3sodJS3HBvYy2xlI0ySZnrt+eXX/g2Hc06/ekgalyDvq9OB
+ 2zV8fy6/Tzcs8Z7/CqfWEJFu5hjEd37omfIk1ljK7xSRsb5xU9yHLgXQwYbqT4OAzdbA
+ Afzl5vkXCE4/KzZqhK0enPE6pBlAdBkJz3p6ZAp+F4cPXXEaS/ydGaLquhA7MElAeWv8
+ 4YlkSsrV2Kh+f6wIkcLMsEH+P/2WjotfkiMX2hmuiiRceKBv1Ynx+r27buZ2UEKX6XdA
+ sI7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1706303308; x=1706908108;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=ddM7dM5sERIiSASDCmMAMm6Wqis5zem3ge5Q7aEhjYU=;
+ b=ee3MnET+cVybgpOZjyemSr8nKc3dXKJkhsJinlEpQrlfeR0wNF205P64jZmaj0mRLq
+ sSyrGjWekkUpMbR1lVf+Xx/WK8vnVDNjCv1T/TUNk/lc/kIoF2xO0fU0cyPfXJZa6zCP
+ CNdh2y/zxB79CI/gGHrNhU9oIoS6myceTmjcG/7AkVJdNzepJlDGeU98MgKHMwvhDmGh
+ HX92AQgSeak8PrJ6sarqISh+8xRuuvghoaYPEBPvjV9i1KCrzrgzLal6zjVXkVhjmArq
+ 43yLYyXBTigot6qrEHJ8NOawYF0UYkoISFhEmwsXAveOL+BQA2f70y3kDroeAa8mzAAh
+ U9RQ==
+X-Gm-Message-State: AOJu0Ywv5706nvjdRAl79xCkbNFsDfyrP9LyvOxZIPGm+zwr3uWfuVXI
+ ek0tJmd4FJjM4DVl+gsX6KZn+KVV2GoCRGm6ISUliW4xONr/8d8HXH++toZbDmU=
+X-Google-Smtp-Source: AGHT+IG/fxmJAWlnJfE0wlTWdMxotcH/zr6N28G3mdE1aq/xkbj73keLo3OqhVV1Fuzanb/vsFPivA==
+X-Received: by 2002:a05:6512:541:b0:510:358:74e1 with SMTP id
+ h1-20020a056512054100b00510035874e1mr117429lfl.53.1706303307801; 
+ Fri, 26 Jan 2024 13:08:27 -0800 (PST)
+Received: from jheikkil-mobl1.. (91-156-196-125.elisa-laajakaista.fi.
+ [91.156.196.125]) by smtp.gmail.com with ESMTPSA id
+ t3-20020a192d43000000b00510218debaasm290479lft.35.2024.01.26.13.08.27
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 26 Jan 2024 13:08:27 -0800 (PST)
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Subject: [PATCH 0/5] Enable ccs compressed framebuffers on Xe2
+Date: Fri, 26 Jan 2024 23:08:02 +0200
+Message-Id: <20240126210807.320671-1-juhapekka.heikkila@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,94 +70,36 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Friday, 26 January 2024 17:31:53 CET Janusz Krzysztofik wrote:
-> On Friday, 26 January 2024 15:46:54 CET Lucas De Marchi wrote:
-> > On Thu, Jan 25, 2024 at 11:25:55AM -0600, Lucas De Marchi wrote:
-> > >On Thu, Jan 25, 2024 at 05:52:09PM +0100, Janusz Krzysztofik wrote:
-> > >>Instead of wasting resources on reloading the base Kunit module each time
-> > >>a different set of filter parameters is needed, try to write the required
-> > >>values to sysfs representation of those parameters.  If that fails (e.g.
-> > >>on older LTS kernels with read-only filter parameters), fall back to
-> > >
-> > >we can't really execute anything on LTS kernel. I don't think think it's
-> > >worth keeping the multiple fallbacks we have now.
-> > >q
-> > >I think trying to maintain compat is good, but I'm not sure it makes
-> > >sense for these tightly coupled tests with the kernel.
-> > 
-> > I gave it a try and it doesn't really work for me. It seems that after
-> > you list the tests, the filter_action remains on skip, so the tests just
-> > skips.
-> > 
-> > $ sudo ./build/tests/xe_live_ktest --r dmabuf
-> > ...
-> > Subtest dmabuf: SKIP (0.078s)
-> > $ sudo grep . /sys/module/kunit/parameters/*
-> > /sys/module/kunit/parameters/action:(null)
-> > /sys/module/kunit/parameters/filter:module=none
-> > /sys/module/kunit/parameters/filter_action:skip
-> > /sys/module/kunit/parameters/filter_glob:*
-> > /sys/module/kunit/parameters/stats_enabled:1
-> > 
-> > This works for me (with my additional patch to rename the module):
-> > 
-> > # # list tests
-> > # modprobe xe_live_test
-> > # echo -n 'skip' > /sys/module/kunit/parameters/filter_action
-> > # echo -n '*' > /sys/module/kunit/parameters/filter_glob
-> > # modprobe xe_live_test
-> > 
-> > # # run just xe_dma_buf
-> > # modprobe -r xe_live_test
-> > # echo -ne '0x00' > /sys/module/kunit/parameters/filter_action
-> > # echo -n 'xe_dma_buf' > /sys/module/kunit/parameters/filter_glob
-> > # modprobe xe_live_test
-> > 
-> > I  think the main issue is that kunit have some different code paths for
-> > not param == NULL and also that writting an empty string is not really
-> > working as it doesn't issue a write() syscall. If you force a \0 and use
-> > len + 1, then I think it might work, but I didn't test it completely.
-> > I may have to enhance the patch on the kernel side to handle that more
-> > effectively.
-> 
-> OK, if you are going to enhance the kernel side then I'll hold on for now and 
-> get back to it when we can call the ABI stable.
+This patch set touches Xe and i915 drivers. On i915 is checked if
+running on Xe2 hardware and enable framebuffer ccs decompression
+unconditionally for tile4 framebuffers. On Xe driver with Xe2
+hardware check if ccs compression is in use and behave accordingly;
+attempt to use ccs with linear and x-tiled framebuffers will result
+in -EINVAL as display does support decompression only on tile4.
 
-Or I can propose a workaround that sets some non-default values of filter 
-parameters that effectively work the same way as if default NULLs were 
-restored, which now seems impossible to be done via sysfs.  Example:
+v2: Add compressed flag into pat index table and use that. Try to
+avoid situation where framebuffer can be bound with different
+pat index after it was pinned.
 
-List mode:
-- filter: "module=none" (no module matches the filter),
-- filter_action: "skip" (always, since all modules are filtered out),
-- filter_glob: "*" (equivalent of default NULL).
+Juha-Pekka Heikkila (5):
+  drm/xe/pat: annotate pat index table with compression information
+  drm/xe: add bind time pat index to xe_bo structure
+  drm/xe: store bind time pat index to xe_bo
+  drm/xe/xe2: Limit ccs framebuffers to tile4 only
+  drm/i915/display: On Xe2 always enable decompression with tile4
 
-Execute mode:
-- filter: "module!=none" (any module matches, equivalent of default NULL),
-- filter_action: not used (no modules are filtered out),
-- filter_glob: application decides.
+ .../drm/i915/display/skl_universal_plane.c    |  5 ++++
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        | 19 +++++++++++++++
+ drivers/gpu/drm/xe/xe_bo_types.h              | 11 +++++++++
+ drivers/gpu/drm/xe/xe_pat.c                   |  9 +++++++-
+ drivers/gpu/drm/xe/xe_pat.h                   |  8 +++++++
+ drivers/gpu/drm/xe/xe_pt.c                    | 23 +++++++++++++++----
+ 6 files changed, 70 insertions(+), 5 deletions(-)
 
-Thanks,
-Janusz
-
-
-> 
-> Thanks,
-> Janusz
-> 
-> > 
-> > Lucas De Marchi
-> > 
-> 
-> 
-> 
-> 
-> 
-
-
-
+-- 
+2.25.1
 
