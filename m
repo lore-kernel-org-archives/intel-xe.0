@@ -4,26 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA194C47DDB
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Jan 2024 07:44:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EF17C47422
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Jan 2024 08:21:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8785A10F2EF;
-	Fri, 26 Jan 2024 07:44:01 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A58410F33D;
- Fri, 26 Jan 2024 07:44:00 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE24F10F39C;
+	Fri, 26 Jan 2024 08:21:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D8FD10F39C;
+ Fri, 26 Jan 2024 08:21:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706257304; x=1737793304;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=Mcs6Cs6Q+R3zs/0ehqHNyOTCGTZJsAAVoa+IoypXb24=;
+ b=ZVqDZKh9mSeyjlKvA7jiQYaE1xbCOdhkqdpbt1z21zPqw9FHOq7xqN8D
+ fMxWpitkz5HvLTFalo2oDxCm2nYoXd6GLIOxeLYmq91RlFzPaKpMdTHIW
+ bBeNdT6cWx9e/vZ8ilSwV9EPeucVIjIsOs0Qog4CK21azOSUfQmRWRZW7
+ N+PCS/uscHKp0/UfT+vfyWSUqg+8vf0XP2YhqBxt48pX7qilD8WL1i1C4
+ tSHa8EmMwDQIUublTyyDMJ2tPPAi5TJ9j52qBVWMkRMdOofHjQA74+8tE
+ Zb0sSfQNeTm1ksFROuG+bKhALOyMNpXVOVaBV8LYGyRHFfqv0OkYQbELZ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="2302294"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
+   d="scan'208";a="2302294"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2024 00:21:40 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
+   d="scan'208";a="2689701"
+Received: from clillies-mobl1.ger.corp.intel.com (HELO [10.249.254.111])
+ ([10.249.254.111])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2024 00:21:35 -0800
+Message-ID: <7834e2fbe8052717a4e0fa44feafa544b1fedaa0.camel@linux.intel.com>
+Subject: Re: Making drm_gpuvm work across gpu devices
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Daniel Vetter <daniel@ffwll.ch>, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>
+Date: Fri, 26 Jan 2024 09:21:32 +0100
+In-Reply-To: <ZbKpWpOGuNKLJ6sA@phenom.ffwll.local>
+References: <20240117221223.18540-1-oak.zeng@intel.com>
+ <20240117221223.18540-22-oak.zeng@intel.com>
+ <ad21ec11-a9cb-4fb2-b9fd-00a4fa11525f@intel.com>
+ <PH7PR11MB70049E7E6A2F40BF6282ECC292742@PH7PR11MB7004.namprd11.prod.outlook.com>
+ <PH7PR11MB700440CE88BC0A94CFF8499792742@PH7PR11MB7004.namprd11.prod.outlook.com>
+ <2928ce36-06a6-4bee-b115-8dd61cc41dca@amd.com>
+ <SA1PR11MB699192584C01A26C781E2F9992742@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <ccf34f6a-d704-43de-a15e-2ae2890f9381@amd.com>
+ <ZbKpWpOGuNKLJ6sA@phenom.ffwll.local>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe/hwmon=3A_Refactor_xe_hw?=
- =?utf-8?q?mon?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Karthik Poosa" <karthik.poosa@intel.com>
-Date: Fri, 26 Jan 2024 07:44:00 -0000
-Message-ID: <170625504037.728000.12515088821632613229@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240126074819.3851075-1-karthik.poosa@intel.com>
-In-Reply-To: <20240126074819.3851075-1-karthik.poosa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,297 +71,180 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Dave Airlie <airlied@redhat.com>, Felix Kuehling <felix.kuehling@amd.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ Danilo Krummrich <dakr@redhat.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi, all
 
-Series: drm/xe/hwmon: Refactor xe hwmon
-URL   : https://patchwork.freedesktop.org/series/129187/
-State : failure
+On Thu, 2024-01-25 at 19:32 +0100, Daniel Vetter wrote:
+> On Wed, Jan 24, 2024 at 09:33:12AM +0100, Christian K=C3=B6nig wrote:
+> > Am 23.01.24 um 20:37 schrieb Zeng, Oak:
+> > > [SNIP]
+> > > Yes most API are per device based.
+> > >=20
+> > > One exception I know is actually the kfd SVM API. If you look at
+> > > the svm_ioctl function, it is per-process based. Each kfd_process
+> > > represent a process across N gpu devices.
+> >=20
+> > Yeah and that was a big mistake in my opinion. We should really not
+> > do that
+> > ever again.
+> >=20
+> > > Need to say, kfd SVM represent a shared virtual address space
+> > > across CPU and all GPU devices on the system. This is by the
+> > > definition of SVM (shared virtual memory). This is very different
+> > > from our legacy gpu *device* driver which works for only one
+> > > device (i.e., if you want one device to access another device's
+> > > memory, you will have to use dma-buf export/import etc).
+> >=20
+> > Exactly that thinking is what we have currently found as blocker
+> > for a
+> > virtualization projects. Having SVM as device independent feature
+> > which
+> > somehow ties to the process address space turned out to be an
+> > extremely bad
+> > idea.
+> >=20
+> > The background is that this only works for some use cases but not
+> > all of
+> > them.
+> >=20
+> > What's working much better is to just have a mirror functionality
+> > which says
+> > that a range A..B of the process address space is mapped into a
+> > range C..D
+> > of the GPU address space.
+> >=20
+> > Those ranges can then be used to implement the SVM feature required
+> > for
+> > higher level APIs and not something you need at the UAPI or even
+> > inside the
+> > low level kernel memory management.
+> >=20
+> > When you talk about migrating memory to a device you also do this
+> > on a per
+> > device basis and *not* tied to the process address space. If you
+> > then get
+> > crappy performance because userspace gave contradicting information
+> > where to
+> > migrate memory then that's a bug in userspace and not something the
+> > kernel
+> > should try to prevent somehow.
+> >=20
+> > [SNIP]
+> > > > I think if you start using the same drm_gpuvm for multiple
+> > > > devices you
+> > > > will sooner or later start to run into the same mess we have
+> > > > seen with
+> > > > KFD, where we moved more and more functionality from the KFD to
+> > > > the DRM
+> > > > render node because we found that a lot of the stuff simply
+> > > > doesn't work
+> > > > correctly with a single object to maintain the state.
+> > > As I understand it, KFD is designed to work across devices. A
+> > > single pseudo /dev/kfd device represent all hardware gpu devices.
+> > > That is why during kfd open, many pdd (process device data) is
+> > > created, each for one hardware device for this process.
+> >=20
+> > Yes, I'm perfectly aware of that. And I can only repeat myself that
+> > I see
+> > this design as a rather extreme failure. And I think it's one of
+> > the reasons
+> > why NVidia is so dominant with Cuda.
+> >=20
+> > This whole approach KFD takes was designed with the idea of
+> > extending the
+> > CPU process into the GPUs, but this idea only works for a few use
+> > cases and
+> > is not something we should apply to drivers in general.
+> >=20
+> > A very good example are virtualization use cases where you end up
+> > with CPU
+> > address !=3D GPU address because the VAs are actually coming from the
+> > guest VM
+> > and not the host process.
+> >=20
+> > SVM is a high level concept of OpenCL, Cuda, ROCm etc.. This should
+> > not have
+> > any influence on the design of the kernel UAPI.
+> >=20
+> > If you want to do something similar as KFD for Xe I think you need
+> > to get
+> > explicit permission to do this from Dave and Daniel and maybe even
+> > Linus.
+>=20
+> I think the one and only one exception where an SVM uapi like in kfd
+> makes
+> sense, is if the _hardware_ itself, not the software stack defined
+> semantics that you've happened to build on top of that hw, enforces a
+> 1:1
+> mapping with the cpu process address space.
+>=20
+> Which means your hardware is using PASID, IOMMU based translation,
+> PCI-ATS
+> (address translation services) or whatever your hw calls it and has
+> _no_
+> device-side pagetables on top. Which from what I've seen all devices
+> with
+> device-memory have, simply because they need some place to store
+> whether
+> that memory is currently in device memory or should be translated
+> using
+> PASID. Currently there's no gpu that works with PASID only, but there
+> are
+> some on-cpu-die accelerator things that do work like that.
+>=20
+> Maybe in the future there will be some accelerators that are fully
+> cpu
+> cache coherent (including atomics) with something like CXL, and the
+> on-device memory is managed as normal system memory with struct page
+> as
+> ZONE_DEVICE and accelerator va -> physical address translation is
+> only
+> done with PASID ... but for now I haven't seen that, definitely not
+> in
+> upstream drivers.
+>=20
+> And the moment you have some per-device pagetables or per-device
+> memory
+> management of some sort (like using gpuva mgr) then I'm 100% agreeing
+> with
+> Christian that the kfd SVM model is too strict and not a great idea.
+>=20
+> Cheers, Sima
 
-== Summary ==
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-[07:43:36] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[07:43:40] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-ERROR:root:../arch/x86/um/user-offsets.c:17:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
-   17 | void foo(void)
-      |      ^~~
-In file included from ../arch/um/kernel/asm-offsets.c:1:
-../arch/x86/um/shared/sysdep/kernel-offsets.h:9:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
-    9 | void foo(void)
-      |      ^~~
-../arch/x86/um/bugs_64.c:9:6: warning: no previous prototype for ‘arch_check_bugs’ [-Wmissing-prototypes]
-    9 | void arch_check_bugs(void)
-      |      ^~~~~~~~~~~~~~~
-../arch/x86/um/bugs_64.c:13:6: warning: no previous prototype for ‘arch_examine_signal’ [-Wmissing-prototypes]
-   13 | void arch_examine_signal(int sig, struct uml_pt_regs *regs)
-      |      ^~~~~~~~~~~~~~~~~~~
-../arch/x86/um/fault.c:18:5: warning: no previous prototype for ‘arch_fixup’ [-Wmissing-prototypes]
-   18 | int arch_fixup(unsigned long address, struct uml_pt_regs *regs)
-      |     ^~~~~~~~~~
-../arch/x86/um/os-Linux/registers.c:146:15: warning: no previous prototype for ‘get_thread_reg’ [-Wmissing-prototypes]
-  146 | unsigned long get_thread_reg(int reg, jmp_buf *buf)
-      |               ^~~~~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:16:5: warning: no previous prototype for ‘__vdso_clock_gettime’ [-Wmissing-prototypes]
-   16 | int __vdso_clock_gettime(clockid_t clock, struct __kernel_old_timespec *ts)
-      |     ^~~~~~~~~~~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:30:5: warning: no previous prototype for ‘__vdso_gettimeofday’ [-Wmissing-prototypes]
-   30 | int __vdso_gettimeofday(struct __kernel_old_timeval *tv, struct timezone *tz)
-      |     ^~~~~~~~~~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:44:21: warning: no previous prototype for ‘__vdso_time’ [-Wmissing-prototypes]
-   44 | __kernel_old_time_t __vdso_time(__kernel_old_time_t *t)
-      |                     ^~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:57:1: warning: no previous prototype for ‘__vdso_getcpu’ [-Wmissing-prototypes]
-   57 | __vdso_getcpu(unsigned *cpu, unsigned *node, struct getcpu_cache *unused)
-      | ^~~~~~~~~~~~~
-../arch/x86/um/os-Linux/mcontext.c:7:6: warning: no previous prototype for ‘get_regs_from_mc’ [-Wmissing-prototypes]
-    7 | void get_regs_from_mc(struct uml_pt_regs *regs, mcontext_t *mc)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/os-Linux/skas/process.c:107:6: warning: no previous prototype for ‘wait_stub_done’ [-Wmissing-prototypes]
-  107 | void wait_stub_done(int pid)
-      |      ^~~~~~~~~~~~~~
-../arch/um/os-Linux/skas/process.c:683:6: warning: no previous prototype for ‘__switch_mm’ [-Wmissing-prototypes]
-  683 | void __switch_mm(struct mm_id *mm_idp)
-      |      ^~~~~~~~~~~
-../arch/um/kernel/skas/process.c:36:12: warning: no previous prototype for ‘start_uml’ [-Wmissing-prototypes]
-   36 | int __init start_uml(void)
-      |            ^~~~~~~~~
-../arch/um/kernel/skas/mmu.c:17:5: warning: no previous prototype for ‘init_new_context’ [-Wmissing-prototypes]
-   17 | int init_new_context(struct task_struct *task, struct mm_struct *mm)
-      |     ^~~~~~~~~~~~~~~~
-../arch/um/kernel/skas/mmu.c:60:6: warning: no previous prototype for ‘destroy_context’ [-Wmissing-prototypes]
-   60 | void destroy_context(struct mm_struct *mm)
-      |      ^~~~~~~~~~~~~~~
-../arch/x86/um/ptrace_64.c:111:5: warning: no previous prototype for ‘poke_user’ [-Wmissing-prototypes]
-  111 | int poke_user(struct task_struct *child, long addr, long data)
-      |     ^~~~~~~~~
-../arch/x86/um/ptrace_64.c:171:5: warning: no previous prototype for ‘peek_user’ [-Wmissing-prototypes]
-  171 | int peek_user(struct task_struct *child, long addr, long data)
-      |     ^~~~~~~~~
-../arch/x86/um/signal.c:560:6: warning: no previous prototype for ‘sys_rt_sigreturn’ [-Wmissing-prototypes]
-  560 | long sys_rt_sigreturn(void)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/os-Linux/main.c:187:7: warning: no previous prototype for ‘__wrap_malloc’ [-Wmissing-prototypes]
-  187 | void *__wrap_malloc(int size)
-      |       ^~~~~~~~~~~~~
-../arch/um/os-Linux/main.c:208:7: warning: no previous prototype for ‘__wrap_calloc’ [-Wmissing-prototypes]
-  208 | void *__wrap_calloc(int n, int size)
-      |       ^~~~~~~~~~~~~
-../arch/um/os-Linux/main.c:222:6: warning: no previous prototype for ‘__wrap_free’ [-Wmissing-prototypes]
-  222 | void __wrap_free(void *ptr)
-      |      ^~~~~~~~~~~
-../arch/um/os-Linux/mem.c:28:6: warning: no previous prototype for ‘kasan_map_memory’ [-Wmissing-prototypes]
-   28 | void kasan_map_memory(void *start, size_t len)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/os-Linux/mem.c:212:13: warning: no previous prototype for ‘check_tmpexec’ [-Wmissing-prototypes]
-  212 | void __init check_tmpexec(void)
-      |             ^~~~~~~~~~~~~
-../arch/um/os-Linux/signal.c:75:6: warning: no previous prototype for ‘sig_handler’ [-Wmissing-prototypes]
-   75 | void sig_handler(int sig, struct siginfo *si, mcontext_t *mc)
-      |      ^~~~~~~~~~~
-../arch/um/os-Linux/signal.c:111:6: warning: no previous prototype for ‘timer_alarm_handler’ [-Wmissing-prototypes]
-  111 | void timer_alarm_handler(int sig, struct siginfo *unused_si, mcontext_t *mc)
-      |      ^~~~~~~~~~~~~~~~~~~
-../arch/um/os-Linux/start_up.c:301:12: warning: no previous prototype for ‘parse_iomem’ [-Wmissing-prototypes]
-  301 | int __init parse_iomem(char *str, int *add)
-      |            ^~~~~~~~~~~
-../arch/um/kernel/mem.c:202:8: warning: no previous prototype for ‘pgd_alloc’ [-Wmissing-prototypes]
-  202 | pgd_t *pgd_alloc(struct mm_struct *mm)
-      |        ^~~~~~~~~
-../arch/um/kernel/mem.c:215:7: warning: no previous prototype for ‘uml_kmalloc’ [-Wmissing-prototypes]
-  215 | void *uml_kmalloc(int size, int flags)
-      |       ^~~~~~~~~~~
-../arch/um/kernel/process.c:51:5: warning: no previous prototype for ‘pid_to_processor_id’ [-Wmissing-prototypes]
-   51 | int pid_to_processor_id(int pid)
-      |     ^~~~~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:87:7: warning: no previous prototype for ‘__switch_to’ [-Wmissing-prototypes]
-   87 | void *__switch_to(struct task_struct *from, struct task_struct *to)
-      |       ^~~~~~~~~~~
-../arch/um/kernel/process.c:140:6: warning: no previous prototype for ‘fork_handler’ [-Wmissing-prototypes]
-  140 | void fork_handler(void)
-      |      ^~~~~~~~~~~~
-../arch/um/kernel/process.c:217:6: warning: no previous prototype for ‘arch_cpu_idle’ [-Wmissing-prototypes]
-  217 | void arch_cpu_idle(void)
-      |      ^~~~~~~~~~~~~
-../arch/um/kernel/process.c:253:5: warning: no previous prototype for ‘copy_to_user_proc’ [-Wmissing-prototypes]
-  253 | int copy_to_user_proc(void __user *to, void *from, int size)
-      |     ^~~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:263:5: warning: no previous prototype for ‘clear_user_proc’ [-Wmissing-prototypes]
-  263 | int clear_user_proc(void __user *buf, int size)
-      |     ^~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:271:6: warning: no previous prototype for ‘set_using_sysemu’ [-Wmissing-prototypes]
-  271 | void set_using_sysemu(int value)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:278:5: warning: no previous prototype for ‘get_using_sysemu’ [-Wmissing-prototypes]
-  278 | int get_using_sysemu(void)
-      |     ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:316:12: warning: no previous prototype for ‘make_proc_sysemu’ [-Wmissing-prototypes]
-  316 | int __init make_proc_sysemu(void)
-      |            ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:348:15: warning: no previous prototype for ‘arch_align_stack’ [-Wmissing-prototypes]
-  348 | unsigned long arch_align_stack(unsigned long sp)
-      |               ^~~~~~~~~~~~~~~~
-../arch/x86/um/syscalls_64.c:48:6: warning: no previous prototype for ‘arch_switch_to’ [-Wmissing-prototypes]
-   48 | void arch_switch_to(struct task_struct *to)
-      |      ^~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:45:6: warning: no previous prototype for ‘machine_restart’ [-Wmissing-prototypes]
-   45 | void machine_restart(char * __unused)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:51:6: warning: no previous prototype for ‘machine_power_off’ [-Wmissing-prototypes]
-   51 | void machine_power_off(void)
-      |      ^~~~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:57:6: warning: no previous prototype for ‘machine_halt’ [-Wmissing-prototypes]
-   57 | void machine_halt(void)
-      |      ^~~~~~~~~~~~
-../arch/um/kernel/tlb.c:579:6: warning: no previous prototype for ‘flush_tlb_mm_range’ [-Wmissing-prototypes]
-  579 | void flush_tlb_mm_range(struct mm_struct *mm, unsigned long start,
-      |      ^~~~~~~~~~~~~~~~~~
-../arch/um/kernel/tlb.c:594:6: warning: no previous prototype for ‘force_flush_all’ [-Wmissing-prototypes]
-  594 | void force_flush_all(void)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/kernel/um_arch.c:408:19: warning: no previous prototype for ‘read_initrd’ [-Wmissing-prototypes]
-  408 | int __init __weak read_initrd(void)
-      |                   ^~~~~~~~~~~
-../arch/um/kernel/um_arch.c:461:7: warning: no previous prototype for ‘text_poke’ [-Wmissing-prototypes]
-  461 | void *text_poke(void *addr, const void *opcode, size_t len)
-      |       ^~~~~~~~~
-../arch/um/kernel/um_arch.c:473:6: warning: no previous prototype for ‘text_poke_sync’ [-Wmissing-prototypes]
-  473 | void text_poke_sync(void)
-      |      ^~~~~~~~~~~~~~
-../arch/um/kernel/kmsg_dump.c:60:12: warning: no previous prototype for ‘kmsg_dumper_stdout_init’ [-Wmissing-prototypes]
-   60 | int __init kmsg_dumper_stdout_init(void)
-      |            ^~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bo.c:41:3: error: ‘struct ttm_placement’ has no member named ‘num_busy_placement’; did you mean ‘num_placement’?
-   41 |  .num_busy_placement = 1,
-      |   ^~~~~~~~~~~~~~~~~~
-      |   num_placement
-../drivers/gpu/drm/xe/xe_bo.c:41:24: warning: excess elements in struct initializer
-   41 |  .num_busy_placement = 1,
-      |                        ^
-../drivers/gpu/drm/xe/xe_bo.c:41:24: note: (near initialization for ‘sys_placement’)
-../drivers/gpu/drm/xe/xe_bo.c:42:3: error: ‘struct ttm_placement’ has no member named ‘busy_placement’; did you mean ‘num_placement’?
-   42 |  .busy_placement = &sys_placement_flags,
-      |   ^~~~~~~~~~~~~~
-      |   num_placement
-../drivers/gpu/drm/xe/xe_bo.c:42:20: warning: excess elements in struct initializer
-   42 |  .busy_placement = &sys_placement_flags,
-      |                    ^
-../drivers/gpu/drm/xe/xe_bo.c:42:20: note: (near initialization for ‘sys_placement’)
-../drivers/gpu/drm/xe/xe_bo.c:55:3: error: ‘struct ttm_placement’ has no member named ‘num_busy_placement’; did you mean ‘num_placement’?
-   55 |  .num_busy_placement = 1,
-      |   ^~~~~~~~~~~~~~~~~~
-      |   num_placement
-../drivers/gpu/drm/xe/xe_bo.c:55:24: warning: excess elements in struct initializer
-   55 |  .num_busy_placement = 1,
-      |                        ^
-../drivers/gpu/drm/xe/xe_bo.c:55:24: note: (near initialization for ‘tt_placement’)
-../drivers/gpu/drm/xe/xe_bo.c:56:3: error: ‘struct ttm_placement’ has no member named ‘busy_placement’; did you mean ‘num_placement’?
-   56 |  .busy_placement = &sys_placement_flags,
-      |   ^~~~~~~~~~~~~~
-      |   num_placement
-../drivers/gpu/drm/xe/xe_bo.c:56:20: warning: excess elements in struct initializer
-   56 |  .busy_placement = &sys_placement_flags,
-      |                    ^
-../drivers/gpu/drm/xe/xe_bo.c:56:20: note: (near initialization for ‘tt_placement’)
-../drivers/gpu/drm/xe/xe_bo.c: In function ‘__xe_bo_placement_for_flags’:
-../drivers/gpu/drm/xe/xe_bo.c:233:4: error: ‘struct ttm_placement’ has no member named ‘num_busy_placement’; did you mean ‘num_placement’?
-  233 |   .num_busy_placement = c,
-      |    ^~~~~~~~~~~~~~~~~~
-      |    num_placement
-../drivers/gpu/drm/xe/xe_bo.c:233:25: warning: excess elements in struct initializer
-  233 |   .num_busy_placement = c,
-      |                         ^
-../drivers/gpu/drm/xe/xe_bo.c:233:25: note: (near initialization for ‘(anonymous)’)
-../drivers/gpu/drm/xe/xe_bo.c:234:4: error: ‘struct ttm_placement’ has no member named ‘busy_placement’; did you mean ‘num_placement’?
-  234 |   .busy_placement = bo->placements,
-      |    ^~~~~~~~~~~~~~
-      |    num_placement
-../drivers/gpu/drm/xe/xe_bo.c:234:21: warning: excess elements in struct initializer
-  234 |   .busy_placement = bo->placements,
-      |                     ^~
-../drivers/gpu/drm/xe/xe_bo.c:234:21: note: (near initialization for ‘(anonymous)’)
-../drivers/gpu/drm/xe/xe_bo.c: In function ‘xe_evict_flags’:
-../drivers/gpu/drm/xe/xe_bo.c:254:15: error: ‘struct ttm_placement’ has no member named ‘num_busy_placement’; did you mean ‘num_placement’?
-  254 |    placement->num_busy_placement = 0;
-      |               ^~~~~~~~~~~~~~~~~~
-      |               num_placement
-../drivers/gpu/drm/xe/xe_bo.c: In function ‘__xe_bo_fixed_placement’:
-../drivers/gpu/drm/xe/xe_bo.c:1394:4: error: ‘struct ttm_placement’ has no member named ‘num_busy_placement’; did you mean ‘num_placement’?
- 1394 |   .num_busy_placement = 1,
-      |    ^~~~~~~~~~~~~~~~~~
-      |    num_placement
-../drivers/gpu/drm/xe/xe_bo.c:1394:25: warning: excess elements in struct initializer
- 1394 |   .num_busy_placement = 1,
-      |                         ^
-../drivers/gpu/drm/xe/xe_bo.c:1394:25: note: (near initialization for ‘(anonymous)’)
-../drivers/gpu/drm/xe/xe_bo.c:1395:4: error: ‘struct ttm_placement’ has no member named ‘busy_placement’; did you mean ‘num_placement’?
- 1395 |   .busy_placement = place,
-      |    ^~~~~~~~~~~~~~
-      |    num_placement
-../drivers/gpu/drm/xe/xe_bo.c:1395:21: warning: excess elements in struct initializer
- 1395 |   .busy_placement = place,
-      |                     ^~~~~
-../drivers/gpu/drm/xe/xe_bo.c:1395:21: note: (near initialization for ‘(anonymous)’)
-../drivers/gpu/drm/xe/xe_bo.c: In function ‘xe_bo_migrate’:
-../drivers/gpu/drm/xe/xe_bo.c:2153:12: error: ‘struct ttm_placement’ has no member named ‘num_busy_placement’; did you mean ‘num_placement’?
- 2153 |  placement.num_busy_placement = 1;
-      |            ^~~~~~~~~~~~~~~~~~
-      |            num_placement
-../drivers/gpu/drm/xe/xe_bo.c:2155:12: error: ‘struct ttm_placement’ has no member named ‘busy_placement’; did you mean ‘num_placement’?
- 2155 |  placement.busy_placement = &requested;
-      |            ^~~~~~~~~~~~~~
-      |            num_placement
-make[7]: *** [../scripts/Makefile.build:243: drivers/gpu/drm/xe/xe_bo.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-make[6]: *** [../scripts/Makefile.build:481: drivers/gpu/drm/xe] Error 2
-make[6]: *** Waiting for unfinished jobs....
-make[5]: *** [../scripts/Makefile.build:481: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:481: drivers/gpu] Error 2
-make[4]: *** Waiting for unfinished jobs....
-make[3]: *** [../scripts/Makefile.build:481: drivers] Error 2
-make[3]: *** Waiting for unfinished jobs....
-../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-make[2]: *** [/kernel/Makefile:1917: .] Error 2
-make[1]: *** [/kernel/Makefile:240: __sub-make] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
+I'm trying to digest all the comments here, The end goal is to be able
+to support something similar to this here:
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+https://developer.nvidia.com/blog/simplifying-gpu-application-development-w=
+ith-heterogeneous-memory-management/
+
+Christian, If I understand you correctly, you're strongly suggesting
+not to try to manage a common virtual address space across different
+devices in the kernel, but merely providing building blocks to do so,
+like for example a generalized userptr with migration support using
+HMM; That way each "mirror" of the CPU mm would be per device and
+inserted into the gpu_vm just like any other gpu_vma, and user-space
+would dictate the A..B -> C..D mapping by choosing the GPU_VA for the
+vma.
+
+Sima, it sounds like you're suggesting to shy away from hmm and not
+even attempt to support this except if it can be done using IOMMU sva
+on selected hardware?
+
+Could you clarify a bit?
+
+Thanks,
+Thomas
+
+
+
+
+
 
 
