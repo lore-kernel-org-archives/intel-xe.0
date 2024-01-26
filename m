@@ -4,123 +4,115 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3797C48260
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Jan 2024 10:10:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA665C48285
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Jan 2024 10:33:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB37210F76D;
-	Fri, 26 Jan 2024 10:10:13 +0000 (UTC)
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2044.outbound.protection.outlook.com [40.107.223.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDAD910F4D8;
- Fri, 26 Jan 2024 10:10:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83A9C10EF76;
+	Fri, 26 Jan 2024 10:33:11 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2062.outbound.protection.outlook.com [40.107.94.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E1A410EF6A;
+ Fri, 26 Jan 2024 10:33:08 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OkRhVGmzFE747NBhAewrWwA069bSVyp2eaBrwY2BF5M0SIqV6xlvqK8bD170Rn9X06QsJjGRba76BcMHvn0wym8o8jRFdv1pFKSj5Eln4mVeT6E+pz5d/8AI90tnEIyfEo50tnIV7ADkgiNn94X0qdapGyTvriKH6eiCGoCLU5hLtSgP3aL1tQlUAGcuPaSNp/0BKtMtSq32HaTK7KRgSjdrtbHt82XKtLrnng4rvNFRcoyRcjGptBV3Mm6ynp4jNtVm2UDil5PCQRsh6uTPA2oYxwoNDtUDlZ+feFDn5zypV1D74fjJb43AJ6kK+KR4X+s2Bb/cLhUMCdyTREKuFA==
+ b=cIrMFsFBqLP58DgaSVePr1trfniiAwfNkQwB2D4j4CPtAIZL0qTDu7W0rVLsGrA7AJXW4chTpaayqUQc4WK0KVvzkTpGZvPUic6nxt5zpYg5ngRV3t71T9BnQ5kmy9GHJ76ERTrPAoa+KGwW4OZNkeLnyG68Qg3XuqTyZCu/WPwMi5w9KGfNLEKSePy20VeGKrcAOd/Itm9WDf1r7cAi6tv9Be2H5WnHU/lGB3k42xVYKdYRw+kU22FrQXCHVrgl4eQ3HUIZxzgQA8lZzqLUkkayVtJ/yuDyVdFbQmugXCwDGs5nEDY7XahAtVwlKsqomj99r7Vo60TmHuOXmHv/Mg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YHQiDI+hZyqI9KiRNkYFyAoTKcfb/ZMjCf7ToJjB648=;
- b=DtH1YKFoDgiyeciJHAH/WkoJksWUY2hi8f+LjW4SKajoChX2i37EhYPNO0TdxfE7g7hZEJoF8ZWiDuqqBMTL9x40mcb6lb56V3kaeN6LbDT3xk0f8Y/ngmJD1b7eGfnuYWSf0kzeEOP74ooPT5Exa26rJMlwXnjgxe5iJDC0pxqx/T6e2KuFi8vzstW4r6grjro2V2+L0jdxa3JVmEfEto7tSX7Ke5yg2gUhdM020M1SqvyTHh1bcULozkJx9lqkUKdu4zWmoMyAVI/eJHuHe8O7K5Y85RYv8CL4rOiGsEh4I/uhskaQ2J8XdKyNU+1Ubocu6A/iDtPOseLDqBXLlw==
+ bh=XhBevypunalUQ7tpQcDeRjExTUY2gLCQy2rlWwmaJOw=;
+ b=FodCDSUTxBpexC/qvmaoXlDS+oc7HlP3Nv1YMbwm2/AgWNG//XFOo4qek0a3p7ps1Y387A6xH/ZOHVZIqUcp17D5oYyWeD79hJdSv78GCJnxvpqI6CzIaz/KfdbZATKvofHqJ9uPcRmReZjgtYhQ07kSUJ0RIo3NM9WZ1hBeiS+lHyqJDNTg5Pf1J9OqzD6kOcO7ELvKlhmeoLMoMJXFIqoKxj/Wbbc+Po0munSw2HUYwBZz6jD/MxWTZP4Owu/qF/Hsq7iBrSnRwg/4TpulqSZDqmiwb3qpGt/1pUwGwN9ht3UnLPPh1pAWo248f4OMK02e/i7ZNzIKSd45KmuZJw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YHQiDI+hZyqI9KiRNkYFyAoTKcfb/ZMjCf7ToJjB648=;
- b=vMqVhdajftDTeR+GY6FVQB4ZLPVP/1oslMMarPj5Y83DXZyqic7sj8/NvqZjdBgYtrdNQgy5zSJHd1lislefuTXzCHsISuPwSsWkPAB0pMyNJ7ulK5muUPCxk7AdrJ+xnDAe9SOHMs8O5JkHhflQ3ScTVoOyK4aE6QpG4rID7Os=
+ bh=XhBevypunalUQ7tpQcDeRjExTUY2gLCQy2rlWwmaJOw=;
+ b=08HbYbXEBRNvHWimz8XxnM2XOOapjxGPJSYT8QVIgbc+miKhkvzOtLXOTw310Ur+F88ygSgfBUILV5wQktn+gO4jmOSyT9WU7ph6VCbRGLHkZXFiJ03ZsLuO5gdpwI6EshZ7fLMaI3gr86gc6CXg8ZzL3T1aT+flsnSj5GH8BQk=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
 Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by CH0PR12MB5332.namprd12.prod.outlook.com (2603:10b6:610:d7::24)
+ by SJ2PR12MB9114.namprd12.prod.outlook.com (2603:10b6:a03:567::11)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.22; Fri, 26 Jan
- 2024 10:10:01 +0000
+ 2024 10:33:04 +0000
 Received: from PH7PR12MB5685.namprd12.prod.outlook.com
  ([fe80::e1fb:4123:48b1:653]) by PH7PR12MB5685.namprd12.prod.outlook.com
  ([fe80::e1fb:4123:48b1:653%4]) with mapi id 15.20.7228.026; Fri, 26 Jan 2024
- 10:10:00 +0000
-Message-ID: <95970cff-2d51-4e97-9d2f-3756de6f6c04@amd.com>
-Date: Fri, 26 Jan 2024 11:09:54 +0100
+ 10:33:04 +0000
+Message-ID: <0bef4c76-924f-442f-af9c-d701e640db41@amd.com>
+Date: Fri, 26 Jan 2024 11:32:57 +0100
 User-Agent: Mozilla Thunderbird
-Subject: Re: Making drm_gpuvm work across gpu devices
+Subject: Re: [PATCH] drm/sched: Drain all entities in DRM sched run job worker
 Content-Language: en-US
-To: "Zeng, Oak" <oak.zeng@intel.com>, David Airlie <airlied@redhat.com>
-References: <20240117221223.18540-1-oak.zeng@intel.com>
- <20240117221223.18540-22-oak.zeng@intel.com>
- <ad21ec11-a9cb-4fb2-b9fd-00a4fa11525f@intel.com>
- <PH7PR11MB70049E7E6A2F40BF6282ECC292742@PH7PR11MB7004.namprd11.prod.outlook.com>
- <PH7PR11MB700440CE88BC0A94CFF8499792742@PH7PR11MB7004.namprd11.prod.outlook.com>
- <2928ce36-06a6-4bee-b115-8dd61cc41dca@amd.com>
- <SA1PR11MB699192584C01A26C781E2F9992742@SA1PR11MB6991.namprd11.prod.outlook.com>
- <ccf34f6a-d704-43de-a15e-2ae2890f9381@amd.com>
- <SA1PR11MB699106F7114DF265A6E0964D927A2@SA1PR11MB6991.namprd11.prod.outlook.com>
- <CAMwc25rZinyFDMmvPftWwnstOQSJJR01y1X8UkDUBTLgCAZ34Q@mail.gmail.com>
- <SA1PR11MB69918735BCF8BE99182BA3E8927A2@SA1PR11MB6991.namprd11.prod.outlook.com>
+To: Matthew Brost <matthew.brost@intel.com>
+References: <20240124210811.1639040-1-matthew.brost@intel.com>
+ <b94aca06-858e-4575-a4c4-40be8d8d4d35@amd.com>
+ <ZbKaqdu5Y/WNwWVX@DUT025-TGLU.fm.intel.com>
 From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <SA1PR11MB69918735BCF8BE99182BA3E8927A2@SA1PR11MB6991.namprd11.prod.outlook.com>
+In-Reply-To: <ZbKaqdu5Y/WNwWVX@DUT025-TGLU.fm.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR2P281CA0171.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:99::16) To PH7PR12MB5685.namprd12.prod.outlook.com
+X-ClientProxiedBy: FR4P281CA0228.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:e9::9) To PH7PR12MB5685.namprd12.prod.outlook.com
  (2603:10b6:510:13c::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|CH0PR12MB5332:EE_
-X-MS-Office365-Filtering-Correlation-Id: f23aa0f9-0fbd-495a-4be0-08dc1e56f514
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SJ2PR12MB9114:EE_
+X-MS-Office365-Filtering-Correlation-Id: e1a8b936-75f4-4d99-8bb2-08dc1e5a2da0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 1hQXkZIL/VeSz0NwGuJlJ30kNWYh9KMF0wRsB/3sU3A3f4+ZFFAzgHIpe3Y+Z0FoO1O+OvXn033oaSQE4xm0pHXMhfaOtrlwROCFfhmVOaEDQq/QtX303Wg5uwQrz0rNtvNwNmA4q3cZ0UlHz0UtkxlGn6rMYYwtavR/7FBmF8BiOPx/eevZybjRsZOexJ5zJ0GJTPkO6ujt+5PMQqSkBJKio20Qze2aO2QYB+BdR4pxVJ/D5IvjyCY0zQGkDWWrpS2x/RB2RGgrrBriQ96TXaSldo5J0vzQjW61bkEmqnFD1T6t20f/PGzsY5qmV3wcaTyUf4KQGgLhEGtuTh2M7NzRJ921frNzWn1BXhl2LHXcGri1XcNp9o6s28S1wVmf6pHckQxkUaTzUDoGnjjSE95q5eOS6HIPxzatyEgiBo2IhCLkMhl/TWXrpIt/7pIZ1tt0mWtfKDZkUKlIORIf0G4EyH3VfP13Ff4jiLjNhj1FdQY97i3R1LsjjQorb6eh7dcaBeiYE1H01B/9XkKwbkqqbSffwfuH2TG6deHJ7cKjMsDmBBGRbe0hekTX7H14qD2T3cJi+v2qKh3YEUSxThHa4nXTjrgoPmtzrqFVqNHiZHtCGgQxha7R6LJaCMJQppyrC0BePboAzu4/1E7PYQ==
+X-Microsoft-Antispam-Message-Info: wTbT4FOYVVGr1g++ArFzFRRjGDNK0aC08vSAo8l4rfzs2n5XxiUPBN9CEdyaIiB5nhEwh6uDr0ffey2ls9BZikyrNblowPU1Yd8cyojSAxwaq0IR842ZRP0c8+nyI/f5zaeh0x3WxnWBCA+GGTBZBZ6Et5aHebKETg6ZT26gnEjswh20XUVDmj2uiR1LBf9sGRBpo9skb7Hwk4xPOIoSfCoJ9qxXbPLY+yX9x3/mhH2js3wQXrxiUfBV4XwBHP58a0Ee0Bf33InBf0k0HUNHN2aLJYtX3vyYqF8QGpI8doDgMw6GahAcLdWLAi3+TKevnV3NTR4s2wv6XlIA5EWqAJyzKiXt/FFmRWvmNlP8vqMPkrLusCbukLtvn1LxCjY+bI56IAjASV14/6RWzgfY2JgQ+0dzygOt/9zqjMbFcA1mp72tpNmCZrkZhgSvkSyb6npHzn0v/XHSRpHJUoPRLTht3AH87hQebVfsuAaJtBSdznwTAcT0ckPHVKI3RH1S28BwFkLkcIA3kyTFcCgYUT/gAFY4ZcMKCDaLtiZRzq+PHL4XVWgjMEJQUyrHP7gElHTnA06rsW6TFwQLbZfVzBC6+fJaN8boxIHuvMqKgzhvoP08y+tEAuF7PAbEFAEF
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(366004)(136003)(376002)(346002)(39860400002)(230922051799003)(64100799003)(451199024)(186009)(1800799012)(6666004)(966005)(2616005)(6486002)(66574015)(478600001)(26005)(6506007)(31686004)(6512007)(53546011)(83380400001)(316002)(54906003)(66946007)(66476007)(110136005)(66556008)(4326008)(86362001)(2906002)(8936002)(36756003)(38100700002)(7416002)(31696002)(8676002)(41300700001)(5660300002)(45980500001)(43740500002);
+ SFS:(13230031)(39860400002)(366004)(396003)(346002)(376002)(136003)(230922051799003)(186009)(451199024)(64100799003)(1800799012)(2906002)(5660300002)(36756003)(31696002)(41300700001)(86362001)(38100700002)(6916009)(2616005)(66946007)(478600001)(54906003)(66556008)(66476007)(316002)(66574015)(8676002)(8936002)(6512007)(26005)(31686004)(6486002)(6506007)(966005)(6666004)(83380400001)(4326008)(43740500002)(45980500001);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cE5QTCs0b0xUQlY2WXloek9HQlMxemxLOW9nMVN3V2dLTzJ3UFZFclFBdGpy?=
- =?utf-8?B?UTVvT2tYbXpjNU5sQmVXcnZtYXV6YXpqVUpJWm1hbW10RDgwN0l5TTRlelJF?=
- =?utf-8?B?bU5tcEVjUm15S211VWVnN3lhbC83NEpwczRTRWsxSnJIbmlEQXR0ZDRZWmk2?=
- =?utf-8?B?MUJZUE5Pa2c0cm02RFZzTFlYUDZPOVpJNXNOTEJnSDBWK2NPNHVQYWZDSmVD?=
- =?utf-8?B?MGMrUS96dG45cG1TNEZoV3JrY0Z5K05jQ01UaDYrL3UyMG5McmFWbVg2YUs4?=
- =?utf-8?B?SFA0RitPVS9mR0hnRzIrK1lKTHY3RHBrWkxHQWZmNG9ZcUN0NXVmdTV5OGZ4?=
- =?utf-8?B?UTg5NXhVS0RPUmlQdGJvOVYrYVpyWHNVaitqTjJ0SlpNVUREZXlrN0YreGdM?=
- =?utf-8?B?YkJBWXJMcFBFd0dEYXJLdmo1ZXpENHRBWVB5M2JZTWsvcmIrRkNLc0UxZm82?=
- =?utf-8?B?VHdNMUNSb1p1MEdQSmVVKzJuN3owbVJ0MzZhNkI4S3pSSkFhMGs5dm54M0Nn?=
- =?utf-8?B?SWRKWk5sc0RxaTMzbWp6b21DOW1rZ1lQSTNiTzk5M3Vob3FNcm1YSmhlOGQy?=
- =?utf-8?B?ZzBMUDFhUGpoeVVNajZZejc3MnZLbnRhNUFMb3F1RnZFeGhraFE2S201dUhq?=
- =?utf-8?B?ZVVxNCs2dWtOQnB1RjF4UGFmamRRREVhemZTR1p5emFJWHF0clpPMEo0OUxn?=
- =?utf-8?B?Rk1pM1ZxQ0dUaFlZL0d4c0kxK2lGU2VFcWxwL3o3K3JuYmM2aTF1bFJjRmF6?=
- =?utf-8?B?QTZIUERIdjlWZTBJRFhIQmx3VE9sejNMeHFoSW1hQnhuUVBKY1VmTGpmendj?=
- =?utf-8?B?ejhIcTk1eWFkVGVLc2NENlN4azJkQzI0dVFoR281NjZzT0dWNWV0OXNoWWhu?=
- =?utf-8?B?aTJxSGRjQlJxQ1Bxa1Evd0ZMUFJnZEJOTmV6dnZiVENhZDhueUtzK2RVajZa?=
- =?utf-8?B?c1pJeGJpSWV0aXFiNmQzYTM4cEhLOFVsbjRWRWQvWVpDN25pTG9RTGxRVHpL?=
- =?utf-8?B?aEFxMGtQYUwrWW5wUVRtWmcrTkxSaVFzVHprdzcveHhjNVNXajRmV0ZMcFpm?=
- =?utf-8?B?TW16aVEyQURaSzhMdVZvaTFGc3d2dXdWZ2NRSm1ZN05PRTVKSWNqdDEwUnM2?=
- =?utf-8?B?UGpDcXZaOE9HL1AwTWJldkNFMHVWa0tBNTAwUlZWUHpiN3BnZVIwazVoQlRM?=
- =?utf-8?B?amRHL2tkVUJxb1J1bGwyRG5tek9IOFFHblJHSTR2aC96dThpV0pUQU01aFVE?=
- =?utf-8?B?bnpPTWVIb0Y5eW9wZzI5Z1RDNXRwRmsvN3BaVCtaaVE1bjBUcFBxQ2Q3VmZl?=
- =?utf-8?B?REpuNGVxb1FjQ1MyRzcxenQzdUFFK3BQTWhqQU9qZlBydTMzcS8yd2U1VlZS?=
- =?utf-8?B?eloxb1BwSGd6NXU5aWlzVGdYSE03KzRZSlpQVkRpU25DcStLVUJ2M3BxS0xk?=
- =?utf-8?B?ckFuN0Z5dWVWMXlCWVpSUkJwOUIzSXBHb1YwUmhjRzFMakZnNlBpcTVNMlZm?=
- =?utf-8?B?SWxjcHd1ZlJ0WlBmSGs5QWo4ZzhVOXBtNHZFZGxHSXlpa0F0Q0krNUZyQVFB?=
- =?utf-8?B?TkswYTJUai9pWU5PcUFueEpXWmh6cFBHYlBHclZ4ZitIVEs5amh2azJ3d1Fk?=
- =?utf-8?B?M200ZlIyK3BHK3h4d2hPdmpsQWNTMGFCUkNvVnBYanRpdGozWjJwQWVqSDhH?=
- =?utf-8?B?SmVldWpEWUNGRXhKdnkvWHNoL05DVUJ6ZVVqR251akx0dUFaMHRibXhtazBm?=
- =?utf-8?B?YUxCTzNyYWhyOFNrRmxDTDZDdFowMnR6aWczQ2h1a3dqNXpQcTlGcVUvVHRk?=
- =?utf-8?B?bWtUUTBIMjM3U01KK1VQTnZCWk5VdHNYT2U3YTVINkVsVzNyUnBBVklpVU9P?=
- =?utf-8?B?aXI1ZlhDY24yaUR3dnNweHVSMnNhWTEvTXlMUTJIZnNWVVg2SnRibldGQ1Fz?=
- =?utf-8?B?L0NzUFhoS0NCOFk0bUZUSHQ1NGhFeFE2Y3VTVWN4cmhvem1oRFZNTVFobW1h?=
- =?utf-8?B?MHQ1RXZnNUZOM2xzQ3doM3FHaDQ2TXZpNklGV2NuNVEvNTNHSGV0TzdKZ1Zn?=
- =?utf-8?B?VGpGNTlMNnlRM1YzWG9IcjZFbkhvWUFSTFpRR3AzcldCcmgwdVZPUXlyQUdH?=
- =?utf-8?Q?rAj2SNUfSNHMHlbYkubA17oNG?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NFJVcXgwc094VGFoeW9CeXBXQi9WUjBMNFBHcFdaNHJqUkJYVUhJMktTeGtE?=
+ =?utf-8?B?ejJESVNveUt3N0lkN0drM05EZlBQa2ptNXh6WVhvbkhDdzlFQlExZ2xWQ3dn?=
+ =?utf-8?B?NWZYa3Eyd1RlMWM1SnRaNFg0U0FoWWZEOUIwWWpJT3AzcFE1cFBuUmZSWUht?=
+ =?utf-8?B?ZjhjM2c4VmNiTm9TOVFlRlArUDhadlljRVBKMG1xUTM2MkFFakFJOWxlVzdl?=
+ =?utf-8?B?SmNHRjkrclBHKzRSUnRzS2dPMnJEUnZBc3Z3ZGNJUFVzYkxMZjZaUzRycWhC?=
+ =?utf-8?B?RmJGeVZmTWFOc29lOFdzemhPcC9ESEJvQkJkaWs0MG1zYmwvZW1yRjgybVBH?=
+ =?utf-8?B?VVl4UTE5TU5zRXgveVhUZ3lFTUg4SU8rZkpZSEpHaVkraDE1bHpXU0N6UlBT?=
+ =?utf-8?B?L3NUdWV0b3BYeVVtakp6ZjVJR01HTUoxYnpkNXo4RTFETEVLa3IrNUNvNElM?=
+ =?utf-8?B?QXlkVjNwRFA1NVJIZ2lTbHB2eEI1Y25kUFhiRUhONVBxUWp6eFRNeVE3NmxP?=
+ =?utf-8?B?UlpEWURTVDNENnEvcVI2Q2dCVWFFcmx0Lzl1NVhaVzBoNzhzc0ZOaG1OTGJL?=
+ =?utf-8?B?NFFiMXJFOU9RZUcwb3RPeFJERytBVUVIcVdHdlFIYkthUEFhVFZhdmFTOXpk?=
+ =?utf-8?B?bW1OUU45aTFyUjJ5VGRVa09Yb0FBY0M2SWtIRndpV0E3b01Pa0MyRktLaC80?=
+ =?utf-8?B?dy9EbzN5SmdmVnRWVzlpc3FjL2VEVG8xRHpiNnFMbUsxYmtFS0JmdFdlbjEx?=
+ =?utf-8?B?dk5oR2lEWmhYL0dETDd1ZnQ5SXRQMUE0Ujd4emhjRkNYZ0xyOWd1dnRCaC9h?=
+ =?utf-8?B?VGtmbFBHZlAvbWxxSFZSTkdvVnV0THBsZXJxRW14ODBpRjJNMExHSXY2SVBM?=
+ =?utf-8?B?WGNUOE90Z0l6VTlqT0ljZ1kwTzFOay9KL3ZhWkxNeUNlWUI5TSsxVFJnelhO?=
+ =?utf-8?B?ckk1b1NKbHd5N1h0VEFaOFl0WGtGZWlYU0dNOWRPdEZjSVhZQ2ttMjNFRjFC?=
+ =?utf-8?B?QzJzdDBQUTB5cDFBeFFpZktIUzZMSVg5SENYNmp6OWl1bjlIWFJxYzNWa1pR?=
+ =?utf-8?B?YytyMTE5cWdzMDQvTzhhZHZiTHlSUmdpTmVMQjBUamtMUEhtVW1PRTdBODhJ?=
+ =?utf-8?B?WGU1MVlBbnozeTVXNnFqWmZIZ2hOOVY1MGo2UzdJOXFRckNvRnA0a1h4TFBk?=
+ =?utf-8?B?cW5aVVNxRGVaWDd4UjlpdjNNRTNkamFoaForWlVlZlVTSmU5bUNoQXpaM1FR?=
+ =?utf-8?B?SlE2R3V0RXB5MjMxbUdqb0NYeEZUc0p5aisyT0tmb3BVRDN3SUpzTFJuc25k?=
+ =?utf-8?B?MVFvZkd1UDdYdHI5WEpEb1VzNTkwdVpPUmUvYXdxdDhzRXBadFhJWHVyL09T?=
+ =?utf-8?B?T0ZPVVFXWGhrSjZYR1kyVmtpdEFTSGpwMm1CSjZpcEs1MHRIc3JVVDVYQzNE?=
+ =?utf-8?B?VVh5Z0hpSmx5WUU4QlNIRTZQeThVanVON1BKYTNxdTRuQmRtRndhSEw2cU5q?=
+ =?utf-8?B?b1J2alorWHVmbzRWeDhxdkVQaGU2ZWJ2ZVVsVVE4UnlTc2V1a2xhSm1KQ3Fr?=
+ =?utf-8?B?T0Mxa2xhdU1GVmN3VXFjaFpkY0U5c3o3cE1WZU9KN3NFUkd0Nk00ZXdRd2xo?=
+ =?utf-8?B?eVdwMzFFWXpEYXBkQVlFOVloSzh2VEpTeWVXYUwxcktzZEk5T21ieE1SQlpX?=
+ =?utf-8?B?UHJOelVOTXUySk8xd0VnNWFvd0VmMk1xSU51d21iYkV4RW8zM0hvVURaSVZC?=
+ =?utf-8?B?dEIyaUd5T0NkY1Z3VGZqT3BkYk9SNzF2eTY3bmpxTEc2dWx0dWp6bkx4ZEp6?=
+ =?utf-8?B?NVNFV0hwRldYQVoxcXBqNkFVS0NFUDJVYWNmMUdadHVNOUFISDBHc3ZSUEcr?=
+ =?utf-8?B?dkh2Y29SOS9pdEpKbFp5TEpnL3p4dEJ3NW05ZWhqUHA0K3FlOXd6WWFKdGwr?=
+ =?utf-8?B?QW0ramhqdmxnWTBNcCtQb05lMklpeG1FcEtBcG54SERKNVdSY25KNFlFa3Zx?=
+ =?utf-8?B?Qm9sVW9kaXhBQ1J3OUJCKzl3VkNUZlFtWnByZlhsZFVDaVdqS1pwaFp2QkdE?=
+ =?utf-8?B?Z0Vid2lKU0RGaW5qY2t6Qmh1YkJ6b0YxK2x5U2ZEaHhYazFPMFdhYVByTXNT?=
+ =?utf-8?Q?s2giduqWO6KBAhm+j4vjplCkh?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f23aa0f9-0fbd-495a-4be0-08dc1e56f514
+X-MS-Exchange-CrossTenant-Network-Message-Id: e1a8b936-75f4-4d99-8bb2-08dc1e5a2da0
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2024 10:10:00.8811 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2024 10:33:04.2254 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ltbBCN7fyBU//RXdmIIjWcDlEXFALoOEetiw8n8hecgz3Qrh6TAHPd2T7i+YL9Hx
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5332
+X-MS-Exchange-CrossTenant-UserPrincipalName: qlHPl74UdhRp92JAi8V0LNToW4n8vOGanqP2LhdxQ0zWEsP/hO8PbqbGABbZy8b0
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB9114
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,121 +124,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Winiarski, Michal" <michal.winiarski@intel.com>,
- Felix Kuehling <felix.kuehling@amd.com>, "Shah,
- Ankur N" <ankur.n.shah@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel@ffwll.ch>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- Danilo Krummrich <dakr@redhat.com>
+Cc: ltuikov89@gmail.com, dri-devel@lists.freedesktop.org,
+ Thorsten Leemhuis <regressions@leemhuis.info>,
+ Mario Limonciello <mario.limonciello@amd.com>, daniel@ffwll.ch,
+ Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>, airlied@gmail.com,
+ intel-xe@lists.freedesktop.org, Vlastimil Babka <vbabka@suse.cz>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Oak,
+Am 25.01.24 um 18:30 schrieb Matthew Brost:
+> On Thu, Jan 25, 2024 at 04:12:58PM +0100, Christian König wrote:
+>>
+>> Am 24.01.24 um 22:08 schrieb Matthew Brost:
+>>> All entities must be drained in the DRM scheduler run job worker to
+>>> avoid the following case. An entity found that is ready, no job found
+>>> ready on entity, and run job worker goes idle with other entities + jobs
+>>> ready. Draining all ready entities (i.e. loop over all ready entities)
+>>> in the run job worker ensures all job that are ready will be scheduled.
+>> That doesn't make sense. drm_sched_select_entity() only returns entities
+>> which are "ready", e.g. have a job to run.
+>>
+> That is what I thought too, hence my original design but it is not
+> exactly true. Let me explain.
+>
+> drm_sched_select_entity() returns an entity with a non-empty spsc queue
+> (job in queue) and no *current* waiting dependecies [1]. Dependecies for
+> an entity can be added when drm_sched_entity_pop_job() is called [2][3]
+> returning a NULL job. Thus we can get into a scenario where 2 entities
+> A and B both have jobs and no current dependecies. A's job is waiting
+> B's job, entity A gets selected first, a dependecy gets installed in
+> drm_sched_entity_pop_job(), run work goes idle, and now we deadlock.
 
-you can still use SVM, but it should not be a design criteria for the 
-kernel UAPI. In other words the UAPI should be designed in such a way 
-that the GPU virtual address can be equal to the CPU virtual address of 
-a buffer, but can also be different to support use cases where this 
-isn't the case.
+And here is the real problem. run work doesn't goes idle in that moment.
 
-Additionally to what Dave wrote I can summarize a few things I have 
-learned while working on the AMD GPU drivers in the last decade or so:
+drm_sched_run_job_work() should restarts itself until there is either no 
+more space in the ring buffer or it can't find a ready entity any more.
 
-1. Userspace requirements are *not* relevant for UAPI or even more 
-general kernel driver design.
+At least that was the original design when that was all still driven by 
+a kthread.
 
-2. What should be done is to look at the hardware capabilities and try 
-to expose those in a save manner to userspace.
-
-3. The userspace requirements are then used to validate the kernel 
-driver and especially the UAPI design to ensure that nothing was missed.
-
-The consequence of this is that nobody should ever use things like Cuda, 
-Vulkan, OpenCL, OpenGL etc.. as argument to propose a certain UAPI design.
-
-What should be done instead is to say: My hardware works in this and 
-that way -> we want to expose it like this -> because that enables us to 
-implement the high level API in this and that way.
-
-Only this gives then a complete picture of how things interact together 
-and allows the kernel community to influence and validate the design.
-
-This doesn't mean that you need to throw away everything, but it gives a 
-clear restriction that designs are not nailed in stone and for example 
-you can't use something like a waterfall model.
-
-Going to answer on your other questions separately.
+It can perfectly be that we messed this up when switching from kthread 
+to a work item.
 
 Regards,
 Christian.
 
-Am 25.01.24 um 06:25 schrieb Zeng, Oak:
-> Hi Dave,
 >
-> Let me step back. When I wrote " shared virtual address space b/t cpu and all gpu devices is a hard requirement for our system allocator design", I meant this is not only Intel's design requirement. Rather this is a common requirement for both Intel, AMD and Nvidia. Take a look at cuda driver API definition of cuMemAllocManaged (search this API on https://docs.nvidia.com/cuda/cuda-driver-api/group__CUDA__MEM.html#group__CUDA__MEM), it said:
+> The proper solution is to loop over all ready entities until one with a
+> job is found via drm_sched_entity_pop_job() and then requeue the run
+> job worker. Or loop over all entities until drm_sched_select_entity()
+> returns NULL and then let the run job worker go idle. This is what the
+> old threaded design did too [4]. Hope this clears everything up.
 >
-> "The pointer is valid on the CPU and on all GPUs in the system that support managed memory."
+> Matt
 >
-> This means the program virtual address space is shared b/t CPU and all GPU devices on the system. The system allocator we are discussing is just one step advanced than cuMemAllocManaged: it allows malloc'ed memory to be shared b/t CPU and all GPU devices.
+> [1] https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/scheduler/sched_entity.c#L144
+> [2] https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/scheduler/sched_entity.c#L464
+> [3] https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/scheduler/sched_entity.c#L397
+> [4] https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/scheduler/sched_main.c#L1011
 >
-> I hope we all agree with this point.
->
-> With that, I agree with Christian that in kmd we should make driver code per-device based instead of managing all devices in one driver instance. Our system allocator (and generally xekmd)design follows this rule: we make xe_vm per device based - one device is *not* aware of other device's address space, as I explained in previous email. I started this email seeking a one drm_gpuvm instance to cover all GPU devices. I gave up this approach (at least for now) per Danilo and Christian's feedback: We will continue to have per device based drm_gpuvm. I hope this is aligned with Christian but I will have to wait for Christian's reply to my previous email.
->
-> I hope this clarify thing a little.
->
-> Regards,
-> Oak
->
->> -----Original Message-----
->> From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf Of David
->> Airlie
->> Sent: Wednesday, January 24, 2024 8:25 PM
->> To: Zeng, Oak <oak.zeng@intel.com>
->> Cc: Ghimiray, Himal Prasad <himal.prasad.ghimiray@intel.com>;
->> Thomas.Hellstrom@linux.intel.com; Winiarski, Michal
->> <michal.winiarski@intel.com>; Felix Kuehling <felix.kuehling@amd.com>; Welty,
->> Brian <brian.welty@intel.com>; Shah, Ankur N <ankur.n.shah@intel.com>; dri-
->> devel@lists.freedesktop.org; intel-xe@lists.freedesktop.org; Gupta, saurabhg
->> <saurabhg.gupta@intel.com>; Danilo Krummrich <dakr@redhat.com>; Daniel
->> Vetter <daniel@ffwll.ch>; Brost, Matthew <matthew.brost@intel.com>; Bommu,
->> Krishnaiah <krishnaiah.bommu@intel.com>; Vishwanathapura, Niranjana
->> <niranjana.vishwanathapura@intel.com>; Christian König
->> <christian.koenig@amd.com>
->> Subject: Re: Making drm_gpuvm work across gpu devices
+>> If that's not the case any more then you have broken something else.
 >>
+>> Regards,
+>> Christian.
+>>
+>>> Cc: Thorsten Leemhuis <regressions@leemhuis.info>
+>>> Reported-by: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
+>>> Closes: https://lore.kernel.org/all/CABXGCsM2VLs489CH-vF-1539-s3in37=bwuOWtoeeE+q26zE+Q@mail.gmail.com/
+>>> Reported-and-tested-by: Mario Limonciello <mario.limonciello@amd.com>
+>>> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3124
+>>> Link: https://lore.kernel.org/all/20240123021155.2775-1-mario.limonciello@amd.com/
+>>> Reported-by: Vlastimil Babka <vbabka@suse.cz>
+>>> Closes: https://lore.kernel.org/dri-devel/05ddb2da-b182-4791-8ef7-82179fd159a8@amd.com/T/#m0c31d4d1b9ae9995bb880974c4f1dbaddc33a48a
+>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>>> ---
+>>>    drivers/gpu/drm/scheduler/sched_main.c | 15 +++++++--------
+>>>    1 file changed, 7 insertions(+), 8 deletions(-)
 >>>
->>> For us, Xekmd doesn't need to know it is running under bare metal or
->> virtualized environment. Xekmd is always a guest driver. All the virtual address
->> used in xekmd is guest virtual address. For SVM, we require all the VF devices
->> share one single shared address space with guest CPU program. So all the design
->> works in bare metal environment can automatically work under virtualized
->> environment. +@Shah, Ankur N +@Winiarski, Michal to backup me if I am wrong.
->>>
->>>
->>> Again, shared virtual address space b/t cpu and all gpu devices is a hard
->> requirement for our system allocator design (which means malloc’ed memory,
->> cpu stack variables, globals can be directly used in gpu program. Same
->> requirement as kfd SVM design). This was aligned with our user space software
->> stack.
->>
->> Just to make a very general point here (I'm hoping you listen to
->> Christian a bit more and hoping he replies in more detail), but just
->> because you have a system allocator design done, it doesn't in any way
->> enforce the requirements on the kernel driver to accept that design.
->> Bad system design should be pushed back on, not enforced in
->> implementation stages. It's a trap Intel falls into regularly since
->> they say well we already agreed this design with the userspace team
->> and we can't change it now. This isn't acceptable. Design includes
->> upstream discussion and feedback, if you say misdesigned the system
->> allocator (and I'm not saying you definitely have), and this is
->> pushing back on that, then you have to go fix your system
->> architecture.
->>
->> KFD was an experiment like this, I pushed back on AMD at the start
->> saying it was likely a bad plan, we let it go and got a lot of
->> experience in why it was a bad design.
->>
->> Dave.
+>>> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+>>> index 550492a7a031..85f082396d42 100644
+>>> --- a/drivers/gpu/drm/scheduler/sched_main.c
+>>> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+>>> @@ -1178,21 +1178,20 @@ static void drm_sched_run_job_work(struct work_struct *w)
+>>>    	struct drm_sched_entity *entity;
+>>>    	struct dma_fence *fence;
+>>>    	struct drm_sched_fence *s_fence;
+>>> -	struct drm_sched_job *sched_job;
+>>> +	struct drm_sched_job *sched_job = NULL;
+>>>    	int r;
+>>>    	if (READ_ONCE(sched->pause_submit))
+>>>    		return;
+>>> -	entity = drm_sched_select_entity(sched);
+>>> +	/* Find entity with a ready job */
+>>> +	while (!sched_job && (entity = drm_sched_select_entity(sched))) {
+>>> +		sched_job = drm_sched_entity_pop_job(entity);
+>>> +		if (!sched_job)
+>>> +			complete_all(&entity->entity_idle);
+>>> +	}
+>>>    	if (!entity)
+>>> -		return;
+>>> -
+>>> -	sched_job = drm_sched_entity_pop_job(entity);
+>>> -	if (!sched_job) {
+>>> -		complete_all(&entity->entity_idle);
+>>>    		return;	/* No more work */
+>>> -	}
+>>>    	s_fence = sched_job->s_fence;
 
