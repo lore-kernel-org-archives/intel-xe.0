@@ -4,148 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AE95C47DDF
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Jan 2024 15:04:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E562DC47422
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Jan 2024 15:13:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5425510FB31;
-	Fri, 26 Jan 2024 15:04:52 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BCC110FB31
- for <intel-xe@lists.freedesktop.org>; Fri, 26 Jan 2024 15:04:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706281491; x=1737817491;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=yjdoSx3AOFDojnNpN3wytSDAA2lUS8a/J7M75DYnKVo=;
- b=SdvwV2fE57+Mnnn13t9B4fcS54pvNCd+jvyzEUidYbBoGd0+9/7vMuiN
- CH4F9fWlSLZUh2jE0p8bHlKpWryevHnnuMctmHsy54R9dIqo2dqFqrfUK
- rmcWT/Q9GPw4VW3AbLdTyvQshb7FGB3BMHA4uX7o5lFFKMiedHfexhOip
- yxsGDNgmDjQ0LePDHrlKifCGI7IwAcSffmXOLZuRQIVYtGLG0ZDskeTkn
- xatNmHlYV/ZJzcpmmgZs0doLc+jH/naYz3Ydg3KSaDgOrYCrFVmE132L7
- vLCf7s8NDcMyBH5nj+cRdadfC3vkaiaEn5ytEx1Dj0LyLvzx7Q2gXMptc Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="466766194"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="466766194"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2024 07:04:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
-   d="scan'208";a="2636038"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 26 Jan 2024 07:04:13 -0800
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 26 Jan 2024 07:04:12 -0800
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 26 Jan 2024 07:04:12 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Fri, 26 Jan 2024 07:04:12 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Fri, 26 Jan 2024 07:04:12 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IpWF823loUA8qA0B9aLewMdQZcE22h/tvsmZEaM3BD8hu69ey8vF30HYwp4qkXizSYhRXVM0rkb69HBwgOVh0pu9XqIHzLb6/BWv28bAyOTgYpwxuAF6AhB1cfO+dYJLTVyuUz7iAIguv7tRax6LOnwJftadBU0Gc4W214tebRYlTbbIi6bPkT1hnlYEqEcTO1Mq1umr961dNDEp+xJig2bR2LBEg5MPsqpXQTejrSuYj35TOv8tnzz5QlqHzcS5b2dUCEwirVrTxWXSoshw8zIS+xFg+BgD3fkZStKVccp/5Z93/YXDt8zmBDQt6P5xgtnezMeh9To0rLL6a/vlmA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JP1KFctqy28Ia82K0o6pn8Mz/bW25/PNbzFMQxNZpWw=;
- b=ffWKixK63w9ZWch04lFKDHUwRGotwAg6z6REWOjWQoVLUAhoMuXIAiGEJ1J/QYrMsFjGYpHDVnUwUjOlwo9rDlBXd1Uqt5zJntfblqpnznyuXRO0U1Nlwgny7exV46WC7/sb1uVFv9zqTiJmHQbYKWGRmH8TkiUw1rj72O6hXOJqrE5adgD4Zt8V2cMeGNzbzjeO3LKnjifdlUx15Z+94AbJb73SBNi+LYhFamY+KB4Wsd7qt0wANd9VuyZ11dIAPY/dTSnBoB4WLb0fMSP1p3DgW6zTzKAs31DVZiYQt2ojr15TRyVoyz04V/x5qzLdgIYv95zZaoN3vyRinNv/Gg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA1PR11MB8200.namprd11.prod.outlook.com (2603:10b6:208:454::6)
- by DS0PR11MB7622.namprd11.prod.outlook.com (2603:10b6:8:144::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.34; Fri, 26 Jan
- 2024 15:04:04 +0000
-Received: from IA1PR11MB8200.namprd11.prod.outlook.com
- ([fe80::9ccf:6986:9706:16cb]) by IA1PR11MB8200.namprd11.prod.outlook.com
- ([fe80::9ccf:6986:9706:16cb%6]) with mapi id 15.20.7228.022; Fri, 26 Jan 2024
- 15:04:04 +0000
-Message-ID: <6359a737-a290-48fc-ae3c-fa6f460a8032@intel.com>
-Date: Fri, 26 Jan 2024 10:04:01 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/hwmon: Refactor xe hwmon
-Content-Language: en-US
-To: Karthik Poosa <karthik.poosa@intel.com>, <intel-xe@lists.freedesktop.org>
-References: <20240126074819.3851075-1-karthik.poosa@intel.com>
-From: "Dong, Zhanjun" <zhanjun.dong@intel.com>
-In-Reply-To: <20240126074819.3851075-1-karthik.poosa@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BY5PR20CA0035.namprd20.prod.outlook.com
- (2603:10b6:a03:1f4::48) To IA1PR11MB8200.namprd11.prod.outlook.com
- (2603:10b6:208:454::6)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A05D010FB8F;
+	Fri, 26 Jan 2024 15:13:06 +0000 (UTC)
+Received: from mail-io1-f46.google.com (mail-io1-f46.google.com
+ [209.85.166.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51B5D10FBBD
+ for <intel-xe@lists.freedesktop.org>; Fri, 26 Jan 2024 15:13:05 +0000 (UTC)
+Received: by mail-io1-f46.google.com with SMTP id
+ ca18e2360f4ac-7bc332d49f6so17332839f.1
+ for <intel-xe@lists.freedesktop.org>; Fri, 26 Jan 2024 07:13:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ieee.org; s=google; t=1706281924; x=1706886724; darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=FmAGKlbUHD7/NpuouXn5/t0Fv7r/tBW38trG+EcklCI=;
+ b=aQrVU8Oz2Y/Im7NHpSgdxbdS6p+NSlk314Ti2sgHztdjpo2ZDAz/VTtcd61j+wlj6b
+ /JO6peAjgELK7viTplkdNR6oOjDr0faQzz+MGM7o68qEPZwXFjdqJ5t/yydbSF8vou4l
+ +ASliBsITEHZ17jJ+qHd8EbNmVROVu7P9LaOQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1706281924; x=1706886724;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=FmAGKlbUHD7/NpuouXn5/t0Fv7r/tBW38trG+EcklCI=;
+ b=Z+u7PARM6gHRMqjfk6ATSQHPgV90WiCUWnFVSH0V0ratel0nlJLJT0CE6mdVfFIhP8
+ TOC1XUbAR931GuacDkzW4VKRWco/E0d9rZPvpVG4JSIXy9zHItRLf8o2JHFwTUsOhuFt
+ mbSdA3eUgvTV/RTf0PIbITk4ECxRk+oeXsacCMeio5+HitkMzZY3YgGHanOsq5p7K2VR
+ y4eUThLIADUqc3sZ9HP1EouBfz4D7f7xYeZjoGwxF7o2gJseF92DAieeWPrh2fvakqcJ
+ Mm5WsQxYI09ujaiq3kX+y7Rg0/CiDcHY9F3/qvG/pphmSOGUjJ3KfEbtTS/uVDNV9Jzj
+ C/oQ==
+X-Gm-Message-State: AOJu0YyzoolNoqwn7mCKZbkGefx467eDxkKNVhF/bWxvEprmMGJgjyTw
+ QvH5tWOoHf1kQVSav7RmCS2oW7SF3zSR8CF2c7+WeTCqo0UyCJgx38YZI1/RQg==
+X-Google-Smtp-Source: AGHT+IFrpj53ocxz4PIP+a6fhHNRuGa1zpehIftPdeKqCH8RZGrYTbgHmY9g2zpssARQH7gl5y/zrA==
+X-Received: by 2002:a5d:9550:0:b0:7be:f7e5:44fc with SMTP id
+ a16-20020a5d9550000000b007bef7e544fcmr2094553ios.21.1706281924568; 
+ Fri, 26 Jan 2024 07:12:04 -0800 (PST)
+Received: from [172.22.22.28] (c-98-61-227-136.hsd1.mn.comcast.net.
+ [98.61.227.136]) by smtp.googlemail.com with ESMTPSA id
+ c20-20020a056602335400b007bc3f75039dsm395844ioz.29.2024.01.26.07.12.02
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 26 Jan 2024 07:12:04 -0800 (PST)
+Message-ID: <912d4439-86cd-4060-a66d-baba5fa2bdec@ieee.org>
+Date: Fri, 26 Jan 2024 09:12:02 -0600
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR11MB8200:EE_|DS0PR11MB7622:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6d25e8c5-bb3b-43b6-8059-08dc1e8009a2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: b1dHNSgPCZy1YkxX1b8wq2YEjGgM8TQf1HWl1UH2nYXEJrUR7/MMrMylSpsLy2SlS4BU1OlIm22XXZWsOrxPrSXw0FIrC50IRfa4oQbtjJ5DqJLpn1gKg2ughwTPeIkXtr6SYLuVrLv+kn9F6ZgsGfLU+9qRXhVUz5dEfObauZL0EseCOkBuGyB+xlVOR0TkmfUneuQBxWWOU6TTjMWhr0YY4AAnXBreUwSUT4day8GpWk2Ubf/Iy8Qh5b5E+jzOfYfjg2ZQKbXYBPb1XMDI5Jdtr0l2OCLSs7uYpbX7PFiUbkrx2AQN/ALwKVIq9hlCU+j2w/bP5hI/eF2/rc9YiouMYOdQsIw7ik3csmqUVmAbA3wOz4gC1+zkBqzav+BSyHfzeK5BX6UvXh3R8VNDqWwPIYFAq92AfR7y96MMtDgTJjtoNXUpcl38r1taDUdlrYtI48dxi+EmMjK1zSe75md+ywMONnow+IEEJEqeJIKBwByG0WuPlJuPmHeqmgoH6Ues5Ae1rWT+WITNzh++xb8YTFEuB3OSjvtwKGhForMJE4f6h37342CkjC6sfNuaSnOqd5qk4G44BDlTbT4uNmOaDEJ4Zco8Fg32+lqRsyZq0PPsnJi8pVyDpmI5nVvOj8jA8uPAShjpZC7k02kwJA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA1PR11MB8200.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(346002)(136003)(376002)(39860400002)(366004)(396003)(230922051799003)(186009)(64100799003)(451199024)(1800799012)(2616005)(31686004)(26005)(6506007)(53546011)(6512007)(6666004)(107886003)(6486002)(38100700002)(82960400001)(86362001)(31696002)(36756003)(83380400001)(41300700001)(478600001)(5660300002)(2906002)(316002)(4326008)(8936002)(66556008)(8676002)(66946007)(66476007)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q3pnQTdRdjlqUysvWTRpdkl0N0lpcDVVd08ySjRqd1N3dlREWXUzTnZGZHhO?=
- =?utf-8?B?Z2diTms3MTUwZ3RIbE8wN3NCTTdWVzJvbjhJeFNhUThWYW5FOUNBVDZ0Kys2?=
- =?utf-8?B?cFNRYlNnK1BFVWRQRE9IR2sxODdVc3RUZno1UUZnKzlPbWIvUlNQR2V3QmRo?=
- =?utf-8?B?TEYrbW0zN2VXQklKMXJtNldpa1EwTDUyL0JKWHRmaHA1Qm5wbjBNeit4NVph?=
- =?utf-8?B?VnRPVGxCd1ZxNlNiOXhoeTBMYTRJSFRFODR4bENINEF4b3ZCc2VDb20wMjVC?=
- =?utf-8?B?amxKS3FXNjFBbXRocS9lcTdxa2VtTFZWMlpFKzJTck11RmM1Vzd2QnB3TnB2?=
- =?utf-8?B?ZytQdFp4MGQxaGw3UWhLWlJtL0traTdVOVZUcWNTMTk1eklDV2JRa0hCTFBK?=
- =?utf-8?B?T1dqdy90dVFqWjhqWENzRTRoYWI1YUJHcm1OMld1Tno1ZWdvYXdIWlh3MXI1?=
- =?utf-8?B?aVhkZGh0dE5DTDdvdWlkV2V3MUxjM2pnOVdvWHVFTkdBN2FmdUpYQ0J5TG1F?=
- =?utf-8?B?VlZlUFpxSzhlejZVMW9STVJPUU5BQVB2Y2loMTY1dWx1U2RHT1hYbzJzRjlx?=
- =?utf-8?B?MXl0eVMrcEFRZmYyNnpUdC9uZ21CbUlzbDVpemlHUTlBZnVQbUREWVhScnNZ?=
- =?utf-8?B?TzNxRkw2cGNIUFhIQmpKeHdyTUZRVmpxVGhabjBWUENWR0R1OGhHYmpRN1Vj?=
- =?utf-8?B?QXZFdm40WWFicVJkWlZVYmFhSmlzSWRkMnZET2E0U2NLOE4vNk11MEZXVGtj?=
- =?utf-8?B?UTdwcXg1U2JOZDEzM05jVTFneUFuZWx3N1pBVmpTa2czaDhOTnlwNGlnREV3?=
- =?utf-8?B?R1NjV3lWUXNVVStBM0hqSTY3UDFldmI1elhyRlRXblR6TExCTk90ZXZUdUVh?=
- =?utf-8?B?ejBOcG1ZOEo0bDFkc3hOVHUwdGVqNGdEWXpWNzFFY0VFMTJhZHcvK0xCNm9G?=
- =?utf-8?B?eERPTUY0eDJ1VnNyc3MyaXJ2Wm9xSWVZYlUwczh5QVZXa2dxTmp3cWZUVjZm?=
- =?utf-8?B?Zy9EaEkrR2xQS2VNSGUwc2ROdzlmQ0lxZDAvSFNtOWpla1pxaWZIcDc5SFFn?=
- =?utf-8?B?bldiVzJTcWJKbkMvamIreGtVWEV6NHZLWmtnK3lFVHB3eXJpL0UzK2tueUZL?=
- =?utf-8?B?VEtyQWU4clRSRVRNZHZYTWVBazJJM3c1N2h1WkpUbjhhRkNkYnB5OWtLVkJr?=
- =?utf-8?B?cU13MCs2NEtkdjY5c1RYcEJWbGh1SjQ2TVIvazQxOWIxRVpzdUVoRVhHQmdo?=
- =?utf-8?B?YXBGRHdGeGM1dFY1elZHdnhMRTRXMHluVjh3aS9Ganh4Y3p6OEVpQzFCZnMy?=
- =?utf-8?B?c0Vuc09NU1JmYTRPbThWc3dzSjRKZVVGd1BnWk5wY0NWTytkTW1kV0EvWVFt?=
- =?utf-8?B?OGJYeG45TUVWd2hGTzVEbnpKZFlmS1h4YUtZUmtmaEI3YkJGOUdyWDhBR25Z?=
- =?utf-8?B?L2FVMGR5K1VUbUN5eHlpZmZUTDhLeHAzTE9wdGdkbllxTEUvVytXY1VRR0Vl?=
- =?utf-8?B?WFlyMDIyeVVFUWxOV0NSYUw3NDZpa0ZlV2RzbW5mYnNXbG9USGtURnBad2d4?=
- =?utf-8?B?TzBhL2NuQWRETnVZN0xFb0tneHdNMm1EVXkvVkRESVZVZ3VwTDM0OWw4VCtI?=
- =?utf-8?B?cEpTaHZCcGNTYU9BM2tGRnFGN0hmRDBQTDFvbzZsUml6ZDY2QktURzJqSkVU?=
- =?utf-8?B?NW1DdXJ6TVV0ai9JODhMTlZ2WUllZ1N0SGE1MjZlV3RCMS9Bc2dOM2tEVWwz?=
- =?utf-8?B?dHVPOXp4aC85alR0dGtIbHJ2SDZQMk1pYi90c2xBMERsSTdxNW4zcGtMTXRR?=
- =?utf-8?B?MHBFaUVCWFAvN0VlZnBFenRLbEtMNzRjd3hIbnRFTWZqbk1yRGdpTWx2cE1M?=
- =?utf-8?B?TmVZaEkvak84aWJUMFd4MVorVmZ0MmpIV2dNaS9RY3puZUhOK3ZhdG1tSERl?=
- =?utf-8?B?aVB2dmhnMjBKMVI3cUgzK2ZUNUxrdzR0cFZLWTdPcWRSS0MrK0xGZVBoaE13?=
- =?utf-8?B?RGo3L0F3enpiblZqa1pGRmVDUFc3dk1aTlA2RThpZ09veDdxQy9nZ2N5R1dE?=
- =?utf-8?B?aVg1ZjF4YlhsOW1tTFNuam93ZDJuRGNsQkJiYVJMbzVkVmVTTjFEdDVXVHR4?=
- =?utf-8?B?VElRK0ZUUm54aTBIWU1MY1RCQS9KVWFJaGNFQVhVR2N4akRUN0tYVVZqR2xS?=
- =?utf-8?B?WUE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6d25e8c5-bb3b-43b6-8059-08dc1e8009a2
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB8200.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2024 15:04:04.7628 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kPUI/pziH5H7PIQ0xdBnPFNCijy0owFLHK51D80SqMkIutUTYWuSXXusSCmR+6QnJkDBYdECVsm5EUYVPqmYQA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7622
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] pm: runtime: Simplify pm_runtime_get_if_active()
+ usage
+Content-Language: en-US
+To: Sakari Ailus <sakari.ailus@linux.intel.com>, linux-pm@vger.kernel.org
+References: <20240122114121.56752-1-sakari.ailus@linux.intel.com>
+ <20240122114121.56752-2-sakari.ailus@linux.intel.com>
+From: Alex Elder <elder@ieee.org>
+In-Reply-To: <20240122114121.56752-2-sakari.ailus@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,111 +73,297 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, linux-pci@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Jaroslav Kysela <perex@perex.cz>,
+ Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>,
+ laurent.pinchart@ideasonboard.com, David Airlie <airlied@gmail.com>,
+ Paul Elder <paul.elder@ideasonboard.com>, linux-media@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ Mark Brown <broonie@kernel.org>,
+ Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, Alex Elder <elder@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-sound@vger.kernel.org,
+ Takashi Iwai <tiwai@suse.com>, Daniel Vetter <daniel@ffwll.ch>,
+ netdev@vger.kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-On 2024-01-26 2:48 a.m., Karthik Poosa wrote:
-> Check latest platform first in xe_hwmon_get_reg.
-> Move PVC registers to xe_mchbar_regs.h.
+On 1/22/24 5:41 AM, Sakari Ailus wrote:
+> There are two ways to opportunistically increment a device's runtime PM
+> usage count, calling either pm_runtime_get_if_active() or
+> pm_runtime_get_if_in_use(). The former has an argument to tell whether to
+> ignore the usage count or not, and the latter simply calls the former with
+> ign_usage_count set to false. The other users that want to ignore the
+> usage_count will have to explitly set that argument to true which is a bit
+> cumbersome.
 > 
-> Fixes: fb1b70607f73 ("drm/xe/hwmon: Expose power attributes")
-> Suggested-by: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+> To make this function more practical to use, remove the ign_usage_count
+> argument from the function. The main implementation is renamed as
+> pm_runtime_get_conditional().
+> 
+> Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+> Reviewed-by: Alex Elder <elder@linaro.org> # drivers/net/ipa/ipa_smp2p.c
+
+I actually intended my "Reviewed-by" to cover the entire patch.  I
+checked every caller and they all looked good to me.
+
+					-Alex
+
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Acked-by: Takashi Iwai <tiwai@suse.de> # sound/
+> Reviewed-by: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com> # drivers/accel/ivpu/
+> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com> # drivers/gpu/drm/i915/
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > ---
->   drivers/gpu/drm/xe/regs/xe_gt_regs.h     |  6 ------
->   drivers/gpu/drm/xe/regs/xe_mchbar_regs.h |  6 ++++++
->   drivers/gpu/drm/xe/xe_hwmon.c            | 24 ++++++++++++------------
->   3 files changed, 18 insertions(+), 18 deletions(-)
+>   Documentation/power/runtime_pm.rst      |  5 ++--
+>   drivers/accel/ivpu/ivpu_pm.c            |  2 +-
+>   drivers/base/power/runtime.c            | 10 +++++---
+>   drivers/gpu/drm/i915/intel_runtime_pm.c |  2 +-
+>   drivers/gpu/drm/xe/xe_pm.c              |  2 +-
+>   drivers/media/i2c/ccs/ccs-core.c        |  2 +-
+>   drivers/media/i2c/ov64a40.c             |  2 +-
+>   drivers/media/i2c/thp7312.c             |  2 +-
+>   drivers/net/ipa/ipa_smp2p.c             |  2 +-
+>   drivers/pci/pci.c                       |  2 +-
+>   include/linux/pm_runtime.h              | 32 +++++++++++++++++++++----
+>   sound/hda/hdac_device.c                 |  2 +-
+>   12 files changed, 45 insertions(+), 20 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> index cd27480f6486..15ac2d284d48 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> @@ -490,10 +490,4 @@
->   #define   GT_CS_MASTER_ERROR_INTERRUPT		REG_BIT(3)
->   #define   GT_RENDER_USER_INTERRUPT		REG_BIT(0)
+> diff --git a/Documentation/power/runtime_pm.rst b/Documentation/power/runtime_pm.rst
+> index 65b86e487afe..da99379071a4 100644
+> --- a/Documentation/power/runtime_pm.rst
+> +++ b/Documentation/power/runtime_pm.rst
+> @@ -396,10 +396,9 @@ drivers/base/power/runtime.c and include/linux/pm_runtime.h:
+>         nonzero, increment the counter and return 1; otherwise return 0 without
+>         changing the counter
 >   
-> -#define PVC_GT0_PACKAGE_ENERGY_STATUS		XE_REG(0x281004)
-> -#define PVC_GT0_PACKAGE_RAPL_LIMIT		XE_REG(0x281008)
-> -#define PVC_GT0_PACKAGE_POWER_SKU_UNIT		XE_REG(0x281068)
-> -#define PVC_GT0_PLATFORM_ENERGY_STATUS		XE_REG(0x28106c)
-> -#define PVC_GT0_PACKAGE_POWER_SKU		XE_REG(0x281080)
-> -
->   #endif
-> diff --git a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-> index 519dd1067a19..97652b4297ff 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-> @@ -41,4 +41,10 @@
->   #define   PKG_PWR_LIM_1_TIME_X			REG_GENMASK(23, 22)
->   #define   PKG_PWR_LIM_1_TIME_Y			REG_GENMASK(21, 17)
+> -  `int pm_runtime_get_if_active(struct device *dev, bool ign_usage_count);`
+> +  `int pm_runtime_get_if_active(struct device *dev);`
+>       - return -EINVAL if 'power.disable_depth' is nonzero; otherwise, if the
+> -      runtime PM status is RPM_ACTIVE, and either ign_usage_count is true
+> -      or the device's usage_count is non-zero, increment the counter and
+> +      runtime PM status is RPM_ACTIVE, increment the counter and
+>         return 1; otherwise return 0 without changing the counter
 >   
-> +#define PVC_GT0_PACKAGE_ENERGY_STATUS           XE_REG(0x281004)
-> +#define PVC_GT0_PACKAGE_RAPL_LIMIT              XE_REG(0x281008)
-> +#define PVC_GT0_PACKAGE_POWER_SKU_UNIT          XE_REG(0x281068)
-> +#define PVC_GT0_PLATFORM_ENERGY_STATUS          XE_REG(0x28106c)
-> +#define PVC_GT0_PACKAGE_POWER_SKU               XE_REG(0x281080)
+>     `void pm_runtime_put_noidle(struct device *dev);`
+> diff --git a/drivers/accel/ivpu/ivpu_pm.c b/drivers/accel/ivpu/ivpu_pm.c
+> index 0af8864cb3b5..c6d93c7a1c58 100644
+> --- a/drivers/accel/ivpu/ivpu_pm.c
+> +++ b/drivers/accel/ivpu/ivpu_pm.c
+> @@ -292,7 +292,7 @@ int ivpu_rpm_get_if_active(struct ivpu_device *vdev)
+>   {
+>   	int ret;
+>   
+> -	ret = pm_runtime_get_if_active(vdev->drm.dev, false);
+> +	ret = pm_runtime_get_if_in_use(vdev->drm.dev);
+>   	drm_WARN_ON(&vdev->drm, ret < 0);
+>   
+>   	return ret;
+> diff --git a/drivers/base/power/runtime.c b/drivers/base/power/runtime.c
+> index 05793c9fbb84..b4cb3f19b0d8 100644
+> --- a/drivers/base/power/runtime.c
+> +++ b/drivers/base/power/runtime.c
+> @@ -1176,7 +1176,7 @@ int __pm_runtime_resume(struct device *dev, int rpmflags)
+>   EXPORT_SYMBOL_GPL(__pm_runtime_resume);
+>   
+>   /**
+> - * pm_runtime_get_if_active - Conditionally bump up device usage counter.
+> + * pm_runtime_get_conditional - Conditionally bump up device usage counter.
+>    * @dev: Device to handle.
+>    * @ign_usage_count: Whether or not to look at the current usage counter value.
+>    *
+> @@ -1196,8 +1196,12 @@ EXPORT_SYMBOL_GPL(__pm_runtime_resume);
+>    *
+>    * The caller is responsible for decrementing the runtime PM usage counter of
+>    * @dev after this function has returned a positive value for it.
+> + *
+> + * This function is not primarily intended for use in drivers, most of which are
+> + * better served by either pm_runtime_get_if_active() or
+> + * pm_runtime_get_if_in_use() instead.
+>    */
+> -int pm_runtime_get_if_active(struct device *dev, bool ign_usage_count)
+> +int pm_runtime_get_conditional(struct device *dev, bool ign_usage_count)
+>   {
+>   	unsigned long flags;
+>   	int retval;
+> @@ -1218,7 +1222,7 @@ int pm_runtime_get_if_active(struct device *dev, bool ign_usage_count)
+>   
+>   	return retval;
+>   }
+> -EXPORT_SYMBOL_GPL(pm_runtime_get_if_active);
+> +EXPORT_SYMBOL_GPL(pm_runtime_get_conditional);
+>   
+>   /**
+>    * __pm_runtime_set_status - Set runtime PM status of a device.
+> diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
+> index 860b51b56a92..b5f8abd2a22b 100644
+> --- a/drivers/gpu/drm/i915/intel_runtime_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
+> @@ -246,7 +246,7 @@ static intel_wakeref_t __intel_runtime_pm_get_if_active(struct intel_runtime_pm
+>   		 * function, since the power state is undefined. This applies
+>   		 * atm to the late/early system suspend/resume handlers.
+>   		 */
+> -		if (pm_runtime_get_if_active(rpm->kdev, ignore_usecount) <= 0)
+> +		if (pm_runtime_get_conditional(rpm->kdev, ignore_usecount) <= 0)
+>   			return 0;
+>   	}
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+> index b429c2876a76..dd110058bf74 100644
+> --- a/drivers/gpu/drm/xe/xe_pm.c
+> +++ b/drivers/gpu/drm/xe/xe_pm.c
+> @@ -330,7 +330,7 @@ int xe_pm_runtime_put(struct xe_device *xe)
+>   
+>   int xe_pm_runtime_get_if_active(struct xe_device *xe)
+>   {
+> -	return pm_runtime_get_if_active(xe->drm.dev, true);
+> +	return pm_runtime_get_if_active(xe->drm.dev);
+>   }
+>   
+>   void xe_pm_assert_unbounded_bridge(struct xe_device *xe)
+> diff --git a/drivers/media/i2c/ccs/ccs-core.c b/drivers/media/i2c/ccs/ccs-core.c
+> index e21287d50c15..e1ae0f9fad43 100644
+> --- a/drivers/media/i2c/ccs/ccs-core.c
+> +++ b/drivers/media/i2c/ccs/ccs-core.c
+> @@ -674,7 +674,7 @@ static int ccs_set_ctrl(struct v4l2_ctrl *ctrl)
+>   		break;
+>   	}
+>   
+> -	pm_status = pm_runtime_get_if_active(&client->dev, true);
+> +	pm_status = pm_runtime_get_if_active(&client->dev);
+>   	if (!pm_status)
+>   		return 0;
+>   
+> diff --git a/drivers/media/i2c/ov64a40.c b/drivers/media/i2c/ov64a40.c
+> index 4fba4c2cb064..541bf74581d2 100644
+> --- a/drivers/media/i2c/ov64a40.c
+> +++ b/drivers/media/i2c/ov64a40.c
+> @@ -3287,7 +3287,7 @@ static int ov64a40_set_ctrl(struct v4l2_ctrl *ctrl)
+>   					 exp_max, 1, exp_val);
+>   	}
+>   
+> -	pm_status = pm_runtime_get_if_active(ov64a40->dev, true);
+> +	pm_status = pm_runtime_get_if_active(ov64a40->dev);
+>   	if (!pm_status)
+>   		return 0;
+>   
+> diff --git a/drivers/media/i2c/thp7312.c b/drivers/media/i2c/thp7312.c
+> index 2806887514dc..19bd923a7315 100644
+> --- a/drivers/media/i2c/thp7312.c
+> +++ b/drivers/media/i2c/thp7312.c
+> @@ -1052,7 +1052,7 @@ static int thp7312_s_ctrl(struct v4l2_ctrl *ctrl)
+>   	if (ctrl->flags & V4L2_CTRL_FLAG_INACTIVE)
+>   		return -EINVAL;
+>   
+> -	if (!pm_runtime_get_if_active(thp7312->dev, true))
+> +	if (!pm_runtime_get_if_active(thp7312->dev))
+>   		return 0;
+>   
+>   	switch (ctrl->id) {
+> diff --git a/drivers/net/ipa/ipa_smp2p.c b/drivers/net/ipa/ipa_smp2p.c
+> index 5620dc271fac..cbf3d4761ce3 100644
+> --- a/drivers/net/ipa/ipa_smp2p.c
+> +++ b/drivers/net/ipa/ipa_smp2p.c
+> @@ -92,7 +92,7 @@ static void ipa_smp2p_notify(struct ipa_smp2p *smp2p)
+>   		return;
+>   
+>   	dev = &smp2p->ipa->pdev->dev;
+> -	smp2p->power_on = pm_runtime_get_if_active(dev, true) > 0;
+> +	smp2p->power_on = pm_runtime_get_if_active(dev) > 0;
+>   
+>   	/* Signal whether the IPA power is enabled */
+>   	mask = BIT(smp2p->enabled_bit);
+> diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
+> index d8f11a078924..f8293ae71389 100644
+> --- a/drivers/pci/pci.c
+> +++ b/drivers/pci/pci.c
+> @@ -2510,7 +2510,7 @@ static void pci_pme_list_scan(struct work_struct *work)
+>   			 * If the device is in a low power state it
+>   			 * should not be polled either.
+>   			 */
+> -			pm_status = pm_runtime_get_if_active(dev, true);
+> +			pm_status = pm_runtime_get_if_active(dev);
+>   			if (!pm_status)
+>   				continue;
+>   
+> diff --git a/include/linux/pm_runtime.h b/include/linux/pm_runtime.h
+> index 7c9b35448563..a212b3008ade 100644
+> --- a/include/linux/pm_runtime.h
+> +++ b/include/linux/pm_runtime.h
+> @@ -72,7 +72,8 @@ extern int pm_runtime_force_resume(struct device *dev);
+>   extern int __pm_runtime_idle(struct device *dev, int rpmflags);
+>   extern int __pm_runtime_suspend(struct device *dev, int rpmflags);
+>   extern int __pm_runtime_resume(struct device *dev, int rpmflags);
+> -extern int pm_runtime_get_if_active(struct device *dev, bool ign_usage_count);
+> +extern int pm_runtime_get_conditional(struct device *dev,
+> +					bool ign_usage_count);
+>   extern int pm_schedule_suspend(struct device *dev, unsigned int delay);
+>   extern int __pm_runtime_set_status(struct device *dev, unsigned int status);
+>   extern int pm_runtime_barrier(struct device *dev);
+> @@ -94,16 +95,33 @@ extern void pm_runtime_release_supplier(struct device_link *link);
+>   
+>   extern int devm_pm_runtime_enable(struct device *dev);
+>   
+> +/**
+> + * pm_runtime_get_if_active - Bump up runtime PM usage counter if the device is
+> + *			      in active state
+> + * @dev: Target device.
+> + *
+> + * Increment the runtime PM usage counter of @dev if its runtime PM status is
+> + * %RPM_ACTIVE, in which case it returns 1. If the device is in a different
+> + * state, 0 is returned. -EINVAL is returned if runtime PM is disabled for the
+> + * device.
+> + */
+> +static inline int pm_runtime_get_if_active(struct device *dev)
+> +{
+> +	return pm_runtime_get_conditional(dev, true);
+> +}
 > +
->   #endif /* _XE_MCHBAR_REGS_H_ */
-> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> index 89c6f7f84b5a..c19a0daf7fd7 100644
-> --- a/drivers/gpu/drm/xe/xe_hwmon.c
-> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> @@ -77,32 +77,32 @@ static u32 xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon_reg)
+>   /**
+>    * pm_runtime_get_if_in_use - Conditionally bump up runtime PM usage counter.
+>    * @dev: Target device.
+>    *
+>    * Increment the runtime PM usage counter of @dev if its runtime PM status is
+> - * %RPM_ACTIVE and its runtime PM usage counter is greater than 0.
+> + * %RPM_ACTIVE and its runtime PM usage counter is greater than 0, in which case
+> + * it returns 1. If the device is in a different state or its usage_count is 0,
+> + * 0 is returned. -EINVAL is returned if runtime PM is disabled for the device.
+>    */
+>   static inline int pm_runtime_get_if_in_use(struct device *dev)
+>   {
+> -	return pm_runtime_get_if_active(dev, false);
+> +	return pm_runtime_get_conditional(dev, false);
+>   }
 >   
->   	switch (hwmon_reg) {
->   	case REG_PKG_RAPL_LIMIT:
-> -		if (xe->info.platform == XE_DG2)
-> -			reg = PCU_CR_PACKAGE_RAPL_LIMIT;
-> -		else if (xe->info.platform == XE_PVC)
-> +		if (xe->info.platform == XE_PVC)
->   			reg = PVC_GT0_PACKAGE_RAPL_LIMIT;
-> +		else if (xe->info.platform == XE_DG2)
-> +			reg = PCU_CR_PACKAGE_RAPL_LIMIT;
->   		break;
->   	case REG_PKG_POWER_SKU:
-> -		if (xe->info.platform == XE_DG2)
-> -			reg = PCU_CR_PACKAGE_POWER_SKU;
-> -		else if (xe->info.platform == XE_PVC)
-> +		if (xe->info.platform == XE_PVC)
->   			reg = PVC_GT0_PACKAGE_POWER_SKU;
-> +		else if (xe->info.platform == XE_DG2)
-> +			reg = PCU_CR_PACKAGE_POWER_SKU;
->   		break;
->   	case REG_PKG_POWER_SKU_UNIT:
-> -		if (xe->info.platform == XE_DG2)
-> -			reg = PCU_CR_PACKAGE_POWER_SKU_UNIT;
-> -		else if (xe->info.platform == XE_PVC)
-> +		if (xe->info.platform == XE_PVC)
->   			reg = PVC_GT0_PACKAGE_POWER_SKU_UNIT;
-> +		else if (xe->info.platform == XE_DG2)
-> +			reg = PCU_CR_PACKAGE_POWER_SKU_UNIT;
->   		break;
->   	case REG_GT_PERF_STATUS:
->   		if (xe->info.platform == XE_DG2)
->   			reg = GT_PERF_STATUS;
->   		break;
->   	case REG_PKG_ENERGY_STATUS:
-> -		if (xe->info.platform == XE_DG2)
-> -			reg = PCU_CR_PACKAGE_ENERGY_STATUS;
-> -		else if (xe->info.platform == XE_PVC)
-> +		if (xe->info.platform == XE_PVC)
->   			reg = PVC_GT0_PLATFORM_ENERGY_STATUS;
-> +		else if (xe->info.platform == XE_DG2)
-> +			reg = PCU_CR_PACKAGE_ENERGY_STATUS;
-I see concerns about check latest platform first, while for PVC vs DG2, 
-I guess the sales for DG2 should be much more than PVC, should we 
-consider that factor?
+>   /**
+> @@ -275,8 +293,12 @@ static inline int pm_runtime_get_if_in_use(struct device *dev)
+>   {
+>   	return -EINVAL;
+>   }
+> -static inline int pm_runtime_get_if_active(struct device *dev,
+> -					   bool ign_usage_count)
+> +static inline int pm_runtime_get_if_active(struct device *dev)
+> +{
+> +	return -EINVAL;
+> +}
+> +static inline int pm_runtime_get_conditional(struct device *dev,
+> +					     bool ign_usage_count)
+>   {
+>   	return -EINVAL;
+>   }
+> diff --git a/sound/hda/hdac_device.c b/sound/hda/hdac_device.c
+> index 7f7b67fe1b65..068c16e52dff 100644
+> --- a/sound/hda/hdac_device.c
+> +++ b/sound/hda/hdac_device.c
+> @@ -612,7 +612,7 @@ EXPORT_SYMBOL_GPL(snd_hdac_power_up_pm);
+>   int snd_hdac_keep_power_up(struct hdac_device *codec)
+>   {
+>   	if (!atomic_inc_not_zero(&codec->in_pm)) {
+> -		int ret = pm_runtime_get_if_active(&codec->dev, true);
+> +		int ret = pm_runtime_get_if_active(&codec->dev);
+>   		if (!ret)
+>   			return -1;
+>   		if (ret < 0)
 
-And, above is equal to a read from 5x2 table, reference by array index 
-might be more easy to read and expand in the future, and no more if/else 
-needed.
-
-Regards,
-Zhanjun Dong
->   		break;
->   	default:
->   		drm_warn(&xe->drm, "Unknown xe hwmon reg id: %d\n", hwmon_reg);
