@@ -4,57 +4,142 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7EFAC47422
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Jan 2024 13:04:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A1A8C47422
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Jan 2024 13:11:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57FDB10FA43;
-	Fri, 26 Jan 2024 13:04:54 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F8ED10FA42;
- Fri, 26 Jan 2024 13:04:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BD9310FA55;
+	Fri, 26 Jan 2024 13:11:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1F6210FA57
+ for <intel-xe@lists.freedesktop.org>; Fri, 26 Jan 2024 13:11:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706274293; x=1737810293;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=PgPGe53FbJetErziYDP6cS+EjKdmXrz7fu8+yEoCgME=;
- b=AAIMFr8i1KTybYtC5MJUukr7Cj+yfgUo4BEl8p46ubChuzn+FaV0mJAB
- HNutQuGzYrpFwWzWN2pxXjbGeUziyKeVSysWyhiYT5SfVlWE6keOKjGc8
- 7/0Lj7zEgzVkknzVSet1eqwsL40f7UY1TA68nvApvrT9QEWuzMh9QvkV8
- PkJZsf8efeRJ5/j5++VzkcUBTtbgaNH5u+S8Q8dCiKJOaMIKgS7vfFYL7
- pkLyb+JU2bCKbRAyCOovhX3AK1H+4QL0uSGepvc04f+njh3zVcT9FuF9J
- bhwbrq0d4++twMkW10bbED+4c87p9ham444JHLEHQBzodIxOhpdyIR/c3 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="9832624"
+ t=1706274710; x=1737810710;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=eJznuGJj7jKMfWBbVdyqdOtQEdqyDbsIlVcmJfmrlSI=;
+ b=WQb34WOVKCE6L1d0eYrxZK8B11SV33wADUunuPasc1my81DcjaNSdi+5
+ KUyWY5m9D9dQDqy6nUaGCWs3FwuS46UXrUXGAfFnq/g6rGrcUgRabjVOt
+ aMOdpA1sD6ELwll+/tddRpFM9aeVapSPo2wrVXoQBdpPi+mTGr44Y+8QO
+ nhKRIgYC7+BHiAbzAM24PpDipU3z+QB9F3gemMlrKN2BwvZgVdfkfRxiB
+ O0aXbMibb3j5bOrwQfUl2dOPKVa/XIuiuoR+NUjSe4KxfbKX1feEIlEzJ
+ P702NcB2nlWCe7BhY8Ciwf1WeMRD4ehs9AY8jcMMX8mTyWg1g8+1uopyY g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="2349392"
 X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
-   d="scan'208";a="9832624"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2024 05:04:49 -0800
+   d="scan'208";a="2349392"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2024 05:11:50 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="910330579"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="910330579"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.21.59])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2024 05:04:46 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-xe@lists.freedesktop.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: Re: [PATCH i-g-t 1/3] lib/kunit: Support writable filter* parameters
- of kunit module
-Date: Fri, 26 Jan 2024 14:04:43 +0100
-Message-ID: <1800863.TLkxdtWsSY@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20240126093728.d6pylg47ea6tifgm@kamilkon-desk.igk.intel.com>
-References: <20240125165749.15599-5-janusz.krzysztofik@linux.intel.com>
- <20240125165749.15599-6-janusz.krzysztofik@linux.intel.com>
- <20240126093728.d6pylg47ea6tifgm@kamilkon-desk.igk.intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="35434336"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 26 Jan 2024 05:11:49 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 26 Jan 2024 05:11:48 -0800
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 26 Jan 2024 05:11:47 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Fri, 26 Jan 2024 05:11:47 -0800
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.40) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Fri, 26 Jan 2024 05:11:46 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=D3hhlFj/4Pe9vUuKJAmEnLx14D26BNvOcLVP874G7AdVGjCiX7esd4+RX5n01eLobektuSg5qyNRXN5DC450Ur0SgMbjKPlTdMA61m0xOMDLkVT2g9ikT2gSpVVI12UH/Tv6IfpYJ5PUr1YAU7RVAFAp428TgGGi74WGFtEkQDOKWMBssFzawuEFUrBzc6ts1CDhfQBA19GzQoNBWY6UGTEtO3ttP9K2prap8hYYMiEuexdGpnKc8+DozHfv4l+Gxwud++c3gjZEuQ683USLer0PU9FaYFrnqPNTro/fwwnuJnrVXe4Kss00TlckZTBxX40dqDzsgGaJEhW/R93hHQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VhLnSGp2xGwc5EcpXzgrAqMkUMikCZVnxL7uDdrpueM=;
+ b=G8+1VwGo4+RU8MScsAmPZIDpDvr85gAU9mnTdQwErm+rF6kn2c1N1Z4RrJGGskoT4ZxDLinK+NZrXNHvE7iUuvuxZnLJFJk63+5G57E3BNfE2LXcL3D7YqfMd7GDDJWwik1HA47I236oU6CcbnaYHPnv4vQrazJAzLfqP2ScngKzhPZXGQVzopjb/IX5Itfu3as5vepdp3oynrU3wsl+bISq/MKLbuWDtHUAYgyzEAc3i8SeXn5go62HelR4QwXfgYJbKz6FlstXbSODBJJao7slXh7M5MZ+pGVMIuTJULKJtWcN4ekxl/pb5KaaUJI+D9YgD0HMUTcEHD7CXlibnQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from CY5PR11MB6211.namprd11.prod.outlook.com (2603:10b6:930:25::6)
+ by PH0PR11MB7167.namprd11.prod.outlook.com (2603:10b6:510:1e9::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.37; Fri, 26 Jan
+ 2024 13:11:38 +0000
+Received: from CY5PR11MB6211.namprd11.prod.outlook.com
+ ([fe80::35eb:1d4b:b90f:e584]) by CY5PR11MB6211.namprd11.prod.outlook.com
+ ([fe80::35eb:1d4b:b90f:e584%3]) with mapi id 15.20.7228.023; Fri, 26 Jan 2024
+ 13:11:37 +0000
+From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+To: "Poosa, Karthik" <karthik.poosa@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Roper,
+ Matthew D" <matthew.d.roper@intel.com>
+Subject: RE: [PATCH] drm/xe/hwmon: Refactor xe hwmon
+Thread-Topic: [PATCH] drm/xe/hwmon: Refactor xe hwmon
+Thread-Index: AQHaUCrp3xuCsFtlGEqlWVAtWoMQ9bDsEXuw
+Date: Fri, 26 Jan 2024 13:11:37 +0000
+Message-ID: <CY5PR11MB6211B12B8D0CB3D723E23B2F95792@CY5PR11MB6211.namprd11.prod.outlook.com>
+References: <20240126074819.3851075-1-karthik.poosa@intel.com>
+In-Reply-To: <20240126074819.3851075-1-karthik.poosa@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-Mentions: matthew.d.roper@intel.com
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CY5PR11MB6211:EE_|PH0PR11MB7167:EE_
+x-ms-office365-filtering-correlation-id: 32ab936e-ce2a-4309-ed48-08dc1e705450
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: X55+beBxyQorE9z2waqu+5am2QhAOjeInJOXErmPq5EuB3BTDOfgEH4uGfyPg/P4Azxmi04b39oOaaW0IEeTxng1GdkKFHXvUAubfsc8gMomzQ+vh/MxhvI5w1me5l6s6uzj+72Pk3/6mcf+9RKu5XEuRy6e/G+iQz9VQJDGlGDNNWqGRywkVGs72Fl2EA04/eVbQAWgoinoRKonwbd8ixldvafYYRCic9U9x9qFzes3mz3JgjXOCnN27yCT57mGMZSAcn5nTdvDGyFNhwjMuM3oOPTmyjAvdCnT57vURatLx+lReTq1EznEQrKTfucb3BiIJ5stUiRisyvRSgRFPOzgv4eII3XCPYv3/rqp3OWF3x0nEdgPV6VL0OcYor8GiJ1ZAU0mVXFNxRPivvlM9sbYye6rJwwiR/OQFW/MByCrDmzZ4mU9FXE5niKs9s1XCpCap6m0h9MACKPsKqOsVUZuSinYA5q74VqAyRVFFXpJ6g+HQjOB2LnYhb0p1JTSremgO6bWOjinOx4HcP5xjyillqO7yYKpfJlbyktCU+cmdhuGeVP3FPM0jA6tydJtYeE8/ET/oI3fN0GzsC+t90mpbTF8IDvhaG0rFWpTCD4=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6211.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366004)(376002)(136003)(39860400002)(396003)(346002)(230922051799003)(64100799003)(186009)(451199024)(1800799012)(55016003)(33656002)(316002)(53546011)(71200400001)(41300700001)(478600001)(4326008)(38070700009)(86362001)(82960400001)(5660300002)(66556008)(7696005)(26005)(52536014)(8936002)(9686003)(8676002)(64756008)(6506007)(83380400001)(6636002)(76116006)(66446008)(107886003)(110136005)(2906002)(66946007)(66476007)(122000001)(38100700002);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?7mu2/MMBZMBUeuZypH4nnxV5f4vl46/rlq+aedNWH/T1u5wEDCh421PhOaKj?=
+ =?us-ascii?Q?UUHQZuNRHqlTUJdIahhs/6y1rHSfd3EojZnamE2fods2jGDzmO4fPdPraoy8?=
+ =?us-ascii?Q?OQ9dCQnZqt4ZjsmPeA30DI6+51htnBCi9iZn2V7RDoOWz3xq2xVfSQLsmh7d?=
+ =?us-ascii?Q?FvmRmHGibN6jLRwhc5S6h8B3l/yX1gEMprcMkh5kVZ7k03y9zo/KnltS4o3n?=
+ =?us-ascii?Q?JvFRmUeFbuu4mq9mHsaIJS667GH6Aethx8KAA6t82ZMwxFZkyRDpFOsV9QwC?=
+ =?us-ascii?Q?wMUJNMIGr6wV5BISva5/YvhTSbxI8xv+YaIdndOyzxAGC8vVPB1y4yYT9CP2?=
+ =?us-ascii?Q?o9GcCxoFSkbvdkiT1zRyDFvou16lvn0hcRNdEtfIxS+9ZTBOrZ5XwI4eZdi9?=
+ =?us-ascii?Q?VCqyKdnbWcyvgv2FEOVtq3Tv7oSEjjlU8iR/HPUQ+mtZZy6qqLWHOhFbNEEc?=
+ =?us-ascii?Q?tBiGXhNdK6xnBn1AVOcGoF7tbZSUBDC0qny6boyqyUHTAZiWvlsYpacZI5WQ?=
+ =?us-ascii?Q?n/qkiVWUWtQbyZj6iXQNaLtRydn6cAo0IkbBvav48GV/m6u1fnn8JCT9Vb9J?=
+ =?us-ascii?Q?c9P+eEzHj7YFd04cvIQY4NWM0AAGhr3IjqeQWEgx8N1XnbCKHXML1iHw6NQx?=
+ =?us-ascii?Q?StiKqVnkYRy21xckI+NdTowbMhIgbI6nDUAZbRJOJpcwEhVhA8qao0vMpXkJ?=
+ =?us-ascii?Q?jRWxSweJcBLb7jBOKF9AkAaPGQlGOd5dMFg564vbn3sZx5howRp61QFxdC6S?=
+ =?us-ascii?Q?d5iS7/ZqAqKwBofr+aXEyjabRPGtAdtyYY8aZGw9RkN6hEvw2o2meFhF3say?=
+ =?us-ascii?Q?kaIcg62+tIjYJzZjSNyQplJTGpWSBUPQYihFyDadVFwbmo0H5mJREmhR+bLR?=
+ =?us-ascii?Q?FtvdWlk+lEvGn142z0+YjHFWSp6BJkPLcvNVWTDZ4XOFBPg2lD/rCUHsqPlu?=
+ =?us-ascii?Q?W2EOOwphRq+L+/ySccTOU/vPnQrjLnByuogqIhQ9Rg9yWcMLjOnvu5HDx6KY?=
+ =?us-ascii?Q?JqLUX/wCGgrGlDIY2XrMyLIVS4JuYqBmRB4d/hRc6S4Z5DkwhAjjhrjA9uk3?=
+ =?us-ascii?Q?wP1v+CkgSGJOUVqI8YhjdbWaTLK81Td0q3YPWPF0wtIdGzXDQdGdgJkT907C?=
+ =?us-ascii?Q?65Dq3U9Ne9dbnuRD7WUlMIXcVWd8NsJvLCzUYnvfe2+ErOrtIMmYNuryFs8p?=
+ =?us-ascii?Q?d87iIIwuMlN2MQtoTIeSyYsbVLWz2Paq3wzzBCuA7ogE+v5YTSQXPdVf1RQd?=
+ =?us-ascii?Q?YkFUx4auQG96M5avdUpevsq2VecuZqyo+UgKQ8vt9zSKpFhNzPpCyNTfU2Bd?=
+ =?us-ascii?Q?B7NsV5xPSC7V3jO0ehx0qXPrx/mRB/O6RsOUH6kmupwsH+fT1hPnfquKUdTc?=
+ =?us-ascii?Q?//ZLsNKIWb2VbbCYbj/j+8lkFQw40AFQzqlL++tcEnniLuBgoBw+wx1oPIQq?=
+ =?us-ascii?Q?HAWUDPY3M+0mnDUsXgfnSsJTzuEFfeUOPDuG1Czj8mSNy3sydewiRBmifxsX?=
+ =?us-ascii?Q?5OwZr8h+HesNhJpNcc0gYaA3BCLnbti8LYCeORoCgU0NwSScBoLFpftxnFN9?=
+ =?us-ascii?Q?WL+7qs3QvUj60O/fQcyVnBd4iKnvLPZd0ZmKnN6X?=
 Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6211.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 32ab936e-ce2a-4309-ed48-08dc1e705450
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jan 2024 13:11:37.8925 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: zRCj/ABRFbp8gi78WrAGGvR/hHBRSMoo+Zlp1BFPs7Kb+wzisMqjCs8PzbQM1RNIDRHYtno2m3CdZwpzWQz9m9ifJA4N8RB7iINEk3Tkzi8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7167
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,297 +154,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Kamil,
 
-Thanks for review.
 
-On Friday, 26 January 2024 10:37:28 CET Kamil Konieczny wrote:
-> Hi Janusz,
-> On 2024-01-25 at 17:52:10 +0100, Janusz Krzysztofik wrote:
-> > Instead of wasting resources on reloading the base Kunit module each time
-> > a different set of filter parameters is needed, try to write the required
-> > values to sysfs representation of those parameters.  If that fails (e.g.
-> > on older LTS kernels with read-only filter parameters), fall back to
-> > reloading the module.
-> > 
-> > This change also provides a workaround for the issue of impossibility to
-> > unload the base Kunit module on Xe platforms, available as soon as the
-> > module supports writable filter parameters.
-> > 
-> > Since the base Kunit module is now unloaded from kunit_set_params() when
-> > needed, drop other attempts to unload it.
-> > 
-> > To reuse an existing open_parameters() helper, moved it up in the source
-> > file to avoid a forward declaration.
-> 
-> Could you split your patch into smaller parts? You described four
-> actions you did, maybe four patches?
-
-Regarding the first two paragraphs, they don't describe two separate changes 
-to the code, one each, only two benefits provided by one atomic change:
-- optimization of resource usage by avoiding expensive module reloading,
-- workaround for the unusual dependency of the Xe driver on the base kunit 
-  module.
-Then I can't see how I could split that into two patches.
-
-Regarding the third paragraph, I don't agree because I think that trying to 
-keep the base KUnit module loaded is an integral part of the solution.  We 
-can't stop unloading the module via a separate patch before we teach the code 
-how to modify module parameters via sysfs.  OTOH, if we kept unloading the 
-module then trying to update module parameters via sysfs with the module not 
-loaded would obviously fail, and the code would have to be modified to take 
-such conflicting while easily avoidable condition into account.  That would 
-make the code sub-optimal, and a follow-up patch that drops those unneeded 
-module unloads would have to optimize that code.  IOW, that paragraph 
-shouldn't be read as describing a separate action, only providing a 
-justification for an integral part of the change which purpose could be 
-potentially non-obvious at a first glance.
-
-Regarding the last paragraph, OK, I can put that part in a separate patch in 
-front of the main one if that's important to you, though I don't believe in a 
-scenario where that main patch is reverted while the helper is still needed in 
-the new place by some other code added later.  Besides, that's only 7 lines of 
-simple code being moved, pretty easy to verify if correct, not affecting 
-readability of other code changes in any way, I believe.
-
-If you think that my commit description can be misleading, suggesting that 4 
-unrelated changes have been mixed here then could please give me some ideas on 
-how I could improve that description?  Please note that if I just omitted the 
-last two paragraphs then the description would be missing explanations of some 
-not necessarily obvious parts of the change, and that's why I added them 
-before sending to my initial version with only the first two paragraphs.
-
-> 
-> Regards,
-> Kamil
-> 
-> > 
-> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> > ---
-> >  lib/igt_kmod.c | 147 +++++++++++++++++++++++++++++++++++--------------
-> >  1 file changed, 107 insertions(+), 40 deletions(-)
-> > 
-> > diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
-> > index 250ab2107b..4f96dafe01 100644
-> > --- a/lib/igt_kmod.c
-> > +++ b/lib/igt_kmod.c
-> > @@ -803,6 +803,78 @@ void igt_kselftest_get_tests(struct kmod_module *kmod,
-> >  	kmod_module_info_free_list(pre);
-> >  }
-> >  
-> > +static int open_parameters(const char *module_name)
-> > +{
-> > +	char path[256];
-> > +
-> > +	snprintf(path, sizeof(path), "/sys/module/%s/parameters", module_name);
-> > +	return open(path, O_RDONLY);
-> > +}
-> > +
-> > +static bool kunit_set_params(const char **name, const char **value, int count)
-> > +{
-> > +	static bool writable = true;
-> > +	int i, ret, params;
-> > +	char *opts = NULL;
-> > +
-> > +	if (!writable) {
-> > +		if (count)
-> > +			if (igt_debug_on(asprintf(&opts, "%s=%s",
-> > +						  name[0], value[0]) < 0)) {
-> > +				free(opts);
-> > +				return false;
-> > +			}
-> > +
-> > +		for (i = 1; i < count; i++) {
-> > +			char *head = opts;
-> > +
-> > +			opts = NULL;
-> > +			ret = asprintf(&opts, "%s %s=%s", head, name[i], value[i]);
-> > +			free(head);
-> > +			if (igt_debug_on(ret < 0)) {
-> > +				free(opts);
-> > +				return false;
-> > +			}
-> > +		}
-> > +
-> > +		igt_ignore_warn(igt_kmod_unload("kunit", KMOD_REMOVE_FORCE));
-> > +	}
-> > +
-> > +	ret = igt_debug_on(igt_kmod_load("kunit", opts));
-> > +	free(opts);
-> > +
-> > +	if (ret && !writable)
-> > +		return false;
-> > +
-> > +	params = open_parameters("kunit");
-> > +	ret = igt_debug_on(params < 0);
-> > +
-> > +	for (i = 0; !ret && i < count; i++) {
-> > +		char *param = igt_sysfs_get(params, name[i]);
-> > +
-> > +		if (igt_debug_on_f(!param, "param: %s\n", name[i])) {
-> > +			ret = -1;
-> > +			continue;
-> > +		}
-> > +
-> > +		ret = strcmp(param, value[i]);
-> > +		free(param);
-> > +		if (ret)
-> > +			ret = !igt_sysfs_set(params, name[i], value[i]);
-> > +	}
-> > +
-> > +	if (params >= 0)
-> > +		close(params);
-> > +
-> > +	if (!ret)
-> > +		return true;
-> > +	if (!writable)
-> > +		return false;
-> > +
-> > +	writable = false;
-> > +	return kunit_set_params(name, value, count);
-> > +}
-> > +
-> >  struct modprobe_data {
-> >  	struct kmod_module *kmod;
-> >  	const char *opts;
-> > @@ -814,11 +886,17 @@ struct modprobe_data {
-> >  
-> >  static void *modprobe_task(void *arg)
-> >  {
-> > +	const char *param[3] = { "filter_glob", "filter", "filter_action", };
-> > +	const char *value[3] = { "*", "", "", };
-> >  	struct modprobe_data *data = arg;
-> > +	bool ret;
-> > +
-> > +	ret = kunit_set_params(param, value, ARRAY_SIZE(param));
-> >  
-> > -	data->err = modprobe(data->kmod, data->opts);
-> > +	if (ret)
-> > +		data->err = modprobe(data->kmod, data->opts);
-> >  
-> > -	if (igt_debug_on(data->err)) {
-> > +	if (igt_debug_on(!ret || data->err)) {
-> >  		bool once = false;
-> >  		int err;
-> >  
-> > @@ -1092,9 +1170,20 @@ static void kunit_get_tests(struct igt_list_head *tests,
-> >  			    const char *filter,
-> >  			    const char *opts)
-> >  {
-> > +	/*
-> > +	 * To get a list of test cases provided by a kunit test module, ask the
-> > +	 * generic kunit module to respond with SKIP result for each test found.
-> > +	 * We could also try to use action=list kunit parameter to get the
-> > +	 * listing, however, parsing a KTAP report -- something that we already
-> > +	 * can do perfectly -- seems to be more safe than extracting a test case
-> > +	 * list of unknown length from /dev/kmsg.
-> > +	 */
-> > +	const char *param[3] = { "filter_glob", "filter", "filter_action", };
-> > +	const char *value[3] = { "*", "module=none", "skip", };
-> >  	char *suite_name = NULL, *case_name = NULL;
-> >  	struct igt_ktap_result *r, *rn;
-> >  	struct igt_ktap_results *ktap;
-> > +	unsigned long taints;
-
-Auto-correction: that line belongs to patch 2/3 "lib/kunit: Report early 
-kernel taints explicitly", and I'll move it there.
-
+> -----Original Message-----
+> From: Poosa, Karthik <karthik.poosa@intel.com>
+> Sent: Friday, January 26, 2024 1:18 PM
+> To: intel-xe@lists.freedesktop.org
+> Cc: Gupta, Anshuman <anshuman.gupta@intel.com>; Nilawar, Badal
+> <badal.nilawar@intel.com>; Roper, Matthew D
+> <matthew.d.roper@intel.com>; Poosa, Karthik <karthik.poosa@intel.com>
+> Subject: [PATCH] drm/xe/hwmon: Refactor xe hwmon
+>=20
+> Check latest platform first in xe_hwmon_get_reg.
+> Move PVC registers to xe_mchbar_regs.h.
+>=20
+> Fixes: fb1b70607f73 ("drm/xe/hwmon: Expose power attributes")
+> Suggested-by: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+> ---
+>  drivers/gpu/drm/xe/regs/xe_gt_regs.h     |  6 ------
+>  drivers/gpu/drm/xe/regs/xe_mchbar_regs.h |  6 ++++++
+>  drivers/gpu/drm/xe/xe_hwmon.c            | 24 ++++++++++++------------
+>  3 files changed, 18 insertions(+), 18 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> index cd27480f6486..15ac2d284d48 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> @@ -490,10 +490,4 @@
+>  #define   GT_CS_MASTER_ERROR_INTERRUPT		REG_BIT(3)
+>  #define   GT_RENDER_USER_INTERRUPT		REG_BIT(0)
+>=20
+> -#define PVC_GT0_PACKAGE_ENERGY_STATUS		XE_REG(0x281004)
+> -#define PVC_GT0_PACKAGE_RAPL_LIMIT		XE_REG(0x281008)
+> -#define PVC_GT0_PACKAGE_POWER_SKU_UNIT
+> 	XE_REG(0x281068)
+> -#define PVC_GT0_PLATFORM_ENERGY_STATUS
+> 	XE_REG(0x28106c)
+> -#define PVC_GT0_PACKAGE_POWER_SKU		XE_REG(0x281080)
+> -
+>  #endif
+> diff --git a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
+> b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
+> index 519dd1067a19..97652b4297ff 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
+> @@ -41,4 +41,10 @@
+>  #define   PKG_PWR_LIM_1_TIME_X			REG_GENMASK(23,
+> 22)
+>  #define   PKG_PWR_LIM_1_TIME_Y			REG_GENMASK(21,
+> 17)
+>=20
+> +#define PVC_GT0_PACKAGE_ENERGY_STATUS           XE_REG(0x281004)
+> +#define PVC_GT0_PACKAGE_RAPL_LIMIT              XE_REG(0x281008)
+> +#define PVC_GT0_PACKAGE_POWER_SKU_UNIT          XE_REG(0x281068)
+> +#define PVC_GT0_PLATFORM_ENERGY_STATUS          XE_REG(0x28106c)
+> +#define PVC_GT0_PACKAGE_POWER_SKU               XE_REG(0x281080)
+Above are pcode specific register, IMO it is better to create a=20
+regs/xe_pcode.h header.
+@Roper, Matthew D what is your opinion here ?
 Thanks,
-Janusz
-
-> >  	int flags, err;
-> >  
-> >  	igt_skip_on_f(tst->kmsg < 0, "Could not open /dev/kmsg\n");
-> > @@ -1105,26 +1194,23 @@ static void kunit_get_tests(struct igt_list_head *tests,
-> >  
-> >  	igt_skip_on(lseek(tst->kmsg, 0, SEEK_END) < 0);
-> >  
-> > -	/*
-> > -	 * To get a list of test cases provided by a kunit test module, ask the
-> > -	 * generic kunit module to respond with SKIP result for each test found.
-> > -	 * We could also use action=list kunit parameter to get the listing,
-> > -	 * however, parsing a KTAP report -- something that we already can do
-> > -	 * perfectly -- seems to be more safe than extracting a test case list
-> > -	 * of unknown length from /dev/kmsg.
-> > -	 *
-> > -	 * TODO: drop the following workaround, which is required by LTS kernel
-> > -	 *       v6.1 not capable of listing test cases when built as a module.
-> > -	 * If loading the kunit module with required parameters fails then
-> > -	 * assume that we are running on a kernel with missing test case listing
-> > -	 * capabilities.  Dont's skip but just return with empty list of test
-> > -	 * cases, that should tell the caller to use a legacy method of
-> > -	 * iterating over KTAP results collected from blind execution of all
-> > -	 * Kunit test cases provided by a Kunit test module.
-> > -	 */
-> > -	if (igt_debug_on(igt_kmod_load("kunit",
-> > -				       "filter=module=none filter_action=skip")))
-> > +	if (igt_debug_on(!kunit_set_params(param, value, ARRAY_SIZE(param)))) {
-> > +		/*
-> > +		 * TODO: drop the following workaround, required by LTS kernel
-> > +		 *       v6.1 not capable of listing test cases when built as as
-> > +		 *       module, when no longer needed.
-> > +		 * If updating writable filter parameters of the kunit base
-> > +		 * module with required values or reloading that module with
-> > +		 * those parameters specified fails then assume that we are
-> > +		 * running on a kernel with missing test case listing
-> > +		 * capabilities.  Dont skip but just return with empty list of
-> > +		 * test cases, which should tell the caller to use a legacy
-> > +		 * method of iterating over KTAP results collected from blind
-> > +		 * execution of all Kunit test cases provided by a Kunit test
-> > +		 * module.
-> > +		 */
-> >  		return;
-> > +	}
-> >  
-> >  	igt_skip_on(modprobe(tst->kmod, opts));
-> >  
-> > @@ -1159,7 +1245,6 @@ static void kunit_get_tests(struct igt_list_head *tests,
-> >  	}
-> >  
-> >  	igt_skip_on(kmod_module_remove_module(tst->kmod, KMOD_REMOVE_FORCE));
-> > -	igt_skip_on(igt_kmod_unload("kunit", KMOD_REMOVE_FORCE));
-> >  
-> >  	igt_skip_on_f(err,
-> >  		      "KTAP parser failed while getting a list of test cases\n");
-> > @@ -1355,15 +1440,6 @@ void igt_kunit(const char *module_name, const char *name, const char *opts)
-> >  		igt_skip_on(igt_ktest_init(&tst, module_name));
-> >  		igt_skip_on(igt_ktest_begin(&tst));
-> >  
-> > -		/*
-> > -		 * Since we need to load kunit base module with specific
-> > -		 * options in order to get a list of test cases, make
-> > -		 * sure that the module is not loaded.  However, since
-> > -		 * unload may fail if kunit base module is not loaded,
-> > -		 * ignore any failures, we'll fail later if still loaded.
-> > -		 */
-> > -		igt_ignore_warn(igt_kmod_unload("kunit", KMOD_REMOVE_FORCE));
-> > -
-> >  		igt_assert(igt_list_empty(&tests));
-> >  	}
-> >  
-> > @@ -1395,20 +1471,11 @@ void igt_kunit(const char *module_name, const char *name, const char *opts)
-> >  		kunit_results_free(&tests, &suite_name, &case_name);
-> >  
-> >  		igt_ktest_end(&tst);
-> > -		igt_debug_on(igt_kmod_unload("kunit", KMOD_REMOVE_FORCE));
-> >  	}
-> >  
-> >  	igt_ktest_fini(&tst);
-> >  }
-> >  
-> > -static int open_parameters(const char *module_name)
-> > -{
-> > -	char path[256];
-> > -
-> > -	snprintf(path, sizeof(path), "/sys/module/%s/parameters", module_name);
-> > -	return open(path, O_RDONLY);
-> > -}
-> > -
-> >  int igt_ktest_init(struct igt_ktest *tst,
-> >  		   const char *module_name)
-> >  {
-> 
-
-
-
+Anshuman Gupta.
+> +
+>  #endif /* _XE_MCHBAR_REGS_H_ */
+> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c
+> b/drivers/gpu/drm/xe/xe_hwmon.c index 89c6f7f84b5a..c19a0daf7fd7
+> 100644
+> --- a/drivers/gpu/drm/xe/xe_hwmon.c
+> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+> @@ -77,32 +77,32 @@ static u32 xe_hwmon_get_reg(struct xe_hwmon
+> *hwmon, enum xe_hwmon_reg hwmon_reg)
+>=20
+>  	switch (hwmon_reg) {
+>  	case REG_PKG_RAPL_LIMIT:
+> -		if (xe->info.platform =3D=3D XE_DG2)
+> -			reg =3D PCU_CR_PACKAGE_RAPL_LIMIT;
+> -		else if (xe->info.platform =3D=3D XE_PVC)
+> +		if (xe->info.platform =3D=3D XE_PVC)
+>  			reg =3D PVC_GT0_PACKAGE_RAPL_LIMIT;
+> +		else if (xe->info.platform =3D=3D XE_DG2)
+> +			reg =3D PCU_CR_PACKAGE_RAPL_LIMIT;
+>  		break;
+>  	case REG_PKG_POWER_SKU:
+> -		if (xe->info.platform =3D=3D XE_DG2)
+> -			reg =3D PCU_CR_PACKAGE_POWER_SKU;
+> -		else if (xe->info.platform =3D=3D XE_PVC)
+> +		if (xe->info.platform =3D=3D XE_PVC)
+>  			reg =3D PVC_GT0_PACKAGE_POWER_SKU;
+> +		else if (xe->info.platform =3D=3D XE_DG2)
+> +			reg =3D PCU_CR_PACKAGE_POWER_SKU;
+>  		break;
+>  	case REG_PKG_POWER_SKU_UNIT:
+> -		if (xe->info.platform =3D=3D XE_DG2)
+> -			reg =3D PCU_CR_PACKAGE_POWER_SKU_UNIT;
+> -		else if (xe->info.platform =3D=3D XE_PVC)
+> +		if (xe->info.platform =3D=3D XE_PVC)
+>  			reg =3D PVC_GT0_PACKAGE_POWER_SKU_UNIT;
+> +		else if (xe->info.platform =3D=3D XE_DG2)
+> +			reg =3D PCU_CR_PACKAGE_POWER_SKU_UNIT;
+>  		break;
+>  	case REG_GT_PERF_STATUS:
+>  		if (xe->info.platform =3D=3D XE_DG2)
+>  			reg =3D GT_PERF_STATUS;
+>  		break;
+>  	case REG_PKG_ENERGY_STATUS:
+> -		if (xe->info.platform =3D=3D XE_DG2)
+> -			reg =3D PCU_CR_PACKAGE_ENERGY_STATUS;
+> -		else if (xe->info.platform =3D=3D XE_PVC)
+> +		if (xe->info.platform =3D=3D XE_PVC)
+>  			reg =3D PVC_GT0_PLATFORM_ENERGY_STATUS;
+> +		else if (xe->info.platform =3D=3D XE_DG2)
+> +			reg =3D PCU_CR_PACKAGE_ENERGY_STATUS;
+>  		break;
+>  	default:
+>  		drm_warn(&xe->drm, "Unknown xe hwmon reg id: %d\n",
+> hwmon_reg);
+> --
+> 2.25.1
 
