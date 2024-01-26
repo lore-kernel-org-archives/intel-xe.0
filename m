@@ -4,60 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0418BC47DDB
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35996C47422
 	for <intel-xe@archiver.kernel.org>; Fri, 26 Jan 2024 21:09:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23D8110FEB6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8599310FEB7;
 	Fri, 26 Jan 2024 21:09:41 +0000 (UTC)
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com
- [209.85.167.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B737E10FEB0;
- Fri, 26 Jan 2024 21:09:33 +0000 (UTC)
-Received: by mail-lf1-f48.google.com with SMTP id
- 2adb3069b0e04-5100fd7f71dso1856249e87.1; 
- Fri, 26 Jan 2024 13:09:33 -0800 (PST)
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com
+ [209.85.167.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3CED10FEAB;
+ Fri, 26 Jan 2024 21:09:31 +0000 (UTC)
+Received: by mail-lf1-f44.google.com with SMTP id
+ 2adb3069b0e04-5101cd91017so749653e87.2; 
+ Fri, 26 Jan 2024 13:09:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1706303312; x=1706908112; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1706303309; x=1706908109; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=Rv71wG1vxBBHegMPvcinQkXyPZnFxEIY4+DX6mOVEto=;
- b=XS1oyS/TyuKXa5a9YfxRLmXMuaoNdp8NlMayGJI8gYsnrZCr6UpGsVFOw8trw741Fr
- IlKjObaYQ0ZrzNCJIl7/zpHvPTdwkUaGO4tEsd/DBmlWX8aI0I0BPA8GLUnb0TqVNn0b
- DNpG1vtG6u1GR8fhtPv84tVTHd5TSHQD+VDfWqIJ5YHaRWEJzi1o/Ie3tmkshBlHgV6x
- Q2cexVD+LYwdMFHK5QO+HFZ0HissMX+UxDhOr9rDTQFa4+R6zoJ4HseenVwdVvgMNBhG
- sqSFm2CnECxz4opJa8H5IpIuHGjPBVgNfflm+XxGwcEGCTz1S1Qv+qOJYbLjRy4Zo8BI
- LOXA==
+ bh=997N/5pYMdYJaH4SQ9jdWihdLblZTE/8nf4wQWZMfAY=;
+ b=asCypLEWZ1jsUoqfP8aT+L1dgcsKRn7LNcKmaQy0jIxME0i8cUwth2THI46wp7ut2C
+ 85QzzymTgDpnkAnaMgT/u4m0p/qqYtXD7LW/Ee/ytll7EMqYiPmpz2d7MlBruC3imohl
+ SHQKNkLzv5WQMJP3pZOtIFnrb4wWkcCQa7pJivx0Em131ocRT3JLgawaf5ksX8YQB6ZN
+ QmlmieIs6/Zi3r/n7j11W8O2jDkTcirbnI2hBaQw5E5k1XoywXrLEfzJpYLXIIqu2Lnr
+ t8w2E7Jj6tPdRulHcHk0ieM2ms/e8RVXt1CiI9ZwwbBL0otpKkRfzjg3nGWcj1R28UJw
+ 4now==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1706303312; x=1706908112;
+ d=1e100.net; s=20230601; t=1706303309; x=1706908109;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=Rv71wG1vxBBHegMPvcinQkXyPZnFxEIY4+DX6mOVEto=;
- b=bvi2O/Zp5v5ZwtP7CRwkTLcwAt/BH49Y6mqiXp2ik0bgQU9v0ND/Mzzrqh2/koXhjX
- 35ixJyKInq4+fLzmgUmxUQjEyLfbEc0uooV9zxku04r7qRoqCO82FRmM6BIGbIx3b2Ku
- Rl40NqoWGJI64rGH7peWEiB2uRv1qJvsLOeMUsDXskrscKHPP631HO8CXtXycHTQr+uD
- 1p2MvykSGb4VLdyUGbWDOiiyCj4F1k6VUfhzkJKzuw8TCPHnft2oHZSNphJDkNmSDUe5
- zQ+DfReEbY7trqUq056TMVb7tf2qdcuKquy96zGrkJ3U+Xp72BNwudMbieRXO3JjkVoi
- ns6Q==
-X-Gm-Message-State: AOJu0YxpbDq5eKmmCvzCvuhwhfW+Y9ar2w7GidwVkJXvpca1jRvPgub9
- Yvjj3WDFFZFSNVCg2pYMx8zGYMFVjiHFwtzNENyyOUyEGtiVR+DW4e7i94iBX/Q=
-X-Google-Smtp-Source: AGHT+IFVSgm+9SBXaqKuSkez28bVk2gY1wmI1oxXWA1lWUlp0Rv56UGLikbodukmSFcyJMGfKKIMWQ==
-X-Received: by 2002:ac2:554a:0:b0:510:1840:336c with SMTP id
- l10-20020ac2554a000000b005101840336cmr196188lfk.52.1706303311664; 
- Fri, 26 Jan 2024 13:08:31 -0800 (PST)
+ bh=997N/5pYMdYJaH4SQ9jdWihdLblZTE/8nf4wQWZMfAY=;
+ b=Hs6/v5XmxLNDqy74Q7FSf9EFCSxhlICLvIZjtBbcN49e/m9StG2N+8GRET4hIWTxKH
+ QM4T5VL8Ofwe0+Vbwg05iOrdncCp7Act/QBgNwr/n+Jc/2UEkVA3yu6wdNpgWYCn5Elq
+ 3ufxM54fmp4FYCDkZX+XxbNlur76VUryOxvhnGa4XE+/gOzd6kBCcVsnL8yvHuckxRHc
+ PeFI8jOaG2c/2yE/zNDJimWow7vojZZc76bsNgN+zAdQleFoiAk2Z43QkLjzEN+7k/Aj
+ LQs2ytLkrmUNzfNbN6dpyNySIumBXDX4MyQDDXla0lD4V9wInxXmYFrfFW/DQGppvSKu
+ V5gQ==
+X-Gm-Message-State: AOJu0Yzn7rL1lu5HIcA91xCvAipD4ZXb2fUwGljJVag3S/kXW1PKeUI0
+ 0G+ucbUjYUxjCRHiBlXot1AWavkWMB7lFUiE7Jv1CGny7RQhP2mmdmFwmSS5I/4=
+X-Google-Smtp-Source: AGHT+IGbm3RWdfGsCm9OMJ8/K+Nlgo7c0NiQYlKiJ9ODaA8hrpvA1pbDdj//NTsItCkO3XCrV0Yq0w==
+X-Received: by 2002:a05:6512:3ca1:b0:50e:609c:ab90 with SMTP id
+ h33-20020a0565123ca100b0050e609cab90mr185399lfv.32.1706303309363; 
+ Fri, 26 Jan 2024 13:08:29 -0800 (PST)
 Received: from jheikkil-mobl1.. (91-156-196-125.elisa-laajakaista.fi.
  [91.156.196.125]) by smtp.gmail.com with ESMTPSA id
- t3-20020a192d43000000b00510218debaasm290479lft.35.2024.01.26.13.08.30
+ t3-20020a192d43000000b00510218debaasm290479lft.35.2024.01.26.13.08.28
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 26 Jan 2024 13:08:31 -0800 (PST)
+ Fri, 26 Jan 2024 13:08:28 -0800 (PST)
 From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Subject: [PATCH 5/5] drm/i915/display: On Xe2 always enable decompression with
- tile4
-Date: Fri, 26 Jan 2024 23:08:07 +0200
-Message-Id: <20240126210807.320671-6-juhapekka.heikkila@gmail.com>
+Subject: [PATCH 2/5] drm/xe: add bind time pat index to xe_bo structure
+Date: Fri, 26 Jan 2024 23:08:04 +0200
+Message-Id: <20240126210807.320671-3-juhapekka.heikkila@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240126210807.320671-1-juhapekka.heikkila@gmail.com>
 References: <20240126210807.320671-1-juhapekka.heikkila@gmail.com>
@@ -74,35 +73,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mika Kahola <mika.kahola@intel.com>,
- Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With Xe2 always treat tile4 as if it was using flat ccs.
+Add BO bind time pat index member and framebuffer pin time pat index 
+to xe_bo structure.
 
 Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Reviewed-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/xe/xe_bo_types.h | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 511dc1544854..43209909593f 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -948,6 +948,11 @@ static u32 skl_plane_ctl(const struct intel_crtc_state *crtc_state,
- 	if (DISPLAY_VER(dev_priv) == 13)
- 		plane_ctl |= adlp_plane_ctl_arb_slots(plane_state);
+diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+index 14ef13b7b421..ccf63058be66 100644
+--- a/drivers/gpu/drm/xe/xe_bo_types.h
++++ b/drivers/gpu/drm/xe/xe_bo_types.h
+@@ -91,6 +91,17 @@ struct xe_bo {
  
-+	if (GRAPHICS_VER(dev_priv) >= 20 &&
-+	    fb->modifier == I915_FORMAT_MOD_4_TILED) {
-+		plane_ctl |= PLANE_CTL_RENDER_DECOMPRESSION_ENABLE;
-+	}
+ 	/** @vram_userfault_link: Link into @mem_access.vram_userfault.list */
+ 		struct list_head vram_userfault_link;
 +
- 	return plane_ctl;
- }
++	/**
++	 * @pat_index: The pat index requested when bind this BO
++	 */
++	u16 pat_index;
++
++	/**
++	 * @pat_index_scanout: The pat index in use when pinning this BO
++	 * as framebuffer.
++	 */
++	u16 pat_index_scanout;
+ };
  
+ #define intel_bo_to_drm_bo(bo) (&(bo)->ttm.base)
 -- 
 2.25.1
 
