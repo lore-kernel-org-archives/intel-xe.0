@@ -4,26 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F1ADC47DDF
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Jan 2024 15:32:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FFF1C48260
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Jan 2024 15:35:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E71EE10E261;
-	Fri, 26 Jan 2024 15:32:10 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A915910E261;
- Fri, 26 Jan 2024 15:32:09 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD94710FB90;
+	Fri, 26 Jan 2024 15:35:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4594410FB90;
+ Fri, 26 Jan 2024 15:35:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706283302; x=1737819302;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=v5P9LknsSMwEz0Qt7ZtZ3UN1mTbKYgPS/ZK5RtrKAuA=;
+ b=Dqa/HkYoUHhzTe8F5DLiRjN2cNTkg5jKGPZAWCg9ZFKEL4pQ5Fs3E5n6
+ cwIDDHCQusT7S9sBxeBz7rANX5Lf4rqXNz4KbwbGbCd1NWD2bOOS/aafR
+ cxyGOJOcD0KC8t2f88RfsB+3BDLZy2BgBk3NEtfy2pardFi9/xwkfaPjT
+ dKFlb1HA8XDBSx8K5ehy/BLCW9BsbI7gdXgAXRMVFIW+CEZr44pGeEDQB
+ Fw7AekcR1tO3cDVT6TAQqD7AXEb91aeAYOrp8gkk6s7NA4CigIUjOFVKq
+ r7Jdfid3VdAHML2NRR3s+uWENBS2c/u7nlQ5BL+Y6NplyhZ1lGfK0wlHR Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="2384764"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
+   d="scan'208";a="2384764"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2024 07:35:01 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="930399143"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="930399143"
+Received: from tgl-lenovo-03.sh.intel.com ([10.239.87.93])
+ by fmsmga001.fm.intel.com with ESMTP; 26 Jan 2024 07:34:57 -0800
+From: wangxiaoming321 <xiaoming.wang@intel.com>
+To: lucas.demarchi@intel.com, ogabbay@kernel.org,
+ thomas.hellstrom@linux.intel.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
+ daniel@ffwll.ch, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/xe/display: Fix memleak in display initialization
+Date: Fri, 26 Jan 2024 23:34:53 +0800
+Message-Id: <20240126153453.997855-1-xiaoming.wang@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240125063633.989944-1-xiaoming.wang@intel.com>
+References: <20240125063633.989944-1-xiaoming.wang@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe/hwmon=3A_Fix_abi_doc_wa?=
- =?utf-8?q?rnings?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Badal Nilawar" <badal.nilawar@intel.com>
-Date: Fri, 26 Jan 2024 15:32:09 -0000
-Message-ID: <170628312969.745586.4146066051167173901@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240126153943.2294003-1-badal.nilawar@intel.com>
-In-Reply-To: <20240126153943.2294003-1-badal.nilawar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,297 +60,69 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: wangxiaoming321 <xiaoming.wang@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+intel_power_domains_init has been called twice in xe_device_probe:
+xe_device_probe -> xe_display_init_nommio -> intel_power_domains_init(xe)
+xe_device_probe -> xe_display_init_noirq -> intel_display_driver_probe_noirq
+-> intel_power_domains_init(i915)
 
-Series: drm/xe/hwmon: Fix abi doc warnings
-URL   : https://patchwork.freedesktop.org/series/129200/
-State : failure
+It needs remove one to avoid power_domains->power_wells double malloc.
 
-== Summary ==
+unreferenced object 0xffff88811150ee00 (size 512):
+  comm "systemd-udevd", pid 506, jiffies 4294674198 (age 3605.560s)
+  hex dump (first 32 bytes):
+    10 b4 9d a0 ff ff ff ff ff ff ff ff ff ff ff ff  ................
+    ff ff ff ff ff ff ff ff 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<ffffffff8134b901>] __kmem_cache_alloc_node+0x1c1/0x2b0
+    [<ffffffff812c98b2>] __kmalloc+0x52/0x150
+    [<ffffffffa08b0033>] __set_power_wells+0xc3/0x360 [xe]
+    [<ffffffffa08562fc>] xe_display_init_nommio+0x4c/0x70 [xe]
+    [<ffffffffa07f0d1c>] xe_device_probe+0x3c/0x5a0 [xe]
+    [<ffffffffa082e48f>] xe_pci_probe+0x33f/0x5a0 [xe]
+    [<ffffffff817f2187>] local_pci_probe+0x47/0xa0
+    [<ffffffff817f3db3>] pci_device_probe+0xc3/0x1f0
+    [<ffffffff8192f2a2>] really_probe+0x1a2/0x410
+    [<ffffffff8192f598>] __driver_probe_device+0x78/0x160
+    [<ffffffff8192f6ae>] driver_probe_device+0x1e/0x90
+    [<ffffffff8192f92a>] __driver_attach+0xda/0x1d0
+    [<ffffffff8192c95c>] bus_for_each_dev+0x7c/0xd0
+    [<ffffffff8192e159>] bus_add_driver+0x119/0x220
+    [<ffffffff81930d00>] driver_register+0x60/0x120
+    [<ffffffffa05e50a0>] 0xffffffffa05e50a0
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-[15:31:46] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[15:31:50] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-ERROR:root:../arch/x86/um/user-offsets.c:17:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
-   17 | void foo(void)
-      |      ^~~
-In file included from ../arch/um/kernel/asm-offsets.c:1:
-../arch/x86/um/shared/sysdep/kernel-offsets.h:9:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
-    9 | void foo(void)
-      |      ^~~
-../arch/x86/um/bugs_64.c:9:6: warning: no previous prototype for ‘arch_check_bugs’ [-Wmissing-prototypes]
-    9 | void arch_check_bugs(void)
-      |      ^~~~~~~~~~~~~~~
-../arch/x86/um/bugs_64.c:13:6: warning: no previous prototype for ‘arch_examine_signal’ [-Wmissing-prototypes]
-   13 | void arch_examine_signal(int sig, struct uml_pt_regs *regs)
-      |      ^~~~~~~~~~~~~~~~~~~
-../arch/x86/um/fault.c:18:5: warning: no previous prototype for ‘arch_fixup’ [-Wmissing-prototypes]
-   18 | int arch_fixup(unsigned long address, struct uml_pt_regs *regs)
-      |     ^~~~~~~~~~
-../arch/x86/um/os-Linux/mcontext.c:7:6: warning: no previous prototype for ‘get_regs_from_mc’ [-Wmissing-prototypes]
-    7 | void get_regs_from_mc(struct uml_pt_regs *regs, mcontext_t *mc)
-      |      ^~~~~~~~~~~~~~~~
-../arch/x86/um/os-Linux/registers.c:146:15: warning: no previous prototype for ‘get_thread_reg’ [-Wmissing-prototypes]
-  146 | unsigned long get_thread_reg(int reg, jmp_buf *buf)
-      |               ^~~~~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:16:5: warning: no previous prototype for ‘__vdso_clock_gettime’ [-Wmissing-prototypes]
-   16 | int __vdso_clock_gettime(clockid_t clock, struct __kernel_old_timespec *ts)
-      |     ^~~~~~~~~~~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:30:5: warning: no previous prototype for ‘__vdso_gettimeofday’ [-Wmissing-prototypes]
-   30 | int __vdso_gettimeofday(struct __kernel_old_timeval *tv, struct timezone *tz)
-      |     ^~~~~~~~~~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:44:21: warning: no previous prototype for ‘__vdso_time’ [-Wmissing-prototypes]
-   44 | __kernel_old_time_t __vdso_time(__kernel_old_time_t *t)
-      |                     ^~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:57:1: warning: no previous prototype for ‘__vdso_getcpu’ [-Wmissing-prototypes]
-   57 | __vdso_getcpu(unsigned *cpu, unsigned *node, struct getcpu_cache *unused)
-      | ^~~~~~~~~~~~~
-../arch/um/os-Linux/skas/process.c:107:6: warning: no previous prototype for ‘wait_stub_done’ [-Wmissing-prototypes]
-  107 | void wait_stub_done(int pid)
-      |      ^~~~~~~~~~~~~~
-../arch/um/os-Linux/skas/process.c:683:6: warning: no previous prototype for ‘__switch_mm’ [-Wmissing-prototypes]
-  683 | void __switch_mm(struct mm_id *mm_idp)
-      |      ^~~~~~~~~~~
-../arch/um/kernel/skas/process.c:36:12: warning: no previous prototype for ‘start_uml’ [-Wmissing-prototypes]
-   36 | int __init start_uml(void)
-      |            ^~~~~~~~~
-../arch/um/os-Linux/main.c:187:7: warning: no previous prototype for ‘__wrap_malloc’ [-Wmissing-prototypes]
-  187 | void *__wrap_malloc(int size)
-      |       ^~~~~~~~~~~~~
-../arch/um/os-Linux/main.c:208:7: warning: no previous prototype for ‘__wrap_calloc’ [-Wmissing-prototypes]
-  208 | void *__wrap_calloc(int n, int size)
-      |       ^~~~~~~~~~~~~
-../arch/um/os-Linux/main.c:222:6: warning: no previous prototype for ‘__wrap_free’ [-Wmissing-prototypes]
-  222 | void __wrap_free(void *ptr)
-      |      ^~~~~~~~~~~
-../arch/x86/um/ptrace_64.c:111:5: warning: no previous prototype for ‘poke_user’ [-Wmissing-prototypes]
-  111 | int poke_user(struct task_struct *child, long addr, long data)
-      |     ^~~~~~~~~
-../arch/x86/um/ptrace_64.c:171:5: warning: no previous prototype for ‘peek_user’ [-Wmissing-prototypes]
-  171 | int peek_user(struct task_struct *child, long addr, long data)
-      |     ^~~~~~~~~
-../arch/um/os-Linux/mem.c:28:6: warning: no previous prototype for ‘kasan_map_memory’ [-Wmissing-prototypes]
-   28 | void kasan_map_memory(void *start, size_t len)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/os-Linux/mem.c:212:13: warning: no previous prototype for ‘check_tmpexec’ [-Wmissing-prototypes]
-  212 | void __init check_tmpexec(void)
-      |             ^~~~~~~~~~~~~
-../arch/um/kernel/skas/mmu.c:17:5: warning: no previous prototype for ‘init_new_context’ [-Wmissing-prototypes]
-   17 | int init_new_context(struct task_struct *task, struct mm_struct *mm)
-      |     ^~~~~~~~~~~~~~~~
-../arch/um/kernel/skas/mmu.c:60:6: warning: no previous prototype for ‘destroy_context’ [-Wmissing-prototypes]
-   60 | void destroy_context(struct mm_struct *mm)
-      |      ^~~~~~~~~~~~~~~
-../arch/x86/um/signal.c:560:6: warning: no previous prototype for ‘sys_rt_sigreturn’ [-Wmissing-prototypes]
-  560 | long sys_rt_sigreturn(void)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/os-Linux/signal.c:75:6: warning: no previous prototype for ‘sig_handler’ [-Wmissing-prototypes]
-   75 | void sig_handler(int sig, struct siginfo *si, mcontext_t *mc)
-      |      ^~~~~~~~~~~
-../arch/um/os-Linux/signal.c:111:6: warning: no previous prototype for ‘timer_alarm_handler’ [-Wmissing-prototypes]
-  111 | void timer_alarm_handler(int sig, struct siginfo *unused_si, mcontext_t *mc)
-      |      ^~~~~~~~~~~~~~~~~~~
-../arch/um/os-Linux/start_up.c:301:12: warning: no previous prototype for ‘parse_iomem’ [-Wmissing-prototypes]
-  301 | int __init parse_iomem(char *str, int *add)
-      |            ^~~~~~~~~~~
-../arch/um/kernel/mem.c:202:8: warning: no previous prototype for ‘pgd_alloc’ [-Wmissing-prototypes]
-  202 | pgd_t *pgd_alloc(struct mm_struct *mm)
-      |        ^~~~~~~~~
-../arch/um/kernel/mem.c:215:7: warning: no previous prototype for ‘uml_kmalloc’ [-Wmissing-prototypes]
-  215 | void *uml_kmalloc(int size, int flags)
-      |       ^~~~~~~~~~~
-../arch/um/kernel/process.c:51:5: warning: no previous prototype for ‘pid_to_processor_id’ [-Wmissing-prototypes]
-   51 | int pid_to_processor_id(int pid)
-      |     ^~~~~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:87:7: warning: no previous prototype for ‘__switch_to’ [-Wmissing-prototypes]
-   87 | void *__switch_to(struct task_struct *from, struct task_struct *to)
-      |       ^~~~~~~~~~~
-../arch/um/kernel/process.c:140:6: warning: no previous prototype for ‘fork_handler’ [-Wmissing-prototypes]
-  140 | void fork_handler(void)
-      |      ^~~~~~~~~~~~
-../arch/um/kernel/process.c:217:6: warning: no previous prototype for ‘arch_cpu_idle’ [-Wmissing-prototypes]
-  217 | void arch_cpu_idle(void)
-      |      ^~~~~~~~~~~~~
-../arch/um/kernel/process.c:253:5: warning: no previous prototype for ‘copy_to_user_proc’ [-Wmissing-prototypes]
-  253 | int copy_to_user_proc(void __user *to, void *from, int size)
-      |     ^~~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:263:5: warning: no previous prototype for ‘clear_user_proc’ [-Wmissing-prototypes]
-  263 | int clear_user_proc(void __user *buf, int size)
-      |     ^~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:271:6: warning: no previous prototype for ‘set_using_sysemu’ [-Wmissing-prototypes]
-  271 | void set_using_sysemu(int value)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:278:5: warning: no previous prototype for ‘get_using_sysemu’ [-Wmissing-prototypes]
-  278 | int get_using_sysemu(void)
-      |     ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:316:12: warning: no previous prototype for ‘make_proc_sysemu’ [-Wmissing-prototypes]
-  316 | int __init make_proc_sysemu(void)
-      |            ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:348:15: warning: no previous prototype for ‘arch_align_stack’ [-Wmissing-prototypes]
-  348 | unsigned long arch_align_stack(unsigned long sp)
-      |               ^~~~~~~~~~~~~~~~
-../arch/x86/um/syscalls_64.c:48:6: warning: no previous prototype for ‘arch_switch_to’ [-Wmissing-prototypes]
-   48 | void arch_switch_to(struct task_struct *to)
-      |      ^~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:45:6: warning: no previous prototype for ‘machine_restart’ [-Wmissing-prototypes]
-   45 | void machine_restart(char * __unused)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:51:6: warning: no previous prototype for ‘machine_power_off’ [-Wmissing-prototypes]
-   51 | void machine_power_off(void)
-      |      ^~~~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:57:6: warning: no previous prototype for ‘machine_halt’ [-Wmissing-prototypes]
-   57 | void machine_halt(void)
-      |      ^~~~~~~~~~~~
-../arch/um/kernel/tlb.c:579:6: warning: no previous prototype for ‘flush_tlb_mm_range’ [-Wmissing-prototypes]
-  579 | void flush_tlb_mm_range(struct mm_struct *mm, unsigned long start,
-      |      ^~~~~~~~~~~~~~~~~~
-../arch/um/kernel/tlb.c:594:6: warning: no previous prototype for ‘force_flush_all’ [-Wmissing-prototypes]
-  594 | void force_flush_all(void)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/kernel/kmsg_dump.c:60:12: warning: no previous prototype for ‘kmsg_dumper_stdout_init’ [-Wmissing-prototypes]
-   60 | int __init kmsg_dumper_stdout_init(void)
-      |            ^~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bo.c:41:3: error: ‘struct ttm_placement’ has no member named ‘num_busy_placement’; did you mean ‘num_placement’?
-   41 |  .num_busy_placement = 1,
-      |   ^~~~~~~~~~~~~~~~~~
-      |   num_placement
-../drivers/gpu/drm/xe/xe_bo.c:41:24: warning: excess elements in struct initializer
-   41 |  .num_busy_placement = 1,
-      |                        ^
-../drivers/gpu/drm/xe/xe_bo.c:41:24: note: (near initialization for ‘sys_placement’)
-../drivers/gpu/drm/xe/xe_bo.c:42:3: error: ‘struct ttm_placement’ has no member named ‘busy_placement’; did you mean ‘num_placement’?
-   42 |  .busy_placement = &sys_placement_flags,
-      |   ^~~~~~~~~~~~~~
-      |   num_placement
-../drivers/gpu/drm/xe/xe_bo.c:42:20: warning: excess elements in struct initializer
-   42 |  .busy_placement = &sys_placement_flags,
-      |                    ^
-../drivers/gpu/drm/xe/xe_bo.c:42:20: note: (near initialization for ‘sys_placement’)
-../drivers/gpu/drm/xe/xe_bo.c:55:3: error: ‘struct ttm_placement’ has no member named ‘num_busy_placement’; did you mean ‘num_placement’?
-   55 |  .num_busy_placement = 1,
-      |   ^~~~~~~~~~~~~~~~~~
-      |   num_placement
-../drivers/gpu/drm/xe/xe_bo.c:55:24: warning: excess elements in struct initializer
-   55 |  .num_busy_placement = 1,
-      |                        ^
-../drivers/gpu/drm/xe/xe_bo.c:55:24: note: (near initialization for ‘tt_placement’)
-../drivers/gpu/drm/xe/xe_bo.c:56:3: error: ‘struct ttm_placement’ has no member named ‘busy_placement’; did you mean ‘num_placement’?
-   56 |  .busy_placement = &sys_placement_flags,
-      |   ^~~~~~~~~~~~~~
-      |   num_placement
-../drivers/gpu/drm/xe/xe_bo.c:56:20: warning: excess elements in struct initializer
-   56 |  .busy_placement = &sys_placement_flags,
-      |                    ^
-../drivers/gpu/drm/xe/xe_bo.c:56:20: note: (near initialization for ‘tt_placement’)
-../drivers/gpu/drm/xe/xe_bo.c: In function ‘__xe_bo_placement_for_flags’:
-../drivers/gpu/drm/xe/xe_bo.c:233:4: error: ‘struct ttm_placement’ has no member named ‘num_busy_placement’; did you mean ‘num_placement’?
-  233 |   .num_busy_placement = c,
-      |    ^~~~~~~~~~~~~~~~~~
-      |    num_placement
-../drivers/gpu/drm/xe/xe_bo.c:233:25: warning: excess elements in struct initializer
-  233 |   .num_busy_placement = c,
-      |                         ^
-../drivers/gpu/drm/xe/xe_bo.c:233:25: note: (near initialization for ‘(anonymous)’)
-../drivers/gpu/drm/xe/xe_bo.c:234:4: error: ‘struct ttm_placement’ has no member named ‘busy_placement’; did you mean ‘num_placement’?
-  234 |   .busy_placement = bo->placements,
-      |    ^~~~~~~~~~~~~~
-      |    num_placement
-../drivers/gpu/drm/xe/xe_bo.c:234:21: warning: excess elements in struct initializer
-  234 |   .busy_placement = bo->placements,
-      |                     ^~
-../drivers/gpu/drm/xe/xe_bo.c:234:21: note: (near initialization for ‘(anonymous)’)
-../drivers/gpu/drm/xe/xe_bo.c: In function ‘xe_evict_flags’:
-../drivers/gpu/drm/xe/xe_bo.c:254:15: error: ‘struct ttm_placement’ has no member named ‘num_busy_placement’; did you mean ‘num_placement’?
-  254 |    placement->num_busy_placement = 0;
-      |               ^~~~~~~~~~~~~~~~~~
-      |               num_placement
-../drivers/gpu/drm/xe/xe_bo.c: In function ‘__xe_bo_fixed_placement’:
-../drivers/gpu/drm/xe/xe_bo.c:1394:4: error: ‘struct ttm_placement’ has no member named ‘num_busy_placement’; did you mean ‘num_placement’?
- 1394 |   .num_busy_placement = 1,
-      |    ^~~~~~~~~~~~~~~~~~
-      |    num_placement
-../drivers/gpu/drm/xe/xe_bo.c:1394:25: warning: excess elements in struct initializer
- 1394 |   .num_busy_placement = 1,
-      |                         ^
-../drivers/gpu/drm/xe/xe_bo.c:1394:25: note: (near initialization for ‘(anonymous)’)
-../drivers/gpu/drm/xe/xe_bo.c:1395:4: error: ‘struct ttm_placement’ has no member named ‘busy_placement’; did you mean ‘num_placement’?
- 1395 |   .busy_placement = place,
-      |    ^~~~~~~~~~~~~~
-      |    num_placement
-../drivers/gpu/drm/xe/xe_bo.c:1395:21: warning: excess elements in struct initializer
- 1395 |   .busy_placement = place,
-      |                     ^~~~~
-../drivers/gpu/drm/xe/xe_bo.c:1395:21: note: (near initialization for ‘(anonymous)’)
-../drivers/gpu/drm/xe/xe_bo.c: In function ‘xe_bo_migrate’:
-../drivers/gpu/drm/xe/xe_bo.c:2153:12: error: ‘struct ttm_placement’ has no member named ‘num_busy_placement’; did you mean ‘num_placement’?
- 2153 |  placement.num_busy_placement = 1;
-      |            ^~~~~~~~~~~~~~~~~~
-      |            num_placement
-../drivers/gpu/drm/xe/xe_bo.c:2155:12: error: ‘struct ttm_placement’ has no member named ‘busy_placement’; did you mean ‘num_placement’?
- 2155 |  placement.busy_placement = &requested;
-      |            ^~~~~~~~~~~~~~
-      |            num_placement
-make[7]: *** [../scripts/Makefile.build:243: drivers/gpu/drm/xe/xe_bo.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-../arch/um/kernel/um_arch.c:408:19: warning: no previous prototype for ‘read_initrd’ [-Wmissing-prototypes]
-  408 | int __init __weak read_initrd(void)
-      |                   ^~~~~~~~~~~
-../arch/um/kernel/um_arch.c:461:7: warning: no previous prototype for ‘text_poke’ [-Wmissing-prototypes]
-  461 | void *text_poke(void *addr, const void *opcode, size_t len)
-      |       ^~~~~~~~~
-../arch/um/kernel/um_arch.c:473:6: warning: no previous prototype for ‘text_poke_sync’ [-Wmissing-prototypes]
-  473 | void text_poke_sync(void)
-      |      ^~~~~~~~~~~~~~
-make[6]: *** [../scripts/Makefile.build:481: drivers/gpu/drm/xe] Error 2
-make[6]: *** Waiting for unfinished jobs....
-make[5]: *** [../scripts/Makefile.build:481: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:481: drivers/gpu] Error 2
-make[4]: *** Waiting for unfinished jobs....
-make[3]: *** [../scripts/Makefile.build:481: drivers] Error 2
-make[3]: *** Waiting for unfinished jobs....
-../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-make[2]: *** [/kernel/Makefile:1917: .] Error 2
-make[1]: *** [/kernel/Makefile:240: __sub-make] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
+Signed-off-by: wangxiaoming321 <xiaoming.wang@intel.com>
+---
+ drivers/gpu/drm/xe/xe_display.c | 6 ------
+ 1 file changed, 6 deletions(-)
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
+index 74391d9b11ae..e4db069f0db3 100644
+--- a/drivers/gpu/drm/xe/xe_display.c
++++ b/drivers/gpu/drm/xe/xe_display.c
+@@ -134,8 +134,6 @@ static void xe_display_fini_nommio(struct drm_device *dev, void *dummy)
+ 
+ int xe_display_init_nommio(struct xe_device *xe)
+ {
+-	int err;
+-
+ 	if (!xe->info.enable_display)
+ 		return 0;
+ 
+@@ -145,10 +143,6 @@ int xe_display_init_nommio(struct xe_device *xe)
+ 	/* This must be called before any calls to HAS_PCH_* */
+ 	intel_detect_pch(xe);
+ 
+-	err = intel_power_domains_init(xe);
+-	if (err)
+-		return err;
+-
+ 	return drmm_add_action_or_reset(&xe->drm, xe_display_fini_nommio, xe);
+ }
+ 
+-- 
+2.25.1
 
