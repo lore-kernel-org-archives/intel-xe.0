@@ -4,138 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58EC0C47422
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Jan 2024 16:26:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 551BBC47DDB
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Jan 2024 16:30:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B07DC10E1DB;
-	Fri, 26 Jan 2024 16:26:41 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B06CC10E1DB
- for <intel-xe@lists.freedesktop.org>; Fri, 26 Jan 2024 16:26:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11FE110FBD0;
+	Fri, 26 Jan 2024 16:30:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EE2010FBD0;
+ Fri, 26 Jan 2024 16:30:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706286400; x=1737822400;
+ t=1706286625; x=1737822625;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=T0fzR+kYcRoJG1YvTQJSNzE52HWAeuo3192bBZMsOEg=;
- b=BICG+gEHZcxl5cTQj+FY4mNCDkAUWazdNCUeSZSWwkHJdqJ5DWgM17ki
- w+EOpO8qWCQ+LZVIJMAsoqlZ5SJvqR5iUbJGdMuDgQAVTSJccdN4nkNNB
- YxCw1qRmyCMSEkxPwmOxLMnMDNOrjkNcmgH2x92qiRgvob7Tj1LU9qIpd
- ARr3Rff8ShWYyD01wUu24eAn8N4KEUaNA3TAZBm2ru8uG2BpIQiM261H5
- djxi9COqr4Xv+BzEwjiiLh8z1/hE0JDhwD8uLUJKSH5wUZIHhx9udz3/B
- aVZicUfy8NaiN8eXOFOMcFI+R8MRZaMnnIp4ScTt9uZpPxyO0f1XEMd/W A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="15866906"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="15866906"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2024 08:26:40 -0800
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=sUMABoXmoefgH93qY9BKv2NkTZA0nzR1Qs1xyDMKTUY=;
+ b=E/MIZH3kh6iTG0qiuKfJ4S2tvL4WEL4TzuLRxbNwL45T4hq75Pnu4Gjr
+ uPMrzAOwJFJTxUMY/icFiKxC65ymHbED16ady3VV4TrgCu1+wkHfsmxnv
+ CJva8r+ATARyFoZKDxNyiW/udfjnTpewJq+ONmM98iyAMAt18yhfrIOAl
+ 5O2QwXYmPiBTT9gnkqBi7cetG1IQKh5H/2lKugsMNz2594k90a8s75SQh
+ uDprOP0XxJAW9Vv0WbpTJivLxfGebyTB3krXY2c2rpZFPq3ikFy/paglL
+ u2Nqeers+1f2TDCjCymT6Ohg+OQZVWGPVTnvQ+AtbuWU+Gc5o4l7O0w7u g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="399667645"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="399667645"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2024 08:30:24 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
-   d="scan'208";a="2698094"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 26 Jan 2024 08:26:39 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="960238955"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="960238955"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 26 Jan 2024 08:30:23 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 26 Jan 2024 08:26:38 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.1.2507.35; Fri, 26 Jan 2024 08:30:23 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 26 Jan 2024 08:26:38 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Fri, 26 Jan 2024 08:26:38 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.100)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Fri, 26 Jan 2024 08:30:23 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.100)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Fri, 26 Jan 2024 08:26:38 -0800
+ 15.1.2507.35; Fri, 26 Jan 2024 08:30:22 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hyOftEr+ApoeFnCEY80moacangkuEiAu5eineGtLMhzGaf4Y9FwS4OaFXwTiD6Yd17Vq9RFsWrc2OLlb/XDhGV3U81IjQ0/bwCAQbb1RxBYYPg/1bDc7HdsbMAl0BibUqhB0XHYke5flMvdhOP7cwQshVO/+23f9hiukCeSaL6qJ3570lOyfEGyuIKqD4uMBi6wV6QyB3qcjIXUKCzHr9y4k1ikOjImRntbmU3EA8pve2QfX19efCd/0cQS36i9BQBR+qR8VR0baHiuazGG5VurQAJQQaUMco5YOgfWFqdVjqqwxg3kQUhbulVt3bOLAcbUK3ueVrsuySWxDqr9eHw==
+ b=LYu7ixbjeRpILeoexTT/BcjwluHAKVbJn8dAAcriq1lZbw41sDf3VdgmGOGBIhH8dZ9xx4k9Z4EFLkl0fVEmzr+6R96SJGz8jkUvd6HB/dV/KIUSt460WllZcQnlANztNCXx5CGp6FlUSOqBSI6iGJxsU4PexQQZrFR1zPq9qnwURSm1Qiw3DAA9g6G9XF7HHas1CrRw9dPRsma81arv81VevCK8HjCGc4bARoWNpBuG/pQesRwHc5xNsmRKRl4a0wNdkH5AMWcB3Abt8ZVAGqTOYp7nhoZEbd4i72ovVaJxKmFgD0yYbIjLVpQPwPrbJpD4yNzJn0LZ9/mv1Q4e6g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=B6bT2YU8VzIxGsnOo0TZJRbW0JKeBzETaaGadP5zpGk=;
- b=j1OamuM4REHotnlrfc6sw1ui85hZYmI8XSrj5lVahoHiG1u6qN8+eokxh+GpwDMiUkwISah1IB+LzNAMuxI/O6iRPMejIX9+0gg90bT0nr3XgAs/Za1hEPgbYEacbNx9WcXX0PqtuMtf2rBacK79sky618fkM+sYTlaliLl86hyNQiDw9uwWjLhXPWf/DG42Dzq+g2/MnTlOrorPmSG3hY5Up/ArgN+RuGblqe6wEdfBHCKvXLXPMH2WnXgvKNm6cPz+G6Cy6C+2IawihylVoDxaFVYfveqNCMV/5pcMLOTxK0QO1Lbk3FJRSH5yx9YFSdHCN3ik9KOzr+YlgYJdFw==
+ bh=75Fa7jY4HV92c5CHTPGaB4Bj8UPxc7yFNy3AjlJsOiI=;
+ b=EtCk4JvYvfeq1iRrQlnhWkfB9F2HPokj8RKxIdFNdDasryFR8gRb6Dc3HCK6RHy0DgnNrMFNlCIpaGmetxvsZ/HJt6Om7PC0angnHpNDppRCDOzV//pcaHfbyTVEIlewwbv4R/V49PcRRBV1sj+yxcmoRQ+ADifZkhxxFPQRMjnI3rjcXqoXPI2+JEe/kX1HDrFooyzVaI1HnZeV3+g/32vFD828JXbaPWk+hy5YZJQ7Ow8ot+MMfRoIRJBk3l1lUMRW/5iYZNb7Z/YR6u2AMJg+dwvcw/nECiIpB3l+BhYGXZdHUkKzE4FodIZOD58hIErDRE59J88CkvrtBq6TPg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY8PR11MB7828.namprd11.prod.outlook.com (2603:10b6:930:78::8)
- by CO1PR11MB5204.namprd11.prod.outlook.com (2603:10b6:303:6e::10) with
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by DM4PR11MB6066.namprd11.prod.outlook.com (2603:10b6:8:62::13) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.27; Fri, 26 Jan
- 2024 16:26:37 +0000
-Received: from CY8PR11MB7828.namprd11.prod.outlook.com
- ([fe80::7d36:1951:b896:cb37]) by CY8PR11MB7828.namprd11.prod.outlook.com
- ([fe80::7d36:1951:b896:cb37%7]) with mapi id 15.20.7228.027; Fri, 26 Jan 2024
- 16:26:36 +0000
-Date: Fri, 26 Jan 2024 17:26:07 +0100
-From: Francois Dugast <francois.dugast@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: Re: [PATCH] drm/xe: Add L3 bank and node masks to topology query
-Message-ID: <ZbPdHz8aVlqqj6om@fdugast-desk.home>
-References: <20240126153840.7-1-francois.dugast@intel.com>
- <dh3ndb2b5efrcsgqxn3auzrgvn2pwa3x55pakjkcvdf5lml44e@i7dourwtt56q>
-Content-Type: text/plain; charset="us-ascii"
+ 2024 16:30:19 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::b9a8:8221:e4a1:4cda]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::b9a8:8221:e4a1:4cda%4]) with mapi id 15.20.7202.035; Fri, 26 Jan 2024
+ 16:30:19 +0000
+Date: Fri, 26 Jan 2024 16:29:27 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Subject: Re: [PATCH] drm/sched: Drain all entities in DRM sched run job worker
+Message-ID: <ZbPd590k4s5z1/a9@DUT025-TGLU.fm.intel.com>
+References: <20240124210811.1639040-1-matthew.brost@intel.com>
+ <b94aca06-858e-4575-a4c4-40be8d8d4d35@amd.com>
+ <ZbKaqdu5Y/WNwWVX@DUT025-TGLU.fm.intel.com>
+ <0bef4c76-924f-442f-af9c-d701e640db41@amd.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <dh3ndb2b5efrcsgqxn3auzrgvn2pwa3x55pakjkcvdf5lml44e@i7dourwtt56q>
-Organization: Intel Corporation
-X-ClientProxiedBy: DUZPR01CA0056.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:469::7) To CY8PR11MB7828.namprd11.prod.outlook.com
- (2603:10b6:930:78::8)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <0bef4c76-924f-442f-af9c-d701e640db41@amd.com>
+X-ClientProxiedBy: BY5PR20CA0036.namprd20.prod.outlook.com
+ (2603:10b6:a03:1f4::49) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY8PR11MB7828:EE_|CO1PR11MB5204:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9d98e2f2-e0eb-4d29-1cb1-08dc1e8b914a
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DM4PR11MB6066:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9a598d32-469b-4845-b0c3-08dc1e8c1617
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Rjx67rVD0l+xrBrJCxnH70d5rnc5UVRW1XODCB0b17PgyGLMAm34FjH6AZbIFp89Xy2axPRaOMsNCHnR1JwwerzxSGjLCxnqlOUcK0/6fvQOViElsxf0WUGUuxxLoNqMZAWXbaGLFzjZZ5icll5E+ULPCKZNA1NevDzOBSRrVUoVovy+12aiS+EnnNV80Ct/zVYBOMoH9H3SES2E65HF6XqRmZDrQhasv3Du7QwJq1BV6ZLdRXwGplz1rWogvjj4A7gXqz142ioX1xqbVQnuycRCe4tdiFvrSbebbRva6cNyML+z9Khm/P9qqf5hTKFLJf+wtqVtPL2cSOTmzXkEUUQqvKJ6kigpfYNcJHaykiXIk+g1dbeXygOM6Q0XdZNpZtqoMx7jxcnvzlpykhBYiWlVC42pq+Jm6AUhncABi3GFcnxJLXSIKlmwIbxhp45C/5ezAiUDWNBWXwBpXrDcXlAodApIaHdj4hAfZPwku668JPm9fCtMLeuJbMiXI11DjNMVecCgGK7+Okj1SHxMmHUATHWDZJ/idpREKZqNSuAMyrU6rI9e4mEExhBVOzzT
+X-Microsoft-Antispam-Message-Info: XS0IZ41Bj8Tdfq8dL1iEZ9dyg9ndamcXhdCqA/VwS3HbOWtGUsdFXQlBFbotnvz0dNz7DRAcAhgjIfC7KBnHqWpOnPKPyHheJfYKRgq32VkKKKLZz2V1rtc5+HVO0chAIfXZUK1dhAyoplznVcTgS0rrDnHRcCRHbj+KYgFRkC4PxnLTw/ZHsVvLDgi/ZrnY+X9RVisPifFQ3uxnbvaIdElqFYahp6KpcE33vjqVib6sZQYEzzHMX0tEtEynLuM//BtpvFI85PzoVARXoFcHoOkMOWAwFgMCZpIuKSjcIUd1MwzQndNgLvGnvo+xdLPmCVoul+sIQjUUjrTNvXc08HnaW3nBR+/ikf9fiPf16O38BFXkz+90pW+wQ8IZhHEnYEsSJwV8hYEK+OfVBCsb1Lo4+SG6vAQbcGIn52u733aDr3ZqjOSfkMvminOG5lcfLj2woGloubGx0XEThO6Vxq8DQQp/vBQbLzb98iiffGMeBZSCWRWkBbr4HiprihVszIBF0KdH6kKINQsKOXmmpZQXYg2rWmri9rLTSKayjQk=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY8PR11MB7828.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(346002)(396003)(376002)(39860400002)(366004)(136003)(230922051799003)(451199024)(1800799012)(186009)(64100799003)(26005)(36916002)(107886003)(9686003)(6666004)(6506007)(6512007)(6486002)(86362001)(82960400001)(8676002)(41300700001)(4326008)(478600001)(6636002)(316002)(6862004)(83380400001)(66476007)(66946007)(8936002)(54906003)(66556008)(15650500001)(36756003)(44832011)(38100700002)(2906002)(5660300002);
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(396003)(346002)(39860400002)(136003)(366004)(376002)(230922051799003)(186009)(451199024)(64100799003)(1800799012)(86362001)(44832011)(7416002)(2906002)(5660300002)(41300700001)(83380400001)(478600001)(82960400001)(6512007)(6666004)(38100700002)(66574015)(26005)(966005)(6486002)(4326008)(8936002)(8676002)(66476007)(6916009)(316002)(54906003)(66556008)(6506007)(66946007);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Id3p/VBhBdBGzwPioM0GvTTxSXNjZiRp6MyKKbxCoewIxBK8GnwQG95Ep4jH?=
- =?us-ascii?Q?6VOBEYszWQrY6RQ9LgsM1/RVbu/yVgmKZf/B2nTxwbqLW9ZO5nLJGFjCD0+5?=
- =?us-ascii?Q?OiHLJTGQ9WU5PCGHaL//CW3CZr7IUJmMUaEv9EWEtrXxA6YfqvCdMxtYko2d?=
- =?us-ascii?Q?afVyabW4FzOgIBVgnazluYaVn1bQoEkT2pVasTcJjvzhSpR9e2SbRzYzRsTM?=
- =?us-ascii?Q?Fxpa+4jivxkWECgCyN+sCf3SeRBHGIhn+WF8c7LcWU1ZPJdmgpjlq2491tng?=
- =?us-ascii?Q?izbA8/o54exXqYhnfM/0bh+mjQm7HuMiStlDWgXnXMlThnp9CEkBKt/o8IUH?=
- =?us-ascii?Q?C72qZxb+Xy/bsAgwWuVO9QOmNiFFCClRG+HVEuUxjDL6ao8r0/F4yo6sBLW1?=
- =?us-ascii?Q?7z72C/3xLlDQg33MDMSDNDanOPTEO+uhTGjOQR95REH2XJ/ciK3piUV1KfC+?=
- =?us-ascii?Q?W7IL2uthadrCjAnHp9+y4aGB+EIcy/EbWeww4RzYQVkbYmewG5yM5HRRyKPR?=
- =?us-ascii?Q?iO3+9upAMKYzcKztcZHtqu9yXu9PO3j1k3g0s9mcRkpupiW7PoY7B/kkkq5g?=
- =?us-ascii?Q?sDe+tSds/6A3+5TQ5qXHkK3EvWjMxcJVvDzvkwKzJ+wmAw1RGrp0vUL42OKy?=
- =?us-ascii?Q?aNR6ew/5LXT71lb/g6TqBvbgIjCP46V5QhID91QuUnTxTgk4v/xdG3aLJHzi?=
- =?us-ascii?Q?DCgvjBEXFlEE+RSaSBQbxSQ6tTvLnEEHQfes0kOjOm53dl8DuZhWUmvIZosd?=
- =?us-ascii?Q?6ro03ND3eUlfQ5eLldAlbhZ0b5IZZpobNllTHaC8gfZE7ROvKTGDPAiY2qah?=
- =?us-ascii?Q?D2t+TSf/kAGuxcTjdLAfer6SgnJ2OAZXQ5+2BUuilQ+qs+Zx8VhQVmqHOrEE?=
- =?us-ascii?Q?zN3OqyRBZIgrvdOFsvXc/pi8xRG2hodr4fjUqwi5E4eDg8J2ubEleQBUithB?=
- =?us-ascii?Q?kCAjKxgaMJkhjQVogu4j8JWiEIUmxXSwlSgVtnKMw+D/oSeincJYRSKl+kGl?=
- =?us-ascii?Q?nJdN2lchlp85D68ebmnweYxEbbbhQ7OtrbwEjzyEv0vjPavHUBCYJQVsdmZ/?=
- =?us-ascii?Q?2o3Kw3TNkThnVg4utcrx+J+qh518gOKt9W9xCtSBVIPRESZvrLyg5x+VaxSo?=
- =?us-ascii?Q?5SgOWommvi4Sc+/eh+7Vxte5sc3viAYWq8XPYWabvlDv0DxEfk6JwJsNCiu8?=
- =?us-ascii?Q?NtEowJkMUfWBm4yZCrUha0zvPxrlI94EipSI6DV9B4YHu7WK8/dbj6/W1Oar?=
- =?us-ascii?Q?iX9J1GVfbTfvby2c3SAFt3VQvLDSZaTbXeh0tyCyUV45QYyuwUNsxsG/+/uY?=
- =?us-ascii?Q?x3CUnObNzur6DfCnKz/4GvPFvdztasLTnoJuD5t78ujNxtjGEzik+95XDsqg?=
- =?us-ascii?Q?LgTqQ/5yn6F3Se5coKdE5dZxS5YkYA8UMBkmDhAf5G8uEaEyPgDHDIwlrTvU?=
- =?us-ascii?Q?bwgalBxit4Jzf9u4mBh2uaGi4qTSdIS3JneM/KhsuOP2F6O2kbJDCs1iodrm?=
- =?us-ascii?Q?3fDjMbFE3slhSoWIO98FP7AYAhH6N8czZNXbsw/GBIrr1BztBRYWHRVNVx4s?=
- =?us-ascii?Q?slV5lAAmkB3YPLSqmyTkLMMJgnWubOBpcyNAEKLGrqO3uLYyHtPHxugRlk6Q?=
- =?us-ascii?Q?mA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9d98e2f2-e0eb-4d29-1cb1-08dc1e8b914a
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB7828.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?fRlt0DaohxkQUXvsf2vceNwMk1UDbcuoaouLuEfSiRcQSpQbH8Gmb5Ygjj?=
+ =?iso-8859-1?Q?+/yeFjV6l48yKmaEwoZ3sp93EAbHyFV5IWG4Lhv0ZQ197L1mbYZUGpcaHn?=
+ =?iso-8859-1?Q?/RSHLP1o4uZIlruNoaGmPEl/iZAMtFKJ/tSK4YAfHPMBN662WpPaRdtIKg?=
+ =?iso-8859-1?Q?cSVKnIiXeCazpdRcch9z3L7DmwnSaxGu97IUOCDclQYcz8ts5BIy6Lj5W0?=
+ =?iso-8859-1?Q?+XE+viZiNWhDnwkd53UVMywdMsqL7cw+1E6dxalve5f41SkJvGOjzV0op6?=
+ =?iso-8859-1?Q?j3b7TSUA7I2Wti64mrE5a94TCfuFr2shVd5OiCTB7O//szMgEX0+6ue46X?=
+ =?iso-8859-1?Q?7GLbeYtExBCNzNp6UUcptF3HzGHcc8HrIUz5iQoTA1CPpMVhAXGOh4NQeW?=
+ =?iso-8859-1?Q?PAZ+OfHzCEkFtvdGkjVYl7eON5Owodl1RdO9PF2du/nEU2FOBD37FgCUqY?=
+ =?iso-8859-1?Q?UOwQQKM3j+eM+vv1H+XzFdCxNZhX/HWpUUtu98VvddBijX50YCi634pNsu?=
+ =?iso-8859-1?Q?dxekU503wxThLEkjIbuR3aoL1zEzbiLHvh+1KdgDv95CFAr660t6GQqYi8?=
+ =?iso-8859-1?Q?+22fQZJxO/UUoQeWU/BIE7KAwgVajwTcfGeSTX6zWNRJ7Enhbs4WQm/xgV?=
+ =?iso-8859-1?Q?JZElwRFuQ2MT5Fhfb2ycDYaQeEzD1xdZIRvhyVIxB3NsEYFS0cZNOROWGH?=
+ =?iso-8859-1?Q?DjjknERIHRqeCQgmuH69/ZueIztMt3UYngkKYfHuUD/NXkQ6/OViDcrD5o?=
+ =?iso-8859-1?Q?2Oyjb5Wx/4rWGtC4ZwwhnmKTL3RvUO/8YIJXj05aG4G+yBPZj1GPUbgAPK?=
+ =?iso-8859-1?Q?Y0D7PuPxpYJLDsvUGhp5KAhkS9f2SjoxmAIcGrSAMVU+3xy4h7Q83JhzFs?=
+ =?iso-8859-1?Q?YgqXsFhW5AJ2z/M8BFSP/PpUyXvbLQU7cnYfT0F1NjGt0j+ddWbznxpZoi?=
+ =?iso-8859-1?Q?uXXy+hn6PC3LXixx4huPlOGTGxXBLdJzFZ9oDeWnXjtXJqqi9XxICIQK4w?=
+ =?iso-8859-1?Q?E0ZhH+WGzMhX4QnBewIGhiw+2qgEH0ra+nFu7krdWbgPnQRFMVvtdh83aX?=
+ =?iso-8859-1?Q?42iVTYV3OUYAC0ZV6BO50I/i6ZqUDU5rOgvbo+GLkIggfoouWbysm4Etk4?=
+ =?iso-8859-1?Q?MfsiV96L1mFwMZtImuIXD0RzVxwF3mHfQRh0MV/bEx0FiZ1lNmLsh/pBF2?=
+ =?iso-8859-1?Q?bA9Cja7TXi4NTWYBlgLe7sWxGEhx2s8IP0BDR0HPVTtiYHKliW7VsiSKuX?=
+ =?iso-8859-1?Q?BKohqdZsqzxbUP8f/b3w5h0Rd6Fn1x7HSSaiT0SEjsl7QDkYwuxFpVGnMk?=
+ =?iso-8859-1?Q?4uvcOuuax+fb6mBqcS0ujVhVAwe/TxHaBPXrko1eT2MjjtximxzLv07MD7?=
+ =?iso-8859-1?Q?bjnib0Ig80rLjDqG04IbOrdPOJMMrEahux9HAX3fd55CDIS0tQLC60FXsy?=
+ =?iso-8859-1?Q?RQ3lgq1So1Q5NYJGD38J4v1Atc4WD907xleS5Eq5JNyxyb+idmARi8F48y?=
+ =?iso-8859-1?Q?/bKQSw+PGtvLaTrczi/SY2xyU1XA+Z1v1fe7N5grpGooSEfiCG/tzZ1X/j?=
+ =?iso-8859-1?Q?swLagW0i1IKX8FBZDiaAvNfsjJYfeSL9fKj5yNh97yPOdh+HZoBjV4c8/r?=
+ =?iso-8859-1?Q?2JalHBq+diT3aqdt9ygwDvS8aa0b360cQez6wLrLcZNWQxS2emToGriw?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9a598d32-469b-4845-b0c3-08dc1e8c1617
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2024 16:26:36.9075 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2024 16:30:19.5934 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hgIGF9+sD6Ze22Enj+lYazw8jgDMb9NFwvpKou/DP2gO8zLSCzfRMz2Zu/g6THIakMmPYTV6FvZ1uF1ZQEm0JSQm2/J0012dvhrzaKLqggM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5204
+X-MS-Exchange-CrossTenant-UserPrincipalName: DtVaNPSyTywUuPFcBCOaf8bjBgnuIrUu5SW+CN8boh6kSPM6BmBCCO0LUvcwGkyqsw7LWldZ7FSA1hSracQijw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6066
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -148,218 +147,119 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>, intel-xe@lists.freedesktop.org,
- Robert Krzemien <robert.krzemien@intel.com>
+Cc: ltuikov89@gmail.com, dri-devel@lists.freedesktop.org, Thorsten
+ Leemhuis <regressions@leemhuis.info>,
+ Mario Limonciello <mario.limonciello@amd.com>, daniel@ffwll.ch,
+ Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>, airlied@gmail.com,
+ intel-xe@lists.freedesktop.org, Vlastimil Babka <vbabka@suse.cz>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jan 26, 2024 at 09:53:47AM -0600, Lucas De Marchi wrote:
-> On Fri, Jan 26, 2024 at 03:38:40PM +0000, Francois Dugast wrote:
-> > Expose the masks of L3 banks and of L3 nodes to user space. L3 count is not
-> > sufficient because in some configuration not all banks are enabled, so user
-> > space needs to know which ones.
+On Fri, Jan 26, 2024 at 11:32:57AM +0100, Christian König wrote:
+> Am 25.01.24 um 18:30 schrieb Matthew Brost:
+> > On Thu, Jan 25, 2024 at 04:12:58PM +0100, Christian König wrote:
+> > > 
+> > > Am 24.01.24 um 22:08 schrieb Matthew Brost:
+> > > > All entities must be drained in the DRM scheduler run job worker to
+> > > > avoid the following case. An entity found that is ready, no job found
+> > > > ready on entity, and run job worker goes idle with other entities + jobs
+> > > > ready. Draining all ready entities (i.e. loop over all ready entities)
+> > > > in the run job worker ensures all job that are ready will be scheduled.
+> > > That doesn't make sense. drm_sched_select_entity() only returns entities
+> > > which are "ready", e.g. have a job to run.
+> > > 
+> > That is what I thought too, hence my original design but it is not
+> > exactly true. Let me explain.
 > > 
-> > Bspec: 52545, 52546, 62482
-> > Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+> > drm_sched_select_entity() returns an entity with a non-empty spsc queue
+> > (job in queue) and no *current* waiting dependecies [1]. Dependecies for
+> > an entity can be added when drm_sched_entity_pop_job() is called [2][3]
+> > returning a NULL job. Thus we can get into a scenario where 2 entities
+> > A and B both have jobs and no current dependecies. A's job is waiting
+> > B's job, entity A gets selected first, a dependecy gets installed in
+> > drm_sched_entity_pop_job(), run work goes idle, and now we deadlock.
 > 
-> these are reserved for fixes, not feature additions. Particularly ones
-> adding UAPI, we don't want to rush it in the current kernel.
+> And here is the real problem. run work doesn't goes idle in that moment.
 > 
-> +Matt Roper
+> drm_sched_run_job_work() should restarts itself until there is either no
+> more space in the ring buffer or it can't find a ready entity any more.
+> 
+> At least that was the original design when that was all still driven by a
+> kthread.
+> 
+> It can perfectly be that we messed this up when switching from kthread to a
+> work item.
+> 
 
-Sure, the "Fixes: " will be removed in the next revision.
+Right, that what this patch does - the run worker does not go idle until
+no ready entities are found. That was incorrect in the original patch
+and fixed here. Do you have any issues with this fix? It has been tested
+3x times and clearly fixes the issue. 
 
-Francois
+Matt
 
+> Regards,
+> Christian.
 > 
-> > Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-> > Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> > Cc: Robert Krzemien <robert.krzemien@intel.com>
-> > ---
-> > drivers/gpu/drm/xe/regs/xe_gt_regs.h |  1 +
-> > drivers/gpu/drm/xe/xe_gt_topology.c  | 38 ++++++++++++++++++++++++++++
-> > drivers/gpu/drm/xe/xe_gt_types.h     | 14 ++++++++--
-> > drivers/gpu/drm/xe/xe_query.c        | 20 +++++++++++++--
-> > include/uapi/drm/xe_drm.h            |  2 ++
-> > 5 files changed, 71 insertions(+), 4 deletions(-)
 > > 
-> > diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> > index cd27480f6486..f8606649d1e2 100644
-> > --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> > +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> > @@ -156,6 +156,7 @@
-> > #define	MIRROR_FUSE3				XE_REG(0x9118)
-> > #define   XE2_NODE_ENABLE_MASK			REG_GENMASK(31, 16)
-> > #define   L3BANK_PAIR_COUNT			4
-> > +#define   L3MODE_MASK				REG_GENMASK(7, 4)
+> > The proper solution is to loop over all ready entities until one with a
+> > job is found via drm_sched_entity_pop_job() and then requeue the run
+> > job worker. Or loop over all entities until drm_sched_select_entity()
+> > returns NULL and then let the run job worker go idle. This is what the
+> > old threaded design did too [4]. Hope this clears everything up.
+> > 
+> > Matt
+> > 
+> > [1] https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/scheduler/sched_entity.c#L144
+> > [2] https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/scheduler/sched_entity.c#L464
+> > [3] https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/scheduler/sched_entity.c#L397
+> > [4] https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/scheduler/sched_main.c#L1011
+> > 
+> > > If that's not the case any more then you have broken something else.
+> > > 
+> > > Regards,
+> > > Christian.
+> > > 
+> > > > Cc: Thorsten Leemhuis <regressions@leemhuis.info>
+> > > > Reported-by: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
+> > > > Closes: https://lore.kernel.org/all/CABXGCsM2VLs489CH-vF-1539-s3in37=bwuOWtoeeE+q26zE+Q@mail.gmail.com/
+> > > > Reported-and-tested-by: Mario Limonciello <mario.limonciello@amd.com>
+> > > > Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3124
+> > > > Link: https://lore.kernel.org/all/20240123021155.2775-1-mario.limonciello@amd.com/
+> > > > Reported-by: Vlastimil Babka <vbabka@suse.cz>
+> > > > Closes: https://lore.kernel.org/dri-devel/05ddb2da-b182-4791-8ef7-82179fd159a8@amd.com/T/#m0c31d4d1b9ae9995bb880974c4f1dbaddc33a48a
+> > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > > > ---
+> > > >    drivers/gpu/drm/scheduler/sched_main.c | 15 +++++++--------
+> > > >    1 file changed, 7 insertions(+), 8 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+> > > > index 550492a7a031..85f082396d42 100644
+> > > > --- a/drivers/gpu/drm/scheduler/sched_main.c
+> > > > +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> > > > @@ -1178,21 +1178,20 @@ static void drm_sched_run_job_work(struct work_struct *w)
+> > > >    	struct drm_sched_entity *entity;
+> > > >    	struct dma_fence *fence;
+> > > >    	struct drm_sched_fence *s_fence;
+> > > > -	struct drm_sched_job *sched_job;
+> > > > +	struct drm_sched_job *sched_job = NULL;
+> > > >    	int r;
+> > > >    	if (READ_ONCE(sched->pause_submit))
+> > > >    		return;
+> > > > -	entity = drm_sched_select_entity(sched);
+> > > > +	/* Find entity with a ready job */
+> > > > +	while (!sched_job && (entity = drm_sched_select_entity(sched))) {
+> > > > +		sched_job = drm_sched_entity_pop_job(entity);
+> > > > +		if (!sched_job)
+> > > > +			complete_all(&entity->entity_idle);
+> > > > +	}
+> > > >    	if (!entity)
+> > > > -		return;
+> > > > -
+> > > > -	sched_job = drm_sched_entity_pop_job(entity);
+> > > > -	if (!sched_job) {
+> > > > -		complete_all(&entity->entity_idle);
+> > > >    		return;	/* No more work */
+> > > > -	}
+> > > >    	s_fence = sched_job->s_fence;
 > 
-> is this supposed to be L3*N*ODE_MASK?
-> 
-> 
-> Lucas De Marchi
-> 
-> > #define   L3BANK_MASK				REG_GENMASK(3, 0)
-> > /* on Xe_HP the same fuses indicates mslices instead of L3 banks */
-> > #define   MAX_MSLICES				4
-> > diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
-> > index a8d7f272c30a..6f4cf147a7aa 100644
-> > --- a/drivers/gpu/drm/xe/xe_gt_topology.c
-> > +++ b/drivers/gpu/drm/xe/xe_gt_topology.c
-> > @@ -13,6 +13,8 @@
-> > 
-> > #define XE_MAX_DSS_FUSE_BITS (32 * XE_MAX_DSS_FUSE_REGS)
-> > #define XE_MAX_EU_FUSE_BITS (32 * XE_MAX_EU_FUSE_REGS)
-> > +#define XE_MAX_L3_BANK_FUSE_BITS (32 * XE_MAX_L3_BANK_FUSE_REGS)
-> > +#define XE_MAX_L3_NODE_FUSE_BITS (32 * XE_MAX_L3_NODE_FUSE_REGS)
-> > 
-> > static void
-> > load_dss_mask(struct xe_gt *gt, xe_dss_mask_t mask, int numregs, ...)
-> > @@ -62,6 +64,36 @@ load_eu_mask(struct xe_gt *gt, xe_eu_mask_t mask)
-> > 	bitmap_from_arr32(mask, &val, XE_MAX_EU_FUSE_BITS);
-> > }
-> > 
-> > +static void
-> > +load_l3_masks(struct xe_gt *gt, xe_l3_bank_mask_t l3_bank_mask,
-> > +	      xe_l3_node_mask_t l3_node_mask)
-> > +{
-> > +	u32 bank, node;
-> > +
-> > +	if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 1270) {
-> > +		node = REG_FIELD_GET(MEML3_EN_MASK,
-> > +				     xe_mmio_read32(gt, MIRROR_FUSE3));
-> > +		bank = REG_FIELD_GET(GT_L3_EXC_MASK,
-> > +				     xe_mmio_read32(gt, XEHP_FUSE4));
-> > +	} else if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 1250) {
-> > +		node = REG_FIELD_GET(MEML3_EN_MASK,
-> > +				     xe_mmio_read32(gt, MIRROR_FUSE3));
-> > +		bank = REG_FIELD_GET(L3MODE_MASK,
-> > +				     xe_mmio_read32(gt, MIRROR_FUSE3));
-> > +	} else {
-> > +		/*
-> > +		 * Here the mask logic is reversed: a bit is set if the bank is
-> > +		 * disabled.
-> > +		 */
-> > +		bank = REG_FIELD_GET(L3BANK_MASK,
-> > +				     ~xe_mmio_read32(gt, MIRROR_FUSE3));
-> > +		node = 0; /* Unused */
-> > +	}
-> > +
-> > +	bitmap_from_arr32(l3_bank_mask, &bank, XE_MAX_L3_BANK_FUSE_BITS);
-> > +	bitmap_from_arr32(l3_node_mask, &node, XE_MAX_L3_NODE_FUSE_BITS);
-> > +}
-> > +
-> > static void
-> > get_num_dss_regs(struct xe_device *xe, int *geometry_regs, int *compute_regs)
-> > {
-> > @@ -106,6 +138,8 @@ xe_gt_topology_init(struct xe_gt *gt)
-> > 		      XEHPC_GT_COMPUTE_DSS_ENABLE_EXT,
-> > 		      XE2_GT_COMPUTE_DSS_2);
-> > 	load_eu_mask(gt, gt->fuse_topo.eu_mask_per_dss);
-> > +	load_l3_masks(gt, gt->fuse_topo.l3_bank_mask,
-> > +		      gt->fuse_topo.l3_node_mask);
-> > 
-> > 	xe_gt_topology_dump(gt, &p);
-> > }
-> > @@ -121,6 +155,10 @@ xe_gt_topology_dump(struct xe_gt *gt, struct drm_printer *p)
-> > 	drm_printf(p, "EU mask per DSS:     %*pb\n", XE_MAX_EU_FUSE_BITS,
-> > 		   gt->fuse_topo.eu_mask_per_dss);
-> > 
-> > +	drm_printf(p, "L3 bank mask:        %*pb\n", XE_MAX_L3_BANK_FUSE_BITS,
-> > +		   gt->fuse_topo.l3_bank_mask);
-> > +	drm_printf(p, "L3 node mask:        %*pb\n", XE_MAX_L3_NODE_FUSE_BITS,
-> > +		   gt->fuse_topo.l3_node_mask);
-> > }
-> > 
-> > /*
-> > diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-> > index 70c615dd1498..adb1de613e77 100644
-> > --- a/drivers/gpu/drm/xe/xe_gt_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_gt_types.h
-> > @@ -24,11 +24,15 @@ enum xe_gt_type {
-> > 	XE_GT_TYPE_MEDIA,
-> > };
-> > 
-> > -#define XE_MAX_DSS_FUSE_REGS	3
-> > -#define XE_MAX_EU_FUSE_REGS	1
-> > +#define XE_MAX_DSS_FUSE_REGS		3
-> > +#define XE_MAX_EU_FUSE_REGS		1
-> > +#define XE_MAX_L3_BANK_FUSE_REGS	1
-> > +#define XE_MAX_L3_NODE_FUSE_REGS	1
-> > 
-> > typedef unsigned long xe_dss_mask_t[BITS_TO_LONGS(32 * XE_MAX_DSS_FUSE_REGS)];
-> > typedef unsigned long xe_eu_mask_t[BITS_TO_LONGS(32 * XE_MAX_EU_FUSE_REGS)];
-> > +typedef unsigned long xe_l3_bank_mask_t[BITS_TO_LONGS(32 * XE_MAX_L3_BANK_FUSE_REGS)];
-> > +typedef unsigned long xe_l3_node_mask_t[BITS_TO_LONGS(32 * XE_MAX_L3_NODE_FUSE_REGS)];
-> > 
-> > struct xe_mmio_range {
-> > 	u32 start;
-> > @@ -332,6 +336,12 @@ struct xe_gt {
-> > 
-> > 		/** @fuse_topo.eu_mask_per_dss: EU mask per DSS*/
-> > 		xe_eu_mask_t eu_mask_per_dss;
-> > +
-> > +		/** @l3_bank_mask: L3 bank mask */
-> > +		xe_l3_bank_mask_t l3_bank_mask;
-> > +
-> > +		/** @l3_node_mask: L3 node mask */
-> > +		xe_l3_node_mask_t l3_node_mask;
-> > 	} fuse_topo;
-> > 
-> > 	/** @steering: register steering for individual HW units */
-> > diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-> > index 9b35673b286c..fe3906e8f721 100644
-> > --- a/drivers/gpu/drm/xe/xe_query.c
-> > +++ b/drivers/gpu/drm/xe/xe_query.c
-> > @@ -453,10 +453,12 @@ static int query_hwconfig(struct xe_device *xe,
-> > static size_t calc_topo_query_size(struct xe_device *xe)
-> > {
-> > 	return xe->info.gt_count *
-> > -		(3 * sizeof(struct drm_xe_query_topology_mask) +
-> > +		(5 * sizeof(struct drm_xe_query_topology_mask) +
-> > 		 sizeof_field(struct xe_gt, fuse_topo.g_dss_mask) +
-> > 		 sizeof_field(struct xe_gt, fuse_topo.c_dss_mask) +
-> > -		 sizeof_field(struct xe_gt, fuse_topo.eu_mask_per_dss));
-> > +		 sizeof_field(struct xe_gt, fuse_topo.eu_mask_per_dss) +
-> > +		 sizeof_field(struct xe_gt, fuse_topo.l3_bank_mask) +
-> > +		 sizeof_field(struct xe_gt, fuse_topo.l3_node_mask));
-> > }
-> > 
-> > static void __user *copy_mask(void __user *ptr,
-> > @@ -515,6 +517,20 @@ static int query_gt_topology(struct xe_device *xe,
-> > 				      sizeof(gt->fuse_topo.eu_mask_per_dss));
-> > 		if (IS_ERR(query_ptr))
-> > 			return PTR_ERR(query_ptr);
-> > +
-> > +		topo.type = DRM_XE_TOPO_L3_BANK;
-> > +		query_ptr = copy_mask(query_ptr, &topo,
-> > +				      gt->fuse_topo.l3_bank_mask,
-> > +				      sizeof(gt->fuse_topo.l3_bank_mask));
-> > +		if (IS_ERR(query_ptr))
-> > +			return PTR_ERR(query_ptr);
-> > +
-> > +		topo.type = DRM_XE_TOPO_L3_NODE;
-> > +		query_ptr = copy_mask(query_ptr, &topo,
-> > +				      gt->fuse_topo.l3_node_mask,
-> > +				      sizeof(gt->fuse_topo.l3_node_mask));
-> > +		if (IS_ERR(query_ptr))
-> > +			return PTR_ERR(query_ptr);
-> > 	}
-> > 
-> > 	return 0;
-> > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> > index 50bbea0992d9..eca8f5f502c3 100644
-> > --- a/include/uapi/drm/xe_drm.h
-> > +++ b/include/uapi/drm/xe_drm.h
-> > @@ -513,6 +513,8 @@ struct drm_xe_query_topology_mask {
-> > #define DRM_XE_TOPO_DSS_GEOMETRY	(1 << 0)
-> > #define DRM_XE_TOPO_DSS_COMPUTE		(1 << 1)
-> > #define DRM_XE_TOPO_EU_PER_DSS		(1 << 2)
-> > +#define DRM_XE_TOPO_L3_BANK		(1 << 3)
-> > +#define DRM_XE_TOPO_L3_NODE		(1 << 4)
-> > 	/** @type: type of mask */
-> > 	__u16 type;
-> > 
-> > -- 
-> > 2.34.1
-> > 
