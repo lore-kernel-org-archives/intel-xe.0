@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C72BDC47DA9
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Jan 2024 21:18:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E83F9C47DB3
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Jan 2024 21:18:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 800B1112B52;
-	Mon, 29 Jan 2024 21:18:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A74AB112B2C;
+	Mon, 29 Jan 2024 21:18:42 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B1B7112B4E;
- Mon, 29 Jan 2024 21:18:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC022112B2C;
+ Mon, 29 Jan 2024 21:18:41 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Use_functi?=
- =?utf-8?q?on_to_emit_PIPE=5FCONTROL?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Use_function_to?=
+ =?utf-8?q?_emit_PIPE=5FCONTROL?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Date: Mon, 29 Jan 2024 21:18:30 -0000
-Message-ID: <170656311004.806401.5621655475481976334@5338d5abeb45>
+Date: Mon, 29 Jan 2024 21:18:41 -0000
+Message-ID: <170656312183.806401.15650382884690523292@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240129211509.325973-1-jose.souza@intel.com>
 In-Reply-To: <20240129211509.325973-1-jose.souza@intel.com>
@@ -48,9 +48,30 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: f4c0dac89 drm-tip: 2024y-01m-29d-16h-56m-05s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Use function to emit PIPE_CONTROL
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+35591fb8b4d5305b37ce31483f85ac0956eaa536
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit febdb31d2f540ef535c3628aa1b6ebc06a5846c3
+Author: José Roberto de Souza <jose.souza@intel.com>
+Date:   Mon Jan 29 13:15:09 2024 -0800
+
+    drm/xe: Use function to emit PIPE_CONTROL
+    
+    This reduces code duplication in xe_ring_ops.
+    
+    v2:
+    - fix flags of emit_pipe_imm_ggtt()
+    - reduce to only one function
+    
+    Cc: Matt Roper <matthew.d.roper@intel.com>
+    Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
++ /mt/dim checkpatch f4c0dac89bd3cd02a1afe5e7a91ed4bf8de4afc6 drm-intel
+febdb31d2 drm/xe: Use function to emit PIPE_CONTROL
 
 
