@@ -4,151 +4,126 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 965C8C47DDB
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Jan 2024 19:01:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D01EC47DDB
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Jan 2024 19:04:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F34D10F7C2;
-	Mon, 29 Jan 2024 19:01:19 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D20710F7C2
- for <intel-xe@lists.freedesktop.org>; Mon, 29 Jan 2024 19:01:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706554877; x=1738090877;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-id:content-transfer-encoding:mime-version;
- bh=Y5XtvkmHauWr29FeS2inMFcwdf327gjSkh3VZ/dSWW0=;
- b=NpwWCFSoxYl5aR+kPD9jsoz+cwwTn9/zeacFOL4P1u24S8wyq9kZI2TK
- dMhQG34owL8i+lYblt2mY8aMNJzqYm3ntqfk58oKtPbqFCDbXEs/vEBqK
- zeNa4sbB+WpWWWpNfcIupyKtc23/VgiFSNDJIGxlRBPj3HFiE2aoYJxZh
- O0sfAuwibi8UvHWBSd8i+gxCuFABtr6g3Yt8XfMH4Lw/Tcbfyc+H+Hs29
- UuCwKSxunhm1ejswbLZZZBFjGz1J0toYKnyZFyIwyW1eMqq33qiQ6aSNQ
- ra3R2y/2FbZMiW3KE1f0TYikGcrFZLKo5t4VxwSoR2+xj/lGHBE0hAiTy Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="401928387"
-X-IronPort-AV: E=Sophos;i="6.05,227,1701158400"; d="scan'208";a="401928387"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2024 11:01:16 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,227,1701158400"; d="scan'208";a="36240876"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 29 Jan 2024 11:01:17 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 29 Jan 2024 11:01:16 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Mon, 29 Jan 2024 11:01:16 -0800
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Mon, 29 Jan 2024 11:01:16 -0800
+	by gabe.freedesktop.org (Postfix) with ESMTP id B373510F6F5;
+	Mon, 29 Jan 2024 19:04:04 +0000 (UTC)
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam04on2070.outbound.protection.outlook.com [40.107.101.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E70910F6F5;
+ Mon, 29 Jan 2024 19:04:04 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iHrdGXIUF8TKzFzjTdwz1p/LuBxuwSXYehKeZm0sL2/FE/OtRlrV4s90l1InBpE2wjk6ib0LgimYL9JdGyGFejMV3Z0gebGmC0oVAcDxKD6/r27tX9avUraj8HxrPS7jft1dtlELQmmCYX1K2dtjgglSRi9YIN1lMwJQsGttLGLRFPx6ttduX3fFENdRU7dwmabvcw1GTqACVyaHMi1+iRZ1TU4uUkmMRHdPdCSXAkraXHerMSwyOOx/5xD8XLEHA0bJwfwIhSQPbs4e19/g5o7rrOrgRm786ZQa7YowZWsBBKEaTK+JscOVuYsL6dMsSoE5BHWj7F4PgYQNbGGG9w==
+ b=Uc246UFrf3CCGbOhXLGpibFXwsw3CS9Y38OmqDGidAlnItPhlyg0TLMR1wxqqvBnKu/Rfa2wPIp6SO6UxO8tIa3J0fuM+1vsF75k3THfTaR2Rb1mPdW+xdEQulMh00a77RDDRIim52gcxEC7VqH/jIiQwvp9InsT1AD6RN2GKa5cH8W5gAk2ShtLCpzO5goYiPZdfh+sH9SM8fELVEg2s0T00uFtAzcjOwBEroI3ME5GbKGfZtgvgIyBv8u+D6+SXQJHeK8ZOrylYyEVuAcOyu+IrxfGXIsgfdixyuJPA2D6iGTj/Nz/fo1omZen0dRQd5mcsLtdiRq7i7+pkrSVXw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Y5XtvkmHauWr29FeS2inMFcwdf327gjSkh3VZ/dSWW0=;
- b=U9ZbvMRrcO28RyLWMmErMXZKyP+Fk+/LNVG8WvdsbheGfYo+Rzrhl+Tpav6Q75LwJfqwxOScxdTkGpn99ySNCrMA9+ccgN4D99y+bJMG9ZZNu45ZOKdNyep/dXTr995VlLKyirgMsc7vTUvW2jg2avSBcm+m7kQD6E/kqTcAoiyaxq4SAjSh1pZfus5c4mx7WJb1Ed0pR3faNeX21ZIclUKQM1nU4EZTnndTSnZNXp2JcjlPZJVVdUwnCD4OGeEftIaycHOT/Or+riM/etmrVRjp3GT9s3RpjKt1ySOwrT4TXLKT0Ci0e4qWV1YXxiQE20k3LWm1FOrgHOpvhzmO6g==
+ bh=72yolwchaf027zXYk4iD8Xkn9YQU48CZAnF87BVKyIg=;
+ b=Wi1J49TJNNrKKuh7TtiRmj3jY2q9GllMaZaH6DKP2CB1a88ff1a4jUY+U3qqGxdh7hRPzzul5N6ABDk2hqAcOqF1JqlZk9GvvaqPDc2PkGix0QrM1T01+8aj85Ukm6E83oOfUATHQ9SkNatM8Vi0StuZenUJIqCVC2Z8ib93wqXk9Koyptcup9K3GL7058up+3SgpaRa5yZx7DZ89xBFFuBNqymzGbd/ISNS/7ZB7+BK8P1BZcOVUpK9t1Q2JtUkuzmRz3B1rWic7C0i7r/y4qDL/wp7H+IYeBUmML2UNJQLml9PmEpYMILggBZckpBf4ggIW9s+vqOBWXoVgSKvbA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by CO1PR11MB5041.namprd11.prod.outlook.com (2603:10b6:303:90::16)
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=72yolwchaf027zXYk4iD8Xkn9YQU48CZAnF87BVKyIg=;
+ b=GCV/qerNvAEojJCUFIcEdDJSeW+oAGM/yBrMK8OnycHuJMT3kI165T/EGVMSNr52asmE6gxnboRnOCQUbgWX9iHwNkB+fp+BnRpcdVohfqZrZfu8g4T00Ix1gY259bj2n99QFcooHSi+ar4kSxzuk7HiJTLWFt9YmgrPC/QBg1M=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by MN2PR12MB4487.namprd12.prod.outlook.com (2603:10b6:208:264::14)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.32; Mon, 29 Jan
- 2024 19:01:12 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::a7f1:384c:5d93:1d1d]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::a7f1:384c:5d93:1d1d%4]) with mapi id 15.20.7228.029; Mon, 29 Jan 2024
- 19:01:12 +0000
-From: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
-To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Knop, 
- Ryszard" <ryszard.knop@intel.com>, "Gupta, Anshuman"
- <anshuman.gupta@intel.com>, "Auld, Matthew" <matthew.auld@intel.com>,
- "Musial, Ewelina" <ewelina.musial@intel.com>
-Subject: Re: [RFC 34/34] drm/xe: Enable D3Cold on 'low' VRAM utilization
-Thread-Topic: [RFC 34/34] drm/xe: Enable D3Cold on 'low' VRAM utilization
-Thread-Index: AQHaUJbLp5yV818hZkCRPdNtvBe49bDwt5GAgAByTYA=
-Date: Mon, 29 Jan 2024 19:01:11 +0000
-Message-ID: <f45349d57090d1ccdb22acbd94963a104afded9e.camel@intel.com>
-References: <20240126203044.1104705-1-rodrigo.vivi@intel.com>
- <20240126203044.1104705-35-rodrigo.vivi@intel.com>
- <edf5e029-a310-4bd5-ac06-8d42dd389c9a@intel.com>
-In-Reply-To: <edf5e029-a310-4bd5-ac06-8d42dd389c9a@intel.com>
-Accept-Language: en-US
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.34; Mon, 29 Jan
+ 2024 19:04:01 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::e1fb:4123:48b1:653]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::e1fb:4123:48b1:653%4]) with mapi id 15.20.7228.029; Mon, 29 Jan 2024
+ 19:04:01 +0000
+Message-ID: <e47189d5-d120-4ee6-9096-c53ebb93490b@amd.com>
+Date: Mon, 29 Jan 2024 20:03:42 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: Making drm_gpuvm work across gpu devices
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.48.4 (3.48.4-1.fc38) 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MN0PR11MB6059:EE_|CO1PR11MB5041:EE_
-x-ms-office365-filtering-correlation-id: d609a977-b51b-4a5c-6955-08dc20fca90f
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: HVdYeDIVTArUF4I+Di2I1nx7lvlC44Qu7h/rxkDc5iput5Np34P5ISaKxB+M6QrQqtvbX6WDM0OKfnG2eDhReqMmWdRqyuPJpFeiT3rVXMdLizuYwH/FffJVKeRJ7gc7M4DLUsEZeUK4zh6VhBfOWaae4ENyAasDWSyzJMZsa1F6OL5eTzLLnCsQjLPaklXhhamUzx+9/6R5oFYlGL7FgvQ3fIh4KNlLywWgqUkoUD4ef5wDMWx36KjaVNGkC5MyZswTvhj10OLUHbFrAwKhNiRpVj7nys/ndRjzKefg+NtH7zxYx+zZwMsBT4/LO6Cu5bc39BqLzk+zj5akVfgpzY7JUuJLMy2oPVQ2V48tmEn1KRW+zvqxI9e72qho/WJ+fzOKQrD5cfNGO1f4DpgZDU7ZdKc7t+XhHH+SwBJVnZ4PvV0UFfThe4XPGYOxs5zNLAxeJBRmAwSdYrN1SrPzTiLzrraeFi2vXRaxq/jvmlk1p8NpOq1jzy/7pfMwYmSxiMsIh9zRBqBa0A755/dkuVdLjRc5uYcJDJNKOYosLLHf0CdyvioNs/8a4g6yZMN/gHqvzOsZdlA0cDVf3JaihrXSkQZ0db3nBYU4HFpRsjcWaW2mcYJTUHS6o8wI7OuFh+3FKyCYJd5G3u0+bXNTjg==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(136003)(376002)(396003)(366004)(39860400002)(346002)(230922051799003)(64100799003)(1800799012)(451199024)(186009)(83380400001)(82960400001)(86362001)(36756003)(38070700009)(122000001)(38100700002)(26005)(6636002)(2616005)(6512007)(66556008)(66446008)(53546011)(6506007)(2906002)(6486002)(8676002)(478600001)(110136005)(76116006)(316002)(64756008)(66946007)(71200400001)(41300700001)(66476007)(8936002)(5660300002)(32563001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?TVZvYUxPK3V5S3p0NVhZODE4cWY0L1dSaXB6ajNzNm1JWWRJelkwOG9xbGlF?=
- =?utf-8?B?Wjc2N3hrQXlMalZVU0FyM0NHaWx4YlhmMHdLME8vYkErWG43L1lQUkQ3cVdj?=
- =?utf-8?B?eWZ5ZDArOFRoMEdBMGRPYm9UdjYwNHo2MHVCejBpekxXRW42R0ZicDExU3FP?=
- =?utf-8?B?VFZIL0M4S3JwNXZ5eFNzV1UxZXV4UW0yUTNCV0FZaXIvM1FiRzRTb3hyMXpl?=
- =?utf-8?B?cGVMNXY1Yks3ZnhVR1U1bi9iQjk4ZGs2dnlUYmJZQmxzZDZ6N1RXRWJiSVVP?=
- =?utf-8?B?Ui9Lb2EwYVRsYzNpakoxN2VYTDZUQ0xwOSt1RjM1bzdndmppWFlLTGlBV3V2?=
- =?utf-8?B?cVRiU2trNmZZcnZuUzRoWC9XYTNFRDBLUnVTbEIzemVUM3JUbG5PYnV0dGRx?=
- =?utf-8?B?aEdqdDJ6RGdNbTdpRXUwN1dTNWhRRW9pc2dkdnEwUFJtYmRKalMxREVyZEgw?=
- =?utf-8?B?V1ZvQzkxU2k5NzVBd3Rhd09HSVFzOUhhdWMwbGNhb095dUxuNFpJWm5Xcitz?=
- =?utf-8?B?YVlHS3ptaUo4Tkk1SEZJK3BwSTRlK3VzRU9QUWp1WGdCU1lIRW5Mb2ZkRDFa?=
- =?utf-8?B?Ky9MVVpFZFZYZFhlYll6aXYwOHI2bVBYVDZlTjVib1lnN0ZVSDRvVGJUaFFu?=
- =?utf-8?B?MnArOVI3Q3Z2QU1UKzd3TUU5Ky9lZ0IwVTNpU2pTVGM4d29oajZBZWQzcy9M?=
- =?utf-8?B?Q0FxblFFY2cvSXdoZWt1WEh1VlcxZ1g0cCttS0ZNQXhzaTgyME1sb2ZKaUFF?=
- =?utf-8?B?L202Ukc2Qzd5SCtCd2RJb3dsWmJ5MENhdjRaUjIxRVRreUJMRGM2ejNnSENw?=
- =?utf-8?B?OERyS0pVMmlqekE0ZkJ3c2dlMkxCQ0F4LzVBdzErbzM4ZDVOL3hPNVhiNEcr?=
- =?utf-8?B?ZTZIbERqd3J0emF1ZXoyVmlrbGV4LzFPUUwwWUVoR2pueGZtRHRSTjkrVXBT?=
- =?utf-8?B?YmF2Y3pka0ZaZ2d1MUVydjF0dHZMK3pBMmpscE80bXNmMExaQktDSkFvYk5u?=
- =?utf-8?B?dWRPWGg2QVFKbnlQVHcySjZMUko3bEx3K0Q0citKVGhicVVKZmRwT2FTbzA1?=
- =?utf-8?B?Z2dIQU5nOHlNODRtby93ZkVtV1pWZE9YZE1tM21vT2w3MFNkQjFnYVZYTElC?=
- =?utf-8?B?cUQzdW5nY2JmcmFmdlhCdXpEWE5BdjhYaUNQN3hMbHRIVTlPL1laZ2RtNXU0?=
- =?utf-8?B?VjM1cTFRcE9lN21xNngzQk1xSlVheGlmNWFJUURCVXNPSWs2U1FOZjhqaDFr?=
- =?utf-8?B?NGNlVnVBRytaall1VDJIRkNUWWNYZUpUTFE1TVBvV01XTlZINnNXMHVTcjAz?=
- =?utf-8?B?K0Q2ZlpHRWdGdDhHQjN4dUNkb0RZZGpvckszeE1mS2lqZFI2aitoMW90WEpj?=
- =?utf-8?B?V1FaY2tEU1kwYUV4ZnU1WkgrenpQMEhGSjBuRm1FWlJtOFREV0s0WmdJQXZF?=
- =?utf-8?B?MXdPOGp6U3lSSXl3SGVUdk1BZCtJRDdWL0VKQllFYVlVd2ptVzZDbmZtOC9m?=
- =?utf-8?B?WWZFalNMbjdQNDhMYkpCNWYyUWtiYUYydU5WRDVzdk9xb3orQll0OEJ1Yk5F?=
- =?utf-8?B?MUFRMU5FUG9XekpIVWNVZ2NJMkpJKy85NEpmaXJHUXB0eEg2NW55VGJlS1o2?=
- =?utf-8?B?c21uLzRKdDZGRWZvK1hyV0dPeDNvbC9BQnZvTnBvL1hXcGNhMUhaL2V5aEhS?=
- =?utf-8?B?WUpzcmwwWHNLM2xqblZmcG1oT0N6NUZvRVN4YnU4LzB0YmlpUjZBcFczQ08y?=
- =?utf-8?B?RWdUQTZRa1E3a2xDWHQ3NUdMdnF3Y0FFU2M1bTdQajVoR0FMSFhlSUlCU3Nq?=
- =?utf-8?B?dmdEZXA3bDZmYmtFYWwrZnpKMHRGK3ZDWUFiQ2lLRWRjL20yY0Y1NFF1YUh1?=
- =?utf-8?B?clVzWjZHN2NyZXRBZ1p1dlA0Zy9GNEtWbDJtR28xVFBTQitSRmpuNW1nOXZp?=
- =?utf-8?B?S3A4S0hQRDluaWpabE9ub0Nocy90RDJhTWgvZFFVbkE4YlJKK1REQWg3emxv?=
- =?utf-8?B?THd3bExNSSt1QWt4Q0NnQW43OUtCOXhQK0tWNG4yamxCQmtDc3g3NS9xdUtl?=
- =?utf-8?B?ZlJOWjhhY3dUUmk2Y2JISU1ZVWhSZlRNcjZydXNqKzhmMnRsNmJneit2RkU4?=
- =?utf-8?B?UnB2MFQvUUsxYlJZM2JYbkoxZWRjdUtMdTlJNFoyOUxhUEg3dTFqdGkvY1ZL?=
- =?utf-8?B?WkE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <FEDED0CBB39D1142A163042F353F9699@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+To: Felix Kuehling <felix.kuehling@amd.com>, Daniel Vetter <daniel@ffwll.ch>
+References: <20240117221223.18540-1-oak.zeng@intel.com>
+ <20240117221223.18540-22-oak.zeng@intel.com>
+ <ad21ec11-a9cb-4fb2-b9fd-00a4fa11525f@intel.com>
+ <PH7PR11MB70049E7E6A2F40BF6282ECC292742@PH7PR11MB7004.namprd11.prod.outlook.com>
+ <PH7PR11MB700440CE88BC0A94CFF8499792742@PH7PR11MB7004.namprd11.prod.outlook.com>
+ <2928ce36-06a6-4bee-b115-8dd61cc41dca@amd.com>
+ <SA1PR11MB699192584C01A26C781E2F9992742@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <ccf34f6a-d704-43de-a15e-2ae2890f9381@amd.com>
+ <ZbKpWpOGuNKLJ6sA@phenom.ffwll.local>
+ <a3a5d6b3-3aa6-4d94-90e8-a6b4b8eeb3a2@amd.com>
+ <7db48b59-f4cc-4b32-88c8-6461a7470b63@amd.com>
+ <3e795468-1779-4100-a706-85be323e69f2@amd.com>
+ <2444da7e-be62-4538-b42e-b234c763f3bd@amd.com>
+ <39b5adbc-0d3f-4e34-9ede-12d6542ff892@amd.com>
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <39b5adbc-0d3f-4e34-9ede-12d6542ff892@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SJ0PR05CA0178.namprd05.prod.outlook.com
+ (2603:10b6:a03:339::33) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|MN2PR12MB4487:EE_
+X-MS-Office365-Filtering-Correlation-Id: dfe6139b-45fe-4eab-fd48-08dc20fd0db7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: T5b1/Sqk1Wxd2YTw8Di2VYpD6mjqjd3+8vtJN7U7cJ0YWpgTW9xRb0cIqndgugJgTqhKrObGFMhMU+TAOq0rLDdkFlkjl5SQNobMRR+REDuaKC+ptISo1QDRq4qPuL1XGGGKUUzIAP7lO6K+GjE2Xhmm+pB+27/suSmGzkF/0GnPzOiPupXv6GtILAnZd1OCFOBqEhpSi0bcYzC89YJhpNM14Moi7Agbk/pNrUlEH3IriSaXVQamTlTfkMjHU4OEr2FSBBYyL5iUu+xPKsxkX/mgXK0qPhpFWsvZbzz4jzmbjLgI75n/+/FLBSGDvL3SDsYsmotL6wPZ1xvBUMafgWfnY9SN6npn+/UbV9ZxwORhSPVO4ipUBGSwtZQWpUNQSpsudIBs+QAidUdhZ3FoME1OX3SeOq3glAhB8qZobOmzMs+zAWE4//DoAXwT7zEnj0/GFhpvCSzrO0eFfMawx+LuYzq+21IZ0MNI4qHXinI0jM2nBoLDzWum4qtN5LpsiMAv9Fkct2z9OokMg+we2KaSr0Y/aOQV6fpBg7pRPbpJyd6j2yF/z91yK5xrIDq5ID+NlMOBsXBneFmOoDEp5fHyt6YXhrDMeKGVGfJ/onf5cVZzTT380eJc6H9TH4NeDddRpO8LqsDNQ8nyiHZdlA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366004)(136003)(346002)(376002)(396003)(39860400002)(230922051799003)(64100799003)(186009)(451199024)(1800799012)(86362001)(31696002)(41300700001)(36756003)(83380400001)(38100700002)(478600001)(6486002)(8936002)(4326008)(8676002)(110136005)(54906003)(66556008)(316002)(66476007)(26005)(66946007)(53546011)(2906002)(66574015)(6506007)(2616005)(6666004)(7416002)(6512007)(5660300002)(31686004)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MnRLVW5uM05DOWgvc0lnTTc0U3FZeGFmWWZLZWxzQThWZUFuVE1KR2lnVksw?=
+ =?utf-8?B?Vkh4OTdwRk8rN3ZSMS9HWGRiMDgySmd2Wnl4L25PWGMrNmNHaG5ET1dLdFhl?=
+ =?utf-8?B?bTFxOEhyQTFNcUVmWGNGS2dNSUF2TzZoZjd6dWltUFZ3NVd0UXRhVEZYUnUr?=
+ =?utf-8?B?STA1Tk03TXNKRU9xc0V1bGtQcHo5YjRMN3JRckpXL2xSL25OaEt5NUJpcE1V?=
+ =?utf-8?B?bDQxOWJHdkgxR0w0d2VVclZQeTdSUW9QTE9UTDNOVWduUFlSZ2hxbHhDZWdu?=
+ =?utf-8?B?U29yY213blR4c2Q2Nk1hVmw1MWs4UDM3UUhVbm9XNnBtdXdPcUZtUnZ3RmI3?=
+ =?utf-8?B?VXJUYVpEdjZiVkdMM2R2am0rc2tVSXZRdmtjQXR1bTFkSm9CdUh0eGZpTmFZ?=
+ =?utf-8?B?NllWZHM5OW95ZUFBbzU3cXVsRGFkam04aVJtZGMvSWphRjdaaDJhNm16Wkc3?=
+ =?utf-8?B?R2VMZEt2Y29nNVdvdE01TEowc1VVRG1WWTM0R2hLMTFudnBaSlBTWWpZNTYw?=
+ =?utf-8?B?dVZILzBpVFEzVG9uOUIxVCtveEdqMFNKSHV1bkZwNzg4MG5QZGsrZnplTGV2?=
+ =?utf-8?B?NU1ZTHlCQlVtZmVaM1k0ZGVOZ2swUVVrVFc5MlFHN2QvOWZLRlZWejlIVTFo?=
+ =?utf-8?B?ZDNCQVdnK0VpV29uWmZJQmQ1VEt1YXhjR05tbEFqU2lPazlTeHk0QUtDY1NL?=
+ =?utf-8?B?YUdpVHl6OHdCTWMrMXI0OWtzZTk2azkydnpOVG1sRC9YQ2gvYnhlYkEzc3Mx?=
+ =?utf-8?B?czdVTGFJVnlaNjh1ekswRnIvanAvRTB6MzFxNVJaclhKNnRNSnVUdWZCNkVB?=
+ =?utf-8?B?bkxzZWdLYmNlTkR1RXdiaUlQQ25UWTRiQjZkWmozZ3kxK09vRlA2azJNenI3?=
+ =?utf-8?B?SEo0cHhWN3ZaR2RGQ2pDQW9Sd0dyOUhCaU93RzEzcnAxVUNKcWVDTDJuWEdj?=
+ =?utf-8?B?YXBmYUFDeGFqaTR4cDZsUmFQNllIWklGSHU1Y3pycDcraUpWSDVuT3NIMWZw?=
+ =?utf-8?B?bGxodTZiTjFqSkZBNXllZjZLNVBsazRDTVRBcU5MN0FaUWcvUUphU3pGODJH?=
+ =?utf-8?B?d1dhUzZ3aVlWeHhVZ001T0p6L0lkUktBUmhDS0t3K3l1R0ljMktqb0M4ZWRy?=
+ =?utf-8?B?dFNwRGZwMG9DSU5rUlJhVXFZeFlVMGsvbEJhNEtHT1daY3R3REJNVWc2aG9w?=
+ =?utf-8?B?WitQM1RFMTgyMVB6TUJYVVMxZFc5VGk5M29teGJ0ZmhUTDVIRlBuclFBcDVN?=
+ =?utf-8?B?NmZaV3RrQURoL2NvbDgrVG9ZZWVrbU4vb0k0MG1ubGZXakRjL0NsM2RxTnBH?=
+ =?utf-8?B?QnJWUTBmcm5hT3FNSU9jYU1zekE0MWdXZnYrbFcyZGlzTDRYN3V1UWhDd0tq?=
+ =?utf-8?B?YnNNTnp6ZDJQT3VMSWVGaGQvd0Q5MkdQVG1POHZoVGk3VVRpUHhvdk9iZ01L?=
+ =?utf-8?B?eExPa3pOaW1qRkM3WGVFOFNhTWI4RXJiVExjZ3RiUm1vaWQvMzQzd2hDc3do?=
+ =?utf-8?B?aDN2c2VlZHI1dXNaUVl3WnNxTUdyL3FVVE5yUUtPVnZuR2Y4T1hJQTkvMzdI?=
+ =?utf-8?B?c29KWEIrQkhaeTQ5V3B2MzRWUmVlVlRHVzg4dVpIblJ0ZFp5MGpTb1o3Q1I2?=
+ =?utf-8?B?MjQzMmJ1a2pNYUZleDFoMDl2OW1KM1RpaUl2MTBIUWYzZWVDYkF2WmhhNzFy?=
+ =?utf-8?B?OHpmbWZHNXhQWEh0R3R6SVJ2RDRNeEJHZGlkeTNjRmJWTzRxZ0trbGF0TjdZ?=
+ =?utf-8?B?UVJ3elFUVmhzRDJ1bXREbDJZZ05ZeEUyTEQ2aHNZM2tLcDc3WDNHMTZGeU04?=
+ =?utf-8?B?d0JKVkc0V3lxdHMzWG5SU2t1N3U1S3J4VzBrRjBzTFNlQlM2UFJaSUNNQzY0?=
+ =?utf-8?B?REh5SytnTnplV29DZ0Q2aHY5WmRjRVlwWG44OFB0NGxwY21JSnlaalJzeWwy?=
+ =?utf-8?B?ZlhNSFNPQ3k1dDBsTzNCYjQwWkUyTStkeGRuWW9uTTQrbTc4WU9SWEozZFZx?=
+ =?utf-8?B?UWtJNXJSREpsR1VHNkEzNzFDTm0yUytMbmxnL3dHdkhneGZzVXJzRUtYSzNX?=
+ =?utf-8?B?T1ZiYlVDcHp5OUgrYW1kWlZuanQ1blB1eVJ0Y0xJQjdVemlna2xYbEJGNC9Q?=
+ =?utf-8?Q?p+QZxMq7E0roNJCcd3lfMs4P4?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dfe6139b-45fe-4eab-fd48-08dc20fd0db7
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d609a977-b51b-4a5c-6955-08dc20fca90f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Jan 2024 19:01:11.9785 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: AIS9TG9T7b9HRfg0I3hdBuKbhgm4n7mQ1S9IqzO3vVGpug5VI1heViIUv4iEG9CorxPlx81upgFNAqA28IHC0g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5041
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2024 19:04:01.0914 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rmXfmdDPBPVmVzA3S86dSuLAa8VmSIX8v8Qk8f4RMET+K5DnCMmx/RHLQDadrH2k
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4487
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,48 +135,236 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Danilo Krummrich <dakr@redhat.com>, Dave Airlie <airlied@redhat.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAyMDI0LTAxLTI5IGF0IDEyOjEyICswMDAwLCBNYXR0aGV3IEF1bGQgd3JvdGU6DQo+
-IE9uIDI2LzAxLzIwMjQgMjA6MzAsIFJvZHJpZ28gVml2aSB3cm90ZToNCj4gPiBOb3cgdGhhdCB3
-ZSBlbGltaW5hdGVkIGFsbCB0aGUgbWVtX2FjY2VzcyBnZXQvcHV0IHdpdGggaXRzDQo+ID4gbG9j
-a2luZyBpc3N1ZXMgZnJvbSB0aGUgaW5uZXIgY2FsbHMgb2YgbWlncmF0aW9uLCB3ZSBjYW4NCj4g
-PiBhbGxvdyBEM0NvbGQuDQo+ID4gDQo+ID4gRW5hYmxlIGl0IHdoZW4gVlJBTSB1dGlsaXphdGlv
-biBpcyBsb3dlciB0aGVuIDMwME1iLiBPbg0KPiA+IGhpZ2hlciB1dGlsaXphdGlvbiB3ZSBvbmx5
-IGFsbG93IEQzaG90IHNvIHdlIGRvbid0IGluY3JlYXNlDQo+ID4gc28gbXVjaCB0aGUgbGF0ZW5j
-eSBvbiBydW50aW1lIHJlc3VtZSBkdWUgdG8gdGhlIG1lbW9yeQ0KPiA+IHJlc3RvcmF0aW9uLg0K
-PiANCj4gTm90ZSB0aGF0IG5vdGhpbmcgaW4gQ0kgaXMgZDNjb2xkIGNhcGFibGUgaXQgc2VlbXMs
-IHNvIHRoZXkgd2lsbA0KPiBuZXZlciANCj4gdHJpZ2dlciB0aGlzIHBhdGggQUZBSUsuIEFsbCBw
-bGF0Zm9ybXMgcmV0dXJuOg0KPiANCj4gW2RybTp4ZV9wY2lfcHJvYmUgW3hlXV0gZDNjb2xkOiBj
-YXBhYmxlPW5vDQoNCkJ1bW1lci4uLiA6Lw0KDQo+IA0KPiBJcyB0aGF0IGEgYnVnLCBvciBwZXJo
-YXBzIHRoZXJlIGlzIHNvbWV0aGluZyBlbHNlIG5lZWRlZD8NCg0KTm8sIGl0IGlzIG5vdCBhIGJ1
-ZywgaXQgaXMgYSBsaW1pdGF0aW9uIGluIHRoZSBERzIgcGFydHMgdGhhdCB3ZSBoYXZlDQppbiBv
-dXIgQ0kuIEFuc2h1bWFuLCBkbyB5b3Uga25vdyBleGFjdGx5IHdoeSB0aGVzZSBDSSBwYXJ0cyBh
-cmUgbGlrZQ0KdGhpcz8gYW5kIHdoYXQgc2hvdWxkIHdlIHB1dCBhcyBhIHJlcXVpcmVtZW50IGZv
-ciBvdXIgQ0kgdG8gZ2V0IHBhcnRzDQp0aGF0IGRvIHN1cHBvcnQgRDNDb2xkPw0KDQo+ICBNYWlu
-IHF1ZXN0aW9uIA0KPiBpcyBob3cgdG8gZ2V0IENJIHRlc3QgY292ZXJhZ2UgZm9yIHRoaXMgaGVy
-ZS4NCg0KV2VsbCwgdGhhdCdzIHRyaWNreSBhbnl3YXlzLiBUaGVyZSBhcmUgbWFueSBvdGhlciBm
-YWN0b3JzIHRoYXQgY2FuDQpibG9jayBEM2NvbGQgdW5kZXJuZWF0aC4gVG8gdmFsaWRhdGUgaGVy
-ZSBzb21ldGltZXMgSSBuZWVkIHRvIGZvcmNlDQp0aGUgcnBtIGF1dG8gZm9yIGFsbCB0aGUgZGV2
-aWNlcyBpbiB0aGUgc2FtZSByb290IHBvcnQuIFdlIGhhdmUgYQ0KdG9vbCBpbiBJR1QgdG8gZG8g
-dGhhdC4uLiBwcm9iYWJseSBuZWVkIHNvbWUgYWRhcHRhdGlvbiB0byB4ZS4NCg0KQnV0IHdlbGws
-IHRoZXJlJ3Mgbm8gcmVsaWFibGUgd2F5IHRvIGVuc3VyZSB0aGF0IHRoZSBlbnRpcmUgQ0kgcnVu
-cw0Kd2l0aCBhbHdheXMgZW50ZXJpbmcgRDNDb2xkLiBVbmxlc3Mgd2UgY2FuIG1ha2UgdGhhdCB0
-b29sIGFuZCByZXF1ZXN0DQpDSSBmb2xrcyB0byBlbnN1cmUgYSBwcmUtc2NyaXB0IGJlZm9yZSBl
-dmVyeSBydW4gb24gREcyPw0KDQo+IA0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IFJvZHJpZ28g
-Vml2aSA8cm9kcmlnby52aXZpQGludGVsLmNvbT4NCj4gPiAtLS0NCj4gPiDCoCBkcml2ZXJzL2dw
-dS9kcm0veGUveGVfcG0uaCB8IDcgKy0tLS0tLQ0KPiA+IMKgIDEgZmlsZSBjaGFuZ2VkLCAxIGlu
-c2VydGlvbigrKSwgNiBkZWxldGlvbnMoLSkNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL3hlL3hlX3BtLmgNCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9wbS5oDQo+
-ID4gaW5kZXggMGFlNGY2YTYwYzZkLi5iYzZiZDJhMDExODkgMTAwNjQ0DQo+ID4gLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL3hlL3hlX3BtLmgNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVf
-cG0uaA0KPiA+IEBAIC04LDEyICs4LDcgQEANCj4gPiDCoCANCj4gPiDCoCAjaW5jbHVkZSA8bGlu
-dXgvcG1fcnVudGltZS5oPg0KPiA+IMKgIA0KPiA+IC0vKg0KPiA+IC0gKiBUT0RPOiBUaHJlc2hv
-bGQgPSAwIHdpbGwgYmxvY2sgRDNDb2xkLg0KPiA+IC0gKsKgwqDCoMKgwqDCoCBCZWZvcmUgd2Ug
-Y2FuIG1vdmUgdGhpcyB0byBhIGhpZ2hlciB2YWx1ZSAobGlrZSAzMDApLCB3ZQ0KPiA+IG5lZWQg
-dG86DQo+ID4gLSAqwqDCoMKgwqDCoMKgwqDCoMKgwqAgMS4gcmV3cml0ZSB0aGUgVlJBTSBzYXZl
-IC8gcmVzdG9yZSB0byBhdm9pZCBidWZmZXINCj4gPiBvYmplY3QgbG9ja3MNCj4gPiAtICovDQo+
-ID4gLSNkZWZpbmUgREVGQVVMVF9WUkFNX1RIUkVTSE9MRCAwIC8qIGluIE1CICovDQo+ID4gKyNk
-ZWZpbmUgREVGQVVMVF9WUkFNX1RIUkVTSE9MRCAzMDAgLyogaW4gTUIgKi8NCj4gPiDCoCANCj4g
-PiDCoCBzdHJ1Y3QgeGVfZGV2aWNlOw0KPiA+IMKgIA0KDQo=
+Am 29.01.24 um 18:52 schrieb Felix Kuehling:
+> On 2024-01-29 11:28, Christian König wrote:
+>> Am 29.01.24 um 17:24 schrieb Felix Kuehling:
+>>> On 2024-01-29 10:33, Christian König wrote:
+>>>> Am 29.01.24 um 16:03 schrieb Felix Kuehling:
+>>>>> On 2024-01-25 13:32, Daniel Vetter wrote:
+>>>>>> On Wed, Jan 24, 2024 at 09:33:12AM +0100, Christian König wrote:
+>>>>>>> Am 23.01.24 um 20:37 schrieb Zeng, Oak:
+>>>>>>>> [SNIP]
+>>>>>>>> Yes most API are per device based.
+>>>>>>>>
+>>>>>>>> One exception I know is actually the kfd SVM API. If you look 
+>>>>>>>> at the svm_ioctl function, it is per-process based. Each 
+>>>>>>>> kfd_process represent a process across N gpu devices.
+>>>>>>> Yeah and that was a big mistake in my opinion. We should really 
+>>>>>>> not do that
+>>>>>>> ever again.
+>>>>>>>
+>>>>>>>> Need to say, kfd SVM represent a shared virtual address space 
+>>>>>>>> across CPU and all GPU devices on the system. This is by the 
+>>>>>>>> definition of SVM (shared virtual memory). This is very 
+>>>>>>>> different from our legacy gpu *device* driver which works for 
+>>>>>>>> only one device (i.e., if you want one device to access another 
+>>>>>>>> device's memory, you will have to use dma-buf export/import etc).
+>>>>>>> Exactly that thinking is what we have currently found as blocker 
+>>>>>>> for a
+>>>>>>> virtualization projects. Having SVM as device independent 
+>>>>>>> feature which
+>>>>>>> somehow ties to the process address space turned out to be an 
+>>>>>>> extremely bad
+>>>>>>> idea.
+>>>>>>>
+>>>>>>> The background is that this only works for some use cases but 
+>>>>>>> not all of
+>>>>>>> them.
+>>>>>>>
+>>>>>>> What's working much better is to just have a mirror 
+>>>>>>> functionality which says
+>>>>>>> that a range A..B of the process address space is mapped into a 
+>>>>>>> range C..D
+>>>>>>> of the GPU address space.
+>>>>>>>
+>>>>>>> Those ranges can then be used to implement the SVM feature 
+>>>>>>> required for
+>>>>>>> higher level APIs and not something you need at the UAPI or even 
+>>>>>>> inside the
+>>>>>>> low level kernel memory management.
+>>>>>>>
+>>>>>>> When you talk about migrating memory to a device you also do 
+>>>>>>> this on a per
+>>>>>>> device basis and *not* tied to the process address space. If you 
+>>>>>>> then get
+>>>>>>> crappy performance because userspace gave contradicting 
+>>>>>>> information where to
+>>>>>>> migrate memory then that's a bug in userspace and not something 
+>>>>>>> the kernel
+>>>>>>> should try to prevent somehow.
+>>>>>>>
+>>>>>>> [SNIP]
+>>>>>>>>> I think if you start using the same drm_gpuvm for multiple 
+>>>>>>>>> devices you
+>>>>>>>>> will sooner or later start to run into the same mess we have 
+>>>>>>>>> seen with
+>>>>>>>>> KFD, where we moved more and more functionality from the KFD 
+>>>>>>>>> to the DRM
+>>>>>>>>> render node because we found that a lot of the stuff simply 
+>>>>>>>>> doesn't work
+>>>>>>>>> correctly with a single object to maintain the state.
+>>>>>>>> As I understand it, KFD is designed to work across devices. A 
+>>>>>>>> single pseudo /dev/kfd device represent all hardware gpu 
+>>>>>>>> devices. That is why during kfd open, many pdd (process device 
+>>>>>>>> data) is created, each for one hardware device for this process.
+>>>>>>> Yes, I'm perfectly aware of that. And I can only repeat myself 
+>>>>>>> that I see
+>>>>>>> this design as a rather extreme failure. And I think it's one of 
+>>>>>>> the reasons
+>>>>>>> why NVidia is so dominant with Cuda.
+>>>>>>>
+>>>>>>> This whole approach KFD takes was designed with the idea of 
+>>>>>>> extending the
+>>>>>>> CPU process into the GPUs, but this idea only works for a few 
+>>>>>>> use cases and
+>>>>>>> is not something we should apply to drivers in general.
+>>>>>>>
+>>>>>>> A very good example are virtualization use cases where you end 
+>>>>>>> up with CPU
+>>>>>>> address != GPU address because the VAs are actually coming from 
+>>>>>>> the guest VM
+>>>>>>> and not the host process.
+>>>>>>>
+>>>>>>> SVM is a high level concept of OpenCL, Cuda, ROCm etc.. This 
+>>>>>>> should not have
+>>>>>>> any influence on the design of the kernel UAPI.
+>>>>>>>
+>>>>>>> If you want to do something similar as KFD for Xe I think you 
+>>>>>>> need to get
+>>>>>>> explicit permission to do this from Dave and Daniel and maybe 
+>>>>>>> even Linus.
+>>>>>> I think the one and only one exception where an SVM uapi like in 
+>>>>>> kfd makes
+>>>>>> sense, is if the _hardware_ itself, not the software stack defined
+>>>>>> semantics that you've happened to build on top of that hw, 
+>>>>>> enforces a 1:1
+>>>>>> mapping with the cpu process address space.
+>>>>>>
+>>>>>> Which means your hardware is using PASID, IOMMU based 
+>>>>>> translation, PCI-ATS
+>>>>>> (address translation services) or whatever your hw calls it and 
+>>>>>> has _no_
+>>>>>> device-side pagetables on top. Which from what I've seen all 
+>>>>>> devices with
+>>>>>> device-memory have, simply because they need some place to store 
+>>>>>> whether
+>>>>>> that memory is currently in device memory or should be translated 
+>>>>>> using
+>>>>>> PASID. Currently there's no gpu that works with PASID only, but 
+>>>>>> there are
+>>>>>> some on-cpu-die accelerator things that do work like that.
+>>>>>>
+>>>>>> Maybe in the future there will be some accelerators that are 
+>>>>>> fully cpu
+>>>>>> cache coherent (including atomics) with something like CXL, and the
+>>>>>> on-device memory is managed as normal system memory with struct 
+>>>>>> page as
+>>>>>> ZONE_DEVICE and accelerator va -> physical address translation is 
+>>>>>> only
+>>>>>> done with PASID ... but for now I haven't seen that, definitely 
+>>>>>> not in
+>>>>>> upstream drivers.
+>>>>>>
+>>>>>> And the moment you have some per-device pagetables or per-device 
+>>>>>> memory
+>>>>>> management of some sort (like using gpuva mgr) then I'm 100% 
+>>>>>> agreeing with
+>>>>>> Christian that the kfd SVM model is too strict and not a great idea.
+>>>>>
+>>>>> That basically means, without ATS/PRI+PASID you cannot implement a 
+>>>>> unified memory programming model, where GPUs or accelerators 
+>>>>> access virtual addresses without pre-registering them with an SVM 
+>>>>> API call.
+>>>>>
+>>>>> Unified memory is a feature implemented by the KFD SVM API and 
+>>>>> used by ROCm. This is used e.g. to implement OpenMP USM (unified 
+>>>>> shared memory). It's implemented with recoverable GPU page faults. 
+>>>>> If the page fault interrupt handler cannot assume a shared virtual 
+>>>>> address space, then implementing this feature isn't possible.
+>>>>
+>>>> Why not? As far as I can see the OpenMP USM is just another funky 
+>>>> way of userptr handling.
+>>>>
+>>>> The difference is that in an userptr we assume that we always need 
+>>>> to request the whole block A..B from a mapping while for page fault 
+>>>> based handling it can be just any page in between A and B which is 
+>>>> requested and made available to the GPU address space.
+>>>>
+>>>> As far as I can see there is absolutely no need for any special SVM 
+>>>> handling.
+>>>
+>>> It does assume a shared virtual address space between CPU and GPUs. 
+>>> There are no API calls to tell the driver that address A on the CPU 
+>>> maps to address B on the GPU1 and address C on GPU2. The KFD SVM API 
+>>> was designed to work with this programming model, by augmenting the 
+>>> shared virtual address mappings with virtual address range 
+>>> attributes that can modify the migration policy and indicate 
+>>> prefetching, prefaulting, etc. You could think of it as madvise on 
+>>> steroids.
+>>
+>> Yeah, so what? In this case you just say through an IOCTL that CPU 
+>> range A..B should map to GPU range C..D and for A/B and C/D you use 
+>> the maximum of the address space.
+>
+> What I want is that address range A..B on the CPU matches A..B on the 
+> GPU, because I'm sharing pointers between CPU and GPU. I can't think 
+> of any sane user mode using a unified memory programming model, that 
+> would ever ask KFD to map unified memory mappints to a different 
+> address range on the GPU. Adding such an ioclt is a complete waste of 
+> time, and can only serve to add unnecessary complexity.
+
+This is exactly the use case which happens when the submitting process 
+is not the one originally stitching together the command stream.
+
+Basically all native context, virtualization and other proxy use cases 
+work like this.
+
+So that the CPU address doesn't match the GPU address is an absolutely 
+real use case and should be able to be handled by the GPU VA interface.
+
+Regards,
+Christian.
+
+
+
+>
+> Regards,
+>   Felix
+>
+>
+>>
+>> There is no restriction that this needs to be accurate in way. It's 
+>> just the it can be accurate to be more efficient and eventually use 
+>> only a fraction of the address space instead of all of it for some 
+>> use cases.
+>>
+>> So this isn't a blocker, it's just one special use case.
+>>
+>> Regards,
+>> Christian.
+>>
+>>>
+>>> Regards,
+>>>   Felix
+>>>
+>>>
+>>>>
+>>>> Regards,
+>>>> Christian.
+>>>>
+>>>>>
+>>>>> Regards,
+>>>>>   Felix
+>>>>>
+>>>>>
+>>>>>>
+>>>>>> Cheers, Sima
+>>>>
+>>
+
