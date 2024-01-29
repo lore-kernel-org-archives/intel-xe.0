@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E15EC47DB3
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Jan 2024 15:04:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E764C47DDB
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Jan 2024 15:04:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1852112981;
-	Mon, 29 Jan 2024 15:04:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B792210F75D;
+	Mon, 29 Jan 2024 15:04:38 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C368112981;
- Mon, 29 Jan 2024 15:04:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D01E11298B;
+ Mon, 29 Jan 2024 15:04:37 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
- =?utf-8?q?Move_some_LNL_registers_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_Move_?=
+ =?utf-8?q?some_LNL_registers_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Mon, 29 Jan 2024 15:04:17 -0000
-Message-ID: <170654065750.806401.728790682071417695@5338d5abeb45>
+Date: Mon, 29 Jan 2024 15:04:37 -0000
+Message-ID: <170654067738.806672.6267157797870703559@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240126224638.4132016-1-lucas.demarchi@intel.com>
 In-Reply-To: <20240126224638.4132016-1-lucas.demarchi@intel.com>
@@ -44,14 +44,135 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/i915/display: Move some LNL registers (rev2)
 URL   : https://patchwork.freedesktop.org/series/129225/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 114c7e14f drm-tip: 2024y-01m-29d-13h-20m-58s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/xe2lpd: Move D2D enable/disable
-Applying: drm/i915/xe2lpd: Move registers to PICA
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+2d919ac662b2798c053d68d1cc16b758c61b55ca
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2d3d102acff03871e88c514c19d6244f1495193a
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Fri Jan 26 14:46:37 2024 -0800
+
+    drm/i915/xe2lpd: Move registers to PICA
+    
+    Some registers for DDI A/B moved to PICA and now follow the same format
+    as the ones for the PORT_TC ports. The wrapper here deals with 2 issues:
+    
+            - Share the implementation between xe2lpd and previous
+              platforms: there are minor layout changes, it's mostly the
+              register location that changed
+            - Handle offsets after TC ports
+    
+    v2:
+      - Explain better the trick to use just the second range (Matt Roper)
+      - Add missing conversions after rebase (Matt Roper)
+      - Use macro instead of inline function, avoiding includes in the
+        header (Jani)
+      - Prefix old macros with underscore so they don't get used by mistake,
+        and name the new ones using the previous names
+    v3: Use the same logic for the recently-introduced XELPDP_PORT_MSGBUS_TIMER
+        (Gustavo)
+    
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+    Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
++ /mt/dim checkpatch 114c7e14fc8f30c4f3e0a39819b7d138ff5ef259 drm-intel
+3bfb795e6 drm/i915/xe2lpd: Move D2D enable/disable
+-:87: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 23)
+#87: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:3345:
++		if (DISPLAY_VER(dev_priv) >= 20)
++		       buf_ctl |= XE2LPD_DDI_BUF_D2D_LINK_ENABLE;
+
+total: 0 errors, 1 warnings, 0 checks, 80 lines checked
+2d3d102ac drm/i915/xe2lpd: Move registers to PICA
+-:384: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'port' - possible side-effects?
+#384: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:27:
++#define __xe2lpd_port_idx(port)						\
++	(port >= PORT_TC1 ? port : PORT_TC4 + 1 + port - PORT_A)
+
+-:384: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'port' may be better as '(port)' to avoid precedence issues
+#384: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:27:
++#define __xe2lpd_port_idx(port)						\
++	(port >= PORT_TC1 ? port : PORT_TC4 + 1 + port - PORT_A)
+
+-:397: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'port' - possible side-effects?
+#397: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:39:
++#define XELPDP_PORT_M2P_MSGBUS_CTL(i915__, port, lane)				\
++	(DISPLAY_VER(i915__) >= 20 ?						\
++	 _XELPDP_PORT_M2P_MSGBUS_CTL(__xe2lpd_port_idx(port), lane) :		\
++	 _XELPDP_PORT_M2P_MSGBUS_CTL(port, lane))
+
+-:397: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'lane' - possible side-effects?
+#397: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:39:
++#define XELPDP_PORT_M2P_MSGBUS_CTL(i915__, port, lane)				\
++	(DISPLAY_VER(i915__) >= 20 ?						\
++	 _XELPDP_PORT_M2P_MSGBUS_CTL(__xe2lpd_port_idx(port), lane) :		\
++	 _XELPDP_PORT_M2P_MSGBUS_CTL(port, lane))
+
+-:415: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'port' - possible side-effects?
+#415: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:59:
++#define XELPDP_PORT_P2M_MSGBUS_STATUS(i915__, port, lane)			\
++	(DISPLAY_VER(i915__) >= 20 ?						\
++	 _XELPDP_PORT_P2M_MSGBUS_STATUS(__xe2lpd_port_idx(port), lane) :	\
++	 _XELPDP_PORT_P2M_MSGBUS_STATUS(port, lane))
+
+-:415: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'lane' - possible side-effects?
+#415: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:59:
++#define XELPDP_PORT_P2M_MSGBUS_STATUS(i915__, port, lane)			\
++	(DISPLAY_VER(i915__) >= 20 ?						\
++	 _XELPDP_PORT_P2M_MSGBUS_STATUS(__xe2lpd_port_idx(port), lane) :	\
++	 _XELPDP_PORT_P2M_MSGBUS_STATUS(port, lane))
+
+-:432: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'port' - possible side-effects?
+#432: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:90:
++#define XELPDP_PORT_BUF_CTL1(i915__, port)					\
++	(DISPLAY_VER(i915__) >= 20 ?						\
++	 _XELPDP_PORT_BUF_CTL1(__xe2lpd_port_idx(port)) :			\
++	 _XELPDP_PORT_BUF_CTL1(port))
+
+-:450: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'port' - possible side-effects?
+#450: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:115:
++#define XELPDP_PORT_BUF_CTL2(i915__, port)					\
++	(DISPLAY_VER(i915__) >= 20 ?						\
++	 _XELPDP_PORT_BUF_CTL2(__xe2lpd_port_idx(port)) :			\
++	 _XELPDP_PORT_BUF_CTL2(port))
+
+-:467: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'port' - possible side-effects?
+#467: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:138:
++#define XELPDP_PORT_BUF_CTL3(i915__, port)					\
++	(DISPLAY_VER(i915__) >= 20 ?						\
++	 _XELPDP_PORT_BUF_CTL3(__xe2lpd_port_idx(port)) :			\
++	 _XELPDP_PORT_BUF_CTL3(port))
+
+-:484: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'port' - possible side-effects?
+#484: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:161:
++#define XELPDP_PORT_MSGBUS_TIMER(i915__, port, lane)				\
++	(DISPLAY_VER(i915__) >= 20 ?						\
++	 _XELPDP_PORT_MSGBUS_TIMER(__xe2lpd_port_idx(port), lane) :		\
++	 _XELPDP_PORT_MSGBUS_TIMER(port, lane))
+
+-:484: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'lane' - possible side-effects?
+#484: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:161:
++#define XELPDP_PORT_MSGBUS_TIMER(i915__, port, lane)				\
++	(DISPLAY_VER(i915__) >= 20 ?						\
++	 _XELPDP_PORT_MSGBUS_TIMER(__xe2lpd_port_idx(port), lane) :		\
++	 _XELPDP_PORT_MSGBUS_TIMER(port, lane))
+
+-:501: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'port' - possible side-effects?
+#501: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:178:
++#define XELPDP_PORT_CLOCK_CTL(i915__, port)					\
++	(DISPLAY_VER(i915__) >= 20 ?						\
++	 _XELPDP_PORT_CLOCK_CTL(__xe2lpd_port_idx(port)) :			\
++	 _XELPDP_PORT_CLOCK_CTL(port))
+
+total: 0 errors, 0 warnings, 12 checks, 574 lines checked
 
 
