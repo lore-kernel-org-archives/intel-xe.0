@@ -4,126 +4,139 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F10D0C47DDB
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Jan 2024 10:19:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87584C47422
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Jan 2024 10:38:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 754F911284B;
-	Mon, 29 Jan 2024 10:19:46 +0000 (UTC)
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2052.outbound.protection.outlook.com [40.107.92.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF5F1112826;
- Mon, 29 Jan 2024 10:19:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F40F112839;
+	Mon, 29 Jan 2024 10:38:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61F53112850
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 Jan 2024 10:38:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706524734; x=1738060734;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=Rm4xsLlfw7faICnNavoHDp0lMfeq59OIFueeYHPsIS0=;
+ b=Dr/B1W4IzNbUf1otWuK9VoHAv9CpF1JZg6SyDRq0P1W9kmySsABuKKdS
+ GrB0ir6Vg4qHAMUdhSrHzwELfzqRSoXJlj4ao1HZVzUCNpcxkOijuXdHD
+ 9tI7eo4UDMDXDml/VMpm5y3DGFxLBAgOSI0Jh+w8T9HMgPTciLmfm5p8V
+ LooEEPUBNIZ9LqB63ZUXOgKWirLO9aEvCO+Ap/s1xOge+wvTORveDJLHH
+ w2u6ZnkCR0mQb4Sqmy2pt3Qs+19K+XMWZVI3HPGDGTJUZwmCN/soR6O1j
+ tBPFSjPmBtAo4/lxlx+4SYGD40oSclUKfAiS43PemI7EBd9Ee0xuUObRa w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10967"; a="400063393"
+X-IronPort-AV: E=Sophos;i="6.05,227,1701158400"; d="scan'208";a="400063393"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2024 02:38:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10967"; a="858059860"
+X-IronPort-AV: E=Sophos;i="6.05,227,1701158400"; d="scan'208";a="858059860"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmsmga004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 29 Jan 2024 02:38:53 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 29 Jan 2024 02:38:53 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 29 Jan 2024 02:38:53 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Mon, 29 Jan 2024 02:38:53 -0800
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Mon, 29 Jan 2024 02:38:52 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YLuVSDyVzHE6iDIJhkXvnsKl9zO8jzRhv8l9uW6ZD+2DvKgNuHYGhU7+rEFfhn5ZWuwMOW7tryWwHrbh7wt7Obpqok6udOUE/mV5VU2s/wvUOfFRvjXqDnP5IdqhMW8ghazsv70w2qmrdg7m4AbCS2AzZHD6FODVRbaPEaqldDu5IoRcH9lU28GjZTe+8enB54U1dp7pRnsoHsc6FjBkWafiry0lvELqBtZV0bwOP5tQVsSTY+rpwO75nr1QL0QmEtvp4hK8Fs8tgVSo4f89cPkLo+O/Fi9ED07i8qjhIFQnD0qEab+pmWqMhdZJPfZcAY+oFMlYBiWX89tErSRaOQ==
+ b=nUEEA+hbweNb2tlHrtGudXWYQf6dy3+PULW5A4XwU0VIOwIFwYhLHiDKBbGaWtlR0Qdku0vDEeNKiMvJeaPShbtHVOyMD8NpX9ZZInaxSb7Evm2/GwmU8HqqcZWYAATpAw/pIDHi8FdUu0ezeQ58qZc0FEPdtNYmflGqVDTk0Iq0e6vrtQKrwEpJv1VXg64Noc1iaz+R4xiGlUBqPkTS8vL4QxMrRYPXw7fYz7IXwOyPuiSHW2onAfmZR6iNNOemjgo5GS7NcXogCkuBG+xr4xrkTW3EX/Yt9OWNIhCtz0ztd12g4z1tSbaseApX6nBSKH2aqGn39h8zESTjqvAy9A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fqrRDl428YXScRUtmX1axXTktxnk0wlEdc5OYR1317E=;
- b=Y4JDdWzTuOuI5iA0qh00kDc/lFhOyQ6aRtVJvz13ymwt549gpXJAekH0Npb4byQ71py2xdK+U17a7ae/91FlzeQvERN3R7F7Hc2TQVsPEVPUeVEiQ5mzEsMwA05ekEf/6/iOZkQ+2L66cir2xm3+zKAa4Q5GoRjwWWXYmJXRbAdsf/aYcCU8/TG/KR/xpbiKS/Uw6bkuZOEsCFf4YHeSiz47NG+VmDanH7Ox30WwP4NszFpt2xiOsvRfKzsIq5dUB8oHbkGR2iWLyWKKf/fljixZY21mm22jTRXWmA+7HkQGCRq3BnA+wN3EZsRJHKANleX1+7/VeUYcR+ueovdapA==
+ bh=tund/+c4yTj9FaSuGA8yRThI6W2ugd7Kw9PCo95MPjI=;
+ b=IyogeloBRQkW+LEDu/5hTXKMqqMkGzl82Vj0l1U7ZeRF0UJZ0NFiI6D+a5ZyUCYjD11kvvhIQChCjemM00be9iuOFRWpZeM6Ch6mmQtseWLBKmk9Q0GXGIGo03Wruf0V2hGvPwvqtCZM+favThf6CfUjur/SB2nax9KBX6ueO5cTRyGKMUVvPBO0xk4g+uPOEFO7hHu8I+VHUyETp9DyeVTq59ZlKV8bO52BNi7/bxX52jvwUinmBPqYfI+mQ98jz73Cxo//430spfdnjHSVX3BnGZFbqyjKIsoY3vmToPH6oADK6ycBMLl+4Td/KcygeBjxw4osdwYubF7QT1lo4Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fqrRDl428YXScRUtmX1axXTktxnk0wlEdc5OYR1317E=;
- b=1+UqMB3YUEYy58DhjTGlLuHWA7oZTUOkTri4SLfD0h6o2PBOni9tfLdCE4ZEXiaDrtA0nbkLbpR/FnrSEaRNUx40hQARbi7JpHQhlodPkd90L/FAL5P2SZKotK0MyxYTSq76ELj6hJMdrmjsTNAY1cdlbz4zkjG/e/Su6+2AaMk=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by PH8PR12MB6796.namprd12.prod.outlook.com (2603:10b6:510:1c7::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.32; Mon, 29 Jan
- 2024 10:19:39 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::e1fb:4123:48b1:653]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::e1fb:4123:48b1:653%4]) with mapi id 15.20.7228.029; Mon, 29 Jan 2024
- 10:19:39 +0000
-Content-Type: multipart/alternative;
- boundary="------------myS5a9Mk0jH4rMDadoJYtLJg"
-Message-ID: <5aca8bdc-1243-40e6-90dc-ece80a093a5b@amd.com>
-Date: Mon, 29 Jan 2024 11:19:33 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: Making drm_gpuvm work across gpu devices
-Content-Language: en-US
-To: "Zeng, Oak" <oak.zeng@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Daniel Vetter <daniel@ffwll.ch>, Dave Airlie <airlied@redhat.com>
-References: <20240117221223.18540-1-oak.zeng@intel.com>
- <20240117221223.18540-22-oak.zeng@intel.com>
- <ad21ec11-a9cb-4fb2-b9fd-00a4fa11525f@intel.com>
- <PH7PR11MB70049E7E6A2F40BF6282ECC292742@PH7PR11MB7004.namprd11.prod.outlook.com>
- <PH7PR11MB700440CE88BC0A94CFF8499792742@PH7PR11MB7004.namprd11.prod.outlook.com>
- <2928ce36-06a6-4bee-b115-8dd61cc41dca@amd.com>
- <SA1PR11MB699192584C01A26C781E2F9992742@SA1PR11MB6991.namprd11.prod.outlook.com>
- <ccf34f6a-d704-43de-a15e-2ae2890f9381@amd.com>
- <ZbKpWpOGuNKLJ6sA@phenom.ffwll.local>
- <7834e2fbe8052717a4e0fa44feafa544b1fedaa0.camel@linux.intel.com>
- <851e3ddb-6c74-4ec5-8d05-df12b34eb2b4@amd.com>
- <SA1PR11MB69919C19A16C007A6B01FC9E92782@SA1PR11MB6991.namprd11.prod.outlook.com>
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <SA1PR11MB69919C19A16C007A6B01FC9E92782@SA1PR11MB6991.namprd11.prod.outlook.com>
-X-ClientProxiedBy: FR3P281CA0129.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:94::17) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY8PR11MB7828.namprd11.prod.outlook.com (2603:10b6:930:78::8)
+ by PH7PR11MB8526.namprd11.prod.outlook.com (2603:10b6:510:30a::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.34; Mon, 29 Jan
+ 2024 10:38:45 +0000
+Received: from CY8PR11MB7828.namprd11.prod.outlook.com
+ ([fe80::7d36:1951:b896:cb37]) by CY8PR11MB7828.namprd11.prod.outlook.com
+ ([fe80::7d36:1951:b896:cb37%7]) with mapi id 15.20.7228.029; Mon, 29 Jan 2024
+ 10:38:45 +0000
+Date: Mon, 29 Jan 2024 11:38:39 +0100
+From: Francois Dugast <francois.dugast@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [RFC 02/34] drm/xe: Document Xe PM component
+Message-ID: <ZbeAL3ZAzy6GH-J9@fdugast-desk.home>
+References: <20240126203044.1104705-1-rodrigo.vivi@intel.com>
+ <20240126203044.1104705-3-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240126203044.1104705-3-rodrigo.vivi@intel.com>
+Organization: Intel Corporation
+X-ClientProxiedBy: DU6P191CA0001.EURP191.PROD.OUTLOOK.COM
+ (2603:10a6:10:540::11) To CY8PR11MB7828.namprd11.prod.outlook.com
+ (2603:10b6:930:78::8)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|PH8PR12MB6796:EE_
-X-MS-Office365-Filtering-Correlation-Id: c9ab5599-4473-4186-96ed-08dc20b3cd09
+X-MS-TrafficTypeDiagnostic: CY8PR11MB7828:EE_|PH7PR11MB8526:EE_
+X-MS-Office365-Filtering-Correlation-Id: 97d8e24c-980c-46ba-4d76-08dc20b67831
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: OuP3lpF/tE+YAV3K6gDEa0MTTyDfWhJ659SqnnFwmfJ8K1jpF7hgaJ1v/HAZnsnHswbSo/9ex9nFc+95zs2BgcOon1gX7LiuOrCbg7Ztal3CaKTJCbmdzt3gHlCSba3GWyRK97QORmjfH0oR0LHHDHF3AYzuy0u7+5EHbmGhBt3fWBnjXCF4K5yw72J8x6yRxongOO+5ETFUmPDtwIT2xrYoAfn3gk6AXb4rs8nXGpFEaNhjcV5rkP/Y36tffzWMTjzVh3CXTkd9nCMDZ4mpYLcNb+6Zwb9ZhyOTMy4D91jkhRk1a5JqUGtmUldP1qDRVd0OXUM84DlbG0v+BQhlBYFfmSKIrlImi73GP+Rr08Hm8z0TbnJvIlEj3+vjv82+sp6TzAgz5S8WOfV98DQrk2fHEdYJoPpz7sWQLbj8ZPGFhHF4qdVygjrerFAU9RN+WnrVfr2pQnSGa1Ywjc0UU3HzpB6EoLGt/sCQrEWHLCvatd288LrpP6FOWgDCXSuoYwL3S+J8pc8wHAbMfCcaRYqdSuTXIheOYjx3+Orw4VY5qRXb3yV76nrnvJy1Vak2tBG5x5uuMleZwS7x9j/tYc5NGmYMMBN4dgeOfv8GjJ+hjWAjLGH7zMQevEmdGNeDZ01FXfAuu3pcEKzAHICgAQ==
+X-Microsoft-Antispam-Message-Info: Da5onCC8SBcv8EYAEgxOcc0G5rw+GgDhp69Lp/ppmNGynigYQnIwN2q8esmVmnwPRV7bIFQybq59ZaakFZo7ho6mcZRDOsF6MAmB847WZ6/rz7Q9oarHoMaqiZ0cz1hIoPBsba16PiXvTvuMl/ktPAmli6bvxlTVthNRC80r04Sjo/F6+qudxAqwl0wlpWroDJX/Q/9PDDs0Ic46M9Aj+4B+sidAos1HfARa5VYiRk/kA0ib6RBWadfWORyAjsIbdeLDK92gyGF4e05qEYWRjL0nq6vNH/HpAUFTdCEEWHaMnZ98gC3qOJHxg95lH3YUjSzLD31o4MhM15GtUArHn+Ib41oy/QoUn+LkGmv1FIjdDJRbrDpVuZzmydY5tSJxiu/a9vRT+YHxzs+wS3Sa9kwKDCuzY04JUd7EwmMyaN4Xl4ubzwMqbdu8Iy4BAv16ylLSQkbYJPKFgIi0Cj8psOGttYjp2kGDuQ1RtVA1e9AZRKImIqlQOuslbZB9Jaaz+Kxop3GJKTaHTxVUvdARK4hHnF7PE737EOyTi+YS0FNono1oWtTrijRyW26Ey8md
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(39860400002)(136003)(376002)(366004)(346002)(230922051799003)(186009)(451199024)(1800799012)(64100799003)(41300700001)(478600001)(6512007)(2616005)(33964004)(53546011)(6506007)(6666004)(83380400001)(26005)(66574015)(8676002)(4326008)(8936002)(5660300002)(7416002)(2906002)(30864003)(6486002)(966005)(66476007)(66556008)(54906003)(66946007)(316002)(31696002)(110136005)(86362001)(166002)(38100700002)(31686004)(36756003)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CY8PR11MB7828.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376002)(396003)(346002)(39860400002)(366004)(136003)(230922051799003)(1800799012)(451199024)(186009)(64100799003)(83380400001)(26005)(6666004)(36916002)(6506007)(6512007)(9686003)(38100700002)(5660300002)(4326008)(6862004)(8936002)(44832011)(41300700001)(8676002)(2906002)(478600001)(6486002)(316002)(6636002)(66476007)(66556008)(66946007)(36756003)(86362001)(82960400001);
+ DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UWN3Nit3Smd2NjFNaW5IS28zUFl5Y3MxTGwwbWtjMDFLVFN4cEdFdXZ2ZFo2?=
- =?utf-8?B?clhsdkxCcER1c0FDemsyaEpZcHR1NFNiVnFGdjU3RkpnUFdWZUJMaFF2S0tF?=
- =?utf-8?B?alJCanV3b2FvUUtsN2tDSmdldHlFdkJKY1hIeFVVSm1BMWFNa0NEbkVzTGpF?=
- =?utf-8?B?N0pSeUc5elVGTWh2UFdNRUNpY3lYdGRlbm5mcDNEZVlCY3prQ3RHcTl5WHF2?=
- =?utf-8?B?ZlgwN1BWQkRtMjF6NHc2K3VubCtOcmp5aUwyZVFEaEt2VVBGSWx0SVpzdnVX?=
- =?utf-8?B?NU9NOGxlR2RJQUJ2eEFTQlhoTXBpSXZPdEpJd2pGNGMxZjB5VzRaRHlldnM4?=
- =?utf-8?B?NTBOYnIrRmh5R0Qxd0FDOUxRSThvUjhveThJcFNQRDJJUm9tUVM0TWh3RU1S?=
- =?utf-8?B?alA0cGYxWHk4ZFg5RlNuaE0rTklCSGpqQlF4bVRjU1dDNDV1U3V5RmVLaUtU?=
- =?utf-8?B?dlkyQ3FRVStlTytOazJZSUIxQmd5U1Y2V3BabExzNUtqWnY0OS9zRzBDVTFQ?=
- =?utf-8?B?ZXJHNjRQUlhacVFTUmMraXkyK1VhbHdWT1FvbzRmcFcxYkNzdmF5b3llcjVh?=
- =?utf-8?B?Tk5uNHRsU0tKbzhmUjlRUU9xV09vdU5yclZsVGVYdGhyQ0JBejlXektYSkl5?=
- =?utf-8?B?c1dOaFlpZGJnYmYvWk52azRMWHA1OHVEcjREOUxmd1pBckdHS1dBandkdUN5?=
- =?utf-8?B?ekVZMlBxNXhVTW1lSnhzTjlmRW0wODgyeVNsbTlkTjR3UElBNlpYWlZHMFFZ?=
- =?utf-8?B?NEdFVm1XZ09zdFRpb3JuSkFSNzRVeGd6d25JMzVGZzRRb1Y4V2JwZGE3TkZW?=
- =?utf-8?B?RHZGYXpESTl6a2NSSWhMeS9TMDB0VnlydkNKMCt4L25iV0drM0pvL2wyVytP?=
- =?utf-8?B?OW5zRjVDNXVnczQrQXFiNWhhQ05TUDBmL0RCK3NEN2RaWHg5aUc5dE96L2k1?=
- =?utf-8?B?U1g2YkQ2TXJtdWRVY0xnZitkTHNFOVE2ZWpRWHJjTHFlNmNVSlgrVHdPTG9K?=
- =?utf-8?B?N0c3dTA1RVBXMm4vTVdOVFVpUExDMHRtOFg2bDluWXRhTkZKbW1GakVIUE80?=
- =?utf-8?B?TmJoWXpnVEVWaHpHbkJzamhXV2dXZWd0VlJqM3Q0UG5vWGxXeGhzeXlLTm1P?=
- =?utf-8?B?cXpnOUtWS3JxVWd3OG04enJvcFdrT0xlZlRKN2pBbTk3Sm0wdGxVRmw2WEtW?=
- =?utf-8?B?VWowNmVPbzExL2g3bWp5OTdKVENONlhxTGoyVHArK0hTdm1iRVptUWZZOVZV?=
- =?utf-8?B?MjlMLzVCUTR3MHNCRGU2ZXl1WVN6QTNKWGI3eVFjVkpWMzRkaVAranFISTYv?=
- =?utf-8?B?ZWIrQ1RDT2U2Vm1xV0pIeldSaTY1V0tESURsM0h2THYvczYrTm84Ly8rOHYv?=
- =?utf-8?B?a1hmOFBIb1FaK3RaRjRGbHhRRWJCM0p3eEZUaXNxWUlJYjEzN3dTanJ2U21J?=
- =?utf-8?B?VlVFMkM4QXZYeW1ldTU0ZWhEVGh4anZ5WmpzRExPb2dtditiU1QrWklWdUR5?=
- =?utf-8?B?UVU4Y0VUbFd3bDRCUldXSmVsUVgzenBWczhnczhnSVRBWElQK29NZGpFaFVo?=
- =?utf-8?B?bSt1VFBndFdDWTBOdUtKc3lUOENzVGJRMnZpL1lDWVJ3MkMzR1NmbnVsUlV3?=
- =?utf-8?B?RzF4d2FEUTBqcGROdXJMRERjUlBzdkRCeFpndElkV1F3K1hJdkw1NnBobWlC?=
- =?utf-8?B?eko0bm02ZHJ1OHptZ1NkRGIybm8xakNMdGhkWi91TjVOVlV6QkdSRE1ycFp4?=
- =?utf-8?B?VFZNUGptUjVCZ2NFbVVxeGtWTkkyZWJyTXB5SUNEMlVZWGsvNHBZYmhPVTQ3?=
- =?utf-8?B?K1VJaUZJemJqWkc3VWtJWnVGT2tOUGtPUCsrc0lDbDhPRzlYMlNaSktoQm5q?=
- =?utf-8?B?SjFpMmhFbEV1QWFkWGZvRG81bDA2ZjRWcEdzVjV1Nms1dUhVQXFKV2ZPUE93?=
- =?utf-8?B?QW4waUJCRHZPMCt6cWRWWG80ZElleWdVTE1RSEhDdWpoOGp3MUU2R0FMS2dz?=
- =?utf-8?B?blNaZFBJMGYrU0lQeDBjZlRWK2cxRWJ3TjlBaVZnYWlnTlRvenZydlZLOFVl?=
- =?utf-8?B?UkowbDg0THJ1NTAwbGZFMjhKeWhnZ3J5TzJzOXVTOHhWdXdZUFZwMEtnd2kz?=
- =?utf-8?Q?hK2kiOO1/IhFE/cU326xM8S40?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c9ab5599-4473-4186-96ed-08dc20b3cd09
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?wFb1gQHNIM/WOgHpIAHlzlkn6vv+75LprYx/oeslREdt8lXMz37dc+gplBOT?=
+ =?us-ascii?Q?HejLWGfqgqGLDRoLQTgoZc+a5TwnVL9wmwAjaUYgqKfNM2ynOfubZV5sYjLX?=
+ =?us-ascii?Q?TV1XCJyJMQgewrH7HdMdA9Kxi9nWU9vX/9Z806rLhEXQytoB1J8u9VjRldu/?=
+ =?us-ascii?Q?5iqwCkW08kUD/I7Y6nggTenAlgJRHJc+k4waVbDPDojqrNoZiKsTOZEMySdN?=
+ =?us-ascii?Q?D4ppvT/eKvHv2Lh21vax4Xsz+Zfl4MFPlTf62Lcq8cI+KP2E47PlYStA65P1?=
+ =?us-ascii?Q?TtvXJYzdLuWfigsPy+jjShaIcmvBwrBU45xi5SDxD4vrhikyOuBerlmPZnMK?=
+ =?us-ascii?Q?6WwbrSdyMY8LPfLY5r4lr32mFUakMtzrNvttMWCoXvSxBQLgnNTLKtR7P9/H?=
+ =?us-ascii?Q?10nB6PYrUIfA/JBr+yaLbUAydQ5U/4xZLNCfjYUZqKY/CrsxKmBkn2A8zvMj?=
+ =?us-ascii?Q?MAT42l88j9gf8/bWf2XgVzbeVGUdgDqR1+9nHQkaY+0ejwe4vm4vTgdgwAcx?=
+ =?us-ascii?Q?8wscWjfa4GrJcn1QQZbQ2pMlkxsjuooIq79nATBF8G/7vuTr27MPb1C8DJxT?=
+ =?us-ascii?Q?ds31GTk+Xb4qNs8plaorV6fVHCiMiaVMZTGviXGmCzqHAHF63hEhkUeJockU?=
+ =?us-ascii?Q?zBIEXORiqf+UOsUvqCV3KpMemHthOuFIkndaYkoyQU42e23sHM8l5a7RgJPC?=
+ =?us-ascii?Q?QuCy71d84Zf5fDJYiKv4upuipe4pocimrBfQigBfwxaxV6mQYHpc8rWwUUAE?=
+ =?us-ascii?Q?fccphF228FCUSS0efrIqIJDzDA48QSMd20ctSP0+XMQOhT3MOwDBF4utjKn9?=
+ =?us-ascii?Q?xW0bPXl2aIzW+33dkpnnH9pcAC164WYU5voEg0ODWgDDexrQCX9bNt/kwOpX?=
+ =?us-ascii?Q?dFFriACaXntVUQUyds6hAw4eb/rtgHSzPnnNF6ixIQSgbtoq2HIMl5J1CXQE?=
+ =?us-ascii?Q?TyGP+gvd4++6P2OtqYlMGzVavL3MO7O/zRnI5LECyIBzaFusnnR6O35nxXFp?=
+ =?us-ascii?Q?hoLxi3qh1lhrACGet8PzWaBj5BzkOGI1cmXB3/RMV15L6KLQMI8qCk/xL8MA?=
+ =?us-ascii?Q?3zVYjlMPRIn3dZ+hWyz/pSGrodJ4sM0DHrooboa7/YNM55gtgFF/7Q+cEZnG?=
+ =?us-ascii?Q?imR25Kbma2yUaseEJKa3qbRZEuaO6abm5GxrhLE+toy8bs1l9uw6dsT6oqP2?=
+ =?us-ascii?Q?cBQd3hHzIEszPWXeWdKq+zCMxOCmY5yxqdH4nkNtGjjQfK1C2KWoGoswQqn9?=
+ =?us-ascii?Q?VBcpPlbZlcCFnzvtQ0WU9wa1nYy0mdB81ptV6np6lnW2kFXoTCBx9y4PGN4e?=
+ =?us-ascii?Q?kqO7If595PdpTU4JvuPb1wClajQVvgw17KjnvnW0qUJqR5G8wY7JLQ6IgbYF?=
+ =?us-ascii?Q?uBhsho4N3ktRgHUtL+ZdKpbkiSpn8rUQADlSeYqQYXxCC6kkb9gV2kHnSc9A?=
+ =?us-ascii?Q?dTRBH45jJrvAzDq6o8BhcALO4CC51DAXVgJg0rs1ypXzAh5FlyYE06yLEahl?=
+ =?us-ascii?Q?7l929JqUaxeZ6J5os0SLa7HrLTIyInB7BTNdbCI3hCZEHJ2D7yIMOfVD8URw?=
+ =?us-ascii?Q?HyyWhQWjqVTMElWNk0H/V2Y9gdKswAKwsyxLekp5TwdIw/BYxz9992YsMXs4?=
+ =?us-ascii?Q?1A=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 97d8e24c-980c-46ba-4d76-08dc20b67831
+X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB7828.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2024 10:19:39.3469 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2024 10:38:45.4072 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WtCZJn9mJHFjZMAntah7PFXGWPWBBu6SL489ck+/033FNNaGwgV63luTiFXECJYW
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6796
+X-MS-Exchange-CrossTenant-UserPrincipalName: Itpj/1xbzHu2LcYCQkNJSxlMtrA9o0Nh1JYCbjsuQEBc/LYS04YH5vBgojq9ONWyFxk7nggotT0iJoElbNEIFRJydjtUul7Snt++ChwIkwY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8526
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,688 +148,231 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Felix Kuehling <felix.kuehling@amd.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- Danilo Krummrich <dakr@redhat.com>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---------------myS5a9Mk0jH4rMDadoJYtLJg
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+On Fri, Jan 26, 2024 at 03:30:11PM -0500, Rodrigo Vivi wrote:
+> Replace outdated information with a proper PM documentation.
+> Already establish the rules for the runtime PM get and put that
+> Xe needs to follow.
+> 
+> Also add missing function documentation to all the "exported" functions.
+> 
+> Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Well Daniel and Dave noted it as well, so I'm just repeating it: Your 
-design choices are not an argument to get something upstream.
+Hi,
 
-It's the job of the maintainers and at the end of the Linus to judge of 
-something is acceptable or not.
+Very helpful summary, I think the level of detail is spot on. Minor nits below.
 
-As far as I can see a good part of this this idea has been exercised 
-lengthy with KFD and it turned out to not be the best approach.
+Acked-by: Francois Dugast <francois.dugast@intel.com>
 
-So from what I've seen the design you outlined is extremely unlikely to 
-go upstream.
+> ---
+>  drivers/gpu/drm/xe/xe_pm.c | 107 +++++++++++++++++++++++++++++++++----
+>  1 file changed, 96 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+> index d5f219796d7e..bd35fe9f6227 100644
+> --- a/drivers/gpu/drm/xe/xe_pm.c
+> +++ b/drivers/gpu/drm/xe/xe_pm.c
+> @@ -25,21 +25,45 @@
+>  /**
+>   * DOC: Xe Power Management
+>   *
+> - * Xe PM shall be guided by the simplicity.
+> - * Use the simplest hook options whenever possible.
+> - * Let's not reinvent the runtime_pm references and hooks.
+> - * Shall have a clear separation of display and gt underneath this component.
+> + * Xe PM implements the main routines for both system level suspend states and
+> + * for the opportunistic runtime suspend states.
+>   *
+> - * What's next:
+> + * System Level Suspend (S-States) - In general this is OS initiated suspend
+> + * driven by ACPI for achieving S0ix (a.k.a. S2idle, freeze), S3 (suspend to ram),
+> + * S4 (disk). The main functions here are `xe_pm_suspend` and `xe_pm_resume` that
 
-Regards,
-Christian.
+The sentence seems a bit long to me, maybe s/that/. They/?
 
-Am 27.01.24 um 03:21 schrieb Zeng, Oak:
->
-> Regarding the idea of expanding userptr to support migration, we 
-> explored this idea long time ago. It provides similar functions of the 
-> system allocator but its interface is not as convenient as system 
-> allocator. Besides the shared virtual address space, another benefit 
-> of a system allocator is, you can offload cpu program to gpu easier, 
-> you don’t need to call driver specific API (such as register_userptr 
-> and vm_bind in this case) for memory allocation.
->
-> We also scoped the implementation. It turned out to be big, and not as 
-> beautiful as hmm. Why we gave up this approach.
->
-> *From:*Christian König <christian.koenig@amd.com>
-> *Sent:* Friday, January 26, 2024 7:52 AM
-> *To:* Thomas Hellström <thomas.hellstrom@linux.intel.com>; Daniel 
-> Vetter <daniel@ffwll.ch>
-> *Cc:* Brost, Matthew <matthew.brost@intel.com>; Felix Kuehling 
-> <felix.kuehling@amd.com>; Welty, Brian <brian.welty@intel.com>; 
-> Ghimiray, Himal Prasad <himal.prasad.ghimiray@intel.com>; Zeng, Oak 
-> <oak.zeng@intel.com>; Gupta, saurabhg <saurabhg.gupta@intel.com>; 
-> Danilo Krummrich <dakr@redhat.com>; dri-devel@lists.freedesktop.org; 
-> Bommu, Krishnaiah <krishnaiah.bommu@intel.com>; Dave Airlie 
-> <airlied@redhat.com>; Vishwanathapura, Niranjana 
-> <niranjana.vishwanathapura@intel.com>; intel-xe@lists.freedesktop.org
-> *Subject:* Re: Making drm_gpuvm work across gpu devices
->
-> Am 26.01.24 um 09:21 schrieb Thomas Hellström:
->
->     Hi, all
->
->     On Thu, 2024-01-25 at 19:32 +0100, Daniel Vetter wrote:
->
->         On Wed, Jan 24, 2024 at 09:33:12AM +0100, Christian König wrote:
->
->             Am 23.01.24 um 20:37 schrieb Zeng, Oak:
->
->                 [SNIP]
->
->                 Yes most API are per device based.
->
->                 One exception I know is actually the kfd SVM API. If you look at
->
->                 the svm_ioctl function, it is per-process based. Each kfd_process
->
->                 represent a process across N gpu devices.
->
->             Yeah and that was a big mistake in my opinion. We should really not
->
->             do that
->
->             ever again.
->
->                 Need to say, kfd SVM represent a shared virtual address space
->
->                 across CPU and all GPU devices on the system. This is by the
->
->                 definition of SVM (shared virtual memory). This is very different
->
->                 from our legacy gpu *device* driver which works for only one
->
->                 device (i.e., if you want one device to access another device's
->
->                 memory, you will have to use dma-buf export/import etc).
->
->             Exactly that thinking is what we have currently found as blocker
->
->             for a
->
->             virtualization projects. Having SVM as device independent feature
->
->             which
->
->             somehow ties to the process address space turned out to be an
->
->             extremely bad
->
->             idea.
->
->             The background is that this only works for some use cases but not
->
->             all of
->
->             them.
->
->             What's working much better is to just have a mirror functionality
->
->             which says
->
->             that a range A..B of the process address space is mapped into a
->
->             range C..D
->
->             of the GPU address space.
->
->             Those ranges can then be used to implement the SVM feature required
->
->             for
->
->             higher level APIs and not something you need at the UAPI or even
->
->             inside the
->
->             low level kernel memory management.
->
->             When you talk about migrating memory to a device you also do this
->
->             on a per
->
->             device basis and *not* tied to the process address space. If you
->
->             then get
->
->             crappy performance because userspace gave contradicting information
->
->             where to
->
->             migrate memory then that's a bug in userspace and not something the
->
->             kernel
->
->             should try to prevent somehow.
->
->             [SNIP]
->
->                     I think if you start using the same drm_gpuvm for multiple
->
->                     devices you
->
->                     will sooner or later start to run into the same mess we have
->
->                     seen with
->
->                     KFD, where we moved more and more functionality from the KFD to
->
->                     the DRM
->
->                     render node because we found that a lot of the stuff simply
->
->                     doesn't work
->
->                     correctly with a single object to maintain the state.
->
->                 As I understand it, KFD is designed to work across devices. A
->
->                 single pseudo /dev/kfd device represent all hardware gpu devices.
->
->                 That is why during kfd open, many pdd (process device data) is
->
->                 created, each for one hardware device for this process.
->
->             Yes, I'm perfectly aware of that. And I can only repeat myself that
->
->             I see
->
->             this design as a rather extreme failure. And I think it's one of
->
->             the reasons
->
->             why NVidia is so dominant with Cuda.
->
->             This whole approach KFD takes was designed with the idea of
->
->             extending the
->
->             CPU process into the GPUs, but this idea only works for a few use
->
->             cases and
->
->             is not something we should apply to drivers in general.
->
->             A very good example are virtualization use cases where you end up
->
->             with CPU
->
->             address != GPU address because the VAs are actually coming from the
->
->             guest VM
->
->             and not the host process.
->
->             SVM is a high level concept of OpenCL, Cuda, ROCm etc.. This should
->
->             not have
->
->             any influence on the design of the kernel UAPI.
->
->             If you want to do something similar as KFD for Xe I think you need
->
->             to get
->
->             explicit permission to do this from Dave and Daniel and maybe even
->
->             Linus.
->
->         I think the one and only one exception where an SVM uapi like in kfd
->
->         makes
->
->         sense, is if the _hardware_ itself, not the software stack defined
->
->         semantics that you've happened to build on top of that hw, enforces a
->
->         1:1
->
->         mapping with the cpu process address space.
->
->         Which means your hardware is using PASID, IOMMU based translation,
->
->         PCI-ATS
->
->         (address translation services) or whatever your hw calls it and has
->
->         _no_
->
->         device-side pagetables on top. Which from what I've seen all devices
->
->         with
->
->         device-memory have, simply because they need some place to store
->
->         whether
->
->         that memory is currently in device memory or should be translated
->
->         using
->
->         PASID. Currently there's no gpu that works with PASID only, but there
->
->         are
->
->         some on-cpu-die accelerator things that do work like that.
->
->         Maybe in the future there will be some accelerators that are fully
->
->         cpu
->
->         cache coherent (including atomics) with something like CXL, and the
->
->         on-device memory is managed as normal system memory with struct page
->
->         as
->
->         ZONE_DEVICE and accelerator va -> physical address translation is
->
->         only
->
->         done with PASID ... but for now I haven't seen that, definitely not
->
->         in
->
->         upstream drivers.
->
->         And the moment you have some per-device pagetables or per-device
->
->         memory
->
->         management of some sort (like using gpuva mgr) then I'm 100% agreeing
->
->         with
->
->         Christian that the kfd SVM model is too strict and not a great idea.
->
->         Cheers, Sima
->
->     I'm trying to digest all the comments here, The end goal is to be able
->
->     to support something similar to this here:
->
->     https://developer.nvidia.com/blog/simplifying-gpu-application-development-with-heterogeneous-memory-management/
->
->     Christian, If I understand you correctly, you're strongly suggesting
->
->     not to try to manage a common virtual address space across different
->
->     devices in the kernel, but merely providing building blocks to do so,
->
->     like for example a generalized userptr with migration support using
->
->     HMM; That way each "mirror" of the CPU mm would be per device and
->
->     inserted into the gpu_vm just like any other gpu_vma, and user-space
->
->     would dictate the A..B -> C..D mapping by choosing the GPU_VA for the
->
->     vma.
->
->
-> Exactly that, yes.
->
->
->     Sima, it sounds like you're suggesting to shy away from hmm and not
->
->     even attempt to support this except if it can be done using IOMMU sva
->
->     on selected hardware?
->
->
-> I think that comment goes more into the direction of: If you have 
-> ATS/ATC/PRI capable hardware which exposes the functionality to make 
-> memory reads and writes directly into the address space of the CPU 
-> then yes an SVM only interface is ok because the hardware can't do 
-> anything else. But as long as you have something like GPUVM then 
-> please don't restrict yourself.
->
-> Which I totally agree on as well. The ATS/ATC/PRI combination doesn't 
-> allow using separate page tables device and CPU and so also not 
-> separate VAs.
->
-> This was one of the reasons why we stopped using this approach for AMD 
-> GPUs.
->
-> Regards,
-> Christian.
->
->
->     Could you clarify a bit?
->
->     Thanks,
->
->     Thomas
->
+> + * are the main point for the suspend to and resume from these states.
+>   *
+> - * For now s2idle and s3 are only working in integrated devices. The next step
+> - * is to iterate through all VRAM's BO backing them up into the system memory
+> - * before allowing the system suspend.
+> + * Runtime Suspend (D-States) - This is the opportunistic PCIe device low power
+> + * state D3. Xe PM component provides `xe_pm_runtime_suspend` and
+> + * `xe_pm_runtime_resume` systems that PCI subsystem will call before transition
+> + * to D3. Also, Xe PM provides get and put functions that Xe driver will use to
+> + * indicate activity. In order to avoid locking complications with the memory
+> + * management, whenever possible, these get and put functions needs to be called
+> + * from the higher/outer levels.
+>   *
+> - * Also runtime_pm needs to be here from the beginning.
+> + * The main cases that need to be protected from the outer levels are: IOCLT,
 
---------------myS5a9Mk0jH4rMDadoJYtLJg
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+s/IOCLT/IOCTL/
 
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    Well Daniel and Dave noted it as well, so I'm just repeating it:
-    Your design choices are not an argument to get something upstream.<br>
-    <br>
-    It's the job of the maintainers and at the end of the Linus to judge
-    of something is acceptable or not.<br>
-    <br>
-    As far as I can see a good part of this this idea has been exercised
-    lengthy with KFD and it turned out to not be the best approach.<br>
-    <br>
-    So from what I've seen the design you outlined is extremely unlikely
-    to go upstream.<br>
-    <br>
-    Regards,<br>
-    Christian.<br>
-    <br>
-    <div class="moz-cite-prefix">Am 27.01.24 um 03:21 schrieb Zeng, Oak:<br>
-    </div>
-    <blockquote type="cite" cite="mid:SA1PR11MB69919C19A16C007A6B01FC9E92782@SA1PR11MB6991.namprd11.prod.outlook.com">
-      
-      <meta name="Generator" content="Microsoft Word 15 (filtered medium)">
-      <style>@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
-	{font-family:DengXian;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}@font-face
-	{font-family:"\@DengXian";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML Preformatted Char";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Courier New";}span.HTMLPreformattedChar
-	{mso-style-name:"HTML Preformatted Char";
-	mso-style-priority:99;
-	mso-style-link:"HTML Preformatted";
-	font-family:Consolas;}span.EmailStyle20
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;
-	mso-ligatures:none;}div.WordSection1
-	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <div class="WordSection1">
-        <p class="MsoNormal">Regarding the idea of expanding userptr to
-          support migration, we explored this idea long time ago. It
-          provides similar functions of the system allocator but its
-          interface is not as convenient as system allocator. Besides
-          the shared virtual address space, another benefit of a system
-          allocator is, you can offload cpu program to gpu easier, you
-          don’t need to call driver specific API (such as
-          register_userptr and vm_bind in this case) for memory
-          allocation.<o:p></o:p></p>
-        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
-        <p class="MsoNormal">We also scoped the implementation. It
-          turned out to be big, and not as beautiful as hmm. Why we gave
-          up this approach.
-          <o:p></o:p></p>
-        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
-        <div style="border:none;border-left:solid blue 1.5pt;padding:0cm 0cm 0cm 4.0pt">
-          <div>
-            <div style="border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm 0cm 0cm">
-              <p class="MsoNormal"><b><span lang="EN-US">From:</span></b><span lang="EN-US"> Christian König
-                  <a class="moz-txt-link-rfc2396E" href="mailto:christian.koenig@amd.com">&lt;christian.koenig@amd.com&gt;</a>
-                  <br>
-                  <b>Sent:</b> Friday, January 26, 2024 7:52 AM<br>
-                  <b>To:</b> Thomas Hellström
-                  <a class="moz-txt-link-rfc2396E" href="mailto:thomas.hellstrom@linux.intel.com">&lt;thomas.hellstrom@linux.intel.com&gt;</a>; Daniel
-                  Vetter <a class="moz-txt-link-rfc2396E" href="mailto:daniel@ffwll.ch">&lt;daniel@ffwll.ch&gt;</a><br>
-                  <b>Cc:</b> Brost, Matthew
-                  <a class="moz-txt-link-rfc2396E" href="mailto:matthew.brost@intel.com">&lt;matthew.brost@intel.com&gt;</a>; Felix Kuehling
-                  <a class="moz-txt-link-rfc2396E" href="mailto:felix.kuehling@amd.com">&lt;felix.kuehling@amd.com&gt;</a>; Welty, Brian
-                  <a class="moz-txt-link-rfc2396E" href="mailto:brian.welty@intel.com">&lt;brian.welty@intel.com&gt;</a>; Ghimiray, Himal Prasad
-                  <a class="moz-txt-link-rfc2396E" href="mailto:himal.prasad.ghimiray@intel.com">&lt;himal.prasad.ghimiray@intel.com&gt;</a>; Zeng, Oak
-                  <a class="moz-txt-link-rfc2396E" href="mailto:oak.zeng@intel.com">&lt;oak.zeng@intel.com&gt;</a>; Gupta, saurabhg
-                  <a class="moz-txt-link-rfc2396E" href="mailto:saurabhg.gupta@intel.com">&lt;saurabhg.gupta@intel.com&gt;</a>; Danilo Krummrich
-                  <a class="moz-txt-link-rfc2396E" href="mailto:dakr@redhat.com">&lt;dakr@redhat.com&gt;</a>;
-                  <a class="moz-txt-link-abbreviated" href="mailto:dri-devel@lists.freedesktop.org">dri-devel@lists.freedesktop.org</a>; Bommu, Krishnaiah
-                  <a class="moz-txt-link-rfc2396E" href="mailto:krishnaiah.bommu@intel.com">&lt;krishnaiah.bommu@intel.com&gt;</a>; Dave Airlie
-                  <a class="moz-txt-link-rfc2396E" href="mailto:airlied@redhat.com">&lt;airlied@redhat.com&gt;</a>; Vishwanathapura, Niranjana
-                  <a class="moz-txt-link-rfc2396E" href="mailto:niranjana.vishwanathapura@intel.com">&lt;niranjana.vishwanathapura@intel.com&gt;</a>;
-                  <a class="moz-txt-link-abbreviated" href="mailto:intel-xe@lists.freedesktop.org">intel-xe@lists.freedesktop.org</a><br>
-                  <b>Subject:</b> Re: Making drm_gpuvm work across gpu
-                  devices<o:p></o:p></span></p>
-            </div>
-          </div>
-          <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
-          <p class="MsoNormal">Am 26.01.24 um 09:21 schrieb Thomas
-            Hellström:<br>
-            <br>
-            <o:p></o:p></p>
-          <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
-            <pre>Hi, all<o:p></o:p></pre>
-            <pre><o:p>&nbsp;</o:p></pre>
-            <pre>On Thu, 2024-01-25 at 19:32 +0100, Daniel Vetter wrote:<o:p></o:p></pre>
-            <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
-              <pre>On Wed, Jan 24, 2024 at 09:33:12AM +0100, Christian König wrote:<o:p></o:p></pre>
-              <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
-                <pre>Am 23.01.24 um 20:37 schrieb Zeng, Oak:<o:p></o:p></pre>
-                <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
-                  <pre>[SNIP]<o:p></o:p></pre>
-                  <pre>Yes most API are per device based.<o:p></o:p></pre>
-                  <pre><o:p>&nbsp;</o:p></pre>
-                  <pre>One exception I know is actually the kfd SVM API. If you look at<o:p></o:p></pre>
-                  <pre>the svm_ioctl function, it is per-process based. Each kfd_process<o:p></o:p></pre>
-                  <pre>represent a process across N gpu devices.<o:p></o:p></pre>
-                </blockquote>
-                <pre><o:p>&nbsp;</o:p></pre>
-                <pre>Yeah and that was a big mistake in my opinion. We should really not<o:p></o:p></pre>
-                <pre>do that<o:p></o:p></pre>
-                <pre>ever again.<o:p></o:p></pre>
-                <pre><o:p>&nbsp;</o:p></pre>
-                <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
-                  <pre>Need to say, kfd SVM represent a shared virtual address space<o:p></o:p></pre>
-                  <pre>across CPU and all GPU devices on the system. This is by the<o:p></o:p></pre>
-                  <pre>definition of SVM (shared virtual memory). This is very different<o:p></o:p></pre>
-                  <pre>from our legacy gpu *device* driver which works for only one<o:p></o:p></pre>
-                  <pre>device (i.e., if you want one device to access another device's<o:p></o:p></pre>
-                  <pre>memory, you will have to use dma-buf export/import etc).<o:p></o:p></pre>
-                </blockquote>
-                <pre><o:p>&nbsp;</o:p></pre>
-                <pre>Exactly that thinking is what we have currently found as blocker<o:p></o:p></pre>
-                <pre>for a<o:p></o:p></pre>
-                <pre>virtualization projects. Having SVM as device independent feature<o:p></o:p></pre>
-                <pre>which<o:p></o:p></pre>
-                <pre>somehow ties to the process address space turned out to be an<o:p></o:p></pre>
-                <pre>extremely bad<o:p></o:p></pre>
-                <pre>idea.<o:p></o:p></pre>
-                <pre><o:p>&nbsp;</o:p></pre>
-                <pre>The background is that this only works for some use cases but not<o:p></o:p></pre>
-                <pre>all of<o:p></o:p></pre>
-                <pre>them.<o:p></o:p></pre>
-                <pre><o:p>&nbsp;</o:p></pre>
-                <pre>What's working much better is to just have a mirror functionality<o:p></o:p></pre>
-                <pre>which says<o:p></o:p></pre>
-                <pre>that a range A..B of the process address space is mapped into a<o:p></o:p></pre>
-                <pre>range C..D<o:p></o:p></pre>
-                <pre>of the GPU address space.<o:p></o:p></pre>
-                <pre><o:p>&nbsp;</o:p></pre>
-                <pre>Those ranges can then be used to implement the SVM feature required<o:p></o:p></pre>
-                <pre>for<o:p></o:p></pre>
-                <pre>higher level APIs and not something you need at the UAPI or even<o:p></o:p></pre>
-                <pre>inside the<o:p></o:p></pre>
-                <pre>low level kernel memory management.<o:p></o:p></pre>
-                <pre><o:p>&nbsp;</o:p></pre>
-                <pre>When you talk about migrating memory to a device you also do this<o:p></o:p></pre>
-                <pre>on a per<o:p></o:p></pre>
-                <pre>device basis and *not* tied to the process address space. If you<o:p></o:p></pre>
-                <pre>then get<o:p></o:p></pre>
-                <pre>crappy performance because userspace gave contradicting information<o:p></o:p></pre>
-                <pre>where to<o:p></o:p></pre>
-                <pre>migrate memory then that's a bug in userspace and not something the<o:p></o:p></pre>
-                <pre>kernel<o:p></o:p></pre>
-                <pre>should try to prevent somehow.<o:p></o:p></pre>
-                <pre><o:p>&nbsp;</o:p></pre>
-                <pre>[SNIP]<o:p></o:p></pre>
-                <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
-                  <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
-                    <pre>I think if you start using the same drm_gpuvm for multiple<o:p></o:p></pre>
-                    <pre>devices you<o:p></o:p></pre>
-                    <pre>will sooner or later start to run into the same mess we have<o:p></o:p></pre>
-                    <pre>seen with<o:p></o:p></pre>
-                    <pre>KFD, where we moved more and more functionality from the KFD to<o:p></o:p></pre>
-                    <pre>the DRM<o:p></o:p></pre>
-                    <pre>render node because we found that a lot of the stuff simply<o:p></o:p></pre>
-                    <pre>doesn't work<o:p></o:p></pre>
-                    <pre>correctly with a single object to maintain the state.<o:p></o:p></pre>
-                  </blockquote>
-                  <pre>As I understand it, KFD is designed to work across devices. A<o:p></o:p></pre>
-                  <pre>single pseudo /dev/kfd device represent all hardware gpu devices.<o:p></o:p></pre>
-                  <pre>That is why during kfd open, many pdd (process device data) is<o:p></o:p></pre>
-                  <pre>created, each for one hardware device for this process.<o:p></o:p></pre>
-                </blockquote>
-                <pre><o:p>&nbsp;</o:p></pre>
-                <pre>Yes, I'm perfectly aware of that. And I can only repeat myself that<o:p></o:p></pre>
-                <pre>I see<o:p></o:p></pre>
-                <pre>this design as a rather extreme failure. And I think it's one of<o:p></o:p></pre>
-                <pre>the reasons<o:p></o:p></pre>
-                <pre>why NVidia is so dominant with Cuda.<o:p></o:p></pre>
-                <pre><o:p>&nbsp;</o:p></pre>
-                <pre>This whole approach KFD takes was designed with the idea of<o:p></o:p></pre>
-                <pre>extending the<o:p></o:p></pre>
-                <pre>CPU process into the GPUs, but this idea only works for a few use<o:p></o:p></pre>
-                <pre>cases and<o:p></o:p></pre>
-                <pre>is not something we should apply to drivers in general.<o:p></o:p></pre>
-                <pre><o:p>&nbsp;</o:p></pre>
-                <pre>A very good example are virtualization use cases where you end up<o:p></o:p></pre>
-                <pre>with CPU<o:p></o:p></pre>
-                <pre>address != GPU address because the VAs are actually coming from the<o:p></o:p></pre>
-                <pre>guest VM<o:p></o:p></pre>
-                <pre>and not the host process.<o:p></o:p></pre>
-                <pre><o:p>&nbsp;</o:p></pre>
-                <pre>SVM is a high level concept of OpenCL, Cuda, ROCm etc.. This should<o:p></o:p></pre>
-                <pre>not have<o:p></o:p></pre>
-                <pre>any influence on the design of the kernel UAPI.<o:p></o:p></pre>
-                <pre><o:p>&nbsp;</o:p></pre>
-                <pre>If you want to do something similar as KFD for Xe I think you need<o:p></o:p></pre>
-                <pre>to get<o:p></o:p></pre>
-                <pre>explicit permission to do this from Dave and Daniel and maybe even<o:p></o:p></pre>
-                <pre>Linus.<o:p></o:p></pre>
-              </blockquote>
-              <pre><o:p>&nbsp;</o:p></pre>
-              <pre>I think the one and only one exception where an SVM uapi like in kfd<o:p></o:p></pre>
-              <pre>makes<o:p></o:p></pre>
-              <pre>sense, is if the _hardware_ itself, not the software stack defined<o:p></o:p></pre>
-              <pre>semantics that you've happened to build on top of that hw, enforces a<o:p></o:p></pre>
-              <pre>1:1<o:p></o:p></pre>
-              <pre>mapping with the cpu process address space.<o:p></o:p></pre>
-              <pre><o:p>&nbsp;</o:p></pre>
-              <pre>Which means your hardware is using PASID, IOMMU based translation,<o:p></o:p></pre>
-              <pre>PCI-ATS<o:p></o:p></pre>
-              <pre>(address translation services) or whatever your hw calls it and has<o:p></o:p></pre>
-              <pre>_no_<o:p></o:p></pre>
-              <pre>device-side pagetables on top. Which from what I've seen all devices<o:p></o:p></pre>
-              <pre>with<o:p></o:p></pre>
-              <pre>device-memory have, simply because they need some place to store<o:p></o:p></pre>
-              <pre>whether<o:p></o:p></pre>
-              <pre>that memory is currently in device memory or should be translated<o:p></o:p></pre>
-              <pre>using<o:p></o:p></pre>
-              <pre>PASID. Currently there's no gpu that works with PASID only, but there<o:p></o:p></pre>
-              <pre>are<o:p></o:p></pre>
-              <pre>some on-cpu-die accelerator things that do work like that.<o:p></o:p></pre>
-              <pre><o:p>&nbsp;</o:p></pre>
-              <pre>Maybe in the future there will be some accelerators that are fully<o:p></o:p></pre>
-              <pre>cpu<o:p></o:p></pre>
-              <pre>cache coherent (including atomics) with something like CXL, and the<o:p></o:p></pre>
-              <pre>on-device memory is managed as normal system memory with struct page<o:p></o:p></pre>
-              <pre>as<o:p></o:p></pre>
-              <pre>ZONE_DEVICE and accelerator va -&gt; physical address translation is<o:p></o:p></pre>
-              <pre>only<o:p></o:p></pre>
-              <pre>done with PASID ... but for now I haven't seen that, definitely not<o:p></o:p></pre>
-              <pre>in<o:p></o:p></pre>
-              <pre>upstream drivers.<o:p></o:p></pre>
-              <pre><o:p>&nbsp;</o:p></pre>
-              <pre>And the moment you have some per-device pagetables or per-device<o:p></o:p></pre>
-              <pre>memory<o:p></o:p></pre>
-              <pre>management of some sort (like using gpuva mgr) then I'm 100% agreeing<o:p></o:p></pre>
-              <pre>with<o:p></o:p></pre>
-              <pre>Christian that the kfd SVM model is too strict and not a great idea.<o:p></o:p></pre>
-              <pre><o:p>&nbsp;</o:p></pre>
-              <pre>Cheers, Sima<o:p></o:p></pre>
-            </blockquote>
-            <pre><o:p>&nbsp;</o:p></pre>
-            <pre><o:p>&nbsp;</o:p></pre>
-            <pre>I'm trying to digest all the comments here, The end goal is to be able<o:p></o:p></pre>
-            <pre>to support something similar to this here:<o:p></o:p></pre>
-            <pre><o:p>&nbsp;</o:p></pre>
-            <pre><a href="https://developer.nvidia.com/blog/simplifying-gpu-application-development-with-heterogeneous-memory-management/" moz-do-not-send="true" class="moz-txt-link-freetext">https://developer.nvidia.com/blog/simplifying-gpu-application-development-with-heterogeneous-memory-management/</a><o:p></o:p></pre>
-            <pre><o:p>&nbsp;</o:p></pre>
-            <pre>Christian, If I understand you correctly, you're strongly suggesting<o:p></o:p></pre>
-            <pre>not to try to manage a common virtual address space across different<o:p></o:p></pre>
-            <pre>devices in the kernel, but merely providing building blocks to do so,<o:p></o:p></pre>
-            <pre>like for example a generalized userptr with migration support using<o:p></o:p></pre>
-            <pre>HMM; That way each &quot;mirror&quot; of the CPU mm would be per device and<o:p></o:p></pre>
-            <pre>inserted into the gpu_vm just like any other gpu_vma, and user-space<o:p></o:p></pre>
-            <pre>would dictate the A..B -&gt; C..D mapping by choosing the GPU_VA for the<o:p></o:p></pre>
-            <pre>vma.<o:p></o:p></pre>
-          </blockquote>
-          <p class="MsoNormal"><br>
-            Exactly that, yes.<br>
-            <br>
-            <br>
-            <o:p></o:p></p>
-          <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
-            <pre><o:p>&nbsp;</o:p></pre>
-            <pre>Sima, it sounds like you're suggesting to shy away from hmm and not<o:p></o:p></pre>
-            <pre>even attempt to support this except if it can be done using IOMMU sva<o:p></o:p></pre>
-            <pre>on selected hardware?<o:p></o:p></pre>
-          </blockquote>
-          <p class="MsoNormal"><br>
-            I think that comment goes more into the direction of: If you
-            have ATS/ATC/PRI capable hardware which exposes the
-            functionality to make memory reads and writes directly into
-            the address space of the CPU then yes an SVM only interface
-            is ok because the hardware can't do anything else. But as
-            long as you have something like GPUVM then please don't
-            restrict yourself.<br>
-            <br>
-            Which I totally agree on as well. The ATS/ATC/PRI
-            combination doesn't allow using separate page tables device
-            and CPU and so also not separate VAs.<br>
-            <br>
-            This was one of the reasons why we stopped using this
-            approach for AMD GPUs.<br>
-            <br>
-            Regards,<br>
-            Christian.<br>
-            <br>
-            <br>
-            <o:p></o:p></p>
-          <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
-            <pre>Could you clarify a bit?<o:p></o:p></pre>
-            <pre><o:p>&nbsp;</o:p></pre>
-            <pre>Thanks,<o:p></o:p></pre>
-            <pre>Thomas<o:p></o:p></pre>
-            <pre><o:p>&nbsp;</o:p></pre>
-            <pre><o:p>&nbsp;</o:p></pre>
-            <pre><o:p>&nbsp;</o:p></pre>
-            <pre><o:p>&nbsp;</o:p></pre>
-            <pre><o:p>&nbsp;</o:p></pre>
-            <pre><o:p>&nbsp;</o:p></pre>
-            <pre><o:p>&nbsp;</o:p></pre>
-          </blockquote>
-          <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
+> + * sysfs, debugfs, dma-buf sharing, GPU execution.
+>   *
+> - * RC6/RPS are also critical PM features. Let's start with GuCRC and GuC SLPC
+> - * and no wait boost. Frequency optimizations should come on a next stage.
+> + * PCI D3 is special and can mean D3hot, where Vcc power is on for keeping memory
+> + * alive and quicker low latency resume or D3Cold where Vcc power is off for
+> + * better power savings.
+> + * The Vcc control of PCI hierarchy can only be controlled at the PCI root port
+> + * level, while the device driver can be behind multiple bridges/switches and
+> + * paired with other devices. For this reason, the PCI subsystem cannot perform
+> + * the transition towards D3Cold. The lowest runtime PM possible from the PCI
+> + * subsystem is D3hot. Then, if all these paired devices in the same root port
+> + * are in D3hot, ACPI will assist here and run its _PR3 and _OFF methods to
 
---------------myS5a9Mk0jH4rMDadoJYtLJg--
+If the "_PR3 and _OFF" reference is needed, maybe provide a pointer to those?
+
+> + * perform the transition from D3hot to D3cold. Xe may disallow this transition
+
+How?
+
+Francois
+
+> + * based on runtime conditions such as VRAM usage for a quick and low latency
+> + * resume for instance.
+> + *
+> + * Intel systems are capable of taking the system to S0ix when devices are on
+> + * D3hot through the runtime PM. This is also called as 'opportunistic-S0iX'.
+> + * But in this case, the `xe_pm_suspend` and `xe_pm_resume` won't be called for
+> + * S0ix.
+> + *
+> + * This component is no responsible for GT idleness (RC6) nor GT frequency
+> + * management (RPS).
+>   */
+>  
+>  /**
+> @@ -169,6 +193,12 @@ void xe_pm_init_early(struct xe_device *xe)
+>  	drmm_mutex_init(&xe->drm, &xe->mem_access.vram_userfault.lock);
+>  }
+>  
+> +/**
+> + * xe_pm_init - Initialize Xe Power Management
+> + * @xe: xe device instance
+> + *
+> + * This component is responsible for System and Device sleep states.
+> + */
+>  void xe_pm_init(struct xe_device *xe)
+>  {
+>  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+> @@ -189,6 +219,10 @@ void xe_pm_init(struct xe_device *xe)
+>  	xe_pm_runtime_init(xe);
+>  }
+>  
+> +/**
+> + * xe_pm_runtime_fini - Finalize Runtime PM
+> + * @xe: xe device instance
+> + */
+>  void xe_pm_runtime_fini(struct xe_device *xe)
+>  {
+>  	struct device *dev = xe->drm.dev;
+> @@ -218,6 +252,12 @@ struct task_struct *xe_pm_read_callback_task(struct xe_device *xe)
+>  	return READ_ONCE(xe->pm_callback_task);
+>  }
+>  
+> +/**
+> + * xe_pm_runtime_suspend - Prepare our device for D3hot/D3Cold
+> + * @xe: xe device instance
+> + *
+> + * Returns 0 for success, negative error code otherwise.
+> + */
+>  int xe_pm_runtime_suspend(struct xe_device *xe)
+>  {
+>  	struct xe_bo *bo, *on;
+> @@ -283,6 +323,12 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
+>  	return err;
+>  }
+>  
+> +/**
+> + * xe_pm_runtime_resume - Waking up from D3hot/D3Cold
+> + * @xe: xe device instance
+> + *
+> + * Returns 0 for success, negative error code otherwise.
+> + */
+>  int xe_pm_runtime_resume(struct xe_device *xe)
+>  {
+>  	struct xe_gt *gt;
+> @@ -334,22 +380,47 @@ int xe_pm_runtime_resume(struct xe_device *xe)
+>  	return err;
+>  }
+>  
+> +/**
+> + * xe_pm_runtime_get - Get a runtime_pm reference and resume synchronously
+> + * @xe: xe device instance
+> + *
+> + * Returns: Any number grater than or equal to 0 for success, negative error
+> + * code otherwise.
+> + */
+>  int xe_pm_runtime_get(struct xe_device *xe)
+>  {
+>  	return pm_runtime_get_sync(xe->drm.dev);
+>  }
+>  
+> +/**
+> + * xe_pm_runtime_put - Put the runtime_pm reference back and mark as idle
+> + * @xe: xe device instance
+> + *
+> + * Returns: Any number grater than or equal to 0 for success, negative error
+> + * code otherwise.
+> + */
+>  int xe_pm_runtime_put(struct xe_device *xe)
+>  {
+>  	pm_runtime_mark_last_busy(xe->drm.dev);
+>  	return pm_runtime_put(xe->drm.dev);
+>  }
+>  
+> +/**
+> + * xe_pm_runtime_get_if_active - Get a runtime_pm reference if device active
+> + * @xe: xe device instance
+> + *
+> + * Returns: Any number grater than or equal to 0 for success, negative error
+> + * code otherwise.
+> + */
+>  int xe_pm_runtime_get_if_active(struct xe_device *xe)
+>  {
+>  	return pm_runtime_get_if_active(xe->drm.dev, true);
+>  }
+>  
+> +/**
+> + * xe_pm_assert_unbounded_bridge - Disable PM on unbounded pcie parent bridge
+> + * @xe: xe device instance
+> + */
+>  void xe_pm_assert_unbounded_bridge(struct xe_device *xe)
+>  {
+>  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+> @@ -364,6 +435,13 @@ void xe_pm_assert_unbounded_bridge(struct xe_device *xe)
+>  	}
+>  }
+>  
+> +/**
+> + * xe_pm_set_vram_threshold - Set a vram threshold for allowing/blocking D3Cold
+> + * @xe: xe device instance
+> + * @threshold: VRAM size in bites for the D3cold threshold
+> + *
+> + * Returns 0 for success, negative error code otherwise.
+> + */
+>  int xe_pm_set_vram_threshold(struct xe_device *xe, u32 threshold)
+>  {
+>  	struct ttm_resource_manager *man;
+> @@ -388,6 +466,13 @@ int xe_pm_set_vram_threshold(struct xe_device *xe, u32 threshold)
+>  	return 0;
+>  }
+>  
+> +/**
+> + * xe_pm_d3cold_allowed_toggle - Check conditions to toggle d3cold.allowed
+> + * @xe: xe device instance
+> + *
+> + * To be called during runtime_pm idle callback.
+> + * Check for all the D3Cold conditions ahead of runtime suspend.
+> + */
+>  void xe_pm_d3cold_allowed_toggle(struct xe_device *xe)
+>  {
+>  	struct ttm_resource_manager *man;
+> -- 
+> 2.43.0
+> 
