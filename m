@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CB88C47DA9
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Jan 2024 12:02:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BDDEC47DA9
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Jan 2024 12:12:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A30210F6D3;
-	Mon, 29 Jan 2024 12:02:54 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39DAA10E9E3;
- Mon, 29 Jan 2024 12:02:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 567D610F6C3;
+	Mon, 29 Jan 2024 12:12:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADDFE10F6C3
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 Jan 2024 12:12:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706529772; x=1738065772;
+ t=1706530329; x=1738066329;
  h=message-id:date:mime-version:subject:to:references:from:
  in-reply-to:content-transfer-encoding;
- bh=xbFG2L2uhZV1INGbqdNcm+/GKkOpqKm5MMzsS1dS8nI=;
- b=Zn/nQJQdPn3274w7Dror38CQP1kBqWrkmQiSLypME/c9Yq5YEfiUmjj9
- IlngkYvGshhT7ggrXPvozVC07PDDclKsCCJjNHxY+IeY7COre5VpjvUF8
- deCB3rz3QL86GDn9De3qBoVWrosKbqfsON8pHdPG7lHgEzcuUyfh1c99g
- qtTqg9ZglHsByNUg14neLgup/fWV887py1i5Gx1ulz3boobgAMpI5MFK5
- ycnW4JZqnX7lAfCL9kQDGBit/6jbWcOCTtAEbZ0HnAimlnJIo6OimuzQy
- oWCrjJulcPn+A4LzZ59kvsGuk+Dn4kmGSO3e/rCI2Bv9Txj52WuDSGVCH Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10967"; a="10313386"
-X-IronPort-AV: E=Sophos;i="6.05,227,1701158400"; d="scan'208";a="10313386"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2024 04:02:50 -0800
+ bh=J/N9zmh4glwzZHaLN5t4QqgoohCI2oacQK1EmqjFEOQ=;
+ b=VKp00P0dIMMwehxeFayTNEUrBTWU/GNgOwko5Tb0qSyaQb45MqZCw+wH
+ m7FsBXHg39fO7Z2QtEsuJoD8IVuS0f6cn49mexJmKYp6r/5y2U1PdznYu
+ +jo2GqjtdQdgC8X620zFbm4MUO66lN5pBzoeFExZnOw8fWrFqu5tZ2OHR
+ gNJ9aTRkqtSJ7ktgB5ijFFi4qoLPPHIw/LZBXopTvx6iAA4o/r6sX7pzx
+ 9lM4BnOnt2PybCtfVPXmNkYGn70sgi5CMw5czQ4UbLZQVsE3cl2yfXBWM
+ /xIydahr+LyYNvRj34Ln/vHR+kkGQtN4zxxurQUsd/Oo2ffU4qG2F899Y w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10967"; a="10045504"
+X-IronPort-AV: E=Sophos;i="6.05,227,1701158400"; d="scan'208";a="10045504"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2024 04:12:09 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,227,1701158400"; 
-   d="scan'208";a="3353183"
+X-IronPort-AV: E=McAfee;i="6600,9927,10967"; a="821831649"
+X-IronPort-AV: E=Sophos;i="6.05,227,1701158400"; d="scan'208";a="821831649"
 Received: from cbowler-mobl.ger.corp.intel.com (HELO [10.252.19.51])
  ([10.252.19.51])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2024 04:02:49 -0800
-Message-ID: <1b767441-0ee2-4619-9af0-dd979923b411@intel.com>
-Date: Mon, 29 Jan 2024 12:02:46 +0000
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2024 04:12:07 -0800
+Message-ID: <edf5e029-a310-4bd5-ac06-8d42dd389c9a@intel.com>
+Date: Mon, 29 Jan 2024 12:12:05 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] drm/xe/xe2: Limit ccs framebuffers to tile4 only
+Subject: Re: [RFC 34/34] drm/xe: Enable D3Cold on 'low' VRAM utilization
 Content-Language: en-GB
-To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-References: <20240126210807.320671-1-juhapekka.heikkila@gmail.com>
- <20240126210807.320671-5-juhapekka.heikkila@gmail.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
+References: <20240126203044.1104705-1-rodrigo.vivi@intel.com>
+ <20240126203044.1104705-35-rodrigo.vivi@intel.com>
 From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20240126210807.320671-5-juhapekka.heikkila@gmail.com>
+In-Reply-To: <20240126203044.1104705-35-rodrigo.vivi@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,64 +63,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 26/01/2024 21:08, Juha-Pekka Heikkila wrote:
-> Display engine support ccs only with tile4, prevent other modifiers
-> from using compressed memory. Store pin time pat index to xe_bo.
+On 26/01/2024 20:30, Rodrigo Vivi wrote:
+> Now that we eliminated all the mem_access get/put with its
+> locking issues from the inner calls of migration, we can
+> allow D3Cold.
 > 
-> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+> Enable it when VRAM utilization is lower then 300Mb. On
+> higher utilization we only allow D3hot so we don't increase
+> so much the latency on runtime resume due to the memory
+> restoration.
+
+Note that nothing in CI is d3cold capable it seems, so they will never 
+trigger this path AFAIK. All platforms return:
+
+[drm:xe_pci_probe [xe]] d3cold: capable=no
+
+Is that a bug, or perhaps there is something else needed? Main question 
+is how to get CI test coverage for this here.
+
+> 
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > ---
->   drivers/gpu/drm/xe/display/xe_fb_pin.c | 19 +++++++++++++++++++
->   1 file changed, 19 insertions(+)
+>   drivers/gpu/drm/xe/xe_pm.h | 7 +------
+>   1 file changed, 1 insertion(+), 6 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> index 722c84a56607..b2930a226f54 100644
-> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> @@ -10,9 +10,18 @@
->   #include "intel_fb_pin.h"
->   #include "xe_ggtt.h"
->   #include "xe_gt.h"
-> +#include "xe_pat.h"
+> diff --git a/drivers/gpu/drm/xe/xe_pm.h b/drivers/gpu/drm/xe/xe_pm.h
+> index 0ae4f6a60c6d..bc6bd2a01189 100644
+> --- a/drivers/gpu/drm/xe/xe_pm.h
+> +++ b/drivers/gpu/drm/xe/xe_pm.h
+> @@ -8,12 +8,7 @@
 >   
->   #include <drm/ttm/ttm_bo.h>
+>   #include <linux/pm_runtime.h>
 >   
-> +static bool is_compressed(const struct drm_framebuffer *fb)
-> +{
-> +	struct xe_bo *bo = intel_fb_obj(fb);
-> +	struct xe_device *xe = to_xe_device(to_intel_framebuffer(fb)->base.dev);
-> +
-> +	return xe_pat_index_has_compression(xe, bo->pat_index);
-> +}
-> +
->   static void
->   write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_ofs,
->   		  u32 width, u32 height, u32 src_stride, u32 dst_stride)
-> @@ -349,12 +358,22 @@ void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags)
->   int intel_plane_pin_fb(struct intel_plane_state *plane_state)
->   {
->   	struct drm_framebuffer *fb = plane_state->hw.fb;
-> +	struct xe_device *xe = to_xe_device(to_intel_framebuffer(fb)->base.dev);
->   	struct xe_bo *bo = intel_fb_obj(fb);
->   	struct i915_vma *vma;
+> -/*
+> - * TODO: Threshold = 0 will block D3Cold.
+> - *       Before we can move this to a higher value (like 300), we need to:
+> - *           1. rewrite the VRAM save / restore to avoid buffer object locks
+> - */
+> -#define DEFAULT_VRAM_THRESHOLD 0 /* in MB */
+> +#define DEFAULT_VRAM_THRESHOLD 300 /* in MB */
 >   
->   	/* We reject creating !SCANOUT fb's, so this is weird.. */
->   	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_SCANOUT_BIT));
+>   struct xe_device;
 >   
-> +	if (GRAPHICS_VER(xe) >= 20) {
-> +		if (fb->modifier != I915_FORMAT_MOD_4_TILED &&
-> +		    is_compressed(fb)) {
-> +			drm_warn(&xe->drm, "Cannot create ccs framebuffer with other than tile4 mofifier\n");
-> +			return -EINVAL;
-> +		}
-> +		bo->pat_index_scanout = bo->pat_index;
-> +	}
-
-I think this needs to be moved into __xe_pin_fb_vma() after acquiring 
-the object lock. Also not sure what prevents vm_bind appearing after we 
-drop the lock? Do we need to prevent modifications until the end of 
-_xe_unpin_fb_vma()?
-
-> +
->   	vma = __xe_pin_fb_vma(to_intel_framebuffer(fb), &plane_state->view.gtt);
->   	if (IS_ERR(vma))
->   		return PTR_ERR(vma);
