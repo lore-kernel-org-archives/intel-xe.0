@@ -4,24 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F019C47DB3
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Jan 2024 15:56:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2326C47DDB
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Jan 2024 15:56:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08DF610E099;
-	Mon, 29 Jan 2024 15:56:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57C7E1129F4;
+	Mon, 29 Jan 2024 15:56:31 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A7A210E099;
- Mon, 29 Jan 2024 15:56:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CBE11129DB;
+ Mon, 29 Jan 2024 15:56:30 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Grab_mem?=
- =?utf-8?q?=5Faccess_when_disabling_C6_on_skip=5Fguc=5Fpc_platforms_=28rev2?=
- =?utf-8?q?=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Grab_mem=5Facce?=
+ =?utf-8?q?ss_when_disabling_C6_on_skip=5Fguc=5Fpc_platforms_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Mon, 29 Jan 2024 15:56:18 -0000
-Message-ID: <170654377843.806672.17400691259806642462@5338d5abeb45>
+Date: Mon, 29 Jan 2024 15:56:30 -0000
+Message-ID: <170654379005.806672.17597866887969599304@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240126220613.865939-2-matthew.d.roper@intel.com>
 In-Reply-To: <20240126220613.865939-2-matthew.d.roper@intel.com>
@@ -45,13 +44,40 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Grab mem_access when disabling C6 on skip_guc_pc platforms (rev2)
 URL   : https://patchwork.freedesktop.org/series/129221/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 114c7e14f drm-tip: 2024y-01m-29d-13h-20m-58s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Grab mem_access when disabling C6 on skip_guc_pc platforms
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+2d919ac662b2798c053d68d1cc16b758c61b55ca
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 3265604edf07c2d5fa2aef73be860679ca326ca4
+Author: Matt Roper <matthew.d.roper@intel.com>
+Date:   Fri Jan 26 14:06:14 2024 -0800
+
+    drm/xe: Grab mem_access when disabling C6 on skip_guc_pc platforms
+    
+    If skip_guc_pc is set for a platform, C6 is disabled directly without
+    acquiring a mem_access reference, triggering an assertion inside
+    xe_gt_idle_disable_c6.
+    
+    Fixes: 975e4a3795d4 ("drm/xe: Manually setup C6 when skip_guc_pc is set")
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+    Reviewed-by: Matthew Auld <matthew.auld@intel.com>
++ /mt/dim checkpatch 114c7e14fc8f30c4f3e0a39819b7d138ff5ef259 drm-intel
+3265604ed drm/xe: Grab mem_access when disabling C6 on skip_guc_pc platforms
+-:11: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '975e4a3795d4', maybe rebased or not pulled?
+#11: 
+Fixes: 975e4a3795d4 ("drm/xe: Manually setup C6 when skip_guc_pc is set")
+
+total: 0 errors, 1 warnings, 0 checks, 9 lines checked
 
 
