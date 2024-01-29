@@ -4,44 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 203FEC47258
-	for <intel-xe@archiver.kernel.org>; Sun, 28 Jan 2024 17:32:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25550C47422
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Jan 2024 04:09:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26276112258;
-	Sun, 28 Jan 2024 17:32:38 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E28D410EFEC
- for <intel-xe@lists.freedesktop.org>; Sun, 28 Jan 2024 17:32:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706463156; x=1737999156;
- h=date:from:to:cc:subject:message-id;
- bh=xEsC4nPsje8X/iFTl3hw1e5CLY9GArPXAq0DknwGcK0=;
- b=RVIQE8Hw29wFsWCww4a3SfnrgnCSj5WGO1EsIAsrN81j//U1ghsXobdQ
- aSpG+Iz1pD3fX0vn7+/GQKyR9svwJlkaMH2mm5rKsgfUpCwokbvJwuqVt
- +JVgPIHt/qJqpeqvIKg0l4sbhjt2SnuF8/LTHZp7w06cLt0GRZtHDGb09
- qTU+QKfxVYzemDpEH/NW+Bgpcz7kJDXmkHta/6fMJ0edHLMRK1pVzCWT0
- 2kbY1nFenLCxVQdFTfeN1hIpXQ91Sj5Q6K/uQudqlAMyIAdQCeCQXabL6
- ZMZREE7BE4/fQWIxx/1a218O9Dtg5/1ZKsGlPqrjm2iKE5kRnbvFugz7O g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10967"; a="406516172"
-X-IronPort-AV: E=Sophos;i="6.05,220,1701158400"; d="scan'208";a="406516172"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2024 09:32:36 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,220,1701158400"; d="scan'208";a="35918884"
-Received: from lkp-server01.sh.intel.com (HELO 370188f8dc87) ([10.239.97.150])
- by orviesa001.jf.intel.com with ESMTP; 28 Jan 2024 09:32:36 -0800
-Received: from kbuild by 370188f8dc87 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1rU91E-0003be-33;
- Sun, 28 Jan 2024 17:32:32 +0000
-Date: Mon, 29 Jan 2024 01:32:32 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- 348769d1cbfab409b9ac21c653dd4db609760175
-Message-ID: <202401290129.X6tjKv0M-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B783112308;
+	Mon, 29 Jan 2024 04:09:26 +0000 (UTC)
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com
+ [209.85.222.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDB8D1122F2;
+ Mon, 29 Jan 2024 04:09:24 +0000 (UTC)
+Received: by mail-qk1-f173.google.com with SMTP id
+ af79cd13be357-783d916d039so197404485a.2; 
+ Sun, 28 Jan 2024 20:09:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1706501304; x=1707106104; darn=lists.freedesktop.org;
+ h=in-reply-to:autocrypt:from:references:cc:to:content-language
+ :subject:user-agent:mime-version:date:message-id:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=aK/DeH37UJ3zBFzoYfRccZROfS9NQRZ8LG2l7m048Kk=;
+ b=UZVZpQx5OPNAfivGuhY1WaLBG+/IETbDhXV62yOicTM5Nj9bXFFNcsNVC7w6TxOhJc
+ 7LjdDFwppe7LBI3duRHx6VQbhV9k02+IhCS04cZ+IWZtM5l/WNmyGw6zOxAJ8Uy/mMxT
+ K+fi0K51VSzMT4AsQBIjqEqykHBdgt/HtVyJExxIXsoK+s5CIV8NvvudKwjQdX+mYWQF
+ pQdVNGtAATFuCK2qhae3pt+g7YftIsExJui9lvvM7OOBFWcClX9u632qR0PF58XyANzi
+ TzYXAUGoDx7ppzTHstaLhXXbW7sztdXrutnvRi4KRdxF4VoQMiduRMWErdMtzrllNHBc
+ JgQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1706501304; x=1707106104;
+ h=in-reply-to:autocrypt:from:references:cc:to:content-language
+ :subject:user-agent:mime-version:date:message-id:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=aK/DeH37UJ3zBFzoYfRccZROfS9NQRZ8LG2l7m048Kk=;
+ b=VI4jCAcOL04291ON3e5I2Z/kTcWMputKFXPkExMI2O8BKOus7CFm8HyzwgJiHKlTvl
+ kP5OhXGAECIbvwCI3u1XwAgsD+SSqyqZ6tB20vyuOSYjjQaBNzRSbWm7kIszm9uPQz5Q
+ VkNfXiDlHg7wPT46ZN9y7g1xp48zjoxtobSpjpH5msSg2nAl73W1jcSCN4roIX4/3lmT
+ DQAhEy7zcD8f24SieBvJjenzjbC76wilH0MW18rwxmNNkIOXP629GxQuwBzJInlMKBWu
+ cSqSk+LlP2ssMQZCVEzECsRUpqBJdL79s2shjefiSSIlBYirpZ5u1aluyElOHbx434If
+ 9quw==
+X-Gm-Message-State: AOJu0YwaPrbDmUmKmBzTXAds4ACTV4b/S2n27bUSZgbnw48ClGsKuzxN
+ SPTK+n92VHJ+zE6jLEw5c/zMcMJpazo+Fsa3PX8ENFK6uSIzFace
+X-Google-Smtp-Source: AGHT+IHgrP2/DHf4BPhiY7+eLfP8VuvmZv95SQvc3FZc8vOTm4TiVqsYwttcIKO9f7TOw7ukRur4EA==
+X-Received: by 2002:a05:620a:19a1:b0:783:c7dc:4d34 with SMTP id
+ bm33-20020a05620a19a100b00783c7dc4d34mr8390022qkb.63.1706501303798; 
+ Sun, 28 Jan 2024 20:08:23 -0800 (PST)
+Received: from [192.168.2.14] ([174.88.31.222])
+ by smtp.gmail.com with ESMTPSA id
+ l18-20020a05620a28d200b00783dfd725absm2150414qkp.42.2024.01.28.20.08.22
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sun, 28 Jan 2024 20:08:23 -0800 (PST)
+Message-ID: <2a6dc042-9e40-4c9a-97f4-667a99b3d7bf@gmail.com>
+Date: Sun, 28 Jan 2024 23:08:13 -0500
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:115.0) Gecko/20100101
+ Thunderbird/115.6.0
+Subject: Re: [PATCH] drm/sched: Drain all entities in DRM sched run job worker
+Content-Language: en-CA, en-US
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+References: <20240124210811.1639040-1-matthew.brost@intel.com>
+From: Luben Tuikov <ltuikov89@gmail.com>
+Autocrypt: addr=ltuikov89@gmail.com; keydata=
+ xjMEZTohOhYJKwYBBAHaRw8BAQdAWSq76k+GsENjDTMVCy9Vr4fAO9Rb57/bPT1APnbnnRHN
+ Ikx1YmVuIFR1aWtvdiA8bHR1aWtvdjg5QGdtYWlsLmNvbT7CmQQTFgoAQRYhBJkj7+VmFO9b
+ eaAl10wVR5QxozSvBQJlOiE6AhsDBQkJZgGABQsJCAcCAiICBhUKCQgLAgQWAgMBAh4HAheA
+ AAoJEEwVR5QxozSvSm4BAOwCpX53DTQhE20FBGlTMqKCOQyJqlMcIQ9SO1qPWX1iAQCv3vfy
+ JwktF7REl1yt7IU2Sye1qmQMfJxdt9JMbMNNBs44BGU6IToSCisGAQQBl1UBBQEBB0BT9wSP
+ cCE8uGe7FWo8C+nTSyWPXKTx9F0gpEnlqReRBwMBCAfCfgQYFgoAJhYhBJkj7+VmFO9beaAl
+ 10wVR5QxozSvBQJlOiE6AhsMBQkJZgGAAAoJEEwVR5QxozSvSsYA/2LIFjbxQ2ikbU5S0pKo
+ aMDzO9eGz69uNhNWJcvIKJK6AQC9228Mqc1JeZMIyjYWr2HKYHi8S2q2/zHrSZwAWYYwDA==
+In-Reply-To: <20240124210811.1639040-1-matthew.brost@intel.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------9Tlx4K3ZhpZJyhOyd4L0Ypev"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,129 +86,149 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: Thorsten Leemhuis <regressions@leemhuis.info>,
+ Mario Limonciello <mario.limonciello@amd.com>, daniel@ffwll.ch,
+ Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>, airlied@gmail.com,
+ christian.koenig@amd.com, Vlastimil Babka <vbabka@suse.cz>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: 348769d1cbfab409b9ac21c653dd4db609760175  drm/xe: correct the assertion for number of PTEs
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------9Tlx4K3ZhpZJyhOyd4L0Ypev
+Content-Type: multipart/mixed; boundary="------------IHVr9Fxg0ouNhkYq0EhO9D3U";
+ protected-headers="v1"
+From: Luben Tuikov <ltuikov89@gmail.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: airlied@gmail.com, daniel@ffwll.ch, christian.koenig@amd.com,
+ Thorsten Leemhuis <regressions@leemhuis.info>,
+ Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Vlastimil Babka <vbabka@suse.cz>
+Message-ID: <2a6dc042-9e40-4c9a-97f4-667a99b3d7bf@gmail.com>
+Subject: Re: [PATCH] drm/sched: Drain all entities in DRM sched run job worker
+References: <20240124210811.1639040-1-matthew.brost@intel.com>
+In-Reply-To: <20240124210811.1639040-1-matthew.brost@intel.com>
 
-Warning ids grouped by kconfigs:
+--------------IHVr9Fxg0ouNhkYq0EhO9D3U
+Content-Type: multipart/mixed; boundary="------------zbDDSdo5pXwSYSJZY0OkNzjZ"
 
-gcc_recent_errors
-|-- sparc-allmodconfig
-|   `-- drivers-gpu-drm-xe-xe_lrc.c:warning:CTX_VALID-redefined
-`-- sparc64-randconfig-001-20240128
-    `-- drivers-gpu-drm-xe-xe_lrc.c:warning:CTX_VALID-redefined
+--------------zbDDSdo5pXwSYSJZY0OkNzjZ
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-elapsed time: 2290m
+On 2024-01-24 16:08, Matthew Brost wrote:
+> All entities must be drained in the DRM scheduler run job worker to
+> avoid the following case. An entity found that is ready, no job found
+> ready on entity, and run job worker goes idle with other entities + job=
+s
+> ready. Draining all ready entities (i.e. loop over all ready entities)
+> in the run job worker ensures all job that are ready will be scheduled.=
 
-configs tested: 98
-configs skipped: 2
+>=20
+> Cc: Thorsten Leemhuis <regressions@leemhuis.info>
+> Reported-by: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
+> Closes: https://lore.kernel.org/all/CABXGCsM2VLs489CH-vF-1539-s3in37=3D=
+bwuOWtoeeE+q26zE+Q@mail.gmail.com/
+> Reported-and-tested-by: Mario Limonciello <mario.limonciello@amd.com>
+> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3124
+> Link: https://lore.kernel.org/all/20240123021155.2775-1-mario.limonciel=
+lo@amd.com/
+> Reported-by: Vlastimil Babka <vbabka@suse.cz>
+> Closes: https://lore.kernel.org/dri-devel/05ddb2da-b182-4791-8ef7-82179=
+fd159a8@amd.com/T/#m0c31d4d1b9ae9995bb880974c4f1dbaddc33a48a
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+Hi Matthew,
 
-tested configs:
-alpha                             allnoconfig   gcc  
-alpha                            allyesconfig   gcc  
-alpha                               defconfig   gcc  
-arc                               allnoconfig   gcc  
-arc                                 defconfig   gcc  
-arc                   randconfig-001-20240128   gcc  
-arc                   randconfig-002-20240128   gcc  
-arm                   randconfig-001-20240128   clang
-arm                   randconfig-002-20240128   clang
-arm                   randconfig-003-20240128   clang
-arm                   randconfig-004-20240128   clang
-arm64                 randconfig-001-20240128   clang
-arm64                 randconfig-002-20240128   clang
-arm64                 randconfig-003-20240128   clang
-arm64                 randconfig-004-20240128   clang
-csky                  randconfig-001-20240128   gcc  
-csky                  randconfig-002-20240128   gcc  
-hexagon                          allmodconfig   clang
-hexagon                          allyesconfig   clang
-hexagon               randconfig-001-20240128   clang
-hexagon               randconfig-002-20240128   clang
-i386         buildonly-randconfig-001-20240127   gcc  
-i386         buildonly-randconfig-002-20240127   gcc  
-i386         buildonly-randconfig-003-20240127   gcc  
-i386         buildonly-randconfig-004-20240127   gcc  
-i386         buildonly-randconfig-005-20240127   gcc  
-i386         buildonly-randconfig-006-20240127   gcc  
-i386                  randconfig-001-20240127   gcc  
-i386                  randconfig-002-20240127   gcc  
-i386                  randconfig-003-20240127   gcc  
-i386                  randconfig-004-20240127   gcc  
-i386                  randconfig-005-20240127   gcc  
-i386                  randconfig-006-20240127   gcc  
-i386                  randconfig-011-20240127   clang
-i386                  randconfig-012-20240127   clang
-i386                  randconfig-013-20240127   clang
-i386                  randconfig-014-20240127   clang
-i386                  randconfig-015-20240127   clang
-i386                  randconfig-016-20240127   clang
-loongarch                        allmodconfig   gcc  
-loongarch             randconfig-001-20240128   gcc  
-loongarch             randconfig-002-20240128   gcc  
-m68k                             allmodconfig   gcc  
-m68k                             allyesconfig   gcc  
-microblaze                       allmodconfig   gcc  
-nios2                            allmodconfig   gcc  
-nios2                            allyesconfig   gcc  
-nios2                 randconfig-001-20240128   gcc  
-nios2                 randconfig-002-20240128   gcc  
-openrisc                          allnoconfig   gcc  
-openrisc                         allyesconfig   gcc  
-openrisc                            defconfig   gcc  
-parisc                           allmodconfig   gcc  
-parisc                            allnoconfig   gcc  
-parisc                              defconfig   gcc  
-parisc                randconfig-001-20240128   gcc  
-parisc                randconfig-002-20240128   gcc  
-parisc64                            defconfig   gcc  
-powerpc                           allnoconfig   gcc  
-powerpc               randconfig-001-20240128   clang
-powerpc               randconfig-002-20240128   clang
-powerpc               randconfig-003-20240128   clang
-powerpc64             randconfig-001-20240128   clang
-powerpc64             randconfig-002-20240128   clang
-powerpc64             randconfig-003-20240128   clang
-riscv                             allnoconfig   clang
-riscv                               defconfig   gcc  
-riscv                 randconfig-001-20240128   clang
-riscv                 randconfig-002-20240128   clang
-s390                             allmodconfig   gcc  
-s390                              allnoconfig   gcc  
-s390                             allyesconfig   gcc  
-s390                                defconfig   gcc  
-s390                  randconfig-001-20240128   gcc  
-s390                  randconfig-002-20240128   gcc  
-sh                               allmodconfig   gcc  
-sh                                allnoconfig   gcc  
-sh                                  defconfig   gcc  
-sh                    randconfig-001-20240128   gcc  
-sh                    randconfig-002-20240128   gcc  
-sparc                            allmodconfig   gcc  
-sparc                             allnoconfig   gcc  
-sparc                               defconfig   gcc  
-sparc64                          allmodconfig   gcc  
-sparc64                          allyesconfig   gcc  
-sparc64                             defconfig   gcc  
-sparc64               randconfig-001-20240128   gcc  
-sparc64               randconfig-002-20240128   gcc  
-um                               allmodconfig   clang
-um                                allnoconfig   clang
-um                               allyesconfig   clang
-um                                  defconfig   gcc  
-um                             i386_defconfig   gcc  
-um                    randconfig-001-20240128   clang
-um                    randconfig-002-20240128   clang
-um                           x86_64_defconfig   gcc  
-xtensa                            allnoconfig   gcc  
-xtensa                randconfig-001-20240128   gcc  
+Thanks for working on this and sending the patch.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Could we add a fixes-tag to the tag list,
+
+Fixes: f7fe64ad0f22 ("drm/sched: Split free_job into own work item")
+
+This really drives to point as shown here,
+https://gitlab.freedesktop.org/drm/amd/-/issues/3124
+which is mentioned in a Closes tag--thanks!
+--=20
+Regards,
+Luben
+
+> ---
+>  drivers/gpu/drm/scheduler/sched_main.c | 15 +++++++--------
+>  1 file changed, 7 insertions(+), 8 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/s=
+cheduler/sched_main.c
+> index 550492a7a031..85f082396d42 100644
+> --- a/drivers/gpu/drm/scheduler/sched_main.c
+> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> @@ -1178,21 +1178,20 @@ static void drm_sched_run_job_work(struct work_=
+struct *w)
+>  	struct drm_sched_entity *entity;
+>  	struct dma_fence *fence;
+>  	struct drm_sched_fence *s_fence;
+> -	struct drm_sched_job *sched_job;
+> +	struct drm_sched_job *sched_job =3D NULL;
+>  	int r;
+> =20
+>  	if (READ_ONCE(sched->pause_submit))
+>  		return;
+> =20
+> -	entity =3D drm_sched_select_entity(sched);
+> +	/* Find entity with a ready job */
+> +	while (!sched_job && (entity =3D drm_sched_select_entity(sched))) {
+> +		sched_job =3D drm_sched_entity_pop_job(entity);
+> +		if (!sched_job)
+> +			complete_all(&entity->entity_idle);
+> +	}
+>  	if (!entity)
+> -		return;
+> -
+> -	sched_job =3D drm_sched_entity_pop_job(entity);
+> -	if (!sched_job) {
+> -		complete_all(&entity->entity_idle);
+>  		return;	/* No more work */
+> -	}
+> =20
+>  	s_fence =3D sched_job->s_fence;
+> =20
+
+--------------zbDDSdo5pXwSYSJZY0OkNzjZ
+Content-Type: application/pgp-keys; name="OpenPGP_0x4C15479431A334AF.asc"
+Content-Disposition: attachment; filename="OpenPGP_0x4C15479431A334AF.asc"
+Content-Description: OpenPGP public key
+Content-Transfer-Encoding: quoted-printable
+
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+xjMEZTohOhYJKwYBBAHaRw8BAQdAWSq76k+GsENjDTMVCy9Vr4fAO9Rb57/bPT1A
+PnbnnRHNIkx1YmVuIFR1aWtvdiA8bHR1aWtvdjg5QGdtYWlsLmNvbT7CmQQTFgoA
+QRYhBJkj7+VmFO9beaAl10wVR5QxozSvBQJlOiE6AhsDBQkJZgGABQsJCAcCAiIC
+BhUKCQgLAgQWAgMBAh4HAheAAAoJEEwVR5QxozSvSm4BAOwCpX53DTQhE20FBGlT
+MqKCOQyJqlMcIQ9SO1qPWX1iAQCv3vfyJwktF7REl1yt7IU2Sye1qmQMfJxdt9JM
+bMNNBs44BGU6IToSCisGAQQBl1UBBQEBB0BT9wSPcCE8uGe7FWo8C+nTSyWPXKTx
+9F0gpEnlqReRBwMBCAfCfgQYFgoAJhYhBJkj7+VmFO9beaAl10wVR5QxozSvBQJl
+OiE6AhsMBQkJZgGAAAoJEEwVR5QxozSvSsYA/2LIFjbxQ2ikbU5S0pKoaMDzO9eG
+z69uNhNWJcvIKJK6AQC9228Mqc1JeZMIyjYWr2HKYHi8S2q2/zHrSZwAWYYwDA=3D=3D
+=3DqCaZ
+-----END PGP PUBLIC KEY BLOCK-----
+
+--------------zbDDSdo5pXwSYSJZY0OkNzjZ--
+
+--------------IHVr9Fxg0ouNhkYq0EhO9D3U--
+
+--------------9Tlx4K3ZhpZJyhOyd4L0Ypev
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+wnsEABYIACMWIQSZI+/lZhTvW3mgJddMFUeUMaM0rwUCZbckrQUDAAAAAAAKCRBMFUeUMaM0r75f
+AP9SLQC8J0NaM7Q1ULAGrHoqOwS4ODe2RraUfb9iCRTADwD/a4hF+dHCNgkD4V6PJw7UZX2qGehk
+Z1N4GwouzNfZ/gk=
+=eYFY
+-----END PGP SIGNATURE-----
+
+--------------9Tlx4K3ZhpZJyhOyd4L0Ypev--
