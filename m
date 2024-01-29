@@ -4,35 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B92FC47422
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Jan 2024 11:07:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DA6AC47DA9
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Jan 2024 11:34:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF54A1128A4;
-	Mon, 29 Jan 2024 11:07:41 +0000 (UTC)
-Received: from cantor.telenet-ops.be (cantor.telenet-ops.be [195.130.132.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB94F1128A0
- for <intel-xe@lists.freedesktop.org>; Mon, 29 Jan 2024 11:07:39 +0000 (UTC)
-Received: from laurent.telenet-ops.be (laurent.telenet-ops.be
- [IPv6:2a02:1800:110:4::f00:19])
- by cantor.telenet-ops.be (Postfix) with ESMTPS id 4TNlrN01d1z4x3Py
- for <intel-xe@lists.freedesktop.org>; Mon, 29 Jan 2024 12:07:32 +0100 (CET)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:3b5f:c6ad:b5fc:a0f3])
- by laurent.telenet-ops.be with bizsmtp
- id gb6X2B0022ZPkuY01b6XDK; Mon, 29 Jan 2024 12:06:31 +0100
-Received: from geert (helo=localhost)
- by ramsan.of.borg with local-esmtp (Exim 4.95)
- (envelope-from <geert@linux-m68k.org>) id 1rUPTC-00GgzQ-W5;
- Mon, 29 Jan 2024 12:06:31 +0100
-Date: Mon, 29 Jan 2024 12:06:30 +0100 (CET)
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-To: linux-kernel@vger.kernel.org
-Subject: Re: Build regressions/improvements in v6.8-rc2
-In-Reply-To: <20240129104954.1778339-1-geert@linux-m68k.org>
-Message-ID: <8ea40b3-adde-acb5-5e46-fe1fd395daf@linux-m68k.org>
-References: <CAHk-=wgxzm+Oc1ywuNGxb1R1=ZEC85LJi776R2QEpk6=_2Qfdw@mail.gmail.com>
- <20240129104954.1778339-1-geert@linux-m68k.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F14A112887;
+	Mon, 29 Jan 2024 11:34:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2A55112887;
+ Mon, 29 Jan 2024 11:34:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706528040; x=1738064040;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=tWsBI/tPpzsOM/AMPzqmeLc4Es00Xf7KKajUBasY/qU=;
+ b=m7dx0H0u7N3RadPIRB7rthnDRV5mUrw9/rKvuNqtt48tE+MDIQfOe9c7
+ /FUOaUOiM5+51gRcoYhTAxuuXoRbG44JFK0n2vLMs+9EJV7nMau/9+ZiE
+ vYtriTHwidWkE1VMQ0uSRxVScEn9ZMSHYg4EZEX4T2bPnmEqcudNQr5Az
+ hGMWM3a8Q8kqbp761EEjEDGPcdfEGsz6G53NYoBUHJCjPxPv3+6dzuenJ
+ a0uaC5tn7rr8Vk7lrCR02t6ivwVO41AFHqHapDWCzOziMCLV/po/dio7Q
+ W9yr/ezN4sB/guG595Uj07hHyC3QiMl4GA7gxZxFpRs28yS7n82y0i+y2 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10967"; a="434090090"
+X-IronPort-AV: E=Sophos;i="6.05,227,1701158400"; d="scan'208";a="434090090"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2024 03:34:00 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,227,1701158400"; d="scan'208";a="22075664"
+Received: from cbowler-mobl.ger.corp.intel.com (HELO [10.252.19.51])
+ ([10.252.19.51])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2024 03:33:59 -0800
+Message-ID: <87f6ed0b-0fe2-4cbb-ae77-bdcfdd687ccc@intel.com>
+Date: Mon, 29 Jan 2024 11:33:57 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/5] drm/xe: store bind time pat index to xe_bo
+Content-Language: en-GB
+To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+References: <20240126210807.320671-1-juhapekka.heikkila@gmail.com>
+ <20240126210807.320671-4-juhapekka.heikkila@gmail.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20240126210807.320671-4-juhapekka.heikkila@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,78 +60,84 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: sparclinux@vger.kernel.org, linux-hwmon@vger.kernel.org,
- intel-xe@lists.freedesktop.org, linux-parisc@vger.kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 29 Jan 2024, Geert Uytterhoeven wrote:
-> JFYI, when comparing v6.8-rc2[1] to v6.8-rc1[3], the summaries are:
->  - build errors: +26/-14
+On 26/01/2024 21:08, Juha-Pekka Heikkila wrote:
+> Store pat index from xe_vma to xe_bo and check if bo was pinned
+> as framebuffer and verify pat index is not changing for pinned
+> framebuffers.
+> 
+> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+> ---
+>   drivers/gpu/drm/xe/xe_pt.c | 23 +++++++++++++++++++----
+>   1 file changed, 19 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> index de1030a47588..0a5d7c7543b1 100644
+> --- a/drivers/gpu/drm/xe/xe_pt.c
+> +++ b/drivers/gpu/drm/xe/xe_pt.c
+> @@ -1208,10 +1208,11 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
+>   	struct dma_fence *fence;
+>   	struct invalidation_fence *ifence = NULL;
+>   	struct xe_range_fence *rfence;
+> +	struct xe_bo *bo = xe_vma_bo(vma);
+>   	int err;
+>   
+>   	bind_pt_update.locked = false;
+> -	xe_bo_assert_held(xe_vma_bo(vma));
+> +	xe_bo_assert_held(bo);
+>   	xe_vm_assert_held(vm);
+>   
+>   	vm_dbg(&xe_vma_vm(vma)->xe->drm,
+> @@ -1252,8 +1253,22 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
+>   		return ERR_PTR(-ENOMEM);
+>   	}
+>   
+> +	/*
+> +	 * BO which has XE_BO_SCANOUT_BIT set and was pinned as framebuffer
+> +	 * before with different PAT index cannot be bound with different PAT
+> +	 * index. This is to prevent switching CCS on/off from framebuffers
+> +	 * on the fly.
+> +	 */
+> +	if (bo) {
+> +		if (bo->flags & XE_BO_SCANOUT_BIT && bo->pat_index_scanout &&
 
+Note that pat_index = 0 is usually a valid index...
 
-   + /kisskb/src/arch/sparc/kernel/setup_64.c: error: no previous prototype for 'alloc_irqstack_bootmem' [-Werror=missing-prototypes]:  => 602:13
+> +		    bo->pat_index_scanout != vma->pat_index)
+> +			return ERR_PTR(-EINVAL);
+> +
+> +		bo->pat_index = vma->pat_index;
+> +	}
 
-sparc64-gcc{5,1[123]}/sparc64-{allno,def}config
+...what about something like:
 
-   + /kisskb/src/drivers/gpu/drm/nouveau/nvif/object.c: error: 'memcpy' specified bound between 4294967240 and 4294967263 exceeds maximum object size 2147483647 [-Werror=stringop-overflow=]:  => 298:17
-   + /kisskb/src/drivers/gpu/drm/nouveau/nvif/object.c: error: 'memcpy' specified bound between 4294967264 and 4294967287 exceeds maximum object size 2147483647 [-Werror=stringop-overflow=]:  => 161:9
+if (bo.has_sealed_pat_index && bo.sealed_pat_index != vma->pat_index)
+     return ERR_PTR();
+else if (SCANOUT) {
+     bo.has_sealed_pat_index = true;
+     bo.sealed_pat_index = vma->pat_index;
+}
 
-parisc-gcc1[23]/generic-32bit_defconfig
-parisc-gcc1[23]/parisc-{allmod,def}config
+Also, this and the previous patch should probably be squashed together? 
+Other question is if we should only apply this on xe2?
 
-   + /kisskb/src/drivers/hwmon/pc87360.c: error: writing 1 byte into a region of size 0 [-Werror=stringop-overflow=]:  => 383:51
-
-arm64-gcc12/arm64-allmodconfig
-parisc-gcc12/parisc-allmodconfig
-
-   + /kisskb/src/include/linux/compiler_types.h: error: call to '__compiletime_assert_1045' declared with attribute error: FIELD_GET: mask is not constant:  => 435:38
-   + /kisskb/src/include/linux/compiler_types.h: error: call to '__compiletime_assert_1065' declared with attribute error: FIELD_PREP: mask is not constant:  => 435:38
-   + /kisskb/src/include/linux/compiler_types.h: error: call to '__compiletime_assert_1084' declared with attribute error: FIELD_GET: mask is not constant:  => 435:38
-   + /kisskb/src/include/linux/compiler_types.h: error: call to '__compiletime_assert_1095' declared with attribute error: FIELD_GET: mask is not constant:  => 435:38
-   + /kisskb/src/include/linux/compiler_types.h: error: call to '__compiletime_assert_1137' declared with attribute error: FIELD_GET: mask is not constant:  => 435:38
-   + /kisskb/src/include/linux/compiler_types.h: error: call to '__compiletime_assert_1139' declared with attribute error: FIELD_GET: mask is not constant:  => 435:38
-   + /kisskb/src/include/linux/compiler_types.h: error: call to '__compiletime_assert_1148' declared with attribute error: FIELD_GET: mask is not constant:  => 435:38
-   + /kisskb/src/include/linux/compiler_types.h: error: call to '__compiletime_assert_1150' declared with attribute error: FIELD_GET: mask is not constant:  => 435:38
-   + /kisskb/src/include/linux/compiler_types.h: error: call to '__compiletime_assert_924' declared with attribute error: FIELD_GET: mask is not constant:  => 435:38
-   + /kisskb/src/include/linux/compiler_types.h: error: call to '__compiletime_assert_935' declared with attribute error: FIELD_GET: mask is not constant:  => 435:38
-
-in drivers/gpu/drm/xe/xe_guc_ct.c:526
-arm64-gcc5/arm64-allmodconfig
-powerpc-gcc5/powerpc-all{mod,yes}config
-powerpc-gcc5/ppc{32,64le,64_book3e}_allmodconfig
-(seen before in v6.8-rc1, with different assertion numbers)
-
-   + /kisskb/src/include/linux/fortify-string.h: error: writing 16 bytes into a region of size 0 [-Werror=stringop-overflow=]:  => 57:33
-
-in drivers/gpu/drm/xe/xe_gt_pagefault.c:340
-arm64-gcc13/arm64-allmodconfig
-s390x-gcc13/s390-all{mod,yes}config
-
-   + {standard input}: Error: displacement to undefined symbol .L101 overflows 8-bit field :  => 593
-   + {standard input}: Error: displacement to undefined symbol .L104 overflows 8-bit field :  => 588
-   + {standard input}: Error: displacement to undefined symbol .L139 overflows 8-bit field :  => 606
-   + {standard input}: Error: displacement to undefined symbol .L73 overflows 12-bit field:  => 594
-   + {standard input}: Error: displacement to undefined symbol .L74 overflows 8-bit field :  => 585
-   + {standard input}: Error: displacement to undefined symbol .L75 overflows 12-bit field: 606, 586 => 589, 606, 586
-   + {standard input}: Error: displacement to undefined symbol .L76 overflows 8-bit field : 577 => 580, 577
-   + {standard input}: Error: displacement to undefined symbol .L80 overflows 8-bit field : 601 => 601, 607
-   + {standard input}: Error: displacement to undefined symbol .L81 overflows 8-bit field : 606, 604 => 604, 610, 606
-   + {standard input}: Error: displacement to undefined symbol .L96 overflows 12-bit field:  => 602
-   + {standard input}: Error: displacement to undefined symbol .L99 overflows 12-bit field:  => 607
-
-The usual SH ICE crickets.
-
-> [1] http://kisskb.ellerman.id.au/kisskb/branch/linus/head/41bccc98fb7931d63d03f326a746ac4d429c1dd3/ (all 239 configs)
-> [3] http://kisskb.ellerman.id.au/kisskb/branch/linus/head/6613476e225e090cc9aad49be7fa504e290dd33d/ (all 239 configs)
-
-Gr{oetje,eeting}s,
-
- 						Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
- 							    -- Linus Torvalds
+> +
+>   	fence = xe_migrate_update_pgtables(tile->migrate,
+> -					   vm, xe_vma_bo(vma), q,
+> +					   vm, bo, q,
+>   					   entries, num_entries,
+>   					   syncs, num_syncs,
+>   					   &bind_pt_update.base);
+> @@ -1287,8 +1302,8 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
+>   				   DMA_RESV_USAGE_KERNEL :
+>   				   DMA_RESV_USAGE_BOOKKEEP);
+>   
+> -		if (!xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
+> -			dma_resv_add_fence(xe_vma_bo(vma)->ttm.base.resv, fence,
+> +		if (!xe_vma_has_no_bo(vma) && !bo->vm)
+> +			dma_resv_add_fence(bo->ttm.base.resv, fence,
+>   					   DMA_RESV_USAGE_BOOKKEEP);
+>   		xe_pt_commit_bind(vma, entries, num_entries, rebind,
+>   				  bind_pt_update.locked ? &deferred : NULL);
