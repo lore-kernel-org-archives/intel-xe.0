@@ -4,45 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BC67C47DB3
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Jan 2024 21:45:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA3A2C47DB3
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Jan 2024 21:52:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59C6410F031;
-	Mon, 29 Jan 2024 21:45:13 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD07810F031
- for <intel-xe@lists.freedesktop.org>; Mon, 29 Jan 2024 21:45:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706564711; x=1738100711;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=85gtKhMOBnfI1URfZNpTMzsdL2cbJ7XkTQKLd0KINIY=;
- b=H76YWX3O+ysH6OZmiPInZZsMNAVNF/40aRVOXXUZXIynbDmr7Bg2DegJ
- oueNAq0/MBF6H0cEW1jw6+u8qptIyMLQI02cngVlGALx0E4gfGQF9jvp+
- GUokr+NWnid085Oo1N9Tt9cfz6oAolq8YwO9ip3hp4VQiplDVvjJ72p8A
- 779uv8WsNPOrwk2y07PDtYsJNq+gU7QH3vFd3e5jsGcY/geeQ4ABT3huM
- q4XT3Vtbj3okz2WmeZYY5eVsmd0/UqF7xEJSVQt+M99bqmQKvVlkK/XNp
- GAAj4/2M21S2wi07j30ZfZtB1QsyPsC3sQ0m4JILaElWE6zszBiHTRbw1 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="406813078"
-X-IronPort-AV: E=Sophos;i="6.05,227,1701158400"; d="scan'208";a="406813078"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2024 13:45:11 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="931225118"
-X-IronPort-AV: E=Sophos;i="6.05,227,1701158400"; d="scan'208";a="931225118"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2024 13:45:10 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-Subject: [PATCH] drm/xe/xe2: Enable has_usm
-Date: Mon, 29 Jan 2024 13:45:10 -0800
-Message-ID: <20240129214510.123829-1-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E82710EC1F;
+	Mon, 29 Jan 2024 21:52:00 +0000 (UTC)
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13CFA10E36C;
+ Mon, 29 Jan 2024 21:51:59 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0393633831467810338=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Use_function_to_emit_P?=
+ =?utf-8?q?IPE=5FCONTROL?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Souza, Jose" <jose.souza@intel.com>
+Date: Mon, 29 Jan 2024 21:51:59 -0000
+Message-ID: <170656511907.806401.3820990454300642901@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240129211509.325973-1-jose.souza@intel.com>
+In-Reply-To: <20240129211509.325973-1-jose.souza@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,32 +35,127 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When xe2 support started to be added, USM was still not functional. This
-has changed, and now USM can be enabled for xe2. Remove FIXME leftover
-to allow VM to be created with DRM_XE_VM_CREATE_FLAG_FAULT_MODE.
+--===============0393633831467810338==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/xe/xe_pci.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 62b5e5d0fb62..cde3a63bdc7f 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -165,7 +165,7 @@ static const struct xe_graphics_desc graphics_xelpg = {
- 	.has_asid = 1, \
- 	.has_flat_ccs = 1, \
- 	.has_range_tlb_invalidation = 1, \
--	.has_usm = 0 /* FIXME: implementation missing */, \
-+	.has_usm = 1, \
- 	.va_bits = 48, \
- 	.vm_max_level = 4, \
- 	.hw_engine_mask = \
--- 
-2.43.0
+Series: drm/xe: Use function to emit PIPE_CONTROL
+URL   : https://patchwork.freedesktop.org/series/129281/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-698-f4c0dac89bd3cd02a1afe5e7a91ed4bf8de4afc6_BAT -> xe-pw-129281v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-129281v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-c-dp-3:
+    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#400] / [Intel XE#616]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-698-f4c0dac89bd3cd02a1afe5e7a91ed4bf8de4afc6/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-c-dp-3.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129281v1/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-c-dp-3.html
+
+  
+  [Intel XE#400]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/400
+  [Intel XE#616]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/616
+
+
+Build changes
+-------------
+
+  * Linux: xe-698-f4c0dac89bd3cd02a1afe5e7a91ed4bf8de4afc6 -> xe-pw-129281v1
+
+  IGT_7698: af750f5e7eaad98d40d8c924eb5f05e99d3c668b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-698-f4c0dac89bd3cd02a1afe5e7a91ed4bf8de4afc6: f4c0dac89bd3cd02a1afe5e7a91ed4bf8de4afc6
+  xe-pw-129281v1: 129281v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129281v1/index.html
+
+--===============0393633831467810338==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Use function to emit PIPE_CONTROL</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129281/">https://patchwork.freedesktop.org/series/129281/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129281v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129281v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-698-f4c0dac89bd3cd02a1afe5e7a91ed4bf8de4afc6_BAT -&gt; xe-pw-129281v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-129281v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-c-dp-3:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-698-f4c0dac89bd3cd02a1afe5e7a91ed4bf8de4afc6/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-c-dp-3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/400">Intel XE#400</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/616">Intel XE#616</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129281v1/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-c-dp-3.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-698-f4c0dac89bd3cd02a1afe5e7a91ed4bf8de4afc6 -&gt; xe-pw-129281v1</li>
+</ul>
+<p>IGT_7698: af750f5e7eaad98d40d8c924eb5f05e99d3c668b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-698-f4c0dac89bd3cd02a1afe5e7a91ed4bf8de4afc6: f4c0dac89bd3cd02a1afe5e7a91ed4bf8de4afc6<br />
+  xe-pw-129281v1: 129281v1</p>
+
+</body>
+</html>
+
+--===============0393633831467810338==--
