@@ -4,43 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1D21C47DA9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7667C46CD2
 	for <intel-xe@archiver.kernel.org>; Tue, 30 Jan 2024 18:57:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DF7D10EE48;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F2D210EE72;
 	Tue, 30 Jan 2024 18:57:50 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64EBE10EE72
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8182711340D
  for <intel-xe@lists.freedesktop.org>; Tue, 30 Jan 2024 18:57:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706641069; x=1738177069;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Kgk3NtfzPix13yNVRltfCrnrfiOS6OFhCL5mbE3Aqqw=;
- b=h7gJn8W0ZR4JWrE24bg2tpEWFBE/1hBX/QhVmb8iGxH0Qm98D5mGMeNZ
- Wg18kgzlBijSZIlNCVpV/2NUqP9FHsQEpu0q3H4WFwNcp/5m4Mkdvfcel
- Mr5ILkMEdA3YWySxHyb4RkneK2G0s8OPWfha66WEqr+wcl8adDVXcFKLX
- z1+eSHOTrT92MEe8ah9pB8MWLFhxP+icZe4vKQARV9uvf1zDaxhDCQKnp
- /yKlhVILa5+vayhcqP/VbGzhmv/gkAV7WFV9tZhRnTm78UHv6rgcaPJbF
- jicm1BVOWQ3wl98K2IAR40SB2G9XM0Xnd0A5QecrQla7unWPp8lVeIdCu A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="3219791"
+ t=1706641070; x=1738177070;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=W9kO0hRPtT/J/0+oCdU7fED2+HujsVGvqM2UE4IDxr8=;
+ b=KE06aqzD7BUmpad2x/eiM9rvY82cwV7RlkflZ+HYuxmEcQOhngDwBX8V
+ wDppt2h/TjYKHzfgNB7z35t6fiuwSupUYa4APpg/Sk2Epb8fV9rlK9rT9
+ qCppePeToSuea19K1OcQCqVqvY0CqoG3XrFOe4tfK8Jo/+JFlSwsRtUGX
+ QhjhNMcojBKQmOXZEcCR0sFPRt2bNKSVGvNMC3fpjf8I5J7I3JIUNxQIe
+ gJvEtL5DWrHK84ZXwe/cgg8XqrvKxSYJC+tDJPTAlO2bWv+7Z9uiPLIKh
+ RqpRO+ROGbqhUi3EQ9huQZTiVaNi0CSZXQs5SzKoePKh4qSOgWH2fSln2 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="3219794"
 X-IronPort-AV: E=Sophos;i="6.05,230,1701158400"; 
-   d="scan'208";a="3219791"
+   d="scan'208";a="3219794"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Jan 2024 10:57:49 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.05,230,1701158400"; 
-   d="scan'208";a="3892518"
+   d="scan'208";a="3892524"
 Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
  by orviesa004.jf.intel.com with ESMTP; 30 Jan 2024 10:57:49 -0800
 From: Zhanjun Dong <zhanjun.dong@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 0/1] drm/xe: Expose number of dss per group and helpers
-Date: Tue, 30 Jan 2024 10:57:43 -0800
-Message-Id: <20240130185744.209647-1-zhanjun.dong@intel.com>
+Subject: [PATCH v4 1/1] drm/xe: Expose number of dss per group and helpers
+Date: Tue, 30 Jan 2024 10:57:44 -0800
+Message-Id: <20240130185744.209647-2-zhanjun.dong@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240130185744.209647-1-zhanjun.dong@intel.com>
+References: <20240130185744.209647-1-zhanjun.dong@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -54,7 +56,6 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>, Souza@freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
@@ -62,24 +63,130 @@ Expose helper for dss per group. This is a precursor patch to allow
 for easier iteration through MCR registers and other per-DSS uses.
 
 Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Stuart Summers <stuart.summers@intel.com>
-Cc: Souza, Jose <jose.souza@intel.com>
-
-Changes from prior revs:
-v4: Revert function name with mcr back
-v3: Rename functions with mcr removed
-v2: Resend with cover letter
-
-Zhanjun Dong (1):
-  drm/xe: Expose number of dss per group and helpers
-
+---
  drivers/gpu/drm/xe/xe_gt_mcr.c      | 40 ++++++++++++++++++++++++++++-
  drivers/gpu/drm/xe/xe_gt_mcr.h      | 17 ++++++++++++
  drivers/gpu/drm/xe/xe_gt_topology.c |  1 -
  drivers/gpu/drm/xe/xe_gt_types.h    |  1 +
  4 files changed, 57 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
+index 77925b35cf8d..7cd93bcb811f 100644
+--- a/drivers/gpu/drm/xe/xe_gt_mcr.c
++++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
+@@ -291,11 +291,16 @@ static void init_steering_mslice(struct xe_gt *gt)
+ 	gt->steering[LNCF].instance_target = 0;		/* unused */
+ }
+ 
++int xe_gt_mcr_get_dss_per_group(struct xe_gt *gt)
++{
++	return gt_to_xe(gt)->info.platform == XE_PVC ? 8 : 4;
++}
++
+ static void init_steering_dss(struct xe_gt *gt)
+ {
+ 	unsigned int dss = min(xe_dss_mask_group_ffs(gt->fuse_topo.g_dss_mask, 0, 0),
+ 			       xe_dss_mask_group_ffs(gt->fuse_topo.c_dss_mask, 0, 0));
+-	unsigned int dss_per_grp = gt_to_xe(gt)->info.platform == XE_PVC ? 8 : 4;
++	unsigned int dss_per_grp = xe_gt_mcr_get_dss_per_group(gt);
+ 
+ 	gt->steering[DSS].group_target = dss / dss_per_grp;
+ 	gt->steering[DSS].instance_target = dss % dss_per_grp;
+@@ -683,3 +688,36 @@ void xe_gt_mcr_steering_dump(struct xe_gt *gt, struct drm_printer *p)
+ 		}
+ 	}
+ }
++
++/**
++ * xe_gt_mcr_get_dss_steering - returns the group/instance steering for a SS
++ * @gt: GT structure
++ * @dss: DSS ID to obtain steering for
++ * @group: pointer to storage for steering group ID
++ * @instance: pointer to storage for steering instance ID
++ *
++ * Returns the steering IDs (via the @group and @instance parameters) that
++ * correspond to a specific subslice/DSS ID.
++ */
++void xe_gt_mcr_get_dss_steering(struct xe_gt *gt, unsigned int dss, unsigned int *group,
++				unsigned int *instance)
++{
++	int dss_per_grp = xe_gt_mcr_get_dss_per_group(gt);
++
++	*group = dss / dss_per_grp;
++	*instance = dss % dss_per_grp;
++}
++
++bool xe_gt_mcr_dss_has_subslice(struct xe_gt *gt, int slice, int subslice)
++{
++	int dss_per_grp = xe_gt_mcr_get_dss_per_group(gt);
++	int index = slice * dss_per_grp + subslice;
++
++	if (index >= XE_MAX_DSS_FUSE_BITS) {
++		xe_gt_dbg(gt, "DSS id out of range: slice:%d subslice:%d\n", slice, subslice);
++		return false;
++	}
++
++	return test_bit(index, gt->fuse_topo.g_dss_mask) ||
++	       test_bit(index, gt->fuse_topo.c_dss_mask);
++}
+diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.h b/drivers/gpu/drm/xe/xe_gt_mcr.h
+index 27ca1bc880a0..7d1eb180befd 100644
+--- a/drivers/gpu/drm/xe/xe_gt_mcr.h
++++ b/drivers/gpu/drm/xe/xe_gt_mcr.h
+@@ -7,6 +7,7 @@
+ #define _XE_GT_MCR_H_
+ 
+ #include "regs/xe_reg_defs.h"
++#include "xe_gt_types.h"
+ 
+ struct drm_printer;
+ struct xe_gt;
+@@ -25,5 +26,21 @@ void xe_gt_mcr_multicast_write(struct xe_gt *gt, struct xe_reg_mcr mcr_reg,
+ 			       u32 value);
+ 
+ void xe_gt_mcr_steering_dump(struct xe_gt *gt, struct drm_printer *p);
++int xe_gt_mcr_get_dss_per_group(struct xe_gt *gt);
++void xe_gt_mcr_get_dss_steering(struct xe_gt *gt, unsigned int dss, unsigned int *group,
++				unsigned int *instance);
++bool xe_gt_mcr_dss_has_subslice(struct xe_gt *gt, int slice, int subslice);
++
++#define _HAS_SS(gt_, group_, instance_) xe_gt_mcr_dss_has_subslice(gt_, group_, instance_)
++
++/*
++ * Loop over each subslice/DSS and determine the group and instance IDs that
++ * should be used to steer MCR accesses toward this DSS.
++ */
++#define for_each_dss_steering(dss_, gt_, group_, instance_) \
++	for (dss_ = 0, xe_gt_mcr_get_dss_steering(gt_, 0, &group_, &instance_); \
++	     dss_ < XE_MAX_DSS_FUSE_BITS; \
++	     dss_++, xe_gt_mcr_get_dss_steering(gt_, dss_, &group_, &instance_)) \
++		for_each_if(_HAS_SS(gt_, group_, instance_))
+ 
+ #endif /* _XE_GT_MCR_H_ */
+diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
+index a8d7f272c30a..c4942f2b3775 100644
+--- a/drivers/gpu/drm/xe/xe_gt_topology.c
++++ b/drivers/gpu/drm/xe/xe_gt_topology.c
+@@ -11,7 +11,6 @@
+ #include "xe_gt.h"
+ #include "xe_mmio.h"
+ 
+-#define XE_MAX_DSS_FUSE_BITS (32 * XE_MAX_DSS_FUSE_REGS)
+ #define XE_MAX_EU_FUSE_BITS (32 * XE_MAX_EU_FUSE_REGS)
+ 
+ static void
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index 70c615dd1498..b4df7d35dec7 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -25,6 +25,7 @@ enum xe_gt_type {
+ };
+ 
+ #define XE_MAX_DSS_FUSE_REGS	3
++#define XE_MAX_DSS_FUSE_BITS	(32 * XE_MAX_DSS_FUSE_REGS)
+ #define XE_MAX_EU_FUSE_REGS	1
+ 
+ typedef unsigned long xe_dss_mask_t[BITS_TO_LONGS(32 * XE_MAX_DSS_FUSE_REGS)];
 -- 
 2.34.1
 
