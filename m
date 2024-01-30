@@ -4,75 +4,37 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F21C8C4828F
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Feb 2024 14:29:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 202DCC48291
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Feb 2024 14:29:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A195110F2ED;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A96EB10F273;
 	Thu,  1 Feb 2024 14:29:47 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TTaBOQLi";
-	dkim-atps=neutral
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
- [209.85.128.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17C8110FA2F;
- Tue, 30 Jan 2024 14:32:51 +0000 (UTC)
-Received: by mail-wm1-f53.google.com with SMTP id
- 5b1f17b1804b1-40e80046246so22263615e9.1; 
- Tue, 30 Jan 2024 06:32:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1706625109; x=1707229909; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=g8VsAPUOaE4aY1SJPZwDoTZsIGhIdKyw4msywfQX4Vs=;
- b=TTaBOQLioAQVtRgGT9xk67fTpFiPqb6+XlCtx8aw1Tekgsz0MDLNeqStrBCySsUz7n
- 6ibILEqcNPeFjIYe1IFiKcMMbvRbr97wA1GelFvGlhZQnJUK9KpcYHLNlkdcXoOoYdJU
- Vwekm7m+QUezDZJ3Y5NhbKKfBxAaaZTX/emFOwKkYYd8DPnhqGfvir8WMpL+rXw/z8TF
- av6TEM7RndM1wc/qL/snNUEYvpKWgOoe+TRKYLnmU7HSfP+X91ev4rw3ZTLhRVGvoPU0
- rDjnrgHthd1MpHhSPaJQltbOmolDfkIvvhsJuY8Z6ZdAsb/WszUN4+Av+a5vtf9Ro6fm
- iAmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1706625109; x=1707229909;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=g8VsAPUOaE4aY1SJPZwDoTZsIGhIdKyw4msywfQX4Vs=;
- b=Titzb/vqavxByB/Jyowk3CTq3qS/qe/E9ljQ7sfQIljexZIwm/Dyk3a1GSrIGNETBn
- UAk1qVSfON2ze/xeLTyggW42ixxFeut8vZVNDWQSGikg5sLj2UziI2maEijdH7kNKnDH
- DWC6udmURKQ/ECHgH/BN3MWKaguQg0UFK/VEgc+1CuSklsFuqJnkC8vhPJC3vVXo4z/a
- caiE5FfMb6CLVezpr8k9kLEGbQ9Xaj/c7/EHhYLcNJcAUrdBPOZsshW8wC8EVZnmTExb
- zGShPVA7pijXx2eO5H31eSEgFCEPYl+kLUzwB7mMyhYd9g17f7MMLXJaYBqDbPHh581l
- OxpA==
-X-Gm-Message-State: AOJu0YwMFrmFp8jtcuoxLr2PLBzvyfL4MFoWb+PWE4CcNu/yuXI7Vf94
- VScL85Uaz2LRXnXzTPsD3RckmiwoMoi11bUe7WXlwzGW7lGmgyQq
-X-Google-Smtp-Source: AGHT+IFSVEql0wdjFMo3TZnj5gyGnyuX7yO7FN0iD40DI9+SaUdKAvwNEcHiMlatvS7FXCH7T1CILA==
-X-Received: by 2002:a05:600c:3516:b0:40f:25be:e811 with SMTP id
- h22-20020a05600c351600b0040f25bee811mr1449732wmq.8.1706625109310; 
- Tue, 30 Jan 2024 06:31:49 -0800 (PST)
-X-Forwarded-Encrypted: i=0;
- AJvYcCXENqPmJ2/FGsX1qxdEV034CeiLP93ivNmQ7ALLtRZgwyXmgFLAF+x5njCd8Zk0Z7ZCisvwtrTDc9HjQ92iY+mZK103zDonL04xXxFh+QPRmEP+Ii6K5/Vej4aZJxoCt4VSvwoKShYlhuvHVcBZCOxde/m5B3U8NB71iXIxLEFQGBAZ5gD+JE/TsO7RdzD4x0KNIeOBykNOaxBlcfJx
-Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
- by smtp.gmail.com with ESMTPSA id
- bd25-20020a05600c1f1900b0040ee0abd8f1sm12634652wmb.21.2024.01.30.06.31.48
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 30 Jan 2024 06:31:48 -0800 (PST)
-Message-ID: <26bde5f6-62a5-494c-b59f-b330eb85f4bb@gmail.com>
-Date: Tue, 30 Jan 2024 15:31:45 +0100
+X-Greylist: delayed 608 seconds by postgrey-1.36 at gabe;
+ Tue, 30 Jan 2024 08:15:33 UTC
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DF70112099
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Jan 2024 08:15:33 +0000 (UTC)
+References: <CAHk-=wgxzm+Oc1ywuNGxb1R1=ZEC85LJi776R2QEpk6=_2Qfdw@mail.gmail.com>
+ <20240129104954.1778339-1-geert@linux-m68k.org>
+ <8ea40b3-adde-acb5-5e46-fe1fd395daf@linux-m68k.org>
+ <56b9c222-4e97-4eda-89af-3e0d0c39acb2@roeck-us.net>
+ <90cd0f1a-29c0-4c6f-9efd-92b69da194c0@gmx.de>
+User-agent: mu4e 1.10.8; emacs 30.0.50
+From: Sam James <sam@gentoo.org>
+To: Helge Deller <deller@gmx.de>
+Cc: Guenter Roeck <linux@roeck-us.net>, Geert Uytterhoeven
+ <geert@linux-m68k.org>, linux-kernel@vger.kernel.org,
+ sparclinux@vger.kernel.org, linux-parisc@vger.kernel.org,
+ linux-hwmon@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ "linux-hardening@vger.kernel.org" <linux-hardening@vger.kernel.org>
+Subject: Re: Build regressions/improvements in v6.8-rc2
+Date: Tue, 30 Jan 2024 08:02:45 +0000
+Organization: Gentoo
+In-reply-to: <90cd0f1a-29c0-4c6f-9efd-92b69da194c0@gmx.de>
+Message-ID: <87plxj8cwb.fsf@gentoo.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Fix a build error
-Content-Language: en-US
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oak Zeng <oak.zeng@intel.com>, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: Amaranath.Somalapuram@amd.com, lucas.demarchi@intel.com
-References: <20240127155327.423294-1-oak.zeng@intel.com>
- <21f2b595-0690-4372-bd81-86d23ac7498b@gmail.com>
- <0d1e2c15-c951-4c97-b242-a1231ae4f608@linux.intel.com>
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <0d1e2c15-c951-4c97-b242-a1231ae4f608@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Thu, 01 Feb 2024 14:29:46 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -88,136 +50,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Am 29.01.24 um 21:25 schrieb Thomas Hellström:
-> Hi,
->
-> On 1/29/24 17:48, Christian König wrote:
->> Am 27.01.24 um 16:53 schrieb Oak Zeng:
->>> This fixes a build failure on drm-tip. This issue was introduced during
->>> merge of "drm/ttm: replace busy placement with flags v6". For some
->>> reason, the xe_bo.c part of above change is not merged. Manually merge
->>> the missing part to drm_tip
->>
->> Mhm, I provided this as manual fixup for drm-tip in this rerere commit:
->>
->> commit afc5797e8c03bed3ec47a34f2bc3cf03fce24411
->> Author: Christian König <christian.koenig@amd.com>
->> Date:   Thu Jan 25 10:44:54 2024 +0100
->>
->>     2024y-01m-25d-09h-44m-07s UTC: drm-tip rerere cache update
->>
->>     git version 2.34.1
->>
->>
->> And for me compiling xe in drm-tip worked fine after that. No idea 
->> why that didn't work for you.
->>
->> Anyway feel free to add my rb to this patch here if it helps in any way.
->>
->> Regards,
->> Christian.
->
-> I reverted that rerere cache update and added another one, so now it 
-> works. Not sure exactly what the difference was, but the resulting 
-> patch was for the drm-misc-next merge in my case, and It was for 
-> drm-xe-something in your case.
 
-Yeah, I've noticed that this was applied to the drm-xe-something branch 
-as well. That's why I reverted and re-applied the patch but dim still 
-ended up applying it to drm-xe-something instead of drm-misc-next so I 
-thought that this was intentional.
+Helge Deller <deller@gmx.de> writes:
 
-It would be rather nice if somebody can tell me what the heck went wrong 
-here so that I don't repeat this mistake.
-
-Thanks,
-Christian.
-
->
-> /Thomas
->
->
->>
+> On 1/29/24 15:58, Guenter Roeck wrote:
+>> On 1/29/24 03:06, Geert Uytterhoeven wrote:
+>> [ ... ]
+>>> parisc-gcc1[23]/parisc-{allmod,def}config
 >>>
->>> Signed-off-by: Oak Zeng <oak.zeng@intel.com>
->>> ---
->>>   drivers/gpu/drm/xe/xe_bo.c | 33 +++++++++++++++------------------
->>>   1 file changed, 15 insertions(+), 18 deletions(-)
+>>> =C2=A0=C2=A0 + /kisskb/src/drivers/hwmon/pc87360.c: error: writing 1 by=
+te into a region of size 0 [-Werror=3Dstringop-overflow=3D]:=C2=A0 =3D> 383=
+:51
 >>>
->>> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
->>> index 686d716c5581..d6a193060cc0 100644
->>> --- a/drivers/gpu/drm/xe/xe_bo.c
->>> +++ b/drivers/gpu/drm/xe/xe_bo.c
->>> @@ -38,22 +38,26 @@ static const struct ttm_place 
->>> sys_placement_flags = {
->>>   static struct ttm_placement sys_placement = {
->>>       .num_placement = 1,
->>>       .placement = &sys_placement_flags,
->>> -    .num_busy_placement = 1,
->>> -    .busy_placement = &sys_placement_flags,
->>>   };
->>>   -static const struct ttm_place tt_placement_flags = {
->>> -    .fpfn = 0,
->>> -    .lpfn = 0,
->>> -    .mem_type = XE_PL_TT,
->>> -    .flags = 0,
->>> +static const struct ttm_place tt_placement_flags[] = {
->>> +    {
->>> +        .fpfn = 0,
->>> +        .lpfn = 0,
->>> +        .mem_type = XE_PL_TT,
->>> +        .flags = TTM_PL_FLAG_DESIRED,
->>> +    },
->>> +    {
->>> +        .fpfn = 0,
->>> +        .lpfn = 0,
->>> +        .mem_type = XE_PL_SYSTEM,
->>> +        .flags = TTM_PL_FLAG_FALLBACK,
->>> +    }
->>>   };
->>>     static struct ttm_placement tt_placement = {
->>> -    .num_placement = 1,
->>> -    .placement = &tt_placement_flags,
->>> -    .num_busy_placement = 1,
->>> -    .busy_placement = &sys_placement_flags,
->>> +    .num_placement = 2,
->>> +    .placement = tt_placement_flags,
->>>   };
->>>     bool mem_type_is_vram(u32 mem_type)
->>> @@ -230,8 +234,6 @@ static int __xe_bo_placement_for_flags(struct 
->>> xe_device *xe, struct xe_bo *bo,
->>>       bo->placement = (struct ttm_placement) {
->>>           .num_placement = c,
->>>           .placement = bo->placements,
->>> -        .num_busy_placement = c,
->>> -        .busy_placement = bo->placements,
->>>       };
->>>         return 0;
->>> @@ -251,7 +253,6 @@ static void xe_evict_flags(struct 
->>> ttm_buffer_object *tbo,
->>>           /* Don't handle scatter gather BOs */
->>>           if (tbo->type == ttm_bo_type_sg) {
->>>               placement->num_placement = 0;
->>> -            placement->num_busy_placement = 0;
->>>               return;
->>>           }
->>>   @@ -1391,8 +1392,6 @@ static int __xe_bo_fixed_placement(struct 
->>> xe_device *xe,
->>>       bo->placement = (struct ttm_placement) {
->>>           .num_placement = 1,
->>>           .placement = place,
->>> -        .num_busy_placement = 1,
->>> -        .busy_placement = place,
->>>       };
->>>         return 0;
->>> @@ -2150,9 +2149,7 @@ int xe_bo_migrate(struct xe_bo *bo, u32 mem_type)
->>>         xe_place_from_ttm_type(mem_type, &requested);
->>>       placement.num_placement = 1;
->>> -    placement.num_busy_placement = 1;
->>>       placement.placement = &requested;
->>> -    placement.busy_placement = &requested;
->>>         /*
->>>        * Stolen needs to be handled like below VRAM handling if we 
->>> ever need
+>>
+>> The "fix" for this problem would be similar to commit 4265eb062a73 ("hwm=
+on: (pc87360)
+>> Bounds check data->innr usage"). The change would be something like
+>>
+>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 for (i =3D 0; i < data->tempnr; i++) {
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 for (i =3D 0; i < min(data->tempnr, ARRAY_SIZE(data->temp_m=
+ax)); i++) {
+>>
+>> but that would be purely random because the loop accesses several arrays
+>> indexed with i, and tempnr is never >=3D ARRAY_SIZE(data->temp_max).
+>> I kind of resist making such changes to the code just because the compil=
+er
+>> is clueless.
+>
+> I agree with your analysis.
+> But I'm wondering why this warning just seem to appear on parisc.
+> I would expect gcc on other platforms to complain as well ?!?
+
+-Wstringop-overflow and -Wstringop-truncation are known noisy warnings
+because they're implemented in GCC's "middle-end". Whether or not they
+fire depends on other optimisations.
+
+See also https://lore.kernel.org/linux-hardening/CAHk-=3DwjG4jdE19-vWWhAX3B=
+yfbNr4DJS-pwiN9oY38WkhMZ57g@mail.gmail.com/.
+
+>
+> Helge
+>
+>> Are we sprinkling the kernel code with code like this to make the compil=
+er happy ?
+>>
+>> Guenter
+>>
 >>
 
+thanks,
+sam
