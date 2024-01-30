@@ -4,46 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7667C46CD2
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jan 2024 18:57:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50EB7C48285
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jan 2024 19:17:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F2D210EE72;
-	Tue, 30 Jan 2024 18:57:50 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8182711340D
- for <intel-xe@lists.freedesktop.org>; Tue, 30 Jan 2024 18:57:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706641070; x=1738177070;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=W9kO0hRPtT/J/0+oCdU7fED2+HujsVGvqM2UE4IDxr8=;
- b=KE06aqzD7BUmpad2x/eiM9rvY82cwV7RlkflZ+HYuxmEcQOhngDwBX8V
- wDppt2h/TjYKHzfgNB7z35t6fiuwSupUYa4APpg/Sk2Epb8fV9rlK9rT9
- qCppePeToSuea19K1OcQCqVqvY0CqoG3XrFOe4tfK8Jo/+JFlSwsRtUGX
- QhjhNMcojBKQmOXZEcCR0sFPRt2bNKSVGvNMC3fpjf8I5J7I3JIUNxQIe
- gJvEtL5DWrHK84ZXwe/cgg8XqrvKxSYJC+tDJPTAlO2bWv+7Z9uiPLIKh
- RqpRO+ROGbqhUi3EQ9huQZTiVaNi0CSZXQs5SzKoePKh4qSOgWH2fSln2 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="3219794"
-X-IronPort-AV: E=Sophos;i="6.05,230,1701158400"; 
-   d="scan'208";a="3219794"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2024 10:57:49 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,230,1701158400"; 
-   d="scan'208";a="3892524"
-Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
- by orviesa004.jf.intel.com with ESMTP; 30 Jan 2024 10:57:49 -0800
-From: Zhanjun Dong <zhanjun.dong@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 1/1] drm/xe: Expose number of dss per group and helpers
-Date: Tue, 30 Jan 2024 10:57:44 -0800
-Message-Id: <20240130185744.209647-2-zhanjun.dong@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240130185744.209647-1-zhanjun.dong@intel.com>
-References: <20240130185744.209647-1-zhanjun.dong@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF8FC11343C;
+	Tue, 30 Jan 2024 19:17:31 +0000 (UTC)
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com
+ [209.85.128.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C438810E2E1;
+ Tue, 30 Jan 2024 19:17:29 +0000 (UTC)
+Received: by mail-wm1-f42.google.com with SMTP id
+ 5b1f17b1804b1-40eebe7767cso34922125e9.1; 
+ Tue, 30 Jan 2024 11:17:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1706642188; x=1707246988; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:references:to
+ :content-language:subject:reply-to:user-agent:mime-version:date
+ :message-id:from:to:cc:subject:date:message-id:reply-to;
+ bh=ExRDT7/oR0J/rvv0ANX+Lo9wQs3XVo3wEzukFRbiWzA=;
+ b=WBPtplJzrab1/mQT3jzSmEQhyxPX62Db6vciQEq+vTincAh9fYTb1k+vhtlyFvo1Kq
+ 2/BF8WUYC1tHS0XCZdxxvqAZE+SHFRbsvC2Tnb8derCab8TThE7IRmNbMhYIqdaCMCiD
+ KJgGzPzyLADsGtGkVmU4JurXdyQ6+wsbGMmePP25ebCD8h9tZQn34b677r5fWU+FRySf
+ /qrQyss/OlwR9p8cLNMmpgdhLGIAolqQVRgSF4Urbs4XufEGhhIiojEvwODM/wPpYIyL
+ CIqGalKBWay6KfYAgzbJvipTfs+u7D8tuyiUc0nrjK3/YNVo+QWdI/QSGTCAnhm7t5ak
+ uE+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1706642188; x=1707246988;
+ h=content-transfer-encoding:in-reply-to:from:references:to
+ :content-language:subject:reply-to:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=ExRDT7/oR0J/rvv0ANX+Lo9wQs3XVo3wEzukFRbiWzA=;
+ b=jdZ+V94IBlQV3S4iyOTWENoQVJUb3AVMR4pQK8C6iKNpiX4ucqWRNscz6OmtuEe/+n
+ fpAUgabCWTeC8AHcHsIvPp8WraNcoJ9eoTMDqQPn9ANS5AM4gK3YcrqXrX3h8j66RnK5
+ c8AizsZarAFWcWUsFIwRN+UQAPVhqxCM6sRfTOQ39NuVgBMStNZQ8UOaZchQt5HQGw3g
+ Rdv5QOl3Gr6CZg8W+ri4ZQ8zZyx0jGXbdtAUqKvMZjc1xm9Jk1c1uYFhlAdNBfzoOnzo
+ +N9no3jMzVBasZTkNK80lCb23jaxKfe1UwPRiLJ0HU+oThyJK5IPGTlSHLIZr2N/6Q0g
+ Slsw==
+X-Gm-Message-State: AOJu0Yyo0qOlk21rhfntAAjcPJK/KtHReipAq+cxUgB/1ifoXpVw0ohw
+ bUNxQav31iJCaNuGCdpftIXtb8jxreOW+xBQCiOxG3DNHFjulIwO
+X-Google-Smtp-Source: AGHT+IGPkzTLaZe+PbljW4CIQKoagC0ZtgGak/vFUKSmBtdepqHaSvELylSr4tZ9f/4h/IEdQrG/Sg==
+X-Received: by 2002:a05:600c:310b:b0:40e:fa04:92fc with SMTP id
+ g11-20020a05600c310b00b0040efa0492fcmr4464945wmo.32.1706642187786; 
+ Tue, 30 Jan 2024 11:16:27 -0800 (PST)
+Received: from [0.0.0.0] ([134.134.137.89])
+ by smtp.googlemail.com with ESMTPSA id
+ b6-20020a05600003c600b0033aed4e3b55sm6343326wrg.102.2024.01.30.11.16.25
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 30 Jan 2024 11:16:27 -0800 (PST)
+Message-ID: <1c8cce00-8f43-4a19-97a7-760f0525a197@gmail.com>
+Date: Tue, 30 Jan 2024 21:16:10 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/5] drm/xe: store bind time pat index to xe_bo
+Content-Language: en-US
+To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+References: <20240126210807.320671-1-juhapekka.heikkila@gmail.com>
+ <20240126210807.320671-4-juhapekka.heikkila@gmail.com>
+ <87f6ed0b-0fe2-4cbb-ae77-bdcfdd687ccc@intel.com>
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+In-Reply-To: <87f6ed0b-0fe2-4cbb-ae77-bdcfdd687ccc@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -56,137 +78,94 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: juhapekka.heikkila@gmail.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Expose helper for dss per group. This is a precursor patch to allow
-for easier iteration through MCR registers and other per-DSS uses.
+On 29.1.2024 13.33, Matthew Auld wrote:
+> On 26/01/2024 21:08, Juha-Pekka Heikkila wrote:
+>> Store pat index from xe_vma to xe_bo and check if bo was pinned
+>> as framebuffer and verify pat index is not changing for pinned
+>> framebuffers.
+>>
+>> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_pt.c | 23 +++++++++++++++++++----
+>>   1 file changed, 19 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+>> index de1030a47588..0a5d7c7543b1 100644
+>> --- a/drivers/gpu/drm/xe/xe_pt.c
+>> +++ b/drivers/gpu/drm/xe/xe_pt.c
+>> @@ -1208,10 +1208,11 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct 
+>> xe_vma *vma, struct xe_exec_queue
+>>       struct dma_fence *fence;
+>>       struct invalidation_fence *ifence = NULL;
+>>       struct xe_range_fence *rfence;
+>> +    struct xe_bo *bo = xe_vma_bo(vma);
+>>       int err;
+>>       bind_pt_update.locked = false;
+>> -    xe_bo_assert_held(xe_vma_bo(vma));
+>> +    xe_bo_assert_held(bo);
+>>       xe_vm_assert_held(vm);
+>>       vm_dbg(&xe_vma_vm(vma)->xe->drm,
+>> @@ -1252,8 +1253,22 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct 
+>> xe_vma *vma, struct xe_exec_queue
+>>           return ERR_PTR(-ENOMEM);
+>>       }
+>> +    /*
+>> +     * BO which has XE_BO_SCANOUT_BIT set and was pinned as framebuffer
+>> +     * before with different PAT index cannot be bound with different 
+>> PAT
+>> +     * index. This is to prevent switching CCS on/off from framebuffers
+>> +     * on the fly.
+>> +     */
+>> +    if (bo) {
+>> +        if (bo->flags & XE_BO_SCANOUT_BIT && bo->pat_index_scanout &&
+> 
+> Note that pat_index = 0 is usually a valid index...
+> 
+>> +            bo->pat_index_scanout != vma->pat_index)
+>> +            return ERR_PTR(-EINVAL);
+>> +
+>> +        bo->pat_index = vma->pat_index;
+>> +    }
+> 
+> ...what about something like:
+> 
+> if (bo.has_sealed_pat_index && bo.sealed_pat_index != vma->pat_index)
+>      return ERR_PTR();
+> else if (SCANOUT) {
+>      bo.has_sealed_pat_index = true;
+>      bo.sealed_pat_index = vma->pat_index;
+> }
+> 
+> Also, this and the previous patch should probably be squashed together? 
+> Other question is if we should only apply this on xe2?
 
-Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_mcr.c      | 40 ++++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_gt_mcr.h      | 17 ++++++++++++
- drivers/gpu/drm/xe/xe_gt_topology.c |  1 -
- drivers/gpu/drm/xe/xe_gt_types.h    |  1 +
- 4 files changed, 57 insertions(+), 2 deletions(-)
+Hi Matthew, thanks for the comments. I went ahead with making 
+has_sealed_pat_index and it did make things much more clean. It's good 
+idea, thanks. I'll soon send new version. Here I didn't go limit this to 
+xe2 as the limit is coming from framebuffer code, if there come other 
+use for this pat index sealing it doesn't need to be about xe2 on this part.
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
-index 77925b35cf8d..7cd93bcb811f 100644
---- a/drivers/gpu/drm/xe/xe_gt_mcr.c
-+++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
-@@ -291,11 +291,16 @@ static void init_steering_mslice(struct xe_gt *gt)
- 	gt->steering[LNCF].instance_target = 0;		/* unused */
- }
- 
-+int xe_gt_mcr_get_dss_per_group(struct xe_gt *gt)
-+{
-+	return gt_to_xe(gt)->info.platform == XE_PVC ? 8 : 4;
-+}
-+
- static void init_steering_dss(struct xe_gt *gt)
- {
- 	unsigned int dss = min(xe_dss_mask_group_ffs(gt->fuse_topo.g_dss_mask, 0, 0),
- 			       xe_dss_mask_group_ffs(gt->fuse_topo.c_dss_mask, 0, 0));
--	unsigned int dss_per_grp = gt_to_xe(gt)->info.platform == XE_PVC ? 8 : 4;
-+	unsigned int dss_per_grp = xe_gt_mcr_get_dss_per_group(gt);
- 
- 	gt->steering[DSS].group_target = dss / dss_per_grp;
- 	gt->steering[DSS].instance_target = dss % dss_per_grp;
-@@ -683,3 +688,36 @@ void xe_gt_mcr_steering_dump(struct xe_gt *gt, struct drm_printer *p)
- 		}
- 	}
- }
-+
-+/**
-+ * xe_gt_mcr_get_dss_steering - returns the group/instance steering for a SS
-+ * @gt: GT structure
-+ * @dss: DSS ID to obtain steering for
-+ * @group: pointer to storage for steering group ID
-+ * @instance: pointer to storage for steering instance ID
-+ *
-+ * Returns the steering IDs (via the @group and @instance parameters) that
-+ * correspond to a specific subslice/DSS ID.
-+ */
-+void xe_gt_mcr_get_dss_steering(struct xe_gt *gt, unsigned int dss, unsigned int *group,
-+				unsigned int *instance)
-+{
-+	int dss_per_grp = xe_gt_mcr_get_dss_per_group(gt);
-+
-+	*group = dss / dss_per_grp;
-+	*instance = dss % dss_per_grp;
-+}
-+
-+bool xe_gt_mcr_dss_has_subslice(struct xe_gt *gt, int slice, int subslice)
-+{
-+	int dss_per_grp = xe_gt_mcr_get_dss_per_group(gt);
-+	int index = slice * dss_per_grp + subslice;
-+
-+	if (index >= XE_MAX_DSS_FUSE_BITS) {
-+		xe_gt_dbg(gt, "DSS id out of range: slice:%d subslice:%d\n", slice, subslice);
-+		return false;
-+	}
-+
-+	return test_bit(index, gt->fuse_topo.g_dss_mask) ||
-+	       test_bit(index, gt->fuse_topo.c_dss_mask);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.h b/drivers/gpu/drm/xe/xe_gt_mcr.h
-index 27ca1bc880a0..7d1eb180befd 100644
---- a/drivers/gpu/drm/xe/xe_gt_mcr.h
-+++ b/drivers/gpu/drm/xe/xe_gt_mcr.h
-@@ -7,6 +7,7 @@
- #define _XE_GT_MCR_H_
- 
- #include "regs/xe_reg_defs.h"
-+#include "xe_gt_types.h"
- 
- struct drm_printer;
- struct xe_gt;
-@@ -25,5 +26,21 @@ void xe_gt_mcr_multicast_write(struct xe_gt *gt, struct xe_reg_mcr mcr_reg,
- 			       u32 value);
- 
- void xe_gt_mcr_steering_dump(struct xe_gt *gt, struct drm_printer *p);
-+int xe_gt_mcr_get_dss_per_group(struct xe_gt *gt);
-+void xe_gt_mcr_get_dss_steering(struct xe_gt *gt, unsigned int dss, unsigned int *group,
-+				unsigned int *instance);
-+bool xe_gt_mcr_dss_has_subslice(struct xe_gt *gt, int slice, int subslice);
-+
-+#define _HAS_SS(gt_, group_, instance_) xe_gt_mcr_dss_has_subslice(gt_, group_, instance_)
-+
-+/*
-+ * Loop over each subslice/DSS and determine the group and instance IDs that
-+ * should be used to steer MCR accesses toward this DSS.
-+ */
-+#define for_each_dss_steering(dss_, gt_, group_, instance_) \
-+	for (dss_ = 0, xe_gt_mcr_get_dss_steering(gt_, 0, &group_, &instance_); \
-+	     dss_ < XE_MAX_DSS_FUSE_BITS; \
-+	     dss_++, xe_gt_mcr_get_dss_steering(gt_, dss_, &group_, &instance_)) \
-+		for_each_if(_HAS_SS(gt_, group_, instance_))
- 
- #endif /* _XE_GT_MCR_H_ */
-diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
-index a8d7f272c30a..c4942f2b3775 100644
---- a/drivers/gpu/drm/xe/xe_gt_topology.c
-+++ b/drivers/gpu/drm/xe/xe_gt_topology.c
-@@ -11,7 +11,6 @@
- #include "xe_gt.h"
- #include "xe_mmio.h"
- 
--#define XE_MAX_DSS_FUSE_BITS (32 * XE_MAX_DSS_FUSE_REGS)
- #define XE_MAX_EU_FUSE_BITS (32 * XE_MAX_EU_FUSE_REGS)
- 
- static void
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index 70c615dd1498..b4df7d35dec7 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -25,6 +25,7 @@ enum xe_gt_type {
- };
- 
- #define XE_MAX_DSS_FUSE_REGS	3
-+#define XE_MAX_DSS_FUSE_BITS	(32 * XE_MAX_DSS_FUSE_REGS)
- #define XE_MAX_EU_FUSE_REGS	1
- 
- typedef unsigned long xe_dss_mask_t[BITS_TO_LONGS(32 * XE_MAX_DSS_FUSE_REGS)];
--- 
-2.34.1
+> 
+>> +
+>>       fence = xe_migrate_update_pgtables(tile->migrate,
+>> -                       vm, xe_vma_bo(vma), q,
+>> +                       vm, bo, q,
+>>                          entries, num_entries,
+>>                          syncs, num_syncs,
+>>                          &bind_pt_update.base);
+>> @@ -1287,8 +1302,8 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct 
+>> xe_vma *vma, struct xe_exec_queue
+>>                      DMA_RESV_USAGE_KERNEL :
+>>                      DMA_RESV_USAGE_BOOKKEEP);
+>> -        if (!xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
+>> -            dma_resv_add_fence(xe_vma_bo(vma)->ttm.base.resv, fence,
+>> +        if (!xe_vma_has_no_bo(vma) && !bo->vm)
+>> +            dma_resv_add_fence(bo->ttm.base.resv, fence,
+>>                          DMA_RESV_USAGE_BOOKKEEP);
+>>           xe_pt_commit_bind(vma, entries, num_entries, rebind,
+>>                     bind_pt_update.locked ? &deferred : NULL);
 
