@@ -4,32 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D5D4C47DDF
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jan 2024 10:35:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB481C46CD2
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jan 2024 11:28:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37E33112F40;
-	Tue, 30 Jan 2024 10:35:51 +0000 (UTC)
-Received: from coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEF7E112F40;
- Tue, 30 Jan 2024 10:35:49 +0000 (UTC)
-Received: from 91-155-255-116.elisa-laajakaista.fi ([91.155.255.116]
- helo=RAVPPB-CIM.amr.corp.intel.com)
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97-RC1) (envelope-from <luca@coelho.fi>)
- id 1rUlT1-00000001Y2C-0cGR; Tue, 30 Jan 2024 12:35:47 +0200
-Message-ID: <6f9d5e5481fadb2eb452b0e3c0d3b598d9dc499b.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
-Date: Tue, 30 Jan 2024 12:35:46 +0200
-In-Reply-To: <18b5b91e62d071675a651f6f91c58f05ad74134a.1705410327.git.jani.nikula@intel.com>
-References: <cover.1705410327.git.jani.nikula@intel.com>
- <18b5b91e62d071675a651f6f91c58f05ad74134a.1705410327.git.jani.nikula@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B698112F5B;
+	Tue, 30 Jan 2024 11:28:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E16B410F619;
+ Tue, 30 Jan 2024 11:28:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706614099; x=1738150099;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=eJL/XKRz5Rj/B0GXTvlJ17kxFpJtQk9pJgOJUKAx18U=;
+ b=frNDbmMwcYNYwzcA9T2XSHv04Bwu3t7Yb6qOY78+yPQtQoEB362xzpUF
+ fVt6LwKXTdgjuhlCF+zGQCPthsFblXIdew8xcO+G9/b3qeNBeUg0StiCN
+ 8MHSivYwbp6bZBkSbZIw59RFKFJLYBVpEYngMSRQyaccwY7dF0KGKT+ld
+ 90Pb/AwzgyhLfbChoTCnlrquUveDILQB4sZyumKr5beYIoYYvr35qI1Mw
+ f5bsRP2O+ggtG8e1W6yieLaWhm53qEZmqCkhbBHUroWG4nFbTwx42pAdE
+ OTk4j90QFR+J06MIPzaIkLbCshYJie2UMQMArTAhHyM82BzXWbkMDRWJE g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="24727167"
+X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; d="scan'208";a="24727167"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2024 03:28:17 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="878410341"
+X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; d="scan'208";a="878410341"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com)
+ ([10.237.72.44])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2024 03:28:10 -0800
+Received: from svinhufvud.ger.corp.intel.com (localhost [IPv6:::1])
+ by kekkonen.fi.intel.com (Postfix) with ESMTP id 8512811F8D2;
+ Tue, 30 Jan 2024 13:28:05 +0200 (EET)
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: linux-pm@vger.kernel.org
+Subject: [PATCH v5 0/2] Small runtime PM API changes
+Date: Tue, 30 Jan 2024 13:28:04 +0200
+Message-Id: <20240130112805.158790-1-sakari.ailus@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Subject: Re: [PATCH 10/10] drm: remove drm_debug_printer in favor of
- drm_dbg_printer
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,121 +58,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, linux-pci@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Jaroslav Kysela <perex@perex.cz>,
+ Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>,
+ laurent.pinchart@ideasonboard.com, David Airlie <airlied@gmail.com>,
+ Paul Elder <paul.elder@ideasonboard.com>, Bjorn Helgaas <helgaas@kernel.org>,
+ linux-media@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Mark Brown <broonie@kernel.org>,
+ Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, Alex Elder <elder@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-sound@vger.kernel.org,
+ Takashi Iwai <tiwai@suse.com>, Daniel Vetter <daniel@ffwll.ch>,
+ netdev@vger.kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2024-01-16 at 15:07 +0200, Jani Nikula wrote:
-> Convert the remaining drm_debug_printer users over to drm_dbg_printer,
-> as it can handle the cases without struct drm_device pointer, and also
-> provides drm debug category and prefix support. Remove drm_debug_printer
-> altogether.
->=20
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/drm_modeset_lock.c |  2 +-
->  drivers/gpu/drm/drm_print.c        |  7 -------
->  drivers/gpu/drm/ttm/ttm_bo.c       |  2 +-
->  include/drm/drm_print.h            | 17 -----------------
->  4 files changed, 2 insertions(+), 26 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/drm_modeset_lock.c b/drivers/gpu/drm/drm_mod=
-eset_lock.c
-> index 918065982db4..7694b85e75e3 100644
-> --- a/drivers/gpu/drm/drm_modeset_lock.c
-> +++ b/drivers/gpu/drm/drm_modeset_lock.c
-> @@ -91,7 +91,7 @@ static noinline depot_stack_handle_t __drm_stack_depot_=
-save(void)
-> =20
->  static void __drm_stack_depot_print(depot_stack_handle_t stack_depot)
->  {
-> -	struct drm_printer p =3D drm_debug_printer("drm_modeset_lock");
-> +	struct drm_printer p =3D drm_dbg_printer(NULL, DRM_UT_KMS, "drm_modeset=
-_lock");
->  	unsigned long *entries;
->  	unsigned int nr_entries;
->  	char *buf;
-> diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
-> index 673b29c732ea..699b7dbffd7b 100644
-> --- a/drivers/gpu/drm/drm_print.c
-> +++ b/drivers/gpu/drm/drm_print.c
-> @@ -182,13 +182,6 @@ void __drm_printfn_info(struct drm_printer *p, struc=
-t va_format *vaf)
->  }
->  EXPORT_SYMBOL(__drm_printfn_info);
-> =20
-> -void __drm_printfn_debug(struct drm_printer *p, struct va_format *vaf)
-> -{
-> -	/* pr_debug callsite decorations are unhelpful here */
-> -	printk(KERN_DEBUG "%s %pV", p->prefix, vaf);
-> -}
-> -EXPORT_SYMBOL(__drm_printfn_debug);
-> -
->  void __drm_printfn_dbg(struct drm_printer *p, struct va_format *vaf)
->  {
->  	const struct drm_device *drm =3D p->arg;
-> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-> index edf10618fe2b..30e1fe864826 100644
-> --- a/drivers/gpu/drm/ttm/ttm_bo.c
-> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
-> @@ -49,7 +49,7 @@
->  static void ttm_bo_mem_space_debug(struct ttm_buffer_object *bo,
->  					struct ttm_placement *placement)
->  {
-> -	struct drm_printer p =3D drm_debug_printer(TTM_PFX);
-> +	struct drm_printer p =3D drm_dbg_printer(NULL, DRM_UT_CORE, TTM_PFX);
->  	struct ttm_resource_manager *man;
->  	int i, mem_type;
-> =20
-> diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
-> index 27e23c06dad4..9cc473e5d353 100644
-> --- a/include/drm/drm_print.h
-> +++ b/include/drm/drm_print.h
-> @@ -184,7 +184,6 @@ void __drm_puts_coredump(struct drm_printer *p, const=
- char *str);
->  void __drm_printfn_seq_file(struct drm_printer *p, struct va_format *vaf=
-);
->  void __drm_puts_seq_file(struct drm_printer *p, const char *str);
->  void __drm_printfn_info(struct drm_printer *p, struct va_format *vaf);
-> -void __drm_printfn_debug(struct drm_printer *p, struct va_format *vaf);
->  void __drm_printfn_dbg(struct drm_printer *p, struct va_format *vaf);
->  void __drm_printfn_err(struct drm_printer *p, struct va_format *vaf);
-> =20
-> @@ -317,22 +316,6 @@ static inline struct drm_printer drm_info_printer(st=
-ruct device *dev)
->  	return p;
->  }
-> =20
-> -/**
-> - * drm_debug_printer - construct a &drm_printer that outputs to pr_debug=
-()
-> - * @prefix: debug output prefix
-> - *
-> - * RETURNS:
-> - * The &drm_printer object
-> - */
-> -static inline struct drm_printer drm_debug_printer(const char *prefix)
-> -{
-> -	struct drm_printer p =3D {
-> -		.printfn =3D __drm_printfn_debug,
-> -		.prefix =3D prefix
-> -	};
-> -	return p;
-> -}
-> -
->  /**
->   * drm_dbg_printer - construct a &drm_printer for drm device specific ou=
-tput
->   * @drm: the &struct drm_device pointer, or NULL
+Hi folks,
 
-Why did you choose to make the last changes together with the patch
-that removed the old version entirely? Was it because you didn't to
-have any commit where the old version is defined but not used?
+Here's a small but a different set of patches for making two relatively
+minor changes to runtime PM API. I restarted version numbering as this is
+meaningfully different from the previous set.
 
-In any case, this is fine with me, so:
+pm_runtime_get_if_active() loses its second argument as it only made sense
+to have ign_usage_count argument true.
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+The other change is also small but it has an effect on callers:
+pm_runtime_put_autosuspend() will, in the future, be re-purposed to
+include a call to pm_runtime_mark_last_busy() as well. Before this,
+current users of the function are moved to __pm_runtime_put_autosuspend()
+(added by this patchset) which will continue to have the current
+behaviour.
 
---
-Cheers,
-Luca.
+I haven't included the conversion patches in this set as I only want to do
+that once this set has been approved and merged. The tree specific patches
+can be found here, on linux-next master (there are some V4L2 patches
+there, too, please ignore them for now):
+<URL:https://git.kernel.org/pub/scm/linux/kernel/git/sailus/linux-next.git/log/?
+
+Later on, users calling pm_runtime_mark_last_busy() immediately followed
+by __pm_runtime_put_autosuspend() will be switched back to
+pm_runtime_put_autosuspend() once its behaviour change has been done (a
+patch near top of that branch). I'll provide these once the preceding ones
+have been merged.
+
+Comments are welcome.
+
+since v4:
+
+- patch 1: Squash patch 2
+  <URL:https://lists.freedesktop.org/archives/dri-devel/2024-January/438739.html>.
+
+- patch 1: Add to documentation of pm_runtime_get_if_{active,in_use} that
+  if PM runtime is disabled, an error is returned and the usage_count
+  remains unmodified.
+
+- patch 1: Fix spelling of "explicitly" in the commit message.
+
+- Use upper case "PM:" prefix in subject.
+
+since v3:
+
+- patch 1: Drop the previously added documentation on driver use of
+  pm_runtime_get_conditional().
+
+- Add a patch to make pm_runtime_get_conditional() static, including
+  switching i915 to pm_runtime_get_if_{active,in_use}.
+
+since v2:
+
+- Rebase on v6.8-rc1 (no changes).
+
+- Add Rodrigo's Reviewed-by: to the 1st patch.
+
+since v1:
+
+- patch 1: Rename __pm_runtime_get_conditional() as
+  pm_runtime_get_conditional().
+
+- patch 1: Reword documentation on driver use of
+  pm_runtime_get_conditional().
+
+Sakari Ailus (2):
+  PM: runtime: Simplify pm_runtime_get_if_active() usage
+  PM: runtime: Add pm_runtime_put_autosuspend() replacement
+
+ Documentation/power/runtime_pm.rst      | 22 +++++++++-------
+ drivers/accel/ivpu/ivpu_pm.c            |  2 +-
+ drivers/base/power/runtime.c            | 35 +++++++++++++++++++++++--
+ drivers/gpu/drm/i915/intel_runtime_pm.c |  5 +++-
+ drivers/gpu/drm/xe/xe_pm.c              |  2 +-
+ drivers/media/i2c/ccs/ccs-core.c        |  2 +-
+ drivers/media/i2c/ov64a40.c             |  2 +-
+ drivers/media/i2c/thp7312.c             |  2 +-
+ drivers/net/ipa/ipa_smp2p.c             |  2 +-
+ drivers/pci/pci.c                       |  2 +-
+ include/linux/pm_runtime.h              | 30 ++++++++++-----------
+ sound/hda/hdac_device.c                 |  2 +-
+ 12 files changed, 73 insertions(+), 35 deletions(-)
+
+-- 
+2.39.2
+
