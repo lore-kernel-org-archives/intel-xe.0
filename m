@@ -4,50 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 283BDC48285
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jan 2024 11:28:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA6E0C46CD2
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jan 2024 12:53:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CAFF112FC0;
-	Tue, 30 Jan 2024 11:28:21 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2253B10F89F;
- Tue, 30 Jan 2024 11:28:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E2C0113087;
+	Tue, 30 Jan 2024 12:52:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2ADC113087
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Jan 2024 12:52:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706614099; x=1738150099;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=p26BQJECcTWiyJgSsIztcnzh4ip7rv+gHoIKmYjiu4Q=;
- b=j3wiNwS+YjSxoyhNK6PccpKjXE/cZtHLeAMIYKbRtAUYNC1EJ92hvgjz
- ygC1iXHe3ivasLlU/ds0TU5XbC2/k/T6xa57sWyMKdbk7/ycBqD7GM/tV
- 06YpwVTBH+YRJNGdB3EfvrlxxMPhM5+ec2Wd4m2/MOZ9XTgJm8ZBmG/JY
- 5KKQSAQKnWTZrXAoh5OGSYjwv+0vGoqlxSvPxfYr0lIS/hl/vn7NbrgOe
- 2GvaCLIRV+O4btudQTizEv6rtqfgGpI/wMxKw1swzZAckM5yX5nCvLRXs
- MUyaBZd6Ksx5eSDYiTLQlrWvabT6C7M/ncgNdGbPepuI17fZDBs7CzfSV Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="24727176"
-X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; d="scan'208";a="24727176"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2024 03:28:19 -0800
+ t=1706619172; x=1738155172;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=HqtJKoBwqcNNSzp3QzDqMlPkIbmafcCLGhQxxTD3fIE=;
+ b=bA6ptecyJkVbsgow7hnMnoyluqd2CSlWjGaTKjlk596na5/n3HhvQk3Z
+ 17GQ4xnzJzmfmEgVlUyprDHt8Xs9xFw0IqC6wwvFdnhIQ8hFd81JVr2O5
+ Oa/z5QXk2unyOzoF4t7JT53jyvoCOd01OsmjrqC9CNi0kDCSa+M9K36RW
+ VOJB0yfs6s+LVZJLTbZ+4S+uHsUF7kr3aGE/m+cYR32rY73AbNsNKPTrg
+ zmdchnMyBLVyMUfXk372/WV73exCRtWii/DCPOlp2Htwnwg2oF85nMKaf
+ /U2/Ny08pUlNXc8GiopowOdIF3TzyQ1JL1OscdckVtK7ppqfbQHX3rrVG Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="16652024"
+X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; d="scan'208";a="16652024"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2024 04:52:50 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="878410349"
-X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; d="scan'208";a="878410349"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com)
- ([10.237.72.44])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2024 03:28:12 -0800
-Received: from svinhufvud.ger.corp.intel.com (localhost [IPv6:::1])
- by kekkonen.fi.intel.com (Postfix) with ESMTP id 1740011FBD1;
- Tue, 30 Jan 2024 13:28:08 +0200 (EET)
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: linux-pm@vger.kernel.org
-Subject: [PATCH v5 1/2] PM: runtime: Simplify pm_runtime_get_if_active() usage
-Date: Tue, 30 Jan 2024 13:28:05 +0200
-Message-Id: <20240130112805.158790-2-sakari.ailus@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240130112805.158790-1-sakari.ailus@linux.intel.com>
-References: <20240130112805.158790-1-sakari.ailus@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="911436869"
+X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; d="scan'208";a="911436869"
+Received: from skofoed-mobl.ger.corp.intel.com (HELO fedora..)
+ ([10.249.254.21])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2024 04:52:46 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [RFC PATCH] drm/xe/uapi: Remove support for persistent exec_queues
+Date: Tue, 30 Jan 2024 13:52:20 +0100
+Message-ID: <20240130125220.5517-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,302 +56,281 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, linux-pci@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Jaroslav Kysela <perex@perex.cz>,
- Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>,
- laurent.pinchart@ideasonboard.com, David Airlie <airlied@gmail.com>,
- Paul Elder <paul.elder@ideasonboard.com>, Bjorn Helgaas <helgaas@kernel.org>,
- linux-media@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, Mark Brown <broonie@kernel.org>,
- Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- intel-xe@lists.freedesktop.org, Alex Elder <elder@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-sound@vger.kernel.org,
- Takashi Iwai <tiwai@suse.com>, Daniel Vetter <daniel@ffwll.ch>,
- netdev@vger.kernel.org
+Cc: Francois Dugast <francois.dugast@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There are two ways to opportunistically increment a device's runtime PM
-usage count, calling either pm_runtime_get_if_active() or
-pm_runtime_get_if_in_use(). The former has an argument to tell whether to
-ignore the usage count or not, and the latter simply calls the former with
-ign_usage_count set to false. The other users that want to ignore the
-usage_count will have to explicitly set that argument to true which is a
-bit cumbersome.
+Persistent exec_queues delays explicit destruction of exec_queues
+until they are done executing, but destruction on process exit
+is still immediate. It turns out no UMD is relying on this
+functionality, so remove it. If there turns out to be a use-case
+in the future, let's re-add.
 
-To make this function more practical to use, remove the ign_usage_count
-argument from the function. The main implementation is in a static
-function called pm_runtime_get_conditional() and implementations of
-pm_runtime_get_if_active() and pm_runtime_get_if_in_use() are moved to
-runtime.c.
+Persistent exec_queues were never used for LR VMs
 
-Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-Reviewed-by: Alex Elder <elder@linaro.org>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Acked-by: Takashi Iwai <tiwai@suse.de> # sound/
-Reviewed-by: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com> # drivers/accel/ivpu/
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com> # drivers/gpu/drm/i915/
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Acked-by: Bjorn Helgaas <bhelgaas@google.com> # drivers/pci/
+Open: Should we renumber the exec_queue properties, or leave a hole
+as in this patch.
+
+Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- Documentation/power/runtime_pm.rst      |  5 ++--
- drivers/accel/ivpu/ivpu_pm.c            |  2 +-
- drivers/base/power/runtime.c            | 35 +++++++++++++++++++++++--
- drivers/gpu/drm/i915/intel_runtime_pm.c |  5 +++-
- drivers/gpu/drm/xe/xe_pm.c              |  2 +-
- drivers/media/i2c/ccs/ccs-core.c        |  2 +-
- drivers/media/i2c/ov64a40.c             |  2 +-
- drivers/media/i2c/thp7312.c             |  2 +-
- drivers/net/ipa/ipa_smp2p.c             |  2 +-
- drivers/pci/pci.c                       |  2 +-
- include/linux/pm_runtime.h              | 18 +++----------
- sound/hda/hdac_device.c                 |  2 +-
- 12 files changed, 50 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c       | 39 ----------------------------
+ drivers/gpu/drm/xe/xe_device.h       |  4 ---
+ drivers/gpu/drm/xe/xe_device_types.h |  8 ------
+ drivers/gpu/drm/xe/xe_exec_queue.c   | 36 +++++--------------------
+ drivers/gpu/drm/xe/xe_execlist.c     |  2 --
+ drivers/gpu/drm/xe/xe_guc_submit.c   |  2 --
+ include/uapi/drm/xe_drm.h            |  2 +-
+ 7 files changed, 7 insertions(+), 86 deletions(-)
 
-diff --git a/Documentation/power/runtime_pm.rst b/Documentation/power/runtime_pm.rst
-index 65b86e487afe..da99379071a4 100644
---- a/Documentation/power/runtime_pm.rst
-+++ b/Documentation/power/runtime_pm.rst
-@@ -396,10 +396,9 @@ drivers/base/power/runtime.c and include/linux/pm_runtime.h:
-       nonzero, increment the counter and return 1; otherwise return 0 without
-       changing the counter
- 
--  `int pm_runtime_get_if_active(struct device *dev, bool ign_usage_count);`
-+  `int pm_runtime_get_if_active(struct device *dev);`
-     - return -EINVAL if 'power.disable_depth' is nonzero; otherwise, if the
--      runtime PM status is RPM_ACTIVE, and either ign_usage_count is true
--      or the device's usage_count is non-zero, increment the counter and
-+      runtime PM status is RPM_ACTIVE, increment the counter and
-       return 1; otherwise return 0 without changing the counter
- 
-   `void pm_runtime_put_noidle(struct device *dev);`
-diff --git a/drivers/accel/ivpu/ivpu_pm.c b/drivers/accel/ivpu/ivpu_pm.c
-index 0af8864cb3b5..c6d93c7a1c58 100644
---- a/drivers/accel/ivpu/ivpu_pm.c
-+++ b/drivers/accel/ivpu/ivpu_pm.c
-@@ -292,7 +292,7 @@ int ivpu_rpm_get_if_active(struct ivpu_device *vdev)
- {
- 	int ret;
- 
--	ret = pm_runtime_get_if_active(vdev->drm.dev, false);
-+	ret = pm_runtime_get_if_in_use(vdev->drm.dev);
- 	drm_WARN_ON(&vdev->drm, ret < 0);
- 
- 	return ret;
-diff --git a/drivers/base/power/runtime.c b/drivers/base/power/runtime.c
-index 05793c9fbb84..5275a6b2e980 100644
---- a/drivers/base/power/runtime.c
-+++ b/drivers/base/power/runtime.c
-@@ -1176,7 +1176,7 @@ int __pm_runtime_resume(struct device *dev, int rpmflags)
- EXPORT_SYMBOL_GPL(__pm_runtime_resume);
- 
- /**
-- * pm_runtime_get_if_active - Conditionally bump up device usage counter.
-+ * pm_runtime_get_conditional - Conditionally bump up device usage counter.
-  * @dev: Device to handle.
-  * @ign_usage_count: Whether or not to look at the current usage counter value.
-  *
-@@ -1197,7 +1197,7 @@ EXPORT_SYMBOL_GPL(__pm_runtime_resume);
-  * The caller is responsible for decrementing the runtime PM usage counter of
-  * @dev after this function has returned a positive value for it.
-  */
--int pm_runtime_get_if_active(struct device *dev, bool ign_usage_count)
-+static int pm_runtime_get_conditional(struct device *dev, bool ign_usage_count)
- {
- 	unsigned long flags;
- 	int retval;
-@@ -1218,8 +1218,39 @@ int pm_runtime_get_if_active(struct device *dev, bool ign_usage_count)
- 
- 	return retval;
- }
-+
-+/**
-+ * pm_runtime_get_if_active - Bump up runtime PM usage counter if the device is
-+ *			      in active state
-+ * @dev: Target device.
-+ *
-+ * Increment the runtime PM usage counter of @dev if its runtime PM status is
-+ * %RPM_ACTIVE, in which case it returns 1. If the device is in a different
-+ * state, 0 is returned. -EINVAL is returned if runtime PM is disabled for the
-+ * device, in which case also the usage_count will remain unmodified.
-+ */
-+int pm_runtime_get_if_active(struct device *dev)
-+{
-+	return pm_runtime_get_conditional(dev, true);
-+}
- EXPORT_SYMBOL_GPL(pm_runtime_get_if_active);
- 
-+/**
-+ * pm_runtime_get_if_in_use - Conditionally bump up runtime PM usage counter.
-+ * @dev: Target device.
-+ *
-+ * Increment the runtime PM usage counter of @dev if its runtime PM status is
-+ * %RPM_ACTIVE and its runtime PM usage counter is greater than 0, in which case
-+ * it returns 1. If the device is in a different state or its usage_count is 0,
-+ * 0 is returned. -EINVAL is returned if runtime PM is disabled for the device,
-+ * in which case also the usage_count will remain unmodified.
-+ */
-+int pm_runtime_get_if_in_use(struct device *dev)
-+{
-+	return pm_runtime_get_conditional(dev, false);
-+}
-+EXPORT_SYMBOL_GPL(pm_runtime_get_if_in_use);
-+
- /**
-  * __pm_runtime_set_status - Set runtime PM status of a device.
-  * @dev: Device to handle.
-diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
-index 860b51b56a92..d4e844128826 100644
---- a/drivers/gpu/drm/i915/intel_runtime_pm.c
-+++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
-@@ -246,7 +246,10 @@ static intel_wakeref_t __intel_runtime_pm_get_if_active(struct intel_runtime_pm
- 		 * function, since the power state is undefined. This applies
- 		 * atm to the late/early system suspend/resume handlers.
- 		 */
--		if (pm_runtime_get_if_active(rpm->kdev, ignore_usecount) <= 0)
-+		if ((ignore_usecount &&
-+		     pm_runtime_get_if_active(rpm->kdev) <= 0) ||
-+		    (!ignore_usecount &&
-+		     pm_runtime_get_if_in_use(rpm->kdev) <= 0))
- 			return 0;
- 	}
- 
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index b429c2876a76..dd110058bf74 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -330,7 +330,7 @@ int xe_pm_runtime_put(struct xe_device *xe)
- 
- int xe_pm_runtime_get_if_active(struct xe_device *xe)
- {
--	return pm_runtime_get_if_active(xe->drm.dev, true);
-+	return pm_runtime_get_if_active(xe->drm.dev);
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 6faa7865b1aa..d11cdc0b3cb5 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -86,9 +86,6 @@ static int xe_file_open(struct drm_device *dev, struct drm_file *file)
+ 	return 0;
  }
  
- void xe_pm_assert_unbounded_bridge(struct xe_device *xe)
-diff --git a/drivers/media/i2c/ccs/ccs-core.c b/drivers/media/i2c/ccs/ccs-core.c
-index e21287d50c15..e1ae0f9fad43 100644
---- a/drivers/media/i2c/ccs/ccs-core.c
-+++ b/drivers/media/i2c/ccs/ccs-core.c
-@@ -674,7 +674,7 @@ static int ccs_set_ctrl(struct v4l2_ctrl *ctrl)
- 		break;
+-static void device_kill_persistent_exec_queues(struct xe_device *xe,
+-					       struct xe_file *xef);
+-
+ static void xe_file_close(struct drm_device *dev, struct drm_file *file)
+ {
+ 	struct xe_device *xe = to_xe_device(dev);
+@@ -105,8 +102,6 @@ static void xe_file_close(struct drm_device *dev, struct drm_file *file)
+ 	mutex_unlock(&xef->exec_queue.lock);
+ 	xa_destroy(&xef->exec_queue.xa);
+ 	mutex_destroy(&xef->exec_queue.lock);
+-	device_kill_persistent_exec_queues(xe, xef);
+-
+ 	mutex_lock(&xef->vm.lock);
+ 	xa_for_each(&xef->vm.xa, idx, vm)
+ 		xe_vm_close_and_put(vm);
+@@ -258,9 +253,6 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+ 			xa_erase(&xe->usm.asid_to_vm, asid);
  	}
  
--	pm_status = pm_runtime_get_if_active(&client->dev, true);
-+	pm_status = pm_runtime_get_if_active(&client->dev);
- 	if (!pm_status)
- 		return 0;
+-	drmm_mutex_init(&xe->drm, &xe->persistent_engines.lock);
+-	INIT_LIST_HEAD(&xe->persistent_engines.list);
+-
+ 	spin_lock_init(&xe->pinned.lock);
+ 	INIT_LIST_HEAD(&xe->pinned.kernel_bo_present);
+ 	INIT_LIST_HEAD(&xe->pinned.external_vram);
+@@ -599,37 +591,6 @@ void xe_device_shutdown(struct xe_device *xe)
+ {
+ }
  
-diff --git a/drivers/media/i2c/ov64a40.c b/drivers/media/i2c/ov64a40.c
-index 4fba4c2cb064..541bf74581d2 100644
---- a/drivers/media/i2c/ov64a40.c
-+++ b/drivers/media/i2c/ov64a40.c
-@@ -3287,7 +3287,7 @@ static int ov64a40_set_ctrl(struct v4l2_ctrl *ctrl)
- 					 exp_max, 1, exp_val);
- 	}
- 
--	pm_status = pm_runtime_get_if_active(ov64a40->dev, true);
-+	pm_status = pm_runtime_get_if_active(ov64a40->dev);
- 	if (!pm_status)
- 		return 0;
- 
-diff --git a/drivers/media/i2c/thp7312.c b/drivers/media/i2c/thp7312.c
-index 2806887514dc..19bd923a7315 100644
---- a/drivers/media/i2c/thp7312.c
-+++ b/drivers/media/i2c/thp7312.c
-@@ -1052,7 +1052,7 @@ static int thp7312_s_ctrl(struct v4l2_ctrl *ctrl)
- 	if (ctrl->flags & V4L2_CTRL_FLAG_INACTIVE)
- 		return -EINVAL;
- 
--	if (!pm_runtime_get_if_active(thp7312->dev, true))
-+	if (!pm_runtime_get_if_active(thp7312->dev))
- 		return 0;
- 
- 	switch (ctrl->id) {
-diff --git a/drivers/net/ipa/ipa_smp2p.c b/drivers/net/ipa/ipa_smp2p.c
-index 5620dc271fac..cbf3d4761ce3 100644
---- a/drivers/net/ipa/ipa_smp2p.c
-+++ b/drivers/net/ipa/ipa_smp2p.c
-@@ -92,7 +92,7 @@ static void ipa_smp2p_notify(struct ipa_smp2p *smp2p)
- 		return;
- 
- 	dev = &smp2p->ipa->pdev->dev;
--	smp2p->power_on = pm_runtime_get_if_active(dev, true) > 0;
-+	smp2p->power_on = pm_runtime_get_if_active(dev) > 0;
- 
- 	/* Signal whether the IPA power is enabled */
- 	mask = BIT(smp2p->enabled_bit);
-diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
-index d8f11a078924..f8293ae71389 100644
---- a/drivers/pci/pci.c
-+++ b/drivers/pci/pci.c
-@@ -2510,7 +2510,7 @@ static void pci_pme_list_scan(struct work_struct *work)
- 			 * If the device is in a low power state it
- 			 * should not be polled either.
- 			 */
--			pm_status = pm_runtime_get_if_active(dev, true);
-+			pm_status = pm_runtime_get_if_active(dev);
- 			if (!pm_status)
- 				continue;
- 
-diff --git a/include/linux/pm_runtime.h b/include/linux/pm_runtime.h
-index 7c9b35448563..436baa167498 100644
---- a/include/linux/pm_runtime.h
-+++ b/include/linux/pm_runtime.h
-@@ -72,7 +72,8 @@ extern int pm_runtime_force_resume(struct device *dev);
- extern int __pm_runtime_idle(struct device *dev, int rpmflags);
- extern int __pm_runtime_suspend(struct device *dev, int rpmflags);
- extern int __pm_runtime_resume(struct device *dev, int rpmflags);
--extern int pm_runtime_get_if_active(struct device *dev, bool ign_usage_count);
-+extern int pm_runtime_get_if_active(struct device *dev);
-+extern int pm_runtime_get_if_in_use(struct device *dev);
- extern int pm_schedule_suspend(struct device *dev, unsigned int delay);
- extern int __pm_runtime_set_status(struct device *dev, unsigned int status);
- extern int pm_runtime_barrier(struct device *dev);
-@@ -94,18 +95,6 @@ extern void pm_runtime_release_supplier(struct device_link *link);
- 
- extern int devm_pm_runtime_enable(struct device *dev);
- 
--/**
-- * pm_runtime_get_if_in_use - Conditionally bump up runtime PM usage counter.
-- * @dev: Target device.
-- *
-- * Increment the runtime PM usage counter of @dev if its runtime PM status is
-- * %RPM_ACTIVE and its runtime PM usage counter is greater than 0.
-- */
--static inline int pm_runtime_get_if_in_use(struct device *dev)
+-void xe_device_add_persistent_exec_queues(struct xe_device *xe, struct xe_exec_queue *q)
 -{
--	return pm_runtime_get_if_active(dev, false);
+-	mutex_lock(&xe->persistent_engines.lock);
+-	list_add_tail(&q->persistent.link, &xe->persistent_engines.list);
+-	mutex_unlock(&xe->persistent_engines.lock);
 -}
 -
- /**
-  * pm_suspend_ignore_children - Set runtime PM behavior regarding children.
-  * @dev: Target device.
-@@ -275,8 +264,7 @@ static inline int pm_runtime_get_if_in_use(struct device *dev)
+-void xe_device_remove_persistent_exec_queues(struct xe_device *xe,
+-					     struct xe_exec_queue *q)
+-{
+-	mutex_lock(&xe->persistent_engines.lock);
+-	if (!list_empty(&q->persistent.link))
+-		list_del(&q->persistent.link);
+-	mutex_unlock(&xe->persistent_engines.lock);
+-}
+-
+-static void device_kill_persistent_exec_queues(struct xe_device *xe,
+-					       struct xe_file *xef)
+-{
+-	struct xe_exec_queue *q, *next;
+-
+-	mutex_lock(&xe->persistent_engines.lock);
+-	list_for_each_entry_safe(q, next, &xe->persistent_engines.list,
+-				 persistent.link)
+-		if (q->persistent.xef == xef) {
+-			xe_exec_queue_kill(q);
+-			list_del_init(&q->persistent.link);
+-		}
+-	mutex_unlock(&xe->persistent_engines.lock);
+-}
+-
+ void xe_device_wmb(struct xe_device *xe)
  {
- 	return -EINVAL;
+ 	struct xe_gt *gt = xe_root_mmio_gt(xe);
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index 270124da1e00..b5236ca7fecc 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -42,10 +42,6 @@ int xe_device_probe(struct xe_device *xe);
+ void xe_device_remove(struct xe_device *xe);
+ void xe_device_shutdown(struct xe_device *xe);
+ 
+-void xe_device_add_persistent_exec_queues(struct xe_device *xe, struct xe_exec_queue *q);
+-void xe_device_remove_persistent_exec_queues(struct xe_device *xe,
+-					     struct xe_exec_queue *q);
+-
+ void xe_device_wmb(struct xe_device *xe);
+ 
+ static inline struct xe_file *to_xe_file(const struct drm_file *file)
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index eb2b806a1d23..9785eef2e5a4 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -348,14 +348,6 @@ struct xe_device {
+ 		struct mutex lock;
+ 	} usm;
+ 
+-	/** @persistent_engines: engines that are closed but still running */
+-	struct {
+-		/** @persistent_engines.lock: protects persistent engines */
+-		struct mutex lock;
+-		/** @persistent_engines.list: list of persistent engines */
+-		struct list_head list;
+-	} persistent_engines;
+-
+ 	/** @pinned: pinned BO state */
+ 	struct {
+ 		/** @pinned.lock: protected pinned BO list state */
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index c0b7434e78f1..4b7b41501c92 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -60,7 +60,6 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
+ 	q->fence_irq = &gt->fence_irq[hwe->class];
+ 	q->ring_ops = gt->ring_ops[hwe->class];
+ 	q->ops = gt->exec_queue_ops;
+-	INIT_LIST_HEAD(&q->persistent.link);
+ 	INIT_LIST_HEAD(&q->compute.link);
+ 	INIT_LIST_HEAD(&q->multi_gt_link);
+ 
+@@ -379,23 +378,6 @@ static int exec_queue_set_preemption_timeout(struct xe_device *xe,
+ 	return 0;
  }
--static inline int pm_runtime_get_if_active(struct device *dev,
--					   bool ign_usage_count)
-+static inline int pm_runtime_get_if_active(struct device *dev)
+ 
+-static int exec_queue_set_persistence(struct xe_device *xe, struct xe_exec_queue *q,
+-				      u64 value, bool create)
+-{
+-	if (XE_IOCTL_DBG(xe, !create))
+-		return -EINVAL;
+-
+-	if (XE_IOCTL_DBG(xe, xe_vm_in_preempt_fence_mode(q->vm)))
+-		return -EINVAL;
+-
+-	if (value)
+-		q->flags |= EXEC_QUEUE_FLAG_PERSISTENT;
+-	else
+-		q->flags &= ~EXEC_QUEUE_FLAG_PERSISTENT;
+-
+-	return 0;
+-}
+-
+ static int exec_queue_set_job_timeout(struct xe_device *xe, struct xe_exec_queue *q,
+ 				      u64 value, bool create)
  {
- 	return -EINVAL;
+@@ -469,7 +451,6 @@ static const xe_exec_queue_set_property_fn exec_queue_set_property_funcs[] = {
+ 	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY] = exec_queue_set_priority,
+ 	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE] = exec_queue_set_timeslice,
+ 	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_PREEMPTION_TIMEOUT] = exec_queue_set_preemption_timeout,
+-	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_PERSISTENCE] = exec_queue_set_persistence,
+ 	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_JOB_TIMEOUT] = exec_queue_set_job_timeout,
+ 	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_TRIGGER] = exec_queue_set_acc_trigger,
+ 	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_NOTIFY] = exec_queue_set_acc_notify,
+@@ -496,6 +477,9 @@ static int exec_queue_user_ext_set_property(struct xe_device *xe,
+ 		return -EINVAL;
+ 
+ 	idx = array_index_nospec(ext.property, ARRAY_SIZE(exec_queue_set_property_funcs));
++	if (!exec_queue_set_property_funcs[idx])
++		return -EINVAL;
++
+ 	return exec_queue_set_property_funcs[idx](xe, q, ext.value,  create);
  }
-diff --git a/sound/hda/hdac_device.c b/sound/hda/hdac_device.c
-index 7f7b67fe1b65..068c16e52dff 100644
---- a/sound/hda/hdac_device.c
-+++ b/sound/hda/hdac_device.c
-@@ -612,7 +612,7 @@ EXPORT_SYMBOL_GPL(snd_hdac_power_up_pm);
- int snd_hdac_keep_power_up(struct hdac_device *codec)
- {
- 	if (!atomic_inc_not_zero(&codec->in_pm)) {
--		int ret = pm_runtime_get_if_active(&codec->dev, true);
-+		int ret = pm_runtime_get_if_active(&codec->dev);
- 		if (!ret)
- 			return -1;
- 		if (ret < 0)
+ 
+@@ -707,8 +691,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ 			/* The migration vm doesn't hold rpm ref */
+ 			xe_device_mem_access_get(xe);
+ 
+-			flags = EXEC_QUEUE_FLAG_PERSISTENT | EXEC_QUEUE_FLAG_VM |
+-				(id ? EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD : 0);
++			flags = EXEC_QUEUE_FLAG_VM | (id ? EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD : 0);
+ 
+ 			migrate_vm = xe_migrate_get_vm(gt_to_tile(gt)->migrate);
+ 			new = xe_exec_queue_create(xe, migrate_vm, logical_mask,
+@@ -759,9 +742,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ 		}
+ 
+ 		q = xe_exec_queue_create(xe, vm, logical_mask,
+-					 args->width, hwe,
+-					 xe_vm_in_lr_mode(vm) ? 0 :
+-					 EXEC_QUEUE_FLAG_PERSISTENT,
++					 args->width, hwe, 0,
+ 					 args->extensions);
+ 		up_read(&vm->lock);
+ 		xe_vm_put(vm);
+@@ -778,8 +759,6 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ 		}
+ 	}
+ 
+-	q->persistent.xef = xef;
+-
+ 	mutex_lock(&xef->exec_queue.lock);
+ 	err = xa_alloc(&xef->exec_queue.xa, &id, q, xa_limit_32b, GFP_KERNEL);
+ 	mutex_unlock(&xef->exec_queue.lock);
+@@ -922,10 +901,7 @@ int xe_exec_queue_destroy_ioctl(struct drm_device *dev, void *data,
+ 	if (XE_IOCTL_DBG(xe, !q))
+ 		return -ENOENT;
+ 
+-	if (!(q->flags & EXEC_QUEUE_FLAG_PERSISTENT))
+-		xe_exec_queue_kill(q);
+-	else
+-		xe_device_add_persistent_exec_queues(xe, q);
++	xe_exec_queue_kill(q);
+ 
+ 	trace_xe_exec_queue_close(q);
+ 	xe_exec_queue_put(q);
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index 58dfe6a78ffe..1788e78caf5c 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -378,8 +378,6 @@ static void execlist_exec_queue_fini_async(struct work_struct *w)
+ 		list_del(&exl->active_link);
+ 	spin_unlock_irqrestore(&exl->port->lock, flags);
+ 
+-	if (q->flags & EXEC_QUEUE_FLAG_PERSISTENT)
+-		xe_device_remove_persistent_exec_queues(xe, q);
+ 	drm_sched_entity_fini(&exl->entity);
+ 	drm_sched_fini(&exl->sched);
+ 	kfree(exl);
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 2b008ec1b6de..bdbf23229b40 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1028,8 +1028,6 @@ static void __guc_exec_queue_fini_async(struct work_struct *w)
+ 
+ 	if (xe_exec_queue_is_lr(q))
+ 		cancel_work_sync(&ge->lr_tdr);
+-	if (q->flags & EXEC_QUEUE_FLAG_PERSISTENT)
+-		xe_device_remove_persistent_exec_queues(gt_to_xe(q->gt), q);
+ 	release_guc_id(guc, q);
+ 	xe_sched_entity_fini(&ge->entity);
+ 	xe_sched_fini(&ge->sched);
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 50bbea0992d9..4124284e4cce 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -1045,7 +1045,7 @@ struct drm_xe_exec_queue_create {
+ #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY		0
+ #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE		1
+ #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_PREEMPTION_TIMEOUT	2
+-#define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_PERSISTENCE		3
++#define   DRM_XE_EXEC_QUEUE_SET_UNUSED_1		        3
+ #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_JOB_TIMEOUT		4
+ #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_TRIGGER		5
+ #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_NOTIFY		6
 -- 
-2.39.2
+2.43.0
 
