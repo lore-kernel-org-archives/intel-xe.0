@@ -4,48 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3386C46CD2
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jan 2024 17:58:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5762FC46CD2
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jan 2024 18:00:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B80E10F836;
-	Tue, 30 Jan 2024 17:58:07 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 214CD11322F
- for <intel-xe@lists.freedesktop.org>; Tue, 30 Jan 2024 17:58:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706637486; x=1738173486;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=NS6W6bvIIHSj/t4/SYr3QVYYNXJ7JpIueax54sA5rKI=;
- b=F3wJRAb0csb358CL5mpUcxA8XvVXtSc0AC2VSZbHclIe9ojjC6L9mTLX
- 5xlHmUxJXOIav3lWO5ChGU9z26fUSwXpKm2FZ35hcFy1b6z9+cKSU3dKn
- /uUNe5VOiVUni/9cTrC050G3rpb+4pLR17iCGAMx+s+zPZBXT3/0L9b3x
- hffVn/HTff9gPkguLrC15fkEW8yqJbTtHVxKWMvaJwEM5bLOByw/dTEo7
- 7bQi0EsVuAal3P84lwBoWp7ESd2qMlLf5ITK/i44G/RIW0NHZjpKFf8aS
- Co0G93yqUiwkTqQUGprZLE19KDytjJhDa+qUJreC65LFsWNM1T8wRqPcn g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="434529651"
-X-IronPort-AV: E=Sophos;i="6.05,230,1701158400"; d="scan'208";a="434529651"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2024 09:58:05 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,230,1701158400"; d="scan'208";a="29975472"
-Received: from dcarleto-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.59.176])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2024 09:58:03 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Subject: Re: [PATCH v2] drm/xe: Prefer BIT/GENMASK macros over shifts
-In-Reply-To: <ZbkuXLIG1qpEd1Wg@DUT025-TGLU.fm.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240123212317.1600836-1-matthew.brost@intel.com>
- <87il3jkqtn.fsf@intel.com> <ZbkuXLIG1qpEd1Wg@DUT025-TGLU.fm.intel.com>
-Date: Tue, 30 Jan 2024 19:58:00 +0200
-Message-ID: <87ttmuitzr.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15DCA113229;
+	Tue, 30 Jan 2024 18:00:04 +0000 (UTC)
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E5D111320B;
+ Tue, 30 Jan 2024 18:00:02 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3386049404436392775=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/vm=3A_Subclass_userptr_vm?=
+ =?utf-8?q?as?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Tue, 30 Jan 2024 18:00:02 -0000
+Message-ID: <170663760218.824484.16666892649165957102@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240130170207.5219-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20240130170207.5219-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,49 +35,155 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 30 Jan 2024, Matthew Brost <matthew.brost@intel.com> wrote:
-> On Wed, Jan 24, 2024 at 11:45:24AM +0200, Jani Nikula wrote:
->> On Tue, 23 Jan 2024, Matthew Brost <matthew.brost@intel.com> wrote:
->> > Using BIT/GENMASK macros is a better convention than using manual shift
->> > and will also fix build errors [1].
->> 
->> One of the reasons i915 does not really use BIT and GENMASK directly is
->> that their type is unsigned long, and thus their size is different on 32
->> and 64 bit builds, while almost invariably you need one or the other to
->> describe hardware or firmware interfaces. Not something that depends on
->> the build.
->> 
->> Using %lu or %lx as format specifier should work, but people find it
->> weird to have to use that for essentially 32-bit things, and forget. And
->> there's confusion when you still have stuff like:
->> 
->> #define GUC_CTB_STATUS_NO_ERROR				0
->> 
->> instead of 0UL i.e. some of the macros end up being unsigned long with
->> variable size, and some, like this, not.
->> 
->> I'm sure the REG_BIT and REG_GENMASK macros feel off-putting for things
->> that aren't exactly registers (like the firmware interface), but let's
->> hope we get Lucas' fixed-size BIT and GENMASK macros merged [1], and can
->> use them.
->> 
->
-> I'm fine with using these new macros but I believe we need to get a fix
-> into 6.8 and unsure if Lucas's series is going to land before then. Are
-> you ok with landing this series as is for now and updating all of the
-> defines in Xe in a follow up? Or do you have other ideas of how to
-> proceed for 6.8?
+--===============3386049404436392775==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I'll defer to the xe maintainers on this one. Just giving some
-background what the issues with BIT/GENMASK were.
+== Series Details ==
 
-BR,
-Jani.
+Series: drm/xe/vm: Subclass userptr vmas
+URL   : https://patchwork.freedesktop.org/series/129324/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457_BAT -> xe-pw-129324v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 3)
+------------------------------
+
+  Missing    (1): bat-dg2-oem2 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-129324v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-FAIL][2] ([Intel XE#1033])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129324v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  
+#### Possible fixes ####
+
+  * {igt@xe_exec_atomic@basic-inc-all}:
+    - bat-pvc-2:          [SKIP][3] ([Intel XE#1172]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457/bat-pvc-2/igt@xe_exec_atomic@basic-inc-all.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129324v1/bat-pvc-2/igt@xe_exec_atomic@basic-inc-all.html
+    - bat-atsm-2:         [SKIP][5] ([Intel XE#1172]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457/bat-atsm-2/igt@xe_exec_atomic@basic-inc-all.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129324v1/bat-atsm-2/igt@xe_exec_atomic@basic-inc-all.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#1033]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033
+  [Intel XE#1172]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1172
 
 
--- 
-Jani Nikula, Intel
+Build changes
+-------------
+
+  * IGT: IGT_7698 -> IGT_7699
+  * Linux: xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457 -> xe-pw-129324v1
+
+  IGT_7698: af750f5e7eaad98d40d8c924eb5f05e99d3c668b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7699: 7699
+  xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457: c655e0fd28045dbaa581d04bf7cc266eec1c3457
+  xe-pw-129324v1: 129324v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129324v1/index.html
+
+--===============3386049404436392775==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/vm: Subclass userptr vmas</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129324/">https://patchwork.freedesktop.org/series/129324/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129324v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129324v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457_BAT -&gt; xe-pw-129324v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 3)</h2>
+<p>Missing    (1): bat-dg2-oem2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-129324v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129324v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033">Intel XE#1033</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>{igt@xe_exec_atomic@basic-inc-all}:<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457/bat-pvc-2/igt@xe_exec_atomic@basic-inc-all.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1172">Intel XE#1172</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129324v1/bat-pvc-2/igt@xe_exec_atomic@basic-inc-all.html">PASS</a></li>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457/bat-atsm-2/igt@xe_exec_atomic@basic-inc-all.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1172">Intel XE#1172</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129324v1/bat-atsm-2/igt@xe_exec_atomic@basic-inc-all.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7698 -&gt; IGT_7699</li>
+<li>Linux: xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457 -&gt; xe-pw-129324v1</li>
+</ul>
+<p>IGT_7698: af750f5e7eaad98d40d8c924eb5f05e99d3c668b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7699: 7699<br />
+  xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457: c655e0fd28045dbaa581d04bf7cc266eec1c3457<br />
+  xe-pw-129324v1: 129324v1</p>
+
+</body>
+</html>
+
+--===============3386049404436392775==--
