@@ -4,47 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15BD1C47DB3
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jan 2024 03:03:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87DA3C47DA9
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jan 2024 03:07:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB6A210E7B5;
-	Tue, 30 Jan 2024 03:03:33 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58B7010E7B5;
- Tue, 30 Jan 2024 03:03:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706583813; x=1738119813;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=dnv+n5j8zXOC3hy/uzOy8wuemMQZ+zSOgZgoMHtEv8I=;
- b=TB3EaY7UxOH7DnEOxZOVmPMhBvBRXbZ6UzqgxabVpwIvkRbxraUL/2lO
- TTmgtU2LvzDpct+mzHUotQp1v+VtCikbXvFtm8Z1ryJk1+14GGHLKJxdy
- tM+A+vRiS993oGG3/tWf1IKAs36ox2DxTjaZmn/HvJmr4PQO+fXRtGX7f
- BDjjjxpxoz0QO1mcd9aoxcbZkrGJUbFqIBTqtfjlNWCQLejG/AGlN9BGW
- 0Un6biEoflVWVVBh7Y3Gwv9bOJ/vFEliBNPMedi9iH82LWX/c/0J/UgXO
- BC3thj3baKJOnK8l6BVUOG3xYvw5WMfyyGBAVY22Hh+vMwJFOUyuEC/zB Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="16540326"
-X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; d="scan'208";a="16540326"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2024 19:03:32 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; 
-   d="scan'208";a="3555623"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2024 19:03:32 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-xe@lists.freedesktop.org>,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH] drm/sched: Re-queue run job worker when
- drm_sched_entity_pop_job() returns NULL
-Date: Mon, 29 Jan 2024 19:04:13 -0800
-Message-Id: <20240130030413.2031009-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 601D110EEB8;
+	Tue, 30 Jan 2024 03:07:17 +0000 (UTC)
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25D9B10EEB8;
+ Tue, 30 Jan 2024 03:07:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/sched=3A_Re-queu?=
+ =?utf-8?q?e_run_job_worker_when_drm=5Fsched=5Fentity=5Fpop=5Fjob=28=29_retu?=
+ =?utf-8?q?rns_NULL?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Date: Tue, 30 Jan 2024 03:07:16 -0000
+Message-ID: <170658403615.806672.8583234010151895909@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240130030413.2031009-1-matthew.brost@intel.com>
+In-Reply-To: <20240130030413.2031009-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,54 +36,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@gmail.com, christian.koenig@amd.com, ltuikov89@gmail.com
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Rather then loop over entities until one with a ready job is found,
-re-queue the run job worker when drm_sched_entity_pop_job() returns NULL.
+== Series Details ==
 
-Fixes: 6dbd9004a55 ("drm/sched: Drain all entities in DRM sched run job worker")
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/scheduler/sched_main.c | 15 +++++++++------
- 1 file changed, 9 insertions(+), 6 deletions(-)
+Series: drm/sched: Re-queue run job worker when drm_sched_entity_pop_job() returns NULL
+URL   : https://patchwork.freedesktop.org/series/129285/
+State : success
 
-diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-index 8acbef7ae53d..7e90c9f95611 100644
---- a/drivers/gpu/drm/scheduler/sched_main.c
-+++ b/drivers/gpu/drm/scheduler/sched_main.c
-@@ -1178,21 +1178,24 @@ static void drm_sched_run_job_work(struct work_struct *w)
- 	struct drm_sched_entity *entity;
- 	struct dma_fence *fence;
- 	struct drm_sched_fence *s_fence;
--	struct drm_sched_job *sched_job = NULL;
-+	struct drm_sched_job *sched_job;
- 	int r;
- 
- 	if (READ_ONCE(sched->pause_submit))
- 		return;
- 
- 	/* Find entity with a ready job */
--	while (!sched_job && (entity = drm_sched_select_entity(sched))) {
--		sched_job = drm_sched_entity_pop_job(entity);
--		if (!sched_job)
--			complete_all(&entity->entity_idle);
--	}
-+	entity = drm_sched_select_entity(sched);
- 	if (!entity)
- 		return;	/* No more work */
- 
-+	sched_job = drm_sched_entity_pop_job(entity);
-+	if (!sched_job) {
-+		complete_all(&entity->entity_idle);
-+		drm_sched_run_job_queue(sched);
-+		return;
-+	}
-+
- 	s_fence = sched_job->s_fence;
- 
- 	atomic_add(sched_job->credits, &sched->credit_count);
--- 
-2.34.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: f4c0dac89 drm-tip: 2024y-01m-29d-16h-56m-05s UTC integration manifest
+=== git am output follows ===
+Applying: drm/sched: Re-queue run job worker when drm_sched_entity_pop_job() returns NULL
+
 
