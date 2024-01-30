@@ -4,115 +4,107 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F005C47DDB
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jan 2024 07:05:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDAEAC46CD2
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jan 2024 07:49:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A021C112DF2;
-	Tue, 30 Jan 2024 07:05:42 +0000 (UTC)
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2080.outbound.protection.outlook.com [40.107.243.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0D72112DEE;
- Tue, 30 Jan 2024 07:05:40 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=O2LgMbmEWz5C1yO7wyJ/Zt6R0U6c5MTI1Ot8qDPQxQZxeqnCyhWP07njD4rF13IiwSYtAxibMU8IwYuTI38md+2LXp4xYRQ2UwW65S4+49IuPZeXLFOWSDF8xOfLq1xjj7bsO38elM7QPdZO0ZeH1YJQmSkMrIaXist4S1b23Nn+trDI6CgPw9/DH4OPRpYkhDI7Z34+TWB6rPP4qQPm0mkia4/rGPWrhSFbgOFFUhv8HZA1vQ9g1t6ko47mArmm2ebY48jgFuicOi6TxhyjlsHXFW8LrlfNGysjEUsG5qE2SAwpYPKNukyhAunKmskhIz0gVrPPdw0gn+Io4MQXpw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7Gu9qbDEY3Kl9Z6njRpCMxX3kudn2S8wArzIIEUWv48=;
- b=dfbd86nE35VQNn8qRWqYAMRu5Dt3AY+ET9ecVER9HLaVadUFh1V6xV25SYky+UzgI2wocfZBaSd2XFcZgUeWxxmHmPKyoa2do81wkc19Zwlh83Ihn7YSCQeFTjo5ZKrpCu0/YYkRH0eiTtslOWuQL42YmsNQN/7JVisN5v+iLWGAihUKffbs5sk5fdaDkG9tmcHUBmWmTjG05wWvATtQYPhI40G47eAJg9nvK2DC/0Mt04L2GOsLPdigWmW3WpkrXE2YLqYB8OgsJ09AVeE7D8MS6PHKFOlwSNI7hVkWhisUOIjMQqoPGnsphS6aEfiaMsYIjZgz/qOcyB0OFPwRhw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7Gu9qbDEY3Kl9Z6njRpCMxX3kudn2S8wArzIIEUWv48=;
- b=lxWpgdBhOq/dJ4qRBCe/nnx3hnCdhWsL29riEVIvPHRLDy1sG54hQXN9bm29+S4L8wkwEkDKGYNAV24ManddOZfU9Argo3vZa6r7WXaRa3c5iAjnFjfII8IiF8qZ11ZyhYcylIA4jgpbcvPsgjnWvTO1QoleFQDHfdzeLzXHQuU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by MW3PR12MB4378.namprd12.prod.outlook.com (2603:10b6:303:52::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.35; Tue, 30 Jan
- 2024 07:05:35 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::e1fb:4123:48b1:653]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::e1fb:4123:48b1:653%4]) with mapi id 15.20.7228.029; Tue, 30 Jan 2024
- 07:05:35 +0000
-Message-ID: <e7707834-9298-4392-a7ec-f4e5f382fa02@amd.com>
-Date: Tue, 30 Jan 2024 08:05:29 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/sched: Re-queue run job worker when
- drm_sched_entity_pop_job() returns NULL
-Content-Language: en-US
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20240130030413.2031009-1-matthew.brost@intel.com>
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20240130030413.2031009-1-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0387.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:f7::12) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A2E2112E0E;
+	Tue, 30 Jan 2024 07:49:59 +0000 (UTC)
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79B9B112E0E
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Jan 2024 07:49:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.de; s=s31663417;
+ t=1706600974; x=1707205774; i=deller@gmx.de;
+ bh=Vd4mg1lN4RdayhNVRP4yTRZdkhZMqCIs82EhJIUiRCs=;
+ h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
+ In-Reply-To;
+ b=WHgJuTwuMe0lcAnaaUKXKkTUADxwNouk5/+zO5KRsXYrZaSdaxWllh5jbcNtxJD6
+ ZgqvwCxNtL1q1bY+T6FemBuLt/LJBv8gJDODjrjDyeqBkagPqFifb5Vg6dNTnOVDO
+ vRZmBd6tqU+3dTXEGztccCL5cgZ9mIzGogsru9MxHA3N+p3J4wDS81gvn+l1rt76K
+ hVrAjUWxQvfRHuyoU0amjaTOK7C2UCxj4tAwgL7XJAg/wYbSJuAzgLhXoOcSH91nZ
+ SFYszQVe7W9fc7rP3vt+MwxOzlXKEsPCY89JmwkBXH18Vqfvq/gL+1f/fAKxJJaY0
+ 5UuxaCB9/PwLycp3Zg==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.20.55] ([94.134.154.236]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MQvD5-1rjw6r00QB-00NzUF; Tue, 30
+ Jan 2024 08:49:34 +0100
+Message-ID: <90cd0f1a-29c0-4c6f-9efd-92b69da194c0@gmx.de>
+Date: Tue, 30 Jan 2024 08:49:32 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|MW3PR12MB4378:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6df56c53-8ebd-46f4-f5c9-08dc2161db11
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: AFSGPr/dPoeUnPgk+eKJ3OUrJoXrVWUsLejWxVbVHJ2HV0ySbdhCzLosXsANtrGlTaqPP6LCi3vOnuG3O9fdul+tHLwMYY24DpZsDnWheNz6OdM2iOz7QUUS7X4jaffq2LdkTXxkrnptCA42bg1SaaSl++jomMH4B3pqS26qPwZvdVhVkaqqWQ7GcJUERJHrzVc4mwzzzQoblsBqtcVfwUj6DnOLpklg0YaIvp8VBS41PEBaXeeSAYe6/TNgPkg0fGSYounpThIcnOidre20C9RKQoPNx+Zu67fFXSaHhPJ8EsOU5xi3SXBUWh0eOORligOLsoJuCvO6XMpuUzN5A32PPH67VWqBTTYu/8pp8659UfzWR5TfdqcHddc0py2F4tf/VpV2A3VK/x4U0InLkiUpLfTHWl1dmDpWiV6oZYma/yhHf/71g27qsjseLx5Hnt6gb+WJekeuc6oSag8hxoWl8bAIlb2ie/ig0z4JTcac3VmqFRxBLIKxKD/JyQhf7PY8nbjDfVqGvVmQc5Zp4TTVnqsqIL1CbR8NET/d/XcMP6PjDVPNv7qvgtLXJQ5u6NtlhwrHHiMUjOeDTScyEJ2q/p991c6slTtOwMpZ6tDnmi1b8lJYRyEWQ53/tOjcTnAOYv2bFLg0rVXmr6t1+Q==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(366004)(396003)(136003)(376002)(346002)(230922051799003)(1800799012)(186009)(64100799003)(451199024)(38100700002)(66556008)(66476007)(2906002)(8936002)(66946007)(316002)(4326008)(8676002)(6486002)(6506007)(31696002)(86362001)(36756003)(31686004)(5660300002)(83380400001)(41300700001)(26005)(2616005)(6512007)(478600001)(6666004)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UTE0bWkybXUxM2V6V1VaT0IrZThlL0Z0SXBONEttdDFHbFlkM2JTUW5kZDNE?=
- =?utf-8?B?SFVOVDBpNnJYTms0VFp6SjVhbU53VlRtK1FyRWprWGtjUzJLRDJuUUordGdi?=
- =?utf-8?B?aW9wZkplTTVHaU4rNHdkZHJJamNaWFBhM2JxN2xOSk1UeGg4b3RoNzZlaHJQ?=
- =?utf-8?B?WWtoWnBrT295cWlJOVpjVEx5YjB1OFFlWFEzczZTaFgwMnI3M3FIOXFNQkJ2?=
- =?utf-8?B?ZzhObnpPbWp5VzFqb3ZWYlQwWWRjQnFBblpGcnN4dk1tbHl6OVdUWDlqcTlz?=
- =?utf-8?B?aDh1VHlZQlFmM0JNTGZ1aVQ5aDIzcStsbVY2OHpkY2pnTEVQN2tXU1huS3J0?=
- =?utf-8?B?emQrYnZzb3RHSGdMTVZtNWF6Um5JdnoxVWFJb0dXS1Fvcjg0OHhDZktUbGtZ?=
- =?utf-8?B?c2FnVWpqQ3MxekJZK2lVMFFMU1FkVVhlZTBITVRybEoxZitwUG02WW1wcFdX?=
- =?utf-8?B?Y25qdHc0RkxVblpHbXBGOENDUzJOTTJWamFBNHN2MG1oOC83aGpXb25uWFMr?=
- =?utf-8?B?TFRXdFh6UzNsWThMSjkySDlkN3FTLzQvNDRJSksvRUtJV2ZTTktSUVVvdVla?=
- =?utf-8?B?bE1CWldMVTBTL1BwVW9rQ0pTb28zc3dQQzBYUDE0Wnh0M2RLbHRyazQvRzJk?=
- =?utf-8?B?TjFiblczWjRtV0gwbDJCUXVFOVpjYm05TG1SMXZqcFVWYkg5OGNaV003SGt2?=
- =?utf-8?B?U2tqSSs4TWFXM2hLWElINFdXQ3NpS3JUOW5sZ3FGdVZqbnBOQWRjYjdHMm5X?=
- =?utf-8?B?cjY1dWIxV3pqYXcrYmhvUjhWbDdSVnByZC9zdUduYjA5R2MyWXYvREpQb3g3?=
- =?utf-8?B?Rmg5ZFl0ZzE3RUJoUVNpL2MxWFNmM1VzRVYzS054dXkzZEgwZUVqbzhTd21M?=
- =?utf-8?B?a0d4RXEzcS9KTk9SWFVlbFc3dzRXMHlvTWFsY2hTZ1gveFp0L3ZSMTBFYWdR?=
- =?utf-8?B?dlFtUWh0SnNpTW80THcxQ29wVnNKZ2d4Rk40NllSTWdrVk8zdDg4ZDB6NkRx?=
- =?utf-8?B?bnBWeDU1N1NzRlZPR2MrcThjdHlsZVUvbVpRNGVPUklBVFVEejdDMmF3WWNh?=
- =?utf-8?B?YnhmcjNCbVF3OU5SbkxzdW5mKzZVb1VNZ1E4WXVtSkhEZzdyU240eG9hZ3pq?=
- =?utf-8?B?b0RCRUNpc0QvSFIrVTI1akdJMDExRHFYUUJ1MzZDeWhEczJrb3JuUTZqbUZi?=
- =?utf-8?B?SS9FZjJPYU05eS9KZzQwNW83WkVtU1VDWXBPYmpsSTk2QWZhbjh3ZDQrZ0RS?=
- =?utf-8?B?K0RJOUh3VWxKSVlpS0V6VHdmSkt1K2VidWQ4K2F1cnFPcS9hNmw3K3dSbVVr?=
- =?utf-8?B?bDNwbFdqQ0llS2ZsbHFGOUxGbHEwTkZGMWN3elhERWdWc2FKSTNyaElSUC8w?=
- =?utf-8?B?U003Y0JyaXVUK1JpMDN1YzJlWW9oQk1pc3MzNE82RGRtTFAwd0hnYU1jZEpI?=
- =?utf-8?B?S1FJcmVHeFpacUdrT1RpTXluUUxUY0U0dTNBbFdNVkpBTkN3MmVqYnlJdHdw?=
- =?utf-8?B?Rnp2RlhzallnckJTM2JNbUNLd2hNN0pvTi9jTk80OFRKQzFqa1lMRGI2MWUy?=
- =?utf-8?B?R1pDdlZldmpBQTRXK2ppMW04TVFHNkI1Vlh6ZHl1WncrSStDZzZNQjBtSjNC?=
- =?utf-8?B?Q05PUnZhVmlnVDlJMFloUXJCUUFBVEFWM1UzRSszcnJqTXFwTUdoTTBqYVg1?=
- =?utf-8?B?cW1PTmRkbHV4TGxqUnRLNkN3T3E0WG5pOUFWN3FtdjhwWEIvVzdrOVEweE42?=
- =?utf-8?B?cjdGVVM1MkVBb3dqZ2hoYXJlOFZPdEtUYW5Zdzg1eVQ4Y2RxNHg4UEZvUThW?=
- =?utf-8?B?dkdwK2lKMEYwRW16Nmk1ekdTeVFNMFR1MTBlNkZzQnF2SzJXaFhmVm84VVdp?=
- =?utf-8?B?Wk96SXlBbzFZTHlQR0UzZVo2TXQ3eXhjc2s0dEpqUngwak4xN1RpVW4wNE9q?=
- =?utf-8?B?U3lLdEdJVWtTakxVYUNpZlZkeDFmUkJiYk9XcisrUEplMm9iYVpPanlNSVR3?=
- =?utf-8?B?cEE1Z0tON0JId1JKR1JIaFdHdEdzd1VyRHhNaW5rUHdrNmhEd3lZNmFyR0Rm?=
- =?utf-8?B?K3l6cUFLYVIxaVBJS01XZit2K0NjeEtGNSt0MVJ4TXg0U2NkcWhVTlVWT0py?=
- =?utf-8?Q?wXURjFEYR/X8QyRsNbYfJjPxC?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6df56c53-8ebd-46f4-f5c9-08dc2161db11
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2024 07:05:35.3018 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SmmZ1ftSr3ZQbukNmpjrM0EPNFRoIoTx7zmKSoTTDa+FTiCFx9IgWFsHBt+rvHJ5
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4378
+User-Agent: Mozilla Thunderbird
+Subject: Re: Build regressions/improvements in v6.8-rc2
+Content-Language: en-US
+To: Guenter Roeck <linux@roeck-us.net>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, linux-kernel@vger.kernel.org
+References: <CAHk-=wgxzm+Oc1ywuNGxb1R1=ZEC85LJi776R2QEpk6=_2Qfdw@mail.gmail.com>
+ <20240129104954.1778339-1-geert@linux-m68k.org>
+ <8ea40b3-adde-acb5-5e46-fe1fd395daf@linux-m68k.org>
+ <56b9c222-4e97-4eda-89af-3e0d0c39acb2@roeck-us.net>
+From: Helge Deller <deller@gmx.de>
+Autocrypt: addr=deller@gmx.de; keydata=
+ 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
+In-Reply-To: <56b9c222-4e97-4eda-89af-3e0d0c39acb2@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:AqA82jXkHCsmc5MtDkJ1eTjYy5SiywwJBhM+J9cbQ44sBANzi6O
+ ZTYDbosnCyJv9w/UFn+xQLdFDC8txwihAHo1KVQHw/KlMCJpxb9LAJE9aDGqiMX6+9T9kzR
+ /Vav7f2CaDCIHq9ygHNjk8JvObh+sZu11YLbTmdfv1m35WtgZwiVHQ07cXPHxapZpOvUuOV
+ LCJoMKoT/DTSkbYrZanOw==
+UI-OutboundReport: notjunk:1;M01:P0:u8DYBQ3KSfM=;uc3ACzysU1ccETxkeaT7X8nb/Va
+ AEzYMHjEDZeE9wXhTKevnHjWpG51cK0RJWVE28VCFUZ6CJYi93jZXu5fjRJWRRFkqGjAAt1b6
+ PDrp1mScZjcEHhw2jucor2JwcyqvdZOfMxyQPoWHZwpzGZ1Zv7Y4YN3tXpEsNb2AqXesoGDU7
+ mwjWkvb8H0AuDSeCLSrZt/EW+Y7OtShaDjPCYUSZps+1LlwjuOKZFdJ/dNVU3RAZdouGkIJsS
+ gv9QRLx8DvIqEHTMKhRQvS1cqZobMnGZuLMn++rwK3A8w77TGYKq2hPS+qVdC6zEWgRpFAZJD
+ j45ORhbM90aiIPk4DDCLJk7JEP/t248lmdhaC1XXueEAIG/vxI2OnoNMovBY3X/BSn63gOsUP
+ g5F9HcLfKhYdIxFVGIXLazcyp6M4OOuUpIiwL4Gx7eTaWmLjF8i+dbi0QTeFjww5xhAtqU5+V
+ 3XvUnV2uuwjtn001WUMFU2XNS5vEVwcc1xOxQ6j0hYoMusOrbeSa0o1Fe3O0I+0WbL6nd1Dcq
+ h5L0GbyLDFUtbwViqpeqWQe24mfm5U5ITUxQT7m2MNbFD4YL1JhPc3OVvEk/UzkJVqRvPEVM8
+ 6/Wsg8CpSlN6bjDQw+Q+NTXIDCGvXSPdPR3oi+PT7V9Vk6n8yb57xqyxMe+M4me79qOEG+CLk
+ AMNEQI75p1CymJ0ASZZhbA+IMDFm4LSC+F6W/CCu05uukJzTGzsBTo4iyv7FUAzvQ8TzKklll
+ Xzh+q2b9dFc/s77sgjRgr4agG1oTuaBBmwrUblL/7O1JNopJ1jXzQKMMahOreXmNuqfspZ9va
+ 7Xfm18hR8Ry1wfw1llAkJIBqPaYcSRv8obSTjb28+0SE2jNvjAusvWe+vocwkqILy7XQT43EE
+ 9G6MYqiVymwXAaDw/Sq76iUB0fvoSw76bHLEvIJQrPYtKrZbWr2qJIRGC+JM7uLB/NhlM4iQp
+ oZdqxA==
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,56 +116,47 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@gmail.com, ltuikov89@gmail.com
+Cc: sparclinux@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, linux-parisc@vger.kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Am 30.01.24 um 04:04 schrieb Matthew Brost:
-> Rather then loop over entities until one with a ready job is found,
-> re-queue the run job worker when drm_sched_entity_pop_job() returns NULL.
+On 1/29/24 15:58, Guenter Roeck wrote:
+> On 1/29/24 03:06, Geert Uytterhoeven wrote:
+> [ ... ]
+>> parisc-gcc1[23]/parisc-{allmod,def}config
+>>
+>> =C2=A0=C2=A0 + /kisskb/src/drivers/hwmon/pc87360.c: error: writing 1 by=
+te into a region of size 0 [-Werror=3Dstringop-overflow=3D]:=C2=A0 =3D> 38=
+3:51
+>>
 >
-> Fixes: 6dbd9004a55 ("drm/sched: Drain all entities in DRM sched run job worker")
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-
-Reviewed-by: Christian König <christian.koenig@amd.com>
-
-> ---
->   drivers/gpu/drm/scheduler/sched_main.c | 15 +++++++++------
->   1 file changed, 9 insertions(+), 6 deletions(-)
+> The "fix" for this problem would be similar to commit 4265eb062a73 ("hwm=
+on: (pc87360)
+> Bounds check data->innr usage"). The change would be something like
 >
-> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-> index 8acbef7ae53d..7e90c9f95611 100644
-> --- a/drivers/gpu/drm/scheduler/sched_main.c
-> +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> @@ -1178,21 +1178,24 @@ static void drm_sched_run_job_work(struct work_struct *w)
->   	struct drm_sched_entity *entity;
->   	struct dma_fence *fence;
->   	struct drm_sched_fence *s_fence;
-> -	struct drm_sched_job *sched_job = NULL;
-> +	struct drm_sched_job *sched_job;
->   	int r;
->   
->   	if (READ_ONCE(sched->pause_submit))
->   		return;
->   
->   	/* Find entity with a ready job */
-> -	while (!sched_job && (entity = drm_sched_select_entity(sched))) {
-> -		sched_job = drm_sched_entity_pop_job(entity);
-> -		if (!sched_job)
-> -			complete_all(&entity->entity_idle);
-> -	}
-> +	entity = drm_sched_select_entity(sched);
->   	if (!entity)
->   		return;	/* No more work */
->   
-> +	sched_job = drm_sched_entity_pop_job(entity);
-> +	if (!sched_job) {
-> +		complete_all(&entity->entity_idle);
-> +		drm_sched_run_job_queue(sched);
-> +		return;
-> +	}
-> +
->   	s_fence = sched_job->s_fence;
->   
->   	atomic_add(sched_job->credits, &sched->credit_count);
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 for (i =3D 0; i < data->tempnr; i++) {
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 for (i =3D 0; i < min(data->tempnr, ARRAY_SIZE(data->temp_=
+max)); i++) {
+>
+> but that would be purely random because the loop accesses several arrays
+> indexed with i, and tempnr is never >=3D ARRAY_SIZE(data->temp_max).
+> I kind of resist making such changes to the code just because the compil=
+er
+> is clueless.
+
+I agree with your analysis.
+But I'm wondering why this warning just seem to appear on parisc.
+I would expect gcc on other platforms to complain as well ?!?
+
+Helge
+
+> Are we sprinkling the kernel code with code like this to make the compil=
+er happy ?
+>
+> Guenter
+>
+>
 
