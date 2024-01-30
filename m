@@ -4,54 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DED72C47DDF
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jan 2024 09:20:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBB36C46CD2
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jan 2024 09:21:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1E76112E81;
-	Tue, 30 Jan 2024 09:20:07 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95234112E81
- for <intel-xe@lists.freedesktop.org>; Tue, 30 Jan 2024 09:20:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706606405; x=1738142405;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=eru7osboTH+pU7/3NXWNv7D1kX5niZtRDIsYYobU2tM=;
- b=DW5crVp9CP5HqcOH+51aDDRnYvD3QnWQAqKlGkTVfOAtJozYj6bHLJrd
- PEMbI2ln9NvjIAu7zu6RO9NhQp/g71XX/z7WGpwqT61wo1m8hGi5DDMFY
- Uge+QWrWo4ozxGXmHg8FsfzWgZPwWU89ggVTOKqcXzgYA7ImiKH0/0DHu
- zV93BwX4c3PkyqrRIkNXsBGhR64lKF4ibYN5uqfa5jKE+LLtI/OHarAYK
- X/SVtPHlJasQT/NKNg2K1x7rv5bn9Zv473aqI6tvNbiyCrYtMsMZEAICD
- PUnaOqsMZf6hEKWE+kVp92IMJAjXkdBC191spSmeeyLaYNqNt73pIdOP+ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="402089440"
-X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; d="scan'208";a="402089440"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2024 01:20:04 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; 
-   d="scan'208";a="3677563"
-Received: from dcarleto-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.59.176])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2024 01:19:49 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: Re: Re: [PATCH 2/2] drm/xe: drop display/ subdir from include
- directories
-In-Reply-To: <87ttn4m0r2.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240122101428.2683468-1-jani.nikula@intel.com>
- <20240122101428.2683468-2-jani.nikula@intel.com>
- <47hzp5ya6cwdcidq7cwid5ykpkn6wavxtf3ynjf3xgirbgulsc@afsk7pgae3lx>
- <87le8hnu6r.fsf@intel.com>
- <663d25vngq6zcee6vupweq7dohhmftpaggtnfl7752sn6qhdao@ypgsfn62skob>
- <87ttn4m0r2.fsf@intel.com>
-Date: Tue, 30 Jan 2024 11:19:45 +0200
-Message-ID: <877cjrjhzi.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A70CC10E313;
+	Tue, 30 Jan 2024 09:21:24 +0000 (UTC)
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D03BA10E313;
+ Tue, 30 Jan 2024 09:21:22 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3875987842923060699=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Introduce_and_update_c?=
+ =?utf-8?q?ounter_for_low_level_driver_errors_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+Date: Tue, 30 Jan 2024 09:21:22 -0000
+Message-ID: <170660648285.823577.8196411781839294026@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240130084135.2065579-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20240130084135.2065579-1-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,48 +35,126 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 23 Jan 2024, Jani Nikula <jani.nikula@intel.com> wrote:
-> On Tue, 23 Jan 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->> On Mon, Jan 22, 2024 at 07:39:56PM +0200, Jani Nikula wrote:
->>>On Mon, 22 Jan 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->>>> the downside of patch 1 is now that core xe code can include any of the
->>>> display/ headers, but only xe_display.h is acceptable to keep the
->>>> interface sane.
->>>
->>>I'd say xe_display.h remains the only interface towards xe core, I don't
->>>think this patch changes that, and its location doesn't really give any
->>>guarantees. It's been a matter of sticking display/ in the include
->>>anyway, and enforcing that is a matter of maintainer vigilance.
->>
->> I just thought the previous split was slightly better: No code in xe
->> should include display/ and should rather use the xe_display.[hc]
->> interface.
->>
->> Now with #include "display/xe_display.h" spread throughout the code,
->> this could serve as example for people to start including stuff they
->> shouldn't.
->>
->> I'm not entirely opposed, so if you and others agree, please go ahead.
->
-> Well, at the moment you can include *anything* from under display/
-> *without* the prefix, because it's all in the include path. (Although
-> that will fail for DRM_XE_DISPLAY=n, but does CI even build that combo
-> regularly?)
->
-> I'm fine with dropping this too. I just think it makes it easier to
-> check that nothing outside of display/ does any displayish things.
->
-> Your call.
+--===============3875987842923060699==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I've held off on pushing this. What's the verdict?
+== Series Details ==
 
-BR,
-Jani.
+Series: drm/xe: Introduce and update counter for low level driver errors (rev2)
+URL   : https://patchwork.freedesktop.org/series/129266/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457_BAT -> xe-pw-129266v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-129266v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-FAIL][2] ([Intel XE#1033])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129266v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  [Intel XE#1033]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033
 
 
--- 
-Jani Nikula, Intel
+Build changes
+-------------
+
+  * Linux: xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457 -> xe-pw-129266v2
+
+  IGT_7698: af750f5e7eaad98d40d8c924eb5f05e99d3c668b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457: c655e0fd28045dbaa581d04bf7cc266eec1c3457
+  xe-pw-129266v2: 129266v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129266v2/index.html
+
+--===============3875987842923060699==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Introduce and update counter for low level driver errors (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129266/">https://patchwork.freedesktop.org/series/129266/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129266v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129266v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457_BAT -&gt; xe-pw-129266v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-129266v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129266v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033">Intel XE#1033</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457 -&gt; xe-pw-129266v2</li>
+</ul>
+<p>IGT_7698: af750f5e7eaad98d40d8c924eb5f05e99d3c668b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457: c655e0fd28045dbaa581d04bf7cc266eec1c3457<br />
+  xe-pw-129266v2: 129266v2</p>
+
+</body>
+</html>
+
+--===============3875987842923060699==--
