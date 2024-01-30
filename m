@@ -4,47 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 738C9C47DDF
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jan 2024 13:57:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECE1CC46CD2
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jan 2024 14:04:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86AB510F8E7;
-	Tue, 30 Jan 2024 13:56:59 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21D0D10F389
- for <intel-xe@lists.freedesktop.org>; Tue, 30 Jan 2024 13:56:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706623016; x=1738159016;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=8MYhO1ohdlFbkTfzkGEfEuK8SFDCU/NjFHSalU2CAOY=;
- b=b5hjHim80MM/TmBLec4QDf+sYWnRcO9mWpuazqT8+V0yYoqd+iIBBulU
- 0CaO5vNF7DxbVP4TFHZkKOP+TEVX/VJW5TdXjTJNCbKt+5wmFR5+QfJ2Q
- Iyae3o8AJM4kmjGi6oJxOh/BRPK5VZ+wra/HQ0WXY8LXQGP9BmIoaSc2W
- QXlslmkIT5jRn5qOI/kY1K1ssjlzUTeZ98LoRo7+1mMc3t+WhXUosn4DZ
- 0y+CaYw4rCH52ALl1IOCq/kuu6cFHJub5/D9f26UEBePvYqu2hypxAs1Z
- beLz8EfxW27u6f311OwFz5pQCxIhJvbUDHoNfsvxIXlmVWshO1M8rfGDK w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="400422288"
-X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; d="scan'208";a="400422288"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2024 05:56:55 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; d="scan'208";a="22437370"
-Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2024 05:56:54 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 2/2] drm/xe: Add batch buffer addresses to devcoredump
-Date: Tue, 30 Jan 2024 05:56:48 -0800
-Message-ID: <20240130135648.30211-2-jose.souza@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240130135648.30211-1-jose.souza@intel.com>
-References: <20240130135648.30211-1-jose.souza@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADA4E11311C;
+	Tue, 30 Jan 2024 14:04:45 +0000 (UTC)
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C98EE11311C;
+ Tue, 30 Jan 2024 14:04:44 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7862080391673170388=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Use_function_to_emit_P?=
+ =?utf-8?q?IPE=5FCONTROL_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Tue, 30 Jan 2024 14:04:44 -0000
+Message-ID: <170662348482.824484.8110799763372305247@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240130132249.8615-1-jose.souza@intel.com>
+In-Reply-To: <20240130132249.8615-1-jose.souza@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,152 +35,155 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maarten Lankhorst <dev@lankhorst.se>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Those addresses are necessary to Mesa tools knows where in VM are the
-batch buffers to parse and print instructions that are human readable.
+--===============7862080391673170388==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/xe/xe_devcoredump.c       |  5 +++
- drivers/gpu/drm/xe/xe_devcoredump_types.h |  3 ++
- drivers/gpu/drm/xe/xe_sched_job.c         | 38 +++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_sched_job.h         |  5 +++
- drivers/gpu/drm/xe/xe_sched_job_types.h   |  5 +++
- 5 files changed, 56 insertions(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index e701f0d07b676..08d3f6cb72292 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.c
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -96,6 +96,9 @@ static ssize_t xe_devcoredump_read(char *buffer, loff_t offset,
- 	xe_guc_ct_snapshot_print(coredump->snapshot.ct, &p);
- 	xe_guc_exec_queue_snapshot_print(coredump->snapshot.ge, &p);
- 
-+	drm_printf(&p, "\n**** Job ****\n");
-+	xe_sched_job_snapshot_print(coredump->snapshot.job, &p);
-+
- 	drm_printf(&p, "\n**** HW Engines ****\n");
- 	for (i = 0; i < XE_NUM_HW_ENGINES; i++)
- 		if (coredump->snapshot.hwe[i])
-@@ -116,6 +119,7 @@ static void xe_devcoredump_free(void *data)
- 
- 	xe_guc_ct_snapshot_free(coredump->snapshot.ct);
- 	xe_guc_exec_queue_snapshot_free(coredump->snapshot.ge);
-+	xe_sched_job_snapshot_free(coredump->snapshot.job);
- 	for (i = 0; i < XE_NUM_HW_ENGINES; i++)
- 		if (coredump->snapshot.hwe[i])
- 			xe_hw_engine_snapshot_free(coredump->snapshot.hwe[i]);
-@@ -155,6 +159,7 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
- 
- 	coredump->snapshot.ct = xe_guc_ct_snapshot_capture(&guc->ct, true);
- 	coredump->snapshot.ge = xe_guc_exec_queue_snapshot_capture(job);
-+	coredump->snapshot.job = xe_sched_job_snapshot_capture(job);
- 
- 	for_each_hw_engine(hwe, q->gt, id) {
- 		if (hwe->class != q->hwe->class ||
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump_types.h b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-index 50106efcbc29d..d259119b2c980 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump_types.h
-+++ b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-@@ -31,8 +31,11 @@ struct xe_devcoredump_snapshot {
- 	struct xe_guc_ct_snapshot *ct;
- 	/** @ge: Guc Engine snapshot */
- 	struct xe_guc_submit_exec_queue_snapshot *ge;
-+
- 	/** @hwe: HW Engine snapshot array */
- 	struct xe_hw_engine_snapshot *hwe[XE_NUM_HW_ENGINES];
-+	/** @job: Snapshot of job state */
-+	struct xe_sched_job_snapshot *job;
- };
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
-index 01106a1156ad8..cde1407867db6 100644
---- a/drivers/gpu/drm/xe/xe_sched_job.c
-+++ b/drivers/gpu/drm/xe/xe_sched_job.c
-@@ -278,3 +278,41 @@ int xe_sched_job_last_fence_add_dep(struct xe_sched_job *job, struct xe_vm *vm)
- 
- 	return drm_sched_job_add_dependency(&job->drm, fence);
- }
-+
-+struct xe_sched_job_snapshot *
-+xe_sched_job_snapshot_capture(struct xe_sched_job *job)
-+{
-+	struct xe_exec_queue *q = job->q;
-+	struct xe_device *xe = q->gt->tile->xe;
-+	struct xe_sched_job_snapshot *snapshot;
-+	size_t len = sizeof(*snapshot) + (sizeof(u64) * q->width);
-+	u16 i;
-+
-+	snapshot = kzalloc(len, GFP_ATOMIC);
-+	if (!snapshot)
-+		return NULL;
-+
-+	snapshot->batch_addr_len = q->width;
-+	for (i = 0; i < q->width; i++)
-+		snapshot->batch_addr[i] = xe_device_uncanonicalize_addr(xe, job->batch_addr[i]);
-+
-+	return snapshot;
-+}
-+
-+void xe_sched_job_snapshot_free(struct xe_sched_job_snapshot *snapshot)
-+{
-+	kfree(snapshot);
-+}
-+
-+void
-+xe_sched_job_snapshot_print(struct xe_sched_job_snapshot *snapshot,
-+			    struct drm_printer *p)
-+{
-+	u16 i;
-+
-+	if (!snapshot)
-+		return;
-+
-+	for (i = 0; i < snapshot->batch_addr_len; i++)
-+		drm_printf(p, "batch_addr[%u]: 0x%016llx\n", i, snapshot->batch_addr[i]);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_sched_job.h b/drivers/gpu/drm/xe/xe_sched_job.h
-index 34f475ba7f502..f1a660648cf00 100644
---- a/drivers/gpu/drm/xe/xe_sched_job.h
-+++ b/drivers/gpu/drm/xe/xe_sched_job.h
-@@ -8,6 +8,7 @@
- 
- #include "xe_sched_job_types.h"
- 
-+struct drm_printer;
- struct xe_vm;
- 
- #define XE_SCHED_HANG_LIMIT 1
-@@ -77,4 +78,8 @@ xe_sched_job_add_migrate_flush(struct xe_sched_job *job, u32 flags)
- 
- bool xe_sched_job_is_migration(struct xe_exec_queue *q);
- 
-+struct xe_sched_job_snapshot *xe_sched_job_snapshot_capture(struct xe_sched_job *job);
-+void xe_sched_job_snapshot_free(struct xe_sched_job_snapshot *snapshot);
-+void xe_sched_job_snapshot_print(struct xe_sched_job_snapshot *snapshot, struct drm_printer *p);
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
-index 8778c34d66203..b1d83da50a53d 100644
---- a/drivers/gpu/drm/xe/xe_sched_job_types.h
-+++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
-@@ -43,4 +43,9 @@ struct xe_sched_job {
- 	u64 batch_addr[];
- };
- 
-+struct xe_sched_job_snapshot {
-+	u16 batch_addr_len;
-+	u64 batch_addr[];
-+};
-+
- #endif
--- 
-2.43.0
+Series: drm/xe: Use function to emit PIPE_CONTROL (rev2)
+URL   : https://patchwork.freedesktop.org/series/129281/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457_BAT -> xe-pw-129281v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 3)
+------------------------------
+
+  Missing    (1): bat-dg2-oem2 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-129281v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-FAIL][2] ([Intel XE#1033])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129281v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  
+#### Possible fixes ####
+
+  * {igt@xe_exec_atomic@basic-inc-all}:
+    - bat-pvc-2:          [SKIP][3] ([Intel XE#1172]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457/bat-pvc-2/igt@xe_exec_atomic@basic-inc-all.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129281v2/bat-pvc-2/igt@xe_exec_atomic@basic-inc-all.html
+    - bat-atsm-2:         [SKIP][5] ([Intel XE#1172]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457/bat-atsm-2/igt@xe_exec_atomic@basic-inc-all.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129281v2/bat-atsm-2/igt@xe_exec_atomic@basic-inc-all.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#1033]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033
+  [Intel XE#1172]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1172
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7698 -> IGT_7699
+  * Linux: xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457 -> xe-pw-129281v2
+
+  IGT_7698: af750f5e7eaad98d40d8c924eb5f05e99d3c668b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7699: 7699
+  xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457: c655e0fd28045dbaa581d04bf7cc266eec1c3457
+  xe-pw-129281v2: 129281v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129281v2/index.html
+
+--===============7862080391673170388==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Use function to emit PIPE_CONTROL (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129281/">https://patchwork.freedesktop.org/series/129281/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129281v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129281v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457_BAT -&gt; xe-pw-129281v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 3)</h2>
+<p>Missing    (1): bat-dg2-oem2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-129281v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129281v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033">Intel XE#1033</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>{igt@xe_exec_atomic@basic-inc-all}:<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457/bat-pvc-2/igt@xe_exec_atomic@basic-inc-all.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1172">Intel XE#1172</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129281v2/bat-pvc-2/igt@xe_exec_atomic@basic-inc-all.html">PASS</a></li>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457/bat-atsm-2/igt@xe_exec_atomic@basic-inc-all.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1172">Intel XE#1172</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129281v2/bat-atsm-2/igt@xe_exec_atomic@basic-inc-all.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7698 -&gt; IGT_7699</li>
+<li>Linux: xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457 -&gt; xe-pw-129281v2</li>
+</ul>
+<p>IGT_7698: af750f5e7eaad98d40d8c924eb5f05e99d3c668b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7699: 7699<br />
+  xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457: c655e0fd28045dbaa581d04bf7cc266eec1c3457<br />
+  xe-pw-129281v2: 129281v2</p>
+
+</body>
+</html>
+
+--===============7862080391673170388==--
