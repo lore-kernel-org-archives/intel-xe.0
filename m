@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F65EC46CD2
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jan 2024 14:51:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FB6BC46CD2
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jan 2024 14:51:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E52DD10F8D1;
-	Tue, 30 Jan 2024 14:51:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2928B10E92C;
+	Tue, 30 Jan 2024 14:51:51 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50C1810F8D1;
- Tue, 30 Jan 2024 14:51:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E71CA113166;
+ Tue, 30 Jan 2024 14:51:49 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5Bv4=2C1/2=5D_drm/xe=3A_Add_functions_to_convert_regular_addres?=
- =?utf-8?q?s_to_canonical_address_and_back?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_series_starting_with_=5Bv?=
+ =?utf-8?q?4=2C1/2=5D_drm/xe=3A_Add_functions_to_convert_regular_address_to_?=
+ =?utf-8?q?canonical_address_and_back?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Souza, Jose" <jose.souza@intel.com>
-Date: Tue, 30 Jan 2024 14:51:32 -0000
-Message-ID: <170662629232.824492.6486381293643036099@5338d5abeb45>
+Date: Tue, 30 Jan 2024 14:51:49 -0000
+Message-ID: <170662630994.824492.14952893172643091129@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240130135648.30211-1-jose.souza@intel.com>
 In-Reply-To: <20240130135648.30211-1-jose.souza@intel.com>
@@ -49,10 +49,30 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: c655e0fd2 drm-tip: 2024y-01m-30d-04h-42m-24s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Add functions to convert regular address to canonical address and back
-Applying: drm/xe: Add batch buffer addresses to devcoredump
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+35591fb8b4d5305b37ce31483f85ac0956eaa536
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 78f7436b34a8457c1a01ac8736a3f84536b2f8eb
+Author: José Roberto de Souza <jose.souza@intel.com>
+Date:   Tue Jan 30 05:56:48 2024 -0800
+
+    drm/xe: Add batch buffer addresses to devcoredump
+    
+    Those addresses are necessary to Mesa tools knows where in VM are the
+    batch buffers to parse and print instructions that are human readable.
+    
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Maarten Lankhorst <dev@lankhorst.se>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
++ /mt/dim checkpatch c655e0fd28045dbaa581d04bf7cc266eec1c3457 drm-intel
+8ff04f2f3 drm/xe: Add functions to convert regular address to canonical address and back
+78f7436b3 drm/xe: Add batch buffer addresses to devcoredump
 
 
