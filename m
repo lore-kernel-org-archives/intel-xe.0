@@ -4,45 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E824C47258
-	for <intel-xe@archiver.kernel.org>; Wed, 31 Jan 2024 12:44:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C444C47258
+	for <intel-xe@archiver.kernel.org>; Wed, 31 Jan 2024 13:12:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF10B113B7E;
-	Wed, 31 Jan 2024 12:44:17 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5906E113392
- for <intel-xe@lists.freedesktop.org>; Wed, 31 Jan 2024 12:44:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D3D510F9CE;
+	Wed, 31 Jan 2024 13:12:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88B9010F9F5
+ for <intel-xe@lists.freedesktop.org>; Wed, 31 Jan 2024 13:12:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706705056; x=1738241056;
- h=date:from:to:cc:subject:message-id;
- bh=y3pEgO4LqbLlZsfazbR1ScL9IdHIeSnhUVwIsVC94J4=;
- b=Fx7f1kOO/dh7xrwAWFYpg7GdBx6/FV5AKFA8iTwxbEMSdq2D1I5uRkRD
- VAS9ty+LrCW0Yw5FKNwWv7BV/t5Idq/itZVIbfcHXLUqS/cpksXdbicmj
- BFYGevTG8GtyjGO+jM7u8RQgOq6F+JQCm+R3kDDlw+AXyCCnSDkcU8lPS
- o/lW+puAm4aGcrbBCR7f5PUG/USOe6cf+4B2fOnX8t6mZI2muqiVSdQD3
- tdEXFvbf1UJ/Cx9W1QqzrscLp/39WxYMotxQXluV57wEaGqGF86tVi5dl
- q7hPTMx7aNONE+ZUNmzKrbAsvKB/HeKJITUImR/g5D+g3oU+LJMtSFgOt Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="402439530"
-X-IronPort-AV: E=Sophos;i="6.05,231,1701158400"; d="scan'208";a="402439530"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2024 04:44:16 -0800
+ t=1706706740; x=1738242740;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=ssLt/Z0V4IWCLQrvTkZbSTv+7oygSPqc5MwVs66ZEI4=;
+ b=DwvvfTvgk/ILWH0N7HVa+6p/Jx+0IH2nFpEEZwvwFdviisRo/jqoCHzV
+ nZcJKpKw5uR1pfZKEV5GA+9F1kBm0kB2P8kKwh5nKUqdx7HyFCbXpuS5y
+ /3ajv/z6ScvJttb7D8cyWpdYE/UfZgRQpT2az9hyL4o2n0QAuRbXhpl8T
+ MQ53Zke+txY8fLbFvlP9NaAizIT5HSFbeOFTuZ/w1eYeNHAP0WQaGdRWj
+ 0Ih/zXT2CCdvln8Viy+JKuGUg+bcy9xICRCapinF0mTkbSeHxmDBICWIn
+ jh9LTDv20T0ij67M1CROKV28PY3fxPjehowlnjanAj4uBooCm6nlpMrS2 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="467834825"
+X-IronPort-AV: E=Sophos;i="6.05,231,1701158400"; d="scan'208";a="467834825"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2024 05:12:20 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,231,1701158400"; 
-   d="scan'208";a="4082915"
-Received: from lkp-server02.sh.intel.com (HELO 59f4f4cd5935) ([10.239.97.151])
- by fmviesa003.fm.intel.com with ESMTP; 31 Jan 2024 04:44:15 -0800
-Received: from kbuild by 59f4f4cd5935 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1rV9wr-0001Z6-2U;
- Wed, 31 Jan 2024 12:44:13 +0000
-Date: Wed, 31 Jan 2024 20:43:36 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- d1df9bfbf68c65418f30917f406b6d5bd597714e
-Message-ID: <202401312034.Hj5hTZbX-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="738091253"
+X-IronPort-AV: E=Sophos;i="6.05,231,1701158400"; d="scan'208";a="738091253"
+Received: from skallurr-mobl1.ger.corp.intel.com (HELO [10.249.254.124])
+ ([10.249.254.124])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2024 05:12:18 -0800
+Message-ID: <85ff43a8-022d-41ea-9a38-5806c0cebb17@linux.intel.com>
+Date: Wed, 31 Jan 2024 14:12:16 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Make all ABI shift values unsigned
+Content-Language: en-US
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+References: <20240131025424.2087936-1-matthew.brost@intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20240131025424.2087936-1-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,146 +59,162 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: d1df9bfbf68c65418f30917f406b6d5bd597714e  drm/xe: Only allow 1 ufence per exec / bind IOCTL
 
-Warning ids grouped by kconfigs:
+On 1/31/24 03:54, Matthew Brost wrote:
+> All ABI definitions are unsigned and not defining as unsigned is causing
+> build errors [1].
+>
+> [1] https://lore.kernel.org/all/20240123111235.3097079-1-geert@linux-m68k.org/
+>
+> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-gcc_recent_errors
-|-- sparc-allmodconfig
-|   `-- drivers-gpu-drm-xe-xe_lrc.c:warning:CTX_VALID-redefined
-|-- sparc64-allmodconfig
-|   `-- drivers-gpu-drm-xe-xe_lrc.c:warning:CTX_VALID-redefined
-`-- sparc64-allyesconfig
-    `-- drivers-gpu-drm-xe-xe_lrc.c:warning:CTX_VALID-redefined
+Took me a while to set up a gcc-5 aarch64 cross-compiler, but verified 
+that this indeed fixes the build errors.
 
-elapsed time: 727m
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-configs tested: 113
-configs skipped: 3
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
-
-tested configs:
-alpha                             allnoconfig   gcc  
-alpha                            allyesconfig   gcc  
-alpha                               defconfig   gcc  
-arc                              allmodconfig   gcc  
-arc                               allnoconfig   gcc  
-arc                              allyesconfig   gcc  
-arc                                 defconfig   gcc  
-arc                   randconfig-001-20240131   gcc  
-arc                   randconfig-002-20240131   gcc  
-arm                              allmodconfig   gcc  
-arm                               allnoconfig   gcc  
-arm                              allyesconfig   gcc  
-arm                                 defconfig   clang
-arm                   randconfig-001-20240131   clang
-arm                   randconfig-002-20240131   clang
-arm                   randconfig-003-20240131   clang
-arm                   randconfig-004-20240131   clang
-arm64                            allmodconfig   clang
-arm64                             allnoconfig   gcc  
-arm64                               defconfig   gcc  
-arm64                 randconfig-001-20240131   clang
-arm64                 randconfig-002-20240131   clang
-arm64                 randconfig-003-20240131   clang
-arm64                 randconfig-004-20240131   clang
-csky                             allmodconfig   gcc  
-csky                              allnoconfig   gcc  
-csky                             allyesconfig   gcc  
-csky                                defconfig   gcc  
-csky                  randconfig-001-20240131   gcc  
-csky                  randconfig-002-20240131   gcc  
-hexagon                          allmodconfig   clang
-hexagon                           allnoconfig   clang
-hexagon                          allyesconfig   clang
-hexagon                             defconfig   clang
-i386                             allmodconfig   clang
-i386                              allnoconfig   clang
-i386                             allyesconfig   clang
-i386         buildonly-randconfig-001-20240131   clang
-i386         buildonly-randconfig-002-20240131   clang
-i386         buildonly-randconfig-003-20240131   clang
-i386         buildonly-randconfig-004-20240131   clang
-i386         buildonly-randconfig-005-20240131   clang
-i386         buildonly-randconfig-006-20240131   clang
-i386                                defconfig   gcc  
-i386                  randconfig-001-20240131   clang
-i386                  randconfig-002-20240131   clang
-i386                  randconfig-003-20240131   clang
-i386                  randconfig-004-20240131   clang
-i386                  randconfig-005-20240131   clang
-i386                  randconfig-006-20240131   clang
-i386                  randconfig-011-20240131   gcc  
-i386                  randconfig-012-20240131   gcc  
-i386                  randconfig-013-20240131   gcc  
-i386                  randconfig-014-20240131   gcc  
-i386                  randconfig-015-20240131   gcc  
-i386                  randconfig-016-20240131   gcc  
-loongarch                        allmodconfig   gcc  
-loongarch                         allnoconfig   gcc  
-loongarch                           defconfig   gcc  
-m68k                             allmodconfig   gcc  
-m68k                              allnoconfig   gcc  
-m68k                             allyesconfig   gcc  
-m68k                                defconfig   gcc  
-microblaze                       allmodconfig   gcc  
-microblaze                        allnoconfig   gcc  
-microblaze                       allyesconfig   gcc  
-microblaze                          defconfig   gcc  
-mips                              allnoconfig   clang
-mips                             allyesconfig   gcc  
-nios2                            allmodconfig   gcc  
-nios2                             allnoconfig   gcc  
-nios2                            allyesconfig   gcc  
-nios2                               defconfig   gcc  
-openrisc                          allnoconfig   gcc  
-openrisc                         allyesconfig   gcc  
-openrisc                            defconfig   gcc  
-parisc                           allmodconfig   gcc  
-parisc                            allnoconfig   gcc  
-parisc                           allyesconfig   gcc  
-parisc                              defconfig   gcc  
-parisc64                            defconfig   gcc  
-powerpc                          allmodconfig   clang
-powerpc                           allnoconfig   gcc  
-powerpc                          allyesconfig   clang
-riscv                            allmodconfig   gcc  
-riscv                             allnoconfig   clang
-riscv                            allyesconfig   gcc  
-riscv                               defconfig   gcc  
-s390                             allmodconfig   gcc  
-s390                              allnoconfig   gcc  
-s390                             allyesconfig   gcc  
-s390                                defconfig   gcc  
-sh                               allmodconfig   gcc  
-sh                                allnoconfig   gcc  
-sh                               allyesconfig   gcc  
-sh                                  defconfig   gcc  
-sparc                            allmodconfig   gcc  
-sparc                             allnoconfig   gcc  
-sparc                               defconfig   gcc  
-sparc64                          allmodconfig   gcc  
-sparc64                          allyesconfig   gcc  
-sparc64                             defconfig   gcc  
-um                               allmodconfig   clang
-um                                allnoconfig   clang
-um                               allyesconfig   clang
-um                                  defconfig   gcc  
-um                             i386_defconfig   gcc  
-um                           x86_64_defconfig   gcc  
-x86_64                            allnoconfig   gcc  
-x86_64                           allyesconfig   clang
-x86_64                              defconfig   gcc  
-x86_64                          rhel-8.3-rust   clang
-xtensa                            allnoconfig   gcc  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> ---
+>   drivers/gpu/drm/xe/abi/guc_actions_abi.h      |  4 ++--
+>   drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h |  4 ++--
+>   .../drm/xe/abi/guc_communication_ctb_abi.h    |  8 ++++----
+>   drivers/gpu/drm/xe/abi/guc_klvs_abi.h         |  6 +++---
+>   drivers/gpu/drm/xe/abi/guc_messages_abi.h     | 20 +++++++++----------
+>   5 files changed, 21 insertions(+), 21 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+> index 3062e0e0d467..79ba98a169f9 100644
+> --- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+> +++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+> @@ -50,8 +50,8 @@
+>   
+>   #define HOST2GUC_SELF_CFG_REQUEST_MSG_LEN		(GUC_HXG_REQUEST_MSG_MIN_LEN + 3u)
+>   #define HOST2GUC_SELF_CFG_REQUEST_MSG_0_MBZ		GUC_HXG_REQUEST_MSG_0_DATA0
+> -#define HOST2GUC_SELF_CFG_REQUEST_MSG_1_KLV_KEY		(0xffff << 16)
+> -#define HOST2GUC_SELF_CFG_REQUEST_MSG_1_KLV_LEN		(0xffff << 0)
+> +#define HOST2GUC_SELF_CFG_REQUEST_MSG_1_KLV_KEY		(0xffffu << 16)
+> +#define HOST2GUC_SELF_CFG_REQUEST_MSG_1_KLV_LEN		(0xffffu << 0)
+>   #define HOST2GUC_SELF_CFG_REQUEST_MSG_2_VALUE32		GUC_HXG_REQUEST_MSG_n_DATAn
+>   #define HOST2GUC_SELF_CFG_REQUEST_MSG_3_VALUE64		GUC_HXG_REQUEST_MSG_n_DATAn
+>   
+> diff --git a/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
+> index 811add10c30d..c165e26c0976 100644
+> --- a/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
+> +++ b/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
+> @@ -242,8 +242,8 @@ struct slpc_shared_data {
+>   		(HOST2GUC_PC_SLPC_REQUEST_REQUEST_MSG_MIN_LEN + \
+>   			HOST2GUC_PC_SLPC_EVENT_MAX_INPUT_ARGS)
+>   #define HOST2GUC_PC_SLPC_REQUEST_MSG_0_MBZ		GUC_HXG_REQUEST_MSG_0_DATA0
+> -#define HOST2GUC_PC_SLPC_REQUEST_MSG_1_EVENT_ID		(0xff << 8)
+> -#define HOST2GUC_PC_SLPC_REQUEST_MSG_1_EVENT_ARGC	(0xff << 0)
+> +#define HOST2GUC_PC_SLPC_REQUEST_MSG_1_EVENT_ID		(0xffu << 8)
+> +#define HOST2GUC_PC_SLPC_REQUEST_MSG_1_EVENT_ARGC	(0xffu << 0)
+>   #define HOST2GUC_PC_SLPC_REQUEST_MSG_N_EVENT_DATA_N	GUC_HXG_REQUEST_MSG_n_DATAn
+>   
+>   #endif
+> diff --git a/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h b/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
+> index 4aaed1cb4e12..8f86a16dc577 100644
+> --- a/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
+> +++ b/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
+> @@ -82,11 +82,11 @@ static_assert(sizeof(struct guc_ct_buffer_desc) == 64);
+>   #define GUC_CTB_HDR_LEN				1u
+>   #define GUC_CTB_MSG_MIN_LEN			GUC_CTB_HDR_LEN
+>   #define GUC_CTB_MSG_MAX_LEN			(GUC_CTB_MSG_MIN_LEN + GUC_CTB_MAX_DWORDS)
+> -#define GUC_CTB_MSG_0_FENCE			(0xffff << 16)
+> -#define GUC_CTB_MSG_0_FORMAT			(0xf << 12)
+> +#define GUC_CTB_MSG_0_FENCE			(0xffffu << 16)
+> +#define GUC_CTB_MSG_0_FORMAT			(0xfu << 12)
+>   #define   GUC_CTB_FORMAT_HXG			0u
+> -#define GUC_CTB_MSG_0_RESERVED			(0xf << 8)
+> -#define GUC_CTB_MSG_0_NUM_DWORDS		(0xff << 0)
+> +#define GUC_CTB_MSG_0_RESERVED			(0xfu << 8)
+> +#define GUC_CTB_MSG_0_NUM_DWORDS		(0xffu << 0)
+>   #define   GUC_CTB_MAX_DWORDS			255
+>   
+>   /**
+> diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+> index 47094b9b044c..0400bc0fccdc 100644
+> --- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+> +++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+> @@ -31,9 +31,9 @@
+>    */
+>   
+>   #define GUC_KLV_LEN_MIN				1u
+> -#define GUC_KLV_0_KEY				(0xffff << 16)
+> -#define GUC_KLV_0_LEN				(0xffff << 0)
+> -#define GUC_KLV_n_VALUE				(0xffffffff << 0)
+> +#define GUC_KLV_0_KEY				(0xffffu << 16)
+> +#define GUC_KLV_0_LEN				(0xffffu << 0)
+> +#define GUC_KLV_n_VALUE				(0xffffffffu << 0)
+>   
+>   /**
+>    * DOC: GuC Self Config KLVs
+> diff --git a/drivers/gpu/drm/xe/abi/guc_messages_abi.h b/drivers/gpu/drm/xe/abi/guc_messages_abi.h
+> index ff888d16bd4f..534a39db7772 100644
+> --- a/drivers/gpu/drm/xe/abi/guc_messages_abi.h
+> +++ b/drivers/gpu/drm/xe/abi/guc_messages_abi.h
+> @@ -41,10 +41,10 @@
+>    */
+>   
+>   #define GUC_HXG_MSG_MIN_LEN			1u
+> -#define GUC_HXG_MSG_0_ORIGIN			(0x1 << 31)
+> +#define GUC_HXG_MSG_0_ORIGIN			(0x1u << 31)
+>   #define   GUC_HXG_ORIGIN_HOST			0u
+>   #define   GUC_HXG_ORIGIN_GUC			1u
+> -#define GUC_HXG_MSG_0_TYPE			(0x7 << 28)
+> +#define GUC_HXG_MSG_0_TYPE			(0x7u << 28)
+>   #define   GUC_HXG_TYPE_REQUEST			0u
+>   #define   GUC_HXG_TYPE_EVENT			1u
+>   #define   GUC_HXG_TYPE_FAST_REQUEST		2u
+> @@ -52,8 +52,8 @@
+>   #define   GUC_HXG_TYPE_NO_RESPONSE_RETRY	5u
+>   #define   GUC_HXG_TYPE_RESPONSE_FAILURE		6u
+>   #define   GUC_HXG_TYPE_RESPONSE_SUCCESS		7u
+> -#define GUC_HXG_MSG_0_AUX			(0xfffffff << 0)
+> -#define GUC_HXG_MSG_n_PAYLOAD			(0xffffffff << 0)
+> +#define GUC_HXG_MSG_0_AUX			(0xfffffffu << 0)
+> +#define GUC_HXG_MSG_n_PAYLOAD			(0xffffffffu << 0)
+>   
+>   /**
+>    * DOC: HXG Request
+> @@ -87,8 +87,8 @@
+>    */
+>   
+>   #define GUC_HXG_REQUEST_MSG_MIN_LEN		GUC_HXG_MSG_MIN_LEN
+> -#define GUC_HXG_REQUEST_MSG_0_DATA0		(0xfff << 16)
+> -#define GUC_HXG_REQUEST_MSG_0_ACTION		(0xffff << 0)
+> +#define GUC_HXG_REQUEST_MSG_0_DATA0		(0xfffu << 16)
+> +#define GUC_HXG_REQUEST_MSG_0_ACTION		(0xffffu << 0)
+>   #define GUC_HXG_REQUEST_MSG_n_DATAn		GUC_HXG_MSG_n_PAYLOAD
+>   
+>   /**
+> @@ -119,8 +119,8 @@
+>    */
+>   
+>   #define GUC_HXG_EVENT_MSG_MIN_LEN		GUC_HXG_MSG_MIN_LEN
+> -#define GUC_HXG_EVENT_MSG_0_DATA0		(0xfff << 16)
+> -#define GUC_HXG_EVENT_MSG_0_ACTION		(0xffff << 0)
+> +#define GUC_HXG_EVENT_MSG_0_DATA0		(0xfffu << 16)
+> +#define GUC_HXG_EVENT_MSG_0_ACTION		(0xffffu << 0)
+>   #define GUC_HXG_EVENT_MSG_n_DATAn		GUC_HXG_MSG_n_PAYLOAD
+>   
+>   /**
+> @@ -190,8 +190,8 @@
+>    */
+>   
+>   #define GUC_HXG_FAILURE_MSG_LEN			GUC_HXG_MSG_MIN_LEN
+> -#define GUC_HXG_FAILURE_MSG_0_HINT		(0xfff << 16)
+> -#define GUC_HXG_FAILURE_MSG_0_ERROR		(0xffff << 0)
+> +#define GUC_HXG_FAILURE_MSG_0_HINT		(0xfffu << 16)
+> +#define GUC_HXG_FAILURE_MSG_0_ERROR		(0xffffu << 0)
+>   
+>   /**
+>    * DOC: HXG Response
