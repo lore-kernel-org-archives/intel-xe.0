@@ -4,51 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AE81C47258
-	for <intel-xe@archiver.kernel.org>; Wed, 31 Jan 2024 19:22:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B125C47258
+	for <intel-xe@archiver.kernel.org>; Wed, 31 Jan 2024 19:42:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 983E510FC73;
-	Wed, 31 Jan 2024 19:22:41 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B76B710FBFB;
- Wed, 31 Jan 2024 19:22:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706728959; x=1738264959;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=/IKw8VvmkZ7sPEzdGJ5kdhJnVI5t9cbfZUqHHCr1T+g=;
- b=ZxP4833uwfr+Khi0cET/AgWmF/VovsaPVAGw+7q4PNKm4gy3kujhLGNL
- 6nAt/4+pSZP/QzNQTlqQaxeH2bYG7frmkl2lXiJ1GMvcOnEaZsqJU+XkT
- LzPs4HSt9euhZIVSo+dgH7WVL7U7vleRfazDIIaPoTiBu5HjEI4wtjMGp
- EZnzTj86PKl3YFz5WDmMG0uZSDWjfuA7dWDcahzTNUmjdomzoPV3MF9Me
- PyXxaZJ7mO6h+BmLJUYw3nHWATZhr6ksswKj5qLkplKt4O2IfMjhjOIpD
- RAc1lH3+SrgfHO8nbKiQaCysYZyN1/py+QhlTNdtcYY8wFgN7EETYB0Lz Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="394143683"
-X-IronPort-AV: E=Sophos;i="6.05,233,1701158400"; d="scan'208";a="394143683"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2024 11:22:39 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,233,1701158400"; 
-   d="scan'208";a="4140284"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.2.5])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2024 11:22:38 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: Re: =?UTF-8?B?4pyX?= CI.xeBAT: failure for lib/kunit: Support writable
- filter* parameters of kunit module (rev2)
-Date: Wed, 31 Jan 2024 20:22:35 +0100
-Message-ID: <13441462.dW097sEU6C@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <170672621780.878359.16320506199099182638@5338d5abeb45>
-References: <20240131181156.80571-8-janusz.krzysztofik@linux.intel.com>
- <170672621780.878359.16320506199099182638@5338d5abeb45>
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3F6110FCB1;
+	Wed, 31 Jan 2024 19:42:41 +0000 (UTC)
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com
+ [209.85.218.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CD6A10FCB1
+ for <intel-xe@lists.freedesktop.org>; Wed, 31 Jan 2024 19:42:41 +0000 (UTC)
+Received: by mail-ej1-f53.google.com with SMTP id
+ a640c23a62f3a-a35b32bd055so11556666b.2
+ for <intel-xe@lists.freedesktop.org>; Wed, 31 Jan 2024 11:42:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1706730099; x=1707334899; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=HTIKv8KHZT0+EbrR61dyEoaKbO7b4hbSOHJXjPkcobA=;
+ b=gIh/TlFs2x9RPurBjhAZn7DNnV1tPwQtE0cNC9eLa30dD6kdeS8F2d27E/y5b/DzT5
+ /LXbsxH2pUhMRVH27RZxIS6n37c4EHoHscY8KP7x/F7ZH3k55strQqvkVVdGocO0jQFP
+ pHXefgY1jopcMKZT1vMSlzqlOIDJW2nOHLHWcYwti+/RXuTYFlJkrXXSIJ0oAbRXL3PK
+ k3nU3T3cbfrrDjjxECuGdlA4CP+xlbdjjL7nLycjQg6m6vGKwb3fSXWD5QotoHCBmRKt
+ Ftx2eVxiLNwc4WO8nNmulQcWYy+Tig1TpX1B9COcd0px50mrPmO2VztJmumGYqOBmnr6
+ kLsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1706730099; x=1707334899;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=HTIKv8KHZT0+EbrR61dyEoaKbO7b4hbSOHJXjPkcobA=;
+ b=JU4ByV+HCBTKuB4hFuMoFi5JgKssHdjbq658L72F6+MmC6vX516PXG9sKvNNHhmp0Q
+ as0MQYhzAikaVxFtQzrNZVZ0WTLB6EfEnKiqlGmEZc/dRBuc/lxFJbuxu70Zh3UUQYLe
+ t/uLrhhKB/4m63D1Ouu/5neGotBSs6fVwquGqryVnJ0Occ8umf1kb9vXk42RyH3p22uk
+ O9hKtWV5zsi+mFl2lZx1TX9UZVCnHi2SOgh3CTQAV+vK+KV4e5kgH9Y/Lch7X2/LMwKp
+ hoJwNfElbS2HlyBUUiLbCumIfQ2Pmao4dsOykwwohlsmUE8ERizSLjirBO4WcrN00bXX
+ uuhw==
+X-Gm-Message-State: AOJu0YxRe5QgperWCK25saSnAUD0y+5Q/uIZs5pH9hqYNgUGT93wA5ri
+ Vc/xxF5UCZkm4Wj9eenfeTUzSVsLLCxfOS3Gd4YqUsHK8OG/R8xOsce/vp4v8zqOb/fWCO6URuL
+ irR1ME7WKeJNjo2A4b5IxHZebmixAS1OR2MI=
+X-Google-Smtp-Source: AGHT+IHG0HFOMnzf2Z3Z5sRLCqghm3HYW49rbRM1u35L/b9/ctHR9WAXQiIic9tz6jbysxflAg46OceHFnTcDhcLNwc=
+X-Received: by 2002:a17:906:111a:b0:a30:b29f:29ef with SMTP id
+ h26-20020a170906111a00b00a30b29f29efmr1847381eja.42.1706730099414; Wed, 31
+ Jan 2024 11:41:39 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+References: <20240130125220.5517-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20240130125220.5517-1-thomas.hellstrom@linux.intel.com>
+From: Dave Airlie <airlied@gmail.com>
+Date: Thu, 1 Feb 2024 05:41:27 +1000
+Message-ID: <CAPM=9tx_9S3yD3A46rP_NOO_FaPHwWaPMeX2wkx8Rh4iqO8cvQ@mail.gmail.com>
+Subject: Re: [RFC PATCH] drm/xe/uapi: Remove support for persistent exec_queues
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,213 +68,38 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Francois Dugast <francois.dugast@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wednesday, 31 January 2024 19:36:57 CET Patchwork wrote:
-> == Series Details ==
-> 
-> Series: lib/kunit: Support writable filter* parameters of kunit module 
-(rev2)
-> URL   : https://patchwork.freedesktop.org/series/129174/
-> State : failure
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from XEIGT_7699_BAT -> XEIGTPW_10613_BAT
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with XEIGTPW_10613_BAT absolutely need to 
-be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in XEIGTPW_10613_BAT, please notify your bug team (I915-ci-
-infra@lists.freedesktop.org) to allow them
->   to document this new failure mode, which will reduce false positives in 
-CI.
-> 
->   
-> 
-> Participating hosts (4 -> 4)
-> ------------------------------
-> 
->   No changes in participating hosts
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in 
-XEIGTPW_10613_BAT:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
-> 
->   * igt@xe_live_ktest@bo:
->     - bat-adlp-7:         [PASS][1] -> [SKIP][2] +2 other tests skip
->    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/IGT_7699/bat-adlp-7/
-igt@xe_live_ktest@bo.html
->    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/IGTPW_10613/bat-adlp-7/
-igt@xe_live_ktest@bo.html
-
-Hi Lucas,
-
-We've got an empty list of test cases because the current algorithm of IGT 
-KUnit implementation expects subtest name provided via struct kunit_tests 
-to be the same as name of a test suite provided by the KUnit test module.  As 
-a special case, if the module provides only one test suite (most do) and the 
-name of it is the same as the module name with the _test or _kunit suffix 
-truncated (also the most common case) then subtest name may be omitted (i.e., 
-.name field may be NULL).
-
-I have to document the above, but we also have to use the same names on both 
-sides (KUnit test module and its corresponding IGT test).  Now we don't, e.g. 
-test suite named "xe_bo" is provided by xe_bo_test module while subtest name 
-"bo" is specified for that module in IGT xe_live_ktest.
-
-Thanks,
-Janusz
-
-> 
->   * igt@xe_live_ktest@migrate:
->     - bat-pvc-2:          [PASS][3] -> [SKIP][4] +2 other tests skip
->    [3]: https://intel-gfx-ci.01.org/tree/intel-xe/IGT_7699/bat-pvc-2/
-igt@xe_live_ktest@migrate.html
->    [4]: https://intel-gfx-ci.01.org/tree/intel-xe/IGTPW_10613/bat-pvc-2/
-igt@xe_live_ktest@migrate.html
->     - bat-dg2-oem2:       [PASS][5] -> [SKIP][6] +2 other tests skip
->    [5]: https://intel-gfx-ci.01.org/tree/intel-xe/IGT_7699/bat-dg2-oem2/
-igt@xe_live_ktest@migrate.html
->    [6]: https://intel-gfx-ci.01.org/tree/intel-xe/IGTPW_10613/bat-dg2-oem2/
-igt@xe_live_ktest@migrate.html
->     - bat-atsm-2:         [PASS][7] -> [SKIP][8] +2 other tests skip
->    [7]: https://intel-gfx-ci.01.org/tree/intel-xe/IGT_7699/bat-atsm-2/
-igt@xe_live_ktest@migrate.html
->    [8]: https://intel-gfx-ci.01.org/tree/intel-xe/IGTPW_10613/bat-atsm-2/
-igt@xe_live_ktest@migrate.html
-> 
->   
-> Known issues
-> ------------
-> 
->   Here are the changes found in XEIGTPW_10613_BAT that come from known 
-issues:
-> 
-> ### IGT changes ###
-> 
-> #### Issues hit ####
-> 
->   * igt@kms_addfb_basic@invalid-set-prop:
->     - bat-adlp-7:         [PASS][9] -> [SKIP][10] ([i915#6077]) +30 other 
-tests skip
->    [9]: https://intel-gfx-ci.01.org/tree/intel-xe/IGT_7699/bat-adlp-7/
-igt@kms_addfb_basic@invalid-set-prop.html
->    [10]: https://intel-gfx-ci.01.org/tree/intel-xe/IGTPW_10613/bat-adlp-7/
-igt@kms_addfb_basic@invalid-set-prop.html
-> 
->   * igt@kms_flip@basic-flip-vs-dpms:
->     - bat-adlp-7:         [PASS][11] -> [SKIP][12] ([Intel XE#1219]) +9 
-other tests skip
->    [11]: https://intel-gfx-ci.01.org/tree/intel-xe/IGT_7699/bat-adlp-7/
-igt@kms_flip@basic-flip-vs-dpms.html
->    [12]: https://intel-gfx-ci.01.org/tree/intel-xe/IGTPW_10613/bat-adlp-7/
-igt@kms_flip@basic-flip-vs-dpms.html
-> 
->   * igt@kms_force_connector_basic@force-connector-state:
->     - bat-adlp-7:         [PASS][13] -> [SKIP][14] ([Intel XE#540]) +3 other 
-tests skip
->    [13]: https://intel-gfx-ci.01.org/tree/intel-xe/IGT_7699/bat-adlp-7/
-igt@kms_force_connector_basic@force-connector-state.html
->    [14]: https://intel-gfx-ci.01.org/tree/intel-xe/IGTPW_10613/bat-adlp-7/
-igt@kms_force_connector_basic@force-connector-state.html
-> 
->   * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
->     - bat-adlp-7:         [PASS][15] -> [SKIP][16] ([Intel XE#829]) +6 other 
-tests skip
->    [15]: https://intel-gfx-ci.01.org/tree/intel-xe/IGT_7699/bat-adlp-7/
-igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
->    [16]: https://intel-gfx-ci.01.org/tree/intel-xe/IGTPW_10613/bat-adlp-7/
-igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-> 
->   * igt@kms_prop_blob@basic:
->     - bat-adlp-7:         [PASS][17] -> [SKIP][18] ([Intel XE#780])
->    [17]: https://intel-gfx-ci.01.org/tree/intel-xe/IGT_7699/bat-adlp-7/
-igt@kms_prop_blob@basic.html
->    [18]: https://intel-gfx-ci.01.org/tree/intel-xe/IGTPW_10613/bat-adlp-7/
-igt@kms_prop_blob@basic.html
-> 
->   
-> #### Possible fixes ####
-> 
->   * igt@xe_module_load@load:
->     - bat-pvc-2:          [SKIP][19] ([Intel XE#378]) -> [PASS][20]
->    [19]: https://intel-gfx-ci.01.org/tree/intel-xe/IGT_7699/bat-pvc-2/
-igt@xe_module_load@load.html
->    [20]: https://intel-gfx-ci.01.org/tree/intel-xe/IGTPW_10613/bat-pvc-2/
-igt@xe_module_load@load.html
-> 
->   
-> #### Warnings ####
-> 
->   * igt@kms_dsc@dsc-basic:
->     - bat-adlp-7:         [SKIP][21] ([Intel XE#455]) -> [SKIP][22] ([Intel 
-XE#1219])
->    [21]: https://intel-gfx-ci.01.org/tree/intel-xe/IGT_7699/bat-adlp-7/
-igt@kms_dsc@dsc-basic.html
->    [22]: https://intel-gfx-ci.01.org/tree/intel-xe/IGTPW_10613/bat-adlp-7/
-igt@kms_dsc@dsc-basic.html
-> 
->   * igt@kms_frontbuffer_tracking@basic:
->     - bat-adlp-7:         [DMESG-FAIL][23] ([Intel XE#1033]) -> [SKIP][24] 
-([Intel XE#783])
->    [23]: https://intel-gfx-ci.01.org/tree/intel-xe/IGT_7699/bat-adlp-7/
-igt@kms_frontbuffer_tracking@basic.html
->    [24]: https://intel-gfx-ci.01.org/tree/intel-xe/IGTPW_10613/bat-adlp-7/
-igt@kms_frontbuffer_tracking@basic.html
-> 
->   
->   {name}: This element is suppressed. This means it is ignored when 
-computing
->           the status of the difference (SUCCESS, WARNING, or FAILURE).
-> 
->   [Intel XE#1033]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1033
->   [Intel XE#1219]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1219
->   [Intel XE#378]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/378
->   [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
->   [Intel XE#540]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/540
->   [Intel XE#780]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/780
->   [Intel XE#783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/783
->   [Intel XE#829]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/829
->   [i915#6077]: https://gitlab.freedesktop.org/drm/intel/issues/6077
-> 
-> 
-> Build changes
-> -------------
-> 
->   * IGT: IGT_7699 -> IGTPW_10613
->   * Linux: xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457 -> 
-xe-711-8327dc2a5a26f82a8700035c6259f57e9299d6a2
-> 
->   IGTPW_10613: 10613
->   IGT_7699: 7699
->   xe-699-c655e0fd28045dbaa581d04bf7cc266eec1c3457: 
-c655e0fd28045dbaa581d04bf7cc266eec1c3457
->   xe-711-8327dc2a5a26f82a8700035c6259f57e9299d6a2: 
-8327dc2a5a26f82a8700035c6259f57e9299d6a2
-> 
-> == Logs ==
-> 
-> For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/IGTPW_10613/
-index.html
-> 
+On Tue, 30 Jan 2024 at 22:52, Thomas Hellstr=C3=B6m
+<thomas.hellstrom@linux.intel.com> wrote:
+>
+> Persistent exec_queues delays explicit destruction of exec_queues
+> until they are done executing, but destruction on process exit
+> is still immediate. It turns out no UMD is relying on this
+> functionality, so remove it. If there turns out to be a use-case
+> in the future, let's re-add.
+>
+> Persistent exec_queues were never used for LR VMs
+>
+> Open: Should we renumber the exec_queue properties, or leave a hole
+> as in this patch.
 
 
+So can we have a bit of insight into how this happened? Like we just
+merged xe and it already has uapi that had no userspace?
 
+Like seriously? I'm sorry Intel has all these crazy silos with
+compute, video, graphics and kernel teams, but that should be Intel's
+internal problem, can we stop exposing your org chart outside the
+company?
 
+If you can't get someone from the compute team to work in the kernel
+driver space when a new uAPI is needed, and instead powerpoint up
+uAPIs without commitments, then xe is going to end up being in the
+same hole as i915.
+
+Dave.
