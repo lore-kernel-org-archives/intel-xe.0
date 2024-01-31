@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96973C47258
-	for <intel-xe@archiver.kernel.org>; Wed, 31 Jan 2024 22:01:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BAFDC47258
+	for <intel-xe@archiver.kernel.org>; Wed, 31 Jan 2024 22:24:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 651EE10E2AF;
-	Wed, 31 Jan 2024 22:01:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE3AC10E339;
+	Wed, 31 Jan 2024 22:24:20 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9777310E2AF;
- Wed, 31 Jan 2024 22:01:18 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C02410E339;
+ Wed, 31 Jan 2024 22:24:19 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4839445777213328940=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_Add_helper_mac?=
- =?utf-8?q?ro_to_loop_each_dss?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Add_helper_macro_to_lo?=
+ =?utf-8?q?op_each_dss?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Zhanjun Dong" <zhanjun.dong@intel.com>
-Date: Wed, 31 Jan 2024 22:01:18 -0000
-Message-ID: <170673847862.878358.10239652946933031998@5338d5abeb45>
+Date: Wed, 31 Jan 2024 22:24:19 -0000
+Message-ID: <170673985957.878359.6032432589005692495@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240131214811.309263-1-zhanjun.dong@intel.com>
 In-Reply-To: <20240131214811.309263-1-zhanjun.dong@intel.com>
@@ -40,6 +40,11 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============4839445777213328940==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: drm/xe: Add helper macro to loop each dss
@@ -48,25 +53,108 @@ State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 8327dc2a5a26f82a8700035c6259f57e9299d6a2
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+CI Bug Log - changes from xe-711-8327dc2a5a26f82a8700035c6259f57e9299d6a2_BAT -> xe-pw-129391v1_BAT
+====================================================
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-129391v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_module_load@load:
+    - bat-pvc-2:          [SKIP][1] ([Intel XE#378]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-711-8327dc2a5a26f82a8700035c6259f57e9299d6a2/bat-pvc-2/igt@xe_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129391v1/bat-pvc-2/igt@xe_module_load@load.html
+
+  
+  [Intel XE#378]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/378
 
 
+Build changes
+-------------
+
+  * Linux: xe-711-8327dc2a5a26f82a8700035c6259f57e9299d6a2 -> xe-pw-129391v1
+
+  IGT_7699: 7699
+  xe-711-8327dc2a5a26f82a8700035c6259f57e9299d6a2: 8327dc2a5a26f82a8700035c6259f57e9299d6a2
+  xe-pw-129391v1: 129391v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129391v1/index.html
+
+--===============4839445777213328940==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Add helper macro to loop each dss</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129391/">https://patchwork.freedesktop.org/series/129391/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129391v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129391v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-711-8327dc2a5a26f82a8700035c6259f57e9299d6a2_BAT -&gt; xe-pw-129391v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-129391v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_module_load@load:<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-711-8327dc2a5a26f82a8700035c6259f57e9299d6a2/bat-pvc-2/igt@xe_module_load@load.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/378">Intel XE#378</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129391v1/bat-pvc-2/igt@xe_module_load@load.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-711-8327dc2a5a26f82a8700035c6259f57e9299d6a2 -&gt; xe-pw-129391v1</li>
+</ul>
+<p>IGT_7699: 7699<br />
+  xe-711-8327dc2a5a26f82a8700035c6259f57e9299d6a2: 8327dc2a5a26f82a8700035c6259f57e9299d6a2<br />
+  xe-pw-129391v1: 129391v1</p>
+
+</body>
+</html>
+
+--===============4839445777213328940==--
