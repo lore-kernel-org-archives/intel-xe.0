@@ -4,26 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EABAC47DDB
-	for <intel-xe@archiver.kernel.org>; Wed, 31 Jan 2024 03:01:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC4AAC4828C
+	for <intel-xe@archiver.kernel.org>; Wed, 31 Jan 2024 03:02:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 349E41138B5;
-	Wed, 31 Jan 2024 03:01:08 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 954F51138B4;
- Wed, 31 Jan 2024 03:01:07 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3675659022274071337=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6413D1138B7;
+	Wed, 31 Jan 2024 03:02:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 575F61138B5;
+ Wed, 31 Jan 2024 03:02:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706670142; x=1738206142;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Ttg4tkOLr0+dMelFjOGrpWcNWMn1P5Ar706yYPv/Dn4=;
+ b=bxT3HCidP14bZqNZ3MYQiFELmN88i/Em0dHRGXnccEU6NurwYBSOHAiE
+ +KOE8b11fsKnhtfBHb5+HdSNcYBX9Bg67BA2YyQrqRKyDxGdU2L/FxUSJ
+ NGPKzbx0pWDFUjgMtJ+6TUaELo+3qihv0UyXTrmq9LYuWCo7Nn3/delMw
+ AVDLChjXYzsqDF4kyinvsmFZuPPIeIclkuzCfb/I29B8YFaKF1CX5aII+
+ NrKxCXhZ3ILKI/UHOjWgGFPgRqUQcnSosNiMytdngvSqjkvXZxPBbeQyG
+ Dyw8GIpBnSzdX/rkOCITzEmJyoZ8m8Chz2mBd+N0//tLAKH+HYUifigSM g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="402330046"
+X-IronPort-AV: E=Sophos;i="6.05,231,1701158400"; d="scan'208";a="402330046"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2024 19:02:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="931681123"
+X-IronPort-AV: E=Sophos;i="6.05,231,1701158400"; d="scan'208";a="931681123"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2024 19:02:21 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-xe@lists.freedesktop.org>,
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH] drm/sched: Add Matthew Brost to maintainers
+Date: Tue, 30 Jan 2024 19:03:02 -0800
+Message-Id: <20240131030302.2088173-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Enable_ccs_compressed_framebuffe?=
- =?utf-8?q?rs_on_Xe2_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
-Date: Wed, 31 Jan 2024 03:01:07 -0000
-Message-ID: <170667006760.860247.16968601369058326589@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240130193652.374270-1-juhapekka.heikkila@gmail.com>
-In-Reply-To: <20240130193652.374270-1-juhapekka.heikkila@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,107 +56,35 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Dave Airlie <airlied@redhat.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Luben Tuikov <ltuikov89@gmail.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3675659022274071337==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Add Matthew Brost to DRM scheduler maintainers.
 
-== Series Details ==
+Cc: Luben Tuikov <ltuikov89@gmail.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Dave Airlie <airlied@redhat.com>
+Cc: Christian König <christian.koenig@amd.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ MAINTAINERS | 1 +
+ 1 file changed, 1 insertion(+)
 
-Series: Enable ccs compressed framebuffers on Xe2 (rev5)
-URL   : https://patchwork.freedesktop.org/series/128946/
-State : success
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 5c00fad59e91..e968d68a96c8 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -7308,6 +7308,7 @@ F:	drivers/gpu/drm/xlnx/
+ 
+ DRM GPU SCHEDULER
+ M:	Luben Tuikov <ltuikov89@gmail.com>
++M:	Matthew Brost <matthew.brost@intel.com>
+ L:	dri-devel@lists.freedesktop.org
+ S:	Maintained
+ T:	git git://anongit.freedesktop.org/drm/drm-misc
+-- 
+2.34.1
 
-== Summary ==
-
-CI Bug Log - changes from xe-705-3d244fce99b65e012c4409d8a22bb9168c41f101_BAT -> xe-pw-128946v5_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (2 -> 2)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-705-3d244fce99b65e012c4409d8a22bb9168c41f101 -> xe-pw-128946v5
-
-  IGT_7699: 7699
-  xe-705-3d244fce99b65e012c4409d8a22bb9168c41f101: 3d244fce99b65e012c4409d8a22bb9168c41f101
-  xe-pw-128946v5: 128946v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128946v5/index.html
-
---===============3675659022274071337==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Enable ccs compressed framebuffers on Xe2 (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/128946/">https://patchwork.freedesktop.org/series/128946/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128946v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128946v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-705-3d244fce99b65e012c4409d8a22bb9168c41f101_BAT -&gt; xe-pw-128946v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (2 -&gt; 2)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-705-3d244fce99b65e012c4409d8a22bb9168c41f101 -&gt; xe-pw-128946v5</li>
-</ul>
-<p>IGT_7699: 7699<br />
-  xe-705-3d244fce99b65e012c4409d8a22bb9168c41f101: 3d244fce99b65e012c4409d8a22bb9168c41f101<br />
-  xe-pw-128946v5: 128946v5</p>
-
-</body>
-</html>
-
---===============3675659022274071337==--
