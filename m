@@ -4,64 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D623C47DDF
-	for <intel-xe@archiver.kernel.org>; Wed, 31 Jan 2024 09:11:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9AFDC47258
+	for <intel-xe@archiver.kernel.org>; Wed, 31 Jan 2024 09:16:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39D4D10EDD5;
-	Wed, 31 Jan 2024 09:11:56 +0000 (UTC)
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com
- [209.85.208.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A33310E34A
- for <intel-xe@lists.freedesktop.org>; Wed, 31 Jan 2024 09:11:54 +0000 (UTC)
-Received: by mail-lj1-f175.google.com with SMTP id
- 38308e7fff4ca-2d0600551e8so16400741fa.0
- for <intel-xe@lists.freedesktop.org>; Wed, 31 Jan 2024 01:11:54 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8951A113ACE;
+	Wed, 31 Jan 2024 09:16:07 +0000 (UTC)
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com
+ [209.85.218.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A1BB113ACF
+ for <intel-xe@lists.freedesktop.org>; Wed, 31 Jan 2024 09:16:06 +0000 (UTC)
+Received: by mail-ej1-f43.google.com with SMTP id
+ a640c23a62f3a-a28cfca3c45so121913766b.1
+ for <intel-xe@lists.freedesktop.org>; Wed, 31 Jan 2024 01:16:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1706692253; x=1707297053; darn=lists.freedesktop.org;
+ d=ffwll.ch; s=google; t=1706692504; x=1707297304; darn=lists.freedesktop.org; 
  h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:message-id:subject:cc:to:from:date:from:to:cc:subject
- :date:message-id:reply-to;
- bh=cgExCvRH14FXNOEX2q+ieKqRx3LRFYlOhTkoQIbaOMI=;
- b=xnObgAOs0BPARPlfnINBsTDZZbQ3x24pyK43zL8DNN/Qvp8VdAu4JDyRuoJIBsQrWo
- +tuK58MGLlIaHFb9LfzlHk4VTmeCK4QL4M8ek5gGXKl6fh4kqZf64vkyPhuV05YJyd3g
- GCl1t+4w7rDKSAkyBCIFMgvl1UBkDgujPjTNg4tENbu4mtc3SD5jkQT+bq18h6jcd2pz
- lZkL7ZEzJahs2BKU42rdWJYv90iIaxHel1TN0tuS83zR7bj8i8AyJGq3mGw1PI85Hms5
- tBDqzHjimjbqVg0KGN4WMBYObUvKv3WFk2/X9bMnYODmUJemZORp6YZyNEr0338buQCy
- q/Yg==
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=6mJ/VC9yB8SBaqaP6I7gLNaUO/QsMoAzNYJiR3/6bAw=;
+ b=aIb60uQjip4QB7hgFY/U5T1DhEkjIP7F0w/wjGqAyk/xp0Fkf7P/N6ani0a4+ygOOL
+ lnKpz9WMA9kYMm1Jq95WolopGUKwJmjjZsEj5As9apI6MTFE5lJPea2GdppeAOecDTAN
+ KfcdV4byCEy58HVchX/f+wcLlao0FB8R3s4Es=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1706692253; x=1707297053;
+ d=1e100.net; s=20230601; t=1706692504; x=1707297304;
  h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:message-id:subject:cc:to:from:date:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=cgExCvRH14FXNOEX2q+ieKqRx3LRFYlOhTkoQIbaOMI=;
- b=B9sAcklzPVG0ytWBIeu+Hm6XaEr2rZxG6KOgwDJ6dpv566UWBdK6PgT23e77CYH+m8
- VW4SlgBNTCfNWfKJe0MbKx5r+HxkrLoPr3mM0jaCLByuYXOVDYS3yayUpXXvwhyuNMpk
- fxO0rw3buBBHDRTvij4CTGBC1LFIMhQiRRcAIjLTTm8rXgVmFU24qU/VQUITZTd4HbOA
- axZGOXW+wBenJyMdFpBjL2SzWiWtbK+5gEhX8h+FC4HYoWKD/roMkN163ekk1siMSN3L
- zIc19btFQUtoxDFpJ924bhRcS+Vhz5iESMPNsl2l0EwbriOEsnccl+QTtKngRH4qs5NW
- QrrA==
-X-Gm-Message-State: AOJu0YwQBlEYYxifftkbmzoYgTTpwNC6rj54Acll/fVJeYMHoWCptQnW
- E+e9zM9dww1kJZVwW2+RGsWIylgZI7jX/OAYPut3VHz9+1TN3XjC/NuA1IOfgn4=
-X-Google-Smtp-Source: AGHT+IEKxu+DvVmX2V+Ho9agy9CO6Vfuk9+x4uHjd6xbnu8GyTrj4nTMdMO7EM1EZ0B6gV7SKSOWQg==
-X-Received: by 2002:a05:651c:b1e:b0:2d0:6c48:95af with SMTP id
- b30-20020a05651c0b1e00b002d06c4895afmr401928ljr.50.1706692252705; 
- Wed, 31 Jan 2024 01:10:52 -0800 (PST)
-Received: from localhost ([102.140.226.10]) by smtp.gmail.com with ESMTPSA id
- s9-20020a05600c45c900b0040ef718cf81sm978022wmo.28.2024.01.31.01.10.51
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=6mJ/VC9yB8SBaqaP6I7gLNaUO/QsMoAzNYJiR3/6bAw=;
+ b=A3WO9DGbrC4Yd5zsjTRWd2GdyG13YZ0JqaUZ2OeS0Xn33NQ9sLZEcY9h2bG+lo0L4A
+ WIBeLJXUWJzDJr/WczleWFlOka3zeTU6SjSLPZI02Rh9VV3RdSa4g8QV0AjvfWMjqbe7
+ awQSPcRHxPq1exyvQ/Z8lAdbUYIAGpWj0NENdxdG725jJc4cCwq/kWQc9bDk49E04Lia
+ FXKfT2xD8uBqkguqa3BmUSs2f7YdQlJ8lO/RddfoMDxh0Eh0JuK1hFKHEJLiTRCuG/On
+ FtyvYzaz7sbFeOPXlmaLC5UfFqlnd42zYq07mZ72to/yIWn6C7sCbVYVGYWNULRLiRBZ
+ EZBA==
+X-Forwarded-Encrypted: i=0;
+ AJvYcCXQh3OVicmQh7hFuFWMgb6YejPMQOa+roZ6fcLeT7d2YpKmB5faMCGrzBC3RDMKKqf6EWjQo4NEUZPQvpN1ko+unPy2LJzluXlpOlxFVkc=
+X-Gm-Message-State: AOJu0Ywuh+wihAGmf5ROaCH9WXqmWRkbe8bT5jloUS5382BHdMYooBTf
+ MXISsL7hpighM+PZnbi/LjioZB/QidGhOC7sPEIGsQhOnDbVegLZcKVOu4jpZR8=
+X-Google-Smtp-Source: AGHT+IEpGYUbEZmfc8oKpOHviV0+VBBnFeRII3w1qPcAaRRwXKG9iHVOTwh6mCfk9k8HhwirjVOT7Q==
+X-Received: by 2002:a17:906:1853:b0:a2f:ded9:dc76 with SMTP id
+ w19-20020a170906185300b00a2fded9dc76mr587121eje.7.1706692504462; 
+ Wed, 31 Jan 2024 01:15:04 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id
+ g14-20020a170906394e00b00a2ccddf9a7dsm5960859eje.124.2024.01.31.01.15.03
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 31 Jan 2024 01:10:52 -0800 (PST)
-Date: Wed, 31 Jan 2024 12:10:48 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev,
- Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 3/5] drm/xe: store bind time pat index to xe_bo
-Message-ID: <7ae75ca8-cc58-4baa-abf3-0caaa4513f34@moroto.mountain>
+ Wed, 31 Jan 2024 01:15:03 -0800 (PST)
+Date: Wed, 31 Jan 2024 10:15:01 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: David Airlie <airlied@redhat.com>
+Subject: Re: Making drm_gpuvm work across gpu devices
+Message-ID: <ZboPlUgU6A-9rMvP@phenom.ffwll.local>
+References: <ccf34f6a-d704-43de-a15e-2ae2890f9381@amd.com>
+ <ZbKpWpOGuNKLJ6sA@phenom.ffwll.local>
+ <7834e2fbe8052717a4e0fa44feafa544b1fedaa0.camel@linux.intel.com>
+ <851e3ddb-6c74-4ec5-8d05-df12b34eb2b4@amd.com>
+ <SA1PR11MB69919C19A16C007A6B01FC9E92782@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <5aca8bdc-1243-40e6-90dc-ece80a093a5b@amd.com>
+ <SA1PR11MB6991DF41C958CA46DD715E9F927D2@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <801c3357-d49b-4505-a1a4-ef2f36ba63e0@amd.com>
+ <SA1PR11MB6991E4CF9949916C6290C232927D2@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <CAMwc25pzC4PTFwXLo4304vcbFVvxjDPi7Pd1ASBVQ1t8QqizdQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240126210807.320671-4-juhapekka.heikkila@gmail.com>
+In-Reply-To: <CAMwc25pzC4PTFwXLo4304vcbFVvxjDPi7Pd1ASBVQ1t8QqizdQ@mail.gmail.com>
+X-Operating-System: Linux phenom 6.6.11-amd64 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,123 +82,49 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev
+Cc: "rcampbell@nvidia.com" <rcampbell@nvidia.com>,
+ "apopple@nvidia.com" <apopple@nvidia.com>,
+ Felix Kuehling <felix.kuehling@amd.com>, "Shah,
+ Ankur N" <ankur.n.shah@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "jglisse@redhat.com" <jglisse@redhat.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Danilo Krummrich <dakr@redhat.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Juha-Pekka,
+On Wed, Jan 31, 2024 at 09:12:39AM +1000, David Airlie wrote:
+> On Wed, Jan 31, 2024 at 8:29â€¯AM Zeng, Oak <oak.zeng@intel.com> wrote:
+> >
+> > Hi Christian,
+> >
+> >
+> >
+> > Nvidia Nouveau driver uses exactly the same concept of SVM with HMM, GPU address in the same process is exactly the same with CPU virtual address. It is already in upstream Linux kernel. We Intel just follow the same direction for our customers. Why we are not allowed?
+> 
+> 
+> Oak, this isn't how upstream works, you don't get to appeal to
+> customer or internal design. nouveau isn't "NVIDIA"'s and it certainly
+> isn't something NVIDIA would ever suggest for their customers. We also
+> likely wouldn't just accept NVIDIA's current solution upstream without
+> some serious discussions. The implementation in nouveau was more of a
+> sample HMM use case rather than a serious implementation. I suspect if
+> we do get down the road of making nouveau an actual compute driver for
+> SVM etc then it would have to severely change.
 
-kernel test robot noticed the following build warnings:
+Yeah on the nouveau hmm code specifically my gut feeling impression is
+that we didn't really make friends with that among core kernel
+maintainers. It's a bit too much just a tech demo to be able to merge the
+hmm core apis for nvidia's out-of-tree driver.
 
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Also, a few years of learning and experience gaining happened meanwhile -
+you always have to look at an api design in the context of when it was
+designed, and that context changes all the time.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Juha-Pekka-Heikkila/drm-xe-pat-annotate-pat-index-table-with-compression-information/20240127-091231
-base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-patch link:    https://lore.kernel.org/r/20240126210807.320671-4-juhapekka.heikkila%40gmail.com
-patch subject: [PATCH 3/5] drm/xe: store bind time pat index to xe_bo
-config: sparc-randconfig-r081-20240128 (https://download.01.org/0day-ci/archive/20240131/202401311604.1pLlAxeK-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 13.2.0
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202401311604.1pLlAxeK-lkp@intel.com/
-
-New smatch warnings:
-drivers/gpu/drm/xe/xe_pt.c:1265 __xe_pt_bind_vma() warn: possible memory leak of 'ifence'
-drivers/gpu/drm/xe/xe_pt.c:1265 __xe_pt_bind_vma() warn: possible memory leak of 'rfence'
-
-vim +/ifence +1265 drivers/gpu/drm/xe/xe_pt.c
-
-dd08ebf6c3525a Matthew Brost       2023-03-30  1192  struct dma_fence *
-9b9529ce379a08 Francois Dugast     2023-07-31  1193  __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue *q,
-dd08ebf6c3525a Matthew Brost       2023-03-30  1194  		 struct xe_sync_entry *syncs, u32 num_syncs,
-dd08ebf6c3525a Matthew Brost       2023-03-30  1195  		 bool rebind)
-dd08ebf6c3525a Matthew Brost       2023-03-30  1196  {
-dd08ebf6c3525a Matthew Brost       2023-03-30  1197  	struct xe_vm_pgtable_update entries[XE_VM_MAX_LEVEL * 2 + 1];
-dd08ebf6c3525a Matthew Brost       2023-03-30  1198  	struct xe_pt_migrate_pt_update bind_pt_update = {
-dd08ebf6c3525a Matthew Brost       2023-03-30  1199  		.base = {
-dd08ebf6c3525a Matthew Brost       2023-03-30  1200  			.ops = xe_vma_is_userptr(vma) ? &userptr_bind_ops : &bind_ops,
-dd08ebf6c3525a Matthew Brost       2023-03-30  1201  			.vma = vma,
-fd84041d094ce8 Matthew Brost       2023-07-19  1202  			.tile_id = tile->id,
-dd08ebf6c3525a Matthew Brost       2023-03-30  1203  		},
-dd08ebf6c3525a Matthew Brost       2023-03-30  1204  		.bind = true,
-dd08ebf6c3525a Matthew Brost       2023-03-30  1205  	};
-21ed3327e388c2 Matthew Brost       2023-06-22  1206  	struct xe_vm *vm = xe_vma_vm(vma);
-dd08ebf6c3525a Matthew Brost       2023-03-30  1207  	u32 num_entries;
-dd08ebf6c3525a Matthew Brost       2023-03-30  1208  	struct dma_fence *fence;
-5387e865d90e92 Matthew Brost       2023-01-27  1209  	struct invalidation_fence *ifence = NULL;
-fd84041d094ce8 Matthew Brost       2023-07-19  1210  	struct xe_range_fence *rfence;
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1211  	struct xe_bo *bo = xe_vma_bo(vma);
-dd08ebf6c3525a Matthew Brost       2023-03-30  1212  	int err;
-dd08ebf6c3525a Matthew Brost       2023-03-30  1213  
-dd08ebf6c3525a Matthew Brost       2023-03-30  1214  	bind_pt_update.locked = false;
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1215  	xe_bo_assert_held(bo);
-dd08ebf6c3525a Matthew Brost       2023-03-30  1216  	xe_vm_assert_held(vm);
-dd08ebf6c3525a Matthew Brost       2023-03-30  1217  
-21ed3327e388c2 Matthew Brost       2023-06-22  1218  	vm_dbg(&xe_vma_vm(vma)->xe->drm,
-dd08ebf6c3525a Matthew Brost       2023-03-30  1219  	       "Preparing bind, with range [%llx...%llx) engine %p.\n",
-0e1a234618a86c Paulo Zanoni        2023-09-29  1220  	       xe_vma_start(vma), xe_vma_end(vma), q);
-dd08ebf6c3525a Matthew Brost       2023-03-30  1221  
-876611c2b75689 Matt Roper          2023-06-01  1222  	err = xe_pt_prepare_bind(tile, vma, entries, &num_entries, rebind);
-dd08ebf6c3525a Matthew Brost       2023-03-30  1223  	if (err)
-dd08ebf6c3525a Matthew Brost       2023-03-30  1224  		goto err;
-c73acc1eeba5e3 Francois Dugast     2023-09-12  1225  	xe_tile_assert(tile, num_entries <= ARRAY_SIZE(entries));
-dd08ebf6c3525a Matthew Brost       2023-03-30  1226  
-876611c2b75689 Matt Roper          2023-06-01  1227  	xe_vm_dbg_print_entries(tile_to_xe(tile), entries, num_entries);
-fd84041d094ce8 Matthew Brost       2023-07-19  1228  	xe_pt_calc_rfence_interval(vma, &bind_pt_update, entries,
-fd84041d094ce8 Matthew Brost       2023-07-19  1229  				   num_entries);
-dd08ebf6c3525a Matthew Brost       2023-03-30  1230  
-85dbfe47d07cdd Thomas Hellström    2023-06-05  1231  	/*
-85dbfe47d07cdd Thomas Hellström    2023-06-05  1232  	 * If rebind, we have to invalidate TLB on !LR vms to invalidate
-85dbfe47d07cdd Thomas Hellström    2023-06-05  1233  	 * cached PTEs point to freed memory. on LR vms this is done
-85dbfe47d07cdd Thomas Hellström    2023-06-05  1234  	 * automatically when the context is re-enabled by the rebind worker,
-85dbfe47d07cdd Thomas Hellström    2023-06-05  1235  	 * or in fault mode it was invalidated on PTE zapping.
-85dbfe47d07cdd Thomas Hellström    2023-06-05  1236  	 *
-85dbfe47d07cdd Thomas Hellström    2023-06-05  1237  	 * If !rebind, and scratch enabled VMs, there is a chance the scratch
-85dbfe47d07cdd Thomas Hellström    2023-06-05  1238  	 * PTE is already cached in the TLB so it needs to be invalidated.
-85dbfe47d07cdd Thomas Hellström    2023-06-05  1239  	 * on !LR VMs this is done in the ring ops preceding a batch, but on
-85dbfe47d07cdd Thomas Hellström    2023-06-05  1240  	 * non-faulting LR, in particular on user-space batch buffer chaining,
-85dbfe47d07cdd Thomas Hellström    2023-06-05  1241  	 * it needs to be done here.
-85dbfe47d07cdd Thomas Hellström    2023-06-05  1242  	 */
-fdb6a05383fab3 Thomas Hellström    2023-11-27  1243  	if ((rebind && !xe_vm_in_lr_mode(vm) && !vm->batch_invalidate_tlb) ||
-06951c2ee72df2 Thomas Hellström    2023-12-09  1244  	    (!rebind && xe_vm_has_scratch(vm) && xe_vm_in_preempt_fence_mode(vm))) {
-5387e865d90e92 Matthew Brost       2023-01-27  1245  		ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
-5387e865d90e92 Matthew Brost       2023-01-27  1246  		if (!ifence)
-5387e865d90e92 Matthew Brost       2023-01-27  1247  			return ERR_PTR(-ENOMEM);
-5387e865d90e92 Matthew Brost       2023-01-27  1248  	}
-5387e865d90e92 Matthew Brost       2023-01-27  1249  
-fd84041d094ce8 Matthew Brost       2023-07-19  1250  	rfence = kzalloc(sizeof(*rfence), GFP_KERNEL);
-fd84041d094ce8 Matthew Brost       2023-07-19  1251  	if (!rfence) {
-fd84041d094ce8 Matthew Brost       2023-07-19  1252  		kfree(ifence);
-fd84041d094ce8 Matthew Brost       2023-07-19  1253  		return ERR_PTR(-ENOMEM);
-fd84041d094ce8 Matthew Brost       2023-07-19  1254  	}
-fd84041d094ce8 Matthew Brost       2023-07-19  1255  
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1256  	/*
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1257  	 * BO which has XE_BO_SCANOUT_BIT set and was pinned as framebuffer
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1258  	 * before with different PAT index cannot be bound with different PAT
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1259  	 * index. This is to prevent switching CCS on/off from framebuffers
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1260  	 * on the fly.
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1261  	 */
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26 @1262  	if (bo) {
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1263  		if (bo->flags & XE_BO_SCANOUT_BIT && bo->pat_index_scanout &&
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1264  		    bo->pat_index_scanout != vma->pat_index)
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26 @1265  			return ERR_PTR(-EINVAL);
-
-Smatch wants a kfree(ifence) and kfree(rfence) before the return.
-
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1266  
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1267  		bo->pat_index = vma->pat_index;
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1268  	}
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1269  
-08dea7674533cf Matt Roper          2023-06-01  1270  	fence = xe_migrate_update_pgtables(tile->migrate,
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1271  					   vm, bo, q,
-dd08ebf6c3525a Matthew Brost       2023-03-30  1272  					   entries, num_entries,
-dd08ebf6c3525a Matthew Brost       2023-03-30  1273  					   syncs, num_syncs,
-dd08ebf6c3525a Matthew Brost       2023-03-30  1274  					   &bind_pt_update.base);
-
+Cheers, Sima
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
-
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
