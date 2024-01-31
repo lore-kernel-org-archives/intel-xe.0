@@ -4,47 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9246FC4828F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 888FDC48285
 	for <intel-xe@archiver.kernel.org>; Wed, 31 Jan 2024 18:12:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47A2910FBDF;
-	Wed, 31 Jan 2024 18:12:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7642510FAEC;
+	Wed, 31 Jan 2024 18:12:22 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EEFD10FBD9;
- Wed, 31 Jan 2024 18:12:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 134D410F5EE;
+ Wed, 31 Jan 2024 18:12:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706724746; x=1738260746;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=DiqUE8xI4znDRXjYhB5LTEGynr5ye7YiVqeGGvfUW1Q=;
- b=fkIkYqDVgwGQvMTR4H1pmMkVmzKQnO4UecZmef0CZDiW5SBy8g8p8hu4
- Jzcki2KEpnc2NkZGM5sMqscKZeZJdJCjDHxsvjCi2l7l6MVgFS8rvIN5J
- Xs39ePnZDCqpXrYlxAYKqJZ1uwVmnNhfjkAU2/xavyaD+VydP4cgQBpv4
- aGa3G6c0QjBcF8MD5IYxBdeBJ5bCLfCz42iVIbI6A/phuju8oDBQnQ/+e
- O4w6BmLpt3Uq/+WJLiLZaEQn9sBulegwMmR97sE6wxTCPZkCAzNw9okK2
- Mh1yPVSXHmnwuva/5Mae6cWuKD4my9mFdXDXXdDO/r/em/okV4CUTpyVo Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="17067200"
-X-IronPort-AV: E=Sophos;i="6.05,231,1701158400"; d="scan'208";a="17067200"
+ t=1706724742; x=1738260742;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=qJrqIQ1suxBKctsI+S6dsFEyilVKQPEEUX9fOBEv/JE=;
+ b=AdGivXiJuNblxSrbQUAHexQUPUNa874VUSeeUwJ4eIbaZ0qfRNLX8miM
+ igk9l16Tqg9oh+yK6TkVYs1RmQW/xZSK8HRIVX1wsAhT/BwvHkSYoHZ9I
+ zq2VHhedKlogvDyo+FZoOvyHdmYzG9QYY6ZXQUT12FS7ugJ5eBdnuEfr1
+ LRpAmwdUyuVGoM2ZPkFreGhbEndCeP3cggGI6Ps5YwN3QChmyfXmfvO/H
+ oFcfMN7PKgOylhlUPGumH/qFTz6wMlmpTzV3aem014ER1fBSx/P2GNqRU
+ I62ruyPQM8mUgO4X93W00jkurNZaEMw//1Rx0M/LB+kRqf+4i5X4VyBeH A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="17067184"
+X-IronPort-AV: E=Sophos;i="6.05,231,1701158400"; d="scan'208";a="17067184"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2024 10:12:26 -0800
+ 31 Jan 2024 10:12:21 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="931930516"
-X-IronPort-AV: E=Sophos;i="6.05,231,1701158400"; d="scan'208";a="931930516"
+X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="931930475"
+X-IronPort-AV: E=Sophos;i="6.05,231,1701158400"; d="scan'208";a="931930475"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
  jkrzyszt-mobl2.intranet) ([10.213.2.5])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2024 10:12:22 -0800
+ 31 Jan 2024 10:12:17 -0800
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
-Subject: [PATCH i-g-t v2 2/6] lib/kmode: Prepare open_parameters() helper for
- reuse by kunit
-Date: Wed, 31 Jan 2024 19:03:49 +0100
-Message-ID: <20240131181156.80571-10-janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t v2 0/6] lib/kunit: Support writable filter* parameters
+ of kunit module
+Date: Wed, 31 Jan 2024 19:03:47 +0100
+Message-ID: <20240131181156.80571-8-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240131181156.80571-8-janusz.krzysztofik@linux.intel.com>
-References: <20240131181156.80571-8-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,49 +62,43 @@ Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move the open_parameters() helper code up in the source file, above the
-kunit related functions, so it is available to follow-up changes of the
-kunit code.
+Instead of wasting resources on reloading the base Kunit module each time
+a different set of filter parameters is needed, try to write the required
+values to sysfs representation of those parameters.  If that fails (e.g.
+on older LTS kernels with read-only filter parameters), fall back to
+reloading the module.
 
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
----
- lib/igt_kmod.c | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+This change also provides a workaround for the issue of impossibility to
+unload the base Kunit module on Xe platforms, available as soon as the
+module supports writable filter parameters.
 
-diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
-index ad69173151..d1091bdc79 100644
---- a/lib/igt_kmod.c
-+++ b/lib/igt_kmod.c
-@@ -803,6 +803,14 @@ void igt_kselftest_get_tests(struct kmod_module *kmod,
- 	kmod_module_info_free_list(pre);
- }
- 
-+static int open_parameters(const char *module_name)
-+{
-+	char path[256];
-+
-+	snprintf(path, sizeof(path), "/sys/module/%s/parameters", module_name);
-+	return open(path, O_RDONLY);
-+}
-+
- struct modprobe_data {
- 	struct kmod_module *kmod;
- 	const char *opts;
-@@ -1402,14 +1410,6 @@ void igt_kunit(const char *module_name, const char *name, const char *opts)
- 	igt_ktest_fini(&tst);
- }
- 
--static int open_parameters(const char *module_name)
--{
--	char path[256];
--
--	snprintf(path, sizeof(path), "/sys/module/%s/parameters", module_name);
--	return open(path, O_RDONLY);
--}
--
- int igt_ktest_init(struct igt_ktest *tst,
- 		   const char *module_name)
- {
+While being at it, fine tune processing of skips on errors during test
+case list collection phase.
+
+v2: Work around ineffective writes of empty strings to sysfs module
+    parameter files (Lucas) by using human readable non-empty strings that
+    give the same results as default NULLs,
+  - drop fallback to reload of base Kunit module method if assigning new
+    values to module parameters via sysfs fails (Lucas), instead use the
+    existing fallback to blind execution like if getting a list of test
+    cases was not supported at all,
+  - split move of open_parameters() helper up in the source file as well
+    as cleanup of base KUnit module unloading to separate patches (Kamil),
+  - skip on empty list of test cases (new patch),
+  - address the issue of commit description suggesting two separate
+    changes combined in one patch (Kamil).
+
+Janusz Krzysztofik (6):
+  lib/kunit: Skip on empty list of test cases
+  lib/kmode: Prepare open_parameters() helper for reuse by kunit
+  lib/kunit: Unload base KUnit module only before reloading it
+  lib/kunit: Support writable filter* parameters of kunit module
+  lib/kunit: Report early kernel taints explicitly
+  lib/kunit: Process module remove error after list errors
+
+ lib/igt_kmod.c | 138 +++++++++++++++++++++++++++++++++++--------------
+ 1 file changed, 98 insertions(+), 40 deletions(-)
+
 -- 
 2.43.0
 
