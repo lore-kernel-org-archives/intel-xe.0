@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99143C47258
-	for <intel-xe@archiver.kernel.org>; Wed, 31 Jan 2024 06:01:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B87F8C48285
+	for <intel-xe@archiver.kernel.org>; Wed, 31 Jan 2024 06:01:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4092C10E96B;
-	Wed, 31 Jan 2024 06:01:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E46A11395B;
+	Wed, 31 Jan 2024 06:01:48 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3C5010E96B;
- Wed, 31 Jan 2024 06:01:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AAB6C11395B;
+ Wed, 31 Jan 2024 06:01:46 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/sched=3A_Add_Mat?=
- =?utf-8?q?thew_Brost_to_maintainers?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/sched=3A_Add_Matthew_?=
+ =?utf-8?q?Brost_to_maintainers?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Wed, 31 Jan 2024 06:01:32 -0000
-Message-ID: <170668089200.860541.1618327273073239526@5338d5abeb45>
+Date: Wed, 31 Jan 2024 06:01:46 -0000
+Message-ID: <170668090670.860255.15632684849423038872@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240131030302.2088173-1-matthew.brost@intel.com>
 In-Reply-To: <20240131030302.2088173-1-matthew.brost@intel.com>
@@ -48,9 +48,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 3d244fce9 drm-tip: 2024y-01m-30d-19h-55m-23s UTC integration manifest
-=== git am output follows ===
-Applying: drm/sched: Add Matthew Brost to maintainers
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+35591fb8b4d5305b37ce31483f85ac0956eaa536
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1d56201cf6723387c9ccf1012972d4ee05bcd238
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Tue Jan 30 19:03:02 2024 -0800
+
+    drm/sched: Add Matthew Brost to maintainers
+    
+    Add Matthew Brost to DRM scheduler maintainers.
+    
+    Cc: Luben Tuikov <ltuikov89@gmail.com>
+    Cc: Daniel Vetter <daniel@ffwll.ch>
+    Cc: Dave Airlie <airlied@redhat.com>
+    Cc: Christian König <christian.koenig@amd.com>
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 3d244fce99b65e012c4409d8a22bb9168c41f101 drm-intel
+1d56201cf drm/sched: Add Matthew Brost to maintainers
 
 
