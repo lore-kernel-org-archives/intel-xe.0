@@ -4,26 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A38EAC47DDF
-	for <intel-xe@archiver.kernel.org>; Wed, 31 Jan 2024 11:31:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8051C47DDF
+	for <intel-xe@archiver.kernel.org>; Wed, 31 Jan 2024 11:40:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65921113706;
-	Wed, 31 Jan 2024 11:31:51 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1E1C113B59;
- Wed, 31 Jan 2024 11:31:50 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA2A9112D7B;
+	Wed, 31 Jan 2024 11:40:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F41610F98A;
+ Wed, 31 Jan 2024 11:40:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706701234; x=1738237234;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=v9iH/WFYjvV38+OO+RYqWNMJnKj2OjN+TzHDQbFMi1M=;
+ b=GAgIhZdMyOeFta8cvq7IcjCpl0j329JWlD2qtmm/YWcHV0sBu2HlgEyX
+ NS29fgovl6+dRAhyOQMmkAz4QzjwS3n23PU2z/12qV1SEZddAyAkUXj6X
+ AOXgvz7+qCaiICkFBZ557oWBTD03bSXBGEzEhY9H6gWRL/9nVYOOIvym+
+ ZF8R/MScpHqPim2RCgxZh3rYy7DK2/XtofdD95YeqhIF0CcGEx7lFG8Od
+ rrzYkZVgbqXSJoES+V7hg3RIiIYqJaGplyTfX85LFhXdICLK5BA1qXD24
+ ij11xiifbQWu0LdJVn3/EH6KyAMLyRVW5h91QcWgj9H5uWMrW7eZwHIEE A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="402426038"
+X-IronPort-AV: E=Sophos;i="6.05,231,1701158400"; d="scan'208";a="402426038"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2024 03:40:33 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="822543147"
+X-IronPort-AV: E=Sophos;i="6.05,231,1701158400"; d="scan'208";a="822543147"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 31 Jan 2024 03:40:31 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 31 Jan 2024 13:40:30 +0200
+Date: Wed, 31 Jan 2024 13:40:30 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Subject: Re: [PATCH 3/4] drm/xe/xe2: Limit ccs framebuffers to tile4 only
+Message-ID: <ZboxrobbUOShNriY@intel.com>
+References: <20240130193652.374270-1-juhapekka.heikkila@gmail.com>
+ <20240130193652.374270-4-juhapekka.heikkila@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?b?4pyXIENJLlBhdGNoX2FwcGxpZWQ6IGZhaWx1cmUgZm9yIDEvM10gZHJtOiBBZGQg?=
- =?utf-8?b?ZHJtX3ZibGFua193b3JrX2ZsdXNoX2FsbCgpLiAocmV2Myk=?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Wed, 31 Jan 2024 11:31:50 -0000
-Message-ID: <170670071066.860255.13978796687589934095@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240131110754.612818-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20240131110754.612818-1-maarten.lankhorst@linux.intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240130193652.374270-4-juhapekka.heikkila@gmail.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,31 +60,85 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Jan 30, 2024 at 09:36:51PM +0200, Juha-Pekka Heikkila wrote:
+> Display engine support ccs only with tile4, prevent other modifiers
+> from using compressed memory.
+> 
+> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+> ---
+>  drivers/gpu/drm/xe/display/xe_fb_pin.c | 23 +++++++++++++++++++++++
+>  1 file changed, 23 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> index 722c84a56607..fab0871f0cdf 100644
+> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> @@ -10,9 +10,18 @@
+>  #include "intel_fb_pin.h"
+>  #include "xe_ggtt.h"
+>  #include "xe_gt.h"
+> +#include "xe_pat.h"
+>  
+>  #include <drm/ttm/ttm_bo.h>
+>  
+> +static bool is_compressed(const struct drm_framebuffer *fb)
+> +{
+> +	struct xe_bo *bo = intel_fb_obj(fb);
+> +	struct xe_device *xe = to_xe_device(to_intel_framebuffer(fb)->base.dev);
+> +
+> +	return xe_pat_index_has_compression(xe, bo->pat_index);
+> +}
+> +
+>  static void
+>  write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_ofs,
+>  		  u32 width, u32 height, u32 src_stride, u32 dst_stride)
+> @@ -283,6 +292,17 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
+>  	if (ret)
+>  		goto err;
+>  
+> +	if (GRAPHICS_VER(xe) >= 20) {
+> +		if (fb->base.modifier != I915_FORMAT_MOD_4_TILED &&
+> +		    is_compressed(&fb->base)) {
+> +			drm_warn(&xe->drm, "Cannot create ccs framebuffer with other than tile4 mofifier\n");
+> +			ttm_bo_unreserve(&bo->ttm);
+> +			ret = -EINVAL;
+> +			goto err;
+> +		}
+> +		bo->has_sealed_pat_index = true;
 
-Series: 1/3] drm: Add drm_vblank_work_flush_all(). (rev3)
-URL   : https://patchwork.freedesktop.org/series/129363/
-State : failure
+That needs to happen when the FB is created, otherwise 
+someone can come in afterwards and still frob the PAT
+and then you're left with a FB that can not be used.
 
-== Summary ==
+> +	}
+> +
+>  	if (IS_DGFX(xe))
+>  		ret = xe_bo_migrate(bo, XE_PL_VRAM0);
+>  	else
+> @@ -308,6 +328,7 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
+>  	ttm_bo_unpin(&bo->ttm);
+>  	ttm_bo_unreserve(&bo->ttm);
+>  err:
+> +	bo->has_sealed_pat_index = false;
+>  	kfree(vma);
+>  	return ERR_PTR(ret);
+>  }
+> @@ -323,6 +344,8 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma)
+>  		 vma->bo->ggtt_node.start != vma->node.start)
+>  		xe_ggtt_remove_node(ggtt, &vma->node);
+>  
+> +	vma->bo->has_sealed_pat_index = false;
+> +
+>  	ttm_bo_reserve(&vma->bo->ttm, false, false, NULL);
+>  	ttm_bo_unpin(&vma->bo->ttm);
+>  	ttm_bo_unreserve(&vma->bo->ttm);
+> -- 
+> 2.25.1
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 3d244fce9 drm-tip: 2024y-01m-30d-19h-55m-23s UTC integration manifest
-=== git am output follows ===
-error: patch failed: drivers/gpu/drm/i915/display/intel_crtc.c:566
-error: drivers/gpu/drm/i915/display/intel_crtc.c: patch does not apply
-error: patch failed: drivers/gpu/drm/i915/display/intel_cursor.c:635
-error: drivers/gpu/drm/i915/display/intel_cursor.c: patch does not apply
-hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: 3/3] drm/i915: Use the same vblank worker for atomic unpin
-Patch failed at 0001 3/3] drm/i915: Use the same vblank worker for atomic unpin
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-
-
+-- 
+Ville Syrjälä
+Intel
