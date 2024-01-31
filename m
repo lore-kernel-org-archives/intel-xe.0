@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51AF2C47258
-	for <intel-xe@archiver.kernel.org>; Wed, 31 Jan 2024 11:11:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A38EAC47DDF
+	for <intel-xe@archiver.kernel.org>; Wed, 31 Jan 2024 11:31:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EB8110E4A2;
-	Wed, 31 Jan 2024 11:11:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65921113706;
+	Wed, 31 Jan 2024 11:31:51 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4FDA10E4A2;
- Wed, 31 Jan 2024 11:11:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1E1C113B59;
+ Wed, 31 Jan 2024 11:31:50 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 Subject: =?utf-8?b?4pyXIENJLlBhdGNoX2FwcGxpZWQ6IGZhaWx1cmUgZm9yIDEvM10gZHJtOiBBZGQg?=
- =?utf-8?b?ZHJtX3ZibGFua193b3JrX2ZsdXNoX2FsbCgpLiAocmV2Mik=?=
+ =?utf-8?b?ZHJtX3ZibGFua193b3JrX2ZsdXNoX2FsbCgpLiAocmV2Myk=?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Wed, 31 Jan 2024 11:11:27 -0000
-Message-ID: <170669948774.860255.16895348257973950306@5338d5abeb45>
+Date: Wed, 31 Jan 2024 11:31:50 -0000
+Message-ID: <170670071066.860255.13978796687589934095@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240131110754.612818-1-maarten.lankhorst@linux.intel.com>
 In-Reply-To: <20240131110754.612818-1-maarten.lankhorst@linux.intel.com>
@@ -42,7 +42,7 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: 1/3] drm: Add drm_vblank_work_flush_all(). (rev2)
+Series: 1/3] drm: Add drm_vblank_work_flush_all(). (rev3)
 URL   : https://patchwork.freedesktop.org/series/129363/
 State : failure
 
@@ -51,11 +51,13 @@ State : failure
 === Applying kernel patches on branch 'drm-tip' with base: ===
 Base commit: 3d244fce9 drm-tip: 2024y-01m-30d-19h-55m-23s UTC integration manifest
 === git am output follows ===
-error: patch failed: drivers/gpu/drm/i915/display/intel_cursor.c:762
+error: patch failed: drivers/gpu/drm/i915/display/intel_crtc.c:566
+error: drivers/gpu/drm/i915/display/intel_crtc.c: patch does not apply
+error: patch failed: drivers/gpu/drm/i915/display/intel_cursor.c:635
 error: drivers/gpu/drm/i915/display/intel_cursor.c: patch does not apply
 hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: 2/3] drm/i915: Use vblank worker to unpin old legacy cursor fb safely
-Patch failed at 0001 2/3] drm/i915: Use vblank worker to unpin old legacy cursor fb safely
+Applying: 3/3] drm/i915: Use the same vblank worker for atomic unpin
+Patch failed at 0001 3/3] drm/i915: Use the same vblank worker for atomic unpin
 When you have resolved this problem, run "git am --continue".
 If you prefer to skip this patch, run "git am --skip" instead.
 To restore the original branch and stop patching, run "git am --abort".
