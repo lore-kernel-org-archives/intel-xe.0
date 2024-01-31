@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9D12C47258
-	for <intel-xe@archiver.kernel.org>; Wed, 31 Jan 2024 09:29:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EEF7C47258
+	for <intel-xe@archiver.kernel.org>; Wed, 31 Jan 2024 10:13:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFF75113AC5;
-	Wed, 31 Jan 2024 09:29:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB1CB113ADC;
+	Wed, 31 Jan 2024 10:13:43 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA2EC113AC5;
- Wed, 31 Jan 2024 09:29:23 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28B6010FCEC;
+ Wed, 31 Jan 2024 10:13:42 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0161162321033861617=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/vm=3A_Subclass_us?=
- =?utf-8?q?erptr_vmas_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/vm=3A_Subclass_userptr_vm?=
+ =?utf-8?q?as_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Wed, 31 Jan 2024 09:29:23 -0000
-Message-ID: <170669336370.860541.16824500933807492811@5338d5abeb45>
+Date: Wed, 31 Jan 2024 10:13:42 -0000
+Message-ID: <170669602216.860541.12535573210776997431@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240131091628.12318-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20240131091628.12318-1-thomas.hellstrom@linux.intel.com>
@@ -40,6 +40,11 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============0161162321033861617==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: drm/xe/vm: Subclass userptr vmas (rev2)
@@ -48,25 +53,89 @@ State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 3d244fce99b65e012c4409d8a22bb9168c41f101
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+CI Bug Log - changes from xe-705-3d244fce99b65e012c4409d8a22bb9168c41f101_BAT -> xe-pw-129324v2_BAT
+====================================================
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (2 -> 2)
+------------------------------
+
+  No changes in participating hosts
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-705-3d244fce99b65e012c4409d8a22bb9168c41f101 -> xe-pw-129324v2
+
+  IGT_7699: 7699
+  xe-705-3d244fce99b65e012c4409d8a22bb9168c41f101: 3d244fce99b65e012c4409d8a22bb9168c41f101
+  xe-pw-129324v2: 129324v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129324v2/index.html
+
+--===============0161162321033861617==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/vm: Subclass userptr vmas (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129324/">https://patchwork.freedesktop.org/series/129324/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129324v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129324v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-705-3d244fce99b65e012c4409d8a22bb9168c41f101_BAT -&gt; xe-pw-129324v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (2 -&gt; 2)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-705-3d244fce99b65e012c4409d8a22bb9168c41f101 -&gt; xe-pw-129324v2</li>
+</ul>
+<p>IGT_7699: 7699<br />
+  xe-705-3d244fce99b65e012c4409d8a22bb9168c41f101: 3d244fce99b65e012c4409d8a22bb9168c41f101<br />
+  xe-pw-129324v2: 129324v2</p>
+
+</body>
+</html>
+
+--===============0161162321033861617==--
