@@ -4,52 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0AB6C4828C
-	for <intel-xe@archiver.kernel.org>; Wed, 31 Jan 2024 15:07:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 260AFC47258
+	for <intel-xe@archiver.kernel.org>; Wed, 31 Jan 2024 15:26:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A757B10E5EB;
-	Wed, 31 Jan 2024 15:07:25 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C83CD10E5EB;
- Wed, 31 Jan 2024 15:07:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706713645; x=1738249645;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=1gKRjbeF385lVjQe3INmGEbRSihpxA0qX1m3cojS4F4=;
- b=gLCklx3rPVlvg6CrQRKigd9lG/2Yxk+/rhJCucA0t/mEDOEZOxmaXvCx
- O+1gZJiHHN0Xs8DZdMjYlCnieMMTnQyqCY6Hj/23ijZTrhokpdWmN3rZB
- DtkWig8ujaDZ1daPBq53qyLt37LnziRjIbn6gUpq6ipmzzq7NxAOHvr6C
- Z2d1dUMdjr0xzfF62rK5Wkzj9mgVR+yyG5UyCgwsHJX/nDi3uGHX3BRJ0
- wroTa+bsSoIsvlY6pmWtPVE0gdtMMvMkuyvwZ4tDkRtCxCTYXTbk9cJhO
- U6/rbrksR+zPeB+r88hicz0W6SYq8IULegMult8CPmL4Bmnu8fFETV3Mc Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="3474313"
-X-IronPort-AV: E=Sophos;i="6.05,231,1701158400"; 
-   d="scan'208";a="3474313"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2024 07:07:25 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="788607938"
-X-IronPort-AV: E=Sophos;i="6.05,231,1701158400"; d="scan'208";a="788607938"
-Received: from abarrete-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.59.174])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2024 07:07:19 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, wangxiaoming321
- <xiaoming.wang@intel.com>
-Subject: Re: [PATCH] drm/xe/display: Fix memleak in display initialization
-In-Reply-To: <abko5y3n5mju6srjly257bpqlvjf5ie6h6snboaekxnfv5mu76@jjumdgev76ag>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240125063633.989944-1-xiaoming.wang@intel.com>
- <20240126153453.997855-1-xiaoming.wang@intel.com>
- <abko5y3n5mju6srjly257bpqlvjf5ie6h6snboaekxnfv5mu76@jjumdgev76ag>
-Date: Wed, 31 Jan 2024 17:07:16 +0200
-Message-ID: <87zfwlh78b.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0D4610EC22;
+	Wed, 31 Jan 2024 15:26:57 +0000 (UTC)
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4504A10EC22;
+ Wed, 31 Jan 2024 15:26:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/xe/display=3A_Fi?=
+ =?utf-8?q?x_memleak_in_display_initialization_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "wangxiaoming321" <xiaoming.wang@intel.com>
+Date: Wed, 31 Jan 2024 15:26:56 -0000
+Message-ID: <170671481628.878358.7369138650374907269@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <y>
+In-Reply-To: <y>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,110 +35,28 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniel@ffwll.ch, linux-kernel@vger.kernel.org, mripard@kernel.org,
- dri-devel@lists.freedesktop.org, tzimmermann@suse.de, airlied@gmail.com,
- intel-xe@lists.freedesktop.org
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 31 Jan 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> +Jani
->
-> On Fri, Jan 26, 2024 at 11:34:53PM +0800, wangxiaoming321 wrote:
->>intel_power_domains_init has been called twice in xe_device_probe:
->>xe_device_probe -> xe_display_init_nommio -> intel_power_domains_init(xe)
->>xe_device_probe -> xe_display_init_noirq -> intel_display_driver_probe_noirq
->>-> intel_power_domains_init(i915)
->
-> ok, once upon a time intel_power_domains_init() was called by the driver
-> initialization code and not initialized inside the display. I think.
-> Now it's part of the display probe and we never updated the xe side.
->
->>
->>It needs remove one to avoid power_domains->power_wells double malloc.
->>
->>unreferenced object 0xffff88811150ee00 (size 512):
->>  comm "systemd-udevd", pid 506, jiffies 4294674198 (age 3605.560s)
->>  hex dump (first 32 bytes):
->>    10 b4 9d a0 ff ff ff ff ff ff ff ff ff ff ff ff  ................
->>    ff ff ff ff ff ff ff ff 00 00 00 00 00 00 00 00  ................
->>  backtrace:
->>    [<ffffffff8134b901>] __kmem_cache_alloc_node+0x1c1/0x2b0
->>    [<ffffffff812c98b2>] __kmalloc+0x52/0x150
->>    [<ffffffffa08b0033>] __set_power_wells+0xc3/0x360 [xe]
->>    [<ffffffffa08562fc>] xe_display_init_nommio+0x4c/0x70 [xe]
->>    [<ffffffffa07f0d1c>] xe_device_probe+0x3c/0x5a0 [xe]
->>    [<ffffffffa082e48f>] xe_pci_probe+0x33f/0x5a0 [xe]
->>    [<ffffffff817f2187>] local_pci_probe+0x47/0xa0
->>    [<ffffffff817f3db3>] pci_device_probe+0xc3/0x1f0
->>    [<ffffffff8192f2a2>] really_probe+0x1a2/0x410
->>    [<ffffffff8192f598>] __driver_probe_device+0x78/0x160
->>    [<ffffffff8192f6ae>] driver_probe_device+0x1e/0x90
->>    [<ffffffff8192f92a>] __driver_attach+0xda/0x1d0
->>    [<ffffffff8192c95c>] bus_for_each_dev+0x7c/0xd0
->>    [<ffffffff8192e159>] bus_add_driver+0x119/0x220
->>    [<ffffffff81930d00>] driver_register+0x60/0x120
->>    [<ffffffffa05e50a0>] 0xffffffffa05e50a0
->>
->
-> This will need a Fixes trailer.  This seems to be a suitable one:
->
-> Fixes: 44e694958b95 ("drm/xe/display: Implement display support")
->
->>Signed-off-by: wangxiaoming321 <xiaoming.wang@intel.com>
->>---
->> drivers/gpu/drm/xe/xe_display.c | 6 ------
->> 1 file changed, 6 deletions(-)
->>
->>diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
->>index 74391d9b11ae..e4db069f0db3 100644
->>--- a/drivers/gpu/drm/xe/xe_display.c
->>+++ b/drivers/gpu/drm/xe/xe_display.c
->>@@ -134,8 +134,6 @@ static void xe_display_fini_nommio(struct drm_device *dev, void *dummy)
->>
->> int xe_display_init_nommio(struct xe_device *xe)
->> {
->>-	int err;
->>-
->> 	if (!xe->info.enable_display)
->> 		return 0;
->>
->>@@ -145,10 +143,6 @@ int xe_display_init_nommio(struct xe_device *xe)
->> 	/* This must be called before any calls to HAS_PCH_* */
->> 	intel_detect_pch(xe);
->>
->>-	err = intel_power_domains_init(xe);
->>-	if (err)
->>-		return err;
->
-> xe_display_init_nommio() has xe_display_fini_nommio() as its destructor
-> counter part. Unfortunately display side looks wrong as it does:
->
-> init:
-> 	intel_display_driver_probe_noirq() -> intel_power_domains_init()
->
-> destroy:
-> 	i915_driver_late_release() -> intel_power_domains_cleanup()
->
-> I think leaving intel_power_domains_cleanup() as is for now so it's
-> called by xe works, but this needs to go through CI, which apparently
-> this series didn't go. I re-triggered it.
->
-> +Jani if he thinks this can be changed in another way or already have
-> the complete solution.
+== Series Details ==
 
-I don't. But it is and will be a recurring problem. i915 and xe core
-drivers should handle display init and cleanup the same way. But
-currently i915 goes on to call e.g. intel_power_domains_cleanup()
-directly from top level driver code. There are other examples.
+Series: drm/xe/display: Fix memleak in display initialization (rev4)
+URL   : https://patchwork.freedesktop.org/series/129150/
+State : failure
 
-And we seem to have recently added *more*. See e.g. bd738d859e71
-("drm/i915: Prevent modesets during driver init/shutdown").
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 275cb3d81 drm-tip: 2024y-01m-31d-14h-25m-12s UTC integration manifest
+=== git am output follows ===
+error: drivers/gpu/drm/xe/xe_display.c: does not exist in index
+hint: Use 'git am --show-current-patch' to see the failed patch
+Applying: drm/xe/display: Fix memleak in display initialization
+Patch failed at 0001 drm/xe/display: Fix memleak in display initialization
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
-BR,
-Jani.
-
-
--- 
-Jani Nikula, Intel
