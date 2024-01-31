@@ -4,59 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B125C47258
-	for <intel-xe@archiver.kernel.org>; Wed, 31 Jan 2024 19:42:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83105C47DB3
+	for <intel-xe@archiver.kernel.org>; Wed, 31 Jan 2024 20:00:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3F6110FCB1;
-	Wed, 31 Jan 2024 19:42:41 +0000 (UTC)
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com
- [209.85.218.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CD6A10FCB1
- for <intel-xe@lists.freedesktop.org>; Wed, 31 Jan 2024 19:42:41 +0000 (UTC)
-Received: by mail-ej1-f53.google.com with SMTP id
- a640c23a62f3a-a35b32bd055so11556666b.2
- for <intel-xe@lists.freedesktop.org>; Wed, 31 Jan 2024 11:42:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1706730099; x=1707334899; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=HTIKv8KHZT0+EbrR61dyEoaKbO7b4hbSOHJXjPkcobA=;
- b=gIh/TlFs2x9RPurBjhAZn7DNnV1tPwQtE0cNC9eLa30dD6kdeS8F2d27E/y5b/DzT5
- /LXbsxH2pUhMRVH27RZxIS6n37c4EHoHscY8KP7x/F7ZH3k55strQqvkVVdGocO0jQFP
- pHXefgY1jopcMKZT1vMSlzqlOIDJW2nOHLHWcYwti+/RXuTYFlJkrXXSIJ0oAbRXL3PK
- k3nU3T3cbfrrDjjxECuGdlA4CP+xlbdjjL7nLycjQg6m6vGKwb3fSXWD5QotoHCBmRKt
- Ftx2eVxiLNwc4WO8nNmulQcWYy+Tig1TpX1B9COcd0px50mrPmO2VztJmumGYqOBmnr6
- kLsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1706730099; x=1707334899;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=HTIKv8KHZT0+EbrR61dyEoaKbO7b4hbSOHJXjPkcobA=;
- b=JU4ByV+HCBTKuB4hFuMoFi5JgKssHdjbq658L72F6+MmC6vX516PXG9sKvNNHhmp0Q
- as0MQYhzAikaVxFtQzrNZVZ0WTLB6EfEnKiqlGmEZc/dRBuc/lxFJbuxu70Zh3UUQYLe
- t/uLrhhKB/4m63D1Ouu/5neGotBSs6fVwquGqryVnJ0Occ8umf1kb9vXk42RyH3p22uk
- O9hKtWV5zsi+mFl2lZx1TX9UZVCnHi2SOgh3CTQAV+vK+KV4e5kgH9Y/Lch7X2/LMwKp
- hoJwNfElbS2HlyBUUiLbCumIfQ2Pmao4dsOykwwohlsmUE8ERizSLjirBO4WcrN00bXX
- uuhw==
-X-Gm-Message-State: AOJu0YxRe5QgperWCK25saSnAUD0y+5Q/uIZs5pH9hqYNgUGT93wA5ri
- Vc/xxF5UCZkm4Wj9eenfeTUzSVsLLCxfOS3Gd4YqUsHK8OG/R8xOsce/vp4v8zqOb/fWCO6URuL
- irR1ME7WKeJNjo2A4b5IxHZebmixAS1OR2MI=
-X-Google-Smtp-Source: AGHT+IHG0HFOMnzf2Z3Z5sRLCqghm3HYW49rbRM1u35L/b9/ctHR9WAXQiIic9tz6jbysxflAg46OceHFnTcDhcLNwc=
-X-Received: by 2002:a17:906:111a:b0:a30:b29f:29ef with SMTP id
- h26-20020a170906111a00b00a30b29f29efmr1847381eja.42.1706730099414; Wed, 31
- Jan 2024 11:41:39 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3043110E990;
+	Wed, 31 Jan 2024 20:00:15 +0000 (UTC)
+Received: from mail02.habana.ai (habanamailrelay.habana.ai [213.57.90.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A88710E990
+ for <intel-xe@lists.freedesktop.org>; Wed, 31 Jan 2024 20:00:11 +0000 (UTC)
+Received: internal info suppressed
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
+ t=1706731198; bh=Uo7neN+oQo+4MwIYaGlZQwJDeTDrVtRqiZMkLdVwf7Q=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=um3ydv4lUu0s4JXxQbU62k8+LlaDJB7gDrf8/gzBpe9FS2xBc4pOkRB255JE3IJt9
+ R3w1DJ5UItyIznd+VZPZbc8gUn+2eboOVIMzjix6pvOl2YqJDvFOuE8af6xK6/6xdw
+ d8ODdjCRJtMBB6GcZwObJ2mm2757zWAhG7rtDlHKj+hlnNNg4/16FTBomNI2YlBCmx
+ 6/8nnXr5PyK+zVMzzGm3UBVmJT+GFVUVhddCHoki77FfYuF8J1jwZLZ8Tqyb0dSBdZ
+ sScRBCCWjx/QCRKjZmdIvCVcGq7WxBV0lSiwVEpkVvlQFIz3S88R+kkVWnAw5Ioz0f
+ pO2VHvQ5XRiXQ==
+Received: from kelbaz-vm-u22.habana-labs.com (localhost [127.0.0.1])
+ by kelbaz-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP
+ id 40VJxrlw852654; Wed, 31 Jan 2024 21:59:53 +0200
+From: Koby Elbaz <kelbaz@habana.ai>
+To: michal.winiarski@intel.com
+Subject: [PATCH v6 2/2] drm/xe: restore xe_mmio_ioctl as the ioctl handler of
+ the mmio debugfs file
+Date: Wed, 31 Jan 2024 21:59:53 +0200
+Message-Id: <20240131195953.852641-2-kelbaz@habana.ai>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240131195953.852641-1-kelbaz@habana.ai>
+References: <20240131195953.852641-1-kelbaz@habana.ai>
 MIME-Version: 1.0
-References: <20240130125220.5517-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20240130125220.5517-1-thomas.hellstrom@linux.intel.com>
-From: Dave Airlie <airlied@gmail.com>
-Date: Thu, 1 Feb 2024 05:41:27 +1000
-Message-ID: <CAPM=9tx_9S3yD3A46rP_NOO_FaPHwWaPMeX2wkx8Rh4iqO8cvQ@mail.gmail.com>
-Subject: Re: [RFC PATCH] drm/xe/uapi: Remove support for persistent exec_queues
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,38 +48,213 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Francois Dugast <francois.dugast@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 30 Jan 2024 at 22:52, Thomas Hellstr=C3=B6m
-<thomas.hellstrom@linux.intel.com> wrote:
->
-> Persistent exec_queues delays explicit destruction of exec_queues
-> until they are done executing, but destruction on process exit
-> is still immediate. It turns out no UMD is relying on this
-> functionality, so remove it. If there turns out to be a use-case
-> in the future, let's re-add.
->
-> Persistent exec_queues were never used for LR VMs
->
-> Open: Should we renumber the exec_queue properties, or leave a hole
-> as in this patch.
+The drm mmio ioctl handler (xe_mmio_ioctl) wasn't needed anymore,
+and therefore, recently removed.
+Nevertheless, it is now restored for debugging purposes to function
+as the ioctl handler of the 'mmio' debugfs file.
+Note, that the non-admin user's limited mmio access (aka, whitelist),
+was removed being irrelevant anymore, now that a user using debugfs
+must anyway have root permission to use it.
 
+Signed-off-by: Koby Elbaz <kelbaz@habana.ai>
+---
+Changes in v6:
+ - Removed unnecessary header includes.
+ - Expanded the scope of security_lock_down check.
+ drivers/gpu/drm/xe/xe_debugfs.c      | 111 ++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_debugfs_mmio.h |  43 +++++++++++
+ 2 files changed, 152 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_debugfs_mmio.h
 
-So can we have a bit of insight into how this happened? Like we just
-merged xe and it already has uapi that had no userspace?
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 21b2257aa3a8..cc9d108f7fb2 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -6,13 +6,15 @@
+ #include "xe_debugfs.h"
+ 
+ #include <linux/string_helpers.h>
+-
++#include <linux/security.h>
+ #include <drm/drm_debugfs.h>
+ 
+ #include "xe_bo.h"
+ #include "xe_device.h"
+ #include "xe_gt_debugfs.h"
+ #include "xe_step.h"
++#include "xe_debugfs_mmio.h"
++#include "xe_mmio.h"
+ 
+ #ifdef CONFIG_DRM_XE_DEBUG
+ #include "xe_bo_evict.h"
+@@ -98,8 +100,113 @@ static int forcewake_release(struct inode *inode, struct file *file)
+ 	return 0;
+ }
+ 
+-static long xe_debugfs_mmio_ioctl(struct file *f, unsigned int cmd, unsigned long arg)
++static int _xe_debugfs_mmio_ioctl(struct xe_device *xe, struct xe_debugfs_mmio_ioctl_data *args)
++{
++	struct xe_gt *gt = xe_root_mmio_gt(xe);
++	unsigned int bits_flag, bytes;
++	struct xe_reg reg;
++	int ret = 0;
++
++	if (XE_IOCTL_DBG(xe, args->extensions) ||
++	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
++		return -EINVAL;
++
++	if (XE_IOCTL_DBG(xe, args->flags & ~XE_DEBUGFS_MMIO_VALID_FLAGS))
++		return -EINVAL;
++
++	if (XE_IOCTL_DBG(xe, !(args->flags & XE_DEBUGFS_MMIO_WRITE) && args->value))
++		return -EINVAL;
++
++	bits_flag = args->flags & XE_DEBUGFS_MMIO_BITS_MASK;
++	bytes = 1 << bits_flag;
++	if (XE_IOCTL_DBG(xe, args->addr + bytes > xe->mmio.size))
++		return -EINVAL;
++
++	/*
++	 * TODO: allow distinction between XE_REG / XE_REG_EXT to
++	 * handle registers from both MMIO & MMIO_EXT spaces.
++	 */
++
++	/*
++	 * TODO: migrate to xe_gt_mcr to lookup the mmio range and handle
++	 * multicast registers. Steering would need uapi extension.
++	 */
++	reg = XE_REG(args->addr);
++
++	xe_device_mem_access_get(xe);
++	xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++
++	if (args->flags & XE_DEBUGFS_MMIO_WRITE) {
++		switch (bits_flag) {
++		case XE_DEBUGFS_MMIO_32BIT:
++			if (XE_IOCTL_DBG(xe, args->value > U32_MAX)) {
++				ret = -EINVAL;
++				goto exit;
++			}
++			xe_mmio_write32(gt, reg, args->value);
++			break;
++		default:
++			drm_dbg(&xe->drm, "Invalid MMIO bit size");
++			fallthrough;
++		case XE_DEBUGFS_MMIO_8BIT: /* TODO */
++		case XE_DEBUGFS_MMIO_16BIT: /* TODO */
++			ret = -EOPNOTSUPP;
++			goto exit;
++		}
++	}
++
++	if (args->flags & XE_DEBUGFS_MMIO_READ) {
++		switch (bits_flag) {
++		case XE_DEBUGFS_MMIO_32BIT:
++			args->value = xe_mmio_read32(gt, reg);
++			break;
++		case XE_DEBUGFS_MMIO_64BIT:
++			args->value = xe_mmio_read64_2x32(gt, reg);
++			break;
++		default:
++			drm_dbg(&xe->drm, "Invalid MMIO bit size");
++			fallthrough;
++		case XE_DEBUGFS_MMIO_8BIT: /* TODO */
++		case XE_DEBUGFS_MMIO_16BIT: /* TODO */
++			ret = -EOPNOTSUPP;
++		}
++	}
++
++exit:
++	xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++	xe_device_mem_access_put(xe);
++
++	return ret;
++}
++
++static long xe_debugfs_mmio_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
+ {
++	struct xe_device *xe = file_inode(filp)->i_private;
++	struct xe_debugfs_mmio_ioctl_data mmio_data;
++	int ret;
++
++	ret = security_locked_down(LOCKDOWN_PCI_ACCESS);
++	if (ret)
++		return ret;
++
++	if (cmd == XE_DEBUGFS_MMIO_IOCTL) {
++		ret = copy_from_user(&mmio_data, (struct xe_debugfs_mmio_ioctl_data __user *)arg,
++				     sizeof(mmio_data));
++		if (ret)
++			return -EFAULT;
++
++		ret = _xe_debugfs_mmio_ioctl(xe, &mmio_data);
++		if (ret)
++			return ret;
++
++		ret = copy_to_user((struct xe_debugfs_mmio_ioctl_data __user *)arg,
++				   &mmio_data, sizeof(mmio_data));
++		if (ret)
++			return -EFAULT;
++	} else {
++		return -EINVAL;
++	}
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_debugfs_mmio.h b/drivers/gpu/drm/xe/xe_debugfs_mmio.h
+new file mode 100644
+index 000000000000..1dfb8fa2ce9a
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_debugfs_mmio.h
+@@ -0,0 +1,43 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _XE_DEBUGFS_MMIO_H_
++#define _XE_DEBUGFS_MMIO_H_
++
++#include <drm/drm.h>
++
++#define XE_DEBUGFS_MMIO_8BIT		0x0
++#define XE_DEBUGFS_MMIO_16BIT		0x1
++#define XE_DEBUGFS_MMIO_32BIT		0x2
++#define XE_DEBUGFS_MMIO_64BIT		0x3
++#define XE_DEBUGFS_MMIO_BITS_MASK	0x3
++#define XE_DEBUGFS_MMIO_READ		0x4
++#define XE_DEBUGFS_MMIO_WRITE		0x8
++
++#define XE_DEBUGFS_MMIO_VALID_FLAGS (\
++	XE_DEBUGFS_MMIO_BITS_MASK |\
++	XE_DEBUGFS_MMIO_READ |\
++	XE_DEBUGFS_MMIO_WRITE)
++
++struct xe_debugfs_mmio_ioctl_data {
++	/** @extensions: Pointer to the first extension struct, if any */
++	__u64 extensions;
++
++	__u32 addr;
++
++	__u32 flags;
++
++	__u64 value;
++
++	/** @reserved: Reserved */
++	__u64 reserved[2];
++};
++
++#define XE_DEBUGFS_MMIO_IOCTL_NR	0x00
++
++#define XE_DEBUGFS_MMIO_IOCTL \
++	_IOWR(0x20, XE_DEBUGFS_MMIO_IOCTL_NR, struct xe_debugfs_mmio_ioctl_data)
++
++#endif /* _XE_DEBUGFS_MMIO_H_ */
+-- 
+2.34.1
 
-Like seriously? I'm sorry Intel has all these crazy silos with
-compute, video, graphics and kernel teams, but that should be Intel's
-internal problem, can we stop exposing your org chart outside the
-company?
-
-If you can't get someone from the compute team to work in the kernel
-driver space when a new uAPI is needed, and instead powerpoint up
-uAPIs without commitments, then xe is going to end up being in the
-same hole as i915.
-
-Dave.
