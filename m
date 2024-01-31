@@ -4,26 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DFF3FC46CD2
-	for <intel-xe@archiver.kernel.org>; Wed, 31 Jan 2024 02:04:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09DC2C46CD2
+	for <intel-xe@archiver.kernel.org>; Wed, 31 Jan 2024 02:06:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9C2211383F;
-	Wed, 31 Jan 2024 02:04:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75ADD113851;
+	Wed, 31 Jan 2024 02:06:47 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90B6411383E;
- Wed, 31 Jan 2024 02:04:21 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1230424713193298157=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E6AE11384F;
+ Wed, 31 Jan 2024 02:06:46 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Expose_number_of_dss_p?=
- =?utf-8?q?er_group_and_helpers?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Enable_ccs_compresse?=
+ =?utf-8?q?d_framebuffers_on_Xe2_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Zhanjun Dong" <zhanjun.dong@intel.com>
-Date: Wed, 31 Jan 2024 02:04:21 -0000
-Message-ID: <170666666158.860247.1756309125253277176@5338d5abeb45>
+To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
+Date: Wed, 31 Jan 2024 02:06:46 -0000
+Message-ID: <170666680612.860255.11432824953395898531@5338d5abeb45>
 X-Patchwork-Hint: ignore
-References: <20240130185744.209647-1-zhanjun.dong@intel.com>
-In-Reply-To: <20240130185744.209647-1-zhanjun.dong@intel.com>
+References: <20240130193652.374270-1-juhapekka.heikkila@gmail.com>
+In-Reply-To: <20240130193652.374270-1-juhapekka.heikkila@gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,20 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1230424713193298157==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Expose number of dss per group and helpers
-URL   : https://patchwork.freedesktop.org/series/129331/
+Series: Enable ccs compressed framebuffers on Xe2 (rev5)
+URL   : https://patchwork.freedesktop.org/series/128946/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-705-3d244fce99b65e012c4409d8a22bb9168c41f101_BAT -> xe-pw-129331v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (2 -> 2)
-------------------------------
-
-  No changes in participating hosts
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 3d244fce9 drm-tip: 2024y-01m-30d-19h-55m-23s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/pat: annotate pat index table with compression info
+Applying: drm/xe: add bind time pat index to xe_bo structure
+Applying: drm/xe/xe2: Limit ccs framebuffers to tile4 only
+Applying: drm/i915/display: On Xe2 always enable decompression with tile4
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-705-3d244fce99b65e012c4409d8a22bb9168c41f101 -> xe-pw-129331v1
-
-  IGT_7699: 7699
-  xe-705-3d244fce99b65e012c4409d8a22bb9168c41f101: 3d244fce99b65e012c4409d8a22bb9168c41f101
-  xe-pw-129331v1: 129331v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129331v1/index.html
-
---===============1230424713193298157==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Expose number of dss per group and helpers</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129331/">https://patchwork.freedesktop.org/series/129331/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129331v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129331v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-705-3d244fce99b65e012c4409d8a22bb9168c41f101_BAT -&gt; xe-pw-129331v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (2 -&gt; 2)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-705-3d244fce99b65e012c4409d8a22bb9168c41f101 -&gt; xe-pw-129331v1</li>
-</ul>
-<p>IGT_7699: 7699<br />
-  xe-705-3d244fce99b65e012c4409d8a22bb9168c41f101: 3d244fce99b65e012c4409d8a22bb9168c41f101<br />
-  xe-pw-129331v1: 129331v1</p>
-
-</body>
-</html>
-
---===============1230424713193298157==--
