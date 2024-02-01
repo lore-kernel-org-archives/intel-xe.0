@@ -4,72 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE146C4828F
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Feb 2024 14:17:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CB43C4828D
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Feb 2024 14:19:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BFAA10EE46;
-	Thu,  1 Feb 2024 14:17:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF2B710EE73;
+	Thu,  1 Feb 2024 14:19:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UN7kS41z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QvJIuLQJ";
 	dkim-atps=neutral
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
- [209.85.128.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B15B110EE46;
- Thu,  1 Feb 2024 14:17:29 +0000 (UTC)
-Received: by mail-wm1-f53.google.com with SMTP id
- 5b1f17b1804b1-40ef6bbb61fso8697285e9.1; 
- Thu, 01 Feb 2024 06:17:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1706797048; x=1707401848; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:reply-to:user-agent:mime-version:date
- :message-id:from:to:cc:subject:date:message-id:reply-to;
- bh=7lVkWQFq3vNaWvlas47tEddLHNBAjdxZNMUI8eOXX2c=;
- b=UN7kS41zZjskFVqG6xShq2j5M08y1Betbtacm2INauIaKCyTUBSQ2Axi/kZ32i288T
- YIr6fU+OwuDLuqTECY7MqZ8hw6SYlRAvPR/SMnq47SdWMdjPJni6hxCsTVytgx5zH6BA
- cpmw0iA+Yx1NjSfleU6b19gGKtoHL847I5NSoCOAMTwHv4C8IhcKorGaPFI8tzIhipZK
- 3NYxbiHTrh7qCM3oFIDM6esLQKNMDNyNKPhCsEyeDTVoq73qpf1omD7L2pKDzLDEMjtF
- h3iwF0B4O9wACHruxNECZE8ZAs1/rCD5E/56wDO1wK95vkbWyz4roEob5WSfx576D2ao
- mPdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1706797048; x=1707401848;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:reply-to:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=7lVkWQFq3vNaWvlas47tEddLHNBAjdxZNMUI8eOXX2c=;
- b=Y87geZi6YbnVx4DVPUmvHlsyKuApp2V9FdeYOyig8iICM/hS9LTaiagfMZ4Ohuar0X
- 0P5SLd67J0rIfv/ruSVFSn7DnJG7W4rA65cZ38AhR4HVE89J4jQIAmYwIkMThRfCOizv
- s4BAnwnQwWW5POJBD25t9g1K2GOI0IDLzvUXQgWQA3jDQu/vGB4jVbjTybWKZV06suL1
- fkdrlFQQ7fwBAuCAj8i8sRZtCcfA41yuNDcI1EHQtEvgR9tMu6vdEtJYrt1jzWOoM1Xi
- pMWHSa2LJmrxuiGn90QqVY6bvRx92af3YJjdlRQBdU6Q7cxmdM3M/Cs3znzCqGmjr08m
- Z8VA==
-X-Gm-Message-State: AOJu0YxdgCwmP0qxkteZTlf3+T+gN9RQXWORcyLFvJkzU6A9gsuoB5o1
- OWx2tBzQyaUghuIxd8dW1gGr5/QvQBkPyaWZl0ueYvGnj0iWB7yJUivJnFe137mcPQ==
-X-Google-Smtp-Source: AGHT+IGM3otjfqs6bkusMv5/wa40Eh+3osnCGvUVSuaPDenVFe0QiUhaNMI4R9x+y2IZBfwBaNkapQ==
-X-Received: by 2002:a05:600c:1912:b0:40e:b4a0:277b with SMTP id
- j18-20020a05600c191200b0040eb4a0277bmr3685838wmq.39.1706797047807; 
- Thu, 01 Feb 2024 06:17:27 -0800 (PST)
-X-Forwarded-Encrypted: i=0;
- AJvYcCVKYwUqpePLQT0KgSvdREkokf5U70R2Y35EAPFPqCDQZanuiHC6s8gjCa0GJG2fWbedn6F+OTQg1KP/9YfkzZSOPp34atzQwXuWPo7vCcAV
-Received: from [0.0.0.0] ([134.134.137.85])
- by smtp.googlemail.com with ESMTPSA id
- e1-20020a05600c4e4100b0040ee4f38968sm4642205wmq.2.2024.02.01.06.17.25
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 01 Feb 2024 06:17:27 -0800 (PST)
-Message-ID: <b7982f98-ec1e-4a16-8955-0699f4976dcd@gmail.com>
-Date: Thu, 1 Feb 2024 16:17:10 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DFC310EE53;
+ Thu,  1 Feb 2024 14:19:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706797196; x=1738333196;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=FRbvlYyjpnr7PyYFkq4RqomDGaXl3+k4Hq2BQKrbKYg=;
+ b=QvJIuLQJY7BS702qFrjnRLkChmW2QPPpTW1WZ0cExAp0s3Blm26kmkek
+ ce10YpT1pyuvB16RmXqFNbXs6mvxzvfgcL5fe70VEv5CyN2iDZxj7VxWQ
+ h2Othsv/P3w76l5yvmd8aLUxJLsfWQYknxqmAknYukQHy1g2uag1yT8o1
+ 65j44Crh1MVTS2pG+am5lMZFK0cT6i72iCqjR/fN/IoCoDypAMKel+Q31
+ IofmeE+aAp/KnGHtKbtfQFAFGEVvheUTBw2DNo9fnt++W8w0hlqLTlZ75
+ I7VYy+yzFLszlr7zxGqon2LmGBCa4TrZmnqqc0+H8urrYFX0FvzixyPcW w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="401033600"
+X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; d="scan'208";a="401033600"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2024 06:19:55 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; 
+   d="scan'208";a="4422947"
+Received: from osandru-mobl1.ger.corp.intel.com (HELO [10.252.41.143])
+ ([10.252.41.143])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2024 06:19:52 -0800
+Message-ID: <ed96c60e-c6ea-490f-9811-57b92d87083e@linux.intel.com>
+Date: Thu, 1 Feb 2024 15:19:50 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] drm/xe: add bind time pat index to xe_bo structure
+Subject: Re: [PATCH] drm/xe/display: Fix memleak in display initialization
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ wangxiaoming321 <xiaoming.wang@intel.com>
+Cc: ogabbay@kernel.org, thomas.hellstrom@linux.intel.com, mripard@kernel.org, 
+ tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+References: <20240125063633.989944-1-xiaoming.wang@intel.com>
+ <20240126153453.997855-1-xiaoming.wang@intel.com>
+ <abko5y3n5mju6srjly257bpqlvjf5ie6h6snboaekxnfv5mu76@jjumdgev76ag>
+ <87zfwlh78b.fsf@intel.com>
 Content-Language: en-US
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-References: <20240130193652.374270-1-juhapekka.heikkila@gmail.com>
- <20240130193652.374270-3-juhapekka.heikkila@gmail.com>
- <20240131185637.GB5347@mdroper-desk1.amr.corp.intel.com>
-From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-In-Reply-To: <20240131185637.GB5347@mdroper-desk1.amr.corp.intel.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <87zfwlh78b.fsf@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -83,133 +71,107 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: juhapekka.heikkila@gmail.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 31.1.2024 20.56, Matt Roper wrote:
-> On Tue, Jan 30, 2024 at 09:36:50PM +0200, Juha-Pekka Heikkila wrote:
->> Add BO bind time pat index member to xe_bo structure and store
->> pat index from xe_vma to xe_bo.
+
+
+On 2024-01-31 16:07, Jani Nikula wrote:
+> On Wed, 31 Jan 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>> +Jani
 >>
->> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
->> ---
->>   drivers/gpu/drm/xe/xe_bo_types.h | 12 ++++++++++++
->>   drivers/gpu/drm/xe/xe_pt.c       | 22 ++++++++++++++++++----
->>   2 files changed, 30 insertions(+), 4 deletions(-)
+>> On Fri, Jan 26, 2024 at 11:34:53PM +0800, wangxiaoming321 wrote:
+>>> intel_power_domains_init has been called twice in xe_device_probe:
+>>> xe_device_probe -> xe_display_init_nommio -> intel_power_domains_init(xe)
+>>> xe_device_probe -> xe_display_init_noirq -> intel_display_driver_probe_noirq
+>>> -> intel_power_domains_init(i915)
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
->> index 14ef13b7b421..6d599f1e846b 100644
->> --- a/drivers/gpu/drm/xe/xe_bo_types.h
->> +++ b/drivers/gpu/drm/xe/xe_bo_types.h
->> @@ -91,6 +91,18 @@ struct xe_bo {
->>   
->>   	/** @vram_userfault_link: Link into @mem_access.vram_userfault.list */
->>   		struct list_head vram_userfault_link;
->> +
->> +	/**
->> +	 * @pat_index: The pat index requested when bind this BO
->> +	 */
->> +	u16 pat_index;
->> +
->> +	/**
->> +	 * @has_sealed_pat_index: The pat index is sealed because this BO is
->> +	 * pinned as framebuffer. This is to prevent flipping compression
->> +	 * on/off from framebuffers while in use.
->> +	 */
->> +	bool has_sealed_pat_index;
->>   };
->>   
->>   #define intel_bo_to_drm_bo(bo) (&(bo)->ttm.base)
->> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
->> index de1030a47588..c72cb75d993c 100644
->> --- a/drivers/gpu/drm/xe/xe_pt.c
->> +++ b/drivers/gpu/drm/xe/xe_pt.c
->> @@ -1208,10 +1208,11 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
->>   	struct dma_fence *fence;
->>   	struct invalidation_fence *ifence = NULL;
->>   	struct xe_range_fence *rfence;
->> +	struct xe_bo *bo = xe_vma_bo(vma);
->>   	int err;
->>   
->>   	bind_pt_update.locked = false;
->> -	xe_bo_assert_held(xe_vma_bo(vma));
->> +	xe_bo_assert_held(bo);
->>   	xe_vm_assert_held(vm);
->>   
->>   	vm_dbg(&xe_vma_vm(vma)->xe->drm,
->> @@ -1252,8 +1253,21 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
->>   		return ERR_PTR(-ENOMEM);
->>   	}
->>   
->> +	/*
->> +	 * On Xe2 BO which was pinned as framebuffer before with different
->> +	 * PAT index cannot be bound with different PAT index. This is
->> +	 * to prevent switching CCS on/off from framebuffers on the fly
->> +	 * with Xe2.
->> +	 */
-> 
-> I haven't been following all the discussion here, but why is switching
-> it on/off a problem?  On Xe2 can't we just always turn on decompression
-> (assuming they were 4-tile)?
-> 
-> Even if a content producer puts data into the buffer using a
-> non-compression PAT index, my understanding is that the FlatCCS metadata
-> for that part of the buffer still gets updated appropriately (to 0000 or
-> whatever the code is for "uncompressed block").  If the decompression
-> bit in PLANE_CTL basically translates to "pay attention to FlatCCS" vs
-> "ignore FlatCCS" it shouldn't matter whether the data is truly
-> compressed or not, right?  Since the FlatCCS area that corresponds to a
-> buffer is still correct even when non-compressed PAT is used (I think),
-> is there a reason to turn off decompression for 4-tile?
-> 
-> Am I overlooking something?
-
-Hi Matt,
-
-you got it correct for the case of tile4, on patch 4/4 of this set I put 
-  decompression on unconditionally for tile4 for display when on xe2.
-
-Problems come when we're not on tile4 but linear/x-tile where display 
-engine doesn't support decompression for these. These PAT indexes for 
-BOs are set by user space so I will not be allowed to change it and can 
-only deny changing pat index for BO if it was already accepted as good 
-configuration for display. That has_sealed_pat_index is set when 
-framebuffer is pinned.
-
-Decompression for linear and x-tile is marked as not supported and I 
-have sas document for xe2 compression where is said sw must disable 
-compression for linear/x-tile.
-
-/Juha-Pekka
-
-> 
->> +	if (bo) {
->> +		if (bo->has_sealed_pat_index && bo->pat_index != vma->pat_index)
->> +			return ERR_PTR(-EINVAL);
->> +
->> +		bo->pat_index = vma->pat_index;
->> +	}
->> +
->>   	fence = xe_migrate_update_pgtables(tile->migrate,
->> -					   vm, xe_vma_bo(vma), q,
->> +					   vm, bo, q,
->>   					   entries, num_entries,
->>   					   syncs, num_syncs,
->>   					   &bind_pt_update.base);
->> @@ -1287,8 +1301,8 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
->>   				   DMA_RESV_USAGE_KERNEL :
->>   				   DMA_RESV_USAGE_BOOKKEEP);
->>   
->> -		if (!xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
->> -			dma_resv_add_fence(xe_vma_bo(vma)->ttm.base.resv, fence,
->> +		if (!xe_vma_has_no_bo(vma) && !bo->vm)
->> +			dma_resv_add_fence(bo->ttm.base.resv, fence,
->>   					   DMA_RESV_USAGE_BOOKKEEP);
->>   		xe_pt_commit_bind(vma, entries, num_entries, rebind,
->>   				  bind_pt_update.locked ? &deferred : NULL);
->> -- 
->> 2.25.1
+>> ok, once upon a time intel_power_domains_init() was called by the driver
+>> initialization code and not initialized inside the display. I think.
+>> Now it's part of the display probe and we never updated the xe side.
 >>
+>>>
+>>> It needs remove one to avoid power_domains->power_wells double malloc.
+>>>
+>>> unreferenced object 0xffff88811150ee00 (size 512):
+>>>   comm "systemd-udevd", pid 506, jiffies 4294674198 (age 3605.560s)
+>>>   hex dump (first 32 bytes):
+>>>     10 b4 9d a0 ff ff ff ff ff ff ff ff ff ff ff ff  ................
+>>>     ff ff ff ff ff ff ff ff 00 00 00 00 00 00 00 00  ................
+>>>   backtrace:
+>>>     [<ffffffff8134b901>] __kmem_cache_alloc_node+0x1c1/0x2b0
+>>>     [<ffffffff812c98b2>] __kmalloc+0x52/0x150
+>>>     [<ffffffffa08b0033>] __set_power_wells+0xc3/0x360 [xe]
+>>>     [<ffffffffa08562fc>] xe_display_init_nommio+0x4c/0x70 [xe]
+>>>     [<ffffffffa07f0d1c>] xe_device_probe+0x3c/0x5a0 [xe]
+>>>     [<ffffffffa082e48f>] xe_pci_probe+0x33f/0x5a0 [xe]
+>>>     [<ffffffff817f2187>] local_pci_probe+0x47/0xa0
+>>>     [<ffffffff817f3db3>] pci_device_probe+0xc3/0x1f0
+>>>     [<ffffffff8192f2a2>] really_probe+0x1a2/0x410
+>>>     [<ffffffff8192f598>] __driver_probe_device+0x78/0x160
+>>>     [<ffffffff8192f6ae>] driver_probe_device+0x1e/0x90
+>>>     [<ffffffff8192f92a>] __driver_attach+0xda/0x1d0
+>>>     [<ffffffff8192c95c>] bus_for_each_dev+0x7c/0xd0
+>>>     [<ffffffff8192e159>] bus_add_driver+0x119/0x220
+>>>     [<ffffffff81930d00>] driver_register+0x60/0x120
+>>>     [<ffffffffa05e50a0>] 0xffffffffa05e50a0
+>>>
+>>
+>> This will need a Fixes trailer.  This seems to be a suitable one:
+>>
+>> Fixes: 44e694958b95 ("drm/xe/display: Implement display support")
+>>
+>>> Signed-off-by: wangxiaoming321 <xiaoming.wang@intel.com>
+>>> ---
+>>> drivers/gpu/drm/xe/xe_display.c | 6 ------
+>>> 1 file changed, 6 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
+>>> index 74391d9b11ae..e4db069f0db3 100644
+>>> --- a/drivers/gpu/drm/xe/xe_display.c
+>>> +++ b/drivers/gpu/drm/xe/xe_display.c
+>>> @@ -134,8 +134,6 @@ static void xe_display_fini_nommio(struct drm_device *dev, void *dummy)
+>>>
+>>> int xe_display_init_nommio(struct xe_device *xe)
+>>> {
+>>> -	int err;
+>>> -
+>>> 	if (!xe->info.enable_display)
+>>> 		return 0;
+>>>
+>>> @@ -145,10 +143,6 @@ int xe_display_init_nommio(struct xe_device *xe)
+>>> 	/* This must be called before any calls to HAS_PCH_* */
+>>> 	intel_detect_pch(xe);
+>>>
+>>> -	err = intel_power_domains_init(xe);
+>>> -	if (err)
+>>> -		return err;
+>>
+>> xe_display_init_nommio() has xe_display_fini_nommio() as its destructor
+>> counter part. Unfortunately display side looks wrong as it does:
+>>
+>> init:
+>> 	intel_display_driver_probe_noirq() -> intel_power_domains_init()
+>>
+>> destroy:
+>> 	i915_driver_late_release() -> intel_power_domains_cleanup()
+>>
+>> I think leaving intel_power_domains_cleanup() as is for now so it's
+>> called by xe works, but this needs to go through CI, which apparently
+>> this series didn't go. I re-triggered it.
+>>
+>> +Jani if he thinks this can be changed in another way or already have
+>> the complete solution.
 > 
+> I don't. But it is and will be a recurring problem. i915 and xe core
+> drivers should handle display init and cleanup the same way. But
+> currently i915 goes on to call e.g. intel_power_domains_cleanup()
+> directly from top level driver code. There are other examples.
+> 
+> And we seem to have recently added *more*. See e.g. bd738d859e71
+> ("drm/i915: Prevent modesets during driver init/shutdown").
+That commit seems terrible Should we instead not only enable any code 
+that can cause modesets after it's safe to do so?
 
+Cheers,
+~Maarten
