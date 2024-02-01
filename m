@@ -4,50 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F00A3C4828D
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Feb 2024 18:55:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDE02C48286
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Feb 2024 19:03:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B44710EFED;
-	Thu,  1 Feb 2024 18:55:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72C3510EAD6;
+	Thu,  1 Feb 2024 19:03:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X5Pygi1f";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k+r9EKzp";
 	dkim-atps=neutral
-X-Greylist: delayed 434 seconds by postgrey-1.36 at gabe;
- Thu, 01 Feb 2024 18:55:15 UTC
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5738E10EFED
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Feb 2024 18:55:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 827F610EAD6;
+ Thu,  1 Feb 2024 19:03:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706813715; x=1738349715;
+ t=1706814182; x=1738350182;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=hjXY0HRFRk7qIfArdjBnkh0uLQBdhUQgHSfJ+XAyANQ=;
- b=X5Pygi1fnMJozLiYB7Ss8BNC+E3gQ4jkVDfLODgGUqA7tclWNKNA9K0C
- dXnbZIrtRsO9cjK5QI8CiI/rLnNY+f7y281B03+Cjpyq7pFD8I9KErqaz
- 2P/vMSxhrdo9AQrAwZ4Q1QD0isAnGE9tk/njYqwWBToSq6unSJ0Nb0Ckb
- W9vwmeyLLzeqgkyTlGXopvfMxA7HTZ8D6fCIbKP/oEimyjaHf4ROmzv+v
- gCrWPJm225iUeBWhVUb1cY3BmJK1jy3M5bFVaAj9nchlJRJmYjKuBbtiV
- wP959at9MJsImaUixfxc7wHGXYJN39vsgZ1R/l13tYJlcdZ5ZH/gqZeRw g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="165545"
-X-IronPort-AV: E=Sophos;i="6.05,236,1701158400"; 
-   d="scan'208";a="165545"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2024 10:48:01 -0800
+ bh=B4JMJ5phljrnHqFEnDgd235bD6Outh2bPsomC4ldoR4=;
+ b=k+r9EKzpIVUmdwLSjU3alQcUGP4Q0db/guhA35NB8RHQT2wLOXhTj3yY
+ 6TL4IRFS3z53xnSDQXrpAlU8lFbIIKO80HNlohYhCXcq3Z+GhOIwUHWV8
+ 5uqeEcSls7W4eN92FPIIM+MIj9sFeO/V1Kz0ZD2K93WJzlrTJWx86itJG
+ 7pJWn2ZqAqmFoEOd0JHdOiP8CHIShzoExjrERE9+L6lE4kuwrweW/mZc4
+ cLqkmubSi93cKimPL3EACZy1rUcbulHLIxn09IGn22fY0J1YqWwB1xZls
+ z9Kcw9BowuIgsAAsv726rN6T7xQ1WvTuT9EhTfZID0eU2lwN8DYVLng/r Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="407694469"
+X-IronPort-AV: E=Sophos;i="6.05,236,1701158400"; d="scan'208";a="407694469"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2024 11:03:01 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,236,1701158400"; 
-   d="scan'208";a="184118"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2024 10:48:01 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH] drm/xe: Drop rebind argument from xe_pt_prepare_bind
-Date: Thu,  1 Feb 2024 10:48:44 -0800
-Message-Id: <20240201184844.2317004-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="912219403"
+X-IronPort-AV: E=Sophos;i="6.05,236,1701158400"; d="scan'208";a="912219403"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
+ jkrzyszt-mobl2.intranet) ([10.213.1.219])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2024 11:02:59 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org,
+ Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t v3 0/6] lib/kunit: Support writable filter* parameters
+ of kunit module
+Date: Thu,  1 Feb 2024 19:59:16 +0100
+Message-ID: <20240201190237.150754-8-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,36 +67,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is unused, drop it.
+Instead of wasting resources on reloading the base Kunit module each time
+a different set of filter parameters is needed, try to write the required
+values to sysfs representation of those parameters.  If that fails (e.g.
+on older LTS kernels with read-only filter parameters), fall back to
+reloading the module.
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_pt.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+This change also provides a workaround for the issue of impossibility to
+unload the base Kunit module on Xe platforms, available as soon as the
+module supports writable filter parameters.
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index de1030a47588..359867612398 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -861,8 +861,7 @@ static void xe_pt_commit_bind(struct xe_vma *vma,
- 
- static int
- xe_pt_prepare_bind(struct xe_tile *tile, struct xe_vma *vma,
--		   struct xe_vm_pgtable_update *entries, u32 *num_entries,
--		   bool rebind)
-+		   struct xe_vm_pgtable_update *entries, u32 *num_entries)
- {
- 	int err;
- 
-@@ -1218,7 +1217,7 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
- 	       "Preparing bind, with range [%llx...%llx) engine %p.\n",
- 	       xe_vma_start(vma), xe_vma_end(vma), q);
- 
--	err = xe_pt_prepare_bind(tile, vma, entries, &num_entries, rebind);
-+	err = xe_pt_prepare_bind(tile, vma, entries, &num_entries);
- 	if (err)
- 		goto err;
- 	xe_tile_assert(tile, num_entries <= ARRAY_SIZE(entries));
+While being at it, fine tune processing of skips on errors during test
+case list collection phase.
+
+v3: Don't read-compare-write, just write the values (Lucas),
+  - skip calling igt_sysfs_set() when the string to be written to
+    filter_action is empty (Lucas),
+  - warn if we leave the filter_action set to "skip" while setting a non-
+    default value of the filter parameter,
+  - transform generic kunit_set_params() to kunit_set_filtering().
+v2: Work around ineffective writes of empty strings to sysfs module
+    parameter files (Lucas) by using human readable non-empty strings that
+    give the same results as default NULLs,
+  - drop fallback to reload of base Kunit module method if assigning new
+    values to module parameters via sysfs fails (Lucas), instead use the
+    existing fallback to blind execution like if getting a list of test
+    cases was not supported at all,
+  - split move of open_parameters() helper up in the source file as well
+    as cleanup of base KUnit module unloading to separate patches (Kamil),
+  - skip on empty list of test cases (new patch),
+  - address the issue of commit description suggesting two separate
+    changes combined in one patch (Kamil).
+
+Janusz Krzysztofik (6):
+  lib/kunit: Skip on empty list of test cases
+  lib/kmode: Prepare open_parameters() helper for reuse by kunit
+  lib/kunit: Unload base KUnit module only before reloading it
+  lib/kunit: Support writable filter* parameters of kunit module
+  lib/kunit: Report early kernel taints explicitly
+  lib/kunit: Process module remove error after list errors
+
+ lib/igt_kmod.c | 115 +++++++++++++++++++++++++++++++++----------------
+ 1 file changed, 79 insertions(+), 36 deletions(-)
+
 -- 
-2.34.1
+2.43.0
 
