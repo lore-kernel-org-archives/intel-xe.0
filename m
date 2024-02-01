@@ -4,53 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69D3DC48286
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Feb 2024 19:18:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FEA2C4828D
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Feb 2024 19:20:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B29F10E104;
-	Thu,  1 Feb 2024 19:18:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC24F10E104;
+	Thu,  1 Feb 2024 19:20:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V38L1PMC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K75q4Gpj";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F2EE10E104
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Feb 2024 19:18:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37F8F10E104
+ for <intel-xe@lists.freedesktop.org>; Thu,  1 Feb 2024 19:20:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706815138; x=1738351138;
+ t=1706815238; x=1738351238;
  h=message-id:date:mime-version:subject:to:references:from:
  in-reply-to:content-transfer-encoding;
- bh=bVo/lKcEmkHx0Svl5InJ16i2scwyd8aZaWuEH8BcH+4=;
- b=V38L1PMCpsnO7kFdCwhvNW5J+t2VjQ/CugCL/vvbtH4OnqaXeSXpEmE3
- N/YEC7KCzvYzUAvBXZeSnMXWhYGcIj9+frVLXJXhrYNCRP0yJNCRNo2bW
- 4tpDMc/VGaegeSWdwJ6PvGUToh9tbaYNEvTMdYDRLLGx5Zh0f9eXMxIP9
- nxCgbTf2xBLei29gaBCre1lKiDelh/eQJSGv4uZ1AToiO4Zzr+51j743X
- LpBIOxchILIxOx97IymPUItwhQWVp7XNQhCx3fml0hLbtpMmEvEC1brkM
- U+XWWFGjIKvSBHlXJSgbluDE4ZHz+pkObnllXakMLHqdtrafH9gdjAu/n Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="407698233"
-X-IronPort-AV: E=Sophos;i="6.05,236,1701158400"; d="scan'208";a="407698233"
+ bh=aztE2KV5oKZLqIeXeQ3MFhwG9y4cekzrXQ8z+hbx6NM=;
+ b=K75q4GpjAIRU+5xgSub09bGbUSzKs8yu1Wp3QXJ9v771Uv+eDwAV78sz
+ Qbop51KmHv8sKvOQVPWhdWsMNavA3YEQ0U1hD+07a+a6eE2cVHIqBr4uw
+ h7bzJR2eWebkH33plhetzCUlDRwCW+QTx3MKPSCMxqHL3h2t0fr0AVoN4
+ MGSQXdx/R6S/A6ss6IqVM1uXNzCR6dEkNcPL9c0v2pcy7UzcGlzmKTbtx
+ uf6T7/CI4QmaPunzFEfxP+wVIXYEQhHuA7SwtKQUnXW2dc7lN+leEgUxu
+ IU/gt8zBjbBxY0YDyaKbb9eviFt64Ed/Y+7Qy5GexNygP9HuLRSy6Whit w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="407698600"
+X-IronPort-AV: E=Sophos;i="6.05,236,1701158400"; d="scan'208";a="407698600"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2024 11:18:56 -0800
+ 01 Feb 2024 11:20:37 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="912222266"
-X-IronPort-AV: E=Sophos;i="6.05,236,1701158400"; d="scan'208";a="912222266"
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="912222862"
+X-IronPort-AV: E=Sophos;i="6.05,236,1701158400"; d="scan'208";a="912222862"
 Received: from lhuot-mobl.amr.corp.intel.com (HELO [10.252.59.167])
  ([10.252.59.167])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2024 11:18:55 -0800
-Message-ID: <265682a3-b813-4f1f-8031-1d500c3d89af@linux.intel.com>
-Date: Thu, 1 Feb 2024 20:18:52 +0100
+ 01 Feb 2024 11:20:36 -0800
+Message-ID: <aab39c9b-1913-404c-b3bf-3916732990fb@linux.intel.com>
+Date: Thu, 1 Feb 2024 20:20:36 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/xe: Pick correct userptr VMA to repin on REMAP op
- failure
+Subject: Re: [PATCH] drm/xe: Fix loop in vm_bind_ioctl_ops_unwind
 Content-Language: en-US
 To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-References: <20240201004849.2219558-1-matthew.brost@intel.com>
- <20240201004849.2219558-3-matthew.brost@intel.com>
+References: <20240201175532.2303168-1-matthew.brost@intel.com>
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20240201004849.2219558-3-matthew.brost@intel.com>
+In-Reply-To: <20240201175532.2303168-1-matthew.brost@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,51 +65,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-
-On 2024-02-01 01:48, Matthew Brost wrote:
-> A REMAP op is composed of 3 VMA's - unmap, prev map, and next map. When
-> op_execute fails with -EAGAIN we need to update the local VMA pointer to
-> the current op state and then repin the VMA if it is a userptr.
+On 2024-02-01 18:55, Matthew Brost wrote:
+> The logic for the unwind loop is incorrect resulting in an infinite
+> loop. Fix to unwind to go from the last operations list to he first.
 > 
-> Fixes a failure seen in xe_vm.munmap-style-unbind-userptr-one-partial.
-> 
-> Fixes: b06d47be7c83 ("drm/xe: Port Xe to GPUVA")
+> Fixes: 617eebb9c480 ("drm/xe: Fix array of binds")
 > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_vm.c | 22 +++++++++++++++++-----
->   1 file changed, 17 insertions(+), 5 deletions(-)
+>   drivers/gpu/drm/xe/xe_vm.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index e55161136490..2ab863fe7d0a 100644
+> index 2ab863fe7d0a..3b145a9c70d5 100644
 > --- a/drivers/gpu/drm/xe/xe_vm.c
 > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -2506,13 +2506,25 @@ static int __xe_vma_op_execute(struct xe_vm *vm, struct xe_vma *vma,
->   	}
->   	drm_exec_fini(&exec);
+> @@ -2657,7 +2657,7 @@ static void vm_bind_ioctl_ops_unwind(struct xe_vm *vm,
+>   {
+>   	int i;
 >   
-> -	if (err == -EAGAIN && xe_vma_is_userptr(vma)) {
-> +	if (err == -EAGAIN) {
->   		lockdep_assert_held_write(&vm->lock);
-> -		err = xe_vma_userptr_pin_pages(vma);
-> -		if (!err)
-> -			goto retry_userptr;
+> -	for (i = num_ops_list - 1; i; ++i) {
+> +	for (i = num_ops_list - 1; i >= 0; --i) {
+>   		struct drm_gpuva_ops *__ops = ops[i];
+>   		struct drm_gpuva_op *__op;
 >   
-> -		trace_xe_vma_fail(vma);
-> +		if (op->base.op == DRM_GPUVA_OP_REMAP) {
-> +			if (!op->remap.unmap_done)
-> +				vma = gpuva_to_vma(op->base.remap.unmap->va);
-> +			else if (op->remap.prev)
-> +				vma = op->remap.prev;
-> +			else
-> +				vma = op->remap.next;
-> +		}
-I see this same vma picking in handling of DRM_GPUVA_OP_REMAP.
-
-Could the switch in xe_vma_op_execute() be moved to a separate pick_vma 
-function instead, called from this place too?
-
-It might make the code slightly more readable.
-
-Cheers,
-~Maarten
