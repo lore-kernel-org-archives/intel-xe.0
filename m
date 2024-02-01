@@ -4,61 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8F73C4828D
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Feb 2024 14:55:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F86BC4828F
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Feb 2024 15:03:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 729F110EED8;
-	Thu,  1 Feb 2024 14:55:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58C4A10EEF3;
+	Thu,  1 Feb 2024 15:03:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K6m/ho4j";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lV8yY+IR";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DC2110EE3D;
- Thu,  1 Feb 2024 14:55:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706799310; x=1738335310;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Jb5PZXyN9Hp/RhEOP4GTKYvnbCRUkWFkkeodbGcebSk=;
- b=K6m/ho4j4Do7zbpVdvXGf3Wlpmo6s4DGIKrm1rfHpYk4izCHsEGfmA93
- 2A33LPdWy8+d8qXHyqFySeh7mAxU685SCF1se243m6e2WjQzP664tXWZU
- n6ntbZdLtppHszCl2wcqwMjU2wWQv/tvDy9LbYJPLcjzvj+3GROHfcUW1
- VZwfsSne2FkO3FPMB+OBurXDb5AXXomSPJkeMHBQfvJGhpmwz8lPZYs3h
- smpw+xj9QJtJKkwmn9iyoRqTMnJ+2uZnz1VugKoPi06HFHPLAb33HJ2CU
- t43ESdYmIQHvE3I/zvLzhmFDJnTqP0spKwjUFL4FkkcziZiZ1pDA9xTEY Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="25371288"
-X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; d="scan'208";a="25371288"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2024 06:55:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; 
-   d="scan'208";a="4405814"
-Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.102.138.187])
- by fmviesa005-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Feb 2024 06:55:04 -0800
-Date: Thu, 1 Feb 2024 15:55:01 +0100
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Cc: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-xe@lists.freedesktop.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: Re: [PATCH i-g-t v2 6/6] lib/kunit: Process module remove error
- after list errors
-Message-ID: <20240201145501.5ga7vvpkc6urpwy2@kamilkon-desk.igk.intel.com>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-xe@lists.freedesktop.org,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-References: <20240131181156.80571-8-janusz.krzysztofik@linux.intel.com>
- <20240131181156.80571-14-janusz.krzysztofik@linux.intel.com>
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com
+ [209.85.167.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDDF610EEF2;
+ Thu,  1 Feb 2024 15:03:02 +0000 (UTC)
+Received: by mail-lf1-f42.google.com with SMTP id
+ 2adb3069b0e04-5112cb6d1e7so1213321e87.0; 
+ Thu, 01 Feb 2024 07:03:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1706799781; x=1707404581; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:references:cc:to:from
+ :content-language:subject:reply-to:user-agent:mime-version:date
+ :message-id:from:to:cc:subject:date:message-id:reply-to;
+ bh=ISCvpdX8+rAYNgtGTr5bHxOW1G+VML81mMtcl86Pw98=;
+ b=lV8yY+IRMf/oj+OJcoCITxJrewzApQGaWF/u5a5q++9drl1W8Yr0flI2Cpa9dDQ+yv
+ XBiG3A2JN9RQzvNsr9/mio467rnI50Bu/7FGR7D5OR3qo/koMAZ1jTBhJzOqhbKkoR/p
+ KVrsm+a78m6xnbybVoK+iU4YH0m3+tQneteUhKZJCAu+4pOLoq0oY2RF2M+18LsFcEts
+ XIqHVdsYNGP7a3u2t+/Nz0ugdMY2jSVNKlD1zSAYr1EucUNJa9nu4ezQiSMgx1e3wMR+
+ lEg8LOqWihNeZt+jrOOEkAlLdd7CntCyaIOjVKAHqUmm76x2V8gdzUzIepKC+4uZ1u9/
+ BbcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1706799781; x=1707404581;
+ h=content-transfer-encoding:in-reply-to:references:cc:to:from
+ :content-language:subject:reply-to:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=ISCvpdX8+rAYNgtGTr5bHxOW1G+VML81mMtcl86Pw98=;
+ b=m7OHJgsXQKq7u2BLCHF4hoUEu9fbVFZdG5v28EAGx3Mq4PdVGS8L98Pcg20eCNXR4G
+ E+Yi1SXmxWinf8A935MUGBGmFrHlW0WeFLqZGBQTerizRs3gpEkuHDRXGAl1lS76a2pT
+ 2MNooRR5HZddQC64EnQo0T7zBOWZkLKUlEBVejQ0KGKg8bOSHk4PfWhlLepEy4B335Px
+ oBIeyUKuA4Yq8bUkZFexCffaqQdGmI/PzlHwlEb99PUSySSH3U1HNFaq8js0Uc0gZEMU
+ MkL8Oyxtpk6/B0FKOfji/hMHvAk1RUBeYBdOmL5bosk8EW/bPIZR06GLOVbYJkLTq/Mp
+ 5aow==
+X-Gm-Message-State: AOJu0YzYlxSzxeEN0TiE8HV0pACpZdiZNB0QZB2arjEaHDQgBU00j7tn
+ yxvcKwLrU7MqZTl2npFfGHaWB6EK2ALQujByQWau8RvCsabNlC1Z
+X-Google-Smtp-Source: AGHT+IGuIhaK8hzQzLsg/yv52pmEL9EylcN6QJIyeoesmsmHB39QJP2gWncpC97gnS/GBm9XP9JCBg==
+X-Received: by 2002:a05:6512:90c:b0:510:ee2c:e9c4 with SMTP id
+ e12-20020a056512090c00b00510ee2ce9c4mr2184575lft.17.1706799780438; 
+ Thu, 01 Feb 2024 07:03:00 -0800 (PST)
+X-Forwarded-Encrypted: i=0;
+ AJvYcCUIpTcNxSY/0J0s74ufuWhvG3MlbtDaUAQN8xvnOYT5pigNSUeV58fOF/Ulgg4VCpKp7KaHqeizNw4VzP6Eb8ybIOcU/KC5UfTvMK0fShOT
+Received: from [0.0.0.0] ([134.134.137.85])
+ by smtp.googlemail.com with ESMTPSA id
+ t24-20020a1c7718000000b0040f0219c371sm4602357wmi.19.2024.02.01.07.02.57
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 01 Feb 2024 07:03:00 -0800 (PST)
+Message-ID: <b05c5998-9146-4cf2-9c43-dbb5b55b5c2a@gmail.com>
+Date: Thu, 1 Feb 2024 17:02:43 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240131181156.80571-14-janusz.krzysztofik@linux.intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] drm/xe: add bind time pat index to xe_bo structure
+Content-Language: en-US
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+References: <20240130193652.374270-1-juhapekka.heikkila@gmail.com>
+ <20240130193652.374270-3-juhapekka.heikkila@gmail.com>
+ <20240131185637.GB5347@mdroper-desk1.amr.corp.intel.com>
+ <b7982f98-ec1e-4a16-8955-0699f4976dcd@gmail.com>
+In-Reply-To: <b7982f98-ec1e-4a16-8955-0699f4976dcd@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,53 +84,141 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: juhapekka.heikkila@gmail.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Janusz,
-On 2024-01-31 at 19:03:53 +0100, Janusz Krzysztofik wrote:
-> Skip on any error from test case list gathering first, then, in
-> preparation for executing those test cases, on an error from unloading the
-> test module loaded in list only mode, so it is more clear if listing the
-> test cases was successful or not.
+On 1.2.2024 16.17, Juha-Pekka Heikkila wrote:
+> On 31.1.2024 20.56, Matt Roper wrote:
+>> On Tue, Jan 30, 2024 at 09:36:50PM +0200, Juha-Pekka Heikkila wrote:
+>>> Add BO bind time pat index member to xe_bo structure and store
+>>> pat index from xe_vma to xe_bo.
+>>>
+>>> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+>>> ---
+>>>   drivers/gpu/drm/xe/xe_bo_types.h | 12 ++++++++++++
+>>>   drivers/gpu/drm/xe/xe_pt.c       | 22 ++++++++++++++++++----
+>>>   2 files changed, 30 insertions(+), 4 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_bo_types.h 
+>>> b/drivers/gpu/drm/xe/xe_bo_types.h
+>>> index 14ef13b7b421..6d599f1e846b 100644
+>>> --- a/drivers/gpu/drm/xe/xe_bo_types.h
+>>> +++ b/drivers/gpu/drm/xe/xe_bo_types.h
+>>> @@ -91,6 +91,18 @@ struct xe_bo {
+>>>       /** @vram_userfault_link: Link into 
+>>> @mem_access.vram_userfault.list */
+>>>           struct list_head vram_userfault_link;
+>>> +
+>>> +    /**
+>>> +     * @pat_index: The pat index requested when bind this BO
+>>> +     */
+>>> +    u16 pat_index;
+>>> +
+>>> +    /**
+>>> +     * @has_sealed_pat_index: The pat index is sealed because this 
+>>> BO is
+>>> +     * pinned as framebuffer. This is to prevent flipping compression
+>>> +     * on/off from framebuffers while in use.
+>>> +     */
+>>> +    bool has_sealed_pat_index;
+>>>   };
+>>>   #define intel_bo_to_drm_bo(bo) (&(bo)->ttm.base)
+>>> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+>>> index de1030a47588..c72cb75d993c 100644
+>>> --- a/drivers/gpu/drm/xe/xe_pt.c
+>>> +++ b/drivers/gpu/drm/xe/xe_pt.c
+>>> @@ -1208,10 +1208,11 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct 
+>>> xe_vma *vma, struct xe_exec_queue
+>>>       struct dma_fence *fence;
+>>>       struct invalidation_fence *ifence = NULL;
+>>>       struct xe_range_fence *rfence;
+>>> +    struct xe_bo *bo = xe_vma_bo(vma);
+>>>       int err;
+>>>       bind_pt_update.locked = false;
+>>> -    xe_bo_assert_held(xe_vma_bo(vma));
+>>> +    xe_bo_assert_held(bo);
+>>>       xe_vm_assert_held(vm);
+>>>       vm_dbg(&xe_vma_vm(vma)->xe->drm,
+>>> @@ -1252,8 +1253,21 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct 
+>>> xe_vma *vma, struct xe_exec_queue
+>>>           return ERR_PTR(-ENOMEM);
+>>>       }
+>>> +    /*
+>>> +     * On Xe2 BO which was pinned as framebuffer before with different
+>>> +     * PAT index cannot be bound with different PAT index. This is
+>>> +     * to prevent switching CCS on/off from framebuffers on the fly
+>>> +     * with Xe2.
+>>> +     */
+>>
+>> I haven't been following all the discussion here, but why is switching
+>> it on/off a problem?  On Xe2 can't we just always turn on decompression
+>> (assuming they were 4-tile)?
+>>
+>> Even if a content producer puts data into the buffer using a
+>> non-compression PAT index, my understanding is that the FlatCCS metadata
+>> for that part of the buffer still gets updated appropriately (to 0000 or
+>> whatever the code is for "uncompressed block").  If the decompression
+>> bit in PLANE_CTL basically translates to "pay attention to FlatCCS" vs
+>> "ignore FlatCCS" it shouldn't matter whether the data is truly
+>> compressed or not, right?  Since the FlatCCS area that corresponds to a
+>> buffer is still correct even when non-compressed PAT is used (I think),
+>> is there a reason to turn off decompression for 4-tile?
+>>
+>> Am I overlooking something?
 > 
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> ---
->  lib/igt_kmod.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> Hi Matt,
 > 
-> diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
-> index 53c54b1a0d..741c7fd055 100644
-> --- a/lib/igt_kmod.c
-> +++ b/lib/igt_kmod.c
-> @@ -1225,11 +1225,11 @@ static void kunit_get_tests(struct igt_list_head *tests,
->  		free(case_name);
->  	}
->  
-> -	igt_skip_on(kmod_module_remove_module(tst->kmod, KMOD_REMOVE_FORCE));
-> -
->  	igt_skip_on_f(err,
->  		      "KTAP parser failed while getting a list of test cases\n");
->  	igt_skip_on(igt_list_empty(tests));
-
-This skip_on will prevent module unload below... What about
-remembering both and skipping on list_empty() only after module unload?
-For example:
-    testslist_is_empty = igt_list_empty(tests);
-    unload_failed = kmod_module_remove_module(tst->kmod, KMOD_REMOVE_FORCE);
-
-    igt_skip_on(testslist_is_empty);
-    igt_skip_on_f(unload_failed, "kmod %s unload failed\n", tst->kmod);
-
-
-Regards,
-Kamil
-
-> +
-> +	igt_skip_on(kmod_module_remove_module(tst->kmod, KMOD_REMOVE_FORCE));
->  }
->  
->  static void __igt_kunit(struct igt_ktest *tst,
-> -- 
-> 2.43.0
+> you got it correct for the case of tile4, on patch 4/4 of this set I put 
+>   decompression on unconditionally for tile4 for display when on xe2.
 > 
+> Problems come when we're not on tile4 but linear/x-tile where display 
+> engine doesn't support decompression for these. These PAT indexes for 
+> BOs are set by user space so I will not be allowed to change it and can 
+> only deny changing pat index for BO if it was already accepted as good 
+> configuration for display. That has_sealed_pat_index is set when 
+> framebuffer is pinned.
+> 
+> Decompression for linear and x-tile is marked as not supported and I 
+> have sas document for xe2 compression where is said sw must disable 
+> compression for linear/x-tile.
+> 
+
+I did just talk with Ville and we did agree we could just drop these 
+checks. By default everything will be decompressed and user space will 
+need explicitly to enable compression. Linear and x-tile will misrender 
+if they're compressed and with patch 4/4 from this set tile4 will work 
+in all cases.
+
+>>
+>>> +    if (bo) {
+>>> +        if (bo->has_sealed_pat_index && bo->pat_index != 
+>>> vma->pat_index)
+>>> +            return ERR_PTR(-EINVAL);
+>>> +
+>>> +        bo->pat_index = vma->pat_index;
+>>> +    }
+>>> +
+>>>       fence = xe_migrate_update_pgtables(tile->migrate,
+>>> -                       vm, xe_vma_bo(vma), q,
+>>> +                       vm, bo, q,
+>>>                          entries, num_entries,
+>>>                          syncs, num_syncs,
+>>>                          &bind_pt_update.base);
+>>> @@ -1287,8 +1301,8 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct 
+>>> xe_vma *vma, struct xe_exec_queue
+>>>                      DMA_RESV_USAGE_KERNEL :
+>>>                      DMA_RESV_USAGE_BOOKKEEP);
+>>> -        if (!xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
+>>> -            dma_resv_add_fence(xe_vma_bo(vma)->ttm.base.resv, fence,
+>>> +        if (!xe_vma_has_no_bo(vma) && !bo->vm)
+>>> +            dma_resv_add_fence(bo->ttm.base.resv, fence,
+>>>                          DMA_RESV_USAGE_BOOKKEEP);
+>>>           xe_pt_commit_bind(vma, entries, num_entries, rebind,
+>>>                     bind_pt_update.locked ? &deferred : NULL);
+>>> -- 
+>>> 2.25.1
+>>>
+>>
+> 
+
