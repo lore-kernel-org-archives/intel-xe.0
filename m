@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 703EBC4828D
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Feb 2024 15:45:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB204C4828D
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Feb 2024 16:02:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B64A10E0A2;
-	Thu,  1 Feb 2024 15:45:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8403510ED80;
+	Thu,  1 Feb 2024 16:02:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d9uKEq2p";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EQXmKjRW";
 	dkim-atps=neutral
-X-Greylist: delayed 427 seconds by postgrey-1.36 at gabe;
- Thu, 01 Feb 2024 15:45:22 UTC
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0568710E0EE
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Feb 2024 15:45:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86A2A10EF47;
+ Thu,  1 Feb 2024 16:02:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706802322; x=1738338322;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=XYvjp2MyV5Laqb+fLkWsnkrxo4saB18rpmOes5Msc3Q=;
- b=d9uKEq2pK4K97UBfFwoFo89cb6/RXUN1WJTJ/9VRCWz6s1Je56tX9YJU
- 7dkcYzYcbNNwHu7tz9rYNWzUoqxkkyfJeoqL95upTMnNyCVN/i7Ul8y0u
- G6YKp7n03meVR8MCHD0gSMnnGOSXhao5tFipbjocm5uDtM2+Kdiam1et3
- zZY4w8ET11MJbuRdO/HGpXAwxTIk16AHS77VdSZE0DhMncOqFkB6i5Vhe
- mnuxZ5UKvK6MntAPLgJr7pC65XhRRM+33EgVKOiH6V2iZJDcYV2GfVVXf
- y8K/Zv0mJGBVwEKlK0Kcl8NlKPzMgSEvrlf569vtpgv52zhVVKB78AgbJ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="118229"
-X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; 
-   d="scan'208";a="118229"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2024 07:38:11 -0800
+ t=1706803333; x=1738339333;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=aA59Muj752d8idO5uDhyyIccmBKQZgA6qwoKM/FXbYM=;
+ b=EQXmKjRWvw8I8l0TTwHQr8kImYpoWEhwQA+HlzWz1pPoz4ffI8zPJFpY
+ /dMJIv4LC8rOSQTsCsVWVHDuUh9XPPgt7tK20Voo4Axltch+p4VRH0hd6
+ m6ZlNqnEyqZ3QOcZPF5nY+FAiu4ZYUy8Ovk5HvDQEjbK0h8Q/J7lDWG+6
+ hSF1SNLNF5+DqmJULlmwxRmvsDmndhBMH/ZwKb0izO4i+4bYJaSY4aMky
+ YfhTU2BfPz9E/RgD3s1NKMFuhCvQK7+IDKoIewSGLFUBr5+zSZzxxa9ZO
+ SY910LI0UDQiIy0GxrZH7kCHP1zGkBPf9KX8ijvKo6MtmVEiSZhZ0l6qi A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="402771044"
+X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; d="scan'208";a="402771044"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2024 08:02:09 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="932205815"
-X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; d="scan'208";a="932205815"
+X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; 
+   d="scan'208";a="4424695"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.1.219])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2024 07:38:08 -0800
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2024 08:02:08 -0800
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: igt-dev@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: =?UTF-8?B?4pyX?= CI.xeBAT: failure for lib/kunit: Support writable
- filter* parameters of kunit module (rev2)
-Date: Thu, 01 Feb 2024 16:38:06 +0100
-Message-ID: <3066928.kC03pvyZki@jkrzyszt-mobl2.ger.corp.intel.com>
+To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ igt-dev@lists.freedesktop.org,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: Re: [PATCH i-g-t v2 6/6] lib/kunit: Process module remove error after
+ list errors
+Date: Thu, 01 Feb 2024 17:02:05 +0100
+Message-ID: <2550119.vzjCzTo3RI@jkrzyszt-mobl2.ger.corp.intel.com>
 Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
  80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <dmwvmczxregptoifkjgyje2cramo5ztnzkkrcasz4mpnjhel6p@qwcz6rlu6gwi>
+In-Reply-To: <20240201145501.5ga7vvpkc6urpwy2@kamilkon-desk.igk.intel.com>
 References: <20240131181156.80571-8-janusz.krzysztofik@linux.intel.com>
- <2945385.o0KrE1Onz3@jkrzyszt-mobl2.ger.corp.intel.com>
- <dmwvmczxregptoifkjgyje2cramo5ztnzkkrcasz4mpnjhel6p@qwcz6rlu6gwi>
+ <20240131181156.80571-14-janusz.krzysztofik@linux.intel.com>
+ <20240201145501.5ga7vvpkc6urpwy2@kamilkon-desk.igk.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
@@ -71,108 +71,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thursday, 1 February 2024 15:13:31 CET Lucas De Marchi wrote:
-> On Thu, Feb 01, 2024 at 12:06:35PM +0100, Janusz Krzysztofik wrote:
-> >On Wednesday, 31 January 2024 21:51:15 CET Lucas De Marchi wrote:
-> >> On Wed, Jan 31, 2024 at 08:22:35PM +0100, Janusz Krzysztofik wrote:
-> >> >On Wednesday, 31 January 2024 19:36:57 CET Patchwork wrote:
-> >> >> == Series Details ==
-> >> >>
-> >> >> Series: lib/kunit: Support writable filter* parameters of kunit module
-> >> >(rev2)
-> >> >> URL   : https://patchwork.freedesktop.org/series/129174/
-> >> >> State : failure
-> >> >>
-> >> >> == Summary ==
-> >> >>
-> >> >> CI Bug Log - changes from XEIGT_7699_BAT -> XEIGTPW_10613_BAT
-> >> >> ====================================================
-> >> >>
-> >> >> Summary
-> >> >> -------
-> >> >>
-> >> >>   **FAILURE**
-> >> >>
-> >> >>   Serious unknown changes coming with XEIGTPW_10613_BAT absolutely need to
-> >> >be
-> >> >>   verified manually.
-> >> >>
-> >> >>   If you think the reported changes have nothing to do with the changes
-> >> >>   introduced in XEIGTPW_10613_BAT, please notify your bug team (I915-ci-
-> >> >infra@lists.freedesktop.org) to allow them
-> >> >>   to document this new failure mode, which will reduce false positives in
-> >> >CI.
-> >> >>
-> >> >>
-> >> >>
-> >> >> Participating hosts (4 -> 4)
-> >> >> ------------------------------
-> >> >>
-> >> >>   No changes in participating hosts
-> >> >>
-> >> >> Possible new issues
-> >> >> -------------------
-> >> >>
-> >> >>   Here are the unknown changes that may have been introduced in
-> >> >XEIGTPW_10613_BAT:
-> >> >>
-> >> >> ### IGT changes ###
-> >> >>
-> >> >> #### Possible regressions ####
-> >> >>
-> >> >>   * igt@xe_live_ktest@bo:
-> >> >>     - bat-adlp-7:         [PASS][1] -> [SKIP][2] +2 other tests skip
-> >> >>    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/IGT_7699/bat-adlp-7/
-> >> >igt@xe_live_ktest@bo.html
-> >> >>    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/IGTPW_10613/bat-adlp-7/
-> >> >igt@xe_live_ktest@bo.html
-> >> >
-> >> >Hi Lucas,
-> >> >
-> >> >We've got an empty list of test cases because the current algorithm of IGT
-> >> >KUnit implementation expects subtest name provided via struct kunit_tests
-> >> >to be the same as name of a test suite provided by the KUnit test module.  As
-> >> >a special case, if the module provides only one test suite (most do) and the
-> >> >name of it is the same as the module name with the _test or _kunit suffix
-> >> >truncated (also the most common case) then subtest name may be omitted (i.e.,
-> >> >.name field may be NULL).
-> >> >
-> >> >I have to document the above, but we also have to use the same names on both
-> >> >sides (KUnit test module and its corresponding IGT test).  Now we don't, e.g.
-> >> >test suite named "xe_bo" is provided by xe_bo_test module while subtest name
-> >> >"bo" is specified for that module in IGT xe_live_ktest.
-> >>
-> >> in the end we want to have only one module: xe_live_test.ko and then
-> >> filter out by the testunit. From what I've seen previously in igt, it
-> >> would be a matter of always reloading the same module, but passing a
-> >> different name.
-> >
-> >As long as the module will provide several test suites, each of those test
-> >suites can be mapped to a separate subtest with the same name as the test
-> >suite, and with its test cases discovered and executed automatically by IGT as
-> >dynamic sub-subtests, still selectable individually via IGT --dynamic command
-> >line option.  For that to work this way, populating .name fields of the struct
-> >kunit_tests table with subtest names that are the same as test suite names is
-> >mandatory, otherwise IGT will expose one subtest, named after the module name,
-> >with dynamic sub-subtests named <suite_name>-<case_name>.
-> 
-> that's what I did when I submitted the module rename:
-> https://lore.kernel.org/igt-dev/20231205224926.2188996-1-lucas.demarchi@intel.com/
-> 
-> This one is to be applied on top of these fixes to kunit handling.
+Hi Kamil,
 
-Do your subtest names match test suite names used in xe_live_test.ko?  AFAICS, 
-https://patchwork.freedesktop.org/series/126786/ referred in the IGT patch 
-you've pointed out didn't touch test suite names while combining source files 
-of several now separate modules into that one module, and test suite names 
-still reported by those separate modules don't match -- they start with xe_ 
-prefix.  We need to have those mismatches fixed on one side or another.
+On Thursday, 1 February 2024 15:55:01 CET Kamil Konieczny wrote:
+> Hi Janusz,
+> On 2024-01-31 at 19:03:53 +0100, Janusz Krzysztofik wrote:
+> > Skip on any error from test case list gathering first, then, in
+> > preparation for executing those test cases, on an error from unloading the
+> > test module loaded in list only mode, so it is more clear if listing the
+> > test cases was successful or not.
+> > 
+> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> > ---
+> >  lib/igt_kmod.c | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
+> > index 53c54b1a0d..741c7fd055 100644
+> > --- a/lib/igt_kmod.c
+> > +++ b/lib/igt_kmod.c
+> > @@ -1225,11 +1225,11 @@ static void kunit_get_tests(struct igt_list_head 
+*tests,
+> >  		free(case_name);
+> >  	}
+> >  
+> > -	igt_skip_on(kmod_module_remove_module(tst->kmod, 
+KMOD_REMOVE_FORCE));
+> > -
+> >  	igt_skip_on_f(err,
+> >  		      "KTAP parser failed while getting a list of test 
+cases\n");
+> >  	igt_skip_on(igt_list_empty(tests));
+> 
+> This skip_on will prevent module unload below... What about
+> remembering both and skipping on list_empty() only after module unload?
+> For example:
+>     testslist_is_empty = igt_list_empty(tests);
+>     unload_failed = kmod_module_remove_module(tst->kmod, KMOD_REMOVE_FORCE);
+> 
+>     igt_skip_on(testslist_is_empty);
+>     igt_skip_on_f(unload_failed, "kmod %s unload failed\n", tst->kmod);
+
+As I tried to express in my commit description, test module is unloaded here, 
+after the list of test cases is collected, "in preparation for executing those 
+test cases", and not as a final cleanup.
+
+kunit_get_tests() is called from inside igt_subtest_with_dynamic() before any 
+calls to igt_dynamic() from where test cases are executed.  If 
+kunit_get_tests() skips for any reason then no test cases provided by that 
+module will be executed, then unloading the module is not required.  An 
+attempt to unload it if still loaded will be take from the trailing 
+igt_fixture section of igt_kunit() via a call to igt_ktest_end().
+
+Is the above clarification sufficient for you?  
 
 Thanks,
 Janusz
 
 > 
-> Lucas De Marchi
+> 
+> Regards,
+> Kamil
+> 
+> > +
+> > +	igt_skip_on(kmod_module_remove_module(tst->kmod, 
+KMOD_REMOVE_FORCE));
+> >  }
+> >  
+> >  static void __igt_kunit(struct igt_ktest *tst,
 > 
 
 
