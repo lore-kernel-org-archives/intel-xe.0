@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0140BC48292
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Feb 2024 19:03:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97ADEC48286
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Feb 2024 19:03:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3A7F10F2E8;
-	Thu,  1 Feb 2024 19:03:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57FAC10F2DA;
+	Thu,  1 Feb 2024 19:03:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eMZvNVAd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UDELuCxG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEE9B10F2E8;
- Thu,  1 Feb 2024 19:03:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7A9810F2E4;
+ Thu,  1 Feb 2024 19:03:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706814196; x=1738350196;
+ t=1706814199; x=1738350199;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=mmT0JldzRK6DisBofumf6kz19AAHgECgSWMhUynDEYI=;
- b=eMZvNVAdK4MiL5nkNhFN9Dd8inC7tQ48iBFVZB/lPujRdTm1F3Jl1dcL
- uz9p2cbjYPJhPYMJZiy0jEDUwHbXVymbSx++bqNXhFqHDfKo3HLjm5GK4
- WS/YBE9/FvOuSMm0qIOoh5m9Y6a7waNBsZ+KU9flRUN5u+bKbuylmCDf1
- HAtIolzvUAluMj0uIYhYKx0B1GHxrrd/xFrDNXevowugLa2TGriQvpOoo
- UGC/gPKShCj+2IAzlCmfmy02A0oJolUskZqcB283LEufJYWtrY7wrwjRL
- 9v9N06dHTF+xMJ5J4Ucm2vMB78CBc8D5Cl0gSnqOi2IU6VGO3rGrbmzhp g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="407694498"
-X-IronPort-AV: E=Sophos;i="6.05,236,1701158400"; d="scan'208";a="407694498"
+ bh=/vccEffWOBI/KxqMJyEyLdGYNzbd2DOOt4Bds7HPmPc=;
+ b=UDELuCxGch7eq/YlhkYzEnqXzXHltY/rRz1zLLGQkyxrU/1WvBTyEzL8
+ NG1tc3Ci1a5Rr+CzEmAgIHopaIbhc5N9nGhMzM5C/JvuRjkRHj0xsMHd5
+ RK8o2luRsfZu/Yy9BDt7Alt8afB8aZrf3OtIuejEevACZsXRAgpjji4ab
+ TDWuwm/SlRHyzP8rNqdJ0yhL2ZFERppfgroNS/hvuYLqWeFhvGsyjbh72
+ DHR13TLG04CkFMg/RRi7/DTz3n+tHvokrJewLa/PAhlbITADnHTKOL+/w
+ iALq3Ud9JdAhydm1s6yrPC5UXyrce+9yuT/nBa8eMSU4giZ6zpfF7F+NP A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="407694515"
+X-IronPort-AV: E=Sophos;i="6.05,236,1701158400"; d="scan'208";a="407694515"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2024 11:03:16 -0800
+ 01 Feb 2024 11:03:19 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="912219426"
-X-IronPort-AV: E=Sophos;i="6.05,236,1701158400"; d="scan'208";a="912219426"
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="912219434"
+X-IronPort-AV: E=Sophos;i="6.05,236,1701158400"; d="scan'208";a="912219434"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
  jkrzyszt-mobl2.intranet) ([10.213.1.219])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2024 11:03:13 -0800
+ 01 Feb 2024 11:03:16 -0800
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
@@ -46,9 +46,10 @@ Cc: intel-xe@lists.freedesktop.org,
  Mauro Carvalho Chehab <mchehab@kernel.org>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: [PATCH i-g-t v3 5/6] lib/kunit: Report early kernel taints explicitly
-Date: Thu,  1 Feb 2024 19:59:21 +0100
-Message-ID: <20240201190237.150754-13-janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t v3 6/6] lib/kunit: Process module remove error after
+ list errors
+Date: Thu,  1 Feb 2024 19:59:22 +0100
+Message-ID: <20240201190237.150754-14-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240201190237.150754-8-janusz.krzysztofik@linux.intel.com>
 References: <20240201190237.150754-8-janusz.krzysztofik@linux.intel.com>
@@ -68,36 +69,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When we find the kernel tainted after loading a KUnit test module in
-list only mode, report that taint immediately as the reason for skip
-instead of executing and blaming our KTAP parser.
+Skip on any error from test case list gathering first, then, in
+preparation for executing those test cases, on an error from unloading the
+test module loaded in list only mode, so it is more clear if listing the
+test cases was successful or not.
 
 Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
 ---
- lib/igt_kmod.c | 2 ++
- 1 file changed, 2 insertions(+)
+ lib/igt_kmod.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
-index 83416d2aa4..0ac4ac7a02 100644
+index 0ac4ac7a02..3163434aa6 100644
 --- a/lib/igt_kmod.c
 +++ b/lib/igt_kmod.c
-@@ -1146,6 +1146,7 @@ static void kunit_get_tests(struct igt_list_head *tests,
- 	char *suite_name = NULL, *case_name = NULL;
- 	struct igt_ktap_result *r, *rn;
- 	struct igt_ktap_results *ktap;
-+	unsigned long taints;
- 	int flags, err;
- 
- 	igt_skip_on_f(tst->kmsg < 0, "Could not open /dev/kmsg\n");
-@@ -1181,6 +1182,7 @@ static void kunit_get_tests(struct igt_list_head *tests,
+@@ -1214,11 +1214,11 @@ static void kunit_get_tests(struct igt_list_head *tests,
+ 		free(case_name);
  	}
  
- 	igt_skip_on(modprobe(tst->kmod, opts));
-+	igt_skip_on(igt_kernel_tainted(&taints));
+-	igt_skip_on(kmod_module_remove_module(tst->kmod, KMOD_REMOVE_FORCE));
+-
+ 	igt_skip_on_f(err,
+ 		      "KTAP parser failed while getting a list of test cases\n");
+ 	igt_skip_on(igt_list_empty(tests));
++
++	igt_skip_on(kmod_module_remove_module(tst->kmod, KMOD_REMOVE_FORCE));
+ }
  
- 	ktap = igt_ktap_alloc(tests);
- 	igt_require(ktap);
+ static void __igt_kunit(struct igt_ktest *tst,
 -- 
 2.43.0
 
