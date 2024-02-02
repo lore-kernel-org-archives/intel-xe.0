@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F503C4828F
-	for <intel-xe@archiver.kernel.org>; Fri,  2 Feb 2024 22:51:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B341C4828E
+	for <intel-xe@archiver.kernel.org>; Fri,  2 Feb 2024 22:51:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B17C10F13F;
-	Fri,  2 Feb 2024 22:51:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2784310F13B;
+	Fri,  2 Feb 2024 22:51:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GiMj7sgn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d2b+ZhA0";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3D8A10F13F
- for <intel-xe@lists.freedesktop.org>; Fri,  2 Feb 2024 22:51:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A582A10F13B
+ for <intel-xe@lists.freedesktop.org>; Fri,  2 Feb 2024 22:51:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706914272; x=1738450272;
+ t=1706914276; x=1738450276;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=thucZGWjR2GlzetuHKla5oluqpZX5udBq8JWqaqSoqI=;
- b=GiMj7sgncpEgCMp2e35bSw37CEqSzuzPoYWVWYgO00y8VJy8SPOe4VVH
- t3MHXLbnwasvlPV+NmIL3cLNrIVuSWcgmCgZ1REz5CXc5doPGHQ1yUctC
- RknkeWSJVzOhbMSTWSa6VBw0u7WydqzfnjdAYcP0YOmWMnN6PNa8+nvv4
- zR1czdjpc6MVBEC56BE/qj4Tj//CSgSB9/uFUaX90qt10G5WWEhM/IaD9
- dKh3TFlEqb5bUTvDOgI+1DAfetlh+lCB2AyOOjyUQr5Hp7TCbUWuKNO2a
- lrlJcs4M3AdP5efRUohUfC+FW5crvMZMJOpIeVVbTGhQGnxradk6vfHPf g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="153750"
+ bh=004gMDCq85H4rSz3QNVNMG3UQSVU2XNCDQmtl6SN4IM=;
+ b=d2b+ZhA0lKm4+f6+RJGS5xeQ8v965N3BUOGpkHQPtmuNRRt/HAsTtsSF
+ ZidHHE6ccWWQ3lpYyEPVTNqNV1rm+gvx0k+1RS5PxvpNLZF7fTs+wxzsS
+ MZAV2+5/3a84FvtkDEizCosFhwu7fPz+7pODU8qenpcZxqiuN+stocn36
+ p2yi+NSsuFTeMPrkQ1+LaYMSjWqy6L5a2s5PnOfSOYgZkIdRX4Ynzo7gc
+ iKuEOqegRhKVrWAoaKzWqCbev89XddecENIImcfvE4tYxVFaGCptVo64B
+ yihWKJMqNrIF5g15oeLmiW/Bkmi2YEtXa0pN8zCZ1iAVGtoMozfiKyXs1 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="153752"
 X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; 
-   d="scan'208";a="153750"
+   d="scan'208";a="153752"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2024 14:44:07 -0800
+ 02 Feb 2024 14:44:11 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="823332029"
-X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; d="scan'208";a="823332029"
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="823332033"
+X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; d="scan'208";a="823332033"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 02 Feb 2024 14:44:04 -0800
+ by orsmga001.jf.intel.com with SMTP; 02 Feb 2024 14:44:08 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Sat, 03 Feb 2024 00:44:03 +0200
+ Sat, 03 Feb 2024 00:44:07 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
  Nirmoy Das <nirmoy.das@intel.com>, Paz Zcharya <pazz@chromium.org>
-Subject: [PATCH v4 06/16] drm/i915: Rename the DSM/GSM registers
-Date: Sat,  3 Feb 2024 00:43:30 +0200
-Message-ID: <20240202224340.30647-7-ville.syrjala@linux.intel.com>
+Subject: [PATCH v4 07/16] drm/i915: Fix PTE decode during initial plane readout
+Date: Sat,  3 Feb 2024 00:43:31 +0200
+Message-ID: <20240202224340.30647-8-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240202224340.30647-1-ville.syrjala@linux.intel.com>
 References: <20240202224340.30647-1-ville.syrjala@linux.intel.com>
@@ -69,88 +69,45 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-0x108100 and 0x1080c0 have been around since snb. Rename the
-defines appropriately.
+When multiple pipes are enabled by the BIOS we try to read out each
+in turn. But we do the readout for the second only after the inherited
+vma for the first has been rebound into its original place (and thus
+the PTEs have been rewritten). Unlike the BIOS we set some high caching
+bits in the PTE on MTL which confuses the readout for the second plane.
+Filter out the non-address bits from the PTE value appropriately to
+fix this.
 
-v2: Rebase
+I suppose it might also be possible that the BIOS would already set
+some caching bits as well, in which case we'd run into this same
+issue already for the first plane.
+
+TODO:
+- should abstract the PTE decoding to avoid details leaking all over
+- should probably do the readout for all the planes before
+  we touch anything (including the PTEs) so that we truly read
+  out the BIOS state
 
 Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 Acked-by: Nirmoy Das <nirmoy.das@intel.com>
 Tested-by: Paz Zcharya <pazz@chromium.org>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_stolen.c  | 4 ++--
- drivers/gpu/drm/i915/gt/intel_ggtt.c        | 2 +-
- drivers/gpu/drm/i915/gt/intel_region_lmem.c | 2 +-
- drivers/gpu/drm/i915/i915_reg.h             | 7 ++++---
- 4 files changed, 8 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_plane_initial.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-index 9ddcae9b3997..ad6dd7f3259b 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-@@ -935,7 +935,7 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
- 		GEM_BUG_ON((dsm_base + dsm_size) > lmem_size);
- 	} else {
- 		/* Use DSM base address instead for stolen memory */
--		dsm_base = intel_uncore_read64(uncore, GEN12_DSMBASE) & GEN12_BDSM_MASK;
-+		dsm_base = intel_uncore_read64(uncore, GEN6_DSMBASE) & GEN11_BDSM_MASK;
- 		if (WARN_ON(lmem_size < dsm_base))
- 			return ERR_PTR(-ENODEV);
- 		dsm_size = ALIGN_DOWN(lmem_size - dsm_base, SZ_1M);
-@@ -943,7 +943,7 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
+diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+index a55c09cbd0e4..ffc92b18fcf5 100644
+--- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
++++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+@@ -72,7 +72,7 @@ initial_plane_vma(struct drm_i915_private *i915,
+ 			return NULL;
+ 		}
  
- 	if (i915_direct_stolen_access(i915)) {
- 		drm_dbg(&i915->drm, "Using direct DSM access\n");
--		io_start = intel_uncore_read64(uncore, GEN12_DSMBASE) & GEN12_BDSM_MASK;
-+		io_start = intel_uncore_read64(uncore, GEN6_DSMBASE) & GEN11_BDSM_MASK;
- 		io_size = dsm_size;
- 	} else if (pci_resource_len(pdev, GEN12_LMEM_BAR) < lmem_size) {
- 		io_start = 0;
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index bce5d8025340..ec1cbe229f0e 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -1163,7 +1163,7 @@ static int ggtt_probe_common(struct i915_ggtt *ggtt, u64 size)
+-		phys_base = pte & I915_GTT_PAGE_MASK;
++		phys_base = pte & GEN12_GGTT_PTE_ADDR_MASK;
+ 		mem = i915->mm.regions[INTEL_REGION_LMEM_0];
  
- 	if (i915_direct_stolen_access(i915)) {
- 		drm_dbg(&i915->drm, "Using direct GSM access\n");
--		phys_addr = intel_uncore_read64(uncore, GEN12_GSMBASE) & GEN12_BDSM_MASK;
-+		phys_addr = intel_uncore_read64(uncore, GEN6_GSMBASE) & GEN11_BDSM_MASK;
- 	} else {
- 		phys_addr = pci_resource_start(pdev, GEN4_GTTMMADR_BAR) + gen6_gttadr_offset(i915);
- 	}
-diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-index af357089da6e..51bb27e10a4f 100644
---- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-+++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-@@ -240,7 +240,7 @@ static struct intel_memory_region *setup_lmem(struct intel_gt *gt)
- 		lmem_size -= tile_stolen;
- 	} else {
- 		/* Stolen starts from GSMBASE without CCS */
--		lmem_size = intel_uncore_read64(&i915->uncore, GEN12_GSMBASE);
-+		lmem_size = intel_uncore_read64(&i915->uncore, GEN6_GSMBASE);
- 	}
- 
- 	i915_resize_lmem_bar(i915, lmem_size);
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index c1bf70d62ead..e00557e1a57f 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -6325,9 +6325,10 @@ enum skl_power_gate {
- #define   GMS_MASK			REG_GENMASK(15, 8)
- #define   GGMS_MASK			REG_GENMASK(7, 6)
- 
--#define GEN12_GSMBASE			_MMIO(0x108100)
--#define GEN12_DSMBASE			_MMIO(0x1080C0)
--#define   GEN12_BDSM_MASK		REG_GENMASK64(63, 20)
-+#define GEN6_GSMBASE			_MMIO(0x108100)
-+#define GEN6_DSMBASE			_MMIO(0x1080C0)
-+#define   GEN6_BDSM_MASK		REG_GENMASK64(31, 20)
-+#define   GEN11_BDSM_MASK		REG_GENMASK64(63, 20)
- 
- #define XEHP_CLOCK_GATE_DIS		_MMIO(0x101014)
- #define   SGSI_SIDECLK_DIS		REG_BIT(17)
+ 		/*
 -- 
 2.43.0
 
