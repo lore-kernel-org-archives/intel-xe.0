@@ -4,55 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE008C4828E
-	for <intel-xe@archiver.kernel.org>; Fri,  2 Feb 2024 22:51:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BE7CC4828E
+	for <intel-xe@archiver.kernel.org>; Fri,  2 Feb 2024 22:56:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B91B110F131;
-	Fri,  2 Feb 2024 22:51:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32A1210F14C;
+	Fri,  2 Feb 2024 22:56:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fPrpSNO/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cNrURIlg";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B831E10F145
- for <intel-xe@lists.freedesktop.org>; Fri,  2 Feb 2024 22:51:50 +0000 (UTC)
+X-Greylist: delayed 415 seconds by postgrey-1.36 at gabe;
+ Fri, 02 Feb 2024 22:56:27 UTC
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCC3210F148
+ for <intel-xe@lists.freedesktop.org>; Fri,  2 Feb 2024 22:56:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706914311; x=1738450311;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=YUd6BO6uHR3qzrWrIQ8DoasqDo5uaCrsHneuzDl9lx0=;
- b=fPrpSNO/5cfvwwHhzJK/o3vhnRwEKX9jDZg/z02F81Sd3pF9cieiXppv
- UBDR06z3ZrZbDhPhHjiW9+/N6S3uQPcrVZ0pr8xxG0d5NuZMVliEbY6PQ
- 5gqI8pssKAXIIwQxz/qG8xUiKDQurcOXa7njFtNoQn0d8raE3qd4B2DHw
- rl9pcyWbDFbWCW2h8XuZGFsp2SMxnpA0Qeg4f7oyORBSGlEFsbIafRcwj
- 2gX9GiVysiufrWv1h45KTC7ix0TsSHCkQ2E0K8q1qidoXzqRuycZHcS7K
- 8YFYhWmOYK9Qntj5cRBqMWHeP1eAoo9sFt/ZtKcGjLyYZ/E7ERWpcTDHb w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="153833"
+ t=1706914587; x=1738450587;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=pr86xM7cNzB+yzVGwrBLXR8RWHmvdGPCZJ/EVBmvMJE=;
+ b=cNrURIlgimdROtgdCkzp5zKpCwaeEuPiw+GioINVNxnEBX5dZDV1fjBB
+ h1UL/0adPbfl/iRLhRSyzMu6egWjMIof8E1z48AN9miut17EBv2rLD50s
+ 7KGfYzQ72b6/3hj8jPHUf2GDwVbkhJVRlzC9vyxUAyqcQVyIBYlXx7hjC
+ KqmoWtjXlpXr9JwSaW66Nw8m8zC78g2BfiRzQWKzCAoImaucK9z9XacP7
+ 1ohooUW78gcd48JEBXjKCCIbRmCYh2tFqlQe8kN/AbTH7OH8GplgDMHok
+ j0Q4KeikndtUDOSSder50NxpI1kYLKyOA36DjrDgy7V25081Vui7Pryyb A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="160217"
 X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; 
-   d="scan'208";a="153833"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2024 14:44:45 -0800
+   d="scan'208";a="160217"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2024 14:56:27 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="823332078"
-X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; d="scan'208";a="823332078"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 02 Feb 2024 14:44:42 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Sat, 03 Feb 2024 00:44:41 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, Uma Shankar <uma.shankar@intel.com>,
- Paz Zcharya <pazz@chromium.org>
-Subject: [PATCH v4 16/16] drm/i915: Annotate more of the BIOS fb takeover
- failure paths
-Date: Sat,  3 Feb 2024 00:43:40 +0200
-Message-ID: <20240202224340.30647-17-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240202224340.30647-1-ville.syrjala@linux.intel.com>
-References: <20240202224340.30647-1-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; d="scan'208";a="31000629"
+Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.jf.intel.com)
+ ([10.165.21.138])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2024 14:56:27 -0800
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Riana Tauro <riana.tauro@intel.com>,
+ Badal Nilawar <badal.nilawar@intel.com>
+Subject: [PATCH] drm/xe/xe_gt_idle: Drop redundant newline in name
+Date: Fri,  2 Feb 2024 14:56:23 -0800
+Message-ID: <20240202225623.3225443-1-ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,45 +65,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Newline in name is redunant and produces an unnecessary empty line during
+'cat name'. Newline is added during sysfs_emit. See '27a1a1e2e47d ("drm/xe:
+stringify the argument to avoid potential vulnerability")'.
 
-Annotate a few more of the failure paths on the initial
-BIOS fb takeover to avoid having to guess why things
-aren't working the way we expect.
-
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-Tested-by: Paz Zcharya <pazz@chromium.org>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_plane_initial.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_idle.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-index b43b8cf4680c..ada1792df5b3 100644
---- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
-+++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-@@ -167,14 +167,19 @@ initial_plane_vma(struct drm_i915_private *i915,
- 	 */
- 	if (IS_ENABLED(CONFIG_FRAMEBUFFER_CONSOLE) &&
- 	    mem == i915->mm.stolen_region &&
--	    size * 2 > i915->dsm.usable_size)
-+	    size * 2 > i915->dsm.usable_size) {
-+		drm_dbg_kms(&i915->drm, "Initial FB size exceeds half of stolen, discarding\n");
- 		return NULL;
-+	}
+diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c b/drivers/gpu/drm/xe/xe_gt_idle.c
+index 9358f73368896..9fcae65b64699 100644
+--- a/drivers/gpu/drm/xe/xe_gt_idle.c
++++ b/drivers/gpu/drm/xe/xe_gt_idle.c
+@@ -145,10 +145,10 @@ void xe_gt_idle_sysfs_init(struct xe_gt_idle *gtidle)
+ 	}
  
- 	obj = i915_gem_object_create_region_at(mem, phys_base, size,
- 					       I915_BO_ALLOC_USER |
- 					       I915_BO_PREALLOC);
--	if (IS_ERR(obj))
-+	if (IS_ERR(obj)) {
-+		drm_dbg_kms(&i915->drm, "Failed to preallocate initial FB in %s\n",
-+			    mem->region.name);
- 		return NULL;
-+	}
+ 	if (xe_gt_is_media_type(gt)) {
+-		sprintf(gtidle->name, "gt%d-mc\n", gt->info.id);
++		sprintf(gtidle->name, "gt%d-mc", gt->info.id);
+ 		gtidle->idle_residency = xe_guc_pc_mc6_residency;
+ 	} else {
+-		sprintf(gtidle->name, "gt%d-rc\n", gt->info.id);
++		sprintf(gtidle->name, "gt%d-rc", gt->info.id);
+ 		gtidle->idle_residency = xe_guc_pc_rc6_residency;
+ 	}
  
- 	/*
- 	 * Mark it WT ahead of time to avoid changing the
 -- 
-2.43.0
+2.41.0
 
