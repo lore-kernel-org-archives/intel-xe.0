@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FDA4C47258
-	for <intel-xe@archiver.kernel.org>; Fri,  2 Feb 2024 07:36:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39C7BC47258
+	for <intel-xe@archiver.kernel.org>; Fri,  2 Feb 2024 08:37:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E48F610EC51;
-	Fri,  2 Feb 2024 07:36:16 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D3D710EC51;
- Fri,  2 Feb 2024 07:36:15 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id E278310E0BC;
+	Fri,  2 Feb 2024 08:37:40 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q0+oCRTr";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64E8810E561
+ for <intel-xe@lists.freedesktop.org>; Fri,  2 Feb 2024 08:37:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706863059; x=1738399059;
+ h=message-id:date:mime-version:subject:from:to:cc:
+ references:in-reply-to:content-transfer-encoding;
+ bh=cui93uz7UTzKv+779R9OyUIDN4k9ScEKlxO4HylKEdE=;
+ b=Q0+oCRTrbpiz/dyp0uy4dACrNqN1cnMVhL+eomYuAbde2uAGdJyqoSn2
+ azpGC0t+iMcBI6RM6ZMAH0LRdJ4gHTp2vMkvzKmjYnogRz8zrom22zIP3
+ jMJQo7SkdXqHVL9c8FlnonCA0rdgDgJ03gZof0wq8srph17Vld7txXRYI
+ v2Q/IanGY7X0IlJocSdL4bdV4TaXWAfeDmwx9H/S4pUHVNVKONxpdwDe5
+ /9fHlQd173UXhd4M953SOkHx4/lU7/kK1Mge19QSBbXryMMshRQa7Sclp
+ WDrhNjtUIoSi+L9Hy7q8Odlm/QGhqVk5A6XWhaP0DUD/MXtVql2YmLwMp A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="25561846"
+X-IronPort-AV: E=Sophos;i="6.05,237,1701158400"; d="scan'208";a="25561846"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2024 00:37:38 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,237,1701158400"; 
+   d="scan'208";a="4635042"
+Received: from lhuot-mobl.amr.corp.intel.com (HELO [10.252.59.167])
+ ([10.252.59.167])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2024 00:37:36 -0800
+Message-ID: <111ee61b-f699-4736-a0c1-e842cce618ff@linux.intel.com>
+Date: Fri, 2 Feb 2024 09:37:34 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_Update_to_GuC_70=2E1?=
- =?utf-8?q?9=2E2_and_add_LNL?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: john.c.harrison@intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] drm/xe: Pick correct userptr VMA to repin on REMAP op
+ failure
+Content-Language: en-US
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 02 Feb 2024 07:36:15 -0000
-Message-ID: <170685937524.936097.10541935258326518897@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240202073050.1986142-1-John.C.Harrison@Intel.com>
-In-Reply-To: <20240202073050.1986142-1-John.C.Harrison@Intel.com>
+References: <20240201004849.2219558-1-matthew.brost@intel.com>
+ <20240201004849.2219558-3-matthew.brost@intel.com>
+ <265682a3-b813-4f1f-8031-1d500c3d89af@linux.intel.com>
+ <ZbvwWn84IXdbLjIU@DUT025-TGLU.fm.intel.com>
+ <3914d37b-2f89-41bc-bf20-4f255d96d217@linux.intel.com>
+In-Reply-To: <3914d37b-2f89-41bc-bf20-4f255d96d217@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,28 +68,76 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: Update to GuC 70.19.2 and add LNL
-URL   : https://patchwork.freedesktop.org/series/129453/
-State : failure
-
-== Summary ==
-
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 18a9fefd9 drm-tip: 2024y-02m-01d-21h-52m-31s UTC integration manifest
-=== git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/xe_uc_fw.c:102
-error: drivers/gpu/drm/xe/xe_uc_fw.c: patch does not apply
-hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: drm/xe/uc: Include patch version in expectations
-Patch failed at 0001 drm/xe/uc: Include patch version in expectations
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
 
 
+On 2024-02-01 21:00, Maarten Lankhorst wrote:
+> Hey,
+> 
+> On 2024-02-01 20:26, Matthew Brost wrote:
+>> On Thu, Feb 01, 2024 at 08:18:52PM +0100, Maarten Lankhorst wrote:
+>>>
+>>>
+>>> On 2024-02-01 01:48, Matthew Brost wrote:
+>>>> A REMAP op is composed of 3 VMA's - unmap, prev map, and next map. When
+>>>> op_execute fails with -EAGAIN we need to update the local VMA 
+>>>> pointer to
+>>>> the current op state and then repin the VMA if it is a userptr.
+>>>>
+>>>> Fixes a failure seen in xe_vm.munmap-style-unbind-userptr-one-partial.
+>>>>
+>>>> Fixes: b06d47be7c83 ("drm/xe: Port Xe to GPUVA")
+>>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>>>> ---
+>>>>    drivers/gpu/drm/xe/xe_vm.c | 22 +++++++++++++++++-----
+>>>>    1 file changed, 17 insertions(+), 5 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+>>>> index e55161136490..2ab863fe7d0a 100644
+>>>> --- a/drivers/gpu/drm/xe/xe_vm.c
+>>>> +++ b/drivers/gpu/drm/xe/xe_vm.c
+>>>> @@ -2506,13 +2506,25 @@ static int __xe_vma_op_execute(struct xe_vm 
+>>>> *vm, struct xe_vma *vma,
+>>>>        }
+>>>>        drm_exec_fini(&exec);
+>>>> -    if (err == -EAGAIN && xe_vma_is_userptr(vma)) {
+>>>> +    if (err == -EAGAIN) {
+>>>>            lockdep_assert_held_write(&vm->lock);
+>>>> -        err = xe_vma_userptr_pin_pages(vma);
+>>>> -        if (!err)
+>>>> -            goto retry_userptr;
+>>>> -        trace_xe_vma_fail(vma);
+>>>> +        if (op->base.op == DRM_GPUVA_OP_REMAP) {
+>>>> +            if (!op->remap.unmap_done)
+>>>> +                vma = gpuva_to_vma(op->base.remap.unmap->va);
+>>>> +            else if (op->remap.prev)
+>>>> +                vma = op->remap.prev;
+>>>> +            else
+>>>> +                vma = op->remap.next;
+>>>> +        }
+>>> I see this same vma picking in handling of DRM_GPUVA_OP_REMAP.
+>>>
+>>> Could the switch in xe_vma_op_execute() be moved to a separate pick_vma
+>>> function instead, called from this place too?
+>>>
+>>> It might make the code slightly more readable.
+>>>
+>>
+>> I would agree if this code wasn't going get rewritten shortly in [1]. We
+>> are transiting to 1 job per VM bind IOCTL in [1]. I currently am
+>> reworking on rebasing that code and found a few bugs in the current
+>> code. I want to stablize the code quickly so I czn reliably test my
+>> larger changes.
+>>
+>> Would it help if I added comment here saying this code is temporary?
+> Oh that gives some context. The infinite loop fix in one patch is caused 
+> by the first patch in that series.
+> 
+> I'd personally choose to fix it here, then when r ebasing put a revert 
+> before 21/27 and squash?
+> 
+> Cheers,
+> ~Maarten
+Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
