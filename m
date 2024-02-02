@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27AB2C48291
-	for <intel-xe@archiver.kernel.org>; Fri,  2 Feb 2024 22:51:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32076C4828E
+	for <intel-xe@archiver.kernel.org>; Fri,  2 Feb 2024 22:51:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA35010F131;
-	Fri,  2 Feb 2024 22:51:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9EF010F140;
+	Fri,  2 Feb 2024 22:51:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wuup+M8G";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DWukIpqu";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4B8610F131
- for <intel-xe@lists.freedesktop.org>; Fri,  2 Feb 2024 22:51:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE75910F145
+ for <intel-xe@lists.freedesktop.org>; Fri,  2 Feb 2024 22:51:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706914299; x=1738450299;
+ t=1706914303; x=1738450303;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=HAz0vHB8z9ZufABCsUZkz3K/YMzvRqqNdAQZvTAbjTw=;
- b=Wuup+M8GECa9S/WoeMLetdBAOaKP4YhpDgnnnMZnnlKSCXup5Up9as9u
- mlyAP3WEPs+1AqQ0W5X58Q75LsT/aSsi6QCXpH6Q3gxNFonk7tOyRuv/C
- FH7c6NZfWaDJfnRKGZiptSbsfX+Z1JL0FVoCZg64VHyAdPX+lWbuhWJGL
- BUlUYN1NpnNB7p45xGtgRbENd3ZfeRDel0zx1hG3SuDVBQfibKMiS3aEv
- YfOwOGkb1Cm77EvEZv5f7IjSxpazPhwJnnpzrubUI6CCPUGqEcDdAfmlr
- 6/c00lTpfvPMDXROIPUJz81xxCq9C+dvbKc4/nACpYvJpiC7jPYvdGP2L Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="153782"
+ bh=MTM7GasKa4ke1PKew9Bk65t75LVrciRlYcjpgF1OJiw=;
+ b=DWukIpquZndippOanoJhteWqusIadRT/PmZJsHbpJADvwb29ere9YDbh
+ HhOVQWfMuGYoGdPsroUgrcOpu4DAy4yOujZTWUxasujf4CFwrTTsp+WkE
+ S7Fehjr8yOafzrZRn4d/t7Ews/vwB7TWOCCjseEt9ZiwoGaDkPp0omMNT
+ EHFwRTVEUBpVwclOZ1ONc0TUnkyUzlVgovjpAtCnlZTvqyyvm8YTl7WUl
+ gGM/T1Yk3v4uM5dXgpLq9Ph3zCdjD1+jZ1wKMQL/Cd67r3RXqDXh9krG8
+ 3I7CnruSzVLm9Osv7wR5emd1Qk4QrM5BnEoOPogjSCD7YrO4Mg+Ja7Dpf A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="153790"
 X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; 
-   d="scan'208";a="153782"
+   d="scan'208";a="153790"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2024 14:44:30 -0800
+ 02 Feb 2024 14:44:34 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="823332062"
-X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; d="scan'208";a="823332062"
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="823332067"
+X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; d="scan'208";a="823332067"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 02 Feb 2024 14:44:27 -0800
+ by orsmga001.jf.intel.com with SMTP; 02 Feb 2024 14:44:30 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Sat, 03 Feb 2024 00:44:26 +0200
+ Sat, 03 Feb 2024 00:44:30 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
  Paz Zcharya <pazz@chromium.org>
-Subject: [PATCH v4 12/16] drm/i915: Simplify intel_initial_plane_config()
- calling convention
-Date: Sat,  3 Feb 2024 00:43:36 +0200
-Message-ID: <20240202224340.30647-13-ville.syrjala@linux.intel.com>
+Subject: [PATCH v4 13/16] drm/i915/fbdev: Fix smem_start for LMEMBAR stolen
+ objects
+Date: Sat,  3 Feb 2024 00:43:37 +0200
+Message-ID: <20240202224340.30647-14-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240202224340.30647-1-ville.syrjala@linux.intel.com>
 References: <20240202224340.30647-1-ville.syrjala@linux.intel.com>
@@ -70,168 +70,37 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-There's no reason the caller of intel_initial_plane_config() should
-have to loop over the CRTCs. Pull the loop into the function to
-make life simpler for the caller.
+The "io" address of an object is its dma address minus the
+region.start. Subtract the latter to make smem_start correct.
+The current code happens to work for genuine LMEM objects
+as LMEM region.start==0, but for LMEMBAR stolen objects
+region.start!=0.
 
-v2: "fix" xe
+TODO: perhaps just set smem_start=0 always as our .fb_mmap()
+implementation no longer depends on it? Need to double check
+it's not needed for anything else...
 
 Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 Tested-by: Paz Zcharya <pazz@chromium.org>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- .../drm/i915/display/intel_display_driver.c   |  7 +---
- .../drm/i915/display/intel_plane_initial.c    | 40 +++++++++++--------
- .../drm/i915/display/intel_plane_initial.h    |  4 +-
- drivers/gpu/drm/xe/display/xe_plane_initial.c | 40 +++++++++++--------
- 4 files changed, 49 insertions(+), 42 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fbdev_fb.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index ecf9cb74734b..f3fe1743243b 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -415,7 +415,6 @@ int intel_display_driver_probe_nogem(struct drm_i915_private *i915)
- {
- 	struct drm_device *dev = &i915->drm;
- 	enum pipe pipe;
--	struct intel_crtc *crtc;
- 	int ret;
- 
- 	if (!HAS_DISPLAY(i915))
-@@ -467,11 +466,7 @@ int intel_display_driver_probe_nogem(struct drm_i915_private *i915)
- 	intel_acpi_assign_connector_fwnodes(i915);
- 	drm_modeset_unlock_all(dev);
- 
--	for_each_intel_crtc(dev, crtc) {
--		if (!to_intel_crtc_state(crtc->base.state)->uapi.active)
--			continue;
--		intel_crtc_initial_plane_config(crtc);
--	}
-+	intel_initial_plane_config(i915);
- 
- 	/*
- 	 * Make sure hardware watermarks really match the state we read out.
-diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-index 78bff6181ceb..b7e12b60d68b 100644
---- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
-+++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-@@ -357,25 +357,31 @@ static void plane_config_fini(struct intel_initial_plane_config *plane_config)
- 		i915_vma_put(plane_config->vma);
- }
- 
--void intel_crtc_initial_plane_config(struct intel_crtc *crtc)
-+void intel_initial_plane_config(struct drm_i915_private *i915)
- {
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
--	struct intel_initial_plane_config plane_config = {};
-+	struct intel_crtc *crtc;
- 
--	/*
--	 * Note that reserving the BIOS fb up front prevents us
--	 * from stuffing other stolen allocations like the ring
--	 * on top.  This prevents some ugliness at boot time, and
--	 * can even allow for smooth boot transitions if the BIOS
--	 * fb is large enough for the active pipe configuration.
--	 */
--	dev_priv->display.funcs.display->get_initial_plane_config(crtc, &plane_config);
-+	for_each_intel_crtc(&i915->drm, crtc) {
-+		struct intel_initial_plane_config plane_config = {};
- 
--	/*
--	 * If the fb is shared between multiple heads, we'll
--	 * just get the first one.
--	 */
--	intel_find_initial_plane_obj(crtc, &plane_config);
-+		if (!to_intel_crtc_state(crtc->base.state)->uapi.active)
-+			continue;
- 
--	plane_config_fini(&plane_config);
-+		/*
-+		 * Note that reserving the BIOS fb up front prevents us
-+		 * from stuffing other stolen allocations like the ring
-+		 * on top.  This prevents some ugliness at boot time, and
-+		 * can even allow for smooth boot transitions if the BIOS
-+		 * fb is large enough for the active pipe configuration.
-+		 */
-+		i915->display.funcs.display->get_initial_plane_config(crtc, &plane_config);
-+
-+		/*
-+		 * If the fb is shared between multiple heads, we'll
-+		 * just get the first one.
-+		 */
-+		intel_find_initial_plane_obj(crtc, &plane_config);
-+
-+		plane_config_fini(&plane_config);
-+	}
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.h b/drivers/gpu/drm/i915/display/intel_plane_initial.h
-index c7e35ab3182b..64ab95239cd4 100644
---- a/drivers/gpu/drm/i915/display/intel_plane_initial.h
-+++ b/drivers/gpu/drm/i915/display/intel_plane_initial.h
-@@ -6,8 +6,8 @@
- #ifndef __INTEL_PLANE_INITIAL_H__
- #define __INTEL_PLANE_INITIAL_H__
- 
--struct intel_crtc;
-+struct drm_i915_private;
- 
--void intel_crtc_initial_plane_config(struct intel_crtc *crtc);
-+void intel_initial_plane_config(struct drm_i915_private *i915);
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-index ccf83c12b545..0aaf4eb2cdc5 100644
---- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
-+++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-@@ -267,25 +267,31 @@ static void plane_config_fini(struct intel_initial_plane_config *plane_config)
- 	}
- }
- 
--void intel_crtc_initial_plane_config(struct intel_crtc *crtc)
-+void intel_initial_plane_config(struct drm_i915_private *i915)
- {
--	struct xe_device *xe = to_xe_device(crtc->base.dev);
--	struct intel_initial_plane_config plane_config = {};
-+	struct intel_crtc *crtc;
- 
--	/*
--	 * Note that reserving the BIOS fb up front prevents us
--	 * from stuffing other stolen allocations like the ring
--	 * on top.  This prevents some ugliness at boot time, and
--	 * can even allow for smooth boot transitions if the BIOS
--	 * fb is large enough for the active pipe configuration.
--	 */
--	xe->display.funcs.display->get_initial_plane_config(crtc, &plane_config);
-+	for_each_intel_crtc(&i915->drm, crtc) {
-+		struct intel_initial_plane_config plane_config = {};
- 
--	/*
--	 * If the fb is shared between multiple heads, we'll
--	 * just get the first one.
--	 */
--	intel_find_initial_plane_obj(crtc, &plane_config);
-+		if (!to_intel_crtc_state(crtc->base.state)->uapi.active)
-+			continue;
- 
--	plane_config_fini(&plane_config);
-+		/*
-+		 * Note that reserving the BIOS fb up front prevents us
-+		 * from stuffing other stolen allocations like the ring
-+		 * on top.  This prevents some ugliness at boot time, and
-+		 * can even allow for smooth boot transitions if the BIOS
-+		 * fb is large enough for the active pipe configuration.
-+		 */
-+		i915->display.funcs.display->get_initial_plane_config(crtc, &plane_config);
-+
-+		/*
-+		 * If the fb is shared between multiple heads, we'll
-+		 * just get the first one.
-+		 */
-+		intel_find_initial_plane_obj(crtc, &plane_config);
-+
-+		plane_config_fini(&plane_config);
-+	}
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+index 1ac05d90b2e8..0665f943f65f 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+@@ -79,7 +79,8 @@ int intel_fbdev_fb_fill_info(struct drm_i915_private *i915, struct fb_info *info
+ 		/* Use fbdev's framebuffer from lmem for discrete */
+ 		info->fix.smem_start =
+ 			(unsigned long)(mem->io.start +
+-					i915_gem_object_get_dma_address(obj, 0));
++					i915_gem_object_get_dma_address(obj, 0) -
++					mem->region.start);
+ 		info->fix.smem_len = obj->base.size;
+ 	} else {
+ 		struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
 -- 
 2.43.0
 
