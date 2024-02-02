@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FCBCC4828D
-	for <intel-xe@archiver.kernel.org>; Fri,  2 Feb 2024 03:37:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E042C48286
+	for <intel-xe@archiver.kernel.org>; Fri,  2 Feb 2024 03:37:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC8DE10E792;
-	Fri,  2 Feb 2024 03:37:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 109FE10E792;
+	Fri,  2 Feb 2024 03:37:14 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37A1A10E792;
- Fri,  2 Feb 2024 03:37:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A3A3210E792;
+ Fri,  2 Feb 2024 03:37:13 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Map_both_m?=
- =?utf-8?q?em=2Ekernel=5Fbb=5Fpool_and_usm=2Ebb=5Fpool?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Map_both_mem=2E?=
+ =?utf-8?q?kernel=5Fbb=5Fpool_and_usm=2Ebb=5Fpool?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 02 Feb 2024 03:37:01 -0000
-Message-ID: <170684502123.897305.7912536136558687977@5338d5abeb45>
+Date: Fri, 02 Feb 2024 03:37:13 -0000
+Message-ID: <170684503367.897305.3775036447663600141@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240202033440.2351862-1-matthew.brost@intel.com>
 In-Reply-To: <20240202033440.2351862-1-matthew.brost@intel.com>
@@ -44,13 +44,36 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Map both mem.kernel_bb_pool and usm.bb_pool
 URL   : https://patchwork.freedesktop.org/series/129450/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 18a9fefd9 drm-tip: 2024y-02m-01d-21h-52m-31s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Map both mem.kernel_bb_pool and usm.bb_pool
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+35591fb8b4d5305b37ce31483f85ac0956eaa536
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d32c66c4f991fc435dcb466ddc589f99966c46bd
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Thu Feb 1 19:34:40 2024 -0800
+
+    drm/xe: Map both mem.kernel_bb_pool and usm.bb_pool
+    
+    For integrated devices we need to map both mem.kernel_bb_pool and
+    usm.bb_pool to be able to run batches from both pools.
+    
+    Fixes: a682b6a42d4d ("drm/xe: Support device page faults on integrated platforms")
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 18a9fefd9e05291cbe792d358bbdc04dc6d21adb drm-intel
+d32c66c4f drm/xe: Map both mem.kernel_bb_pool and usm.bb_pool
+-:9: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id 'a682b6a42d4d', maybe rebased or not pulled?
+#9: 
+Fixes: a682b6a42d4d ("drm/xe: Support device page faults on integrated platforms")
+
+total: 0 errors, 1 warnings, 0 checks, 46 lines checked
 
 
