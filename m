@@ -4,26 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1BE5C48286
-	for <intel-xe@archiver.kernel.org>; Fri,  2 Feb 2024 01:07:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E3B1C48286
+	for <intel-xe@archiver.kernel.org>; Fri,  2 Feb 2024 01:15:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4B6910E0DA;
-	Fri,  2 Feb 2024 01:07:44 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF4F010E0DA;
- Fri,  2 Feb 2024 01:07:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2377139308272349699=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCF5610E0F9;
+	Fri,  2 Feb 2024 01:15:35 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WYTeeB+Q";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C43210E0F9;
+ Fri,  2 Feb 2024 01:15:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706836533; x=1738372533;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=UZToXV4E9WAR+3C0HJwhZKtggco7Yvdbubpp9HQz2qo=;
+ b=WYTeeB+Q/LDSaUOj7tKCF9z9LVONbHWAO96f2sEFvzJ+dvJ4p3bE1jx9
+ NCh0RUixMpTr+IF2m6fs6smLQkMF2ibHCkJL44GFSTfkEhKT67qXISZWy
+ g7IW/87CHxJwbCevV23vU8l+rsFxXdhVf+qtN4VnxunVR2xfKf8Tx/Dzn
+ d2eWpudFdPyn9rFZ0h6amJJs/7SGC1l8GrG9F2L9sirW577jyFjgMyTou
+ /nBfojEWjlcyTFdqHLP6EEE6qRbor6yIJOnUO0qBR0zmXtsxg8kvjKNaH
+ kW5rcDSIVInmLG5PTk2yuR2JEu2lUW/z4nE8vGxKxNqyqWi5KQfQjJlLl Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="17435120"
+X-IronPort-AV: E=Sophos;i="6.05,236,1701158400"; d="scan'208";a="17435120"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2024 17:15:33 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="823087522"
+X-IronPort-AV: E=Sophos;i="6.05,236,1701158400"; d="scan'208";a="823087522"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
+ by orsmga001.jf.intel.com with ESMTP; 01 Feb 2024 17:15:31 -0800
+From: John.C.Harrison@Intel.com
+To: linux-firmware@kernel.org
+Cc: jwboyer@kernel.org, kyle@kernel.org, ben@decadent.org.uk,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: PR for new GuC v70.19.2
+Date: Thu,  1 Feb 2024 17:12:49 -0800
+Message-ID: <20240202011249.1965081-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe=3A_Group_live_kunit_tests?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 02 Feb 2024 01:07:43 -0000
-Message-ID: <170683606391.935547.9478195254616849037@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240202003047.552529-1-lucas.demarchi@intel.com>
-In-Reply-To: <20240202003047.552529-1-lucas.demarchi@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,154 +58,34 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2377139308272349699==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The following changes since commit 1a9518c73c4b54854c9cd8f416fd3b8f8e3456e7:
 
-== Series Details ==
+  Merge branch 'mlimonci/amd-2024-01-30.2' into 'main' (2024-01-30 15:55:30 +0000)
 
-Series: drm/xe: Group live kunit tests
-URL   : https://patchwork.freedesktop.org/series/129448/
-State : failure
+are available in the Git repository at:
 
-== Summary ==
+  git://anongit.freedesktop.org/drm/drm-firmware guc_70.19.2
 
-CI Bug Log - changes from xe-716-18a9fefd9e05291cbe792d358bbdc04dc6d21adb_BAT -> xe-pw-129448v1_BAT
-====================================================
+for you to fetch changes up to 92c06b3c1b4b93ccd9953825cfd4e6ab56e03f16:
 
-Summary
--------
+  xe: First GuC release for LNL and Xe (2024-01-30 09:23:50 -0800)
 
-  **FAILURE**
+----------------------------------------------------------------
+John Harrison (2):
+      i915: Add GuC v70.19.2 for ADL-P, DG1, DG2, MTL and TGL
+      xe: First GuC release for LNL and Xe
 
-  Serious unknown changes coming with xe-pw-129448v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-129448v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-129448v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_live_ktest@bo:
-    - bat-adlp-7:         [PASS][1] -> [SKIP][2] +2 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-716-18a9fefd9e05291cbe792d358bbdc04dc6d21adb/bat-adlp-7/igt@xe_live_ktest@bo.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129448v1/bat-adlp-7/igt@xe_live_ktest@bo.html
-
-  * igt@xe_live_ktest@migrate:
-    - bat-pvc-2:          [PASS][3] -> [SKIP][4] +2 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-716-18a9fefd9e05291cbe792d358bbdc04dc6d21adb/bat-pvc-2/igt@xe_live_ktest@migrate.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129448v1/bat-pvc-2/igt@xe_live_ktest@migrate.html
-    - bat-dg2-oem2:       [PASS][5] -> [SKIP][6] +2 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-716-18a9fefd9e05291cbe792d358bbdc04dc6d21adb/bat-dg2-oem2/igt@xe_live_ktest@migrate.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129448v1/bat-dg2-oem2/igt@xe_live_ktest@migrate.html
-    - bat-atsm-2:         [PASS][7] -> [SKIP][8] +2 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-716-18a9fefd9e05291cbe792d358bbdc04dc6d21adb/bat-atsm-2/igt@xe_live_ktest@migrate.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129448v1/bat-atsm-2/igt@xe_live_ktest@migrate.html
-
-  
-
-
-Build changes
--------------
-
-  * Linux: xe-716-18a9fefd9e05291cbe792d358bbdc04dc6d21adb -> xe-pw-129448v1
-
-  IGT_7701: 7701
-  xe-716-18a9fefd9e05291cbe792d358bbdc04dc6d21adb: 18a9fefd9e05291cbe792d358bbdc04dc6d21adb
-  xe-pw-129448v1: 129448v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129448v1/index.html
-
---===============2377139308272349699==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Group live kunit tests</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129448/">https://patchwork.freedesktop.org/series/129448/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129448v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129448v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-716-18a9fefd9e05291cbe792d358bbdc04dc6d21adb_BAT -&gt; xe-pw-129448v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-129448v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-129448v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-129448v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@xe_live_ktest@bo:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-716-18a9fefd9e05291cbe792d358bbdc04dc6d21adb/bat-adlp-7/igt@xe_live_ktest@bo.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129448v1/bat-adlp-7/igt@xe_live_ktest@bo.html">SKIP</a> +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@migrate:</p>
-<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-716-18a9fefd9e05291cbe792d358bbdc04dc6d21adb/bat-pvc-2/igt@xe_live_ktest@migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129448v1/bat-pvc-2/igt@xe_live_ktest@migrate.html">SKIP</a> +2 other tests skip</li>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-716-18a9fefd9e05291cbe792d358bbdc04dc6d21adb/bat-dg2-oem2/igt@xe_live_ktest@migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129448v1/bat-dg2-oem2/igt@xe_live_ktest@migrate.html">SKIP</a> +2 other tests skip</li>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-716-18a9fefd9e05291cbe792d358bbdc04dc6d21adb/bat-atsm-2/igt@xe_live_ktest@migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129448v1/bat-atsm-2/igt@xe_live_ktest@migrate.html">SKIP</a> +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-716-18a9fefd9e05291cbe792d358bbdc04dc6d21adb -&gt; xe-pw-129448v1</li>
-</ul>
-<p>IGT_7701: 7701<br />
-  xe-716-18a9fefd9e05291cbe792d358bbdc04dc6d21adb: 18a9fefd9e05291cbe792d358bbdc04dc6d21adb<br />
-  xe-pw-129448v1: 129448v1</p>
-
-</body>
-</html>
-
---===============2377139308272349699==--
+ LICENSE.xe           |  39 +++++++++++++++++++++++++++++++++++++++
+ WHENCE               |  20 ++++++++++++++------
+ i915/adlp_guc_70.bin | Bin 342848 -> 347264 bytes
+ i915/dg1_guc_70.bin  | Bin 272512 -> 321088 bytes
+ i915/dg2_guc_70.bin  | Bin 443200 -> 406336 bytes
+ i915/mtl_guc_70.bin  | Bin 365376 -> 332608 bytes
+ i915/tgl_guc_70.bin  | Bin 330304 -> 334784 bytes
+ xe/lnl_guc_70.bin    | Bin 0 -> 336704 bytes
+ 8 files changed, 53 insertions(+), 6 deletions(-)
+ create mode 100644 LICENSE.xe
+ create mode 100644 xe/lnl_guc_70.bin
