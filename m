@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2FE0C4828E
-	for <intel-xe@archiver.kernel.org>; Fri,  2 Feb 2024 22:04:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 338BBC4828E
+	for <intel-xe@archiver.kernel.org>; Fri,  2 Feb 2024 22:04:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A7B810E0C0;
-	Fri,  2 Feb 2024 22:04:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1F8910E0D1;
+	Fri,  2 Feb 2024 22:04:21 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CFA310E0C0;
- Fri,  2 Feb 2024 22:04:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92AE510E0D1;
+ Fri,  2 Feb 2024 22:04:20 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/display=3A_Fi?=
- =?utf-8?q?x_memleak_in_display_initialization_=28rev5=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/display=3A_Fix_mem?=
+ =?utf-8?q?leak_in_display_initialization_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "wangxiaoming321" <xiaoming.wang@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 02 Feb 2024 22:04:09 -0000
-Message-ID: <170691144957.953329.9029561668886467358@5338d5abeb45>
+Date: Fri, 02 Feb 2024 22:04:20 -0000
+Message-ID: <170691146060.953329.8886862388244871434@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240202215658.561298-1-lucas.demarchi@intel.com>
 In-Reply-To: <20240202215658.561298-1-lucas.demarchi@intel.com>
@@ -44,13 +44,76 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/display: Fix memleak in display initialization (rev5)
 URL   : https://patchwork.freedesktop.org/series/129150/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 9b4c80cd7 drm-tip: 2024y-02m-02d-21h-58m-15s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/display: Fix memleak in display initialization
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+35591fb8b4d5305b37ce31483f85ac0956eaa536
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c8f019111d189cd024c0a6fe763ae350a32283cf
+Author: Xiaoming Wang <xiaoming.wang@intel.com>
+Date:   Fri Feb 2 13:56:58 2024 -0800
+
+    drm/xe/display: Fix memleak in display initialization
+    
+    intel_power_domains_init is called twice in xe_device_probe:
+    xe_device_probe -> xe_display_init_nommio -> intel_power_domains_init()
+    xe_device_probe -> xe_display_init_noirq -> intel_display_driver_probe_noirq
+    -> intel_power_domains_init(i915)
+    
+    It needs remove one to avoid power_domains->power_wells double malloc.
+    
+    unreferenced object 0xffff88811150ee00 (size 512):
+      comm "systemd-udevd", pid 506, jiffies 4294674198 (age 3605.560s)
+      hex dump (first 32 bytes):
+        10 b4 9d a0 ff ff ff ff ff ff ff ff ff ff ff ff  ................
+        ff ff ff ff ff ff ff ff 00 00 00 00 00 00 00 00  ................
+      backtrace:
+        [<ffffffff8134b901>] __kmem_cache_alloc_node+0x1c1/0x2b0
+        [<ffffffff812c98b2>] __kmalloc+0x52/0x150
+        [<ffffffffa08b0033>] __set_power_wells+0xc3/0x360 [xe]
+        [<ffffffffa08562fc>] xe_display_init_nommio+0x4c/0x70 [xe]
+        [<ffffffffa07f0d1c>] xe_device_probe+0x3c/0x5a0 [xe]
+        [<ffffffffa082e48f>] xe_pci_probe+0x33f/0x5a0 [xe]
+        [<ffffffff817f2187>] local_pci_probe+0x47/0xa0
+        [<ffffffff817f3db3>] pci_device_probe+0xc3/0x1f0
+        [<ffffffff8192f2a2>] really_probe+0x1a2/0x410
+        [<ffffffff8192f598>] __driver_probe_device+0x78/0x160
+        [<ffffffff8192f6ae>] driver_probe_device+0x1e/0x90
+        [<ffffffff8192f92a>] __driver_attach+0xda/0x1d0
+        [<ffffffff8192c95c>] bus_for_each_dev+0x7c/0xd0
+        [<ffffffff8192e159>] bus_add_driver+0x119/0x220
+        [<ffffffff81930d00>] driver_register+0x60/0x120
+        [<ffffffffa05e50a0>] 0xffffffffa05e50a0
+    
+    The call to intel_power_domains_cleanup() needs to stay where it is for
+    now. The main issue is that while the init is called by the display
+    side, shared by i915 and xe, the cleanup is called by a non-shared code
+    path. Fixing that will be done as a separate commit.
+    
+    Fixes: 44e694958b95 ("drm/xe/display: Implement display support")
+    Signed-off-by: Xiaoming Wang <xiaoming.wang@intel.com>
+    [ reword commit message and explain why the fini needs to stay
+      where it is ]
+    Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch 9b4c80cd779b6faa3ba32285d532f2c8e79035ea drm-intel
+c8f019111 drm/xe/display: Fix memleak in display initialization
+-:8: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#8: 
+xe_device_probe -> xe_display_init_noirq -> intel_display_driver_probe_noirq
+
+-:41: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '44e694958b95', maybe rebased or not pulled?
+#41: 
+Fixes: 44e694958b95 ("drm/xe/display: Implement display support")
+
+total: 0 errors, 2 warnings, 0 checks, 18 lines checked
 
 
