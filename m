@@ -4,53 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13D37C4828E
-	for <intel-xe@archiver.kernel.org>; Fri,  2 Feb 2024 22:51:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C7B4C4828E
+	for <intel-xe@archiver.kernel.org>; Fri,  2 Feb 2024 22:51:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D064010F131;
-	Fri,  2 Feb 2024 22:51:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A2B710F134;
+	Fri,  2 Feb 2024 22:51:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CzjSG0dm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TcFwaXQe";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5C6110F133
- for <intel-xe@lists.freedesktop.org>; Fri,  2 Feb 2024 22:51:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A40EA10F133
+ for <intel-xe@lists.freedesktop.org>; Fri,  2 Feb 2024 22:51:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706914265; x=1738450265;
+ t=1706914268; x=1738450268;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=H4PaBb52nDj3FUlgEfXtHzRz9YIS+xJUnJD2lFusONA=;
- b=CzjSG0dm/Tc+G/7tJ/augFKOXg4jH5Rhw3N2WVYFN46Ww+UebDsXABXm
- poxjWLiQXXGqJr4sYV6uoP+IjDRr5+fEDvIyrzs/h/nEH7U7Ol2FItGPT
- dDXhxgqjqgrQqw0HlelaFKDHcRWbnCcwEoLcCVPvVzJUs+a1KqPjHn25+
- UpFlAPTntVbGwcwvDunnyVsRF0AwMf3UG3uJQHO9hB7MPmHqhQbsOQa+K
- L/tMuSQA4SiveKK0lSF2Bsbv/LbF3VQls91dJxxrllTXNpgNpjvUgeYgq
- cGCxdufZk4lGd72ZntyIxNNcrK2MgZo5lWnm/u7xmmuQPPqf8YLVCsWEH Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="153737"
+ bh=ExMzWX9602ht/w0l2qGQVHag5tTZVQK1g//Kfjj2V50=;
+ b=TcFwaXQe7L1X7KDY8MbLbeuzPjwM99nSytmsYL49RZkFmJ40r5Oscvbz
+ I81KZjjp1HC93eGmqHw8VeW3Q//rSNuULDrEk4EiCWGMQCxTe4pzce+yt
+ m48Gx6U6ZB6aE8ap7S9jQCqf9t3pmfNjC2MqygtBueGBYQybcKWVk6Bni
+ 0KRgFc0PUnQkihZJO0fiOBX9wSOeR9ZN4cMvMFAWDEmF1iTxDxTeHLBui
+ bz+m8/y+E1HxeE2HqGssj90WYl0WLCz3PeQE83Ee3sLLxH50d2DihgcVZ
+ pkT9UBpScf5d9m2kyZrcYCKf9QjHuWekoEbnkaA+eklrlUMUO3kzOTYZC w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="153747"
 X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; 
-   d="scan'208";a="153737"
+   d="scan'208";a="153747"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2024 14:44:00 -0800
+ 02 Feb 2024 14:44:03 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="823332015"
-X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; d="scan'208";a="823332015"
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="823332025"
+X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; d="scan'208";a="823332025"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 02 Feb 2024 14:43:56 -0800
+ by orsmga001.jf.intel.com with SMTP; 02 Feb 2024 14:44:00 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Sat, 03 Feb 2024 00:43:55 +0200
+ Sat, 03 Feb 2024 00:43:59 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>, Paz Zcharya <pazz@chromium.org>
-Subject: [PATCH v4 04/16] drm/i915: Bypass LMEMBAR/GTTMMADR for MTL stolen
- memory access
-Date: Sat,  3 Feb 2024 00:43:28 +0200
-Message-ID: <20240202224340.30647-5-ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>,
+ Paz Zcharya <pazz@chromium.org>
+Subject: [PATCH v4 05/16] drm/i915: Disable the "binder"
+Date: Sat,  3 Feb 2024 00:43:29 +0200
+Message-ID: <20240202224340.30647-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240202224340.30647-1-ville.syrjala@linux.intel.com>
 References: <20240202224340.30647-1-ville.syrjala@linux.intel.com>
@@ -73,147 +69,47 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-On MTL accessing stolen memory via the BARs is somehow borked,
-and it can hang the machine. As a workaround let's bypass the
-BARs and just go straight to DSMBASE/GSMBASE instead.
+Now that the GGTT PTE updates go straight to GSMBASE (bypassing
+GTTMMADR) there should be no more risk of system hangs? So the
+"binder" (ie. update the PTEs via MI_UPDATE_GTT) is no longer
+necessary, disable it.
 
-Note that on every other platform this itself would hang the
-machine, but on MTL the system firmware is expected to relax
-the access permission guarding stolen memory to enable this
-workaround, and thus direct CPU accesses should be fine.
+My main worry with the MI_UPDATE_GTT are:
+- only used on this one platform so very limited testing coverage
+- async so more opprtunities to screw things up
+- what happens if the engine hangs while we're waiting for MI_UPDATE_GTT
+  to finish?
+- requires working command submission, so even getting a working
+  display now depends on a lot more extra components working correctly
 
-The raw stolen memory areas won't be passed to VMs so we'll
-need to risk using the BAR there for the initial setup. Once
-command submission is up we should switch to MI_UPDATE_GTT
-which at least shouldn't hang the whole machine.
+TODO: MI_UPDATE_GTT might be interesting as an optimization
+though, so perhaps someone should look into always using it
+(assuming the GPU is alive and well)?
 
-v2: Don't use direct GSM/DSM access on guests
-    Add w/a number
-v3: Check register 0x138914 to see if pcode did its job
-    Add some debug prints
+v2: Keep using MI_UPDATE_GTT on VM guests
+v3: use i915_direct_stolen_access()
 
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-Reviewed-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
 Tested-by: Paz Zcharya <pazz@chromium.org>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_stolen.c |  6 +++++-
- drivers/gpu/drm/i915/gt/intel_ggtt.c       | 10 +++++++++-
- drivers/gpu/drm/i915/i915_reg.h            |  3 +++
- drivers/gpu/drm/i915/i915_utils.c          | 17 +++++++++++++++++
- drivers/gpu/drm/i915/i915_utils.h          |  2 ++
- 5 files changed, 36 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_gtt.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-index ee237043c302..9ddcae9b3997 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-@@ -941,7 +941,11 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
- 		dsm_size = ALIGN_DOWN(lmem_size - dsm_base, SZ_1M);
- 	}
- 
--	if (pci_resource_len(pdev, GEN12_LMEM_BAR) < lmem_size) {
-+	if (i915_direct_stolen_access(i915)) {
-+		drm_dbg(&i915->drm, "Using direct DSM access\n");
-+		io_start = intel_uncore_read64(uncore, GEN12_DSMBASE) & GEN12_BDSM_MASK;
-+		io_size = dsm_size;
-+	} else if (pci_resource_len(pdev, GEN12_LMEM_BAR) < lmem_size) {
- 		io_start = 0;
- 		io_size = 0;
- 	} else {
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index 21a7e3191c18..bce5d8025340 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -24,6 +24,7 @@
- #include "intel_ring.h"
- #include "i915_drv.h"
- #include "i915_pci.h"
-+#include "i915_reg.h"
- #include "i915_request.h"
- #include "i915_scatterlist.h"
- #include "i915_utils.h"
-@@ -1152,13 +1153,20 @@ static unsigned int gen6_gttadr_offset(struct drm_i915_private *i915)
- static int ggtt_probe_common(struct i915_ggtt *ggtt, u64 size)
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
+index 86f73fe558ca..7811a8c9da06 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
+@@ -24,7 +24,8 @@
+ bool i915_ggtt_require_binder(struct drm_i915_private *i915)
  {
- 	struct drm_i915_private *i915 = ggtt->vm.i915;
-+	struct intel_uncore *uncore = ggtt->vm.gt->uncore;
- 	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
- 	phys_addr_t phys_addr;
- 	u32 pte_flags;
- 	int ret;
- 
- 	GEM_WARN_ON(pci_resource_len(pdev, GEN4_GTTMMADR_BAR) != gen6_gttmmadr_size(i915));
--	phys_addr = pci_resource_start(pdev, GEN4_GTTMMADR_BAR) + gen6_gttadr_offset(i915);
-+
-+	if (i915_direct_stolen_access(i915)) {
-+		drm_dbg(&i915->drm, "Using direct GSM access\n");
-+		phys_addr = intel_uncore_read64(uncore, GEN12_GSMBASE) & GEN12_BDSM_MASK;
-+	} else {
-+		phys_addr = pci_resource_start(pdev, GEN4_GTTMMADR_BAR) + gen6_gttadr_offset(i915);
-+	}
- 
- 	if (needs_wc_ggtt_mapping(i915))
- 		ggtt->gsm = ioremap_wc(phys_addr, size);
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 0b9e018256c7..c1bf70d62ead 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -5414,6 +5414,9 @@
- #define   GEN6_PCODE_FREQ_RING_RATIO_SHIFT	16
- #define GEN6_PCODE_DATA1			_MMIO(0x13812C)
- 
-+#define MTL_PCODE_STOLEN_ACCESS			_MMIO(0x138914)
-+#define   STOLEN_ACCESS_ALLOWED			0x1
-+
- /* IVYBRIDGE DPF */
- #define GEN7_L3CDERRST1(slice)		_MMIO(0xB008 + (slice) * 0x200) /* L3CD Error Status 1 */
- #define   GEN7_L3CDERRST1_ROW_MASK	(0x7ff << 14)
-diff --git a/drivers/gpu/drm/i915/i915_utils.c b/drivers/gpu/drm/i915/i915_utils.c
-index 29fd02bf5ea8..6f9e7b354b54 100644
---- a/drivers/gpu/drm/i915/i915_utils.c
-+++ b/drivers/gpu/drm/i915/i915_utils.c
-@@ -8,6 +8,7 @@
- #include <drm/drm_drv.h>
- 
- #include "i915_drv.h"
-+#include "i915_reg.h"
- #include "i915_utils.h"
- 
- #define FDO_BUG_MSG "Please file a bug on drm/i915; see " FDO_BUG_URL " for details."
-@@ -125,3 +126,19 @@ bool i915_vtd_active(struct drm_i915_private *i915)
- 	/* Running as a guest, we assume the host is enforcing VT'd */
- 	return i915_run_as_guest();
+ 	/* Wa_13010847436 & Wa_14019519902 */
+-	return MEDIA_VER_FULL(i915) == IP_VER(13, 0);
++	return !i915_direct_stolen_access(i915) &&
++		MEDIA_VER_FULL(i915) == IP_VER(13, 0);
  }
-+
-+bool i915_direct_stolen_access(struct drm_i915_private *i915)
-+{
-+	/*
-+	 * Wa_22018444074
-+	 *
-+	 * Access via BAR can hang MTL, go directly to GSM/DSM,
-+	 * except for VM guests which won't have access to it.
-+	 *
-+	 * Normally this would not work but on MTL the system firmware
-+	 * should have relaxed the access permissions sufficiently.
-+	 * 0x138914==0x1 indicates that the firmware has done its job.
-+	 */
-+	return IS_METEORLAKE(i915) && !i915_run_as_guest() &&
-+		intel_uncore_read(&i915->uncore, MTL_PCODE_STOLEN_ACCESS) == STOLEN_ACCESS_ALLOWED;
-+}
-diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-index f98577967b7f..b45ef0560611 100644
---- a/drivers/gpu/drm/i915/i915_utils.h
-+++ b/drivers/gpu/drm/i915/i915_utils.h
-@@ -391,4 +391,6 @@ static inline bool i915_run_as_guest(void)
  
- bool i915_vtd_active(struct drm_i915_private *i915);
- 
-+bool i915_direct_stolen_access(struct drm_i915_private *i915);
-+
- #endif /* !__I915_UTILS_H */
+ static bool intel_ggtt_update_needs_vtd_wa(struct drm_i915_private *i915)
 -- 
 2.43.0
 
