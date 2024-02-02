@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B53CC4828E
-	for <intel-xe@archiver.kernel.org>; Fri,  2 Feb 2024 22:41:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 099BFC4828E
+	for <intel-xe@archiver.kernel.org>; Fri,  2 Feb 2024 22:45:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5E6510EEFD;
-	Fri,  2 Feb 2024 22:41:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C6F110F123;
+	Fri,  2 Feb 2024 22:45:20 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C611310EEFD
- for <intel-xe@lists.freedesktop.org>; Fri,  2 Feb 2024 22:41:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C94310F123
+ for <intel-xe@lists.freedesktop.org>; Fri,  2 Feb 2024 22:45:19 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v3 4/4] drm/xe: Implement VM snapshot support for BO's and
+Subject: [PATCH v3.1] drm/xe: Implement VM snapshot support for BO's and
  userptr
-Date: Fri,  2 Feb 2024 23:40:52 +0100
-Message-ID: <20240202224052.848867-4-maarten.lankhorst@linux.intel.com>
+Date: Fri,  2 Feb 2024 23:45:14 +0100
+Message-ID: <20240202224514.855946-1-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240202224052.848867-1-maarten.lankhorst@linux.intel.com>
-References: <20240202224052.848867-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20240202224052.848867-4-maarten.lankhorst@linux.intel.com>
+References: <20240202224052.848867-4-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -61,9 +61,9 @@ Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
  drivers/gpu/drm/xe/xe_devcoredump.c       |  33 ++++-
  drivers/gpu/drm/xe/xe_devcoredump_types.h |   8 ++
- drivers/gpu/drm/xe/xe_vm.c                | 161 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vm.c                | 162 ++++++++++++++++++++++
  drivers/gpu/drm/xe/xe_vm.h                |   5 +
- 4 files changed, 205 insertions(+), 2 deletions(-)
+ 4 files changed, 206 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
 index 08d3f6cb72292..3e863e51b9d4d 100644
@@ -212,7 +212,7 @@ index d259119b2c980..b389c1a298e3d 100644
  
  /**
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 1f0d58bfd1046..06a1120982cda 100644
+index 1f0d58bfd1046..6965fe15bcbea 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
 @@ -13,6 +13,7 @@
@@ -223,7 +223,7 @@ index 1f0d58bfd1046..06a1120982cda 100644
  #include <linux/delay.h>
  #include <linux/kthread.h>
  #include <linux/mm.h>
-@@ -3267,3 +3268,163 @@ int xe_analyze_vm(struct drm_printer *p, struct xe_vm *vm, int gt_id)
+@@ -3267,3 +3268,164 @@ int xe_analyze_vm(struct drm_printer *p, struct xe_vm *vm, int gt_id)
  
  	return 0;
  }
@@ -275,8 +275,9 @@ index 1f0d58bfd1046..06a1120982cda 100644
 +			snap->snap[i].bo = xe_bo_get(bo);
 +			snap->snap[i].bo_ofs = xe_vma_bo_offset(vma);
 +		} else if (xe_vma_is_userptr(vma)) {
-+			if (mmget_not_zero(vma->userptr.notifier.mm))
-+				snap->snap[i].mm = vma->userptr.notifier.mm;
++			struct xe_userptr *userptr = &to_userptr_vma(vma)->userptr;
++			if (mmget_not_zero(userptr->notifier.mm))
++				snap->snap[i].mm = userptr->notifier.mm;
 +			else
 +				snap->snap[i].data = ERR_PTR(-EFAULT);
 +			snap->snap[i].bo_ofs = xe_vma_userptr(vma);
