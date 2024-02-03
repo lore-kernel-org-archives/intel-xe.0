@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B7F3C48295
-	for <intel-xe@archiver.kernel.org>; Sat,  3 Feb 2024 00:33:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7969AC4828F
+	for <intel-xe@archiver.kernel.org>; Sat,  3 Feb 2024 00:33:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2B1110E907;
-	Sat,  3 Feb 2024 00:33:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BB7A10E907;
+	Sat,  3 Feb 2024 00:33:47 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4031B10E907;
- Sat,  3 Feb 2024 00:33:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E865110E907;
+ Sat,  3 Feb 2024 00:33:45 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915=3A_=28stole?=
- =?utf-8?q?n=29_memory_region_related_fixes?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915=3A_=28stolen=29_?=
+ =?utf-8?q?memory_region_related_fixes?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 03 Feb 2024 00:33:12 -0000
-Message-ID: <170692039226.953177.3445024177527354365@5338d5abeb45>
+Date: Sat, 03 Feb 2024 00:33:45 -0000
+Message-ID: <170692042595.953177.9609332383903860164@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240202224340.30647-1-ville.syrjala@linux.intel.com>
 In-Reply-To: <20240202224340.30647-1-ville.syrjala@linux.intel.com>
@@ -44,28 +44,63 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/i915: (stolen) memory region related fixes
 URL   : https://patchwork.freedesktop.org/series/129498/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 40994da55 drm-tip: 2024y-02m-02d-22h-08m-37s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915: Use struct resource for memory region IO as well
-Applying: drm/i915: Print memory region info during probe
-Applying: drm/i915: Remove ad-hoc lmem/stolen debugs
-Applying: drm/i915: Bypass LMEMBAR/GTTMMADR for MTL stolen memory access
-Applying: drm/i915: Disable the "binder"
-Applying: drm/i915: Rename the DSM/GSM registers
-Applying: drm/i915: Fix PTE decode during initial plane readout
-Applying: drm/i915: Fix region start during initial plane readout
-Applying: drm/i915: Fix MTL initial plane readout
-Applying: drm/i915: s/phys_base/dma_addr/
-Applying: drm/i915: Split the smem and lmem plane readout apart
-Applying: drm/i915: Simplify intel_initial_plane_config() calling convention
-Applying: drm/i915/fbdev: Fix smem_start for LMEMBAR stolen objects
-Applying: drm/i915: Tweak BIOS fb reuse check
-Applying: drm/i915: Try to relocate the BIOS fb to the start of ggtt
-Applying: drm/i915: Annotate more of the BIOS fb takeover failure paths
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+35591fb8b4d5305b37ce31483f85ac0956eaa536
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e06b65dc835eaa83b0ed7f787f75d82e2a7b0d04
+Author: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Date:   Sat Feb 3 00:43:40 2024 +0200
+
+    drm/i915: Annotate more of the BIOS fb takeover failure paths
+    
+    Annotate a few more of the failure paths on the initial
+    BIOS fb takeover to avoid having to guess why things
+    aren't working the way we expect.
+    
+    Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+    Tested-by: Paz Zcharya <pazz@chromium.org>
+    Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
++ /mt/dim checkpatch 40994da55437acf620a48af39b0d8545e1595c42 drm-intel
+e05f2cda5 drm/i915: Use struct resource for memory region IO as well
+-:388: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#388: FILE: drivers/gpu/drm/i915/intel_region_ttm.c:227:
++			if (WARN_ON(overflows_type(resource_size(&mem->io) >> PAGE_SHIFT, place.lpfn))) {
+
+total: 0 errors, 1 warnings, 0 checks, 281 lines checked
+17d3fac46 drm/i915: Print memory region info during probe
+d3305e71b drm/i915: Remove ad-hoc lmem/stolen debugs
+cf783b5cc drm/i915: Bypass LMEMBAR/GTTMMADR for MTL stolen memory access
+405ae2d73 drm/i915: Disable the "binder"
+d212000d4 drm/i915: Rename the DSM/GSM registers
+5deded98b drm/i915: Fix PTE decode during initial plane readout
+46f4fa8e6 drm/i915: Fix region start during initial plane readout
+bbbb97756 drm/i915: Fix MTL initial plane readout
+653105381 drm/i915: s/phys_base/dma_addr/
+9b381778c drm/i915: Split the smem and lmem plane readout apart
+d73f6ab72 drm/i915: Simplify intel_initial_plane_config() calling convention
+c3f4df9c9 drm/i915/fbdev: Fix smem_start for LMEMBAR stolen objects
+9fb4c96ae drm/i915: Tweak BIOS fb reuse check
+0146e6ad4 drm/i915: Try to relocate the BIOS fb to the start of ggtt
+-:105: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#105: FILE: drivers/gpu/drm/i915/display/i9xx_plane.h:51:
+ }
++static inline bool i9xx_fixup_initial_plane_config(struct intel_crtc *crtc,
+
+-:106: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#106: FILE: drivers/gpu/drm/i915/display/i9xx_plane.h:52:
++						   const struct intel_initial_plane_config *plane_config)
+
+total: 0 errors, 1 warnings, 1 checks, 245 lines checked
+e06b65dc8 drm/i915: Annotate more of the BIOS fb takeover failure paths
 
 
