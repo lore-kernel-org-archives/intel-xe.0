@@ -4,54 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0D79C48295
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Feb 2024 13:34:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 210EBC48295
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Feb 2024 13:35:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A1DC10F996;
-	Mon,  5 Feb 2024 13:34:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n0Vf3GGN";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A64010F996
- for <intel-xe@lists.freedesktop.org>; Mon,  5 Feb 2024 13:34:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707140072; x=1738676072;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=Zwidf2UnXWa93b5e/qSjq7bRBMyZ6s4e+vrIKrTydVM=;
- b=n0Vf3GGNBeg0pYLerc/d87WdGlpWTiWo2OdMCPcBoyUpiknTyUX3dCpv
- EG0JsBYv/T2UxtoAp4JODUkIiiNBtuJeHVzowzQzJ3dunhOR5umCDee3E
- bgDpLHozjyRorLtBA8IdjDKqPSx2CMaup0RRL4GchUCZN/oMjLhmpHKNG
- gHDeEAQOmxCp6alcsJeVyVBNAGNHlj21Aqrdea8rbhEXP220TL0jbKFtY
- EyU1UW7b9Ga5C0JbYmZieiMASVKPn0Y48ccT3Kax2177JplD7Cr9F2EM+
- 2bincS0bvWx3y0W3AEGOJH5Wq8GIwn/OQyyKetWZowxiqQWGmcd6wH/Kp w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="11258829"
-X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; d="scan'208";a="11258829"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2024 05:34:32 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; 
-   d="scan'208";a="1011101"
-Received: from vgolodni-mobl.ger.corp.intel.com (HELO [10.252.0.151])
- ([10.252.0.151])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2024 05:34:31 -0800
-Message-ID: <c867c559-aa54-4f44-8355-1f2ca75e2349@intel.com>
-Date: Mon, 5 Feb 2024 13:34:30 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2EBA10F9B5;
+	Mon,  5 Feb 2024 13:35:11 +0000 (UTC)
+X-Greylist: delayed 384 seconds by postgrey-1.36 at gabe;
+ Sun, 04 Feb 2024 06:33:35 UTC
+Received: from smtpbguseast1.qq.com (smtpbguseast1.qq.com [54.204.34.129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 329281120A5;
+ Sun,  4 Feb 2024 06:33:34 +0000 (UTC)
+X-QQ-mid: bizesmtp78t1707027847tyom9dyz
+X-QQ-Originating-IP: Ka/QNVr2vrA2kmjPDU3Wg7k4Bllgbh8TG5NwRdiB4MI=
+Received: from localhost ( [183.209.108.228]) by bizesmtp.qq.com (ESMTP) with 
+ id ; Sun, 04 Feb 2024 14:24:06 +0800 (CST)
+X-QQ-SSF: 01400000000000504000000A0001000
+X-QQ-FEAT: wF64VgvUy+UdrqGKLNHU0vjclAVKvv9/AylJB3CPALc9Oo2FoK+6YtD66T0Ei
+ UxJKDP9R8WMiZEnTg+mLfcJT/sFJl5Sy7BNzBN4/1NcukkXs5elfyJHTzBYFyi/bfIYKKs6
+ m0CFCkkKtRGFTyxQAL2TO5z7MWqiwknzAbXQPxS73t/R5WO1xTja602A1v7ayVBup5OdCR0
+ U7iCYB7/YOi/b062aiwsMAEWfELezdKtzo6hd07MKsaTROqZk+SAUqg0SiaXLbYaxEjA7R0
+ EgDEO9AvCiUdsii4MeJtc01uHrR9heaNS7b2Dp0HfmFQYaGZujRu9ub8fENGEF3sruA3JKj
+ UMXPcqm/niWKbkIAEx5R/sC6XVhyD3uIwudjRIjAVtG8jqUr0PIcdSrH+nVY1n7i5QSkvLB
+X-QQ-GoodBg: 2
+X-BIZMAIL-ID: 12034591885683203316
+From: Dawei Li <dawei.li@shingroup.cn>
+To: lucas.demarchi@intel.com, ogabbay@kernel.org,
+ thomas.hellstrom@linux.intel.com
+Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, daniel@ffwll.ch, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Dawei Li <dawei.li@shingroup.cn>, kernel test robot <lkp@intel.com>
+Subject: [PATCH] drm/xe: Declare __xe_lrc_*_ggtt_addr with __maybe__unused
+Date: Sun,  4 Feb 2024 14:23:24 +0800
+Message-Id: <20240204062324.3548268-1-dawei.li@shingroup.cn>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 30/34] drm/xe: Remove useless mem_access on PAT dumps
-Content-Language: en-GB
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
-References: <20240126203044.1104705-1-rodrigo.vivi@intel.com>
- <20240126203044.1104705-31-rodrigo.vivi@intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20240126203044.1104705-31-rodrigo.vivi@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:shingroup.cn:qybglogicsvrgz:qybglogicsvrgz5a-1
+X-Mailman-Approved-At: Mon, 05 Feb 2024 13:35:10 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,9 +57,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 26/01/2024 20:30, Rodrigo Vivi wrote:
-> PAT dumps are already protected by the xe_pm_runtime_{get,put}
-> around the debugfs call. So, these can be removed.
-> 
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Kernel test robot reports building error:
+
+drivers/gpu/drm/xe/xe_lrc.c:544:1: error: unused function
+'__xe_lrc_regs_ggtt_addr' [-Werror,-Wunused-function]
+544 | DECL_MAP_ADDR_HELPERS(regs)
+    | ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+drivers/gpu/drm/xe/xe_lrc.c:536:19: note: expanded from macro
+'DECL_MAP_ADDR_HELPERS'
+536 | static inline u32 __xe_lrc_##elem##_ggtt_addr(struct xe_lrc *lrc) \
+    |                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+<scratch space>:54:1: note: expanded from here
+54 | __xe_lrc_regs_ggtt_addr
+   | ^~~~~~~~~~~~~~~~~~~~~~~
+
+1 error generated.
+
+Declare __xe_lrc_*_ggtt_addr with __maybe_unused to address it.
+
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202402010928.g3j2aSBL-lkp@intel.com/
+Signed-off-by: Dawei Li <dawei.li@shingroup.cn>
+---
+ drivers/gpu/drm/xe/xe_lrc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 0ec5ad2539f1..f70e60a2f8a3 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -614,7 +614,7 @@ static inline struct iosys_map __xe_lrc_##elem##_map(struct xe_lrc *lrc) \
+ 	iosys_map_incr(&map, __xe_lrc_##elem##_offset(lrc)); \
+ 	return map; \
+ } \
+-static inline u32 __xe_lrc_##elem##_ggtt_addr(struct xe_lrc *lrc) \
++static inline u32 __maybe_unused __xe_lrc_##elem##_ggtt_addr(struct xe_lrc *lrc) \
+ { \
+ 	return xe_bo_ggtt_addr(lrc->bo) + __xe_lrc_##elem##_offset(lrc); \
+ } \
+-- 
+2.27.0
+
