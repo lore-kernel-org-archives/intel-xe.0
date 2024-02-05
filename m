@@ -4,52 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 805FAC4828D
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Feb 2024 11:55:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DEC5C48295
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Feb 2024 12:23:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E1E110E329;
-	Mon,  5 Feb 2024 11:55:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AEBE10F695;
+	Mon,  5 Feb 2024 12:23:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CHf4aHjW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cBD6Pvd1";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52B9910E1BC
- for <intel-xe@lists.freedesktop.org>; Mon,  5 Feb 2024 11:54:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 093AD10F695
+ for <intel-xe@lists.freedesktop.org>; Mon,  5 Feb 2024 12:23:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707134098; x=1738670098;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=RwVPYXQ+WfKZUHWqE81ZYyV0ejDPB4apkn0c2yz7NH8=;
- b=CHf4aHjWSvPZgHUSMcFHq/1Pe5j/J5/WdblkgpD1NGcXB+6hOpCfVGt3
- 9qF7WwRyS7vxLQ2QOSVRFBwZafl/YSp+Ho4uH0NLzKv4iv1SCwfgASGLv
- 8oHr6Z4blOPAbaQZT+/3+ih/oE1tRaSbKbRke3xK0SebHDrlGUOkZb3ti
- rfSU/pWWaSfNKeZeHa4rIC1eu2QnFyY1Tc/wNZV62cBvzZmxmjm508OhF
- n2CiUOBAEw7Nh43iaZFfis5J2AcupUc8UZP6T9oe6zE4w24Olo3kbk2Sx
- 4xhq6jlJdOZdWqopEv1zNgKuATgSVXUScLQxnuJmh5kFos8hivzcb8hvL A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="4389238"
+ t=1707135827; x=1738671827;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=xpfbPMeHsB9qAqtvHb2rbLoS03enbYCcPoGe6NblRYs=;
+ b=cBD6Pvd1tEHnsmXnGRUoJ0dEF+lLoBsGP7IJBW2a/Cq9I6fkz0k1R6t7
+ HMKHcubm6kh8rpF5s2XILPqGHzy9Fwo2Xid0xzbaDGIr7E/5ntg9dGl67
+ v1gZMR1vdvSPUEMimXphjihjri8bKgQ3enZsZkFEtvvgVb7vaJaDsvPKY
+ QzCZBiHbq14iqQ9NrAhkQ/g3BB5HnDqVUZhtYIZXX2I73fPXXJnmguLUd
+ kkWfn3sJQukZnH7haZktgXOpSL4lOgU8/4XcpOnKpm/HNNXDBm7Py0N0A
+ bAxcalojVaYDpa3CDGQ3sR5UH3pd9OLOYvqwHeoOSc5JfAtCs4u1L59k/ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="401502"
 X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; 
-   d="scan'208";a="4389238"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2024 03:54:49 -0800
+   d="scan'208";a="401502"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2024 04:23:45 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; d="scan'208";a="31789445"
+X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; 
+   d="scan'208";a="5346751"
 Received: from vgolodni-mobl.ger.corp.intel.com (HELO [10.252.0.151])
  ([10.252.0.151])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2024 03:54:47 -0800
-Message-ID: <fc63da97-8aee-4027-a723-723ef7ac9567@intel.com>
-Date: Mon, 5 Feb 2024 11:54:45 +0000
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2024 04:23:44 -0800
+Message-ID: <1460e9d5-fb69-43a1-8be7-ae08152bb15b@intel.com>
+Date: Mon, 5 Feb 2024 12:23:41 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 19/34] drm/xe: Remove pm_runtime lockdep
+Subject: Re: [RFC 21/34] drm/xe: Convert GuC CT paths from mem_access to
+ xe_pm_runtime
 Content-Language: en-GB
 To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>
 References: <20240126203044.1104705-1-rodrigo.vivi@intel.com>
- <20240126203044.1104705-20-rodrigo.vivi@intel.com>
+ <20240126203044.1104705-22-rodrigo.vivi@intel.com>
 From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20240126203044.1104705-20-rodrigo.vivi@intel.com>
+In-Reply-To: <20240126203044.1104705-22-rodrigo.vivi@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,242 +70,193 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On 26/01/2024 20:30, Rodrigo Vivi wrote:
-> This lockdep was initially designed for the mem_access,
-> where the mem_access needed to run the resume sync from
-> the innerbounds and count the references.
+> For the G2H and TLB invalidation cases, the outer bounds
+> protection of the pm_runtime are not going to work. So
+> we need to have the inner side protections here.
 > 
-> With the runtime moving to the outer bounds of the driver
-> and the mem_access replaced by the pure rpm get/put
-> references, it is no longer needed and it is in a matter
-
-We are also calling it in workers like invalidation_fence_work_func(), 
-xe_sched_process_msg_work() etc. It is still quite easy to deadlock with 
-that.
-
-> of fact just splatting may false positives as the following:
-
-Yeah, calling invalidation_fence_work_func() directly in the callers 
-context is a false positive since ioctl has the rpm ref. But what about 
-calling that in the async case where invalidation_fence_work_func() is 
-only called when the in-fence signals? We are sure that is safe? It 
-should be simple to fix the false positive here, no? If we just delete 
-all the annotations we get zero help from lockdep for the more 
-complicated cases. Also IIRC lockdep doesn't show you every splat once 
-it triggers once, so who knows what else is lurking and whether that is 
-also false positive?
-
-> 
->                 -> #1 (xe_pm_runtime_lockdep_map){+.+.}-{0:0}:
-> [  384.778761]        xe_pm_runtime_get+0xa3/0x100 [xe]
-> [  384.783871]        invalidation_fence_work_func+0x7f/0x2b0 [xe]
-> [  384.789942]        invalidation_fence_init+0x8c2/0xce0 [xe]
-> [  384.795671]        __xe_pt_unbind_vma+0x4a7/0x1be0 [xe]
-> [  384.801050]        xe_vm_unbind+0x22f/0xc70 [xe]
-> [  384.805821]        __xe_vma_op_execute+0xc67/0x1af0 [xe]
-> [  384.811286]        xe_vm_bind_ioctl+0x3a36/0x66c0 [xe]
-> [  384.816579]        drm_ioctl_kernel+0x14a/0x2c0
-> [  384.821132]        drm_ioctl+0x4c6/0xab0
-> [  384.825073]        xe_drm_ioctl+0xa1/0xe0 [xe]
-> [  384.829651]        __x64_sys_ioctl+0x130/0x1a0
-> [  384.834115]        do_syscall_64+0x5c/0xe0
-> [  384.838232]        entry_SYSCALL_64_after_hwframe+0x6e/0x76
-> [  384.843829]
->                 -> #0 (reservation_ww_class_mutex){+.+.}-{4:4}:
-> [  384.850911]        __lock_acquire+0x3261/0x6330
-> [  384.855462]        lock_acquire+0x19b/0x4d0
-> [  384.859666]        __ww_mutex_lock.constprop.0+0x1d8/0x3500
-> [  384.865263]        ww_mutex_lock+0x38/0x150
-> [  384.869465]        xe_bo_lock+0x41/0x70 [xe]
-> [  384.873869]        xe_bo_evict_all+0x7ad/0xa40 [xe]
-> [  384.878883]        xe_pm_runtime_suspend+0x297/0x340 [xe]
-> [  384.884431]        xe_pci_runtime_suspend+0x3b/0x1e0 [xe]
-> [  384.889975]        pci_pm_runtime_suspend+0x168/0x540
-> [  384.895052]        __rpm_callback+0xa9/0x390
-> [  384.899343]        rpm_callback+0x1aa/0x210
-> [  384.903543]        rpm_suspend+0x2ea/0x14c0
-> [  384.907746]        pm_runtime_work+0x133/0x170
-> [  384.912213]        process_one_work+0x73b/0x1230
-> [  384.916853]        worker_thread+0x726/0x1320
-> [  384.921237]        kthread+0x2ee/0x3d0
-> [  384.925005]        ret_from_fork+0x2d/0x70
-> [  384.929120]        ret_from_fork_asm+0x1b/0x30
-> [  384.933585]
->                 other info that might help us debug this:
-> 
-> [  384.941625]  Possible unsafe locking scenario:
-> 
-> [  384.947572]        CPU0                    CPU1
-> [  384.952123]        ----                    ----
-> [  384.956676]   lock(xe_pm_runtime_lockdep_map);
-> [  384.961140]                                lock(reservation_ww_class_mutex);
-> [  384.968220]                                lock(xe_pm_runtime_lockdep_map);
-> [  384.975214]   lock(reservation_ww_class_mutex);
-> [  384.979765]
->                  *** DEADLOCK ***
-> 
-> In a matter of fact, there's actually a third lock that is not
-> in this picture:
-> spin_lock_irq(&dev->power.lock);
-> and INIT_WORK(&dev->power.work, pm_runtime_work);
-> 
-> The pm_callback_task will ensure that there's no recursive
-> calls of the resume function and it will increase the
-> reference counter anyway.
-> 
-> Then, the pm_runtime workqueue and spin locks will avoid that
-> any resume and suspend operations happens in parallel with
-> other resume and suspend operations.
-> 
-> With that, the only thing that we are actually doing here is
-> to wrongly train the lockdep, basically saying that we will
-> acquire some locks on resume and on suspend concurrently,
-> entirely ignoring its serialization and protection.
-> 
-> The above scenario is simply not possible because there's
-> a serialization with the spin_lock_irq(&dev->power.lock)
-> before each operation. However we are telling the lockep
-> that the lock(xe_pm_runtime_lockdep_map) occurs before
-> the &dev->power.lock and lockdep is not capable to see
-> that other protection.
-
-Can you share some more info here? AFAIK dev->power.lock is an RPM core 
-lock that protects internal state like transitioning between ACTIVE, 
-SUSPENDING, RESUMING etc. It is never held when calling any of our rpm 
-callbacks, so it should never factor in to xe_pm_runtime_lockdep_map.
-
-The overall thing should look like this:
-
-xe_rpm_get:
-     lock_map_acquire(&xe_pm_runtime_lockdep_map);
-     lock_map_release(&xe_pm_runtime_lockdep_map);
-     .....
-     RPM core grabs dev->power.lock
-
-rpm resume callback: (RPM has dropped dev->power.lock)
-     lock_map_acquire(&xe_pm_runtime_lockdep_map);
-     ....do resume stuff
-     lock_map_release(&xe_pm_runtime_lockdep_map);
-
-rpm suspend callback: (RPM has dropped dev->power.lock)
-     lock_map_acquire(&xe_pm_runtime_lockdep_map);
-     .....do suspend stuff
-     lock_map_release(&xe_pm_runtime_lockdep_map);
-
-> 
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Suggested-by: Matthew Brost <matthew.brost@intel.com>
 > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_pm.c | 55 --------------------------------------
->   1 file changed, 55 deletions(-)
+>   drivers/gpu/drm/xe/xe_debugfs.c      |  3 ++
+>   drivers/gpu/drm/xe/xe_guc_ct.c       | 79 +++++++++++++---------------
+>   drivers/gpu/drm/xe/xe_guc_ct_types.h |  2 +
+>   3 files changed, 41 insertions(+), 43 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-> index 86bf225dba02..f49e449d9fb7 100644
-> --- a/drivers/gpu/drm/xe/xe_pm.c
-> +++ b/drivers/gpu/drm/xe/xe_pm.c
-> @@ -67,12 +67,6 @@
+> diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+> index 8abdf3c17e1d..b3669eac23c9 100644
+> --- a/drivers/gpu/drm/xe/xe_debugfs.c
+> +++ b/drivers/gpu/drm/xe/xe_debugfs.c
+> @@ -64,6 +64,9 @@ static int info(struct seq_file *m, void *data)
+>   			   xe_force_wake_ref(gt_to_fw(gt), XE_FW_GT));
+>   		drm_printf(&p, "gt%d engine_mask 0x%llx\n", id,
+>   			   gt->info.engine_mask);
+> +		drm_printf(&p, "gt%d g2h_outstanding %d g2h_pm_refs %d\n", id,
+> +			   gt->uc.guc.ct.g2h_outstanding,
+> +			   gt->uc.guc.ct.g2h_pm_refs);
+>   	}
+>   
+>   	xe_pm_runtime_put(xe);
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+> index f3d356383ced..139cfe733661 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+> @@ -287,16 +287,49 @@ static int guc_ct_control_toggle(struct xe_guc_ct *ct, bool enable)
+>   	return ret > 0 ? -EPROTO : ret;
+>   }
+>   
+> +static void guc_ct_g2h_outstanding_clear(struct xe_guc_ct *ct)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < ct->g2h_pm_refs; i++)
+> +		xe_pm_runtime_put(ct_to_xe(ct));
+> +	ct->g2h_outstanding = 0;
+> +	ct->g2h_pm_refs = 0;
+> +}
+> +
+> +static void guc_ct_g2h_outstanding_dec(struct xe_guc_ct *ct)
+> +{
+> +	if (ct->g2h_pm_refs > 0)
+> +		xe_pm_runtime_put(ct_to_xe(ct));
+> +	ct->g2h_pm_refs--;
+> +	ct->g2h_outstanding--;
+> +}
+> +
+> +static void guc_ct_g2h_outstanding_add(struct xe_guc_ct *ct, int num_g2h)
+> +{
+> +	struct xe_device *xe = ct_to_xe(ct);
+> +	int i;
+> +
+> +	for (i = 0; i < num_g2h; i++) {
+> +		if (xe_pm_runtime_get_if_in_use(xe))
+> +			ct->g2h_pm_refs++;
+> +		else
+> +			drm_err(&xe->drm, "Failed to grab RPM ref for outstanding g2h\n");
+> +	}
+
+I guess we could maybe drop the g2h_pm_refs, and rather just track 
+single rpm ref for entire ct when g2h_outstanding 0 -> 1, and likewise 
+drop the rpm ref when g2h_outstanding reaches zero?
+
+> +	ct->g2h_outstanding += num_g2h;
+> +}
+> +
+>   static void xe_guc_ct_set_state(struct xe_guc_ct *ct,
+>   				enum xe_guc_ct_state state)
+>   {
+>   	mutex_lock(&ct->lock);		/* Serialise dequeue_one_g2h() */
+>   	spin_lock_irq(&ct->fast_lock);	/* Serialise CT fast-path */
+>   
+> +
+>   	xe_gt_assert(ct_to_gt(ct), ct->g2h_outstanding == 0 ||
+>   		     state == XE_GUC_CT_STATE_STOPPED);
+>   
+> -	ct->g2h_outstanding = 0;
+> +	guc_ct_g2h_outstanding_clear(ct);
+>   	ct->state = state;
+>   
+>   	spin_unlock_irq(&ct->fast_lock);
+> @@ -428,7 +461,7 @@ static void __g2h_reserve_space(struct xe_guc_ct *ct, u32 g2h_len, u32 num_g2h)
+>   		lockdep_assert_held(&ct->fast_lock);
+>   
+>   		ct->ctbs.g2h.info.space -= g2h_len;
+> -		ct->g2h_outstanding += num_g2h;
+> +		guc_ct_g2h_outstanding_add(ct, num_g2h);
+>   	}
+>   }
+>   
+> @@ -439,7 +472,7 @@ static void __g2h_release_space(struct xe_guc_ct *ct, u32 g2h_len)
+>   		  ct->ctbs.g2h.info.size - ct->ctbs.g2h.info.resv_space);
+>   
+>   	ct->ctbs.g2h.info.space += g2h_len;
+> -	--ct->g2h_outstanding;
+> +	guc_ct_g2h_outstanding_dec(ct);
+>   }
+>   
+>   static void g2h_release_space(struct xe_guc_ct *ct, u32 g2h_len)
+> @@ -1199,14 +1232,8 @@ static void g2h_fast_path(struct xe_guc_ct *ct, u32 *msg, u32 len)
 >    */
+>   void xe_guc_ct_fast_path(struct xe_guc_ct *ct)
+>   {
+> -	struct xe_device *xe = ct_to_xe(ct);
+> -	bool ongoing;
+>   	int len;
 >   
->   
-> -#ifdef CONFIG_LOCKDEP
-> -struct lockdep_map xe_pm_runtime_lockdep_map = {
-> -	.name = "xe_pm_runtime_lockdep_map"
-> -};
-> -#endif
+> -	ongoing = xe_device_mem_access_get_if_ongoing(ct_to_xe(ct));
+> -	if (!ongoing && xe_pm_read_callback_task(ct_to_xe(ct)) == NULL)
+> -		return;
 > -
->   /**
->    * xe_pm_suspend - Helper for System suspend, i.e. S0->S3 / S0->S2idle
->    * @xe: xe device instance
-> @@ -291,29 +285,6 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
->   	/* Disable access_ongoing asserts and prevent recursive pm calls */
->   	xe_pm_write_callback_task(xe, current);
+>   	spin_lock(&ct->fast_lock);
+>   	do {
+>   		len = g2h_read(ct, ct->fast_msg, true);
+> @@ -1214,9 +1241,6 @@ void xe_guc_ct_fast_path(struct xe_guc_ct *ct)
+>   			g2h_fast_path(ct, ct->fast_msg, len);
+>   	} while (len > 0);
+>   	spin_unlock(&ct->fast_lock);
+> -
+> -	if (ongoing)
+> -		xe_device_mem_access_put(xe);
+>   }
+>   
+>   /* Returns less than zero on error, 0 on done, 1 on more available */
+> @@ -1247,36 +1271,8 @@ static int dequeue_one_g2h(struct xe_guc_ct *ct)
+>   static void g2h_worker_func(struct work_struct *w)
+>   {
+>   	struct xe_guc_ct *ct = container_of(w, struct xe_guc_ct, g2h_worker);
+> -	bool ongoing;
+>   	int ret;
 >   
 > -	/*
-> -	 * The actual xe_pm_runtime_put() is always async underneath, so
-> -	 * exactly where that is called should makes no difference to us. However
-> -	 * we still need to be very careful with the locks that this callback
-> -	 * acquires and the locks that are acquired and held by any callers of
-> -	 * xe_runtime_pm_get(). We already have the matching annotation
-> -	 * on that side, but we also need it here. For example lockdep should be
-> -	 * able to tell us if the following scenario is in theory possible:
+> -	 * Normal users must always hold mem_access.ref around CT calls. However
+> -	 * during the runtime pm callbacks we rely on CT to talk to the GuC, but
+> -	 * at this stage we can't rely on mem_access.ref and even the
+> -	 * callback_task will be different than current.  For such cases we just
+> -	 * need to ensure we always process the responses from any blocking
+> -	 * ct_send requests or where we otherwise expect some response when
+> -	 * initiated from those callbacks (which will need to wait for the below
+> -	 * dequeue_one_g2h()).  The dequeue_one_g2h() will gracefully fail if
+> -	 * the device has suspended to the point that the CT communication has
+> -	 * been disabled.
 > -	 *
-> -	 * CPU0                          | CPU1 (kworker)
-> -	 * lock(A)                       |
-> -	 *                               | xe_pm_runtime_suspend()
-> -	 *                               |      lock(A)
-> -	 * xe_pm_runtime_get()           |
-> -	 *
-> -	 * This will clearly deadlock since rpm core needs to wait for
-> -	 * xe_pm_runtime_suspend() to complete, but here we are holding lock(A)
-> -	 * on CPU0 which prevents CPU1 making forward progress.  With the
-> -	 * annotation here and in xe_pm_runtime_get() lockdep will see
-> -	 * the potential lock inversion and give us a nice splat.
+> -	 * If we are inside the runtime pm callback, we can be the only task
+> -	 * still issuing CT requests (since that requires having the
+> -	 * mem_access.ref).  It seems like it might in theory be possible to
+> -	 * receive unsolicited events from the GuC just as we are
+> -	 * suspending-resuming, but those will currently anyway be lost when
+> -	 * eventually exiting from suspend, hence no need to wake up the device
+> -	 * here. If we ever need something stronger than get_if_ongoing() then
+> -	 * we need to be careful with blocking the pm callbacks from getting CT
+> -	 * responses, if the worker here is blocked on those callbacks
+> -	 * completing, creating a deadlock.
 > -	 */
-> -	lock_map_acquire(&xe_pm_runtime_lockdep_map);
+> -	ongoing = xe_device_mem_access_get_if_ongoing(ct_to_xe(ct));
+> -	if (!ongoing && xe_pm_read_callback_task(ct_to_xe(ct)) == NULL)
+> -		return;
 > -
->   	/*
->   	 * Applying lock for entire list op as xe_ttm_bo_destroy and xe_bo_move_notify
->   	 * also checks and delets bo entry from user fault list.
-> @@ -341,7 +312,6 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
->   	if (xe->d3cold.allowed)
->   		xe_display_pm_runtime_suspend(xe);
->   out:
-> -	lock_map_release(&xe_pm_runtime_lockdep_map);
->   	xe_pm_write_callback_task(xe, NULL);
->   	return err;
->   }
-> @@ -361,8 +331,6 @@ int xe_pm_runtime_resume(struct xe_device *xe)
->   	/* Disable access_ongoing asserts and prevent recursive pm calls */
->   	xe_pm_write_callback_task(xe, current);
->   
-> -	lock_map_acquire(&xe_pm_runtime_lockdep_map);
+>   	do {
+>   		mutex_lock(&ct->lock);
+>   		ret = dequeue_one_g2h(ct);
+> @@ -1290,9 +1286,6 @@ static void g2h_worker_func(struct work_struct *w)
+>   			kick_reset(ct);
+>   		}
+>   	} while (ret == 1);
 > -
->   	/*
->   	 * It can be possible that xe has allowed d3cold but other pcie devices
->   	 * in gfx card soc would have blocked d3cold, therefore card has not
-> @@ -400,31 +368,10 @@ int xe_pm_runtime_resume(struct xe_device *xe)
->   			goto out;
->   	}
->   out:
-> -	lock_map_release(&xe_pm_runtime_lockdep_map);
->   	xe_pm_write_callback_task(xe, NULL);
->   	return err;
+> -	if (ongoing)
+> -		xe_device_mem_access_put(ct_to_xe(ct));
 >   }
 >   
-> -/*
-> - * For places where resume is synchronous it can be quite easy to deadlock
-> - * if we are not careful. Also in practice it might be quite timing
-> - * sensitive to ever see the 0 -> 1 transition with the callers locks
-> - * held, so deadlocks might exist but are hard for lockdep to ever see.
-> - * With this in mind, help lockdep learn about the potentially scary
-> - * stuff that can happen inside the runtime_resume callback by acquiring
-> - * a dummy lock (it doesn't protect anything and gets compiled out on
-> - * non-debug builds).  Lockdep then only needs to see the
-> - * xe_pm_runtime_lockdep_map -> runtime_resume callback once, and then can
-> - * hopefully validate all the (callers_locks) -> xe_pm_runtime_lockdep_map.
-> - * For example if the (callers_locks) are ever grabbed in the
-> - * runtime_resume callback, lockdep should give us a nice splat.
-> - */
-> -static void pm_runtime_lockdep_training(void)
-> -{
-> -	lock_map_acquire(&xe_pm_runtime_lockdep_map);
-> -	lock_map_release(&xe_pm_runtime_lockdep_map);
-> -}
-> -
->   /**
->    * xe_pm_runtime_get - Get a runtime_pm reference and resume synchronously
->    * @xe: xe device instance
-> @@ -436,7 +383,6 @@ void xe_pm_runtime_get(struct xe_device *xe)
->   	if (xe_pm_read_callback_task(xe) == current)
->   		return;
->   
-> -	pm_runtime_lockdep_training();
->   	pm_runtime_resume(xe->drm.dev);
->   }
->   
-> @@ -466,7 +412,6 @@ int xe_pm_runtime_get_sync(struct xe_device *xe)
->   	if (WARN_ON(xe_pm_read_callback_task(xe) == current))
->   		return -ELOOP;
->   
-> -	pm_runtime_lockdep_training();
->   	return pm_runtime_get_sync(xe->drm.dev);
->   }
->   
+>   static void guc_ctb_snapshot_capture(struct xe_device *xe, struct guc_ctb *ctb,
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct_types.h b/drivers/gpu/drm/xe/xe_guc_ct_types.h
+> index d29144c9f20b..4220230e7be4 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct_types.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct_types.h
+> @@ -108,6 +108,8 @@ struct xe_guc_ct {
+>   	} ctbs;
+>   	/** @g2h_outstanding: number of outstanding G2H */
+>   	u32 g2h_outstanding;
+> +	/** @g2h_pm_refs: number of pm_refs for pending G2H */
+> +	u32 g2h_pm_refs;
+>   	/** @g2h_worker: worker to process G2H messages */
+>   	struct work_struct g2h_worker;
+>   	/** @state: CT state */
