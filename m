@@ -4,57 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DEC5C48295
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Feb 2024 12:23:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B52C0C48295
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Feb 2024 12:38:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AEBE10F695;
-	Mon,  5 Feb 2024 12:23:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A05810F96C;
+	Mon,  5 Feb 2024 12:38:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cBD6Pvd1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BGFdCvCP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 093AD10F695
- for <intel-xe@lists.freedesktop.org>; Mon,  5 Feb 2024 12:23:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45A6610F96C;
+ Mon,  5 Feb 2024 12:38:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707135827; x=1738671827;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=xpfbPMeHsB9qAqtvHb2rbLoS03enbYCcPoGe6NblRYs=;
- b=cBD6Pvd1tEHnsmXnGRUoJ0dEF+lLoBsGP7IJBW2a/Cq9I6fkz0k1R6t7
- HMKHcubm6kh8rpF5s2XILPqGHzy9Fwo2Xid0xzbaDGIr7E/5ntg9dGl67
- v1gZMR1vdvSPUEMimXphjihjri8bKgQ3enZsZkFEtvvgVb7vaJaDsvPKY
- QzCZBiHbq14iqQ9NrAhkQ/g3BB5HnDqVUZhtYIZXX2I73fPXXJnmguLUd
- kkWfn3sJQukZnH7haZktgXOpSL4lOgU8/4XcpOnKpm/HNNXDBm7Py0N0A
- bAxcalojVaYDpa3CDGQ3sR5UH3pd9OLOYvqwHeoOSc5JfAtCs4u1L59k/ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="401502"
+ t=1707136698; x=1738672698;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=jTiOMmrLk6ffrPXBG+TQygm+Kd5smywu7lR2qatxDPI=;
+ b=BGFdCvCP03seavYKDTe/C5MKGwDWUU+KAzWJeZjDy43fUYLKx+NXmmXK
+ 3Uqy+StFEFzptOeuX2iiKXnmNXOb6m7NuE6b+B6pSlBelvvR8iav/VYzk
+ Mxo1RrAGT8W//WPiRh7F/ZNJX9AYCqNC5GcMUOBS8c0W46hUQhqvF05ws
+ wPMMu9CkTe3ucOQafoRoIcbrtddS/Ehi/6Z9DcWiEinGVTgzX8IstfosR
+ qsmcFhRVjCvpkibsL8srDua+EmPUppBu+Y+jQqln5lzxSaGKP4xLTJQ+V
+ YvstZL/NsgOs1IfUrqCQfz/jvJSlB/8sAXRvnv/R6OQGqwlH+Izm//fzq A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="4308483"
 X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; 
-   d="scan'208";a="401502"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2024 04:23:45 -0800
+   d="scan'208";a="4308483"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2024 04:38:17 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; 
-   d="scan'208";a="5346751"
-Received: from vgolodni-mobl.ger.corp.intel.com (HELO [10.252.0.151])
- ([10.252.0.151])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2024 04:23:44 -0800
-Message-ID: <1460e9d5-fb69-43a1-8be7-ae08152bb15b@intel.com>
-Date: Mon, 5 Feb 2024 12:23:41 +0000
+X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; d="scan'208";a="23951815"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.2.183])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2024 04:38:15 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: igt-dev@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>
+Subject: Re: [PATCH i-g-t v3 4/6] lib/kunit: Support writable filter*
+ parameters of kunit module
+Date: Mon, 05 Feb 2024 13:38:12 +0100
+Message-ID: <8371029.NyiUUSuA9g@jkrzyszt-mobl2.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <lqfhao6zl6hynfgumjjztky3bqsuxte4nekzrhsilkf2tmyikv@5bb3t3fksddx>
+References: <20240201190237.150754-8-janusz.krzysztofik@linux.intel.com>
+ <3705187.TKLx3GfHUD@jkrzyszt-mobl2.ger.corp.intel.com>
+ <lqfhao6zl6hynfgumjjztky3bqsuxte4nekzrhsilkf2tmyikv@5bb3t3fksddx>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 21/34] drm/xe: Convert GuC CT paths from mem_access to
- xe_pm_runtime
-Content-Language: en-GB
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>
-References: <20240126203044.1104705-1-rodrigo.vivi@intel.com>
- <20240126203044.1104705-22-rodrigo.vivi@intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20240126203044.1104705-22-rodrigo.vivi@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,194 +70,281 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 26/01/2024 20:30, Rodrigo Vivi wrote:
-> For the G2H and TLB invalidation cases, the outer bounds
-> protection of the pm_runtime are not going to work. So
-> we need to have the inner side protections here.
+On Friday, 2 February 2024 16:57:46 CET Lucas De Marchi wrote:
+> On Fri, Feb 02, 2024 at 11:14:49AM +0100, Janusz Krzysztofik wrote:
+> >On Thursday, 1 February 2024 21:26:35 CET Lucas De Marchi wrote:
+> >> On Thu, Feb 01, 2024 at 07:59:20PM +0100, Janusz Krzysztofik wrote:
+> >> >Instead of wasting resources on reloading the base Kunit module each time
+> >> >a different set of filter parameters is needed, try to write the required
+> >> >values to sysfs representation of those parameters.  If that fails (e.g.
+> >> >on older LTS kernels with read-only filter parameters), fall back to
+> >> >legacy "no list of test cases available" mode as we do on kernels with
+> >> >those module parameters not supported at all.
+> >> >
+> >> >This modification will also serve as a workaround for the issue of
+> >> >impossibility to unload the base Kunit module on Xe platforms, available
+> >> >to IGT as soon as the module supports writable filter parameters.
+> >> >
+> >> >v3: Don't read-compare-write, just write the values (Lucas),
+> >> >  - skip calling igt_sysfs_set() when the string to be written to
+> >> >    filter_action is empty (Lucas),
+> >> >  - warn if we leave the filter_action set to "skip" while setting a non-
+> >> >    default value of the filter parameter,
+> >> >  - transform generic kunit_set_params() to kunit_set_filtering().
+> >> >v2: Work around ineffective writes of empty strings to sysfs module
+> >> >    parameter files (Lucas) by using human readable non-empty strings that
+> >> >    give the same results as default NULLs,
+> >> >  - drop fallback to reload of base Kunit module method if assigning new
+> >> >    values to module parameters via sysfs fails (Lucas), instead use the
+> >> >    existing fallback to blind execution like if getting a list of test
+> >> >    cases was not supported at all,
+> >> >  - split move of open_parameters() helper up in the source file as well
+> >> >    as cleanup of base KUnit module unloading to separate patches (Kamil),
+> >> >  - address the issue of the second paragraph of commit description
+> >> >    suggesting two separate changes combined in one patch (Kamil) by
+> >> >    rewording the description.
+> >> >
+> >> >Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> >> >Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> >> >Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+> >> >---
+> >> > lib/igt_kmod.c | 91 +++++++++++++++++++++++++++++++++++---------------
+> >> > 1 file changed, 65 insertions(+), 26 deletions(-)
+> >> >
+> >> >diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
+> >> >index d2c28d0a64..83416d2aa4 100644
+> >> >--- a/lib/igt_kmod.c
+> >> >+++ b/lib/igt_kmod.c
+> >> >@@ -811,6 +811,49 @@ static int open_parameters(const char *module_name)
+> >> > 	return open(path, O_RDONLY);
+> >> > }
+> >> >
+> >> >+static bool kunit_set_filtering(const char *filter_glob, const char *filter,
+> >> >+				const char *filter_action)
+> >> >+{
+> >> >+	int params;
+> >> >+	bool ret;
+> >> >+
+> >> >+	params = open_parameters("kunit");
+> >> >+	ret = !igt_debug_on(params < 0);
+> >>
+> >> why proceed? just return early when it fails pre-conditions
+> >
+> >Right.
+> >
+> >> >+
+> >> >+	/*
+> >> >+	 * Default values of the KUnit base module filtering parameters
+> >> >+	 * are all NULLs.  Reapplying those NULLs over sysfs once
+> >> >+	 * overwritten with non-NULL strings seems not possible.
+> >> >+	 * As a workaround, we use human-readable strings that exhibit
+> >> >+	 * the same behaviour as if default NULLs were in place.
+> >> >+	 */
+> >> >+	if (ret)
+> >> >+		ret = !igt_debug_on(!igt_sysfs_set(params, "filter_glob",
+> >> >+						   filter_glob ?: "*"));
+> >> >+	if (ret)
+> >> >+		ret = !igt_debug_on(!igt_sysfs_set(params, "filter",
+> >> >+						   filter ?: "module!=none"));
+> >> >+	/*
+> >> >+	 * In case of filter_action parameter there is no obvious human-
+> >> >+	 * readable string that behaves like default NULL.  However, if NULL
+> >>
+> >> that is not true.. it's just igt_sysfs not doing the right thing to
+> >
+> >That depends on how we feel about empty strings, whether they are human-
+> >readable or not.  For me they're not quite, e.g. when simply reading them back
+> >from sysfs it's not possible to distinguished them from potential white space,
+> >unless some graphical representation of non-printing characters is used.
+> >Maybe it would be more clear if kernel was using a convention to display empty
+> >strings as e.g. "(empty)", like it displays NULL as "(null)".
 > 
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Suggested-by: Matthew Brost <matthew.brost@intel.com>
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_debugfs.c      |  3 ++
->   drivers/gpu/drm/xe/xe_guc_ct.c       | 79 +++++++++++++---------------
->   drivers/gpu/drm/xe/xe_guc_ct_types.h |  2 +
->   3 files changed, 41 insertions(+), 43 deletions(-)
+> you can't print NULL. You can print empty like it's done now. That's not
+> going to change ever, as it would break perfectly usable and sane
+> userspace.
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-> index 8abdf3c17e1d..b3669eac23c9 100644
-> --- a/drivers/gpu/drm/xe/xe_debugfs.c
-> +++ b/drivers/gpu/drm/xe/xe_debugfs.c
-> @@ -64,6 +64,9 @@ static int info(struct seq_file *m, void *data)
->   			   xe_force_wake_ref(gt_to_fw(gt), XE_FW_GT));
->   		drm_printf(&p, "gt%d engine_mask 0x%llx\n", id,
->   			   gt->info.engine_mask);
-> +		drm_printf(&p, "gt%d g2h_outstanding %d g2h_pm_refs %d\n", id,
-> +			   gt->uc.guc.ct.g2h_outstanding,
-> +			   gt->uc.guc.ct.g2h_pm_refs);
->   	}
->   
->   	xe_pm_runtime_put(xe);
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-> index f3d356383ced..139cfe733661 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-> @@ -287,16 +287,49 @@ static int guc_ct_control_toggle(struct xe_guc_ct *ct, bool enable)
->   	return ret > 0 ? -EPROTO : ret;
->   }
->   
-> +static void guc_ct_g2h_outstanding_clear(struct xe_guc_ct *ct)
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i < ct->g2h_pm_refs; i++)
-> +		xe_pm_runtime_put(ct_to_xe(ct));
-> +	ct->g2h_outstanding = 0;
-> +	ct->g2h_pm_refs = 0;
-> +}
-> +
-> +static void guc_ct_g2h_outstanding_dec(struct xe_guc_ct *ct)
-> +{
-> +	if (ct->g2h_pm_refs > 0)
-> +		xe_pm_runtime_put(ct_to_xe(ct));
-> +	ct->g2h_pm_refs--;
-> +	ct->g2h_outstanding--;
-> +}
-> +
-> +static void guc_ct_g2h_outstanding_add(struct xe_guc_ct *ct, int num_g2h)
-> +{
-> +	struct xe_device *xe = ct_to_xe(ct);
-> +	int i;
-> +
-> +	for (i = 0; i < num_g2h; i++) {
-> +		if (xe_pm_runtime_get_if_in_use(xe))
-> +			ct->g2h_pm_refs++;
-> +		else
-> +			drm_err(&xe->drm, "Failed to grab RPM ref for outstanding g2h\n");
-> +	}
+> 
+> >
+> >> write an empty string, that does behave like NULL on the kernel side.
+> >
+> >Then maybe let's better send the empty string to igt_sysfs_set() instead of
+> >skipping that, and replace my "human-readable" with "non-NULL" in the
+> 
+> as long as the "human-readable" comment is removed, fine. Because empty
 
-I guess we could maybe drop the g2h_pm_refs, and rather just track 
-single rpm ref for entire ct when g2h_outstanding 0 -> 1, and likewise 
-drop the rpm ref when g2h_outstanding reaches zero?
+I'm going to follow this approach.
 
-> +	ct->g2h_outstanding += num_g2h;
-> +}
-> +
->   static void xe_guc_ct_set_state(struct xe_guc_ct *ct,
->   				enum xe_guc_ct_state state)
->   {
->   	mutex_lock(&ct->lock);		/* Serialise dequeue_one_g2h() */
->   	spin_lock_irq(&ct->fast_lock);	/* Serialise CT fast-path */
->   
-> +
->   	xe_gt_assert(ct_to_gt(ct), ct->g2h_outstanding == 0 ||
->   		     state == XE_GUC_CT_STATE_STOPPED);
->   
-> -	ct->g2h_outstanding = 0;
-> +	guc_ct_g2h_outstanding_clear(ct);
->   	ct->state = state;
->   
->   	spin_unlock_irq(&ct->fast_lock);
-> @@ -428,7 +461,7 @@ static void __g2h_reserve_space(struct xe_guc_ct *ct, u32 g2h_len, u32 num_g2h)
->   		lockdep_assert_held(&ct->fast_lock);
->   
->   		ct->ctbs.g2h.info.space -= g2h_len;
-> -		ct->g2h_outstanding += num_g2h;
-> +		guc_ct_g2h_outstanding_add(ct, num_g2h);
->   	}
->   }
->   
-> @@ -439,7 +472,7 @@ static void __g2h_release_space(struct xe_guc_ct *ct, u32 g2h_len)
->   		  ct->ctbs.g2h.info.size - ct->ctbs.g2h.info.resv_space);
->   
->   	ct->ctbs.g2h.info.space += g2h_len;
-> -	--ct->g2h_outstanding;
-> +	guc_ct_g2h_outstanding_dec(ct);
->   }
->   
->   static void g2h_release_space(struct xe_guc_ct *ct, u32 g2h_len)
-> @@ -1199,14 +1232,8 @@ static void g2h_fast_path(struct xe_guc_ct *ct, u32 *msg, u32 len)
->    */
->   void xe_guc_ct_fast_path(struct xe_guc_ct *ct)
->   {
-> -	struct xe_device *xe = ct_to_xe(ct);
-> -	bool ongoing;
->   	int len;
->   
-> -	ongoing = xe_device_mem_access_get_if_ongoing(ct_to_xe(ct));
-> -	if (!ongoing && xe_pm_read_callback_task(ct_to_xe(ct)) == NULL)
-> -		return;
-> -
->   	spin_lock(&ct->fast_lock);
->   	do {
->   		len = g2h_read(ct, ct->fast_msg, true);
-> @@ -1214,9 +1241,6 @@ void xe_guc_ct_fast_path(struct xe_guc_ct *ct)
->   			g2h_fast_path(ct, ct->fast_msg, len);
->   	} while (len > 0);
->   	spin_unlock(&ct->fast_lock);
-> -
-> -	if (ongoing)
-> -		xe_device_mem_access_put(xe);
->   }
->   
->   /* Returns less than zero on error, 0 on done, 1 on more available */
-> @@ -1247,36 +1271,8 @@ static int dequeue_one_g2h(struct xe_guc_ct *ct)
->   static void g2h_worker_func(struct work_struct *w)
->   {
->   	struct xe_guc_ct *ct = container_of(w, struct xe_guc_ct, g2h_worker);
-> -	bool ongoing;
->   	int ret;
->   
-> -	/*
-> -	 * Normal users must always hold mem_access.ref around CT calls. However
-> -	 * during the runtime pm callbacks we rely on CT to talk to the GuC, but
-> -	 * at this stage we can't rely on mem_access.ref and even the
-> -	 * callback_task will be different than current.  For such cases we just
-> -	 * need to ensure we always process the responses from any blocking
-> -	 * ct_send requests or where we otherwise expect some response when
-> -	 * initiated from those callbacks (which will need to wait for the below
-> -	 * dequeue_one_g2h()).  The dequeue_one_g2h() will gracefully fail if
-> -	 * the device has suspended to the point that the CT communication has
-> -	 * been disabled.
-> -	 *
-> -	 * If we are inside the runtime pm callback, we can be the only task
-> -	 * still issuing CT requests (since that requires having the
-> -	 * mem_access.ref).  It seems like it might in theory be possible to
-> -	 * receive unsolicited events from the GuC just as we are
-> -	 * suspending-resuming, but those will currently anyway be lost when
-> -	 * eventually exiting from suspend, hence no need to wake up the device
-> -	 * here. If we ever need something stronger than get_if_ongoing() then
-> -	 * we need to be careful with blocking the pm callbacks from getting CT
-> -	 * responses, if the worker here is blocked on those callbacks
-> -	 * completing, creating a deadlock.
-> -	 */
-> -	ongoing = xe_device_mem_access_get_if_ongoing(ct_to_xe(ct));
-> -	if (!ongoing && xe_pm_read_callback_task(ct_to_xe(ct)) == NULL)
-> -		return;
-> -
->   	do {
->   		mutex_lock(&ct->lock);
->   		ret = dequeue_one_g2h(ct);
-> @@ -1290,9 +1286,6 @@ static void g2h_worker_func(struct work_struct *w)
->   			kick_reset(ct);
->   		}
->   	} while (ret == 1);
-> -
-> -	if (ongoing)
-> -		xe_device_mem_access_put(ct_to_xe(ct));
->   }
->   
->   static void guc_ctb_snapshot_capture(struct xe_device *xe, struct guc_ctb *ctb,
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct_types.h b/drivers/gpu/drm/xe/xe_guc_ct_types.h
-> index d29144c9f20b..4220230e7be4 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct_types.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct_types.h
-> @@ -108,6 +108,8 @@ struct xe_guc_ct {
->   	} ctbs;
->   	/** @g2h_outstanding: number of outstanding G2H */
->   	u32 g2h_outstanding;
-> +	/** @g2h_pm_refs: number of pm_refs for pending G2H */
-> +	u32 g2h_pm_refs;
->   	/** @g2h_worker: worker to process G2H messages */
->   	struct work_struct g2h_worker;
->   	/** @state: CT state */
+> is empty, it's not a non-printing char. Let me try to make it clearer:
+> 
+> 	# echo -ne a > /sys/module/firmware_class/parameters/path
+> 	# hexdump -C /sys/module/firmware_class/parameters/path
+> 	00000000  61 0a                                             |a.|
+> 	00000002
+> 
+> There are 2 chars: 'a' and '\n', with the latter always inserted by the
+> kernel.
+> 
+> 	# echo -ne "\0" > /sys/module/firmware_class/parameters/path
+> 	# hexdump -C /sys/module/firmware_class/parameters/path
+> 	00000000  0a                                                |.|
+> 	00000001
+> 
+> there is 1 char, just the \n inserted by the kernel. Nobody would ever
+> ask for the kernel to start printing "(newline)" instead of \n.
+> 
+> Yes, the kernel side could behave differently depending if it's NULL
+> vs empty. kunit doesn't and shouldn't.
+> 
+> 
+> Lucas De Marchi
+> 
+> >comments.  Thanks to "module!=none" we are still on the safe side, even before
+> >igt_sysfs_set() is fixed.
+> >
+> >> I'd drop these lines and just justify with the lines below why we are
+> >> not setting it here.
+> >>
+> >> with a small change below we can also move these to use igt_require()
+
+I'd rather avoid calling igt_require() before we close params.  Instead, I'll 
+convert that to a classic unwind on error pattern.
+
+> >>
+> >> >+	 * is requested for both filter and filter_action then that's not a
+> >> >+	 * problem for us since even if filter_action was previously set to
+> >> >+	 * "skip" we can leave it as is because our "module!=none" default
+> >> >+	 * filter guarantees that no test cases are filtered out to be skipped.
+> >> >+	 */
+> >> >+	if (ret)
+> >> >+		ret = !igt_warn_on_f(!filter_action && filter,
+> >> >+				     "test error: filter_action=NULL requires filter=NULL\n");
+> >> >+	if (ret && filter_action)
+> >> >+		ret = !igt_debug_on(!igt_sysfs_set(params, "filter_action",
+> >> >+						   filter_action));
+> >> >+
+> >> >+	if (params >= 0)
+> >> >+		close(params);
+> >> >+
+> >> >+	return ret;
+> >> >+}
+> >> >+
+> >> > struct modprobe_data {
+> >> > 	struct kmod_module *kmod;
+> >> > 	const char *opts;
+> >> >@@ -1116,24 +1159,26 @@ static void kunit_get_tests(struct igt_list_head *tests,
+> >> > 	/*
+> >> > 	 * To get a list of test cases provided by a kunit test module, ask the
+> >> > 	 * generic kunit module to respond with SKIP result for each test found.
+> >> >-	 * We could also use action=list kunit parameter to get the listing,
+> >> >-	 * however, parsing a KTAP report -- something that we already can do
+> >> >-	 * perfectly -- seems to be more safe than extracting a test case list
+> >> >-	 * of unknown length from /dev/kmsg.
+> >> >-	 *
+> >> >-	 * TODO: drop the following workaround, which is required by LTS kernel
+> >> >-	 *       v6.1 not capable of listing test cases when built as a module.
+> >> >-	 * If loading the kunit module with required parameters fails then
+> >> >-	 * assume that we are running on a kernel with missing test case listing
+> >> >-	 * capabilities.  Dont's skip but just return with empty list of test
+> >> >-	 * cases, that should tell the caller to use a legacy method of
+> >> >-	 * iterating over KTAP results collected from blind execution of all
+> >> >-	 * Kunit test cases provided by a Kunit test module.
+> >> >+	 * We could also try to use action=list kunit parameter to get the
+> >> >+	 * listing, however, parsing a structured KTAP report -- something that
+> >> >+	 * we already can do perfectly -- seems to be more safe than extracting
+> >> >+	 * a free text list of unknown length from /dev/kmsg.
+> >> > 	 */
+> >> >-	igt_ignore_warn(igt_kmod_unload("kunit", KMOD_REMOVE_FORCE));
+> >> >-	if (igt_debug_on(igt_kmod_load("kunit",
+> >> >-				       "filter=module=none filter_action=skip")))
+> >> >+	if (igt_debug_on(!kunit_set_filtering(NULL, "module=none", "skip"))) {
+> >>
+> >> probably in the caller or very early:
+> >>
+> >> 	if (!igt_syfs_has_rw_attr())
+> >> 		return fallback_kunit_execution();
+> >>
+> >> I think it's too different this approach from the previous one, that
+> >> results in the long comments trying to explain each different
+> >> step.
+> >
+> >OK.
+
+I think I've found a nice way to resolve the issue of multiple TODOs on 
+several steps back to the same legacy path without introducing your proposed 
+check-permissions-before-write.  Please expect a separate patch that will 
+replace v3 1/6.
+
+> >
+> >>
+> >> Humn... I guess we can do that on top, so if this works, seems ok for
+> >> now.
+> >
+> >OK.
+
+Since still in progress, please expect v4 soon.
+
+Thanks,
+Janusz
+
+> >
+> >Thanks,
+> >Janusz
+> >
+> >>
+> >> Lucas De Marchi
+> >>
+> >> >+		/*
+> >> >+		 * TODO: drop the following workaround, required by LTS kernel
+> >> >+		 *       v6.1 not capable of listing test cases when built as as
+> >> >+		 *       module, when no longer needed.
+> >> >+		 * If updating writable filter parameters of the kunit base
+> >> >+		 * module with required values fails then assume we are running
+> >> >+		 * on a kernel with missing test case listing capabilities.
+> >> >+		 * Don't skip but just return with empty list of test cases,
+> >> >+		 * which should tell the caller to use a legacy method of
+> >> >+		 * iterating over KTAP results collected from blind execution
+> >> >+		 * of all Kunit test cases provided by a Kunit test module.
+> >> >+		 */
+> >> > 		return;
+> >> >+	}
+> >> >
+> >> > 	igt_skip_on(modprobe(tst->kmod, opts));
+> >> >
+> >> >@@ -1200,16 +1245,7 @@ static void __igt_kunit(struct igt_ktest *tst,
+> >> > 			      t->case_name) {
+> >> >
+> >> > 			if (!modprobe.thread) {
+> >> >-				/*
+> >> >-				 * Since we have successfully loaded the kunit
+> >> >-				 * base module with non-default parameters in
+> >> >-				 * order to get a list of test cases, now we
+> >> >-				 * have to unload it so it is then automatically
+> >> >-				 * reloaded with default parameter values when
+> >> >-				 * we load the test module again for execution.
+> >> >-				 */
+> >> >-				igt_skip_on(igt_kmod_unload("kunit",
+> >> >-							    KMOD_REMOVE_FORCE));
+> >> >+				igt_require(kunit_set_filtering(NULL, NULL, NULL));
+> >> >
+> >> > 				igt_assert_eq(pthread_mutexattr_init(&attr), 0);
+> >> > 				igt_assert_eq(pthread_mutexattr_setrobust(&attr,
+> >> >@@ -1378,6 +1414,9 @@ void igt_kunit(const char *module_name, const char *name, const char *opts)
+> >> > 		igt_assert(igt_list_empty(&tests));
+> >> > 	}
+> >> >
+> >> >+	/* We need the base KUnit module loaded if not built-in */
+> >> >+	igt_ignore_warn(igt_kmod_load("kunit", NULL));
+> >> >+
+> >> > 	/*
+> >> > 	 * We need to use igt_subtest here, as otherwise it may crash with:
+> >> > 	 *  skipping is allowed only in fixtures, subtests or igt_simple_main
+> >>
+> >
+> >
+> >
+> >
+> 
+
+
+
+
