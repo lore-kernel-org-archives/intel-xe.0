@@ -4,53 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94968C4828D
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Feb 2024 11:06:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75B47C4828D
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Feb 2024 11:08:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 481D710F630;
-	Mon,  5 Feb 2024 11:06:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3181410F7E1;
+	Mon,  5 Feb 2024 11:08:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mCvI1b/2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fepc3CDg";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FD0610F2FB
- for <intel-xe@lists.freedesktop.org>; Mon,  5 Feb 2024 11:05:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C258210F7E1
+ for <intel-xe@lists.freedesktop.org>; Mon,  5 Feb 2024 11:08:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707131158; x=1738667158;
+ t=1707131309; x=1738667309;
  h=message-id:date:mime-version:subject:to:references:from:
  in-reply-to:content-transfer-encoding;
- bh=2UHvo0Blld305Nvmc7TTiap10ZXGRKsD0o2OKYrKn4I=;
- b=mCvI1b/2Byi9OXsq5sN7FsPdp55lNttNUG5ABR+qjHikZ8n3dW/o8Bla
- zmFflSPFMJqBljdFybu4V3mcfXthfTPM4qBPc4C1KNLVw25GEMBx0OZFl
- aeWeGZZ7HDMCMyaI1zPTRVSh3OzQxMwa53z0r22OzTXxUAbQsdEJWYQzv
- ck5KhZAxW0cbibUys4uVDOLaRlwV3HIe1VbNP/ZegWFnIusIZr7dcx7Pl
- 0Q9wLDWQ230rvFxVZGafH90sv65lsZtvV7OrRncRolZ27Q2e1+XykuxIp
- U0nipA1cG7LLH2xXKCtBiCCYLdbU08E4341AXcCu206wla4bO8YQFNvpB A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="414258"
-X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; 
-   d="scan'208";a="414258"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2024 03:05:57 -0800
+ bh=rx7nBbeyW9Pkn+Y2jRI2UFsU9Ts+7eCUYz0H2fgNaec=;
+ b=fepc3CDgL9Czyqz2YgrnTcJReIHITI0t9mMCpMK3Z9EBOIsDMrRLTSdV
+ bFnD+wFxeUm22h7nT156PhWnk9pjqUoC/WK1vEssV3N1wOXLhSAxCGaDP
+ rT+E78g/lN/nzzgeCIbLISS/JKhcC9xk9GdyPehcESzUt/CZ+B/vDq2wZ
+ iyZMYDXASrGgEcaP9lBL4bsl/uVuMw6LSd27w8mcWP0446idMuZrQGU1c
+ PAJ4rvyCmIZM9zP4dGHGEK6g5aKbCAOLU7dWyGIn2Fw9BA7FZfGqTcfNR
+ NzEdNbkLA2sji6RC9a980uZ0ogPtfMx2kVe69B2S7QJXQ+RMC64mzQ/o+ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="18024948"
+X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; d="scan'208";a="18024948"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2024 03:08:29 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; 
-   d="scan'208";a="5308936"
+X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; d="scan'208";a="31781525"
 Received: from vgolodni-mobl.ger.corp.intel.com (HELO [10.252.0.151])
  ([10.252.0.151])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2024 03:05:56 -0800
-Message-ID: <df663ea7-5d81-4e6c-8ce3-9cd53fe72ea3@intel.com>
-Date: Mon, 5 Feb 2024 11:05:54 +0000
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2024 03:08:27 -0800
+Message-ID: <a314a382-53f4-4a4b-a814-46514652ff0d@intel.com>
+Date: Mon, 5 Feb 2024 11:08:25 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 12/34] drm/xe: Ensure device is awake before removing it
+Subject: Re: [RFC 13/34] drm/xe: Remove mem_access from guc_pc calls
 Content-Language: en-GB
 To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
 References: <20240126203044.1104705-1-rodrigo.vivi@intel.com>
- <20240126203044.1104705-13-rodrigo.vivi@intel.com>
+ <20240126203044.1104705-14-rodrigo.vivi@intel.com>
 From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20240126203044.1104705-13-rodrigo.vivi@intel.com>
+In-Reply-To: <20240126203044.1104705-14-rodrigo.vivi@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,30 +66,9 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On 26/01/2024 20:30, Rodrigo Vivi wrote:
-> If device is suspended, the module unload might face challenges.
-> So, let's ensure that the very first thing of the "unprobe" (remove)
-> is to wake the device.
-
-Core kernel already ensures device is called with pm_runtime_get_sync() 
-before calling probe/remove. Do we still need this?
-
+> We are now protected by init, sysfs, or removal and don't
+> need these mem_access protections around GuC_PC anymore.
 > 
 > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_pci.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index df6b3b31f419..0f296df729c4 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -686,8 +686,8 @@ static void xe_pci_remove(struct pci_dev *pdev)
->   	if (!xe) /* driver load aborted, nothing to cleanup */
->   		return;
->   
-> -	xe_device_remove(xe);
->   	xe_pm_runtime_fini(xe);
-> +	xe_device_remove(xe);
->   	pci_set_drvdata(pdev, NULL);
->   }
->   
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+
