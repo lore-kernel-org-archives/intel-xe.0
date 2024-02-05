@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12338C4828D
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Feb 2024 16:02:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 018B2C48292
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Feb 2024 16:02:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDE5610FA75;
-	Mon,  5 Feb 2024 16:02:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 863C710FA7A;
+	Mon,  5 Feb 2024 16:02:49 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02C8110FA78;
- Mon,  5 Feb 2024 16:02:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B36B10FA75;
+ Mon,  5 Feb 2024 16:02:48 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/display=3A_fi?=
- =?utf-8?q?x_i915=5Fgem=5Fobject=5Fis=5Fshmem=28=29_wrapper?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/display=3A_fix_i91?=
+ =?utf-8?q?5=5Fgem=5Fobject=5Fis=5Fshmem=28=29_wrapper?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 05 Feb 2024 16:02:33 -0000
-Message-ID: <170714895301.1024297.11976651581912745854@5338d5abeb45>
+Date: Mon, 05 Feb 2024 16:02:48 -0000
+Message-ID: <170714896811.1024443.2474991917340500683@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240205153110.38340-2-matthew.auld@intel.com>
 In-Reply-To: <20240205153110.38340-2-matthew.auld@intel.com>
@@ -48,9 +48,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 65b31bb0d drm-tip: 2024y-02m-05d-15h-25m-17s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/display: fix i915_gem_object_is_shmem() wrapper
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+35591fb8b4d5305b37ce31483f85ac0956eaa536
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 35ea490a32c3cec1baf525255734adc1ac873347
+Author: Matthew Auld <matthew.auld@intel.com>
+Date:   Mon Feb 5 15:31:11 2024 +0000
+
+    drm/xe/display: fix i915_gem_object_is_shmem() wrapper
+    
+    shmem ensures the memory is cleared on allocation, however here we are
+    using TTM, which doesn't natively support shmem (other than for swap),
+    but instead just allocates normal system memory. And we only zero such
+    memory for userspace allocations. In the case of intel_fbdev we are
+    missing the memset_io().
+    
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
++ /mt/dim checkpatch 65b31bb0da2e57ac39ddf5f7bf77ca191e6b6fad drm-intel
+35ea490a3 drm/xe/display: fix i915_gem_object_is_shmem() wrapper
 
 
