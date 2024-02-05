@@ -4,25 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B38C8C48295
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Feb 2024 10:00:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 442D2C4828D
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Feb 2024 10:03:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 585B910F44F;
-	Mon,  5 Feb 2024 10:00:46 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E4C010F7BA
- for <intel-xe@lists.freedesktop.org>; Mon,  5 Feb 2024 10:00:42 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH] drm/xe: Add uapi for dumpable bos
-Date: Mon,  5 Feb 2024 11:00:29 +0100
-Message-ID: <20240205100029.10136-1-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240202224052.848867-1-maarten.lankhorst@linux.intel.com>
-References: <20240202224052.848867-1-maarten.lankhorst@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03CA610F52E;
+	Mon,  5 Feb 2024 10:03:55 +0000 (UTC)
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1339410F52E;
+ Mon,  5 Feb 2024 10:03:53 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
+ =?utf-8?q?_drm/xe=3A_Add_uapi_for_dumpable_bos_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 05 Feb 2024 10:03:53 -0000
+Message-ID: <170712743307.1024297.1374540570425290351@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240202224052.848867-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20240202224052.848867-1-maarten.lankhorst@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -34,56 +36,27 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add the flag XE_VM_BIND_FLAG_DUMPABLE to notify devcoredump that this
-mapping should be dumped.
+== Series Details ==
 
-This is not hooked up, but the uapi should be ready before merging.
+Series: series starting with drm/xe: Add uapi for dumpable bos (rev3)
+URL   : https://patchwork.freedesktop.org/series/129496/
+State : success
 
-It's likely easier to dump the contents of the bo's at devcoredump
-readout time, so it's better if the bos will stay unmodified after
-a hang. The NEEDS_CPU_MAPPING flag is removed as requirement.
+== Summary ==
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_vm.c | 5 +++--
- include/uapi/drm/xe_drm.h  | 1 +
- 2 files changed, 4 insertions(+), 2 deletions(-)
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 200b5a40e drm-tip: 2024y-02m-05d-06h-39m-40s UTC integration manifest
+=== git am output follows ===
+.git/rebase-apply/patch:120: new blank line at EOF.
++
+warning: 1 line adds whitespace errors.
+Applying: drm/xe: Add uapi for dumpable bos
+Applying: drm/xe: Annotate each dumpable vma as such
+Applying: drm/xe: Add vm snapshot mutex for easily taking a vm snapshot during devcoredump
+Applying: drm/xe: Implement VM snapshot support for BO's and userptr
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 7e29b816c4d42..aa5403e7a80e1 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2730,12 +2730,13 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
- #ifdef TEST_VM_ASYNC_OPS_ERROR
- #define SUPPORTED_FLAGS	\
- 	(FORCE_ASYNC_OP_ERROR | DRM_XE_VM_BIND_FLAG_READONLY | \
--	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | DRM_XE_VM_BIND_FLAG_NULL | 0xffff)
-+	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | DRM_XE_VM_BIND_FLAG_NULL | \
-+	 DRM_XE_VM_BIND_FLAG_DUMPABLE | 0xffff)
- #else
- #define SUPPORTED_FLAGS	\
- 	(DRM_XE_VM_BIND_FLAG_READONLY | \
- 	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | DRM_XE_VM_BIND_FLAG_NULL | \
--	 0xffff)
-+	 DRM_XE_VM_BIND_FLAG_DUMPABLE | 0xffff)
- #endif
- #define XE_64K_PAGE_MASK 0xffffull
- #define ALL_DRM_XE_SYNCS_FLAGS (DRM_XE_SYNCS_FLAG_WAIT_FOR_OP)
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 50bbea0992d9c..0f975f57f3e59 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -930,6 +930,7 @@ struct drm_xe_vm_bind_op {
- #define DRM_XE_VM_BIND_FLAG_READONLY	(1 << 0)
- #define DRM_XE_VM_BIND_FLAG_IMMEDIATE	(1 << 1)
- #define DRM_XE_VM_BIND_FLAG_NULL	(1 << 2)
-+#define DRM_XE_VM_BIND_FLAG_DUMPABLE	(1 << 3)
- 	/** @flags: Bind flags */
- 	__u32 flags;
- 
--- 
-2.43.0
 
