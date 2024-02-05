@@ -4,58 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B52C0C48295
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Feb 2024 12:38:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFE53C48295
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Feb 2024 12:41:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A05810F96C;
-	Mon,  5 Feb 2024 12:38:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7396910F974;
+	Mon,  5 Feb 2024 12:41:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BGFdCvCP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BtYfp6yi";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45A6610F96C;
- Mon,  5 Feb 2024 12:38:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DAA8A10F974
+ for <intel-xe@lists.freedesktop.org>; Mon,  5 Feb 2024 12:41:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707136698; x=1738672698;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=jTiOMmrLk6ffrPXBG+TQygm+Kd5smywu7lR2qatxDPI=;
- b=BGFdCvCP03seavYKDTe/C5MKGwDWUU+KAzWJeZjDy43fUYLKx+NXmmXK
- 3Uqy+StFEFzptOeuX2iiKXnmNXOb6m7NuE6b+B6pSlBelvvR8iav/VYzk
- Mxo1RrAGT8W//WPiRh7F/ZNJX9AYCqNC5GcMUOBS8c0W46hUQhqvF05ws
- wPMMu9CkTe3ucOQafoRoIcbrtddS/Ehi/6Z9DcWiEinGVTgzX8IstfosR
- qsmcFhRVjCvpkibsL8srDua+EmPUppBu+Y+jQqln5lzxSaGKP4xLTJQ+V
- YvstZL/NsgOs1IfUrqCQfz/jvJSlB/8sAXRvnv/R6OQGqwlH+Izm//fzq A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="4308483"
+ t=1707136872; x=1738672872;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=+t+Rk+vWJ/cepb2CzuZipBMt3WWke7QSaJWR0n3PPD0=;
+ b=BtYfp6yi2y4eaTlgJvzsqHFiLwKADzOv+c5R/eNcettwUoVaOswVaDVc
+ tXxsCs0kQO7gWL0omQgYwg5awHD9tN8ROWxb537MqSBDlj4TS+2zwucSy
+ 9WnyGSZ5w0JUdO7jzR52gikMSrRyibWUC6ZwAIy6mKiU8ifuN5VPQQl33
+ wUuNKU0z9Z55XkU9iH68ctV6U3YkG4N/GC5aUauqJWmQiuMg9VO0V1Frb
+ X2xTb4ux1teCLU797It8DbIeC20eepXOeZemS2Wca9X45hl0bukRTUlVS
+ D+IfsNjmZ/eyrfnFhXLrZQVa03XQYmTnPfGwhgQpAmkmutBvp2bzvkHbk A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="408189"
 X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; 
-   d="scan'208";a="4308483"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2024 04:38:17 -0800
+   d="scan'208";a="408189"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2024 04:41:11 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; d="scan'208";a="23951815"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.2.183])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2024 04:38:15 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: igt-dev@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>
-Subject: Re: [PATCH i-g-t v3 4/6] lib/kunit: Support writable filter*
- parameters of kunit module
-Date: Mon, 05 Feb 2024 13:38:12 +0100
-Message-ID: <8371029.NyiUUSuA9g@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <lqfhao6zl6hynfgumjjztky3bqsuxte4nekzrhsilkf2tmyikv@5bb3t3fksddx>
-References: <20240201190237.150754-8-janusz.krzysztofik@linux.intel.com>
- <3705187.TKLx3GfHUD@jkrzyszt-mobl2.ger.corp.intel.com>
- <lqfhao6zl6hynfgumjjztky3bqsuxte4nekzrhsilkf2tmyikv@5bb3t3fksddx>
+X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; 
+   d="scan'208";a="5323933"
+Received: from vgolodni-mobl.ger.corp.intel.com (HELO [10.252.0.151])
+ ([10.252.0.151])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2024 04:41:10 -0800
+Message-ID: <a70dff38-cb46-4f65-9b4d-36c0f6e5a6b4@intel.com>
+Date: Mon, 5 Feb 2024 12:41:07 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC 23/34] drm/xe: Ensure D0 on TLB invalidation
+Content-Language: en-GB
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
+References: <20240126203044.1104705-1-rodrigo.vivi@intel.com>
+ <20240126203044.1104705-24-rodrigo.vivi@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20240126203044.1104705-24-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,281 +67,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Friday, 2 February 2024 16:57:46 CET Lucas De Marchi wrote:
-> On Fri, Feb 02, 2024 at 11:14:49AM +0100, Janusz Krzysztofik wrote:
-> >On Thursday, 1 February 2024 21:26:35 CET Lucas De Marchi wrote:
-> >> On Thu, Feb 01, 2024 at 07:59:20PM +0100, Janusz Krzysztofik wrote:
-> >> >Instead of wasting resources on reloading the base Kunit module each time
-> >> >a different set of filter parameters is needed, try to write the required
-> >> >values to sysfs representation of those parameters.  If that fails (e.g.
-> >> >on older LTS kernels with read-only filter parameters), fall back to
-> >> >legacy "no list of test cases available" mode as we do on kernels with
-> >> >those module parameters not supported at all.
-> >> >
-> >> >This modification will also serve as a workaround for the issue of
-> >> >impossibility to unload the base Kunit module on Xe platforms, available
-> >> >to IGT as soon as the module supports writable filter parameters.
-> >> >
-> >> >v3: Don't read-compare-write, just write the values (Lucas),
-> >> >  - skip calling igt_sysfs_set() when the string to be written to
-> >> >    filter_action is empty (Lucas),
-> >> >  - warn if we leave the filter_action set to "skip" while setting a non-
-> >> >    default value of the filter parameter,
-> >> >  - transform generic kunit_set_params() to kunit_set_filtering().
-> >> >v2: Work around ineffective writes of empty strings to sysfs module
-> >> >    parameter files (Lucas) by using human readable non-empty strings that
-> >> >    give the same results as default NULLs,
-> >> >  - drop fallback to reload of base Kunit module method if assigning new
-> >> >    values to module parameters via sysfs fails (Lucas), instead use the
-> >> >    existing fallback to blind execution like if getting a list of test
-> >> >    cases was not supported at all,
-> >> >  - split move of open_parameters() helper up in the source file as well
-> >> >    as cleanup of base KUnit module unloading to separate patches (Kamil),
-> >> >  - address the issue of the second paragraph of commit description
-> >> >    suggesting two separate changes combined in one patch (Kamil) by
-> >> >    rewording the description.
-> >> >
-> >> >Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> >> >Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> >> >Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-> >> >---
-> >> > lib/igt_kmod.c | 91 +++++++++++++++++++++++++++++++++++---------------
-> >> > 1 file changed, 65 insertions(+), 26 deletions(-)
-> >> >
-> >> >diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
-> >> >index d2c28d0a64..83416d2aa4 100644
-> >> >--- a/lib/igt_kmod.c
-> >> >+++ b/lib/igt_kmod.c
-> >> >@@ -811,6 +811,49 @@ static int open_parameters(const char *module_name)
-> >> > 	return open(path, O_RDONLY);
-> >> > }
-> >> >
-> >> >+static bool kunit_set_filtering(const char *filter_glob, const char *filter,
-> >> >+				const char *filter_action)
-> >> >+{
-> >> >+	int params;
-> >> >+	bool ret;
-> >> >+
-> >> >+	params = open_parameters("kunit");
-> >> >+	ret = !igt_debug_on(params < 0);
-> >>
-> >> why proceed? just return early when it fails pre-conditions
-> >
-> >Right.
-> >
-> >> >+
-> >> >+	/*
-> >> >+	 * Default values of the KUnit base module filtering parameters
-> >> >+	 * are all NULLs.  Reapplying those NULLs over sysfs once
-> >> >+	 * overwritten with non-NULL strings seems not possible.
-> >> >+	 * As a workaround, we use human-readable strings that exhibit
-> >> >+	 * the same behaviour as if default NULLs were in place.
-> >> >+	 */
-> >> >+	if (ret)
-> >> >+		ret = !igt_debug_on(!igt_sysfs_set(params, "filter_glob",
-> >> >+						   filter_glob ?: "*"));
-> >> >+	if (ret)
-> >> >+		ret = !igt_debug_on(!igt_sysfs_set(params, "filter",
-> >> >+						   filter ?: "module!=none"));
-> >> >+	/*
-> >> >+	 * In case of filter_action parameter there is no obvious human-
-> >> >+	 * readable string that behaves like default NULL.  However, if NULL
-> >>
-> >> that is not true.. it's just igt_sysfs not doing the right thing to
-> >
-> >That depends on how we feel about empty strings, whether they are human-
-> >readable or not.  For me they're not quite, e.g. when simply reading them back
-> >from sysfs it's not possible to distinguished them from potential white space,
-> >unless some graphical representation of non-printing characters is used.
-> >Maybe it would be more clear if kernel was using a convention to display empty
-> >strings as e.g. "(empty)", like it displays NULL as "(null)".
+On 26/01/2024 20:30, Rodrigo Vivi wrote:
+> Let's grab the runtime references around TLB invalidation
+> to ensure that hardware is awake in D0.
 > 
-> you can't print NULL. You can print empty like it's done now. That's not
-> going to change ever, as it would break perfectly usable and sane
-> userspace.
+> Suggested-by: Matthew Brost <matthew.brost@intel.com>
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_bo.c | 5 +++--
+>   drivers/gpu/drm/xe/xe_pt.c | 3 +++
+>   2 files changed, 6 insertions(+), 2 deletions(-)
 > 
-> 
-> >
-> >> write an empty string, that does behave like NULL on the kernel side.
-> >
-> >Then maybe let's better send the empty string to igt_sysfs_set() instead of
-> >skipping that, and replace my "human-readable" with "non-NULL" in the
-> 
-> as long as the "human-readable" comment is removed, fine. Because empty
-
-I'm going to follow this approach.
-
-> is empty, it's not a non-printing char. Let me try to make it clearer:
-> 
-> 	# echo -ne a > /sys/module/firmware_class/parameters/path
-> 	# hexdump -C /sys/module/firmware_class/parameters/path
-> 	00000000  61 0a                                             |a.|
-> 	00000002
-> 
-> There are 2 chars: 'a' and '\n', with the latter always inserted by the
-> kernel.
-> 
-> 	# echo -ne "\0" > /sys/module/firmware_class/parameters/path
-> 	# hexdump -C /sys/module/firmware_class/parameters/path
-> 	00000000  0a                                                |.|
-> 	00000001
-> 
-> there is 1 char, just the \n inserted by the kernel. Nobody would ever
-> ask for the kernel to start printing "(newline)" instead of \n.
-> 
-> Yes, the kernel side could behave differently depending if it's NULL
-> vs empty. kunit doesn't and shouldn't.
-> 
-> 
-> Lucas De Marchi
-> 
-> >comments.  Thanks to "module!=none" we are still on the safe side, even before
-> >igt_sysfs_set() is fixed.
-> >
-> >> I'd drop these lines and just justify with the lines below why we are
-> >> not setting it here.
-> >>
-> >> with a small change below we can also move these to use igt_require()
-
-I'd rather avoid calling igt_require() before we close params.  Instead, I'll 
-convert that to a classic unwind on error pattern.
-
-> >>
-> >> >+	 * is requested for both filter and filter_action then that's not a
-> >> >+	 * problem for us since even if filter_action was previously set to
-> >> >+	 * "skip" we can leave it as is because our "module!=none" default
-> >> >+	 * filter guarantees that no test cases are filtered out to be skipped.
-> >> >+	 */
-> >> >+	if (ret)
-> >> >+		ret = !igt_warn_on_f(!filter_action && filter,
-> >> >+				     "test error: filter_action=NULL requires filter=NULL\n");
-> >> >+	if (ret && filter_action)
-> >> >+		ret = !igt_debug_on(!igt_sysfs_set(params, "filter_action",
-> >> >+						   filter_action));
-> >> >+
-> >> >+	if (params >= 0)
-> >> >+		close(params);
-> >> >+
-> >> >+	return ret;
-> >> >+}
-> >> >+
-> >> > struct modprobe_data {
-> >> > 	struct kmod_module *kmod;
-> >> > 	const char *opts;
-> >> >@@ -1116,24 +1159,26 @@ static void kunit_get_tests(struct igt_list_head *tests,
-> >> > 	/*
-> >> > 	 * To get a list of test cases provided by a kunit test module, ask the
-> >> > 	 * generic kunit module to respond with SKIP result for each test found.
-> >> >-	 * We could also use action=list kunit parameter to get the listing,
-> >> >-	 * however, parsing a KTAP report -- something that we already can do
-> >> >-	 * perfectly -- seems to be more safe than extracting a test case list
-> >> >-	 * of unknown length from /dev/kmsg.
-> >> >-	 *
-> >> >-	 * TODO: drop the following workaround, which is required by LTS kernel
-> >> >-	 *       v6.1 not capable of listing test cases when built as a module.
-> >> >-	 * If loading the kunit module with required parameters fails then
-> >> >-	 * assume that we are running on a kernel with missing test case listing
-> >> >-	 * capabilities.  Dont's skip but just return with empty list of test
-> >> >-	 * cases, that should tell the caller to use a legacy method of
-> >> >-	 * iterating over KTAP results collected from blind execution of all
-> >> >-	 * Kunit test cases provided by a Kunit test module.
-> >> >+	 * We could also try to use action=list kunit parameter to get the
-> >> >+	 * listing, however, parsing a structured KTAP report -- something that
-> >> >+	 * we already can do perfectly -- seems to be more safe than extracting
-> >> >+	 * a free text list of unknown length from /dev/kmsg.
-> >> > 	 */
-> >> >-	igt_ignore_warn(igt_kmod_unload("kunit", KMOD_REMOVE_FORCE));
-> >> >-	if (igt_debug_on(igt_kmod_load("kunit",
-> >> >-				       "filter=module=none filter_action=skip")))
-> >> >+	if (igt_debug_on(!kunit_set_filtering(NULL, "module=none", "skip"))) {
-> >>
-> >> probably in the caller or very early:
-> >>
-> >> 	if (!igt_syfs_has_rw_attr())
-> >> 		return fallback_kunit_execution();
-> >>
-> >> I think it's too different this approach from the previous one, that
-> >> results in the long comments trying to explain each different
-> >> step.
-> >
-> >OK.
-
-I think I've found a nice way to resolve the issue of multiple TODOs on 
-several steps back to the same legacy path without introducing your proposed 
-check-permissions-before-write.  Please expect a separate patch that will 
-replace v3 1/6.
-
-> >
-> >>
-> >> Humn... I guess we can do that on top, so if this works, seems ok for
-> >> now.
-> >
-> >OK.
-
-Since still in progress, please expect v4 soon.
-
-Thanks,
-Janusz
-
-> >
-> >Thanks,
-> >Janusz
-> >
-> >>
-> >> Lucas De Marchi
-> >>
-> >> >+		/*
-> >> >+		 * TODO: drop the following workaround, required by LTS kernel
-> >> >+		 *       v6.1 not capable of listing test cases when built as as
-> >> >+		 *       module, when no longer needed.
-> >> >+		 * If updating writable filter parameters of the kunit base
-> >> >+		 * module with required values fails then assume we are running
-> >> >+		 * on a kernel with missing test case listing capabilities.
-> >> >+		 * Don't skip but just return with empty list of test cases,
-> >> >+		 * which should tell the caller to use a legacy method of
-> >> >+		 * iterating over KTAP results collected from blind execution
-> >> >+		 * of all Kunit test cases provided by a Kunit test module.
-> >> >+		 */
-> >> > 		return;
-> >> >+	}
-> >> >
-> >> > 	igt_skip_on(modprobe(tst->kmod, opts));
-> >> >
-> >> >@@ -1200,16 +1245,7 @@ static void __igt_kunit(struct igt_ktest *tst,
-> >> > 			      t->case_name) {
-> >> >
-> >> > 			if (!modprobe.thread) {
-> >> >-				/*
-> >> >-				 * Since we have successfully loaded the kunit
-> >> >-				 * base module with non-default parameters in
-> >> >-				 * order to get a list of test cases, now we
-> >> >-				 * have to unload it so it is then automatically
-> >> >-				 * reloaded with default parameter values when
-> >> >-				 * we load the test module again for execution.
-> >> >-				 */
-> >> >-				igt_skip_on(igt_kmod_unload("kunit",
-> >> >-							    KMOD_REMOVE_FORCE));
-> >> >+				igt_require(kunit_set_filtering(NULL, NULL, NULL));
-> >> >
-> >> > 				igt_assert_eq(pthread_mutexattr_init(&attr), 0);
-> >> > 				igt_assert_eq(pthread_mutexattr_setrobust(&attr,
-> >> >@@ -1378,6 +1414,9 @@ void igt_kunit(const char *module_name, const char *name, const char *opts)
-> >> > 		igt_assert(igt_list_empty(&tests));
-> >> > 	}
-> >> >
-> >> >+	/* We need the base KUnit module loaded if not built-in */
-> >> >+	igt_ignore_warn(igt_kmod_load("kunit", NULL));
-> >> >+
-> >> > 	/*
-> >> > 	 * We need to use igt_subtest here, as otherwise it may crash with:
-> >> > 	 *  skipping is allowed only in fixtures, subtests or igt_simple_main
-> >>
-> >
-> >
-> >
-> >
-> 
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 686d716c5581..17d3b7f69580 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -22,6 +22,7 @@
+>   #include "xe_gt.h"
+>   #include "xe_map.h"
+>   #include "xe_migrate.h"
+> +#include "xe_pm.h"
+>   #include "xe_preempt_fence.h"
+>   #include "xe_res_cursor.h"
+>   #include "xe_trace.h"
+> @@ -1136,7 +1137,7 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
+>   	int idx, r = 0;
+>   
+>   	if (needs_rpm)
+> -		xe_device_mem_access_get(xe);
+> +		xe_pm_runtime_get(xe);
+>   
+>   	ret = ttm_bo_vm_reserve(tbo, vmf);
+>   	if (ret)
+> @@ -1176,7 +1177,7 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
+>   	dma_resv_unlock(tbo->base.resv);
+>   out:
+>   	if (needs_rpm)
+> -		xe_device_mem_access_put(xe);
+> +		xe_pm_runtime_put(xe);
 
 
+Change should be split somewhere else, or needs different commit message?
 
+>   
+>   	return ret;
+>   }
+> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> index de1030a47588..8d1d4bea7323 100644
+> --- a/drivers/gpu/drm/xe/xe_pt.c
+> +++ b/drivers/gpu/drm/xe/xe_pt.c
+> @@ -11,6 +11,7 @@
+>   #include "xe_gt.h"
+>   #include "xe_gt_tlb_invalidation.h"
+>   #include "xe_migrate.h"
+> +#include "xe_pm.h"
+>   #include "xe_pt_types.h"
+>   #include "xe_pt_walk.h"
+>   #include "xe_res_cursor.h"
+> @@ -1104,8 +1105,10 @@ static void invalidation_fence_work_func(struct work_struct *w)
+>   	struct invalidation_fence *ifence =
+>   		container_of(w, struct invalidation_fence, work);
+>   
+> +	xe_pm_runtime_get(gt_to_xe(ifence->gt));
+>   	trace_xe_gt_tlb_invalidation_fence_work_func(&ifence->base);
+>   	xe_gt_tlb_invalidation_vma(ifence->gt, &ifence->base, ifence->vma);
+> +	xe_pm_runtime_put(gt_to_xe(ifence->gt));
 
+Feels slightly scary to call this from a worker? When the caller setup 
+the fence stuff, in the prep stage, that would have been a good spot to 
+call if_active and attach it.
+
+>   }
+>   
+>   static int invalidation_fence_init(struct xe_gt *gt,
