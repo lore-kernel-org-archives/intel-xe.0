@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 695ABC48291
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Feb 2024 10:46:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C15BDC48291
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Feb 2024 10:55:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33FA510E857;
-	Mon,  5 Feb 2024 10:46:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BE4210F49C;
+	Mon,  5 Feb 2024 10:55:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PBlZtOHk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MynMnfAF";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAC2810E6BE
- for <intel-xe@lists.freedesktop.org>; Mon,  5 Feb 2024 10:46:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39EA010F49C
+ for <intel-xe@lists.freedesktop.org>; Mon,  5 Feb 2024 10:55:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707129971; x=1738665971;
+ t=1707130546; x=1738666546;
  h=message-id:date:mime-version:subject:to:references:from:
  in-reply-to:content-transfer-encoding;
- bh=lgqg48CjKmRUaE1KITvoWzeKQ17JNn20v7Izw7Dtrcg=;
- b=PBlZtOHkChJVT/W+iJGBIQKoeifMKCxjYPeB9GLnyK527Kcf/mfLHogv
- xD+Zar5zAzO+bzvXgBxQPBeLvwW0vxzP/CgRaUVI0X9VfCv3SkILwKKf7
- T+8i5H1okkhmtKXYyMBcyAw+n96zyUkF2PPVWB0RJXSjM6+xdj92rX0nG
- ZhpB5rqqILGZC7Ste017LK9pVUIMRN9ozI2LJd+SRiBEx07rVGt0af+lF
- LXgJ+HbIGS8+qOwgLHXUlgCpY2pO0PKgc0mrF1y62t1C1ZR0VZzXuaw2h
- JBDMs5exUuLzA0T3ItgDwky+id1xrrKPQIImcqLrs0Jx374C25zw63DgW A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="11867146"
-X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; d="scan'208";a="11867146"
+ bh=Ehvpcl9sUlplTvI0owpcbLmxnr/mkPxQIiN1yUhwqO0=;
+ b=MynMnfAFhzsaRX520B7MUHACeQSNub9IdoxffPX+KlqB4tyuq7dDXm99
+ I5pk5SlK87GiJ3Ax0YKAVDWIuYEwwXzmLYHt9TQuBvfnET/jukgO9eeUk
+ swdfTmnxkOuH52nWZd1K/xPesBFqZUFS7X18zPqLCDdrtWDDxBMUVzVOO
+ YJSbwNDUVVCC+rWp4nxyQCP43L6YMkf+ECeeb5CQiHOAtHMqAVTwvRgjn
+ ojk1YBE8Lel8dOeCM9zgbVIHlEl48k04AOZu9B1ttOczUEc+MKyDjCChg
+ 5TIS0YLEZTYpsMm66I1haNlfeLkAJnLrB5x7+EiEQfSQMD0uDrvCGa3Xr Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="11868539"
+X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; d="scan'208";a="11868539"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2024 02:46:09 -0800
+ 05 Feb 2024 02:55:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; d="scan'208";a="23936730"
+X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; d="scan'208";a="23937360"
 Received: from vgolodni-mobl.ger.corp.intel.com (HELO [10.252.0.151])
  ([10.252.0.151])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2024 02:46:08 -0800
-Message-ID: <e2cc5d1d-4d37-44dd-b097-c00198c9caae@intel.com>
-Date: Mon, 5 Feb 2024 10:46:06 +0000
+ 05 Feb 2024 02:55:44 -0800
+Message-ID: <b5c42b69-cbc1-4c1b-959f-202847456636@intel.com>
+Date: Mon, 5 Feb 2024 10:55:42 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 10/34] drm/xe: Convert scheduler towards direct pm_runtime
+Subject: Re: [RFC 11/34] drm/xe: Runtime PM wake on every sysfs call
 Content-Language: en-GB
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org,
- Matthew Brost <matthew.brost@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
 References: <20240126203044.1104705-1-rodrigo.vivi@intel.com>
- <20240126203044.1104705-11-rodrigo.vivi@intel.com>
+ <20240126203044.1104705-12-rodrigo.vivi@intel.com>
 From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20240126203044.1104705-11-rodrigo.vivi@intel.com>
+In-Reply-To: <20240126203044.1104705-12-rodrigo.vivi@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,226 +66,380 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On 26/01/2024 20:30, Rodrigo Vivi wrote:
-> Let's ensure our PCI device is awaken on every GT execution to
-> the end of the execution.
+> Let's ensure our PCI device is awaken on every sysfs call.
+> Let's increase the runtime_pm protection and start moving
+> that to the outer bounds.
+> 
+> For now, for the files with small number of attr functions,
+> let's only call the runtime pm functions directly.
+> For the hw_engines entries with many files, let's add
+> the sysfs_ops wrapper.
 > 
 > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_exec_queue.c          | 19 -------------------
->   drivers/gpu/drm/xe/xe_gpu_scheduler.c       |  8 ++++++--
->   drivers/gpu/drm/xe/xe_gpu_scheduler.h       |  3 ++-
->   drivers/gpu/drm/xe/xe_gpu_scheduler_types.h |  2 ++
->   drivers/gpu/drm/xe/xe_guc_submit.c          |  2 +-
->   drivers/gpu/drm/xe/xe_sched_job.c           | 12 +++++++-----
->   6 files changed, 18 insertions(+), 28 deletions(-)
+>   drivers/gpu/drm/xe/xe_device_sysfs.c          |  4 ++
+>   drivers/gpu/drm/xe/xe_gt_freq.c               | 38 +++++++++++-
+>   drivers/gpu/drm/xe/xe_gt_idle.c               | 23 +++++++-
+>   drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c     |  3 +
+>   drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c | 58 ++++++++++++++++++-
+>   drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.h |  7 +++
+>   drivers/gpu/drm/xe/xe_tile_sysfs.c            |  1 +
+>   7 files changed, 129 insertions(+), 5 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-> index c0b7434e78f1..04bd6a639d41 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> @@ -111,7 +111,6 @@ static void __xe_exec_queue_free(struct xe_exec_queue *q)
+> diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
+> index 99113a5a2b84..e47c8ad1bb17 100644
+> --- a/drivers/gpu/drm/xe/xe_device_sysfs.c
+> +++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+> @@ -35,7 +35,9 @@ vram_d3cold_threshold_show(struct device *dev,
+>   	if (!xe)
+>   		return -EINVAL;
 >   
->   static int __xe_exec_queue_init(struct xe_exec_queue *q)
->   {
-> -	struct xe_device *xe = gt_to_xe(q->gt);
->   	int i, err;
+> +	xe_pm_runtime_get(xe);
+
+Does it make sense to use the get_sync/ioctl version?
+
+Assuming CI is happy,
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+
+>   	ret = sysfs_emit(buf, "%d\n", xe->d3cold.vram_threshold);
+> +	xe_pm_runtime_put(xe);
 >   
->   	for (i = 0; i < q->width; ++i) {
-> @@ -124,17 +123,6 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q)
->   	if (err)
->   		goto err_lrc;
->   
-> -	/*
-> -	 * Normally the user vm holds an rpm ref to keep the device
-> -	 * awake, and the context holds a ref for the vm, however for
-> -	 * some engines we use the kernels migrate vm underneath which offers no
-> -	 * such rpm ref, or we lack a vm. Make sure we keep a ref here, so we
-> -	 * can perform GuC CT actions when needed. Caller is expected to have
-> -	 * already grabbed the rpm ref outside any sensitive locks.
-> -	 */
-> -	if (!(q->flags & EXEC_QUEUE_FLAG_PERMANENT) && (q->flags & EXEC_QUEUE_FLAG_VM || !q->vm))
-> -		drm_WARN_ON(&xe->drm, !xe_device_mem_access_get_if_ongoing(xe));
-> -
->   	return 0;
->   
->   err_lrc:
-> @@ -221,8 +209,6 @@ void xe_exec_queue_fini(struct xe_exec_queue *q)
->   
->   	for (i = 0; i < q->width; ++i)
->   		xe_lrc_finish(q->lrc + i);
-> -	if (!(q->flags & EXEC_QUEUE_FLAG_PERMANENT) && (q->flags & EXEC_QUEUE_FLAG_VM || !q->vm))
-> -		xe_device_mem_access_put(gt_to_xe(q->gt));
->   	__xe_exec_queue_free(q);
+>   	return ret;
 >   }
+> @@ -58,7 +60,9 @@ vram_d3cold_threshold_store(struct device *dev, struct device_attribute *attr,
 >   
-> @@ -704,9 +690,6 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
->   			if (XE_IOCTL_DBG(xe, !hwe))
->   				return -EINVAL;
+>   	drm_dbg(&xe->drm, "vram_d3cold_threshold: %u\n", vram_d3cold_threshold);
 >   
-> -			/* The migration vm doesn't hold rpm ref */
-> -			xe_device_mem_access_get(xe);
-> -
->   			flags = EXEC_QUEUE_FLAG_PERSISTENT | EXEC_QUEUE_FLAG_VM |
->   				(id ? EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD : 0);
+> +	xe_pm_runtime_get(xe);
+>   	ret = xe_pm_set_vram_threshold(xe, vram_d3cold_threshold);
+> +	xe_pm_runtime_put(xe);
 >   
-> @@ -715,8 +698,6 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
->   						   args->width, hwe, flags,
->   						   args->extensions);
->   
-> -			xe_device_mem_access_put(xe); /* now held by engine */
-> -
->   			xe_vm_put(migrate_vm);
->   			if (IS_ERR(new)) {
->   				err = PTR_ERR(new);
-> diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.c b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-> index e4ad1d6ce1d5..457f814bfee8 100644
-> --- a/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-> +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-> @@ -4,6 +4,7 @@
->    */
->   
->   #include "xe_gpu_scheduler.h"
-> +#include "xe_pm.h"
->   
->   static void xe_sched_process_msg_queue(struct xe_gpu_scheduler *sched)
->   {
-> @@ -48,13 +49,15 @@ static void xe_sched_process_msg_work(struct work_struct *w)
->   
->   	msg = xe_sched_get_msg(sched);
->   	if (msg) {
-> +		xe_pm_runtime_get(sched->xe);
-
-This seems very deep? I get the feeling this should be if_active() or 
-done higher up.
-
-What does lockdep say about this with our lockdep pm annotations? I 
-think rpm suspend code wants to flush this worker, but if device is 
-SUSPENDING then we are already in our pm callback, and it won't be able 
-to make forward progress since worker here is potentially trying to wake 
-up the device. Seems like potential deadlocks.
-
-See suspend -> xe_guc_submit_stop() -> guc_exec_queue_stop() -> 
-xe_sched_submission_stop().
-
->   		sched->ops->process_msg(msg);
-> -
->   		xe_sched_process_msg_queue_if_ready(sched);
-> +		xe_pm_runtime_put(sched->xe);
->   	}
+>   	return ret ?: count;
 >   }
->   
-> -int xe_sched_init(struct xe_gpu_scheduler *sched,
-> +int xe_sched_init(struct xe_device *xe,
-> +		  struct xe_gpu_scheduler *sched,
->   		  const struct drm_sched_backend_ops *ops,
->   		  const struct xe_sched_backend_ops *xe_ops,
->   		  struct workqueue_struct *submit_wq,
-> @@ -63,6 +66,7 @@ int xe_sched_init(struct xe_gpu_scheduler *sched,
->   		  atomic_t *score, const char *name,
->   		  struct device *dev)
->   {
-> +	sched->xe = xe;
->   	sched->ops = xe_ops;
->   	INIT_LIST_HEAD(&sched->msgs);
->   	INIT_WORK(&sched->work_process_msg, xe_sched_process_msg_work);
-> diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-> index 10c6bb9c9386..bac37c311859 100644
-> --- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-> +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-> @@ -9,7 +9,8 @@
->   #include "xe_gpu_scheduler_types.h"
->   #include "xe_sched_job_types.h"
->   
-> -int xe_sched_init(struct xe_gpu_scheduler *sched,
-> +int xe_sched_init(struct xe_device *xe,
-> +		  struct xe_gpu_scheduler *sched,
->   		  const struct drm_sched_backend_ops *ops,
->   		  const struct xe_sched_backend_ops *xe_ops,
->   		  struct workqueue_struct *submit_wq,
-> diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h b/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
-> index 6731b13da8bb..f14b88264025 100644
-> --- a/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
-> +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
-> @@ -43,6 +43,8 @@ struct xe_sched_backend_ops {
->   struct xe_gpu_scheduler {
->   	/** @base: DRM GPU scheduler */
->   	struct drm_gpu_scheduler		base;
-> +	/** @xe: back pointer to Xe Device */
-> +	struct xe_device			*xe;
->   	/** @ops: Xe scheduler ops */
->   	const struct xe_sched_backend_ops	*ops;
->   	/** @msgs: list of messages to be processed in @work_process_msg */
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index 2b008ec1b6de..6b313b9b351a 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -1219,7 +1219,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
->   
->   	timeout = (q->vm && xe_vm_in_lr_mode(q->vm)) ? MAX_SCHEDULE_TIMEOUT :
->   		  q->sched_props.job_timeout_ms;
-> -	err = xe_sched_init(&ge->sched, &drm_sched_ops, &xe_sched_ops,
-> +	err = xe_sched_init(xe, &ge->sched, &drm_sched_ops, &xe_sched_ops,
->   			    get_submit_wq(guc),
->   			    q->lrc[0].ring.size / MAX_JOB_SIZE_BYTES, 64,
->   			    timeout, guc_to_gt(guc)->ordered_wq, NULL,
-> diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
-> index 01106a1156ad..c93284ec66c5 100644
-> --- a/drivers/gpu/drm/xe/xe_sched_job.c
-> +++ b/drivers/gpu/drm/xe/xe_sched_job.c
+> diff --git a/drivers/gpu/drm/xe/xe_gt_freq.c b/drivers/gpu/drm/xe/xe_gt_freq.c
+> index e5b0f4ecdbe8..32b9a743629c 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_freq.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_freq.c
 > @@ -15,6 +15,7 @@
->   #include "xe_hw_fence.h"
->   #include "xe_lrc.h"
->   #include "xe_macros.h"
+>   #include "xe_gt_sysfs.h"
+>   #include "xe_gt_throttle_sysfs.h"
+>   #include "xe_guc_pc.h"
 > +#include "xe_pm.h"
->   #include "xe_trace.h"
->   #include "xe_vm.h"
 >   
-> @@ -67,6 +68,8 @@ static void job_free(struct xe_sched_job *job)
->   	struct xe_exec_queue *q = job->q;
->   	bool is_migration = xe_sched_job_is_migration(q);
->   
-> +	xe_pm_runtime_put(gt_to_xe(q->gt));
-> +
->   	kmem_cache_free(xe_exec_queue_is_parallel(job->q) || is_migration ?
->   			xe_sched_job_parallel_slab : xe_sched_job_slab, job);
+>   /**
+>    * DOC: Xe GT Frequency Management
+> @@ -49,12 +50,23 @@ dev_to_pc(struct device *dev)
+>   	return &kobj_to_gt(dev->kobj.parent)->uc.guc.pc;
 >   }
-> @@ -79,6 +82,7 @@ static struct xe_device *job_to_xe(struct xe_sched_job *job)
->   struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
->   					 u64 *batch_addr)
->   {
-> +	struct xe_device *xe = gt_to_xe(q->gt);
->   	struct xe_sched_job *job;
->   	struct dma_fence **fences;
->   	bool is_migration = xe_sched_job_is_migration(q);
-> @@ -86,6 +90,9 @@ struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
->   	int i, j;
->   	u32 width;
 >   
-> +	if (!xe_pm_runtime_get_if_in_use(xe))
-> +		drm_err(&xe->drm, "Failed to grab RPM ref for sched_job\n");
-
-Could just return an error here also?
-
+> +static struct xe_device *
+> +dev_to_xe(struct device *dev)
+> +{
+> +	return gt_to_xe(kobj_to_gt(dev->kobj.parent));
+> +}
 > +
->   	/* only a kernel context can submit a vm-less job */
->   	XE_WARN_ON(!q->vm && !(q->flags & EXEC_QUEUE_FLAG_KERNEL));
+>   static ssize_t act_freq_show(struct device *dev,
+>   			     struct device_attribute *attr, char *buf)
+>   {
+>   	struct xe_guc_pc *pc = dev_to_pc(dev);
+> +	u32 freq;
+> +
+> +	xe_pm_runtime_get(dev_to_xe(dev));
+> +	freq = xe_guc_pc_get_act_freq(pc);
+> +	xe_pm_runtime_put(dev_to_xe(dev));
 >   
-> @@ -155,9 +162,6 @@ struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
->   	for (i = 0; i < width; ++i)
->   		job->batch_addr[i] = batch_addr[i];
+> -	return sysfs_emit(buf, "%d\n", xe_guc_pc_get_act_freq(pc));
+> +	return sysfs_emit(buf, "%d\n", freq);
+>   }
+>   static DEVICE_ATTR_RO(act_freq);
 >   
-> -	/* All other jobs require a VM to be open which has a ref */
-> -	if (unlikely(q->flags & EXEC_QUEUE_FLAG_KERNEL))
-> -		xe_device_mem_access_get(job_to_xe(job));
->   	xe_device_assert_mem_access(job_to_xe(job));
+> @@ -65,7 +77,9 @@ static ssize_t cur_freq_show(struct device *dev,
+>   	u32 freq;
+>   	ssize_t ret;
 >   
->   	trace_xe_sched_job_create(job);
-> @@ -189,8 +193,6 @@ void xe_sched_job_destroy(struct kref *ref)
->   	struct xe_sched_job *job =
->   		container_of(ref, struct xe_sched_job, refcount);
+> +	xe_pm_runtime_get(dev_to_xe(dev));
+>   	ret = xe_guc_pc_get_cur_freq(pc, &freq);
+> +	xe_pm_runtime_put(dev_to_xe(dev));
+>   	if (ret)
+>   		return ret;
 >   
-> -	if (unlikely(job->q->flags & EXEC_QUEUE_FLAG_KERNEL))
-> -		xe_device_mem_access_put(job_to_xe(job));
->   	xe_exec_queue_put(job->q);
->   	dma_fence_put(job->fence);
->   	drm_sched_job_cleanup(&job->drm);
+> @@ -77,8 +91,13 @@ static ssize_t rp0_freq_show(struct device *dev,
+>   			     struct device_attribute *attr, char *buf)
+>   {
+>   	struct xe_guc_pc *pc = dev_to_pc(dev);
+> +	u32 freq;
+> +
+> +	xe_pm_runtime_get(dev_to_xe(dev));
+> +	freq = xe_guc_pc_get_rp0_freq(pc);
+> +	xe_pm_runtime_put(dev_to_xe(dev));
+>   
+> -	return sysfs_emit(buf, "%d\n", xe_guc_pc_get_rp0_freq(pc));
+> +	return sysfs_emit(buf, "%d\n", freq);
+>   }
+>   static DEVICE_ATTR_RO(rp0_freq);
+>   
+> @@ -86,8 +105,13 @@ static ssize_t rpe_freq_show(struct device *dev,
+>   			     struct device_attribute *attr, char *buf)
+>   {
+>   	struct xe_guc_pc *pc = dev_to_pc(dev);
+> +	u32 freq;
+> +
+> +	xe_pm_runtime_get(dev_to_xe(dev));
+> +	freq = xe_guc_pc_get_rpe_freq(pc);
+> +	xe_pm_runtime_put(dev_to_xe(dev));
+>   
+> -	return sysfs_emit(buf, "%d\n", xe_guc_pc_get_rpe_freq(pc));
+> +	return sysfs_emit(buf, "%d\n", freq);
+>   }
+>   static DEVICE_ATTR_RO(rpe_freq);
+>   
+> @@ -107,7 +131,9 @@ static ssize_t min_freq_show(struct device *dev,
+>   	u32 freq;
+>   	ssize_t ret;
+>   
+> +	xe_pm_runtime_get(dev_to_xe(dev));
+>   	ret = xe_guc_pc_get_min_freq(pc, &freq);
+> +	xe_pm_runtime_put(dev_to_xe(dev));
+>   	if (ret)
+>   		return ret;
+>   
+> @@ -125,7 +151,9 @@ static ssize_t min_freq_store(struct device *dev, struct device_attribute *attr,
+>   	if (ret)
+>   		return ret;
+>   
+> +	xe_pm_runtime_get(dev_to_xe(dev));
+>   	ret = xe_guc_pc_set_min_freq(pc, freq);
+> +	xe_pm_runtime_put(dev_to_xe(dev));
+>   	if (ret)
+>   		return ret;
+>   
+> @@ -140,7 +168,9 @@ static ssize_t max_freq_show(struct device *dev,
+>   	u32 freq;
+>   	ssize_t ret;
+>   
+> +	xe_pm_runtime_get(dev_to_xe(dev));
+>   	ret = xe_guc_pc_get_max_freq(pc, &freq);
+> +	xe_pm_runtime_put(dev_to_xe(dev));
+>   	if (ret)
+>   		return ret;
+>   
+> @@ -158,7 +188,9 @@ static ssize_t max_freq_store(struct device *dev, struct device_attribute *attr,
+>   	if (ret)
+>   		return ret;
+>   
+> +	xe_pm_runtime_get(dev_to_xe(dev));
+>   	ret = xe_guc_pc_set_max_freq(pc, freq);
+> +	xe_pm_runtime_put(dev_to_xe(dev));
+>   	if (ret)
+>   		return ret;
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c b/drivers/gpu/drm/xe/xe_gt_idle.c
+> index 9358f7336889..824ff458011f 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_idle.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_idle.c
+> @@ -12,6 +12,7 @@
+>   #include "xe_guc_pc.h"
+>   #include "regs/xe_gt_regs.h"
+>   #include "xe_mmio.h"
+> +#include "xe_pm.h"
+>   
+>   /**
+>    * DOC: Xe GT Idle
+> @@ -40,6 +41,15 @@ static struct xe_guc_pc *gtidle_to_pc(struct xe_gt_idle *gtidle)
+>   	return &gtidle_to_gt(gtidle)->uc.guc.pc;
+>   }
+>   
+> +static struct xe_device *
+> +pc_to_xe(struct xe_guc_pc *pc)
+> +{
+> +	struct xe_guc *guc = container_of(pc, struct xe_guc, pc);
+> +	struct xe_gt *gt = container_of(guc, struct xe_gt, uc.guc);
+> +
+> +	return gt_to_xe(gt);
+> +}
+> +
+>   static const char *gt_idle_state_to_string(enum xe_gt_idle_state state)
+>   {
+>   	switch (state) {
+> @@ -86,8 +96,14 @@ static ssize_t name_show(struct device *dev,
+>   			 struct device_attribute *attr, char *buff)
+>   {
+>   	struct xe_gt_idle *gtidle = dev_to_gtidle(dev);
+> +	struct xe_guc_pc *pc = gtidle_to_pc(gtidle);
+> +	ssize_t ret;
+> +
+> +	xe_pm_runtime_get(pc_to_xe(pc));
+> +	ret = sysfs_emit(buff, "%s\n", gtidle->name);
+> +	xe_pm_runtime_put(pc_to_xe(pc));
+>   
+> -	return sysfs_emit(buff, "%s\n", gtidle->name);
+> +	return ret;
+>   }
+>   static DEVICE_ATTR_RO(name);
+>   
+> @@ -98,7 +114,9 @@ static ssize_t idle_status_show(struct device *dev,
+>   	struct xe_guc_pc *pc = gtidle_to_pc(gtidle);
+>   	enum xe_gt_idle_state state;
+>   
+> +	xe_pm_runtime_get(pc_to_xe(pc));
+>   	state = gtidle->idle_status(pc);
+> +	xe_pm_runtime_put(pc_to_xe(pc));
+>   
+>   	return sysfs_emit(buff, "%s\n", gt_idle_state_to_string(state));
+>   }
+> @@ -111,7 +129,10 @@ static ssize_t idle_residency_ms_show(struct device *dev,
+>   	struct xe_guc_pc *pc = gtidle_to_pc(gtidle);
+>   	u64 residency;
+>   
+> +	xe_pm_runtime_get(pc_to_xe(pc));
+>   	residency = gtidle->idle_residency(pc);
+> +	xe_pm_runtime_put(pc_to_xe(pc));
+> +
+>   	return sysfs_emit(buff, "%llu\n", get_residency_ms(gtidle, residency));
+>   }
+>   static DEVICE_ATTR_RO(idle_residency_ms);
+> diff --git a/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
+> index 63d640591a52..9c33045ff1ef 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
+> @@ -11,6 +11,7 @@
+>   #include "xe_gt_sysfs.h"
+>   #include "xe_gt_throttle_sysfs.h"
+>   #include "xe_mmio.h"
+> +#include "xe_pm.h"
+>   
+>   /**
+>    * DOC: Xe GT Throttle
+> @@ -38,10 +39,12 @@ static u32 read_perf_limit_reasons(struct xe_gt *gt)
+>   {
+>   	u32 reg;
+>   
+> +	xe_pm_runtime_get(gt_to_xe(gt));
+>   	if (xe_gt_is_media_type(gt))
+>   		reg = xe_mmio_read32(gt, MTL_MEDIA_PERF_LIMIT_REASONS);
+>   	else
+>   		reg = xe_mmio_read32(gt, GT0_PERF_LIMIT_REASONS);
+> +	xe_pm_runtime_put(gt_to_xe(gt));
+>   
+>   	return reg;
+>   }
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
+> index 2345fb42fa39..9e23ca7f45ad 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
+> @@ -9,6 +9,7 @@
+>   
+>   #include "xe_gt.h"
+>   #include "xe_hw_engine_class_sysfs.h"
+> +#include "xe_pm.h"
+>   
+>   #define MAX_ENGINE_CLASS_NAME_LEN    16
+>   static int xe_add_hw_engine_class_defaults(struct xe_device *xe,
+> @@ -513,6 +514,7 @@ kobj_xe_hw_engine_class(struct xe_device *xe, struct kobject *parent, char *name
+>   		kobject_put(&keclass->base);
+>   		return NULL;
+>   	}
+> +	keclass->xe = xe;
+>   
+>   	err = drmm_add_action_or_reset(&xe->drm, kobj_xe_hw_engine_class_fini,
+>   				       &keclass->base);
+> @@ -567,9 +569,63 @@ static void xe_hw_engine_sysfs_kobj_release(struct kobject *kobj)
+>   	kfree(kobj);
+>   }
+>   
+> +#include "xe_pm.h"
+> +
+> +static inline struct xe_device *pdev_to_xe_device(struct pci_dev *pdev)
+> +{
+> +	return pci_get_drvdata(pdev);
+> +}
+> +
+> +static inline struct xe_device *to_xe_device(const struct drm_device *dev)
+> +{
+> +	return container_of(dev, struct xe_device, drm);
+> +}
+> +
+> +static ssize_t xe_hw_engine_class_sysfs_attr_show(struct kobject *kobj,
+> +						  struct attribute *attr,
+> +						  char *buf)
+> +{
+> +	struct xe_device *xe = kobj_to_xe(kobj);
+> +	struct kobj_attribute *kattr;
+> +	ssize_t ret = -EIO;
+> +
+> +	kattr = container_of(attr, struct kobj_attribute, attr);
+> +	if (kattr->show) {
+> +		xe_pm_runtime_get(xe);
+> +		ret = kattr->show(kobj, kattr, buf);
+> +		xe_pm_runtime_put(xe);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static ssize_t xe_hw_engine_class_sysfs_attr_store(struct kobject *kobj,
+> +						   struct attribute *attr,
+> +						   const char *buf,
+> +						   size_t count)
+> +{
+> +	struct xe_device *xe = kobj_to_xe(kobj);
+> +	struct kobj_attribute *kattr;
+> +	ssize_t ret = -EIO;
+> +
+> +	kattr = container_of(attr, struct kobj_attribute, attr);
+> +	if (kattr->store) {
+> +		xe_pm_runtime_get(xe);
+> +		ret = kattr->store(kobj, kattr, buf, count);
+> +		xe_pm_runtime_put(xe);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct sysfs_ops xe_hw_engine_class_sysfs_ops = {
+> +	.show = xe_hw_engine_class_sysfs_attr_show,
+> +	.store = xe_hw_engine_class_sysfs_attr_store,
+> +};
+> +
+>   static const struct kobj_type xe_hw_engine_sysfs_kobj_type = {
+>   	.release = xe_hw_engine_sysfs_kobj_release,
+> -	.sysfs_ops = &kobj_sysfs_ops,
+> +	.sysfs_ops = &xe_hw_engine_class_sysfs_ops,
+>   };
+>   
+>   static void hw_engine_class_sysfs_fini(struct drm_device *drm, void *arg)
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.h b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.h
+> index ec5ba673b314..28a0d7c909c0 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.h
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.h
+> @@ -26,6 +26,8 @@ struct kobj_eclass {
+>   	struct kobject base;
+>   	/** @eclass: A pointer to the hw engine class interface */
+>   	struct xe_hw_engine_class_intf *eclass;
+> +	/** @xe: A pointer to the xe device */
+> +	struct xe_device *xe;
+>   };
+>   
+>   static inline struct xe_hw_engine_class_intf *kobj_to_eclass(struct kobject *kobj)
+> @@ -33,4 +35,9 @@ static inline struct xe_hw_engine_class_intf *kobj_to_eclass(struct kobject *kob
+>   	return container_of(kobj, struct kobj_eclass, base)->eclass;
+>   }
+>   
+> +static inline struct xe_device *kobj_to_xe(struct kobject *kobj)
+> +{
+> +	return container_of(kobj, struct kobj_eclass, base)->xe;
+> +}
+> +
+>   #endif
+> diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.c b/drivers/gpu/drm/xe/xe_tile_sysfs.c
+> index 0662968d7bcb..237a0761d3ad 100644
+> --- a/drivers/gpu/drm/xe/xe_tile_sysfs.c
+> +++ b/drivers/gpu/drm/xe/xe_tile_sysfs.c
+> @@ -7,6 +7,7 @@
+>   #include <linux/sysfs.h>
+>   #include <drm/drm_managed.h>
+>   
+> +#include "xe_pm.h"
+>   #include "xe_tile.h"
+>   #include "xe_tile_sysfs.h"
+>   #include "xe_vram_freq.h"
