@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A08C3C4828D
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Feb 2024 13:18:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 018B6C48295
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Feb 2024 13:30:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5370810EE95;
-	Mon,  5 Feb 2024 13:18:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64F3E10F9A2;
+	Mon,  5 Feb 2024 13:30:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iqSKPG7q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q+Q8IxhK";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7929310EE95
- for <intel-xe@lists.freedesktop.org>; Mon,  5 Feb 2024 13:18:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C13E10F9C3
+ for <intel-xe@lists.freedesktop.org>; Mon,  5 Feb 2024 13:30:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707139135; x=1738675135;
+ t=1707139800; x=1738675800;
  h=message-id:date:mime-version:subject:to:references:from:
  in-reply-to:content-transfer-encoding;
- bh=1x8w9L5SbdPq1SADXKNjiGa+CdpaQuXN3gmn5T5yHTU=;
- b=iqSKPG7qWLVR6SYqOe1f+8JZ1kBC7ujNIOxWrS2McQ3VGXyJQKvIu2jf
- gKg4nxT2lH8kGIcX67+4ffJjaQRMj79HXuWdHYLKkB5W4Ou+gi/6YK5s8
- 3fNxg8i2VFND8zY6PLLb/QHlQr6BA0a6fDZGLBHTZCFtZMMpE5MWMezl4
- gEQru5DXKxdf4aGUbtdBLh/jytc0OyVS3xKEReFnCf0RVrIYvvAgSZpmt
- 5VtPMe7qudz0IHYl7pLS0n6W424rfTF/5zxgmrBOsycJ6gDVLHRmmZkpr
- 7ZnoEuF7NR++z4nwxoHj/URfQGVBQmaLlD9wxa9ka1bchCQm1+Dqf19Tg g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="11874588"
-X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; d="scan'208";a="11874588"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2024 05:18:54 -0800
-X-ExtLoop1: 1
+ bh=EP+nMLQ1ycvupV3rm1+UNCgjHeD6WXOHughsTWgTLxw=;
+ b=Q+Q8IxhK9H45ucoVPKw8Q/xp+Vi+/gEYIysEVIDnW9CtCHu6vhMAsD83
+ lbUhWJLNWenkvJhTPqn7WYB6luy0tyrhD0vkFFhjhTHV61p/xs0LtSi57
+ FJ32SJ/gaBriUzKAszP62i08EtK72fq8cQgDV6Hg9sRPVbLgv9sPtfyme
+ ujKY9sivmHLg4XWAV1kXJQeb1SUmKVXVlRZxu/sR2o94iB1l8e+Ufi3PD
+ z61wsQLOrVv4cNenoSEJof9ndrteRooDTEvu919ZVEHGYJFcNuUW2j6+t
+ HQWA9y5gPmOZGuOlCPCljukeUj9oSg0ALmGPklzufmPwSJSMOgYBEgPKf g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="4315859"
 X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; 
-   d="scan'208";a="5326153"
+   d="scan'208";a="4315859"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2024 05:30:00 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; d="scan'208";a="31803611"
 Received: from vgolodni-mobl.ger.corp.intel.com (HELO [10.252.0.151])
  ([10.252.0.151])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2024 05:18:52 -0800
-Message-ID: <611e04a2-8409-460d-a078-1b2658482892@intel.com>
-Date: Mon, 5 Feb 2024 13:18:50 +0000
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2024 05:29:59 -0800
+Message-ID: <e295d9fb-4a3f-43c9-b784-1bb37d38a72c@intel.com>
+Date: Mon, 5 Feb 2024 13:29:57 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 27/34] drm/xe: Remove useless mem_access during probe
+Subject: Re: [RFC 26/34] drm/xe: VMs don't need the mem_access protection
+ anymore
 Content-Language: en-GB
 To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
 References: <20240126203044.1104705-1-rodrigo.vivi@intel.com>
- <20240126203044.1104705-28-rodrigo.vivi@intel.com>
+ <20240126203044.1104705-27-rodrigo.vivi@intel.com>
 From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20240126203044.1104705-28-rodrigo.vivi@intel.com>
+In-Reply-To: <20240126203044.1104705-27-rodrigo.vivi@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,123 +68,55 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On 26/01/2024 20:30, Rodrigo Vivi wrote:
-> xe_pm_init is the very last thing during the xe_pci_probe(),
-> hence these protections are useless from the point of view
-> of ensuring that the device is awake.
+> All the VM operations are now protected or by the IOCTL
+> calls, or by sched/exec operations or by the specific
+> xe_pm_runtime_{get,put} around the duration of the LR VMs.
 > 
-> Let's remove it so we continue towards the goal of killing
-> xe_device_mem_access.
+> So, these inner mem_access protections can be removed.
+
+Would this be a good place to split the series? AFAICT a lot of the 
+nightmares originate from here. Like first part of the series moves the 
+rpm to be the outermost thing, but we still keep the important vm rpm 
+protection here, so shouldn't need the CT, sched stuff etc yet. And in 
+theory there is still a path to d3cold without this patch, I think. Also 
+playing devils advocate, since we already end up having rpm protection 
+for LR vm, why not normal vm. Is it worth it?
+
 > 
 > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_ggtt.c |  2 --
->   drivers/gpu/drm/xe/xe_gt.c   |  6 ------
->   drivers/gpu/drm/xe/xe_tile.c | 10 +++-------
->   3 files changed, 3 insertions(+), 15 deletions(-)
+>   drivers/gpu/drm/xe/xe_vm.c | 7 -------
+>   1 file changed, 7 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-> index 6fdf830678b3..7faf02523b03 100644
-> --- a/drivers/gpu/drm/xe/xe_ggtt.c
-> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-> @@ -201,14 +201,12 @@ static void xe_ggtt_initial_clear(struct xe_ggtt *ggtt)
->   	u64 start, end;
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 9ad154a01ad7..f314ff128028 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -1280,9 +1280,6 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
 >   
->   	/* Display may have allocated inside ggtt, so be careful with clearing here */
-> -	xe_device_mem_access_get(tile_to_xe(ggtt->tile));
->   	mutex_lock(&ggtt->lock);
->   	drm_mm_for_each_hole(hole, &ggtt->mm, start, end)
->   		xe_ggtt_clear(ggtt, start, end - start);
+>   	vm->pt_ops = &xelp_pt_ops;
 >   
->   	xe_ggtt_invalidate(ggtt);
->   	mutex_unlock(&ggtt->lock);
-> -	xe_device_mem_access_put(tile_to_xe(ggtt->tile));
->   }
->   
->   int xe_ggtt_init(struct xe_ggtt *ggtt)
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index 675a2927a19e..c6c4292c21f5 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -349,7 +349,6 @@ static int gt_fw_domain_init(struct xe_gt *gt)
->   {
->   	int err, i;
->   
-> -	xe_device_mem_access_get(gt_to_xe(gt));
->   	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
->   	if (err)
->   		goto err_hw_fence_irq;
-> @@ -407,7 +406,6 @@ static int gt_fw_domain_init(struct xe_gt *gt)
->   
->   	err = xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
->   	XE_WARN_ON(err);
-> -	xe_device_mem_access_put(gt_to_xe(gt));
->   
->   	return 0;
->   
-> @@ -417,7 +415,6 @@ static int gt_fw_domain_init(struct xe_gt *gt)
->   err_hw_fence_irq:
->   	for (i = 0; i < XE_ENGINE_CLASS_MAX; ++i)
->   		xe_hw_fence_irq_finish(&gt->fence_irq[i]);
-> -	xe_device_mem_access_put(gt_to_xe(gt));
->   
->   	return err;
->   }
-> @@ -426,7 +423,6 @@ static int all_fw_domain_init(struct xe_gt *gt)
->   {
->   	int err, i;
->   
-> -	xe_device_mem_access_get(gt_to_xe(gt));
->   	err = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
->   	if (err)
->   		goto err_hw_fence_irq;
-> @@ -489,7 +485,6 @@ static int all_fw_domain_init(struct xe_gt *gt)
->   
->   	err = xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
->   	XE_WARN_ON(err);
-> -	xe_device_mem_access_put(gt_to_xe(gt));
->   
->   	return 0;
->   
-> @@ -498,7 +493,6 @@ static int all_fw_domain_init(struct xe_gt *gt)
->   err_hw_fence_irq:
->   	for (i = 0; i < XE_ENGINE_CLASS_MAX; ++i)
->   		xe_hw_fence_irq_finish(&gt->fence_irq[i]);
-> -	xe_device_mem_access_put(gt_to_xe(gt));
->   
->   	return err;
->   }
-> diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-> index 044c20881de7..74ecb5f39438 100644
-> --- a/drivers/gpu/drm/xe/xe_tile.c
-> +++ b/drivers/gpu/drm/xe/xe_tile.c
-> @@ -160,23 +160,19 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
->   {
->   	int err;
->   
-> -	xe_device_mem_access_get(tile_to_xe(tile));
+> -	if (!(flags & XE_VM_FLAG_MIGRATION))
+> -		xe_device_mem_access_get(xe);
 > -
->   	err = tile_ttm_mgr_init(tile);
->   	if (err)
-> -		goto err_mem_access;
-> +		return err;
->   
->   	tile->mem.kernel_bb_pool = xe_sa_bo_manager_init(tile, SZ_1M, 16);
->   	if (IS_ERR(tile->mem.kernel_bb_pool))
-> -		err = PTR_ERR(tile->mem.kernel_bb_pool);
-> +		return PTR_ERR(tile->mem.kernel_bb_pool);
-
-Previously this was just falling through with the err. This deserves to 
-be a separate change, from the other more mechanical stuff here.
-
->   
->   	xe_wa_apply_tile_workarounds(tile);
->   
->   	xe_tile_sysfs_init(tile);
->   
-> -err_mem_access:
-> -	xe_device_mem_access_put(tile_to_xe(tile));
-> -	return err;
-> +	return 0;
+>   	vm_resv_obj = drm_gpuvm_resv_object_alloc(&xe->drm);
+>   	if (!vm_resv_obj) {
+>   		err = -ENOMEM;
+> @@ -1391,8 +1388,6 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+>   	for_each_tile(tile, xe, id)
+>   		xe_range_fence_tree_fini(&vm->rftree[id]);
+>   	kfree(vm);
+> -	if (!(flags & XE_VM_FLAG_MIGRATION))
+> -		xe_device_mem_access_put(xe);
+>   	return ERR_PTR(err);
 >   }
 >   
->   void xe_tile_migrate_wait(struct xe_tile *tile)
+> @@ -1515,8 +1510,6 @@ static void vm_destroy_work_func(struct work_struct *w)
+>   	xe_assert(xe, !vm->size);
+>   
+>   	if (!(vm->flags & XE_VM_FLAG_MIGRATION)) {
+> -		xe_device_mem_access_put(xe);
+> -
+>   		if (xe->info.has_asid && vm->usm.asid) {
+>   			mutex_lock(&xe->usm.lock);
+>   			lookup = xa_erase(&xe->usm.asid_to_vm, vm->usm.asid);
