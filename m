@@ -4,27 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79DBBC48295
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Feb 2024 14:58:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CC19C4828D
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Feb 2024 15:31:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F5CF10FEFA;
-	Mon,  5 Feb 2024 14:58:10 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C07910FA71;
- Mon,  5 Feb 2024 14:58:09 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7077910773408021626=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60CDD10EB79;
+	Mon,  5 Feb 2024 15:31:27 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DEXYg815";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3259110F87C
+ for <intel-xe@lists.freedesktop.org>; Mon,  5 Feb 2024 15:31:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707147085; x=1738683085;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Eqib9+xbXHuUQJpWlBK+mKYnrwGR+EI7WKTO3MmoMOI=;
+ b=DEXYg8155qAhLQgcLLKD+7FZtO3XqNHbanyZ+sP3H9iB/v16n/DcSAkE
+ 5WlUdTOSpb38zZZUmBEmcY53fLUK5ZoR3zQ7EehsSPiA9oqLVe9LyIwlk
+ ZiG/Oc0SBabxR+JuJuK8f62VAGsapJ6VMBsic1LCxXs+Euxk6cACMFkvy
+ ew/xZod3E77n8+XiIE8JcyfRV7Cv2ZJ0dJXILDvWgR3/u96bHR4IRdAZ2
+ uyz8NUQw7NyVknumJjBmeTwPThw/F7QulNhI7oZkncx5kZJAfp6UPU/7F
+ 4U2oEMMNoGVI8tjtZb8MXbUaQjMdvvXlReuipwWxacV6ii0UGET8lPW/F g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10975"; a="4337044"
+X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; 
+   d="scan'208";a="4337044"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2024 07:31:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; d="scan'208";a="23984629"
+Received: from vgolodni-mobl.ger.corp.intel.com (HELO mwauld-mobl1.intel.com)
+ ([10.252.0.151])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2024 07:31:19 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH] drm/xe/display: fix i915_gem_object_is_shmem() wrapper
+Date: Mon,  5 Feb 2024 15:31:11 +0000
+Message-ID: <20240205153110.38340-2-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/ttm=3A_Introduce_TTM_lru_lis?=
- =?utf-8?q?t_links_of_different_types?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 05 Feb 2024 14:58:09 -0000
-Message-ID: <170714508931.1024443.14729409522733407449@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240205135158.100766-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20240205135158.100766-1-thomas.hellstrom@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +58,33 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7077910773408021626==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+shmem ensures the memory is cleared on allocation, however here we are
+using TTM, which doesn't natively support shmem (other than for swap),
+but instead just allocates normal system memory. And we only zero such
+memory for userspace allocations. In the case of intel_fbdev we are
+missing the memset_io().
 
-== Series Details ==
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Series: drm/ttm: Introduce TTM lru list links of different types
-URL   : https://patchwork.freedesktop.org/series/129542/
-State : success
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
+index 68d9f6116bdf..777c20ceabab 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
+@@ -10,7 +10,7 @@
+ 
+ #include "xe_bo.h"
+ 
+-#define i915_gem_object_is_shmem(obj) ((obj)->flags & XE_BO_CREATE_SYSTEM_BIT)
++#define i915_gem_object_is_shmem(obj) (0) /* We don't use shmem */
+ 
+ static inline dma_addr_t i915_gem_object_get_dma_address(const struct xe_bo *bo, pgoff_t n)
+ {
+-- 
+2.43.0
 
-== Summary ==
-
-CI Bug Log - changes from xe-727-89404d6657779870d0d97f80a267f75a36c6744b_BAT -> xe-pw-129542v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-727-89404d6657779870d0d97f80a267f75a36c6744b -> xe-pw-129542v1
-
-  IGT_7703: c58c5fb6aa1cb7d3627a15e364816a7a2add9edc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-727-89404d6657779870d0d97f80a267f75a36c6744b: 89404d6657779870d0d97f80a267f75a36c6744b
-  xe-pw-129542v1: 129542v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129542v1/index.html
-
---===============7077910773408021626==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/ttm: Introduce TTM lru list links of different types</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129542/">https://patchwork.freedesktop.org/series/129542/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129542v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129542v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-727-89404d6657779870d0d97f80a267f75a36c6744b_BAT -&gt; xe-pw-129542v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-727-89404d6657779870d0d97f80a267f75a36c6744b -&gt; xe-pw-129542v1</li>
-</ul>
-<p>IGT_7703: c58c5fb6aa1cb7d3627a15e364816a7a2add9edc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-727-89404d6657779870d0d97f80a267f75a36c6744b: 89404d6657779870d0d97f80a267f75a36c6744b<br />
-  xe-pw-129542v1: 129542v1</p>
-
-</body>
-</html>
-
---===============7077910773408021626==--
