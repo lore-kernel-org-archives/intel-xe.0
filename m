@@ -4,55 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB748C4828D
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Feb 2024 09:46:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8BE9C4828D
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Feb 2024 09:55:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4EFAA10EC4D;
-	Mon,  5 Feb 2024 09:46:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94C8010E838;
+	Mon,  5 Feb 2024 09:55:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BbhD30KQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JMTM6L9g";
 	dkim-atps=neutral
-X-Greylist: delayed 427 seconds by postgrey-1.36 at gabe;
- Mon, 05 Feb 2024 09:46:37 UTC
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E024010EC44
- for <intel-xe@lists.freedesktop.org>; Mon,  5 Feb 2024 09:46:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88A2810E838
+ for <intel-xe@lists.freedesktop.org>; Mon,  5 Feb 2024 09:55:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707126398; x=1738662398;
+ t=1707126935; x=1738662935;
  h=message-id:date:mime-version:subject:to:references:from:
  in-reply-to:content-transfer-encoding;
- bh=C7yp3nTSFWL2y0Ul7xaKkiuhKbHIbsGK5z3y69Z0Ti4=;
- b=BbhD30KQLUaYQhm9eiloHx03WCP2Kjnc7kXyGhS0y5UW7QWhFxtKm6EH
- N5+KHnB3OiWNPaUTNNo5cbhzHWSUFXkzJ9B+GitfV+4ezDxyMLFZrwPJI
- /e2dt8AF5kOKk5+h1koRjanbowo1NiqE55s+TNhKQXkkCq6yL1qi6e+pG
- Quo/D16tUzeS1IGGXk8+1qeVxAyQC0FPaFXoZeUQNh45ToweZ35lJSDWf
- GviASfHbf4Vcnllgzep5YJfzrv6Zkmglgec92bdcpkZvkYBoFat2hJIOj
- 300SwHZ+oWKPh33Cm4MAvfOms1xP99o9Gwz3rUEZsVcmFqsK7Tcs5hzda Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="390454"
-X-IronPort-AV: E=Sophos;i="6.05,242,1701158400"; 
-   d="scan'208";a="390454"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2024 01:39:30 -0800
+ bh=mfwT62iOegg5JixMZIpaL0rVFwTyMyUgANfmpxPHK4U=;
+ b=JMTM6L9gwNT5L483Oa6c/Pgl8WlTDhRYE//UGq9x+XK153bZBxtsG0cB
+ RhnN2dpIjn04+jYEFaLcD6hHhaMnYl1pXNKhhIrjtDIxVjLKRPeQvXGmi
+ CB+o3wM68hgOeTlwzEVBS0BgBZ4hh7J2jnDqTZbh5X/7E7H66GNqktF4J
+ CgApa7CcEcogGkTH7zXR9wNPiD3yNNaNJf68fOg8R8xdsEY0NYbB/HidT
+ B5TBAzTnqKR+OPUhLme/KAff3uvxyjNKCnXoaLXX9tr91x70LnWijLw1j
+ sQSdttNkMDFhvwUIGwt+005E83NPB3MWlTaLl8mNck1Qh+6GPD1GhyK2g A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="11076526"
+X-IronPort-AV: E=Sophos;i="6.05,242,1701158400"; d="scan'208";a="11076526"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2024 01:55:34 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,242,1701158400"; 
-   d="scan'208";a="5291391"
+X-IronPort-AV: E=Sophos;i="6.05,242,1701158400"; d="scan'208";a="38089204"
 Received: from vgolodni-mobl.ger.corp.intel.com (HELO [10.252.0.151])
  ([10.252.0.151])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2024 01:39:29 -0800
-Message-ID: <4fe8ee16-2897-4b87-99e7-a5c067e5bdc1@intel.com>
-Date: Mon, 5 Feb 2024 09:39:27 +0000
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2024 01:55:32 -0800
+Message-ID: <6390f3f6-e9ac-4bdd-b868-035db4356996@intel.com>
+Date: Mon, 5 Feb 2024 09:55:30 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 08/34] drm/xe: Runtime PM wake on every IOCTL
+Subject: Re: [RFC 07/34] drm/xe: Convert mem_access assertion towards the
+ runtime_pm state
 Content-Language: en-GB
 To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
 References: <20240126203044.1104705-1-rodrigo.vivi@intel.com>
- <20240126203044.1104705-9-rodrigo.vivi@intel.com>
+ <20240126203044.1104705-8-rodrigo.vivi@intel.com>
 From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20240126203044.1104705-9-rodrigo.vivi@intel.com>
+In-Reply-To: <20240126203044.1104705-8-rodrigo.vivi@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -70,118 +67,101 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On 26/01/2024 20:30, Rodrigo Vivi wrote:
-> Let's ensure our PCI device is awaken on every IOCTL entry.
-> Let's increase the runtime_pm protection and start moving
-> that to the outer bounds.
+> The mem_access helpers are going away and getting replaced by
+> direct calls of the xe_pm_runtime_{get,put} functions. However, an
+> assertion with a warning splat is desired when we hit the worst
+> case of a memory access with the device really in the 'suspended'
+> state.
+> 
+> Also, this needs to be the first step. Otherwise, the upcoming
+> conversion would be really noise with warn splats of missing mem_access
+> gets.
 > 
 > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_device.c | 32 ++++++++++++++++++++++++++++++--
->   drivers/gpu/drm/xe/xe_pm.c     | 15 +++++++++++++++
+>   drivers/gpu/drm/xe/xe_device.c | 13 ++++++++++++-
+>   drivers/gpu/drm/xe/xe_pm.c     | 16 ++++++++++++++++
 >   drivers/gpu/drm/xe/xe_pm.h     |  1 +
->   3 files changed, 46 insertions(+), 2 deletions(-)
+>   3 files changed, 29 insertions(+), 1 deletion(-)
 > 
 > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index 01db34f06a7d..ab41202ecaf8 100644
+> index 6faa7865b1aa..01db34f06a7d 100644
 > --- a/drivers/gpu/drm/xe/xe_device.c
 > +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -141,15 +141,43 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
->   			  DRM_RENDER_ALLOW),
->   };
->   
-> +static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
-> +{
-> +	struct drm_file *file_priv = file->private_data;
-> +	struct xe_device *xe = to_xe_device(file_priv->minor->dev);
-> +	long ret;
-> +
-> +	ret = xe_pm_runtime_get_sync(xe);
-> +	if (ret >= 0)
-> +		ret = drm_ioctl(file, cmd, arg);
-> +	xe_pm_runtime_put(xe);
-> +
-> +	return ret;
-> +}
-> +
-> +static long xe_drm_compat_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
-> +{
-> +	struct drm_file *file_priv = file->private_data;
-> +	struct xe_device *xe = to_xe_device(file_priv->minor->dev);
-> +	long ret;
-> +
-> +	ret = xe_pm_runtime_get_sync(xe);
-> +	if (ret >= 0)
-> +		ret = drm_compat_ioctl(file, cmd, arg);
-> +	xe_pm_runtime_put(xe);
-> +
-> +	return ret;
-> +}
-> +
->   static const struct file_operations xe_driver_fops = {
->   	.owner = THIS_MODULE,
->   	.open = drm_open,
->   	.release = drm_release_noglobal,
-> -	.unlocked_ioctl = drm_ioctl,
-> +	.unlocked_ioctl = xe_drm_ioctl,
->   	.mmap = drm_gem_mmap,
->   	.poll = drm_poll,
->   	.read = drm_read,
-> -	.compat_ioctl = drm_compat_ioctl,
-> +	.compat_ioctl = xe_drm_compat_ioctl,
->   	.llseek = noop_llseek,
->   #ifdef CONFIG_PROC_FS
->   	.show_fdinfo = drm_show_fdinfo,
-> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-> index 3ef14937d5d2..d98f4bb3ad02 100644
-> --- a/drivers/gpu/drm/xe/xe_pm.c
-> +++ b/drivers/gpu/drm/xe/xe_pm.c
-> @@ -429,6 +429,21 @@ void xe_pm_runtime_put(struct xe_device *xe)
->   	}
+> @@ -653,9 +653,20 @@ bool xe_device_mem_access_ongoing(struct xe_device *xe)
+>   	return atomic_read(&xe->mem_access.ref);
 >   }
 >   
 > +/**
-> + * xe_pm_runtime_get_sync - Get a runtime_pm reference and resume synchronously
+> + * xe_device_assert_mem_access - Inspect the current runtime_pm state.
 > + * @xe: xe device instance
 > + *
-> + * Returns: Any number grater than or equal to 0 for success, negative error
+> + * To be used before any kind of memory access. It will splat a debug warning
+> + * if the device is currently sleeping. But it doesn't guarantee in any way
+> + * that the device is going to continue awake. Xe PM runtime get and put
 
-s/grater/greater/
+s/continue awake/remain awake/ ?
 
-> + * code otherwise.
+> + * functions might be added to the outer bound of the memory access, while
+> + * this check is intended for inner usage to splat some warning if the worst
+> + * case has just happened.
 > + */
-> +int xe_pm_runtime_get_sync(struct xe_device *xe)
+>   void xe_device_assert_mem_access(struct xe_device *xe)
+>   {
+> -	XE_WARN_ON(!xe_device_mem_access_ongoing(xe));
+> +	XE_WARN_ON(xe_pm_runtime_suspended(xe));
 
-AFAICT we now have the following API:
+I guess could also check if we are inside a callback and it doesn't 
+match current? Sorry if that was already suggested, and there were good 
+reasons to avoid.
 
-xe_pm_runtime_get()
-xe_pm_runtime_get_sync()
+>   }
+>   
+>   bool xe_device_mem_access_get_if_ongoing(struct xe_device *xe)
+> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+> index 9910b748adab..3ef14937d5d2 100644
+> --- a/drivers/gpu/drm/xe/xe_pm.c
+> +++ b/drivers/gpu/drm/xe/xe_pm.c
+> @@ -252,6 +252,22 @@ struct task_struct *xe_pm_read_callback_task(struct xe_device *xe)
+>   	return READ_ONCE(xe->pm_callback_task);
+>   }
+>   
+> +/**
+> + * xe_pm_runtime_suspended - Inspect the current runtime_pm state.
 
-Which one should users pick? The xe_pm_runtime_get() makes it sound like 
-it's async(), if there is also a _sync() version? Is 
-xe_pm_runtime_get_sync() just for the ioctl level? Maybe we should add 
-_ioctl or something and make it clear?
+"Check if runtime_pm state is suspended" ?
 
-Otherwise I think LGTM.
+> + * @xe: xe device instance
+> + *
+> + * This does not provide any guarantee that the device is going to continue
+> + * suspended as it might be racing with the runtime state transitions.
 
+s/continue suspended/remain suspended/ ?
+
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+
+> + * It can be used only as a non-reliable assertion, to ensure that we are not in
+> + * the sleep state while trying to access some memory for instance.
+> + *
+> + * Returns true if PCI device is suspended, false otherwise.
+> + */
+> +bool xe_pm_runtime_suspended(struct xe_device *xe)
 > +{
-> +	if (WARN_ON(xe_pm_read_callback_task(xe) == current))
-> +		return -ELOOP;
-> +
-> +	return pm_runtime_get_sync(xe->drm.dev);
+> +	return pm_runtime_suspended(xe->drm.dev);
 > +}
 > +
 >   /**
->    * xe_pm_runtime_get_if_active - Get a runtime_pm reference if device active
+>    * xe_pm_runtime_suspend - Prepare our device for D3hot/D3Cold
 >    * @xe: xe device instance
 > diff --git a/drivers/gpu/drm/xe/xe_pm.h b/drivers/gpu/drm/xe/xe_pm.h
-> index a672adffd0e1..7d8cf87b95d2 100644
+> index ecb19ee10db6..a672adffd0e1 100644
 > --- a/drivers/gpu/drm/xe/xe_pm.h
 > +++ b/drivers/gpu/drm/xe/xe_pm.h
-> @@ -27,6 +27,7 @@ bool xe_pm_runtime_suspended(struct xe_device *xe);
+> @@ -23,6 +23,7 @@ int xe_pm_resume(struct xe_device *xe);
+>   void xe_pm_init_early(struct xe_device *xe);
+>   void xe_pm_init(struct xe_device *xe);
+>   void xe_pm_runtime_fini(struct xe_device *xe);
+> +bool xe_pm_runtime_suspended(struct xe_device *xe);
 >   int xe_pm_runtime_suspend(struct xe_device *xe);
 >   int xe_pm_runtime_resume(struct xe_device *xe);
 >   void xe_pm_runtime_get(struct xe_device *xe);
-> +int xe_pm_runtime_get_sync(struct xe_device *xe);
->   void xe_pm_runtime_put(struct xe_device *xe);
->   int xe_pm_runtime_get_if_active(struct xe_device *xe);
->   bool xe_pm_runtime_get_if_in_use(struct xe_device *xe);
