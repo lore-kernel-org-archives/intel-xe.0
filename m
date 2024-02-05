@@ -4,53 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFE53C48295
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Feb 2024 12:41:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7907BC4829B
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Feb 2024 12:43:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7396910F974;
-	Mon,  5 Feb 2024 12:41:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 432A110F97A;
+	Mon,  5 Feb 2024 12:43:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BtYfp6yi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J6KFalYx";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DAA8A10F974
- for <intel-xe@lists.freedesktop.org>; Mon,  5 Feb 2024 12:41:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3371510F97A
+ for <intel-xe@lists.freedesktop.org>; Mon,  5 Feb 2024 12:43:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707136872; x=1738672872;
+ t=1707136987; x=1738672987;
  h=message-id:date:mime-version:subject:to:references:from:
  in-reply-to:content-transfer-encoding;
- bh=+t+Rk+vWJ/cepb2CzuZipBMt3WWke7QSaJWR0n3PPD0=;
- b=BtYfp6yi2y4eaTlgJvzsqHFiLwKADzOv+c5R/eNcettwUoVaOswVaDVc
- tXxsCs0kQO7gWL0omQgYwg5awHD9tN8ROWxb537MqSBDlj4TS+2zwucSy
- 9WnyGSZ5w0JUdO7jzR52gikMSrRyibWUC6ZwAIy6mKiU8ifuN5VPQQl33
- wUuNKU0z9Z55XkU9iH68ctV6U3YkG4N/GC5aUauqJWmQiuMg9VO0V1Frb
- X2xTb4ux1teCLU797It8DbIeC20eepXOeZemS2Wca9X45hl0bukRTUlVS
- D+IfsNjmZ/eyrfnFhXLrZQVa03XQYmTnPfGwhgQpAmkmutBvp2bzvkHbk A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="408189"
+ bh=0iDVXWdLbSC4K6MmrzXrvUbAThXrpezkmYZYwoW2wJY=;
+ b=J6KFalYx8gGI52p3QLWWxXE7L5oD0yqBP5gLwNZT2wQxAZmHsjca+xKz
+ wKURGD0MYKXDish11kCW/lFy5yerLlIB3881PcVlBHQKZyXzLGqVXCdIY
+ vc57H4K/RXDTKO+X68qcl7ha8HxtAGP7gxTrXuFYdxjrrgl6KJ8g8xK4u
+ wK34Ab2kI6RI9fEvybtiH86EFYM6gfnJAZd081xdf5L7D9ELfISv2tJud
+ cheQHH4y/6+arh/GmDKqm7qgEQ7DtZuHFoQuqTPkTFJs6/ACDgTMkXT2z
+ 0ERie1HmAIJaTWduvFUCeuTJq1MZsrV80+GSVRvtAbCnI235Ynk8n+I9+ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="408335"
 X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; 
-   d="scan'208";a="408189"
+   d="scan'208";a="408335"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2024 04:41:11 -0800
+ 05 Feb 2024 04:43:07 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; 
-   d="scan'208";a="5323933"
+   d="scan'208";a="5324226"
 Received: from vgolodni-mobl.ger.corp.intel.com (HELO [10.252.0.151])
  ([10.252.0.151])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2024 04:41:10 -0800
-Message-ID: <a70dff38-cb46-4f65-9b4d-36c0f6e5a6b4@intel.com>
-Date: Mon, 5 Feb 2024 12:41:07 +0000
+ 05 Feb 2024 04:43:06 -0800
+Message-ID: <eda9bf63-118f-4684-a385-72153c71aab0@intel.com>
+Date: Mon, 5 Feb 2024 12:43:03 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 23/34] drm/xe: Ensure D0 on TLB invalidation
+Subject: Re: [RFC 24/34] drm/xe: Remove useless mem_access protection for
+ query ioctls
 Content-Language: en-GB
 To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
 References: <20240126203044.1104705-1-rodrigo.vivi@intel.com>
- <20240126203044.1104705-24-rodrigo.vivi@intel.com>
+ <20240126203044.1104705-25-rodrigo.vivi@intel.com>
 From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20240126203044.1104705-24-rodrigo.vivi@intel.com>
+In-Reply-To: <20240126203044.1104705-25-rodrigo.vivi@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,75 +69,47 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On 26/01/2024 20:30, Rodrigo Vivi wrote:
-> Let's grab the runtime references around TLB invalidation
-> to ensure that hardware is awake in D0.
+> Every IOCTL is already protected on its outer bounds by
+> xe_pm_runtime_{get,put} calls, so we can now remove
+> these.
 > 
-> Suggested-by: Matthew Brost <matthew.brost@intel.com>
 > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+Should this be squashed?
+
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+
 > ---
->   drivers/gpu/drm/xe/xe_bo.c | 5 +++--
->   drivers/gpu/drm/xe/xe_pt.c | 3 +++
->   2 files changed, 6 insertions(+), 2 deletions(-)
+>   drivers/gpu/drm/xe/xe_query.c | 4 ----
+>   1 file changed, 4 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 686d716c5581..17d3b7f69580 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -22,6 +22,7 @@
->   #include "xe_gt.h"
->   #include "xe_map.h"
->   #include "xe_migrate.h"
-> +#include "xe_pm.h"
->   #include "xe_preempt_fence.h"
->   #include "xe_res_cursor.h"
->   #include "xe_trace.h"
-> @@ -1136,7 +1137,7 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
->   	int idx, r = 0;
+> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+> index 9b35673b286c..86222c80a874 100644
+> --- a/drivers/gpu/drm/xe/xe_query.c
+> +++ b/drivers/gpu/drm/xe/xe_query.c
+> @@ -147,7 +147,6 @@ query_engine_cycles(struct xe_device *xe,
+>   	if (!hwe)
+>   		return -EINVAL;
 >   
->   	if (needs_rpm)
-> -		xe_device_mem_access_get(xe);
-> +		xe_pm_runtime_get(xe);
+> -	xe_device_mem_access_get(xe);
+>   	xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
 >   
->   	ret = ttm_bo_vm_reserve(tbo, vmf);
->   	if (ret)
-> @@ -1176,7 +1177,7 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
->   	dma_resv_unlock(tbo->base.resv);
->   out:
->   	if (needs_rpm)
-> -		xe_device_mem_access_put(xe);
-> +		xe_pm_runtime_put(xe);
-
-
-Change should be split somewhere else, or needs different commit message?
-
+>   	__read_timestamps(gt,
+> @@ -159,7 +158,6 @@ query_engine_cycles(struct xe_device *xe,
+>   			  cpu_clock);
 >   
->   	return ret;
->   }
-> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-> index de1030a47588..8d1d4bea7323 100644
-> --- a/drivers/gpu/drm/xe/xe_pt.c
-> +++ b/drivers/gpu/drm/xe/xe_pt.c
-> @@ -11,6 +11,7 @@
->   #include "xe_gt.h"
->   #include "xe_gt_tlb_invalidation.h"
->   #include "xe_migrate.h"
-> +#include "xe_pm.h"
->   #include "xe_pt_types.h"
->   #include "xe_pt_walk.h"
->   #include "xe_res_cursor.h"
-> @@ -1104,8 +1105,10 @@ static void invalidation_fence_work_func(struct work_struct *w)
->   	struct invalidation_fence *ifence =
->   		container_of(w, struct invalidation_fence, work);
+>   	xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+> -	xe_device_mem_access_put(xe);
+>   	resp.width = 36;
 >   
-> +	xe_pm_runtime_get(gt_to_xe(ifence->gt));
->   	trace_xe_gt_tlb_invalidation_fence_work_func(&ifence->base);
->   	xe_gt_tlb_invalidation_vma(ifence->gt, &ifence->base, ifence->vma);
-> +	xe_pm_runtime_put(gt_to_xe(ifence->gt));
-
-Feels slightly scary to call this from a worker? When the caller setup 
-the fence stuff, in the prep stage, that would have been a good spot to 
-call if_active and attach it.
-
->   }
+>   	/* Only write to the output fields of user query */
+> @@ -437,9 +435,7 @@ static int query_hwconfig(struct xe_device *xe,
+>   	if (!hwconfig)
+>   		return -ENOMEM;
 >   
->   static int invalidation_fence_init(struct xe_gt *gt,
+> -	xe_device_mem_access_get(xe);
+>   	xe_guc_hwconfig_copy(&gt->uc.guc, hwconfig);
+> -	xe_device_mem_access_put(xe);
+>   
+>   	if (copy_to_user(query_ptr, hwconfig, size)) {
+>   		kfree(hwconfig);
