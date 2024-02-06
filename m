@@ -4,27 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D9A5C4828D
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Feb 2024 23:54:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0496DC48260
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Feb 2024 00:06:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33C1110F13D;
-	Mon,  5 Feb 2024 23:54:38 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CACAC10FD8A;
- Mon,  5 Feb 2024 23:54:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9020715200757587026=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id A41F51126D5;
+	Tue,  6 Feb 2024 00:06:59 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="e1vw5439";
+	dkim-atps=neutral
+Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com
+ [209.85.217.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC5F91126D4;
+ Tue,  6 Feb 2024 00:06:57 +0000 (UTC)
+Received: by mail-vs1-f49.google.com with SMTP id
+ ada2fe7eead31-46d1bebe946so529986137.2; 
+ Mon, 05 Feb 2024 16:06:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1707178016; x=1707782816; darn=lists.freedesktop.org;
+ h=in-reply-to:autocrypt:from:references:cc:to:content-language
+ :subject:user-agent:mime-version:date:message-id:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=nvetLybIldHGcSOf11gBOr8XuOCPAjj1mcInCdW2IzM=;
+ b=e1vw5439HbzOw4R4++aU83NEr3NSlV6j7ZoZI1F0uWha2I3P41TZXTxQXCcxY+Mwwp
+ GPeQch/XBXL5PnWYutXKl0ewq2s/z2QLQFRCa/rnhj7eWhhJ9d4Y7maACVOshTdnYCQM
+ LuRovKYmMqHBa0jKm3EJTmh2Nfq1QoyGi59nIE6kd2El6DaMfQFs9qPt1aJRgR3sgrcH
+ Mmlu82e85LrbAxUqQEdsg22U2pVJEd4bqXedlboC6BTGuH1I11BvYxPGSvmTjmvcMpvP
+ UEkSywaI7B9i2YGz2Dadky7254uUHX3pP3eVyjb/wWr+1ggdDeRMlYrwwhSUxrg/E3ol
+ mKww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1707178016; x=1707782816;
+ h=in-reply-to:autocrypt:from:references:cc:to:content-language
+ :subject:user-agent:mime-version:date:message-id:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=nvetLybIldHGcSOf11gBOr8XuOCPAjj1mcInCdW2IzM=;
+ b=vh+qxQd4D9FWszoflAVLJ8RtJEDy0B76Y+Vusete3nIFfLphdjIdaqDSGnVWJhuC9/
+ 6didg6MWOTN/YlxF0L8BvfK7DM9POYIKjKAjQkNRfhml4Lffm1Ugl/uxREh+v7mUGffE
+ FripxtGa7LpW558jOTo2sp+zRwDW26+Jf1mHAaswblM/c8xFILRaf86QFrZRZy5LgNmy
+ BRcs/R4BgAXtns4G9eE/I0JeZ6MvzACUpynpXSgrW7uazOm6aBA3I0XRHvlgnUi1kvUv
+ sMMpXhFr4JEIvmFdeBb2xqQiU0RJRQ93CpOtRzdotxx4382zNpFgBLssA3Ha+ZVQsYTt
+ ej5w==
+X-Gm-Message-State: AOJu0YyyekCAtX7rrFA8tedFa7BFHkLw5oH2XlKZ2tegALjqKkArYmGg
+ X0ti45vhAcagwLjVMNOUksuHIYUpg39Xu0WQiNcbaS2+xrfDGMyk
+X-Google-Smtp-Source: AGHT+IFZJXWr2Cw8NKrlqaths9wUuUkMVeyGi8JKVYJ/QgVYrK4HKa7nEK5HIOlbqMRvWJkFgZfomA==
+X-Received: by 2002:a05:6102:954:b0:46d:1cb5:fa35 with SMTP id
+ a20-20020a056102095400b0046d1cb5fa35mr1753323vsi.33.1707178015929; 
+ Mon, 05 Feb 2024 16:06:55 -0800 (PST)
+X-Forwarded-Encrypted: i=0;
+ AJvYcCVGHzw0tor4ha7jq7MhzIVhjWs4L0i3BaoPXQ3JelsJcsm9JhkXj8UZlqNqLfxdqXQG43Sr9yoiJf4zdZzXp4dAfocfm+poliutxuG0v0TUqw/MZwuEm6Tw021sxybsgvPzrJZpXSiWk3RrkqlDY3mEv8GgID+qULxuDsIBWVNj786MTIKXb9uJzyQnkLk=
+Received: from [192.168.2.14] ([174.88.31.222])
+ by smtp.gmail.com with ESMTPSA id
+ y14-20020a0ceace000000b0068c8d3bf2aesm488252qvp.4.2024.02.05.16.06.54
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 05 Feb 2024 16:06:55 -0800 (PST)
+Message-ID: <658318d1-25e9-48f0-9e36-9923f38fa431@gmail.com>
+Date: Mon, 5 Feb 2024 19:06:45 -0500
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Assume_large_page_size?=
- =?utf-8?q?_if_VMA_not_yet_bound?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 05 Feb 2024 23:54:37 -0000
-Message-ID: <170717727782.1024297.9173772793387836380@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240205231714.2956225-1-matthew.brost@intel.com>
-In-Reply-To: <20240205231714.2956225-1-matthew.brost@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:115.0) Gecko/20100101
+ Thunderbird/115.7.0
+Subject: Re: [PATCH] drm/sched: Add Matthew Brost to maintainers
+Content-Language: en-CA, en-US
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Dave Airlie <airlied@redhat.com>
+References: <20240131030302.2088173-1-matthew.brost@intel.com>
+ <Zbp_KUvsdcSMHsSE@phenom.ffwll.local>
+ <9dac66fd-2d84-488e-93f5-3983cd13d0bd@amd.com>
+From: Luben Tuikov <ltuikov89@gmail.com>
+Autocrypt: addr=ltuikov89@gmail.com; keydata=
+ xjMEZTohOhYJKwYBBAHaRw8BAQdAWSq76k+GsENjDTMVCy9Vr4fAO9Rb57/bPT1APnbnnRHN
+ Ikx1YmVuIFR1aWtvdiA8bHR1aWtvdjg5QGdtYWlsLmNvbT7CmQQTFgoAQRYhBJkj7+VmFO9b
+ eaAl10wVR5QxozSvBQJlOiE6AhsDBQkJZgGABQsJCAcCAiICBhUKCQgLAgQWAgMBAh4HAheA
+ AAoJEEwVR5QxozSvSm4BAOwCpX53DTQhE20FBGlTMqKCOQyJqlMcIQ9SO1qPWX1iAQCv3vfy
+ JwktF7REl1yt7IU2Sye1qmQMfJxdt9JMbMNNBs44BGU6IToSCisGAQQBl1UBBQEBB0BT9wSP
+ cCE8uGe7FWo8C+nTSyWPXKTx9F0gpEnlqReRBwMBCAfCfgQYFgoAJhYhBJkj7+VmFO9beaAl
+ 10wVR5QxozSvBQJlOiE6AhsMBQkJZgGAAAoJEEwVR5QxozSvSsYA/2LIFjbxQ2ikbU5S0pKo
+ aMDzO9eGz69uNhNWJcvIKJK6AQC9228Mqc1JeZMIyjYWr2HKYHi8S2q2/zHrSZwAWYYwDA==
+In-Reply-To: <9dac66fd-2d84-488e-93f5-3983cd13d0bd@amd.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------990llxdGDL0p6NnSYHvldd0H"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,124 +95,134 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============9020715200757587026==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------990llxdGDL0p6NnSYHvldd0H
+Content-Type: multipart/mixed; boundary="------------ss45F8y8tuA1n6Nbr0P96UeH";
+ protected-headers="v1"
+From: Luben Tuikov <ltuikov89@gmail.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Dave Airlie <airlied@redhat.com>
+Message-ID: <658318d1-25e9-48f0-9e36-9923f38fa431@gmail.com>
+Subject: Re: [PATCH] drm/sched: Add Matthew Brost to maintainers
+References: <20240131030302.2088173-1-matthew.brost@intel.com>
+ <Zbp_KUvsdcSMHsSE@phenom.ffwll.local>
+ <9dac66fd-2d84-488e-93f5-3983cd13d0bd@amd.com>
+In-Reply-To: <9dac66fd-2d84-488e-93f5-3983cd13d0bd@amd.com>
 
-== Series Details ==
+--------------ss45F8y8tuA1n6Nbr0P96UeH
+Content-Type: multipart/mixed; boundary="------------XsDy4vnsDNCymGuecGCmkQ6U"
 
-Series: drm/xe: Assume large page size if VMA not yet bound
-URL   : https://patchwork.freedesktop.org/series/129555/
-State : success
+--------------XsDy4vnsDNCymGuecGCmkQ6U
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-== Summary ==
+On 2024-02-01 07:56, Christian K=C3=B6nig wrote:
+> Am 31.01.24 um 18:11 schrieb Daniel Vetter:
+>> On Tue, Jan 30, 2024 at 07:03:02PM -0800, Matthew Brost wrote:
+>>> Add Matthew Brost to DRM scheduler maintainers.
+>>>
+>>> Cc: Luben Tuikov <ltuikov89@gmail.com>
+>>> Cc: Daniel Vetter <daniel@ffwll.ch>
+>>> Cc: Dave Airlie <airlied@redhat.com>
+>>> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>> Definitely need more people taking care of drm/sched, so thanks for
+>> volunteering!
+>>
+>> Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 
-CI Bug Log - changes from xe-733-b71b753a5041cf8869006840c7577c3bac01d1cd_BAT -> xe-pw-129555v1_BAT
-====================================================
+Yeah, that's a good idea.
 
-Summary
--------
+Acked-by: Luben Tuikov <ltuikov89@gmail.com>
 
-  **SUCCESS**
+Regards,
+Luben
 
-  No regressions found.
+>>
+>> I think this also needs an ack from Luben and Christian. And you also =
+need
+>> drm-misc commit rights first, or it's going to be a bit tricky to take=
 
-  
+>> care of maintainer duties for merging patches. But since your sched
+>> patches now have landed in upstream this should be just a formality.
+>=20
+> Ack from my side, I don't have time to look into scheduler stuff anyway=
+=2E
+>=20
+> Maybe I can get somebody from Leo's team to volunteer as another=20
+> reviewer for scheduler related stuff.
+>=20
+> Cheers,
+> Christian.
+>=20
+>>
+>> Cheers, Sima
+>>
+>>> ---
+>>>   MAINTAINERS | 1 +
+>>>   1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/MAINTAINERS b/MAINTAINERS
+>>> index 5c00fad59e91..e968d68a96c8 100644
+>>> --- a/MAINTAINERS
+>>> +++ b/MAINTAINERS
+>>> @@ -7308,6 +7308,7 @@ F:	drivers/gpu/drm/xlnx/
+>>>  =20
+>>>   DRM GPU SCHEDULER
+>>>   M:	Luben Tuikov <ltuikov89@gmail.com>
+>>> +M:	Matthew Brost <matthew.brost@intel.com>
+>>>   L:	dri-devel@lists.freedesktop.org
+>>>   S:	Maintained
+>>>   T:	git git://anongit.freedesktop.org/drm/drm-misc
+>>> --=20
+>>> 2.34.1
+>>>
+>=20
 
-Participating hosts (4 -> 4)
-------------------------------
+--=20
+Regards,
+Luben
 
-  No changes in participating hosts
+--------------XsDy4vnsDNCymGuecGCmkQ6U
+Content-Type: application/pgp-keys; name="OpenPGP_0x4C15479431A334AF.asc"
+Content-Disposition: attachment; filename="OpenPGP_0x4C15479431A334AF.asc"
+Content-Description: OpenPGP public key
+Content-Transfer-Encoding: quoted-printable
 
-Known issues
-------------
+-----BEGIN PGP PUBLIC KEY BLOCK-----
 
-  Here are the changes found in xe-pw-129555v1_BAT that come from known issues:
+xjMEZTohOhYJKwYBBAHaRw8BAQdAWSq76k+GsENjDTMVCy9Vr4fAO9Rb57/bPT1A
+PnbnnRHNIkx1YmVuIFR1aWtvdiA8bHR1aWtvdjg5QGdtYWlsLmNvbT7CmQQTFgoA
+QRYhBJkj7+VmFO9beaAl10wVR5QxozSvBQJlOiE6AhsDBQkJZgGABQsJCAcCAiIC
+BhUKCQgLAgQWAgMBAh4HAheAAAoJEEwVR5QxozSvSm4BAOwCpX53DTQhE20FBGlT
+MqKCOQyJqlMcIQ9SO1qPWX1iAQCv3vfyJwktF7REl1yt7IU2Sye1qmQMfJxdt9JM
+bMNNBs44BGU6IToSCisGAQQBl1UBBQEBB0BT9wSPcCE8uGe7FWo8C+nTSyWPXKTx
+9F0gpEnlqReRBwMBCAfCfgQYFgoAJhYhBJkj7+VmFO9beaAl10wVR5QxozSvBQJl
+OiE6AhsMBQkJZgGAAAoJEEwVR5QxozSvSsYA/2LIFjbxQ2ikbU5S0pKoaMDzO9eG
+z69uNhNWJcvIKJK6AQC9228Mqc1JeZMIyjYWr2HKYHi8S2q2/zHrSZwAWYYwDA=3D=3D
+=3DqCaZ
+-----END PGP PUBLIC KEY BLOCK-----
 
-### IGT changes ###
+--------------XsDy4vnsDNCymGuecGCmkQ6U--
 
-#### Possible fixes ####
+--------------ss45F8y8tuA1n6Nbr0P96UeH--
 
-  * igt@xe_exec_fault_mode@twice-basic:
-    - bat-pvc-2:          [SKIP][1] -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-733-b71b753a5041cf8869006840c7577c3bac01d1cd/bat-pvc-2/igt@xe_exec_fault_mode@twice-basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129555v1/bat-pvc-2/igt@xe_exec_fault_mode@twice-basic.html
+--------------990llxdGDL0p6NnSYHvldd0H
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature.asc"
 
-  
+-----BEGIN PGP SIGNATURE-----
 
+wnsEABYIACMWIQSZI+/lZhTvW3mgJddMFUeUMaM0rwUCZcF4FgUDAAAAAAAKCRBMFUeUMaM0r1/X
+AP9mIHt54seQ8wRh37JVWSu/mbvIXfnMWDvSil7E1hTgkQEAjaJv69riam6lha0675AuU/GnBctx
+OKH8J+Mk7Oq4LA0=
+=Tfk5
+-----END PGP SIGNATURE-----
 
-Build changes
--------------
-
-  * Linux: xe-733-b71b753a5041cf8869006840c7577c3bac01d1cd -> xe-pw-129555v1
-
-  IGT_7703: c58c5fb6aa1cb7d3627a15e364816a7a2add9edc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-733-b71b753a5041cf8869006840c7577c3bac01d1cd: b71b753a5041cf8869006840c7577c3bac01d1cd
-  xe-pw-129555v1: 129555v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129555v1/index.html
-
---===============9020715200757587026==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Assume large page size if VMA not yet bound</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129555/">https://patchwork.freedesktop.org/series/129555/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129555v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129555v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-733-b71b753a5041cf8869006840c7577c3bac01d1cd_BAT -&gt; xe-pw-129555v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-129555v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_exec_fault_mode@twice-basic:<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-733-b71b753a5041cf8869006840c7577c3bac01d1cd/bat-pvc-2/igt@xe_exec_fault_mode@twice-basic.html">SKIP</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129555v1/bat-pvc-2/igt@xe_exec_fault_mode@twice-basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-733-b71b753a5041cf8869006840c7577c3bac01d1cd -&gt; xe-pw-129555v1</li>
-</ul>
-<p>IGT_7703: c58c5fb6aa1cb7d3627a15e364816a7a2add9edc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-733-b71b753a5041cf8869006840c7577c3bac01d1cd: b71b753a5041cf8869006840c7577c3bac01d1cd<br />
-  xe-pw-129555v1: 129555v1</p>
-
-</body>
-</html>
-
---===============9020715200757587026==--
+--------------990llxdGDL0p6NnSYHvldd0H--
