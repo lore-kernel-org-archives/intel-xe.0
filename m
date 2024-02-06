@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3ADC1C4829F
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Feb 2024 10:16:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 969C8C4829C
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Feb 2024 10:16:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D77E110F6D0;
-	Tue,  6 Feb 2024 10:16:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F7B510F2AC;
+	Tue,  6 Feb 2024 10:16:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SchWIZ8J";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SyHoU+kt";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8519110FB98;
- Tue,  6 Feb 2024 10:16:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE51810EB00;
+ Tue,  6 Feb 2024 10:16:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707214561; x=1738750561;
+ t=1707214564; x=1738750564;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zlab+ZGTE7p3G+I7393YhcEUUL4PJxSZwnjujfSpI4M=;
- b=SchWIZ8JZEVswK5f4Z0Zytq0nU2lNautw8iWidw+yYOpwi9+KGAgWjbL
- iFGMO5iDQnA+3v+aroLZ4DQT3pzZMn6H/05GvEKx1+IN3dmFrYa7tc0iM
- iXcg2ppGxj0lt2FNj/ksejOZJuC7cLXig98x463sX4s3Ma5LYYwl/Ql3M
- jo6RZ3tPKvj+whTDkWE/Ug/ZnNI4SafSMlY1ybPSNE//usziVSCEoD70Y
- wZaoVkwcKOK7HqExvU6CUHgnxtIqCBw+YTw8PEQ8FXAQ8SSoRim6voqye
- JANNiVqvtMHDctb3mITfgruKP/aNlgZyrGZPwzhMrRCGTllDUvgLnx/qV Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10975"; a="4525591"
+ bh=PrT9y8bJ43Rps/Swo3EF+obcVo9/ynDyto4Pv5xD7pk=;
+ b=SyHoU+ktGHRWSldx2GuAH5w0Py4mE2VQ/0P/l9npMHAZ01QgSQQF3xDn
+ RtE4xsNPrdhBbu8Q3Ik5R0r4STKialS5YJT7kADj5qk3ZKu8BxjO7FVWN
+ qMLXPpGaB1CJuLXUETycBtgFL5WSmK5Aa3J6RvB4DdyoFUdDkfI7tf805
+ GIOlLdqSJ9rh/hTehiQoXM89qoi/OiBxq0sfQdFNCNV/9JPOZ1H7uuJnW
+ jtVfiCJwfzLzvEn7MLwYImZsXUnhGPCqPuAzMg6ZKJFV+ja28bnzjxYAM
+ uvkAolHGm5JSkbZqga412iWHbsdsPTix2E37FvIshUZfxDTnBglojW628 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10975"; a="4525598"
 X-IronPort-AV: E=Sophos;i="6.05,246,1701158400"; 
-   d="scan'208";a="4525591"
+   d="scan'208";a="4525598"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2024 02:16:01 -0800
+ 06 Feb 2024 02:16:04 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,246,1701158400"; d="scan'208";a="38405720"
+X-IronPort-AV: E=Sophos;i="6.05,246,1701158400"; d="scan'208";a="38405728"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.2.162])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2024 02:15:58 -0800
+ 06 Feb 2024 02:16:01 -0800
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
@@ -45,9 +45,10 @@ Cc: intel-xe@lists.freedesktop.org,
  Mauro Carvalho Chehab <mchehab@kernel.org>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: [PATCH i-g-t v4 5/8] lib/kunit: Report early kernel taints explicitly
-Date: Tue,  6 Feb 2024 11:00:29 +0100
-Message-ID: <20240206101514.6897-15-janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t v4 6/8] lib/kunit: Process module remove error after
+ list errors
+Date: Tue,  6 Feb 2024 11:00:30 +0100
+Message-ID: <20240206101514.6897-16-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240206101514.6897-10-janusz.krzysztofik@linux.intel.com>
 References: <20240206101514.6897-10-janusz.krzysztofik@linux.intel.com>
@@ -67,36 +68,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When we find the kernel tainted after loading a KUnit test module in
-list only mode, report that taint immediately as the reason for skip
-instead of executing and blaming our KTAP parser.
+Skip on any error from test case list gathering first, then, in
+preparation for executing those test cases, on an error from unloading the
+test module loaded in list only mode, so it is more clear if listing the
+test cases was successful or not.
 
 Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
 ---
- lib/igt_kmod.c | 2 ++
- 1 file changed, 2 insertions(+)
+ lib/igt_kmod.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
-index 5931121944..578c8a0909 100644
+index 578c8a0909..b5acc5a2a6 100644
 --- a/lib/igt_kmod.c
 +++ b/lib/igt_kmod.c
-@@ -1160,6 +1160,7 @@ static bool kunit_get_tests(struct igt_list_head *tests,
- 	char *suite_name = NULL, *case_name = NULL;
- 	struct igt_ktap_result *r, *rn;
- 	struct igt_ktap_results *ktap;
-+	unsigned long taints;
- 	int flags, err;
+@@ -1215,11 +1215,11 @@ static bool kunit_get_tests(struct igt_list_head *tests,
+ 		free(case_name);
+ 	}
  
- 	igt_skip_on_f(tst->kmsg < 0, "Could not open /dev/kmsg\n");
-@@ -1182,6 +1183,7 @@ static bool kunit_get_tests(struct igt_list_head *tests,
- 		return false;
+-	igt_skip_on(kmod_module_remove_module(tst->kmod, KMOD_REMOVE_FORCE));
+-
+ 	igt_skip_on_f(err,
+ 		      "KTAP parser failed while getting a list of test cases\n");
  
- 	igt_skip_on(modprobe(tst->kmod, opts));
-+	igt_skip_on(igt_kernel_tainted(&taints));
++	igt_skip_on(kmod_module_remove_module(tst->kmod, KMOD_REMOVE_FORCE));
++
+ 	return true;
+ }
  
- 	ktap = igt_ktap_alloc(tests);
- 	igt_require(ktap);
 -- 
 2.43.0
 
