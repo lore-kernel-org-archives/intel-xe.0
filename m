@@ -4,27 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1211EC4828D
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Feb 2024 11:43:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7ED8BC4828D
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Feb 2024 11:46:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFF00112AD7;
-	Tue,  6 Feb 2024 11:43:41 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4527112AD7;
- Tue,  6 Feb 2024 11:43:39 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1703300458990248674=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FF2A112AE2;
+	Tue,  6 Feb 2024 11:46:26 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qjc9efYM";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB627112AE2;
+ Tue,  6 Feb 2024 11:46:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707219985; x=1738755985;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=g1yd67TDqY5Jh0DtJ2vM94qZdQRy9Ffyfjqi/oL+iD4=;
+ b=Qjc9efYMAmBQzDSJiFEWpK3uj98dX6yyoiBQ56bHRciNM2Cz/QSJP/Hf
+ PxXni1U7qQoSrnJvCLBcuZR4idkMqkNcEv5Lv2l31sMT3908hjpivc35T
+ VSBCPfYrCCxPc9+TSRMLCxWAHquJD4NN//1sNOLPH8iI892WhMkZgkt31
+ Ti93ZsKm8hmX+e3zIkwjWxKEzRGVzmfNpp5VaGrDQb2LiRZn6r7V2JTKn
+ g/VYi+4drAnePxGU96loorSjJYpYO7ZHVLz1zOUqAtdn29XbYuo/jZUWe
+ RjJcntULEn57xtkzuq9U7rfXrdoJQAUo3prwfDf4C2LM6KDAH1+ajEb63 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10975"; a="625017"
+X-IronPort-AV: E=Sophos;i="6.05,247,1701158400"; 
+   d="scan'208";a="625017"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2024 03:46:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,247,1701158400"; 
+   d="scan'208";a="993166"
+Received: from lgrunert-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.42.150])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2024 03:46:19 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Stephen Rothwell <sfr@canb.auug.org.au>, Daniel Vetter
+ <daniel.vetter@ffwll.ch>
+Cc: Matthew Brost <matthew.brost@intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Christian =?utf-8?Q?K=C3=B6nig?=
+ <christian.koenig@amd.com>,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
+ Mailing List <linux-next@vger.kernel.org>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Oded Gabbay <ogabbay@kernel.org>, Thomas
+ =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Subject: Re: linux-next: build failure after merge of the drm-misc tree
+In-Reply-To: <20240206122822.12a2df89@canb.auug.org.au>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240206122822.12a2df89@canb.auug.org.au>
+Date: Tue, 06 Feb 2024 13:46:16 +0200
+Message-ID: <87plx9dddj.fsf@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_xe/xe=5Fbo=5Fmove=3A_Enhance_xe?=
- =?utf-8?q?=5Fbo=5Fmove_trace_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: priyanka.dandamudi@intel.com
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 06 Feb 2024 11:43:39 -0000
-Message-ID: <170721981987.1055288.3878980187647261499@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240206105911.107720-1-priyanka.dandamudi@intel.com>
-In-Reply-To: <20240206105911.107720-1-priyanka.dandamudi@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +73,55 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1703300458990248674==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 06 Feb 2024, Stephen Rothwell <sfr@canb.auug.org.au> wrote:
+> Hi all,
+>
+> After merging the drm-misc tree, today's linux-next build (x86_64
+> allmodconfig) failed like this:
+>
+>
+> Caused by commit
+>
+>   a78a8da51b36 ("drm/ttm: replace busy placement with flags v6")
+>
+> interacting with commit
+>
+>   dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+>
+> (and maybe others) from Linus' tree (v6.8-rc1).
+>
+> I have applied the following merge fix patch for today.  This makes it bu=
+ild,
+> but more is likely needed ...
+>
+> From: Stephen Rothwell <sfr@canb.auug.org.au>
+> Date: Tue, 6 Feb 2024 12:21:07 +1100
+> Subject: [PATCH] fix up for "drm/ttm: replace busy placement with flags v=
+6"
+>
+> interacting with commit
+>
+>   dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+>
+> Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
+> ---
+>  drivers/gpu/drm/xe/xe_bo.c | 11 -----------
+>  1 file changed, 11 deletions(-)
 
-== Series Details ==
+Please see the new MAINTAINERS entry for drm/xe changes:
 
-Series: xe/xe_bo_move: Enhance xe_bo_move trace (rev4)
-URL   : https://patchwork.freedesktop.org/series/128151/
-State : success
+INTEL DRM XE DRIVER (Lunar Lake and newer)
+M:	Lucas De Marchi <lucas.demarchi@intel.com>
+M:	Oded Gabbay <ogabbay@kernel.org>
+M:	Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+L:	intel-xe@lists.freedesktop.org
 
-== Summary ==
-
-CI Bug Log - changes from xe-736-b1651bcc3e78d3eca42061e8cf6bf1fea6843026_BAT -> xe-pw-128151v4_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-736-b1651bcc3e78d3eca42061e8cf6bf1fea6843026 -> xe-pw-128151v4
-
-  IGT_7704: 7704
-  xe-736-b1651bcc3e78d3eca42061e8cf6bf1fea6843026: b1651bcc3e78d3eca42061e8cf6bf1fea6843026
-  xe-pw-128151v4: 128151v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128151v4/index.html
-
---===============1703300458990248674==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+BR,
+Jani.
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>xe/xe_bo_move: Enhance xe_bo_move trace (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/128151/">https://patchwork.freedesktop.org/series/128151/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128151v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128151v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-736-b1651bcc3e78d3eca42061e8cf6bf1fea6843026_BAT -&gt; xe-pw-128151v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-736-b1651bcc3e78d3eca42061e8cf6bf1fea6843026 -&gt; xe-pw-128151v4</li>
-</ul>
-<p>IGT_7704: 7704<br />
-  xe-736-b1651bcc3e78d3eca42061e8cf6bf1fea6843026: b1651bcc3e78d3eca42061e8cf6bf1fea6843026<br />
-  xe-pw-128151v4: 128151v4</p>
-
-</body>
-</html>
-
---===============1703300458990248674==--
+--=20
+Jani Nikula, Intel
