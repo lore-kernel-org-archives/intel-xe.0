@@ -4,64 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3764C4828D
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Feb 2024 17:30:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02B63C48297
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Feb 2024 17:45:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C030112D08;
-	Tue,  6 Feb 2024 17:30:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Uo6lUp3n";
-	dkim-atps=neutral
-X-Greylist: delayed 426 seconds by postgrey-1.36 at gabe;
- Tue, 06 Feb 2024 17:30:03 UTC
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4E8F112D0B
- for <intel-xe@lists.freedesktop.org>; Tue,  6 Feb 2024 17:30:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707240603; x=1738776603;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=LdGUJYzo4IfnCpqgntcolIXsGD+raZTOzGxTJAyIwNw=;
- b=Uo6lUp3nqi8VALy4obIXjUYP21EpLi2zn3vMUXcskEBmRzJxSVaFGuVw
- ZYSKCixErwO4SQFnSqPilfV1NdvjjGQe2XTpa1+4MX4iHFV2x//JnHs3a
- /gaGK3JjiuT3GKO3yUCbK/UJznb/g9zAei/J5Tt2SkzOnxbamiSY3VUJQ
- zf0CBWyj/iEHLGgsA0AhtEFRCFSsrTEBLJ+NtQfBeWJEIq3+sKIEirNHD
- ZbUpTxAs6skqaWPHX8bcN5hROVghEP48RmuLgUs85J87W8W7MbkS8gmO7
- amOFRUwpJzOVCG2j4Ey2WzU/LTBrsLYt2TJYOhVpirR/hNUFVVmp/Bgkj g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10976"; a="684190"
-X-IronPort-AV: E=Sophos;i="6.05,247,1701158400"; 
-   d="scan'208";a="684190"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2024 09:22:56 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,247,1701158400"; 
-   d="scan'208";a="5695152"
-Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.102.138.187])
- by fmviesa003-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Feb 2024 09:22:55 -0800
-Date: Tue, 6 Feb 2024 18:22:52 +0100
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Cc: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-xe@lists.freedesktop.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: Re: [PATCH i-g-t v4 1/8] lib/kunit: Enter legacy path only if
- applying filters fails
-Message-ID: <20240206172252.rb6tdxkbwbkgjwf5@kamilkon-desk.igk.intel.com>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-xe@lists.freedesktop.org,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-References: <20240206101514.6897-10-janusz.krzysztofik@linux.intel.com>
- <20240206101514.6897-11-janusz.krzysztofik@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B669110F290;
+	Tue,  6 Feb 2024 17:45:17 +0000 (UTC)
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F38C10F290;
+ Tue,  6 Feb 2024 17:45:16 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4439219843329510081=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240206101514.6897-11-janusz.krzysztofik@linux.intel.com>
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_XE_HDCP_Enablement_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 06 Feb 2024 17:45:16 -0000
+Message-ID: <170724151665.1056684.6958610167533564841@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240206164742.1222593-1-suraj.kandpal@intel.com>
+In-Reply-To: <20240206164742.1222593-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,96 +35,271 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Janusz,
-On 2024-02-06 at 11:00:25 +0100, Janusz Krzysztofik wrote:
-> If loading the base KUnit module in list mode succeeds but our KTAP
-> parser or test suite filtering returns an empty list of test cases then,
-> instead of calling igt_skip, we now unintentionally fall back to legacy
-> mode as if the module didn't support filter parameters.
-> 
-> Fall back to legacy path only when kunit_get_tests() fails to load the
-> base KUnit module with non-default filters, and not when it returns an
-> empty list of test cases.
-> 
-> As an additional benefit from this approach, we now have a single TODO
-> place in the code to be fixed when the fallback is no longer needed.
-> 
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+--===============4439219843329510081==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+== Series Details ==
 
-> ---
->  lib/igt_kmod.c | 28 ++++++++++------------------
->  1 file changed, 10 insertions(+), 18 deletions(-)
-> 
-> diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
-> index 250ab2107b..ec9f77ba11 100644
-> --- a/lib/igt_kmod.c
-> +++ b/lib/igt_kmod.c
-> @@ -1087,7 +1087,7 @@ static void __igt_kunit_legacy(struct igt_ktest *tst,
->  	igt_skip_on_f(ret, "KTAP parser failed\n");
->  }
->  
-> -static void kunit_get_tests(struct igt_list_head *tests,
-> +static bool kunit_get_tests(struct igt_list_head *tests,
->  			    struct igt_ktest *tst,
->  			    const char *filter,
->  			    const char *opts)
-> @@ -1112,19 +1112,10 @@ static void kunit_get_tests(struct igt_list_head *tests,
->  	 * however, parsing a KTAP report -- something that we already can do
->  	 * perfectly -- seems to be more safe than extracting a test case list
->  	 * of unknown length from /dev/kmsg.
-> -	 *
-> -	 * TODO: drop the following workaround, which is required by LTS kernel
-> -	 *       v6.1 not capable of listing test cases when built as a module.
-> -	 * If loading the kunit module with required parameters fails then
-> -	 * assume that we are running on a kernel with missing test case listing
-> -	 * capabilities.  Dont's skip but just return with empty list of test
-> -	 * cases, that should tell the caller to use a legacy method of
-> -	 * iterating over KTAP results collected from blind execution of all
-> -	 * Kunit test cases provided by a Kunit test module.
->  	 */
->  	if (igt_debug_on(igt_kmod_load("kunit",
->  				       "filter=module=none filter_action=skip")))
-> -		return;
-> +		return false;
->  
->  	igt_skip_on(modprobe(tst->kmod, opts));
->  
-> @@ -1163,6 +1154,8 @@ static void kunit_get_tests(struct igt_list_head *tests,
->  
->  	igt_skip_on_f(err,
->  		      "KTAP parser failed while getting a list of test cases\n");
-> +
-> +	return true;
->  }
->  
->  static void __igt_kunit(struct igt_ktest *tst,
-> @@ -1375,15 +1368,14 @@ void igt_kunit(const char *module_name, const char *name, const char *opts)
->  	 * and for documentation.
->  	 */
->  	igt_subtest_with_dynamic(name) {
-> -		kunit_get_tests(&tests, &tst, filter, opts);
->  		/*
-> -		 * TODO: drop the __igt_kunit() legacy processing path, required
-> -		 *	 by kernels v6.1-v6.5 with DRM Kunit support but not
-> -		 *	 capable of listing test cases when built as a module,
-> -		 *	 as soon as no longer required by major Linux
-> -		 *	 distributions, now usually based on LTS kernel v6.1.
-> +		 * TODO: As soon as no longer needed by major Linux
-> +		 *	 distributions, replace the fallback to
-> +		 *	 __igt_kunit_legacy() processing path, required by
-> +		 *	 LTS kernels not capable of using KUnit filters for
-> +		 *	 listing test cases in KTAP format, with igt_require.
->  		 */
-> -		if (igt_debug_on(igt_list_empty(&tests)))
-> +		if (!kunit_get_tests(&tests, &tst, filter, opts))
->  			__igt_kunit_legacy(&tst, name, opts);
->  		else
->  			__igt_kunit(&tst, name, opts, &tests);
-> -- 
-> 2.43.0
-> 
+Series: XE HDCP Enablement (rev2)
+URL   : https://patchwork.freedesktop.org/series/129457/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9_BAT -> xe-pw-129457v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (3 -> 3)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-129457v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-dg2-oem2:       [PASS][1] -> [SKIP][2] ([Intel XE#1136])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@kms_addfb_basic@addfb25-modifier-no-flag:
+    - bat-dg2-oem2:       [PASS][3] -> [SKIP][4] ([i915#2575]) +50 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-modifier-no-flag.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-modifier-no-flag.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-dg2-oem2:       [PASS][5] -> [SKIP][6] ([Intel XE#1134])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9/bat-dg2-oem2/igt@kms_frontbuffer_tracking@basic.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/bat-dg2-oem2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@xe_intel_bb@create-in-region:
+    - bat-dg2-oem2:       [PASS][7] -> [SKIP][8] ([Intel XE#1130]) +147 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html
+
+  * igt@xe_module_load@load:
+    - bat-dg2-oem2:       [PASS][9] -> [FAIL][10] ([Intel XE#1132])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9/bat-dg2-oem2/igt@xe_module_load@load.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/bat-dg2-oem2/igt@xe_module_load@load.html
+
+  
+#### Warnings ####
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-dg2-oem2:       [SKIP][11] ([Intel XE#623]) -> [SKIP][12] ([i915#2575])
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-dg2-oem2:       [SKIP][13] ([Intel XE#455]) -> [SKIP][14] ([Intel XE#1134])
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9/bat-dg2-oem2/igt@kms_dsc@dsc-basic.html
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/bat-dg2-oem2/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_force_connector_basic@prune-stale-modes:
+    - bat-dg2-oem2:       [SKIP][15] ([i915#5274]) -> [SKIP][16] ([i915#2575])
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9/bat-dg2-oem2/igt@kms_force_connector_basic@prune-stale-modes.html
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/bat-dg2-oem2/igt@kms_force_connector_basic@prune-stale-modes.html
+
+  * igt@xe_exec_fault_mode@many-basic:
+    - bat-dg2-oem2:       [SKIP][17] ([Intel XE#288]) -> [SKIP][18] ([Intel XE#1130]) +32 other tests skip
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9/bat-dg2-oem2/igt@xe_exec_fault_mode@many-basic.html
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/bat-dg2-oem2/igt@xe_exec_fault_mode@many-basic.html
+
+  * igt@xe_huc_copy@huc_copy:
+    - bat-dg2-oem2:       [SKIP][19] ([Intel XE#255]) -> [SKIP][20] ([Intel XE#1130])
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9/bat-dg2-oem2/igt@xe_huc_copy@huc_copy.html
+   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/bat-dg2-oem2/igt@xe_huc_copy@huc_copy.html
+
+  * igt@xe_pat@pat-index-xe2:
+    - bat-dg2-oem2:       [SKIP][21] ([Intel XE#977]) -> [SKIP][22] ([Intel XE#1130])
+   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9/bat-dg2-oem2/igt@xe_pat@pat-index-xe2.html
+   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/bat-dg2-oem2/igt@xe_pat@pat-index-xe2.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-dg2-oem2:       [SKIP][23] ([Intel XE#979]) -> [SKIP][24] ([Intel XE#1130]) +1 other test skip
+   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9/bat-dg2-oem2/igt@xe_pat@pat-index-xehpc.html
+   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/bat-dg2-oem2/igt@xe_pat@pat-index-xehpc.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#1130]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1130
+  [Intel XE#1132]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1132
+  [Intel XE#1134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1134
+  [Intel XE#1136]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1136
+  [Intel XE#255]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/255
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+  [Intel XE#623]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/623
+  [Intel XE#929]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/929
+  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
+
+
+Build changes
+-------------
+
+  * Linux: xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9 -> xe-pw-129457v2
+
+  IGT_7704: 7704
+  xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9: 8a42fafc783505db4f1d6a70005a5f103069c9d9
+  xe-pw-129457v2: 129457v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/index.html
+
+--===============4439219843329510081==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>XE HDCP Enablement (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129457/">https://patchwork.freedesktop.org/series/129457/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9_BAT -&gt; xe-pw-129457v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (3 -&gt; 3)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-129457v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1136">Intel XE#1136</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-modifier-no-flag:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-modifier-no-flag.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-modifier-no-flag.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +50 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9/bat-dg2-oem2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/bat-dg2-oem2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1134">Intel XE#1134</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_intel_bb@create-in-region:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1130">Intel XE#1130</a>) +147 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_module_load@load:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9/bat-dg2-oem2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/bat-dg2-oem2/igt@xe_module_load@load.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1132">Intel XE#1132</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/623">Intel XE#623</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9/bat-dg2-oem2/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/bat-dg2-oem2/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1134">Intel XE#1134</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9/bat-dg2-oem2/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5274">i915#5274</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/bat-dg2-oem2/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@many-basic:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9/bat-dg2-oem2/igt@xe_exec_fault_mode@many-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/bat-dg2-oem2/igt@xe_exec_fault_mode@many-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1130">Intel XE#1130</a>) +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_huc_copy@huc_copy:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9/bat-dg2-oem2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/255">Intel XE#255</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/bat-dg2-oem2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1130">Intel XE#1130</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xe2:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9/bat-dg2-oem2/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/bat-dg2-oem2/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1130">Intel XE#1130</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9/bat-dg2-oem2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v2/bat-dg2-oem2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1130">Intel XE#1130</a>) +1 other test skip</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9 -&gt; xe-pw-129457v2</li>
+</ul>
+<p>IGT_7704: 7704<br />
+  xe-740-8a42fafc783505db4f1d6a70005a5f103069c9d9: 8a42fafc783505db4f1d6a70005a5f103069c9d9<br />
+  xe-pw-129457v2: 129457v2</p>
+
+</body>
+</html>
+
+--===============4439219843329510081==--
