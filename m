@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAFA0C4829A
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Feb 2024 10:15:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0072C4829A
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Feb 2024 10:15:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FE3610EB00;
-	Tue,  6 Feb 2024 10:15:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E2AD10F2AC;
+	Tue,  6 Feb 2024 10:15:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PF11a6zU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IjzKmf7U";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9982610EB00;
- Tue,  6 Feb 2024 10:15:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BE7810EB2C;
+ Tue,  6 Feb 2024 10:15:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707214549; x=1738750549;
+ t=1707214552; x=1738750552;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=uaA0TXANDeDR803KzE6I2kTxmlEBU2Tjky4rvq4MxZY=;
- b=PF11a6zUBMWhU86QCZHP2XG0R0CtTAYHHh7lieTH2llPLcxXvmZBSHVq
- n+/oU95ByHvs4T6Ovkg099asZz/LTxant2NqMaIfG1fq214nqnHR9S1Wo
- +d3sJgjioBoRvdCOiXHK6wfFQGqfA3wUV7u2jeZpdiWCIvNbPR9abSB0c
- /OnS+JKXy1brqi282RB4aVHFFDF4pk0LBLXfG4Wd2vpAQLX8h43SkL0Rc
- W/pWAK+pchfo8r7CVkr6Fp9pbEvLy4FAV3maJlifAdXS1dpODUTLJS0r5
- 8PXcHK20XbkHpqCU/xgAt3qgiRtgbbeARanr65QYOrHVjukemCUO623wV Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10975"; a="4525566"
+ bh=La0Xm2Cz0RXH4oDv5bME1yNo4X0dZeMeJJjmwhptnUM=;
+ b=IjzKmf7UyOail8PwUdGrs9GYZQTQ0Fw2WeyJiMO1cxxwG6cjpJdromYo
+ JOx6l2+rXqrO8ZjWvwJlGJ+MIJqcFivR4sAZ0hUTfcBDr1bbQBwUL+q2F
+ zqZ5Ff0dVLPJfpLz+dVjTqgtnYiPi31dfuulnhJ9kCcJN1s15D8+ULwOl
+ ndoSbathqMhpk8pUGtUBLuswgrArsUbKdd6zVSMSf7rJa5Dx4IXwXFvYU
+ E5UEfMuIOLjrA/rDdYLJSFhaw5XpsmD/7+6t3uE/JTv06NlVgLLvmQsGt
+ /mBIx87PQFI1cfUHhseT0QgJPyUJ4YRVoO+qUO/WffjRTRJtIbDrcjxwa Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10975"; a="4525573"
 X-IronPort-AV: E=Sophos;i="6.05,246,1701158400"; 
-   d="scan'208";a="4525566"
+   d="scan'208";a="4525573"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2024 02:15:49 -0800
+ 06 Feb 2024 02:15:52 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,246,1701158400"; d="scan'208";a="38405689"
+X-IronPort-AV: E=Sophos;i="6.05,246,1701158400"; d="scan'208";a="38405698"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.2.162])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2024 02:15:46 -0800
+ 06 Feb 2024 02:15:49 -0800
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
@@ -45,10 +45,10 @@ Cc: intel-xe@lists.freedesktop.org,
  Mauro Carvalho Chehab <mchehab@kernel.org>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: [PATCH i-g-t v4 1/8] lib/kunit: Enter legacy path only if applying
- filters fails
-Date: Tue,  6 Feb 2024 11:00:25 +0100
-Message-ID: <20240206101514.6897-11-janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t v4 2/8] lib/kmode: Prepare open_parameters() helper for
+ reuse by kunit
+Date: Tue,  6 Feb 2024 11:00:26 +0100
+Message-ID: <20240206101514.6897-12-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240206101514.6897-10-janusz.krzysztofik@linux.intel.com>
 References: <20240206101514.6897-10-janusz.krzysztofik@linux.intel.com>
@@ -68,88 +68,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If loading the base KUnit module in list mode succeeds but our KTAP
-parser or test suite filtering returns an empty list of test cases then,
-instead of calling igt_skip, we now unintentionally fall back to legacy
-mode as if the module didn't support filter parameters.
-
-Fall back to legacy path only when kunit_get_tests() fails to load the
-base KUnit module with non-default filters, and not when it returns an
-empty list of test cases.
-
-As an additional benefit from this approach, we now have a single TODO
-place in the code to be fixed when the fallback is no longer needed.
+Move the open_parameters() helper code up in the source file, above the
+kunit related functions, so it is available to follow-up changes of the
+kunit code.
 
 Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
 ---
- lib/igt_kmod.c | 28 ++++++++++------------------
- 1 file changed, 10 insertions(+), 18 deletions(-)
+ lib/igt_kmod.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
 diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
-index 250ab2107b..ec9f77ba11 100644
+index ec9f77ba11..5a3bd9cf3a 100644
 --- a/lib/igt_kmod.c
 +++ b/lib/igt_kmod.c
-@@ -1087,7 +1087,7 @@ static void __igt_kunit_legacy(struct igt_ktest *tst,
- 	igt_skip_on_f(ret, "KTAP parser failed\n");
+@@ -803,6 +803,14 @@ void igt_kselftest_get_tests(struct kmod_module *kmod,
+ 	kmod_module_info_free_list(pre);
  }
  
--static void kunit_get_tests(struct igt_list_head *tests,
-+static bool kunit_get_tests(struct igt_list_head *tests,
- 			    struct igt_ktest *tst,
- 			    const char *filter,
- 			    const char *opts)
-@@ -1112,19 +1112,10 @@ static void kunit_get_tests(struct igt_list_head *tests,
- 	 * however, parsing a KTAP report -- something that we already can do
- 	 * perfectly -- seems to be more safe than extracting a test case list
- 	 * of unknown length from /dev/kmsg.
--	 *
--	 * TODO: drop the following workaround, which is required by LTS kernel
--	 *       v6.1 not capable of listing test cases when built as a module.
--	 * If loading the kunit module with required parameters fails then
--	 * assume that we are running on a kernel with missing test case listing
--	 * capabilities.  Dont's skip but just return with empty list of test
--	 * cases, that should tell the caller to use a legacy method of
--	 * iterating over KTAP results collected from blind execution of all
--	 * Kunit test cases provided by a Kunit test module.
- 	 */
- 	if (igt_debug_on(igt_kmod_load("kunit",
- 				       "filter=module=none filter_action=skip")))
--		return;
-+		return false;
- 
- 	igt_skip_on(modprobe(tst->kmod, opts));
- 
-@@ -1163,6 +1154,8 @@ static void kunit_get_tests(struct igt_list_head *tests,
- 
- 	igt_skip_on_f(err,
- 		      "KTAP parser failed while getting a list of test cases\n");
++static int open_parameters(const char *module_name)
++{
++	char path[256];
 +
-+	return true;
++	snprintf(path, sizeof(path), "/sys/module/%s/parameters", module_name);
++	return open(path, O_RDONLY);
++}
++
+ struct modprobe_data {
+ 	struct kmod_module *kmod;
+ 	const char *opts;
+@@ -1393,14 +1401,6 @@ void igt_kunit(const char *module_name, const char *name, const char *opts)
+ 	igt_ktest_fini(&tst);
  }
  
- static void __igt_kunit(struct igt_ktest *tst,
-@@ -1375,15 +1368,14 @@ void igt_kunit(const char *module_name, const char *name, const char *opts)
- 	 * and for documentation.
- 	 */
- 	igt_subtest_with_dynamic(name) {
--		kunit_get_tests(&tests, &tst, filter, opts);
- 		/*
--		 * TODO: drop the __igt_kunit() legacy processing path, required
--		 *	 by kernels v6.1-v6.5 with DRM Kunit support but not
--		 *	 capable of listing test cases when built as a module,
--		 *	 as soon as no longer required by major Linux
--		 *	 distributions, now usually based on LTS kernel v6.1.
-+		 * TODO: As soon as no longer needed by major Linux
-+		 *	 distributions, replace the fallback to
-+		 *	 __igt_kunit_legacy() processing path, required by
-+		 *	 LTS kernels not capable of using KUnit filters for
-+		 *	 listing test cases in KTAP format, with igt_require.
- 		 */
--		if (igt_debug_on(igt_list_empty(&tests)))
-+		if (!kunit_get_tests(&tests, &tst, filter, opts))
- 			__igt_kunit_legacy(&tst, name, opts);
- 		else
- 			__igt_kunit(&tst, name, opts, &tests);
+-static int open_parameters(const char *module_name)
+-{
+-	char path[256];
+-
+-	snprintf(path, sizeof(path), "/sys/module/%s/parameters", module_name);
+-	return open(path, O_RDONLY);
+-}
+-
+ int igt_ktest_init(struct igt_ktest *tst,
+ 		   const char *module_name)
+ {
 -- 
 2.43.0
 
