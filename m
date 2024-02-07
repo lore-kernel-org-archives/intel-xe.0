@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E15E1C4828D
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Feb 2024 22:12:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB1F0C4828F
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Feb 2024 22:13:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BC4B10E8D7;
-	Wed,  7 Feb 2024 22:12:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80F2B10E8D7;
+	Wed,  7 Feb 2024 22:13:04 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8687510E8D7;
- Wed,  7 Feb 2024 22:12:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FEF010E8D7;
+ Wed,  7 Feb 2024 22:13:03 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Refactor_VM_bind_code_=28?=
- =?utf-8?q?rev4=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Refactor_VM_bind_code_=28rev4?=
+ =?utf-8?q?=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 07 Feb 2024 22:12:34 -0000
-Message-ID: <170734395455.1088348.10958564588049613327@5338d5abeb45>
+Date: Wed, 07 Feb 2024 22:13:03 -0000
+Message-ID: <170734398365.1088349.600616536119220934@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240206233729.3173206-1-matthew.brost@intel.com>
 In-Reply-To: <20240206233729.3173206-1-matthew.brost@intel.com>
@@ -44,129 +44,228 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Refactor VM bind code (rev4)
 URL   : https://patchwork.freedesktop.org/series/125608/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-35591fb8b4d5305b37ce31483f85ac0956eaa536
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 819cd1163cc0ed5bd7b8f428abf8e64ee023e3c8
-Author: Matthew Brost <matthew.brost@intel.com>
-Date:   Tue Feb 6 15:37:29 2024 -0800
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../arch/x86/um/user-offsets.c:17:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
+   17 | void foo(void)
+      |      ^~~
+In file included from ../arch/um/kernel/asm-offsets.c:1:
+../arch/x86/um/shared/sysdep/kernel-offsets.h:9:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
+    9 | void foo(void)
+      |      ^~~
+../arch/x86/um/fault.c:18:5: warning: no previous prototype for ‘arch_fixup’ [-Wmissing-prototypes]
+   18 | int arch_fixup(unsigned long address, struct uml_pt_regs *regs)
+      |     ^~~~~~~~~~
+../arch/x86/um/bugs_64.c:9:6: warning: no previous prototype for ‘arch_check_bugs’ [-Wmissing-prototypes]
+    9 | void arch_check_bugs(void)
+      |      ^~~~~~~~~~~~~~~
+../arch/x86/um/bugs_64.c:13:6: warning: no previous prototype for ‘arch_examine_signal’ [-Wmissing-prototypes]
+   13 | void arch_examine_signal(int sig, struct uml_pt_regs *regs)
+      |      ^~~~~~~~~~~~~~~~~~~
+../arch/x86/um/os-Linux/mcontext.c:7:6: warning: no previous prototype for ‘get_regs_from_mc’ [-Wmissing-prototypes]
+    7 | void get_regs_from_mc(struct uml_pt_regs *regs, mcontext_t *mc)
+      |      ^~~~~~~~~~~~~~~~
+../arch/x86/um/os-Linux/registers.c:146:15: warning: no previous prototype for ‘get_thread_reg’ [-Wmissing-prototypes]
+  146 | unsigned long get_thread_reg(int reg, jmp_buf *buf)
+      |               ^~~~~~~~~~~~~~
+../arch/x86/um/vdso/um_vdso.c:16:5: warning: no previous prototype for ‘__vdso_clock_gettime’ [-Wmissing-prototypes]
+   16 | int __vdso_clock_gettime(clockid_t clock, struct __kernel_old_timespec *ts)
+      |     ^~~~~~~~~~~~~~~~~~~~
+../arch/x86/um/vdso/um_vdso.c:30:5: warning: no previous prototype for ‘__vdso_gettimeofday’ [-Wmissing-prototypes]
+   30 | int __vdso_gettimeofday(struct __kernel_old_timeval *tv, struct timezone *tz)
+      |     ^~~~~~~~~~~~~~~~~~~
+../arch/x86/um/vdso/um_vdso.c:44:21: warning: no previous prototype for ‘__vdso_time’ [-Wmissing-prototypes]
+   44 | __kernel_old_time_t __vdso_time(__kernel_old_time_t *t)
+      |                     ^~~~~~~~~~~
+../arch/x86/um/vdso/um_vdso.c:57:1: warning: no previous prototype for ‘__vdso_getcpu’ [-Wmissing-prototypes]
+   57 | __vdso_getcpu(unsigned *cpu, unsigned *node, struct getcpu_cache *unused)
+      | ^~~~~~~~~~~~~
+../arch/um/os-Linux/skas/process.c:107:6: warning: no previous prototype for ‘wait_stub_done’ [-Wmissing-prototypes]
+  107 | void wait_stub_done(int pid)
+      |      ^~~~~~~~~~~~~~
+../arch/um/os-Linux/skas/process.c:683:6: warning: no previous prototype for ‘__switch_mm’ [-Wmissing-prototypes]
+  683 | void __switch_mm(struct mm_id *mm_idp)
+      |      ^~~~~~~~~~~
+../arch/um/kernel/skas/process.c:36:12: warning: no previous prototype for ‘start_uml’ [-Wmissing-prototypes]
+   36 | int __init start_uml(void)
+      |            ^~~~~~~~~
+../arch/x86/um/ptrace_64.c:111:5: warning: no previous prototype for ‘poke_user’ [-Wmissing-prototypes]
+  111 | int poke_user(struct task_struct *child, long addr, long data)
+      |     ^~~~~~~~~
+../arch/x86/um/ptrace_64.c:171:5: warning: no previous prototype for ‘peek_user’ [-Wmissing-prototypes]
+  171 | int peek_user(struct task_struct *child, long addr, long data)
+      |     ^~~~~~~~~
+../arch/x86/um/signal.c:560:6: warning: no previous prototype for ‘sys_rt_sigreturn’ [-Wmissing-prototypes]
+  560 | long sys_rt_sigreturn(void)
+      |      ^~~~~~~~~~~~~~~~
+../arch/um/kernel/skas/mmu.c:17:5: warning: no previous prototype for ‘init_new_context’ [-Wmissing-prototypes]
+   17 | int init_new_context(struct task_struct *task, struct mm_struct *mm)
+      |     ^~~~~~~~~~~~~~~~
+../arch/um/kernel/skas/mmu.c:60:6: warning: no previous prototype for ‘destroy_context’ [-Wmissing-prototypes]
+   60 | void destroy_context(struct mm_struct *mm)
+      |      ^~~~~~~~~~~~~~~
+../arch/um/os-Linux/main.c:187:7: warning: no previous prototype for ‘__wrap_malloc’ [-Wmissing-prototypes]
+  187 | void *__wrap_malloc(int size)
+      |       ^~~~~~~~~~~~~
+../arch/um/os-Linux/main.c:208:7: warning: no previous prototype for ‘__wrap_calloc’ [-Wmissing-prototypes]
+  208 | void *__wrap_calloc(int n, int size)
+      |       ^~~~~~~~~~~~~
+../arch/um/os-Linux/main.c:222:6: warning: no previous prototype for ‘__wrap_free’ [-Wmissing-prototypes]
+  222 | void __wrap_free(void *ptr)
+      |      ^~~~~~~~~~~
+../arch/um/os-Linux/mem.c:28:6: warning: no previous prototype for ‘kasan_map_memory’ [-Wmissing-prototypes]
+   28 | void kasan_map_memory(void *start, size_t len)
+      |      ^~~~~~~~~~~~~~~~
+../arch/um/os-Linux/mem.c:212:13: warning: no previous prototype for ‘check_tmpexec’ [-Wmissing-prototypes]
+  212 | void __init check_tmpexec(void)
+      |             ^~~~~~~~~~~~~
+../arch/um/os-Linux/signal.c:75:6: warning: no previous prototype for ‘sig_handler’ [-Wmissing-prototypes]
+   75 | void sig_handler(int sig, struct siginfo *si, mcontext_t *mc)
+      |      ^~~~~~~~~~~
+../arch/um/os-Linux/signal.c:111:6: warning: no previous prototype for ‘timer_alarm_handler’ [-Wmissing-prototypes]
+  111 | void timer_alarm_handler(int sig, struct siginfo *unused_si, mcontext_t *mc)
+      |      ^~~~~~~~~~~~~~~~~~~
+../arch/um/os-Linux/start_up.c:301:12: warning: no previous prototype for ‘parse_iomem’ [-Wmissing-prototypes]
+  301 | int __init parse_iomem(char *str, int *add)
+      |            ^~~~~~~~~~~
+../arch/x86/um/syscalls_64.c:48:6: warning: no previous prototype for ‘arch_switch_to’ [-Wmissing-prototypes]
+   48 | void arch_switch_to(struct task_struct *to)
+      |      ^~~~~~~~~~~~~~
+../arch/um/kernel/mem.c:202:8: warning: no previous prototype for ‘pgd_alloc’ [-Wmissing-prototypes]
+  202 | pgd_t *pgd_alloc(struct mm_struct *mm)
+      |        ^~~~~~~~~
+../arch/um/kernel/mem.c:215:7: warning: no previous prototype for ‘uml_kmalloc’ [-Wmissing-prototypes]
+  215 | void *uml_kmalloc(int size, int flags)
+      |       ^~~~~~~~~~~
+../arch/um/kernel/process.c:51:5: warning: no previous prototype for ‘pid_to_processor_id’ [-Wmissing-prototypes]
+   51 | int pid_to_processor_id(int pid)
+      |     ^~~~~~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:87:7: warning: no previous prototype for ‘__switch_to’ [-Wmissing-prototypes]
+   87 | void *__switch_to(struct task_struct *from, struct task_struct *to)
+      |       ^~~~~~~~~~~
+../arch/um/kernel/process.c:140:6: warning: no previous prototype for ‘fork_handler’ [-Wmissing-prototypes]
+  140 | void fork_handler(void)
+      |      ^~~~~~~~~~~~
+../arch/um/kernel/process.c:217:6: warning: no previous prototype for ‘arch_cpu_idle’ [-Wmissing-prototypes]
+  217 | void arch_cpu_idle(void)
+      |      ^~~~~~~~~~~~~
+../arch/um/kernel/process.c:253:5: warning: no previous prototype for ‘copy_to_user_proc’ [-Wmissing-prototypes]
+  253 | int copy_to_user_proc(void __user *to, void *from, int size)
+      |     ^~~~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:263:5: warning: no previous prototype for ‘clear_user_proc’ [-Wmissing-prototypes]
+  263 | int clear_user_proc(void __user *buf, int size)
+      |     ^~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:271:6: warning: no previous prototype for ‘set_using_sysemu’ [-Wmissing-prototypes]
+  271 | void set_using_sysemu(int value)
+      |      ^~~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:278:5: warning: no previous prototype for ‘get_using_sysemu’ [-Wmissing-prototypes]
+  278 | int get_using_sysemu(void)
+      |     ^~~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:316:12: warning: no previous prototype for ‘make_proc_sysemu’ [-Wmissing-prototypes]
+  316 | int __init make_proc_sysemu(void)
+      |            ^~~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:348:15: warning: no previous prototype for ‘arch_align_stack’ [-Wmissing-prototypes]
+  348 | unsigned long arch_align_stack(unsigned long sp)
+      |               ^~~~~~~~~~~~~~~~
+../arch/um/kernel/reboot.c:45:6: warning: no previous prototype for ‘machine_restart’ [-Wmissing-prototypes]
+   45 | void machine_restart(char * __unused)
+      |      ^~~~~~~~~~~~~~~
+../arch/um/kernel/reboot.c:51:6: warning: no previous prototype for ‘machine_power_off’ [-Wmissing-prototypes]
+   51 | void machine_power_off(void)
+      |      ^~~~~~~~~~~~~~~~~
+../arch/um/kernel/reboot.c:57:6: warning: no previous prototype for ‘machine_halt’ [-Wmissing-prototypes]
+   57 | void machine_halt(void)
+      |      ^~~~~~~~~~~~
+../arch/um/kernel/tlb.c:579:6: warning: no previous prototype for ‘flush_tlb_mm_range’ [-Wmissing-prototypes]
+  579 | void flush_tlb_mm_range(struct mm_struct *mm, unsigned long start,
+      |      ^~~~~~~~~~~~~~~~~~
+../arch/um/kernel/tlb.c:594:6: warning: no previous prototype for ‘force_flush_all’ [-Wmissing-prototypes]
+  594 | void force_flush_all(void)
+      |      ^~~~~~~~~~~~~~~
+../arch/um/kernel/kmsg_dump.c:60:12: warning: no previous prototype for ‘kmsg_dumper_stdout_init’ [-Wmissing-prototypes]
+   60 | int __init kmsg_dumper_stdout_init(void)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+../arch/um/kernel/um_arch.c:408:19: warning: no previous prototype for ‘read_initrd’ [-Wmissing-prototypes]
+  408 | int __init __weak read_initrd(void)
+      |                   ^~~~~~~~~~~
+../arch/um/kernel/um_arch.c:461:7: warning: no previous prototype for ‘text_poke’ [-Wmissing-prototypes]
+  461 | void *text_poke(void *addr, const void *opcode, size_t len)
+      |       ^~~~~~~~~
+../arch/um/kernel/um_arch.c:473:6: warning: no previous prototype for ‘text_poke_sync’ [-Wmissing-prototypes]
+  473 | void text_poke_sync(void)
+      |      ^~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_migrate.c:1303:
+../drivers/gpu/drm/xe/tests/xe_migrate.c:91:14: error: initialization of ‘void (*)(struct xe_tile *, struct iosys_map *, void *, u32,  u32,  const struct xe_vm_pgtable_update *)’ {aka ‘void (*)(struct xe_tile *, struct iosys_map *, void *, unsigned int,  unsigned int,  const struct xe_vm_pgtable_update *)’} from incompatible pointer type ‘void (*)(struct xe_migrate_pt_update *, struct xe_tile *, struct iosys_map *, void *, u32,  u32,  const struct xe_vm_pgtable_update *)’ {aka ‘void (*)(struct xe_migrate_pt_update *, struct xe_tile *, struct iosys_map *, void *, unsigned int,  unsigned int,  const struct xe_vm_pgtable_update *)’} [-Werror=incompatible-pointer-types]
+   91 |  .populate = sanity_populate_cb,
+      |              ^~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/tests/xe_migrate.c:91:14: note: (near initialization for ‘sanity_ops.populate’)
+../drivers/gpu/drm/xe/tests/xe_migrate.c: In function ‘test_pt_update’:
+../drivers/gpu/drm/xe/tests/xe_migrate.c:239:44: error: passing argument 2 of ‘xe_migrate_update_pgtables’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  239 |  fence = xe_migrate_update_pgtables(m, m->q->vm, NULL, m->q, &update, 1,
+      |                                        ~~~~^~~~
+      |                                            |
+      |                                            struct xe_vm *
+../drivers/gpu/drm/xe/xe_migrate.c:1274:36: note: expected ‘struct xe_migrate_pt_update *’ but argument is of type ‘struct xe_vm *’
+ 1274 |       struct xe_migrate_pt_update *pt_update)
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_migrate.c:1303:
+../drivers/gpu/drm/xe/tests/xe_migrate.c:239:10: error: too many arguments to function ‘xe_migrate_update_pgtables’
+  239 |  fence = xe_migrate_update_pgtables(m, m->q->vm, NULL, m->q, &update, 1,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_migrate.c:1273:1: note: declared here
+ 1273 | xe_migrate_update_pgtables(struct xe_migrate *m,
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~
+cc1: some warnings being treated as errors
+make[7]: *** [../scripts/Makefile.build:243: drivers/gpu/drm/xe/xe_migrate.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+make[6]: *** [../scripts/Makefile.build:481: drivers/gpu/drm/xe] Error 2
+make[6]: *** Waiting for unfinished jobs....
+make[5]: *** [../scripts/Makefile.build:481: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:481: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:481: drivers] Error 2
+make[2]: *** [/kernel/Makefile:1921: .] Error 2
+make[1]: *** [/kernel/Makefile:240: __sub-make] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
 
-    drm/xe: Add VM bind IOCTL error injection
-    
-    Add VM bind IOCTL error injection which steals MSB of the bind flags
-    field which if set injects errors at various points in the VM bind
-    IOCTL. Intended to validate error paths. Enabled by CONFIG_DRM_XE_DEBUG.
-    
-    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-+ /mt/dim checkpatch eb1e13ab1374d4785d5f2b2584d88e6e05311229 drm-intel
-8ba74fe16 drm/xe: Lock all gpuva ops during VM bind IOCTL
-87653de6b drm/xe: Add ops_execute function which returns a fence
-883439553 drm/xe: Move migrate to prefetch to op_lock funtion
--:4: WARNING:TYPO_SPELLING: 'funtion' may be misspelled - perhaps 'function'?
-#4: 
-Subject: [PATCH] drm/xe: Move migrate to prefetch to op_lock funtion
-                                                             ^^^^^^^
-
-total: 0 errors, 1 warnings, 0 checks, 49 lines checked
-456930f69 drm/xe: Add struct xe_vma_ops abstraction
-6200a4c05 drm/xe: Update xe_vm_rebind to use dummy VMA operations
-5080c77b5 drm/xe: Simplify VM bind IOCTL error handling and cleanup
-76fbc63eb drm/xe: Update pagefaults to use dummy VMA operations
-dacb99ec3 drm/xe: s/xe_tile_migrate_engine/xe_tile_migrate_exec_queue
-4d1c00496 drm/xe: Add vm_bind_ioctl_ops_install_fences helper
--:9: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Matthew Brost <matthew.brost@intel.com'
-#9: 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com
-
--:134: ERROR:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Matthew Brost <matthew.brost@intel.com>'
-
-total: 2 errors, 0 warnings, 0 checks, 111 lines checked
-af253508d drm/xe: Move setting last fence to vm_bind_ioctl_ops_install_fences
-4f783081a drm/xe: Add xe_gt_tlb_invalidation_range and convert PT layer to use this
--:107: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
-#107: FILE: drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:306:
-+
-+}
-
-total: 0 errors, 0 warnings, 1 checks, 186 lines checked
-75c69c5e8 drm/xe: Add some members to xe_vma_ops
-645be5ccb drm/xe: Add xe_vm_pgtable_update_op to xe_vma_ops
-06c167151 drm/xe: Convert multiple bind ops into single job
--:1501: WARNING:TYPO_SPELLING: 'commiting' may be misspelled - perhaps 'committing'?
-#1501: FILE: drivers/gpu/drm/xe/xe_pt.c:1769:
-+ * Run PT update operations which includes commiting internal PT state changes,
-                                            ^^^^^^^^^
-
--:1684: WARNING:TYPO_SPELLING: 'commiting' may be misspelled - perhaps 'committing'?
-#1684: FILE: drivers/gpu/drm/xe/xe_pt.c:1863:
-+ * Finish PT update operations by commiting to destroy page table memory
-                                   ^^^^^^^^^
-
-total: 0 errors, 2 warnings, 0 checks, 2435 lines checked
-a3d3d269d drm/xe: Remove old functions defs in xe_pt.h
-f2b277f1e drm/xe: Update PT layer with better error handling
-5b5bab2d6 drm/xe: Update VM trace events
--:61: ERROR:SPACING: space prohibited after that open parenthesis '('
-#61: FILE: drivers/gpu/drm/xe/xe_vm.c:2414:
-+		trace_xe_vma_unbind( gpuva_to_vma(op->base.unmap.va));
-
-total: 1 errors, 0 warnings, 0 checks, 88 lines checked
-79ef9178a drm/xe: Update clear / populate arguments
-7d9dc94ff drm/xe: Add __xe_migrate_update_pgtables_cpu helper
-0e0adaf83 drm/xe: CPU binds for jobs
--:672: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#672: FILE: drivers/gpu/drm/xe/xe_sched_job.c:38:
-+				  max_t(size_t,
- 				  sizeof(u64) *
-
--:766: ERROR:FLEXIBLE_ARRAY: Use C99 flexible arrays - see https://docs.kernel.org/process/deprecated.html#zero-length-and-one-element-arrays
-#766: FILE: drivers/gpu/drm/xe/xe_sched_job_types.h:70:
-+		struct pt_update_args pt_update[0];
-+	};
-
-total: 1 errors, 0 warnings, 1 checks, 838 lines checked
-63fa61f34 drm/xe: Don't use migrate exec queue for page fault binds
-819cd1163 drm/xe: Add VM bind IOCTL error injection
--:51: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 15)
-#51: FILE: drivers/gpu/drm/xe/xe_pt.c:1752:
-+	if (vops->inject_error &&
-[...]
-+	       return -ENOSPC;
-
--:53: WARNING:TABSTOP: Statements should start on a tabstop
-#53: FILE: drivers/gpu/drm/xe/xe_pt.c:1754:
-+	       return -ENOSPC;
-
--:64: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 15)
-#64: FILE: drivers/gpu/drm/xe/xe_pt.c:1886:
-+	if (vops->inject_error &&
-[...]
-+	       return ERR_PTR(-ENOSPC);
-
--:66: WARNING:TABSTOP: Statements should start on a tabstop
-#66: FILE: drivers/gpu/drm/xe/xe_pt.c:1888:
-+	       return ERR_PTR(-ENOSPC);
-
--:81: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 15)
-#81: FILE: drivers/gpu/drm/xe/xe_vm.c:2398:
-+	if (vops->inject_error &&
-[...]
-+	       return -ENOSPC;
-
--:83: WARNING:TABSTOP: Statements should start on a tabstop
-#83: FILE: drivers/gpu/drm/xe/xe_vm.c:2400:
-+	       return -ENOSPC;
-
-total: 0 errors, 6 warnings, 0 checks, 116 lines checked
+[22:12:35] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[22:12:39] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
