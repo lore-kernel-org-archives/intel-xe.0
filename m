@@ -4,37 +4,37 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B5C8C48BC1
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Feb 2024 05:49:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E9C3C48BED
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Feb 2024 05:49:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D12D910E197;
-	Thu,  8 Feb 2024 05:49:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11C7B10E2C8;
+	Thu,  8 Feb 2024 05:49:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nNaOFrxf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JerCNNv4";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8E7210E13B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94A1810E0EF
  for <intel-xe@lists.freedesktop.org>; Thu,  8 Feb 2024 05:49:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1707371363; x=1738907363;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=oPx0aLwft5fHrVrjSuNsJjXo3rJTqL+3Sv1T4Cpo+/M=;
- b=nNaOFrxfrGikB9S6a/UIMGJXZJEb/kGs6dwOzfVk6fUwr3tgV7LGVSPm
- ksitFScfZqEVwho+xG6WU+DpYcV6S7PtPFwC9Xhjz3zZqbhLOJNCf6OIA
- oOhn4B/gBbIGjHVD+4pibIhTlMXHpUqOF1ueO2rLtDO4nhQEFm4N18yiq
- jBJdmKRkJp4I9oS+OoHhGTj00HnQnbUVsXs7tnbv4F5/F9g27hvLhX973
- c2ubzOJWmZ1P/Qx5oJDH+p115IvskJqLPh5NT25nGF9bX5HyKFC2VW+Ug
- wo60d5uDCZ9SFTm2/jIIZDlhtEPfbai6t3s3T/8wV7gWFRFvsmgR288kQ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10977"; a="11886507"
-X-IronPort-AV: E=Sophos;i="6.05,252,1701158400"; d="scan'208";a="11886507"
+ bh=qX8T2pU1Zy+ViRYVCrhrQml7LkjaiG/Xbn1eU5bOMTY=;
+ b=JerCNNv490C3YK3tcMbpEqYRQWPtUKPs0y8u9B+1AQ1Ery1nR1tHGAYU
+ 3426xadSLpyjtulQWmVBQWvVYntvi4Erg3esjN+udNR+OKoOF92h05hLp
+ MBPazPzwk1ULBHoAcKT4CQQgeajdYvnfPLBdh3H3ogvSsBGw8lPnTQmhH
+ pJIy6xzJksVqWOcCpSc+SBKHHl+BRrC6YHccGK4SHxmeZAljKZokdYmPG
+ z/AE+CFaTlGCEmDUUtLBoStcVXVA0tCq7tM91fVHio1Z8Tektxs5T5UzG
+ o1BTEjGuvRIYkJREtE/kfpdQ7TnaGNLUhnkH2TmozU31zc3zJTQ1int7Z A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10977"; a="11886505"
+X-IronPort-AV: E=Sophos;i="6.05,252,1701158400"; d="scan'208";a="11886505"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Feb 2024 21:49:23 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10977"; a="824731161"
-X-IronPort-AV: E=Sophos;i="6.05,252,1701158400"; d="scan'208";a="824731161"
+X-IronPort-AV: E=McAfee;i="6600,9927,10977"; a="824731155"
+X-IronPort-AV: E=Sophos;i="6.05,252,1701158400"; d="scan'208";a="824731155"
 Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.jf.intel.com)
  ([10.165.21.138])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
@@ -42,9 +42,9 @@ Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.jf.intel.com)
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: [PATCH 12/16] drm/xe/oa: Add OAC support
-Date: Wed,  7 Feb 2024 21:49:12 -0800
-Message-ID: <20240208054916.3788133-13-ashutosh.dixit@intel.com>
+Subject: [PATCH 10/16] drm/xe/oa: Disable overrun mode for Xe2+ OAG
+Date: Wed,  7 Feb 2024 21:49:10 -0800
+Message-ID: <20240208054916.3788133-11-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20240208054916.3788133-1-ashutosh.dixit@intel.com>
 References: <20240208054916.3788133-1-ashutosh.dixit@intel.com>
@@ -64,164 +64,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Similar to OAR, allow userspace to execute MI_REPORT_PERF_COUNT on compute
-engines of a specified exec queue.
+Xe2+ OAG requires special handling because non-power-of-2 report sizes are
+not a sub-multiple of the OA buffer size and there are no partial reports
+at the end of the buffer. This issue is present only when overrun mode is
+enabled. Avoid adding this special handling by disabling overrun mode for
+Xe2+ OAG.
+
+v2: Disable overrun mode when time based sampling is enabled
 
 Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_engine_regs.h |  1 +
- drivers/gpu/drm/xe/regs/xe_oa_regs.h     |  3 +
- drivers/gpu/drm/xe/xe_oa.c               | 74 +++++++++++++++++++++++-
- 3 files changed, 75 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_oa_regs.h | 1 +
+ drivers/gpu/drm/xe/xe_oa.c           | 8 ++++++++
+ 2 files changed, 9 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-index b6ef2df0e5ac0..9e430f56b3b83 100644
---- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-@@ -127,6 +127,7 @@
- 
- #define RING_CONTEXT_CONTROL(base)		XE_REG((base) + 0x244, XE_REG_OPTION_MASKED)
- #define	  CTX_CTRL_OAC_CONTEXT_ENABLE		REG_BIT(8)
-+#define	  CTX_CTRL_RUN_ALONE			REG_BIT(7)
- #define	  CTX_CTRL_INHIBIT_SYN_CTX_SWITCH	REG_BIT(3)
- #define	  CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT	REG_BIT(0)
- 
 diff --git a/drivers/gpu/drm/xe/regs/xe_oa_regs.h b/drivers/gpu/drm/xe/regs/xe_oa_regs.h
-index 09d6d4f169f52..6f7d300f56c86 100644
+index 00d0c9763e8da..09d6d4f169f52 100644
 --- a/drivers/gpu/drm/xe/regs/xe_oa_regs.h
 +++ b/drivers/gpu/drm/xe/regs/xe_oa_regs.h
-@@ -69,6 +69,9 @@
- #define  OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS	REG_BIT(1)
+@@ -52,6 +52,7 @@
+ #define  OABUFFER_SIZE_4M	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 5)
+ #define  OABUFFER_SIZE_8M	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 6)
+ #define  OABUFFER_SIZE_16M	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 7)
++#define  OAG_OABUFFER_DISABLE_OVERRUN_MODE	REG_BIT(1)
+ #define  OAG_OABUFFER_MEMORY_SELECT		REG_BIT(0) /* 0: PPGTT, 1: GGTT */
  
- #define OAG_OASTATUS			XE_REG(0xdafc)
-+/* OAC unit */
-+#define OAC_OACONTROL			XE_REG(0x15114)
-+
- /* OAM unit */
- #define OAM_HEAD_POINTER_OFFSET			(0x1a0)
- #define OAM_TAIL_POINTER_OFFSET			(0x1a4)
+ #define OAG_OACONTROL				XE_REG(0xdaf4)
 diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 413fa42e8df71..dc138e5a10087 100644
+index 3349b9d6cde92..c7b86771d0c28 100644
 --- a/drivers/gpu/drm/xe/xe_oa.c
 +++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -406,6 +406,19 @@ static u32 __format_to_oactrl(const struct xe_oa_format *format, int counter_sel
- 		REG_FIELD_PREP(OA_OACONTROL_COUNTER_SIZE_MASK, format->counter_size);
- }
+@@ -365,6 +365,14 @@ static void xe_oa_init_oa_buffer(struct xe_oa_stream *stream)
+ 			gtt_offset & OAG_OAHEADPTR_MASK);
+ 	stream->oa_buffer.head = 0;
  
-+static u32 __oa_ccs_select(struct xe_oa_stream *stream)
-+{
-+	u32 val;
-+
-+	if (stream->hwe->class != XE_ENGINE_CLASS_COMPUTE)
-+		return 0;
-+
-+	val = REG_FIELD_PREP(OAG_OACONTROL_OA_CCS_SELECT_MASK, stream->hwe->instance);
-+	xe_assert(stream->oa->xe,
-+		  REG_FIELD_GET(OAG_OACONTROL_OA_CCS_SELECT_MASK, val) == stream->hwe->instance);
-+	return val;
-+}
-+
- static void xe_oa_enable(struct xe_oa_stream *stream)
- {
- 	const struct xe_oa_format *format = stream->oa_buffer.format;
-@@ -420,7 +433,7 @@ static void xe_oa_enable(struct xe_oa_stream *stream)
- 
- 	regs = __oa_regs(stream);
- 	val = __format_to_oactrl(format, regs->oa_ctrl_counter_select_mask) |
--		OAG_OACONTROL_OA_COUNTER_ENABLE;
-+		__oa_ccs_select(stream) | OAG_OACONTROL_OA_COUNTER_ENABLE;
- 
- 	xe_mmio_write32(stream->gt, regs->oa_ctrl, val);
- }
-@@ -679,6 +692,57 @@ static int xe_oa_configure_oar_context(struct xe_oa_stream *stream, bool enable)
- 	return xe_oa_load_with_lri(stream, &reg_lri);
- }
- 
-+static int xe_oa_configure_oac_context(struct xe_oa_stream *stream, bool enable)
-+{
-+	const struct xe_oa_format *format = stream->oa_buffer.format;
-+	struct xe_lrc *lrc = &stream->exec_q->lrc[0];
-+	u32 regs_offset = xe_lrc_regs_offset(lrc) / sizeof(u32);
-+	u32 oacontrol = __format_to_oactrl(format, OAR_OACONTROL_COUNTER_SEL_MASK) |
-+		(enable ? OAR_OACONTROL_COUNTER_ENABLE : 0);
-+	struct flex regs_context[] = {
-+		{
-+			OACTXCONTROL(stream->hwe->mmio_base),
-+			stream->oa->ctx_oactxctrl_offset[stream->hwe->class] + 1,
-+			enable ? OA_COUNTER_RESUME : 0,
-+		},
-+		{
-+			RING_CONTEXT_CONTROL(stream->hwe->mmio_base),
-+			regs_offset + CTX_CONTEXT_CONTROL,
-+			_MASKED_FIELD(CTX_CTRL_OAC_CONTEXT_ENABLE,
-+				      enable ? CTX_CTRL_OAC_CONTEXT_ENABLE : 0) |
-+			_MASKED_FIELD(CTX_CTRL_RUN_ALONE,
-+				      enable ? CTX_CTRL_RUN_ALONE : 0),
-+		},
-+	};
-+	struct xe_oa_reg reg_lri = { OAC_OACONTROL, oacontrol };
-+	int err;
-+
-+	/* Set ccs select to enable programming of OAC_OACONTROL */
-+	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_ctrl, __oa_ccs_select(stream));
-+
-+	/* Modify stream hwe context image with regs_context */
-+	err = xe_oa_modify_ctx_image(stream, &stream->exec_q->lrc[0],
-+				     regs_context, ARRAY_SIZE(regs_context));
-+	if (err)
-+		return err;
-+
-+	/* Apply reg_lri using LRI */
-+	return xe_oa_load_with_lri(stream, &reg_lri);
-+}
-+
-+static int xe_oa_configure_oa_context(struct xe_oa_stream *stream, bool enable)
-+{
-+	switch (stream->hwe->class) {
-+	case XE_ENGINE_CLASS_RENDER:
-+		return xe_oa_configure_oar_context(stream, enable);
-+	case XE_ENGINE_CLASS_COMPUTE:
-+		return xe_oa_configure_oac_context(stream, enable);
-+	default:
-+		/* Video engines do not support MI_REPORT_PERF_COUNT */
-+		return 0;
-+	}
-+}
-+
- #define HAS_OA_BPC_REPORTING(xe) (GRAPHICS_VERx100(xe) >= 1255)
- 
- static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
-@@ -698,7 +762,7 @@ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
- 
- 	/* disable the context save/restore or OAR counters */
- 	if (stream->exec_q)
--		xe_oa_configure_oar_context(stream, false);
-+		xe_oa_configure_oa_context(stream, false);
- 
- 	/* Make sure we disable noa to save power. */
- 	xe_mmio_rmw32(stream->gt, RPM_CONFIG1, GT_NOA_ENABLE, 0);
-@@ -865,8 +929,9 @@ static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
- 
- 	xe_mmio_rmw32(stream->gt, XELPMP_SQCNT1, 0, sqcnt1);
- 
-+	/* Configure OAR/OAC */
- 	if (stream->exec_q) {
--		ret = xe_oa_configure_oar_context(stream, true);
-+		ret = xe_oa_configure_oa_context(stream, true);
- 		if (ret)
- 			return ret;
- 	}
-@@ -1502,6 +1567,9 @@ int xe_oa_stream_open_ioctl(struct drm_device *dev, void *data, struct drm_file
- 		param.exec_q = xe_exec_queue_lookup(xef, param.exec_queue_id);
- 		if (XE_IOCTL_DBG(oa->xe, !param.exec_q))
- 			return -ENOENT;
-+
-+		if (param.exec_q->width > 1)
-+			drm_dbg(&oa->xe->drm, "exec_q->width > 1, programming only exec_q->lrc[0]\n");
- 	}
- 
++	/*
++	 * For Xe2+, OAG buffer is not a multiple of report size and there are no partial
++	 * reports at the end of the buffer when overrun mode is enabled. Disable overrun
++	 * mode to avoid this issue.
++	 */
++	if (GRAPHICS_VER(stream->oa->xe) >= 20 &&
++	    stream->hwe->oa_unit->type == DRM_XE_OA_UNIT_TYPE_OAG && stream->sample)
++		oa_buf |= OAG_OABUFFER_DISABLE_OVERRUN_MODE;
  	/*
+ 	 * PRM says: "This MMIO must be set before the OATAILPTR register and after the
+ 	 * OAHEADPTR register. This is to enable proper functionality of the overflow bit".
 -- 
 2.41.0
 
