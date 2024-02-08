@@ -4,27 +4,147 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB1F0C4828F
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Feb 2024 22:13:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E1DDC4828F
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Feb 2024 00:17:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80F2B10E8D7;
-	Wed,  7 Feb 2024 22:13:04 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FEF010E8D7;
- Wed,  7 Feb 2024 22:13:03 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34C7810E49A;
+	Thu,  8 Feb 2024 00:17:17 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bBCPkY8j";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78EDB10E353
+ for <intel-xe@lists.freedesktop.org>; Thu,  8 Feb 2024 00:17:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707351435; x=1738887435;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=AH6Onmnq5tUYhnEqbwe4UAmlSgWPCSCwfu7jK0DOjfw=;
+ b=bBCPkY8jP2ac1UVqEZ7c6R6cnKyS7Xspd6JJR3l7wOMCJ87iI44LV3t6
+ 2UIPiJF97lbczUdLeMl6m13xyyn2To9QuRCL3rv/BFaPxoeIckdjaM0dj
+ QVuQYXJClY3wl4M5CUjsQb0byU9l0c1nVpmPgAVmriu/KvDjXE2N4/wh1
+ Ul9VMa9nuHLQ2rW0seMLcOPl0qF0BOxUbKq270qRh7g/Ms4fu/A/WqLYy
+ LkA0KxL2UKguJm8OQtvMrCw4O3doYAQrOarpIGQmXeeDZD44F45Vv/BtJ
+ vCtEwuii0sIHmLcXn6lPp5SDdTvTy0T8nS6aZg0ZaGnH8HQMl/JWW3RtA A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10977"; a="18528459"
+X-IronPort-AV: E=Sophos;i="6.05,252,1701158400"; d="scan'208";a="18528459"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2024 16:17:14 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,252,1701158400"; 
+   d="scan'208";a="1518011"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 07 Feb 2024 16:17:13 -0800
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 7 Feb 2024 16:17:12 -0800
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 7 Feb 2024 16:17:12 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Wed, 7 Feb 2024 16:17:12 -0800
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.169)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Wed, 7 Feb 2024 16:17:09 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GrwP7v9Wh90NbWY5YhDA1IFZKioIeIDy+w/TDBD49BdAjTG792LKOeixUjWjumKo/q8kzZbQZvRkIoUGFP3L9/4iCJ8Fw8pw98ec2XwOTD7nklHiOFG/KEQ0J/Y6SewOlX42g76E2SHKCp70qBW0gswlgfOc/6M7+Gc5n4bx5z7Z6l7of6K9cHEl1IdN6W3qKWnwvfvWTMpPnij1PWbH8xzPLPpefnb8mHsVAAF/6WFB8/NB53iOJb2R8tmcU/JsjFYdkmxyGv/9BtpFXlAdozDIO5IKsbSiHAGzmjU31wH96WfTc+FuGCqs7DvVpk6ZdTyXDmgQggNfxF/iJsljHw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AH6Onmnq5tUYhnEqbwe4UAmlSgWPCSCwfu7jK0DOjfw=;
+ b=UpdVoBna6b+Maq7y1KehmCvzGC+Ipds57JzjcvkDoZ2A5DhAPAvweGi5E+9dGUWHjQqLaaKdWrC4yzBx3GwEjMp9KxRn0ZGayjacNSpQ0/9OpqOkZ6rr4Dhu+z3qX5udk2Maj9pO1tB+ARkgKH12Es/WFQ+CxoduScpN0DjltMAUaBQsrUckl5NJyTFV+EKEXKoVLpa3fdQFBao42hSVhIfEE+fcqJ5VJys6bw/nyLqhVNLhnpHNr1V44jPsYDTRBEgcSuYvcyOAPYFFdV2iziCuclvgCHx4PygL4RquSOvdDV8OCjqCDuGbhqKiBE10A28pzxd1RsbFFBXcbe/Yrw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by IA0PR11MB7331.namprd11.prod.outlook.com (2603:10b6:208:435::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.36; Thu, 8 Feb
+ 2024 00:17:08 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::9f32:ce50:1914:e954]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::9f32:ce50:1914:e954%7]) with mapi id 15.20.7249.037; Thu, 8 Feb 2024
+ 00:17:08 +0000
+Date: Wed, 7 Feb 2024 18:17:05 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Francois Dugast <francois.dugast@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Daniele Ceraolo Spurio
+ <daniele.ceraolospurio@intel.com>, Thomas Hellstrom
+ <thomas.hellstrom@linux.intel.com>, <John.C.Harrison@intel.com>, "Ashutosh
+ Dixit" <ashutosh.dixit@intel.com>, <tejas.upadhyay@intel.com>
+Subject: Re: Re: [PATCH 2/2] drm/xe: Avoid crypt message when there's no GuC
+ definition
+Message-ID: <at5ly4zqruhgkahe4c7xlvrirlliyy4u5xdimvv2hs2jk5f7q6@ugzvbgfnea44>
+References: <20240201224724.551130-1-lucas.demarchi@intel.com>
+ <20240201224724.551130-3-lucas.demarchi@intel.com>
+ <ZbzXcpK3_tDghRXW@fdugast-desk.home>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <ZbzXcpK3_tDghRXW@fdugast-desk.home>
+X-ClientProxiedBy: SJ0PR05CA0209.namprd05.prod.outlook.com
+ (2603:10b6:a03:330::34) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Refactor_VM_bind_code_=28rev4?=
- =?utf-8?q?=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 07 Feb 2024 22:13:03 -0000
-Message-ID: <170734398365.1088349.600616536119220934@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240206233729.3173206-1-matthew.brost@intel.com>
-In-Reply-To: <20240206233729.3173206-1-matthew.brost@intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|IA0PR11MB7331:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8728704d-d9e5-4768-a55d-08dc283b4978
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: xgBM3rcYTukEnS/kuD0EZaO3Y+JBetEeKAkddnoYOQ1CIV7O0GTjGl0sca3AEhZK/be7cOuzBU1xlFsYe3GUJVnlcyhl2hfxTo/bW+mnaLNVE+Uq8B44sg6dz26t+4XTlaLvjQSKVFbS9VXx3BGE0KTBCnPQImIP6Xq5iGlc8a5PNP+hfteVKORhx/GXXxewPMgrYH0iogJ7FVttomgXdNNI8srXy/iXWMcfILxz3qDHsoYZyTkq7B/2MT0hoAp7bwuT9id5RdTGUr5N+TNAo9yevbj+DRzxsc8BVFoqDrtV05680n7hZ2JCXj8INtpjJDWpkygt8+2AESSk5Qi3SMxcZhx+HAi7CSC54syuDtljsnWT2BijoThHJsbhU1GOU+7w57WkUZB/BxU35TMLwivsn9PH20fQwtw/r9NKx0Q5cw4/AQk+1LfQteXsmkgxImvumex1pO9bdqhqagosqxnYs7F5uWPyjoe+XcXxWMDkRoGquR/jW7F1iodfIR/I1gPg7zRFK0FrOHdZ01y/j/UC8aLVMCaQj5+9ExPv68EdCjZriJQPe3n+qT7gA38R
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7916004)(39860400002)(366004)(396003)(376002)(136003)(346002)(230922051799003)(186009)(1800799012)(451199024)(64100799003)(2906002)(5660300002)(4744005)(15650500001)(41300700001)(86362001)(33716001)(6506007)(82960400001)(38100700002)(83380400001)(26005)(54906003)(478600001)(6666004)(66556008)(66476007)(6636002)(6486002)(66946007)(4326008)(8936002)(9686003)(6512007)(8676002)(6862004)(316002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?a02ydgxLnpazXFrSteoBQJ9MhJDDDpS/KK+oJnYbfrG6NGLm09GSzOhMUdhs?=
+ =?us-ascii?Q?xKdOOp5N6DnvtVvjK23UcbE5GcuhvvzEqE8ck4qNaq03e1pkvhTOWIHIiybB?=
+ =?us-ascii?Q?BO2246VcH9oELuwP37Jl6lFWxVihciFMtsBw07pqbv9FQc77+8cOCbF9eJRr?=
+ =?us-ascii?Q?APuUsWfIArQvP0iGI/K+/ExnqsA84/fJjY1r4XNoOcMeKGYLcJpdO2lhrEPz?=
+ =?us-ascii?Q?JVuAyPjv12d4NLfySY76WVbsonGjN+ESWKTpQW4l7N/FaJ4xa8ywaTTVd/Nu?=
+ =?us-ascii?Q?5lZgnx2/FBK1u9Vhjc9kFs62INMOssHjg19Yh5wjRyJgoeSsxS/YAHGqSMH2?=
+ =?us-ascii?Q?yOxU5M8FTQCclBeT1k/FEQWoDPrAAdUK34DgCmC4GcJDmkc3eZMW6bnRnJEn?=
+ =?us-ascii?Q?Bb4kMsvBYb9XXPtGCkd4E27HCG2C45VemTGC8pNFl26hcNEinRjCegll1kNr?=
+ =?us-ascii?Q?Sl9yjZrmjDDSGkXvNkro+w6kNovmWSLnYbFml9NHRcbHgCNQ+lJC+s64BiX+?=
+ =?us-ascii?Q?9vKLElTQkwsUx/twLwQxugCzsYswA8Zc8qeqhdlpnZUWsk3byXNfCe6ExUZM?=
+ =?us-ascii?Q?Og8xNZmEOozsZcRI0vKTB5Uz8KygqQLezDCOYcrp+lIcyM2ySlOBwEupBxQT?=
+ =?us-ascii?Q?1vaiaLCinDJtR4HRi0KaKUsI5K2bBWYex9kcDOrtSJYhxGCI8tfEsv0MI4Ql?=
+ =?us-ascii?Q?jj9/F/8vcNrQYg6q8fbs/pylj3cQ4LqZoFOx8WikBa++IqsNsM6thJTk3ikv?=
+ =?us-ascii?Q?S1miVY3D63PpodWuDsQlFVjsN9z0lg1k8ukx5iK2T8kSIoZg1sVX6AIuMXpm?=
+ =?us-ascii?Q?dgezPENJkLxbjnZRv0NihQqoPuagd7/FNITvXiXjUgmJ4CVqRGPN75sjISey?=
+ =?us-ascii?Q?iRbxApmi0ZwT4ZuDpUqO+MHo4J7pkesbYK0E1hSI3Ehm7fjne/1drnOp7cpY?=
+ =?us-ascii?Q?gCLJYH7UmOeU3MQoeaRgI3YT6bUeZoMi1HZjiouNQbeQucvice9j/Lc65C6I?=
+ =?us-ascii?Q?/aJG2E8E5nXXuRekQQS59hWoMTZ2Z3+Bs6IlASw5fskHlu5WoB8D0XbJ0vtV?=
+ =?us-ascii?Q?DmRCm6vyONGDftIUI4qV/MQARdtNiVtqp1Ho34Z8ketfTnnRQTgsAHiUhuYj?=
+ =?us-ascii?Q?qx4jPhy66+cFbi3IeR12zB126Xn49nL5b8gKLoCZrZL+iXBMsQ8+wx7bRnyD?=
+ =?us-ascii?Q?PlcN0+rSWUS8JUnHrdTjIDPWA8nfOFwUxzgcf7kESiT46JeU0J3npJIVA/SD?=
+ =?us-ascii?Q?slq8XGFubND1T7/eUvPI13uq8LYUyqgrz0sVxmCxUToP8GbjZ2zHtHljD5YF?=
+ =?us-ascii?Q?5x5gIRkIuD14wLdoHSqczvFdWrJk0+yqTButX2c6Q79l72ZDkdZBAqzHvHHB?=
+ =?us-ascii?Q?m+XtDkhIfG5b9P2KrywK3g1ogyKKPasP8eUC4byXvMMudNf2QQrVR9rTSZG4?=
+ =?us-ascii?Q?TdDt3/7zNceWEQAIbdP+mY12jvlrhAh5nyI6pMFQiglQkz3Y2LfQDSRuyRDq?=
+ =?us-ascii?Q?zV986WIq9q0G2j5SnqvPxbLwvTAmExmvMi4dPNZI/s7ApneSSD1KKS4HQT9a?=
+ =?us-ascii?Q?GSENbbCcirpr4ygQhy6oyzNZ9AHmuVCteu3f7LBXM8PJ0slS6+Ea7a/vJb+h?=
+ =?us-ascii?Q?1A=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8728704d-d9e5-4768-a55d-08dc283b4978
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Feb 2024 00:17:08.1772 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: IVPrAngahwNHOB7Wg9D0Hz4jpZmAxMaQYnXHwv5/wXv5lmeAEZy3nnnxAd+TDZuQeMksv/+9fuTcrH7mZPTqInSBFvIskDaTl05NRN4LxIg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7331
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,236 +156,19 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Feb 02, 2024 at 12:52:18PM +0100, Francois Dugast wrote:
+>On Thu, Feb 01, 2024 at 02:47:24PM -0800, Lucas De Marchi wrote:
+>> If there's no GuC firmware entry in the table and the user didn't pass
+>> an override path, the error message is very crypt: xe will simply try to
+>
+>Here ^ and in the title, isn't it s/crypt/cryptic/?
+>
+>Anyway, LGTM: Reviewed-by: Francois Dugast <francois.dugast@intel.com>
 
-Series: Refactor VM bind code (rev4)
-URL   : https://patchwork.freedesktop.org/series/125608/
-State : failure
+I fixed the typo and pushed both patches.
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../arch/x86/um/user-offsets.c:17:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
-   17 | void foo(void)
-      |      ^~~
-In file included from ../arch/um/kernel/asm-offsets.c:1:
-../arch/x86/um/shared/sysdep/kernel-offsets.h:9:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
-    9 | void foo(void)
-      |      ^~~
-../arch/x86/um/fault.c:18:5: warning: no previous prototype for ‘arch_fixup’ [-Wmissing-prototypes]
-   18 | int arch_fixup(unsigned long address, struct uml_pt_regs *regs)
-      |     ^~~~~~~~~~
-../arch/x86/um/bugs_64.c:9:6: warning: no previous prototype for ‘arch_check_bugs’ [-Wmissing-prototypes]
-    9 | void arch_check_bugs(void)
-      |      ^~~~~~~~~~~~~~~
-../arch/x86/um/bugs_64.c:13:6: warning: no previous prototype for ‘arch_examine_signal’ [-Wmissing-prototypes]
-   13 | void arch_examine_signal(int sig, struct uml_pt_regs *regs)
-      |      ^~~~~~~~~~~~~~~~~~~
-../arch/x86/um/os-Linux/mcontext.c:7:6: warning: no previous prototype for ‘get_regs_from_mc’ [-Wmissing-prototypes]
-    7 | void get_regs_from_mc(struct uml_pt_regs *regs, mcontext_t *mc)
-      |      ^~~~~~~~~~~~~~~~
-../arch/x86/um/os-Linux/registers.c:146:15: warning: no previous prototype for ‘get_thread_reg’ [-Wmissing-prototypes]
-  146 | unsigned long get_thread_reg(int reg, jmp_buf *buf)
-      |               ^~~~~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:16:5: warning: no previous prototype for ‘__vdso_clock_gettime’ [-Wmissing-prototypes]
-   16 | int __vdso_clock_gettime(clockid_t clock, struct __kernel_old_timespec *ts)
-      |     ^~~~~~~~~~~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:30:5: warning: no previous prototype for ‘__vdso_gettimeofday’ [-Wmissing-prototypes]
-   30 | int __vdso_gettimeofday(struct __kernel_old_timeval *tv, struct timezone *tz)
-      |     ^~~~~~~~~~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:44:21: warning: no previous prototype for ‘__vdso_time’ [-Wmissing-prototypes]
-   44 | __kernel_old_time_t __vdso_time(__kernel_old_time_t *t)
-      |                     ^~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:57:1: warning: no previous prototype for ‘__vdso_getcpu’ [-Wmissing-prototypes]
-   57 | __vdso_getcpu(unsigned *cpu, unsigned *node, struct getcpu_cache *unused)
-      | ^~~~~~~~~~~~~
-../arch/um/os-Linux/skas/process.c:107:6: warning: no previous prototype for ‘wait_stub_done’ [-Wmissing-prototypes]
-  107 | void wait_stub_done(int pid)
-      |      ^~~~~~~~~~~~~~
-../arch/um/os-Linux/skas/process.c:683:6: warning: no previous prototype for ‘__switch_mm’ [-Wmissing-prototypes]
-  683 | void __switch_mm(struct mm_id *mm_idp)
-      |      ^~~~~~~~~~~
-../arch/um/kernel/skas/process.c:36:12: warning: no previous prototype for ‘start_uml’ [-Wmissing-prototypes]
-   36 | int __init start_uml(void)
-      |            ^~~~~~~~~
-../arch/x86/um/ptrace_64.c:111:5: warning: no previous prototype for ‘poke_user’ [-Wmissing-prototypes]
-  111 | int poke_user(struct task_struct *child, long addr, long data)
-      |     ^~~~~~~~~
-../arch/x86/um/ptrace_64.c:171:5: warning: no previous prototype for ‘peek_user’ [-Wmissing-prototypes]
-  171 | int peek_user(struct task_struct *child, long addr, long data)
-      |     ^~~~~~~~~
-../arch/x86/um/signal.c:560:6: warning: no previous prototype for ‘sys_rt_sigreturn’ [-Wmissing-prototypes]
-  560 | long sys_rt_sigreturn(void)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/kernel/skas/mmu.c:17:5: warning: no previous prototype for ‘init_new_context’ [-Wmissing-prototypes]
-   17 | int init_new_context(struct task_struct *task, struct mm_struct *mm)
-      |     ^~~~~~~~~~~~~~~~
-../arch/um/kernel/skas/mmu.c:60:6: warning: no previous prototype for ‘destroy_context’ [-Wmissing-prototypes]
-   60 | void destroy_context(struct mm_struct *mm)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/os-Linux/main.c:187:7: warning: no previous prototype for ‘__wrap_malloc’ [-Wmissing-prototypes]
-  187 | void *__wrap_malloc(int size)
-      |       ^~~~~~~~~~~~~
-../arch/um/os-Linux/main.c:208:7: warning: no previous prototype for ‘__wrap_calloc’ [-Wmissing-prototypes]
-  208 | void *__wrap_calloc(int n, int size)
-      |       ^~~~~~~~~~~~~
-../arch/um/os-Linux/main.c:222:6: warning: no previous prototype for ‘__wrap_free’ [-Wmissing-prototypes]
-  222 | void __wrap_free(void *ptr)
-      |      ^~~~~~~~~~~
-../arch/um/os-Linux/mem.c:28:6: warning: no previous prototype for ‘kasan_map_memory’ [-Wmissing-prototypes]
-   28 | void kasan_map_memory(void *start, size_t len)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/os-Linux/mem.c:212:13: warning: no previous prototype for ‘check_tmpexec’ [-Wmissing-prototypes]
-  212 | void __init check_tmpexec(void)
-      |             ^~~~~~~~~~~~~
-../arch/um/os-Linux/signal.c:75:6: warning: no previous prototype for ‘sig_handler’ [-Wmissing-prototypes]
-   75 | void sig_handler(int sig, struct siginfo *si, mcontext_t *mc)
-      |      ^~~~~~~~~~~
-../arch/um/os-Linux/signal.c:111:6: warning: no previous prototype for ‘timer_alarm_handler’ [-Wmissing-prototypes]
-  111 | void timer_alarm_handler(int sig, struct siginfo *unused_si, mcontext_t *mc)
-      |      ^~~~~~~~~~~~~~~~~~~
-../arch/um/os-Linux/start_up.c:301:12: warning: no previous prototype for ‘parse_iomem’ [-Wmissing-prototypes]
-  301 | int __init parse_iomem(char *str, int *add)
-      |            ^~~~~~~~~~~
-../arch/x86/um/syscalls_64.c:48:6: warning: no previous prototype for ‘arch_switch_to’ [-Wmissing-prototypes]
-   48 | void arch_switch_to(struct task_struct *to)
-      |      ^~~~~~~~~~~~~~
-../arch/um/kernel/mem.c:202:8: warning: no previous prototype for ‘pgd_alloc’ [-Wmissing-prototypes]
-  202 | pgd_t *pgd_alloc(struct mm_struct *mm)
-      |        ^~~~~~~~~
-../arch/um/kernel/mem.c:215:7: warning: no previous prototype for ‘uml_kmalloc’ [-Wmissing-prototypes]
-  215 | void *uml_kmalloc(int size, int flags)
-      |       ^~~~~~~~~~~
-../arch/um/kernel/process.c:51:5: warning: no previous prototype for ‘pid_to_processor_id’ [-Wmissing-prototypes]
-   51 | int pid_to_processor_id(int pid)
-      |     ^~~~~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:87:7: warning: no previous prototype for ‘__switch_to’ [-Wmissing-prototypes]
-   87 | void *__switch_to(struct task_struct *from, struct task_struct *to)
-      |       ^~~~~~~~~~~
-../arch/um/kernel/process.c:140:6: warning: no previous prototype for ‘fork_handler’ [-Wmissing-prototypes]
-  140 | void fork_handler(void)
-      |      ^~~~~~~~~~~~
-../arch/um/kernel/process.c:217:6: warning: no previous prototype for ‘arch_cpu_idle’ [-Wmissing-prototypes]
-  217 | void arch_cpu_idle(void)
-      |      ^~~~~~~~~~~~~
-../arch/um/kernel/process.c:253:5: warning: no previous prototype for ‘copy_to_user_proc’ [-Wmissing-prototypes]
-  253 | int copy_to_user_proc(void __user *to, void *from, int size)
-      |     ^~~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:263:5: warning: no previous prototype for ‘clear_user_proc’ [-Wmissing-prototypes]
-  263 | int clear_user_proc(void __user *buf, int size)
-      |     ^~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:271:6: warning: no previous prototype for ‘set_using_sysemu’ [-Wmissing-prototypes]
-  271 | void set_using_sysemu(int value)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:278:5: warning: no previous prototype for ‘get_using_sysemu’ [-Wmissing-prototypes]
-  278 | int get_using_sysemu(void)
-      |     ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:316:12: warning: no previous prototype for ‘make_proc_sysemu’ [-Wmissing-prototypes]
-  316 | int __init make_proc_sysemu(void)
-      |            ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:348:15: warning: no previous prototype for ‘arch_align_stack’ [-Wmissing-prototypes]
-  348 | unsigned long arch_align_stack(unsigned long sp)
-      |               ^~~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:45:6: warning: no previous prototype for ‘machine_restart’ [-Wmissing-prototypes]
-   45 | void machine_restart(char * __unused)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:51:6: warning: no previous prototype for ‘machine_power_off’ [-Wmissing-prototypes]
-   51 | void machine_power_off(void)
-      |      ^~~~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:57:6: warning: no previous prototype for ‘machine_halt’ [-Wmissing-prototypes]
-   57 | void machine_halt(void)
-      |      ^~~~~~~~~~~~
-../arch/um/kernel/tlb.c:579:6: warning: no previous prototype for ‘flush_tlb_mm_range’ [-Wmissing-prototypes]
-  579 | void flush_tlb_mm_range(struct mm_struct *mm, unsigned long start,
-      |      ^~~~~~~~~~~~~~~~~~
-../arch/um/kernel/tlb.c:594:6: warning: no previous prototype for ‘force_flush_all’ [-Wmissing-prototypes]
-  594 | void force_flush_all(void)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/kernel/kmsg_dump.c:60:12: warning: no previous prototype for ‘kmsg_dumper_stdout_init’ [-Wmissing-prototypes]
-   60 | int __init kmsg_dumper_stdout_init(void)
-      |            ^~~~~~~~~~~~~~~~~~~~~~~
-../arch/um/kernel/um_arch.c:408:19: warning: no previous prototype for ‘read_initrd’ [-Wmissing-prototypes]
-  408 | int __init __weak read_initrd(void)
-      |                   ^~~~~~~~~~~
-../arch/um/kernel/um_arch.c:461:7: warning: no previous prototype for ‘text_poke’ [-Wmissing-prototypes]
-  461 | void *text_poke(void *addr, const void *opcode, size_t len)
-      |       ^~~~~~~~~
-../arch/um/kernel/um_arch.c:473:6: warning: no previous prototype for ‘text_poke_sync’ [-Wmissing-prototypes]
-  473 | void text_poke_sync(void)
-      |      ^~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_migrate.c:1303:
-../drivers/gpu/drm/xe/tests/xe_migrate.c:91:14: error: initialization of ‘void (*)(struct xe_tile *, struct iosys_map *, void *, u32,  u32,  const struct xe_vm_pgtable_update *)’ {aka ‘void (*)(struct xe_tile *, struct iosys_map *, void *, unsigned int,  unsigned int,  const struct xe_vm_pgtable_update *)’} from incompatible pointer type ‘void (*)(struct xe_migrate_pt_update *, struct xe_tile *, struct iosys_map *, void *, u32,  u32,  const struct xe_vm_pgtable_update *)’ {aka ‘void (*)(struct xe_migrate_pt_update *, struct xe_tile *, struct iosys_map *, void *, unsigned int,  unsigned int,  const struct xe_vm_pgtable_update *)’} [-Werror=incompatible-pointer-types]
-   91 |  .populate = sanity_populate_cb,
-      |              ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/tests/xe_migrate.c:91:14: note: (near initialization for ‘sanity_ops.populate’)
-../drivers/gpu/drm/xe/tests/xe_migrate.c: In function ‘test_pt_update’:
-../drivers/gpu/drm/xe/tests/xe_migrate.c:239:44: error: passing argument 2 of ‘xe_migrate_update_pgtables’ from incompatible pointer type [-Werror=incompatible-pointer-types]
-  239 |  fence = xe_migrate_update_pgtables(m, m->q->vm, NULL, m->q, &update, 1,
-      |                                        ~~~~^~~~
-      |                                            |
-      |                                            struct xe_vm *
-../drivers/gpu/drm/xe/xe_migrate.c:1274:36: note: expected ‘struct xe_migrate_pt_update *’ but argument is of type ‘struct xe_vm *’
- 1274 |       struct xe_migrate_pt_update *pt_update)
-      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_migrate.c:1303:
-../drivers/gpu/drm/xe/tests/xe_migrate.c:239:10: error: too many arguments to function ‘xe_migrate_update_pgtables’
-  239 |  fence = xe_migrate_update_pgtables(m, m->q->vm, NULL, m->q, &update, 1,
-      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c:1273:1: note: declared here
- 1273 | xe_migrate_update_pgtables(struct xe_migrate *m,
-      | ^~~~~~~~~~~~~~~~~~~~~~~~~~
-cc1: some warnings being treated as errors
-make[7]: *** [../scripts/Makefile.build:243: drivers/gpu/drm/xe/xe_migrate.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-make[6]: *** [../scripts/Makefile.build:481: drivers/gpu/drm/xe] Error 2
-make[6]: *** Waiting for unfinished jobs....
-make[5]: *** [../scripts/Makefile.build:481: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:481: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:481: drivers] Error 2
-make[2]: *** [/kernel/Makefile:1921: .] Error 2
-make[1]: *** [/kernel/Makefile:240: __sub-make] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
-
-[22:12:35] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[22:12:39] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+thanks
+Lucas De Marchi
