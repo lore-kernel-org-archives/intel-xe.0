@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 204FAC48260
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81AF1C4828F
 	for <intel-xe@archiver.kernel.org>; Thu,  8 Feb 2024 21:19:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2B9410EDFA;
-	Thu,  8 Feb 2024 21:19:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CA9B10EDFC;
+	Thu,  8 Feb 2024 21:19:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GKwmpZiq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AYHdMRmU";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D16A210EE14
- for <intel-xe@lists.freedesktop.org>; Thu,  8 Feb 2024 21:19:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8107D10EDFA
+ for <intel-xe@lists.freedesktop.org>; Thu,  8 Feb 2024 21:19:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707427161; x=1738963161;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=zrIy6NxJ62pvxqBQZ2Z+2f5yFO7K9iNX+Ubt0OVdCKM=;
- b=GKwmpZiq2FnX1Zda2QBgpBqIGnUTbrfnY8OOuMoOdlYx6JLvTUZwuKvY
- +yVml2NI05ZJR24DuWCXVxH/WHnzoNsNlnaVnISA8Xiyx5dFfi9o05mHl
- QtxC8ppWbg0AFGHdpIz0NSNHMUE+qbWDt4gXxSvxkeDRA//3lJDxHcQcD
- v22bpH2GCYCOfrMT/7QVmxX0LG53ExYDyqlVbpzDD2+b/5XAGJQdxwVGE
- 38uBCVYXpbXcVYOEyviZxzqQ+Z7UEkaWbBVzyUgmXy8oEZOL1cQBnEaXw
- Lf0mlkniE/dD0GhVIk0kPJMi+Z8hYrXCMhjfzSKRGfBxKEID1cbYchvb1 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="18823810"
-X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; d="scan'208";a="18823810"
+ t=1707427162; x=1738963162;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=KUQFOawVPGdMNdtUhSSSsBcq9tatQ5MaLOJVUPo0Fxc=;
+ b=AYHdMRmU4nASHz5rDPGsn1NsDnt6MsmpYg78HBS1WUHNn3spFNSeNeG6
+ RXNRhq9QzLPb40h7IYGoudG+s97AJ1ahQc1zRD1pHbh2mIS3CNsySgfx8
+ gN/ozC6imptl287NL0zmz4jXZdsVDoE/jHncFyxbcs1/kqJqJBVAxNCa7
+ REI4BZVFYlpvwykUoVf8LH1AIP+54zZ8IejMhDZaWLNFxMnay2Y4KHn7a
+ lkD7ycnpDtaPSEeeRoV0AryBV+k3EfwVnXts8GUhlA3hMKYMQtfc5ROFH
+ Bz5MJ5p8EIhHCSLnvBYX7B2hBROi3EKt52rxp315rOnkqL4AxN0leHeO7 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="18823814"
+X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; d="scan'208";a="18823814"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 13:19:20 -0800
+ 08 Feb 2024 13:19:21 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; 
-   d="scan'208";a="2141864"
+   d="scan'208";a="2141881"
 Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
- by orviesa008.jf.intel.com with ESMTP; 08 Feb 2024 13:19:21 -0800
+ by orviesa008.jf.intel.com with ESMTP; 08 Feb 2024 13:19:22 -0800
 From: Zhanjun Dong <zhanjun.dong@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Zhanjun Dong <zhanjun.dong@intel.com>,
- Alan Previn <alan.previn.teres.alexis@intel.com>
-Subject: [PATCH v5 0/8] drm/xe/guc: Add GuC based register capture for error
- capture
-Date: Thu,  8 Feb 2024 13:19:10 -0800
-Message-Id: <20240208211918.81789-1-zhanjun.dong@intel.com>
+Cc: Zhanjun Dong <zhanjun.dong@intel.com>
+Subject: [PATCH v5 4/8] drm/xe/guc: Add capture size check in GuC log buffer
+Date: Thu,  8 Feb 2024 13:19:14 -0800
+Message-Id: <20240208211918.81789-5-zhanjun.dong@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240208211918.81789-1-zhanjun.dong@intel.com>
+References: <20240208211918.81789-1-zhanjun.dong@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -62,71 +62,371 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Port GuC based register capture for error capture from i915 to Xe.
-
-There are 3 parts inside:
-. Prepare for capture registers
-    There is a bo create at guc ads init time, that is very early
-    and engine map is not ready, make it hard to calculate the
-    capture buffer size, new function created for worst case size
-    caluation. Other than that, this part basically follows the i915
-    design.
-. Process capture notification message
-    Basically follows i915 design
-. Sysfs command process.
-    Xe switched to devcoredump, adopted command line process with
-    captured node list.
+The capture-nodes is included in GuC log buffer, add the size check
+for capture region in the whole GuC log buffer.
 
 Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_printk.h     |   3 +
+ drivers/gpu/drm/xe/xe_guc_fwif.h      |  48 +++++++
+ drivers/gpu/drm/xe/xe_guc_log.c       | 179 ++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_log.h       |  15 +++
+ drivers/gpu/drm/xe/xe_guc_log_types.h |  26 ++++
+ 5 files changed, 271 insertions(+)
 
-Changes from prior revs:
-  v5:-  Split dss helper code code as standalone patch.
-        Remove old platform registers definition.
-        Split register map table to 32 and 64bit each.
-  v4:-  Move register map table to xe_hw_engine.c
-  v3:-  Remove condition compilation in code
-  v2:-  Split into multiple chunks
-
-Zhanjun Dong (8):
-  drm/xe/guc: Add kconfig for GuC based register capture
-  drm/xe/guc: Update GuC ADS size for error capture
-  drm/xe/guc: Add XE_LP steered register lists
-  drm/xe/guc: Add capture size check in GuC log buffer
-  drm/xe/guc: Check sizing of guc_capture output
-  drm/xe/guc: Extract GuC error capture lists on G2H notification
-  drm/xe/guc: Pre-allocate output nodes for extraction
-  drm/xe/guc: Plumb GuC-capture into dev coredump
-
- drivers/gpu/drm/xe/Kconfig               |   11 +
- drivers/gpu/drm/xe/Makefile              |    1 +
- drivers/gpu/drm/xe/abi/guc_actions_abi.h |    7 +
- drivers/gpu/drm/xe/regs/xe_gt_regs.h     |    5 +
- drivers/gpu/drm/xe/xe_gt_printk.h        |    3 +
- drivers/gpu/drm/xe/xe_guc.c              |    6 +
- drivers/gpu/drm/xe/xe_guc_ads.c          |  229 +++-
- drivers/gpu/drm/xe/xe_guc_ads_types.h    |    2 +
- drivers/gpu/drm/xe/xe_guc_capture.c      | 1332 ++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_capture.h      |   21 +
- drivers/gpu/drm/xe/xe_guc_capture_fwif.h |  221 ++++
- drivers/gpu/drm/xe/xe_guc_ct.c           |    2 +
- drivers/gpu/drm/xe/xe_guc_fwif.h         |   68 ++
- drivers/gpu/drm/xe/xe_guc_log.c          |  179 +++
- drivers/gpu/drm/xe/xe_guc_log.h          |   15 +
- drivers/gpu/drm/xe/xe_guc_log_types.h    |   26 +
- drivers/gpu/drm/xe/xe_guc_submit.c       |   21 +-
- drivers/gpu/drm/xe/xe_guc_submit.h       |    3 +
- drivers/gpu/drm/xe/xe_guc_types.h        |    2 +
- drivers/gpu/drm/xe/xe_hw_engine.c        |  257 ++++-
- drivers/gpu/drm/xe/xe_hw_engine.h        |    4 +
- drivers/gpu/drm/xe/xe_hw_engine_types.h  |   96 +-
- 22 files changed, 2396 insertions(+), 115 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_guc_capture.c
- create mode 100644 drivers/gpu/drm/xe/xe_guc_capture.h
- create mode 100644 drivers/gpu/drm/xe/xe_guc_capture_fwif.h
-
-
-base-commit: 26c94721565996b1990ccb2a64b05947e1f201b5
+diff --git a/drivers/gpu/drm/xe/xe_gt_printk.h b/drivers/gpu/drm/xe/xe_gt_printk.h
+index c2b004d3f48e..107360edfcd6 100644
+--- a/drivers/gpu/drm/xe/xe_gt_printk.h
++++ b/drivers/gpu/drm/xe/xe_gt_printk.h
+@@ -22,6 +22,9 @@
+ #define xe_gt_notice(_gt, _fmt, ...) \
+ 	xe_gt_printk((_gt), notice, _fmt, ##__VA_ARGS__)
+ 
++#define xe_gt_notice_ratelimited(_gt, _fmt, ...) \
++	xe_gt_printk((_gt), err_ratelimited, _fmt, ##__VA_ARGS__)
++
+ #define xe_gt_info(_gt, _fmt, ...) \
+ 	xe_gt_printk((_gt), info, _fmt, ##__VA_ARGS__)
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
+index fc667abead8d..bf6c8c0c1dce 100644
+--- a/drivers/gpu/drm/xe/xe_guc_fwif.h
++++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
+@@ -243,6 +243,54 @@ struct guc_engine_usage {
+ 	struct guc_engine_usage_record engines[GUC_MAX_ENGINE_CLASSES][GUC_MAX_INSTANCES_PER_CLASS];
+ } __packed;
+ 
++/* GuC logging structures */
++
++enum guc_log_buffer_type {
++	GUC_DEBUG_LOG_BUFFER,
++	GUC_CRASH_DUMP_LOG_BUFFER,
++	GUC_CAPTURE_LOG_BUFFER,
++	GUC_MAX_LOG_BUFFER
++};
++
++/*
++ * struct guc_log_buffer_state - GuC log buffer state
++ *
++ * Below state structure is used for coordination of retrieval of GuC firmware
++ * logs. Separate state is maintained for each log buffer type.
++ * read_ptr points to the location where i915 read last in log buffer and
++ * is read only for GuC firmware. write_ptr is incremented by GuC with number
++ * of bytes written for each log entry and is read only for i915.
++ * When any type of log buffer becomes half full, GuC sends a flush interrupt.
++ * GuC firmware expects that while it is writing to 2nd half of the buffer,
++ * first half would get consumed by Host and then get a flush completed
++ * acknowledgment from Host, so that it does not end up doing any overwrite
++ * causing loss of logs. So when buffer gets half filled & i915 has requested
++ * for interrupt, GuC will set flush_to_file field, set the sampled_write_ptr
++ * to the value of write_ptr and raise the interrupt.
++ * On receiving the interrupt i915 should read the buffer, clear flush_to_file
++ * field and also update read_ptr with the value of sample_write_ptr, before
++ * sending an acknowledgment to GuC. marker & version fields are for internal
++ * usage of GuC and opaque to i915. buffer_full_cnt field is incremented every
++ * time GuC detects the log buffer overflow.
++ */
++struct guc_log_buffer_state {
++	u32 marker[2];
++	u32 read_ptr;
++	u32 write_ptr;
++	u32 size;
++	u32 sampled_write_ptr;
++	u32 wrap_offset;
++	union {
++		struct {
++			u32 flush_to_file:1;
++			u32 buffer_full_cnt:4;
++			u32 reserved:27;
++		};
++		u32 flags;
++	};
++	u32 version;
++} __packed;
++
+ /* This action will be programmed in C1BC - SOFT_SCRATCH_15_REG */
+ enum xe_guc_recv_message {
+ 	XE_GUC_RECV_MSG_CRASH_DUMP_POSTED = BIT(1),
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
+index bcd2f4d34081..93d44d2d6ac8 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.c
++++ b/drivers/gpu/drm/xe/xe_guc_log.c
+@@ -9,9 +9,30 @@
+ 
+ #include "xe_bo.h"
+ #include "xe_gt.h"
++#include "xe_gt_printk.h"
+ #include "xe_map.h"
+ #include "xe_module.h"
+ 
++#define MISSING_CASE(x) WARN(1, "Missing case (%s == %ld)\n", \
++			     __stringify(x), (long)(x))
++
++#define GUC_LOG_DEFAULT_CRASH_BUFFER_SIZE	CRASH_BUFFER_SIZE
++#define GUC_LOG_DEFAULT_DEBUG_BUFFER_SIZE	DEBUG_BUFFER_SIZE
++#define GUC_LOG_DEFAULT_CAPTURE_BUFFER_SIZE	CAPTURE_BUFFER_SIZE
++
++struct guc_log_section {
++	u32 max;
++	u32 flag;
++	u32 default_val;
++	const char *name;
++};
++
++static struct xe_gt *
++guc_to_gt(struct xe_guc *guc)
++{
++	return container_of(guc, struct xe_gt, uc.guc);
++}
++
+ static struct xe_gt *
+ log_to_gt(struct xe_guc_log *log)
+ {
+@@ -95,3 +116,161 @@ int xe_guc_log_init(struct xe_guc_log *log)
+ 
+ 	return 0;
+ }
++
++static void _guc_log_init_sizes(struct xe_guc_log *log)
++{
++	struct xe_guc *guc = log_to_guc(log);
++	static const struct guc_log_section sections[GUC_LOG_SECTIONS_LIMIT] = {
++		{
++			GUC_LOG_CRASH_MASK >> GUC_LOG_CRASH_SHIFT,
++			GUC_LOG_LOG_ALLOC_UNITS,
++			GUC_LOG_DEFAULT_CRASH_BUFFER_SIZE,
++			"crash dump"
++		},
++		{
++			GUC_LOG_DEBUG_MASK >> GUC_LOG_DEBUG_SHIFT,
++			GUC_LOG_LOG_ALLOC_UNITS,
++			GUC_LOG_DEFAULT_DEBUG_BUFFER_SIZE,
++			"debug",
++		},
++		{
++			GUC_LOG_CAPTURE_MASK >> GUC_LOG_CAPTURE_SHIFT,
++			GUC_LOG_CAPTURE_ALLOC_UNITS,
++			GUC_LOG_DEFAULT_CAPTURE_BUFFER_SIZE,
++			"capture",
++		}
++	};
++	int i;
++
++	for (i = 0; i < GUC_LOG_SECTIONS_LIMIT; i++)
++		log->sizes[i].bytes = sections[i].default_val;
++
++	/* If debug size > 1MB then bump default crash size to keep the same units */
++	if (log->sizes[GUC_LOG_SECTIONS_DEBUG].bytes >= SZ_1M &&
++	    GUC_LOG_DEFAULT_CRASH_BUFFER_SIZE < SZ_1M)
++		log->sizes[GUC_LOG_SECTIONS_CRASH].bytes = SZ_1M;
++
++	/* Prepare the GuC API structure fields: */
++	for (i = 0; i < GUC_LOG_SECTIONS_LIMIT; i++) {
++		/* Convert to correct units */
++		if ((log->sizes[i].bytes % SZ_1M) == 0) {
++			log->sizes[i].units = SZ_1M;
++			log->sizes[i].flag = sections[i].flag;
++		} else {
++			log->sizes[i].units = SZ_4K;
++			log->sizes[i].flag = 0;
++		}
++
++		if (!IS_ALIGNED(log->sizes[i].bytes, log->sizes[i].units))
++			xe_gt_err(guc_to_gt(guc), "Mis-aligned log %s size: 0x%X vs 0x%X!\n",
++				  sections[i].name, log->sizes[i].bytes, log->sizes[i].units);
++		log->sizes[i].count = log->sizes[i].bytes / log->sizes[i].units;
++
++		if (!log->sizes[i].count) {
++			xe_gt_err(guc_to_gt(guc), "Zero log %s size!\n", sections[i].name);
++		} else {
++			/* Size is +1 unit */
++			log->sizes[i].count--;
++		}
++
++		/* Clip to field size */
++		if (log->sizes[i].count > sections[i].max) {
++			xe_gt_err(guc_to_gt(guc), "log %s size too large: %d vs %d!\n",
++				  sections[i].name, log->sizes[i].count + 1, sections[i].max + 1);
++			log->sizes[i].count = sections[i].max;
++		}
++	}
++
++	if (log->sizes[GUC_LOG_SECTIONS_CRASH].units != log->sizes[GUC_LOG_SECTIONS_DEBUG].units) {
++		xe_gt_err(guc_to_gt(guc), "Unit mismatch for crash and debug sections: %d vs %d!\n",
++			  log->sizes[GUC_LOG_SECTIONS_CRASH].units,
++			  log->sizes[GUC_LOG_SECTIONS_DEBUG].units);
++		log->sizes[GUC_LOG_SECTIONS_CRASH].units = log->sizes[GUC_LOG_SECTIONS_DEBUG].units;
++		log->sizes[GUC_LOG_SECTIONS_CRASH].count = 0;
++	}
++
++	log->sizes_initialised = true;
++}
++
++static void guc_log_init_sizes(struct xe_guc_log *log)
++{
++	if (log->sizes_initialised)
++		return;
++
++	_guc_log_init_sizes(log);
++}
++
++static u32 xe_guc_log_section_size_crash(struct xe_guc_log *log)
++{
++	guc_log_init_sizes(log);
++
++	return log->sizes[GUC_LOG_SECTIONS_CRASH].bytes;
++}
++
++static u32 xe_guc_log_section_size_debug(struct xe_guc_log *log)
++{
++	guc_log_init_sizes(log);
++
++	return log->sizes[GUC_LOG_SECTIONS_DEBUG].bytes;
++}
++
++u32 xe_guc_log_section_size_capture(struct xe_guc_log *log)
++{
++	guc_log_init_sizes(log);
++
++	return log->sizes[GUC_LOG_SECTIONS_CAPTURE].bytes;
++}
++
++bool xe_guc_check_log_buf_overflow(struct xe_guc_log *log, enum guc_log_buffer_type type,
++				   unsigned int full_cnt)
++{
++	unsigned int prev_full_cnt = log->stats[type].sampled_overflow;
++	bool overflow = false;
++
++	if (full_cnt != prev_full_cnt) {
++		overflow = true;
++
++		log->stats[type].overflow = full_cnt;
++		log->stats[type].sampled_overflow += full_cnt - prev_full_cnt;
++
++		if (full_cnt < prev_full_cnt) {
++			/* buffer_full_cnt is a 4 bit counter */
++			log->stats[type].sampled_overflow += 16;
++		}
++		xe_gt_notice_ratelimited(log_to_gt(log), "log buffer overflow\n");
++	}
++
++	return overflow;
++}
++
++unsigned int xe_guc_get_log_buffer_size(struct xe_guc_log *log,
++					enum guc_log_buffer_type type)
++{
++	switch (type) {
++	case GUC_DEBUG_LOG_BUFFER:
++		return xe_guc_log_section_size_debug(log);
++	case GUC_CRASH_DUMP_LOG_BUFFER:
++		return xe_guc_log_section_size_crash(log);
++	case GUC_CAPTURE_LOG_BUFFER:
++		return xe_guc_log_section_size_capture(log);
++	default:
++		MISSING_CASE(type);
++	}
++
++	return 0;
++}
++
++size_t xe_guc_get_log_buffer_offset(struct xe_guc_log *log,
++				    enum guc_log_buffer_type type)
++{
++	enum guc_log_buffer_type i;
++	size_t offset = PAGE_SIZE;/* for the log_buffer_states */
++
++	for (i = GUC_DEBUG_LOG_BUFFER; i < GUC_MAX_LOG_BUFFER; ++i) {
++		if (i == type)
++			break;
++		offset += xe_guc_get_log_buffer_size(log, i);
++	}
++
++	return offset;
++}
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.h b/drivers/gpu/drm/xe/xe_guc_log.h
+index 2d25ab28b4b3..6a70185ce306 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.h
++++ b/drivers/gpu/drm/xe/xe_guc_log.h
+@@ -7,6 +7,7 @@
+ #define _XE_GUC_LOG_H_
+ 
+ #include "xe_guc_log_types.h"
++#include "xe_guc_types.h"
+ 
+ struct drm_printer;
+ 
+@@ -36,6 +37,11 @@ struct drm_printer;
+ #define GUC_VERBOSITY_TO_LOG_LEVEL(x)	((x) + 2)
+ #define GUC_LOG_LEVEL_MAX GUC_VERBOSITY_TO_LOG_LEVEL(GUC_LOG_VERBOSITY_MAX)
+ 
++static inline struct xe_guc *log_to_guc(struct xe_guc_log *log)
++{
++	return container_of(log, struct xe_guc, log);
++}
++
+ int xe_guc_log_init(struct xe_guc_log *log);
+ void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p);
+ 
+@@ -45,4 +51,13 @@ xe_guc_log_get_level(struct xe_guc_log *log)
+ 	return log->level;
+ }
+ 
++u32 xe_guc_log_section_size_capture(struct xe_guc_log *log);
++
++bool xe_guc_check_log_buf_overflow(struct xe_guc_log *log,
++				   enum guc_log_buffer_type type,
++				   unsigned int full_cnt);
++unsigned int xe_guc_get_log_buffer_size(struct xe_guc_log *log,
++					enum guc_log_buffer_type type);
++size_t xe_guc_get_log_buffer_offset(struct xe_guc_log *log,
++				    enum guc_log_buffer_type type);
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_guc_log_types.h b/drivers/gpu/drm/xe/xe_guc_log_types.h
+index 125080d138a7..0d9489ff69aa 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_log_types.h
+@@ -6,7 +6,17 @@
+ #ifndef _XE_GUC_LOG_TYPES_H_
+ #define _XE_GUC_LOG_TYPES_H_
+ 
++#include <linux/mutex.h>
+ #include <linux/types.h>
++#include <linux/workqueue.h>
++#include "xe_guc_fwif.h"
++
++enum {
++	GUC_LOG_SECTIONS_CRASH,
++	GUC_LOG_SECTIONS_DEBUG,
++	GUC_LOG_SECTIONS_CAPTURE,
++	GUC_LOG_SECTIONS_LIMIT
++};
+ 
+ struct xe_bo;
+ 
+@@ -18,6 +28,22 @@ struct xe_guc_log {
+ 	u32 level;
+ 	/** @bo: XE BO for GuC log */
+ 	struct xe_bo *bo;
++
++	/* Allocation settings */
++	struct {
++		s32 bytes;	/* Size in bytes */
++		s32 units;	/* GuC API units - 1MB or 4KB */
++		s32 count;	/* Number of API units */
++		u32 flag;	/* GuC API units flag */
++	} sizes[GUC_LOG_SECTIONS_LIMIT];
++	bool sizes_initialised;
++
++	/* logging related stats */
++	struct {
++		u32 sampled_overflow;
++		u32 overflow;
++		u32 flush;
++	} stats[GUC_MAX_LOG_BUFFER];
+ };
+ 
+ #endif
 -- 
 2.34.1
 
