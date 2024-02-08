@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0339C48260
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Feb 2024 08:50:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71156C48260
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Feb 2024 08:50:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7768B10E46D;
-	Thu,  8 Feb 2024 08:50:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bsxYhPQ8";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E16210E46D;
- Thu,  8 Feb 2024 08:50:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707382210; x=1738918210;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=0lR0Js2Ta6ESjjgeXWYiaIlClzCWLnCunSK0HHuu9dE=;
- b=bsxYhPQ8B0HIHBmtXJUfd3EQmabp/9VLavTByvCHcOdIwjo1Dby9qBoI
- PDM632/DYDRN0oUcyuhvGxlRtyf4TFuaRvDxA2ktteWNVhmU33IoVTV1A
- vlJc/MHINGeMul1a9TZzgne8aYQMoWHHTSjmDfrozqcusAUc4M9/+B9uL
- uAzBuVBcCzL7YlWx/iFmsNoJEBykflVnoDzQ+//iRo0r50Z88J9pWCbdB
- j1QshcWyO/EOwSnh2alwoycuKjEIkMw9bD6yP9zVZlTkf0aDl4AF2qD9n
- 0tbW2pq9SExYHK5404HACTQFluEcFHNOuDtEASL6eltbZwEZuYhB0gieB g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10977"; a="1071739"
-X-IronPort-AV: E=Sophos;i="6.05,253,1701158400"; 
-   d="scan'208";a="1071739"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 00:50:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,253,1701158400"; 
-   d="scan'208";a="1837099"
-Received: from aavzirov-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.61.13])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 00:50:04 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, Yury Norov
- <yury.norov@gmail.com>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Andy
- Shevchenko <andriy.shevchenko@linux.intel.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Lucas De
- Marchi <lucas.demarchi@intel.com>
-Subject: Re: [PATCH v3 3/3] drm/i915: Convert REG_GENMASK* to fixed-width
- GENMASK_*
-In-Reply-To: <20240208074521.577076-4-lucas.demarchi@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240208074521.577076-1-lucas.demarchi@intel.com>
- <20240208074521.577076-4-lucas.demarchi@intel.com>
-Date: Thu, 08 Feb 2024 10:49:58 +0200
-Message-ID: <875xyzcpc9.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2657010E46D;
+	Thu,  8 Feb 2024 08:50:46 +0000 (UTC)
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15EFB10E46D;
+ Thu,  8 Feb 2024 08:50:45 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/xe=5Fgt=5Fidle=3A?=
+ =?utf-8?q?_Drop_redundant_newline_in_name_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 08 Feb 2024 08:50:45 -0000
+Message-ID: <170738224509.1104223.15526249375423077276@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240206192731.3533608-1-ashutosh.dixit@intel.com>
+In-Reply-To: <20240206192731.3533608-1-ashutosh.dixit@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,27 +36,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 07 Feb 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> Now that include/linux/bits.h implements fixed-width GENMASK_*, use them
-> to implement the i915/xe specific macros. Converting each driver to use
-> the generic macros are left for later, when/if other driver-specific
-> macros are also generalized.
->
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
+== Series Details ==
 
-Thanks for doing this!
+Series: drm/xe/xe_gt_idle: Drop redundant newline in name (rev4)
+URL   : https://patchwork.freedesktop.org/series/129495/
+State : success
 
-This is fine to merge via whichever tree you find best. The i915 parts
-have very little conflict potential, there haven't been changes here in
-a while.
+== Summary ==
 
-BR,
-Jani.
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast a942be9b4f39a05326a5fc3fd774fb143b4d9507
+Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
+Fast mode used, each commit won't be checked separately.
+Okay!
+
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
--- 
-Jani Nikula, Intel
