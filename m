@@ -4,59 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 040E2C48260
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Feb 2024 11:09:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 270BDC48260
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Feb 2024 13:28:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 963F610E60C;
-	Thu,  8 Feb 2024 11:09:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E847C10E481;
+	Thu,  8 Feb 2024 13:28:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DIrqQ72r";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fr/Gk3ue";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5188010E63E;
- Thu,  8 Feb 2024 11:09:00 +0000 (UTC)
+X-Greylist: delayed 426 seconds by postgrey-1.36 at gabe;
+ Thu, 08 Feb 2024 13:28:34 UTC
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5F1E10E481
+ for <intel-xe@lists.freedesktop.org>; Thu,  8 Feb 2024 13:28:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707390541; x=1738926541;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=Jz5fnD+jREj51S11/azW+TZ3mNwy4PtiPm9X6xYtW/4=;
- b=DIrqQ72rZTUH3XLKXbllNmeoDNh9H9M9jKaatvCQkJudehlBFv8dinzb
- d93pp0MbK3TavFGucV2VmNVc5psD7I9lCtcBJzMR7Lqo8V4+AE6JsMg63
- cfFSbm33eujW5W3g186Rx8KwLKw5emK12RxIyLvJm/Q9tZF8eyL9qT8Ux
- yF7Ctm93BWYVA2XlJRYfoQe3d3GKPvouw0CTVs0xFqnunJJ/Z58ifX3DB
- Sa76Y1R1E7gLZvz0HB1PNQGgq23o2uFKUa4jwV4MBYu1DA/Bnxux5zpXd
- IG+ishdYlDSVDO4qEi00WfYq4TMkCcMXGnG/M8y81hpmD8eK0327Jduu9 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10977"; a="23675561"
-X-IronPort-AV: E=Sophos;i="6.05,253,1701158400"; d="scan'208";a="23675561"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 03:08:59 -0800
+ t=1707398915; x=1738934915;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=cy/TQmvZnCYQkk4SFBZjS1ZMfUSaPbxZe0LtKZNRlDc=;
+ b=fr/Gk3ueiya7nnprVrpRCMWt4Krc93TO8AuOZEItWfoWlzFynVjF+NYL
+ 7IPT8wBqKx/11zF71oDPzZv+4BdBkjcQCtgaHUNTp4Ozmay4RmkgsjIkY
+ V4Hm8XhswllZ78aw5ctA2Q8cvKl3HW6urNzQlWWiJRUqGkJf4kNtMbhsF
+ kp/2DlU0EmJSUyNbZvXxFNZQsDLy6eycGZBUlnloNzf/LMMIkzhVmP3WQ
+ rxSxYIHFDJ7BeLZvv+m8lJFxvY1qLRwrEzOJWVeqw+dldsSa3KAJFKIWw
+ uOymiWruUv4dHLxoKdIJrQC/f34TUhYdvt/YpfXwMn1ecCfWzEnn6q54Z Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10977"; a="1083327"
+X-IronPort-AV: E=Sophos;i="6.05,253,1701158400"; 
+   d="scan'208";a="1083327"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2024 05:21:28 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,253,1701158400"; d="scan'208";a="24872336"
-Received: from pplotits-mobl2.ccr.corp.intel.com (HELO fedora)
+X-IronPort-AV: E=Sophos;i="6.05,253,1701158400"; 
+   d="scan'208";a="6279482"
+Received: from pplotits-mobl2.ccr.corp.intel.com (HELO fedora..)
  ([10.249.254.149])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 03:08:55 -0800
-Date: Thu, 8 Feb 2024 12:08:30 +0100
-From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: [PULL] drm-xe-fixes
-Message-ID: <ZcS2LllawGifubsk@fedora>
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2024 05:21:25 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH] drm/xe/vm: Avoid reserving zero fences
+Date: Thu,  8 Feb 2024 14:21:15 +0100
+Message-ID: <20240208132115.3132-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,75 +68,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Dave, Sima
+The function xe_vm_prepare_vma was blindly accepting zero as the
+number of fences and forwarded that to drm_exec_prepare_obj.
 
-The drm-xe-fixes pull for -rc4.
+However, that leads to an out-of-bounds shift in the
+dma_resv_reserve_fences() and while one could argue that the
+dma_resv code should be robust against that, avoid attempting
+to reserve zero fences.
 
-Thanks,
-Thomas
+Relevant stack trace:
 
-drm-xe-fixes-2024-02-08:
-Driver Changes:
-- Fix a loop in an error path
-- Fix a missing dma-fence reference
-- Fix a retry path on userptr REMAP
-- Workaround for a false gcc warning
-- Fix missing map of the usm batch buffer
-  in the migrate vm.
-- Fix a memory leak.
-- Fix a bad assumption of used page size
-- Fix hitting a BUG() due to zero pages to map.
-- Remove some leftover async bind queue relics
-The following changes since commit 54be6c6c5ae8e0d93a6c4641cb7528eb0b6ba478:
+[773.183188] ------------[ cut here ]------------
+[773.183199] UBSAN: shift-out-of-bounds in ../include/linux/log2.h:57:13
+[773.183241] shift exponent 64 is too large for 64-bit type 'long unsigned int'
+[773.183254] CPU: 2 PID: 1816 Comm: xe_evict Tainted: G     U             6.8.0-rc3-xe #1
+[773.183256] Hardware name: ASUS System Product Name/PRIME Z690-P D4, BIOS 2014 10/14/2022
+[773.183257] Call Trace:
+[773.183258]  <TASK>
+[773.183260]  dump_stack_lvl+0xaf/0xd0
+[773.183266]  dump_stack+0x10/0x20
+[773.183283]  ubsan_epilogue+0x9/0x40
+[773.183286]  __ubsan_handle_shift_out_of_bounds+0x10f/0x170
+[773.183293]  dma_resv_reserve_fences.cold+0x2b/0x48
+[773.183295]  ? ww_mutex_lock+0x3c/0x110
+[773.183301]  drm_exec_prepare_obj+0x45/0x60 [drm_exec]
+[773.183313]  xe_vm_prepare_vma+0x33/0x70 [xe]
+[773.183375]  xe_vma_destroy_unlocked+0x55/0xa0 [xe]
+[773.183427]  xe_vm_close_and_put+0x526/0x940 [xe]
 
-  Linux 6.8-rc3 (2024-02-04 12:20:36 +0000)
+Fixes: 2714d5093620 ("drm/xe: Convert pagefaulting code to use drm_exec")
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_vm.c | 13 ++++++++++---
+ 1 file changed, 10 insertions(+), 3 deletions(-)
 
-are available in the Git repository at:
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 9d2e8088d07e..836a6e849cda 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -995,9 +995,16 @@ int xe_vm_prepare_vma(struct drm_exec *exec, struct xe_vma *vma,
+ 	int err;
+ 
+ 	XE_WARN_ON(!vm);
+-	err = drm_exec_prepare_obj(exec, xe_vm_obj(vm), num_shared);
+-	if (!err && bo && !bo->vm)
+-		err = drm_exec_prepare_obj(exec, &bo->ttm.base, num_shared);
++	if (num_shared)
++		err = drm_exec_prepare_obj(exec, xe_vm_obj(vm), num_shared);
++	else
++		err = drm_exec_lock_obj(exec, xe_vm_obj(vm));
++	if (!err && bo && !bo->vm) {
++		if (num_shared)
++			err = drm_exec_prepare_obj(exec, &bo->ttm.base, num_shared);
++		else
++			err = drm_exec_lock_obj(exec, &bo->ttm.base);
++	}
+ 
+ 	return err;
+ }
+-- 
+2.43.0
 
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2024-02-08
-
-for you to fetch changes up to bf4c27b8267d7848bb81fd41e6aa07aa662f07fb:
-
-  drm/xe: Remove TEST_VM_ASYNC_OPS_ERROR (2024-02-08 09:51:19 +0100)
-
-----------------------------------------------------------------
-Driver Changes:
-- Fix a loop in an error path
-- Fix a missing dma-fence reference
-- Fix a retry path on userptr REMAP
-- Workaround for a false gcc warning
-- Fix missing map of the usm batch buffer
-  in the migrate vm.
-- Fix a memory leak.
-- Fix a bad assumption of used page size
-- Fix hitting a BUG() due to zero pages to map.
-- Remove some leftover async bind queue relics
-
-----------------------------------------------------------------
-Arnd Bergmann (1):
-      drm/xe: circumvent bogus stringop-overflow warning
-
-Matthew Auld (1):
-      drm/xe/vm: don't ignore error when in_kthread
-
-Matthew Brost (6):
-      drm/xe: Fix loop in vm_bind_ioctl_ops_unwind
-      drm/xe: Take a reference in xe_exec_queue_last_fence_get()
-      drm/xe: Pick correct userptr VMA to repin on REMAP op failure
-      drm/xe: Map both mem.kernel_bb_pool and usm.bb_pool
-      drm/xe: Assume large page size if VMA not yet bound
-      drm/xe: Remove TEST_VM_ASYNC_OPS_ERROR
-
-Xiaoming Wang (1):
-      drm/xe/display: Fix memleak in display initialization
-
- drivers/gpu/drm/xe/xe_display.c      |  6 ----
- drivers/gpu/drm/xe/xe_exec_queue.c   |  8 +++--
- drivers/gpu/drm/xe/xe_gt.c           |  5 ++-
- drivers/gpu/drm/xe/xe_gt_pagefault.c |  2 +-
- drivers/gpu/drm/xe/xe_migrate.c      | 28 ++++++++++++----
- drivers/gpu/drm/xe/xe_sched_job.c    |  1 -
- drivers/gpu/drm/xe/xe_sync.c         |  2 --
- drivers/gpu/drm/xe/xe_vm.c           | 62 ++++++++++++++----------------------
- drivers/gpu/drm/xe/xe_vm_types.h     |  8 -----
- 9 files changed, 57 insertions(+), 65 deletions(-)
