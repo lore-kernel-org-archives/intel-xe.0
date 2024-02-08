@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AD94C4828F
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Feb 2024 10:46:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 040E2C48260
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Feb 2024 11:09:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 359ED10E5C3;
-	Thu,  8 Feb 2024 10:46:08 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE62010E5C3;
- Thu,  8 Feb 2024 10:46:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8951900167204779257=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 963F610E60C;
+	Thu,  8 Feb 2024 11:09:01 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DIrqQ72r";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5188010E63E;
+ Thu,  8 Feb 2024 11:09:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707390541; x=1738926541;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=Jz5fnD+jREj51S11/azW+TZ3mNwy4PtiPm9X6xYtW/4=;
+ b=DIrqQ72rZTUH3XLKXbllNmeoDNh9H9M9jKaatvCQkJudehlBFv8dinzb
+ d93pp0MbK3TavFGucV2VmNVc5psD7I9lCtcBJzMR7Lqo8V4+AE6JsMg63
+ cfFSbm33eujW5W3g186Rx8KwLKw5emK12RxIyLvJm/Q9tZF8eyL9qT8Ux
+ yF7Ctm93BWYVA2XlJRYfoQe3d3GKPvouw0CTVs0xFqnunJJ/Z58ifX3DB
+ Sa76Y1R1E7gLZvz0HB1PNQGgq23o2uFKUa4jwV4MBYu1DA/Bnxux5zpXd
+ IG+ishdYlDSVDO4qEi00WfYq4TMkCcMXGnG/M8y81hpmD8eK0327Jduu9 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10977"; a="23675561"
+X-IronPort-AV: E=Sophos;i="6.05,253,1701158400"; d="scan'208";a="23675561"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2024 03:08:59 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,253,1701158400"; d="scan'208";a="24872336"
+Received: from pplotits-mobl2.ccr.corp.intel.com (HELO fedora)
+ ([10.249.254.149])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2024 03:08:55 -0800
+Date: Thu, 8 Feb 2024 12:08:30 +0100
+From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: [PULL] drm-xe-fixes
+Message-ID: <ZcS2LllawGifubsk@fedora>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe/uapi=3A_Remove_support_fo?=
- =?utf-8?q?r_persistent_exec=5Fqueues_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 08 Feb 2024 10:46:06 -0000
-Message-ID: <170738916691.1106275.9015112515362386894@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240208083845.4303-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20240208083845.4303-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,185 +68,78 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8951900167204779257==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Dave, Sima
 
-== Series Details ==
+The drm-xe-fixes pull for -rc4.
 
-Series: drm/xe/uapi: Remove support for persistent exec_queues (rev2)
-URL   : https://patchwork.freedesktop.org/series/129311/
-State : failure
+Thanks,
+Thomas
 
-== Summary ==
+drm-xe-fixes-2024-02-08:
+Driver Changes:
+- Fix a loop in an error path
+- Fix a missing dma-fence reference
+- Fix a retry path on userptr REMAP
+- Workaround for a false gcc warning
+- Fix missing map of the usm batch buffer
+  in the migrate vm.
+- Fix a memory leak.
+- Fix a bad assumption of used page size
+- Fix hitting a BUG() due to zero pages to map.
+- Remove some leftover async bind queue relics
+The following changes since commit 54be6c6c5ae8e0d93a6c4641cb7528eb0b6ba478:
 
-CI Bug Log - changes from xe-747-a942be9b4f39a05326a5fc3fd774fb143b4d9507_BAT -> xe-pw-129311v2_BAT
-====================================================
+  Linux 6.8-rc3 (2024-02-04 12:20:36 +0000)
 
-Summary
--------
+are available in the Git repository at:
 
-  **FAILURE**
+  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2024-02-08
 
-  Serious unknown changes coming with xe-pw-129311v2_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-129311v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+for you to fetch changes up to bf4c27b8267d7848bb81fd41e6aa07aa662f07fb:
 
-  
+  drm/xe: Remove TEST_VM_ASYNC_OPS_ERROR (2024-02-08 09:51:19 +0100)
 
-Participating hosts (3 -> 2)
-------------------------------
+----------------------------------------------------------------
+Driver Changes:
+- Fix a loop in an error path
+- Fix a missing dma-fence reference
+- Fix a retry path on userptr REMAP
+- Workaround for a false gcc warning
+- Fix missing map of the usm batch buffer
+  in the migrate vm.
+- Fix a memory leak.
+- Fix a bad assumption of used page size
+- Fix hitting a BUG() due to zero pages to map.
+- Remove some leftover async bind queue relics
 
-  Missing    (1): bat-adlp-7 
+----------------------------------------------------------------
+Arnd Bergmann (1):
+      drm/xe: circumvent bogus stringop-overflow warning
 
-Possible new issues
--------------------
+Matthew Auld (1):
+      drm/xe/vm: don't ignore error when in_kthread
 
-  Here are the unknown changes that may have been introduced in xe-pw-129311v2_BAT:
+Matthew Brost (6):
+      drm/xe: Fix loop in vm_bind_ioctl_ops_unwind
+      drm/xe: Take a reference in xe_exec_queue_last_fence_get()
+      drm/xe: Pick correct userptr VMA to repin on REMAP op failure
+      drm/xe: Map both mem.kernel_bb_pool and usm.bb_pool
+      drm/xe: Assume large page size if VMA not yet bound
+      drm/xe: Remove TEST_VM_ASYNC_OPS_ERROR
 
-### IGT changes ###
+Xiaoming Wang (1):
+      drm/xe/display: Fix memleak in display initialization
 
-#### Possible regressions ####
-
-  * igt@xe_evict@evict-beng-mixed-threads-small-multi-vm:
-    - bat-dg2-oem2:       [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-747-a942be9b4f39a05326a5fc3fd774fb143b4d9507/bat-dg2-oem2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129311v2/bat-dg2-oem2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-129311v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - bat-dg2-oem2:       [PASS][3] -> [SKIP][4] ([Intel XE#417])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-747-a942be9b4f39a05326a5fc3fd774fb143b4d9507/bat-dg2-oem2/igt@kms_hdmi_inject@inject-audio.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129311v2/bat-dg2-oem2/igt@kms_hdmi_inject@inject-audio.html
-
-  * igt@xe_evict@evict-beng-mixed-threads-small-multi-vm:
-    - bat-atsm-2:         [PASS][5] -> [INCOMPLETE][6] ([Intel XE#804])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-747-a942be9b4f39a05326a5fc3fd774fb143b4d9507/bat-atsm-2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129311v2/bat-atsm-2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html
-
-  * igt@xe_live_ktest@bo:
-    - bat-dg2-oem2:       [PASS][7] -> [SKIP][8] ([Intel XE#850]) +2 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-747-a942be9b4f39a05326a5fc3fd774fb143b4d9507/bat-dg2-oem2/igt@xe_live_ktest@bo.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129311v2/bat-dg2-oem2/igt@xe_live_ktest@bo.html
-
-  
-  [Intel XE#417]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/417
-  [Intel XE#804]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/804
-  [Intel XE#850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/850
-
-
-Build changes
--------------
-
-  * Linux: xe-747-a942be9b4f39a05326a5fc3fd774fb143b4d9507 -> xe-pw-129311v2
-
-  IGT_7705: 45aef708b65772e54ee9a68b1f3885fa25140fdf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-747-a942be9b4f39a05326a5fc3fd774fb143b4d9507: a942be9b4f39a05326a5fc3fd774fb143b4d9507
-  xe-pw-129311v2: 129311v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129311v2/index.html
-
---===============8951900167204779257==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/uapi: Remove support for persistent exec_queues (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129311/">https://patchwork.freedesktop.org/series/129311/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129311v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129311v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-747-a942be9b4f39a05326a5fc3fd774fb143b4d9507_BAT -&gt; xe-pw-129311v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-129311v2_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-129311v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (3 -&gt; 2)</h2>
-<p>Missing    (1): bat-adlp-7 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-129311v2_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_evict@evict-beng-mixed-threads-small-multi-vm:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-747-a942be9b4f39a05326a5fc3fd774fb143b4d9507/bat-dg2-oem2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129311v2/bat-dg2-oem2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-129311v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-747-a942be9b4f39a05326a5fc3fd774fb143b4d9507/bat-dg2-oem2/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129311v2/bat-dg2-oem2/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/417">Intel XE#417</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-beng-mixed-threads-small-multi-vm:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-747-a942be9b4f39a05326a5fc3fd774fb143b4d9507/bat-atsm-2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129311v2/bat-atsm-2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/804">Intel XE#804</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@bo:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-747-a942be9b4f39a05326a5fc3fd774fb143b4d9507/bat-dg2-oem2/igt@xe_live_ktest@bo.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129311v2/bat-dg2-oem2/igt@xe_live_ktest@bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/850">Intel XE#850</a>) +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-747-a942be9b4f39a05326a5fc3fd774fb143b4d9507 -&gt; xe-pw-129311v2</li>
-</ul>
-<p>IGT_7705: 45aef708b65772e54ee9a68b1f3885fa25140fdf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-747-a942be9b4f39a05326a5fc3fd774fb143b4d9507: a942be9b4f39a05326a5fc3fd774fb143b4d9507<br />
-  xe-pw-129311v2: 129311v2</p>
-
-</body>
-</html>
-
---===============8951900167204779257==--
+ drivers/gpu/drm/xe/xe_display.c      |  6 ----
+ drivers/gpu/drm/xe/xe_exec_queue.c   |  8 +++--
+ drivers/gpu/drm/xe/xe_gt.c           |  5 ++-
+ drivers/gpu/drm/xe/xe_gt_pagefault.c |  2 +-
+ drivers/gpu/drm/xe/xe_migrate.c      | 28 ++++++++++++----
+ drivers/gpu/drm/xe/xe_sched_job.c    |  1 -
+ drivers/gpu/drm/xe/xe_sync.c         |  2 --
+ drivers/gpu/drm/xe/xe_vm.c           | 62 ++++++++++++++----------------------
+ drivers/gpu/drm/xe/xe_vm_types.h     |  8 -----
+ 9 files changed, 57 insertions(+), 65 deletions(-)
