@@ -4,52 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90366C4828F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95A95C48260
 	for <intel-xe@archiver.kernel.org>; Thu,  8 Feb 2024 07:45:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A099E10E310;
-	Thu,  8 Feb 2024 07:45:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 015F710E358;
+	Thu,  8 Feb 2024 07:45:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fsLMUKHo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f6rh7uuu";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4DFE10E1DB;
- Thu,  8 Feb 2024 07:45:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5520610E1DB;
+ Thu,  8 Feb 2024 07:45:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1707378317; x=1738914317;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=roVpI7QEG+N3Gp757y+PaAvh5MTMMTwStLishWClXg8=;
- b=fsLMUKHobw0l02PjV4u+HlFomM4aJnF9Qb98q1OBYNCBMuK5fgqiLBm+
- IAWZ+P/aUDcqcrK3VvGavabIouIF3l0cA8g21VbR85rCsJp7XFhC0lqWj
- on/cId/lffGdS2kI8/SfgHucb8zibQqsrK/8JEZNbs/tkVFcXelgz71eB
- /6Gyn2VqMTOAlNuHHQHWmBCUAHF7tQB73AncUERqLY0rIpt22ghkwXHUJ
- IUDuVzfUg/LmdKEg6kNbd+o5AskjRqfoxk3+QmWydy6+m488rCanfGdG0
- LYsxHai+7Y1wC8nuJlo+onvOQYtQBKhWHiwmwA1jPfY9zzKJ3WqIIx/R3 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10977"; a="12242634"
-X-IronPort-AV: E=Sophos;i="6.05,252,1701158400"; d="scan'208";a="12242634"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=P15aik6EeWQ68wbdtouiUXL4nbhhcZPj2FNurlsAsHc=;
+ b=f6rh7uuu1AD7qy4C8lwUQHpmNpgkz8WNwFsafeaE8RGlvvec08g6Vlxo
+ 8DF8lPslbvQdDVqRr59z6ls/sJsNzxEfLf2FgMqpcNfvn/4MmrnnEdfcm
+ ABQfanop0usOoIQ3jNYf0/5CYPdGDvkxz1gv5izCkHdvYXlhqFmELceC9
+ HkXSg92+IbB+z0CHpcSaAnGJG8M8yoPgt34/m4k4E58H3CxkDaMi1ygmz
+ 0C1pr4swm0TeOVte1Z2gsdzd1UgD1XaIzD54wUKaIZ9/n9SyEq9oqBKxn
+ vjjlzio/UB1mfOQuoVMrlKrnHwquAYpVRuqVHE0pZwfbzaanDoCb8NY1E w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10977"; a="12242643"
+X-IronPort-AV: E=Sophos;i="6.05,252,1701158400"; d="scan'208";a="12242643"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2024 23:45:16 -0800
+ 07 Feb 2024 23:45:17 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.05,252,1701158400"; 
-   d="scan'208";a="6195645"
+   d="scan'208";a="6195657"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2024 23:45:16 -0800
+ 07 Feb 2024 23:45:17 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: Yury Norov <yury.norov@gmail.com>
 Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
  Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Jani Nikula <jani.nikula@linux.intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v3 0/3] Fixed-type GENMASK/BIT
-Date: Wed,  7 Feb 2024 23:45:18 -0800
-Message-ID: <20240208074521.577076-1-lucas.demarchi@intel.com>
+ intel-gfx@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH v3 3/3] drm/i915: Convert REG_GENMASK* to fixed-width GENMASK_*
+Date: Wed,  7 Feb 2024 23:45:21 -0800
+Message-ID: <20240208074521.577076-4-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240208074521.577076-1-lucas.demarchi@intel.com>
+References: <20240208074521.577076-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,32 +68,145 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-ove the implementation of REG_GENMASK/REG_BIT to a more appropriate
-place to be shared by i915, xe and possibly other parts of the kernel.
+Now that include/linux/bits.h implements fixed-width GENMASK_*, use them
+to implement the i915/xe specific macros. Converting each driver to use
+the generic macros are left for later, when/if other driver-specific
+macros are also generalized.
 
-For now this re-defines the old macros. In future we may start using the
-new macros directly, but that's a more intrusive search-and-replace.
-
-Changes from v2:
-
-	- Document both in commit message and code about the strict type
-	  checking and give examples how it´d break with invalid params.
-
-v1: https://lore.kernel.org/intel-xe/20230509051403.2748545-1-lucas.demarchi@intel.com/
-v2: https://lore.kernel.org/intel-xe/20240124050205.3646390-1-lucas.demarchi@intel.com
-
-Lucas De Marchi (2):
-  bits: Introduce fixed-type BIT
-  drm/i915: Convert REG_GENMASK* to fixed-width GENMASK_*
-
-Yury Norov (1):
-  bits: introduce fixed-type genmasks
-
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+---
  drivers/gpu/drm/i915/i915_reg_defs.h | 108 +++------------------------
- include/linux/bitops.h               |   1 -
- include/linux/bits.h                 |  51 ++++++++++---
- 3 files changed, 51 insertions(+), 109 deletions(-)
+ 1 file changed, 11 insertions(+), 97 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/i915_reg_defs.h b/drivers/gpu/drm/i915/i915_reg_defs.h
+index a685db1e815d..52f99eb96f86 100644
+--- a/drivers/gpu/drm/i915/i915_reg_defs.h
++++ b/drivers/gpu/drm/i915/i915_reg_defs.h
+@@ -9,76 +9,19 @@
+ #include <linux/bitfield.h>
+ #include <linux/bits.h>
+ 
+-/**
+- * REG_BIT() - Prepare a u32 bit value
+- * @__n: 0-based bit number
+- *
+- * Local wrapper for BIT() to force u32, with compile time checks.
+- *
+- * @return: Value with bit @__n set.
+- */
+-#define REG_BIT(__n)							\
+-	((u32)(BIT(__n) +						\
+-	       BUILD_BUG_ON_ZERO(__is_constexpr(__n) &&		\
+-				 ((__n) < 0 || (__n) > 31))))
+-
+-/**
+- * REG_BIT8() - Prepare a u8 bit value
+- * @__n: 0-based bit number
+- *
+- * Local wrapper for BIT() to force u8, with compile time checks.
+- *
+- * @return: Value with bit @__n set.
+- */
+-#define REG_BIT8(__n)                                                   \
+-	((u8)(BIT(__n) +                                                \
+-	       BUILD_BUG_ON_ZERO(__is_constexpr(__n) &&         \
+-				 ((__n) < 0 || (__n) > 7))))
+-
+-/**
+- * REG_GENMASK() - Prepare a continuous u32 bitmask
+- * @__high: 0-based high bit
+- * @__low: 0-based low bit
+- *
+- * Local wrapper for GENMASK() to force u32, with compile time checks.
+- *
+- * @return: Continuous bitmask from @__high to @__low, inclusive.
+- */
+-#define REG_GENMASK(__high, __low)					\
+-	((u32)(GENMASK(__high, __low) +					\
+-	       BUILD_BUG_ON_ZERO(__is_constexpr(__high) &&	\
+-				 __is_constexpr(__low) &&		\
+-				 ((__low) < 0 || (__high) > 31 || (__low) > (__high)))))
+-
+-/**
+- * REG_GENMASK64() - Prepare a continuous u64 bitmask
+- * @__high: 0-based high bit
+- * @__low: 0-based low bit
+- *
+- * Local wrapper for GENMASK_ULL() to force u64, with compile time checks.
+- *
+- * @return: Continuous bitmask from @__high to @__low, inclusive.
++/*
++ * Wrappers over the generic BIT_* and GENMASK_* implementations,
++ * for compatibility reasons with previous implementation
+  */
+-#define REG_GENMASK64(__high, __low)					\
+-	((u64)(GENMASK_ULL(__high, __low) +				\
+-	       BUILD_BUG_ON_ZERO(__is_constexpr(__high) &&		\
+-				 __is_constexpr(__low) &&		\
+-				 ((__low) < 0 || (__high) > 63 || (__low) > (__high)))))
++#define REG_GENMASK(__high, __low)	GENMASK_U32(__high, __low)
++#define REG_GENMASK64(__high, __low)	GENMASK_U64(__high, __low)
++#define REG_GENMASK16(__high, __low)	GENMASK_U16(__high, __low)
++#define REG_GENMASK8(__high, __low)	GENMASK_U8(__high, __low)
+ 
+-/**
+- * REG_GENMASK8() - Prepare a continuous u8 bitmask
+- * @__high: 0-based high bit
+- * @__low: 0-based low bit
+- *
+- * Local wrapper for GENMASK() to force u8, with compile time checks.
+- *
+- * @return: Continuous bitmask from @__high to @__low, inclusive.
+- */
+-#define REG_GENMASK8(__high, __low)                                     \
+-	((u8)(GENMASK(__high, __low) +                                  \
+-	       BUILD_BUG_ON_ZERO(__is_constexpr(__high) &&      \
+-				 __is_constexpr(__low) &&               \
+-				 ((__low) < 0 || (__high) > 7 || (__low) > (__high)))))
++#define REG_BIT(__n)			BIT_U32(__n)
++#define REG_BIT64(__n)			BIT_U64(__n)
++#define REG_BIT16(__n)			BIT_U16(__n)
++#define REG_BIT8(__n)			BIT_U8(__n)
+ 
+ /*
+  * Local integer constant expression version of is_power_of_2().
+@@ -143,35 +86,6 @@
+  */
+ #define REG_FIELD_GET64(__mask, __val)	((u64)FIELD_GET(__mask, __val))
+ 
+-/**
+- * REG_BIT16() - Prepare a u16 bit value
+- * @__n: 0-based bit number
+- *
+- * Local wrapper for BIT() to force u16, with compile time
+- * checks.
+- *
+- * @return: Value with bit @__n set.
+- */
+-#define REG_BIT16(__n)                                                   \
+-	((u16)(BIT(__n) +                                                \
+-	       BUILD_BUG_ON_ZERO(__is_constexpr(__n) &&         \
+-				 ((__n) < 0 || (__n) > 15))))
+-
+-/**
+- * REG_GENMASK16() - Prepare a continuous u8 bitmask
+- * @__high: 0-based high bit
+- * @__low: 0-based low bit
+- *
+- * Local wrapper for GENMASK() to force u16, with compile time
+- * checks.
+- *
+- * @return: Continuous bitmask from @__high to @__low, inclusive.
+- */
+-#define REG_GENMASK16(__high, __low)                                     \
+-	((u16)(GENMASK(__high, __low) +                                  \
+-	       BUILD_BUG_ON_ZERO(__is_constexpr(__high) &&      \
+-				 __is_constexpr(__low) &&               \
+-				 ((__low) < 0 || (__high) > 15 || (__low) > (__high)))))
+ 
+ /**
+  * REG_FIELD_PREP16() - Prepare a u16 bitfield value
 -- 
 2.43.0
 
