@@ -4,57 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4940C4828F
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Feb 2024 18:19:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3350C48260
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Feb 2024 18:35:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B64910E2DF;
-	Thu,  8 Feb 2024 18:19:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CE2110E9DF;
+	Thu,  8 Feb 2024 18:35:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gfULboCe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Swk8ir0M";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2C6710E2DF
- for <intel-xe@lists.freedesktop.org>; Thu,  8 Feb 2024 18:19:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D29210E9DF
+ for <intel-xe@lists.freedesktop.org>; Thu,  8 Feb 2024 18:35:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707416387; x=1738952387;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=hwToHYe1uGzXo9gFhs1o8cPslw+7sVUJCpoNTB/yLXo=;
- b=gfULboCeWYFy93BNoJnJLkiHjsXCPYMWn6wsz3DnALP0JzCckltCYG11
- lIXcpaItGhCn3pIcz3iUImDblC+JDtUBsickjP5LoP05Hm92QntGlEoAk
- Zu2/A7yrKvdTHPzd8vpxvnbCwgO+R+Lfv4nAHxbQgGkDQnVEgtlVbicxr
- G+4nPIG1KRuF1oa840TXQE8CykY91XHXVzu4SX7kbR7DGZw3TIzDqZ46M
- Wae/Ed+yOOAKhIXMfRs0IMxvIInATuDcs0767MDpkGI4cSMveQzkY9Aip
- ld853luRDSI/B5GpM9liBEy8UTpJg9vmBuriH87vxmZDaimrUIe6Y/a7m Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="12016783"
-X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; d="scan'208";a="12016783"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 10:19:46 -0800
+ t=1707417354; x=1738953354;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=jrdH9H0bcBrrfGazgzaKh/3qt174Lryb2jPa9zx3oak=;
+ b=Swk8ir0M+PJKyVceWKfZcnleolJX7Mcz55JGmmSIJWt3koWFq3uVgzK3
+ ktEU0Kq+HjTdOMV5GT7mKfzNre70OSpPoxA+c/qAgIFJfNriRWtITOlfK
+ R+pKLw3J4moxdfBlfe96CNhmB0s4XoN9JjjI9rhEVErws/Y6R96C7GRda
+ hRiHalwm+sDwzMjltT8MX4JoKDv70L66F5Yc1vRGtQ0SBYYziqKZPZfIz
+ y4tAp8wzfvAicZNcNT+/CT8X5RAX1rIjHDwKx5qc4sWLIJRyTUvxhTxC4
+ NUB4jfURFxtoC4cqDkvRUjBFx8l7/IZ2OB7g0Sk5cwG8bV3vYjlRbUKGQ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="23764894"
+X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; d="scan'208";a="23764894"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2024 10:35:54 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; 
-   d="scan'208";a="2022129"
-Received: from pkawa-mobl.ger.corp.intel.com (HELO [10.252.20.188])
- ([10.252.20.188])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 10:19:45 -0800
-Message-ID: <db8e0317-a13b-4ca9-b352-55223df9ed3b@intel.com>
-Date: Thu, 8 Feb 2024 18:19:42 +0000
+X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; d="scan'208";a="32798588"
+Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2024 10:35:52 -0800
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: John Harrison <John.C.Harrison@Intel.com>,
+ Francois Dugast <francois.dugast@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+Subject: [PATCH v2 1/2] drm/xe: Add uAPI to query GuC firmware submission
+ version
+Date: Thu,  8 Feb 2024 10:35:38 -0800
+Message-ID: <20240208183539.185095-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/vm: Avoid reserving zero fences
-Content-Language: en-GB
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20240208132115.3132-1-thomas.hellstrom@linux.intel.com>
- <4d058e2e-dd9b-4765-b579-c1cdca71ca41@intel.com>
- <f7638e75a7cc0c1d289875e81cde4d8772f197e7.camel@linux.intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <f7638e75a7cc0c1d289875e81cde4d8772f197e7.camel@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,54 +65,145 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 08/02/2024 15:19, Thomas Hellström wrote:
-> On Thu, 2024-02-08 at 15:05 +0000, Matthew Auld wrote:
->> On 08/02/2024 13:21, Thomas Hellström wrote:
->>> The function xe_vm_prepare_vma was blindly accepting zero as the
->>> number of fences and forwarded that to drm_exec_prepare_obj.
->>>
->>> However, that leads to an out-of-bounds shift in the
->>> dma_resv_reserve_fences() and while one could argue that the
->>> dma_resv code should be robust against that, avoid attempting
->>> to reserve zero fences.
->>>
->>> Relevant stack trace:
->>>
->>> [773.183188] ------------[ cut here ]------------
->>> [773.183199] UBSAN: shift-out-of-bounds in
->>> ../include/linux/log2.h:57:13
->>> [773.183241] shift exponent 64 is too large for 64-bit type 'long
->>> unsigned int'
->>> [773.183254] CPU: 2 PID: 1816 Comm: xe_evict Tainted: G
->>> U             6.8.0-rc3-xe #1
->>> [773.183256] Hardware name: ASUS System Product Name/PRIME Z690-P
->>> D4, BIOS 2014 10/14/2022
->>> [773.183257] Call Trace:
->>> [773.183258]  <TASK>
->>> [773.183260]  dump_stack_lvl+0xaf/0xd0
->>> [773.183266]  dump_stack+0x10/0x20
->>> [773.183283]  ubsan_epilogue+0x9/0x40
->>> [773.183286]  __ubsan_handle_shift_out_of_bounds+0x10f/0x170
->>> [773.183293]  dma_resv_reserve_fences.cold+0x2b/0x48
->>> [773.183295]  ? ww_mutex_lock+0x3c/0x110
->>> [773.183301]  drm_exec_prepare_obj+0x45/0x60 [drm_exec]
->>> [773.183313]  xe_vm_prepare_vma+0x33/0x70 [xe]
->>> [773.183375]  xe_vma_destroy_unlocked+0x55/0xa0 [xe]
->>> [773.183427]  xe_vm_close_and_put+0x526/0x940 [xe]
->>>
->>> Fixes: 2714d5093620 ("drm/xe: Convert pagefaulting code to use
->>> drm_exec")
->>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>> Cc: Matthew Brost <matthew.brost@intel.com>
->>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-> 
-> Thanks, Matthew
-> What happened to your dma-resv patch you had for this?
+Due to a bug in GuC firmware, Mesa can't enable by default the usage of
+compute engines in DG2 and newer.
 
-I don't recall any dma-resv patch, or am I misremembering?  :)
+A new GuC firmware fixed the issue but until now there was no way
+for Mesa to know if KMD was running with the fixed GuC version or not,
+so this uAPI is required.
 
-> 
-> 
-> /Thomas
+It may be expanded in future to query other firmware versions too.
+
+This is querying XE_UC_FW_VER_COMPATIBILITY/submission version because
+that is also supported by VFs, while XE_UC_FW_VER_RELEASE don't.
+
+i915 uAPI: https://patchwork.freedesktop.org/series/129627/
+Mesa usage: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/25233
+
+v2:
+- fixed drm_xe_query_uc_fw_version documentation
+- moved branch_ver as the first version number
+
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+---
+ drivers/gpu/drm/xe/xe_query.c | 44 +++++++++++++++++++++++++++++++++++
+ include/uapi/drm/xe_drm.h     | 31 ++++++++++++++++++++++++
+ 2 files changed, 75 insertions(+)
+
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index 4f1ab91dbec58..92bb06c0586eb 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -516,6 +516,49 @@ static int query_gt_topology(struct xe_device *xe,
+ 	return 0;
+ }
+ 
++static int
++query_uc_fw_version(struct xe_device *xe, struct drm_xe_device_query *query)
++{
++	struct drm_xe_query_uc_fw_version __user *query_ptr = u64_to_user_ptr(query->data);
++	size_t size = sizeof(struct drm_xe_query_uc_fw_version);
++	struct drm_xe_query_uc_fw_version resp;
++	struct xe_uc_fw_version *version = NULL;
++
++	if (query->size == 0) {
++		query->size = size;
++		return 0;
++	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
++		return -EINVAL;
++	}
++
++	if (copy_from_user(&resp, query_ptr, size))
++		return -EFAULT;
++
++	if (XE_IOCTL_DBG(xe, resp.pad || resp.pad2 || resp.reserved))
++		return -EINVAL;
++
++	switch (resp.uc_type) {
++	case XE_QUERY_UC_TYPE_GUC_SUBMISSION: {
++		struct xe_guc *guc = &xe->tiles[0].primary_gt->uc.guc;
++
++		version = &guc->fw.versions.found[XE_UC_FW_VER_COMPATIBILITY];
++		break;
++	}
++	default:
++		return -EINVAL;
++	}
++
++	resp.branch_ver = 0;
++	resp.major_ver = version->major;
++	resp.minor_ver = version->minor;
++	resp.patch_ver = version->patch;
++
++	if (copy_to_user(query_ptr, &resp, size))
++		return -EFAULT;
++
++	return 0;
++}
++
+ static int (* const xe_query_funcs[])(struct xe_device *xe,
+ 				      struct drm_xe_device_query *query) = {
+ 	query_engines,
+@@ -525,6 +568,7 @@ static int (* const xe_query_funcs[])(struct xe_device *xe,
+ 	query_hwconfig,
+ 	query_gt_topology,
+ 	query_engine_cycles,
++	query_uc_fw_version,
+ };
+ 
+ int xe_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 50bbea0992d9c..0819959a52227 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -574,6 +574,36 @@ struct drm_xe_query_engine_cycles {
+ 	__u64 cpu_delta;
+ };
+ 
++/**
++ * struct drm_xe_query_uc_fw_version - query a micro-controller firmware version
++ *
++ * Given a uc_type this will return the branch, major, minor and patch version
++ * of the micro-controller firmware.
++ */
++struct drm_xe_query_uc_fw_version {
++	/** @uc_type: The micro-controller type to query firmware version */
++#define XE_QUERY_UC_TYPE_GUC_SUBMISSION 0
++	__u16 uc_type;
++
++	/** @pad: MBZ */
++	__u16 pad;
++
++	/** @branch_ver: branch uc fw version */
++	__u32 branch_ver;
++	/** @major_ver: major uc fw version */
++	__u32 major_ver;
++	/** @minor_ver: minor uc fw version */
++	__u32 minor_ver;
++	/** @patch_ver: patch uc fw version */
++	__u32 patch_ver;
++
++	/** @pad2: MBZ */
++	__u32 pad2;
++
++	/** @reserved: Reserved */
++	__u64 reserved;
++};
++
+ /**
+  * struct drm_xe_device_query - Input of &DRM_IOCTL_XE_DEVICE_QUERY - main
+  * structure to query device information
+@@ -643,6 +673,7 @@ struct drm_xe_device_query {
+ #define DRM_XE_DEVICE_QUERY_HWCONFIG		4
+ #define DRM_XE_DEVICE_QUERY_GT_TOPOLOGY		5
+ #define DRM_XE_DEVICE_QUERY_ENGINE_CYCLES	6
++#define DRM_XE_DEVICE_QUERY_UC_FW_VERSION	7
+ 	/** @query: The type of data to query */
+ 	__u32 query;
+ 
+-- 
+2.43.0
+
