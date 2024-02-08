@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E899C48260
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Feb 2024 06:22:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9278CC4829A
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Feb 2024 07:45:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C04910E17C;
-	Thu,  8 Feb 2024 06:22:25 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58A4510E17C;
- Thu,  8 Feb 2024 06:22:23 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6817583285303457581=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29A4E10E280;
+	Thu,  8 Feb 2024 07:45:18 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J4268dgs";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18A3010E1DB;
+ Thu,  8 Feb 2024 07:45:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707378317; x=1738914317;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=9VUCCkK7ZSfSAVEAuYXB94bymXAqg5yRUhO4NtdM7cM=;
+ b=J4268dgssL1H4q9FUUC/UGY/zN9W223dYmszh/pO7u32dg79dL+acCP6
+ wGxHUC2Rr2RhX6xrMfXDEKCk2wdIa2cCkkJ6ntUULIZUtAndl+d82qUEo
+ FFhhXbjKlfLW8Xg5CGtmcKjblsM4xRm+0aKlKB9LANNHzU0AL7okaSuPZ
+ YIf568IP+iAVp1IwsO2bdVNDq6mwoWKfng9+gxp8fyYw50Mn8ng84C+pp
+ 5Za9S9kNkIj0+c9t5IADA+x7yEtzbSETJPc10iEi75sQfuNDZB22jUKQl
+ VAVIl+Lbcu++0hDY/4Rbc6eX60DY+ElBwE7gvJYA2VquPAohOYeVlKAf6 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10977"; a="12242640"
+X-IronPort-AV: E=Sophos;i="6.05,252,1701158400"; d="scan'208";a="12242640"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2024 23:45:17 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,252,1701158400"; 
+   d="scan'208";a="6195652"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2024 23:45:16 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Yury Norov <yury.norov@gmail.com>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH v3 2/3] bits: Introduce fixed-type BIT
+Date: Wed,  7 Feb 2024 23:45:20 -0800
+Message-ID: <20240208074521.577076-3-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240208074521.577076-1-lucas.demarchi@intel.com>
+References: <20240208074521.577076-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Add_OA_functionality_to_Xe_=28re?=
- =?utf-8?q?v9=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 08 Feb 2024 06:22:23 -0000
-Message-ID: <170737334336.1088738.6272851691279541607@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240208054916.3788133-1-ashutosh.dixit@intel.com>
-In-Reply-To: <20240208054916.3788133-1-ashutosh.dixit@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +65,57 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6817583285303457581==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Implement fixed-type BIT() to help drivers add stricter checks, like was
+done for GENMASK.
 
-== Series Details ==
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+---
+ include/linux/bits.h | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
-Series: Add OA functionality to Xe (rev9)
-URL   : https://patchwork.freedesktop.org/series/121084/
-State : success
+diff --git a/include/linux/bits.h b/include/linux/bits.h
+index bd56f32de44e..811846ce110e 100644
+--- a/include/linux/bits.h
++++ b/include/linux/bits.h
+@@ -24,12 +24,16 @@
+ #define GENMASK_INPUT_CHECK(h, l) \
+ 	(BUILD_BUG_ON_ZERO(__builtin_choose_expr( \
+ 		__is_constexpr((l) > (h)), (l) > (h), 0)))
++#define BIT_INPUT_CHECK(type, b) \
++	((BUILD_BUG_ON_ZERO(__builtin_choose_expr( \
++		__is_constexpr(b), (b) >= BITS_PER_TYPE(type), 0))))
+ #else
+ /*
+  * BUILD_BUG_ON_ZERO is not available in h files included from asm files,
+  * disable the input check if that is the case.
+  */
+ #define GENMASK_INPUT_CHECK(h, l) 0
++#define BIT_INPUT_CHECK(type, b) 0
+ #endif
+ 
+ /*
+@@ -54,4 +58,17 @@
+ #define GENMASK_U32(h, l)	__GENMASK(u32, h, l)
+ #define GENMASK_U64(h, l)	__GENMASK(u64, h, l)
+ 
++/*
++ * Fixed-type variants of BIT(), with additional checks like __GENMASK().  The
++ * following examples generate compiler warnings due to shift-count-overflow:
++ *
++ * - BIT_U8(8)
++ * - BIT_U32(-1)
++ * - BIT_U32(40)
++ */
++#define BIT_U8(b)		((u8)(BIT_INPUT_CHECK(u8, b) + BIT(b)))
++#define BIT_U16(b)		((u16)(BIT_INPUT_CHECK(u16, b) + BIT(b)))
++#define BIT_U32(b)		((u32)(BIT_INPUT_CHECK(u32, b) + BIT(b)))
++#define BIT_U64(b)		((u64)(BIT_INPUT_CHECK(u64, b) + BIT(b)))
++
+ #endif	/* __LINUX_BITS_H */
+-- 
+2.43.0
 
-== Summary ==
-
-CI Bug Log - changes from xe-747-a942be9b4f39a05326a5fc3fd774fb143b4d9507_BAT -> xe-pw-121084v9_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (3 -> 3)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-747-a942be9b4f39a05326a5fc3fd774fb143b4d9507 -> xe-pw-121084v9
-
-  IGT_7705: 45aef708b65772e54ee9a68b1f3885fa25140fdf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-747-a942be9b4f39a05326a5fc3fd774fb143b4d9507: a942be9b4f39a05326a5fc3fd774fb143b4d9507
-  xe-pw-121084v9: 121084v9
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v9/index.html
-
---===============6817583285303457581==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add OA functionality to Xe (rev9)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/121084/">https://patchwork.freedesktop.org/series/121084/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v9/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v9/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-747-a942be9b4f39a05326a5fc3fd774fb143b4d9507_BAT -&gt; xe-pw-121084v9_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (3 -&gt; 3)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-747-a942be9b4f39a05326a5fc3fd774fb143b4d9507 -&gt; xe-pw-121084v9</li>
-</ul>
-<p>IGT_7705: 45aef708b65772e54ee9a68b1f3885fa25140fdf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-747-a942be9b4f39a05326a5fc3fd774fb143b4d9507: a942be9b4f39a05326a5fc3fd774fb143b4d9507<br />
-  xe-pw-121084v9: 121084v9</p>
-
-</body>
-</html>
-
---===============6817583285303457581==--
