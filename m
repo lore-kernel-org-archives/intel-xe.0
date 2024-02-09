@@ -4,53 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5C57C48297
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Feb 2024 11:27:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30C8BC48297
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Feb 2024 11:28:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98ED710F338;
-	Fri,  9 Feb 2024 11:27:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D220D10F33E;
+	Fri,  9 Feb 2024 11:28:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HpsDZbgx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MR9MAxUV";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B97ED10F338
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Feb 2024 11:27:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A140510F33E
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Feb 2024 11:28:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707478027; x=1739014027;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=suFVcIqjy8+I5uFIoeQTtFq7FGGVWaVl/m51nlwp6ys=;
- b=HpsDZbgxJ/D/sz64APIi2ohoaCYZRr6uU1g9JZvULBFUVmKEbO4UH1Nu
- h+McdO8wfsJyxMfwd6gWmnQ37UUenSmm4bAfTqOhIeim+9aa/2NkWcYWO
- 50YJFEbc/x+jg7ulTZDJJajO4KK310+TyKkm1MDpLJXGGsydcnWiXsG48
- IMD7a2J7mvq655PJ6M5FUwJRZYtEyGodQjuHjZ4yVg8OowRMRBQ0zLkps
- wChike4mp0acW1gqrkF0fPUGAiFwVs5iZ+Uv+TEczCmTEhry11AnAz2pZ
- M58u5VmBmG/pfjYWYQhM2f8lK+hxi4kcYTY/xlcyAbZJMvh8YaVjaRQcP g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="26865889"
-X-IronPort-AV: E=Sophos;i="6.05,256,1701158400"; d="scan'208";a="26865889"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2024 03:27:06 -0800
+ t=1707478103; x=1739014103;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=iRVbuIKwtzfnr+IlIkHHoarIQQqcHnb5CXGydeVMpYc=;
+ b=MR9MAxUVciidkEed/WGY4LkY0O9a+Hk/LyAbsBte3hubPPAAwhUP3tvs
+ 4PbAfrVl3wenXQ6kiHz/rTqE9GEWpiqNe/JGAIGBdmMe+AkI7kVbuY6fR
+ ve1tDrXTAsFOOEAFJ5rpkmgkTffqZK6MqtS6OnPIANzHR60AgGHiRkKKP
+ +OYRVJ4Lhsbcl8nPvoOtsyknTjVsS+jGuj8+1tmFbeH47qzGe3CgSdkiY
+ cmWP9BIqA8xmcqkIi8olydAkE1D4ACnkuvnKXPf3FzilujGxI94u0R/JV
+ my12CnTIokhqTjlZ5mXxo1mHjU3w8FEBr8xZn2SCBAuqr2ERWfT2CcawG Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="18921393"
+X-IronPort-AV: E=Sophos;i="6.05,256,1701158400"; d="scan'208";a="18921393"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2024 03:28:22 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.05,256,1701158400"; 
-   d="scan'208";a="2262030"
-Received: from janlundk-mobl.ger.corp.intel.com (HELO fedora..)
- ([10.249.254.150])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2024 03:27:05 -0800
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v2] drm/xe/pt: Allow for stricter type- and range checking
-Date: Fri,  9 Feb 2024 12:26:55 +0100
-Message-ID: <20240209112655.4872-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
+   d="scan'208";a="1903355"
+Received: from lkp-server01.sh.intel.com (HELO 01f0647817ea) ([10.239.97.150])
+ by fmviesa009.fm.intel.com with ESMTP; 09 Feb 2024 03:28:22 -0800
+Received: from kbuild by 01f0647817ea with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1rYP3L-0004f5-3C;
+ Fri, 09 Feb 2024 11:28:19 +0000
+Date: Fri, 09 Feb 2024 19:27:41 +0800
+From: kernel test robot <lkp@intel.com>
+To: "Thomas =?utf-8?Q?Hellstr=C3=B6m"?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
+ bf4c27b8267d7848bb81fd41e6aa07aa662f07fb
+Message-ID: <202402091938.T5OwZMBa-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,235 +63,229 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Distinguish between xe_pt and the xe_pt_dir subclass when
-allocating and freeing. Also use a fixed-size array for the
-xe_pt_dir page entries to make life easier for dynamic range-
-checkers. Finally rename the page-directory child pointer array
-to "children".
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
+branch HEAD: bf4c27b8267d7848bb81fd41e6aa07aa662f07fb  drm/xe: Remove TEST_VM_ASYNC_OPS_ERROR
 
-While no functional change, this fixes ubsan splats similar to:
+elapsed time: 1465m
 
-[   51.463021] ------------[ cut here ]------------
-[   51.463022] UBSAN: array-index-out-of-bounds in drivers/gpu/drm/xe/xe_pt.c:47:9
-[   51.463023] index 0 is out of range for type 'xe_ptw *[*]'
-[   51.463024] CPU: 5 PID: 2778 Comm: xe_vm Tainted: G     U             6.8.0-rc1+ #218
-[   51.463026] Hardware name: ASUS System Product Name/PRIME B560M-A AC, BIOS 2001 02/01/2023
-[   51.463027] Call Trace:
-[   51.463028]  <TASK>
-[   51.463029]  dump_stack_lvl+0x47/0x60
-[   51.463030]  __ubsan_handle_out_of_bounds+0x95/0xd0
-[   51.463032]  xe_pt_destroy+0xa5/0x150 [xe]
-[   51.463088]  __xe_pt_unbind_vma+0x36c/0x9b0 [xe]
-[   51.463144]  xe_vm_unbind+0xd8/0x580 [xe]
-[   51.463204]  ? drm_exec_prepare_obj+0x3f/0x60 [drm_exec]
-[   51.463208]  __xe_vma_op_execute+0x5da/0x910 [xe]
-[   51.463268]  ? __drm_gpuvm_sm_unmap+0x1cb/0x220 [drm_gpuvm]
-[   51.463272]  ? radix_tree_node_alloc.constprop.0+0x89/0xc0
-[   51.463275]  ? drm_gpuva_it_remove+0x1f3/0x2a0 [drm_gpuvm]
-[   51.463279]  ? drm_gpuva_remove+0x2f/0xc0 [drm_gpuvm]
-[   51.463283]  xe_vm_bind_ioctl+0x1a55/0x20b0 [xe]
-[   51.463344]  ? __pfx_xe_vm_bind_ioctl+0x10/0x10 [xe]
-[   51.463414]  drm_ioctl_kernel+0xb6/0x120
-[   51.463416]  drm_ioctl+0x287/0x4e0
-[   51.463418]  ? __pfx_xe_vm_bind_ioctl+0x10/0x10 [xe]
-[   51.463481]  __x64_sys_ioctl+0x94/0xd0
-[   51.463484]  do_syscall_64+0x86/0x170
-[   51.463486]  ? syscall_exit_to_user_mode+0x7d/0x200
-[   51.463488]  ? do_syscall_64+0x96/0x170
-[   51.463490]  ? do_syscall_64+0x96/0x170
-[   51.463492]  entry_SYSCALL_64_after_hwframe+0x6e/0x76
-[   51.463494] RIP: 0033:0x7f246bfe817d
-[   51.463498] Code: 04 25 28 00 00 00 48 89 45 c8 31 c0 48 8d 45 10 c7 45 b0 10 00 00 00 48 89 45 b8 48 8d 45 d0 48 89 45 c0 b8 10 00 00 00 0f 05 <89> c2 3d 00 f0 ff ff 77 1a 48 8b 45 c8 64 48 2b 04 25 28 00 00 00
-[   51.463501] RSP: 002b:00007ffc1bd19ad0 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
-[   51.463502] RAX: ffffffffffffffda RBX: 0000000000000003 RCX: 00007f246bfe817d
-[   51.463504] RDX: 00007ffc1bd19b60 RSI: 0000000040886445 RDI: 0000000000000003
-[   51.463505] RBP: 00007ffc1bd19b20 R08: 0000000000000000 R09: 0000000000000000
-[   51.463506] R10: 0000000000000000 R11: 0000000000000246 R12: 00007ffc1bd19b60
-[   51.463508] R13: 0000000040886445 R14: 0000000000000003 R15: 0000000000010000
-[   51.463510]  </TASK>
-[   51.463517] ---[ end trace ]---
+configs tested: 210
+configs skipped: 3
 
-v2
-- Fix kerneldoc warning (Matthew Brost)
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_pt.c      | 39 +++++++++++++++++++++------------
- drivers/gpu/drm/xe/xe_pt_walk.c |  2 +-
- drivers/gpu/drm/xe/xe_pt_walk.h | 19 +++-------------
- 3 files changed, 29 insertions(+), 31 deletions(-)
+tested configs:
+alpha                             allnoconfig   gcc  
+alpha                            allyesconfig   gcc  
+alpha                               defconfig   gcc  
+arc                              allmodconfig   gcc  
+arc                               allnoconfig   gcc  
+arc                              allyesconfig   gcc  
+arc                      axs103_smp_defconfig   gcc  
+arc                                 defconfig   gcc  
+arc                         haps_hs_defconfig   gcc  
+arc                   randconfig-001-20240209   gcc  
+arc                   randconfig-002-20240209   gcc  
+arm                              allmodconfig   gcc  
+arm                               allnoconfig   clang
+arm                              allyesconfig   gcc  
+arm                                 defconfig   clang
+arm                            hisi_defconfig   gcc  
+arm                        multi_v7_defconfig   gcc  
+arm                        mvebu_v5_defconfig   gcc  
+arm                   randconfig-001-20240209   clang
+arm                   randconfig-002-20240209   gcc  
+arm                   randconfig-003-20240209   gcc  
+arm                   randconfig-004-20240209   gcc  
+arm                       spear13xx_defconfig   gcc  
+arm                        vexpress_defconfig   gcc  
+arm                    vt8500_v6_v7_defconfig   gcc  
+arm64                            allmodconfig   clang
+arm64                             allnoconfig   gcc  
+arm64                               defconfig   gcc  
+arm64                 randconfig-001-20240209   clang
+arm64                 randconfig-002-20240209   clang
+arm64                 randconfig-003-20240209   clang
+arm64                 randconfig-004-20240209   clang
+csky                             allmodconfig   gcc  
+csky                              allnoconfig   gcc  
+csky                             allyesconfig   gcc  
+csky                                defconfig   gcc  
+csky                  randconfig-001-20240209   gcc  
+csky                  randconfig-002-20240209   gcc  
+hexagon                          allmodconfig   clang
+hexagon                           allnoconfig   clang
+hexagon                          allyesconfig   clang
+hexagon                             defconfig   clang
+hexagon               randconfig-001-20240209   clang
+hexagon               randconfig-002-20240209   clang
+i386                             allmodconfig   gcc  
+i386                              allnoconfig   gcc  
+i386                             allyesconfig   gcc  
+i386         buildonly-randconfig-001-20240208   gcc  
+i386         buildonly-randconfig-002-20240208   clang
+i386         buildonly-randconfig-003-20240208   gcc  
+i386         buildonly-randconfig-003-20240209   gcc  
+i386         buildonly-randconfig-004-20240208   gcc  
+i386         buildonly-randconfig-005-20240208   gcc  
+i386         buildonly-randconfig-006-20240208   gcc  
+i386         buildonly-randconfig-006-20240209   gcc  
+i386                                defconfig   clang
+i386                  randconfig-001-20240208   gcc  
+i386                  randconfig-002-20240208   gcc  
+i386                  randconfig-002-20240209   gcc  
+i386                  randconfig-003-20240208   gcc  
+i386                  randconfig-004-20240208   clang
+i386                  randconfig-005-20240208   gcc  
+i386                  randconfig-006-20240208   gcc  
+i386                  randconfig-006-20240209   gcc  
+i386                  randconfig-011-20240208   clang
+i386                  randconfig-011-20240209   gcc  
+i386                  randconfig-012-20240208   clang
+i386                  randconfig-012-20240209   gcc  
+i386                  randconfig-013-20240208   clang
+i386                  randconfig-014-20240208   clang
+i386                  randconfig-014-20240209   gcc  
+i386                  randconfig-015-20240208   clang
+i386                  randconfig-015-20240209   gcc  
+i386                  randconfig-016-20240208   gcc  
+i386                  randconfig-016-20240209   gcc  
+loongarch                        allmodconfig   gcc  
+loongarch                         allnoconfig   gcc  
+loongarch                        allyesconfig   gcc  
+loongarch                           defconfig   gcc  
+loongarch             randconfig-001-20240209   gcc  
+loongarch             randconfig-002-20240209   gcc  
+m68k                             allmodconfig   gcc  
+m68k                              allnoconfig   gcc  
+m68k                             allyesconfig   gcc  
+m68k                          amiga_defconfig   gcc  
+m68k                                defconfig   gcc  
+m68k                       m5275evb_defconfig   gcc  
+m68k                       m5475evb_defconfig   gcc  
+m68k                        mvme147_defconfig   gcc  
+m68k                            q40_defconfig   gcc  
+m68k                        stmark2_defconfig   gcc  
+m68k                          sun3x_defconfig   gcc  
+microblaze                       allmodconfig   gcc  
+microblaze                        allnoconfig   gcc  
+microblaze                       allyesconfig   gcc  
+microblaze                          defconfig   gcc  
+mips                             allmodconfig   gcc  
+mips                              allnoconfig   gcc  
+mips                             allyesconfig   gcc  
+mips                   sb1250_swarm_defconfig   gcc  
+nios2                         3c120_defconfig   gcc  
+nios2                            allmodconfig   gcc  
+nios2                             allnoconfig   gcc  
+nios2                            allyesconfig   gcc  
+nios2                               defconfig   gcc  
+nios2                 randconfig-001-20240209   gcc  
+nios2                 randconfig-002-20240209   gcc  
+openrisc                         allmodconfig   gcc  
+openrisc                          allnoconfig   gcc  
+openrisc                         allyesconfig   gcc  
+openrisc                            defconfig   gcc  
+openrisc                    or1ksim_defconfig   gcc  
+parisc                           allmodconfig   gcc  
+parisc                            allnoconfig   gcc  
+parisc                           allyesconfig   gcc  
+parisc                              defconfig   gcc  
+parisc                randconfig-001-20240209   gcc  
+parisc                randconfig-002-20240209   gcc  
+parisc64                            defconfig   gcc  
+powerpc                          allmodconfig   gcc  
+powerpc                           allnoconfig   gcc  
+powerpc                          allyesconfig   clang
+powerpc                      arches_defconfig   gcc  
+powerpc                     ep8248e_defconfig   gcc  
+powerpc                        fsp2_defconfig   gcc  
+powerpc                  iss476-smp_defconfig   gcc  
+powerpc                     rainier_defconfig   gcc  
+powerpc               randconfig-001-20240209   clang
+powerpc               randconfig-002-20240209   clang
+powerpc               randconfig-003-20240209   gcc  
+powerpc64             randconfig-001-20240209   clang
+powerpc64             randconfig-002-20240209   clang
+powerpc64             randconfig-003-20240209   clang
+riscv                            alldefconfig   gcc  
+riscv                            allmodconfig   clang
+riscv                             allnoconfig   gcc  
+riscv                            allyesconfig   clang
+riscv                               defconfig   clang
+riscv                 randconfig-001-20240209   clang
+riscv                 randconfig-002-20240209   clang
+s390                             allmodconfig   clang
+s390                              allnoconfig   clang
+s390                             allyesconfig   gcc  
+s390                          debug_defconfig   gcc  
+s390                                defconfig   clang
+s390                  randconfig-001-20240209   gcc  
+s390                  randconfig-002-20240209   gcc  
+sh                               allmodconfig   gcc  
+sh                                allnoconfig   gcc  
+sh                               allyesconfig   gcc  
+sh                                  defconfig   gcc  
+sh                          kfr2r09_defconfig   gcc  
+sh                    randconfig-001-20240209   gcc  
+sh                    randconfig-002-20240209   gcc  
+sh                          rsk7201_defconfig   gcc  
+sh                           se7721_defconfig   gcc  
+sh                           se7722_defconfig   gcc  
+sh                           sh2007_defconfig   gcc  
+sh                   sh7770_generic_defconfig   gcc  
+sparc                            allmodconfig   gcc  
+sparc                             allnoconfig   gcc  
+sparc                            allyesconfig   gcc  
+sparc                               defconfig   gcc  
+sparc                       sparc64_defconfig   gcc  
+sparc64                          allmodconfig   gcc  
+sparc64                          allyesconfig   gcc  
+sparc64                             defconfig   gcc  
+sparc64               randconfig-001-20240209   gcc  
+sparc64               randconfig-002-20240209   gcc  
+um                               allmodconfig   clang
+um                                allnoconfig   clang
+um                               allyesconfig   gcc  
+um                                  defconfig   clang
+um                    randconfig-001-20240209   gcc  
+um                    randconfig-002-20240209   clang
+um                           x86_64_defconfig   clang
+x86_64                            allnoconfig   clang
+x86_64                           allyesconfig   clang
+x86_64       buildonly-randconfig-001-20240209   gcc  
+x86_64       buildonly-randconfig-002-20240209   gcc  
+x86_64       buildonly-randconfig-003-20240209   clang
+x86_64       buildonly-randconfig-004-20240209   gcc  
+x86_64       buildonly-randconfig-005-20240209   clang
+x86_64       buildonly-randconfig-006-20240209   gcc  
+x86_64                              defconfig   gcc  
+x86_64                randconfig-001-20240209   clang
+x86_64                randconfig-002-20240209   gcc  
+x86_64                randconfig-003-20240209   gcc  
+x86_64                randconfig-004-20240209   clang
+x86_64                randconfig-005-20240209   gcc  
+x86_64                randconfig-006-20240209   gcc  
+x86_64                randconfig-011-20240209   clang
+x86_64                randconfig-012-20240209   clang
+x86_64                randconfig-013-20240209   gcc  
+x86_64                randconfig-014-20240209   clang
+x86_64                randconfig-015-20240209   gcc  
+x86_64                randconfig-016-20240209   clang
+x86_64                randconfig-071-20240209   gcc  
+x86_64                randconfig-072-20240209   clang
+x86_64                randconfig-073-20240209   clang
+x86_64                randconfig-074-20240209   gcc  
+x86_64                randconfig-075-20240209   gcc  
+x86_64                randconfig-076-20240209   clang
+x86_64                           rhel-8.3-bpf   gcc  
+x86_64                          rhel-8.3-rust   clang
+x86_64                               rhel-8.3   gcc  
+xtensa                            allnoconfig   gcc  
+xtensa                           allyesconfig   gcc  
+xtensa                randconfig-001-20240209   gcc  
+xtensa                randconfig-002-20240209   gcc  
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 3a99bf6e558f..1e35c7525447 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -20,8 +20,8 @@
- 
- struct xe_pt_dir {
- 	struct xe_pt pt;
--	/** @dir: Directory structure for the xe_pt_walk functionality */
--	struct xe_ptw_dir dir;
-+	/** @children: Array of page-table child nodes */
-+	struct xe_ptw *children[XE_PDES];
- };
- 
- #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_VM)
-@@ -44,7 +44,7 @@ static struct xe_pt_dir *as_xe_pt_dir(struct xe_pt *pt)
- 
- static struct xe_pt *xe_pt_entry(struct xe_pt_dir *pt_dir, unsigned int index)
- {
--	return container_of(pt_dir->dir.entries[index], struct xe_pt, base);
-+	return container_of(pt_dir->children[index], struct xe_pt, base);
- }
- 
- static u64 __xe_pt_empty_pte(struct xe_tile *tile, struct xe_vm *vm,
-@@ -65,6 +65,14 @@ static u64 __xe_pt_empty_pte(struct xe_tile *tile, struct xe_vm *vm,
- 		XE_PTE_NULL;
- }
- 
-+static void xe_pt_free(struct xe_pt *pt)
-+{
-+	if (pt->level)
-+		kfree(as_xe_pt_dir(pt));
-+	else
-+		kfree(pt);
-+}
-+
- /**
-  * xe_pt_create() - Create a page-table.
-  * @vm: The vm to create for.
-@@ -85,15 +93,19 @@ struct xe_pt *xe_pt_create(struct xe_vm *vm, struct xe_tile *tile,
- {
- 	struct xe_pt *pt;
- 	struct xe_bo *bo;
--	size_t size;
- 	int err;
- 
--	size = !level ?  sizeof(struct xe_pt) : sizeof(struct xe_pt_dir) +
--		XE_PDES * sizeof(struct xe_ptw *);
--	pt = kzalloc(size, GFP_KERNEL);
-+	if (level) {
-+		struct xe_pt_dir *dir = kzalloc(sizeof(*dir), GFP_KERNEL);
-+
-+		pt = (dir) ? &dir->pt : NULL;
-+	} else {
-+		pt = kzalloc(sizeof(*pt), GFP_KERNEL);
-+	}
- 	if (!pt)
- 		return ERR_PTR(-ENOMEM);
- 
-+	pt->level = level;
- 	bo = xe_bo_create_pin_map(vm->xe, tile, vm, SZ_4K,
- 				  ttm_bo_type_kernel,
- 				  XE_BO_CREATE_VRAM_IF_DGFX(tile) |
-@@ -106,8 +118,7 @@ struct xe_pt *xe_pt_create(struct xe_vm *vm, struct xe_tile *tile,
- 		goto err_kfree;
- 	}
- 	pt->bo = bo;
--	pt->level = level;
--	pt->base.dir = level ? &as_xe_pt_dir(pt)->dir : NULL;
-+	pt->base.children = level ? as_xe_pt_dir(pt)->children : NULL;
- 
- 	if (vm->xef)
- 		xe_drm_client_add_bo(vm->xef->client, pt->bo);
-@@ -116,7 +127,7 @@ struct xe_pt *xe_pt_create(struct xe_vm *vm, struct xe_tile *tile,
- 	return pt;
- 
- err_kfree:
--	kfree(pt);
-+	xe_pt_free(pt);
- 	return ERR_PTR(err);
- }
- 
-@@ -193,7 +204,7 @@ void xe_pt_destroy(struct xe_pt *pt, u32 flags, struct llist_head *deferred)
- 					      deferred);
- 		}
- 	}
--	kfree(pt);
-+	xe_pt_free(pt);
- }
- 
- /**
-@@ -358,7 +369,7 @@ xe_pt_insert_entry(struct xe_pt_stage_bind_walk *xe_walk, struct xe_pt *parent,
- 		struct iosys_map *map = &parent->bo->vmap;
- 
- 		if (unlikely(xe_child))
--			parent->base.dir->entries[offset] = &xe_child->base;
-+			parent->base.children[offset] = &xe_child->base;
- 
- 		xe_pt_write(xe_walk->vm->xe, map, offset, pte);
- 		parent->num_live++;
-@@ -853,7 +864,7 @@ static void xe_pt_commit_bind(struct xe_vma *vma,
- 				xe_pt_destroy(xe_pt_entry(pt_dir, j_),
- 					      xe_vma_vm(vma)->flags, deferred);
- 
--			pt_dir->dir.entries[j_] = &newpte->base;
-+			pt_dir->children[j_] = &newpte->base;
- 		}
- 		kfree(entries[i].pt_entries);
- 	}
-@@ -1506,7 +1517,7 @@ xe_pt_commit_unbind(struct xe_vma *vma,
- 					xe_pt_destroy(xe_pt_entry(pt_dir, i),
- 						      xe_vma_vm(vma)->flags, deferred);
- 
--				pt_dir->dir.entries[i] = NULL;
-+				pt_dir->children[i] = NULL;
- 			}
- 		}
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_pt_walk.c b/drivers/gpu/drm/xe/xe_pt_walk.c
-index 8f6c8d063f39..b8b3d2aea492 100644
---- a/drivers/gpu/drm/xe/xe_pt_walk.c
-+++ b/drivers/gpu/drm/xe/xe_pt_walk.c
-@@ -74,7 +74,7 @@ int xe_pt_walk_range(struct xe_ptw *parent, unsigned int level,
- 		     u64 addr, u64 end, struct xe_pt_walk *walk)
- {
- 	pgoff_t offset = xe_pt_offset(addr, level, walk);
--	struct xe_ptw **entries = parent->dir ? parent->dir->entries : NULL;
-+	struct xe_ptw **entries = parent->children ? parent->children : NULL;
- 	const struct xe_pt_walk_ops *ops = walk->ops;
- 	enum page_walk_action action;
- 	struct xe_ptw *child;
-diff --git a/drivers/gpu/drm/xe/xe_pt_walk.h b/drivers/gpu/drm/xe/xe_pt_walk.h
-index ec3d1e9efa6d..5ecc4d2f0f65 100644
---- a/drivers/gpu/drm/xe/xe_pt_walk.h
-+++ b/drivers/gpu/drm/xe/xe_pt_walk.h
-@@ -8,28 +8,15 @@
- #include <linux/pagewalk.h>
- #include <linux/types.h>
- 
--struct xe_ptw_dir;
--
- /**
-  * struct xe_ptw - base class for driver pagetable subclassing.
-- * @dir: Pointer to an array of children if any.
-+ * @children: Pointer to an array of children if any.
-  *
-  * Drivers could subclass this, and if it's a page-directory, typically
-- * embed the xe_ptw_dir::entries array in the same allocation.
-+ * embed an array of xe_ptw pointers.
-  */
- struct xe_ptw {
--	struct xe_ptw_dir *dir;
--};
--
--/**
-- * struct xe_ptw_dir - page directory structure
-- * @entries: Array holding page directory children.
-- *
-- * It is the responsibility of the user to ensure @entries is
-- * correctly sized.
-- */
--struct xe_ptw_dir {
--	struct xe_ptw *entries[0];
-+	struct xe_ptw **children;
- };
- 
- /**
 -- 
-2.43.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
