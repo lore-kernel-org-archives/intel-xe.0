@@ -4,27 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28E4FC48260
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Feb 2024 00:08:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BD4AC48260
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Feb 2024 00:37:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C08F610EA02;
-	Fri,  9 Feb 2024 00:08:05 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 539A610EA31;
- Fri,  9 Feb 2024 00:08:04 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0018210F072;
+	Fri,  9 Feb 2024 00:37:18 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Iv2YHdJf";
+	dkim-atps=neutral
+X-Greylist: delayed 427 seconds by postgrey-1.36 at gabe;
+ Fri, 09 Feb 2024 00:37:18 UTC
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09F7910F06D
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Feb 2024 00:37:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707439038; x=1738975038;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=3XWg0DLY2qcXOqLkpfePCEH/V6gGaL8CVLQyNw1XGas=;
+ b=Iv2YHdJfRy0rwMV7tKt9lIHacjK6DL1IBi8AuPkThFzmlv/lGOfDuqND
+ b4ABOEnWQKtAGY3FLMC4xEYAIYqW5ALd6MippXfJmHLubszYaSn/sDuoK
+ kZcdMNk3fgBvu4Tb/SgRNMtaRW262sM2IhkteT3uE3XzNljX3KMhZ3+aB
+ W9RQJhjNrAQee+scz90NQNyR4Rva5E1rNMxPM/d2urWcx6gS97GNPFhzZ
+ AsRPGYg2B3MNJ+RvB3hC/rONhhJ/mSPCcZiModKaCMlHqHpzBeYwGrrDE
+ WIUU20vbEWT+uDiIB2UDrCHuazs2wccV5IUEtHRek91wXjef+rrWQ/adX A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="1242136"
+X-IronPort-AV: E=Sophos;i="6.05,255,1701158400"; 
+   d="scan'208";a="1242136"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2024 16:30:10 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,255,1701158400"; d="scan'208";a="32880889"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 08 Feb 2024 16:30:10 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 8 Feb 2024 16:30:09 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Thu, 8 Feb 2024 16:30:09 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Thu, 8 Feb 2024 16:30:09 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WwVlwLSC7APez0F2TsCy7BOyD4MxOpmTHj/L5wyOT1IzdpZ7h+kU8LidNSkCByyWPQnIhJEZY8PZs7v4pEhqpLYwbOP+UVOvYOXKUeUVOnFwy2SxbccCNyLc8T4CNQWK+fEsHEbe0ibRWJdQRJA2SmsMpPZyuoDNnXJeSffv+MyBpvgFPF3NdfpOy5DL5AGQ2Uo6gY2nijHzL4yaC3iGSyovUTgDwTboaWm4vX6bVEm6EiFfdJgjeyGPhB5RGRZa2yHRfJBpHmmZ4Qpsqul/Qwtjv23UG5lmXrGcZB1T/uFtcjpfvd3koZZLVwnEUD6BTp/Bn2P7uLdpchmRSd0RRA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iaSe5tsYhd2e/c4zrUrF3uJ12GlO0/0EKrOWX5NQVf8=;
+ b=dJyanU+UW7nJx6prmGIV6gC2QgPG9rEggLhycnxBEj+BjSlZlYv1lX2eiXakW5Dc9ptOJCW2m3ilWJowWGy4QdisGlJiLHBUYiM/ShAakTP5tf/nFzrAL7o5qP9XdiVk8p+cZVWaaLmnRdj5Rjhyo30evongWaUtq5qQLXL6h25YXxg5wj3TlONmhQQQ1DeWQy9Na9xkqOXDV+d84cqs7/WZ3jHwWVJfnvRQEohbhqVmYAB/3z+yitT0gDpacdVue6m+DhSuEGVFmdZ02GbxXGZMArBdt8k1oNbxzAWPumDi8L3NhuMRYDmzNasyy/z43uj5E8joEhuoQBfO5krfhg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
+ by PH8PR11MB8285.namprd11.prod.outlook.com (2603:10b6:510:1c5::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.24; Fri, 9 Feb
+ 2024 00:30:06 +0000
+Received: from PH7PR11MB7605.namprd11.prod.outlook.com
+ ([fe80::c138:faf0:9fa7:8a03]) by PH7PR11MB7605.namprd11.prod.outlook.com
+ ([fe80::c138:faf0:9fa7:8a03%7]) with mapi id 15.20.7270.024; Fri, 9 Feb 2024
+ 00:30:06 +0000
+Message-ID: <d37b18a9-ab2d-478b-9510-087c8ff76ec5@intel.com>
+Date: Thu, 8 Feb 2024 16:29:55 -0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC] drm/xe/guc: Don't support GuC older GuC 70.x releases
+Content-Language: en-US
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+CC: Matthew Brost <matthew.brost@intel.com>, John Harrison
+ <john.c.harrison@intel.com>, <intel-xe@lists.freedesktop.org>, Matt Roper
+ <matthew.d.roper@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, "Gustavo
+ Sousa" <gustavo.sousa@intel.com>
+References: <20240206234103.373364-1-daniele.ceraolospurio@intel.com>
+ <bbb3bc27-73cd-47e4-bdb2-8a12e8aaf2ca@intel.com>
+ <ZcL5c1TTfCxUckCi@DUT025-TGLU.fm.intel.com>
+ <zcvxg35dgst3vffu76v532dhl5lob6ilpi3hktg4ptnqc6lsbd@dsrjrmgk2kdj>
+ <6d27be6f-f501-4bba-a8f9-ae80f23484bd@intel.com>
+ <v5mwvlynhfvcre2iudh3am34y7eh4llhifj32gw3l56g4idvw6@uo6rutzsqmyl>
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+In-Reply-To: <v5mwvlynhfvcre2iudh3am34y7eh4llhifj32gw3l56g4idvw6@uo6rutzsqmyl>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe/guc=3A_Add_GuC_based_re?=
- =?utf-8?q?gister_capture_for_error_capture_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Zhanjun Dong" <zhanjun.dong@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 09 Feb 2024 00:08:04 -0000
-Message-ID: <170743728434.1109599.14286029078868567905@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240208211918.81789-1-zhanjun.dong@intel.com>
-In-Reply-To: <20240208211918.81789-1-zhanjun.dong@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0128.namprd03.prod.outlook.com
+ (2603:10b6:a03:33c::13) To PH7PR11MB7605.namprd11.prod.outlook.com
+ (2603:10b6:510:277::5)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|PH8PR11MB8285:EE_
+X-MS-Office365-Filtering-Correlation-Id: 059ddfb4-340a-4ebe-3b9b-08dc290643e6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: JBPls9LxfQbcF9Y8Qb0oazSsn0/aA9r9Zu9zWOWpy4ZbwG9bl1ip4liPB/3xWcxsj4Uk9ElOYhgNqVYLkwajbbo2qLB8p2UFRSU0PN8XEFbW9hGzxa2+vmOKoI2YUAGUtn/pistoKiNOtoLuNoc7YBv+t5j8TO9CXKjYhfVoRCDMXnYvdpgVXuAccraai+gsHBZyDgg84xkXMXvCRXvUkUj4cgAHN7HSFI+MSh7gAulTNoyAr9+NB8ibXGMTbJaRY0mc0dFe0BHWgfGgsFvn12E5goNyMVG/YlHQqY7oEkZ8a6HyXzP0oftJC3ILhAQAraZazebwfXV8r7IE8LQLf8qHULjjlYV5QVWLaV4905VZXauMgvfpn3z2hiah200jp5t8t6o8GJ6+ejMTQqGzszECkpRNJHtF4pHhXtZoD6g6cApEkXboovIMQDxrnvJIccq/mUp4/b7XhmHL+vweSxaY007ZDPTjmWtDJ6WiR+ND7oFPNuB1gllu+k3eketqeF/hP6zfJveJTCSpaQjHCc79ilH0D8w9uQ22703RSO0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(136003)(366004)(39860400002)(346002)(376002)(396003)(230922051799003)(230273577357003)(451199024)(1800799012)(186009)(64100799003)(36756003)(6486002)(83380400001)(53546011)(966005)(478600001)(5660300002)(30864003)(26005)(107886003)(2616005)(6512007)(66946007)(66556008)(66476007)(2906002)(37006003)(4326008)(8676002)(6636002)(316002)(8936002)(86362001)(6862004)(31696002)(38100700002)(82960400001)(54906003)(66899024)(6506007)(6666004)(41300700001)(31686004);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MHpMcFBaVm9pUU5acVRQMk5lK0tBakFIdC9CSitJUDM1YUhYOVU1bFdEbS8z?=
+ =?utf-8?B?RGcweGJjQ0xhTnNERCtQVjZ6SHFtS2F6ZVFCYjFGS0Q5Z0VqQ01HTW5hR0tI?=
+ =?utf-8?B?OEFyeGg2QitLcHA0eDZuU0RvR1JhSHJ2REgydnV2dEFkY1MvRGVCcmlHdHhR?=
+ =?utf-8?B?SnlvTGNsbEl5T2NENklaR3RMaXZBaGhxVllUdVBIbnNqVEljdFRNdFBHeGRv?=
+ =?utf-8?B?UGZpTFF4allmVkJPcGhYT2FOMGk1cVVoRVR0WFVhQkRHVzhYL01PRmJXd2hi?=
+ =?utf-8?B?U0VPR2VkR3NmQlFvRGdreGw3dGxPcnEzOHliTEZoWEYyTnFhUzBnVGRPZk1U?=
+ =?utf-8?B?MGNaZWFwL21CZG5BQnN6N0tkQ1V0UHZSR1lUL3JqanJ6a3NUQ2hHaGhLc1lz?=
+ =?utf-8?B?d1RXVDEwQkRBWThmOVgwa3VZZWVMayt3YUhaU3BWWkkyZ05jaWlKMEx0enAw?=
+ =?utf-8?B?QWhIZ0ZETEtJMHovQzlnTkxGK092anA2cWM4MUZRQzZXRDBuY0JkOGwzS0k0?=
+ =?utf-8?B?NG5kU1ZqUm0zM3gwWnNDVWx1TGxjVUlaK3M0NFhOb2JLaTVQdXVpTDkraWJo?=
+ =?utf-8?B?cmpuU0srbGpkTGt6MkNybVJIT0pWbjVTU1dMOXZLanhDZ05VK1Q4QUJvNC8y?=
+ =?utf-8?B?RkQ1eXdGSmF5YmdaSy9hTm8zNURlSGhIU0VjdHRYamh3VDMzNUV0UWVFVVAy?=
+ =?utf-8?B?WmZzSFYyZUdkOEZEM2p1UmUzSkVjVmNXYXg4TWsvOE1nOU5YS1hSVFVyZjFr?=
+ =?utf-8?B?RHJZUU5YcS9kZmEvSW9NUzdRYzgvaHFBbGZhaEwzWUxHNkZmRnZSemxOK3lm?=
+ =?utf-8?B?VkhNUFc1RytZRUl6SXlSbEEzV3kraWd5ejBJVWVtOWovcWNQeExvUjFvYlpt?=
+ =?utf-8?B?ZHU0M0NCMk1Vb0xYZjJpditqNi94QVpNaTJkZFdUdm5ENW1jbWVTR3o1ZW1p?=
+ =?utf-8?B?dUV6Vll0WDRmWkJJVXVScjVrZTRGZXl0QnlUWkR3NVY4bjl5VktPOStYRDBT?=
+ =?utf-8?B?MmdFUFUwSWJuWC9jUFN5dC9xM0lEU2h5TE5LK1NIQllHNjhHdDk2WjMzYnZW?=
+ =?utf-8?B?ZHpwaUphNmVyVktZK0F4SmhpQzFwNVA0bHN5NU5oTDVFdHFkUEJzZUZSRDdX?=
+ =?utf-8?B?UnQyMjRwMGJSNDVpeGpPVGpQMjhIUDN2R2tMTGhNUXFkZHk0QXYyVDM4dGZT?=
+ =?utf-8?B?K0wzYTJnamlaMG5PbWFUODJoUTFZVVZyNW4xd0pZTTI4YWV3ZmMxc3FLcEZJ?=
+ =?utf-8?B?R2I5OWpIUmJXWUtvOTYzNHYrL3J1eFpMaFRsQ093U1p3OWF1Rk1tSkJyM0JN?=
+ =?utf-8?B?UHo1WFc4enZmQmF5SnNYck8yYlhJNzg5OXRkM0J3eFdFak1VNk1LYU1GR25h?=
+ =?utf-8?B?Nm9HWGxRekVWWTFZZ3dkeDQvY05oanZQTkhFdUUxWnAzV3VibHJ5UDRVZHEz?=
+ =?utf-8?B?c2VZV01sU2FYVEJrM0M2ZXlCdFMxT0pQUlJKNjFuQmFCOG9KMElWdjM4QXZD?=
+ =?utf-8?B?Z21sYUtkdkt1d0JCY2dKVmZLOUVnamdOOE8rMnp6NFNMNXduemt3RDRycVg5?=
+ =?utf-8?B?c29XM2dRdUV2TzN6TXk3NWg2a01Wcmk5TG45ZUpOeWRseVVjWW56WUlGTUM1?=
+ =?utf-8?B?dTc5ZkV3RFlDczlkNXo4SXJHZVpZajAxVFJBUk1JRi9KT3JxUXl4VVBmRG9u?=
+ =?utf-8?B?aEhYditRcUk5RlNMZkJxd3Z3bkV4SUt4TlBxU2k1L00vN1huKzZlMUpiZE9X?=
+ =?utf-8?B?Qm8wNHJib0V5blZWVjZOc3U0OHh0NXE1Tkozc3pFcU1Hb3FpRTlPM1FoM1du?=
+ =?utf-8?B?RHRicFFBOEQxL3dPb0dtZkpRNDNBNk5MVEpNZ0F3LzgxQ2R6eUE4Q0M1MWRk?=
+ =?utf-8?B?aGZkWTAySGJZQWR5YWpRakVYb2tsL2psWFNwY0pzZlFjZ1o0NndwR3crYVVY?=
+ =?utf-8?B?QVVuS0NIT2RabUlFWjMvUEF1Q1dpemNGN1VZY28weDZLNmRjbVJpOFFpb3Z2?=
+ =?utf-8?B?d052RkIwSytiVEV4a1hsNUlwM3EyOERybFBMU3VPWUxlTHMvZ0N0MDFlcTE4?=
+ =?utf-8?B?L2VMUGdQOHVHVDRqZ01jQlpwVEJEaVZlckpOWGdNVTRPRTlFUTE4elVZcW5B?=
+ =?utf-8?B?dllDTTdwOENZM2pMektZMjhlOSszTS82TXBxa1ZYcG05VWMwcmlaZlZ0ZHlX?=
+ =?utf-8?Q?bE7/7p7lPx3PQ6+nQrIxz68=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 059ddfb4-340a-4ebe-3b9b-08dc290643e6
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Feb 2024 00:30:06.6839 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: nT5xKBoY7FoxBkTwiGWQl2FURfa/jmgkw3yrAYfA8vXMJpDDJMqxdKsILHnB8zGpeym78MvCxwqXw2YuiJ1uBE+jEGHyinDMKMnfiQgP5Ic=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB8285
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,234 +167,380 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/xe/guc: Add GuC based register capture for error capture (rev4)
-URL   : https://patchwork.freedesktop.org/series/128077/
-State : failure
 
-== Summary ==
+On 2/7/2024 12:40 PM, Lucas De Marchi wrote:
+> On Wed, Feb 07, 2024 at 10:34:07AM -0800, Daniele Ceraolo Spurio wrote:
+>>
+>>
+>> On 2/7/2024 8:42 AM, Lucas De Marchi wrote:
+>>> +Gustavo who is dealing with DMC firmware lately
+>>>
+>>> On Wed, Feb 07, 2024 at 03:30:59AM +0000, Matthew Brost wrote:
+>>>> On Tue, Feb 06, 2024 at 05:18:50PM -0800, John Harrison wrote:
+>>>>> On 2/6/2024 15:41, Daniele Ceraolo Spurio wrote:
+>>>>>> Supporting older GuC versions comes with baggage, both on the coding
+>>>>>> side (due to interfaces only being available from a certain version
+>>>>>> onwards) and on the testing side (due to having to make sure 
+>>>>> the driver
+>>>>>> works as expected with older GuCs).
+>>>>>> Since all of our Xe platform are still under force probe, we haven't
+>>>>>> committed to support any specific GuC version and we therefore don't
+>>>>>> need to support the older once, which means that we can force 
+>>>>> a bottom
+>>>>>> limit to what GuC we accept. This allows us to remove any 
+>>>>>> conditional
+>>>>>> statements based on older GuC versions and also to approach newer
+>>>>>> additions knowing that we'll never attempt to load something older
+>>>>>> than our minimum requirement.
+>>>>>>
+>>>>>> RFC: this patch sets the minimum to the current GuC version (70.19),
+>>>>>> but that can be moved one way or the other. The main aim here is
+>>>>> Ideally, this would be bumped every time we update Xe to a newer 
+>>>>> firmware
+>>>>> version right up to the point when force probe is lifted. At that 
+>>>>> point it
+>>>>> becomes fixed and we have to add the version check support back in 
+>>>>> for
+>>>>> future w/a's and features.
+>>>>>
+>>>>> Get's my vote :).
+>>>
+>>> Yeah, but see my other reply... I think we will have to wait the
+>>> firmware being available in linux-firmware for that.
+>>>
+>>> Also, let's kickstart a discussion on our process with some
+>>> possible changes so we can get it documented. I think we have a good
+>>> opportunity here to start adopting the
+>>> https://gitlab.freedesktop.org/drm/firmware repo.
+>>>
+>>> Rough idea:
+>>>
+>>> 1) use intel-staging branch with tags for pull requests to
+>>>    linux-firmware, just like documented in their readme.
+>>>    IMO the naming is rather unfortunate since it would be
+>>>    good to use it for (2) below.... but since it's already used
+>>>    we can use something else.
+>>>
+>>>    this would mainly replace the use we have today for
+>>>    https://cgit.freedesktop.org/drm/drm-firmware/ ,    which could 
+>>> be retired. From  upstream linux-firmware pov the only
+>>>    change would be the remote location and that we start using tags
+>>>    for the pull requests, coming from a single branch regardless of
+>>>    the firmware (guc, huc, dmc, gsc): intel-staging. Once accepted in
+>>>    linux-firmware, the branch is fast-forwarded.
+>>
+>> I think this needs a bit more fleshing out, because before we do a 
+>> pull request, we do want to run CI on the blobs. Also, in several 
+>> occasions we went through a couple of versions before we closed on 
+>> what to push to linux-firmware (e.g. in the latest push we started 
+>> with 70.19.1 but then pushed 70.19.2), so we can't go to 
+>> intel-staging until we're actually ready to push. I think the process 
+>> you have below for mmp blobs should work for this early testing flow 
+>> as well, but we might end up with a lot of noise in the 
+>> staging-intel-for-CI branch.
+>
+> that would be a throw away branch where we push stuff to be able to test
+> on CI. I don't think the commit history matters much there. The fact
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../arch/x86/um/user-offsets.c:17:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
-   17 | void foo(void)
-      |      ^~~
-In file included from ../arch/um/kernel/asm-offsets.c:1:
-../arch/x86/um/shared/sysdep/kernel-offsets.h:9:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
-    9 | void foo(void)
-      |      ^~~
-../arch/x86/um/fault.c:18:5: warning: no previous prototype for ‘arch_fixup’ [-Wmissing-prototypes]
-   18 | int arch_fixup(unsigned long address, struct uml_pt_regs *regs)
-      |     ^~~~~~~~~~
-../arch/x86/um/bugs_64.c:9:6: warning: no previous prototype for ‘arch_check_bugs’ [-Wmissing-prototypes]
-    9 | void arch_check_bugs(void)
-      |      ^~~~~~~~~~~~~~~
-../arch/x86/um/bugs_64.c:13:6: warning: no previous prototype for ‘arch_examine_signal’ [-Wmissing-prototypes]
-   13 | void arch_examine_signal(int sig, struct uml_pt_regs *regs)
-      |      ^~~~~~~~~~~~~~~~~~~
-../arch/x86/um/os-Linux/mcontext.c:7:6: warning: no previous prototype for ‘get_regs_from_mc’ [-Wmissing-prototypes]
-    7 | void get_regs_from_mc(struct uml_pt_regs *regs, mcontext_t *mc)
-      |      ^~~~~~~~~~~~~~~~
-../arch/x86/um/os-Linux/registers.c:146:15: warning: no previous prototype for ‘get_thread_reg’ [-Wmissing-prototypes]
-  146 | unsigned long get_thread_reg(int reg, jmp_buf *buf)
-      |               ^~~~~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:16:5: warning: no previous prototype for ‘__vdso_clock_gettime’ [-Wmissing-prototypes]
-   16 | int __vdso_clock_gettime(clockid_t clock, struct __kernel_old_timespec *ts)
-      |     ^~~~~~~~~~~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:30:5: warning: no previous prototype for ‘__vdso_gettimeofday’ [-Wmissing-prototypes]
-   30 | int __vdso_gettimeofday(struct __kernel_old_timeval *tv, struct timezone *tz)
-      |     ^~~~~~~~~~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:44:21: warning: no previous prototype for ‘__vdso_time’ [-Wmissing-prototypes]
-   44 | __kernel_old_time_t __vdso_time(__kernel_old_time_t *t)
-      |                     ^~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:57:1: warning: no previous prototype for ‘__vdso_getcpu’ [-Wmissing-prototypes]
-   57 | __vdso_getcpu(unsigned *cpu, unsigned *node, struct getcpu_cache *unused)
-      | ^~~~~~~~~~~~~
-../arch/um/os-Linux/skas/process.c:107:6: warning: no previous prototype for ‘wait_stub_done’ [-Wmissing-prototypes]
-  107 | void wait_stub_done(int pid)
-      |      ^~~~~~~~~~~~~~
-../arch/um/os-Linux/skas/process.c:683:6: warning: no previous prototype for ‘__switch_mm’ [-Wmissing-prototypes]
-  683 | void __switch_mm(struct mm_id *mm_idp)
-      |      ^~~~~~~~~~~
-../arch/x86/um/ptrace_64.c:111:5: warning: no previous prototype for ‘poke_user’ [-Wmissing-prototypes]
-  111 | int poke_user(struct task_struct *child, long addr, long data)
-      |     ^~~~~~~~~
-../arch/x86/um/ptrace_64.c:171:5: warning: no previous prototype for ‘peek_user’ [-Wmissing-prototypes]
-  171 | int peek_user(struct task_struct *child, long addr, long data)
-      |     ^~~~~~~~~
-../arch/um/kernel/skas/mmu.c:17:5: warning: no previous prototype for ‘init_new_context’ [-Wmissing-prototypes]
-   17 | int init_new_context(struct task_struct *task, struct mm_struct *mm)
-      |     ^~~~~~~~~~~~~~~~
-../arch/um/kernel/skas/mmu.c:60:6: warning: no previous prototype for ‘destroy_context’ [-Wmissing-prototypes]
-   60 | void destroy_context(struct mm_struct *mm)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/os-Linux/main.c:187:7: warning: no previous prototype for ‘__wrap_malloc’ [-Wmissing-prototypes]
-  187 | void *__wrap_malloc(int size)
-      |       ^~~~~~~~~~~~~
-../arch/um/os-Linux/main.c:208:7: warning: no previous prototype for ‘__wrap_calloc’ [-Wmissing-prototypes]
-  208 | void *__wrap_calloc(int n, int size)
-      |       ^~~~~~~~~~~~~
-../arch/um/os-Linux/main.c:222:6: warning: no previous prototype for ‘__wrap_free’ [-Wmissing-prototypes]
-  222 | void __wrap_free(void *ptr)
-      |      ^~~~~~~~~~~
-../arch/um/os-Linux/mem.c:28:6: warning: no previous prototype for ‘kasan_map_memory’ [-Wmissing-prototypes]
-   28 | void kasan_map_memory(void *start, size_t len)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/os-Linux/mem.c:212:13: warning: no previous prototype for ‘check_tmpexec’ [-Wmissing-prototypes]
-  212 | void __init check_tmpexec(void)
-      |             ^~~~~~~~~~~~~
-../arch/um/kernel/skas/process.c:36:12: warning: no previous prototype for ‘start_uml’ [-Wmissing-prototypes]
-   36 | int __init start_uml(void)
-      |            ^~~~~~~~~
-../arch/um/os-Linux/signal.c:75:6: warning: no previous prototype for ‘sig_handler’ [-Wmissing-prototypes]
-   75 | void sig_handler(int sig, struct siginfo *si, mcontext_t *mc)
-      |      ^~~~~~~~~~~
-../arch/um/os-Linux/signal.c:111:6: warning: no previous prototype for ‘timer_alarm_handler’ [-Wmissing-prototypes]
-  111 | void timer_alarm_handler(int sig, struct siginfo *unused_si, mcontext_t *mc)
-      |      ^~~~~~~~~~~~~~~~~~~
-../arch/x86/um/signal.c:560:6: warning: no previous prototype for ‘sys_rt_sigreturn’ [-Wmissing-prototypes]
-  560 | long sys_rt_sigreturn(void)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/os-Linux/start_up.c:301:12: warning: no previous prototype for ‘parse_iomem’ [-Wmissing-prototypes]
-  301 | int __init parse_iomem(char *str, int *add)
-      |            ^~~~~~~~~~~
-../arch/um/kernel/mem.c:202:8: warning: no previous prototype for ‘pgd_alloc’ [-Wmissing-prototypes]
-  202 | pgd_t *pgd_alloc(struct mm_struct *mm)
-      |        ^~~~~~~~~
-../arch/um/kernel/mem.c:215:7: warning: no previous prototype for ‘uml_kmalloc’ [-Wmissing-prototypes]
-  215 | void *uml_kmalloc(int size, int flags)
-      |       ^~~~~~~~~~~
-../arch/um/kernel/process.c:51:5: warning: no previous prototype for ‘pid_to_processor_id’ [-Wmissing-prototypes]
-   51 | int pid_to_processor_id(int pid)
-      |     ^~~~~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:87:7: warning: no previous prototype for ‘__switch_to’ [-Wmissing-prototypes]
-   87 | void *__switch_to(struct task_struct *from, struct task_struct *to)
-      |       ^~~~~~~~~~~
-../arch/um/kernel/process.c:140:6: warning: no previous prototype for ‘fork_handler’ [-Wmissing-prototypes]
-  140 | void fork_handler(void)
-      |      ^~~~~~~~~~~~
-../arch/um/kernel/process.c:217:6: warning: no previous prototype for ‘arch_cpu_idle’ [-Wmissing-prototypes]
-  217 | void arch_cpu_idle(void)
-      |      ^~~~~~~~~~~~~
-../arch/um/kernel/process.c:253:5: warning: no previous prototype for ‘copy_to_user_proc’ [-Wmissing-prototypes]
-  253 | int copy_to_user_proc(void __user *to, void *from, int size)
-      |     ^~~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:263:5: warning: no previous prototype for ‘clear_user_proc’ [-Wmissing-prototypes]
-  263 | int clear_user_proc(void __user *buf, int size)
-      |     ^~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:271:6: warning: no previous prototype for ‘set_using_sysemu’ [-Wmissing-prototypes]
-  271 | void set_using_sysemu(int value)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:278:5: warning: no previous prototype for ‘get_using_sysemu’ [-Wmissing-prototypes]
-  278 | int get_using_sysemu(void)
-      |     ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:316:12: warning: no previous prototype for ‘make_proc_sysemu’ [-Wmissing-prototypes]
-  316 | int __init make_proc_sysemu(void)
-      |            ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:348:15: warning: no previous prototype for ‘arch_align_stack’ [-Wmissing-prototypes]
-  348 | unsigned long arch_align_stack(unsigned long sp)
-      |               ^~~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:45:6: warning: no previous prototype for ‘machine_restart’ [-Wmissing-prototypes]
-   45 | void machine_restart(char * __unused)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:51:6: warning: no previous prototype for ‘machine_power_off’ [-Wmissing-prototypes]
-   51 | void machine_power_off(void)
-      |      ^~~~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:57:6: warning: no previous prototype for ‘machine_halt’ [-Wmissing-prototypes]
-   57 | void machine_halt(void)
-      |      ^~~~~~~~~~~~
-../arch/x86/um/syscalls_64.c:48:6: warning: no previous prototype for ‘arch_switch_to’ [-Wmissing-prototypes]
-   48 | void arch_switch_to(struct task_struct *to)
-      |      ^~~~~~~~~~~~~~
-../arch/um/kernel/tlb.c:579:6: warning: no previous prototype for ‘flush_tlb_mm_range’ [-Wmissing-prototypes]
-  579 | void flush_tlb_mm_range(struct mm_struct *mm, unsigned long start,
-      |      ^~~~~~~~~~~~~~~~~~
-../arch/um/kernel/tlb.c:594:6: warning: no previous prototype for ‘force_flush_all’ [-Wmissing-prototypes]
-  594 | void force_flush_all(void)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/kernel/kmsg_dump.c:60:12: warning: no previous prototype for ‘kmsg_dumper_stdout_init’ [-Wmissing-prototypes]
-   60 | int __init kmsg_dumper_stdout_init(void)
-      |            ^~~~~~~~~~~~~~~~~~~~~~~
-../arch/um/kernel/um_arch.c:408:19: warning: no previous prototype for ‘read_initrd’ [-Wmissing-prototypes]
-  408 | int __init __weak read_initrd(void)
-      |                   ^~~~~~~~~~~
-../arch/um/kernel/um_arch.c:461:7: warning: no previous prototype for ‘text_poke’ [-Wmissing-prototypes]
-  461 | void *text_poke(void *addr, const void *opcode, size_t len)
-      |       ^~~~~~~~~
-../arch/um/kernel/um_arch.c:473:6: warning: no previous prototype for ‘text_poke_sync’ [-Wmissing-prototypes]
-  473 | void text_poke_sync(void)
-      |      ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_capture.c: In function ‘guc_capture_alloc_steered_lists’:
-../drivers/gpu/drm/xe/xe_guc_capture.c:287:2: error: implicit declaration of function ‘for_each_dss_steering’ [-Werror=implicit-function-declaration]
-  287 |  for_each_dss_steering(iter, gt, slice, subslice) {
-      |  ^~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_capture.c:287:50: error: expected ‘;’ before ‘{’ token
-  287 |  for_each_dss_steering(iter, gt, slice, subslice) {
-      |                                                  ^~
-      |                                                  ;
-../drivers/gpu/drm/xe/xe_guc_capture.c:254:31: warning: variable ‘extarray’ set but not used [-Wunused-but-set-variable]
-  254 |  struct __guc_mmio_reg_descr *extarray;
-      |                               ^~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_capture.c:251:29: warning: unused variable ‘i’ [-Wunused-variable]
-  251 |  int slice, subslice, iter, i, num_steer_regs, num_tot_regs = 0;
-      |                             ^
-At top level:
-../drivers/gpu/drm/xe/xe_guc_capture.c:219:13: warning: ‘__fill_ext_reg’ defined but not used [-Wunused-function]
-  219 | static void __fill_ext_reg(struct __guc_mmio_reg_descr *ext,
-      |             ^~~~~~~~~~~~~~
-cc1: some warnings being treated as errors
-make[7]: *** [../scripts/Makefile.build:243: drivers/gpu/drm/xe/xe_guc_capture.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-make[6]: *** [../scripts/Makefile.build:481: drivers/gpu/drm/xe] Error 2
-make[6]: *** Waiting for unfinished jobs....
-../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-make[5]: *** [../scripts/Makefile.build:481: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:481: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:481: drivers] Error 2
-make[3]: *** Waiting for unfinished jobs....
-make[2]: *** [/kernel/Makefile:1921: .] Error 2
-make[1]: *** [/kernel/Makefile:240: __sub-make] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
+That depends on how CI does things. With the current handling of 
+throwaway branches we have on drm-firmware, a CI request can 
+accidentally roll back another one. e.g., if we push a throwaway branch 
+with a GuC update and then another with a DMC update, the second push 
+will roll-back the GuC to what's on the new branch (likely the 
+linux-firmware version). That's why there was a suggestion ti use a 
+unified branch for CI as well.
 
-[00:07:36] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[00:07:40] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
 
+> that the firmware is available to match what is in the kernel and that
+> there's a documented process for using it in my view trumps the
+> this downside.
+>
+> what I expect would be, considering the LNL case as example:
+>
+> 1) Start testing with the mmp version:
+>
+>     a) Add firmware to  drm/firmware intel-staging-for-CI
+>     b) Add commit in topic/xe-for-CI on the kernel side to make
+>        use of that firmware
+>
+> 2) Ooops, that has bugs
+>
+>     a) add a second mmp firmware to drm/firmware intel-staging-for-CI
+>     b) replace commit in topic/xe-for-CI on the kernel side
+>
+> 3) we think we are good, let's try for real
+>
+>     a) Add lnl_guc_70.bin to drm/firmware intel-staging-for-CI
+>     b) replace commit in topic/xe-for-CI on the kernel side
+>
+> 4) yay, it worked
+>
+>     a) Add that lnl_gu_70.bin firmware to intel-staging branch and
+>        prepare pull request to linux-firmware
+>     b) move patch from topic/xe-for-CI to drm-xe-next: i.e., rebase
+>        topic/xe-for-CI on top of drm-xe-next leaving that commit as
+>        first one. git push topic/xe-for-CI, dim push drm-xe-next (or
+>        implement the logic in dim to push 2 branches)
+>
+>     We may need some time between (a) and (b) depending on where we
+>     are on the kernel release cycle: we don't want to submit a
+>     kernel pull request before the firmware is available @
+>     linux-firmware repo.
+>
+> Note that the fact we are using mmp makes it more complex, although
+> explicit.  Going direct with lnl_gu_70.bin would also work and avoid
+> updating the commits on the kernel side.
+
+This works for a completely new release. For updating an existing 
+release, we'll have to push, potentially multiple times, all the 
+*_guc_70.bin binaries to intel-staging-for-CI. Just to be clear, I have 
+nothing against this, just noting that it would generate a lot of noise 
+in that branch and potentially use a lot of space on disk.
+
+>
+>>
+>> We also need some rules to handle the case where there is already a 
+>> PR in flight and we need to push some more blobs. This might be as 
+>> easy as the committer seeing that there are commits on top of master, 
+>> replying to the previous PR to deprecate it, and then generating a 
+>> new PR with all the blobs.
+>
+> the pull requests to linux-firmware would come from tags, not a branch.
+> So you have (tip of the branch is on top):
+>
+>     o <intel-staging> intel: Add lnl_guc_70.bin
+>     o <refs/tags/intel-2024-01-30> intel: Update dg2_guc_70.bin  <-- 
+> last in flight pull request
+>     o intel: Add lnl_dmc.bin
+>     o <origin/main> ....  <--  where linux-firmware is at
+>
+> Looking at amd-staging, it seems to match what they are doing:
+> https://gitlab.freedesktop.org/drm/firmware/-/commits/amd-staging?ref_type=heads 
+>
+>
+> see the amd-$DATE tags
+
+Sorry I wasn't very clear in my comment, what I wanted to point out was 
+that if we are on a unified branch and we have the PR against a specific 
+tag (intel-2024-01-30 in your example) already in flight, how do we 
+generate a new PR for the newer commit that comes after the tag (and 
+which will have its own new tag)? Does git do some tag magic and handle 
+it for us, or do we need to generate a new PR that supersedes the one in 
+flight?
+
+
+>
+>>
+>>
+>>>
+>>> 2) mmp firmware versions are only ever pushed to a separate 
+>>> staging-intel-for-CI
+>>>    branch. There is no pull request in the mailing for this. We can 
+>>> either
+>>>    push directly to the branch or create MRs in gitlab. CI would start
+>>>    using this branch for the extra firmware for platforms instead of
+>>>    whatever it's using today to process the pull requests from the
+>>>    mailing list.  Or whatever it's using, because I don't know and 
+>>> don't
+>>>    see it documented anywhere.
+>>
+>> As long as the CI team is ok with this, I'm all for it.
+>>
+>>>
+>>>    The patch on the kernel side to use the mmp firmware is only ever
+>>>    pushed to the topic/xe-for-CI branch since a) the firmware is 
+>>> coming from
+>>>    a non-official location and b) end users and distro packaging
+>>>    shouldn't see a warning when building the kernel due to a possibly
+>>>    missing firmware
+>>> 3) Raising firmware version requirement for past platforms used as
+>>>    SDV can be done **unless** it raises the major version. That's 
+>>> because
+>>>    end users would start seeing the warning that we avoided in (2).
+>>
+>> Who are the end users here? If we're talking about older 
+>> non-officially supported platforms, the only users should be 
+>> developers and they should be able to handle having to update the 
+>> firmwares to a newer major versions.
+>
+> distros and any developer outside Intel. The kernel build system is
+> unaware of xe.force_probe. So if you have, after the several macros:
+>
+> MODULE_FIRMWARE("xe/tgl_guc_71.bin")
+>
+> It will show up in `modinfo -f firmware xe`. And it will show as a
+> warning when installing/packaging a kernel.
+>
+> It doesn't matter for minor/patch updates because the file name is
+> major-only and **running** with that module is protected by the
+> force_probe. The major may be updated when it's available in
+> linux-firmware, which means i915 started using it (for i915 that would
+> be "as an option, with fallback to the previous major release" of
+> course).
+
+Ok I get the concern. My assumption here was that we'd only update the 
+minimum required version if that version was in linux-firmware even for 
+minor updates, hence why I didn't see why a major update would be 
+different. I guess we could go with a more relaxed approach where we 
+allow the required minor to be updated for force-probe platforms as long 
+as the firmware is available on a public/CI branch even if it is not in 
+linux-firmware.
+
+Getting back on track with the original purpose of this patch, are you 
+ok with setting the minimum to 70.19 if I first push the matching PVC 
+70.19 binary (via the old method for now), while we continue sorting out 
+how to manage the new repo?
+
+Daniele
+
+>
+> Lucas De Marchi
+>
+>>
+>> Daniele
+>>
+>>>
+>>> thoughts?
+>>>
+>>> Lucas De Marchi
+>>>
+>>>>>
+>>>>
+>>>> Mine too.
+>>>>
+>>>> With that:
+>>>> Acked-by: Matthew Brost <matthew.brost@intel.com>
+>>>>
+>>>>> John.
+>>>>>
+>>>>>> agreeing to stop supporting very old GuC releases on the newer 
+>>>>> driver.
+>>>>>>
+>>>>>> Signed-off-by: Daniele Ceraolo Spurio 
+>>>>> <daniele.ceraolospurio@intel.com>
+>>>>>> Cc: John Harrison <John.C.Harrison@Intel.com>
+>>>>>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>>>>>> Cc: Matt Roper <matthew.d.roper@intel.com>
+>>>>>> Cc: Matthew Brost <matthew.brost@intel.com>
+>>>>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>>>>> ---
+>>>>>>    drivers/gpu/drm/xe/xe_guc.c   | 14 ++------------
+>>>>>>    drivers/gpu/drm/xe/xe_uc_fw.c | 36 
+>>>>> ++++++++++++++---------------------
+>>>>>>    2 files changed, 16 insertions(+), 34 deletions(-)
+>>>>>>
+>>>>>> diff --git a/drivers/gpu/drm/xe/xe_guc.c 
+>>>>> b/drivers/gpu/drm/xe/xe_guc.c
+>>>>>> index 868208a39829..5e6b27aac495 100644
+>>>>>> --- a/drivers/gpu/drm/xe/xe_guc.c
+>>>>>> +++ b/drivers/gpu/drm/xe/xe_guc.c
+>>>>>> @@ -132,15 +132,10 @@ static u32 guc_ctl_ads_flags(struct 
+>>>>> xe_guc *guc)
+>>>>>>        return flags;
+>>>>>>    }
+>>>>>> -#define GUC_VER(maj, min, pat)    (((maj) << 16) | ((min) << 
+>>>>> 8) | (pat))
+>>>>>> -
+>>>>>>    static u32 guc_ctl_wa_flags(struct xe_guc *guc)
+>>>>>>    {
+>>>>>>        struct xe_device *xe = guc_to_xe(guc);
+>>>>>>        struct xe_gt *gt = guc_to_gt(guc);
+>>>>>> -    struct xe_uc_fw *uc_fw = &guc->fw;
+>>>>>> -    struct xe_uc_fw_version *version = 
+>>>>> &uc_fw->versions.found[XE_UC_FW_VER_RELEASE];
+>>>>>> -
+>>>>>>        u32 flags = 0;
+>>>>>>        if (XE_WA(gt, 22012773006))
+>>>>>> @@ -170,13 +165,8 @@ static u32 guc_ctl_wa_flags(struct xe_guc *guc)
+>>>>>>        if (XE_WA(gt, 1509372804))
+>>>>>>            flags |= GUC_WA_RENDER_RST_RC6_EXIT;
+>>>>>> -    if (XE_WA(gt, 14018913170)) {
+>>>>>> -        if (GUC_VER(version->major, version->minor, 
+>>>>> version->patch) >= GUC_VER(70, 7, 0))
+>>>>>> -            flags |= GUC_WA_ENABLE_TSC_CHECK_ON_RC6;
+>>>>>> -        else
+>>>>>> -            drm_dbg(&xe->drm, "Skip WA 14018913170: GUC 
+>>>>> version expected >= 70.7.0, found %u.%u.%u\n",
+>>>>>> - version->major, version->minor, version->patch);
+>>>>>> -    }
+>>>>>> +    if (XE_WA(gt, 14018913170))
+>>>>>> +        flags |= GUC_WA_ENABLE_TSC_CHECK_ON_RC6;
+>>>>>>        return flags;
+>>>>>>    }
+>>>>>> diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c 
+>>>>> b/drivers/gpu/drm/xe/xe_uc_fw.c
+>>>>>> index 4714f2c8d2ba..e5bf59616f3d 100644
+>>>>>> --- a/drivers/gpu/drm/xe/xe_uc_fw.c
+>>>>>> +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+>>>>>> @@ -296,36 +296,28 @@ static void uc_fw_fini(struct drm_device 
+>>>>> *drm, void *arg)
+>>>>>> xe_uc_fw_change_status(uc_fw, XE_UC_FIRMWARE_SELECTED);
+>>>>>>    }
+>>>>>> -static void guc_read_css_info(struct xe_uc_fw *uc_fw, struct 
+>>>>> uc_css_header *css)
+>>>>>> +static int guc_read_css_info(struct xe_uc_fw *uc_fw, struct 
+>>>>> uc_css_header *css)
+>>>>>>    {
+>>>>>>        struct xe_gt *gt = uc_fw_to_gt(uc_fw);
+>>>>>>        struct xe_uc_fw_version *release = 
+>>>>> &uc_fw->versions.found[XE_UC_FW_VER_RELEASE];
+>>>>>>        struct xe_uc_fw_version *compatibility = 
+>>>>> &uc_fw->versions.found[XE_UC_FW_VER_COMPATIBILITY];
+>>>>>>        xe_gt_assert(gt, uc_fw->type == XE_UC_FW_TYPE_GUC);
+>>>>>> -    xe_gt_assert(gt, release->major >= 70);
+>>>>>> -
+>>>>>> -    if (release->major > 70 || release->minor >= 6) {
+>>>>>> -        /* v70.6.0 adds CSS header support */
+>>>>>> -        compatibility->major = FIELD_GET(CSS_SW_VERSION_UC_MAJOR,
+>>>>>> -                         css->submission_version);
+>>>>>> -        compatibility->minor = FIELD_GET(CSS_SW_VERSION_UC_MINOR,
+>>>>>> -                         css->submission_version);
+>>>>>> -        compatibility->patch = FIELD_GET(CSS_SW_VERSION_UC_PATCH,
+>>>>>> -                         css->submission_version);
+>>>>>> -    } else if (release->minor >= 3) {
+>>>>>> -        /* v70.3.0 introduced v1.1.0 */
+>>>>>> -        compatibility->major = 1;
+>>>>>> -        compatibility->minor = 1;
+>>>>>> -        compatibility->patch = 0;
+>>>>>> -    } else {
+>>>>>> -        /* v70.0.0 introduced v1.0.0 */
+>>>>>> -        compatibility->major = 1;
+>>>>>> -        compatibility->minor = 0;
+>>>>>> -        compatibility->patch = 0;
+>>>>>> +
+>>>>>> +    /* We don't support GuC releases older than 70.19 */
+>>>>>> +    if (release->major < 70 || (release->major == 70 && 
+>>>>> release->minor < 19)) {
+>>>>>> +        xe_gt_err(gt, "Unsupported GuC v%u.%u! v70.19 or 
+>>>>> newer is required\n",
+>>>>>> +              release->major, release->minor);
+>>>>>> +        return -EINVAL;
+>>>>>>        }
+>>>>>> +    compatibility->major = FIELD_GET(CSS_SW_VERSION_UC_MAJOR, 
+>>>>> css->submission_version);
+>>>>>> +    compatibility->minor = FIELD_GET(CSS_SW_VERSION_UC_MINOR, 
+>>>>> css->submission_version);
+>>>>>> +    compatibility->patch = FIELD_GET(CSS_SW_VERSION_UC_PATCH, 
+>>>>> css->submission_version);
+>>>>>> +
+>>>>>>        uc_fw->private_data_size = css->private_data_size;
+>>>>>> +
+>>>>>> +    return 0;
+>>>>>>    }
+>>>>>>    int xe_uc_fw_check_version_requirements(struct xe_uc_fw *uc_fw)
+>>>>>> @@ -424,7 +416,7 @@ static int parse_css_header(struct 
+>>>>> xe_uc_fw *uc_fw, const void *fw_data, size_t
+>>>>>>        release->patch = FIELD_GET(CSS_SW_VERSION_UC_PATCH, 
+>>>>> css->sw_version);
+>>>>>>        if (uc_fw->type == XE_UC_FW_TYPE_GUC)
+>>>>>> -        guc_read_css_info(uc_fw, css);
+>>>>>> +        return guc_read_css_info(uc_fw, css);
+>>>>>>        return 0;
+>>>>>>    }
+>>>>>
+>>
 
