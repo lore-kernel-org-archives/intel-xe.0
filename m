@@ -4,56 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58BE8C48297
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Feb 2024 09:54:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC591C4828F
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Feb 2024 10:16:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01D9E10EE00;
-	Fri,  9 Feb 2024 09:54:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65A4310F2F1;
+	Fri,  9 Feb 2024 10:16:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BZKYvTGI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G3j3QpAp";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1646210EE00
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Feb 2024 09:54:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D95E310F2F1;
+ Fri,  9 Feb 2024 10:16:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707472460; x=1739008460;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=lrHewAwK7CuQIJ6dFW2uoFm02wHbdaKq9qRHXXahWxQ=;
- b=BZKYvTGI988LlNauWiQXnwPmQTNWNnT134qjz/jvdGNjn/hVXx7OtrpD
- 2IjI3cupTGUg4jX1ATu7CKR3mbSQyhG+r/mSgEFqQQ2QUhZ4wh80XP7Nb
- nJI4bxp5lpOwCsjz5StgCn1ff+/2M1gYoTPxD7Jz8PwlOgCwRAk8K1iIX
- ZeF3v4FCIEGZ01ZhXxsnorr1E1i9MA7nB3VwCDdlFMLddIq9IOXWy2Uij
- V8IUawxvJyREoLYYsrWmEvkAmzYH1ZROuoGOXtjbknpRvNiZNUbzDIEcT
- ZBKtNZK03AhdPNarzIIRNci2Syy0DiT/9k3G3GVhdkJjKwajr949pxXNL g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="1256185"
+ t=1707473787; x=1739009787;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=QV3vCmHzc7U1ABs4Xq/CCJ0roCEIiTmYWM4dhI/doxE=;
+ b=G3j3QpAp2HeNKDLdKzzpMIJw79sElooecM8T3Eu6eIvUEhHZ/eagvUIi
+ KhAP+fSDWEUTeebV720Iywn5e4tbshHQctYrYxiiYJvP0hjG5DonUwWas
+ pt/bi/dKLCnas/Z8bhK0yvOIMx7xzSeG+zhcAcndeIoj3+xXxPqLt/wLD
+ vakYHFieLS4ARjCfF5vxSafNnub7gnlS5OGg2z353EfU/gnYrnQJnvbC+
+ FCixbFAsvvL42N5ZAcJlh8L9wQmZW6aFalVdh5qPu99F1gKZ6agMfKF8c
+ Ia9Q+3JbW6DknnuHwWH6+CNVoyTeUswQFhcEA+1MsVoSiP4v779Eosa3n Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="1307313"
 X-IronPort-AV: E=Sophos;i="6.05,256,1701158400"; 
-   d="scan'208";a="1256185"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2024 01:54:19 -0800
+   d="scan'208";a="1307313"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2024 02:16:11 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.05,256,1701158400"; 
-   d="scan'208";a="6548437"
-Received: from vdegtyar-mobl1.ger.corp.intel.com (HELO [10.252.20.246])
- ([10.252.20.246])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2024 01:54:18 -0800
-Message-ID: <bfad7b8e-fc66-4724-a28e-3798c4fa860b@intel.com>
-Date: Fri, 9 Feb 2024 09:54:16 +0000
+   d="scan'208";a="2244003"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
+ by orviesa006.jf.intel.com with ESMTP; 09 Feb 2024 02:16:08 -0800
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: daniele.ceraolospurio@intel.com,
+	Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH 0/5] XE HDCP Enablement
+Date: Fri,  9 Feb 2024 15:44:07 +0530
+Message-Id: <20240209101412.1326176-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/display: fix i915_gem_object_is_shmem() wrapper
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-References: <20240205153110.38340-2-matthew.auld@intel.com>
- <SN7PR11MB67500DE40555B0DC3825C781E34B2@SN7PR11MB6750.namprd11.prod.outlook.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <SN7PR11MB67500DE40555B0DC3825C781E34B2@SN7PR11MB6750.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,45 +63,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 09/02/2024 08:39, Kandpal, Suraj wrote:
->> Subject: [PATCH] drm/xe/display: fix i915_gem_object_is_shmem() wrapper
->>
->> shmem ensures the memory is cleared on allocation, however here we are
->> using TTM, which doesn't natively support shmem (other than for swap), but
->> instead just allocates normal system memory. And we only zero such memory
->> for userspace allocations. In the case of intel_fbdev we are missing the
->> memset_io().
->>
-> 
-> LGTM
-> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+This patch series enables HDCP on XE.
+Mainly includes rewriting functions that were responsible for
+sending hdcp messages via gsc cs.
 
-Thanks. Going to push with Fixes: 44e694958b95 ("drm/xe/display: 
-Implement display support"), since this appears to fix display 
-corruption seen with fbdev.
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-> 
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> ---
->>   drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/xe/compat-i915-
->> headers/gem/i915_gem_object.h b/drivers/gpu/drm/xe/compat-i915-
->> headers/gem/i915_gem_object.h
->> index 68d9f6116bdf..777c20ceabab 100644
->> --- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
->> +++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
->> @@ -10,7 +10,7 @@
->>
->>   #include "xe_bo.h"
->>
->> -#define i915_gem_object_is_shmem(obj) ((obj)->flags &
->> XE_BO_CREATE_SYSTEM_BIT)
->> +#define i915_gem_object_is_shmem(obj) (0) /* We don't use shmem */
->>
->>   static inline dma_addr_t i915_gem_object_get_dma_address(const struct
->> xe_bo *bo, pgoff_t n)  {
->> --
->> 2.43.0
-> 
+Suraj Kandpal (5):
+  drm/i915/hdcp: Move intel_hdcp_gsc_message def away from header file
+  drm/xe/hdcp: Use xe_device struct
+  drm/xe: Use gsc_proxy_init_done to check proxy status
+  drm/xe/hdcp: Enable HDCP for XE
+  drm/xe/hdcp: Add intel_hdcp_gsc_message to Makefile
+
+ drivers/gpu/drm/i915/display/intel_hdcp_gsc.c |   6 +
+ drivers/gpu/drm/i915/display/intel_hdcp_gsc.h |   7 +-
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      | 236 +++++++++++++++++-
+ drivers/gpu/drm/xe/xe_gsc_proxy.c             |   4 +-
+ drivers/gpu/drm/xe/xe_gsc_proxy.h             |   1 +
+ drivers/gpu/drm/xe/xe_gsc_submit.c            |  15 ++
+ drivers/gpu/drm/xe/xe_gsc_submit.h            |   1 +
+ 8 files changed, 253 insertions(+), 18 deletions(-)
+
+-- 
+2.25.1
+
