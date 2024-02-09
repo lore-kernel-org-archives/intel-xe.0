@@ -4,152 +4,148 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE19CC48260
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Feb 2024 01:11:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B793C48297
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Feb 2024 06:01:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D85610F0FC;
-	Fri,  9 Feb 2024 01:11:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E75810E41D;
+	Fri,  9 Feb 2024 06:01:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EhRycPCM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fdXvJwXY";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5896E10F0F9;
- Fri,  9 Feb 2024 01:11:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D5B610E41D
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Feb 2024 06:01:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707441075; x=1738977075;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=o5sOlMM2wRzi914RuuJMcuv7bW9y+wp9230zmdJaNhg=;
- b=EhRycPCM/f2ffkvzdK9Dufk2+Ah+1VsBsN+qdY/NOfhpV8w8exkD0OJT
- lMbOctA6v10gf1/esP1Dvjn8n/4wDnoKUbeR+kr1zVLzeJfJdf5Yx1UPa
- FXPhQ5EdRti+cwyi1g0KdNubR07KfOdLkuvSOWl6ue9Rps2ZEZv93RzOH
- FWuADetMhv2QAsQnxULzocONIq8/r/VKUTBZIBktYByfCBJsk+fDw2Djd
- zOrYupcRtybbUuq2T0/oy1gIzfuEjaCsVjD/pw9hwQkr/be11JhTrXGY7
- UtOp4/Rk8EnKR199GnaXO33HcRV5G/4oz/C0wgla3TxhJcfTQ6NUA8yeu w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="436485569"
-X-IronPort-AV: E=Sophos;i="6.05,255,1701158400"; d="scan'208";a="436485569"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 17:11:13 -0800
+ t=1707458504; x=1738994504;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=XOU20qbGczNtxHvH67FRefEq3HDukyGgK2PALGCAXDY=;
+ b=fdXvJwXYzBf4vxfco2DVypL4Vi3O2mp6CmTyydRrwoggaT69VV4RBGlS
+ BG9dndy5AAiHzvZcPRejul4BvMHhkyO9CqMrsiZ4og87jRG5bdCvTuoLE
+ kmk2hRmNtZIFH+xgH2b4M1wwN+rIQ4nJiRC3iwd6cPrNkPukQzrx0YrKB
+ aoOgXgZeNFb2DbeMJnWRKjGBCeAiyO3BfcCOobz4xg48y+fectaT4GBsd
+ WPjE1D/vV36ilszAYQbH5lrKlraJJSjfqLNslpQ2dypwLGMuFVIwY1fTF
+ UfLY8FHMwNgNLc7RNwquK+Heoyp6q+R/YWrtSsDN0KJI57hSXTkSL4Eu+ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="1232907"
+X-IronPort-AV: E=Sophos;i="6.05,255,1701158400"; 
+   d="scan'208";a="1232907"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2024 22:01:36 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.05,255,1701158400"; 
-   d="scan'208";a="6426324"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 08 Feb 2024 17:11:14 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+   d="scan'208";a="6508685"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 08 Feb 2024 22:01:36 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 8 Feb 2024 17:11:13 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.1.2507.35; Thu, 8 Feb 2024 22:01:35 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 8 Feb 2024 17:11:12 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Thu, 8 Feb 2024 17:11:12 -0800
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Thu, 8 Feb 2024 22:01:35 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.40) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 8 Feb 2024 17:11:12 -0800
+ 15.1.2507.35; Thu, 8 Feb 2024 22:01:35 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HIAhhZjOpFXAUj9MXHVfSysfyYrQUztTlK8bUAbUmMSnQsjT5qEhz32EoTvjijsXlac9+U+0b4qHjJWswFlolzgclgBfPjo2Mlza1Yrmog9tk5g5zwDsC3DIt8lNK8fxPdTJxZ+H9KTWV4lAhMpBa0Tl0gHAw6UuXJHgsobzd5zqZDqo/RlKdPWw52hhdQCwndnTXMKbSjXeOWnc6bJHoC1A5d4c+ZoHP1pmvVjT2XCSoRj0gNa/vL7RLLoK0TARtPP/nGqOeTVHU+2srk76QPVeXdpwFR202EMKnryDYnI0eEKIam/rIYU6L644zfvhZxWhC9s9gaks5s/7BxSxFg==
+ b=RuwU4RA3AP9HYzxbOIXNUdYapHt6BcnLzdr5s4Z6NnXN0e+Griq0jmXQX/WOZjBfqkLGVBOu2sUret6mIwT4xWkzZq39fEX8kPqAx5zitISOhbSNB3uyDOn4XF+WvQ7l8lV+J2BgIpSXVnzn406L9MauebgEWdfLUGc9aoxIYDJ6D2u97Zdm4vnSSN/KoTadsquYPI7hHnyRog0lDkFm2KvtAuyyONpdjKzbu+GJu26jrF9q4GCAhii2SvQAKAHTm/Yz3AZQTwxVtV9nVd7N/s1kaLUpNsHGaOPegV6mZyHgFEufGMj6WOkh7iUlO3uYq8NsxE8SDp7tmsER4PZytA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oLbsIHDvAi8X7mx+ftZxrnlJSsjI0RhKIlfAChSU8i8=;
- b=EWCloP3f9cvlTexALtWuspOBe9eEiaYMdyvyEni7mEkS21J/TYtk2qc1Tim1UBqC7skPxuSMaBDYnwKZtO3j0d5burMR46R0m3XXJ9elSfYqMY7N0oPl9EOJ/n5HEMs3HfwdNbVH/T3VvpQ137nZQ2NCfAK2jqdGmOjHh3NY6lq6fWcAzYfGKjP0nxNv4qS+MYd5qeECrGcodMDlDrybnPByU1J75/EiKAROVu51r9n6r7em2sLBO0CSFFJ9PHJRBWc2m2es6CK8JeqxRBnKqmzTgfYWmR6vziV5PGFPSO8rOCmXBG6fYRaHY/vX/TUY5+dOHSQc4Q3gtJgcAFn5LQ==
+ bh=d2jX754knxXoJ+0b6EK9X5wzQzq+VthwTqstYuangvk=;
+ b=HDYBTsECqAtCd+/PCfgH0HH1sqqWsFOfHWHM6m1voa9DrMQYpHVgTH++MQvK3dR4d8bRnyoCL19VZRrHqSB2VAhQt+keXXQVNyQdislcvcakm83p4ZLFHQD92g4h7oTbpXy2oVtjqGeNK8LuW9P40g81fU0GqjIGp/PTcGZz4ckXTXmom6/aFFKwlMkGle7ewg/a3XFEVlThP3jPTVzpB3aDhmYch3CDmlw/mVnsrmbKMNnkQhzDJDoijLzF8lIo8m9QTGL9ljmLTT91wTZm/+TbzCQioWwnwOXxZU5oLdCNypNpNaNZOc5m2vTMGkE2UdSATpFVMXjpBzhXu8p9pg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
- by SJ0PR11MB7701.namprd11.prod.outlook.com (2603:10b6:a03:4e4::5)
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by BY1PR11MB8127.namprd11.prod.outlook.com (2603:10b6:a03:531::20)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.24; Fri, 9 Feb
- 2024 01:11:10 +0000
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::c138:faf0:9fa7:8a03]) by PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::c138:faf0:9fa7:8a03%7]) with mapi id 15.20.7270.024; Fri, 9 Feb 2024
- 01:11:10 +0000
-Message-ID: <6d67e612-f1ca-470f-bf79-4adf08e884c6@intel.com>
-Date: Thu, 8 Feb 2024 17:11:09 -0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] drm/xe/hdcp: Enable HDCP for XE
-Content-Language: en-US
-To: Suraj Kandpal <suraj.kandpal@intel.com>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-References: <20240207113531.1265801-1-suraj.kandpal@intel.com>
- <20240207113531.1265801-4-suraj.kandpal@intel.com>
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-In-Reply-To: <20240207113531.1265801-4-suraj.kandpal@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR03CA0288.namprd03.prod.outlook.com
- (2603:10b6:a03:39e::23) To PH7PR11MB7605.namprd11.prod.outlook.com
- (2603:10b6:510:277::5)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.38; Fri, 9 Feb
+ 2024 06:01:28 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::9f32:ce50:1914:e954]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::9f32:ce50:1914:e954%7]) with mapi id 15.20.7249.037; Fri, 9 Feb 2024
+ 06:01:28 +0000
+Date: Fri, 9 Feb 2024 00:01:26 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+CC: Matthew Brost <matthew.brost@intel.com>, John Harrison
+ <john.c.harrison@intel.com>, <intel-xe@lists.freedesktop.org>, Matt Roper
+ <matthew.d.roper@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, "Gustavo
+ Sousa" <gustavo.sousa@intel.com>
+Subject: Re: Re: [RFC] drm/xe/guc: Don't support GuC older GuC 70.x releases
+Message-ID: <qj734bhlz3yprl7y7eyb5fj2wzvumv4m3ehvh5kg7rseugsrjn@wjljwsrxsyft>
+References: <20240206234103.373364-1-daniele.ceraolospurio@intel.com>
+ <bbb3bc27-73cd-47e4-bdb2-8a12e8aaf2ca@intel.com>
+ <ZcL5c1TTfCxUckCi@DUT025-TGLU.fm.intel.com>
+ <zcvxg35dgst3vffu76v532dhl5lob6ilpi3hktg4ptnqc6lsbd@dsrjrmgk2kdj>
+ <6d27be6f-f501-4bba-a8f9-ae80f23484bd@intel.com>
+ <v5mwvlynhfvcre2iudh3am34y7eh4llhifj32gw3l56g4idvw6@uo6rutzsqmyl>
+ <d37b18a9-ab2d-478b-9510-087c8ff76ec5@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <d37b18a9-ab2d-478b-9510-087c8ff76ec5@intel.com>
+X-ClientProxiedBy: BYAPR21CA0017.namprd21.prod.outlook.com
+ (2603:10b6:a03:114::27) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|SJ0PR11MB7701:EE_
-X-MS-Office365-Filtering-Correlation-Id: 075cb0f6-c162-4b6b-26d9-08dc290c006a
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|BY1PR11MB8127:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0556e44a-2850-45ce-7c55-08dc29348e4c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZBL2BUDwGhP4uIHeIyv2/Kvg9tK/iF7A43FSLRq0o68Wh4X97JI2Rz2qerBYPuNAb8XsILOLJXsxwvkLSIbFLUGR0BHVnWyKvu7jzRpCEBINbUnZVdJZtNcyCPief3/taeVtIDAXUrN1WUJj9P6rwxkDOgSzgB4IyOwRhdg/09Nmrnc1ijpwULR+fwV+LAqA5rhw77Qpolx+5rsIvQHG1UnQmb5eEh3mGP48QcFObbVan24jPsPG6gtOhCGwhxfMWEAukKW31vxEe1oV1mPlm9Ok6C8pn2LBHRo8edDpBp/A1MX0eBhL1AomX3p0OwjVMx40Pnuk1jDNlDweSOARdLCwwrax8QeIjgsWIpSoi3sWlCyxx/Lb9gMlk+hmiOSj7XDsqVpTDlshrZHWTtAPG6+jLTtSYcBgM7GiPMk7MKGKHTizIbjHJPI9AY+eGYVUYG54Knfmc7a146MIjL3/cAPNbtrTm8o5gfJUu5jBOoR8GN0oRkoATnuRZNJ+MYJp7UDtHhSRfbVCkh1c3hEl//MNoayPHcWGbyhMS94mbEkzkqFjIISbTDEt+1csSEPV
+X-Microsoft-Antispam-Message-Info: doM/R99zUmm8zN6wjD2moBN7k70ZnWixOQaUM+1pSRdIYYsVVnPqJW5mYX1fr1ld6KvuFkqFQoT1N57OJOujzmCrAfz2lQU+GUuAiVuZ67OFMyPLPQSPuuuVCcUarjIE2k8EEGapmRS0hKwwkJwlx8dKZnjkZfC6HVAgh5zH4sIWkFftrXzsGdsKuInzxHmiYiiaCUsIyyd4OKyBi2/EppUeAb+FEPTGjRQ1lD29yCOC2DrKXLNfXJBV781wyX7U1GuoA7gK8w+GEv5XnpQEBBZnz2zZ0lQBNQTue1541sduPjW8vJajqMEDjLBUlhj7EWajsH2JNEAGytRBiOFREpAae9K0KcddJmsSXcfkc3H7MMBXXwAgNVayKbtkGQpKvqTK8RMsUvGzfLMXbg6snh8Ni0YiPcJAa2cxv1RdfZeO4PDbWVEETX+JevdsBIpFHXpw+dh0VEXkxOPquYDzCbMiwGFZAyL5/rw3GAXNw7zp5hazdSvyez2OrPodPhbPYyD/BSSTqXsa4mn6tSs23DclpPiP5fsI48sf5RUiVQd239fYVizbqAutzXMxzppXhCdP+jqacpCmi3S9c3a0F1f2ntbWNMNdUyAc94pDZjkgtX7zB5eeBsz6Hxz8J2v3
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(346002)(136003)(376002)(396003)(366004)(39860400002)(230922051799003)(186009)(64100799003)(1800799012)(451199024)(31686004)(41300700001)(478600001)(5660300002)(6486002)(6512007)(6506007)(53546011)(26005)(30864003)(2616005)(2906002)(83380400001)(38100700002)(36756003)(82960400001)(316002)(8936002)(66476007)(450100002)(8676002)(66556008)(66946007)(86362001)(31696002);
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7916004)(39860400002)(346002)(396003)(376002)(366004)(136003)(230922051799003)(230273577357003)(451199024)(1800799012)(186009)(64100799003)(82960400001)(6636002)(316002)(66556008)(66476007)(54906003)(66946007)(6486002)(966005)(4326008)(478600001)(6862004)(86362001)(5660300002)(8936002)(2906002)(8676002)(38100700002)(6512007)(9686003)(107886003)(26005)(30864003)(83380400001)(6506007)(66899024)(33716001)(41300700001)(27256008);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WCt5QWtEYTl2eU4xTW9veEpybjAxV1l1SUxPK1NKQjZuMGtHMlFvSlI0b0w3?=
- =?utf-8?B?UnJTMWFlaHRleTlvQ2JyKyt6b21CTmludjdQQi9OeU9IampLN0FpUG43NVh3?=
- =?utf-8?B?VjN3WWJhbXJOR3dIWkhKZVFoY1c0SEJweTIwSnA5RWc5UUpvSkROREc2VUZ0?=
- =?utf-8?B?OFJOMWsxRUxJQVR0K1BzZm84YU9nQmhJaDBkQ29LWWZNL0VaV2FXZllUY3p5?=
- =?utf-8?B?K2R0V2JVWnJqUklOQm5wRUF0WUNlbFYvdTJJWnViVUFmbU5nWmgvTU1kaWI0?=
- =?utf-8?B?eG9CM2hwQ2J3N1haOXY5UVhybldqb1l2NkFoMDVnZDhiQlRuTUR0SjZ2T3lI?=
- =?utf-8?B?d0dpTFJNeVhuYjNHNXlNYnpUcit0d05PVCtlb2l0M2dXUFNVRUd6RUV1OG9R?=
- =?utf-8?B?bXZhY09YYlJIODYyZmNVNEp5K1EzSWhVUXlKWERzMWRGSEU0d3dJenhYUmRO?=
- =?utf-8?B?QjYycWlRMFF0OE5kNHZXOFZXM1E4WW52azRqc1JYb1Vua01wa2pCb3NNVyth?=
- =?utf-8?B?c2ViWjZYSTVWcURuQmlRd2ZkU3NHZ3FDT0xtWDgxcWx3bFlhNmpFbFBINjho?=
- =?utf-8?B?YzU4SkdrSlQraDRuKzZyU2hXZ3dxeDRMVEgvUHIxaGxSSDNCbHcyaFFVWWRW?=
- =?utf-8?B?amRRWEh5a0NwT1kvNjkwZGp0ZVdTZ09kNFlWNnQ4WjZzUGlUbHFSQTFvRVVs?=
- =?utf-8?B?enRSQ215MnlZRnJETUR4RG8wU2w4Y1NUT3hLQXJhcDh1dm1LMVFFVVJsTS9Q?=
- =?utf-8?B?Rkd3VkdiWVh6WGJ2dzlrdENCT0xJRDMvU3NQbGorNU52V2pLQU0xbUdQNUc1?=
- =?utf-8?B?RXBDdXo2T2M4SXU1T2MvaVAvZ0tIOFhrMHlSK3ZzRE9lUzIzeVF5bktBdFUw?=
- =?utf-8?B?V3ZrOVRublVZcm5MKy9pN3NSdGdsYi8wVGtoV1JkeXRRYlcwNWt6UHN3RWV1?=
- =?utf-8?B?WUJvZUtSVk1Ob2RpeW9qdUxpa1ZjdjVBS2dCZUJPT2pIYk8ybkdMVmFiaTUv?=
- =?utf-8?B?Tk9ZVkxBT21la2ZKWWt5aWdsTXpuUXNiTGZhL1czMEF0aTJRTWkzVkszNnNo?=
- =?utf-8?B?N1hsZGtwUHdQYUN4eC9ZSUc4TnkxUnhIUXU3QVJ6L01QYmRsamx2OGVlUFAr?=
- =?utf-8?B?a0tVRHZiVGFVa3RjSG1saXo3NnA1SjNQMnJtNTEwMzlXTXl5c0svcm0reG5T?=
- =?utf-8?B?Z1dxTytCbldQSFhGbFlkN0lORFdOMEFub1l4KzByNzMrWTN2WEV3MGdRRUIz?=
- =?utf-8?B?L3QvWEdGK0ZBRVBGbEpTZXo0MmFTLzM5RnFrbGFtODZSV1BubTRDbkhSYnY1?=
- =?utf-8?B?OWlxQ0w0enF2bFkrVWUzM1lTTyt0cWtTSFBkZjFZN3c1V0p5YjFwdHVXWFda?=
- =?utf-8?B?TWdBUWlzMFRMd1V0ckQ4SldMaVkwSlBzOGdWMldlRzcxVElXY0hLVllhdEly?=
- =?utf-8?B?eWIyQ3k3bjFscFZ6eUV4aG4xUmg2OW93TUswbEhISGJDZUdGMkZmMmFrdURK?=
- =?utf-8?B?NkUyRXVXSmpTeUxSNHlGOWlGUlhJeVpYSzdwbFNiR0lhemlpVmlzdnlTM1ZH?=
- =?utf-8?B?TVpsSm4xcUxISTRCVjdTNXJwNk42S1BaV1VVRkliQlpJdnhyYVpzNjcwanRo?=
- =?utf-8?B?M1hYZnNNTFhkY0xTUzdnc21pNjZzUzZhZXlOQWpmUTN4cGJCNGMyMmUxUVRY?=
- =?utf-8?B?TnhsaTNBSFo2VjdpMVNlcjFaTkVOK2RUZWdIOWlJMkQzNFA5SjRqbEVCaXZ2?=
- =?utf-8?B?NGxjQ1hJc2E2aDQ3VFlIc0xPWmFZWm9STVVDcytlV2x4Q3JKbEdCV2R3YWRB?=
- =?utf-8?B?T1dGa0lLc1hPMzZLR2d3b1dDdU9mNy80NWlUY1g1VUxKak5kbWNYRllCd0FJ?=
- =?utf-8?B?K3dvSFdaMC9ER3VxV0IwM25iZ0x6VjUvRzVjRXcydVZkWVhJSXdYL1VxRUVz?=
- =?utf-8?B?ajR4TFB6UTdNVkFOZHgrV0FyQlpYam1qZWJLS3d6OHN2aXdQRjNNa2V4RnhE?=
- =?utf-8?B?SDMrdEhFWDJHVDJFcFlYNVJoVGU4c1VzVUFPVVNXa2J1ZHEzL01jNldYMjVr?=
- =?utf-8?B?OFIyVzdESjN3V2dmYTdKc2tlamh6RjJIQU5tVUpaSnZZbG1BREdhL0dYTnZI?=
- =?utf-8?B?Ym10eWZkYlpnRHBiWWVCUCtvM2l2bUs2VHE2VlBVbEUxdEJsakVPbDJHQmx6?=
- =?utf-8?Q?BhIdoz5PDFRgeERELtCXnf4=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 075cb0f6-c162-4b6b-26d9-08dc290c006a
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?pS8Ou0Dg5pO7DLnzMO8RJWHSqsIYgK0dPMb3rBYMisrjxEl2rvF11GrCau?=
+ =?iso-8859-1?Q?V4vr0+XQQaCcozKhp+pfMeJ9TQjMJe/17YoOchmPbhVavMtwgMDoNjxc5a?=
+ =?iso-8859-1?Q?EC6CN2+pgioKNzN2Kcdp6M0Uh1lCj9LySYIRLZ8LUli0mC1a9uczWPNIEt?=
+ =?iso-8859-1?Q?uhb5ecpt+jKNQdT17PyRPiE/CB/v4DflWRz7MrPrwn5dVH/xE4VC1t/ejr?=
+ =?iso-8859-1?Q?fU1mBQ2hv2avGDWQLy+YL+fT8Wk/lGOYbx+xzW4PiUlutA3EJGeoztlrtW?=
+ =?iso-8859-1?Q?YaG/LBBsO/qzmmaLuxI40WPzdZPjQd2FsqayeeV4AE3Gpk8t8xvuSJC/Ww?=
+ =?iso-8859-1?Q?siUhlw8CifCefBIGV/dr/6zll8CqpYxA5J/JiRmM/Pj5dCsBgUNNZaArpm?=
+ =?iso-8859-1?Q?jWG3/4UcKgfJIUZhNSIC8V1mwjG0KvIcA8jxpz6NBSsD4WHBN4YiC9j+BD?=
+ =?iso-8859-1?Q?hCqVGt4WMSBLY8QXnnSRlXas5I1K3hEndJl2f6xLwemDxGYE33gHJMBNYc?=
+ =?iso-8859-1?Q?64uetxSmI+7mdVA2s76fBLoJMxpLWF/K4pkkw0acCY1PYPyaNEcfy1QRIn?=
+ =?iso-8859-1?Q?eRMc62/wtbbNl6Sl2dZafavzXs23YZhIUNiR1fA3E4iFQ4qV1iZaw9rIKH?=
+ =?iso-8859-1?Q?8Mvauj4oPCtJ6CE0THkN+4RbUgk8/s8BEWf9WFShL7fXISO5e19HGBbIUW?=
+ =?iso-8859-1?Q?pVS6o8VXxAESTiUJJ8PsRqGIXYR5nFF+qJMFNsbOZx0cV5JlbW0pdhipuS?=
+ =?iso-8859-1?Q?GlnA4HLG4l5d5jNLicDjHPv22348g/kJBO//NKh/QhDofy8vrcAVbHkZzd?=
+ =?iso-8859-1?Q?cIwc3A3+6A3U/6dXsjPjhWawoRRw11cCQVWlqOUPYlJ19MbPM1qcOjXhaM?=
+ =?iso-8859-1?Q?RV8zHg5Z6rCrVvVdoqJnCBk4Brbjkou3IAuVJniAJvqmy5twWzrFtp9dIb?=
+ =?iso-8859-1?Q?a2oVap5+EgGJwCPfw0z3Xtnq2U45s9sbRdsOMgrNJDz7o94bGrFHdzzCSw?=
+ =?iso-8859-1?Q?luuTGqqMAjp46yYmeMDq3y2JmX47HKJP3DpFXVSYzTUH2FZuQqu8mE1vXC?=
+ =?iso-8859-1?Q?iKzbbByy4o9zbEW72MjljWAvKPWKJCC5lLZ1QGOvvJPR1pYs5uAWOp/lc1?=
+ =?iso-8859-1?Q?IaSh3fPONqi2ipIU6DlPmgvGzM3wOZIpROoqQFqHKX29IgqJZPgwbztrLW?=
+ =?iso-8859-1?Q?rIPzGDhn4kv+KfailL77KD3i5EMoylLqbQ1p78c3pJIiBsiLotEWBMKbAV?=
+ =?iso-8859-1?Q?xBcuis5QT7CqFI/jsmfkPvCs4/pc0myyk0nFZK4yunIDJs8rmIZSS0bc+W?=
+ =?iso-8859-1?Q?uNHfux+qz1VGDYFQY9qtbRzsiPOjaWdU2VOYnjXO19ragqgFcZC5Q1lGcO?=
+ =?iso-8859-1?Q?E7SvvUPoX1BUrX3AAVwQP4VfNcaWbVMQM9BiiNiIgFkR/lgh6NQ89oHPDn?=
+ =?iso-8859-1?Q?4jmtq6DQ9ROqIaLetxHM3xyPC2O+MRNloOGVwW1jWZUV1mhyMSgf+ou/03?=
+ =?iso-8859-1?Q?CFHCKbOpKow3RxbPIZHbMpyMYAVE/G8P6HYRuBzsDD28h/aRiTOEba89KK?=
+ =?iso-8859-1?Q?+MaDz7yUh1U5zwW7zNYw1YYbQeLuF2RLqI0OerD9Y4z2doOwWRcgWSRY2y?=
+ =?iso-8859-1?Q?HD0DMruWB1X3XnG0NNPeN3B2tRto/1u4esUrvBj+8IrXsD3RA552yEPg?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0556e44a-2850-45ce-7c55-08dc29348e4c
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Feb 2024 01:11:10.4328 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Feb 2024 06:01:28.3749 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GNoDUD2OumtwqfJ5QdEuh60hTM0n+CznrYBBnkjGlr9izR3uwc9r+WhUlZx1f72liYyDhDyBM3qHCWVdD5PXwgXhkWS0QUUQs9uaXvcvw+c=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB7701
+X-MS-Exchange-CrossTenant-UserPrincipalName: zakg8AzlwLw6nQUm44XOwYABREn+lyW5JChV+SXg11LaHgW/Rgm8bcp1+SQfZtosjpXPjt2sOFN/5GIwP/+xxWtMz5AHxJjlVtagM7taTRo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR11MB8127
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -165,365 +161,411 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-On 2/7/2024 3:35 AM, Suraj Kandpal wrote:
-> Enable HDCP for Xe by defining functions which take care of
-> interaction of HDCP as a client with the GSC CS interface.
+On Thu, Feb 08, 2024 at 04:29:55PM -0800, Daniele Ceraolo Spurio wrote:
 >
-> --v2
-> -add kfree at appropriate place [Daniele]
-> -forward declare drm_i915_private [Daniele]
-
-I don't see the forward declaration, just the switch to xe_device (which 
-is better).
-
-> -remove useless define [Daniele]
-> -move host session logic to xe_gsc_submit.c [Daniele]
-> -call xe_gsc_check_and_update_pending directly in an if condition
-> [Daniele]
-> -use xe_device instead of drm_i915_private [Daniele]
 >
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->   drivers/gpu/drm/i915/display/intel_hdcp_gsc.c |   4 +-
->   .../gpu/drm/xe/abi/gsc_command_header_abi.h   |   2 +
->   drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      | 184 +++++++++++++++++-
->   drivers/gpu/drm/xe/xe_gsc_submit.c            |  19 ++
->   drivers/gpu/drm/xe/xe_gsc_submit.h            |   1 +
->   5 files changed, 202 insertions(+), 8 deletions(-)
+>On 2/7/2024 12:40 PM, Lucas De Marchi wrote:
+>>On Wed, Feb 07, 2024 at 10:34:07AM -0800, Daniele Ceraolo Spurio wrote:
+>>>
+>>>
+>>>On 2/7/2024 8:42 AM, Lucas De Marchi wrote:
+>>>>+Gustavo who is dealing with DMC firmware lately
+>>>>
+>>>>On Wed, Feb 07, 2024 at 03:30:59AM +0000, Matthew Brost wrote:
+>>>>>On Tue, Feb 06, 2024 at 05:18:50PM -0800, John Harrison wrote:
+>>>>>>On 2/6/2024 15:41, Daniele Ceraolo Spurio wrote:
+>>>>>>>Supporting older GuC versions comes with baggage, both on the coding
+>>>>>>>side (due to interfaces only being available from a certain version
+>>>>>>>onwards) and on the testing side (due to having to make 
+>>>>>>>sure
+>>>>>>the driver
+>>>>>>>works as expected with older GuCs).
+>>>>>>>Since all of our Xe platform are still under force probe, we haven't
+>>>>>>>committed to support any specific GuC version and we therefore don't
+>>>>>>>need to support the older once, which means that we can 
+>>>>>>>force
+>>>>>>a bottom
+>>>>>>>limit to what GuC we accept. This allows us to remove any 
+>>>>>>>conditional
+>>>>>>>statements based on older GuC versions and also to approach newer
+>>>>>>>additions knowing that we'll never attempt to load something older
+>>>>>>>than our minimum requirement.
+>>>>>>>
+>>>>>>>RFC: this patch sets the minimum to the current GuC version (70.19),
+>>>>>>>but that can be moved one way or the other. The main aim here is
+>>>>>>Ideally, this would be bumped every time we update Xe to a 
+>>>>>>newer firmware
+>>>>>>version right up to the point when force probe is lifted. At 
+>>>>>>that point it
+>>>>>>becomes fixed and we have to add the version check support 
+>>>>>>back in for
+>>>>>>future w/a's and features.
+>>>>>>
+>>>>>>Get's my vote :).
+>>>>
+>>>>Yeah, but see my other reply... I think we will have to wait the
+>>>>firmware being available in linux-firmware for that.
+>>>>
+>>>>Also, let's kickstart a discussion on our process with some
+>>>>possible changes so we can get it documented. I think we have a good
+>>>>opportunity here to start adopting the
+>>>>https://gitlab.freedesktop.org/drm/firmware repo.
+>>>>
+>>>>Rough idea:
+>>>>
+>>>>1) use intel-staging branch with tags for pull requests to
+>>>>   linux-firmware, just like documented in their readme.
+>>>>   IMO the naming is rather unfortunate since it would be
+>>>>   good to use it for (2) below.... but since it's already used
+>>>>   we can use something else.
+>>>>
+>>>>   this would mainly replace the use we have today for
+>>>>   https://cgit.freedesktop.org/drm/drm-firmware/ ,    which 
+>>>>could be retired. From  upstream linux-firmware pov the only
+>>>>   change would be the remote location and that we start using tags
+>>>>   for the pull requests, coming from a single branch regardless of
+>>>>   the firmware (guc, huc, dmc, gsc): intel-staging. Once accepted in
+>>>>   linux-firmware, the branch is fast-forwarded.
+>>>
+>>>I think this needs a bit more fleshing out, because before we do a 
+>>>pull request, we do want to run CI on the blobs. Also, in several 
+>>>occasions we went through a couple of versions before we closed on 
+>>>what to push to linux-firmware (e.g. in the latest push we started 
+>>>with 70.19.1 but then pushed 70.19.2), so we can't go to 
+>>>intel-staging until we're actually ready to push. I think the 
+>>>process you have below for mmp blobs should work for this early 
+>>>testing flow as well, but we might end up with a lot of noise in 
+>>>the staging-intel-for-CI branch.
+>>
+>>that would be a throw away branch where we push stuff to be able to test
+>>on CI. I don't think the commit history matters much there. The fact
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-> index e44f60f00e8b..9e895f714f90 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-> @@ -123,8 +123,10 @@ static int intel_hdcp_gsc_hdcp2_init(struct drm_i915_private *i915)
->   	i915->display.hdcp.hdcp_message = hdcp_message;
->   	ret = intel_hdcp_gsc_initialize_message(i915, hdcp_message);
->   
-> -	if (ret)
-> +	if (ret) {
->   		drm_err(&i915->drm, "Could not initialize hdcp_message\n");
-> +		kfree(hdcp_message);
-> +	}
+>That depends on how CI does things. With the current handling of 
+>throwaway branches we have on drm-firmware, a CI request can 
+>accidentally roll back another one. e.g., if we push a throwaway 
+>branch with a GuC update and then another with a DMC update, the 
+>second push will roll-back the GuC to what's on the new branch (likely 
+>the linux-firmware version). That's why there was a suggestion ti use 
+>a unified branch for CI as well.
 
-AFAIU intel_hdcp_gsc.c is not used in Xe, so IMO you should send this 
-change as an i915 patch.
+not sure we are talking about the same thing. It is a unified branch for
+CI: staging-intel-for-CI is where the mmp +
+about-to-be-upstreamed-for-the-first-time firmware blobs are added,
+regardless if it's guc, dmc, huc, etc. IMO it's much simpler since CI
+basically has to take the additional firmware from this 1 branch. No
+risk of rolling back another firmware because of the new one.
 
->   
->   	return ret;
->   }
-> diff --git a/drivers/gpu/drm/xe/abi/gsc_command_header_abi.h b/drivers/gpu/drm/xe/abi/gsc_command_header_abi.h
-> index a4c2646803b5..d2fbf71439be 100644
-> --- a/drivers/gpu/drm/xe/abi/gsc_command_header_abi.h
-> +++ b/drivers/gpu/drm/xe/abi/gsc_command_header_abi.h
-> @@ -21,6 +21,8 @@ struct intel_gsc_mtl_header {
->   
->   	/* FW allows host to decide host_session handle as it sees fit. */
->   	u64 host_session_handle;
-> +#define HECI_MEADDRESS_PXP 17
-> +#define HECI_MEADDRESS_HDCP 18
+>
+>
+>>that the firmware is available to match what is in the kernel and that
+>>there's a documented process for using it in my view trumps the
+>>this downside.
+>>
+>>what I expect would be, considering the LNL case as example:
+>>
+>>1) Start testing with the mmp version:
+>>
+>>    a) Add firmware to  drm/firmware intel-staging-for-CI
+>>    b) Add commit in topic/xe-for-CI on the kernel side to make
+>>       use of that firmware
+>>
+>>2) Ooops, that has bugs
+>>
+>>    a) add a second mmp firmware to drm/firmware intel-staging-for-CI
+>>    b) replace commit in topic/xe-for-CI on the kernel side
+>>
+>>3) we think we are good, let's try for real
+>>
+>>    a) Add lnl_guc_70.bin to drm/firmware intel-staging-for-CI
+>>    b) replace commit in topic/xe-for-CI on the kernel side
+>>
+>>4) yay, it worked
+>>
+>>    a) Add that lnl_gu_70.bin firmware to intel-staging branch and
+>>       prepare pull request to linux-firmware
+>>    b) move patch from topic/xe-for-CI to drm-xe-next: i.e., rebase
+>>       topic/xe-for-CI on top of drm-xe-next leaving that commit as
+>>       first one. git push topic/xe-for-CI, dim push drm-xe-next (or
+>>       implement the logic in dim to push 2 branches)
+>>
+>>    We may need some time between (a) and (b) depending on where we
+>>    are on the kernel release cycle: we don't want to submit a
+>>    kernel pull request before the firmware is available @
+>>    linux-firmware repo.
+>>
+>>Note that the fact we are using mmp makes it more complex, although
+>>explicit.  Going direct with lnl_gu_70.bin would also work and avoid
+>>updating the commits on the kernel side.
+>
+>This works for a completely new release. For updating an existing 
+>release, we'll have to push, potentially multiple times, all the 
+>*_guc_70.bin binaries to intel-staging-for-CI. Just to be clear, I 
+>have nothing against this, just noting that it would generate a lot of 
+>noise in that branch and potentially use a lot of space on disk.
+>
+>>
+>>>
+>>>We also need some rules to handle the case where there is already 
+>>>a PR in flight and we need to push some more blobs. This might be 
+>>>as easy as the committer seeing that there are commits on top of 
+>>>master, replying to the previous PR to deprecate it, and then 
+>>>generating a new PR with all the blobs.
+>>
+>>the pull requests to linux-firmware would come from tags, not a branch.
+>>So you have (tip of the branch is on top):
+>>
+>>    o <intel-staging> intel: Add lnl_guc_70.bin
+>>    o <refs/tags/intel-2024-01-30> intel: Update dg2_guc_70.bin  <-- 
+>>last in flight pull request
+>>    o intel: Add lnl_dmc.bin
+>>    o <origin/main> ....  <--  where linux-firmware is at
+>>
+>>Looking at amd-staging, it seems to match what they are doing:
+>>https://gitlab.freedesktop.org/drm/firmware/-/commits/amd-staging?ref_type=heads
+>>
+>>
+>>see the amd-$DATE tags
+>
+>Sorry I wasn't very clear in my comment, what I wanted to point out 
+>was that if we are on a unified branch and we have the PR against a 
+>specific tag (intel-2024-01-30 in your example) already in flight, how 
+>do we generate a new PR for the newer commit that comes after the tag 
+>(and which will have its own new tag)? Does git do some tag magic and 
+>handle it for us, or do we need to generate a new PR that supersedes 
+>the one in flight?
 
-This was purposely not defined here, and the PXP definition already 
-exists in the separate header for the PXP stuff. The idea is that each 
-client should have its own header with its own definitions.
-
->   
->   	/* handle generated by FW for messages that need to be re-submitted */
->   	u64 gsc_message_handle;
-> diff --git a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-> index ca17dfbc3fe9..d95c1b3b2d9c 100644
-> --- a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-> +++ b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-> @@ -3,11 +3,26 @@
->    * Copyright 2023, Intel Corporation.
->    */
->   
-> -#include "i915_drv.h"
-> +#include <linux/delay.h>
-> +
-> +#include "abi/gsc_command_header_abi.h"
->   #include "intel_hdcp_gsc.h"
->   #include "xe_gt.h"
->   #include "xe_gsc_proxy.h"
->   #include "xe_pm.h"
-> +#include "xe_bo.h"
-> +#include "xe_map.h"
-> +#include "xe_gsc_submit.h"
-> +
-> +#define HECI_MEADDRESS_HDCP 18
-> +
-> +struct intel_hdcp_gsc_message {
-> +	struct xe_bo *hdcp_bo;
-> +	u64 hdcp_cmd_in;
-> +	u64 hdcp_cmd_out;
-> +};
-> +
-> +#define HDCP_GSC_HEADER_SIZE sizeof(struct intel_gsc_mtl_header)
->   
->   bool intel_hdcp_gsc_cs_required(struct drm_i915_private *i915)
->   {
-> @@ -37,19 +52,174 @@ bool intel_hdcp_gsc_check_status(struct xe_device *xe)
->   	return ret;
->   }
->   
-> -int intel_hdcp_gsc_init(struct drm_i915_private *i915)
-> +/*This function helps allocate memory for the command that we will send to gsc cs */
-> +static int intel_hdcp_gsc_initialize_message(struct xe_device *xe,
-> +					     struct intel_hdcp_gsc_message *hdcp_message)
-> +{
-> +	struct xe_bo *bo = NULL;
-> +	u64 cmd_in, cmd_out;
-> +	int err, ret = 0;
-> +
-> +	/* allocate object of two page for HDCP command memory and store it */
-> +	xe_device_mem_access_get(xe);
-> +	bo = xe_bo_create_pin_map(xe, xe_device_get_root_tile(xe), NULL, PAGE_SIZE * 2,
-> +				  ttm_bo_type_kernel,
-> +				  XE_BO_CREATE_SYSTEM_BIT |
-> +				  XE_BO_CREATE_GGTT_BIT);
-> +
-> +	if (IS_ERR(bo)) {
-> +		drm_err(&xe->drm, "Failed to allocate bo for HDCP streaming command!\n");
-> +		ret = err;
-
-err is unset here.
-
-> +		goto out;
-> +	}
-> +
-> +	cmd_in = xe_bo_ggtt_addr(bo);
-> +	cmd_out = cmd_in + PAGE_SIZE;
-> +	xe_map_memset(xe, &bo->vmap, 0, 0, bo->size);
-> +
-> +	hdcp_message->hdcp_bo = bo;
-> +	hdcp_message->hdcp_cmd_in = cmd_in;
-> +	hdcp_message->hdcp_cmd_out = cmd_out;
-> +out:
-> +	xe_device_mem_access_put(xe);
-> +	return ret;
-> +}
-> +
-> +static int intel_hdcp_gsc_hdcp2_init(struct xe_device *xe)
-> +{
-> +	struct intel_hdcp_gsc_message *hdcp_message;
-> +	int ret;
-> +
-> +	hdcp_message = kzalloc(sizeof(*hdcp_message), GFP_KERNEL);
-> +
-> +	if (!hdcp_message)
-> +		return -ENOMEM;
-> +
-> +	/*
-> +	 * NOTE: No need to lock the comp mutex here as it is already
-> +	 * going to be taken before this function called
-> +	 */
-> +	xe->display.hdcp.hdcp_message = hdcp_message;
-
-might be worth moving this assignment to after the init, so we can skip 
-it in case of errors
-
-> +	ret = intel_hdcp_gsc_initialize_message(xe, hdcp_message);
-> +
-> +	if (ret)
-> +		drm_err(&xe->drm, "Could not initialize hdcp_message\n");
-> +
-> +	return ret;
-
-still missing the kfree(hdcp_message) in case of error?
-
-> +}
-> +
-> +int intel_hdcp_gsc_init(struct xe_device *xe)
-> +{
-> +	struct i915_hdcp_arbiter *data;
-> +	int ret;
-> +
-> +	data = kzalloc(sizeof(*data), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	mutex_lock(&xe->display.hdcp.hdcp_mutex);
-> +	xe->display.hdcp.arbiter = data;
-> +	xe->display.hdcp.arbiter->hdcp_dev = xe->drm.dev;
-> +	xe->display.hdcp.arbiter->ops = &gsc_hdcp_ops;
-> +	ret = intel_hdcp_gsc_hdcp2_init(xe);
-> +	if (ret)
-> +		kfree(data);
-> +
-> +	mutex_unlock(&xe->display.hdcp.hdcp_mutex);
-> +
-> +	return ret;
-> +}
-> +
-> +void intel_hdcp_gsc_fini(struct xe_device *xe)
->   {
-> -	drm_info(&i915->drm, "HDCP support not yet implemented\n");
-> -	return -ENODEV;
-> +	struct intel_hdcp_gsc_message *hdcp_message =
-> +					xe->display.hdcp.hdcp_message;
-> +
-
-Should we check for hdcp_message != NULL ? in case we hit an error in 
-the init path.
-
-> +	xe_bo_unpin_map_no_vm(hdcp_message->hdcp_bo);
-> +	kfree(hdcp_message);
-> +
->   }
->   
-> -void intel_hdcp_gsc_fini(struct drm_i915_private *i915)
-> +static int xe_gsc_send_sync(struct xe_device *xe,
-> +			    struct intel_hdcp_gsc_message *hdcp_message,
-> +			    u32 msg_size_in, u32 msg_size_out,
-> +			    u32 addr_out_off)
->   {
-> +	struct xe_gt *gt = hdcp_message->hdcp_bo->tile->media_gt;
-> +	struct iosys_map *map = &hdcp_message->hdcp_bo->vmap;
-> +	struct xe_gsc *gsc = &gt->uc.gsc;
-> +	int ret;
-> +
-> +	ret = xe_gsc_pkt_submit_kernel(gsc, hdcp_message->hdcp_cmd_in, msg_size_in,
-> +				       hdcp_message->hdcp_cmd_out, msg_size_out);
-> +	if (ret) {
-> +		drm_err(&xe->drm, "failed to send gsc HDCP msg (%d)\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	if (xe_gsc_check_and_update_pending(xe, map, 0, map, addr_out_off))
-> +		return -EAGAIN;
-> +
-> +	ret = xe_gsc_read_out_header(xe, map, addr_out_off,
-> +				     sizeof(struct hdcp_cmd_header), NULL);
-> +
-> +	return ret;
->   }
->   
-> -ssize_t intel_hdcp_gsc_msg_send(struct drm_i915_private *i915, u8 *msg_in,
-> +ssize_t intel_hdcp_gsc_msg_send(struct xe_device *xe, u8 *msg_in,
->   				size_t msg_in_len, u8 *msg_out,
->   				size_t msg_out_len)
->   {
-> -	return -ENODEV;
-> +	const size_t max_msg_size = PAGE_SIZE - HDCP_GSC_HEADER_SIZE;
-> +	struct intel_hdcp_gsc_message *hdcp_message;
-> +	u64 host_session_id;
-> +	u32 msg_size_in, msg_size_out, addr_in_wr_off = 0, addr_out_off;
-
-I think we try to avoid too many variables on one line, especially if 
-only some of them are initialized.
+humn... there is no magic, the old tag is an ascendent path of the new
+one. But as I said, just coordinating with the few people updating
+firmware who/when will do the pull request should be sufficient for
+avoiding a pull request when there's already another one in flight.
 
 
-> +	int ret, tries = 0;
-> +
-> +	if (msg_in_len > max_msg_size || msg_out_len > max_msg_size) {
-> +		ret = -ENOSPC;
-> +		goto out;
-> +	}
-> +
-> +	msg_size_in = msg_in_len + HDCP_GSC_HEADER_SIZE;
-> +	msg_size_out = msg_out_len + HDCP_GSC_HEADER_SIZE;
-> +	hdcp_message = xe->display.hdcp.hdcp_message;
-> +	addr_out_off = PAGE_SIZE;
-> +
-> +	get_random_bytes(&host_session_id, sizeof(u64));
-> +	host_session_id = xe_gsc_get_host_session_id(HECI_MEADDRESS_HDCP);
+>
+>
+>>
+>>>
+>>>
+>>>>
+>>>>2) mmp firmware versions are only ever pushed to a separate 
+>>>>staging-intel-for-CI
+>>>>   branch. There is no pull request in the mailing for this. We 
+>>>>can either
+>>>>   push directly to the branch or create MRs in gitlab. CI would start
+>>>>   using this branch for the extra firmware for platforms instead of
+>>>>   whatever it's using today to process the pull requests from the
+>>>>   mailing list.  Or whatever it's using, because I don't know 
+>>>>and don't
+>>>>   see it documented anywhere.
+>>>
+>>>As long as the CI team is ok with this, I'm all for it.
+>>>
+>>>>
+>>>>   The patch on the kernel side to use the mmp firmware is only ever
+>>>>   pushed to the topic/xe-for-CI branch since a) the firmware is 
+>>>>coming from
+>>>>   a non-official location and b) end users and distro packaging
+>>>>   shouldn't see a warning when building the kernel due to a possibly
+>>>>   missing firmware
+>>>>3) Raising firmware version requirement for past platforms used as
+>>>>   SDV can be done **unless** it raises the major version. 
+>>>>That's because
+>>>>   end users would start seeing the warning that we avoided in (2).
+>>>
+>>>Who are the end users here? If we're talking about older 
+>>>non-officially supported platforms, the only users should be 
+>>>developers and they should be able to handle having to update the 
+>>>firmwares to a newer major versions.
+>>
+>>distros and any developer outside Intel. The kernel build system is
+>>unaware of xe.force_probe. So if you have, after the several macros:
+>>
+>>MODULE_FIRMWARE("xe/tgl_guc_71.bin")
+>>
+>>It will show up in `modinfo -f firmware xe`. And it will show as a
+>>warning when installing/packaging a kernel.
+>>
+>>It doesn't matter for minor/patch updates because the file name is
+>>major-only and **running** with that module is protected by the
+>>force_probe. The major may be updated when it's available in
+>>linux-firmware, which means i915 started using it (for i915 that would
+>>be "as an option, with fallback to the previous major release" of
+>>course).
+>
+>Ok I get the concern. My assumption here was that we'd only update the 
+>minimum required version if that version was in linux-firmware even 
+>for minor updates, hence why I didn't see why a major update would be 
+>different. I guess we could go with a more relaxed approach where we 
+>allow the required minor to be updated for force-probe platforms as 
+>long as the firmware is available on a public/CI branch even if it is 
+>not in linux-firmware.
 
-You added a function for this, shouldn't you call that?
+yep, I don't see it causing issues to end users.
 
-> +	xe_device_mem_access_get(xe);
-> +	addr_in_wr_off = xe_gsc_emit_header(xe, &hdcp_message->hdcp_bo->vmap,
-> +					    addr_in_wr_off, HECI_MEADDRESS_HDCP,
-> +					    host_session_id, msg_in_len);
-> +	xe_map_memcpy_to(xe, &hdcp_message->hdcp_bo->vmap, addr_in_wr_off,
-> +			 msg_in, msg_in_len);
-> +	/*
-> +	 * Keep sending request in case the pending bit is set no need to add
-> +	 * message handle as we are using same address hence loc. of header is
-> +	 * same and it will contain the message handle. we will send the message
-> +	 * 20 times each message 50 ms apart
-> +	 */
-> +	do {
-> +		ret = xe_gsc_send_sync(xe, hdcp_message, msg_size_in, msg_size_out,
-> +				       addr_out_off);
-> +
-> +		/* Only try again if gsc says so */
-> +		if (ret != -EAGAIN)
-> +			break;
-> +
-> +		msleep(50);
-> +
-> +	} while (++tries < 20);
-> +
-> +	if (ret)
-> +		goto out;
-> +
+>
+>Getting back on track with the original purpose of this patch, are you 
+>ok with setting the minimum to 70.19 if I first push the matching PVC 
+>70.19 binary (via the old method for now), while we continue sorting 
+>out how to manage the new repo?
 
-If you move xe_gsc_read_out_header here, you can use the returned offset 
-instead of "addr_out_off + HDCP_GSC_HEADER_SIZE" that you have below. 
-Not a blocker.
+yes.
 
-> +	xe_map_memcpy_from(xe, msg_out, &hdcp_message->hdcp_bo->vmap,
-> +			   addr_out_off + HDCP_GSC_HEADER_SIZE,
-> +			   msg_out_len);
-> +
-> +out:
-> +	xe_device_mem_access_put(xe);
-> +	return ret;
->   }
-> diff --git a/drivers/gpu/drm/xe/xe_gsc_submit.c b/drivers/gpu/drm/xe/xe_gsc_submit.c
-> index 348994b271be..57793b0acfc3 100644
-> --- a/drivers/gpu/drm/xe/xe_gsc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_gsc_submit.c
-> @@ -33,6 +33,7 @@
->    * include the client id in the top 8 bits of the handle.
->    */
->   #define HOST_SESSION_CLIENT_MASK GENMASK_ULL(63, 56)
-> +#define HOST_SESSION_PXP_SINGLE BIT_ULL(60)
+Lucas De Marchi
 
-this PXP_SINGLE is not needed
-
->   
->   static struct xe_gt *
->   gsc_to_gt(struct xe_gsc *gsc)
-> @@ -40,6 +41,24 @@ gsc_to_gt(struct xe_gsc *gsc)
->   	return container_of(gsc, struct xe_gt, uc.gsc);
->   }
->   
-> +/**
-> + * xe_gsc_get_host_session_id - Create host session id based on HECI
-> + * client address
-> + * @heci_client_id: client id identifying the type of command (see abi for values)
-> + *
-> + * Returns: random host_session_id which can be used to send messages to gsc cs
-> + */
-> +u64 xe_gsc_get_host_session_id(u8 heci_client_id)
-> +{
-> +	u64 host_session_id;
-> +
-> +	get_random_bytes(&host_session_id, sizeof(u64));
-> +	host_session_id &= ~HOST_SESSION_CLIENT_MASK;
-> +	if (host_session_id && heci_client_id == HECI_MEADDRESS_PXP)
-> +		host_session_id |= HOST_SESSION_PXP_SINGLE;
-
-same here, this PXP exception is not needed
-
-Daniele
-
-> +	return host_session_id;
-> +};
-> +
->   /**
->    * xe_gsc_emit_header - write the MTL GSC header in memory
->    * @xe: the Xe device
-> diff --git a/drivers/gpu/drm/xe/xe_gsc_submit.h b/drivers/gpu/drm/xe/xe_gsc_submit.h
-> index 1939855031a6..f3359b6659b8 100644
-> --- a/drivers/gpu/drm/xe/xe_gsc_submit.h
-> +++ b/drivers/gpu/drm/xe/xe_gsc_submit.h
-> @@ -28,4 +28,5 @@ int xe_gsc_read_out_header(struct xe_device *xe,
->   int xe_gsc_pkt_submit_kernel(struct xe_gsc *gsc, u64 addr_in, u32 size_in,
->   			     u64 addr_out, u32 size_out);
->   
-> +u64 xe_gsc_get_host_session_id(u8 heci_client_id);
->   #endif
-
+>
+>Daniele
+>
+>>
+>>Lucas De Marchi
+>>
+>>>
+>>>Daniele
+>>>
+>>>>
+>>>>thoughts?
+>>>>
+>>>>Lucas De Marchi
+>>>>
+>>>>>>
+>>>>>
+>>>>>Mine too.
+>>>>>
+>>>>>With that:
+>>>>>Acked-by: Matthew Brost <matthew.brost@intel.com>
+>>>>>
+>>>>>>John.
+>>>>>>
+>>>>>>>agreeing to stop supporting very old GuC releases on the 
+>>>>>>>newer
+>>>>>>driver.
+>>>>>>>
+>>>>>>>Signed-off-by: Daniele Ceraolo Spurio
+>>>>>><daniele.ceraolospurio@intel.com>
+>>>>>>>Cc: John Harrison <John.C.Harrison@Intel.com>
+>>>>>>>Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>>>>>>>Cc: Matt Roper <matthew.d.roper@intel.com>
+>>>>>>>Cc: Matthew Brost <matthew.brost@intel.com>
+>>>>>>>Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>>>>>>---
+>>>>>>>   drivers/gpu/drm/xe/xe_guc.c   | 14 ++------------
+>>>>>>>   drivers/gpu/drm/xe/xe_uc_fw.c | 36
+>>>>>>++++++++++++++---------------------
+>>>>>>>   2 files changed, 16 insertions(+), 34 deletions(-)
+>>>>>>>
+>>>>>>>diff --git a/drivers/gpu/drm/xe/xe_guc.c
+>>>>>>b/drivers/gpu/drm/xe/xe_guc.c
+>>>>>>>index 868208a39829..5e6b27aac495 100644
+>>>>>>>--- a/drivers/gpu/drm/xe/xe_guc.c
+>>>>>>>+++ b/drivers/gpu/drm/xe/xe_guc.c
+>>>>>>>@@ -132,15 +132,10 @@ static u32 guc_ctl_ads_flags(struct
+>>>>>>xe_guc *guc)
+>>>>>>>       return flags;
+>>>>>>>   }
+>>>>>>>-#define GUC_VER(maj, min, pat)    (((maj) << 16) | ((min) 
+>>>>>>><<
+>>>>>>8) | (pat))
+>>>>>>>-
+>>>>>>>   static u32 guc_ctl_wa_flags(struct xe_guc *guc)
+>>>>>>>   {
+>>>>>>>       struct xe_device *xe = guc_to_xe(guc);
+>>>>>>>       struct xe_gt *gt = guc_to_gt(guc);
+>>>>>>>-    struct xe_uc_fw *uc_fw = &guc->fw;
+>>>>>>>-    struct xe_uc_fw_version *version =
+>>>>>>&uc_fw->versions.found[XE_UC_FW_VER_RELEASE];
+>>>>>>>-
+>>>>>>>       u32 flags = 0;
+>>>>>>>       if (XE_WA(gt, 22012773006))
+>>>>>>>@@ -170,13 +165,8 @@ static u32 guc_ctl_wa_flags(struct xe_guc *guc)
+>>>>>>>       if (XE_WA(gt, 1509372804))
+>>>>>>>           flags |= GUC_WA_RENDER_RST_RC6_EXIT;
+>>>>>>>-    if (XE_WA(gt, 14018913170)) {
+>>>>>>>-        if (GUC_VER(version->major, version->minor,
+>>>>>>version->patch) >= GUC_VER(70, 7, 0))
+>>>>>>>-            flags |= GUC_WA_ENABLE_TSC_CHECK_ON_RC6;
+>>>>>>>-        else
+>>>>>>>-            drm_dbg(&xe->drm, "Skip WA 14018913170: GUC
+>>>>>>version expected >= 70.7.0, found %u.%u.%u\n",
+>>>>>>>- version->major, version->minor, version->patch);
+>>>>>>>-    }
+>>>>>>>+    if (XE_WA(gt, 14018913170))
+>>>>>>>+        flags |= GUC_WA_ENABLE_TSC_CHECK_ON_RC6;
+>>>>>>>       return flags;
+>>>>>>>   }
+>>>>>>>diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c
+>>>>>>b/drivers/gpu/drm/xe/xe_uc_fw.c
+>>>>>>>index 4714f2c8d2ba..e5bf59616f3d 100644
+>>>>>>>--- a/drivers/gpu/drm/xe/xe_uc_fw.c
+>>>>>>>+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+>>>>>>>@@ -296,36 +296,28 @@ static void uc_fw_fini(struct 
+>>>>>>>drm_device
+>>>>>>*drm, void *arg)
+>>>>>>>xe_uc_fw_change_status(uc_fw, XE_UC_FIRMWARE_SELECTED);
+>>>>>>>   }
+>>>>>>>-static void guc_read_css_info(struct xe_uc_fw *uc_fw, 
+>>>>>>>struct
+>>>>>>uc_css_header *css)
+>>>>>>>+static int guc_read_css_info(struct xe_uc_fw *uc_fw, 
+>>>>>>>struct
+>>>>>>uc_css_header *css)
+>>>>>>>   {
+>>>>>>>       struct xe_gt *gt = uc_fw_to_gt(uc_fw);
+>>>>>>>       struct xe_uc_fw_version *release =
+>>>>>>&uc_fw->versions.found[XE_UC_FW_VER_RELEASE];
+>>>>>>>       struct xe_uc_fw_version *compatibility =
+>>>>>>&uc_fw->versions.found[XE_UC_FW_VER_COMPATIBILITY];
+>>>>>>>       xe_gt_assert(gt, uc_fw->type == XE_UC_FW_TYPE_GUC);
+>>>>>>>-    xe_gt_assert(gt, release->major >= 70);
+>>>>>>>-
+>>>>>>>-    if (release->major > 70 || release->minor >= 6) {
+>>>>>>>-        /* v70.6.0 adds CSS header support */
+>>>>>>>-        compatibility->major = FIELD_GET(CSS_SW_VERSION_UC_MAJOR,
+>>>>>>>-                         css->submission_version);
+>>>>>>>-        compatibility->minor = FIELD_GET(CSS_SW_VERSION_UC_MINOR,
+>>>>>>>-                         css->submission_version);
+>>>>>>>-        compatibility->patch = FIELD_GET(CSS_SW_VERSION_UC_PATCH,
+>>>>>>>-                         css->submission_version);
+>>>>>>>-    } else if (release->minor >= 3) {
+>>>>>>>-        /* v70.3.0 introduced v1.1.0 */
+>>>>>>>-        compatibility->major = 1;
+>>>>>>>-        compatibility->minor = 1;
+>>>>>>>-        compatibility->patch = 0;
+>>>>>>>-    } else {
+>>>>>>>-        /* v70.0.0 introduced v1.0.0 */
+>>>>>>>-        compatibility->major = 1;
+>>>>>>>-        compatibility->minor = 0;
+>>>>>>>-        compatibility->patch = 0;
+>>>>>>>+
+>>>>>>>+    /* We don't support GuC releases older than 70.19 */
+>>>>>>>+    if (release->major < 70 || (release->major == 70 &&
+>>>>>>release->minor < 19)) {
+>>>>>>>+        xe_gt_err(gt, "Unsupported GuC v%u.%u! v70.19 or
+>>>>>>newer is required\n",
+>>>>>>>+              release->major, release->minor);
+>>>>>>>+        return -EINVAL;
+>>>>>>>       }
+>>>>>>>+    compatibility->major = 
+>>>>>>>FIELD_GET(CSS_SW_VERSION_UC_MAJOR,
+>>>>>>css->submission_version);
+>>>>>>>+    compatibility->minor = 
+>>>>>>>FIELD_GET(CSS_SW_VERSION_UC_MINOR,
+>>>>>>css->submission_version);
+>>>>>>>+    compatibility->patch = 
+>>>>>>>FIELD_GET(CSS_SW_VERSION_UC_PATCH,
+>>>>>>css->submission_version);
+>>>>>>>+
+>>>>>>>       uc_fw->private_data_size = css->private_data_size;
+>>>>>>>+
+>>>>>>>+    return 0;
+>>>>>>>   }
+>>>>>>>   int xe_uc_fw_check_version_requirements(struct xe_uc_fw *uc_fw)
+>>>>>>>@@ -424,7 +416,7 @@ static int parse_css_header(struct
+>>>>>>xe_uc_fw *uc_fw, const void *fw_data, size_t
+>>>>>>>       release->patch = FIELD_GET(CSS_SW_VERSION_UC_PATCH,
+>>>>>>css->sw_version);
+>>>>>>>       if (uc_fw->type == XE_UC_FW_TYPE_GUC)
+>>>>>>>-        guc_read_css_info(uc_fw, css);
+>>>>>>>+        return guc_read_css_info(uc_fw, css);
+>>>>>>>       return 0;
+>>>>>>>   }
+>>>>>>
+>>>
+>
