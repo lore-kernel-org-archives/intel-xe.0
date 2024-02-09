@@ -4,26 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BBFFC4828F
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Feb 2024 11:54:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9F5DC4829B
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Feb 2024 12:07:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11FCB10E216;
-	Fri,  9 Feb 2024 11:54:05 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C24810E216;
- Fri,  9 Feb 2024 11:54:03 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5206004685079936110=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66A1D10F09C;
+	Fri,  9 Feb 2024 12:07:30 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z1pukkJQ";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB03210EE80;
+ Fri,  9 Feb 2024 12:07:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707480449; x=1739016449;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=jsV1Z2yguwUVdxBBsziY9m+bhLEE+xWD3WOAuTiGCC0=;
+ b=Z1pukkJQToLfU/8nBypqcb8mTCyElsvXcV6qOXj95Aj3WY/sQDmumhEO
+ bnTJbUTddWq8gdEyNLQGzOrKG1/Yx5jOx6+pOe57v8M1J2SqZBajhPE8c
+ rn680GGaTpx32tFQqChPX6HLz1qMQ09QG1bpMjMJQKcPDQPQ2vCwlj8Gv
+ T6aQMtaCjjPQ+dgTiPtE59kLfUk0ciNAaXDKtYiH0e50QXM2SuQQzEmWs
+ Oyjc61harJwlCIhRsPseURFCC78f1bX3X/Vnn4m6rWsz0TYz9+T+Qbv6a
+ 4b39NfVW0l1XlH45i6jgw5Ngl8kYrKQs54k4ZRhnSQxTKigjqFYgscXDx w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="1274632"
+X-IronPort-AV: E=Sophos;i="6.05,256,1701158400"; 
+   d="scan'208";a="1274632"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2024 04:07:28 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,256,1701158400"; 
+   d="scan'208";a="1955382"
+Received: from dfischbe-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.62.64])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2024 04:07:26 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: dri-devel@lists.freedesktop.org, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Oded Gabbay <ogabbay@kernel.org>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: Re: [PATCH 09/10] drm/xe: switch from drm_debug_printer() to
+ device specific drm_dbg_printer()
+In-Reply-To: <yivsrvud5khq4vjl5g4aigjwru4zyxfzp7bgzzxcifchpv7kll@4bdjrna2levy>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1705410327.git.jani.nikula@intel.com>
+ <35929b030f7ba67cd32808d42e916aa9cfb5709d.1705410327.git.jani.nikula@intel.com>
+ <87y1c4fis8.fsf@intel.com>
+ <yivsrvud5khq4vjl5g4aigjwru4zyxfzp7bgzzxcifchpv7kll@4bdjrna2levy>
+Date: Fri, 09 Feb 2024 14:07:22 +0200
+Message-ID: <87r0hlalj9.fsf@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_XE_HDCP_Enablement_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 09 Feb 2024 11:54:03 -0000
-Message-ID: <170747964344.1128958.6829646400041808658@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240209101412.1326176-1-suraj.kandpal@intel.com>
-In-Reply-To: <20240209101412.1326176-1-suraj.kandpal@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,133 +68,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5206004685079936110==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 01 Feb 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> Do you plan to also merge the last patch where you remove
+> drm_debug_printer()?  Any conflict to be solved in the merge commit?
+>
+> This is just a question to know what's the plan, not preferring
+> something else.
 
-== Series Details ==
+I looked into it, didn't see any conflicts, and merged away. Hopefully
+none pop up until the branches merge again.
 
-Series: XE HDCP Enablement (rev4)
-URL   : https://patchwork.freedesktop.org/series/129457/
-State : failure
+> Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-== Summary ==
+Thanks,
+Jani.
 
-CI Bug Log - changes from xe-753-6a21fc66f5c81c19baa24407cd7e8d2720edd2eb_BAT -> xe-pw-129457v4_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-129457v4_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-129457v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (3 -> 3)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-129457v4_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_evict@evict-cm-threads-small:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-753-6a21fc66f5c81c19baa24407cd7e8d2720edd2eb/bat-dg2-oem2/igt@xe_evict@evict-cm-threads-small.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v4/bat-dg2-oem2/igt@xe_evict@evict-cm-threads-small.html
-
-  
-
-
-Build changes
--------------
-
-  * Linux: xe-753-6a21fc66f5c81c19baa24407cd7e8d2720edd2eb -> xe-pw-129457v4
-
-  IGT_7708: c2ecf4ba307d3342682745de6f608d307a06782c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-753-6a21fc66f5c81c19baa24407cd7e8d2720edd2eb: 6a21fc66f5c81c19baa24407cd7e8d2720edd2eb
-  xe-pw-129457v4: 129457v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v4/index.html
-
---===============5206004685079936110==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>XE HDCP Enablement (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129457/">https://patchwork.freedesktop.org/series/129457/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-753-6a21fc66f5c81c19baa24407cd7e8d2720edd2eb_BAT -&gt; xe-pw-129457v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-129457v4_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-129457v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (3 -&gt; 3)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-129457v4_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_evict@evict-cm-threads-small:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-753-6a21fc66f5c81c19baa24407cd7e8d2720edd2eb/bat-dg2-oem2/igt@xe_evict@evict-cm-threads-small.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v4/bat-dg2-oem2/igt@xe_evict@evict-cm-threads-small.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-753-6a21fc66f5c81c19baa24407cd7e8d2720edd2eb -&gt; xe-pw-129457v4</li>
-</ul>
-<p>IGT_7708: c2ecf4ba307d3342682745de6f608d307a06782c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-753-6a21fc66f5c81c19baa24407cd7e8d2720edd2eb: 6a21fc66f5c81c19baa24407cd7e8d2720edd2eb<br />
-  xe-pw-129457v4: 129457v4</p>
-
-</body>
-</html>
-
---===============5206004685079936110==--
+-- 
+Jani Nikula, Intel
