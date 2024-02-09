@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1ADDEC4828F
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Feb 2024 10:56:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2545C4828F
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Feb 2024 10:57:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA41D10EB67;
-	Fri,  9 Feb 2024 10:56:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F0C710E603;
+	Fri,  9 Feb 2024 10:57:15 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81DF610E603;
- Fri,  9 Feb 2024 10:56:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64F0D10EF0D;
+ Fri,  9 Feb 2024 10:57:13 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_XE_HDCP_Enablement_?=
- =?utf-8?q?=28rev4=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_XE_HDCP_Enablement_=28rev?=
+ =?utf-8?q?4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Suraj Kandpal" <suraj.kandpal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 09 Feb 2024 10:56:53 -0000
-Message-ID: <170747621353.1128958.7305313899041314877@5338d5abeb45>
+Date: Fri, 09 Feb 2024 10:57:13 -0000
+Message-ID: <170747623341.1129210.1391689840887645049@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240209101412.1326176-1-suraj.kandpal@intel.com>
 In-Reply-To: <20240209101412.1326176-1-suraj.kandpal@intel.com>
@@ -48,13 +48,30 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 6a21fc66f drm-tip: 2024y-02m-09d-09h-46m-02s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/hdcp: Move intel_hdcp_gsc_message def away from header file
-Applying: drm/xe/hdcp: Use xe_device struct
-Applying: drm/xe: Use gsc_proxy_init_done to check proxy status
-Applying: drm/xe/hdcp: Enable HDCP for XE
-Applying: drm/xe/hdcp: Add intel_hdcp_gsc_message to Makefile
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+35591fb8b4d5305b37ce31483f85ac0956eaa536
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 270bc03b0aeee579d4065d9c9ecd76e1fbc9f270
+Author: Suraj Kandpal <suraj.kandpal@intel.com>
+Date:   Fri Feb 9 15:44:12 2024 +0530
+
+    drm/xe/hdcp: Add intel_hdcp_gsc_message to Makefile
+    
+    Add intel_hdcp_gsc_message to Makefile and add corresponding
+    changes to xe_hdcp_gsc.c to make it build.
+    
+    Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
++ /mt/dim checkpatch 6a21fc66f5c81c19baa24407cd7e8d2720edd2eb drm-intel
+10bbccf4b drm/i915/hdcp: Move intel_hdcp_gsc_message def away from header file
+623dd0a46 drm/xe/hdcp: Use xe_device struct
+1cbc019cb drm/xe: Use gsc_proxy_init_done to check proxy status
+7beb9929a drm/xe/hdcp: Enable HDCP for XE
+270bc03b0 drm/xe/hdcp: Add intel_hdcp_gsc_message to Makefile
 
 
