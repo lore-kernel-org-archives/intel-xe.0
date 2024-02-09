@@ -4,73 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9A63C4829D
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Feb 2024 16:53:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CFB0C4828F
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Feb 2024 17:45:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48A3610F791;
-	Fri,  9 Feb 2024 16:53:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DE9910F39B;
+	Fri,  9 Feb 2024 17:45:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RQMmyu93";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PpTY2hPr";
 	dkim-atps=neutral
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com
- [209.85.128.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2018F10F78D;
- Fri,  9 Feb 2024 16:53:27 +0000 (UTC)
-Received: by mail-yw1-f170.google.com with SMTP id
- 00721157ae682-604aaf2d047so13073677b3.0; 
- Fri, 09 Feb 2024 08:53:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1707497606; x=1708102406; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=0YeJ1Scdeu8JC0fSedQWunMCPmGv7Rv5FN5QxfX78yE=;
- b=RQMmyu932mXBR8UEGtnJJ+Vej3txoRerIYuntJcGhCaIBb4EvVpt5N0uVEqjVHxbgO
- SycmZ3etpD5olN+z+iAqONouvQdpc2s5OmfEWaquZttPBp2OC9CvgtTbcw5BlDnRi5t3
- nnYP7VyCp6MxnBx+Bhs63tuud41j/x2gitzODlsqJw0yxatFMZbbFRNsJA4H7d6ARgt4
- z0dZJfsnElHNtGVreKfwWKSjoVV5o9Bgsqv+68UwR3CA4B3N3TIpd4mqGkLbPKc0rlqt
- mID9OBSLU9A6pBUVqB7sOPcL69GPUd9xqGdqOI3GAt432ZfheVtbkz3PO3cm9DUNkpMA
- uvUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1707497606; x=1708102406;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=0YeJ1Scdeu8JC0fSedQWunMCPmGv7Rv5FN5QxfX78yE=;
- b=lGRQuN2hU4ElnHQWDyIxRI01fdZJQSTIWy4P270t3kdPhqGBgoCB3Mh4Po6kn5CVzt
- BmuxqfsbyINQzEGbRdcv6kHWoypPkHsy+qpFtx00q6KjOb+xFXKXj7GFhVQ4r4PC4mFH
- dZVnwexDKd/5wTi1+jemJAtqKY7LDSeUYIo2w0Taa5qH2tyyTmi946fF63FieiGsBACV
- jQ1s6sQfzdDyIes+o+bk/K9vweGFu9hqiGNJuoDOTGDluOk46v8xtwTORcQIc/e3q3g5
- CNxieHadLb8Y4qJuidp3iif8VRpwVXfTVmzBEIJPJ+PKiWy+HIamkKjXfWgTHDdS6iSU
- PAjg==
-X-Gm-Message-State: AOJu0YzIQR7votQ3YHpzsgg2HVfYnRJElxRZE9VsoNWGHfDQBm4iJ0tx
- GISNtZRaFcE2KggsUVDTCNRxWex5Q8bAJ6SiDmkgH1oRBLeAdxXuC08rcB8/l4c=
-X-Google-Smtp-Source: AGHT+IHrF/8wgQd8JNTUcMtQGIGtbwT7TsJq0XQLER+HELEUGnHbgwEyGR8OSowd2xtSlMfgTxJ8oA==
-X-Received: by 2002:a81:8541:0:b0:604:aaac:99f7 with SMTP id
- v62-20020a818541000000b00604aaac99f7mr1933729ywf.37.1707497606183; 
- Fri, 09 Feb 2024 08:53:26 -0800 (PST)
-X-Forwarded-Encrypted: i=1;
- AJvYcCUm/ZAq2lpYcT7dz8z8nZVu6F1n/rO1gEfLAC5EvkaTQlVEvagzv67AwSjqvZ2iBWBS6mgBykFYKG5VO7aeJhbTvhEuFSLJJ6q2ZyizC2xlwYJSNYNlTqR8rFAuxG2r71EiJu4fl2YHgkcKSORZ5MZ+U/t5ozjwe8m2eDJjwQAWIFy6XhRCB22wMTK5oeEcsJoSXFwITHJmf7AFR3Vnnqnm3Kdhkyd8G5XqPvv+cHpTcegoufYgIzK2Wg1+h95DlLusLABVfgwftTwwTkrrZNH5okindowqDagtKUTQReqod4NiM52SmLw=
-Received: from localhost ([2601:344:8301:57f0:be3a:6fd4:1110:3284])
- by smtp.gmail.com with ESMTPSA id
- x7-20020a814a07000000b006040a13db84sm384525ywa.48.2024.02.09.08.53.25
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 09 Feb 2024 08:53:25 -0800 (PST)
-Date: Fri, 9 Feb 2024 08:53:25 -0800
-From: Yury Norov <yury.norov@gmail.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH v3 2/3] bits: Introduce fixed-type BIT
-Message-ID: <ZcZYhZbLyzSXX8PU@yury-ThinkPad>
-References: <20240208074521.577076-1-lucas.demarchi@intel.com>
- <20240208074521.577076-3-lucas.demarchi@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5325510F86E
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Feb 2024 17:45:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707500753; x=1739036753;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=/NKjWfqJMSgT9n2vJNT2aCwp8VOQ39Y0nv9agdzqnCo=;
+ b=PpTY2hPrs0gzqaK38Tss/DtIFkaLIs92vfTrLiGrX53GMxRAzpfJCUFS
+ OnjmobQWOgshsMREfbNS3Ub5hrIW7hj9iT9RA8PS2mHsn3tM+Dx5VACou
+ 3e6FUrO1nOiMHQyTNCm13bSCIDDRKdYnWpT/BGQmP4J4Yhk5sCkaKOGUz
+ zhpFYobLK3KDGs/J68SBMGW+gqNcJ1mVwayQ38B4VRlRsxY2DHOtbIfvU
+ 7tCuiLb5UyhVyPDZ9ddjCR/vwUqaNjKYz9jN6LD8dlG8oxmi47J26+Own
+ lY6sU2feqcUikaURgeBYasO8yJN4vJ6xRq1A858FGmC44gVHWfd0N0eY6 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10979"; a="395898516"
+X-IronPort-AV: E=Sophos;i="6.05,257,1701158400"; d="scan'208";a="395898516"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2024 09:45:51 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10979"; a="825191386"
+X-IronPort-AV: E=Sophos;i="6.05,257,1701158400"; d="scan'208";a="825191386"
+Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
+ by orsmga001.jf.intel.com with ESMTP; 09 Feb 2024 09:45:50 -0800
+From: Zhanjun Dong <zhanjun.dong@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Zhanjun Dong <zhanjun.dong@intel.com>
+Subject: [PATCH v9 1/1] drm/xe: Add helper macro to loop each dss
+Date: Fri,  9 Feb 2024 09:45:48 -0800
+Message-Id: <20240209174548.19389-2-zhanjun.dong@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240209174548.19389-1-zhanjun.dong@intel.com>
+References: <20240209174548.19389-1-zhanjun.dong@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240208074521.577076-3-lucas.demarchi@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,61 +62,173 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Feb 07, 2024 at 11:45:20PM -0800, Lucas De Marchi wrote:
-> Implement fixed-type BIT() to help drivers add stricter checks, like was
-> done for GENMASK.
-> 
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
+Add helper macro to loop each dss. This is a precursor patch to allow
+for easier iteration through MCR registers and other per-DSS uses.
 
-So I get v1 from Jan.23 in my mailbox, and this one is v3. Did I miss
-a v2? Anyways, please bear my reviewed-by from v1 for this patch.
+Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_mcr.c      | 32 ++++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_gt_mcr.h      | 13 ++++++++++++
+ drivers/gpu/drm/xe/xe_gt_topology.c | 31 +++++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_gt_topology.h |  1 +
+ drivers/gpu/drm/xe/xe_gt_types.h    |  2 ++
+ 5 files changed, 75 insertions(+), 4 deletions(-)
 
-Thanks,
-Yury
+diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
+index 8546cd3cc50d..44163fe8c7b9 100644
+--- a/drivers/gpu/drm/xe/xe_gt_mcr.c
++++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
+@@ -6,6 +6,7 @@
+ #include "xe_gt_mcr.h"
+ 
+ #include "regs/xe_gt_regs.h"
++#include "xe_assert.h"
+ #include "xe_gt.h"
+ #include "xe_gt_topology.h"
+ #include "xe_gt_types.h"
+@@ -291,11 +292,40 @@ static void init_steering_mslice(struct xe_gt *gt)
+ 	gt->steering[LNCF].instance_target = 0;		/* unused */
+ }
+ 
++static int get_dss_per_group(struct xe_gt *gt)
++{
++	return gt_to_xe(gt)->info.platform == XE_PVC ? 8 : 4;
++}
++
++/**
++ * xe_gt_mcr_get_dss_steering - returns the group/instance steering for a DSS
++ * @gt: GT structure
++ * @dss: DSS ID to obtain steering for
++ * @group: pointer to storage for steering group ID
++ * @instance: pointer to storage for steering instance ID
++ *
++ * Returns the steering IDs (via the @group and @instance parameters) that
++ * correspond to a specific DSS ID.
++ */
++bool xe_gt_mcr_get_dss_steering(struct xe_gt *gt, unsigned int dss, unsigned int *group,
++				unsigned int *instance)
++{
++	int dss_per_grp;
++
++	xe_gt_assert(gt, dss < XE_MAX_DSS_FUSE_BITS);
++
++	dss_per_grp = get_dss_per_group(gt);
++
++	*group = dss / dss_per_grp;
++	*instance = dss % dss_per_grp;
++	return true;
++}
++
+ static void init_steering_dss(struct xe_gt *gt)
+ {
+ 	unsigned int dss = min(xe_dss_mask_group_ffs(gt->fuse_topo.g_dss_mask, 0, 0),
+ 			       xe_dss_mask_group_ffs(gt->fuse_topo.c_dss_mask, 0, 0));
+-	unsigned int dss_per_grp = gt_to_xe(gt)->info.platform == XE_PVC ? 8 : 4;
++	unsigned int dss_per_grp = get_dss_per_group(gt);
+ 
+ 	gt->steering[DSS].group_target = dss / dss_per_grp;
+ 	gt->steering[DSS].instance_target = dss % dss_per_grp;
+diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.h b/drivers/gpu/drm/xe/xe_gt_mcr.h
+index 27ca1bc880a0..5b4e74da82a1 100644
+--- a/drivers/gpu/drm/xe/xe_gt_mcr.h
++++ b/drivers/gpu/drm/xe/xe_gt_mcr.h
+@@ -7,6 +7,7 @@
+ #define _XE_GT_MCR_H_
+ 
+ #include "regs/xe_reg_defs.h"
++#include "xe_gt_topology.h"
+ 
+ struct drm_printer;
+ struct xe_gt;
+@@ -25,5 +26,17 @@ void xe_gt_mcr_multicast_write(struct xe_gt *gt, struct xe_reg_mcr mcr_reg,
+ 			       u32 value);
+ 
+ void xe_gt_mcr_steering_dump(struct xe_gt *gt, struct drm_printer *p);
++bool xe_gt_mcr_get_dss_steering(struct xe_gt *gt, unsigned int dss, unsigned int *group,
++				unsigned int *instance);
++
++/*
++ * Loop over each DSS and determine the group and instance IDs that
++ * should be used to steer MCR accesses toward this DSS.
++ */
++#define for_each_dss_steering(dss_, gt_, group_, instance_) \
++	for (dss_ = xe_gt_topology_get_next_dss(gt, 0); \
++	     dss_ >= 0; \
++	     dss_ = xe_gt_topology_get_next_dss(gt, dss_ + 1)) \
++		for_each_if(xe_gt_mcr_get_dss_steering(gt_, dss_, &(group_), &(instance_)))
+ 
+ #endif /* _XE_GT_MCR_H_ */
+diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
+index a8d7f272c30a..97c0a4b8fe40 100644
+--- a/drivers/gpu/drm/xe/xe_gt_topology.c
++++ b/drivers/gpu/drm/xe/xe_gt_topology.c
+@@ -11,9 +11,6 @@
+ #include "xe_gt.h"
+ #include "xe_mmio.h"
+ 
+-#define XE_MAX_DSS_FUSE_BITS (32 * XE_MAX_DSS_FUSE_REGS)
+-#define XE_MAX_EU_FUSE_BITS (32 * XE_MAX_EU_FUSE_REGS)
+-
+ static void
+ load_dss_mask(struct xe_gt *gt, xe_dss_mask_t mask, int numregs, ...)
+ {
+@@ -167,3 +164,31 @@ bool xe_gt_topology_has_dss_in_quadrant(struct xe_gt *gt, int quad)
+ 
+ 	return quad_first < (quad + 1) * dss_per_quad;
+ }
++
++/**
++ * xe_gt_topology_get_next_dss - returns the next DSS id from a start position
++ * @gt: GT structure
++ * @from: An index to start search form
++ *
++ * Search from this GT's DSS-fuses-topology and return the DSS-ID of the
++ * next valid DSS instance after DSS-ID 'from'. Depending on the platform
++ * construction, DSS instances could be for geometry (RENDER engine) or
++ * compute (COMPUTE engine). However, all current platforms that have
++ * both engines have the same instances thus we can combine both masks
++ * internally before performing this operation.
++ *
++ * Return -1 if not found since given "from" position.
++ */
++int xe_gt_topology_get_next_dss(struct xe_gt *gt, int from)
++{
++	xe_dss_mask_t all_dss;
++	unsigned long next;
++
++	bitmap_or(all_dss, gt->fuse_topo.g_dss_mask, gt->fuse_topo.c_dss_mask,
++		  XE_MAX_DSS_FUSE_BITS);
++
++	next = find_next_bit(all_dss, XE_MAX_DSS_FUSE_BITS, from);
++	if (next == XE_MAX_DSS_FUSE_BITS)
++		return -1;
++	return next;
++}
+diff --git a/drivers/gpu/drm/xe/xe_gt_topology.h b/drivers/gpu/drm/xe/xe_gt_topology.h
+index d1b54fb52ea6..44bd8a58f9ce 100644
+--- a/drivers/gpu/drm/xe/xe_gt_topology.h
++++ b/drivers/gpu/drm/xe/xe_gt_topology.h
+@@ -21,5 +21,6 @@ bool xe_dss_mask_empty(const xe_dss_mask_t mask);
+ 
+ bool
+ xe_gt_topology_has_dss_in_quadrant(struct xe_gt *gt, int quad);
++int xe_gt_topology_get_next_dss(struct xe_gt *gt, int from);
+ 
+ #endif /* _XE_GT_TOPOLOGY_H_ */
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index 70c615dd1498..b926606edb38 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -25,7 +25,9 @@ enum xe_gt_type {
+ };
+ 
+ #define XE_MAX_DSS_FUSE_REGS	3
++#define XE_MAX_DSS_FUSE_BITS	(32 * XE_MAX_DSS_FUSE_REGS)
+ #define XE_MAX_EU_FUSE_REGS	1
++#define XE_MAX_EU_FUSE_BITS	(32 * XE_MAX_EU_FUSE_REGS)
+ 
+ typedef unsigned long xe_dss_mask_t[BITS_TO_LONGS(32 * XE_MAX_DSS_FUSE_REGS)];
+ typedef unsigned long xe_eu_mask_t[BITS_TO_LONGS(32 * XE_MAX_EU_FUSE_REGS)];
+-- 
+2.34.1
 
-> ---
->  include/linux/bits.h | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
-> 
-> diff --git a/include/linux/bits.h b/include/linux/bits.h
-> index bd56f32de44e..811846ce110e 100644
-> --- a/include/linux/bits.h
-> +++ b/include/linux/bits.h
-> @@ -24,12 +24,16 @@
->  #define GENMASK_INPUT_CHECK(h, l) \
->  	(BUILD_BUG_ON_ZERO(__builtin_choose_expr( \
->  		__is_constexpr((l) > (h)), (l) > (h), 0)))
-> +#define BIT_INPUT_CHECK(type, b) \
-> +	((BUILD_BUG_ON_ZERO(__builtin_choose_expr( \
-> +		__is_constexpr(b), (b) >= BITS_PER_TYPE(type), 0))))
->  #else
->  /*
->   * BUILD_BUG_ON_ZERO is not available in h files included from asm files,
->   * disable the input check if that is the case.
->   */
->  #define GENMASK_INPUT_CHECK(h, l) 0
-> +#define BIT_INPUT_CHECK(type, b) 0
->  #endif
->  
->  /*
-> @@ -54,4 +58,17 @@
->  #define GENMASK_U32(h, l)	__GENMASK(u32, h, l)
->  #define GENMASK_U64(h, l)	__GENMASK(u64, h, l)
->  
-> +/*
-> + * Fixed-type variants of BIT(), with additional checks like __GENMASK().  The
-> + * following examples generate compiler warnings due to shift-count-overflow:
-> + *
-> + * - BIT_U8(8)
-> + * - BIT_U32(-1)
-> + * - BIT_U32(40)
-> + */
-> +#define BIT_U8(b)		((u8)(BIT_INPUT_CHECK(u8, b) + BIT(b)))
-> +#define BIT_U16(b)		((u16)(BIT_INPUT_CHECK(u16, b) + BIT(b)))
-> +#define BIT_U32(b)		((u32)(BIT_INPUT_CHECK(u32, b) + BIT(b)))
-> +#define BIT_U64(b)		((u64)(BIT_INPUT_CHECK(u64, b) + BIT(b)))
-> +
->  #endif	/* __LINUX_BITS_H */
-> -- 
-> 2.43.0
