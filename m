@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8237DC48297
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Feb 2024 17:50:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4130C4828F
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Feb 2024 17:50:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CBFA10F886;
-	Fri,  9 Feb 2024 17:50:01 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E3FD10F886;
- Fri,  9 Feb 2024 17:50:00 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67DAE10F887;
+	Fri,  9 Feb 2024 17:50:38 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aGDoMT8M";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7C0910F887;
+ Fri,  9 Feb 2024 17:50:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707501038; x=1739037038;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=1laTTHCgygcPfanCnT37plaDmSda/Mn+foyUMPP2B1c=;
+ b=aGDoMT8M2WP1UBvdI8mIyVgh2BsoKkMpExZ7baOz7G4taGezLZSic+ny
+ ES1x/Mgd9CrKzdH8ZO0xafX+sHZqzOlQdYKryV2QDvkK+245rWCITyZGe
+ Po21/7R5SnRP4iOIWP4ORCELHvq9mmnnHbavFbeCcFNWGvShGO9chkaZZ
+ jxmuUzaYezaNKLXYXUErgKWQWmVgHdqtb2ss6MtdPeP3iBQHRqVtlKu7W
+ cWwMTFJJxr7H0Fb7UzuBENpqLItb2EJZIXxsF5V8Puxj1rUwmm/N8sp3T
+ hABOvkESl1A5tCHdhPYkCdagJPbKV13rJpuIFMHrr22XT4deDPnsUvmKI Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10979"; a="12117975"
+X-IronPort-AV: E=Sophos;i="6.05,257,1701158400"; d="scan'208";a="12117975"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2024 09:50:37 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,257,1701158400"; 
+   d="scan'208";a="6641136"
+Received: from lkp-server01.sh.intel.com (HELO 01f0647817ea) ([10.239.97.150])
+ by fmviesa005.fm.intel.com with ESMTP; 09 Feb 2024 09:50:35 -0800
+Received: from kbuild by 01f0647817ea with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1rYV1F-0004zC-24;
+ Fri, 09 Feb 2024 17:50:33 +0000
+Date: Sat, 10 Feb 2024 01:50:10 +0800
+From: kernel test robot <lkp@intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev, daniele.ceraolospurio@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: Re: [PATCH 4/5] drm/xe/hdcp: Enable HDCP for XE
+Message-ID: <202402100132.XIP3zz5i-lkp@intel.com>
+References: <20240209101412.1326176-5-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe=3A_Add_helper_macro_to_?=
- =?utf-8?q?loop_each_dss?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Zhanjun Dong" <zhanjun.dong@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 09 Feb 2024 17:50:00 -0000
-Message-ID: <170750100012.1129906.13552347232466383981@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240209174548.19389-1-zhanjun.dong@intel.com>
-In-Reply-To: <20240209174548.19389-1-zhanjun.dong@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240209101412.1326176-5-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,471 +64,57 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Suraj,
 
-Series: drm/xe: Add helper macro to loop each dss
-URL   : https://patchwork.freedesktop.org/series/129733/
-State : failure
+kernel test robot noticed the following build warnings:
 
-== Summary ==
+[auto build test WARNING on drm-xe/drm-xe-next]
+[also build test WARNING on drm-tip/drm-tip]
+[cannot apply to drm-intel/for-linux-next drm-intel/for-linux-next-fixes linus/master v6.8-rc3 next-20240209]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-[17:49:08] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[17:49:12] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-../arch/x86/um/user-offsets.c:17:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
-   17 | void foo(void)
-      |      ^~~
-In file included from ../arch/um/kernel/asm-offsets.c:1:
-../arch/x86/um/shared/sysdep/kernel-offsets.h:9:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
-    9 | void foo(void)
-      |      ^~~
-../arch/x86/um/fault.c:18:5: warning: no previous prototype for ‘arch_fixup’ [-Wmissing-prototypes]
-   18 | int arch_fixup(unsigned long address, struct uml_pt_regs *regs)
-      |     ^~~~~~~~~~
-../arch/x86/um/bugs_64.c:9:6: warning: no previous prototype for ‘arch_check_bugs’ [-Wmissing-prototypes]
-    9 | void arch_check_bugs(void)
-      |      ^~~~~~~~~~~~~~~
-../arch/x86/um/bugs_64.c:13:6: warning: no previous prototype for ‘arch_examine_signal’ [-Wmissing-prototypes]
-   13 | void arch_examine_signal(int sig, struct uml_pt_regs *regs)
-      |      ^~~~~~~~~~~~~~~~~~~
-../arch/x86/um/os-Linux/mcontext.c:7:6: warning: no previous prototype for ‘get_regs_from_mc’ [-Wmissing-prototypes]
-    7 | void get_regs_from_mc(struct uml_pt_regs *regs, mcontext_t *mc)
-      |      ^~~~~~~~~~~~~~~~
-../arch/x86/um/os-Linux/registers.c:146:15: warning: no previous prototype for ‘get_thread_reg’ [-Wmissing-prototypes]
-  146 | unsigned long get_thread_reg(int reg, jmp_buf *buf)
-      |               ^~~~~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:16:5: warning: no previous prototype for ‘__vdso_clock_gettime’ [-Wmissing-prototypes]
-   16 | int __vdso_clock_gettime(clockid_t clock, struct __kernel_old_timespec *ts)
-      |     ^~~~~~~~~~~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:30:5: warning: no previous prototype for ‘__vdso_gettimeofday’ [-Wmissing-prototypes]
-   30 | int __vdso_gettimeofday(struct __kernel_old_timeval *tv, struct timezone *tz)
-      |     ^~~~~~~~~~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:44:21: warning: no previous prototype for ‘__vdso_time’ [-Wmissing-prototypes]
-   44 | __kernel_old_time_t __vdso_time(__kernel_old_time_t *t)
-      |                     ^~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:57:1: warning: no previous prototype for ‘__vdso_getcpu’ [-Wmissing-prototypes]
-   57 | __vdso_getcpu(unsigned *cpu, unsigned *node, struct getcpu_cache *unused)
-      | ^~~~~~~~~~~~~
-../arch/um/os-Linux/skas/process.c:107:6: warning: no previous prototype for ‘wait_stub_done’ [-Wmissing-prototypes]
-  107 | void wait_stub_done(int pid)
-      |      ^~~~~~~~~~~~~~
-../arch/um/os-Linux/skas/process.c:683:6: warning: no previous prototype for ‘__switch_mm’ [-Wmissing-prototypes]
-  683 | void __switch_mm(struct mm_id *mm_idp)
-      |      ^~~~~~~~~~~
-../arch/um/kernel/skas/process.c:36:12: warning: no previous prototype for ‘start_uml’ [-Wmissing-prototypes]
-   36 | int __init start_uml(void)
-      |            ^~~~~~~~~
-../arch/um/kernel/skas/mmu.c:17:5: warning: no previous prototype for ‘init_new_context’ [-Wmissing-prototypes]
-   17 | int init_new_context(struct task_struct *task, struct mm_struct *mm)
-      |     ^~~~~~~~~~~~~~~~
-../arch/um/kernel/skas/mmu.c:60:6: warning: no previous prototype for ‘destroy_context’ [-Wmissing-prototypes]
-   60 | void destroy_context(struct mm_struct *mm)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/kernel/mem.c:202:8: warning: no previous prototype for ‘pgd_alloc’ [-Wmissing-prototypes]
-  202 | pgd_t *pgd_alloc(struct mm_struct *mm)
-      |        ^~~~~~~~~
-../arch/um/kernel/mem.c:215:7: warning: no previous prototype for ‘uml_kmalloc’ [-Wmissing-prototypes]
-  215 | void *uml_kmalloc(int size, int flags)
-      |       ^~~~~~~~~~~
-../arch/x86/um/ptrace_64.c:111:5: warning: no previous prototype for ‘poke_user’ [-Wmissing-prototypes]
-  111 | int poke_user(struct task_struct *child, long addr, long data)
-      |     ^~~~~~~~~
-../arch/x86/um/ptrace_64.c:171:5: warning: no previous prototype for ‘peek_user’ [-Wmissing-prototypes]
-  171 | int peek_user(struct task_struct *child, long addr, long data)
-      |     ^~~~~~~~~
-../arch/um/os-Linux/main.c:187:7: warning: no previous prototype for ‘__wrap_malloc’ [-Wmissing-prototypes]
-  187 | void *__wrap_malloc(int size)
-      |       ^~~~~~~~~~~~~
-../arch/um/os-Linux/main.c:208:7: warning: no previous prototype for ‘__wrap_calloc’ [-Wmissing-prototypes]
-  208 | void *__wrap_calloc(int n, int size)
-      |       ^~~~~~~~~~~~~
-../arch/um/os-Linux/main.c:222:6: warning: no previous prototype for ‘__wrap_free’ [-Wmissing-prototypes]
-  222 | void __wrap_free(void *ptr)
-      |      ^~~~~~~~~~~
-../arch/um/os-Linux/mem.c:28:6: warning: no previous prototype for ‘kasan_map_memory’ [-Wmissing-prototypes]
-   28 | void kasan_map_memory(void *start, size_t len)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/os-Linux/mem.c:212:13: warning: no previous prototype for ‘check_tmpexec’ [-Wmissing-prototypes]
-  212 | void __init check_tmpexec(void)
-      |             ^~~~~~~~~~~~~
-../arch/x86/um/signal.c:560:6: warning: no previous prototype for ‘sys_rt_sigreturn’ [-Wmissing-prototypes]
-  560 | long sys_rt_sigreturn(void)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:51:5: warning: no previous prototype for ‘pid_to_processor_id’ [-Wmissing-prototypes]
-   51 | int pid_to_processor_id(int pid)
-      |     ^~~~~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:87:7: warning: no previous prototype for ‘__switch_to’ [-Wmissing-prototypes]
-   87 | void *__switch_to(struct task_struct *from, struct task_struct *to)
-      |       ^~~~~~~~~~~
-../arch/um/kernel/process.c:140:6: warning: no previous prototype for ‘fork_handler’ [-Wmissing-prototypes]
-  140 | void fork_handler(void)
-      |      ^~~~~~~~~~~~
-../arch/um/kernel/process.c:217:6: warning: no previous prototype for ‘arch_cpu_idle’ [-Wmissing-prototypes]
-  217 | void arch_cpu_idle(void)
-      |      ^~~~~~~~~~~~~
-../arch/um/kernel/process.c:253:5: warning: no previous prototype for ‘copy_to_user_proc’ [-Wmissing-prototypes]
-  253 | int copy_to_user_proc(void __user *to, void *from, int size)
-      |     ^~~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:263:5: warning: no previous prototype for ‘clear_user_proc’ [-Wmissing-prototypes]
-  263 | int clear_user_proc(void __user *buf, int size)
-      |     ^~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:271:6: warning: no previous prototype for ‘set_using_sysemu’ [-Wmissing-prototypes]
-  271 | void set_using_sysemu(int value)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:278:5: warning: no previous prototype for ‘get_using_sysemu’ [-Wmissing-prototypes]
-  278 | int get_using_sysemu(void)
-      |     ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:316:12: warning: no previous prototype for ‘make_proc_sysemu’ [-Wmissing-prototypes]
-  316 | int __init make_proc_sysemu(void)
-      |            ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:348:15: warning: no previous prototype for ‘arch_align_stack’ [-Wmissing-prototypes]
-  348 | unsigned long arch_align_stack(unsigned long sp)
-      |               ^~~~~~~~~~~~~~~~
-../arch/um/os-Linux/signal.c:75:6: warning: no previous prototype for ‘sig_handler’ [-Wmissing-prototypes]
-   75 | void sig_handler(int sig, struct siginfo *si, mcontext_t *mc)
-      |      ^~~~~~~~~~~
-../arch/um/os-Linux/signal.c:111:6: warning: no previous prototype for ‘timer_alarm_handler’ [-Wmissing-prototypes]
-  111 | void timer_alarm_handler(int sig, struct siginfo *unused_si, mcontext_t *mc)
-      |      ^~~~~~~~~~~~~~~~~~~
-../arch/um/os-Linux/start_up.c:301:12: warning: no previous prototype for ‘parse_iomem’ [-Wmissing-prototypes]
-  301 | int __init parse_iomem(char *str, int *add)
-      |            ^~~~~~~~~~~
-../arch/um/kernel/reboot.c:45:6: warning: no previous prototype for ‘machine_restart’ [-Wmissing-prototypes]
-   45 | void machine_restart(char * __unused)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:51:6: warning: no previous prototype for ‘machine_power_off’ [-Wmissing-prototypes]
-   51 | void machine_power_off(void)
-      |      ^~~~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:57:6: warning: no previous prototype for ‘machine_halt’ [-Wmissing-prototypes]
-   57 | void machine_halt(void)
-      |      ^~~~~~~~~~~~
-../arch/x86/um/syscalls_64.c:48:6: warning: no previous prototype for ‘arch_switch_to’ [-Wmissing-prototypes]
-   48 | void arch_switch_to(struct task_struct *to)
-      |      ^~~~~~~~~~~~~~
-../arch/um/kernel/tlb.c:579:6: warning: no previous prototype for ‘flush_tlb_mm_range’ [-Wmissing-prototypes]
-  579 | void flush_tlb_mm_range(struct mm_struct *mm, unsigned long start,
-      |      ^~~~~~~~~~~~~~~~~~
-../arch/um/kernel/tlb.c:594:6: warning: no previous prototype for ‘force_flush_all’ [-Wmissing-prototypes]
-  594 | void force_flush_all(void)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/kernel/kmsg_dump.c:60:12: warning: no previous prototype for ‘kmsg_dumper_stdout_init’ [-Wmissing-prototypes]
-   60 | int __init kmsg_dumper_stdout_init(void)
-      |            ^~~~~~~~~~~~~~~~~~~~~~~
-../arch/um/kernel/um_arch.c:408:19: warning: no previous prototype for ‘read_initrd’ [-Wmissing-prototypes]
-  408 | int __init __weak read_initrd(void)
-      |                   ^~~~~~~~~~~
-../arch/um/kernel/um_arch.c:461:7: warning: no previous prototype for ‘text_poke’ [-Wmissing-prototypes]
-  461 | void *text_poke(void *addr, const void *opcode, size_t len)
-      |       ^~~~~~~~~
-../arch/um/kernel/um_arch.c:473:6: warning: no previous prototype for ‘text_poke_sync’ [-Wmissing-prototypes]
-  473 | void text_poke_sync(void)
-      |      ^~~~~~~~~~~~~~
-../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-stty: 'standard input': Inappropriate ioctl for device
+url:    https://github.com/intel-lab-lkp/linux/commits/Suraj-Kandpal/drm-i915-hdcp-Move-intel_hdcp_gsc_message-def-away-from-header-file/20240209-181915
+base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+patch link:    https://lore.kernel.org/r/20240209101412.1326176-5-suraj.kandpal%40intel.com
+patch subject: [PATCH 4/5] drm/xe/hdcp: Enable HDCP for XE
+config: loongarch-allmodconfig (https://download.01.org/0day-ci/archive/20240210/202402100132.XIP3zz5i-lkp@intel.com/config)
+compiler: loongarch64-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240210/202402100132.XIP3zz5i-lkp@intel.com/reproduce)
 
-[17:49:36] Starting KUnit Kernel (1/1)...
-[17:49:36] ============================================================
-[17:49:36] =================== guc_dbm (7 subtests) ===================
-[17:49:36] [PASSED] test_empty
-[17:49:36] [PASSED] test_default
-[17:49:36] ======================== test_size  ========================
-[17:49:36] [PASSED] 4
-[17:49:36] [PASSED] 8
-[17:49:36] [PASSED] 32
-[17:49:36] [PASSED] 256
-[17:49:36] ==================== [PASSED] test_size ====================
-[17:49:36] ======================= test_reuse  ========================
-[17:49:36] [PASSED] 4
-[17:49:36] [PASSED] 8
-[17:49:36] [PASSED] 32
-[17:49:36] [PASSED] 256
-[17:49:36] =================== [PASSED] test_reuse ====================
-[17:49:36] =================== test_range_overlap  ====================
-[17:49:36] [PASSED] 4
-[17:49:36] [PASSED] 8
-[17:49:36] [PASSED] 32
-[17:49:36] [PASSED] 256
-[17:49:36] =============== [PASSED] test_range_overlap ================
-[17:49:36] =================== test_range_compact  ====================
-[17:49:36] [PASSED] 4
-[17:49:36] [PASSED] 8
-[17:49:36] [PASSED] 32
-[17:49:36] [PASSED] 256
-[17:49:36] =============== [PASSED] test_range_compact ================
-[17:49:36] ==================== test_range_spare  =====================
-[17:49:36] [PASSED] 4
-[17:49:36] [PASSED] 8
-[17:49:36] [PASSED] 32
-[17:49:36] [PASSED] 256
-[17:49:36] ================ [PASSED] test_range_spare =================
-[17:49:36] ===================== [PASSED] guc_dbm =====================
-[17:49:36] ================== no_relay (3 subtests) ===================
-[17:49:36] [PASSED] xe_drops_guc2pf_if_not_ready
-[17:49:36] [PASSED] xe_drops_guc2vf_if_not_ready
-[17:49:36] [PASSED] xe_rejects_send_if_not_ready
-[17:49:36] ==================== [PASSED] no_relay =====================
-[17:49:36] ================== pf_relay (14 subtests) ==================
-[17:49:36] [PASSED] pf_rejects_guc2pf_too_short
-[17:49:36] [PASSED] pf_rejects_guc2pf_too_long
-[17:49:36] [PASSED] pf_rejects_guc2pf_no_payload
-[17:49:36] [PASSED] pf_fails_no_payload
-[17:49:36] [PASSED] pf_fails_bad_origin
-[17:49:36] [PASSED] pf_fails_bad_type
-[17:49:36] [PASSED] pf_txn_reports_error
-[17:49:36] [PASSED] pf_txn_sends_pf2guc
-[17:49:36] [PASSED] pf_sends_pf2guc
-[17:49:36] [SKIPPED] pf_loopback_nop
-[17:49:36] [SKIPPED] pf_loopback_echo
-[17:49:36] [SKIPPED] pf_loopback_fail
-[17:49:36] [SKIPPED] pf_loopback_busy
-[17:49:36] [SKIPPED] pf_loopback_retry
-[17:49:36] ==================== [PASSED] pf_relay =====================
-[17:49:36] ================== vf_relay (3 subtests) ===================
-[17:49:36] [PASSED] vf_rejects_guc2vf_too_short
-[17:49:36] [PASSED] vf_rejects_guc2vf_too_long
-[17:49:36] [PASSED] vf_rejects_guc2vf_no_payload
-[17:49:36] ==================== [PASSED] vf_relay =====================
-[17:49:36] ===================== lmtt (1 subtest) =====================
-[17:49:36] ======================== test_ops  =========================
-[17:49:36] [PASSED] 2-level
-[17:49:36] [PASSED] multi-level
-[17:49:36] ==================== [PASSED] test_ops =====================
-[17:49:36] ====================== [PASSED] lmtt =======================
-[17:49:36] ==================== xe_bo (2 subtests) ====================
-[17:49:36] [SKIPPED] xe_ccs_migrate_kunit
-[17:49:36] [SKIPPED] xe_bo_evict_kunit
-[17:49:36] ===================== [SKIPPED] xe_bo ======================
-[17:49:36] ================== xe_dma_buf (1 subtest) ==================
-[17:49:36] [SKIPPED] xe_dma_buf_kunit
-[17:49:36] =================== [SKIPPED] xe_dma_buf ===================
-[17:49:36] ================== xe_migrate (1 subtest) ==================
-[17:49:36] [SKIPPED] xe_migrate_sanity_kunit
-[17:49:36] =================== [SKIPPED] xe_migrate ===================
-[17:49:36] =================== xe_mocs (2 subtests) ===================
-[17:49:36] [SKIPPED] xe_live_mocs_kernel_kunit
-[17:49:36] [SKIPPED] xe_live_mocs_reset_kunit
-[17:49:36] ==================== [SKIPPED] xe_mocs =====================
-[17:49:36] =================== xe_pci (2 subtests) ====================
-[17:49:36] [PASSED] xe_gmdid_graphics_ip
-[17:49:36] [PASSED] xe_gmdid_media_ip
-[17:49:36] ===================== [PASSED] xe_pci ======================
-[17:49:36] ==================== xe_rtp (1 subtest) ====================
-[17:49:36] ================== xe_rtp_process_tests  ===================
-[17:49:36] [PASSED] coalesce-same-reg
-[17:49:36] [PASSED] no-match-no-add
-[17:49:36] [PASSED] no-match-no-add-multiple-rules
-[17:49:36] [PASSED] two-regs-two-entries
-[17:49:36] [PASSED] clr-one-set-other
-[17:49:36] [PASSED] set-field
-[17:49:36] [PASSED] conflict-duplicate
-[17:49:36] [PASSED] conflict-not-disjoint
-[17:49:36] [PASSED] conflict-reg-type
-[17:49:36] ============== [PASSED] xe_rtp_process_tests ===============
-[17:49:36] ===================== [PASSED] xe_rtp ======================
-[17:49:36] ==================== xe_wa (1 subtest) =====================
-[17:49:36] ======================== xe_wa_gt  =========================
-[17:49:36] [PASSED] TIGERLAKE (B0)
-[17:49:36] [PASSED] DG1 (A0)
-[17:49:36] [PASSED] DG1 (B0)
-[17:49:36] [PASSED] ALDERLAKE_S (A0)
-[17:49:36] [PASSED] ALDERLAKE_S (B0)
-[17:49:36] [PASSED] ALDERLAKE_S (C0)
-[17:49:36] [PASSED] ALDERLAKE_S (D0)
-[17:49:36] [PASSED] ALDERLAKE_P (A0)
-[17:49:36] [PASSED] ALDERLAKE_P (B0)
-[17:49:36] [PASSED] ALDERLAKE_P (C0)
-[17:49:36] [PASSED] ALDERLAKE_S_RPLS (D0)
-[17:49:36] [PASSED] ALDERLAKE_P_RPLU (E0)
-[17:49:36] [PASSED] DG2_G10 (C0)
-[17:49:36] [PASSED] DG2_G11 (B1)
-[17:49:36] [PASSED] DG2_G12 (A1)
-[17:49:36] [PASSED] METEORLAKE (g:A0, m:A0)
-[17:49:36] [PASSED] METEORLAKE (g:A0, m:A0)
-[17:49:36] [PASSED] LUNARLAKE (g:A0, m:A0)
-[17:49:36] [PASSED] LUNARLAKE (g:B0, m:A0)
-[17:49:36] ==================== [PASSED] xe_wa_gt =====================
-[17:49:36] ====================== [PASSED] xe_wa ======================
-[17:49:36] ============================================================
-[17:49:36] Testing complete. Ran 80 tests: passed: 69, skipped: 11
-[17:49:36] Elapsed time: 27.681s total, 4.177s configuring, 23.334s building, 0.143s running
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202402100132.XIP3zz5i-lkp@intel.com/
 
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/tests/.kunitconfig
-ERROR:root:In file included from ../arch/um/kernel/asm-offsets.c:1:
-../arch/x86/um/shared/sysdep/kernel-offsets.h:9:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
-    9 | void foo(void)
-      |      ^~~
-../arch/um/kernel/mem.c:202:8: warning: no previous prototype for ‘pgd_alloc’ [-Wmissing-prototypes]
-  202 | pgd_t *pgd_alloc(struct mm_struct *mm)
-      |        ^~~~~~~~~
-../arch/um/kernel/mem.c:215:7: warning: no previous prototype for ‘uml_kmalloc’ [-Wmissing-prototypes]
-  215 | void *uml_kmalloc(int size, int flags)
-      |       ^~~~~~~~~~~
-../arch/x86/um/ptrace_64.c:111:5: warning: no previous prototype for ‘poke_user’ [-Wmissing-prototypes]
-  111 | int poke_user(struct task_struct *child, long addr, long data)
-      |     ^~~~~~~~~
-../arch/x86/um/ptrace_64.c:171:5: warning: no previous prototype for ‘peek_user’ [-Wmissing-prototypes]
-  171 | int peek_user(struct task_struct *child, long addr, long data)
-      |     ^~~~~~~~~
-../arch/um/kernel/reboot.c:45:6: warning: no previous prototype for ‘machine_restart’ [-Wmissing-prototypes]
-   45 | void machine_restart(char * __unused)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:51:6: warning: no previous prototype for ‘machine_power_off’ [-Wmissing-prototypes]
-   51 | void machine_power_off(void)
-      |      ^~~~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:57:6: warning: no previous prototype for ‘machine_halt’ [-Wmissing-prototypes]
-   57 | void machine_halt(void)
-      |      ^~~~~~~~~~~~
-../arch/um/kernel/process.c:51:5: warning: no previous prototype for ‘pid_to_processor_id’ [-Wmissing-prototypes]
-   51 | int pid_to_processor_id(int pid)
-      |     ^~~~~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:87:7: warning: no previous prototype for ‘__switch_to’ [-Wmissing-prototypes]
-   87 | void *__switch_to(struct task_struct *from, struct task_struct *to)
-      |       ^~~~~~~~~~~
-../arch/um/kernel/process.c:140:6: warning: no previous prototype for ‘fork_handler’ [-Wmissing-prototypes]
-  140 | void fork_handler(void)
-      |      ^~~~~~~~~~~~
-../arch/um/kernel/process.c:217:6: warning: no previous prototype for ‘arch_cpu_idle’ [-Wmissing-prototypes]
-  217 | void arch_cpu_idle(void)
-      |      ^~~~~~~~~~~~~
-../arch/um/kernel/process.c:253:5: warning: no previous prototype for ‘copy_to_user_proc’ [-Wmissing-prototypes]
-  253 | int copy_to_user_proc(void __user *to, void *from, int size)
-      |     ^~~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:263:5: warning: no previous prototype for ‘clear_user_proc’ [-Wmissing-prototypes]
-  263 | int clear_user_proc(void __user *buf, int size)
-      |     ^~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:271:6: warning: no previous prototype for ‘set_using_sysemu’ [-Wmissing-prototypes]
-  271 | void set_using_sysemu(int value)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:278:5: warning: no previous prototype for ‘get_using_sysemu’ [-Wmissing-prototypes]
-  278 | int get_using_sysemu(void)
-      |     ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:316:12: warning: no previous prototype for ‘make_proc_sysemu’ [-Wmissing-prototypes]
-  316 | int __init make_proc_sysemu(void)
-      |            ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:348:15: warning: no previous prototype for ‘arch_align_stack’ [-Wmissing-prototypes]
-  348 | unsigned long arch_align_stack(unsigned long sp)
-      |               ^~~~~~~~~~~~~~~~
-../arch/x86/um/signal.c:560:6: warning: no previous prototype for ‘sys_rt_sigreturn’ [-Wmissing-prototypes]
-  560 | long sys_rt_sigreturn(void)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/kernel/tlb.c:579:6: warning: no previous prototype for ‘flush_tlb_mm_range’ [-Wmissing-prototypes]
-  579 | void flush_tlb_mm_range(struct mm_struct *mm, unsigned long start,
-      |      ^~~~~~~~~~~~~~~~~~
-../arch/um/kernel/tlb.c:594:6: warning: no previous prototype for ‘force_flush_all’ [-Wmissing-prototypes]
-  594 | void force_flush_all(void)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/kernel/um_arch.c:408:19: warning: no previous prototype for ‘read_initrd’ [-Wmissing-prototypes]
-  408 | int __init __weak read_initrd(void)
-      |                   ^~~~~~~~~~~
-../arch/um/kernel/um_arch.c:461:7: warning: no previous prototype for ‘text_poke’ [-Wmissing-prototypes]
-  461 | void *text_poke(void *addr, const void *opcode, size_t len)
-      |       ^~~~~~~~~
-../arch/um/kernel/um_arch.c:473:6: warning: no previous prototype for ‘text_poke_sync’ [-Wmissing-prototypes]
-  473 | void text_poke_sync(void)
-      |      ^~~~~~~~~~~~~~
-../arch/um/kernel/kmsg_dump.c:60:12: warning: no previous prototype for ‘kmsg_dumper_stdout_init’ [-Wmissing-prototypes]
-   60 | int __init kmsg_dumper_stdout_init(void)
-      |            ^~~~~~~~~~~~~~~~~~~~~~~
-../arch/x86/um/syscalls_64.c:48:6: warning: no previous prototype for ‘arch_switch_to’ [-Wmissing-prototypes]
-   48 | void arch_switch_to(struct task_struct *to)
-      |      ^~~~~~~~~~~~~~
-../arch/um/kernel/skas/process.c:36:12: warning: no previous prototype for ‘start_uml’ [-Wmissing-prototypes]
-   36 | int __init start_uml(void)
-      |            ^~~~~~~~~
-../arch/um/kernel/skas/mmu.c:17:5: warning: no previous prototype for ‘init_new_context’ [-Wmissing-prototypes]
-   17 | int init_new_context(struct task_struct *task, struct mm_struct *mm)
-      |     ^~~~~~~~~~~~~~~~
-../arch/um/kernel/skas/mmu.c:60:6: warning: no previous prototype for ‘destroy_context’ [-Wmissing-prototypes]
-   60 | void destroy_context(struct mm_struct *mm)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/tests/drm_mm_test.c: In function ‘drm_test_mm_debug’:
-../drivers/gpu/drm/tests/drm_mm_test.c:191:25: error: implicit declaration of function ‘drm_debug_printer’; did you mean ‘drm_dbg_printer’? [-Werror=implicit-function-declaration]
-  191 |  struct drm_printer p = drm_debug_printer(test->name);
-      |                         ^~~~~~~~~~~~~~~~~
-      |                         drm_dbg_printer
-../drivers/gpu/drm/tests/drm_mm_test.c:191:25: error: invalid initializer
-cc1: some warnings being treated as errors
-make[7]: *** [../scripts/Makefile.build:243: drivers/gpu/drm/tests/drm_mm_test.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-make[6]: *** [../scripts/Makefile.build:481: drivers/gpu/drm/tests] Error 2
-make[6]: *** Waiting for unfinished jobs....
-make[5]: *** [../scripts/Makefile.build:481: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:481: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:481: drivers] Error 2
-make[2]: *** [/kernel/Makefile:1921: .] Error 2
-make[1]: *** [/kernel/Makefile:240: __sub-make] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
+All warnings (new ones prefixed by >>):
 
-[17:49:36] Configuring KUnit Kernel ...
-Regenerating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[17:49:37] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+>> drivers/gpu/drm/xe/xe_gsc_submit.c:50: warning: expecting prototype for xe_gsc_get_host_session_id(). Prototype was for xe_gsc_create_host_session_id() instead
 
 
+vim +50 drivers/gpu/drm/xe/xe_gsc_submit.c
+
+    42	
+    43	/**
+    44	 * xe_gsc_get_host_session_id - Creates a random 64 bit host_session id with
+    45	 * bits 56-63 masked.
+    46	 *
+    47	 * Returns: random host_session_id which can be used to send messages to gsc cs
+    48	 */
+    49	u64 xe_gsc_create_host_session_id(void)
+  > 50	{
+    51		u64 host_session_id;
+    52	
+    53		get_random_bytes(&host_session_id, sizeof(u64));
+    54		host_session_id &= ~HOST_SESSION_CLIENT_MASK;
+    55		return host_session_id;
+    56	}
+    57	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
