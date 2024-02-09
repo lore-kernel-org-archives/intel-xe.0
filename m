@@ -4,55 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEAC5C4828F
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Feb 2024 06:46:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67455C48297
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Feb 2024 07:08:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 900CE10EE7E;
-	Fri,  9 Feb 2024 06:46:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64D7410F13A;
+	Fri,  9 Feb 2024 07:08:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nxZjgBGQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mlNxl1cP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E48E10EE7E
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Feb 2024 06:46:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BBDB10F13A
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Feb 2024 07:08:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707461167; x=1738997167;
+ t=1707462499; x=1738998499;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=xpcEIhlG6r1IXWkxyPOSDymJ1B7Wm8yH9p6EpWTPpbs=;
- b=nxZjgBGQ+8GSk5QMMd0o5DVJypFgFCFXQWV15ntWwEaVYuoOoXVYgOXb
- /WcEJ6XCCmh+vBf7ETJ2Nf0gKI39b0hL/B2WsNGVheOsXPA0aw0iRoKeD
- lKuu7FPJjQHMfPF0SQS4qqABYuEbLYsD15x1JEJTU4JeN99HXrFrybQbg
- qXrq2iMBn/57gIYA15HbW+d16Y0CAV6UaJjiFOcJ6dMpeSP0FAnWbYU3M
- V0M8bKVRu83wavHlSXronebR5jR5VaQnUP0kDOviAb7f4IxQniYwNtWgN
- XQKLXwxTvNJmzXn/NR/cQOjU1rZ1iGwca6/F5peXOHm79njTO1+BVg7/8 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="1268205"
+ bh=E+sj2qGnIfiMm4dogAS+bkerZD7cr2fEMUON5c2FBVM=;
+ b=mlNxl1cPYdeD9kwZNf/u3sIwte2OZDoTBUSyOs8GVCpF8P7yvj9bjjBC
+ msiYYEHhSPxXNPOBnUYbNXeQ1FxeorOP26ccPn9zLhXu8oEe15w/lxE1a
+ c6uY4v1jFIQCRJ7qAKf2evd3xtepJKh0C7xKG8/ap9nMjSLioFhdVeJuX
+ I5Dt0yV7idyprZNcGbQ9J9uLiEKvAFhqFyG2S+VEx8+Yc6TuAHUQqi3e9
+ qSHVnqvvvn852Zkt6hDdsp3c72CCpf9jK2cotuyAKNk7+UtAp0SXoYagg
+ PKOUDBU1i/DgCrSsOLbqfRXYawm7CLAdyqgkIjEjwFffOBkvXxrPlWxhV w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="1519373"
 X-IronPort-AV: E=Sophos;i="6.05,256,1701158400"; 
-   d="scan'208";a="1268205"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 22:46:01 -0800
+   d="scan'208";a="1519373"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2024 23:08:15 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,256,1701158400"; d="scan'208";a="39308909"
+X-IronPort-AV: E=Sophos;i="6.05,256,1701158400"; d="scan'208";a="32664327"
 Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.intel.com)
  ([10.165.21.138])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 22:46:02 -0800
-Date: Thu, 08 Feb 2024 22:46:00 -0800
-Message-ID: <851q9mw2xj.wl-ashutosh.dixit@intel.com>
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2024 23:08:15 -0800
+Date: Thu, 08 Feb 2024 23:08:14 -0800
+Message-ID: <85zfwaunc1.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 Cc: intel-xe@lists.freedesktop.org,
  Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: Re: [PATCH 06/16] drm/xe/oa/uapi: Define and parse OA stream
- properties
-In-Reply-To: <19f2c829-9055-4cd5-855a-6fc7f151f63f@intel.com>
-References: <20240208054916.3788133-1-ashutosh.dixit@intel.com>
- <20240208054916.3788133-7-ashutosh.dixit@intel.com>
- <1c3fef48-f59b-440a-bfb7-275fb5f5d57d@intel.com>
- <857cjewq1s.wl-ashutosh.dixit@intel.com>
- <19f2c829-9055-4cd5-855a-6fc7f151f63f@intel.com>
+Subject: Re: [PATCH 07/16] drm/xe/oa: OA stream initialization (OAG)
+In-Reply-To: <c16fd9ed-95d4-4a4d-a57f-06f19c7b6d6f@intel.com>
+References: <20240208054916.3788133-1-ashutosh.dixit@intel.com>	<20240208054916.3788133-8-ashutosh.dixit@intel.com>	<c16fd9ed-95d4-4a4d-a57f-06f19c7b6d6f@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -72,60 +67,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 08 Feb 2024 22:25:40 -0800, Lionel Landwerlin wrote:
+On Thu, 08 Feb 2024 22:23:30 -0800, Lionel Landwerlin wrote:
 >
-> On 09/02/2024 00:26, Dixit, Ashutosh wrote:
-> > On Thu, 08 Feb 2024 13:40:29 -0800, Lionel Landwerlin wrote:
-> >
-> > Hi Lionel,
-> >
-> >> +
-> >> +	/** @DRM_XE_OA_PROPERTY_OA_FORMAT: Perf counter report format */
-> >> +	DRM_XE_OA_PROPERTY_OA_FORMAT,
-> >> +	/**
-> >> +	 * OA_FORMAT's are specified the same way as in Bspec, in terms of
-> >> +	 * the following quantities: a. enum @drm_xe_oa_format_type
-> >> +	 * b. Counter select c. Counter size and d. BC report
-> >> +	 */
-> >> +#define DRM_XE_OA_FORMAT_MASK_FMT_TYPE		(0xff << 0)
-> >> +#define DRM_XE_OA_FORMAT_MASK_COUNTER_SEL	(0xff << 8)
-> >> +#define DRM_XE_OA_FORMAT_MASK_COUNTER_SIZE	(0xff << 16)
-> >> +#define DRM_XE_OA_FORMAT_MASK_BC_REPORT		(0xff << 24)
-> >>
-> >> People outside of Intel don't have access to the BSpec.
-> > Hmm, I was assuming Bspec is public, at least parts of it. Since we keep
-> > dropping Bspec references in patch commit messages?
-> >
-> >> And since there is no page number either
-> > Page numbers are in the commit message, but you are right, they should be
-> > added here.
-> >
-> >> , it would just be easier for everybody to say :
-> >>
-> >>       "Refer to the oa_formats array in drivers/gpu/drm/xe/xe_oa.c"
-> > Umesh, what do you think about this? I don't like the idea too much, of
-> > referring to the internal implementation in the uapi, but if Bspec is not
-> > public, and we want to keep this uapi, we'll probably need to do this.
-> >
-> > Also, we are directly returning the oa_status register in response to
-> > DRM_XE_PERF_IOCTL_STATUS ioctl (see 'struct drm_xe_oa_stream_status'), so
-> > that also needs access to Bspec. But there I think we can just document the
-> > relevant bits in xe_drm.h.
->
->
-> What got me confused is the BC field, which I expected would take some
-> non-zero value so Gfx8+ formats (since some of them has B/C counters).
->
-> But actually it's zero in xe_oa.c
 
-I know what you are saying, but seems counter_size and bc_report fields got
-introduced (and are applicable) only to Xe2+. So to me the code looks
-correct.
+Hi Lionel,
 
-Compare Bspec:52198 (Xe1 and older) with Bspec:60942 (Xe2+).
+> > +static int xe_oa_emit_oa_config(struct xe_oa_stream *stream)
+> > +{
+> > +#define NOA_PROGRAM_ADDITIONAL_DELAY_US 500
+> > +	struct xe_oa_config_bo *oa_bo;
+> > +	int err, us = NOA_PROGRAM_ADDITIONAL_DELAY_US;
+> > +
+> > +	oa_bo = xe_oa_alloc_config_buffer(stream);
+> > +	if (IS_ERR(oa_bo)) {
+> > +		err = PTR_ERR(oa_bo);
+> > +		goto exit;
+> > +	}
+> > +
+> > +	err = xe_oa_submit_bb(stream, oa_bo->bb);
+> > +
+> > +	/* Additional empirical delay needed for NOA programming after registers are written */
+> > +	usleep_range(us, 2 * us);
+>
+> Looks like the entire oa_config emission is synchronous.
 
-I will add the Bspec page number and "Refer to the oa_formats array in
-drivers/gpu/drm/xe/xe_oa.c" to xe_drm.h.
+Yes that is indeed the case in this patchset.
+
+> That's a difference from i915 where we could just pipeline all the config
+> changes with perf queries in between.
+>
+> If there was a mechanism to return a syncobj in this ioctl, we could do the
+> wait from userspace and/or pipeline more submissions.
+
+That is the plan. To expose syncobj's in OA properties and make also make
+the oa_config emission asynchronous. But have not been able to get to it
+yet (IGT's are mostly getting ready, but now we may also need to add
+support for GPUVis before we can merge these patches, if we can't get a
+temporary waiver).
+
+So the direction right now is to get the current patchset merged before
+adding more features (like the syncobj).
+
+(Also, separately I'm trying to figure out if a delay similar to the NOA
+programming delay is really needed when we have PES registers, the case for
+Xe2+. Looks like it might not be, but still needs to be confirmed).
 
 Thanks.
 --
