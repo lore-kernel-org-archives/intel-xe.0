@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC034C48297
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Feb 2024 17:48:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC9ACC4828F
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Feb 2024 17:49:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A96C810F3C3;
-	Fri,  9 Feb 2024 17:48:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69CF310F88B;
+	Fri,  9 Feb 2024 17:49:08 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B8CE10F3C3;
- Fri,  9 Feb 2024 17:48:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AAAFB10EC7E;
+ Fri,  9 Feb 2024 17:49:07 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Add_helper?=
- =?utf-8?q?_macro_to_loop_each_dss?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Add_helper_macr?=
+ =?utf-8?q?o_to_loop_each_dss?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Zhanjun Dong" <zhanjun.dong@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 09 Feb 2024 17:48:53 -0000
-Message-ID: <170750093331.1129906.1172583845561214303@5338d5abeb45>
+Date: Fri, 09 Feb 2024 17:49:07 -0000
+Message-ID: <170750094770.1129906.13645121634200695856@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240209174548.19389-1-zhanjun.dong@intel.com>
 In-Reply-To: <20240209174548.19389-1-zhanjun.dong@intel.com>
@@ -44,13 +44,39 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Add helper macro to loop each dss
 URL   : https://patchwork.freedesktop.org/series/129733/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 2aceb3c0b drm-tip: 2024y-02m-09d-12h-48m-25s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Add helper macro to loop each dss
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+35591fb8b4d5305b37ce31483f85ac0956eaa536
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 7a8a59df6e7911b2cfdf34ad770abb6e3450c279
+Author: Zhanjun Dong <zhanjun.dong@intel.com>
+Date:   Fri Feb 9 09:45:48 2024 -0800
+
+    drm/xe: Add helper macro to loop each dss
+    
+    Add helper macro to loop each dss. This is a precursor patch to allow
+    for easier iteration through MCR registers and other per-DSS uses.
+    
+    Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
++ /mt/dim checkpatch 2aceb3c0b9c8c840b8687a903935a7a2ea9631d4 drm-intel
+7a8a59df6 drm/xe: Add helper macro to loop each dss
+-:88: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dss_' - possible side-effects?
+#88: FILE: drivers/gpu/drm/xe/xe_gt_mcr.h:36:
++#define for_each_dss_steering(dss_, gt_, group_, instance_) \
++	for (dss_ = xe_gt_topology_get_next_dss(gt, 0); \
++	     dss_ >= 0; \
++	     dss_ = xe_gt_topology_get_next_dss(gt, dss_ + 1)) \
++		for_each_if(xe_gt_mcr_get_dss_steering(gt_, dss_, &(group_), &(instance_)))
+
+total: 0 errors, 0 warnings, 1 checks, 127 lines checked
 
 
