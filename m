@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37EFAC48260
-	for <intel-xe@archiver.kernel.org>; Sat, 10 Feb 2024 03:46:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 782D1C4829A
+	for <intel-xe@archiver.kernel.org>; Sat, 10 Feb 2024 03:47:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E17C21121B6;
-	Sat, 10 Feb 2024 03:46:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AC051121B6;
+	Sat, 10 Feb 2024 03:47:16 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07B331121B4;
- Sat, 10 Feb 2024 03:46:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 582101121B6;
+ Sat, 10 Feb 2024 03:47:14 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_VM_bind_re?=
- =?utf-8?q?factor?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_VM_bind_refacto?=
+ =?utf-8?q?r?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 10 Feb 2024 03:46:52 -0000
-Message-ID: <170753681203.1129907.10709458817275257189@5338d5abeb45>
+Date: Sat, 10 Feb 2024 03:47:14 -0000
+Message-ID: <170753683436.1129906.17656609161351720294@5338d5abeb45>
 X-Patchwork-Hint: ignore
 References: <20240210034504.3405797-1-matthew.brost@intel.com>
 In-Reply-To: <20240210034504.3405797-1-matthew.brost@intel.com>
@@ -44,13 +44,106 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: VM bind refactor
 URL   : https://patchwork.freedesktop.org/series/129743/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: cb45a9350 drm-tip: 2024y-02m-09d-20h-22m-34s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: VM bind refactor
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+35591fb8b4d5305b37ce31483f85ac0956eaa536
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 68a862a0e74e43ac852cc9da82c66d11b8ff9394
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Fri Feb 9 19:45:04 2024 -0800
+
+    drm/xe: VM bind refactor
+    
+    Single squashed patch for CI
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch cb45a93504e3a257c069e6f68a2f005bf2ed360c drm-intel
+68a862a0e drm/xe: VM bind refactor
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:563: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#563: FILE: drivers/gpu/drm/xe/xe_exec_queue.c:809:
++		return test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags);
++	} else {
+
+-:831: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#831: FILE: drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:306:
++
++}
+
+-:2641: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 15)
+#2641: FILE: drivers/gpu/drm/xe/xe_pt.c:1755:
++	if (vops->inject_error &&
+[...]
++	       return -ENOSPC;
+
+-:2643: WARNING:TABSTOP: Statements should start on a tabstop
+#2643: FILE: drivers/gpu/drm/xe/xe_pt.c:1757:
++	       return -ENOSPC;
+
+-:2764: WARNING:TYPO_SPELLING: 'commiting' may be misspelled - perhaps 'committing'?
+#2764: FILE: drivers/gpu/drm/xe/xe_pt.c:1860:
++ * Run PT update operations which includes commiting internal PT state changes,
+                                            ^^^^^^^^^
+
+-:2823: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 15)
+#2823: FILE: drivers/gpu/drm/xe/xe_pt.c:1889:
++	if (vops->inject_error &&
+[...]
++	       return ERR_PTR(-ENOSPC);
+
+-:2825: WARNING:TABSTOP: Statements should start on a tabstop
+#2825: FILE: drivers/gpu/drm/xe/xe_pt.c:1891:
++	       return ERR_PTR(-ENOSPC);
+
+-:2981: WARNING:TYPO_SPELLING: 'commiting' may be misspelled - perhaps 'committing'?
+#2981: FILE: drivers/gpu/drm/xe/xe_pt.c:1991:
++ * Finish PT update operations by commiting to destroy page table memory
+                                   ^^^^^^^^^
+
+-:3068: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#3068: 
+new file mode 100644
+
+-:3348: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#3348: FILE: drivers/gpu/drm/xe/xe_sched_job.c:38:
++				  max_t(size_t,
+ 				  sizeof(u64) *
+
+-:3506: ERROR:FLEXIBLE_ARRAY: Use C99 flexible arrays - see https://docs.kernel.org/process/deprecated.html#zero-length-and-one-element-arrays
+#3506: FILE: drivers/gpu/drm/xe/xe_sched_job_types.h:70:
++		struct pt_update_args pt_update[0];
++	};
+
+-:4534: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 15)
+#4534: FILE: drivers/gpu/drm/xe/xe_vm.c:2386:
++	if (vops->inject_error &&
+[...]
++	       return -ENOSPC;
+
+-:4536: WARNING:TABSTOP: Statements should start on a tabstop
+#4536: FILE: drivers/gpu/drm/xe/xe_vm.c:2388:
++	       return -ENOSPC;
+
+-:4596: ERROR:SPACING: space prohibited after that open parenthesis '('
+#4596: FILE: drivers/gpu/drm/xe/xe_vm.c:2408:
++		trace_xe_vma_unbind( gpuva_to_vma(op->base.unmap.va));
+
+total: 2 errors, 10 warnings, 2 checks, 4932 lines checked
 
 
