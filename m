@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6130C4829E
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Feb 2024 19:24:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21910C4829E
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Feb 2024 19:30:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AD6110E0A2;
-	Mon, 12 Feb 2024 19:24:41 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5892110E0A2;
- Mon, 12 Feb 2024 19:24:40 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA29210E1C6;
+	Mon, 12 Feb 2024 19:30:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d/s13wGq";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9C4510E176
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Feb 2024 19:30:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707766221; x=1739302221;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=vF5jKuClLgpskWO2g3SeXcdsiCTGU8hU9HZtebB+QdE=;
+ b=d/s13wGqa0dPw2dPD5SW13ewdIvEc3sMuvktwavylPnTeNXoJ5aFd944
+ FdB+7f/8slwDT0aFEyWEMhO0sXcONAp2eHsm5scKpUPpkU9RwEMgcCYar
+ lglPCQ5ztx/Yl4UL9P8yFV6Vm47R/mzSaaoEHqXadrLL3+Kx5RbfXSch6
+ bFUGVitb8l2RbZg+FNd+OWY5nzfbRXYQC78kQA7Khct920JRfQCwquCrD
+ cSwh6t0UUozVaujvi/vafg0CTVThQMm4h0uwMcJZxW4Lk/S/9FJqF+ltc
+ oVfkuRRgOxLDVZi/nqZ8N0fM+ostIX5keRWC/uvAMMgH1tscRnRykkcAX A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="1896469"
+X-IronPort-AV: E=Sophos;i="6.06,155,1705392000"; 
+   d="scan'208";a="1896469"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2024 11:30:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,155,1705392000"; 
+   d="scan'208";a="2650277"
+Received: from belyakov-mobl.ccr.corp.intel.com (HELO localhost)
+ ([10.252.63.91])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2024 11:30:19 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/xe: use drm based debugging instead of dev
+In-Reply-To: <26e8d3c2ef45e64dc07f568222e709ac64ad6b35.camel@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240212145757.645094-1-jani.nikula@intel.com>
+ <26e8d3c2ef45e64dc07f568222e709ac64ad6b35.camel@linux.intel.com>
+Date: Mon, 12 Feb 2024 21:30:14 +0200
+Message-ID: <87plx18oqh.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_VM_bind_refact?=
- =?utf-8?q?or_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 12 Feb 2024 19:24:40 -0000
-Message-ID: <170776588036.1183349.15308837653129242372@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240210034504.3405797-1-matthew.brost@intel.com>
-In-Reply-To: <20240210034504.3405797-1-matthew.brost@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +64,45 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 12 Feb 2024, Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.co=
+m> wrote:
+> On Mon, 2024-02-12 at 16:57 +0200, Jani Nikula wrote:
+>> Prefer drm_dbg() over dev_dbg().
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 
-Series: drm/xe: VM bind refactor (rev2)
-URL   : https://patchwork.freedesktop.org/series/129743/
-State : success
+Thanks, pushed to drm-xe-next.
 
-== Summary ==
+BR,
+Jani.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 46cf1a7da57fc4fd2306d52aea58a02c7eb06cce
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+>
+>> ---
+>> =C2=A0drivers/gpu/drm/xe/xe_irq.c | 2 +-
+>> =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/xe/xe_irq.c
+>> b/drivers/gpu/drm/xe/xe_irq.c
+>> index 17b3affdb6a0..2f5d179e0d00 100644
+>> --- a/drivers/gpu/drm/xe/xe_irq.c
+>> +++ b/drivers/gpu/drm/xe/xe_irq.c
+>> @@ -442,7 +442,7 @@ static irqreturn_t dg1_irq_handler(int irq, void
+>> *arg)
+>> =C2=A0		 * irq as device is inaccessible.
+>> =C2=A0		 */
+>> =C2=A0		if (master_ctl =3D=3D REG_GENMASK(31, 0)) {
+>> -			dev_dbg(tile_to_xe(tile)->drm.dev,
+>> +			drm_dbg(&tile_to_xe(tile)->drm,
+>> =C2=A0				"Ignore this IRQ as device might be
+>> in DPC containment.\n");
+>> =C2=A0			return IRQ_HANDLED;
+>> =C2=A0		}
+>
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+--=20
+Jani Nikula, Intel
