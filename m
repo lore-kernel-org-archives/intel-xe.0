@@ -4,91 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 435FEC4829A
-	for <intel-xe@archiver.kernel.org>; Sat, 10 Feb 2024 16:57:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3495CC4829B
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Feb 2024 10:38:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE8C810E18F;
-	Sat, 10 Feb 2024 16:57:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5DCB10EC2F;
+	Mon, 12 Feb 2024 10:38:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=embeddedor.com header.i=@embeddedor.com header.b="mi4KsncL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X2SKWBVt";
 	dkim-atps=neutral
-X-Greylist: delayed 428 seconds by postgrey-1.36 at gabe;
- Sat, 10 Feb 2024 16:57:24 UTC
-Received: from omta034.useast.a.cloudfilter.net
- (omta034.useast.a.cloudfilter.net [44.202.169.33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AECCE10E18F
- for <intel-xe@lists.freedesktop.org>; Sat, 10 Feb 2024 16:57:24 +0000 (UTC)
-Received: from eig-obgw-6010a.ext.cloudfilter.net ([10.0.30.248])
- by cmsmtp with ESMTPS
- id YpZ5rAEDhAxAkYqYErwQOv; Sat, 10 Feb 2024 16:50:03 +0000
-Received: from gator4166.hostgator.com ([108.167.133.22]) by cmsmtp with ESMTPS
- id YqYDr4epTfXY3YqYEr0VwJ; Sat, 10 Feb 2024 16:50:02 +0000
-X-Authority-Analysis: v=2.4 cv=bO21I++Z c=1 sm=1 tr=0 ts=65c7a93a
- a=1YbLdUo/zbTtOZ3uB5T3HA==:117 a=VhncohosazJxI00KdYJ/5A==:17
- a=IkcTkHD0fZMA:10 a=k7vzHIieQBIA:10 a=wYkD_t78qR0A:10 a=VwQbUJbxAAAA:8
- a=NEAV23lmAAAA:8 a=7YfXLusrAAAA:8 a=PRyNG9Jn56gaZwuU5SgA:9 a=QEXdDO2ut3YA:10
- a=1F1461vogZIA:10 a=5kKzt1m56AEA:10 a=AjGcO6oz07-iQ99wixmX:22
- a=SLz71HocmBbuEhFRYD3r:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=embeddedor.com; s=default; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=fW1AM9Qzpti44/4DeXbYCV+nbyp1ZPTvg+v3ApEi5WE=; b=mi4KsncL9ls0mGZQ11Gjp11mzj
- 10mOxb3XBgZtcev9Ui6v7zprTzwWlcitvXnYgcRiFSRTNd4LTHmUzs4muhsKcKtkvqpZTfE4e5uQa
- FrdzJgl1fmi+KwZAD7RCzfPMe0k8Uhy72r4SRH8MIUes9D65G8EuezoS03N2SBSYnts74l9eijAoH
- qtpL9wMGe3zb/rCp+B0ulvhTUDWU/ahrjvV3egswBe+ph/IGCNcnHDBAMDy4zEQaan7sWhaIx+ReW
- 7E67F0ThfVnm2l0zHezQ0L+X+nIQdQ8jn3AsmzD+MUJ2fnQXDSScg7DgQEE2Zs2s6Uv+Ae/Qcy0P9
- eI2rMiYA==;
-Received: from [201.172.172.225] (port=35494 helo=[192.168.15.10])
- by gator4166.hostgator.com with esmtpsa (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.96.2)
- (envelope-from <gustavo@embeddedor.com>) id 1rYqYC-000VNR-0W;
- Sat, 10 Feb 2024 10:50:00 -0600
-Message-ID: <30715dc4-3285-4f4a-a041-a718a8509721@embeddedor.com>
-Date: Sat, 10 Feb 2024 10:49:57 -0600
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 327B310EC2D;
+ Mon, 12 Feb 2024 10:38:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707734328; x=1739270328;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ktadS9wU33Aj3rJZMGQxhxqOTlhUaxhZdvosSAd0fKg=;
+ b=X2SKWBVtADEk+08bm3WK9AHchLg4VMo+Ro6sS+k774F2qvXpfmRkzXDc
+ omP4pPBpPu0XLksBLNWmgZvvOFmjQtyddIw44/Ddpkq6Wit8WMtn9z8vk
+ gcxzW6k0DwsoIJzdp0YjGjmE2rWJEQ8qkA2o+CzUC08eQYAKwpjzjuptG
+ J4ZSXtbScBmajX5G9XxWMHi6AW2Ia5qKv9Y52m55jreTbDCR/X4xsSbkU
+ v7Ql+yDT+/uGUrP4Su+8IXy20Lnz1mMJAq4vLe5qlA/aXdNhx/VfYpBhy
+ kxYf1NFmZT10qBUxoiw1Gp9TS+EZSoPrfz6fzFK+DBOzWEocKiN+BGu4u w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10981"; a="5543477"
+X-IronPort-AV: E=Sophos;i="6.05,262,1701158400"; 
+   d="scan'208";a="5543477"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2024 02:38:46 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,262,1701158400"; d="scan'208";a="25759246"
+Received: from mstribae-mobl.ger.corp.intel.com (HELO fedora..)
+ ([10.249.254.80])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2024 02:38:45 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Jani Nikula <jani.nikula@intel.com>,
+ Luca Coelho <luciano.coelho@intel.com>, Maxime Ripard <mripard@kernel.org>
+Subject: [PATCH drm-misc-next] drm/xe: Fix a missing argument to
+ drm_err_printer
+Date: Mon, 12 Feb 2024 11:38:33 +0100
+Message-ID: <20240212103833.138263-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Prefer struct_size over open coded arithmetic
-Content-Language: en-US
-To: Erick Archer <erick.archer@gmx.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
- <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- Kees Cook <keescook@chromium.org>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-References: <20240210141913.6611-1-erick.archer@gmx.com>
-From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-In-Reply-To: <20240210141913.6611-1-erick.archer@gmx.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - gator4166.hostgator.com
-X-AntiAbuse: Original Domain - lists.freedesktop.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - embeddedor.com
-X-BWhitelist: no
-X-Source-IP: 201.172.172.225
-X-Source-L: No
-X-Exim-ID: 1rYqYC-000VNR-0W
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: ([192.168.15.10]) [201.172.172.225]:35494
-X-Source-Auth: gustavo@embeddedor.com
-X-Email-Count: 4
-X-Org: HG=hgshared;ORG=hostgator;
-X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
-X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfFPj1kqCftyU+LUXedhhHTVXB5fm3SGX2auaLBBgca8mvJvglhUZzb8ccUgqmEe0pjnQd2o0hjyfaQz0rFVTwx5HZ8UrIFBdAeAYWx3NZgnH+aCOrF1A
- 76nnkjNk4ZKSwjsylZ0pHlE9CXwdDKNkYHRzOiJFzGhBtFVovudS3TO4z2iXC7dr2oN+zML/PFI7A55yk9JyartOyQLpUbrBtAV1ndYkPA3eUIuSPoLxnEY1
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,56 +67,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+The indicated commit below added a device argument to the
+function, but there was a call in the xe driver that was
+not properly changed.
 
+Fixes: 5e0c04c8c40b ("drm/print: make drm_err_printer() device specific by using drm_err()")
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Luca Coelho <luciano.coelho@intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On 2/10/24 08:19, Erick Archer wrote:
-> This is an effort to get rid of all multiplications from allocation
-> functions in order to prevent integer overflows [1].
-> 
-> As the "q" variable is a pointer to "struct xe_exec_queue" and this
-> structure ends in a flexible array:
-> 
-> struct xe_exec_queue {
-> 	[...]
-> 	struct xe_lrc lrc[];
-> };
-> 
-> the preferred way in the kernel is to use the struct_size() helper to
-> do the arithmetic instead of the argument "size + size * count" in the
-> kzalloc() function.
-> 
-> This way, the code is more readable and more safer.
-> 
-> Link: https://www.kernel.org/doc/html/latest/process/deprecated.html#open-coded-arithmetic-in-allocator-arguments [1]
-> Link: https://github.com/KSPP/linux/issues/160 [2]
-> Signed-off-by: Erick Archer <erick.archer@gmx.com>
-
-LGTM:
-
-Reviewed-by: Gustavo A. R. Silva <gustavoars@kernel.org>
-
-Thanks!
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index 7eef23a00d77..d42645fdfc02 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -314,7 +314,7 @@ int xe_gt_tlb_invalidation_wait(struct xe_gt *gt, int seqno)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	struct xe_guc *guc = &gt->uc.guc;
+-	struct drm_printer p = drm_err_printer(__func__);
++	struct drm_printer p = drm_err_printer(&xe->drm, __func__);
+ 	int ret;
+ 
+ 	/*
 -- 
-Gustavo
+2.43.0
 
-> ---
->   drivers/gpu/drm/xe/xe_exec_queue.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-> index bcfc4127c7c5..f4e53cbccd04 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> @@ -44,7 +44,7 @@ static struct xe_exec_queue *__xe_exec_queue_create(struct xe_device *xe,
->   	/* only kernel queues can be permanent */
->   	XE_WARN_ON((flags & EXEC_QUEUE_FLAG_PERMANENT) && !(flags & EXEC_QUEUE_FLAG_KERNEL));
-> 
-> -	q = kzalloc(sizeof(*q) + sizeof(struct xe_lrc) * width, GFP_KERNEL);
-> +	q = kzalloc(struct_size(q, lrc, width), GFP_KERNEL);
->   	if (!q)
->   		return ERR_PTR(-ENOMEM);
-> 
-> --
-> 2.25.1
-> 
-> 
