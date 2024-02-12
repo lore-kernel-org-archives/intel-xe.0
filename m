@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C71FC4829B
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Feb 2024 13:41:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36A56C48297
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Feb 2024 14:08:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1BD510E77B;
-	Mon, 12 Feb 2024 13:41:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D727610E126;
+	Mon, 12 Feb 2024 14:08:32 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5C8710EA17;
- Mon, 12 Feb 2024 13:41:23 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1752994752821951493=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0C8110E126;
+ Mon, 12 Feb 2024 14:08:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/pt=3A_Allow_for_stricter_?=
- =?utf-8?q?type-_and_range_checking_=28rev3=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/uapi=3A_Remov?=
+ =?utf-8?q?e_support_for_persistent_exec=5Fqueues_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 12 Feb 2024 13:41:23 -0000
-Message-ID: <170774528393.1150222.13633073646585259550@5338d5abeb45>
+Date: Mon, 12 Feb 2024 14:08:31 -0000
+Message-ID: <170774691165.1150222.17798427478709728611@5338d5abeb45>
 X-Patchwork-Hint: ignore
-References: <20240209112655.4872-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20240209112655.4872-1-thomas.hellstrom@linux.intel.com>
+References: <20240209113444.8396-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20240209113444.8396-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +40,17 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1752994752821951493==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/pt: Allow for stricter type- and range checking (rev3)
-URL   : https://patchwork.freedesktop.org/series/129686/
+Series: drm/xe/uapi: Remove support for persistent exec_queues (rev4)
+URL   : https://patchwork.freedesktop.org/series/129311/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-753-6a21fc66f5c81c19baa24407cd7e8d2720edd2eb_BAT -> xe-pw-129686v3_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (3 -> 3)
-------------------------------
-
-  No changes in participating hosts
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 46cf1a7da drm-tip: 2024y-02m-12d-12h-00m-34s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/uapi: Remove support for persistent exec_queues
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_7708 -> IGT_7710
-  * Linux: xe-753-6a21fc66f5c81c19baa24407cd7e8d2720edd2eb -> xe-pw-129686v3
-
-  IGT_7708: c2ecf4ba307d3342682745de6f608d307a06782c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_7710: d87a5d85a60fba1283821d5212c3aece64cb36ba @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-753-6a21fc66f5c81c19baa24407cd7e8d2720edd2eb: 6a21fc66f5c81c19baa24407cd7e8d2720edd2eb
-  xe-pw-129686v3: 129686v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129686v3/index.html
-
---===============1752994752821951493==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/pt: Allow for stricter type- and range checking (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129686/">https://patchwork.freedesktop.org/series/129686/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129686v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129686v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-753-6a21fc66f5c81c19baa24407cd7e8d2720edd2eb_BAT -&gt; xe-pw-129686v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (3 -&gt; 3)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7708 -&gt; IGT_7710</li>
-<li>Linux: xe-753-6a21fc66f5c81c19baa24407cd7e8d2720edd2eb -&gt; xe-pw-129686v3</li>
-</ul>
-<p>IGT_7708: c2ecf4ba307d3342682745de6f608d307a06782c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_7710: d87a5d85a60fba1283821d5212c3aece64cb36ba @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-753-6a21fc66f5c81c19baa24407cd7e8d2720edd2eb: 6a21fc66f5c81c19baa24407cd7e8d2720edd2eb<br />
-  xe-pw-129686v3: 129686v3</p>
-
-</body>
-</html>
-
---===============1752994752821951493==--
