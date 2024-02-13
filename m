@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEB7CC48260
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Feb 2024 08:50:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD35BC48260
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Feb 2024 08:52:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7545310E3F8;
-	Tue, 13 Feb 2024 08:50:02 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ra0l220G";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 319CF10E0B7;
- Tue, 13 Feb 2024 08:50:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707814201; x=1739350201;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=wG5GAH54sxZeD79NFiYZcRV18W4Ta+FEoLSb4HLY1t8=;
- b=Ra0l220GfC1l90pPFhizC7bm1Ej9mxrSyrrasz3Lj0IHu0sVocWApxMS
- S3t520wgKwt989XfjikbvEyEOBket55XRu9mVML2mfq9fDjT2k9uNSLD/
- LU1A9OaaMfFWhwKoNOBolHWOhWAJirG0WHSbT+k7dUt/1JtcRYO44ARDf
- EWJbUEGLXUYlYtObiEQKf2WuzptjSzho9O/2Y3uAmXBnzq7mnl53mcATd
- DCzaJ71wZuV6+Ha5OwJC1ikOK0zi70PugAMIdgsWjd4PuijDt/XcqWbD6
- RgJi92JQdbQGriR+VL1YH73ofx0A3BxYgBgmR2qV3kRrH2ykehkq3Ej48 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="19225636"
-X-IronPort-AV: E=Sophos;i="6.06,156,1705392000"; d="scan'208";a="19225636"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2024 00:50:01 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,156,1705392000"; 
-   d="scan'208";a="3148346"
-Received: from snasibli-mobl2.ccr.corp.intel.com (HELO localhost)
- ([10.252.44.50])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2024 00:49:59 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Stephen Rothwell <sfr@canb.auug.org.au>,
- Luca Coelho <luciano.coelho@intel.com>, Maxime Ripard <mripard@kernel.org>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH drm-misc-next] drm/xe: fix arguments to drm_err_printer()
-Date: Tue, 13 Feb 2024 10:49:54 +0200
-Message-Id: <20240213084954.878643-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EEED10E0B7;
+	Tue, 13 Feb 2024 08:52:42 +0000 (UTC)
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A27710E364;
+ Tue, 13 Feb 2024 08:52:40 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_fix_argume?=
+ =?utf-8?q?nts_to_drm=5Ferr=5Fprinter=28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 13 Feb 2024 08:52:40 -0000
+Message-ID: <170781436043.1202360.15746566627468569949@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240213084954.878643-1-jani.nikula@intel.com>
+In-Reply-To: <20240213084954.878643-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,42 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The commit below changed drm_err_printer() arguments, but failed to
-update all places.
+== Series Details ==
 
-Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
-Closes: https://lore.kernel.org/r/20240213120410.75c45763@canb.auug.org.au
-Fixes: 5e0c04c8c40b ("drm/print: make drm_err_printer() device specific by using drm_err()")
-Cc: Luca Coelho <luciano.coelho@intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Series: drm/xe: fix arguments to drm_err_printer()
+URL   : https://patchwork.freedesktop.org/series/129819/
+State : success
 
----
+== Summary ==
 
-Argh. This is getting embarrassing. This one was hiding behind
-CONFIG_DRM_XE_SIMPLE_ERROR_CAPTURE=y.
----
- drivers/gpu/drm/xe/xe_guc_submit.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: e370df7a4 drm-tip: 2024y-02m-13d-04h-59m-00s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: fix arguments to drm_err_printer()
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 4744668ef60a..0c763ceafbed 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -812,7 +812,8 @@ static void guc_exec_queue_print(struct xe_exec_queue *q, struct drm_printer *p)
- static void simple_error_capture(struct xe_exec_queue *q)
- {
- 	struct xe_guc *guc = exec_queue_to_guc(q);
--	struct drm_printer p = drm_err_printer("");
-+	struct xe_device *xe = guc_to_xe(guc);
-+	struct drm_printer p = drm_err_printer(&xe->drm, NULL);
- 	struct xe_hw_engine *hwe;
- 	enum xe_hw_engine_id id;
- 	u32 adj_logical_mask = q->logical_mask;
--- 
-2.39.2
 
