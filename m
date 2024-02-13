@@ -4,27 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D46CFC4829A
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Feb 2024 13:51:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD9CEC48260
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Feb 2024 14:26:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 789E410E547;
-	Tue, 13 Feb 2024 13:51:40 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79D2910E50A;
- Tue, 13 Feb 2024 13:51:39 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F26110E27D;
+	Tue, 13 Feb 2024 14:26:16 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="lWoFWP3d";
+	dkim-atps=neutral
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4F3910E27D;
+ Tue, 13 Feb 2024 14:26:15 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 0978B614A1;
+ Tue, 13 Feb 2024 14:26:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A455C433C7;
+ Tue, 13 Feb 2024 14:26:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1707834374;
+ bh=cEjkw6Mj4Oxq9tZ3SteuR6tWouAKP8sIt24HtqKBlJ8=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=lWoFWP3dWfcIQCfbmVo4lHGHTwW39JAiNI93kjG07CFIhHhYKvIXBKwnuNfNZcr6o
+ W1Fa7viRJsNrZEltQTHlaR47PrRUM45C2UcWzOQxlI3PTrkYOBRLKEg1TEV2yQdbux
+ sN+7J1bxHfFUXr6W0C4ww1nnBkSRAXnkua9qXOwGt/kfvwpO5T9xIvlL4Q5kTlKzJG
+ dinA0Pczv+JrLYTzmsxAIsIjlGZcDjJtjsuAZVXSqZpkJkWq0QVaRxA3yLYXydAnnO
+ rt262tiPPDr3eO51OoC1cq5mpONv4LfksXRZY7TQEDPPA5k46Ohm/UQBi32nfjsIx3
+ /dRs5JsKepOHw==
+Date: Tue, 13 Feb 2024 15:26:12 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ Luca Coelho <luciano.coelho@intel.com>
+Subject: Re: Re: [PATCH drm-misc-next] drm/xe: Fix a missing argument to
+ drm_err_printer
+Message-ID: <yjeqfuxc3az2j5bbvt7g5wtjmulcuxhill2n2hspjsmiokxfnb@pdd27bmfvd2m>
+References: <20240212103833.138263-1-thomas.hellstrom@linux.intel.com>
+ <87bk8m9coe.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/xe=3A_skip_build?=
- =?utf-8?q?ing_debugfs_code_for_CONFIG=5FDEBUG=5FFS=3Dn?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arnd Bergmann" <arnd@kernel.org>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 13 Feb 2024 13:51:39 -0000
-Message-ID: <170783229949.1201024.5300874706477110770@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240213134817.3347574-1-arnd@kernel.org>
-In-Reply-To: <20240213134817.3347574-1-arnd@kernel.org>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="tlxgr35l4v3psiba"
+Content-Disposition: inline
+In-Reply-To: <87bk8m9coe.fsf@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,28 +57,38 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/xe: skip building debugfs code for CONFIG_DEBUG_FS=n
-URL   : https://patchwork.freedesktop.org/series/129833/
-State : failure
+--tlxgr35l4v3psiba
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-== Summary ==
+On Mon, Feb 12, 2024 at 12:53:05PM +0200, Jani Nikula wrote:
+> On Mon, 12 Feb 2024, Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.com=
+> wrote:
+> > The indicated commit below added a device argument to the
+> > function, but there was a call in the xe driver that was
+> > not properly changed.
+>=20
+> Aww, crap. Looks like my drm-misc-next configs don't have xe enabled.
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 7c8e91355 drm-tip: 2024y-02m-13d-12h-10m-52s UTC integration manifest
-=== git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/Makefile:213
-error: drivers/gpu/drm/xe/Makefile: patch does not apply
-hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: drm/xe: skip building debugfs code for CONFIG_DEBUG_FS=n
-Patch failed at 0001 drm/xe: skip building debugfs code for CONFIG_DEBUG_FS=n
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+FTR, there's defconfigs in the drm-rerere repo that are fairly well maintai=
+ned.
 
+Maxime
 
+--tlxgr35l4v3psiba
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZct8AwAKCRDj7w1vZxhR
+xXtpAQDhD60EqmrEPVGoJUfFTLvAKi3bemq1GAprHFRgKucj7AD/btk/Kj6+5d33
+8Oj3hp0JlhhgcRVfQY4KFE2FxWE5jAg=
+=fdzc
+-----END PGP SIGNATURE-----
+
+--tlxgr35l4v3psiba--
