@@ -4,23 +4,21 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55D97C4829A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2D3EC48260
 	for <intel-xe@archiver.kernel.org>; Tue, 13 Feb 2024 14:52:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0674210E6C4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10E6A10E741;
 	Tue, 13 Feb 2024 14:52:55 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47AAE10E751
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41A6210E6C4
  for <intel-xe@lists.freedesktop.org>; Tue, 13 Feb 2024 14:52:52 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v4 2/4] drm/xe: Annotate each dumpable vma as such
-Date: Tue, 13 Feb 2024 15:52:37 +0100
-Message-ID: <20240213145239.359679-2-maarten.lankhorst@linux.intel.com>
+Subject: [PATCH v4 1/4] drm/xe: Add uapi for dumpable bos
+Date: Tue, 13 Feb 2024 15:52:36 +0100
+Message-ID: <20240213145239.359679-1-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240213145239.359679-1-maarten.lankhorst@linux.intel.com>
-References: <20240213145239.359679-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -37,102 +35,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In preparation for snapshot dumping, mark each dumpable VMA as such, so
-we can walk over the VM later and dump it.
+Add the flag XE_VM_BIND_FLAG_DUMPABLE to notify devcoredump that this
+mapping should be dumped.
+
+This is not hooked up, but the uapi should be ready before merging.
+
+It's likely easier to dump the contents of the bo's at devcoredump
+readout time, so it's better if the bos will stay unmodified after
+a hang. The NEEDS_CPU_MAPPING flag is removed as requirement.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c       | 13 +++++++++++++
- drivers/gpu/drm/xe/xe_vm_types.h |  3 +++
- 2 files changed, 16 insertions(+)
+ drivers/gpu/drm/xe/xe_vm.c | 3 ++-
+ include/uapi/drm/xe_drm.h  | 1 +
+ 2 files changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 488e751a4ea05..838eb991d52fc 100644
+index 836a6e849cda8..488e751a4ea05 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -792,6 +792,7 @@ static void xe_vma_free(struct xe_vma *vma)
+@@ -2716,7 +2716,8 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
  
- #define VMA_CREATE_FLAG_READ_ONLY	BIT(0)
- #define VMA_CREATE_FLAG_IS_NULL		BIT(1)
-+#define VMA_CREATE_FLAG_DUMPABLE	BIT(2)
+ #define SUPPORTED_FLAGS	\
+ 	(DRM_XE_VM_BIND_FLAG_READONLY | \
+-	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | DRM_XE_VM_BIND_FLAG_NULL)
++	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | DRM_XE_VM_BIND_FLAG_NULL | \
++	 DRM_XE_VM_BIND_FLAG_DUMPABLE)
+ #define XE_64K_PAGE_MASK 0xffffull
+ #define ALL_DRM_XE_SYNCS_FLAGS (DRM_XE_SYNCS_FLAG_WAIT_FOR_OP)
  
- static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 				    struct xe_bo *bo,
-@@ -804,6 +805,7 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 	u8 id;
- 	bool read_only = (flags & VMA_CREATE_FLAG_READ_ONLY);
- 	bool is_null = (flags & VMA_CREATE_FLAG_IS_NULL);
-+	bool dumpable = (flags & VMA_CREATE_FLAG_DUMPABLE);
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 50bbea0992d9c..0f975f57f3e59 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -930,6 +930,7 @@ struct drm_xe_vm_bind_op {
+ #define DRM_XE_VM_BIND_FLAG_READONLY	(1 << 0)
+ #define DRM_XE_VM_BIND_FLAG_IMMEDIATE	(1 << 1)
+ #define DRM_XE_VM_BIND_FLAG_NULL	(1 << 2)
++#define DRM_XE_VM_BIND_FLAG_DUMPABLE	(1 << 3)
+ 	/** @flags: Bind flags */
+ 	__u32 flags;
  
- 	xe_assert(vm->xe, start < end);
- 	xe_assert(vm->xe, end < vm->size);
-@@ -838,6 +840,8 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 	vma->gpuva.va.range = end - start + 1;
- 	if (read_only)
- 		vma->gpuva.flags |= XE_VMA_READ_ONLY;
-+	if (dumpable)
-+		vma->gpuva.flags |= XE_VMA_DUMPABLE;
- 
- 	for_each_tile(tile, vm->xe, id)
- 		vma->tile_mask |= 0x1 << id;
-@@ -2122,6 +2126,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
- 			op->map.read_only =
- 				flags & DRM_XE_VM_BIND_FLAG_READONLY;
- 			op->map.is_null = flags & DRM_XE_VM_BIND_FLAG_NULL;
-+			op->map.dumpable = flags & DRM_XE_VM_BIND_FLAG_DUMPABLE;
- 			op->map.pat_index = pat_index;
- 		} else if (__op->op == DRM_GPUVA_OP_PREFETCH) {
- 			op->prefetch.region = prefetch_region;
-@@ -2311,6 +2316,8 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
- 				VMA_CREATE_FLAG_READ_ONLY : 0;
- 			flags |= op->map.is_null ?
- 				VMA_CREATE_FLAG_IS_NULL : 0;
-+			flags |= op->map.dumpable ?
-+				VMA_CREATE_FLAG_DUMPABLE : 0;
- 
- 			vma = new_vma(vm, &op->base.map, op->map.pat_index,
- 				      flags);
-@@ -2335,6 +2342,9 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
- 				flags |= op->base.remap.unmap->va->flags &
- 					DRM_GPUVA_SPARSE ?
- 					VMA_CREATE_FLAG_IS_NULL : 0;
-+				flags |= op->base.remap.unmap->va->flags &
-+					XE_VMA_DUMPABLE ?
-+					VMA_CREATE_FLAG_DUMPABLE : 0;
- 
- 				vma = new_vma(vm, op->base.remap.prev,
- 					      old->pat_index, flags);
-@@ -2366,6 +2376,9 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
- 				flags |= op->base.remap.unmap->va->flags &
- 					DRM_GPUVA_SPARSE ?
- 					VMA_CREATE_FLAG_IS_NULL : 0;
-+				flags |= op->base.remap.unmap->va->flags &
-+					XE_VMA_DUMPABLE ?
-+					VMA_CREATE_FLAG_DUMPABLE : 0;
- 
- 				vma = new_vma(vm, op->base.remap.next,
- 					      old->pat_index, flags);
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 5ac9c5bebabc3..59499dc28b8a5 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -29,6 +29,7 @@ struct xe_vm;
- #define XE_VMA_PTE_4K		(DRM_GPUVA_USERBITS << 5)
- #define XE_VMA_PTE_2M		(DRM_GPUVA_USERBITS << 6)
- #define XE_VMA_PTE_1G		(DRM_GPUVA_USERBITS << 7)
-+#define XE_VMA_DUMPABLE		(DRM_GPUVA_USERBITS << 8)
- 
- /** struct xe_userptr - User pointer */
- struct xe_userptr {
-@@ -292,6 +293,8 @@ struct xe_vma_op_map {
- 	bool read_only;
- 	/** @is_null: is NULL binding */
- 	bool is_null;
-+	/** @dumpable: whether BO is dumped on GPU hang */
-+	bool dumpable;
- 	/** @pat_index: The pat index to use for this operation. */
- 	u16 pat_index;
- };
 -- 
 2.43.0
 
