@@ -4,27 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3B1EC4829D
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Feb 2024 02:10:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80988C48260
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Feb 2024 03:36:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF91E10E33C;
-	Tue, 13 Feb 2024 02:10:47 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC72A10E33C;
- Tue, 13 Feb 2024 02:10:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4684345347097017470=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0EC210E1E7;
+	Tue, 13 Feb 2024 03:36:02 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g1IrF1e+";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 637BB10E1E7
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Feb 2024 03:35:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707795360; x=1739331360;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Zccdu+rNcPAcmGkJBexwwa89uHB1J3NLULoYwgvtdXw=;
+ b=g1IrF1e+RI+G73aB/K6pXXL3wv4aNus25QdAg+zPDanUcoZmBVmdOSyF
+ 7zebQqU16vf1isBeDPwbMQ+lICCkGge6Tcc1XVlP27qUhCJk5oufHRf3v
+ h5SKUBuM2WjLYHpNOL96SUDaggmoUjnwKj2jw7U+jzX1hkwmSfOFvz3mt
+ vRzlh0y/1IjfLt1vwbKlgqJzyukjllPR5+ass2O0urd9xjYA+ucYAGTxH
+ M9VS2v673vYgyL1GlcewFjc645NHzcZkig6cte9UJ5P7ByRKhLCr3FQLp
+ Xq+00i8Bdt9X/wK6q+rvUTTdRP2JLNVRVMZyvZgSh8nbgSVF+GVbQi8w2 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="24263009"
+X-IronPort-AV: E=Sophos;i="6.06,156,1705392000"; d="scan'208";a="24263009"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2024 19:35:53 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,156,1705392000"; 
+   d="scan'208";a="7414207"
+Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.jf.intel.com)
+ ([10.165.21.138])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2024 19:35:54 -0800
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: ruthuvikas.ravikumar@intel.com
+Subject: [PATCH] drm/xe: Fix modpost warning on xe_mocs kunit module
+Date: Mon, 12 Feb 2024 19:35:48 -0800
+Message-ID: <20240213033548.76219-1-ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Support/debug_for_slow_GuC_loads?=
- =?utf-8?q?_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: john.c.harrison@intel.com
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 13 Feb 2024 02:10:45 -0000
-Message-ID: <170779024570.1201024.18425922344740271266@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240213003426.3943662-1-John.C.Harrison@Intel.com>
-In-Reply-To: <20240213003426.3943662-1-John.C.Harrison@Intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +59,32 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4684345347097017470==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+$ make W=1 -j100 M=drivers/gpu/drm/xe
+MODPOST drivers/gpu/drm/xe/Module.symvers
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/xe/tests/xe_mocs_test.o
 
-== Series Details ==
+Fix is identical to '1d425066f15f ("drm/xe: Fix modpost warning on kunit
+modules")'.
 
-Series: Support/debug for slow GuC loads (rev2)
-URL   : https://patchwork.freedesktop.org/series/129598/
-State : success
+Fixes: a6a4ea6d7d37 ("drm/xe: Add mocs kunit")
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/xe/tests/xe_mocs_test.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/tests/xe_mocs_test.c b/drivers/gpu/drm/xe/tests/xe_mocs_test.c
+index 4f62e7a4270bd..ee40f31e1e12c 100644
+--- a/drivers/gpu/drm/xe/tests/xe_mocs_test.c
++++ b/drivers/gpu/drm/xe/tests/xe_mocs_test.c
+@@ -22,4 +22,5 @@ kunit_test_suite(xe_mocs_test_suite);
+ 
+ MODULE_AUTHOR("Intel Corporation");
+ MODULE_LICENSE("GPL");
++MODULE_DESCRIPTION("xe_mocs kunit test");
+ MODULE_IMPORT_NS(EXPORTED_FOR_KUNIT_TESTING);
+-- 
+2.41.0
 
-CI Bug Log - changes from xe-765-bd80d96780e6c0ce95fa6e69b2616388a1397ce9_BAT -> xe-pw-129598v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (3 -> 3)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-765-bd80d96780e6c0ce95fa6e69b2616388a1397ce9 -> xe-pw-129598v2
-
-  IGT_7710: d87a5d85a60fba1283821d5212c3aece64cb36ba @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-765-bd80d96780e6c0ce95fa6e69b2616388a1397ce9: bd80d96780e6c0ce95fa6e69b2616388a1397ce9
-  xe-pw-129598v2: 129598v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129598v2/index.html
-
---===============4684345347097017470==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Support/debug for slow GuC loads (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129598/">https://patchwork.freedesktop.org/series/129598/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129598v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129598v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-765-bd80d96780e6c0ce95fa6e69b2616388a1397ce9_BAT -&gt; xe-pw-129598v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (3 -&gt; 3)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-765-bd80d96780e6c0ce95fa6e69b2616388a1397ce9 -&gt; xe-pw-129598v2</li>
-</ul>
-<p>IGT_7710: d87a5d85a60fba1283821d5212c3aece64cb36ba @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-765-bd80d96780e6c0ce95fa6e69b2616388a1397ce9: bd80d96780e6c0ce95fa6e69b2616388a1397ce9<br />
-  xe-pw-129598v2: 129598v2</p>
-
-</body>
-</html>
-
---===============4684345347097017470==--
