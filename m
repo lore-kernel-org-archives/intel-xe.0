@@ -4,26 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EB5DC4829A
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Feb 2024 14:53:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF997C4829A
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Feb 2024 14:55:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A82010E751;
-	Tue, 13 Feb 2024 14:53:00 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4672410E748
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Feb 2024 14:52:52 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v4 3/4] drm/xe: Add vm snapshot mutex for easily taking a vm
- snapshot during devcoredump
-Date: Tue, 13 Feb 2024 15:52:38 +0100
-Message-ID: <20240213145239.359679-3-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240213145239.359679-1-maarten.lankhorst@linux.intel.com>
-References: <20240213145239.359679-1-maarten.lankhorst@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8642010E766;
+	Tue, 13 Feb 2024 14:55:50 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B8m62KN2";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CF7E10E756;
+ Tue, 13 Feb 2024 14:55:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707836148; x=1739372148;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=q304uAOx53FlEDf4SDhx/Xc+la95RUjvdxKUGemT/0Y=;
+ b=B8m62KN21AIP2QDsJOzoOkKtUrIph7DHN3y86b4ecW02Uc8fFpe1tiF7
+ hB+jYqiVW6lClEnj2GzkiPOF7C++7cGsGGDsLbJvF6VP5Xq26UEbK4Oyu
+ ZOUHC9mmMuZRbqyDzXAKdCJSVOKh2Zpg3usjRhmq/rOh0R+ds2JsuWGfI
+ fXhG2LmuUJ6IQKKJ8VFvBA1V6Pbx3TVZI77cNcikGPRXE+4yU8mRj5jcW
+ 1UlsfLOPwvVyWW7XlQTGniFmneQ6leNkRFcrixm5EOg2OFTA9FR0CRpsT
+ y9z+M9L88zwYseZDAm/dFpYDpA/s4FNFyhWZBZT63qGYF77WL3k+bJdEX A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="1983528"
+X-IronPort-AV: E=Sophos;i="6.06,157,1705392000"; 
+   d="scan'208";a="1983528"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2024 06:55:47 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,157,1705392000"; 
+   d="scan'208";a="7544964"
+Received: from snasibli-mobl2.ccr.corp.intel.com (HELO localhost)
+ ([10.252.44.50])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2024 06:55:42 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Arnd Bergmann <arnd@kernel.org>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Oded Gabbay <ogabbay@kernel.org>, Thomas
+ =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: Arnd Bergmann <arnd@arndb.de>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>, Matthew Brost
+ <matthew.brost@intel.com>, Riana Tauro <riana.tauro@intel.com>, Daniele
+ Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] drm/xe: skip building debugfs code for CONFIG_DEBUG_FS=n
+In-Reply-To: <20240213134817.3347574-1-arnd@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240213134817.3347574-1-arnd@kernel.org>
+Date: Tue, 13 Feb 2024 16:55:39 +0200
+Message-ID: <877cj88lck.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,86 +75,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The devcoredump is done in fence signaling context. Because of this, we
-cannot take any of the normal mutexes or we would invert.
+On Tue, 13 Feb 2024, Arnd Bergmann <arnd@kernel.org> wrote:
+> From: Arnd Bergmann <arnd@arndb.de>
+>
+> Some of the debugfs functions are stubbed out in these configurations,
+> so trying to build the .c file with the definition fails:
+>
+> In file included from include/uapi/linux/posix_types.h:5,
+>                  from drivers/gpu/drm/i915/display/intel_pipe_crc.c:27:
+> drivers/gpu/drm/i915/display/intel_pipe_crc.c: At top level:
+> include/linux/stddef.h:8:16: error: expected identifier or '(' before 'void'
+>     8 | #define NULL ((void *)0)
+>       |                ^~~~
+> drivers/gpu/drm/i915/display/intel_pipe_crc.c:549:20: note: in expansion of macro 'intel_crtc_get_crc_sources'
+>   549 | const char *const *intel_crtc_get_crc_sources(struct drm_crtc *crtc,
+>       |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~
+>
+> Stop trying to build them by making the Makefile entries conditional,
+> same as for the i915 driver.
 
-Normal: Take vm->lock, dma_fence_wait()
-Devcoredump: from dma_fence_wait() context, take vm->lock.
+Already fixed by commit 439987f6f471 ("drm/xe: don't build debugfs files
+when CONFIG_DEBUG_FS=n") in drm-xe-next.
 
-This doesn't work, and we only care about integrity, so take the locks
-around additions and removals of vma's.
+Maybe that needs to be picked up for -fixes?
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_vm.c       | 8 ++++++++
- drivers/gpu/drm/xe/xe_vm_types.h | 5 +++++
- 2 files changed, 13 insertions(+)
+BR,
+Jani.
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 838eb991d52fc..925881fc7d173 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1055,7 +1055,9 @@ static int xe_vm_insert_vma(struct xe_vm *vm, struct xe_vma *vma)
- 	xe_assert(vm->xe, xe_vma_vm(vma) == vm);
- 	lockdep_assert_held(&vm->lock);
- 
-+	mutex_lock(&vm->snap_mutex);
- 	err = drm_gpuva_insert(&vm->gpuvm, &vma->gpuva);
-+	mutex_unlock(&vm->snap_mutex);
- 	XE_WARN_ON(err);	/* Shouldn't be possible */
- 
- 	return err;
-@@ -1066,7 +1068,9 @@ static void xe_vm_remove_vma(struct xe_vm *vm, struct xe_vma *vma)
- 	xe_assert(vm->xe, xe_vma_vm(vma) == vm);
- 	lockdep_assert_held(&vm->lock);
- 
-+	mutex_lock(&vm->snap_mutex);
- 	drm_gpuva_remove(&vma->gpuva);
-+	mutex_unlock(&vm->snap_mutex);
- 	if (vm->usm.last_fault_vma == vma)
- 		vm->usm.last_fault_vma = NULL;
- }
-@@ -1293,6 +1297,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- 	vm->flags = flags;
- 
- 	init_rwsem(&vm->lock);
-+	mutex_init(&vm->snap_mutex);
- 
- 	INIT_LIST_HEAD(&vm->rebind_list);
- 
-@@ -1418,6 +1423,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- 	return ERR_PTR(err);
- 
- err_no_resv:
-+	mutex_destroy(&vm->snap_mutex);
- 	for_each_tile(tile, xe, id)
- 		xe_range_fence_tree_fini(&vm->rftree[id]);
- 	kfree(vm);
-@@ -1517,6 +1523,8 @@ void xe_vm_close_and_put(struct xe_vm *vm)
- 
- 	up_write(&vm->lock);
- 
-+	mutex_destroy(&vm->snap_mutex);
-+
- 	mutex_lock(&xe->usm.lock);
- 	if (vm->flags & XE_VM_FLAG_FAULT_MODE)
- 		xe->usm.num_vm_in_fault_mode--;
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 59499dc28b8a5..33adf4ae404e5 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -158,6 +158,11 @@ struct xe_vm {
- 	 * VM
- 	 */
- 	struct rw_semaphore lock;
-+	/**
-+	 * @snap_mutex: Mutex used to guard insertions and removals from gpuva,
-+	 * so we can take a snapshot safely from devcoredump.
-+	 */
-+	struct mutex snap_mutex;
- 
- 	/**
- 	 * @rebind_list: list of VMAs that need rebinding. Protected by the
+>
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+> ---
+>  drivers/gpu/drm/xe/Makefile | 10 +++++++---
+>  1 file changed, 7 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index efcf0ab7a1a6..7c10ffdb7809 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -213,8 +213,6 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+>  	i915-display/intel_ddi.o \
+>  	i915-display/intel_ddi_buf_trans.o \
+>  	i915-display/intel_display.o \
+> -	i915-display/intel_display_debugfs.o \
+> -	i915-display/intel_display_debugfs_params.o \
+>  	i915-display/intel_display_device.o \
+>  	i915-display/intel_display_driver.o \
+>  	i915-display/intel_display_irq.o \
+> @@ -258,7 +256,6 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+>  	i915-display/intel_modeset_setup.o \
+>  	i915-display/intel_modeset_verify.o \
+>  	i915-display/intel_panel.o \
+> -	i915-display/intel_pipe_crc.o \
+>  	i915-display/intel_pmdemand.o \
+>  	i915-display/intel_pps.o \
+>  	i915-display/intel_psr.o \
+> @@ -275,6 +272,13 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+>  	i915-display/skl_universal_plane.o \
+>  	i915-display/skl_watermark.o
+>  
+> +ifdef CONFIG_DEBUG_FS
+> +xe-$(CONFIG_DRM_XE_DISPLAY) += \
+> +	i915-display/intel_display_debugfs.o \
+> +	i915-display/intel_display_debugfs_params.o \
+> +	i915-display/intel_pipe_crc.o
+> +endif
+> +
+>  ifeq ($(CONFIG_ACPI),y)
+>  	xe-$(CONFIG_DRM_XE_DISPLAY) += \
+>  		i915-display/intel_acpi.o \
+
 -- 
-2.43.0
-
+Jani Nikula, Intel
