@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D84DEC4829A
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Feb 2024 13:48:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D46CFC4829A
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Feb 2024 13:51:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D984810E51B;
-	Tue, 13 Feb 2024 13:48:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="X2GzlSb8";
-	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4AF710E51B;
- Tue, 13 Feb 2024 13:48:25 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 48837614A3;
- Tue, 13 Feb 2024 13:48:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A354C433C7;
- Tue, 13 Feb 2024 13:48:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1707832103;
- bh=26cXrqFjrg0ao0r9xUFAr1Dg4GgkrO8FmiGX8abfNuM=;
- h=From:To:Cc:Subject:Date:From;
- b=X2GzlSb8rmaizrJ0LylQls2sNtypF+9i+aT25Vuuvh7WYZjxmctA3xM2UEvgXAHQ9
- LkHZlxozy10NCqsfaltRaUMEVm1POUxpoifOXVzrPA/7gyXDeedg54An0zypsT5+Bm
- 5pL153obBaefWUE4e90RlGfLmnHfeYrp8lYPzkTZ+MQkti4KJPa6SEXkE2vy29EgEB
- ybIafh9Y/c0rAcuxQpDQ880xxUtDcVNVqnV34nzeQnDVi2C1vnRp07/VQKJO6SgBd1
- mMfBjKc5K4eYKyYJPaorx6Ar5BXdJS9P2vSyOtN0fOwTUeorMq/U7/HBLji2sl0VHG
- CPPlBN4LzpySQ==
-From: Arnd Bergmann <arnd@kernel.org>
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: Arnd Bergmann <arnd@arndb.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Riana Tauro <riana.tauro@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/xe: skip building debugfs code for CONFIG_DEBUG_FS=n
-Date: Tue, 13 Feb 2024 14:48:05 +0100
-Message-Id: <20240213134817.3347574-1-arnd@kernel.org>
-X-Mailer: git-send-email 2.39.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 789E410E547;
+	Tue, 13 Feb 2024 13:51:40 +0000 (UTC)
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79D2910E50A;
+ Tue, 13 Feb 2024 13:51:39 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/xe=3A_skip_build?=
+ =?utf-8?q?ing_debugfs_code_for_CONFIG=5FDEBUG=5FFS=3Dn?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arnd Bergmann" <arnd@kernel.org>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 13 Feb 2024 13:51:39 -0000
+Message-ID: <170783229949.1201024.5300874706477110770@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240213134817.3347574-1-arnd@kernel.org>
+In-Reply-To: <20240213134817.3347574-1-arnd@kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,67 +36,28 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Arnd Bergmann <arnd@arndb.de>
+== Series Details ==
 
-Some of the debugfs functions are stubbed out in these configurations,
-so trying to build the .c file with the definition fails:
+Series: drm/xe: skip building debugfs code for CONFIG_DEBUG_FS=n
+URL   : https://patchwork.freedesktop.org/series/129833/
+State : failure
 
-In file included from include/uapi/linux/posix_types.h:5,
-                 from drivers/gpu/drm/i915/display/intel_pipe_crc.c:27:
-drivers/gpu/drm/i915/display/intel_pipe_crc.c: At top level:
-include/linux/stddef.h:8:16: error: expected identifier or '(' before 'void'
-    8 | #define NULL ((void *)0)
-      |                ^~~~
-drivers/gpu/drm/i915/display/intel_pipe_crc.c:549:20: note: in expansion of macro 'intel_crtc_get_crc_sources'
-  549 | const char *const *intel_crtc_get_crc_sources(struct drm_crtc *crtc,
-      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~
+== Summary ==
 
-Stop trying to build them by making the Makefile entries conditional,
-same as for the i915 driver.
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 7c8e91355 drm-tip: 2024y-02m-13d-12h-10m-52s UTC integration manifest
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/xe/Makefile:213
+error: drivers/gpu/drm/xe/Makefile: patch does not apply
+hint: Use 'git am --show-current-patch' to see the failed patch
+Applying: drm/xe: skip building debugfs code for CONFIG_DEBUG_FS=n
+Patch failed at 0001 drm/xe: skip building debugfs code for CONFIG_DEBUG_FS=n
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
----
- drivers/gpu/drm/xe/Makefile | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index efcf0ab7a1a6..7c10ffdb7809 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -213,8 +213,6 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	i915-display/intel_ddi.o \
- 	i915-display/intel_ddi_buf_trans.o \
- 	i915-display/intel_display.o \
--	i915-display/intel_display_debugfs.o \
--	i915-display/intel_display_debugfs_params.o \
- 	i915-display/intel_display_device.o \
- 	i915-display/intel_display_driver.o \
- 	i915-display/intel_display_irq.o \
-@@ -258,7 +256,6 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	i915-display/intel_modeset_setup.o \
- 	i915-display/intel_modeset_verify.o \
- 	i915-display/intel_panel.o \
--	i915-display/intel_pipe_crc.o \
- 	i915-display/intel_pmdemand.o \
- 	i915-display/intel_pps.o \
- 	i915-display/intel_psr.o \
-@@ -275,6 +272,13 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	i915-display/skl_universal_plane.o \
- 	i915-display/skl_watermark.o
- 
-+ifdef CONFIG_DEBUG_FS
-+xe-$(CONFIG_DRM_XE_DISPLAY) += \
-+	i915-display/intel_display_debugfs.o \
-+	i915-display/intel_display_debugfs_params.o \
-+	i915-display/intel_pipe_crc.o
-+endif
-+
- ifeq ($(CONFIG_ACPI),y)
- 	xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 		i915-display/intel_acpi.o \
--- 
-2.39.2
 
