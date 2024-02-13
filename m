@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A79EC48260
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Feb 2024 12:04:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2546C4829A
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Feb 2024 12:28:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 351CF10E657;
-	Tue, 13 Feb 2024 12:04:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74E6C10E15B;
+	Tue, 13 Feb 2024 12:28:21 +0000 (UTC)
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBD3110E67B;
- Tue, 13 Feb 2024 12:04:28 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2938230988169024060=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C99D10E15B;
+ Tue, 13 Feb 2024 12:28:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_avoid_function_cast_wa?=
- =?utf-8?q?rnings?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/mst=3A_enab?=
+ =?utf-8?q?le_MST_mode_for_128b/132b_single-stream_sideband?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arnd Bergmann" <arnd@kernel.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 13 Feb 2024 12:04:28 -0000
-Message-ID: <170782586875.1201024.8423346018249306208@5338d5abeb45>
+Date: Tue, 13 Feb 2024 12:28:21 -0000
+Message-ID: <170782730111.1201024.5711156141589677503@5338d5abeb45>
 X-Patchwork-Hint: ignore
-References: <20240213095719.454865-1-arnd@kernel.org>
-In-Reply-To: <20240213095719.454865-1-arnd@kernel.org>
+References: <cover.1707823736.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1707823736.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,22 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2938230988169024060==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: avoid function cast warnings
-URL   : https://patchwork.freedesktop.org/series/129823/
+Series: drm/i915/mst: enable MST mode for 128b/132b single-stream sideband
+URL   : https://patchwork.freedesktop.org/series/129828/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-767-d395a4fdb0e78537f06bb401a9501b8467c774a3_BAT -> xe-pw-129823v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-129823v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_exec_threads@threads-mixed-fd-basic:
-    - bat-dg2-oem2:       [PASS][1] -> [TIMEOUT][2] ([Intel XE#1167])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-767-d395a4fdb0e78537f06bb401a9501b8467c774a3/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-fd-basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129823v1/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-fd-basic.html
-
-  
-  [Intel XE#1167]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1167
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 7c8e91355 drm-tip: 2024y-02m-13d-12h-10m-52s UTC integration manifest
+=== git am output follows ===
+Applying: drm/mst: read sideband messaging cap
+Applying: drm/i915/mst: improve debug logging of DP MST mode detect
+Applying: drm/i915/mst: abstract choosing the MST mode to use
+Applying: drm/i915/mst: use the MST mode detected previously
+Applying: drm/i915/mst: add intel_dp_mst_disconnect()
+Applying: drm/i915/mst: enable MST mode for 128b/132b single-stream sideband
 
 
-Build changes
--------------
-
-  * Linux: xe-767-d395a4fdb0e78537f06bb401a9501b8467c774a3 -> xe-pw-129823v1
-
-  IGT_7710: d87a5d85a60fba1283821d5212c3aece64cb36ba @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-767-d395a4fdb0e78537f06bb401a9501b8467c774a3: d395a4fdb0e78537f06bb401a9501b8467c774a3
-  xe-pw-129823v1: 129823v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129823v1/index.html
-
---===============2938230988169024060==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: avoid function cast warnings</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129823/">https://patchwork.freedesktop.org/series/129823/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129823v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129823v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-767-d395a4fdb0e78537f06bb401a9501b8467c774a3_BAT -&gt; xe-pw-129823v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-129823v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_exec_threads@threads-mixed-fd-basic:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-767-d395a4fdb0e78537f06bb401a9501b8467c774a3/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-fd-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129823v1/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-fd-basic.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1167">Intel XE#1167</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-767-d395a4fdb0e78537f06bb401a9501b8467c774a3 -&gt; xe-pw-129823v1</li>
-</ul>
-<p>IGT_7710: d87a5d85a60fba1283821d5212c3aece64cb36ba @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-767-d395a4fdb0e78537f06bb401a9501b8467c774a3: d395a4fdb0e78537f06bb401a9501b8467c774a3<br />
-  xe-pw-129823v1: 129823v1</p>
-
-</body>
-</html>
-
---===============2938230988169024060==--
