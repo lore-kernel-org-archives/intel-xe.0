@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56D25C4829A
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Feb 2024 08:46:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEB7CC48260
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Feb 2024 08:50:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0874410E880;
-	Tue, 13 Feb 2024 08:46:58 +0000 (UTC)
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59E0A10E7B8;
- Tue, 13 Feb 2024 08:46:57 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1664525577517370955=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7545310E3F8;
+	Tue, 13 Feb 2024 08:50:02 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ra0l220G";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 319CF10E0B7;
+ Tue, 13 Feb 2024 08:50:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707814201; x=1739350201;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=wG5GAH54sxZeD79NFiYZcRV18W4Ta+FEoLSb4HLY1t8=;
+ b=Ra0l220GfC1l90pPFhizC7bm1Ej9mxrSyrrasz3Lj0IHu0sVocWApxMS
+ S3t520wgKwt989XfjikbvEyEOBket55XRu9mVML2mfq9fDjT2k9uNSLD/
+ LU1A9OaaMfFWhwKoNOBolHWOhWAJirG0WHSbT+k7dUt/1JtcRYO44ARDf
+ EWJbUEGLXUYlYtObiEQKf2WuzptjSzho9O/2Y3uAmXBnzq7mnl53mcATd
+ DCzaJ71wZuV6+Ha5OwJC1ikOK0zi70PugAMIdgsWjd4PuijDt/XcqWbD6
+ RgJi92JQdbQGriR+VL1YH73ofx0A3BxYgBgmR2qV3kRrH2ykehkq3Ej48 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="19225636"
+X-IronPort-AV: E=Sophos;i="6.06,156,1705392000"; d="scan'208";a="19225636"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2024 00:50:01 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,156,1705392000"; 
+   d="scan'208";a="3148346"
+Received: from snasibli-mobl2.ccr.corp.intel.com (HELO localhost)
+ ([10.252.44.50])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2024 00:49:59 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Stephen Rothwell <sfr@canb.auug.org.au>,
+ Luca Coelho <luciano.coelho@intel.com>, Maxime Ripard <mripard@kernel.org>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: [PATCH drm-misc-next] drm/xe: fix arguments to drm_err_printer()
+Date: Tue, 13 Feb 2024 10:49:54 +0200
+Message-Id: <20240213084954.878643-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Add_OA_functionality_to_Xe_=28re?=
- =?utf-8?q?v10=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 13 Feb 2024 08:46:57 -0000
-Message-ID: <170781401736.1201024.70117421810206777@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240213064423.131601-1-ashutosh.dixit@intel.com>
-In-Reply-To: <20240213064423.131601-1-ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +65,42 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1664525577517370955==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The commit below changed drm_err_printer() arguments, but failed to
+update all places.
 
-== Series Details ==
+Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
+Closes: https://lore.kernel.org/r/20240213120410.75c45763@canb.auug.org.au
+Fixes: 5e0c04c8c40b ("drm/print: make drm_err_printer() device specific by using drm_err()")
+Cc: Luca Coelho <luciano.coelho@intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Series: Add OA functionality to Xe (rev10)
-URL   : https://patchwork.freedesktop.org/series/121084/
-State : success
+---
 
-== Summary ==
+Argh. This is getting embarrassing. This one was hiding behind
+CONFIG_DRM_XE_SIMPLE_ERROR_CAPTURE=y.
+---
+ drivers/gpu/drm/xe/xe_guc_submit.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-CI Bug Log - changes from xe-766-e370df7a4fb4125cb8eee1b00ff1592808ed9786_BAT -> xe-pw-121084v10_BAT
-====================================================
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 4744668ef60a..0c763ceafbed 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -812,7 +812,8 @@ static void guc_exec_queue_print(struct xe_exec_queue *q, struct drm_printer *p)
+ static void simple_error_capture(struct xe_exec_queue *q)
+ {
+ 	struct xe_guc *guc = exec_queue_to_guc(q);
+-	struct drm_printer p = drm_err_printer("");
++	struct xe_device *xe = guc_to_xe(guc);
++	struct drm_printer p = drm_err_printer(&xe->drm, NULL);
+ 	struct xe_hw_engine *hwe;
+ 	enum xe_hw_engine_id id;
+ 	u32 adj_logical_mask = q->logical_mask;
+-- 
+2.39.2
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (3 -> 3)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-766-e370df7a4fb4125cb8eee1b00ff1592808ed9786 -> xe-pw-121084v10
-
-  IGT_7710: d87a5d85a60fba1283821d5212c3aece64cb36ba @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-766-e370df7a4fb4125cb8eee1b00ff1592808ed9786: e370df7a4fb4125cb8eee1b00ff1592808ed9786
-  xe-pw-121084v10: 121084v10
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v10/index.html
-
---===============1664525577517370955==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add OA functionality to Xe (rev10)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/121084/">https://patchwork.freedesktop.org/series/121084/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v10/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v10/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-766-e370df7a4fb4125cb8eee1b00ff1592808ed9786_BAT -&gt; xe-pw-121084v10_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (3 -&gt; 3)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-766-e370df7a4fb4125cb8eee1b00ff1592808ed9786 -&gt; xe-pw-121084v10</li>
-</ul>
-<p>IGT_7710: d87a5d85a60fba1283821d5212c3aece64cb36ba @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-766-e370df7a4fb4125cb8eee1b00ff1592808ed9786: e370df7a4fb4125cb8eee1b00ff1592808ed9786<br />
-  xe-pw-121084v10: 121084v10</p>
-
-</body>
-</html>
-
---===============1664525577517370955==--
