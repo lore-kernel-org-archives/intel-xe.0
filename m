@@ -4,48 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7220AC48260
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Feb 2024 21:24:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96B99C48260
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Feb 2024 21:24:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13B5510E4E7;
-	Tue, 13 Feb 2024 21:24:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59A3D10E6AD;
+	Tue, 13 Feb 2024 21:24:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PZYvCXM7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nbamF7UB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADDEA10E393
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Feb 2024 21:24:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12F0410E393
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Feb 2024 21:24:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707859474; x=1739395474;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=cAsM8yFwaqljYB8Z2GiuqCVwL+0oEpw347Q2dgESJSo=;
- b=PZYvCXM7YHyRiPPmHOyFeHhIXWX1XZk704DwLALX8tQobM7LRMQtA2gg
- HbFgMMa4CPd1CyvXVV4lHWO67KPXRL2Dl+JIRnrVTh2bzy73pcowGwmai
- 8sDy81nttRJ3EtmmNM1E1L7AtIE+oB/U0C0r5xFY/nfQWvrXfRP8y7FFw
- K2w6teUT6jwsHQMrDG8gElCxJXI0U+WhZ2lntvgZoupm9D+OsqMblmY0D
- dsHAdRamioOTQcfqRACEW0mM6zEdbXnkwf7/AfUOAvU1SbU45UpKhGZt1
- E+wduyL1nWfqf2Do+NZH0zYgZ10yF8sl7A+QLdiIYh9kEqSHNfrNVb4CH A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="1741123"
+ t=1707859476; x=1739395476;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=O4o5GMcPKvtS6Oh9CDGEfZi5Q5BaAzqmwLn9925Ua3Q=;
+ b=nbamF7UB+bsOhGlzzJringkkagIu0LFsefmIfef1oMEuCjlYezA5rf/4
+ e9TfzYCBFKJOL+RE+t5XwaXtL01Sr+givP61t2kTIMoqF8rYOZkCOQWFa
+ 5alSMx8oSba+bduFPJU9cmmyqY4y8C6B1Aw9OjzuzHpD3DaX25juijVOS
+ n8PBitGpsmVXiZ452kYVGEQcMdChGqrFQcDSXnY4NgWplkS/+ZR/kMkMe
+ WU16B/fHZH3X1nANCtT/PQA+ZQX5KlHYwz57O04OYvz6dq/Cu8EGw5AHp
+ 8LjsrKkK9ddXYftE/OKdOX2OsPkbMUVUFq0DZRavF1kmasTYTo0O/s9UF g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="1741151"
 X-IronPort-AV: E=Sophos;i="6.06,158,1705392000"; 
-   d="scan'208";a="1741123"
+   d="scan'208";a="1741151"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2024 13:24:33 -0800
+ 13 Feb 2024 13:24:35 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,158,1705392000"; 
-   d="scan'208";a="3042894"
+   d="scan'208";a="3042935"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.153.144])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2024 13:24:31 -0800
+ 13 Feb 2024 13:24:34 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 0/3] LMTT improvements
-Date: Tue, 13 Feb 2024 22:24:15 +0100
-Message-Id: <20240213212418.1309-1-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>
+Subject: [PATCH 2/3] drm/xe/pf: Request 64K aligned allocations for LMTT PD
+Date: Tue, 13 Feb 2024 22:24:17 +0100
+Message-Id: <20240213212418.1309-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20240213212418.1309-1-michal.wajdeczko@intel.com>
+References: <20240213212418.1309-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -63,19 +66,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Force 64K alignment of the LMTT PD to match hardware requirement and
-make multi-level LMTT as default for the future platforms.
+Use explicit alignment flag to match hardware requirement.
 
-Michal Wajdeczko (3):
-  drm/xe: Allow vram bo allocations aligned to 64K
-  drm/xe/pf: Request 64K aligned allocations for LMTT PD
-  drm/xe/pf: Always use Multi-Level LMTT for newer platforms
+Bspec: 52404, 67468
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Michał Winiarski <michal.winiarski@intel.com>
+---
+ drivers/gpu/drm/xe/xe_lmtt.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- drivers/gpu/drm/xe/xe_bo.c   | 3 ++-
- drivers/gpu/drm/xe/xe_bo.h   | 1 +
- drivers/gpu/drm/xe/xe_lmtt.c | 4 ++--
- 3 files changed, 5 insertions(+), 3 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_lmtt.c b/drivers/gpu/drm/xe/xe_lmtt.c
+index 0d7c5514e092..dfb0e1887615 100644
+--- a/drivers/gpu/drm/xe/xe_lmtt.c
++++ b/drivers/gpu/drm/xe/xe_lmtt.c
+@@ -71,7 +71,7 @@ static struct xe_lmtt_pt *lmtt_pt_alloc(struct xe_lmtt *lmtt, unsigned int level
+ 					     lmtt->ops->lmtt_pte_num(level)),
+ 				  ttm_bo_type_kernel,
+ 				  XE_BO_CREATE_VRAM_IF_DGFX(lmtt_to_tile(lmtt)) |
+-				  XE_BO_CREATE_PINNED_BIT);
++				  XE_BO_NEEDS_64K | XE_BO_CREATE_PINNED_BIT);
+ 	if (IS_ERR(bo)) {
+ 		err = PTR_ERR(bo);
+ 		goto out_free_pt;
 -- 
 2.43.0
 
