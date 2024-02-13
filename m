@@ -4,69 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43FFDC48BC4
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Feb 2024 14:21:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 558C7C48BC4
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Feb 2024 14:28:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 000C810E8B0;
-	Thu, 15 Feb 2024 14:20:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MZqFWn/q";
-	dkim-atps=neutral
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com
- [209.85.216.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E2C810E8A1;
- Thu, 15 Feb 2024 14:20:58 +0000 (UTC)
-Received: by mail-pj1-f53.google.com with SMTP id
- 98e67ed59e1d1-296b2e44a3cso704044a91.2; 
- Thu, 15 Feb 2024 06:20:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1708006855; x=1708611655; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=8saq9D0aDE2k6BKx1vz1+kPI1dWkpRnC38SDFbo2hVs=;
- b=MZqFWn/qb2okgIYUN9uwSDcHRtzqGBzhTgdaswQjv91MhaZlltb+Hym9gniQ87AkZz
- MZzYQDxvonnsORUebzZNmZhFyGY3UT66e8ywhEGhCsSXqADxekYahjfGFuji98TiS+9e
- Zv9LA6iZPiIfLUGT9mzV0RiIHZqynUHj2ghgoaUEYr8EPwZ4420gix8MwPp1InjqvkMx
- XBmKlS/aHao81VNUnHA/n4Ig56CKDjb1zjsjj/67iRp6SeS8cqCxlLFMcAmQMfMS86ad
- RFPXmc62IRN/uqy1HdO+E8fMd7rGoPwZqBGWWe0eVON6y7kSNskYta1pT8/iaKCD2JGH
- LZXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1708006855; x=1708611655;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=8saq9D0aDE2k6BKx1vz1+kPI1dWkpRnC38SDFbo2hVs=;
- b=bi8IriRQo3e7PJfwN9lu3Q/kOaufiQ8Hg0xG56I/6Abboyu/c41ryf94N1NWcuO0aw
- c1Byr+cNHMALzpkPg/jo2f7+Rpql9hI9+//PUHp+gqPDtU77jDIPQ1lvzrFdUJv316nP
- Lo0DZSKuQ2oRYl70wO43e2+Q2w9Ml/lqUmUv6eDFJi3ckqaA8F1Wrd/ez1szczMG0hdY
- l4NBYjmG+yEy+J4SciCgntqFYnn0TPd6LVCZHLxjwUdXPWRqfDzzLEpWj3Ai97Q5xnHN
- EpUDj2lR2u4EZcXmA4sW1/3i+dIZqdEpUCJsSa7EtHVMZx27dXW7Cr9MH7Bdc3wjOOug
- kX8w==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUkkRm8GvdzoPrCAl72293KFd9BNtFGWrSbrBdA9vAFFOY/XKDAVJx3SgkGU/+CGw2iOeLosNF8dmcLx8vKcGceg1AigYSpT9YTiK6eTWusEwidBiiWUJ5dW6IAa5z4+8TN9WQ4yobAX9SFF8uePnkcHmhwi0N2y+7qFXa1JW645+Rf8DwCQXWQzdobTAPVU7r5c0vb5rZ1dIDgLCD2TJDxrCRLeDyTOmpRJpuuryEE
-X-Gm-Message-State: AOJu0YyEB1AtSMP8dbaAWa3eJ60Ei6aLVTTwkvtTHxM0B1iyjaIbzJ7T
- mkyrZHCoii6wpkSmSm9k3btM4cfHB9omjsFVIyK7ui1P/k93tcSjlsvS0yeisVclIGOA63x1KlC
- gNqqgv5LCKgbllqgYYE0KCQyM+nZQK5nV
-X-Google-Smtp-Source: AGHT+IGi9SFoRSDX1BukAHEbyw99sybx8/9zS92dvONLojpkxJqo0+b3ukoj8BSj8P5amuT5fEUeZhGQaLjIrdqUazQ=
-X-Received: by 2002:a17:90a:34c5:b0:28c:fb86:23ce with SMTP id
- m5-20020a17090a34c500b0028cfb8623cemr1703811pjf.44.1708006854542; Thu, 15 Feb
- 2024 06:20:54 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDC6410E8E7;
+	Thu, 15 Feb 2024 14:28:19 +0000 (UTC)
+X-Greylist: delayed 524 seconds by postgrey-1.36 at gabe;
+ Tue, 13 Feb 2024 14:54:05 UTC
+Received: from smtp-out3.simply.com (smtp-out3.simply.com [94.231.106.210])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9605F10E561;
+ Tue, 13 Feb 2024 14:54:05 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by smtp.simply.com (Simply.com) with ESMTP id 4TZ3yd4Dj4z681k;
+ Tue, 13 Feb 2024 15:45:13 +0100 (CET)
+Received: from [192.168.0.25] (h-98-128-223-123.NA.cust.bahnhof.se
+ [98.128.223.123])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (Client did not present a certificate)
+ by smtp.simply.com (Simply.com) with ESMTPSA id 4TZ3yH6LD4z67wS;
+ Tue, 13 Feb 2024 15:44:54 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gaisler.com;
+ s=unoeuro; t=1707835513;
+ bh=v6NrxM1eJN7Z7yzkWSBTKUltm5dbJ2HTXi9hG2LMSTA=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To;
+ b=fxRUG6+yBSU+BFXn6+rebuuiiuqqWopqe29Vz2GaIf78w+V69ZIB+Af31iKeLr62p
+ qpQdz7sWHzQ58CP3tqsZon5MfZ78+Sms5m4nebpjjUITGZQ1A2ZnKMsF4BxSh1OMBa
+ S898RixpmWtD3+3XqXRY4JGgZ7I8bBk64Oy1wp1k=
+Message-ID: <4582ff28-a443-4b0f-ba92-f48c414e2248@gaisler.com>
+Date: Tue, 13 Feb 2024 15:44:53 +0100
 MIME-Version: 1.0
-References: <20240212210428.851952-1-alexander.deucher@amd.com>
- <b883e82e-9042-4656-b152-065ed31a81de@gmail.com>
-In-Reply-To: <b883e82e-9042-4656-b152-065ed31a81de@gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 15 Feb 2024 09:20:42 -0500
-Message-ID: <CADnq5_MwEB_=2uySBmiOu3mBcA=uRDvsoA_jT9umHNnwLELWZQ@mail.gmail.com>
-Subject: Re: [PATCH 0/6 V4] fdinfo shared stats
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, tvrtko.ursulin@linux.intel.com, 
- daniel@ffwll.ch
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: Build regressions/improvements in v6.8-rc1
+Content-Language: en-US
+To: Arnd Bergmann <arnd@arndb.de>, Geert Uytterhoeven <geert@linux-m68k.org>, 
+ linux-kernel@vger.kernel.org
+Cc: linuxppc-dev@lists.ozlabs.org, linux-sh@vger.kernel.org,
+ sparclinux@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-mtd@lists.infradead.org,
+ mpi3mr-linuxdrv.pdl@broadcom.com, linux-scsi@vger.kernel.org,
+ Chris Zankel <chris@zankel.net>, Max Filippov <jcmvbkbc@gmail.com>,
+ linux-hardening@vger.kernel.org, qat-linux@intel.com,
+ linux-crypto@vger.kernel.org,
+ "intel-wired-lan@lists.osuosl.org" <intel-wired-lan@lists.osuosl.org>,
+ Netdev <netdev@vger.kernel.org>
+References: <CAHk-=wiB4iHTtfZKiy5pC24uOjun4fbj4kSX0=ZnGsOXadMf6g@mail.gmail.com>
+ <20240123111235.3097079-1-geert@linux-m68k.org>
+ <d03e90ca-8485-4d1b-5ec1-c3398e0e8da@linux-m68k.org>
+ <0229fa60-2d87-4b1c-b9f0-6f04c6e4dbdd@app.fastmail.com>
+From: Andreas Larsson <andreas@gaisler.com>
+In-Reply-To: <0229fa60-2d87-4b1c-b9f0-6f04c6e4dbdd@app.fastmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Thu, 15 Feb 2024 14:28:19 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,62 +70,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Feb 15, 2024 at 9:18=E2=80=AFAM Christian K=C3=B6nig
-<ckoenig.leichtzumerken@gmail.com> wrote:
->
-> Am 12.02.24 um 22:04 schrieb Alex Deucher:
-> > We had a request to add shared buffer stats to fdinfo for amdgpu and
-> > while implementing that, Christian mentioned that just looking at
-> > the GEM handle count doesn't take into account buffers shared with othe=
-r
-> > subsystems like V4L or RDMA.  Those subsystems don't use GEM, so it
-> > doesn't really matter from a GPU top perspective, but it's more
-> > correct if you actually want to see shared buffers.
-> >
-> > After further discussions, add a helper and update all fdinfo
-> > implementations to use that helper for consistency.
-> >
-> > v4: switch drm_gem_object_is_shared_for_memory_stats() to an inline fun=
-ction
->
-> I'm still not sure if looking at the actual handle count is the right
-> approach, but it's certainly better than before.
-
-Well, it's consistent across drivers.
-
->
-> So Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com> for the
-> entire series.
->
-> Should I take this through drm-misc-next?
-
-Yes, please.
+On 2024-01-23 15:21, Arnd Bergmann wrote:
+>>>  + /kisskb/src/arch/sparc/include/asm/floppy_64.h: error: no previous prototype for 'sparc_floppy_irq' [-Werror=missing-prototypes]:  => 200:13
+>>>  + /kisskb/src/arch/sparc/include/asm/floppy_64.h: error: no previous prototype for 'sun_pci_fd_dma_callback' [-Werror=missing-prototypes]:  => 437:6
+>>
+>> sparc64-gcc{5,11,12,13}/sparc64-allmodconfig
+> 
+> Andrew Morton did a patch for the sparc warnings, and Andreas Larsson
+> is joining as a maintainer, so hopefully he can pick that up soon.
+Which patch do you refer to here? I can not seem to find a patch fixing
+these ones in particular on lore.kernel.org.
 
 Thanks,
+Andreas
 
-Alex
-
->
-> Regards,
-> Christian.
->
-> >
-> > Alex Deucher (6):
-> >    Documentation/gpu: Update documentation on drm-shared-*
-> >    drm: add drm_gem_object_is_shared_for_memory_stats() helper
-> >    drm: update drm_show_memory_stats() for dma-bufs
-> >    drm/amdgpu: add shared fdinfo stats
-> >    drm/i915: Update shared stats to use the new gem helper
-> >    drm/xe: Update shared stats to use the new gem helper
-> >
-> >   Documentation/gpu/drm-usage-stats.rst      |  2 +-
-> >   drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c |  4 ++++
-> >   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 11 +++++++++++
-> >   drivers/gpu/drm/amd/amdgpu/amdgpu_object.h |  6 ++++++
-> >   drivers/gpu/drm/drm_file.c                 |  2 +-
-> >   drivers/gpu/drm/i915/i915_drm_client.c     |  2 +-
-> >   drivers/gpu/drm/xe/xe_drm_client.c         |  2 +-
-> >   include/drm/drm_gem.h                      | 13 +++++++++++++
-> >   8 files changed, 38 insertions(+), 4 deletions(-)
-> >
->
