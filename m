@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41E0EC4829A
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Feb 2024 15:44:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5421CC48BC1
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Feb 2024 15:44:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC9BD10E7CB;
-	Tue, 13 Feb 2024 15:44:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B06510E7F0;
+	Tue, 13 Feb 2024 15:44:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i79XxRPy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mExmghrY";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F0DF10E7EE
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Feb 2024 15:44:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19D7110E801
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Feb 2024 15:44:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707839058; x=1739375058;
+ t=1707839057; x=1739375057;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=1oKDq4dG90BYa9oOi4vilFF1Q7jxICQMf5KqO36D4kU=;
- b=i79XxRPyFzmxD5GNnkOKl2hknteZ75NhkCnbGMv4T+AF3Hb3y6vMBgAs
- 8Ef0DRSNQlskL4ZcuOPhXN3Q5/JCXDkrBAsCOODG2jnfUQ9+bCetK98mI
- 598Pi9mcEJo0yAwEKcOprFoncg0OZkBsOAF8/7xFv/Bs//9R4I9lrKv3h
- 8fmfq1gt4ne/dlnIfGonqXtm2BELI6fLCsEv0nWkNaVyZ2o5wineMAe9j
- 9wjHPDAfuOCFuOlV8Hvg31q+3pAL8P2DaPm1Z9pDrXXzKpLRdcayO9Qs+
- x6tN10u7qmewA/ABvw9KJMLWqNliN4Hw2jhtopYlFIWhIu+Fxz6H9LJA3 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="19262926"
-X-IronPort-AV: E=Sophos;i="6.06,157,1705392000"; d="scan'208";a="19262926"
+ bh=ZjLqCiSZqFETg3I9QLOs64cY8+6dNM39G0/zauniZxQ=;
+ b=mExmghrYPilPs3joYVwn20eZdRENXlmwbFw3JyKfsLbrTTgB3TFiGkAY
+ IQc4otdmWgAy+FoXsBVeeGBrex7lcquQCYXso3gZAeqi2OrIbAxNs40KB
+ YjlbaEJSGutK7DXcopP42vPiQg6js4Xmi52u09ETxyR9/ZPO7tVw7Hfu0
+ OfqnP7sz02SoNrpU33ZpHVhu7auwEVW0MXdUbp/nGzV/iwPFZVyg9suVI
+ TP8zoupVrev4aGV7RRyMHMdNOwt25hcxU84ZYH5Crt2d/vLErnS5XnD9X
+ a/rAu/zbYbxRpjBPVMZAk/iuku7N5pS7VnOKwctuRpO7Vglcax0nryft2 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="19262925"
+X-IronPort-AV: E=Sophos;i="6.06,157,1705392000"; d="scan'208";a="19262925"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2024 07:44:18 -0800
+ 13 Feb 2024 07:44:17 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,157,1705392000"; 
-   d="scan'208";a="7564509"
+   d="scan'208";a="7564507"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.153.144])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2024 07:44:18 -0800
+ 13 Feb 2024 07:44:17 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 7/8] drm/xe/vf: Don't program PAT if VF
-Date: Tue, 13 Feb 2024 16:43:54 +0100
-Message-Id: <20240213154355.1221-8-michal.wajdeczko@intel.com>
+Subject: [CI 6/8] drm/xe/vf: Don't enable hwmon if VF
+Date: Tue, 13 Feb 2024 16:43:53 +0100
+Message-Id: <20240213154355.1221-7-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240213154355.1221-1-michal.wajdeczko@intel.com>
 References: <20240213154355.1221-1-michal.wajdeczko@intel.com>
@@ -62,39 +62,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-PAT programming can only be done by the PF driver.
-Besides VF drivers don't have access to control registers.
+Registers used by hwmon are not available for VF drivers.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Cc: Badal Nilawar <badal.nilawar@intel.com>
+Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pat.c | 5 +++++
+ drivers/gpu/drm/xe/xe_hwmon.c | 5 +++++
  1 file changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-index 1ff6bc79e7d4..e148934d554b 100644
---- a/drivers/gpu/drm/xe/xe_pat.c
-+++ b/drivers/gpu/drm/xe/xe_pat.c
-@@ -13,6 +13,7 @@
- #include "xe_gt.h"
- #include "xe_gt_mcr.h"
+diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+index f0194d5121a5..b82233a41606 100644
+--- a/drivers/gpu/drm/xe/xe_hwmon.c
++++ b/drivers/gpu/drm/xe/xe_hwmon.c
+@@ -17,6 +17,7 @@
  #include "xe_mmio.h"
+ #include "xe_pcode.h"
+ #include "xe_pcode_api.h"
 +#include "xe_sriov.h"
  
- #define _PAT_ATS				0x47fc
- #define _PAT_INDEX(index)			_PICK_EVEN_2RANGES(index, 8, \
-@@ -433,6 +434,10 @@ void xe_pat_init_early(struct xe_device *xe)
- 		drm_err(&xe->drm, "Missing PAT table for platform with graphics version %d.%02d!\n",
- 			GRAPHICS_VER(xe), GRAPHICS_VERx100(xe) % 100);
- 	}
-+
-+	/* VFs can't program nor dump PAT settings */
-+	if (IS_SRIOV_VF(xe))
-+		xe->pat.ops = NULL;
- }
+ enum xe_hwmon_reg {
+ 	REG_PKG_RAPL_LIMIT,
+@@ -746,6 +747,10 @@ void xe_hwmon_register(struct xe_device *xe)
+ 	if (!IS_DGFX(xe))
+ 		return;
  
- void xe_pat_init(struct xe_gt *gt)
++	/* hwmon is not available on VFs */
++	if (IS_SRIOV_VF(xe))
++		return;
++
+ 	hwmon = devm_kzalloc(dev, sizeof(*hwmon), GFP_KERNEL);
+ 	if (!hwmon)
+ 		return;
 -- 
 2.43.0
 
