@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54B54C48260
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Feb 2024 07:04:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8E8EC48260
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Feb 2024 07:09:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1204C10E244;
-	Tue, 13 Feb 2024 07:04:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7149710E662;
+	Tue, 13 Feb 2024 07:09:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mN77VMpk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mASYxsVx";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E04B10E244
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Feb 2024 07:04:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA6E710E244
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Feb 2024 07:09:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707807862; x=1739343862;
+ t=1707808183; x=1739344183;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=EifX0HI+YkORHriy2B83qT3tgKf+Z5UyZrvV4YREqE8=;
- b=mN77VMpk8RncPvSJTmaD6T4EH3CnqkkkoTFMFegaAaojtpzQI9cRYpmD
- hjd1jRPp7yMxq7G/QGpczFD92//om7iwr+zFheI6Izt/ZPsBJYfgmDQ+x
- 3M7f+xphn7XIueI5CDCpQbJA2thdKgpHxeE8K/7YFVxbmavSP5p/yukyJ
- PyIWiea7UBXRme5ialKLhZ3OJIdDPYmjmOXxnh/XXRBsDAj70s1tgAK25
- hN7h2TM4Ouq5Ocg7eaIoRS30rLHJOpEmKg51yPWLm0xeTP/1X9sNEk3mA
- hYr2uBBz3i8t5d/CSZ+Zl7AkINL+1+8YxCdn2xEw1h/oGz/dqq556rb8k Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="24275142"
-X-IronPort-AV: E=Sophos;i="6.06,156,1705392000"; d="scan'208";a="24275142"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2024 23:04:21 -0800
+ bh=5o37nxg3cjWxDZ7PhH2qryef/l4dTfiJ4H4dGASiCXo=;
+ b=mASYxsVxkrByjCiUiOFQjWcyVhJW8sd1KlhOliJtpIjLzeGjHpWgyZ34
+ WgB3FCwaojqhRlTZ3jChfNxdqvfn/iT+OQTBJFs6knc3lGzrmYDc5crwe
+ FcsH/w6DcuCCxpsln71lPHGrDrqKiyC3eKyOEiVowH1nuFyQActNes3bt
+ 7McFaPEQzq90txGfcmrOQtANt+HL8eetDmkf1k09rszjT36zuUmOVIOz3
+ JrWpa3WQzqG654AQ0cCAgLBHwuNBnyIqTUzBdxu9s8Qt5GjpotO1gES3x
+ EImwFFFKtuf/jf93h8Qv2DMuVkAuPXaHlY4wVVbqtvubhTEqViAFlcumQ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="4769628"
+X-IronPort-AV: E=Sophos;i="6.06,156,1705392000"; 
+   d="scan'208";a="4769628"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2024 23:09:42 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,156,1705392000"; 
-   d="scan'208";a="3129030"
+   d="scan'208";a="3185060"
 Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.intel.com)
  ([10.165.21.138])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2024 23:04:20 -0800
-Date: Mon, 12 Feb 2024 23:04:20 -0800
-Message-ID: <85v86svo97.wl-ashutosh.dixit@intel.com>
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2024 23:09:41 -0800
+Date: Mon, 12 Feb 2024 23:09:41 -0800
+Message-ID: <85ttmcvo0a.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 06/16] drm/xe/oa/uapi: Define and parse OA stream
- properties
-In-Reply-To: <ZcpsqsRhEk9UyTGg@unerlige-ril>
-References: <20240208054916.3788133-1-ashutosh.dixit@intel.com>	<20240208054916.3788133-7-ashutosh.dixit@intel.com>	<1c3fef48-f59b-440a-bfb7-275fb5f5d57d@intel.com>	<857cjewq1s.wl-ashutosh.dixit@intel.com>	<ZcpqDtxxGxc5PRv5@unerlige-ril>	<ZcpsqsRhEk9UyTGg@unerlige-ril>
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 13/16] drm/xe/oa/uapi: Query OA unit properties
+In-Reply-To: <Zcp4opkqpF0fDFbA@unerlige-ril>
+References: <20240208054916.3788133-1-ashutosh.dixit@intel.com>	<20240208054916.3788133-14-ashutosh.dixit@intel.com>	<Zcp4opkqpF0fDFbA@unerlige-ril>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -68,93 +67,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 12 Feb 2024 11:08:26 -0800, Umesh Nerlige Ramappa wrote:
+On Mon, 12 Feb 2024 11:59:30 -0800, Umesh Nerlige Ramappa wrote:
 >
 
 Hi Umesh,
 
-> On Mon, Feb 12, 2024 at 10:57:18AM -0800, Umesh Nerlige Ramappa wrote:
-> > On Thu, Feb 08, 2024 at 02:26:39PM -0800, Dixit, Ashutosh wrote:
-> >> On Thu, 08 Feb 2024 13:40:29 -0800, Lionel Landwerlin wrote:
-> >>
-> >> Hi Lionel,
-> >>
-> >>> +
-> >>> +	/** @DRM_XE_OA_PROPERTY_OA_FORMAT: Perf counter report format */
-> >>> +	DRM_XE_OA_PROPERTY_OA_FORMAT,
-> >>> +	/**
-> >>> +	 * OA_FORMAT's are specified the same way as in Bspec, in terms of
-> >>> +	 * the following quantities: a. enum @drm_xe_oa_format_type
-> >>> +	 * b. Counter select c. Counter size and d. BC report
-> >>> +	 */
-> >>> +#define DRM_XE_OA_FORMAT_MASK_FMT_TYPE		(0xff << 0)
-> >>> +#define DRM_XE_OA_FORMAT_MASK_COUNTER_SEL	(0xff << 8)
-> >>> +#define DRM_XE_OA_FORMAT_MASK_COUNTER_SIZE	(0xff << 16)
-> >>> +#define DRM_XE_OA_FORMAT_MASK_BC_REPORT		(0xff << 24)
-> >>>
-> >>> People outside of Intel don't have access to the BSpec.
-> >>
-> >> Hmm, I was assuming Bspec is public, at least parts of it. Since we keep
-> >> dropping Bspec references in patch commit messages?
-> >>
-> >>>
-> >>> And since there is no page number either
-> >>
-> >> Page numbers are in the commit message, but you are right, they should be
-> >> added here.
-> >>
-> >>> , it would just be easier for everybody to say :
-> >>>
-> >>>     "Refer to the oa_formats array in drivers/gpu/drm/xe/xe_oa.c"
-> >>
-> >> Umesh, what do you think about this? I don't like the idea too much, of
-> >> referring to the internal implementation in the uapi, but if Bspec is not
-> >> public, and we want to keep this uapi, we'll probably need to do this.
-> >>
-> >> Also, we are directly returning the oa_status register in response to
-> >> DRM_XE_PERF_IOCTL_STATUS ioctl (see 'struct drm_xe_oa_stream_status'), so
-> >> that also needs access to Bspec. But there I think we can just document the
-> >> relevant bits in xe_drm.h.
+> On Wed, Feb 07, 2024 at 09:49:13PM -0800, Ashutosh Dixit wrote:
+> > @@ -1411,6 +1412,68 @@ enum drm_xe_oa_unit_type {
+> >	DRM_XE_OA_UNIT_TYPE_OAM,
+> > };
 > >
-> > If that's the case, then based on the PRM documents, I would just put
-> > this in the comment -
-> >
-> > "Refer to performance counter report formats under the Observability
-> > section in the PRM"
+> > +/**
+> > + * struct drm_xe_oa_unit - describe OA unit
+> > + */
+> > +struct drm_xe_oa_unit {
+> > +	/** @oa_unit_id: OA unit ID */
+> > +	__u32 oa_unit_id;
+> > +
+> > +	/** @oa_unit_type: OA unit type of @drm_xe_oa_unit_type */
+> > +	__u32 oa_unit_type;
+> > +
+> > +	/**
+> > +	 * @capabilities: OA capabilities bit-mask: this is a bit-mask of
+> > +	 * property id's in enum @drm_xe_oa_property_id
+> > +	 */
+> > +	__u64 capabilities;
 >
+> IMO, this should be a specific set of flags that are defined as and when we
+> add new features so that it helps UMDs detect them. Some features or
+> behaviors may be independent of the properties, so a 1:1 mapping to
+> properties may not be the best solution. In the past we have had i915 perf
+> revision bumps even when we haven't added a new property (For ex: when we
+> supported media engines in i915 - class:instance properties were already
+> present and we just added support for OAM in that case. For such cases
+> capabilities would define a new bit, but not properties).
 >
-> Missed your comment on the oa_status reg. In general, we should avoid
-> exposing the register as is in the uApi. Instead we should just have a set
-> of enums or bits that define a particular state. That would do away with
-> the need to point to the spec.
->
-> If you disagree, then PRM reference should be good enough - OAG_OASTATUS
-> register in the PRM or Hardware Specifications.
->
-> Specifically from this link:
-> https://www.intel.com/content/www/us/en/docs/graphics-for-linux/developer-reference/1-0/overview.html
+> The first set of properties defined with this series should not need a
+> capabilities entry. If the uApi changes in future or adds new features, we
+> need to use these bits.
 
-This is what I ended up doing for this:
+OK, I went ahead and implemented this. Though after this, this seems more
+like a version to me, rather than capabilities. The only difference being,
+instead of incrementing the version, we add bits to the capabilities. Which
+seems fine.
 
-+	/** @oa_status: OA status register as specified in PRM/Bspec 46717/61226 */
- 	__u64 oa_status;
-+#define DRM_XE_OASTATUS_MMIO_TRG_Q_FULL		(1 << 6)
-+#define DRM_XE_OASTATUS_COUNTER_OVERFLOW	(1 << 2)
-+#define DRM_XE_OASTATUS_BUFFER_OVERFLOW		(1 << 1)
-+#define DRM_XE_OASTATUS_REPORT_LOST		(1 << 0)
+I did pick a DRM_XE_OA_CAPS_BASE value of 1:
 
-And for the formats:
-
-+	/*
-+	 * OA_FORMAT's are specified the same way as in PRM/Bspec 52198/60942,
-+	 * in terms of the following quantities: a. enum @drm_xe_oa_format_type
-+	 * b. Counter select c. Counter size and d. BC report. Also refer to the
-+	 * oa_formats array in drivers/gpu/drm/xe/xe_oa.c.
-+ 	 */
-
-Probably easier to see this here:
-
-https://patchwork.freedesktop.org/patch/577943/?series=128993&rev=3
+https://patchwork.freedesktop.org/patch/578014/?series=121084&rev=10
 
 Thanks.
 --
