@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5421CC48BC1
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27AC7C4829A
 	for <intel-xe@archiver.kernel.org>; Tue, 13 Feb 2024 15:44:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B06510E7F0;
-	Tue, 13 Feb 2024 15:44:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAD3910E7EB;
+	Tue, 13 Feb 2024 15:44:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mExmghrY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G1A5iaXS";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19D7110E801
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Feb 2024 15:44:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C4B910E7CF
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Feb 2024 15:44:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707839057; x=1739375057;
+ t=1707839054; x=1739375054;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=ZjLqCiSZqFETg3I9QLOs64cY8+6dNM39G0/zauniZxQ=;
- b=mExmghrYPilPs3joYVwn20eZdRENXlmwbFw3JyKfsLbrTTgB3TFiGkAY
- IQc4otdmWgAy+FoXsBVeeGBrex7lcquQCYXso3gZAeqi2OrIbAxNs40KB
- YjlbaEJSGutK7DXcopP42vPiQg6js4Xmi52u09ETxyR9/ZPO7tVw7Hfu0
- OfqnP7sz02SoNrpU33ZpHVhu7auwEVW0MXdUbp/nGzV/iwPFZVyg9suVI
- TP8zoupVrev4aGV7RRyMHMdNOwt25hcxU84ZYH5Crt2d/vLErnS5XnD9X
- a/rAu/zbYbxRpjBPVMZAk/iuku7N5pS7VnOKwctuRpO7Vglcax0nryft2 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="19262925"
-X-IronPort-AV: E=Sophos;i="6.06,157,1705392000"; d="scan'208";a="19262925"
+ bh=JngWwgTr9RDIuh3163XZ1e7K7o+R7UX8xWuuQwf7Rwg=;
+ b=G1A5iaXSwRTyE7snK80s8CnpZKMP6KLphjKCU1/ygmNMFKDG4cjCUznP
+ 5BWqARFP7SKIxktEyUdZ/p88PkHx4/SKE9P/6DBmHTEzpy6xcL2V8jBxY
+ 0RFqDkaA8yIv6LSKO2f03WtM9jv69YEe6Oh9bKT7M1JTVx2KlNzCRmzfN
+ x1XuqGLsPMi56CAMs6nt370M7/+TLV4lh1P3dAbEN+jL40wNuR6/9IKWL
+ IzJg+tl1sF5QV5CQmWnttngPv3C4tcJip54XEXa+SIqE5gGotaMYf9zoT
+ azvHK0AvwxEoDAOvmf9Q/pCj0rZ21VrxiyUKKvJiov1+Q+Hp0rZvjL8bM A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="19262920"
+X-IronPort-AV: E=Sophos;i="6.06,157,1705392000"; d="scan'208";a="19262920"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2024 07:44:17 -0800
+ 13 Feb 2024 07:44:14 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,157,1705392000"; 
-   d="scan'208";a="7564507"
+   d="scan'208";a="7564498"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.153.144])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2024 07:44:17 -0800
+ 13 Feb 2024 07:44:13 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 6/8] drm/xe/vf: Don't enable hwmon if VF
-Date: Tue, 13 Feb 2024 16:43:53 +0100
-Message-Id: <20240213154355.1221-7-michal.wajdeczko@intel.com>
+Subject: [CI 3/8] drm/xe/vf: Don't program MOCS if VF
+Date: Tue, 13 Feb 2024 16:43:50 +0100
+Message-Id: <20240213154355.1221-4-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240213154355.1221-1-michal.wajdeczko@intel.com>
 References: <20240213154355.1221-1-michal.wajdeczko@intel.com>
@@ -62,38 +62,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Registers used by hwmon are not available for VF drivers.
+MOCS programming may only be done by the PF driver.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Badal Nilawar <badal.nilawar@intel.com>
-Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hwmon.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/xe/xe_mocs.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index f0194d5121a5..b82233a41606 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -17,6 +17,7 @@
+diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
+index d205d684d809..609d997b3e9b 100644
+--- a/drivers/gpu/drm/xe/xe_mocs.c
++++ b/drivers/gpu/drm/xe/xe_mocs.c
+@@ -13,6 +13,7 @@
+ #include "xe_gt_mcr.h"
  #include "xe_mmio.h"
- #include "xe_pcode.h"
- #include "xe_pcode_api.h"
+ #include "xe_platform_types.h"
 +#include "xe_sriov.h"
+ #include "xe_step_types.h"
  
- enum xe_hwmon_reg {
- 	REG_PKG_RAPL_LIMIT,
-@@ -746,6 +747,10 @@ void xe_hwmon_register(struct xe_device *xe)
- 	if (!IS_DGFX(xe))
- 		return;
+ #if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+@@ -539,6 +540,9 @@ void xe_mocs_init(struct xe_gt *gt)
+ 	struct xe_mocs_info table;
+ 	unsigned int flags;
  
-+	/* hwmon is not available on VFs */
-+	if (IS_SRIOV_VF(xe))
++	if (IS_SRIOV_VF(gt_to_xe(gt)))
 +		return;
 +
- 	hwmon = devm_kzalloc(dev, sizeof(*hwmon), GFP_KERNEL);
- 	if (!hwmon)
- 		return;
+ 	/*
+ 	 * MOCS settings are split between "GLOB_MOCS" and/or "LNCFCMOCS"
+ 	 * registers depending on platform.
 -- 
 2.43.0
 
