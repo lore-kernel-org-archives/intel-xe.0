@@ -4,63 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4DC2C4829A
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Feb 2024 02:20:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9375C4829A
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Feb 2024 02:20:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8742B10E273;
-	Wed, 14 Feb 2024 02:20:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90A2D10E2A1;
+	Wed, 14 Feb 2024 02:20:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Et48Jfd5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zfmmg4/K";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9113210E273
- for <intel-xe@lists.freedesktop.org>; Wed, 14 Feb 2024 02:20:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C032C10E2A1
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 Feb 2024 02:20:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707877202; x=1739413202;
+ t=1707877208; x=1739413208;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=IW2v06kLGjo4kbygzFnxBvfqjiHQUqcBGQR7R5QjjFI=;
- b=Et48Jfd5JCmperHE6/8/7ISQyQ9bkxIPeWb8MVqcd8q8JhgGsRaQeVhc
- W0uChci50LGIxpg6d2intOnvpbU/NJ4ish/DDKoHWOen5ZUAtRkvgcOPy
- PC8BtnyAP5WqIVI+pN/hYFkCejXUXOcbah8XGSUZ0bY8bLCfSjI7logvY
- JKZaco5mf5xgU8ZjDoKpmdZpDyxfaSc9y0ZTYPVBoJrIKzgW+67Eyjhrn
- gWeJbpocz+vey1dYfztH8KyVWpNdJI68Atl24Xh+Cd45XzBJCVyXbr6/Z
- c7jokhivskl2piH3YyiwIZS4kU0ae7zZHG1kD7/FFDo0Lcp7qqZy/coAP g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="396347905"
-X-IronPort-AV: E=Sophos;i="6.06,158,1705392000"; d="scan'208";a="396347905"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2024 18:20:02 -0800
+ bh=tbec/NfcgEIyYCJtR1tZUbX1hFU6OnN368acULej0ss=;
+ b=Zfmmg4/Ka80rccbu7Zux+T8MZyZs802vMRpTD6aO5McdW3X1AjDYQyz2
+ XPV+zbywUmHDY2PrnBqwosmevXEGG0wJvTTuAteExSwbwUXTbP9njRGJU
+ KqjlRc2cOnVMhPflA60JneMdxr6YhVY6wojaK3NUoixcJEq1AW9vVL+kh
+ AjdP3kw0FAUz1Lr5ZzjIx2ezJj5/a9SLWbyvHsEtF0Zq2i2Y9tk6pfFy+
+ cPv1KbQtDS36H6uJ0VydrZItr3gaKAIgJ1+Ux3igAsjVFVUYsr7lIjWo/
+ RxJGkJyg/sdczVsyB9eTXw+PfvTNaP9L+2Nz4XMwLBDNo7mIQOcuzs/mu Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="12632006"
+X-IronPort-AV: E=Sophos;i="6.06,158,1705392000"; d="scan'208";a="12632006"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2024 18:20:05 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="911975742"
-X-IronPort-AV: E=Sophos;i="6.06,158,1705392000"; d="scan'208";a="911975742"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 13 Feb 2024 18:20:00 -0800
+X-IronPort-AV: E=Sophos;i="6.06,158,1705392000"; d="scan'208";a="34124195"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 13 Feb 2024 18:20:05 -0800
 Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 13 Feb 2024 18:20:01 -0800
+ 15.1.2507.35; Tue, 13 Feb 2024 18:20:04 -0800
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
  fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 13 Feb 2024 18:20:01 -0800
+ 15.1.2507.35; Tue, 13 Feb 2024 18:20:04 -0800
 Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 13 Feb 2024 18:20:01 -0800
+ 15.1.2507.35 via Frontend Transport; Tue, 13 Feb 2024 18:20:04 -0800
 Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
  by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 13 Feb 2024 18:19:51 -0800
+ 15.1.2507.35; Tue, 13 Feb 2024 18:20:03 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=C5R7hYNjFfzniM1utdBCqYVketqHyJi4lbKjoTNvQHRzGZ70hj55jPfyk0QtL/TXJMjN7OVLpEWcZOx3RUEhiH5By4ZhN8s9Ixd5SZKdV5EtQFrD5eNn9Hp/FWYZpAG+36bKEnh2UyEbnOJirRiNAvmfJeqgK/tkbQpp7Y6Rt/Fike2uj5DShS9vGAHL3oPV28TWKCtHqtk1RAKVLfPGGOSuEk0B+/XvwwZIuTgZy9s9L9Gc18ioBCMqnPI/0hZAbUYwMOjQ5A5mdlwgvXgthMNNPbGK3P3orYREzF/R9NPbiCSkBgIvTSlmkB8S79yJR5AwJzRaNSPRFnJfFQSxUg==
+ b=DoW7ab8L1K82wR5tnlQ3IbJ3wgnSNQVTG/3KNI9D8ucMOlfpV2qB0G0SBFiZDtfQHfnjfssKVVlG+/31FPmD9pK3zvbEtnzIscelm6ad70lD2PrYSgExg8RBYgy/5ZharriT+vaxkYowhMLFGa/aX0QZJSOvreLVY0ruFcGOamPEUcfP+z3ZqM8ZMkFMxDuulN2OWYUE7KtoCaI4hAVYARaVazOtuZ8eh7pM7cnQKZUBPZl5Chfpbd3YgrgPxM+goNa1y8paLh6K2dWy5IXc/I6Q3rv0M4+HByWfGm/7jKbHGcrYEKOFti/WxfOuvIZRJWEfFZoDUplb55A4o9w8jA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RWFWxROklbMb/oab2/3+4hxrSopIYZkFpfHBdehUkY4=;
- b=jX3u0AbU2h4v3JDKyeVqxSPUKoZwlnpnas7VxyqiIXG0wJLkYTjZ3ghxr+DK6egm4xkQX6cCG/MPLekYdNDFcYAB6sZfhVer/0XNy5CAi9rKnNtORayz9QfH0Wo9q4NzYo0KafpOVE0EtQ819wIl6WoWkusW6rmFPVf/6B/GMhY8aYDI1DTSS3QA74iplXqtpcsrwS1Bz3ayW0LAyT3wc2AiV08w+9yILLSaRe2FX5LvSY+MPtsRla/S+vsJZWQ2D9humjowRK6vNjnkP7IZgIDIApcD0+xescRLMbeXjI7eV3GsK2fm8tn3IRVXKobv9VgtaIsBPaCEoorVy4D+0A==
+ bh=9ocnVk8KKlKelcIv2AAOYSSxLbUe/AsS6q7o+rpA7kQ=;
+ b=V4Etv+OcDhiRrLT7sILnrZnkY9gE6QMobYg8DaeWCWbmhusAjS9lD0PCnJpg7L9kOiMGhgAWZMR+FHn+cB/8YtTSydcRkqpYuBWz2cLTTqzEqbtLgMzq4t0wuYpGNFNMKc92wNWLMveseLcpBqfX9mV3LEEv8RVPy56NoBuMDK85tQXiI5VSXo3F2E/7FJ1bO2+llspTQ7SyeoTSt407yxf8k69roBTNmU6O0g/CK3WSKckEzkfxCvQhEtIASRcZCjcyERMXkAclqU77BAmmB0mLA3n8iGy1gBE54OSdhetkLu0KjsiXtTRVPD40QyoJEcOU7h1hcF7gZbZpPvVCjQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -70,24 +69,25 @@ Received: from CH3PR11MB8441.namprd11.prod.outlook.com (2603:10b6:610:1bc::12)
  by PH0PR11MB5160.namprd11.prod.outlook.com (2603:10b6:510:3e::8) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.35; Wed, 14 Feb
- 2024 02:19:49 +0000
+ 2024 02:20:02 +0000
 Received: from CH3PR11MB8441.namprd11.prod.outlook.com
  ([fe80::c590:37b4:ad48:cd0f]) by CH3PR11MB8441.namprd11.prod.outlook.com
  ([fe80::c590:37b4:ad48:cd0f%3]) with mapi id 15.20.7292.026; Wed, 14 Feb 2024
- 02:19:49 +0000
-Message-ID: <a97bec64-28dd-421e-a54d-71bb2aabcf33@intel.com>
-Date: Tue, 13 Feb 2024 18:19:46 -0800
+ 02:20:02 +0000
+Message-ID: <c48b1247-03d7-4454-a286-b6333d367a23@intel.com>
+Date: Tue, 13 Feb 2024 18:20:00 -0800
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] drm/xe: Add uAPI to query GuC firmware submission
- version
+Subject: Re: [PATCH v2 2/2] drm/xe: Extend uAPI to query HuC micro-controler
+ firmware version
 Content-Language: en-GB
 To: =?UTF-8?Q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>,
  <intel-xe@lists.freedesktop.org>
 CC: Francois Dugast <francois.dugast@intel.com>, Lucas De Marchi
  <lucas.demarchi@intel.com>
 References: <20240208183539.185095-1-jose.souza@intel.com>
+ <20240208183539.185095-2-jose.souza@intel.com>
 From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <20240208183539.185095-1-jose.souza@intel.com>
+In-Reply-To: <20240208183539.185095-2-jose.souza@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
 X-ClientProxiedBy: BYAPR03CA0009.namprd03.prod.outlook.com
@@ -96,61 +96,61 @@ X-ClientProxiedBy: BYAPR03CA0009.namprd03.prod.outlook.com
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: CH3PR11MB8441:EE_|PH0PR11MB5160:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4e13ad05-39ff-4918-3969-08dc2d036bb5
+X-MS-Office365-Filtering-Correlation-Id: 8962e59d-9b95-4e4a-dce9-08dc2d03732f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: xHHRxR0lvJpnm8r2IeYyiNHYRE/PKnntd3EgUtz5AyHlr9Kd/V1bRcf8u2NcbCBOZXIfCPZ9iT4OFwpD+Pjas+swvfi4eDEkzZuAS8+owuBlNim4nEInJ72/WPhEZquUZmCnh+raSA3qfMtw8MAP2hoVLnsG83fJWM6sHAeOXIemZ3wVH3oYxfn7A4JgWQ8HdmB4bHSw1QkeYTPSh/RetxBHQaeV9IV1eyb0uG83Y8y5hvn0MLBFeG5bOn/+T2IgttmvhIjZ9up6pkoHmz0ouTqJAOjy6gTpgCIW0cZt4+veWdUHh7M8WdiiLP7nmOCV/tCZ558m+DmYKXcloCC6Pf1UbWCFtrBYcktC1M22pNzWipSAlbGLl+pwLMOFWr5noJQWwNFdoDMcz/5D6sJ3Z0m1gHd0osfoePsStJAeDM0gCxxcV+C/h9uDuGFPRtZqlhqNXY3AwM/IDv1/KtAZHIf+9DjPzhUJJxzbtTS5jtJuAi17tXwE173TdyEYJtDgNcY3H2ZkOOOT87nb2WW+s61E6433ra5/RpTtBahsFhA=
+X-Microsoft-Antispam-Message-Info: XBBsWQG7+gMm2BlkXyxuwqoZkwfqaJ8SI5cQhEn8n/jz0hNmmUe0RkpJ5dm3SVfwZ6YrqJUfG2LXaLVyuQ/c3zA9klJC7nkFdd7B4wXf8pNoM2SAZKutCjl7govPRLOjITP9JKKOpjbggyKAjmFECj7PUIWy9q9jogjuIgwWxO2Y6j2tJsi00W9fK9IC200H9xpxruHZlyKqJrvr6t7Br5JHhgi1VHSxsSOk3ZzCOj9+s6niExmLVpVkvFZUPE7/Vj2bvJmdW5Oiq/xyFwwIz0M5wJEpBInh/hKlcJycWcQ9XAYIiRUAzR5NyVepkC9oXJrMjDjXyKQvwb2QxxkASRw30CrE4pyQLjlPftMp2JHNXQTs7MBd6AX/O3rpiiVuZurlo6+Js9rlG5C7+eqpI5RfFX79IYxmg7GcbkZaClWLmkfcTaf0qyRoFoaLiYqXAQE7mMTUMYUqmTtMfXxyVQPXjzX6vbH4lKcZfIXl+rURYYF4xeOY33IjYf7qH3FeEAv/oy0CZpoT15o5+y04QPq+ux8r9yYeLansCd5G6Jx/7Fz6A0xEAYnN5AcgdC8P
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH3PR11MB8441.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(396003)(366004)(346002)(376002)(136003)(230922051799003)(451199024)(1800799012)(64100799003)(186009)(6512007)(6486002)(478600001)(41300700001)(31686004)(966005)(5660300002)(4326008)(2906002)(8676002)(6666004)(8936002)(66946007)(53546011)(6506007)(66476007)(316002)(54906003)(66556008)(2616005)(83380400001)(31696002)(86362001)(107886003)(26005)(82960400001)(36756003)(38100700002);
+ SFS:(13230031)(39860400002)(396003)(366004)(346002)(376002)(136003)(230922051799003)(451199024)(1800799012)(64100799003)(186009)(6512007)(6486002)(478600001)(41300700001)(31686004)(5660300002)(4326008)(2906002)(8676002)(8936002)(66946007)(53546011)(6506007)(66476007)(316002)(54906003)(66556008)(2616005)(83380400001)(31696002)(86362001)(107886003)(26005)(82960400001)(36756003)(38100700002);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Vmw2VjNleWNZK3pkWnNJWDhNMHhDMFNvL1VrSmhzRlRYNGtkTEJnR3VJZnRq?=
- =?utf-8?B?VDF0MWJyNFl3ZTc1cWpkM1BVbzErTWZCcmFuK1Izbmh2VStZNkJUZFFhLy9X?=
- =?utf-8?B?SW5OWWpsUnIzZnNmT2FGclZJNHE5QXVWS2RmZGN5NHNyV0RNNmtwRTFnVnRI?=
- =?utf-8?B?eG5GME1NZ1V4dGJwZnhLOEhXRFdPZTk1SmhKOHMvMjJvLzk4K3VwQmNiNUFT?=
- =?utf-8?B?NTBaN2hBQURNbkUwWFdoR0VJUEV4RnVySk5hNE9KaVVxRTBtOHhDcVVHeDJz?=
- =?utf-8?B?UlJBY1lBbXJMcVFUTVUvelg2TlFrNkliME43QmI0NU5Ua2JlRlFVRUs2RU1J?=
- =?utf-8?B?eFJLSDd4QmVmTGJWcE1zZzJSdVZRU0FYTDNTeklQcU94c1BreXdBaVEwc2hq?=
- =?utf-8?B?ZFlzV3dkN2ZTeERsa2wrMlFqUGsvcisxd1dzWGxQZ29SdUpwSkoxajYxMnVu?=
- =?utf-8?B?RXJFVzRxeGg2bFRmQzg4NzZBL1hXdHVYNFppUWxhdy94K3UwaFQ0MzcyNGtp?=
- =?utf-8?B?OWVHZlVJcTNlWWdmR3c1M3lPYURUU0pVMzBveFVHaS9LU21wN2Fab3RCWDdV?=
- =?utf-8?B?bWtRZ3Q1VGlFam5IV0pkZWVleHdEbVZsWGp0SHQ5RGVOYi9lbU1FVWFjL1k1?=
- =?utf-8?B?d1J0dXZ2YjFNc1YvNDZiakpCNHVtbWsyZWJBUlRXUHFrVm51Qms3S0tobURI?=
- =?utf-8?B?V0JLYmdEbHlzWSswdjd5Q3h1L2VXcWpmTjRmc3pxMytaKzU0TndVSUhuWmg2?=
- =?utf-8?B?SmJMS3dzbm16YWVlcWlGNno0YllZVmNJWGpPKzFnR0V6eXRmUTc5RHArSkhw?=
- =?utf-8?B?eFBSa29YeDNrOFBSWURka3NtT2I5M2ZqeDZFem53K3FzdERyeWhxS216eFNs?=
- =?utf-8?B?djU1RjRlTndJclF0OW9XV1ZUek9SVG4yN3kxbVpEbThCRDM3bFNKK1k2YzlG?=
- =?utf-8?B?QXZuaGxtNmV4K0hYb0pwVFVFdGNWWWtSamxtMXFIWm1TRnVGUFk0ZzZkNDJL?=
- =?utf-8?B?UXhndGZJWDNtQ0QxYm9OM3VuU0RHMTM0dlFzTHdoS3ZDeFhMQlVqcWl0Kytu?=
- =?utf-8?B?QWhoakhyaFVhWmhyaXZSVWpieTdCQWFvVENDY1pGcHdXeGRldVFmNVFXaCtt?=
- =?utf-8?B?SGg0UC8vTTVTUTBwZmJUcmpUV05EcTZkeWxTbWx3ZjlzeVg2dWgvK0JZZXhp?=
- =?utf-8?B?UEV6dUFsUU1XZTdsb0wxU2poY01UKzlIZlVXeTBoZkJxMTJUL0VMVXA4aXlK?=
- =?utf-8?B?TE9vQXdJYi8zQmZua29sOXVMOHlaU3pmaS9YUFptWUZ2SUVxT3l3WlBKVjl4?=
- =?utf-8?B?YzZZQVdhK05HRHdMeDBWU1NIdjRqcnJMUFRQYU9LV3EyWWJyR1I2QnlGYzcy?=
- =?utf-8?B?RHc2YnBRamNoQWFXUDIyRXBtL0JyVHp0cHByRnJNN3dtaU1sTnpUdkpYTUk2?=
- =?utf-8?B?R01mU1NwODBLWDc0WE9ISFQ0cE1ZMnFVckQzNUtDOWwwL1Rsdm1JTGd5N1Fu?=
- =?utf-8?B?SG5OTDZBUFVMbklNcmhQVmY2a2lJMlg3emcrNngwdGJ2SG9nemcraXRyMkZw?=
- =?utf-8?B?MG5kRFpuQk9RZ1cwdDlha1g2YWJEWEVJeFdqT2RrUjR2U3hxQVpaSXFscDlo?=
- =?utf-8?B?RWMxMkszR1hCMWJDQzNiVzRYNnRpTXJkLzZFZ2djZDkrS2J4WGZuTFgvNyti?=
- =?utf-8?B?emhmK3V3VkNnRzlxaWR2ZVpKOUVnMXdkTk44Z1JTVytYTDR6elpxa1RsTWtW?=
- =?utf-8?B?TWdLYXZFQ2FrRmNJVUFQdnNKb29DbktHS2NxZ0tXMUhsVmRVOXhseE5EZ3Zl?=
- =?utf-8?B?dmx1dHo1a2JNNk5OUnZhbStzc2k3OCtXNUgwNXE5TGNaSmxxbnZpcE04NlNS?=
- =?utf-8?B?ZHJNUEFLNWxaZzB2TzB0QWNEK1NCSFNudWJxeEQwT3RQb0t1ZjVINm5NYnhI?=
- =?utf-8?B?K2FZR1FOaVRmaVJGWkgrMXhJR3FVMHpqSHpFdUhuV29jZ0hLMmtVOG1zWm9P?=
- =?utf-8?B?WHVvWTREN2EybUZqUkF5Z1duT20rZWFMUXh4RXRveUt1L3dYYXFCY2ZVMXZq?=
- =?utf-8?B?Q2h2aUNURjdEMnBOWWJCazRBSlJud2UzbFJCQ2IxV2FkME5YMnBvc3I0SlVh?=
- =?utf-8?B?SU1SMEk5dm53U096dzJEY2luYUE1Nkx4WXpoSWlFeXNqcEkycWo1Z3JVaDB2?=
- =?utf-8?B?Rmc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4e13ad05-39ff-4918-3969-08dc2d036bb5
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cm9FcDdUd2gyWGt3Vjl2bWwyZjFMOGI2aGs1eWZQZE1IZ1pUMGtVV1RwbWtH?=
+ =?utf-8?B?MXBSUGQxNXlqOHVDUzBwaGxMc3NnTUxSQlVsTWxsRk54NDZJWmdyWXhZUlJI?=
+ =?utf-8?B?MlY0QWI1MXAzR3B2UTNJZjBhbDYrUXh3S285dDFCNWlHb0lqRno5TmVuNDFQ?=
+ =?utf-8?B?T0ZtNngrMFlvZ2dPNjlYTThUd3lLUGdJN3UybzlFeExSMFcwZ2YxbGRtVEtr?=
+ =?utf-8?B?Wmc1RVQzOWNldUpZcVBTdnVpK2Z3bVpueUc5SUxHT2hQazg5Sk52WVltVlhL?=
+ =?utf-8?B?ckpucU1uYTFDT1RxaVFtRjdyMThIMStSZ2kvZWZUbitST01Nd2pwVVBqWld1?=
+ =?utf-8?B?UzFTVEtCRXRzNkkxNjVLTUVvQjhIMGVyM2V0bVl2UFIzdkNVTHVjNHFBS05l?=
+ =?utf-8?B?TEE5NFFrV3IyTVNDeGtJOTI0MW1XRHVrdTFTMmRJL0J0aUhDN2MwMW9TSjZW?=
+ =?utf-8?B?UzIyVFc5ZkR6NlZvM3k5dlBGd3JmR1pFcjJldnlEVTdnYnJMeGdDOXdRV2hH?=
+ =?utf-8?B?N0V1WXpUelZyQlJIYU1hcVZXSG10VUNoTENQZXBWcGc1eDZpTjFyQ0E5M2V3?=
+ =?utf-8?B?T2x1L1EydEJnYTFFcGlaR0JVUkhiZnZ0VEltaTZXNVdCS3huY2Y1L2krdUE4?=
+ =?utf-8?B?b2hxYU9KMDZCcFIyNVptNHUwbmNHTXVtR3pkWWhCaTJOSURmc0pYcFV5UVlw?=
+ =?utf-8?B?bVJxbkhNb0tMd282RTRoK2lmWEZsU1hoMk9nQWl2TlQ2a0N0SjFTdktYeC93?=
+ =?utf-8?B?bWc2OVVaZjBMT3BCVTFBSmxtd2FEMWcvMC9IU0lzYWQ3a2JoeG9qWVZJQXY0?=
+ =?utf-8?B?Sis0QXNGYkFOeGEvdzlEcTREZUdncTNmK1J2Y1hESUl2dTRoWm44clkxcWNL?=
+ =?utf-8?B?ZVhkMnk0UnVIbmtuZWpiaUNWMTQ2dUJUUXBTeFFjMS94bU9hOXRqQnZJVlI0?=
+ =?utf-8?B?aXNlZENpei80QnlYc05veS9jck5ESUgyWHZaVTF2UUNIeDR4bnZaK1RFalU3?=
+ =?utf-8?B?QVdKU0FnUWZjNHJTbjdzWnhVWE1RNzFMVHVSMG5VZ0kvS25Vbm1HRksvSnBQ?=
+ =?utf-8?B?ZVM0Z2ZnSlllMmpLTHEwbm95alRkWWo4UDIxd3E5c05pOW1GdE8vMUJxNFVy?=
+ =?utf-8?B?OU1ONDAvUTgrVmpRRVMvR2laNXRhRm9xK2tWNGZ2emxEUkVCUDZWVjdkV2gx?=
+ =?utf-8?B?SkIzTHRvRjJsKzBTRDhNZmpwbC90ak9zaVpQZEN6bG1SNjduM2tzaEZ1VmRw?=
+ =?utf-8?B?ZytJYTJpNmhLc3ZIaVF6NkhSYm9iVGNVdFdYeDc4K3JWR09TU0ZJbFZ4VCtw?=
+ =?utf-8?B?dXczY0JCZUJOT3VwREQ3dURzL0plY0IvenhkejAvTG95TU4vMzZzMHFsTS82?=
+ =?utf-8?B?WndRZXVjTkJzU09rckM4TlB3eEgxdHo3RXNVSjBHWlZUdkd3N01iUXZvd0Qz?=
+ =?utf-8?B?dUJsUm96TzJVMGpTOTROcUtEK3RhZVJVemZFN0FLU3VmM2NUeU9jVWU3Mm56?=
+ =?utf-8?B?ZEQ5WFZjejArSC9xOWxEeHZZV3hJUWN3UkUxZ2ptM2hWTnh2SFhiRTRTemw2?=
+ =?utf-8?B?V2hSdmo0RjNaRThqc05RMGNkYnQ1dEdTOW5ZR3JSdENvVFBGTUxCU3QwRnJi?=
+ =?utf-8?B?eUljMGpNanZrV21uV1NyM2hmNGxLVXNTb1BjQVVlc2JodDdqd2lkMk5QdVVH?=
+ =?utf-8?B?UURuVWFHd1NkbmNDY3ZBeStFbUZNanN6S29XVmF5bDNVUThid0c5SWRvbTRK?=
+ =?utf-8?B?SE9xNDZmR3paVEtZWWRMb01rV0F1Ly9FZFFsME80N29OQXpndnArTERJSStI?=
+ =?utf-8?B?cGNoWGdqUjRsMVdFUjlMUEgzS0xHQ3R1UlB2SE9BL2JUa1R5ekE4aXpQbmh0?=
+ =?utf-8?B?aSs0ZWROazRRZ3hsbTlrdWF4RlM3aGpaWmlyYjdEbksvZHBtRmJTM1dPZEs2?=
+ =?utf-8?B?bDJBMHZuNGlRZC9jMFljbENqVzVZRzdGcEtLdlFtVHl3SXZYY2I1QUd3bEdY?=
+ =?utf-8?B?SGtRUGtGVUNyU3Z3L2YycTcwa2JWYnNpL0JrRUZsQ1I3NGwxcU11MDV0N1dO?=
+ =?utf-8?B?UTQ2UjFOVDBaU3h2ankvQWdzcm9NQldyUlZpOW11TGpJZWtuUWNQVzYvaXNG?=
+ =?utf-8?B?MSttWG10Q3JITEN6N2VQUFNqcld5b1N5eVFaYWV1S3pub3ZVRWU4Qkg5eUw1?=
+ =?utf-8?B?eGc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8962e59d-9b95-4e4a-dce9-08dc2d03732f
 X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8441.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2024 02:19:49.6368 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2024 02:20:02.1887 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: M8mT37gnLb1ZqRV5+19dMP4CCwU1L2rKoa0/Rw/AQF87DBt+DJfCvfQ0MeJFcp6Vb0aszr9TjhCLIvMRaNnZCquajYUe8SQiTem0OMyC0Mk=
+X-MS-Exchange-CrossTenant-UserPrincipalName: 37b9GpHeSXgeszXP81Km4VsCJ3znkMBwEitMEHS2Ls1Y5jo/1J/PrRzExSiUn3pTHv2IO3CG6KCphVI721z+JGm2QsrVG8utCYSC24LQ0I0=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5160
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -168,145 +168,87 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On 2/8/2024 10:35, José Roberto de Souza wrote:
-> Due to a bug in GuC firmware, Mesa can't enable by default the usage of
-> compute engines in DG2 and newer.
+> From: Francois Dugast <francois.dugast@intel.com>
 >
-> A new GuC firmware fixed the issue but until now there was no way
-> for Mesa to know if KMD was running with the fixed GuC version or not,
-> so this uAPI is required.
->
-> It may be expanded in future to query other firmware versions too.
->
-> This is querying XE_UC_FW_VER_COMPATIBILITY/submission version because
-> that is also supported by VFs, while XE_UC_FW_VER_RELEASE don't.
->
-> i915 uAPI: https://patchwork.freedesktop.org/series/129627/
-> Mesa usage: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/25233
->
-> v2:
-> - fixed drm_xe_query_uc_fw_version documentation
-> - moved branch_ver as the first version number
+> The infrastructure to query GuC firmware version is already in place. It
+> is extended with a new micro-controller type to query the HuC firmware
+> version. It can be used from user space to know if HuC is running.
 >
 > Cc: John Harrison <John.C.Harrison@Intel.com>
 > Cc: Francois Dugast <francois.dugast@intel.com>
 > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 > Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
 
 > ---
->   drivers/gpu/drm/xe/xe_query.c | 44 +++++++++++++++++++++++++++++++++++
->   include/uapi/drm/xe_drm.h     | 31 ++++++++++++++++++++++++
->   2 files changed, 75 insertions(+)
+>   drivers/gpu/drm/xe/xe_query.c | 38 +++++++++++++++++++++++++++++++----
+>   include/uapi/drm/xe_drm.h     |  1 +
+>   2 files changed, 35 insertions(+), 4 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-> index 4f1ab91dbec58..92bb06c0586eb 100644
+> index 92bb06c0586eb..7855d04e032f2 100644
 > --- a/drivers/gpu/drm/xe/xe_query.c
 > +++ b/drivers/gpu/drm/xe/xe_query.c
-> @@ -516,6 +516,49 @@ static int query_gt_topology(struct xe_device *xe,
->   	return 0;
->   }
->   
-> +static int
-> +query_uc_fw_version(struct xe_device *xe, struct drm_xe_device_query *query)
-> +{
-> +	struct drm_xe_query_uc_fw_version __user *query_ptr = u64_to_user_ptr(query->data);
-> +	size_t size = sizeof(struct drm_xe_query_uc_fw_version);
-> +	struct drm_xe_query_uc_fw_version resp;
-> +	struct xe_uc_fw_version *version = NULL;
+> @@ -544,14 +544,44 @@ query_uc_fw_version(struct xe_device *xe, struct drm_xe_device_query *query)
+>   		version = &guc->fw.versions.found[XE_UC_FW_VER_COMPATIBILITY];
+>   		break;
+>   	}
+> +	case XE_QUERY_UC_TYPE_HUC: {
+> +		struct xe_gt *media_gt = NULL;
+> +		struct xe_huc *huc;
 > +
-> +	if (query->size == 0) {
-> +		query->size = size;
-> +		return 0;
-> +	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
-> +		return -EINVAL;
-> +	}
+> +		if (MEDIA_VER(xe) >= 13) {
+> +			struct xe_tile *tile;
+> +			u8 gt_id;
 > +
-> +	if (copy_from_user(&resp, query_ptr, size))
-> +		return -EFAULT;
+> +			for_each_tile(tile, xe, gt_id) {
+> +				if (tile->media_gt) {
+> +					media_gt = tile->media_gt;
+> +					break;
+> +				}
+> +			}
+> +		} else {
+> +			media_gt = xe->tiles[0].primary_gt;
+> +		}
 > +
-> +	if (XE_IOCTL_DBG(xe, resp.pad || resp.pad2 || resp.reserved))
-> +		return -EINVAL;
+> +		if (!media_gt)
+> +			break;
 > +
-> +	switch (resp.uc_type) {
-> +	case XE_QUERY_UC_TYPE_GUC_SUBMISSION: {
-> +		struct xe_guc *guc = &xe->tiles[0].primary_gt->uc.guc;
-> +
-> +		version = &guc->fw.versions.found[XE_UC_FW_VER_COMPATIBILITY];
+> +		huc = &media_gt->uc.huc;
+> +		if (huc->fw.status == XE_UC_FIRMWARE_RUNNING)
+> +			version = &huc->fw.versions.found[XE_UC_FW_VER_RELEASE];
 > +		break;
 > +	}
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	resp.branch_ver = 0;
-> +	resp.major_ver = version->major;
-> +	resp.minor_ver = version->minor;
-> +	resp.patch_ver = version->patch;
-> +
-> +	if (copy_to_user(query_ptr, &resp, size))
-> +		return -EFAULT;
-> +
-> +	return 0;
-> +}
-> +
->   static int (* const xe_query_funcs[])(struct xe_device *xe,
->   				      struct drm_xe_device_query *query) = {
->   	query_engines,
-> @@ -525,6 +568,7 @@ static int (* const xe_query_funcs[])(struct xe_device *xe,
->   	query_hwconfig,
->   	query_gt_topology,
->   	query_engine_cycles,
-> +	query_uc_fw_version,
->   };
+>   	default:
+>   		return -EINVAL;
+>   	}
 >   
->   int xe_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+> -	resp.branch_ver = 0;
+> -	resp.major_ver = version->major;
+> -	resp.minor_ver = version->minor;
+> -	resp.patch_ver = version->patch;
+> +	if (version) {
+> +		resp.branch_ver = 0;
+> +		resp.major_ver = version->major;
+> +		resp.minor_ver = version->minor;
+> +		resp.patch_ver = version->patch;
+> +	} else {
+> +		return -ENODEV;
+> +	}
+>   
+>   	if (copy_to_user(query_ptr, &resp, size))
+>   		return -EFAULT;
 > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> index 50bbea0992d9c..0819959a52227 100644
+> index 0819959a52227..03d12b8f33744 100644
 > --- a/include/uapi/drm/xe_drm.h
 > +++ b/include/uapi/drm/xe_drm.h
-> @@ -574,6 +574,36 @@ struct drm_xe_query_engine_cycles {
->   	__u64 cpu_delta;
->   };
+> @@ -583,6 +583,7 @@ struct drm_xe_query_engine_cycles {
+>   struct drm_xe_query_uc_fw_version {
+>   	/** @uc_type: The micro-controller type to query firmware version */
+>   #define XE_QUERY_UC_TYPE_GUC_SUBMISSION 0
+> +#define XE_QUERY_UC_TYPE_HUC 1
+>   	__u16 uc_type;
 >   
-> +/**
-> + * struct drm_xe_query_uc_fw_version - query a micro-controller firmware version
-> + *
-> + * Given a uc_type this will return the branch, major, minor and patch version
-> + * of the micro-controller firmware.
-> + */
-> +struct drm_xe_query_uc_fw_version {
-> +	/** @uc_type: The micro-controller type to query firmware version */
-> +#define XE_QUERY_UC_TYPE_GUC_SUBMISSION 0
-> +	__u16 uc_type;
-> +
-> +	/** @pad: MBZ */
-> +	__u16 pad;
-> +
-> +	/** @branch_ver: branch uc fw version */
-> +	__u32 branch_ver;
-> +	/** @major_ver: major uc fw version */
-> +	__u32 major_ver;
-> +	/** @minor_ver: minor uc fw version */
-> +	__u32 minor_ver;
-> +	/** @patch_ver: patch uc fw version */
-> +	__u32 patch_ver;
-> +
-> +	/** @pad2: MBZ */
-> +	__u32 pad2;
-> +
-> +	/** @reserved: Reserved */
-> +	__u64 reserved;
-> +};
-> +
->   /**
->    * struct drm_xe_device_query - Input of &DRM_IOCTL_XE_DEVICE_QUERY - main
->    * structure to query device information
-> @@ -643,6 +673,7 @@ struct drm_xe_device_query {
->   #define DRM_XE_DEVICE_QUERY_HWCONFIG		4
->   #define DRM_XE_DEVICE_QUERY_GT_TOPOLOGY		5
->   #define DRM_XE_DEVICE_QUERY_ENGINE_CYCLES	6
-> +#define DRM_XE_DEVICE_QUERY_UC_FW_VERSION	7
->   	/** @query: The type of data to query */
->   	__u32 query;
->   
+>   	/** @pad: MBZ */
 
