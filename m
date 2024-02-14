@@ -4,59 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 515BFC48260
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Feb 2024 02:12:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D195BC48260
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Feb 2024 02:14:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5BC910E1EF;
-	Wed, 14 Feb 2024 02:12:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77C9810E317;
+	Wed, 14 Feb 2024 02:14:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fruqHhSq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AQafpOnB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0936B10E1EF
- for <Intel-Xe@lists.freedesktop.org>; Wed, 14 Feb 2024 02:12:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1672A10E317
+ for <Intel-Xe@lists.freedesktop.org>; Wed, 14 Feb 2024 02:14:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707876747; x=1739412747;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=d2+eLnroO5X2aERlSPBrCqvhYDfAQ4Mcqv2gfNb+IKs=;
- b=fruqHhSq16ITZsj5+Bh9Roj9YIdt5xinnIkO9agwRBzzjmKZPzXsn3l7
- V4auhRjIChBK6pX+eHCaTNOHb7gKYeMESrVqRE3X+2C7WUZWbyUjzKUDx
- l2IjQ8QRCKESAwOFo4J067yf6OMJlv1R/MSjOhuNmjBp8QE/HPn/gy5KB
- ayXsDhRpK064E5+DpDcmEkHrS0+mky8XbSTdOGeRW9w/fZJ4/HcgzItDz
- p5MUdTBIVnpl7Qk30axYqOU+F6KOx4xPmUeFgGAFbYet6ZcBTvtr2SX+t
- gLDHTiIFI9tzy4A4tlW44coN3pVWzXGXjdGNUgFoIQTP2PU0xLQrChhjU Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="13307510"
-X-IronPort-AV: E=Sophos;i="6.06,158,1705392000"; d="scan'208";a="13307510"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2024 18:12:27 -0800
-X-ExtLoop1: 1
+ t=1707876864; x=1739412864;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=/dsvun+3wqDpa3Mul+yCFu4dDp7GVv4+uBySwzmJ4A0=;
+ b=AQafpOnBr9rcIayEWCfmpfJ9hJHdyPbpHdCRmDY4C3FAMMWTg1Z2SwME
+ Bml5nXhN1CMK+z6WRe0rES1Io/DFjygN+Mve1OLbIHToFf/M2Qljk9TzD
+ 9Npyi+sQ68Bsv6VH2Hj547BSo7AgsYy/ME8IOcQdgAEpIdQKAh/dzW406
+ U0+QJGWMsE7maYYnBPLcqCVeQNtXKVbOcpP7lO3N7xiaecNlh5hOdZbDK
+ SsiOk2g4t+TMlBq37JSZpAFhQbbvxSpNhv++0aiwkKn/uRcLRna6S3Gi6
+ nLU+Pbms1eoHdz4hiTaq4TWq76i2d+jU62EeoocM/D7gFXtnQWEh7uvSn g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="2035681"
 X-IronPort-AV: E=Sophos;i="6.06,158,1705392000"; 
-   d="scan'208";a="7698884"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmviesa005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 13 Feb 2024 18:12:26 -0800
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+   d="scan'208";a="2035681"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2024 18:14:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,158,1705392000"; d="scan'208";a="33863654"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 13 Feb 2024 18:14:23 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 13 Feb 2024 18:12:25 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ 15.1.2507.35; Tue, 13 Feb 2024 18:14:23 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 13 Feb 2024 18:12:25 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.35; Tue, 13 Feb 2024 18:14:22 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Tue, 13 Feb 2024 18:14:22 -0800
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.40) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 13 Feb 2024 18:12:25 -0800
+ 15.1.2507.35; Tue, 13 Feb 2024 18:14:22 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iCv4AxcFWDJy8ItS9hkTJY3NeqjVDuGn1qj8ApWBMIlqoAHpixB4CQAcMCCSY2Qd6XY9vcoNHobqQFt4y4kOroOvMbDLYYJkvcbgIgdnLRHYx41ZqEXNvCPgNhwfBLb74UuQ0g7ne1yqHrqK54gllCQR3ZHiBm75wUzCJB+DPXVlpnKFkFoO6du+YmAhhWydfUhp8+aIlZlCSzgELl5x9iI5YagNL4cyh6x/i6oiaHxyDdSQKTj0JgPjMnI+pp0SSFcDnOKRa5qJfvgrs+yW9xWKar/+jDXnUs4GhrZh8iShVZ8HdWGrfAcMuYnbOiD0TnZiTM+6qLqstmlowhqZ3g==
+ b=lZLfwkUwsKyTwfePVgOqPkn4cgSNSftz7wXrhmweCdN0QAzOb5tb2KmMcw+I+07QpnGxfkKLg2NwYUwJ6X125dSeTtyFrOZIySbZISoFToH+7YdpwuZtbiREIfmqlEfN0lNbR8qCsStilDucde3M3Lo0U/hySdhzk0+PqPyJGSNIGgfsU7sl1NOch6Z+X9Kdi1gc80SsmePeZKyIKdj+3WM3mYjNdX489VagiBh3gddHBKaqZhtlaJWg76u44wzIx7Dhzn4nEG1R4iyC3CWAwY/uA1j0bwhyY7NgTGR2jkAZDkt71RXGVmcd+kJd5pN1NMAGQX8afIsRVa+iJjKIvw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=P1ZVlrnUNzEzwklTHySym4Z2BSS9oeVGrt64Kddv15Y=;
- b=ZlPQ/RAJrJc69ht1W8QsrishZcXOYfG7+GLND8AmnSuYOEMMmcMdLLraPUdOC5PUuOJbQ/XGfIJhQ6V0Pa3ggW16HD47T2EkHVF5rlt2eYd4D53jYroeaDJuNedyS6LfJYmYNrB4T7gWRnqeUvFb3CdxVdS76ke64je7YObMeddv9JhlZtQBxZBQr1EwQkAmT5smkZKLDiq6ZD8osIUkRKJi+KebSBT6dRZfd+a3mnlgagZKcXjX03IzIzJMUhzJCpFA3zgHUhfPr9ks5xdyO8JkxOcEv5DqhcStXxvkUf3umADkPl31CNxJPqHAbTa13ewy4+PpxsImNXKIEulpxw==
+ bh=Es5vyv2MwdUHYZBP++C1vI8EPMDWybN3zcV44UWsvu4=;
+ b=ZOAsehWr6barAMdS/WH43GH/K7xe0X+q7bWk5zm3YcOsXPX6EM5jfG+g6076iuQaaXIdYxO7eo9LmhJWSlUOZvih2bESngCpTDt2+UMwS5KaWo+c0nPrs6Y1Vs/iFo7+Ad9+bkN2kYLAmE8pfObHh0XZituTDsPst+Fe8a3LDwHluoGxmLgUAWdHr/6n7c6lHB17Hv3xhdU9zcIYtsfEEiO1fxhDrx8AO6dTWoZ+HYe4f3Y1jKAyYm0Fqpim0z1cf4RRqDZuqGVWNa443janEFwESxG0tmDE20UVO5+LyHoiBEogV1OU4t6yj3TGZll+zU5Jjrj/sJIAsAHolnZEjA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -66,87 +70,87 @@ Received: from CH3PR11MB8441.namprd11.prod.outlook.com (2603:10b6:610:1bc::12)
  by PH7PR11MB6403.namprd11.prod.outlook.com (2603:10b6:510:1f9::9)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.40; Wed, 14 Feb
- 2024 02:12:23 +0000
+ 2024 02:14:18 +0000
 Received: from CH3PR11MB8441.namprd11.prod.outlook.com
  ([fe80::c590:37b4:ad48:cd0f]) by CH3PR11MB8441.namprd11.prod.outlook.com
  ([fe80::c590:37b4:ad48:cd0f%3]) with mapi id 15.20.7292.026; Wed, 14 Feb 2024
- 02:12:23 +0000
-Message-ID: <7d8760f4-5867-4e07-a82d-d2e64e564272@intel.com>
-Date: Tue, 13 Feb 2024 18:12:11 -0800
+ 02:14:18 +0000
+Message-ID: <81c28b98-82f7-412c-a60d-9b19e372faeb@intel.com>
+Date: Tue, 13 Feb 2024 18:14:16 -0800
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] drm/xe: Make read_perf_limit_reasons globally
- accessible
+Subject: Re: [PATCH v2 2/2] drm/xe/guc: Port over the slow GuC loading support
+ from i915
 Content-Language: en-GB
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-CC: <Intel-Xe@lists.freedesktop.org>
+To: "Nilawar, Badal" <badal.nilawar@intel.com>,
+ <Intel-Xe@Lists.FreeDesktop.Org>
 References: <20240213003426.3943662-1-John.C.Harrison@Intel.com>
- <20240213003426.3943662-2-John.C.Harrison@Intel.com>
- <ZcuJOkUkZnss9ttl@intel.com>
+ <20240213003426.3943662-3-John.C.Harrison@Intel.com>
+ <d8ec5d48-b356-42c6-9140-41c6868a1546@intel.com>
 From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <ZcuJOkUkZnss9ttl@intel.com>
+In-Reply-To: <d8ec5d48-b356-42c6-9140-41c6868a1546@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR13CA0208.namprd13.prod.outlook.com
- (2603:10b6:a03:2c3::33) To CH3PR11MB8441.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BY3PR10CA0015.namprd10.prod.outlook.com
+ (2603:10b6:a03:255::20) To CH3PR11MB8441.namprd11.prod.outlook.com
  (2603:10b6:610:1bc::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: CH3PR11MB8441:EE_|PH7PR11MB6403:EE_
-X-MS-Office365-Filtering-Correlation-Id: 096af646-901b-488a-e51e-08dc2d02618b
+X-MS-Office365-Filtering-Correlation-Id: c1c7f7bf-89cc-4718-5a0c-08dc2d02a666
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cGsPI4uBIGFLjFSk2JSY/U1MV5u6vukbjJ68yj2XbvpgWD4haG7plvEi97HLohI90Vqm6+p5ImyxFAODxmuU1j25i5qDdPS7eeuJBYx2jiUsSCmRXH5UTkodCoMRW6bAREk8IQsDLUWwPWrSpSzEh/H5qPxn1APAVjVNLVAiEqCQOmRSyqvs3PdRHXEl43HNpGxkcJNz++HE7oCMVXs5/OFdFcuNmUnc4uvj5QvqAUe5DrJZaBcVPtp8JsGM1nEyJrVBeLF9TTVC/4INaTKTX52cMW271ixSL8km4k9063alpVpCFpxlrZR1Pyj/G4ygH0yzS+e4MqxVEXJnGm7UKEefb78nHnoqpMNGTeKWU7+vJoG+ZZSNzTkkoh2LzZZ2Ft2GxZoTXTGL8HGDqvi+YMhMjGMsjn+AB8I5lgOAKw3Q1FKszOLTJ2MavGa2uT+f9A3sbPyg1FB3oJBBDF0keKMdmm/fZs1oYTqao/U/ckobFGYpS1jI8gW66dhtIAfsi/JQ7HvpYyE1eEysqdDYZAT10CXgbDWXVPRrbQsFK7a3zeL4QMlsFfsqevqvlrk4
+X-Microsoft-Antispam-Message-Info: MEIjp2G4MM1ICDsV7xyDD5vmLrDYzr9cBZgMvqd2G5+Y4lq3mr9gDgKdef3Sc8tNFBovzMNVQ0VlU1TWkAmtfEMim9WIl9vgMP/EOvTWG2SMFH9S7Ox1IYGcRPNl42z+4dijdKpypj1lkt9+2W44cczqTxDkgulScpO+5v5XzG/gPZYXBdRKC3U13AEPMk7c9whcPaubYgDzAiWhqrbye3LFUqk/c45ua65iPMPVHAGjxGBKuHGmqiHo5cVdvGyYFghTOMD9/C9KY3bSKz/hK//N4yFTCxjbLZdHQJx1QwFvWDepIJBbRl5JpVPXBnZo7ovhU9b2ImWbP+zpPdw/RyInsVhPQM6CH7t6gGLHZ3xEUOhhDBHqYp/E05IcHRZ9efkVd6gaC8y9hr8d8aB6F3Owfqlweb1FxzGUkgFQkntB8dFiicThUodeiwS++qo8npV/Zqe5t+dl8IaOrxQYQgFLBPRNAyQaT8J09/tO/zN0OXxtK1ELQ0srx/wNt2ht8vhr6EYkPojydNYcxEAIES6EysiBnQUNlIA2HJ4TAL82RyNg+Cmr2j0UxDHR6BgQ
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH3PR11MB8441.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(136003)(366004)(346002)(39860400002)(376002)(230922051799003)(451199024)(64100799003)(1800799012)(186009)(6636002)(37006003)(6666004)(316002)(6506007)(6512007)(8936002)(53546011)(8676002)(6486002)(66476007)(66946007)(66556008)(6862004)(4326008)(38100700002)(41300700001)(82960400001)(31696002)(86362001)(2616005)(26005)(478600001)(36756003)(83380400001)(2906002)(31686004)(5660300002);
+ SFS:(13230031)(396003)(136003)(366004)(346002)(39860400002)(376002)(230273577357003)(230922051799003)(451199024)(64100799003)(1800799012)(186009)(316002)(6506007)(6512007)(8936002)(53546011)(8676002)(6486002)(66476007)(66946007)(66556008)(38100700002)(41300700001)(82960400001)(31696002)(86362001)(2616005)(26005)(478600001)(36756003)(83380400001)(2906002)(31686004)(30864003)(5660300002);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OU8wNFg5dUlrMUQ4QThmN1p1cExXK0U3OWNiR3FkVjlGekJya0I5VVhrVHJx?=
- =?utf-8?B?NVJibXJYQWI4SG9Dblh2QXR2aStld1FpcnZDdEgxMjdqK2VaeXNjSXNoZGpM?=
- =?utf-8?B?OUNYMzZTcnBQeFpRUVZjRmlyN055VzFRakhUSDE4dzZ5NnFKS3REanpINmhn?=
- =?utf-8?B?cTNocWw4ZlRnbEtjeTJ2WXpWbER5ZW80am5sUnZiSXkrbFlxWG9qRmVhQkl1?=
- =?utf-8?B?VTM3VVZ2RFJEQ3pTclBiUUEyNnZKTGZPVWlIUzJiY1c0MUFGbFE4dW5tOWpU?=
- =?utf-8?B?Vjh5Zjg4UWNHemx0NEJ3RFdReGQvQk1aNTVuMUtrSnk4R29jbmN4NEp3bkJ2?=
- =?utf-8?B?WTYvTGZveHlpQVNQenFCSS9NWHBQbVByVjFncllhNm05Yzl5bjVjdkhRajhv?=
- =?utf-8?B?TFROTStVWGZqb1hKSkovbkUxZ2RaTDR1dWZkZEdoTjFwZDVITEtXanJ4dERX?=
- =?utf-8?B?amJpMlBidUxCV3NRdWhBalRHNEtJMkp4Z05ZRjM1MzUyY2toMUd5KzJOVG1L?=
- =?utf-8?B?RDFnSGllMVpRTERyN0N1L1R3MzZrREtISWRCcmNvNjhHOUZCOWY2VVhTSFdu?=
- =?utf-8?B?OUxSZ0JxT2ZRNGJHZGovdVBjZldjVHRCNkRuTndkMHp2ajlsTzZ5ZGY2bWVD?=
- =?utf-8?B?d1NxamY3MHdTN1lScktxTUxtZTF6SHVaTVR5TkVJU2JrdEZmaG03akNlalNI?=
- =?utf-8?B?cXdqQ0w4T0l0T0lKWHErQ0Y5cmFlYSthK1FIRVRRNWJzbnN4OG53TlNjMWxp?=
- =?utf-8?B?VXJsMHhyQjJ5cE43dktUU0tkQTIwb2EvZ0ZlcTJoaG1lNWVvdXRhVTllWlJs?=
- =?utf-8?B?UWVDTXlhd00vTkJ2a2IxcHBJMUFyUWRkcGdlNE11R1RaaU9tQmYzWllzcDU5?=
- =?utf-8?B?OHhkdnQ4M2YrUlNlOTNlWFhTWmVINm9JR2VDY0hDVUlZSUdzZUNBMHBGTlE2?=
- =?utf-8?B?MW5mWnN2RFk4cWd6eFJWZ0xMQ1NZa2hkUjBsUnhPbWtMMGYyVEV5dlJ5QUhj?=
- =?utf-8?B?RCtpNGlPOFUwU1RnSEp6bm9yVTBmWGV0a3NPOVZob2hWeGdqV1Fid0w3d002?=
- =?utf-8?B?VTVEUjJJcStwODZ1YWFMdytHeTM3RkhzTUNzSExqdlZITkZzd0lQUEl1M0Y5?=
- =?utf-8?B?RE1mWVhSQVBLK2ZQM0FEUENUVWJWSHFQUk13ZldDcHRDOGVubVVVWGtmaXlq?=
- =?utf-8?B?Ky9xdjE0Q2pMUGJ2ZnI1bXJkR245VkRGbGkveWUwRmwzbFVub2dLMHlUdFpK?=
- =?utf-8?B?akhVSk9TS21hT0l0UGY3UDZad2pKN1VIMDBtVjNteEwvUjVGRXJMcy81WEtr?=
- =?utf-8?B?QklmNTVOL240VEoreUFuWTUwTEJMdlBtWHJJV2d5ZHBlK2dRc2R1aDlYdUty?=
- =?utf-8?B?d09ubi82VFRlZkdVUWloNTRtQ25GcDIvS09wMnBrc25XZ1N5cG0xZ21GRXZo?=
- =?utf-8?B?SXB4OG5qUk42VjdHamxZdVR4czFDdmFkUVB0dVRqYXFMcWZBTFBobmNDTXZK?=
- =?utf-8?B?akJjOUhzSzdZekJmdGI4WkgxMkdvQTRRb1ltck1ZWVFqeW5PTTF6TDArVUZs?=
- =?utf-8?B?d2g2TjRWdW1WaUxYZlFHdm12dC93Slp0N3d4L3BBdEtmbmpJT3RDazVpVUQv?=
- =?utf-8?B?eFltZ1V1T2NrSVRBODBwLzI1bk1DYTlaMVdzYTdtSUd3WFprOEF2R2duVVRs?=
- =?utf-8?B?Y2FlR3VRUW9WcVBCZnVUbGxhcnZnbDBvdk93ODF2MjhGSXVMNmdOMVozK1lY?=
- =?utf-8?B?ZmdGWVQzOFFZVjhuZHpuYzExRGJ2THlyQlZsMWtuUUF5MEsxNzRkRThXM0lV?=
- =?utf-8?B?SmdZK2ZFZlNCK0xqc0Zpd0ppaEZpazFRbmtOcWpCWHVPSW8yTDFuOXJqU0FL?=
- =?utf-8?B?ZHliQVd2d0RrL01TOHRiNlZpN09iNy9SbndMNkhOTnk3NWxrcTBuZzlDWFRt?=
- =?utf-8?B?YjNTQkRuVVRkOEZZbTlVMjFXR2s4aEo2MWNBWkJLT3lMcHUxblk4aHdMbzdJ?=
- =?utf-8?B?S0o2cFhyR1BoNGxiSGhKanQ2QVc2Vyt1Mldpd3IyMkYyc3RtbCtLN3JIMDNS?=
- =?utf-8?B?QjdHMEo2UGtxVS9ieWtwZWJrd1VKU2dOd241VUhhMXI4Uy9NVkxybkRLSDRa?=
- =?utf-8?B?bDhCNEgzcTVGY2NOS09lQnd6SzlsSHkzMXhyQ1NwVk9SeDdicDRsaDdKKzlK?=
- =?utf-8?B?cFE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 096af646-901b-488a-e51e-08dc2d02618b
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZHo5UWN4OXJXVSt6VTNueTRKRldhK0pxdS94bkloTG1zUnA1OXRTZW9vQTIy?=
+ =?utf-8?B?d2YzOWxWOEUyVlNURGVIQmFHczBPaEQ5RS9XSTFGTnFHUW1VNFNTakRtVHR4?=
+ =?utf-8?B?Ulg0OC9RKzNqTy8rYUJHTUNDU1lvNzdSdXVrdGIyVUIrY3V6M2VZd3JIa2I3?=
+ =?utf-8?B?VEJuUURzRWx5cWFMTERjaTBtbC9MUlQrWHdHMGZjNkt5MnUwU05tRFFsdy9Z?=
+ =?utf-8?B?SFk3T2JYL29VOWpaSVpPWVRnN1h0VzR4c251OW9lOEZrWkt1ZXkxeTdnbDJs?=
+ =?utf-8?B?dVZYOElXM0FXZkxhQnlpQ3lzZzdJZWkxanZCTVhVRy9xbVJ4ZkZKeGFNdE5t?=
+ =?utf-8?B?YTQ4RStDOUJNWFUvM1hrT05TSGMrSzh4K0RjdHg3dTk2ZVMydUcxdTN4VU9Q?=
+ =?utf-8?B?R29heWx3eVFiNnMyVGhNQm5SUHRxMXFMQlFydWV1OEhsbXN6UVVHZ3FFTDVG?=
+ =?utf-8?B?YS9hMEY4T0JRaml4VHVualVJaUJrSFlEZ1YzMkhqTmE2eURNZWtjdVBWV2xn?=
+ =?utf-8?B?clpBZ2xYWUhKZ0pUbE5rUk91aDY3N2NsYW5ZUjJLdmppVTBQTW9lUHFXNzZi?=
+ =?utf-8?B?MHdMa2MycTV3RitKNTlNczJCV3BIYzdNMlY5RHpDenZNdmdjSHFmVFNiT0FY?=
+ =?utf-8?B?UzYxYjMzd0ZuZHcyQTluMjc0Y2FYZDZwbzZJOWZqTVF1NC8wdVArSlFIb0dk?=
+ =?utf-8?B?Y0lrR3prbkRlSFZtS1pwRkl6b2ZZZm90a2hSUjlVNFAybitoN2tGNStCVXAy?=
+ =?utf-8?B?eUdHTEY4Z0VGR3NZZ2NUNTdaSDlpYzlaRzlXd2lZR0VQL2ljWHVQeTRvRjFO?=
+ =?utf-8?B?WURhVFM1QUNVYTNidUpsdnRlM1dCeXpvb3ZBR2dDam9XRm5PcGpma1hyZW9q?=
+ =?utf-8?B?Z3UyU2ZuMVMwNzUrSXk5QmhRMzgyU3RhN2kxbHRPbk4yS3BxN3NDTDZ0cWhp?=
+ =?utf-8?B?SlZQTXJVZnBqQTN4RDdPcEFyZzZxVXltYy9oak4zNXZDU0FDQzhmNkltMmE5?=
+ =?utf-8?B?dzJJZnRMOVo4RHpydmJNZDEyS1hqNlpMOEF0UnFFdFk5clE2Q2pCY3k0ODA1?=
+ =?utf-8?B?SE0vOU1BeFBVZnNQdndEQWs4UWNTYUl4bjlWclN1b2pHOU1oaHhobktId3Fi?=
+ =?utf-8?B?WTJvUkg2RnBGTnRGN3VuT0pDUlp1L0lrMnVPcmRwUk5yc0lDQk0xeUhTQzhl?=
+ =?utf-8?B?YkhlOXJPcGlhZHpoYm85d280NXpEaHZRL2Vkak1RS09GMUhEejU5M2VwUXlC?=
+ =?utf-8?B?UGR0TG0wZ1NvSGVwL2ptUTkrUFB5VDBtSDI2Q2Q0M3ZqblRmOE1uc2NKdWNI?=
+ =?utf-8?B?dGFzbzYvUkNVc0hSNXNXdlFyQUExeXF3UUZhUGp6b29IUVpaeERRMktVbUlM?=
+ =?utf-8?B?bEJRbU9xWkJpQ010cFJFUVRGSm10Sy83Z3VlYTVlT0lhM0ZPVUVqM2h3Vmov?=
+ =?utf-8?B?NjZJWVJlQXRRUzc1S3J1UVdzd2t4RnhpNFJiMHEyRmN2VGkrVy9UbW5mak5X?=
+ =?utf-8?B?UmJLVVRWOEVxTGpFU3Q4dCtuU3ovcDJjaW1DdjdRUDBUMTJ6YjlBNkRXS0pG?=
+ =?utf-8?B?UEIxNXhvaWpBMis1N29heCtTeU04ZW1XZFROY3I1Vk8zNWhwY3BXdHp5V0ND?=
+ =?utf-8?B?KytTWWRqeTJmNUhDcnNneTZUYUpYdFVKTHFvUHFyejlTWGV2UVdqSkE2Y1lP?=
+ =?utf-8?B?b01rQXBXTXZ4bmJrUDNiYWpFVSs2eUxyS1FxU0c5TUhiSlh3MHR0RXpTcUtR?=
+ =?utf-8?B?aTNEaXM3ZUhMTE9iQjQzdVQxVEk0T3lESk05Ym9hUW1KZHZUMFZjbFJNMEhy?=
+ =?utf-8?B?Qnc2Tm05aGU1VUJuUHBMajNoL1RmUHhRV3d0UTM0aUlSeFRZVHM2bXM2dGpy?=
+ =?utf-8?B?bDc1U0FYYkVPQ1VFWk16cHVEdTNJWEhzSzREdVA0TEdZTWlSaDVra0lDb1Y2?=
+ =?utf-8?B?cHUyQWdtMndITGVnY054Mjlyd21VNUNrN2VMbEttMXpRM2ZGeUozVDlmcjVP?=
+ =?utf-8?B?TE9KYm5SL3IyK2lzZ1JkRDNhT0JGRVJZSldiOGdvbldDck1CZTBaTjNGM29D?=
+ =?utf-8?B?ZGtWTU4rWUJiSXRQTjBGK0NON2ZWKzJzeDljNmxFaG9uMDR0c2hYYS8vWmR4?=
+ =?utf-8?B?b2sranpHUlpabkEwUVBSc1F0TVZMOVVCOEt6aXYya1dBRnUzVFJLK0Q0SVRh?=
+ =?utf-8?B?b2c9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c1c7f7bf-89cc-4718-5a0c-08dc2d02a666
 X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8441.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2024 02:12:23.1062 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2024 02:14:18.6151 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9SHPfJVJ0lUMOR/9DblyqTWyLry/Kg1g7L873hJ8ud7Hmk4DzZ9PYg9/lblLLR+X0f8IvBZju+rVI/gY3klLzKlq1dTSs3pL5xLk6RPAIVw=
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9kbcFcdWEylzaLGmad2T3ME1RZ0ARVCs77OdHo1U1tXQ/6HdJ38ia+AqUqY0vBP5kjC9cnUL7l4JUzqZMpFvi+T3LWFkJGWloxhGOVWq5v8=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6403
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -163,194 +167,392 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2/13/2024 07:22, Rodrigo Vivi wrote:
-> On Mon, Feb 12, 2024 at 04:34:25PM -0800, John.C.Harrison@Intel.com wrote:
+On 2/12/2024 21:17, Nilawar, Badal wrote:
+> On 13-02-2024 06:04, John.C.Harrison@Intel.com wrote:
 >> From: John Harrison <John.C.Harrison@Intel.com>
 >>
->> Other driver code beyond the sysfs interface wants to know about
->> throttling. So move the query function out of sysfs.
+>> GuC loading can take longer than it is supposed to for various
+>> reasons. So add in the code to cope with that and to report it when it
+>> happens. There are also many different reasons why GuC loading can
+>> fail, so add in the code for checking for those and for reporting
+>> issues in a meaningful manner rather than just hitting a timeout and
+>> saying 'fail: status = %x'.
+>>
+>> Also, remove the 'FIXME' comment about an i915 bug that has never been
+>> applicable to Xe!
 >>
 >> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 >> ---
->>   drivers/gpu/drm/xe/xe_gt_freq.c           | 15 +++++++++++
->>   drivers/gpu/drm/xe/xe_gt_freq.h           |  4 +++
->>   drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c | 31 ++++++++---------------
->>   3 files changed, 29 insertions(+), 21 deletions(-)
+>>   drivers/gpu/drm/xe/abi/guc_errors_abi.h |  26 +++-
+>>   drivers/gpu/drm/xe/regs/xe_guc_regs.h   |   2 +
+>>   drivers/gpu/drm/xe/xe_guc.c             | 197 +++++++++++++++++++-----
+>>   drivers/gpu/drm/xe/xe_macros.h          |  32 ++++
+>>   4 files changed, 214 insertions(+), 43 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_gt_freq.c b/drivers/gpu/drm/xe/xe_gt_freq.c
->> index e5b0f4ecdbe8..51645a24009e 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_freq.c
->> +++ b/drivers/gpu/drm/xe/xe_gt_freq.c
->> @@ -11,7 +11,10 @@
->>   #include <drm/drm_managed.h>
->>   #include <drm/drm_print.h>
->>   
->> +#include "regs/xe_gt_regs.h"
->>   #include "xe_device_types.h"
->> +#include "xe_mmio.h"
->> +#include "xe_gt.h"
->>   #include "xe_gt_sysfs.h"
->>   #include "xe_gt_throttle_sysfs.h"
->>   #include "xe_guc_pc.h"
->> @@ -220,3 +223,15 @@ void xe_gt_freq_init(struct xe_gt *gt)
->>   
->>   	xe_gt_throttle_sysfs_init(gt);
->>   }
+>> diff --git a/drivers/gpu/drm/xe/abi/guc_errors_abi.h 
+>> b/drivers/gpu/drm/xe/abi/guc_errors_abi.h
+>> index ec83551bf9c0..d0b5fed6876f 100644
+>> --- a/drivers/gpu/drm/xe/abi/guc_errors_abi.h
+>> +++ b/drivers/gpu/drm/xe/abi/guc_errors_abi.h
+>> @@ -7,8 +7,12 @@
+>>   #define _ABI_GUC_ERRORS_ABI_H
+>>     enum xe_guc_response_status {
+>> -    XE_GUC_RESPONSE_STATUS_SUCCESS = 0x0,
+>> -    XE_GUC_RESPONSE_STATUS_GENERIC_FAIL = 0xF000,
+>> +    XE_GUC_RESPONSE_STATUS_SUCCESS                      = 0x0,
+>> +    XE_GUC_RESPONSE_NOT_SUPPORTED                       = 0x20,
+>> +    XE_GUC_RESPONSE_NO_ATTRIBUTE_TABLE                  = 0x201,
+>> +    XE_GUC_RESPONSE_NO_DECRYPTION_KEY                   = 0x202,
+>> +    XE_GUC_RESPONSE_DECRYPTION_FAILED                   = 0x204,
+>> +    XE_GUC_RESPONSE_STATUS_GENERIC_FAIL                 = 0xF000,
+>>   };
+>>     enum xe_guc_load_status {
+>> @@ -17,6 +21,9 @@ enum xe_guc_load_status {
+>>       XE_GUC_LOAD_STATUS_ERROR_DEVID_BUILD_MISMATCH       = 0x02,
+>>       XE_GUC_LOAD_STATUS_GUC_PREPROD_BUILD_MISMATCH       = 0x03,
+>>       XE_GUC_LOAD_STATUS_ERROR_DEVID_INVALID_GUCTYPE      = 0x04,
+>> +    XE_GUC_LOAD_STATUS_HWCONFIG_START                   = 0x05,
+>> +    XE_GUC_LOAD_STATUS_HWCONFIG_DONE                    = 0x06,
+>> +    XE_GUC_LOAD_STATUS_HWCONFIG_ERROR                   = 0x07,
+>>       XE_GUC_LOAD_STATUS_GDT_DONE                         = 0x10,
+>>       XE_GUC_LOAD_STATUS_IDT_DONE                         = 0x20,
+>>       XE_GUC_LOAD_STATUS_LAPIC_DONE                       = 0x30,
+>> @@ -34,4 +41,19 @@ enum xe_guc_load_status {
+>>       XE_GUC_LOAD_STATUS_READY                            = 0xF0,
+>>   };
+>>   +enum xe_bootrom_load_status {
+>> +    XE_BOOTROM_STATUS_NO_KEY_FOUND                      = 0x13,
+>> +    XE_BOOTROM_STATUS_AES_PROD_KEY_FOUND                = 0x1A,
+>> +    XE_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE            = 0x2B,
+>> +    XE_BOOTROM_STATUS_RSA_FAILED                        = 0x50,
+>> +    XE_BOOTROM_STATUS_PAVPC_FAILED                      = 0x73,
+>> +    XE_BOOTROM_STATUS_WOPCM_FAILED                      = 0x74,
+>> +    XE_BOOTROM_STATUS_LOADLOC_FAILED                    = 0x75,
+>> +    XE_BOOTROM_STATUS_JUMP_PASSED                       = 0x76,
+>> +    XE_BOOTROM_STATUS_JUMP_FAILED                       = 0x77,
+>> +    XE_BOOTROM_STATUS_RC6CTXCONFIG_FAILED               = 0x79,
+>> +    XE_BOOTROM_STATUS_MPUMAP_INCORRECT                  = 0x7A,
+>> +    XE_BOOTROM_STATUS_EXCEPTION                         = 0x7E,
+>> +};
 >> +
->> +u32 xe_read_perf_limit_reasons(struct xe_gt *gt)
+>>   #endif
+>> diff --git a/drivers/gpu/drm/xe/regs/xe_guc_regs.h 
+>> b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+>> index 92320bbc9d3d..a30e179e662e 100644
+>> --- a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+>> +++ b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+>> @@ -40,6 +40,8 @@
+>>   #define   GS_BOOTROM_JUMP_PASSED REG_FIELD_PREP(GS_BOOTROM_MASK, 0x76)
+>>   #define   GS_MIA_IN_RESET            REG_BIT(0)
+>>   +#define GUC_HEADER_INFO                XE_REG(0xc014)
+>> +
+>>   #define GUC_WOPCM_SIZE                XE_REG(0xc050)
+>>   #define   GUC_WOPCM_SIZE_MASK            REG_GENMASK(31, 12)
+>>   #define   GUC_WOPCM_SIZE_LOCKED            REG_BIT(0)
+>> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+>> index 868208a39829..82514d395704 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc.c
+>> @@ -16,6 +16,7 @@
+>>   #include "xe_device.h"
+>>   #include "xe_force_wake.h"
+>>   #include "xe_gt.h"
+>> +#include "xe_gt_freq.h"
+>>   #include "xe_guc_ads.h"
+>>   #include "xe_guc_ct.h"
+>>   #include "xe_guc_hwconfig.h"
+>> @@ -427,58 +428,172 @@ static int guc_xfer_rsa(struct xe_guc *guc)
+>>       return 0;
+>>   }
+>>   +/*
+>> + * Read the GuC status register (GUC_STATUS) and store it in the
+>> + * specified location; then return a boolean indicating whether
+>> + * the value matches either completion or a known failure code.
+>> + *
+>> + * This is used for polling the GuC status in an xe_wait_for()
+>> + * loop below.
+>> + */
+>> +static inline bool guc_load_done(struct xe_gt *gt, u32 *status, bool 
+>> *success)
 >> +{
->> +	u32 reg;
+>> +    u32 val = xe_mmio_read32(gt, GUC_STATUS);
+>> +    u32 uk_val = REG_FIELD_GET(GS_UKERNEL_MASK, val);
+>> +    u32 br_val = REG_FIELD_GET(GS_BOOTROM_MASK, val);
 >> +
->> +	if (xe_gt_is_media_type(gt))
->> +		reg = xe_mmio_read32(gt, MTL_MEDIA_PERF_LIMIT_REASONS);
->> +	else
->> +		reg = xe_mmio_read32(gt, GT0_PERF_LIMIT_REASONS);
+>> +    *status = val;
+>> +    switch (uk_val) {
+>> +    case XE_GUC_LOAD_STATUS_READY:
+>> +        *success = true;
+>> +        return true;
 >> +
->> +	return reg;
+>> +    case XE_GUC_LOAD_STATUS_ERROR_DEVID_BUILD_MISMATCH:
+>> +    case XE_GUC_LOAD_STATUS_GUC_PREPROD_BUILD_MISMATCH:
+>> +    case XE_GUC_LOAD_STATUS_ERROR_DEVID_INVALID_GUCTYPE:
+>> +    case XE_GUC_LOAD_STATUS_HWCONFIG_ERROR:
+>> +    case XE_GUC_LOAD_STATUS_DPC_ERROR:
+>> +    case XE_GUC_LOAD_STATUS_EXCEPTION:
+>> +    case XE_GUC_LOAD_STATUS_INIT_DATA_INVALID:
+>> +    case XE_GUC_LOAD_STATUS_MPU_DATA_INVALID:
+>> +    case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
+>> +        *success = false;
+>> +        return true;
+>> +    }
+>> +
+>> +    switch (br_val) {
+>> +    case XE_BOOTROM_STATUS_NO_KEY_FOUND:
+>> +    case XE_BOOTROM_STATUS_RSA_FAILED:
+>> +    case XE_BOOTROM_STATUS_PAVPC_FAILED:
+>> +    case XE_BOOTROM_STATUS_WOPCM_FAILED:
+>> +    case XE_BOOTROM_STATUS_LOADLOC_FAILED:
+>> +    case XE_BOOTROM_STATUS_JUMP_FAILED:
+>> +    case XE_BOOTROM_STATUS_RC6CTXCONFIG_FAILED:
+>> +    case XE_BOOTROM_STATUS_MPUMAP_INCORRECT:
+>> +    case XE_BOOTROM_STATUS_EXCEPTION:
+>> +    case XE_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE:
+>> +        *success = false;
+>> +        return true;
+>> +    }
+>> +
+>> +    return false;
 >> +}
->> diff --git a/drivers/gpu/drm/xe/xe_gt_freq.h b/drivers/gpu/drm/xe/xe_gt_freq.h
->> index f3fe3c90491a..89be518b4967 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_freq.h
->> +++ b/drivers/gpu/drm/xe/xe_gt_freq.h
->> @@ -6,8 +6,12 @@
->>   #ifndef _XE_GT_FREQ_H_
->>   #define _XE_GT_FREQ_H_
->>   
->> +#include <linux/types.h>
 >> +
->>   struct xe_gt;
->>   
->>   void xe_gt_freq_init(struct xe_gt *gt);
->>   
->> +u32 xe_read_perf_limit_reasons(struct xe_gt *gt);
-> this component is xe_gt_freq, not xe_ nor xe_read or xe_read_perf.
-> Please use the right namespace prefixes.
-Argh! Forgot to update that.
-
->
-> But besides the namespace, I don't believe that these limits
-> belong to xe_gt_freq anyway... why are you taking that from the
-> throttle reasons and moving here?
->
-> What about removing the 'sysfs' name from the xe_gt_throttle
-> component and making that to export a function
-> xe_gt_throttle_get_limit_reasons(struct xe_gt *gt)
-> ?
-Because that seems like a lot of unnecessary churn. The intention is to 
-simply add the throttle register to debug prints so that CI bug reports 
-can be triaged more effectively. Re-writing the entire sysfs file to 
-split it up into multiple units is not worth the effort when all that is 
-required is to export the function to read a register.
+>> +/*
+>> + * Wait for the GuC to start up.
+>> + *
+>> + * Measurements indicate this should take no more than 20ms 
+>> (assuming the GT
+>> + * clock is at maximum frequency). However, thermal throttling and 
+>> other issues
+>> + * can prevent the clock hitting max and thus making the load take 
+>> significantly
+>> + * longer. Indeed, if the GT is clamped to minimum frequency then 
+>> the load times
+>> + * can be in the seconds range. As, there is a limit on how long an 
+>> individual
+>> + * usleep_range() can wait for, the wait is wrapped in a loop. The 
+>> loop count
+>> + * is increased for debug builds so that problems can be detected 
+>> and analysed.
+>> + * For release builds, the timeout is kept short so that user's 
+>> don't wait
+>> + * forever to find out there is a problem. In either case, if the 
+>> load took longer
+>> + * than is reasonable even with some 'sensible' throttling, then 
+>> flag a warning
+>> + * because something is not right.
+>> + *
+>> + * Note that the only reason an end user should hit the timeout is 
+>> in case of
+>> + * extreme thermal throttling. And a system that is that hot during 
+>> boot is
+>> + * probably dead anyway!
+>> + */
+>> +#if defined(CONFIG_DRM_XE_DEBUG)
+>> +#define GUC_LOAD_RETRY_LIMIT    20
+>> +#else
+>> +#define GUC_LOAD_RETRY_LIMIT    3
+>> +#endif
+>> +#define GUC_LOAD_TIME_WARN      200
+>> +
+>>   static int guc_wait_ucode(struct xe_guc *guc)
+>>   {
+>> -    struct xe_device *xe = guc_to_xe(guc);
+>> +    struct xe_gt *gt = guc_to_gt(guc);
+>> +    struct xe_guc_pc *guc_pc = &gt->uc.guc.pc;
+>> +    ktime_t before, after, delta;
+>> +    bool success;
+>>       u32 status;
+>> -    int ret;
+>> +    int ret, count;
+>> +    u64 delta_ms;
+>> +    u32 before_freq;
+>> +
+>> +    before_freq = xe_guc_pc_get_act_freq(guc_pc);
+>> +    before = ktime_get();
+>> +    for (count = 0; count < GUC_LOAD_RETRY_LIMIT; count++) {
+>> +        ret = xe_wait_for(guc_load_done(gt, &status, &success), 1000 
+>> * 1000);
+>> +        if (!ret || !success)
+>> +            break;
+>> +
+>> +        xe_gt_dbg(gt, "load still in progress, count = %d, freq = 
+>> %dMHz (req %dMHz), status = 0x%08X [0x%02X/%02X]\n",
+>> +              count, xe_guc_pc_get_act_freq(guc_pc),
+>> +              xe_guc_pc_get_act_freq(guc_pc), status,
+> I think this should be current requested frequency xe_guc_pc_get_cur_freq
+No. The point is to report what the actual frequency was to see if that 
+explains why the load is running slowly. The requested frequency is 
+under driver control. That should be at maximum during driver load. The 
+granted frequency is not under driver control. That is the unknown that 
+needs to be reported to see why the system is not working as intended.
 
 John.
 
 
->
-> Thanks,
-> Rodrigo.
->
+
+>> + REG_FIELD_GET(GS_BOOTROM_MASK, status),
+>> +              REG_FIELD_GET(GS_UKERNEL_MASK, status));
+>> +    }
+>> +    after = ktime_get();
+>> +    delta = ktime_sub(after, before);
+>> +    delta_ms = ktime_to_ms(delta);
+>> +    if (ret || !success) {
+>> +        u32 ukernel = REG_FIELD_GET(GS_UKERNEL_MASK, status);
+>> +        u32 bootrom = REG_FIELD_GET(GS_BOOTROM_MASK, status);
 >> +
->>   #endif
->> diff --git a/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
->> index 63d640591a52..89d9f89962ad 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
->> +++ b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
->> @@ -8,6 +8,7 @@
->>   #include <regs/xe_gt_regs.h>
->>   #include "xe_device.h"
->>   #include "xe_gt.h"
->> +#include "xe_gt_freq.h"
->>   #include "xe_gt_sysfs.h"
->>   #include "xe_gt_throttle_sysfs.h"
->>   #include "xe_mmio.h"
->> @@ -34,77 +35,65 @@ dev_to_gt(struct device *dev)
->>   	return kobj_to_gt(dev->kobj.parent);
->>   }
->>   
->> -static u32 read_perf_limit_reasons(struct xe_gt *gt)
->> -{
->> -	u32 reg;
+>> +        xe_gt_info(gt, "load failed: status = 0x%08X, time = %lldms, 
+>> freq = %dMHz (req %dMHz), ret = %d\n",
+>> +               status, delta_ms, xe_guc_pc_get_act_freq(guc_pc),
+>> +               xe_guc_pc_get_act_freq(guc_pc), ret);
+> Same as above.
+>
+> Regards,
+> Badal
+>> +        xe_gt_info(gt, "load failed: status: Reset = %d, BootROM = 
+>> 0x%02X, UKernel = 0x%02X, MIA = 0x%02X, Auth = 0x%02X\n",
+>> +               REG_FIELD_GET(GS_MIA_IN_RESET, status),
+>> +               bootrom, ukernel,
+>> +               REG_FIELD_GET(GS_MIA_MASK, status),
+>> +               REG_FIELD_GET(GS_AUTH_STATUS_MASK, status));
+>> +
+>> +        switch (bootrom) {
+>> +        case XE_BOOTROM_STATUS_NO_KEY_FOUND:
+>> +            xe_gt_info(gt, "invalid key requested, header = 0x%08X\n",
+>> +                   xe_mmio_read32(gt, GUC_HEADER_INFO));
+>> +            ret = -ENOEXEC;
+>> +            break;
+>>   -    /*
+>> -     * Wait for the GuC to start up.
+>> -     * NB: Docs recommend not using the interrupt for completion.
+>> -     * Measurements indicate this should take no more than 20ms
+>> -     * (assuming the GT clock is at maximum frequency). So, a
+>> -     * timeout here indicates that the GuC has failed and is unusable.
+>> -     * (Higher levels of the driver may decide to reset the GuC and
+>> -     * attempt the ucode load again if this happens.)
+>> -     *
+>> -     * FIXME: There is a known (but exceedingly unlikely) race 
+>> condition
+>> -     * where the asynchronous frequency management code could reduce
+>> -     * the GT clock while a GuC reload is in progress (during a full
+>> -     * GT reset). A fix is in progress but there are complex locking
+>> -     * issues to be resolved. In the meantime bump the timeout to
+>> -     * 200ms. Even at slowest clock, this should be sufficient. And
+>> -     * in the working case, a larger timeout makes no difference.
+>> -     */
+>> -    ret = xe_mmio_wait32(guc_to_gt(guc), GUC_STATUS, GS_UKERNEL_MASK,
+>> -                 FIELD_PREP(GS_UKERNEL_MASK, XE_GUC_LOAD_STATUS_READY),
+>> -                 200000, &status, false);
+>> +        case XE_BOOTROM_STATUS_RSA_FAILED:
+>> +            xe_gt_info(gt, "firmware signature verification failed\n");
+>> +            ret = -ENOEXEC;
+>> +            break;
+>>   -    if (ret) {
+>> -        struct drm_device *drm = &xe->drm;
 >> -
->> -	if (xe_gt_is_media_type(gt))
->> -		reg = xe_mmio_read32(gt, MTL_MEDIA_PERF_LIMIT_REASONS);
->> -	else
->> -		reg = xe_mmio_read32(gt, GT0_PERF_LIMIT_REASONS);
+>> -        drm_info(drm, "GuC load failed: status = 0x%08X\n", status);
+>> -        drm_info(drm, "GuC load failed: status: Reset = %d, BootROM 
+>> = 0x%02X, UKernel = 0x%02X, MIA = 0x%02X, Auth = 0x%02X\n",
+>> -             REG_FIELD_GET(GS_MIA_IN_RESET, status),
+>> -             REG_FIELD_GET(GS_BOOTROM_MASK, status),
+>> -             REG_FIELD_GET(GS_UKERNEL_MASK, status),
+>> -             REG_FIELD_GET(GS_MIA_MASK, status),
+>> -             REG_FIELD_GET(GS_AUTH_STATUS_MASK, status));
 >> -
->> -	return reg;
->> -}
->> -
->>   static u32 read_status(struct xe_gt *gt)
->>   {
->> -	u32 status = read_perf_limit_reasons(gt) & GT0_PERF_LIMIT_REASONS_MASK;
->> +	u32 status = xe_read_perf_limit_reasons(gt) & GT0_PERF_LIMIT_REASONS_MASK;
->>   
->>   	return status;
->>   }
->>   
->>   static u32 read_reason_pl1(struct xe_gt *gt)
->>   {
->> -	u32 pl1 = read_perf_limit_reasons(gt) & POWER_LIMIT_1_MASK;
->> +	u32 pl1 = xe_read_perf_limit_reasons(gt) & POWER_LIMIT_1_MASK;
->>   
->>   	return pl1;
->>   }
->>   
->>   static u32 read_reason_pl2(struct xe_gt *gt)
->>   {
->> -	u32 pl2 = read_perf_limit_reasons(gt) & POWER_LIMIT_2_MASK;
->> +	u32 pl2 = xe_read_perf_limit_reasons(gt) & POWER_LIMIT_2_MASK;
->>   
->>   	return pl2;
->>   }
->>   
->>   static u32 read_reason_pl4(struct xe_gt *gt)
->>   {
->> -	u32 pl4 = read_perf_limit_reasons(gt) & POWER_LIMIT_4_MASK;
->> +	u32 pl4 = xe_read_perf_limit_reasons(gt) & POWER_LIMIT_4_MASK;
->>   
->>   	return pl4;
->>   }
->>   
->>   static u32 read_reason_thermal(struct xe_gt *gt)
->>   {
->> -	u32 thermal = read_perf_limit_reasons(gt) & THERMAL_LIMIT_MASK;
->> +	u32 thermal = xe_read_perf_limit_reasons(gt) & THERMAL_LIMIT_MASK;
->>   
->>   	return thermal;
->>   }
->>   
->>   static u32 read_reason_prochot(struct xe_gt *gt)
->>   {
->> -	u32 prochot = read_perf_limit_reasons(gt) & PROCHOT_MASK;
->> +	u32 prochot = xe_read_perf_limit_reasons(gt) & PROCHOT_MASK;
->>   
->>   	return prochot;
->>   }
->>   
->>   static u32 read_reason_ratl(struct xe_gt *gt)
->>   {
->> -	u32 ratl = read_perf_limit_reasons(gt) & RATL_MASK;
->> +	u32 ratl = xe_read_perf_limit_reasons(gt) & RATL_MASK;
->>   
->>   	return ratl;
->>   }
->>   
->>   static u32 read_reason_vr_thermalert(struct xe_gt *gt)
->>   {
->> -	u32 thermalert = read_perf_limit_reasons(gt) & VR_THERMALERT_MASK;
->> +	u32 thermalert = xe_read_perf_limit_reasons(gt) & VR_THERMALERT_MASK;
->>   
->>   	return thermalert;
->>   }
->>   
->>   static u32 read_reason_vr_tdc(struct xe_gt *gt)
->>   {
->> -	u32 tdc = read_perf_limit_reasons(gt) & VR_TDC_MASK;
->> +	u32 tdc = xe_read_perf_limit_reasons(gt) & VR_TDC_MASK;
->>   
->>   	return tdc;
->>   }
->> -- 
->> 2.43.0
->>
+>> -        if ((status & GS_BOOTROM_MASK) == GS_BOOTROM_RSA_FAILED) {
+>> -            drm_info(drm, "GuC firmware signature verification 
+>> failed\n");
+>> +        case XE_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE:
+>> +            xe_gt_info(gt, "firmware production part check failure\n");
+>>               ret = -ENOEXEC;
+>> +            break;
+>>           }
+>>   -        if (REG_FIELD_GET(GS_UKERNEL_MASK, status) ==
+>> -            XE_GUC_LOAD_STATUS_EXCEPTION) {
+>> -            drm_info(drm, "GuC firmware exception. EIP: %#x\n",
+>> -                 xe_mmio_read32(guc_to_gt(guc),
+>> -                        SOFT_SCRATCH(13)));
+>> +        switch (ukernel) {
+>> +        case XE_GUC_LOAD_STATUS_EXCEPTION:
+>> +            xe_gt_info(gt, "firmware exception. EIP: %#x\n",
+>> +                   xe_mmio_read32(gt, SOFT_SCRATCH(13)));
+>>               ret = -ENXIO;
+>> +            break;
+>> +
+>> +        case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
+>> +            xe_gt_info(gt, "illegal register in save/restore 
+>> workaround list\n");
+>> +            ret = -EPERM;
+>> +            break;
+>> +
+>> +        case XE_GUC_LOAD_STATUS_HWCONFIG_START:
+>> +            xe_gt_info(gt, "still extracting hwconfig table.\n");
+>> +            ret = -ETIMEDOUT;
+>> +            break;
+>>           }
+>> +
+>> +        /* Uncommon/unexpected error, see earlier status code print 
+>> for details */
+>> +        if (ret == 0)
+>> +            ret = -ENXIO;
+>> +    } else if (delta_ms > GUC_LOAD_TIME_WARN) {
+>> +        xe_gt_warn(gt, "excessive init time: %lldms! [status = 
+>> 0x%08X, count = %d, ret = %d]\n",
+>> +               delta_ms, status, count, ret);
+>> +        xe_gt_warn(gt, "excessive init time: [freq = %dMHz, before = 
+>> %dMHz, perf_limit_reasons = 0x%08X]\n",
+>> +               xe_guc_pc_get_act_freq(guc_pc), before_freq,
+>> +               xe_read_perf_limit_reasons(gt));
+>>       } else {
+>> -        drm_dbg(&xe->drm, "GuC successfully loaded");
+>> +        xe_gt_dbg(gt, "init took %lldms, freq = %dMHz, before = 
+>> %dMHz, status = 0x%08X, count = %d, ret = %d\n",
+>> +              delta_ms, xe_guc_pc_get_act_freq(guc_pc),
+>> +              before_freq, status, count, ret);
+>>       }
+>>         return ret;
+>> diff --git a/drivers/gpu/drm/xe/xe_macros.h 
+>> b/drivers/gpu/drm/xe/xe_macros.h
+>> index daf56c846d03..eac8f2c9fba5 100644
+>> --- a/drivers/gpu/drm/xe/xe_macros.h
+>> +++ b/drivers/gpu/drm/xe/xe_macros.h
+>> @@ -15,4 +15,36 @@
+>>                   "Ioctl argument check failed at %s:%d: %s", \
+>>                   __FILE__, __LINE__, #cond), 1))
+>>   +/*
+>> + * xe_wait_for - magic wait macro
+>> + *
+>> + * Macro to help avoid open coding check/wait/timeout patterns. Note 
+>> that it's
+>> + * important that we check the condition again after having timed 
+>> out, since the
+>> + * timeout could be due to preemption or similar and we've never had 
+>> a chance to
+>> + * check the condition before the timeout.
+>> + */
+>> +#define xe_wait_for(COND, US) ({ \
+>> +    const ktime_t end__ = ktime_add_ns(ktime_get_raw(), 1000ll * 
+>> (US)); \
+>> +    long wait__ = 10; /* recommended min for usleep is 10 us */    \
+>> +    int ret__;                            \
+>> +    might_sleep();                            \
+>> +    for (;;) {                            \
+>> +        const bool expired__ = ktime_after(ktime_get_raw(), end__); \
+>> +        /* Guarantee COND check prior to timeout */        \
+>> +        barrier();                        \
+>> +        if (COND) {                        \
+>> +            ret__ = 0;                    \
+>> +            break;                        \
+>> +        }                            \
+>> +        if (expired__) {                    \
+>> +            ret__ = -ETIMEDOUT;                \
+>> +            break;                        \
+>> +        }                            \
+>> +        usleep_range(wait__, wait__ * 2);            \
+>> +        if (wait__ < (1000))                    \
+>> +            wait__ <<= 1;                    \
+>> +    }                                \
+>> +    ret__;                                \
+>> +})
+>> +
+>>   #endif
 
