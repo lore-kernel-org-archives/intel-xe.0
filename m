@@ -4,90 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BCC9C48BEB
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Feb 2024 10:16:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65D27C48BC1
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Feb 2024 11:58:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A842C10E5CF;
-	Wed, 14 Feb 2024 10:16:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5A2F10E797;
+	Wed, 14 Feb 2024 11:58:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=arndb.de header.i=@arndb.de header.b="q7qYGDaS";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="xNFThNoj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bm5bGR5c";
 	dkim-atps=neutral
-Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com
- [64.147.123.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F4AF10E5CF;
- Wed, 14 Feb 2024 10:16:15 +0000 (UTC)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
- by mailout.west.internal (Postfix) with ESMTP id 250803200312;
- Wed, 14 Feb 2024 05:16:11 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
- by compute5.internal (MEProxy); Wed, 14 Feb 2024 05:16:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
- :cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm3; t=1707905770;
- x=1707992170; bh=i+j6Jypgho7pg7a8tVM8hLo4QkNUJm6rujup4OU8wt8=; b=
- q7qYGDaSQIL13G2UWfKe/bnaIKMvPv7sZvyFCa2+HU8q3mTQm5ywQkD75xustvuk
- vj7mg62gWUK3s3dZSb8Wy/V9T6EzHgIn/CZGFOf98dKl6bkCCF9RxCKyQdrUkFS0
- bYB7CFU9b566Q+7oJrPrudAmDTjoI9lvK9dRROKKjFF5fEOd/RFjbYFKAPF6PzVA
- MuhSbLlW4BSTssVju7Rv1fh8OV4EvrBq5yWLAMS9QEw3HEsDxEobGjTT1YdpCswQ
- ohWp+vp4L4VzdLkX4XPqow1tIkWfCSKOa6JRXaVZHWH5EqKFMC1MKbxAp+1tWfD/
- DPZZ5Qs0mbANFRR9ZK8YOg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1707905770; x=
- 1707992170; bh=i+j6Jypgho7pg7a8tVM8hLo4QkNUJm6rujup4OU8wt8=; b=x
- NFThNojJ94AUpEjn1VHcxswHwW6hV/AiIw/M+dxGlsU7yMY8ZA2SsA4pvLpGeNeE
- OHgYL+UvPCIeBaqD+P++1XYi81I/4XUVIQKyYLur4aZUkevlsnFUlVZHhUPcLqP2
- j3TaDe6o8+hpqLNN+Z07WVTrXDiS+I4dfUMMVpBEhc8087mJYjjF3Ju4xIUZ7po2
- 2xcH537IcYk9HhGlmBrvsRsKUTILOSiILaVEwOJB+UneEsm4i6hM4IVxHP82OXfC
- 7J3Z+NyERO0VgGpuO3KbBCjLa72pTX9y5xjt2iaUeBLJGdS51O+fz8jsD0CwDw4V
- l6xYZ9DlxnMhuQw3WmQsg==
-X-ME-Sender: <xms:6pLMZYWNDVpEMfd0S9wsVkKgH2TDKlOgYqEwFWbJWSrlKZPU1DJRKg>
- <xme:6pLMZcnbfJmUSfXRUU526QU3H1zdwS5QGPVMK1rWiivEh2gpX6p2j0ibwYbtDvo2t
- jzeRc5zwcQ8GT9a_IQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudejgddufecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedftehr
- nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
- htvghrnhepgeefjeehvdelvdffieejieejiedvvdfhleeivdelveehjeelteegudektdfg
- jeevnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
- hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:6pLMZcaCTGqkNgNoJTFQK_2yTqt-dBHQjCconBo1SL4oLVosX6O3qw>
- <xmx:6pLMZXX-fIcWAouiYFYXGvg7VxaCLLRuNHBBmKnBiX8-jgm2RFpfvw>
- <xmx:6pLMZSk69UKXLbjcfv9U0k5KRm4NauJhiujkWh7AZzUlKONAHI8q3g>
- <xmx:6pLMZekZXsGTOLO-XTW0N4LQCVsL9s7UMhsJoEks9hgusY-2TB1k5Q>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
- id 49E4FB6008D; Wed, 14 Feb 2024 05:16:10 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-144-ge5821d614e-fm-20240125.002-ge5821d61
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA70E10E797
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 Feb 2024 11:58:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707911890; x=1739447890;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=RaPnINe2GfB+CpInuDPFpU46FpEKNVZo9Qx++gb7Z4k=;
+ b=Bm5bGR5cJiGgkGYRnH+hKNXxrog4PRI1tyOVTrhj/99CFK7faKbqBd5+
+ 49MHvnSL/k8OVlCmZiHhab+rDicgZk4rGsGgJV1KIp8Akcou57z28oCsD
+ Y4kvaA6v3RNyHJugfmC730TeGT7Z6Iov1elBNyFWJ5im+E7JcxRBzO6gk
+ T5n0Y7AE0W6IiZu5j5MmZGVwT4h2uPwNkwKDlwi6JSfxqcmRHsL8akHTr
+ fWiugTDegsNp4MsJ/jA/HF7uHDEithUhandcJylybDzEgwio9obW5voL3
+ FR8a0Xt4BzXsL28TpS9Og4kN/gYAX4dWjnMtotVLagpnbPjiH4AaYqXCX g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="2090349"
+X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; 
+   d="scan'208";a="2090349"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2024 03:58:09 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; 
+   d="scan'208";a="3529162"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.138.241])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2024 03:58:09 -0800
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH 1/3] drm/xe: Store pointer to struct xe_gt in gt/ debugfs
+ directory
+Date: Wed, 14 Feb 2024 12:57:54 +0100
+Message-Id: <20240214115756.1525-2-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20240214115756.1525-1-michal.wajdeczko@intel.com>
+References: <20240214115756.1525-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
-Message-Id: <42be4820-1e19-4782-b412-0b0269f7a696@app.fastmail.com>
-In-Reply-To: <f0b2b4dda91ef1342fc38540bf3d453366b943e9.camel@linux.intel.com>
-References: <20240213095719.454865-1-arnd@kernel.org>
- <f0b2b4dda91ef1342fc38540bf3d453366b943e9.camel@linux.intel.com>
-Date: Wed, 14 Feb 2024 11:15:50 +0100
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Arnd Bergmann" <arnd@kernel.org>,
- "Lucas De Marchi" <lucas.demarchi@intel.com>,
- "Oded Gabbay" <ogabbay@kernel.org>
-Cc: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
- "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "Dave Airlie" <airlied@gmail.com>, 
- "Daniel Vetter" <daniel@ffwll.ch>, "Nathan Chancellor" <nathan@kernel.org>,
- "Nick Desaulniers" <ndesaulniers@google.com>,
- "Bill Wendling" <morbo@google.com>, "Justin Stitt" <justinstitt@google.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, llvm@lists.linux.dev
-Subject: Re: [PATCH] drm/xe: avoid function cast warnings
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,15 +65,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Feb 14, 2024, at 11:10, Thomas Hellstr=C3=B6m wrote:
-> On Tue, 2024-02-13 at 10:56 +0100, Arnd Bergmann wrote:
->> =C2=A0
->> +static void xe_range_fence_free(struct xe_range_fence * rfence)
->
-> There's a checkpatch.pl style error above: s/* rfence/*rfence/. I can
-> fix that up when pushing if it's ok with you.
+Attributes added under 'gt/' directories may wish to use that
+in case they can't obtain it from elsewhere.
 
-Right, I saw the report. Please fix it up then so I don't have
-to resubmit. Thanks,
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_debugfs.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-    Arnd
+diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+index c4b67cf09f8f..207b992f1240 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+@@ -225,6 +225,9 @@ void xe_gt_debugfs_register(struct xe_gt *gt)
+ 		return;
+ 	}
+ 
++	/* other attributes may use parent->d_inode->i_private */
++	root->d_inode->i_private = gt;
++
+ 	/*
+ 	 * Allocate local copy as we need to pass in the GT to the debugfs
+ 	 * entry and drm_debugfs_create_files just references the drm_info_list
+-- 
+2.43.0
+
