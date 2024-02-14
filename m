@@ -4,74 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B9A0C48BEB
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Feb 2024 08:15:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A14BC48BEB
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Feb 2024 09:38:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03F5610E511;
-	Wed, 14 Feb 2024 08:15:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28ABB10E71D;
+	Wed, 14 Feb 2024 09:38:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="xZ3uOlr8";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="YgdNLp5E";
 	dkim-atps=neutral
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com
- [209.85.219.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C34610E4FF
- for <intel-xe@lists.freedesktop.org>; Wed, 14 Feb 2024 08:15:38 +0000 (UTC)
-Received: by mail-yb1-f180.google.com with SMTP id
- 3f1490d57ef6-dcc4de7d901so1472816276.0
- for <intel-xe@lists.freedesktop.org>; Wed, 14 Feb 2024 00:15:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1707898538; x=1708503338; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=EKXGtE0o7nACfq6pe512roREe48CDHHUhw9NIs9DgqY=;
- b=xZ3uOlr8GM+Qp7uGyglB+XlL4GsUz3k0hefFBVNf/Si73TG8c8MU48EWuNTOUKIl9T
- L44HsKktvM+1/Q3T2lJgL5f0BQx+xT1ukUyXMKDILZbNfGmqiXdOrW+NTJZetfrcV5j7
- P64Rz/Zl8njNpt+vOXJjAQiQgjB/dDukSZdJs2BKeN4J05WutknzjDDYOoylTRhb9qAW
- UlIEK9tuKaBQrt8fo5tKxdUnP6Anrm/XVvOGiXx7EuqchIrKk1Zr756H7H2Sz4/Yl34t
- XgwSYam0kVKuqnDqs4n1KZmanQsup/iifAoPRpeQNx+DckQ4XHtfYBDaxpsTWvOP8wBN
- WY+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1707898538; x=1708503338;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=EKXGtE0o7nACfq6pe512roREe48CDHHUhw9NIs9DgqY=;
- b=e5VqKKGY1YKUwTT3gO1ACRB4wI5KJ4hi4OdRLESnTIf6ey0wB4YsFGNMUbVMHWv4ap
- PMngAJVsull4nNv1t3bOeS/HDcpqOw0awWkq8ID1XEo9Ru0llwKf2lx7iloblU1LsGG2
- 5zqEi9ziWKwyf4MdNvqK+LNv/Pjx2/qFOM702Hd1h2Xrmh2kxI6GHiwr5nNXEgsLIyUX
- XZ11lML2SdX+pB5AEdtGlkRkjUUzeL654EdI/QcV/JcY4qMlefqUlX7wIJAIdfgOxlRM
- RKHXdhKjBqO8+MOvYf9vLEydqceOSDR3FIh+jxZYMP/CZRR8wgOSgQvTubya9iYxgYfy
- MQCw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXh8ZALWqy/IfxQu57UF4aYdAeGPzqcHaPOxCtMvyiJYR+qVL6uWzDntFDnf6QrYYlsGMGRzX93QxnXS09rZEJbBd0ijYp2chq9x3ejztQ=
-X-Gm-Message-State: AOJu0Yw+GyyOI85xVrlef3VNftZ/p0irCw9pHq1X5Juh1yPI2ZZ8iXoC
- f605zHCziQgpI5nK+U22bAi6E+vByszjOQg3aztk5RA7df3OuJ6ptMHUxB7jUwm4oPMk8rch0fe
- +duxwdt1lBwYj8oe9YZRIjDpinsFVG/lbAwtM1Q==
-X-Google-Smtp-Source: AGHT+IFI6XgUc51w44SGa4dFJZmddk/Aj01+ufuewKBsrzYVS9b+Kup4A4AKPQTJHjDr+FyB9b7AIUFcQMO+GV9FPR8=
-X-Received: by 2002:a5b:dc6:0:b0:dcd:36c1:ecb7 with SMTP id
- t6-20020a5b0dc6000000b00dcd36c1ecb7mr1383363ybr.54.1707898537795; Wed, 14 Feb
- 2024 00:15:37 -0800 (PST)
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88E2510E71D;
+ Wed, 14 Feb 2024 09:38:32 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sin.source.kernel.org (Postfix) with ESMTP id 2F6B6CE1712;
+ Wed, 14 Feb 2024 09:38:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18034C433C7;
+ Wed, 14 Feb 2024 09:38:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1707903504;
+ bh=mX6h8xLpvjfFMxB5/TrWr4gEAKLkQB72f27+0IUqRiI=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=YgdNLp5E0hJrXDlFPdTqhbOU7/dPpSWPzTnb8X9mMy70CAxFjGPCCqd/3LmBxT9ni
+ sU2/LJc7trzXOTSs9pmMTOaa7xPKdftfCxU5Ot7g8QwjexKNtM2tGcwbfuevTE+zxa
+ rZ19gpWP3zObR09Cr4XTVDh5AKFPKc7TC2oBWmWn5qG+xp+Ywofz9GAjsuwc6OJio5
+ AVTaMoNffc4edAOm2hTZKepWG3UuuWUu5BNQzAqLt0wP6n69r1/Xykur2osClfAb0y
+ g1LLrotHxuzgbXz6IqmK6vVZC+ajuCqktSnIyXI0H0sF83OhZvBgMjLkMDIv4YrvQA
+ 06PPILnxwWv5w==
+Date: Wed, 14 Feb 2024 10:38:21 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ Luca Coelho <luciano.coelho@intel.com>
+Subject: Re: Re: Re: [PATCH drm-misc-next] drm/xe: Fix a missing argument to
+ drm_err_printer
+Message-ID: <ks6hj65wd73sv6gwxfpndtaodxlvszlb6562slpafuea6d6gf4@ucotvvdxgz6t>
+References: <20240212103833.138263-1-thomas.hellstrom@linux.intel.com>
+ <87bk8m9coe.fsf@intel.com>
+ <yjeqfuxc3az2j5bbvt7g5wtjmulcuxhill2n2hspjsmiokxfnb@pdd27bmfvd2m>
+ <87a5o48m24.fsf@intel.com>
 MIME-Version: 1.0
-References: <20240213234513.2411604-1-quic_abhinavk@quicinc.com>
-In-Reply-To: <20240213234513.2411604-1-quic_abhinavk@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 14 Feb 2024 10:15:27 +0200
-Message-ID: <CAA8EJpo0yeLyCkVvLFX7wUEV4+i+ORbaCB2qxN0izaWLdFqCrA@mail.gmail.com>
-Subject: Re: [PATCH] drm/dp: move intel_dp_vsc_sdp_pack() to generic helper
-To: Abhinav Kumar <quic_abhinavk@quicinc.com>
-Cc: dri-devel@lists.freedesktop.org, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, robdclark@gmail.com, 
- freedreno@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- ville.syrjala@linux.intel.com, quic_jesszhan@quicinc.com, 
- linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="q5ey5jh6ipvnd7vu"
+Content-Disposition: inline
+In-Reply-To: <87a5o48m24.fsf@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,233 +62,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 14 Feb 2024 at 01:45, Abhinav Kumar <quic_abhinavk@quicinc.com> wrote:
->
-> intel_dp_vsc_sdp_pack() can be re-used by other DRM drivers as well.
-> Lets move this to drm_dp_helper to achieve this.
->
-> Signed-off-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
 
-My preference would be to have packing functions in
-drivers/video/hdmi.c, as we already have
-hdmi_audio_infoframe_pack_for_dp() there.
+--q5ey5jh6ipvnd7vu
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> ---
->  drivers/gpu/drm/display/drm_dp_helper.c | 78 +++++++++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_dp.c | 73 +----------------------
->  include/drm/display/drm_dp_helper.h     |  3 +
->  3 files changed, 84 insertions(+), 70 deletions(-)
->
-> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-> index b1ca3a1100da..066cfbbf7a91 100644
-> --- a/drivers/gpu/drm/display/drm_dp_helper.c
-> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
-> @@ -2916,6 +2916,84 @@ void drm_dp_vsc_sdp_log(const char *level, struct device *dev,
->  }
->  EXPORT_SYMBOL(drm_dp_vsc_sdp_log);
->
-> +/**
-> + * drm_dp_vsc_sdp_pack() - pack a given vsc sdp into generic dp_sdp
-> + * @vsc: vsc sdp initialized according to its purpose as defined in
-> + *       table 2-118 - table 2-120 in DP 1.4a specification
-> + * @sdp: valid handle to the generic dp_sdp which will be packed
-> + * @size: valid size of the passed sdp handle
-> + *
-> + * Returns length of sdp on success and error code on failure
-> + */
-> +ssize_t drm_dp_vsc_sdp_pack(const struct drm_dp_vsc_sdp *vsc,
-> +                           struct dp_sdp *sdp, size_t size)
+On Tue, Feb 13, 2024 at 04:40:19PM +0200, Jani Nikula wrote:
+> On Tue, 13 Feb 2024, Maxime Ripard <mripard@kernel.org> wrote:
+> > On Mon, Feb 12, 2024 at 12:53:05PM +0200, Jani Nikula wrote:
+> >> On Mon, 12 Feb 2024, Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.=
+com> wrote:
+> >> > The indicated commit below added a device argument to the
+> >> > function, but there was a call in the xe driver that was
+> >> > not properly changed.
+> >>=20
+> >> Aww, crap. Looks like my drm-misc-next configs don't have xe enabled.
+> >
+> > FTR, there's defconfigs in the drm-rerere repo that are fairly well mai=
+ntained.
+>=20
+> None of them have CONFIG_DRM_XE enabled.
+>=20
+> What's the procedure for updating the defconfigs? Do we have it
+> documented somewhere?
 
-I know that you are just moving the function. Maybe there can be
-patch#2, which drops the size argument? The struct dp_sdp already has
-a defined size. The i915 driver just passes sizeof(sdp), which is more
-or less useless.
+I'm not sure there's a procedure, everytime I needed it I just changed
+the defconfig, committed and pushed.
 
-> +{
-> +       size_t length = sizeof(struct dp_sdp);
-> +
-> +       if (size < length)
-> +               return -ENOSPC;
-> +
-> +       memset(sdp, 0, size);
-> +
-> +       /*
-> +        * Prepare VSC Header for SU as per DP 1.4a spec, Table 2-119
-> +        * VSC SDP Header Bytes
-> +        */
-> +       sdp->sdp_header.HB0 = 0; /* Secondary-Data Packet ID = 0 */
-> +       sdp->sdp_header.HB1 = vsc->sdp_type; /* Secondary-data Packet Type */
-> +       sdp->sdp_header.HB2 = vsc->revision; /* Revision Number */
-> +       sdp->sdp_header.HB3 = vsc->length; /* Number of Valid Data Bytes */
-> +
-> +       if (vsc->revision == 0x6) {
-> +               sdp->db[0] = 1;
-> +               sdp->db[3] = 1;
-> +       }
-> +
-> +       /*
-> +        * Revision 0x5 and revision 0x7 supports Pixel Encoding/Colorimetry
-> +        * Format as per DP 1.4a spec and DP 2.0 respectively.
-> +        */
-> +       if (!(vsc->revision == 0x5 || vsc->revision == 0x7))
-> +               goto out;
-> +
-> +       /* VSC SDP Payload for DB16 through DB18 */
-> +       /* Pixel Encoding and Colorimetry Formats  */
-> +       sdp->db[16] = (vsc->pixelformat & 0xf) << 4; /* DB16[7:4] */
-> +       sdp->db[16] |= vsc->colorimetry & 0xf; /* DB16[3:0] */
-> +
-> +       switch (vsc->bpc) {
-> +       case 6:
-> +               /* 6bpc: 0x0 */
-> +               break;
-> +       case 8:
-> +               sdp->db[17] = 0x1; /* DB17[3:0] */
-> +               break;
-> +       case 10:
-> +               sdp->db[17] = 0x2;
-> +               break;
-> +       case 12:
-> +               sdp->db[17] = 0x3;
-> +               break;
-> +       case 16:
-> +               sdp->db[17] = 0x4;
-> +               break;
-> +       default:
-> +               WARN(1, "Missing case %d\n", vsc->bpc);
-> +               return -EINVAL;
-> +       }
-> +
-> +       /* Dynamic Range and Component Bit Depth */
-> +       if (vsc->dynamic_range == DP_DYNAMIC_RANGE_CTA)
-> +               sdp->db[17] |= 0x80;  /* DB17[7] */
-> +
-> +       /* Content Type */
-> +       sdp->db[18] = vsc->content_type & 0x7;
-> +
-> +out:
-> +       return length;
-> +}
-> +EXPORT_SYMBOL(drm_dp_vsc_sdp_pack);
-> +
->  /**
->   * drm_dp_get_pcon_max_frl_bw() - maximum frl supported by PCON
->   * @dpcd: DisplayPort configuration data
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index f5ef95da5534..e94db51aeeb7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -4110,73 +4110,6 @@ intel_dp_needs_vsc_sdp(const struct intel_crtc_state *crtc_state,
->         return false;
->  }
->
-> -static ssize_t intel_dp_vsc_sdp_pack(const struct drm_dp_vsc_sdp *vsc,
-> -                                    struct dp_sdp *sdp, size_t size)
-> -{
-> -       size_t length = sizeof(struct dp_sdp);
-> -
-> -       if (size < length)
-> -               return -ENOSPC;
-> -
-> -       memset(sdp, 0, size);
-> -
-> -       /*
-> -        * Prepare VSC Header for SU as per DP 1.4a spec, Table 2-119
-> -        * VSC SDP Header Bytes
-> -        */
-> -       sdp->sdp_header.HB0 = 0; /* Secondary-Data Packet ID = 0 */
-> -       sdp->sdp_header.HB1 = vsc->sdp_type; /* Secondary-data Packet Type */
-> -       sdp->sdp_header.HB2 = vsc->revision; /* Revision Number */
-> -       sdp->sdp_header.HB3 = vsc->length; /* Number of Valid Data Bytes */
-> -
-> -       if (vsc->revision == 0x6) {
-> -               sdp->db[0] = 1;
-> -               sdp->db[3] = 1;
-> -       }
-> -
-> -       /*
-> -        * Revision 0x5 and revision 0x7 supports Pixel Encoding/Colorimetry
-> -        * Format as per DP 1.4a spec and DP 2.0 respectively.
-> -        */
-> -       if (!(vsc->revision == 0x5 || vsc->revision == 0x7))
-> -               goto out;
-> -
-> -       /* VSC SDP Payload for DB16 through DB18 */
-> -       /* Pixel Encoding and Colorimetry Formats  */
-> -       sdp->db[16] = (vsc->pixelformat & 0xf) << 4; /* DB16[7:4] */
-> -       sdp->db[16] |= vsc->colorimetry & 0xf; /* DB16[3:0] */
-> -
-> -       switch (vsc->bpc) {
-> -       case 6:
-> -               /* 6bpc: 0x0 */
-> -               break;
-> -       case 8:
-> -               sdp->db[17] = 0x1; /* DB17[3:0] */
-> -               break;
-> -       case 10:
-> -               sdp->db[17] = 0x2;
-> -               break;
-> -       case 12:
-> -               sdp->db[17] = 0x3;
-> -               break;
-> -       case 16:
-> -               sdp->db[17] = 0x4;
-> -               break;
-> -       default:
-> -               MISSING_CASE(vsc->bpc);
-> -               break;
-> -       }
-> -       /* Dynamic Range and Component Bit Depth */
-> -       if (vsc->dynamic_range == DP_DYNAMIC_RANGE_CTA)
-> -               sdp->db[17] |= 0x80;  /* DB17[7] */
-> -
-> -       /* Content Type */
-> -       sdp->db[18] = vsc->content_type & 0x7;
-> -
-> -out:
-> -       return length;
-> -}
-> -
->  static ssize_t
->  intel_dp_hdr_metadata_infoframe_sdp_pack(struct drm_i915_private *i915,
->                                          const struct hdmi_drm_infoframe *drm_infoframe,
-> @@ -4269,8 +4202,8 @@ static void intel_write_dp_sdp(struct intel_encoder *encoder,
->
->         switch (type) {
->         case DP_SDP_VSC:
-> -               len = intel_dp_vsc_sdp_pack(&crtc_state->infoframes.vsc, &sdp,
-> -                                           sizeof(sdp));
-> +               len = drm_dp_vsc_sdp_pack(&crtc_state->infoframes.vsc, &sdp,
-> +                                         sizeof(sdp));
->                 break;
->         case HDMI_PACKET_TYPE_GAMUT_METADATA:
->                 len = intel_dp_hdr_metadata_infoframe_sdp_pack(dev_priv,
-> @@ -4297,7 +4230,7 @@ void intel_write_dp_vsc_sdp(struct intel_encoder *encoder,
->         struct dp_sdp sdp = {};
->         ssize_t len;
->
-> -       len = intel_dp_vsc_sdp_pack(vsc, &sdp, sizeof(sdp));
-> +       len = drm_dp_vsc_sdp_pack(vsc, &sdp, sizeof(sdp));
->
->         if (drm_WARN_ON(&dev_priv->drm, len < 0))
->                 return;
-> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-> index 863b2e7add29..f8db34a2f7a5 100644
-> --- a/include/drm/display/drm_dp_helper.h
-> +++ b/include/drm/display/drm_dp_helper.h
-> @@ -813,4 +813,7 @@ int drm_dp_bw_overhead(int lane_count, int hactive,
->                        int bpp_x16, unsigned long flags);
->  int drm_dp_bw_channel_coding_efficiency(bool is_uhbr);
->
-> +ssize_t drm_dp_vsc_sdp_pack(const struct drm_dp_vsc_sdp *vsc,
-> +                           struct dp_sdp *sdp, size_t size);
-> +
->  #endif /* _DRM_DP_HELPER_H_ */
-> --
-> 2.34.1
->
+Maxime
 
+--q5ey5jh6ipvnd7vu
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-With best wishes
-Dmitry
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZcyKDQAKCRDj7w1vZxhR
+xYP0AQDohCaqOvlfW6+mUouwoK1wGXGXm682OweS9p+fhF4JOwD/a2ZzkeCTTC0K
+ik7HY3+kF4cafGpEXp2CI1tb8/H4Iwc=
+=p1f9
+-----END PGP SIGNATURE-----
+
+--q5ey5jh6ipvnd7vu--
