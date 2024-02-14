@@ -4,50 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A14BC48BEB
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Feb 2024 09:38:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02D53C48BC4
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Feb 2024 10:10:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28ABB10E71D;
-	Wed, 14 Feb 2024 09:38:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D06B310E303;
+	Wed, 14 Feb 2024 10:10:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="YgdNLp5E";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n3sOq2sZ";
 	dkim-atps=neutral
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88E2510E71D;
- Wed, 14 Feb 2024 09:38:32 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 2F6B6CE1712;
- Wed, 14 Feb 2024 09:38:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18034C433C7;
- Wed, 14 Feb 2024 09:38:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1707903504;
- bh=mX6h8xLpvjfFMxB5/TrWr4gEAKLkQB72f27+0IUqRiI=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=YgdNLp5E0hJrXDlFPdTqhbOU7/dPpSWPzTnb8X9mMy70CAxFjGPCCqd/3LmBxT9ni
- sU2/LJc7trzXOTSs9pmMTOaa7xPKdftfCxU5Ot7g8QwjexKNtM2tGcwbfuevTE+zxa
- rZ19gpWP3zObR09Cr4XTVDh5AKFPKc7TC2oBWmWn5qG+xp+Ywofz9GAjsuwc6OJio5
- AVTaMoNffc4edAOm2hTZKepWG3UuuWUu5BNQzAqLt0wP6n69r1/Xykur2osClfAb0y
- g1LLrotHxuzgbXz6IqmK6vVZC+ajuCqktSnIyXI0H0sF83OhZvBgMjLkMDIv4YrvQA
- 06PPILnxwWv5w==
-Date: Wed, 14 Feb 2024 10:38:21 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Luca Coelho <luciano.coelho@intel.com>
-Subject: Re: Re: Re: [PATCH drm-misc-next] drm/xe: Fix a missing argument to
- drm_err_printer
-Message-ID: <ks6hj65wd73sv6gwxfpndtaodxlvszlb6562slpafuea6d6gf4@ucotvvdxgz6t>
-References: <20240212103833.138263-1-thomas.hellstrom@linux.intel.com>
- <87bk8m9coe.fsf@intel.com>
- <yjeqfuxc3az2j5bbvt7g5wtjmulcuxhill2n2hspjsmiokxfnb@pdd27bmfvd2m>
- <87a5o48m24.fsf@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 787B310E303;
+ Wed, 14 Feb 2024 10:10:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707905439; x=1739441439;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=NE5tzEFVtlvXw7ZnuqvaSDoPoYH8LaRLru5KtOL3d4I=;
+ b=n3sOq2sZglS23qrZ4hdvIbwDMvfP0udNSTRzy1vIOFQRqXSfWnJNAN2v
+ N8oC0jTK8P39f5GT7f65TwGr0jq9E11NNWtcfHA6gh8OgvfYa1kEoeZiK
+ qcqQvIggvOU7M6JKxQeBJn9vsAPBS6seaPxtq45aymZyN/QGOoITpy/iU
+ Ia/Gt856yvHzGQWoiYO7mq0Hnbv/wKIUfc3fmdxR1CWOf2HbL0Karvbwp
+ M524dVbgSemcuQ1vWFoxFSu9vdHDSWNJKPj3chHHpVbjVe0Ao/TQvDKRO
+ +ILoL00WMnjMnZVj9UcS6YGHTw0AHvjshjiYDu2HXdcfdfT1+i7OdpChh g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="2065370"
+X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; 
+   d="scan'208";a="2065370"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2024 02:10:39 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; 
+   d="scan'208";a="7806813"
+Received: from binm223x-mobl2.gar.corp.intel.com (HELO [10.249.254.154])
+ ([10.249.254.154])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2024 02:10:35 -0800
+Message-ID: <f0b2b4dda91ef1342fc38540bf3d453366b943e9.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/xe: avoid function cast warnings
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Arnd Bergmann <arnd@kernel.org>, Lucas De Marchi
+ <lucas.demarchi@intel.com>,  Oded Gabbay <ogabbay@kernel.org>
+Cc: Arnd Bergmann <arnd@arndb.de>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Nathan Chancellor <nathan@kernel.org>,
+ Nick Desaulniers <ndesaulniers@google.com>, Bill Wendling
+ <morbo@google.com>, Justin Stitt <justinstitt@google.com>, 
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, llvm@lists.linux.dev
+Date: Wed, 14 Feb 2024 11:10:31 +0100
+In-Reply-To: <20240213095719.454865-1-arnd@kernel.org>
+References: <20240213095719.454865-1-arnd@kernel.org>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="q5ey5jh6ipvnd7vu"
-Content-Disposition: inline
-In-Reply-To: <87a5o48m24.fsf@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,45 +77,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi,
 
---q5ey5jh6ipvnd7vu
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Feb 13, 2024 at 04:40:19PM +0200, Jani Nikula wrote:
-> On Tue, 13 Feb 2024, Maxime Ripard <mripard@kernel.org> wrote:
-> > On Mon, Feb 12, 2024 at 12:53:05PM +0200, Jani Nikula wrote:
-> >> On Mon, 12 Feb 2024, Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.=
-com> wrote:
-> >> > The indicated commit below added a device argument to the
-> >> > function, but there was a call in the xe driver that was
-> >> > not properly changed.
-> >>=20
-> >> Aww, crap. Looks like my drm-misc-next configs don't have xe enabled.
-> >
-> > FTR, there's defconfigs in the drm-rerere repo that are fairly well mai=
-ntained.
+On Tue, 2024-02-13 at 10:56 +0100, Arnd Bergmann wrote:
+> From: Arnd Bergmann <arnd@arndb.de>
 >=20
-> None of them have CONFIG_DRM_XE enabled.
+> clang-16 warns about a cast between incompatible function types:
 >=20
-> What's the procedure for updating the defconfigs? Do we have it
-> documented somewhere?
+> drivers/gpu/drm/xe/xe_range_fence.c:155:10: error: cast from 'void
+> (*)(const void *)' to 'void (*)(struct xe_range_fence *)' converts to
+> incompatible function type [-Werror,-Wcast-function-type-strict]
+> =C2=A0 155 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .free =3D (v=
+oid (*)(struct xe_range_fence *rfence))
+> kfree,
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>=20
+> Avoid this with a trivial helper function that calls kfree() here.
+>=20
+> Fixes: 845f64bdbfc9 ("drm/xe: Introduce a range-fence utility")
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_range_fence.c | 7 ++++++-
+> =C2=A01 file changed, 6 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_range_fence.c
+> b/drivers/gpu/drm/xe/xe_range_fence.c
+> index d35d9ec58e86..8510be4466eb 100644
+> --- a/drivers/gpu/drm/xe/xe_range_fence.c
+> +++ b/drivers/gpu/drm/xe/xe_range_fence.c
+> @@ -151,6 +151,11 @@ xe_range_fence_tree_next(struct xe_range_fence
+> *rfence, u64 start, u64 last)
+> =C2=A0	return xe_range_fence_tree_iter_next(rfence, start, last);
+> =C2=A0}
+> =C2=A0
+> +static void xe_range_fence_free(struct xe_range_fence * rfence)
 
-I'm not sure there's a procedure, everytime I needed it I just changed
-the defconfig, committed and pushed.
+There's a checkpatch.pl style error above: s/* rfence/*rfence/. I can
+fix that up when pushing if it's ok with you.
 
-Maxime
+/Thomas
 
---q5ey5jh6ipvnd7vu
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
+> +{
+> +	kfree(rfence);
+> +}
+> +
+> =C2=A0const struct xe_range_fence_ops xe_range_fence_kfree_ops =3D {
+> -	.free =3D (void (*)(struct xe_range_fence *rfence)) kfree,
+> +	.free =3D xe_range_fence_free,
+> =C2=A0};
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZcyKDQAKCRDj7w1vZxhR
-xYP0AQDohCaqOvlfW6+mUouwoK1wGXGXm682OweS9p+fhF4JOwD/a2ZzkeCTTC0K
-ik7HY3+kF4cafGpEXp2CI1tb8/H4Iwc=
-=p1f9
------END PGP SIGNATURE-----
-
---q5ey5jh6ipvnd7vu--
