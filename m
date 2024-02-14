@@ -4,156 +4,160 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8A9FC48BC3
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Feb 2024 19:13:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E626BC48BC3
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Feb 2024 19:22:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7160110E24D;
-	Wed, 14 Feb 2024 19:13:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8107710E311;
+	Wed, 14 Feb 2024 19:22:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EK0cId37";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j0zuowlD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E35710E24D
- for <Intel-Xe@lists.freedesktop.org>; Wed, 14 Feb 2024 19:13:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A53B10E311
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 Feb 2024 19:22:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707938023; x=1739474023;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=EyT7nM6BIyQBl8s6ktK8ZqVzP9mTAusuaJ+LzRwOido=;
- b=EK0cId37L2MccTACMhoTlFcePu6ZQeSfD96l1z2lohNJPV6Qv7q/gehQ
- Gxf1eg77XIoKUUTqiAVMhMqMelCAuYiAGAa6nIzED7+pXEt4O8L4MHG07
- 2KrjAi2EE14siKGwaxeRYW/gsNBcsu7lbVTnAnkxCC4KT4BAx6n0f4gIG
- 9ZvVM6WtxTfba2wqNU4diqdGCrRfVp6YcwReEobqssaQ+7EYCT6822pqR
- vezw/cvgjCahQ1es+6sIc7eDukOmYWusexVWuykKK/WwpFJMW1FV8Q+KS
- sGV/AP0+AsB9x25NdvHNsJ+Cdtu1iERtkTpyPppw/E9ZR7aPZMg+eloPI w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="13399846"
-X-IronPort-AV: E=Sophos;i="6.06,160,1705392000"; d="scan'208";a="13399846"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2024 11:13:42 -0800
+ t=1707938535; x=1739474535;
+ h=content-transfer-encoding:in-reply-to:references:subject:
+ from:cc:to:date:message-id:mime-version;
+ bh=okrqs9t4g/LT0KRECa3jS2i1vnBo6Xey9JKamDFwG/U=;
+ b=j0zuowlDKjtZZQxU6MCAl9L6NfINROrUiKBZ0vnDfbLOeFD+y8eVSSD0
+ BYhTze+yF3khBvaKDggaFpWlM8OZ7SH0mG013+EGATF7e/rzAq1OP1HlQ
+ 060UniUHCyrmRblmPj2+auOI1+JNeBN2DuiJPRxhJ+7yfoH8hSjXIf99N
+ NcJHyC2kiUCkKCdFw6Bc25RBmlRon61k5nIUNTdMjzEWVTGQnpReUIOy8
+ P8hTOSWHQEDo5erKDFtKjQJmLprWNIrMirpGdtOWOEiHa+ZB/cekjI6Qh
+ uIOJRP0ZrP/EbTgGnSYnOjIxZZRC/milYyyw+k32MOXwrP5uEGf9unf4J w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="12720211"
+X-IronPort-AV: E=Sophos;i="6.06,160,1705392000"; d="scan'208";a="12720211"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2024 11:22:15 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,160,1705392000"; 
-   d="scan'208";a="3267079"
+   d="scan'208";a="3293267"
 Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 14 Feb 2024 11:13:41 -0800
+ by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 14 Feb 2024 11:22:14 -0800
 Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
  fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 14 Feb 2024 11:13:41 -0800
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ 15.1.2507.35; Wed, 14 Feb 2024 11:22:14 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
  fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 14 Feb 2024 11:13:40 -0800
+ 15.1.2507.35; Wed, 14 Feb 2024 11:22:13 -0800
 Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 14 Feb 2024 11:13:40 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.101)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Wed, 14 Feb 2024 11:22:13 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.40) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 14 Feb 2024 11:13:40 -0800
+ 15.1.2507.35; Wed, 14 Feb 2024 11:22:11 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FHwXozD3NHdFyKGgiWbFltuSsfBukA8TuJ4oZPABPvAwI65OddEaPKi+MTGec6JHjIg4olFDdjACQ2Oxkk5mCsId1mWoNDewpgooteHGkY7fWrMsWfADIrgtQc/FeOs6dPOJOKW0fGC9TqH0Yu3jHpxWcCtzQM/KzmPEEL6bX3GQjSllI7LwvZWfKFYSHJ5TOZOwYi3L1rMQ0BKwfZ5CJf9E2+L6nCLf7Ho/yCgjtTcLR78RA+Exs17fhr1j04iJTfLTwlEqtarj7Fd5t+yXx4+zm4DwCmwd0AFN4gLwfYcAeser2QHmBlHkXghCAeCKdcGem1cUs3Mg/b4zhR0ajw==
+ b=IZ9rRg6v4l+Y2bu3nHcnm9JmJ32nww8/8B4Vg77C8ChszfXuazrFDLneYb643orZarjBbLfsc7zv+jUiQUAo9R7Agf+QbIJ8HIXopL4LkhzVBw/62xvuhlVxtVo2kf0yZcT4AjLNBlhXQBUN6tHLO9zSYTpvUweXHxsF9jvQli10n8tYcWYLrm9wZ4Tm5ISME6/X/bWMCZbO/FJWixS2BAnTxTugZKAwDNnF1b43Db5lFpgGdorrOtrnu+iVqb6evIiZw3p0/hFtstVc5k0kOlTZoaXHDwc/mW+GOZ80LzGCeNesTd0bbHn0jXUy7omn0x6iMRmlp3S5Wy4bFqrRQQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PWi2eIzntoUn2HFCw6y+RYWCovnsPUi4W18Vjj5atNQ=;
- b=XYURJLLZFZqFwGuw0bnRQ8LJwaL2jt2Lku3JHbEj57xIsofWW20AV+Ko1OMiiogNok9kSOrMk8IFdzpC9UJ7bRJfi3uV5UxHtdBk8Ltm1Y2ZMlwsOK8/U6VD6ZGXP0ietG+p08cWpRYuW0UywhR8Mw8svE/QLNtST/dBHD898CdqtyQUcdVRvr2aKaPjD1rV3CazSm6lWsx5d3aUfbIzbQyf9tS4FwHPw/Tnq/NA2KdTEpntUQf+57n2Z/j9Ew3t/LZysramlatBNEkBWa9Ii8W16xkD+3GBUyShfK8jbbL/cthaj03Pf6/zEmk/3vhVij2wLXtP6yPLvAw7jckEzg==
+ bh=/1KlZczUB3piN9FYK56NCPhb0UtSOWHk/cCcH3HE7pw=;
+ b=lcDGN1N0lDwvh6Snge0mKSqT1DxORc7Dx820ap+HPioMB63cezZxQvThkKqw4GW5IkDVfYt/j+4LZkby6lWROph0B+Keu4UvMvfD6EHyMxbl81Esz+hty7R6iMo3Q+2sZQYukggPA7GXxbdnW11QiTbx/6i3/lBjXCP0oOzOnvD4R/MLX7elDMWVY3YJJ9ywWcyTJQ0MrbzSFglJNQKLMEPVuzl4e88JqC0FyLpNSHwp6WnldwIjNovbY69ZBPT6WbPcev9xyo0zlSj+IQeYvWI4OVu1ghPVMxBQJ5oo9+cYQwyibR1CFH4TyD+RMpJ7ih2i9e1tIwac5QsibSSdzA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CH3PR11MB8441.namprd11.prod.outlook.com (2603:10b6:610:1bc::12)
- by IA1PR11MB6466.namprd11.prod.outlook.com (2603:10b6:208:3a6::21)
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
+ by SJ2PR11MB8539.namprd11.prod.outlook.com (2603:10b6:a03:56e::14)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.35; Wed, 14 Feb
- 2024 19:13:37 +0000
-Received: from CH3PR11MB8441.namprd11.prod.outlook.com
- ([fe80::c590:37b4:ad48:cd0f]) by CH3PR11MB8441.namprd11.prod.outlook.com
- ([fe80::c590:37b4:ad48:cd0f%3]) with mapi id 15.20.7292.026; Wed, 14 Feb 2024
- 19:13:36 +0000
-Message-ID: <88530ac2-a69f-433b-ae5f-5212599cb85a@intel.com>
-Date: Wed, 14 Feb 2024 11:13:33 -0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] drm/xe/guc: Port over the slow GuC loading support
- from i915
-Content-Language: en-GB
-To: "Nilawar, Badal" <badal.nilawar@intel.com>,
- <Intel-Xe@Lists.FreeDesktop.Org>
-References: <20240213003426.3943662-1-John.C.Harrison@Intel.com>
- <20240213003426.3943662-3-John.C.Harrison@Intel.com>
- <d8ec5d48-b356-42c6-9140-41c6868a1546@intel.com>
- <81c28b98-82f7-412c-a60d-9b19e372faeb@intel.com>
- <a48cc9b7-6d1b-4264-b400-3949583c0d5f@intel.com>
-From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <a48cc9b7-6d1b-4264-b400-3949583c0d5f@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ2PR07CA0001.namprd07.prod.outlook.com
- (2603:10b6:a03:505::11) To CH3PR11MB8441.namprd11.prod.outlook.com
- (2603:10b6:610:1bc::12)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.41; Wed, 14 Feb
+ 2024 19:22:09 +0000
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::64e6:ee24:79f8:efa]) by PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::64e6:ee24:79f8:efa%4]) with mapi id 15.20.7270.036; Wed, 14 Feb 2024
+ 19:22:09 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <qj734bhlz3yprl7y7eyb5fj2wzvumv4m3ehvh5kg7rseugsrjn@wjljwsrxsyft>
+References: <20240206234103.373364-1-daniele.ceraolospurio@intel.com>
+ <bbb3bc27-73cd-47e4-bdb2-8a12e8aaf2ca@intel.com>
+ <ZcL5c1TTfCxUckCi@DUT025-TGLU.fm.intel.com>
+ <zcvxg35dgst3vffu76v532dhl5lob6ilpi3hktg4ptnqc6lsbd@dsrjrmgk2kdj>
+ <6d27be6f-f501-4bba-a8f9-ae80f23484bd@intel.com>
+ <v5mwvlynhfvcre2iudh3am34y7eh4llhifj32gw3l56g4idvw6@uo6rutzsqmyl>
+ <d37b18a9-ab2d-478b-9510-087c8ff76ec5@intel.com>
+ <qj734bhlz3yprl7y7eyb5fj2wzvumv4m3ehvh5kg7rseugsrjn@wjljwsrxsyft>
+Subject: Re: Re: [RFC] drm/xe/guc: Don't support GuC older GuC 70.x releases
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+CC: Matthew Brost <matthew.brost@intel.com>, John Harrison
+ <john.c.harrison@intel.com>, <intel-xe@lists.freedesktop.org>, Matt Roper
+ <matthew.d.roper@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>
+Date: Wed, 14 Feb 2024 16:22:03 -0300
+Message-ID: <170793852364.56490.8544413096300747144@gjsousa-mobl2>
+User-Agent: alot/0.10
+X-ClientProxiedBy: MW4PR03CA0306.namprd03.prod.outlook.com
+ (2603:10b6:303:dd::11) To PH8PR11MB8287.namprd11.prod.outlook.com
+ (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR11MB8441:EE_|IA1PR11MB6466:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2317982e-0777-42f0-f50f-08dc2d910b05
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|SJ2PR11MB8539:EE_
+X-MS-Office365-Filtering-Correlation-Id: 043167de-099b-4a37-be4e-08dc2d923cf2
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: vGmBi8kMJs1B8uVLl3i2x89qu/CAfta9KBNBgRlr0aofS3L7Q+oJ7EdCrYnUH6xJ86ZhB8TJOwqODz7FKF1+IybCmXfF7C//uYVMvGpHKk3/8l7hNhBhmp1Qg608TKh2OrZmKi8JUgyNfSziXka84aQtegfs46iGhg0oTLG/LlG+xFlvq8ewB+x/Uv00GNQOblWaSPzRByhCEXKowxhlNH6iwKNBMJ/sYdE4/Zija2aM9Xkg3322qvL3HAlpDXWiQEz2bvDIBdvj1AowW7+sGWOdQnN9+xKoBsYMbjBNA2NVomCELus5uoYL0DYQYX6xY8wZqptukNDwXV3usQmcSse62jOcM61zrmCYmq7MlFNsEHe2pJv3Phbr2tpkzKS2e/eA+cj/4G/7n+670uB07NhZZhPE/d15S9o4RyBbXAprFgRnHEzQID6rtk7LMrkqUJsjazcInSNVqdoX706D+sgOCm5PN8KFOby1N+JQRD2YEOuVtqDFB0ANCCyu1eOEB4hDN9kyEOrLh4xmwiIBNXfvoxwZEIXLPeTGuTlxHOekQq87+n9gDmqOp4cWuSEH
+X-Microsoft-Antispam-Message-Info: 3D0YmJFtRl4jPnJH0E65rnd6OhTR93ibakP8GGU0NC4cgpIgtbkig4DknwzOMuqMb27HEzAU2AmCdcKe2j+RonecBCp/ctCsk+WlUApgDPwfGgqrHV2qBQtj040W5Mcy8UXWY/IXludcDKmN4LPvXTWZ0WyQNyjdJgyRr0FxXW+oJrcS0VGkLrNI1pZHq3KcPmwkVsoXDrHHKtTu18kNT6ZAYIpqysyYxZf6Y2lHP+1BDBDWR7vpWwp3FTSwCwi/z2pD4A4KjMe3hJPMb3Qt5AzYiqt3quko0n9SDgxodohvrgEJek82wlfUpqx52BARqkCFzh5oOpXBGc0oCHuIkwm7sxU2p/Jyl+kN75kqRwARl7urG5DPCacAhXyL7xFPYCmfZEKDtG/0F5Tqgu8B2f6G/KrLiKnxP4wum82xvxcISPJFfG1UVGG1qSIbyqXIBdHDYHVWm+YjtMCHpwc/NzQyCoEJxKtWNyR62IES6GPT4SMAidvka27JAvhO6DiHWCuYwF2rFL3NV7wWOidAnvAoL9dXN8GytzWeGUL0DGMCxXTeJWP48Ala9Akz8PV6Zhd21ZO2Y0WNAZ6ZFq5W0R+JEh5uK2mWC4O3RTzNWSqnBWBWPBKPSAxBX4bx5Rg3sgELF9K29M6g1Hev7hbRBQ==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH3PR11MB8441.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(346002)(376002)(396003)(136003)(366004)(230922051799003)(230273577357003)(451199024)(64100799003)(1800799012)(186009)(36756003)(41300700001)(2616005)(26005)(6666004)(83380400001)(6512007)(8936002)(66946007)(6486002)(478600001)(316002)(8676002)(86362001)(31696002)(66556008)(6506007)(82960400001)(53546011)(38100700002)(66476007)(31686004)(30864003)(2906002)(5660300002);
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7916004)(376002)(136003)(39860400002)(396003)(366004)(346002)(230273577357003)(230922051799003)(451199024)(64100799003)(186009)(1800799012)(30864003)(2906002)(8936002)(8676002)(4326008)(44832011)(66899024)(33716001)(83380400001)(107886003)(26005)(38100700002)(82960400001)(86362001)(6506007)(54906003)(110136005)(66946007)(6636002)(316002)(6666004)(66556008)(66476007)(5660300002)(6512007)(9686003)(478600001)(6486002)(966005)(41300700001)(16122699003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S3N6NUltZHdnUGlmZ0hpL29mR09oeng0TGdzbmdlYStMQWVvek4rOHpBOWdm?=
- =?utf-8?B?RUFDR0hsODNPSFdPVjNJdGUrcGg2Y1g2MHhoTWRNTnBwdWVGZjhjMGZLM3V3?=
- =?utf-8?B?UGtTdFdaY29vL3FjUlpCZVlzTytoT0FKUWxEQzRVZkF3UnFhL1BUbENYMWdV?=
- =?utf-8?B?clYweHFNTXpoeXRvTkd5TWFXa2NKOWQwWHpGS0t1dk8yMFZTOThKbUNUTFls?=
- =?utf-8?B?dVBYYThJQTNtbXQzRURhR2lseHpieU1ieXRIRGFCZ0VWVC9EWjVNYW1PVlR0?=
- =?utf-8?B?ZE16MTNXRnU5WkZVYXhSQ2Y4Qzk4TDNtZFV2TkxCT0F1NVp6SUxMeVJ3N3pY?=
- =?utf-8?B?ZG01ZHVjWkNhTHR3Rlc5b2p0V1JoUUJRVzgxOVJqZklSQVlnQ0dCR0x2VXpG?=
- =?utf-8?B?aFFYYlB0VEdRaUM1RTBYM0dlQXpybitzblJ4bm9vYzNqWDhIRUljQk4wNUhh?=
- =?utf-8?B?NVNMWGZTemxYbWtvUEFKNXFKenZ3RXFoRUVGQkhUQzdXN0hkQmpKVVF3L0hk?=
- =?utf-8?B?dWxjVllWOGxMYnRYZFFveEsxQURxWllFaUdDbjByMjlBa0dIOVFTd1FTUWk0?=
- =?utf-8?B?bElaZ2w1cUlOUG5BeEpjUlNxTEM3ajBzL3kvdGhOVWNSQzNXRG4zV1Q5WjZL?=
- =?utf-8?B?Yk11ZnNvMEYyN2ZSa0dUcGJCd2dCY1o3eURDQ3lrbTZTWmhKZk05c1Y0NnJx?=
- =?utf-8?B?SDBUbUJIUGs5eDA0Z1puZXFNYlp0dVJmdnpzdXVWdjY1NGtrYjJrL3dIVHIv?=
- =?utf-8?B?eW85S1lGUHc2MXRiZFQ3MFFFT2RmUEgvdjZ6Yno1MU1wVnBLRXdaZVUydnNJ?=
- =?utf-8?B?eG0wdUY1VDdUaW8vcllYQ0FjUVQzUVgwbnJaZmY4OGRudzBvMlhUZHAwc1NJ?=
- =?utf-8?B?clVQSzBBU1VoQ3Z2ZCtYcytFMXZSUTYzaTlEaERodzBHWkJqZk82bGJBbjho?=
- =?utf-8?B?dUo3WFgxYlFqSmdIdVlVRGhVQWYvL290aC9kWWNVMWNpRVYrNzByR0prTkJV?=
- =?utf-8?B?V0VFVVN4UHNxV1ZrNDR5RXFzTzdpU1hPZXUrMHRYZi9HRE5TMktobzdKTUR6?=
- =?utf-8?B?Ly9PYVZxOGROVEN3ZEJ6aU05akExVmhyejBNVmpKTDh4UHFyQnRFdVltR0dH?=
- =?utf-8?B?Z2NBQWkwUm1wd0lhajdtajJpZ0FidFY3RTd4Z0o2bWltVG9ZOHZHa0VyRGRB?=
- =?utf-8?B?a2x5akVqMHNySkJuV0NxMmlqc1JDOG53WG1PNzl3TnVJSk1LNGtOU2FUQWlw?=
- =?utf-8?B?VlJneVpmQVNTUHhCeWNLL2lkSVpsbDNuRU9HWVRXY3lxaElqdGkremZFMCsy?=
- =?utf-8?B?aHV6K0hyOWVDZFZ0VzltTkVpeHBIcFN0RC81OW9Ca0N4NUhDclVEWTlnaXFn?=
- =?utf-8?B?QlpQUkpEZG1IeDk2Qy91ZHZwUjlmL3pDbnVSSnZHcWdGeVZ2dzdWYWFvanBC?=
- =?utf-8?B?L0RxOTFZVTg5T284UjVHWEorL1h5WjRkN1JCK0ZuWkNKN2dudWNyZ1FzVG05?=
- =?utf-8?B?cUdZcG1pU2tGSWN4V1d2QWxBQzFvVnFGb2dxTzhyN2pNajgxV0UveWUwNDBq?=
- =?utf-8?B?ekJtS04vWFR6NTE0UVpUMDVUWnJmV3FPT2N5Yk9WVUw5eWcvVXhMQTdiaGNW?=
- =?utf-8?B?eXVTd1Q4SU5oZDJNWVc5M3hnSktJdmNWSXlkVkxNbEJXc1VCSTdRVlRLSDZv?=
- =?utf-8?B?OVdKWFoxNnNJdzd3cDBkS1RXS1VIRkFVSTNVcVlGUnEwYjB5QnZ0cmhzZzlz?=
- =?utf-8?B?VGh6bUdhSmNPQXBiVDMrTGtYRTkwR08wZ2dGZ0F3R1Fpa2VCN0VIK0VCOUFJ?=
- =?utf-8?B?TkJINlUrQ1d5UGFDL2pNS2tFbGZxVks2MFptREZIbGpaYnRkVHZhSlZONUdJ?=
- =?utf-8?B?L1VrSXo2TzNxM3Q2eUdHZTdyVUk2WUVRRlMxdDJKZDErbEYwc2pOeWl5Wkta?=
- =?utf-8?B?SUR4YVN6czhMTUtudnFaSlc4b1ZjMmN4V1BTSUhwek92d2s2akduZVpjdk5s?=
- =?utf-8?B?VnFtSVAyMVJQZWhNYTJtMG9UK0V6ZU16K3ZDQUR6YlhjMEZrQTEzbjFCTlBH?=
- =?utf-8?B?ZGNSeHRWbjBrQkd2SHphaVdLM3hRaS9vZERoc0xnbXVzWTV1MTJTbE5UQ2d1?=
- =?utf-8?B?eDlaQUpaM1N2UGw1U1lseTh5VVB5K1hBL05OLzlOYkJjUVpCU3g2U3hGVVMr?=
- =?utf-8?B?clE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2317982e-0777-42f0-f50f-08dc2d910b05
-X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8441.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S0xkUU9NbGJYeWFsZFBxSkhjSnpMWXhReXlLcHpveFdGVmlKWktrcHgrdHM3?=
+ =?utf-8?B?WnphRHRDbTBIVEUySGFGeDBoamEzcFBoM2FVa0plNGpBaGF6dFBuaHh6RW9v?=
+ =?utf-8?B?blZUSlp0bk04bGlUdSt6WTduNW9qWW5lMDRhL1ZHRWtGWjFSYUtZc2VNNk9M?=
+ =?utf-8?B?dEZlVTJqc09YYXVaYVVKUXlZOGh0bE93eGRMRmFicVBlalJJY1pLUVNOZFRL?=
+ =?utf-8?B?NUVsVnRuQVJGVS8ySHZBVjlwQnFrdG91ZnVoUjhwMTdVVGMvNFZZamxaK2Fr?=
+ =?utf-8?B?K1l6cDR5WlVlaDkrRnhtVldUc0pCZmFnaWV2bFJkYThPL1hVNnEreE1Yb21V?=
+ =?utf-8?B?MGxpQ3kxcHhFVmJFTDUxa0c1NkFFV01Rc1M5UHJUcWh1eFFkUCtwQ0pzTkxm?=
+ =?utf-8?B?OTB0MHVlZTZnemNueW91NmMxSmprcHh5ZGJvTlpwcDNRZ25PeEl1a09EdXI4?=
+ =?utf-8?B?VzU4QWtWNFJsclBkN0QzQWxLU2xSWW1rZ1lySWQ3R00xZm9GcW5xRWNaV1d0?=
+ =?utf-8?B?MHdtRytzdGNqZk4zb2p6N2NmSE15RjJBSXdrZTZiWUJFeCtaajFadm9zbDht?=
+ =?utf-8?B?cm1NTGc1cmlKQ2JUQUM0SEV6SDd6bC9tRzhqWXcxV3BVSC9jbW1TcGFlV25k?=
+ =?utf-8?B?WHVwRzQxRDk2VWs4NHYyMitGVFFZM3gvV3dTektKenVkRVJtY3BQRTBVbTNp?=
+ =?utf-8?B?Y3hOOEM2V09OK2pFL29iNkxxblZIZVFCY05ndVh3aXdYdjdmZTRYckdhRTJv?=
+ =?utf-8?B?UjVuRFhTRE1pVG5zeHdOVXhVQTMraGFEOVpGNTNFaUZSNmwveGNFWFZQZ3Ry?=
+ =?utf-8?B?WGY1UDlVV1g5clhJdXRlaUIrRHI1QkU2NzVTMm83elZtenNUQUp4R3g5ZDB6?=
+ =?utf-8?B?OUZDSjkzZ3JFMll1M0dHdGorSDVjcmwzSVpNSXlJQkc2YWx3Z095dkdiY2Y4?=
+ =?utf-8?B?NXhHeXkvemFlRVhBaDFXL0h3UWEveTdsYUxCTGpOZkhVajNPeDZGbkpWRkZl?=
+ =?utf-8?B?MTJTVkhZN1grdnQ2cmtlVnZhaE96R0lybForNUFvMStlN2RBdUVHeHlkUEJm?=
+ =?utf-8?B?VXhTcGtPUlVjK1I3YTVZNVZ2ZUpxbVZ2WVNMWjhyVEt0NTJHWkxWKzBrR2ho?=
+ =?utf-8?B?cjY4Q3A2bmtUbS9NbjJiYXAyWUNkUDY0eTg1dFh1dk5PZTlIaG11NDJlKzI2?=
+ =?utf-8?B?LzBFMkZqKzMveXZvU210d3l0QmVINlZYL2VjMzU5LzlsWGZ1dFVjeGorNHJs?=
+ =?utf-8?B?V1NNbEUzd2dFWTVYd0VaN0ZtYng4WWxIbk5KYlNwSVJweFFkUStaSmRWczBw?=
+ =?utf-8?B?NVdmNkRGRFBQc2RWeXNjYmlQdHZwYVlvcFdSTW9qRC9WMFk5M1JuYzFRSElG?=
+ =?utf-8?B?cE9zQW1kOTJuT0RJOGxsbldsQUFSTmkvMlZ2QjkybDU2R0tqSU5rRWV3b0wz?=
+ =?utf-8?B?N1ZDU2U4VEswQ2pWaFpKb0IzY21CT1RTQkRVRURQN2lQNXRiRlVDSXQzeXJY?=
+ =?utf-8?B?eUFBc3RmalRXVXZqVy9XVnJVYWVzOTRlWWlPMDVCNzVHamhhM1ZXczNZZWpM?=
+ =?utf-8?B?SHdiY0pYcCtKSWQwMURZYTB4cEZGQXl6eXdMc0c2Y1J3NjJoZjNNY2NIS3pF?=
+ =?utf-8?B?L0xLc1RiMFhSbUJGMWVxbVBDWitXWkJTZzA2cUNFRFhDOVJiTzVsZ1RtUmg1?=
+ =?utf-8?B?QU9hS1VlTXlRSzVySnRDZzd2K1FFb0FtbDBVYVVKQzViaEo0WUdycFlHMFM0?=
+ =?utf-8?B?UlZSVkJuRlgreDlsdFRWOHJZWU1naVNwbDJCeUFsZ29oVExXUU1DWkZFdGZn?=
+ =?utf-8?B?a091cFdMaFU1WkYwMHBMcUU0eGQ1QkdnZTRXbmlsZVVWZGc2TEFCWmljRG05?=
+ =?utf-8?B?QURhVWpKZVErUVVwWGplbDRXcHNHbkRNZDFSZm9qSlV2b2ZNY05rQ3R1L2lz?=
+ =?utf-8?B?VFBZWVlQUWdlcTdONDhsYkxQVlI0M0R5MUZCNVdUNVAvK2NEeWR3OHdwVWg2?=
+ =?utf-8?B?ME1OZTFQcG5SdlZNVzlwa3NZb1gzTDhvc3lQY2dhYVptZjR1ckNWNHRLc0xD?=
+ =?utf-8?B?REoxK1FaQzEvZWdWZTRyenBNa004YjdsWUVnZlZxVnZVVkx5YzQ4OGJ0ZlRV?=
+ =?utf-8?B?YU1IT2s1VkpZTVNFN01BUUVFMXdrYVYwQnBXaHNVKzZJMDNPTlNSVTRlbGta?=
+ =?utf-8?B?Qmc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 043167de-099b-4a37-be4e-08dc2d923cf2
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2024 19:13:35.9919 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2024 19:22:09.5056 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GS0encelfUEb6g/PxEkH67tn7YxREX3J1ywK0kBbp9wQYgFsgItHiRuUFj3VsxgaIdTRgQg/Ll504TQi8doTMZ+h/s1gnm+O6O6U336e5EA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6466
+X-MS-Exchange-CrossTenant-UserPrincipalName: kzDdzKYliymZGgd6Nn4xaCtUF3u2O1m5stBOwZzN75aFm3jA0wbHRYhhA/j3DB7Vc6DLf6XTFsSo/FKGiGnpIw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB8539
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -169,424 +173,544 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2/13/2024 21:39, Nilawar, Badal wrote:
-> On 14-02-2024 07:44, John Harrison wrote:
->> On 2/12/2024 21:17, Nilawar, Badal wrote:
->>> On 13-02-2024 06:04, John.C.Harrison@Intel.com wrote:
->>>> From: John Harrison <John.C.Harrison@Intel.com>
+Quoting Lucas De Marchi (2024-02-09 03:01:26-03:00)
+>On Thu, Feb 08, 2024 at 04:29:55PM -0800, Daniele Ceraolo Spurio wrote:
+>>
+>>
+>>On 2/7/2024 12:40 PM, Lucas De Marchi wrote:
+>>>On Wed, Feb 07, 2024 at 10:34:07AM -0800, Daniele Ceraolo Spurio wrote:
 >>>>
->>>> GuC loading can take longer than it is supposed to for various
->>>> reasons. So add in the code to cope with that and to report it when it
->>>> happens. There are also many different reasons why GuC loading can
->>>> fail, so add in the code for checking for those and for reporting
->>>> issues in a meaningful manner rather than just hitting a timeout and
->>>> saying 'fail: status = %x'.
 >>>>
->>>> Also, remove the 'FIXME' comment about an i915 bug that has never been
->>>> applicable to Xe!
->>>>
->>>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->>>> ---
->>>>   drivers/gpu/drm/xe/abi/guc_errors_abi.h |  26 +++-
->>>>   drivers/gpu/drm/xe/regs/xe_guc_regs.h   |   2 +
->>>>   drivers/gpu/drm/xe/xe_guc.c             | 197 
->>>> +++++++++++++++++++-----
->>>>   drivers/gpu/drm/xe/xe_macros.h          |  32 ++++
->>>>   4 files changed, 214 insertions(+), 43 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/xe/abi/guc_errors_abi.h 
->>>> b/drivers/gpu/drm/xe/abi/guc_errors_abi.h
->>>> index ec83551bf9c0..d0b5fed6876f 100644
->>>> --- a/drivers/gpu/drm/xe/abi/guc_errors_abi.h
->>>> +++ b/drivers/gpu/drm/xe/abi/guc_errors_abi.h
->>>> @@ -7,8 +7,12 @@
->>>>   #define _ABI_GUC_ERRORS_ABI_H
->>>>     enum xe_guc_response_status {
->>>> -    XE_GUC_RESPONSE_STATUS_SUCCESS = 0x0,
->>>> -    XE_GUC_RESPONSE_STATUS_GENERIC_FAIL = 0xF000,
->>>> +    XE_GUC_RESPONSE_STATUS_SUCCESS                      = 0x0,
->>>> +    XE_GUC_RESPONSE_NOT_SUPPORTED                       = 0x20,
->>>> +    XE_GUC_RESPONSE_NO_ATTRIBUTE_TABLE                  = 0x201,
->>>> +    XE_GUC_RESPONSE_NO_DECRYPTION_KEY                   = 0x202,
->>>> +    XE_GUC_RESPONSE_DECRYPTION_FAILED                   = 0x204,
->>>> +    XE_GUC_RESPONSE_STATUS_GENERIC_FAIL                 = 0xF000,
->>>>   };
->>>>     enum xe_guc_load_status {
->>>> @@ -17,6 +21,9 @@ enum xe_guc_load_status {
->>>>       XE_GUC_LOAD_STATUS_ERROR_DEVID_BUILD_MISMATCH       = 0x02,
->>>>       XE_GUC_LOAD_STATUS_GUC_PREPROD_BUILD_MISMATCH       = 0x03,
->>>>       XE_GUC_LOAD_STATUS_ERROR_DEVID_INVALID_GUCTYPE      = 0x04,
->>>> +    XE_GUC_LOAD_STATUS_HWCONFIG_START                   = 0x05,
->>>> +    XE_GUC_LOAD_STATUS_HWCONFIG_DONE                    = 0x06,
->>>> +    XE_GUC_LOAD_STATUS_HWCONFIG_ERROR                   = 0x07,
->>>>       XE_GUC_LOAD_STATUS_GDT_DONE                         = 0x10,
->>>>       XE_GUC_LOAD_STATUS_IDT_DONE                         = 0x20,
->>>>       XE_GUC_LOAD_STATUS_LAPIC_DONE                       = 0x30,
->>>> @@ -34,4 +41,19 @@ enum xe_guc_load_status {
->>>>       XE_GUC_LOAD_STATUS_READY                            = 0xF0,
->>>>   };
->>>>   +enum xe_bootrom_load_status {
->>>> +    XE_BOOTROM_STATUS_NO_KEY_FOUND                      = 0x13,
->>>> +    XE_BOOTROM_STATUS_AES_PROD_KEY_FOUND                = 0x1A,
->>>> +    XE_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE            = 0x2B,
->>>> +    XE_BOOTROM_STATUS_RSA_FAILED                        = 0x50,
->>>> +    XE_BOOTROM_STATUS_PAVPC_FAILED                      = 0x73,
->>>> +    XE_BOOTROM_STATUS_WOPCM_FAILED                      = 0x74,
->>>> +    XE_BOOTROM_STATUS_LOADLOC_FAILED                    = 0x75,
->>>> +    XE_BOOTROM_STATUS_JUMP_PASSED                       = 0x76,
->>>> +    XE_BOOTROM_STATUS_JUMP_FAILED                       = 0x77,
->>>> +    XE_BOOTROM_STATUS_RC6CTXCONFIG_FAILED               = 0x79,
->>>> +    XE_BOOTROM_STATUS_MPUMAP_INCORRECT                  = 0x7A,
->>>> +    XE_BOOTROM_STATUS_EXCEPTION                         = 0x7E,
->>>> +};
->>>> +
->>>>   #endif
->>>> diff --git a/drivers/gpu/drm/xe/regs/xe_guc_regs.h 
->>>> b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
->>>> index 92320bbc9d3d..a30e179e662e 100644
->>>> --- a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
->>>> +++ b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
->>>> @@ -40,6 +40,8 @@
->>>>   #define   GS_BOOTROM_JUMP_PASSED REG_FIELD_PREP(GS_BOOTROM_MASK, 
->>>> 0x76)
->>>>   #define   GS_MIA_IN_RESET            REG_BIT(0)
->>>>   +#define GUC_HEADER_INFO                XE_REG(0xc014)
->>>> +
->>>>   #define GUC_WOPCM_SIZE                XE_REG(0xc050)
->>>>   #define   GUC_WOPCM_SIZE_MASK            REG_GENMASK(31, 12)
->>>>   #define   GUC_WOPCM_SIZE_LOCKED            REG_BIT(0)
->>>> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
->>>> index 868208a39829..82514d395704 100644
->>>> --- a/drivers/gpu/drm/xe/xe_guc.c
->>>> +++ b/drivers/gpu/drm/xe/xe_guc.c
->>>> @@ -16,6 +16,7 @@
->>>>   #include "xe_device.h"
->>>>   #include "xe_force_wake.h"
->>>>   #include "xe_gt.h"
->>>> +#include "xe_gt_freq.h"
->>>>   #include "xe_guc_ads.h"
->>>>   #include "xe_guc_ct.h"
->>>>   #include "xe_guc_hwconfig.h"
->>>> @@ -427,58 +428,172 @@ static int guc_xfer_rsa(struct xe_guc *guc)
->>>>       return 0;
->>>>   }
->>>>   +/*
->>>> + * Read the GuC status register (GUC_STATUS) and store it in the
->>>> + * specified location; then return a boolean indicating whether
->>>> + * the value matches either completion or a known failure code.
->>>> + *
->>>> + * This is used for polling the GuC status in an xe_wait_for()
->>>> + * loop below.
->>>> + */
->>>> +static inline bool guc_load_done(struct xe_gt *gt, u32 *status, 
->>>> bool *success)
->>>> +{
->>>> +    u32 val = xe_mmio_read32(gt, GUC_STATUS);
->>>> +    u32 uk_val = REG_FIELD_GET(GS_UKERNEL_MASK, val);
->>>> +    u32 br_val = REG_FIELD_GET(GS_BOOTROM_MASK, val);
->>>> +
->>>> +    *status = val;
->>>> +    switch (uk_val) {
->>>> +    case XE_GUC_LOAD_STATUS_READY:
->>>> +        *success = true;
->>>> +        return true;
->>>> +
->>>> +    case XE_GUC_LOAD_STATUS_ERROR_DEVID_BUILD_MISMATCH:
->>>> +    case XE_GUC_LOAD_STATUS_GUC_PREPROD_BUILD_MISMATCH:
->>>> +    case XE_GUC_LOAD_STATUS_ERROR_DEVID_INVALID_GUCTYPE:
->>>> +    case XE_GUC_LOAD_STATUS_HWCONFIG_ERROR:
->>>> +    case XE_GUC_LOAD_STATUS_DPC_ERROR:
->>>> +    case XE_GUC_LOAD_STATUS_EXCEPTION:
->>>> +    case XE_GUC_LOAD_STATUS_INIT_DATA_INVALID:
->>>> +    case XE_GUC_LOAD_STATUS_MPU_DATA_INVALID:
->>>> +    case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
->>>> +        *success = false;
->>>> +        return true;
->>>> +    }
->>>> +
->>>> +    switch (br_val) {
->>>> +    case XE_BOOTROM_STATUS_NO_KEY_FOUND:
->>>> +    case XE_BOOTROM_STATUS_RSA_FAILED:
->>>> +    case XE_BOOTROM_STATUS_PAVPC_FAILED:
->>>> +    case XE_BOOTROM_STATUS_WOPCM_FAILED:
->>>> +    case XE_BOOTROM_STATUS_LOADLOC_FAILED:
->>>> +    case XE_BOOTROM_STATUS_JUMP_FAILED:
->>>> +    case XE_BOOTROM_STATUS_RC6CTXCONFIG_FAILED:
->>>> +    case XE_BOOTROM_STATUS_MPUMAP_INCORRECT:
->>>> +    case XE_BOOTROM_STATUS_EXCEPTION:
->>>> +    case XE_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE:
->>>> +        *success = false;
->>>> +        return true;
->>>> +    }
->>>> +
->>>> +    return false;
->>>> +}
->>>> +
->>>> +/*
->>>> + * Wait for the GuC to start up.
->>>> + *
->>>> + * Measurements indicate this should take no more than 20ms 
->>>> (assuming the GT
->>>> + * clock is at maximum frequency). However, thermal throttling and 
->>>> other issues
->>>> + * can prevent the clock hitting max and thus making the load take 
->>>> significantly
->>>> + * longer. Indeed, if the GT is clamped to minimum frequency then 
->>>> the load times
->>>> + * can be in the seconds range. As, there is a limit on how long 
->>>> an individual
->>>> + * usleep_range() can wait for, the wait is wrapped in a loop. The 
->>>> loop count
->>>> + * is increased for debug builds so that problems can be detected 
->>>> and analysed.
->>>> + * For release builds, the timeout is kept short so that user's 
->>>> don't wait
->>>> + * forever to find out there is a problem. In either case, if the 
->>>> load took longer
->>>> + * than is reasonable even with some 'sensible' throttling, then 
->>>> flag a warning
->>>> + * because something is not right.
->>>> + *
->>>> + * Note that the only reason an end user should hit the timeout is 
->>>> in case of
->>>> + * extreme thermal throttling. And a system that is that hot 
->>>> during boot is
->>>> + * probably dead anyway!
->>>> + */
->>>> +#if defined(CONFIG_DRM_XE_DEBUG)
->>>> +#define GUC_LOAD_RETRY_LIMIT    20
->>>> +#else
->>>> +#define GUC_LOAD_RETRY_LIMIT    3
->>>> +#endif
->>>> +#define GUC_LOAD_TIME_WARN      200
->>>> +
->>>>   static int guc_wait_ucode(struct xe_guc *guc)
->>>>   {
->>>> -    struct xe_device *xe = guc_to_xe(guc);
->>>> +    struct xe_gt *gt = guc_to_gt(guc);
->>>> +    struct xe_guc_pc *guc_pc = &gt->uc.guc.pc;
->>>> +    ktime_t before, after, delta;
->>>> +    bool success;
->>>>       u32 status;
->>>> -    int ret;
->>>> +    int ret, count;
->>>> +    u64 delta_ms;
->>>> +    u32 before_freq;
->>>> +
->>>> +    before_freq = xe_guc_pc_get_act_freq(guc_pc);
->>>> +    before = ktime_get();
->>>> +    for (count = 0; count < GUC_LOAD_RETRY_LIMIT; count++) {
->>>> +        ret = xe_wait_for(guc_load_done(gt, &status, &success), 
->>>> 1000 * 1000);
->>>> +        if (!ret || !success)
->>>> +            break;
->>>> +
->>>> +        xe_gt_dbg(gt, "load still in progress, count = %d, freq = 
->>>> %dMHz (req %dMHz), status = 0x%08X [0x%02X/%02X]\n",
->>>> +              count, xe_guc_pc_get_act_freq(guc_pc),
->>>> +              xe_guc_pc_get_act_freq(guc_pc), status,
->>> I think this should be current requested frequency 
->>> xe_guc_pc_get_cur_freq
->> No. The point is to report what the actual frequency was to see if 
->> that explains why the load is running slowly. The requested frequency 
->> is under driver control. That should be at maximum during driver 
->> load. The
-> Is requested freq set to maximum in resume path as well?
-It is meant to be. There was a bug raised recently where it seems that 
-it is not. I believe Vinay either has a fix or is working on a fix.
+>>>>On 2/7/2024 8:42 AM, Lucas De Marchi wrote:
+>>>>>+Gustavo who is dealing with DMC firmware lately
 
->> granted frequency is not under driver control. That is the unknown 
->> that needs to be reported to see why the system is not working as 
->> intended.
-> Agreed but in the expression "freq = %dMHz (req %dMHz)" actual 
-> frequency is being printed 2 times. What is significance of "(req 
-> %dMHz) here", I thought req stands for requested.
-Um. Blurgh. You are totally correct. The original version of this only 
-had the actual frequency but after the recent debug effort that 
-triggered porting this over from i915, I added the requested frequency 
-as well. Or at least attempted to but evidently got it wrong. And then 
-promptly forgot that I had done so and was only reading your comments in 
-reference to the code in my head that matched the i915 driver. Doh.
+Hey, guys. Sorry for being so late for the party...
 
-Thanks,
-John.
+>>>>>
+>>>>>On Wed, Feb 07, 2024 at 03:30:59AM +0000, Matthew Brost wrote:
+>>>>>>On Tue, Feb 06, 2024 at 05:18:50PM -0800, John Harrison wrote:
+>>>>>>>On 2/6/2024 15:41, Daniele Ceraolo Spurio wrote:
+>>>>>>>>Supporting older GuC versions comes with baggage, both on the codin=
+g
+>>>>>>>>side (due to interfaces only being available from a certain version
+>>>>>>>>onwards) and on the testing side (due to having to make=20
+>>>>>>>>sure
+>>>>>>>the driver
+>>>>>>>>works as expected with older GuCs).
+>>>>>>>>Since all of our Xe platform are still under force probe, we haven'=
+t
+>>>>>>>>committed to support any specific GuC version and we therefore don'=
+t
+>>>>>>>>need to support the older once, which means that we can=20
+>>>>>>>>force
+>>>>>>>a bottom
+>>>>>>>>limit to what GuC we accept. This allows us to remove any=20
+>>>>>>>>conditional
+>>>>>>>>statements based on older GuC versions and also to approach newer
+>>>>>>>>additions knowing that we'll never attempt to load something older
+>>>>>>>>than our minimum requirement.
+>>>>>>>>
+>>>>>>>>RFC: this patch sets the minimum to the current GuC version (70.19)=
+,
+>>>>>>>>but that can be moved one way or the other. The main aim here is
+>>>>>>>Ideally, this would be bumped every time we update Xe to a=20
+>>>>>>>newer firmware
+>>>>>>>version right up to the point when force probe is lifted. At=20
+>>>>>>>that point it
+>>>>>>>becomes fixed and we have to add the version check support=20
+>>>>>>>back in for
+>>>>>>>future w/a's and features.
+>>>>>>>
+>>>>>>>Get's my vote :).
+>>>>>
+>>>>>Yeah, but see my other reply... I think we will have to wait the
+>>>>>firmware being available in linux-firmware for that.
+>>>>>
+>>>>>Also, let's kickstart a discussion on our process with some
+>>>>>possible changes so we can get it documented. I think we have a good
+>>>>>opportunity here to start adopting the
+>>>>>https://gitlab.freedesktop.org/drm/firmware repo.
+>>>>>
+>>>>>Rough idea:
+>>>>>
+>>>>>1) use intel-staging branch with tags for pull requests to
+>>>>>=C2=A0=C2=A0 linux-firmware, just like documented in their readme.
+>>>>>=C2=A0=C2=A0 IMO the naming is rather unfortunate since it would be
+>>>>>=C2=A0=C2=A0 good to use it for (2) below.... but since it's already u=
+sed
+
+Agreed. The <vendor>-staging branches, as proposed in the README, look
+more like some sort of <vendor>-next type of branch.
+
+I think it would be good if vendors could have their own `<vendor>/*`
+(or `<vendor>-*`) namespace for branch names so that, while having some
+common conventions, they could also adapt parts of it to their needs.
+For example, we could have branches like intel/next for (1) and intel/ci
+for (2). Not sure how easy it is to do this now, though.
+
+>>>>>=C2=A0=C2=A0 we can use something else.
+>>>>>
+>>>>>=C2=A0=C2=A0 this would mainly replace the use we have today for
+>>>>>=C2=A0=C2=A0 https://cgit.freedesktop.org/drm/drm-firmware/ , =C2=A0=
+=C2=A0 which=20
+>>>>>could be retired. From=C2=A0 upstream linux-firmware pov the only
+>>>>>=C2=A0=C2=A0 change would be the remote location and that we start usi=
+ng tags
+>>>>>=C2=A0=C2=A0 for the pull requests, coming from a single branch regard=
+less of
+>>>>>=C2=A0=C2=A0 the firmware (guc, huc, dmc, gsc): intel-staging. Once ac=
+cepted in
+>>>>>=C2=A0=C2=A0 linux-firmware, the branch is fast-forwarded.
+>>>>
+>>>>I think this needs a bit more fleshing out, because before we do a=20
+>>>>pull request, we do want to run CI on the blobs. Also, in several=20
+>>>>occasions we went through a couple of versions before we closed on=20
+>>>>what to push to linux-firmware (e.g. in the latest push we started=20
+>>>>with 70.19.1 but then pushed 70.19.2), so we can't go to=20
+>>>>intel-staging until we're actually ready to push. I think the=20
+>>>>process you have below for mmp blobs should work for this early=20
+>>>>testing flow as well, but we might end up with a lot of noise in=20
+>>>>the staging-intel-for-CI branch.
+>>>
+>>>that would be a throw away branch where we push stuff to be able to test
+>>>on CI. I don't think the commit history matters much there. The fact
+>>
+>>That depends on how CI does things. With the current handling of=20
+>>throwaway branches we have on drm-firmware, a CI request can=20
+>>accidentally roll back another one. e.g., if we push a throwaway=20
+>>branch with a GuC update and then another with a DMC update, the=20
+>>second push will roll-back the GuC to what's on the new branch (likely=20
+>>the linux-firmware version). That's why there was a suggestion ti use=20
+>>a unified branch for CI as well.
+>
+>not sure we are talking about the same thing. It is a unified branch for
+>CI: staging-intel-for-CI is where the mmp +
+>about-to-be-upstreamed-for-the-first-time firmware blobs are added,
+>regardless if it's guc, dmc, huc, etc. IMO it's much simpler since CI
+>basically has to take the additional firmware from this 1 branch. No
+>risk of rolling back another firmware because of the new one.
+
+Maybe we are having some confusion here because of the term "throwaway"
+for intel-staging-for-ci?
+
+We use throwaway branches for the current process, but I guess
+intel-staging-for-ci would not really be a "throwaway" branch per se and
+a unified one (as already mentioned above).
+
+I think using intel-staging-for-ci will be okay if teams take the care
+of only adding/updating/removing blobs they are responsible for.
 
 >
-> Badal
->>
->> John.
 >>
 >>
->>
->>>> + REG_FIELD_GET(GS_BOOTROM_MASK, status),
->>>> +              REG_FIELD_GET(GS_UKERNEL_MASK, status));
->>>> +    }
->>>> +    after = ktime_get();
->>>> +    delta = ktime_sub(after, before);
->>>> +    delta_ms = ktime_to_ms(delta);
->>>> +    if (ret || !success) {
->>>> +        u32 ukernel = REG_FIELD_GET(GS_UKERNEL_MASK, status);
->>>> +        u32 bootrom = REG_FIELD_GET(GS_BOOTROM_MASK, status);
->>>> +
->>>> +        xe_gt_info(gt, "load failed: status = 0x%08X, time = 
->>>> %lldms, freq = %dMHz (req %dMHz), ret = %d\n",
->>>> +               status, delta_ms, xe_guc_pc_get_act_freq(guc_pc),
->>>> +               xe_guc_pc_get_act_freq(guc_pc), ret);
->>> Same as above.
+>>>that the firmware is available to match what is in the kernel and that
+>>>there's a documented process for using it in my view trumps the
+>>>this downside.
 >>>
->>> Regards,
->>> Badal
->>>> +        xe_gt_info(gt, "load failed: status: Reset = %d, BootROM = 
->>>> 0x%02X, UKernel = 0x%02X, MIA = 0x%02X, Auth = 0x%02X\n",
->>>> +               REG_FIELD_GET(GS_MIA_IN_RESET, status),
->>>> +               bootrom, ukernel,
->>>> +               REG_FIELD_GET(GS_MIA_MASK, status),
->>>> +               REG_FIELD_GET(GS_AUTH_STATUS_MASK, status));
->>>> +
->>>> +        switch (bootrom) {
->>>> +        case XE_BOOTROM_STATUS_NO_KEY_FOUND:
->>>> +            xe_gt_info(gt, "invalid key requested, header = 
->>>> 0x%08X\n",
->>>> +                   xe_mmio_read32(gt, GUC_HEADER_INFO));
->>>> +            ret = -ENOEXEC;
->>>> +            break;
->>>>   -    /*
->>>> -     * Wait for the GuC to start up.
->>>> -     * NB: Docs recommend not using the interrupt for completion.
->>>> -     * Measurements indicate this should take no more than 20ms
->>>> -     * (assuming the GT clock is at maximum frequency). So, a
->>>> -     * timeout here indicates that the GuC has failed and is 
->>>> unusable.
->>>> -     * (Higher levels of the driver may decide to reset the GuC and
->>>> -     * attempt the ucode load again if this happens.)
->>>> -     *
->>>> -     * FIXME: There is a known (but exceedingly unlikely) race 
->>>> condition
->>>> -     * where the asynchronous frequency management code could reduce
->>>> -     * the GT clock while a GuC reload is in progress (during a full
->>>> -     * GT reset). A fix is in progress but there are complex locking
->>>> -     * issues to be resolved. In the meantime bump the timeout to
->>>> -     * 200ms. Even at slowest clock, this should be sufficient. And
->>>> -     * in the working case, a larger timeout makes no difference.
->>>> -     */
->>>> -    ret = xe_mmio_wait32(guc_to_gt(guc), GUC_STATUS, GS_UKERNEL_MASK,
->>>> -                 FIELD_PREP(GS_UKERNEL_MASK, 
->>>> XE_GUC_LOAD_STATUS_READY),
->>>> -                 200000, &status, false);
->>>> +        case XE_BOOTROM_STATUS_RSA_FAILED:
->>>> +            xe_gt_info(gt, "firmware signature verification 
->>>> failed\n");
->>>> +            ret = -ENOEXEC;
->>>> +            break;
->>>>   -    if (ret) {
->>>> -        struct drm_device *drm = &xe->drm;
->>>> -
->>>> -        drm_info(drm, "GuC load failed: status = 0x%08X\n", status);
->>>> -        drm_info(drm, "GuC load failed: status: Reset = %d, 
->>>> BootROM = 0x%02X, UKernel = 0x%02X, MIA = 0x%02X, Auth = 0x%02X\n",
->>>> -             REG_FIELD_GET(GS_MIA_IN_RESET, status),
->>>> -             REG_FIELD_GET(GS_BOOTROM_MASK, status),
->>>> -             REG_FIELD_GET(GS_UKERNEL_MASK, status),
->>>> -             REG_FIELD_GET(GS_MIA_MASK, status),
->>>> -             REG_FIELD_GET(GS_AUTH_STATUS_MASK, status));
->>>> -
->>>> -        if ((status & GS_BOOTROM_MASK) == GS_BOOTROM_RSA_FAILED) {
->>>> -            drm_info(drm, "GuC firmware signature verification 
->>>> failed\n");
->>>> +        case XE_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE:
->>>> +            xe_gt_info(gt, "firmware production part check 
->>>> failure\n");
->>>>               ret = -ENOEXEC;
->>>> +            break;
->>>>           }
->>>>   -        if (REG_FIELD_GET(GS_UKERNEL_MASK, status) ==
->>>> -            XE_GUC_LOAD_STATUS_EXCEPTION) {
->>>> -            drm_info(drm, "GuC firmware exception. EIP: %#x\n",
->>>> -                 xe_mmio_read32(guc_to_gt(guc),
->>>> -                        SOFT_SCRATCH(13)));
->>>> +        switch (ukernel) {
->>>> +        case XE_GUC_LOAD_STATUS_EXCEPTION:
->>>> +            xe_gt_info(gt, "firmware exception. EIP: %#x\n",
->>>> +                   xe_mmio_read32(gt, SOFT_SCRATCH(13)));
->>>>               ret = -ENXIO;
->>>> +            break;
->>>> +
->>>> +        case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
->>>> +            xe_gt_info(gt, "illegal register in save/restore 
->>>> workaround list\n");
->>>> +            ret = -EPERM;
->>>> +            break;
->>>> +
->>>> +        case XE_GUC_LOAD_STATUS_HWCONFIG_START:
->>>> +            xe_gt_info(gt, "still extracting hwconfig table.\n");
->>>> +            ret = -ETIMEDOUT;
->>>> +            break;
->>>>           }
->>>> +
->>>> +        /* Uncommon/unexpected error, see earlier status code 
->>>> print for details */
->>>> +        if (ret == 0)
->>>> +            ret = -ENXIO;
->>>> +    } else if (delta_ms > GUC_LOAD_TIME_WARN) {
->>>> +        xe_gt_warn(gt, "excessive init time: %lldms! [status = 
->>>> 0x%08X, count = %d, ret = %d]\n",
->>>> +               delta_ms, status, count, ret);
->>>> +        xe_gt_warn(gt, "excessive init time: [freq = %dMHz, before 
->>>> = %dMHz, perf_limit_reasons = 0x%08X]\n",
->>>> +               xe_guc_pc_get_act_freq(guc_pc), before_freq,
->>>> +               xe_read_perf_limit_reasons(gt));
->>>>       } else {
->>>> -        drm_dbg(&xe->drm, "GuC successfully loaded");
->>>> +        xe_gt_dbg(gt, "init took %lldms, freq = %dMHz, before = 
->>>> %dMHz, status = 0x%08X, count = %d, ret = %d\n",
->>>> +              delta_ms, xe_guc_pc_get_act_freq(guc_pc),
->>>> +              before_freq, status, count, ret);
->>>>       }
->>>>         return ret;
->>>> diff --git a/drivers/gpu/drm/xe/xe_macros.h 
->>>> b/drivers/gpu/drm/xe/xe_macros.h
->>>> index daf56c846d03..eac8f2c9fba5 100644
->>>> --- a/drivers/gpu/drm/xe/xe_macros.h
->>>> +++ b/drivers/gpu/drm/xe/xe_macros.h
->>>> @@ -15,4 +15,36 @@
->>>>                   "Ioctl argument check failed at %s:%d: %s", \
->>>>                   __FILE__, __LINE__, #cond), 1))
->>>>   +/*
->>>> + * xe_wait_for - magic wait macro
->>>> + *
->>>> + * Macro to help avoid open coding check/wait/timeout patterns. 
->>>> Note that it's
->>>> + * important that we check the condition again after having timed 
->>>> out, since the
->>>> + * timeout could be due to preemption or similar and we've never 
->>>> had a chance to
->>>> + * check the condition before the timeout.
->>>> + */
->>>> +#define xe_wait_for(COND, US) ({ \
->>>> +    const ktime_t end__ = ktime_add_ns(ktime_get_raw(), 1000ll * 
->>>> (US)); \
->>>> +    long wait__ = 10; /* recommended min for usleep is 10 us */    \
->>>> +    int ret__;                            \
->>>> +    might_sleep();                            \
->>>> +    for (;;) {                            \
->>>> +        const bool expired__ = ktime_after(ktime_get_raw(), end__); \
->>>> +        /* Guarantee COND check prior to timeout */ \
->>>> +        barrier();                        \
->>>> +        if (COND) {                        \
->>>> +            ret__ = 0;                    \
->>>> +            break;                        \
->>>> +        }                            \
->>>> +        if (expired__) {                    \
->>>> +            ret__ = -ETIMEDOUT;                \
->>>> +            break;                        \
->>>> +        }                            \
->>>> +        usleep_range(wait__, wait__ * 2);            \
->>>> +        if (wait__ < (1000))                    \
->>>> +            wait__ <<= 1;                    \
->>>> +    }                                \
->>>> +    ret__;                                \
->>>> +})
->>>> +
->>>>   #endif
->>
+>>>what I expect would be, considering the LNL case as example:
+>>>
+>>>1) Start testing with the mmp version:
+>>>
+>>>=C2=A0=C2=A0=C2=A0=C2=A0a) Add firmware to=C2=A0 drm/firmware intel-stag=
+ing-for-CI
+>>>=C2=A0=C2=A0=C2=A0=C2=A0b) Add commit in topic/xe-for-CI on the kernel s=
+ide to make
+>>>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 use of that firmware
 
+How would we check for CI after (b)?
+
+For DMC, I have been doing something similar. Differences are:
+
+  * for (a), I am using an intel-ci branch on drm/drm-firmware and send
+    a pull request to intel-gfx so that CI makes the mmp blobs
+    available;
+
+  * for (b), I send a "[CI]"-tagged patch to intel-gfx making the kernel
+    explicitly use that fully versioned blob path. One advantage here is
+    that I keep a broken DMC release from causing CI noise on existing
+    unrelated patch series.
+
+>>>
+>>>2) Ooops, that has bugs
+>>>
+>>>=C2=A0=C2=A0=C2=A0=C2=A0a) add a second mmp firmware to drm/firmware int=
+el-staging-for-CI
+>>>=C2=A0=C2=A0=C2=A0=C2=A0b) replace commit in topic/xe-for-CI on the kern=
+el side
+>>>
+>>>3) we think we are good, let's try for real
+>>>
+>>>=C2=A0=C2=A0=C2=A0=C2=A0a) Add lnl_guc_70.bin to drm/firmware intel-stag=
+ing-for-CI
+>>>=C2=A0=C2=A0=C2=A0=C2=A0b) replace commit in topic/xe-for-CI on the kern=
+el side
+>>>
+>>>4) yay, it worked
+>>>
+>>>=C2=A0=C2=A0=C2=A0=C2=A0a) Add that lnl_gu_70.bin firmware to intel-stag=
+ing branch and
+>>>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 prepare pull request to linux-firmw=
+are
+>>>=C2=A0=C2=A0=C2=A0=C2=A0b) move patch from topic/xe-for-CI to drm-xe-nex=
+t: i.e., rebase
+>>>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 topic/xe-for-CI on top of drm-xe-ne=
+xt leaving that commit as
+>>>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 first one. git push topic/xe-for-CI=
+, dim push drm-xe-next (or
+>>>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 implement the logic in dim to push =
+2 branches)
+>>>
+>>>=C2=A0=C2=A0=C2=A0=C2=A0We may need some time between (a) and (b) depend=
+ing on where we
+>>>=C2=A0=C2=A0=C2=A0=C2=A0are on the kernel release cycle: we don't want t=
+o submit a
+>>>=C2=A0=C2=A0=C2=A0=C2=A0kernel pull request before the firmware is avail=
+able @
+>>>=C2=A0=C2=A0=C2=A0=C2=A0linux-firmware repo.
+>>>
+>>>Note that the fact we are using mmp makes it more complex, although
+>>>explicit.=C2=A0 Going direct with lnl_gu_70.bin would also work and avoi=
+d
+>>>updating the commits on the kernel side.
+>>
+>>This works for a completely new release. For updating an existing=20
+>>release, we'll have to push, potentially multiple times, all the=20
+>>*_guc_70.bin binaries to intel-staging-for-CI. Just to be clear, I=20
+>>have nothing against this, just noting that it would generate a lot of=20
+>>noise in that branch and potentially use a lot of space on disk.
+>>
+>>>
+>>>>
+>>>>We also need some rules to handle the case where there is already=20
+>>>>a PR in flight and we need to push some more blobs. This might be=20
+>>>>as easy as the committer seeing that there are commits on top of=20
+>>>>master, replying to the previous PR to deprecate it, and then=20
+>>>>generating a new PR with all the blobs.
+>>>
+>>>the pull requests to linux-firmware would come from tags, not a branch.
+>>>So you have (tip of the branch is on top):
+>>>
+>>>=C2=A0=C2=A0=C2=A0=C2=A0o <intel-staging> intel: Add lnl_guc_70.bin
+>>>=C2=A0=C2=A0=C2=A0=C2=A0o <refs/tags/intel-2024-01-30> intel: Update dg2=
+_guc_70.bin=C2=A0 <--=20
+>>>last in flight pull request
+>>>=C2=A0=C2=A0=C2=A0=C2=A0o intel: Add lnl_dmc.bin
+>>>=C2=A0=C2=A0=C2=A0=C2=A0o <origin/main> ....=C2=A0 <--=C2=A0 where linux=
+-firmware is at
+>>>
+>>>Looking at amd-staging, it seems to match what they are doing:
+>>>https://gitlab.freedesktop.org/drm/firmware/-/commits/amd-staging?ref_ty=
+pe=3Dheads
+>>>
+>>>
+>>>see the amd-$DATE tags
+>>
+>>Sorry I wasn't very clear in my comment, what I wanted to point out=20
+>>was that if we are on a unified branch and we have the PR against a=20
+>>specific tag (intel-2024-01-30 in your example) already in flight, how=20
+>>do we generate a new PR for the newer commit that comes after the tag=20
+>>(and which will have its own new tag)? Does git do some tag magic and=20
+>>handle it for us, or do we need to generate a new PR that supersedes=20
+>>the one in flight?
+>
+>humn... there is no magic, the old tag is an ascendent path of the new
+>one. But as I said, just coordinating with the few people updating
+>firmware who/when will do the pull request should be sufficient for
+>avoiding a pull request when there's already another one in flight.
+
+While I see the benefit of having a unified intel-staging-for-ci, I
+think I'm failing to see much benefit of having a unified intel-staging
+here.
+
+Wouldn't it be better if pull request were independent of each other? If
+we had an intel/* (or intel-*) branching namespace, we could keep using
+throwaway branches for the pull requests and have the discipline of
+removing them when not needed anymore.
+
+--
+Gustavo Sousa
+
+>
+>
+>>
+>>
+>>>
+>>>>
+>>>>
+>>>>>
+>>>>>2) mmp firmware versions are only ever pushed to a separate=20
+>>>>>staging-intel-for-CI
+>>>>>=C2=A0=C2=A0 branch. There is no pull request in the mailing for this.=
+ We=20
+>>>>>can either
+>>>>>=C2=A0=C2=A0 push directly to the branch or create MRs in gitlab. CI w=
+ould start
+>>>>>=C2=A0=C2=A0 using this branch for the extra firmware for platforms in=
+stead of
+>>>>>=C2=A0=C2=A0 whatever it's using today to process the pull requests fr=
+om the
+>>>>>=C2=A0=C2=A0 mailing list.=C2=A0 Or whatever it's using, because I don=
+'t know=20
+>>>>>and don't
+>>>>>=C2=A0=C2=A0 see it documented anywhere.
+>>>>
+>>>>As long as the CI team is ok with this, I'm all for it.
+>>>>
+>>>>>
+>>>>>=C2=A0=C2=A0 The patch on the kernel side to use the mmp firmware is o=
+nly ever
+>>>>>=C2=A0=C2=A0 pushed to the topic/xe-for-CI branch since a) the firmwar=
+e is=20
+>>>>>coming from
+>>>>>=C2=A0=C2=A0 a non-official location and b) end users and distro packa=
+ging
+>>>>>=C2=A0=C2=A0 shouldn't see a warning when building the kernel due to a=
+ possibly
+>>>>>=C2=A0=C2=A0 missing firmware
+>>>>>3) Raising firmware version requirement for past platforms used as
+>>>>>=C2=A0=C2=A0 SDV can be done **unless** it raises the major version.=20
+>>>>>That's because
+>>>>>=C2=A0=C2=A0 end users would start seeing the warning that we avoided =
+in (2).
+>>>>
+>>>>Who are the end users here? If we're talking about older=20
+>>>>non-officially supported platforms, the only users should be=20
+>>>>developers and they should be able to handle having to update the=20
+>>>>firmwares to a newer major versions.
+>>>
+>>>distros and any developer outside Intel. The kernel build system is
+>>>unaware of xe.force_probe. So if you have, after the several macros:
+>>>
+>>>MODULE_FIRMWARE("xe/tgl_guc_71.bin")
+>>>
+>>>It will show up in `modinfo -f firmware xe`. And it will show as a
+>>>warning when installing/packaging a kernel.
+>>>
+>>>It doesn't matter for minor/patch updates because the file name is
+>>>major-only and **running** with that module is protected by the
+>>>force_probe. The major may be updated when it's available in
+>>>linux-firmware, which means i915 started using it (for i915 that would
+>>>be "as an option, with fallback to the previous major release" of
+>>>course).
+>>
+>>Ok I get the concern. My assumption here was that we'd only update the=20
+>>minimum required version if that version was in linux-firmware even=20
+>>for minor updates, hence why I didn't see why a major update would be=20
+>>different. I guess we could go with a more relaxed approach where we=20
+>>allow the required minor to be updated for force-probe platforms as=20
+>>long as the firmware is available on a public/CI branch even if it is=20
+>>not in linux-firmware.
+>
+>yep, I don't see it causing issues to end users.
+>
+>>
+>>Getting back on track with the original purpose of this patch, are you=20
+>>ok with setting the minimum to 70.19 if I first push the matching PVC=20
+>>70.19 binary (via the old method for now), while we continue sorting=20
+>>out how to manage the new repo?
+>
+>yes.
+>
+>Lucas De Marchi
+>
+>>
+>>Daniele
+>>
+>>>
+>>>Lucas De Marchi
+>>>
+>>>>
+>>>>Daniele
+>>>>
+>>>>>
+>>>>>thoughts?
+>>>>>
+>>>>>Lucas De Marchi
+>>>>>
+>>>>>>>
+>>>>>>
+>>>>>>Mine too.
+>>>>>>
+>>>>>>With that:
+>>>>>>Acked-by: Matthew Brost <matthew.brost@intel.com>
+>>>>>>
+>>>>>>>John.
+>>>>>>>
+>>>>>>>>agreeing to stop supporting very old GuC releases on the=20
+>>>>>>>>newer
+>>>>>>>driver.
+>>>>>>>>
+>>>>>>>>Signed-off-by: Daniele Ceraolo Spurio
+>>>>>>><daniele.ceraolospurio@intel.com>
+>>>>>>>>Cc: John Harrison <John.C.Harrison@Intel.com>
+>>>>>>>>Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>>>>>>>>Cc: Matt Roper <matthew.d.roper@intel.com>
+>>>>>>>>Cc: Matthew Brost <matthew.brost@intel.com>
+>>>>>>>>Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>>>>>>>---
+>>>>>>>>=C2=A0=C2=A0 drivers/gpu/drm/xe/xe_guc.c=C2=A0=C2=A0 | 14 ++-------=
+-----
+>>>>>>>>=C2=A0=C2=A0 drivers/gpu/drm/xe/xe_uc_fw.c | 36
+>>>>>>>++++++++++++++---------------------
+>>>>>>>>=C2=A0=C2=A0 2 files changed, 16 insertions(+), 34 deletions(-)
+>>>>>>>>
+>>>>>>>>diff --git a/drivers/gpu/drm/xe/xe_guc.c
+>>>>>>>b/drivers/gpu/drm/xe/xe_guc.c
+>>>>>>>>index 868208a39829..5e6b27aac495 100644
+>>>>>>>>--- a/drivers/gpu/drm/xe/xe_guc.c
+>>>>>>>>+++ b/drivers/gpu/drm/xe/xe_guc.c
+>>>>>>>>@@ -132,15 +132,10 @@ static u32 guc_ctl_ads_flags(struct
+>>>>>>>xe_guc *guc)
+>>>>>>>>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return flags;
+>>>>>>>>=C2=A0=C2=A0 }
+>>>>>>>>-#define GUC_VER(maj, min, pat)=C2=A0=C2=A0=C2=A0 (((maj) << 16) | =
+((min)=20
+>>>>>>>><<
+>>>>>>>8) | (pat))
+>>>>>>>>-
+>>>>>>>>=C2=A0=C2=A0 static u32 guc_ctl_wa_flags(struct xe_guc *guc)
+>>>>>>>>=C2=A0=C2=A0 {
+>>>>>>>>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_device *xe =3D guc_t=
+o_xe(guc);
+>>>>>>>>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_gt *gt =3D guc_to_gt=
+(guc);
+>>>>>>>>-=C2=A0=C2=A0=C2=A0 struct xe_uc_fw *uc_fw =3D &guc->fw;
+>>>>>>>>-=C2=A0=C2=A0=C2=A0 struct xe_uc_fw_version *version =3D
+>>>>>>>&uc_fw->versions.found[XE_UC_FW_VER_RELEASE];
+>>>>>>>>-
+>>>>>>>>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u32 flags =3D 0;
+>>>>>>>>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (XE_WA(gt, 22012773006))
+>>>>>>>>@@ -170,13 +165,8 @@ static u32 guc_ctl_wa_flags(struct xe_guc *guc=
+)
+>>>>>>>>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (XE_WA(gt, 1509372804))
+>>>>>>>>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 flags =
+|=3D GUC_WA_RENDER_RST_RC6_EXIT;
+>>>>>>>>-=C2=A0=C2=A0=C2=A0 if (XE_WA(gt, 14018913170)) {
+>>>>>>>>-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (GUC_VER(version->ma=
+jor, version->minor,
+>>>>>>>version->patch) >=3D GUC_VER(70, 7, 0))
+>>>>>>>>-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ flags |=3D GUC_WA_ENABLE_TSC_CHECK_ON_RC6;
+>>>>>>>>-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 else
+>>>>>>>>-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ drm_dbg(&xe->drm, "Skip WA 14018913170: GUC
+>>>>>>>version expected >=3D 70.7.0, found %u.%u.%u\n",
+>>>>>>>>- version->major, version->minor, version->patch);
+>>>>>>>>-=C2=A0=C2=A0=C2=A0 }
+>>>>>>>>+=C2=A0=C2=A0=C2=A0 if (XE_WA(gt, 14018913170))
+>>>>>>>>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 flags |=3D GUC_WA_ENABL=
+E_TSC_CHECK_ON_RC6;
+>>>>>>>>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return flags;
+>>>>>>>>=C2=A0=C2=A0 }
+>>>>>>>>diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c
+>>>>>>>b/drivers/gpu/drm/xe/xe_uc_fw.c
+>>>>>>>>index 4714f2c8d2ba..e5bf59616f3d 100644
+>>>>>>>>--- a/drivers/gpu/drm/xe/xe_uc_fw.c
+>>>>>>>>+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+>>>>>>>>@@ -296,36 +296,28 @@ static void uc_fw_fini(struct=20
+>>>>>>>>drm_device
+>>>>>>>*drm, void *arg)
+>>>>>>>>xe_uc_fw_change_status(uc_fw, XE_UC_FIRMWARE_SELECTED);
+>>>>>>>>=C2=A0=C2=A0 }
+>>>>>>>>-static void guc_read_css_info(struct xe_uc_fw *uc_fw,=20
+>>>>>>>>struct
+>>>>>>>uc_css_header *css)
+>>>>>>>>+static int guc_read_css_info(struct xe_uc_fw *uc_fw,=20
+>>>>>>>>struct
+>>>>>>>uc_css_header *css)
+>>>>>>>>=C2=A0=C2=A0 {
+>>>>>>>>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_gt *gt =3D uc_fw_to_=
+gt(uc_fw);
+>>>>>>>>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_uc_fw_version *relea=
+se =3D
+>>>>>>>&uc_fw->versions.found[XE_UC_FW_VER_RELEASE];
+>>>>>>>>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_uc_fw_version *compa=
+tibility =3D
+>>>>>>>&uc_fw->versions.found[XE_UC_FW_VER_COMPATIBILITY];
+>>>>>>>>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_gt_assert(gt, uc_fw->type =
+=3D=3D XE_UC_FW_TYPE_GUC);
+>>>>>>>>-=C2=A0=C2=A0=C2=A0 xe_gt_assert(gt, release->major >=3D 70);
+>>>>>>>>-
+>>>>>>>>-=C2=A0=C2=A0=C2=A0 if (release->major > 70 || release->minor >=3D =
+6) {
+>>>>>>>>-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* v70.6.0 adds CSS hea=
+der support */
+>>>>>>>>-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatibility->major =
+=3D FIELD_GET(CSS_SW_VERSION_UC_MAJOR,
+>>>>>>>>-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 css->submission_version);
+>>>>>>>>-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatibility->minor =
+=3D FIELD_GET(CSS_SW_VERSION_UC_MINOR,
+>>>>>>>>-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 css->submission_version);
+>>>>>>>>-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatibility->patch =
+=3D FIELD_GET(CSS_SW_VERSION_UC_PATCH,
+>>>>>>>>-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 css->submission_version);
+>>>>>>>>-=C2=A0=C2=A0=C2=A0 } else if (release->minor >=3D 3) {
+>>>>>>>>-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* v70.3.0 introduced v=
+1.1.0 */
+>>>>>>>>-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatibility->major =
+=3D 1;
+>>>>>>>>-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatibility->minor =
+=3D 1;
+>>>>>>>>-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatibility->patch =
+=3D 0;
+>>>>>>>>-=C2=A0=C2=A0=C2=A0 } else {
+>>>>>>>>-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* v70.0.0 introduced v=
+1.0.0 */
+>>>>>>>>-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatibility->major =
+=3D 1;
+>>>>>>>>-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatibility->minor =
+=3D 0;
+>>>>>>>>-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatibility->patch =
+=3D 0;
+>>>>>>>>+
+>>>>>>>>+=C2=A0=C2=A0=C2=A0 /* We don't support GuC releases older than 70.=
+19 */
+>>>>>>>>+=C2=A0=C2=A0=C2=A0 if (release->major < 70 || (release->major =3D=
+=3D 70 &&
+>>>>>>>release->minor < 19)) {
+>>>>>>>>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_gt_err(gt, "Unsuppor=
+ted GuC v%u.%u! v70.19 or
+>>>>>>>newer is required\n",
+>>>>>>>>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 release->major, release->minor);
+>>>>>>>>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return -EINVAL;
+>>>>>>>>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
+>>>>>>>>+=C2=A0=C2=A0=C2=A0 compatibility->major =3D=20
+>>>>>>>>FIELD_GET(CSS_SW_VERSION_UC_MAJOR,
+>>>>>>>css->submission_version);
+>>>>>>>>+=C2=A0=C2=A0=C2=A0 compatibility->minor =3D=20
+>>>>>>>>FIELD_GET(CSS_SW_VERSION_UC_MINOR,
+>>>>>>>css->submission_version);
+>>>>>>>>+=C2=A0=C2=A0=C2=A0 compatibility->patch =3D=20
+>>>>>>>>FIELD_GET(CSS_SW_VERSION_UC_PATCH,
+>>>>>>>css->submission_version);
+>>>>>>>>+
+>>>>>>>>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uc_fw->private_data_size =3D c=
+ss->private_data_size;
+>>>>>>>>+
+>>>>>>>>+=C2=A0=C2=A0=C2=A0 return 0;
+>>>>>>>>=C2=A0=C2=A0 }
+>>>>>>>>=C2=A0=C2=A0 int xe_uc_fw_check_version_requirements(struct xe_uc_f=
+w *uc_fw)
+>>>>>>>>@@ -424,7 +416,7 @@ static int parse_css_header(struct
+>>>>>>>xe_uc_fw *uc_fw, const void *fw_data, size_t
+>>>>>>>>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 release->patch =3D FIELD_GET(C=
+SS_SW_VERSION_UC_PATCH,
+>>>>>>>css->sw_version);
+>>>>>>>>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (uc_fw->type =3D=3D XE_UC_F=
+W_TYPE_GUC)
+>>>>>>>>-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 guc_read_css_info(uc_fw=
+, css);
+>>>>>>>>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return guc_read_css_inf=
+o(uc_fw, css);
+>>>>>>>>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return 0;
+>>>>>>>>=C2=A0=C2=A0 }
+>>>>>>>
+>>>>
+>>
