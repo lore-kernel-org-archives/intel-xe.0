@@ -4,156 +4,155 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60872C4829F
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Feb 2024 05:33:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE729C4829A
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Feb 2024 05:39:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E481310E49F;
-	Wed, 14 Feb 2024 05:33:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97ACA10E4AB;
+	Wed, 14 Feb 2024 05:39:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ij2/xzLH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NL1hdpRM";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2122010E486;
- Wed, 14 Feb 2024 05:33:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C40ED10E4AB
+ for <Intel-Xe@lists.freedesktop.org>; Wed, 14 Feb 2024 05:39:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707888833; x=1739424833;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=nnE1HavQm9V1wOag+Q+39bGxXLU4U8TK5gU6j2LjERE=;
- b=ij2/xzLHXouAi0TI3jIGvEZCf/utLB9dNTCr+jOEIDStCW5tNBDpJI1I
- m0Y/F1ejxYLbk/DUroNiUR6tNnMjj8/5hf5RwZYJljIc8LchZMDRhfSFn
- 7S4bM3KNGDzmtjX5ZCtnfszUqRv5sULWB5IioWNaxc/lNluUQtnEZ2uW2
- RiR2J4+s25RPrieaPD/rNMDMUEo6J2nh+c2d8zQAJf0WUrGV3mcWgO0ks
- KRoyij1hG4VrX1gLYfg8qFxCSr+YJCL0vq8QmevS1LFjvITL4sMyWnqIf
- PJzEwRXwYR6Koo5kdSBYJn6CtN6p6ySTujlaOXvwRfLbEbZ/NYjztzB+H w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="12557558"
-X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; d="scan'208";a="12557558"
+ t=1707889181; x=1739425181;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=vGFKdYgUKC2yjB8qNlZPD5o1Xliee6ixAp/7DBj0CYc=;
+ b=NL1hdpRMzHTnsc1U8m/S4kPbBlc3eXbmxicCwC+23ysESPPaCNYmNTnC
+ K2WHg6fpfigzkePmrj5wNkm4L1zza0B7EbVTYFm0nK1yHSbqES/jgsKZY
+ sS1GLrJZDCq88+285tdAY8K4PdjtP34xqQTgyVKi4h9leCQRnwZjE4whw
+ ipfcIxd3uj4zCqIuoi1eIiF0BkbZHbPCx9dAxcoyRiFi5TguxQ/LAwrkd
+ 6E5Ka0TMeiDDmVay4iEIe8MmrXWvHnV7j70rKT/DIiJa4IXXoQhmgoEFe
+ pf4cCd51mvAWHTSnUFI/BKXpotnOV6+aBf0kKxuLiSxN0v21AhR7l0OWd g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="1773558"
+X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; 
+   d="scan'208";a="1773558"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2024 21:33:53 -0800
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2024 21:39:40 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="912011735"
-X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; d="scan'208";a="912011735"
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="912013026"
+X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; d="scan'208";a="912013026"
 Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
  by fmsmga002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 13 Feb 2024 21:33:51 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ 13 Feb 2024 21:39:39 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
  ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 13 Feb 2024 21:33:52 -0800
+ 15.1.2507.35; Tue, 13 Feb 2024 21:39:38 -0800
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 13 Feb 2024 21:33:51 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ 15.1.2507.35; Tue, 13 Feb 2024 21:39:38 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
  orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 13 Feb 2024 21:33:51 -0800
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.40) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Tue, 13 Feb 2024 21:39:38 -0800
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.101)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 13 Feb 2024 21:33:51 -0800
+ 15.1.2507.35; Tue, 13 Feb 2024 21:39:38 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mL/ciLqqYKygYmIFIvQ/ErpUqc+mkiQ+J31ErXO6G11FqHpbNI25s+aTAjYwXUGyF45cFP3KMXcMU4/rOhvC/t2SU7tSwSgEFNGAwITQR0UjUWGwqW4tfyLdMibOStCGPR631eP/OJMzy7OXHCGz1ZWxfcFA/xWsnkWnJkvVVavTVarq5ik/SM/MO2V6LzR+xaAACoXw9HSqWp/T5sDr7PRR/Lya+XEs9be/H9cmQs6akU+qbq1Lvj5eddpTVj7paTCCLyezWVFk67PzewfCqebioXemu2jSnpLO6IhOVkamSi4rxdDATyIYj8fyrTg2s2RY1FOusVoMi1PswEImjg==
+ b=UjpmWv9AouJmPi9Y9hFYkqwubDfBgmj7b8/lyBfmHm9YQFks5H0V2g4Ol/zG1sRPf3w3p/k+HiEYgxAzDkLomAGrzTYhuy/oaXgrDgKpvwv/fvfanJvzAb7xAQBLt9RS5Dk4amVkf8BnZmDAASXYJOPt9ZKTwOWmWrAtY+91ByjY6Bofy3dpVxkmcKvg38E2T6whl+S74LufK1BXw01bQQ+b8t20hVzBhUl+oOZAg/Mc9pPtW7nH97vJq7pzAtw0aahwei1Gjodl15Bm6cnzqE39CUOPN4WxA4RPhIrO+c3XkwFeGb+86T7WpEATZFQDlb7O/081OA/8c1O4Lphg1w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nnE1HavQm9V1wOag+Q+39bGxXLU4U8TK5gU6j2LjERE=;
- b=m5uBhNVaZ0Fu21XC8aqkFkDZc/oXJ6stHCzHFvx2fboSmPfwEOgbA1C9tvRum1NOYlJODyTAq9hRRRDT5FSO1mJFLgSgLfckBj1SR6aX5n4zjvh5xBAQA3nihwDwsZ9BlHIgFPO0C2xQUL8+TaPTxlFo4IbvEJoMXU7in3f7AmvPs68Af46KG5vloi6VLjnfL3b89YypRedfoJC/a9EmQGkNq0xUMk8+chwL3TF8s2+fZHMacxq3NR/R42PhB8skypy+y5vlEHhefr1lNtYrfjZRQ4uso07GD8GTfN9SpEnCOZU7FqYiVaCXbAKOfpqkq4K34hdL9ftX1yVuzQF3aA==
+ bh=lxlJJZOLp28kU4G7RSSyBb1o8oKOG/jK3ix9GkXTA7I=;
+ b=Wvf1HH9IlZmyiXmlQLiAD5TsUwd7mtEB1vW1NqEZONQotoTBBsAGN+73/grNvTnVMtT21UluLp1gBmxwQ4wTtGciZwBrvk6Wg/kew97zXReJYfK3IKsfT7JmqD3RrCuOyHgONyQyccvSQxsugY6+2KE7Lp77UnqaR9RRP9ym/3aprstCIKwcMgIKn1o0QyQQVUTnDEkGbc62EGXCLcV5a0OvZaz6CYfN8IxdNDPiITUvHUM98EMMENL1d0QgOdW445PAb5XlH1SY31jMxd03UPQJECy5LSlRX96HAzR11YwsMfFQmzbiQkQvtJGWOlbFWYzhm0Khg5wt1SVHVqnpOA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from MW4PR11MB6761.namprd11.prod.outlook.com (2603:10b6:303:20d::5)
- by IA1PR11MB7677.namprd11.prod.outlook.com (2603:10b6:208:3fd::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.39; Wed, 14 Feb
- 2024 05:33:49 +0000
-Received: from MW4PR11MB6761.namprd11.prod.outlook.com
- ([fe80::7ec4:bb5a:ce14:31fa]) by MW4PR11MB6761.namprd11.prod.outlook.com
- ([fe80::7ec4:bb5a:ce14:31fa%5]) with mapi id 15.20.7270.036; Wed, 14 Feb 2024
- 05:33:49 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Jani Nikula (jani.nikula@linux.intel.com)" <jani.nikula@linux.intel.com>, 
- "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Subject: RE: [PATCH 4/5] drm/xe/hdcp: Enable HDCP for XE
-Thread-Topic: [PATCH 4/5] drm/xe/hdcp: Enable HDCP for XE
-Thread-Index: AQHaW0ENZG6YP15XLEOTVHnLfjofYrEI8tCAgABke2A=
-Date: Wed, 14 Feb 2024 05:33:49 +0000
-Message-ID: <MW4PR11MB67619A3E2A212BDAE10581DFE34E2@MW4PR11MB6761.namprd11.prod.outlook.com>
-References: <20240209101412.1326176-1-suraj.kandpal@intel.com>
- <20240209101412.1326176-5-suraj.kandpal@intel.com>
- <a08914b5-ffa2-4fbd-821c-5967af24a372@intel.com>
-In-Reply-To: <a08914b5-ffa2-4fbd-821c-5967af24a372@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MW4PR11MB6761:EE_|IA1PR11MB7677:EE_
-x-ms-office365-filtering-correlation-id: b1479200-215d-4945-3957-08dc2d1e85af
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: dLMrEZZjUOoF/3ypXHyKTbaCuG+iEoSRySN1Q3Sm2YLDBey6Mf3Slsk4PZTHE1POHg3BrAnTMgXoL7eJdo4Tg2TmxEuW9zAM1WacuDlhHu9FeITD1x+M5fMPZe+iOu15rL3DOcB1tdW5153GdiXEXdtihWmFmMj5optsgnK5YAvB08qjwT3VeN33DuG4xcAVqibpU0VBDiSOspcoJjW1buHMs7hplEySflicN0RtIlgKvzsyFmXDyOvwcVp002DYHS5fUJw6VMmYlovlPGWkMtaxruLqiNDb+hfCmlD4qK8A6Zxx0Iaj0Zs+JqMz/FBsGKumcIDomy7GGE1KVquYejPyBgKkaD6q8lWzJtcy4vsyfLfGXpQpthM1LjQxfJCHznF6J6qFXrvh4smXNxpoosVfDL1Z0YGDBYywMg69Q3Ipj7IlE8SxiFNZ6IMwz+jEPbc73trcNo6TfFPVjbbO2u82ighE9IpxNvplseiO/glOJ3OB4vSMEpB28d+9SRfh1nUbR13B+hbBRKvyKxpA94+U5SmWKWK/s+zQKfbFNouEyY0DBCGN5w6WIHvvckWb/bzv28/QKtl7IcEcYIls2uvdc4XBwGTtLyqhw73TvWmTV7uFZTkX1x9NCO0MBtYE
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW4PR11MB6761.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(346002)(39860400002)(136003)(376002)(366004)(230922051799003)(186009)(1800799012)(451199024)(64100799003)(83380400001)(26005)(38100700002)(122000001)(4326008)(66476007)(82960400001)(66446008)(5660300002)(76116006)(66556008)(8936002)(64756008)(66946007)(52536014)(8676002)(2906002)(6506007)(7696005)(478600001)(41300700001)(9686003)(110136005)(71200400001)(316002)(54906003)(38070700009)(86362001)(33656002)(55016003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?UFNzdUdGYlE2aDM3WkNKeExjQWVNZXMzMFFWa00wK3JvNFdxTXBUdkl0MFlx?=
- =?utf-8?B?eHpXM3lvNHRwMm1Ob0pXSjNPRnlWVkQrb2JTMkh1bEdKc3ZKc2F2VVhWZEdu?=
- =?utf-8?B?SGhlNEVqTC9tVUpvSzRyUGN6V3dxZXFwMEI4Z3REV2FOUDA0UGlxSlNUY3Fm?=
- =?utf-8?B?VW1IY3RBWUdwWWp3d2hTRTRmSzRnYm5IWlJ3VjBKN0p1cEJXUHQzQU1QV09j?=
- =?utf-8?B?UGxQaWZSNkE3ZWJxanJEdlA0eE5CczZxUDlQSnpLRGEyaUVDS3dmcG9XSEx5?=
- =?utf-8?B?Y0F6cHl2QmJmMzluVjRNczdicWNPZGdFMkc2MGtLVFhjQ3pqOXhJc3NsWSts?=
- =?utf-8?B?TTBUc1pFSndmMmNlUHdsMTM4Y24wYmFlQ3Y2SjBHdFFCT3BhTWZSTHpzUG5O?=
- =?utf-8?B?WHhuMWgwREFTbWE2Z1pUeHVNUHJPMFBTNk44VFBjbENRd3hISUR0aVZqdWVu?=
- =?utf-8?B?cW84ZFB4cGcrQTYyeTJZNW1JZkpBa2QrM3Z1c0VCdzNTQ1MwL0U2K0c3djhE?=
- =?utf-8?B?ZStSK0tRbzlzaitUcDNkQnBGME5RcGV6NG4wcE55M1F4eGJxa0E0R3FJTVpT?=
- =?utf-8?B?aVY5ZjkzOFdtb1VUY3hlNTVwUXk5TzM1cnlxY2ZnaExMN3lhNlVQK29rVytm?=
- =?utf-8?B?M1R4WHJGaUxYUjE1MUg5ZllWbWIvSzRNZXJzand3WWI4R1dkZHAwYkhNSUFi?=
- =?utf-8?B?K3QvakxVcG1hWUJwdHc0clVBMG9wcThmcSt6UE91Uzg5ME1zVWpzWFBDSTJh?=
- =?utf-8?B?Y004cW9RRnArZVFIMmlIN01mSXRxZENwdHN3UVZGNTROUGN3Um9JSnlqRitQ?=
- =?utf-8?B?enZCWDNIbTlMMzdSQlJXQzBpNWh6N0tSQlAyMTFsNTZsbHRDbVdVakEvaHp0?=
- =?utf-8?B?LzFsdnVLSGw3MnBSYzhEMXhBcW1oRFl6eCswcE5MS3dZbmJPSDRrbmZHdzlo?=
- =?utf-8?B?VlBFbThGQzhMeUNYa0N4aGJoL0JvQnhwZzZtcGRTcmtpMEtsYWU4NEZNQnZa?=
- =?utf-8?B?ZmNsM1RjNG5zN2xrQy8xYTk0VGRkeFJwZ0hrV1Jsd1puQ0drb2c4N2YrM1JG?=
- =?utf-8?B?ZlFRM1RxUFFQRmhhdE5FYWR0ei9odWgzcDNtK01UMzBXditUQ2dsT01IblNa?=
- =?utf-8?B?dmR1UlBTNDMrcjFPVnd6ZkE5Y0prUFMwYzFRTEFNUzVGYkc1b2JaSUlLSW4r?=
- =?utf-8?B?a3UybUlxY2hBS09PM20xWjRRTW1iSnNlUUIxUmQzdVVLVkFGS0taYURjSmN4?=
- =?utf-8?B?VGpDZERlNWNWQUFVWDlJK2VIUXFkZjY1VVJ4b2d4Q0oxbklOWXBMc05uQ2pZ?=
- =?utf-8?B?UDZRM3k3YWM0eUtyamVUL2NpdHNWMTdreFlrMVVaUjRJVS8wUVBESm1DdE02?=
- =?utf-8?B?bjJBd1AzWXcwdEtBNEREQllZbGttY2VJREI3TkhxNlo0OUVFMktCeGdmN3hj?=
- =?utf-8?B?N1NoMVFDWjIvTGhtby9DV3YwamtlUTRzN2szM2h4aDVUNUYzNGluZnNqTXZm?=
- =?utf-8?B?b2EzUmtqTmVJYlRxZnpYdFBnZzF0azFzK2IyK3RCMS9PdkcvcEczNFR3TkpY?=
- =?utf-8?B?MkJUYmVNVHE2Qk1MS0oxYzRGaDY5WC9BK0tMUnk3M3kzZ1lwQU5UYXJKUnUw?=
- =?utf-8?B?Q0ZxcDdCRy9XbU5GS1JCa2FWU3pPdWo4ZFBoSW5tNWxYQk41WUk5YlZSUmdL?=
- =?utf-8?B?eUN3ZmFsVlRCUzI0c2NTeTRZZWpDa2YvOTNQV1BaNlZ3RGRXNzRzbnZsSEdR?=
- =?utf-8?B?TUZveE5iQitNM3U1QzJKVkpudXhaS0Qrbkl4WGdxNWVHQkF3cWtWc3BudlhE?=
- =?utf-8?B?TGUzOS9qdmNMZEJpUzRWSGwrUDdWWkhqUi9nalVwWngyY0xnR25iWFF4ck56?=
- =?utf-8?B?S2tPQVNlQ29xOUVKVFc2a0ZwbXNvOHBwdXJxUFVTcU5OSFFsNm1GUTYzamMy?=
- =?utf-8?B?WkJKbDJZb0lEbm12Tk9TWWF0ODQyKzNKSTlVRVVlRXpwZmpwRC9CUUNDL1BI?=
- =?utf-8?B?Z0pxOGpiZ2Vadm5EZU5zTi90VkNCdUJPMSt5QVhQZjJkSHl0Tzg3cVlVTHV2?=
- =?utf-8?B?MHdNYkJSanRLZ2pPbWsvL0pDMmc3TmZQSXRyMWFOM01FUGc3eFdWSHhHKzJJ?=
- =?utf-8?Q?s4zw1s+DURLsEt0Y29YREZj45?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com (2603:10b6:408:103::8)
+ by SN7PR11MB6852.namprd11.prod.outlook.com (2603:10b6:806:2a4::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.27; Wed, 14 Feb
+ 2024 05:39:31 +0000
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::eb80:5333:fa3e:cb6c]) by BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::eb80:5333:fa3e:cb6c%4]) with mapi id 15.20.7292.022; Wed, 14 Feb 2024
+ 05:39:31 +0000
+Message-ID: <a48cc9b7-6d1b-4264-b400-3949583c0d5f@intel.com>
+Date: Wed, 14 Feb 2024 11:09:25 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] drm/xe/guc: Port over the slow GuC loading support
+ from i915
+Content-Language: en-US
+To: John Harrison <john.c.harrison@intel.com>, <Intel-Xe@Lists.FreeDesktop.Org>
+References: <20240213003426.3943662-1-John.C.Harrison@Intel.com>
+ <20240213003426.3943662-3-John.C.Harrison@Intel.com>
+ <d8ec5d48-b356-42c6-9140-41c6868a1546@intel.com>
+ <81c28b98-82f7-412c-a60d-9b19e372faeb@intel.com>
+From: "Nilawar, Badal" <badal.nilawar@intel.com>
+In-Reply-To: <81c28b98-82f7-412c-a60d-9b19e372faeb@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PN2PR01CA0194.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:e8::19) To BN9PR11MB5530.namprd11.prod.outlook.com
+ (2603:10b6:408:103::8)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN9PR11MB5530:EE_|SN7PR11MB6852:EE_
+X-MS-Office365-Filtering-Correlation-Id: a5b4e0ed-2b76-4473-5aaf-08dc2d1f515c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: bRKbolL2nHWZuSnif3uArUAn6MagfjmxdzKIC/XNvuXCoeUBqk95FVT3U0LKOHh9UFyw1GJuG4PqQwckIAL8k2/By+Mew7QAxx8mrx2NauaaD8ObXQaRqDs3361/HXQ4kJlVCd2tIYMvNgxTXDwt/AG20uHqUV6i30Ne9h+nVnmOffpbHSdDeXLmoiTAWlHVn50uCPOuheFAn4pOsF4ud7PNrZA0NekQQC+lCC7Xk2KNQuFywu3TrbSw3/h1XzRoaALzPzCQQ107JdnUR8iR8QAXCCObiQ773Tbhk0pH4CitPiU6VOZcBchoxk7Wg+QM7e5SXAJHUhw5pWP8qs7X2s9MQM6kj0us5I8MaKqMIMiZTU6bHJnq4QKP0y873mE6G1qOUqYkPo6rGTuJY9mDUOPE1MQBLeJ77oVHpN9evUiK20fX/zM9BdiM3sn3sq3WPlt2tAFhql4kKcBXPG7BBeraFvI9dRxn3PvHNzYIdqV4ydGgKQXEaXEHeXpjpT8ONSY5oCDnyzaRouW9p5WVbBs0bWOWRZ13Cqu6coCQqeUBQFVxx58gOQlKWJ2OBL4+
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR11MB5530.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(346002)(396003)(366004)(39860400002)(376002)(136003)(230922051799003)(230273577357003)(186009)(451199024)(1800799012)(64100799003)(66946007)(2616005)(6506007)(31686004)(41300700001)(6512007)(6486002)(53546011)(478600001)(2906002)(66476007)(30864003)(8676002)(5660300002)(66556008)(8936002)(86362001)(6666004)(38100700002)(26005)(83380400001)(31696002)(36756003)(316002)(82960400001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q0lHdldTQXozK1VYbFlZQ1lObUZGK2RySXJPaWVmN1A5YkZ4TTdIWmRqRHRh?=
+ =?utf-8?B?T1Y1NVA2TVdSYkJkMGV3WTNjUnJ1a2FNU3E2eGNqNUlWVzZkdHlyRkU4alBH?=
+ =?utf-8?B?VE8rZk8yQVcvcGNZT2JTc3VvWHZEcFk0Y2VxUHFKNCtnVjhySXdCRndrenBR?=
+ =?utf-8?B?aFhZVHc1S1JmeDQ4V1lBWTRZbWV0U3FvL0FXVkZBeGdyczdISDh3ZzJxWU9j?=
+ =?utf-8?B?Nzh4azNRVG9icTZGelRNMGFxM2l5bS9sNmZJbHZ6b3U5bVBma0Q5Y2pFayt0?=
+ =?utf-8?B?cUJZV00yb2xLR0Vtcjk2aUJHUjU2MThPcTVxYWl6NmRzNHJPckI4N05iQ1pN?=
+ =?utf-8?B?SkpLNXZWbnc4ZzgzcXpWb1d6WVc2Zk04U2wyL2gwRzRSSUh1M1pXcmdWMW5W?=
+ =?utf-8?B?M3ZyVHFoNmxNVWJUNkdPa2lURWZzS3B1RTB5QVRrYk9kV1R4OEQvUVBaWWVN?=
+ =?utf-8?B?d1hGUmxIZmt4cG85Nnd4NjNiVWQ4RmF0VEo2Q2JmU251UUM4eFQwK3pQNndD?=
+ =?utf-8?B?R2hHVUc5TVV6N1JzWEJLVWdCVHpTZjZaWnE0WWFaWHQrUk16UGwvbDVJcWdK?=
+ =?utf-8?B?cnNLU1VFV0lUWElOTHhmUjdzRGxwV1JXYWVVOGN5cDlnM2oyWjZlUGV0YTZh?=
+ =?utf-8?B?OXdVSW84N1Z0d2dhaU8vdVh1SHIwYzdnMTRxYnh1b2RJN2JLaU1kUXNXaDVB?=
+ =?utf-8?B?S0Jlc2FiVFRHUlcxSmp1d2g5SXZmWmtiOWpnSXNDWmZIcmNaeXFDK1c0aWVR?=
+ =?utf-8?B?U2owVkhKcXlDZnRlWmpYeDA3RFZIa2lVK2JyL0NRT0pIdzBpMGcrcnZYdjNy?=
+ =?utf-8?B?bDJPbmwxL1I0Qk91M3MxN20vQXRlSVBJM0JRTnFFVWpEd1hvc2ZXUkRkdkVx?=
+ =?utf-8?B?WHpKaThRdDZNWFdQOWRWWS92TkpRMkp4cVlqY1lvOE04U3htVzQ4dk0xeGdo?=
+ =?utf-8?B?cHlPR1VoMWpxZ01sNkkvNGg3Mk85NmJFVExSeWxSQjN6eGJudnAySTB0VDIr?=
+ =?utf-8?B?RjFscUpOWDBKaGhhLzQ0Y0xNelo1TVp5dVBUUHoxWVZydUsxSWFhM2dhcjMr?=
+ =?utf-8?B?ck4wWHBDcmlHOUdhdlZWbURlOUxRSUs3Q2lYQmkzb1ZaYURUeEE5N2kvRWpL?=
+ =?utf-8?B?SE1DeEpkYUQrazBTekdaMGxKSmhqSmNDSlJkK082eWdla1VUZzExWnl1a1JC?=
+ =?utf-8?B?L3RNVlZUUWNaK3BZQ0ZIWitWeDhHSndmaFdlNHJSQlBTY1hoQXE1SzFuQU1R?=
+ =?utf-8?B?TWhIRk1oanEwd1VXTHBza3ZGcU5ycTV6R2c0OUpJRDg4N0hhRWovdDlYNEZV?=
+ =?utf-8?B?a2xHSWhyVERxWXU2d0Y5QWp0Q002NGdpTW9Gc0NBOUMzc1RqMjVaUHpmaFdE?=
+ =?utf-8?B?Z2k0d1A1VVBlZ1IrOEREVmVMK3VDSkM2cnk0ZUVZMUxvZkg0NXg5MVY1dnBX?=
+ =?utf-8?B?d2pUOXdRMWpmbUdUMUgwM3g3YXQzRTlLQlB3am5NWHpyUU9zaDFKVjRmVEFT?=
+ =?utf-8?B?cFFGVUtkY3J5d1hObHpMZGYvcXYrRUw3V3BhWFVOZlU5MXd6bDR6YzRSQVFQ?=
+ =?utf-8?B?dHpvZ3pSTHh0akdNQnZhbGhydXUyY1p2WFdkdDUyRTZCK1VvczFTOWFzU3M0?=
+ =?utf-8?B?WnplaE8xWlZvaTNlbUpWUVIycHY5YWt5ZFRxQ2tqMzBOaDVqR001T1U0R083?=
+ =?utf-8?B?aUtKenlXT2M4VkRiYmZDUk0zMk9BaDJPM2pSSC81ay9WNUFrMzM2WFZkRmxZ?=
+ =?utf-8?B?SFVyK0VOQkpmUnNmZ1JnSENrUDBWTmMvS2J4alZKQVpKWHFDclhhcXc2REdT?=
+ =?utf-8?B?SytwVXNVNHY3MkNYd3BwT0FKcEFwM0VtUHpRc3JSRmgzSzRuTUZtQ3Nma0Rz?=
+ =?utf-8?B?M0VlbU16UWpFSzdoNGV0MFExclJyR21aVmhiVVpxaU05U0RFcGlmV2ZITHM0?=
+ =?utf-8?B?MER5TWpaODg4c3hrUWhVSVZZZDFTZXBwdEVmWHJrWlQ1QjFrM3l6L0FmZjF1?=
+ =?utf-8?B?UExvdm1JOUhSTzM0eC81QTB2VEdjUzBVeklNR21IamF1ZTlyMW9KN3pMUUc2?=
+ =?utf-8?B?WEZ2ekd4UzYwcDYwaUNiMmIwQVZVWXJYczhoWk9UMjV4OEtTMC8yQVBzRWNr?=
+ =?utf-8?B?YmhpTi90UzlCYWFjU01zSml3Z1liSFBmZytVckg5YndBVDhBbzA4TXloWUVS?=
+ =?utf-8?B?QlE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a5b4e0ed-2b76-4473-5aaf-08dc2d1f515c
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5530.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB6761.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b1479200-215d-4945-3957-08dc2d1e85af
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Feb 2024 05:33:49.4588 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: MJxLF5O57lGTPEcS9jjuhAKVu0aYut+ldKy/YkL8XjIG4CT0GsBPhker5ujMH6WLBr/pcZAgttoP0fk+nSnvXg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7677
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2024 05:39:31.3218 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: /OSgjB4M1mzjyA+J32KJYFrGixbYc+ckYIu7WTnRZ43PEqDMmMOV3zNYOLi1v43395QuR3kvWAkIA/FxxYotnw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6852
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -169,177 +168,401 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-PiA+IGludGVyYWN0aW9uIG9mIEhEQ1AgYXMgYSBjbGllbnQgd2l0aCB0aGUgR1NDIENTIGludGVy
-ZmFjZS4NCj4gPg0KPiA+IC0tdjINCj4gPiAtYWRkIGtmcmVlIGF0IGFwcHJvcHJpYXRlIHBsYWNl
-IFtEYW5pZWxlXSAtcmVtb3ZlIHVzZWxlc3MgZGVmaW5lDQo+ID4gW0RhbmllbGVdIC1tb3ZlIGhv
-c3Qgc2Vzc2lvbiBsb2dpYyB0byB4ZV9nc2Nfc3VibWl0LmMgW0RhbmllbGVdIC1jYWxsDQo+ID4g
-eGVfZ3NjX2NoZWNrX2FuZF91cGRhdGVfcGVuZGluZyBkaXJlY3RseSBpbiBhbiBpZiBjb25kaXRp
-b24gW0RhbmllbGVdDQo+ID4gLXVzZSB4ZV9kZXZpY2UgaW5zdGVhZCBvZiBkcm1faTkxNV9wcml2
-YXRlIFtEYW5pZWxlXQ0KPiA+DQo+ID4gLS12Mw0KPiA+IC11c2UgeGUgcHJlZml4IGZvciBuZXds
-eSBleHBvc2VkIGZ1bmN0aW9uIFtEYW5pZWxlXSAtcmVtb3ZlIGNsaWVudA0KPiA+IHNwZWNpZmlj
-IGRlZmluZXMgZnJvbSBpbnRlbF9nc2NfbXRsX2hlYWRlciBbRGFuaWVsZV0gLWFkZCBtaXNzaW5n
-DQo+ID4ga2ZyZWUoKSBbRGFuaWVsZV0gLWhhdmUgTlVMTCBjaGVjayBmb3IgaGRjcF9tZXNzYWdl
-IGluIGZpbmlzaCBmdW5jdGlvbg0KPiA+IFtEYW5pZWxlXSAtZG9udCBoYXZlIHRvbyBtYW55IHZh
-cmlhYmxlIGRlY2xhcmF0aW9ucyBpbiB0aGUgc2FtZSBsaW5lDQo+ID4gW0RhbmllbGVdDQo+ID4N
-Cj4gPiBTaWduZWQtb2ZmLWJ5OiBTdXJhaiBLYW5kcGFsIDxzdXJhai5rYW5kcGFsQGludGVsLmNv
-bT4NCj4gPiAtLS0NCj4gPiAgIGRyaXZlcnMvZ3B1L2RybS94ZS9kaXNwbGF5L3hlX2hkY3BfZ3Nj
-LmMgfCAxODANCj4gKysrKysrKysrKysrKysrKysrKysrKy0NCj4gPiAgIGRyaXZlcnMvZ3B1L2Ry
-bS94ZS94ZV9nc2Nfc3VibWl0LmMgICAgICAgfCAgMTUgKysNCj4gPiAgIGRyaXZlcnMvZ3B1L2Ry
-bS94ZS94ZV9nc2Nfc3VibWl0LmggICAgICAgfCAgIDEgKw0KPiA+ICAgMyBmaWxlcyBjaGFuZ2Vk
-LCAxOTMgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkNCj4gPg0KPiA+IGRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0veGUvZGlzcGxheS94ZV9oZGNwX2dzYy5jDQo+ID4gYi9kcml2ZXJz
-L2dwdS9kcm0veGUvZGlzcGxheS94ZV9oZGNwX2dzYy5jDQo+ID4gaW5kZXggNDI1ZGIzNTMyY2U1
-Li5hYThjMTM5MTZiYjYgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3hlL2Rpc3Bs
-YXkveGVfaGRjcF9nc2MuYw0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS94ZS9kaXNwbGF5L3hl
-X2hkY3BfZ3NjLmMNCj4gPiBAQCAtNCwxMiArNCwyNyBAQA0KPiA+ICAgICovDQo+ID4NCj4gPiAg
-ICNpbmNsdWRlIDxkcm0vZHJtX3ByaW50Lmg+DQo+ID4gKyNpbmNsdWRlIDxsaW51eC9kZWxheS5o
-Pg0KPiA+DQo+ID4gKyNpbmNsdWRlICJhYmkvZ3NjX2NvbW1hbmRfaGVhZGVyX2FiaS5oIg0KPiA+
-ICAgI2luY2x1ZGUgImludGVsX2hkY3BfZ3NjLmgiDQo+ID4gICAjaW5jbHVkZSAieGVfZGV2aWNl
-X3R5cGVzLmgiDQo+ID4gICAjaW5jbHVkZSAieGVfZ3QuaCINCj4gPiAgICNpbmNsdWRlICJ4ZV9n
-c2NfcHJveHkuaCINCj4gPiAgICNpbmNsdWRlICJ4ZV9wbS5oIg0KPiA+ICsjaW5jbHVkZSAieGVf
-Ym8uaCINCj4gPiArI2luY2x1ZGUgInhlX21hcC5oIg0KPiA+ICsjaW5jbHVkZSAieGVfZ3NjX3N1
-Ym1pdC5oIg0KPiA+ICsNCj4gPiArI2RlZmluZSBIRUNJX01FQUREUkVTU19IRENQIDE4DQo+ID4g
-Kw0KPiA+ICtzdHJ1Y3QgaW50ZWxfaGRjcF9nc2NfbWVzc2FnZSB7DQo+ID4gKwlzdHJ1Y3QgeGVf
-Ym8gKmhkY3BfYm87DQo+ID4gKwl1NjQgaGRjcF9jbWRfaW47DQo+ID4gKwl1NjQgaGRjcF9jbWRf
-b3V0Ow0KPiA+ICt9Ow0KPiA+ICsNCj4gPiArI2RlZmluZSBIRENQX0dTQ19IRUFERVJfU0laRSBz
-aXplb2Yoc3RydWN0IGludGVsX2dzY19tdGxfaGVhZGVyKQ0KPiA+DQo+ID4gICBib29sIGludGVs
-X2hkY3BfZ3NjX2NzX3JlcXVpcmVkKHN0cnVjdCB4ZV9kZXZpY2UgKnhlKQ0KPiA+ICAgew0KPiA+
-IEBAIC00MCwxOSArNTUsMTc4IEBAIGJvb2wgaW50ZWxfaGRjcF9nc2NfY2hlY2tfc3RhdHVzKHN0
-cnVjdCB4ZV9kZXZpY2UNCj4gKnhlKQ0KPiA+ICAgCXJldHVybiByZXQ7DQo+ID4gICB9DQo+ID4N
-Cj4gPiArLypUaGlzIGZ1bmN0aW9uIGhlbHBzIGFsbG9jYXRlIG1lbW9yeSBmb3IgdGhlIGNvbW1h
-bmQgdGhhdCB3ZSB3aWxsDQo+ID4gK3NlbmQgdG8gZ3NjIGNzICovIHN0YXRpYyBpbnQgaW50ZWxf
-aGRjcF9nc2NfaW5pdGlhbGl6ZV9tZXNzYWdlKHN0cnVjdA0KPiB4ZV9kZXZpY2UgKnhlLA0KPiA+
-ICsJCQkJCSAgICAgc3RydWN0IGludGVsX2hkY3BfZ3NjX21lc3NhZ2UNCj4gKmhkY3BfbWVzc2Fn
-ZSkgew0KPiA+ICsJc3RydWN0IHhlX2JvICpibyA9IE5VTEw7DQo+ID4gKwl1NjQgY21kX2luLCBj
-bWRfb3V0Ow0KPiA+ICsJaW50IHJldCA9IDA7DQo+ID4gKw0KPiA+ICsJLyogYWxsb2NhdGUgb2Jq
-ZWN0IG9mIHR3byBwYWdlIGZvciBIRENQIGNvbW1hbmQgbWVtb3J5IGFuZCBzdG9yZQ0KPiBpdCAq
-Lw0KPiA+ICsJeGVfZGV2aWNlX21lbV9hY2Nlc3NfZ2V0KHhlKTsNCj4gPiArCWJvID0geGVfYm9f
-Y3JlYXRlX3Bpbl9tYXAoeGUsIHhlX2RldmljZV9nZXRfcm9vdF90aWxlKHhlKSwgTlVMTCwNCj4g
-UEFHRV9TSVpFICogMiwNCj4gPiArCQkJCSAgdHRtX2JvX3R5cGVfa2VybmVsLA0KPiA+ICsJCQkJ
-ICBYRV9CT19DUkVBVEVfU1lTVEVNX0JJVCB8DQo+ID4gKwkJCQkgIFhFX0JPX0NSRUFURV9HR1RU
-X0JJVCk7DQo+ID4gKw0KPiA+ICsJaWYgKElTX0VSUihibykpIHsNCj4gPiArCQlkcm1fZXJyKCZ4
-ZS0+ZHJtLCAiRmFpbGVkIHRvIGFsbG9jYXRlIGJvIGZvciBIRENQIHN0cmVhbWluZw0KPiBjb21t
-YW5kIVxuIik7DQo+ID4gKwkJcmV0ID0gUFRSX0VSUihibyk7DQo+ID4gKwkJZ290byBvdXQ7DQo+
-ID4gKwl9DQo+ID4gKw0KPiA+ICsJY21kX2luID0geGVfYm9fZ2d0dF9hZGRyKGJvKTsNCj4gPiAr
-CWNtZF9vdXQgPSBjbWRfaW4gKyBQQUdFX1NJWkU7DQo+ID4gKwl4ZV9tYXBfbWVtc2V0KHhlLCAm
-Ym8tPnZtYXAsIDAsIDAsIGJvLT5zaXplKTsNCj4gPiArDQo+ID4gKwloZGNwX21lc3NhZ2UtPmhk
-Y3BfYm8gPSBibzsNCj4gPiArCWhkY3BfbWVzc2FnZS0+aGRjcF9jbWRfaW4gPSBjbWRfaW47DQo+
-ID4gKwloZGNwX21lc3NhZ2UtPmhkY3BfY21kX291dCA9IGNtZF9vdXQ7DQo+ID4gK291dDoNCj4g
-PiArCXhlX2RldmljZV9tZW1fYWNjZXNzX3B1dCh4ZSk7DQo+ID4gKwlyZXR1cm4gcmV0Ow0KPiA+
-ICt9DQo+ID4gKw0KPiA+ICtzdGF0aWMgaW50IGludGVsX2hkY3BfZ3NjX2hkY3AyX2luaXQoc3Ry
-dWN0IHhlX2RldmljZSAqeGUpIHsNCj4gPiArCXN0cnVjdCBpbnRlbF9oZGNwX2dzY19tZXNzYWdl
-ICpoZGNwX21lc3NhZ2U7DQo+ID4gKwlpbnQgcmV0Ow0KPiA+ICsNCj4gPiArCWhkY3BfbWVzc2Fn
-ZSA9IGt6YWxsb2Moc2l6ZW9mKCpoZGNwX21lc3NhZ2UpLCBHRlBfS0VSTkVMKTsNCj4gPiArDQo+
-ID4gKwlpZiAoIWhkY3BfbWVzc2FnZSkNCj4gPiArCQlyZXR1cm4gLUVOT01FTTsNCj4gPiArDQo+
-ID4gKwkvKg0KPiA+ICsJICogTk9URTogTm8gbmVlZCB0byBsb2NrIHRoZSBjb21wIG11dGV4IGhl
-cmUgYXMgaXQgaXMgYWxyZWFkeQ0KPiA+ICsJICogZ29pbmcgdG8gYmUgdGFrZW4gYmVmb3JlIHRo
-aXMgZnVuY3Rpb24gY2FsbGVkDQo+ID4gKwkgKi8NCj4gPiArCXJldCA9IGludGVsX2hkY3BfZ3Nj
-X2luaXRpYWxpemVfbWVzc2FnZSh4ZSwgaGRjcF9tZXNzYWdlKTsNCj4gPiArCXhlLT5kaXNwbGF5
-LmhkY3AuaGRjcF9tZXNzYWdlID0gaGRjcF9tZXNzYWdlOw0KPiA+ICsNCj4gPiArCWlmIChyZXQp
-IHsNCj4gPiArCQlkcm1fZXJyKCZ4ZS0+ZHJtLCAiQ291bGQgbm90IGluaXRpYWxpemUgaGRjcF9t
-ZXNzYWdlXG4iKTsNCj4gPiArCQlrZnJlZShoZGNwX21lc3NhZ2UpOw0KPiANCj4gSGVyZSB5b3Un
-cmUgbGVhdmluZyB4ZS0+ZGlzcGxheS5oZGNwLmhkY3BfbWVzc2FnZSBwb2ludGluZyB0byBhIG1l
-bW9yeQ0KPiBsb2NhdGlvbiB0aGF0IHdlIG5vIGxvbmdlciBvd24uIGlzIHRoYXQgc2FmZSBmb3Ig
-dGhlIF9maW5pIGZ1bmN0aW9uPw0KPiANCg0KV291bGQgaXQgYmUgYmV0dGVyIHRvIG5vdCBoYXZl
-IGEga2ZyZWUgaGVyZSBpZiBpbml0aWFsaXphdGlvbiBmYWlscyBpdCBnZXRzIHRha2VuIGNhcmUg
-b2YNCkluIGZpbmlzaCBmdW5jdGlvbiBhbnl3YXlzIHRoYXQgd291bGQgYmUgc2FmZXIgSSBwcmVz
-dW1lLg0KDQo+IExHVE0gYXBhcnQgZnJvbSB0aGlzIChhc3N1bWluZyBpdCBpcyBnb2luZyB0byBi
-ZSBzcXVhc2hlZCB3aXRoIHRoZSBuZXh0DQo+IHBhdGNoIGZvciBtZXJnZSkuDQoNClllcyB0aGlz
-IHdpbGwgYmUgc3F1YXNoZWQgd2l0aCB0aGUgbmV4dCBwYXRjaCB3aGVuIEkgc2VuZCB0aGUgbmV3
-IHJldmlzaW9uDQoNClJlZ2FyZHMsDQpTdXJhaiBLYW5kcGFsDQo+IA0KPiBEYW5pZWxlDQo+IA0K
-PiA+ICsJfQ0KPiA+ICsNCj4gPiArCXJldHVybiByZXQ7DQo+ID4gK30NCj4gPiArDQo+ID4gICBp
-bnQgaW50ZWxfaGRjcF9nc2NfaW5pdChzdHJ1Y3QgeGVfZGV2aWNlICp4ZSkNCj4gPiAgIHsNCj4g
-PiAtCWRybV9kYmdfa21zKCZ4ZS0+ZHJtLCAiSERDUCBzdXBwb3J0IG5vdCB5ZXQgaW1wbGVtZW50
-ZWRcbiIpOw0KPiA+IC0JcmV0dXJuIC1FTk9ERVY7DQo+ID4gKwlzdHJ1Y3QgaTkxNV9oZGNwX2Fy
-Yml0ZXIgKmRhdGE7DQo+ID4gKwlpbnQgcmV0Ow0KPiA+ICsNCj4gPiArCWRhdGEgPSBremFsbG9j
-KHNpemVvZigqZGF0YSksIEdGUF9LRVJORUwpOw0KPiA+ICsJaWYgKCFkYXRhKQ0KPiA+ICsJCXJl
-dHVybiAtRU5PTUVNOw0KPiA+ICsNCj4gPiArCW11dGV4X2xvY2soJnhlLT5kaXNwbGF5LmhkY3Au
-aGRjcF9tdXRleCk7DQo+ID4gKwl4ZS0+ZGlzcGxheS5oZGNwLmFyYml0ZXIgPSBkYXRhOw0KPiA+
-ICsJeGUtPmRpc3BsYXkuaGRjcC5hcmJpdGVyLT5oZGNwX2RldiA9IHhlLT5kcm0uZGV2Ow0KPiA+
-ICsJeGUtPmRpc3BsYXkuaGRjcC5hcmJpdGVyLT5vcHMgPSAmZ3NjX2hkY3Bfb3BzOw0KPiA+ICsJ
-cmV0ID0gaW50ZWxfaGRjcF9nc2NfaGRjcDJfaW5pdCh4ZSk7DQo+ID4gKwlpZiAocmV0KQ0KPiA+
-ICsJCWtmcmVlKGRhdGEpOw0KPiA+ICsNCj4gPiArCW11dGV4X3VubG9jaygmeGUtPmRpc3BsYXku
-aGRjcC5oZGNwX211dGV4KTsNCj4gPiArDQo+ID4gKwlyZXR1cm4gcmV0Ow0KPiA+ICAgfQ0KPiA+
-DQo+ID4gICB2b2lkIGludGVsX2hkY3BfZ3NjX2Zpbmkoc3RydWN0IHhlX2RldmljZSAqeGUpDQo+
-ID4gICB7DQo+ID4gKwlzdHJ1Y3QgaW50ZWxfaGRjcF9nc2NfbWVzc2FnZSAqaGRjcF9tZXNzYWdl
-ID0NCj4gPiArCQkJCQl4ZS0+ZGlzcGxheS5oZGNwLmhkY3BfbWVzc2FnZTsNCj4gPiArDQo+ID4g
-KwlpZiAoIWhkY3BfbWVzc2FnZSkNCj4gPiArCQlyZXR1cm47DQo+ID4gKw0KPiA+ICsJeGVfYm9f
-dW5waW5fbWFwX25vX3ZtKGhkY3BfbWVzc2FnZS0+aGRjcF9ibyk7DQo+ID4gKwlrZnJlZShoZGNw
-X21lc3NhZ2UpOw0KPiA+ICt9DQo+ID4gKw0KPiA+ICtzdGF0aWMgaW50IHhlX2dzY19zZW5kX3N5
-bmMoc3RydWN0IHhlX2RldmljZSAqeGUsDQo+ID4gKwkJCSAgICBzdHJ1Y3QgaW50ZWxfaGRjcF9n
-c2NfbWVzc2FnZSAqaGRjcF9tZXNzYWdlLA0KPiA+ICsJCQkgICAgdTMyIG1zZ19zaXplX2luLCB1
-MzIgbXNnX3NpemVfb3V0LA0KPiA+ICsJCQkgICAgdTMyIGFkZHJfb3V0X29mZikNCj4gPiArew0K
-PiA+ICsJc3RydWN0IHhlX2d0ICpndCA9IGhkY3BfbWVzc2FnZS0+aGRjcF9iby0+dGlsZS0+bWVk
-aWFfZ3Q7DQo+ID4gKwlzdHJ1Y3QgaW9zeXNfbWFwICptYXAgPSAmaGRjcF9tZXNzYWdlLT5oZGNw
-X2JvLT52bWFwOw0KPiA+ICsJc3RydWN0IHhlX2dzYyAqZ3NjID0gJmd0LT51Yy5nc2M7DQo+ID4g
-KwlpbnQgcmV0Ow0KPiA+ICsNCj4gPiArCXJldCA9IHhlX2dzY19wa3Rfc3VibWl0X2tlcm5lbChn
-c2MsIGhkY3BfbWVzc2FnZS0+aGRjcF9jbWRfaW4sDQo+IG1zZ19zaXplX2luLA0KPiA+ICsJCQkJ
-ICAgICAgIGhkY3BfbWVzc2FnZS0+aGRjcF9jbWRfb3V0LA0KPiBtc2dfc2l6ZV9vdXQpOw0KPiA+
-ICsJaWYgKHJldCkgew0KPiA+ICsJCWRybV9lcnIoJnhlLT5kcm0sICJmYWlsZWQgdG8gc2VuZCBn
-c2MgSERDUCBtc2cgKCVkKVxuIiwNCj4gcmV0KTsNCj4gPiArCQlyZXR1cm4gcmV0Ow0KPiA+ICsJ
-fQ0KPiA+ICsNCj4gPiArCWlmICh4ZV9nc2NfY2hlY2tfYW5kX3VwZGF0ZV9wZW5kaW5nKHhlLCBt
-YXAsIDAsIG1hcCwNCj4gYWRkcl9vdXRfb2ZmKSkNCj4gPiArCQlyZXR1cm4gLUVBR0FJTjsNCj4g
-PiArDQo+ID4gKwlyZXQgPSB4ZV9nc2NfcmVhZF9vdXRfaGVhZGVyKHhlLCBtYXAsIGFkZHJfb3V0
-X29mZiwNCj4gPiArCQkJCSAgICAgc2l6ZW9mKHN0cnVjdCBoZGNwX2NtZF9oZWFkZXIpLCBOVUxM
-KTsNCj4gPiArDQo+ID4gKwlyZXR1cm4gcmV0Ow0KPiA+ICAgfQ0KPiA+DQo+ID4gICBzc2l6ZV90
-IGludGVsX2hkY3BfZ3NjX21zZ19zZW5kKHN0cnVjdCB4ZV9kZXZpY2UgKnhlLCB1OCAqbXNnX2lu
-LA0KPiA+ICAgCQkJCXNpemVfdCBtc2dfaW5fbGVuLCB1OCAqbXNnX291dCwNCj4gPiAgIAkJCQlz
-aXplX3QgbXNnX291dF9sZW4pDQo+ID4gICB7DQo+ID4gLQlyZXR1cm4gLUVOT0RFVjsNCj4gPiAr
-CWNvbnN0IHNpemVfdCBtYXhfbXNnX3NpemUgPSBQQUdFX1NJWkUgLSBIRENQX0dTQ19IRUFERVJf
-U0laRTsNCj4gPiArCXN0cnVjdCBpbnRlbF9oZGNwX2dzY19tZXNzYWdlICpoZGNwX21lc3NhZ2U7
-DQo+ID4gKwl1NjQgaG9zdF9zZXNzaW9uX2lkOw0KPiA+ICsJdTMyIG1zZ19zaXplX2luLCBtc2df
-c2l6ZV9vdXQ7DQo+ID4gKwl1MzIgYWRkcl9vdXRfb2ZmLCBhZGRyX2luX3dyX29mZiA9IDA7DQo+
-ID4gKwlpbnQgcmV0LCB0cmllcyA9IDA7DQo+ID4gKw0KPiA+ICsJaWYgKG1zZ19pbl9sZW4gPiBt
-YXhfbXNnX3NpemUgfHwgbXNnX291dF9sZW4gPiBtYXhfbXNnX3NpemUpIHsNCj4gPiArCQlyZXQg
-PSAtRU5PU1BDOw0KPiA+ICsJCWdvdG8gb3V0Ow0KPiA+ICsJfQ0KPiA+ICsNCj4gPiArCW1zZ19z
-aXplX2luID0gbXNnX2luX2xlbiArIEhEQ1BfR1NDX0hFQURFUl9TSVpFOw0KPiA+ICsJbXNnX3Np
-emVfb3V0ID0gbXNnX291dF9sZW4gKyBIRENQX0dTQ19IRUFERVJfU0laRTsNCj4gPiArCWhkY3Bf
-bWVzc2FnZSA9IHhlLT5kaXNwbGF5LmhkY3AuaGRjcF9tZXNzYWdlOw0KPiA+ICsJYWRkcl9vdXRf
-b2ZmID0gUEFHRV9TSVpFOw0KPiA+ICsNCj4gPiArCWhvc3Rfc2Vzc2lvbl9pZCA9IHhlX2dzY19j
-cmVhdGVfaG9zdF9zZXNzaW9uX2lkKCk7DQo+ID4gKwl4ZV9kZXZpY2VfbWVtX2FjY2Vzc19nZXQo
-eGUpOw0KPiA+ICsJYWRkcl9pbl93cl9vZmYgPSB4ZV9nc2NfZW1pdF9oZWFkZXIoeGUsICZoZGNw
-X21lc3NhZ2UtDQo+ID5oZGNwX2JvLT52bWFwLA0KPiA+ICsJCQkJCSAgICBhZGRyX2luX3dyX29m
-ZiwNCj4gSEVDSV9NRUFERFJFU1NfSERDUCwNCj4gPiArCQkJCQkgICAgaG9zdF9zZXNzaW9uX2lk
-LCBtc2dfaW5fbGVuKTsNCj4gPiArCXhlX21hcF9tZW1jcHlfdG8oeGUsICZoZGNwX21lc3NhZ2Ut
-PmhkY3BfYm8tPnZtYXAsDQo+IGFkZHJfaW5fd3Jfb2ZmLA0KPiA+ICsJCQkgbXNnX2luLCBtc2df
-aW5fbGVuKTsNCj4gPiArCS8qDQo+ID4gKwkgKiBLZWVwIHNlbmRpbmcgcmVxdWVzdCBpbiBjYXNl
-IHRoZSBwZW5kaW5nIGJpdCBpcyBzZXQgbm8gbmVlZCB0byBhZGQNCj4gPiArCSAqIG1lc3NhZ2Ug
-aGFuZGxlIGFzIHdlIGFyZSB1c2luZyBzYW1lIGFkZHJlc3MgaGVuY2UgbG9jLiBvZiBoZWFkZXIN
-Cj4gaXMNCj4gPiArCSAqIHNhbWUgYW5kIGl0IHdpbGwgY29udGFpbiB0aGUgbWVzc2FnZSBoYW5k
-bGUuIHdlIHdpbGwgc2VuZCB0aGUNCj4gbWVzc2FnZQ0KPiA+ICsJICogMjAgdGltZXMgZWFjaCBt
-ZXNzYWdlIDUwIG1zIGFwYXJ0DQo+ID4gKwkgKi8NCj4gPiArCWRvIHsNCj4gPiArCQlyZXQgPSB4
-ZV9nc2Nfc2VuZF9zeW5jKHhlLCBoZGNwX21lc3NhZ2UsIG1zZ19zaXplX2luLA0KPiBtc2dfc2l6
-ZV9vdXQsDQo+ID4gKwkJCQkgICAgICAgYWRkcl9vdXRfb2ZmKTsNCj4gPiArDQo+ID4gKwkJLyog
-T25seSB0cnkgYWdhaW4gaWYgZ3NjIHNheXMgc28gKi8NCj4gPiArCQlpZiAocmV0ICE9IC1FQUdB
-SU4pDQo+ID4gKwkJCWJyZWFrOw0KPiA+ICsNCj4gPiArCQltc2xlZXAoNTApOw0KPiA+ICsNCj4g
-PiArCX0gd2hpbGUgKCsrdHJpZXMgPCAyMCk7DQo+ID4gKw0KPiA+ICsJaWYgKHJldCkNCj4gPiAr
-CQlnb3RvIG91dDsNCj4gPiArDQo+ID4gKwl4ZV9tYXBfbWVtY3B5X2Zyb20oeGUsIG1zZ19vdXQs
-ICZoZGNwX21lc3NhZ2UtPmhkY3BfYm8tDQo+ID52bWFwLA0KPiA+ICsJCQkgICBhZGRyX291dF9v
-ZmYgKyBIRENQX0dTQ19IRUFERVJfU0laRSwNCj4gPiArCQkJICAgbXNnX291dF9sZW4pOw0KPiA+
-ICsNCj4gPiArb3V0Og0KPiA+ICsJeGVfZGV2aWNlX21lbV9hY2Nlc3NfcHV0KHhlKTsNCj4gPiAr
-CXJldHVybiByZXQ7DQo+ID4gICB9DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS94
-ZS94ZV9nc2Nfc3VibWl0LmMNCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9nc2Nfc3VibWl0
-LmMNCj4gPiBpbmRleCAzNDg5OTRiMjcxYmUuLjlhMThmNTY2N2RiMyAxMDA2NDQNCj4gPiAtLS0g
-YS9kcml2ZXJzL2dwdS9kcm0veGUveGVfZ3NjX3N1Ym1pdC5jDQo+ID4gKysrIGIvZHJpdmVycy9n
-cHUvZHJtL3hlL3hlX2dzY19zdWJtaXQuYw0KPiA+IEBAIC00MCw2ICs0MCwyMSBAQCBnc2NfdG9f
-Z3Qoc3RydWN0IHhlX2dzYyAqZ3NjKQ0KPiA+ICAgCXJldHVybiBjb250YWluZXJfb2YoZ3NjLCBz
-dHJ1Y3QgeGVfZ3QsIHVjLmdzYyk7DQo+ID4gICB9DQo+ID4NCj4gPiArLyoqDQo+ID4gKyAqIHhl
-X2dzY19nZXRfaG9zdF9zZXNzaW9uX2lkIC0gQ3JlYXRlcyBhIHJhbmRvbSA2NCBiaXQgaG9zdF9z
-ZXNzaW9uDQo+ID4gK2lkIHdpdGgNCj4gPiArICogYml0cyA1Ni02MyBtYXNrZWQuDQo+ID4gKyAq
-DQo+ID4gKyAqIFJldHVybnM6IHJhbmRvbSBob3N0X3Nlc3Npb25faWQgd2hpY2ggY2FuIGJlIHVz
-ZWQgdG8gc2VuZCBtZXNzYWdlcw0KPiA+ICt0byBnc2MgY3MgICovDQo+ID4gK3U2NCB4ZV9nc2Nf
-Y3JlYXRlX2hvc3Rfc2Vzc2lvbl9pZCh2b2lkKQ0KPiA+ICt7DQo+ID4gKwl1NjQgaG9zdF9zZXNz
-aW9uX2lkOw0KPiA+ICsNCj4gPiArCWdldF9yYW5kb21fYnl0ZXMoJmhvc3Rfc2Vzc2lvbl9pZCwg
-c2l6ZW9mKHU2NCkpOw0KPiA+ICsJaG9zdF9zZXNzaW9uX2lkICY9IH5IT1NUX1NFU1NJT05fQ0xJ
-RU5UX01BU0s7DQo+ID4gKwlyZXR1cm4gaG9zdF9zZXNzaW9uX2lkOw0KPiA+ICt9DQo+ID4gKw0K
-PiA+ICAgLyoqDQo+ID4gICAgKiB4ZV9nc2NfZW1pdF9oZWFkZXIgLSB3cml0ZSB0aGUgTVRMIEdT
-QyBoZWFkZXIgaW4gbWVtb3J5DQo+ID4gICAgKiBAeGU6IHRoZSBYZSBkZXZpY2UNCj4gPiBkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2dzY19zdWJtaXQuaA0KPiA+IGIvZHJpdmVy
-cy9ncHUvZHJtL3hlL3hlX2dzY19zdWJtaXQuaA0KPiA+IGluZGV4IDE5Mzk4NTUwMzFhNi4uMTQx
-NmI1NzQ1YTRjIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9nc2Nfc3Vi
-bWl0LmgNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfZ3NjX3N1Ym1pdC5oDQo+ID4g
-QEAgLTI4LDQgKzI4LDUgQEAgaW50IHhlX2dzY19yZWFkX291dF9oZWFkZXIoc3RydWN0IHhlX2Rl
-dmljZSAqeGUsDQo+ID4gICBpbnQgeGVfZ3NjX3BrdF9zdWJtaXRfa2VybmVsKHN0cnVjdCB4ZV9n
-c2MgKmdzYywgdTY0IGFkZHJfaW4sIHUzMiBzaXplX2luLA0KPiA+ICAgCQkJICAgICB1NjQgYWRk
-cl9vdXQsIHUzMiBzaXplX291dCk7DQo+ID4NCj4gPiArdTY0IHhlX2dzY19jcmVhdGVfaG9zdF9z
-ZXNzaW9uX2lkKHZvaWQpOw0KPiA+ICAgI2VuZGlmDQoNCg==
+
+
+On 14-02-2024 07:44, John Harrison wrote:
+> On 2/12/2024 21:17, Nilawar, Badal wrote:
+>> On 13-02-2024 06:04, John.C.Harrison@Intel.com wrote:
+>>> From: John Harrison <John.C.Harrison@Intel.com>
+>>>
+>>> GuC loading can take longer than it is supposed to for various
+>>> reasons. So add in the code to cope with that and to report it when it
+>>> happens. There are also many different reasons why GuC loading can
+>>> fail, so add in the code for checking for those and for reporting
+>>> issues in a meaningful manner rather than just hitting a timeout and
+>>> saying 'fail: status = %x'.
+>>>
+>>> Also, remove the 'FIXME' comment about an i915 bug that has never been
+>>> applicable to Xe!
+>>>
+>>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+>>> ---
+>>>   drivers/gpu/drm/xe/abi/guc_errors_abi.h |  26 +++-
+>>>   drivers/gpu/drm/xe/regs/xe_guc_regs.h   |   2 +
+>>>   drivers/gpu/drm/xe/xe_guc.c             | 197 +++++++++++++++++++-----
+>>>   drivers/gpu/drm/xe/xe_macros.h          |  32 ++++
+>>>   4 files changed, 214 insertions(+), 43 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/abi/guc_errors_abi.h 
+>>> b/drivers/gpu/drm/xe/abi/guc_errors_abi.h
+>>> index ec83551bf9c0..d0b5fed6876f 100644
+>>> --- a/drivers/gpu/drm/xe/abi/guc_errors_abi.h
+>>> +++ b/drivers/gpu/drm/xe/abi/guc_errors_abi.h
+>>> @@ -7,8 +7,12 @@
+>>>   #define _ABI_GUC_ERRORS_ABI_H
+>>>     enum xe_guc_response_status {
+>>> -    XE_GUC_RESPONSE_STATUS_SUCCESS = 0x0,
+>>> -    XE_GUC_RESPONSE_STATUS_GENERIC_FAIL = 0xF000,
+>>> +    XE_GUC_RESPONSE_STATUS_SUCCESS                      = 0x0,
+>>> +    XE_GUC_RESPONSE_NOT_SUPPORTED                       = 0x20,
+>>> +    XE_GUC_RESPONSE_NO_ATTRIBUTE_TABLE                  = 0x201,
+>>> +    XE_GUC_RESPONSE_NO_DECRYPTION_KEY                   = 0x202,
+>>> +    XE_GUC_RESPONSE_DECRYPTION_FAILED                   = 0x204,
+>>> +    XE_GUC_RESPONSE_STATUS_GENERIC_FAIL                 = 0xF000,
+>>>   };
+>>>     enum xe_guc_load_status {
+>>> @@ -17,6 +21,9 @@ enum xe_guc_load_status {
+>>>       XE_GUC_LOAD_STATUS_ERROR_DEVID_BUILD_MISMATCH       = 0x02,
+>>>       XE_GUC_LOAD_STATUS_GUC_PREPROD_BUILD_MISMATCH       = 0x03,
+>>>       XE_GUC_LOAD_STATUS_ERROR_DEVID_INVALID_GUCTYPE      = 0x04,
+>>> +    XE_GUC_LOAD_STATUS_HWCONFIG_START                   = 0x05,
+>>> +    XE_GUC_LOAD_STATUS_HWCONFIG_DONE                    = 0x06,
+>>> +    XE_GUC_LOAD_STATUS_HWCONFIG_ERROR                   = 0x07,
+>>>       XE_GUC_LOAD_STATUS_GDT_DONE                         = 0x10,
+>>>       XE_GUC_LOAD_STATUS_IDT_DONE                         = 0x20,
+>>>       XE_GUC_LOAD_STATUS_LAPIC_DONE                       = 0x30,
+>>> @@ -34,4 +41,19 @@ enum xe_guc_load_status {
+>>>       XE_GUC_LOAD_STATUS_READY                            = 0xF0,
+>>>   };
+>>>   +enum xe_bootrom_load_status {
+>>> +    XE_BOOTROM_STATUS_NO_KEY_FOUND                      = 0x13,
+>>> +    XE_BOOTROM_STATUS_AES_PROD_KEY_FOUND                = 0x1A,
+>>> +    XE_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE            = 0x2B,
+>>> +    XE_BOOTROM_STATUS_RSA_FAILED                        = 0x50,
+>>> +    XE_BOOTROM_STATUS_PAVPC_FAILED                      = 0x73,
+>>> +    XE_BOOTROM_STATUS_WOPCM_FAILED                      = 0x74,
+>>> +    XE_BOOTROM_STATUS_LOADLOC_FAILED                    = 0x75,
+>>> +    XE_BOOTROM_STATUS_JUMP_PASSED                       = 0x76,
+>>> +    XE_BOOTROM_STATUS_JUMP_FAILED                       = 0x77,
+>>> +    XE_BOOTROM_STATUS_RC6CTXCONFIG_FAILED               = 0x79,
+>>> +    XE_BOOTROM_STATUS_MPUMAP_INCORRECT                  = 0x7A,
+>>> +    XE_BOOTROM_STATUS_EXCEPTION                         = 0x7E,
+>>> +};
+>>> +
+>>>   #endif
+>>> diff --git a/drivers/gpu/drm/xe/regs/xe_guc_regs.h 
+>>> b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+>>> index 92320bbc9d3d..a30e179e662e 100644
+>>> --- a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+>>> +++ b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+>>> @@ -40,6 +40,8 @@
+>>>   #define   GS_BOOTROM_JUMP_PASSED REG_FIELD_PREP(GS_BOOTROM_MASK, 0x76)
+>>>   #define   GS_MIA_IN_RESET            REG_BIT(0)
+>>>   +#define GUC_HEADER_INFO                XE_REG(0xc014)
+>>> +
+>>>   #define GUC_WOPCM_SIZE                XE_REG(0xc050)
+>>>   #define   GUC_WOPCM_SIZE_MASK            REG_GENMASK(31, 12)
+>>>   #define   GUC_WOPCM_SIZE_LOCKED            REG_BIT(0)
+>>> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+>>> index 868208a39829..82514d395704 100644
+>>> --- a/drivers/gpu/drm/xe/xe_guc.c
+>>> +++ b/drivers/gpu/drm/xe/xe_guc.c
+>>> @@ -16,6 +16,7 @@
+>>>   #include "xe_device.h"
+>>>   #include "xe_force_wake.h"
+>>>   #include "xe_gt.h"
+>>> +#include "xe_gt_freq.h"
+>>>   #include "xe_guc_ads.h"
+>>>   #include "xe_guc_ct.h"
+>>>   #include "xe_guc_hwconfig.h"
+>>> @@ -427,58 +428,172 @@ static int guc_xfer_rsa(struct xe_guc *guc)
+>>>       return 0;
+>>>   }
+>>>   +/*
+>>> + * Read the GuC status register (GUC_STATUS) and store it in the
+>>> + * specified location; then return a boolean indicating whether
+>>> + * the value matches either completion or a known failure code.
+>>> + *
+>>> + * This is used for polling the GuC status in an xe_wait_for()
+>>> + * loop below.
+>>> + */
+>>> +static inline bool guc_load_done(struct xe_gt *gt, u32 *status, bool 
+>>> *success)
+>>> +{
+>>> +    u32 val = xe_mmio_read32(gt, GUC_STATUS);
+>>> +    u32 uk_val = REG_FIELD_GET(GS_UKERNEL_MASK, val);
+>>> +    u32 br_val = REG_FIELD_GET(GS_BOOTROM_MASK, val);
+>>> +
+>>> +    *status = val;
+>>> +    switch (uk_val) {
+>>> +    case XE_GUC_LOAD_STATUS_READY:
+>>> +        *success = true;
+>>> +        return true;
+>>> +
+>>> +    case XE_GUC_LOAD_STATUS_ERROR_DEVID_BUILD_MISMATCH:
+>>> +    case XE_GUC_LOAD_STATUS_GUC_PREPROD_BUILD_MISMATCH:
+>>> +    case XE_GUC_LOAD_STATUS_ERROR_DEVID_INVALID_GUCTYPE:
+>>> +    case XE_GUC_LOAD_STATUS_HWCONFIG_ERROR:
+>>> +    case XE_GUC_LOAD_STATUS_DPC_ERROR:
+>>> +    case XE_GUC_LOAD_STATUS_EXCEPTION:
+>>> +    case XE_GUC_LOAD_STATUS_INIT_DATA_INVALID:
+>>> +    case XE_GUC_LOAD_STATUS_MPU_DATA_INVALID:
+>>> +    case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
+>>> +        *success = false;
+>>> +        return true;
+>>> +    }
+>>> +
+>>> +    switch (br_val) {
+>>> +    case XE_BOOTROM_STATUS_NO_KEY_FOUND:
+>>> +    case XE_BOOTROM_STATUS_RSA_FAILED:
+>>> +    case XE_BOOTROM_STATUS_PAVPC_FAILED:
+>>> +    case XE_BOOTROM_STATUS_WOPCM_FAILED:
+>>> +    case XE_BOOTROM_STATUS_LOADLOC_FAILED:
+>>> +    case XE_BOOTROM_STATUS_JUMP_FAILED:
+>>> +    case XE_BOOTROM_STATUS_RC6CTXCONFIG_FAILED:
+>>> +    case XE_BOOTROM_STATUS_MPUMAP_INCORRECT:
+>>> +    case XE_BOOTROM_STATUS_EXCEPTION:
+>>> +    case XE_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE:
+>>> +        *success = false;
+>>> +        return true;
+>>> +    }
+>>> +
+>>> +    return false;
+>>> +}
+>>> +
+>>> +/*
+>>> + * Wait for the GuC to start up.
+>>> + *
+>>> + * Measurements indicate this should take no more than 20ms 
+>>> (assuming the GT
+>>> + * clock is at maximum frequency). However, thermal throttling and 
+>>> other issues
+>>> + * can prevent the clock hitting max and thus making the load take 
+>>> significantly
+>>> + * longer. Indeed, if the GT is clamped to minimum frequency then 
+>>> the load times
+>>> + * can be in the seconds range. As, there is a limit on how long an 
+>>> individual
+>>> + * usleep_range() can wait for, the wait is wrapped in a loop. The 
+>>> loop count
+>>> + * is increased for debug builds so that problems can be detected 
+>>> and analysed.
+>>> + * For release builds, the timeout is kept short so that user's 
+>>> don't wait
+>>> + * forever to find out there is a problem. In either case, if the 
+>>> load took longer
+>>> + * than is reasonable even with some 'sensible' throttling, then 
+>>> flag a warning
+>>> + * because something is not right.
+>>> + *
+>>> + * Note that the only reason an end user should hit the timeout is 
+>>> in case of
+>>> + * extreme thermal throttling. And a system that is that hot during 
+>>> boot is
+>>> + * probably dead anyway!
+>>> + */
+>>> +#if defined(CONFIG_DRM_XE_DEBUG)
+>>> +#define GUC_LOAD_RETRY_LIMIT    20
+>>> +#else
+>>> +#define GUC_LOAD_RETRY_LIMIT    3
+>>> +#endif
+>>> +#define GUC_LOAD_TIME_WARN      200
+>>> +
+>>>   static int guc_wait_ucode(struct xe_guc *guc)
+>>>   {
+>>> -    struct xe_device *xe = guc_to_xe(guc);
+>>> +    struct xe_gt *gt = guc_to_gt(guc);
+>>> +    struct xe_guc_pc *guc_pc = &gt->uc.guc.pc;
+>>> +    ktime_t before, after, delta;
+>>> +    bool success;
+>>>       u32 status;
+>>> -    int ret;
+>>> +    int ret, count;
+>>> +    u64 delta_ms;
+>>> +    u32 before_freq;
+>>> +
+>>> +    before_freq = xe_guc_pc_get_act_freq(guc_pc);
+>>> +    before = ktime_get();
+>>> +    for (count = 0; count < GUC_LOAD_RETRY_LIMIT; count++) {
+>>> +        ret = xe_wait_for(guc_load_done(gt, &status, &success), 1000 
+>>> * 1000);
+>>> +        if (!ret || !success)
+>>> +            break;
+>>> +
+>>> +        xe_gt_dbg(gt, "load still in progress, count = %d, freq = 
+>>> %dMHz (req %dMHz), status = 0x%08X [0x%02X/%02X]\n",
+>>> +              count, xe_guc_pc_get_act_freq(guc_pc),
+>>> +              xe_guc_pc_get_act_freq(guc_pc), status,
+>> I think this should be current requested frequency xe_guc_pc_get_cur_freq
+> No. The point is to report what the actual frequency was to see if that 
+> explains why the load is running slowly. The requested frequency is 
+> under driver control. That should be at maximum during driver load. The
+Is requested freq set to maximum in resume path as well?
+> granted frequency is not under driver control. That is the unknown that 
+> needs to be reported to see why the system is not working as intended.
+Agreed but in the expression "freq = %dMHz (req %dMHz)" actual frequency 
+is being printed 2 times. What is significance of "(req %dMHz) here", I 
+thought req stands for requested.
+
+Badal
+> 
+> John.
+> 
+> 
+> 
+>>> + REG_FIELD_GET(GS_BOOTROM_MASK, status),
+>>> +              REG_FIELD_GET(GS_UKERNEL_MASK, status));
+>>> +    }
+>>> +    after = ktime_get();
+>>> +    delta = ktime_sub(after, before);
+>>> +    delta_ms = ktime_to_ms(delta);
+>>> +    if (ret || !success) {
+>>> +        u32 ukernel = REG_FIELD_GET(GS_UKERNEL_MASK, status);
+>>> +        u32 bootrom = REG_FIELD_GET(GS_BOOTROM_MASK, status);
+>>> +
+>>> +        xe_gt_info(gt, "load failed: status = 0x%08X, time = %lldms, 
+>>> freq = %dMHz (req %dMHz), ret = %d\n",
+>>> +               status, delta_ms, xe_guc_pc_get_act_freq(guc_pc),
+>>> +               xe_guc_pc_get_act_freq(guc_pc), ret);
+>> Same as above.
+>>
+>> Regards,
+>> Badal
+>>> +        xe_gt_info(gt, "load failed: status: Reset = %d, BootROM = 
+>>> 0x%02X, UKernel = 0x%02X, MIA = 0x%02X, Auth = 0x%02X\n",
+>>> +               REG_FIELD_GET(GS_MIA_IN_RESET, status),
+>>> +               bootrom, ukernel,
+>>> +               REG_FIELD_GET(GS_MIA_MASK, status),
+>>> +               REG_FIELD_GET(GS_AUTH_STATUS_MASK, status));
+>>> +
+>>> +        switch (bootrom) {
+>>> +        case XE_BOOTROM_STATUS_NO_KEY_FOUND:
+>>> +            xe_gt_info(gt, "invalid key requested, header = 0x%08X\n",
+>>> +                   xe_mmio_read32(gt, GUC_HEADER_INFO));
+>>> +            ret = -ENOEXEC;
+>>> +            break;
+>>>   -    /*
+>>> -     * Wait for the GuC to start up.
+>>> -     * NB: Docs recommend not using the interrupt for completion.
+>>> -     * Measurements indicate this should take no more than 20ms
+>>> -     * (assuming the GT clock is at maximum frequency). So, a
+>>> -     * timeout here indicates that the GuC has failed and is unusable.
+>>> -     * (Higher levels of the driver may decide to reset the GuC and
+>>> -     * attempt the ucode load again if this happens.)
+>>> -     *
+>>> -     * FIXME: There is a known (but exceedingly unlikely) race 
+>>> condition
+>>> -     * where the asynchronous frequency management code could reduce
+>>> -     * the GT clock while a GuC reload is in progress (during a full
+>>> -     * GT reset). A fix is in progress but there are complex locking
+>>> -     * issues to be resolved. In the meantime bump the timeout to
+>>> -     * 200ms. Even at slowest clock, this should be sufficient. And
+>>> -     * in the working case, a larger timeout makes no difference.
+>>> -     */
+>>> -    ret = xe_mmio_wait32(guc_to_gt(guc), GUC_STATUS, GS_UKERNEL_MASK,
+>>> -                 FIELD_PREP(GS_UKERNEL_MASK, XE_GUC_LOAD_STATUS_READY),
+>>> -                 200000, &status, false);
+>>> +        case XE_BOOTROM_STATUS_RSA_FAILED:
+>>> +            xe_gt_info(gt, "firmware signature verification failed\n");
+>>> +            ret = -ENOEXEC;
+>>> +            break;
+>>>   -    if (ret) {
+>>> -        struct drm_device *drm = &xe->drm;
+>>> -
+>>> -        drm_info(drm, "GuC load failed: status = 0x%08X\n", status);
+>>> -        drm_info(drm, "GuC load failed: status: Reset = %d, BootROM 
+>>> = 0x%02X, UKernel = 0x%02X, MIA = 0x%02X, Auth = 0x%02X\n",
+>>> -             REG_FIELD_GET(GS_MIA_IN_RESET, status),
+>>> -             REG_FIELD_GET(GS_BOOTROM_MASK, status),
+>>> -             REG_FIELD_GET(GS_UKERNEL_MASK, status),
+>>> -             REG_FIELD_GET(GS_MIA_MASK, status),
+>>> -             REG_FIELD_GET(GS_AUTH_STATUS_MASK, status));
+>>> -
+>>> -        if ((status & GS_BOOTROM_MASK) == GS_BOOTROM_RSA_FAILED) {
+>>> -            drm_info(drm, "GuC firmware signature verification 
+>>> failed\n");
+>>> +        case XE_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE:
+>>> +            xe_gt_info(gt, "firmware production part check failure\n");
+>>>               ret = -ENOEXEC;
+>>> +            break;
+>>>           }
+>>>   -        if (REG_FIELD_GET(GS_UKERNEL_MASK, status) ==
+>>> -            XE_GUC_LOAD_STATUS_EXCEPTION) {
+>>> -            drm_info(drm, "GuC firmware exception. EIP: %#x\n",
+>>> -                 xe_mmio_read32(guc_to_gt(guc),
+>>> -                        SOFT_SCRATCH(13)));
+>>> +        switch (ukernel) {
+>>> +        case XE_GUC_LOAD_STATUS_EXCEPTION:
+>>> +            xe_gt_info(gt, "firmware exception. EIP: %#x\n",
+>>> +                   xe_mmio_read32(gt, SOFT_SCRATCH(13)));
+>>>               ret = -ENXIO;
+>>> +            break;
+>>> +
+>>> +        case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
+>>> +            xe_gt_info(gt, "illegal register in save/restore 
+>>> workaround list\n");
+>>> +            ret = -EPERM;
+>>> +            break;
+>>> +
+>>> +        case XE_GUC_LOAD_STATUS_HWCONFIG_START:
+>>> +            xe_gt_info(gt, "still extracting hwconfig table.\n");
+>>> +            ret = -ETIMEDOUT;
+>>> +            break;
+>>>           }
+>>> +
+>>> +        /* Uncommon/unexpected error, see earlier status code print 
+>>> for details */
+>>> +        if (ret == 0)
+>>> +            ret = -ENXIO;
+>>> +    } else if (delta_ms > GUC_LOAD_TIME_WARN) {
+>>> +        xe_gt_warn(gt, "excessive init time: %lldms! [status = 
+>>> 0x%08X, count = %d, ret = %d]\n",
+>>> +               delta_ms, status, count, ret);
+>>> +        xe_gt_warn(gt, "excessive init time: [freq = %dMHz, before = 
+>>> %dMHz, perf_limit_reasons = 0x%08X]\n",
+>>> +               xe_guc_pc_get_act_freq(guc_pc), before_freq,
+>>> +               xe_read_perf_limit_reasons(gt));
+>>>       } else {
+>>> -        drm_dbg(&xe->drm, "GuC successfully loaded");
+>>> +        xe_gt_dbg(gt, "init took %lldms, freq = %dMHz, before = 
+>>> %dMHz, status = 0x%08X, count = %d, ret = %d\n",
+>>> +              delta_ms, xe_guc_pc_get_act_freq(guc_pc),
+>>> +              before_freq, status, count, ret);
+>>>       }
+>>>         return ret;
+>>> diff --git a/drivers/gpu/drm/xe/xe_macros.h 
+>>> b/drivers/gpu/drm/xe/xe_macros.h
+>>> index daf56c846d03..eac8f2c9fba5 100644
+>>> --- a/drivers/gpu/drm/xe/xe_macros.h
+>>> +++ b/drivers/gpu/drm/xe/xe_macros.h
+>>> @@ -15,4 +15,36 @@
+>>>                   "Ioctl argument check failed at %s:%d: %s", \
+>>>                   __FILE__, __LINE__, #cond), 1))
+>>>   +/*
+>>> + * xe_wait_for - magic wait macro
+>>> + *
+>>> + * Macro to help avoid open coding check/wait/timeout patterns. Note 
+>>> that it's
+>>> + * important that we check the condition again after having timed 
+>>> out, since the
+>>> + * timeout could be due to preemption or similar and we've never had 
+>>> a chance to
+>>> + * check the condition before the timeout.
+>>> + */
+>>> +#define xe_wait_for(COND, US) ({ \
+>>> +    const ktime_t end__ = ktime_add_ns(ktime_get_raw(), 1000ll * 
+>>> (US)); \
+>>> +    long wait__ = 10; /* recommended min for usleep is 10 us */    \
+>>> +    int ret__;                            \
+>>> +    might_sleep();                            \
+>>> +    for (;;) {                            \
+>>> +        const bool expired__ = ktime_after(ktime_get_raw(), end__); \
+>>> +        /* Guarantee COND check prior to timeout */        \
+>>> +        barrier();                        \
+>>> +        if (COND) {                        \
+>>> +            ret__ = 0;                    \
+>>> +            break;                        \
+>>> +        }                            \
+>>> +        if (expired__) {                    \
+>>> +            ret__ = -ETIMEDOUT;                \
+>>> +            break;                        \
+>>> +        }                            \
+>>> +        usleep_range(wait__, wait__ * 2);            \
+>>> +        if (wait__ < (1000))                    \
+>>> +            wait__ <<= 1;                    \
+>>> +    }                                \
+>>> +    ret__;                                \
+>>> +})
+>>> +
+>>>   #endif
+> 
