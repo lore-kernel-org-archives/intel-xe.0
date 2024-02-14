@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68388C48BC3
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 819B9C48BC4
 	for <intel-xe@archiver.kernel.org>; Wed, 14 Feb 2024 11:58:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A728310E7FC;
-	Wed, 14 Feb 2024 11:58:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A211E10E603;
+	Wed, 14 Feb 2024 11:58:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EBiB5BSh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X0+pT6DK";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41CF310E797
- for <intel-xe@lists.freedesktop.org>; Wed, 14 Feb 2024 11:58:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C51E10E4C2
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 Feb 2024 11:58:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707911891; x=1739447891;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=652gxSspewm4dTp/J3/SmlhLqLf8g8uv5WPiTN+InJ0=;
- b=EBiB5BShusSc45QGIPb5r96BQAQ4TdQSX9dYtzRhI1ByduoBLVC6RPWp
- Sv87ChT6NKtNvs1yYSY1LNwRR0w7TVXGAj5s02TCXCWxXEv2rkv/5qBoU
- 3221vs5/IHWCy8m1lS2TOVKvnTOWVCDxkdoPmt1qx07h78Y/Ck7FAC/lm
- CSUeO2ZHzixizMBAPWdXmEmoqfCeMhTREesdj2SY7RBT3lgwM5DheePPM
- hCkYVsT5/XvDSE1BU13/xbj7JtaICY7tM6yU5vbMEaZY4CqwpVgUyyeg3
- jR+nDuaSt6jac+Xu6WIxK3ybZHtG5e2ZIjSMfjKJ8tcEcvbJqErg74/Vc A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="2090353"
+ t=1707911889; x=1739447889;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=nbFi5fvcCnLqp9pM8x0q/DwcZNC4G462Yr/KGSNvfmw=;
+ b=X0+pT6DKTdIkHiAlpmpXc0wLSmAx2o64hbmAhMf46QsQh4eyykY6TBMI
+ cMc/zkCi/j8jtgGdnT0IZMYCpAetqG3EUlbejpXUKb0Llq1zw3PJfnDkM
+ 28ePVj+BB7mMhgbRAFIfg1o4Em+5qDh+pzDG1k+2e2ky/sExJ19p8riEE
+ G+BTRx4iMh7cIC/vBtOqjS9e6DVfWPvspxIE+dObA5lt+EolRk+l6Oly6
+ AYPAOgwVSauqVh5LQybQmf/PZlIEK/bKO7dmr2mLX3zoHTtzcoefLR1q6
+ 9uLxx5ZElFNDRbu8rQGo7vkPCANWd92wvp/cLl2T+tOS6WS+j5aJO7BB0 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="2090343"
 X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; 
-   d="scan'208";a="2090353"
+   d="scan'208";a="2090343"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2024 03:58:11 -0800
+ 14 Feb 2024 03:58:08 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; 
-   d="scan'208";a="3529176"
+   d="scan'208";a="3529145"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.138.241])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2024 03:58:10 -0800
+ 14 Feb 2024 03:58:07 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 2/3] drm/xe: Define helper for GT specific debugfs files
-Date: Wed, 14 Feb 2024 12:57:55 +0100
-Message-Id: <20240214115756.1525-3-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH 0/3] Refactor GT debugfs
+Date: Wed, 14 Feb 2024 12:57:53 +0100
+Message-Id: <20240214115756.1525-1-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20240214115756.1525-1-michal.wajdeczko@intel.com>
-References: <20240214115756.1525-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -70,94 +69,17 @@ to use drm_info_list.data field to pass pointer not only requires
 extra steps (like copying template per each GT) but also abuses
 the rule that this data field should not be device specific.
 
-Introduce helper function that will use xe_gt pointer stored at
-parent directory level and use .data only to pass actual print
-function that would expects xe_gt pointer as a parameter.
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_debugfs.c | 52 ++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_debugfs.h |  2 ++
- 2 files changed, 54 insertions(+)
+Michal Wajdeczko (3):
+  drm/xe: Store pointer to struct xe_gt in gt/ debugfs directory
+  drm/xe: Define helper for GT specific debugfs files
+  drm/xe: Refactor GT debugfs
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-index 207b992f1240..69a7e77d8305 100644
---- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-@@ -23,6 +23,58 @@
- #include "xe_uc_debugfs.h"
- #include "xe_wa.h"
- 
-+/**
-+ * xe_gt_debugfs_simple_show - A show callback for struct drm_info_list
-+ * @m: the &seq_file
-+ * @data: data used by the drm debugfs helpers
-+ *
-+ * This callback can be used in struct drm_info_list to describe debugfs
-+ * files that are &xe_gt specific.
-+ *
-+ * It is assumed that those debugfs files will be created on directory entry
-+ * which struct dentry d_inode->i_private points to &xe_gt.
-+ *
-+ * This function assumes that &m->private will be set to the &struct
-+ * drm_info_node corresponding to the instance of the info on a given &struct
-+ * drm_minor (see struct drm_info_list.show for details).
-+ *
-+ * This function also assumes that struct drm_info_list.data will point to the
-+ * function code that will actually print a file content::
-+ *
-+ *   int (*print)(struct xe_gt *, struct drm_printer *)
-+ *
-+ * Example::
-+ *
-+ *    int foo(struct xe_gt *gt, struct drm_printer *p)
-+ *    {
-+ *        drm_printf(p, "GT%u\n", gt->info.id);
-+ *        return 0;
-+ *    }
-+ *
-+ *    static const struct drm_info_list bar[] = {
-+ *        { name = "foo", .show = xe_gt_debugfs_simple_show, .data = foo },
-+ *    };
-+ *
-+ *    dir = debugfs_create_dir("gt", parent);
-+ *    dir->d_inode->i_private = gt;
-+ *    drm_debugfs_create_files(bar, ARRAY_SIZE(bar), dir, minor);
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
-+int xe_gt_debugfs_simple_show(struct seq_file *m, void *data)
-+{
-+	struct drm_printer p = drm_seq_file_printer(m);
-+	struct drm_info_node *node = m->private;
-+	struct dentry *parent = node->dent->d_parent;
-+	struct xe_gt *gt = parent->d_inode->i_private;
-+	int (*print)(struct xe_gt *, struct drm_printer *) = node->info_ent->data;
-+
-+	if (WARN_ON(!print))
-+		return -EINVAL;
-+
-+	return print(gt, &p);
-+}
-+
- static struct xe_gt *node_to_gt(struct drm_info_node *node)
- {
- 	return node->info_ent->data;
-diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.h b/drivers/gpu/drm/xe/xe_gt_debugfs.h
-index 5a329f118a57..05a6cc93c78c 100644
---- a/drivers/gpu/drm/xe/xe_gt_debugfs.h
-+++ b/drivers/gpu/drm/xe/xe_gt_debugfs.h
-@@ -6,8 +6,10 @@
- #ifndef _XE_GT_DEBUGFS_H_
- #define _XE_GT_DEBUGFS_H_
- 
-+struct seq_file;
- struct xe_gt;
- 
- void xe_gt_debugfs_register(struct xe_gt *gt);
-+int xe_gt_debugfs_simple_show(struct seq_file *m, void *data);
- 
- #endif
+ drivers/gpu/drm/xe/xe_gt_debugfs.c | 206 ++++++++++++++---------------
+ drivers/gpu/drm/xe/xe_gt_debugfs.h |   2 +
+ 2 files changed, 105 insertions(+), 103 deletions(-)
+
 -- 
 2.43.0
 
