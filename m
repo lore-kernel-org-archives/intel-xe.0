@@ -4,120 +4,121 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF0ABC48260
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Feb 2024 11:26:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B1F8C48BF3
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Feb 2024 11:41:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CE6510E24B;
-	Fri, 16 Feb 2024 11:26:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E99310E62D;
+	Fri, 16 Feb 2024 11:41:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="zaoDTMy9";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="RWrTICJk";
 	dkim-atps=neutral
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2075.outbound.protection.outlook.com [40.107.101.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BDB310E24B;
- Fri, 16 Feb 2024 11:26:22 +0000 (UTC)
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam04on2072.outbound.protection.outlook.com [40.107.102.72])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0523A10E5DE;
+ Fri, 16 Feb 2024 11:41:03 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Cb01yTeSoVQlqxTfCLYZ70Zf5OFZxFpSPB8x/I8XME/ulowUqaXyMGpurqya8CI9arue85fiA1AtlTNwpIBM9F+x01WslDK/NMst+UFGMHYyleIRzdu0gRJrl2+mIC2D5dheCl7Zw5chD7ndf4zY5V0ZawmSgzmG0+dCNBvhbP90NA+JQwzMszh7GbTYozfXJwlyRE0IkTsXUHdRAmrPre1x69qjLPojCk7a23r3QHorHzyYxWUiteyXUJibl7oA99Wbndw5qsHD5oPmpjRVYf/bq93RnmjfHUOSh8x65zG8iFg3ISMXy9//9AUVrnrljiWotEp1pofkVQtqJcfHxg==
+ b=IcoCrRDAH61QF8RdOqHPcggQe+wqa5PxTu5LFHoRpBV0LgWUE09EfJVAz4gy3SrA3xukbkAGxvKKss85fA2yymVUKRuRVmgVogHQ7hj0ST01vG+QVFHQk0fTewfyuclSreYsfHvO5wiffLu0p8d73WrP0U9XawA5Miv2kqK8YP+xonhSu7Jo1hMwZvYghsAaaLv70L9nhSJlL5/8QhGsVLUjy7Bq5lB6iIpC36IB14kI//dgnD27vDQye0XFvQPL5WRLQDwCMNLhCXkPi1KOOdSiAZbwF1Ke4ClCgQ/bTUppztw4uOCEUoilamSKXELIrVthAfZGC2oe7oh7WgDVPg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZM/KT0HyZi8tuOoYFAWD3U3S9XglfIWw+xpBCphX8yU=;
- b=So86rfHFQwBtvgmOsMtkFNjGqzS/P5dXWADQzyF+fylMOduppa4WRW9Ta9CGfPq54gsZs0gFALRE6P/9ZpSB73TF02tge48WngqVnsObyn48aqm8FuzeZ1zTPA7Ji39pMUmDn7rETjFCvBQt3vyP25WyE9fiSrKYuj57yP7CMyP39GU1kP5PNcgq97r+qzt3T93nPosnAfrvvLD6gNwgwds2MXwJ7uGtVtWWswhdJWKI9n1/ABuAc5BmqPz1BHrVbY2BInH8cUeCcz+5jkbAPU72Rkk/IM7PlwCGV8ZmLHtb3cIws0eLGaAvd6icoFLP1ejzS4QeBslsEedcrvsT+w==
+ bh=p+ElSj1TBSAr5wqonIQpecCyv+VvOQtLlet4V9TQL+M=;
+ b=mzwKHdHDgPUwk2SmUSuXtduvBo6vCDIOhjaIPVNI7k2my53mJ8GeK/bYFf7oLps3N1i1Xun6Gx8itK/d0e9w6UeJlBzm2XLgyxBQWQ9SMX5MmhXTcvfbuqECHaIr17j3/SDZRg7X8wVa2VSBZedDRYOwVVXXIJVYp16gKlYj4zyOg/ZDkkbc+FoX1tY1LI1uNGud9paY+1w76gcNj1GspTaxto4UZ0Esr+UkHfcFGOloqxnQ9zt8L35j5p636PbjvhM7Z2EcO+AECLpdUsIKvqRsxSpczHuVJ4+EW5pQFWKuMHjwea3cI78gfZVbfrtErEZg7sOp9bbPWzDlHXWhwA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZM/KT0HyZi8tuOoYFAWD3U3S9XglfIWw+xpBCphX8yU=;
- b=zaoDTMy9rsIgghUH2Qc4umw5G8XetqnCt7ZF5etsvjWVt7TvUq/l11j8cLp9Ksk4lVlxMqRw2b6jCF7xsBap/XNi46ZXgFgLY5S9PvjzbN1vXBe7tPt3ysCoPpA3gTmLJmj1cQhFj0KkIPbr1TQd95libn4vFnga/cnP7jQtlpA=
+ bh=p+ElSj1TBSAr5wqonIQpecCyv+VvOQtLlet4V9TQL+M=;
+ b=RWrTICJkx0gWRMUaENWmfLHMGVpaGjtia/lm/lv1Qcs2wUc374PFKWpcWFbv8PfqiH/tqltNZGUvXE2Jo5TOY9PQn17u6XNvrPNOOvRxQJnHkF7RRtI4onCig1lQR2ByFqaf5ttcKXiXyofvGLNYF4GxBi2YkDDkf4xg95VeOGY=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
 Received: from MN2PR12MB4342.namprd12.prod.outlook.com (2603:10b6:208:264::7)
- by IA1PR12MB7544.namprd12.prod.outlook.com (2603:10b6:208:42c::7)
+ by MN0PR12MB6055.namprd12.prod.outlook.com (2603:10b6:208:3cd::20)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.14; Fri, 16 Feb
- 2024 11:26:18 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.26; Fri, 16 Feb
+ 2024 11:40:59 +0000
 Received: from MN2PR12MB4342.namprd12.prod.outlook.com
  ([fe80::e3ee:6c2c:4e87:a6d6]) by MN2PR12MB4342.namprd12.prod.outlook.com
  ([fe80::e3ee:6c2c:4e87:a6d6%5]) with mapi id 15.20.7316.012; Fri, 16 Feb 2024
- 11:26:18 +0000
+ 11:40:59 +0000
 Content-Type: multipart/alternative;
- boundary="------------LdcvnyTkHWSBfDiPqnLgy2u2"
-Message-ID: <233320c2-4644-520c-0238-39ca165c7a27@amd.com>
-Date: Fri, 16 Feb 2024 16:56:11 +0530
+ boundary="------------wqEro68jGOcgP0eULtbFPFNk"
+Message-ID: <119438d7-b2c8-d696-4249-a2e14bac88a0@amd.com>
+Date: Fri, 16 Feb 2024 17:10:51 +0530
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 4/6] drm/tests/drm_buddy: add alloc_range_bias test
+Subject: Re: [PATCH 2/6] drm/buddy: fix range bias
 Content-Language: en-US
 To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ stable@vger.kernel.org
 References: <20240215174431.285069-7-matthew.auld@intel.com>
- <20240215174431.285069-10-matthew.auld@intel.com>
+ <20240215174431.285069-8-matthew.auld@intel.com>
 From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
-In-Reply-To: <20240215174431.285069-10-matthew.auld@intel.com>
-X-ClientProxiedBy: PN3PR01CA0139.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:bf::9) To MN2PR12MB4342.namprd12.prod.outlook.com
+In-Reply-To: <20240215174431.285069-8-matthew.auld@intel.com>
+X-ClientProxiedBy: PN3PR01CA0152.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:c8::16) To MN2PR12MB4342.namprd12.prod.outlook.com
  (2603:10b6:208:264::7)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4342:EE_|IA1PR12MB7544:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5fca4f57-c28d-48ce-5c3a-08dc2ee21821
+X-MS-TrafficTypeDiagnostic: MN2PR12MB4342:EE_|MN0PR12MB6055:EE_
+X-MS-Office365-Filtering-Correlation-Id: c67b2790-e043-4481-a4c4-08dc2ee42521
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: vb0rWkrn/37B2gArVpre8vN6Y/q2dwTluJ8/0lbCrMH7vTRCCDVNNN/Pq6Qz+OTBtXa0uDrQG0ZFm6uzfaU2DlapLPFpJnOLZPok9B3nQYbsaP3wNBV+6u0W7B45TWA6S6g1XZBss8AXruoEZhYRBnWin2KC6m5tmEOPlRKSjMelQGCjtJ/6/wabEvX6pFvSyHTWEbZOmFDrXr0MeQgPbTjrEt+0m1O62Am5G4VyZpgFpB5g01IKwy3wI8n+Frr5EmN8yhmBXJmU9atQFADC1gewRfhaIxDttzzEh0ne4Vq5xzj6r2Ymy916CIvAzB9qan29SRGcsmdxM9jaaMWjeFBA5tE3ufERSfub8SIQazHV1VpB5WrWIetnq6ksURFPf7plI88eetrLtibro7oXcJSsRo6/V9Ld9ICC7iLYtjV4PaASzS7VVABAuygd+boW6cOOibyA8ffcUS/WxPSN1Uvo2HEzVtx7gnDqDRg6x6PCB1WpqAI6n6UsZHTC3J0CiKvIe9OOcLoPPnjnsLmyvkRv7ELpITxMYwedSUzYN6LEhPEZEoBSopbdwiLub4hU
+X-Microsoft-Antispam-Message-Info: VisNxmX8i/h2sVUjGAv2JwhJWsSGyVMmOCaHDXqU1r/y48yk45ygVL+SVB/SuZ9j3r5DNFgw7+R5U9bNxeqCFGPapH0ACSGTdy+wIbRSu8E2HN2udZmjL/CYhKRqae0JfdjgB7zSl0xJiLA7JnG/UyRckIyRRPzEkFnAHnaYF9qYDRgv3pWgPXNB/Hgo869v3lOYvaS2vsYpiQgE1VQEAjZgd0e/CNwmGuvQm2G4XhYm/4B8rqkZnAEIf0rHzhXNpR4BmSJuQBiVGrB2EDxeiXeC25BYBgaLISkSExOfQRfak8/V0xuEdsoBqkLWB5CUgI1CGOQikeFis1TglkuTSw2VLD+U13FW9qC6I5yesmM/SvWf5rgcyz/A22wAhTk65SQ+NHo5GBtQ9dFXx9hEEtoZQmW1n+54hkZA/z12j13hLjGhHkh4gusw8fC/kvqT0feqo5V9LY83K56Bhq8mHhPjSvAs971pz/0WZlBC9Oxl6bfcxKZAKIYxlhw6No4vVscQ9L2Vp0uyaL9pKRQj+nJRCnqx7DaeRCNLyKeMtXe3rrLibJOF/1vwxrcvr2t+
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN2PR12MB4342.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(376002)(136003)(39850400004)(366004)(346002)(230922051799003)(1800799012)(186009)(64100799003)(451199024)(30864003)(31686004)(2906002)(5660300002)(26005)(83380400001)(2616005)(36756003)(66899024)(38100700002)(6512007)(6666004)(478600001)(53546011)(33964004)(6486002)(66476007)(31696002)(66946007)(66556008)(316002)(6506007)(66574015)(8936002)(8676002)(41300700001)(4326008)(86362001);
+ SFS:(13230031)(39860400002)(396003)(136003)(366004)(346002)(376002)(230922051799003)(1800799012)(64100799003)(451199024)(186009)(316002)(31686004)(41300700001)(2906002)(4326008)(8676002)(83380400001)(8936002)(66946007)(31696002)(5660300002)(86362001)(6512007)(38100700002)(478600001)(33964004)(26005)(6666004)(66476007)(6486002)(36756003)(53546011)(6506007)(2616005)(66556008)(66574015);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bXowT2N4UFVCM25PcjVuQk9zN3hmQXo4VWQvRVZRdHZtYmt3K0Jib1UrTVhx?=
- =?utf-8?B?WnZsRDQ1bkFzNjMyeGR5TzVpT0dCbjM1S1F0elUrUGdkU2xpRjNscnJhQUJw?=
- =?utf-8?B?SVpDbU9KSlZrbW9ZVnBaem0xMlh4S3RoZzMxUUVpallaeVAyVFpmWlFWWkhC?=
- =?utf-8?B?TEltTUpvbUZ6TnZMUWlseWlGeWZBckN5Tk5pRjR2MzQrazNzWmxZcmpLSk03?=
- =?utf-8?B?US8xd1U1RWIyS0MwRkdzQUpaYkJ4LzhoWFZLaG91RUJGb3djS3pBUW82d2sv?=
- =?utf-8?B?Qkh6bTBJTGlyODNRdHM5bTFCV2Mva3BVbTJvQUNySnhpbmh4UXNocGNoREps?=
- =?utf-8?B?Z2FrSDB4YUp6MThpV0x2cEp3aldJVkQ5WGJ0NStYZzBnYUF0OWtqNkRJYU9B?=
- =?utf-8?B?Ui9RUkZTbGZKdmdzS3U1b0hiUThGSXB6TVFHTHhUVWhsQVF3ZzV6bERwZ09j?=
- =?utf-8?B?OWNOWGJNSVd5TFJBbEVMNzNmaVlIOWxtTzBMUDVqNFBPY3N3RlNBVXRsbmkx?=
- =?utf-8?B?QlA0bVgzeEVJRWFpdTh3Nkl1M29OeDJKTVJ6Z1VkRU04VzhJbzMvUjhScFJO?=
- =?utf-8?B?c2txcXc4d1ZFL2pjTTVwcGlML0E0R0VjRi9uWU9vVkNNNk8yUHFJc1M0VFYw?=
- =?utf-8?B?cm1YcXVCa3dnWk1VeXladHJHY1R6ei9UdnlpZWxkN2tBWU81VXJvYzlhUVps?=
- =?utf-8?B?VnpPbHlDSFVzT3ZKWXUwMDNEYVFvSTBOUnZUcjBscUNIbVhhUndOUWg4QXZJ?=
- =?utf-8?B?RXF4NTRCR044UGdqVSt4M2VvanA2V1p6T2RIRytnSXFla2FheWxvT1QwVkdQ?=
- =?utf-8?B?Y2w3a1B4VGp0eStCdjdTbUljNE9XZ2xXeUw0VG01YitFN0l2eVRDMWhOM0VZ?=
- =?utf-8?B?N0djUzkza1dGcEQxOTd3WDRzaUE1QmF1OS9BZUtLMW9Gb3U3TE4yQXBKemZr?=
- =?utf-8?B?M3liVlNvM2pGSjVackYyWHU0VGxPaDAwdTl4dmJPLzVPeGVRcU41UHlaWmcr?=
- =?utf-8?B?RVp0Qzg2N3o2azgxZGU1R3Z4ZlU0dnl0SzVJRCt0amYvZnltY2lvYVFWQXU4?=
- =?utf-8?B?NThYcUYyY3hkWmc2VittTmJIcDJrbVRlRU43a0ZCNm55eE11bnE5Zy80VVc0?=
- =?utf-8?B?K2NvK3V1dGF6bmFVT25OYlV4TGtuRmI2OVlNdE8vMzdyeTFPWVZrTFZXa1RQ?=
- =?utf-8?B?d1JWT3NLVlFUWTBCcUhBd0k3MHBoWWxRcitzdFdHMkNlQ2J3aGZGdlFQbDR0?=
- =?utf-8?B?djU5SHRtYWdrZ2ZkaXd6NkdxalZiZG10V1ByRVRiZFdQckozRXBjbi8zRHVJ?=
- =?utf-8?B?VGFLRUQ1b0psYVdDandZUjF4SU5Sc1l0eDgydjZsT1hkRWVXYlNXOEtFVUoy?=
- =?utf-8?B?bFFiRk94Y0pweEZKRUp0Z2RCdWJkakFnRzE4Ty9pS1VxRnZJb01qMkdJbXVq?=
- =?utf-8?B?Rk1mNjd5ejVaSjVhb0N3dE5VSVgvTnZKQUgvZzgyZTd1UEx5dUJYMThVYWZP?=
- =?utf-8?B?MGFoTHIzYnVsb1dicFBaNElKc3poWEs5bUtaZzVMQ2hJOGNJWG9oZnlDeTJ2?=
- =?utf-8?B?TDVobnNJYjJ3dVJFNnJHcGtEQllBNUVleGFCOTkrV1FiUGZLVnZUWDBBdWRW?=
- =?utf-8?B?eUpCZ201NGpONjRIVmREVVFmSjBndkxuZytCS1hDRmhQOVR4dkVSRmNOOWg4?=
- =?utf-8?B?a290ZHlWWmRCVDQ2Y2IyWXJkM01lWENGVzJXalRYanFhQ2QxdDJVWDdiSG85?=
- =?utf-8?B?UVVVd25OVkFQOWtCS2dyQmFGdVJCSng1djdQRjcxekhSR0dvUzhJbHhkMXo0?=
- =?utf-8?B?bnlmVW1IckJkR0xBUWxnL09UeGFQSlBLTHhmazd1SzFqb0xqWWJvMklBdFVx?=
- =?utf-8?B?NkRoeXEwYzFDeWFPRU14S1hENlZOT1dOZkNYVlFTZXJtUkdORGUvMHhlVmNw?=
- =?utf-8?B?a0I1cW1id3J4dFFwMWMxMGxpbUo1SXh5bUt3Vmswd2MrcnJXRkJDUndIV1V2?=
- =?utf-8?B?cG0zV09lTjE5eGdLTktxMUJ2bCtUNTFhVUNvYzNWOFJaTGYvOFJRT0tRN3Zq?=
- =?utf-8?B?TWpaQjlYWTU2STRyQnpuRHdkb0tQK2MzTGM4Ykp0bVN3dlM3dXN0ZWExZnFz?=
- =?utf-8?Q?6TglNEZigUfSC3r2clYs8EZdV?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YTN0YjJ5RFo1Y2lSM0srcWp4NVA4MEVSMENmU09jU0NDMHBrMktUYXVVSHpr?=
+ =?utf-8?B?V3NVSERYS0l2bXQxM0VwWllrMnlNekxVOEpwMTM4NEhiNC9QQ3dTaEc2b0Qx?=
+ =?utf-8?B?VFppRm9zcmxDZDBscDNLZ0FTeTBaRlNTeE9FQnhnRmZDVVpGOXdpUXZKd2cr?=
+ =?utf-8?B?c0xDQ2NGdi9ZajVCMmdDNnJxdkhWUTdxdEpuSXkzNExCRFhucDFWT1AxMjJz?=
+ =?utf-8?B?ZzUyMFAxTFZhT3JUU0ZCR0MzdkJDSFlxdXFzMVlaMkp4Z3ptWWFzRFZlazVL?=
+ =?utf-8?B?WWNRYVNXbGRNU3ZtMW13cGIxZ2xqUFlWQnlqdTV2ZkhjRWkrTlpoU3JVZDEy?=
+ =?utf-8?B?OUNxSEt6SFNZQU05d1hUbzMzRkNhVjM3ZWxYSGJZS1pYc0JzRytFTDNIMDFH?=
+ =?utf-8?B?Ri9sOXNmOEt0djUxTjdMbnd1SGt6REN3bVJRT3p0ZlhIekJmOVErTWErUlJ3?=
+ =?utf-8?B?Y1NEenN0US9yWHZmM0IzOGx0Y0dTQ1Juc1dSRTh5R1pvaDlVUms1M002VHE4?=
+ =?utf-8?B?M0ZKM1BJK3U1YTJlZzJtM3ROb0kxV1dGbXY0RldsbXk0bXp2amhxVmFaTkhQ?=
+ =?utf-8?B?UkxZM2dsQ29scG1rV2ZSTHowNm9yakdyYWt2Y0JTRmpGcHZjZ3ppMTdVNGcv?=
+ =?utf-8?B?Y0Vlb2ZWNmw4VjJNREl5bWFQeERuTXppK011Y1JUMks0RDg3dUpOclZ4VVox?=
+ =?utf-8?B?SitjODhkb2VqcHJNZWxFaXNhcW8rS0ROaEk2b0dwWmNJMTZQUFRxcC9EUkRT?=
+ =?utf-8?B?d1NaR05xOU53SGxWWW1YRTJja2V5YzdTbVBzQ1BVZ1Q2N2tPSFFmOGYzTVBR?=
+ =?utf-8?B?Z2hKV2dzMGxjcXA2b1FFUGptZFB0eWlxMExoWFJBMHdpVllHbHpvNERMK2t6?=
+ =?utf-8?B?RHhUbEcvS2txdmZiM0dFSnVkVHBOaWtWZGlMVGFnTDdaUVJQTWNjZitLTG1s?=
+ =?utf-8?B?UmpPcllWaVhBbkVCbzJ6d2cxTHNaMk92Y2MrYXpaWk1oUElLeC8xNHk2QVp4?=
+ =?utf-8?B?K3lvdHRyWVVjdVR0aG9RZUcxWkZtU3QwNmczcDRNTWZCdms1N2orZURzbGIx?=
+ =?utf-8?B?MFM5a1VVVURJdGNtaUhlY1BjNDZNQ0s4VURnaVFDQmFDMTR6UW9iOU1FRjV5?=
+ =?utf-8?B?NTRBL28zRnp5TVM4c0UwZ3pDMzV0czhLMnYvRUoyM1BlMk9lVTlhVlZpSFo4?=
+ =?utf-8?B?NWdDTjVKWXRpR1J4S0VjYy9sMmhwNHdpNm9DQmRZeXYvSWIrYVVsRjl2N09O?=
+ =?utf-8?B?OHFucU85azhwS083QkM4Y1lxVHRCR1duand5WjdxT3Q0akFlNmZQRUtOWi9Q?=
+ =?utf-8?B?Q09zb0k1dlR5dmY1NFpqVkJrQmdYVTQ4MDdXMlhsUmZnN0RjRld0b3A5d0hh?=
+ =?utf-8?B?UUJmb0hYTmdXbDFOTWE5ZUVjUUtPVzc4OVlMb2V5UU5ZRzdyd1RzSWtNQVMy?=
+ =?utf-8?B?K2N0SURJaFZPRUlUeS9yMFcyd2VDb2FldEpOWlA2VmRPSnFrdVlKRkhwR25l?=
+ =?utf-8?B?S0VSK29QUldyY0xJZm9oRnVRQld2ZzM1NGhkakVTWThuSG5MZnhzcW9QZ2VQ?=
+ =?utf-8?B?UkE1VXA5R1dRU21MTERNUjBlL2dxbDA5Q2VNRGFHRlBGM2ZoSnFrUjcxZnBo?=
+ =?utf-8?B?WlE1QnpHSSsvaHNiZXhZaUZER2N1MDdoaGtGa2JmNm82Ym1jbjJybTQvSDRm?=
+ =?utf-8?B?M0h1ejUybEtlNmZLYWFZdXJmbXByTnU5SSttSGVZcVkxbGR0MUh6U056UWhk?=
+ =?utf-8?B?VUFtRTJyODlISHRCNVVDRE84RzFBaVZScVRSdGs5eGVYTFpVeGdFV1pFVDBv?=
+ =?utf-8?B?N3VLV0plRCt0NFF1cHl6Y2JsTHR2dHdXTmdiMzdOSU1SRlVibjVxeVFtUm1C?=
+ =?utf-8?B?dXZKaUtJblpyNVVNelAvZXVqNlIwRTFzODludmdlYUJoMDIyREo3Y09rSXZJ?=
+ =?utf-8?B?YzVzSXl2TDdNVDZsR25sdWxFb28weFZTZ2llRGgzeUZnRjhNd1c5WmQ3R09G?=
+ =?utf-8?B?YTFPN3FZeFdrUFpTOVh2ZHpnMlR4dlZ1QUVsR0MxUDRxZTlLdHlvTjEyWEQw?=
+ =?utf-8?B?b29Nd0QwWmd2MkdDd3pNTFRlMEdiR1JrRFdwZjFsWTBaeC9KZUJoVUVqS2dq?=
+ =?utf-8?Q?zx7lVeEsSa82mInvQfRNHRU+J?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5fca4f57-c28d-48ce-5c3a-08dc2ee21821
+X-MS-Exchange-CrossTenant-Network-Message-Id: c67b2790-e043-4481-a4c4-08dc2ee42521
 X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4342.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Feb 2024 11:26:18.3650 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Feb 2024 11:40:59.3022 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: S39b20xyqLnwSvfPtKHihmWDD8QEpm7fcEM+LgAxrwWJ50/qN60qVaqRhT5UtQXQNFPVwxHZsHJkZuIEUAVPpw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7544
+X-MS-Exchange-CrossTenant-UserPrincipalName: HVPDwVvozHDDc/I96pJTR7rP84pP5jf6raIsfU5v5m2f0XUcdHMmuD/E5UVm4kFnOxbYqkvm8c2+hIWP7VSIbQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6055
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,278 +133,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---------------LdcvnyTkHWSBfDiPqnLgy2u2
+--------------wqEro68jGOcgP0eULtbFPFNk
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+
+Looks good.
 
 Reviewed-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
 
 
 
 On 2/15/2024 11:14 PM, Matthew Auld wrote:
-> Sanity check range bias with DRM_BUDDY_RANGE_ALLOCATION.
+> There is a corner case here where start/end is after/before the block
+> range we are currently checking. If so we need to be sure that splitting
+> the block will eventually give use the block size we need. To do that we
+> should adjust the block range to account for the start/end, and only
+> continue with the split if the size/alignment will fit the requested
+> size. Not doing so can result in leaving split blocks unmerged when it
+> eventually fails.
 >
+> Fixes: afea229fe102 ("drm: improve drm_buddy_alloc function")
 > Signed-off-by: Matthew Auld<matthew.auld@intel.com>
 > Cc: Arunpravin Paneer Selvam<Arunpravin.PaneerSelvam@amd.com>
 > Cc: Christian König<christian.koenig@amd.com>
+> Cc:<stable@vger.kernel.org>  # v5.18+
 > ---
->   drivers/gpu/drm/tests/drm_buddy_test.c | 218 +++++++++++++++++++++++++
->   1 file changed, 218 insertions(+)
+>   drivers/gpu/drm/drm_buddy.c | 10 ++++++++++
+>   1 file changed, 10 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/tests/drm_buddy_test.c b/drivers/gpu/drm/tests/drm_buddy_test.c
-> index edacc1adb28f..3d4b29686132 100644
-> --- a/drivers/gpu/drm/tests/drm_buddy_test.c
-> +++ b/drivers/gpu/drm/tests/drm_buddy_test.c
-> @@ -14,11 +14,216 @@
->   
->   #include "../lib/drm_random.h"
->   
-> +static unsigned int random_seed;
-> +
->   static inline u64 get_size(int order, u64 chunk_size)
+> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+> index c1a99bf4dffd..d09540d4065b 100644
+> --- a/drivers/gpu/drm/drm_buddy.c
+> +++ b/drivers/gpu/drm/drm_buddy.c
+> @@ -332,6 +332,7 @@ alloc_range_bias(struct drm_buddy *mm,
+>   		 u64 start, u64 end,
+>   		 unsigned int order)
 >   {
->   	return (1 << order) * chunk_size;
->   }
+> +	u64 req_size = mm->chunk_size << order;
+>   	struct drm_buddy_block *block;
+>   	struct drm_buddy_block *buddy;
+>   	LIST_HEAD(dfs);
+> @@ -367,6 +368,15 @@ alloc_range_bias(struct drm_buddy *mm,
+>   		if (drm_buddy_block_is_allocated(block))
+>   			continue;
 >   
-> +static void drm_test_buddy_alloc_range_bias(struct kunit *test)
-> +{
-> +	u32 mm_size, ps, bias_size, bias_start, bias_end, bias_rem;
-> +	DRM_RND_STATE(prng, random_seed);
-> +	unsigned int i, count, *order;
-> +	struct drm_buddy mm;
-> +	LIST_HEAD(allocated);
+> +		if (block_start < start || block_end > end) {
+> +			u64 adjusted_start = max(block_start, start);
+> +			u64 adjusted_end = min(block_end, end);
 > +
-> +	bias_size = SZ_1M;
-> +	ps = roundup_pow_of_two(prandom_u32_state(&prng) % bias_size);
-> +	ps = max(SZ_4K, ps);
-> +	mm_size = (SZ_8M-1) & ~(ps-1); /* Multiple roots */
-> +
-> +	kunit_info(test, "mm_size=%u, ps=%u\n", mm_size, ps);
-> +
-> +	KUNIT_ASSERT_FALSE_MSG(test, drm_buddy_init(&mm, mm_size, ps),
-> +			       "buddy_init failed\n");
-> +
-> +	count = mm_size / bias_size;
-> +	order = drm_random_order(count, &prng);
-> +	KUNIT_EXPECT_TRUE(test, order);
-> +
-> +	/*
-> +	 * Idea is to split the address space into uniform bias ranges, and then
-> +	 * in some random order allocate within each bias, using various
-> +	 * patterns within. This should detect if allocations leak out from a
-> +	 * given bias, for example.
-> +	 */
-> +
-> +	for (i = 0; i < count; i++) {
-> +		LIST_HEAD(tmp);
-> +		u64 size;
-> +
-> +		bias_start = order[i] * bias_size;
-> +		bias_end = bias_start + bias_size;
-> +		bias_rem = bias_size;
-> +
-> +		/* internal round_up too big */
-> +		KUNIT_ASSERT_TRUE_MSG(test,
-> +				      drm_buddy_alloc_blocks(&mm, bias_start,
-> +							     bias_end, bias_size + ps, bias_size,
-> +							     &allocated,
-> +							     DRM_BUDDY_RANGE_ALLOCATION),
-> +				      "buddy_alloc failed with bias(%x-%x), size=%u, ps=%u\n",
-> +				      bias_start, bias_end, bias_size, bias_size);
-> +
-> +		/* size too big */
-> +		KUNIT_ASSERT_TRUE_MSG(test,
-> +				      drm_buddy_alloc_blocks(&mm, bias_start,
-> +							     bias_end, bias_size + ps, ps,
-> +							     &allocated,
-> +							     DRM_BUDDY_RANGE_ALLOCATION),
-> +				      "buddy_alloc didn't fail with bias(%x-%x), size=%u, ps=%u\n",
-> +				      bias_start, bias_end, bias_size + ps, ps);
-> +
-> +		/* bias range too small for size */
-> +		KUNIT_ASSERT_TRUE_MSG(test,
-> +				      drm_buddy_alloc_blocks(&mm, bias_start + ps,
-> +							     bias_end, bias_size, ps,
-> +							     &allocated,
-> +							     DRM_BUDDY_RANGE_ALLOCATION),
-> +				      "buddy_alloc didn't fail with bias(%x-%x), size=%u, ps=%u\n",
-> +				      bias_start + ps, bias_end, bias_size, ps);
-> +
-> +		/* bias misaligned */
-> +		KUNIT_ASSERT_TRUE_MSG(test,
-> +				      drm_buddy_alloc_blocks(&mm, bias_start + ps,
-> +							     bias_end - ps,
-> +							     bias_size >> 1, bias_size >> 1,
-> +							     &allocated,
-> +							     DRM_BUDDY_RANGE_ALLOCATION),
-> +				      "buddy_alloc h didn't fail with bias(%x-%x), size=%u, ps=%u\n",
-> +				      bias_start + ps, bias_end - ps, bias_size >> 1, bias_size >> 1);
-> +
-> +		/* single big page */
-> +		KUNIT_ASSERT_FALSE_MSG(test,
-> +				       drm_buddy_alloc_blocks(&mm, bias_start,
-> +							      bias_end, bias_size, bias_size,
-> +							      &tmp,
-> +							      DRM_BUDDY_RANGE_ALLOCATION),
-> +				       "buddy_alloc i failed with bias(%x-%x), size=%u, ps=%u\n",
-> +				       bias_start, bias_end, bias_size, bias_size);
-> +		drm_buddy_free_list(&mm, &tmp);
-> +
-> +		/* single page with internal round_up */
-> +		KUNIT_ASSERT_FALSE_MSG(test,
-> +				       drm_buddy_alloc_blocks(&mm, bias_start,
-> +							      bias_end, ps, bias_size,
-> +							      &tmp,
-> +							      DRM_BUDDY_RANGE_ALLOCATION),
-> +				       "buddy_alloc failed with bias(%x-%x), size=%u, ps=%u\n",
-> +				       bias_start, bias_end, ps, bias_size);
-> +		drm_buddy_free_list(&mm, &tmp);
-> +
-> +		/* random size within */
-> +		size = max(round_up(prandom_u32_state(&prng) % bias_rem, ps), ps);
-> +		if (size)
-> +			KUNIT_ASSERT_FALSE_MSG(test,
-> +					       drm_buddy_alloc_blocks(&mm, bias_start,
-> +								      bias_end, size, ps,
-> +								      &tmp,
-> +								      DRM_BUDDY_RANGE_ALLOCATION),
-> +					       "buddy_alloc failed with bias(%x-%x), size=%u, ps=%u\n",
-> +					       bias_start, bias_end, size, ps);
-> +
-> +		bias_rem -= size;
-> +		/* too big for current avail */
-> +		KUNIT_ASSERT_TRUE_MSG(test,
-> +				      drm_buddy_alloc_blocks(&mm, bias_start,
-> +							     bias_end, bias_rem + ps, ps,
-> +							     &allocated,
-> +							     DRM_BUDDY_RANGE_ALLOCATION),
-> +				      "buddy_alloc didn't fail with bias(%x-%x), size=%u, ps=%u\n",
-> +				      bias_start, bias_end, bias_rem + ps, ps);
-> +
-> +		if (bias_rem) {
-> +			/* random fill of the remainder */
-> +			size = max(round_up(prandom_u32_state(&prng) % bias_rem, ps), ps);
-> +			size = max(size, ps);
-> +
-> +			KUNIT_ASSERT_FALSE_MSG(test,
-> +					       drm_buddy_alloc_blocks(&mm, bias_start,
-> +								      bias_end, size, ps,
-> +								      &allocated,
-> +								      DRM_BUDDY_RANGE_ALLOCATION),
-> +					       "buddy_alloc failed with bias(%x-%x), size=%u, ps=%u\n",
-> +					       bias_start, bias_end, size, ps);
-> +			/*
-> +			 * Intentionally allow some space to be left
-> +			 * unallocated, and ideally not always on the bias
-> +			 * boundaries.
-> +			 */
-> +			drm_buddy_free_list(&mm, &tmp);
-> +		} else {
-> +			list_splice_tail(&tmp, &allocated);
+> +			if (round_down(adjusted_end + 1, req_size) <=
+> +			    round_up(adjusted_start, req_size))
+> +				continue;
 > +		}
-> +	}
 > +
-> +	kfree(order);
-> +	drm_buddy_free_list(&mm, &allocated);
-> +	drm_buddy_fini(&mm);
-> +
-> +	/*
-> +	 * Something more free-form. Idea is to pick a random starting bias
-> +	 * range within the address space and then start filling it up. Also
-> +	 * randomly grow the bias range in both directions as we go along. This
-> +	 * should give us bias start/end which is not always uniform like above,
-> +	 * and in some cases will require the allocator to jump over already
-> +	 * allocated nodes in the middle of the address space.
-> +	 */
-> +
-> +	KUNIT_ASSERT_FALSE_MSG(test, drm_buddy_init(&mm, mm_size, ps),
-> +			       "buddy_init failed\n");
-> +
-> +	bias_start = round_up(prandom_u32_state(&prng) % (mm_size - ps), ps);
-> +	bias_end = round_up(bias_start + prandom_u32_state(&prng) % (mm_size - bias_start), ps);
-> +	bias_end = max(bias_end, bias_start + ps);
-> +	bias_rem = bias_end - bias_start;
-> +
-> +	do {
-> +		u64 size = max(round_up(prandom_u32_state(&prng) % bias_rem, ps), ps);
-> +
-> +		KUNIT_ASSERT_FALSE_MSG(test,
-> +				       drm_buddy_alloc_blocks(&mm, bias_start,
-> +							      bias_end, size, ps,
-> +							      &allocated,
-> +							      DRM_BUDDY_RANGE_ALLOCATION),
-> +				       "buddy_alloc failed with bias(%x-%x), size=%u, ps=%u\n",
-> +				       bias_start, bias_end, size);
-> +		bias_rem -= size;
-> +
-> +		/*
-> +		 * Try to randomly grow the bias range in both directions, or
-> +		 * only one, or perhaps don't grow at all.
-> +		 */
-> +		do {
-> +			u64 old_bias_start = bias_start;
-> +			u64 old_bias_end = bias_end;
-> +
-> +			if (bias_start)
-> +				bias_start -= round_up(prandom_u32_state(&prng) % bias_start, ps);
-> +			if (bias_end != mm_size)
-> +				bias_end += round_up(prandom_u32_state(&prng) % (mm_size - bias_end), ps);
-> +
-> +			bias_rem += old_bias_start - bias_start;
-> +			bias_rem += bias_end - old_bias_end;
-> +		} while (!bias_rem && (bias_start || bias_end != mm_size));
-> +	} while (bias_rem);
-> +
-> +	KUNIT_ASSERT_EQ(test, bias_start, 0);
-> +	KUNIT_ASSERT_EQ(test, bias_end, mm_size);
-> +	KUNIT_ASSERT_TRUE_MSG(test,
-> +			      drm_buddy_alloc_blocks(&mm, bias_start, bias_end,
-> +						     ps, ps,
-> +						     &allocated,
-> +						     DRM_BUDDY_RANGE_ALLOCATION),
-> +			      "buddy_alloc passed with bias(%x-%x), size=%u\n",
-> +			      bias_start, bias_end, ps);
-> +
-> +	drm_buddy_free_list(&mm, &allocated);
-> +	drm_buddy_fini(&mm);
-> +}
-> +
->   static void drm_test_buddy_alloc_contiguous(struct kunit *test)
->   {
->   	u32 mm_size, ps = SZ_4K, i, n_pages, total;
-> @@ -363,17 +568,30 @@ static void drm_test_buddy_alloc_limit(struct kunit *test)
->   	drm_buddy_fini(&mm);
->   }
->   
-> +static int drm_buddy_suite_init(struct kunit_suite *suite)
-> +{
-> +	while (!random_seed)
-> +		random_seed = get_random_u32();
-> +
-> +	kunit_info(suite, "Testing DRM buddy manager, with random_seed=0x%x\n",
-> +		   random_seed);
-> +
-> +	return 0;
-> +}
-> +
->   static struct kunit_case drm_buddy_tests[] = {
->   	KUNIT_CASE(drm_test_buddy_alloc_limit),
->   	KUNIT_CASE(drm_test_buddy_alloc_optimistic),
->   	KUNIT_CASE(drm_test_buddy_alloc_pessimistic),
->   	KUNIT_CASE(drm_test_buddy_alloc_pathological),
->   	KUNIT_CASE(drm_test_buddy_alloc_contiguous),
-> +	KUNIT_CASE(drm_test_buddy_alloc_range_bias),
->   	{}
->   };
->   
->   static struct kunit_suite drm_buddy_test_suite = {
->   	.name = "drm_buddy",
-> +	.suite_init = drm_buddy_suite_init,
->   	.test_cases = drm_buddy_tests,
->   };
->   
+>   		if (contains(start, end, block_start, block_end) &&
+>   		    order == drm_buddy_block_order(block)) {
+>   			/*
 
---------------LdcvnyTkHWSBfDiPqnLgy2u2
+--------------wqEro68jGOcgP0eULtbFPFNk
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
@@ -411,6 +198,7 @@ Content-Transfer-Encoding: 8bit
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   </head>
   <body>
+    Looks good.<br>
     <p style="margin:0in;font-family:Calibri;font-size:11.0pt">Reviewed-by:
       Arunpravin Paneer Selvam &lt;<a href="mailto:Arunpravin.PaneerSelvam@amd.com" class="moz-txt-link-freetext">Arunpravin.PaneerSelvam@amd.com</a>&gt;</p>
     <br>
@@ -418,272 +206,56 @@ Content-Transfer-Encoding: 8bit
     <div class="moz-cite-prefix">On 2/15/2024 11:14 PM, Matthew Auld
       wrote:<br>
     </div>
-    <blockquote type="cite" cite="mid:20240215174431.285069-10-matthew.auld@intel.com">
-      <pre class="moz-quote-pre" wrap="">Sanity check range bias with DRM_BUDDY_RANGE_ALLOCATION.
+    <blockquote type="cite" cite="mid:20240215174431.285069-8-matthew.auld@intel.com">
+      <pre class="moz-quote-pre" wrap="">There is a corner case here where start/end is after/before the block
+range we are currently checking. If so we need to be sure that splitting
+the block will eventually give use the block size we need. To do that we
+should adjust the block range to account for the start/end, and only
+continue with the split if the size/alignment will fit the requested
+size. Not doing so can result in leaving split blocks unmerged when it
+eventually fails.
 
+Fixes: afea229fe102 (&quot;drm: improve drm_buddy_alloc function&quot;)
 Signed-off-by: Matthew Auld <a class="moz-txt-link-rfc2396E" href="mailto:matthew.auld@intel.com">&lt;matthew.auld@intel.com&gt;</a>
 Cc: Arunpravin Paneer Selvam <a class="moz-txt-link-rfc2396E" href="mailto:Arunpravin.PaneerSelvam@amd.com">&lt;Arunpravin.PaneerSelvam@amd.com&gt;</a>
 Cc: Christian König <a class="moz-txt-link-rfc2396E" href="mailto:christian.koenig@amd.com">&lt;christian.koenig@amd.com&gt;</a>
+Cc: <a class="moz-txt-link-rfc2396E" href="mailto:stable@vger.kernel.org">&lt;stable@vger.kernel.org&gt;</a> # v5.18+
 ---
- drivers/gpu/drm/tests/drm_buddy_test.c | 218 +++++++++++++++++++++++++
- 1 file changed, 218 insertions(+)
+ drivers/gpu/drm/drm_buddy.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/gpu/drm/tests/drm_buddy_test.c b/drivers/gpu/drm/tests/drm_buddy_test.c
-index edacc1adb28f..3d4b29686132 100644
---- a/drivers/gpu/drm/tests/drm_buddy_test.c
-+++ b/drivers/gpu/drm/tests/drm_buddy_test.c
-@@ -14,11 +14,216 @@
- 
- #include &quot;../lib/drm_random.h&quot;
- 
-+static unsigned int random_seed;
-+
- static inline u64 get_size(int order, u64 chunk_size)
+diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+index c1a99bf4dffd..d09540d4065b 100644
+--- a/drivers/gpu/drm/drm_buddy.c
++++ b/drivers/gpu/drm/drm_buddy.c
+@@ -332,6 +332,7 @@ alloc_range_bias(struct drm_buddy *mm,
+ 		 u64 start, u64 end,
+ 		 unsigned int order)
  {
- 	return (1 &lt;&lt; order) * chunk_size;
- }
++	u64 req_size = mm-&gt;chunk_size &lt;&lt; order;
+ 	struct drm_buddy_block *block;
+ 	struct drm_buddy_block *buddy;
+ 	LIST_HEAD(dfs);
+@@ -367,6 +368,15 @@ alloc_range_bias(struct drm_buddy *mm,
+ 		if (drm_buddy_block_is_allocated(block))
+ 			continue;
  
-+static void drm_test_buddy_alloc_range_bias(struct kunit *test)
-+{
-+	u32 mm_size, ps, bias_size, bias_start, bias_end, bias_rem;
-+	DRM_RND_STATE(prng, random_seed);
-+	unsigned int i, count, *order;
-+	struct drm_buddy mm;
-+	LIST_HEAD(allocated);
++		if (block_start &lt; start || block_end &gt; end) {
++			u64 adjusted_start = max(block_start, start);
++			u64 adjusted_end = min(block_end, end);
 +
-+	bias_size = SZ_1M;
-+	ps = roundup_pow_of_two(prandom_u32_state(&amp;prng) % bias_size);
-+	ps = max(SZ_4K, ps);
-+	mm_size = (SZ_8M-1) &amp; ~(ps-1); /* Multiple roots */
-+
-+	kunit_info(test, &quot;mm_size=%u, ps=%u\n&quot;, mm_size, ps);
-+
-+	KUNIT_ASSERT_FALSE_MSG(test, drm_buddy_init(&amp;mm, mm_size, ps),
-+			       &quot;buddy_init failed\n&quot;);
-+
-+	count = mm_size / bias_size;
-+	order = drm_random_order(count, &amp;prng);
-+	KUNIT_EXPECT_TRUE(test, order);
-+
-+	/*
-+	 * Idea is to split the address space into uniform bias ranges, and then
-+	 * in some random order allocate within each bias, using various
-+	 * patterns within. This should detect if allocations leak out from a
-+	 * given bias, for example.
-+	 */
-+
-+	for (i = 0; i &lt; count; i++) {
-+		LIST_HEAD(tmp);
-+		u64 size;
-+
-+		bias_start = order[i] * bias_size;
-+		bias_end = bias_start + bias_size;
-+		bias_rem = bias_size;
-+
-+		/* internal round_up too big */
-+		KUNIT_ASSERT_TRUE_MSG(test,
-+				      drm_buddy_alloc_blocks(&amp;mm, bias_start,
-+							     bias_end, bias_size + ps, bias_size,
-+							     &amp;allocated,
-+							     DRM_BUDDY_RANGE_ALLOCATION),
-+				      &quot;buddy_alloc failed with bias(%x-%x), size=%u, ps=%u\n&quot;,
-+				      bias_start, bias_end, bias_size, bias_size);
-+
-+		/* size too big */
-+		KUNIT_ASSERT_TRUE_MSG(test,
-+				      drm_buddy_alloc_blocks(&amp;mm, bias_start,
-+							     bias_end, bias_size + ps, ps,
-+							     &amp;allocated,
-+							     DRM_BUDDY_RANGE_ALLOCATION),
-+				      &quot;buddy_alloc didn't fail with bias(%x-%x), size=%u, ps=%u\n&quot;,
-+				      bias_start, bias_end, bias_size + ps, ps);
-+
-+		/* bias range too small for size */
-+		KUNIT_ASSERT_TRUE_MSG(test,
-+				      drm_buddy_alloc_blocks(&amp;mm, bias_start + ps,
-+							     bias_end, bias_size, ps,
-+							     &amp;allocated,
-+							     DRM_BUDDY_RANGE_ALLOCATION),
-+				      &quot;buddy_alloc didn't fail with bias(%x-%x), size=%u, ps=%u\n&quot;,
-+				      bias_start + ps, bias_end, bias_size, ps);
-+
-+		/* bias misaligned */
-+		KUNIT_ASSERT_TRUE_MSG(test,
-+				      drm_buddy_alloc_blocks(&amp;mm, bias_start + ps,
-+							     bias_end - ps,
-+							     bias_size &gt;&gt; 1, bias_size &gt;&gt; 1,
-+							     &amp;allocated,
-+							     DRM_BUDDY_RANGE_ALLOCATION),
-+				      &quot;buddy_alloc h didn't fail with bias(%x-%x), size=%u, ps=%u\n&quot;,
-+				      bias_start + ps, bias_end - ps, bias_size &gt;&gt; 1, bias_size &gt;&gt; 1);
-+
-+		/* single big page */
-+		KUNIT_ASSERT_FALSE_MSG(test,
-+				       drm_buddy_alloc_blocks(&amp;mm, bias_start,
-+							      bias_end, bias_size, bias_size,
-+							      &amp;tmp,
-+							      DRM_BUDDY_RANGE_ALLOCATION),
-+				       &quot;buddy_alloc i failed with bias(%x-%x), size=%u, ps=%u\n&quot;,
-+				       bias_start, bias_end, bias_size, bias_size);
-+		drm_buddy_free_list(&amp;mm, &amp;tmp);
-+
-+		/* single page with internal round_up */
-+		KUNIT_ASSERT_FALSE_MSG(test,
-+				       drm_buddy_alloc_blocks(&amp;mm, bias_start,
-+							      bias_end, ps, bias_size,
-+							      &amp;tmp,
-+							      DRM_BUDDY_RANGE_ALLOCATION),
-+				       &quot;buddy_alloc failed with bias(%x-%x), size=%u, ps=%u\n&quot;,
-+				       bias_start, bias_end, ps, bias_size);
-+		drm_buddy_free_list(&amp;mm, &amp;tmp);
-+
-+		/* random size within */
-+		size = max(round_up(prandom_u32_state(&amp;prng) % bias_rem, ps), ps);
-+		if (size)
-+			KUNIT_ASSERT_FALSE_MSG(test,
-+					       drm_buddy_alloc_blocks(&amp;mm, bias_start,
-+								      bias_end, size, ps,
-+								      &amp;tmp,
-+								      DRM_BUDDY_RANGE_ALLOCATION),
-+					       &quot;buddy_alloc failed with bias(%x-%x), size=%u, ps=%u\n&quot;,
-+					       bias_start, bias_end, size, ps);
-+
-+		bias_rem -= size;
-+		/* too big for current avail */
-+		KUNIT_ASSERT_TRUE_MSG(test,
-+				      drm_buddy_alloc_blocks(&amp;mm, bias_start,
-+							     bias_end, bias_rem + ps, ps,
-+							     &amp;allocated,
-+							     DRM_BUDDY_RANGE_ALLOCATION),
-+				      &quot;buddy_alloc didn't fail with bias(%x-%x), size=%u, ps=%u\n&quot;,
-+				      bias_start, bias_end, bias_rem + ps, ps);
-+
-+		if (bias_rem) {
-+			/* random fill of the remainder */
-+			size = max(round_up(prandom_u32_state(&amp;prng) % bias_rem, ps), ps);
-+			size = max(size, ps);
-+
-+			KUNIT_ASSERT_FALSE_MSG(test,
-+					       drm_buddy_alloc_blocks(&amp;mm, bias_start,
-+								      bias_end, size, ps,
-+								      &amp;allocated,
-+								      DRM_BUDDY_RANGE_ALLOCATION),
-+					       &quot;buddy_alloc failed with bias(%x-%x), size=%u, ps=%u\n&quot;,
-+					       bias_start, bias_end, size, ps);
-+			/*
-+			 * Intentionally allow some space to be left
-+			 * unallocated, and ideally not always on the bias
-+			 * boundaries.
-+			 */
-+			drm_buddy_free_list(&amp;mm, &amp;tmp);
-+		} else {
-+			list_splice_tail(&amp;tmp, &amp;allocated);
++			if (round_down(adjusted_end + 1, req_size) &lt;=
++			    round_up(adjusted_start, req_size))
++				continue;
 +		}
-+	}
 +
-+	kfree(order);
-+	drm_buddy_free_list(&amp;mm, &amp;allocated);
-+	drm_buddy_fini(&amp;mm);
-+
-+	/*
-+	 * Something more free-form. Idea is to pick a random starting bias
-+	 * range within the address space and then start filling it up. Also
-+	 * randomly grow the bias range in both directions as we go along. This
-+	 * should give us bias start/end which is not always uniform like above,
-+	 * and in some cases will require the allocator to jump over already
-+	 * allocated nodes in the middle of the address space.
-+	 */
-+
-+	KUNIT_ASSERT_FALSE_MSG(test, drm_buddy_init(&amp;mm, mm_size, ps),
-+			       &quot;buddy_init failed\n&quot;);
-+
-+	bias_start = round_up(prandom_u32_state(&amp;prng) % (mm_size - ps), ps);
-+	bias_end = round_up(bias_start + prandom_u32_state(&amp;prng) % (mm_size - bias_start), ps);
-+	bias_end = max(bias_end, bias_start + ps);
-+	bias_rem = bias_end - bias_start;
-+
-+	do {
-+		u64 size = max(round_up(prandom_u32_state(&amp;prng) % bias_rem, ps), ps);
-+
-+		KUNIT_ASSERT_FALSE_MSG(test,
-+				       drm_buddy_alloc_blocks(&amp;mm, bias_start,
-+							      bias_end, size, ps,
-+							      &amp;allocated,
-+							      DRM_BUDDY_RANGE_ALLOCATION),
-+				       &quot;buddy_alloc failed with bias(%x-%x), size=%u, ps=%u\n&quot;,
-+				       bias_start, bias_end, size);
-+		bias_rem -= size;
-+
-+		/*
-+		 * Try to randomly grow the bias range in both directions, or
-+		 * only one, or perhaps don't grow at all.
-+		 */
-+		do {
-+			u64 old_bias_start = bias_start;
-+			u64 old_bias_end = bias_end;
-+
-+			if (bias_start)
-+				bias_start -= round_up(prandom_u32_state(&amp;prng) % bias_start, ps);
-+			if (bias_end != mm_size)
-+				bias_end += round_up(prandom_u32_state(&amp;prng) % (mm_size - bias_end), ps);
-+
-+			bias_rem += old_bias_start - bias_start;
-+			bias_rem += bias_end - old_bias_end;
-+		} while (!bias_rem &amp;&amp; (bias_start || bias_end != mm_size));
-+	} while (bias_rem);
-+
-+	KUNIT_ASSERT_EQ(test, bias_start, 0);
-+	KUNIT_ASSERT_EQ(test, bias_end, mm_size);
-+	KUNIT_ASSERT_TRUE_MSG(test,
-+			      drm_buddy_alloc_blocks(&amp;mm, bias_start, bias_end,
-+						     ps, ps,
-+						     &amp;allocated,
-+						     DRM_BUDDY_RANGE_ALLOCATION),
-+			      &quot;buddy_alloc passed with bias(%x-%x), size=%u\n&quot;,
-+			      bias_start, bias_end, ps);
-+
-+	drm_buddy_free_list(&amp;mm, &amp;allocated);
-+	drm_buddy_fini(&amp;mm);
-+}
-+
- static void drm_test_buddy_alloc_contiguous(struct kunit *test)
- {
- 	u32 mm_size, ps = SZ_4K, i, n_pages, total;
-@@ -363,17 +568,30 @@ static void drm_test_buddy_alloc_limit(struct kunit *test)
- 	drm_buddy_fini(&amp;mm);
- }
- 
-+static int drm_buddy_suite_init(struct kunit_suite *suite)
-+{
-+	while (!random_seed)
-+		random_seed = get_random_u32();
-+
-+	kunit_info(suite, &quot;Testing DRM buddy manager, with random_seed=0x%x\n&quot;,
-+		   random_seed);
-+
-+	return 0;
-+}
-+
- static struct kunit_case drm_buddy_tests[] = {
- 	KUNIT_CASE(drm_test_buddy_alloc_limit),
- 	KUNIT_CASE(drm_test_buddy_alloc_optimistic),
- 	KUNIT_CASE(drm_test_buddy_alloc_pessimistic),
- 	KUNIT_CASE(drm_test_buddy_alloc_pathological),
- 	KUNIT_CASE(drm_test_buddy_alloc_contiguous),
-+	KUNIT_CASE(drm_test_buddy_alloc_range_bias),
- 	{}
- };
- 
- static struct kunit_suite drm_buddy_test_suite = {
- 	.name = &quot;drm_buddy&quot;,
-+	.suite_init = drm_buddy_suite_init,
- 	.test_cases = drm_buddy_tests,
- };
- 
+ 		if (contains(start, end, block_start, block_end) &amp;&amp;
+ 		    order == drm_buddy_block_order(block)) {
+ 			/*
 </pre>
     </blockquote>
     <br>
   </body>
 </html>
 
---------------LdcvnyTkHWSBfDiPqnLgy2u2--
+--------------wqEro68jGOcgP0eULtbFPFNk--
