@@ -4,76 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44C32C48BF3
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Feb 2024 12:45:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBB39C48260
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Feb 2024 13:01:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCB8810EB1E;
-	Fri, 16 Feb 2024 12:45:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E6F910EB33;
+	Fri, 16 Feb 2024 13:01:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="R6LacRUc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h90a34h/";
 	dkim-atps=neutral
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com
- [209.85.208.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C37910E899;
- Fri, 16 Feb 2024 12:45:31 +0000 (UTC)
-Received: by mail-lj1-f171.google.com with SMTP id
- 38308e7fff4ca-2d0e520362cso20273701fa.2; 
- Fri, 16 Feb 2024 04:45:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1708087530; x=1708692330; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=Z21o86oZ2POmZsD5ofKWQxDd0NBUibTeXuOHb4VWv3M=;
- b=R6LacRUcSpJjs3XqMRPf+WLW+YU5BHuasmFazuhvF5nyz8tH6UPeC88aGu4ZnItx71
- miEjfsYKuH4iYSS1AU9eNB9tsHPJQFjIk9rUbmlmj3+RCcs9jEhBrTIFP5B/bkHuyabq
- eVatlS77R47pt38mEKu2YCrOnxHW4KPlRmVa5BiLizg8KcAc28TPlN0WeVFp7U9Hz2mE
- rM7Yc1EErQTy3OHZnYzIV4/zUvCnAcq/1d7vfOGTAVPoLYkadCwJpCN6PpciL5/Se1XM
- CP+rZGlzp3RGEphlbYFXe/+uz8LycAGdhAj6hpCEdzYv80y4O6LPgbjtCFTRelCl6MM0
- JC/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1708087530; x=1708692330;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=Z21o86oZ2POmZsD5ofKWQxDd0NBUibTeXuOHb4VWv3M=;
- b=MZXlmuXAEKfTllo0w+lWqu1nskEYis5yyggi2PgCfcx9gfONvRqOCpjoxB/WKj6gUR
- nMnAWjxt6IZpix/IvSpRg+RT+NoXVXQ2MfSwet7x+6lcFvKnoXe/5rxq8npVoxkyv4gW
- LPP4wtG4vIOj7RFXYe1/xmWUaaUfouG2PnwCTM5xH8y+zdaKo17iT8Y/gJbaAKWM/CS8
- IOPz7OrVcTo6ysi4MnRFFILWItuGyFHg0O12csG4xyY+v/ppGGuTzCfcFCWapvEkHKpM
- CPFVVBF8IhEreXP0mjikyuJ/9NFus+8hNjCTWa1R1l+sm23jaPqGaLTFW0UxKw0y8AjA
- MISg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWEsLjqt76b/OUO4/3GJDZVLvhN8xUVvQWYreTRPpo1yqBAvDVFQ1vA6LG09A0lpjLgJXdjmGYclxH/QjhZyRPrcnXrKVF3qTCoKein+52cLdPI7FuAsl+YtxQs1Nwfg9EWYnkIsKCpuah4H5p0gApHn18+YAI60EqbOQoG6iYwPer+1kdOt+9KsJWBp/Qh9Y6lm0hNx5fdX0LD7u6rftjhoOPA7mRRylzDIXTPyybN
-X-Gm-Message-State: AOJu0Yy9Ls3qHsjFUiOBHQG3cY5EixiRnxO2qwucawdoIv4GadqKOvOX
- FuKdz5rHBfAE77SIQ6oz1AJ1E/W1jcZlrdigRVJlKDDKvO5KJtAk
-X-Google-Smtp-Source: AGHT+IGyVMz/0Xs8YGS+0Is6rqroqbgJJL0ly2ndoIEMALtAiS2mU/opMyiec2MQdlc/y84MBPNn5Q==
-X-Received: by 2002:a2e:b059:0:b0:2d2:1da5:385 with SMTP id
- d25-20020a2eb059000000b002d21da50385mr637592ljl.47.1708087529841; 
- Fri, 16 Feb 2024 04:45:29 -0800 (PST)
-Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
- by smtp.gmail.com with ESMTPSA id
- b4-20020a05600003c400b0033d22852483sm859650wrg.62.2024.02.16.04.45.28
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 16 Feb 2024 04:45:29 -0800 (PST)
-Message-ID: <c3563341-bfcb-4df9-a6c0-f983835a4e2e@gmail.com>
-Date: Fri, 16 Feb 2024 13:45:27 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7317110EB33
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Feb 2024 13:01:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1708088500; x=1739624500;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=thsXk7b5LJcbAitb+w/7ctX5HYY8a4W5GO0kf0zSZbo=;
+ b=h90a34h/TpZ7zlT8StcXI+K9jNR2cI0DnoyoMC87fw7foohxS4yy4mI5
+ fpN1on8mrxzpW4G9rXi4ljGpMkc9H/PcRMrypZuAz3CisoJWnQ5veAeAl
+ oivXBjGjWZ/0f8vQkiKl5u0hBl7IPzECOj8zdeReeOZGv4IPRl0F8LnHa
+ qg5yjDA3m9CTPSIIGjcvPAY9bOmX5w+s56qFB78DG6z2Yk+w91vnAAThF
+ 9HqfO3l1lKsDy7M4RUseCXrN1GUlh/4oxWbIflC/XSurrCG+MLjCiPnVk
+ QRf5jR9OT5iCukv84Xj85L2/qp28sRE9L6hoCdQgapVaw2AvPmkWadzCo g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10985"; a="13317936"
+X-IronPort-AV: E=Sophos;i="6.06,164,1705392000"; d="scan'208";a="13317936"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2024 05:01:39 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,164,1705392000"; 
+   d="scan'208";a="4220796"
+Received: from lkp-server02.sh.intel.com (HELO 3c78fa4d504c) ([10.239.97.151])
+ by orviesa008.jf.intel.com with ESMTP; 16 Feb 2024 05:01:38 -0800
+Received: from kbuild by 3c78fa4d504c with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1raxqR-0001HI-1e;
+ Fri, 16 Feb 2024 13:01:35 +0000
+Date: Fri, 16 Feb 2024 20:58:11 +0800
+From: kernel test robot <lkp@intel.com>
+To: "Thomas =?utf-8?Q?Hellstr=C3=B6m"?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
+ 455dae7549aed709707feda5d6b3e085b37d33f7
+Message-ID: <202402162009.IoutsTuB-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/6 V4] fdinfo shared stats
-Content-Language: en-US
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, tvrtko.ursulin@linux.intel.com,
- daniel@ffwll.ch
-References: <20240212210428.851952-1-alexander.deucher@amd.com>
- <b883e82e-9042-4656-b152-065ed31a81de@gmail.com>
- <CADnq5_MwEB_=2uySBmiOu3mBcA=uRDvsoA_jT9umHNnwLELWZQ@mail.gmail.com>
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <CADnq5_MwEB_=2uySBmiOu3mBcA=uRDvsoA_jT9umHNnwLELWZQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,63 +63,197 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Am 15.02.24 um 15:20 schrieb Alex Deucher:
-> On Thu, Feb 15, 2024 at 9:18 AM Christian König
-> <ckoenig.leichtzumerken@gmail.com> wrote:
->> Am 12.02.24 um 22:04 schrieb Alex Deucher:
->>> We had a request to add shared buffer stats to fdinfo for amdgpu and
->>> while implementing that, Christian mentioned that just looking at
->>> the GEM handle count doesn't take into account buffers shared with other
->>> subsystems like V4L or RDMA.  Those subsystems don't use GEM, so it
->>> doesn't really matter from a GPU top perspective, but it's more
->>> correct if you actually want to see shared buffers.
->>>
->>> After further discussions, add a helper and update all fdinfo
->>> implementations to use that helper for consistency.
->>>
->>> v4: switch drm_gem_object_is_shared_for_memory_stats() to an inline function
->> I'm still not sure if looking at the actual handle count is the right
->> approach, but it's certainly better than before.
-> Well, it's consistent across drivers.
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
+branch HEAD: 455dae7549aed709707feda5d6b3e085b37d33f7  drm/xe: avoid function cast warnings
 
-Yeah, which makes it easy to change if we find something better.
+elapsed time: 1455m
 
->
->> So Reviewed-by: Christian König <christian.koenig@amd.com> for the
->> entire series.
->>
->> Should I take this through drm-misc-next?
-> Yes, please.
+configs tested: 178
+configs skipped: 3
 
-Done.
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-Regards,
-Christian.
+tested configs:
+alpha                             allnoconfig   gcc  
+alpha                            allyesconfig   gcc  
+alpha                               defconfig   gcc  
+arc                              allmodconfig   gcc  
+arc                               allnoconfig   gcc  
+arc                              allyesconfig   gcc  
+arc                                 defconfig   gcc  
+arc                     haps_hs_smp_defconfig   gcc  
+arc                   randconfig-001-20240216   gcc  
+arc                   randconfig-002-20240216   gcc  
+arm                              alldefconfig   gcc  
+arm                              allmodconfig   gcc  
+arm                               allnoconfig   clang
+arm                              allyesconfig   gcc  
+arm                          collie_defconfig   gcc  
+arm                                 defconfig   clang
+arm                            hisi_defconfig   gcc  
+arm                        keystone_defconfig   gcc  
+arm                          moxart_defconfig   gcc  
+arm                        neponset_defconfig   gcc  
+arm                   randconfig-003-20240216   gcc  
+arm                   randconfig-004-20240216   gcc  
+arm64                            allmodconfig   clang
+arm64                             allnoconfig   gcc  
+arm64                               defconfig   gcc  
+arm64                 randconfig-002-20240216   gcc  
+arm64                 randconfig-004-20240216   gcc  
+csky                             allmodconfig   gcc  
+csky                              allnoconfig   gcc  
+csky                             allyesconfig   gcc  
+csky                                defconfig   gcc  
+csky                  randconfig-001-20240216   gcc  
+csky                  randconfig-002-20240216   gcc  
+hexagon                          allmodconfig   clang
+hexagon                           allnoconfig   clang
+hexagon                          allyesconfig   clang
+hexagon                             defconfig   clang
+i386                             allmodconfig   gcc  
+i386                              allnoconfig   gcc  
+i386                             allyesconfig   gcc  
+i386         buildonly-randconfig-001-20240216   gcc  
+i386         buildonly-randconfig-002-20240216   clang
+i386         buildonly-randconfig-003-20240216   clang
+i386         buildonly-randconfig-004-20240216   gcc  
+i386         buildonly-randconfig-005-20240216   gcc  
+i386         buildonly-randconfig-006-20240216   clang
+i386                                defconfig   clang
+i386                  randconfig-001-20240216   clang
+i386                  randconfig-002-20240216   clang
+i386                  randconfig-003-20240216   gcc  
+i386                  randconfig-004-20240216   clang
+i386                  randconfig-005-20240216   gcc  
+i386                  randconfig-006-20240216   clang
+i386                  randconfig-011-20240216   gcc  
+i386                  randconfig-012-20240216   gcc  
+i386                  randconfig-013-20240216   gcc  
+i386                  randconfig-014-20240216   clang
+i386                  randconfig-015-20240216   gcc  
+i386                  randconfig-016-20240216   gcc  
+loongarch                        allmodconfig   gcc  
+loongarch                         allnoconfig   gcc  
+loongarch                        allyesconfig   gcc  
+loongarch                           defconfig   gcc  
+loongarch             randconfig-001-20240216   gcc  
+loongarch             randconfig-002-20240216   gcc  
+m68k                             allmodconfig   gcc  
+m68k                              allnoconfig   gcc  
+m68k                             allyesconfig   gcc  
+m68k                                defconfig   gcc  
+m68k                        mvme16x_defconfig   gcc  
+microblaze                       allmodconfig   gcc  
+microblaze                        allnoconfig   gcc  
+microblaze                       allyesconfig   gcc  
+microblaze                          defconfig   gcc  
+mips                             allmodconfig   gcc  
+mips                              allnoconfig   gcc  
+mips                             allyesconfig   gcc  
+mips                           ip28_defconfig   gcc  
+mips                      loongson3_defconfig   gcc  
+mips                      pic32mzda_defconfig   gcc  
+nios2                            allmodconfig   gcc  
+nios2                             allnoconfig   gcc  
+nios2                            allyesconfig   gcc  
+nios2                               defconfig   gcc  
+nios2                 randconfig-001-20240216   gcc  
+nios2                 randconfig-002-20240216   gcc  
+openrisc                         allmodconfig   gcc  
+openrisc                          allnoconfig   gcc  
+openrisc                         allyesconfig   gcc  
+openrisc                            defconfig   gcc  
+parisc                           allmodconfig   gcc  
+parisc                            allnoconfig   gcc  
+parisc                           allyesconfig   gcc  
+parisc                              defconfig   gcc  
+parisc                generic-32bit_defconfig   gcc  
+parisc                randconfig-001-20240216   gcc  
+parisc                randconfig-002-20240216   gcc  
+parisc64                            defconfig   gcc  
+powerpc                          allmodconfig   gcc  
+powerpc                           allnoconfig   gcc  
+powerpc                          allyesconfig   clang
+powerpc                    klondike_defconfig   gcc  
+powerpc                 mpc832x_rdb_defconfig   gcc  
+powerpc                     tqm5200_defconfig   gcc  
+powerpc64             randconfig-003-20240216   gcc  
+riscv                            allmodconfig   clang
+riscv                             allnoconfig   gcc  
+riscv                            allyesconfig   clang
+riscv                               defconfig   clang
+riscv                 randconfig-001-20240216   gcc  
+s390                             allmodconfig   clang
+s390                              allnoconfig   clang
+s390                             allyesconfig   gcc  
+s390                                defconfig   clang
+s390                  randconfig-001-20240216   gcc  
+s390                  randconfig-002-20240216   gcc  
+sh                               allmodconfig   gcc  
+sh                                allnoconfig   gcc  
+sh                               allyesconfig   gcc  
+sh                                  defconfig   gcc  
+sh                            hp6xx_defconfig   gcc  
+sh                          landisk_defconfig   gcc  
+sh                          lboxre2_defconfig   gcc  
+sh                          r7785rp_defconfig   gcc  
+sh                    randconfig-001-20240216   gcc  
+sh                    randconfig-002-20240216   gcc  
+sh                   sh7724_generic_defconfig   gcc  
+sh                  sh7785lcr_32bit_defconfig   gcc  
+sh                          urquell_defconfig   gcc  
+sparc                            allmodconfig   gcc  
+sparc                             allnoconfig   gcc  
+sparc                            allyesconfig   gcc  
+sparc                               defconfig   gcc  
+sparc64                          allmodconfig   gcc  
+sparc64                          allyesconfig   gcc  
+sparc64                             defconfig   gcc  
+sparc64               randconfig-001-20240216   gcc  
+sparc64               randconfig-002-20240216   gcc  
+um                               allmodconfig   clang
+um                                allnoconfig   clang
+um                               allyesconfig   gcc  
+um                                  defconfig   clang
+um                    randconfig-001-20240216   gcc  
+um                    randconfig-002-20240216   gcc  
+um                           x86_64_defconfig   clang
+x86_64                            allnoconfig   clang
+x86_64                           allyesconfig   clang
+x86_64       buildonly-randconfig-001-20240216   clang
+x86_64       buildonly-randconfig-002-20240216   clang
+x86_64       buildonly-randconfig-003-20240216   clang
+x86_64       buildonly-randconfig-004-20240216   clang
+x86_64       buildonly-randconfig-005-20240216   gcc  
+x86_64       buildonly-randconfig-006-20240216   clang
+x86_64                              defconfig   gcc  
+x86_64                randconfig-001-20240216   gcc  
+x86_64                randconfig-002-20240216   clang
+x86_64                randconfig-003-20240216   gcc  
+x86_64                randconfig-004-20240216   gcc  
+x86_64                randconfig-005-20240216   gcc  
+x86_64                randconfig-006-20240216   clang
+x86_64                randconfig-011-20240216   gcc  
+x86_64                randconfig-012-20240216   gcc  
+x86_64                randconfig-013-20240216   clang
+x86_64                randconfig-014-20240216   gcc  
+x86_64                randconfig-015-20240216   clang
+x86_64                randconfig-016-20240216   clang
+x86_64                randconfig-071-20240216   clang
+x86_64                randconfig-072-20240216   clang
+x86_64                randconfig-073-20240216   gcc  
+x86_64                randconfig-074-20240216   gcc  
+x86_64                randconfig-075-20240216   clang
+x86_64                randconfig-076-20240216   gcc  
+x86_64                          rhel-8.3-rust   clang
+x86_64                               rhel-8.3   gcc  
+xtensa                            allnoconfig   gcc  
+xtensa                           allyesconfig   gcc  
+xtensa                randconfig-001-20240216   gcc  
+xtensa                randconfig-002-20240216   gcc  
 
->
-> Thanks,
->
-> Alex
->
->> Regards,
->> Christian.
->>
->>> Alex Deucher (6):
->>>     Documentation/gpu: Update documentation on drm-shared-*
->>>     drm: add drm_gem_object_is_shared_for_memory_stats() helper
->>>     drm: update drm_show_memory_stats() for dma-bufs
->>>     drm/amdgpu: add shared fdinfo stats
->>>     drm/i915: Update shared stats to use the new gem helper
->>>     drm/xe: Update shared stats to use the new gem helper
->>>
->>>    Documentation/gpu/drm-usage-stats.rst      |  2 +-
->>>    drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c |  4 ++++
->>>    drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 11 +++++++++++
->>>    drivers/gpu/drm/amd/amdgpu/amdgpu_object.h |  6 ++++++
->>>    drivers/gpu/drm/drm_file.c                 |  2 +-
->>>    drivers/gpu/drm/i915/i915_drm_client.c     |  2 +-
->>>    drivers/gpu/drm/xe/xe_drm_client.c         |  2 +-
->>>    include/drm/drm_gem.h                      | 13 +++++++++++++
->>>    8 files changed, 38 insertions(+), 4 deletions(-)
->>>
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
