@@ -4,68 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F1A9C48BC3
-	for <intel-xe@archiver.kernel.org>; Sat, 17 Feb 2024 05:37:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AC13C48BC3
+	for <intel-xe@archiver.kernel.org>; Sat, 17 Feb 2024 06:02:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9FB210E50C;
-	Sat, 17 Feb 2024 05:37:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A12C310E545;
+	Sat, 17 Feb 2024 06:02:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YYUHNDGE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZLAryMlr";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0413B10E0C8;
- Sat, 17 Feb 2024 05:37:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5807510E545
+ for <intel-xe@lists.freedesktop.org>; Sat, 17 Feb 2024 06:02:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708148243; x=1739684243;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=UcrjHHCLf48qRWhBN9fennqcYtTDrQyju80s0KOzzEY=;
- b=YYUHNDGECr/FDeuFIdAWvHXLF6JP15TtTkCGBGQo/e4Ug6iXuBJ35gq0
- C8MBOog7SnV/JXlox3u7YixpMfrlIi8KQK/V4wsr5EMAxaThwVIaZOWo3
- /H0v9yk4ugsJExJyYX7GkLD6qzICUlpL0w9rfs9bGQ2qORNio53rhJk4B
- g6gB2ZQn+LEVpMNUTRJhKdOVZbOboaH/CbdAA0rLCiUDhkTek3G3MRfb6
- 6cfaH5QyOps6MTLcPIBlxG6xeRfFJ96hH6xXdZTXN46cX5WXfL//rZul3
- E/GOblrAhbqc4GZ2krG/yIcgabiiF1B7HVIynFXflHyFCSBCqlGhWrUEH A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10986"; a="19710479"
-X-IronPort-AV: E=Sophos;i="6.06,165,1705392000"; d="scan'208";a="19710479"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2024 21:37:21 -0800
+ t=1708149752; x=1739685752;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=i7biYuVw22IM3zTp+Kk6pv9cOxlzF01UAfY926ajgaQ=;
+ b=ZLAryMlrCLFkofxfb4O03Lr/UbVRCNu3XNGq4m6jfNNKPESieRZlkmDF
+ 7fN6D8vQKczB73oC3CQJW0Lzgt0z+JA7ti6DDtQFEUUqwXXKPU6ap7/XG
+ DpdADX+kcK8blONt6GDPTZ7Si9P45NvzXSYyolTCrS/v959esSGLH2io4
+ HGCo7Nn6BIQ3SNMxjPOQMe4tCHbJbGOa1zxUfzHOtrCqortFPTfGBRnjx
+ 8I3a6eBLW685k0Igtf63j+qM0G4tI3qwEJEg6sqt4goNCPvxjb7PYstTz
+ 5F6CQSa1cgl30VMQD1A8YpL6es6c/6FX26OenSt8soYP9xt/Pzl0UCyGd Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10986"; a="6114833"
+X-IronPort-AV: E=Sophos;i="6.06,165,1705392000"; 
+   d="scan'208";a="6114833"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2024 22:02:27 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,165,1705392000"; 
-   d="scan'208";a="4072629"
-Received: from lkp-server02.sh.intel.com (HELO 3c78fa4d504c) ([10.239.97.151])
- by orviesa010.jf.intel.com with ESMTP; 16 Feb 2024 21:37:16 -0800
-Received: from kbuild by 3c78fa4d504c with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1rbDNt-0001sK-1G;
- Sat, 17 Feb 2024 05:37:11 +0000
-Date: Sat, 17 Feb 2024 13:36:40 +0800
-From: kernel test robot <lkp@intel.com>
-To: Mario Limonciello <mario.limonciello@amd.com>,
- Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Hans de Goede <hdegoede@redhat.com>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>
-Cc: Paul Gazzillo <paul@pgazz.com>,
- Necip Fazil Yildiran <fazilyildiran@gmail.com>,
- oe-kbuild-all@lists.linux.dev, amd-gfx@lists.freedesktop.org,
- "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
- linux-fbdev@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org,
- platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
- linux-renesas-soc@vger.kernel.org,
- "open list:ACPI" <linux-acpi@vger.kernel.org>,
- open list <linux-kernel@vger.kernel.org>, Melissa Wen <mwen@igalia.com>,
- Mark Pearson <mpearson-lenovo@squebb.ca>,
- Mario Limonciello <mario.limonciello@amd.com>
-Subject: Re: [PATCH v6 1/5] drm: Stop using `select ACPI_VIDEO` in all drivers
-Message-ID: <202402171302.HKl1Cpkb-lkp@intel.com>
-References: <20240214215756.6530-2-mario.limonciello@amd.com>
+   d="scan'208";a="8709348"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2024 22:02:27 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Subject: [CI] drm/xe: Don't skip compact PT entry remap
+Date: Fri, 16 Feb 2024 22:03:13 -0800
+Message-Id: <20240217060313.3556429-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240214215756.6530-2-mario.limonciello@amd.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,131 +62,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Mario,
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pt.c       | 1 +
+ drivers/gpu/drm/xe/xe_vm.c       | 9 +++++----
+ drivers/gpu/drm/xe/xe_vm_types.h | 1 +
+ 3 files changed, 7 insertions(+), 4 deletions(-)
 
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on drm-misc/drm-misc-next]
-[also build test WARNING on drm-intel/for-linux-next-fixes drm-tip/drm-tip linus/master v6.8-rc4 next-20240216]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Mario-Limonciello/drm-Stop-using-select-ACPI_VIDEO-in-all-drivers/20240215-055936
-base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
-patch link:    https://lore.kernel.org/r/20240214215756.6530-2-mario.limonciello%40amd.com
-patch subject: [PATCH v6 1/5] drm: Stop using `select ACPI_VIDEO` in all drivers
-config: alpha-kismet-CONFIG_FB_BACKLIGHT-CONFIG_FB_TFT-0-0 (https://download.01.org/0day-ci/archive/20240217/202402171302.HKl1Cpkb-lkp@intel.com/config)
-reproduce: (https://download.01.org/0day-ci/archive/20240217/202402171302.HKl1Cpkb-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202402171302.HKl1Cpkb-lkp@intel.com/
-
-kismet warnings: (new ones prefixed by >>)
->> kismet: WARNING: unmet direct dependencies detected for FB_BACKLIGHT when selected by FB_TFT
-   .config:262:warning: symbol value 'n' invalid for SATA_MOBILE_LPM_POLICY
-   .config:360:warning: symbol value 'n' invalid for PSTORE_BLK_MAX_REASON
-   .config:445:warning: symbol value 'n' invalid for KFENCE_SAMPLE_INTERVAL
-   .config:599:warning: symbol value 'n' invalid for AIC79XX_DEBUG_MASK
-   .config:634:warning: symbol value 'n' invalid for AIC79XX_RESET_DELAY_MS
-   .config:638:warning: symbol value 'n' invalid for DRM_XE_JOB_TIMEOUT_MIN
-   .config:680:warning: symbol value 'n' invalid for CRYPTO_DEV_QCE_SW_MAX_LEN
-   .config:780:warning: symbol value 'n' invalid for PANEL_LCD_CHARSET
-   .config:820:warning: symbol value 'n' invalid for SND_AC97_POWER_SAVE_DEFAULT
-   .config:881:warning: symbol value 'n' invalid for MAGIC_SYSRQ_DEFAULT_ENABLE
-   .config:894:warning: symbol value 'n' invalid for DRM_I915_MAX_REQUEST_BUSYWAIT
-   .config:928:warning: symbol value 'n' invalid for DRM_XE_PREEMPT_TIMEOUT_MIN
-   .config:939:warning: symbol value 'n' invalid for SND_AT73C213_TARGET_BITRATE
-   .config:940:warning: symbol value 'n' invalid for NET_EMATCH_STACK
-   .config:942:warning: symbol value 'n' invalid for VMCP_CMA_SIZE
-   .config:1112:warning: symbol value 'n' invalid for AIC79XX_CMDS_PER_DEVICE
-   .config:1181:warning: symbol value 'n' invalid for PANEL_LCD_PIN_SDA
-   .config:1208:warning: symbol value 'n' invalid for MTDRAM_ERASE_SIZE
-   .config:1238:warning: symbol value 'n' invalid for MTD_REDBOOT_DIRECTORY_BLOCK
-   .config:1330:warning: symbol value 'n' invalid for SERIAL_UARTLITE_NR_UARTS
-   .config:1516:warning: symbol value 'n' invalid for LEGACY_PTY_COUNT
-   .config:1666:warning: symbol value 'n' invalid for AIC7XXX_RESET_DELAY_MS
-   .config:1808:warning: symbol value 'n' invalid for IBM_EMAC_POLL_WEIGHT
-   .config:1972:warning: symbol value 'n' invalid for DRM_I915_STOP_TIMEOUT
-   .config:2387:warning: symbol value 'n' invalid for PANEL_LCD_BWIDTH
-   .config:2412:warning: symbol value 'n' invalid for DRM_XE_TIMESLICE_MAX
-   .config:2427:warning: symbol value 'n' invalid for FTRACE_RECORD_RECURSION_SIZE
-   .config:2607:warning: symbol value 'n' invalid for KCOV_IRQ_AREA_SIZE
-   .config:2633:warning: symbol value 'n' invalid for PANEL_PARPORT
-   .config:2722:warning: symbol value 'n' invalid for NOUVEAU_DEBUG_DEFAULT
-   .config:2919:warning: symbol value 'n' invalid for KCSAN_REPORT_ONCE_IN_MS
-   .config:3017:warning: symbol value 'n' invalid for KCSAN_UDELAY_INTERRUPT
-   .config:3041:warning: symbol value 'n' invalid for PANEL_LCD_PIN_BL
-   .config:3066:warning: symbol value 'n' invalid for INITRAMFS_ROOT_GID
-   .config:3113:warning: symbol value 'n' invalid for SND_SOC_SOF_DEBUG_IPC_FLOOD_TEST_NUM
-   .config:3132:warning: symbol value 'n' invalid for SCSI_MESH_RESET_DELAY_MS
-   .config:3173:warning: symbol value 'n' invalid for ATM_FORE200E_TX_RETRY
-   .config:3216:warning: symbol value 'n' invalid for FB_OMAP2_DSS_MIN_FCK_PER_PCK
-   .config:3306:warning: symbol value 'n' invalid for IP_VS_MH_TAB_INDEX
-   .config:3454:warning: symbol value 'n' invalid for PSTORE_BLK_CONSOLE_SIZE
-   .config:3554:warning: symbol value 'n' invalid for KCSAN_UDELAY_TASK
-   .config:3564:warning: symbol value 'n' invalid for MMC_BLOCK_MINORS
-   .config:3567:warning: symbol value 'n' invalid for INET_TABLE_PERTURB_ORDER
-   .config:3612:warning: symbol value 'n' invalid for SCSI_NCR53C8XX_SYNC
-   .config:3638:warning: symbol value 'n' invalid for BOOKE_WDT_DEFAULT_TIMEOUT
-   .config:3730:warning: symbol value 'n' invalid for UCLAMP_BUCKETS_COUNT
-   .config:3815:warning: symbol value 'n' invalid for PANEL_LCD_PIN_RW
-   .config:3901:warning: symbol value 'n' invalid for SERIAL_MCF_BAUDRATE
-   .config:3983:warning: symbol value 'n' invalid for DE2104X_DSL
-   .config:3998:warning: symbol value 'n' invalid for BLK_DEV_RAM_COUNT
-   .config:4187:warning: symbol value 'n' invalid for SERIAL_AR933X_NR_UARTS
-   .config:4267:warning: symbol value 'n' invalid for IP_VS_SH_TAB_BITS
-   .config:4338:warning: symbol value 'n' invalid for INPUT_MOUSEDEV_SCREEN_X
-   .config:4405:warning: symbol value 'n' invalid for STACK_MAX_DEFAULT_SIZE_MB
-   .config:4425:warning: symbol value 'n' invalid for USBIP_VHCI_HC_PORTS
-   .config:4456:warning: symbol value 'n' invalid for RIONET_RX_SIZE
-   .config:4667:warning: symbol value 'n' invalid for RCU_BOOST_DELAY
-   .config:4750:warning: symbol value 'n' invalid for RADIO_TYPHOON_PORT
-   .config:4769:warning: symbol value 'n' invalid for IBM_EMAC_TXB
-   .config:4884:warning: symbol value 'n' invalid for SERIAL_TXX9_NR_UARTS
-   .config:4960:warning: symbol value 'n' invalid for VIDEO_VIVID_MAX_DEVS
-   .config:5156:warning: symbol value 'n' invalid for ARCH_MMAP_RND_BITS
-   .config:5237:warning: symbol value 'n' invalid for DRM_I915_FENCE_TIMEOUT
-   .config:5259:warning: symbol value 'n' invalid for TTY_PRINTK_LEVEL
-   .config:5261:warning: symbol value 'n' invalid for DRM_XE_PREEMPT_TIMEOUT_MAX
-   .config:5423:warning: symbol value 'n' invalid for MIPS_EJTAG_FDC_KGDB_CHAN
-   .config:5520:warning: symbol value 'n' invalid for KDB_DEFAULT_ENABLE
-   .config:5539:warning: symbol value 'n' invalid for SERIAL_ALTERA_UART_MAXPORTS
-   .config:5772:warning: symbol value 'n' invalid for PPC_EARLY_DEBUG_EHV_BC_HANDLE
-   .config:5808:warning: symbol value 'n' invalid for PANEL_LCD_HWIDTH
-   .config:5843:warning: symbol value 'n' invalid for LOCKDEP_CHAINS_BITS
-   .config:5872:warning: symbol value 'n' invalid for SCSI_SYM53C8XX_MAX_TAGS
-   .config:5937:warning: symbol value 'n' invalid for DRM_I915_HEARTBEAT_INTERVAL
-   .config:5944:warning: symbol value 'n' invalid for KCSAN_SKIP_WATCH
-   .config:5968:warning: symbol value 'n' invalid for PSTORE_BLK_KMSG_SIZE
-   .config:6011:warning: symbol value 'n' invalid for MTD_UBI_WL_THRESHOLD
-   .config:6030:warning: symbol value 'n' invalid for RIONET_TX_SIZE
-   .config:6268:warning: symbol value 'n' invalid for ARCH_MMAP_RND_COMPAT_BITS
-   .config:6431:warning: symbol value 'n' invalid for CRYPTO_DEV_FSL_CAAM_INTC_TIME_THLD
-   .config:6437:warning: symbol value 'n' invalid for RADIO_TRUST_PORT
-   .config:6464:warning: symbol value 'n' invalid for OMAP2_DSS_MIN_FCK_PER_PCK
-   .config:6652:warning: symbol value 'n' invalid for SERIAL_SH_SCI_NR_UARTS
-   .config:6767:warning: symbol value 'n' invalid for XEN_MEMORY_HOTPLUG_LIMIT
-   .config:6820:warning: symbol value 'n' invalid for CMA_SIZE_PERCENTAGE
-   .config:6969:warning: symbol value 'n' invalid for DRM_XE_TIMESLICE_MIN
-   .config:7104:warning: symbol value 'n' invalid for KDB_CONTINUE_CATASTROPHIC
-   .config:7210:warning: symbol value 'n' invalid for DVB_MAX_ADAPTERS
-   .config:7213:warning: symbol value 'n' invalid for SCSI_NCR53C8XX_MAX_TAGS
-   .config:7233:warning: symbol value 'n' invalid for SCSI_SYM53C8XX_DMA_ADDRESSING_MODE
-   .config:7446:warning: symbol value 'n' invalid for SERIAL_ARC_NR_PORTS
-   .config:7557:warning: symbol value 'n' invalid for IIO_CONSUMERS_PER_TRIGGER
-   .config:7600:warning: symbol value 'n' invalid for IBM_EMAC_RXB
-   .config:7621:warning: symbol value 'n' invalid for SCSI_MPT3SAS_MAX_SGE
-   .config:7752:warning: symbol value 'n' invalid for PSTORE_DEFAULT_KMSG_BYTES
-   .config:7918:warning: symbol value 'n' invalid for VGA_ARB_MAX_GPUS
-   .config:7998:warning: symbol value 'n' invalid for PANEL_LCD
-   .config:7999:warning: symbol value 'n' invalid for ZSMALLOC_CHAIN_SIZE
-   .config:8147:warning: symbol value 'n' invalid for CRYPTO_DEV_FSL_CAAM_RINGSIZE
-   .config:8240:warning: symbol value 'n' invalid for MTDRAM_TOTAL_SIZE
-   .config:8329:warning: symbol value 'n' invalid for LOCKDEP_BITS
-
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 1e35c7525447..48d276d01a2d 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -554,6 +554,7 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
+ 			walk->shifts = xe_compact_pt_shifts;
+ 			flags |= XE_PDE_64K;
+ 			xe_child->is_compact = true;
++			xe_walk->vma->gpuva.flags |= XE_VMA_PTE_COMPACT;
+ 		}
+ 
+ 		pte = vm->pt_ops->pde_encode_bo(xe_child->bo, 0, pat_index) | flags;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 836a6e849cda..f1e77c8c5d7a 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2188,7 +2188,7 @@ static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
+ 
+ static u64 xe_vma_max_pte_size(struct xe_vma *vma)
+ {
+-	if (vma->gpuva.flags & XE_VMA_PTE_1G)
++	if (vma->gpuva.flags & (XE_VMA_PTE_1G | XE_VMA_PTE_COMPACT))
+ 		return SZ_1G;
+ 	else if (vma->gpuva.flags & XE_VMA_PTE_2M)
+ 		return SZ_2M;
+@@ -2198,7 +2198,7 @@ static u64 xe_vma_max_pte_size(struct xe_vma *vma)
+ 	return SZ_1G;	/* Uninitialized, used max size */
+ }
+ 
+-static u64 xe_vma_set_pte_size(struct xe_vma *vma, u64 size)
++static void xe_vma_set_pte_size(struct xe_vma *vma, u64 size)
+ {
+ 	switch (size) {
+ 	case SZ_1G:
+@@ -2207,9 +2207,10 @@ static u64 xe_vma_set_pte_size(struct xe_vma *vma, u64 size)
+ 	case SZ_2M:
+ 		vma->gpuva.flags |= XE_VMA_PTE_2M;
+ 		break;
++	case SZ_4K:
++		vma->gpuva.flags |= XE_VMA_PTE_4K;
++		break;
+ 	}
+-
+-	return SZ_4K;
+ }
+ 
+ static int xe_vma_op_commit(struct xe_vm *vm, struct xe_vma_op *op)
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 5ac9c5bebabc..97847459a235 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -29,6 +29,7 @@ struct xe_vm;
+ #define XE_VMA_PTE_4K		(DRM_GPUVA_USERBITS << 5)
+ #define XE_VMA_PTE_2M		(DRM_GPUVA_USERBITS << 6)
+ #define XE_VMA_PTE_1G		(DRM_GPUVA_USERBITS << 7)
++#define XE_VMA_PTE_COMPACT	(DRM_GPUVA_USERBITS << 8)
+ 
+ /** struct xe_userptr - User pointer */
+ struct xe_userptr {
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
