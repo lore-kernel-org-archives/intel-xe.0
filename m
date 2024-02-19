@@ -4,47 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFDF1C48BC3
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Feb 2024 14:10:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D427AC48BC3
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Feb 2024 16:59:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A14E910E384;
-	Mon, 19 Feb 2024 14:10:14 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="bXv1I6DM";
-	dkim-atps=neutral
-X-Greylist: delayed 660 seconds by postgrey-1.36 at gabe;
- Mon, 19 Feb 2024 14:10:12 UTC
-Received: from mail02.habana.ai (habanamailrelay.habana.ai [213.57.90.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DA1B10E364
- for <intel-xe@lists.freedesktop.org>; Mon, 19 Feb 2024 14:10:12 +0000 (UTC)
-Received: internal info suppressed
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
- t=1708351134; bh=5lKyhQAhpO31FFf8jOueBwueIOazJ8sWq2sSRcB522c=;
- h=From:To:Cc:Subject:Date:From;
- b=bXv1I6DMdb5KUsbKjo7NUk1/PzQd5GqwAwx5b0Msq/ybmo8okBGsR7faOydWr9gyv
- 44n6U4ECR1CI0yW9Blm2gDjl5HyZ9tIdC50uryW0VLbpjIyXbboexh3UfZceXFD34D
- +/HDbnkU3F9wj0z3EqVXjuOF/p8VW5RmKvLSgDglWsuTYddQbtOzsCVo2ZO+xkkvIs
- mzcu9q1bdlh7wQJ6hIofXHP0uC197XH7yzXoCevp0VpPF2GJhVQmWoHhWhHLNppbvY
- H9OuHOHRfW84VrOf+EayDV96Qf2eoVvbxBi5zHOlbTS6p9CmhGnJLrp333baTNNjAP
- tiqg3EQ4MCBiw==
-Received: from dhirschfeld-vm-u22.habana-labs.com (localhost [127.0.0.1])
- by dhirschfeld-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with
- ESMTPS id 41JDwmVN1464006
- (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
- Mon, 19 Feb 2024 15:58:48 +0200
-Received: (from dhirschfeld@localhost)
- by dhirschfeld-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id
- 41JDwmid1464005; Mon, 19 Feb 2024 15:58:48 +0200
-From: Dafna Hirschfeld <dhirschfeld@habana.ai>
-To: intel-xe@lists.freedesktop.org
-Cc: ogabbay@kernel.org, obitton@habana.ai,
- Dafna Hirschfeld <dhirschfeld@habana.ai>
-Subject: [PATCH] drm/xe: avoid using 'grouped targets' in Makefile
-Date: Mon, 19 Feb 2024 15:58:45 +0200
-Message-Id: <20240219135845.1463992-1-dhirschfeld@habana.ai>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BFFC10E441;
+	Mon, 19 Feb 2024 16:59:56 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE70210E424;
+ Mon, 19 Feb 2024 16:59:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
+ =?utf-8?q?_=5Bv2=2C1/3=5D_drm/buddy=3A_fix_range_bias_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 19 Feb 2024 16:59:55 -0000
+Message-ID: <170836199597.89216.14570992722988262031@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240219121851.25774-4-matthew.auld@intel.com>
+In-Reply-To: <20240219121851.25774-4-matthew.auld@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,33 +36,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The feature 'grouped target' ('&:') in makefiles is only added in 'make'
-version 4.3. This cause problems in older version of 'make'.
-(Specifically $(@D) is wrongly interpreted - it creates 'generated' dir
-in the source path instead of the build path).
-Avoid this feature.
+== Series Details ==
 
-Signed-off-by: Dafna Hirschfeld <dhirschfeld@habana.ai>
----
- drivers/gpu/drm/xe/Makefile | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: series starting with [v2,1/3] drm/buddy: fix range bias (rev2)
+URL   : https://patchwork.freedesktop.org/series/130074/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index c531210695db..d2c79d3ada67 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -42,7 +42,7 @@ generated_oob := $(obj)/generated/xe_wa_oob.c $(obj)/generated/xe_wa_oob.h
- quiet_cmd_wa_oob = GEN     $(notdir $(generated_oob))
-       cmd_wa_oob = mkdir -p $(@D); $^ $(generated_oob)
- 
--$(generated_oob) &: $(obj)/xe_gen_wa_oob $(srctree)/$(src)/xe_wa_oob.rules
-+$(generated_oob): $(obj)/xe_gen_wa_oob $(srctree)/$(src)/xe_wa_oob.rules
- 	$(call cmd,wa_oob)
- 
- uses_generated_oob := \
--- 
-2.34.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: f12bce6493b6 drm-tip: 2024y-02m-19d-12h-10m-23s UTC integration manifest
+=== git am output follows ===
+Applying: drm/buddy: fix range bias
+Applying: drm/buddy: check range allocation matches alignment
+Applying: drm/tests/drm_buddy: add alloc_range_bias test
+
 
