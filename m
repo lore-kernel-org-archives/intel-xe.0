@@ -4,63 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A98FCC48BC3
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Feb 2024 12:24:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62629C48BF8
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Feb 2024 12:45:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6273210E07A;
-	Mon, 19 Feb 2024 12:24:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24FD910E406;
+	Mon, 19 Feb 2024 12:45:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fsqv/yxq";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="q7I5AxEf";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15E6310E07A;
- Mon, 19 Feb 2024 12:24:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708345448; x=1739881448;
- h=message-id:date:mime-version:subject:from:to:cc:
- references:in-reply-to:content-transfer-encoding;
- bh=FZpeKw+yH258FE1H5s1BiR6m4IUsnz7yCFQQCBjm7YU=;
- b=Fsqv/yxq6/aQIABI3j8PjG1UKwo5wt/BBLH6eTWrXkjEUtLJ92wrCc02
- Pc4x1KL1LKZ3FO0UNNDywJowrh8k6bN0ZOxuG5Rt/j1VbaEb0o/BYtRCR
- HaGTPOduN8eBKqkOtoN5Tu+3/rhq0q++9uP8uNl/w2g6pZyKxUL7AO0iE
- eQTDmvgjKa+cLyTPZ3Tpm9yJVSAPDsGYtGaGlL6HpIpGwrZj7zemWd7WJ
- f9SZ/WOTX4OZKKFlqmlPF8XwCUM4CgdPeCV6adjPfKpXBqbNu0FP0wGo7
- 1Xd0sbiRtfKjnB4pw6xgRmbvRn/uAQOiAZatZ75NA7CDASuW9/8X2pjZt Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10988"; a="2285215"
-X-IronPort-AV: E=Sophos;i="6.06,170,1705392000"; 
-   d="scan'208";a="2285215"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2024 04:24:08 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,170,1705392000"; 
-   d="scan'208";a="4768587"
-Received: from proe-mobl.ger.corp.intel.com (HELO [10.252.22.52])
- ([10.252.22.52])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2024 04:24:06 -0800
-Message-ID: <94afe80c-9e4f-47a7-a758-17ab26eb4c00@intel.com>
-Date: Mon, 19 Feb 2024 12:24:03 +0000
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14E7810E406;
+ Mon, 19 Feb 2024 12:45:22 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 2CAA460D17;
+ Mon, 19 Feb 2024 12:45:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D01E4C433C7;
+ Mon, 19 Feb 2024 12:45:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1708346720;
+ bh=e7mMUZWo5YhuNllD0gWdAThtgZfQ0LlGszn85q+IdWA=;
+ h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
+ b=q7I5AxEfybMWMtzLcv0UyKmUK/eiKX2W50PG7bd+c+3K2AhREBxkbkIwOfPTkZ+0h
+ dn+MOTT2Hv8SvLZ654j7GrQH4sKxWbgTrQTTT2L8/0VXIAcqTH1UAJpD+KbvokyvUV
+ Kd59dh964EQdDOJAqOMAcbtQ9NYpeiYUrVVfze7u7fS9qI1iDZEvzkhEyCFSfjaZJq
+ i7BR1+dw+R/QcHQzYBnJfwSI7o+pJf2w2/LkmtEivmAxMnSFw9HYWEkjslPa0KEsVZ
+ dmNwU3LNe9zObwB0QrPiV5/fmSrLAbs5FA+3/DvR43w5O9CpfMiedS9Czc0qESi6zU
+ /5K1KnXLz3Uag==
+Received: by mail-yw1-f176.google.com with SMTP id
+ 00721157ae682-607e54b6cf5so24163547b3.0; 
+ Mon, 19 Feb 2024 04:45:20 -0800 (PST)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVE2kZwyR7Mj/VGZa6chrpLRDcZSfQ4PAEcaZA7u6DaJfOn/4gDjY/DEQ3t3CVqxfFTBDaUhqrj73f4hJf7IWbESPvo6D+BH3YtzR/Jk2Nxk7oYszVXX+iLTvzYq3HlUJ3sn0o6aHgSjMfYgdBL0pg=
+X-Gm-Message-State: AOJu0Yz/W6pCHEJJYdJ+BhCNPJ1Dy05hDzvVt2TkSS8Sx8GUhdN1IWx8
+ wvfrgk3iRnwssn4cwTSh6fxO4fCA0VXDs4W4gLx38Jr9Rv3LfXJEMGXF/8Rje67ogKeWvy+XiV1
+ zYmXPAtm7Ylf4B4XcyDxuth9jFN8=
+X-Google-Smtp-Source: AGHT+IHAEON4SmS+VCfUEs2H9U/jtJ7Y0XtxYH/deQXiTkty4ZCsoxuXH4akdX+WS2DHCO8grV04bfm+LWTnUSEd6Ko=
+X-Received: by 2002:a81:920f:0:b0:604:de1c:5406 with SMTP id
+ j15-20020a81920f000000b00604de1c5406mr7828698ywg.8.1708346720010; Mon, 19 Feb
+ 2024 04:45:20 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] drm/tests/drm_buddy: fix 32b build
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, Geert Uytterhoeven <geert@linux-m68k.org>,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- Maxime Ripard <mripard@redhat.com>
-References: <20240215174431.285069-7-matthew.auld@intel.com>
- <96bb6e97-34d9-4e4a-b618-85c17e809738@intel.com>
- <5a9e1f30-19fc-486f-b7f5-016d82580d2f@amd.com>
- <4aea62d4-8c2a-4406-b81e-240dca772da4@intel.com>
- <45059d66-6e80-406b-aae2-72f8b8d142cb@amd.com>
- <dc8c7d2b-4c2f-41dd-9812-3699444d5273@intel.com>
-In-Reply-To: <dc8c7d2b-4c2f-41dd-9812-3699444d5273@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20240216211432.519411-1-John.C.Harrison@Intel.com>
+In-Reply-To: <20240216211432.519411-1-John.C.Harrison@Intel.com>
+From: Josh Boyer <jwboyer@kernel.org>
+Date: Mon, 19 Feb 2024 07:45:09 -0500
+X-Gmail-Original-Message-ID: <CA+5PVA4HNHBpR_5LBi8KbE3artRf6WZUMFXTR_myiDhm58YXkA@mail.gmail.com>
+Message-ID: <CA+5PVA4HNHBpR_5LBi8KbE3artRf6WZUMFXTR_myiDhm58YXkA@mail.gmail.com>
+Subject: Re: PR for new GuC v70.20.0 binaries
+To: John.C.Harrison@intel.com
+Cc: linux-firmware@kernel.org, kyle@kernel.org, ben@decadent.org.uk, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,131 +69,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 19/02/2024 10:48, Matthew Auld wrote:
-> On 19/02/2024 10:30, Christian König wrote:
->> Am 19.02.24 um 11:28 schrieb Matthew Auld:
->>> On 19/02/2024 09:53, Christian König wrote:
->>>> Am 19.02.24 um 10:42 schrieb Matthew Auld:
->>>>> On 15/02/2024 17:44, Matthew Auld wrote:
->>>>>> Doesn't seem to compile on 32b, presumably due to u64 mod/division.
->>>>>> Simplest is to just switch over to u32 here. Also make print 
->>>>>> modifiers
->>>>>> consistent with that.
->>>>>>
->>>>>> Fixes: a64056bb5a32 ("drm/tests/drm_buddy: add alloc_contiguous 
->>>>>> test")
->>>>>> Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
->>>>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->>>>>> Cc: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
->>>>>> Cc: Christian König <christian.koenig@amd.com>
->>>>>> Cc: Maxime Ripard <mripard@redhat.com>
->>>>>
->>>>> Any chance someone can push just this single patch here, since it 
->>>>> fixes 32b build? It already has an r-b from Arun.
->>>>
->>>> Already working on this. Just give me a few more minutes.
->>>
->>> Thanks.
->>
->> No, problem. I would have pushed this earlier, but my build server 
->> doesn't want to work any more. Looks like the SSD has passed its 
->> warranty :(
->>
->> Should I push the other three patches to drm-misc-fixes as well? I 
->> currently can't even build test them.
-> 
-> Need to send a v2 for that. One minor change in the test just to be 
-> consistent with using u32. Thanks.
+On Fri, Feb 16, 2024 at 4:16=E2=80=AFPM <John.C.Harrison@intel.com> wrote:
+>
+> The following changes since commit fbef4d381e3d0143427e1a8c924be8e738c0fc=
+2d:
+>
+>   Merge branch 'main' into 'main' (2024-02-08 12:24:01 +0000)
+>
+> are available in the Git repository at:
+>
+>   git://anongit.freedesktop.org/drm/drm-firmware guc_70.20.0
 
-Sent v2. If you could push that when you get a chance. Thanks.
+Merged and pushed out.
 
-https://patchwork.freedesktop.org/series/130075/
+https://gitlab.com/kernel-firmware/linux-firmware/-/merge_requests/156
 
-> 
->>
->> Thanks,
->> Christian.
->>
->>>
->>>>
->>>> Thanks,
->>>> Christian.
->>>>
->>>>>
->>>>>> ---
->>>>>>   drivers/gpu/drm/tests/drm_buddy_test.c | 16 ++++++++--------
->>>>>>   1 file changed, 8 insertions(+), 8 deletions(-)
->>>>>>
->>>>>> diff --git a/drivers/gpu/drm/tests/drm_buddy_test.c 
->>>>>> b/drivers/gpu/drm/tests/drm_buddy_test.c
->>>>>> index fee6bec757d1..edacc1adb28f 100644
->>>>>> --- a/drivers/gpu/drm/tests/drm_buddy_test.c
->>>>>> +++ b/drivers/gpu/drm/tests/drm_buddy_test.c
->>>>>> @@ -21,7 +21,7 @@ static inline u64 get_size(int order, u64 
->>>>>> chunk_size)
->>>>>>     static void drm_test_buddy_alloc_contiguous(struct kunit *test)
->>>>>>   {
->>>>>> -    u64 mm_size, ps = SZ_4K, i, n_pages, total;
->>>>>> +    u32 mm_size, ps = SZ_4K, i, n_pages, total;
->>>>>>       struct drm_buddy_block *block;
->>>>>>       struct drm_buddy mm;
->>>>>>       LIST_HEAD(left);
->>>>>> @@ -56,30 +56,30 @@ static void 
->>>>>> drm_test_buddy_alloc_contiguous(struct kunit *test)
->>>>>>           KUNIT_ASSERT_FALSE_MSG(test,
->>>>>>                          drm_buddy_alloc_blocks(&mm, 0, mm_size,
->>>>>>                                     ps, ps, list, 0),
->>>>>> -                       "buddy_alloc hit an error size=%d\n",
->>>>>> +                       "buddy_alloc hit an error size=%u\n",
->>>>>>                          ps);
->>>>>>       } while (++i < n_pages);
->>>>>>         KUNIT_ASSERT_TRUE_MSG(test, drm_buddy_alloc_blocks(&mm, 0, 
->>>>>> mm_size,
->>>>>>                                  3 * ps, ps, &allocated,
->>>>>> DRM_BUDDY_CONTIGUOUS_ALLOCATION),
->>>>>> -                   "buddy_alloc didn't error size=%d\n", 3 * ps);
->>>>>> +                   "buddy_alloc didn't error size=%u\n", 3 * ps);
->>>>>>         drm_buddy_free_list(&mm, &middle);
->>>>>>       KUNIT_ASSERT_TRUE_MSG(test, drm_buddy_alloc_blocks(&mm, 0, 
->>>>>> mm_size,
->>>>>>                                  3 * ps, ps, &allocated,
->>>>>> DRM_BUDDY_CONTIGUOUS_ALLOCATION),
->>>>>> -                   "buddy_alloc didn't error size=%llu\n", 3 * ps);
->>>>>> +                   "buddy_alloc didn't error size=%u\n", 3 * ps);
->>>>>>       KUNIT_ASSERT_TRUE_MSG(test, drm_buddy_alloc_blocks(&mm, 0, 
->>>>>> mm_size,
->>>>>>                                  2 * ps, ps, &allocated,
->>>>>> DRM_BUDDY_CONTIGUOUS_ALLOCATION),
->>>>>> -                   "buddy_alloc didn't error size=%llu\n", 2 * ps);
->>>>>> +                   "buddy_alloc didn't error size=%u\n", 2 * ps);
->>>>>>         drm_buddy_free_list(&mm, &right);
->>>>>>       KUNIT_ASSERT_TRUE_MSG(test, drm_buddy_alloc_blocks(&mm, 0, 
->>>>>> mm_size,
->>>>>>                                  3 * ps, ps, &allocated,
->>>>>> DRM_BUDDY_CONTIGUOUS_ALLOCATION),
->>>>>> -                   "buddy_alloc didn't error size=%llu\n", 3 * ps);
->>>>>> +                   "buddy_alloc didn't error size=%u\n", 3 * ps);
->>>>>>       /*
->>>>>>        * At this point we should have enough contiguous space for 
->>>>>> 2 blocks,
->>>>>>        * however they are never buddies (since we freed middle and 
->>>>>> right) so
->>>>>> @@ -88,13 +88,13 @@ static void 
->>>>>> drm_test_buddy_alloc_contiguous(struct kunit *test)
->>>>>>       KUNIT_ASSERT_FALSE_MSG(test, drm_buddy_alloc_blocks(&mm, 0, 
->>>>>> mm_size,
->>>>>>                                   2 * ps, ps, &allocated,
->>>>>> DRM_BUDDY_CONTIGUOUS_ALLOCATION),
->>>>>> -                   "buddy_alloc hit an error size=%d\n", 2 * ps);
->>>>>> +                   "buddy_alloc hit an error size=%u\n", 2 * ps);
->>>>>>         drm_buddy_free_list(&mm, &left);
->>>>>>       KUNIT_ASSERT_FALSE_MSG(test, drm_buddy_alloc_blocks(&mm, 0, 
->>>>>> mm_size,
->>>>>>                                   3 * ps, ps, &allocated,
->>>>>> DRM_BUDDY_CONTIGUOUS_ALLOCATION),
->>>>>> -                   "buddy_alloc hit an error size=%d\n", 3 * ps);
->>>>>> +                   "buddy_alloc hit an error size=%u\n", 3 * ps);
->>>>>>         total = 0;
->>>>>>       list_for_each_entry(block, &allocated, link)
->>>>
->>
+josh
+
+>
+> for you to fetch changes up to 28c2472d37d089edb56c75e3af83511babaa756c:
+>
+>   xe: First GuC release for LNL and Xe (2024-02-14 16:28:32 -0800)
+>
+> ----------------------------------------------------------------
+> John Harrison (2):
+>       i915: Add GuC v70.20.0 for ADL-P, DG1, DG2, MTL and TGL
+>       xe: First GuC release for LNL and Xe
+>
+>  LICENSE.xe           |  39 +++++++++++++++++++++++++++++++++++++++
+>  WHENCE               |  20 ++++++++++++++------
+>  i915/adlp_guc_70.bin | Bin 342848 -> 347584 bytes
+>  i915/dg1_guc_70.bin  | Bin 272512 -> 321472 bytes
+>  i915/dg2_guc_70.bin  | Bin 443200 -> 410368 bytes
+>  i915/mtl_guc_70.bin  | Bin 365376 -> 332544 bytes
+>  i915/tgl_guc_70.bin  | Bin 330304 -> 335168 bytes
+>  xe/lnl_guc_70.bin    | Bin 0 -> 336640 bytes
+>  8 files changed, 53 insertions(+), 6 deletions(-)
+>  create mode 100644 LICENSE.xe
+>  create mode 100644 xe/lnl_guc_70.bin
