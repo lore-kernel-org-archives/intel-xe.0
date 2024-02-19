@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B4E3C48BF8
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Feb 2024 18:38:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D4DAC48BF8
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Feb 2024 18:38:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E386610E322;
-	Mon, 19 Feb 2024 18:37:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03F8B10E32E;
+	Mon, 19 Feb 2024 18:38:10 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AF9010E1A3;
- Mon, 19 Feb 2024 18:37:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA3B610E1A3;
+ Mon, 19 Feb 2024 18:38:08 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_avoid_usin?=
- =?utf-8?q?g_=27grouped_targets=27_in_Makefile_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_avoid_using_=27?=
+ =?utf-8?q?grouped_targets=27_in_Makefile_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Dafna Hirschfeld" <dhirschfeld@habana.ai>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 19 Feb 2024 18:37:58 -0000
-Message-ID: <170836787830.107368.17886360109278507410@8e613ede5ea5>
+Date: Mon, 19 Feb 2024 18:38:08 -0000
+Message-ID: <170836788869.107368.10955729472896095751@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240219135845.1463992-1-dhirschfeld@habana.ai>
 In-Reply-To: <20240219135845.1463992-1-dhirschfeld@habana.ai>
@@ -48,9 +48,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 52bdc58b3b2b drm-tip: 2024y-02m-19d-16h-38m-42s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: avoid using 'grouped targets' in Makefile
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+35591fb8b4d5305b37ce31483f85ac0956eaa536
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 8e0942e450c660678600213e0f60fb73267b9a30
+Author: Dafna Hirschfeld <dhirschfeld@habana.ai>
+Date:   Mon Feb 19 15:58:45 2024 +0200
+
+    drm/xe: avoid using 'grouped targets' in Makefile
+    
+    The feature 'grouped target' ('&:') in makefiles is only added in 'make'
+    version 4.3. This cause problems in older version of 'make'.
+    (Specifically $(@D) is wrongly interpreted - it creates 'generated' dir
+    in the source path instead of the build path).
+    Avoid this feature.
+    
+    Signed-off-by: Dafna Hirschfeld <dhirschfeld@habana.ai>
++ /mt/dim checkpatch 52bdc58b3b2bd7b77710f0d6710c1b9dbaee1af9 drm-intel
+8e0942e450c6 drm/xe: avoid using 'grouped targets' in Makefile
 
 
