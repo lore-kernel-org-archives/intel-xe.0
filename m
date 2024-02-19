@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F1C8C48BC3
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Feb 2024 21:20:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAF44C48BC3
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Feb 2024 21:20:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D482C10E088;
-	Mon, 19 Feb 2024 21:20:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92A5B10E008;
+	Mon, 19 Feb 2024 21:20:47 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CE8710E008;
- Mon, 19 Feb 2024 21:20:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E1DC10E008;
+ Mon, 19 Feb 2024 21:20:46 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Skip_remap_fixes?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Skip_remap_fixes?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 19 Feb 2024 21:20:33 -0000
-Message-ID: <170837763351.107368.2997257895156573275@8e613ede5ea5>
+Date: Mon, 19 Feb 2024 21:20:46 -0000
+Message-ID: <170837764651.107368.384648417943591427@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240219211616.3633630-1-matthew.brost@intel.com>
 In-Reply-To: <20240219211616.3633630-1-matthew.brost@intel.com>
@@ -43,15 +43,44 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Skip remap fixes
 URL   : https://patchwork.freedesktop.org/series/130097/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: faa7ecc2f307 drm-tip: 2024y-02m-19d-20h-31m-40s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Fix xe_vma_set_pte_size
-Applying: drm/xe: Add XE_VMA_PTE_64K VMA flag
-Applying: drm/xe: Return 2MB page size for compact 64k PTEs
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+35591fb8b4d5305b37ce31483f85ac0956eaa536
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 819ae87f22a6a12111d62653ac58fc140807f52f
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Mon Feb 19 13:16:16 2024 -0800
+
+    drm/xe: Return 2MB page size for compact 64k PTEs
+    
+    Compact 64k PTEs are only intended to be used within a single VMA which
+    covers the entire 2MB range of the compact 64k PTEs. Add
+    XE_VMA_PTE_COMPACT VMA flag to indicate compact 64k PTEs are used and
+    update xe_vma_max_pte_size to return at least 2MB if set.
+    
+    Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/758
+    Fixes: 8f33b4f054fc ("drm/xe: Avoid doing rebinds")
+    Fixes: c47794bdd63d ("drm/xe: Set max pte size when skipping rebinds")
+    Reported-by: Paulo Zanoni <paulo.r.zanoni@intel.com>
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch faa7ecc2f307081d72680304e698220c244d1238 drm-intel
+54c4dc87b21d drm/xe: Fix xe_vma_set_pte_size
+96d308778365 drm/xe: Add XE_VMA_PTE_64K VMA flag
+819ae87f22a6 drm/xe: Return 2MB page size for compact 64k PTEs
+-:14: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#14: 
+Reported-by: Paulo Zanoni <paulo.r.zanoni@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+total: 0 errors, 1 warnings, 0 checks, 7 lines checked
 
 
