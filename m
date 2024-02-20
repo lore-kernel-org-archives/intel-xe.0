@@ -4,56 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAFE8C5475B
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Feb 2024 19:07:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 086C8C5475B
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Feb 2024 19:09:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C7A410E513;
-	Tue, 20 Feb 2024 19:07:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B713B10E515;
+	Tue, 20 Feb 2024 19:09:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="EbicfXdI";
+	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="nPhda2ek";
 	dkim-atps=neutral
-X-Greylist: delayed 540 seconds by postgrey-1.36 at gabe;
- Tue, 20 Feb 2024 19:07:37 UTC
-Received: from smtp.smtpout.orange.fr (smtp-18.smtpout.orange.fr
- [80.12.242.18])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7824210E513
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Feb 2024 19:07:37 +0000 (UTC)
-Received: from [192.168.1.18] ([92.140.202.140]) by smtp.orange.fr with ESMTPA
- id cVJ3rZRzMFu9DcVK5ruPxD; Tue, 20 Feb 2024 19:58:35 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
- s=t20230301; t=1708455515;
- bh=bhyTkozSilaOI3wTa7vDeTF3frYTM4nImhWGYnX59p0=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To;
- b=EbicfXdI+a3tOLKcNT4u8AXMI7rRi5z4CZFujYjmHCy5vrdHE5yv95ghh07lElXDp
- 2DxvgFn7gJyTUAYse4z9umzGRzh0h52oaUk9UDtgMaPotThmucxgjguOg/hHSNQP8R
- 50eV2NEjKcYEIHljl/V9JoyKWR8dp2Yijpst9X//fyaM465h9din2Mxll7QLkR1w2v
- 7fs5wltDKP5VyjfPV4r7wA5uoz095fplA5olLFzWtd10b+CNJUJOSuNGuII9Q9MgZp
- efneR4zRosgVOd4qCAdTs8LpdSjuS6TVEBv8EkRJa8RbA4/iwGq6Tv1x1ip46zqsP7
- SE0UlUYX5ro1A==
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Tue, 20 Feb 2024 19:58:35 +0100
-X-ME-IP: 92.140.202.140
-Message-ID: <521e55d5-37e2-41b3-9ed7-0986d503087c@wanadoo.fr>
-Date: Tue, 20 Feb 2024 19:58:32 +0100
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FA3710E513;
+ Tue, 20 Feb 2024 19:09:32 +0000 (UTC)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id
+ 41KIqxGc006471; Tue, 20 Feb 2024 19:09:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+ message-id:date:mime-version:subject:to:cc:references:from
+ :in-reply-to:content-type:content-transfer-encoding; s=
+ qcppdkim1; bh=KwPoO44LDK/S2cPQf1Om3aK71Wu5Bk11+T3BTeQiEBM=; b=nP
+ hda2ekRSBQF/iwJaD8xFQrIWPYQKeMvlDHMrE476j1J/v6xFGnRUilZBAWDrqisz
+ 1/b30H1kqm2wOv9c/+pFgtGtpRHQJmjuP56OIHkD2dCO8v7g0oLTn1gmb7XpDp3D
+ E6l375el+ufFVA6dj5SavoWE4svA7KhCWgP1ErGe1sGDrrO4B6LFNNxA1VjIodYL
+ FMQBqydl6GfN8RM8MteotwKTiFK0GI086vE0gqQF0X1E9tZcnYLPhmuXLKNoQnhs
+ iMXSp52KBvUrTnpQ7yu06H6FIa0DwZ5lraf+n+tUusf3wpDquTCIfJdvRcb6daOq
+ GFn3TB7Fsmonglo8LWFw==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com
+ [129.46.96.20])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wcmqp9t9m-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 20 Feb 2024 19:09:25 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
+ [10.47.209.196])
+ by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41KJ9Ond017797
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 20 Feb 2024 19:09:24 GMT
+Received: from [10.110.62.85] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 20 Feb
+ 2024 11:09:23 -0800
+Message-ID: <b1f4856a-ee08-c1fc-2db0-e22773633bcb@quicinc.com>
+Date: Tue, 20 Feb 2024 11:09:23 -0800
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/guc: Remove usage of the deprecated
- ida_simple_xx() API
-Content-Language: en-MW
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
-Cc: linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <d6a9ec9dc426fca372eaa1423a83632bd743c5d9.1705244938.git.christophe.jaillet@wanadoo.fr>
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <d6a9ec9dc426fca372eaa1423a83632bd743c5d9.1705244938.git.christophe.jaillet@wanadoo.fr>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2] drm/dp: move intel_dp_vsc_sdp_pack() to generic helper
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <dri-devel@lists.freedesktop.org>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
+ <tvrtko.ursulin@linux.intel.com>,
+ <robdclark@gmail.com>, <freedreno@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <ville.syrjala@linux.intel.com>,
+ <quic_jesszhan@quicinc.com>, <linux-kernel@vger.kernel.org>,
+ <intel-xe@lists.freedesktop.org>
+References: <20240215190834.3222812-1-quic_abhinavk@quicinc.com>
+ <CAA8EJppQquHgSgCrxKZHPHk248Pxg7Q8mvmmjbcpUxpreQkcuA@mail.gmail.com>
+ <d3674c10-5c29-d917-44f5-758d90d9e679@quicinc.com>
+ <CAA8EJpqaG+fBA_FO-L7Bimtjqqg3ZDQtyJL0oPFEueb-1WxjUw@mail.gmail.com>
+From: Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <CAA8EJpqaG+fBA_FO-L7Bimtjqqg3ZDQtyJL0oPFEueb-1WxjUw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
+ signatures=585085
+X-Proofpoint-GUID: YfwYp2JcpgXC2_j8spxazpIqXQ8m34qE
+X-Proofpoint-ORIG-GUID: YfwYp2JcpgXC2_j8spxazpIqXQ8m34qE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-20_06,2024-02-20_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 bulkscore=0
+ spamscore=0 mlxlogscore=315 adultscore=0 mlxscore=0 malwarescore=0
+ priorityscore=1501 impostorscore=0 clxscore=1015 lowpriorityscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402200138
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,61 +102,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Le 14/01/2024 à 16:09, Christophe JAILLET a écrit :
-> ida_alloc() and ida_free() should be preferred to the deprecated
-> ida_simple_get() and ida_simple_remove().
+
+
+On 2/20/2024 11:05 AM, Dmitry Baryshkov wrote:
+> On Tue, 20 Feb 2024 at 20:53, Abhinav Kumar <quic_abhinavk@quicinc.com> wrote:
+>>
+>>
+>>
+>> On 2/20/2024 10:49 AM, Dmitry Baryshkov wrote:
+>>> On Thu, 15 Feb 2024 at 21:08, Abhinav Kumar <quic_abhinavk@quicinc.com> wrote:
+>>>>
+>>>> intel_dp_vsc_sdp_pack() can be re-used by other DRM drivers as well.
+>>>> Lets move this to drm_dp_helper to achieve this.
+>>>>
+>>>> changes in v2:
+>>>>           - rebased on top of drm-tip
+>>>>
+>>>> Acked-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>
+>>> v1 had an explicit comment before the ack:
+>>>
+>>
+>> Yes, I remember the comment. I did not make any changes to v2 other than
+>> just rebasing it on drm-tip to get the ack from i915 folks.
+>>
+>>>>      From my side, with the promise of the size fixup.
+>>>
+>>> However I observe neither a second patch removing the size argument
+>>> nor it being dropped as a part of this patch.
+>>>
+>>
+>> Yes, now that in v2 we got the ack for this patch, I can spin a v3 with
+>> the addition of the next patch to remove the size OR as another series
+>> so as to not block the main series which needs this patch.
+>>
+>> I would prefer the latter.
 > 
-> Note that the upper limit of ida_simple_get() is exclusive, but the one of
-> ida_alloc_max() is inclusive. So a -1 has been added when needed.
+> It doesn't work this way. The comment should have been fixed for v2.
 > 
-> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-> ---
->   drivers/gpu/drm/xe/xe_guc_submit.c | 6 +++---
->   1 file changed, 3 insertions(+), 3 deletions(-)
+
+Ack, I can post a v3 now by adding the removal in patch 2 of this series.
+
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index 21ac68e3246f..11ffacd1dd58 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -311,7 +311,7 @@ static void __release_guc_id(struct xe_guc *guc, struct xe_exec_queue *q, u32 xa
->   				      q->guc->id - GUC_ID_START_MLRC,
->   				      order_base_2(q->width));
->   	else
-> -		ida_simple_remove(&guc->submission_state.guc_ids, q->guc->id);
-> +		ida_free(&guc->submission_state.guc_ids, q->guc->id);
->   }
->   
->   static int alloc_guc_id(struct xe_guc *guc, struct xe_exec_queue *q)
-> @@ -335,8 +335,8 @@ static int alloc_guc_id(struct xe_guc *guc, struct xe_exec_queue *q)
->   		ret = bitmap_find_free_region(bitmap, GUC_ID_NUMBER_MLRC,
->   					      order_base_2(q->width));
->   	} else {
-> -		ret = ida_simple_get(&guc->submission_state.guc_ids, 0,
-> -				     GUC_ID_NUMBER_SLRC, GFP_NOWAIT);
-> +		ret = ida_alloc_max(&guc->submission_state.guc_ids,
-> +				    GUC_ID_NUMBER_SLRC - 1, GFP_NOWAIT);
->   	}
->   	if (ret < 0)
->   		return ret;
-
-Hi,
-
-gentle reminder.
-
-All patches to remove the ida_simple API have been sent.
-And Matthew Wilcox seems happy with the on going work. (see [1])
-
-Based on next-20240220
-$git grep ida_simple_get | wc -l
-36
-
-https://elixir.bootlin.com/linux/v6.8-rc3/A/ident/ida_simple_get
-50
-
-https://elixir.bootlin.com/linux/v6.7.4/A/ident/ida_simple_get
-81
-
-Thanks
-CJ
-
-[1]: https://lore.kernel.org/all/ZaqruGVz734zjxrZ@casper.infradead.org/
+> 
