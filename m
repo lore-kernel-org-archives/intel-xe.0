@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C561CC48BC4
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Feb 2024 19:58:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F5C6C48BC4
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Feb 2024 19:58:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6882C10E54C;
-	Tue, 20 Feb 2024 19:58:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D1BC10E567;
+	Tue, 20 Feb 2024 19:58:55 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E33A10E22C;
- Tue, 20 Feb 2024 19:58:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 449FF10E55C;
+ Tue, 20 Feb 2024 19:58:54 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5Bv3=2C1/2=5D_drm/dp=3A_move_intel=5Fdp=5Fvsc=5Fsdp=5Fpack=28?=
- =?utf-8?q?=29_to_generic_helper?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_series_starting_with_=5Bv?=
+ =?utf-8?q?3=2C1/2=5D_drm/dp=3A_move_intel=5Fdp=5Fvsc=5Fsdp=5Fpack=28=29_to_?=
+ =?utf-8?q?generic_helper?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Abhinav Kumar" <quic_abhinavk@quicinc.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 20 Feb 2024 19:58:41 -0000
-Message-ID: <170845912106.126973.8525158113580573409@8e613ede5ea5>
+Date: Tue, 20 Feb 2024 19:58:54 -0000
+Message-ID: <170845913428.126973.6145499588052659066@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240220195348.1270854-1-quic_abhinavk@quicinc.com>
 In-Reply-To: <20240220195348.1270854-1-quic_abhinavk@quicinc.com>
@@ -49,10 +49,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 2de2802e9aed drm-tip: 2024y-02m-20d-19h-21m-23s UTC integration manifest
-=== git am output follows ===
-Applying: drm/dp: move intel_dp_vsc_sdp_pack() to generic helper
-Applying: drm/dp: drop the size parameter from drm_dp_vsc_sdp_pack()
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+35591fb8b4d5305b37ce31483f85ac0956eaa536
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 124adeb83115c5ebcb8e6f3503bae0c14c42d35b
+Author: Abhinav Kumar <quic_abhinavk@quicinc.com>
+Date:   Tue Feb 20 11:53:47 2024 -0800
+
+    drm/dp: drop the size parameter from drm_dp_vsc_sdp_pack()
+    
+    Currently the size parameter of drm_dp_vsc_sdp_pack() is always
+    the size of struct dp_sdp. Hence lets drop this parameter and
+    use sizeof() directly.
+    
+    Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+    Signed-off-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
++ /mt/dim checkpatch 2de2802e9aed40b0d223d272ac9e45157bbf7aae drm-intel
+633183cdb3a8 drm/dp: move intel_dp_vsc_sdp_pack() to generic helper
+124adeb83115 drm/dp: drop the size parameter from drm_dp_vsc_sdp_pack()
 
 
