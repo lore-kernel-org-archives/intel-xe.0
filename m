@@ -4,154 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF27CC48BC3
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Feb 2024 12:09:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54AE6C48BC3
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Feb 2024 13:12:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5437310E392;
-	Tue, 20 Feb 2024 12:09:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01EB910E3CC;
+	Tue, 20 Feb 2024 13:12:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bs0NksN3";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="JKlB6tsF";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03DFF10E229
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Feb 2024 12:09:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708430947; x=1739966947;
- h=content-transfer-encoding:in-reply-to:references:subject:
- from:cc:to:date:message-id:mime-version;
- bh=QPU624deqXaz7E2161eR8BqN52ZvVtPfuBrzqYb8DKA=;
- b=bs0NksN3l0K/fAdNbdUm8XkOc8Stqy8Q0F89w04zYhJPelAJ+WLKl5vF
- swHJvfUY9Lxfdf4XCSV9PphRRTMbD3gZEP1CAPPbrWlFhtXHGFHPXeQQk
- i7lRWVQJFezzwoE3pMeIjOXMA3c7ELq1DNt98uaNoc9ApN+QmnIiT4I5q
- +uFhxVxeybdG5NXTAFBEmDkri7GvDweLoE2jymWSQFzQvkopbbJdsJ/Rt
- 8FBh4XJ402HfdhGt/9Cq4AOpy2frykyEyXbHIsWMSPI6BiMXWNAFr0wzl
- z1x2Qv1r5jfDeRXIMS++Nbbhh+8UI53rUHkMM8Gdjb0yWEAZytP6HRf51 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10989"; a="2393598"
-X-IronPort-AV: E=Sophos;i="6.06,172,1705392000"; 
-   d="scan'208";a="2393598"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2024 04:08:58 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10989"; a="936444978"
-X-IronPort-AV: E=Sophos;i="6.06,172,1705392000"; d="scan'208";a="936444978"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 20 Feb 2024 04:08:57 -0800
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 20 Feb 2024 04:08:57 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 20 Feb 2024 04:08:56 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 20 Feb 2024 04:08:56 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.101)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 20 Feb 2024 04:08:49 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=b/sh2848TX0xMWB5tBhfgCymxkOzMUza60bRDAxKnFSl/+xzv0cKndb+/4+C+8t+Zg4Id+GKBoJips6LIV78bvI58W2n0kowQ+8k1lzs0tydIodzcrG42Cd12r/fPMwxipK4vIG8UYWHrqshf6wlxnNMU2EDP0fQILd11mwpldHCMgK5USG5lx+BRt7qkafLfEZzOELxYH7Vhe+I78xZY4FexbCYZePGFQBNE3Xc7Wr1Xsl20EEXFnu3pJs2Amh4ksLt5dSv9LCgZkDIfpIaEoXXpYjR2E72TEbJwo+5joGfULCgE4ptVMGco2V6BxINBjZ/Y/OT+ymE0jwoyrjY/w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QPU624deqXaz7E2161eR8BqN52ZvVtPfuBrzqYb8DKA=;
- b=WSnqql4htfRtV3zQ5IIRHKxKd1S3X4zjpo4+GcHP9Q6knfuruSk7UZhd/tbgNmbxxmEVBB0vetLtvz1aIGyBnNymRtykf3wUfbn51JDF91RkqrNhc3CClXw6vDH0a+nq3c3YUUKJ0Uy6JJpCjnug8iSVsNHrpUZ+CjTPRIL4hXqUEkFvKpB3Kr2soBU9878wxSBtQrwpwW9bMrLgk5qoXcHmdIpo6GXFDAqNyybr2eRCr3KdoYrlBu3av3YYpI3LBJVjvO4DSuAcMCOSkXYnV9q7tAVQB9E2P2IzEuOpvVe3pReVo+ZzNn3HTXAZ+Q6dYEI7b43Y7XCw35QlCHnFSA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by SA1PR11MB6919.namprd11.prod.outlook.com (2603:10b6:806:2bc::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.39; Tue, 20 Feb
- 2024 12:08:48 +0000
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::64e6:ee24:79f8:efa]) by PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::64e6:ee24:79f8:efa%4]) with mapi id 15.20.7292.036; Tue, 20 Feb 2024
- 12:08:48 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <ubtbma6zlqdhh5ovx3437q7oyxgn4n2ct3drc7ovvaaong2awq@n6r56aduj36l>
-References: <20240219135845.1463992-1-dhirschfeld@habana.ai>
- <ubtbma6zlqdhh5ovx3437q7oyxgn4n2ct3drc7ovvaaong2awq@n6r56aduj36l>
-Subject: Re: [PATCH] drm/xe: avoid using 'grouped targets' in Makefile
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <ogabbay@kernel.org>, <obitton@habana.ai>
-To: Dafna Hirschfeld <dhirschfeld@habana.ai>, Lucas De Marchi
- <lucas.demarchi@intel.com>
-Date: Tue, 20 Feb 2024 09:08:42 -0300
-Message-ID: <170843092294.13484.17436593152022385360@gjsousa-mobl2>
-User-Agent: alot/0.10
-X-ClientProxiedBy: MW4P223CA0024.NAMP223.PROD.OUTLOOK.COM
- (2603:10b6:303:80::29) To PH8PR11MB8287.namprd11.prod.outlook.com
- (2603:10b6:510:1c7::14)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7C4710E30A;
+ Tue, 20 Feb 2024 13:12:57 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id AA2CC60F95;
+ Tue, 20 Feb 2024 13:12:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C85C9C433F1;
+ Tue, 20 Feb 2024 13:12:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1708434776;
+ bh=s1SpucEIIAcjPLhuLgsZlH5odgNDyxOWFs/Guv6vDE8=;
+ h=From:To:Cc:Subject:Date:From;
+ b=JKlB6tsFtc3p+hfuS+59jdaMbzo4j/x2RfjoDPlW1YnjM64jmcHz+s/LdFBpovJph
+ b1L1nAdZ+T0U9QhOukvqjcUsRjwE3n5Ka5UDVGtgWT0X4iLRLAlRB9yRTDtI2YkbQ0
+ +cdmv6PAa+gd/la7Ou3fBVekn45udD9jz8vlfYKGcVvuDYTBju6JfkxER0b9nkm3xe
+ havVPPviT15aaqpp3Rv6+Z4bUOnbt6Jw+D5zWQVkyvZFSwGmPxTzjGl9DhSOWYY9Ao
+ x59pJNB3Vc/P5HxtNfCcihRhKXPQ5QVqZ1s4gWiBODmkxeEzcfVjU7oHeAPAww5kJz
+ JYO6/MPUC/RnQ==
+From: Maxime Ripard <mripard@kernel.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, David Airlie <airlied@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Subject: [PATCH] drm/i915/tv: Fix TV mode
+Date: Tue, 20 Feb 2024 14:12:51 +0100
+Message-ID: <20240220131251.453060-1-mripard@kernel.org>
+X-Mailer: git-send-email 2.43.2
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|SA1PR11MB6919:EE_
-X-MS-Office365-Filtering-Correlation-Id: 33d1134c-5e00-4ee7-dee0-08dc320cb1c1
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: wZlxHgu58O7RstfAPsJ3b6E0rQDJ6L13oks5D+ockpCjtSUShw5CbF/SnuqF+YaW02ZU6nTEjQ6yrE4KxYRlvv8EMO7xM3GQS6VEsllys0dIUxQaBm7D5tmkOdxtyeyLpCQmTdJ8gjV/roKX8NZTEhNjkNo5aw1vLqRahhrVIPo5aw43wOw2XwpBWmThFmn8R6m2znl2T7hILZn2FPMRlQPQ4KfDXwkvbATOyxMwzzy7Fbk7SmiVWgwdu0DnwW6jtTFUTM0p1NHOOpcpTacCbs4sLS2qePybvGpxS4A95zU1g3TPyOGhAZfZ8FcxchGQEGYmiXULshnh6czVjAPT50oz7rqm5TwDUQTxzlFjRs4ucI1jP8awAlW8GP2/5HPtHLvQvz3UeQc+BudmXKIuu6WXxUrMKjgbLfTIlvKt7BUP/lYdtclmGVf+aCWUNKu8CA3VTqEFYMnJ6fG6zPRTSbd+DSmv5x8IAySmWogLtVjlD0JyDVO4dS9TH38brU4RkuM1tc9eXgwKDYfMNTXxrfh6Eudj3Qy3CSyrORxdhFc=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WGJYSVFnODRmdDMvMWFqNDkycjdUbWc1U2hyenFMclh2TDEvL21xS0lrU2xZ?=
- =?utf-8?B?TXg4MGtwVGV3TnNsYmdkOVVaYVRXR1YyNmg0ZU9vc05sSFBOSjBBWDlnRnc3?=
- =?utf-8?B?Mi9Na2RjUU9PZGN0RDU5aFhISkFXRm5SWm5UTzFpMWhNSnMxWkpTTjVtUjRu?=
- =?utf-8?B?bDQ3VzE2alRJWGEzcDZPMWJ3UlJxaTBMMkdodzNSV1JENXh2Qi9yRU15M0xq?=
- =?utf-8?B?K0tPbGxMTVZQTUxXTjJ6bHg3UmdXY0pCRlNsd20xYXBmOGFjY3NvNTl4Y25K?=
- =?utf-8?B?TUZWc1FVNFVwSjB0RXFibytSalUzcU5UVk9Rcjl5aS9WS1JTVnkyc3NZVHcw?=
- =?utf-8?B?WTVOZ2Z5b1NJalN6SkM3a0tHQnhWb1BwamJIZEpUVDhNbVZiQ0RISXJCYjNu?=
- =?utf-8?B?YmttTlRFMXh6YjloYk11R1Q1N1dLWTIxSG9BQ09ZTExiUmdyamR3Y2tKUS8x?=
- =?utf-8?B?d09pNENZY1d0a3dCR09ValJFSjJwemhzZkI2Z3ZpZnFEVE5GR3Nydnl0eE02?=
- =?utf-8?B?d09iRzNOcEFLdGNCNFNURmdUYjVqOUdrRzhSZ2d2ZC9QUUFTa1l2clN0cm5O?=
- =?utf-8?B?N0dEa3M4dFk4L0hnbVJZMUd2cFdlaU90VjFuRGRmTjNVZ1FYU0w5ODJlQUcy?=
- =?utf-8?B?NmtTakRuVkFJL21sWFRveUtmQUNSU0V2eW14TENSRjBaMmpNeHVnYTdQbUlL?=
- =?utf-8?B?N2JDUzVyYU9ITmhhcEZhek9IOExEREt0bDVnSi9vaDNnZCtqaDdabktIT3VS?=
- =?utf-8?B?NEh4eXFqSjhxam5pM1p0UnE0SmsvTU8xSkJZNG1vMmFBQWplZk5mTXVJaTV6?=
- =?utf-8?B?SjBEVFZCWUI4RFd5d1JkTVJGZzBFMVhQTEtRcGt2M1VoUEpFcVhyeXVkTnJU?=
- =?utf-8?B?d1lBSlc0TUw2MDFBY3dHZjhMSlVhZXR4Z2tPNlR1Tnhsb3Y5NWI4TWU0MXdx?=
- =?utf-8?B?cmE3WWRQa1dhTnZVd21hYjkxUTNFaFdzc083MFFQdjdYdXMzTW1LVnplQVN6?=
- =?utf-8?B?MnlhNEpVSXI2NC9NMk9WckNxcnNxam5tcEZ3TTN6RGpFcVN0NGpMWUoyNzNX?=
- =?utf-8?B?ZThvZE81ZTdRZ0xzcDFhOEx1ZTdDcW96T3p1OG5TN1ByWmhkcVI1MHdld1F2?=
- =?utf-8?B?TENOTkNvcnViVUx3a21hSjVIMzk0Q1JrcFZ0R0pjOUZiOVBKc0NmVDlZdEdh?=
- =?utf-8?B?VnF1SFhKaHllMHN4eU4yOHpsVUJXSnpOaDRkVUk3KzMwcXV5WEY2YUlMdllw?=
- =?utf-8?B?ODlNaFNZUlBTN2FTeWxQR0tlS2JsNXFOOVZFQ0M0dTBSREpJM0NJSWFiTEVr?=
- =?utf-8?B?ZHMxT0RnZWY2Mjc3aXBzeEVnTDVZZGdBbEoyM3FnbmJhTzAzRVBLUFZWMmZO?=
- =?utf-8?B?ak8zY3pjOTBHTUNoeVI5Y1JFSHpOeVJmdVVZUVE0a2RqLzNlOVZuSkt4UG5i?=
- =?utf-8?B?eEwwQ2EzOE5rSzJrVGc2bStpM01tN0M4Mkg0L1BHN20zV2dUUjVSMjNCNFA5?=
- =?utf-8?B?UG8xNHVmQmxubWoxRG9qUTRyNEhHaDFZMFdEKzJDMTZaTnE4azBoM2kyZ1JH?=
- =?utf-8?B?cnk2eUw4OTlYSDIzaVl5Y0grVy9kUENES2oyeFFJMVVZa2lOTktCdnpjbXRa?=
- =?utf-8?B?WXZHbFpxV093YmUzek9PdExYZmlrTyswbGRMRzhGT2ovaDBDVHlkNUhnOUc4?=
- =?utf-8?B?WnBrM2o5d2dwUjZ1RWVWcUt6eFlUczRlTTYzTm1LamYxNUhVNkJsN2RaRUEv?=
- =?utf-8?B?dE51UDJ0MW1RcXA4d1hpMkZ5SlJlcXVFV1A2UUoxWXFxcGdRazlHNzQySmMx?=
- =?utf-8?B?M2QybURGb1k2a1g0NmloZmhwaTNVMnlya3VkTjlVRHY2MWVNd05Nd1ZMZ3Z1?=
- =?utf-8?B?SGtsT1kreXp3NEM0NmduRTdCWE1qR1FOZkFlQ2ZKaFI4c3lkR2M1UkV5Q0pM?=
- =?utf-8?B?UUVRK1VNM0puQ20vSStkVnYyUjZ4UnkyamhuSzV2U0Ivd3FUbERRbnYwek5s?=
- =?utf-8?B?c2REeWYzMWVETnJUdzcxZ0M1VEdJTmw3VUNLWXBEODJSMzVIWlRxTThMNDRR?=
- =?utf-8?B?Uko2ZCtOQlVMaWhhUVd0dVBJWkRoajdWbVRhSTFESjdRYUlyeXZFcDhHRmVr?=
- =?utf-8?B?aUFsSFNmVE10NmNFcGhpUnA5UmtpWFY3OWVQTnI4Y1dYaVl4R2VvYlMyTFV0?=
- =?utf-8?B?cHc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 33d1134c-5e00-4ee7-dee0-08dc320cb1c1
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2024 12:08:48.4136 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TG/jz8S0rOALYl9MhFZFJPWZxNoW1n21ytmOBWVssOx1H+Raq+BDdDSMwHEQ5Nru1IrPZe+RO7VlKQfhSfKXYg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6919
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -166,25 +60,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Quoting Lucas De Marchi (2024-02-20 02:44:57-03:00)
->On Mon, Feb 19, 2024 at 03:58:45PM +0200, Dafna Hirschfeld wrote:
->>The feature 'grouped target' ('&:') in makefiles is only added in 'make'
->>version 4.3. This cause problems in older version of 'make'.
->>(Specifically $(@D) is wrongly interpreted - it creates 'generated' dir
->>in the source path instead of the build path).
->>Avoid this feature.
->
->but it was used for a reason since a single invocation is supposed to
->generate both the .c and .h from a single invocation. AFAIR when
->implementing this, not using grouped target would be a mix and match on
->having a succesfull build. Does removing it really work with incremental
->and parallel build?
+Commit 1fd4a5a36f9f ("drm/connector: Rename legacy TV property") failed
+to update all the users of the struct drm_tv_connector_state mode field,
+which resulted in a build failure in i915.
 
-FWIW, the root Makefile does what it calls a "multi-target pattern rule"
-trick to get the same behavior.
+However, a subsequent commit in the same series reintroduced a mode
+field in that structure, with a different semantic but the same type,
+with the assumption that all previous users were updated.
 
---
-Gustavo
+Since that didn't happen, the i915 driver now compiles, but mixes
+accesses to the legacy_mode field and the newer mode field, but with the
+previous semantics.
 
->
->Lucas De Marchi
+This obviously doesn't work very well, so we need to update the accesses
+that weren't in the legacy renaming commit.
+
+Fixes: 1fd4a5a36f9f ("drm/connector: Rename legacy TV property")
+Reported-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Maxime Ripard <mripard@kernel.org>
+---
+ drivers/gpu/drm/i915/display/intel_sdvo.c | 10 +++++-----
+ drivers/gpu/drm/i915/display/intel_tv.c   | 10 +++++-----
+ 2 files changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+index 825638702ac1..5f9e748adc89 100644
+--- a/drivers/gpu/drm/i915/display/intel_sdvo.c
++++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+@@ -1220,7 +1220,7 @@ static bool intel_sdvo_set_tv_format(struct intel_sdvo *intel_sdvo,
+ 	struct intel_sdvo_tv_format format;
+ 	u32 format_map;
+ 
+-	format_map = 1 << conn_state->tv.mode;
++	format_map = 1 << conn_state->tv.legacy_mode;
+ 	memset(&format, 0, sizeof(format));
+ 	memcpy(&format, &format_map, min(sizeof(format), sizeof(format_map)));
+ 
+@@ -2323,7 +2323,7 @@ static int intel_sdvo_get_tv_modes(struct drm_connector *connector)
+ 	 * Read the list of supported input resolutions for the selected TV
+ 	 * format.
+ 	 */
+-	format_map = 1 << conn_state->tv.mode;
++	format_map = 1 << conn_state->tv.legacy_mode;
+ 	memcpy(&tv_res, &format_map,
+ 	       min(sizeof(format_map), sizeof(struct intel_sdvo_sdtv_resolution_request)));
+ 
+@@ -2388,7 +2388,7 @@ intel_sdvo_connector_atomic_get_property(struct drm_connector *connector,
+ 		int i;
+ 
+ 		for (i = 0; i < intel_sdvo_connector->format_supported_num; i++)
+-			if (state->tv.mode == intel_sdvo_connector->tv_format_supported[i]) {
++			if (state->tv.legacy_mode == intel_sdvo_connector->tv_format_supported[i]) {
+ 				*val = i;
+ 
+ 				return 0;
+@@ -2444,7 +2444,7 @@ intel_sdvo_connector_atomic_set_property(struct drm_connector *connector,
+ 	struct intel_sdvo_connector_state *sdvo_state = to_intel_sdvo_connector_state(state);
+ 
+ 	if (property == intel_sdvo_connector->tv_format) {
+-		state->tv.mode = intel_sdvo_connector->tv_format_supported[val];
++		state->tv.legacy_mode = intel_sdvo_connector->tv_format_supported[val];
+ 
+ 		if (state->crtc) {
+ 			struct drm_crtc_state *crtc_state =
+@@ -3108,7 +3108,7 @@ static bool intel_sdvo_tv_create_property(struct intel_sdvo *intel_sdvo,
+ 		drm_property_add_enum(intel_sdvo_connector->tv_format, i,
+ 				      tv_format_names[intel_sdvo_connector->tv_format_supported[i]]);
+ 
+-	intel_sdvo_connector->base.base.state->tv.mode = intel_sdvo_connector->tv_format_supported[0];
++	intel_sdvo_connector->base.base.state->tv.legacy_mode = intel_sdvo_connector->tv_format_supported[0];
+ 	drm_object_attach_property(&intel_sdvo_connector->base.base.base,
+ 				   intel_sdvo_connector->tv_format, 0);
+ 	return true;
+diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915/display/intel_tv.c
+index a96bcfcf90a3..2b77d399f1a1 100644
+--- a/drivers/gpu/drm/i915/display/intel_tv.c
++++ b/drivers/gpu/drm/i915/display/intel_tv.c
+@@ -950,7 +950,7 @@ intel_disable_tv(struct intel_atomic_state *state,
+ 
+ static const struct tv_mode *intel_tv_mode_find(const struct drm_connector_state *conn_state)
+ {
+-	int format = conn_state->tv.mode;
++	int format = conn_state->tv.legacy_mode;
+ 
+ 	return &tv_modes[format];
+ }
+@@ -1705,7 +1705,7 @@ static void intel_tv_find_better_format(struct drm_connector *connector)
+ 			break;
+ 	}
+ 
+-	connector->state->tv.mode = i;
++	connector->state->tv.legacy_mode = i;
+ }
+ 
+ static int
+@@ -1863,7 +1863,7 @@ static int intel_tv_atomic_check(struct drm_connector *connector,
+ 	old_state = drm_atomic_get_old_connector_state(state, connector);
+ 	new_crtc_state = drm_atomic_get_new_crtc_state(state, new_state->crtc);
+ 
+-	if (old_state->tv.mode != new_state->tv.mode ||
++	if (old_state->tv.legacy_mode != new_state->tv.legacy_mode ||
+ 	    old_state->tv.margins.left != new_state->tv.margins.left ||
+ 	    old_state->tv.margins.right != new_state->tv.margins.right ||
+ 	    old_state->tv.margins.top != new_state->tv.margins.top ||
+@@ -1900,7 +1900,7 @@ static void intel_tv_add_properties(struct drm_connector *connector)
+ 	conn_state->tv.margins.right = 46;
+ 	conn_state->tv.margins.bottom = 37;
+ 
+-	conn_state->tv.mode = 0;
++	conn_state->tv.legacy_mode = 0;
+ 
+ 	/* Create TV properties then attach current values */
+ 	for (i = 0; i < ARRAY_SIZE(tv_modes); i++) {
+@@ -1914,7 +1914,7 @@ static void intel_tv_add_properties(struct drm_connector *connector)
+ 
+ 	drm_object_attach_property(&connector->base,
+ 				   i915->drm.mode_config.legacy_tv_mode_property,
+-				   conn_state->tv.mode);
++				   conn_state->tv.legacy_mode);
+ 	drm_object_attach_property(&connector->base,
+ 				   i915->drm.mode_config.tv_left_margin_property,
+ 				   conn_state->tv.margins.left);
+-- 
+2.43.2
+
