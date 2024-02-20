@@ -4,50 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1751C48BC4
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Feb 2024 04:48:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BAFFC48BC4
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Feb 2024 04:53:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F05A10E0CF;
-	Tue, 20 Feb 2024 04:48:27 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L+nKp2xr";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F76710E0CF
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Feb 2024 04:48:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708404505; x=1739940505;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=2l+pLZjvAmohqlhShvvNMzjGtdHF24SbfVnz5mq1yzs=;
- b=L+nKp2xrWGdi9pGuREIN/ZwaIWwqu5+ZKE+RGiXpm1ICbE/ZjCbE/64H
- GbOWgKP4ytXwyXK8b2oO9Ok7VZg8Ag1VhTuAhEvJTkCSRanavS1oj6Zfq
- 4KjetEPFi3KZOJ5u2l0YO0GpnTlP+LhX1otURJGRb8V6d1OxOxRjXxsx7
- 1kTsS08Pb15R7GGVUSZU4Ng616Uo+x87/LVmVdEOzvbBRTljTmGynn/He
- MLSd771ftku8W31vz9lHgb1H0d9KlR0Z+686Njn1BJhgVTgaWzpPlnw2Y
- qpGxrSViXRj2YRlhZ1wYY2SiyBQEnd3cT2wUXAKroRPih2VcGgRQFp1Ka A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10989"; a="2619173"
-X-IronPort-AV: E=Sophos;i="6.06,171,1705392000"; 
-   d="scan'208";a="2619173"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2024 20:48:25 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,171,1705392000"; 
-   d="scan'208";a="9329184"
-Received: from dut-dii-e5ff.iind.intel.com ([10.145.169.50])
- by orviesa004.jf.intel.com with ESMTP; 19 Feb 2024 20:48:24 -0800
-From: priyanka.dandamudi@intel.com
-To: priyanka.dandamudi@intel.com, intel-xe@lists.freedesktop.org,
- thomas.hellstrom@linux.intel.com
-Subject: [PATCH] xe/xe_bo_move: Enhance xe_bo_move trace
-Date: Tue, 20 Feb 2024 10:17:48 +0530
-Message-Id: <20240220044748.948496-1-priyanka.dandamudi@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23F4010E0E6;
+	Tue, 20 Feb 2024 04:53:34 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0962910E0E6;
+ Tue, 20 Feb 2024 04:53:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_xe/xe=5Fbo=5Fmove=3A?=
+ =?utf-8?q?_Enhance_xe=5Fbo=5Fmove_trace_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: priyanka.dandamudi@intel.com
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 20 Feb 2024 04:53:32 -0000
+Message-ID: <170840481204.108167.4980378593786188651@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240220044748.948496-1-priyanka.dandamudi@intel.com>
+In-Reply-To: <20240220044748.948496-1-priyanka.dandamudi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,172 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Priyanka Dandamudi <priyanka.dandamudi@intel.com>
+== Series Details ==
 
-Enhanced xe_bo_move trace to be more readable.
-It will help to show the migration details.
-Src and dst details.
+Series: xe/xe_bo_move: Enhance xe_bo_move trace (rev7)
+URL   : https://patchwork.freedesktop.org/series/128151/
+State : success
 
-v2: Modify trace_xe_bo_move(), it takes the integer mem_type
-rather than a string.
-Make mem_type_to_name() extern, it will be used by trace.(Thomas)
+== Summary ==
 
-v3: Move mem_type_to_name() to xe_bo.[ch] (Thomas, Matt)
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: faa7ecc2f307 drm-tip: 2024y-02m-19d-20h-31m-40s UTC integration manifest
+=== git am output follows ===
+Applying: xe/xe_bo_move: Enhance xe_bo_move trace
 
-v4: Add device details to reduce ambiquity related to vram0/vram1. (Oak)
-
-v5: Rename mem_type_to_name to xe_mem_type_to_name. (Thomas)
-
-v6: Optimised code to use xe_bo_device(__entry->bo). (Thomas)
-
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Oak Zeng <oak.zeng@intel.com>
-Cc: Kempczynski Zbigniew <Zbigniew.Kempczynski@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Brian Welty <brian.welty@intel.com>
-Signed-off-by: Priyanka Dandamudi <priyanka.dandamudi@intel.com>
-Reviewed-by: Oak Zeng <oak.zeng@intel.com>
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_bo.c         | 11 +++++++++--
- drivers/gpu/drm/xe/xe_bo.h         |  1 +
- drivers/gpu/drm/xe/xe_drm_client.c | 12 ++----------
- drivers/gpu/drm/xe/xe_trace.h      | 27 +++++++++++++++++++++++----
- 4 files changed, 35 insertions(+), 16 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 686d716c5581..d59b67d43c25 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -28,6 +28,14 @@
- #include "xe_ttm_stolen_mgr.h"
- #include "xe_vm.h"
- 
-+const char *const xe_mem_type_to_name[TTM_NUM_MEM_TYPES]  = {
-+	[XE_PL_SYSTEM] = "system",
-+	[XE_PL_TT] = "gtt",
-+	[XE_PL_VRAM0] = "vram0",
-+	[XE_PL_VRAM1] = "vram1",
-+	[XE_PL_STOLEN] = "stolen"
-+};
-+
- static const struct ttm_place sys_placement_flags = {
- 	.fpfn = 0,
- 	.lpfn = 0,
-@@ -727,8 +735,7 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 		migrate = xe->tiles[0].migrate;
- 
- 	xe_assert(xe, migrate);
--
--	trace_xe_bo_move(bo);
-+	trace_xe_bo_move(bo, new_mem->mem_type, old_mem_type);
- 	xe_device_mem_access_get(xe);
- 
- 	if (xe_bo_is_pinned(bo) && !xe_bo_is_user(bo)) {
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index db4b2db6b073..7e49e670d91e 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -244,6 +244,7 @@ int xe_bo_evict_pinned(struct xe_bo *bo);
- int xe_bo_restore_pinned(struct xe_bo *bo);
- 
- extern const struct ttm_device_funcs xe_ttm_funcs;
-+extern const char *const xe_mem_type_to_name[];
- 
- int xe_gem_create_ioctl(struct drm_device *dev, void *data,
- 			struct drm_file *file);
-diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
-index 82d1305e831f..6040e4d22b28 100644
---- a/drivers/gpu/drm/xe/xe_drm_client.c
-+++ b/drivers/gpu/drm/xe/xe_drm_client.c
-@@ -131,14 +131,6 @@ static void bo_meminfo(struct xe_bo *bo,
- 
- static void show_meminfo(struct drm_printer *p, struct drm_file *file)
- {
--	static const char *const mem_type_to_name[TTM_NUM_MEM_TYPES]  = {
--		[XE_PL_SYSTEM] = "system",
--		[XE_PL_TT] = "gtt",
--		[XE_PL_VRAM0] = "vram0",
--		[XE_PL_VRAM1] = "vram1",
--		[4 ... 6] = NULL,
--		[XE_PL_STOLEN] = "stolen"
--	};
- 	struct drm_memory_stats stats[TTM_NUM_MEM_TYPES] = {};
- 	struct xe_file *xef = file->driver_priv;
- 	struct ttm_device *bdev = &xef->xe->ttm;
-@@ -171,7 +163,7 @@ static void show_meminfo(struct drm_printer *p, struct drm_file *file)
- 	spin_unlock(&client->bos_lock);
- 
- 	for (mem_type = XE_PL_SYSTEM; mem_type < TTM_NUM_MEM_TYPES; ++mem_type) {
--		if (!mem_type_to_name[mem_type])
-+		if (!xe_mem_type_to_name[mem_type])
- 			continue;
- 
- 		man = ttm_manager_type(bdev, mem_type);
-@@ -182,7 +174,7 @@ static void show_meminfo(struct drm_printer *p, struct drm_file *file)
- 					       DRM_GEM_OBJECT_RESIDENT |
- 					       (mem_type != XE_PL_SYSTEM ? 0 :
- 					       DRM_GEM_OBJECT_PURGEABLE),
--					       mem_type_to_name[mem_type]);
-+					       xe_mem_type_to_name[mem_type]);
- 		}
- 	}
- }
-diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-index e4e7262191ad..0cce98a6b14b 100644
---- a/drivers/gpu/drm/xe/xe_trace.h
-+++ b/drivers/gpu/drm/xe/xe_trace.h
-@@ -12,6 +12,7 @@
- #include <linux/tracepoint.h>
- #include <linux/types.h>
- 
-+#include "xe_bo.h"
- #include "xe_bo_types.h"
- #include "xe_exec_queue_types.h"
- #include "xe_gpu_scheduler_types.h"
-@@ -31,7 +32,7 @@ DECLARE_EVENT_CLASS(xe_gt_tlb_invalidation_fence,
- 			     ),
- 
- 		    TP_fast_assign(
--			   __entry->fence = (unsigned long)fence;
-+			   __entry->fence = (u64)fence;
- 			   __entry->seqno = fence->seqno;
- 			   ),
- 
-@@ -100,9 +101,27 @@ DEFINE_EVENT(xe_bo, xe_bo_cpu_fault,
- 	     TP_ARGS(bo)
- );
- 
--DEFINE_EVENT(xe_bo, xe_bo_move,
--	     TP_PROTO(struct xe_bo *bo),
--	     TP_ARGS(bo)
-+TRACE_EVENT(xe_bo_move,
-+	    TP_PROTO(struct xe_bo *bo, uint32_t new_placement, uint32_t old_placement),
-+	    TP_ARGS(bo, new_placement, old_placement),
-+	    TP_STRUCT__entry(
-+		     __field(struct xe_bo *, bo)
-+		     __field(size_t, size)
-+		     __field(u32, new_placement)
-+		     __field(u32, old_placement)
-+		     __array(char, device_id, 12)
-+			),
-+
-+	    TP_fast_assign(
-+		   __entry->bo      = bo;
-+		   __entry->size = bo->size;
-+		   __entry->new_placement = new_placement;
-+		   __entry->old_placement = old_placement;
-+		   strscpy(__entry->device_id, dev_name(xe_bo_device(__entry->bo)->drm.dev), 12);
-+		   ),
-+	    TP_printk("migrate object %p [size %zu] from %s to %s device_id:%s",
-+		      __entry->bo, __entry->size, xe_mem_type_to_name[__entry->old_placement],
-+		      xe_mem_type_to_name[__entry->new_placement], __entry->device_id)
- );
- 
- DECLARE_EVENT_CLASS(xe_exec_queue,
--- 
-2.25.1
 
