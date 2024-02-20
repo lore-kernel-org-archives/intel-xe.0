@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAD86C48BC3
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Feb 2024 21:23:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8920C48BC4
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Feb 2024 21:24:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61BF010E5A9;
-	Tue, 20 Feb 2024 21:23:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAC2C10E5B3;
+	Tue, 20 Feb 2024 21:24:22 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1DB010E581;
- Tue, 20 Feb 2024 21:23:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37E5C10E5A9;
+ Tue, 20 Feb 2024 21:24:21 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe=3A_Fix_cast_on_trace_va?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EHooks=3A_success_for_drm/xe=3A_Fix_cast_on_trace_va?=
  =?utf-8?q?riable_again?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 20 Feb 2024 21:23:35 -0000
-Message-ID: <170846421578.132386.2326707268025711645@8e613ede5ea5>
+Date: Tue, 20 Feb 2024 21:24:21 -0000
+Message-ID: <170846426120.132386.5104172218386252631@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240220205607.1873084-1-lucas.demarchi@intel.com>
 In-Reply-To: <20240220205607.1873084-1-lucas.demarchi@intel.com>
@@ -48,7492 +48,4228 @@ State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ cd /kernel
-+ git clone https://gitlab.freedesktop.org/drm/xe/ci.git .ci
-Cloning into '.ci'...
-+ '[' -n '' ']'
-++ date +%s
-+ echo -e '\e[0Ksection_start:1708463587:build_x86_64[collapsed=true]\r\e[0KBuild x86-64'
-+ mkdir -p build64-default
-[0Ksection_start:1708463587:build_x86_64[collapsed=true]
-[0KBuild x86-64
-+ cp .ci/kernel/kconfig build64-default/.config
-+ make O=build64-default olddefconfig
-make[1]: Entering directory '/kernel/build64-default'
-  GEN     Makefile
-  HOSTCC  scripts/basic/fixdep
-  HOSTCC  scripts/kconfig/conf.o
-  HOSTCC  scripts/kconfig/confdata.o
-  HOSTCC  scripts/kconfig/expr.o
-  LEX     scripts/kconfig/lexer.lex.c
-  YACC    scripts/kconfig/parser.tab.[ch]
-  HOSTCC  scripts/kconfig/lexer.lex.o
-  HOSTCC  scripts/kconfig/menu.o
-  HOSTCC  scripts/kconfig/parser.tab.o
-  HOSTCC  scripts/kconfig/preprocess.o
-  HOSTCC  scripts/kconfig/symbol.o
-  HOSTCC  scripts/kconfig/util.o
-  HOSTLD  scripts/kconfig/conf
-#
-# configuration written to .config
-#
-make[1]: Leaving directory '/kernel/build64-default'
-++ nproc
-+ make O=build64-default -j48
-make[1]: Entering directory '/kernel/build64-default'
-  GEN     Makefile
-  WRAP    arch/x86/include/generated/uapi/asm/bpf_perf_event.h
-  UPD     include/generated/uapi/linux/version.h
-  WRAP    arch/x86/include/generated/uapi/asm/errno.h
-  WRAP    arch/x86/include/generated/uapi/asm/fcntl.h
-  WRAP    arch/x86/include/generated/uapi/asm/ioctl.h
-  WRAP    arch/x86/include/generated/uapi/asm/ioctls.h
-  WRAP    arch/x86/include/generated/uapi/asm/ipcbuf.h
-  WRAP    arch/x86/include/generated/uapi/asm/param.h
-  WRAP    arch/x86/include/generated/uapi/asm/poll.h
-  WRAP    arch/x86/include/generated/uapi/asm/resource.h
-  WRAP    arch/x86/include/generated/uapi/asm/socket.h
-  WRAP    arch/x86/include/generated/uapi/asm/sockios.h
-  WRAP    arch/x86/include/generated/uapi/asm/termbits.h
-  WRAP    arch/x86/include/generated/uapi/asm/termios.h
-  WRAP    arch/x86/include/generated/uapi/asm/types.h
-  SYSHDR  arch/x86/include/generated/uapi/asm/unistd_32.h
-  SYSHDR  arch/x86/include/generated/uapi/asm/unistd_64.h
-  SYSHDR  arch/x86/include/generated/uapi/asm/unistd_x32.h
-  SYSTBL  arch/x86/include/generated/asm/syscalls_32.h
-  SYSHDR  arch/x86/include/generated/asm/unistd_32_ia32.h
-  UPD     include/config/kernel.release
-  SYSHDR  arch/x86/include/generated/asm/unistd_64_x32.h
-  UPD     include/generated/compile.h
-  SYSTBL  arch/x86/include/generated/asm/syscalls_64.h
-  HYPERCALLS arch/x86/include/generated/asm/xen-hypercalls.h
-  WRAP    arch/x86/include/generated/asm/early_ioremap.h
-  WRAP    arch/x86/include/generated/asm/mcs_spinlock.h
-  WRAP    arch/x86/include/generated/asm/irq_regs.h
-  WRAP    arch/x86/include/generated/asm/kmap_size.h
-  WRAP    arch/x86/include/generated/asm/local64.h
-  WRAP    arch/x86/include/generated/asm/mmiowb.h
-  WRAP    arch/x86/include/generated/asm/module.lds.h
-  WRAP    arch/x86/include/generated/asm/unaligned.h
-  WRAP    arch/x86/include/generated/asm/rwonce.h
-  UPD     include/generated/utsrelease.h
-  HOSTCC  arch/x86/tools/relocs_32.o
-  HOSTCC  arch/x86/tools/relocs_64.o
-  HOSTCC  arch/x86/tools/relocs_common.o
-mkdir -p /kernel/build64-default/tools/objtool && make O=/kernel/build64-default subdir=tools/objtool --no-print-directory -C objtool 
-  HOSTCC  scripts/unifdef
-  HOSTCC  scripts/kallsyms
-  HOSTCC  scripts/sorttable
-  HOSTCC  scripts/asn1_compiler
-  HOSTCC  scripts/genksyms/genksyms.o
-  YACC    scripts/genksyms/parse.tab.[ch]
-  LEX     scripts/genksyms/lex.lex.c
-  HOSTCC  scripts/selinux/genheaders/genheaders
-  HOSTCC  scripts/selinux/mdp/mdp
-  HOSTCC  scripts/sign-file
-  HOSTCC  scripts/insert-sys-cert
-  HOSTCC  /kernel/build64-default/tools/objtool/fixdep.o
-  HOSTCC  scripts/genksyms/parse.tab.o
-  HOSTCC  scripts/genksyms/lex.lex.o
-  HOSTLD  /kernel/build64-default/tools/objtool/fixdep-in.o
-  LINK    /kernel/build64-default/tools/objtool/fixdep
-  INSTALL /kernel/build64-default/tools/objtool/libsubcmd/include/subcmd/exec-cmd.h
-  INSTALL /kernel/build64-default/tools/objtool/libsubcmd/include/subcmd/help.h
-  INSTALL /kernel/build64-default/tools/objtool/libsubcmd/include/subcmd/pager.h
-  INSTALL /kernel/build64-default/tools/objtool/libsubcmd/include/subcmd/parse-options.h
-  INSTALL /kernel/build64-default/tools/objtool/libsubcmd/include/subcmd/run-command.h
-  CC      /kernel/build64-default/tools/objtool/libsubcmd/exec-cmd.o
-  CC      /kernel/build64-default/tools/objtool/libsubcmd/help.o
-  CC      /kernel/build64-default/tools/objtool/libsubcmd/pager.o
-  CC      /kernel/build64-default/tools/objtool/libsubcmd/parse-options.o
-  CC      /kernel/build64-default/tools/objtool/libsubcmd/run-command.o
-  INSTALL libsubcmd_headers
-  CC      /kernel/build64-default/tools/objtool/libsubcmd/sigchain.o
-  CC      /kernel/build64-default/tools/objtool/libsubcmd/subcmd-config.o
-  HOSTLD  arch/x86/tools/relocs
-  HDRINST usr/include/video/edid.h
-  HDRINST usr/include/video/sisfb.h
-  HDRINST usr/include/video/uvesafb.h
-  HDRINST usr/include/drm/amdgpu_drm.h
-  HDRINST usr/include/drm/qaic_accel.h
-  HDRINST usr/include/drm/pvr_drm.h
-  HDRINST usr/include/drm/i915_drm.h
-  HDRINST usr/include/drm/vgem_drm.h
-  HDRINST usr/include/drm/virtgpu_drm.h
-  HDRINST usr/include/drm/xe_drm.h
-  HDRINST usr/include/drm/omap_drm.h
-  HDRINST usr/include/drm/radeon_drm.h
-  HDRINST usr/include/drm/tegra_drm.h
-  HDRINST usr/include/drm/drm_mode.h
-  HDRINST usr/include/drm/ivpu_accel.h
-  HDRINST usr/include/drm/drm_sarea.h
-  HDRINST usr/include/drm/exynos_drm.h
-  HDRINST usr/include/drm/v3d_drm.h
-  HDRINST usr/include/drm/qxl_drm.h
-  HDRINST usr/include/drm/drm_fourcc.h
-  HDRINST usr/include/drm/nouveau_drm.h
-  HDRINST usr/include/drm/habanalabs_accel.h
-  HDRINST usr/include/drm/vmwgfx_drm.h
-  HDRINST usr/include/drm/msm_drm.h
-  HDRINST usr/include/drm/etnaviv_drm.h
-  HDRINST usr/include/drm/vc4_drm.h
-  HDRINST usr/include/drm/panfrost_drm.h
-  HDRINST usr/include/drm/lima_drm.h
-  HDRINST usr/include/drm/drm.h
-  HDRINST usr/include/drm/armada_drm.h
-  HDRINST usr/include/mtd/inftl-user.h
-  HDRINST usr/include/mtd/nftl-user.h
-  HDRINST usr/include/mtd/mtd-user.h
-  HDRINST usr/include/mtd/ubi-user.h
-  HDRINST usr/include/mtd/mtd-abi.h
-  HDRINST usr/include/xen/gntdev.h
-  HDRINST usr/include/xen/gntalloc.h
-  HDRINST usr/include/xen/evtchn.h
-  HDRINST usr/include/xen/privcmd.h
-  HDRINST usr/include/asm-generic/auxvec.h
-  HDRINST usr/include/asm-generic/bitsperlong.h
-  HDRINST usr/include/asm-generic/posix_types.h
-  HDRINST usr/include/asm-generic/ioctls.h
-  HDRINST usr/include/asm-generic/mman.h
-  HDRINST usr/include/asm-generic/shmbuf.h
-  HDRINST usr/include/asm-generic/bpf_perf_event.h
-  HDRINST usr/include/asm-generic/types.h
-  HDRINST usr/include/asm-generic/poll.h
-  HDRINST usr/include/asm-generic/msgbuf.h
-  HDRINST usr/include/asm-generic/swab.h
-  HDRINST usr/include/asm-generic/statfs.h
-  HDRINST usr/include/asm-generic/unistd.h
-  HDRINST usr/include/asm-generic/hugetlb_encode.h
-  HDRINST usr/include/asm-generic/resource.h
-  HDRINST usr/include/asm-generic/param.h
-  HDRINST usr/include/asm-generic/termbits-common.h
-  HDRINST usr/include/asm-generic/sockios.h
-  HDRINST usr/include/asm-generic/kvm_para.h
-  HDRINST usr/include/asm-generic/errno.h
-  HDRINST usr/include/asm-generic/termios.h
-  HDRINST usr/include/asm-generic/mman-common.h
-  HDRINST usr/include/asm-generic/ioctl.h
-  HDRINST usr/include/asm-generic/socket.h
-  HDRINST usr/include/asm-generic/signal-defs.h
-  HDRINST usr/include/asm-generic/termbits.h
-  HDRINST usr/include/asm-generic/int-ll64.h
-  HDRINST usr/include/asm-generic/signal.h
-  HDRINST usr/include/asm-generic/siginfo.h
-  HDRINST usr/include/asm-generic/stat.h
-  HDRINST usr/include/asm-generic/int-l64.h
-  HDRINST usr/include/asm-generic/errno-base.h
-  HDRINST usr/include/asm-generic/fcntl.h
-  HDRINST usr/include/asm-generic/setup.h
-  HDRINST usr/include/asm-generic/ipcbuf.h
-  HDRINST usr/include/asm-generic/sembuf.h
-  HDRINST usr/include/asm-generic/ucontext.h
-  HDRINST usr/include/rdma/mlx5_user_ioctl_cmds.h
-  HDRINST usr/include/rdma/irdma-abi.h
-  HDRINST usr/include/rdma/mana-abi.h
-  HDRINST usr/include/rdma/hfi/hfi1_user.h
-  HDRINST usr/include/rdma/hfi/hfi1_ioctl.h
-  HDRINST usr/include/rdma/rdma_user_ioctl.h
-  HDRINST usr/include/rdma/rdma_user_rxe.h
-  HDRINST usr/include/rdma/mlx5_user_ioctl_verbs.h
-  HDRINST usr/include/rdma/bnxt_re-abi.h
-  HDRINST usr/include/rdma/hns-abi.h
-  HDRINST usr/include/rdma/qedr-abi.h
-  HDRINST usr/include/rdma/ib_user_ioctl_cmds.h
-  HDRINST usr/include/rdma/vmw_pvrdma-abi.h
-  HDRINST usr/include/rdma/ib_user_sa.h
-  HDRINST usr/include/rdma/ib_user_ioctl_verbs.h
-  HDRINST usr/include/rdma/rvt-abi.h
-  HDRINST usr/include/rdma/mlx5-abi.h
-  HDRINST usr/include/rdma/rdma_netlink.h
-  HDRINST usr/include/rdma/erdma-abi.h
-  HDRINST usr/include/rdma/rdma_user_ioctl_cmds.h
-  HDRINST usr/include/rdma/rdma_user_cm.h
-  HDRINST usr/include/rdma/ib_user_verbs.h
-  HDRINST usr/include/rdma/efa-abi.h
-  HDRINST usr/include/rdma/siw-abi.h
-  HDRINST usr/include/rdma/mlx4-abi.h
-  HDRINST usr/include/rdma/mthca-abi.h
-  HDRINST usr/include/rdma/ib_user_mad.h
-  HDRINST usr/include/rdma/ocrdma-abi.h
-  HDRINST usr/include/rdma/cxgb4-abi.h
-  HDRINST usr/include/misc/xilinx_sdfec.h
-  HDRINST usr/include/misc/uacce/hisi_qm.h
-  HDRINST usr/include/misc/uacce/uacce.h
-  HDRINST usr/include/misc/cxl.h
-  HDRINST usr/include/misc/ocxl.h
-  HDRINST usr/include/misc/fastrpc.h
-  HDRINST usr/include/misc/pvpanic.h
-  HDRINST usr/include/linux/i8k.h
-  HDRINST usr/include/linux/acct.h
-  HDRINST usr/include/linux/atmmpc.h
-  HDRINST usr/include/linux/fs.h
-  HDRINST usr/include/linux/cifs/cifs_mount.h
-  HDRINST usr/include/linux/cifs/cifs_netlink.h
-  HDRINST usr/include/linux/if_packet.h
-  HDRINST usr/include/linux/route.h
-  HDRINST usr/include/linux/patchkey.h
-  HDRINST usr/include/linux/tc_ematch/tc_em_cmp.h
-  HDRINST usr/include/linux/tc_ematch/tc_em_ipt.h
-  HDRINST usr/include/linux/tc_ematch/tc_em_meta.h
-  HDRINST usr/include/linux/tc_ematch/tc_em_nbyte.h
-  HDRINST usr/include/linux/tc_ematch/tc_em_text.h
-  HDRINST usr/include/linux/virtio_pmem.h
-  HDRINST usr/include/linux/rkisp1-config.h
-  HDRINST usr/include/linux/vhost.h
-  HDRINST usr/include/linux/cec-funcs.h
-  HDRINST usr/include/linux/ppdev.h
-  HDRINST usr/include/linux/isdn/capicmd.h
-  HDRINST usr/include/linux/virtio_fs.h
-  HDRINST usr/include/linux/netfilter_ipv6.h
-  HDRINST usr/include/linux/lirc.h
-  HDRINST usr/include/linux/mroute6.h
-  HDRINST usr/include/linux/nl80211-vnd-intel.h
-  HDRINST usr/include/linux/ivtvfb.h
-  HDRINST usr/include/linux/auxvec.h
-  HDRINST usr/include/linux/dm-log-userspace.h
-  HDRINST usr/include/linux/dccp.h
-  HDRINST usr/include/linux/virtio_scmi.h
-  HDRINST usr/include/linux/atmarp.h
-  HDRINST usr/include/linux/arcfb.h
-  HDRINST usr/include/linux/nbd-netlink.h
-  HDRINST usr/include/linux/sched/types.h
-  HDRINST usr/include/linux/tcp.h
-  HDRINST usr/include/linux/neighbour.h
-  HDRINST usr/include/linux/dlm_device.h
-  HDRINST usr/include/linux/wmi.h
-  HDRINST usr/include/linux/btrfs_tree.h
-  HDRINST usr/include/linux/virtio_crypto.h
-  HDRINST usr/include/linux/vbox_err.h
-  HDRINST usr/include/linux/edd.h
-  HDRINST usr/include/linux/loop.h
-  HDRINST usr/include/linux/nvme_ioctl.h
-  HDRINST usr/include/linux/mmtimer.h
-  HDRINST usr/include/linux/if_pppol2tp.h
-  HDRINST usr/include/linux/mtio.h
-  HDRINST usr/include/linux/if_arcnet.h
-  HDRINST usr/include/linux/romfs_fs.h
-  HDRINST usr/include/linux/posix_types.h
-  HDRINST usr/include/linux/rtc.h
-  HDRINST usr/include/linux/landlock.h
-  HDRINST usr/include/linux/gpio.h
-  HDRINST usr/include/linux/selinux_netlink.h
-  HDRINST usr/include/linux/pps.h
-  HDRINST usr/include/linux/ndctl.h
-  HDRINST usr/include/linux/virtio_gpu.h
-  HDRINST usr/include/linux/android/binderfs.h
-  HDRINST usr/include/linux/android/binder.h
-  HDRINST usr/include/linux/virtio_vsock.h
-  HDRINST usr/include/linux/sound.h
-  HDRINST usr/include/linux/vtpm_proxy.h
-  HDRINST usr/include/linux/nfs_fs.h
-  HDRINST usr/include/linux/elf-fdpic.h
-  HDRINST usr/include/linux/adfs_fs.h
-  HDRINST usr/include/linux/target_core_user.h
-  HDRINST usr/include/linux/netlink_diag.h
-  HDRINST usr/include/linux/const.h
-  HDRINST usr/include/linux/firewire-cdev.h
-  HDRINST usr/include/linux/vdpa.h
-  HDRINST usr/include/linux/if_infiniband.h
-  HDRINST usr/include/linux/serial.h
-  HDRINST usr/include/linux/iio/types.h
-  HDRINST usr/include/linux/iio/buffer.h
-  HDRINST usr/include/linux/iio/events.h
-  HDRINST usr/include/linux/baycom.h
-  HDRINST usr/include/linux/major.h
-  HDRINST usr/include/linux/atmppp.h
-  HDRINST usr/include/linux/lsm.h
-  HDRINST usr/include/linux/ipv6_route.h
-  HDRINST usr/include/linux/spi/spidev.h
-  HDRINST usr/include/linux/spi/spi.h
-  HDRINST usr/include/linux/virtio_ring.h
-  HDRINST usr/include/linux/hdlc/ioctl.h
-  HDRINST usr/include/linux/remoteproc_cdev.h
-  HDRINST usr/include/linux/hyperv.h
-  HDRINST usr/include/linux/rpl_iptunnel.h
-  HDRINST usr/include/linux/sync_file.h
-  HDRINST usr/include/linux/igmp.h
-  HDRINST usr/include/linux/v4l2-dv-timings.h
-  HDRINST usr/include/linux/virtio_i2c.h
-  HDRINST usr/include/linux/xfrm.h
-  HDRINST usr/include/linux/capability.h
-  HDRINST usr/include/linux/gtp.h
-  HDRINST usr/include/linux/xdp_diag.h
-  HDRINST usr/include/linux/pkt_cls.h
-  HDRINST usr/include/linux/suspend_ioctls.h
-  HDRINST usr/include/linux/vt.h
-  HDRINST usr/include/linux/loadpin.h
-  HDRINST usr/include/linux/dlm_plock.h
-  HDRINST usr/include/linux/fb.h
-  HDRINST usr/include/linux/max2175.h
-  HDRINST usr/include/linux/sunrpc/debug.h
-  HDRINST usr/include/linux/gsmmux.h
-  HDRINST usr/include/linux/watchdog.h
-  HDRINST usr/include/linux/vhost_types.h
-  HDRINST usr/include/linux/vduse.h
-  HDRINST usr/include/linux/ila.h
-  HDRINST usr/include/linux/tdx-guest.h
-  HDRINST usr/include/linux/close_range.h
-  HDRINST usr/include/linux/ivtv.h
-  HDRINST usr/include/linux/cryptouser.h
-  HDRINST usr/include/linux/netfilter/xt_string.h
-  HDRINST usr/include/linux/netfilter/nfnetlink_compat.h
-  HDRINST usr/include/linux/netfilter/nf_nat.h
-  HDRINST usr/include/linux/netfilter/xt_recent.h
-  HDRINST usr/include/linux/netfilter/xt_addrtype.h
-  HDRINST usr/include/linux/netfilter/nf_conntrack_tcp.h
-  HDRINST usr/include/linux/netfilter/xt_MARK.h
-  HDRINST usr/include/linux/netfilter/xt_SYNPROXY.h
-  HDRINST usr/include/linux/netfilter/xt_multiport.h
-  HDRINST usr/include/linux/netfilter/nfnetlink.h
-  HDRINST usr/include/linux/netfilter/xt_cgroup.h
-  HDRINST usr/include/linux/netfilter/nf_synproxy.h
-  HDRINST usr/include/linux/netfilter/xt_TCPOPTSTRIP.h
-  HDRINST usr/include/linux/netfilter/nfnetlink_log.h
-  HDRINST usr/include/linux/netfilter/xt_TPROXY.h
-  HDRINST usr/include/linux/netfilter/xt_u32.h
-  HDRINST usr/include/linux/netfilter/nfnetlink_osf.h
-  HDRINST usr/include/linux/netfilter/xt_esp.h
-  HDRINST usr/include/linux/netfilter/xt_ecn.h
-  HDRINST usr/include/linux/netfilter/nfnetlink_hook.h
-  HDRINST usr/include/linux/netfilter/xt_mac.h
-  HDRINST usr/include/linux/netfilter/xt_comment.h
-  HDRINST usr/include/linux/netfilter/xt_NFQUEUE.h
-  HDRINST usr/include/linux/netfilter/xt_osf.h
-  HDRINST usr/include/linux/netfilter/xt_hashlimit.h
-  HDRINST usr/include/linux/netfilter/nf_conntrack_sctp.h
-  HDRINST usr/include/linux/netfilter/xt_socket.h
-  HDRINST usr/include/linux/netfilter/xt_connmark.h
-  HDRINST usr/include/linux/netfilter/xt_sctp.h
-  HDRINST usr/include/linux/netfilter/xt_tcpudp.h
-  HDRINST usr/include/linux/netfilter/xt_DSCP.h
-  HDRINST usr/include/linux/netfilter/xt_time.h
-  HDRINST usr/include/linux/netfilter/xt_IDLETIMER.h
-  HDRINST usr/include/linux/netfilter/xt_policy.h
-  HDRINST usr/include/linux/netfilter/xt_rpfilter.h
-  HDRINST usr/include/linux/netfilter/xt_nfacct.h
-  HDRINST usr/include/linux/netfilter/xt_SECMARK.h
-  HDRINST usr/include/linux/netfilter/xt_length.h
-  HDRINST usr/include/linux/netfilter/nfnetlink_cthelper.h
-  HDRINST usr/include/linux/netfilter/xt_quota.h
-  HDRINST usr/include/linux/netfilter/xt_CLASSIFY.h
-  HDRINST usr/include/linux/netfilter/xt_ipcomp.h
-  HDRINST usr/include/linux/netfilter/xt_iprange.h
-  HDRINST usr/include/linux/netfilter/xt_bpf.h
-  HDRINST usr/include/linux/netfilter/xt_LOG.h
-  HDRINST usr/include/linux/netfilter/xt_rateest.h
-  HDRINST usr/include/linux/netfilter/xt_CONNSECMARK.h
-  HDRINST usr/include/linux/netfilter/xt_HMARK.h
-  HDRINST usr/include/linux/netfilter/xt_CONNMARK.h
-  HDRINST usr/include/linux/netfilter/xt_pkttype.h
-  HDRINST usr/include/linux/netfilter/xt_ipvs.h
-  HDRINST usr/include/linux/netfilter/xt_devgroup.h
-  HDRINST usr/include/linux/netfilter/xt_AUDIT.h
-  HDRINST usr/include/linux/netfilter/nf_conntrack_common.h
-  HDRINST usr/include/linux/netfilter/xt_realm.h
-  HDRINST usr/include/linux/netfilter/xt_set.h
-  HDRINST usr/include/linux/netfilter/xt_LED.h
-  HDRINST usr/include/linux/netfilter/xt_connlabel.h
-  HDRINST usr/include/linux/netfilter/xt_owner.h
-  HDRINST usr/include/linux/netfilter/xt_dccp.h
-  HDRINST usr/include/linux/netfilter/xt_limit.h
-  HDRINST usr/include/linux/netfilter/xt_conntrack.h
-  HDRINST usr/include/linux/netfilter/xt_TEE.h
-  HDRINST usr/include/linux/netfilter/xt_RATEEST.h
-  HDRINST usr/include/linux/netfilter/xt_connlimit.h
-  HDRINST usr/include/linux/netfilter/ipset/ip_set.h
-  HDRINST usr/include/linux/netfilter/ipset/ip_set_list.h
-  HDRINST usr/include/linux/netfilter/ipset/ip_set_hash.h
-  HDRINST usr/include/linux/netfilter/ipset/ip_set_bitmap.h
-  HDRINST usr/include/linux/netfilter/x_tables.h
-  HDRINST usr/include/linux/netfilter/xt_dscp.h
-  HDRINST usr/include/linux/netfilter/nf_conntrack_ftp.h
-  HDRINST usr/include/linux/netfilter/xt_cluster.h
-  HDRINST usr/include/linux/netfilter/nf_conntrack_tuple_common.h
-  HDRINST usr/include/linux/netfilter/nf_log.h
-  HDRINST usr/include/linux/netfilter/xt_tcpmss.h
-  HDRINST usr/include/linux/netfilter/xt_NFLOG.h
-  HDRINST usr/include/linux/netfilter/xt_l2tp.h
-  HDRINST usr/include/linux/netfilter/xt_helper.h
-  HDRINST usr/include/linux/netfilter/xt_statistic.h
-  HDRINST usr/include/linux/netfilter/nfnetlink_queue.h
-  HDRINST usr/include/linux/netfilter/nfnetlink_cttimeout.h
-  HDRINST usr/include/linux/netfilter/xt_CT.h
-  HDRINST usr/include/linux/netfilter/xt_CHECKSUM.h
-  HDRINST usr/include/linux/netfilter/xt_connbytes.h
-  HDRINST usr/include/linux/netfilter/xt_state.h
-  HDRINST usr/include/linux/netfilter/nf_tables.h
-  HDRINST usr/include/linux/netfilter/xt_mark.h
-  HDRINST usr/include/linux/netfilter/xt_cpu.h
-  HOSTLD  scripts/genksyms/genksyms
-  HDRINST usr/include/linux/netfilter/nf_tables_compat.h
-  HDRINST usr/include/linux/netfilter/xt_physdev.h
-  HDRINST usr/include/linux/netfilter/nfnetlink_conntrack.h
-  HDRINST usr/include/linux/netfilter/nfnetlink_acct.h
-  HDRINST usr/include/linux/netfilter/xt_TCPMSS.h
-  HDRINST usr/include/linux/tty_flags.h
-  HDRINST usr/include/linux/if_phonet.h
-  HDRINST usr/include/linux/elf-em.h
-  HDRINST usr/include/linux/vm_sockets.h
-  HDRINST usr/include/linux/dlmconstants.h
-  HDRINST usr/include/linux/bsg.h
-  HDRINST usr/include/linux/matroxfb.h
-  HDRINST usr/include/linux/sysctl.h
-  HDRINST usr/include/linux/unix_diag.h
-  HDRINST usr/include/linux/pcitest.h
-  HDRINST usr/include/linux/mman.h
-  HDRINST usr/include/linux/if_plip.h
-  HDRINST usr/include/linux/virtio_balloon.h
-  HDRINST usr/include/linux/pidfd.h
-  HDRINST usr/include/linux/f2fs.h
-  HDRINST usr/include/linux/x25.h
-  HDRINST usr/include/linux/if_cablemodem.h
-  HDRINST usr/include/linux/utsname.h
-  HDRINST usr/include/linux/counter.h
-  HDRINST usr/include/linux/atm_tcp.h
-  HDRINST usr/include/linux/atalk.h
-  HDRINST usr/include/linux/virtio_rng.h
-  HDRINST usr/include/linux/vboxguest.h
-  HDRINST usr/include/linux/bpf_perf_event.h
-  HDRINST usr/include/linux/ipmi_ssif_bmc.h
-  HDRINST usr/include/linux/nfs_mount.h
-  HDRINST usr/include/linux/sonet.h
-  HDRINST usr/include/linux/netfilter.h
-  HDRINST usr/include/linux/keyctl.h
-  HDRINST usr/include/linux/nl80211.h
-  HDRINST usr/include/linux/misc/bcm_vk.h
-  HDRINST usr/include/linux/audit.h
-  HDRINST usr/include/linux/tipc_config.h
-  HDRINST usr/include/linux/tipc_sockets_diag.h
-  HDRINST usr/include/linux/futex.h
-  HDRINST usr/include/linux/sev-guest.h
-  HDRINST usr/include/linux/ublk_cmd.h
-  HDRINST usr/include/linux/types.h
-  HDRINST usr/include/linux/virtio_input.h
-  HDRINST usr/include/linux/if_slip.h
-  HDRINST usr/include/linux/personality.h
-  HDRINST usr/include/linux/openat2.h
-  HDRINST usr/include/linux/poll.h
-  HDRINST usr/include/linux/posix_acl.h
-  HDRINST usr/include/linux/smc_diag.h
-  HDRINST usr/include/linux/snmp.h
-  HDRINST usr/include/linux/errqueue.h
-  HDRINST usr/include/linux/if_tunnel.h
-  HDRINST usr/include/linux/fanotify.h
-  HDRINST usr/include/linux/kernel.h
-  HDRINST usr/include/linux/rtnetlink.h
-  HDRINST usr/include/linux/rpl.h
-  HDRINST usr/include/linux/memfd.h
-  HDRINST usr/include/linux/serial_core.h
-  HDRINST usr/include/linux/dns_resolver.h
-  HDRINST usr/include/linux/pr.h
-  HDRINST usr/include/linux/atm_eni.h
-  HDRINST usr/include/linux/lp.h
-  HDRINST usr/include/linux/virtio_mem.h
-  HDRINST usr/include/linux/ultrasound.h
-  HDRINST usr/include/linux/sctp.h
-  HDRINST usr/include/linux/uio.h
-  HDRINST usr/include/linux/tcp_metrics.h
-  HDRINST usr/include/linux/wwan.h
-  CC      scripts/mod/empty.o
-  HOSTCC  scripts/mod/mk_elfconfig
-  HDRINST usr/include/linux/atmbr2684.h
-  HDRINST usr/include/linux/in_route.h
-  CC      scripts/mod/devicetable-offsets.s
-  HDRINST usr/include/linux/qemu_fw_cfg.h
-  HDRINST usr/include/linux/if_macsec.h
-  HDRINST usr/include/linux/usb/charger.h
-  HDRINST usr/include/linux/usb/g_uvc.h
-  HDRINST usr/include/linux/usb/gadgetfs.h
-  HDRINST usr/include/linux/usb/raw_gadget.h
-  HDRINST usr/include/linux/usb/cdc-wdm.h
-  HDRINST usr/include/linux/usb/g_printer.h
-  HDRINST usr/include/linux/usb/midi.h
-  HDRINST usr/include/linux/usb/tmc.h
-  HDRINST usr/include/linux/usb/video.h
-  HDRINST usr/include/linux/usb/functionfs.h
-  HDRINST usr/include/linux/usb/audio.h
-  HDRINST usr/include/linux/usb/ch11.h
-  HDRINST usr/include/linux/usb/ch9.h
-  HDRINST usr/include/linux/usb/cdc.h
-  HDRINST usr/include/linux/jffs2.h
-  HDRINST usr/include/linux/ax25.h
-  HDRINST usr/include/linux/auto_fs.h
-  HDRINST usr/include/linux/tiocl.h
-  HDRINST usr/include/linux/scc.h
-  HDRINST usr/include/linux/psci.h
-  HDRINST usr/include/linux/swab.h
-  HDRINST usr/include/linux/cec.h
-  HDRINST usr/include/linux/kfd_ioctl.h
-  HDRINST usr/include/linux/smc.h
-  HDRINST usr/include/linux/qrtr.h
-  HDRINST usr/include/linux/screen_info.h
-  HDRINST usr/include/linux/nfsacl.h
-  HDRINST usr/include/linux/seg6_hmac.h
-  HDRINST usr/include/linux/gameport.h
-  HDRINST usr/include/linux/wireless.h
-  HDRINST usr/include/linux/fdreg.h
-  HDRINST usr/include/linux/cciss_defs.h
-  HDRINST usr/include/linux/serial_reg.h
-  HDRINST usr/include/linux/perf_event.h
-  HDRINST usr/include/linux/in6.h
-  LD      /kernel/build64-default/tools/objtool/libsubcmd/libsubcmd-in.o
-  HDRINST usr/include/linux/hid.h
-  HDRINST usr/include/linux/thp7312.h
-  HDRINST usr/include/linux/netlink.h
-  HDRINST usr/include/linux/fuse.h
-  HDRINST usr/include/linux/magic.h
-  HDRINST usr/include/linux/ioam6_iptunnel.h
-  HDRINST usr/include/linux/stm.h
-  HDRINST usr/include/linux/vsockmon.h
-  HDRINST usr/include/linux/seg6.h
-  HDRINST usr/include/linux/idxd.h
-  HDRINST usr/include/linux/nitro_enclaves.h
-  HDRINST usr/include/linux/ptrace.h
-  HDRINST usr/include/linux/ioam6_genl.h
-  HDRINST usr/include/linux/qnx4_fs.h
-  HDRINST usr/include/linux/fsl_mc.h
-  HDRINST usr/include/linux/net_tstamp.h
-  HDRINST usr/include/linux/msg.h
-  HDRINST usr/include/linux/netfilter_ipv4/ipt_TTL.h
-  HDRINST usr/include/linux/netfilter_ipv4/ipt_ttl.h
-  HDRINST usr/include/linux/netfilter_ipv4/ipt_ah.h
-  HDRINST usr/include/linux/netfilter_ipv4/ipt_ECN.h
-  HDRINST usr/include/linux/netfilter_ipv4/ip_tables.h
-  HDRINST usr/include/linux/netfilter_ipv4/ipt_ecn.h
-  AR      /kernel/build64-default/tools/objtool/libsubcmd/libsubcmd.a
-  HDRINST usr/include/linux/netfilter_ipv4/ipt_CLUSTERIP.h
-  HDRINST usr/include/linux/netfilter_ipv4/ipt_REJECT.h
-  HDRINST usr/include/linux/netfilter_ipv4/ipt_LOG.h
-  HDRINST usr/include/linux/sem.h
-  HDRINST usr/include/linux/net_namespace.h
-  HDRINST usr/include/linux/radeonfb.h
-  HDRINST usr/include/linux/tee.h
-  HDRINST usr/include/linux/udp.h
-  HDRINST usr/include/linux/virtio_bt.h
-  HDRINST usr/include/linux/v4l2-subdev.h
-  HDRINST usr/include/linux/posix_acl_xattr.h
-  HDRINST usr/include/linux/v4l2-mediabus.h
-  HDRINST usr/include/linux/raid/md_p.h
-  HDRINST usr/include/linux/atmapi.h
-  HDRINST usr/include/linux/raid/md_u.h
-  HDRINST usr/include/linux/zorro_ids.h
-  HDRINST usr/include/linux/nbd.h
-  HDRINST usr/include/linux/isst_if.h
-  HDRINST usr/include/linux/rxrpc.h
-  HDRINST usr/include/linux/unistd.h
-  HDRINST usr/include/linux/if_arp.h
-  HDRINST usr/include/linux/atm_zatm.h
-  HDRINST usr/include/linux/io_uring.h
-  HDRINST usr/include/linux/if_fddi.h
-  HDRINST usr/include/linux/bpqether.h
-  HDRINST usr/include/linux/sysinfo.h
-  HDRINST usr/include/linux/auto_dev-ioctl.h
-  HDRINST usr/include/linux/nfs4_mount.h
-  HDRINST usr/include/linux/keyboard.h
-  HDRINST usr/include/linux/virtio_mmio.h
-  HDRINST usr/include/linux/input.h
-  HDRINST usr/include/linux/qnxtypes.h
-  HDRINST usr/include/linux/mdio.h
-  HDRINST usr/include/linux/lwtunnel.h
-  HDRINST usr/include/linux/gfs2_ondisk.h
-  HDRINST usr/include/linux/eventfd.h
-  HDRINST usr/include/linux/nfs4.h
-  HDRINST usr/include/linux/ptp_clock.h
-  HDRINST usr/include/linux/nubus.h
-  HDRINST usr/include/linux/if_bonding.h
-  HDRINST usr/include/linux/kcov.h
-  HDRINST usr/include/linux/fadvise.h
-  HDRINST usr/include/linux/taskstats.h
-  HDRINST usr/include/linux/veth.h
-  HDRINST usr/include/linux/atm.h
-  HDRINST usr/include/linux/ipmi.h
-  HDRINST usr/include/linux/kdev_t.h
-  HDRINST usr/include/linux/mount.h
-  HDRINST usr/include/linux/shm.h
-  HDRINST usr/include/linux/resource.h
-  HDRINST usr/include/linux/prctl.h
-  UPD     scripts/mod/devicetable-offsets.h
-  HDRINST usr/include/linux/watch_queue.h
-  HDRINST usr/include/linux/sched.h
-  HDRINST usr/include/linux/phonet.h
-  HDRINST usr/include/linux/random.h
-  HDRINST usr/include/linux/tty.h
-  HDRINST usr/include/linux/apm_bios.h
-  HDRINST usr/include/linux/fd.h
-  CC      /kernel/build64-default/tools/objtool/weak.o
-  HDRINST usr/include/linux/um_timetravel.h
-  CC      /kernel/build64-default/tools/objtool/check.o
-  HDRINST usr/include/linux/tls.h
-  CC      /kernel/build64-default/tools/objtool/special.o
-  HDRINST usr/include/linux/rpmsg_types.h
-  HDRINST usr/include/linux/pfrut.h
-  CC      /kernel/build64-default/tools/objtool/builtin-check.o
-  HDRINST usr/include/linux/mei.h
-  MKDIR   /kernel/build64-default/tools/objtool/arch/x86/
-  CC      /kernel/build64-default/tools/objtool/elf.o
-  HDRINST usr/include/linux/fsi.h
-  CC      /kernel/build64-default/tools/objtool/objtool.o
-  HDRINST usr/include/linux/rds.h
-  HDRINST usr/include/linux/if_x25.h
-  CC      /kernel/build64-default/tools/objtool/orc_gen.o
-  HDRINST usr/include/linux/param.h
-  HDRINST usr/include/linux/netdevice.h
-  CC      /kernel/build64-default/tools/objtool/orc_dump.o
-  MKDIR   /kernel/build64-default/tools/objtool/arch/x86/lib/
-  HDRINST usr/include/linux/binfmts.h
-  CC      /kernel/build64-default/tools/objtool/arch/x86/special.o
-  HDRINST usr/include/linux/if_pppox.h
-  CC      /kernel/build64-default/tools/objtool/libstring.o
-  HDRINST usr/include/linux/sockios.h
-  CC      /kernel/build64-default/tools/objtool/libctype.o
-  CC      /kernel/build64-default/tools/objtool/str_error_r.o
-  GEN     /kernel/build64-default/tools/objtool/arch/x86/lib/inat-tables.c
-  HDRINST usr/include/linux/kcm.h
-  CC      /kernel/build64-default/tools/objtool/librbtree.o
-  MKELF   scripts/mod/elfconfig.h
-  HDRINST usr/include/linux/virtio_9p.h
-  HDRINST usr/include/linux/genwqe/genwqe_card.h
-  HDRINST usr/include/linux/if_tun.h
-  HOSTCC  scripts/mod/modpost.o
-  HDRINST usr/include/linux/ext4.h
-  HDRINST usr/include/linux/if_ether.h
-  HOSTCC  scripts/mod/file2alias.o
-  HOSTCC  scripts/mod/sumversion.o
-  HDRINST usr/include/linux/kvm_para.h
-  HDRINST usr/include/linux/kernel-page-flags.h
-  HOSTCC  scripts/mod/symsearch.o
-  HDRINST usr/include/linux/cdrom.h
-  HDRINST usr/include/linux/un.h
-  HDRINST usr/include/linux/module.h
-  HDRINST usr/include/linux/mqueue.h
-  HDRINST usr/include/linux/a.out.h
-  HDRINST usr/include/linux/input-event-codes.h
-  HDRINST usr/include/linux/coda.h
-  HDRINST usr/include/linux/rio_mport_cdev.h
-  HDRINST usr/include/linux/ipsec.h
-  HDRINST usr/include/linux/blkpg.h
-  HDRINST usr/include/linux/blkzoned.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_arpreply.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_redirect.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_nflog.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_802_3.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_nat.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_mark_m.h
-  HDRINST usr/include/linux/netfilter_bridge/ebtables.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_vlan.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_limit.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_log.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_stp.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_pkttype.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_ip.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_ip6.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_arp.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_mark_t.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_among.h
-  HDRINST usr/include/linux/reiserfs_fs.h
-  HDRINST usr/include/linux/cciss_ioctl.h
-  HDRINST usr/include/linux/fsmap.h
-  HDRINST usr/include/linux/smiapp.h
-  HDRINST usr/include/linux/switchtec_ioctl.h
-  HDRINST usr/include/linux/atmdev.h
-  HDRINST usr/include/linux/hpet.h
-  HDRINST usr/include/linux/virtio_config.h
-  HDRINST usr/include/linux/string.h
-  HDRINST usr/include/linux/nsm.h
-  HDRINST usr/include/linux/kfd_sysfs.h
-  HDRINST usr/include/linux/inet_diag.h
-  CC      /kernel/build64-default/tools/objtool/arch/x86/decode.o
-  HDRINST usr/include/linux/netdev.h
-  HDRINST usr/include/linux/xattr.h
-  HDRINST usr/include/linux/iommufd.h
-  HDRINST usr/include/linux/user_events.h
-  HDRINST usr/include/linux/errno.h
-  HDRINST usr/include/linux/icmp.h
-  HDRINST usr/include/linux/i2o-dev.h
-  HDRINST usr/include/linux/pg.h
-  HDRINST usr/include/linux/if_bridge.h
-  HDRINST usr/include/linux/thermal.h
-  HDRINST usr/include/linux/uinput.h
-  HDRINST usr/include/linux/handshake.h
-  HDRINST usr/include/linux/dqblk_xfs.h
-  HDRINST usr/include/linux/v4l2-common.h
-  HDRINST usr/include/linux/nvram.h
-  HDRINST usr/include/linux/if_vlan.h
-  HDRINST usr/include/linux/uhid.h
-  HDRINST usr/include/linux/omap3isp.h
-  HDRINST usr/include/linux/rose.h
-  HDRINST usr/include/linux/phantom.h
-  HDRINST usr/include/linux/dpll.h
-  HDRINST usr/include/linux/ipmi_msgdefs.h
-  HDRINST usr/include/linux/bcm933xx_hcs.h
-  HDRINST usr/include/linux/bpf.h
-  HDRINST usr/include/linux/mempolicy.h
-  HDRINST usr/include/linux/efs_fs_sb.h
-  HDRINST usr/include/linux/nexthop.h
-  HDRINST usr/include/linux/net_dropmon.h
-  HDRINST usr/include/linux/surface_aggregator/cdev.h
-  HDRINST usr/include/linux/surface_aggregator/dtx.h
-  HDRINST usr/include/linux/net.h
-  HDRINST usr/include/linux/mii.h
-  HDRINST usr/include/linux/virtio_pcidev.h
-  HDRINST usr/include/linux/termios.h
-  HDRINST usr/include/linux/cgroupstats.h
-  HDRINST usr/include/linux/mpls.h
-  HDRINST usr/include/linux/iommu.h
-  HDRINST usr/include/linux/toshiba.h
-  HDRINST usr/include/linux/virtio_scsi.h
-  HDRINST usr/include/linux/zorro.h
-  HDRINST usr/include/linux/chio.h
-  HDRINST usr/include/linux/pkt_sched.h
-  HDRINST usr/include/linux/cramfs_fs.h
-  HDRINST usr/include/linux/nfs3.h
-  HDRINST usr/include/linux/vfio_ccw.h
-  HDRINST usr/include/linux/atm_nicstar.h
-  HDRINST usr/include/linux/ncsi.h
-  HDRINST usr/include/linux/virtio_net.h
-  HDRINST usr/include/linux/ioctl.h
-  HDRINST usr/include/linux/stddef.h
-  HDRINST usr/include/linux/limits.h
-  HDRINST usr/include/linux/ipmi_bmc.h
-  HDRINST usr/include/linux/netfilter_arp.h
-  HDRINST usr/include/linux/if_addr.h
-  HDRINST usr/include/linux/rpmsg.h
-  HDRINST usr/include/linux/media-bus-format.h
-  HDRINST usr/include/linux/kernelcapi.h
-  HDRINST usr/include/linux/ppp_defs.h
-  HDRINST usr/include/linux/ethtool.h
-  HDRINST usr/include/linux/aspeed-video.h
-  HDRINST usr/include/linux/hdlc.h
-  HDRINST usr/include/linux/fscrypt.h
-  HDRINST usr/include/linux/batadv_packet.h
-  HDRINST usr/include/linux/uuid.h
-  HDRINST usr/include/linux/capi.h
-  HDRINST usr/include/linux/mptcp.h
-  HDRINST usr/include/linux/hidraw.h
-  HDRINST usr/include/linux/virtio_console.h
-  HDRINST usr/include/linux/irqnr.h
-  HDRINST usr/include/linux/coresight-stm.h
-  HDRINST usr/include/linux/cxl_mem.h
-  HDRINST usr/include/linux/iso_fs.h
-  HDRINST usr/include/linux/virtio_blk.h
-  HDRINST usr/include/linux/udf_fs_i.h
-  HDRINST usr/include/linux/coff.h
-  HDRINST usr/include/linux/dma-buf.h
-  HDRINST usr/include/linux/ife.h
-  HDRINST usr/include/linux/agpgart.h
-  HDRINST usr/include/linux/socket.h
-  HDRINST usr/include/linux/nilfs2_ondisk.h
-  HDRINST usr/include/linux/connector.h
-  HDRINST usr/include/linux/auto_fs4.h
-  HDRINST usr/include/linux/bt-bmc.h
-  HDRINST usr/include/linux/map_to_7segment.h
-  HDRINST usr/include/linux/tc_act/tc_skbedit.h
-  HDRINST usr/include/linux/tc_act/tc_ctinfo.h
-  HDRINST usr/include/linux/tc_act/tc_defact.h
-  HDRINST usr/include/linux/tc_act/tc_gact.h
-  HDRINST usr/include/linux/tc_act/tc_vlan.h
-  HDRINST usr/include/linux/tc_act/tc_skbmod.h
-  HDRINST usr/include/linux/tc_act/tc_sample.h
-  HDRINST usr/include/linux/tc_act/tc_tunnel_key.h
-  HDRINST usr/include/linux/tc_act/tc_gate.h
-  HDRINST usr/include/linux/tc_act/tc_mirred.h
-  HDRINST usr/include/linux/tc_act/tc_nat.h
-  HDRINST usr/include/linux/tc_act/tc_csum.h
-  HDRINST usr/include/linux/tc_act/tc_connmark.h
-  HDRINST usr/include/linux/tc_act/tc_ife.h
-  HDRINST usr/include/linux/tc_act/tc_mpls.h
-  HDRINST usr/include/linux/tc_act/tc_ct.h
-  HDRINST usr/include/linux/tc_act/tc_pedit.h
-  HDRINST usr/include/linux/tc_act/tc_bpf.h
-  HDRINST usr/include/linux/netrom.h
-  HDRINST usr/include/linux/joystick.h
-  HDRINST usr/include/linux/falloc.h
-  HDRINST usr/include/linux/cycx_cfm.h
-  HDRINST usr/include/linux/omapfb.h
-  HDRINST usr/include/linux/msdos_fs.h
-  HDRINST usr/include/linux/virtio_types.h
-  HDRINST usr/include/linux/mroute.h
-  HDRINST usr/include/linux/psample.h
-  HDRINST usr/include/linux/ipv6.h
-  HDRINST usr/include/linux/nfsd_netlink.h
-  HDRINST usr/include/linux/dw100.h
-  HDRINST usr/include/linux/psp-sev.h
-  HDRINST usr/include/linux/vfio.h
-  HDRINST usr/include/linux/if_ppp.h
-  HDRINST usr/include/linux/byteorder/big_endian.h
-  HDRINST usr/include/linux/byteorder/little_endian.h
-  HDRINST usr/include/linux/comedi.h
-  HDRINST usr/include/linux/scif_ioctl.h
-  HDRINST usr/include/linux/timerfd.h
-  HDRINST usr/include/linux/time_types.h
-  HDRINST usr/include/linux/firewire-constants.h
-  HDRINST usr/include/linux/virtio_snd.h
-  HDRINST usr/include/linux/ppp-ioctl.h
-  HDRINST usr/include/linux/fib_rules.h
-  HDRINST usr/include/linux/gen_stats.h
-  HDRINST usr/include/linux/virtio_iommu.h
-  HDRINST usr/include/linux/genetlink.h
-  HDRINST usr/include/linux/uvcvideo.h
-  HDRINST usr/include/linux/pfkeyv2.h
-  HDRINST usr/include/linux/soundcard.h
-  HDRINST usr/include/linux/times.h
-  HDRINST usr/include/linux/nfc.h
-  HDRINST usr/include/linux/affs_hardblocks.h
-  HDRINST usr/include/linux/nilfs2_api.h
-  HDRINST usr/include/linux/rseq.h
-  HDRINST usr/include/linux/caif/caif_socket.h
-  HDRINST usr/include/linux/caif/if_caif.h
-  HDRINST usr/include/linux/i2c-dev.h
-  HDRINST usr/include/linux/cuda.h
-  HDRINST usr/include/linux/mei_uuid.h
-  HDRINST usr/include/linux/cn_proc.h
-  HDRINST usr/include/linux/parport.h
-  HDRINST usr/include/linux/v4l2-controls.h
-  HDRINST usr/include/linux/hsi/cs-protocol.h
-  HDRINST usr/include/linux/hsi/hsi_char.h
-  HDRINST usr/include/linux/seg6_genl.h
-  HDRINST usr/include/linux/am437x-vpfe.h
-  HDRINST usr/include/linux/amt.h
-  HDRINST usr/include/linux/netconf.h
-  HDRINST usr/include/linux/erspan.h
-  HDRINST usr/include/linux/nsfs.h
-  HDRINST usr/include/linux/xilinx-v4l2-controls.h
-  HDRINST usr/include/linux/aspeed-p2a-ctrl.h
-  HDRINST usr/include/linux/vfio_zdev.h
-  HDRINST usr/include/linux/serio.h
-  HDRINST usr/include/linux/acrn.h
-  HDRINST usr/include/linux/nfs2.h
-  HDRINST usr/include/linux/mptcp_pm.h
-  HDRINST usr/include/linux/virtio_pci.h
-  HDRINST usr/include/linux/ipc.h
-  HDRINST usr/include/linux/ethtool_netlink.h
-  HDRINST usr/include/linux/kd.h
-  HDRINST usr/include/linux/elf.h
-  HDRINST usr/include/linux/videodev2.h
-  HDRINST usr/include/linux/if_alg.h
-  HDRINST usr/include/linux/sonypi.h
-  HDRINST usr/include/linux/fsverity.h
-  HDRINST usr/include/linux/if.h
-  HDRINST usr/include/linux/btrfs.h
-  HDRINST usr/include/linux/vm_sockets_diag.h
-  HDRINST usr/include/linux/netfilter_bridge.h
-  HDRINST usr/include/linux/packet_diag.h
-  HDRINST usr/include/linux/netfilter_ipv4.h
-  HDRINST usr/include/linux/kvm.h
-  HDRINST usr/include/linux/pci.h
-  HDRINST usr/include/linux/if_addrlabel.h
-  HDRINST usr/include/linux/hdlcdrv.h
-  HDRINST usr/include/linux/cfm_bridge.h
-  HDRINST usr/include/linux/fiemap.h
-  HDRINST usr/include/linux/dm-ioctl.h
-  HDRINST usr/include/linux/aspeed-lpc-ctrl.h
-  HDRINST usr/include/linux/dlm.h
-  HDRINST usr/include/linux/atmioc.h
-  HDRINST usr/include/linux/pci_regs.h
-  HDRINST usr/include/linux/cachefiles.h
-  HDRINST usr/include/linux/membarrier.h
-  HDRINST usr/include/linux/nfs_idmap.h
-  HDRINST usr/include/linux/ip.h
-  HDRINST usr/include/linux/atm_he.h
-  HDRINST usr/include/linux/nfsd/export.h
-  HDRINST usr/include/linux/nfsd/stats.h
-  HDRINST usr/include/linux/nfsd/debug.h
-  HDRINST usr/include/linux/nfsd/cld.h
-  HDRINST usr/include/linux/ip_vs.h
-  HDRINST usr/include/linux/vbox_vmmdev_types.h
-  HDRINST usr/include/linux/vmcore.h
-  HDRINST usr/include/linux/dvb/osd.h
-  HDRINST usr/include/linux/dvb/dmx.h
-  HDRINST usr/include/linux/dvb/net.h
-  HDRINST usr/include/linux/dvb/ca.h
-  HDRINST usr/include/linux/dvb/frontend.h
-  HDRINST usr/include/linux/dvb/version.h
-  HDRINST usr/include/linux/dvb/video.h
-  HDRINST usr/include/linux/dvb/audio.h
-  HDRINST usr/include/linux/nfs.h
-  HDRINST usr/include/linux/if_link.h
-  HDRINST usr/include/linux/wait.h
-  HDRINST usr/include/linux/icmpv6.h
-  HDRINST usr/include/linux/media.h
-  HDRINST usr/include/linux/seg6_local.h
-  HDRINST usr/include/linux/tps6594_pfsm.h
-  HDRINST usr/include/linux/openvswitch.h
-  HDRINST usr/include/linux/atmsap.h
-  HDRINST usr/include/linux/fpga-dfl.h
-  HDRINST usr/include/linux/userio.h
-  HDRINST usr/include/linux/signal.h
-  HDRINST usr/include/linux/map_to_14segment.h
-  HDRINST usr/include/linux/hdreg.h
-  HDRINST usr/include/linux/utime.h
-  HDRINST usr/include/linux/usbdevice_fs.h
-  HDRINST usr/include/linux/timex.h
-  HDRINST usr/include/linux/if_fc.h
-  HDRINST usr/include/linux/reiserfs_xattr.h
-  HDRINST usr/include/linux/hw_breakpoint.h
-  HDRINST usr/include/linux/quota.h
-  HDRINST usr/include/linux/ioprio.h
-  HDRINST usr/include/linux/eventpoll.h
-  HDRINST usr/include/linux/atmclip.h
-  HDRINST usr/include/linux/can.h
-  HDRINST usr/include/linux/if_team.h
-  HDRINST usr/include/linux/usbip.h
-  HDRINST usr/include/linux/stat.h
-  HDRINST usr/include/linux/fou.h
-  HDRINST usr/include/linux/hash_info.h
-  HDRINST usr/include/linux/ppp-comp.h
-  HDRINST usr/include/linux/ip6_tunnel.h
-  HDRINST usr/include/linux/tipc_netlink.h
-  HDRINST usr/include/linux/in.h
-  HDRINST usr/include/linux/wireguard.h
-  HDRINST usr/include/linux/btf.h
-  HDRINST usr/include/linux/batman_adv.h
-  HDRINST usr/include/linux/fcntl.h
-  HDRINST usr/include/linux/if_ltalk.h
-  HDRINST usr/include/linux/i2c.h
-  HDRINST usr/include/linux/atm_idt77105.h
-  HDRINST usr/include/linux/kexec.h
-  HDRINST usr/include/linux/arm_sdei.h
-  HDRINST usr/include/linux/netfilter_ipv6/ip6_tables.h
-  HDRINST usr/include/linux/netfilter_ipv6/ip6t_ah.h
-  HDRINST usr/include/linux/netfilter_ipv6/ip6t_NPT.h
-  HDRINST usr/include/linux/netfilter_ipv6/ip6t_rt.h
-  HDRINST usr/include/linux/netfilter_ipv6/ip6t_REJECT.h
-  HDRINST usr/include/linux/netfilter_ipv6/ip6t_opts.h
-  HDRINST usr/include/linux/netfilter_ipv6/ip6t_srh.h
-  HDRINST usr/include/linux/netfilter_ipv6/ip6t_LOG.h
-  HDRINST usr/include/linux/netfilter_ipv6/ip6t_mh.h
-  HDRINST usr/include/linux/netfilter_ipv6/ip6t_HL.h
-  HDRINST usr/include/linux/netfilter_ipv6/ip6t_hl.h
-  HDRINST usr/include/linux/netfilter_ipv6/ip6t_frag.h
-  HDRINST usr/include/linux/netfilter_ipv6/ip6t_ipv6header.h
-  HDRINST usr/include/linux/minix_fs.h
-  HDRINST usr/include/linux/aio_abi.h
-  HDRINST usr/include/linux/pktcdvd.h
-  HDRINST usr/include/linux/libc-compat.h
-  HDRINST usr/include/linux/atmlec.h
-  HDRINST usr/include/linux/signalfd.h
-  HDRINST usr/include/linux/bpf_common.h
-  HDRINST usr/include/linux/seg6_iptunnel.h
-  HDRINST usr/include/linux/synclink.h
-  HDRINST usr/include/linux/mpls_iptunnel.h
-  HDRINST usr/include/linux/mctp.h
-  HDRINST usr/include/linux/if_xdp.h
-  HDRINST usr/include/linux/llc.h
-  HDRINST usr/include/linux/atmsvc.h
-  HDRINST usr/include/linux/sed-opal.h
-  HDRINST usr/include/linux/sock_diag.h
-  HDRINST usr/include/linux/time.h
-  HDRINST usr/include/linux/securebits.h
-  HDRINST usr/include/linux/fsl_hypervisor.h
-  HDRINST usr/include/linux/if_hippi.h
-  HDRINST usr/include/linux/seccomp.h
-  HDRINST usr/include/linux/oom.h
-  HDRINST usr/include/linux/filter.h
-  HDRINST usr/include/linux/inotify.h
-  HDRINST usr/include/linux/rfkill.h
-  HDRINST usr/include/linux/reboot.h
-  HDRINST usr/include/linux/can/vxcan.h
-  HDRINST usr/include/linux/can/j1939.h
-  HDRINST usr/include/linux/can/netlink.h
-  HDRINST usr/include/linux/can/bcm.h
-  HDRINST usr/include/linux/can/raw.h
-  HDRINST usr/include/linux/can/gw.h
-  HDRINST usr/include/linux/can/error.h
-  HDRINST usr/include/linux/can/isotp.h
-  HDRINST usr/include/linux/if_eql.h
-  HDRINST usr/include/linux/psp-dbc.h
-  HDRINST usr/include/linux/hiddev.h
-  HDRINST usr/include/linux/blktrace_api.h
-  HDRINST usr/include/linux/ccs.h
-  HDRINST usr/include/linux/ioam6.h
-  HDRINST usr/include/linux/hsr_netlink.h
-  HDRINST usr/include/linux/mmc/ioctl.h
-  HDRINST usr/include/linux/bfs_fs.h
-  HDRINST usr/include/linux/npcm-video.h
-  HDRINST usr/include/linux/rio_cm_cdev.h
-  HDRINST usr/include/linux/uleds.h
-  HDRINST usr/include/linux/mrp_bridge.h
-  HDRINST usr/include/linux/adb.h
-  HDRINST usr/include/linux/pmu.h
-  HDRINST usr/include/linux/udmabuf.h
-  HDRINST usr/include/linux/kcmp.h
-  HDRINST usr/include/linux/dma-heap.h
-  HDRINST usr/include/linux/userfaultfd.h
-  HDRINST usr/include/linux/netfilter_arp/arpt_mangle.h
-  HDRINST usr/include/linux/netfilter_arp/arp_tables.h
-  HDRINST usr/include/linux/tipc.h
-  HDRINST usr/include/linux/virtio_ids.h
-  HDRINST usr/include/linux/l2tp.h
-  HDRINST usr/include/linux/devlink.h
-  HDRINST usr/include/linux/virtio_gpio.h
-  HDRINST usr/include/linux/dcbnl.h
-  HDRINST usr/include/linux/cyclades.h
-  HDRINST usr/include/regulator/regulator.h
-  HDRINST usr/include/sound/intel/avs/tokens.h
-  HDRINST usr/include/sound/sof/fw.h
-  HDRINST usr/include/sound/sof/abi.h
-  HDRINST usr/include/sound/sof/tokens.h
-  HDRINST usr/include/sound/sof/header.h
-  HDRINST usr/include/sound/usb_stream.h
-  HDRINST usr/include/sound/sfnt_info.h
-  HDRINST usr/include/sound/asequencer.h
-  HDRINST usr/include/sound/tlv.h
-  HDRINST usr/include/sound/scarlett2.h
-  HDRINST usr/include/sound/asound.h
-  HDRINST usr/include/sound/asoc.h
-  HDRINST usr/include/sound/sb16_csp.h
-  HDRINST usr/include/sound/compress_offload.h
-  HDRINST usr/include/sound/hdsp.h
-  HDRINST usr/include/sound/emu10k1.h
-  HDRINST usr/include/sound/snd_ar_tokens.h
-  HDRINST usr/include/sound/snd_sst_tokens.h
-  HDRINST usr/include/sound/asound_fm.h
-  HDRINST usr/include/sound/hdspm.h
-  HDRINST usr/include/sound/compress_params.h
-  HDRINST usr/include/sound/firewire.h
-  HDRINST usr/include/sound/skl-tplg-interface.h
-  HDRINST usr/include/scsi/scsi_bsg_ufs.h
-  HDRINST usr/include/scsi/scsi_netlink_fc.h
-  HDRINST usr/include/scsi/scsi_bsg_mpi3mr.h
-  HDRINST usr/include/scsi/fc/fc_ns.h
-  HDRINST usr/include/scsi/fc/fc_fs.h
-  HDRINST usr/include/scsi/fc/fc_els.h
-  HDRINST usr/include/scsi/fc/fc_gs.h
-  HDRINST usr/include/scsi/scsi_bsg_fc.h
-  HDRINST usr/include/scsi/cxlflash_ioctl.h
-  HDRINST usr/include/scsi/scsi_netlink.h
-  HDRINST usr/include/linux/version.h
-  HDRINST usr/include/asm/processor-flags.h
-  HDRINST usr/include/asm/auxvec.h
-  HDRINST usr/include/asm/svm.h
-  HDRINST usr/include/asm/bitsperlong.h
-  HDRINST usr/include/asm/kvm_perf.h
-  HDRINST usr/include/asm/mce.h
-  HDRINST usr/include/asm/posix_types.h
-  HDRINST usr/include/asm/msr.h
-  HDRINST usr/include/asm/sigcontext32.h
-  HDRINST usr/include/asm/mman.h
-  HDRINST usr/include/asm/shmbuf.h
-  HDRINST usr/include/asm/e820.h
-  HDRINST usr/include/asm/posix_types_64.h
-  HDRINST usr/include/asm/vsyscall.h
-  HDRINST usr/include/asm/msgbuf.h
-  HDRINST usr/include/asm/swab.h
-  HDRINST usr/include/asm/statfs.h
-  HDRINST usr/include/asm/posix_types_x32.h
-  HDRINST usr/include/asm/ptrace.h
-  HDRINST usr/include/asm/unistd.h
-  HDRINST usr/include/asm/ist.h
-  HDRINST usr/include/asm/prctl.h
-  HDRINST usr/include/asm/boot.h
-  HDRINST usr/include/asm/sigcontext.h
-  HDRINST usr/include/asm/posix_types_32.h
-  HDRINST usr/include/asm/kvm_para.h
-  HDRINST usr/include/asm/a.out.h
-  HDRINST usr/include/asm/mtrr.h
-  HDRINST usr/include/asm/amd_hsmp.h
-  HDRINST usr/include/asm/hwcap2.h
-  HDRINST usr/include/asm/ptrace-abi.h
-  HDRINST usr/include/asm/vm86.h
-  HDRINST usr/include/asm/vmx.h
-  HDRINST usr/include/asm/ldt.h
-  HDRINST usr/include/asm/perf_regs.h
-  HDRINST usr/include/asm/kvm.h
-  HDRINST usr/include/asm/debugreg.h
-  HDRINST usr/include/asm/signal.h
-  HDRINST usr/include/asm/bootparam.h
-  HDRINST usr/include/asm/siginfo.h
-  HDRINST usr/include/asm/hw_breakpoint.h
-  HDRINST usr/include/asm/stat.h
-  HDRINST usr/include/asm/setup.h
-  HDRINST usr/include/asm/sembuf.h
-  HDRINST usr/include/asm/sgx.h
-  HDRINST usr/include/asm/ucontext.h
-  HDRINST usr/include/asm/unistd_64.h
-  HDRINST usr/include/asm/byteorder.h
-  HDRINST usr/include/asm/ioctls.h
-  HDRINST usr/include/asm/bpf_perf_event.h
-  HDRINST usr/include/asm/types.h
-  HDRINST usr/include/asm/poll.h
-  HDRINST usr/include/asm/resource.h
-  HDRINST usr/include/asm/param.h
-  HDRINST usr/include/asm/sockios.h
-  HDRINST usr/include/asm/errno.h
-  HDRINST usr/include/asm/unistd_x32.h
-  HDRINST usr/include/asm/termios.h
-  HDRINST usr/include/asm/ioctl.h
-  HDRINST usr/include/asm/unistd_32.h
-  HDRINST usr/include/asm/socket.h
-  HDRINST usr/include/asm/termbits.h
-  HDRINST usr/include/asm/fcntl.h
-  HDRINST usr/include/asm/ipcbuf.h
-  LD      /kernel/build64-default/tools/objtool/arch/x86/objtool-in.o
-  HOSTLD  scripts/mod/modpost
-  CC      kernel/bounds.s
-  CHKSHA1 ../include/linux/atomic/atomic-arch-fallback.h
-  CHKSHA1 ../include/linux/atomic/atomic-instrumented.h
-  CHKSHA1 ../include/linux/atomic/atomic-long.h
-  UPD     include/generated/timeconst.h
-  UPD     include/generated/bounds.h
-  CC      arch/x86/kernel/asm-offsets.s
-  UPD     include/generated/asm-offsets.h
-  CALL    ../scripts/checksyscalls.sh
-  SYMLINK scripts/gdb/linux/clk.py
-  SYMLINK scripts/gdb/linux/config.py
-  SYMLINK scripts/gdb/linux/vmalloc.py
-  SYMLINK scripts/gdb/linux/genpd.py
-  SYMLINK scripts/gdb/linux/tasks.py
-  SYMLINK scripts/gdb/linux/modules.py
-  SYMLINK scripts/gdb/linux/proc.py
-  SYMLINK scripts/gdb/linux/utils.py
-  SYMLINK scripts/gdb/linux/timerlist.py
-  SYMLINK scripts/gdb/linux/vfs.py
-  SYMLINK scripts/gdb/linux/stackdepot.py
-  SYMLINK scripts/gdb/linux/radixtree.py
-  SYMLINK scripts/gdb/linux/pgtable.py
-  SYMLINK scripts/gdb/linux/lists.py
-  SYMLINK scripts/gdb/linux/symbols.py
-  SYMLINK scripts/gdb/linux/interrupts.py
-  SYMLINK scripts/gdb/linux/__init__.py
-  SYMLINK scripts/gdb/linux/cpus.py
-  SYMLINK scripts/gdb/linux/mm.py
-  SYMLINK scripts/gdb/linux/rbtree.py
-  SYMLINK scripts/gdb/linux/page_owner.py
-  SYMLINK scripts/gdb/linux/device.py
-  SYMLINK scripts/gdb/linux/dmesg.py
-  SYMLINK scripts/gdb/linux/slab.py
-  GEN     scripts/gdb/linux/constants.py
-  LD      /kernel/build64-default/tools/objtool/objtool-in.o
-  LINK    /kernel/build64-default/tools/objtool/objtool
-  LDS     scripts/module.lds
-  HOSTCC  usr/gen_init_cpio
-  CC      init/main.o
-  CC      certs/system_keyring.o
-  CC      init/do_mounts.o
-  CC      io_uring/io_uring.o
-  UPD     init/utsversion-tmp.h
-  CC      init/do_mounts_initrd.o
-  CC      block/bdev.o
-  CC      io_uring/xattr.o
-  AS      arch/x86/lib/clear_page_64.o
-  AR      arch/x86/virt/vmx/built-in.a
-  AR      samples/vfio-mdev/built-in.a
-  CC      arch/x86/video/fbdev.o
-  CC      ipc/compat.o
-  CC      mm/filemap.o
-  CC      security/tomoyo/audit.o
-  CC      arch/x86/power/cpu.o
-  AR      fs/nfs_common/built-in.a
-  AR      arch/x86/virt/built-in.a
-  CC      arch/x86/pci/i386.o
-  CC      block/partitions/core.o
-  CC      arch/x86/platform/pvh/enlighten.o
-  CC      fs/crypto/crypto.o
-  CC      arch/x86/xen/enlighten.o
-  CC      security/yama/yama_lsm.o
-  CC      security/safesetid/lsm.o
-  AR      samples/built-in.a
-  GEN     security/selinux/flask.h security/selinux/av_permissions.h
-  CC      security/bpf/hooks.o
-  AR      drivers/cache/built-in.a
-  CC      security/apparmor/apparmorfs.o
-  CC      arch/x86/realmode/init.o
-  CC      fs/iomap/trace.o
-  CC      fs/verity/enable.o
-  AR      virt/lib/built-in.a
-  CC [M]  fs/nfs_common/grace.o
-  CC      arch/x86/coco/tdx/tdx.o
-  CC      mm/kfence/core.o
-  CC      arch/x86/events/amd/core.o
-  CC      security/smack/smack_lsm.o
-  ASN.1   security/keys/trusted-keys/tpm2key.asn1.[ch]
-  CC      net/core/sock.o
-  CC [M]  virt/lib/irqbypass.o
-  CC      fs/notify/dnotify/dnotify.o
-  CC      security/selinux/avc.o
-  CC      security/keys/trusted-keys/trusted_core.o
-  AS      arch/x86/platform/pvh/head.o
-  AR      drivers/irqchip/built-in.a
-  CC [M]  sound/core/seq/seq.o
-  CC      arch/x86/kernel/fpu/init.o
-  AR      drivers/bus/mhi/built-in.a
-  AR      drivers/bus/built-in.a
-  AR      drivers/phy/allwinner/built-in.a
-  HOSTCC  certs/extract-cert
-  CC      lib/kunit/hooks.o
-  CC      arch/x86/entry/vdso/vma.o
-  COPY    certs/x509.genkey
-  CC      kernel/sched/core.o
-  AR      drivers/phy/amlogic/built-in.a
-  AR      drivers/phy/broadcom/built-in.a
-  CC      crypto/asymmetric_keys/asymmetric_type.o
-  CC      security/keys/trusted-keys/trusted_tpm1.o
-  CC      fs/crypto/fname.o
-  CC      crypto/asymmetric_keys/restrict.o
-  AR      drivers/phy/cadence/built-in.a
-  AR      drivers/phy/freescale/built-in.a
-  AR      drivers/phy/hisilicon/built-in.a
-  AR      drivers/phy/ingenic/built-in.a
-  AR      drivers/phy/intel/built-in.a
-  AR      drivers/phy/lantiq/built-in.a
-  CC      crypto/asymmetric_keys/signature.o
-  AR      drivers/phy/marvell/built-in.a
-  GEN     usr/initramfs_data.cpio
-  AR      drivers/phy/mediatek/built-in.a
-  COPY    usr/initramfs_inc_data
-  AS      usr/initramfs_data.o
-  AR      drivers/phy/microchip/built-in.a
-  AR      drivers/phy/motorola/built-in.a
-  AR      usr/built-in.a
-  AR      drivers/phy/mscc/built-in.a
-  CC      mm/mempool.o
-  CC      arch/x86/events/intel/core.o
-  AR      drivers/phy/qualcomm/built-in.a
-  CC      arch/x86/lib/cmdline.o
-  AR      drivers/phy/ralink/built-in.a
-  AR      drivers/phy/renesas/built-in.a
-  AR      drivers/phy/rockchip/built-in.a
-  AR      drivers/phy/samsung/built-in.a
-  CC [M]  lib/kunit/test.o
-  AR      drivers/phy/socionext/built-in.a
-  AR      drivers/phy/st/built-in.a
-  AR      drivers/phy/starfive/built-in.a
-  AR      drivers/phy/sunplus/built-in.a
-  AR      drivers/phy/tegra/built-in.a
-  AS      arch/x86/lib/cmpxchg16b_emu.o
-  AR      drivers/phy/ti/built-in.a
-  CC      arch/x86/lib/copy_mc.o
-  AR      drivers/phy/xilinx/built-in.a
-  CC      drivers/phy/phy-core.o
-  CC      certs/blacklist.o
-  CC      arch/x86/kernel/fpu/bugs.o
-  CC [M]  sound/core/seq/seq_lock.o
-  AS      arch/x86/realmode/rm/header.o
-  AR      arch/x86/platform/pvh/built-in.a
-  AS      arch/x86/realmode/rm/trampoline_64.o
-  CC      arch/x86/coco/tdx/tdx-shared.o
-  CC      security/safesetid/securityfs.o
-  AS      arch/x86/realmode/rm/stack.o
-  AR      fs/notify/dnotify/built-in.a
-  CC      fs/notify/inotify/inotify_fsnotify.o
-  CC      mm/oom_kill.o
-  AS      arch/x86/realmode/rm/reboot.o
-  AR      security/bpf/built-in.a
-  CC      init/initramfs.o
-  CC      ipc/util.o
-  CC      net/ethernet/eth.o
-  AS      arch/x86/realmode/rm/wakeup_asm.o
-  CC      arch/x86/realmode/rm/wakemain.o
-  CC      arch/x86/kernel/fpu/core.o
-  CC      fs/quota/dquot.o
-  AR      security/yama/built-in.a
-  AR      virt/built-in.a
-  CC      arch/x86/realmode/rm/video-mode.o
-  CC      arch/x86/entry/vdso/extable.o
-  CC      mm/fadvise.o
-  CC      net/core/request_sock.o
-  CC      fs/verity/hash_algs.o
-  CC      arch/x86/power/hibernate_64.o
-  CC      arch/x86/events/zhaoxin/core.o
-  AS      arch/x86/lib/copy_mc_64.o
-  AS      arch/x86/realmode/rm/copy.o
-  AS      arch/x86/coco/tdx/tdcall.o
-  CC      arch/x86/pci/init.o
-  CC      fs/iomap/iter.o
-  CC      crypto/asymmetric_keys/public_key.o
-  AS      arch/x86/realmode/rm/bioscall.o
-  AS      arch/x86/lib/copy_page_64.o
-  AS      arch/x86/lib/copy_user_64.o
-  AR      arch/x86/coco/tdx/built-in.a
-  CC [M]  sound/core/seq/seq_clientmgr.o
-  CC      arch/x86/coco/core.o
-  CC      arch/x86/realmode/rm/regs.o
-  CC [M]  lib/kunit/resource.o
-  CC      kernel/locking/mutex.o
-  CC      security/keys/trusted-keys/trusted_tpm2.o
-  POLICY  security/tomoyo/builtin-policy.h
-  CC      arch/x86/realmode/rm/video-vga.o
-  CC      security/tomoyo/condition.o
-  CC      fs/notify/inotify/inotify_user.o
-  AR      arch/x86/video/built-in.a
-  CC      security/tomoyo/domain.o
-  AR      security/safesetid/built-in.a
-  CC      arch/x86/xen/mmu.o
-  CC      fs/crypto/hkdf.o
-  CC      fs/crypto/hooks.o
-  CC      block/partitions/amiga.o
-  CC      arch/x86/realmode/rm/video-vesa.o
-  CC      security/keys/trusted-keys/tpm2key.asn1.o
-  CC      arch/x86/events/amd/lbr.o
-  CC [M]  sound/core/seq/seq_memory.o
-  AS      arch/x86/lib/copy_user_uncached_64.o
-  AR      arch/x86/coco/built-in.a
-  CC      arch/x86/lib/cpu.o
-  AS      arch/x86/lib/csum-copy_64.o
-  GEN     certs/blacklist_hash_list
-  CERT    certs/x509_revocation_list
-  CC      arch/x86/realmode/rm/video-bios.o
-  CC      fs/verity/init.o
-  CERT    certs/x509_certificate_list
-  CC      fs/verity/measure.o
-  GENKEY  certs/signing_key.pem
-Generating a RSA private key
-...  CC      arch/x86/mm/pat/set_memory.o
-..  CC      security/selinux/hooks.o
-  CC      certs/blacklist_hashes.o
-  CC      security/selinux/selinuxfs.o
-.......  CC      arch/x86/entry/vdso/vdso32-setup.o
-......  CC      mm/kfence/report.o
-.  PASYMS  arch/x86/realmode/rm/pasyms.h
-..  LDS     arch/x86/realmode/rm/realmode.lds
-........  CC      arch/x86/pci/mmconfig_64.o
-.  LD      arch/x86/realmode/rm/realmode.elf
-.  CC      arch/x86/events/amd/brs.o
-.  CC      security/smack/smack_access.o
-....  RELOCS  arch/x86/realmode/rm/realmode.relocs
-....  AS      arch/x86/power/hibernate_asm_64.o
-  OBJCOPY arch/x86/realmode/rm/realmode.bin
-.......  AS      arch/x86/realmode/rmpiggy.o
-.  CC      fs/iomap/buffered-io.o
-......  AR      arch/x86/events/zhaoxin/built-in.a
-.  CC      arch/x86/power/hibernate.o
-...........  AR      arch/x86/realmode/built-in.a
-.  CC      ipc/msgutil.o
-.  CC      arch/x86/mm/init.o
-........  CC      ipc/msg.o
-....  CC      security/landlock/setup.o
-...  CC      mm/maccess.o
-..++++
-............  AR      drivers/phy/built-in.a
-...............  AR      drivers/pinctrl/actions/built-in.a
-.  CC      mm/page-writeback.o
-.++++
-writing new private key to 'certs/signing_key.pem'
------
-  AR      drivers/pinctrl/bcm/built-in.a
-  LDS     arch/x86/entry/vdso/vdso.lds
-  AS      certs/revocation_certificates.o
-  CC [M]  sound/core/seq/seq_queue.o
-  CC      mm/folio-compat.o
-  AS      arch/x86/entry/vdso/vdso-note.o
-  CC [M]  lib/kunit/static_stub.o
-  AR      drivers/pinctrl/cirrus/built-in.a
-  CC      arch/x86/entry/vdso/vclock_gettime.o
-  AR      security/keys/trusted-keys/built-in.a
-  ASN.1   crypto/asymmetric_keys/x509.asn1.[ch]
-  CERT    certs/signing_key.x509
-  CC      init/calibrate.o
-  AS      certs/system_certificates.o
-  AR      drivers/pinctrl/freescale/built-in.a
-  ASN.1   crypto/asymmetric_keys/x509_akid.asn1.[ch]
-  CC      security/keys/encrypted-keys/encrypted.o
-  CC      drivers/pinctrl/intel/pinctrl-baytrail.o
-  CC      crypto/asymmetric_keys/x509_loader.o
-  AR      certs/built-in.a
-  CC      drivers/pinctrl/intel/pinctrl-cherryview.o
-  CC      drivers/pinctrl/intel/pinctrl-intel.o
-  CC      block/partitions/atari.o
-  CC      io_uring/nop.o
-  AR      fs/notify/inotify/built-in.a
-  CC      arch/x86/lib/csum-partial_64.o
-  CC [M]  sound/core/seq/seq_fifo.o
-  CC      fs/notify/fanotify/fanotify.o
-  CC      arch/x86/pci/direct.o
-  CC      init/init_task.o
-  CC      arch/x86/xen/time.o
-  CC      security/apparmor/audit.o
-  CC      arch/x86/lib/csum-wrappers_64.o
-  CC      security/landlock/syscalls.o
-  AR      mm/kfence/built-in.a
-  AS      arch/x86/crypto/blake2s-core.o
-  CC      fs/crypto/keyring.o
-  CC      arch/x86/crypto/blake2s-glue.o
-  CC      crypto/asymmetric_keys/x509_public_key.o
-  AR      arch/x86/power/built-in.a
-  CC      arch/x86/entry/vdso/vgetcpu.o
-  CC      fs/verity/open.o
-  CC      ipc/sem.o
-  CC      security/tomoyo/environ.o
-  CC      block/partitions/aix.o
-  CC      fs/quota/quota.o
-  CC      arch/x86/kernel/fpu/regset.o
-  CC      fs/verity/read_metadata.o
-  AR      net/ethernet/built-in.a
-  AS      arch/x86/entry/vdso/vsgx.o
-  CC      fs/verity/verify.o
-  CC      arch/x86/events/intel/bts.o
-  ASN.1   crypto/asymmetric_keys/pkcs7.asn1.[ch]
-  CC      crypto/asymmetric_keys/pkcs7_trust.o
-  HOSTCC  arch/x86/entry/vdso/vdso2c
-  CC      arch/x86/events/amd/ibs.o
-  CC      crypto/asymmetric_keys/pkcs7_verify.o
-  CC      arch/x86/crypto/crc32c-intel_glue.o
-  CC [M]  lib/kunit/string-stream.o
-  CC      security/smack/smackfs.o
-  CC      crypto/asymmetric_keys/verify_pefile.o
-  CC [M]  sound/core/seq/seq_prioq.o
-  CC      mm/readahead.o
-  CC      mm/swap.o
-  CC      arch/x86/lib/delay.o
-  LDS     arch/x86/entry/vdso/vdso32/vdso32.lds
-  CC      fs/quota/kqid.o
-  CC      fs/quota/netlink.o
-  AS      arch/x86/entry/vdso/vdso32/note.o
-  CC      arch/x86/lib/error-inject.o
-  CC      fs/crypto/keysetup.o
-  CC      arch/x86/pci/mmconfig-shared.o
-  AS      arch/x86/entry/vdso/vdso32/system_call.o
-  CC      arch/x86/kernel/fpu/signal.o
-  AS      arch/x86/entry/vdso/vdso32/sigreturn.o
-  CC      fs/notify/fsnotify.o
-  CC      kernel/locking/semaphore.o
-  CC      arch/x86/xen/grant-table.o
-  CC      arch/x86/entry/vdso/vdso32/vclock_gettime.o
-  CC      fs/notify/fanotify/fanotify_user.o
-  AS      arch/x86/lib/getuser.o
-  CC      ipc/shm.o
-  CC      security/tomoyo/file.o
-  CC      security/tomoyo/gc.o
-  CC      security/landlock/object.o
-  CC      security/keys/gc.o
-  CC      block/partitions/cmdline.o
-  AS      arch/x86/crypto/crc32c-pcl-intel-asm_64.o
-  CC      arch/x86/mm/pat/memtype.o
-  CC      block/fops.o
-  CC      security/keys/encrypted-keys/ecryptfs_format.o
-  CC      security/keys/encrypted-keys/masterkey_trusted.o
-  CC [M]  lib/kunit/assert.o
-  CC      init/version.o
-  AS [M]  arch/x86/crypto/aesni-intel_asm.o
-  CC      arch/x86/events/intel/ds.o
-  CC      mm/truncate.o
-  CC      security/tomoyo/group.o
-  GEN     security/apparmor/capability_names.h
-  ASN.1   crypto/asymmetric_keys/mscode.asn1.[ch]
-  CC      security/apparmor/task.o
-  CC      mm/vmscan.o
-  CC      io_uring/fs.o
-  CC      crypto/asymmetric_keys/x509.asn1.o
-  CC [M]  drivers/pinctrl/intel/pinctrl-alderlake.o
-  CC [M]  sound/core/seq/seq_timer.o
-  CC [M]  arch/x86/crypto/aesni-intel_glue.o
-  AS [M]  arch/x86/crypto/aesni-intel_avx-x86_64.o
-  GEN     arch/x86/lib/inat-tables.c
-  CC      arch/x86/lib/insn-eval.o
-  CC      crypto/asymmetric_keys/x509_akid.asn1.o
-  CC      arch/x86/entry/vdso/vdso32/vgetcpu.o
-  CC      arch/x86/events/core.o
-  CC      arch/x86/events/probe.o
-  CC      security/landlock/ruleset.o
-  CC      security/landlock/cred.o
-  CC      arch/x86/events/utils.o
-  CC      crypto/asymmetric_keys/x509_cert_parser.o
-  CC      fs/verity/signature.o
-  AR      init/built-in.a
-  CC      arch/x86/events/amd/iommu.o
-  CC [M]  drivers/pinctrl/intel/pinctrl-meteorlake.o
-  VDSO    arch/x86/entry/vdso/vdso64.so.dbg
-  CC      net/core/skbuff.o
-  CC      arch/x86/pci/xen.o
-  CC      arch/x86/xen/suspend.o
-  CC      fs/notify/notification.o
-  CC      fs/iomap/direct-io.o
-  CC      arch/x86/kernel/fpu/xstate.o
-  VDSO    arch/x86/entry/vdso/vdso32.so.dbg
-  CC      security/selinux/netlink.o
-  OBJCOPY arch/x86/entry/vdso/vdso64.so
-  AR      security/keys/encrypted-keys/built-in.a
-  OBJCOPY arch/x86/entry/vdso/vdso32.so
-  AR      fs/quota/built-in.a
-  VDSO2C  arch/x86/entry/vdso/vdso-image-64.c
-  CC      kernel/locking/rwsem.o
-  VDSO2C  arch/x86/entry/vdso/vdso-image-32.c
-  CC      arch/x86/entry/vdso/vdso-image-64.o
-  CC      security/keys/key.o
-  CC      security/keys/keyring.o
-  CC      arch/x86/mm/init_64.o
-  CC      block/partitions/mac.o
-  CC      fs/crypto/keysetup_v1.o
-  CC      mm/shrinker.o
-  CC      security/landlock/ptrace.o
-  CC [M]  sound/core/seq/seq_system.o
-  CC      security/tomoyo/load_policy.o
-  CC      arch/x86/xen/enlighten_hvm.o
-  CC [M]  sound/core/seq/seq_ports.o
-  CC      arch/x86/xen/mmu_hvm.o
-  AS [M]  arch/x86/crypto/aes_ctrby8_avx-x86_64.o
-  CC      arch/x86/entry/vdso/vdso-image-32.o
-  AR      fs/verity/built-in.a
-  CC [M]  drivers/pinctrl/intel/pinctrl-tigerlake.o
-  CC      io_uring/splice.o
-  CC      crypto/asymmetric_keys/pkcs7.asn1.o
-  CC      crypto/asymmetric_keys/pkcs7_parser.o
-  CC      arch/x86/xen/suspend_hvm.o
-  CC      fs/proc/task_mmu.o
-  CC      arch/x86/xen/platform-pci-unplug.o
-  CC      arch/x86/mm/pat/memtype_interval.o
-  CC      security/smack/smack_netfilter.o
-  CC      arch/x86/lib/insn.o
-  CC      mm/shmem.o
-  CC [M]  lib/kunit/try-catch.o
-  CC      mm/util.o
-  CC      mm/mmzone.o
-  CC      kernel/sched/fair.o
-  AS [M]  arch/x86/crypto/sha1_avx2_x86_64_asm.o
-  AR      fs/notify/fanotify/built-in.a
-  CC      mm/vmstat.o
-  CC      arch/x86/kernel/cpu/mce/core.o
-  AS [M]  arch/x86/crypto/sha1_ssse3_asm.o
-  AR      arch/x86/events/amd/built-in.a
-  CC      arch/x86/kernel/cpu/mce/severity.o
-  CC      ipc/syscall.o
-  AR      arch/x86/entry/vdso/built-in.a
-  CC      arch/x86/entry/vsyscall/vsyscall_64.o
-  CC [M]  arch/x86/crypto/sha1_ssse3_glue.o
-  AS      arch/x86/entry/vsyscall/vsyscall_emu_64.o
-  CC      arch/x86/kernel/cpu/mtrr/mtrr.o
-  AS      arch/x86/lib/memcpy_64.o
-  CC      arch/x86/kernel/cpu/mtrr/if.o
-  CC      security/apparmor/ipc.o
-  CC      security/landlock/fs.o
-  CC      fs/notify/group.o
-  CC      security/selinux/nlmsgtab.o
-  AR      drivers/pinctrl/intel/built-in.a
-  CC      arch/x86/events/intel/knc.o
-  CC      security/selinux/netif.o
-  CC      block/partitions/ldm.o
-  AR      drivers/pinctrl/mediatek/built-in.a
-  AR      arch/x86/mm/pat/built-in.a
-  AR      drivers/pinctrl/mvebu/built-in.a
-  CC      security/tomoyo/memory.o
-  CC      fs/crypto/policy.o
-  CC      security/keys/keyctl.o
-  AR      drivers/pinctrl/nomadik/built-in.a
-  AR      drivers/pinctrl/nuvoton/built-in.a
-  CC      io_uring/sync.o
-  AS      arch/x86/lib/memmove_64.o
-  CC      mm/backing-dev.o
-  CC      io_uring/advise.o
-  AR      drivers/pinctrl/nxp/built-in.a
-  AS      arch/x86/lib/memset_64.o
-  AR      drivers/pinctrl/qcom/built-in.a
-  AR      drivers/pinctrl/sprd/built-in.a
-  AR      drivers/pinctrl/sunplus/built-in.a
-  CC      ipc/ipc_sysctl.o
-  CC [M]  lib/kunit/executor.o
-  AR      drivers/pinctrl/ti/built-in.a
-  CC      arch/x86/pci/fixup.o
-  CC [M]  sound/core/seq/seq_info.o
-  CC      drivers/pinctrl/core.o
-  AS [M]  arch/x86/crypto/sha1_ni_asm.o
-  CC      crypto/asymmetric_keys/mscode_parser.o
-  CC      arch/x86/kernel/cpu/mtrr/generic.o
-  CC      crypto/asymmetric_keys/mscode.asn1.o
-  AS [M]  arch/x86/crypto/sha256-ssse3-asm.o
-  AS [M]  arch/x86/crypto/sha256-avx-asm.o
-  CC      fs/iomap/fiemap.o
-  AS [M]  arch/x86/crypto/sha256-avx2-asm.o
-  CC [M]  arch/x86/crypto/sha256_ssse3_glue.o
-  CC [M]  lib/kunit/attributes.o
-  CC      security/landlock/net.o
-  AR      arch/x86/entry/vsyscall/built-in.a
-  CC      mm/mm_init.o
-  CC      arch/x86/lib/misc.o
-  CC      security/integrity/ima/ima_fs.o
-  CC      arch/x86/kernel/acpi/boot.o
-  AS      arch/x86/entry/entry.o
-  CC      kernel/locking/percpu-rwsem.o
-  CC      security/integrity/ima/ima_queue.o
-  AS [M]  arch/x86/crypto/sha256_ni_asm.o
-  CC      arch/x86/lib/pc-conf-reg.o
-  AR      security/smack/built-in.a
-  AR      arch/x86/kernel/fpu/built-in.a
-  CC      arch/x86/events/intel/lbr.o
-  CC      fs/proc/inode.o
-  CC      ipc/mqueue.o
-  CC      ipc/namespace.o
-  CC      security/integrity/evm/evm_main.o
-  AR      crypto/asymmetric_keys/built-in.a
-  CC      mm/percpu.o
-  CC [M]  crypto/async_tx/async_tx.o
-  CC      security/apparmor/lib.o
-  CC      mm/slab_common.o
-  CC      security/apparmor/match.o
-  CC      security/integrity/evm/evm_crypto.o
-  CC      fs/crypto/bio.o
-  LD [M]  sound/core/seq/snd-seq.o
-  CC      arch/x86/mm/fault.o
-  CC [M]  sound/core/sound.o
-  AS      arch/x86/lib/putuser.o
-  CC      arch/x86/mm/ioremap.o
-  CC      io_uring/filetable.o
-  AS      arch/x86/entry/entry_64.o
-  CC      arch/x86/xen/setup.o
-  CC      io_uring/openclose.o
-  CC      security/tomoyo/mount.o
-  CC      security/selinux/netnode.o
-  CC      fs/notify/mark.o
-  CC      block/partitions/msdos.o
-  CC [M]  lib/kunit/device.o
-  CC      security/keys/permission.o
-  AS [M]  arch/x86/crypto/sha512-ssse3-asm.o
-  CC      fs/crypto/inline_crypt.o
-  CC      arch/x86/pci/acpi.o
-  AS      arch/x86/lib/retpoline.o
-  AS [M]  arch/x86/crypto/sha512-avx-asm.o
-  AS [M]  arch/x86/crypto/sha512-avx2-asm.o
-  CC      drivers/pinctrl/pinctrl-utils.o
-  CC      arch/x86/entry/syscall_64.o
-  CC      security/integrity/ima/ima_init.o
-  CC      security/integrity/ima/ima_main.o
-  CC      arch/x86/pci/legacy.o
-  CC [M]  arch/x86/crypto/sha512_ssse3_glue.o
-  AR      security/landlock/built-in.a
-  CC      fs/iomap/seek.o
-  CC      fs/proc/root.o
-  CC      mm/compaction.o
-  CC      mm/show_mem.o
-  CC      io_uring/uring_cmd.o
-  CC      fs/proc/base.o
-  CC      kernel/locking/irqflag-debug.o
-  CC      arch/x86/kernel/cpu/mce/genpool.o
-  CC      arch/x86/kernel/cpu/mtrr/cleanup.o
-  CC      arch/x86/lib/usercopy.o
-  CC      drivers/pinctrl/pinmux.o
-  CC [M]  sound/core/init.o
-  CC [M]  sound/core/memory.o
-  CC [M]  crypto/async_tx/async_memcpy.o
-  CC      kernel/locking/mutex-debug.o
-  CC      security/keys/process_keys.o
-  CC      security/integrity/evm/evm_secfs.o
-  CC      security/apparmor/path.o
-  CC      arch/x86/entry/common.o
-  CC      arch/x86/events/intel/p4.o
-  AS      arch/x86/entry/thunk_64.o
-  CC      security/tomoyo/network.o
-  CC      fs/notify/fdinfo.o
-  CC [M]  lib/kunit/debugfs.o
-  CC      arch/x86/kernel/acpi/sleep.o
-  CC      security/integrity/ima/ima_crypto.o
-  CC      arch/x86/kernel/cpu/mce/intel.o
-  AS [M]  arch/x86/crypto/ghash-clmulni-intel_asm.o
-  AS      arch/x86/entry/entry_64_compat.o
-  CC      security/selinux/netport.o
-  CC      fs/iomap/swapfile.o
-  CC      security/keys/request_key.o
-  CC      security/apparmor/domain.o
-  CC      block/partitions/osf.o
-  CC [M]  arch/x86/crypto/ghash-clmulni-intel_glue.o
-  CC      arch/x86/lib/usercopy_64.o
-  CC      arch/x86/entry/syscall_32.o
-  CC      mm/shmem_quota.o
-  CC      ipc/mq_sysctl.o
-  CC      security/selinux/status.o
-  CC      security/selinux/ss/ebitmap.o
-  CC      arch/x86/mm/extable.o
-  CC      arch/x86/pci/irq.o
-  CC      kernel/power/qos.o
-  CC      arch/x86/pci/numachip.o
-  CC      kernel/power/main.o
-  CC      drivers/pinctrl/pinconf.o
-  AR      fs/crypto/built-in.a
-  CC      kernel/power/console.o
-  CC      arch/x86/pci/common.o
-  AR      arch/x86/kernel/cpu/mtrr/built-in.a
-  AR      lib/kunit/built-in.a
-  LD [M]  lib/kunit/kunit.o
-  CC      security/integrity/evm/evm_posix_acl.o
-  CC      drivers/pinctrl/pinconf-generic.o
-  CC      lib/math/div64.o
-  AR      fs/notify/built-in.a
-  CC [M]  sound/core/control.o
-  AR      ipc/built-in.a
-  CC      fs/kernfs/mount.o
-  CC      kernel/locking/lockdep.o
-  AS      arch/x86/kernel/acpi/wakeup_64.o
-  CC      security/keys/request_key_auth.o
-  CC      lib/math/gcd.o
-  CC      lib/crypto/mpi/generic_mpih-lshift.o
-  CC      arch/x86/kernel/cpu/mce/amd.o
-  CC      kernel/sched/build_policy.o
-  CC      arch/x86/kernel/acpi/apei.o
-  CC      arch/x86/events/intel/p6.o
-  AS [M]  arch/x86/crypto/polyval-clmulni_asm.o
-  CC      arch/x86/kernel/acpi/cppc.o
-  CC      kernel/locking/lockdep_proc.o
-  CC [M]  crypto/async_tx/async_xor.o
-  CC      arch/x86/lib/msr-smp.o
-  CC      block/partitions/sgi.o
-  CC [M]  arch/x86/crypto/polyval-clmulni_glue.o
-  CC      kernel/locking/spinlock.o
-  CC      lib/math/lcm.o
-  AR      arch/x86/entry/built-in.a
-  CC      security/integrity/ima/ima_api.o
-  CC [M]  sound/core/misc.o
-  CC      arch/x86/ia32/audit.o
-  CC      security/selinux/ss/hashtab.o
-  CC      lib/zlib_inflate/inffast.o
-  CC      security/selinux/ss/symtab.o
-  CC      io_uring/epoll.o
-  AR      arch/x86/ia32/built-in.a
-  CC      lib/math/int_log.o
-  CC      security/selinux/ss/sidtab.o
-  CC      security/tomoyo/realpath.o
-  CC      lib/math/int_pow.o
-  AR      security/integrity/evm/built-in.a
-  CC      kernel/printk/printk.o
-  CC      kernel/printk/printk_safe.o
-  CC      arch/x86/mm/mmap.o
-  AR      fs/iomap/built-in.a
-  CC      lib/math/int_sqrt.o
-  CC      drivers/pinctrl/pinctrl-amd.o
-  CC      lib/zlib_inflate/inflate.o
-  CC      net/core/datagram.o
-  CC      kernel/printk/nbcon.o
-  CC      lib/crypto/memneq.o
-  CC      lib/crypto/utils.o
-  CC      arch/x86/lib/cache-smp.o
-  CC      lib/math/reciprocal_div.o
-  CC      security/integrity/ima/ima_policy.o
-  CC      arch/x86/lib/msr.o
-  CC      security/integrity/ima/ima_template.o
-  CC      fs/proc/generic.o
-  CC      lib/crypto/mpi/generic_mpih-mul1.o
-  CC      arch/x86/pci/early.o
-  CC      security/keys/user_defined.o
-  CC      kernel/printk/printk_ringbuffer.o
-  CC      lib/math/rational.o
-  CC      fs/kernfs/inode.o
-  CC      arch/x86/kernel/acpi/cstate.o
-  AS [M]  arch/x86/crypto/crc32-pclmul_asm.o
-  CC      security/selinux/ss/avtab.o
-  CC [M]  lib/math/prime_numbers.o
-  CC [M]  arch/x86/crypto/crc32-pclmul_glue.o
-  CC      arch/x86/events/intel/pt.o
-  CC      security/apparmor/policy.o
-  CC      arch/x86/mm/pgtable.o
-  CC      arch/x86/kernel/cpu/mce/threshold.o
-  CC      arch/x86/mm/physaddr.o
-  CC      arch/x86/kernel/cpu/mce/apei.o
-  CC      block/partitions/sun.o
-  CC      kernel/printk/sysctl.o
-  CC      security/integrity/ima/ima_template_lib.o
-  CC      io_uring/statx.o
-  CC      arch/x86/mm/tlb.o
-  CC      lib/zlib_inflate/infutil.o
-  CC      kernel/power/process.o
-  CC      lib/zlib_inflate/inftrees.o
-  CC [M]  crypto/async_tx/async_pq.o
-  CC      lib/crypto/mpi/generic_mpih-mul2.o
-  CC      security/tomoyo/securityfs_if.o
-  CC      security/tomoyo/tomoyo.o
-  CC      arch/x86/kernel/cpu/mce/dev-mcelog.o
-  CC      arch/x86/pci/bus_numa.o
-  AS [M]  arch/x86/crypto/crct10dif-pcl-asm_64.o
-  CC [M]  sound/core/device.o
-  CC      security/keys/compat.o
-  CC [M]  arch/x86/crypto/crct10dif-pclmul_glue.o
-  CC      kernel/irq/irqdesc.o
-  CC      mm/interval_tree.o
-  AS      arch/x86/lib/msr-reg.o
-  CC      fs/proc/array.o
-  CC      lib/crypto/chacha.o
-  CC      lib/zlib_inflate/inflate_syms.o
-  CC      fs/kernfs/dir.o
-  CC      arch/x86/mm/cpu_entry_area.o
-  CC      arch/x86/events/intel/uncore.o
-  CC      drivers/pinctrl/pinctrl-sx150x.o
-  CC [M]  sound/core/info.o
-  CC      lib/crypto/aes.o
-  AR      lib/math/built-in.a
-  CC      block/partitions/ultrix.o
-  CC      block/partitions/efi.o
-  CC      arch/x86/lib/msr-reg-export.o
-  AR      arch/x86/kernel/acpi/built-in.a
-  CC      net/802/fc.o
-  CC      io_uring/net.o
-  AS      arch/x86/lib/hweight.o
-  CC      io_uring/msg_ring.o
-  CC      security/selinux/ss/policydb.o
-  CC      arch/x86/lib/iomem.o
-  CC      arch/x86/mm/maccess.o
-  CC      lib/crypto/mpi/generic_mpih-mul3.o
-  CC      lib/crypto/mpi/generic_mpih-rshift.o
-  CC      net/sched/sch_generic.o
-  LD [M]  arch/x86/crypto/aesni-intel.o
-  LD [M]  arch/x86/crypto/sha1-ssse3.o
-  CC      security/selinux/ss/services.o
-  CC      arch/x86/mm/pgprot.o
-  LD [M]  arch/x86/crypto/sha256-ssse3.o
-  LD [M]  arch/x86/crypto/sha512-ssse3.o
-  LD [M]  arch/x86/crypto/ghash-clmulni-intel.o
-  LD [M]  arch/x86/crypto/polyval-clmulni.o
-  LD [M]  arch/x86/crypto/crc32-pclmul.o
-  CC      arch/x86/pci/amd_bus.o
-  LD [M]  arch/x86/crypto/crct10dif-pclmul.o
-  CC      security/integrity/ima/ima_appraise.o
-  AR      arch/x86/crypto/built-in.a
-  CC      block/partitions/karma.o
-  CC      block/partitions/sysv68.o
-  CC      kernel/locking/osq_lock.o
-  CC      security/keys/compat_dh.o
-  CC      net/802/fddi.o
-  CC      kernel/power/suspend.o
-  AR      arch/x86/platform/atom/built-in.a
-  AR      arch/x86/platform/ce4100/built-in.a
-  CC      arch/x86/platform/efi/memmap.o
-  CC      lib/crypto/mpi/generic_mpih-sub1.o
-  AR      arch/x86/platform/geode/built-in.a
-  CC [M]  net/802/p8022.o
-  AR      arch/x86/kernel/cpu/mce/built-in.a
-  CC [M]  crypto/async_tx/async_raid6_recov.o
-  CC      kernel/irq/handle.o
-  CC      security/commoncap.o
-  AR      lib/zlib_inflate/built-in.a
-  CC      mm/list_lru.o
-  CC      net/core/stream.o
-  CC      arch/x86/kernel/cpu/microcode/core.o
-  CC [M]  sound/core/info_oss.o
-  CC      security/tomoyo/util.o
-  CC      arch/x86/kernel/cpu/microcode/intel.o
-  CC      security/integrity/iint.o
-  CC      block/bio.o
-  CC      block/elevator.o
-  CC      lib/crypto/gf128mul.o
-  CC      security/keys/proc.o
-  CC      fs/proc/fd.o
-  CC      io_uring/timeout.o
-  CC      io_uring/sqpoll.o
-  CC      kernel/irq/manage.o
-  CC      security/apparmor/policy_unpack.o
-  CC      net/core/scm.o
-  CC      kernel/irq/spurious.o
-  CC      kernel/sched/build_utility.o
-  AS      arch/x86/lib/iomap_copy_64.o
-  AR      kernel/printk/built-in.a
-  CC      fs/kernfs/file.o
-  CC      block/blk-core.o
-  AR      drivers/pinctrl/built-in.a
-  CC      arch/x86/lib/inat.o
-  CC      arch/x86/mm/hugetlbpage.o
-  AR      arch/x86/pci/built-in.a
-  AR      block/partitions/built-in.a
-  CC      drivers/gpio/gpiolib.o
-  AR      arch/x86/lib/built-in.a
-  CC      fs/kernfs/symlink.o
-  CC      lib/crypto/mpi/generic_mpih-add1.o
-  CC      fs/proc/proc_tty.o
-  CC      drivers/gpio/gpiolib-devres.o
-  CC      kernel/rcu/update.o
-  CC      security/integrity/ima/ima_modsig.o
-  AR      arch/x86/lib/lib.a
-  CC      drivers/pwm/core.o
-  CC      kernel/irq/resend.o
-  CC      arch/x86/events/intel/uncore_nhmex.o
-  CC      drivers/pwm/sysfs.o
-  CC      drivers/pwm/pwm-crc.o
-  CC      arch/x86/platform/efi/quirks.o
-  CC      security/integrity/integrity_audit.o
-  CC      arch/x86/kernel/cpu/microcode/amd.o
-  CC [M]  sound/core/isadma.o
-  CC      security/keys/sysctl.o
-  CC      kernel/irq/chip.o
-  CC      kernel/irq/dummychip.o
-  CC      kernel/locking/qspinlock.o
-  CC      io_uring/fdinfo.o
-  CC      lib/crypto/mpi/ec.o
-  CC      kernel/irq/devres.o
-  CC      fs/proc/cmdline.o
-  CC      arch/x86/kernel/apic/apic.o
-  CC      arch/x86/kernel/kprobes/core.o
-  CC      arch/x86/kernel/apic/apic_common.o
-  CC      drivers/gpio/gpiolib-legacy.o
-  CC      arch/x86/mm/dump_pagetables.o
-  CC      arch/x86/kernel/apic/apic_noop.o
-  CC      crypto/api.o
-  CC      block/blk-sysfs.o
-  CC      drivers/gpio/gpiolib-cdev.o
-  CC      security/keys/persistent.o
-  CC [M]  net/802/psnap.o
-  CC      security/tomoyo/common.o
-  CC      security/integrity/ima/ima_kexec.o
-  CC      mm/workingset.o
-  CC [M]  net/802/stp.o
-  CC      crypto/cipher.o
-  CC      kernel/power/hibernate.o
-  CC      security/integrity/digsig.o
-  CC      crypto/compress.o
-  CC      crypto/algapi.o
-  CC      kernel/locking/rtmutex_api.o
-  CC      security/integrity/digsig_asymmetric.o
-  AR      fs/kernfs/built-in.a
-  CC      fs/proc/consoles.o
-  AR      arch/x86/kernel/cpu/microcode/built-in.a
-  CC      arch/x86/platform/efi/efi.o
-  CC      arch/x86/events/intel/uncore_snb.o
-  CC      arch/x86/kernel/cpu/resctrl/core.o
-  CC      mm/debug.o
-  CC [M]  sound/core/sound_oss.o
-  CC      mm/gup.o
-  CC      mm/mmap_lock.o
-  CC      kernel/rcu/sync.o
-  CC      security/keys/dh.o
-  CC      drivers/pwm/pwm-lpss.o
-  CC      crypto/scatterwalk.o
-  CC      io_uring/tctx.o
-  CC      arch/x86/kernel/kprobes/opt.o
-  CC      crypto/proc.o
-  CC      security/integrity/ima/ima_asymmetric_keys.o
-  CC      kernel/locking/spinlock_debug.o
-  CC      net/sched/sch_mq.o
-  CC      kernel/locking/qrwlock.o
-  CC      crypto/aead.o
-  CC      net/core/gen_stats.o
-  CC      security/selinux/ss/conditional.o
-  CC      net/netlink/af_netlink.o
-  CC      net/bpf/test_run.o
-  CC      net/netlink/genetlink.o
-  CC      drivers/pci/msi/pcidev_msi.o
-  CC      security/integrity/platform_certs/platform_keyring.o
-  CC      fs/proc/cpuinfo.o
-  CC      arch/x86/mm/kmmio.o
-  CC      kernel/irq/autoprobe.o
-  CC      kernel/power/snapshot.o
-  CC      lib/crypto/mpi/mpicoder.o
-  CC      kernel/power/swap.o
-  CC      net/netlink/policy.o
-  CC [M]  sound/core/vmaster.o
-  CC      security/integrity/platform_certs/machine_keyring.o
-  CC      arch/x86/kernel/cpu/resctrl/rdtgroup.o
-  CC      arch/x86/xen/apic.o
-  CC      arch/x86/events/intel/uncore_snbep.o
-  CC      security/keys/keyctl_pkey.o
-  AR      net/802/built-in.a
-  CC      security/apparmor/procattr.o
-  CC      arch/x86/events/intel/uncore_discovery.o
-  CC      arch/x86/platform/efi/efi_64.o
-  CC      net/sched/sch_frag.o
-  CC      kernel/rcu/srcutree.o
-  AR      arch/x86/platform/iris/built-in.a
-  CC      security/integrity/ima/ima_queue_keys.o
-  CC      security/integrity/ima/ima_efi.o
-  CC      net/sched/sch_api.o
-  CC      arch/x86/kernel/apic/ipi.o
-  CC      arch/x86/kernel/apic/vector.o
-  CC      arch/x86/kernel/kprobes/ftrace.o
-  CC      fs/proc/devices.o
-  CC      drivers/pwm/pwm-lpss-pci.o
-  CC      io_uring/poll.o
-  CC      drivers/pci/msi/api.o
-  CC      drivers/gpio/gpiolib-sysfs.o
-  CC      mm/highmem.o
-  CC      io_uring/cancel.o
-  CC      io_uring/kbuf.o
-  CC      crypto/geniv.o
-  CC      io_uring/rsrc.o
-  AR      kernel/locking/built-in.a
-  CC      kernel/power/user.o
-  CC      arch/x86/kernel/apic/init.o
-  CC      security/integrity/platform_certs/efi_parser.o
-  CC      block/blk-flush.o
-  CC      arch/x86/kernel/apic/hw_nmi.o
-  AR      security/keys/built-in.a
-  AR      security/tomoyo/built-in.a
-  CC [M]  sound/core/ctljack.o
-  CC      arch/x86/xen/pmu.o
-  AR      drivers/rapidio/switches/built-in.a
-  CC      security/selinux/ss/mls.o
-  CC      kernel/irq/irqdomain.o
-  CC      arch/x86/kernel/cpu/resctrl/monitor.o
-  AR      drivers/rapidio/devices/built-in.a
-  CC      drivers/rapidio/rio.o
-  CC      drivers/pci/msi/msi.o
-  CC      drivers/pci/msi/irqdomain.o
-  CC      arch/x86/kernel/apic/io_apic.o
-  CC      kernel/livepatch/core.o
-  CC      lib/crypto/mpi/mpi-add.o
-  CC      arch/x86/mm/pf_in.o
-  AR      arch/x86/kernel/kprobes/built-in.a
-  CC      drivers/rapidio/rio-access.o
-  AR      security/integrity/ima/built-in.a
-  CC      lib/crypto/mpi/mpi-bit.o
-  CC      net/sched/sch_blackhole.o
-  CC      net/core/gen_estimator.o
-  CC      drivers/gpio/gpiolib-acpi.o
-  CC      fs/proc/interrupts.o
-  CC      drivers/pwm/pwm-lpss-platform.o
-  CC      block/blk-settings.o
-  CC      kernel/dma/mapping.o
-  CC      security/apparmor/lsm.o
-  CC      security/integrity/platform_certs/load_uefi.o
-  CC      kernel/dma/direct.o
-  CC      kernel/rcu/tree.o
-  AS      arch/x86/platform/efi/efi_stub_64.o
-  CC      crypto/lskcipher.o
-  CC [M]  sound/core/jack.o
-  AS      arch/x86/platform/efi/efi_thunk_64.o
-  CC      kernel/power/wakelock.o
-  CC      arch/x86/kernel/apic/msi.o
-  CC      fs/proc/loadavg.o
-  CC      net/bpf/bpf_dummy_struct_ops.o
-  CC      arch/x86/platform/efi/runtime-map.o
-  CC      crypto/skcipher.o
-  CC      arch/x86/kernel/apic/apic_numachip.o
-  AR      drivers/pwm/built-in.a
-  CC      arch/x86/mm/mmio-mod.o
-  CC      crypto/seqiv.o
-  CC      arch/x86/mm/numa.o
-  CC      crypto/ahash.o
-  CC      fs/proc/meminfo.o
-  CC      fs/proc/stat.o
-  CC      arch/x86/kernel/apic/x2apic_uv_x.o
-  CC      arch/x86/xen/suspend_pv.o
-  CC      arch/x86/kernel/cpu/resctrl/ctrlmondata.o
-  CC      drivers/video/console/dummycon.o
-  CC      kernel/irq/proc.o
-  CC [M]  arch/x86/events/intel/cstate.o
-  CC      security/integrity/platform_certs/keyring_handler.o
-  CC      mm/memory.o
-  CC      drivers/video/console/vgacon.o
-  CC      lib/crypto/mpi/mpi-cmp.o
-  CC      security/selinux/ss/context.o
-  CC      lib/crypto/mpi/mpi-sub-ui.o
-  CC      security/selinux/xfrm.o
-  CC      io_uring/rw.o
-  CC      fs/proc/uptime.o
-  CC      drivers/video/backlight/backlight.o
-  CC      kernel/power/poweroff.o
-  CC      drivers/idle/intel_idle.o
-  CC      net/sched/cls_api.o
-  CC      arch/x86/kernel/cpu/resctrl/pseudo_lock.o
-  CC      drivers/char/ipmi/ipmi_dmi.o
-  AR      drivers/pci/msi/built-in.a
-  CC      kernel/livepatch/patch.o
-  CC      drivers/pci/pcie/portdrv.o
-  CC      drivers/gpio/gpiolib-swnode.o
-  CC      drivers/char/ipmi/ipmi_plat_data.o
-  AR      arch/x86/platform/efi/built-in.a
-  CC      lib/crypto/blake2s.o
-  CC [M]  sound/core/hwdep.o
-  CC      drivers/acpi/acpica/dsargs.o
-  CC      arch/x86/platform/intel/iosf_mbi.o
-  CC      drivers/rapidio/rio-driver.o
-  CC      kernel/power/energy_model.o
-  CC      block/blk-ioc.o
-  CC      kernel/dma/ops_helpers.o
-  CC      net/core/net_namespace.o
-  AR      net/bpf/built-in.a
-  CC [M]  sound/core/timer.o
-  CC      arch/x86/kernel/cpu/sgx/driver.o
-  AR      security/integrity/built-in.a
-  CC      kernel/livepatch/shadow.o
-  CC      kernel/irq/migration.o
-  CC      drivers/pci/pcie/rcec.o
-  CC      kernel/entry/common.o
-  CC      arch/x86/xen/p2m.o
-  CC      fs/proc/util.o
-  CC      arch/x86/kernel/cpu/sgx/encl.o
-  CC      lib/crypto/blake2s-generic.o
-  CC      crypto/shash.o
-  AR      arch/x86/events/intel/built-in.a
-  CC      arch/x86/kernel/cpu/cacheinfo.o
-  LD [M]  arch/x86/events/intel/intel-cstate.o
-  CC      arch/x86/events/msr.o
-  CC      lib/crypto/mpi/mpi-div.o
-  CC      drivers/acpi/acpica/dscontrol.o
-  CC      security/selinux/netlabel.o
-  AR      net/netlink/built-in.a
-  CC [M]  drivers/char/ipmi/ipmi_msghandler.o
-  CC      arch/x86/mm/numa_64.o
-  CC      arch/x86/kernel/apic/x2apic_phys.o
-  CC      drivers/gpio/gpio-mmio.o
-  CC      arch/x86/kernel/apic/x2apic_cluster.o
-  CC      arch/x86/kernel/apic/apic_flat_64.o
-  CC      kernel/livepatch/state.o
-  CC      drivers/pci/pcie/aspm.o
-  CC      fs/proc/version.o
-  CC      kernel/dma/dummy.o
-  CC      kernel/irq/cpuhotplug.o
-  CC      kernel/entry/syscall_user_dispatch.o
-  CC      block/blk-map.o
-  CC      lib/crypto/sha1.o
-  GEN     security/apparmor/rlim_names.h
-  CC      mm/mincore.o
-  CC      drivers/acpi/acpica/dsdebug.o
-  AR      drivers/video/console/built-in.a
-  CC      security/apparmor/secid.o
-  CC      security/lsm_syscalls.o
-  AR      arch/x86/kernel/cpu/resctrl/built-in.a
-  AR      drivers/idle/built-in.a
-  CC      kernel/dma/swiotlb.o
-  CC      drivers/acpi/numa/srat.o
-  CC      kernel/entry/kvm.o
-  CC      fs/proc/softirqs.o
-  CC      drivers/video/fbdev/core/fb_notify.o
-  AR      drivers/video/backlight/built-in.a
-  CC      arch/x86/kernel/cpu/sgx/ioctl.o
-  CC      drivers/rapidio/rio-sysfs.o
-  CC      arch/x86/mm/amdtopology.o
-  CC      io_uring/opdef.o
-  CC      arch/x86/mm/srat.o
-  AR      arch/x86/platform/intel/built-in.a
-  CC      lib/crypto/mpi/mpi-inv.o
-  CC [M]  arch/x86/events/rapl.o
-  AR      arch/x86/platform/intel-mid/built-in.a
-  CC      crypto/akcipher.o
-  AR      kernel/power/built-in.a
-  CC      crypto/sig.o
-  CC      mm/mlock.o
-  AR      arch/x86/platform/intel-quark/built-in.a
-  CC      io_uring/notif.o
-  CC      arch/x86/kernel/cpu/sgx/main.o
-  AR      arch/x86/platform/olpc/built-in.a
-  CC      drivers/acpi/acpica/dsfield.o
-  CC      arch/x86/kernel/apic/probe_64.o
-  AR      arch/x86/platform/scx200/built-in.a
-  CC      drivers/video/aperture.o
-  AR      arch/x86/platform/ts5500/built-in.a
-  CC      drivers/video/screen_info_generic.o
-  CC      drivers/video/screen_info_pci.o
-  CC      arch/x86/kernel/cpu/sgx/virt.o
-  CC      arch/x86/platform/uv/bios_uv.o
-  CC      kernel/irq/pm.o
-  CC      arch/x86/platform/uv/uv_irq.o
-  AR      kernel/sched/built-in.a
-  LDS     arch/x86/kernel/vmlinux.lds
-  CC      drivers/video/cmdline.o
-  CC      arch/x86/kernel/cpu/scattered.o
-  CC [M]  drivers/char/ipmi/ipmi_devintf.o
-  CC      arch/x86/net/bpf_jit_comp.o
-  AS      arch/x86/kernel/head_64.o
-  CC      drivers/gpio/gpio-crystalcove.o
-  CC      kernel/livepatch/transition.o
-  CC      fs/proc/namespaces.o
-  CC [M]  sound/core/pcm.o
-  CC      arch/x86/mm/numa_emulation.o
-  CC      fs/proc/self.o
-  CC      security/selinux/ima.o
-  CC      lib/crypto/mpi/mpi-mod.o
-  CC      lib/crypto/mpi/mpi-mul.o
-  CC      drivers/acpi/acpica/dsinit.o
-  CC      drivers/acpi/acpica/dsmethod.o
-  AR      drivers/rapidio/built-in.a
-  CC      net/core/secure_seq.o
-  CC      kernel/irq/msi.o
-  CC      kernel/irq/affinity.o
-  AR      arch/x86/kernel/apic/built-in.a
-  CC      fs/proc/thread_self.o
-  CC      arch/x86/kernel/head64.o
-  CC      security/apparmor/file.o
-  AR      arch/x86/events/built-in.a
-  CC      net/core/flow_dissector.o
-  CC      io_uring/waitid.o
-  CC      lib/crypto/mpi/mpih-cmp.o
-  CC      drivers/acpi/numa/hmat.o
-  CC      io_uring/register.o
-  CC      io_uring/io-wq.o
-  CC      drivers/pci/pcie/aer.o
-  CC      kernel/dma/pool.o
-  CC      security/min_addr.o
-  CC      block/blk-merge.o
-  CC      kernel/dma/remap.o
-  CC      security/security.o
-  CC      block/blk-timeout.o
-  CC      fs/proc/proc_sysctl.o
-  CC      drivers/gpio/gpio-palmas.o
-  CC      drivers/acpi/acpica/dsmthdat.o
-  CC      drivers/video/fbdev/core/fb_info.o
-  CC      lib/crypto/mpi/mpih-div.o
-  CC [M]  drivers/char/ipmi/ipmi_si_intf.o
-  AR      security/selinux/built-in.a
-  CC      drivers/video/fbdev/core/fbmem.o
-  CC      arch/x86/kernel/ebda.o
-  CC      crypto/kpp.o
-  CC [M]  sound/core/pcm_native.o
-  CC      drivers/pci/pcie/err.o
-  CC      arch/x86/mm/pkeys.o
-  AR      kernel/entry/built-in.a
-  AR      drivers/video/fbdev/omap/built-in.a
-  CC      drivers/acpi/apei/apei-base.o
-  CC      arch/x86/platform/uv/uv_time.o
-  CC      arch/x86/kernel/cpu/topology.o
-  CC      arch/x86/platform/uv/uv_nmi.o
-  CC      lib/crypto/mpi/mpih-mul.o
-  CC      kernel/irq/matrix.o
-  CC      arch/x86/purgatory/purgatory.o
-  CC      drivers/acpi/acpica/dsobject.o
-  AS      arch/x86/purgatory/stack.o
-  CC      drivers/acpi/acpica/dsopcode.o
-  CC      fs/proc/proc_net.o
-  CC      arch/x86/kernel/cpu/common.o
-  AS      arch/x86/purgatory/setup-x86_64.o
-  AR      kernel/dma/built-in.a
-  CC      drivers/pci/pcie/pme.o
-  CC      mm/mmap.o
-  AR      kernel/livepatch/built-in.a
-  AR      arch/x86/kernel/cpu/sgx/built-in.a
-  CC      fs/sysfs/file.o
-  CC      security/apparmor/policy_ns.o
-  CC      arch/x86/purgatory/sha256.o
-  CC      drivers/acpi/acpica/dspkginit.o
-  CC      drivers/acpi/pmic/intel_pmic.o
-  CC      drivers/acpi/acpica/dsutils.o
-  AS      arch/x86/purgatory/entry64.o
-  CC      drivers/gpio/gpio-rc5t583.o
-  CC      net/sched/act_api.o
-  CC      drivers/gpio/gpio-tps6586x.o
-  CC      arch/x86/mm/pti.o
-  CC      arch/x86/mm/mem_encrypt.o
-  CC      net/sched/sch_fifo.o
-  CC      arch/x86/kernel/cpu/rdrand.o
-  CC      lib/crypto/sha256.o
-  CC      arch/x86/kernel/cpu/match.o
-  CC [M]  sound/pci/hda/hda_bind.o
-  CC [M]  sound/pci/hda/hda_codec.o
-  CC      arch/x86/kernel/cpu/bugs.o
-  CC [M]  sound/pci/hda/hda_jack.o
-  AR      drivers/acpi/numa/built-in.a
-  CC      kernel/rcu/rcu_segcblist.o
-  CC      mm/mmu_gather.o
-  CC      drivers/video/fbdev/core/fbcmap.o
-  CC      net/core/sysctl_net_core.o
-  CC      drivers/video/fbdev/core/modedb.o
-  CC      lib/crypto/mpi/mpi-pow.o
-  CC      crypto/dh.o
-  CC      io_uring/futex.o
-  CC [M]  drivers/char/ipmi/ipmi_kcs_sm.o
-  CC [M]  drivers/char/ipmi/ipmi_smic_sm.o
-  CC      fs/sysfs/dir.o
-  CC      fs/sysfs/symlink.o
-  CC      drivers/acpi/acpica/dswexec.o
-  CC      security/apparmor/label.o
-  CC      arch/x86/purgatory/string.o
-  CC      fs/sysfs/mount.o
-  CC      fs/proc/kcore.o
-  CC      drivers/pci/pcie/dpc.o
-  CC      block/blk-lib.o
-  CC      drivers/acpi/apei/hest.o
-  LD      arch/x86/purgatory/purgatory.ro
-  CC      drivers/gpio/gpio-tps65910.o
-  LD      arch/x86/purgatory/purgatory.chk
-  AR      arch/x86/platform/uv/built-in.a
-  AS      arch/x86/purgatory/kexec-purgatory.o
-  AR      arch/x86/net/built-in.a
-  AR      arch/x86/platform/built-in.a
-  CC      arch/x86/mm/mem_encrypt_amd.o
-  AR      kernel/irq/built-in.a
-  AR      arch/x86/purgatory/built-in.a
-  CC      drivers/acpi/apei/erst.o
-  CC [M]  arch/x86/kvm/../../../virt/kvm/kvm_main.o
-  CC      arch/x86/mm/mem_encrypt_identity.o
-  AS      arch/x86/mm/mem_encrypt_boot.o
-  CC      drivers/acpi/apei/bert.o
-  CC      drivers/acpi/pmic/intel_pmic_bytcrc.o
-  CC      drivers/acpi/apei/ghes.o
-  CC      mm/mprotect.o
-  CC      security/inode.o
-  CC      drivers/video/nomodeset.o
-  CC      drivers/acpi/acpica/dswload.o
-  CC      security/apparmor/mount.o
-  AR      kernel/rcu/built-in.a
-  CC      drivers/acpi/acpica/dswload2.o
-  CC      arch/x86/kernel/cpu/aperfmperf.o
-  CC      kernel/module/main.o
-  CC      fs/proc/vmcore.o
-  CC      net/sched/ematch.o
-  CC      kernel/module/strict_rwx.o
-  CC      drivers/acpi/acpica/dswscope.o
-  CC      mm/mremap.o
-  CC [M]  sound/pci/hda/hda_auto_parser.o
-  CC [M]  drivers/char/ipmi/ipmi_bt_sm.o
-  CC      crypto/dh_helper.o
-  CC      drivers/pci/pcie/ptm.o
-  CC      arch/x86/kernel/cpu/cpuid-deps.o
-  CC      kernel/time/time.o
-  CC      lib/crypto/mpi/mpiutil.o
-  CC      fs/sysfs/group.o
-  CC      kernel/time/timer.o
-  CC      drivers/acpi/acpica/dswstate.o
-  CC      block/blk-mq.o
-  CC      drivers/acpi/acpica/evevent.o
-  AR      drivers/gpio/built-in.a
-  CC      drivers/acpi/pmic/intel_pmic_chtcrc.o
-  CC      kernel/futex/core.o
-  AR      drivers/video/fbdev/omap2/omapfb/dss/built-in.a
-  AR      io_uring/built-in.a
-  CC      security/lsm_audit.o
-  AR      drivers/video/fbdev/omap2/omapfb/displays/built-in.a
-  AR      drivers/video/fbdev/omap2/omapfb/built-in.a
-  CC      fs/configfs/inode.o
-  AR      drivers/video/fbdev/omap2/built-in.a
-  CC      kernel/module/kmod.o
-  CC      fs/configfs/file.o
-  CC      arch/x86/xen/enlighten_pv.o
-  CC [M]  drivers/char/ipmi/ipmi_si_hotmod.o
-  CC      drivers/pnp/pnpacpi/core.o
-  CC      arch/x86/xen/mmu_pv.o
-  ASN.1   crypto/rsapubkey.asn1.[ch]
-  ASN.1   crypto/rsaprivkey.asn1.[ch]
-  CC      crypto/rsa.o
-  CC      kernel/module/livepatch.o
-  CC      kernel/cgroup/cgroup.o
-  CC [M]  net/sched/sch_fq_codel.o
-  CC      drivers/video/fbdev/core/fbcvt.o
-  CC      drivers/video/fbdev/core/fb_cmdline.o
-  CC      drivers/video/hdmi.o
-  AR      arch/x86/mm/built-in.a
-  CC      arch/x86/kernel/cpu/umwait.o
-  CC      kernel/cgroup/rstat.o
-  CC      kernel/cgroup/namespace.o
-  CC      drivers/acpi/acpica/evgpe.o
-  CC      drivers/acpi/acpica/evgpeblk.o
-  CC [M]  drivers/char/ipmi/ipmi_si_hardcode.o
-  CC      drivers/acpi/pmic/intel_pmic_chtwc.o
-  CC      drivers/acpi/pmic/tps68470_pmic.o
-  CC [M]  sound/core/pcm_lib.o
-  CC [M]  sound/core/pcm_misc.o
-  GEN     security/apparmor/net_names.h
-  CC      arch/x86/kernel/platform-quirks.o
-  CC [M]  sound/pci/hda/hda_sysfs.o
-  GEN     security/apparmor/net_names.h
-  CC [M]  drivers/char/ipmi/ipmi_si_platform.o
-  CC      fs/configfs/dir.o
-  CC      drivers/pci/pcie/edr.o
-  CC      net/core/dev.o
-  CC      kernel/debug/kdb/kdb_io.o
-  CC      kernel/futex/syscalls.o
-  AR      lib/crypto/mpi/built-in.a
-  CC      crypto/rsa_helper.o
-  AR      lib/crypto/built-in.a
-  CC      drivers/acpi/acpica/evgpeinit.o
-  CC [M]  sound/pci/hda/hda_controller.o
-  CC      kernel/debug/kdb/kdb_main.o
-  CC      kernel/module/tree_lookup.o
-  AR      fs/sysfs/built-in.a
-  CC      kernel/module/debug_kmemleak.o
-  CC [M]  sound/core/pcm_memory.o
-  CC      lib/zlib_deflate/deflate.o
-  CC      lib/zlib_deflate/deftree.o
-  CC      security/apparmor/policy_compat.o
-  CC      lib/zlib_deflate/deflate_syms.o
-  CC [M]  sound/core/memalloc.o
-  AR      drivers/acpi/apei/built-in.a
-  CC      fs/proc/kmsg.o
-  CC      crypto/rsa-pkcs1pad.o
-  CC      drivers/acpi/dptf/int340x_thermal.o
-  CC      security/device_cgroup.o
-  CC      arch/x86/kernel/cpu/proc.o
-  MKCAP   arch/x86/kernel/cpu/capflags.c
-  CC      drivers/video/fbdev/core/fb_backlight.o
-  CC [M]  drivers/char/ipmi/ipmi_si_port_io.o
-  CC      kernel/time/hrtimer.o
-  CC      kernel/module/kallsyms.o
-  CC      drivers/pnp/pnpacpi/rsparser.o
-  AR      net/sched/built-in.a
-  CC      mm/msync.o
-  CC      arch/x86/kernel/process_64.o
-  CC      drivers/acpi/acpica/evgpeutil.o
-  AR      drivers/acpi/pmic/built-in.a
-  CC      mm/page_vma_mapped.o
-  CC      crypto/acompress.o
-  CC      crypto/scompress.o
-  CC      kernel/debug/debug_core.o
-  CC      kernel/debug/gdbstub.o
-  CC      security/apparmor/crypto.o
-  CC [M]  drivers/char/ipmi/ipmi_si_mem_io.o
-  CC      mm/pagewalk.o
-  CC      fs/proc/page.o
-  AR      drivers/pci/pcie/built-in.a
-  CC      drivers/pci/hotplug/pci_hotplug_core.o
-  AR      drivers/acpi/dptf/built-in.a
-  AR      drivers/pci/endpoint/functions/built-in.a
-  CC      drivers/pci/endpoint/pci-ep-cfs.o
-  CC      drivers/pci/endpoint/pci-epc-core.o
-  CC      drivers/pci/hotplug/cpci_hotplug_core.o
-  CC      drivers/pci/endpoint/pci-epf-core.o
-  CC      mm/pgtable-generic.o
-  CC      drivers/acpi/acpica/evglock.o
-  CC      arch/x86/kernel/cpu/powerflags.o
-  CC      drivers/pci/endpoint/pci-epc-mem.o
-  CC      drivers/pci/controller/dwc/pcie-designware.o
-  CC      drivers/pnp/core.o
-  AR      lib/zlib_deflate/built-in.a
-  CC      kernel/futex/pi.o
-  CC      drivers/pci/controller/dwc/pcie-designware-host.o
-  CC      lib/lzo/lzo1x_compress.o
-  CC      drivers/video/fbdev/core/fbmon.o
-  CC [M]  sound/core/pcm_timer.o
-  CC      arch/x86/xen/irq.o
-  CC      net/ethtool/ioctl.o
-  CC      kernel/debug/kdb/kdb_support.o
-  CC      kernel/module/procfs.o
-  CC [M]  sound/core/seq_device.o
-  CC      kernel/debug/kdb/kdb_bt.o
-  AR      drivers/pnp/pnpacpi/built-in.a
-  CC      drivers/pci/controller/dwc/pcie-designware-ep.o
-  CC      drivers/acpi/acpica/evhandler.o
-  CC [M]  drivers/char/ipmi/ipmi_si_pci.o
-  CC      arch/x86/kernel/cpu/feat_ctl.o
-  CC      drivers/video/fbdev/imsttfb.o
-  CC      fs/configfs/symlink.o
-  GENKDB  kernel/debug/kdb/gen-kdb_cmds.c
-  CC      drivers/pci/controller/dwc/pcie-designware-plat.o
-  CC      drivers/acpi/acpica/evmisc.o
-  CC      kernel/time/timekeeping.o
-  CC      kernel/trace/rv/rv.o
-  CC      drivers/pci/hotplug/cpci_hotplug_pci.o
-  CC      fs/proc/bootconfig.o
-  CC      crypto/algboss.o
-  CC      security/apparmor/capability.o
-  CC      kernel/trace/trace_clock.o
-  CC      kernel/futex/requeue.o
-  CC [M]  sound/pci/hda/hda_proc.o
-  CC      mm/rmap.o
-  CC      kernel/futex/waitwake.o
-  CC      arch/x86/xen/multicalls.o
-  CC      kernel/debug/kdb/kdb_bp.o
-  CC      kernel/module/sysfs.o
-  CC      crypto/testmgr.o
-  CC [M]  drivers/char/ipmi/ipmi_ssif.o
-  CC      crypto/hmac.o
-  CC      lib/lzo/lzo1x_decompress_safe.o
-  CC      kernel/debug/kdb/kdb_debugger.o
-  CC      drivers/pnp/card.o
-  CC      kernel/time/ntp.o
-  CC      drivers/acpi/acpica/evregion.o
-  CC      fs/configfs/mount.o
-  CC [M]  sound/core/compress_offload.o
-  CC      lib/lz4/lz4_decompress.o
-  AR      drivers/pci/switch/built-in.a
-  LD [M]  sound/core/snd.o
-  CC      drivers/acpi/tables.o
-  CC      fs/configfs/item.o
-  CC [M]  drivers/acpi/nfit/core.o
-  LD [M]  sound/core/snd-hwdep.o
-  CC      fs/devpts/inode.o
-  CC      fs/ext4/balloc.o
-  CC      fs/jbd2/transaction.o
-  AR      drivers/pci/endpoint/built-in.a
-  CC      fs/jbd2/commit.o
-  AR      fs/proc/built-in.a
-  CC      fs/jbd2/recovery.o
-  CC      drivers/acpi/blacklist.o
-  CC      drivers/pci/access.o
-  CC      drivers/video/fbdev/core/fb_defio.o
-  CC      drivers/pci/hotplug/acpi_pcihp.o
-  CC      drivers/acpi/acpica/evrgnini.o
-  AS      arch/x86/xen/xen-asm.o
-  CC      fs/ext4/bitmap.o
-  CC      kernel/time/clocksource.o
-  CC      kernel/trace/ftrace.o
-  CC      kernel/trace/ring_buffer.o
-  CC      crypto/crypto_null.o
-  CC      drivers/acpi/acpica/evsci.o
-  AR      drivers/pci/controller/dwc/built-in.a
-  AR      drivers/pci/controller/mobiveil/built-in.a
-  AR      kernel/futex/built-in.a
-  CC      drivers/pci/controller/vmd.o
-  CC      kernel/trace/rv/monitors/wwnr/wwnr.o
-  CC      kernel/trace/rv/rv_reactors.o
-  CC      lib/zstd/zstd_compress_module.o
-  CC      kernel/module/kdb.o
-  CC      lib/xz/xz_dec_syms.o
-  CC      lib/raid6/algos.o
-  CC      fs/squashfs/block.o
-  CC      arch/x86/xen/enlighten_pvh.o
-  CC      lib/zstd/compress/fse_compress.o
-  CC [M]  sound/pci/hda/hda_hwdep.o
-  CC      security/apparmor/resource.o
-  CC      drivers/video/fbdev/core/fb_chrdev.o
-  CC      drivers/acpi/osi.o
-  CC      kernel/time/jiffies.o
-  CC      block/blk-mq-tag.o
-  CC      fs/jbd2/checkpoint.o
-  AR      fs/devpts/built-in.a
-  AR      lib/lzo/built-in.a
-  CC      kernel/trace/rv/reactor_printk.o
-  CC      drivers/acpi/osl.o
-  CC      lib/dim/dim.o
-  CC      drivers/acpi/acpica/evxface.o
-  AR      fs/configfs/built-in.a
-  CC      lib/dim/net_dim.o
-  CC [M]  arch/x86/kvm/../../../virt/kvm/eventfd.o
-  CC      kernel/debug/kdb/kdb_keyboard.o
-  CC      drivers/pnp/driver.o
-  CC      lib/xz/xz_dec_stream.o
-  CC      net/core/dev_addr_lists.o
-  CC      kernel/module/version.o
-  CC      drivers/acpi/utils.o
-  CC      lib/zstd/compress/hist.o
-  LD [M]  drivers/char/ipmi/ipmi_si.o
-  LD [M]  sound/core/snd-timer.o
-  AR      drivers/char/ipmi/built-in.a
-  LD [M]  sound/core/snd-pcm.o
-  CC      lib/zstd/compress/huf_compress.o
-  LD [M]  sound/core/snd-seq-device.o
-  LD [M]  sound/core/snd-compress.o
-  CC      fs/jbd2/revoke.o
-  CC      kernel/time/timer_list.o
-  CC      lib/zstd/compress/zstd_compress.o
-  CC      fs/ext4/block_validity.o
-  CC      fs/ext4/dir.o
-  CC      drivers/pci/hotplug/pciehp_core.o
-  CC      fs/ext4/ext4_jbd2.o
-  CC [M]  sound/pci/hda/hda_beep.o
-  CC      net/ethtool/common.o
-  AR      drivers/pci/controller/built-in.a
-  CC      fs/squashfs/cache.o
-  CC      crypto/md5.o
-  CC      kernel/trace/trace.o
-  AR      lib/lz4/built-in.a
-  CC      kernel/trace/rv/reactor_panic.o
-  CC      drivers/acpi/acpica/evxfevnt.o
-  CC      net/core/dst.o
-  CC      fs/squashfs/dir.o
-  CC      lib/xz/xz_dec_lzma2.o
-  CC      lib/xz/xz_dec_bcj.o
-  CC      crypto/sha1_generic.o
-  CC      drivers/video/fbdev/core/fb_procfs.o
-  CC      fs/jbd2/journal.o
-  CC      lib/raid6/recov.o
-  CC      fs/ramfs/inode.o
-  CC      fs/squashfs/export.o
-  AR      drivers/amba/built-in.a
-  CC      fs/squashfs/file.o
-  CC      arch/x86/xen/trace.o
-  CC      drivers/acpi/acpica/evxfgpe.o
-  CC      kernel/trace/trace_output.o
-  CC      security/apparmor/net.o
-  CC      lib/dim/rdma_dim.o
-  CC      net/ethtool/netlink.o
-  CC      drivers/pnp/resource.o
-  CC      kernel/time/timeconv.o
-  CC      kernel/time/timecounter.o
-  CC      kernel/debug/kdb/gen-kdb_cmds.o
-  AR      kernel/module/built-in.a
-  CC      drivers/pci/hotplug/pciehp_ctrl.o
-  CC      crypto/sha256_generic.o
-  CC      crypto/sha512_generic.o
-  AR      kernel/trace/rv/built-in.a
-  AR      kernel/debug/kdb/built-in.a
-  CC      drivers/pci/hotplug/pciehp_pci.o
-  CC      net/ethtool/bitset.o
-  CC      kernel/time/alarmtimer.o
-  CC      net/ethtool/strset.o
-  AR      kernel/debug/built-in.a
-  CC      net/ethtool/linkinfo.o
-  CC      net/ethtool/linkmodes.o
-  CC      fs/ext4/extents.o
-  CC      fs/ext4/extents_status.o
-  CC      crypto/sha3_generic.o
-  CC      kernel/cgroup/cgroup-v1.o
-  AR      lib/xz/built-in.a
-  CC      net/ethtool/rss.o
-  CC      block/blk-stat.o
-  CC      kernel/trace/trace_seq.o
-  CC [M]  sound/pci/hda/hda_intel.o
-  CC      block/blk-mq-sysfs.o
-  CC      drivers/pnp/manager.o
-  CC [M]  drivers/acpi/nfit/intel.o
-  HOSTCC  lib/raid6/mktables
-  CC      drivers/video/fbdev/core/fbsysfs.o
-  CC [M]  arch/x86/kvm/../../../virt/kvm/binary_stats.o
-  CC      mm/vmalloc.o
-  CC      fs/ramfs/file-mmu.o
-  CC      drivers/pnp/support.o
-  CC      drivers/acpi/acpica/evxfregn.o
-  CC      drivers/video/fbdev/core/fbcon.o
-  UNROLL  lib/raid6/int1.c
-  AR      drivers/clk/actions/built-in.a
-  CC      fs/squashfs/fragment.o
-  UNROLL  lib/raid6/int2.c
-  UNROLL  lib/raid6/int4.c
-  CC      fs/squashfs/id.o
-  UNROLL  lib/raid6/int8.c
-  CC      lib/raid6/recov_ssse3.o
-  AR      drivers/clk/analogbits/built-in.a
-  AR      drivers/clk/bcm/built-in.a
-  AR      lib/dim/built-in.a
-  AR      drivers/clk/imgtec/built-in.a
-  CC      fs/squashfs/inode.o
-  AR      drivers/clk/imx/built-in.a
-  AR      drivers/clk/ingenic/built-in.a
-  AR      drivers/clk/mediatek/built-in.a
-  AR      drivers/clk/microchip/built-in.a
-  CC      fs/squashfs/namei.o
-  CC      fs/squashfs/super.o
-  CC      drivers/pci/hotplug/pciehp_hpc.o
-  AR      drivers/clk/mstar/built-in.a
-  CC      drivers/acpi/acpica/exconcat.o
-  AR      drivers/clk/mvebu/built-in.a
-  AR      drivers/clk/ralink/built-in.a
-  CC      kernel/time/posix-timers.o
-  CC      drivers/pnp/interface.o
-  AR      drivers/clk/renesas/built-in.a
-  AR      drivers/clk/socfpga/built-in.a
-  AR      drivers/clk/sprd/built-in.a
-  CC      mm/process_vm_access.o
-  AR      security/apparmor/built-in.a
-  AR      drivers/clk/starfive/built-in.a
-  AR      drivers/clk/sunxi-ng/built-in.a
-  AR      fs/ramfs/built-in.a
-  AR      security/built-in.a
-  AR      drivers/clk/ti/built-in.a
-  CC      net/ethtool/linkstate.o
-  AR      drivers/clk/versatile/built-in.a
-  CC      drivers/clk/x86/clk-fch.o
-  CC      drivers/video/fbdev/asiliantfb.o
-  CC      drivers/clk/x86/clk-lpss-atom.o
-  CC      net/ethtool/debug.o
-  CC      drivers/clk/x86/clk-pmc-atom.o
-  CC      fs/hugetlbfs/inode.o
-  CC      kernel/time/posix-cpu-timers.o
-  CC      kernel/time/posix-clock.o
-  CC      arch/x86/xen/smp.o
-  CC      arch/x86/kernel/signal.o
-  CC      arch/x86/kernel/signal_64.o
-  CC [M]  arch/x86/kvm/../../../virt/kvm/vfio.o
-  CC      net/ethtool/wol.o
-  CC      drivers/pci/hotplug/shpchp_core.o
-  CC      crypto/blake2b_generic.o
-  AR      drivers/clk/xilinx/built-in.a
-  CC      drivers/acpi/acpica/exconfig.o
-  CC [M]  drivers/acpi/nfit/mce.o
-  CC      net/ethtool/features.o
-  CC      drivers/clk/clk-devres.o
-  CC      drivers/video/fbdev/core/bitblit.o
-  CC      lib/raid6/recov_avx2.o
-  CC      drivers/pnp/quirks.o
-  CC      lib/zstd/compress/zstd_compress_literals.o
-  CC      arch/x86/kernel/traps.o
-  CC      drivers/pnp/system.o
-  CC      fs/squashfs/symlink.o
-  CC      lib/zstd/compress/zstd_compress_sequences.o
-  CC      drivers/acpi/acpica/exconvrt.o
-  CC      drivers/acpi/acpica/excreate.o
-  CC      kernel/cgroup/freezer.o
-  CC      lib/zstd/compress/zstd_compress_superblock.o
-  CC      net/core/netevent.o
-  CC      net/core/neighbour.o
-  CC      lib/fonts/fonts.o
-  CC      block/blk-mq-cpumap.o
-  CC      block/blk-mq-sched.o
-  CC      block/ioctl.o
-  CC      drivers/acpi/acpica/exdebug.o
-  CC [M]  arch/x86/kvm/../../../virt/kvm/coalesced_mmio.o
-  AR      drivers/clk/x86/built-in.a
-  CC      drivers/video/fbdev/vesafb.o
-  LD [M]  sound/pci/hda/snd-hda-codec.o
-  LD [M]  sound/pci/hda/snd-hda-intel.o
-  CC      kernel/trace/trace_stat.o
-  CC      drivers/video/fbdev/efifb.o
-  CC      lib/zstd/compress/zstd_double_fast.o
-  CC      net/ethtool/privflags.o
-  CC      kernel/bpf/core.o
-  CC      lib/zstd/compress/zstd_fast.o
-  CC      kernel/trace/trace_printk.o
-  CC      arch/x86/xen/smp_pv.o
-  CC      kernel/events/core.o
-  CC      kernel/events/ring_buffer.o
-  CC      fs/squashfs/decompressor.o
-  CC      kernel/cgroup/legacy_freezer.o
-  CC      arch/x86/kernel/cpu/intel.o
-  CC      lib/zstd/compress/zstd_lazy.o
-  LD [M]  drivers/acpi/nfit/nfit.o
-  CC      arch/x86/kernel/cpu/intel_pconfig.o
-  CC      kernel/events/callchain.o
-  CC      arch/x86/kernel/cpu/tsx.o
-  CC      lib/raid6/mmx.o
-  CC      drivers/pci/hotplug/shpchp_ctrl.o
-  CC      lib/raid6/sse1.o
-  AR      drivers/pnp/built-in.a
-  CC      drivers/acpi/acpica/exdump.o
-  CC      lib/raid6/sse2.o
-  CC [M]  sound/soc/codecs/hdac_hda.o
-  CC      drivers/acpi/acpica/exfield.o
-  CC      kernel/events/hw_breakpoint.o
-  CC      kernel/events/uprobes.o
-  CC      arch/x86/kernel/cpu/intel_epb.o
-  CC      drivers/clk/clk-bulk.o
-  CC      kernel/trace/pid_list.o
-  CC      kernel/cgroup/pids.o
-  CC      kernel/time/itimer.o
-  CC      fs/fat/cache.o
-  AR      fs/hugetlbfs/built-in.a
-  CC      kernel/trace/tracing_map.o
-  CC      fs/fat/dir.o
-  AR      fs/jbd2/built-in.a
-  CC      lib/fonts/font_8x8.o
-  CC      fs/ecryptfs/dentry.o
-  CC      net/netfilter/core.o
-  CC      crypto/ecb.o
-  CC      lib/fonts/font_8x16.o
-  CC [M]  arch/x86/kvm/../../../virt/kvm/async_pf.o
-  CC      fs/ecryptfs/file.o
-  CC      fs/squashfs/page_actor.o
-  CC      block/genhd.o
-  CC      drivers/acpi/acpica/exfldio.o
-  CC      fs/squashfs/file_direct.o
-  CC      fs/squashfs/decompressor_single.o
-  CC      kernel/trace/trace_sched_switch.o
-  CC      net/core/rtnetlink.o
-  CC      net/core/utils.o
-  CC      net/ethtool/rings.o
-  CC      net/core/link_watch.o
-  CC      net/core/filter.o
-  CC      drivers/video/fbdev/core/softcursor.o
-  CC      lib/raid6/avx2.o
-  CC      net/netfilter/nf_log.o
-  CC      kernel/cgroup/rdma.o
-  CC      drivers/pci/hotplug/shpchp_pci.o
-  CC      drivers/pci/hotplug/shpchp_sysfs.o
-  CC      arch/x86/xen/smp_hvm.o
-  CC      fs/ecryptfs/inode.o
-  CC      crypto/cbc.o
-  CC      drivers/acpi/acpica/exmisc.o
-  CC      drivers/clk/clkdev.o
-  CC [M]  arch/x86/kvm/../../../virt/kvm/irqchip.o
-  CC [M]  arch/x86/kvm/../../../virt/kvm/dirty_ring.o
-  CC      kernel/time/clockevents.o
-  CC      lib/zstd/compress/zstd_ldm.o
-  CC      kernel/time/tick-common.o
-  CC      fs/ecryptfs/main.o
-  CC      lib/zstd/compress/zstd_opt.o
-  CC      kernel/cgroup/cpuset.o
-  CC      fs/ext4/file.o
-  CC      fs/squashfs/decompressor_multi.o
-  CC      lib/fonts/font_acorn_8x8.o
-  CC      lib/zstd/zstd_decompress_module.o
-  LD [M]  sound/soc/codecs/snd-soc-hdac-hda.o
-  CC      lib/fonts/font_6x10.o
-  CC      lib/raid6/avx512.o
-  CC      lib/raid6/recov_avx512.o
-  CC      lib/fonts/font_ter16x32.o
-  CC [M]  sound/soc/amd/acp-config.o
-  CC      drivers/acpi/acpica/exmutex.o
-  CC      kernel/fork.o
-  CC      fs/ecryptfs/super.o
-  CC      drivers/video/fbdev/core/tileblit.o
-  CC      crypto/cts.o
-  CC      drivers/video/fbdev/core/fbcon_rotate.o
-  CC      crypto/xts.o
-  CC      fs/fat/fatent.o
-  CC      kernel/trace/trace_functions.o
-  CC      arch/x86/kernel/cpu/amd.o
-  CC      drivers/pci/hotplug/shpchp_hpc.o
-  CC      arch/x86/xen/spinlock.o
-  CC      mm/page_alloc.o
-  CC      net/ethtool/channels.o
-  CC      lib/zstd/decompress/huf_decompress.o
-  CC      kernel/cgroup/misc.o
-  CC      drivers/acpi/acpica/exnames.o
-  CC      fs/squashfs/decompressor_multi_percpu.o
-  CC      net/netfilter/nf_queue.o
-  AR      lib/fonts/built-in.a
-  CC      arch/x86/xen/vga.o
-  CC      fs/ext4/fsmap.o
-  CC      net/netfilter/nf_sockopt.o
-  CC [M]  arch/x86/kvm/../../../virt/kvm/pfncache.o
-  CC      drivers/clk/clk.o
-  CC [M]  arch/x86/kvm/x86.o
-  CC      drivers/video/fbdev/core/fbcon_cw.o
-  CC      net/netfilter/utils.o
-  TABLE   lib/raid6/tables.c
-  CC      kernel/bpf/syscall.o
-  CC      fs/ecryptfs/mmap.o
-  CC      lib/raid6/int1.o
-  CC      net/ethtool/coalesce.o
-  CC      lib/raid6/int2.o
-  CC      fs/ecryptfs/read_write.o
-  CC      block/ioprio.o
-  CC      crypto/ctr.o
-  CC      drivers/video/fbdev/core/fbcon_ud.o
-  CC      drivers/video/fbdev/core/fbcon_ccw.o
-  CC      drivers/video/fbdev/core/cfbfillrect.o
-  CC      fs/fat/file.o
-  CC      drivers/pci/bus.o
-  CC      drivers/acpi/acpica/exoparg1.o
-  CC [M]  arch/x86/kvm/emulate.o
-  CC      block/badblocks.o
-  CC [M]  sound/hda/ext/hdac_ext_bus.o
-  CC      kernel/trace/trace_preemptirq.o
-  CC      drivers/pci/hotplug/acpiphp_core.o
-  CC      kernel/time/tick-broadcast.o
-  CC      arch/x86/xen/efi.o
-  CC [M]  sound/hda/ext/hdac_ext_controller.o
-  CC      fs/squashfs/xattr.o
-  CC      lib/raid6/int4.o
-  LD [M]  sound/soc/amd/snd-acp-config.o
-  CC      lib/raid6/int8.o
-  CC      drivers/acpi/acpica/exoparg2.o
-  CC [M]  sound/soc/intel/common/soc-acpi-intel-byt-match.o
-  CC      drivers/acpi/acpica/exoparg3.o
-  CC      drivers/acpi/acpica/exoparg6.o
-  CC [M]  sound/soc/intel/common/soc-acpi-intel-cht-match.o
-  CC      crypto/gcm.o
-  CC      fs/squashfs/xattr_id.o
-  CC      fs/ext4/fsync.o
-  CC      lib/zstd/decompress/zstd_ddict.o
-  CC      fs/ext4/hash.o
-  CC      fs/ecryptfs/crypto.o
-  CC      fs/ecryptfs/keystore.o
-  CC [M]  sound/hda/ext/hdac_ext_stream.o
-  CC      lib/zstd/decompress/zstd_decompress.o
-  CC      net/ethtool/pause.o
-  CC      lib/zstd/decompress/zstd_decompress_block.o
-  CC      kernel/bpf/verifier.o
-  CC      net/netfilter/nf_bpf_link.o
-  CC      drivers/pci/probe.o
-  CC      drivers/acpi/acpica/exprep.o
-  CC      drivers/pci/hotplug/acpiphp_glue.o
-  CC      drivers/video/fbdev/core/cfbcopyarea.o
-  CC      arch/x86/kernel/idt.o
-  AR      arch/x86/xen/built-in.a
-  CC [M]  sound/soc/intel/common/soc-acpi-intel-hsw-bdw-match.o
-  CC [M]  arch/x86/kvm/i8259.o
-  CC      kernel/time/tick-broadcast-hrtimer.o
-  CC      net/ethtool/eee.o
-  CC      net/netfilter/nf_hooks_lwtunnel.o
-  CC      fs/squashfs/lz4_wrapper.o
-  CC      lib/raid6/tables.o
-  CC [M]  sound/soc/intel/common/soc-acpi-intel-skl-match.o
-  CC [M]  sound/soc/intel/common/soc-acpi-intel-kbl-match.o
-  CC      fs/fat/inode.o
-  CC      kernel/trace/trace_sched_wakeup.o
-  CC      block/blk-rq-qos.o
-  CC      drivers/video/fbdev/core/cfbimgblt.o
-  CC      drivers/acpi/acpica/exregion.o
-  CC      drivers/acpi/acpica/exresnte.o
-  CC      arch/x86/kernel/cpu/hygon.o
-  CC      net/core/sock_diag.o
-  CC      net/core/dev_ioctl.o
-  CC [M]  arch/x86/kvm/irq.o
-  CC      crypto/aes_generic.o
-  CC [M]  sound/soc/intel/common/soc-acpi-intel-bxt-match.o
-  CC      block/disk-events.o
-  CC      drivers/pci/host-bridge.o
-  CC      fs/ext4/ialloc.o
-  CC      kernel/time/tick-oneshot.o
-  CC      kernel/exec_domain.o
-  CC      kernel/time/tick-sched.o
-  CC      drivers/pci/remove.o
-  CC      drivers/acpi/acpica/exresolv.o
-  LD [M]  sound/hda/ext/snd-hda-ext-core.o
-  CC      fs/squashfs/lzo_wrapper.o
-  CC [M]  sound/soc/intel/common/soc-acpi-intel-glk-match.o
-  CC      fs/ext4/indirect.o
-  CC [M]  sound/hda/hda_bus_type.o
-  AR      kernel/cgroup/built-in.a
-  CC      fs/ext4/inline.o
-  CC      drivers/pci/pci.o
-  CC [M]  sound/hda/hdac_bus.o
-  AR      drivers/pci/hotplug/built-in.a
-  CC      fs/ecryptfs/kthread.o
-  CC [M]  sound/soc/intel/common/soc-acpi-intel-cnl-match.o
-  CC      net/ethtool/tsinfo.o
-  CC [M]  net/netfilter/nfnetlink.o
-  CC [M]  arch/x86/kvm/lapic.o
-  CC      drivers/clk/clk-divider.o
-  CC      fs/fat/misc.o
-  CC [M]  arch/x86/kvm/i8254.o
-  CC      drivers/acpi/acpica/exresop.o
-  CC [M]  sound/soc/intel/common/soc-acpi-intel-cfl-match.o
-  CC [M]  sound/soc/intel/common/soc-acpi-intel-cml-match.o
-  CC      kernel/trace/trace_hwlat.o
-  AR      lib/raid6/built-in.a
-  CC      kernel/panic.o
-  CC      kernel/time/vsyscall.o
-  CC      net/ethtool/cabletest.o
-  CC      drivers/pci/pci-driver.o
-  CC      fs/squashfs/xz_wrapper.o
-  CC      drivers/pci/search.o
-  CC      fs/squashfs/zlib_wrapper.o
-  CC      mm/shuffle.o
-  CC      fs/ecryptfs/debug.o
-  CC [M]  arch/x86/kvm/ioapic.o
-  CC      drivers/video/fbdev/core/fb_io_fops.o
-  CC [M]  sound/hda/hdac_device.o
-  CC      drivers/acpi/acpica/exserial.o
-  CC      crypto/deflate.o
-  CC [M]  sound/soc/intel/common/soc-acpi-intel-icl-match.o
-  CC      arch/x86/kernel/cpu/centaur.o
-  CC      arch/x86/kernel/irq.o
-  CC      drivers/clk/clk-fixed-factor.o
-  CC      arch/x86/kernel/irq_64.o
-  CC      arch/x86/kernel/dumpstack_64.o
-  CC      block/blk-ia-ranges.o
-  CC      drivers/clk/clk-fixed-rate.o
-  CC      arch/x86/kernel/cpu/zhaoxin.o
-  CC      fs/squashfs/zstd_wrapper.o
-  CC [M]  sound/soc/intel/common/soc-acpi-intel-tgl-match.o
-  CC      net/core/tso.o
-  CC      block/early-lookup.o
-  CC      kernel/time/timekeeping_debug.o
-  CC      block/bsg.o
-  CC      drivers/acpi/acpica/exstore.o
-  CC      kernel/trace/trace_osnoise.o
-  CC [M]  lib/reed_solomon/reed_solomon.o
-  CC      kernel/trace/trace_nop.o
-  CC      drivers/acpi/acpica/exstoren.o
-  CC      drivers/pci/pci-sysfs.o
-  CC      block/bsg-lib.o
-  CC      net/core/sock_reuseport.o
-  CC      kernel/trace/trace_stack.o
-  CC      fs/ext4/inode.o
-  CC      net/core/fib_notifier.o
-  CC      fs/ecryptfs/messaging.o
-  CC      net/core/xdp.o
-  CC      fs/fat/nfs.o
-  CC      mm/init-mm.o
-  CC      net/core/flow_offload.o
-  CC      crypto/crc32c_generic.o
-  CC      block/blk-cgroup.o
-  CC      crypto/crct10dif_common.o
-  CC      drivers/dma/hsu/hsu.o
-  AR      drivers/dma/idxd/built-in.a
-  CC      kernel/cpu.o
-  CC      fs/fat/namei_vfat.o
-  CC      drivers/pci/rom.o
-  CC      drivers/pci/setup-res.o
-  CC      drivers/acpi/acpica/exstorob.o
-  AR      kernel/events/built-in.a
-  CC      kernel/time/namespace.o
-  CC      drivers/dma/lgm/lgm-dma.o
-  AR      fs/squashfs/built-in.a
-  CC      net/ethtool/tunnels.o
-  CC      fs/ecryptfs/miscdev.o
-  CC      drivers/clk/clk-gate.o
-  CC [M]  sound/soc/intel/common/soc-acpi-intel-ehl-match.o
-  CC      net/ethtool/fec.o
-  CC      net/ethtool/eeprom.o
-  CC      arch/x86/kernel/cpu/perfctr-watchdog.o
-  CC [M]  net/netfilter/nf_conntrack_core.o
-  CC [M]  net/netfilter/nf_conntrack_standalone.o
-  CC      mm/memblock.o
-  CC [M]  net/netfilter/nf_conntrack_expect.o
-  CC      drivers/video/fbdev/core/sysfillrect.o
-  CC      mm/memory_hotplug.o
-  CC [M]  sound/hda/hdac_sysfs.o
-  CC      drivers/acpi/acpica/exsystem.o
-  CC      drivers/clk/clk-multiplier.o
-  CC      arch/x86/kernel/cpu/vmware.o
-  AR      drivers/dma/mediatek/built-in.a
-  CC      block/blk-cgroup-rwstat.o
-  CC      block/blk-throttle.o
-  CC      block/blk-ioprio.o
-  CC      crypto/crct10dif_generic.o
-  CC      kernel/trace/trace_mmiotrace.o
-  CC      drivers/pci/irq.o
-  CC [M]  sound/soc/intel/common/soc-acpi-intel-jsl-match.o
-  AR      kernel/time/built-in.a
-  CC [M]  sound/hda/hdac_regmap.o
-  CC      drivers/acpi/acpica/extrace.o
-  CC [M]  sound/hda/hdac_controller.o
-  CC      kernel/bpf/inode.o
-  CC      fs/exportfs/expfs.o
-  AR      fs/ecryptfs/built-in.a
-  CC      crypto/crc64_rocksoft_generic.o
-  CC      fs/fat/namei_msdos.o
-  CC      drivers/clk/clk-mux.o
-  CC      drivers/video/fbdev/core/syscopyarea.o
-  AR      drivers/dma/hsu/built-in.a
-  CC [M]  net/netfilter/nf_conntrack_helper.o
-  CC      net/core/gro.o
-  CC      net/core/netdev-genl.o
-  CC      arch/x86/kernel/cpu/hypervisor.o
-  CC [M]  sound/hda/hdac_stream.o
-  CC [M]  net/netfilter/nf_conntrack_proto.o
-  CC [M]  net/netfilter/nf_conntrack_proto_generic.o
-  CC      net/ethtool/stats.o
-  AR      drivers/soc/apple/built-in.a
-  CC      net/core/netdev-genl-gen.o
-  CC      net/core/gso.o
-  AR      drivers/soc/aspeed/built-in.a
-  CC      fs/nls/nls_base.o
-  AR      drivers/dma/lgm/built-in.a
-  CC      drivers/acpi/acpica/exutils.o
-  CC      fs/nls/nls_cp437.o
-  AR      drivers/dma/qcom/built-in.a
-  AR      drivers/soc/bcm/built-in.a
-  CC      drivers/pci/vpd.o
-  AR      drivers/soc/fsl/built-in.a
-  AR      drivers/dma/ti/built-in.a
-  AR      drivers/soc/fujitsu/built-in.a
-  AR      drivers/dma/xilinx/built-in.a
-  CC      drivers/acpi/reboot.o
-  AR      drivers/soc/hisilicon/built-in.a
-  CC      drivers/video/fbdev/core/sysimgblt.o
-  CC [M]  drivers/dma/dw/core.o
-  CC [M]  net/netfilter/nf_conntrack_proto_tcp.o
-  AR      drivers/soc/imx/built-in.a
-  CC      net/core/net-sysfs.o
-  AR      drivers/soc/ixp4xx/built-in.a
-  CC      mm/slub.o
-  AR      drivers/soc/loongson/built-in.a
-  CC      kernel/trace/trace_functions_graph.o
-  AR      drivers/soc/mediatek/built-in.a
-  CC [M]  drivers/dma/dw/dw.o
-  CC      fs/unicode/utf8-norm.o
-  CC      crypto/lzo.o
-  AR      drivers/soc/microchip/built-in.a
-  AR      drivers/soc/nuvoton/built-in.a
-  CC [M]  sound/soc/intel/common/soc-acpi-intel-adl-match.o
-  AR      drivers/soc/pxa/built-in.a
-  CC      lib/zstd/zstd_common_module.o
-  CC      block/blk-iocost.o
-  CC      drivers/acpi/acpica/hwacpi.o
-  AR      drivers/soc/amlogic/built-in.a
-  CC      fs/ntfs/aops.o
-  AR      drivers/soc/qcom/built-in.a
-  CC      drivers/acpi/acpica/hwesleep.o
-  CC [M]  drivers/dma/dw/idma32.o
-  AR      drivers/soc/renesas/built-in.a
-  AR      drivers/soc/rockchip/built-in.a
-  AR      fs/fat/built-in.a
-  AR      drivers/soc/sunxi/built-in.a
-  CC [M]  drivers/dma/dw/acpi.o
-  AR      fs/exportfs/built-in.a
-  CC      drivers/acpi/acpica/hwgpe.o
-  CC      mm/madvise.o
-  CC      net/ethtool/phc_vclocks.o
-  AR      drivers/soc/ti/built-in.a
-  CC [M]  sound/hda/array.o
-  CC      drivers/pci/setup-bus.o
-  CC      drivers/pci/vc.o
-  AR      drivers/soc/xilinx/built-in.a
-  CC      drivers/clk/clk-composite.o
-  AR      drivers/soc/built-in.a
-  CC      drivers/clk/clk-fractional-divider.o
-  CC [M]  net/netfilter/nf_conntrack_proto_udp.o
-  CC      kernel/bpf/helpers.o
-  CC [M]  fs/nls/nls_iso8859-1.o
-  CC      drivers/pci/mmap.o
-  CC      crypto/lzo-rle.o
-  CC      crypto/xxhash_generic.o
-  CC      fs/unicode/utf8-core.o
-  CC      net/ethtool/mm.o
-  CC [M]  drivers/dma/ioat/init.o
-  CC      net/core/page_pool.o
-  CC      net/ethtool/module.o
-  CC      drivers/acpi/acpica/hwregs.o
-  CC      drivers/acpi/acpica/hwsleep.o
-  CC      fs/ext4/ioctl.o
-  CC      net/ethtool/pse-pd.o
-  CC      drivers/pci/setup-irq.o
-  CC      arch/x86/kernel/time.o
-  CC [M]  sound/soc/intel/common/soc-acpi-intel-rpl-match.o
-  CC      drivers/video/fbdev/core/fb_sys_fops.o
-  CC [M]  drivers/dma/ioat/dma.o
-  CC      kernel/trace/blktrace.o
-  CC [M]  fs/nls/nls_ucs2_utils.o
-  CC      fs/ntfs/attrib.o
-  CC [M]  drivers/dma/ioat/prep.o
-  CC [M]  drivers/dma/dw/platform.o
-  CC      fs/ntfs/collate.o
-  CC      kernel/trace/fgraph.o
-  CC      drivers/pci/proc.o
-  CC      lib/zstd/common/debug.o
-  CC      fs/ext4/mballoc.o
-  CC      fs/ext4/migrate.o
-  CC      kernel/trace/trace_events.o
-  CC      crypto/rng.o
-  CC      lib/argv_split.o
-  CC      kernel/trace/trace_export.o
-  CC      drivers/acpi/acpica/hwvalid.o
-  CC      kernel/trace/trace_syscalls.o
-  CC [M]  sound/hda/hdmi_chmap.o
-  CC [M]  net/netfilter/nf_conntrack_proto_icmp.o
-  CC      drivers/clk/clk-gpio.o
-  CC [M]  sound/soc/intel/common/soc-acpi-intel-mtl-match.o
-  CC      fs/fuse/dev.o
-  CC      lib/zstd/common/entropy_common.o
-  COPY    fs/unicode/utf8data.c
-  CC      fs/fuse/dir.o
-  CC      fs/unicode/utf8data.o
-  CC      kernel/bpf/tnum.o
-  CC      drivers/acpi/nvs.o
-  CC      kernel/trace/trace_event_perf.o
-  CC      fs/ext4/mmp.o
-  CC      drivers/acpi/acpica/hwxface.o
-  CC      net/ethtool/plca.o
-  AR      drivers/pmdomain/actions/built-in.a
-  CC      drivers/virtio/virtio.o
-  CC [M]  net/netfilter/nf_conntrack_extend.o
-  CC      lib/zstd/common/error_private.o
-  CC      net/core/page_pool_user.o
-  AR      drivers/pmdomain/amlogic/built-in.a
-  CC      drivers/virtio/virtio_ring.o
-  CC      net/core/net-procfs.o
-  CC      lib/zstd/common/fse_decompress.o
-  CC      drivers/acpi/acpica/hwxfsleep.o
-  AR      drivers/pmdomain/apple/built-in.a
-  LD [M]  drivers/dma/dw/dw_dmac_core.o
-  LD [M]  drivers/dma/dw/dw_dmac.o
-  AR      drivers/pmdomain/arm/built-in.a
-  CC      fs/fuse/file.o
-  CC      drivers/dma/dmaengine.o
-  CC      net/core/netpoll.o
-  AR      drivers/pmdomain/bcm/built-in.a
-  AR      drivers/pmdomain/imx/built-in.a
-  AR      drivers/pmdomain/mediatek/built-in.a
-  AR      fs/nls/built-in.a
-  AR      drivers/pmdomain/qcom/built-in.a
-  CC      net/core/fib_rules.o
-  CC [M]  net/netfilter/nf_conntrack_acct.o
-  CC [M]  drivers/clk/clk-tps68470.o
-  AR      drivers/pmdomain/renesas/built-in.a
-  CC      kernel/trace/trace_events_filter.o
-  CC [M]  net/netfilter/nf_conntrack_seqadj.o
-  AR      drivers/pmdomain/rockchip/built-in.a
-  CC [M]  sound/hda/trace.o
-  AR      drivers/pmdomain/samsung/built-in.a
-  CC      drivers/pci/slot.o
-  CC      fs/ntfs/compress.o
-  CC      drivers/acpi/acpica/hwpci.o
-  AR      drivers/pmdomain/st/built-in.a
-  CC      drivers/pci/pci-acpi.o
-  AR      drivers/video/fbdev/core/built-in.a
-  AR      drivers/pmdomain/starfive/built-in.a
-  CC [M]  drivers/dma/ioat/dca.o
-  AR      drivers/video/fbdev/built-in.a
-  CC      mm/page_io.o
-  AR      drivers/pmdomain/sunxi/built-in.a
-  AR      drivers/video/built-in.a
-  AR      drivers/pmdomain/tegra/built-in.a
-  CC      drivers/acpi/wakeup.o
-  CC      kernel/trace/trace_events_trigger.o
-  CC      drivers/dma/virt-dma.o
-  AR      drivers/pmdomain/ti/built-in.a
-  CC      block/mq-deadline.o
-  CC      crypto/drbg.o
-  CC [M]  sound/soc/intel/common/soc-acpi-intel-arl-match.o
-  AR      drivers/pmdomain/xilinx/built-in.a
-  CC      drivers/dma/acpi-dma.o
-  CC [M]  drivers/dma/idma64.o
-  CC      drivers/pmdomain/core.o
-  CC      fs/ext4/move_extent.o
-  AR      fs/unicode/built-in.a
-  CC      drivers/acpi/sleep.o
-  CC [M]  drivers/dma/ioat/sysfs.o
-  CC      drivers/acpi/acpica/nsaccess.o
-  CC      lib/zstd/common/zstd_common.o
-  CC      fs/ext4/namei.o
-  CC      fs/ntfs/debug.o
-  CC      drivers/xen/events/events_base.o
-  AR      lib/zstd/built-in.a
-  AR      net/ethtool/built-in.a
-  CC      lib/bug.o
-  AR      drivers/clk/built-in.a
-  CC      drivers/xen/events/events_2l.o
-  CC      drivers/xen/xenbus/xenbus_client.o
-  CC      drivers/acpi/acpica/nsalloc.o
-  CC      crypto/jitterentropy.o
-  CC [M]  net/netfilter/nf_conntrack_proto_icmpv6.o
-  CC [M]  net/netfilter/nf_conntrack_timeout.o
-  CC      kernel/exit.o
-  CC [M]  sound/hda/hdac_component.o
-  CC [M]  sound/hda/hdac_i915.o
-  CC      drivers/xen/events/events_fifo.o
-  CC [M]  sound/soc/intel/common/soc-acpi-intel-lnl-match.o
-  CC      arch/x86/kernel/ioport.o
-  CC [M]  net/netfilter/nf_conntrack_timestamp.o
-  CC      fs/ntfs/dir.o
-  CC      drivers/acpi/acpica/nsarguments.o
-  CC      arch/x86/kernel/cpu/mshyperv.o
-  CC      kernel/trace/trace_eprobe.o
-  LD [M]  drivers/dma/ioat/ioatdma.o
-  CC      kernel/bpf/log.o
-  CC      drivers/xen/xenbus/xenbus_comms.o
-  CC      crypto/jitterentropy-kcapi.o
-  CC [M]  net/netfilter/nf_conntrack_ecache.o
-  CC [M]  net/netfilter/nf_conntrack_labels.o
-  CC      arch/x86/kernel/cpu/acrn.o
-  CC      drivers/acpi/acpica/nsconvert.o
-  AR      net/ipv4/netfilter/built-in.a
-  CC      fs/fuse/inode.o
-  CC [M]  net/ipv4/netfilter/nf_defrag_ipv4.o
-  CC [M]  net/ipv4/netfilter/ip_tables.o
-  CC      lib/buildid.o
-  CC [M]  sound/soc/intel/common/soc-acpi-intel-hda-match.o
-  CC      fs/ntfs/file.o
-  CC      fs/fuse/control.o
-  AR      drivers/dma/built-in.a
-  CC      kernel/trace/trace_events_inject.o
-  CC      net/core/net-traces.o
-  CC      drivers/pci/quirks.o
-  CC [M]  sound/hda/intel-dsp-config.o
-  CC      net/ipv4/route.o
-  CC      block/bio-integrity.o
-  CC      net/ipv4/inetpeer.o
-  CC      block/blk-integrity.o
-  CC      drivers/acpi/acpica/nsdump.o
-  CC      drivers/acpi/device_sysfs.o
-  CC      kernel/trace/trace_events_synth.o
-  CC      lib/clz_tab.o
-  CC      crypto/ghash-generic.o
-  CC [M]  net/netfilter/nf_conntrack_proto_dccp.o
-  CC      drivers/pmdomain/governor.o
-  CC      mm/swap_state.o
-  CC      mm/swapfile.o
-  CC      arch/x86/kernel/cpu/debugfs.o
-  CC      drivers/virtio/virtio_anchor.o
-  CC      net/core/drop_monitor.o
-  CC      net/ipv4/protocol.o
-  CC      lib/cmdline.o
-  CC      drivers/acpi/acpica/nseval.o
-  CC      arch/x86/kernel/dumpstack.o
-  CC      mm/swap_slots.o
-  CC      fs/ext4/page-io.o
-  CC      mm/zswap.o
-  CC      fs/ntfs/index.o
-  CC      fs/ntfs/inode.o
-  CC      drivers/xen/xenbus/xenbus_xs.o
-  CC      arch/x86/kernel/cpu/capflags.o
-  CC      drivers/acpi/device_pm.o
-  CC      arch/x86/kernel/nmi.o
-  CC      fs/fuse/xattr.o
-  CC      lib/cpumask.o
-  CC      fs/fuse/acl.o
-  CC      drivers/acpi/proc.o
-  CC      arch/x86/kernel/ldt.o
-  CC      arch/x86/kernel/setup.o
-  CC      crypto/xor.o
-  CC      mm/dmapool.o
-  AR      drivers/pmdomain/built-in.a
-  CC      drivers/acpi/acpica/nsinit.o
-  CC      drivers/acpi/acpica/nsload.o
-  CC      drivers/pci/ats.o
-  AR      arch/x86/kernel/cpu/built-in.a
-  CC [M]  sound/soc/intel/common/soc-acpi-intel-sdw-mockup-match.o
-  CC      drivers/acpi/bus.o
-  CC [M]  arch/x86/kvm/irq_comm.o
-  CC [M]  arch/x86/kvm/cpuid.o
-  CC      kernel/bpf/bpf_iter.o
-  AR      drivers/xen/events/built-in.a
-  CC      crypto/hash_info.o
-  CC      arch/x86/kernel/x86_init.o
-  CC      lib/ctype.o
-  CC      crypto/kdf_sp800108.o
-  CC      lib/dec_and_lock.o
-  CC      drivers/xen/xenbus/xenbus_probe.o
-  CC      kernel/softirq.o
-  CC [M]  sound/hda/intel-nhlt.o
-  CC      kernel/resource.o
-  CC      drivers/virtio/virtio_pci_modern_dev.o
-  CC      arch/x86/kernel/i8259.o
-  CC      drivers/pci/iov.o
-  CC [M]  net/netfilter/nf_conntrack_proto_sctp.o
-  CC      drivers/acpi/acpica/nsnames.o
-  CC [M]  crypto/cmac.o
-  CC      kernel/sysctl.o
-  CC [M]  net/netfilter/nf_conntrack_netlink.o
-  CC [M]  arch/x86/kvm/pmu.o
-  CC      fs/fuse/readdir.o
-  CC [M]  crypto/ccm.o
-  CC      kernel/trace/trace_events_hist.o
-  CC      drivers/acpi/acpica/nsobject.o
-  CC      fs/ext4/readpage.o
-  CC      kernel/trace/bpf_trace.o
-  LD [M]  sound/soc/intel/common/snd-soc-acpi-intel-match.o
-  CC      arch/x86/kernel/irqinit.o
-  CC      block/t10-pi.o
-  CC      lib/decompress.o
-  CC      fs/ntfs/mft.o
-  CC [M]  sound/soc/intel/atom/sst/sst.o
-  CC      drivers/acpi/acpica/nsparse.o
-  CC      kernel/capability.o
-  CC      net/ipv4/ip_input.o
-  CC      fs/ntfs/mst.o
-  CC      lib/decompress_bunzip2.o
-  CC [M]  sound/hda/intel-sdw-acpi.o
-  CC [M]  sound/soc/intel/atom/sst-mfld-platform-pcm.o
-  CC [M]  net/ipv4/netfilter/iptable_filter.o
-  CC [M]  net/ipv4/netfilter/iptable_nat.o
-  CC      kernel/trace/trace_kprobe.o
-  CC      kernel/trace/error_report-traces.o
-  LD [M]  sound/hda/snd-hda-core.o
-  CC      drivers/xen/cpu_hotplug.o
-  CC      drivers/acpi/acpica/nspredef.o
-  CC [M]  crypto/cryptd.o
-  CC      drivers/xen/grant-table.o
-  CC      arch/x86/kernel/jump_label.o
-  CC      arch/x86/kernel/irq_work.o
-  CC      block/blk-mq-pci.o
-  CC      drivers/acpi/glue.o
-  CC      kernel/bpf/map_iter.o
-  CC      drivers/acpi/scan.o
-  CC      fs/fuse/ioctl.o
-  LD [M]  sound/hda/snd-intel-dspcfg.o
-  CC      fs/ntfs/namei.o
-  CC      fs/ntfs/runlist.o
-  CC      drivers/pci/pci-label.o
-  CC      kernel/ptrace.o
-  CC      drivers/acpi/acpica/nsprepkg.o
-  CC      mm/hugetlb.o
-  CC      drivers/acpi/acpica/nsrepair.o
-  CC      fs/ext4/resize.o
-  CC      drivers/acpi/acpica/nsrepair2.o
-  CC      drivers/virtio/virtio_pci_legacy_dev.o
-  CC      drivers/acpi/mipi-disco-img.o
-  CC      lib/decompress_inflate.o
-  CC      drivers/pci/p2pdma.o
-  CC      drivers/acpi/resource.o
-  CC      drivers/acpi/acpica/nssearch.o
-  CC      drivers/acpi/acpi_processor.o
-  CC [M]  arch/x86/kvm/mtrr.o
-  CC      drivers/xen/xenbus/xenbus_probe_backend.o
-  LD [M]  sound/hda/snd-intel-sdw-acpi.o
-  CC      block/blk-mq-virtio.o
-  CC      arch/x86/kernel/probe_roms.o
-  CC      net/core/selftests.o
-  CC      net/core/timestamping.o
-  CC      drivers/acpi/processor_core.o
-  CC      block/blk-zoned.o
-  CC      net/ipv4/ip_fragment.o
-  CC      mm/hugetlb_vmemmap.o
-  CC      drivers/acpi/acpica/nsutils.o
-  CC      drivers/virtio/virtio_mmio.o
-  CC      drivers/acpi/acpica/nswalk.o
-  CC [M]  sound/soc/intel/atom/sst/sst_ipc.o
-  CC      lib/decompress_unlz4.o
-  CC      net/ipv4/ip_forward.o
-  CC      drivers/acpi/acpica/nsxfeval.o
-  CC      drivers/virtio/virtio_pci_modern.o
-  CC      drivers/pci/vgaarb.o
-  CC      drivers/virtio/virtio_pci_common.o
-  CC      drivers/xen/features.o
-  CC [M]  sound/soc/intel/atom/sst/sst_stream.o
-  CC [M]  crypto/polyval-generic.o
-  CC      fs/ntfs/super.o
-  CC      kernel/bpf/task_iter.o
-  CC      fs/ntfs/sysctl.o
-  CC [M]  sound/soc/intel/atom/sst-mfld-platform-compress.o
-  CC      drivers/acpi/processor_pdc.o
-  CC      drivers/acpi/acpica/nsxfname.o
-  CC      drivers/acpi/ec.o
-  CC      kernel/bpf/prog_iter.o
-  CC      drivers/xen/balloon.o
-  CC      arch/x86/kernel/sys_ia32.o
-  CC      lib/decompress_unlzma.o
-  CC      drivers/xen/xenbus/xenbus_dev_frontend.o
-  CC [M]  net/netfilter/nf_nat_core.o
-  AR      fs/fuse/built-in.a
-  CC      kernel/user.o
-  CC      kernel/signal.o
-  CC      mm/mempolicy.o
-  CC [M]  arch/x86/kvm/debugfs.o
-  CC      block/blk-wbt.o
-  CC      drivers/xen/manage.o
-  CC      drivers/xen/time.o
-  CC      drivers/acpi/acpica/nsxfobj.o
-  CC      net/ipv4/ip_options.o
-  CC      drivers/acpi/acpica/psargs.o
-  CC      arch/x86/kernel/signal_32.o
-  CC [M]  crypto/simd.o
-  CC [M]  sound/soc/intel/atom/sst-atom-controls.o
-  AR      fs/hostfs/built-in.a
-  CC [M]  sound/soc/intel/atom/sst/sst_drv_interface.o
-  CC      drivers/pci/doe.o
-  CC      drivers/virtio/virtio_pci_legacy.o
-  CC [M]  drivers/pci/pci-stub.o
-  CC      fs/debugfs/inode.o
-  CC      drivers/virtio/virtio_pci_admin_legacy_io.o
-  CC      fs/debugfs/file.o
-  CC      arch/x86/kernel/sys_x86_64.o
-  CC      fs/ext4/super.o
-  CC      arch/x86/kernel/espfix_64.o
-  CC      drivers/acpi/acpica/psloop.o
-  CC      block/blk-mq-debugfs.o
-  CC      net/core/ptp_classifier.o
-  CC      drivers/acpi/dock.o
-  CC      kernel/trace/power-traces.o
-  CC      kernel/trace/rpm-traces.o
-  CC      lib/decompress_unlzo.o
-  CC      lib/decompress_unxz.o
-  CC      lib/decompress_unzstd.o
-  CC      net/ipv4/ip_output.o
-  CC      lib/dump_stack.o
-  CC      arch/x86/kernel/ksysfs.o
-  CC      kernel/bpf/link_iter.o
-  CC      fs/ntfs/unistr.o
-  CC      drivers/acpi/acpica/psobject.o
-  CC      kernel/sys.o
-  CC      kernel/bpf/hashtab.o
-  CC      kernel/umh.o
-  CC      drivers/xen/mem-reservation.o
-  CC      block/blk-mq-debugfs-zoned.o
-  CC      block/sed-opal.o
-  CC [M]  arch/x86/kvm/mmu/mmu.o
-  CC      fs/ext4/symlink.o
-  CC      drivers/regulator/core.o
-  CC      block/blk-pm.o
-  CC      drivers/regulator/dummy.o
-  CC      arch/x86/kernel/bootflag.o
-  CC      block/blk-crypto.o
-  CC [M]  sound/soc/intel/atom/sst/sst_loader.o
-  CC      drivers/xen/xenbus/xenbus_dev_backend.o
-  CC      drivers/xen/xenbus/xenbus_probe_frontend.o
-  CC      drivers/regulator/fixed-helper.o
-  CC      net/ipv4/ip_sockglue.o
-  CC      net/ipv4/inet_hashtables.o
-  CC      net/ipv4/inet_timewait_sock.o
-  LD [M]  crypto/crypto_simd.o
-  CC      drivers/acpi/acpica/psopcode.o
-  CC      crypto/rsapubkey.asn1.o
-  CC      drivers/acpi/acpica/psopinfo.o
-  AR      drivers/reset/starfive/built-in.a
-  AR      drivers/reset/hisilicon/built-in.a
-  CC      crypto/rsaprivkey.asn1.o
-  CC      drivers/reset/core.o
-  CC [M]  arch/x86/kvm/mmu/page_track.o
-  CC [M]  net/netfilter/nf_nat_proto.o
-  CC      drivers/virtio/virtio_balloon.o
-  CC      fs/ntfs/upcase.o
-  AR      crypto/built-in.a
-  AR      drivers/pci/built-in.a
-  CC      net/ipv4/inet_connection_sock.o
-  CC      drivers/acpi/pci_root.o
-  CC      lib/earlycpio.o
-  CC      drivers/tty/vt/vt_ioctl.o
-  CC      drivers/regulator/helpers.o
-  CC      drivers/tty/vt/vc_screen.o
-  CC      kernel/bpf/arraymap.o
-  CC      drivers/tty/vt/selection.o
-  CC      drivers/acpi/acpica/psparse.o
-  CC      kernel/bpf/percpu_freelist.o
-  CC      lib/extable.o
-  CC      kernel/bpf/bpf_lru_list.o
-  CC      drivers/acpi/acpica/psscope.o
-  CC      arch/x86/kernel/e820.o
-  AR      fs/debugfs/built-in.a
-  CC      drivers/char/hw_random/core.o
-  CC      drivers/tty/hvc/hvc_console.o
-  CC      drivers/reset/reset-simple.o
-  CC      drivers/iommu/amd/iommu.o
-  CC      drivers/iommu/intel/dmar.o
-  AR      drivers/gpu/host1x/built-in.a
-  CC      drivers/iommu/intel/iommu.o
-  CC [M]  sound/soc/intel/atom/sst/sst_pvt.o
-  AR      drivers/gpu/drm/tests/built-in.a
-  CC      net/core/netprio_cgroup.o
-  CC [M]  drivers/gpu/drm/tests/drm_kunit_helpers.o
-  CC [M]  drivers/gpu/drm/tests/drm_buddy_test.o
-  CC      mm/sparse.o
-  CC      drivers/tty/serial/8250/8250_core.o
-  AR      drivers/gpu/drm/arm/built-in.a
-  CC      drivers/tty/serial/8250/8250_pnp.o
-  AR      fs/ntfs/built-in.a
-  CC      drivers/tty/hvc/hvc_irq.o
-  CC      mm/sparse-vmemmap.o
-  CC      drivers/acpi/acpica/pstree.o
-  AR      sound/built-in.a
-  CC      fs/tracefs/inode.o
-  CC      net/xfrm/xfrm_policy.o
-  CC      fs/pstore/inode.o
-  CC      lib/flex_proportions.o
-  CC      net/ipv4/tcp.o
-  AR      drivers/xen/xenbus/built-in.a
-  CC      fs/btrfs/super.o
-  CC      kernel/trace/trace_kdb.o
-  CC      drivers/xen/pci.o
-  CC [M]  drivers/virtio/virtio_mem.o
-  CC      block/blk-crypto-profile.o
-  CC      drivers/acpi/acpica/psutils.o
-  CC      mm/mmu_notifier.o
-  CC      drivers/tty/serial/8250/8250_port.o
-  CC      drivers/tty/vt/keyboard.o
-  CC      fs/pstore/platform.o
-  CC      lib/idr.o
-  CC      net/ipv4/tcp_input.o
-  AR      drivers/reset/built-in.a
-  CC      net/ipv4/tcp_output.o
-  CC      net/core/netclassid_cgroup.o
-  CC      net/ipv4/tcp_timer.o
-  CC      net/core/lwtunnel.o
-  CC      fs/tracefs/event_inode.o
-  CC      drivers/regulator/devres.o
-  CC      drivers/xen/dbgp.o
-  AR      drivers/char/hw_random/built-in.a
-  CC      drivers/acpi/acpica/pswalk.o
-  CC [M]  drivers/gpu/drm/tests/drm_cmdline_parser_test.o
-  CC      drivers/char/agp/backend.o
-  CC      drivers/acpi/acpica/psxface.o
-  CC      drivers/tty/hvc/hvc_xen.o
-  CC      drivers/char/agp/generic.o
-  CC      arch/x86/kernel/pci-dma.o
-  CC      drivers/char/agp/isoch.o
-  CC      drivers/regulator/irq_helpers.o
-  CC      net/unix/af_unix.o
-  AR      net/ipv6/netfilter/built-in.a
-  CC [M]  sound/soc/intel/atom/sst/sst_acpi.o
-  CC [M]  net/ipv6/netfilter/nf_defrag_ipv6_hooks.o
-  CC      kernel/trace/trace_dynevent.o
-  CC      kernel/bpf/lpm_trie.o
-  CC      net/ipv6/af_inet6.o
-  CC      drivers/char/agp/amd64-agp.o
-  CC [M]  arch/x86/kvm/mmu/spte.o
-  CC      drivers/iommu/intel/pasid.o
-  CC      drivers/acpi/acpica/rsaddr.o
-  CC      lib/irq_regs.o
-  CC      drivers/acpi/acpica/rscalc.o
-  CC      block/blk-crypto-sysfs.o
-  CC      drivers/iommu/amd/init.o
-  CC [M]  net/netfilter/nf_nat_helper.o
-  CC      block/blk-crypto-fallback.o
-  AR      fs/tracefs/built-in.a
-  CC      drivers/iommu/amd/quirks.o
-  CC      fs/pstore/pmsg.o
-  CC      mm/ksm.o
-  CC      drivers/xen/acpi.o
-  CC      block/holder.o
-  CC      drivers/gpu/vga/vga_switcheroo.o
-  CC      lib/is_single_threaded.o
-  AR      drivers/gpu/drm/display/built-in.a
-  LD [M]  sound/soc/intel/atom/sst/snd-intel-sst-core.o
-  CC      net/ipv4/tcp_ipv4.o
-  LD [M]  sound/soc/intel/atom/sst/snd-intel-sst-acpi.o
-  CC [M]  drivers/gpu/drm/display/drm_display_helper_mod.o
-  LD [M]  sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.o
-  AR      drivers/virtio/built-in.a
-  CC [M]  drivers/gpu/drm/display/drm_dp_dual_mode_helper.o
-  CC      net/packet/af_packet.o
-  AR      drivers/tty/hvc/built-in.a
-  CC [M]  drivers/gpu/drm/display/drm_dp_helper.o
-  CC [M]  drivers/gpu/drm/display/drm_dp_mst_topology.o
-  CC      drivers/acpi/acpica/rscreate.o
-  CC [M]  sound/soc/sof/intel/hda.o
-  CC      drivers/acpi/acpica/rsdumpinfo.o
-  CC      drivers/connector/cn_queue.o
-  CC [M]  sound/soc/sof/intel/hda-loader.o
-  CC      drivers/connector/connector.o
-  CC      net/xfrm/xfrm_state.o
-  CC      arch/x86/kernel/quirks.o
-  CC [M]  net/ipv6/netfilter/nf_conntrack_reasm.o
-  CC      lib/klist.o
-  CC [M]  fs/pstore/ram.o
-  CC [M]  drivers/regulator/tps68470-regulator.o
-  CC      drivers/acpi/acpica/rsinfo.o
-  CC      kernel/trace/trace_probe.o
-  CC [M]  arch/x86/kvm/mmu/tdp_iter.o
-  CC      kernel/bpf/map_in_map.o
-  CC      net/xfrm/xfrm_hash.o
-  CC      drivers/xen/xen-acpi-pad.o
-  CC [M]  drivers/gpu/drm/display/drm_dsc_helper.o
-  CC      drivers/tty/serial/8250/8250_dma.o
-  CC      drivers/char/agp/intel-agp.o
-  CC      drivers/xen/pcpu.o
-  CC      net/core/lwt_bpf.o
-  CC      drivers/tty/vt/consolemap.o
-  CC [M]  drivers/gpu/drm/tests/drm_connector_test.o
-  CC      drivers/iommu/intel/nested.o
-  CC      drivers/base/power/sysfs.o
-  CC      drivers/acpi/acpica/rsio.o
-  CC      lib/kobject.o
-  CC      drivers/base/power/generic_ops.o
-  AR      block/built-in.a
-  CC      net/ipv4/tcp_minisocks.o
-  CC      drivers/iommu/intel/trace.o
-  CC      net/ipv6/anycast.o
-  AR      drivers/regulator/built-in.a
-  CC      drivers/char/agp/intel-gtt.o
-  AR      drivers/gpu/drm/renesas/rcar-du/built-in.a
-  CC [M]  arch/x86/kvm/mmu/tdp_mmu.o
-  AR      drivers/gpu/drm/renesas/built-in.a
-  CC      kernel/bpf/bloom_filter.o
-  CC [M]  fs/pstore/ram_core.o
-  CC      net/ipv6/ip6_output.o
-  CC      net/ipv6/ip6_input.o
-  CC      drivers/acpi/acpica/rsirq.o
-  CC      drivers/connector/cn_proc.o
-  CC [M]  sound/soc/sof/intel/hda-stream.o
-  CC [M]  drivers/gpu/drm/display/drm_hdcp_helper.o
-  CC [M]  drivers/gpu/drm/tests/drm_damage_helper_test.o
-  CC [M]  net/netfilter/nf_nat_masquerade.o
-  CC      drivers/xen/biomerge.o
-  CC      arch/x86/kernel/topology.o
-  CC [M]  sound/soc/sof/intel/hda-trace.o
-  AR      drivers/gpu/vga/built-in.a
-  CC      drivers/char/agp/via-agp.o
-  HOSTCC  drivers/tty/vt/conmakehash
-  CC      drivers/tty/vt/vt.o
-  CC      drivers/acpi/acpica/rslist.o
-  CC      fs/ext4/sysfs.o
-  CC      drivers/tty/serial/8250/8250_dwlib.o
-  CC      fs/ext4/xattr.o
-  CC      kernel/trace/trace_uprobe.o
-  CC      kernel/trace/trace_boot.o
-  CC      drivers/iommu/amd/io_pgtable.o
-  CC      lib/kobject_uevent.o
-  CC      kernel/bpf/local_storage.o
-  CC      arch/x86/kernel/kdebugfs.o
-  CC      net/core/dst_cache.o
-  CC      drivers/char/tpm/tpm-chip.o
-  CC      drivers/char/mem.o
-  CC      drivers/block/loop.o
-  CC [M]  fs/pstore/zone.o
-  CC      drivers/base/power/common.o
-  CC      drivers/xen/xen-balloon.o
-  CC      drivers/iommu/intel/cap_audit.o
-  CC      drivers/acpi/acpica/rsmemory.o
-  CC      net/unix/garbage.o
-  CC [M]  drivers/gpu/drm/tests/drm_dp_mst_helper_test.o
-  CC      net/unix/sysctl_net_unix.o
-  CC [M]  drivers/gpu/drm/display/drm_hdmi_helper.o
-  CC      net/xfrm/xfrm_input.o
-  CC      drivers/char/tpm/tpm-dev-common.o
-  AR      drivers/misc/eeprom/built-in.a
-  CC      drivers/acpi/acpica/rsmisc.o
-  AR      drivers/misc/cb710/built-in.a
-  AR      drivers/misc/ti-st/built-in.a
-  CC      lib/logic_pio.o
-  AR      drivers/misc/lis3lv02d/built-in.a
-  AR      drivers/connector/built-in.a
-  CC [M]  sound/soc/sof/intel/hda-dsp.o
-  CC      net/ipv6/addrconf.o
-  AR      drivers/misc/cardreader/built-in.a
-  AR      drivers/char/agp/built-in.a
-  CC      drivers/tty/serial/serial_core.o
-  CC [M]  fs/pstore/blk.o
-  AR      drivers/misc/pvpanic/built-in.a
-  CC      net/ipv6/addrlabel.o
-  CC [M]  sound/soc/sof/amd/acp.o
-  LD [M]  net/ipv6/netfilter/nf_defrag_ipv6.o
-  CC [M]  drivers/misc/mei/hdcp/mei_hdcp.o
-  CC      net/ipv6/route.o
-  CC      fs/ext4/xattr_hurd.o
-  CC      drivers/tty/serial/8250/8250_fintek.o
-  CC      drivers/iommu/amd/io_pgtable_v2.o
-  CC      drivers/tty/serial/8250/8250_pcilib.o
-  CC      arch/x86/kernel/alternative.o
-  CC      arch/x86/kernel/i8253.o
-  CC      drivers/acpi/acpica/rsserial.o
-  CC      mm/page_poison.o
-  CC      lib/maple_tree.o
-  CC      drivers/base/power/qos.o
-  CC      drivers/char/tpm/tpm-dev.o
-  CC [M]  drivers/gpu/drm/tests/drm_exec_test.o
-  CC      drivers/iommu/intel/svm.o
-  LD [M]  fs/pstore/ramoops.o
-  CC      drivers/xen/sys-hypervisor.o
-  CC      mm/memtest.o
-  CC      drivers/iommu/intel/irq_remapping.o
-  CC [M]  arch/x86/kvm/hyperv.o
-  CC [M]  arch/x86/kvm/xen.o
-  CC      kernel/bpf/queue_stack_maps.o
-  CC      net/unix/unix_bpf.o
-  CC [M]  net/netfilter/nf_tables_core.o
-  CC      fs/btrfs/ctree.o
-  CC      drivers/acpi/acpica/rsutils.o
-  CC      net/unix/scm.o
-  CC      fs/btrfs/extent-tree.o
-  CC      drivers/char/random.o
-  CC [M]  net/netfilter/nf_tables_api.o
-  CC [M]  drivers/gpu/drm/display/drm_scdc_helper.o
-  CC [M]  drivers/misc/mei/pxp/mei_pxp.o
-  CC [M]  sound/soc/sof/intel/hda-ipc.o
-  CC [M]  net/netfilter/nft_chain_filter.o
-  CC      drivers/block/virtio_blk.o
-  CC      drivers/char/ttyprintk.o
-  CC      kernel/trace/fprobe.o
-  CC      fs/btrfs/print-tree.o
-  CC      kernel/bpf/ringbuf.o
-  CC      net/core/gro_cells.o
-  AR      drivers/iommu/amd/built-in.a
-  AR      net/packet/built-in.a
-  CC      mm/migrate.o
-  CC      fs/ext4/xattr_trusted.o
-  CC      kernel/bpf/bpf_local_storage.o
-  CC      fs/ext4/xattr_user.o
-  CC      drivers/char/tpm/tpm-interface.o
-  CC      kernel/bpf/bpf_task_storage.o
-  AR      fs/pstore/built-in.a
-  CC [M]  sound/soc/sof/xtensa/core.o
-  LD [M]  fs/pstore/pstore_zone.o
-  CC      net/ipv4/tcp_cong.o
-  LD [M]  fs/pstore/pstore_blk.o
-  CC      net/ipv4/tcp_metrics.o
-  CC      drivers/block/xen-blkfront.o
-  CC      drivers/base/firmware_loader/builtin/main.o
-  CC      drivers/tty/serial/8250/8250_early.o
-  CC [M]  drivers/gpu/drm/tests/drm_format_helper_test.o
-  CC      drivers/acpi/acpica/rsxface.o
-  CC      drivers/xen/platform-pci.o
-  CC      drivers/base/firmware_loader/fallback_table.o
-  CC      drivers/base/firmware_loader/main.o
-  COPY    drivers/tty/vt/defkeymap.c
-  CONMK   drivers/tty/vt/consolemap_deftbl.c
-  CC      drivers/tty/vt/defkeymap.o
-  CC [M]  sound/soc/sof/amd/acp-loader.o
-  CC      drivers/base/power/runtime.o
-  CC [M]  drivers/misc/mei/init.o
-  CC      drivers/acpi/acpica/tbdata.o
-  AR      drivers/base/firmware_loader/builtin/built-in.a
-  CC      drivers/tty/serial/serial_base_bus.o
-  CC      fs/ext4/fast_commit.o
-  CC      drivers/tty/serial/serial_ctrl.o
-  CC      drivers/tty/vt/consolemap_deftbl.o
-  CC [M]  sound/soc/sof/intel/hda-ctrl.o
-  CC      drivers/iommu/intel/perfmon.o
-  CC      drivers/tty/serial/serial_port.o
-  CC      net/xfrm/xfrm_output.o
-  AR      drivers/tty/vt/built-in.a
-  CC      drivers/tty/serial/8250/8250_dw.o
-  CC      fs/btrfs/root-tree.o
-  CC      fs/btrfs/dir-item.o
-  CC      fs/btrfs/file-item.o
-  CC      net/devlink/core.o
-  CC      fs/efivarfs/inode.o
-  CC      arch/x86/kernel/hw_breakpoint.o
-  CC      net/ipv4/tcp_fastopen.o
-  CC      net/ipv4/tcp_rate.o
-  CC [M]  sound/sound_core.o
-  CC [M]  drivers/gpu/drm/display/drm_dp_aux_dev.o
-  CC      kernel/bpf/bpf_inode_storage.o
-  CC      drivers/xen/swiotlb-xen.o
-  CC      kernel/trace/rethook.o
-  CC      drivers/misc/sram.o
-  CC [M]  drivers/misc/mei/hbm.o
-  CC      net/core/failover.o
-  CC [M]  drivers/misc/mei/interrupt.o
-  CC      drivers/acpi/acpica/tbfadt.o
-  CC [M]  drivers/gpu/drm/tests/drm_format_test.o
-  LD [M]  sound/soc/sof/xtensa/snd-sof-xtensa-dsp.o
-  AR      net/unix/built-in.a
-  AR      drivers/gpu/drm/omapdrm/built-in.a
-  CC [M]  drivers/gpu/drm/tests/drm_framebuffer_test.o
-  CC      drivers/tty/serial/earlycon.o
-  CC      drivers/tty/serial/max310x.o
-  AR      net/dsa/built-in.a
-  CC      drivers/tty/serial/sccnxp.o
-  CC      drivers/char/tpm/tpm1-cmd.o
-  CC      drivers/tty/serial/serial_mctrl_gpio.o
-  CC      drivers/char/tpm/tpm2-cmd.o
-  CC [M]  drivers/gpu/drm/tests/drm_gem_shmem_test.o
-  CC      fs/efivarfs/file.o
-  CC [M]  sound/soc/sof/intel/hda-pcm.o
-  CC      drivers/base/firmware_loader/fallback.o
-  CC      drivers/acpi/acpica/tbfind.o
-  CC [M]  sound/soc/sof/amd/acp-ipc.o
-  CC      drivers/tty/serial/8250/8250_mid.o
-  CC [M]  sound/soc/sof/amd/acp-pcm.o
-  CC [M]  drivers/gpu/drm/tests/drm_managed_test.o
-  CC      kernel/trace/trace_fprobe.o
-  CC      drivers/base/power/wakeirq.o
-  CC      drivers/tty/serial/kgdb_nmi.o
-  AR      drivers/iommu/intel/built-in.a
-  CC [M]  drivers/gpu/drm/tests/drm_mm_test.o
-  CC [M]  drivers/gpu/drm/display/drm_dp_cec.o
-  CC      drivers/tty/serial/kgdboc.o
-  AR      drivers/iommu/arm/arm-smmu/built-in.a
-  CC [M]  sound/soc/sof/amd/acp-stream.o
-  AR      drivers/iommu/arm/arm-smmu-v3/built-in.a
-  CC      kernel/bpf/disasm.o
-  CC      lib/memcat_p.o
-  AR      drivers/iommu/arm/built-in.a
-  CC [M]  drivers/misc/mei/client.o
-  CC      drivers/xen/mcelog.o
-  CC [M]  drivers/block/nbd.o
-  AR      drivers/iommu/iommufd/built-in.a
-  CC      drivers/acpi/acpica/tbinstal.o
-  CC      drivers/iommu/iommu.o
-  CC      fs/efivarfs/super.o
-  CC      arch/x86/kernel/tsc.o
-  CC      drivers/iommu/iommu-traces.o
-  CC      arch/x86/kernel/tsc_msr.o
-  CC [M]  arch/x86/kvm/smm.o
-  CC      net/ipv4/tcp_recovery.o
-  CC [M]  drivers/gpu/drm/tests/drm_modes_test.o
-  CC [M]  drivers/misc/mei/main.o
-  CC      drivers/base/firmware_loader/sysfs.o
-  CC      mm/memory-tiers.o
-  CC      mm/migrate_device.o
-  CC [M]  sound/soc/sof/intel/hda-dai.o
-  CC      mm/huge_memory.o
-  CC      lib/nmi_backtrace.o
-  CC      drivers/char/tpm/tpmrm-dev.o
-  CC      net/ipv4/tcp_ulp.o
-  CC      net/core/skmsg.o
-  CC      fs/ext4/orphan.o
-  CC      drivers/base/firmware_loader/sysfs_upload.o
-  CC      net/ipv4/tcp_offload.o
-  CC      drivers/tty/serial/8250/8250_pci.o
-  CC      drivers/acpi/acpica/tbprint.o
-  CC      mm/khugepaged.o
-  LD [M]  sound/soundcore.o
-  CC [M]  sound/soc/sof/intel/hda-dai-ops.o
-  CC      arch/x86/kernel/io_delay.o
-  CC      drivers/base/regmap/regmap.o
-  CC [M]  sound/soc/sof/amd/acp-trace.o
-  CC      net/ipv6/ip6_fib.o
-  CC      kernel/bpf/mprog.o
-  CC      drivers/xen/xen-acpi-processor.o
-  CC      drivers/base/power/main.o
-  CC      drivers/base/regmap/regcache.o
-  CC      fs/btrfs/inode-item.o
-  CC      fs/efivarfs/vars.o
-  CC [M]  drivers/gpu/drm/tests/drm_plane_helper_test.o
-  CC [M]  sound/soc/sof/amd/acp-common.o
-  CC      net/xfrm/xfrm_sysctl.o
-  CC      drivers/acpi/acpica/tbutils.o
-  AR      kernel/trace/built-in.a
-  CC      net/ipv4/tcp_plb.o
-  CC      net/xfrm/xfrm_replay.o
-  CC      arch/x86/kernel/rtc.o
-  CC      arch/x86/kernel/resource.o
-  CC      drivers/char/tpm/tpm2-space.o
-  CC      kernel/bpf/trampoline.o
-  CC      drivers/xen/efi.o
-  CC      net/ipv4/datagram.o
-  CC      fs/btrfs/disk-io.o
-  LD [M]  drivers/gpu/drm/display/drm_display_helper.o
-  CC [M]  arch/x86/kvm/vmx/vmx.o
-  CC [M]  sound/soc/sof/intel/hda-bus.o
-  CC      mm/page_counter.o
-  CC      net/ipv6/ipv6_sockglue.o
-  CC      drivers/base/regmap/regcache-rbtree.o
-  CC      fs/ext4/acl.o
-  AR      drivers/base/firmware_loader/built-in.a
-  CC      drivers/acpi/acpica/tbxface.o
-  CC      fs/ext4/xattr_security.o
-  CC [M]  sound/soc/sof/intel/skl.o
-  AR      drivers/base/test/built-in.a
-  CC      net/devlink/netlink.o
-  CC      drivers/char/tpm/tpm-sysfs.o
-  CC      mm/memcontrol.o
-  CC [M]  drivers/misc/enclosure.o
-  CC [M]  drivers/gpu/drm/tests/drm_probe_helper_test.o
-  CC [M]  drivers/gpu/drm/tests/drm_rect_test.o
-  AR      fs/efivarfs/built-in.a
-  CC [M]  sound/soc/sof/intel/hda-loader-skl.o
-  CC [M]  sound/soc/sof/core.o
-  CC      kernel/bpf/btf.o
-  CC      kernel/bpf/memalloc.o
-  CC      drivers/char/tpm/eventlog/common.o
-  CC [M]  drivers/misc/mei/dma-ring.o
-  CC [M]  drivers/misc/mei/bus.o
-  CC [M]  sound/soc/sof/amd/acp-probes.o
-  CC      drivers/xen/xlate_mmu.o
-  CC      net/xfrm/xfrm_device.o
-  CC      drivers/tty/serial/8250/8250_rt288x.o
-  CC      net/ipv6/ndisc.o
-  CC      lib/objpool.o
-  AS      arch/x86/kernel/irqflags.o
-  CC      arch/x86/kernel/static_call.o
-  CC      drivers/acpi/acpica/tbxfload.o
-  CC      drivers/base/regmap/regcache-flat.o
-  CC      drivers/acpi/acpica/tbxfroot.o
-  CC [M]  sound/soc/sof/ops.o
-  CC      arch/x86/kernel/process.o
-  AR      drivers/block/built-in.a
-  CC [M]  net/netfilter/nf_tables_trace.o
-  CC [M]  sound/soc/sof/intel/apl.o
-  CC      fs/ext4/verity.o
-  AR      drivers/gpu/drm/tilcdc/built-in.a
-  CC      net/xfrm/xfrm_proc.o
-  CC [M]  sound/soc/sof/loader.o
-  CC [M]  net/netfilter/nft_immediate.o
-  CC      drivers/iommu/iommu-sysfs.o
-  AR      drivers/gpu/drm/imx/built-in.a
-  AR      drivers/misc/built-in.a
-  CC      drivers/xen/unpopulated-alloc.o
-  CC      drivers/base/power/wakeup.o
-  CC [M]  drivers/misc/mei/bus-fixup.o
-  CC      drivers/base/power/wakeup_stats.o
-  CC      drivers/char/tpm/eventlog/tpm1.o
-  CC [M]  sound/soc/sof/ipc.o
-  CC      drivers/acpi/pci_link.o
-  CC      drivers/mfd/88pm860x-core.o
-  AR      drivers/gpu/drm/i2c/built-in.a
-  CC      drivers/mfd/88pm860x-i2c.o
-  AR      drivers/gpu/drm/panel/built-in.a
-  AR      drivers/nfc/built-in.a
-  CC      net/devlink/netlink_gen.o
-  AR      drivers/gpu/drm/hisilicon/built-in.a
-  CC      drivers/mfd/wm8400-core.o
-  AR      drivers/gpu/drm/bridge/analogix/built-in.a
-  CC      net/ipv6/udp.o
-  CC      lib/plist.o
-  CC [M]  sound/soc/sof/intel/cnl.o
-  AR      drivers/gpu/drm/bridge/cadence/built-in.a
-  AR      drivers/gpu/drm/bridge/imx/built-in.a
-  CC      drivers/acpi/acpica/utaddress.o
-  CC      net/ipv4/raw.o
-  CC [M]  net/xfrm/xfrm_algo.o
-  AR      drivers/gpu/drm/bridge/synopsys/built-in.a
-  CC      lib/radix-tree.o
-  CC [M]  sound/soc/sof/intel/tgl.o
-  AR      drivers/gpu/drm/bridge/built-in.a
-  CC      net/core/sock_map.o
-  CC      lib/ratelimit.o
-  CC [M]  sound/soc/sof/pcm.o
-  CC      drivers/mfd/wm831x-core.o
-  AR      drivers/tty/serial/8250/built-in.a
-  CC      fs/ext4/crypto.o
-  AR      drivers/gpu/drm/mxsfb/built-in.a
-  CC      drivers/base/power/trace.o
-  AR      drivers/tty/serial/built-in.a
-  AR      drivers/gpu/drm/tiny/built-in.a
-  CC [M]  sound/soc/sof/amd/pci-rn.o
-  CC [M]  sound/soc/sof/intel/icl.o
-  AR      drivers/gpu/drm/xlnx/built-in.a
-  CC      drivers/tty/serdev/core.o
-  CC [M]  drivers/misc/mei/debugfs.o
-  CC      mm/vmpressure.o
-  CC      drivers/char/tpm/eventlog/tpm2.o
-  AR      drivers/gpu/drm/gud/built-in.a
-  CC      drivers/tty/serdev/serdev-ttyport.o
-  CC      mm/swap_cgroup.o
-  CC      drivers/iommu/dma-iommu.o
-  CC      mm/hugetlb_cgroup.o
-  AR      drivers/gpu/drm/solomon/built-in.a
-  CC      drivers/mfd/wm831x-irq.o
-  CC      drivers/acpi/acpica/utalloc.o
-  CC [M]  drivers/gpu/drm/ttm/ttm_tt.o
-  CC [M]  sound/soc/sof/intel/mtl.o
-  CC      drivers/iommu/io-pgtable.o
-  CC      net/devlink/dev.o
-  CC [M]  sound/soc/sof/intel/lnl.o
-  CC      drivers/xen/grant-dma-ops.o
-  CC [M]  sound/soc/sof/pm.o
-  CC      net/ipv6/udplite.o
-  CC      net/ipv6/raw.o
-  CC      drivers/base/regmap/regcache-maple.o
-  CC      drivers/char/tpm/tpm_ppi.o
-  CC [M]  net/netfilter/nft_cmp.o
-  CC      drivers/acpi/acpica/utascii.o
-  CC [M]  net/netfilter/nft_range.o
-  CC [M]  drivers/misc/mei/mei-trace.o
-  CC      fs/btrfs/transaction.o
-  AR      fs/ext4/built-in.a
-  CC [M]  sound/soc/sof/amd/renoir.o
-  CC [M]  fs/netfs/buffered_read.o
-  CC      lib/rbtree.o
-  CC      drivers/mfd/wm831x-otp.o
-  CC [M]  sound/soc/sof/intel/hda-common-ops.o
-  CC [M]  net/xfrm/xfrm_user.o
-  CC      mm/memory-failure.o
-  CC      mm/kmemleak.o
-  CC      drivers/mfd/wm831x-auxadc.o
-  CC      fs/btrfs/inode.o
-  CC      arch/x86/kernel/ptrace.o
-  CC [M]  sound/soc/sof/intel/telemetry.o
-  CC      net/ipv6/icmp.o
-  CC      arch/x86/kernel/tls.o
-  CC      net/strparser/strparser.o
-  CC [M]  drivers/gpu/drm/ttm/ttm_bo.o
-  CC      drivers/base/regmap/regmap-debugfs.o
-  CC      drivers/acpi/acpica/utbuffer.o
-  CC      drivers/iommu/iova.o
-  AR      drivers/xen/built-in.a
-  AR      drivers/tty/serdev/built-in.a
-  CC      drivers/base/power/clock_ops.o
-  AR      drivers/tty/ipwireless/built-in.a
-  CC      kernel/bpf/dispatcher.o
-  CC      drivers/iommu/irq_remapping.o
-  CC      drivers/tty/tty_io.o
-  CC      mm/page_isolation.o
-  CC [M]  sound/soc/sof/intel/hda-probes.o
-  CC      drivers/acpi/pci_irq.o
-  CC      lib/seq_buf.o
-  CC      drivers/char/tpm/eventlog/acpi.o
-  CC      drivers/tty/n_tty.o
-  CC      drivers/acpi/acpica/utcksum.o
-  CC [M]  sound/soc/sof/intel/hda-mlink.o
-  CC [M]  net/netfilter/nft_bitwise.o
-  CC      mm/zpool.o
-  CC [M]  drivers/gpu/drm/ttm/ttm_bo_util.o
-  CC [M]  sound/soc/sof/debug.o
-  CC [M]  drivers/gpu/drm/ttm/ttm_bo_vm.o
-  CC [M]  sound/soc/sof/topology.o
-  CC      drivers/mfd/wm831x-i2c.o
-  CC      drivers/char/tpm/eventlog/efi.o
-  CC [M]  drivers/gpu/drm/ttm/ttm_module.o
-  CC      net/ipv6/mcast.o
-  CC      net/devlink/port.o
-  CC      drivers/nvdimm/core.o
-  CC      drivers/base/regmap/regmap-i2c.o
-  CC      drivers/acpi/acpica/utcopy.o
-  CC      net/ipv4/udp.o
-  CC [M]  drivers/misc/mei/pci-me.o
-  CC      drivers/iommu/virtio-iommu.o
-  CC [M]  drivers/misc/mei/hw-me.o
-  LD [M]  sound/soc/sof/amd/snd-sof-amd-acp.o
-  CC [M]  drivers/gpu/drm/ttm/ttm_execbuf_util.o
-  LD [M]  sound/soc/sof/amd/snd-sof-amd-renoir.o
-  CC      drivers/acpi/acpi_lpss.o
-  CC [M]  sound/soc/sof/control.o
-  CC      drivers/acpi/acpi_apd.o
-  CC      arch/x86/kernel/step.o
-  CC      mm/zbud.o
-  AR      drivers/base/power/built-in.a
-  CC [M]  sound/soc/sof/trace.o
-  CC [M]  sound/soc/sof/iomem-utils.o
-  CC      net/ipv6/reassembly.o
-  CC      drivers/iommu/iommu-sva.o
-  CC      lib/siphash.o
-  CC [M]  fs/netfs/buffered_write.o
-  CC      net/core/bpf_sk_storage.o
-  CC [M]  net/netfilter/nft_byteorder.o
-  CC [M]  fs/netfs/direct_read.o
-  CC      mm/zsmalloc.o
-  CC      drivers/mfd/wm831x-spi.o
-  CC      drivers/acpi/acpica/utexcep.o
-  CC      net/ipv6/tcp_ipv6.o
-  CC      drivers/char/tpm/tpm_tis_core.o
-  CC      net/ipv4/udplite.o
-  CC      net/ipv6/ping.o
-  AR      net/wireless/tests/built-in.a
-  CC      kernel/workqueue.o
-  CC      net/netlabel/netlabel_user.o
-  AR      net/wireless/built-in.a
-  CC      mm/early_ioremap.o
-  CC      drivers/char/misc.o
-  CC      mm/balloon_compaction.o
-  CC      drivers/acpi/acpi_platform.o
-  CC [M]  sound/soc/sof/intel/hda-codec.o
-  CC [M]  arch/x86/kvm/kvm-asm-offsets.s
-  CC      arch/x86/kernel/tboot.o
-  AR      net/strparser/built-in.a
-  CC [M]  drivers/gpu/drm/scheduler/sched_main.o
-  CC      drivers/char/tpm/tpm_tis.o
-  CC      drivers/char/tpm/tpm_crb.o
-  CC      drivers/acpi/acpi_pnp.o
-  CC      fs/btrfs/file.o
-  TEST    lib/test_fortify/read_overflow2-memmove.log
-  CC [M]  arch/x86/kvm/vmx/pmu_intel.o
-  CC      drivers/mfd/wm8350-core.o
-  CC      net/ipv6/exthdrs.o
-  CC      drivers/base/regmap/regmap-spi.o
-  CC      drivers/base/regmap/regmap-mmio.o
-  CC [M]  drivers/gpu/drm/ttm/ttm_range_manager.o
-  CC      drivers/acpi/acpica/utdebug.o
-  CC      kernel/bpf/devmap.o
-  CC      drivers/tty/tty_ioctl.o
-  CC      drivers/tty/tty_ldisc.o
-  CC      drivers/tty/tty_buffer.o
-  CC      drivers/nvdimm/bus.o
-  CC [M]  net/netfilter/nft_payload.o
-  TEST    lib/test_fortify/read_overflow-memcmp.log
-  CC      drivers/acpi/acpica/utdecode.o
-  CC      mm/secretmem.o
-  CC      drivers/mfd/wm8350-regmap.o
-  CC      drivers/iommu/io-pgfault.o
-  CC [M]  fs/nfs/client.o
-  CC [M]  fs/nfs/dir.o
-  CC [M]  sound/soc/sof/sof-audio.o
-  CC      net/netlabel/netlabel_kapi.o
-  CC [M]  fs/nfs/file.o
-  TEST    lib/test_fortify/write_overflow-memmove.log
-  AR      net/xfrm/built-in.a
-  CC      drivers/char/virtio_console.o
-  CC      net/devlink/sb.o
-  CC      net/devlink/dpipe.o
-  CC [M]  drivers/misc/mei/gsc-me.o
-  CC [M]  drivers/gpu/drm/scheduler/sched_fence.o
-  CC      arch/x86/kernel/i8237.o
-  CC      drivers/dax/hmem/device.o
-  CC      drivers/dax/super.o
-  LD [M]  drivers/misc/mei/mei.o
-  CC      drivers/acpi/acpica/utdelete.o
-  CC      drivers/acpi/power.o
-  CC      drivers/base/regmap/regmap-irq.o
-  CC      net/ipv6/datagram.o
-  TEST    lib/test_fortify/read_overflow2_field-memcpy.log
-  AR      drivers/char/tpm/built-in.a
-  CC      arch/x86/kernel/stacktrace.o
-  CC      kernel/bpf/cpumap.o
-  CC [M]  sound/soc/sof/intel/pci-tgl.o
-  CC      net/ipv4/udp_offload.o
-  TEST    lib/test_fortify/read_overflow-memscan.log
-  CC      drivers/acpi/event.o
-  CC [M]  drivers/gpu/drm/ttm/ttm_resource.o
-  CC      net/netlabel/netlabel_domainhash.o
-  CC      net/devlink/resource.o
-  AR      net/core/built-in.a
-  CC [M]  arch/x86/kvm/vmx/vmcs12.o
-  CC      net/devlink/param.o
-  CC      mm/userfaultfd.o
-  CC      net/devlink/region.o
-  CC [M]  fs/netfs/direct_write.o
-  CC      mm/page_idle.o
-  CC      drivers/mfd/wm8350-gpio.o
-  CC [M]  drivers/gpu/drm/scheduler/sched_entity.o
-  CC      drivers/acpi/acpica/uterror.o
-  CC      drivers/acpi/acpica/uteval.o
-  CC      drivers/acpi/evged.o
-  CC      drivers/tty/tty_port.o
-  LD [M]  drivers/misc/mei/mei-me.o
-  LD [M]  drivers/misc/mei/mei-gsc.o
-  CC      mm/usercopy.o
-  CC [M]  fs/lockd/clntlock.o
-  TEST    lib/test_fortify/write_overflow_field-memcpy.log
-  CC [M]  fs/smb/common/cifs_arc4.o
-  CC [M]  net/netfilter/nft_lookup.o
-  AR      drivers/iommu/built-in.a
-  CC [M]  fs/smb/client/trace.o
-  CC [M]  sound/soc/sof/intel/pci-mtl.o
-  CC      arch/x86/kernel/reboot.o
-  CC [M]  fs/smb/client/cifsfs.o
-  CC [M]  drivers/dax/hmem/hmem.o
-  CC      drivers/acpi/sysfs.o
-  CC      drivers/acpi/acpica/utglobal.o
-  TEST    lib/test_fortify/read_overflow2-memcmp.log
-  CC      drivers/dma-buf/heaps/system_heap.o
-  CC      drivers/nvdimm/dimm_devs.o
-  CC      drivers/char/hpet.o
-  CC      net/devlink/health.o
-  AR      drivers/cxl/core/built-in.a
-  CC [M]  drivers/cxl/core/port.o
-  CC      drivers/mfd/wm8350-irq.o
-  CC [M]  arch/x86/kvm/vmx/nested.o
-  CC [M]  sound/soc/sof/stream-ipc.o
-  TEST    lib/test_fortify/write_overflow-strcpy-lit.log
-  CC      drivers/nvdimm/nd_perf.o
-  AR      drivers/base/regmap/built-in.a
-  CC      drivers/base/component.o
-  CC      drivers/base/core.o
-  CC      kernel/bpf/offload.o
-  AR      drivers/dax/hmem/built-in.a
-  CC      drivers/acpi/acpica/uthex.o
-  CC      kernel/bpf/net_namespace.o
-  LD [M]  drivers/dax/hmem/dax_hmem.o
-  CC      fs/btrfs/defrag.o
-  CC [M]  sound/soc/sof/intel/pci-lnl.o
-  CC [M]  fs/smb/common/cifs_md4.o
-  CC      drivers/dax/bus.o
-  CC [M]  drivers/cxl/core/pmem.o
-  TEST    lib/test_fortify/read_overflow2-memcpy.log
-  CC      net/ipv4/arp.o
-  CC [M]  drivers/gpu/drm/ttm/ttm_pool.o
-  CC      net/netlabel/netlabel_addrlist.o
-  LD [M]  drivers/gpu/drm/scheduler/gpu-sched.o
-  CC [M]  fs/lockd/clntproc.o
-  CC [M]  drivers/gpu/drm/ttm/ttm_device.o
-  CC [M]  fs/netfs/io.o
-  AR      drivers/dma-buf/heaps/built-in.a
-  CC [M]  drivers/cxl/core/regs.o
-  CC      drivers/tty/tty_mutex.o
-  CC [M]  drivers/cxl/core/memdev.o
-  CC      drivers/dma-buf/dma-buf.o
-  CC      drivers/tty/tty_ldsem.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_drv.o
-  CC      drivers/dma-buf/dma-fence.o
-  CC [M]  drivers/gpu/drm/ttm/ttm_sys_manager.o
-  CC      net/ipv4/icmp.o
-  TEST    lib/test_fortify/write_overflow-strscpy.log
-  CC [M]  drivers/char/lp.o
-  CC      drivers/acpi/acpica/utids.o
-  CC [M]  net/netfilter/nft_dynset.o
-  CC      mm/memremap.o
-  CC      drivers/mfd/wm8350-i2c.o
-  CC [M]  net/netfilter/nft_meta.o
-  CC [M]  drivers/gpu/drm/ttm/ttm_agp_backend.o
-  CC      net/ipv6/ip6_flowlabel.o
-  CC      net/ipv4/devinet.o
-  TEST    lib/test_fortify/write_overflow-memcpy.log
-  CC [M]  fs/smb/client/cifs_debug.o
-  CC      arch/x86/kernel/early-quirks.o
-  LD [M]  sound/soc/sof/intel/snd-sof-intel-hda-common.o
-  CC      net/devlink/trap.o
-  CC      drivers/tty/tty_baudrate.o
-  LD [M]  sound/soc/sof/intel/snd-sof-intel-hda-mlink.o
-  LD [M]  sound/soc/sof/intel/snd-sof-intel-hda.o
-  CC [M]  sound/soc/sof/fw-file-profile.o
-  LD [M]  sound/soc/sof/intel/snd-sof-pci-intel-tgl.o
-  CC      net/ipv6/inet6_connection_sock.o
-  CC      drivers/acpi/acpica/utinit.o
-  LD [M]  sound/soc/sof/intel/snd-sof-pci-intel-mtl.o
-  LD [M]  sound/soc/sof/intel/snd-sof-pci-intel-lnl.o
-  CC [M]  sound/soc/sof/ipc3.o
-  CC      net/devlink/rate.o
-  CC      drivers/base/bus.o
-  CC [M]  drivers/cxl/core/mbox.o
-  CC [M]  fs/lockd/clntxdr.o
-  CC      drivers/nvdimm/dimm.o
-  CC [M]  drivers/char/ppdev.o
-  CC [M]  fs/smb/client/connect.o
-  TEST    lib/test_fortify/read_overflow-memchr.log
-  CC [M]  fs/smb/client/dir.o
-  CC      drivers/tty/tty_jobctrl.o
-  CC [M]  fs/netfs/iterator.o
-  CC      net/netlabel/netlabel_mgmt.o
-  CC      drivers/mfd/tps65910.o
-  CC      kernel/pid.o
-  CC [M]  fs/nfs/getroot.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_device.o
-  CC      kernel/task_work.o
-  CC [M]  fs/lockd/host.o
-  CC      drivers/acpi/acpica/utlock.o
-  CC      drivers/nvdimm/region_devs.o
-  TEST    lib/test_fortify/write_overflow_field-memset.log
-  CC      mm/hmm.o
-  CC [M]  drivers/dax/device.o
-  CC      mm/memfd.o
-  CC      arch/x86/kernel/smp.o
-  CC      fs/btrfs/extent_map.o
-  CC      net/netlabel/netlabel_unlabeled.o
-  CC      drivers/dma-buf/dma-fence-array.o
-  CC [M]  sound/soc/sof/ipc3-loader.o
-  CC [M]  fs/smb/client/file.o
-  TEST    lib/test_fortify/read_overflow-memchr_inv.log
-  LD [M]  drivers/gpu/drm/ttm/ttm.o
-  CC [M]  sound/soc/sof/ipc3-topology.o
-  CC      drivers/acpi/acpica/utmath.o
-  CC      drivers/nvdimm/region.o
-  AR      drivers/char/built-in.a
-  CC      drivers/base/dd.o
-  CC      drivers/dma-buf/dma-fence-chain.o
-  CC      net/devlink/linecard.o
-  AR      drivers/macintosh/built-in.a
-  CC [M]  drivers/macintosh/mac_hid.o
-  CC      kernel/bpf/tcx.o
-  CC [M]  sound/soc/sof/ipc3-control.o
-  CC [M]  fs/netfs/locking.o
-  CC      drivers/mfd/tps65912-core.o
-  TEST    lib/test_fortify/write_overflow-strcpy.log
-  CC      mm/ptdump.o
-  CC      arch/x86/kernel/smpboot.o
-  CC      drivers/base/syscore.o
-  CC [M]  fs/smb/client/inode.o
-  CC      drivers/acpi/acpica/utmisc.o
-  AR      drivers/dax/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.o
-  LD [M]  drivers/dax/device_dax.o
-  CC [M]  fs/nfs/inode.o
-  CC      arch/x86/kernel/tsc_sync.o
-  CC      drivers/tty/n_null.o
-  TEST    lib/test_fortify/read_overflow2_field-memmove.log
-  CC      drivers/tty/pty.o
-  CC      arch/x86/kernel/setup_percpu.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_device.o
-  AR      drivers/scsi/device_handler/built-in.a
-  AR      drivers/scsi/megaraid/built-in.a
-  CC [M]  drivers/scsi/device_handler/scsi_dh_rdac.o
-  CC      drivers/nvdimm/namespace_devs.o
-  CC [M]  net/netfilter/nft_rt.o
-  CC [M]  drivers/scsi/mpt3sas/mpt3sas_base.o
-  CC [M]  drivers/scsi/mpt3sas/mpt3sas_config.o
-  CC      drivers/base/driver.o
-  CC [M]  drivers/scsi/mpt3sas/mpt3sas_scsih.o
-  CC [M]  fs/lockd/svc.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_asic.o
-  CC [M]  sound/soc/sof/ipc3-pcm.o
-  CC [M]  drivers/cxl/core/pci.o
-  CC      net/ipv4/af_inet.o
-  CC      drivers/acpi/acpica/utmutex.o
-  TEST    lib/test_fortify/write_overflow_field-memmove.log
-  CC      drivers/dma-buf/dma-fence-unwrap.o
-  CC      net/ipv4/igmp.o
-  CC      drivers/base/class.o
-  CC      net/ipv4/fib_frontend.o
-  CC      net/ipv6/udp_offload.o
-  CC      fs/btrfs/sysfs.o
-  CC      mm/page_reporting.o
-  CC [M]  fs/nfs/super.o
-  CC [M]  fs/lockd/svclock.o
-  CC      drivers/scsi/scsi.o
-  TEST    lib/test_fortify/write_overflow-strncpy.log
-  CC [M]  fs/lockd/svcshare.o
-  CC      drivers/base/platform.o
-  CC      drivers/mfd/tps65912-i2c.o
-  CC      kernel/bpf/stackmap.o
-  CC [M]  net/netfilter/nft_exthdr.o
-  CC      net/netlabel/netlabel_cipso_v4.o
-  CC [M]  drivers/scsi/device_handler/scsi_dh_emc.o
-  CC [M]  drivers/scsi/device_handler/scsi_dh_alua.o
-  AR      drivers/nvme/common/built-in.a
-  CC      drivers/acpi/acpica/utnonansi.o
-  CC      drivers/nvme/host/core.o
-  CC [M]  fs/netfs/main.o
-  CC [M]  fs/smb/client/link.o
-  CC      drivers/tty/tty_audit.o
-  TEST    lib/test_fortify/write_overflow-memset.log
-  CC [M]  drivers/scsi/mpt3sas/mpt3sas_transport.o
-  CC      arch/x86/kernel/mpparse.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr.o
-  CC [M]  arch/x86/kvm/vmx/posted_intr.o
-  CC      net/netlabel/netlabel_calipso.o
-  CC      drivers/dma-buf/dma-resv.o
-  CC [M]  sound/soc/sof/ipc3-dtrace.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_kms.o
-  CC      drivers/acpi/acpica/utobject.o
-  CC [M]  arch/x86/kvm/vmx/sgx.o
-  CC      drivers/mfd/tps65912-spi.o
-  CC [M]  arch/x86/kvm/vmx/hyperv.o
-  TEST    lib/test_fortify/write_overflow-strncpy-src.log
-  AR      net/devlink/built-in.a
-  CC [M]  arch/x86/kvm/vmx/hyperv_evmcs.o
-  CC      net/ipv6/seg6.o
-  CC [M]  fs/lockd/svcproc.o
-  CC [M]  fs/lockd/svcsubs.o
-  LD [M]  arch/x86/kvm/kvm.o
-  CC      drivers/acpi/property.o
-  CC      drivers/acpi/acpica/utosi.o
-  CC      drivers/tty/sysrq.o
-  CC      drivers/acpi/acpi_cmos_rtc.o
-  CC      lib/timerqueue.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_kms.o
-  CC      lib/vsprintf.o
-  CC [M]  drivers/cxl/core/hdm.o
-  CC      net/ipv6/fib6_notifier.o
-  CC      mm/bootmem_info.o
-  CC      kernel/bpf/cgroup_iter.o
-  CC      net/ipv6/rpl.o
-  CC      kernel/bpf/bpf_cgrp_storage.o
-  CC      drivers/mfd/twl-core.o
-  CC [M]  fs/autofs/init.o
-  CC      drivers/acpi/acpica/utownerid.o
-  CC [M]  fs/autofs/inode.o
-  CC      arch/x86/kernel/ftrace.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.o
-  CC      net/ipv6/ioam6.o
-  CC [M]  net/netfilter/nft_last.o
-  CC [M]  sound/soc/sof/ipc4.o
-  CC      drivers/base/cpu.o
-  CC      fs/btrfs/accessors.o
-  CC      drivers/acpi/x86/apple.o
-  CC      net/ipv6/sysctl_net_ipv6.o
-  CC      kernel/bpf/cgroup.o
-  CC [M]  drivers/scsi/mpt3sas/mpt3sas_ctl.o
-  CC [M]  drivers/scsi/mpt3sas/mpt3sas_trigger_diag.o
-  CC      drivers/nvdimm/label.o
-  UPD     arch/x86/kvm/kvm-asm-offsets.h
-  AS [M]  arch/x86/kvm/vmx/vmenter.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_atombios.o
-  LD [M]  arch/x86/kvm/kvm-intel.o
-  CC      kernel/bpf/reuseport_array.o
-  CC      drivers/acpi/acpica/utpredef.o
-  CC      drivers/dma-buf/dma-heap.o
-  CC [M]  fs/smb/client/misc.o
-  AR      mm/built-in.a
-  CC      drivers/acpi/x86/utils.o
-  CC      drivers/dma-buf/sync_file.o
-  CC [M]  fs/netfs/misc.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_agp.o
-  CC      net/ipv6/ip6mr.o
-  CC [M]  sound/soc/sof/ipc4-loader.o
-  CC [M]  fs/nfs/io.o
-  CC      drivers/acpi/x86/s2idle.o
-  CC      drivers/acpi/debugfs.o
-  CC      drivers/acpi/acpi_lpat.o
-  CC [M]  drivers/cxl/core/pmu.o
-  AR      net/netlabel/built-in.a
-  CC [M]  fs/autofs/root.o
-  CC      net/ipv4/fib_semantics.o
-  CC [M]  drivers/gpu/drm/radeon/atombios_crtc.o
-  CC      drivers/acpi/acpi_fpdt.o
-  AS      arch/x86/kernel/ftrace_64.o
-  CC      drivers/acpi/acpica/utresdecode.o
-  CC      drivers/base/firmware.o
-  CC      drivers/acpi/acpi_lpit.o
-  CC [M]  net/netfilter/nft_counter.o
-  CC      arch/x86/kernel/trace_clock.o
-  CC      drivers/acpi/acpica/utresrc.o
-  CC      drivers/nvdimm/badrange.o
-  AR      drivers/tty/built-in.a
-  CC      drivers/nvdimm/claim.o
-  CC      drivers/scsi/hosts.o
-  CC      drivers/scsi/scsi_ioctl.o
-  CC      drivers/dma-buf/sw_sync.o
-  CC      net/rfkill/core.o
-  CC      net/dcb/dcbnl.o
-  CC [M]  fs/lockd/mon.o
-  CC      drivers/mfd/twl4030-irq.o
-  CC [M]  fs/lockd/trace.o
-  CC      net/rfkill/input.o
-  CC      arch/x86/kernel/trace.o
-  CC      fs/btrfs/xattr.o
-  CC [M]  fs/netfs/objects.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/atombios_crtc.o
-  CC      drivers/ata/libata-core.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.o
-  CC      drivers/ata/libata-scsi.o
-  CC      drivers/spi/spi.o
-  CC      arch/x86/kernel/rethook.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/atom.o
-  CC [M]  fs/smb/client/netmisc.o
-  CC [M]  drivers/cxl/acpi.o
-  CC [M]  sound/soc/sof/ipc4-topology.o
-  CC [M]  fs/smb/client/smbencrypt.o
-  CC      drivers/acpi/acpica/utstate.o
-  CC [M]  fs/autofs/symlink.o
-  CC      drivers/acpi/prmt.o
-  CC      drivers/acpi/acpi_pcc.o
-  CC [M]  fs/nfs/direct.o
-  CC      drivers/acpi/acpi_ffh.o
-  CC      drivers/base/init.o
-  CC      drivers/nvme/host/ioctl.o
-  CC [M]  fs/netfs/output.o
-  CC      drivers/mfd/twl6030-irq.o
-  CC      drivers/acpi/acpica/utstring.o
-  CC      drivers/mfd/twl4030-audio.o
-  AR      drivers/nvme/target/built-in.a
-  CC      drivers/ata/libata-eh.o
-  CC [M]  drivers/cxl/core/cdat.o
-  CC      drivers/nvdimm/btt_devs.o
-  CC      kernel/bpf/bpf_struct_ops.o
-  CC [M]  net/netfilter/nft_objref.o
-  CC      arch/x86/kernel/crash_core_64.o
-  CC      drivers/dma-buf/sync_debug.o
-  CC [M]  fs/autofs/waitq.o
-  CC [M]  fs/overlayfs/super.o
-  CC [M]  fs/autofs/expire.o
-  CC      drivers/acpi/acpi_adxl.o
-  CC      drivers/scsi/scsicam.o
-  CC [M]  fs/autofs/dev-ioctl.o
-  CC      kernel/extable.o
-  CC      drivers/dma-buf/udmabuf.o
-  CC [M]  drivers/scsi/mpt3sas/mpt3sas_warpdrive.o
-  CC [M]  fs/lockd/xdr.o
-  CC      drivers/acpi/acpica/utstrsuppt.o
-  CC      drivers/base/map.o
-  CC      arch/x86/kernel/machine_kexec_64.o
-  CC      lib/win_minmax.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_fence.o
-  AR      net/rfkill/built-in.a
-  CC [M]  drivers/gpu/drm/radeon/radeon_combios.o
-  CC [M]  drivers/scsi/mpt3sas/mpt3sas_debugfs.o
-  AS      arch/x86/kernel/relocate_kernel_64.o
-  CC      drivers/scsi/scsi_error.o
-  CC      drivers/nvdimm/pfn_devs.o
-  CC      net/dcb/dcbevent.o
-  CC      drivers/spi/spi-mem.o
-  CC      net/dns_resolver/dns_key.o
-  CC      fs/btrfs/ordered-data.o
-  CC      drivers/scsi/scsi_lib.o
-  CC      net/dns_resolver/dns_query.o
-  CC      drivers/acpi/acpica/utstrtoul64.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.o
-  CC [M]  fs/smb/client/transport.o
-  CC [M]  fs/nfs/pagelist.o
-  CC [M]  fs/smb/client/cached_dir.o
-  CC      drivers/nvme/host/sysfs.o
-  CC [M]  fs/smb/client/cifs_unicode.o
-  CC      kernel/params.o
-  CC      net/ipv6/xfrm6_policy.o
-  CC      drivers/base/devres.o
-  LD [M]  fs/autofs/autofs4.o
-  CC [M]  sound/soc/sof/ipc4-control.o
-  CC      drivers/ata/libata-transport.o
-  CC [M]  net/netfilter/nft_inner.o
-  CC      drivers/acpi/acpica/utxface.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_object.o
-  CC      drivers/mfd/twl6040.o
-  LD [M]  fs/netfs/netfs.o
-  CC      drivers/acpi/ac.o
-  CC      fs/open.o
-  CC [M]  drivers/gpu/drm/amd/amdxcp/amdgpu_xcp_drv.o
-  LD [M]  drivers/scsi/mpt3sas/mpt3sas.o
-  CC [M]  fs/overlayfs/namei.o
-  CC [M]  drivers/gpu/drm/radeon/atom.o
-  CC      lib/xarray.o
-  CC      kernel/kthread.o
-  CC [M]  fs/nfs/read.o
-  CC      fs/read_write.o
-  CC      fs/file_table.o
-  CC [M]  drivers/dma-buf/selftest.o
-  CC [M]  fs/nfs/symlink.o
-  CC [M]  drivers/cxl/core/trace.o
-  CC      arch/x86/kernel/crash.o
-  CC      drivers/nvdimm/dax_devs.o
-  CC      kernel/bpf/cpumask.o
-  CC [M]  fs/lockd/procfs.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_gart.o
-  AR      net/dcb/built-in.a
-  AR      net/dns_resolver/built-in.a
-  CC      drivers/acpi/acpica/utxfinit.o
-  CC [M]  drivers/dma-buf/st-dma-fence.o
-  CC [M]  drivers/dma-buf/st-dma-fence-chain.o
-  CC      drivers/acpi/acpica/utxferror.o
-  CC      drivers/acpi/button.o
-  CC      net/ipv4/fib_trie.o
-  CC      drivers/acpi/fan_core.o
-  CC [M]  drivers/spi/spi-intel.o
-  CC      drivers/acpi/fan_attr.o
-  CC      drivers/net/phy/mdio-boardinfo.o
-  CC [M]  drivers/net/phy/aquantia/aquantia_main.o
-  CC [M]  sound/soc/sof/ipc4-pcm.o
-  LD [M]  drivers/gpu/drm/amd/amdxcp/amdxcp.o
-  CC      fs/super.o
-  CC      net/ipv6/xfrm6_state.o
-  CC      arch/x86/kernel/kexec-bzimage64.o
-  CC      fs/btrfs/extent_io.o
-  CC      drivers/acpi/pci_slot.o
-  CC [M]  net/netfilter/nft_chain_route.o
-  CC      lib/lockref.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_encoders.o
-  CC [M]  fs/overlayfs/util.o
-  LD [M]  fs/lockd/lockd.o
-  CC      drivers/mfd/mfd-core.o
-  CC      drivers/base/attribute_container.o
-  CC      kernel/bpf/bpf_lsm.o
-  CC      fs/btrfs/volumes.o
-  CC      net/ipv6/xfrm6_input.o
-  CC [M]  fs/overlayfs/inode.o
-  CC      drivers/mfd/ezx-pcap.o
-  CC      drivers/scsi/constants.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_display.o
-  CC      drivers/ata/libata-trace.o
-  CC      lib/bcd.o
-  CC      net/ipv6/xfrm6_output.o
-  CC      drivers/nvme/host/pr.o
-  CC      drivers/acpi/acpica/utxfmutex.o
-  CC      drivers/mfd/da903x.o
-  CC      fs/char_dev.o
-  CC [M]  drivers/dma-buf/st-dma-fence-unwrap.o
-  CC      drivers/nvdimm/security.o
-  CC [M]  drivers/dma-buf/st-dma-resv.o
-  CC      drivers/acpi/processor_driver.o
-  CC      kernel/sys_ni.o
-  CC [M]  fs/smb/client/nterr.o
-  CC      fs/stat.o
-  CC      lib/sort.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_fence.o
-  CC      drivers/ata/libata-sata.o
-  AR      net/mpls/built-in.a
-  CC      drivers/net/phy/stubs.o
-  CC      drivers/net/phy/mdio_devres.o
-  CC      drivers/net/phy/phy.o
-  CC [M]  drivers/net/phy/aquantia/aquantia_firmware.o
-  CC      lib/parser.o
-  CC [M]  drivers/cxl/core/region.o
-  CC [M]  drivers/net/phy/aquantia/aquantia_hwmon.o
-  CC      kernel/nsproxy.o
-  CC      kernel/notifier.o
-  CC      arch/x86/kernel/crash_dump_64.o
-  CC      net/ipv6/xfrm6_protocol.o
-  CC      arch/x86/kernel/module.o
-  CC      arch/x86/kernel/kgdb.o
-  CC      kernel/ksysfs.o
-  CC [M]  fs/smb/client/cifsencrypt.o
-  AR      drivers/dma-buf/built-in.a
-  CC [M]  fs/nfs/unlink.o
-  CC      drivers/acpi/acpica/dbcmds.o
-  LD [M]  drivers/dma-buf/dmabuf_selftests.o
-  CC      drivers/base/transport_class.o
-  CC      net/ipv6/netfilter.o
-  CC      net/ipv6/fib6_rules.o
-  CC [M]  drivers/spi/spi-intel-pci.o
-  CC [M]  net/netfilter/nf_tables_offload.o
-  CC [M]  net/netfilter/nft_set_hash.o
-  CC [M]  net/netfilter/nft_set_bitmap.o
-  CC      fs/btrfs/async-thread.o
-  CC [M]  fs/overlayfs/file.o
-  CC      fs/exec.o
-  CC [M]  sound/soc/sof/ipc4-mtrace.o
-  CC      drivers/nvme/host/trace.o
-  CC      fs/pipe.o
-  CC      drivers/ata/libata-sff.o
-  CC      kernel/bpf/relo_core.o
-  CC      lib/debug_locks.o
-  CC      drivers/nvdimm/e820.o
-  CC      drivers/mfd/da9052-irq.o
-  CC      net/ipv4/fib_notifier.o
-  LD [M]  drivers/net/phy/aquantia/aquantia.o
-  CC [M]  fs/nfs/write.o
-  CC      drivers/scsi/scsi_lib_dma.o
-  CC [M]  drivers/gpu/drm/i915/i915_config.o
-  CC      lib/random32.o
-  CC      drivers/nvme/host/multipath.o
-  CC      drivers/acpi/acpica/dbconvert.o
-  CC      drivers/acpi/acpica/dbdisply.o
-  CC      kernel/cred.o
-  CC      drivers/mfd/da9052-core.o
-  CC      drivers/base/topology.o
-  CC [M]  drivers/spi/spi-pxa2xx.o
-  CC [M]  drivers/spi/spi-pxa2xx-dma.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_ttm.o
-  CC      drivers/net/phy/phy-c45.o
-  CC [M]  drivers/spi/spi-pxa2xx-pci.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.o
-  CC [M]  drivers/gpu/drm/i915/i915_driver.o
-  CC      arch/x86/kernel/early_printk.o
-  CC [M]  fs/overlayfs/dir.o
-  CC      drivers/net/phy/phy-core.o
-  CC      drivers/acpi/processor_thermal.o
-  CC [M]  drivers/gpu/drm/i915/i915_drm_client.o
-  CC [M]  sound/soc/sof/ipc4-telemetry.o
-  CC      drivers/acpi/acpica/dbexec.o
-  CC      drivers/mfd/da9052-spi.o
-  CC      fs/namei.o
-  CC      fs/fcntl.o
-  AR      drivers/nvdimm/built-in.a
-  CC      lib/bust_spinlocks.o
-  CC      drivers/scsi/scsi_scan.o
-  CC [M]  net/netfilter/nft_set_rbtree.o
-  CC      net/ipv6/proc.o
-  AR      drivers/message/fusion/built-in.a
-  AR      drivers/message/built-in.a
-  CC [M]  fs/nfs/namespace.o
-  CC      drivers/ata/libata-pmp.o
-  GEN     drivers/scsi/scsi_devinfo_tbl.c
-  CC      fs/btrfs/ioctl.o
-  CC      net/ipv4/inet_fragment.o
-  CC      drivers/ata/libata-acpi.o
-  CC      arch/x86/kernel/hpet.o
-  CC      drivers/base/container.o
-  CC      drivers/scsi/scsi_devinfo.o
-  CC [M]  fs/smb/client/readdir.o
-  CC      drivers/ata/libata-zpodd.o
-  CC      net/ipv6/syncookies.o
-  CC      drivers/acpi/acpica/dbhistry.o
-  CC      drivers/acpi/acpica/dbinput.o
-  CC      arch/x86/kernel/amd_nb.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_object.o
-  CC [M]  net/netfilter/nft_set_pipapo.o
-  CC [M]  fs/smb/client/ioctl.o
-  CC      net/ipv6/calipso.o
-  AR      kernel/bpf/built-in.a
-  CC      drivers/mfd/da9052-i2c.o
-  CC [M]  fs/nfs/mount_clnt.o
-  CC      drivers/nvme/host/zns.o
-  CC [M]  sound/soc/sof/sof-client.o
-  CC      lib/kasprintf.o
-  CC [M]  net/netfilter/nft_set_pipapo_avx2.o
-  LD [M]  drivers/cxl/core/cxl_core.o
-  LD [M]  drivers/spi/spi-pxa2xx-platform.o
-  CC [M]  net/netfilter/nft_compat.o
-  AR      drivers/spi/built-in.a
-  CC [M]  drivers/cxl/port.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_gem.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_gart.o
-  CC      drivers/net/phy/phy_device.o
-  CC [M]  net/netfilter/nft_nat.o
-  CC [M]  fs/overlayfs/readdir.o
-  CC      kernel/reboot.o
-  CC      drivers/base/property.o
-  CC      fs/ioctl.o
-  CC      drivers/net/pse-pd/pse_core.o
-  LD [M]  drivers/cxl/cxl_acpi.o
-  CC      drivers/mfd/lp8788.o
-  AR      drivers/cxl/built-in.a
-  CC      drivers/acpi/acpica/dbmethod.o
-  CC      net/ipv4/ping.o
-  CC      drivers/net/phy/linkmode.o
-  CC      lib/bitmap.o
-  CC      drivers/net/phy/mdio_bus.o
-  CC      drivers/ata/libata-pata-timings.o
-  CC [M]  drivers/gpu/drm/i915/i915_getparam.o
-  CC      drivers/net/phy/mdio_device.o
-  CC      net/ipv6/seg6_iptunnel.o
-  CC [M]  fs/smb/client/sess.o
-  CC [M]  fs/nfs/nfstrace.o
-  CC      drivers/net/mdio/acpi_mdio.o
-  AR      drivers/net/pcs/built-in.a
-  CC [M]  fs/nfs/export.o
-  CC      drivers/acpi/acpica/dbnames.o
-  LD [M]  drivers/cxl/cxl_port.o
-  CC      drivers/nvme/host/hwmon.o
-  AR      drivers/net/ethernet/3com/built-in.a
-  AR      drivers/firewire/built-in.a
-  CC      arch/x86/kernel/kvm.o
-  AR      drivers/net/ethernet/8390/built-in.a
-  AR      drivers/net/ethernet/agere/built-in.a
-  CC      drivers/scsi/scsi_sysctl.o
-  CC      fs/readdir.o
-  AR      drivers/net/ethernet/adaptec/built-in.a
-  AR      drivers/net/ethernet/adi/built-in.a
-  CC      arch/x86/kernel/kvmclock.o
-  CC      fs/select.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_legacy_crtc.o
-  AR      drivers/net/ethernet/alacritech/built-in.a
-  AR      drivers/net/ethernet/alteon/built-in.a
-  CC      net/switchdev/switchdev.o
-  CC      arch/x86/kernel/paravirt.o
-  CC      drivers/mfd/lp8788-irq.o
-  AR      drivers/net/ethernet/amazon/built-in.a
-  CC [M]  fs/overlayfs/copy_up.o
-  CC      drivers/mfd/da9055-core.o
-  AR      drivers/net/ethernet/amd/built-in.a
-  AR      drivers/net/ethernet/aquantia/built-in.a
-  CC      kernel/async.o
-  CC      drivers/mfd/da9055-i2c.o
-  AR      drivers/net/ethernet/arc/built-in.a
-  CC [M]  sound/soc/sof/sof-utils.o
-  AR      drivers/net/ethernet/asix/built-in.a
-  AR      drivers/net/fddi/built-in.a
-  CC [M]  sound/soc/sof/sof-pci-dev.o
-  CC      drivers/mfd/da9063-core.o
-  AR      drivers/net/ethernet/atheros/built-in.a
-  CC      net/ipv6/seg6_local.o
-  CC      drivers/acpi/acpica/dbobject.o
-  AR      drivers/net/pse-pd/built-in.a
-  AR      drivers/net/ethernet/cadence/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_ring.o
-  CC      net/ipv6/seg6_hmac.o
-  CC      drivers/base/cacheinfo.o
-  AR      drivers/net/ethernet/broadcom/built-in.a
-  CC [M]  drivers/gpu/drm/xe/tests/xe_bo_test.o
-  CC [M]  fs/nfs/sysfs.o
-  AR      drivers/net/ethernet/brocade/built-in.a
-  AR      drivers/net/ethernet/cavium/common/built-in.a
-  CC      drivers/base/swnode.o
-  CC      drivers/net/phy/swphy.o
-  CC      net/ipv4/ip_tunnel_core.o
-  AR      drivers/net/ethernet/cavium/thunder/built-in.a
-  CC [M]  net/netfilter/nft_chain_nat.o
-  CC      net/ipv4/gre_offload.o
-  CC      net/ipv6/ioam6_iptunnel.o
-  CC [M]  drivers/gpu/drm/i915/i915_ioctl.o
-  CC [M]  net/netfilter/x_tables.o
-  AR      drivers/net/ethernet/cavium/liquidio/built-in.a
-  CC [M]  drivers/gpu/drm/i915/i915_irq.o
-  CC      lib/scatterlist.o
-  CC      drivers/scsi/scsi_proc.o
-  AR      drivers/net/ethernet/cavium/octeon/built-in.a
-  AR      drivers/net/ethernet/cavium/built-in.a
-  AR      drivers/net/hamradio/built-in.a
-  AR      drivers/net/ethernet/chelsio/built-in.a
-  CC      drivers/nvme/host/pci.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_cs.o
-  AR      drivers/net/ethernet/cirrus/built-in.a
-  CC      drivers/cdrom/cdrom.o
-  CC      drivers/acpi/acpica/dbstats.o
-  CC      kernel/range.o
-  AR      drivers/net/ethernet/cisco/built-in.a
-  CC      drivers/ata/ahci.o
-  AR      drivers/net/ethernet/cortina/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_bios.o
-  CC      drivers/net/mdio/fwnode_mdio.o
-  AR      drivers/net/ethernet/dec/tulip/built-in.a
-  CC      net/ipv4/metrics.o
-  AR      drivers/net/ethernet/dec/built-in.a
-  CC      net/ipv4/netlink.o
-  AR      drivers/net/ethernet/dlink/built-in.a
-  CC [M]  fs/nfs/fs_context.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.o
-  CC      drivers/mfd/da9063-irq.o
-  AR      drivers/net/ethernet/emulex/built-in.a
-  CC      fs/btrfs/locking.o
-  AR      drivers/net/ethernet/engleder/built-in.a
-  CC      arch/x86/kernel/paravirt-spinlocks.o
-  CC [M]  fs/overlayfs/export.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_legacy_encoders.o
-  CC      kernel/smpboot.o
-  CC      drivers/acpi/acpica/dbutils.o
-  AR      drivers/net/ethernet/ezchip/built-in.a
-  CC      net/ipv4/nexthop.o
-  AR      drivers/net/ethernet/fungible/built-in.a
-  CC      arch/x86/kernel/pvclock.o
-  AR      drivers/net/ethernet/google/built-in.a
-  CC      fs/dcache.o
-  CC      fs/inode.o
-  AR      drivers/net/ethernet/huawei/built-in.a
-  CC      lib/list_sort.o
-  CC      drivers/mfd/da9063-i2c.o
-  CC [M]  drivers/gpu/drm/i915/i915_mitigations.o
-  CC [M]  drivers/net/ethernet/intel/e1000e/82571.o
-  CC [M]  drivers/net/ethernet/intel/e1000/e1000_main.o
-  CC [M]  sound/soc/sof/sof-client-probes.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.o
-  CC [M]  drivers/gpu/drm/i915/i915_module.o
-  CC      drivers/scsi/scsi_debugfs.o
-  CC      drivers/scsi/scsi_trace.o
-  AR      drivers/auxdisplay/built-in.a
-  CC [M]  fs/smb/client/export.o
-  CC      drivers/mfd/max14577.o
-  CC      drivers/acpi/acpica/dbxface.o
-  CC [M]  drivers/net/ethernet/intel/igb/igb_main.o
-  CC      drivers/net/phy/phy_led_triggers.o
-  CC [M]  drivers/net/ethernet/intel/igb/igb_ethtool.o
-  CC      lib/uuid.o
-  CC      kernel/ucount.o
-  AR      net/switchdev/built-in.a
-  CC      drivers/acpi/acpica/rsdump.o
-  AR      drivers/net/ethernet/i825xx/built-in.a
-  CC      drivers/base/auxiliary.o
-  CC      net/ipv6/addrconf_core.o
-  CC      net/l3mdev/l3mdev.o
-  CC [M]  fs/overlayfs/params.o
-  CC [M]  fs/overlayfs/xattrs.o
-  CC      fs/btrfs/orphan.o
-  CC      lib/iov_iter.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_connectors.o
-  CC      drivers/ata/libahci.o
-  AR      drivers/net/mdio/built-in.a
-  CC [M]  drivers/gpu/drm/i915/i915_params.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_encoders.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_mocs_test.o
-  CC      kernel/regset.o
-  CC      drivers/scsi/scsi_logging.o
-  CC      drivers/scsi/scsi_pm.o
-  CC      fs/attr.o
-  CC      arch/x86/kernel/pmem.o
-  CC      arch/x86/kernel/jailhouse.o
-  CC      net/ncsi/ncsi-cmd.o
-  CC      arch/x86/kernel/eisa.o
-  CC      kernel/ksyms_common.o
-  CC      fs/btrfs/export.o
-  CC [M]  sound/soc/sof/sof-client-probes-ipc3.o
-  CC      net/ncsi/ncsi-rsp.o
-  AR      drivers/acpi/acpica/built-in.a
-  CC      drivers/acpi/processor_idle.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_benchmark.o
-  AR      drivers/net/ethernet/microsoft/built-in.a
-  CC      net/ipv4/udp_tunnel_stub.o
-  CC      net/ipv4/sysctl_net_ipv4.o
-  CC [M]  fs/smb/client/unc.o
-  CC [M]  fs/smb/client/winucase.o
-  CC      drivers/net/phy/mii_timestamper.o
-  CC [M]  fs/nfs/sysctl.o
-  CC      net/ncsi/ncsi-aen.o
-  AR      drivers/nvme/host/built-in.a
-  CC [M]  drivers/gpu/drm/xe/tests/xe_test_mod.o
-  CC [M]  drivers/net/ethernet/intel/e1000e/ich8lan.o
-  CC      net/ncsi/ncsi-manage.o
-  AR      drivers/nvme/built-in.a
-  CC [M]  drivers/gpu/drm/xe/xe_bb.o
-  CC      drivers/base/devtmpfs.o
-  CC      drivers/usb/common/common.o
-  CC      drivers/usb/core/usb.o
-  CC      drivers/usb/core/hub.o
-  LD [M]  fs/overlayfs/overlay.o
-  CC      drivers/scsi/scsi_dh.o
-  AR      drivers/net/ethernet/litex/built-in.a
-  CC      kernel/groups.o
-  CC      net/ipv6/exthdrs_core.o
-  CC      drivers/usb/core/hcd.o
-  CC      drivers/usb/core/urb.o
-  CC      drivers/usb/common/debug.o
-  CC      drivers/mfd/max77693.o
-  CC      arch/x86/kernel/pcspeaker.o
-  AR      drivers/cdrom/built-in.a
-  CC      fs/btrfs/tree-log.o
-  CC      fs/bad_inode.o
-  CC [M]  drivers/gpu/drm/i915/i915_pci.o
-  CC [M]  sound/soc/sof/sof-client-probes-ipc4.o
-  AR      net/l3mdev/built-in.a
-  CC [M]  drivers/gpu/drm/xe/tests/xe_pci_test.o
-  CC      lib/clz_ctz.o
-  CC      net/ncsi/ncsi-netlink.o
-  CC      fs/btrfs/free-space-cache.o
-  CC      net/xdp/xsk.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/atombios_dp.o
-  CC      net/mptcp/protocol.o
-  CC      net/mptcp/subflow.o
-  CC      net/ipv4/proc.o
-  CC [M]  net/netfilter/xt_tcpudp.o
-  CC [M]  drivers/gpu/drm/xe/xe_bo.o
-  CC      net/mptcp/options.o
-  CC      drivers/acpi/processor_throttling.o
-  CC      net/mptcp/token.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_display.o
-  CC      arch/x86/kernel/check.o
-  CC      drivers/net/ppp/ppp_generic.o
-  CC      drivers/ata/ahci_platform.o
-  CC      drivers/mfd/max77843.o
-  CC      drivers/base/node.o
-  CC      lib/bsearch.o
-  CC [M]  drivers/gpu/drm/vgem/vgem_drv.o
-  CC      drivers/net/phy/bcm84881.o
-  CC [M]  drivers/gpu/drm/i915/i915_scatterlist.o
-  CC [M]  fs/smb/client/smb2ops.o
-  CC [M]  drivers/gpu/drm/xe/xe_bo_evict.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/object.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/client.o
-  CC [M]  drivers/gpu/drm/ast/ast_drv.o
-  CC      drivers/usb/common/led.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.o
-  LD [M]  sound/soc/sof/snd-sof.o
-  LD [M]  sound/soc/sof/snd-sof-utils.o
-  CC [M]  drivers/net/ethernet/intel/e1000/e1000_hw.o
-  CC      kernel/vhost_task.o
-  LD [M]  fs/nfs/nfs.o
-  LD [M]  sound/soc/sof/snd-sof-pci.o
-  LD [M]  sound/soc/sof/snd-sof-probes.o
-  AR      drivers/usb/phy/built-in.a
-  CC [M]  drivers/gpu/drm/ast/ast_i2c.o
-  CC      net/ipv4/fib_rules.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/conn.o
-  CC      arch/x86/kernel/uprobes.o
-  CC      drivers/scsi/scsi_bsg.o
-  CC      drivers/scsi/scsi_common.o
-  CC      drivers/net/slip/slhc.o
-  CC [M]  sound/soc/soc-acpi.o
-  CC      drivers/net/phy/fixed_phy.o
-  CC      drivers/mfd/max8925-core.o
-  CC [M]  drivers/net/phy/bcm7xxx.o
-  CC      drivers/usb/core/message.o
-  CC      drivers/ata/libahci_platform.o
-  CC      drivers/acpi/processor_perflib.o
-  CC [M]  drivers/gpu/drm/vgem/vgem_fence.o
-  CC      drivers/mfd/max8925-i2c.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_afmt.o
-  CC      net/ipv6/ip6_checksum.o
-  CC      net/ipv4/ipmr.o
-  CC      drivers/base/memory.o
-  CC [M]  drivers/gpu/drm/i915/i915_suspend.o
-  CC      lib/find_bit.o
-  CC [M]  net/netfilter/xt_nat.o
-  CC      lib/llist.o
-  CC      drivers/gpu/drm/drm_panel_orientation_quirks.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_wa_test.o
-  CC [M]  drivers/gpu/drm/i915/i915_switcheroo.o
-  CC      kernel/kcmp.o
-  CC [M]  drivers/net/ethernet/intel/e1000e/80003es2lan.o
-  CC      drivers/gpu/drm/drm_mipi_dsi.o
-  AR      drivers/usb/common/built-in.a
-  CC      net/ipv6/ip6_icmp.o
-  CC [M]  net/netfilter/xt_MASQUERADE.o
-  CC      drivers/scsi/virtio_scsi.o
-  CC [M]  drivers/net/ethernet/intel/e1000e/mac.o
-  CC [M]  drivers/gpu/drm/ast/ast_main.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/device.o
-  CC      drivers/input/serio/serio.o
-  CC      arch/x86/kernel/perf_regs.o
-  AR      net/ncsi/built-in.a
-  CC [M]  drivers/gpu/drm/radeon/radeon_cursor.o
-  CC      lib/lwq.o
-  CC      drivers/input/serio/i8042.o
-  LD [M]  drivers/gpu/drm/vgem/vgem.o
-  CC      net/xdp/xdp_umem.o
-  CC      net/xdp/xsk_queue.o
-  CC      drivers/scsi/sd.o
-  CC [M]  net/netfilter/xt_addrtype.o
-  CC      lib/memweight.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_trace_points.o
-  CC [M]  sound/soc/soc-core.o
-  CC [M]  sound/soc/soc-dapm.o
-  CC      kernel/freezer.o
-  CC      lib/kfifo.o
-  LD [M]  drivers/gpu/drm/xe/tests/xe_test.o
-  CC [M]  fs/smb/client/smb2maperror.o
-  CC      drivers/acpi/container.o
-  CC [M]  drivers/gpu/drm/xe/xe_debugfs.o
-  CC      arch/x86/kernel/tracepoint.o
-  CC      drivers/mfd/max8997.o
-  CC [M]  drivers/net/phy/bcm87xx.o
-  CC [M]  drivers/gpu/drm/drm_aperture.o
-  CC [M]  drivers/gpu/drm/drm_atomic.o
-  CC [M]  drivers/net/phy/bcm-phy-lib.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/disp.o
-  CC [M]  drivers/gpu/drm/ast/ast_mm.o
-  CC      drivers/base/module.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/driver.o
-  CC [M]  drivers/gpu/drm/i915/i915_sysfs.o
-  CC      kernel/profile.o
-  CC      fs/btrfs/zlib.o
-  CC [M]  drivers/net/ethernet/intel/igb/e1000_82575.o
-  CC      fs/btrfs/lzo.o
-  CC [M]  drivers/gpu/drm/i915/i915_utils.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_i2c.o
-  CC [M]  drivers/gpu/drm/i915/intel_clock_gating.o
-  CC [M]  drivers/gpu/drm/i915/intel_device_info.o
-  CC      arch/x86/kernel/itmt.o
-  CC      drivers/ata/ata_piix.o
-  CC      drivers/ata/pata_sis.o
-  CC [M]  drivers/net/ethernet/intel/e1000/e1000_ethtool.o
-  CC      lib/percpu-refcount.o
-  CC [M]  sound/soc/soc-jack.o
-  CC      net/xdp/xskmap.o
-  CC [M]  drivers/net/ethernet/intel/igc/igc_main.o
-  CC [M]  drivers/gpu/drm/xe/xe_devcoredump.o
-  CC [M]  drivers/net/ethernet/intel/e1000e/manage.o
-  CC [M]  drivers/net/ethernet/intel/igc/igc_mac.o
-  CC      drivers/acpi/thermal_lib.o
-  AR      drivers/net/ppp/built-in.a
-  CC      drivers/acpi/thermal.o
-  CC [M]  net/netfilter/xt_conntrack.o
-  CC      drivers/usb/core/driver.o
-  AR      drivers/net/wan/framer/built-in.a
-  AR      drivers/net/slip/built-in.a
-  CC [M]  drivers/net/ethernet/intel/igc/igc_i225.o
-  AR      drivers/net/wan/built-in.a
-  CC      drivers/base/hypervisor.o
-  CC [M]  drivers/gpu/drm/i915/intel_memory_region.o
-  CC      net/ipv6/output_core.o
-  CC [M]  drivers/net/ethernet/intel/igbvf/vf.o
-  CC      net/mptcp/crypto.o
-  CC [M]  drivers/net/ethernet/intel/igbvf/mbx.o
-  CC [M]  drivers/net/ethernet/intel/igbvf/ethtool.o
-  CC [M]  drivers/gpu/drm/ast/ast_mode.o
-  CC      drivers/input/keyboard/atkbd.o
-  CC      arch/x86/kernel/umip.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/event.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/fifo.o
-  CC      net/ipv4/ipmr_base.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/atombios_encoders.o
-  CC      net/ipv4/syncookies.o
-  CC      drivers/input/serio/libps2.o
-  CC [M]  drivers/gpu/drm/ast/ast_post.o
-  CC [M]  drivers/gpu/drm/xe/xe_device.o
-  CC      drivers/acpi/acpi_memhotplug.o
-  CC      drivers/mfd/max8997-irq.o
-  CC      drivers/mfd/max8998.o
-  CC      kernel/stacktrace.o
-  CC [M]  drivers/gpu/drm/drm_atomic_uapi.o
-  CC      lib/rhashtable.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/head.o
-  CC      drivers/rtc/lib.o
-  CC      drivers/base/pinctrl.o
-  CC      drivers/scsi/sd_dif.o
-  CC [M]  drivers/net/ethernet/intel/e1000e/nvm.o
-  CC      fs/btrfs/zstd.o
-  CC      net/xdp/xsk_buff_pool.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_clocks.o
-  AR      drivers/i2c/algos/built-in.a
-  CC [M]  drivers/i2c/algos/i2c-algo-bit.o
-  CC [M]  drivers/net/phy/bcm-phy-ptp.o
-  CC      drivers/i2c/busses/i2c-designware-common.o
-  CC      drivers/scsi/sd_zbc.o
-  CC [M]  fs/smb/client/smb2transport.o
-  CC [M]  fs/smb/client/smb2misc.o
-  CC      drivers/i2c/busses/i2c-designware-master.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_sa.o
-  CC [M]  drivers/net/ethernet/intel/e1000/e1000_param.o
-  CC      fs/btrfs/compression.o
-  CC [M]  drivers/gpu/drm/drm_auth.o
-  LD [M]  net/netfilter/nf_conntrack.o
-  LD [M]  net/netfilter/nf_nat.o
-  CC      arch/x86/kernel/unwind_frame.o
-  LD [M]  net/netfilter/nf_tables.o
-  CC [M]  drivers/net/ethernet/intel/igbvf/netdev.o
-  CC      fs/btrfs/delayed-ref.o
-  CC [M]  drivers/net/ethernet/intel/igb/e1000_mac.o
-  CC      drivers/ata/ata_generic.o
-  AR      net/netfilter/built-in.a
-  CC      net/ipv6/protocol.o
-  CC      drivers/acpi/ioapic.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_main.o
-  AR      drivers/input/keyboard/built-in.a
-  CC      drivers/usb/core/config.o
-  CC      net/mptcp/ctrl.o
-  AR      drivers/input/mouse/built-in.a
-  CC      drivers/base/devcoredump.o
-  AR      drivers/input/joystick/built-in.a
-  AR      drivers/input/tablet/built-in.a
-  CC      drivers/input/touchscreen/elants_i2c.o
-  CC      drivers/base/platform-msi.o
-  AR      drivers/input/serio/built-in.a
-  CC      drivers/usb/core/file.o
-  CC      drivers/usb/core/buffer.o
-  CC      net/mctp/af_mctp.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/mem.o
-  CC      net/mptcp/pm.o
-  CC [M]  drivers/gpu/drm/ast/ast_dp501.o
-  CC [M]  drivers/gpu/drm/i915/intel_pcode.o
-  CC [M]  drivers/gpu/drm/xe/xe_device_sysfs.o
-  CC      kernel/dma.o
-  CC      drivers/rtc/class.o
-  CC      drivers/rtc/interface.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/atombios_i2c.o
-  CC      drivers/rtc/nvmem.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_gem.o
-  CC [M]  sound/soc/soc-utils.o
-  CC      drivers/mfd/max8998-irq.o
-  CC [M]  drivers/net/ethernet/intel/e1000e/phy.o
-  CC      drivers/acpi/battery.o
-  CC [M]  drivers/net/ethernet/intel/e1000e/param.o
-  CC [M]  drivers/ata/acard-ahci.o
-  CC [M]  drivers/ata/ahci_dwc.o
-  CC      drivers/scsi/sr.o
-  CC      arch/x86/kernel/sev.o
-  CC      net/ipv4/netfilter.o
-  AR      drivers/i2c/muxes/built-in.a
-  CC      kernel/smp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.o
-  LD [M]  drivers/net/ethernet/intel/e1000/e1000.o
-  CC      drivers/usb/core/sysfs.o
-  CC      drivers/i2c/i2c-boardinfo.o
-  CC      kernel/uid16.o
-  CC [M]  drivers/gpu/drm/ast/ast_dp.o
-  CC [M]  drivers/net/ethernet/intel/e1000e/ethtool.o
-  CC      lib/base64.o
-  CC [M]  drivers/net/ethernet/intel/igb/e1000_nvm.o
-  CC      lib/once.o
-  CC      kernel/module_signature.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/mmu.o
-  CC [M]  fs/smb/client/smb2pdu.o
-  CC      drivers/base/physical_location.o
-  CC [M]  drivers/gpu/drm/xe/xe_dma_buf.o
-  CC      drivers/i2c/busses/i2c-designware-platdrv.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/outp.o
-  AR      drivers/input/touchscreen/built-in.a
-  CC [M]  drivers/gpu/drm/nouveau/nvif/timer.o
-  CC      drivers/mfd/adp5520.o
-  CC      drivers/i2c/busses/i2c-designware-baytrail.o
-  CC [M]  drivers/net/ethernet/intel/igb/e1000_phy.o
-  CC [M]  drivers/i2c/busses/i2c-i801.o
-  CC      drivers/input/misc/uinput.o
-  CC [M]  drivers/net/phy/broadcom.o
-  CC [M]  drivers/net/ethernet/intel/igc/igc_base.o
-  CC [M]  drivers/net/ethernet/intel/e1000e/netdev.o
-  CC [M]  drivers/net/ethernet/intel/igb/e1000_mbx.o
-  CC      fs/btrfs/relocation.o
-  CC      fs/btrfs/delayed-inode.o
-  CC      net/ipv6/ip6_offload.o
-  CC [M]  drivers/gpu/drm/i915/intel_region_ttm.o
-  CC      lib/refcount.o
-  AR      net/xdp/built-in.a
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_common.o
-  CC      net/handshake/alert.o
-  CC      net/mctp/device.o
-  CC      net/mptcp/diag.o
-  LD [M]  drivers/net/ethernet/intel/igbvf/igbvf.o
-  CC      net/handshake/genl.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_ethtool.o
-  AR      drivers/ata/built-in.a
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_82599.o
-  CC      net/mptcp/mib.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_ring.o
-  CC      drivers/base/trace.o
-  CC [M]  drivers/net/ethernet/intel/igc/igc_nvm.o
-  CC      drivers/scsi/sr_ioctl.o
-  CC [M]  sound/soc/soc-dai.o
-  CC      drivers/rtc/dev.o
-  CC      drivers/i2c/i2c-core-base.o
-  CC      lib/rcuref.o
-  CC      drivers/usb/core/endpoint.o
-  LD [M]  drivers/gpu/drm/ast/ast.o
-  CC [M]  drivers/net/ethernet/intel/igb/e1000_i210.o
-  CC      drivers/mfd/tps6586x.o
-  CC [M]  drivers/net/ethernet/intel/igb/igb_ptp.o
-  CC      drivers/mfd/tps65090.o
-  CC [M]  drivers/gpu/drm/drm_blend.o
-  CC [M]  drivers/gpu/drm/drm_bridge.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_vm.o
-  CC      drivers/acpi/hed.o
-  AR      drivers/input/misc/built-in.a
-  CC      drivers/input/input.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/vmm.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/user.o
-  CC [M]  drivers/net/phy/lxt.o
-  CC [M]  drivers/gpu/drm/xe/xe_drm_client.o
-  CC [M]  drivers/net/phy/realtek.o
-  CC      lib/usercopy.o
-  CC [M]  drivers/net/ethernet/intel/ixgbevf/vf.o
-  CC      net/mctp/route.o
-  CC      drivers/acpi/bgrt.o
-  AR      drivers/base/built-in.a
-  CC [M]  drivers/gpu/drm/i915/intel_runtime_pm.o
-  CC      drivers/acpi/cppc_acpi.o
-  AR      drivers/i2c/busses/built-in.a
-  CC      drivers/mfd/aat2870-core.o
-  CC [M]  drivers/net/phy/smsc.o
-  CC [M]  drivers/gpu/drm/xe/xe_exec.o
-  CC [M]  drivers/net/ethernet/intel/igc/igc_phy.o
-  CC      drivers/rtc/proc.o
-  CC [M]  drivers/net/ethernet/intel/igc/igc_diag.o
-  CC      drivers/usb/core/devio.o
-  CC      arch/x86/kernel/callthunks.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_irq_kms.o
-  CC      kernel/kallsyms.o
-  CC      drivers/scsi/sr_vendor.o
-  CC      net/ipv4/tcp_cubic.o
-  CC [M]  sound/soc/soc-component.o
-  CC      net/mptcp/pm_netlink.o
-  CC      net/ipv6/tcpv6_offload.o
-  CC      net/ipv6/exthdrs_offload.o
-  CC      lib/errseq.o
-  CC      net/mptcp/sockopt.o
-  CC      net/mptcp/pm_userspace.o
-  CC      net/mptcp/fastopen.o
-  CC      drivers/acpi/spcr.o
-  CC [M]  drivers/net/ethernet/intel/e1000e/ptp.o
-  CC      drivers/scsi/sg.o
-  CC      net/ipv6/inet6_hashtables.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/userc361.o
-  CC      net/handshake/netlink.o
-  CC      lib/bucket_locks.o
-  CC      drivers/rtc/sysfs.o
-  CC [M]  drivers/net/ethernet/intel/i40e/i40e_main.o
-  CC      net/handshake/request.o
-  CC [M]  drivers/scsi/raid_class.o
-  CC      net/mptcp/sched.o
-  CC      drivers/usb/core/notify.o
-  CC      drivers/mfd/intel-lpss.o
-  CC      arch/x86/kernel/audit_64.o
-  CC [M]  drivers/gpu/drm/xe/xe_execlist.o
-  CC      drivers/input/input-compat.o
-  CC [M]  net/llc/llc_core.o
-  CC [M]  drivers/net/ethernet/intel/igb/igb_hwmon.o
-  CC      drivers/input/input-mt.o
-  CC [M]  drivers/net/ethernet/intel/ixgbevf/mbx.o
-  CC [M]  drivers/scsi/scsi_transport_sas.o
-  CC [M]  net/llc/llc_input.o
-  CC [M]  net/llc/llc_output.o
-  CC [M]  drivers/net/ethernet/intel/igc/igc_ethtool.o
-  CC [M]  drivers/gpu/drm/i915/intel_sbi.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_cs.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_bios.o
-  CC      net/ipv6/mcast_snoop.o
-  CC      net/mctp/neigh.o
-  CC      drivers/usb/core/generic.o
-  CC      net/ipv4/tcp_sigpool.o
-  CC      lib/generic-radix-tree.o
-  CC      arch/x86/kernel/amd_gart_64.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/client.o
-  AR      drivers/net/phy/built-in.a
-  CC      drivers/usb/core/quirks.o
-  CC      drivers/acpi/acpi_dbg.o
-  CC      fs/btrfs/scrub.o
-  AR      drivers/net/wireless/admtek/built-in.a
-  CC      drivers/rtc/rtc-mc146818-lib.o
-  AR      drivers/net/wireless/ath/built-in.a
-  CC [M]  sound/soc/soc-pcm.o
-  CC      net/handshake/tlshd.o
-  AR      drivers/net/wireless/atmel/built-in.a
-  AR      drivers/net/wireless/broadcom/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.o
-  CC      drivers/i2c/i2c-core-smbus.o
-  CC      drivers/usb/core/devices.o
-  CC      drivers/acpi/viot.o
-  CC      net/handshake/trace.o
-  AR      drivers/net/wireless/intel/built-in.a
-  AR      drivers/net/wireless/intersil/built-in.a
-  AR      drivers/net/wireless/marvell/built-in.a
-  AR      drivers/net/wireless/mediatek/built-in.a
-  CC      lib/bitmap-str.o
-  CC      lib/string_helpers.o
-  CC      drivers/mfd/intel-lpss-pci.o
-  CC [M]  drivers/gpu/drm/xe/xe_exec_queue.o
-  CC      drivers/usb/dwc2/core.o
-  AR      drivers/net/wireless/microchip/built-in.a
-  CC      drivers/usb/host/pci-quirks.o
-  CC      drivers/usb/storage/scsiglue.o
-  CC [M]  drivers/net/ethernet/intel/ixgbevf/ethtool.o
-  CC      kernel/acct.o
-  AR      drivers/net/wireless/purelifi/built-in.a
-  LD [M]  drivers/net/ethernet/intel/igb/igb.o
-  CC      drivers/usb/storage/protocol.o
-  AR      drivers/net/wireless/quantenna/built-in.a
-  CC      drivers/usb/dwc2/core_intr.o
-  CC      drivers/input/input-poller.o
-  CC [M]  drivers/gpu/drm/i915/intel_step.o
-  AR      drivers/net/wireless/ralink/built-in.a
-  CC [M]  drivers/acpi/acpi_ipmi.o
-  AR      drivers/net/wireless/realtek/built-in.a
-  CC      net/mptcp/mptcp_pm_gen.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_benchmark.o
-  AR      drivers/net/wireless/rsi/built-in.a
-  CC      drivers/usb/dwc2/platform.o
-  LD [M]  net/llc/llc.o
-  CC      drivers/i2c/i2c-core-acpi.o
-  AR      drivers/net/wireless/silabs/built-in.a
-  LD [M]  drivers/net/ethernet/intel/e1000e/e1000e.o
-  AR      drivers/net/wireless/st/built-in.a
-  CC      net/mptcp/syncookies.o
-  CC [M]  fs/smb/client/smb2inode.o
-  CC [M]  drivers/net/ethernet/intel/igc/igc_ptp.o
-  CC      drivers/input/ff-core.o
-  CC      drivers/input/touchscreen.o
-  AR      net/mctp/built-in.a
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/engine.o
-  AR      drivers/net/wireless/ti/built-in.a
-  CC      drivers/usb/core/phy.o
-  AR      drivers/net/wireless/zydas/built-in.a
-  CC      arch/x86/kernel/aperture_64.o
-  AR      drivers/net/wireless/virtual/built-in.a
-  AR      drivers/net/wireless/built-in.a
-  AR      drivers/net/mctp/built-in.a
-  CC [M]  drivers/gpu/drm/i915/intel_uncore.o
-  CC [M]  drivers/gpu/drm/i915/intel_wakeref.o
-  AR      drivers/net/ethernet/marvell/octeon_ep/built-in.a
-  AR      drivers/net/ethernet/marvell/octeontx2/built-in.a
-  AR      drivers/net/ethernet/mellanox/built-in.a
-  CC      drivers/i2c/i2c-dev.o
-  CC      drivers/mfd/intel-lpss-acpi.o
-  CC [M]  drivers/net/ethernet/intel/i40e/i40e_ethtool.o
-  AR      drivers/net/ethernet/marvell/prestera/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_ib.o
-  AR      drivers/net/ethernet/marvell/built-in.a
-  CC [M]  drivers/net/ethernet/intel/i40e/i40e_adminq.o
-  CC      drivers/usb/core/port.o
-  CC      net/ipv4/tcp_bpf.o
-  CC [M]  drivers/scsi/ses.o
-  CC      drivers/rtc/rtc-cmos.o
-  AR      net/ipv6/built-in.a
-  CC      drivers/usb/host/ehci-hcd.o
-  CC [M]  net/bridge/br.o
-  CC      drivers/input/vivaldi-fmap.o
-  CC      drivers/usb/storage/transport.o
-  CC      kernel/crash_core.o
-  CC [M]  drivers/acpi/acpi_video.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_82598.o
-  CC      lib/hexdump.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_pll.o
-  CC      lib/kstrtox.o
-  CC      net/mptcp/bpf.o
-  CC      net/ipv4/udp_bpf.o
-  CC      net/ipv4/cipso_ipv4.o
-  HOSTCC  drivers/gpu/drm/radeon/mkregtable
-  CC      net/ipv4/xfrm4_policy.o
-  CC [M]  drivers/gpu/drm/xe/xe_force_wake.o
-  CC      drivers/mfd/palmas.o
-  CC      drivers/usb/dwc2/drd.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/enum.o
-  CC [M]  drivers/net/ethernet/intel/ixgbevf/ixgbevf_main.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/event.o
-  CC [M]  drivers/gpu/drm/i915/vlv_sideband.o
-  CC [M]  drivers/gpu/drm/i915/vlv_suspend.o
-  CC      fs/file.o
-  CC      arch/x86/kernel/mmconf-fam10h_64.o
-  CC      drivers/usb/core/hcd-pci.o
-  CC [M]  drivers/gpu/drm/radeon/rs400.o
-  AR      drivers/net/ethernet/micrel/built-in.a
-  AR      net/handshake/built-in.a
-  CC      arch/x86/kernel/vsmp_64.o
-  CC      kernel/kexec_core.o
-  CC      fs/filesystems.o
-  CC      drivers/net/ethernet/microchip/vcap/vcap_api_debugfs.o
-  CC      net/ipv4/xfrm4_state.o
-  CC [M]  drivers/gpu/drm/i915/soc/intel_dram.o
-  CC      lib/debug_info.o
-  CC [M]  drivers/gpu/drm/i915/soc/intel_gmch.o
-  CC [M]  drivers/net/ethernet/intel/igc/igc_dump.o
-  CC      drivers/net/ethernet/microchip/vcap/vcap_api.o
-  CC      kernel/kexec.o
-  CC      drivers/scsi/scsi_sysfs.o
-  CC [M]  drivers/i2c/i2c-smbus.o
-  AR      drivers/rtc/built-in.a
-  MKREG   drivers/gpu/drm/radeon/rs600_reg_safe.h
-  CC [M]  drivers/gpu/drm/radeon/rs690.o
-  CC [M]  net/bridge/br_device.o
-  CC [M]  sound/soc/soc-devres.o
-  CC [M]  net/sunrpc/clnt.o
-  CC      fs/btrfs/backref.o
-  CC      drivers/input/mousedev.o
-  CC [M]  net/sunrpc/xprt.o
-  CC [M]  arch/x86/kernel/msr.o
-  CC [M]  net/bridge/br_fdb.o
-  CC [M]  drivers/gpu/drm/xe/xe_ggtt.o
-  CC [M]  fs/smb/client/smb2file.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.o
-  CC      drivers/usb/storage/usb.o
-  CC      drivers/usb/dwc2/params.o
-  CC      drivers/usb/storage/initializers.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/firmware.o
-  AR      net/mptcp/built-in.a
-  CC      drivers/mfd/rc5t583.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_phy.o
-  CC      drivers/mfd/rc5t583-irq.o
-  CC      net/devres.o
-  CC      drivers/usb/dwc2/hcd.o
-  CC [M]  drivers/gpu/drm/i915/soc/intel_pch.o
-  CC [M]  drivers/gpu/drm/i915/i915_memcpy.o
-  CC      drivers/net/ethernet/microchip/vcap/vcap_tc.o
-  CC      drivers/usb/dwc2/hcd_intr.o
-  CC [M]  drivers/gpu/drm/i915/i915_mm.o
-  CC [M]  drivers/gpu/drm/i915/i915_sw_fence.o
-  CC      drivers/usb/core/usb-acpi.o
-  CC      net/ipv4/xfrm4_input.o
-  CC [M]  drivers/net/ethernet/intel/igc/igc_tsn.o
-  CC      drivers/mfd/syscon.o
-  CC      drivers/mfd/as3711.o
-  CC      drivers/mfd/intel_soc_pmic_crc.o
-  CC [M]  arch/x86/kernel/cpuid.o
-  CC      drivers/input/evdev.o
-  CC      lib/iomap.o
-  CC [M]  sound/soc/soc-ops.o
-  CC [M]  drivers/gpu/drm/i915/i915_sw_fence_work.o
-  CC      net/ipv4/xfrm4_output.o
-  MKREG   drivers/gpu/drm/radeon/rv515_reg_safe.h
-  CC [M]  drivers/gpu/drm/radeon/r520.o
-  CC [M]  drivers/net/usb/pegasus.o
-  CC [M]  drivers/acpi/video_detect.o
-  CC [M]  drivers/gpu/drm/i915/i915_syncmap.o
-  CC [M]  drivers/net/ethernet/intel/igc/igc_xdp.o
-  CC [M]  drivers/gpu/drm/i915/i915_user_extensions.o
-  CC [M]  drivers/net/usb/rtl8150.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/gpuobj.o
-  CC [M]  drivers/gpu/drm/xe/xe_gpu_scheduler.o
-  CC [M]  drivers/i2c/i2c-mux.o
-  CC      kernel/kexec_file.o
-  CC [M]  drivers/gpu/drm/i915/i915_ioc32.o
-  CC      drivers/net/loopback.o
-  CC [M]  fs/smb/client/cifsacl.o
-  CC [M]  drivers/gpu/drm/i915/i915_debugfs.o
-  AR      arch/x86/kernel/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.o
-  HOSTCC  drivers/gpu/drm/xe/xe_gen_wa_oob
-  AR      arch/x86/built-in.a
-  CC      drivers/usb/host/ehci-pci.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_sriov.o
-  CC      drivers/mfd/intel_soc_pmic_chtwc.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_mbx.o
-  AR      drivers/scsi/built-in.a
-  CC      drivers/usb/storage/sierra_ms.o
-  CC [M]  sound/soc/soc-link.o
-  CC [M]  drivers/gpu/drm/i915/i915_debugfs_params.o
-  CC [M]  drivers/net/ethernet/intel/i40e/i40e_common.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/intr.o
-  CC [M]  sound/soc/soc-card.o
-  CC [M]  drivers/gpu/drm/xe/xe_gsc_proxy.o
-  CC [M]  sound/soc/soc-topology.o
-  CC      drivers/net/netconsole.o
-  CC      kernel/compat.o
-  CC      drivers/usb/host/ehci-platform.o
-  AR      drivers/usb/core/built-in.a
-  CC      drivers/usb/host/ohci-hcd.o
-  CC      drivers/net/tun.o
-  AR      drivers/i3c/built-in.a
-  CC      net/ipv4/xfrm4_protocol.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_x540.o
-  CC [M]  drivers/gpu/drm/radeon/r600.o
-  CC [M]  drivers/input/sparse-keymap.o
-  LD [M]  drivers/net/ethernet/intel/ixgbevf/ixgbevf.o
-  AR      drivers/net/ethernet/intel/built-in.a
-  CC [M]  drivers/gpu/drm/xe/xe_gsc_submit.o
-  CC [M]  drivers/gpu/drm/i915/i915_pmu.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/ioctl.o
-  CC [M]  sound/soc/soc-compress.o
-  CC      lib/pci_iomap.o
-  CC [M]  drivers/net/usb/r8152.o
-  CC      fs/btrfs/ulist.o
-  CC      drivers/net/virtio_net.o
-  LD [M]  drivers/net/ethernet/intel/igc/igc.o
-  CC [M]  drivers/mfd/lpc_ich.o
-  CC [M]  drivers/net/usb/cdc_ether.o
-  CC      drivers/usb/storage/option_ms.o
-  CC [M]  drivers/net/ethernet/intel/i40e/i40e_hmc.o
-  CC [M]  drivers/acpi/acpi_tad.o
-  CC      drivers/usb/host/ohci-pci.o
-  LD [M]  sound/soc/snd-soc-acpi.o
-  CC      lib/iomap_copy.o
-  CC [M]  drivers/net/ethernet/intel/e100.o
-  AR      drivers/net/ethernet/microchip/vcap/built-in.a
-  CC      lib/devres.o
-  AR      drivers/net/ethernet/microchip/built-in.a
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_x550.o
-  CC      lib/check_signature.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt.o
-  CC      drivers/net/xen-netfront.o
-  CC [M]  drivers/acpi/acpi_pad.o
-  CC      drivers/usb/dwc2/hcd_queue.o
-  CC      fs/namespace.o
-  CC      drivers/usb/dwc2/hcd_ddma.o
-  CC      net/ipv4/bpf_tcp_ca.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.o
-  AR      drivers/i2c/built-in.a
-  CC [M]  drivers/input/input-leds.o
-  AR      drivers/net/ethernet/mscc/built-in.a
-  CC [M]  net/bridge/br_forward.o
-  CC [M]  net/bridge/br_if.o
-  CC      drivers/net/net_failover.o
-  AR      drivers/media/i2c/built-in.a
-  AR      drivers/net/ethernet/myricom/built-in.a
-  CC [M]  drivers/media/i2c/ov13858.o
-  AR      drivers/net/ethernet/natsemi/built-in.a
-  CC [M]  drivers/media/i2c/ov13b10.o
-  CC [M]  drivers/gpu/drm/drm_cache.o
-  AR      drivers/media/tuners/built-in.a
-  CC [M]  net/sunrpc/socklib.o
-  CC [M]  drivers/media/tuners/mc44s803.o
-  AR      drivers/media/rc/keymaps/built-in.a
-  CC [M]  drivers/media/rc/rc-main.o
-  CC      fs/btrfs/qgroup.o
-  AR      drivers/media/common/b2c2/built-in.a
-  CC [M]  fs/smb/client/fs_context.o
-  AR      drivers/media/common/saa7146/built-in.a
-  CC [M]  drivers/media/rc/rc-ir-raw.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/memory.o
-  AR      drivers/media/common/siano/built-in.a
-  AR      drivers/mfd/built-in.a
-  CC      drivers/usb/storage/usual-tables.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/mm.o
-  AR      drivers/media/common/v4l2-tpg/built-in.a
-  AR      drivers/media/common/videobuf2/built-in.a
-  AR      drivers/media/common/built-in.a
-  CC      lib/interval_tree.o
-  CC      fs/seq_file.o
-  AR      drivers/net/ethernet/neterion/built-in.a
-  CC      kernel/utsname.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_lib.o
-  CC      lib/assoc_array.o
-  CC      lib/list_debug.o
-  CC      drivers/usb/serial/usb-serial.o
-  CC      drivers/usb/serial/generic.o
-  AR      drivers/media/platform/allegro-dvt/built-in.a
-  CC [M]  drivers/input/joydev.o
-  AR      drivers/media/platform/amlogic/meson-ge2d/built-in.a
-  AR      drivers/media/platform/amlogic/built-in.a
-  CC [M]  net/sunrpc/xprtsock.o
-  LD [M]  sound/soc/snd-soc-core.o
-  CC [M]  drivers/gpu/drm/i915/gt/gen2_engine_cs.o
-  AR      drivers/media/platform/amphion/built-in.a
-  CC [M]  drivers/net/ethernet/intel/i40e/i40e_lan_hmc.o
-  AR      drivers/media/platform/aspeed/built-in.a
-  CC      fs/xattr.o
-  AR      drivers/media/platform/atmel/built-in.a
-  LD [M]  drivers/acpi/video.o
-  AR      drivers/acpi/built-in.a
-  CC [M]  drivers/gpu/drm/drm_client.o
-  AR      drivers/media/platform/cadence/built-in.a
-  CC      lib/debugobjects.o
-  AR      drivers/media/platform/chips-media/coda/built-in.a
-  CC [M]  drivers/gpu/drm/xe/xe_gt_ccs_mode.o
-  CC      kernel/user_namespace.o
-  AR      drivers/media/platform/intel/built-in.a
-  AR      drivers/media/platform/chips-media/wave5/built-in.a
-  CC [M]  drivers/gpu/drm/drm_client_modeset.o
-  AR      drivers/media/platform/chips-media/built-in.a
-  AR      drivers/media/platform/marvell/built-in.a
-  CC      net/socket.o
-  CC      lib/bitrev.o
-  AR      drivers/usb/storage/built-in.a
-  CC [M]  net/sunrpc/sched.o
-  AR      drivers/media/platform/mediatek/jpeg/built-in.a
-  CC      lib/linear_ranges.o
-  AR      drivers/media/platform/mediatek/mdp/built-in.a
-  CC [M]  net/bridge/br_input.o
-  AR      drivers/media/platform/mediatek/vcodec/common/built-in.a
-  AR      drivers/media/platform/mediatek/vcodec/encoder/built-in.a
-  CC      drivers/usb/host/ohci-platform.o
-  CC      drivers/usb/dwc2/debugfs.o
-  AR      drivers/media/platform/mediatek/vcodec/decoder/built-in.a
-  AR      drivers/media/platform/mediatek/vcodec/built-in.a
-  AR      drivers/media/platform/mediatek/vpu/built-in.a
-  AR      drivers/media/platform/mediatek/mdp3/built-in.a
-  CC      drivers/usb/serial/bus.o
-  CC      drivers/usb/serial/console.o
-  AR      drivers/media/platform/mediatek/built-in.a
-  AR      net/ipv4/built-in.a
-  AR      drivers/media/platform/microchip/built-in.a
-  CC      drivers/usb/serial/ftdi_sio.o
-  AR      drivers/media/platform/nuvoton/built-in.a
-  AR      drivers/media/platform/nvidia/tegra-vde/built-in.a
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/object.o
-  AR      drivers/media/platform/nvidia/built-in.a
-  AR      drivers/media/platform/nxp/dw100/built-in.a
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/oproxy.o
-  CC      fs/libfs.o
-  AR      drivers/media/platform/nxp/imx-jpeg/built-in.a
-  AR      drivers/media/platform/nxp/imx8-isi/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_sync.o
-  CC      fs/fs-writeback.o
-  AR      drivers/media/platform/nxp/built-in.a
-  CC [M]  drivers/net/ethernet/intel/i40e/i40e_nvm.o
-  CC      fs/pnode.o
-  AR      drivers/media/platform/qcom/camss/built-in.a
-  AR      drivers/media/platform/qcom/venus/built-in.a
-  AR      drivers/media/platform/qcom/built-in.a
-  AR      drivers/media/pci/ttpci/built-in.a
-  AR      drivers/media/platform/renesas/rcar-vin/built-in.a
-  CC [M]  drivers/media/tuners/mt20xx.o
-  AR      drivers/media/platform/renesas/rzg2l-cru/built-in.a
-  CC [M]  drivers/media/tuners/tuner-simple.o
-  CC [M]  drivers/gpu/drm/radeon/rv770.o
-  AR      drivers/media/pci/b2c2/built-in.a
-  AR      drivers/media/pci/pluto2/built-in.a
-  AR      drivers/media/platform/renesas/vsp1/built-in.a
-  AR      drivers/media/platform/renesas/built-in.a
-  CC      lib/packing.o
-  AR      drivers/media/pci/dm1105/built-in.a
-  AR      drivers/media/pci/pt1/built-in.a
-  AR      drivers/media/platform/rockchip/rga/built-in.a
-  CC [M]  drivers/gpu/drm/xe/xe_gt_clock.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_ptp.o
-  CC [M]  drivers/media/rc/lirc_dev.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_debugfs.o
-  AR      drivers/media/platform/rockchip/rkisp1/built-in.a
-  CC      lib/crc-ccitt.o
-  AR      drivers/media/pci/pt3/built-in.a
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_xsk.o
-  AR      drivers/media/platform/rockchip/built-in.a
-  AR      drivers/media/pci/mantis/built-in.a
-  AR      drivers/media/pci/ngene/built-in.a
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_dcb.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_test.o
-  AR      drivers/input/built-in.a
-  CC      drivers/usb/host/uhci-hcd.o
-  AR      drivers/media/pci/ddbridge/built-in.a
-  CC      drivers/usb/serial/pl2303.o
-  AR      drivers/media/platform/samsung/exynos-gsc/built-in.a
-  CC      drivers/usb/host/xhci.o
-  AR      drivers/media/pci/saa7146/built-in.a
-  AR      drivers/media/platform/samsung/exynos4-is/built-in.a
-  AR      drivers/usb/dwc2/built-in.a
-  AR      drivers/media/pci/smipcie/built-in.a
-  CC      drivers/usb/host/xhci-mem.o
-  AR      drivers/media/pci/netup_unidvb/built-in.a
-  CC [M]  drivers/gpu/drm/i915/gt/gen6_engine_cs.o
-  CC [M]  drivers/gpu/drm/drm_color_mgmt.o
-  AR      drivers/media/platform/samsung/s3c-camif/built-in.a
-  CC      drivers/usb/host/xhci-ext-caps.o
-  CC      drivers/usb/host/xhci-ring.o
-  AR      drivers/media/platform/samsung/s5p-g2d/built-in.a
-  AR      drivers/media/pci/intel/ipu3/built-in.a
-  AR      drivers/media/platform/samsung/s5p-jpeg/built-in.a
-  AR      drivers/media/pci/intel/ivsc/built-in.a
-  AR      drivers/media/pci/intel/built-in.a
-  AR      drivers/media/platform/samsung/s5p-mfc/built-in.a
-  CC [M]  fs/smb/client/dns_resolve.o
-  AR      drivers/media/platform/samsung/built-in.a
-  CC [M]  drivers/gpu/drm/drm_connector.o
-  AR      drivers/pps/clients/built-in.a
-  CC      drivers/ptp/ptp_clock.o
-  AR      drivers/media/pci/built-in.a
-  CC      lib/crc16.o
-  CC      drivers/ptp/ptp_chardev.o
-  CC      kernel/pid_namespace.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/option.o
-  AR      drivers/pps/generators/built-in.a
-  AR      drivers/media/platform/st/sti/bdisp/built-in.a
-  CC      drivers/pps/pps.o
-  AR      drivers/media/platform/st/sti/c8sectpfe/built-in.a
-  CC      drivers/pps/kapi.o
-  UPD     kernel/config_data
-  CC      drivers/ptp/ptp_sysfs.o
-  AR      drivers/media/platform/st/sti/delta/built-in.a
-  AR      drivers/media/platform/st/sti/hva/built-in.a
-  CC      drivers/ptp/ptp_vclock.o
-  AR      drivers/media/platform/st/stm32/built-in.a
-  AR      drivers/media/platform/st/built-in.a
-  AR      drivers/media/platform/sunxi/sun4i-csi/built-in.a
-  AR      drivers/media/platform/sunxi/sun6i-csi/built-in.a
-  AR      drivers/usb/misc/built-in.a
-  CC [M]  drivers/gpu/drm/i915/gt/gen6_ppgtt.o
-  AR      drivers/media/platform/sunxi/sun6i-mipi-csi2/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.o
-  AR      drivers/media/platform/sunxi/sun8i-a83t-mipi-csi2/built-in.a
-  CC [M]  drivers/net/ethernet/intel/i40e/i40e_debugfs.o
-  CC      drivers/power/reset/restart-poweroff.o
-  AR      drivers/media/platform/sunxi/sun8i-di/built-in.a
-  CC      fs/splice.o
-  CC      drivers/power/supply/power_supply_core.o
-  AR      drivers/media/platform/sunxi/sun8i-rotate/built-in.a
-  CC [M]  drivers/gpu/drm/xe/xe_gt_freq.o
-  AR      drivers/media/platform/sunxi/built-in.a
-  CC [M]  drivers/gpu/drm/drm_crtc.o
-  CC [M]  drivers/media/rc/keymaps/rc-cec.o
-  AR      drivers/media/platform/ti/am437x/built-in.a
-  AR      drivers/media/platform/ti/cal/built-in.a
-  CC [M]  drivers/net/mii.o
-  AR      drivers/media/platform/ti/vpe/built-in.a
-  AR      drivers/usb/serial/built-in.a
-  AR      drivers/media/platform/ti/davinci/built-in.a
-  CC      fs/sync.o
-  CC      fs/utimes.o
-  AR      drivers/media/platform/ti/j721e-csi2rx/built-in.a
-  MKREG   drivers/gpu/drm/radeon/r200_reg_safe.h
-  AR      drivers/net/ethernet/netronome/built-in.a
-  AR      drivers/media/platform/ti/omap/built-in.a
-  CC [M]  drivers/gpu/drm/radeon/radeon_legacy_tv.o
-  CC      kernel/stop_machine.o
-  AR      drivers/media/platform/ti/omap3isp/built-in.a
-  CC      fs/btrfs/send.o
-  CC      lib/crc-t10dif.o
-  AR      drivers/media/platform/ti/built-in.a
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_dcb_82598.o
-  AR      drivers/media/rc/built-in.a
-  CC      drivers/usb/host/xhci-hub.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/ramht.o
-  CC      drivers/usb/early/ehci-dbgp.o
-  CC [M]  net/bridge/br_ioctl.o
-  CC      drivers/usb/early/xhci-dbc.o
-  CC      fs/btrfs/dev-replace.o
-  AR      drivers/media/platform/verisilicon/built-in.a
-  AR      drivers/media/platform/via/built-in.a
-  CC [M]  drivers/net/usb/cdc_eem.o
-  CC [M]  drivers/net/usb/smsc75xx.o
-  CC      fs/d_path.o
-  AR      drivers/power/reset/built-in.a
-  CC      drivers/pps/sysfs.o
-  AR      drivers/media/platform/xilinx/built-in.a
-  CC [M]  drivers/net/usb/smsc95xx.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_dcb_82599.o
-  CC [M]  drivers/net/ethernet/intel/i40e/i40e_diag.o
-  AR      drivers/media/platform/built-in.a
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_dcb_nl.o
-  LD [M]  drivers/media/rc/rc-core.o
-  CC [M]  drivers/gpu/drm/drm_displayid.o
-  CC [M]  drivers/media/tuners/tuner-types.o
-  AR      drivers/media/usb/b2c2/built-in.a
-  CC [M]  drivers/net/usb/rndis_host.o
-  AR      drivers/media/usb/dvb-usb/built-in.a
-  CC [M]  drivers/gpu/drm/xe/xe_gt_idle.o
-  AR      drivers/media/usb/dvb-usb-v2/built-in.a
-  AR      drivers/media/usb/s2255/built-in.a
-  ASN.1   fs/smb/client/cifs_spnego_negtokeninit.asn1.[ch]
-  CC [M]  net/sunrpc/auth.o
-  AR      drivers/media/usb/siano/built-in.a
-  CC [M]  fs/smb/client/namespace.o
-  CC [M]  drivers/media/tuners/tda18271-maps.o
-  CC [M]  drivers/net/ethernet/intel/i40e/i40e_txrx.o
-  AR      drivers/media/usb/ttusb-budget/built-in.a
-  AR      drivers/media/usb/ttusb-dec/built-in.a
-  CC      drivers/power/supply/power_supply_sysfs.o
-  AR      drivers/ptp/built-in.a
-  AR      drivers/media/usb/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_preempt_mgr.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.o
-  CC [M]  drivers/net/usb/mcs7830.o
-  AR      drivers/pps/built-in.a
-  CC [M]  drivers/net/usb/usbnet.o
-  CC [M]  drivers/gpu/drm/i915/gt/gen7_renderclear.o
-  AR      drivers/net/ethernet/ni/built-in.a
-  CC [M]  drivers/gpu/drm/i915/gt/gen8_engine_cs.o
-  CC      fs/btrfs/raid56.o
-  CC      fs/btrfs/uuid-tree.o
-  CC      fs/btrfs/props.o
-  CC [M]  drivers/gpu/drm/drm_drv.o
-  CC [M]  drivers/gpu/drm/i915/gt/gen8_ppgtt.o
-  HOSTCC  lib/gen_crc32table
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/subdev.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_breadcrumbs.o
-  MKREG   drivers/gpu/drm/radeon/r600_reg_safe.h
-  CC [M]  drivers/gpu/drm/radeon/radeon_pm.o
-  CC [M]  drivers/net/ethernet/intel/i40e/i40e_ptp.o
-  CC      drivers/usb/host/xhci-dbg.o
-  CC      drivers/usb/host/xhci-trace.o
-  HOSTCC  lib/gen_crc64table
-  CC [M]  drivers/gpu/drm/xe/xe_gt_mcr.o
-  CC      kernel/audit.o
-  CC      net/compat.o
-  CC      lib/libcrc32c.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_sysfs.o
-  CC      fs/stack.o
-  CC      fs/fs_struct.o
-  AR      drivers/net/ethernet/nvidia/built-in.a
-  CC      drivers/usb/host/xhci-dbgcap.o
-  CC [M]  net/bridge/br_stp.o
-  CC [M]  drivers/media/tuners/tda18271-common.o
-  CC [M]  drivers/media/tuners/tda18271-fe.o
-  CC [M]  drivers/net/usb/r8153_ecm.o
-  AR      drivers/usb/early/built-in.a
-  CC [M]  drivers/media/tuners/tda827x.o
-  CC [M]  drivers/media/tuners/tda8290.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/uevent.o
-  CC [M]  drivers/media/tuners/tda9887.o
-  CC      fs/statfs.o
-  CC      drivers/power/supply/power_supply_leds.o
-  CC      fs/btrfs/free-space-tree.o
-  CC      drivers/power/supply/power_supply_hwmon.o
-  AR      drivers/media/mmc/siano/built-in.a
-  CC [M]  fs/smb/client/smb1ops.o
-  AR      drivers/media/firewire/built-in.a
-  AR      drivers/media/mmc/built-in.a
-  AR      drivers/media/test-drivers/built-in.a
-  AR      drivers/media/spi/built-in.a
-  CC [M]  drivers/media/tuners/tea5761.o
-  CC      lib/crc64-rocksoft.o
-  CC      lib/xxhash.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_virt.o
-  CC [M]  drivers/media/tuners/tea5767.o
-  CC [M]  drivers/gpu/drm/drm_dumb_buffers.o
-  CC [M]  drivers/gpu/drm/radeon/atombios_dp.o
-  CC [M]  drivers/gpu/drm/drm_edid.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/nvfw/fw.o
-  CC      fs/fs_pin.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_pagefault.o
-  CC [M]  fs/smb/client/cifssmb.o
-  CC [M]  fs/smb/client/cifs_spnego_negtokeninit.asn1.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_sysfs.o
-  CC      drivers/hwmon/hwmon.o
-  CC      fs/btrfs/tree-checker.o
-  CC [M]  drivers/hwmon/acpi_power_meter.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_debugfs.o
-  CC      net/sysctl_net.o
-  CC      drivers/power/supply/samsung-sdi-battery.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_context.o
-  CC      lib/genalloc.o
-  CC [M]  drivers/gpu/drm/drm_eld.o
-  CC      fs/btrfs/space-info.o
-  CC      fs/btrfs/block-rsv.o
-  CC      fs/btrfs/delalloc-space.o
-  CC      lib/percpu_counter.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.o
-  CC      drivers/power/supply/charger-manager.o
-  CC      lib/iommu-helper.o
-  CC [M]  drivers/gpu/drm/radeon/r600_hdmi.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_context_sseu.o
-  CC      lib/fault-inject.o
-  CC [M]  drivers/gpu/drm/drm_encoder.o
-  CC      lib/error-inject.o
-  CC      fs/nsfs.o
-  CC      fs/fs_types.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_engine_cs.o
-  CC      lib/syscall.o
-  CC [M]  net/sunrpc/auth_null.o
-  CC [M]  drivers/media/tuners/xc2028.o
-  CC      fs/btrfs/block-group.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/nvfw/hs.o
-  CC [M]  drivers/media/tuners/xc4000.o
-  CC [M]  drivers/media/tuners/xc5000.o
-  CC [M]  drivers/gpu/drm/drm_file.o
-  CC [M]  drivers/gpu/drm/drm_fourcc.o
-  CC [M]  drivers/net/ethernet/intel/i40e/i40e_ddp.o
-  CC [M]  drivers/gpu/drm/drm_framebuffer.o
-  CC [M]  drivers/hwmon/coretemp.o
-  CC      lib/dynamic_debug.o
-  CC      fs/btrfs/discard.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_vf_error.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/nvfw/ls.o
-  CC [M]  drivers/net/mdio.o
-  LD [M]  drivers/net/ethernet/intel/ixgbe/ixgbe.o
-  CC [M]  drivers/gpu/drm/radeon/dce3_1_afmt.o
-  CC      drivers/usb/host/xhci-dbgtty.o
-  CC [M]  net/bridge/br_stp_bpdu.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_throttle_sysfs.o
-  CC [M]  drivers/gpu/drm/drm_gem.o
-  CC [M]  drivers/gpu/drm/drm_ioctl.o
-  CC      lib/errname.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_tlb_invalidation.o
-  CC [M]  drivers/gpu/drm/drm_lease.o
-  CC [M]  net/sunrpc/auth_tls.o
-  CC [M]  net/sunrpc/auth_unix.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_engine_heartbeat.o
-  CC [M]  drivers/net/veth.o
-  AR      drivers/power/supply/built-in.a
-  CC      fs/fs_context.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_engine_pm.o
-  CC      kernel/auditfilter.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_sched.o
-  CC      fs/fs_parser.o
-  CC [M]  drivers/net/ethernet/intel/i40e/i40e_client.o
-  AR      drivers/power/built-in.a
-  CC [M]  fs/smb/client/asn1.o
-  CC [M]  drivers/net/ethernet/intel/i40e/i40e_virtchnl_pf.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_engine_user.o
-  CC [M]  drivers/gpu/drm/drm_managed.o
-  CC [M]  net/bridge/br_stp_if.o
-  CC [M]  net/bridge/br_stp_timer.o
-  AR      drivers/net/ethernet/oki-semi/built-in.a
-  CC      drivers/usb/host/xhci-debugfs.o
-  CC      drivers/usb/gadget/udc/core.o
-  CC      drivers/usb/gadget/udc/trace.o
-  AR      drivers/usb/gadget/function/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.o
-  CC [M]  net/bridge/br_netlink.o
-  AR      drivers/thermal/broadcom/built-in.a
-  AR      drivers/hwmon/built-in.a
-  AR      drivers/thermal/samsung/built-in.a
-  CC      fs/btrfs/reflink.o
-  CC [M]  drivers/thermal/intel/int340x_thermal/int3400_thermal.o
-  CC      drivers/thermal/intel/intel_tcc.o
-  CC [M]  net/bridge/br_netlink_tunnel.o
-  CC      fs/btrfs/subpage.o
-  CC      fs/btrfs/tree-mod-log.o
-  CC [M]  net/sunrpc/svc.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/nvfw/acr.o
-  CC [M]  drivers/gpu/drm/radeon/evergreen.o
-  CC      drivers/thermal/intel/therm_throt.o
-  CC [M]  drivers/net/ethernet/intel/i40e/i40e_xsk.o
-  CC [M]  net/sunrpc/svcsock.o
-  CC      fs/btrfs/extent-io-tree.o
-  CC [M]  drivers/net/ethernet/intel/i40e/i40e_devlink.o
-  CC [M]  drivers/gpu/drm/drm_mm.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_topology.o
-  CC      fs/fsopen.o
-  CC      fs/init.o
-  CC      fs/kernel_read_file.o
-  CC [M]  drivers/net/ethernet/intel/i40e/i40e_dcb.o
-  CC      fs/mnt_idmapping.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_execlists_submission.o
-  CC      drivers/usb/host/xhci-pci.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_ggtt.o
-  CC [M]  drivers/thermal/intel/int340x_thermal/int340x_thermal_zone.o
-  CC [M]  drivers/thermal/intel/int340x_thermal/int3402_thermal.o
-  CC [M]  drivers/net/ethernet/intel/i40e/i40e_dcb_nl.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_ids.o
-  CC [M]  drivers/thermal/intel/int340x_thermal/int3403_thermal.o
-  CC [M]  drivers/thermal/intel/int340x_thermal/processor_thermal_device.o
-  CC [M]  drivers/thermal/intel/int340x_thermal/int3401_thermal.o
-  CC      lib/nlattr.o
-  CC      drivers/watchdog/watchdog_core.o
-  LD [M]  drivers/media/tuners/tda18271.o
-  CC [M]  drivers/media/mc/mc-device.o
-  CC      lib/cpu_rmap.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_ggtt_fencing.o
-  CC      drivers/watchdog/watchdog_dev.o
-  CC      kernel/auditsc.o
-  LD [M]  fs/smb/client/cifs.o
-  CC [M]  drivers/thermal/intel/int340x_thermal/processor_thermal_device_pci_legacy.o
-  CC      fs/remap_range.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/nvfw/flcn.o
-  CC [M]  drivers/gpu/drm/drm_mode_config.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/falcon/base.o
-  CC [M]  net/bridge/br_arp_nd_proxy.o
-  GEN     xe_wa_oob.c xe_wa_oob.h
-  CC [M]  net/bridge/br_sysfs_if.o
-  GEN     xe_wa_oob.c xe_wa_oob.h
-  CC [M]  drivers/gpu/drm/xe/xe_guc_ads.o
-  CC [M]  drivers/media/mc/mc-devnode.o
-  CC [M]  drivers/media/mc/mc-entity.o
-  CC [M]  drivers/thermal/intel/int340x_thermal/processor_thermal_device_pci.o
-  CC      fs/buffer.o
-  CC      fs/btrfs/fs.o
-  CC      fs/mpage.o
-  CC      lib/dynamic_queue_limits.o
-  AR      drivers/usb/gadget/udc/built-in.a
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt.o
-  CC [M]  drivers/media/mc/mc-request.o
-  AR      drivers/usb/gadget/legacy/built-in.a
-  CC      drivers/usb/roles/class.o
-  MKREG   drivers/gpu/drm/radeon/evergreen_reg_safe.h
-  CC      drivers/usb/gadget/usbstring.o
-  CC      fs/proc_namespace.o
-  CC      fs/direct-io.o
-  CC      fs/eventpoll.o
-  CC      drivers/md/md.o
-  CC      drivers/thermal/intel/intel_hfi.o
-  CC      drivers/md/md-bitmap.o
-  CC [M]  net/sunrpc/svcauth.o
-  CC [M]  drivers/media/v4l2-core/v4l2-async.o
-  CC [M]  drivers/media/v4l2-core/v4l2-fwnode.o
-  CC [M]  drivers/media/dvb-core/dvbdev.o
-  CC [M]  net/sunrpc/svcauth_unix.o
-  AR      drivers/usb/host/built-in.a
-  CC      fs/anon_inodes.o
-  MKREG   drivers/gpu/drm/radeon/cayman_reg_safe.h
-  CC      fs/btrfs/messages.o
-  CC [M]  drivers/usb/class/usbtmc.o
-  CC [M]  drivers/media/mc/mc-dev-allocator.o
-  CC      drivers/usb/gadget/config.o
-  CC [M]  drivers/gpu/drm/radeon/evergreen_hdmi.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.o
-  CC [M]  drivers/usb/typec/ucsi/ucsi.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/falcon/cmdq.o
-  CC [M]  drivers/media/cec/core/cec-core.o
-  CC [M]  drivers/thermal/intel/int340x_thermal/processor_thermal_rapl.o
-  CC [M]  drivers/thermal/intel/int340x_thermal/processor_thermal_rfim.o
-  CC      lib/glob.o
-  CC [M]  drivers/thermal/intel/int340x_thermal/processor_thermal_mbox.o
-  CC [M]  drivers/thermal/intel/int340x_thermal/processor_thermal_wt_req.o
-  CC      lib/digsig.o
-  CC [M]  drivers/usb/typec/ucsi/debugfs.o
-  CC      drivers/watchdog/watchdog_pretimeout.o
-  LD [M]  drivers/net/ethernet/intel/i40e/i40e.o
-  CC      drivers/watchdog/pretimeout_noop.o
-  CC [M]  drivers/usb/typec/ucsi/trace.o
-  CC [M]  net/bridge/br_sysfs_br.o
-  CC      lib/strncpy_from_user.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_ct.o
-  CC      fs/btrfs/bio.o
-  AR      drivers/net/ethernet/packetengines/built-in.a
-  CC [M]  drivers/gpu/drm/radeon/radeon_trace_points.o
-  AR      drivers/net/ethernet/qlogic/built-in.a
-  AR      drivers/usb/roles/built-in.a
-  AR      drivers/net/ethernet/qualcomm/emac/built-in.a
-  CC [M]  drivers/gpu/drm/drm_mode_object.o
-  CC [M]  drivers/thermal/intel/int340x_thermal/processor_thermal_wt_hint.o
-  AR      drivers/net/ethernet/qualcomm/built-in.a
-  CC      drivers/usb/gadget/epautoconf.o
-  AR      drivers/net/ethernet/realtek/built-in.a
-  CC [M]  drivers/net/ethernet/realtek/8139cp.o
-  CC [M]  drivers/media/v4l2-core/v4l2-dv-timings.o
-  CC [M]  drivers/gpu/drm/radeon/ni.o
-  CC      fs/signalfd.o
-  CC      fs/timerfd.o
-  CC      drivers/usb/gadget/composite.o
-  CC      drivers/usb/gadget/functions.o
-  CC [M]  drivers/media/cec/core/cec-adap.o
-  CC [M]  drivers/usb/typec/ucsi/psy.o
-  LD [M]  drivers/media/mc/mc.o
-  CC      fs/eventfd.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/falcon/fw.o
-  AR      drivers/media/built-in.a
-  CC      lib/strnlen_user.o
-  CC [M]  drivers/gpu/drm/radeon/atombios_encoders.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_semaphore.o
-  CC      lib/net_utils.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_sa.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_mmhub.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_hdp.o
-  CC [M]  drivers/media/cec/core/cec-api.o
-  CC [M]  drivers/thermal/intel/int340x_thermal/processor_thermal_power_floor.o
-  CC      fs/userfaultfd.o
-  CC      kernel/audit_watch.o
-  CC [M]  drivers/thermal/intel/int340x_thermal/acpi_thermal_rel.o
-  CC [M]  drivers/media/v4l2-core/v4l2-dev.o
-  CC      drivers/watchdog/softdog.o
-  CC [M]  net/bridge/br_nf_core.o
-  CC      kernel/audit_fsnotify.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/falcon/msgq.o
-  CC      drivers/usb/gadget/configfs.o
-  AR      net/built-in.a
-  CC      drivers/usb/gadget/u_f.o
-  CC [M]  drivers/usb/typec/ucsi/ucsi_acpi.o
-  CC [M]  drivers/gpu/drm/drm_modes.o
-  CC [M]  drivers/media/dvb-core/dmxdev.o
-  CC [M]  net/bridge/br_multicast.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.o
-  CC      drivers/md/md-autodetect.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt_clock_utils.o
-  LD [M]  drivers/usb/typec/ucsi/typec_ucsi.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt_debugfs.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt_engines_debugfs.o
-  CC      fs/aio.o
-  CC [M]  drivers/gpu/drm/radeon/atombios_i2c.o
-  CC [M]  drivers/gpu/drm/radeon/si.o
-  AR      drivers/thermal/st/built-in.a
-  CC      fs/btrfs/lru_cache.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/falcon/qmgr.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/falcon/v1.o
-  AR      drivers/accessibility/braille/built-in.a
-  AR      drivers/watchdog/built-in.a
-  CC      fs/btrfs/raid-stripe-tree.o
-  CC [M]  drivers/media/v4l2-core/v4l2-ioctl.o
-  AR      drivers/accessibility/built-in.a
-  CC [M]  drivers/gpu/drm/xe/xe_guc_db_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_debugfs.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_hwconfig.o
-  CC [M]  drivers/media/v4l2-core/v4l2-device.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt_irq.o
-  CC      drivers/md/dm-init.o
-  CC      kernel/audit_tree.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_log.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_pc.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt_mcr.o
-  CC [M]  drivers/usb/typec/class.o
-  CC [M]  drivers/usb/typec/mux.o
-  CC      lib/sg_pool.o
-  CC [M]  drivers/media/dvb-core/dvb_demux.o
-  CC [M]  drivers/net/ethernet/realtek/8139too.o
-  CC [M]  drivers/gpu/drm/drm_modeset_lock.o
-  CC [M]  drivers/media/v4l2-core/v4l2-fh.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/falcon/gm200.o
-  CC [M]  net/sunrpc/addr.o
-  CC [M]  drivers/media/dvb-core/dvb_ca_en50221.o
-  CC      drivers/md/dm-uevent.o
-  CC [M]  drivers/media/dvb-core/dvb_frontend.o
-  CC [M]  net/sunrpc/rpcb_clnt.o
-  CC [M]  drivers/media/dvb-core/dvb_net.o
-  CC [M]  drivers/thermal/intel/intel_powerclamp.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_prime.o
-  CC [M]  drivers/usb/typec/bus.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt_pm.o
-  CC [M]  drivers/media/v4l2-core/v4l2-event.o
-  CC [M]  drivers/gpu/drm/radeon/cik.o
-  CC [M]  drivers/media/dvb-core/dvb_ringbuffer.o
-  CC [M]  drivers/gpu/drm/radeon/r600_dpm.o
-  CC [M]  drivers/thermal/intel/x86_pkg_temp_thermal.o
-  CC [M]  net/sunrpc/timer.o
-  CC [M]  net/sunrpc/xdr.o
-  CC      lib/memregion.o
-  CC [M]  drivers/thermal/intel/intel_soc_dts_iosf.o
-  LD [M]  drivers/media/cec/core/cec.o
-  CC      fs/btrfs/acl.o
-  CC [M]  drivers/thermal/intel/intel_pch_thermal.o
-  CC      fs/btrfs/zoned.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.o
-  AR      drivers/usb/gadget/built-in.a
-  CC [M]  drivers/media/v4l2-core/v4l2-subdev.o
-  CC [M]  drivers/gpu/drm/drm_plane.o
-  CC      drivers/md/dm-zone.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/falcon/gp102.o
-  CC [M]  drivers/media/v4l2-core/v4l2-common.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_submit.o
-  CC      kernel/kprobes.o
-  CC      kernel/hung_task.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt_pm_irq.o
-  CC [M]  drivers/gpu/drm/xe/xe_heci_gsc.o
-  CC      lib/irq_poll.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_csa.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/falcon/tu102.o
-  CC      lib/stackdepot.o
-  CC      lib/ref_tracker.o
-  CC [M]  drivers/gpu/drm/drm_prime.o
-  CC      lib/bootconfig.o
-  CC [M]  drivers/media/v4l2-core/v4l2-ctrls-core.o
-  AR      drivers/thermal/qcom/built-in.a
-  CC      lib/asn1_decoder.o
-  CC      lib/asn1_encoder.o
-  CC [M]  net/sunrpc/sunrpc_syms.o
-  CC      fs/dax.o
-  CC [M]  net/sunrpc/cache.o
-  CC [M]  drivers/net/ethernet/realtek/r8169_main.o
-  CC [M]  drivers/usb/typec/pd.o
-  CC [M]  net/sunrpc/rpc_pipe.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt_requests.o
-  AR      drivers/thermal/tegra/built-in.a
-  CC      drivers/thermal/thermal_core.o
-  AR      drivers/thermal/mediatek/built-in.a
-  CC      drivers/thermal/thermal_sysfs.o
-  CC [M]  net/sunrpc/sysfs.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/falcon/ga100.o
-  AR      drivers/thermal/intel/built-in.a
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt_sysfs.o
-  CC      drivers/thermal/thermal_trip.o
-  CC      drivers/thermal/thermal_helpers.o
-  CC      drivers/md/dm-ima.o
-  CC [M]  drivers/media/v4l2-core/v4l2-ctrls-api.o
-  GEN     lib/oid_registry_data.c
-  CC [M]  drivers/gpu/drm/radeon/rs780_dpm.o
-  CC [M]  drivers/usb/typec/retimer.o
-  CC [M]  net/bridge/br_mdb.o
-  CC      lib/ucs2_string.o
-  CC [M]  drivers/gpu/drm/radeon/rv6xx_dpm.o
-  CC [M]  drivers/media/v4l2-core/v4l2-ctrls-request.o
-  CC      kernel/watchdog.o
-  CC [M]  net/sunrpc/svc_xprt.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_ras.o
-  CC      lib/ubsan.o
-  LD [M]  drivers/media/dvb-core/dvb-core.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_vm_cpu.o
-  CC      lib/sbitmap.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/falcon/ga102.o
-  CC      lib/group_cpus.o
-  CC      fs/locks.o
-  CC [M]  drivers/net/ethernet/realtek/r8169_firmware.o
-  CC [M]  drivers/gpu/drm/drm_print.o
-  CC [M]  drivers/net/ethernet/realtek/r8169_phy_config.o
-  AR      drivers/net/ethernet/renesas/built-in.a
-  CC      lib/fw_table.o
-  AR      drivers/net/ethernet/rdc/built-in.a
-  CC [M]  drivers/gpu/drm/drm_property.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/acr/base.o
-  AR      drivers/net/ethernet/rocker/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.o
-  CC [M]  drivers/gpu/drm/drm_syncobj.o
-  CC [M]  drivers/gpu/drm/radeon/rv770_dpm.o
-  CC      fs/binfmt_script.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.o
-  CC [M]  net/sunrpc/xprtmultipath.o
-  CC [M]  drivers/gpu/drm/radeon/rv730_dpm.o
-  CC [M]  drivers/gpu/drm/radeon/rv740_dpm.o
-  CC      kernel/watchdog_perf.o
-  CC [M]  lib/crc-itu-t.o
-  CC [M]  drivers/usb/typec/port-mapper.o
-  CC      drivers/thermal/thermal_netlink.o
-  CC [M]  net/sunrpc/debugfs.o
-  CC      fs/btrfs/verity.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_engine.o
-  CC [M]  net/sunrpc/stats.o
-  CC      drivers/md/dm-audit.o
-  CC [M]  drivers/media/v4l2-core/v4l2-ctrls-defs.o
-  AR      drivers/usb/built-in.a
-  CC      kernel/seccomp.o
-  CC [M]  drivers/media/v4l2-core/v4l2-compat-ioctl32.o
-  CC [M]  drivers/gpu/drm/radeon/rv770_smc.o
-  CC      kernel/relay.o
-  CC [M]  drivers/media/v4l2-core/v4l2-mc.o
-  CC [M]  drivers/gpu/drm/drm_sysfs.o
-  CC [M]  drivers/gpu/drm/radeon/cypress_dpm.o
-  CC [M]  drivers/gpu/drm/radeon/btc_dpm.o
-  CC [M]  drivers/gpu/drm/radeon/sumo_dpm.o
-  CC [M]  lib/bch.o
-  CC [M]  drivers/media/v4l2-core/v4l2-spi.o
-  CC [M]  drivers/media/v4l2-core/v4l2-trace.o
-  CC [M]  drivers/media/v4l2-core/v4l2-i2c.o
-  LD [M]  drivers/usb/typec/typec.o
-  CC [M]  net/bridge/br_multicast_eht.o
-  CC [M]  drivers/gpu/drm/drm_trace_points.o
-  CC [M]  net/bridge/br_switchdev.o
-  CC [M]  net/bridge/br_mrp_switchdev.o
-  CC [M]  drivers/gpu/drm/radeon/sumo_smc.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/acr/lsfw.o
-  CC      fs/binfmt_elf.o
-  CC [M]  net/sunrpc/sysctl.o
-  CC      drivers/edac/edac_mc.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/acr/gm200.o
-  AR      drivers/isdn/hardware/built-in.a
-  CC      drivers/edac/edac_device.o
-  AR      drivers/isdn/built-in.a
-  GEN     lib/test_fortify.log
-  CC [M]  drivers/gpu/drm/radeon/trinity_dpm.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.o
-  GEN     lib/crc32table.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gtt.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_llc.o
-  CC      kernel/utsname_sysctl.o
-  LD [M]  drivers/net/ethernet/realtek/r8169.o
-  CC [M]  drivers/gpu/drm/radeon/trinity_smc.o
-  CC [M]  drivers/gpu/drm/drm_vblank.o
-  CC [M]  drivers/gpu/drm/radeon/ni_dpm.o
-  AR      drivers/net/ethernet/samsung/built-in.a
-  CC [M]  drivers/gpu/drm/radeon/si_smc.o
-  AR      drivers/net/ethernet/seeq/built-in.a
-  GEN     drivers/eisa/devlist.h
-  AR      drivers/net/ethernet/silan/built-in.a
-  CC      drivers/eisa/pci_eisa.o
-  AR      drivers/net/ethernet/sis/built-in.a
-  AR      drivers/net/ethernet/sfc/built-in.a
-  AR      drivers/net/ethernet/smsc/built-in.a
-  CC [M]  drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.o
-  AR      fs/btrfs/built-in.a
-  CC [M]  drivers/gpu/drm/xe/xe_hw_fence.o
-  AR      drivers/net/ethernet/stmicro/built-in.a
-  AR      drivers/net/ethernet/socionext/built-in.a
-  CC [M]  drivers/gpu/drm/xe/xe_huc.o
-  AR      drivers/net/ethernet/sun/built-in.a
-  CC      drivers/opp/core.o
-  CC      kernel/delayacct.o
-  AR      drivers/net/ethernet/tehuti/built-in.a
-  CC      drivers/thermal/thermal_hwmon.o
-  AR      drivers/net/ethernet/ti/built-in.a
-  CC      kernel/taskstats.o
-  AR      drivers/net/ethernet/vertexcom/built-in.a
-  CC      drivers/thermal/gov_fair_share.o
-  CC      fs/compat_binfmt_elf.o
-  AR      drivers/net/ethernet/via/built-in.a
-  AR      drivers/net/ethernet/wangxun/built-in.a
-  CC      drivers/md/dm.o
-  GEN     lib/crc64table.h
-  CC      drivers/md/dm-table.o
-  CC      drivers/thermal/gov_bang_bang.o
-  AR      drivers/net/ethernet/wiznet/built-in.a
-  CC      drivers/thermal/gov_step_wise.o
-  AR      drivers/net/ethernet/xilinx/built-in.a
-  CC [M]  drivers/gpu/drm/radeon/si_dpm.o
-  CC      drivers/thermal/gov_user_space.o
-  AR      drivers/net/ethernet/synopsys/built-in.a
-  AR      drivers/net/ethernet/pensando/built-in.a
-  CC      fs/backing-file.o
-  CC      fs/mbcache.o
-  AR      drivers/net/ethernet/built-in.a
-  CC [M]  drivers/gpu/drm/drm_vblank_work.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/acr/gm20b.o
-  CC      drivers/edac/edac_mc_sysfs.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/acr/gp102.o
-  CC      drivers/eisa/virtual_root.o
-  CC      drivers/eisa/eisa-bus.o
-  CC [M]  drivers/gpu/drm/drm_vma_manager.o
-  CC [M]  drivers/gpu/drm/radeon/kv_smc.o
-  CC      drivers/edac/edac_module.o
-  CC      drivers/thermal/gov_power_allocator.o
-  CC      drivers/md/dm-target.o
-  CC      drivers/thermal/devfreq_cooling.o
-  CC      drivers/edac/edac_device_sysfs.o
-  CC      fs/posix_acl.o
-  CC      drivers/opp/cpu.o
-  CC      lib/oid_registry.o
-  CC      fs/coredump.o
-  CC      kernel/tsacct.o
-  CC      kernel/tracepoint.o
-  CC [M]  net/bridge/br_mrp.o
-  CC      lib/string.o
-  CC      drivers/edac/wq.o
-  CC      drivers/md/dm-linear.o
-  CC      drivers/edac/edac_pci.o
-  CC [M]  drivers/gpu/drm/xe/xe_huc_debugfs.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_nbio.o
-  AR      drivers/net/built-in.a
-  CC      drivers/md/dm-stripe.o
-  LD [M]  net/sunrpc/sunrpc.o
-  CC [M]  drivers/gpu/drm/xe/xe_irq.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_lrc.o
-  CC      drivers/edac/edac_pci_sysfs.o
-  CC      fs/drop_caches.o
-  LD [M]  drivers/media/v4l2-core/videodev.o
-  CC      kernel/irq_work.o
-  CC      drivers/edac/ghes_edac.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_umc.o
-  CC [M]  drivers/edac/igen6_edac.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.o
-  CC      fs/sysctls.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_migrate.o
-  CC [M]  drivers/edac/skx_common.o
-  CC [M]  drivers/gpu/drm/drm_writeback.o
-  CC      fs/fhandle.o
-  CC [M]  drivers/edac/i10nm_base.o
-  CC      lib/crc32.o
-  CC [M]  drivers/gpu/drm/lib/drm_random.o
-  CC      lib/crc64.o
-  AR      lib/lib.a
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/acr/gp108.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/acr/gv100.o
-  CC [M]  drivers/gpu/drm/radeon/kv_dpm.o
-  CC [M]  drivers/gpu/drm/radeon/ci_smc.o
-  CC      drivers/md/dm-ioctl.o
-  CC [M]  drivers/gpu/drm/drm_ioc32.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/acr/gp10b.o
-  CC      drivers/opp/debugfs.o
-  CC [M]  drivers/gpu/drm/drm_panel.o
-  CC [M]  drivers/gpu/drm/drm_pci.o
-  CC [M]  drivers/gpu/drm/drm_debugfs.o
-  AR      drivers/eisa/built-in.a
-  CC [M]  drivers/gpu/drm/radeon/ci_dpm.o
-  CC      drivers/cpufreq/cpufreq.o
-  CC      drivers/cpufreq/freq_table.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_mocs.o
-  CC      drivers/md/dm-io.o
-  CC [M]  net/bridge/br_mrp_netlink.o
-  AR      drivers/thermal/built-in.a
-  CC [M]  fs/binfmt_misc.o
-  CC      drivers/cpufreq/cpufreq_stats.o
-  CC      kernel/static_call.o
-  CC [M]  drivers/gpu/drm/drm_debugfs_crc.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.o
-  CC      kernel/static_call_inline.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/acr/tu102.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/acr/ga100.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_rap.o
-  CC      drivers/md/dm-kcopyd.o
-  CC      drivers/cpufreq/cpufreq_performance.o
-  CC      drivers/cpuidle/governors/ladder.o
-  CC [M]  drivers/gpu/drm/xe/xe_lrc.o
-  CC [M]  drivers/gpu/drm/xe/xe_migrate.o
-  CC [M]  net/bridge/br_cfm.o
-  CC      drivers/mmc/core/core.o
-  CC      drivers/mmc/host/sdhci.o
-  CC      drivers/mmc/core/bus.o
-  CC      drivers/md/dm-sysfs.o
-  CC      drivers/mmc/host/sdhci-pci-core.o
-  AR      drivers/opp/built-in.a
-  CC [M]  net/bridge/br_cfm_netlink.o
-  CC      drivers/mmc/core/host.o
-  CC [M]  drivers/gpu/drm/drm_edid_load.o
-  CC      drivers/mmc/core/mmc.o
-  CC      drivers/mmc/core/mmc_ops.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_fw_attestation.o
-  CC [M]  drivers/gpu/drm/radeon/dce6_afmt.o
-  CC      drivers/cpufreq/cpufreq_powersave.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_securedisplay.o
-  CC      drivers/cpuidle/cpuidle.o
-  AR      lib/built-in.a
-  CC      drivers/cpuidle/driver.o
-  AR      drivers/edac/built-in.a
-  LD [M]  drivers/edac/i10nm_edac.o
-  CC      drivers/cpuidle/governor.o
-  CC      drivers/cpuidle/sysfs.o
-  CC      drivers/cpuidle/governors/menu.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_eeprom.o
-  CC [M]  drivers/gpu/drm/../../accel/drm_accel.o
-  CC      kernel/numa.o
-  CC      drivers/md/dm-stats.o
-  CC      drivers/cpuidle/poll_state.o
-  AR      fs/built-in.a
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/acr/ga102.o
-  CC      drivers/md/dm-rq.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bar/base.o
-  CC [M]  net/bridge/br_netfilter_hooks.o
-  CC [M]  net/bridge/br_netfilter_ipv6.o
-  CC      kernel/user-return-notifier.o
-  CC      drivers/cpufreq/cpufreq_userspace.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_vm.o
-  CC      drivers/cpufreq/cpufreq_ondemand.o
-  CC [M]  drivers/gpu/drm/drm_exec.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_mca.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_ucode.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.o
-  CC      drivers/mmc/core/sd.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bar/nv50.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_ib.o
-  CC      drivers/cpuidle/governors/teo.o
-  CC      drivers/mmc/core/sd_ops.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bar/g84.o
-  CC [M]  drivers/gpu/drm/drm_gpuvm.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_ppgtt.o
-  CC      kernel/crash_dump.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_rc6.o
-  CC      drivers/md/dm-io-rewind.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bar/gf100.o
-  CC      drivers/mmc/core/sdio.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_region_lmem.o
-  CC      kernel/jump_label.o
-  CC      kernel/context_tracking.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_renderstate.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_reset.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_ring.o
-  CC      drivers/mmc/host/sdhci-pci-o2micro.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_lsdma.o
-  CC [M]  drivers/gpu/drm/xe/xe_mmio.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_ring_submission.o
-  CC      kernel/iomem.o
-  CC      drivers/cpuidle/governors/haltpoll.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_ring_mux.o
-  CC      kernel/rseq.o
-  CC      drivers/md/dm-builtin.o
-  CC      drivers/mmc/core/sdio_ops.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_sync.o
-  CC      drivers/mmc/core/sdio_bus.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bar/gk20a.o
-  CC [M]  drivers/md/raid0.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_audio.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bar/gm107.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bar/gm20b.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_dp_auxch.o
-  CC      drivers/cpufreq/cpufreq_conservative.o
-  CC [M]  drivers/md/raid1.o
-  CC      drivers/cpufreq/cpufreq_governor.o
-  CC      drivers/mmc/core/sdio_cis.o
-  CC      drivers/cpufreq/cpufreq_governor_attr_set.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bar/tu102.o
-  LD [M]  net/bridge/bridge.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bar/r535.o
-  CC [M]  drivers/gpu/drm/xe/xe_mocs.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/base.o
-  CC [M]  drivers/md/raid10.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_mn.o
-  CC      drivers/mmc/core/sdio_io.o
-  CC      drivers/mmc/core/sdio_irq.o
-  CC      drivers/mmc/core/slot-gpio.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_rps.o
-  CC      drivers/mmc/core/regulator.o
-  CC [M]  drivers/gpu/drm/drm_buddy.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/bit.o
-  AR      drivers/cpuidle/governors/built-in.a
-  CC      kernel/watch_queue.o
-  AR      drivers/cpuidle/built-in.a
-  CC [M]  drivers/gpu/drm/radeon/r600_dma.o
-  AR      drivers/ufs/built-in.a
-  CC      drivers/mmc/host/sdhci-pci-arasan.o
-  CC      drivers/cpufreq/acpi-cpufreq.o
-  CC      drivers/cpufreq/amd-pstate.o
-  CC      drivers/mmc/host/sdhci-pci-dwc-mshc.o
-  CC [M]  drivers/gpu/drm/radeon/rv770_dma.o
-  CC [M]  drivers/gpu/drm/radeon/evergreen_dma.o
-  GZIP    kernel/config_data.gz
-  CC      drivers/mmc/core/debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_module.o
-  CC      kernel/configs.o
-  CC [M]  drivers/gpu/drm/radeon/ni_dma.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_sa_media.o
-  CC [M]  drivers/gpu/drm/radeon/si_dma.o
-  CC      drivers/cpufreq/amd-pstate-trace.o
-  CC      drivers/cpufreq/powernow-k8.o
-  CC      drivers/mmc/core/crypto.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_sseu.o
-  CC [M]  drivers/gpu/drm/xe/xe_pat.o
-  CC      drivers/cpufreq/pcc-cpufreq.o
-  CC [M]  drivers/gpu/drm/xe/xe_pci.o
-  LD [M]  net/bridge/br_netfilter.o
-  CC [M]  drivers/gpu/drm/xe/xe_pcode.o
-  CC [M]  drivers/md/raid5.o
-  CC [M]  drivers/gpu/drm/xe/xe_pm.o
-  CC [M]  drivers/gpu/drm/radeon/cik_sdma.o
-  CC [M]  drivers/md/raid5-cache.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_uvd.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/boost.o
-  CC      drivers/leds/trigger/ledtrig-disk.o
-  AR      drivers/leds/blink/built-in.a
-  CC [M]  drivers/md/raid5-ppl.o
-  AR      drivers/leds/simple/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_aca.o
-  CC [M]  drivers/md/dm-path-selector.o
-  CC [M]  drivers/gpu/drm/radeon/uvd_v1_0.o
-  CC      drivers/leds/trigger/ledtrig-mtd.o
-  CC [M]  drivers/gpu/drm/radeon/uvd_v2_2.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_sseu_debugfs.o
-  CC [M]  drivers/gpu/drm/radeon/uvd_v3_1.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_timeline.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_tlb.o
-  CC      drivers/mmc/host/sdhci-pci-gli.o
-  CC      drivers/leds/led-core.o
-  CC      drivers/leds/led-class.o
-  CC [M]  drivers/gpu/drm/radeon/uvd_v4_2.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_vce.o
-  CC      drivers/cpufreq/speedstep-centrino.o
-  CC [M]  drivers/gpu/drm/radeon/vce_v1_0.o
-  CC      drivers/cpufreq/intel_pstate.o
-  CC [M]  drivers/gpu/drm/xe/xe_preempt_fence.o
-  CC      drivers/leds/trigger/ledtrig-cpu.o
-  CC      drivers/leds/trigger/ledtrig-panic.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/conn.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_wopcm.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/cstep.o
-  CC      drivers/leds/led-triggers.o
-  CC [M]  drivers/gpu/drm/drm_gem_shmem_helper.o
-  CC [M]  drivers/gpu/drm/radeon/vce_v2_0.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_fbdev.o
-  CC [M]  drivers/gpu/drm/radeon/radeon_atpx_handler.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.o
-  AR      kernel/built-in.a
-  CC [M]  drivers/gpu/drm/radeon/radeon_acpi.o
-  CC [M]  drivers/gpu/drm/xe/xe_pt.o
-  MKREG   drivers/gpu/drm/radeon/r100_reg_safe.h
-  CC [M]  drivers/gpu/drm/xe/xe_pt_walk.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/dcb.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/disp.o
-  AR      drivers/mmc/core/built-in.a
-  CC [M]  drivers/md/dm-mpath.o
-  CC      drivers/mmc/host/sdhci-acpi.o
-  MKREG   drivers/gpu/drm/radeon/rn50_reg_safe.h
-  CC [M]  drivers/gpu/drm/xe/xe_query.o
-  CC      drivers/mmc/host/cqhci-core.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/dp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/extdev.o
-  CC [M]  drivers/md/dm-ps-round-robin.o
-  MKREG   drivers/gpu/drm/radeon/r300_reg_safe.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/cik.o
-  CC      drivers/mmc/host/cqhci-crypto.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/cik_ih.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/fan.o
-  CC [M]  drivers/gpu/drm/xe/xe_range_fence.o
-  MKREG   drivers/gpu/drm/radeon/r420_reg_safe.h
-  CC [M]  drivers/gpu/drm/i915/gt/intel_workarounds.o
-  CC [M]  drivers/gpu/drm/drm_suballoc.o
-  CC [M]  drivers/gpu/drm/i915/gt/shmem_utils.o
-  CC [M]  drivers/gpu/drm/i915/gt/sysfs_engines.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_ggtt_gmch.o
-  CC [M]  drivers/gpu/drm/xe/xe_reg_sr.o
-  CC [M]  drivers/gpu/drm/radeon/rs600.o
-  CC [M]  drivers/gpu/drm/radeon/rv515.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/gpio.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/i2c.o
-  CC [M]  drivers/gpu/drm/i915/gt/gen6_renderstate.o
-  CC [M]  drivers/gpu/drm/i915/gt/gen7_renderstate.o
-  AR      drivers/leds/trigger/built-in.a
-  CC [M]  drivers/gpu/drm/i915/gt/gen8_renderstate.o
-  CC [M]  drivers/gpu/drm/i915/gt/gen9_renderstate.o
-  CC [M]  drivers/gpu/drm/xe/xe_reg_whitelist.o
-  CC [M]  drivers/mmc/host/sdhci-pltfm.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/dce_v8_0.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_busy.o
-  CC [M]  drivers/gpu/drm/drm_gem_ttm_helper.o
-  CC [M]  drivers/gpu/drm/radeon/r200.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_clflush.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_context.o
-  CC [M]  drivers/gpu/drm/xe/xe_rtp.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_create.o
-  AR      drivers/leds/built-in.a
-  AR      drivers/firmware/arm_ffa/built-in.a
-  AR      drivers/firmware/arm_scmi/built-in.a
-  CC [M]  drivers/gpu/drm/radeon/r600_cs.o
-  AR      drivers/firmware/broadcom/built-in.a
-  AR      drivers/firmware/cirrus/built-in.a
-  CC [M]  drivers/gpu/drm/xe/xe_ring_ops.o
-  AR      drivers/firmware/meson/built-in.a
-  AR      drivers/crypto/ccp/built-in.a
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_dmabuf.o
-  AR      drivers/firmware/microchip/built-in.a
-  AR      drivers/crypto/stm32/built-in.a
-  AR      drivers/crypto/xilinx/built-in.a
-  AR      drivers/crypto/hisilicon/built-in.a
-  CC [M]  drivers/gpu/drm/xe/xe_sa.o
-  CC      drivers/firmware/efi/efi-bgrt.o
-  CC [M]  drivers/gpu/drm/drm_atomic_helper.o
-  AR      drivers/crypto/starfive/built-in.a
-  AR      drivers/crypto/intel/keembay/built-in.a
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_domain.o
-  CC [M]  drivers/gpu/drm/radeon/evergreen_cs.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfx_v7_0.o
-  AR      drivers/crypto/intel/ixp4xx/built-in.a
-  LD [M]  drivers/md/dm-round-robin.o
-  AR      drivers/firmware/imx/built-in.a
-  AR      drivers/crypto/intel/built-in.a
-  CC [M]  drivers/gpu/drm/xe/xe_sched_job.o
-  AR      drivers/md/built-in.a
-  CC [M]  drivers/gpu/drm/xe/xe_step.o
-  CC [M]  drivers/gpu/drm/xe/xe_sync.o
-  CC      drivers/firmware/efi/libstub/efi-stub-helper.o
-  AR      drivers/crypto/built-in.a
-  CC [M]  drivers/gpu/drm/xe/xe_tile.o
-  CC      drivers/clocksource/acpi_pm.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/iccsense.o
-  CC [M]  drivers/gpu/drm/drm_atomic_state_helper.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_internal.o
-  CC      drivers/firmware/efi/libstub/gop.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_lmem.o
-  AR      drivers/cpufreq/built-in.a
-  CC [M]  drivers/gpu/drm/drm_bridge_connector.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_mman.o
-  AR      drivers/firmware/psci/built-in.a
-  CC [M]  drivers/gpu/drm/xe/xe_tile_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_trace.o
-  CC      drivers/firmware/efi/efi.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_sys_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_stolen_mgr.o
-  AR      drivers/firmware/qcom/built-in.a
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_vram_mgr.o
-  AR      drivers/firmware/smccc/built-in.a
-  LD [M]  drivers/md/dm-multipath.o
-  CC [M]  drivers/gpu/drm/xe/xe_tuning.o
-  CC      drivers/firmware/efi/vars.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_object.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/cik_sdma.o
-  CC      drivers/clocksource/i8253.o
-  CC      drivers/clocksource/numachip.o
-  AR      drivers/mmc/host/built-in.a
-  CC [M]  drivers/gpu/drm/radeon/r100.o
-  CC [M]  drivers/gpu/drm/drm_crtc_helper.o
-  AR      drivers/firmware/tegra/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/uvd_v4_2.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vce_v2_0.o
-  AR      drivers/firmware/xilinx/built-in.a
-  CC [M]  drivers/gpu/drm/radeon/r300.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_pages.o
-  AR      drivers/mmc/built-in.a
-  CC [M]  drivers/gpu/drm/xe/xe_uc_debugfs.o
-  CC [M]  drivers/gpu/drm/radeon/r420.o
-  CC      drivers/firmware/efi/libstub/secureboot.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc_fw.o
-  CC      drivers/firmware/efi/libstub/tpm.o
-  CC [M]  drivers/gpu/drm/xe/xe_vm.o
-  CC      drivers/firmware/efi/libstub/file.o
-  CC [M]  drivers/gpu/drm/drm_damage_helper.o
-  CC [M]  drivers/hid/usbhid/hid-core.o
-  AR      drivers/staging/media/built-in.a
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/image.o
-  CC      drivers/staging/vme_user/vme.o
-  CC [M]  drivers/gpu/drm/xe/xe_vram_freq.o
-  CC [M]  drivers/gpu/drm/xe/xe_wait_user_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_wa.o
-  CC [M]  drivers/staging/iio/impedance-analyzer/ad5933.o
-  CC [M]  drivers/hid/usbhid/hiddev.o
-  CC [M]  drivers/hid/usbhid/hid-pidff.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.o
-  CC [M]  drivers/gpu/drm/drm_encoder_slave.o
-  CC [M]  drivers/gpu/drm/xe/xe_wopcm.o
-  CC [M]  drivers/gpu/drm/drm_flip_work.o
-  CC      drivers/firmware/efi/reboot.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_phys.o
-  CC [M]  drivers/gpu/drm/drm_format_helper.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_pm.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/si.o
-  AR      drivers/clocksource/built-in.a
-  CC      drivers/firmware/efi/memattr.o
-  CC      drivers/firmware/efi/tpm.o
-  CC      drivers/firmware/efi/libstub/mem.o
-  CC      drivers/firmware/efi/libstub/random.o
-  CC [M]  drivers/gpu/drm/xe/xe_hwmon.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_relay.o
-  CC      drivers/firmware/efi/libstub/randomalloc.o
-  CC      drivers/firmware/efi/libstub/pci.o
-  CC [M]  drivers/gpu/drm/xe/xe_memirq.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gmc_v6_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfx_v6_0.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/mxm.o
-  CC [M]  drivers/gpu/drm/xe/xe_sriov.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/si_ih.o
-  CC      drivers/firmware/efi/memmap.o
-  CC [M]  drivers/gpu/drm/xe/xe_lmtt.o
-  CC      drivers/firmware/efi/esrt.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/si_dma.o
-  CC      drivers/firmware/efi/cper.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_region.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/dce_v6_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/uvd_v3_1.o
-  CC [M]  drivers/gpu/drm/drm_gem_atomic_helper.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vi.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_shmem.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_shrinker.o
-  CC      drivers/firmware/efi/cper_cxl.o
-  CC [M]  drivers/gpu/drm/xe/xe_lmtt_2l.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_stolen.o
-  CC [M]  drivers/gpu/drm/drm_gem_framebuffer_helper.o
-  CC      drivers/firmware/dmi_scan.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_throttle.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mxgpu_vi.o
-  CC [M]  drivers/gpu/drm/xe/xe_lmtt_ml.o
-  CC [M]  drivers/gpu/drm/drm_kms_helper_common.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/nbio_v6_1.o
-  CC      drivers/firmware/efi/libstub/skip_spaces.o
-  CC      drivers/firmware/efi/runtime-wrappers.o
-  CC [M]  drivers/hid/intel-ish-hid/ishtp/init.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/soc15.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/emu_soc.o
-  CC      drivers/firmware/efi/libstub/lib-cmdline.o
-  AR      drivers/staging/vme_user/built-in.a
-  CC      drivers/firmware/efi/dev-path-parser.o
-  AR      drivers/staging/built-in.a
-  AR      drivers/hid/built-in.a
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_tiling.o
-  CC [M]  drivers/gpu/drm/drm_modeset_helper.o
-  CC [M]  drivers/gpu/drm/drm_plane_helper.o
-  CC      drivers/firmware/efi/libstub/lib-ctype.o
-  CC      drivers/firmware/efi/libstub/alignedmem.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/npde.o
-  CC      drivers/firmware/efi/libstub/relocate.o
-  CC      drivers/firmware/efi/libstub/printk.o
-  AR      drivers/platform/x86/amd/built-in.a
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/pcir.o
-  AR      drivers/platform/x86/dell/built-in.a
-  AR      drivers/platform/mellanox/built-in.a
-  CC      drivers/firmware/efi/libstub/vsprintf.o
-  CC      drivers/firmware/efi/libstub/x86-stub.o
-  AR      drivers/platform/x86/hp/built-in.a
-  CC [M]  drivers/platform/x86/intel/int3472/discrete.o
-  CC      drivers/platform/x86/p2sb.o
-  CC [M]  drivers/gpu/drm/drm_probe_helper.o
-  CC [M]  drivers/hid/intel-ish-hid/ishtp/hbm.o
-  CC [M]  drivers/gpu/drm/drm_rect.o
-  LD [M]  drivers/hid/usbhid/usbhid.o
-  CC      drivers/firmware/efi/libstub/x86-5lvl.o
-  CC [M]  drivers/gpu/drm/drm_self_refresh_helper.o
-  CC      drivers/firmware/efi/apple-properties.o
-  CC      drivers/mailbox/mailbox.o
-  CC      drivers/firmware/efi/rci2-table.o
-  CC [M]  drivers/platform/x86/intel/pmc/core.o
-  LD [M]  drivers/gpu/drm/radeon/radeon.o
-  CC [M]  drivers/platform/x86/intel/pmc/core_ssram.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_ttm.o
-  AR      drivers/platform/chrome/built-in.a
-  CC [M]  drivers/gpu/drm/drm_simple_kms_helper.o
-  AR      drivers/platform/surface/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mxgpu_ai.o
-  CC [M]  drivers/gpu/drm/bridge/panel.o
-  CC [M]  drivers/gpu/drm/xe/display/ext/i915_irq.o
-  CC [M]  drivers/gpu/drm/drm_fbdev_generic.o
-  CC      drivers/firmware/dmi-sysfs.o
-  CC      drivers/firmware/edd.o
-  CC [M]  drivers/gpu/drm/xe/display/ext/i915_utils.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_ttm_move.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/perf.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/pll.o
-  CC [M]  drivers/hid/intel-ish-hid/ishtp/client.o
-  LD [M]  drivers/md/raid456.o
-  CC [M]  drivers/platform/x86/intel/pmt/class.o
-  CC [M]  drivers/hid/intel-ish-hid/ishtp/bus.o
-  CC [M]  drivers/gpu/drm/xe/display/intel_fb_bo.o
-  CC [M]  drivers/platform/x86/intel/speed_select_if/isst_if_common.o
-  CC      drivers/firmware/efi/libstub/unaccepted_memory.o
-  CC [M]  drivers/platform/x86/intel/speed_select_if/isst_if_mmio.o
-  CC [M]  drivers/platform/x86/intel/speed_select_if/isst_if_mbox_pci.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.o
-  CC [M]  drivers/gpu/drm/drm_fb_helper.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/pmu.o
-  CC      drivers/hwspinlock/hwspinlock_core.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/power_budget.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/ramcfg.o
-  CC      drivers/remoteproc/remoteproc_core.o
-  CC [M]  drivers/platform/x86/intel/int3472/clk_and_regulator.o
-  CC [M]  drivers/platform/x86/intel/pmc/spt.o
-  CC      drivers/firmware/efi/mokvar-table.o
-  CC [M]  drivers/platform/x86/intel/int3472/led.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/nbio_v7_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vega10_reg_init.o
-  CC [M]  drivers/platform/x86/intel/pmc/cnp.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_userptr.o
-  CC [M]  drivers/gpu/drm/xe/display/intel_fbdev_fb.o
-  CC      drivers/firmware/dmi-id.o
-  CC      drivers/platform/x86/intel_scu_ipc.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vega20_reg_init.o
-  CC      drivers/mailbox/pcc.o
-  CC      drivers/firmware/memmap.o
-  CC      drivers/platform/x86/intel_scu_pcidrv.o
-  CC [M]  drivers/platform/x86/intel/speed_select_if/isst_if_mbox_msr.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/nbio_v7_4.o
-  CC [M]  drivers/platform/x86/intel/pmc/icl.o
-  CC [M]  drivers/platform/x86/intel/pmt/telemetry.o
-  CC      drivers/firmware/efi/libstub/bitmap.o
-  CC [M]  drivers/hid/intel-ish-hid/ishtp/dma-if.o
-  CC      drivers/firmware/efi/libstub/find.o
-  STUBCPY drivers/firmware/efi/libstub/alignedmem.stub.o
-  STUBCPY drivers/firmware/efi/libstub/efi-stub-helper.stub.o
-  CC      drivers/firmware/sysfb.o
-  LD [M]  drivers/gpu/drm/drm.o
-  CC [M]  drivers/platform/x86/intel/pmt/crashlog.o
-  CC [M]  drivers/hid/hid-core.o
-  STUBCPY drivers/firmware/efi/libstub/file.stub.o
-  LD [M]  drivers/gpu/drm/drm_shmem_helper.o
-  STUBCPY drivers/firmware/efi/libstub/find.stub.o
-  CC      drivers/platform/x86/pmc_atom.o
-  CC [M]  drivers/platform/x86/wmi.o
-  STUBCPY drivers/firmware/efi/libstub/gop.stub.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/nbio_v2_3.o
-  CC [M]  drivers/platform/x86/wmi-bmof.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/nv.o
-  STUBCPY drivers/firmware/efi/libstub/lib-cmdline.stub.o
-  STUBCPY drivers/firmware/efi/libstub/lib-ctype.stub.o
-  STUBCPY drivers/firmware/efi/libstub/mem.stub.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_display.o
-  CC [M]  drivers/platform/x86/intel/pmc/tgl.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_display_misc.o
-  STUBCPY drivers/firmware/efi/libstub/pci.stub.o
-  STUBCPY drivers/firmware/efi/libstub/printk.stub.o
-  AR      drivers/virt/vboxguest/built-in.a
-  STUBCPY drivers/firmware/efi/libstub/random.stub.o
-  CC [M]  drivers/hid/hid-input.o
-  AR      drivers/virt/coco/tdx-guest/built-in.a
-  LD [M]  drivers/gpu/drm/drm_suballoc_helper.o
-  CC [M]  drivers/platform/x86/intel/pmc/adl.o
-  CC      drivers/firmware/efi/sysfb_efi.o
-  AR      drivers/virt/coco/built-in.a
-  CC [M]  drivers/platform/x86/intel/pmc/mtl.o
-  STUBCPY drivers/firmware/efi/libstub/randomalloc.stub.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/rammap.o
-  STUBCPY drivers/firmware/efi/libstub/relocate.stub.o
-  LD [M]  drivers/gpu/drm/drm_ttm_helper.o
-  CC [M]  drivers/hid/hid-quirks.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/arct_reg_init.o
-  AR      drivers/virt/built-in.a
-  STUBCPY drivers/firmware/efi/libstub/secureboot.stub.o
-  STUBCPY drivers/firmware/efi/libstub/skip_spaces.stub.o
-  STUBCPY drivers/firmware/efi/libstub/tpm.stub.o
-  STUBCPY drivers/firmware/efi/libstub/unaccepted_memory.stub.o
-  CC [M]  drivers/platform/x86/intel/int3472/common.o
-  LD [M]  drivers/platform/x86/intel/pmt/pmt_class.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_wait.o
-  CC      drivers/firmware/efi/earlycon.o
-  STUBCPY drivers/firmware/efi/libstub/vsprintf.stub.o
-  CC [M]  drivers/hid/intel-ish-hid/ishtp/client-buffers.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_display_rps.o
-  CC      drivers/firmware/efi/cper-x86.o
-  STUBCPY drivers/firmware/efi/libstub/x86-5lvl.stub.o
-  STUBCPY drivers/firmware/efi/libstub/x86-stub.stub.o
-  STUBCPY drivers/firmware/efi/libstub/bitmap.stub.o
-  AR      drivers/firmware/efi/libstub/lib.a
-  CC [M]  drivers/platform/x86/intel/pmc/arl.o
-  CC [M]  drivers/platform/x86/intel/pmc/lnl.o
-  CC [M]  drivers/hid/hid-debug.o
-  CC [M]  drivers/platform/x86/mxm-wmi.o
-  AR      drivers/hwspinlock/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mxgpu_nv.o
-  AR      drivers/devfreq/event/built-in.a
-  CC [M]  drivers/gpu/drm/xe/display/xe_dsb_buffer.o
-  CC      drivers/devfreq/devfreq.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/nbio_v7_2.o
-  CC      drivers/extcon/extcon.o
-  AR      drivers/memory/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/hdp_v4_0.o
-  CC      drivers/devfreq/devfreq-event.o
-  CC      drivers/extcon/devres.o
-  CC      drivers/devfreq/governor_simpleondemand.o
-  CC      drivers/remoteproc/remoteproc_coredump.o
-  AR      drivers/gpu/drm/built-in.a
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadow.o
-  CC      drivers/firmware/efi/unaccepted_memory.o
-  CC [M]  drivers/platform/x86/intel/uncore-frequency/uncore-frequency.o
-  CC      drivers/platform/x86/intel/turbo_max_3.o
-  LD [M]  drivers/platform/x86/intel/pmt/pmt_crashlog.o
-  CC [M]  drivers/platform/x86/intel/uncore-frequency/uncore-frequency-common.o
-  CC [M]  drivers/platform/x86/intel_ips.o
-  CC [M]  drivers/firmware/efi/efi-pstore.o
-  CC      drivers/powercap/powercap_sys.o
-  CC      drivers/powercap/idle_inject.o
-  AR      drivers/mailbox/built-in.a
-  CC [M]  drivers/platform/x86/intel/pmc/pltdrv.o
-  AR      drivers/perf/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/hdp_v5_0.o
-  LD [M]  drivers/platform/x86/intel/pmt/pmt_telemetry.o
-  CC [M]  drivers/hid/intel-ish-hid/ipc/ipc.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gemfs.o
-  CC      drivers/ras/ras.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/aldebaran_reg_init.o
-  CC      drivers/ras/debugfs.o
-  CC [M]  drivers/gpu/drm/i915/i915_active.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_fb_pin.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowacpi.o
-  CC [M]  drivers/platform/x86/intel/int3472/tps68470.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowof.o
-  CC      drivers/ras/cec.o
-  LD [M]  drivers/platform/x86/intel/pmc/intel_pmc_core.o
-  CC [M]  drivers/hid/hidraw.o
-  CC [M]  drivers/powercap/intel_rapl_common.o
-  LD [M]  drivers/gpu/drm/drm_kms_helper.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_hdcp_gsc.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_plane_initial.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowpci.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowramin.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/aldebaran.o
-  CC [M]  drivers/platform/x86/intel/int3472/tps68470_board_data.o
-  CC [M]  drivers/hid/intel-ish-hid/ipc/pci-ish.o
-  CC [M]  drivers/gpu/drm/i915/i915_cmd_parser.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/soc21.o
-  CC      drivers/remoteproc/remoteproc_debugfs.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.o
-  AR      drivers/firmware/efi/built-in.a
-  LD [M]  drivers/platform/x86/intel/int3472/intel_skl_int3472_discrete.o
-  CC [M]  drivers/gpu/drm/xe/i915-soc/intel_dram.o
-  CC [M]  drivers/gpu/drm/xe/i915-soc/intel_pch.o
-  CC [M]  drivers/platform/x86/intel/hid.o
-  CC [M]  drivers/hid/hid-generic.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/timing.o
-  CC [M]  drivers/hid/hid-sensor-hub.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/therm.o
-  AR      drivers/firmware/built-in.a
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/vmap.o
-  LD [M]  drivers/platform/x86/intel/uncore-frequency/intel-uncore-frequency.o
-  LD [M]  drivers/platform/x86/intel/pmc/intel_pmc_core_pltdrv.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/icl_dsi.o
-  CC [M]  drivers/platform/x86/intel/vsec.o
-  LD [M]  drivers/platform/x86/intel/uncore-frequency/intel-uncore-frequency-common.o
-  AR      drivers/hwtracing/intel_th/built-in.a
-  CC [M]  drivers/hid/hid-sensor-custom.o
-  CC [M]  drivers/hwtracing/intel_th/core.o
-  CC      drivers/remoteproc/remoteproc_sysfs.o
-  CC      drivers/remoteproc/remoteproc_virtio.o
-  AR      drivers/extcon/built-in.a
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/volt.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/vpstate.o
-  CC [M]  drivers/gpu/drm/i915/i915_deps.o
-  CC [M]  drivers/gpu/drm/i915/i915_gem.o
-  CC [M]  drivers/gpu/drm/i915/i915_gem_evict.o
-  CC [M]  drivers/gpu/drm/i915/i915_gem_gtt.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/sienna_cichlid.o
-  CC [M]  drivers/hid/intel-ish-hid/ishtp-hid.o
-  CC [M]  drivers/hid/intel-ish-hid/ishtp-hid-client.o
-  LD [M]  drivers/hid/intel-ish-hid/intel-ishtp.o
-  CC      drivers/devfreq/governor_performance.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/smu_v13_0_10.o
-  CC [M]  drivers/platform/x86/intel/rst.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_atomic.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/nbio_v4_3.o
-  LD [M]  drivers/platform/x86/intel/int3472/intel_skl_int3472_tps68470.o
-  CC [M]  drivers/powercap/intel_rapl_msr.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/hdp_v6_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/nbio_v7_7.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/hdp_v5_2.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/lsdma_v6_0.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_atomic_plane.o
-  AR      drivers/platform/x86/intel/built-in.a
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_audio.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_backlight.o
-  CC      drivers/devfreq/governor_powersave.o
-  CC      drivers/remoteproc/remoteproc_elf_loader.o
-  CC      drivers/devfreq/governor_userspace.o
-  CC      drivers/devfreq/governor_passive.o
-  CC      drivers/remoteproc/remoteproc_cdev.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/xpio.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_bios.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/M0203.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/M0205.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_bw.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_cdclk.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/nbio_v7_9.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/M0209.o
-  LD [M]  drivers/platform/x86/intel/intel-hid.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_color.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_combo_phy.o
-  AR      drivers/ras/built-in.a
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_connector.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_crtc.o
-  LD [M]  drivers/platform/x86/intel/intel-rst.o
-  CC [M]  drivers/hwtracing/intel_th/pci.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.o
-  CC [M]  drivers/gpu/drm/i915/i915_gem_ww.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/nbio_v7_11.o
-  LD [M]  drivers/hid/hid.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/df_v1_7.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/df_v3_6.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/P0260.o
-  AR      drivers/android/built-in.a
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bus/base.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/df_v4_3.o
-  CC [M]  drivers/gpu/drm/i915/i915_query.o
-  AR      drivers/powercap/built-in.a
-  LD [M]  drivers/hid/intel-ish-hid/intel-ish-ipc.o
-  LD [M]  drivers/platform/x86/intel/intel_vsec.o
-  CC [M]  drivers/gpu/drm/i915/i915_request.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/df_v4_6_2.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_crtc_state_dump.o
-  AR      drivers/platform/x86/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gmc_v7_0.o
-  CC [M]  drivers/hwtracing/intel_th/gth.o
-  LD [M]  drivers/hid/intel-ish-hid/intel-ishtp-hid.o
-  AR      drivers/platform/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gmc_v8_0.o
-  CC      drivers/interconnect/core.o
-  AR      drivers/nvmem/layouts/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.o
-  AR      drivers/devfreq/built-in.a
-  CC      drivers/interconnect/bulk.o
-  CC      drivers/nvmem/core.o
-  CC      drivers/interconnect/debugfs-client.o
-  CC      drivers/hte/hte.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mmhub_v1_0.o
-  LD [M]  drivers/hwtracing/intel_th/intel_th.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_cursor.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gmc_v9_0.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bus/hwsq.o
-  AR      drivers/accel/built-in.a
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bus/nv04.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bus/nv31.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bus/nv50.o
-  LD [M]  drivers/hwtracing/intel_th/intel_th_pci.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bus/g94.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bus/gf100.o
-  AR      drivers/remoteproc/built-in.a
-  CC [M]  drivers/gpu/drm/i915/i915_scheduler.o
-  CC [M]  drivers/parport/share.o
-  CC [M]  drivers/gpu/drm/i915/i915_trace_points.o
-  CC [M]  drivers/gpu/drm/i915/i915_ttm_buddy_manager.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfxhub_v1_1.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_cx0_phy.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.o
-  CC [M]  drivers/gpu/drm/i915/i915_vma.o
-  CC [M]  drivers/gpu/drm/i915/i915_vma_resource.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_ddi.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfxhub_v2_0.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_ddi_buf_trans.o
-  LD [M]  drivers/hwtracing/intel_th/intel_th_gth.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gmc_v10_0.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mmhub_v1_7.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.o
-  CC [M]  drivers/mtd/parsers/cmdlinepart.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0.o
-  CC [M]  drivers/mtd/chips/chipreg.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.o
-  CC [M]  drivers/vfio/pci/vfio_pci_core.o
-  CC [M]  drivers/mtd/maps/map_funcs.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_debugfs.o
-  CC [M]  drivers/vfio/pci/vfio_pci_intrs.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/clk/nv04.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/clk/nv40.o
-  CC [M]  drivers/parport/ieee1284.o
-  CC [M]  drivers/vfio/pci/vfio_pci_rdwr.o
-  AR      drivers/hte/built-in.a
-  CC [M]  drivers/dca/dca-core.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/clk/nv50.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_device.o
-  CC [M]  drivers/vhost/net.o
-  CC [M]  drivers/vhost/vhost.o
-  CC [M]  drivers/vhost/iotlb.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_driver.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_heci_cmd_submit.o
-  CC [M]  drivers/parport/ieee1284_ops.o
-  AR      drivers/nvmem/built-in.a
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/clk/g84.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_irq.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mmhub_v3_0.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_params.o
-  AR      drivers/interconnect/built-in.a
-  CC [M]  drivers/mtd/nand/core.o
-  CC [M]  drivers/mtd/nand/bbt.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc.o
-  CC [M]  drivers/mtd/spi-nor/core.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_ads.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/clk/gt215.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_power.o
-  CC [M]  drivers/vfio/pci/vfio_pci_config.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_power_map.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_power_well.o
-  CC [M]  drivers/mtd/spi-nor/sfdp.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_capture.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/clk/mcp77.o
-  CC [M]  drivers/soundwire/bus_type.o
-  CC [M]  drivers/mtd/spi-nor/swp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_2.o
-  CC [M]  drivers/iio/accel/hid-sensor-accel-3d.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gmc_v11_0.o
-  CC [M]  drivers/vfio/pci/vfio_pci.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.o
-  CC [M]  drivers/dca/dca-sysfs.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_fw.o
-  CC [M]  drivers/parport/procfs.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.o
-  CC [M]  drivers/soundwire/bus.o
-  CC [M]  drivers/thunderbolt/nhi.o
-  CC [M]  drivers/thunderbolt/nhi_ops.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/clk/gf100.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/clk/gk104.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/clk/gk20a.o
-  CC [M]  drivers/mtd/mtdcore.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_1.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0_3.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.o
-  CC [M]  drivers/parport/daisy.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_trace.o
-  CC [M]  drivers/soundwire/master.o
-  CC [M]  drivers/mtd/nand/ecc.o
-  CC [M]  drivers/mtd/nand/ecc-sw-hamming.o
-  LD [M]  drivers/vhost/vhost_iotlb.o
-  CC [M]  drivers/soundwire/slave.o
-  CC [M]  drivers/mtd/spi-nor/otp.o
-  CC [M]  drivers/soundwire/mipi_disco.o
-  CC [M]  drivers/thunderbolt/ctl.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_wa.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dkl_phy.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/clk/gm20b.o
-  LD [M]  drivers/dca/dca.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_log.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.o
-  CC [M]  drivers/iio/buffer/industrialio-triggered-buffer.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_rc.o
-  CC [M]  drivers/iio/buffer/kfifo_buf.o
-  CC [M]  drivers/mtd/spi-nor/sysfs.o
-  CC [M]  drivers/mtd/nand/ecc-sw-bch.o
-  CC [M]  drivers/thunderbolt/tb.o
-  LD [M]  drivers/vfio/pci/vfio-pci.o
-  LD [M]  drivers/vfio/pci/vfio-pci-core.o
-  CC [M]  drivers/vfio/vfio_main.o
-  CC [M]  drivers/mtd/nand/ecc-mxic.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.o
-  CC [M]  drivers/parport/probe.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_submission.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mmhub_v3_3.o
-  CC [M]  drivers/mtd/mtdsuper.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/clk/pllnv04.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/clk/pllgt215.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dmc.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/base.o
-  LD [M]  drivers/vhost/vhost_net.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp.o
-  CC [M]  drivers/mtd/spi-nor/atmel.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_aux.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_huc.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv04.o
-  CC [M]  drivers/mtd/spi-nor/eon.o
-  CC [M]  drivers/soundwire/stream.o
-  CC [M]  drivers/soundwire/sysfs_slave.o
-  CC [M]  drivers/mtd/spi-nor/esmt.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_aux_backlight.o
-  CC [M]  drivers/soundwire/sysfs_slave_dpn.o
-  CC [M]  drivers/parport/parport_pc.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfxhub_v11_5_0.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_huc_debugfs.o
-  CC [M]  drivers/thunderbolt/switch.o
-  CC [M]  drivers/thunderbolt/cap.o
-  CC [M]  drivers/vfio/group.o
-  CC [M]  drivers/vfio/container.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_huc_fw.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_uc.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_hdcp.o
-  CC [M]  drivers/mtd/mtdconcat.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_link_training.o
-  CC [M]  drivers/mtd/spi-nor/everspin.o
-  LD [M]  drivers/parport/parport.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv05.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/umc_v6_0.o
-  CC [M]  drivers/vfio/virqfd.o
-  CC [M]  drivers/iio/common/hid-sensors/hid-sensor-attributes.o
-  CC [M]  drivers/soundwire/debugfs.o
-  CC [M]  drivers/iio/common/hid-sensors/hid-sensor-trigger.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_uc_fw.o
-  CC [M]  drivers/vfio/vfio_iommu_type1.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv10.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv1a.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gsc.o
-  CC [M]  drivers/soundwire/irq.o
-  CC [M]  drivers/mtd/spi-nor/gigadevice.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv20.o
-  LD [M]  drivers/mtd/nand/nandcore.o
-  CC [M]  drivers/gpu/drm/i915/i915_hwmon.o
-  CC [M]  drivers/mtd/mtdpart.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/umc_v6_1.o
-  CC [M]  drivers/mtd/spi-nor/intel.o
-  CC [M]  drivers/mtd/mtdchar.o
-  CC [M]  drivers/thunderbolt/path.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/umc_v6_7.o
-  CC [M]  drivers/gpu/drm/i915/display/hsw_ips.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_mst.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/umc_v8_7.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dpll.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dpll_mgr.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/umc_v8_10.o
-  CC [M]  drivers/gpu/drm/i915/display/i9xx_plane.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv50.o
-  CC [M]  drivers/gpu/drm/i915/display/i9xx_wm.o
-  CC [M]  drivers/iio/gyro/hid-sensor-gyro-3d.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_atomic.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/g84.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dpt_common.o
-  CC [M]  drivers/soundwire/generic_bandwidth_allocation.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_atomic_plane.o
-  CC [M]  drivers/mtd/spi-nor/issi.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/umc_v12_0.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_drrs.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_audio.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/g98.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_irq.o
-  CC [M]  drivers/thunderbolt/tunnel.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_ih.o
-  CC [M]  drivers/thunderbolt/eeprom.o
-  CC [M]  drivers/thunderbolt/domain.o
-  CC [M]  drivers/thunderbolt/dma_port.o
-  CC [M]  drivers/mtd/spi-nor/macronix.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gt215.o
-  LD [M]  drivers/vfio/vfio.o
-  CC [M]  drivers/thunderbolt/icm.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_bios.o
-  CC [M]  drivers/soundwire/cadence_master.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_bw.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/mcp89.o
-  LD [M]  drivers/iio/common/hid-sensors/hid-sensor-iio-common.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.o
-  CC [M]  drivers/mtd/spi-nor/micron-st.o
-  CC [M]  drivers/mtd/spi-nor/spansion.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/iceland_ih.o
-  CC [M]  drivers/soundwire/intel.o
-  CC [M]  drivers/thunderbolt/property.o
-  CC [M]  drivers/soundwire/intel_ace2x.o
-  CC [M]  drivers/thunderbolt/xdomain.o
-  CC [M]  drivers/mtd/spi-nor/sst.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/tonga_ih.o
-  LD [M]  drivers/mtd/mtd.o
-  CC [M]  drivers/soundwire/intel_ace2x_debugfs.o
-  CC [M]  drivers/soundwire/intel_auxdevice.o
-  CC [M]  drivers/soundwire/intel_init.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gm107.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_cdclk.o
-  CC [M]  drivers/soundwire/dmi-quirks.o
-  CC [M]  drivers/iio/light/hid-sensor-als.o
-  CC [M]  drivers/thunderbolt/lc.o
-  CC [M]  drivers/iio/light/hid-sensor-prox.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_color.o
-  CC [M]  drivers/mtd/spi-nor/winbond.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_combo_phy.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_connector.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/cz_ih.o
-  CC [M]  drivers/iio/magnetometer/hid-sensor-magn-3d.o
-  CC [M]  drivers/soundwire/intel_bus_common.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_crtc.o
-  CC [M]  drivers/mtd/spi-nor/xilinx.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_crtc_state_dump.o
-  CC [M]  drivers/thunderbolt/tmu.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dsb.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dsi.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vega10_ih.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dsi_dcs_backlight.o
-  CC [M]  drivers/mtd/spi-nor/xmc.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gm200.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gv100.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vega20_ih.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/navi10_ih.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/tu102.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/ih_v6_0.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_cursor.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/ih_v6_1.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_psp.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/ga100.o
-  LD [M]  drivers/soundwire/soundwire-bus.o
-  CC [M]  drivers/mtd/spi-nor/debugfs.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/r535.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fault/base.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_display.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/psp_v3_1.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_display_driver.o
-  LD [M]  drivers/soundwire/soundwire-generic-allocation.o
-  CC [M]  drivers/thunderbolt/usb4.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/psp_v10_0.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_display_irq.o
-  CC [M]  drivers/iio/position/hid-sensor-custom-intel-hinge.o
-  CC [M]  drivers/iio/orientation/hid-sensor-incl-3d.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_display_params.o
-  CC [M]  drivers/thunderbolt/usb4_port.o
-  CC [M]  drivers/thunderbolt/nvm.o
-  CC [M]  drivers/thunderbolt/retimer.o
-  CC [M]  drivers/thunderbolt/quirks.o
-  LD [M]  drivers/soundwire/soundwire-cadence.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/psp_v11_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/psp_v11_0_8.o
-  CC [M]  drivers/thunderbolt/clx.o
-  LD [M]  drivers/soundwire/soundwire-intel.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fault/user.o
-  CC [M]  drivers/iio/industrialio-core.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_display_power.o
-  CC [M]  drivers/iio/industrialio-event.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_display_power_map.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dsi_vbt.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fb.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fault/gp100.o
-  CC [M]  drivers/iio/orientation/hid-sensor-rotation.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_display_power_well.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_display_reset.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fault/gp10b.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_display_rps.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fault/gv100.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/psp_v12_0.o
-  LD [M]  drivers/mtd/spi-nor/spi-nor.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_display_wa.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dmc.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dpio_phy.o
-  CC [M]  drivers/thunderbolt/acpi.o
-  CC [M]  drivers/iio/inkern.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fault/tu102.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/base.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/psp_v13_0.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv04.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv10.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv1a.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fbc.o
-  CC [M]  drivers/thunderbolt/debugfs.o
-  CC [M]  drivers/iio/industrialio-buffer.o
-  CC [M]  drivers/iio/industrialio-trigger.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dpll.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dpll_mgr.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dpt.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/psp_v13_0_4.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dpt_common.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_drrs.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/dce_v10_0.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv20.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv25.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dsb.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dsb_buffer.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv30.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_fb.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/dce_v11_0.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_fb_bo.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_fb_pin.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv35.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_fbc.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_fdi.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_fifo_underrun.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv36.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv40.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv41.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fdi.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv44.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv46.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_frontbuffer.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv47.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfx_v8_0.o
-  LD [M]  drivers/thunderbolt/thunderbolt.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfx_v9_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfx_v9_4.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfx_v9_4_2.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fifo_underrun.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv49.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv4e.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_global_state.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv50.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfx_v10_0.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_frontbuffer.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_hdcp.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_global_state.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_hdcp_gsc.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/g84.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/imu_v11_0.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_hotplug.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_hotplug_irq.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_hti.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gt215.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_link_bw.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfx_v11_0.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_load_detect.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfx_v11_0_3.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/mcp77.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/mcp89.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gf100.o
-  LD [M]  drivers/iio/industrialio.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gf108.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_gmbus.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_lpe_audio.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/imu_v11_0_3.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hdcp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_modeset_lock.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gk104.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gk110.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/sdma_v2_4.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/sdma_v3_0.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gk20a.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/sdma_v4_0.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hdmi.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/sdma_v4_4.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_modeset_setup.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_modeset_verify.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hotplug.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gm107.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hotplug_irq.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_overlay.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/sdma_v5_0.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hti.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_link_bw.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/sdma_v5_2.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_pch_display.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_pch_refclk.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_plane_initial.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gm200.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_pmdemand.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/sdma_v6_0.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gm20b.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_psr.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_quirks.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_sprite.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_mes.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mes_v10_1.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_sprite_uapi.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_tc.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gp100.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gp102.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mes_v11_0.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_vblank.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_lspcon.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_vga.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gp10b.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_wm.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_modeset_lock.o
-  CC [M]  drivers/gpu/drm/i915/display/skl_scaler.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gv100.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_modeset_setup.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/tu102.o
-  CC [M]  drivers/gpu/drm/i915/display/skl_universal_plane.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ga100.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_modeset_verify.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_panel.o
-  CC [M]  drivers/gpu/drm/i915/display/skl_watermark.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/uvd_v5_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/uvd_v6_0.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_acpi.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_opregion.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/uvd_v7_0.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_pmdemand.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ga102.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_vce.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_fbdev.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vce_v3_0.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/r535.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_fbdev_fb.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vce_v4_0.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_pps.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ram.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_display_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_psr.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_qp_tables.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_display_debugfs_params.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_quirks.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_pipe_crc.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv04.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_snps_phy.o
-  CC [M]  drivers/gpu/drm/i915/display/dvo_ch7017.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_tc.o
-  CC [M]  drivers/gpu/drm/i915/display/dvo_ch7xxx.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv10.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.o
-  CC [M]  drivers/gpu/drm/i915/display/dvo_ivch.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_vblank.o
-  CC [M]  drivers/gpu/drm/i915/display/dvo_ns2501.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vcn_sw_ring.o
-  CC [M]  drivers/gpu/drm/i915/display/dvo_sil164.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_vdsc.o
-  CC [M]  drivers/gpu/drm/i915/display/dvo_tfp410.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vcn_v1_0.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_vga.o
-  CC [M]  drivers/gpu/drm/i915/display/g4x_dp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vcn_v2_0.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv1a.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vcn_v2_5.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vcn_v3_0.o
-  CC [M]  drivers/gpu/drm/i915/display/g4x_hdmi.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_vrr.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv20.o
-  CC [M]  drivers/gpu/drm/i915/display/icl_dsi.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vcn_v4_0.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_backlight.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_crt.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_wm.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_cx0_phy.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_ddi.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv40.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/skl_scaler.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/jpeg_v1_0.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_ddi_buf_trans.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/skl_universal_plane.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/skl_watermark.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_acpi.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv41.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_opregion.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_display_device.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_display_trace.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dkl_phy.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv44.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_5.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dp_aux.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fbdev.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_debugfs.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dp_aux_backlight.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vpe_v6_1.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv49.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv4e.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_debugfs_params.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amd
+run-parts: executing /workspace/ci/hooks/00-showenv
++ pwd
++ ls -la
+/workspace
+total 1136
+drwxrwxr-x 12 1003 1003    4096 Feb 20 21:23 .
+drwxr-xr-x  1 root root    4096 Feb 20 21:23 ..
+-rw-rw-r--  1 1003 1003 1024959 Feb 20 21:23 build.log
+-rw-rw-r--  1 1003 1003    1137 Feb 20 21:12 checkpatch.log
+drwxrwxr-x  5 1003 1003    4096 Feb 20 21:07 ci
+drwxrwxr-x  9 1003 1003    4096 Feb 20 21:07 docker
+drwxrwxr-x  8 1003 1003    4096 Feb 20 21:07 .git
+-rw-rw-r--  1 1003 1003     230 Feb 20 21:11 git_apply.log
+drwxrwxr-x  4 1003 1003    4096 Feb 20 21:07 .github
+-rw-rw-r--  1 1003 1003     233 Feb 20 21:07 .groovylintrc.json
+-rw-rw-r--  1 1003 1003      78 Feb 20 21:23 hooks.log
+drwxrwxr-x 31 1003 1003    4096 Feb 20 21:23 kernel
+-rw-rw-r--  1 1003 1003    1595 Feb 20 21:11 kernel.mbox
+-rw-rw-r--  1 1003 1003   51984 Feb 20 21:12 kunit.log
+-rw-rw-r--  1 1003 1003      48 Feb 20 21:11 parent.tag
+-rw-rw-r--  1 1003 1003     270 Feb 20 21:11 parent_tag_mismatch_alert.txt
+drwxrwxr-x 46 1003 1003    4096 Feb 20 21:07 pipelines
+-rw-rw-r--  1 1003 1003     793 Feb 20 21:07 README.adoc
+drwxrwxr-x  3 1003 1003    4096 Feb 20 21:07 scripts
+drwxrwxr-x  3 1003 1003    4096 Feb 20 21:07 src
+drwxrwxr-x  2 1003 1003    4096 Feb 20 21:07 vars
+drwxrwxr-x  2 1003 1003    4096 Feb 20 21:07 .vscode
++ uname -a
+Linux 4d42ede30600 5.4.0-164-generic #181-Ubuntu SMP Fri Sep 1 13:41:22 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
++ export
++ grep -Ei '(^|\W)CI_'
+declare -x CI_KERNEL_BUILD_DIR="/workspace/kernel/build64-default"
+declare -x CI_KERNEL_SRC_DIR="/workspace/kernel"
+declare -x CI_TOOLS_SRC_DIR="/workspace/ci"
+declare -x CI_WORKSPACE_DIR="/workspace"
++ '[' -n /workspace ']'
++ git_args='-C /workspace/kernel'
++ git_log_args=
++ git --no-pager -C /workspace/kernel log --format=oneline --abbrev-commit
+add9d59f1c3c drm/xe: Fix cast on trace variable again
+52e6f4fe13d7 drm-tip: 2024y-02m-20d-20h-39m-20s UTC integration manifest
+7c3936ab3ee4 Merge remote-tracking branch 'drm-xe/topic/xe-for-CI' into drm-tip
+32b95574529f Merge remote-tracking branch 'drm-intel/topic/core-for-CI' into drm-tip
+ca513b274543 Merge remote-tracking branch 'drm-xe/drm-xe-next' into drm-tip
+51bbc6a8f3fc Merge remote-tracking branch 'drm-intel/drm-intel-gt-next' into drm-tip
+6fa2bcd35738 Merge remote-tracking branch 'drm-intel/drm-intel-next' into drm-tip
+50dc2ffa2d54 Merge remote-tracking branch 'drm-misc/drm-misc-next' into drm-tip
+5e675875d7b3 Merge remote-tracking branch 'drm/drm-next' into drm-tip
+99f295ba8ed8 Merge remote-tracking branch 'drm-misc/drm-misc-fixes' into drm-tip
+69a5f1774add drm/xe/guc: Remove usage of the deprecated ida_simple_xx() API
+bf8ec3c3e82c drm/xe: Initialize GuC earlier during probe
+8a4587ef9f95 drm/xe/guc: Move GuC power control init to "post-hwconfig"
+7606f7d0f069 drm/xe/huc: Realloc HuC FW in vram for post-hwconfig
+a44bbace73df drm/xe/guc: Allocate GuC data structures in system memory for initial load
+fbb944086f2f Merge drm/drm-next into drm-xe-next
+bf7626f19d6f drm/i915/tv: Fix TV mode
+0f688c0eb63a drm/xe: Return 2MB page size for compact 64k PTEs
+15f0e0c2c46d drm/xe: Add XE_VMA_PTE_64K VMA flag
+19adaccef8b2 drm/xe: Fix xe_vma_set_pte_size
+eb0d253ff9c7 accel/ivpu: Don't enable any tiles by default on VPU40xx
+5cf0fbf76374 drm/i915: Add some boring kerneldoc
+a0df2cc858c3 drm/xe/xe_bo_move: Enhance xe_bo_move trace
+237412e45390 drm/xe: Enable 32bits build
+4101f25ae26d drm/i915: remove intel_memory_region_ops::flags
+4c1f2a1e2b73 drm/i915: remove i915_vma::obj_hash
+95f4e97f5e00 drm/i915: remove execute_cb::signal
+7be6ff785af2 drm/i915: remove intel_gvt_irq::pending_events
+4ced7884ac69 drm/i915: remove intel_gvt_event_info::policy
+ad180eb410e3 drm/i915: remove intel_gvt_irq_info::warned
+58b67c04cd8a drm/i915: remove gvt_mmio_block::device
+7c25ef44547f drm/i915: remove intel_vgpu::intx_trigger
+c1d8fa8163bc drm/i915: remove intel_vgpu_opregion::mapped
+0c274be3f2bc drm/i915: remove intel_vgpu_fence::base
+dcbe15d92063 drm/i915: remove intel_vgpu_gtt::active_ppgtt_mm_bitmap
+0b8722d65af5 drm/i915: remove i915_perf_stream::size_exponent
+c5d859e34c91 drm/i915: remove i915_drm_client::id
+394a1376d827 drm/i915: remove intel_guc::ads_engine_usage_size
+dd0eb202bf4a drm/i915: remove intel_vbt_panel_data::edp::initialized
+8266cdae3c5d drm/i915: remove intel_vgpu_workload::{ring_context, restore_inhibit}
+9fda1fd90984 drm/i915: remove intel_gvt_mmio_info::{device, addr_range}
+fe7ed0e9dc92 drm/i915: remove intel_gvt_gtt::{mm_alloc_page_table, mm_free_page_table}
+de2fa4ef66b8 drm/i915: remove intel_dsi::{port_bits,hs}
+172c52e276d5 drm/i915: remove structs intel_vgpu_pipe_format and intel_vgpu_fb_format
+a9b5f422339f drm/i915: remove unused intel_dvo_dev_ops hooks
+1f4c6f11a557 drm/ci: mark universal-plane-sanity as failing on SC7180
+e00fc5402402 drm/ci: update msm-apq8096-fails list
+0326a5710e6d drm/ci: update IGT test names
+e3481abc2c62 drm/ci: skip suspend tests for both msm-sc7180 machines
+f1a9abc0cf31 drm/xe/uapi: Remove support for persistent exec_queues
+dc90214ff58b drm/panel: simple: Add BOE BP082WX1-100 8.2" panel
+763955fd6c93 dt-bindings: display: simple: Add boe,bp082wx1-100 8.2" panel
+b59dcca97bf0 dt-bindings: display: ti,am65x-dss: Add support for common1 region
+335126937753 drm/tests/drm_buddy: fix 32b build
+b7f9b9b67ebd accel/ivpu: Rename VPU to NPU in message strings
+42328003ecb6 accel/ivpu: Refactor BO creation functions
+adfef713d2b5 accel/ivpu: Fix ivpu_reset_engine_fn merge issue
+f32d59677ab1 accel/ivpu: Use lazy allocation for doorbell IDs
+00b9151cd4a3 accel/ivpu: Add support for FW boot param system_time_us
+3bd0edf825b7 accel/ivpu: Update FW API headers
+575fcdd3cfd4 accel/ivpu: Remove legacy firmware name
+70ef769f5129 accel/ivpu: Rename TILE_SKU_BOTH_MTL to TILE_SKU_BOTH
+42a7a16bedc9 drm/panel: boe-tv101wum-nl6: make use of prepare_prev_first
+1a9e51bef89a drm/meson: improve encoder probe / initialization error handling
+bd915ae73a2d drm/meson: Don't remove bridges which are created by other drivers
+b401b621758e Linux 6.8-rc5
+6c160f16be5d Merge tag 'kbuild-fixes-v6.8-2' of git://git.kernel.org/pub/scm/linux/kernel/git/masahiroy/linux-kbuild
+ddac3d8b8a48 Merge tag 'x86_urgent_for_v6.8_rc5' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+7cb7c32d60ad Merge tag 'irq_urgent_for_v6.8_rc5' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+626721edeebd Merge tag 'i2c-for-6.8-rc5' of git://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux
+c02197fc9076 Merge tag 'powerpc-6.8-3' of git://git.kernel.org/pub/scm/linux/kernel/git/powerpc/linux
+f2667e0c3240 Merge tag 'bcachefs-2024-02-17' of https://evilpiepirate.org/git/bcachefs
+ced590523156 Merge tag 'driver-core-6.8-rc5' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/driver-core
+7efc0eb82508 Merge tag 'char-misc-6.8-rc5' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/char-misc
+4b2981b2270d Merge tag 'tty-6.8-rc5' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty
+a3a7d1627429 Merge tag 'usb-6.8-rc5' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb
+ac00b6546d39 Merge tag 'media/v6.8-4' of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
+4a7571485c46 Merge tag 'pci-v6.8-fixes-3' of git://git.kernel.org/pub/scm/linux/kernel/git/pci/pci
+ad645dea35c1 Merge tag 'probes-fixes-v6.8-rc4' of git://git.kernel.org/pub/scm/linux/kernel/git/trace/linux-trace
+55f626f2d0c8 Merge tag '6.8-rc4-smb3-client-fixes' of git://git.samba.org/sfrench/cifs-2.6
+5928d411557e Documentation: Document the Linux Kernel CVE process
+9704669c386f tracing/probes: Fix to search structure fields correctly
+67ec505fae32 Merge tag 'i2c-host-fixes-6.8-rc5' of git://git.kernel.org/pub/scm/linux/kernel/git/andi.shyti/linux into i2c/for-current
+172c0cf519fb MAINTAINERS: Add Siddharth Vadapalli as PCI TI DRA7XX/J721E reviewer
+239cce651ea6 drm/panel: ltk500hd1829: add panel type for ltk101b4029w
+c71efc633713 dt-bindings: display: ltk500hd1829: add variant compatible for ltk101b4029w
+f9488c160d6e drm/panel: ltk500hd1829: make room for more similar panels
+c530379a6876 dt-bindings: display: panel-lvds: Add compatible for admatec 9904370 panel
+9de552935b6c dt-bindings: vendor-prefixes: add prefix for admatec GmbH
+c1ca10ceffbb Merge tag 'scsi-fixes' of git://git.kernel.org/pub/scm/linux/kernel/git/jejb/scsi
+975b26ab307e Merge tag 'wq-for-6.8-rc4-fixes' of git://git.kernel.org/pub/scm/linux/kernel/git/tj/wq
+7edfe0aaa6e7 Merge tag 'block-6.8-2024-02-16' of git://git.kernel.dk/linux
+809601508259 Merge tag 'io_uring-6.8-2024-02-16' of git://git.kernel.dk/linux
+3f9c1b315d65 Merge tag 'ceph-for-6.8-rc5' of https://github.com/ceph/ceph-client
+683b783c2093 Merge tag 'for-linus' of git://git.kernel.org/pub/scm/virt/kvm/kvm
+4b6f7c624e70 Merge tag 'trace-v6.8-rc4' of git://git.kernel.org/pub/scm/linux/kernel/git/trace/linux-trace
+3f3f64cb60ee Merge tag 'arm64-fixes' of git://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux
+65323796debe drm/nouveau/mmu/r535: uninitialized variable in r535_bar_new_()
+0affdba22aca nouveau: fix function cast warnings
+efb0b63afce6 Merge tag 'zonefs-6.8-rc5' of git://git.kernel.org/pub/scm/linux/kernel/git/dlemoal/zonefs
+1e5a2ec938d7 char/agp: remove agp_bridge_data::type
+9895ceeb5cd6 Merge tag 'kvmarm-fixes-6.8-2' of git://git.kernel.org/pub/scm/linux/kernel/git/kvmarm/kvmarm into HEAD
+8046fa5fc2f7 Merge tag 'kvmarm-fixes-6.8-1' of git://git.kernel.org/pub/scm/linux/kernel/git/kvmarm/kvmarm into HEAD
+0f1dd5e91e2b Merge tag 'sound-6.8-rc5' of git://git.kernel.org/pub/scm/linux/kernel/git/tiwai/sound
+beda9c23ad82 Merge tag 'gpio-fixes-for-v6.8-rc5' of git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux
+ca6a62f9fe23 Merge tag 'drm-fixes-2024-02-16' of git://anongit.freedesktop.org/drm/drm
+b8ef92016814 Merge tag 'lsm-pr-20240215' of git://git.kernel.org/pub/scm/linux/kernel/git/pcmoore/lsm
+79e2ea2eaaa6 drm/i915/cdclk: Document CDCLK update methods
+c0151c695fbe drm/i915/cdclk: Remove the hardcoded divider from cdclk_compute_crawl_and_squash_midpoint()
+76184fa3d32e drm/i915/cdclk: Squash waveform is 16 bits
+26aba0d1c35f drm/i915/cdclk: Extract cdclk_divider()
+f63f24488571 drm: bridge: dw_hdmi: Set DRM bridge type
+02f76a9cd449 drm/buddy: Modify duplicate list_splice_tail call
+61e738d81f75 drm/xe: Update shared stats to use the new gem helper
+905a176a3ca3 drm/i915: Update shared stats to use the new gem helper
+ba1a58d5b907 drm/amdgpu: add shared fdinfo stats
+d50ea100ea7e drm: update drm_show_memory_stats() for dma-bufs
+b31f5eba32ae drm: add drm_gem_object_is_shared_for_memory_stats() helper
+77d17c4cd0bf Documentation/gpu: Update documentation on drm-shared-*
+654f26a0f43c drm/panel: Add driver for DJN HX83112A LCD panel
+3b59787a5170 dt-bindings: display: panel: Add Himax HX83112A
+b40034994f60 gpu: host1x: remove redundant assignment to variable space
+ea69f782d0e3 Merge tag 'drm-msm-fixes-2024-02-15' of https://gitlab.freedesktop.org/drm/msm into drm-fixes
+44395701ad85 Merge tag 'amd-drm-fixes-6.8-2024-02-15-2' of https://gitlab.freedesktop.org/agd5f/linux into drm-fixes
+427e337f7ad9 Merge tag 'drm-xe-fixes-2024-02-15' of https://gitlab.freedesktop.org/drm/xe/kernel into drm-fixes
+7e1c3be3f9cd Merge tag 'drm-intel-fixes-2024-02-15' of git://anongit.freedesktop.org/drm/drm-intel into drm-fixes
+38df7e5e6cb5 Merge tag 'drm-misc-fixes-2024-02-15' of git://anongit.freedesktop.org/drm/drm-misc into drm-fixes
+4860abb91f3d smb: Fix regression in writes when non-standard maximum write size negotiated
+9ac4beb7578a Merge tag 'drm-misc-next-2024-02-15' of git://anongit.freedesktop.org/drm/drm-misc into drm-next
+14db5f64a971 zonefs: Improve error handling
+6f167a367346 Merge tag 'drm-intel-gt-next-2024-02-15' of git://anongit.freedesktop.org/drm/drm-intel into drm-next
+b13cfb445c91 Merge tag 'drm-intel-next-2024-02-07' of git://anongit.freedesktop.org/drm/drm-intel into drm-next
+4f5e5092fdbf Merge tag 'net-6.8-rc5' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+cc9c4f0b3113 Merge tag 'for-linus-6.8a-rc5-tag' of git://git.kernel.org/pub/scm/linux/kernel/git/xen/tip
+a8ac4bcaeb66 drm/amdgpu: Fix implicit assumtion in gfx11 debug flags
+e3de58f8fd5b drm/amdkfd: update SIMD distribution algo for GFXIP 9.4.2 onwards
+0d555e481c13 drm/amd/display: Increase ips2_eval delay for DCN35
+a82197e3a5f4 drm/amdgpu/display: Initialize gamma correction mode variable in dcn30_get_gamcor_current()
+2f542421a47e drm/amdgpu/soc21: update VCN 4 max HEVC encoding resolution
+0484e05d048b drm/amd/display: fixed integer types and null check locations
+46806e59a877 drm/amd/display: Fix array-index-out-of-bounds in dcn35_clkmgr
+deb110292180 drm/amd/display: Preserve original aspect ratio in create stream
+a589fa17cc44 drm/amd/display: Fix possible NULL dereference on device remove/driver unload
+a538dabf772c Revert "drm/amd/display: increased min_dcfclk_mhz and min_fclk_mhz"
+94b38b895dec drm/amd/display: Add align done check
+916361685319 Revert "drm/amd: flush any delayed gfxoff on suspend entry"
+3a9626c816db drm/amd: Stop evicting resources on APUs in suspend
+ccc514b7e7ac drm/amd/display: Fix possible buffer overflow in 'find_dcfclk_for_voltage()'
+88c6d84dd8f7 drm/amd/display: Fix possible use of uninitialized 'max_chunks_fbc_mode' in 'calculate_bandwidth()'
+7edb5830ecb0 drm/amd/display: Initialize 'wait_time_microsec' variable in link_dp_training_dpia.c
+17ba9cde11c2 drm/amd/display: Fix && vs || typos
+a0c9956a8d5a drm/amdkfd: Fix L2 cache size reporting in GFX9.4.3
+d16df040c8da drm/amdgpu: make damage clips support configurable
+68fb3ca0e408 update workarounds for gcc "asm goto" issue
+339e2fca0214 Merge tag 'devicetree-fixes-for-6.8-1' of git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux
+6efe4d187969 seq_buf: Fix kernel documentation
+8a566f94104d seq_buf: Don't use "proxy" headers
+a00cf1988a13 Merge tag 'spi-fix-v6.8-rc4' of git://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi
+2c460834f603 Merge tag 'regmap-fix-v6.8-rc4' of git://git.kernel.org/pub/scm/linux/kernel/git/broonie/regmap
+9207fe7572f9 Merge tag 'hid-for-linus-2024021501' of git://git.kernel.org/pub/scm/linux/kernel/git/hid/hid
+8c7bfd826231 drm/msm: Wire up tlb ops
+9c10f2b172eb Merge tag 'nvme-6.8-2024-02-15' of git://git.infradead.org/nvme into block-6.8
+9b6326354cf9 tracing/synthetic: Fix trace_string() return value
+1a5e81de180e Revert "drm/panel-edp: Add auo_b116xa3_mode"
+c40c0d3a768c Merge branch '1GbE' of git://git.kernel.org/pub/scm/linux/kernel/git/tnguy/net-queue
+b2c6c5291124 Merge branch 'fix-module_description-for-net-p6'
+538b22e74287 net: fill in MODULE_DESCRIPTION()s for missing arcnet
+9de69f0e9958 net: fill in MODULE_DESCRIPTION()s for mdio_devres
+e1e5ef2aefc2 net: fill in MODULE_DESCRIPTION()s for ppp
+4ad9e8587439 net: fill in MODULE_DESCRIPTION()s for fddik/skfp
+44c1197bcef4 net: fill in MODULE_DESCRIPTION()s for plip
+c0872309ac84 net: fill in MODULE_DESCRIPTION()s for ieee802154/fakelb
+5b8e3464071a net: fill in MODULE_DESCRIPTION()s for xen-netback
+c4c96d1417fd drm: Spelling s/hardward/hardware/g
+41c25e193b2b ALSA: usb-audio: More relaxed check of MIDI jack names
+32f03f4002c5 ALSA: hda/realtek: fix mute/micmute LED For HP mt645
+ed4adc07207d net: ravb: Count packets instead of descriptors in GbEth RX path
+dc34ebd5c018 pppoe: Fix memory leak in pppoe_sendmsg()
+4e45170d9acc net: sctp: fix skb leak in sctp_inq_free()
+3db9d4b39519 Merge tag 'asoc-fix-v6.8-rc4' of https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound into for-linus
+a951884d8288 kallsyms: ignore ARMv4 thunks along with others
+e5b2e810daf9 net: bcmasp: Handle RX buffer allocation failure
+d74b23d0c29c Merge tag 'nf-24-02-15' of git://git.kernel.org/pub/scm/linux/kernel/git/netfilter/nf
+2813926261e4 arm64/sve: Lower the maximum allocation for the SVE ptrace regset
+fb091ff39479 arm64: Subscribe Microsoft Azure Cobalt 100 to ARM Neoverse N2 errata
+f3ac28e1f8ae Merge tag 'linux-can-fixes-for-6.8-20240214' of git://git.kernel.org/pub/scm/linux/kernel/git/mkl/linux-can
+488b6d91b071 net-timestamp: make sk_tskey more predictable in error path
+455dae7549ae drm/xe: avoid function cast warnings
+8cb92dc730d8 drm/xe/pt: Allow for stricter type- and range checking
+c2626b738721 drm/xe/display: fix i915_gem_object_is_shmem() wrapper
+9377de4cb3e8 drm/xe/vm: Avoid reserving zero fences
+f2c9364db579 drm/xe: avoid function cast warnings
+2ec197fda25f selftests: tls: increase the wait in poll_partial_rec_async
+dadd1701ae11 ice: Add check for lport extraction to LAG init
+63a3dd6e62c8 Merge tag 'wireless-2024-02-14' of git://git.kernel.org/pub/scm/linux/kernel/git/wireless/wireless
+a37ee9e117ef io_uring/net: fix multishot accept overflow handling
+eb927f01dfb6 drm/i915/gt: Restart the heartbeat timer when forcing a pulse
+8d3dea210042 Merge tag 'mips-fixes_6.8_2' of git://git.kernel.org/pub/scm/linux/kernel/git/mips/linux
+6004b044f771 Merge tag 'landlock-6.8-rc5' of git://git.kernel.org/pub/scm/linux/kernel/git/mic/linux
+1f3a3e2aaeb4 Merge tag 'for-6.8-rc4-tag' of git://git.kernel.org/pub/scm/linux/kernel/git/kdave/linux
+1b923307a1b0 drm/i915: Enable fastboot across the board
+7ab52cb3489e drm/i915: Add PLL .compare_hw_state() vfunc
+b56e24be5916 drm/i915: Reuse ibx_dump_hw_state() for gmch platforms
+8d18f12f97bf drm/i915: Include the CRTC name in the ELD buffer mismatch
+733c454e0d14 drm/i915: Fix PLL state check for gmch platforms
+91f842ffe6ca Merge tag 'linux_kselftest-kunit-fixes-6.8-rc5' of git://git.kernel.org/pub/scm/linux/kernel/git/shuah/linux-kselftest
+84443741faab netfilter: nf_tables: fix bidirectional offload regression
+0f1ae2821fa4 netfilter: nat: restore default DNAT behavior
+f6374a82fc85 netfilter: nft_set_pipapo: fix missing : in kdoc
+5d9a16b2a4d9 modpost: trim leading spaces when processing source files list
+dae4a0171e25 gen_compile_commands: fix invalid escape sequence warning
+e3a9ee963ad8 kbuild: Fix changing ELF file type for output of gen_btf for big endian
+6388cfd0e69b docs: kconfig: Fix grammar and formatting
+c1c9d0f6f7f1 i2c: i801: Fix block process call transactions
+f44bff192685 i2c: pasemi: split driver into two separate modules
+3b9ab248bc45 kbuild: use 4-space indentation when followed by conditionals
+425b463859ed drm/i915: Update ADL-N PCI IDs
+d8bdd795d383 lsm: fix integer overflow in lsm_set_self_attr() syscall
+55ea989977f4 igc: Remove temporary workaround
+c56d055893cb igb: Fix string truncation warnings in igb_set_fw_version
+761b333718cf drm/xe: Remove exec queue bind.fence_*
+2394ac4145ea tracing: Inform kmemleak of saved_cmdlines allocation
+e67391ca7aa6 Merge tag 'kvm-riscv-fixes-6.8-1' of https://github.com/kvm-riscv/linux into HEAD
+2f8ebe43a025 Merge tag 'kvm-x86-selftests-6.8-rcN' of https://github.com/kvm-x86/linux into HEAD
+22d0bc072102 Merge tag 'kvm-x86-fixes-6.8-rcN' of https://github.com/kvm-x86/linux into HEAD
+d9b904d2efdf drm/i915/display: update pll values in sync with Bspec for MTL
+e20f378d993b nvmem: include bit index in cell sysfs file name
+b11236486749 drm/i915: Add GuC submission interface version query
+23d62fb5d368 Merge tag 'iio-fixes-for-6.8a' of http://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio into char-misc-linus
+aa1267e673fe drm: ci: use clk_ignore_unused for apq8016
+a64056bb5a32 drm/tests/drm_buddy: add alloc_contiguous test
+8746c6c9dfa3 drm/buddy: Fix alloc_range() error handling code
+0846dd77c834 powerpc/iommu: Fix the missing iommu_group_put() during platform domain attach
+2aa0a5e65eae can: netlink: Fix TDCO calculation using the old data bittiming
+efe7cf828039 can: j1939: Fix UAF in j1939_sk_match_filter during setsockopt(SO_J1939_FILTER)
+6cdedc18ba7b can: j1939: prevent deadlock by changing j1939_socks_lock to rwlock
+9b23fceb4158 ethernet: cpts: fix function pointer cast warnings
+5d07e432cb38 bnad: fix work_queue type mismatch
+6cf9ff463317 net: smc: fix spurious error message from __sock_release()
+d9a31cdab789 Merge branch '40GbE' of git://git.kernel.org/pub/scm/linux/kernel/git/tnguy/net-queue
+4276d28e1da6 iosys-map: fix typo
+50735922edb6 drm: drm_crtc: correct some comments
+858b31133dbe octeontx2-af: Remove the PF_FUNC validation for NPC transmit rules
+852d432a14db ALSA: hda/realtek: cs35l41: Fix order and duplicates in quirks table
+b91050448897 ALSA: hda/realtek: cs35l41: Fix device ID / model name
+706c1fa1ab09 ALSA: hda/realtek: cs35l41: Add internal speaker support for ASUS UM3402 with missing DSD
+8084a5b58929 fbdev/efifb: Remove framebuffer relocation tracking
+78aa89d1dfba firmware/sysfb: Update screen_info for relocated EFI framebuffers
+784e27f28118 fbdev/efifb: Do not track parent device status
+4e754597d603 firmware/sysfb: Create firmware device only for enabled PCI devices
+9040d0297a47 fbdev/efifb: Remove PM for parent device
+9eac534db001 firmware/sysfb: Set firmware-framebuffer parent device
+036105e3a776 video: Provide screen_info_get_pci_dev() to find screen_info's PCI device
+75fa9b7e375e video: Add helpers for decoding screen_info
+cbecc9fcbbec powerpc/pseries: fix accuracy of stolen time
+ea73179e6413 powerpc/ftrace: Ignore ftrace locations in exit text sections
+eb6d871f4ba4 powerpc/cputable: Add missing PPC_FEATURE_BOOKE on PPC64 Book-E
+f1acb109505d powerpc/kasan: Limit KASAN thread size increase to 32KB
+1fba2bf8e9d5 Revert "powerpc/pseries/iommu: Fix iommu initialisation during DLPAR add"
+816054f40a5f bcachefs: Fix missing va_end()
+2eeccee86dc7 bcachefs: Fix check_version_upgrade()
+4e07447503f0 bcachefs: Clamp replicas_required to replicas
+8d30528a1709 nvmet: remove superfluous initialization
+9bc36e58d162 drm/xe: Add uAPI to query GuC firmware submission version
+0db0c1770834 ASoC: cs35l56: Workaround for ACPI with broken spk-id-gpios property
+b6ddaa63f728 drm/rockchip: vop2: add a missing unlock in vop2_crtc_atomic_enable()
+c60d847be7b8 KVM: arm64: Fix double-free following kvm_pgtable_stage2_free_unlinked()
+6b1f93ea3459 dt-bindings: display: rockchip,dw-hdmi: add power-domains property
+0d192c4c72ce dt-bindings: display: rockchip: rockchip,dw-hdmi: remove port property
+762195e5c269 drm/panel: st7703: Add Panel Rotation Support
+20b18c2be4f3 dt-bindings: display: rocktech,jh057n00900: Document panel rotation
+e0c732291250 drm/panel: st7703: Add Powkiddy RGB10MAX3 Panel Support
+9913a60f318b dt-bindings: display: Add Powkiddy RGB10MAX3 panel
+1e41f11f08bc Merge branch 'selftests-net-more-pmtu-sh-fixes'
+20622dc934e1 selftests: net: more pmtu.sh fixes
+a71d0908e32f selftests: net: more strict check in net_helper
+5d012e512db1 gpu: host1x: bus: make host1x_bus_type const
+a7ee79b9c455 selftests: net: cope with slow env in so_txtime.sh test
+e58779f47e5e selftests: net: cope with slow env in gro.sh test
+be46d7aacf9e drm/xe/vf: Don't support MCR registers if VF
+96eb895c7ec6 drm/xe/vf: Don't program PAT if VF
+602f9ebf321a drm/xe/vf: Don't enable hwmon if VF
+3ed34c655210 drm/xe/vf: Don't check if LMEM is initialized if VF
+60da62fbe9af drm/xe/vf: Don't initialize stolen memory manager if VF
+18bc97fb4a0c drm/xe/vf: Don't program MOCS if VF
+aec14e3370c4 drm/xe/vf: Don't try to capture engine data unavailable to VF
+a43d5060086e drm/xe/vf: Assume fixed GSM size if VF
+2f6397e448e6 btrfs: don't refill whole delayed refs block reserve when starting transaction
+88e81a677730 btrfs: zoned: fix chunk map leak when loading block group zone info
+1bd96c92c6a0 btrfs: reject encoded write if inode has nodatasum flag set
+feefe1f49d26 btrfs: don't reserve space for checksums when writing to nocow files
+9dbe95e28ff1 ASoC: SOF: Intel: pci-tgl/lnl: Change default paths
+a6eaa24f1cc2 tracing: Use ring_buffer_record_is_set_on() in tracer_tracing_is_on()
+bdbddb109c75 tracing: Fix HAVE_DYNAMIC_FTRACE_WITH_REGS ifdef
+29f697533247 nvme: implement support for relaxed effects
+7e90b5c295ec Merge tag 'trace-tools-v6.8-rc4' of git://git.kernel.org/pub/scm/linux/kernel/git/trace/linux-trace
+4e06ec0774f5 dt-bindings: ufs: samsung,exynos-ufs: Add size constraints on "samsung,sysreg"
+79bd7eab8366 nvme-fabrics: fix I/O connect error handling
+b6802b61a9d0 drm/crtc: fix uninitialized variable use even harder
+269e31aecdd0 spi-mxs: Fix chipselect glitch
+b671cd3d4563 drm/prime: Support page array >= 4GB
+24b6332c2d4f ALSA: hda: Add Lenovo Legion 7i gen7 sound quirk
+599b0d8ce6ed drm/i915/selftests: Increasing the sleep time for live_rc6_manual
+fcbe4873089c ASoC: SOF: IPC3: fix message bounds on ipc ops
+c40aad7c81e5 ASoC: SOF: ipc4-pcm: Workaround for crashed firmware on system suspend
+5b5089e2a1e7 ASoC: q6dsp: fix event handler prototype
+b029482011bf ASoC: SOF: Intel: pci-lnl: Change the topology path to intel/sof-ipc4-tplg
+d463bcd7eb34 ASoC: SOF: Intel: pci-tgl: Change the default paths and firmware names
+e083dd032eeb net: ti: icssg-prueth: add dependency for PTP
+3a86cb16ab32 drm/i915: Prevent HW access during init from connector get_modes hooks
+5c5a7fa61213 drm/i915: Prevent HW access during init from SDVO TV get_modes hook
+00c3959d63ae drm/i915: Add bigjoiner force enable option to debugfs
+ab41a31dd5e2 HID: wacom: generic: Avoid reporting a serial of '0' to userspace
+25236c91b5ab af_unix: Fix task hung while purging oob_skb in GC.
+bdab6c94bb24 HID: Intel-ish-hid: Ishtp: Fix sensor reads after ACPI S3 suspend
+af9acbfc2c4b irqchip/gic-v3-its: Fix GICv4.1 VPE affinity update
+8b02da04ad97 irqchip/gic-v3-its: Restore quirk probing for ACPI-based systems
+846297e11e8a irqchip/gic-v3-its: Handle non-coherent GICv4 redistributors
+1741a8269e1c HID: multitouch: Add required quirk for Synaptics 0xcddc device
+dbc347ef7f0c ceph: add ceph_cap_unlink_work to fire check_caps() immediately
+902d6d013f75 ceph: always queue a writeback when revoking the Fb caps
+8929f95b2b58 connector/cn_proc: revert "connector: Fix proc_event_num_listeners count not cleared"
+2df8aa3cad40 gpiolib: add gpio_device_get_label() stub for !GPIOLIB
+ebe0c15b135b gpiolib: add gpio_device_get_base() stub for !GPIOLIB
+6ac86372102b gpiolib: add gpiod_to_gpio_device() stub for !GPIOLIB
+98459fb5ab92 drm/xe: fix arguments to drm_err_printer()
+8ad032cc8c49 irqchip/qcom-mpm: Fix IS_ERR() vs NULL check in qcom_mpm_init()
+f1c2765c6afc irqchip/loongson-eiointc: Use correct struct type in eiointc_domain_alloc()
+f1acf1ac84d2 net:rds: Fix possible deadlock in rds_message_put
+fa765c4b4aed xen/events: close evtchn after mapping cleanup
+b0344d6854d2 irqchip/irq-brcmstb-l2: Add write memory barrier before exit
+bf5802238dc1 xen/gntalloc: Replace UAPI 1-element array
+b0f2f82c9c16 xen: balloon: make balloon_subsys const
+2528dcbea944 xen: pcpu: make xen_pcpu_subsys const
+b2c52b8c128e xen/privcmd: Use memdup_array_user() in alloc_ioreq()
+379a58caa199 scsi: fnic: Move fnic_fnic_flush_tx() to a work queue
+977fe773dcc7 scsi: Revert "scsi: fcoe: Fix potential deadlock on &fip->ctlr_lock"
+4cbec7e89a41 scsi: target: Fix unmap setup during configuration
+9f30831390ed net: add rcu safety to rtnl_prop_list_size()
+3e36031cc054 pds_core: no health-thread in VF path
+2f74258d997c ionic: minimal work with 0 budget
+b344e64fbda3 Merge tag 'amd-drm-next-6.9-2024-02-09' of https://gitlab.freedesktop.org/agd5f/linux into drm-next
+1692b9775e74 net: stmmac: xgmac: use #define for string constants
+6ed8187bb36c i40e: take into account XDP Tx queues when stopping rings
+89a373e9131d i40e: avoid double calling i40e_pf_rxq_wait()
+343bb39e1f25 i40e: Fix wrong mask used during DCB config
+c73729b64bb6 i40e: Fix waiting for queues of all VSIs to be disabled
+c2b3ec36b422 selftests: net: ip_local_port_range: define IPPROTO_MPTCP
+73d9629e1c8c i40e: Do not allow untrusted VF to remove administratively set MAC
+d794734c9bbf x86/mm/ident_map: Use gbpages only where full GB page should be mapped.
+c664e16bb1ba Merge tag 'docs-6.8-fixes2' of git://git.lwn.net/linux
+8fa507083388 mm/memory: Use exception ip to search exception tables
+9d6e21ddf202 MIPS: Clear Cause.BD in instruction_pointer_set
+11ba1728be3e ptrace: Introduce exception_ip arch hook
+d55347bfe4e6 MIPS: Add 'memory' clobber to csum_ipv6_magic() inline assembler
+157261c58b28 drm/xe/pt: Allow for stricter type- and range checking
+3693bb4465e6 x86/xen: Add some null pointer checking to smp.c
+8bde59b20de0 smb: client: handle path separator of created SMB symlinks
+4508ec173570 smb: client: set correct id, uid and cruid for multiuser automounts
+f8237c8c6a0e drm/xe: use drm based debugging instead of dev
+7d8c67dd5d4f xen/xenbus: document will_handle argument for xenbus_watch_path()
+83ef106fa732 i2c: qcom-geni: Correct I2C TRE sequence
+f7fe85b229bc ASoC: amd: yc: Fix non-functional mic on Lenovo 82UU
+716f4aaa7b48 Merge tag 'vfs-6.8-rc5.fixes' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+2c80a2b715df nouveau/svm: fix kvcalloc() argument order
+2f0dbb24f78a regmap: kunit: Ensure that changed bytes are actually different
+8f44e3808200 spi: intel-pci: Add support for Lunar Lake-M SPI serial flash
+e56c671c2272 spi: omap2-mcspi: Revert FIFO support without DMA
+d6755a53b8dd ASoC: rt5645: Add DMI quirk for inverted jack-detect on MeeGoPad T8
+551539a8606e ASoC: rt5645: Make LattePanda board DMI match more precise
+5b3fbd61b9d1 net: sysfs: Fix /sys/class/net/<iface> path for statistics
+d2435a8e3d68 drm/i915: Add flex arrays to struct i915_syncmap
+247f2ee4498c drm/xe: Fix a missing argument to drm_err_printer
+a1d8700d9064 drm/nouveau: omit to create schedulers using the legacy uAPI
+9a0c32d698c1 drm/nouveau: don't fini scheduler if not initialized
+603604c8be42 Merge branch 'mptcp-misc-fixes'
+68990d006d42 MAINTAINERS: update Geliang's email address
+337cebbd850f mptcp: really cope with fastopen race
+f012d796a6de mptcp: check addrs list in userspace_pm_get_local_id
+e4a0fa47e816 mptcp: corner case locking for rx path fields initialization
+3f83d8a77eee mptcp: fix more tx path fields initialization
+013e3179dbd2 mptcp: fix rcv space initialization
+bdd70eb68913 mptcp: drop the push_pending field
+826eafebf68b drm/tests: mm: Convert to drm_dbg_printer
+b5f319360371 tools/rtla: Exit with EXIT_SUCCESS when help is invoked
+14f08c976ffe tools/rtla: Replace setting prio with nice for SCHED_OTHER
+bab091d54600 Merge branch 'net-misplaced-fields'
+c353c7b7ffb7 net-device: move lstats in net_device_read_txrx
+666a877deab2 tcp: move tp->tcp_usec_ts to tcp_sock_read_txrx group
+119ff04864a2 tcp: move tp->scaling_ratio to tcp_sock_read_txrx group
+ad26d56d0807 drm/i915/dp: Limit SST link rate to <=8.1Gbps
+962ac2dce56b drm/i915/dsc: Fix the macro that calculates DSCC_/DSCA_ PPS reg address
+61ec586bc081 tools/rv: Fix curr_reactor uninitialized variable
+f9b2c87105c9 tools/rv: Fix Makefile compiler options for clang
+084ce16df0f0 tools/rtla: Remove unused sched_getattr() function
+30369084ac6e tools/rtla: Fix clang warning about mount_point var size
+64dc40f75233 tools/rtla: Fix uninitialized bucket/data->bucket_size warning
+bc4cbc9d260b tools/rtla: Fix Makefile compiler options for clang
+423af970da74 drm/lima: standardize debug messages by ip name
+9e5690a16fc2 drm/lima: increase default job timeout to 10s
+e721d1cc8101 drm/lima: remove guilty drm_sched context handling
+53cb55b20208 drm/lima: handle spurious timeouts due to high irq latency
+27aa58ec85f9 drm/lima: set gp bus_stop bit before hard reset
+a9da58c86e3b drm/lima: set pp bus_stop bit before hard reset
+2ccd4adc681e drm/lima: reset async_reset on gp hard reset
+b5b345ea9b3e drm/lima: reset async_reset on pp hard reset
+28083ff18d3f accel/ivpu: Fix DevTLB errors on suspend/resume and recovery
+0de62399883d Merge tag 'drm-misc-next-2024-02-08' of git://anongit.freedesktop.org/drm/drm-misc into drm-next
+8c41be259973 ASoC: Intel: Boards: Fix NULL pointer deref in BYT/CHT
+79520587fe42 cifs: update the same create_guid on replay
+cffe487026be cifs: fix underflow in parse_server_interfaces()
+841c35169323 Linux 6.8-rc4
+2766f59ca44e Merge tag 'timers_urgent_for_v6.8_rc4' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+c021e191cf3d Merge tag 'x86_urgent_for_v6.8_rc4' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+c4b603c6e2df ASoC: SOF: amd: Fix locking in ACP IRQ handler
+6ef5d5b92f71 ASoC: rt5645: Fix deadlock in rt5645_jack_detect_work()
+b3aa619a8b47 spi: ppc4xx: Drop write-only variable
+de4af897ddf2 spi: ppc4xx: Fix fallout from rename in struct spi_bitbang
+6f98e44984d5 spi: ppc4xx: Fix fallout from include cleanup
+930375d34de6 ASoC: Intel: cht_bsw_rt5645: Cleanup codec_name handling
+7d99a70b6595 ASoC: Intel: Boards: Fix NULL pointer deref in BYT/CHT boards
+7521f258ea30 Merge tag 'mm-hotfixes-stable-2024-02-10-11-16' of git://git.kernel.org/pub/scm/linux/kernel/git/akpm/mm
+04eb57930e4e bcachefs: fix missing endiannes conversion in sb_members
+7dcfb87af973 bcachefs: fix kmemleak in __bch2_read_super error handling path
+1a1c93e7f814 bcachefs: Fix missing bch2_err_class() calls
+78e563f2d629 Merge branch 'tls-fixes'
+ac437a51ce66 net: tls: fix returned read length with async decrypt
+49d821064c44 selftests: tls: use exact comparison in recv_partial
+32b55c5ff910 net: tls: fix use-after-free with partial reads and async decrypt
+859054147318 net: tls: handle backlogging of crypto requests
+e01e3934a1b2 tls: fix race between tx work scheduling and socket close
+aec7961916f3 tls: fix race between async notify and socket close
+c57ca512f3b6 net: tls: factor out tls_*crypt_async_wait()
+78367c32bebf iio: adc: ad4130: only set GPIO_CTRL if pin is unused
+a22b0a2be69a iio: adc: ad4130: zero-initialize clock init data
+a5b6244cf87c Merge tag 'block-6.8-2024-02-10' of git://git.kernel.dk/linux
+a38ff5bbf979 Merge tag 'firewire-fixes-6.8-rc4' of git://git.kernel.org/pub/scm/linux/kernel/git/ieee1394/linux1394
+5a7ec87063c0 Merge tag '6.8-rc3-ksmbd-server-fixes' of git://git.samba.org/ksmbd
+4a7bbe7519b6 Merge tag 'scsi-fixes' of git://git.kernel.org/pub/scm/linux/kernel/git/jejb/scsi
+ca00c700c521 Merge tag '6.8-rc3-smb3-client-fixes' of git://git.samba.org/sfrench/cifs-2.6
+e1e3f530a17f Merge tag 'ceph-for-6.8-rc4' of https://github.com/ceph/ceph-client
+a2343df3fb1e Merge tag 'ntfs3_for_6.8' of https://github.com/Paragon-Software-Group/linux-ntfs3
+4356e9f841f7 work around gcc bugs with 'asm goto' with outputs
+2fbdc5c6b130 Merge branch 'net-fix-module_description-for-net-p5'
+6034e059f5d3 net: fill in MODULE_DESCRIPTION()s for dsa_loop_bdinfo
+830bd88cc151 net: fill in MODULE_DESCRIPTION()s for ipvtap
+a46c31bf2744 net: fill in MODULE_DESCRIPTION()s for net/sched
+b058a5d25d92 net: fill in MODULE_DESCRIPTION()s for ipv4 modules
+92ab08eb63bb net: fill in MODULE_DESCRIPTION()s for ipv6 modules
+2898f3075e6a net: fill in MODULE_DESCRIPTION()s for 6LoWPAN
+6e2cf0eb6926 net: fill in MODULE_DESCRIPTION()s for af_key
+f73f55b0fcff net: fill in MODULE_DESCRIPTION()s for mpoa
+2599bb5e0c74 net: fill in MODULE_DESCRIPTION()s for xfrm
+15faa1f67ab4 lan966x: Fix crash when adding interface under a lag
+aae09a6c7783 net/sched: act_mirred: Don't zero blockid when net device is being deleted
+6a12401b65a5 Merge branch 'net-openvswitch-limit-the-recursions-from-action-sets'
+bd128f62c365 selftests: openvswitch: Add validation for the recursion test
+6e2f90d31fe0 net: openvswitch: limit the number of recursions from action sets
+a5cc98eba259 smb3: clarify mount warning
+a39c757bf059 cifs: handle cases where multiple sessions share connection
+c6e02eefd6ac cifs: change tcon status when need_reconnect is set on it
+7edd06233958 drivers/ps3: select VIDEO to provide cmdline functions
+d02bfae3646a Merge branch 'selftests-forwarding-various-fixes'
+f97f1fcc9690 selftests: forwarding: Fix bridge locked port test flakiness
+dd6b34589441 selftests: forwarding: Suppress grep warnings
+7399e2ce4d42 selftests: forwarding: Fix bridge MDB test flakiness
+93590849a05e selftests: forwarding: Fix layer 2 miss test flakiness
+38ee0cb2a2e2 selftests: net: Fix bridge backup port test flakiness
+12c5128f101b btrfs: add new unused block groups to the list of unused block groups
+f4a9f219411f btrfs: do not delete unused block group if it may be used soon
+1693d5442c45 btrfs: add and use helper to check if block group is used
+5571e41ec6e5 btrfs: don't drop extent_map for free space inode on write error
+9ed18b0b7765 Merge tag 'riscv-for-linus-6.8-rc4' of git://git.kernel.org/pub/scm/linux/kernel/git/riscv/linux
+ca8a66738a44 Merge tag 'trace-v6.8-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/trace/linux-trace
+6dc512a0a22e Merge tag 'probes-fixes-v6.8-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/trace/linux-trace
+41044d536068 PCI: Fix active state requirement in PME polling
+e6f39a90de92 Merge tag 'efi-fixes-for-v6.8-1' of git://git.kernel.org/pub/scm/linux/kernel/git/efi/efi
+5ddfc2460611 Merge tag 'pci-v6.8-fixes-2' of git://git.kernel.org/pub/scm/linux/kernel/git/pci/pci
+5ca243c23ee1 Merge tag 'hwmon-for-v6.8-rc4' of git://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging
+eb747bcc3611 Merge tag 'mmc-v6.8-rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/ulfh/mmc
+3760081ff414 Merge tag 'pmdomain-v6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/ulfh/linux-pm
+4a8e4b3c2741 Merge tag 'gpio-fixes-for-v6.8-rc4' of git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux
+c76b766ec50d Merge tag 'drm-fixes-2024-02-09' of git://anongit.freedesktop.org/drm/drm
+50572064ec71 perf/arm-cmn: Workaround AmpereOneX errata AC04_MESH_1 (incorrect child count)
+f9daab0ad01c arm64: jump_label: use constraints "Si" instead of "i"
+c0b26c06ed00 arm64: fix typo in comments
+719da04f2d12 perf: CXL: fix mismatched cpmu event opcode
+61da7c8e2a60 arm64/signal: Don't assume that TIF_SVE means we saved SVE state
+f6a1892585cd x86/Kconfig: Transmeta Crusoe is CPU family 5, not 6
+9f208e097801 spi: spi-ppc4xx: include missing platform_device.h
+727b943263dc ASoC: cs35l56: Remove default from IRQ1_CFG register
+e5aa6d51a2ef ALSA: hda/cs35l56: select intended config FW_CS_DSP
+cd1f0d3df26a drm/i915/dvo: Use sizeof(*variable) instead of sizeof(type)
+8dc0e7dfc5aa drm/i915/dvo/ns2501: Nuke pointless casts
+1db5efe51f94 drm/i915/wm: Use per-device debugs ilk wm code
+167712d82aad drm/i915/wm: Use per-device debugs in pre-ilk wm code
+29d7a5b4d224 drm/i915/wm: Pass the whole i915 to intel_get_cxsr_latency()
+8c9e4f68b861 drm/i915/hdcp: Use per-device debugs
+ff9bc20cd21c drm/i915/bios: Use per-device debugs for VBT related stuff
+abe6af1627c7 drm/i915/bios: Switch to kms debugs
+5f67258c0872 drm/i915/fb: Use per-device debugs
+0128e89a9163 drm/i915/color: Use per-device debugs
+ca93f9f3a8d6 drm/i915/sdvo: Fix up code alignment
+dff8f3f85a1b drm/i915/sdvo: Convert to per-device debugs
+c9950a5d5056 drm/i915: Correct for_each_old_global_obj_in_state() arguments
+6061811d72e1 drm/i915/dp: Limit SST link rate to <=8.1Gbps
+44dc5c41b5b1 tracing: Fix wasted memory in saved_cmdlines logic
+8f1e0d791b52 of: property: Add in-ports/out-ports support to of_graph_get_port_parent()
+782bfd03c3ae of: property: Improve finding the supplier of a remote-endpoint property
+f4653ec9861c of: property: Improve finding the consumer of a remote-endpoint property
+63fb531fbfda drm/xe/display: fix i915_gem_object_is_shmem() wrapper
+7d708c145b26 Revert "usb: dwc3: Support EBC feature of DWC_usb31"
+a8b9cf62ade1 ftrace: Fix DIRECT_CALLS to use SAVE_REGS by default
+e154c4fc7bf2 drm: remove drm_debug_printer in favor of drm_dbg_printer
+e7835e023f84 drm/xe: switch from drm_debug_printer() to device specific drm_dbg_printer()
+d2dda3bf5c15 drm/i915: use drm_printf() with the drm_err_printer intead of pr_err()
+d50892a9554c drm/i915: switch from drm_debug_printer() to device specific drm_dbg_printer()
+2e61504fd1c3 drm/dp: switch drm_dp_vsc_sdp_log() to struct drm_printer
+3b32a1b9fade drm/mode: switch from drm_debug_printer() to device specific drm_dbg_printer()
+6470aac024a0 drm/dp_mst: switch from drm_debug_printer() to device specific drm_dbg_printer()
+9fd6f61a297e drm/print: add drm_dbg_printer() for drm device specific printer
+82195d48b77c drm/print: move enum drm_debug_category etc. earlier in drm_print.h
+5e0c04c8c40b drm/print: make drm_err_printer() device specific by using drm_err()
+27b8f91c08d9 drm/bridge: remove ->get_edid callback
+bf6def0c5757 drm/bridge: ti-sn65dsi86: switch to ->edid_read callback
+d1a5af987a1d drm/bridge: tc358767: switch to ->edid_read callback
+867a3ad827df drm/bridge: tc358767: update the EDID property
+758abe988cf3 drm: bridge: dw_hdmi: clear the EDID property and CEC address on failures
+6ebe4020fb66 drm: bridge: dw_hdmi: switch to ->edid_read callback
+56e7ce5dcdee drm: adv7511: switch to ->edid_read callback
+d4fb6c44cbc6 drm: xlnx: zynqmp_dpsub: switch to ->edid_read callback
+46876af3a4bb drm/omap/hdmi5: switch to ->edid_read callback
+13a9e2beb817 drm/omap/hdmi4: switch to ->edid_read callback
+18701c50d661 drm/msm/hdmi: switch to ->edid_read callback
+604aa950b721 drm/msm/hdmi: fix indent
+ada5281ace6f drm/mediatek/hdmi: switch to ->edid_read callback
+0c13bd9bf444 drm/mediatek/dp: switch to ->edid_read callback
+ac2854ddfa69 drm/bridge: sii902x: switch to ->edid_read callback
+3de47e1309c2 drm/bridge: sii902x: use display info is_hdmi
+d0f1fd3a2900 drm/bridge: nxp-ptn3460: switch to ->edid_read callback
+e3cbc95fb586 drm/bridge: megachips: switch to ->edid_read callback
+26b2ddd8dc3c drm/bridge: lt9611uxc: switch to ->edid_read callback
+231e330fb1ba drm/bridge: lt9611: switch to ->edid_read callback
+1d83b43e1eb4 drm: bridge: it66121: switch to ->edid_read callback
+9ed8ba5a6ea6 drm/bridge: it6505: switch to ->edid_read callback
+183ea1e1ace4 drm/bridge: display-connector: switch to ->edid_read callback
+1b48b6c41ffc drm/bridge: cdns-mhdp8546: clear the EDID property on failures
+9da5f1048db1 drm/bridge: cdns-mhdp8546: switch to ->edid_read callback
+939857d69bcf drm/bridge: anx7625: switch to ->edid_read callback
+f072b272aa27 RISC-V: KVM: Use correct restricted types
+3752219b6007 RISC-V: paravirt: Use correct restricted types
+17c8e9ac95d8 RISC-V: paravirt: steal_time should be static
+02d9009f4e8c selftests: net: add more missing kernel config
+4ab18af47a2c devlink: Fix command annotation documentation
+9b0ed890ac2a bonding: do not report NETDEV_XDP_ACT_XSK_ZEROCOPY
+4e1d71cabb19 net/handshake: Fix handshake_req_destroy_test1
+aa1eec2f546f net/mlx5: DPLL, Fix possible use after free after delayed work timer triggers
+53c0441dd2c4 dpll: fix possible deadlock during netlink dump operation
+311520887d7c Merge tag 'drm-msm-fixes-2024-02-07' of https://gitlab.freedesktop.org/drm/msm into drm-fixes
+b30bed9d0012 Merge tag 'amd-drm-fixes-6.8-2024-02-08' of https://gitlab.freedesktop.org/agd5f/linux into drm-fixes
+9da93fe430aa Merge tag 'drm-intel-fixes-2024-02-08' of git://anongit.freedesktop.org/drm/drm-intel into drm-fixes
+60c16201b680 Merge tag 'drm-xe-fixes-2024-02-08' of https://gitlab.freedesktop.org/drm/xe/kernel into drm-fixes
+6c2bf9ca24a4 Merge tag 'drm-misc-fixes-2024-02-08' of git://anongit.freedesktop.org/drm/drm-misc into drm-fixes
+1f719a2f3fa6 Merge tag 'net-6.8-rc4' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+b0d5d0f73761 Merge tag 'pinctrl-v6.8-2' of git://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl
+5f63a493b99c Merge tag 'nvme-6.8-2023-02-08' of git://git.infradead.org/nvme into block-6.8
+82bd83a0cf7a drm/xe/irq: allocate all possible msix interrupts
+4ce6e2db00de virtio-blk: Ensure no requests in virtqueues before deleting vqs.
+c23de7ceae59 docs: kernel_feat.py: fix build error for missing files
+2a427b49d029 blk-iocost: Fix an UBSAN shift-out-of-bounds warning
+55c7788c3724 smb: client: set correct d_type for reparse points under DFS mounts
+45be0882c5f9 smb3: add missing null server pointer check
+3ca8fbabcceb Revert "kobject: Remove redundant checks for whether ktype is NULL"
+eb538b557425 drm/xe/vm: Avoid reserving zero fences
+3ce7384048fa drm/bridge: remove drm_bridge_get_edid() in favour of drm_bridge_edid_read()
+b334be86c64c drm/meson: switch to drm_bridge_edid_read()
+d61f65159eee drm/bridge: tfp410: clear the EDID property on failures
+7b90330f20bf drm/bridge: tfp410: use drm_bridge_edid_read()
+400bb4ee97b4 drm: bridge: simple-bridge: clear the EDID property on failures
+0d966d59d1e5 drm: bridge: simple-bridge: use drm_bridge_edid_read()
+392b6e9a3c02 drm/bridge: lt9611uxc: use drm_bridge_edid_read()
+4f7ad8cca619 drm/bridge: lt8912b: use ->edid_read callback
+29e032296da5 drm/bridge: lt8912b: clear the EDID property on failures
+60d1fe1a7f30 drm/bridge: lt8912b: use drm_bridge_edid_read()
+348803ae4e59 drm/bridge: chrontel-ch7033: switch to drm_bridge_edid_read()
+f7930e64c1eb drm/bridge: switch to drm_bridge_edid_read()
+d807ad80d811 drm/bridge: add ->edid_read hook and drm_bridge_edid_read()
+9efd24ec5599 kprobes: Remove unnecessary initial values of variables
+9a571c1e275c tracing/probes: Fix to set arg size and fmt after setting type from BTF
+8c427cc2fa73 tracing/probes: Fix to show a parse error for bad type for $comm
+d7332c4a4f1a ASoC: SOF: ipc3-topology: Fix pipeline tear down logic
+c14f09f010cc ASoC: cs35l56: Fix deadlock in ASP1 mixer register initialization
+b7198383ef2d wifi: iwlwifi: mvm: fix a crash when we run out of stations
+65c6ee904550 wifi: iwlwifi: uninitialized variable in iwl_acpi_get_ppag_table()
+c6ebb5b67641 wifi: iwlwifi: Fix some error codes
+3012477cd510 wifi: iwlwifi: clear link_id in time_event
+2e57b77583ca wifi: iwlwifi: mvm: use correct address 3 in A-MSDU
+c98d8836b817 wifi: mac80211: reload info pointer in ieee80211_tx_dequeue()
+63e4b9d693e0 Merge tag 'nf-24-02-08' of git://git.kernel.org/pub/scm/linux/kernel/git/netfilter/nf
+5a8cdf6fd860 netfilter: nft_set_pipapo: remove scratch_aligned pointer
+47b1c03c3c1a netfilter: nft_set_pipapo: add helper to release pcpu scratch area
+76313d1a4aa9 netfilter: nft_set_pipapo: store index in scratch maps
+60c0c230c6f0 netfilter: nft_set_rbtree: skip end interval element from gc
+f82777e8ce6c netfilter: nfnetlink_queue: un-break NF_REPEAT
+7395dfacfff6 netfilter: nf_tables: use timestamp to check for set element timeout
+38ed1c7062ad netfilter: nft_ct: reject direction for ct id
+fa173a1b4e3f netfilter: ctnetlink: fix filtering for zone 0
+2fe8a236436f s390/qeth: Fix potential loss of L3-IP@ in case of network issues
+27c5a095e251 netfilter: ipset: Missing gc cancellations fixed
+db010ff6700f octeontx2-af: Initialize maps.
+03fa49a386b2 Merge branch 'cpsw-enable-mac_managed_pm-to-fix-mdio'
+bc4ce46b1e3d net: ethernet: ti: cpsw: enable mac_managed_pm to fix mdio
+9def04e759ca net: ethernet: ti: cpsw_new: enable mac_managed_pm to fix mdio
+6074be620c31 drm/i915/dsc: Fix the macro that calculates DSCC_/DSCA_ PPS reg address
+2526dffc6d65 gpio: remove GPIO device from the list unconditionally in error path
+ab0beafd52b9 netfilter: nft_set_pipapo: remove static in nft_pipapo_get()
+e5dbaa9f43ea drm/i915/display: On Xe2 always enable decompression with tile4
+bf4c27b8267d drm/xe: Remove TEST_VM_ASYNC_OPS_ERROR
+9e3fc1d65d4e drm/xe/vm: don't ignore error when in_kthread
+95c058c8ef1d drm/xe: Assume large page size if VMA not yet bound
+11572b3f68d9 drm/xe/display: Fix memleak in display initialization
+3aa3c5c24908 drm/xe: Map both mem.kernel_bb_pool and usm.bb_pool
+90773aaf9129 drm/xe: circumvent bogus stringop-overflow warning
+21abf108a062 drm/xe: Pick correct userptr VMA to repin on REMAP op failure
+fc29b6d5ab53 drm/xe: Take a reference in xe_exec_queue_last_fence_get()
+ddc7d4c58470 drm/xe: Fix loop in vm_bind_ioctl_ops_unwind
+047371968ffc Merge tag 'v6.8-p3' of git://git.kernel.org/pub/scm/linux/kernel/git/herbert/crypto-2.6
+860d7dcb2010 Merge tag 'percpu-for-6.8-rc4' of git://git.kernel.org/pub/scm/linux/kernel/git/dennis/percpu
+5bc09b397cbf nilfs2: fix potential bug in end_buffer_async_write
+b9e4bc1046d2 mm/damon/sysfs-schemes: fix wrong DAMOS tried regions update timeout setup
+38296afe3c6e nilfs2: fix hang in nilfs_lookup_dirty_data_buffers()
+6f1f15a5e492 MAINTAINERS: Leo Yan has moved
+27d3969b47cc mm/zswap: don't return LRU_SKIP if we have dropped lru lock
+79d72c68c587 fs,hugetlb: fix NULL pointer dereference in hugetlbs_fill_super
+f20760320967 mailmap: switch email address for John Moon
+2e601e1e8e4b mm: zswap: fix objcg use-after-free in entry destruction
+4c2da3188b84 mm/madvise: don't forget to leave lazy MMU mode in madvise_cold_or_pageout_pte_range()
+e870920bbe68 arch/arm/mm: fix major fault accounting when retrying under per-VMA lock
+01c1484ac047 selftests: core: include linux/close_range.h for CLOSE_RANGE_* macros
+2fde9e7f9e6d mm/memory-failure: fix crash in split_huge_page_to_list from soft_offline_page
+9cee7e8ef3e3 mm: memcg: optimize parent iteration in memcg_rstat_updated()
+67b8bcbaed47 nilfs2: fix data corruption in dsync block recovery for small block sizes
+56ae10cf628b mm/userfaultfd: UFFDIO_MOVE implementation should use ptep_get()
+c1be35a16b2f exit: wait_task_zombie: kill the no longer necessary spin_lock_irq(siglock)
+7601df8031fd fs/proc: do_task_stat: use sig->stats_lock to gather the threads/children stats
+60f92acb60a9 fs/proc: do_task_stat: move thread_group_cputime_adjusted() outside of lock_task_sighand()
+f7ec1cd5cc7e getrusage: use sig->stats_lock rather than lock_task_sighand()
+daa694e41375 getrusage: move thread_group_cputime_adjusted() outside of lock_task_sighand()
+e656c7a9e596 mm: hugetlb pages should not be reserved by shmat() if SHM_NORESERVE
+108a020c6443 ksmbd: free aux buffer if ksmbd_iov_pin_rsp_read fails
+a12bc36032a2 ksmbd: Add kernel-doc for ksmbd_extract_sharename() function
+4054705215ad nvme: use ns->head->pi_size instead of t10_pi_tuple structure size
+534c8a5b9d5d drm/amdgpu: Fix HDP flush for VFs on nbio v7.9
+58fca355ad37 drm/amd/display: Implement bounds check for stream encoder creation in DCN301
+e63e35f0164c drm/amd/display: Increase frame-larger-than for all display_mode_vba files
+da48914e1fcd drm/amd/display: Clear phantom stream count and plane count
+55173942a636 drm/amdgpu: Avoid fetching VRAM vendor info
+29c5da1a1246 drm/amd/display: Disable ODM by default for DCN35
+ca8179ba11f2 drm/amd/display: Update phantom pipe enable / disable sequence
+e6a7df96facd drm/amd/display: Fix MST Null Ptr for RV
+2dcf82a8e8dc drm/amdgpu: Fix shared buff copy to user
+280df4996c2b drm/amd/display: Increase eval/entry delay for DCN35
+897925dcc5df drm/amdgpu: remove asymmetrical irq disabling in jpeg 4.0.5 suspend
+6ef82ac664bb drm/amdgpu: reset gpu for s3 suspend abort case
+93bafa32a691 drm/amdgpu: skip to program GFXDEC registers for suspend abort
+2103370afba7 drm/amd/display: set odm_combine_policy based on context in dcn32 resource
+66951d98d9bf drm/amd/display: Add NULL test for 'timing generator' in 'dcn21_set_pipe()'
+e96fddb32931 drm/amd/display: Fix 'panel_cntl' could be null in 'dcn21_set_backlight_level()'
+6badfc463d60 drm/xe: Avoid cryptic message when there's no GuC definition
+45883418969c drm/xe: Always allow to override firmware
+d694b754894c netfilter: nft_compat: restrict match/target protocol to u16
+292781c3c548 netfilter: nft_compat: reject unused compat flag
+36fa8d697132 netfilter: nft_compat: narrow down revision to unsigned 8-bits
+46f5ab762d04 fs: relax mount_setattr() permission checks
+67057f48df79 PCI: dwc: Clean up dw_pcie_ep_raise_msi_irq() alignment
+b5d1b4b46f85 PCI: dwc: Fix a 64bit bug in dw_pcie_ep_raise_msix_irq()
+e8c263ed6de8 nvme-core: fix comment to reflect right functions
+335bac1daae3 Merge tag 'wireless-2024-02-06' of git://git.kernel.org/pub/scm/linux/kernel/git/wireless/wireless
+1f4137e882c6 nvme: move passthrough logging attribute to head
+3951f6add519 riscv: Fix arch_tlbbatch_flush() by clearing the batch cpumask
+ddccaf79b3af kunit: device: Unregister the kunit_bus on shutdown
+547ab8fc4cb0 Merge tag 'loongarch-fixes-6.8-2' of git://git.kernel.org/pub/scm/linux/kernel/git/chenhuacai/linux-loongson
+2cf963787529 riscv: declare overflow_stack as exported from traps.c
+ce68c035457b riscv: Fix arch_hugetlb_migration_supported() for NAPOT
+5c24ba20555a Merge tag 'for-linus' of git://git.kernel.org/pub/scm/virt/kvm/kvm
+c8d80f83de47 Merge tag 'nfsd-6.8-3' of git://git.kernel.org/pub/scm/linux/kernel/git/cel/linux
+d5597444032b drm/amdgpu: Fix HDP flush for VFs on nbio v7.9
+15dba12c5659 drm/amd/display: Implement bounds check for stream encoder creation in DCN301
+321036db915b drm/amd/display: Increase frame-larger-than for all display_mode_vba files
+3cafcc93cfef drm/amd/display: Clear phantom stream count and plane count
+04e1ef8aba14 drm/amd/display: Simplify the calculation of variables
+3d1554d99983 drm/amdgpu: Avoid fetching VRAM vendor info
+3fa6352415e1 drm/amd/display: 3.2.271
+c7b33856139d drm/amd/display: Drop some unnecessary guards
+c84dff70e16d drm/amd/display: Trivial code style adjustment
+dddb3e5a6df5 drm/amd/display: Disable ODM by default for DCN35
+22c3b09ef2ff drm/amd/display: Drop legacy code
+6a068e64fb25 drm/amd/display: Update phantom pipe enable / disable sequence
+0701117efd1e Revert "drm/amd/display: For FPO and SubVP/DRR configs program vmin/max sel"
+84d2ae7ca0e5 drm/amd/display: Adjust set_p_state calls to fix logging
+461bf81a1016 drm/amd/display: Add delay before logging clks from hw
+1b5b72b4d67c drm/amd/display: Fix MST Null Ptr for RV
+d5aaa9dbb28f drm/amd/display: correct comment in set_default_brightness_aux()
+288c0254a0b0 drm/amd/display: Add left edge pixel for YCbCr422/420 + ODM pipe split
+ead4c6b94d9b drm/amd/display: Add debug option to force 1-tap chroma subsampling
+6226a5aa7737 drm/amd/display: Disable idle reallow as part of command/gpint execution
+28b34ad207cc drm/amdgpu: Fix shared buff copy to user
+7f6f92b1036f drm/amd/display: Increase eval/entry delay for DCN35
+c2359c6d7f4d drm/amd/display: Disable timeout in more places for dc_dmub_srv
+cdb637d33957 drm/amdgpu: Fix potential out-of-bounds access in 'amdgpu_discovery_reg_base_init()'
+015bae7d2957 drm/amd/pm: Retrieve UMC ODECC error count from aca bank
+a9b1a4f684b3 drm/amd/display: Add more checks for exiting idle in DC
+db8391479f44 drm/amd/display: correct static screen event mask
+0a8ff0cbee35 drm/amdgpu: remove asymmetrical irq disabling in jpeg 4.0.5 suspend
+3f719cf22f56 drm/amdgpu: reset gpu for s3 suspend abort case
+0326de4c444a drm/amdgpu: skip to program GFXDEC registers for suspend abort
+0a5fd7811a17 drm/amd/display: set odm_combine_policy based on context in dcn32 resource
+70efd0422021 drm/amd/display: Don't perform rate toggle on DP2-capable FIXED_VS retimers
+5a2df8ecba86 drm/amdkfd: Add cache line sizes to KFD topology
+2e7ef37c7ca8 drm/amd/display: Remove Legacy FIXED_VS Transparent LT Sequence
+63d0b87213a0 drm/amd/display: add panel_power_savings sysfs entry to eDP connectors
+75428f537d7c net: intel: fix old compiler regressions
+5001bfe927b5 MAINTAINERS: Maintainer change for rds
+44d3b8a19b91 ASoC: Intel: avs: Fix dynamic port assignment when TDM is set
+aeaf3e6cf842 drm/amdgpu: Clear the hotplug interrupt ack bit before hpd initialization
+39a82d304b63 drm/amdgpu: fix typo in parameter description
+3fad1565720f drm/amdgpu: Only create mes event log debugfs when mes is enabled
+fb5a3d037082 drm/amd/display: Add NULL test for 'timing generator' in 'dcn21_set_pipe()'
+886571d217d7 drm/amd/display: Fix 'panel_cntl' could be null in 'dcn21_set_backlight_level()'
+fb38ad0aab41 drm/amdgpu/pm: Use inline function for IP version check
+07045648c07c ceph: always check dir caps asynchronously
+cda4672da1c2 ceph: prevent use-after-free in encode_cap_msg()
+51c161008e04 Merge tag 'icc-6.8-rc4' of git://git.kernel.org/pub/scm/linux/kernel/git/djakov/icc into char-misc-linus
+bbb20ea993f4 ceph: always set initial i_blkbits to CEPH_FSCRYPT_BLOCK_SHIFT
+8e46a2d068c9 libceph: just wait for more data to be available on the socket
+ee97302fbc0c libceph: rename read_sparse_msg_*() to read_partial_sparse_msg_*()
+cd7d469c2570 libceph: fail sparse-read if the data length doesn't match
+4b00d0c513da selftests: cmsg_ipv6: repeat the exact packet
+ef8d8df3cb06 drm: xlnx: zynqmp_dpsub: Filter interrupts against mask
+7717fc5b22e5 drm: xlnx: zynqmp_dpsub: Clear status register ASAP
+b214b37c902d drm: xlnx: zynqmp_dpsub: Fix timing for live mode
+e8ef91f14db1 drm: xlnx: zynqmp_dpsub: Make drm bridge discoverable
+0e85f1ae4ac6 Merge drm/drm-next into drm-misc-next
+7011b51f13b3 regmap: kunit: fix raw noinc write test wrapping
+2c8ba564a42c drm: mipi-dsi: make mipi_dsi_bus_type const
+78cb1f1d19b6 drm: display: make dp_aux_bus_type const
+64353af49fec ASoC: cs42l43: Add system suspend ops to disable IRQ
+d1722057477a ASoC: cs42l43: Handle error from devm_pm_runtime_enable
+c4ae9fd0de44 drm/bridge: imx8mp-hdmi-pvi: Fix build warnings
+aaf7f8099683 drm/panel: re-alphabetize the menu list
+c9424076d764 drm/panel: simple: push blanking limit on RK32FN48H
+536090b695c4 drm/panel: simple: fix flags on RK043FN48H
+38cc3c6dcc09 net: stmmac: protect updates of 64-bit statistics counters
+6d280f4d760e Merge tag 'for-6.8-rc3-tag' of git://git.kernel.org/pub/scm/linux/kernel/git/kdave/linux
+449c2d5948ba drm/i915/alpm: Alpm aux wake configuration for lnl
+29f3067a236a drm/i915/alpm: Calculate ALPM Entry check
+96a24945731f drm/i915/psr: Add alpm_parameters struct
+4ee30a448255 drm/i915/alpm: Add ALPM register definitions
+cb88cb53badb ppp_async: limit MRU to 64K
+58086721b778 devlink: avoid potential loop in devlink_rel_nested_in_notify_work()
+1279f9d9dec2 af_unix: Call kfree_skb() for dead unix_(sk)->oob_skb in GC.
+97cf301fa42e riscv: Flush the tlb when a page directory is freed
+829388b725f8 kunit: device: Unregister the kunit_bus on shutdown
+074146f45783 drm/i915: Annotate more of the BIOS fb takeover failure paths
+a8153627520a drm/i915: Try to relocate the BIOS fb to the start of ggtt
+ea5e150ac2cf drm/i915: Tweak BIOS fb reuse check
+f1ee98cff3d8 drm/i915/fbdev: Fix smem_start for LMEMBAR stolen objects
+30865e4abb79 drm/i915: Simplify intel_initial_plane_config() calling convention
+6bfdb06d1efa drm/i915: Split the smem and lmem plane readout apart
+27fbcaf7ca24 drm/i915: s/phys_base/dma_addr/
+f46fb69489f5 drm/i915: Fix MTL initial plane readout
+d74f3a930c1d drm/i915: Fix region start during initial plane readout
+6b757e1d420c drm/i915: Fix PTE decode during initial plane readout
+f8ae1d5291c3 drm/i915: Rename the DSM/GSM registers
+be5e8dc84f61 drm/i915: Disable the "binder"
+c08c364102d0 drm/i915: Bypass LMEMBAR/GTTMMADR for MTL stolen memory access
+8f7cf0a215b3 drm/i915: Remove ad-hoc lmem/stolen debugs
+2ab1fe53e298 drm/i915: Print memory region info during probe
+3c0fa9f4ec22 drm/i915: Use struct resource for memory region IO as well
+7ed4380009e9 firewire: core: send bus reset promptly on gap count error
+6fd78beed021 KVM: selftests: Don't assert on exact number of 4KiB in dirty log split test
+ba58f873cdee KVM: selftests: Fix a semaphore imbalance in the dirty ring logging test
+d9890c028d66 drm/xe: Remove TEST_VM_ASYNC_OPS_ERROR
+f814bdda774c blk-wbt: Fix detection of dirty-throttled tasks
+853b8d7597ee remap_range: merge do_clone_file_range() into vfs_clone_file_range()
+c1d6708bf0d3 HID: wacom: Do not register input devices until after hid_hw_start
+411a20db905b HID: logitech-hidpp: Do not flood kernel log
+b55fe36efc22 Merge tag 'thunderbolt-for-v6.8-rc4' of git://git.kernel.org/pub/scm/linux/kernel/git/westeri/thunderbolt into usb-linus
+7be50f2e8f20 serial: mxs-auart: fix tx
+3ee07964d407 serial: core: introduce uart_port_tx_flags()
+720e78d7fa0f serial: 8250_pci1xxxx: partially revert off by one patch
+95ec8c1d6c9a drm/xe/pm: add debug logs for D3cold
+404669db6010 drm/xe/hwmon: Refactor xe hwmon
+1ce2654d87e2 net: stmmac: xgmac: fix a typo of register name in DPP safety handling
+5f8408aca667 accel/ivpu: Add job status for jobs aborted by the driver
+553099da4539 accel/ivpu/40xx: Stop passing SKU boot parameters to FW
+a939c03d3778 accel/ivpu/40xx: Enable D0i3 message
+a7f31091ddf4 accel/ivpu: Disable d3hot_delay on all NPU generations
+b039f1c4d372 accel/ivpu: Correct MMU queue size checking functions
+c9da9a1f17bf accel/ivpu: Force snooping for MMU writes
+cc9432c4fb15 mmc: slot-gpio: Allow non-sleeping GPIO ro
+58aeb5623c2e mmc: sdhci-pci-o2micro: Fix a warm reboot issue that disk can't be detected by BIOS
+8087199cd595 drm/xe/vm: don't ignore error when in_kthread
+1c57b9f63ab3 powerpc: 85xx: mark local functions static
+5c84bc8b617b powerpc: udbg_memcons: mark functions static
+dad6a09f3148 hrtimer: Report offline hrtimer enqueue
+610010737f74 ASoC: amd: yc: Add DMI quirk for Lenovo Ideapad Pro 5 16ARP8
+b083d24fcf57 selftests/net: Amend per-netns counter checks
+e45964771007 x86/coco: Define cc_vendor without CONFIG_ARCH_HAS_CC_PLATFORM
+1f36d634670d drm/bridge: imx: add bridge wrapper driver for i.MX8MP DWC HDMI
+8933d29e7703 dt-bindings: display: imx: add binding for i.MX8MP HDMI TX
+3871aa01e1a7 tipc: Check the bearer type before calling tipc_udp_nl_bearer_add()
+99bd3cb0d12e Merge tag 'bcachefs-2024-02-05' of https://evilpiepirate.org/git/bcachefs
+cca5efe77a6a LoongArch: vDSO: Disable UBSAN instrumentation
+639420e9f6cd LoongArch: Fix earlycon parameter if KASAN enabled
+4551b30525cf LoongArch: Change acpi_core_pic[NR_CPUS] to acpi_core_pic[MAX_CORE_PIC]
+6b79ecd084c9 LoongArch: Select HAVE_ARCH_SECCOMP to use the common SECCOMP menu
+b3ff2d9c3a9c LoongArch: Select ARCH_ENABLE_THP_MIGRATION instead of redefining it
+d0399da9fb5f drm/sched: Re-queue run job worker when drm_sched_entity_pop_job() returns NULL
+aac8a59537df Revert "workqueue: Override implicit ordered attribute in workqueue_apply_unbound_cpumask()"
+5ad6af5c91e9 drm/xe: Assume large page size if VMA not yet bound
+418d6e296626 drm/sched: Add Matthew Brost to maintainers
+17e94b258541 scsi: ufs: core: Remove the ufshcd_release() in ufshcd_err_handling_prepare()
+b513d30d59bb scsi: ufs: core: Fix shift issue in ufshcd_clear_cmd()
+d6c1b19153f9 scsi: lpfc: Use unsigned type for num_sge
+4e6c90119907 scsi: core: Move scsi_host_busy() out of host lock if it is for per-command
+3376ca3f1a20 KVM: x86: Fix KVM_GET_MSRS stack info leak
+2592a36d9569 dt-bindings: drm/bridge: ti-sn65dsi86: Fix bouncing @codeaurora address
+0647903efbc8 wifi: mt76: mt7996: fix fortify warning
+34e659f34a75 drm/nouveau: nvkm_gsp_radix3_sg() should use nvkm_gsp_mem_ctor()
+042b5f83841f drm/nouveau: fix several DMA buffer leaks
+61712c94782c nouveau/gsp: use correct size for registry rpc.
+17adc3f329e9 net: marvell,prestera: Fix example PCI bus addressing
+2a2e2f5f4827 drm/i915/hdcp: Pin the hdcp gsc message high in ggtt
+e66a176592bd drm/i915/hdcp: Do intel_hdcp_component_init() much later during init
+5ea9a7c5fe41 nfsd: don't take fi_lock in nfsd_break_deleg_cb()
+c712c05e46c8 spi: imx: fix the burst length at DMA mode and CPU mode
+34a1066981a9 ASoC: tas2781: add module parameter to tascodec_init()
+b5fbde22684a ASoC: Intel: avs: Fix pci_probe() error path
+ac670505d825 ASoC: dt-bindings: google,sc7280-herobrine: Drop bouncing @codeaurora
+4703b014f28b ASoC: cs35l56: fix reversed if statement in cs35l56_dspwait_asp1tx_put()
+a99682e839af Merge tag 'gvt-fixes-2024-02-05' of https://github.com/intel/gvt-linux into drm-intel-fixes
+a19747c3b9bf selftests: net: let big_tcp test cope with slow env
+645eb54331ed Merge branch 'rxrpc-fixes'
+41b7fa157ea1 rxrpc: Fix counting of new acks and nacks
+6f769f22822a rxrpc: Fix response to PING RESPONSE ACKs to a dead call
+e7870cf13d20 rxrpc: Fix delayed ACKs to not set the reference serial number
+f31041417bf7 rxrpc: Fix generation of serial numbers to skip zero
+4a7aee96200a powerpc/kasan: Fix addr error caused by page alignment
+a038a3ff8c65 powerpc/6xx: set High BAT Enable flag on G2_LE cores
+f09696279b5d selftests/powerpc/papr_vpd: Check devfd before get_system_loc_code()
+aad98efd0b12 powerpc/64: Set task pt_regs->link to the LR value on scv entry
+ed8b94f6e0ac powerpc/pseries/iommu: Fix iommu initialisation during DLPAR add
+4856380063b1 Merge drm-misc-next-fixes-2024-01-19 into drm-misc-fixes
+059c53e877ca drm/bridge: imx: add driver for HDMI TX Parallel Video Interface
+f490d0cb9360 dt-bindings: display: imx: add binding for i.MX8MP HDMI PVI
+fdeba0b57d61 Merge branch 'nfp-fixes'
+0f4d6f011bca nfp: enable NETDEV_XDP_ACT_REDIRECT feature flag
+1a1c13303ff6 nfp: flower: prevent re-adding mac index for bonded port
+b3d4f7f22889 nfp: use correct macro for LengthSelect in BAR config
+1ad55cecf22f x86/efistub: Use 1:1 file:memory mapping for PE/COFF .compat section
+bb3bc3eac316 drm/panel: visionox-r66451: Set prepare_prev_first flag
+311d0fad2a27 drm/rect: fix kernel-doc typos
+fddab35fd064 ALSA: hda/realtek: add IDs for Dell dual spk platform
+4639c5021029 ALSA: hda/conexant: Add quirk for SWS JS201D
+7b508b323b2e bcachefs: time_stats: Check for last_event == 0 when updating freq stats
+dd839f31d7cd bcachefs: install fd later to avoid race with close
+8ded03ae48b3 powerpc/pseries/papr-sysparm: use u8 arrays for payloads
+f8e4806e0dfa Merge tag 'drm-misc-next-2024-01-11' of git://anongit.freedesktop.org/drm/drm-misc into drm-next
+44e4192f8897 MAINTAINERS: Update Zhi Wang's email address
+47caa96478b9 drm/i915/gvt: Fix uninitialized variable in handle_mmio()
+1a00897e5e96 drm/i915: Replace dead 01.org link
+c8bdef1560d9 Merge branch 'master' into mm-hotfixes-stable
+5464e7acea4a interconnect: qcom: x1e80100: Add missing ACV enable_mask
+a40f93e92869 interconnect: qcom: sm8650: Use correct ACV enable_mask
+eef00a82c568 inet: read sk->sk_family once in inet_recv_error()
+4cb81840d8f2 iio: accel: bma400: Fix a compilation problem
+862cf85fef85 iio: commom: st_sensors: ensure proper DMA alignment
+34cf8c657cf0 hwmon: (coretemp) Enlarge per package core count limit
+fdaf0c8629d4 hwmon: (coretemp) Fix bogus core_id to attr name mapping
+4e440abc8945 hwmon: (coretemp) Fix out-of-bounds memory access
+1168491e7f53 hwmon: (aspeed-pwm-tacho) mutex for tach reading
+621c62571281 iio: hid-sensor-als: Return 0 for HID_USAGE_SENSOR_TIME_TIMESTAMP
+9cae43da9867 hv_netvsc: Register VF in netvsc_probe if NET_DEVICE_REGISTER missed
+42dfa94d802a KVM: arm64: Do not source virt/lib/Kconfig twice
+54be6c6c5ae8 Linux 6.8-rc3
+3f24fcdacd40 Merge tag 'for-linus-6.8-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/tytso/ext4
+9e28c7a23bac Merge tag 'v6.8-rc3-smb-client-fixes' of git://git.samba.org/sfrench/cifs-2.6
+fc86e5c9909b Merge tag 'xfs-6.8-fixes-2' of git://git.kernel.org/pub/scm/fs/xfs/xfs-linux
+3a0e92207940 Merge tag 'char-misc-6.8-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/char-misc
+021496097193 Merge tag 'tty-6.8-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty
+809be620dc07 Merge tag 'usb-6.8-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb
+bdda52cc664c Merge tag 'i2c-for-6.8-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux
+8a0c60a0e47a Merge tag 'dmaengine-fix-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/vkoul/dmaengine
+843a33d63b45 Merge tag 'phy-fixes-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/phy/linux-phy
+957bd221ac7b Merge tag 'i2c-host-fixes-6.8-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/andi.shyti/linux into i2c/for-current
+dbea519d6878 cxl/trace: Remove unnecessary memcpy's
+54ce1927eb78 cxl/cper: Fix errant CPER prints for CXL events
+b555d191561a Merge tag 'perf-tools-fixes-for-v6.8-1-2024-02-01' of git://git.kernel.org/pub/scm/linux/kernel/git/perf/perf-tools
+b09b58e31b0f octeontx2-pf: Fix a memleak otx2_sq_init
+f3616173bf9b atm: idt77252: fix a memleak in open_card_ubr0
+d75abeec401f tunnels: fix out of bounds access when building IPv6 PMTU error
+d7f5fb33cf77 tsnep: Fix mapping for zero copy XDP_TX action
+17ffcdb041a4 drm/xe/query: Use kzalloc for drm_xe_query_engines
+ea0815005672 drm/xe/guc: define PVC FW
+b8462744d250 drm/xe: Add PVC's PCI device IDs
+db0adab04912 drm/xe/guc: Add support for LNL firmware
+32ca46bf2944 drm/xe/guc: Update to GuC firmware 70.19.2
+6650ad3e0948 drm/xe/uc: Include patch version in expectations
+86c99abb5f1b drm/xe/display: Fix memleak in display initialization
+010e03db4dca Merge branch 'selftests-net-more-fixes'
+691bb4e49c98 selftests: net: avoid just another constant wait
+e71e016ad0f6 selftests: net: fix tcp listener handling in pmtu.sh
+d75df7526477 selftests: net: fix setup_ns usage in rtnetlink.sh
+cb9f4a30fb85 selftests: net: cut more slack for gro fwd tests.
+2e7d3b67630d net: atlantic: Fix DMA mapping for PTP hwts ring
+72f86ed3c889 drm/xe: Map both mem.kernel_bb_pool and usm.bb_pool
+56897d51886f Merge tag 'trace-v6.8-rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/trace/linux-trace
+6b89b6af459f Merge tag 'gfs2-v6.8-rc2-revert' of git://git.kernel.org/pub/scm/linux/kernel/git/gfs2/linux-gfs2
+05519c86d699 KVM: x86/pmu: Fix type length error when reading pmu->fixed_ctr_ctrl
+774ef5dfc955 drm/xe: circumvent bogus stringop-overflow warning
+35396cd3efa8 drm/i915/fbc: Allow FBC with CCS modifiers on SKL+
+3d94e7584486 dt-bindings: visionox-rm69299: Update maintainers
+0581bcc48048 drm/panel: visionox-vtdr6130: Set prepare_prev_first flag
+d543d1b6086b drm/panel: novatek-nt36523: Set prepare_prev_first
+c1ce62e4d6dd drm/i915: Extract intel_atomic_swap_state()
+e0aee99015a7 drm/i915: Rework global state serializaiton
+1e41fa945203 drm/i915: Compute use_sagv_wm differently
+b1dd6c26bca4 Merge tag 'pci-v6.8-fixes-1' of git://git.kernel.org/pub/scm/linux/kernel/git/pci/pci
+9c2f0338bbd1 Merge tag 'drm-fixes-2024-02-03' of git://anongit.freedesktop.org/drm/drm
+eab5c86d2413 Merge tag 'input-for-v6.8-rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/dtor/input
+01370ceb2ae6 Merge tag 'sound-6.8-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/tiwai/sound
+43e7ef642ef2 Merge tag 'hwmon-for-v6.8-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging
+79837a7c0f42 Merge tag 'for-v6.8-rc' of git://git.kernel.org/pub/scm/linux/kernel/git/sre/linux-power-supply
+4f18d3fd2975 Merge tag 'iommu-fixes-v6.8-rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/joro/iommu
+ba5e1272142d netdevsim: avoid potential loop in nsim_dev_trap_report_work()
+6897cea71837 Merge tag 'for-6.8/dm-fixes' of git://git.kernel.org/pub/scm/linux/kernel/git/device-mapper/linux-dm
+035032753bfc Merge tag 'ata-6.8-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/libata/linux
+4255447ad34c Input: i8042 - add Fujitsu Lifebook U728 to i8042 quirk table
+815a76b9644e Merge tag 'block-6.8-2024-02-01' of git://git.kernel.dk/linux
+717ca0b8e55e Merge tag 'io_uring-6.8-2024-02-01' of git://git.kernel.dk/linux
+ec86369c88f6 Merge tag 'arm64-fixes' of git://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux
+0bcff59ef7a6 efi: Don't add memblocks for soft-reserved memory
+de1034b38a34 efi: runtime: Fix potential overflow of soft-reserved region size
+a60e6c3918d2 Input: i8042 - fix strange behavior of touchpad on Clevo NS70PU
+0a9bab391e33 dm-crypt, dm-verity: disable tasklets
+5bdda0048c8d wifi: brcmfmac: Adjust n_channels usage for __counted_by
+ad834c7c8e4a Merge tag 'usb-serial-6.8-rc3' of https://git.kernel.org/pub/scm/linux/kernel/git/johan/usb-serial into usb-linus
+e9f1e6bb55be Revert "gfs2: Use GL_NOBLOCK flag for non-blocking lookups"
+bd6081be2251 dmaengine: at_hdmac: add missing kernel-doc style description
+6e7ad1aebb4f driver core: fw_devlink: Improve logs for cycle detection
+6442d79d880c driver core: fw_devlink: Improve detection of overlapping cycles
+7fddac12c382 driver core: Fix device_link_flag_is_sync_state_only()
+447f74d223b4 drm/xe: Pick correct userptr VMA to repin on REMAP op failure
+a856b67a8416 drm/xe: Take a reference in xe_exec_queue_last_fence_get()
+2bb98fc1d4a7 drm/imx/dcss: have all init functions use devres
+a23c0af103e1 wifi: iwlwifi: do not announce EPCS support
+16867c38bcd3 wifi: iwlwifi: exit eSR only after the FW does
+90393c9b5408 drm/imx/dcss: request memory region
+1fa942f31665 wifi: iwlwifi: mvm: fix a battery life regression
+fe92f874f091 net: Fix from address in memcpy_to_iter_csum()
+62a6183c1331 wifi: mac80211: accept broadcast probe responses on 6 GHz
+c042600c17d8 wifi: mac80211: adding missing drv_mgd_complete_tx() call
+a0b4f2291319 wifi: mac80211: fix waiting for beacons logic
+178e9d6adc43 wifi: mac80211: fix unsolicited broadcast probe config
+86b2dac224f9 wifi: mac80211: initialize SMPS mode correctly
+733c498a8085 wifi: mac80211: fix driver debugfs for vif type change
+dd6c064cfc3f wifi: mac80211: set station RX-NSS on reconfig
+9480adfe4e0f wifi: mac80211: fix RCU use in TDLS fast-xmit
+35e2385dbe78 wifi: mac80211: improve CSA/ECSA connection refusal
+177fbbcb4ed6 wifi: cfg80211: detect stuck ECSA element in probe resp
+349bd87f6091 Merge branch 'master' into mm-hotfixes-stable
+24c890dd712f crypto: algif_hash - Remove bogus SGL free on zero-length error path
+69fba378edca crypto: cbc - Ensure statesize is zero
+ccb88e9549e7 crypto: ccp - Fix null pointer dereference in __sev_platform_shutdown_locked
+46eba193d04f net: stmmac: xgmac: fix handling of DPP safety error for DMA channels
+bb6f4dbe2639 selftests/landlock: Fix capability for net_test
+7fd4548d4b64 drm/i915/display: Include debugfs.h in intel_display_debugfs_params.c
+d2d00e15808c powerpc: iommu: Bring back table group release_ownership() call
+39126abc5e20 nouveau: offload fence uevents work to workqueue
+b5e69be18549 nouveau/gsp: use correct size for registry rpc.
+a639525686c5 Merge tag 'amd-drm-fixes-6.8-2024-02-01' of https://gitlab.freedesktop.org/agd5f/linux into drm-fixes
+ec9d669eba4c ext4: make ext4_set_iomap() recognize IOMAP_DELALLOC map type
+874eaba96d39 ext4: make ext4_map_blocks() distinguish delalloc only extent
+9f1118223aa0 ext4: add a hole extent entry in cache after punch
+9cf6e24c9fbf Input: atkbd - do not skip atkbd_deactivate() when skipping ATKBD_CMD_GETID
+683cd8259a9b Input: atkbd - skip ATKBD_CMD_SETLEDS when skipping ATKBD_CMD_GETID
+6430dea07e85 ext4: correct the hole length returned by ext4_map_blocks()
+acf795dc161f ext4: convert to exclusive lock while inserting delalloc extents
+3fcc2b887a1b ext4: refactor ext4_da_map_blocks()
+111a3f0afb88 Merge tag 'drm-xe-fixes-2024-02-01' of https://gitlab.freedesktop.org/drm/xe/kernel into drm-fixes
+5fcbf83e39ec drm/xe: Drop rebind argument from xe_pt_prepare_bind
+3acc1ff1a72f drm/xe: Fix loop in vm_bind_ioctl_ops_unwind
+419d8a93757f Merge tag 'drm-misc-fixes-2024-02-01' of git://anongit.freedesktop.org/drm/drm-misc into drm-fixes
+917e9b7c2350 Revert "drm/msm/gpu: Push gpu lock down past runpm"
+6a0dbcd20ef2 drm/msm/a6xx: set highest_bank_bit to 13 for a610
+03facb39d6c6 drm/msm/gem: Fix double resv lock aquire
+021533194476 Kconfig: Disable -Wstringop-overflow for GCC globally
+168b849728c2 Merge patch series "svnapot fixes"
+a179a4bfb694 riscv: Fix hugetlb_mask_last_page() when NAPOT is enabled
+1458eb2c9d88 riscv: Fix set_huge_pte_at() for NAPOT mapping
+d6beadc8d732 drm/xe/gsc: Add status check during gsc header readout
+41b9fb381a48 Merge tag 'net-6.8-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+91481c909246 Merge tag 'parisc-for-6.8-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/deller/parisc-linux
+a412682659b3 Merge tag 'kbuild-fixes-v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/masahiroy/linux-kbuild
+cfdf0c09a68b Merge tag 'nfsd-6.8-2' of git://git.kernel.org/pub/scm/linux/kernel/git/cel/linux
+49a4be2c845e Merge tag 'exfat-for-6.8-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/linkinjeon/exfat
+d4ea2bd1bb50 Merge tag 'asoc-fix-v6.8-rc2-2' of https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound into for-linus
+5c24e4e9e708 Merge tag 'hid-for-linus-2024020101' of git://git.kernel.org/pub/scm/linux/kernel/git/hid/hid
+11d4d1dba331 smb: client: increase number of PDUs allowed in a compound request
+6aac002bcfd5 cifs: failure to add channel on iface should bump up weight
+f6cdd897cc70 Merge tag 'firewire-fixes-6.8-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/ieee1394/linux1394
+88675b22d34e cifs: do not search for channel if server is terminating
+e77e15fa5eb1 cifs: avoid redundant calls to disable multichannel
+6a864c09ea6e Merge tag 'spi-fix-v6.8-rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi
+4b561d100192 Merge tag 'regulator-fix-v6.8-rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator
+8a2514c0c61f Merge tag 'v6.8-p2' of git://git.kernel.org/pub/scm/linux/kernel/git/herbert/crypto-2.6
+6d805afaf02e Merge tag 'lsm-pr-20240131' of git://git.kernel.org/pub/scm/linux/kernel/git/pcmoore/lsm
+f3c89983cb4f block: Fix where bio IO priority gets set
+e81fdba02086 ALSA: Various fixes for Cirrus Logic CS35L56 support
+4e192be1a225 Merge tag 'batadv-net-pullrequest-20240201' of git://git.open-mesh.org/linux-merge
+f0377ff97509 nvme-host: fix the updating of the firmware version
+069a6ed2992d doc/netlink/specs: Add missing attr in rt_link spec
+93561eefbf87 Merge tag 'nf-24-01-31' of git://git.kernel.org/pub/scm/linux/kernel/git/netfilter/nf
+f0588b157f48 idpf: avoid compiler padding in virtchnl2_ptype struct
+79144a818a80 Merge branch 'mptcp-fixes-for-recent-issues-reported-by-ci-s'
+04b57c9e096a selftests: mptcp: join: stop transfer when check is done (part 2)
+31ee4ad86afd selftests: mptcp: join: stop transfer when check is done (part 1)
+de46d138e773 selftests: mptcp: allow changing subtests prefix
+5e2f3c65af47 selftests: mptcp: decrease BW in simult flows
+4d4dfb2019d7 selftests: mptcp: increase timeout to 30 min
+2d41f10fa497 selftests: mptcp: add missing kconfig for NF Mangle
+8c86fad2cecd selftests: mptcp: add missing kconfig for NF Filter in v6
+3645c844902b selftests: mptcp: add missing kconfig for NF Filter
+b6c620dc43cc mptcp: fix data re-injection from stale subflow
+9e62797fd7e8 KVM: x86: Make gtod_is_based_on_tsc() return 'bool'
+b6831a108be1 KVM: selftests: Make hyperv_clock require TSC based system clocksource
+09951bf2cbb3 KVM: selftests: Run clocksource dependent tests with hyperv_clocksource_tsc_page too
+410cb01ead5b KVM: selftests: Use generic sys_clocksource_is_tsc() in vmx_nested_tsc_scaling_test
+e440c5f2e3e6 KVM: selftests: Generalize check_clocksource() from kvm_clock_test
+ca185770db91 eventfs: Keep all directory links at 1
+12d823b31fad eventfs: Remove fsnotify*() functions from lookup()
+264424dfdd5c eventfs: Restructure eventfs_inode structure to be more condensed
+5a49f996046b eventfs: Warn if an eventfs_inode is freed without is_freed being set
+1389358bb008 tracing/timerlat: Move hrtimer_init to timerlat_fd open()
+c15a729c9d45 selftests: net: enable some more knobs
+1939f738c73d selftests: net: add missing config for NF_TARGET_TTL
+cf6601e289a2 Merge branch 'selftests-net-more-small-fixes'
+96cd5ac4c0e6 selftests: forwarding: List helper scripts in TEST_FILES Makefile variable
+06efafd8608d selftests: net: List helper scripts in TEST_FILES Makefile variable
+9d851dd4dab6 selftests: net: Remove executable bits from library scripts
+8cc063ae1b3d selftests: bonding: Check initial state
+7b6fb3050d8f selftests: team: Add missing config options
+e0526ec5360a hv_netvsc: Fix race condition between netvsc_probe and netvsc_remove
+7b55984c96ff xen-netback: properly sync TX responses
+ae3f4b44641d net: sysfs: Fix /sys/class/net/<iface> path
+373581643d3d Merge tag 'nvme-6.8-2024-02-01' of git://git.infradead.org/nvme into block-6.8
+9f079dda1433 nvme: allow passthru cmd error logging
+c3a846fe4bf3 nvme-fc: show hostnqn when connecting to fc target
+d2045e6a4e2f nvme-rdma: show hostnqn when connecting to rdma target
+524719b4c60d nvme-tcp: show hostnqn when connecting to tcp target
+a90ac7b34877 nvmet-fc: use RCU list iterator for assoc_list
+fe506a745893 nvmet-fc: take ref count on tgtport before delete assoc
+710c69dbaccd nvmet-fc: avoid deadlock on delete association path
+3146345c2e9c nvmet-fc: abort command when there is no binding
+1c110588dd95 nvmet-fc: do not tack refs on tgtports from assoc
+50b474e1faff nvmet-fc: remove null hostport pointer check
+ca121a0f7515 nvmet-fc: hold reference on hostport match
+c5e27b1a779e nvmet-fc: free queue and assoc directly
+4049dc96b8de nvmet-fc: defer cleanup using RCU properly
+c691e6d7e13d nvmet-fc: release reference on target port
+dcfad4ab4d67 nvmet-fcloop: swap the list_add_tail arguments
+70fbfc47a392 nvme-fc: do not wait in vain when unloading module
+43aa6f97c2d0 eventfs: Get rid of dentry pointers without refcounts
+8dce06e98c70 eventfs: Clean up dentry ops and add revalidate function
+408600be78cd eventfs: Remove unused d_parent pointer field
+49304c2b93e4 tracefs: dentry lookup crapectomy
+eaa1b01fe709 ALSA: usb-audio: Ignore clock selector errors for single connection
+04f647c8e456 octeontx2-pf: Remove xdp queues on program detach
+6813cdca4ab9 drm/amdgpu/pm: Use inline function for IP version check
+72bd80252fee io_uring/net: fix sr->len for IORING_OP_RECV with MSG_WAITALL and buffers
+c7de2d9bb68a ALSA: hda/realtek: Enable headset mic on Vaio VJFE-ADL
+28876c1ae8b8 ALSA: hda: cs35l56: Remove unused test stub function
+6f8ad0480d82 ALSA: hda: cs35l56: Firmware file must match the version of preloaded firmware
+e82bc517c6ef ALSA: hda: cs35l56: Fix filename string field layout
+77c60722ded7 ALSA: hda: cs35l56: Fix order of searching for firmware files
+9e92b77ceb6f ASoC: cs35l56: Allow more time for firmware to boot
+245eeff18d7a ASoC: cs35l56: Load tunings for the correct speaker models
+f4ef5149953f ASoC: cs35l56: Firmware file must match the version of preloaded firmware
+f6c967941c5d ASoC: cs35l56: Fix misuse of wm_adsp 'part' string for silicon revision
+07f7d6e7a124 ASoC: cs35l56: Fix for initializing ASP1 mixer registers
+856ce8982169 ALSA: hda: cs35l56: Initialize all ASP1 registers
+782e6c538be4 ASoC: cs35l56: Fix default SDW TX mixer registers
+72a77d7631c6 ASoC: cs35l56: Fix to ensure ASP1 registers match cache
+3739cc0733ba ASoC: cs35l56: Remove buggy checks from cs35l56_is_fw_reload_needed()
+07687cd0539f ASoC: cs35l56: Don't add the same register patch multiple times
+cd38ccbecdac ASoC: cs35l56: cs35l56_component_remove() must clean up wm_adsp
+ae861c466ee5 ASoC: cs35l56: cs35l56_component_remove() must clear cs35l56->component
+daf3f0f99cde ASoC: wm_adsp: Don't overwrite fwf_name with the default
+3657e4cb5a8a ASoC: wm_adsp: Fix firmware file search order
+e4af312177d9 Merge tag 'asoc-fix-v6.8-rc2' of https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound into for-linus
+346c84e281a9 media: pwm-ir-tx: Depend on CONFIG_HIGH_RES_TIMERS
+dc9ceb90c4b4 media: ir_toy: fix a memleak in irtoy_tx
+6a9d552483d5 media: rc: bpf attach/detach requires write permission
+f66556c1333b media: atomisp: Adjust for v4l2_subdev_state handling changes in 6.8
+fae6e669cdc5 drm/tegra: Do not assume that a NULL domain means no DMA IOMMU
+83b3836bf83f iommu: Allow ops->default_domain to work when !CONFIG_IOMMU_DMA
+47dc55181dcb firewire: core: search descriptor leaf just after vendor directory entry in root directory
+5f9ab17394f8 firewire: core: correct documentation of fw_csr_string() kernel API
+5f16ee27cd5a drm/hwmon: Fix abi doc warnings
+c9cfed29f5fe drm/xe: Make all GuC ABI shift values unsigned
+ed2bdf3b264d drm/xe/vm: Subclass userptr vmas
+89642db3b288 drm/xe: Use LRC prefix rather than CTX prefix in lrc desc defines
+ef87557928d1 drm/xe: Don't use __user error pointers
+3ecf036b04b9 drm/xe: Annotate mcr_[un]lock()
+efeff7b38ef6 drm/xe: Only allow 1 ufence per exec / bind IOCTL
+6d2096239af1 drm/xe: Grab mem_access when disabling C6 on skip_guc_pc platforms
+f9c15a678db3 drm/xe: Fix crash in trace_dma_fence_init()
+aa125f229076 wifi: iwlwifi: remove extra kernel-doc
+5bd24e78829a drm/xe/vm: Subclass userptr vmas
+ffb635bb398f media: rkisp1: Fix IRQ handling due to shared interrupts
+a107d643b2a3 media: Revert "media: rkisp1: Drop IRQF_SHARED"
+b59af3045a66 Merge branch 'selftests-net-a-few-pmtu-sh-fixes'
+bc0970d5ac1d selftests: net: don't access /dev/stdout in pmtu.sh
+e4e4b6d568d2 selftests: net: fix available tunnels detection
+f7c25d8e17dd selftests: net: add missing config for pmtu.sh tests
+152ca51d8db0 drm/xe: Use LRC prefix rather than CTX prefix in lrc desc defines
+ebe3121400f2 Merge branch 'pds_core-various-fixes'
+bc90fbe0c318 pds_core: Rework teardown/setup flow to be more common
+e96094c1d11c pds_core: Clear BARs on reset
+7e82a8745b95 pds_core: Prevent race issues involving the adminq
+951705151e50 pds_core: Use struct pdsc for the pdsc_adminq_isr private data
+d321067e2cfa pds_core: Cancel AQ work on teardown
+d9407ff11809 pds_core: Prevent health thread from running during reset/remove
+4d322dce82a1 af_unix: fix lockdep positive in sk_diag_dump_icons()
+0d150beff26e nvme-fc: log human-readable opcode on timeout
+7d23e836b00e nvme: split out fabrics version of nvme_opcode_str()
+15b87e267b69 Merge branch 'selftests-net-a-couple-of-typos-fixes-in-key-management-rst-tests'
+6caf3adcc877 selftests/net: Repair RST passive reset selftest
+384aa16d3776 selftests/net: Rectify key counters checks
+d8f5df1fcea5 selftests/net: Argument value mismatch when calling verify_counters()
+f9e9115d0c01 nvme: take const cmd pointer in read-only helpers
+6f9a71c61183 nvme: remove redundant status mask
+4b6821940eeb nvme: return string as char *, not unsigned char *
+0945b43b4ef8 nvme-common: add module description
+48dae46676d1 nvme: enable retries for authentication commands
+bd2687f2e594 nvme: change __nvme_submit_sync_cmd() calling conventions
+f9ddefb6c0de nvme-auth: open-code single-use macros
+585b40e25dc9 net: dsa: mv88e6xxx: Fix failed probe due to unsupported C45 reads
+5dee6d692345 net: ipv4: fix a memleak in ip_setup_cork
+e028243003ad MAINTAINERS: Drop unreachable reviewer for Qualcomm ETHQOS ethernet driver
+ee36a3b345c4 cifs: make sure that channel scaling is done only once
+733025626866 drm/amdgpu: Reset IH OVERFLOW_CLEAR bit
+4f56acdee4c6 drm/amdgpu: remove asymmetrical irq disabling in vcn 4.0.5 suspend
+de4a733868df drm/amdgpu: drm/amdgpu: remove golden setting for gfx 11.5.0
+9c29282ecbee drm/amdkfd: reserve the BO before validating it
+16da399091dc drm/amdgpu: Fix missing error code in 'gmc_v6/7/8/9_0_hw_init()'
+97cba232549b drm/amd/display: Fix buffer overflow in 'get_host_router_total_dp_tunnel_bw()'
+492a1e67ee59 drm/amd/display: Add NULL check for kzalloc in 'amdgpu_dm_atomic_commit_tail()'
+8ef85a0ce24a drm/amd: Don't init MEC2 firmware when it fails to load
+bb34bc2cd3ee drm/amdgpu: Fix the warning info in mode1 reset
+faf51b201bc4 drm/amd/display: Fix dcn35 8k30 Underflow/Corruption Issue
+191cb4ed33a6 drm/amd/display: Underflow workaround by increasing SR exit latency
+39079fe8e660 drm/amd/display: fix incorrect mpc_combine array size
+31c2bf25eaf5 drm/amd/display: Fix DPSTREAM CLK on and off sequence
+b5abd7f983e1 drm/amd/display: fix USB-C flag update after enc10 feature init
+2ff33c759a42 drm/amd/display: increased min_dcfclk_mhz and min_fclk_mhz
+514312c07f6c Revert "drm/amd/display: initialize all the dpm level's stutter latency"
+4119734e06a7 drm/amdkfd: Use correct drm device for cgroup permission check
+c49bf4fcfc2f drm/amdkfd: Use S_ENDPGM_SAVED in trap handler
+961df3085416 drm/amdkfd: Correct partial migration virtual addr
+8059918a1377 netfilter: nft_ct: sanitize layer 3 and 4 protocol number in custom expectations
+259eb32971e9 netfilter: nf_log: replace BUG_ON by WARN_ON_ONCE when putting logger
+97f7cf1cd80e netfilter: ipset: fix performance regression in swap operation
+6e348067ee4b netfilter: conntrack: check SCTP_CID_SHUTDOWN_ACK for vtag setting in sctp_new
+97830f3c3088 binder: signal epoll threads of self-work
+776d45164844 netfilter: nf_tables: restrict tunnel object to NFPROTO_NETDEV
+fb366fc7541a netfilter: conntrack: correct window scaling with retransmitted SYN
+607aad1e4356 of: unittest: Fix compile in the non-dynamic case
+a9ef277488cf x86/kvm: Fix SEV check in sev_map_percpu_data()
+d52734d00b8e KVM: x86: Give a hint when Win2016 might fail to boot due to XSAVES erratum
+9e05d9b06757 KVM: x86: Check irqchip mode before create PIT
+d9807d60c145 riscv: mm: execute local TLB flush after populating vmemmap
+db2aad036e77 drm/amdgpu: move the drm client creation behind drm device registration
+041261ac4c36 drm/nouveau/svm: remove unused but set variables
+1cff237962e7 drm/nouveau/acr/ga102: remove unused but set variable
+99c001cb617d tracefs: Avoid using the ei->dentry pointer unnecessarily
+4fa4b010b83f eventfs: Initialize the tracefs inode properly
+d81786f53aec tracefs: Zero out the tracefs_inode when allocating it
+66bbea9ed644 ring-buffer: Clean ring_buffer_poll_wait() error return
+9217b91c6458 drm/amdgpu: Reset IH OVERFLOW_CLEAR bit
+615dd56ac537 drm/amdgpu: remove asymmetrical irq disabling in vcn 4.0.5 suspend
+01087a1974a1 drm/amdgpu: use PSP address query command
+a1eac5bd9127 drm/amdgpu: add PSP RAS address query command
+e4d65510e87e drm/amdgpu: drm/amdgpu: remove golden setting for gfx 11.5.0
+0c93bd495766 drm/amdkfd: reserve the BO before validating it
+e3854253a5f6 drm/amd/display: Fix buffer overflow in 'get_host_router_total_dp_tunnel_bw()'
+1c2806f6be23 drm/amd/display: Add NULL check for kzalloc in 'amdgpu_dm_atomic_commit_tail()'
+fa8a91b0e52c drm/amdgpu: Fix missing error code in 'gmc_v6/7/8/9_0_hw_init()'
+adb4d6a40d61 drm/amdgpu: Need to resume ras during gpu reset for gfx v9_4_3 sriov
+edfdde9013b7 drm/amdgpu: disable RAS feature when fini
+1731ba9b64f7 drm/amdgpu: Update boot time errors polling sequence
+c3ec8c4f9a47 drm/amd: Don't init MEC2 firmware when it fails to load
+2b9c3eb32a69 Input: bcm5974 - check endpoint type before starting traffic
+6764c317b6bb Merge tag 'scsi-fixes' of git://git.kernel.org/pub/scm/linux/kernel/git/jejb/scsi
+d83d8ae275c6 drm/xe: Make all GuC ABI shift values unsigned
+fdd0ae72b34e perf tools headers: update the asm-generic/unaligned.h copy with the kernel sources
+c9ec85153fea selftests: net: add missing config for GENEVE
+f3f8f0503168 wifi: fill in MODULE_DESCRIPTION()s for mt76 drivers
+c9013880284d wifi: fill in MODULE_DESCRIPTION()s for wilc1000
+35337ac47260 wifi: fill in MODULE_DESCRIPTION()s for wl18xx
+714ea2f109d9 wifi: fill in MODULE_DESCRIPTION()s for p54spi
+e063d2a05d71 wifi: fill in MODULE_DESCRIPTION()s for wcn36xx
+f8782ea450ad wifi: fill in MODULE_DESCRIPTION()s for ar5523
+257ca10c7317 wifi: fill in MODULE_DESCRIPTION()s for Broadcom WLAN
+2f2b503ea770 wifi: fill in MODULE_DESCRIPTION()s for wl1251 and wl12xx
+5b778e1c2e97 wifi: fill in MODULE_DESCRIPTION()s for wlcore
+996da37ffa82 drm/xe: Convert job timeouts from assert to warning
+6231c9e1a9f3 KVM: x86: make KVM_REQ_NMI request iff NMI pending for vcpu
+9189526c46f2 MAINTAINERS: Update i2c host drivers repository
+925bd5e08106 MAINTAINERS: Add Manivannan Sadhasivam as PCI Endpoint maintainer
+1e560864159d PCI/ASPM: Fix deadlock when enabling ASPM
+bfef491df670 kconfig: initialize sym->curr.tri to 'no' for all symbol types again
+9749c8684345 drm/amdgpu: Fix the warning info in mode1 reset
+1c1914d6e8c6 dma-buf: heaps: Don't track CMA dma-buf pages under RssFile
+358de8b4f201 kbuild: rpm-pkg: simplify installkernel %post
+82175d1f9430 kbuild: Replace tabs with spaces when followed by conditionals
+cda5f94e88b4 modpost: avoid using the alias attribute
+89876175c8c8 kbuild: fix W= flags in the help message
+8f7e91790738 of: property: fix typo in io-channels
+adf0c363ad2c dt-bindings: tpm: Drop type from "resets"
+4c654ec0ba0f dt-bindings: display: nxp,tda998x: Fix 'audio-ports' constraints
+2d3b3ab8d0d5 dt-bindings: xilinx: replace Piyush Mehta maintainership
+78366eed6853 drm/xe: Don't use __user error pointers
+97fd7a7e4e87 drm/xe: Annotate mcr_[un]lock()
+2468e8922d2f ALSA: hda/realtek: Apply headset jack quirk for non-bass alc287 thinkpads
+1e5a4dfe3834 drm/xe: drop display/ subdir from include directories
+f01ece502af0 drm/xe: move xe_display.[ch] under display/
+913b9d443a01 parisc: BTLB: Fix crash when setting up BTLB at CPU bringup
+51af8f255bda ahci: Extend ASM1061 43-bit DMA address quirk to other ASM106x parts
+764ad6b02777 HID: bpf: use __bpf_kfunc instead of noinline
+89be8aa5b0ec HID: bpf: actually free hdev memory after attaching a HID-BPF program
+7cdd2108903a HID: bpf: remove double fdget()
+b4a1f4eaf1d7 USB: serial: option: add Fibocom FM101-GL variant
+4451e8e8415e pinctrl: amd: Add IRQF_ONESHOT to the interrupt request
+03ee752f00fd drm/imx: prefer snprintf over sprintf
+345a36c4f1ba drm/amdgpu: prefer snprintf over sprintf
+e03ee2fe873e btrfs: do not ASSERT() if the newly created subvolume already got read
+a8df35619948 btrfs: forbid deleting live subvol qgroup
+0c309d66dacd btrfs: forbid creating subvol qgroups
+f884a9f9e592 btrfs: send: return EOPNOTSUPP on unknown flags
+1bbb19b6eb1b Merge tag 'erofs-for-6.8-rc3-fixes' of git://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs
+6af191034c8f Merge branch '1GbE' of git://git.kernel.org/pub/scm/linux/kernel/git/tnguy/net-queue
+1a89e24f8bfd devlink: Fix referring to hw_addr attribute during state validation
+f5c3eb4b7251 bridge: mcast: fix disabled snooping after long uptime
+b40f873a7c80 selftests: net: Add missing matchall classifier
+ac9762a74c7c misc: open-dice: Fix spurious lockdep warning
+a4e61de63e34 misc: fastrpc: Mark all sessions as invalid in cb_remove
+98323e9d7017 topology: Set capacity_freq_ref in all cases
+d1df9bfbf68c drm/xe: Only allow 1 ufence per exec / bind IOCTL
+2a6526c4f389 Merge tag 'linux_kselftest-kunit-fixes-6.8-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/shuah/linux-kselftest
+d1d873a9bfac Merge tag 'linux_kselftest-fixes-6.8-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/shuah/linux-kselftest
+80441f76ee67 Input: xpad - add Lenovo Legion Go controllers
+5a287d3d2b9d lsm: fix default return value of the socket_getpeersec_*() hooks
+10c02aad111d KVM: arm64: Fix circular locking dependency
+aa0e784dea7c efi/libstub: Add one kernel-doc comment
+2f77465b05b1 x86/efistub: Avoid placing the kernel below LOAD_PHYSICAL_ADDR
+c2a449a30fa2 KVM: selftests: Fail tests when open() fails with !ENOENT
+8ad485527348 KVM: selftests: Avoid infinite loop in hyperv_features when invtsc is missing
+46fee9e38995 KVM: selftests: Delete superfluous, unused "stage" variable in AMX test
+65612e993493 KVM: selftests: x86_64: Remove redundant newlines
+be7d51c5b468 drm/xe: Add batch buffer addresses to devcoredump
+5746eaaa805e drm/xe: Add functions to convert regular address to canonical address and back
+8945a46a7cba drm/xe: Use function to emit PIPE_CONTROL
+cd43106c9b05 drm/xe/guc: Reduce a print from warn to debug
+53ed2ac8fc1d soc: apple: mailbox: error pointers are negative integers
+9a9e8a7159ca drm/vmwgfx: Fix the lifetime of the bo cursor memory
+ed96cf7ad590 drm/vmwgfx: Fix vmw_du_get_cursor_mob fencing of newly-created MOBs
+0c10a15d2122 drm/vmwgfx: Add SPDX header to vmwgfx_drm.h
+9840d28f2514 drm/vmwgfx: Make all surfaces shareable
+935f795045a6 drm/vmwgfx: Refactor drm connector probing for display modes
+40ef8756fbdd dm writecache: allow allocations larger than 2GiB
+9cf11ce06ea5 dm stats: limit the number of entries
+bd504bcfec41 dm: limit the number of targets and parameter size area
+7104ba0f1958 phy: ti: phy-omap-usb2: Fix NULL pointer dereference for SRP
+a22fe1d6dec7 dmaengine: fix is_slave_direction() return false when DMA_DEV_TO_DEV
+8b1d72395635 parisc: Fix random data corruption from exception handler
+b54761f6e977 kselftest/seccomp: Report each expectation we assert as a KTAP test
+5820cfee443f kselftest/seccomp: Use kselftest output functions for benchmark
+f1fea725cc93 selftests/livepatch: fix and refactor new dmesg message code
+6500ad28fd5d spi: sh-msiof: avoid integer overflow in constants
+a3fa9838e814 regulator (max5970): Fix IRQ handler
+d877550eaf2d x86/fpu: Stop relying on userspace for info to fault in xsave buffer
+fe4c6ff50c68 drm/i915/xe2lpd: Move registers to PICA
+d5c7854b50e6 drm/i915/xe2lpd: Move D2D enable/disable
+129690fb229a USB: serial: qcserial: add new usb-id for Dell Wireless DW5826e
+12b17b4eb82a USB: serial: cp210x: add ID for IMST iM871A-USB
+aeacfd2dbebb drm/xe/xe2: Enable has_usm
+1f8c43b09ec6 tools include UAPI: Sync linux/mount.h copy with the kernel sources
+7814fe24a621 perf evlist: Fix evlist__new_default() for > 1 core PMU
+efe80f9c9063 tools headers: Update the copy of x86's mem{cpy,set}_64.S used in 'perf bench'
+f7c4cb4a3f77 ALSA: pcm: Add missing formats to formats list
+be220d2e5544 ALSA: hda: cs35l41: Support ASUS Zenbook UM3402YAR
+15d6daad8f8a tools headers x86 cpufeatures: Sync with the kernel sources to pick TDX, Zen, APIC MSR fence changes
+c16dfab33f99 ALSA: hda: cs35l41: Support additional ASUS Zenbook UX3402VA
+aa2b2eb39348 llc: call sock_orphan() at release time
+c7767f5c43df arm64: vdso32: Remove unused vdso32-offsets.h
+f8affba72548 Merge branch 'net-stmmac-dwmac-imx-time-based-scheduling-support'
+3b12ec8f618e net: stmmac: dwmac-imx: set TSO/TBS TX queues default settings
+4896bb7c0b31 net: stmmac: do not clear TBS enable bit on link up/down
+d104a6fef3fe arm64: scs: Disable LTO for SCS patching code
+2fa28abd1090 arm64: Revert "scs: Work around full LTO issue with dynamic SCS"
+60365049ccba ipv6: Ensure natural alignment of const ipv6 loopback and router addresses
+881f78f47255 xfs: remove conditional building of rt geometry validator functions
+20485e3a810c drm/hwmon: Fix abi doc warnings
+861c0981648f Merge tag 'jfs-6.8-rc3' of github.com:kleikamp/linux-shaggy
+9b7bd05bebfc Merge tag 'trace-v6.8-rc1-2' of git://git.kernel.org/pub/scm/linux/kernel/git/trace/linux-trace
+59c93583491a selftests: net: add missing config for nftables-backed iptables
+c44fc98f0a8f net: dsa: qca8k: fix illegal usage of GPIO
+6f3d7d5cedba Merge tag 'mm-hotfixes-stable-2024-01-28-23-21' of git://git.kernel.org/pub/scm/linux/kernel/git/akpm/mm
+788686e2d93a drm/amdgpu: use helper macro HW_ERR instead of Hardware error string
+132a6a78b598 drm/amdgpu/pm: Use macro definitions in the smu IH process function
+2bf85adfb304 drm/amd/display: 3.2.270
+e8911e0a53de drm/amd/display: [FW Promotion] Release 0.0.202.0
+b26b943a8dcf drm/amd/display: Populate invalid split index to be 0xF
+4ba9ca63e696 drm/amd/display: Fix dcn35 8k30 Underflow/Corruption Issue
+ed2466da2c1c drm/amd/display: clkmgr unittest with removal of warn & rename DCN35 ips handshake for idle
+2ba36e18566b drm/amd/display: fix DP audio settings
+5024ae7fa88c drm/amd/display: Underflow workaround by increasing SR exit latency
+c50c9c872e76 drm/amd/display: use correct phantom pipe when populating subvp pipe info
+607e1b0cf480 drm/amd/display: fix incorrect mpc_combine array size
+e8d131285c98 drm/amd/display: Fix DPSTREAM CLK on and off sequence
+f2a905b01c6d drm/amd/display: fix invalid reg access on DCN35 FPGA
+7fc0d111baad drm/amd/display: refine code for dmcub inbox1 ring buffer debug
+f341055b10bd drm/amd/display: Send DTBCLK disable message on first commit
+5549c37e3cf2 drm/amd/display: fix USB-C flag update after enc10 feature init
+13b3d6bdbeb4 drm/amd/display: add debugfs disallow edp psr
+fc9f47455ae1 drm/amd/display: For FPO and SubVP/DRR configs program vmin/max sel
+dcbf438d4834 drm/amd/display: Unify optimize_required flags and VRR adjustments
+d46fb0068c54 drm/amd/display: increased min_dcfclk_mhz and min_fclk_mhz
+2812b5add41e drm/amd/display: Wait for mailbox ready when powering up DMCUB
+05d3dfd3edba drm/amd/display: Wait before sending idle allow and after idle disallow
+6bd0960644ed Revert "drm/amd/display: initialize all the dpm level's stutter latency"
+9af68235ad3d drm/amd/display: Fix static screen event mask definition change
+ba162ae749a5 Documentation/gpu: Introduce a simple contribution list for display code
+21dd98b0ef89 Documentation/gpu: Add an explanation about the DC weekly patches
+d79833f34bdc Documentation/gpu: Add entry for the DIO component
+0fba33311e63 Documentation/gpu: Add entry for OPP in the kernel doc
+b8c1c3a82e75 Documentation/gpu: Add kernel doc entry for MPC
+c371aa12d817 Documentation/gpu: Add kernel doc entry for DPP
+50d3cf5e5a21 drm/amdkfd: Use correct drm device for cgroup permission check
+7297ff96ea57 drm/amdkfd: Use S_ENDPGM_SAVED in trap handler
+34e98e5b07fc drm/amdkfd: Correct partial migration virtual addr
+c0125b848abe drm/amdgpu: move the drm client creation behind drm device registration
+9ccfe80d022d drm/amd/display: Fix potential NULL pointer dereferences in 'dcn10_set_output_transfer_func()'
+b8e9a995fbda drm/amd/include: Add missing registers/mask for DCN316 and 350
+3595678ff833 Documentation/gpu: Add simple doc page for DCHUBBUB
+ee0a54a6ef6b Documentation/gpu: Add basic page for HUBP
+a91cf53a1077 drm/amdgpu: update documentation on new chips
+76b367a2d831 io_uring/net: limit inline multishot retries
+704ea888d646 io_uring/poll: add requeue return code from poll multishot handling
+91e5d765a82f io_uring/net: un-indent mshot retry path in io_recv_finish()
+e84b01a880f6 io_uring/poll: move poll execution helpers higher up
+5513c5d0fb3d ASoC: amd: acp: Fix support for a Huawei Matebook laptop
+5d71e6000451 arm64: sun50i-h616: Add DMA and SPDIF controllers
+ccbca118ef1a NFSv4.1: Assign the right value for initval and retries for rpc timeout
+bbc404d20d1b ixgbe: Fix an error handling path in ixgbe_read_iosf_sb_reg_x550()
+f1f6a6b1830a e1000e: correct maximum frequency adjustment values
+7a9dc944f129 ASoC: sun4i-spdif: Add Allwinner H616 compatible
+57b3c130d97e ASoC: sun4i-spdif: Fix requirements for H6
+0adf963b8463 ASoC: sunxi: sun4i-spdif: Add support for Allwinner H616
+9f5971bdf78e drm/xe: Grab mem_access when disabling C6 on skip_guc_pc platforms
+a38125f188c1 KVM: selftests: s390x: Remove redundant newlines
+93e43e50b80b KVM: selftests: riscv: Remove redundant newlines
+95be17e4008b KVM: selftests: aarch64: Remove redundant newlines
+250e138d8768 KVM: selftests: Remove redundant newlines
+02add85a9eef KVM: selftests: Reword the NX hugepage test's skip message to be more helpful
+e4ad71e2367f MAINTAINERS: wifi: brcm80211: cleanup entry
+c6dce23ec993 ASoC: amd: yc: Add DMI quirk for MSI Bravo 15 C7VF
+21fdd8dd3726 tools headers UAPI: Sync unistd.h to pick {list,stat}mount, lsm_{[gs]et_self_attr,list_modules} syscall numbers
+346f59d1e8ed ALSA: usb-audio: Check presence of valid altsetting control
+6d3c7fb17b4c nvme: use ctrl state accessor
+e42e29cc4423 Revert "jfs: fix shift-out-of-bounds in dbJoin"
+c92c108403b0 Revert "drm/amd/pm: fix the high voltage and temperature issue"
+4db102dcb039 Merge drm/drm-next into drm-misc-next
+577e4432f3ac tcp: add sanity checks to rx zerocopy
+bfb007aebe6b nfc: nci: free rx_data_reassembly skb on NCI device cleanup
+37e8c97e5390 net: hsr: remove WARN_ONCE() in send_hsr_supervision_frame()
+8eed4e00a370 x86/lib: Revert to _ASM_EXTABLE_UA() for {get,put}_user() fixups
+aeb262c35335 drm/panel: simple: Add EDT ETML1010G3DRA panel
+7a61bbc10a7b dt-bindings: display: panel-simple: add ETML1010G3DRA
+622cd3daa8ea fs/ntfs3: Slightly simplify ntfs_inode_printk()
+1f5fa4b3b85c fs/ntfs3: Add ioctl operation for directories (FITRIM)
+731ab1f98288 fs/ntfs3: Fix oob in ntfs_listxattr
+b2dd7b953c25 fs/ntfs3: Fix an NULL dereference bug
+ebd4acc0cbea riscv: Fix wrong size passed to local_flush_tlb_range_asid()
+9c64e749cebd drm/virtio: Set segment size for virtio_gpu device
+82ef1a535657 xfs: reset XFS_ATTR_INCOMPLETE filter on node removal
+c0787fcff88b Revert "ALSA: usb-audio: Skip setting clock selector for single connections"
+f0d78972f27d ALSA: hda/realtek: Enable Mute LED on HP Laptop 14-fq0xxx
+efb56d84dd9c ALSA: hda/realtek: Fix the external mic not being recognised for Acer Swift 1 SF114-32
+ec4d82f855ce thunderbolt: Fix setting the CNS bit in ROUTER_CS_5
+d68968440b1a fs/ntfs3: Update inode->i_size after success write into compressed file
+652cfeb43d6b fs/ntfs3: Fixed overflow check in mi_enum_attr()
+1b7dd28e14c4 fs/ntfs3: Correct function is_rst_area_valid
+4fd6c08a16d7 fs/ntfs3: Use i_size_read and i_size_write
+5ca87d01eba7 fs/ntfs3: Prevent generic message "attempt to access beyond end of device"
+d6d33f03baa4 fs/ntfs3: use non-movable memory for ntfs3 MFT buffer cache
+c79f52f0656e io_uring/rw: ensure poll based multishot read retries appropriately
+6bb3f7f4c3f4 bcachefs: unlock parent dir if entry is not found in subvolume deletion
+eba38cc7578b bcachefs: Fix build on parisc by avoiding __multi3()
+41bccc98fb79 Linux 6.8-rc2
+3eb5ca857d38 Merge tag 'cxl-fixes-6.8-rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/cxl/cxl
+29142dc92c37 tracefs: remove stale 'update_gid' code
+4854cf9c61d0 Merge tag 'mips-fixes_6.8_1' of git://git.kernel.org/pub/scm/linux/kernel/git/mips/linux
+648f575d5e62 Merge tag 'locking_urgent_for_v6.8_rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+0e4363ac1a21 Merge tag 'irq_urgent_for_v6.8_rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+90db544ebaf4 Merge tag 'timers_urgent_for_v6.8_rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+9d451912dbef Merge tag 'x86_urgent_for_v6.8_rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+a08ebda97e2a Merge tag 'fixes-2024-01-28' of git://git.kernel.org/pub/scm/linux/kernel/git/rppt/memblock
+6f6c72acddf4 iio: move LIGHT_UVA and LIGHT_UVB to the end of iio_modifier
+cc575083cdcf drm/loongson: Error out if no VRAM detected
+20e08a720cc5 parisc: Drop unneeded semicolon in parse_tree_node()
+c8708d758e71 parisc: Prevent hung tasks when printing inventory on serial console
+b9402e3b9728 parisc: Check for valid stride size for cache flushes
+2751153b9945 parisc: Make RO_DATA page aligned in vmlinux.lds.S
+b35f8dbbce81 serial: max310x: prevent infinite while() loop in port startup
+8afa6c6decea serial: max310x: fail probe if clock crystal is unstable
+93cd256ab224 serial: max310x: improve crystal stable clock detection
+0419373333c2 serial: max310x: set default value when reading clock ready bit
+30926783a468 serial: core: Fix atomicity violation in uart_tiocmget
+86ee55e9bc7f serial: 8250_pci1xxxx: fix off by one in pci1xxxx_process_read_data()
+e15c99be0c91 tty: serial: Fix bit order in RS485 flag definitions
+f2e5d3de7e1f usb: typec: tcpm: fix the PD disabled case
+f3be347ea42d usb: ucsi_acpi: Quirk to ack a connector change ack cmd
+2840143e393a usb: ucsi_acpi: Fix command completion handling
+c9aed03a0a68 usb: ucsi: Add missing ppm_lock
+3caf2b2ad733 usb: ulpi: Fix debugfs directory leak
+b717dfbf73e8 Revert "usb: typec: tcpm: fix cc role at port reset"
+032178972f8e usb: gadget: pch_udc: fix an Excess kernel-doc warning
+b2d2d7ea0dd0 usb: f_mass_storage: forbid async queue when shutdown happen
+f17c34ffc792 USB: hub: check for alternate port before enabling A_ALT_HNP_SUPPORT
+cc509b6a47e7 usb: chipidea: core: handle power lost in workqueue
+61a348857e86 usb: dwc3: gadget: Fix NULL pointer dereference in dwc3_gadget_suspend
+de4b5b28c87c usb: dwc3: pci: add support for the Intel Arrow Lake-H
+12783c0b9e2c usb: core: Prevent null pointer dereference in update_port_device_state
+7c4650ded49e xhci: handle isoc Babble and Buffer Overrun events properly
+5372c65e1311 xhci: process isoc TD properly when there was a transaction error mid TD.
+09f197225cbc xhci: fix off by one check when adding a secondary interrupter.
+a54a594d72f2 xhci: fix possible null pointer dereference at secondary interrupter removal
+9dc292413c56 usb: gadget: ncm: Fix endianness of wMaxSegmentSize variable in ecm_desc
+520b391e3e81 usb: host: xhci-plat: Add support for XHCI_SG_TRB_CACHE_SIZE_QUIRK
+817349b6d26a usb: dwc3: host: Set XHCI_SG_TRB_CACHE_SIZE_QUIRK
+20d03ae36ec0 usb: gadget: ncm: Fix indentations in documentation of NCM section
+becc24e96ad4 perf vendor events intel: Alderlake/sapphirerapids metric fixes
+e30dca91e566 tools headers UAPI: Sync kvm headers with the kernel sources
+8a696a29c690 Merge tag 'platform-drivers-x86-v6.8-2' of git://git.kernel.org/pub/scm/linux/kernel/git/pdx86/platform-drivers-x86
+955340433a79 Merge tag 'loongarch-fixes-6.8-1' of git://git.kernel.org/pub/scm/linux/kernel/git/chenhuacai/linux-loongson
+cd2286fc5775 Merge tag 'xfs-6.8-fixes-1' of git://git.kernel.org/pub/scm/fs/xfs/xfs-linux
+064a4a5bfac8 Merge tag 'bcachefs-2024-01-26' of https://evilpiepirate.org/git/bcachefs
+8c6f6a76465a Merge tag '6.8-rc2-smb3-server-fixes' of git://git.samba.org/ksmbd
+d1bba17e20d5 Merge tag '6.8-rc1-smb3-client-fixes' of git://git.samba.org/sfrench/cifs-2.6
+397586506c3d modpost: Add '.ltext' and '.ltext.*' to TEXT_SECTIONS
+846cfbeed09b um: Fix adding '-no-pie' for clang
+6c20faec8ffc kbuild: defconf: use SRCARCH to find merged configs
+915644189c22 hwmon: (pmbus/mp2975) Correct comment inside 'mp2975_read_byte_data'
+6db053cd949f staging: iio: ad5933: fix type mismatch regression
+a69eeaad093d iio: humidity: hdc3020: fix temperature offset
+59be5c358501 mips: Call lose_fpu(0) before initializing fcr31 in mips_set_personality_nan
+822df315cc7c MIPS: loongson64: set nid for reserved memblock region
+c91c6b2f08af Revert "MIPS: loongson64: set nid for reserved memblock region"
+62b424810535 net: lan966x: Fix port configuration when using SGMII interface
+586e40aa883c MAINTAINERS: Add connector headers to NETWORKING DRIVERS
+0a186b49bba5 batman-adv: mcast: fix memory leak on deleting a batman-adv interface
+59f7ea703c38 batman-adv: mcast: fix mcast packet type counter on timeouted nodes
+e622502c310f ipmr: fix kernel panic when forwarding mcast packets
+d9281660ff3f erofs: relaxed temporary buffers allocation on readahead
+348769d1cbfa drm/xe: correct the assertion for number of PTEs
+3a5879d495b2 Merge tag 'ata-6.8-rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/libata/linux
+914e17088e91 Merge tag 'block-6.8-2024-01-26' of git://git.kernel.dk/linux
+cced1c5e72b7 Merge tag 'io_uring-6.8-2024-01-26' of git://git.kernel.dk/linux
+667c889308a1 Merge tag 'thermal-6.8-rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm
+0c879d88138c Merge tag 'pm-6.8-rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm
+70da22eb63f7 Merge tag 'docs-6.8-fixes' of git://git.lwn.net/linux
+99b817c173cd lsm: fix the logic in security_inode_getsecctx()
+dfa988b4c7c3 net: dsa: mt7530: fix 10M/100M speed on MT7988 switch
+8d975c15c0cd ip6_tunnel: make sure to pull inner header in __ip6_tnl_rcv()
+89abe6283753 selftests: net: give more time for GRO aggregation
+d3cb3b0088ca selftests: net: add missing required classifier
+281cb9d65a95 bnxt_en: Make PTP timestamp HWRM more silent
+c3dfcdb65ec1 net/smc: fix incorrect SMC-D link group matching logic
+168174d78157 Merge tag 'drm-fixes-2024-01-27' of git://anongit.freedesktop.org/drm/drm
+d0266d7ab161 Revert "power: supply: qcom_battmgr: Register the power supplies after PDR is up"
+2047b0b27508 Merge tag 'asm-generic-6.8-2' of git://git.kernel.org/pub/scm/linux/kernel/git/arnd/asm-generic
+ae971859f810 Merge tag 'arm-fixes-6.8-1' of git://git.kernel.org/pub/scm/linux/kernel/git/soc/soc
+c60fe56c169e hwmon: (pmbus/mp2975) Fix driver initialization for MP2975 device
+48fa8ec61569 Merge tag 'spi-fix-v6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi
+5f91b9ba5aca Merge tag 'gpio-fixes-for-v6.8-rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux
+d688b86a290e drm/xe/guc: Flush G2H handler when turning off CTs
+83a7173bacc9 drm/xe: Move TLB invalidation reset before HW reset
+dc75d03716fe drm/xe/guc: Add more GuC CT states
+4aeb083707d6 Merge tag 'media/v6.8-3' of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
+0958b33ef5a0 tracing/trigger: Fix to return error if failed to alloc snapshot
+fcf67d82b8b8 selftests: net: add missing config for big tcp tests
+1abdf288b0ef platform/x86: touchscreen_dmi: Add info for the TECLAST X16 Plus tablet
+8c898ec07a2f platform/x86/intel/ifs: Call release_firmware() when handling errors.
+a692a86efe97 platform/x86/amd/pmf: Fix memory leak in amd_pmf_get_pb_data()
+cedecdba60f4 platform/x86/amd/pmf: Get ambient light information from AMD SFH driver
+71ce046327cf drm/ttm: Make sure the mapped tt pages are decrypted when needed
+118063f38033 platform/x86/amd/pmf: Get Human presence information from AMD SFH driver
+517621b70600 drm/vmwgfx: Fix possible null pointer derefence with invalid contexts
+97aab852c4b9 hwmon: gigabyte_waterforce: Fix locking bug in waterforce_get_status()
+f3bdd82c5834 Merge branch 'pm-cpufreq'
+987940f05735 Merge tag 'drm-misc-fixes-for-v6.8-rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/daeinki/drm-exynos into drm-fixes
+4d7acc8f48bc Revert "nouveau: push event block/allowing out of the fence context"
+11f563320917 Merge tag 'kvm-riscv-6.8-2' of https://github.com/kvm-riscv/linux into HEAD
+9c4a1126ad9c Merge tag 'drm-intel-fixes-2024-01-26' of git://anongit.freedesktop.org/drm/drm-intel into drm-fixes
+ddd2b472a1b7 Merge tag 'drm-misc-fixes-2024-01-26' of git://anongit.freedesktop.org/drm/drm-misc into drm-fixes
+3f5198c7f672 Merge tag 'kvm-s390-master-6.8-1' of https://git.kernel.org/pub/scm/linux/kernel/git/kvms390/linux into HEAD
+00aab7dcb226 HID: i2c-hid-of: fix NULL-deref on failed power up
+f3e17b42b28d drm/vmwgfx: Add SVGA_3D_CMD_DEFINE_GB_SURFACE_V4 to command array.
+47c5dd66c184 nvmet-tcp: fix nvme tcp ida memory leak
+a7a6a01f88e8 x86/efistub: Give up if memory attribute protocol returns an error
+7bbe8f0071df perf tools: Fix calloc() arguments to address error introduced in gcc-14
+eeca59a6e8e6 ALSA: usb-audio: Support read-only clock selector control
+79baac8acfc6 perf top: Remove needless malloc(0) call that triggers -Walloc-size
+39af67413997 perf build: Make minimal shellcheck version to v0.6.0
+1233d1d54b7f tools headers UAPI: Update tools's copy of drm.h headers to pick DRM_IOCTL_MODE_CLOSEFB
+61f61c89fa5d MAINTAINERS: Add Andreas Larsson as co-maintainer for arch/sparc
+9a8dd2f24d1c perf test shell daemon: Make signal test less racy
+1c2124ec8431 perf test shell script: Fix test for python being disabled
+a734c7f96975 perf test: Workaround debug output in list test
+79bacb6ad73c perf list: Add output file option
+9d95c6be48fc perf list: Switch error message to pr_err() to respect debug settings (-v)
+2dac1f089add perf test: Fix 'perf script' tests on s390
+b0dc99215598 tools headers UAPI: Sync linux/fcntl.h with the kernel sources
+174372668933 tools arch x86: Sync the msr-index.h copy with the kernel sources to pick IA32_MKTME_KEYID_PARTITIONING
+690811f0128e tools headers uapi: Sync linux/stat.h with the kernel sources to pick STATX_MNT_ID_UNIQUE
+ff3d5d04db07 drm: bridge: samsung-dsim: Don't use FORCE_STOP_STATE
+1f4a994be2c3 riscv: dts: sophgo: separate sg2042 mtime and mtimecmp to fit aclint format
+cc4b2dd95f0d erofs: fix infinite loop due to a race of filling compressed_bvecs
+1b023d475ae9 wifi: mac80211: Drop WBRF debugging statements
+3a3ef3940798 wifi: iwlwifi: mvm: skip adding debugfs symlink for reconfig
+b743287d7a00 wifi: cfg80211: fix wiphy delayed work queueing
+353d321f63f7 wifi: iwlwifi: fix double-free bug
+4bf2a626dc4b MIPS: lantiq: register smp_ops on non-smp platforms
+ce7b1b97776e MIPS: loongson64: set nid for reserved memblock region
+abcabb9e30a1 MIPS: reserve exception vector space ONLY ONCE
+dd3c33ccbb8f MIPS: BCM63XX: Fix missing prototypes
+4073dbbc56ba drm/i915: Convert PLL flags to booleans
+33c7760226c7 drm/i915: Suppress old PLL pipe_mask checks for MG/TC/TBT PLLs
+d283ee5662c6 drm/i915: Include the PLL name in the debug messages
+96204e15310c mm: thp_get_unmapped_area must honour topdown preference
+c5a2f74db71a crypto: caam - fix asynchronous hash
+e1d54d153fc3 crypto: qat - fix arbiter mapping generation algorithm for QAT 402xx
+9b3058d1f456 MAINTAINERS: remove myself as iwlwifi driver maintainer
+48ef9e87b407 LoongArch: KVM: Add returns to SIMD stubs
+614f362918c7 LoongArch: KVM: Fix build due to API changes
+5056c596c3d1 LoongArch/smp: Call rcutree_report_cpu_starting() at tlb_init()
+4ef9ad19e176 mm: huge_memory: don't force huge page alignment on 32 bit
+67695f18d559 userfaultfd: fix mmap_changing checking in mfill_atomic_hugetlb
+d021b442cf31 selftests/mm: ksm_tests should only MADV_HUGEPAGE valid memory
+6f9dc684cae6 scs: add CONFIG_MMU dependency for vfree_atomic()
+e4e3df290f65 mm/memory: fix folio_set_dirty() vs. folio_mark_dirty() in zap_pte_range()
+db44c658f798 mm/huge_memory: fix folio_set_dirty() vs. folio_mark_dirty()
+52e63d67b5bb selftests/mm: Update va_high_addr_switch.sh to check CPU for la57 flag
+91b80cc5b39f selftests: mm: fix map_hugetlb failure on 64K page size systems
+0fe8ff51efb3 MAINTAINERS: supplement of zswap maintainers update
+4434a56ec209 stackdepot: make fast paths lock-less again
+c2a292545cd4 stackdepot: add stats counters exported via debugfs
+f6564fce256a mm, kmsan: fix infinite recursion due to RCU critical section
+9319b647902c mm/writeback: fix possible divide-by-zero in wb_dirty_limits(), again
+bc29036e1da1 selftests/mm: switch to bash from sh
+0d7e68c02718 MAINTAINERS: add man-pages git trees
+63fd327016fd mm: memcontrol: don't throttle dying tasks on memory.high
+c4608d1bf7c6 mm: mmap: map MAP_STACK to VM_NOHUGEPAGE
+4dca82d14174 uprobes: use pagesize-aligned virtual address when replacing pages
+f8ee4361b7be selftests/mm: mremap_test: fix build warning
+19d3e2218077 fs/hugetlbfs/inode.c: mm/memory-failure.c: fix hugetlbfs hwpoison handling
+ab4443fe3ca6 readahead: avoid multiple marked readahead pages
+66dbd9004a55 drm/sched: Drain all entities in DRM sched run job worker
+77fe8f195737 Merge tag 'amd-drm-fixes-6.8-2024-01-25' of https://gitlab.freedesktop.org/agd5f/linux into drm-fixes
+83cd3be8648f Merge tag 'drm-xe-fixes-2024-01-25' of https://gitlab.freedesktop.org/drm/xe/kernel into drm-fixes
+ff63cc2e9506 net: phy: mediatek-ge-soc: sync driver with MediaTek SDK
+cae1f1c36661 net: ethernet: mtk_eth_soc: set DMA coherent mask to get PPE working
+d833683d4385 Merge branch 'nfp-flower-a-few-small-conntrack-offload-fixes'
+3a007b8009b5 nfp: flower: fix hardware offload for the transfer layer port
+cefa98e806fd nfp: flower: add hardware offload check for post ct entry
+534326711000 gve: Fix skb truesize underestimation
+fc836129f708 selftests/net/lib: update busywait timeout value
+d2fda304bb73 bcachefs: __lookup_dirent() works in snapshot, not subvol
+5af2c3f44e00 Merge tag 'md-6.8-20240126' of https://git.kernel.org/pub/scm/linux/kernel/git/song/md into block-6.8
+39b383d77961 selftests: tcp_ao: set the timeout to 2 minutes
+ce36ea754051 Merge branch 'selftests-net-a-few-fixes'
+4acffb66630a selftests: net: explicitly wait for listener ready
+f5173fe3e13b selftests: net: included needed helper in the install targets
+98cb12eb52a7 selftests: net: remove dependency on ebpf tests
+b64787840080 selftests: tcp_ao: add a config file
+8d35217149da drm/msm/mdss: specify cfg bandwidth for SDM670
+8c2ae772fe08 spi: fix finalize message on error return
+c82eb25c5f00 drm/amd/display: "Enable IPS by default"
+d45669eb5e68 drm/amd: Add a DC debug mask for IPS
+8894b9283afd drm/amd/display: Disable ips before dc interrupt setting
+f37f7979202d drm/amd/display: Replay + IPS + ABM in Full Screen VPB
+196107eb1e15 drm/amd/display: Add IPS checks before dcn register access
+955406e6fd24 drm/amd/display: Add Replay IPS register for DMUB command table
+ff8caade7429 drm/amd/display: Allow IPS2 during Replay
+3380fcad2c90 drm/amdgpu/gfx11: set UNORD_DISPATCH in compute MQDs
+03ff6d7238b7 drm/amdgpu/gfx10: set UNORD_DISPATCH in compute MQDs
+e7a8594cc2af drm/amd/amdgpu: Assign GART pages to AMD device mapping
+f1807682de0e drm/amd/pm: Fetch current power limit from FW
+bc8f6d42b133 drm/amdgpu: Fix null pointer dereference
+89a7c0bd7491 drm/amdgpu: Show vram vendor only if available
+30269954745c drm/amd/pm: update the power cap setting
+90751bdeee4e drm/amdgpu: Avoid fetching vram vendor information
+ca1ffb174f16 drm/amdgpu/pm: Fix the power source flag error
+a58371d632eb drm/amd/display: Fix uninitialized variable usage in core_link_ 'read_dpcd() & write_dpcd()' functions
+fdaca31a7668 drm/amd/pm: udpate smu v13.0.6 message permission
+362936d613e8 amdgpu/drm: Use vram manager for virtualization page retirement
+2474414c60b7 drm/amdgpu: Add RAS_POISON_READY host response message
+ed1e1e42fd68 drm/amdgpu: Support passing poison consumption ras block to SRIOV
+1630c6ded587 drm/amd/display: "Enable IPS by default"
+85155f5b55b5 drm/amd: Add a DC debug mask for IPS
+67bbf55bd3c7 drm/amd/display: Disable ips before dc interrupt setting
+c0c48f0d61ff drm/amdgpu: adjust aca init/fini sequence to match gpu reset
+6eb726a082e5 drm/amdgpu: add aca sysfs remove support
+4b09715f1504 drm/amd/display: Fix a potential buffer overflow in 'dp_dsc_clock_en_read()'
+c84a7e21db79 drm/amdgpu: Fix module unload hang with RAS enabled
+1e201202eda1 drm/amdgpu/pm: Add default case for smu IH process func
+4953be13bebb drm/amdgpu: convert some variable sized arrays to [] style
+fc8f5a29d4cf drm/amdgpu/gfx11: set UNORD_DISPATCH in compute MQDs
+ca01082353d4 drm/amdgpu/gfx10: set UNORD_DISPATCH in compute MQDs
+8352ca1090d1 drm/amd/amdgpu: Assign GART pages to AMD device mapping
+8d1717fb647d drm/amdgpu: Fix return type in 'aca_bank_hwip_is_matched()'
+6add38716548 drm/amd/pm: Fetch current power limit from FW
+693d4e8861a5 drm/amdgpu/pptable: convert some variable sized arrays to [] style
+ecb1b8288dc7 Merge tag 'net-6.8-rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+bdc010200eb5 Merge tag 'ovl-fixes-6.8-rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/overlayfs/vfs
+a658e0e98688 Merge tag 'vfs-6.8-rc2.netfs' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+b9fa4cbd8415 Merge tag 'nfsd-6.8-1' of git://git.kernel.org/pub/scm/linux/kernel/git/cel/linux
+3cb9871f8160 Merge tag 'urgent-rcu.2024.01.24a' of https://github.com/neeraju/linux
+0d1d824a4ac1 Merge tag 'samsung-fixes-6.8' of https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux into arm/fixes
+8ad2c84e2ecb Merge tag 'ffa-fixes-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/sudeep.holla/linux into arm/fixes
+d77b016bc917 Merge tag 'scmi-fixes-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/sudeep.holla/linux into arm/fixes
+5e2400f11d4d arm64: dts: Fix TPM schema violations
+8412c47d6843 ARM: dts: Fix TPM schema violations
+20730e9b2778 ahci: add 43-bit DMA address quirk for ASMedia ASM1061 controllers
+40b7835e74e0 selftests/landlock: Fix fs_test build with old libc
+116099ed345c selftests/landlock: Fix net_test build with old libc
+c6878e47431c drm/xe: Fix crash in trace_dma_fence_init()
+b9328fd636bd x86/CPU/AMD: Add more models to X86_FEATURE_ZEN5
+0a5bd0ffe790 Merge branch 'tsnep-xdp-fixes'
+9a91c05f4bd6 tsnep: Fix XDP_RING_NEED_WAKEUP for empty fill ring
+50bad6f797d4 tsnep: Remove FCS for XDP data path
+5da459716356 Merge tag 'mlx5-fixes-2024-01-24' of git://git.kernel.org/pub/scm/linux/kernel/git/saeed/linux
+fdf8e6d18c6d Merge tag 'for-netdev' of https://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf
+5e3448077350 net: fec: fix the unhandled context fault from smmu
+27d19268cf39 accel/ivpu: Improve recovery and reset support
+264b271d12d0 accel/ivpu: Improve stability of ivpu_submit_ioctl()
+f1cc6aceecd0 accel/ivpu: Fix dev open/close races with unbind
+a78a8da51b36 drm/ttm: replace busy placement with flags v6
+9a574ea9069b tick/sched: Preserve number of idle sleeps across CPU hotplug events
+a2933a8759a6 selftests: bonding: do not test arp/ns target with mode balance-alb/tlb
+f9f031dd21a7 drm/i915/psr: Only allow PSR in LPSP mode on HSW non-ULT
+644649553508 clocksource: Skip watchdog check for large watchdog intervals
+a3bdcdd022c6 HID: hidraw: fix a problem of memory leak in hidraw_release()
+9f3fe29d77ef md: fix a suspicious RCU usage warning
+ebeae8adf89d ksmbd: fix global oob in ksmbd_nl_policy
+a717932db11e Merge tag 'nf-24-01-24' of git://git.kernel.org/pub/scm/linux/kernel/git/netfilter/nf
+d76779dd3681 cxl/region：Fix overflow issue in alloc_hpa()
+b16702be210b Merge tag 'exynos-drm-fixes-for-v6.8-rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/daeinki/drm-exynos into drm-fixes
+e5767a95abf7 Merge tag 'drm-misc-next-fixes-2024-01-19' of git://anongit.freedesktop.org/drm/drm-misc into drm-fixes
+b8c68345949c Merge tag 'drm-intel-next-fixes-2024-01-19' of git://anongit.freedesktop.org/drm/drm-intel into drm-fixes
+97cf5d53b481 erofs: get rid of unneeded GFP_NOFS
+f6cc4b6a3ae5 fjes: fix memleaks in fjes_hw_setup
+6098d87eaf31 Merge tag 'ceph-for-6.8-rc2' of https://github.com/ceph/ceph-client
+f22face166ef Merge tag 'integrity-v6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/zohar/linux-integrity
+9d71bc833f57 Merge branch 'net-bpf_xdp_adjust_tail-and-intel-mbuf-fixes'
+0cbb08707c93 i40e: update xdp_rxq_info::frag_size for ZC enabled Rx queue
+a045d2f2d03d i40e: set xdp_rxq_info::frag_size
+fbadd83a612c xdp: reflect tail increase for MEM_TYPE_XSK_BUFF_POOL
+3de38c871742 ice: update xdp_rxq_info::frag_size for ZC enabled Rx queue
+290779905d09 intel: xsk: initialize skb_frag_t::bv_offset in ZC drivers
+2ee788c06493 ice: remove redundant xdp_rxq_info registration
+83014323c642 i40e: handle multi-buffer packets that are shrunk by xdp prog
+ad2047cf5d93 ice: work on pre-XDP prog frag count
+c5114710c8ce xsk: fix usage of multi-buffer BPF helpers for ZC XDP
+f7f6aa8e2438 xsk: make xsk_buff_pool responsible for clearing xdp_buff::flags
+269009893146 xsk: recycle buffer in case Rx queue was full
+7f3d03c48b1e drm/msm/dpu: check for valid hw_pp in dpu_encoder_helper_phys_cleanup
+77be22473b28 Merge branch 'fix-module_description-for-net-p2'
+bdc6734115d7 net: fill in MODULE_DESCRIPTION()s for rvu_mbox
+07d1e0ce8743 net: fill in MODULE_DESCRIPTION()s for litex
+8183c470c176 net: fill in MODULE_DESCRIPTION()s for fsl_pq_mdio
+2e8757648855 net: fill in MODULE_DESCRIPTION()s for fec
+07c42d237567 net: fill in MODULE_DESCRIPTION()s for enetc
+27881ca8c8e1 net: fill in MODULE_DESCRIPTION()s for nps_enet
+53c83e2d3648 net: fill in MODULE_DESCRIPTION()s for ep93xxx_eth
+bb567fbbbbb4 net: fill in MODULE_DESCRIPTION()s for liquidio
+39535d7ff6c1 net: fill in MODULE_DESCRIPTION()s for Broadcom bgmac
+f5e414167be7 net: fill in MODULE_DESCRIPTION()s for 8390
+0879020a7817 selftests: netdevsim: fix the udp_tunnel_nic test
+439987f6f471 drm/xe: don't build debugfs files when CONFIG_DEBUG_FS=n
+096386a5bcf0 bcachefs: discard path uses unlock_long()
+fcccdafd91f8 drm/msm/dp: return correct Colorimetry for DP_TEST_DYNAMIC_RANGE_CEA case
+77e8aad5519e drm/msms/dp: fixed link clock divider bits be over written in BPC unknown case
+0719b5338a0c selftests: net: fix rps_default_mask with >32 CPUs
+1793ce9f205e drm/msm/dpu: fix kernel-doc warnings
+43751d3da708 kunit: Mark filter* params as rw
+cf10015a24f3 Merge tag 'execve-v6.8-rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/kees/linux
+3eab830189d9 uselib: remove use of __FMODE_EXEC
+1ed4b5631002 Revert "KEYS: encrypted: Add check for strsep"
+4104e634bba4 drm/i915/gt: Reflect the true and current status of rc6_enable
+9f538b415db8 net: mvpp2: clear BM pool before initialization
+a5f5eee282a0 net: stmmac: Wait a bit for the reset to take effect
+443b349019f2 samples/cgroup: add .gitignore file for generated samples
+90383cc07895 exec: Distinguish in_execve from in_exec
+4759ff71f23e exec: Check __FMODE_EXEC instead of in_execve for LSMs
+28a98c39fa9b drm/xe: Remove additional spaces in devcoredump HW Engines section
+89e394f0db47 drm/xe: Print registers spread in 2 u32 as u64
+4376cee62092 drm/xe: Print more device information in devcoredump
+facd388708f0 drm/xe: Stash GMD_ID value in xe_gt
+d0009effa886 netfilter: nf_tables: validate NFPROTO_* family
+f342de4e2f33 netfilter: nf_tables: reject QUEUE/DROP verdict parameters
+b462579b2b86 netfilter: nf_tables: restrict anonymous set and map names to 16 bytes
+c9d9eb9c53d3 netfilter: nft_limit: reject configurations that cause integer overflow
+83ef64ebde37 drm/xe: Nuke xe from xe_devcoredump
+98fefec8c381 drm/xe: Change devcoredump functions parameters to xe_sched_job
+c65908c33b80 drm/xe: Remove double new lines in devcoredump
+01acb2e8666a netfilter: nft_chain_filter: handle NETDEV_UNREGISTER for inet/ingress basechain
+b253d87fd78b netfilter: nf_tables: cleanup documentation
+f9f4b0c6425e spi: cs42l43: Handle error from devm_pm_runtime_enable
+e787644caf76 rcu: Defer RCU kthreads wakeup when CPU is dying
+1110ebe05826 Merge tag 'fbdev-for-6.8-rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/deller/linux-fbdev
+b32431b75321 media: vb2: refactor setting flags and caps, fix missing cap
+78e23c3e914a media: media videobuf2: Stop direct calls to queue num_buffers field
+c14d17a32568 media: chips-media: wave5: Remove K3 References
+520d97089793 dt-bindings: media: Remove K3 Family Prefix from Compatible
+28e5126718c7 drm/ttm: return ENOSPC from ttm_bo_mem_space v3
+d1b163aa0749 Revert "drivers/firmware: Move sysfb_init() from device_initcall to subsys_initcall_sync"
+668abe6dc7b6 ALSA: usb-audio: Sort quirk table entries
+e169bd4fb2b3 aoe: avoid potential deadlock at set_capacity
+15ade5bfa5ab nvme-rdma: Fix transfer length when write_generate/read_verify are 0
+7822baa844a8 ALSA: usb-audio: add quirk for RODE NT-USB+
+41951f83ef90 nvmet: add module description to stop warnings
+92b0b0ff0ba3 nvme: add module description to stop warnings
+2f8c7c3715f2 spi: Raise limit on number of chip selects
+edcf9725150e nfsd: fix RELEASE_LOCKOWNER
+d915a6850e27 ALSA: usb-audio: Add delay quirk for MOTU M Series 2nd revision
+d62ccb59afcd ALSA: virtio: remove duplicate check if queue is broken
+7c4298534ce3 ALSA: usb-audio: fix typo
+fcfc9f711d1e ALSA: hda/realtek - Add speaker pin verbtable for Dell dual speaker platform
+b184c8c2889c genirq: Initialize resend_node hlist for all interrupt descriptors
+56062d60f117 x86/entry/ia32: Ensure s32 is sign extended to s64
+9e3a13f3eef6 drm/xe: Remove PVC from xe_wa kunit tests
+d186e51b0ed0 drm/xe/vm: bugfix in xe_vm_create_ioctl
+c0e2508cb100 drm/xe/xe2: Use XE_CACHE_WB pat index
+981460d8ee60 drm/xe/display: Avoid calling readq()
+52e8948c6b6a drm/xe/mmio: Cast to u64 when printing
+32f6c3325703 drm/xe: Use _ULL for u64 division
+03b72dbbd4e9 drm/xe: Use a NULL pointer instead of 0.
+3213b8070ac6 drm/xe/dmabuf: Make xe_dmabuf_ops static
+aef855df7e1b net/mlx5e: fix a potential double-free in fs_any_create_groups
+3c6d5189246f net/mlx5e: fix a double-free in arfs_create_groups
+315a597f9bcf net/mlx5e: Ignore IPsec replay window values on sender side
+20f5468a7988 net/mlx5e: Allow software parsing when IPsec crypto is enabled
+20cbf8cbb827 net/mlx5: Use mlx5 device constant for selecting CQ period mode for ASO
+5b2a2523eeea net/mlx5: DR, Can't go to uplink vport on RX rule
+5665954293f1 net/mlx5: DR, Use the right GVMI number for drop action
+ec7cc38ef9f8 net/mlx5: Bridge, fix multicast packets sent to uplink
+cc8091587779 net/mlx5: Fix a WARN upon a callback command failure
+d76fdd31f953 net/mlx5e: Fix peer flow lists handling
+c20767fd45e8 net/mlx5e: Fix inconsistent hairpin RQT sizes
+3876638b2c7e net/mlx5e: Fix operation precedence bug in port timestamping napi_poll context
+cfbc3608a8c6 net/mlx5: Fix query of sd_group field
+25461ce8b3d2 net/mlx5e: Use the correct lag ports number when creating TISes
+0077a504e1a4 ahci: asm1166: correct count of reported ports
+4e4a1183f281 phy: lan966x: Add missing serdes mux entry
+249abaf3bf0d phy: renesas: rcar-gen3-usb2: Fix returning wrong error code
+62a5df451ab9 phy: qcom-qmp-usb: fix serdes init sequence for IPQ6018
+f74c35b630d4 phy: qcom-qmp-usb: fix register offsets for ipq8074/ipq6018
+ab5ae65fb25d drm/xe: Remove PVC from xe_wa kunit tests
+f4469f385835 scsi: storvsc: Fix ring buffer size calculation
+993d1c346b1a cifs: fix stray unlock in cifs_chan_skip_or_disable
+4cdad8026186 cifs: set replay flag for retries of write command
+4f1fffa23769 cifs: commands that are retried should have replay flag set
+64cc377b7628 cifs: helper function to check replayable error codes
+a68106a6928e cifs: translate network errors on send to -ECONNABORTED
+4373534a9850 scsi: core: Move scsi_host_busy() out of host lock for waking up EH handler
+32f2a0afa95f net/sched: flower: Fix chain template offload
+04fe7c5029cb selftests: fill in some missing configs for net
+6941f67ad37d hv_netvsc: Calculate correct ring size when PAGE_SIZE is not 4 Kbytes
+3222bc997a24 Revert "net: macsec: use skb_ensure_writable_head_tail to expand the skb"
+fc43a8ac396d cifs: cifs_pick_channel should try selecting active channels
+966cc171c8be cifs: Share server EOF pos with netfslib
+6d46d09a0d7d drm/i915/mtl: Wake GT before sending H2G message
+8deb05c84b63 smb: Work around Clang __bdos() type confusion
+615d30064886 Merge tag 'trace-v6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/trace/linux-trace
+16bae3e13778 io_uring: enable audit and restrict cred override for IORING_OP_FIXED_FD_INSTALL
+1732ebc4a261 riscv, bpf: Fix unpredictable kernel crash about RV64 struct_ops
+d546978e0c07 docs: admin-guide: remove obsolete advice related to SLAB allocator
+ea7dcd8a48ea doc: admin-guide/kernel-parameters: remove useless comment
+3f0e4df37a1b docs/accel: correct links to mailing list archives
+d2d0223441d3 docs/sphinx: Fix TOC scroll hack for the home page
+d3b93fe159b8 Merge tag 'linux-cpupower-6.8-rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/shuah/linux
+5d390df3bdd1 smb: client: delete "true", "false" defines
+1347775dea7f Merge tag 'wireless-2024-01-22' of git://git.kernel.org/pub/scm/linux/kernel/git/wireless/wireless
+41353fbad4f5 nvmet: unify aer type enum
+13f3956eb568 block: Fix WARNING in _copy_from_iter
+6240c2c43fd0 drm/xe: Document nested struct members according to guidelines
+02c4e64a860a drm/xe/xe2_lpg: Introduce performance guide changes
+c885886bda2a drm/xe: Fix typo in vram frequency sysfs documentation
+de8b6e1c231a spi: hisi-sfc-v3xx: Return IRQ_NONE if no interrupts were detected
+a67e1f0bd456 regulator: ti-abb: don't use devm_platform_ioremap_resource_byname for shared interrupt register
+f13d8f28fe9f Merge branch 'netfs-fixes' of ssh://gitolite.kernel.org/pub/scm/linux/kernel/git/dhowells/linux-fs
+834bf76add3e eventfs: Save directory inodes in the eventfs_inode structure
+67794f882adc ALSA: usb-audio: Skip setting clock selector for single connections
+d2baf8cc82c1 riscv/efistub: Tighten ELF relocation check
+afb2a4fb8455 riscv/efistub: Ensure GP-relative addressing is not used
+633cd6fe6e19 spi: spi-cadence: Reverse the order of interleaved write and read operations
+e267a5b3ec59 spi: spi-imx: Use dev_err_probe for failed DMA channel requests
+574bf7bbe837 spi: bcm-qspi: fix SFDP BFPT read by usig mspi read
+435e202d645c ipv6: init the accept_queue's spinlocks in inet6_create
+c41336f4d690 pmdomain: mediatek: fix race conditions with genpd
+bc77bde2d3f0 drm/bridge: sii902x: Fix audio codec unregistration
+dffdfb8f5de1 drm/bridge: sii902x: Fix probing race issue
+f86ae204bec4 drm/bridge: tc358767: Limit the Pixel PLL input range
+420332b94119 ovl: mark xwhiteouts directory with overlay.opaque='x'
+26dd6a5667f5 HID: i2c-hid: Skip SET_POWER SLEEP for Cirque touchpad on system suspend
+b6eda11c44dc HID: nvidia-shield: Add missing null pointer checks to LED initialization
+234ec0b6034b netlink: fix potential sleeping issue in mqueue_flush_file
+090e3bec0176 x86/cpu: Add model number for Intel Clearwater Forest processor
+3e4147f33f8b x86/CPU/AMD: Add X86_FEATURE_ZEN5
+97de5a15edf2 selftest: Don't reuse port for SO_INCOMING_CPU test.
+7267e8dcad6b tcp: Add memory barrier to tcp_push()
+71fc3249f50a video/nomodeset: Select nomodeset= parameter with CONFIG_VIDEO
+55ea87a4f900 video/cmdline: Hide __video_get_options() behind CONFIG_FB_CORE
+a3b6792e990d video/cmdline: Introduce CONFIG_VIDEO for video= parameter
+a96921006605 ALSA: usb-audio: Add a quirk for Yamaha YIT-W12TX transmitter
+ba407525f824 drm/i915: Try to preserve the current shared_dpll for fastset on type-c ports
+4b088005c897 fbdev: stifb: Fix crash in stifb_blank()
+a2ed0a44d637 ALSA: hda/cs8409: Suppress vmaster control for Dolphin models
+56beedc88405 ALSA: hda: Increase default bdl_pos_adj for Apollo Lake
+3526860f26fe ALSA: hda: Replace numeric device IDs with constant values
+f0b7a0d1d466 Merge branch 'master' into mm-hotfixes-stable
+7ed2632ec7d7 drm/ttm: fix ttm pool initialization for no-dma-device drivers
+e01a83e12604 Revert "btrfs: zstd: fix and simplify the inline extent decompression"
+be3382ecdf31 Merge drm/drm-next into drm-xe-next
+b90493505347 afs: Fix missing/incorrect unlocking of RCU read lock
+cfcc005dbcc7 afs: Remove afs_dynroot_d_revalidate() as it is redundant
+17ba6f0bd14f afs: Fix error handling with lookup via FS.InlineBulkStatus
+57e9d49c5452 afs: Hide silly-rename files from userspace
+c3d6569a4332 cachefiles, erofs: Fix NULL deref in when cachefiles is not doing ondemand-mode
+2b44760609e9 tracing: Ensure visibility when inserting an element into tracing_map
+7055c5856aa1 Revert "drm/amd/pm: fix the high voltage and temperature issue"
+e432f14a4285 drm/amd/display: hook up DCN20 color blocks data to DTN log
+f5be15bb2699 drm/amd/display: add DPP and MPC color caps to DTN log
+8feca9f32ce6 drm/amd/display: Address kdoc for eDP Panel Replay feature in 'amdgpu_dm_crtc_set_panel_sr_feature()'
+060963bf7759 drm/amd/display: hook up DCN30 color blocks data to DTN log
+9bfb1a538a25 drm/amdgpu: Fix null pointer dereference
+2866a4549cf4 drm/amdgpu: skip call ras_late_init if ras block is not supported
+9c3f6e2c4ee0 drm/amdgpu: Show vram vendor only if available
+e0eb08dcec0f drm/amdgpu: Avoid fetching vram vendor information
+bba8200a184a drm/amd/pm: update the power cap setting
+42ffb3c396b5 drm/amdgpu/pm: Fix the power source flag error
+a499b68cce3c drm/amd/display: Promote DAL to 3.2.269
+a125206c2004 drm/amd/display: [FW Promotion] Release 0.0.201.0
+f980579c29a6 drm/amd/display: Replay + IPS + ABM in Full Screen VPB
+4516a7930203 drm/amd/display: turn off windowed Mpo ODM feature for dcn321
+624e0d7f39cb drm/amd/display: Add GART memory support for dmcub
+8457bddc266c drm/amd/display: Revert "Rework DC Z10 restore"
+2a8e918f48bd drm/amd/display: add power_state and pme_pending flag
+60818ed76577 drm/amd/display: Add IPS checks before dcn register access
+b8f2234846d7 drm/amd/display: Add NULL-checks in dml2 assigned pipe search
+855f42ba9254 drm/amd/display: Add usb4_bw_alloc_support flag
+9feaa4c0de83 drm/amd/display: Promote DAL to 3.2.268
+6348469450d6 drm/amd/display: create DCN3-specific log for MPC state
+c597479f27b6 drm/amd/display: Fix timing bandwidth calculation for HDMI
+aa708057c410 drm/amd/display: add get_gamut_remap helper for MPC3
+e808825c6c38 drm/amd/display: fill up DCN3 DPP color state
+f26407564f1e drm/amd/display: read gamut remap matrix in fixed-point 31.32 format
+07b2483ee1d0 drm/amd/display: Add dpp_get_gamut_remap functions
+efbfc987a331 drm/amd/display: decouple color state from hw state log
+3295580d4683 drm/amd/display: Fix uninitialized variable usage in core_link_ 'read_dpcd() & write_dpcd()' functions
+1757bb7dab6d drm/amdgpu: update check condition of query for ras page retire
+18d71047922e Revert "drm/amd/pm: smu v13_0_6 supports ecc info by default"
+e8cc57a96cb0 drm/amd/display: Drop kdoc markers for some Panel Replay functions
+be91a828d08a drm/amdgpu: Cleanup inconsistent indenting in 'amdgpu_gfx_enable_kcq()'
+0d50f4048de9 drm/amd/pm: udpate smu v13.0.6 message permission
+0795b5d23490 drm/amdgpu:Support retiring multiple MCA error address pages
+afb617f38f22 drm/amdgpu: add interface to check mca umc status
+6c23f3d12a92 drm/amdgpu: Use asynchronous polling to handle umc_v12_0 poisoning
+ee9c3031d027 drm/amdgpu: Fix ras features value calltrace
+3fdcd0a31d7a drm/amdgpu: Prepare for asynchronous processing of umc page retirement
+22f6e3e11297 drm/amdgpu: Add log info for umc_v12_0
+3e22174603da drm/amdgpu: fix wrong sizeof argument
+00a11f977beb drm/amdgpu: Enable seq64 manager and fix bugs
+843609df0be7 netfs: Fix a NULL vs IS_ERR() check in netfs_perform_write()
+3be0b3ed1d76 netfs, fscache: Prevent Oops in fscache_put_cache()
+c40497d82387 cifs: Don't use certain unnecessary folio_*() functions
+fa7d614da3c5 afs: Don't use certain unnecessary folio_*() functions
+059e7c6b8f5e drm/radeon/ni_dpm: remove redundant NULL check
+202bc57b6756 netfs: Don't use certain unnecessary folio_*() functions
+bf38a4e4ab68 drm/radeon: remove dead code in ni_mc_load_microcode()
+7c70825d1603 ASoC: qcom: volume fixes and codec cleanups
+7c834a726596 ASoC: codecs: fix ES8326 performance and pop noise
+018856c3f171 fbcon: Fix incorrect printed function name in fbcon_prepare_logo()
+5d9248eed480 Merge tag 'for-6.8-rc1-tag' of git://git.kernel.org/pub/scm/linux/kernel/git/kdave/linux
+73ae7e1c7644 ata: libata-sata: improve sysfs description for ATA_LPM_UNKNOWN
+84c39ec57d40 exec: Fix error handling in begin_new_exec()
+52998cdd8d34 Merge branch '6.8/scsi-staging' into 6.8/scsi-fixes
+afa6ac2690bb HID: logitech-hidpp: add support for Logitech G Pro X Superlight 2
+bdd8f62431eb exec: Add do_close_execat() helper
+c481016bb4f8 ASoC: qcom: sc8280xp: limit speaker volumes
+92c02d74ba7b ASoC: codecs: ES8326: Remove executable bit
+22fb4f041999 cpufreq/amd-pstate: Fix setting scaling max/min freq values
+8788a17c2319 exec: remove useless comment
+27daa514c48d ELF, MAINTAINERS: specifically mention ELF
+9c46e3a5232d iio: adc: ad7091r8: Fix error code in ad7091r8_gpio_setup()
+59598510be1d iio: adc: ad_sigma_delta: ensure proper DMA alignment
+8e98b87f515d iio: imu: adis: ensure proper DMA alignment
+f1dfcbaa7b9d iio: humidity: hdc3020: Add Makefile, Kconfig and MAINTAINERS entry
+35ec2d03b282 iio: imu: bno055: serdev requires REGMAP
+792595bab492 iio: magnetometer: rm3100: add boundary check for the value read from RM3100_REG_TMRC
+b67f3e653e30 iio: pressure: bmp280: Add missing bmp085 to SPI id table
+95a0d596bbd0 iio: core: fix memleak in iio_device_register_sysfs
+d72a4caf6859 cxl/pci: Skip irq features if MSI/MSI-X are not supported
+c97dac57c804 tools/testing/nvdimm: Disable "missing prototypes / declarations" warnings
+68deb9972079 tools/testing/cxl: Disable "missing prototypes / declarations" warnings
+d53271c05965 selftests/rseq: Do not skip !allowed_cpus for mm_cid
+610347effc2e Merge tag 'Wstringop-overflow-for-6.8-rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/gustavoars/linux
+0f0d819aef6f Merge tag 'xsa448-6.8-tag' of git://git.kernel.org/pub/scm/linux/kernel/git/xen/tip
+3e44f325f6f7 bcachefs: fix incorrect usage of REQ_OP_FLUSH
+612e1110d689 bcachefs: Add gfp flags param to bch2_prt_task_backtrace()
+1a84c213146a drm/dp_mst: Separate @failing_port list in drm_dp_mst_atomic_check_mgr() comment
+6bc41f9cf252 Revert "drm/i915/xe2lpd: Treat cursor plane as regular plane for DDB allocation"
+1de63528e728 drm/i915: Perform vblank evasion around legacy cursor updates
+dea1731dfc25 drm/i915: Move intel_vblank_evade() & co. into intel_vblank.c
+318ec320c6c7 drm/i915: Move the min/max scanline sanity check into intel_vblank_evade()
+b5ad7ce024b3 drm/i915: Extract intel_vblank_evade()
+b1f9bc3dbe28 drm/i915: Include need_vlv_dsi_wa in intel_vblank_evade_ctx
+637bda52bf36 drm/i915: Introduce struct intel_vblank_evade_ctx
+bb83f348ead2 drm/i915: Reorder drm_vblank_put() vs. need_vlv_dsi_wa
+c045bc428f77 drm/i915: Decouple intel_crtc_vblank_evade_scanlines() from atomic commits
+f6bf0424cadc drm/xe/vm: bugfix in xe_vm_create_ioctl
+4d5b7daa3c61 drm/bridge: anx7625: Ensure bridge is suspended in disable()
+7777f47f2ea6 block: Move checking GENHD_FL_NO_PART to bdev_add_partition()
+cf41cebf9dc8 drm/exec, drm/gpuvm: Prefer u32 over uint32_t
+6154fb9c2134 kselftest: dt: Stop relying on dirname to improve performance
+87399f1ff922 media: tc358743: register v4l2 async device only after successful setup
+8afe3c7fcaf7 spi: intel-pci: Add support for Arrow Lake SPI serial flash
+6c314425b9ef spi: intel-pci: Remove Meteor Lake-S SoC PCI ID from the list
+b3cbdcc19181 regulator: pwm-regulator: Manage boot-on with disabled PWM channels
+6a7d11efd691 regulator: pwm-regulator: Calculate the output voltage for disabled PWMs
+c92688cac239 regulator: pwm-regulator: Add validity checks in continuous .get_voltage
+70b476995665 ASoC: allow up to eight CPU/codec DAIs
+35314e39dabc ASoC: codecs: wcd934x: drop unneeded regulator include
+22221b13d0c2 ASoC: codecs: wcd938x: skip printing deferred probe failuers
+086df711d9b8 ASoC: codecs: wcd938x: handle deferred probe
+6cc2aa9a75f2 ASoC: amd: acp: Add check for cpu dai link initialization
+4bae2029ffcc ASoC: amd: acp: Update platform name for different boards
+1d565de8d53c ASoC: amd: acp: Enable rt5682s clocks in acp slave mode
+4d0e8bdfa4a5 ASoC: codecs: wcd938x: fix headphones volume controls
+aafa3acf62f1 ASoC: codecs: wcd9335: drop unused gain hack remnant
+46188db080bd ASoC: codecs: lpass-wsa-macro: fix compander volume hack
+b53cc6144a3f ASoC: codecs: wsa883x: fix PA volume control
+8c99a0a607b5 ASoC: codecs: ES8326: fix the capture noise issue
+a3aa9255d6cc ASoC: codecs: ES8326: Minimize the pop noise on headphone
+14a0a1ec3335 ASoC: codecs: ES8326: Improving the THD+N performance
+523d242d4309 ASoC: codecs: ES8326: improving crosstalk performance
+72a0cfdc3ad7 drm: bridge: samsung-dsim: complete the CLKLANE_STOP setting
+b2fe2292624a drm: bridge: samsung-dsim: enter display mode in the enable() callback
+1a9f2c776d14 Documentation: KUnit: Update the instructions on how to test static functions
+a1af6a2bfa0c kunit: run test suites only after module initialization completes
+57e39086fb86 MAINTAINERS: kunit: Add Rae Moar as a reviewer
+083974ebb8fc kunit: device: Fix a NULL vs IS_ERR() check in init()
+ed1a72fb0d64 kunit: Fix a NULL vs IS_ERR() bug
+f7cfe7017b53 x86/paravirt: Make BUG_func() usable by non-GPL modules
+f0e4a1356466 pmdomain: renesas: r8a77980-sysc: CR7 must be always on
+741ba0134fa7 pmdomain: core: Move the unused cleanup to a _sync initcall
+d59da02d1ab6 netfs: Add Jeff Layton as reviewer
+3c18703079b6 netfs, cachefiles: Change mailing list
+8f04135c8843 drm/vmwgfx: remove vmw_vram_gmr_placement
+192cdb1c907f cpufreq: intel_pstate: Refine computation of P-state for given frequency
+4b5581f11207 accel/ivpu: Disable PLL after VPU IP reset during FLR
+1513664f3402 ALSA: hda/realtek: fix mute/micmute LEDs for HP ZBook Power
+6a02867560f7 drm/xe/xe2: Use XE_CACHE_WB pat index
+0650006a93a2 dmaengine: fsl-qdma: Remove a useless devm_kfree()
+3aa58cb51318 dmaengine: fsl-qdma: Fix a memory leak related to the queue command DMA
+968bc1d7203d dmaengine: fsl-qdma: Fix a memory leak related to the status queue DMA
+bc9847c9ba13 dmaengine: ti: k3-udma: Report short packet errors
+13e788deb734 net/rds: Fix UBSAN: array-index-out-of-bounds in rds_cmsg_recv
+6e2276203ac9 dmaengine: ti: edma: Add some null pointer checks to the edma_probe
+732c35ce6d48 platform/mellanox: mlxbf-pmc: Fix offset calculation for crspace events
+8cbc756b8026 platform/mellanox: mlxbf-tmfifo: Drop Tx network packet when Tx TmFIFO is full
+aaf632f7ab6d net: micrel: Fix PTP frame parsing for lan8814
+94fa82b095c7 Merge branch 'dpll-fixes'
+7dc5b18ff71b dpll: fix register pin with unregistered parent pin
+db2ec3c94667 dpll: fix userspace availability of pins
+830ead5fb0c5 dpll: fix pin dump crash for rebound module
+b6a11a7fc4d6 dpll: fix broken error path in dpll_pin_alloc(..)
+c6a783be82c8 thermal: intel: powerclamp: Remove dead code for target mwait value
+ef4852167245 Merge branch 'tun-fixes'
+f1084c427f55 tun: add missing rx stats accounting in tun_xdp_act
+5744ba05e7c4 tun: fix missing dropped counter in tun_xdp_act
+eab4f56d3e75 ARM: dts: exynos4212-tab3: add samsung,invert-vclk flag to fimd
+80c86ff6800b arm64: dts: exynos: gs101: comply with the new cmu_misc clock names
+84aef4ed5970 gpio: eic-sprd: Clear interrupt after set the interrupt type
+8530ecaf35f2 MAINTAINERS: remove defunct acpi4asus project info from asus notebooks section
+20fe5e9be47e MAINTAINERS: add Luke Jones as maintainer for asus notebooks
+452c314988db MAINTAINERS: Remove Perry Yuan as DELL WMI HARDWARE PRIVACY SUPPORT maintainer
+41237735ccde platform/x86: silicom-platform: Add missing "Description:" for power_cycle sysfs attr
+348d9cc7bde3 platform/x86: intel-wmi-sbl-fw-update: Fix function name in error message
+9e054ed05dda platform/x86: p2sb: Use pci_resource_n() in p2sb_read_bar0()
+5913320eb0b3 platform/x86: p2sb: Allow p2sb_bar() calls during PCI device probe
+416de0246f35 platform/x86: intel-uncore-freq: Fix types in sysfs callbacks
+8446f9d11678 platform/x86: wmi: Fix wmi_dev_probe()
+b73e43dcd7a8 dmaengine: fsl-dpaa2-qdma: Fix the size of dma pools
+29e473f4b51e platform/x86: wmi: Fix notify callback locking
+3ea7f59af8ff platform/x86: wmi: Decouple legacy WMI notify handlers from wmi_block_list
+3d8a29fec2cb platform/x86: wmi: Return immediately if an suitable WMI event is found
+6ba7843b59b7 platform/x86: wmi: Fix error handling in legacy WMI notify handler functions
+e4cec073b775 dmaengine: at_hdmac: fix some kernel-doc warnings
+f64fdde9bc77 MIPS: sgi-ip32: Fix missing prototypes
+ab58a2f319de MIPS: sgi-ip30: Fix missing prototypes
+e3a4f1b7ada8 MIPS: fw arc: Fix missing prototypes
+f134bd1ebc28 MIPS: sgi-ip27: Fix missing prototypes
+0c565d16b800 firmware: arm_ffa: Handle partitions setup failures
+ace760d9c049 firmware: arm_ffa: Use xa_insert() and check for result
+ad9d9a107a43 firmware: arm_ffa: Simplify ffa_partitions_cleanup()
+c00d9738fd5f firmware: arm_ffa: Check xa_load() return value
+5ff30ade16cd firmware: arm_ffa: Add missing rwlock_init() for the driver partition
+59b2e242b131 firmware: arm_ffa: Add missing rwlock_init() in ffa_setup_partitions()
+6bd1b3fede83 firmware: arm_scmi: Fix the clock protocol supported version
+27600c96e2ff firmware: arm_scmi: Fix the clock protocol version for v3.2
+b5dc0ffd3656 firmware: arm_scmi: Use xa_insert() when saving raw queues
+e8ef4bbe39b9 firmware: arm_scmi: Use xa_insert() to store opps
+0726fcc8d4af firmware: arm_scmi: Replace asm-generic/bug.h with linux/bug.h
+437a310b2224 firmware: arm_scmi: Check mailbox/SMT channel for consistency
+feab19143a1c MIPS: Alchemy: Fix missing prototypes
+0dd20a48a541 MIPS: Cobalt: Fix missing prototypes
+b246271d257b accel/ivpu: Deprecate DRM_IVPU_PARAM_CONTEXT_PRIORITY param
+37dee2a2f433 accel/ivpu: Improve buffer object debug logs
+b7a0e75632eb accel/ivpu: Disable buffer sharing among VPU contexts
+a8c099d5d0e4 accel/ivpu: Free buffer sgt on unbind
+7f66319927a8 accel/ivpu: Fix for missing lock around drm_gem_shmem_vmap()
+2a20b857dd65 accel/ivpu: Add diagnostic messages when VPU fails to boot or suspend
+8047d36fe563 accel/ivpu: Add debug prints for MMU map/unmap operations
+929acfb9c539 accel/ivpu: Call diagnose failure in ivpu_mmu_cmdq_sync()
+30cf36bb0408 accel/ivpu: Dump MMU events in case of VPU boot timeout
+805c74eac8cb gpiolib: acpi: Ignore touchpad wakeup on GPD G1619-04
+240520520b90 HAX net/phy: Suppress WARN from phy_error
+5f58bde4d775 HAX net/phy: Suppress WARN for calling stop while halted
+a0188ebc7e38 HAX sound: Disable probing snd_hda with DG1
+e81a4588b15e HAX suspend: Disable S3/S4 for fi-bdw-samus
+1a02e6134d2c perf/core: Only copy-to-user after completely unlocking all locks, v3.
+da8615de56e8 pci/msi: Stop warning for MSI enabling failure
+e073db1ef2a9 mm: Show slab debug as offsets from section base not hashed pointers
+c37e9157a108 net/sch_generic: Shut up noise
+3470640bc6de sched: Mark "RT throttling activated" as KERN_NOTICE
+f0ac59b3295d RFC: soft/hardlookup: taint kernel
+31a3efd3abec RFC: hung_task: taint kernel
+baeca0d44379 ICL HACK: usb/icl: Work around ACPI boottime crash
+70558506a795 libata: Downgrade unsupported feature warnings to notifications
+8fff128a3fe7 x86: Downgrade clock throttling thermal event critical error
+7cb85659709f kernel/panic: Show the stacktrace after additional notifier messages
+2c30054792ae ftrace: Allow configuring global trace buffer size (for dump-on-oops)
+e4fb5e8ca65d lockdep: Swap storage for pin_count and references
+cf79f291f985 Merge v6.8-rc1 into drm-misc-fixes
+d8d222e09dab xfs: read only mounts with fsopen mount API are busted
+4050957c7c2c drm/exynos: gsc: minor fix for loop iteration in gsc_runtime_resume
+960b537e9172 drm/exynos: fix accidental on-stack copy of exynos_drm_plane
+477552e1d339 drm/exynos: fix incorrect type issue
+d09486a04f5d net: fix removing a namespace with conflicting altnames
+0086ffec768b tools cpupower bench: Override CFLAGS assignments
+a5e0ace04fbf init: Kconfig: Disable -Wstringop-overflow for GCC-11
+113a61863ecb Makefile: Enable -Wstringop-overflow globally
+ded080c86b3f rbd: don't move requests to the running list on errors
+cd30e8bde28a rbd: remove usage of the deprecated ida_simple_*() API
+72b0cbf6b810 smb: Fix some kernel-doc comments
+6613476e225e Linux 6.8-rc1
+35a4474b5c3d Merge tag 'bcachefs-2024-01-21' of https://evilpiepirate.org/git/bcachefs
+4fbbed787267 Merge tag 'timers-core-2024-01-21' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+7b297a5cc930 Merge tag 'powerpc-6.8-2' of git://git.kernel.org/pub/scm/linux/kernel/git/powerpc/linux
+249f441f83c5 bcachefs: Improve inode_to_text()
+d826cc57c53f bcachefs: logged_ops_format.h
+8d52ba60c4dc bcachefs: reflink_format.h
+b2fa1b633bac bcachefs; extents_format.h
+0560eb9abf7d bcachefs: ec_format.h
+c6c4ff6507c4 bcachefs: subvolume_format.h
+8fed323b1404 bcachefs: snapshot_format.h
+d455179fce10 bcachefs: alloc_background_format.h
+72e0801049c9 bcachefs: xattr_format.h
+7ffc4daa5f08 bcachefs: dirent_format.h
+b36425da71fe bcachefs: inode_format.h
+82de6207fb20 bcachefs; quota_format.h
+43314801a439 bcachefs: sb-counters_format.h
+3a58dfbc46c2 bcachefs: counters.c -> sb-counters.c
+12207f49ef41 bcachefs: comment bch_subvolume
+d32088f2f2f0 bcachefs: bch_snapshot::btime
+7be0208fc992 bcachefs: add missing __GFP_NOWARN
+d7e77f53e90e bcachefs: opts->compression can now also be applied in the background
+ec4edd7b9d20 bcachefs: Prep work for variable size btree node buffers
+2acc59dd88d2 bcachefs: grab s_umount only if snapshotting
+369acf97d6fd bcachefs: kvfree bch_fs::snapshots in bch2_fs_snapshots_exit
+00fff4dd5866 bcachefs: bios must be 512 byte algined
+aead3428e8b7 bcachefs: remove redundant variable tmp
+b97de453651f bcachefs: Improve trace_trans_restart_relock
+46bf2e9cc745 bcachefs: Fix excess transaction restarts in __bchfs_fallocate()
+1a5039041b37 bcachefs: extents_to_bp_state
+ba96d36ca526 bcachefs: bkey_and_val_eq()
+e6a2566f7a00 bcachefs: Better journal tracepoints
+4ae016607b90 bcachefs: Print size of superblock with space allocated
+a6548c8b5eb5 bcachefs: Avoid flushing the journal in the discard path
+189c176c5dd3 bcachefs: Improve move_extent tracepoint
+ef740a1e2939 bcachefs: Add missing bch2_moving_ctxt_flush_all()
+fa3185af43dc bcachefs: Re-add move_extent_write tracepoint
+d92b83f592d8 bcachefs: bch2_kthread_io_clock_wait() no longer sleeps until full amount
+741c1d3ec1a4 bcachefs: Add .val_to_text() for KEY_TYPE_cookie
+0124f42da70c bcachefs: Don't pass memcmp() as a pointer
+2368fcf341d3 Merge tag 'header_cleanup-2024-01-20' of https://evilpiepirate.org/git/bcachefs
+359724fa3ab7 idpf: distinguish vports by the dev_port attribute
+a54d51fb2dfb udp: fix busy polling
+57f2d2097603 bcachefs: Reduce would_deadlock restarts
+5b14ce35af90 bcachefs: bch2_trans_account_disk_usage_change()
+8e7834a88316 bcachefs: bch_fs_usage_base
+4f564f4f9fdd bcachefs: bch2_prt_compression_type()
+e58f963cecbd bcachefs: helpers for printing data types
+38c23fb809f6 bcachefs: BTREE_TRIGGER_ATOMIC
+9d5dba2ba86d bcachefs: drop to_text code for obsolete bps in alloc keys
+3fe8a1864042 bcachefs: eytzinger_for_each() declares loop iter
+4ecad0da9de8 bcachefs: Don't log errors if BCH_WRITE_ALLOC_NOWAIT
+e240c1b3635e bcachefs: fix memleak in bch2_split_devs
+e421946be7d9 fbdev: sis: Error out if pixclock equals zero
+04e5eac8f3ab fbdev: savage: Error out if pixclock equals zero
+fead90507a37 fbdev: vt8500lcdfb: Remove unnecessary print function dev_err()
+7a396820222d Merge tag 'v6.8-rc-part2-smb-client' of git://git.samba.org/sfrench/cifs-2.6
+65163d16fcae Merge tag 'dmaengine-fix-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/vkoul/dmaengine
+80fc600fafee Merge tag 'coccinelle-for-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/jlawall/linux
+31e97d7c9ae3 media: solo6x10: replace max(a, min(b, c)) by clamp(b, a, c)
+ff82e84e80fc coccinelle: device_attr_show: simplify patch case
+978ffcbf00d8 execve: open the executable file before doing anything else
+e5075d8ec564 Merge tag 'riscv-for-linus-6.8-mw4' of git://git.kernel.org/pub/scm/linux/kernel/git/riscv/linux
+c25b24fa72c7 Merge tag 'scsi-misc' of git://git.kernel.org/pub/scm/linux/kernel/git/jejb/scsi
+125514880ddd Merge tag 'sh-for-v6.8-tag1' of git://git.kernel.org/pub/scm/linux/kernel/git/glaubitz/sh-linux
+b1737ad4406a Merge tag 'fbdev-for-6.8-rc1-2' of git://git.kernel.org/pub/scm/linux/kernel/git/deller/linux-fbdev
+e3f9bed9bee2 llc: Drop support for ETH_P_TR_802_2.
+dad555c816a5 llc: make llc_ui_sendmsg() more robust against bonding changes
+6c21660fe221 vlan: skip nested type that is not IFLA_VLAN_QOS_MAPPING
+9b6979563b83 Merge branch 'bnxt_en-bug-fixes'
+467739baf636 bnxt_en: Fix possible crash after creating sw mqprio TCs
+c20f482129a5 bnxt_en: Prevent kernel warning when running offline self test
+523384a6aa09 bnxt_en: Fix RSS table entries calculation for P5_PLUS chips
+2ad8e57338ac bnxt_en: Fix memory leak in bnxt_hwrm_get_rings()
+3c1069fa4287 bnxt_en: Wait for FLR to complete during probe
+198bc90e0e73 tcp: make sure init the accept_queue's spinlocks once
+b01f15a7571b selftests: bonding: Increase timeout to 1200s
+9d64bf433c53 Merge tag 'perf-tools-for-v6.8-1-2024-01-09' of git://git.kernel.org/pub/scm/linux/kernel/git/perf/perf-tools
+57f22c8dab6b Merge tag 'strlcpy-removal-v6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/kees/linux
+18b5cb6cb85c Merge tag 'arm64-fixes' of git://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux
+24fdd5189914 Merge tag 'loongarch-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/chenhuacai/linux-loongson
+2bebc3cd4870 Revert "firmware/sysfb: Clear screen_info state after consuming it"
+836e487149c2 drm/xe: Enable 32bits build
+8d038f49c1f3 drm/xe: Fix cast on trace variable
+406663f777be drm/xe/display: Avoid calling readq()
+6d8d038364d8 drm/xe/mmio: Cast to u64 when printing
+7b5bdb447b14 drm/xe: Use _ULL for u64 division
+9bc44c51a046 Merge tag 'devicetree-for-6.8-2' of git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux
+68ea60a7961c coccinelle: device_attr_show: Adapt to the latest Documentation/filesystems/sysfs.rst
+a638bfbfa1f8 Merge tag 'spi-fix-v6.8-merge-window' of git://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi
+a1fe5b6d0dce Merge tag 'sound-fix-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/tiwai/sound
+d26270061ae6 string: Remove strlcpy()
+e08b57581539 Merge tag 'drm-next-2024-01-19' of git://anongit.freedesktop.org/drm/drm
+ab1e2d0fccc5 Merge tag 'for-v6.8-v2' of git://git.kernel.org/pub/scm/linux/kernel/git/sre/linux-power-supply
+237c31cb5d83 Merge tag 'apparmor-pr-2024-01-18' of git://git.kernel.org/pub/scm/linux/kernel/git/jj/linux-apparmor
+556e2d17cae6 Merge tag 'ceph-for-6.8-rc1' of https://github.com/ceph/ceph-client
+ec2d264ae4bb Merge tag 'xfs-6.8-merge-4' of git://git.kernel.org/pub/scm/fs/xfs/xfs-linux
+8cb1bb178cdb Merge tag '6.8-rc-smb-server-fixes-part2' of git://git.samba.org/ksmbd
+16df6e07d6a8 Merge tag 'vfs-6.8.netfs' of gitolite.kernel.org:pub/scm/linux/kernel/git/vfs/vfs
+70a46e1fda3b drm/doc/rfc: Removing missing reference to xe.rst
+78e727e58e54 cifs: update iface_last_update on each query-and-update
+f591062bdbf4 cifs: handle servers that still advertise multichannel after disabling
+ce09f8d8a713 cifs: new mount option called retrans
+49fe25ce8381 cifs: reschedule periodic query for server interfaces
+66c9314b61ed smb: client: don't clobber ->i_rdev from cached reparse points
+f83709b9e0eb smb: client: get rid of smb311_posix_query_path_info()
+858e74876c5c smb: client: parse owner/group when creating reparse points
+76025cc2285d smb: client: fix parsing of SMB3.1.1 POSIX create context
+cfb7a13399be cifs: update known bugs mentioned in kernel docs for cifs
+f24a70106dc1 lib: checksum: Fix build with CONFIG_NET=n
+286c4dcf6cc6 Documentation/gpu: Reference articles on Linux graphics stack
+71fee48fb772 tick-sched: Fix idle and iowait sleeptime accounting vs CPU hotplug
+92b47c3b8b24 drm/i915: Replace a memset() with zero initialization
+94501c3ca640 drm/i915/psr: Only allow PSR in LPSP mode on HSW non-ULT
+06af1954aecc drm/xe: Do not flood dmesg with guc log
+ef175b29a242 of: Stop circularly including of_device.h and of_platform.h
+527eb67e0cfb clk: qcom: gcc-x1e80100: Replace of_device.h with explicit includes
+ed7dafcc5364 thermal: loongson2: Replace of_device.h with explicit includes
+5e6c3454b405 net: can: Use device_get_match_data()
+61c2ef4b6cb0 sparc: Use device_get_match_data()
+f87f5ea43959 drm/xe/xe_debugfs: Print skip_guc_pc in xe info
+cb95a4fa50bb dmaengine: dw-edma: increase size of 'name' in debugfs code
+6386f6c995b3 dmaengine: fsl-qdma: increase size of 'irq_name'
+404290240827 dmaengine: shdma: increase size of 'dev_id'
+9c0155b652bf drm/xe: constify engine class sysfs attributes
+480ea9e306c7 drm/xe: make gpuvm_ops const
+3cacf808c9d8 drm/xe: make hwmon_info const
+c96baaa83993 drm/xe: make heci_gsc_irq_chip const
+2fe36db5fd24 drm/xe: make xe_ttm_funcs const
+f829bca2e294 dmaengine: xilinx: xdma: Fix kernel-doc warnings
+62b68a887959 dmaengine: usb-dmac: Avoid format-overflow warning
+dbc153fd3c14 net/smc: fix illegal rmb_desc access in SMC-D connection dump
+e626cb02ee83 futex: Prevent the reuse of stale pi_state
+8ea8c918e7db drm/xe: Modify the cfb size to be page size aligned for FBC
+c4d6dcb3b625 dmaengine: sh: rz-dmac: Avoid format-overflow warning
+98373a211593 dmaengine: imx-sdma: fix Excess kernel-doc warnings
+620a7e4c1f03 dmaengine: xilinx: xdma: Fix initialization location of desc in xdma_channel_isr()
+fe0d495e759c dmaengine: xilinx: xdma: Fix operator precedence in xdma_prep_interleaved_dma()
+b93216d3be55 Merge tag 'dmaengine-6.8-rc1' into fixes
+99fe83ab3bb0 sh: vsyscall: Remove unnecessary $(foreach ...)
+6a9531c3a880 memblock: fix crash when reserved memory is not added to memory
+180a8f12c21f Input: goodix - accept ACPI resources with gpio_count == 3 && gpio_int_idx == 0
+2095d5071d60 drm/panel: novatek-nt36672e: Include <linux/of.h>
+2f862fdc0fd8 drm: panel-orientation-quirks: Add quirk for GPD Win Mini
+d87123aa9a79 sh: ecovec24: Rename missed backlight field from fbdev to dev
+009f0a64f9cc Merge tag 'drm-xe-next-fixes-2024-01-16' of https://gitlab.freedesktop.org/drm/xe/kernel into drm-next
+cacea81390fd nouveau/vmm: don't set addr on the fail path to avoid warning
+4d0e8f9a361b KVM: riscv: selftests: Add Zfa extension to get-reg-list test
+41182cc6f507 RISC-V: KVM: Allow Zfa extension for Guest/VM
+1216fdd99be1 KVM: riscv: selftests: Add Zvfh[min] extensions to get-reg-list test
+f46300285926 RISC-V: KVM: Allow Zvfh[min] extensions for Guest/VM
+1a3bc507821d KVM: riscv: selftests: Add Zihintntl extension to get-reg-list test
+ab6da9cdc3f3 RISC-V: KVM: Allow Zihintntl extension for Guest/VM
+496ee21a17ce KVM: riscv: selftests: Add Zfh[min] extensions to get-reg-list test
+f3901ece5b38 RISC-V: KVM: Allow Zfh[min] extensions for Guest/VM
+2ddf79070f7e KVM: riscv: selftests: Add vector crypto extensions to get-reg-list test
+afd1ef3adfbc RISC-V: KVM: Allow vector crypto extensions for Guest/VM
+14d70de562df KVM: riscv: selftests: Add scaler crypto extensions to get-reg-list test
+f370b4e668f0 RISC-V: KVM: Allow scalar crypto extensions for Guest/VM
+ac396141308d KVM: riscv: selftests: Add Zbc extension to get-reg-list test
+367188297254 RISC-V: KVM: Allow Zbc extension for Guest/VM
+7f738527a7a0 cifs: new nt status codes from MS-SMB2
+268b8b5797be cifs: pick channel for tcon and tdis
+936eba9cfb5c cifs: open_cached_dir should not rely on primary channel
+d7851dc13d87 smb3: minor documentation updates
+9d1694dc91ce Merge tag 'for-6.8/block-2024-01-18' of git://git.kernel.dk/linux
+e9a5a78d1ad8 Merge tag 'for-6.8/io_uring-2024-01-18' of git://git.kernel.dk/linux
+6f3625006b15 Merge tag 'erofs-for-6.8-rc1-fixes' of git://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs
+04ae3eb470e5 drm/lima: fix a memleak in lima_heap_alloc
+b5f66ba2d071 Merge tag 'kbuild-v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/masahiroy/linux-kbuild
+2a668d217676 Merge tag 'kgdb-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/danielt/linux
+736b5545d39c Merge tag 'net-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+ed8d84530ab0 Merge tag 'i2c-for-6.8-rc1-rebased' of git://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux
+378de6df1980 Merge tag 'rtc-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux
+0f289bdd4102 Merge tag 'input-for-v6.8-rc0' of git://git.kernel.org/pub/scm/linux/kernel/git/dtor/input
+33a9caa49938 Merge tag 'phy-for-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/phy/linux-phy
+4d5d604cc48a Merge tag 'soundwire-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/vkoul/soundwire
+345513583974 Merge tag 'gpio-fixes-for-v6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux
+5c9350698362 Merge tag 'pwm/for-6.8-2' of gitolite.kernel.org:pub/scm/linux/kernel/git/ukleinek/linux
+21c91bb93677 Merge tag 'backlight-next-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/lee/backlight
+17e232b6d2fe Merge tag 'dma-mapping-6.8-2024-01-18' of git://git.infradead.org/users/hch/dma-mapping
+77c9622d87d2 Merge tag 'memblock-v6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/rppt/memblock
+0b7359ccddaa Merge tag 'for_linus' of git://git.kernel.org/pub/scm/linux/kernel/git/mst/vhost
+da3c45c721e2 Merge tag 'hwmon-for-v6.8-p2' of git://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging
+db5ccb9eb231 Merge tag 'cxl-for-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/cxl/cxl
+0a1123c7b9f1 Merge tag 'amd-drm-fixes-6.8-2024-01-18' of https://gitlab.freedesktop.org/agd5f/linux into drm-next
+17d49b7e47a1 power: supply: bq24190_charger: Fix "initializer element is not constant" error
+244aefb1c64a Merge tag 'vfio-v6.8-rc1' of https://github.com/awilliam/linux-vfio
+c44d4ef47fda drm/i915/xelpg: Extend some workarounds/tuning to gfx version 12.74
+84bf82f4f866 drm/i915/xelpg: Extend driver code of Xe_LPG to Xe_LPG+
+86c4d58a99ab Merge tag 'for-linus-iommufd' of git://git.kernel.org/pub/scm/linux/kernel/git/jgg/iommufd
+bddacdf4861c drm/i915: Add additional ARL PCI IDs
+0dde2bf67bcf Merge tag 'iommu-updates-v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/joro/iommu
+e7ded27593bf Merge tag 'percpu-for-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/dennis/percpu
+24f3a63e1fc3 Merge tag 'eventfs-v6.8-2' of git://git.kernel.org/pub/scm/linux/kernel/git/trace/linux-trace
+43d48379c939 drm/xe: correct the calculation of remaining size
+7f2d219e78e9 btrfs: scrub: limit RST scrub to chunk boundary
+f546c4282673 btrfs: scrub: avoid use-after-free when chunk length is not 64K aligned
+4525462dd0db riscv: lib: Check if output in asm goto supported
+1e61b8c672ab btrfs: don't unconditionally call folio_start_writeback in subpage
+2018ef1d9ac3 btrfs: use the original mount's mount options for the legacy reconfigure
+a208b3f132b4 btrfs: don't warn if discard range is not aligned to sector
+f398e70dd69e btrfs: tree-checker: fix inline ref size in error messages
+1e7f6def8b23 btrfs: zstd: fix and simplify the inline extent decompression
+6a69631ec9b1 btrfs: lzo: fix and simplify the inline extent decompression
+a2ded784cd7f Merge tag 'trace-v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/trace/linux-trace
+2c25716dcc25 btrfs: zlib: fix and simplify the inline extent decompression
+5b890ad456b1 Merge tag 'probes-v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/trace/linux-trace
+302d18586544 Merge tag 's390-6.8-2' of git://git.kernel.org/pub/scm/linux/kernel/git/s390/linux
+66f962d8939f riscv: Fix build error on rv32 + XIP
+aa0901a9008e drm/amdgpu: Enable GFXOFF for Compute on GFX11
+b2139c96dc95 drm/amd/display: Drop 'acrtc' and add 'new_crtc_state' NULL check for writeback requests.
+fb1c93c2e960 drm/amdgpu: revert "Adjust removal control flow for smu v13_0_2"
+3c4e4eb5d872 drm/amdkfd: init drm_client with funcs hook
+b4442cadca2f Merge tag 'x86_tdx_for_6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+05638ff6dd6f drm/amd/display: Fix a switch statement in populate_dml_output_cfg_from_stream_state()
+bc03c02cc199 drm/amdgpu: Fix the null pointer when load rlc firmware
+bfe79f5fff13 drm/amd/display: Align the returned error code with legacy DP
+d3579f5df053 drm/amd/display: Fix DML2 watermark calculation
+3ba2a0bfd8cf drm/amd/display: Clear OPTC mem select on disable
+4b56f7d47be8 drm/amd/display: Port DENTIST hang and TDR fixes to OTG disable W/A
+8a51cc097dd5 drm/amd/display: Add logging resource checks
+aa36d8971fcc drm/amd/display: Init link enc resources in dc_state only if res_pool presents
+3bb9b1f958c3 drm/amd/display: Fix late derefrence 'dsc' check in 'link_set_dsc_pps_packet()'
+ba7dd8570dc8 Merge tag 'x86_sgx_for_6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+0cd2bc06de72 drm/amd/pm: enable amdgpu smu send message log
+a9e4f61df1cc drm/amdgpu: update error condition check for umc_v12_0_query_error_address
+601429cca96b drm/amdgpu: Skip do PCI error slot reset during RAS recovery
+2c7a1560e8a6 drm/amdgpu: Show deferred error count for UMC
+776b0953aba8 drm/amdgpu: Enable GFXOFF for Compute on GFX11
+7ed97155b258 drm/amdgpu: fix UBSAN array-index-out-of-bounds for ras_block_string[]
+b5387349cadd drm/amd/amdgpu: Update RLC_SPM_MC_CNT by ring wreg in guest
+b2f26f49e84b drm/amd/display: Drop 'acrtc' and add 'new_crtc_state' NULL check for writeback requests.
+925781a471d8 Merge tag 'nf-24-01-18' of git://git.kernel.org/pub/scm/linux/kernel/git/netfilter/nf
+5394fb2a5bd5 drm/amdgpu: Remove unnecessary NULL check
+087a3e13ec49 drm/amdgpu: revert "Adjust removal control flow for smu v13_0_2"
+8a1f7fddabe1 drm/amdgpu: Remove usage of the deprecated ida_simple_xx() API
+733965a90f88 drm/amdkfd: init drm_client with funcs hook
+ab762f937db9 drm/amd/display: Fix a switch statement in populate_dml_output_cfg_from_stream_state()
+bf14cd4f2e9a drm/radeon/ni_dpm: Clean up errors in nislands_smc.h
+a87076d37598 drm/radeon/evergreen_cs: Clean up errors in evergreen_cs.c
+ce136e15e0f8 drm/radeon: Clean up errors in si.c
+17c31edfa2e4 drm/radeon: Clean up errors in radeon.h
+c435ebd0c661 drm/radeon: Clean up errors in ci_dpm.h
+6080a591bfaf drm/radeon/dpm: Clean up errors in evergreen_smc.h
+4a93a7c92779 drm/radeon: Clean up errors in clearstate_cayman.h
+b1baf42f8523 drm/radeon: Clean up errors in clearstate_ci.h
+6d01359dfd61 drm/radeon/kms: Clean up errors in radeon_pm.c
+3af3497f335c drm/radeon/kms: Clean up errors in smu7.h
+93709fa06d5b drm/radeon/kms: Clean up errors in smu7_fusion.h
+848da1928b7b drm/radeon: Clean up errors in r600_dpm.c
+a62b1547e028 drm/radeon: Clean up errors in rv515.c
+15711063f827 drm/radeon: Clean up errors in radeon_mode.h
+f63686ce2f5e drm/radeon: Clean up errors in evergreen_reg.h
+8be4f5312e80 drm/radeon: Clean up errors in kv_smc.c
+40d89a92f1c7 gpu/drm/radeon: Clean up errors in evergreen.c
+c40bc91776b9 drm/radeon: Clean up errors in evergreen.c
+c6ebd422a6eb drm/radeon: Clean up errors in rv770_smc.h
+63373186aa1b drm/radeon/ci_dpm: Clean up errors in ci_dpm.c
+cc588e799549 drm/radeon: Clean up errors in r600.c
+f11562434778 drm/radeon: Clean up errors in rs600.c
+6e4362dd21f4 drm/radeon: Clean up errors in si_dpm.h
+50958960c443 drm/radeon: Clean up errors in radeon_audio.c
+ab2533d4fd0f drm/radeon: Clean up errors in rs400.c
+9f9a40852e29 drm/radeon: Clean up errors in radeon_audio.h
+3e9156fb5555 drm/radeon: Clean up errors in uvd_v1_0.c
+22dfe0aedb56 drm/radeon: Clean up errors in radeon_asic.c
+25157b1bc12e drm/radeon/kms: Clean up errors in rv6xx_dpm.h
+3013edd68ea7 drm/radeon/btc_dpm: Clean up errors in btc_dpm.c
+1b5a5e4055f5 drm/radeon/dpm: Clean up errors in trinity_dpm.h
+e0353ea0da61 drm/radeon/rv770: Clean up errors in rv770_dpm.c
+d93eb053b240 drm/radeon: Clean up errors in smu7_discrete.h
+007cded6014f drm/radeon: Clean up errors in ni_dpm.c
+b8cbb7defe76 drm/radeon/ni_dpm: Clean up errors in ni_dpm.c
+30d30e0f1523 drm/radeon/dpm: Clean up errors in sumo_dpm.c
+765290661cfa drm/radeon: Clean up errors in ni.c
+236ff5f967bb drm/radeon: Clean up errors in r600_dpm.h
+1e68ffdcd182 drm/radeon/r100: Clean up errors in r100.c
+c4769ac4d594 drm/radeon: Clean up errors in radeon_atpx_handler.c
+328f63b158f8 drm/radeon: Clean up errors in trinity_dpm.c
+54a5d71723ac drm/radeon/trinity_dpm: Clean up errors in trinity_dpm.c
+b42eecdfa3a9 drm/radeon: Clean up errors in si_dpm.c
+9c7fdfa396a9 drm/amd/include/vega20_ip_offset: Clean up errors in vega20_ip_offset.h
+296cce5d4ebb drm/amd/display: Clean up errors in renoir_ip_offset.h
+70debdf217e8 drm/amd/amdgpu: Clean up errors in beige_goby_ip_offset.h
+58479e2126fd drm/amdgpu: Clean up errors in v10_structs.h
+e1fe442fec46 drm/amd/include/navi14_ip_offset: Clean up errors in navi14_ip_offset.h
+a0caeabb96f2 drm/amdgpu: Clean up errors in cgs_common.h
+aca4300ab2b2 drm/amd/include/sienna_cichlid_ip_offset: Clean up errors in sienna_cichlid_ip_offset.h
+1ef4fd9278c7 drm/amd/include/vangogh_ip_offset: Clean up errors in vangogh_ip_offset.h
+78a855f95420 drm/amdgpu: Clean up errors in dimgrey_cavefish_ip_offset.h
+eadf484e6bad drm/amd/pp: Clean up errors in dm_pp_interface.h
+882c82b9ac66 drm/amd: Clean up errors in vega10_ip_offset.h
+3c642f34e9c6 drm/amd/include/vega10_ip_offset:Clean up errors in vega10_ip_offset.h
+577fa1be30e6 drm/amdgpu: Clean up errors in kgd_pp_interface.h
+84900320970d drm/amdgpu: Clean up errors in navi12_ip_offset.h
+522f878a0c26 drm/amdgpu: Clean up errors in atom-bits.h
+142e2227582e drm/amd/include: Clean up errors in arct_ip_offset.h
+7937b6f63f89 drm/amdgpu: Clean up errors in umc_v6_0.c
+ac4d654f3daf drm/amdgpu: Clean up errors in clearstate_si.h
+e28b0359587f bcachefs: Replace strlcpy() with strscpy()
+4503538d3066 MAINTAINERS: use proper email for my I2C work
+90f9b1406236 i2c: stm32f7: add support for stm32mp25 soc
+a058b24c0802 i2c: stm32f7: perform I2C_ISR read once at beginning of event isr
+bf12998e1a68 dt-bindings: i2c: document st,stm32mp25-i2c compatible
+33a00d919253 i2c: stm32f7: simplify status messages in case of errors
+e6103cd45ef0 i2c: stm32f7: perform most of irq job in threaded handler
+a51e224c2f42 i2c: stm32f7: use dev_err_probe upon calls of devm_request_irq
+2f189493ae32 i2c: i801: Add lis3lv02d for Dell XPS 15 7590
+6d9450464ce1 i2c: i801: Add lis3lv02d for Dell Precision 3540
+bb7c0209c4fe i2c: wmt: Reduce redundant: REG_CR setting
+4c541c6a66df i2c: wmt: Reduce redundant: function parameter
+7108ecf3cbc7 i2c: wmt: Reduce redundant: clock mode setting
+8a22991a48f2 i2c: wmt: Reduce redundant: wait event complete
+462e9804d2c9 i2c: wmt: Reduce redundant: bus busy check
+a8355235dbd5 i2c: mux: reg: Remove class-based device auto-detection support
+94959c0e796e i2c: make i2c_bus_type const
+614ef4d30fe7 dt-bindings: at24: add ROHM BR24G04
+2b0eee4f6add eeprom: at24: use of_match_ptr()
+e535af5c4225 i2c: cpm: Remove linux,i2c-index conversion from be32
+db63eacdf61d i2c: imx: Make SDA actually optional for bus recovering
+13e3a512a290 i2c: smbus: Support up to 8 SPD EEPROMs
+92a85b7c6262 i2c: rk3x: Adjust mask/value offset for i2c2 on rv1126
+187432b82173 i2c: s3c24xx: add support for atomic transfers
+990489e1042c i2c: s3c24xx: fix transferring more than one message in polling mode
+0d9cf23ed55d i2c: s3c24xx: fix read transfers in polling mode
+d0520eb3ed54 i2c: rcar: add FastMode+ support for Gen4
+2b523c46e81e i2c: rcar: introduce Gen4 devices
+e19e1abc9ce4 i2c: npcm7xx: move to per-adapter debugfs directory
+c66520c02c2f i2c: gpio: move to per-adapter debugfs directory
+73febd775bdb i2c: create debugfs entry per adapter
+f79ad78a2584 staging: greybus: Don't let i2c adapters declare I2C_CLASS_SPD support if they support I2C_CLASS_HWMON
+8cd210d200ad media: netup_unidvb: Don't let i2c adapters declare I2C_CLASS_SPD support if they support I2C_CLASS_HWMON
+c1cc7ccb0ff7 i2c: stub: Don't let i2c adapters declare I2C_CLASS_SPD support if they support I2C_CLASS_HWMON
+9fd12f385720 i2c: Don't let i2c adapters declare I2C_CLASS_SPD support if they support I2C_CLASS_HWMON
+f21682b362b6 drm/amd/pm: Remove I2C_CLASS_SPD support
+b60db383e2ba include/linux/i2c.h: remove I2C_CLASS_DDC support
+754bd2fffc91 fbdev: remove I2C_CLASS_DDC support
+e965a7072767 drm: remove I2C_CLASS_DDC support
+b0d326da462e Merge tag 'sched-urgent-2024-01-18' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+8c94ccc7cd69 Merge tag 'usb-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb
+bd736f38c014 Merge tag 'tty-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty
+80fe58cc176f Merge tag 'timers-v6.8-rc1' of http://git.linaro.org/people/daniel.lezcano/linux into timers/core
+eb08104f90fc drm/xe/gsc: add support for GSC proxy interrupt
+997a55caa1c3 drm/xe/gsc: Initialize GSC proxy
+18f14afe2816 powerpc/64s: Increase default stack size to 32KB
+e38f734add21 Merge tag 'staging-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging
+6af7ee08279c drm/xe/guc: Add kernel-doc for xe_guc_ct_send_recv()
+a54e016ace26 drm/xe/guc: Return CTB HXG response DATA0 if no buffer provided
+c3365ced1375 Update MAINTAINERS email address
+0b549c4f5941 cifs: minor comment cleanup
+d8392c203e84 smb3: show beginning time for per share stats
+4349efc52b83 Merge tag 'for-netdev' of https://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf
+9cfd3b502153 i40e: Include types.h to some headers
+2e7ef287f07c ipv6: mcast: fix data-race in ipv6_mc_down / mld_ifc_work
+80955ae955d1 Merge tag 'driver-core-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/driver-core
+bc9291dea7ec Merge branch 'mlxsw-miscellaneous-fixes'
+b34f4de6d30c selftests: mlxsw: qos_pfc: Adjust the test to support 8 lanes
+40cc674bafd5 selftests: mlxsw: qos_pfc: Remove wrong description
+62bef63646c1 mlxsw: spectrum_router: Register netdevice notifier before nexthop
+483ae90d8f97 mlxsw: spectrum_acl_tcam: Fix stack corruption
+efeb7dfea8ee mlxsw: spectrum_acl_tcam: Fix NULL pointer dereference in error path
+6d6eeabcfaba mlxsw: spectrum_acl_erp: Fix error flow of pool allocation failure
+34e9d836f9d0 drm/xe: Mark internal gmdid mappings as const
+f0e54b6087de ext4: remove 'needed' in trace_ext4_discard_preallocations
+2ffd2a6ad1d3 ext4: remove unnecessary parameter "needed" in ext4_discard_preallocations
+20427949b9b5 ext4: remove unused return value of ext4_mb_release_group_pa
+820c280896ea ext4: remove unused return value of ext4_mb_release_inode_pa
+908177175a2a ext4: remove unused return value of ext4_mb_release
+97c32dbffce1 ext4: remove unused ext4_allocation_context::ac_groups_considered
+11fd1a5d6423 ext4: remove unneeded return value of ext4_mb_release_context
+438a35e72d09 ext4: remove unused parameter ngroup in ext4_mb_choose_next_group_*()
+133de5a0d8f8 ext4: remove unused return value of __mb_check_buddy
+c5f3a3821de4 ext4: mark the group block bitmap as corrupted before reporting an error
+832698373a25 ext4: avoid allocating blocks from corrupted group in ext4_mb_find_by_goal()
+4530b3660d39 ext4: avoid allocating blocks from corrupted group in ext4_mb_try_best_found()
+993bf0f4c393 ext4: avoid dividing by 0 in mb_update_avg_fragment_size() when block bitmap corrupt
+2331fd4a4986 ext4: avoid bb_free and bb_fragments inconsistency in mb_free_blocks()
+c9b528c35795 ext4: regenerate buddy after block freeing failed if under fc replay
+172202152a12 ext4: do not trim the group with corrupted block bitmap
+55583e899a53 ext4: fix double-free of blocks due to wrong extents moved_len
+b2e792ae883a Documentation: block: ioprio: Update schedulers
+baa7d536077d loop: fix the the direct I/O support check when used on top of block devices
+7a8e9cdf9405 seq_buf: Make DECLARE_SEQ_BUF() usable
+c5a06c9169f3 drm/xe/guc: Enable WA 14018913170
+0991abeddefa exfat: fix zero the unwritten part for dio read
+bcbc84af1183 wifi: mac80211: fix race condition on enabling fast-xmit
+cf4a0d840ecc wifi: iwlwifi: fix a memory corruption
+b01a74b3ca6f wifi: mac80211: fix potential sta-link leak
+26490da5a71d wifi: cfg80211/mac80211: remove dependency on non-existing option
+a6e4f85d3820 wifi: cfg80211: fix missing interfaces when dumping
+f1172f3ee3a9 ethtool: netlink: Add missing ethnl_ops_begin/complete
+1b20d0486a60 arm64: Fix silcon-errata.rst formatting
+dc7eb8755797 arm64/sme: Always exit sme_alloc() early with existing storage
+8410186ca480 arm64/fpsimd: Remove spurious check for SVE support
+84b5ece64477 drm/i915: Drop -Wstringop-overflow
+6992eb815d08 Revert "drm/i915/dsi: Do display on sequence later on icl+"
+b7c510d04904 arm64/ptrace: Don't flush ZA/ZT storage when writing ZA via ptrace
+da59f1d051d5 arm64: entry: simplify kernel_exit logic
+832dd634bd1b arm64: entry: fix ARM64_WORKAROUND_SPECULATIVE_UNPRIV_LOAD
+dd2d40acdbb2 selftests: bonding: Add more missing config options
+39369c9a6e09 selftests: netdevsim: add a config file
+556857aa1d08 wifi: ath11k: rely on mac80211 debugfs handling for vif
+79f8eacbdf9d drm/xe: Use a NULL pointer instead of 0.
+e2dc52f849f8 drm/xe/dmabuf: Make xe_dmabuf_ops static
+a99d453d2459 drm/i915/opregion: remove unused lid_state
+4d695869d3fb selftests/hid: wacom: fix confidence tests
+35ac085a94ef Merge branch 'tighten-up-arg-ctx-type-enforcement'
+76ec90a996e3 libbpf: warn on unexpected __arg_ctx type when rewriting BTF
+989410cde819 selftests/bpf: add tests confirming type logic in kernel for __arg_ctx
+0ba971511d16 bpf: enforce types for __arg_ctx-tagged arguments in global subprogs
+66967a32d3b1 bpf: extract bpf_ctx_convert_map logic and make it more reusable
+01b55f4f0cd6 libbpf: feature-detect arg:ctx tag support in kernel
+080c4324fa5e riscv: optimize ELF relocation function in riscv
+102434010592 RISC-V: Implement archrandom when Zkr is available
+55ca8d7aa2af riscv: Optimize hweight API with Zbb extension
+c4db7ff7a9ed riscv: add dependency among Image(.gz), loader(.bin), and vmlinuz.efi
+3074e8b17538 Merge patch series "riscv: ftrace: Miscellaneous ftrace improvements"
+629291dd8499 samples: ftrace: Add RISC-V support for SAMPLE_FTRACE_DIRECT[_MULTI]
+196c79f19a92 riscv: ftrace: Add DYNAMIC_FTRACE_WITH_DIRECT_CALLS support
+35e61e8827ee riscv: ftrace: Make function graph use ftrace directly
+b546d6363af4 riscv: select FTRACE_MCOUNT_USE_PATCHABLE_FUNCTION_ENTRY
+448857ec53a4 Merge patch series "RISC-V: Disable DWARF5 with known broken LLVM versions"
+a4426641f00c lib/Kconfig.debug: Update AS_HAS_NON_CONST_LEB128 comment and name
+ae84ff9a14a5 riscv: Restrict DWARF5 when building with LLVM to known working versions
+55b71d2ce133 riscv: Hoist linker relaxation disabling logic into Kconfig
+c64086849110 Merge patch series "riscv: Add fine-tuned checksum functions"
+6f4c45cbcb00 kunit: Add tests for csum_ipv6_magic and ip_fast_csum
+a04c192eabfb riscv: Add checksum library
+e11e367e9fe5 riscv: Add checksum header
+2ce5729fce8f riscv: Add static key for misaligned accesses
+1e7196fa5b03 asm-generic: Improve csum_fold
+0de65288d75f RISC-V: selftests: cbo: Ensure asm operands match constraints
+296455ade1fd Merge tag 'char-misc-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/char-misc
+e1aa9df44018 Merge tag 'pci-v6.8-changes' of git://git.kernel.org/pub/scm/linux/kernel/git/pci/pci
+a3f4a07b5027 Merge tag 'i3c/for-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/i3c/linux
+14688f1a91e1 rtc: nuvoton: Compatible with NCT3015Y-R and NCT3018Y-R
+f5334aa88345 rtc: da9063: Use dev_err_probe()
+4b60c32e979a rtc: da9063: Use device_get_match_data()
+8681de6457aa rtc: da9063: Make IRQ as optional
+dd7fe5d9fd6a rtc: max31335: Fix comparison in max31335_volatile_reg()
+b7d450d98b0f rtc: max31335: use regmap_update_bits_check
+590b1d19d739 rtc: max31335: remove unecessary locking
+ed6c23b17547 Merge tag 'pinctrl-v6.8-1' of git://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl
+5d197e97fb10 Merge tag 'hsi-for-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/sre/linux-hsi
+75afd029e607 Merge tag 'mailbox-v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/jassibrar/mailbox
+08df80a3c516 Merge tag 'leds-next-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/lee/leds
+2385018a4e5e Merge tag 'mfd-next-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd
+a2ec2071cad8 Merge tag 'hwlock-v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/remoteproc/linux
+e88481f74fee Merge tag 'rproc-v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/remoteproc/linux
+2a43434675b2 Merge tag 'rpmsg-v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/remoteproc/linux
+8893a6bfff31 Merge tag 'drm-next-2024-01-15-1' of git://anongit.freedesktop.org/drm/drm
+d8e6ba025f5e Merge tag 'thermal-6.8-rc1-2' of git://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm
+7f369a8f5ba9 Merge tag 'acpi-6.8-rc1-2' of git://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm
+7b5bcf9b8420 Merge tag 'pm-6.8-rc1-2' of git://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm
+1d9cabe2817e SUNRPC: use request size to initialize bio_vec in svc_udp_sendto()
+82fd5ee9d8a5 Merge tag 'for-linus-6.8-rc1-tag' of git://git.kernel.org/pub/scm/linux/kernel/git/xen/tip
+49e60333d743 blk-mq: Remove the hctx 'run' debugfs attribute
+09d1c6a80f2c Merge tag 'for-linus' of git://git.kernel.org/pub/scm/virt/kvm/kvm
+5aa1c96e8ef3 Merge branch 'master' into mm-hotfixes-stable
+fe33c0fbed75 Merge branch 'master' into mm-hotfixes-stable
+a20f1b02bafc drm/bridge: parade-ps8640: Make sure we drop the AUX mutex in the error case
+7d1ae55ffed0 scsi: MAINTAINERS: Update ibmvscsi_tgt maintainer
+1b1934dbbdcf Merge tag 'docs-6.8-2' of git://git.lwn.net/linux
+e6f3799de2f2 scsi: initio: Remove redundant variable 'rb'
+d6b75ba52189 scsi: virtio_scsi: Remove duplicate check if queue is broken
+bce3b5d6764b Merge tag 'parisc-for-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/deller/parisc-linux
+658365c6b085 scsi: isci: Fix an error code problem in isci_io_request_build()
+47ce834fbb6c Merge tag 'xtensa-20240117' of https://github.com/jcmvbkbc/linux-xtensa
+c4c6044d35f0 Merge tag 'for-linus' of git://git.armlinux.org.uk/~rmk/linux-arm
+284a4ddeed35 Merge tag 'microblaze-v6.8' of git://git.monstr.eu/linux-2.6-microblaze
+096f286ee3fa Merge tag 'mips_6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/mips/linux
+4331f070267a Merge tag 'riscv-for-linus-6.8-mw1' of git://git.kernel.org/pub/scm/linux/kernel/git/riscv/linux
+6cff79f4b90a Merge tag 'uml-for-linus-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/uml/linux
+0c6bc3725592 Merge tag 'ubifs-for-linus-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/rw/ubifs
+eebe75827b73 Merge tag 'fscrypt-for-linus' of git://git.kernel.org/pub/scm/fs/fscrypt/linux
+c2459ce011f6 Merge tag 'vfs-6.8-rc1.fixes' of gitolite.kernel.org:pub/scm/linux/kernel/git/vfs/vfs
+7f5e47f78514 Merge tag 'mm-hotfixes-stable-2024-01-12-16-52' of git://git.kernel.org/pub/scm/linux/kernel/git/akpm/mm
+26db46bc9c67 drm/bridge: parade-ps8640: Ensure bridge is suspended in .post_disable()
+4f41d30cd6dc kdb: Fix a potential buffer overflow in kdb_local()
+fb3c007fde80 ALSA: hda/realtek: Enable headset mic on Lenovo M70 Gen5
+b4bc35cf8704 io_uring: combine cq_wait_nr checks
+e8c407717b48 io_uring: clean *local_work_add var naming
+d381099f980b io_uring: clean up local tw add-wait sync
+dc12d1799ce7 io_uring: adjust defer tw counting
+baf59771343d io_uring/register: guard compat syscall with CONFIG_COMPAT
+05ae67d95bad drm/i915: Drop -Wstringop-overflow
+78fbb92af27d nbd: always initialize struct msghdr completely
+b9bd10c43456 s390/vfio-ap: do not reset queue removed from host config
+f009cfa46655 s390/vfio-ap: reset queues associated with adapter for queue unbound from driver
+f848cba767e5 s390/vfio-ap: reset queues filtered from the guest's AP config
+774d10196e64 s390/vfio-ap: let on_scan_complete() callback filter matrix and update guest's APCB
+16fb78cbf56e s390/vfio-ap: loop over the shadow APCB when filtering guest's AP configuration
+850fb7fa8c68 s390/vfio-ap: always filter entire AP matrix
+8f54fca3f8fc s390/net: add Thorsten Winkler as maintainer
+dc524d05974f Revert "drm/i915/dsi: Do display on sequence later on icl+"
+d6938c1c76c6 ipvs: avoid stat macros calls from preemptible context
+113661e07460 netfilter: nf_tables: reject NFT_SET_CONCAT with not field length description
+6b1ca88e4bb6 netfilter: nf_tables: skip dead set elements in netlink dump
+3ce67e3793f4 netfilter: nf_tables: do not allow mismatch field size and set key length
+b1db244ffd04 netfilter: nf_tables: check if catch-all set element is active in next generation
+9874808878d9 netfilter: bridge: replace physindev with physinif in nf_bridge_info
+a54e72197037 netfilter: propagate net to nf_bridge_get_physindev
+aeaa44075f8e netfilter: nf_queue: remove excess nf_bridge variable
+c3f9fd54cd87 netfilter: nfnetlink_log: use proper helper for fetching physinif
+91a139cee120 netfilter: nft_limit: do not ignore unsupported flags
+3c13725f43dc netfilter: nf_tables: bail out if stateful expression provides no .clone
+65b3bd600e15 netfilter: nf_tables: validate .maxattr at expression registration
+0617c3de9b40 netfilter: nf_tables: reject invalid set policy
+ea937f772083 net: netdevsim: don't try to destroy PHC on VFs
+c0f5aec28edf mptcp: relax check on MPC passive fallback
+c2945c435c99 net: stmmac: Prevent DSA tags from breaking COE
+2e722c868b3a drm/tests: managed: Add a simple test for drmm_managed_release
+8ec16a7a9a74 drm/tests: managed: Extract device initialization into test init
+a1c73a3b7940 drm/tests: managed: Add comments about test intent
+dd0ce02f9897 drm/tests: managed: Rename the suite name to match other DRM tests
+42d6196f6a94 drm/managed: Add drmm_release_action
+aabf5c412f04 drm/rockchip: inno_hdmi: Explicitly include drm_atomic.h
+3eb791c891aa drm/tests: mm: Call drm_mm_print in drm_test_mm_debug
+efb8235bfdbe gpiolib: revert the attempt to protect the GPIO device list with an rwsem
+0103b4496087 drm/i915/perf: Update handling of MMIO triggered reports
+3d9e9020b922 drm/i915/dp: Fix passing the correct DPCD_REV for drm_dp_set_phy_test_pattern
+0a8c1feed387 drm/ttm: allocate dummy_read_page without DMA32 on fail
+6e441fa3ac47 MAINTAINERS: Add BPF JIT for LOONGARCH entry
+fc562925f51c LoongArch: Update Loongson-3 default config file
+36a87385e31c LoongArch: BPF: Prevent out-of-bounds memory access
+21c5ae5cc1ee LoongArch: BPF: Support 64-bit pointers to kfuncs
+91af17cd7d03 LoongArch: Fix definition of ftrace_regs_set_instruction_pointer()
+78de91b45860 LoongArch: Use generic interface to support crashkernel=X,[high,low]
+c2396651309e LoongArch: Fix and simplify fcsr initialization on execve()
+ce68ff3528e6 LoongArch: Let cores_io_master cover the largest NR_CPUS
+d23b77953f5a LoongArch: Change SHMLBA from SZ_64K to PAGE_SIZE
+9499daeade0e LoongArch: Add a missing call to efi_esrt_init()
+44a01f1f726a LoongArch: Parsing CPU-related information from DTS
+2905844f6828 LoongArch: dts: DeviceTree for Loongson-2K2000
+30a5532a3206 LoongArch: dts: DeviceTree for Loongson-2K1000
+0f66569c8594 LoongArch: dts: DeviceTree for Loongson-2K0500
+5f346a6e5970 LoongArch: Allow device trees be built into the kernel
+db8ce2407090 dt-bindings: interrupt-controller: loongson,liointc: Fix dtbs_check warning for interrupt-names
+aaeebb3ea4f2 dt-bindings: interrupt-controller: loongson,liointc: Fix dtbs_check warning for reg-names
+ec6b36edf0ce dt-bindings: loongarch: Add Loongson SoC boards compatibles
+8e07e0e3964c dt-bindings: loongarch: Add CPU bindings for LoongArch
+90868ff9cade LoongArch: Enable initial Rust support
+f58b0abae839 scripts/min-tool-version.sh: Raise minimum clang version to 18.0.0 for loongarch
+2772ae4d66d1 modpost: Ignore relaxation and alignment marker relocs on LoongArch
+e9ce7ededf14 selftests: rtnetlink: use setup_ns in bonding test
+97eb5d51b4a5 net: sfp-bus: fix SFP mode detect from bitrate
+776dac5a6627 net: dsa: vsc73xx: Add null pointer check to vsc73xx_gpio_probe
+8ca5d2641be2 cifs: remove redundant variable tcon_exist
+1057066009c4 eventfs: Use kcalloc() instead of kzalloc()
+852e46e239ee eventfs: Do not create dentries nor inodes in iterate_shared
+7bed6f3d08b7 block: Fix iterating over an empty bio with bio_for_each_folio_all
+53c41052ba31 eventfs: Have the inodes all for files and directories all be the same
+58f65f9db7e0 Input: atkbd - use ab83 as id when skipping the getid command
+935024212daf dt-bindings: don't anchor DT_SCHEMA_FILES to bindings directory
+85f3b79fb578 drm/xe: Group normal kunit tests in a single module
+be50df31c4e2 block: bio-integrity: fix kcalloc() arguments order
+e06964205920 Merge tag 'asoc-fix-v6.8-merge-window' of https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound into for-linus
+33772ff3b887 selftests/bpf: Add test for alu on PTR_TO_FLOW_KEYS
+22c7fa171a02 bpf: Reject variable offset alu on PTR_TO_FLOW_KEYS
+ddc3c0877e16 drm/xe: Use kstrdup while creating snapshot
+a894e8ed09c6 Merge patch series "riscv: support kernel-mode Vector"
+2080ff949307 riscv: vector: allow kernel-mode Vector with preemption
+bd446f5df5af riscv: vector: use kmem_cache to manage vector context
+5b6048f2ff71 riscv: vector: use a mask to write vstate_ctrl
+d6c78f1ca3e8 riscv: vector: do not pass task_struct into riscv_v_vstate_{save,restore}()
+a93fdaf18312 riscv: fpu: drop SR_SD bit checking
+c2a658d41924 riscv: lib: vectorize copy_to_user/copy_from_user
+7df56cbc27e4 riscv: sched: defer restoring Vector context for user
+c5674d00cacd riscv: Add vector extension XOR implementation
+956895b9d8f7 riscv: vector: make Vector always available for softirq context
+ecd2ada8a5e0 riscv: Add support for kernel mode vector
+03fb8565c880 selftests: bonding: add missing build configs
+a05f7279307b ASoC: hdmi-codec: drop drm/drm_edid.h include
+5b5268cd49d2 Merge branches 'pnp', 'acpi-resource' and 'acpica'
+4697381bd076 selftests: netdevsim: correct expected FEC strings
+dd75558b2d0b Merge branches 'thermal-core' and 'thermal-intel'
+9223614ea760 Merge branches 'pm-sleep', 'pm-cpufreq' and 'pm-qos' into pm
+2c4ca7977298 selftests: netdevsim: sprinkle more udevadm settle
+e37617c8e53a sched/fair: Fix frequency selection for non-invariant case
+a52c854a29bb drm/i915/opregion: make struct intel_opregion opaque
+2619861c470d drm/i915/gvt: use local INTEL_GVT_OPREGION_SIZE
+9eb4826f2856 drm/i915/opregion: abstract ASLE presence check
+37e2100312b1 drm/i915/opregion: abstract getting the opregion VBT
+bb94644716cf drm/i915/opregion: move i915_opregion debugfs to intel_opregion.c
+b018cee73698 ALSA: hda/realtek: Enable mute/micmute LEDs and limit mic boost on HP ZBook
+30ef2627b207 drm/i915/bios: move i915_vbt debugfs to intel_bios.c
+bc7863d18677 ALSA: hda/relatek: Enable Mute LED on HP Laptop 15s-fq2xxx
+3fc6c76a8d20 drm/bridge: sii902x: Fix audio codec unregistration
+08ac6f132dd7 drm/bridge: sii902x: Fix probing race issue
+a23aa0404218 net: stmmac: ethtool: Fixed calltrace caused by unbalanced disable_irq_wake calls
+ddb17dc880ee fs/ntfs3: Use kvfree to free memory allocated by kvmalloc
+915805b50585 Merge branch 'selftests-net-small-fixes'
+49078c1b80b6 selftests: forwarding: Remove executable bits from lib.sh
+c2518da8e6b0 selftests: bonding: Change script interpreter
+762343f79e43 drm/amdgpu: Clean up errors in amdgpu.h
+f5e1f90b67b8 drm/amdgpu: Clean up errors in amdgpu_gmc.c
+0b0fb6da9b01 drm/amdgpu: Clean up errors in jpeg_v2_5.c
+7230ebeb0a9b drm/amdgpu: Clean up errors in gfx_v9_4.c
+b679566bf0c1 drm/amdgpu: Clean up errors in amdgpu_drv.c
+995d629f7476 drm/amd: Clean up errors in amdgpu_vkms.c
+849e133c973c drm/amdgpu: Fix the null pointer when load rlc firmware
+4e2965bd3bdd drm/amdgpu: Centralize ras cap query to amdgpu_ras_check_supported
+0e14eb0cefd9 drm/amdgpu: Query ras capablity from psp v2
+bcee21a437ab drm/amd/display: 3.2.267
+3b84525544be drm/amd/display: Align the returned error code with legacy DP
+14656c4fde65 drm/amd/display: Allow Z8 for multiplane configurations on DCN35
+aa4e18d30076 drm/amd/display: Set default Z8 minimum residency for DCN35
+e6f82bd44b40 drm/amd/display: Rework DC Z10 restore
+5950efe25ee0 drm/amd/display: Enable Panel Replay for static screen use case
+12f72a1599dc drm/amd/display: Add DP audio BW validation
+d451b534e0b4 drm/amd/display: Fix dml2 assigned pipe search
+f0ec30549a2b drm/amd/display: Ensure populate uclk in bb construction
+038c53234641 drm/amd/display: Update P010 scaling cap
+2254ab45dab2 drm/amd/display: Fix DML2 watermark calculation
+b4e05bb1dec5 drm/amd/display: Clear OPTC mem select on disable
+3fc394111ea7 drm/amd/display: Floor to mhz when requesting dpp disp clock changes to SMU
+6c605f44086a drm/amd/display: Port DENTIST hang and TDR fixes to OTG disable W/A
+012fe0674af0 drm/amd/display: Add logging resource checks
+73888bad4d1f drm/amdgpu: Clean up errors in amdgpu_rlc.c
+1ed8ccf26877 drm/amd: Clean up errors in sdma_v2_4.c
+32a0a398fc78 drm/amd/amdgpu: Clean up errors in amdgpu_umr.h
+2bb012138d72 drm/amdgpu: Clean up errors in amdgpu_atomfirmware.h
+05ec62314720 drm/amdgpu: Clean up errors in clearstate_gfx9.h
+2763da27f93f drm/amdgpu: Clean up errors in navi10_ih.c
+f7a16fa37694 drm/radeon: check PS, WS index
+4630d5031cd8 drm/amdgpu: check PS, WS index
+a25dea474a24 drm/amd/display: Add Replay IPS register for DMUB command table
+ca25a2b5f841 drm/amd/display: Init link enc resources in dc_state only if res_pool presents
+ac9c748362fd drm/amd/display: Allow IPS2 during Replay
+166225e79ccc drm/amd/display: Fix late derefrence 'dsc' check in 'link_set_dsc_pps_packet()'
+81d4b9706845 drm/amdkfd: Fix variable dereferenced before NULL check in 'kfd_dbg_trap_device_snapshot()'
+30df05fb74f6 drm/amdgpu: Align ras block enum with firmware
+1714a1ffafcb drm/amdgpu: replace MCA macro with ACA for XGMI
+46e2231ce03b drm/amdgpu: Log deferred error separately
+9c97bf88f4a7 drm/amdgpu: Do bad page retirement for deferred errors
+bbcbfd4363e9 drm/amdgpu: add xgmi v6.4.0 ACA support
+f45e6f2b5c79 drm/amdgpu: add mmhub v1.8 ACA support
+373e970a4a2a drm/amdgpu: add sdma v4.4.2 ACA support
+0f3cd24e96b8 drm/amdgpu: add gfx v9.4.3 ACA support
+e372baeb3d33 drm/amdgpu: Check extended configuration space register when system uses large bar
+f38765de8385 drm/amdgpu: add umc v12.0 ACA support
+37973b69eab4 drm/amdgpu: add aca sysfs support
+04c4fcd2630d drm/amdgpu: add amdgpu ras aca query interface
+0c54e457ac58 drm/amd/pm: add aca smu backend support for smu v13.0.6
+26405ff4306a drm/amdgpu: move kiq_reg_write_reg_wait() out of amdgpu_virt.c
+d3f452f3a01e drm/amdgpu: add new INFO IOCTL query for input power
+d4b9cfe2c725 drm/amdgpu: Query boot status if boot failed
+33dcda51e9bd drm/amdgpu: add ACA bank dump debugfs support
+0599849c3276 drm/amdgpu: add ACA kernel hardware error log support
+c8cb7e09db90 drm/amdgpu: Query boot status if discovery failed
+cce4febb274c drm/amdgpu: Add ras helper to query boot errors v2
+f5e4cc8461c4 drm/amdgpu: implement RAS ACA driver framework
+ad390542ec48 drm/amdgpu: Init pcie_index/data address as fallback (v2)
+ea0f6dfeecab drm/amdgpu: drop psp v13 query_boot_status implementation
+ac3ff8a90637 drm/amdgpu: Replace DRM_* with dev_* in amdgpu_psp.c
+4cabb2174d2c drm/amdkfd: Bump KFD ioctl version
+50661eb1a2c8 drm/amdgpu: Auto-validate DMABuf imports in compute VMs
+d7643fe6fb76 drm/amd/display: Avoid enum conversion warning
+a992c90d8ed3 drm/amd/pm: Fix smuv13.0.6 current clock reporting
+91739a897c12 drm/amd/pm: Add error log for smu v13.0.6 reset
+d7a254fad873 drm/amdkfd: Fix 'node' NULL check in 'svm_range_get_range_boundaries()'
+c3d5e297dcae drm/amdgpu: drop exp hw support check for GC 9.4.3
+51258acdc475 drm/amdgpu: move debug options init prior to amdgpu device init
+d20e1aec8862 drm/amdgpu: add debug flag to place fw bo on vram for frontdoor loading
+6c5683bd9eca Revert "drm/amdgpu: add param to specify fw bo location for front-door loading"
+7073934f5d73 drm/amd/display: Fix variable deferencing before NULL check in edp_setup_replay()
+2b9a073b7304 drm/amdgpu: update regGL2C_CTRL4 value in golden setting
+8a44fdd3cf91 drm/amdgpu: Release 'adev->pm.fw' before return in 'amdgpu_device_need_post()'
+8e8272f0dc22 drm/amdgpu: Fix unsigned comparison with less than zero in vpe_u1_8_from_fraction()
+fac4ebd79fed drm/amdgpu: Fix with right return code '-EIO' in 'amdgpu_gmc_vram_checking()'
+30d8dffab7d0 drm/amdgpu: Do not program VM_L2_CNTL under SRIOV
+6616b5e19991 drm/amd/powerplay: Fix kzalloc parameter 'ATOM_Tonga_PPM_Table' in 'get_platform_power_management_table()'
+c9edcc1864f8 drm/amdgpu: update ATHUB_MISC_CNTL offset for athub v3.3
+8f8cb7124e86 drm/amdgpu: update headers for nbio v7.11
+6127d7df4a5b drm/amdgpu/pm: clarify debugfs pm output
+d02069850fc1 drm/amdgpu: fall back to INPUT power for AVG power via INFO IOCTL
+25852d4b9757 drm/amdgpu: fix avg vs input power reporting on smu7
+02eed83abc13 drm/amdkfd: fixes for HMM mem allocation
+dedaf03b99d6 rtc: max31335: add driver support
+5905777847b5 dt-bindings: rtc: max31335: add max31335 bindings
+62b38f30a00f gpio: EN7523: fix kernel-doc warnings
+83c0711453e5 rtc: rv8803: add wakeup-source support
+eea7615b684f rtc: ac100: remove misuses of kernel-doc
+5f4c01f1e3c7 spinlock: Fix failing build for PREEMPT_RT
+bf3ff145df18 drm/xe: display support should not depend on EXPERT
+7119ca35ee4a Merge branch 'pci/misc'
+9946bbb3edae Merge branch 'pci/dt-bindings'
+eddcaefa5fec Merge branch 'pci/remove-old-api'
+d43e4239f09c Merge branch 'pci/endpoint'
+dc14155d46b5 Merge branch 'pci/irq-clean-up'
+eb30ad414169 Merge branch 'pci/controller/remove-void-return'
+fd286a1de5dd Merge branch 'pci/controller/xilinx'
+161d42df9acf Merge branch 'pci/controller/vmd'
+67b9ef22c68c Merge branch 'pci/controller/rcar'
+1b6069f51ef0 Merge branch 'pci/controller/mediatek'
+1800c660b08f Merge branch 'pci/controller/layerscape'
+921e097ede90 Merge branch 'pci/controller/kirin'
+186ce88c9063 Merge branch 'pci/controller/keystone'
+787c72b1d45b Merge branch 'pci/controller/dwc'
+78fe51fcb435 Merge branch 'pci/controller/cadence'
+6f77f0ac5ee2 Merge branch 'pci/controller/broadcom'
+c94df6214681 Merge branch 'pci/virtualization'
+d6f5bcc2d098 Merge branch 'pci/switchtec'
+5a4af2ca48b8 Merge branch 'pci/resource'
+18c3850f313e Merge branch 'pci/p2pdma'
+564af7a5363f Merge branch 'pci/enumeration-logging'
+78e5ad791fae Merge branch 'pci/enumeration'
+996e337f4d33 Merge branch 'pci/ecam'
+f04e5285efb0 Merge branch 'pci/aer'
+2db6b72c9897 PCI: Fix kernel-doc issues
+832b371097eb gpiolib: Fix scope-based gpio_device refcounting
+ea489a3d983b drm/ci: add sc7180-trogdor-kingoftown
+d315a68e94a7 drm/ci: uprev mesa version: fix kdl commit fetch
+1bafe1e62f82 drm/ci: Update xfails for newly added msm tests
+8eab35e764c8 drm/ci: Add msm tests
+04036d49c44b virtio_blk: remove duplicate check if queue is broken in virtblk_done
+2b872b0f466d erofs: Don't use certain unnecessary folio_*() functions
+2a965d1b15d2 ceph: get rid of passing callbacks in __dentry_leases_walk()
+f6fb21b22fbe ceph: d_obtain_{alias,root}(ERR_PTR(...)) will do the right thing
+0f4cf64eabc6 ceph: fix invalid pointer access if get_quota_realm return ERR_PTR
+b36b03344f5f ceph: remove duplicated code in ceph_netfs_issue_read()
+6df89bf220fd ceph: send oldest_client_tid when renewing caps
+66207de308df ceph: rename create_session_open_msg() to create_session_full_msg()
+9c896d6bc3df ceph: select FS_ENCRYPTION_ALGS if FS_ENCRYPTION
+b493ad718b1f ceph: fix deadlock or deadcode of misusing dget()
+aaefabc4a5f7 ceph: try to allocate a smaller extent map for sparse read
+b79e4a0aa902 libceph: remove MAX_EXTENTS check for sparse reads
+f48e0342a74d ceph: reinitialize mds feature bit even when session in open
+cbcb358b744b ceph: skip reconnecting if MDS is not ready
+8049e3954aea drm/xe: Fix bounds checking in __xe_bo_placement_for_flags()
+7425c43c268f drm/xe/migrate: Fix CCS copy for small VRAM copy chunks
+ec32f4f1bed8 drm/xe: unlock on error path in xe_vm_add_compute_exec_queue()
+616576df3519 drm/xe/selftests: Fix an error pointer dereference bug
+ffd915e41a4a drm/xe/device: clean up on error in probe()
+190db3b1da8f drm/xe: Fix build bug for GCC 11
+23ca3d2fe367 drm/xe: Check skip_guc_pc before setting SLPC flag
+19c022252424 drm/xe: Fix modifying exec_queue priority in xe_migrate_init
+fef257eb6dcb drm/xe: Fix guc_exec_queue_set_priority
+98949068eb55 drm/xe: Annotate xe_ttm_stolen_mgr::mapping with __iomem
+5c63e7574739 drm/xe: Annotate multiple mmio pointers with __iomem
+77232e6a2844 drm/xe: Annotate xe_mem_region::mapping with __iomem
+3ec276d06698 drm/xe: Use __iomem for the regs pointer
+457f44398334 drm/xe/vm: Fix an error path
+56c253daabc8 drm/xe: Fix exec IOCTL long running exec queue ring full condition
+7b1a8a5fcee4 drm/xe: Fix definition of intel_wakeref_t
+5c7fa5c8ad79 sbitmap: remove stale comment in sbq_calc_wake_batch
+521277d12b5a block: Correct a documentation comment in blk-cgroup.c
+ab09fb9c629e ASoC: SOF: ipc4-loader: remove the CPC check warnings
+848c8f563dad ASoC: SOF: ipc4-pcm: remove log message for LLP
+1f1626ac0428 drm/ttm: fix ttm pool initialization for no-dma-device drivers
+19adbe96d3e3 ALSA: hda: generic: Remove obsolete call to ledtrig_audio_get
+3787ffdd13de ALSA: scarlett2: Fix yet more -Wformat-truncation warnings
+a9f1da09c69f HID: hid-steam: Fix cleanup in probe()
+a96681699611 HID: hid-steam: remove pointless error message
+d460e9c20751 gpio: mlxbf3: add an error code check in mlxbf3_gpio_probe
+314c020c4ed3 dt-bindings: gpio: xilinx: Fix node address in gpio
+c8fb5a52b977 gpio: rtd: Fix signedness bug in probe
+de8ac5696ebc drm/panel: nt36523: Set 120Hz fps for xiaomi,elish panels
+0ea5c948cb64 Merge drm/drm-next into drm-intel-next
+7c65aa3cc072 dma-debug: fix kernel-doc warnings
+205e18c13545 nouveau/gsp: handle engines in runl without nonstall interrupts.
+78d49aaa36bd drm/i915/psr: CAN_PSR and CAN_PANEL_REPLAY can be now local defines
+a480dd59fe25 drm/i915/display: No need for full modeset due to psr
+77bebd186442 ksmbd: only v2 leases handle the directory
+9caaeb090174 Merge tag 'drm-misc-next-fixes-2024-01-11' of git://anongit.freedesktop.org/drm/drm-misc into drm-next
+4fa0888f6f3e i3c: document hotjoin sysfs entry
+e8aaca57f9d9 Merge tag 'drm-intel-next-fixes-2024-01-11' of git://anongit.freedesktop.org/drm/drm-intel into drm-next
+34d946b723b5 i3c: master: fix kernel-doc check warning
+05599b5f56b7 Merge power-supply fixes for 6.7 cycle
+38d20c62903d ksmbd: fix UAF issue in ksmbd_tcp_new_connection()
+92e470163d96 ksmbd: validate mech token in session setup
+fdfd6dde4328 ksmbd: update feature status in documentation
+e327b2372bc0 net: ravb: Fix dma_addr_t truncation in error case
+2539b15d504c hwmon: (npcm750-pwm-fan) Fix crash observed when instantiating nuvoton,npcm750-pwm-fan
+95931a245b44 null_blk: Remove usage of the deprecated ida_simple_xx() API
+c061be1bd5e7 MAINTAINERS: eth: mvneta: update entry
+5ef7f6b308bb Merge branch 'tls-splice-hint-fixes'
+034ea1305e65 net: tls, add test to capture error on large splice
+dc9dfc8dc629 net: tls, fix WARNIING in __sk_msg_free
+e2a2501af13c Merge branch 'next' into for-linus
+cd795fb0c352 mailbox: mtk-cmdq: Add CMDQ driver support for mt8188
+df71f7818fb2 mailbox: mtk-cmdq: Sort cmdq platform data by compatible name
+060177644136 mailbox: mtk-cmdq: Rename gce_plat variable with SoC name postfix
+171c8a20850f dt-bindings: mailbox: qcom-ipcc: document the X1E80100 Inter-Processor Communication Controller
+cdf179a9d3e4 mailbox: zynqmp-ipi: Convert to platform remove callback returning void
+ab572ab44b04 mailbox: tegra-hsp: Convert to platform remove callback returning void
+b8e346bd8fb9 mailbox: sun6i-msgbox: Convert to platform remove callback returning void
+0a902f502e39 mailbox: stm32-ipcc: Convert to platform remove callback returning void
+d3a0021c4132 mailbox: qcom-ipcc: Convert to platform remove callback returning void
+ce42b93c6370 mailbox: qcom-apcs-ipc: Convert to platform remove callback returning void
+67785923d3f5 mailbox: omap: Convert to platform remove callback returning void
+e89c7c3766dc mailbox: mtk-cmdq: Convert to platform remove callback returning void
+bf562bc5a86b mailbox: mailbox-test: Convert to platform remove callback returning void
+a0c313d08d15 mailbox: imx: Convert to platform remove callback returning void
+74701ffbf7db mailbox: bcm-pdc: Convert to platform remove callback returning void
+d0a724d419cc mailbox: bcm-flexrm: Convert to platform remove callback returning void
+b3734a8291ad mailbox: zynqmp-ipi: fix an Excess struct member kernel-doc warning
+7f923ab20faa dt-bindings: mailbox: add Versal IPI bindings
+0a49b66c7413 dt-bindings: mailbox: zynqmp: extend required list
+ee01c0b4384d mailbox: arm_mhuv2: Fix a bug for mhuv2_sender_interrupt
+a71c8424e309 mailbox: qcom-apcs-ipc: re-organize compatibles with fallbacks
+1e9cb7e007dc dt-bindings: mailbox: qcom,apcs-kpss-global: use fallbacks
+24583bd204d5 dt-bindings: mailbox: qcom,apcs-kpss-global: drop duplicated qcom,ipq8074-apcs-apps-global
+8e33d5db7d01 Merge branch 'bpf-fix-backward-progress-bug-in-bpf_iter_udp'
+dbd7db7787ba selftests/bpf: Test udp and tcp iter batching
+2242fd537fab bpf: Avoid iter->offset making backward progress in bpf_iter_udp
+19ca0823f6ea bpf: iter_udp: Retry with a larger batch size without going back to the previous bucket
+894d7508316e net: netdev_queue: netdev_txq_completed_mb(): fix wake condition
+9181d6f8a2bb net: add more sanity check in virtio_net_hdr_to_skb()
+118a8cf504d7 erofs: fix inconsistent per-file compression format
+e18405d0be80 net: sched: track device in tcf_block_get/put_ext() only for clsact binder types
+482521d8e0c6 udp: annotate data-races around up->pending
+08300adac3b8 net: stmmac: Fix ethool link settings ops for integrated PCS
+ba5afb9a84df fs: rework listmount() implementation
+7b4f36cd22a6 block: ensure we hold a queue reference when using queue limits
+c919330dd578 f2fs: fix double free of f2fs_sb_info
+68d27badef62 Merge branch 'mptcp-better-validation-of-mptcpopt_mp_join-option'
+724b00c12957 mptcp: refine opt_mp_capable determination
+66ff70df1a91 mptcp: use OPTION_MPTCP_MPJ_SYN in subflow_check_req()
+be1d9d9d38da mptcp: use OPTION_MPTCP_MPJ_SYNACK in subflow_finish_connect()
+c1665273bdc7 mptcp: strict validation before using mp_opt->hmac
+89e23277f9c1 mptcp: mptcp_parse_option() fix for MPTCPOPT_MP_JOIN
+052d534373b7 Merge tag 'exfat-for-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/linkinjeon/exfat
+f16ab99c2eba Merge tag 'pull-bcachefs-fix' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+1acc24b300bf Merge tag 'pull-simple_recursive_removal' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+cbdd50ec8b1d net: liquidio: fix clang-specific W=1 build warnings
+23a80d462c67 Merge tag 'rcu.release.v6.8' of https://github.com/neeraju/linux
+5d4747a6cc8e userfaultfd: avoid huge_zero_page in UFFDIO_MOVE
+aa8f91910bf5 MAINTAINERS: add entry for shrinker
+00bcfcd47a52 selftests: mm: hugepage-vmemmap fails on 64K page size systems
+11684134140b mm/memory_hotplug: fix memmap_on_memory sysfs value retrieval
+55f958c55c2f mailmap: switch email for Tanzir Hasan
+0b8f128da761 mailmap: add old address mappings for Randy
+4e87ff59cebb kernel/crash_core.c: make __crash_hotplug_lock static
+7ea6ec4c2529 efi: disable mirror feature during crashkernel
+7bb943806ff6 kexec: do syscore_shutdown() in kernel_kexec
+327b4603c0b2 mailmap: update entry for Manivannan Sadhasivam
+4cccb6221cae fs/proc/task_mmu: move mmu notification mechanism inside mm lock
+ea52f71598f3 mm: zswap: switch maintainers to recently active developers and reviewers
+efbd63983533 scripts/decode_stacktrace.sh: optionally use LLVM utilities
+cc478e0b6bdf kasan: avoid resetting aux_lock
+aaa2c9a97c22 lib/Kconfig.debug: disable CONFIG_DEBUG_INFO_BTF for Hexagon
+65cc86800cf2 MAINTAINERS: update LTP maintainers
+4a693ce65b18 kdump: defer the insertion of crashkernel resources
+38814330fedd Merge tag 'devicetree-for-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux
+42bff4d0f9b9 Merge tag 'pwm/for-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/thierry.reding/linux-pwm
+73bf93edeeea cxl/core: use sysfs_emit() for attr's _show()
+fef018d81996 Merge tag 'hid-for-linus-2024010801' of git://git.kernel.org/pub/scm/linux/kernel/git/hid/hid
+d97a78423c33 Merge tag 'fbdev-for-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/deller/linux-fbdev
+61da593f4458 Merge tag 'media/v6.8-2' of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
+a3cc31e75185 Merge tag 'libnvdimm-for-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/nvdimm/nvdimm
+20077583ccdd Merge tag 'mmc-v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/ulfh/mmc
+0c4b09cb542f Merge tag 'pmdomain-v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/ulfh/linux-pm
+bf9ca811bbad Merge tag 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/rdma/rdma
+141d9c6e003b Merge tag 'firewire-updates-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/ieee1394/linux1394
+645f910ff61d Merge tag 'gnss-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/johan/gnss
+c736c9a9553f Merge tag 'clk-for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/clk/linux
+576db7342430 Merge tag 'gpio-updates-for-v6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux
+61f4c3e67114 Merge tag 'linux-watchdog-6.8-rc1' of git://www.linux-watchdog.org/linux-watchdog
+5dfec3cf3efb Merge tag 'hwmon-for-v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging
+7912a6391f3e Merge tag 'sound-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/tiwai/sound
+cf65598d5909 Merge tag 'drm-next-2024-01-10' of git://anongit.freedesktop.org/drm/drm
+1c7531f50eaa drm/xe: display support should not depend on EXPERT
+52e3fa3e3ea3 drm/xe: Fix bounds checking in __xe_bo_placement_for_flags()
+9320fc509b87 pwm: jz4740: Don't use dev_err_probe() in .request()
+a297d07b9a1e pwm: Fix out-of-bounds access in of_pwm_single_xlate()
+ca630876aa98 drm/xe/migrate: Cap PTEs written by MI_STORE_DATA_IMM to 510
+678164a5f0ec pwm: bcm2835: Remove duplicate call to clk_rate_exclusive_put()
+454abb80e26a ALSA: hda: Properly setup HDMI stream
+309ce6741430 blk-mq: rename blk_mq_can_use_cached_rq
+25c1772a0493 block: print symbolic error name instead of error code
+5266caaf5660 blk-mq: fix IO hang from sbitmap wakeup race
+7afc0e7f681e MAINTAINERS: pwm: Thierry steps down, Uwe takes over
+6dcb35088e26 thermal/debugfs: Unlock on error path in thermal_debug_tz_trip_up()
+97566d09fd02 thermal: intel: hfi: Add syscore callbacks for system-wide PM
+e95fa7404716 thermal: gov_power_allocator: avoid inability to reset a cdev
+fd881eac3af6 thermal: helpers: Rearrange thermal_cdev_set_cur_state()
+11fde9393148 thermal: netlink: Rework notify API for cooling devices
+57a427c81c32 thermal: core: Use kstrdup_const() during cooling device registration
+7ef01f228c9f thermal/debugfs: Add thermal debugfs information for mitigation episodes
+755113d76786 thermal/debugfs: Add thermal cooling device debugfs information
+7ea26f9460c6 fsnotify: compile out fsnotify permission hooks if !FANOTIFY_ACCESS_PERMISSIONS
+301bda18ac73 ASoC: audio-graph-card2: fix index check on graph_parse_node_multi_nm()
+813c2f2925ee ASoC: SOF: icp3-dtrace: Revert "Fix wrong kfree() usage"
+3046a1091137 s390/pai_ext: split function paiext_push_sample
+0dade41d1613 s390/pai_ext: rework function paiext_copy argments
+cb1259b7b574 s390/pai: rework paiXXX_start and paiXXX_stop functions
+0578a54110ff s390/pai_crypto: split function paicrypt_push_sample
+8d0e8a8aa3a1 s390/pai: rework paixxxx_getctr interface
+45017df3033e dma-buf/dma-fence: fix spelling
+f730d43afb21 dma-buf/dma-resv: fix spelling
+a7983eefb642 drm/doc: internals: remove section on PCI legacy support
+c95d67a63c7e drm: Clean-up superfluously selecting VT_HW_CONSOLE_BINDING
+f827bcdafa2a arm64: errata: Add Cortex-A510 speculative unprivileged load workaround
+546b7cde9b1d arm64: Rename ARM64_WORKAROUND_2966298
+3931261ecf46 arm64: fpsimd: Bring cond_yield asm macro in line with new rules
+8c5a19cb17a7 arm64: scs: Work around full LTO issue with dynamic SCS
+b95df3bd1ea3 arm64: irq: include <linux/cpumask.h>
+907ee6681788 net: fill in MODULE_DESCRIPTION()s for wx_lib
+689237ab37c5 fbdev/intelfb: Remove driver
+c25a19afb81c fbdev/hyperv_fb: Do not clear global screen_info
+df67699c9cb0 firmware/sysfb: Clear screen_info state after consuming it
+0aa0838c84da fbdev/hyperv_fb: Remove firmware framebuffers with aperture helpers
+778e73d2411a drm/hyperv: Remove firmware framebuffers with aperture helper
+7452b319bd30 fbdev/sis: Remove dependency on screen_info
+29328fb06cee video/logo: use %u format specifier for unsigned int values
+e2e0b838a184 video/sticore: Remove info field from STI struct
+ca6c080eef42 arch/parisc: Detect primary video device from device instance
+b362179731f0 fbdev/stifb: Allocate fb_info instance with framebuffer_alloc()
+12b8de566fa9 video/sticore: Store ROM device in STI struct
+33cd6ea9c067 fbdev: flush deferred IO before closing
+15e4c1f46227 fbdev: flush deferred work in fb_deferred_io_fsync()
+dee56ccb468a fbdev: amba-clcd: Delete the old CLCD driver
+d9f25b59ed85 fbdev: Remove support for Carillo Ranch driver
+a03cfad512ac ALSA: oxygen: Fix right channel of capture volume mixer
+e398822c4751 net: phy: micrel: populate .soft_reset for KSZ9131
+acd66c2126eb net: micrel: Fix PTP frame parsing for lan8841
+1113e52ffee7 drm/xe: Fix potential deadlock in __fini_dbm
+33ff1f21bd2f drm/xe: Allow to exclude part of GGTT from allocations
+9f78b3ae051d drm/panel: Simplify with dev_err_probe()
+ea4f9975625a drm/panel: Add support for Novatek NT36672E panel driver
+30cc664f0962 dt-bindings: display: panel: Add Novatek NT36672E LCD DSI
+589830b13ac2 drm/panel/raydium-rm692e5: select CONFIG_DRM_DISPLAY_DP_HELPER
+62b143b5ec4a drm/panel: samsung-s6d7aa0: drop DRM_BUS_FLAG_DE_HIGH for lsl080al02
+420186db1483 drm/panel: Add driver for BOE TH101MB31IG002-28A panel
+baae3a0b10c4 dt-bindings: display: panel: Add BOE TH101MB31IG002-28A panel
+c3ba13a0ed3d drm: panel: simple: convert LG LB070WV8 fixed mode into display timings
+45dd7df26cee drm: panel-simple: add missing bus flags for Tianma tm070jvhg[30/33]
+d4978a67ae97 drm/xe/guc: Use HXG definitions on HXG messages
+cdac6e1f7164 ALSA: aloop: Introduce a function to get if access is interleaved mode
+70d201a40823 Merge tag 'f2fs-for-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/jaegeuk/f2fs
+6a31658aa1c0 Merge tag '6.8-rc-smb-server-fixes' of git://git.samba.org/ksmbd
+488926926a16 Merge tag 'pull-misc' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+499aa1ca4eb6 Merge tag 'pull-dcache' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+bf4e7080aeed Merge tag 'pull-rename' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+2f444347a8d6 Merge tag 'pull-minix' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+5b9b41617bf3 Merge tag 'docs-6.8' of git://git.lwn.net/linux
+a03cd7602a09 xtensa: don't produce FDPIC output with fdpic toolchain
+83ab68168a3d scsi: target: core: Add TMF to tmr_list handling
+6df0e077d76b scsi: core: Kick the requeue list after inserting when flushing
+38945c2b006b scsi: fnic: unlock on error path in fnic_queuecommand()
+567a1e852e87 scsi: fcoe: Fix unsigned comparison with zero in store_ctlr_mode()
+173431b274a9 btrfs: defrag: reject unknown flags of btrfs_ioctl_defrag_range_args
+3324d0547861 btrfs: avoid copying BTRFS_ROOT_SUBVOL_DEAD flag to snapshot of subvolume being deleted
+7081929ab257 btrfs: don't abort filesystem when attempting to snapshot deleted subvolume
+b18f3b60b35a btrfs: zoned: fix lock ordering in btrfs_zone_activate()
+d967c914a633 btrfs: fix unbalanced unlock of mapping_tree_lock
+f03e274a8b29 btrfs: ref-verify: free ref cache before clearing mount opt
+6ff09b6b8c2f btrfs: fix kvcalloc() arguments order in btrfs_ioctl_send()
+02444f2ac26e btrfs: zoned: optimize hint byte for zoned allocator
+b271fee9a41c btrfs: zoned: factor out prepare_allocation_zoned()
+bec161add35b amt: do not use overwrapped cb area
+66cee759ffa3 Merge branch 'net-ethernet-ti-am65-cpsw-allow-for-mtu-values'
+64e47d8afb5c net: ethernet: ti: am65-cpsw: Fix max mtu to fit ethernet frames
+e3fe8d28c67b virtio_net: Fix "‘%d’ directive writing between 1 and 11 bytes into a region of size 10" warnings
+a0cb76a77008 octeontx2-af: CN10KB: Fix FIFO length calculation for RPM2
+3722a98752b4 Merge branch 'rtnetlink-allow-to-enslave-with-one-msg-an-up-interface'
+a159cbe81d3b selftests: rtnetlink: check enslaving iface in a bond
+ec4ffd100ffb Revert "net: rtnetlink: Enslave device before bringing it up"
+8722014311e6 rxrpc: Fix use of Don't Fragment flag
+844f104790bd net: dsa: fix netdev_priv() dereference before check on non-DSA netdevice events
+b33fb5b801c6 net: qualcomm: rmnet: fix global oob in rmnet_policy
+e689a8769698 selftests/net/tcp-ao: Use LDLIBS instead of LDFLAGS
+b3739fb3a9e6 wangxunx: select CONFIG_PHYLINK where needed
+f9678f5825dd MAINTAINERS: ibmvnic: drop Dany from reviewers
+bd93edbfd70c MAINTAINERS: mark ax25 as Orphan
+0bfcdce867f7 MAINTAINERS: Bluetooth: retire Johan (for now?)
+384a35866f3a MAINTAINERS: eth: mark Cavium liquidio as an Orphan
+009a98bca634 MAINTAINERS: eth: mvneta: move Thomas to CREDITS
+b59d8485fe7f MAINTAINERS: eth: mt7530: move Landen Chao to CREDITS
+da14d1fed9c1 MAINTAINERS: eth: mtk: move John to CREDITS
+5ecba0101dfe Merge branch 'fix-module_description-for-net-p1'
+c155eca07647 net: fill in MODULE_DESCRIPTION()s for s2io
+ade98756128a net: fill in MODULE_DESCRIPTION()s for ds26522 module
+d8610e431fe5 net: fill in MODULE_DESCRIPTION()s for Sun RPC
+95c236cc5fc9 net: fill in MODULE_DESCRIPTION()s for NFC
+417d8c571cb4 net: fill in MODULE_DESCRIPTION()s for HSR
+e1b1d282d5cc net: fill in MODULE_DESCRIPTION()s for SLIP
+22d29f1112c8 Merge tag 'scsi-misc' of git://git.kernel.org/pub/scm/linux/kernel/git/jejb/scsi
+4c72e2b8c42e Merge tag 'for-6.8/io_uring-2024-01-08' of git://git.kernel.dk/linux
+716089b417cf of: unittest: Fix of_count_phandle_with_args() expected value message
+01d550f0fcc0 Merge tag 'for-6.8/block-2024-01-08' of git://git.kernel.dk/linux
+22439cf4d1ca dt-bindings: fpga: altera: Convert bridge bindings to yaml
+36a7c96b3f26 dt-bindings: fpga: Convert bridge binding to yaml
+9defbb1bcf97 dt-bindings: vendor-prefixes: Add smi
+d05e626603d5 Merge tag 'ata-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/libata/linux
+893e2f9eac9e Merge tag 'dma-mapping-6.8-2024-01-08' of git://git.infradead.org/users/hch/dma-mapping
+457e4f99765c Merge tag 'auxdisplay-6.8' of https://github.com/ojeda/linux
+2518f39af6ba Merge tag 'clang-format-6.8' of https://github.com/ojeda/linux
+b6964fe2398c Merge tag 'rust-6.8' of https://github.com/Rust-for-Linux/linux
+3f302388d458 io_uring/rsrc: improve code generation for fixed file assignment
+5bad490858c3 Merge tag 'soc-defconfig-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/soc/soc
+d898c2e55593 drm/xe/guc: Return CTB response length
+47f2bd2ff382 iommufd/selftest: Check the bus type during probe
+f6f3721244a8 iommu/vt-d: Add iotlb flush for nested domain
+fb249b275c59 Merge tag 'soc-arm-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/soc/soc
+f6597d17069a Merge tag 'soc-drivers-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/soc/soc
+c4101e55974c Merge tag 'soc-dt-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/soc/soc
+3c01e0121402 drm/xe/guc: Treat non-response message after BUSY as unexpected
+88cbf8502023 drm/xe: Split GuC communication initialization
+3e7aeb78ab01 Merge tag 'net-next-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next
+60a031b64984 media: i2c: thp7312: select CONFIG_FW_LOADER
+ba69655fffdb s390/ptrace: remove leftover comment
+74ca89611353 s390/fpu: remove __load_fpu_regs() export
+d124e484691a s390/mm,fault: remove not needed tsk variable
+80df7d6af7f6 s390/pci: fix max size calculation in zpci_memcpy_toio()
+0130a0d3a618 s390/kexec: do not automatically select KEXEC option
+77ed045e88e5 s390/compat: change default for CONFIG_COMPAT to "n"
+393a5778b72a iommufd: Add data structure for Intel VT-d stage-1 cache invalidation
+bf26eb83fd3b iommufd/selftest: Add coverage for IOMMU_HWPT_INVALIDATE ioctl
+e1fa6640d58e iommufd/selftest: Add IOMMU_TEST_OP_MD_CHECK_IOTLB test op
+ac8691203c07 iommufd/selftest: Add mock_domain_cache_invalidate_user support
+77785117f9c7 iommu: Add iommu_copy_struct_from_user_array helper
+8c6eabae3807 iommufd: Add IOMMU_HWPT_INVALIDATE
+f35b88b66fbb iommu: Add cache_invalidate_user op
+ead8467f96d6 docs, kprobes: Add loongarch as supported architecture
+b65a6b44f0ea docs, kprobes: Update email address of Masami Hiramatsu
+54a2ffe9524f docs: admin-guide: hw_random: update rng-tools website
+22160b08d888 Documentation/core-api: fix spelling mistake in workqueue
+c48a7c44a1d0 docs: kernel_feat.py: fix potential command injection
+1f4cac0f7465 Documentation: constrain alabaster package to older versions
+5379c646960e fbdev: hgafb: fix kernel-doc comments
+af1563f256e2 fbdev: mmp: Fix typo and wording in code comment
+75dda3f04ae7 fbdev: fsl-diu-fb: Fix sparse warning due to virt_to_phys() prototype change
+d6dfcdaa4e6e fbdev: imxfb: add '*/' on a separate line in block comment
+cb892e5dfed3 fbdev: imxfb: use __func__ for function name
+77bf5df43348 fbdev: imxfb: Fix style warnings relating to printk()
+62c82a47cbf8 fbdev: imxfb: add missing spaces after ','
+f11025059b59 fbdev: imxfb: drop ftrace-like logging
+df937b8bb604 fbdev: imxfb: add missing SPDX tag
+da119a074d77 fbdev: imxfb: replace some magic numbers with constants
+b0e05872f7ae fbdev: imxfb: use BIT, FIELD_{GET,PREP} and GENMASK macros
+b85f17367990 fbdev: imxfb: move PCR bitfields near their offset
+5758844105f7 fbdev: imxfb: fix left margin setting
+d4abde52b4b1 Merge patch series "riscv: mm: Fixup & Optimize COMPAT code"
+97b7ac69be2e riscv: mm: Fixup compat arch_get_mmap_end
+5f449e245e5b riscv: mm: Fixup compat mode boot failure
+adb1f95d388a riscv: Fix an off-by-one in get_early_cmdline()
+9b1d9abe24b1 Merge patch series "tools: selftests: riscv: Fix compiler warnings"
+12c16919652b tools: selftests: riscv: Fix compile warnings in mm tests
+e1baf5e68ed1 tools: selftests: riscv: Fix compile warnings in vector tests
+b250c9089841 tools: selftests: riscv: Add missing include for vector test
+ac7b2a02d62f tools: selftests: riscv: Fix compile warnings in cbo
+b91c26fdb0e8 tools: selftests: riscv: Fix compile warnings in hwprobe
+54d7431af73e riscv: Add support for BATCHED_UNMAP_TLB_FLUSH
+ff172d4818ad riscv: Use hugepage mappings for vmemmap
+e3b3ec967a7d ASoC: mediatek: sof-common: Add NULL check for normal_link string
+d3e591a38c98 dt-bindings: riscv: Document cbop-block-size
+2e605741e9dd Merge patch series "riscv: errata: thead: use riscv_nonstd_cache_ops for CMO"
+07df87c0f881 dt-bindings: riscv: permit numbers in "riscv,isa"
+a452816132d6 dt-bindings: riscv: cpus: Clarify mmu-type interpretation
+951df4eb817c Merge patch series "RISC-V SBI debug console extension support"
+4dc4af9ce326 riscv: sbi: Introduce system suspend support
+3a58275099b9 Merge patch series "riscv: modules: Fix module loading error handling"
+17f2c308051f Merge patch series "riscv: enable EFFICIENT_UNALIGNED_ACCESS and DCACHE_WORD_ACCESS"
+18a1ee9d716d ARM: dts: usr8200: Fix phy registers
+502756e23360 drm/v3d: Show the memory-management stats on debugfs
+2ad62d16cd24 drm/v3d: Free the job and assign it to NULL if initialization fails
+b9bc05495174 drm/ttm/tests: Fix argument in ttm_tt_kunit_init()
+5ee0d47dcf33 drm/vc4: don't check if plane->state->fb == state->fb
+cbe7cea7eece drm/edid: Clean up errors in drm_edid.c
+e2596dcf1e9d PCI: brcmstb: Configure HW CLKREQ# mode appropriate for downstream device
+14b15aeb3628 dt-bindings: PCI: brcmstb: Add property "brcm,clkreq-mode"
+3c1e5abcda64 MIPS: Alchemy: Fix an out-of-bound access in db1550_dev_setup()
+89c4b588d11e MIPS: Alchemy: Fix an out-of-bound access in db1200_dev_setup()
+1d5911d43cab Merge tag 'netfs-lib-20240109' of ssh://gitolite.kernel.org/pub/scm/linux/kernel/git/dhowells/linux-fs into vfs.netfs
+989cd9fd1ffe wifi: p54: fix GCC format truncation warning with wiphy->fw_version
+e3977e0609a0 Revert "kernfs: convert kernfs_idr_lock to an irq safe raw spinlock"
+ef51d7542d14 drm/xe/migrate: Fix CCS copy for small VRAM copy chunks
+c2dba4d19f65 ARM: defconfig: remove dead platform options
+114854438def ARM: defconfig: remove CONFIG_SLUB references
+183a967ad19c ARM: defconfig: remove CONFIG_NET_ETHERNET references
+984893f80e0f ARM: defconfig: remove sysfs-deprecated entries
+23a7fa9c08e8 ARM: defconfig: reorder config lines
+67df5b47a946 arm64: defconfig reorder config lines
+d61b40bf15ce xfs: fix backwards logic in xfs_bmap_alloc_account
+cf46019e8550 drm/xe: unlock on error path in xe_vm_add_compute_exec_queue()
+88ec23528b32 drm/xe/selftests: Fix an error pointer dereference bug
+c10da95afa68 drm/xe/device: clean up on error in probe()
+de927f6c0b07 Merge tag 's390-6.8-1' of git://git.kernel.org/pub/scm/linux/kernel/git/s390/linux
+c29901006179 Merge tag 'asm-generic-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/arnd/asm-generic
+4cd083d53108 Merge tag 'modules-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/mcgrof/linux
+5b202c250acd dt-bindings: power: Clarify wording for wakeup-source property
+a05aea98d405 Merge tag 'sysctl-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/mcgrof/linux
+78273df7f646 Merge tag 'header_cleanup-2024-01-10' of https://evilpiepirate.org/git/bcachefs
+999a36b52b1b Merge tag 'bcachefs-2024-01-10' of https://evilpiepirate.org/git/bcachefs
+84e9a2d5517b Merge tag 'v6.8-rc-part1-smb-client' of git://git.samba.org/sfrench/cifs-2.6
+587217f9706a Merge tag 'nfs-for-6.8-1' of git://git.linux-nfs.org/projects/anna/linux-nfs
+0d19d9e14687 Merge tag 'ext4_for_linus-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/tytso/ext4
+6bd593bc743d Merge tag 'unicode-next-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/krisman/unicode
+7c0f97cb62dc drm/xe: Invert access counter queue head / tail
+d0ca70c03398 drm/xe: Add build on bug to assert access counter queue works
+1fd77ceaf0d8 drm/xe: Invert page fault queue head / tail
+86f41f4333e3 drm/xe: Add build on bug to assert page fault queue works
+801e8c7ed670 drm/xe: Remove set_job_timeout_ms() from exec_queue_ops
+25ce7c5063b3 drm/xe: Finish refactoring of exec_queue_create
+6ae24344e2e3 drm/xe: Add exec_queue.sched_props.job_timeout_ms
+6e144a7d6f8a drm/xe: Refactor __xe_exec_queue_create()
+b2da197565d7 Merge tag 'nvme-6.8-2024-1-10' of git://git.infradead.org/nvme into for-6.8/block
+78f70c02bdbc vfio/virtio: fix virtio-pci dependency
+31deaeb11ba7 nvmet-rdma: avoid circular locking dependency on install_queue()
+07a29b134ce8 nvmet-tcp: avoid circular locking dependency on install_queue()
+acc657692aed keys, dns: Fix size check of V1 server-list header
+d11dc7aa98e5 drm/doc/rfc: Remove Xe's pre-merge plan
+0cb552aa9784 Merge tag 'v6.8-p1' of git://git.kernel.org/pub/scm/linux/kernel/git/herbert/crypto-2.6
+284781470de2 drm/i915/gt: Use rc6.supported flag from intel_gt for rc6_enable sysfs
+3e999770ac1c PM: sleep: Restore asynchronous device resume optimization
+6434eade5dd5 Merge tag 'tpmdd-v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/jarkko/linux-tpmdd
+120a201bd2ad Merge tag 'hardening-v6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/kees/linux
+68da4c44b994 ext4: fix inconsistent between segment fstrim and full fstrim
+1f6bc02f1848 ext4: fallback to complex scan if aligned scan doesn't work
+4d5cdd757d0c ext4: convert ext4_da_do_write_end() to take a folio
+7c784d624819 ext4: allow for the last group to be marked as trimmed
+72116efd6307 Merge tag 'pstore-v6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/kees/linux
+4d925f60578a Merge tag 'ovl-update-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/overlayfs/vfs
+fe80eb15dea5 io_uring/rw: cleanup io_rw_done()
+0507d2526f84 Merge tag 'erofs-for-6.8-rc1-2' of git://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs
+06c59d427017 nvme-pci: set doorbell config before unquiescing
+17b9e388c619 Merge tag 'fscrypt-for-linus' of git://git.kernel.org/pub/scm/fs/fscrypt/linux
+49f4810356f7 Merge tag 'nfsd-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/cel/linux
+d8c8e595dc31 Merge tag 'dlm-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/teigland/linux-dlm
+0c59ae129074 Merge tag 'afs-fix-rotation-20240105' of git://git.kernel.org/pub/scm/linux/kernel/git/dhowells/linux-fs
+032500abc5dc Merge tag 'jfs-6.8' of github.com:kleikamp/linux-shaggy
+f16d65124380 vdpa/mlx5: Add mkey leak detection
+a06bd11b18fd vdpa/mlx5: Introduce reference counting to mrs
+f756dd3e2a4c vdpa/mlx5: Use vq suspend/resume during .set_map
+60c43b3f6b4e vdpa/mlx5: Mark vq state for modification in hw vq
+9b23417825df vdpa/mlx5: Mark vq addrs for modification in hw vq
+145096937b8a vdpa/mlx5: Introduce per vq and device resume
+651cdaa9c028 vdpa/mlx5: Allow modifying multiple vq fields in one modify command
+ef067191f73c vdpa/mlx5: Expose resumable vq capability
+a09483c4065f vdpa: Block vq property changes in DRIVER_OK
+c7e194402be3 vdpa: Track device suspended state
+95e7249691f0 scsi: virtio_scsi: Add mq_poll support
+35967bdcff32 virtio_pmem: support feature SHMEM_REGION
+b12fbc3f787e virtio_balloon: stay awake while adjusting balloon
+3690492612ec riscv: errata: thead: use pa based instructions for CMO
+a4ff64edf9ed riscv: errata: thead: use riscv_nonstd_cache_ops for CMO
+bfed9a92940b Merge tag 'gfs2-v6.7-rc1-fixes' of git://git.kernel.org/pub/scm/linux/kernel/git/gfs2/linux-gfs2
+affc5af36bbb Merge tag 'for-6.8-tag' of git://git.kernel.org/pub/scm/linux/kernel/git/kdave/linux
+a109d1999229 drm/xe: Fix build bug for GCC 11
+12958e9c4c8e Merge tag 'xfs-6.8-merge-3' of git://git.kernel.org/pub/scm/fs/xfs/xfs-linux
+32720aca900b Merge tag 'fsnotify_for_v6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/jack/linux-fs
+9963327f8e57 Merge tag 'fs_for_v6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/jack/linux-fs
+748dc0b65ec2 block: fix partial zone append completion handling in req_bio_endio()
+742e324a0679 block/iocost: silence warning on 'last_period' potentially being unused
+50942ad6ddb5 RISC-V: Enable SBI based earlycon support
+88ead68e764c tty: Add SBI debug console support to HVC SBI driver
+c77bf3607a0f tty/serial: Add RISC-V SBI debug console based earlycon
+f43fabf444ca RISC-V: Add SBI debug console helper routines
+f503b167b660 RISC-V: Add stubs for sbi_console_putchar/getchar()
+a35551c7244d riscv: Fix relocation_hashtable size
+4b38b36bfbd8 riscv: Correctly free relocation hashtable on error
+78996eee79eb riscv: Fix module loading free order
+03c305861c70 Documentation: admin-guide: PM: Fix two typos
+bde4f5ff8295 cpufreq: intel_pstate: Update hybrid scaling factor for Meteor Lake
+e70b8dd26711 ASoC: mediatek: mt8195: Remove afe-dai component and rework codec link
+24406f6794aa interconnect: qcom: sm8550: Enable sync_state
+85e985a4f46e interconnect: qcom: sc8180x: Mark CO0 BCM keepalive
+aa12a790d31b erofs: make erofs_{err,info}() support NULL sb parameter
+496530c7c1df erofs: avoid debugging output for (de)compressed data
+6185d32170b6 kbuild: deb-pkg: use debian/<package> for tmpdir
+1b5e94657320 kbuild: deb-pkg: move 'make headers' to build-arch
+284d16c456e5 mfd: ti_am335x_tscadc: Fix TI SoC dependencies
+64fe64f920f0 dt-bindings: mfd: sprd: Add support for UMS9620
+3208bcef366a mfd: ab8500-sysctrl: Drop ancient charger
+d505a16e00c3 drm/i915/perf: reconcile Excess struct member kernel-doc warnings
+af3cfcad492f drm/i915/guc: reconcile Excess struct member kernel-doc warnings
+53cd65a9c951 drm/i915/gt: reconcile Excess struct member kernel-doc warnings
+30e18a89fb1f drm/i915/gem: reconcile Excess struct member kernel-doc warnings
+986c20bb3e67 firewire: core: fill model field in modalias of unit device for legacy layout of configuration ROM
+5465b0a591ed drm/hisilicon: include drm/drm_edid.h only where needed
+c3c33a139a88 drm/nouveau: include drm/drm_edid.h only where needed
+584ebbefd122 drm/i915/dp: Fix the max DSC bpc supported by source
+11809687954a drm/i915: don't make assumptions about intel_wakeref_t type
+ae8986e681e9 drm/i915/dp: Fix the PSR debugfs entries wrt. MST connectors
+a4a9779d7642 drm/i915/display: Fix C20 pll selection for state verification
+52c4e5985a73 Input: driver for Adafruit Seesaw Gamepad
+dc5b56241cf3 dt-bindings: input: bindings for Adafruit Seesaw Gamepad
+2d2db7d40254 xen/gntdev: Fix the abuse of underlying struct page in DMA-buf import
+26ba1bf310f0 cifs: update internal module version number for cifs.ko
+d0fdc20b0429 riscv: select DCACHE_WORD_ACCESS for efficient unaligned access HW
+b6da6cbe13eb riscv: introduce RISCV_EFFICIENT_UNALIGNED_ACCESS
+cb51bfee7f62 Merge patch series "riscv: hwprobe: add Zicond, Zacas and Ztso support"
+3359866b40a9 riscv: hwprobe: export Zicond extension
+154a37061229 riscv: hwprobe: export Zacas ISA extension
+188a2122c827 riscv: add ISA extension parsing for Zacas
+cd7be4d02f41 dt-bindings: riscv: add Zacas ISA extension description
+5b4d64a819c0 riscv: hwprobe: export Ztso ISA extension
+1ec9f381e848 riscv: add ISA extension parsing for Ztso
+62694797f56b use linux/export.h rather than asm-generic/export.h
+2bf8acbf542b Merge patch series "Fix XIP boot and make XIP testable in QEMU"
+a7565f4d068b riscv: Remove SHADOW_OVERFLOW_STACK_SIZE macro
+5c89186a3270 Merge remote-tracking branch 'palmer/fixes' into for-next
+869436dae72a riscv; fix __user annotation in save_v_state()
+ca0e433b41a6 riscv: fix __user annotation in traps_misaligned.c
+cfbc4f81c9d0 riscv: Select ARCH_WANTS_NO_INSTR
+5634d9c280d2 Merge patch series "riscv: CPU operations cleanup"
+b7b4e4d79fc7 riscv: Remove obsolete rv32_defconfig file
+7a4749739c5f Merge patch series "RISC-V: hwprobe: Introduce which-cpus"
+25742aeb135c ring-buffer: Remove stale comment from ring_buffer_size()
+6c4a2f6329f0 riscv: Allow disabling of BUILTIN_DTB for XIP
+5daa37264102 riscv: Fixed wrong register in XIP_FIXUP_FLASH_OFFSET macro
+66f1e6809397 riscv: Make XIP bootable again
+3601311593eb Merge branch 'for-6.8/cxl-cper' into for-6.8/cxl
+8fb7b723924c ksmbd: Add missing set_freezable() for freezable kthread
+b76c01f1d950 Merge tag 'drm-intel-gt-next-2023-12-15' of git://anongit.freedesktop.org/drm/drm-intel into drm-next
+c8300953ba8e Merge tag 'md-6.8-20240109' of https://git.kernel.org/pub/scm/linux/kernel/git/song/md into for-6.8/block
+ab27740f7665 Merge tag 'linux_kselftest-next-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/shuah/linux-kselftest
+8cf9bedfc3c4 ksmbd: free ppace array on error in parse_dacl
+41daf06ea14f Merge tag 'linux_kselftest-kunit-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/shuah/linux-kselftest
+5d09f61e505a Merge tag 'linux_kselftest-nolibc-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/shuah/linux-kselftest
+a7e4c6cf5bbb Merge tag 'efi-next-for-v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/efi/efi
+7c6a3fc925b6 Merge tag 'for-linus-6.8-1' of https://github.com/cminyard/linux-ipmi
+5fda5698c289 Merge tag 'platform-drivers-x86-v6.8-1' of git://git.kernel.org/pub/scm/linux/kernel/git/pdx86/platform-drivers-x86
+b9b56eb28045 Merge tag 'tag-chrome-platform-firmware-for-v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/chrome-platform/linux
+3efcce4a9ec0 Merge tag 'tag-chrome-platform-for-v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/chrome-platform/linux
+7da71072e1d6 Merge tag 'pm-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm
+7f73ba68cf67 Merge tag 'thermal-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm
+bd012f3a5b02 Merge tag 'acpi-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm
+dc97f6344f20 cxl/pci: Register for and process CPER events
+ced085ef369a PCI: Introduce cleanup helpers for device reference counts and locks
+671a794c33c6 acpi/ghes: Process CXL Component Events
+f9c683386f5b cxl/events: Create a CXL event union
+35f11a3710cd Merge tag 'mtd/for-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux
+6eade110754c cxl/events: Separate UUID from event structures
+207a1f82301d cxl/events: Remove passing a UUID to known event traces
+4c115c9c1f81 cxl/events: Create common event UUID defines
+7dab24554ded md/raid1: Use blk_opf_t for read and write operations
+301940020a92 Merge tag 'spi-v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi
+69cac0a8f3ef drm/xe: Check skip_guc_pc before setting SLPC flag
+4ae3aeab32d7 drm/xe: Add vram frequency sysfs attributes
+9ccc1318cf4b PCI: mediatek-gen3: Fix translation window size calculation
+4e11c29873a8 PCI: mediatek: Clear interrupt status before dispatching handler
+da96801729b4 Merge tag 'regulator-v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator
+83130ff423d6 Merge tag 'regmap-v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/broonie/regmap
+a8004af338f6 drm/xe: Fix modifying exec_queue priority in xe_migrate_init
+b16483f9f812 drm/xe: Fix guc_exec_queue_set_priority
+6c1dd1fe5d8a Merge tag 'integrity-v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/zohar/linux-integrity
+e9b4c5890858 Merge tag 'landlock-6.8-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/mic/linux
+063a7ce32ddc Merge tag 'lsm-pr-20240105' of git://git.kernel.org/pub/scm/linux/kernel/git/pcmoore/lsm
+7075893d1d68 drm/amd/display: cleanup inconsistent indenting in amdgpu_dm_color
+50e60184bfe7 drm/amdgpu: make a correction on comment
+c2ab9ce0ee72 Revert "drm/amd/display: fix bandwidth validation failure on DCN 2.1"
+c147ddc68e74 drm/amdkfd: Fix sparse __rcu annotation warnings
+2a9de42e8d3c drm/amdkfd: Fix lock dependency warning with srcu
+73cb81dc548f drm/amdgpu: Packed socket_id to ras feature mask
+fb1e91719983 drm/amdgpu: Support poison error injection via ras_ctrl debugfs
+f4a94dbb6dc0 drm/amdgpu: correct the cu count for gfx v11
+90bd01471d1c drm/amdgpu: Drop unnecessary sentences about CE and deferred error.
+d32156a07575 drm/amd/display: 3.2.266
+ab76bd72ee12 drm/amd/display: Dpia hpd status not in sync after S4
+2476bf4328d1 drm/amd/display: Update z8 latency
+bf282eb92b84 Revert "drm/amd/display: Fix conversions between bytes and KB"
+5f3bce13266e drm/amd/display: Request usb4 bw for mst streams
+a465536ebff8 drm/amd/display: revert "Optimize VRR updates to only necessary ones"
+51c7e6ac2410 drm/amd/display: revert "for FPO & SubVP/DRR config program vmin/max"
+7bdbfb4e36e3 drm/amd/display: Disconnect phantom pipe OPP from OPTC being disabled
+17e74e11ac2b drm/amd/display: To adjust dprefclk by down spread percentage
+47bf0f83fc86 drm/amdkfd: Fix lock dependency warning
+9f9310bf8734 Merge tag 'selinux-pr-20240105' of git://git.kernel.org/pub/scm/linux/kernel/git/pcmoore/selinux
+eab23bc8a807 Merge tag 'audit-pr-20240105' of git://git.kernel.org/pub/scm/linux/kernel/git/pcmoore/audit
+4f964cfef39d Merge branch 'clk-rs9' into clk-next
+a4dcb2f84be4 Merge branches 'clk-zynq', 'clk-xilinx' and 'clk-stm' into clk-next
+23bd8c4ad182 Merge branches 'clk-imx', 'clk-qcom', 'clk-amlogic' and 'clk-mediatek' into clk-next
+8066514dc53d Merge branches 'clk-versa', 'clk-silabs', 'clk-samsung', 'clk-starfive' and 'clk-sophgo' into clk-next
+76a2ee33762e Merge branches 'clk-renesas', 'clk-rockchip', 'clk-allwinner' and 'clk-cleanup' into clk-next
+9f2a63523582 Merge tag 'mm-nonmm-stable-2024-01-09-10-33' of git://git.kernel.org/pub/scm/linux/kernel/git/akpm/mm
+fb46e22a9e38 Merge tag 'mm-stable-2024-01-08-15-31' of git://git.kernel.org/pub/scm/linux/kernel/git/akpm/mm
+b8b2711336f0 riscv: Fix set_direct_map_default_noflush() to reset _PAGE_EXEC
+749b94b08005 riscv: Fix module_alloc() that did not reset the linear mapping permissions
+c29fc621e1a4 riscv: Fix wrong usage of lm_alias() when splitting a huge linear mapping
+420370f3ae3d riscv: Check if the code to patch lies in the exit section
+3fc74c65b367 ksmbd: send lease break notification on FILE_RENAME_INFORMATION
+d592a9158a11 ksmbd: don't allow O_TRUNC open on read-only share
+4dde83569832 of: Fix double free in of_parse_phandle_with_args_map
+8d99c1131d9d ksmbd: vfs: fix all kernel-doc warnings
+b4068f1ef36d ksmbd: auth: fix most kernel-doc warnings
+ebfee7ad2722 ksmbd: Remove usage of the deprecated ida_simple_xx() API
+b6e9a44e9960 ksmbd: don't increment epoch if current state and request state are same
+6fc0a265e1b9 ksmbd: fix potential circular locking issue in smb2_set_ea()
+bb05367a66a9 ksmbd: set v2 lease version on lease upgrade
+516b3eb8c806 ksmbd: validate the zero field of packet header
+9fbedddfc900 drm/xe/xe2_lpg: Add Wa_16018610683
+d30e51aa7b1f Merge tag 'slab-for-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/vbabka/slab
+0e00a8814eec drm/i915/guc: Avoid circular locking issue on busyness flush
+f9cfe7e7f96a md: Fix md_seq_ops() regressions
+632ca3c92f38 drm/nouveau/disp: switch to use kmemdup() helper
+2f2cc53b5fe7 drm/i915/guc: Close deregister-context race against CT-loss
+5e83c060e95b drm/i915/guc: Flush context destruction worker at suspend
+89fe46019a62 drm/v3d: Fix support for register debugging on the RPi 4
+ca077ff8cac5 drm/bridge: Fixed a DP link training bug
+dcddb6f0b06d drm/xe: Annotate xe_ttm_stolen_mgr::mapping with __iomem
+9d612ee52c60 drm/xe: Annotate multiple mmio pointers with __iomem
+20855b62a305 drm/xe: Annotate xe_mem_region::mapping with __iomem
+9d03bf30e786 drm/xe: Use __iomem for the regs pointer
+5e3ef4546819 dt-bindings: ignore paths outside kernel for DT_SCHEMA_FILES
+09c49315f4c7 drivers: of: Fixed kernel doc warning
+3f4cc70d8909 dt-bindings: tpm: Document Microsoft fTPM bindings
+cd6366c0c999 dt-bindings: tpm: Convert IBM vTPM bindings to DT schema
+d3b8b0855a11 dt-bindings: tpm: Convert Google Cr50 bindings to DT schema
+26c9d152ebf3 dt-bindings: tpm: Consolidate TCG TIS bindings
+4ec295efef1a dt-bindings: display: rockchip,inno-hdmi: Document RK3128 compatible
+76156d06769b dt-bindings: arm: Add remote etm dt-binding
+30e0bbf50a70 dt-bindings: mmc: sdhci-pxa: Fix 'regs' typo
+a1499b7541cc media: dt-bindings: samsung,s5p-mfc: Fix iommu properties schemas
+9de97e2a4e3a dt-bindings: display: panel: Add synaptics r63353 panel controller
+ff5912b96f03 dt-bindings: arm: merge qcom,idle-state with idle-state
+9d0c1c5618be drm/xe/vm: Fix an error path
+3dc2f209208d swiotlb: check alloc_size before the allocation of a new memory pool
+a7fe0881d9b7 Merge git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+5030e16140b6 drm/xe/guc: Only take actions in CT irq handler if CTs are enabled
+97d0047cbb17 drm/xe: Fix exec IOCTL long running exec queue ring full condition
+f4e8ab468fc6 drm/xe/exec: reserve fence slot for CPU bind
+29f424eb8702 drm/xe/exec: move fence reservation
+3be8fb1bc6fc ACPICA: MADT: Add new MADT GICC/GICR/ITS non-coherent flags handling
+cb1210a7c03c ACPICA: MADT: Add GICC online capable bit handling
+e315e8692f79 ACPI: resource: Skip IRQ override on ASUS ExpertBook B1502CGA
+fd38dd6abda5 kselftest/alsa - conf: Stringify the printed errno in sysfs_get()
+f77a255e74c3 kselftest/alsa - mixer-test: Fix the print format specifier warning
+3f47c1ebe5ca kselftest/alsa - mixer-test: Fix the print format specifier warning
+8c51c13dc63d kselftest/alsa - mixer-test: fix the number of parameters to ksft_exit_fail_msg()
+dcaca1b5f0d4 ALSA: hda/tas2781: annotate calibration data endianness
+d2aaf1996504 ACPI: resource: Add DMI quirks for ASUS Vivobook E1504GA and E1504GAB
+2fb7e4dd35c5 PNP: make pnp_bus_type const
+022e6f5184ff PM: QoS: Use kcalloc() instead of kzalloc()
+f3c2031db7df drm/i915/psr: Disable early transport by default
+467e4e061c44 drm/i915/psr: Enable psr2 early transport as possible
+3291bbb93e16 drm/i915/psr: Configure PIPE_SRCSZ_ERLY_TPT for psr2 early transport
+7f85883e4a7b drm/i915/psr: Calculate and configure CUR_POS_ERLY_TPT
+86b26b6aeac7 drm/i915/psr: Carry su area in crtc_state
+1bff93b8bc27 drm/i915/psr: Extend SU area to cover cursor fully if needed
+9962c25ac41b drm: Add eDP 1.5 early transport definition
+e2bdb5272f43 netfs: Fix wrong #ifdef hiding wait
+3d1d4aa0cc13 cachefiles: Fix signed/unsigned mixup
+219a1f49094f drm/panel: nt35510: support FRIDA FRD400B25025-A-CTK
+9b26d5c044d6 drm/panel: nt35510: move hardwired parameters to configuration
+9676bee4afb1 dt-bindings: nt35510: add compatible for FRIDA FRD400B25025-A-CTK
+2f521890aa5b thermal: netlink: Pass thermal zone pointer to notify routines
+4ae535f37d0e thermal: netlink: Drop thermal_notify_tz_trip_add/delete()
+f52557edf064 thermal: netlink: Pass pointers to thermal_notify_tz_trip_up/down()
+7e72fc41d424 thermal: netlink: Pass pointers to thermal_notify_tz_trip_change()
+f1479f0a4f53 xen/xenbus: client: fix kernel-doc comments
+125c0a646a25 xen: update PV-device interface headers
+8ead196be219 apparmor: Fix memory leak in unpack_profile()
+2b6fad7a900d tpm: cr50: fix kernel-doc warning and spelling
+a4c7d794ac16 tpm: nuvoton: Use i2c_get_match_data()
+dd1d4bd6e5cf ARM: multi_v7_defconfig: Enable STM32 IPCC mailbox driver
+40974ee421b4 ARM: davinci: always select CONFIG_CPU_ARM926T
+6db359b5eef5 soc: pxa: ssp: fix casts
+cd7b0b2dd3d9 drm/i915/dp: Fix the max DSC bpc supported by source
+a3f763fdcb2f cifs: remove unneeded return statement
+8d606c311b75 cifs: make cifs_chan_update_iface() a void function
+9f8413c4a66f Merge tag 'cgroup-for-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/tj/cgroup
+bfe8eb3b85c5 Merge tag 'sched-core-2024-01-08' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+c12ca110c613 PCI: keystone: Fix race condition when initializing PHYs
+aac4de465af0 Merge tag 'perf-core-2024-01-08' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+0bdf0621f89f Merge tag 'irq-core-2024-01-08' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+9b0f51097147 lan78xx: remove redundant statement in lan78xx_get_eee
+5733d139a674 lan743x: remove redundant statement in lan743x_ethtool_get_eee
+1c835c81eb5c Merge branch 'bnxt_en-ntuple-filter-fixes'
+d8214d0f0135 bnxt_en: Fix RCU locking for ntuple filters in bnxt_rx_flow_steer()
+fd7769798de8 bnxt_en: Fix RCU locking for ntuple filters in bnxt_srxclsrldel()
+1ef4cacaae2f bnxt_en: Remove unneeded variable in bnxt_hwrm_clear_vnic_filter()
+b59db45d7eba tcp: Revert no longer abort SYN_SENT when receiving some ICMP
+f24dc33f8e0a Merge tag 'timers-core-2024-01-08' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+46a08b4d4836 Merge tag 'smp-core-2024-01-08' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+cdc202281a5d Merge tag 'core-entry-2024-01-08' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+ab9517fa9aab Merge tag 'core-debugobjects-2024-01-08' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+669d089a7fe1 Merge tag 'objtool-core-2024-01-08' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+6cbf5b3105f3 Merge tag 'locking-core-2024-01-08' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+f0a78b3e2a0c arm64: Update __NR_compat_syscalls for statmount/listmount
+2fdbcf715a1b Merge tag 'x86-entry-2024-01-08' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+33677aef32cf Merge tag 'x86-core-2024-01-08' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+b51cc5d02834 Merge tag 'x86-cleanups-2024-01-08' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+42c371f8ec42 Merge tag 'x86-build-2024-01-08' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+f73857ece4d8 Merge tag 'x86-boot-2024-01-08' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+106b88d7a91e Merge tag 'x86-asm-2024-01-08' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+33034c4f9497 Merge tag 'x86-apic-2024-01-08' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+571c7ed0baa9 dt-bindings: display: samsung,exynos-mixer: Fix 'regs' typo
+c3a11c0ec66c cifs: delete unnecessary NULL checks in cifs_chan_update_iface()
+ab5f3fcb7c72 Merge tag 'arm64-upstream' of git://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux
+3cf1d6a5fbf3 Merge tag 'm68k-for-v6.8-tag1' of git://git.kernel.org/pub/scm/linux/kernel/git/geert/linux-m68k
+968b80332432 Merge tag 'powerpc-6.8-1' of git://git.kernel.org/pub/scm/linux/kernel/git/powerpc/linux
+3edbe8afb617 Merge tag 'ras_core_for_v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+bef91c28f28f Merge tag 'x86_cpu_for_v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+e900042f0484 Merge tag 'x86_sev_for_v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+5e0a760b4441 mm, treewide: rename MAX_ORDER to MAX_PAGE_ORDER
+fd37721803c6 mm, treewide: introduce NR_PAGE_ORDERS
+e54478fbdad2 Merge tag 'amd-drm-next-6.8-2024-01-05' of https://gitlab.freedesktop.org/agd5f/linux into drm-next
+024b32db43a3 drm/bridge: parade-ps8640: Wait for HPD when doing an AUX transfer
+fa78e188d8d1 drm/xe/dgfx: Release mmap mappings on rpm suspend
+fc5e5c592340 Merge tag 'x86_paravirt_for_v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+49ddab089611 drm/panel-edp: use put_sync in unprepare
+41a80ca4ae2d Merge tag 'x86_misc_for_v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+6e0b939180fc Merge tag 'x86_microcode_for_v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+1dee7f509db2 Merge tag 'edac_updates_for_v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/ras/ras
+4d4e1b6319e5 ASoC: mediatek: mt8192: Check existence of dai_name before dereferencing
+d988c9f511af MAINTAINERS: Add Namhyung as tools/perf/ co-maintainer
+0b43615af197 Merge branch 'for-6.8/wacom' into for-linus
+53eb93563881 Merge branch 'for-6.8/steam' into for-linus
+333b217c151c Merge branch 'for-6.8/sensor-hub' into for-linus
+1cb09b552b1a Merge branch 'for-6.8/selftests' into for-linus
+f54a651c5794 Merge branch 'for-6.8/nintendo' into for-linus
+e9d29f4f6f5c Merge branch 'for-6.8/mcp2221' into for-linus
+4dc8c87a96ee Merge branch 'for-6.8/mcp2200' into for-linus
+f60c35260e56 Merge branch 'for-6.8/intel-ish' into for-linus
+ff18ab5a4562 Merge branch 'for-6.8/i2c-hid' into for-linus
+82a18fc3aafe Merge branch 'for-6.8/hid-bus-type-const' into for-linus
+39e7facbe5ea Merge branch 'for-6.8/elan' into for-linus
+6b93f350e55f Merge branch 'for-6.8/amd-sfh' into for-linus
+ddb5bade29de drm/xe/xe2: synchronise CS_CHICKEN1 with WMTP support
+b837a816b36f MAINTAINERS: update unicode maintainer e-mail address
+5db8752c3b81 Merge tag 'vfs-6.8.iov_iter' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+cd72c7ef5fed ecryptfs: Reject casefold directory inodes
+53889bcaf536 block: make __get_task_ioprio() easier to read
+3b7cb745473a block: move __get_task_ioprio() into header file
+26458409a9b1 Merge tag 'vfs-6.8.cachefiles' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+bb93c5ed457f Merge tag 'vfs-6.8.rw' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+8c9440fea774 Merge tag 'vfs-6.8.mount' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+935e486b718f drm/i915/cdclk: Re-use bxt_cdclk_ctl() when sanitizing
+ebb9c4240dea drm/i915/cdclk: Reorder bxt_sanitize_cdclk()
+7af2f3e55c1e drm/i915/cdclk: Extract bxt_cdclk_ctl()
+bdb7a38a8f40 drm/i915/xe2lpd: Update bxt_sanitize_cdclk()
+3f6984e7301f Merge tag 'vfs-6.8.super' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+2d179e8ac02e MAINTAINERS: use tabs for indent of CONFIDENTIAL COMPUTING THREAT MODEL
+c604110e662a Merge tag 'vfs-6.8.misc' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+4f1991a92cfe tracing histograms: Simplify parse_actions() function
+be8755a0a818 drm/xe/kunit: Drop xe_wa tests for pre-production DG2
+9a1abc24850e nvmet-tcp: Fix the H2C expected PDU len calculation
+45c36f04f1be nvme-tcp: enhance timeout kernel log
+a5c1a87ce087 nvme-rdma: enhance timeout kernel log
+172fb49600c2 nvme-pci: enhance timeout kernel log
+251ba4583f75 drm/nouveau: uapi: fix kerneldoc warnings
+1ab33c03145d asm-generic: make sparse happy with odd-sized put_unaligned_*()
+2324be17b5e0 PCI: xilinx-xdma: Fix error code in xilinx_pl_dma_pcie_init_irq_domain()
+eeb8e8d9f124 drm/nouveau/volt/gk20a: don't misuse kernel-doc comments
+ce6106ffa9f4 drm/nouveau/gr/gf100: don't misuse kernel-doc comments
+607a9b29ef81 drm/nouveau: don't misuse kernel-doc comments
+648c3814dcf6 drm/nouveau/disp: don't misuse kernel-doc comments
+5f807f00b5f5 drm/nouveau/bios/init: drop kernel-doc notation
+1c6d984f523f x86/kvm: Do not try to disable kvmclock if it was not enabled
+83303a4c776c KVM: s390: fix cc for successful PQAP
+d544d000a3cb drm/i915/dp: Abort AUX on disconnected native DP ports
+2e4b90fbe755 drm/i915: Filter out glitches on HPD lines during hotplug detection
+9210e94a5a3b drm/i915: Add intel_digital_port lock/unlock hooks
+bab87ef4db9a drm/i915: Disable hotplug detection handlers during driver init/shutdown
+cd572b3bb27e drm/i915: Disable hotplug detection works during driver init/shutdown
+bd738d859e71 drm/i915: Prevent modesets during driver init/shutdown
+1ef28d86bea9 drm/i915: Suspend the framebuffer console earlier during system suspend
+f4ed123ae295 drm/i915: Suspend the framebuffer console during driver shutdown
+24b412b1bfeb drm/i915: Disable intel HPD poll after DRM poll init/enable
+a1a0e8630711 drm/i915: Move audio deinit after disabling polling
+f7d16a538ad2 drm/i915: Keep the connector polled state disabled after storm
+289d4180bda9 drm/i915: Init DRM connector polled field early
+6b3d14b7f9b1 ALSA: hda/realtek: Fix mute and mic-mute LEDs for HP Envy X360 13-ay0xxx
+264ed178781c drm/xe: Fix spelling mistake "gueue" -> "queue"
+587371ed783b block: Treat sequential write preferred zone type as invalid
+41c71105a845 hwmon: (gigabyte_waterforce) Mark status report as received under a spinlock
+4e33b071bb8e block: remove disk_clear_zoned
+6945a1804e5c sd: remove the !ZBC && blk_queue_is_zoned case in sd_read_block_characteristics
+8249a0e25dd2 hwmon: (lm75) Fix tmp112 default config
+7f26fea9bc08 Merge tag 'kvm-x86-mmu-6.8' of https://github.com/kvm-x86/linux into HEAD
+3115d2de39b8 Merge tag 'kvm-x86-xen-6.8' of https://github.com/kvm-x86/linux into HEAD
+8c9244af4dc8 Merge tag 'kvm-x86-svm-6.8' of https://github.com/kvm-x86/linux into HEAD
+8ecb10bcbfa3 Merge tag 'kvm-x86-lam-6.8' of https://github.com/kvm-x86/linux into HEAD
+01edb1cfbdb9 Merge tag 'kvm-x86-pmu-6.8' of https://github.com/kvm-x86/linux into HEAD
+33d0403fdad8 Merge tag 'kvm-x86-misc-6.8' of https://github.com/kvm-x86/linux into HEAD
+0afdfd85e33a Merge tag 'kvm-x86-hyperv-6.8' of https://github.com/kvm-x86/linux into HEAD
+fb872da8e720 Merge tag 'kvm-x86-generic-6.8' of https://github.com/kvm-x86/linux into HEAD
+5f53d88f10eb Merge tag 'kvmarm-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/kvmarm/kvmarm into HEAD
+783288010035 KVM: x86: add missing "depends on KVM"
+3a373e027d8b KVM: fix direction of dependency on MMU notifiers
+caadf876bb74 KVM: introduce CONFIG_KVM_COMMON
+7aeb25908648 ALSA: hda/conexant: Fix headset auto detect fail in cx8070 and SN6140
+f55c096f62f1 exfat: do not zero the extended part
+11a347fb6cef exfat: change to get file size from DataLength
+34939ae005ec exfat: using ffs instead of internal logic
+742354604019 exfat: using hweight instead of internal logic
+f1e5e4639781 Merge branch 'pm-sleep'
+0b055cf44122 Merge branches 'pm-cpuidle', 'pm-cpufreq' and 'pm-devfreq'
+3ec71290db4d ASoC: Intel: bxt_rt298: Fix kernel ops due to COMP_DUMMY change
+59b946ea3080 ASoC: Intel: bxt_da7219_max98357a: Fix kernel ops due to COMP_DUMMY change
+4ee4ffccc01c Merge tag 'opp-updates-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm into pm-opp
+cdb3033e191f Merge branch 'sched/urgent' into sched/core, to pick up pending v6.7 fixes for the v6.8 merge window
+babebd1dc127 drm/probe-helper: remove unused drm_connector_helper_get_modes_from_ddc()
+2e367ad4da33 drm/mgag200: convert get modes to struct drm_edid
+d24b923f1d69 RDMA/bnxt_re: Fix error code in bnxt_re_create_cq()
+2f9060b1db4a MIPS: Fix typos
+f5b6fd4ea320 drm/mgag200: Fix caching setup for remapped video memory
+2b9d9e0a9ba0 locking/mutex: Clarify that mutex_unlock(), and most other sleeping locks, can still use the lock object after it's unlocked
+0fa647659c49 drm/i915/display: Use helper to select C20 MPLLA/B
+0205f3753dbe Merge tag 'asoc-v6.8' of https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound into for-linus
+821e2ac632ff Merge branch 'for-next' into for-linus
+c7ec4f2d684e xen-netback: don't produce zero-size SKB frags
+26a4591b3191 drm/sched: Return an error code only as a constant in drm_sched_init()
+3bb45618061c drm/sched: One function call less in drm_sched_init() after error detection
+8a3c4e44c243 cifs: get rid of dup length check in parse_reparse_point()
+3fbf61207c66 Revert "mlx5 updates 2023-12-20"
+e9ee910218ff Revert "net: stmmac: Enable Per DMA Channel interrupt"
+e3d3fe7e7bf0 rtc: class: Remove usage of the deprecated ida_simple_xx() API
+2eab8bc0f0c8 firewire: core: detect model name for legacy layout of configuration ROM
+b6a38057d06e firewire: core: detect numeric model identifier for legacy layout of configuration ROM
+58aae0a00e0d firewire: test: add test of device attributes for legacy AV/C device
+1c8506d62624 firewire: test: add test of device attributes for simple AV/C device
+1770d39d10dd firewire: test: add KUnit test for device attributes
+afa36dadd3b3 firewire: core: replace magic number with macro
+f1e2f87834f4 firewire: core: adds constant qualifier for local helper functions
+10416a3578ba firewire: make fw_bus_type const
+54e1898e113d rtc: MAINTAINERS: drop Alessandro Zummo
+e9a2162495ce rtc: ma35d1: remove hardcoded UIE support
+33f4ac165405 dt-bindings: rtc: qcom-pm8xxx: fix inconsistent example
+2f80de657f83 rtc: rv8803: Add power management support
+3628d999e31e rtc: ds3232: avoid unused-const-variable warning
+cd0d7d6639de rtc: lpc24xx: add missing dependency
+9f67c1e63976 rtc: tps6594: Add driver for TPS6594 RTC
+374c13f9080a i3c: master: cdns: Update maximum prescaler value for i2c clock
+18e579487990 i3c: master: fix Excess kernel-doc description warning
+6d1a19d34e2c i3c: master: svc: return actual transfer data len
+6fb61734a74e i3c: master: svc: rename read_len as actual_len
+e5e3df06ac98 i3c: add actual_len in i3c_priv_xfer
+05b26c31a485 i3c: master: svc: add hot join support
+317bacf960a4 i3c: master: add enable(disable) hot join in sys entry
+17419aefcbfd nfsd: rename nfsd_last_thread() to nfsd_destroy_serv()
+1e3577a4521e SUNRPC: discard sv_refcnt, and svc_get/svc_put
+7b207ccd9833 svc: don't hold reference for poolstats, only mutex.
+05a4b58301c3 SUNRPC: remove printk when back channel request not found
+d3dba534100d svcrdma: Implement multi-stage Read completion again
+ecba85e951c1 svcrdma: Copy construction of svc_rqst::rq_arg to rdma_read_complete()
+a937693a82fd svcrdma: Add back svcxprt_rdma::sc_read_complete_q
+4d9d69db898d svcrdma: Add back svc_rdma_recv_ctxt::rc_pages
+fc2e69db82c1 svcrdma: Clean up comment in svc_rdma_accept()
+b918bfcf370c svcrdma: Remove queue-shortening warnings
+913cd7668f17 svcrdma: Remove pointer addresses shown in dprintk()
+2a95ce479e68 svcrdma: Optimize svc_rdma_cc_init()
+28ee0ec8948a svcrdma: De-duplicate completion ID initialization helpers
+018f34051bc9 svcrdma: Move the svc_rdma_cc_init() call
+57666bbb4eaa svcrdma: Remove struct svc_rdma_read_info
+efd02cb0dda6 svcrdma: Update the synopsis of svc_rdma_read_special()
+23bab3b22d84 svcrdma: Update the synopsis of svc_rdma_read_call_chunk()
+740a3c895d94 svcrdma: Update synopsis of svc_rdma_read_multiple_chunks()
+6518204d2304 svcrdma: Update synopsis of svc_rdma_copy_inline_range()
+6e4b9b864396 svcrdma: Update the synopsis of svc_rdma_read_data_item()
+c7eb4feb1b21 svcrdma: Update synopsis of svc_rdma_read_chunk_range()
+02e8fe1eca4c svcrdma: Update synopsis of svc_rdma_build_read_chunk()
+fc20f19b4df4 svcrdma: Update synopsis of svc_rdma_build_read_segment()
+919f6e790ab6 svcrdma: Move read_info::ri_pageoff into struct svc_rdma_recv_ctxt
+8e122582680c svcrdma: Move svc_rdma_read_info::ri_pageno to struct svc_rdma_recv_ctxt
+b1818412d06f svcrdma: Start moving fields out of struct svc_rdma_read_info
+6a04a4349330 svcrdma: Move struct svc_rdma_chunk_ctxt to svc_rdma.h
+2cc0f23b5305 svcrdma: Remove the svc_rdma_chunk_ctxt::cc_rdma field
+bc8fd4e91513 svcrdma: Pass a pointer to the transport to svc_rdma_cc_release()
+83fe6dd6a816 svcrdma: Explicitly pass the transport to svc_rdma_post_chunk_ctxt()
+4a68edd93f5c svcrdma: Explicitly pass the transport into Read chunk I/O paths
+c3899b71072f svcrdma: Explicitly pass the transport into Write chunk I/O paths
+c4fd9f452517 svcrdma: Acquire the svcxprt_rdma pointer from the CQ context
+5ef6c6667641 svcrdma: Reduce size of struct svc_rdma_rw_ctxt
+2dd6e29a3ea8 svcrdma: Update some svcrdma DMA-related tracepoints
+848760a9e701 svcrdma: DMA error tracepoints should report completion IDs
+ad3656bd84e0 svcrdma: SQ error tracepoints should report completion IDs
+be2acb104880 rpcrdma: Introduce a simple cid tracepoint class
+907e34a7d01d svcrdma: Add lockdep class keys for transport locks
+bfb81535c266 svcrdma: Clean up locking
+f09c36c8dffc svcrdma: Add an async version of svc_rdma_write_info_free()
+ae225fe27b93 svcrdma: Add an async version of svc_rdma_send_ctxt_put()
+9c7e1a06588e svcrdma: Add a utility workqueue to svcrdma
+877118c667ab svcrdma: Pre-allocate svc_rdma_recv_ctxt objects
+b541dd554bc0 svcrdma: Eliminate allocation of recv_ctxt objects in backchannel
+52e89100754b NFSv4, NFSD: move enum nfs_cb_opnum4 to include/linux/nfs4.h
+3c86e615d17d nfsd: remove unnecessary NULL check
+3587b5c75376 SUNRPC: Remove RQ_SPLICE_OK
+a2c91753a4f3 NFSD: Modify NFSv4 to use nfsd_read_splice_ok()
+c21fd7a8e86c NFSD: Replace RQ_SPLICE_OK in nfsd_read()
+deb704281f07 SUNRPC: Add a server-side API for retrieving an RPC's pseudoflavor
+a853ed552545 NFSD: Document lack of f_pos_lock in nfsd_readdir()
+d0ab8b649ba7 NFSD: Remove nfsd_drc_gc() tracepoint
+ce7df05508c3 NFSD: Make the file_delayed_close workqueue UNBOUND
+f3734cc4073f NFSD: use read_seqbegin() rather than read_seqbegin_or_lock()
+74fd48739d04 nfsd: new Kconfig option for legacy client tracking
+3ee29a4474e3 ipvlan: Remove usage of the deprecated ida_simple_xx() API
+e900274f27c3 ipvlan: Fix a typo in a comment
+6472036581f9 parisc/power: Fix power soft-off button emulation on qemu
+735ae74f73e5 parisc/firmware: Fix F-extend for PDC addresses
+6d039984c15d smb: client: stop revalidating reparse points unnecessarily
+6ebfede8d57a cifs: Pass unbyteswapped eof value into SMB2_set_eof()
+96d566b6c933 smb3: Improve exception handling in allocate_mr_list()
+516eea97f92f cifs: fix in logging in cifs_chan_update_iface
+9c38568a75c1 smb: client: handle special files and symlinks in SMB3 POSIX
+3ded18a9e9d2 smb: client: cleanup smb2_query_reparse_point()
+514d793e27a3 smb: client: allow creating symlinks via reparse points
+5408990aa662 smb: client: fix hardlinking of reparse points
+7435d51b7ea2 smb: client: fix renaming of reparse points
+67ec9949b0df smb: client: optimise reparse point querying
+102466f303ff smb: client: allow creating special files via reparse points
+3322960ce222 smb: client: extend smb2_compound_op() to accept more commands
+0108ce08aed1 smb: client: Fix minor whitespace errors and warnings
+0dd3ee311255 Linux 6.7
+2ffca83aa39c net/sched: Remove ipt action tests
+2560a0695a89 Merge branch 'stmmac-per-dma-channel-interrupt'
+36af9f25ddfd net: stmmac: Use interrupt mode INTM=1 for per channel irq
+9072e03d3208 net: stmmac: Add support for TX/RX channel interrupt
+477bd4beb93b net: stmmac: Make MSI interrupt routine generic
+67d47c8ada0f dt-bindings: net: snps,dwmac: per channel irq
+769ab26db4e4 Merge branch 'at803x-more-generalization'
+c34d9452d4e5 net: phy: at803x: make read_status more generic
+ea73e5ea442e net: phy: at803x: add support for cdt cross short test for qca808x
+e0e9ada1df61 net: phy: at803x: refactor qca808x cable test get status function
+22eb276098da net: phy: at803x: generalize cdt fault length function
+ac631873c9e7 net: ethernet: cortina: Drop TSO support
+61921bdaa132 net: stmmac: fix ethtool per-queue statistics
+d375b98e0248 ip6_tunnel: fix NEXTHDR_FRAGMENT handling in ip6_tnl_parse_tlv_enc_lim()
+4fc68c4c1a11 rxrpc: Fix skbuff cleanup of call's recvmsg_queue and rx_oos_queue
+a460f4a68451 mlxbf_gige: Enable the GigE port in mlxbf_gige_open
+ef210ef85d5c mlxbf_gige: Fix intermittent no ip issue
+c4a5ee9c09aa fib: rules: remove repeated assignment in fib_nl2rule
+405cd9fc6f44 net/sched: simplify tc_action_load_ops parameters
+363096a27f90 nfp: flower: Remove usage of the deprecated ida_simple_xx() API
+2307157c8509 RDMA/efa: Add EFA query MR support
+5850edccec30 android: removed duplicate linux/errno
+adbf4c4954e3 ubi: block: fix memleak in ubiblock_create()
+ac8e9f64f51b ubifs: fix kernel-doc warnings
+2fe48aaab266 mtd: Add several functions to the fail_function list
+4d0deb380a5b ubi: Reserve sufficient buffer length for the input mask
+7cd8d1f8475d ubi: Add six fault injection type for testing
+e30948f7c073 ubi: Split io_failures into write_failure and erase_failure
+6931fb44858c ubi: Use the fault injection framework to enhance the fault injection capability
+1e022216dcd2 ubifs: ubifs_symlink: Fix memleak of inode->i_link in error path
+52b1853b080a Merge tag 'i2c-for-6.7-final' of git://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux
+7aa5f8fcd6d9 PCI: xilinx-xdma: Fix uninitialized symbols in xilinx_pl_dma_pcie_setup_irq()
+a3368e1186e3 i2c: core: Fix atomic xfer check for non-preempt config
+7682f19c3c8c PCI: rcar-gen4: Fix -Wvoid-pointer-to-enum-cast error
+f72896721621 PCI: iproc: Fix -Wvoid-pointer-to-enum-cast warning
+70fa02ca1446 PCI: dwc: Add dw_pcie_ep_{read,write}_dbi[2] helpers
+641f79beeebc PCI: dwc: Rename .func_conf_select to .get_dbi_offset in struct dw_pcie_ep_ops
+756dcb5a820a PCI: dwc: Rename .ep_init to .init in struct dw_pcie_ep_ops
+aea370b2aec9 PCI: dwc: Drop host prefix from struct dw_pcie_host_ops members
+516f366434e1 misc: pci_endpoint_test: Use a unique test pattern for each BAR
+177c9ac6ab3f PCI: j721e: Make TI J721E depend on ARCH_K3
+e49ad667815d PCI: j721e: Add TI J784S4 PCIe configuration
+169de41985f5 bcachefs: eytzinger0_find() search should be const
+f5d4481c3edd bcachefs: move "ptrs not changing" optimization to bch2_trigger_extent()
+e7999235e6c4 bcachefs: fix simulateously upgrading & downgrading
+72e2c920e4dc bcachefs: Restart recovery passes more reliably
+d04d27274385 bcachefs: bch2_dump_bset() doesn't choke on u64s == 0
+4819b66e2989 bcachefs: improve checksum error messages
+2d02bfb01b27 bcachefs: improve validate_bset_keys()
+5e448c48932b bcachefs: print sb magic when relevant
+5b883656605e bcachefs: __bch2_sb_field_to_text()
+1f5af5fc1785 bcachefs: %pg is banished
+c13fbb7de2fc bcachefs: Improve would_deadlock trace event
+074cbcdaeee4 bcachefs: fsck_err()s don't need to manually check c->sb.version anymore
+15eaaa4c3155 bcachefs: Upgrades now specify errors to fix, like downgrades
+d641d4cae72a bcachefs: no thread_with_file in userspace
+a64a37338d49 bcachefs: Don't autofix errors we can't fix
+e9bc59f9df96 bcachefs: add missing bch2_latency_acct() call
+4798bd2443bb bcachefs: increase max_active on io_complete_wq
+c72e4d7a3067 bcachefs: add time_stats for btree_node_read_done()
+b819f30855a6 bcachefs: don't clear accessed bit in btree node fill
+49a5192c0e9c bcachefs: Add an option to control btree node prefetching
+8a0dda6fd6b7 bcachefs: kill useless return ret
+f0431c5f4746 bcachefs: Combine .trans_trigger, .atomic_trigger
+4f9ec59f8fd6 bcachefs: unify extent trigger
+5a82ec3feaaf bcachefs: bch2_trigger_stripe_ptr()
+d55ddf6e7a81 bcachefs: Online fsck can now fix errors
+1f34c21bc685 bcachefs: bch2_trigger_pointer()
+e4eb3e5ae46b bcachefs: unify stripe trigger
+f4f78779bb2a bcachefs: move stripe triggers to ec.c
+153d1c63c2ac bcachefs: unify alloc trigger
+6820ac2cdc30 bcachefs: move bch2_mark_alloc() to alloc_background.c
+6cacd0c4141c bcachefs: unify reservation trigger
+7bc4d18af413 bcachefs: unify reflink_p trigger
+08bc95901037 bcachefs: unify inode trigger
+282e7c37ebf5 bcachefs: kill mem_trigger_run_overwrite_then_insert()
+c95e9ec48682 bcachefs: BTREE_TRIGGER_TRANSACTIONAL
+089e311347eb bcachefs: Kill BTREE_TRIGGER_NOATOMIC
+ad00bce07da8 bcachefs: mark now takes bkey_s
+717296c34c8d bcachefs: trans_mark now takes bkey_s
+eff1f728bedc bcachefs: Upgrading uses bch_sb.recovery_passes_required
+96f37eabe7a5 bcachefs: factor out thread_with_file, thread_with_stdio
+f60250de329a bcachefs: Fix printing of device durability
+8feaebb0ae88 bcachefs: __bch2_journal_key_to_wb -> bch2_journal_key_to_wb_slowpath
+f412392f6ea3 bcachefs: __journal_keys_sort() refactoring
+371650143d17 bcachefs: wb_key_cmp -> wb_key_ref_cmp
+89056f245bce bcachefs: track transaction durations
+83322e8ca8b6 bcachefs: btree_trans always has stats
+0d529663f04b bcachefs: Split brain detection
+6b00de06f51c bcachefs: bch_member->seq
+62719cf33c3a bcachefs: Fix nochanges/read_only interaction
+5e329145148d bcachefs: Check journal entries for invalid keys in trans commit path
+e16bf7e015d7 Merge branch 'for-6.7/cxl' into for-6.8/cxl
+948f97f9d8d2 net: ethtool: reject unsupported RSS input xfrm values
+2114e83381d3 selftests: forwarding: Avoid failures to source net/lib.sh
+8158a50f9058 Merge tag 'for-netdev' of https://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf-next
+795fd9342c62 ptp_ocp: adjust MAINTAINERS and mailmap
+c72a657b5cca geneve: use DEV_STATS_INC()
+80dda9a69a48 Merge branch 'for-6.8/cxl-misc' into for-6.8/cxl
+d3953c78fc78 Merge branch 'for-6.8/cxl-cdat' into for-6.8/cxl
+26a1a86dd093 cxl/events: Promote CXL event structures to a core header
+a79709956226 drm/i915/huc: Allow for very slow HuC loading
+807c6d09cc99 netfs: Fix the loop that unmarks folios after writing to the cache
+321dd36c286b cxl: Refactor to use __free() for cxl_root allocation in cxl_endpoint_port_probe()
+66f11890d35a cxl: Refactor to use __free() for cxl_root allocation in cxl_find_nvdimm_bridge()
+98e7ab3345e1 cxl: Fix device reference leak in cxl_port_perf_data_calculate()
+44cd71ef7bac cxl: Convert find_cxl_root() to return a 'struct cxl_root *'
+98856b2ea306 cxl: Introduce put_cxl_root() helper
+50d9edd33df5 ARM: debug: fix DEBUG_UNCOMPRESS help for !MULTIPLATFORM
+d93cca2f3109 asm-generic: Fix 32 bit __generic_cmpxchg_local
+95c8a35f1c01 Merge tag 'mm-hotfixes-stable-2024-01-05-11-35' of git://git.kernel.org/pub/scm/linux/kernel/git/akpm/mm
+a7de1dea76cd nvme: trace: avoid memcpy overflow warning
+4ee7ffeb4ce5 nvmet: re-fix tracing strncpy() warning
+bafd590910d0 nvme: introduce nvme_disk_is_ns_head helper
+bd029a02ce46 nvme-pci: disable write zeroes for SK Hynix BC901
+f644d21baab3 nvmet-fcloop: Remove remote port from list when unlinking
+0d3ac66ed81c Merge tag 'nfsd-6.7-3' of git://git.kernel.org/pub/scm/linux/kernel/git/cel/linux
+754d349ed411 drm/amd/display: Allow z8/z10 from driver
+3a0fa3bc245e drm/amd/display: fix bandwidth validation failure on DCN 2.1
+16783d8ef084 drm/amdgpu: apply the RV2 system aperture fix to RN/CZN as well
+d65e0e916641 drm/amd/display: Move fixpt_from_s3132 to amdgpu_dm
+af7cefc618f4 drm/amd/display: Fix recent checkpatch errors in amdgpu_dm
+0f35b0a7b8fa Revert "drm/amdkfd: Relocate TBA/TMA to opposite side of VM hole"
+c966dc0e9d96 drm/amd/display: avoid stringop-overflow warnings for dp_decide_lane_settings()
+1ac725b30076 drm/amd/display: Fix power_helpers.c codestyle
+0783f17e760d drm/amd/display: Fix hdcp_log.h codestyle
+31906f4cf6b1 drm/amd/display: Fix hdcp2_execution.c codestyle
+30c822afdf9f drm/amd/display: Fix hdcp_psp.h codestyle
+0c3c952d0512 drm/amd/display: Fix freesync.c codestyle
+f28390cd004c drm/amd/display: Fix hdcp_psp.c codestyle
+c86e5ab22737 drm/amd/display: Fix hdcp1_execution.c codestyle
+2f3be3ca779b drm/amd/pm/smu7: fix a memleak in smu7_hwmgr_backend_init
+b1a428b45dc7 drm/amdkfd: Fix iterator used outside loop in 'kfd_add_peer_prop()'
+bf2ad4fb8adc drm/amdgpu: Drop 'fence' check in 'to_amdgpu_amdkfd_fence()'
+499839eca34a drm/amdkfd: Confirm list is non-empty before utilizing list_first_entry in kfd_topology.c
+13a1851f923d drm/amdgpu: Fix '*fw' from request_firmware() not released in 'amdgpu_ucode_request()'
+4f32504a2f85 drm/amdgpu: Fix variable 'mca_funcs' dereferenced before NULL check in 'amdgpu_mca_smu_get_mca_entry()'
+c572abffe9f5 drm/amdgpu: add param to specify fw bo location for front-door loading
+8e317a811f3d drm/amdgpu: Remove unreachable code in 'atom_skip_src_int()'
+151374fb6e17 drm/amd/display: Removing duplicate copyright text
+fb915c87edc2 drm/amdgpu: skip gpu_info fw loading on navi12
+1b0b232ee4e0 drm/amd/display: add nv12 bounding box
+30afdffb3f60 drm/amd/display: Fix sending VSC (+ colorimetry) packets for DP/eDP displays without PSR
+6697dbf0afff Revert "drm/amdgpu: enable mca debug mode on APU by default"
+5df0f0b3b4d4 drm/amd/pm: Add mem_busy_percent for GCv9.4.3 apu
+196da3f3f76a drm/rockchip: vop2: Drop unused if_dclk_rate variable
+2b35ae108c7f drm/xe: Fix compilation without CONFIG_KUNIT
+a4ab2706bb12 Merge tag 'firewire-fixes-6.7-final' of git://git.kernel.org/pub/scm/linux/kernel/git/ieee1394/linux1394
+5343f29b3dc5 drm: Move drm_set_preferred_mode() helper from drm_edid to drm_modes
+6c23529c08fc Merge tag 'mmc-v6.7-rc4' of git://git.kernel.org/pub/scm/linux/kernel/git/ulfh/mmc
+2b5bd1498da5 Merge tag 'drm-fixes-2024-01-05' of git://anongit.freedesktop.org/drm/drm
+c5b32a419461 drm/i915/xelpg: Add workaround 14019877138
+15de2a270241 rtq9128: Fix pm runtime and TDM usage
+6dff31597264 crash_core: fix and simplify the logic of crash_exclude_mem_range()
+61bb219f9d83 x86/crash: use SZ_1M macro instead of hardcoded value
+83d4a42a9166 x86/crash: remove the unused image parameter from prepare_elf_headers()
+a5b7620bab81 selftests/mm: add separate UFFDIO_MOVE test for PMD splitting
+8c9eea721a98 selftests/mm: skip test if application doesn't has root privileges
+9a21701edc41 selftests/mm: conform test to TAP format output
+84ba3f226ce1 selftests: mm: hugepage-mmap: conform to TAP format output
+cb6e7cae1886 selftests/mm: gup_test: conform test to TAP format output
+e2cfedf4b07c mm/selftests: hugepage-mremap: conform test to TAP format output
+b805ab3c6935 mm/vmstat: move pgdemote_* out of CONFIG_NUMA_BALANCING
+fc8580edbaa6 mm: zsmalloc: return -ENOSPC rather than -EINVAL in zs_malloc while size is too large
+c701123bd68b mm/memcontrol: remove __mod_lruvec_page_state()
+b54d60b18e85 mm/khugepaged: use a folio more in collapse_file()
+82feeaa00925 slub: use a folio in __kmalloc_large_node
+2443fb5bec4f slub: use folio APIs in free_large_kmalloc()
+8014c46ad991 slub: use alloc_pages_node() in alloc_slab_page()
+e435ca878821 mm: remove inc/dec lruvec page state functions
+d4a5b369ad6d mm: ratelimit stat flush from workingset shrinker
+63b85ac56a64 kasan: stop leaking stack trace handles
+7eb2d01a1bea mm/mglru: remove CONFIG_TRANSPARENT_HUGEPAGE
+533c67e63584 mm/mglru: add dummy pmd_dirty()
+745b13e647cd mm/mglru: remove CONFIG_MEMCG
+61dd3f246b3a mm/mglru: add CONFIG_LRU_GEN_WALKS_MMU
+71ce1ab54a50 mm/mglru: add CONFIG_ARCH_HAS_HW_PTE_YOUNG
+9c5938694cd0 mm/rmap: silence VM_WARN_ON_FOLIO() in __folio_rmap_sanity_checks()
+982ae058b2f0 userfaultfd: fix move_pages_pte() splitting folio under RCU read lock
+bcd30d4cd937 buffer: fix unintended successful return
+7fba9420b726 mm: shrinker: use kvzalloc_node() from expand_one_shrinker_info()
+6d0dc8559c84 Merge tag 'soc-fixes-6.7-3a' of git://git.kernel.org/pub/scm/linux/kernel/git/soc/soc
+7987b8b75f1b Merge tag 'for-linus' of git://git.kernel.org/pub/scm/virt/kvm/kvm
+7131c2e9bba7 Merge tag 'probes-fixes-v6.7-rc8' of git://git.kernel.org/pub/scm/linux/kernel/git/trace/linux-trace
+3eca89454aec Merge tag '6.7-rc8-smb3-mchan-fixes' of git://git.samba.org/sfrench/cifs-2.6
+0d68d06553ee drm/xe: Add mocs reset kunit
+ee93b1ffde3d Merge branch 'net-gro-reduce-extension-header-parsing-overhead'
+4e321d590cec selftests/net: fix GRO coalesce test and add ext header coalesce tests
+dff0b0161ad5 net: gro: parse ipv6 ext headers without frag0 invalidation
+f2e3fc2158e6 net: gso: add HBH extension header offload support
+3f14b377d01d net/sched: act_ct: fix skb leak and crash on ooo frags
+be12ad45e15b hisi_acc_vfio_pci: Update migration data pointer correctly on saving/resume
+cb420106901a net: fill in MODULE_DESCRIPTION()s for CAIF
+b8549d85983c net: fill in MODULE_DESCRIPTION() for AF_PACKET
+0ed6e95255e7 net: fill in MODULE_DESCRIPTION()s for DSA tags
+fc0caed81bca net: fill in MODULE_DESCRIPTION()s for ATM
+c07a4dab243a ubifs: Check @c->dirty_[n|p]n_cnt and @c->nroot state under @c->lp_mutex
+aa537fee6188 Merge branch 'dpll-expose-fractional-frequency-offset-value-to-user'
+f035dca34ede net/mlx5: DPLL, Implement fractional frequency offset get pin op
+e6d86938a40a net/mlx5: DPLL, Use struct to get values from mlx5_dpll_synce_status_get()
+8a6286c1804e dpll: expose fractional frequency offset value to user
+17dc11a02d8d spi: coldfire-qspi: Remove an erroneous clk_disable_unprepare() from the remove function
+92a714d727ec netfs: Fix interaction between write-streaming and cachefiles culling
+2ba5b48938d7 ubifs: describe function parameters
+19c2fcb4a489 ubifs: auth.c: fix kernel-doc function prototype warning
+738fadaa5497 ubifs: use crypto_shash_tfm_digest() in ubifs_hmac_wkm()
+83aec96c631e um: Mark 32bit syscall helpers as clobbering memory
+1e41c415e21f um: Remove unused register save/restore functions
+1ca1443570e4 um: Rely on PTRACE_SETREGSET to set FS/GS base registers
+21822553a5f4 Documentation: kunit: Add clang UML coverage example
+26d4481ac23f drm/xe/guc: Start handling GuC Relay event messages
+927b042a8daf drm/xe/kunit: Add GuC Relay kunit tests
+4469eae6bc52 drm/xe/kunit: Allow to replace xe_guc_ct_send_recv() with stub
+811fe9f556fc drm/xe/guc: Introduce Relay Communication for SR-IOV
+fa6c12e036c9 drm/xe/guc: Add Relay Communication ABI definitions
+e83679985ac7 drm/xe/guc: Update few GuC CTB ABI definitions
+e6cbc458b4f8 drm/xe/guc: Add helpers for HXG messages
+13f976ea6220 drm/xe: Introduce GT-oriented SR-IOV logging macros
+b97d87039fe5 drm/xe: Define Virtual Function Identifier
+0cfb7caefabd drm/xe: Allocate dedicated workqueue for SR-IOV workers
+4088e389476e netfs: Count DIO writes
+415d10ccef71 ASoC: codecs: rtq9128: Fix TDM enable and DAI format control flow
+35040410372c ASoC: codecs: rtq9128: Fix PM_RUNTIME usage
+0e4d464cda4c netfs: Mark netfs_unbuffered_write_iter_locked() static
+9bab383d47c9 drm/xe: Use intel_wakeref_t in intel_runtime_pm functions
+fdbadf504375 drm/xe: Fix definition of intel_wakeref_t
+fe761f3465c0 drm/i915: don't make assumptions about intel_wakeref_t type
+c27f010aa188 drm/i915: Disable DSB in Xe KMD
+9f1bcd16e2bd ASoC: tas2781: Add tas2563 into driver
+e9aa44736cb7 ASoC: tas2781: Add tas2563 into header file for DSP mode
+645994d21287 ASoC: tas2562: move tas2563 from tas2562 driver to tas2781 driver
+3dbb4e3602d2 ASoC: dt-bindings: move tas2563 from tas2562.yaml to tas2781.yaml
+8790fade1a19 Merge branches 'misc' and 'fixes' into for-next
+c17d8847c3be ARM: 9331/1: ARM/dma-mapping: replace kzalloc() and vzalloc() with kvzalloc()
+39c9f38e1ad3 drm/i915/tv: use DISPLAY_VER instead of GRAPHICS_VER
+ee3c386e4bee drm/i915/display: use IS_DISPLAY_VER instead of IS_GRAPHICS_VER
+fbfb125c8492 drm/i915/hdcp: use DISPLAY_VER instead of GRAPHICS_VER
+102971422e57 drm/i915/dmc: use DISPLAY_VER instead of GRAPHICS_VER
+a133e35bc650 drm/i915/irq: use DISPLAY_VER instead of GRAPHICS_VER
+933bb7b878dd usb: typec: tipd: fix use of device-specific init function
+17e8b76491b0 Merge branch 'thermal-intel'
+ac9184fbb847 firewire: ohci: suppress unexpected system reboot in AMD Ryzen machines and ASM108x/VT630x PCIe cards
+1154e4304174 usb: typec: tipd: Separate reset for TPS6598x
+82e7b22f6472 Merge branch 'user_mii_bus-cleanup-part-one'
+45f62ca5cc48 net: dsa: bcm_sf2: drop priv->master_mii_dn
+04a4bc9dddc7 net: dsa: bcm_sf2: stop assigning an OF node to the ds->user_mii_bus
+c4a1cefdf3bc net: dsa: qca8k: use "dev" consistently within qca8k_mdio_register()
+5c5d6b34b683 net: dsa: qca8k: consolidate calls to a single devm_of_mdiobus_register()
+525366b81f33 net: dsa: qca8k: assign ds->user_mii_bus only for the non-OF case
+e66bf63a7f67 net: dsa: qca8k: skip MDIO bus creation if its OF node has status = "disabled"
+68e1010cda79 net: dsa: qca8k: put MDIO bus OF node on qca8k_mdio_register() failure
+7a898539391d net: dsa: lantiq_gswip: ignore MDIO buses disabled in OF
+cd4ba3ecced9 net: dsa: lantiq_gswip: use devres for internal MDIO bus, not ds->user_mii_bus
+fc74b32b4032 net: dsa: lantiq_gswip: delete irrelevant use of ds->phys_mii_mask
+de06b42edc5b drm/i915: don't make assumptions about intel_wakeref_t type
+e130ba220da5 drm/edid: prefer forward declarations over includes in drm_edid.h
+94e2557d086a net: sched: move block device tracking into tcf_block_get/put_ext()
+358c3f8cce6d kbuild: deb-pkg: do not search for 'scripts' directory under arch/
+16c36f8864e3 kbuild: deb-pkg: use build ID instead of debug link for dbg package
+5e73758b43c3 kbuild: deb-pkg: use more debhelper commands in builddeb
+68e262f8017d kbuild: deb-pkg: remove unneeded '-f $srctree/Makefile' in debian/rules
+eaf80f7f2c9c kbuild: deb-pkg: allow to run debian/rules from output directory
+159956f34ede kbuild: deb-pkg: set DEB_* variables if debian/rules is directly executed
+dcfec12b6798 OPP: Rename 'rate_clk_single'
+7269c250db1b OPP: Pass rounded rate to _set_opp()
+0b40dd3bcfc6 OPP: Relocate dev_pm_opp_sync_regulators()
+3f2f25b5aebf Merge tag 'socfpga_dts_updates_for_v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/dinguyen/linux into soc/dt
+5d4021334748 mmc: xenon: Add ac5 support via bounce buffer
+d5862720c018 dt-bindings: mmc: add Marvell ac5
+fe86da368a1b mmc: sdhci-brcmstb: add new sdhci reset sequence for brcm 74165b0
+0a8d397cfc90 dt-bindings: mmc: brcm,sdhci-brcmstb: Add support for 74165b0
+2dd23cc4d0e6 usb: mon: Fix atomicity violation in mon_bin_vma_fault
+9866dc4314c6 usb: gadget: uvc: Remove nested locking
+fe814b5b0f30 usb: gadget: uvc: Fix use are free during STREAMOFF
+d73f444d06fb pwm: linux/pwm.h: fix Excess kernel-doc description warning
+c2e64baac4f3 pwm: Add pwm_apply_state() compatibility stub
+ada3fb86a3f3 ext4: move ext4_check_bdev_write_error() into nojournal mode
+b4e73e612689 jbd2: abort journal when detecting metadata writeback error of fs dev
+8a4fd33d879f jbd2: remove unused 'JBD2_CHECKPOINT_IO_ERROR' and 'j_atomic_flags'
+62ec1707cb07 jbd2: replace journal state flag by checking errseq
+990b6b5b13b7 jbd2: add errseq to detect client fs's bdev writeback error
+5fe4ee6ae187 Merge branch 'relax-tracing-prog-recursive-attach-rules'
+e02feb3f1f47 selftests/bpf: Test re-attachment fix for bpf_tracing_prog_attach
+715d82ba636c bpf: Fix re-attachment branch in bpf_tracing_prog_attach
+5c5371e069e1 selftests/bpf: Add test for recursive attachment of tracing progs
+2bf5eb2a7c22 ext4: improving calculation of 'fe_{len|start}' in mb_find_extent()
+19bfcdf9498a bpf: Relax tracing prog recursive attach rules
+c6bfd7240984 ext4: clarify handling of unwritten bh in __ext4_block_zero_page_range()
+92573369144f ext4: treat end of range as exclusive in ext4_zero_range()
+e89fdcc425b6 ext4: enable dioread_nolock as default for bs < ps case
+f2fec3e99a32 ext4: delete redundant calculations in ext4_mb_get_buddy_page_lock()
+00bc89888079 bpf, x86: Use emit_nops to replace memcpy x86_nops
+64e6304169f1 nfsd: drop the nfsd_put helper
+eb284f4b3781 drm/nouveau/dp: Honor GSP link training retry timeouts
+eacabb546271 nouveau: push event block/allowing out of the fence context
+9c9dd22ba5d7 nouveau/gsp: always free the alloc messages on r535
+4ae3a20102b2 nouveau/gsp: don't free ctrl messages on errors
+59f6a3d8db25 nouveau/gsp: convert gsp errors to generic errors
+cf22fc2846ce drm/nouveau/gsp: Fix ACPI MXDM/MXDS method invocations
+3108cc03236b nouveau/gsp: free userd allocation.
+a9b9b42b54b2 nouveau/gsp: free acpi object after use
+7854ea0e408d nouveau: fix disp disabling with GSP
+34ce62a51e65 nouveau/gsp: drop some acpi related debug
+24ab185d9804 nouveau/gsp: add three notifier callbacks that we see in normal operation (v2)
+ed9895d8d45a Merge tag 'amd-drm-fixes-6.7-2024-01-04' of https://gitlab.freedesktop.org/agd5f/linux into drm-fixes
+e63c1822ac32 Merge git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+a180b0b1a6c4 Merge tag 'wireless-next-2024-01-03' of git://git.kernel.org/pub/scm/linux/kernel/git/wireless/wireless-next
+a2634a5ffcaf r8169: fix building with CONFIG_LEDS_CLASS=m
+14d0681b3ae2 net: enetc: allow phy-mode = "1000base-x"
+1f874787ed9a Merge tag 'net-6.7-rc9' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+3c064aea46d0 Merge tag 'drm-misc-next-fixes-2024-01-04' of git://anongit.freedesktop.org/drm/drm-misc into drm-next
+fe1eb24bd5ad Revert "Introduce PHY listing and link_topology tracking"
+a476aae3f1dc x86/csum: clean up `csum_partial' further
+5d4acb62853a x86/csum: Remove unnecessary odd handling
+32a84cfc6caf arch: um: Add Clang coverage support
+abe4eaa8618b um: time-travel: fix time corruption
+7d748f60a4b8 um: net: Fix return type of uml_net_start_xmit()
+e3d7581cb13b drivers/block/xen-blkback/common.h: Fix spelling typo in comment
+393cd8ffd832 blk-cgroup: fix rcu lockdep warning in blkg_lookup()
+fab4c16c527e blk-cgroup: don't use removal safe list iterators
+458aa1a09939 block: floor the discard granularity to the physical block size
+62ff262227a4 riscv: Use the same CPU operations for all CPUs
+79093f3ec39c riscv: Remove unused members from struct cpu_operations
+a4166aec1130 riscv: Deduplicate code in setup_smp()
+7b84543cbd88 um: Always inline stub functions
+6d64095ea869 um: Do not use printk in userspace trampoline
+139e6e8ef6ee um: Reap winch thread if it fails
+1818b8406678 um: Do not use printk in SIGWINCH helper thread
+236f9fe39b02 um: Don't use vfprintf() for os_info()
+61a40c12496a Merge branch 's390-bpf-fix-gotol-with-large-offsets'
+63fac34669e4 selftests/bpf: Test gotol with large offsets
+445aea5afda4 selftests/bpf: Double the size of test_loader log
+9e16fb933fd1 um: Make errors to stop ptraced child fatal during startup
+571353379470 um: Drop NULL check from start_userspace
+a55719847da0 um: Drop support for hosts without SYSEMU_SINGLESTEP support
+172b3fccf574 Merge tag 'ieee802154-for-net-next-2023-12-20' of gitolite.kernel.org:pub/scm/linux/kernel/git/wpan/wpan-next
+1de94b52d5e8 eventfs: Shortcut eventfs_iterate() by skipping entries already read
+704f960dbee2 eventfs: Read ei->entries before ei->children in eventfs_iterate()
+1e4624eb5a0e eventfs: Do ctx->pos update for all iterations in eventfs_iterate()
+e109deadb733 eventfs: Have eventfs_iterate() stop immediately if ei->is_freed is set
+57331a59ac0d NFSv4.1: Use the nfs_client's rpc timeouts for backchannel
+e6f533b61597 SUNRPC: Fixup v4.1 backchannel request timeouts
+5459e186a5c9 cxl/port: Fix missing target list lock
+d6488fee6647 cxl/port: Fix decoder initialization when nr_targets > interleave_ways
+bbf5a1d0e5d0 selinux: Fix error priority for bind with AF_UNSPEC on PF_INET6 socket
+b6d8b858dbbb perf test: test case 'Setup struct perf_event_attr' fails on s390 on z/vm
+1e24ce402c97 perf db-export: Fix missing reference count get in call_path_from_sample()
+bb177a85e82b perf tests: Add perf script test
+ad30469a841b libsubcmd: Fix memory leak in uniq()
+6af6d22495ef perf TUI: Don't ignore job control
+6c8e2407100e net: phy: aquantia: switch to crc_itu_t()
+a8e75902f4d7 um: document arch_futex_atomic_op_inuser
+63c7234f50e8 Revert "octeon_ep_vf: add octeon_ep_vf driver"
+360b045fceb2 perf vendor events intel: Update sapphirerapids events to v1.17
+8550506887a9 perf vendor events intel: Update icelakex events to v1.23
+576d7fed09c7 perf vendor events intel: Update emeraldrapids events to v1.02
+982b6acec662 perf vendor events intel: Alderlake/rocketlake metric fixes
+085bc003baab um: mmu: remove stub_pages
+2f1888281e67 IB/iser: Prevent invalidating wrong MR
+541d4e4d435c um: Fix naming clash between UML and scheduler
+32253f00ac8a um: virt-pci: fix platform map offset
+0c64117d112b Input: da9063_onkey - avoid explicitly setting input's parent
+1cadc04c1a1a regulator: event: Ensure atomicity for sequence number
+ec4fcc6b6a63 Input: da9063_onkey - avoid using OF-specific APIs
+ecba66cb36e3 s390/bpf: Fix gotol with large offsets
+040113fa32f2 KVM: arm64: Add missing memory barriers when switching to pKVM's hyp pgd
+f4af13bd93b3 Merge branch kvm-arm64/vgic-6.8 into kvmarm-master/next
+ad362fe07fec KVM: arm64: vgic-its: Avoid potential UAF in LPI translation cache
+6ff1407e24e6 io_uring: ensure local task_work is run on wait timeout
+5eff55d725a4 Merge tag 'platform-drivers-x86-v6.7-7' of git://git.kernel.org/pub/scm/linux/kernel/git/pdx86/platform-drivers-x86
+08bd31ece082 Merge tag 'sound-6.7-final' of git://git.kernel.org/pub/scm/linux/kernel/git/tiwai/sound
+5939a693dc6e Merge tag 'drm-fixes-2024-01-04' of git://anongit.freedesktop.org/drm/drm
+98e20e5e13d2 bpfilter: remove bpfilter
+9ddf872b47e3 bpf: Remove unnecessary cpu == 0 check in memalloc
+9b0b61c5bc08 drm/i915/dp: Fix the PSR debugfs entries wrt. MST connectors
+4c8530dc7d7d net/tcp: Only produce AO/MD5 logs if there are any keys
+2e957f9c32c1 Merge branch '40GbE' of git://git.kernel.org/pub/scm/linux/kernel/git/tnguy/net-queue
+382a32018b74 net: Implement missing SO_TIMESTAMPING_NEW cmsg support
+38709af26c33 drm/rockchip: vop2: Drop superfluous include
+b20712e85330 Revert "platform/x86: p2sb: Allow p2sb_bar() calls during PCI device probe"
+c312828c37a7 kernfs: convert kernfs_idr_lock to an irq safe raw spinlock
+93ec4a3b7640 class: fix use-after-free in class_register()
+056a9965e58e drm/panel: ltk050h3146w: use dev_err_probe wherever possible
+65afd91e8d70 drm/panel: ltk050h3146w: only print message when GPIO getting is not EPROBE_DEFER
+0c9ae0b86050 uio: Fix use-after-free in uio_open
+97d62760e441 drivers: soc: xilinx: add check for platform
+0c4b2255b7af firmware: xilinx: Export function to use in other module
+2ad3cc058200 scripts/tags.sh: remove find_sources
+d70a091fb412 scripts/tags.sh: use -n to test archinclude
+0aedf7a2dc5d scripts/tags.sh: add local annotation
+f9fefa985d2e scripts/tags.sh: use more portable -path instead of -wholename
+4f3f263df57f scripts/tags.sh: Update comment (addition of gtags)
+408201eb2e38 firmware: zynqmp: Convert to platform remove callback returning void
+31fd8f1ddd28 firmware: turris-mox-rwtm: Convert to platform remove callback returning void
+51e24bac2fb8 firmware: stratix10-svc: Convert to platform remove callback returning void
+6ac63d0bb576 firmware: stratix10-rsu: Convert to platform remove callback returning void
+ffc3c929507d firmware: raspberrypi: Convert to platform remove callback returning void
+9eeec412265a firmware: qemu_fw_cfg: Convert to platform remove callback returning void
+ab45e1f40bab firmware: mtk-adsp-ipc: Convert to platform remove callback returning void
+303cbf2a30cc firmware: imx-dsp: Convert to platform remove callback returning void
+f69583d32fcb firmware: coreboot_table: Convert to platform remove callback returning void
+259566503782 firmware: arm_scpi: Convert to platform remove callback returning void
+927e11300d8e firmware: arm_scmi: Convert to platform remove callback returning void
+2765149273f4 mux: mmio: use reg property when parent device is not a syscon
+b1b9f7a49440 misc: lis3lv02d_i2c: Add missing setting of the reg_ctrl callback
+d3da61ea9776 pvpanic: Kill duplicate PCI_VENDOR_ID_REDHAT definition
+e1be24b2e119 platform/surface: aggregator: make ssam_bus_type constant and static
+e68f487133d5 eeprom: at24: Use pm_runtime_resume_and_get to simplify the code
+caba40ec3531 eeprom: at24: Probe for DDR3 thermal sensor in the SPD case
+393bd1000f81 eeprom: ee1004: add support for temperature sensor
+a6c7e0146b2d moxtet: mark moxtet_bus_type as const
+a87e55bfa25c moxtet: remove unused moxtet_type declaration
+1960932eef91 cdx: Unlock on error path in rescan_store()
+87736ae12e14 cdx: call of_node_put() on error path
+cf60af04edfe cdx: Create resource debugfs file for cdx device
+aeda33ab8160 cdx: create sysfs bin files for cdx resources
+6bafe07c9306 nvmem: u-boot-env: improve coding style
+a832556d23c5 nvmem: u-boot-env: use nvmem device helpers
+7c8979b42b1a nvmem: u-boot-env: use nvmem_add_one_cell() nvmem subsystem helper
+33cf42e68efc nvmem: core: add nvmem_dev_size() helper
+43f60e3fb62e nvmem: drop nvmem_layout_get_match_data()
+401df0d4f409 nvmem: layouts: refactor .add_cells() callback arguments
+597a42179803 rpc_pipefs: Replace one label in bl_resolve_deviceid()
+12fc0a963128 nfs: Remove writepage
+1fd5394e6ab8 NFS: drop unused nfs_direct_req bytes_left
+8a6291bf3b0e pNFS: Fix the pnfs block driver's calculation of layoutget size
+f6e70c59edee nfs: print fileid in lookup tracepoints
+310b1f89ea81 nfs: rename the nfs_async_rename_done tracepoint
+283064fca3e8 nfs: add new tracepoint at nfs4 revalidate entry point
+98b4e5137504 SUNRPC: fix _xprt_switch_find_current_entry logic
+037e56a22ff3 NFSv4.1/pnfs: Ensure we handle the error NFS4ERR_RETURNCONFLICT
+dce72920c81b NFSv4.1: if referring calls are complete, trust the stateid argument
+e3fd54e7dc5a NFSv4: Track the number of referring calls in struct cb_process_state
+a10a9233073d NFS: Use parent's objective cred in nfs_access_login_time()
+b4d4fd60f884 NFSv4: Always ask for type with READDIR
+d76c769c8db4 pnfs/blocklayout: Don't add zero-length pnfs_block_dev
+1530827b9002 blocklayoutdriver: Fix reference leak of pnfs_device_node
+31b62908693c SUNRPC: Fix a suspicious RCU usage warning
+a902f3dec70a SUNRPC: Create a helper function for accessing the rpc_clnt's xprt_switch
+5f1e77b2285b SUNRPC: Remove unused function rpc_clnt_xprt_switch_put()
+ec677b58f65e SUNRPC: Clean up unused variable in rpc_xprt_probe_trunked()
+d8407f71ebea ppdev: Remove usage of the deprecated ida_simple_xx() API
+54ffdab82080 android: binder: binderfs.c: removed asm-generic/errno-base.h
+5962ded777d6 usb: typec: class: fix typec_altmode_put_partner to put plugs
+971079464001 KVM: x86/pmu: fix masking logic for MSR_CORE_PERF_GLOBAL_CTRL
+0c84bea0cabc serial: sc16is7xx: refactor EFR lock
+2de8a1b46756 serial: sc16is7xx: reorder code to remove prototype declarations
+f031d763dcb0 serial: sc16is7xx: refactor FIFO access functions to increase commonality
+e54837da4d81 serial: sc16is7xx: drop unneeded MODULE_ALIAS
+2e57cefc4477 serial: sc16is7xx: replace hardcoded divisor value with BIT() macro
+dfb104213008 serial: sc16is7xx: add explicit return for some switch default cases
+acd7f118b3b5 serial: sc16is7xx: add macro for max number of UART ports
+d9ffadaf9df1 serial: sc16is7xx: add driver name to struct uart_driver
+7e2ead98b747 serial: sc16is7xx: use i2c_get_match_data()
+195f01ddcc81 serial: sc16is7xx: use spi_get_device_match_data()
+3504c3174bfc serial: sc16is7xx: use DECLARE_BITMAP for sc16is7xx_lines bitfield
+d5078509c8b0 serial: sc16is7xx: improve do/while loop in sc16is7xx_irq()
+ed647256e8f2 serial: sc16is7xx: remove obsolete loop in sc16is7xx_port_irq()
+3ef79cd14122 serial: sc16is7xx: set safe default SPI clock frequency
+6d710b769c1f serial: sc16is7xx: add check for unsupported SPI modes during probe
+8a1060ce9749 serial: sc16is7xx: fix invalid sc16is7xx_lines bitfield in case of probe error
+0c2a5f471ce5 serial: 8250_exar: Set missing rs485_supported flag
+51f93776b84d serial: omap: do not override settings for RS485 support
+74eab89b26ac serial: core, imx: do not set RS485 enabled if it is not supported
+c73986913fa4 serial: core: make sure RS485 cannot be enabled when it is not supported
+4afeced55baa serial: core: fix sanitizing check for RTS settings
+1a33e33ca0e8 serial: core: set missing supported flag for RX during TX GPIO
+07c30ea5861f serial: Do not hold the port lock when setting rx-during-tx GPIO
+da680c045fde dt-bindings: serial: Describe ARM dcc interface
+83e571f054cd serial: 8250_bcm2835aux: Restore clock error handling
+aba8290f368d 8250: microchip: pci1xxxx: Add Burst mode reception support in uart driver for writing into FIFO
+b7fbca372bb6 8250: microchip: pci1xxxx: Add Syslock support for reading UART system registers
+e0ae1431dfb6 8250: microchip: pci1xxxx: Rearranging the structure declarations
+8c9aa6e1877d serial: 8250_lpss: copy dma_param using devm_kmemdup()
+9903f2f2e1c0 tty: serial: 8250: Set RS232 as default for Moxa PCIe board initialization
+d8a028447913 serial: 8250_dw: Do not bailout on UCV read returning zero
+7c45eaa81347 serial: imx: Ensure that imx_uart_rs485_config() is called with enabled clock
+c6dcd8050fb7 serial: apbuart: fix console prompt on qemu
+788aeef392d2 tty: serial: kgdboc: Fix 8250_* kgdb over serial
+3e189470cad2 serial: imx: Correct clock error message in function probe()
+f0635480462f tty/serial: altera_uart: use more informative labels in /proc/interrupts
+6056f20f27e9 tty: serial: Add RS422 flag to struct serial_rs485
+76ac8e29855b tty: serial: Cleanup the bit shift with macro
+d4303e0b9f51 serial: core: Clean up uart_update_timeout() function
+cb86a3383aa7 serial: core: Update uart_poll_timeout() function to return unsigned long
+79c58ab241be dt-bindings: usb: dwc3: Limit num-hc-interrupters definition
+b1541a80414d dt-bindings: usb: xhci: Add num-hc-interrupters definition
+c99b38c41234 xhci: add support to allocate several interrupters
+49a78b05d5ca USB: core: Use device_driver directly in struct usb_driver and usb_device_driver
+33d4137d5799 arm64: dts: mediatek: mt8195: Add 'rx-fifo-depth' for cherry
+017dbfc05c31 usb: xhci-mtk: fix a short packet issue of gen1 isoc-in transfer
+223b4ef5a3b7 dt-bindings: usb: mtk-xhci: add a property for Gen1 isoc-in transfer issue
+3eee5b4085e2 arm64: dts: qcom: msm8996: Remove PNoC clock from MSS
+30d2641df650 arm64: dts: qcom: msm8996: Remove AGGRE2 clock from SLPI
+8ee8587fdcac arm64: dts: qcom: msm8998: Remove AGGRE2 clock from SLPI
+09ee216d0b9f arm64: dts: qcom: msm8939: Drop RPM bus clocks
+283730be6bbb arm64: dts: qcom: sdm630: Drop RPM bus clocks
+437afcefdbec arm64: dts: qcom: qcs404: Drop RPM bus clocks
+19f837ae4e4a arm64: dts: qcom: msm8996: Drop RPM bus clocks
+51b6148026f0 arm64: dts: qcom: msm8916: Drop RPM bus clocks
+7db25e95589e dt-bindings: usb: qcom,dwc3: Fix SDM660 clock description
+aefdcd89d72b usb: dwc3: qcom: Rename hs_phy_irq to qusb2_phy_irq
+53c6d854be4e dt-bindings: usb: dwc3: Clean up hs_phy_irq in binding
+76c945730cdf usb: gadget: u_ether: Re-attach netif device to mirror detachment
+3c7af52c7616 usb: dwc3: gadget: Queue PM runtime idle on disconnect event
+ff2b89de471d usb: phy: mxs: remov
 
 
