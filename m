@@ -4,27 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABBADC48BC3
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Feb 2024 09:44:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFDEFC48BC4
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Feb 2024 10:44:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A38810E2C4;
-	Tue, 20 Feb 2024 09:44:38 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77D9910E2C0;
- Tue, 20 Feb 2024 09:44:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2502080535347271481=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_change_=27include=27_s?=
- =?utf-8?q?yntax_for_generate/xe=5Fwa=5Foob=2Eh?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dafna Hirschfeld" <dhirschfeld@habana.ai>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6871610E035;
+	Tue, 20 Feb 2024 10:44:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="Qc4WiT2E";
+	dkim-atps=neutral
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com
+ [209.85.218.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 366AC10E332
+ for <intel-xe@lists.freedesktop.org>; Tue, 20 Feb 2024 10:44:24 +0000 (UTC)
+Received: by mail-ej1-f52.google.com with SMTP id
+ a640c23a62f3a-a3e6f79e83dso289003666b.2
+ for <intel-xe@lists.freedesktop.org>; Tue, 20 Feb 2024 02:44:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1708425862; x=1709030662; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-disposition:mime-version
+ :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=IrCDKSLGBF+EPhPeqLye9+d0pKWdvU78eGSDHzLhgGA=;
+ b=Qc4WiT2E7hwKc3XiBPlncbzUq1Y5vXkvpAbZRp3R2e+y1UyM6yWJ85jhm2aERXeCMB
+ m25XHjwsqEnWtgGXln8PZYNrzyUk5vIWuUC5Fw7d9UnqUo0ymrKu9Zq6O9Ya2+1tks2k
+ LX3iy9Qfjeq0RCKuFiFXEhb1d5WluUQppjYRsI8sxTIysLDFg/kurvWVcGD6zNUsrvfF
+ DeyfKaA4r+GAoTxZmLY+2asyl1S2zL9Xe7mmX8WiUqlJoMdLMqRSIm73rQw+fni4Nwk9
+ RliWg4xRrH2nDZUG8h1uPsSs5TDKFtNBoG9T5JYw4fXMCYb+YSCQbbfxg617/mbQEtlT
+ x3eA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1708425862; x=1709030662;
+ h=content-transfer-encoding:content-disposition:mime-version
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=IrCDKSLGBF+EPhPeqLye9+d0pKWdvU78eGSDHzLhgGA=;
+ b=Sh/akH7NNrP/5Rpj/hkCGO0GUjFzS0ulGa0hESw1QcCwUfPq76hMLjdRkDQp6UIq1L
+ XYo/IsIKORD2JeHzdqLzjPPMavMCg6AKH+dvVe/ndIbXaOjwp56lrEfusCct04+/Zc+B
+ +Xj60Qkvc+gfiYVry1D/XWYMfRkibJEqrAsXPVvONcjcfCxupI7UA3MFW9Qxr2IT5WAu
+ UgM/QwT2UToOxcdrIhV7BQFtXsYoNpJ3Ss935jr4L02ZqGWeJ1iw3Bp4uC6apkG/WuRa
+ 2lGrrKzZOHfTiGgiP2xr6xAt089wNy9guKIcdLl/9/Knk6ExjFCwDF2y7r3Va2RV/mue
+ yXWw==
+X-Gm-Message-State: AOJu0YzeeJZN9V/LyG39KIDwYRcpZVrmWONxdFcPueYCN0RJqiuDpmlM
+ NMHJLyDAPiDqiQl+cp5hnCmD2Zj8QHgNVWL2HWdLZv0g4pwJIGtkSyhn4j/REOs=
+X-Google-Smtp-Source: AGHT+IGpaDVOBc+qdk3mpfNv5z0zY9/13aoxSNwXvcF5evgl4DyV+P1YWtI0VKYDMzi5kEVUIHqWkw==
+X-Received: by 2002:a17:906:288b:b0:a3e:8333:d0b2 with SMTP id
+ o11-20020a170906288b00b00a3e8333d0b2mr3042622ejd.23.1708425862415; 
+ Tue, 20 Feb 2024 02:44:22 -0800 (PST)
+Received: from localhost ([102.222.70.76]) by smtp.gmail.com with ESMTPSA id
+ un8-20020a170907cb8800b00a3df7003552sm3827729ejc.32.2024.02.20.02.44.21
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 20 Feb 2024 02:44:22 -0800 (PST)
+Date: Tue, 20 Feb 2024 13:44:19 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: jose.souza@intel.com
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 20 Feb 2024 09:44:37 -0000
-Message-ID: <170842227748.108167.11746381961414481572@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240220090003.1523866-1-dhirschfeld@habana.ai>
-In-Reply-To: <20240220090003.1523866-1-dhirschfeld@habana.ai>
+Subject: [bug report] drm/xe: Set PTE_AE for smem allocations in integrated
+ devices
+Message-ID: <419dfa52-3702-4834-abe2-6e599779709a@moroto.mountain>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +75,49 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2502080535347271481==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hello José Roberto de Souza,
 
-== Series Details ==
+This is a semi-automatic email about new static checker warnings.
 
-Series: drm/xe: change 'include' syntax for generate/xe_wa_oob.h
-URL   : https://patchwork.freedesktop.org/series/130107/
-State : success
+    drivers/gpu/drm/xe/xe_pt.c:616 xe_pt_stage_bind()
+    warn: variable dereferenced before check 'vma' (see line 595)
 
-== Summary ==
+drivers/gpu/drm/xe/xe_pt.c
+   594		struct xe_device *xe = tile_to_xe(tile);
+   595		struct xe_bo *bo = xe_vma_bo(vma);
+                                             ^^^
+vma is dereferenced
 
-CI Bug Log - changes from xe-806-1d882468b34bdc4623b5c7bd302fa1b467d6f782_BAT -> xe-pw-130107v1_BAT
-====================================================
+   596		bool is_devmem = !xe_vma_is_userptr(vma) && bo &&
+   597			(xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo));
+   598		struct xe_res_cursor curs;
+   599		struct xe_pt_stage_bind_walk xe_walk = {
+   600			.base = {
+   601				.ops = &xe_pt_stage_bind_ops,
+   602				.shifts = xe_normal_pt_shifts,
+   603				.max_level = XE_PT_HIGHEST_LEVEL,
+   604			},
+   605			.vm = xe_vma_vm(vma),
+   606			.tile = tile,
+   607			.curs = &curs,
+   608			.va_curs_start = xe_vma_start(vma),
+   609			.vma = vma,
+   610			.wupd.entries = entries,
+   611			.needs_64K = (xe_vma_vm(vma)->flags & XE_VM_FLAG_64K) && is_devmem,
+   612		};
+   613		struct xe_pt *pt = xe_vma_vm(vma)->pt_root[tile->id];
+   614		int ret;
+   615	
+   616		if (vma && (vma->gpuva.flags & XE_VMA_ATOMIC_PTE_BIT) &&
+                    ^^^
+The patch adds a check for NULL after we would already have crashed.
+Hopefully, the check can be removed.
 
-Summary
--------
+   617		    (is_devmem || !IS_DGFX(xe)))
+   618			xe_walk.default_pte |= XE_USM_PPGTT_PTE_AE;
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-130107v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_exec_threads@threads-mixed-shared-vm-basic:
-    - bat-dg2-oem2:       [PASS][1] -> [INCOMPLETE][2] ([Intel XE#1169])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-806-1d882468b34bdc4623b5c7bd302fa1b467d6f782/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-shared-vm-basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130107v1/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-shared-vm-basic.html
-
-  
-  [Intel XE#1169]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1169
-
-
-Build changes
--------------
-
-  * Linux: xe-806-1d882468b34bdc4623b5c7bd302fa1b467d6f782 -> xe-pw-130107v1
-
-  IGT_7718: 40e8b9122853f455c84afcfa56469a6bc9a0d564 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-806-1d882468b34bdc4623b5c7bd302fa1b467d6f782: 1d882468b34bdc4623b5c7bd302fa1b467d6f782
-  xe-pw-130107v1: 130107v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130107v1/index.html
-
---===============2502080535347271481==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: change &#x27;include&#x27; syntax for generate/xe_wa_oob.h</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130107/">https://patchwork.freedesktop.org/series/130107/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130107v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130107v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-806-1d882468b34bdc4623b5c7bd302fa1b467d6f782_BAT -&gt; xe-pw-130107v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-130107v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_exec_threads@threads-mixed-shared-vm-basic:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-806-1d882468b34bdc4623b5c7bd302fa1b467d6f782/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-shared-vm-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130107v1/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-shared-vm-basic.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1169">Intel XE#1169</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-806-1d882468b34bdc4623b5c7bd302fa1b467d6f782 -&gt; xe-pw-130107v1</li>
-</ul>
-<p>IGT_7718: 40e8b9122853f455c84afcfa56469a6bc9a0d564 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-806-1d882468b34bdc4623b5c7bd302fa1b467d6f782: 1d882468b34bdc4623b5c7bd302fa1b467d6f782<br />
-  xe-pw-130107v1: 130107v1</p>
-
-</body>
-</html>
-
---===============2502080535347271481==--
+regards,
+dan carpenter
