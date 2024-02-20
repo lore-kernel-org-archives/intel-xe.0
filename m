@@ -4,153 +4,149 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B7C3C5475B
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Feb 2024 16:46:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7C40C48BC3
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Feb 2024 16:46:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CBC410E4F6;
-	Tue, 20 Feb 2024 16:46:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 566CA10E4F6;
+	Tue, 20 Feb 2024 16:46:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NNgcJY5J";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c2nBFP/C";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DC6D10E4F6
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Feb 2024 16:46:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1632010E4F6
+ for <intel-xe@lists.freedesktop.org>; Tue, 20 Feb 2024 16:46:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708447587; x=1739983587;
+ t=1708447616; x=1739983616;
  h=content-transfer-encoding:in-reply-to:references:subject:
  from:to:cc:date:message-id:mime-version;
- bh=i79Zs8UYaTMDnjThny1JBvGzAOkhLPJimSqwGFQ5+bo=;
- b=NNgcJY5JT42jXWTwgFeDlJDJr3YIpQWfy7PZK5oSNZhQcqPiXKnOwEXM
- cjY1GJrzs/TxsFeCLYdi4jHj91c3pVRhMMsXCjaa46G5Bv82Y2VO/hGHt
- r7JvQzP1TDWbS5h1f9N5PHPpqwi4yB6YvDPbZ9W5p9bYTSTlS6RYpHVaK
- 40XQaJ0/MSA7+7VViWZiujc6RwLgJ97ceU2fHhh1jLRS0T12LZYXk0352
- G/jlJsAtPVAd2LoTU2nyS1njUfND4+LyZEZqobtzTaP+2/xq9JnI7lXvT
- VafluyNH4ng6Mo/SAW+ANv4wD9pZAoku23Et2ilxVURp+Ox6BN+JY4ANb Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10990"; a="13117622"
-X-IronPort-AV: E=Sophos;i="6.06,174,1705392000"; d="scan'208";a="13117622"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2024 08:46:27 -0800
+ bh=e/dWHSLDfRch9Je8YD7qB5h+5aYNYT7GUlD8xw+52es=;
+ b=c2nBFP/Cx7dg7wvgYubHXevMXDDCJpX3/IXCMR5nyD7ktfAkjst8PqgJ
+ +vDrW4+tMrEM9T+EQ9w2i4Ou+7vqqXb7KYeYptEpOS1NO21XzGd8wvnGo
+ Paf2tCZUBVUa+HnJUUwsQ7QrPf8b7XiwKxD+Ddn9/I6Omf9GhxGB1s/FL
+ ksmvI0GlDDf5H09nISnXfkZD5ldPbDbSV8IIPNYIYEZEz1o0VBTBaj623
+ zVIE85P7AhNjftZictGRmhqVlHLNYgs9dakUfuGNovrWwdCPkUGUgQN8Z
+ gT0cXN6JUxk6YJxebIIRK+uJ7p/JP7S90AjFZThftd9MdlRedBkHKNUXG Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10990"; a="13974296"
+X-IronPort-AV: E=Sophos;i="6.06,174,1705392000"; d="scan'208";a="13974296"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2024 08:46:56 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,174,1705392000"; 
-   d="scan'208";a="4800899"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 20 Feb 2024 08:46:27 -0800
+   d="scan'208";a="4793484"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 20 Feb 2024 08:46:56 -0800
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 20 Feb 2024 08:46:26 -0800
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 20 Feb 2024 08:46:25 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
  fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 20 Feb 2024 08:46:25 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.100)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.35; Tue, 20 Feb 2024 08:46:55 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Tue, 20 Feb 2024 08:46:55 -0800
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.41) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 20 Feb 2024 08:46:25 -0800
+ 15.1.2507.35; Tue, 20 Feb 2024 08:46:54 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nqQ5DX7U9MjYsyUQ9pJnar7BabXg8Qjgj/ZRUtxdqt0XTMs/fbfiSjaIeCIwWDKU0ALHk6mpv+PJJwHTGZc5mCnHJq8drssAXtwO5N37dzVaYvw37o9vJUNeMqzXWwlIoClgPjGT+kYNtl2l2jzRMOJZ3ooXyha11nSEJUbeftt1SQ6naLv+k2+gqTayPuRQAZksHYy0J1+GCqsnuznHbOMzyDXLE9c4jMg/yLycQHq63N0qF4qbyaoch7uMcUwMokc5pUjFw0ZuD9CS63KGYZi7dOSgcCW81FLV9PdFkKNhYoqq4KKS+RCWDwP2fp0gWBJzK8iuq9czKKO12WsycQ==
+ b=adzhiHia3eNZnxn90qn2F1kxKHOPJEmN9JzdX4nq4hmoKIVKCDOvM5WeTrJ5PTLKB2/mlsPt2QPsTztVSl0j3kzU7NheyQTqnrTa4O/hVlENS9Yf08bMKkzpVSyAO2Z2DQ9G+MmEyhUItPonIg4tlt+gxAqWzlJMi6AyRCF0iRpnO/koPkB9nSTW3MRtgDSiVtGAXJlEecLnhDe5t44dsnecqVRgB8wWk0a6DtOoRjD0blMTF6Jua4Rf9zbSk5ourjXGQ9E2DqYn9UctSDZ9zZgWtvWMNHgpfb9JAoKd38tIbUsk7BUu8Qz0cDMs15KuZhWCSD1616+G/2GBNMpNwA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ldhe6mXyt4Yy+wmLdH06cpP9vu3CdnnWoXmBLtl3o8E=;
- b=lCYHx1ndk4k5gpDIKnJKdBU2KeXcl5Akg1HCkFmiAZSbx9wEjko3zAxtz889JrGAI2Dl9XZUFVWzhL6klxgEdAN9OuOoJHv3Xa5gYg116Cw30Tq/dfJln1gcL69KMu7Yplpu/V3gmtl/cneP/MlfRzoqQVBKJ/AJJG27rrPhSul4PAWzTmFrxsoFlT5hu5WVkDmZBzaQtiiBOCjV0zP5F/252Itag7Q5rFvr+Tu44igyrE8u0y/jFUUM9qqGAHmBsVbV5e4E5ZF0K9z862o36fPiKAiaqu1MINcsn4AsvB/pi2nUOmBwYL6pcNflO1Qk7dPd/tOn+h/NdqWK/ivncQ==
+ bh=4ilHt9QGrCB20eW9V97Bsie5iR7tsMTkYhLs4buWWAY=;
+ b=HKPPHdX4/5TfMqPJmDEuwRnxs+lAyBBFv6iZVCAz1QigS3zGJBdky9VacEHEoYTYQQ22G+/X1fevoZVOa/Tm+coWCsHWWJ4Qyjn0Mdp0xUs/BJBceUscWqFtY9xEq2aq2I31XTuvjriqFK7yvEyygfjiBFwDOXaYGXZaEp7yX7E4VB0i6iRIVPvbVZi3O2Kb9CkrbQdv9oVIu0dSUOcuMmV4AL6GFJlbK6LBgsqlsjeAFmW9a3E760oXesTbPw5U1IDWBBuKq1jVagjV5WMfaAWkQxLa5h25UrwXwSAI172TeRmM0UD11cRakXfQbg77DrkH6sC5U81SXLZse1kaAA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by DM6PR11MB4628.namprd11.prod.outlook.com (2603:10b6:5:28f::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.39; Tue, 20 Feb
- 2024 16:46:23 +0000
+ by SN7PR11MB7640.namprd11.prod.outlook.com (2603:10b6:806:341::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.21; Tue, 20 Feb
+ 2024 16:46:53 +0000
 Received: from PH8PR11MB8287.namprd11.prod.outlook.com
  ([fe80::64e6:ee24:79f8:efa]) by PH8PR11MB8287.namprd11.prod.outlook.com
  ([fe80::64e6:ee24:79f8:efa%4]) with mapi id 15.20.7292.036; Tue, 20 Feb 2024
- 16:46:21 +0000
+ 16:46:53 +0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240207103007.665367-4-luciano.coelho@intel.com>
+In-Reply-To: <20240207103007.665367-6-luciano.coelho@intel.com>
 References: <20240207103007.665367-1-luciano.coelho@intel.com>
- <20240207103007.665367-4-luciano.coelho@intel.com>
-Subject: Re: [PATCH 3/6] drm/i915/display: use wakelock in register waiting
- functions
+ <20240207103007.665367-6-luciano.coelho@intel.com>
+Subject: Re: [PATCH 5/6] drm/i915/display: add module parameter to enable DMC
+ wakelock
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: Luca Coelho <luciano.coelho@intel.com>, <intel-xe@lists.freedesktop.org>
 CC: <uma.shankar@intel.com>, <ville.syrjala@linux.intel.com>,
  <jani.nikula@intel.com>
-Date: Tue, 20 Feb 2024 13:46:17 -0300
-Message-ID: <170844757726.44184.11571357997726792092@gjsousa-mobl2>
+Date: Tue, 20 Feb 2024 13:46:48 -0300
+Message-ID: <170844760861.44184.10196635667916849405@gjsousa-mobl2>
 User-Agent: alot/0.10
-X-ClientProxiedBy: MW4PR03CA0108.namprd03.prod.outlook.com
- (2603:10b6:303:b7::23) To PH8PR11MB8287.namprd11.prod.outlook.com
+X-ClientProxiedBy: MW4PR03CA0116.namprd03.prod.outlook.com
+ (2603:10b6:303:b7::31) To PH8PR11MB8287.namprd11.prod.outlook.com
  (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|DM6PR11MB4628:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7c1d4cc2-1919-4b59-1360-08dc323377cb
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|SN7PR11MB7640:EE_
+X-MS-Office365-Filtering-Correlation-Id: 93c4ccd8-96e4-44c4-66df-08dc32338a5e
 X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: yktmgzobRRNOf+qlV+A1aSy7hLv+Wjn8A11cdV6n0Q0eY409qq3xLoaCfrqIX8qCVd6434EwuRxkOKPckxiMDp7hVlvaKLzYfJq3ffiUI0i2akcXYk/phtJnkphZ4O9EATpw9RJ4urohPoEXx45JaEO+Z1GN41sxL1SECWnYN2ihc0NoG61xoj9yE1CbKwVrgCQXziSYm3dMUc3+LvUDW90a7xKoToT/LOxXjy9TiSDLeV/5eyS1H8XcoNux05M3tfd65R2RmtWQHu+WaDNyjCIL6To18KH6AdNOHWdjk7wnG5IPbnLXaL0LEbmKDAyjTrlh7YtDzLoubxM4PPbbdhsgKrQqdOMaNMJ2QapjophetDOfc8ywKRSctrcstW1PRI9WKGAXJdTHz+zDtbAStOLM2OuGf9NRRlRpEEi+bIrWbjcYaQ3eMQ4qFQQ6CRrZjVXbrHyRbzzG+LcDNiUe04bxZ6F/EhI4kuPF91l/Py/fu1qrXdByUTey9bL053ahzHHPBVutJSDm2UImRYgXjytxSyLKpE++1GZqF4OjJx4=
+X-Microsoft-Antispam-Message-Info: Pptqg5Kj4cmm2rYUGdJzP5wTWoGj1NlXRNncdplQzyeSgIjfkSm6XG0moRHwRjQjg6lZy1HcJu42aipGJZBdd9U/v8NESN4Bbg5zMSTzpRnybalYMfq2u/y6sVFS5qD0pMTgr5Lohccvi2iyXGzaKbVHFb0ntiiLyuCe9TJX7bJeU+hkKNpHrrvp4fcxSDgOZIJfHoJvZzXpRBBiLHS2EsHyBZlW+qDc4KsBAPRBWRcX/0IDlBcLqCDvrKuWKU5BbTn1BxclVMxjXBHz+Tf8n1ZyoxyyWwHMi/pnTyLbRkZtaa06lZhkdbQ878T68O5ksgLREBQG59ZyxlOOfwdMG9AkVpkY2CikoO72fYpIhJlEaZ/KvkctFszmB30GzB1c8d6pEc2uadLKs5sx5T8PR3dBc7/jTVv4nWdwU8VGg4Rqw4S9s5Z21k/ArV4sq8MNuzxVCRxOdCyghFW8Rp7UDcB9AgRqt3nwqsY7DaTm+wHEVU89MO4FdGqkPzavlG+o7T5Sifx+RV88kPHS/3kzVbu/dXt4iGhJ0cJgYBzDKYw=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MW5Ocm9ocTJQOEJldmcxMXpITEN6WDg3RElGbjhETUVwaXdyY2lzMERoYnNC?=
- =?utf-8?B?MkVmUlZlYTBIZnorV1FxYWRBK2xkS1lTcEV0cURGVnZGYUFRNExBQ05PMjdo?=
- =?utf-8?B?WmU5TmZHRGh4MXN2R3BHNHhZOTFlbjZ2OWdLNEtuS3F5OWd2dUNRcVV5NE9G?=
- =?utf-8?B?SWZQekE4WDZvTVMrckhjNE5ZbTZvRFo2ak9EKzFjUjh5c3JuTmhqcXRJYVo4?=
- =?utf-8?B?Zm9DTWRORSszM2pOTFRtUnEzL1N3dHR3amdEVC9vVEY4N2xhTWI5ME5YSVFC?=
- =?utf-8?B?Q0piTlZDUGFWUDVjeW5Mb3pvWndBSWFVVG43VVdTOWVMb051YlNDOUp4TTlm?=
- =?utf-8?B?U2pweW5DaVQ5d3hoR1UyUU50MmxZdmYvWWY4TlphTUprQnE1anRXcGUyRTdC?=
- =?utf-8?B?VUlVeTlCb1VKa3VHQk14dHBmSEJiMlRIUTd6cktCMkRMTmYrbG5YWFFmaUph?=
- =?utf-8?B?ZG1NZW01dkx3ZUZZTDl6WXg5MDRQcXlkUkRnWkVRVUYzcHB4cnBtRmNsd21T?=
- =?utf-8?B?NTV3UlQwUjYrRjYwbitPc3hzb0ZWZVZWY1lwNmQyY1YxUStXUzl3dFRTamgz?=
- =?utf-8?B?aTZlVWFUNzQrN0srWTlPKzVkZWRFUzd0VytBc2VjdmVqSEw1dEtIWGYwemQ1?=
- =?utf-8?B?Q0lENmhUejYwMXM5S21kTW01bExNbUN2NW1DOWgyWmpZMnJ0ZWFkWVM5KzV1?=
- =?utf-8?B?NTRkcUJ3YkRhZDdhYUZHTnJRSUZraEZTQmZsNmpPcWg5RmxYZVo0a1ZENFVj?=
- =?utf-8?B?RmRPK1U0eE8rbTRyMWhZR1N1S2VvUGtqYVp2b25CSi9mbDVQZituVUdkMVU0?=
- =?utf-8?B?L3VWVDNYMCtNTTNhMmU1bVpENWxJQUhISUdDd0orNjJoZVhyMmNtWTl3aGJl?=
- =?utf-8?B?c3RkQXhUZWZJTWZ4a2ZDQ2RmQmp5VWdvV09VTUhSVjBSM0lBVm52bU56OTE4?=
- =?utf-8?B?dnZuVUI5YzU3ZmNnUTJha2VxTmw0UlViUkR0Wk8yR05LVTdqamZld0JGK1Zq?=
- =?utf-8?B?bzRuTW5CMTB1NDJUT0hpa3F3QzNVL3RBc3RGQ254SW5La1YzY1BUTVNFZTVR?=
- =?utf-8?B?NlBRdVFnbWpNcEpiTnk3RElmN0ZzQ2x0V0ovSitKc1hpSUFUYkgvWEp2Q09J?=
- =?utf-8?B?WGpPS0lZWGpSOVFoZmY3bmF3UlJHMklQNUxjdUlsU1g0MGRoa1BYaGR3NzlD?=
- =?utf-8?B?dEV4TVMzK0N1T3hlVHdqOGFJQ056ZEptWDA1WnZDNjFvcUxjbVM4dW4xSjht?=
- =?utf-8?B?RDN3bnc3MWFBUWU1bzZuZ0FnemJMMzNqVVQxRGxpUFRNaG5QREZKMGdReldW?=
- =?utf-8?B?U0crTm9oTGQ0QlV5UnpHTE5hcW8zVmJFcWkxaTJFYlVUVkVsTW9NWnM2Smhi?=
- =?utf-8?B?TU1SbjBVSzBsU0gvZEMrMGpQRTZNSHduOSttenZ5czhzVGd3c3ZqQ2RkbTV5?=
- =?utf-8?B?UkNOdWJRTllPRzBEdlFaN3FxQnNoL0dDU29YODg4Q1k3bC9RNFUxT0E1NzUw?=
- =?utf-8?B?RW9McU85NFl3bTRuYUc3WXhNMGd4bWc1L0Z0eVdwRFI0dkZ0NUlvSUtOdVF0?=
- =?utf-8?B?YXB3T1dwMmNVc0NsenBPRm4za3NDUWcvRnNua3RXYTVmREprZ2VVVnRKcENw?=
- =?utf-8?B?TmRWNDhTRytOYStDaDVJYUUvZklJNXRwdUpVdWliRTFLZzloMzdSemg0UThC?=
- =?utf-8?B?Z2E1TWhhRlFNajBjZ0RrYTFDclRvWUc0RXhDek9idCtLWEg5em84NWpQcVhk?=
- =?utf-8?B?WXJmTjJXRUpSSGRlSmk5eFVoUXgyQjJFTzdrU2YrbC9FNFZTNENrN1h1dUlT?=
- =?utf-8?B?L29mTnlFdDFhWkU3TCtIQXJxWlhURkd6dWM0WkQxVWxKa29LbFdCQlR5aGt2?=
- =?utf-8?B?ZVBxbkpHUEwyR2hGODFnTlRHSnl4WStjNEIybVR5NGxLaGtLdGRRZnFqRllJ?=
- =?utf-8?B?MHRrMVRhdEVLekZ0aTBEYTJvTXZWZEFGN0NsbCtnZUtoUlRyMXM0MGpKNklo?=
- =?utf-8?B?NmlDcEpKdHF1RjJlSHFuUFZ6eGNJT3RTNWtFR0pld1NRT0JiY0hnVFNuRzJw?=
- =?utf-8?B?UXQrUmJWdzcyeEowdUJIWjRiSkVSRzZZUUt0Qzc5eC9zdTNCRGdXMTEvYXBp?=
- =?utf-8?B?ekU4QmJTRDE3SVZvN0hTOEExeTFCNlVDeGliYWhYKzVHajJQMEFZeEhnaUVS?=
- =?utf-8?B?WWc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7c1d4cc2-1919-4b59-1360-08dc323377cb
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WTUrQ25teTFzTFVVVWZlNDVXV2krQWdnTXF4RU1IZGNoclRmWTlSeW9wcThE?=
+ =?utf-8?B?NnozVWQ1OGk5ak0vVUc3NlBIRlkxTnhHdHY3YVI5OVA3K0J1TmtreWFmN1hV?=
+ =?utf-8?B?d0NVMXV2dnV3NExwVDNoM2plQjIvQStLUzFqdnY0aFNaUXl0Q09sSTBJZk5k?=
+ =?utf-8?B?dW1rVUdZOElZRTBESW5VSGEvZy9ndkxReFRoamY3MCtHZUtuZWs2U2crTjlF?=
+ =?utf-8?B?aWgrLytSSTJycVVJRlNaTzRlZkhUdHVHZEFrSW44UVdHdlRMdVlxUkEzOHZK?=
+ =?utf-8?B?WWNwWU1Sb2wycVhyM2FpSHV4eVFlU2dTREVKYmQ3Nit0NjlvbWpmbjRLL1Fs?=
+ =?utf-8?B?K2MzZlZ5akxvYk5jQnhSNmdDSnpHUy9TVFlqTmhYU3ZvV0FnRkxtcnRWVmZs?=
+ =?utf-8?B?VFZkeFkvL0FNUXVBa3h3UHhkUTl2REMrMW9iVFMvcVZkbEZiN0NKWWFkazdP?=
+ =?utf-8?B?UWRYKzJHZEZ5aVJiZFBwbkNXUWtmZHAwWVNrUnJHWkR3OHNzUld5MUFqNUwv?=
+ =?utf-8?B?Nk92RHdMdHNVMURFY2g5ZjZyN1k0SkszOHVsQUhSVDh4Y3pESDF2Uk9mUXB3?=
+ =?utf-8?B?UGlsM1JGb3ZGYkFwNGZlMExrekUyQXZqOEVtRlN4VHJ4U1BiQjZocUJrNGN2?=
+ =?utf-8?B?Nmt5amg1RGoxZUtka29pbFZGQ1h6VThJZHdWM3hSM2xYbkR6QzJ0VWtUcXVz?=
+ =?utf-8?B?aTVNOXhxMS9VQ3FieHhEUGZlZjM2Sm1UYmNVbzVibVlBaE9ra2hXZ29LMGtD?=
+ =?utf-8?B?ajZMOEZ0dkJTaCtSbEhHUUZhckpBUmo1SDhDTXkzK044S3RYVExYeVVuUjE4?=
+ =?utf-8?B?VGI1L2dEZGcvK2ErSXlWVTRRMEVBdnZZcVJCeU5RWDR1U2JpZWFLSVFDenQw?=
+ =?utf-8?B?RGF6dW8yS3FYNGxqUjdGN1BqKzZ5MzBTZWNhOG94SVpKYm5xUmdPeGUyZGNi?=
+ =?utf-8?B?bmJWNzlxKzlIRndpeCthK3RQa2J6U0MrRzNJaWxxWG5BSnBQanUwbVpnNktG?=
+ =?utf-8?B?WkFjbHhQYXMwejNvd2dRalp6eksrdzRkb241QXFjN1M5MC96ekpwZHRDWmJJ?=
+ =?utf-8?B?YUpUbThpOGZJNGtkb2pqeUtCMER1aTFoUWk4ci9DOEczbTRHbzgyM2dNeE91?=
+ =?utf-8?B?c0V2blRMTTRrRllwMjlBUkNmMGFESGZWNUdFWUIwZHBidDhGNFZGT0tIZHhp?=
+ =?utf-8?B?V09iSytDU29YSTUxUTBOV1dkV3dQVDk4YVdLeitWTUQ3QzVNNnRFUktmYzYr?=
+ =?utf-8?B?eGRudXl6eXFhQzVEZWY1NlVORmZxVElLS3I4a2RieWNrR2lNSUZ3RkZ2cjBz?=
+ =?utf-8?B?QWdQdFRwejZzaG53aWF5RWpLMVVla1ZLZzBoUUNZNjUzSW14WVBJOUt3SkRj?=
+ =?utf-8?B?MUt4ekpNeitXVnYvYUJxeVhKQy9pZDJKaGFwTHZZSVF3K3FMWWNsVXg0d2RN?=
+ =?utf-8?B?WStSVlcwNU1ORFVSRHhEanhrbW51bEtISDY4VVkybDZESUFheG1RSEM0YW5u?=
+ =?utf-8?B?dzB1SWlUZFYvUGl6azA2bmxoYTRpWXZyTnpKTXBMU0pnZC9UajV3NEdaOGln?=
+ =?utf-8?B?c2tTRnd2QXNZSWFHUVd1MThmOXBZUUlPVHdlUlVTcWY4eGRZdlhPY1B6VlUr?=
+ =?utf-8?B?ek1GeXFOcXVYUlNIRnV0Z3pRR2kvTGs3NkU1WDFhT0dtUkZ3UWZiNDJKZmZT?=
+ =?utf-8?B?NURFL1g0UlFqbG1yczE2ZEFOMFJCRVk2ZVp4K0ZDb0dHczV0cTlkdEpFT2k0?=
+ =?utf-8?B?R01zWHBkdHBHQXJybTY5L0pRak9iRE1wUkRuNGNUWXhPdlM3MTNvSjNnTE1q?=
+ =?utf-8?B?V3ZsQS9rblFvbkhMNHVYeTRJUEEwaWlWUXBVQndKZUVvUHltZDJXRXlDTkdz?=
+ =?utf-8?B?YVk2amw2RDZHblM2RCtBZ3EvSi9DSFZjNDFrUnowSWRtbm40cVVsSWMyUWtI?=
+ =?utf-8?B?LytNN2Y4RTZZbE5TSGpoQ2VMQVFFZVlTQmxraWR6STFtY2w0YW1ZNzZzS1A3?=
+ =?utf-8?B?SHptall3eCtEVHpNWHlVMTdhSGU0Z2wrMkdObGlEbTZQWmRkN1ArNEI3OVhv?=
+ =?utf-8?B?b0sxNUxOcnZjMzBlMy8rV2JSRnlUR3dxZk93K3pYRGt6Zmc1SG5JUFJEQUFh?=
+ =?utf-8?B?QWxUeWh1S0xkRHlnOWVJdk9CRlBiSWFmYTZFUFJhYVdxanJYVlI4OGtiNTZZ?=
+ =?utf-8?B?T1E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 93c4ccd8-96e4-44c4-66df-08dc32338a5e
 X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2024 16:46:21.6583 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2024 16:46:52.8988 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cDkc4FHCF7S2ghSkXwByCm9VK3OWovBscufYAW8piLVfC1u2gzN4dLxS2GB25Eg8lvJcIgThDtm+DJ6wCdl94Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4628
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8FCMYQDG7lKvLF+Lvkg7SqlJmcSURf4Zoj9wDABwZRsMvS96WwnPkWgXOnY1A3CAX+4SqIT5slPlPQpoykFwCQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7640
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -166,113 +162,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Quoting Luca Coelho (2024-02-07 07:30:04-03:00)
->Add the wakelock functonality to the functions that help wait for
->register bits to be set.
+Quoting Luca Coelho (2024-02-07 07:30:06-03:00)
+>This feature should be disabled by default until properly tested and
+>mature.  Add a module parameter to enable the feature for testing,
+>while keeping it disabled by default for now.
+>
+>Additionally, only allow enabling via module parameter if the display
+>version is greater than 20.
 
-Same comment goes here and for the next patch regarding the splitting of
-the patches.
+I would have two separate patches here, one for the display version
+check and another for the module parameter, since we are dealing with
+two different concepts.
 
 >
 >Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 >---
-> drivers/gpu/drm/i915/display/intel_de.h | 42 ++++++++++++++++++++++---
-> 1 file changed, 37 insertions(+), 5 deletions(-)
+> .../gpu/drm/i915/display/intel_display_params.c  |  5 +++++
+> .../gpu/drm/i915/display/intel_display_params.h  |  1 +
+> drivers/gpu/drm/i915/display/intel_dmc_wl.c      | 16 ++++++++++++++--
+> 3 files changed, 20 insertions(+), 2 deletions(-)
 >
->diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i91=
-5/display/intel_de.h
->index 0bf73b1e1cfe..d8941995808c 100644
->--- a/drivers/gpu/drm/i915/display/intel_de.h
->+++ b/drivers/gpu/drm/i915/display/intel_de.h
->@@ -121,7 +121,15 @@ static inline int
-> intel_de_wait_for_register_fw(struct drm_i915_private *i915, i915_reg_t r=
-eg,
->                               u32 mask, u32 value, unsigned int timeout)
-> {
->-        return intel_wait_for_register_fw(&i915->uncore, reg, mask, value=
-, timeout);
->+        int ret;
->+
->+        intel_dmc_wl_get(i915, reg);
->+
->+        ret =3D intel_wait_for_register_fw(&i915->uncore, reg, mask, valu=
-e, timeout);
->+
->+        intel_dmc_wl_put(i915, reg);
->+
->+        return ret;
-> }
+>diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/drivers=
+/gpu/drm/i915/display/intel_display_params.c
+>index 11e03cfb774d..f40b223cc8a1 100644
+>--- a/drivers/gpu/drm/i915/display/intel_display_params.c
+>+++ b/drivers/gpu/drm/i915/display/intel_display_params.c
+>@@ -116,6 +116,11 @@ intel_display_param_named_unsafe(enable_psr2_sel_fetc=
+h, bool, 0400,
+>         "(0=3Ddisabled, 1=3Denabled) "
+>         "Default: 1");
 >=20
-> static inline int
->@@ -130,22 +138,46 @@ __intel_de_wait_for_register(struct drm_i915_private=
- *i915, i915_reg_t reg,
->                              unsigned int fast_timeout_us,
->                              unsigned int slow_timeout_ms, u32 *out_value=
-)
-> {
->-        return __intel_wait_for_register(&i915->uncore, reg, mask, value,
->-                                         fast_timeout_us, slow_timeout_ms=
-, out_value);
->+        int ret;
+>+intel_display_param_named_unsafe(enable_dmc_wl, bool, 0400,
+>+        "Enable DMC wakelock "
+>+        "(0=3Ddisabled, 1=3Denabled) "
+>+        "Default: 0");
 >+
->+        intel_dmc_wl_get(i915, reg);
->+
->+        ret =3D __intel_wait_for_register(&i915->uncore, reg, mask, value=
-,
->+                                        fast_timeout_us, slow_timeout_ms,=
- out_value);
->+
->+        intel_dmc_wl_put(i915, reg);
->+
->+        return ret;
-> }
+> __maybe_unused
+> static void _param_print_bool(struct drm_printer *p, const char *driver_n=
+ame,
+>                               const char *name, bool val)
+>diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/drivers=
+/gpu/drm/i915/display/intel_display_params.h
+>index 6206cc51df04..bf8dbbdb20a1 100644
+>--- a/drivers/gpu/drm/i915/display/intel_display_params.h
+>+++ b/drivers/gpu/drm/i915/display/intel_display_params.h
+>@@ -46,6 +46,7 @@ struct drm_i915_private;
+>         param(int, enable_psr, -1, 0600) \
+>         param(bool, psr_safest_params, false, 0400) \
+>         param(bool, enable_psr2_sel_fetch, true, 0400) \
+>+        param(bool, enable_dmc_wl, false, 0400) \
 >=20
-> static inline int
-> intel_de_wait_for_set(struct drm_i915_private *i915, i915_reg_t reg,
->                       u32 mask, unsigned int timeout)
-> {
->-        return intel_de_wait_for_register(i915, reg, mask, mask, timeout)=
-;
->+        int ret;
->+
->+        intel_dmc_wl_get(i915, reg);
->+
->+        ret =3D intel_de_wait_for_register(i915, reg, mask, mask, timeout=
-);
-
-The wakelock is already grabbed by intel_de_wait_for_register(), we
-could skip it here.
-
->+
->+        intel_dmc_wl_put(i915, reg);
->+
->+        return ret;
-> }
+> #define MEMBER(T, member, ...) T member;
+> struct intel_display_params {
+>diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm=
+/i915/display/intel_dmc_wl.c
+>index abe1ea92cf65..21ab67805ff1 100644
+>--- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+>+++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+>@@ -79,6 +79,10 @@ void intel_dmc_wl_enable(struct drm_i915_private *i915)
+>         struct intel_dmc_wl *wl =3D &i915->display.wl;
+>         unsigned long flags;
 >=20
-> static inline int
-> intel_de_wait_for_clear(struct drm_i915_private *i915, i915_reg_t reg,
->                         u32 mask, unsigned int timeout)
-> {
->-        return intel_de_wait_for_register(i915, reg, mask, 0, timeout);
->+        int ret;
->+
->+        intel_dmc_wl_get(i915, reg);
->+
->+        ret =3D intel_de_wait_for_register(i915, reg, mask, 0, timeout);
+>+        if (!i915->display.params.enable_dmc_wl ||
+>+            DISPLAY_VER(i915) <=3D 20)
 
-The wakelock is already grabbed by intel_de_wait_for_register(), we
-could skip it here.
+s/<=3D 20/< 20/ ?
+
+>+                return;
+>+
+>         spin_lock_irqsave(&wl->lock, flags);
+>=20
+>         if (wl->enabled)
+>@@ -105,6 +109,10 @@ void intel_dmc_wl_disable(struct drm_i915_private *i9=
+15)
+>         struct intel_dmc_wl *wl =3D &i915->display.wl;
+>         unsigned long flags;
+>=20
+>+        if (!i915->display.params.enable_dmc_wl ||
+>+            DISPLAY_VER(i915) <=3D 20)
+
+s/<=3D 20/< 20/ ?
+
+>+                return;
+>+
+>         spin_lock_irqsave(&wl->lock, flags);
+>=20
+>         /* FIXME: should we cancel the work? */
+>@@ -135,7 +143,9 @@ void intel_dmc_wl_get(struct drm_i915_private *i915, i=
+915_reg_t reg)
+>         unsigned long flags;
+>         u32 ctl_value;
+>=20
+>-        if (!intel_dmc_wl_check_range(reg.reg))
+>+        if (!i915->display.params.enable_dmc_wl ||
+>+            DISPLAY_VER(i915) <=3D 20 ||
+
+s/<=3D 20/< 20/ ?
+
+>+            !intel_dmc_wl_check_range(reg.reg))
+
+I would keep this condition line into its own "if" statement, just
+because the first two conditions are like "is this thing enabled?" and
+this last one is like "do we need the lock for this reg?".
+
+>                 return;
+>=20
+>         spin_lock_irqsave(&wl->lock, flags);
+>@@ -166,7 +176,9 @@ void intel_dmc_wl_put(struct drm_i915_private *i915, i=
+915_reg_t reg)
+>         struct intel_dmc_wl *wl =3D &i915->display.wl;
+>         unsigned long flags;
+>=20
+>-        if (!intel_dmc_wl_check_range(reg.reg))
+>+        if (!i915->display.params.enable_dmc_wl ||
+>+            DISPLAY_VER(i915) <=3D 20 ||
+>+            !intel_dmc_wl_check_range(reg.reg))
+
+Ditto.
 
 --
 Gustavo Sousa
 
->+
->+        intel_dmc_wl_put(i915, reg);
->+
->+        return ret;
-> }
+>                 return;
 >=20
-> /*
+>         spin_lock_irqsave(&wl->lock, flags);
 >--=20
 >2.39.2
 >
