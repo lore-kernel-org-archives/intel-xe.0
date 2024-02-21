@@ -4,57 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B47BC48BEB
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Feb 2024 17:58:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 804CEC48BEB
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Feb 2024 18:20:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E82A8891A3;
-	Wed, 21 Feb 2024 17:58:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D48A10E63D;
+	Wed, 21 Feb 2024 18:20:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CX+bildh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g4FWW2wW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF1A0891A3
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 17:58:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7652F10E63D;
+ Wed, 21 Feb 2024 18:20:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708538325; x=1740074325;
+ t=1708539628; x=1740075628;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=+D3Q8ajVJLQza18WC8pRCBDjvPt7fuePcyJdcmp+weE=;
- b=CX+bildh04QDyDsv+bLn60My38f/QZ1eBmCDvnJPRFJHcTM8ccbc+Sh6
- QhSU77yNrte4N4iYATpTvSJtlF57iyS8AESi8KtcHJBluoe4osRaBxEGk
- XKmSIMBnTIDgGFDrkxRoQu6c3DAlMwFlWtik5IuYg19u4vmfjdbwxhrWQ
- w+R5QTkrZzQsPzUSNnIuuisIEBT5K+0fVGZQkCiP7OeusnpWxOkFmPBF9
- 3DpZzJcQdn+uF3LzumDWB++qM5uooCT6dXaHiX0T8UrTZlDTfCSQGkevb
- syl6GEdBZIsnsO4MTaidQI8tzvXbclI1/2Gu6jxCz3pJ7jpMP2slVvbrn g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="2588696"
-X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; 
-   d="scan'208";a="2588696"
+ bh=SvTDEY+0QcaH0E2UrMugQ8Cuiud8mCTZP++Vpeo4srs=;
+ b=g4FWW2wWthybHSTxVNMghbwA5IRJ3TOWvF+1wOIf9ZlK01d8aB3NzHiV
+ 5xOuApIe0jHQoYXOZeVmzmFrCSsOVQT6+ftE0Tinjqdd4qU9x9N6n2k4L
+ nk3KKGKXaBbotKMpcw4avq4p81sL2jUfpR98mIkfyLfhjv0gaLWNOu1hu
+ WAMoiH+1M0EzZwBYJ2xXltLtJn4w/KeZQ0drDlr0qfBeBDEBrIekWpmaB
+ 8k+nzjzTrhu+Y9WxWHqfqHTFydM7Bmsryw2m8+6RG2vi4h7NbioqNyf3Z
+ tiQZrF4cnpWvuM8fOuHFvKMlEDhP66M2Sfw4bD6LVk+IXtbTp8bxZKpWH Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="20263715"
+X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; d="scan'208";a="20263715"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2024 09:58:44 -0800
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2024 10:20:27 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="827386724"
-X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; d="scan'208";a="827386724"
+X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="827390066"
+X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; d="scan'208";a="827390066"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 21 Feb 2024 09:58:41 -0800
+ by orsmga001.jf.intel.com with SMTP; 21 Feb 2024 10:20:22 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 21 Feb 2024 19:58:40 +0200
-Date: Wed, 21 Feb 2024 19:58:40 +0200
+ Wed, 21 Feb 2024 20:20:22 +0200
+Date: Wed, 21 Feb 2024 20:20:22 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>,
- Priyanka Dandamudi <priyanka.dandamudi@intel.com>,
- Oak Zeng <oak.zeng@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH] drm/xe: Fix cast on trace variable again
-Message-ID: <ZdY50NpgbAy0Gya_@intel.com>
-References: <20240220205607.1873084-1-lucas.demarchi@intel.com>
+To: Karthikeyan Ramasubramanian <kramasub@chromium.org>
+Cc: LKML <linux-kernel@vger.kernel.org>, stable@vger.kernel.org,
+ Jani Nikula <jani.nikula@intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v1] drivers/i915/intel_bios: Fix parsing backlight BDB data
+Message-ID: <ZdY-5pcLQMNosnYt@intel.com>
+References: <20240220141256.v1.1.I0690aa3e96a83a43b3fc33f50395d334b2981826@changeid>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240220205607.1873084-1-lucas.demarchi@intel.com>
+In-Reply-To: <20240220141256.v1.1.I0690aa3e96a83a43b3fc33f50395d334b2981826@changeid>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,39 +74,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Feb 20, 2024 at 12:56:07PM -0800, Lucas De Marchi wrote:
-> Same fix as commit 8d038f49c1f3 ("drm/xe: Fix cast on trace variable")
-> that has been inadvertently reverted by a later commit.
+On Tue, Feb 20, 2024 at 02:12:57PM -0700, Karthikeyan Ramasubramanian wrote:
+> Starting BDB version 239, hdr_dpcd_refresh_timeout is introduced to
+> backlight BDB data. Commit 700034566d68 ("drm/i915/bios: Define more BDB
+> contents") updated the backlight BDB data accordingly. This broke the
+> parsing of backlight BDB data in VBT for versions 236 - 238 (both
+> inclusive) and hence the backlight controls are not responding on units
+> with the concerned BDB version.
 > 
-> Fixes: a0df2cc858c3 ("drm/xe/xe_bo_move: Enhance xe_bo_move trace")
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Priyanka Dandamudi <priyanka.dandamudi@intel.com>
-> Cc: Oak Zeng <oak.zeng@intel.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> backlight_control information has been present in backlight BDB data
+> from at least BDB version 191 onwards, if not before. Hence this patch
+> extracts the backlight_control information if the block size of
+> backlight BDB is >= version 191 backlight BDB block size.
+> Tested on Chromebooks using Jasperlake SoC (reports bdb->version = 236).
+> Tested on Chromebooks using Raptorlake SoC (reports bdb->version = 251).
+> 
+> Fixes: 700034566d68 ("drm/i915/bios: Define more BDB contents")
+> Cc: stable@vger.kernel.org
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Signed-off-by: Karthikeyan Ramasubramanian <kramasub@chromium.org>
 > ---
->  drivers/gpu/drm/xe/xe_trace.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-> index 0cce98a6b14b..e43c3bde3202 100644
-> --- a/drivers/gpu/drm/xe/xe_trace.h
-> +++ b/drivers/gpu/drm/xe/xe_trace.h
-> @@ -32,7 +32,7 @@ DECLARE_EVENT_CLASS(xe_gt_tlb_invalidation_fence,
->  			     ),
+>  drivers/gpu/drm/i915/display/intel_bios.c     | 22 +++++--------------
+>  drivers/gpu/drm/i915/display/intel_vbt_defs.h |  2 --
+>  2 files changed, 6 insertions(+), 18 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+> index aa169b0055e97..4ec50903b9e64 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -1041,23 +1041,13 @@ parse_lfp_backlight(struct drm_i915_private *i915,
 >  
->  		    TP_fast_assign(
-> -			   __entry->fence = (u64)fence;
-> +			   __entry->fence = (unsigned long)fence;
+>  	panel->vbt.backlight.type = INTEL_BACKLIGHT_DISPLAY_DDI;
+>  	panel->vbt.backlight.controller = 0;
+> -	if (i915->display.vbt.version >= 191) {
+> -		size_t exp_size;
+> +	if (i915->display.vbt.version >= 191 &&
+> +	    get_blocksize(backlight_data) >= EXP_BDB_LFP_BL_DATA_SIZE_REV_191) {
 
-What's the point of these weird gymnastics?
-Ie. why isn't __entry->fence just a pointer?
+The size checks looks like nonsense to me. I guess maybe
+we needed it before we were guaranteed to have the full
+struct's worth of memory. But there should be no need for
+this anymore.
 
->  			   __entry->seqno = fence->seqno;
->  			   ),
+> +		const struct lfp_backlight_control_method *method;
 >  
+> -		if (i915->display.vbt.version >= 236)
+> -			exp_size = sizeof(struct bdb_lfp_backlight_data);
+> -		else if (i915->display.vbt.version >= 234)
+> -			exp_size = EXP_BDB_LFP_BL_DATA_SIZE_REV_234;
+> -		else
+> -			exp_size = EXP_BDB_LFP_BL_DATA_SIZE_REV_191;
+> -
+> -		if (get_blocksize(backlight_data) >= exp_size) {
+> -			const struct lfp_backlight_control_method *method;
+> -
+> -			method = &backlight_data->backlight_control[panel_type];
+> -			panel->vbt.backlight.type = method->type;
+> -			panel->vbt.backlight.controller = method->controller;
+> -		}
+> +		method = &backlight_data->backlight_control[panel_type];
+> +		panel->vbt.backlight.type = method->type;
+> +		panel->vbt.backlight.controller = method->controller;
+>  	}
+>  
+>  	panel->vbt.backlight.pwm_freq_hz = entry->pwm_freq_hz;
+> diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+> index a9f44abfc9fc2..aeea5635a37ff 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+> @@ -899,8 +899,6 @@ struct lfp_brightness_level {
+>  
+>  #define EXP_BDB_LFP_BL_DATA_SIZE_REV_191 \
+>  	offsetof(struct bdb_lfp_backlight_data, brightness_level)
+> -#define EXP_BDB_LFP_BL_DATA_SIZE_REV_234 \
+> -	offsetof(struct bdb_lfp_backlight_data, brightness_precision_bits)
+>  
+>  struct bdb_lfp_backlight_data {
+>  	u8 entry_size;
 > -- 
-> 2.43.0
+> 2.44.0.rc0.258.g7320e95886-goog
 
 -- 
 Ville Syrjälä
