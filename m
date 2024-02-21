@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36A72C54788
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 441E3C54798
 	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 14:01:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF61B10E94C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD07A10E94B;
 	Thu, 22 Feb 2024 14:01:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="j36+iw98";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="WnpOXxYg";
 	dkim-atps=neutral
-Received: from mail-io1-f47.google.com (mail-io1-f47.google.com
- [209.85.166.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAB1610E7EB
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 20:10:12 +0000 (UTC)
-Received: by mail-io1-f47.google.com with SMTP id
- ca18e2360f4ac-7c454e7ed25so5185139f.0
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 12:10:12 -0800 (PST)
+Received: from mail-io1-f48.google.com (mail-io1-f48.google.com
+ [209.85.166.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF40910E381
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 21:05:38 +0000 (UTC)
+Received: by mail-io1-f48.google.com with SMTP id
+ ca18e2360f4ac-7c403dbf3adso366424439f.1
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 13:05:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1708546212; x=1709151012;
+ d=google.com; s=20230601; t=1708549538; x=1709154338;
  darn=lists.freedesktop.org; 
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=M5Z0SZna9UOg1Ona+bZVgLrYz4/0TkaS32NjeJUhFJg=;
- b=j36+iw98hzcgFSX6SUib1RQBRPLgVhedvNa0Wy00g0sJk6Y82qOuvBNeJUyX+9d+E/
- dLSajVEuMNPjvwjVZF80oHC8wae7fbQzVzbtcYO5MNjUMGqs6yXMRB/1nSRgzdRgLOz6
- nZfFdpoAumugE4R4XrGo1kQxYaazlUxlYPKFz/+r+iTn2joBlhori8oBXqttEgUJoCQm
- pVrpxcfhLsDdM2XluFzTLPUSI6KolGq7vyBbcUYXYdJgkR31vl5nY2ow5vgbIH8b+Kou
- kBnbJn4UM95KYyR9T+Uzir4MMbx49i8W7tmRahyRoqAYN4df7jyW5mYyOpXa795sXnbE
- 7bEA==
+ bh=ejwz9DMghoUipFK/izgowqt2tzkszOXlq4euAJSl++o=;
+ b=WnpOXxYgZIjEbz1nt2xyJvKO5/5rW5gPAsIbZEbMaGID/fnjVr++ppkMVslA7jGn3I
+ 6Sj6Nr0Ps5sxo7Mz2qHxZUUj0PKdP/CyVVSL8TqFvzOF9W3S8NDEBWk9yteGEi0/h62K
+ FV5Ss6JZMJ5B053andzxX49m1NXbW9I9Y1rJJaxRybRL60jSl6vy1yjC7X6YP0x7FRpr
+ +Er+fMhqL6WBqlYyrcRXfCpWb+0/vVO5dO46V9mLOVqiW1/f7jruw2xbMU9ZZcganScv
+ 5JWGMkwVq+ok+Dda8gbxfO1W/v3knId7vgxuoDERy8GOnPJY8fsr/w+PwbSE/g8OjJ7u
+ A9OQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1708546212; x=1709151012;
+ d=1e100.net; s=20230601; t=1708549538; x=1709154338;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=M5Z0SZna9UOg1Ona+bZVgLrYz4/0TkaS32NjeJUhFJg=;
- b=Xv93VaVg7xjer8dLymzYi4DdzK2h6Xhn6PJB8Nruit6iOo/jUvWWgM8Wh/puH9NA34
- ENVo79BXQ6eu7q4M/W43Uido1Cep3sBPdTLrbZCww31jo0Ug7EjIE4XuGbZwZfvQVRRx
- XHNRzZkSjxhz/z3XCNpbDvamtapyjC0LvhiYUbkqKc4xvC0+WD54YlTZPhWHre4b3WGz
- 68Q2d2+OvAGGdGeXFGdzFe4axuHjhrI7JsS79VPl/Rx+XtFp6JOmi9PBKHtEbt+EudHG
- y25+BxCxioI0Th2+WsST61dUpn3OZLPxuUZqaW/zghiZJBun/NcIFCUHUjBB89xYEIwi
- wjWA==
+ bh=ejwz9DMghoUipFK/izgowqt2tzkszOXlq4euAJSl++o=;
+ b=LmYlJoHCvXbh5THsYPFMFeC3rIhHuW30KTuxCP08S+qYe+rLQhL8gbLGgC03kFDZp/
+ U9AfE3TA9Dj0gQESg9RqqVAUDjdN0aeHqJAhGYgJ46kL/x8Gyq1Zl5u32jxSdiTTDGSQ
+ 7goTFwcraUWxCi1c1wEFjp5gPY3BVJ5CNjqOiN9AURau9Q1EJXKlbV4cn5qqYh+iblet
+ XgLsImaKcHq7ID4Gact6cIp6BWHgwt5aq5/baYzl9UMNH4/TtFq7lpUZHHh2E9nIVFLS
+ jV1RME92ETz8PnYYNufT1mbsub/YRDtRmTZeh3U/XjDlJ7ETL9tHkTRStz2uyNVFDmoD
+ p6Vw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCW6kgBS2j+u0YdZT7zO55Ysfxw5Q/3vKMg4+Lzzud24xknaG97QyvCAALfPr/o0sYSpWGs529o5ws/dTCRscAIWuIOM+1QyUUYgKGoqP9o=
-X-Gm-Message-State: AOJu0Yxh+NOWeVzdRIXF4XYNS1QXLN7cVgpmX0e5S/b9/c/JRmb/kcVr
- 9kFWcCme2a8RakKIuMe/CxJr+TzWYXHKQa3KGkpZmYTDylw2R18ORTtABIo5AQ==
-X-Google-Smtp-Source: AGHT+IH9AMuXPl3EZJ7hQlp6VCclDdr80TZvmeM7CdT+Wyei5omqYzpG9JNSpVS4vNSKPPCjP6+45g==
-X-Received: by 2002:a05:6e02:1a0e:b0:365:249c:690 with SMTP id
- s14-20020a056e021a0e00b00365249c0690mr505292ild.9.1708546212041; 
- Wed, 21 Feb 2024 12:10:12 -0800 (PST)
+ AJvYcCXVWOdQfTfeywaUs9tsTjzJeV+EJtP6pB/sH6uxTMBnrWWTxjbQHPovFEORA2rcM3NEqBL5NIdvnLDUkKolEZTUp2MOR/CoFKa92Pp95/U=
+X-Gm-Message-State: AOJu0YxkCavRu2SSHfpwsBMnCAw4RsdQDz7M+YSuhd4M2zsGcI8Y+Zkc
+ MGiKM7xfqwpZXjMy4qCXz6brfMe0mfDunzN9ERc3/bBShtmi3055gjBk7M5DcQ==
+X-Google-Smtp-Source: AGHT+IF90W1Cze/ZueVDeQCQxFZFa2LEc1oALZbJJ3gj2A8f8YyrfflqUcFHEtIHU8VbMgtFIajcYg==
+X-Received: by 2002:a5d:9f41:0:b0:7c4:3ffa:25e9 with SMTP id
+ u1-20020a5d9f41000000b007c43ffa25e9mr20859695iot.1.1708549537828; 
+ Wed, 21 Feb 2024 13:05:37 -0800 (PST)
 Received: from google.com (161.74.123.34.bc.googleusercontent.com.
  [34.123.74.161]) by smtp.gmail.com with ESMTPSA id
- t18-20020a028792000000b004715e8aaea2sm2842840jai.102.2024.02.21.12.10.11
+ q1-20020a6bf201000000b007c744e62df3sm2177661ioh.34.2024.02.21.13.05.36
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 21 Feb 2024 12:10:11 -0800 (PST)
-Date: Wed, 21 Feb 2024 20:10:08 +0000
+ Wed, 21 Feb 2024 13:05:36 -0800 (PST)
+Date: Wed, 21 Feb 2024 21:05:34 +0000
 From: Justin Stitt <justinstitt@google.com>
 To: David Gow <davidgow@google.com>
 Cc: Linus Torvalds <torvalds@linux-foundation.org>,
@@ -82,15 +82,15 @@ Cc: Linus Torvalds <torvalds@linux-foundation.org>,
  intel-xe@lists.freedesktop.org, linux-rtc@vger.kernel.org,
  linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com,
  linux-hardening@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH 2/9] lib/cmdline: Fix an invalid format specifier in an
- assertion msg
-Message-ID: <20240221201008.ez5tu7xvkedtln3o@google.com>
+Subject: Re: [PATCH 3/9] lib: memcpy_kunit: Fix an invalid format specifier
+ in an assertion msg
+Message-ID: <20240221210534.eeodh3qxopgp3dhy@google.com>
 References: <20240221092728.1281499-1-davidgow@google.com>
- <20240221092728.1281499-3-davidgow@google.com>
+ <20240221092728.1281499-4-davidgow@google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240221092728.1281499-3-davidgow@google.com>
+In-Reply-To: <20240221092728.1281499-4-davidgow@google.com>
 X-Mailman-Approved-At: Thu, 22 Feb 2024 14:01:23 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -108,40 +108,43 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Hi,
 
-On Wed, Feb 21, 2024 at 05:27:15PM +0800, David Gow wrote:
-> The correct format specifier for p - n (both p and n are pointers) is
-> %td, as the type should be ptrdiff_t.
-
-I think %tu is better. d specifies a signed type. I don't doubt that the
-warning is fixed but I think %tu represents the type semantics here.
-
+On Wed, Feb 21, 2024 at 05:27:16PM +0800, David Gow wrote:
+> The 'i' passed as an assertion message is a size_t, so should use '%zu',
+> not '%d'.
 >
-> This was discovered by annotating KUnit assertion macros with gcc's
-> printf specifier, but note that gcc incorrectly suggested a %d or %ld
-> specifier (depending on the pointer size of the architecture being
-> built).
+> This was found by annotating the _MSG() variants of KUnit's assertions
+> to let gcc validate the format strings.
 >
-> Fixes: 0ea09083116d ("lib/cmdline: Allow get_options() to take 0 to validate the input")
+> Fixes: bb95ebbe89a7 ("lib: Introduce CONFIG_MEMCPY_KUNIT_TEST")
 > Signed-off-by: David Gow <davidgow@google.com>
-
-
 > ---
->  lib/cmdline_kunit.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+
+Reviewed-by: Justin Stitt <justinstitt@google.com>
+>  lib/memcpy_kunit.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 >
-> diff --git a/lib/cmdline_kunit.c b/lib/cmdline_kunit.c
-> index d4572dbc9145..705b82736be0 100644
-> --- a/lib/cmdline_kunit.c
-> +++ b/lib/cmdline_kunit.c
-> @@ -124,7 +124,7 @@ static void cmdline_do_one_range_test(struct kunit *test, const char *in,
->  			    n, e[0], r[0]);
->
->  	p = memchr_inv(&r[1], 0, sizeof(r) - sizeof(r[0]));
-> -	KUNIT_EXPECT_PTR_EQ_MSG(test, p, NULL, "in test %u at %u out of bound", n, p - r);
-> +	KUNIT_EXPECT_PTR_EQ_MSG(test, p, NULL, "in test %u at %td out of bound", n, p - r);
->  }
->
->  static void cmdline_test_range(struct kunit *test)
+> diff --git a/lib/memcpy_kunit.c b/lib/memcpy_kunit.c
+> index 440aee705ccc..30e00ef0bf2e 100644
+> --- a/lib/memcpy_kunit.c
+> +++ b/lib/memcpy_kunit.c
+> @@ -32,7 +32,7 @@ struct some_bytes {
+>  	BUILD_BUG_ON(sizeof(instance.data) != 32);	\
+>  	for (size_t i = 0; i < sizeof(instance.data); i++) {	\
+>  		KUNIT_ASSERT_EQ_MSG(test, instance.data[i], v, \
+> -			"line %d: '%s' not initialized to 0x%02x @ %d (saw 0x%02x)\n", \
+> +			"line %d: '%s' not initialized to 0x%02x @ %zu (saw 0x%02x)\n", \
+>  			__LINE__, #instance, v, i, instance.data[i]);	\
+>  	}	\
+>  } while (0)
+> @@ -41,7 +41,7 @@ struct some_bytes {
+>  	BUILD_BUG_ON(sizeof(one) != sizeof(two)); \
+>  	for (size_t i = 0; i < sizeof(one); i++) {	\
+>  		KUNIT_EXPECT_EQ_MSG(test, one.data[i], two.data[i], \
+> -			"line %d: %s.data[%d] (0x%02x) != %s.data[%d] (0x%02x)\n", \
+> +			"line %d: %s.data[%zu] (0x%02x) != %s.data[%zu] (0x%02x)\n", \
+>  			__LINE__, #one, i, one.data[i], #two, i, two.data[i]); \
+>  	}	\
+>  	kunit_info(test, "ok: " TEST_OP "() " name "\n");	\
 > --
 > 2.44.0.rc0.258.g7320e95886-goog
 >
