@@ -4,152 +4,145 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 587B7C48BEB
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Feb 2024 19:46:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 581D0C48BEB
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Feb 2024 20:20:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14B9010E7CD;
-	Wed, 21 Feb 2024 19:46:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2489A10E339;
+	Wed, 21 Feb 2024 20:20:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DCilb1Kx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wjy/ii8r";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D04A10E041;
- Wed, 21 Feb 2024 19:46:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E96E10E140
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 20:20:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708544765; x=1740080765;
+ t=1708546838; x=1740082838;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=2hy++yosiOYsDu7oJk7vqtloVW/nq15MbBVGugqmY54=;
- b=DCilb1KxdPgum1+50dE2PdvZRqQzqhBXtPjo1FjjFfPQ7xFR1pdy89IK
- Lu+v4WoNsmyO3TMEShar+lAroYuCZYh53c7N1rRp/tri7wXCroDPhZsaA
- 7jz3IJTXjXkqUykGVZyVnDDWYxhEnh6g0endIDBwMQHZeJxM0i9IAGnR1
- v5m+naXIg+wDrB6qRZNIhIX686p8rbVDQKHs71MOo+twT+ZddvJW3FQHV
- xVRaQHpqXX28DVntz9G0DT5SdNgBZR4zp4hHvRnhqoWLkiwYJ9HSRFDqk
- kR71KGvxqAXN9IbLLcJXUsjnoj0r57llVXQkX95wEI//kxCzacIKbULio g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="14150560"
-X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; d="scan'208";a="14150560"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2024 11:45:51 -0800
+ bh=JMAlPSA89FR47JKHn/lwiEYfXsOZFA0iVcfTi0jWGtk=;
+ b=Wjy/ii8rj4T2kB+5dYYX1xyT5cjJd/DccRrOWJwSV1pL/VtXj5wNpfZx
+ QMgLMhSmFQzUu83Gax7OZyVzrwEnVu7ZPXqWF1wzrFNDEY2Wkl4LJbDae
+ 2/AkaWcF7UKTOTlBSRdg2UvP2WSAvtqpwS144nLMzs+nEBr0xOuAiF7XT
+ uyJMZl/viaeHMDAnJBL8pq+l2IY81fIQg9pLEK3vedKzsX5+xkTOuLtOa
+ dRBkmrNYcQ5SSHckNRoldBtwP/+G5WXEj+wcBRd4TKLXMQivY5AMUyahc
+ YxnXmOTDEJLURmFN5orQZsi3t5m6LkCt16EkeXRkZTjGbbPx0e5XFJfuC Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="20277674"
+X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; d="scan'208";a="20277674"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2024 12:20:38 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; 
-   d="scan'208";a="9944416"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 21 Feb 2024 11:45:52 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="913365699"
+X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; d="scan'208";a="913365699"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 21 Feb 2024 12:20:37 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 21 Feb 2024 11:45:50 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.35; Wed, 21 Feb 2024 12:20:37 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 21 Feb 2024 11:45:50 -0800
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.40) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.35; Wed, 21 Feb 2024 12:20:37 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Wed, 21 Feb 2024 12:20:37 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 21 Feb 2024 11:45:48 -0800
+ 15.1.2507.35; Wed, 21 Feb 2024 12:20:36 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SrUMsW+czN+PFD9sjcFkMeI9flHpjEYH4k6U5lLkzaTNxyGnmH7dKq9Y6TK3/F91khdbvHMfFymY6DsXq2f5tp2N8KyEpNA5dssXwtZt/Hha9ntlXA9iWXJqzhh2pskOKioArTa8wH2fK5VBUHqYnxgEZgMsYluU2fD+wJfqSnZsPkwuCL5UXZRQQmPAZo2V22SYQYy2koGXnvOKwyrUmh84QE5LAIXLp6sGrePehV6qeH84dGpoCnUuf7q3pkSPWLVFckBEy9zfDVHoynPNR7iXZgAgtEgR+42GWuIOLsv35C5luLGcNFqGSEDqh2MFCSYtXfrddeUSPMjf1CBPuQ==
+ b=evJD42w6LlSYtusfIMD5eSIGahvlAyRuNYUyVW/RvafG6kU0Fo4Bwhs9llMJ9XDXF2YUkwM5nQUns3AhDEWz1vKzsqjoSk7iXioRzwGDVevC3TD5jHk0mUYelpB+/ThE+GJl41cUVnwsiP+ynDm3WQaU1RG8PcGmlsxJLvUgV6TeJaMWyVU+qskWXAnFE35ju1qIEOyXm7iP/oujkv3966POudqotv7vjQTEy/kduEtw59amqrncwLqyfChJBJufqmQSHwt+idvHP/yByZxoZJLPNanBsJX9OpvZE5/XXNGe1hY1Yl4Db7M9S5iss31Itjz54CZM9Y7HNDKVOeeyCQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6BLnSiER+5az/T5tFOess4PsFviJOPZDWnQojCpgCZc=;
- b=QOCGnD11z5vafy8zuL2alJgu1irsRBSxVJUFaExAUtD507f1Z9nbO2RRBzITFtxe/PQYdVveaeRivjaNk6qJo6tIKUAIGSArYrwjNE9ycnM/X37KKdebbNm6A5q/6vr9K8ji1QGpgTrdHCHmlcVrBoT2a3A2reGqyTNvVnlYGaXGWod46XtJkOVqzA5SBGN1aLgTd4+4qF41zRkZlJbVOW9BHk7xfwjrDgh/1pLSMZuE1lzsZw8QqCjFJWEmTw8pDszwUP8jEVzslUY0RoOyK6GDHbsygcaP42G0r6CkWNV8JkK0o4XWaA4PzgbWmZooJmLt+z10VOHlF1lQTIZ+Ow==
+ bh=AEVbW9AmFhWJ7U02cuXGQcf3Z2XvCUOfLvrJnIQN61c=;
+ b=RMWTIFRkUVTWpOATHFbQmHw+61IVst/JkRLpHo1zZTSmoB3gQ01QRrh4Ed91RNjn1I1MD0Jix9GnvY51mo5qXhNekU5J+wUvfUPChESCH0meilLr8H6++zxnhkR0orYd1mHnJl5fwIZoYSnwU1ggOGw49V7NXa+TO7poMm2guX0Z9DBFdcLwz3rTVsau5wogMjnWOdieY4YLcDkIxd1bPaveksXxHPypFy1R+zZSC7gThNX7Ck86nv+BWRVMw+3ei0qSMfE+kbmpZK0EwgC2KtI7hamls7mL0DnkljRI2r41MBgrJRAIv6e58yArdqBV0KnOMezD3Rz7/hzQZA/RYA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by SA1PR11MB7061.namprd11.prod.outlook.com (2603:10b6:806:2ba::8)
+ by SA2PR11MB4876.namprd11.prod.outlook.com (2603:10b6:806:119::13)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.39; Wed, 21 Feb
- 2024 19:45:38 +0000
+ 2024 20:20:34 +0000
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::9f32:ce50:1914:e954]) by CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::9f32:ce50:1914:e954%7]) with mapi id 15.20.7316.018; Wed, 21 Feb 2024
- 19:45:38 +0000
-Date: Wed, 21 Feb 2024 13:45:35 -0600
+ 20:20:34 +0000
+Date: Wed, 21 Feb 2024 14:20:32 -0600
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Stephen Rothwell <sfr@canb.auug.org.au>
-CC: Arnd Bergmann <arnd@arndb.de>, Jani Nikula <jani.nikula@linux.intel.com>, 
- Arnd Bergmann <arnd@kernel.org>, Oded Gabbay <ogabbay@kernel.org>, Thomas
- =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, "Maarten
- Lankhorst" <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Dave Airlie
- <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Matt Roper <matthew.d.roper@intel.com>, "Matthew
- Brost" <matthew.brost@intel.com>, Riana Tauro <riana.tauro@intel.com>,
- "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>,
- <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: Re: [PATCH] drm/xe: skip building debugfs code for
- CONFIG_DEBUG_FS=n
-Message-ID: <zospejkdqekbndbov3ubbbvr5skxwohezeslzciivhxakfjoek@oa5sp2ffcfix>
-References: <20240213134817.3347574-1-arnd@kernel.org>
- <877cj88lck.fsf@intel.com>
- <17209419-093b-4674-8b43-06c92312ef61@app.fastmail.com>
- <ngu6vq5izal6suyr57p4vlxnrn4kxyii4ewdktxvw7k3uezlcz@6oevav3wpcjh>
- <20240221172117.243799cf@canb.auug.org.au>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Matt Roper <matthew.d.roper@intel.com>, 
+ Priyanka Dandamudi <priyanka.dandamudi@intel.com>, Oak Zeng
+ <oak.zeng@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>
+Subject: Re: Re: [PATCH] drm/xe: Fix cast on trace variable again
+Message-ID: <pwdw3ngyrvvdxyxuhnlamplwotnlsnty3pgr6cnr6fqnikqmek@lfbvd3auyjac>
+References: <20240220205607.1873084-1-lucas.demarchi@intel.com>
+ <ZdY50NpgbAy0Gya_@intel.com>
 Content-Type: text/plain; charset="iso-8859-1"; format=flowed
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240221172117.243799cf@canb.auug.org.au>
-X-ClientProxiedBy: BY3PR10CA0008.namprd10.prod.outlook.com
- (2603:10b6:a03:255::13) To CY5PR11MB6139.namprd11.prod.outlook.com
+In-Reply-To: <ZdY50NpgbAy0Gya_@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0154.namprd03.prod.outlook.com
+ (2603:10b6:a03:338::9) To CY5PR11MB6139.namprd11.prod.outlook.com
  (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SA1PR11MB7061:EE_
-X-MS-Office365-Filtering-Correlation-Id: f0de2f2a-a034-4289-5210-08dc3315ade9
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SA2PR11MB4876:EE_
+X-MS-Office365-Filtering-Correlation-Id: 16a4b91f-af4e-4ab1-6e27-08dc331a8f24
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: uu2IesG9zP3lkyc9oqhNhS+jxcl8ZRNFVQybkaLDlhfYRd4egNCdcTJDAQpDbcU2P9//KGO/PNXcmqVRXD8yXcl3fswwShUH6luctYuPVSBJU6uqc+Vsr2fCv5pHtSGGy0KzwNwIUwyxrx7YpeexY3Jdax6vSWXneCIEV3BF3pQQ04joeKzAHJM7kxpnL0sXCYHWzQ2Y3UZ8uJq7Jb2+dVX3UHNygtag8a84qKx8ngnamanlTUEai5dKyYAVqfd54hCibZHczTZDXyAwVQy+nGPBOBaZP/kwUkGlGdX8GAfF1TTU09bsY0pqb+ItZLKFie+tjUvYSkxikCgfrqCdZSK3+ApJzaXJPcyZH6untIy26oApgIh1wAgzjkDi4DpuwNMDgZ5j2MOlj6D8bPMUYzW0brKdf6go/MEhwgvjvhJtEaVstEAy8Lr2t+kCWMCKn23YJXkoP39Rz+jlJMRCW2IXRZpkhRdfuu7086nZ94L8ANDJjknaNSqnB+CECIHxLf/5FX4hWafQeswnArxHJQ==
+X-Microsoft-Antispam-Message-Info: hTrQwpUVrSm4G0xi4GIVBZs/H0o55082Q/XeKZ8wAJwbhYNVWrqQUkKDKliJqe1v8Ke5hGU2jkoiPD3a+pKGLgm6fXTSRc4FpCLNvNIMlRpa0AHwsGEibYxxF2aydCJsdkRBKKuGOB9Ul4jlBC+sldLLlsmRy2mI96O+P0Qqhz/YaJkEy3Wk82r9Ro+GPhmvKPhu6MD8lBwoNGkM8ax/VEhfxen4bbgG/MqlhHJs6yFccj8U8LVPErgsUBoQSLRCSmSD7nCCU9PxhZ/0FPHdsmMc/19PsMtogQJpDvpJifdNrEpuNabnUGNi+vfj+ludJVeSgTVwtsYjibTMzVK9e2EyEKz2e1qYsucLvWUpMkvF3mJUE7s7N1wBWicyjzRy/Wuf19lwbcsx7kH32jq9HurEF5a9hqD353LdzaSvXXZexnMAYEfYYvS/NpfAVw5WPXNJSEVRTGH766zLOzT7JCy7ezRWZIX24//ZTVBvJ+zx5vOsaI95IyKuuNhamSj2ve+6xwPcJERJ+9FK7xFLTdfLqEQmJq4qrY30FkdBYaA=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?2vpC87nP06XfPcW/RTUwUPNMM1N1iD4pb1n3mYGZDzuHRAAkAPWnd6ia//?=
- =?iso-8859-1?Q?naqVWQTCHGyP9DK/9RJE1tYQsUr4bSWy3wA5FrM6PsRuIB8EGaiHu8Ad1f?=
- =?iso-8859-1?Q?z1AgoEdZq4290ZzclX5VU1XJJq3Sb3GUm95kfG+4ws+uFpDqOFcZGE/I+g?=
- =?iso-8859-1?Q?feNlG4N+ppzdCsh8pYHsecN4U4x14YFeNdZ2bm3opiFul9XymjIsn2ub/V?=
- =?iso-8859-1?Q?J0O/sATHWct7kd5I9PkykZ2ARpvELmoSWH1mjLJuq3We94xhkNM6RBkxh+?=
- =?iso-8859-1?Q?vE5ch9qikx7hJVI8OwFReACfHRp2cuX28BsgzJ3GlIpEciyxKo4cL6b61c?=
- =?iso-8859-1?Q?oNhvcekIKl4sr+PaKtjN26J+Cyoh46jNDT8Pg/HBltpzzeCxDgN+lpP29U?=
- =?iso-8859-1?Q?I3Opo6YRP1vcrFHeLUOAFZGpddMqURvBIAA4WFqmMd8M9FjWek/rBH3JJw?=
- =?iso-8859-1?Q?jcT/FQ+GJnOlEp6iTkGfuRg/T3LH059TuyUIsE7HqobZlAjtbWjuxPn5oK?=
- =?iso-8859-1?Q?Lj6cmcO6GweIPQ1mkBqz/XUqpvPqegClSYE1xhJQG66gE6NH/Aslz+QTVO?=
- =?iso-8859-1?Q?BwgQ64buC4g1viF3Gf2jZNfpg73HBvqLRaollHhXNe+4sMsIHJtgj8amK9?=
- =?iso-8859-1?Q?FV8vhN9cZ7rSi/qkDxOpy+mmgj1VvGCRkgxqJIJRUoXMDcQACONJ5GyRvH?=
- =?iso-8859-1?Q?17TMlPEIKU6CFDwXpjOy/V6iAdEtQmBaJLhlWb6ckvtNKYkTBPUCHaLM4W?=
- =?iso-8859-1?Q?TfwwUaqMgYLvLXH/aQ5V5SEkwOq1f3jh9KvsH2LtT856EeCYpMTAcqOj2m?=
- =?iso-8859-1?Q?5aHklWbJ0SE3aZche9zI5T8sSlUVQKbPGjQh3XcFIiPxyqPcGkUCTaDnM/?=
- =?iso-8859-1?Q?gvU079/cXan3K6FXrZCn4stbyc09TT0euoqGcWrFEK6smGGDvXlw4Q64xM?=
- =?iso-8859-1?Q?WWfwv2yBrq4hCfzuRch+kN2QA+aquxQeZ3FG2xDcHQbWikUyhdpkjDpBI1?=
- =?iso-8859-1?Q?SLN8rg7l+KBP8QhnnhxOGNfdUlbbDcEOXbEI2PiMX1iH+8ldxk5nd3hgy/?=
- =?iso-8859-1?Q?axHA2AMJtAIOztqDUl0E7zAe2DQiFgvAGgPXyzpOC48qNQvMjyY5mT2Gls?=
- =?iso-8859-1?Q?gG9MSLm8lczneDKQBap0wSZOGaX4tXnHpIfoN7tLGWRPrncfa8fLdwlisH?=
- =?iso-8859-1?Q?pcEOkSzCs3SSADX0Hg2lOIQUm2bZVZ0G8dG0jj/zDFX7e0UfN3xu1QbPDl?=
- =?iso-8859-1?Q?OL0qtZW3lxYI/+di1+MPc/bmk4oYGvr340MwG4MULzPZ6dqAyyMjfql7GN?=
- =?iso-8859-1?Q?fyg7MSBnDmp3oIt8L9+i8RUvTI8O2yYH5XBjHVhS1XX9Q2/uEWUopxSM0r?=
- =?iso-8859-1?Q?RLBVhPZgAI2/waN23DP3uf/PDFAx0fnnNPlF01W8YxrkRbcKeEPkwEBxCH?=
- =?iso-8859-1?Q?zemoXzLY0nJWeSjKjqwaKa2bx1gUkJ6pnVm1AlwRV0TLLDq5wwJ1mbXgKb?=
- =?iso-8859-1?Q?7R8JO8O+0kteS0PFbDkCbO6jgc72D998QcmylGg60KiM/IZ/4rtWFgFZfR?=
- =?iso-8859-1?Q?ZjHVmeSUmih8feCUqeD2LDlTReVsxplHz/SKiiSWOS8wgGc/c2ER+IqXW2?=
- =?iso-8859-1?Q?+mRuj89aGg723Scjx6F92+PG1khuKBnYvovAQkESdrm1HKtZqz0jQ4hA?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?XMHYHktgkIiN25B1c/+ABGjNZvARe/SdO+5CV3i8EroOpGKQfSckWHHEmP?=
+ =?iso-8859-1?Q?hlC7UeR6xcKzoBHSJc0Cg/pqk06BQEQqrmhIHqCeHi4/dGF3KVvqbsHx/F?=
+ =?iso-8859-1?Q?uhdW/nNMXB1rImzbKg5UKkv7A1AVmMaouhcgCmhqOMonY41ubMmc7oVZwy?=
+ =?iso-8859-1?Q?sDlV3EjDe5JejTe/DHaHMwZXLC9lUdI7Lax5LtWIPbyE3e4o9QMZrhnR6q?=
+ =?iso-8859-1?Q?YTO0AeoLwnHpYaOLYRu1Pi+6kitAQ0XNigzTabmk2eED8JAoaeQYaF8IVd?=
+ =?iso-8859-1?Q?j1NFxBjmfquxdbANPA219LCTrmkulPFSkV8ZnIxEdyXKVTaVt4Owt8iW7B?=
+ =?iso-8859-1?Q?H+gWBGpRJ6469nM1S+uqJx+ekaev8/eZu4e2rjlhA7wpzDugOyVEkk5ofS?=
+ =?iso-8859-1?Q?suMzIW+Uz7vULbJgVNCGM3esBtvaliPIZD1NHxEb1iJvrI+H56z1HWBcnw?=
+ =?iso-8859-1?Q?AhhZIe1N0vLh9yGMKvDIs2YetG0OYIvkYmlmf7ITvgURDFSpe7vgbgJh62?=
+ =?iso-8859-1?Q?zY0Vnz8F+p/5LMp8ceQp/QriyRe+DHqlFuEGyZ424KP/GIn9cPxJ+spTzu?=
+ =?iso-8859-1?Q?Yh844XkUqewaW6j+iRu4PjuhGF1Um23geU5u6iVRFYwmWGBUTQOyFeQq2N?=
+ =?iso-8859-1?Q?M8OYjGMqHVMjDgMgaEn8GkOia04VPdUcJFrxor19SY4aMxRF91bKfLv72K?=
+ =?iso-8859-1?Q?aNVRA3f4sVo4SdGHqGkQrJcLRbosRL5QrmpcaSnZtRzcfEqChIgQGyJqYC?=
+ =?iso-8859-1?Q?6YcNDdy1P7qE7cAS4JogbEIQgufAYA4m7+tzQzLzw72f4TYYICs3YO9dSk?=
+ =?iso-8859-1?Q?4ldIhvh+vs6YzWpsGPoQNFsyQutaP2duy/qATFx5p9yTf7IRF+2P6VqSQK?=
+ =?iso-8859-1?Q?gFH/tNH6m/7I/3+eX0mPJ9ANWczdKepmTHjgeOW7URSxVJ5840D5/Stxje?=
+ =?iso-8859-1?Q?SiRino7OC5G4rws7vCqULVxoqMKGVPCW3jYBJUEaw4WR7Gzb/H8BQGOo6B?=
+ =?iso-8859-1?Q?cUfkPmRg+BcytZzogx+5Zh8TuoTpRgIR0D9VnQDLIq4ZPwyf72OGcd59lE?=
+ =?iso-8859-1?Q?2NZuWBdsBt2VMXqGw1HvtKg19fNSM5icTFwEV3BgYjzeaKYhJdLldmdSJf?=
+ =?iso-8859-1?Q?xxIzFpbOswgH29wevk+ZT0Bf5AAfxCN0ffjtF9KtpTuMBiGQ6yDG665wxi?=
+ =?iso-8859-1?Q?KB7iDaRAkA1sq5IMbbkPurPpgELRdPfG8ZOyrNf0f7BaIkrk90vxtLFIoU?=
+ =?iso-8859-1?Q?rJFCw8TRUVOM+E0nNIN7U7CWG7d8KfwJjw2Jbu7k7YK2rdodPTRDN8e9ma?=
+ =?iso-8859-1?Q?SB9KN5olCEdxQIXE0Jnf2mNVB/Vf5BM9Thh1RPJA3DvYPv2FE7Sth9xM4B?=
+ =?iso-8859-1?Q?M7UB1ixBZeTcBq+VkiderltqZhib1cl9YC5mkYLq6usVF4Ph/RAfUQsnCv?=
+ =?iso-8859-1?Q?vyBFbbtHYxzKqiE7OVoBo4t+XxRac5eUAXa0vFQ86JMbdaF5F9+q4D+e1C?=
+ =?iso-8859-1?Q?JPt/VNkhBKahl3uBL4WMf9ASrDgT9OAB4ufioe6u05uMCUNxKnmULMBZjk?=
+ =?iso-8859-1?Q?lEPDp2uyYe0xMo5Y56d8LB7Ho5Hqo/klDlJ+acM9QY99hFFYQ9nNXu+70y?=
+ =?iso-8859-1?Q?PhNtnPFQZlKwNGKUogGpkDh6ZrWpIHbPoLzduAIcHNDYqf6Tx8cKd2fw?=
  =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f0de2f2a-a034-4289-5210-08dc3315ade9
+X-MS-Exchange-CrossTenant-Network-Message-Id: 16a4b91f-af4e-4ab1-6e27-08dc331a8f24
 X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2024 19:45:38.6644 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2024 20:20:34.5327 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jXQWIGp6QgCzuA10QpBg9SNzfIfrMokc5EfhZeaAjy1o6k9EFGLxg6eRgB69+Sg/zsi/I6Y98sG9WFXzkLt5+HayQxOmTdLn19O70lI+AYc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB7061
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZSXCclImM6gFrPYzC1OnAMCDrlODzCtGVauZOicbcR26dK4YJ0nMKNk/3e2VMW7c1aV1qGUfdAjP4IIoBVHMi0GUyJk3EGP149jtmxKqSsE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4876
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -165,59 +158,172 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Feb 21, 2024 at 05:21:17PM +1100, Stephen Rothwell wrote:
->Hi Lucas,
->
->On Tue, 20 Feb 2024 23:29:54 -0600 Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+On Wed, Feb 21, 2024 at 07:58:40PM +0200, Ville Syrjälä wrote:
+>On Tue, Feb 20, 2024 at 12:56:07PM -0800, Lucas De Marchi wrote:
+>> Same fix as commit 8d038f49c1f3 ("drm/xe: Fix cast on trace variable")
+>> that has been inadvertently reverted by a later commit.
 >>
->> Looking at https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=2d5c7b7eb345249cb34d42cbc2b97b4c57ea944e
->> it seems we still don't have drm-xe-next branch in linux-next.
+>> Fixes: a0df2cc858c3 ("drm/xe/xe_bo_move: Enhance xe_bo_move trace")
+>> Cc: Matt Roper <matthew.d.roper@intel.com>
+>> Cc: Priyanka Dandamudi <priyanka.dandamudi@intel.com>
+>> Cc: Oak Zeng <oak.zeng@intel.com>
+>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> ---
+>>  drivers/gpu/drm/xe/xe_trace.h | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
 >>
->> Stephen, could you please add it? Or do I have to do something on my end
->> before that?  This is the branch:
+>> diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+>> index 0cce98a6b14b..e43c3bde3202 100644
+>> --- a/drivers/gpu/drm/xe/xe_trace.h
+>> +++ b/drivers/gpu/drm/xe/xe_trace.h
+>> @@ -32,7 +32,7 @@ DECLARE_EVENT_CLASS(xe_gt_tlb_invalidation_fence,
+>>  			     ),
 >>
->> https://gitlab.freedesktop.org/drm/xe/kernel drm-xe-next
+>>  		    TP_fast_assign(
+>> -			   __entry->fence = (u64)fence;
+>> +			   __entry->fence = (unsigned long)fence;
 >
->Added from tomorrow.  Currently the only contact is yourself.  Do you
->want anyone else (or a mailing list) as well?
->
->Do you want the drm-xe-fixes branch included as well?
+>What's the point of these weird gymnastics?
+>Ie. why isn't __entry->fence just a pointer?
 
-I don't think it's needed since drm-xe-next covers what is in
-drm-xe-fixes. Please add other maintainers and mailing list:
+Indeed... apparently for no good reason. The following patch should work
+as well, while converting all the trace events to use pointers. I didn't
+bother with a 0x prefix since it's already used as %p in other places
+and I don't think we want to leak the kernel address too, so not using
+%px.  Does that look good to you?
 
-M:      Oded Gabbay <ogabbay@kernel.org>
-M:      Thomas Hellström <thomas.hellstrom@linux.intel.com>
-L:      intel-xe@lists.freedesktop.org
+-------------8<-----------------
+Subject: [PATCH] drm/xe: Use pointers in trace events
 
-Looking at drm-intel and drm-misc, they are using a special
-for-linux-next. We may eventually adopt the same workflow, but I will
-have to check with other maintainers.
+Commit a0df2cc858c3 ("drm/xe/xe_bo_move: Enhance xe_bo_move trace")
+inadvertently reverted commit 8d038f49c1f3 ("drm/xe: Fix cast on trace
+variable"), breaking the build on 32bits.
+
+As noted by Ville, there's no point in converting the pointers to u64
+and add casts everywhere. In fact, it's better to just use %p and let
+the address be hashed. Convert all the cases in xe_trace.h to use
+pointers.
+
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>, 
+Cc: Priyanka Dandamudi <priyanka.dandamudi@intel.com>
+Cc: Oak Zeng <oak.zeng@intel.com>, 
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+
+diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+index 0cce98a6b14b..3b97633d81d8 100644
+--- a/drivers/gpu/drm/xe/xe_trace.h
++++ b/drivers/gpu/drm/xe/xe_trace.h
+@@ -27,16 +27,16 @@ DECLARE_EVENT_CLASS(xe_gt_tlb_invalidation_fence,
+  		    TP_ARGS(fence),
+  
+  		    TP_STRUCT__entry(
+-			     __field(u64, fence)
++			     __field(struct xe_gt_tlb_invalidation_fence *, fence)
+  			     __field(int, seqno)
+  			     ),
+  
+  		    TP_fast_assign(
+-			   __entry->fence = (u64)fence;
++			   __entry->fence = fence;
+  			   __entry->seqno = fence->seqno;
+  			   ),
+  
+-		    TP_printk("fence=0x%016llx, seqno=%d",
++		    TP_printk("fence=%p, seqno=%d",
+  			      __entry->fence, __entry->seqno)
+  );
+  
+@@ -83,16 +83,16 @@ DECLARE_EVENT_CLASS(xe_bo,
+  		    TP_STRUCT__entry(
+  			     __field(size_t, size)
+  			     __field(u32, flags)
+-			     __field(u64, vm)
++			     __field(struct xe_vm *, vm)
+  			     ),
+  
+  		    TP_fast_assign(
+  			   __entry->size = bo->size;
+  			   __entry->flags = bo->flags;
+-			   __entry->vm = (unsigned long)bo->vm;
++			   __entry->vm = bo->vm;
+  			   ),
+  
+-		    TP_printk("size=%zu, flags=0x%02x, vm=0x%016llx",
++		    TP_printk("size=%zu, flags=0x%02x, vm=%p",
+  			      __entry->size, __entry->flags, __entry->vm)
+  );
+  
+@@ -346,16 +346,16 @@ DECLARE_EVENT_CLASS(xe_hw_fence,
+  		    TP_STRUCT__entry(
+  			     __field(u64, ctx)
+  			     __field(u32, seqno)
+-			     __field(u64, fence)
++			     __field(struct xe_hw_fence *, fence)
+  			     ),
+  
+  		    TP_fast_assign(
+  			   __entry->ctx = fence->dma.context;
+  			   __entry->seqno = fence->dma.seqno;
+-			   __entry->fence = (unsigned long)fence;
++			   __entry->fence = fence;
+  			   ),
+  
+-		    TP_printk("ctx=0x%016llx, fence=0x%016llx, seqno=%u",
++		    TP_printk("ctx=0x%016llx, fence=%p, seqno=%u",
+  			      __entry->ctx, __entry->fence, __entry->seqno)
+  );
+  
+@@ -384,7 +384,7 @@ DECLARE_EVENT_CLASS(xe_vma,
+  		    TP_ARGS(vma),
+  
+  		    TP_STRUCT__entry(
+-			     __field(u64, vma)
++			     __field(struct xe_vma *, vma)
+  			     __field(u32, asid)
+  			     __field(u64, start)
+  			     __field(u64, end)
+@@ -392,14 +392,14 @@ DECLARE_EVENT_CLASS(xe_vma,
+  			     ),
+  
+  		    TP_fast_assign(
+-			   __entry->vma = (unsigned long)vma;
++			   __entry->vma = vma;
+  			   __entry->asid = xe_vma_vm(vma)->usm.asid;
+  			   __entry->start = xe_vma_start(vma);
+  			   __entry->end = xe_vma_end(vma) - 1;
+  			   __entry->ptr = xe_vma_userptr(vma);
+  			   ),
+  
+-		    TP_printk("vma=0x%016llx, asid=0x%05x, start=0x%012llx, end=0x%012llx, ptr=0x%012llx,",
++		    TP_printk("vma=%p, asid=0x%05x, start=0x%012llx, end=0x%012llx, userptr=0x%012llx,",
+  			      __entry->vma, __entry->asid, __entry->start,
+  			      __entry->end, __entry->ptr)
+  )
+@@ -484,16 +484,16 @@ DECLARE_EVENT_CLASS(xe_vm,
+  		    TP_ARGS(vm),
+  
+  		    TP_STRUCT__entry(
+-			     __field(u64, vm)
++			     __field(struct xe_vm *, vm)
+  			     __field(u32, asid)
+  			     ),
+  
+  		    TP_fast_assign(
+-			   __entry->vm = (unsigned long)vm;
++			   __entry->vm = vm;
+  			   __entry->asid = vm->usm.asid;
+  			   ),
+  
+-		    TP_printk("vm=0x%016llx, asid=0x%05x",  __entry->vm,
++		    TP_printk("vm=%p, asid=0x%05x",  __entry->vm,
+  			      __entry->asid)
+  );
+  
+-------------8<-----------------
+
 
 thanks
 Lucas De Marchi
-
->
->Thanks for adding your subsystem tree as a participant of linux-next.  As
->you may know, this is not a judgement of your code.  The purpose of
->linux-next is for integration testing and to lower the impact of
->conflicts between subsystems in the next merge window.
->
->You will need to ensure that the patches/commits in your tree/series have
->been:
->     * submitted under GPL v2 (or later) and include the Contributor's
->        Signed-off-by,
->     * posted to the relevant mailing list,
->     * reviewed by you (or another maintainer of your subsystem tree),
->     * successfully unit tested, and
->     * destined for the current or next Linux merge window.
->
->Basically, this should be just what you would send to Linus (or ask him
->to fetch).  It is allowed to be rebased if you deem it necessary.
->
->-- 
->Cheers,
->Stephen Rothwell
->sfr@canb.auug.org.au
-
-
