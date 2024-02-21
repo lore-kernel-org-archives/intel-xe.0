@@ -4,147 +4,144 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 899FFC48BEB
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Feb 2024 18:21:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1663AC48BEB
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Feb 2024 19:00:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 493A010E63D;
-	Wed, 21 Feb 2024 18:21:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC00110E041;
+	Wed, 21 Feb 2024 19:00:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eOQTK04G";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y0XbKMTr";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 491D410E63D
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 18:21:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27AB310E041
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 19:00:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708539708; x=1740075708;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=aQCmhGqqHQCUWBbLD0pw01wBWbSGcI7lzra6Iiewznc=;
- b=eOQTK04G47NfDvqK0f9we9R4MLpv7dZxpakuRp6xG7gkyUAwcWjMwZ4h
- NncCi0sN0W9VjKWMRoxDgn20CCiJVLH64F1YK1p+PMbFy7Mfn2URSMWM+
- e/9vC4ip7UJUV6fufFvWjXf2RnQda1F6BFfOpiqRdWgvH9s59qeGBePKd
- 84DAYgZtQXlSfZom6sLojVia0zC9Jl7brje8MgijwbltemgUaqGcC53CV
- W9xW3NFAiODkl44TogNRvi8zhjQ1891RD0O95uySPoszqwPpRmh5lPB3d
- C369Qrbq468I5LDNw2rGaaR6zKSMgIZSpKPIF7obIpJrVLdTtRyoakv+s A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="20263970"
-X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; d="scan'208";a="20263970"
+ t=1708542040; x=1740078040;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=F6bgvQkt5xGfsuGIrh3dQqlNy8L0vnXRWgWO95/UAiU=;
+ b=Y0XbKMTrgUJfFzXPlDaHTkEU6PlMzPDBVZISq+MYvCMe53tX0PXgn3qs
+ H/2ax1uYAdxyY5Kgd5E/SgIDwCDlsR9xS9SsCIDOrJHZSnrbs94rLkJrE
+ nn6wExXiB2sWemYmG4r9bYYtrMIUcrUuhXShCiCrfitLgEcwL51AXEZvn
+ wzWPAfmC3Xl8lypzfZz87fNgXoz8d6Bcjw+Bap2y9xkmYYy7fAqVZUlA3
+ 290hIeFkAUTRiV8O9MFtad5zcShHGDbbi5ODmMR1njGm4PrqfrCVY0DRJ
+ p2RMli5QezliOcDVw95jBd5GTAazL0fuLyK23RU9kaZyL8lClKWTrS0zV g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="2608468"
+X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; 
+   d="scan'208";a="2608468"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2024 10:21:48 -0800
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2024 11:00:40 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; 
-   d="scan'208";a="5581672"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+   d="scan'208";a="5588790"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
  by orviesa008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 21 Feb 2024 10:21:48 -0800
+ 21 Feb 2024 11:00:40 -0800
 Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 21 Feb 2024 10:21:46 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ 15.1.2507.35; Wed, 21 Feb 2024 11:00:38 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
  fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 21 Feb 2024 10:21:46 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.169)
+ 15.1.2507.35; Wed, 21 Feb 2024 11:00:38 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Wed, 21 Feb 2024 11:00:38 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
  by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 21 Feb 2024 10:21:46 -0800
+ 15.1.2507.35; Wed, 21 Feb 2024 11:00:37 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WnVo93lu/SrgmILeVRx8JR9VkTVxx9THErKzGyGt3JT22LZ0Px7iG6P6Vx+iqHSkiCKqzQcvURfTz/YKuA8x2rnNioMtgw8VfSuoU96lnG7Hbbj6FOVUaYsB4MoV2JaF598HmK0xAL4Gvs2u5qDQxu1QzKJCZEkdf4ek92A8/fwmZG9wRC7DeyZXB2NnxSVYaiMXOcYPfelhfuUjbMKP2ppRj/K025n969OmgbOGZwvAMCnB9cTIpOOPF1bOiZDYHPJqATa1soXk5b+zHUhJXnbl1Uanr73im7f1FwF5V0CEdrS4Fr8cLmz1S+dt3m43JsFpCIR3akMkbf2S6v3+fw==
+ b=mReO31hFVa/CTdGYIcega91Ha3dsOkfCjYlzrYq5SXoT3tsa9++zhIj03oBambCTNHfW+zNRRmPmEFIPK//qwBmd4I98nHWcLOSamHC9kCL+gUozop+jCzi0DBJ5jcblUmwKAR/wBSeG8BpxQWlApWgECcOKNPPYbX71RlR6KSLR/nr7+4trLCtxooLrvYMngZa+iuzfRa6t9ntpZTNczRzu4ckx+HMl2jqxNHUqzStSDyFVz0KMiMsuCP4Ds8iDYTtywuGuOMlI106C9/1VDIdurqntcEUobsOlFaRmwUTMoR1CYuVNZj0aVqZHue1N9TUOVPDchWD29B4Z7c2A2w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7mNjWUXz49IV3YUXa+BaEuBojNuiCViz0WCvqsjtIcA=;
- b=FYQaw6UiCtk0LZRlrdO4R3O/ioX0td2yYJ58EWmVvgVJgBcn+XXDfOxhHl89QvqXVdTvh40w3jCCtVOG9jowOfVeyIJP6R5teyKrzwN3fv1+0muLbES9Vjth5YDR4vUh/HA3SsSWXKP5HQxFwW7OTGdcdEOz4WTH2jVs7/YTf4NIkK9jqUoxOSJuN1W3gU7pY2/YIr0lMhWAE30TxCOPPJywJHRn44cnaKyzPbBHiwrq482de0Us2DDUd5wag/zoNlXMXLzFBopArJMjCJnI/TDXBtLayal/ypmwQJK3Y4+xrGDL1yVC5E90duHQfVsHr7Nh9yvMNOxHSeFHGn2rZg==
+ bh=O663bLvD1i5y80/xDTj55x35Ef4AqLa1S+DCl6nycfA=;
+ b=gXuCIhovvrMdRUmjmwy9Z+Wwt7dvDhICVVPCJ6yR/ya2qupegE/3E7hm7b00BON9D4/9z4vfvOJ7an7xonVdmirrW6Nj7b1FB2nOrW35Ejk4SKuxmD+FU74aisFguMRH4IMlSE1WaoIoUkX/W6iR9mUFf47k40PjbteB8/01AVrOoZ7bZTDmUf2sgyrwHZmMZv1Bv8E2MrmukVdwjaLMkBAl6sYcq6BllCdhmuEe3AhpQfGTIiRhDkj0mih1ZL/kaYdAJ8g3X9z4QkhZl3zn/z1iA0fwCJ9MPg0jxwGIMzr5GgdVsUj1O8KucsHojLHwAyM4XLgogwJvkgIkaMbFiA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
- by SN7PR11MB6727.namprd11.prod.outlook.com (2603:10b6:806:265::7)
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by PH7PR11MB6858.namprd11.prod.outlook.com (2603:10b6:510:1ee::10)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.39; Wed, 21 Feb
- 2024 18:21:39 +0000
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::c138:faf0:9fa7:8a03]) by PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::c138:faf0:9fa7:8a03%7]) with mapi id 15.20.7270.036; Wed, 21 Feb 2024
- 18:21:39 +0000
-Message-ID: <3b49b124-8535-4955-aaa5-efd62c583b3f@intel.com>
-Date: Wed, 21 Feb 2024 10:21:38 -0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/gsc: Handle GSCCS ER interrupt
-To: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-References: <20240125215543.3990593-1-daniele.ceraolospurio@intel.com>
- <800bf321453080d002525f6d880b1b912ea857b5.camel@intel.com>
-Content-Language: en-US
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-In-Reply-To: <800bf321453080d002525f6d880b1b912ea857b5.camel@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ0PR03CA0066.namprd03.prod.outlook.com
- (2603:10b6:a03:331::11) To PH7PR11MB7605.namprd11.prod.outlook.com
- (2603:10b6:510:277::5)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.22; Wed, 21 Feb
+ 2024 19:00:34 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::a7f1:384c:5d93:1d1d]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::a7f1:384c:5d93:1d1d%4]) with mapi id 15.20.7292.036; Wed, 21 Feb 2024
+ 19:00:34 +0000
+Date: Wed, 21 Feb 2024 14:00:29 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+CC: "Dugast, Francois" <francois.dugast@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Auld,
+ Matthew" <matthew.auld@intel.com>
+Subject: Re: [PATCH 01/14] drm/xe: Document Xe PM component
+Message-ID: <ZdZITR3RSUNqDDHW@intel.com>
+References: <20240215193430.130106-1-rodrigo.vivi@intel.com>
+ <ZdXngrtmc58-Zyfj@fdugast-desk.home>
+ <CY5PR11MB621115DF0A46D62420E2859B95572@CY5PR11MB6211.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CY5PR11MB621115DF0A46D62420E2859B95572@CY5PR11MB6211.namprd11.prod.outlook.com>
+X-ClientProxiedBy: BY3PR05CA0035.namprd05.prod.outlook.com
+ (2603:10b6:a03:39b::10) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|SN7PR11MB6727:EE_
-X-MS-Office365-Filtering-Correlation-Id: dfc6c824-29af-473f-79aa-08dc3309f24d
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|PH7PR11MB6858:EE_
+X-MS-Office365-Filtering-Correlation-Id: e25e36cf-73be-4db3-d43f-08dc330f621a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9vsH7jqIIAx9/GtTzAT+9sNwJ/5GAjgHBlXp6uZCcBsuloH2KgUQQ2B8eD8av4NOv3ujHIFDXEpk1oR6WbPPFwuE573besRZQ12TTsulmae54B9oOw5b/Ns7y3m1Vo9ruyDrcURbJNLQcEmsGDEe3GRYj0a1DPAi4KDn5y57aFtNMMmDGYghaKeGa1mDpn+a2uggyFe/vOOBZeeigLVFRGPt5nF4A1BaFvykC//smbwT0Djad5HRbJlqk4YYC8oJQ6DDFgG1CKf90EsTaDFlNYRezxNH70hY6LAJ2MPf0jF4ZLjVI0DzqcGX7fFuAZowZNvWLoQ+QfNybxk0GhLkle6SJ2jks09i4pFqyhogA51D2MmVXaxkT1nKkAIMa5SxuYmGSSB10H5SYlagoJs5ZEQXdjkukw9KhXzAlQGlmD80QDvdv0nE0LBCiXf8+IBYV9bOQ/Y8wJiuENNQQiAhw03x61VvVLXtzaMLMklP2WrbK061vUACbbQpxaJnTNbbLxJdxDsT0XAMsy43I0Q0RfpfP2j2vUy8M0vgJN4wAZqsjDGDcjdRvPUuU4qE2oy7
+X-Microsoft-Antispam-Message-Info: 7aXFfTF9NNmNFzKVKpWc/cajhxaYKA2auP7cWoq3iIX4OiO8m8lTPW2tWmUkobqD7UdqjEFLd7SlVufkaOb+sUfO95As7NVSNGllChuQPs8EIICZPnDTb5FgIPfN78gvXIymEKdwXEmHsPLMenIcvSJf1SLZXzuMKw7zPcpr32cvz8RwFHvjFV26J5sIYwQKP+X5dc1kokszeDir1GnVbixC/biX2IgdyUHEqfm33zgjcSe+BFth1y+5b4wVCLyxeSOWZ6ckSWylMlmV0fcW2ilSkF/LQbtIh48MKwusX2wVUvyG/H+ILeSEztqhr9tECDCdHyFZIzEj7lVsAbtx/EBEZdLO8GIxSYt+tZQaILz9vWBmOahPRaagwfFnc90Ui3hiwoYdZbbmHgshqEuBsEI6kNfQc1mUt34vV3wKr4HI2RoBzv5+yCMBoFIR0MIM0AwbfJWCVhXdCq287TYeayYi7xOZGW9GKTeYSJgrIV75xG2DGa9dOYuGB60kjD+SEoYWZ0skUwxrB6dm+IZv6q8JKx8EpUWyxeUQ2ybaFLY=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(230273577357003); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ek5ZZ1J1bzdwaWhnVW91ZSt3Sko3WlR6eHlIZGl1czVzS1NncU9ZWlAyMGVS?=
- =?utf-8?B?M3ZsZnBhWXNhRFEvQkNDRlM0dzFHc1lDV3U0VjJ3RDREeWdMcW5GUTdZVlNS?=
- =?utf-8?B?Rk9oM1RaYzJ1cXgvTmw3OE1UTkRXdVdJc0NlNFNTUUVXTVpZcDREbVZ6UWcw?=
- =?utf-8?B?c29XdFlXcFJsblpUMUx0TVRGWWk3Zm41VWQvcHAvdFNUamtLMlNYaFhRak5v?=
- =?utf-8?B?ZkJuU3dlKyt3NnBTOUpJMlNKVm5scWFVUUw2WWZqY0dINWFiRjRGUlpMVDF6?=
- =?utf-8?B?SjdtL0xhNlhoRTk2ZFdyQSt3Vlh6bVFSbFZRL01YaHZaeE1sNk5iQk01ZUpa?=
- =?utf-8?B?amJxdWlyYWZ5dm41TE1yUHNmMGFOcWNFRFlYbVZ5R0pLSlREMmNuV3lCclV0?=
- =?utf-8?B?RG9VWk1UUXdHdFJPSGJMY2ljWkdHNVVwclIyNXlJS3ZrdFliQ1R2NWFBbzFz?=
- =?utf-8?B?dklDVEx6UjJQd21ERlQ4RUFXREF0TS9sMzdzdW9HZGVuMTF3c3dZK1dMZHlN?=
- =?utf-8?B?NGxHNG9HN0JJdlVqWHpYWXZyU1N0anV1YlZ3M1FkTHBLb1pxUjdJV29yZFNM?=
- =?utf-8?B?SCtsS1haYXVZVkEyc25uVE5UYVlEUU5FT2JCbmJVbk92T2lrT21TQnlwckdS?=
- =?utf-8?B?Z2loR3RWc0tZS29oNVJlc2pXaW1FOEsxVG1MQ2VkU0E3R2doMVB0WkhyNzBU?=
- =?utf-8?B?SWlFT3gxREZCYzhsbjRoVENPTy9KdExnZmswS093UVp3NGt2L05vKzAwY0M3?=
- =?utf-8?B?eDduenZDQzFSeFdBS3NSdFBULzA5bTdFdUdxdzRUN2RXY1RpcUduZVZOc0h6?=
- =?utf-8?B?OUhscE14cHFYc3pVZ01aZG1GRnFMWDBUai9SUFMzaVNudG5vbFF3MHE4ay9X?=
- =?utf-8?B?ZHVJVFBWc1hHSWQ1YnpPTGtxRzBkQ0hRYjlWT2Q1azBJMlF3V3hJYjJ4Y291?=
- =?utf-8?B?MUY2Zmk5a2VobEtZV1dXLzEvdzQ1WHVKOXBoSHFmSDFySXgxUU15ZTdERnZP?=
- =?utf-8?B?ZklEcVh0NkkrMDg5eWR2L2kycnF6VUd1REYvZDh0dXZwaEUrQ0U3S3Fxd3c3?=
- =?utf-8?B?YlNNUkFrTS9nK2dGWEQyaUoxM1JlcWZBVXQwcENqdDJKSkMybDdDV1BKVTB0?=
- =?utf-8?B?c2FkVnd5OWtxd0JmTVp0UXZ6KzR0M1JaM2lLNWNPUDZVSWZSN0Y2RjJSVFhi?=
- =?utf-8?B?NjQ0cGZwN2VmOGk4VGxNUXNSR3llcmxpeHVCOWhkdWNKWU0yR1V1MUFuWnBH?=
- =?utf-8?B?dlhuRm8xMkRWWm1JTzNMT2tzUDZvamxyS2ZUNHBaR01EbXlYZTlSWU42aU9W?=
- =?utf-8?B?OWp5djlMbkRVa2RlUER6YWl5dUdiajZpVFNSL0xTaDkwaE5SV3pvelRTVGs3?=
- =?utf-8?B?RFA1OGdVZ1dqS0ppZ3A4YTVxb2orMGVlU0U3ekU5MHF2anpEV3B4cHFKbGpt?=
- =?utf-8?B?V2xzSGRQemwvM3R6ODg1THZwVWVzS1dDR0pGVlFKQUdJUDdQSzlMTDNBZkNm?=
- =?utf-8?B?MDBUc2FRazBnTlhsYTh4V1dyT3RlbUQvQXYramdmMmIySXNSSkZCamdCRzRR?=
- =?utf-8?B?K2pFRlVZamV3WlVhRU51KzNVRXBKY2JTQ2x3elY0ekNYVHhabDhQaHZjYS93?=
- =?utf-8?B?TXl4R05rWWxheWw5blVISjlpUVFMTFFwUi91Z0tPdURSMFNwRlVWZ2VEbDBW?=
- =?utf-8?B?c3cvL2l3SmUxLzNIU0pvZGhuR1hYS3A0Q05RMkVpWk1NVnd6cmtCWnQrTlRL?=
- =?utf-8?B?VGlZNnY5STBEekh6ZlR6Z2RFZUROT29rb0JyQmxFQVpieHlPNkNUZ1dENWxM?=
- =?utf-8?B?dXBiMWYzbVFPeTZQMStSQ0RYcTZQam9uczlLTTdBcnlmYkEvQkVrUHlzSXo5?=
- =?utf-8?B?dzFnQWpJMTBRWWR4ZitYbXRGOW13Rm5WRFFpY01TREhLcnVaNUlwbG51dlZY?=
- =?utf-8?B?ZHpnWGJ6NjNiV3lEcVppMXZDVUxsN25tVGN5OWJWSzVsM1RmMURrRTNpMjF2?=
- =?utf-8?B?SW9wY2M4b0NUZWd5REJRWjlEYUFTVmlxN0R6THRCTU8rUXRmZ2Qwc3ZWb2ph?=
- =?utf-8?B?OThqdmRWYm1NQnpNOGhlbGNDZkI2TDVvVEJqU1VqRE5naWUwREpqRDlOckpW?=
- =?utf-8?B?aFJnclllQWFOUk1teVRqNkRuTlVqTFloclFtWUoxamlMYTBIeHVCNzVoN01L?=
- =?utf-8?B?YVE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: dfc6c824-29af-473f-79aa-08dc3309f24d
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?R+1JHtmdedGwaae6jaj60tm/fg1mX3zXU8ds9IAl3uhDBii44Z7JkDR7tdPu?=
+ =?us-ascii?Q?HiYyO43g9v02g+Mc6VE42RcnMDVR6JsOPwFLM7YS14CK+yAof+sU6snNZiLf?=
+ =?us-ascii?Q?080QaVPH4pRMdLyK+eCD0s/kLlTegL1T81mC8UDWxgjrFWbJUxZWWoyYUyoN?=
+ =?us-ascii?Q?/kC46yP+k8LqmUJgxOnxBihLuCOChFRPaUkVJk5/bO/kyO4Xqgsr+rcFVLfV?=
+ =?us-ascii?Q?rj3hPAbQ6qI8mO7HR3USgcG61MqzodG5FOcoksu5B4Xkjpm99hu5utRhqhLy?=
+ =?us-ascii?Q?IVooKMTf01lzUrmn5RmZOkgeuVxrO8zECPEc3kdSja2s1uXKpFtW1ChTcot1?=
+ =?us-ascii?Q?f3zFaO9h86RYWv18O3Hb6FP1ARqNymZ/prSDgjYHhylvZNvel04vPKdrMT3W?=
+ =?us-ascii?Q?TvIutdWNuN3G3v4AQkoauCARmBRlj5vYZ/5MnlE9SNJO4gZMx5ZeMA+YMhC1?=
+ =?us-ascii?Q?7fEBJKQOuaUFNgMClXjj8SSzoBn0B4fCsx+Fo9SsfxwWYxKg8ZCilmIMf9bl?=
+ =?us-ascii?Q?D1IBzOxdI8kUYAxLUwNHpw9xBbEkdor0SMcqmVT6tvttdDCIysZ/dEFR/sJz?=
+ =?us-ascii?Q?5lpUlvST0mApUwHUvIM1S6jh7zfdx9ugbAqha3rKsDPvc9qK3/YezTSD1YUX?=
+ =?us-ascii?Q?CythJa3uiI2OL0xVfn4ewbqAaIWG5zUztizgvEurqYJAVV/K81QO3ZozfeIT?=
+ =?us-ascii?Q?f5bJuKFlvNYe83h7un4483tAM7079DKTS9mD7Bgb0dr6F0pN3ODYc4rU70T1?=
+ =?us-ascii?Q?Kc9rldLlEytUqhnv8jqeuqB6EdiievAD5SzxMSlecVj8yzcgIP7BufGNlqPK?=
+ =?us-ascii?Q?patlZeg5PpbCytmoGoH8rwpzahy4zpH58kBD+WOuo7hs38YPBlcowcgsNPm4?=
+ =?us-ascii?Q?zqbbSeLd/+ZdhCje3Vg+cHDpbn7fOIqo64TIp7GKVkB55cqt/EGq5LQqa677?=
+ =?us-ascii?Q?Qj8tAWxuVncTflrto3CrtqVPocWZJISzADwEsgmJujvKbsMvDYDuLiJdVkJs?=
+ =?us-ascii?Q?sH1z+WrBYrrxIu7g0VqX0zoCxV0M37xkC2A7/ZdgNwRgqtbwshWbku38yYXK?=
+ =?us-ascii?Q?kBpjJj6NwnorRMkOmL18XzAZxMIzaNz3mgaeAwy4QhlJEADQ/WVhJ3tIBg/Q?=
+ =?us-ascii?Q?KNEoYl+zPnlw0M6jaWXW8HP9v+AHS/hrWdqToPX0ElcP/4jNdUJsokwF/mtL?=
+ =?us-ascii?Q?4Ul/vDwI9OE29YVyatOqTlOyzrFS7TbU7O+CNN904jW0ItzNU2pEa/GrRuxZ?=
+ =?us-ascii?Q?Lf9pDVN3VJ/as1lYJmUzcoX/wa3wGZEHsEitlzUZ96gorMLC/vIB0tTBgVW6?=
+ =?us-ascii?Q?kIUsLJTC5lxrwtEIE3HABkPk6uupxB15qzFVI5i6vP9TJhcTprzqWF7xTgRr?=
+ =?us-ascii?Q?uRuG7i7ALvuhEi7eEPhiF7k2MD834pWEEIsQn2s+dRJF0t3sx00IU/EAPYY0?=
+ =?us-ascii?Q?8b3zc4Lva2fg2xd7nxtZ+GJna+2ouysg39PK5eb/ETni6xcr3wUBwtbI0jQm?=
+ =?us-ascii?Q?JeMALfhXcO7e5a/1hYNYTy2P6d/D1+S5cvhiXUyc7wgoBNWFIrTIeXkEGS7q?=
+ =?us-ascii?Q?sFZQ0KAPYJ5y8MI9Cuz+lVZRkTFI0LK4TUCQnFZaMQ8cVt0jwSrTrHYghhLo?=
+ =?us-ascii?Q?VA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e25e36cf-73be-4db3-d43f-08dc330f621a
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2024 18:21:39.4214 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2024 19:00:34.6440 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CTmW5Ixgg+pwu/3Jg4OZm078fEcd9JV7VumgYUyEfPmQSxqs3j5pyJGGcwSnZllau+5qbTi2rhLRgDMdRjuCT9NF1srXaCzyLH5u7beyJ0E=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6727
+X-MS-Exchange-CrossTenant-UserPrincipalName: CH5GoH2z512dsE1KPR86cH6M7ZKBqBrYgQnk3pybUYENQRHoQ64An2aKs360MZMjk5k+JTyOGs6lvlnP8CmB8A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6858
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -160,120 +157,343 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-just realized I hadn't replied to this. Sorry for the late reply!
-Answers below.
+On Wed, Feb 21, 2024 at 09:41:44AM -0500, Gupta, Anshuman wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Dugast, Francois <francois.dugast@intel.com>
+> > Sent: Wednesday, February 21, 2024 5:38 PM
+> > To: Vivi, Rodrigo <rodrigo.vivi@intel.com>
+> > Cc: intel-xe@lists.freedesktop.org; Auld, Matthew <matthew.auld@intel.com>;
+> > Gupta, Anshuman <anshuman.gupta@intel.com>
+> > Subject: Re: [PATCH 01/14] drm/xe: Document Xe PM component
+> > 
+> > On Thu, Feb 15, 2024 at 02:34:17PM -0500, Rodrigo Vivi wrote:
+> > > Replace outdated information with a proper PM documentation.
+> > > Already establish the rules for the runtime PM get and put that Xe
+> > > needs to follow.
+> > >
+> > > Also add missing function documentation to all the "exported" functions.
+> > >
+> > > v2: updated after Francois' feedback.
+> > >     s/grater/greater (Matt)
+> > >
+> > > Cc: Matthew Auld <matthew.auld@intel.com>
+> > > Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+> > > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > Acked-by: Francois Dugast <francois.dugast@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/xe/xe_pm.c | 108
+> > > +++++++++++++++++++++++++++++++++----
+> > >  1 file changed, 97 insertions(+), 11 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+> > > index ab283e9a8b4e..64ffb9a35448 100644
+> > > --- a/drivers/gpu/drm/xe/xe_pm.c
+> > > +++ b/drivers/gpu/drm/xe/xe_pm.c
+> > > @@ -25,21 +25,46 @@
+> > >  /**
+> > >   * DOC: Xe Power Management
+> > >   *
+> > > - * Xe PM shall be guided by the simplicity.
+> > > - * Use the simplest hook options whenever possible.
+> > > - * Let's not reinvent the runtime_pm references and hooks.
+> > > - * Shall have a clear separation of display and gt underneath this component.
+> > > + * Xe PM implements the main routines for both system level suspend
+> > > + states and
+> > > + * for the opportunistic runtime suspend states.
+> > >   *
+> > > - * What's next:
+> > > + * System Level Suspend (S-States) - In general this is OS initiated
+> > > + suspend
+> > > + * driven by ACPI for achieving S0ix (a.k.a. S2idle, freeze), S3
+> > > + (suspend to ram),
+> > > + * S4 (disk). The main functions here are `xe_pm_suspend` and
+> > > + `xe_pm_resume`. They
+> > > + * are the main point for the suspend to and resume from these states.
+> > >   *
+> > > - * For now s2idle and s3 are only working in integrated devices. The
+> > > next step
+> > > - * is to iterate through all VRAM's BO backing them up into the
+> > > system memory
+> > > - * before allowing the system suspend.
+> > > + * Runtime Suspend (D-States) - This is the opportunistic PCIe device
+> > > + low power
+> > > + * state D3. Xe PM component provides `xe_pm_runtime_suspend` and
+> > > + * `xe_pm_runtime_resume` systems that PCI subsystem will call before
+> > > + transition
+> > > + * to D3. Also, Xe PM provides get and put functions that Xe driver
+> > > + will use to
+> > > + * indicate activity. In order to avoid locking complications with
+> > > + the memory
+> > > + * management, whenever possible, these get and put functions needs
+> > > + to be called
+> > > + * from the higher/outer levels.
+> > >   *
+> > > - * Also runtime_pm needs to be here from the beginning.
+> > > + * The main cases that need to be protected from the outer levels
+> > > + are: IOCTL,
+> > > + * sysfs, debugfs, dma-buf sharing, GPU execution.
+> > >   *
+> > > - * RC6/RPS are also critical PM features. Let's start with GuCRC and
+> > > GuC SLPC
+> > > - * and no wait boost. Frequency optimizations should come on a next stage.
+> > > + * PCI D3 is special and can mean D3hot, where Vcc power is on for
+> > > + keeping memory
+> > > + * alive and quicker low latency resume or D3Cold where Vcc power is
+> > > + off for
+> > > + * better power savings.
+> > > + * The Vcc control of PCI hierarchy can only be controlled at the PCI
+> > > + root port
+> > > + * level, while the device driver can be behind multiple
+> > > + bridges/switches and
+> > > + * paired with other devices. For this reason, the PCI subsystem
+> > > + cannot perform
+> > > + * the transition towards D3Cold. The lowest runtime PM possible from
+> > > + the PCI
+> > > + * subsystem is D3hot. Then, if all these paired devices in the same
+> > > + root port
+> > > + * are in D3hot, ACPI will assist here and run its own methods (_PR3
+> > > + and _OFF)
+> > > + * to perform the transition from D3hot to D3cold. Xe may disallow
+> > > + this
+> > > + * transition by calling pci_d3cold_disable(root_pdev) before going
+> > > + to runtime
+> > > + * suspend. It will be based on runtime conditions such as VRAM usage
+> > > + for a
+> > > + * quick and low latency resume for instance.
+> > > + *
+> > > + * Intel systems are capable of taking the system to S0ix when
+> > > + devices are on
+> > > + * D3hot through the runtime PM. This is also called as 'opportunistic-S0iX'.
+> > > + * But in this case, the `xe_pm_suspend` and `xe_pm_resume` won't be
+> > > + called for
+> > > + * S0ix.
+> Hi Rodrigo,
+> Sorry of late review comment, was busy with other stuff.
 
-On 2/9/2024 10:36 AM, Teres Alexis, Alan Previn wrote:
-> On Thu, 2024-01-25 at 13:55 -0800, Daniele Ceraolo Spurio wrote:
->> Starting on Xe2, the GSCCS engine reset is a 2-step process. When the
->> driver or the GuC hit the GDRST register, the CS is immediately reset
-> alan: minor nit %s/hit/hits
->
->> and a success is reported, but the GSC shim keeps resetting in the
-> alan: minor nit %s/keeps resetting/continues the reset
->> background. While the shim reset is ongoing, the CS is able to accept
->> new context submission, but any commands that require the shim will
->> be stalled until the reset is completed. This means that we can keep
->> submitting to the GSCCS as long as we make sure that the preemption
->> timeout is big enough to cover any delay introduced by the reset
->> (which it already is).
-> alan: as per offline conversation, we believe that reserved engines
-> like GSC isnt effected by sysfs knobs to change engine preemption
-> tmeouts. However, in the event a system integrator decides to play
-> around with the default preemption timeout CONFIG, then perhaps we
-> should add some kind of build or runtime warning like this in
-> hw_engine_init? :
->
-> if (hwe->class == XE_ENGINE_CLASS_OTHER &&
->      CONFIG_DRM_XE_PREEMPT_TIMEOUT> [that-shim-timeout])
-> 	drm_warn(blah..)
+no worries. Thank you so much for jumping in. Really appreciated.
 
-ok
+> we do need modify the doc slightly.
 
-> alan:snip
->
->> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
->> b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
->> index cd27480f6486..4acc8f3d646c 100644
->> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
->>   b/drivers/gpu/drm/xe/xe_gsc.c
->> index 0b90fd9ef63a..42dd61a197cb 100644
->> --- a/drivers/gpu/drm/xe/xe_gsc.c
->> +++ b/drivers/gpu/drm/xe/xe_gsc.c
->> @@ -25,6 +25,7 @@
->>   #include "xe_wa.h"
->>   #include "instructions/xe_gsc_commands.h"
->>   #include "regs/xe_gsc_regs.h"
->> +#include "regs/xe_gt_regs.h"
->>   
->>   static struct xe_gt *
->>   gsc_to_gt(struct xe_gsc *gsc)
->> @@ -271,6 +272,44 @@ static int gsc_upload_and_init(struct xe_gsc
->> *gsc)
->>          return 0;
->>   }
->>   
->> +static int gsc_er_complete(struct xe_gt *gt)
->> +{
-> alan:snip
->> +       if (er_status == GSCI_TIMER_STATUS_TIMER_EXPIRED) {
->> +               /*
->> +                * XXX: we should trigger an FLR here, but we don't
->> have support
->> +                * for that yet.
->> +                */
->> +               xe_gt_err(gt, "GSC ER timed out!\n");
-> alan: in a case like this, GSC is basically dead right? (i.e. until we
-> support driver-flr). Wonder if should mark fw status as
-> XE_UC_FIRMWARE_LOAD_FAIL with a comment "eventually we can replace this
-> with a trigger to perform driver flr when that becomes available"
+indeed... I also realized that to avoid confusion we need to detach the D3.
+In our integrated devices it is power important for the package-C states then
+for 'D3' itself. One might look at our PCI config for integrated and see D3hot- and
+get confused.
 
-Changing the FW status wouldn't do anything, because after the load is 
-complete the driver works off the values reported in the registers. As 
-far as I understand those gets cleared when the reset fails, so PXP and 
-HDCP should automatically be stopped that way.
+> For integrated graphics D3hot is not necessary to achieve for the host s0ix, like with PSR panel
+> PCI device will be in D0 state as KMS CRTC will be active and will  held a device wakeref.
 
->
->> +               return -EIO;
->> +       }
->> +
-> alan: do you think we should add a drm_dbg here if er_status is some
-> other unexpected value like "GSCI_TIMER_STATUS_RESET_IN_PROGRESS"?
+Then let's also detach the opportunistic s0ix from the runtime_pm with this PSR
+case in mind.
 
-No, GSCI_TIMER_STATUS_RESET_IN_PROGRESS is a valid case if you get 2 
-resets back to back and the other are either the failure or the ok values.
+> 
+> AFAIK for discrete card perspective, host s0ix requires PCIe link to be in low power state.
 
-Daniele
+yeap, but that's outside of our scope so let's minimize the doc to the calls
+around the functions that we are implementing here.
 
->> +       return 0;
->> +}
->> +
->>   static void gsc_work(struct work_struct *work)
->>
-> alan:snip
->
->>   int xe_gsc_init(struct xe_gsc *gsc)
->>   {
->>          struct xe_gt *gt = gsc_to_gt(gsc);
->> diff --git a/drivers/gpu/drm/xe/xe_gsc.h
->> b/drivers/gpu/drm/xe/xe_gsc.h
->> index c6fb32e3fd79..dd16e9b8b894 100644
->> --- a/drivers/gpu/drm/xe/xe_gsc.h
->> +++ b/drivers/gpu/drm/xe/xe_gsc.h
->> @@ -9,12 +9,14 @@
->>   #include "xe_gsc_types.h"
->>   
->>   struct xe_gt;
->> +struct xe_hw_engine;
->>   
->>   int xe_gsc_init(struct xe_gsc *gsc);
->>   int xe_gsc_init_post_hwconfig(struct xe_gsc *gsc);
->>   void xe_gsc_wait_for_worker_completion(struct xe_gsc *gsc);
->>   void xe_gsc_load_start(struct xe_gsc *gsc);
->>   void xe_gsc_remove(struct xe_gsc *gsc);
->> +void xe_gsc_hwe_irq_handler(struct xe_hw_engine *hwe, u16 intr_vec);
->>   
->>   void xe_gsc_wa_14015076503(struct xe_gt *gt, bool prep);
->>   
-> alan:snip
+So, what do you think of this diff between what I had here in this patch and
+what I'm seending soon on a v2:
 
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -33,17 +33,9 @@
+  * S4 (disk). The main functions here are `xe_pm_suspend` and `xe_pm_resume`. They
+  * are the main point for the suspend to and resume from these states.
+  *
+- * Runtime Suspend (D-States) - This is the opportunistic PCIe device low power
+- * state D3. Xe PM component provides `xe_pm_runtime_suspend` and
+- * `xe_pm_runtime_resume` systems that PCI subsystem will call before transition
+- * to D3. Also, Xe PM provides get and put functions that Xe driver will use to
+- * indicate activity. In order to avoid locking complications with the memory
+- * management, whenever possible, these get and put functions needs to be called
+- * from the higher/outer levels.
+- *
+- * The main cases that need to be protected from the outer levels are: IOCTL,
+- * sysfs, debugfs, dma-buf sharing, GPU execution.
+- *
++ * PCI Device Suspend (D-States) - This is the opportunistic PCIe device low power
++ * state D3, controlled by the PCI subsystem and ACPI with the help from the
++ * runtime_pm infrastructure.
+  * PCI D3 is special and can mean D3hot, where Vcc power is on for keeping memory
+  * alive and quicker low latency resume or D3Cold where Vcc power is off for
+  * better power savings.
+@@ -58,12 +50,28 @@
+  * suspend. It will be based on runtime conditions such as VRAM usage for a
+  * quick and low latency resume for instance.
+  *
+- * Intel systems are capable of taking the system to S0ix when devices are on
+- * D3hot through the runtime PM. This is also called as 'opportunistic-S0iX'.
+- * But in this case, the `xe_pm_suspend` and `xe_pm_resume` won't be called for
+- * S0ix.
++ * Runtime PM - This infrastructure provided by the Linux kernel allows the
++ * device drivers to indicate when the can be runtime suspended, so the device
++ * could be put at D3 (if supported), or allow deeper package sleep states
++ * (PC-states), and/or other low level power states. Xe PM component provides
++ * `xe_pm_runtime_suspend` and `xe_pm_runtime_resume` functions that PCI
++ * subsystem will call before transition to/from runtime suspend.
++ *
++ * Also, Xe PM provides get and put functions that Xe driver will use to
++ * indicate activity. In order to avoid locking complications with the memory
++ * management, whenever possible, these get and put functions needs to be called
++ * from the higher/outer levels.
++ * The main cases that need to be protected from the outer levels are: IOCTL,
++ * sysfs, debugfs, dma-buf sharing, GPU execution.
++ *
++ * Intel systems are capable of taking the system to S0ix when all certain
++ * conditions are met. This is also called as 'opportunistic-S0iX'.
++ * But in this case, the `xe_pm_suspend` and `xe_pm_resume` won't be called
++ * for S0ix. In certain cases, like when Display Panel Self-Refresh (eDP PSR) is
++ * active, not even `xe_pm_runtime_suspend` and `xe_pm_runtime_resume` will be
++ * called.
+  *
+- * This component is no responsible for GT idleness (RC6) nor GT frequency
++ * This component is not responsible for GT idleness (RC6) nor GT frequency
+  * management (RPS).
+  */
+
+> Thanks,
+> Anshuman Gupta.
+> > > + *
+> > > + * This component is no responsible for GT idleness (RC6) nor GT
+> > > + frequency
+> > 
+> > Isn't it s/no/not/? Or s/no/neither/ + s/nor/nor for/? In any case:
+> > 
+> > Reviewed-by: Francois Dugast <francois.dugast@intel.com>
+> > 
+> > Francois
+> > 
+> > > + * management (RPS).
+> > >   */
+> > >
+> > >  /**
+> > > @@ -178,6 +203,12 @@ void xe_pm_init_early(struct xe_device *xe)
+> > >  	drmm_mutex_init(&xe->drm, &xe->mem_access.vram_userfault.lock);
+> > >  }
+> > >
+> > > +/**
+> > > + * xe_pm_init - Initialize Xe Power Management
+> > > + * @xe: xe device instance
+> > > + *
+> > > + * This component is responsible for System and Device sleep states.
+> > > + */
+> > >  void xe_pm_init(struct xe_device *xe)  {
+> > >  	/* For now suspend/resume is only allowed with GuC */ @@ -196,6
+> > > +227,10 @@ void xe_pm_init(struct xe_device *xe)
+> > >  	xe_pm_runtime_init(xe);
+> > >  }
+> > >
+> > > +/**
+> > > + * xe_pm_runtime_fini - Finalize Runtime PM
+> > > + * @xe: xe device instance
+> > > + */
+> > >  void xe_pm_runtime_fini(struct xe_device *xe)  {
+> > >  	struct device *dev = xe->drm.dev;
+> > > @@ -225,6 +260,12 @@ struct task_struct *xe_pm_read_callback_task(struct
+> > xe_device *xe)
+> > >  	return READ_ONCE(xe->pm_callback_task);  }
+> > >
+> > > +/**
+> > > + * xe_pm_runtime_suspend - Prepare our device for D3hot/D3Cold
+> > > + * @xe: xe device instance
+> > > + *
+> > > + * Returns 0 for success, negative error code otherwise.
+> > > + */
+> > >  int xe_pm_runtime_suspend(struct xe_device *xe)  {
+> > >  	struct xe_bo *bo, *on;
+> > > @@ -290,6 +331,12 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
+> > >  	return err;
+> > >  }
+> > >
+> > > +/**
+> > > + * xe_pm_runtime_resume - Waking up from D3hot/D3Cold
+> > > + * @xe: xe device instance
+> > > + *
+> > > + * Returns 0 for success, negative error code otherwise.
+> > > + */
+> > >  int xe_pm_runtime_resume(struct xe_device *xe)  {
+> > >  	struct xe_gt *gt;
+> > > @@ -341,22 +388,47 @@ int xe_pm_runtime_resume(struct xe_device *xe)
+> > >  	return err;
+> > >  }
+> > >
+> > > +/**
+> > > + * xe_pm_runtime_get - Get a runtime_pm reference and resume
+> > > +synchronously
+> > > + * @xe: xe device instance
+> > > + *
+> > > + * Returns: Any number greater than or equal to 0 for success,
+> > > +negative error
+> > > + * code otherwise.
+> > > + */
+> > >  int xe_pm_runtime_get(struct xe_device *xe)  {
+> > >  	return pm_runtime_get_sync(xe->drm.dev);  }
+> > >
+> > > +/**
+> > > + * xe_pm_runtime_put - Put the runtime_pm reference back and mark as
+> > > +idle
+> > > + * @xe: xe device instance
+> > > + *
+> > > + * Returns: Any number greater than or equal to 0 for success,
+> > > +negative error
+> > > + * code otherwise.
+> > > + */
+> > >  int xe_pm_runtime_put(struct xe_device *xe)  {
+> > >  	pm_runtime_mark_last_busy(xe->drm.dev);
+> > >  	return pm_runtime_put(xe->drm.dev);
+> > >  }
+> > >
+> > > +/**
+> > > + * xe_pm_runtime_get_if_active - Get a runtime_pm reference if device
+> > > +active
+> > > + * @xe: xe device instance
+> > > + *
+> > > + * Returns: Any number greater than or equal to 0 for success,
+> > > +negative error
+> > > + * code otherwise.
+> > > + */
+> > >  int xe_pm_runtime_get_if_active(struct xe_device *xe)  {
+> > >  	return pm_runtime_get_if_active(xe->drm.dev, true);  }
+> > >
+> > > +/**
+> > > + * xe_pm_assert_unbounded_bridge - Disable PM on unbounded pcie
+> > > +parent bridge
+> > > + * @xe: xe device instance
+> > > + */
+> > >  void xe_pm_assert_unbounded_bridge(struct xe_device *xe)  {
+> > >  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev); @@ -371,6 +443,13
+> > @@
+> > > void xe_pm_assert_unbounded_bridge(struct xe_device *xe)
+> > >  	}
+> > >  }
+> > >
+> > > +/**
+> > > + * xe_pm_set_vram_threshold - Set a vram threshold for
+> > > +allowing/blocking D3Cold
+> > > + * @xe: xe device instance
+> > > + * @threshold: VRAM size in bites for the D3cold threshold
+> > > + *
+> > > + * Returns 0 for success, negative error code otherwise.
+> > > + */
+> > >  int xe_pm_set_vram_threshold(struct xe_device *xe, u32 threshold)  {
+> > >  	struct ttm_resource_manager *man;
+> > > @@ -395,6 +474,13 @@ int xe_pm_set_vram_threshold(struct xe_device *xe,
+> > u32 threshold)
+> > >  	return 0;
+> > >  }
+> > >
+> > > +/**
+> > > + * xe_pm_d3cold_allowed_toggle - Check conditions to toggle
+> > > +d3cold.allowed
+> > > + * @xe: xe device instance
+> > > + *
+> > > + * To be called during runtime_pm idle callback.
+> > > + * Check for all the D3Cold conditions ahead of runtime suspend.
+> > > + */
+> > >  void xe_pm_d3cold_allowed_toggle(struct xe_device *xe)  {
+> > >  	struct ttm_resource_manager *man;
+> > > --
+> > > 2.43.0
+> > >
