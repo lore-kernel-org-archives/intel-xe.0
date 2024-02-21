@@ -4,140 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 680FDC48BC3
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Feb 2024 15:09:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 818A6C48BEB
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Feb 2024 15:59:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17B8B10E26B;
-	Wed, 21 Feb 2024 15:09:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3131C10E7CA;
+	Wed, 21 Feb 2024 15:59:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="leTlC/6c";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A3i+QZ6o";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BEDD10E26B
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 15:09:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE00F10E7CA
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 15:59:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708528170; x=1740064170;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=yR9+NNvF7r6G1EJX9FCXnF5OeRrVk6rs0VNOrauRJfE=;
- b=leTlC/6cfjQ9F+Be3AXyM+BfnvDkl8mwFeg34JHdNQEFM4pdQCpiMHVL
- n+9UnE+sVray2A/0gb+sWraZ+TpfR0eYnTI2GHAzTbn6MUQVqs8j77Llb
- ApJUi+VzO5nyrwsRMgGzinezByKVcRJBJhpdNpZvbpSogzTM7qrF8dbuS
- kLrVwC8/6JS/uL8pHpM3DjtdG7XvM6S0VZT0IJ0ktiVXLx31lqwOUZ7hs
- x7KwcvoPJ+4wOsMkMKlT8GGszNEYkt2liWESIUDwElkZWXXrcaOXW0Tfk
- 2jVMah3tG96CnYxk7GJ1sqhbzBmlEr/2vcZkG0Q7KmgzzzR+YOtZyZOQe A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10990"; a="6508769"
-X-IronPort-AV: E=Sophos;i="6.06,175,1705392000"; 
-   d="scan'208";a="6508769"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2024 07:09:29 -0800
+ t=1708531190; x=1740067190;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/iJqsf5qlNNESKhn6ASDChbQa92nUOr7TOM9pm1nA00=;
+ b=A3i+QZ6oOlpX0urNM/4mhAjpCa8VBEaCM586h4hMw+fDRykgk2KEUyJZ
+ ylVboDlZPXTLBPGP/C6VWWLwgwCfQ/KMqTdaaR6G0GmiY4TUx4wvPTeP7
+ XKe2sSOLclg3Ml0c0m4BmB3FdLVcH85RswzBPwcs3tPCv7KLCqu3n7SXt
+ M4seMSWzovUOmhD9vo4PhJZY9VuHiuChbaFyYxRdU9XeYQYsRKQwCFDK3
+ JzoRXDwf/yAWgGyhcPu0Q3SN76xjsRiqo3yewT7vDBNhi2baKHTYu+2Y/
+ wYHDovZIb1CJ7SJ8Ng1ocVNAIX65mQDJu9kQ+EGUPaWd11IELyXPjJ39k w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="25160925"
+X-IronPort-AV: E=Sophos;i="6.06,175,1705392000"; d="scan'208";a="25160925"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2024 07:59:40 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,175,1705392000"; 
-   d="scan'208";a="5522299"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 21 Feb 2024 07:09:28 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 21 Feb 2024 07:09:27 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 21 Feb 2024 07:09:27 -0800
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.40) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 21 Feb 2024 07:09:27 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=f1JJOIvGlRIhAkPRPbnsWbqXIozq4H1sB4loReJMpECF3bFcHsoFZvVpybp+D3/IZCM6BnOZCenynZJOPuqwweD/0bE195/hYTxmaht/KOlaEoJnJFbtmHUKBxGpZyeDVkQcZ4HTrdFDvDQAJY03gUoWOmJmjRtp6M/NtsuR1LWRVsjUBb8uLCFRH0VSSJYIKKh+ibuosSo48LbTO6yax0ZJW2ngtcjRK7agUf1tv2BOa0XLBEWwAkWKU8Vm8Ap07JxBuve9K3PTDY+F5hJ/3BDIz7ArSugnshslfDvaNcgNMNUr7QajSoqnZ/krWUZ3qiQ1hL4NadD59QYdOPfxQw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=24M8N3KsEx5v7qFNNuGDWTDI5T/3d89AnUBCdlKXg6c=;
- b=HABFe5EkT6fpzbKWnDNnk7JVVX/7xaESeWhw7M/DD5t4y3QdSED1Aml9VV5QqOFHl93/JIczqx8AsOqBFRLJB5CgniMKF3FeQAGIoPEaxGHnT6aDvnvpMt3DUFOFXtLKSoJLIFjVA8iIaMJaBG53PNeqWptb+UvPRdmP7HaNse/r1H/FPa84EaUiQ4ILUZXNcVFHAszdDHy9aaSSMNomrBFM5dP7TVsvVFFqnt6jvxFteCRc/b0bpvmG/XNu+Z+82V1lptEMi8dGeMZjzNy+ZNNjxTBaCyS9nrfBX1JYLfu5ql6/ToUazOiIbSlQiR2HFcEw+UZWU7CTRYJ+GrnLDA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY8PR11MB7828.namprd11.prod.outlook.com (2603:10b6:930:78::8)
- by IA0PR11MB7331.namprd11.prod.outlook.com (2603:10b6:208:435::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.37; Wed, 21 Feb
- 2024 15:09:25 +0000
-Received: from CY8PR11MB7828.namprd11.prod.outlook.com
- ([fe80::63b7:3499:79a1:2796]) by CY8PR11MB7828.namprd11.prod.outlook.com
- ([fe80::63b7:3499:79a1:2796%2]) with mapi id 15.20.7292.036; Wed, 21 Feb 2024
- 15:09:25 +0000
-Date: Wed, 21 Feb 2024 16:09:19 +0100
+   d="scan'208";a="9870930"
+Received: from tnienhux-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.251.221.55])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2024 07:59:38 -0800
 From: Francois Dugast <francois.dugast@intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v5 2/9] drm/xe: Clear all snapshot members after deleting
- coredump
-Message-ID: <ZdYSH18rH8iB3_q2@fdugast-desk.home>
-References: <20240221133024.898315-1-maarten.lankhorst@linux.intel.com>
- <20240221133024.898315-2-maarten.lankhorst@linux.intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240221133024.898315-2-maarten.lankhorst@linux.intel.com>
-Organization: Intel Corporation
-X-ClientProxiedBy: FR4P281CA0444.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:c6::6) To CY8PR11MB7828.namprd11.prod.outlook.com
- (2603:10b6:930:78::8)
+To: intel-xe@lists.freedesktop.org
+Cc: Francois Dugast <francois.dugast@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH v3] drm/xe/uapi: Remove unused flags
+Date: Wed, 21 Feb 2024 15:59:30 +0000
+Message-Id: <20240221155930.7-1-francois.dugast@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY8PR11MB7828:EE_|IA0PR11MB7331:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4f7d6320-5b88-48ce-273a-08dc32ef179e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Ccya+k+u0F1PNj/U+YSilfDFatstN6dB5odcgpdc51kM96Db80ZYPCyvzlmc9zfI3uI1hAu4j4OXbLV+KaNAG0RFlGMgOTr/0buAdHlJhZR+LfV5QFA6iK7AbeTYVVFe7goV68A+M3m7NeyNrUB8d+HkfrQMR6DEAmHG6CcSGH218BrBZN3edWO6D0bY6rMa4QQglVonReFrY15XjxRWA7O++MahYY/uZCevCjU9So3pQgLemWfdo1UsZ8JDdZ2vEYGIz1yRAFG1ywLWZkeRJUg24+IZBxSb8KxMeX3iLUxVAPVmsDkJ0q/m/bDjgwQcpwfwsLJuzr4AuqjDQdCUxXav9qFoPPs5Et+CkFaLYG5SYhCR4HpfrjZiHNjdNOFW/TuJ8cWs6QLjaKKMznOoyE880cuafx9R3Kw3X3/+g4xDB3UmmGkhLM9IscrZhb6BzVA68BJS7flI6KU+NgsqP6gViUy2g8b4m47Lwhym1K1EdHqjSZPNUaXg7BkUxuVYJlurDzWQ9MSl58khyNN/Rxg5T9WTfTp/vMIrCdKQvhA=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY8PR11MB7828.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?lHW2LxUMiqpRME/l2H/IrJMNYZKawDvu5e5nhs99x5soVeUijAeTlunzfwUv?=
- =?us-ascii?Q?+6lgxsMr166amTmLLd6DwvQNv+ZhnuGfnrBmpssFowVzL7tt3ZhuubCYhY9F?=
- =?us-ascii?Q?aaQgNyfI2YAWK/cUrTo06hAe70ZhPcYfbfjVR03bUmjP3Ngn5dLESLUllxzv?=
- =?us-ascii?Q?Ou3h6H8aQg0/8FFDi4beLl5z9SkKafle5QBiZEgvCNWXuOzRZLueLGHOPXDY?=
- =?us-ascii?Q?X8lmbc7l6btP8TNewhuyUppgyTmLTc63v0+LERWTB+5M/BpsCfFXikZN3K71?=
- =?us-ascii?Q?QYANCZVaV+Ije3G0iR6Y/hvF8Tk/+o19ed3XIJ/r/2/6VvdjNlKKWaAHX1RO?=
- =?us-ascii?Q?vnevgq06G7F/FPB4nBU8atAxOEbDaFiiKE6pR7gozSov/xlVSII2vHM3gIdp?=
- =?us-ascii?Q?NMvSiNEVAGEjH8UrSMY2M5mNaRGFcTFlA05DGQNQ+F7HqRbUPGtdbAsNyD+1?=
- =?us-ascii?Q?wTfv7+HbBEqasIbWv3VmDMjedj7CNB6IGW9Yv6/l9lC0H6SUUlKu6GxJ8vYL?=
- =?us-ascii?Q?19nSB9j1b7wyEQ3aFbN9fidr3QNYNpGiJ+NQp5bXT8ayg0HCRfAThUJ3ngdf?=
- =?us-ascii?Q?sZ3gV4AHSxnCb0qIhENsCRGQiXoOFJfAlr4FGqikCaZ4WcOXoJDdKX20m6KZ?=
- =?us-ascii?Q?cVfFm8yj8GcZC+gH4GDdy55muzhgS0l6dFKPyU/vYNYExjqAMZm85Y4z8ydz?=
- =?us-ascii?Q?xYmqrQBIPHB45ipO5nB9l249hHUbU+IY2ytaR4DepfOfifD1CiA9pI325p9r?=
- =?us-ascii?Q?UBWS8GucIUE+zWk3prfrTMxnicsSHIsH53LIBTrdKI4CMrmO/UMLXDAnwDzU?=
- =?us-ascii?Q?PLjlN/NmKh9lfbDsiMpLb1F/CSaqNhQuda+3atP2PaRAPFDqWLL3tw9P+Qtw?=
- =?us-ascii?Q?6042G6VvxaPc5j6B2hzeq18JQ/MI6GJHvfAWCqz8zZQbj9hMtsucKkSRfHsz?=
- =?us-ascii?Q?WkZOqOKQI3Kdjlk+VG9exE3GCNh6v275T+1/MQgVCgPGKvhxqt9afq9GCXB6?=
- =?us-ascii?Q?3aeX4iZNZ8fFz+T70drUvgqPaytEnaFdM9oLRV7k/dSjz028okQI3YaLlWPY?=
- =?us-ascii?Q?nptZt1118PaXa2QAc3Mag6HV/609/1ldNaXLf6JQvbXi1y5ccKFDAx/E+hOQ?=
- =?us-ascii?Q?zp8AvF+OMdk99ONUJRy/91Olabrdg6j9wrKeZn5PPZuGdDbu1y6ff8x9VcRS?=
- =?us-ascii?Q?qRvUgt8wmkf9u6IIl3QMUoBF1fbkRgVT8LTKcwjjLIOhPKd4smPTDgvt0wSZ?=
- =?us-ascii?Q?0vdEeoIbkyNV/ZuJbTbvNryNNULC+45MgDU+npylu0Z8CgtDXVcbQ5LA/UG2?=
- =?us-ascii?Q?OVdcgblyfF0yrbjk5QFovRXw25gCf0VnHT3Nvk0JJgmRTB/a6vAa19HEJPK/?=
- =?us-ascii?Q?+bUZkbNoSwkxHyD+tU0NXSTP3H7NrKjxcynrVtNbdmmS9bS0dt4s478LcWJU?=
- =?us-ascii?Q?AFEvTxMP3xyF9g/sBNeRXlIhMDClAHsbzJOeyj3Q2nkhwjF376cdSb6ueCo5?=
- =?us-ascii?Q?AA7zus02+V3xq50R0DKEhYE0p4xYSR657IpO3UOjpH22GbHgYw32gmUcjGVk?=
- =?us-ascii?Q?c3xZx+iY+YoHRu5J2oPzdJ5hquHpk7lAuyuuBUT65kuER3fbpSQYp1H1F4RW?=
- =?us-ascii?Q?cw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4f7d6320-5b88-48ce-273a-08dc32ef179e
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB7828.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2024 15:09:25.5389 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3NhYKHcUttL/gAdUbULQ+Q0ndNrqL42jsYICwW3lQLt5k9AtFfWqBmgvLwaGwYl9xEXWlGvyUGUmPxRDDEDe/0ypRlapTW8/QlztjgQUmPI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7331
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,31 +65,303 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Feb 21, 2024 at 02:30:17PM +0100, Maarten Lankhorst wrote:
-> It's not strictly needed to clear right now, but this prevents bugs
-> from dangling pointers.
-> 
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Those cases missed in previous uAPI cleanups were mostly accidentally
+brought in from i915 or created to exercise the possibilities of gpuvm
+but they are not used by userspace yet, so let's remove them. They can
+still be brought back later if needed.
 
-Reviewed-by: Francois Dugast <francois.dugast@intel.com>
+v2:
+- Fix XE_VM_FLAG_FAULT_MODE support in xe_lrc.c (Brian Welty)
+- Leave DRM_XE_VM_BIND_OP_UNMAP_ALL (José Roberto de Souza)
+- Ensure invalid flag values are rejected (Rodrigo Vivi)
 
-> ---
->  drivers/gpu/drm/xe/xe_devcoredump.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-> index 08d3f6cb72292..ae26d8c6d01c5 100644
-> --- a/drivers/gpu/drm/xe/xe_devcoredump.c
-> +++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-> @@ -124,6 +124,8 @@ static void xe_devcoredump_free(void *data)
->  		if (coredump->snapshot.hwe[i])
->  			xe_hw_engine_snapshot_free(coredump->snapshot.hwe[i]);
->  
-> +	/* To prevent stale data on next snapshot, clear everything */
-> +	memset(&coredump->snapshot, 0, sizeof(coredump->snapshot));
->  	coredump->captured = false;
->  	drm_info(&coredump_to_xe(coredump)->drm,
->  		 "Xe device coredump has been deleted.\n");
-> -- 
-> 2.43.0
-> 
+v3: Rebase after removal of persistent exec_queues (Francois Dugast)
+
+Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_exec_queue.c       | 94 +-----------------------
+ drivers/gpu/drm/xe/xe_exec_queue_types.h | 10 ---
+ drivers/gpu/drm/xe/xe_lrc.c              | 10 +--
+ drivers/gpu/drm/xe/xe_vm.c               | 12 +--
+ drivers/gpu/drm/xe/xe_vm_types.h         |  4 -
+ include/uapi/drm/xe_drm.h                | 19 -----
+ 6 files changed, 6 insertions(+), 143 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index dda90f0c9890..99f8b328f68a 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -354,91 +354,6 @@ static int exec_queue_set_timeslice(struct xe_device *xe, struct xe_exec_queue *
+ 	return 0;
+ }
+ 
+-static int exec_queue_set_preemption_timeout(struct xe_device *xe,
+-					     struct xe_exec_queue *q, u64 value,
+-					     bool create)
+-{
+-	u32 min = 0, max = 0;
+-
+-	xe_exec_queue_get_prop_minmax(q->hwe->eclass,
+-				      XE_EXEC_QUEUE_PREEMPT_TIMEOUT, &min, &max);
+-
+-	if (xe_exec_queue_enforce_schedule_limit() &&
+-	    !xe_hw_engine_timeout_in_range(value, min, max))
+-		return -EINVAL;
+-
+-	if (!create)
+-		return q->ops->set_preempt_timeout(q, value);
+-
+-	q->sched_props.preempt_timeout_us = value;
+-	return 0;
+-}
+-
+-static int exec_queue_set_job_timeout(struct xe_device *xe, struct xe_exec_queue *q,
+-				      u64 value, bool create)
+-{
+-	u32 min = 0, max = 0;
+-
+-	if (XE_IOCTL_DBG(xe, !create))
+-		return -EINVAL;
+-
+-	xe_exec_queue_get_prop_minmax(q->hwe->eclass,
+-				      XE_EXEC_QUEUE_JOB_TIMEOUT, &min, &max);
+-
+-	if (xe_exec_queue_enforce_schedule_limit() &&
+-	    !xe_hw_engine_timeout_in_range(value, min, max))
+-		return -EINVAL;
+-
+-	q->sched_props.job_timeout_ms = value;
+-
+-	return 0;
+-}
+-
+-static int exec_queue_set_acc_trigger(struct xe_device *xe, struct xe_exec_queue *q,
+-				      u64 value, bool create)
+-{
+-	if (XE_IOCTL_DBG(xe, !create))
+-		return -EINVAL;
+-
+-	if (XE_IOCTL_DBG(xe, !xe->info.has_usm))
+-		return -EINVAL;
+-
+-	q->usm.acc_trigger = value;
+-
+-	return 0;
+-}
+-
+-static int exec_queue_set_acc_notify(struct xe_device *xe, struct xe_exec_queue *q,
+-				     u64 value, bool create)
+-{
+-	if (XE_IOCTL_DBG(xe, !create))
+-		return -EINVAL;
+-
+-	if (XE_IOCTL_DBG(xe, !xe->info.has_usm))
+-		return -EINVAL;
+-
+-	q->usm.acc_notify = value;
+-
+-	return 0;
+-}
+-
+-static int exec_queue_set_acc_granularity(struct xe_device *xe, struct xe_exec_queue *q,
+-					  u64 value, bool create)
+-{
+-	if (XE_IOCTL_DBG(xe, !create))
+-		return -EINVAL;
+-
+-	if (XE_IOCTL_DBG(xe, !xe->info.has_usm))
+-		return -EINVAL;
+-
+-	if (value > DRM_XE_ACC_GRANULARITY_64M)
+-		return -EINVAL;
+-
+-	q->usm.acc_granularity = value;
+-
+-	return 0;
+-}
+-
+ typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
+ 					     struct xe_exec_queue *q,
+ 					     u64 value, bool create);
+@@ -446,11 +361,6 @@ typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
+ static const xe_exec_queue_set_property_fn exec_queue_set_property_funcs[] = {
+ 	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY] = exec_queue_set_priority,
+ 	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE] = exec_queue_set_timeslice,
+-	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_PREEMPTION_TIMEOUT] = exec_queue_set_preemption_timeout,
+-	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_JOB_TIMEOUT] = exec_queue_set_job_timeout,
+-	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_TRIGGER] = exec_queue_set_acc_trigger,
+-	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_NOTIFY] = exec_queue_set_acc_notify,
+-	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_GRANULARITY] = exec_queue_set_acc_granularity,
+ };
+ 
+ static int exec_queue_user_ext_set_property(struct xe_device *xe,
+@@ -469,7 +379,9 @@ static int exec_queue_user_ext_set_property(struct xe_device *xe,
+ 
+ 	if (XE_IOCTL_DBG(xe, ext.property >=
+ 			 ARRAY_SIZE(exec_queue_set_property_funcs)) ||
+-	    XE_IOCTL_DBG(xe, ext.pad))
++	    XE_IOCTL_DBG(xe, ext.pad) ||
++	    XE_IOCTL_DBG(xe, ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY &&
++			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE))
+ 		return -EINVAL;
+ 
+ 	idx = array_index_nospec(ext.property, ARRAY_SIZE(exec_queue_set_property_funcs));
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index c40240e88068..62b3d9d1d7cd 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -141,16 +141,6 @@ struct xe_exec_queue {
+ 		spinlock_t lock;
+ 	} compute;
+ 
+-	/** @usm: unified shared memory state */
+-	struct {
+-		/** @usm.acc_trigger: access counter trigger */
+-		u32 acc_trigger;
+-		/** @usm.acc_notify: access counter notify */
+-		u32 acc_notify;
+-		/** @usm.acc_granularity: access counter granularity */
+-		u32 acc_granularity;
+-	} usm;
+-
+ 	/** @ops: submission backend exec queue operations */
+ 	const struct xe_exec_queue_ops *ops;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 8c85e90220de..7ad853b0788a 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -706,8 +706,6 @@ static void xe_lrc_set_ppgtt(struct xe_lrc *lrc, struct xe_vm *vm)
+ 
+ #define PVC_CTX_ASID		(0x2e + 1)
+ #define PVC_CTX_ACC_CTR_THOLD	(0x2a + 1)
+-#define ACC_GRANULARITY_S       20
+-#define ACC_NOTIFY_S            16
+ 
+ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+ 		struct xe_exec_queue *q, struct xe_vm *vm, u32 ring_size)
+@@ -778,13 +776,7 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+ 	xe_lrc_write_ctx_reg(lrc, CTX_RING_CTL,
+ 			     RING_CTL_SIZE(lrc->ring.size) | RING_VALID);
+ 	if (xe->info.has_asid && vm)
+-		xe_lrc_write_ctx_reg(lrc, PVC_CTX_ASID,
+-				     (q->usm.acc_granularity <<
+-				      ACC_GRANULARITY_S) | vm->usm.asid);
+-	if (xe->info.has_usm && vm)
+-		xe_lrc_write_ctx_reg(lrc, PVC_CTX_ACC_CTR_THOLD,
+-				     (q->usm.acc_notify << ACC_NOTIFY_S) |
+-				     q->usm.acc_trigger);
++		xe_lrc_write_ctx_reg(lrc, PVC_CTX_ASID, vm->usm.asid);
+ 
+ 	lrc->desc = LRC_VALID;
+ 	lrc->desc |= LRC_LEGACY_64B_CONTEXT << LRC_ADDRESSING_MODE_SHIFT;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 836a6e849cda..23b7036c8315 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2117,10 +2117,6 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+ 		struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
+ 
+ 		if (__op->op == DRM_GPUVA_OP_MAP) {
+-			op->map.immediate =
+-				flags & DRM_XE_VM_BIND_FLAG_IMMEDIATE;
+-			op->map.read_only =
+-				flags & DRM_XE_VM_BIND_FLAG_READONLY;
+ 			op->map.is_null = flags & DRM_XE_VM_BIND_FLAG_NULL;
+ 			op->map.pat_index = pat_index;
+ 		} else if (__op->op == DRM_GPUVA_OP_PREFETCH) {
+@@ -2307,8 +2303,6 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
+ 		switch (op->base.op) {
+ 		case DRM_GPUVA_OP_MAP:
+ 		{
+-			flags |= op->map.read_only ?
+-				VMA_CREATE_FLAG_READ_ONLY : 0;
+ 			flags |= op->map.is_null ?
+ 				VMA_CREATE_FLAG_IS_NULL : 0;
+ 
+@@ -2439,7 +2433,7 @@ static int op_execute(struct drm_exec *exec, struct xe_vm *vm,
+ 	case DRM_GPUVA_OP_MAP:
+ 		err = xe_vm_bind(vm, vma, op->q, xe_vma_bo(vma),
+ 				 op->syncs, op->num_syncs,
+-				 op->map.immediate || !xe_vm_in_fault_mode(vm),
++				 !xe_vm_in_fault_mode(vm),
+ 				 op->flags & XE_VMA_OP_FIRST,
+ 				 op->flags & XE_VMA_OP_LAST);
+ 		break;
+@@ -2714,9 +2708,7 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
+ 	return 0;
+ }
+ 
+-#define SUPPORTED_FLAGS	\
+-	(DRM_XE_VM_BIND_FLAG_READONLY | \
+-	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | DRM_XE_VM_BIND_FLAG_NULL)
++#define SUPPORTED_FLAGS	(DRM_XE_VM_BIND_FLAG_NULL)
+ #define XE_64K_PAGE_MASK 0xffffull
+ #define ALL_DRM_XE_SYNCS_FLAGS (DRM_XE_SYNCS_FLAG_WAIT_FOR_OP)
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 5ac9c5bebabc..fe92f9fc766e 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -286,10 +286,6 @@ struct xe_vm {
+ struct xe_vma_op_map {
+ 	/** @vma: VMA to map */
+ 	struct xe_vma *vma;
+-	/** @immediate: Immediate bind */
+-	bool immediate;
+-	/** @read_only: Read only */
+-	bool read_only;
+ 	/** @is_null: is NULL binding */
+ 	bool is_null;
+ 	/** @pat_index: The pat index to use for this operation. */
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index dce06de592d0..5a5a31888a54 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -862,10 +862,6 @@ struct drm_xe_vm_destroy {
+  *  - %DRM_XE_VM_BIND_OP_PREFETCH
+  *
+  * and the @flags can be:
+- *  - %DRM_XE_VM_BIND_FLAG_READONLY
+- *  - %DRM_XE_VM_BIND_FLAG_IMMEDIATE - Valid on a faulting VM only, do the
+- *    MAP operation immediately rather than deferring the MAP to the page
+- *    fault handler.
+  *  - %DRM_XE_VM_BIND_FLAG_NULL - When the NULL flag is set, the page
+  *    tables are setup with a special bit which indicates writes are
+  *    dropped and all reads return zero. In the future, the NULL flags
+@@ -958,8 +954,6 @@ struct drm_xe_vm_bind_op {
+ 	/** @op: Bind operation to perform */
+ 	__u32 op;
+ 
+-#define DRM_XE_VM_BIND_FLAG_READONLY	(1 << 0)
+-#define DRM_XE_VM_BIND_FLAG_IMMEDIATE	(1 << 1)
+ #define DRM_XE_VM_BIND_FLAG_NULL	(1 << 2)
+ 	/** @flags: Bind flags */
+ 	__u32 flags;
+@@ -1075,19 +1069,6 @@ struct drm_xe_exec_queue_create {
+ #define DRM_XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY		0
+ #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY		0
+ #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE		1
+-#define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_PREEMPTION_TIMEOUT	2
+-#define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_JOB_TIMEOUT		4
+-#define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_TRIGGER		5
+-#define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_NOTIFY		6
+-#define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_GRANULARITY	7
+-/* Monitor 128KB contiguous region with 4K sub-granularity */
+-#define     DRM_XE_ACC_GRANULARITY_128K				0
+-/* Monitor 2MB contiguous region with 64KB sub-granularity */
+-#define     DRM_XE_ACC_GRANULARITY_2M				1
+-/* Monitor 16MB contiguous region with 512KB sub-granularity */
+-#define     DRM_XE_ACC_GRANULARITY_16M				2
+-/* Monitor 64MB contiguous region with 2M sub-granularity */
+-#define     DRM_XE_ACC_GRANULARITY_64M				3
+ 
+ 	/** @extensions: Pointer to the first extension struct, if any */
+ 	__u64 extensions;
+-- 
+2.34.1
+
