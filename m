@@ -4,62 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2775C48BF8
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 11:13:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36A72C54788
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 14:01:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46DBC10E8FF;
-	Thu, 22 Feb 2024 11:13:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF61B10E94C;
+	Thu, 22 Feb 2024 14:01:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lb0tLQVt";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="j36+iw98";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43B0F10E25B;
- Thu, 22 Feb 2024 11:13:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708600398; x=1740136398;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=6mY7amn0xbeZUMVa77tyrpin6OBztF/JoIRQ7PFk2IY=;
- b=lb0tLQVtpLJPEGi92AOJoHheGXcY5hNztXugXjFoe7NxudGYHMus67Um
- OQyEQS3gXfwJ4b0FxTRs2/VqE8qZQLjowrFI2P5srR1bflSe8z4Mrs1cJ
- mHHsmTZEUrhYaMp/nCOrPnKTpVx2vpB16tj7NA8MhTYgJHxgtApC4Ir5+
- ubsktLACpeP0IXGU36tb9ZL/Zvxx+RH/CYSCn0bzzydMRspR0KlEgDT25
- 2G2P4X1yv120J5SWposO8H30T4DuQgDOrPufe0TBbNcyZ2EHw2YxSZ/6j
- 3qW1QA/+gp/GtmLNZCnIdIg6aCTNKg15ZkS8Vq/G0EkGAgbLo+OOXIG0C A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="13947580"
-X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; d="scan'208";a="13947580"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2024 03:13:17 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; 
-   d="scan'208";a="5365803"
-Received: from binm223x-mobl2.gar.corp.intel.com (HELO fedora)
- ([10.249.254.168])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2024 03:13:12 -0800
-Date: Thu, 22 Feb 2024 12:12:54 +0100
-From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+Received: from mail-io1-f47.google.com (mail-io1-f47.google.com
+ [209.85.166.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EAB1610E7EB
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 20:10:12 +0000 (UTC)
+Received: by mail-io1-f47.google.com with SMTP id
+ ca18e2360f4ac-7c454e7ed25so5185139f.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 12:10:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1708546212; x=1709151012;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=M5Z0SZna9UOg1Ona+bZVgLrYz4/0TkaS32NjeJUhFJg=;
+ b=j36+iw98hzcgFSX6SUib1RQBRPLgVhedvNa0Wy00g0sJk6Y82qOuvBNeJUyX+9d+E/
+ dLSajVEuMNPjvwjVZF80oHC8wae7fbQzVzbtcYO5MNjUMGqs6yXMRB/1nSRgzdRgLOz6
+ nZfFdpoAumugE4R4XrGo1kQxYaazlUxlYPKFz/+r+iTn2joBlhori8oBXqttEgUJoCQm
+ pVrpxcfhLsDdM2XluFzTLPUSI6KolGq7vyBbcUYXYdJgkR31vl5nY2ow5vgbIH8b+Kou
+ kBnbJn4UM95KYyR9T+Uzir4MMbx49i8W7tmRahyRoqAYN4df7jyW5mYyOpXa795sXnbE
+ 7bEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1708546212; x=1709151012;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=M5Z0SZna9UOg1Ona+bZVgLrYz4/0TkaS32NjeJUhFJg=;
+ b=Xv93VaVg7xjer8dLymzYi4DdzK2h6Xhn6PJB8Nruit6iOo/jUvWWgM8Wh/puH9NA34
+ ENVo79BXQ6eu7q4M/W43Uido1Cep3sBPdTLrbZCww31jo0Ug7EjIE4XuGbZwZfvQVRRx
+ XHNRzZkSjxhz/z3XCNpbDvamtapyjC0LvhiYUbkqKc4xvC0+WD54YlTZPhWHre4b3WGz
+ 68Q2d2+OvAGGdGeXFGdzFe4axuHjhrI7JsS79VPl/Rx+XtFp6JOmi9PBKHtEbt+EudHG
+ y25+BxCxioI0Th2+WsST61dUpn3OZLPxuUZqaW/zghiZJBun/NcIFCUHUjBB89xYEIwi
+ wjWA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW6kgBS2j+u0YdZT7zO55Ysfxw5Q/3vKMg4+Lzzud24xknaG97QyvCAALfPr/o0sYSpWGs529o5ws/dTCRscAIWuIOM+1QyUUYgKGoqP9o=
+X-Gm-Message-State: AOJu0Yxh+NOWeVzdRIXF4XYNS1QXLN7cVgpmX0e5S/b9/c/JRmb/kcVr
+ 9kFWcCme2a8RakKIuMe/CxJr+TzWYXHKQa3KGkpZmYTDylw2R18ORTtABIo5AQ==
+X-Google-Smtp-Source: AGHT+IH9AMuXPl3EZJ7hQlp6VCclDdr80TZvmeM7CdT+Wyei5omqYzpG9JNSpVS4vNSKPPCjP6+45g==
+X-Received: by 2002:a05:6e02:1a0e:b0:365:249c:690 with SMTP id
+ s14-20020a056e021a0e00b00365249c0690mr505292ild.9.1708546212041; 
+ Wed, 21 Feb 2024 12:10:12 -0800 (PST)
+Received: from google.com (161.74.123.34.bc.googleusercontent.com.
+ [34.123.74.161]) by smtp.gmail.com with ESMTPSA id
+ t18-20020a028792000000b004715e8aaea2sm2842840jai.102.2024.02.21.12.10.11
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 21 Feb 2024 12:10:11 -0800 (PST)
+Date: Wed, 21 Feb 2024 20:10:08 +0000
+From: Justin Stitt <justinstitt@google.com>
+To: David Gow <davidgow@google.com>
+Cc: Linus Torvalds <torvalds@linux-foundation.org>,
+ Shuah Khan <skhan@linuxfoundation.org>,
+ Guenter Roeck <linux@roeck-us.net>, Rae Moar <rmoar@google.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Kees Cook <keescook@chromium.org>,
+ =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Willem de Bruijn <willemb@google.com>, Florian Westphal <fw@strlen.de>,
+ Cassio Neri <cassio.neri@gmail.com>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Arthur Grillo <arthur.grillo@usp.br>,
+ Brendan Higgins <brendan.higgins@linux.dev>,
+ Daniel Latypov <dlatypov@google.com>,
+ Stephen Boyd <sboyd@kernel.org>, David Airlie <airlied@gmail.com>,
  Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: [PULL] drm-xe-fixes
-Message-ID: <ZdcsNrxdWMMM417v@fedora>
+ "David S . Miller" <davem@davemloft.net>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, linux-rtc@vger.kernel.org,
+ linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com,
+ linux-hardening@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH 2/9] lib/cmdline: Fix an invalid format specifier in an
+ assertion msg
+Message-ID: <20240221201008.ez5tu7xvkedtln3o@google.com>
+References: <20240221092728.1281499-1-davidgow@google.com>
+ <20240221092728.1281499-3-davidgow@google.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240221092728.1281499-3-davidgow@google.com>
+X-Mailman-Approved-At: Thu, 22 Feb 2024 14:01:23 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,77 +106,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Dave Sima
+Hi,
 
-The Xe pull request for 6.8-rc6
-The uAPI fixes / adjustments we've been discussing
-are starting to appear, and I will hopefully have the rest
-for next week's PR. In addition two driver fixes.
+On Wed, Feb 21, 2024 at 05:27:15PM +0800, David Gow wrote:
+> The correct format specifier for p - n (both p and n are pointers) is
+> %td, as the type should be ptrdiff_t.
 
-drm-xe-fixes-2024-02-22:
-UAPI Changes:
-- Remove support for persistent exec_queues
-- Drop a reduntant sysfs newline printout
+I think %tu is better. d specifies a signed type. I don't doubt that the
+warning is fixed but I think %tu represents the type semantics here.
 
-Cross-subsystem Changes:
+>
+> This was discovered by annotating KUnit assertion macros with gcc's
+> printf specifier, but note that gcc incorrectly suggested a %d or %ld
+> specifier (depending on the pointer size of the architecture being
+> built).
+>
+> Fixes: 0ea09083116d ("lib/cmdline: Allow get_options() to take 0 to validate the input")
+> Signed-off-by: David Gow <davidgow@google.com>
 
-Core Changes:
 
-Driver Changes:
-- A three-patch fix for a VM_BIND rebind optimization path
-- Fix a modpost warning on an xe KUNIT module
+> ---
+>  lib/cmdline_kunit.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/lib/cmdline_kunit.c b/lib/cmdline_kunit.c
+> index d4572dbc9145..705b82736be0 100644
+> --- a/lib/cmdline_kunit.c
+> +++ b/lib/cmdline_kunit.c
+> @@ -124,7 +124,7 @@ static void cmdline_do_one_range_test(struct kunit *test, const char *in,
+>  			    n, e[0], r[0]);
+>
+>  	p = memchr_inv(&r[1], 0, sizeof(r) - sizeof(r[0]));
+> -	KUNIT_EXPECT_PTR_EQ_MSG(test, p, NULL, "in test %u at %u out of bound", n, p - r);
+> +	KUNIT_EXPECT_PTR_EQ_MSG(test, p, NULL, "in test %u at %td out of bound", n, p - r);
+>  }
+>
+>  static void cmdline_test_range(struct kunit *test)
+> --
+> 2.44.0.rc0.258.g7320e95886-goog
+>
 
-/Thomas
-
-The following changes since commit b401b621758e46812da61fa58a67c3fd8d91de0d:
-
-  Linux 6.8-rc5 (2024-02-18 12:56:25 -0800)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2024-02-22
-
-for you to fetch changes up to 6650d23f3e20ca00482a71a4ef900f0ea776fb15:
-
-  drm/xe: Fix modpost warning on xe_mocs kunit module (2024-02-21 11:06:52 +0100)
-
-----------------------------------------------------------------
-UAPI Changes:
-- Remove support for persistent exec_queues
-- Drop a reduntant sysfs newline printout
-
-Cross-subsystem Changes:
-
-Core Changes:
-
-Driver Changes:
-- A three-patch fix for a VM_BIND rebind optimization path
-- Fix a modpost warning on an xe KUNIT module
-
-----------------------------------------------------------------
-Ashutosh Dixit (2):
-      drm/xe/xe_gt_idle: Drop redundant newline in name
-      drm/xe: Fix modpost warning on xe_mocs kunit module
-
-Matthew Brost (3):
-      drm/xe: Fix xe_vma_set_pte_size
-      drm/xe: Add XE_VMA_PTE_64K VMA flag
-      drm/xe: Return 2MB page size for compact 64k PTEs
-
-Thomas Hellström (1):
-      drm/xe/uapi: Remove support for persistent exec_queues
-
- drivers/gpu/drm/xe/tests/xe_mocs_test.c  |  1 +
- drivers/gpu/drm/xe/xe_device.c           | 39 --------------------------------
- drivers/gpu/drm/xe/xe_device.h           |  4 ----
- drivers/gpu/drm/xe/xe_device_types.h     |  8 -------
- drivers/gpu/drm/xe/xe_exec_queue.c       | 33 ++++-----------------------
- drivers/gpu/drm/xe/xe_exec_queue_types.h | 10 --------
- drivers/gpu/drm/xe/xe_execlist.c         |  2 --
- drivers/gpu/drm/xe/xe_gt_idle.c          |  4 ++--
- drivers/gpu/drm/xe/xe_guc_submit.c       |  2 --
- drivers/gpu/drm/xe/xe_pt.c               | 11 ++++++---
- drivers/gpu/drm/xe/xe_vm.c               | 14 ++++++++----
- drivers/gpu/drm/xe/xe_vm_types.h         |  2 ++
- include/uapi/drm/xe_drm.h                |  1 -
- 13 files changed, 28 insertions(+), 103 deletions(-)
+Thanks
+Justin
