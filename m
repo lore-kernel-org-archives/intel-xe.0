@@ -4,62 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 002BAC48BC3
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Feb 2024 09:28:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98610C48BC3
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Feb 2024 09:28:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E05110E67D;
-	Wed, 21 Feb 2024 09:28:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2402610E659;
+	Wed, 21 Feb 2024 09:28:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="cPDX3ks7";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="OR8PHALc";
 	dkim-atps=neutral
-Received: from mail-yw1-f202.google.com (mail-yw1-f202.google.com
- [209.85.128.202])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7922210E67D
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 09:28:24 +0000 (UTC)
-Received: by mail-yw1-f202.google.com with SMTP id
- 00721157ae682-6087ffdac8cso7599837b3.2
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 01:28:24 -0800 (PST)
+Received: from mail-yb1-f201.google.com (mail-yb1-f201.google.com
+ [209.85.219.201])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE1ED10E682
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 09:28:28 +0000 (UTC)
+Received: by mail-yb1-f201.google.com with SMTP id
+ 3f1490d57ef6-dcdc3db67f0so7868326276.1
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 01:28:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1708507703; x=1709112503;
+ d=google.com; s=20230601; t=1708507708; x=1709112508;
  darn=lists.freedesktop.org; 
  h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
  :date:from:to:cc:subject:date:message-id:reply-to;
- bh=6oh8w0yc8LvH1yvSHI8zU+2R7q+ewyvFM42Am6pdhYA=;
- b=cPDX3ks7b/yKJBo8KX35o3UB1RnqeTpaaGv1TlLxQ1pYn4USJ82e8iOSsPWO81Yb3K
- NqmPRksegPt1HnD7D5ET691TwidH61ecEvm93TNt8He1PGOk/Qf1tXB0CmX9sTX6Gq7Q
- asYeDkUXC1ypg4+VSjfb222LwmXqkGblXF4N3HI+M/Vrll81pfRcivsyQj+eqDYOqGVH
- Jo/HGDai/UsbH4lmpi/bqlLSC55q7UpBgjohiDWDbraB1ZghGddS/6WkOkY9+8CV8O5p
- xK9cMzQdWq+nTU43aO9cyprHGSaDpsZCt5qUdObjzunwGra6KHTYTe6LbQ+8FFwzTGgT
- q56g==
+ bh=l+N/x8q0XM6q/oxl++oFE/zLIduvg/H3kbNqGrSm6L0=;
+ b=OR8PHALcSxYjX18FxooasIFjpGF9KP1DEBNR6CL51ztNvgJJsH2cbekPYu7taco5zI
+ MzUr6oy8yVnzdv+gDFDnUSEwUdaaErm/gIq2s1fmWoAxsRQJjKJ3WUpdZ03CcZTxc7i6
+ sZLcXlVB0Egw2BynmfvxlB+R0b5BSMe1JjxI/SO5SUwz7PU1n7+a0MxdDYl8mn7XbR9H
+ kkyFhmOIBzhB0lrroKxmKe5gJed6A9IoH+WuwVKQEp+yTuCfbOHXuz69VGXq+MjcYYk3
+ EsFSeaAL+/ky8GcGWk7hBUFxhUv8TVZn7lz0cLJKnvKBTqOpv+9uRkkW5qRmJ3DHd0Ec
+ HXHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1708507703; x=1709112503;
+ d=1e100.net; s=20230601; t=1708507708; x=1709112508;
  h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
  :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=6oh8w0yc8LvH1yvSHI8zU+2R7q+ewyvFM42Am6pdhYA=;
- b=uyQx9Xqc6pLqeZ1wqUA2GvV55b9KdxsoXJ+5WhgNy5ZbxW0kPPefj/1d7KMhvqCCn3
- 9uG8hoUsc9Vn3kBa5KHomWtRdQgUMLtx06GdebNxb3TXmlySoHcF+ef92w6Fm1UfoYRe
- g4NMyjMLUc0Zh86nEFV90pN6AgSsTW6bvmuNTirum8tpqcCvt67SKnJs83CtgOtxWZcd
- xHcOEfA6IA5LWkZeAnQi6F8TtCYIW89Q1Hc/mbc3CR/aALOUL0VolR/BjTqQbLXYmoIY
- r+E5sZVcj0uF9i0aIFYJULLDI8uFkLNEaHj4YelAwKOwWb0cKyG5jMVTSPFebHYEL2FT
- UbpQ==
+ bh=l+N/x8q0XM6q/oxl++oFE/zLIduvg/H3kbNqGrSm6L0=;
+ b=w6EVqeNYeZmdK4OcECBK+rWH8W4fPXPeDDE8fpDgWHqaZSlcHNZyiPdDDdrWicrMIx
+ 4dNZFUFhNLDBrMzUnC0PxZYrTLxDQ2p5fws7kQUL5n3StxLlo7DUIvLiC/t8BTEzMrCF
+ OwFTj10BorzkSKbDXRyFx0GCIMhPQKvguND2hMPeQm7udZskNX3QyXeNj4GZ85Trr6JA
+ DmKfX8ltc5IiveTJDFMn7KOlAfyUAUOdYjQ+0D0wy7kBrMiE1njp23/UXU9rhUc8WWh/
+ p9ileudAffsPS1Fmr8m317wDksMc3PuTcN/AvTXGFYAhP0d5KVNwP1ELLBugtAjSburd
+ meeA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWiPUXcnVhHLwH388X6zm3SXi7RPjXCJwMGYwKPryMn1wNUh8Mbv8JT+qbZ3cqGR11cCWW+hUXd4jMDq7Q5h8TUHLO0ALRkFZ37je9vyAI=
-X-Gm-Message-State: AOJu0YxcfFQGzpViEM0vanK6Mr+gaFDrvSxw/wk5EmW5uKaOh1pAOlt9
- 2vxIqWysdxU6h5m17eW4uzHwSo5pJ5twmewejSl+NbJG6l/Z0hSSeAEx7qfSqDqxx1Vi6lZvFOr
- poq6dgtl6oA==
-X-Google-Smtp-Source: AGHT+IHAVxan3IBdGfT14ZlxAMIfrkzUxv01ETxOcEryam+Wji8MbAhrWelAxlNmlmHCaTgl78twQW5eAT/4hw==
+ AJvYcCW2zLLu2HjoysnYhopCOIRufnEqT9wE+yS8tGVEePPzR1DclEkJf+FwbatB0fsgc+aAeEpKYz+qxDnTj7SPsz08+B3Wle88J0a7PnHPHSo=
+X-Gm-Message-State: AOJu0YydBaUkgygCvCefd46L2p1gNWywm6FOFIm7tmmz8zecJ0MPLWRV
+ KPW6Q2uwU/f2Nv29DodhAXpluJfsVg0/majl5Isx7q9KMIZJ20bQA6kxb21TZdm5QlKc8Cywypi
+ RxD/H5lvyLA==
+X-Google-Smtp-Source: AGHT+IGujiTgGmrs6aB7MYtXNm4zgRA3Zr4vV9toQOw9f+upbD+oRsb+6ooQYjPHHocWRD49vELQV317edlmfg==
 X-Received: from slicestar.c.googlers.com
  ([fda3:e722:ac3:cc00:4f:4b78:c0a8:20a1])
- (user=davidgow job=sendgmr) by 2002:a0d:e8c4:0:b0:607:cd11:5464 with SMTP id
- r187-20020a0de8c4000000b00607cd115464mr4264994ywe.9.1708507703514; Wed, 21
- Feb 2024 01:28:23 -0800 (PST)
-Date: Wed, 21 Feb 2024 17:27:18 +0800
+ (user=davidgow job=sendgmr) by 2002:a05:6902:1081:b0:dc2:2e5c:a21d with SMTP
+ id v1-20020a056902108100b00dc22e5ca21dmr5584522ybu.6.1708507707855; Wed, 21
+ Feb 2024 01:28:27 -0800 (PST)
+Date: Wed, 21 Feb 2024 17:27:19 +0800
 In-Reply-To: <20240221092728.1281499-1-davidgow@google.com>
 Mime-Version: 1.0
 References: <20240221092728.1281499-1-davidgow@google.com>
 X-Mailer: git-send-email 2.44.0.rc0.258.g7320e95886-goog
-Message-ID: <20240221092728.1281499-6-davidgow@google.com>
-Subject: [PATCH 5/9] rtc: test: Fix invalid format specifier.
+Message-ID: <20240221092728.1281499-7-davidgow@google.com>
+Subject: [PATCH 6/9] net: test: Fix printf format specifier in skb_segment
+ kunit test
 From: David Gow <davidgow@google.com>
 To: Linus Torvalds <torvalds@linux-foundation.org>,
  Shuah Khan <skhan@linuxfoundation.org>, 
@@ -98,30 +99,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-'days' is a s64 (from div_s64), and so should use a %lld specifier.
+KUNIT_FAIL() accepts a printf-style format string, but previously did
+not let gcc validate it with the __printf() attribute. The use of %lld
+for the result of PTR_ERR() is not correct.
 
-This was found by extending KUnit's assertion macros to use gcc's
-__printf attribute.
+Instead, use %pe and pass the actual error pointer. printk() will format
+it correctly (and give a symbolic name rather than a number if
+available, which should make the output more readable, too).
 
-Fixes: 1d1bb12a8b18 ("rtc: Improve performance of rtc_time64_to_tm(). Add tests.")
+Fixes: b3098d32ed6e ("net: add skb_segment kunit test")
 Signed-off-by: David Gow <davidgow@google.com>
 ---
- drivers/rtc/lib_test.c | 2 +-
+ net/core/gso_test.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/rtc/lib_test.c b/drivers/rtc/lib_test.c
-index d5caf36c56cd..225c859d6da5 100644
---- a/drivers/rtc/lib_test.c
-+++ b/drivers/rtc/lib_test.c
-@@ -54,7 +54,7 @@ static void rtc_time64_to_tm_test_date_range(struct kunit *test)
+diff --git a/net/core/gso_test.c b/net/core/gso_test.c
+index 4c2e77bd12f4..358c44680d91 100644
+--- a/net/core/gso_test.c
++++ b/net/core/gso_test.c
+@@ -225,7 +225,7 @@ static void gso_test_func(struct kunit *test)
  
- 		days = div_s64(secs, 86400);
- 
--		#define FAIL_MSG "%d/%02d/%02d (%2d) : %ld", \
-+		#define FAIL_MSG "%d/%02d/%02d (%2d) : %lld", \
- 			year, month, mday, yday, days
- 
- 		KUNIT_ASSERT_EQ_MSG(test, year - 1900, result.tm_year, FAIL_MSG);
+ 	segs = skb_segment(skb, features);
+ 	if (IS_ERR(segs)) {
+-		KUNIT_FAIL(test, "segs error %lld", PTR_ERR(segs));
++		KUNIT_FAIL(test, "segs error %pe", segs);
+ 		goto free_gso_skb;
+ 	} else if (!segs) {
+ 		KUNIT_FAIL(test, "no segments");
 -- 
 2.44.0.rc0.258.g7320e95886-goog
 
