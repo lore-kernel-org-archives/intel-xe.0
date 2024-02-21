@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDA3CC48BF6
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Feb 2024 10:01:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2AADC48BC3
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Feb 2024 10:02:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6154A10E5CC;
-	Wed, 21 Feb 2024 10:01:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84D9C10E6CB;
+	Wed, 21 Feb 2024 10:02:07 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BA6910E45E;
- Wed, 21 Feb 2024 10:01:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EE4F10E45E;
+ Wed, 21 Feb 2024 10:02:06 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_replace_?=
- =?utf-8?q?=27grouped_target=27_in_Makefile_with_pattern_rule?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_replace_=27grou?=
+ =?utf-8?q?ped_target=27_in_Makefile_with_pattern_rule?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Dafna Hirschfeld" <dhirschfeld@habana.ai>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 21 Feb 2024 10:01:55 -0000
-Message-ID: <170850971563.178729.2044570759767236579@8e613ede5ea5>
+Date: Wed, 21 Feb 2024 10:02:06 -0000
+Message-ID: <170850972645.178729.17712717670932053450@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240221095556.1635644-1-dhirschfeld@habana.ai>
 In-Reply-To: <20240221095556.1635644-1-dhirschfeld@habana.ai>
@@ -48,9 +48,27 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: b895612a4da6 drm-tip: 2024y-02m-21d-08h-06m-32s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: replace 'grouped target' in Makefile with pattern rule
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+35591fb8b4d5305b37ce31483f85ac0956eaa536
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b69866973f8d00d6125a3f430747d3bb5307d458
+Author: Dafna Hirschfeld <dhirschfeld@habana.ai>
+Date:   Wed Feb 21 11:55:56 2024 +0200
+
+    drm/xe: replace 'grouped target' in Makefile with pattern rule
+    
+    Since 'grouped target' is used only in 'make' 4.3, it should
+    be avoided. Replace it with 'multi-target pattern rule' which
+    has the same behavior.
+    
+    Signed-off-by: Dafna Hirschfeld <dhirschfeld@habana.ai>
++ /mt/dim checkpatch b895612a4da69e73804cd5fc2dedfa44fda1da99 drm-intel
+b69866973f8d drm/xe: replace 'grouped target' in Makefile with pattern rule
 
 
