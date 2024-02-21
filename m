@@ -4,84 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4D14C54E49
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4EECC54E4A
 	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 14:01:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3779810E956;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FC1B10E955;
 	Thu, 22 Feb 2024 14:01:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="OBomsFKV";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="rHwkiBOm";
 	dkim-atps=neutral
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com
- [209.85.219.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D91E10E41E;
- Wed, 21 Feb 2024 20:54:46 +0000 (UTC)
-Received: by mail-yb1-f179.google.com with SMTP id
- 3f1490d57ef6-dc6d8bd612dso1217522276.1; 
- Wed, 21 Feb 2024 12:54:46 -0800 (PST)
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com
+ [209.85.166.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38B7E10E7D1
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 20:02:12 +0000 (UTC)
+Received: by mail-io1-f41.google.com with SMTP id
+ ca18e2360f4ac-7beda6a274bso41471039f.2
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 12:02:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1708548885; x=1709153685; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:reply-to:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=zG/hGKUBFHTrQpCIkO4Jfe/fvPU9NU7JPEBYcirwrEY=;
- b=OBomsFKV469TI6hUf25smJHVfQG4umPEuzNPu9rSSzvLBXOszmfuiU7ptVc1hh+nv+
- tfCnrtKiwis84yzeG+EQl48RjrfpspsN7XVkzhHDz0hXKweUqvRss+XjvngD/w4Hwfc6
- CsDUx2BnEtCPspWQm03/GrQU8/9+iKHc4NOJa8AicG8640Y5A1pembTbsqfSxv7a1mVC
- YD/EsVWavT9LskwKhCPa66Q+VGxWYZtI6aIAiteir0COdIbh1K8Z7Xvrgoyq3rtxGM1+
- C7K/iZV6tnAarx5VwGAaaTuXUfp0egOhx1CkDq6LZEAhZsjbVRi/YQoLQ3OglZEah9ir
- xzGQ==
+ d=google.com; s=20230601; t=1708545731; x=1709150531;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=hW/eD+217SwbFSrd+7OlcqgqqQaX2xcDsJgsLrnW3ms=;
+ b=rHwkiBOm9IqPFna+mTfLShXLJ1T1b/BoVvF2N+5Z6vglGkrwugmv+oIQbwPNv587YT
+ qI1DiNdeZgsFZbcro3ciC710R8kAMmwY/VWEwy5o3mjuSQI3R4tZg7pm6Ojb7mnzGMX5
+ ztwTUepI5rLP2DvfyThVzgsBR7CWgIfkgztBJI+2g+DJVb39BNlee5XdWjLsEcHztSf9
+ fn8NxiTq5Oi9+Z2xhmiKDD3yphfwHL22MEB+opH1CpQYddFZO73MDK3yhBdsE1cUd5b8
+ 4LSrl5k5EMmVp8iXvHxCzhm//O4J6F+SI2LPjkbcyZyEeRlqSM8c+trrX9R6gbxJBCMh
+ h4iQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1708548885; x=1709153685;
- h=cc:to:subject:message-id:date:from:reply-to:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=zG/hGKUBFHTrQpCIkO4Jfe/fvPU9NU7JPEBYcirwrEY=;
- b=cfPyD7vuxPMHNZEymmbkVSBtjohmOfYEA6x4VCFXClVM5dnFzTZraiXzOj40MzLYFz
- u066e4HHfNC7l8pzvc9C3gvJrRptXz1Ga2txRxTEvhQ+ec0fRWRkztIaXiTYI+wVbXNM
- ksiyYj4yruWMf05O6NMrbYt9RsWnz/4foLpo+wZdPG51iErGM+yx4DjsizTHkp7OfV7J
- MpBe9ZS7HwoeINUNIJkqGY9NUdbOWACTiTHTN/sdpdCAXiuyqgSeSScbBH1eA3qstKko
- z6YqTdP0qoVw1vd9uy/WT6cNFPc1eANrF+b8qpY4/k8WqiyIv1d1AZVVQX/cz55ye4Zc
- 4ycg==
+ d=1e100.net; s=20230601; t=1708545731; x=1709150531;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=hW/eD+217SwbFSrd+7OlcqgqqQaX2xcDsJgsLrnW3ms=;
+ b=DMA8bo34Hq8avLmlKM1i0+zS+dJO2T+wIaFNhGiroM0C9qjkw6pRuVuYa6e8jdaE4n
+ prSak4WhHZE7NrGogAnxWYIBs+wGA44A2CRbA75vh7kCbVI+sI7ZVfU+bjF/5ZeEJuza
+ HMhBPiV3H1Senlb/8cWsxPl/Z+Z6cwuXCZCsFtoOMwOW24mDlr/e6yMOUo3wrDMtu85l
+ X+qjGKNSx8xFocDhjOhMvvV+KTB7S3R2yl2ybLCI02SZapN1PggmJuRFSU/OGZiKDy5w
+ 59sgLEPKFtE64hSgehNJr3ulArSjL/r8GMWh+4TOL8XNrnRugSj4ENSXfxdtrrRy8uKS
+ uvBw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXMJcIvjeXZB8kMj0n75d8ujfYuNiZibv92swqzvOqmQTabmMoBboWZ5kU32k2SV47EVnPVMg6cuwlCz2wCvlPqsCODBz5lMxv14wj/TL3oWaBwh4zArKO9uZqPIpQ1Up5rSrrURWuDnKUwzwIP7FM=
-X-Gm-Message-State: AOJu0YzjpKA+nlrjIVv+L4Hlb4A0EmE2M+wb6sP+W+iusHqXrtBXxUYJ
- GOm/gpbLSbdQZ1Aj+c/Sc2x0jPDL4U+dzVLlQVj3lvHtbb4Xi+qepBWNibzrqKQrVkfQFOLk+dP
- bGjKNhc5rntZSdZSjMXhQ01dyVWM=
-X-Google-Smtp-Source: AGHT+IEvLLsgVEwId+fWOD8nT0pOqOHtElda+ZjmIi5BQfmKg7nZ8CxGJCja1jw4MNJ6CdakfvPdbuuTMewiFOTry3E=
-X-Received: by 2002:a25:148b:0:b0:dcb:d653:8ad9 with SMTP id
- 133-20020a25148b000000b00dcbd6538ad9mr481476ybu.12.1708548885189; Wed, 21 Feb
- 2024 12:54:45 -0800 (PST)
-MIME-Version: 1.0
-References: <20240221092728.1281499-1-davidgow@google.com>
- <20240221092728.1281499-6-davidgow@google.com>
-In-Reply-To: <20240221092728.1281499-6-davidgow@google.com>
-From: Cassio Neri <cassio.neri@gmail.com>
-Date: Wed, 21 Feb 2024 20:54:34 +0000
-Message-ID: <CAOfgUPiOd36kZ87r2TpwhansYgYCRCgDy5yFLXzV6OPWgdo55w@mail.gmail.com>
-Subject: Re: [PATCH 5/9] rtc: test: Fix invalid format specifier.
+ AJvYcCUdwih5F/96ajl7lgFk/n2V3qFda+XF9j8dF0mmAqBHE5EL1V6E+QmPWLR8S5C8MIvv28wGtgM7Sx501pcT8nQUXOd7x5NJy4EjjhBwZrk=
+X-Gm-Message-State: AOJu0YxSznrcsDRMPAQwk+nyhwEbvkBzbOB+4rwQlzAmYTHHkLZlPceF
+ xhE9SCq/ZTwNSocQMFXoAJ7h5tco4cjltdbQ/V795RfOp6vMjpFWyaIXQCkj9g==
+X-Google-Smtp-Source: AGHT+IG39BbcKPU1il8vkTs2a8eXqdOP0Ld0XjhZHI7TKaGTsFOA7fu8B9CXr669y5rm4dsiJ0Wmbg==
+X-Received: by 2002:a5d:929a:0:b0:7c7:4d7e:de87 with SMTP id
+ s26-20020a5d929a000000b007c74d7ede87mr10763875iom.1.1708545731187; 
+ Wed, 21 Feb 2024 12:02:11 -0800 (PST)
+Received: from google.com (161.74.123.34.bc.googleusercontent.com.
+ [34.123.74.161]) by smtp.gmail.com with ESMTPSA id
+ fv5-20020a05663866c500b004741f7683ebsm2243287jab.154.2024.02.21.12.02.10
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 21 Feb 2024 12:02:10 -0800 (PST)
+Date: Wed, 21 Feb 2024 20:02:04 +0000
+From: Justin Stitt <justinstitt@google.com>
 To: David Gow <davidgow@google.com>
 Cc: Linus Torvalds <torvalds@linux-foundation.org>,
- Shuah Khan <skhan@linuxfoundation.org>, 
- Guenter Roeck <linux@roeck-us.net>, Rae Moar <rmoar@google.com>, 
- Matthew Auld <matthew.auld@intel.com>, 
- Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Shuah Khan <skhan@linuxfoundation.org>,
+ Guenter Roeck <linux@roeck-us.net>, Rae Moar <rmoar@google.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
  Kees Cook <keescook@chromium.org>,
- =?UTF-8?B?TWHDrXJhIENhbmFs?= <mcanal@igalia.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Matthew Brost <matthew.brost@intel.com>,
- Willem de Bruijn <willemb@google.com>, Florian Westphal <fw@strlen.de>, 
+ =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Willem de Bruijn <willemb@google.com>, Florian Westphal <fw@strlen.de>,
+ Cassio Neri <cassio.neri@gmail.com>,
  Javier Martinez Canillas <javierm@redhat.com>,
- Arthur Grillo <arthur.grillo@usp.br>, 
+ Arthur Grillo <arthur.grillo@usp.br>,
  Brendan Higgins <brendan.higgins@linux.dev>,
- Daniel Latypov <dlatypov@google.com>, 
+ Daniel Latypov <dlatypov@google.com>,
  Stephen Boyd <sboyd@kernel.org>, David Airlie <airlied@gmail.com>,
- Maxime Ripard <mripard@kernel.org>, 
- "David S . Miller" <davem@davemloft.net>, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org, 
- linux-rtc@vger.kernel.org, linux-kselftest@vger.kernel.org, 
- kunit-dev@googlegroups.com, linux-hardening@vger.kernel.org, 
- netdev@vger.kernel.org
-Content-Type: multipart/alternative; boundary="0000000000006219860611ea8981"
+ Maxime Ripard <mripard@kernel.org>,
+ "David S . Miller" <davem@davemloft.net>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, linux-rtc@vger.kernel.org,
+ linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com,
+ linux-hardening@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH 9/9] kunit: Annotate _MSG assertion variants with gnu
+ printf specifiers
+Message-ID: <20240221200204.frzov7n5bxb4cekd@google.com>
+References: <20240221092728.1281499-1-davidgow@google.com>
+ <20240221092728.1281499-10-davidgow@google.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240221092728.1281499-10-davidgow@google.com>
 X-Mailman-Approved-At: Thu, 22 Feb 2024 14:01:23 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -94,110 +103,58 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: cassio.neri@gmail.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---0000000000006219860611ea8981
-Content-Type: text/plain; charset="UTF-8"
+Hi,
 
-Hi David,
-
-Thanks for fixing drivers/rtc/lib_test.c
-
-Best wishes,
-Cassio.
-
-On Wed, 21 Feb 2024 at 09:28, David Gow <davidgow@google.com> wrote:
-
-> 'days' is a s64 (from div_s64), and so should use a %lld specifier.
+On Wed, Feb 21, 2024 at 05:27:22PM +0800, David Gow wrote:
+> KUnit's assertion macros have variants which accept a printf format
+> string, to allow tests to specify a more detailed message on failure.
+> These (and the related KUNIT_FAIL() macro) ultimately wrap the
+> __kunit_do_failed_assertion() function, which accepted a printf format
+> specifier, but did not have the __printf attribute, so gcc couldn't warn
+> on incorrect agruments.
 >
-> This was found by extending KUnit's assertion macros to use gcc's
-> __printf attribute.
+> It turns out there were quite a few tests with such incorrect arguments.
 >
-> Fixes: 1d1bb12a8b18 ("rtc: Improve performance of rtc_time64_to_tm(). Add
-> tests.")
+> Add the __printf() specifier now that we've fixed these errors, to
+> prevent them from recurring.
+>
+> Suggested-by: Linus Torvalds <torvalds@linux-foundation.org>
 > Signed-off-by: David Gow <davidgow@google.com>
+
+Reviewed-by: Justin Stitt <justinstitt@google.com>
 > ---
->  drivers/rtc/lib_test.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  include/kunit/test.h | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
 >
-> diff --git a/drivers/rtc/lib_test.c b/drivers/rtc/lib_test.c
-> index d5caf36c56cd..225c859d6da5 100644
-> --- a/drivers/rtc/lib_test.c
-> +++ b/drivers/rtc/lib_test.c
-> @@ -54,7 +54,7 @@ static void rtc_time64_to_tm_test_date_range(struct
-> kunit *test)
+> diff --git a/include/kunit/test.h b/include/kunit/test.h
+> index fcb4a4940ace..61637ef32302 100644
+> --- a/include/kunit/test.h
+> +++ b/include/kunit/test.h
+> @@ -579,12 +579,12 @@ void __printf(2, 3) kunit_log_append(struct string_stream *log, const char *fmt,
 >
->                 days = div_s64(secs, 86400);
+>  void __noreturn __kunit_abort(struct kunit *test);
 >
-> -               #define FAIL_MSG "%d/%02d/%02d (%2d) : %ld", \
-> +               #define FAIL_MSG "%d/%02d/%02d (%2d) : %lld", \
->                         year, month, mday, yday, days
+> -void __kunit_do_failed_assertion(struct kunit *test,
+> -			       const struct kunit_loc *loc,
+> -			       enum kunit_assert_type type,
+> -			       const struct kunit_assert *assert,
+> -			       assert_format_t assert_format,
+> -			       const char *fmt, ...);
+> +void __printf(6, 7) __kunit_do_failed_assertion(struct kunit *test,
+> +						const struct kunit_loc *loc,
+> +						enum kunit_assert_type type,
+> +						const struct kunit_assert *assert,
+> +						assert_format_t assert_format,
+> +						const char *fmt, ...);
 >
->                 KUNIT_ASSERT_EQ_MSG(test, year - 1900, result.tm_year,
-> FAIL_MSG);
+>  #define _KUNIT_FAILED(test, assert_type, assert_class, assert_format, INITIALIZER, fmt, ...) do { \
+>  	static const struct kunit_loc __loc = KUNIT_CURRENT_LOC;	       \
 > --
 > 2.44.0.rc0.258.g7320e95886-goog
 >
->
 
---0000000000006219860611ea8981
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"fon=
-t-family:arial,helvetica,sans-serif"><div class=3D"gmail_default" style=3D"=
-font-family:arial,helvetica,sans-serif">Hi David,</div><div class=3D"gmail_=
-default" style=3D"font-family:arial,helvetica,sans-serif"><br></div><div cl=
-ass=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif">Than=
-ks for fixing <span class=3D"gmail_default" style=3D"font-family:arial,helv=
-etica,sans-serif"></span>drivers/rtc/lib_test.c</div><div class=3D"gmail_de=
-fault" style=3D"font-family:arial,helvetica,sans-serif"><br></div><div clas=
-s=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif">Best w=
-ishes,</div><div class=3D"gmail_default" style=3D"font-family:arial,helveti=
-ca,sans-serif">Cassio.</div></div></div><br><div class=3D"gmail_quote"><div=
- dir=3D"ltr" class=3D"gmail_attr">On Wed, 21 Feb 2024 at 09:28, David Gow &=
-lt;<a href=3D"mailto:davidgow@google.com">davidgow@google.com</a>&gt; wrote=
-:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
-8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">&#39;days&#39;=
- is a s64 (from div_s64), and so should use a %lld specifier.<br>
-<br>
-This was found by extending KUnit&#39;s assertion macros to use gcc&#39;s<b=
-r>
-__printf attribute.<br>
-<br>
-Fixes: 1d1bb12a8b18 (&quot;rtc: Improve performance of rtc_time64_to_tm(). =
-Add tests.&quot;)<br>
-Signed-off-by: David Gow &lt;<a href=3D"mailto:davidgow@google.com" target=
-=3D"_blank">davidgow@google.com</a>&gt;<br>
----<br>
-=C2=A0drivers/rtc/lib_test.c | 2 +-<br>
-=C2=A01 file changed, 1 insertion(+), 1 deletion(-)<br>
-<br>
-diff --git a/drivers/rtc/lib_test.c b/drivers/rtc/lib_test.c<br>
-index d5caf36c56cd..225c859d6da5 100644<br>
---- a/<span class=3D"gmail_default" style=3D"font-family:arial,helvetica,sa=
-ns-serif"></span>drivers/rtc/lib_test.c<br>
-+++ b/drivers/rtc/lib_test.c<br>
-@@ -54,7 +54,7 @@ static void rtc_time64_to_tm_test_date_range(struct kunit=
- *test)<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 days =3D div_s64(se=
-cs, 86400);<br>
-<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#define FAIL_MSG &q=
-uot;%d/%02d/%02d (%2d) : %ld&quot;, \<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#define FAIL_MSG &q=
-uot;%d/%02d/%02d (%2d) : %lld&quot;, \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 year, month, mday, yday, days<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 KUNIT_ASSERT_EQ_MSG=
-(test, year - 1900, result.tm_year, FAIL_MSG);<br>
--- <br>
-2.44.0.rc0.258.g7320e95886-goog<br>
-<br>
-</blockquote></div></div>
-
---0000000000006219860611ea8981--
+Thanks
+Justin
