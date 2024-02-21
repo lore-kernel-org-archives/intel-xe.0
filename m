@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4EECC54E4A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9DF4C48BF8
 	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 14:01:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FC1B10E955;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9758B10E958;
 	Thu, 22 Feb 2024 14:01:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="rHwkiBOm";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="QsARzQ7B";
 	dkim-atps=neutral
-Received: from mail-io1-f41.google.com (mail-io1-f41.google.com
- [209.85.166.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38B7E10E7D1
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 20:02:12 +0000 (UTC)
-Received: by mail-io1-f41.google.com with SMTP id
- ca18e2360f4ac-7beda6a274bso41471039f.2
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 12:02:12 -0800 (PST)
+Received: from mail-il1-f178.google.com (mail-il1-f178.google.com
+ [209.85.166.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8EEB10E815
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 21:26:28 +0000 (UTC)
+Received: by mail-il1-f178.google.com with SMTP id
+ e9e14a558f8ab-363bdac74c6so19662415ab.2
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 13:26:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1708545731; x=1709150531;
+ d=google.com; s=20230601; t=1708550788; x=1709155588;
  darn=lists.freedesktop.org; 
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=hW/eD+217SwbFSrd+7OlcqgqqQaX2xcDsJgsLrnW3ms=;
- b=rHwkiBOm9IqPFna+mTfLShXLJ1T1b/BoVvF2N+5Z6vglGkrwugmv+oIQbwPNv587YT
- qI1DiNdeZgsFZbcro3ciC710R8kAMmwY/VWEwy5o3mjuSQI3R4tZg7pm6Ojb7mnzGMX5
- ztwTUepI5rLP2DvfyThVzgsBR7CWgIfkgztBJI+2g+DJVb39BNlee5XdWjLsEcHztSf9
- fn8NxiTq5Oi9+Z2xhmiKDD3yphfwHL22MEB+opH1CpQYddFZO73MDK3yhBdsE1cUd5b8
- 4LSrl5k5EMmVp8iXvHxCzhm//O4J6F+SI2LPjkbcyZyEeRlqSM8c+trrX9R6gbxJBCMh
- h4iQ==
+ bh=ei6xuNgF/xoTMzRe+RBiR7YMpzO4E4Wmr5k4IfUD1BE=;
+ b=QsARzQ7BujHWULGsClKw3DMHY/bOWo1z4NZT56AovlxtleTfF1qM+QEXLeQD+VYZth
+ 07t+p9MT8U2IjxKlueatCTyeL5mCr1dDjnPCkvvmN/7GkfHPsEY23zPT7HYfQC1YZMKD
+ s5Mt+QbaTwK+vcRLrmFpxnG57+5FIMbQ7rlWcU80yBHQHtjHeoOoC9n86heqzhX+a5nR
+ wO9ZsVj0nsn6At5tL6n7rhKSB7mAG72yUZoDm2OwfZbz7s163xeNMYGMBytaCmBFBRoy
+ yvuD5JNxVVHMmGTxh9L333+/lanuOxuNVAeJlL3F6MlgSSWL9TLzT8yhpMGdefo1+mle
+ WcqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1708545731; x=1709150531;
+ d=1e100.net; s=20230601; t=1708550788; x=1709155588;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=hW/eD+217SwbFSrd+7OlcqgqqQaX2xcDsJgsLrnW3ms=;
- b=DMA8bo34Hq8avLmlKM1i0+zS+dJO2T+wIaFNhGiroM0C9qjkw6pRuVuYa6e8jdaE4n
- prSak4WhHZE7NrGogAnxWYIBs+wGA44A2CRbA75vh7kCbVI+sI7ZVfU+bjF/5ZeEJuza
- HMhBPiV3H1Senlb/8cWsxPl/Z+Z6cwuXCZCsFtoOMwOW24mDlr/e6yMOUo3wrDMtu85l
- X+qjGKNSx8xFocDhjOhMvvV+KTB7S3R2yl2ybLCI02SZapN1PggmJuRFSU/OGZiKDy5w
- 59sgLEPKFtE64hSgehNJr3ulArSjL/r8GMWh+4TOL8XNrnRugSj4ENSXfxdtrrRy8uKS
- uvBw==
+ bh=ei6xuNgF/xoTMzRe+RBiR7YMpzO4E4Wmr5k4IfUD1BE=;
+ b=jf2v2q7pZHcNEGpNxK13Sjw6c63xmXPsMtaM7zNDIS8MjaVLB0RyKr6bz1MVdqNO1j
+ BJaJh0Uc/K/E0U2HC5gfQikaDZfh8K8GiVmRY+9+bOh8juSSb4OL3s/dKjc+dFMDn6u9
+ vtU+PgbInEZIPthd9Z289Ms7Rqojy3Y5CM4JcIBG5ViiKOJqwgvnZYTP59JLmHgsYlEV
+ 2dF1d1Jn/tGfECJfHxKwNCv15mjFiE5Y9PjQlnD2eKhhEyzJcD8vAMrM6mDv+FOMiWzF
+ 5OgngkerrZHd2srFylceJDIb12dpGC4fFv4ZboeD7O2n6pePoJ5r02bduiJXs2SCuOhL
+ oOpw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUdwih5F/96ajl7lgFk/n2V3qFda+XF9j8dF0mmAqBHE5EL1V6E+QmPWLR8S5C8MIvv28wGtgM7Sx501pcT8nQUXOd7x5NJy4EjjhBwZrk=
-X-Gm-Message-State: AOJu0YxSznrcsDRMPAQwk+nyhwEbvkBzbOB+4rwQlzAmYTHHkLZlPceF
- xhE9SCq/ZTwNSocQMFXoAJ7h5tco4cjltdbQ/V795RfOp6vMjpFWyaIXQCkj9g==
-X-Google-Smtp-Source: AGHT+IG39BbcKPU1il8vkTs2a8eXqdOP0Ld0XjhZHI7TKaGTsFOA7fu8B9CXr669y5rm4dsiJ0Wmbg==
-X-Received: by 2002:a5d:929a:0:b0:7c7:4d7e:de87 with SMTP id
- s26-20020a5d929a000000b007c74d7ede87mr10763875iom.1.1708545731187; 
- Wed, 21 Feb 2024 12:02:11 -0800 (PST)
+ AJvYcCUe/fTQRTukK3ouXE/W+hAYbe2AboPibCK+GYWZ+Ro1N7zOFqYjTESj43v78YzwmIhOJ6IeWdzqDlyiYX3Q2B6YsQtakfJrTdqX4S0KiMg=
+X-Gm-Message-State: AOJu0YyzlTOXGBp/ll3/qRnG9GgiG1Siyprj4XizqQ4sB+dzcSXBPvkc
+ PXyi/mqzzmhhQb2NmZjH7Icr8FDYKP8x7k3WBj1qqV7pu56PF+aIytvbq96vmw==
+X-Google-Smtp-Source: AGHT+IE94cj8KTh5vsD6rggbO3A8K/diAIkIrFg2CCSYRvCxTJhEhQffit7CiRPnd2AjVYaPB7SsEQ==
+X-Received: by 2002:a05:6e02:4cd:b0:365:b29:3fda with SMTP id
+ f13-20020a056e0204cd00b003650b293fdamr16002018ils.24.1708550787816; 
+ Wed, 21 Feb 2024 13:26:27 -0800 (PST)
 Received: from google.com (161.74.123.34.bc.googleusercontent.com.
  [34.123.74.161]) by smtp.gmail.com with ESMTPSA id
- fv5-20020a05663866c500b004741f7683ebsm2243287jab.154.2024.02.21.12.02.10
+ o16-20020a056e02069000b00362759b0e4asm3592139ils.32.2024.02.21.13.26.26
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 21 Feb 2024 12:02:10 -0800 (PST)
-Date: Wed, 21 Feb 2024 20:02:04 +0000
+ Wed, 21 Feb 2024 13:26:27 -0800 (PST)
+Date: Wed, 21 Feb 2024 21:26:24 +0000
 From: Justin Stitt <justinstitt@google.com>
 To: David Gow <davidgow@google.com>
 Cc: Linus Torvalds <torvalds@linux-foundation.org>,
@@ -82,15 +82,15 @@ Cc: Linus Torvalds <torvalds@linux-foundation.org>,
  intel-xe@lists.freedesktop.org, linux-rtc@vger.kernel.org,
  linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com,
  linux-hardening@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH 9/9] kunit: Annotate _MSG assertion variants with gnu
- printf specifiers
-Message-ID: <20240221200204.frzov7n5bxb4cekd@google.com>
+Subject: Re: [PATCH 6/9] net: test: Fix printf format specifier in
+ skb_segment kunit test
+Message-ID: <20240221212624.w4r2w6acijkwn7qg@google.com>
 References: <20240221092728.1281499-1-davidgow@google.com>
- <20240221092728.1281499-10-davidgow@google.com>
+ <20240221092728.1281499-7-davidgow@google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240221092728.1281499-10-davidgow@google.com>
+In-Reply-To: <20240221092728.1281499-7-davidgow@google.com>
 X-Mailman-Approved-At: Thu, 22 Feb 2024 14:01:23 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -108,50 +108,41 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Hi,
 
-On Wed, Feb 21, 2024 at 05:27:22PM +0800, David Gow wrote:
-> KUnit's assertion macros have variants which accept a printf format
-> string, to allow tests to specify a more detailed message on failure.
-> These (and the related KUNIT_FAIL() macro) ultimately wrap the
-> __kunit_do_failed_assertion() function, which accepted a printf format
-> specifier, but did not have the __printf attribute, so gcc couldn't warn
-> on incorrect agruments.
+On Wed, Feb 21, 2024 at 05:27:19PM +0800, David Gow wrote:
+> KUNIT_FAIL() accepts a printf-style format string, but previously did
+> not let gcc validate it with the __printf() attribute. The use of %lld
+> for the result of PTR_ERR() is not correct.
 >
-> It turns out there were quite a few tests with such incorrect arguments.
+> Instead, use %pe and pass the actual error pointer. printk() will format
+> it correctly (and give a symbolic name rather than a number if
+> available, which should make the output more readable, too).
 >
-> Add the __printf() specifier now that we've fixed these errors, to
-> prevent them from recurring.
->
-> Suggested-by: Linus Torvalds <torvalds@linux-foundation.org>
+> Fixes: b3098d32ed6e ("net: add skb_segment kunit test")
 > Signed-off-by: David Gow <davidgow@google.com>
+
+Looks good.
+
+For those wondering, %pe has a special meaning in the kernel which can
+be seen in lib/vsprintf.c.
 
 Reviewed-by: Justin Stitt <justinstitt@google.com>
 > ---
->  include/kunit/test.h | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
+>  net/core/gso_test.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> diff --git a/include/kunit/test.h b/include/kunit/test.h
-> index fcb4a4940ace..61637ef32302 100644
-> --- a/include/kunit/test.h
-> +++ b/include/kunit/test.h
-> @@ -579,12 +579,12 @@ void __printf(2, 3) kunit_log_append(struct string_stream *log, const char *fmt,
+> diff --git a/net/core/gso_test.c b/net/core/gso_test.c
+> index 4c2e77bd12f4..358c44680d91 100644
+> --- a/net/core/gso_test.c
+> +++ b/net/core/gso_test.c
+> @@ -225,7 +225,7 @@ static void gso_test_func(struct kunit *test)
 >
->  void __noreturn __kunit_abort(struct kunit *test);
->
-> -void __kunit_do_failed_assertion(struct kunit *test,
-> -			       const struct kunit_loc *loc,
-> -			       enum kunit_assert_type type,
-> -			       const struct kunit_assert *assert,
-> -			       assert_format_t assert_format,
-> -			       const char *fmt, ...);
-> +void __printf(6, 7) __kunit_do_failed_assertion(struct kunit *test,
-> +						const struct kunit_loc *loc,
-> +						enum kunit_assert_type type,
-> +						const struct kunit_assert *assert,
-> +						assert_format_t assert_format,
-> +						const char *fmt, ...);
->
->  #define _KUNIT_FAILED(test, assert_type, assert_class, assert_format, INITIALIZER, fmt, ...) do { \
->  	static const struct kunit_loc __loc = KUNIT_CURRENT_LOC;	       \
+>  	segs = skb_segment(skb, features);
+>  	if (IS_ERR(segs)) {
+> -		KUNIT_FAIL(test, "segs error %lld", PTR_ERR(segs));
+> +		KUNIT_FAIL(test, "segs error %pe", segs);
+>  		goto free_gso_skb;
+>  	} else if (!segs) {
+>  		KUNIT_FAIL(test, "no segments");
 > --
 > 2.44.0.rc0.258.g7320e95886-goog
 >
