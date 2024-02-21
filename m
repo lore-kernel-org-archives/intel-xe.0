@@ -4,25 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE380C54788
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Feb 2024 13:30:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C224C48BF6
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Feb 2024 13:37:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6411D10E74F;
-	Wed, 21 Feb 2024 13:30:45 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CA4410E740
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 13:30:37 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v5 7/9] drm/xe: Move lrc snapshot capturing to xe_lrc.c
-Date: Wed, 21 Feb 2024 14:30:22 +0100
-Message-ID: <20240221133024.898315-7-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240221133024.898315-1-maarten.lankhorst@linux.intel.com>
-References: <20240221133024.898315-1-maarten.lankhorst@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5876410E746;
+	Wed, 21 Feb 2024 13:37:50 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26BFC10E748;
+ Wed, 21 Feb 2024 13:37:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
+ =?utf-8?q?_=5Bv5=2C1/9=5D_drm/xe/snapshot=3A_Remove_drm=5Ferr_on_guc_alloc_?=
+ =?utf-8?q?failures?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 21 Feb 2024 13:37:49 -0000
+Message-ID: <170852266915.178729.12279997185098327150@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240221133024.898315-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20240221133024.898315-1-maarten.lankhorst@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -34,203 +37,32 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This allows the dumping of HWSP and HW Context without exporting more
-functions.
+== Series Details ==
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_guc_submit.c       | 33 ++++++-----------
- drivers/gpu/drm/xe/xe_guc_submit_types.h | 13 +------
- drivers/gpu/drm/xe/xe_lrc.c              | 45 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_lrc.h              |  4 +++
- drivers/gpu/drm/xe/xe_lrc_types.h        |  2 ++
- 5 files changed, 63 insertions(+), 34 deletions(-)
+Series: series starting with [v5,1/9] drm/xe/snapshot: Remove drm_err on guc alloc failures
+URL   : https://patchwork.freedesktop.org/series/130203/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index ff77bc8da1b27..7348689ec5aef 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1814,21 +1814,14 @@ xe_guc_exec_queue_snapshot_capture(struct xe_sched_job *job)
- 	snapshot->sched_props.preempt_timeout_us =
- 		q->sched_props.preempt_timeout_us;
- 
--	snapshot->lrc = kmalloc_array(q->width, sizeof(struct lrc_snapshot),
-+	snapshot->lrc = kmalloc_array(q->width, sizeof(struct xe_lrc_snapshot *),
- 				      GFP_ATOMIC);
- 
- 	if (snapshot->lrc) {
- 		for (i = 0; i < q->width; ++i) {
- 			struct xe_lrc *lrc = q->lrc + i;
- 
--			snapshot->lrc[i].context_desc =
--				lower_32_bits(xe_lrc_ggtt_addr(lrc));
--			snapshot->lrc[i].head = xe_lrc_ring_head(lrc);
--			snapshot->lrc[i].tail.internal = lrc->ring.tail;
--			snapshot->lrc[i].tail.memory =
--				xe_lrc_read_ctx_reg(lrc, CTX_RING_TAIL);
--			snapshot->lrc[i].start_seqno = xe_lrc_start_seqno(lrc);
--			snapshot->lrc[i].seqno = xe_lrc_seqno(lrc);
-+			snapshot->lrc[i] = xe_lrc_snapshot_capture(lrc);
- 		}
- 	}
- 
-@@ -1894,18 +1887,9 @@ xe_guc_exec_queue_snapshot_print(struct xe_guc_submit_exec_queue_snapshot *snaps
- 	drm_printf(p, "\tPreempt timeout: %u (us)\n",
- 		   snapshot->sched_props.preempt_timeout_us);
- 
--	for (i = 0; snapshot->lrc && i < snapshot->width; ++i) {
--		drm_printf(p, "\tHW Context Desc: 0x%08x\n",
--			   snapshot->lrc[i].context_desc);
--		drm_printf(p, "\tLRC Head: (memory) %u\n",
--			   snapshot->lrc[i].head);
--		drm_printf(p, "\tLRC Tail: (internal) %u, (memory) %u\n",
--			   snapshot->lrc[i].tail.internal,
--			   snapshot->lrc[i].tail.memory);
--		drm_printf(p, "\tStart seqno: (memory) %d\n",
--			   snapshot->lrc[i].start_seqno);
--		drm_printf(p, "\tSeqno: (memory) %d\n", snapshot->lrc[i].seqno);
--	}
-+	for (i = 0; snapshot->lrc && i < snapshot->width; ++i)
-+		xe_lrc_snapshot_print(snapshot->lrc[i], p);
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: e520d7c9e873 drm-tip: 2024y-02m-21d-13h-09m-08s UTC integration manifest
+=== git am output follows ===
+.git/rebase-apply/patch:119: new blank line at EOF.
 +
- 	drm_printf(p, "\tSchedule State: 0x%x\n", snapshot->schedule_state);
- 	drm_printf(p, "\tFlags: 0x%lx\n", snapshot->exec_queue_flags);
- 
-@@ -1930,10 +1914,15 @@ xe_guc_exec_queue_snapshot_print(struct xe_guc_submit_exec_queue_snapshot *snaps
-  */
- void xe_guc_exec_queue_snapshot_free(struct xe_guc_submit_exec_queue_snapshot *snapshot)
- {
-+	int i;
- 	if (!snapshot)
- 		return;
- 
--	kfree(snapshot->lrc);
-+	if (snapshot->lrc) {
-+		for (i = 0; i < snapshot->width; i++)
-+			xe_lrc_snapshot_free(snapshot->lrc[i]);
-+		kfree(snapshot->lrc);
-+	}
- 	kfree(snapshot->pending_list);
- 	kfree(snapshot);
- }
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit_types.h b/drivers/gpu/drm/xe/xe_guc_submit_types.h
-index 72fc0f42b0a5d..dc7456c345836 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_submit_types.h
-@@ -61,17 +61,6 @@ struct guc_submit_parallel_scratch {
- 	u32 wq[WQ_SIZE / sizeof(u32)];
- };
- 
--struct lrc_snapshot {
--	u32 context_desc;
--	u32 head;
--	struct {
--		u32 internal;
--		u32 memory;
--	} tail;
--	u32 start_seqno;
--	u32 seqno;
--};
--
- struct pending_list_snapshot {
- 	u32 seqno;
- 	bool fence;
-@@ -109,7 +98,7 @@ struct xe_guc_submit_exec_queue_snapshot {
- 	} sched_props;
- 
- 	/** @lrc: LRC Snapshot */
--	struct lrc_snapshot *lrc;
-+	struct xe_lrc_snapshot **lrc;
- 
- 	/** @schedule_state: Schedule State at the moment of Crash */
- 	u32 schedule_state;
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 8c85e90220de5..2fe044ffae381 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -31,6 +31,17 @@
- #define ENGINE_CLASS_SHIFT			61
- #define ENGINE_INSTANCE_SHIFT			48
- 
-+struct xe_lrc_snapshot {
-+	u32 context_desc;
-+	u32 head;
-+	struct {
-+		u32 internal;
-+		u32 memory;
-+	} tail;
-+	u32 start_seqno;
-+	u32 seqno;
-+};
-+
- static struct xe_device *
- lrc_to_xe(struct xe_lrc *lrc)
- {
-@@ -1308,3 +1319,37 @@ void xe_lrc_emit_hwe_state_instructions(struct xe_exec_queue *q, struct xe_bb *b
- 		bb->len += num_dw;
- 	}
- }
-+
-+struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
-+{
-+	struct xe_lrc_snapshot *snapshot = kmalloc(sizeof(*snapshot), GFP_KERNEL);
-+
-+	if (!snapshot)
-+		return NULL;
-+
-+	snapshot->context_desc = lower_32_bits(xe_lrc_ggtt_addr(lrc));
-+	snapshot->head = xe_lrc_ring_head(lrc);
-+	snapshot->tail.internal = lrc->ring.tail;
-+	snapshot->tail.memory = xe_lrc_read_ctx_reg(lrc, CTX_RING_TAIL);
-+	snapshot->start_seqno = xe_lrc_start_seqno(lrc);
-+	snapshot->seqno = xe_lrc_seqno(lrc);
-+	return snapshot;
-+}
-+
-+void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer *p)
-+{
-+	if (!snapshot)
-+		return;
-+
-+	drm_printf(p, "\tHW Context Desc: 0x%08x\n", snapshot->context_desc);
-+	drm_printf(p, "\tLRC Head: (memory) %u\n", snapshot->head);
-+	drm_printf(p, "\tLRC Tail: (internal) %u, (memory) %u\n",
-+		   snapshot->tail.internal, snapshot->tail.memory);
-+	drm_printf(p, "\tStart seqno: (memory) %d\n", snapshot->start_seqno);
-+	drm_printf(p, "\tSeqno: (memory) %d\n", snapshot->seqno);
-+}
-+
-+void xe_lrc_snapshot_free(struct xe_lrc_snapshot *snapshot)
-+{
-+	kfree(snapshot);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index 28b1d3f404d4f..d6dd4045d6d7d 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -55,4 +55,8 @@ void xe_lrc_dump_default(struct drm_printer *p,
- 
- void xe_lrc_emit_hwe_state_instructions(struct xe_exec_queue *q, struct xe_bb *bb);
- 
-+struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc);
-+void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer *p);
-+void xe_lrc_snapshot_free(struct xe_lrc_snapshot *snapshot);
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
-index 24f20ed66fd13..b716df0dfb4e3 100644
---- a/drivers/gpu/drm/xe/xe_lrc_types.h
-+++ b/drivers/gpu/drm/xe/xe_lrc_types.h
-@@ -43,4 +43,6 @@ struct xe_lrc {
- 	struct xe_hw_fence_ctx fence_ctx;
- };
- 
-+struct xe_lrc_snapshot;
-+
- #endif
--- 
-2.43.0
+warning: 1 line adds whitespace errors.
+Applying: drm/xe/snapshot: Remove drm_err on guc alloc failures
+Applying: drm/xe: Clear all snapshot members after deleting coredump
+Applying: drm/xe: Add uapi for dumpable bos
+Applying: drm/xe: Annotate each dumpable vma as such
+Applying: drm/xe: Add vm snapshot mutex for easily taking a vm snapshot during devcoredump
+Applying: drm/xe: Implement VM snapshot support for BO's and userptr
+Applying: drm/xe: Move lrc snapshot capturing to xe_lrc.c
+Applying: drm/xe: Add infrastructure for delayed LRC capture
+Applying: drm/xe: Implement capture of HWSP and HWCTX
+
 
