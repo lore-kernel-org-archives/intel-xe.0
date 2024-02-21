@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9111C5478A
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Feb 2024 17:16:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33A3EC48BEB
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Feb 2024 17:16:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8806910E415;
-	Wed, 21 Feb 2024 17:16:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E59DC10E461;
+	Wed, 21 Feb 2024 17:16:18 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F3AF10E309;
- Wed, 21 Feb 2024 17:16:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BB9D10E461;
+ Wed, 21 Feb 2024 17:16:18 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/pm=3A_hide_d3?=
- =?utf-8?q?cold_sysfs_threshold?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/pm=3A_hide_d3cold_?=
+ =?utf-8?q?sysfs_threshold?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 21 Feb 2024 17:16:06 -0000
-Message-ID: <170853576658.196549.17227453460061956141@8e613ede5ea5>
+Date: Wed, 21 Feb 2024 17:16:18 -0000
+Message-ID: <170853577805.196549.11993322489529853181@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240221171008.196673-2-matthew.auld@intel.com>
 In-Reply-To: <20240221171008.196673-2-matthew.auld@intel.com>
@@ -44,13 +44,41 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/pm: hide d3cold sysfs threshold
 URL   : https://patchwork.freedesktop.org/series/130222/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 53c127ff2eda drm-tip: 2024y-02m-21d-16h-22m-19s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/pm: hide d3cold sysfs threshold
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+35591fb8b4d5305b37ce31483f85ac0956eaa536
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e0b5fb74d52d983486983f544ecce5027c222ccb
+Author: Matthew Auld <matthew.auld@intel.com>
+Date:   Wed Feb 21 17:10:09 2024 +0000
+
+    drm/xe/pm: hide d3cold sysfs threshold
+    
+    There are known deadlocks and lockdep splats with d3cold and dgpu, which
+    is why it is disabled by default. However we still don't want CI or
+    actual users trying to override the DEFAULT_VRAM_THRESHOLD and then end
+    up enabling d3cold support. For now keep the sysfs hidden if
+    DEFAULT_VRAM_THRESHOLD is zero.
+    
+    References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1246
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch 53c127ff2eda902ff59370f44526e5e8ae49dec0 drm-intel
+e0b5fb74d52d drm/xe/pm: hide d3cold sysfs threshold
+-:12: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'References:', use 'Link:' or 'Closes:' instead
+#12: 
+References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1246
+
+total: 0 errors, 1 warnings, 0 checks, 9 lines checked
 
 
