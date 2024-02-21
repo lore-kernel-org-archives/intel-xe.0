@@ -4,63 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D4FFC48BF6
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Feb 2024 09:28:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC691C54788
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Feb 2024 09:28:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CBD010E4F7;
-	Wed, 21 Feb 2024 09:28:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F0E410E652;
+	Wed, 21 Feb 2024 09:28:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="OHSicdGk";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="nOXzTG+y";
 	dkim-atps=neutral
-Received: from mail-yb1-f201.google.com (mail-yb1-f201.google.com
- [209.85.219.201])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C47B10E4E9
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 09:28:06 +0000 (UTC)
-Received: by mail-yb1-f201.google.com with SMTP id
- 3f1490d57ef6-dbf618042daso10802281276.0
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 01:28:06 -0800 (PST)
+Received: from mail-yw1-f201.google.com (mail-yw1-f201.google.com
+ [209.85.128.201])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E35BA10E652
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 09:28:10 +0000 (UTC)
+Received: by mail-yw1-f201.google.com with SMTP id
+ 00721157ae682-6047fed0132so98274687b3.1
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 01:28:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1708507685; x=1709112485;
+ d=google.com; s=20230601; t=1708507690; x=1709112490;
  darn=lists.freedesktop.org; 
  h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
  :date:from:to:cc:subject:date:message-id:reply-to;
- bh=Xu+inTe2LF3ynuuv7W7Ho6VSuZooh3VEfNa1s4AiQic=;
- b=OHSicdGkKTrzTDALuKFHYlRlkX9U3oyfBg1cjgEVIkBB9HNoND9vJN9B8PpppM58v4
- 1iEXgnGXhVwtm09G4PawVF0qao4A1iqjz4ihN5+teZMTfj5QWf6WBDyXv9txzEe08t0P
- pNrCBoUiO4PBX4J+ETTDzqQZTchHfGQNW9/vKP1xPB1So0T1K4HcbHZXBLaFHggA6fQT
- /3G1xxkylo6A6c1jO6NORdhhnNqgNd1Y2ofvZhqb4Q2aTfxsqaXd4TAnl2K0Oj7RSyzu
- Xb8TnT0u502vypRMYWwJLx1yBrLR1qhRDw8rI+h2zs/9/JSeC6GLHBW1lROSbWuwMQhJ
- x1ig==
+ bh=NeQowu5ygMbqfsZc+b92OS1HjirLANcwpz/yagEqKMA=;
+ b=nOXzTG+y/H4sMZ952zd48wxhKvVyu6iky1TCnDEejRdX3vRuoPZVhD0cCYMNwZcaEv
+ gmDHZKf1mVebAbrrdy4f7XL4I0KhEQJoOmownLcQvGPM6R/2i8oI+JzmzR9JdOT6Fdjt
+ EORSkB4QOLSD+teKLIe96K8ffTckGc9s37No+2jirMVWniqHaeOSR5BeCrGSxEQD/lZ9
+ PCbrH/vPzCgk9PPfeuvd/za+VDfZ+HvdAZ3mMB7GnwAt6Sb+C0A1WurvOfhdRRkVjsvB
+ J320Tx3hBNn+OUvTYA1W4aiOLifDhd6//HQvhkSTSu+Td/X+JjyDFXMoe889ktH1mwEp
+ 2pNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1708507685; x=1709112485;
+ d=1e100.net; s=20230601; t=1708507690; x=1709112490;
  h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
  :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=Xu+inTe2LF3ynuuv7W7Ho6VSuZooh3VEfNa1s4AiQic=;
- b=lcM1+phiRNEk0BNcrTNHNDLO+BNSwX517Bm8NdXimnlCTDASpOnoQVEZtmpuMt9fEI
- 7sbvgfN6sQoIDhkSSWCEXnFlAN85W0Dx7T4bNc3qMr0pIVxYkUqkemwuf5T2i2mZkUF8
- bP9h44Vr88jG4o3fy3b01BGoErn5PHZ2ZAzvdK2cq4AsB2rX8q4do3lmBY8uPkMXmwa2
- 9m2G7ywvxxxuQCNoGf/CxZ0cNYrP9NbNDPWZWpYHzm6JJUvqjhW3pGfWAdc08y5meeh4
- rzYidNRBVG1WfGTw/hcjWKmTlZuXT2Y9ob/s2MBXW/C1fXtkO+KKFGJEHSc1jIuiKYWW
- /7Dw==
+ bh=NeQowu5ygMbqfsZc+b92OS1HjirLANcwpz/yagEqKMA=;
+ b=NIt/E6epEnrNRuLgl0Hn5f5rvI+cVS0OgAWPsLVtwOSTUGeyicowdPMGVAWzJVhB8H
+ y+CbUiHh5pkTFysz6tSi6urOYxwQm2vmSTXvqLoDgm+/pOXlm0Q18om2RXVfAP+OtTmB
+ XV/tUblHDwDqsejDbQvisbGsVrvrP8oQh/csbjgR021FDP38xCZjPjcuktNF/83TVgxZ
+ 8g9ChGYqBnnNL92xKPIoAvQpumgfdG6Qctehi+mIvmuHxOBIpud1YucTa+axveguCp+X
+ Bi8O2v1KnCVwyBAEzo0WJD3XTp03TGHuoxkSvnq/TBKpJjQJA5S8eXTdQKn5LI5igJ3K
+ FGTw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVnyHMGmgIhJvbTmPdhLP0Nqsyi2CFSe+yQV/SFlcQ9QENN10X8D4QPuwGLTglbffdh1ufEhFnMvWV0kH4pwQ4qOxI0O25KbIShrSZ0R+U=
-X-Gm-Message-State: AOJu0YwSPkEnBC6+8zJe15aqHEm758jxdEBOwtwmxPifi4q9XjZr6wrK
- /7hcH8Touro8EHAxSDpvjqG8EM3Fe3pywcx8C6U7PXri7yUDZcJUE8iMwHBhTQaXOmrQCob4JK5
- nOZMmkUItzQ==
-X-Google-Smtp-Source: AGHT+IFRWRv9O0ZJFWIQABWXYSjWTv0ZUYrlwMd+3gPavDYER8N+pRX59ZNK2IiQ8Dvkd5y8wLfb4lO8UUdSxw==
+ AJvYcCWR3jnpi6tzpE5mar1Tjzkh9BzqX23dCUndJvHxe46Je2HGctp9TYApWMfwlpoRlRPIbYUSxgB2Y77QHofiG5DoXmyH9nJXeTQlNqK+i8E=
+X-Gm-Message-State: AOJu0YyJtTt+P1U1OHlCSp7Upeq7M7fUT5zkfHTzpp6nVAcKOdB7Vp/I
+ TNJEhBJ4SNz1cJjHLxoWIxsEm5M52If7AsfBtW4h8RMCde1OTy0hHQoNcvXSx4QmtFiMLbhubwq
+ 8IrClja5V/A==
+X-Google-Smtp-Source: AGHT+IGKmHDvlseXRZ4Y+4ut8ocdYLBEplEGH+dd9qwAR6JMHTXNGTF3psUQFQki1OvQHuO3rgwKUwj3z7weqQ==
 X-Received: from slicestar.c.googlers.com
  ([fda3:e722:ac3:cc00:4f:4b78:c0a8:20a1])
- (user=davidgow job=sendgmr) by 2002:a05:6902:1005:b0:dc7:59d9:7b46 with SMTP
- id w5-20020a056902100500b00dc759d97b46mr624383ybt.3.1708507685189; Wed, 21
- Feb 2024 01:28:05 -0800 (PST)
-Date: Wed, 21 Feb 2024 17:27:14 +0800
+ (user=davidgow job=sendgmr) by 2002:a05:6902:1001:b0:dcc:79ab:e522 with SMTP
+ id w1-20020a056902100100b00dcc79abe522mr728743ybt.11.1708507689903; Wed, 21
+ Feb 2024 01:28:09 -0800 (PST)
+Date: Wed, 21 Feb 2024 17:27:15 +0800
 In-Reply-To: <20240221092728.1281499-1-davidgow@google.com>
 Mime-Version: 1.0
 References: <20240221092728.1281499-1-davidgow@google.com>
 X-Mailer: git-send-email 2.44.0.rc0.258.g7320e95886-goog
-Message-ID: <20240221092728.1281499-2-davidgow@google.com>
-Subject: [PATCH 1/9] kunit: test: Log the correct filter string in
- executor_test
+Message-ID: <20240221092728.1281499-3-davidgow@google.com>
+Subject: [PATCH 2/9] lib/cmdline: Fix an invalid format specifier in an
+ assertion msg
 From: David Gow <davidgow@google.com>
 To: Linus Torvalds <torvalds@linux-foundation.org>,
  Shuah Khan <skhan@linuxfoundation.org>, 
@@ -99,32 +99,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-KUnit's executor_test logs the filter string in KUNIT_ASSERT_EQ_MSG(),
-but passed a random character from the filter, rather than the whole
-string.
+The correct format specifier for p - n (both p and n are pointers) is
+%td, as the type should be ptrdiff_t.
 
-This was found by annotating KUNIT_ASSERT_EQ_MSG() to let gcc validate
-the format string.
+This was discovered by annotating KUnit assertion macros with gcc's
+printf specifier, but note that gcc incorrectly suggested a %d or %ld
+specifier (depending on the pointer size of the architecture being
+built).
 
-Fixes: 76066f93f1df ("kunit: add tests for filtering attributes")
+Fixes: 0ea09083116d ("lib/cmdline: Allow get_options() to take 0 to validate the input")
 Signed-off-by: David Gow <davidgow@google.com>
 ---
- lib/kunit/executor_test.c | 2 +-
+ lib/cmdline_kunit.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/lib/kunit/executor_test.c b/lib/kunit/executor_test.c
-index 22d4ee86dbed..3f7f967e3688 100644
---- a/lib/kunit/executor_test.c
-+++ b/lib/kunit/executor_test.c
-@@ -129,7 +129,7 @@ static void parse_filter_attr_test(struct kunit *test)
- 			GFP_KERNEL);
- 	for (j = 0; j < filter_count; j++) {
- 		parsed_filters[j] = kunit_next_attr_filter(&filter, &err);
--		KUNIT_ASSERT_EQ_MSG(test, err, 0, "failed to parse filter '%s'", filters[j]);
-+		KUNIT_ASSERT_EQ_MSG(test, err, 0, "failed to parse filter from '%s'", filters);
- 	}
+diff --git a/lib/cmdline_kunit.c b/lib/cmdline_kunit.c
+index d4572dbc9145..705b82736be0 100644
+--- a/lib/cmdline_kunit.c
++++ b/lib/cmdline_kunit.c
+@@ -124,7 +124,7 @@ static void cmdline_do_one_range_test(struct kunit *test, const char *in,
+ 			    n, e[0], r[0]);
  
- 	KUNIT_EXPECT_STREQ(test, kunit_attr_filter_name(parsed_filters[0]), "speed");
+ 	p = memchr_inv(&r[1], 0, sizeof(r) - sizeof(r[0]));
+-	KUNIT_EXPECT_PTR_EQ_MSG(test, p, NULL, "in test %u at %u out of bound", n, p - r);
++	KUNIT_EXPECT_PTR_EQ_MSG(test, p, NULL, "in test %u at %td out of bound", n, p - r);
+ }
+ 
+ static void cmdline_test_range(struct kunit *test)
 -- 
 2.44.0.rc0.258.g7320e95886-goog
 
