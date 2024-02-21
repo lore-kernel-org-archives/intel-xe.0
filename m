@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E0BEC48BEB
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Feb 2024 16:40:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1486EC5478A
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Feb 2024 17:10:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F27E10E002;
-	Wed, 21 Feb 2024 16:40:48 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D35810E187;
- Wed, 21 Feb 2024 16:40:47 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0974109807698512235=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id C99A910E415;
+	Wed, 21 Feb 2024 17:10:39 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MupC6xzJ";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2939A10E0FE
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 17:10:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1708535438; x=1740071438;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=uuBLP2MOmrROwiy192PzrrhjYq11d9G15raVqTpIvcM=;
+ b=MupC6xzJ80YTEw8BuA6XTohM9e0OFjHTMdu23hEGr/LhZustodx2IVQJ
+ 9MWDagt6M7a04t7wIO6RrgqPlIUJjcJud6HnMkE+JcBrPfbAB/IE8Z53u
+ Kwm2tkWGGk8BMOc7BDn7/CXD604i53gcEPr6jQ/QDZgxMKYrndTMwhMQQ
+ IF4qPXT1g179RNu+N1rpK5x+nQoVdOQy+QMAvTlCyCkf6uTbzTjAMKHXw
+ 2pf37aSXpL3sJ1kIclVZBIdksanDGITtt1ZKYh6hyva2uOVnvGJJm2ccX
+ 46mBRpnbxvrZ2zsvxVat4lIZFShuZhsALICfLCHfdM7G2TYf+efYdZocM w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="6485968"
+X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; 
+   d="scan'208";a="6485968"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2024 09:10:37 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; 
+   d="scan'208";a="5200490"
+Received: from conorwoo-mobl1.ger.corp.intel.com (HELO mwauld-mobl1.intel.com)
+ ([10.252.22.137])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2024 09:10:35 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Anshuman Gupta <anshuman.gupta@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH] drm/xe/pm: hide d3cold sysfs threshold
+Date: Wed, 21 Feb 2024 17:10:09 +0000
+Message-ID: <20240221171008.196673-2-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe/uapi=3A_Remove_unused_fla?=
- =?utf-8?q?gs_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Francois Dugast" <francois.dugast@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 21 Feb 2024 16:40:47 -0000
-Message-ID: <170853364751.196549.12513467426006513402@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240221155930.7-1-francois.dugast@intel.com>
-In-Reply-To: <20240221155930.7-1-francois.dugast@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,133 +61,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0974109807698512235==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+There are known deadlocks and lockdep splats with d3cold and dgpu, which
+is why it is disabled by default. However we still don't want CI or
+actual users trying to override the DEFAULT_VRAM_THRESHOLD and then end
+up enabling d3cold support. For now keep the sysfs hidden if
+DEFAULT_VRAM_THRESHOLD is zero.
 
-== Series Details ==
+References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1246
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pm.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Series: drm/xe/uapi: Remove unused flags (rev3)
-URL   : https://patchwork.freedesktop.org/series/129781/
-State : failure
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index ab283e9a8b4e..829f165e30b4 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -189,7 +189,8 @@ void xe_pm_init(struct xe_device *xe)
+ 	xe->d3cold.capable = xe_pm_pci_d3cold_capable(xe);
+ 
+ 	if (xe->d3cold.capable) {
+-		xe_device_sysfs_init(xe);
++		if (DEFAULT_VRAM_THRESHOLD)
++			xe_device_sysfs_init(xe);
+ 		xe_pm_set_vram_threshold(xe, DEFAULT_VRAM_THRESHOLD);
+ 	}
+ 
+-- 
+2.43.0
 
-== Summary ==
-
-CI Bug Log - changes from xe-817-d528e13ba6b7bd7ed6ea2f973a70341ee93063af_BAT -> xe-pw-129781v3_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-129781v3_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-129781v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-129781v3_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_exec_fault_mode@twice-userptr-rebind-imm:
-    - bat-pvc-2:          [PASS][1] -> [FAIL][2] +9 other tests fail
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-817-d528e13ba6b7bd7ed6ea2f973a70341ee93063af/bat-pvc-2/igt@xe_exec_fault_mode@twice-userptr-rebind-imm.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129781v3/bat-pvc-2/igt@xe_exec_fault_mode@twice-userptr-rebind-imm.html
-
-  
-
-
-Build changes
--------------
-
-  * Linux: xe-817-d528e13ba6b7bd7ed6ea2f973a70341ee93063af -> xe-pw-129781v3
-
-  IGT_7719: 7719
-  xe-817-d528e13ba6b7bd7ed6ea2f973a70341ee93063af: d528e13ba6b7bd7ed6ea2f973a70341ee93063af
-  xe-pw-129781v3: 129781v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129781v3/index.html
-
---===============0974109807698512235==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/uapi: Remove unused flags (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129781/">https://patchwork.freedesktop.org/series/129781/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129781v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129781v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-817-d528e13ba6b7bd7ed6ea2f973a70341ee93063af_BAT -&gt; xe-pw-129781v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-129781v3_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-129781v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-129781v3_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_exec_fault_mode@twice-userptr-rebind-imm:<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-817-d528e13ba6b7bd7ed6ea2f973a70341ee93063af/bat-pvc-2/igt@xe_exec_fault_mode@twice-userptr-rebind-imm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129781v3/bat-pvc-2/igt@xe_exec_fault_mode@twice-userptr-rebind-imm.html">FAIL</a> +9 other tests fail</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-817-d528e13ba6b7bd7ed6ea2f973a70341ee93063af -&gt; xe-pw-129781v3</li>
-</ul>
-<p>IGT_7719: 7719<br />
-  xe-817-d528e13ba6b7bd7ed6ea2f973a70341ee93063af: d528e13ba6b7bd7ed6ea2f973a70341ee93063af<br />
-  xe-pw-129781v3: 129781v3</p>
-
-</body>
-</html>
-
---===============0974109807698512235==--
