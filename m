@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0D7DC5478A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE380C54788
 	for <intel-xe@archiver.kernel.org>; Wed, 21 Feb 2024 13:30:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5D5110E740;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6411D10E74F;
 	Wed, 21 Feb 2024 13:30:45 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FA5910E74D
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 13:30:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CA4410E740
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 13:30:37 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v5 9/9] drm/xe: Implement capture of HWSP and HWCTX
-Date: Wed, 21 Feb 2024 14:30:24 +0100
-Message-ID: <20240221133024.898315-9-maarten.lankhorst@linux.intel.com>
+Subject: [PATCH v5 7/9] drm/xe: Move lrc snapshot capturing to xe_lrc.c
+Date: Wed, 21 Feb 2024 14:30:22 +0100
+Message-ID: <20240221133024.898315-7-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240221133024.898315-1-maarten.lankhorst@linux.intel.com>
 References: <20240221133024.898315-1-maarten.lankhorst@linux.intel.com>
@@ -37,121 +37,200 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Capture both the HWSP and the HW ctx page to allow easier replaying of
-error dumps for debugging.
+This allows the dumping of HWSP and HW Context without exporting more
+functions.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c | 60 ++++++++++++++++++++++++++++++++++++-
- 1 file changed, 59 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c       | 33 ++++++-----------
+ drivers/gpu/drm/xe/xe_guc_submit_types.h | 13 +------
+ drivers/gpu/drm/xe/xe_lrc.c              | 45 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_lrc.h              |  4 +++
+ drivers/gpu/drm/xe/xe_lrc_types.h        |  2 ++
+ 5 files changed, 63 insertions(+), 34 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index ff77bc8da1b27..7348689ec5aef 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1814,21 +1814,14 @@ xe_guc_exec_queue_snapshot_capture(struct xe_sched_job *job)
+ 	snapshot->sched_props.preempt_timeout_us =
+ 		q->sched_props.preempt_timeout_us;
+ 
+-	snapshot->lrc = kmalloc_array(q->width, sizeof(struct lrc_snapshot),
++	snapshot->lrc = kmalloc_array(q->width, sizeof(struct xe_lrc_snapshot *),
+ 				      GFP_ATOMIC);
+ 
+ 	if (snapshot->lrc) {
+ 		for (i = 0; i < q->width; ++i) {
+ 			struct xe_lrc *lrc = q->lrc + i;
+ 
+-			snapshot->lrc[i].context_desc =
+-				lower_32_bits(xe_lrc_ggtt_addr(lrc));
+-			snapshot->lrc[i].head = xe_lrc_ring_head(lrc);
+-			snapshot->lrc[i].tail.internal = lrc->ring.tail;
+-			snapshot->lrc[i].tail.memory =
+-				xe_lrc_read_ctx_reg(lrc, CTX_RING_TAIL);
+-			snapshot->lrc[i].start_seqno = xe_lrc_start_seqno(lrc);
+-			snapshot->lrc[i].seqno = xe_lrc_seqno(lrc);
++			snapshot->lrc[i] = xe_lrc_snapshot_capture(lrc);
+ 		}
+ 	}
+ 
+@@ -1894,18 +1887,9 @@ xe_guc_exec_queue_snapshot_print(struct xe_guc_submit_exec_queue_snapshot *snaps
+ 	drm_printf(p, "\tPreempt timeout: %u (us)\n",
+ 		   snapshot->sched_props.preempt_timeout_us);
+ 
+-	for (i = 0; snapshot->lrc && i < snapshot->width; ++i) {
+-		drm_printf(p, "\tHW Context Desc: 0x%08x\n",
+-			   snapshot->lrc[i].context_desc);
+-		drm_printf(p, "\tLRC Head: (memory) %u\n",
+-			   snapshot->lrc[i].head);
+-		drm_printf(p, "\tLRC Tail: (internal) %u, (memory) %u\n",
+-			   snapshot->lrc[i].tail.internal,
+-			   snapshot->lrc[i].tail.memory);
+-		drm_printf(p, "\tStart seqno: (memory) %d\n",
+-			   snapshot->lrc[i].start_seqno);
+-		drm_printf(p, "\tSeqno: (memory) %d\n", snapshot->lrc[i].seqno);
+-	}
++	for (i = 0; snapshot->lrc && i < snapshot->width; ++i)
++		xe_lrc_snapshot_print(snapshot->lrc[i], p);
++
+ 	drm_printf(p, "\tSchedule State: 0x%x\n", snapshot->schedule_state);
+ 	drm_printf(p, "\tFlags: 0x%lx\n", snapshot->exec_queue_flags);
+ 
+@@ -1930,10 +1914,15 @@ xe_guc_exec_queue_snapshot_print(struct xe_guc_submit_exec_queue_snapshot *snaps
+  */
+ void xe_guc_exec_queue_snapshot_free(struct xe_guc_submit_exec_queue_snapshot *snapshot)
+ {
++	int i;
+ 	if (!snapshot)
+ 		return;
+ 
+-	kfree(snapshot->lrc);
++	if (snapshot->lrc) {
++		for (i = 0; i < snapshot->width; i++)
++			xe_lrc_snapshot_free(snapshot->lrc[i]);
++		kfree(snapshot->lrc);
++	}
+ 	kfree(snapshot->pending_list);
+ 	kfree(snapshot);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit_types.h b/drivers/gpu/drm/xe/xe_guc_submit_types.h
+index 72fc0f42b0a5d..dc7456c345836 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit_types.h
+@@ -61,17 +61,6 @@ struct guc_submit_parallel_scratch {
+ 	u32 wq[WQ_SIZE / sizeof(u32)];
+ };
+ 
+-struct lrc_snapshot {
+-	u32 context_desc;
+-	u32 head;
+-	struct {
+-		u32 internal;
+-		u32 memory;
+-	} tail;
+-	u32 start_seqno;
+-	u32 seqno;
+-};
+-
+ struct pending_list_snapshot {
+ 	u32 seqno;
+ 	bool fence;
+@@ -109,7 +98,7 @@ struct xe_guc_submit_exec_queue_snapshot {
+ 	} sched_props;
+ 
+ 	/** @lrc: LRC Snapshot */
+-	struct lrc_snapshot *lrc;
++	struct xe_lrc_snapshot **lrc;
+ 
+ 	/** @schedule_state: Schedule State at the moment of Crash */
+ 	u32 schedule_state;
 diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 20f235cdaca34..93c139f8d4fed 100644
+index 8c85e90220de5..2fe044ffae381 100644
 --- a/drivers/gpu/drm/xe/xe_lrc.c
 +++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -5,6 +5,8 @@
- 
- #include "xe_lrc.h"
- 
-+#include <linux/ascii85.h>
-+
- #include "instructions/xe_mi_commands.h"
- #include "instructions/xe_gfxpipe_commands.h"
- #include "regs/xe_engine_regs.h"
-@@ -32,6 +34,10 @@
+@@ -31,6 +31,17 @@
+ #define ENGINE_CLASS_SHIFT			61
  #define ENGINE_INSTANCE_SHIFT			48
  
- struct xe_lrc_snapshot {
-+	struct xe_bo *lrc_bo;
-+	void *lrc_snapshot;
-+	unsigned long lrc_size, lrc_offset;
++struct xe_lrc_snapshot {
++	u32 context_desc;
++	u32 head;
++	struct {
++		u32 internal;
++		u32 memory;
++	} tail;
++	u32 start_seqno;
++	u32 seqno;
++};
 +
- 	u32 context_desc;
- 	u32 head;
- 	struct {
-@@ -1333,19 +1339,43 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
- 	snapshot->tail.memory = xe_lrc_read_ctx_reg(lrc, CTX_RING_TAIL);
- 	snapshot->start_seqno = xe_lrc_start_seqno(lrc);
- 	snapshot->seqno = xe_lrc_seqno(lrc);
-+	snapshot->lrc_bo = xe_bo_get(lrc->bo);
-+	snapshot->lrc_offset = xe_lrc_pphwsp_offset(lrc);
-+	snapshot->lrc_size = lrc->bo->size - snapshot->lrc_offset;
-+	snapshot->lrc_snapshot = NULL;
- 	return snapshot;
- }
- 
- void xe_lrc_snapshot_capture_delayed(struct xe_lrc_snapshot *snapshot)
+ static struct xe_device *
+ lrc_to_xe(struct xe_lrc *lrc)
  {
-+	struct xe_bo *bo;
-+	struct iosys_map src;
-+
- 	if (!snapshot)
- 		return;
- 
--	/* TODO: Copy status page */
-+	bo = snapshot->lrc_bo;
-+	snapshot->lrc_snapshot = kvmalloc(snapshot->lrc_size, GFP_KERNEL);
-+	if (!snapshot->lrc_snapshot)
-+		return;
-+
-+	dma_resv_lock(bo->ttm.base.resv, NULL);
-+	if (!ttm_bo_vmap(&bo->ttm, &src)) {
-+		xe_map_memcpy_from(xe_bo_device(bo),
-+				   snapshot->lrc_snapshot, &src, snapshot->lrc_offset,
-+				   snapshot->lrc_size);
-+		ttm_bo_vunmap(&bo->ttm, &src);
-+	} else {
-+		kvfree(snapshot->lrc_snapshot);
-+		snapshot->lrc_snapshot = NULL;
-+	}
-+	dma_resv_unlock(bo->ttm.base.resv);
+@@ -1308,3 +1319,37 @@ void xe_lrc_emit_hwe_state_instructions(struct xe_exec_queue *q, struct xe_bb *b
+ 		bb->len += num_dw;
+ 	}
  }
- 
- void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer *p)
- {
-+	unsigned long i;
 +
- 	if (!snapshot)
- 		return;
- 
-@@ -1355,9 +1385,37 @@ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer
- 		   snapshot->tail.internal, snapshot->tail.memory);
- 	drm_printf(p, "\tStart seqno: (memory) %d\n", snapshot->start_seqno);
- 	drm_printf(p, "\tSeqno: (memory) %d\n", snapshot->seqno);
++struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
++{
++	struct xe_lrc_snapshot *snapshot = kmalloc(sizeof(*snapshot), GFP_KERNEL);
 +
-+	if (!snapshot->lrc_snapshot)
-+		return;
++	if (!snapshot)
++		return NULL;
 +
-+	drm_printf(p, "\t HWSP length: 0x%x\n", LRC_PPHWSP_SIZE);
-+	drm_puts(p, "\tHWSP data: ");
++	snapshot->context_desc = lower_32_bits(xe_lrc_ggtt_addr(lrc));
++	snapshot->head = xe_lrc_ring_head(lrc);
++	snapshot->tail.internal = lrc->ring.tail;
++	snapshot->tail.memory = xe_lrc_read_ctx_reg(lrc, CTX_RING_TAIL);
++	snapshot->start_seqno = xe_lrc_start_seqno(lrc);
++	snapshot->seqno = xe_lrc_seqno(lrc);
++	return snapshot;
++}
 +
-+	for (i = 0; i < LRC_PPHWSP_SIZE; i += sizeof(u32)) {
-+		u32 *val = snapshot->lrc_snapshot + i;
-+		char dumped[ASCII85_BUFSZ];
-+
-+		drm_puts(p, ascii85_encode(*val, dumped));
-+	}
-+	drm_printf(p, "\n\tHWCTX length: 0x%lx\n", snapshot->lrc_size - LRC_PPHWSP_SIZE);
-+	drm_puts(p, "\tHWCTX data: ");
-+	for (; i < snapshot->lrc_size; i += sizeof(u32)) {
-+		u32 *val = snapshot->lrc_snapshot + i;
-+		char dumped[ASCII85_BUFSZ];
-+
-+		drm_puts(p, ascii85_encode(*val, dumped));
-+	}
-+	drm_puts(p, "\n");
- }
- 
- void xe_lrc_snapshot_free(struct xe_lrc_snapshot *snapshot)
- {
++void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer *p)
++{
 +	if (!snapshot)
 +		return;
 +
-+	kvfree(snapshot->lrc_snapshot);
-+	if (snapshot->lrc_bo)
-+		xe_bo_put(snapshot->lrc_bo);
- 	kfree(snapshot);
- }
++	drm_printf(p, "\tHW Context Desc: 0x%08x\n", snapshot->context_desc);
++	drm_printf(p, "\tLRC Head: (memory) %u\n", snapshot->head);
++	drm_printf(p, "\tLRC Tail: (internal) %u, (memory) %u\n",
++		   snapshot->tail.internal, snapshot->tail.memory);
++	drm_printf(p, "\tStart seqno: (memory) %d\n", snapshot->start_seqno);
++	drm_printf(p, "\tSeqno: (memory) %d\n", snapshot->seqno);
++}
++
++void xe_lrc_snapshot_free(struct xe_lrc_snapshot *snapshot)
++{
++	kfree(snapshot);
++}
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index 28b1d3f404d4f..d6dd4045d6d7d 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -55,4 +55,8 @@ void xe_lrc_dump_default(struct drm_printer *p,
+ 
+ void xe_lrc_emit_hwe_state_instructions(struct xe_exec_queue *q, struct xe_bb *bb);
+ 
++struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc);
++void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer *p);
++void xe_lrc_snapshot_free(struct xe_lrc_snapshot *snapshot);
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
+index 24f20ed66fd13..b716df0dfb4e3 100644
+--- a/drivers/gpu/drm/xe/xe_lrc_types.h
++++ b/drivers/gpu/drm/xe/xe_lrc_types.h
+@@ -43,4 +43,6 @@ struct xe_lrc {
+ 	struct xe_hw_fence_ctx fence_ctx;
+ };
+ 
++struct xe_lrc_snapshot;
++
+ #endif
 -- 
 2.43.0
 
