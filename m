@@ -4,27 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 759B2C48BC3
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Feb 2024 08:11:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84E81C48BF6
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Feb 2024 08:36:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E36E10E65E;
-	Wed, 21 Feb 2024 08:11:51 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2448710E657;
- Wed, 21 Feb 2024 08:11:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0819924509548633099=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2853A10E673;
+	Wed, 21 Feb 2024 08:36:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="ZZvRtW+O";
+	dkim-atps=neutral
+Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D244310E674
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 08:36:55 +0000 (UTC)
+Received: internal info suppressed
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
+ t=1708504595; bh=d0BwC6X9jhBYnntI/rKCu39kdUchfBHSS/Ets22FPJo=;
+ h=From:To:Cc:Subject:Date:From;
+ b=ZZvRtW+O6IlSOB89v80VOipvWRtMIJKmhqGOxBFUBBHpTdGkwCBRFvwItsjSqk1KM
+ ZzLlDeEfFVY3QRH0dwb54TKVWs9vhYo9uCFgAoTm+t34dDOM5qev3Jrc0V5q1Q75lm
+ fi8D0PDkExExVJhl4SHIP0zKhHE07fmDeND3EWAyE20II5nIJcNk4VcX0PJJ+rIlXh
+ C4HZLesP6SxA/+F4YMprEgbdHHgohzbvvhKl0uXHmSMBy27hCCWlC0LRCl2nzokdOX
+ rq4cP1cjIJihMGGazaxdNkN8DInkGLIYjoxK4BsUu2QGzzc12GaiFT71YkHoHVipHj
+ y0ynvZQ4X3TMA==
+Received: from dhirschfeld-vm-u22.habana-labs.com (localhost [127.0.0.1])
+ by dhirschfeld-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with
+ ESMTPS id 41L8aTnR1584507
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+ Wed, 21 Feb 2024 10:36:29 +0200
+Received: (from dhirschfeld@localhost)
+ by dhirschfeld-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id
+ 41L8aTRi1584506; Wed, 21 Feb 2024 10:36:29 +0200
+From: Dafna Hirschfeld <dhirschfeld@habana.ai>
+To: intel-xe@lists.freedesktop.org
+Cc: ogabbay@kernel.org, obitton@habana.ai, lucas.demarchi@intel.com,
+ Dafna Hirschfeld <dhirschfeld@habana.ai>
+Subject: [PATCH v2] drm/xe: Do not include current dir for
+ generated/xe_wa_oob.h
+Date: Wed, 21 Feb 2024 10:36:22 +0200
+Message-Id: <20240221083622.1584492-1-dhirschfeld@habana.ai>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/ttm=3A_Fix_an_invalid_freein?=
- =?utf-8?q?g_on_already_freed_page_in_error_path?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 21 Feb 2024 08:11:50 -0000
-Message-ID: <170850311014.178729.10637984280064393036@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240221073324.3303-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20240221073324.3303-1-thomas.hellstrom@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +55,138 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0819924509548633099==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The generated file 'generated/xe_wa_oob.h' is included using:
+"generated/xe_wa_oob.h"
+which first look inside the source code. But the file resides
+in the build directory and should therefore be included using:
+<generated/xe_wa_oob.h>
 
-== Series Details ==
+Signed-off-by: Dafna Hirschfeld <dhirschfeld@habana.ai>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Series: drm/ttm: Fix an invalid freeing on already freed page in error path
-URL   : https://patchwork.freedesktop.org/series/130171/
-State : success
+---
+v2 changes: add newline, change patch title
 
-== Summary ==
+ drivers/gpu/drm/xe/xe_gsc.c            | 3 ++-
+ drivers/gpu/drm/xe/xe_guc.c            | 3 ++-
+ drivers/gpu/drm/xe/xe_migrate.c        | 3 ++-
+ drivers/gpu/drm/xe/xe_ring_ops.c       | 3 ++-
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c | 3 ++-
+ drivers/gpu/drm/xe/xe_vm.c             | 3 ++-
+ drivers/gpu/drm/xe/xe_wa.c             | 3 ++-
+ 7 files changed, 14 insertions(+), 7 deletions(-)
 
-CI Bug Log - changes from xe-807-e2b02e89746d8eff8c244f938eecd0f1db8eb805_BAT -> xe-pw-130171v1_BAT
-====================================================
+diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
+index 0b90fd9ef63a..a61994292c43 100644
+--- a/drivers/gpu/drm/xe/xe_gsc.c
++++ b/drivers/gpu/drm/xe/xe_gsc.c
+@@ -7,8 +7,9 @@
+ 
+ #include <drm/drm_managed.h>
+ 
++#include <generated/xe_wa_oob.h>
++
+ #include "abi/gsc_mkhi_commands_abi.h"
+-#include "generated/xe_wa_oob.h"
+ #include "xe_bb.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 868208a39829..fa217f5a386e 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -7,9 +7,10 @@
+ 
+ #include <drm/drm_managed.h>
+ 
++#include <generated/xe_wa_oob.h>
++
+ #include "abi/guc_actions_abi.h"
+ #include "abi/guc_errors_abi.h"
+-#include "generated/xe_wa_oob.h"
+ #include "regs/xe_gt_regs.h"
+ #include "regs/xe_guc_regs.h"
+ #include "xe_bo.h"
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 3d2438dc86ee..a66fdf2d2991 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -12,7 +12,8 @@
+ #include <drm/ttm/ttm_tt.h>
+ #include <drm/xe_drm.h>
+ 
+-#include "generated/xe_wa_oob.h"
++#include <generated/xe_wa_oob.h>
++
+ #include "instructions/xe_mi_commands.h"
+ #include "regs/xe_gpu_commands.h"
+ #include "tests/xe_test.h"
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index d5e9621428ef..c4edffcd4a32 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -5,7 +5,8 @@
+ 
+ #include "xe_ring_ops.h"
+ 
+-#include "generated/xe_wa_oob.h"
++#include <generated/xe_wa_oob.h>
++
+ #include "instructions/xe_mi_commands.h"
+ #include "regs/xe_engine_regs.h"
+ #include "regs/xe_gpu_commands.h"
+diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+index 662f1e9bfc65..3107d2a12426 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+@@ -11,7 +11,8 @@
+ #include <drm/ttm/ttm_placement.h>
+ #include <drm/ttm/ttm_range_manager.h>
+ 
+-#include "generated/xe_wa_oob.h"
++#include <generated/xe_wa_oob.h>
++
+ #include "regs/xe_gt_regs.h"
+ #include "regs/xe_regs.h"
+ #include "xe_bo.h"
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 836a6e849cda..efe9a0d300c0 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -18,6 +18,8 @@
+ #include <linux/mm.h>
+ #include <linux/swap.h>
+ 
++#include <generated/xe_wa_oob.h>
++
+ #include "xe_assert.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
+@@ -34,7 +36,6 @@
+ #include "xe_res_cursor.h"
+ #include "xe_sync.h"
+ #include "xe_trace.h"
+-#include "generated/xe_wa_oob.h"
+ #include "xe_wa.h"
+ 
+ static struct drm_gem_object *xe_vm_obj(struct xe_vm *vm)
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index 3299130ba10a..a0264eedd443 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -9,7 +9,8 @@
+ #include <kunit/visibility.h>
+ #include <linux/compiler_types.h>
+ 
+-#include "generated/xe_wa_oob.h"
++#include <generated/xe_wa_oob.h>
++
+ #include "regs/xe_engine_regs.h"
+ #include "regs/xe_gt_regs.h"
+ #include "regs/xe_regs.h"
+-- 
+2.34.1
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-130171v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd:
-    - bat-pvc-2:          [INCOMPLETE][1] ([Intel XE#392]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-807-e2b02e89746d8eff8c244f938eecd0f1db8eb805/bat-pvc-2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130171v1/bat-pvc-2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html
-
-  
-  [Intel XE#392]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/392
-
-
-Build changes
--------------
-
-  * Linux: xe-807-e2b02e89746d8eff8c244f938eecd0f1db8eb805 -> xe-pw-130171v1
-
-  IGT_7718: 40e8b9122853f455c84afcfa56469a6bc9a0d564 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-807-e2b02e89746d8eff8c244f938eecd0f1db8eb805: e2b02e89746d8eff8c244f938eecd0f1db8eb805
-  xe-pw-130171v1: 130171v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130171v1/index.html
-
---===============0819924509548633099==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/ttm: Fix an invalid freeing on already freed page in error path</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130171/">https://patchwork.freedesktop.org/series/130171/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130171v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130171v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-807-e2b02e89746d8eff8c244f938eecd0f1db8eb805_BAT -&gt; xe-pw-130171v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-130171v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd:<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-807-e2b02e89746d8eff8c244f938eecd0f1db8eb805/bat-pvc-2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/392">Intel XE#392</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130171v1/bat-pvc-2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-807-e2b02e89746d8eff8c244f938eecd0f1db8eb805 -&gt; xe-pw-130171v1</li>
-</ul>
-<p>IGT_7718: 40e8b9122853f455c84afcfa56469a6bc9a0d564 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-807-e2b02e89746d8eff8c244f938eecd0f1db8eb805: e2b02e89746d8eff8c244f938eecd0f1db8eb805<br />
-  xe-pw-130171v1: 130171v1</p>
-
-</body>
-</html>
-
---===============0819924509548633099==--
