@@ -4,61 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39535C48BC3
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Feb 2024 09:28:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D4FFC48BF6
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Feb 2024 09:28:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E295410E4DA;
-	Wed, 21 Feb 2024 09:28:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CBD010E4F7;
+	Wed, 21 Feb 2024 09:28:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="fTwg1XM1";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="OHSicdGk";
 	dkim-atps=neutral
 Received: from mail-yb1-f201.google.com (mail-yb1-f201.google.com
  [209.85.219.201])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6C6310E675
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 09:28:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C47B10E4E9
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 09:28:06 +0000 (UTC)
 Received: by mail-yb1-f201.google.com with SMTP id
- 3f1490d57ef6-dcbfe1a42a4so907683276.2
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 01:28:01 -0800 (PST)
+ 3f1490d57ef6-dbf618042daso10802281276.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 01:28:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1708507680; x=1709112480;
+ d=google.com; s=20230601; t=1708507685; x=1709112485;
  darn=lists.freedesktop.org; 
- h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
- :date:message-id:reply-to;
- bh=eT/uH0qZq3eqCfd94wgAJ0+lZ7IXzMci6RxxltQCKcU=;
- b=fTwg1XM1k09NNKe1u9i1iuQmQOnuWCUQZ8m1o+3quV7q2KMRO+wtaUKF9MuXs5zsn3
- CxBCSqx4KjiiJpDURa8tbLUG66lJ/1GXjK6+Fp/rIxZOms2uRpKdPF6A6klN1F3ejnCf
- rfpOSyMSm8zA+vnukEzPEb09sfPWSsp6xZ1tzAbZjJ4sJ2YUm24PnXt74CZLF7uS0m5m
- KydUJeSP1NenIrUoyvh2G0CzO0OQulCaPoGOcuJST/QKbbZXta1fQOr0lOxB/+8BYZsN
- CtRTPH7DlvfbwRzowb6kiTgVpUf4ZfX2izrRe4DcwFZJsYjPkJPqktLwAnG5+6IX9DZE
- vaTQ==
+ h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+ :date:from:to:cc:subject:date:message-id:reply-to;
+ bh=Xu+inTe2LF3ynuuv7W7Ho6VSuZooh3VEfNa1s4AiQic=;
+ b=OHSicdGkKTrzTDALuKFHYlRlkX9U3oyfBg1cjgEVIkBB9HNoND9vJN9B8PpppM58v4
+ 1iEXgnGXhVwtm09G4PawVF0qao4A1iqjz4ihN5+teZMTfj5QWf6WBDyXv9txzEe08t0P
+ pNrCBoUiO4PBX4J+ETTDzqQZTchHfGQNW9/vKP1xPB1So0T1K4HcbHZXBLaFHggA6fQT
+ /3G1xxkylo6A6c1jO6NORdhhnNqgNd1Y2ofvZhqb4Q2aTfxsqaXd4TAnl2K0Oj7RSyzu
+ Xb8TnT0u502vypRMYWwJLx1yBrLR1qhRDw8rI+h2zs/9/JSeC6GLHBW1lROSbWuwMQhJ
+ x1ig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1708507680; x=1709112480;
- h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=eT/uH0qZq3eqCfd94wgAJ0+lZ7IXzMci6RxxltQCKcU=;
- b=YsC3icNZ+wCaUq/vEU2yVLMHBfsAsvfa5JZdr5IZL75LPWLM0S5fh+EdkgCTy2JWHH
- NiwfdMep0ojG+5UdulVb1u28GDCJrrcSlWUZiO1wgMvtZIGxcXGr2Mumc3zXEiHtz4TU
- bncA39Msq3fV/D6ZkggJt1WYyUPPOOrXEwXMc6VTIbbHe3XcEAzSJeTEnjzm1R4wpfmN
- 7Y2Mdw1nr6nmR2ElAWAh9xOpVq9oyw+E+LtxvJiMB0m1bsAfs+63qNdjm4JybSs0QWda
- Klz5ZlPX+C22bX9XgHzU4pGquCSRNRclX0JM/W8W8nXvfD1rgALC1n86kfA9jr/FHJWz
- Bivg==
+ d=1e100.net; s=20230601; t=1708507685; x=1709112485;
+ h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+ :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=Xu+inTe2LF3ynuuv7W7Ho6VSuZooh3VEfNa1s4AiQic=;
+ b=lcM1+phiRNEk0BNcrTNHNDLO+BNSwX517Bm8NdXimnlCTDASpOnoQVEZtmpuMt9fEI
+ 7sbvgfN6sQoIDhkSSWCEXnFlAN85W0Dx7T4bNc3qMr0pIVxYkUqkemwuf5T2i2mZkUF8
+ bP9h44Vr88jG4o3fy3b01BGoErn5PHZ2ZAzvdK2cq4AsB2rX8q4do3lmBY8uPkMXmwa2
+ 9m2G7ywvxxxuQCNoGf/CxZ0cNYrP9NbNDPWZWpYHzm6JJUvqjhW3pGfWAdc08y5meeh4
+ rzYidNRBVG1WfGTw/hcjWKmTlZuXT2Y9ob/s2MBXW/C1fXtkO+KKFGJEHSc1jIuiKYWW
+ /7Dw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCU0z5DrUkAMkJH+yWsUOg4s7UqQYn/M7gdSRFn+HAR04CjBZRXfu+iqYXag0RNMSUhnv2Ypvi4A17gkTFy37cjkHcTsJfLn4SDy+cEX+aw=
-X-Gm-Message-State: AOJu0YzUelHjeoHiE3DfodPR2h9IWD3fNjzWU9Fi2sLWjbaXQuXmDQ79
- 0Oo4ZBPz3WT23G18HLzsBNA+Q1rsUpnat1CieeJ3G/E0ZLwS3lFDAZfn3pqyeTVKWWuvqlFh/ID
- UM6xRmVBekw==
-X-Google-Smtp-Source: AGHT+IGgpxMwkWEuztRpScY6gpG7tiyfC6FQuhNT36WOurGMxJcdy1PSlvVZEYKt9//gZI89E5vnji5S6AEFRQ==
+ AJvYcCVnyHMGmgIhJvbTmPdhLP0Nqsyi2CFSe+yQV/SFlcQ9QENN10X8D4QPuwGLTglbffdh1ufEhFnMvWV0kH4pwQ4qOxI0O25KbIShrSZ0R+U=
+X-Gm-Message-State: AOJu0YwSPkEnBC6+8zJe15aqHEm758jxdEBOwtwmxPifi4q9XjZr6wrK
+ /7hcH8Touro8EHAxSDpvjqG8EM3Fe3pywcx8C6U7PXri7yUDZcJUE8iMwHBhTQaXOmrQCob4JK5
+ nOZMmkUItzQ==
+X-Google-Smtp-Source: AGHT+IFRWRv9O0ZJFWIQABWXYSjWTv0ZUYrlwMd+3gPavDYER8N+pRX59ZNK2IiQ8Dvkd5y8wLfb4lO8UUdSxw==
 X-Received: from slicestar.c.googlers.com
  ([fda3:e722:ac3:cc00:4f:4b78:c0a8:20a1])
- (user=davidgow job=sendgmr) by 2002:a05:6902:188f:b0:dc6:dfc6:4207 with SMTP
- id cj15-20020a056902188f00b00dc6dfc64207mr4738387ybb.10.1708507680618; Wed,
- 21 Feb 2024 01:28:00 -0800 (PST)
-Date: Wed, 21 Feb 2024 17:27:13 +0800
+ (user=davidgow job=sendgmr) by 2002:a05:6902:1005:b0:dc7:59d9:7b46 with SMTP
+ id w5-20020a056902100500b00dc759d97b46mr624383ybt.3.1708507685189; Wed, 21
+ Feb 2024 01:28:05 -0800 (PST)
+Date: Wed, 21 Feb 2024 17:27:14 +0800
+In-Reply-To: <20240221092728.1281499-1-davidgow@google.com>
 Mime-Version: 1.0
+References: <20240221092728.1281499-1-davidgow@google.com>
 X-Mailer: git-send-email 2.44.0.rc0.258.g7320e95886-goog
-Message-ID: <20240221092728.1281499-1-davidgow@google.com>
-Subject: [PATCH 0/9] kunit: Fix printf format specifier issues in KUnit
- assertions
+Message-ID: <20240221092728.1281499-2-davidgow@google.com>
+Subject: [PATCH 1/9] kunit: test: Log the correct filter string in
+ executor_test
 From: David Gow <davidgow@google.com>
 To: Linus Torvalds <torvalds@linux-foundation.org>,
  Shuah Khan <skhan@linuxfoundation.org>, 
@@ -97,65 +99,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-KUnit has several macros which accept a log message, which can contain
-printf format specifiers. Some of these (the explicit log macros)
-already use the __printf() gcc attribute to ensure the format specifiers
-are valid, but those which could fail the test, and hence used
-__kunit_do_failed_assertion() behind the scenes, did not.
+KUnit's executor_test logs the filter string in KUNIT_ASSERT_EQ_MSG(),
+but passed a random character from the filter, rather than the whole
+string.
 
-These include:
-- KUNIT_EXPECT_*_MSG()
-- KUNIT_ASSERT_*_MSG()
-- KUNIT_FAIL()
+This was found by annotating KUNIT_ASSERT_EQ_MSG() to let gcc validate
+the format string.
 
-This series adds the __printf() attribute, and fixes all of the issues
-uncovered. (Or, at least, all of those I could find with an x86_64
-allyesconfig, and the default KUnit config on a number of other
-architectures. Please test!)
+Fixes: 76066f93f1df ("kunit: add tests for filtering attributes")
+Signed-off-by: David Gow <davidgow@google.com>
+---
+ lib/kunit/executor_test.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-The issues in question basically take the following forms:
-- int / long / long long confusion: typically a type being updated, but
-  the format string not.
-- Use of integer format specifiers (%d/%u/%li/etc) for types like size_t
-  or pointer differences (technically ptrdiff_t), which would only work
-  on some architectures.
-- Use of integer format specifiers in combination with PTR_ERR(), where
-  %pe would make more sense.
-- Use of empty messages which, whilst technically not incorrect, are not
-  useful and trigger a gcc warning.
-
-We'd like to get these (or equivalent) in for 6.9 if possible, so please
-do take a look if possible.
-
-Thanks,
--- David
-
-Reported-by: Linus Torvalds <torvalds@linux-foundation.org>
-Closes: https://lore.kernel.org/linux-kselftest/CAHk-=wgJMOquDO5f8ShH1f4rzZwzApNVCw643m5-Yj+BfsFstA@mail.gmail.com/
-
-David Gow (9):
-  kunit: test: Log the correct filter string in executor_test
-  lib/cmdline: Fix an invalid format specifier in an assertion msg
-  lib: memcpy_kunit: Fix an invalid format specifier in an assertion msg
-  time: test: Fix incorrect format specifier
-  rtc: test: Fix invalid format specifier.
-  net: test: Fix printf format specifier in skb_segment kunit test
-  drm: tests: Fix invalid printf format specifiers in KUnit tests
-  drm/xe/tests: Fix printf format specifiers in xe_migrate test
-  kunit: Annotate _MSG assertion variants with gnu printf specifiers
-
- drivers/gpu/drm/tests/drm_buddy_test.c | 14 +++++++-------
- drivers/gpu/drm/tests/drm_mm_test.c    |  6 +++---
- drivers/gpu/drm/xe/tests/xe_migrate.c  |  8 ++++----
- drivers/rtc/lib_test.c                 |  2 +-
- include/kunit/test.h                   | 12 ++++++------
- kernel/time/time_test.c                |  2 +-
- lib/cmdline_kunit.c                    |  2 +-
- lib/kunit/executor_test.c              |  2 +-
- lib/memcpy_kunit.c                     |  4 ++--
- net/core/gso_test.c                    |  2 +-
- 10 files changed, 27 insertions(+), 27 deletions(-)
-
+diff --git a/lib/kunit/executor_test.c b/lib/kunit/executor_test.c
+index 22d4ee86dbed..3f7f967e3688 100644
+--- a/lib/kunit/executor_test.c
++++ b/lib/kunit/executor_test.c
+@@ -129,7 +129,7 @@ static void parse_filter_attr_test(struct kunit *test)
+ 			GFP_KERNEL);
+ 	for (j = 0; j < filter_count; j++) {
+ 		parsed_filters[j] = kunit_next_attr_filter(&filter, &err);
+-		KUNIT_ASSERT_EQ_MSG(test, err, 0, "failed to parse filter '%s'", filters[j]);
++		KUNIT_ASSERT_EQ_MSG(test, err, 0, "failed to parse filter from '%s'", filters);
+ 	}
+ 
+ 	KUNIT_EXPECT_STREQ(test, kunit_attr_filter_name(parsed_filters[0]), "speed");
 -- 
 2.44.0.rc0.258.g7320e95886-goog
 
