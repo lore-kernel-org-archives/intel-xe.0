@@ -4,34 +4,103 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08C5BC5478C
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 18:29:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 627AEC48BF8
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 18:33:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9DF510E059;
-	Thu, 22 Feb 2024 18:29:11 +0000 (UTC)
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 934A310E059;
- Thu, 22 Feb 2024 18:29:10 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 68BA9CE1D05;
- Thu, 22 Feb 2024 18:29:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8E11C433F1;
- Thu, 22 Feb 2024 18:29:06 +0000 (UTC)
-Date: Thu, 22 Feb 2024 13:30:57 -0500
-From: Steven Rostedt <rostedt@goodmis.org>
-To: LKML <linux-kernel@vger.kernel.org>, Linux Trace Kernel
- <linux-trace-kernel@vger.kernel.org>
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, "Ville =?UTF-8?B?U3lyasOkbMOk?="
- <ville.syrjala@linux.intel.com>, Daniel Vetter <daniel@ffwll.ch>, David
- Airlie <airlied@gmail.com>
-Subject: [PATCH] drm/i915: Add missing ; to __assign_str() macros in
- tracepoint code
-Message-ID: <20240222133057.2af72a19@gandalf.local.home>
-X-Mailer: Claws Mail 3.19.1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1472910EA20;
+	Thu, 22 Feb 2024 18:33:22 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="g83gJR89";
+	dkim-atps=neutral
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2F7F10EA20
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 18:33:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1708626800;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=IDF5rof44gEIb9jX4TIDVAFNvDzRBoYmWa48QZ9r6nQ=;
+ b=g83gJR897ZwJ8rUK8X1YTLxVGhoTuOhG56I2tSszT+J9GWM2FdvaR++WIq28LNW0Hy2egM
+ kaGysJ/uG6CthGSsm8gZUa4h8CJyi+sFVtoPDIiZsyRZGNXX3kSvJBtPE4aaUj3CYTVTDe
+ ji2b+4QZJvKMaFNGY4HLkK3kUzHtaog=
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
+ [209.85.218.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-638-jmqUxc5hMHOxQgmWTAA4vA-1; Thu, 22 Feb 2024 13:33:19 -0500
+X-MC-Unique: jmqUxc5hMHOxQgmWTAA4vA-1
+Received: by mail-ej1-f70.google.com with SMTP id
+ a640c23a62f3a-a3f35ebeefbso872766b.2
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 10:33:18 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1708626798; x=1709231598;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=IDF5rof44gEIb9jX4TIDVAFNvDzRBoYmWa48QZ9r6nQ=;
+ b=gODdi0KKqTKj95Vu4y+k+N68E/hidTUxS61RZKgh1+hoS6yf0o49DkUlloG/bOgkOt
+ LyhJhCLp0Kmw4nLsoIgwNIrJ4hpVzBExyFo448VBlS2/CEh5o7RrKpc2gfMuFu5/K7db
+ hQJlSOZS4cGfr/ZsXA7n68czxYEZuP2p0sgIPZYs4cPXIxJnoZ9ZQbPxYee6CQsyJLe/
+ XkM4S2SQfr7VMdVnOqnZDgpoXU9h9eaHVK1mf5qEDMnHAg+kMq7QZdYsokHVdgTmJgqi
+ IS+6sdMmpZ+wPAvY6XYGtfdIB5EdrDnA1b+hgjGL2z9szwD62awyfoq6M6WC/+qKQCf/
+ HqHA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVOlO+o/7MtoJZGq40RlL8ZIoRSJwCKJBEP6GyiD+tU9g6m9qmoGn7T+gC7eSV/+Z0azfXe3Kdmu7Y4+r0hQpc71UaN9AU8B5uzh55vS7c=
+X-Gm-Message-State: AOJu0YzmnXtJI+4UkPiHkCD9H8Rxha/kuqMi4PfEjYcH99z/fPyC/KPF
+ tIbilUKk8CelUe0uX5lU81JeUbPxiDCLGlumYZy2vxp8r4+tBGX9ZasujSKHNzfgrILSIx9NPqW
+ sRkiqDWf2U0EgPaSFP8p6YQeE+jxuUhe1n0sScgmiY7J1q0zGZV7TbIWBJ3pA6iyn
+X-Received: by 2002:a17:906:3b52:b0:a3f:1ec7:8765 with SMTP id
+ h18-20020a1709063b5200b00a3f1ec78765mr4781453ejf.8.1708626797706; 
+ Thu, 22 Feb 2024 10:33:17 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHy6MVM+yU0ergPm1eOLv+jCkZxkYnKmu7DqTz49UohXBGjHmSJ/pKffRukeXLaaXuaiUR+Cg==
+X-Received: by 2002:a17:906:3b52:b0:a3f:1ec7:8765 with SMTP id
+ h18-20020a1709063b5200b00a3f1ec78765mr4781437ejf.8.1708626797348; 
+ Thu, 22 Feb 2024 10:33:17 -0800 (PST)
+Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec?
+ (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
+ by smtp.gmail.com with ESMTPSA id
+ lu16-20020a170906fad000b00a3d5efc65e0sm4854658ejb.91.2024.02.22.10.33.16
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 22 Feb 2024 10:33:16 -0800 (PST)
+Message-ID: <7013bf9e-2663-4613-ae61-61872e81355b@redhat.com>
+Date: Thu, 22 Feb 2024 19:33:15 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] devm-helpers: Add resource managed version of mutex
+ init
+To: Matthew Auld <matthew.auld@intel.com>, =?UTF-8?Q?Marek_Beh=C3=BAn?=
+ <kabel@kernel.org>, linux-kernel@vger.kernel.org,
+ Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
+ <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Aleksandr Mezin <mezin.alexander@gmail.com>, Jean Delvare
+ <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+ Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+ Sebastian Reichel <sre@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ linux-gpio@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-hwmon@vger.kernel.org,
+ linux-leds@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20240222145838.12916-1-kabel@kernel.org>
+ <03e62bcf-137c-4947-8f34-0cbfcba92a30@intel.com>
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <03e62bcf-137c-4947-8f34-0cbfcba92a30@intel.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US, nl
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,50 +115,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: "Steven Rostedt (Google)" <rostedt@goodmis.org>
+Hi,
 
-I'm working on improving the __assign_str() and __string() macros to be
-more efficient, and removed some unneeded semicolons. This triggered a bug
-in the build as some of the __assign_str() macros in intel_display_trace
-was missing a terminating semicolon.
+On 2/22/24 17:44, Matthew Auld wrote:
+> On 22/02/2024 14:58, Marek Behún wrote:
+>> A few drivers are doing resource-managed mutex initialization by
+>> implementing ad-hoc one-liner mutex dropping functions and using them
+>> with devm_add_action_or_reset(). Help drivers avoid these repeated
+>> one-liners by adding managed version of mutex initialization.
 
-Fixes: 2ceea5d88048b ("drm/i915: Print plane name in fbc tracepoints")
-Signed-off-by: Steven Rostedt (Google) <rostedt@goodmis.org>
----
- drivers/gpu/drm/i915/display/intel_display_trace.h | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+<snip>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_trace.h b/drivers/gpu/drm/i915/display/intel_display_trace.h
-index 99bdb833591c..7862e7cefe02 100644
---- a/drivers/gpu/drm/i915/display/intel_display_trace.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_trace.h
-@@ -411,7 +411,7 @@ TRACE_EVENT(intel_fbc_activate,
- 			   struct intel_crtc *crtc = intel_crtc_for_pipe(to_i915(plane->base.dev),
- 									 plane->pipe);
- 			   __assign_str(dev, __dev_name_kms(plane));
--			   __assign_str(name, plane->base.name)
-+			   __assign_str(name, plane->base.name);
- 			   __entry->pipe = crtc->pipe;
- 			   __entry->frame = intel_crtc_get_vblank_counter(crtc);
- 			   __entry->scanline = intel_get_crtc_scanline(crtc);
-@@ -438,7 +438,7 @@ TRACE_EVENT(intel_fbc_deactivate,
- 			   struct intel_crtc *crtc = intel_crtc_for_pipe(to_i915(plane->base.dev),
- 									 plane->pipe);
- 			   __assign_str(dev, __dev_name_kms(plane));
--			   __assign_str(name, plane->base.name)
-+			   __assign_str(name, plane->base.name);
- 			   __entry->pipe = crtc->pipe;
- 			   __entry->frame = intel_crtc_get_vblank_counter(crtc);
- 			   __entry->scanline = intel_get_crtc_scanline(crtc);
-@@ -465,7 +465,7 @@ TRACE_EVENT(intel_fbc_nuke,
- 			   struct intel_crtc *crtc = intel_crtc_for_pipe(to_i915(plane->base.dev),
- 									 plane->pipe);
- 			   __assign_str(dev, __dev_name_kms(plane));
--			   __assign_str(name, plane->base.name)
-+			   __assign_str(name, plane->base.name);
- 			   __entry->pipe = crtc->pipe;
- 			   __entry->frame = intel_crtc_get_vblank_counter(crtc);
- 			   __entry->scanline = intel_get_crtc_scanline(crtc);
--- 
-2.43.0
+>> index 74891802200d..70640fb96117 100644
+>> --- a/include/linux/devm-helpers.h
+>> +++ b/include/linux/devm-helpers.h
+>> @@ -24,6 +24,8 @@
+>>    */
+>>     #include <linux/device.h>
+>> +#include <linux/kconfig.h>
+>> +#include <linux/mutex.h>
+>>   #include <linux/workqueue.h>
+>>     static inline void devm_delayed_work_drop(void *res)
+>> @@ -76,4 +78,34 @@ static inline int devm_work_autocancel(struct device *dev,
+>>       return devm_add_action(dev, devm_work_drop, w);
+>>   }
+>>   +static inline void devm_mutex_drop(void *res)
+>> +{
+>> +    mutex_destroy(res);
+>> +}
+>> +
+>> +/**
+>> + * devm_mutex_init - Resource managed mutex initialization
+>> + * @dev:    Device which lifetime mutex is bound to
+>> + * @lock:    Mutex to be initialized (and automatically destroyed)
+>> + *
+>> + * Initialize mutex which is automatically destroyed when driver is detached.
+>> + * A few drivers initialize mutexes which they want destroyed before driver is
+>> + * detached, for debugging purposes.
+>> + * devm_mutex_init() can be used to omit the explicit mutex_destroy() call when
+>> + * driver is detached.
+>> + */
+>> +static inline int devm_mutex_init(struct device *dev, struct mutex *lock)
+>> +{
+>> +    mutex_init(lock);
+> 
+> Do you know if this this needs __always_inline? The static lockdep key in mutex_init() should be
+> different for each caller class. See c21f11d182c2 ("drm: fix drmm_mutex_init()").
+
+That is a very good point. I believe that this should mirror mutex_init() and
+the actual static inline function should be __devm_mutex_init() which takes
+the key as extra argument (and calls __mutex_init()) and then make
+devm_mutex_init() itself a macro mirroring the mutex_init() macro.
+
+Regards,
+
+Hans
+
+
+
+
+
+
+> 
+>> +
+>> +    /*
+>> +     * mutex_destroy() is an empty function if CONFIG_DEBUG_MUTEXES is
+>> +     * disabled. No need to allocate an action in that case.
+>> +     */
+>> +    if (IS_ENABLED(CONFIG_DEBUG_MUTEXES))
+>> +        return devm_add_action_or_reset(dev, devm_mutex_drop, lock);
+>> +    else
+>> +        return 0;
+>> +}
+>> +
+>>   #endif
+> 
 
