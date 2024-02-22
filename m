@@ -4,47 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 821A3C48BEB
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 08:04:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 020A0C48BF8
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 08:33:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C29410E8AC;
-	Thu, 22 Feb 2024 08:04:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B190E10E8C0;
+	Thu, 22 Feb 2024 08:33:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="MB0VwYSq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LjFrcyo+";
 	dkim-atps=neutral
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C98410E8A2
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 08:04:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1708589090;
- bh=l0ui1hCzbYxwD4mbLRoZEH5+k2eehAg7p8zFKJxdMTU=;
- h=Date:From:To:Cc:Subject:From;
- b=MB0VwYSqerz/KhIXXUlj0MfYnRPdh2LUWwzPSC1Ngpqcu45b5wITWO5PtZWJkjaX3
- ug5VzGKjTG0TBkCn+/5bYMnwbedtKAi9Hf27QJ88u0RWYo3j5BI+8wK+yZIlXB0FrO
- Zkm/ajhk6Wv4V/QUHd9jIe5+288+KtnKOdt80ixK73IFsNcRvGYC/lwZX7DHN0uyOb
- yWFL6Oa5TDdmu/60CT9q7LNJDd6NZVXoKD8eILxdcFL9n46FD97A5ScjGavkUcv7/y
- hOfxGSL36qkYie/ZLSD99jfcGdJFQKEd6fR2iTyrx+KojYhQsgDbzkyWCoPrQaLDpV
- gn23bfMIAeW1A==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4TgQfT6ZH6z4wcq;
- Thu, 22 Feb 2024 19:04:49 +1100 (AEDT)
-Date: Thu, 22 Feb 2024 19:04:48 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
- <ogabbay@kernel.org>, Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?=
- <thomas.hellstrom@linux.intel.com>, DRM XE List
- <intel-xe@lists.freedesktop.org>
-Cc: Yury Norov <yury.norov@gmail.com>, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, Linux Next Mailing List
- <linux-next@vger.kernel.org>
-Subject: linux-next: build failure after merge of the drm-xe tree
-Message-ID: <20240222190448.26dc124d@canb.auug.org.au>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A536710E8C0;
+ Thu, 22 Feb 2024 08:33:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1708590788; x=1740126788;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=adkD97HzbwR4kIQ/o02/tQek3YPzfq+8AwMRSDX9UW0=;
+ b=LjFrcyo+Sa19dAoDt/bmeJ6VWDR+tlAtDsvow0asVN3H6NomwbxpjorB
+ u7QJsnOeDuaQ6BgxV4GxlOPoBUiK0DO7V9/FbS5mbBvW54XhLHn1/skcd
+ 8d3rrBZQSbUB84QKhPgeUefnsNrsXF8q1VPdsn4JvcvYqiS4C2s8vfxyg
+ siWdOmQt3oz2+R/5HgHahuv38Y24mfI3CwvL3TMwVOqY/pFuYnDja6VQu
+ GCX52MMkEdahUcz01mQkXmtFvfaqU6mnNIdnOjGy5KpMzFKvDDhTuygkV
+ kpn2OHn/RtOdQPWiJPw1na15tl8ubWfxl1un7Uktush0OiqhGxp7sC/aN w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="6579363"
+X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; 
+   d="scan'208";a="6579363"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2024 00:33:06 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; d="scan'208";a="10004721"
+Received: from binm223x-mobl2.gar.corp.intel.com (HELO [10.249.254.168])
+ ([10.249.254.168])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2024 00:33:04 -0800
+Message-ID: <1b76a3adb4e11c57fd07eada3716972bb15e47ef.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/ttm: Fix an invalid freeing on already freed page
+ in error path
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: Dave Airlie <airlied@redhat.com>, Huang Rui <ray.huang@amd.com>, 
+ dri-devel@lists.freedesktop.org, stable@vger.kernel.org
+Date: Thu, 22 Feb 2024 09:33:02 +0100
+In-Reply-To: <12471d185a3c90e53d665878db321c36e3fd2e53.camel@linux.intel.com>
+References: <20240221073324.3303-1-thomas.hellstrom@linux.intel.com>
+ <6733f48a-4fb2-446c-91a8-e631937fbfcb@amd.com>
+ <12471d185a3c90e53d665878db321c36e3fd2e53.camel@linux.intel.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/aQVovtan3KdVGubS90.tuAQ";
- protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,55 +73,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---Sig_/aQVovtan3KdVGubS90.tuAQ
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+On Thu, 2024-02-22 at 08:34 +0100, Thomas Hellstr=C3=B6m wrote:
+> On Wed, 2024-02-21 at 11:26 +0100, Christian K=C3=B6nig wrote:
+> > Am 21.02.24 um 08:33 schrieb Thomas Hellstr=C3=B6m:
+> > > If caching mode change fails due to, for example, OOM we
+> > > free the allocated pages in a two-step process. First the pages
+> > > for which the caching change has already succeeded. Secondly
+> > > the pages for which a caching change did not succeed.
+> > >=20
+> > > However the second step was incorrectly freeing the pages already
+> > > freed in the first step.
+> > >=20
+> > > Fix.
+> > >=20
+> > > Signed-off-by: Thomas Hellstr=C3=B6m
+> > > <thomas.hellstrom@linux.intel.com>
+> > > Fixes: 379989e7cbdc ("drm/ttm/pool: Fix ttm_pool_alloc error
+> > > path")
+> > > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > > Cc: Dave Airlie <airlied@redhat.com>
+> > > Cc: Christian Koenig <christian.koenig@amd.com>
+> > > Cc: Huang Rui <ray.huang@amd.com>
+> > > Cc: dri-devel@lists.freedesktop.org
+> > > Cc: <stable@vger.kernel.org> # v6.4+
+> >=20
+> > You don't know how much time I've spend staring at this line to
+> > find
+> > the=20
+> > bug in it and haven't seen it. Got bug reports about that for month
+> > as well.
+>=20
+>=20
+> Yeah, sorry about that. We should probably have Kunit tests
+> exercising
+> OOM in the pool code involving WC pages.
+>=20
+> I'll push this to drm-misc-next.
 
-Hi all,
+drm-misc-fixes..
+/Thomas
 
-After merging the drm-xe tree, today's linux-next build (arm64 defconfig)
-failed like this:
 
-arch/arm64/kvm/hyp/nvhe/hyp-init.S: Assembler messages:
-arch/arm64/kvm/hyp/nvhe/hyp-init.S:557: Error: found 'l', expected: ')'
-arch/arm64/kvm/hyp/nvhe/hyp-init.S:29:  Info: macro invoked from here
-arch/arm64/kvm/hyp/nvhe/hyp-init.S:221:   Info: macro invoked from here
-arch/arm64/kvm/hyp/nvhe/hyp-init.S:557: Error: non-constant expression in "=
-.if" statement
-arch/arm64/kvm/hyp/nvhe/hyp-init.S:557: Error: junk at end of line, first u=
-nrecognized character is `l'
-arch/arm64/kvm/hyp/nvhe/hyp-init.S:560: Error: found 'l', expected: ')'
-arch/arm64/kvm/hyp/nvhe/hyp-init.S:560: Error: non-constant expression in "=
-.if" statement
-arch/arm64/kvm/hyp/nvhe/hyp-init.S:560: Error: junk at end of line, first u=
-nrecognized character is `l'
+>=20
+> /Thomas
+>=20
+> >=20
+> > Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> >=20
+> > > ---
+> > > =C2=A0 drivers/gpu/drm/ttm/ttm_pool.c | 2 +-
+> > > =C2=A0 1 file changed, 1 insertion(+), 1 deletion(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/ttm/ttm_pool.c
+> > > b/drivers/gpu/drm/ttm/ttm_pool.c
+> > > index b62f420a9f96..112438d965ff 100644
+> > > --- a/drivers/gpu/drm/ttm/ttm_pool.c
+> > > +++ b/drivers/gpu/drm/ttm/ttm_pool.c
+> > > @@ -387,7 +387,7 @@ static void ttm_pool_free_range(struct
+> > > ttm_pool
+> > > *pool, struct ttm_tt *tt,
+> > > =C2=A0=C2=A0				enum ttm_caching caching,
+> > > =C2=A0=C2=A0				pgoff_t start_page, pgoff_t
+> > > end_page)
+> > > =C2=A0 {
+> > > -	struct page **pages =3D tt->pages;
+> > > +	struct page **pages =3D &tt->pages[start_page];
+> > > =C2=A0=C2=A0	unsigned int order;
+> > > =C2=A0=C2=A0	pgoff_t i, nr;
+> > > =C2=A0=20
+> >=20
+>=20
 
-and many, many more.
-
-Bisected to commit
-
-  b77cb9640f1f ("bits: introduce fixed-type genmasks")
-
-I have reverted that commit (and the following 2) for today.
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/aQVovtan3KdVGubS90.tuAQ
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmXXACAACgkQAVBC80lX
-0Gxkagf/dpVUiLUHpKNPoRu1NrxT49fUSse97S6BtIFfbtUgDlaoiK4ejLEIR7d1
-9V6Vg7fap7qQUsw8nr+fJT31GuBZR5RaumhNfs8vzXN8ZXjQqi7R8c5eRBkuofX9
-3iLOUiaovEsLwUzoerc8FpFOFETUF7b4or9xqgQ48cURsgaTfb4ugRUfA0csaDlU
-VUz2jCMSs7alHv7fMaegFGh8GeKOoK9+UyJySluZvmD2BtOGNrZFLp1kmsUFN10W
-ZVU2CHa4Rg2gULeM/hKM7Xzi0rpaDAPtQnPURvzjMl+xp3dst+JiTwb9rAbbSbep
-GKZoXH0QO3vTIsmmcv9x6zD5VN5IBA==
-=JfaI
------END PGP SIGNATURE-----
-
---Sig_/aQVovtan3KdVGubS90.tuAQ--
