@@ -4,49 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96737C48BF6
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 03:46:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78888C48BEB
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 03:46:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D0C810E866;
-	Thu, 22 Feb 2024 03:46:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44DDE10E868;
+	Thu, 22 Feb 2024 03:46:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bF0ZWIs2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RPsfJU0s";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05FF510E868
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBD3310E866
  for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 03:46:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1708573600; x=1740109600;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=809GqWhsIiYE0wr4BJIrkS6b1772act97odngeuPNOc=;
- b=bF0ZWIs2fCVZRGSfJzj/pg+sPaS5/nbWgmjPmY3UKwSFInPndWm+pDV3
- 54tw7stb0Og5mfaNSxuRM/RmVtF2O2eIsQPhKW4et2/speNIk1gyH1zmV
- JiNamNmGJAKglP8JzId+oHkxefdGlaWDUU70t7TIiOSwCsEou9obwitxc
- 9osrJqcif4CyAmnGm4Es0IqgiinEiSrDev7/ObB7Bgxwcee0axyy32J1r
- IZ5CCVhq27WjXiVUQI6M0nUumCbnrWMXWlL1Hc8n/xTwf3c6zjWfKT+gA
- HivGjBZnK4ERnY5PM7rC6OfmAZswWVdGjHl+ncq5XsCiIP7sszaW4toTw g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="2914026"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7ZRwhHwgfnkyuFaHUDPsap3P/c2BrbBTK3HhdlJ60dw=;
+ b=RPsfJU0sydy6d0CRmuPP8F04BBTfKTxO7pt92bVrm8oBlx/8JfBqFIaW
+ mAgShCnGrPdNoxgPNVoeDL26hxbsU2o5Zzgub4KR8aVyoXt/3dpqoMSmI
+ dunlwLZuXzffiq8WcikTina4uki3LEpE00UFLikwHrxIz/ozyJh0BRNNG
+ Tm8+4E0rkkuDcimPVqvrYrQDjBW9SXOvC9pft7AvwNByYuXOQO69F4Ws8
+ 05SOUEDlcHlGgWBT1z9zTZsOwhxdhfGAAPdcm3XfARhcqG5MGYl3qJd/j
+ LqEdinYEhMCC0R/oYrjVXydubPupfykK2jxURRmC1PWjk6KVV8LBYARNg Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="2914025"
 X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; 
-   d="scan'208";a="2914026"
+   d="scan'208";a="2914025"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Feb 2024 19:46:39 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; d="scan'208";a="10038516"
+X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; d="scan'208";a="10038513"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Feb 2024 19:46:40 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 Cc: Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH] drm/xe: Add debug prints for skipping rebinds
-Date: Wed, 21 Feb 2024 19:47:23 -0800
-Message-Id: <20240222034725.3835064-2-matthew.brost@intel.com>
+Subject: [PATCH 0/2] Fix execlist mode
+Date: Wed, 21 Feb 2024 19:47:22 -0800
+Message-Id: <20240222034725.3835064-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240222034725.3835064-1-matthew.brost@intel.com>
-References: <20240222034725.3835064-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -63,45 +61,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Will help debug issues with VM binds.
+While not supported, execlist mode shouldn't be totally broken either.
+Fix execlist mode so some basic tests work without a kernel panic (e.g.
+xe_exec_basic.once-basic)
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_vm.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+Matthew Brost (2):
+  drm/xe: Fix execlist splat
+  drm/xe: Don't issue TLB invalidations for VMAs if using execlists
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 23a44ef85aa4..bf040df0d02b 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2287,6 +2287,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
- 				   struct xe_sync_entry *syncs, u32 num_syncs,
- 				   struct list_head *ops_list, bool last)
- {
-+	struct xe_device *xe = vm->xe;
- 	struct xe_vma_op *last_op = NULL;
- 	struct drm_gpuva_op *__op;
- 	int err = 0;
-@@ -2362,6 +2363,9 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
- 						xe_vma_end(vma) -
- 						xe_vma_start(old);
- 					op->remap.start = xe_vma_end(vma);
-+					vm_dbg(&xe->drm, "REMAP:SKIP_PREV: addr=0x%016llx, range=0x%016llx",
-+					       (ULL)op->remap.start,
-+					       (ULL)op->remap.range);
- 				}
- 			}
- 
-@@ -2392,6 +2396,9 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
- 					op->remap.range -=
- 						xe_vma_end(old) -
- 						xe_vma_start(vma);
-+					vm_dbg(&xe->drm, "REMAP:SKIP_NEXT: addr=0x%016llx, range=0x%016llx",
-+					       (ULL)op->remap.start,
-+					       (ULL)op->remap.range);
- 				}
- 			}
- 			break;
+ drivers/gpu/drm/xe/xe_execlist.c |  2 +-
+ drivers/gpu/drm/xe/xe_pt.c       | 32 +++++++++++++++++++-------------
+ 2 files changed, 20 insertions(+), 14 deletions(-)
+
 -- 
 2.34.1
 
