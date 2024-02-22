@@ -4,47 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6614AC48BEB
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 03:59:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02D67C48BF8
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 03:59:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 215D210E3AE;
-	Thu, 22 Feb 2024 03:59:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A841D10E864;
+	Thu, 22 Feb 2024 03:59:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d4IJ4GxO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JVZlObV4";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03C2B10E864
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 03:59:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27FF510E868
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 03:59:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708574360; x=1740110360;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=abZDFxHqifpb1xjzduBTge1DHvdeUGoH82FEuiKYS8s=;
- b=d4IJ4GxOoPhAtKKSWxlm/cUhzWg2crCXkBdWolSn1e3BM151PzobK6es
- Yq1hNYjOfveuSnITyI11ZLarHUZyV1yb/GMCQiSfZAKPdngmu//78w5G2
- Th+YQAVdaCFhzC3gVqMMvWVpNI0cWPSBO1THvvZMbzkf05BLt4EpGtVjd
- runMFYfUQNUETI6cITg6jA0SEj32bdW6G/gmYrlHcCVEFhXgQSOTNsq9D
- omHf1yeoqlVw9VXqMVvQHRruXQ76mRQJ6rbMvYgaXLZnd9Bl9XY+rJOGD
- EWgt3xtw8N44WRhFhWL2XuaZ8QAIaHzO6+J52I560+WSJa6ZsltynHaux A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="14198954"
-X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; d="scan'208";a="14198954"
+ t=1708574370; x=1740110370;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=nz0NZGdvAv/6s/Ycyy6SLov04UuHF58KvbekS1FFUCQ=;
+ b=JVZlObV4CHWHN1HZKtsiyJE4A5XPDaOtAu6d9nrPU7jngRvpF3VNSHLt
+ aqL3e6Aab6ekoRYBQVwOyqHS4v0Y3GYO8SFKN3+ZTWUP8L6OIqT/t2Nut
+ 0TobD9WSl3gi90fd+dRZVVDzLLmnIXjCMxG6ndJjYWMe2Z0vU/mMEZ67e
+ IOwrieRG5NqzYBSKBs4eugBrgCYOM7BX6+IV70JOVZUQiH+n/2ZRIA2G7
+ VInaEcmGKz0vY+FJpKlDcOjdmHLyp54i0Hgni6j0L6j+P802SSlJifNqC
+ ZF8b9ZIqALMr+c2Vvs8gCiZidVdaKS3mDQSbcBMUJaYN4ligasAiOwghX w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="14198958"
+X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; d="scan'208";a="14198958"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2024 19:59:20 -0800
+ 21 Feb 2024 19:59:30 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="913442880"
-X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; d="scan'208";a="913442880"
+X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="913442908"
+X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; d="scan'208";a="913442908"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2024 19:59:10 -0800
+ 21 Feb 2024 19:59:21 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 Cc: Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v2 0/2] Fix execlist mode
-Date: Wed, 21 Feb 2024 19:59:04 -0800
-Message-Id: <20240222035906.3835257-1-matthew.brost@intel.com>
+Subject: [PATCH v2 1/2] drm/xe: Fix execlist splat
+Date: Wed, 21 Feb 2024 19:59:05 -0800
+Message-Id: <20240222035906.3835257-2-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240222035906.3835257-1-matthew.brost@intel.com>
+References: <20240222035906.3835257-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -61,20 +63,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-While not supported, execlist mode shouldn't be totally broken either.
-Fix execlist mode so some basic tests work without a kernel panic (e.g.
-xe_exec_basic.once-basic)
+Although execlist submission is not supported it should be kept in a
+basic working state as it can be used for very early hardware bring up.
+Fix the below splat.
 
-v2: send with correct patches 
+WARNING: CPU: 3 PID: 11 at drivers/gpu/drm/xe/xe_execlist.c:217 execlist_run_job+0x1c2/0x220 [xe]
+Modules linked in: xe drm_kunit_helpers drm_gpuvm drm_ttm_helper ttm drm_exec drm_suballoc_helper drm_buddy gpu_sched mei_pxp mei_hdcp wmi_bmof x86_pkg_temp_thermal coretemp crct10dif_pclmul crc32_pclmul snd_hda_intel ghash_clmulni_intel snd_intel_dspcfg snd_hda_codec snd_hwdep snd_hda_core video snd_pcm mei_me mei wmi fuse e1000e i2c_i801 ptp i2c_smbus pps_core intel_lpss_pci
+CPU: 3 PID: 11 Comm: kworker/u16:0 Tainted: G     U             6.8.0-rc3-guc+ #1046
+Hardware name: Intel Corporation Tiger Lake Client Platform/TigerLake U DDR4 SODIMM RVP, BIOS TGLSFWI1.R00.3243.A01.2006102133 06/10/2020
+Workqueue: rcs0 drm_sched_run_job_work [gpu_sched]
+RIP: 0010:execlist_run_job+0x1c2/0x220 [xe]
+Code: 8b f8 03 00 00 4c 89 39 e9 e2 fe ff ff 49 8d 7d 20 be ff ff ff ff e8 ed fd a6 e1 85 c0 0f 85 e1 fe ff ff 0f 0b e9 da fe ff ff <0f> 0b 0f 0b 41 83 fc 03 0f 86 8a fe ff ff 0f 0b e9 83 fe ff ff be
+RSP: 0018:ffffc9000013bdb8 EFLAGS: 00010246
+RAX: ffff888105021a00 RBX: ffff888105078400 RCX: 0000000000000000
+RDX: 0000000000000001 RSI: ffffc9000013bd14 RDI: ffffc90001609090
+RBP: ffff88811e3f0040 R08: 0000000000000088 R09: 00000000ffffff81
+R10: 0000000000000001 R11: ffff88810c10c000 R12: 00000000fffffffe
+R13: ffff888109b72c28 R14: ffff8881050784a0 R15: ffff888105078408
+FS:  0000000000000000(0000) GS:ffff88849f980000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000563459d130f8 CR3: 000000000563a001 CR4: 0000000000f70ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ ? __warn+0x7f/0x170
+ ? execlist_run_job+0x1c2/0x220 [xe]
+ ? report_bug+0x1c7/0x1d0
+ ? handle_bug+0x3c/0x70
+ ? exc_invalid_op+0x18/0x70
+ ? asm_exc_invalid_op+0x1a/0x20
+ ? execlist_run_job+0x1c2/0x220 [xe]
+ ? execlist_run_job+0x2c/0x220 [xe]
+ drm_sched_run_job_work+0x246/0x3f0 [gpu_sched]
+ ? process_one_work+0x18d/0x4e0
+ process_one_work+0x1f7/0x4e0
+ worker_thread+0x1da/0x3e0
+ ? __pfx_worker_thread+0x10/0x10
+ kthread+0xfe/0x130
+ ? __pfx_kthread+0x10/0x10
+ ret_from_fork+0x2c/0x50
+ ? __pfx_kthread+0x10/0x10
+ ret_from_fork_asm+0x1b/0x30
+ </TASK>
 
-Matthew Brost (2):
-  drm/xe: Fix execlist splat
-  drm/xe: Don't issue TLB invalidations for VMAs if using execlists
+Fixes: 9b9529ce379a ("drm/xe: Rename engine to exec_queue")
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_execlist.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- drivers/gpu/drm/xe/xe_execlist.c |  2 +-
- drivers/gpu/drm/xe/xe_pt.c       | 32 +++++++++++++++++++-------------
- 2 files changed, 20 insertions(+), 14 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index 1788e78caf5c..dece2785933c 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -212,7 +212,7 @@ static void xe_execlist_port_wake_locked(struct xe_execlist_port *port,
+ static void xe_execlist_make_active(struct xe_execlist_exec_queue *exl)
+ {
+ 	struct xe_execlist_port *port = exl->port;
+-	enum xe_exec_queue_priority priority = exl->active_priority;
++	enum xe_exec_queue_priority priority = exl->q->sched_props.priority;
+ 
+ 	XE_WARN_ON(priority == XE_EXEC_QUEUE_PRIORITY_UNSET);
+ 	XE_WARN_ON(priority < 0);
 -- 
 2.34.1
 
