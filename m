@@ -4,93 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64F7FC54E4F
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 14:01:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 915ABC48BF8
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 14:41:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1ACAF10E959;
-	Thu, 22 Feb 2024 14:01:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E8FE10EA63;
+	Thu, 22 Feb 2024 14:41:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="0fzx84EN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EjxfRLZb";
 	dkim-atps=neutral
-Received: from mail-il1-f170.google.com (mail-il1-f170.google.com
- [209.85.166.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F265E10E80C
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 21:07:03 +0000 (UTC)
-Received: by mail-il1-f170.google.com with SMTP id
- e9e14a558f8ab-365124888a5so3924245ab.1
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 13:07:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1708549623; x=1709154423;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=AAAZa1jDC6WKP3dR2NzQXLtAyykABKSP5MJcfQiYXKs=;
- b=0fzx84EN1wI7bYOeCYpWkyhupj5YfOuRG8Kr4t0JSJRyaBTYEH+KITJ22ANgVqomGi
- 9JAAOUFs66rFBvqxLpYurMG8M1DE+v/nk58EZpuzXW6XEmfCfksfO0k7tNuu8IbhNaFx
- fiBGaxsDIAW9HNDLMoPrWv0DOOHILrvRC0xtu3QoclPiB/tcC36M275z0cu3Ou4oWPE8
- W2saZOf9vDFEYTFw7aO4tkNXtB5ezpLrW0MGtAjbAc66mlv/zPQxyMJks02HhXsutHJD
- isLEQI90ZR0Ak8x5eEu6DH0fG01s1Y5TqhHAK8rtkq2cpa4oyC2IRK51OISRii2GCsCZ
- fOoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1708549623; x=1709154423;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=AAAZa1jDC6WKP3dR2NzQXLtAyykABKSP5MJcfQiYXKs=;
- b=M2mQwCx+y7lkAciP75A9MMq5o2qDHR9fDTrFVv4jUCEsbnXTmcihE1lcaUxBKdQgs4
- ayX4uAi9G+S9FI2FLv4Mo0Wg0ccTGJsGYoqMJgTHSpEDywxK4l/PCPtFYtC+vBalKJz5
- 7ArhyBOf1tfaAW8RNgHtMpBOttpxj49lc8+A4DTVR/v0PKeOtB9ugHNdHY0cntBZk6VT
- iblo105Ca3A6moHe0wjcIMDhQRQeKwA4Cs/keP8km91IxGSfpVFw3y2QFMdi97jpWaeQ
- v+tkvaD0uwMpBiMVkRwnHHqkEbPbrolZMI7z7q0dHbC3TdwPoYsX+4xHwB1CLQQ3oFnp
- Y4CQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUC8GFzi3e1Ic+kU3W5EcMicpNdfzfRWuIluzikFpXviCw1X64cPKtJ//T4vdXr8pzwnSPEVioINHyRDCe97raT13uw5zdA+iarWQcooJ0=
-X-Gm-Message-State: AOJu0YzSXxFGJq6jNda2CpH+TKo0FMkfe9PYrXsxYcCm8jjdE52KzhU2
- nXlA5wfD/gSebvA15ojh/OFwG1yTUJCqS/bNTmGbG1MaFYnE2H/pKdp7BwuHzw==
-X-Google-Smtp-Source: AGHT+IGat+ZOlE3TaiF7TUr34C9oDGm5EHv4BN9HXA/+oFvVMsLjUVwjzy0AX0VUmgXwUPrLBRg1OQ==
-X-Received: by 2002:a92:d790:0:b0:365:4aa1:8bd5 with SMTP id
- d16-20020a92d790000000b003654aa18bd5mr5504674iln.5.1708549622918; 
- Wed, 21 Feb 2024 13:07:02 -0800 (PST)
-Received: from google.com (161.74.123.34.bc.googleusercontent.com.
- [34.123.74.161]) by smtp.gmail.com with ESMTPSA id
- bd6-20020a056e02300600b00363807d5c4esm2799990ilb.13.2024.02.21.13.07.02
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 21 Feb 2024 13:07:02 -0800 (PST)
-Date: Wed, 21 Feb 2024 21:06:59 +0000
-From: Justin Stitt <justinstitt@google.com>
-To: David Gow <davidgow@google.com>
-Cc: Linus Torvalds <torvalds@linux-foundation.org>,
- Shuah Khan <skhan@linuxfoundation.org>,
- Guenter Roeck <linux@roeck-us.net>, Rae Moar <rmoar@google.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Kees Cook <keescook@chromium.org>,
- =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Willem de Bruijn <willemb@google.com>, Florian Westphal <fw@strlen.de>,
- Cassio Neri <cassio.neri@gmail.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Arthur Grillo <arthur.grillo@usp.br>,
- Brendan Higgins <brendan.higgins@linux.dev>,
- Daniel Latypov <dlatypov@google.com>,
- Stephen Boyd <sboyd@kernel.org>, David Airlie <airlied@gmail.com>,
- Maxime Ripard <mripard@kernel.org>,
- "David S . Miller" <davem@davemloft.net>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- intel-xe@lists.freedesktop.org, linux-rtc@vger.kernel.org,
- linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com,
- linux-hardening@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH 5/9] rtc: test: Fix invalid format specifier.
-Message-ID: <20240221210659.4p6cq4lhmoz3eaqj@google.com>
-References: <20240221092728.1281499-1-davidgow@google.com>
- <20240221092728.1281499-6-davidgow@google.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 563AD10EA5A
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 14:41:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1708612876; x=1740148876;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=8VUu9vpug1QzaQBS5KH8ZD4oU87swp6Y+fiMByZ8ztA=;
+ b=EjxfRLZbVj31swt+q16+pgN0+6zQUV8sTwGygTQR/YCWE22SQZ7vXidy
+ gieNK8IF4t363b7w0f2EthVYKJerhyPmAVu7ANHpbOjj12Sn5Et6Z9Qhj
+ kNQ2SCJtiPL1XcKJJMlu639QBuuOaFcenCeNjWgu3VOw6PkTBMLbb+vP3
+ G3/bHJ3KsmVXzZ3gMlJHjWbIKkXK0aPTmZqZQjXqMA2PCKb11ezLjhhs0
+ ekfzAQJvRJMn95aAZFSTAZgn/3e7ezaLxIwAXZlrUGOHOG/Tt+1KIOwbw
+ aTSCj3NztIZLWiSXmuWMgBJK8BJLGYUbgei2YhrKcgM4XIbYtTBqnogHa Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="2713477"
+X-IronPort-AV: E=Sophos;i="6.06,179,1705392000"; 
+   d="scan'208";a="2713477"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2024 06:41:16 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,179,1705392000"; 
+   d="scan'208";a="5715841"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2024 06:41:14 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Priyanka Dandamudi <priyanka.dandamudi@intel.com>,
+ Oak Zeng <oak.zeng@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: [PATCH] drm/xe: Use pointers in trace events
+Date: Thu, 22 Feb 2024 06:41:24 -0800
+Message-ID: <20240222144125.2862546-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240221092728.1281499-6-davidgow@google.com>
-X-Mailman-Approved-At: Thu, 22 Feb 2024 14:01:23 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,38 +68,135 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+Commit a0df2cc858c3 ("drm/xe/xe_bo_move: Enhance xe_bo_move trace")
+inadvertently reverted commit 8d038f49c1f3 ("drm/xe: Fix cast on trace
+variable"), breaking the build on 32bits.
 
-On Wed, Feb 21, 2024 at 05:27:18PM +0800, David Gow wrote:
-> 'days' is a s64 (from div_s64), and so should use a %lld specifier.
->
-> This was found by extending KUnit's assertion macros to use gcc's
-> __printf attribute.
->
-> Fixes: 1d1bb12a8b18 ("rtc: Improve performance of rtc_time64_to_tm(). Add tests.")
-> Signed-off-by: David Gow <davidgow@google.com>
+As noted by Ville, there's no point in converting the pointers to u64
+and add casts everywhere. In fact, it's better to just use %p and let
+the address be hashed. Convert all the cases in xe_trace.h to use
+pointers.
 
-Reviewed-by: Justin Stitt <justinstitt@google.com>
-> ---
->  drivers/rtc/lib_test.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/rtc/lib_test.c b/drivers/rtc/lib_test.c
-> index d5caf36c56cd..225c859d6da5 100644
-> --- a/drivers/rtc/lib_test.c
-> +++ b/drivers/rtc/lib_test.c
-> @@ -54,7 +54,7 @@ static void rtc_time64_to_tm_test_date_range(struct kunit *test)
->
->  		days = div_s64(secs, 86400);
->
-> -		#define FAIL_MSG "%d/%02d/%02d (%2d) : %ld", \
-> +		#define FAIL_MSG "%d/%02d/%02d (%2d) : %lld", \
->  			year, month, mday, yday, days
->
->  		KUNIT_ASSERT_EQ_MSG(test, year - 1900, result.tm_year, FAIL_MSG);
-> --
-> 2.44.0.rc0.258.g7320e95886-goog
->
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Priyanka Dandamudi <priyanka.dandamudi@intel.com>
+Cc: Oak Zeng <oak.zeng@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_trace.h | 30 +++++++++++++++---------------
+ 1 file changed, 15 insertions(+), 15 deletions(-)
 
-Thanks
-Justin
+diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+index 0cce98a6b14b7..3b97633d81d85 100644
+--- a/drivers/gpu/drm/xe/xe_trace.h
++++ b/drivers/gpu/drm/xe/xe_trace.h
+@@ -27,16 +27,16 @@ DECLARE_EVENT_CLASS(xe_gt_tlb_invalidation_fence,
+ 		    TP_ARGS(fence),
+ 
+ 		    TP_STRUCT__entry(
+-			     __field(u64, fence)
++			     __field(struct xe_gt_tlb_invalidation_fence *, fence)
+ 			     __field(int, seqno)
+ 			     ),
+ 
+ 		    TP_fast_assign(
+-			   __entry->fence = (u64)fence;
++			   __entry->fence = fence;
+ 			   __entry->seqno = fence->seqno;
+ 			   ),
+ 
+-		    TP_printk("fence=0x%016llx, seqno=%d",
++		    TP_printk("fence=%p, seqno=%d",
+ 			      __entry->fence, __entry->seqno)
+ );
+ 
+@@ -83,16 +83,16 @@ DECLARE_EVENT_CLASS(xe_bo,
+ 		    TP_STRUCT__entry(
+ 			     __field(size_t, size)
+ 			     __field(u32, flags)
+-			     __field(u64, vm)
++			     __field(struct xe_vm *, vm)
+ 			     ),
+ 
+ 		    TP_fast_assign(
+ 			   __entry->size = bo->size;
+ 			   __entry->flags = bo->flags;
+-			   __entry->vm = (unsigned long)bo->vm;
++			   __entry->vm = bo->vm;
+ 			   ),
+ 
+-		    TP_printk("size=%zu, flags=0x%02x, vm=0x%016llx",
++		    TP_printk("size=%zu, flags=0x%02x, vm=%p",
+ 			      __entry->size, __entry->flags, __entry->vm)
+ );
+ 
+@@ -346,16 +346,16 @@ DECLARE_EVENT_CLASS(xe_hw_fence,
+ 		    TP_STRUCT__entry(
+ 			     __field(u64, ctx)
+ 			     __field(u32, seqno)
+-			     __field(u64, fence)
++			     __field(struct xe_hw_fence *, fence)
+ 			     ),
+ 
+ 		    TP_fast_assign(
+ 			   __entry->ctx = fence->dma.context;
+ 			   __entry->seqno = fence->dma.seqno;
+-			   __entry->fence = (unsigned long)fence;
++			   __entry->fence = fence;
+ 			   ),
+ 
+-		    TP_printk("ctx=0x%016llx, fence=0x%016llx, seqno=%u",
++		    TP_printk("ctx=0x%016llx, fence=%p, seqno=%u",
+ 			      __entry->ctx, __entry->fence, __entry->seqno)
+ );
+ 
+@@ -384,7 +384,7 @@ DECLARE_EVENT_CLASS(xe_vma,
+ 		    TP_ARGS(vma),
+ 
+ 		    TP_STRUCT__entry(
+-			     __field(u64, vma)
++			     __field(struct xe_vma *, vma)
+ 			     __field(u32, asid)
+ 			     __field(u64, start)
+ 			     __field(u64, end)
+@@ -392,14 +392,14 @@ DECLARE_EVENT_CLASS(xe_vma,
+ 			     ),
+ 
+ 		    TP_fast_assign(
+-			   __entry->vma = (unsigned long)vma;
++			   __entry->vma = vma;
+ 			   __entry->asid = xe_vma_vm(vma)->usm.asid;
+ 			   __entry->start = xe_vma_start(vma);
+ 			   __entry->end = xe_vma_end(vma) - 1;
+ 			   __entry->ptr = xe_vma_userptr(vma);
+ 			   ),
+ 
+-		    TP_printk("vma=0x%016llx, asid=0x%05x, start=0x%012llx, end=0x%012llx, ptr=0x%012llx,",
++		    TP_printk("vma=%p, asid=0x%05x, start=0x%012llx, end=0x%012llx, userptr=0x%012llx,",
+ 			      __entry->vma, __entry->asid, __entry->start,
+ 			      __entry->end, __entry->ptr)
+ )
+@@ -484,16 +484,16 @@ DECLARE_EVENT_CLASS(xe_vm,
+ 		    TP_ARGS(vm),
+ 
+ 		    TP_STRUCT__entry(
+-			     __field(u64, vm)
++			     __field(struct xe_vm *, vm)
+ 			     __field(u32, asid)
+ 			     ),
+ 
+ 		    TP_fast_assign(
+-			   __entry->vm = (unsigned long)vm;
++			   __entry->vm = vm;
+ 			   __entry->asid = vm->usm.asid;
+ 			   ),
+ 
+-		    TP_printk("vm=0x%016llx, asid=0x%05x",  __entry->vm,
++		    TP_printk("vm=%p, asid=0x%05x",  __entry->vm,
+ 			      __entry->asid)
+ );
+ 
+-- 
+2.43.0
+
