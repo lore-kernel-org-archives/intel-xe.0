@@ -4,27 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E18AC54791
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 17:20:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB651C48BF8
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 17:36:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B8E210E967;
-	Thu, 22 Feb 2024 17:20:49 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0ABA110E967;
- Thu, 22 Feb 2024 17:20:47 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3063021618498440957=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id A282610E9CE;
+	Thu, 22 Feb 2024 17:36:17 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="sq9K460x";
+	dkim-atps=neutral
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com
+ [209.85.208.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0003510E9CE
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 17:36:15 +0000 (UTC)
+Received: by mail-ed1-f41.google.com with SMTP id
+ 4fb4d7f45d1cf-565223fd7d9so14786a12.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 09:36:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1708623374; x=1709228174;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=OmEKVyetFL548x1phH+vDmo2g1KI7fqBu5h2gLzPo5M=;
+ b=sq9K460xNUeVAQ41n1x0zyT0nlm1o/Zf9y44ihLnA3HCHzllOyJ7+Gru7hU5QAJyFc
+ SNtmom/w8YTMFk7xROP39aaYhkwDY++CFhIZ2X45xHi1Te/r3Sb8ArHWmV+TSMUgLS2w
+ Hki3Ua5DoLwt+asFOo/4VTZUPDT3zbzKJVnnSCe2vUxi6TNdIWWOeeP8b/tZb/A16w4n
+ XSZBAGAL3+fby/T4oplsVagd+8u790xJeviT8BW8wrBe7QoQ6rmXEczbLB1iatxvErWa
+ LgS1NXcNmDIVHuR+J9p9lo5f2SWRu10wbId7TY1+EUEQJDATO8pQp116l/93/uxF7jCv
+ eiUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1708623374; x=1709228174;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=OmEKVyetFL548x1phH+vDmo2g1KI7fqBu5h2gLzPo5M=;
+ b=aLdTlCN/wpKYATb7hhiNl6x59N9UwBDbjHdQDvg5OA45L+JnH9Xhtu5Ylqp5sXLwYO
+ 5qnPBno1fy/ZnxmCS/OdAkdi9/xHdwN9CEwRPh5PRUribwLUs1ZJqPsvyKJk0cK+eO5S
+ xY5hn3blC5H+UQfN86RQG4ZWQlKGb/WjxcCEaIXpeFFWD6xhuivoDeVtkozGFlFmpDqS
+ WeUBTPFyklq3Iz9KmXSCHdL8PuJ0DV/HsGqHMdK8sfTtbT+b4lDEToVJdWVXzDBSdJ8r
+ RDtfp7zDb1GtDV2XgesvIhVE4mkWqNUMXtMlZqRUz5eUJMpKeyWRWW9zMv4TzaSbVAm3
+ IpFg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVZ5lJwJcnbA+2LDGT4YdQjw3UzGHRoBHP/OzoFTurptL/pLr+pLqVOBhIwf6/76nD3npzIjwMi/uEhBqJn4JCB03qtDjOITXMqT/3hi6c=
+X-Gm-Message-State: AOJu0YwputMlX79W54bsyvOaHuQ41tEVG3VBkUl7R5r8pGCI3bkKh3Ux
+ HZqOtxcfChr2CjlmUwoLTSoyigy1pXgJiMvJEn1Xz5eJciXqUQCdsUJK0hJEfLPeztBXF7Lj4VF
+ oj6MzsBA68u82tJXceIUmoUgJN9YeaqSgmiig
+X-Google-Smtp-Source: AGHT+IH+4QsAKS6v2wz/3Ohm5UGixFC1Is/yek5Qgz+ij5+wrc7QXl4sCi0AbqHTx6nwjSX1cBP+z7ipSxtuApYMC+k=
+X-Received: by 2002:a50:c309:0:b0:565:4b98:758c with SMTP id
+ a9-20020a50c309000000b005654b98758cmr128301edb.4.1708623373891; Thu, 22 Feb
+ 2024 09:36:13 -0800 (PST)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5B01/14=5D?=
- =?utf-8?q?_drm/xe=3A_Document_Xe_PM_component?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 22 Feb 2024 17:20:47 -0000
-Message-ID: <170862244704.217031.11096902623207838067@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240222163937.138342-1-rodrigo.vivi@intel.com>
-In-Reply-To: <20240222163937.138342-1-rodrigo.vivi@intel.com>
+References: <20240221092728.1281499-1-davidgow@google.com>
+ <20240221092728.1281499-3-davidgow@google.com>
+ <20240221201008.ez5tu7xvkedtln3o@google.com>
+ <CABVgOSn+VxTb5TOmZd82HN04j_ZG9J2G-AoJmdxWG8QDh9xGxg@mail.gmail.com>
+In-Reply-To: <CABVgOSn+VxTb5TOmZd82HN04j_ZG9J2G-AoJmdxWG8QDh9xGxg@mail.gmail.com>
+From: Daniel Latypov <dlatypov@google.com>
+Date: Thu, 22 Feb 2024 09:36:01 -0800
+Message-ID: <CAGS_qxoW0v0eM646zLu=SWL1O5UUp5k08SZsQO51gCDx_LnhcQ@mail.gmail.com>
+Subject: Re: [PATCH 2/9] lib/cmdline: Fix an invalid format specifier in an
+ assertion msg
+To: David Gow <davidgow@google.com>
+Cc: Justin Stitt <justinstitt@google.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>, 
+ Shuah Khan <skhan@linuxfoundation.org>, Guenter Roeck <linux@roeck-us.net>, 
+ Rae Moar <rmoar@google.com>, Matthew Auld <matthew.auld@intel.com>, 
+ Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Kees Cook <keescook@chromium.org>,
+ =?UTF-8?B?TWHDrXJhIENhbmFs?= <mcanal@igalia.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Matthew Brost <matthew.brost@intel.com>,
+ Willem de Bruijn <willemb@google.com>, Florian Westphal <fw@strlen.de>,
+ Cassio Neri <cassio.neri@gmail.com>, 
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Arthur Grillo <arthur.grillo@usp.br>, 
+ Brendan Higgins <brendan.higgins@linux.dev>, Stephen Boyd <sboyd@kernel.org>, 
+ David Airlie <airlied@gmail.com>, Maxime Ripard <mripard@kernel.org>, 
+ "David S . Miller" <davem@davemloft.net>, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org, 
+ linux-rtc@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ kunit-dev@googlegroups.com, linux-hardening@vger.kernel.org, 
+ netdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +98,94 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3063021618498440957==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Feb 21, 2024 at 10:22=E2=80=AFPM David Gow <davidgow@google.com> wr=
+ote:
+>
+> On Thu, 22 Feb 2024 at 04:10, 'Justin Stitt' via KUnit Development
+> <kunit-dev@googlegroups.com> wrote:
+> >
+> > Hi,
+> >
+> > On Wed, Feb 21, 2024 at 05:27:15PM +0800, David Gow wrote:
+> > > The correct format specifier for p - n (both p and n are pointers) is
+> > > %td, as the type should be ptrdiff_t.
+> >
+> > I think %tu is better. d specifies a signed type. I don't doubt that th=
+e
+> > warning is fixed but I think %tu represents the type semantics here.
+> >
+>
+> While I agree that this should never be negative, I'd still lean on
+> this being a signed type, for two reasons:
+> - I think, if there's a bug in this code, it's easier to debug this if
+> a 'negative' value were to appear as such.
+> - While, as I understand it, the C spec does provide for a
+> ptrdiff_t-sized unsigned printf specifier in '%tu', the difference
+> between two pointers is always signed:
+>
+> "When two pointers are subtracted, both shall point to elements of the
+> same array object,
+> or one past the last element of the array object; the result is the
+> difference of the
+> subscripts of the two array elements. The size of the result is
+> implementation-defined,
+> and its type (a signed integer type) is ptrdiff_t defined in the
+> <stddef.h> header"
+>
+> (Technically, the kernel's ptrdiff_t type isn't defined in stddef.h,
+> so a bit of deviation from the spec is happening anyway, though.)
+>
+> If there's a particularly good reason to make this unsigned in this
+> case, I'd be happy to change it, of course. But I'd otherwise prefer
+> to keep it as-is.
 
-== Series Details ==
+Copying the line for context, it's about `p-r` where
+  p =3D memchr_inv(&r[1], 0, sizeof(r) - sizeof(r[0]));
+`p-r` should never be negative unless something has gone horribly
+horribly wrong.
 
-Series: series starting with [01/14] drm/xe: Document Xe PM component
-URL   : https://patchwork.freedesktop.org/series/130270/
-State : success
+So in this particular case, either %tu or %td would be fine.
 
-== Summary ==
+(sorta bikeshedding warning)
+But, I'd personally lean towards using the signed %td in tests to
+guard against typos in test code as _a guiding principle._
 
-CI Bug Log - changes from xe-824-ae1e283133b83b0de46f00b0ac0bca913e159216_BAT -> xe-pw-130270v1_BAT
-====================================================
+This is especially true given that the failure messages aren't
+verified since they are mostly "dead code."
+You can have crazy incorrect things going on in the format arguments,
+see patch 1/9 in this series [1]. One of kunit's own tests would do a
+read from a ~random memory region if that specific assertion failed.
+Not a good look ;)
+We never noticed until this series enabled the format string checks.
+You also can't expect reviewers to go through and modify every
+assertion to fail to see what the failure mode looks like, so these
+kinds of errors will continue to slip through.
 
-Summary
--------
+*So IMO, we should generally adopt a more defensive stance when it
+comes to these.*
 
-  **SUCCESS**
+Also consider the user experience if there is a failure and I
+accidentally wrote `r-p` here.
+Someone else sees an error report from this test and needs to investigate.
 
-  No regressions found.
+What message is easier to deal with?
+>  in test 18 at -5 out of bound
+or
+> in test 18 at 18446744073709551611 out of bound
 
-  
+Sure, I can eventually figure out what both messages mean, but it's a
+immediately obvious from the first that there's a
+a) real error: something is wrong at index 5
+b) test code error: there's a flipped sign somewhere
 
-Participating hosts (4 -> 4)
-------------------------------
+So I'd strongly prefer the current version of the patch over one with %tu.
+Reviewed-by: Daniel Latypov <dlatypov@google.com>
 
-  No changes in participating hosts
+[1] https://lore.kernel.org/linux-kselftest/20240221092728.1281499-2-davidg=
+ow@google.com/
 
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-824-ae1e283133b83b0de46f00b0ac0bca913e159216 -> xe-pw-130270v1
-
-  IGT_7723: 7723
-  xe-824-ae1e283133b83b0de46f00b0ac0bca913e159216: ae1e283133b83b0de46f00b0ac0bca913e159216
-  xe-pw-130270v1: 130270v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130270v1/index.html
-
---===============3063021618498440957==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [01/14] drm/xe: Document Xe PM component</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130270/">https://patchwork.freedesktop.org/series/130270/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130270v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130270v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-824-ae1e283133b83b0de46f00b0ac0bca913e159216_BAT -&gt; xe-pw-130270v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-824-ae1e283133b83b0de46f00b0ac0bca913e159216 -&gt; xe-pw-130270v1</li>
-</ul>
-<p>IGT_7723: 7723<br />
-  xe-824-ae1e283133b83b0de46f00b0ac0bca913e159216: ae1e283133b83b0de46f00b0ac0bca913e159216<br />
-  xe-pw-130270v1: 130270v1</p>
-
-</body>
-</html>
-
---===============3063021618498440957==--
+Thanks,
+Daniel
