@@ -4,69 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB651C48BF8
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 17:36:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 461DEC48BF8
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 17:57:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A282610E9CE;
-	Thu, 22 Feb 2024 17:36:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB1A010E9D9;
+	Thu, 22 Feb 2024 17:57:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="sq9K460x";
+	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="IHDGqMUv";
 	dkim-atps=neutral
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com
- [209.85.208.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0003510E9CE
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 17:36:15 +0000 (UTC)
-Received: by mail-ed1-f41.google.com with SMTP id
- 4fb4d7f45d1cf-565223fd7d9so14786a12.1
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 09:36:15 -0800 (PST)
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com
+ [209.85.167.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01F0B10E9DA
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 17:57:21 +0000 (UTC)
+Received: by mail-lf1-f48.google.com with SMTP id
+ 2adb3069b0e04-512c2e8c6cfso56241e87.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 09:57:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1708623374; x=1709228174;
+ d=linux-foundation.org; s=google; t=1708624639; x=1709229439;
  darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=OmEKVyetFL548x1phH+vDmo2g1KI7fqBu5h2gLzPo5M=;
- b=sq9K460xNUeVAQ41n1x0zyT0nlm1o/Zf9y44ihLnA3HCHzllOyJ7+Gru7hU5QAJyFc
- SNtmom/w8YTMFk7xROP39aaYhkwDY++CFhIZ2X45xHi1Te/r3Sb8ArHWmV+TSMUgLS2w
- Hki3Ua5DoLwt+asFOo/4VTZUPDT3zbzKJVnnSCe2vUxi6TNdIWWOeeP8b/tZb/A16w4n
- XSZBAGAL3+fby/T4oplsVagd+8u790xJeviT8BW8wrBe7QoQ6rmXEczbLB1iatxvErWa
- LgS1NXcNmDIVHuR+J9p9lo5f2SWRu10wbId7TY1+EUEQJDATO8pQp116l/93/uxF7jCv
- eiUA==
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=2n36AeyXiuh8a+bUOx1L+r2cwQosoX8vn/3R6qLfBBs=;
+ b=IHDGqMUvX9qa1UOgO9k6DAht7iDQtLpOrmbYQGWoFNt6doXrxeOA8Ho9U+ZYgPitYF
+ XadEjUI/kmew5tWKWjmvl/aHmnTZvUtksIo2aZemp1Begc8tyPxS5E2PqdKAb10gdL5y
+ r5kfWrvYpyp9gS8t8Y4JqwWflnfhxLZnX1/3g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1708623374; x=1709228174;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=OmEKVyetFL548x1phH+vDmo2g1KI7fqBu5h2gLzPo5M=;
- b=aLdTlCN/wpKYATb7hhiNl6x59N9UwBDbjHdQDvg5OA45L+JnH9Xhtu5Ylqp5sXLwYO
- 5qnPBno1fy/ZnxmCS/OdAkdi9/xHdwN9CEwRPh5PRUribwLUs1ZJqPsvyKJk0cK+eO5S
- xY5hn3blC5H+UQfN86RQG4ZWQlKGb/WjxcCEaIXpeFFWD6xhuivoDeVtkozGFlFmpDqS
- WeUBTPFyklq3Iz9KmXSCHdL8PuJ0DV/HsGqHMdK8sfTtbT+b4lDEToVJdWVXzDBSdJ8r
- RDtfp7zDb1GtDV2XgesvIhVE4mkWqNUMXtMlZqRUz5eUJMpKeyWRWW9zMv4TzaSbVAm3
- IpFg==
+ d=1e100.net; s=20230601; t=1708624639; x=1709229439;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=2n36AeyXiuh8a+bUOx1L+r2cwQosoX8vn/3R6qLfBBs=;
+ b=AdCVBRQIz0TNjXpuILo0PatlgNxHE6MsXWJgUwuk76MlwFzYbYv/7xRUPhR4qRSx+M
+ EHQMxkFozkEv5qNxkRh/VZjuQ2LnlB0QKFznNagdlu/x33V3N5YRswPeSy3h6ffUmSwO
+ kgh6hm6WOlFXwjBIrMQsaXtWxwGnwEqqHkCHTVatQ+HRI4CVssdphglr81wTtuYchnnm
+ /O+Re7JqijSPsegs1gYGkNYqAExPQAB9fI8ngE9Rzgvy10fu393Wu0wisRqnKWitR80N
+ XvAz1LBylH8+Tef3Nwff4HxLPAJW3RM2DkQjqEnDYNMKP/muWgUYG5/MtYI9dwYjcL0U
+ KM+w==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVZ5lJwJcnbA+2LDGT4YdQjw3UzGHRoBHP/OzoFTurptL/pLr+pLqVOBhIwf6/76nD3npzIjwMi/uEhBqJn4JCB03qtDjOITXMqT/3hi6c=
-X-Gm-Message-State: AOJu0YwputMlX79W54bsyvOaHuQ41tEVG3VBkUl7R5r8pGCI3bkKh3Ux
- HZqOtxcfChr2CjlmUwoLTSoyigy1pXgJiMvJEn1Xz5eJciXqUQCdsUJK0hJEfLPeztBXF7Lj4VF
- oj6MzsBA68u82tJXceIUmoUgJN9YeaqSgmiig
-X-Google-Smtp-Source: AGHT+IH+4QsAKS6v2wz/3Ohm5UGixFC1Is/yek5Qgz+ij5+wrc7QXl4sCi0AbqHTx6nwjSX1cBP+z7ipSxtuApYMC+k=
-X-Received: by 2002:a50:c309:0:b0:565:4b98:758c with SMTP id
- a9-20020a50c309000000b005654b98758cmr128301edb.4.1708623373891; Thu, 22 Feb
- 2024 09:36:13 -0800 (PST)
+ AJvYcCUiZLe368upLY3+BAn+Ocitzddej1IuCKndyY/BfsZzXeZxuwBfQvcG/v8YF2DjjB3mpcqu4e1t8OzS2WD6UbCrLXTfyHc59YBWxi3tTDY=
+X-Gm-Message-State: AOJu0Yw7vygcXAb12CFOp2Xj+gh82GKmAGUVuAZ6TT9Bwf12Z0ptPr5j
+ hamgaGECMXj/dKV/rV7Naz4ZxBKGvbbjx2l+JnWNVnhMYio53hDoY/lqH8JeClAbuaHL9zUZmqS
+ hyRLdlA==
+X-Google-Smtp-Source: AGHT+IHla9w4nO3B7dEVNjk/GrVJLmE5p9bgfQpi3CbdrF3qLy1ebG1ot0/6yE5bj5K80cEoBCQ6EA==
+X-Received: by 2002:a05:6512:3d9e:b0:512:e0a8:39d8 with SMTP id
+ k30-20020a0565123d9e00b00512e0a839d8mr1469634lfv.43.1708624638863; 
+ Thu, 22 Feb 2024 09:57:18 -0800 (PST)
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com.
+ [209.85.208.180]) by smtp.gmail.com with ESMTPSA id
+ p20-20020ac246d4000000b00512d8cecd78sm475934lfo.197.2024.02.22.09.57.18
+ for <intel-xe@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 22 Feb 2024 09:57:18 -0800 (PST)
+Received: by mail-lj1-f180.google.com with SMTP id
+ 38308e7fff4ca-2d2533089f6so569251fa.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 09:57:18 -0800 (PST)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWbNBNlE1qJTM+Ax23WVvNyLNyG4zf58F6uEf40kYinrG8iYdHC+yPPAEtcH+oXi7qekEjvycG20I0cDOjnybS0oDPdp84gN4KCwXJLAlw=
+X-Received: by 2002:a05:6512:3089:b0:512:acf1:6970 with SMTP id
+ z9-20020a056512308900b00512acf16970mr11555378lfd.35.1708624617484; Thu, 22
+ Feb 2024 09:56:57 -0800 (PST)
 MIME-Version: 1.0
 References: <20240221092728.1281499-1-davidgow@google.com>
  <20240221092728.1281499-3-davidgow@google.com>
  <20240221201008.ez5tu7xvkedtln3o@google.com>
  <CABVgOSn+VxTb5TOmZd82HN04j_ZG9J2G-AoJmdxWG8QDh9xGxg@mail.gmail.com>
-In-Reply-To: <CABVgOSn+VxTb5TOmZd82HN04j_ZG9J2G-AoJmdxWG8QDh9xGxg@mail.gmail.com>
-From: Daniel Latypov <dlatypov@google.com>
-Date: Thu, 22 Feb 2024 09:36:01 -0800
-Message-ID: <CAGS_qxoW0v0eM646zLu=SWL1O5UUp5k08SZsQO51gCDx_LnhcQ@mail.gmail.com>
+ <CAGS_qxoW0v0eM646zLu=SWL1O5UUp5k08SZsQO51gCDx_LnhcQ@mail.gmail.com>
+In-Reply-To: <CAGS_qxoW0v0eM646zLu=SWL1O5UUp5k08SZsQO51gCDx_LnhcQ@mail.gmail.com>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Thu, 22 Feb 2024 09:56:40 -0800
+X-Gmail-Original-Message-ID: <CAHk-=wiODww51Kz-TTWn0ka5T8oMtt0AfbO9t0U3iJqfLZO+8w@mail.gmail.com>
+Message-ID: <CAHk-=wiODww51Kz-TTWn0ka5T8oMtt0AfbO9t0U3iJqfLZO+8w@mail.gmail.com>
 Subject: Re: [PATCH 2/9] lib/cmdline: Fix an invalid format specifier in an
  assertion msg
-To: David Gow <davidgow@google.com>
-Cc: Justin Stitt <justinstitt@google.com>,
- Linus Torvalds <torvalds@linux-foundation.org>, 
+To: Daniel Latypov <dlatypov@google.com>
+Cc: David Gow <davidgow@google.com>, Justin Stitt <justinstitt@google.com>, 
  Shuah Khan <skhan@linuxfoundation.org>, Guenter Roeck <linux@roeck-us.net>, 
  Rae Moar <rmoar@google.com>, Matthew Auld <matthew.auld@intel.com>, 
  Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>, 
@@ -86,7 +97,6 @@ Cc: Justin Stitt <justinstitt@google.com>,
  kunit-dev@googlegroups.com, linux-hardening@vger.kernel.org, 
  netdev@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,91 +111,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Feb 21, 2024 at 10:22=E2=80=AFPM David Gow <davidgow@google.com> wr=
-ote:
+On Thu, 22 Feb 2024 at 09:36, Daniel Latypov <dlatypov@google.com> wrote:
 >
-> On Thu, 22 Feb 2024 at 04:10, 'Justin Stitt' via KUnit Development
-> <kunit-dev@googlegroups.com> wrote:
-> >
-> > Hi,
-> >
-> > On Wed, Feb 21, 2024 at 05:27:15PM +0800, David Gow wrote:
-> > > The correct format specifier for p - n (both p and n are pointers) is
-> > > %td, as the type should be ptrdiff_t.
-> >
-> > I think %tu is better. d specifies a signed type. I don't doubt that th=
-e
-> > warning is fixed but I think %tu represents the type semantics here.
-> >
->
-> While I agree that this should never be negative, I'd still lean on
-> this being a signed type, for two reasons:
-> - I think, if there's a bug in this code, it's easier to debug this if
-> a 'negative' value were to appear as such.
-> - While, as I understand it, the C spec does provide for a
-> ptrdiff_t-sized unsigned printf specifier in '%tu', the difference
-> between two pointers is always signed:
->
-> "When two pointers are subtracted, both shall point to elements of the
-> same array object,
-> or one past the last element of the array object; the result is the
-> difference of the
-> subscripts of the two array elements. The size of the result is
-> implementation-defined,
-> and its type (a signed integer type) is ptrdiff_t defined in the
-> <stddef.h> header"
->
-> (Technically, the kernel's ptrdiff_t type isn't defined in stddef.h,
-> so a bit of deviation from the spec is happening anyway, though.)
->
-> If there's a particularly good reason to make this unsigned in this
-> case, I'd be happy to change it, of course. But I'd otherwise prefer
-> to keep it as-is.
+> Copying the line for context, it's about `p-r` where
+>   p = memchr_inv(&r[1], 0, sizeof(r) - sizeof(r[0]));
+> `p-r` should never be negative unless something has gone horribly
+> horribly wrong.
 
-Copying the line for context, it's about `p-r` where
-  p =3D memchr_inv(&r[1], 0, sizeof(r) - sizeof(r[0]));
-`p-r` should never be negative unless something has gone horribly
-horribly wrong.
+Sure it would - if 'p' is NULL.
 
-So in this particular case, either %tu or %td would be fine.
+Of course, then a negative value wouldn't be helpful either, and in
+this case that's what the EXPECT_PTR_EQ checking is testing in the
+first place, so it's a non-issue.
 
-(sorta bikeshedding warning)
-But, I'd personally lean towards using the signed %td in tests to
-guard against typos in test code as _a guiding principle._
+IOW, in practice clearly the sign should simply not matter here.
 
-This is especially true given that the failure messages aren't
-verified since they are mostly "dead code."
-You can have crazy incorrect things going on in the format arguments,
-see patch 1/9 in this series [1]. One of kunit's own tests would do a
-read from a ~random memory region if that specific assertion failed.
-Not a good look ;)
-We never noticed until this series enabled the format string checks.
-You also can't expect reviewers to go through and modify every
-assertion to fail to see what the failure mode looks like, so these
-kinds of errors will continue to slip through.
+I do think that the default case for pointer differences should be
+that they are signed, because they *can* be.
 
-*So IMO, we should generally adopt a more defensive stance when it
-comes to these.*
+Just because of that "default case", unless there's some actual reason
+to use '%tu', I think '%td' should be seen as the normal case to use.
 
-Also consider the user experience if there is a failure and I
-accidentally wrote `r-p` here.
-Someone else sees an error report from this test and needs to investigate.
+That said, just as a quick aside: be careful with pointer differences
+in the kernel.
 
-What message is easier to deal with?
->  in test 18 at -5 out of bound
-or
-> in test 18 at 18446744073709551611 out of bound
+For this particular case, when we're talking about just 'char *', it's
+not a big deal, but we've had code where people didn't think about
+what it means to do a pointer difference in C, and how it can be often
+unnecessarily expensive due to the implied "divide by the size of the
+pointed object".
 
-Sure, I can eventually figure out what both messages mean, but it's a
-immediately obvious from the first that there's a
-a) real error: something is wrong at index 5
-b) test code error: there's a flipped sign somewhere
+Sometimes it's actually worth writing the code in ways that avoids
+pointer differences entirely (which might involve passing around
+indexes instead of pointers).
 
-So I'd strongly prefer the current version of the patch over one with %tu.
-Reviewed-by: Daniel Latypov <dlatypov@google.com>
-
-[1] https://lore.kernel.org/linux-kselftest/20240221092728.1281499-2-davidg=
-ow@google.com/
-
-Thanks,
-Daniel
+                 Linus
