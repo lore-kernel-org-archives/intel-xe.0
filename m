@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91AD4C54788
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 03:51:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BFD5C48BF8
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 03:52:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A99310E864;
-	Thu, 22 Feb 2024 03:51:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDC4610E86D;
+	Thu, 22 Feb 2024 03:52:00 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C43D410E864;
- Thu, 22 Feb 2024 03:51:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B6A810E86D;
+ Thu, 22 Feb 2024 03:51:59 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Fix_execlist_mode_?=
- =?utf-8?q?=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Fix_execlist_mode_=28rev2?=
+ =?utf-8?q?=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 22 Feb 2024 03:51:47 -0000
-Message-ID: <170857390780.197499.4696409750362442052@8e613ede5ea5>
+Date: Thu, 22 Feb 2024 03:51:59 -0000
+Message-ID: <170857391931.197499.6043357947364409464@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240222034725.3835064-1-matthew.brost@intel.com>
 In-Reply-To: <20240222034725.3835064-1-matthew.brost@intel.com>
@@ -48,10 +48,28 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 697ccb3f98ba drm-tip: 2024y-02m-22d-03h-21m-52s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Add debug prints for skipping rebinds
-Applying: drm/xe: Don't issue TLB invalidations for VMAs if using execlists
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+35591fb8b4d5305b37ce31483f85ac0956eaa536
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b0a19c7538d97622a8c88a7775f75e6b7f3f9c7a
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Wed Feb 21 19:47:25 2024 -0800
+
+    drm/xe: Don't issue TLB invalidations for VMAs if using execlists
+    
+    TLB invalidations for VMAs are currently only implemented with the GuC
+    enabled. Do not issue TLB invalidations if using execlists. A longer
+    term fix would be up the TLB invalidation layer to be execlist aware.
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 697ccb3f98ba621b7de9f67b0a4352da767963aa drm-intel
+e4ac5604319e drm/xe: Add debug prints for skipping rebinds
+b0a19c7538d9 drm/xe: Don't issue TLB invalidations for VMAs if using execlists
 
 
