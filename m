@@ -4,141 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49468C48BEB
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 06:18:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52EEEC5478C
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 06:22:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA5E410E879;
-	Thu, 22 Feb 2024 06:18:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7A9E10E87E;
+	Thu, 22 Feb 2024 06:22:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xw/T7qza";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="TXh9uVMM";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F90A10E879
- for <Intel-Xe@lists.freedesktop.org>; Thu, 22 Feb 2024 06:18:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708582723; x=1740118723;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=XBAyCUTudw5bD4G83FLnPATgeqlHEdU+IZjD/NyVu70=;
- b=Xw/T7qzaBTYZejoSj/PjRg2DjIyz7I/f4kNV5I/iajyKQJPMOaLTBBEt
- VS12SzTUlGGANAhmflKcOZpYBzdhKnxB3wndpjJUFpWWiZYNOclvJv3PR
- c3ZdqEmS68jTIjp8YxIf1cl8HhUmqDFQU3IYivWc7VwGK3/BU5vVVaLc8
- hKWsakxp7aA3V/WF6r9Tw0zW/n0aj3LeCXGEKMmcwMFnoP+rLPOALjqG8
- lAyVKwjhWNArzEQ9/lz5tRKNyTnk7fk5PP5v8Mo+eCscjoZog4JCcejZ9
- kUN+vt4OD2DDq9Etl7JsstN1QDR+y/Oh9fe6I7aUqY7QM0yxwEegwgRLX w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="25247931"
-X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; d="scan'208";a="25247931"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2024 22:18:42 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; d="scan'208";a="10064588"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orviesa004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 21 Feb 2024 22:18:41 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 21 Feb 2024 22:18:40 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 21 Feb 2024 22:18:40 -0800
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.168)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 21 Feb 2024 22:18:40 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IUnUQPkYEAmVLQQJ7biDDoxu83EwB/FdyF0qhl+NYJnfxvrQZb8apetdAIM424xyXugRt3rW0i7wwDwGnkfujVCEmvUPwz7gLKcrdv8MxXlGqSvahLAdH/em45ynHEaXRPYWQwbOFdk711ciRFT+P0/eKW23mU1/QUMj15UNAiP6c8DzXFT2yBWjDhUGC3wCeCPE7nW0lGtnpZ3seNTFWShL38Z02GBEgooloznRKkR32Fv2SlUxik0ibZ4R2slNMvVtp0HocHHa6qZswGLrlbzuEukestR6zfda3e7wL0hnqYZqU4l+ufo87rUvQjT+TjRebQKtFQMY+uy/CkP/hA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Hx4FhIg2oTcY0evdPy0nZAIULBC1tKYCQehTd9q8AOQ=;
- b=RhJZhXt6NzxRLEsEnrsAqH+1iLJi5VYyDy40ZuYZgs53RiqQe9nZT0weggUyJbwmcNUnoezvraywWgWoifllDfmTB5UGYNixW8AyoJ2qdyt3TBSXCfFbaO/dxjmoy/1y/I7+Psi/dOTGFDxRzNxLgZpjbQBfN7m1LlfyZN4+oOxk4M7qiOeqBb9D2wyneRAHd13UDW4QYihR2i1QrSMJVldpmwaHI+St4vWYslzGw7sF7bqvIETBDvyRUgG1GFW7pStMyHbK8S/9B+4h31jcEuNGQ9pXqZThMiuhmw3jHaKy3EaY6P3+aMzMvY2zqNN+CuDtISDBA274c/9td5hOXw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by DS0PR11MB7506.namprd11.prod.outlook.com (2603:10b6:8:151::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.22; Thu, 22 Feb
- 2024 06:18:39 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::9f32:ce50:1914:e954]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::9f32:ce50:1914:e954%7]) with mapi id 15.20.7316.018; Thu, 22 Feb 2024
- 06:18:39 +0000
-Date: Thu, 22 Feb 2024 00:18:24 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: John Harrison <john.c.harrison@intel.com>
-CC: <Intel-Xe@lists.freedesktop.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: Re: [PATCH 2/2] drm/xe/guc: Port over the slow GuC loading
- support from i915
-Message-ID: <6smnkqguwdz6do2bgmniokp6hdh4ay3xpclcdfspgb34ccnlzj@xzhjcmf5f677>
-References: <20240206201153.2773996-1-John.C.Harrison@Intel.com>
- <20240206201153.2773996-3-John.C.Harrison@Intel.com>
- <4ec5q2znrsevf3ihnzv6vvcztufpioxlwmy6342k7mam2tkq5l@6istqc7flazw>
- <b0a3b750-ffee-4735-8342-036f010eefa4@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b0a3b750-ffee-4735-8342-036f010eefa4@intel.com>
-X-ClientProxiedBy: BY3PR10CA0018.namprd10.prod.outlook.com
- (2603:10b6:a03:255::23) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com
+ [209.85.208.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31F5010E87B
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 06:22:26 +0000 (UTC)
+Received: by mail-ed1-f41.google.com with SMTP id
+ 4fb4d7f45d1cf-5650c27e352so5881a12.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Feb 2024 22:22:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1708582944; x=1709187744;
+ darn=lists.freedesktop.org; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=gnKkPybRXk2gyjCuxfKQwjdaOVVpE1acqjFkMgzPJAw=;
+ b=TXh9uVMMuhI7FuuH/elxtkjpd+haGpaXBye3ExAHbNPloE4XslRXTBRQwaYTfj4EPO
+ OiCNpRu8WlkWubqTxYf7AJnfnrJnXrnjaGX/F2IeltKyYBgRSqU5mm5hUfsiWrz1+l80
+ EqVuP0/V49qs/JGIer51vgWjbhHP0zJfAyrGn1c3VmQAbcAgv5WodpaB4opFNv6weOQS
+ 7GY3DPpB+zV94vxYaoeZnXIzA2MlMnt34Qpwv5P+uDKq65CiMn5nZ9kOdBin+B5/04/v
+ G98P1iz9nt18hjNWXvZksWJLX3qmnYTkcY1EHzECuw39dkiSUw8UVpzH0Irgqtm1FfAO
+ 3OSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1708582944; x=1709187744;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=gnKkPybRXk2gyjCuxfKQwjdaOVVpE1acqjFkMgzPJAw=;
+ b=gfO0A4HuQOMIY9rQGtDal/VevQ/wGsDH4woykGWTq1modgP9DjdATaWi4GDVMkwwTn
+ GuojnCtSAQSfczmW8j6W7P/Uf6Xe/GAQ0Kv/H81AjBPJ5Rg3vrdGDwlZ4DHCgsICujPq
+ RbVmaC1tImYg3OsLe6yvHWe9nIwgmXrrzYkcDx7RPSPVBiOeIF4vFyMeq3H/JX3UKmui
+ i+Jyy4T1JE+AIWEpFxeM/tyZALmn3LgrRDuUac2OGprJ6Y+Pb40LP7c4RFgo8sTAO06l
+ ZRaMvvH4lFmWKrpWbjRufhiddUUmezYpME5mAQPV/lr9HbNxzJvK1Tf2xFIKhCM2eFmx
+ 2hcQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVlfY3DZVBg6uqzRNH9Ul6W1/iFtN1nj/nBNvIfDbn/nz/cdnylGAFxdfd6TjXtuI83BefhZNy8EP/L1Kz+iuzJPLh41kNXK39QRqbj3io=
+X-Gm-Message-State: AOJu0YwKgRdUf+usW/LmqKQBbnUD2aQUMpdK2vJSAmlbh0lHLDXrCbin
+ pGreN4nwFwlBSllcCJuxkMBPDxxoEQrSYFPtGAAM//cDUAKftz5apoHZ13XFF0GYQ8uiQOm07uz
+ bYF3Z3DihxUWriVealib/T4BVHn6K/+MAT3//
+X-Google-Smtp-Source: AGHT+IFYIEd+0wR6LN8LQi+TwyxNlJdXafe6MNxyrhYO7VDBIJNt7leP49rwqs7LeN810FhcNXxIpSKMqfiK6WMajL4=
+X-Received: by 2002:a50:f615:0:b0:564:e627:9e22 with SMTP id
+ c21-20020a50f615000000b00564e6279e22mr386216edn.4.1708582943770; Wed, 21 Feb
+ 2024 22:22:23 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DS0PR11MB7506:EE_
-X-MS-Office365-Filtering-Correlation-Id: 60b63fe7-73ca-489a-f0fc-08dc336e1bf4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZPIPi9ciEH5cRSzy7juf1UsVzF6IG3THPjtzrdtHlv/0tvBLB5DXj7brjs1z24/R8BAA1A8X7iVpn2rQugHouulf2o0XGU2C+3qPkFI1TQloUrc19WPr248pFoIqQmkEl5GhxTVkEmijirWRngBWxTIGGZaCOxLW+W9txIRmxoGGWQt+QgV+2zMvUDoGm71QPcSVdD6boy1lESPMnEAM1C+VMnPB9dvrO5IUpTthbU11o4PxMofNeLUQ47tSb7ZZoELf2O8LBv86dxSmW5FvgvGgJlRb6fazVloU989gIaO8AUSYndXLtIntpv/pKyb03YyXS6eRATCQjxsgjfE5sHN/MrOmQBUhBcdMZdSHtMd+At09sT/zfOlaMy0fU5Lf6iilkU1Y9iClHQB2JA7R+r8D0HppSQjOO6mqcKBRBU+oyvRyvYDu2BqiZc+0nr0kmyyqdugH8GlUHe/4uAXVs72PprKE8E9DMcWboW2fgecfm6A7p0WrsF+YyOHS6MMobM8ntplsOise8v7vVeJxP/DV3peiddT8M8Ubov0iZFx392MKWEWnH/dHHITdJdbd
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(230273577357003); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?qRkp4a61g6PYN03CqxDnUgxnsoEuSpqtiB4keqT4idsC2B1Dh39QBDKZUn?=
- =?iso-8859-1?Q?5QY6tovYIorE8rcOhyMKqna9BIOvRN3wobny4+BK0L96AveIbBeDN2SNWY?=
- =?iso-8859-1?Q?ZK1Q2HaM4G8H1+iBZbdl8IxOQA4YzU+F3zzvYOS1D+n/mbOMZt55eVkyUO?=
- =?iso-8859-1?Q?azq6EzSJtn+jriEqpAdMzp45mjB9smy07i4GoyHGUMnMZZL46pXc0PbWQU?=
- =?iso-8859-1?Q?4rwUDdoHFD0eLXFfdzhJayD6HXMCbH7/GXxAhQIi3kCffnDWO5SbJOGnYo?=
- =?iso-8859-1?Q?oGi7lyAyR8Ual//pS/DtRHNmjz4jT42QxSjMmhXMtS8etgJdcewoQUzM7L?=
- =?iso-8859-1?Q?kWx8FPbc1DftnJB0VSFNQxOJLGrnEmubMrLEQwIyPozTn2AZhh9DduAB3+?=
- =?iso-8859-1?Q?W0Q/brmJ5G0mA5DZX7wBopSQGXK3+D31xhaCHZRhjRXaNlTJXeXh5RA82C?=
- =?iso-8859-1?Q?mqPXjISIAwa5SU45EyizrMtGf3pZ1ANqGM0GxI7dqy7RfwR/b2veo+o4/k?=
- =?iso-8859-1?Q?HiKZS7n4jVXjrpGJ8nER20JkDCjciybCZqaWjJ+dZjPHbhVHMFsv+9KEF7?=
- =?iso-8859-1?Q?Vr+xD7DHN6pP2GpTryiCfd/Ot4Be4OvlJQQenewfCnLk/hBcI/FPfjGH16?=
- =?iso-8859-1?Q?XF9k20F66RcdzK4R8jHY7Oga9ZligFqQkeToa082iK3+EvvykeLVFH/X5q?=
- =?iso-8859-1?Q?MeBOo/nrO61bMkkcx7BpOvcMgV3pPF8twY+vFz8urtaIcaQkEk04e0S+Vf?=
- =?iso-8859-1?Q?mAoD9BuJ9HxV8MwmVm3+PvQDmxlqevE9teZlImfeC+r+HFfCrA8/FzK8tQ?=
- =?iso-8859-1?Q?PKcKQDCGDZsGmgMRB9SzM9dHTycLEiEsvt4aRWNa2zJK/ZCV1WkKqWtZmv?=
- =?iso-8859-1?Q?+2UAQFzqjybF06ZXqqw7JSy94eacZjNDoGaeIBfVt61ODleDINRYbqcsfb?=
- =?iso-8859-1?Q?VDQP52XkfqF8n7RVE8W29qr6JbteGUNe9QRZ3Gq7QhaAmW/RhQm7wYCpjI?=
- =?iso-8859-1?Q?EEr7dfZ5FmZ3OpVRpoIkebIUcC9RMZ/xRdG84medY+oECoj4r2bbqQ6HVy?=
- =?iso-8859-1?Q?NVxDh50Yh+A0ctlkVaZp9OGTViRjdhKD1BukI5DjLImavlFY2oL2/YUDZm?=
- =?iso-8859-1?Q?A/LRYejjEhN5+Q7GLglLxVq2iVaNoRwSH0aHJykepPzYfWvlfb2puDc+Q3?=
- =?iso-8859-1?Q?0OI2sd/BBlTIw6/gvvCDotVPA1+WQ6MXnpl8ZBMbfWAQW5uZMhFnu+3kXt?=
- =?iso-8859-1?Q?bfyPOZ+jMiVVVBVrBT6+JuoAAYDwMNwf6KgAx0ICyx6dW1BzbIKhfAnMRF?=
- =?iso-8859-1?Q?J0pVHrWm2mY9Em67pflca0BXc8lidKVGNMm0kX/qObqxbzre7MeFB3xzgL?=
- =?iso-8859-1?Q?caEdjZBtgzKlthxsmk+WRY27pXs7X72AfBxFf0hILF2Wcuf/X2hPFxRkdG?=
- =?iso-8859-1?Q?P+t+hM68rKFzDsguF4y9Ftekc5iYQZWnTLvwmC+/yptEIoWunhlYsqZntC?=
- =?iso-8859-1?Q?RMeJ4UOU9SNSjW4dHgru3L6FGD9EnlV5AL57kgmr6B3lh1Y9qZG4P8mcQT?=
- =?iso-8859-1?Q?qR7t2ql/dkHpXwlaIyJC+NSGTo1x3KhvmUbWOq55t9ZShSQq1hXT9NIc0n?=
- =?iso-8859-1?Q?aZzv+Marul44dh4aj/mn5t5XJqaV7hAOcrXM4YiIsNqAFnnQe2+vMCOQ?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 60b63fe7-73ca-489a-f0fc-08dc336e1bf4
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Feb 2024 06:18:38.9681 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: C/LrXQZQcd4iU3jLc/Wy6hou+YAV6kOcFc527fChdekWeMbWdqpqHKUC7aKjjpq2rdw0qh0pJsCwkMMfawDLxi4P9tqmMBUMvyTUjVeuK/8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7506
-X-OriginatorOrg: intel.com
+References: <20240221092728.1281499-1-davidgow@google.com>
+ <20240221092728.1281499-3-davidgow@google.com>
+ <20240221201008.ez5tu7xvkedtln3o@google.com>
+In-Reply-To: <20240221201008.ez5tu7xvkedtln3o@google.com>
+From: David Gow <davidgow@google.com>
+Date: Thu, 22 Feb 2024 14:22:10 +0800
+Message-ID: <CABVgOSn+VxTb5TOmZd82HN04j_ZG9J2G-AoJmdxWG8QDh9xGxg@mail.gmail.com>
+Subject: Re: [PATCH 2/9] lib/cmdline: Fix an invalid format specifier in an
+ assertion msg
+To: Justin Stitt <justinstitt@google.com>
+Cc: Linus Torvalds <torvalds@linux-foundation.org>,
+ Shuah Khan <skhan@linuxfoundation.org>, 
+ Guenter Roeck <linux@roeck-us.net>, Rae Moar <rmoar@google.com>, 
+ Matthew Auld <matthew.auld@intel.com>, 
+ Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Kees Cook <keescook@chromium.org>,
+ =?UTF-8?B?TWHDrXJhIENhbmFs?= <mcanal@igalia.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Matthew Brost <matthew.brost@intel.com>,
+ Willem de Bruijn <willemb@google.com>, Florian Westphal <fw@strlen.de>,
+ Cassio Neri <cassio.neri@gmail.com>, 
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Arthur Grillo <arthur.grillo@usp.br>, 
+ Brendan Higgins <brendan.higgins@linux.dev>,
+ Daniel Latypov <dlatypov@google.com>, 
+ Stephen Boyd <sboyd@kernel.org>, David Airlie <airlied@gmail.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ "David S . Miller" <davem@davemloft.net>, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org, 
+ linux-rtc@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ kunit-dev@googlegroups.com, linux-hardening@vger.kernel.org, 
+ netdev@vger.kernel.org
+Content-Type: multipart/signed; protocol="application/pkcs7-signature";
+ micalg=sha-256; boundary="000000000000767d550611f2773d"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,453 +101,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Feb 06, 2024 at 05:51:24PM -0800, John Harrison wrote:
->On 2/6/2024 13:36, Lucas De Marchi wrote:
->>On Tue, Feb 06, 2024 at 12:11:51PM -0800, John.C.Harrison@Intel.com 
->>wrote:
->>>From: John Harrison <John.C.Harrison@Intel.com>
->>>
->>>GuC loading can take longer than it is supposed to for various
->>>reasons. So add in the code to cope with that and to report it when it
->>>happens. There are also many different reasons why GuC loading can
->>>fail, so add in the code for checking for those and for reporting
->>>issues in a meaningful manner rather than just hitting a timeout and
->>>saying 'fail: status = %x'.
->>>
->>>Also, remove the 'FIXME' comment about an i915 bug that has never been
->>>applicable to Xe!
->>>
->>>Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->>>---
->>>drivers/gpu/drm/xe/abi/guc_errors_abi.h |  26 +++-
->>>drivers/gpu/drm/xe/regs/xe_guc_regs.h   |   2 +
->>>drivers/gpu/drm/xe/xe_guc.c             | 197 +++++++++++++++++++-----
->>>drivers/gpu/drm/xe/xe_macros.h          |  32 ++++
->>>4 files changed, 214 insertions(+), 43 deletions(-)
->>>
->>>diff --git a/drivers/gpu/drm/xe/abi/guc_errors_abi.h 
->>>b/drivers/gpu/drm/xe/abi/guc_errors_abi.h
->>>index ec83551bf9c0..d0b5fed6876f 100644
->>>--- a/drivers/gpu/drm/xe/abi/guc_errors_abi.h
->>>+++ b/drivers/gpu/drm/xe/abi/guc_errors_abi.h
->>>@@ -7,8 +7,12 @@
->>>#define _ABI_GUC_ERRORS_ABI_H
->>>
->>>enum xe_guc_response_status {
->>>-    XE_GUC_RESPONSE_STATUS_SUCCESS = 0x0,
->>>-    XE_GUC_RESPONSE_STATUS_GENERIC_FAIL = 0xF000,
->>>+    XE_GUC_RESPONSE_STATUS_SUCCESS                      = 0x0,
->>>+    XE_GUC_RESPONSE_NOT_SUPPORTED                       = 0x20,
->>>+    XE_GUC_RESPONSE_NO_ATTRIBUTE_TABLE                  = 0x201,
->>>+    XE_GUC_RESPONSE_NO_DECRYPTION_KEY                   = 0x202,
->>>+    XE_GUC_RESPONSE_DECRYPTION_FAILED                   = 0x204,
->>>+    XE_GUC_RESPONSE_STATUS_GENERIC_FAIL                 = 0xF000,
->>>};
->>>
->>>enum xe_guc_load_status {
->>>@@ -17,6 +21,9 @@ enum xe_guc_load_status {
->>>    XE_GUC_LOAD_STATUS_ERROR_DEVID_BUILD_MISMATCH       = 0x02,
->>>    XE_GUC_LOAD_STATUS_GUC_PREPROD_BUILD_MISMATCH       = 0x03,
->>>    XE_GUC_LOAD_STATUS_ERROR_DEVID_INVALID_GUCTYPE      = 0x04,
->>>+    XE_GUC_LOAD_STATUS_HWCONFIG_START                   = 0x05,
->>>+    XE_GUC_LOAD_STATUS_HWCONFIG_DONE                    = 0x06,
->>>+    XE_GUC_LOAD_STATUS_HWCONFIG_ERROR                   = 0x07,
->>>    XE_GUC_LOAD_STATUS_GDT_DONE                         = 0x10,
->>>    XE_GUC_LOAD_STATUS_IDT_DONE                         = 0x20,
->>>    XE_GUC_LOAD_STATUS_LAPIC_DONE                       = 0x30,
->>>@@ -34,4 +41,19 @@ enum xe_guc_load_status {
->>>    XE_GUC_LOAD_STATUS_READY                            = 0xF0,
->>>};
->>>
->>>+enum xe_bootrom_load_status {
->>>+    XE_BOOTROM_STATUS_NO_KEY_FOUND                      = 0x13,
->>>+    XE_BOOTROM_STATUS_AES_PROD_KEY_FOUND                = 0x1A,
->>>+    XE_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE            = 0x2B,
->>>+    XE_BOOTROM_STATUS_RSA_FAILED                        = 0x50,
->>>+    XE_BOOTROM_STATUS_PAVPC_FAILED                      = 0x73,
->>>+    XE_BOOTROM_STATUS_WOPCM_FAILED                      = 0x74,
->>>+    XE_BOOTROM_STATUS_LOADLOC_FAILED                    = 0x75,
->>>+    XE_BOOTROM_STATUS_JUMP_PASSED                       = 0x76,
->>>+    XE_BOOTROM_STATUS_JUMP_FAILED                       = 0x77,
->>>+    XE_BOOTROM_STATUS_RC6CTXCONFIG_FAILED               = 0x79,
->>>+    XE_BOOTROM_STATUS_MPUMAP_INCORRECT                  = 0x7A,
->>>+    XE_BOOTROM_STATUS_EXCEPTION                         = 0x7E,
->>>+};
->>>+
->>>#endif
->>>diff --git a/drivers/gpu/drm/xe/regs/xe_guc_regs.h 
->>>b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
->>>index 92320bbc9d3d..a30e179e662e 100644
->>>--- a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
->>>+++ b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
->>>@@ -40,6 +40,8 @@
->>>#define   GS_BOOTROM_JUMP_PASSED REG_FIELD_PREP(GS_BOOTROM_MASK, 0x76)
->>>#define   GS_MIA_IN_RESET            REG_BIT(0)
->>>
->>>+#define GUC_HEADER_INFO                XE_REG(0xc014)
->>>+
->>>#define GUC_WOPCM_SIZE                XE_REG(0xc050)
->>>#define   GUC_WOPCM_SIZE_MASK            REG_GENMASK(31, 12)
->>>#define   GUC_WOPCM_SIZE_LOCKED            REG_BIT(0)
->>>diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
->>>index 868208a39829..82514d395704 100644
->>>--- a/drivers/gpu/drm/xe/xe_guc.c
->>>+++ b/drivers/gpu/drm/xe/xe_guc.c
->>>@@ -16,6 +16,7 @@
->>>#include "xe_device.h"
->>>#include "xe_force_wake.h"
->>>#include "xe_gt.h"
->>>+#include "xe_gt_freq.h"
->>>#include "xe_guc_ads.h"
->>>#include "xe_guc_ct.h"
->>>#include "xe_guc_hwconfig.h"
->>>@@ -427,58 +428,172 @@ static int guc_xfer_rsa(struct xe_guc *guc)
->>>    return 0;
->>>}
->>>
->>>+/*
->>>+ * Read the GuC status register (GUC_STATUS) and store it in the
->>>+ * specified location; then return a boolean indicating whether
->>>+ * the value matches either completion or a known failure code.
->>>+ *
->>>+ * This is used for polling the GuC status in an xe_wait_for()
->>>+ * loop below.
->>>+ */
->>>+static inline bool guc_load_done(struct xe_gt *gt, u32 *status, 
->>>bool *success)
->>
->>bogus inline
->>
->>>+{
->>>+    u32 val = xe_mmio_read32(gt, GUC_STATUS);
->>>+    u32 uk_val = REG_FIELD_GET(GS_UKERNEL_MASK, val);
->>>+    u32 br_val = REG_FIELD_GET(GS_BOOTROM_MASK, val);
->>>+
->>>+    *status = val;
->>>+    switch (uk_val) {
->>>+    case XE_GUC_LOAD_STATUS_READY:
->>>+        *success = true;
->>>+        return true;
->>>+
->>>+    case XE_GUC_LOAD_STATUS_ERROR_DEVID_BUILD_MISMATCH:
->>>+    case XE_GUC_LOAD_STATUS_GUC_PREPROD_BUILD_MISMATCH:
->>>+    case XE_GUC_LOAD_STATUS_ERROR_DEVID_INVALID_GUCTYPE:
->>>+    case XE_GUC_LOAD_STATUS_HWCONFIG_ERROR:
->>>+    case XE_GUC_LOAD_STATUS_DPC_ERROR:
->>>+    case XE_GUC_LOAD_STATUS_EXCEPTION:
->>>+    case XE_GUC_LOAD_STATUS_INIT_DATA_INVALID:
->>>+    case XE_GUC_LOAD_STATUS_MPU_DATA_INVALID:
->>>+    case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
->>>+        *success = false;
->>>+        return true;
->>>+    }
->>>+
->>>+    switch (br_val) {
->>>+    case XE_BOOTROM_STATUS_NO_KEY_FOUND:
->>>+    case XE_BOOTROM_STATUS_RSA_FAILED:
->>>+    case XE_BOOTROM_STATUS_PAVPC_FAILED:
->>>+    case XE_BOOTROM_STATUS_WOPCM_FAILED:
->>>+    case XE_BOOTROM_STATUS_LOADLOC_FAILED:
->>>+    case XE_BOOTROM_STATUS_JUMP_FAILED:
->>>+    case XE_BOOTROM_STATUS_RC6CTXCONFIG_FAILED:
->>>+    case XE_BOOTROM_STATUS_MPUMAP_INCORRECT:
->>>+    case XE_BOOTROM_STATUS_EXCEPTION:
->>>+    case XE_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE:
->>>+        *success = false;
->>>+        return true;
->>>+    }
->>>+
->>>+    return false;
->>>+}
->>>+
->>>+/*
->>>+ * Wait for the GuC to start up.
->>>+ *
->>>+ * Measurements indicate this should take no more than 20ms 
->>>(assuming the GT
->>>+ * clock is at maximum frequency). However, thermal throttling 
->>>and other issues
->>>+ * can prevent the clock hitting max and thus making the load 
->>>take significantly
->>>+ * longer. Indeed, if the GT is clamped to minimum frequency then 
->>>the load times
->>>+ * can be in the seconds range. As, there is a limit on how long 
->>>an individual
->>>+ * usleep_range() can wait for, the wait is wrapped in a loop. 
->>>The loop count
->>>+ * is increased for debug builds so that problems can be detected 
->>>and analysed.
->>>+ * For release builds, the timeout is kept short so that user's 
->>>don't wait
->>>+ * forever to find out there is a problem. In either case, if the 
->>>load took longer
->>>+ * than is reasonable even with some 'sensible' throttling, then 
->>>flag a warning
->>>+ * because something is not right.
->>>+ *
->>>+ * Note that the only reason an end user should hit the timeout 
->>>is in case of
->>>+ * extreme thermal throttling. And a system that is that hot 
->>>during boot is
->>>+ * probably dead anyway!
->>>+ */
->>>+#if defined(CONFIG_DRM_XE_DEBUG)
->>>+#define GUC_LOAD_RETRY_LIMIT    20
->>>+#else
->>>+#define GUC_LOAD_RETRY_LIMIT    3
->>
->>why? so developers don't reproduce the issues happening on normal
->>system?
->Not sure I follow.
->
->For CI runs, we want to cope with as much as possible. Anything above 
->the limit below will be flagged as a CI failure, but if a load were to 
->take 4 seconds then having the driver actually complete the load and 
->keep going to run further testing is better than it aborting the load 
->and killing the entire CI run. Especially given Xe's current penchant 
->for causing kernel panics if something fails to start correctly.
->
->Whereas, for end users, we want a timeout that is short enough for 
->them to not reach for the power button because their system has hung. 
->As noted, the load should never be in the seconds range unless 
->something is really badly wrong. But that's still not something we 
->want to force on an end user.
->
->
->>>+#endif
->>>+#define GUC_LOAD_TIME_WARN      200
->>>+
->>>static int guc_wait_ucode(struct xe_guc *guc)
->>>{
->>>-    struct xe_device *xe = guc_to_xe(guc);
->>>+    struct xe_gt *gt = guc_to_gt(guc);
->>>+    struct xe_guc_pc *guc_pc = &gt->uc.guc.pc;
->>>+    ktime_t before, after, delta;
->>>+    bool success;
->>>    u32 status;
->>>-    int ret;
->>>+    int ret, count;
->>>+    u64 delta_ms;
->>>+    u32 before_freq;
->>>+
->>>+    before_freq = xe_guc_pc_get_act_freq(guc_pc);
->>>+    before = ktime_get();
->>>+    for (count = 0; count < GUC_LOAD_RETRY_LIMIT; count++) {
->>>+        ret = xe_wait_for(guc_load_done(gt, &status, &success), 
->>>1000 * 1000);
->>
->>this will need to be rewritten without this function rather than ported
->>over from i915.
->>
->Re-written how?
+--000000000000767d550611f2773d
+Content-Type: text/plain; charset="UTF-8"
 
-probably adding a variant of xe_mmio_wait32() that check fields register
-fields. Or that receives a function pointer.
-
-+Rodrigo as AFAIR was involved in the discussion in the past and had
-agreed on not extending xe_macros.h with something like that.
-
+On Thu, 22 Feb 2024 at 04:10, 'Justin Stitt' via KUnit Development
+<kunit-dev@googlegroups.com> wrote:
 >
->>>+        if (!ret || !success)
->>>+            break;
->>>+
->>>+        xe_gt_dbg(gt, "load still in progress, count = %d, freq = 
->>>%dMHz (req %dMHz), status = 0x%08X [0x%02X/%02X]\n",
->>>+              count, xe_guc_pc_get_act_freq(guc_pc),
->>>+              xe_guc_pc_get_act_freq(guc_pc), status,
->>>+              REG_FIELD_GET(GS_BOOTROM_MASK, status),
->>>+              REG_FIELD_GET(GS_UKERNEL_MASK, status));
->>>+    }
->>>+    after = ktime_get();
->>>+    delta = ktime_sub(after, before);
->>>+    delta_ms = ktime_to_ms(delta);
->>>+    if (ret || !success) {
->>>+        u32 ukernel = REG_FIELD_GET(GS_UKERNEL_MASK, status);
->>>+        u32 bootrom = REG_FIELD_GET(GS_BOOTROM_MASK, status);
->>>+
->>>+        xe_gt_info(gt, "load failed: status = 0x%08X, time = 
->>>%lldms, freq = %dMHz (req %dMHz), ret = %d\n",
->>>+               status, delta_ms, xe_guc_pc_get_act_freq(guc_pc),
->>>+               xe_guc_pc_get_act_freq(guc_pc), ret);
->>>+        xe_gt_info(gt, "load failed: status: Reset = %d, BootROM 
->>>= 0x%02X, UKernel = 0x%02X, MIA = 0x%02X, Auth = 0x%02X\n",
->>>+               REG_FIELD_GET(GS_MIA_IN_RESET, status),
->>>+               bootrom, ukernel,
->>>+               REG_FIELD_GET(GS_MIA_MASK, status),
->>>+               REG_FIELD_GET(GS_AUTH_STATUS_MASK, status));
->>>+
->>>+        switch (bootrom) {
->>>+        case XE_BOOTROM_STATUS_NO_KEY_FOUND:
->>>+            xe_gt_info(gt, "invalid key requested, header = 0x%08X\n",
->>>+                   xe_mmio_read32(gt, GUC_HEADER_INFO));
->>>+            ret = -ENOEXEC;
->>>+            break;
->>>
->>>-    /*
->>>-     * Wait for the GuC to start up.
->>>-     * NB: Docs recommend not using the interrupt for completion.
->>>-     * Measurements indicate this should take no more than 20ms
->>>-     * (assuming the GT clock is at maximum frequency). So, a
->>>-     * timeout here indicates that the GuC has failed and is unusable.
->>>-     * (Higher levels of the driver may decide to reset the GuC and
->>>-     * attempt the ucode load again if this happens.)
->>>-     *
->>>-     * FIXME: There is a known (but exceedingly unlikely) race 
->>>condition
->>>-     * where the asynchronous frequency management code could reduce
->>>-     * the GT clock while a GuC reload is in progress (during a full
->>>-     * GT reset). A fix is in progress but there are complex locking
->>>-     * issues to be resolved. In the meantime bump the timeout to
->>>-     * 200ms. Even at slowest clock, this should be sufficient. And
->>>-     * in the working case, a larger timeout makes no difference.
->>>-     */
->>>-    ret = xe_mmio_wait32(guc_to_gt(guc), GUC_STATUS, GS_UKERNEL_MASK,
->>>-                 FIELD_PREP(GS_UKERNEL_MASK, XE_GUC_LOAD_STATUS_READY),
->>>-                 200000, &status, false);
->>>+        case XE_BOOTROM_STATUS_RSA_FAILED:
->>>+            xe_gt_info(gt, "firmware signature verification failed\n");
->>>+            ret = -ENOEXEC;
->>>+            break;
->>>
->>>-    if (ret) {
->>>-        struct drm_device *drm = &xe->drm;
->>>-
->>>-        drm_info(drm, "GuC load failed: status = 0x%08X\n", status);
->>>-        drm_info(drm, "GuC load failed: status: Reset = %d, 
->>>BootROM = 0x%02X, UKernel = 0x%02X, MIA = 0x%02X, Auth = 
->>>0x%02X\n",
->>>-             REG_FIELD_GET(GS_MIA_IN_RESET, status),
->>>-             REG_FIELD_GET(GS_BOOTROM_MASK, status),
->>>-             REG_FIELD_GET(GS_UKERNEL_MASK, status),
->>>-             REG_FIELD_GET(GS_MIA_MASK, status),
->>>-             REG_FIELD_GET(GS_AUTH_STATUS_MASK, status));
->>>-
->>>-        if ((status & GS_BOOTROM_MASK) == GS_BOOTROM_RSA_FAILED) {
->>>-            drm_info(drm, "GuC firmware signature verification 
->>>failed\n");
->>>+        case XE_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE:
->>>+            xe_gt_info(gt, "firmware production part check failure\n");
->>>            ret = -ENOEXEC;
->>>+            break;
->>>        }
->>>
->>>-        if (REG_FIELD_GET(GS_UKERNEL_MASK, status) ==
->>>-            XE_GUC_LOAD_STATUS_EXCEPTION) {
->>>-            drm_info(drm, "GuC firmware exception. EIP: %#x\n",
->>>-                 xe_mmio_read32(guc_to_gt(guc),
->>>-                        SOFT_SCRATCH(13)));
->>>+        switch (ukernel) {
->>>+        case XE_GUC_LOAD_STATUS_EXCEPTION:
->>>+            xe_gt_info(gt, "firmware exception. EIP: %#x\n",
->>>+                   xe_mmio_read32(gt, SOFT_SCRATCH(13)));
->>>            ret = -ENXIO;
->>>+            break;
->>>+
->>>+        case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
->>>+            xe_gt_info(gt, "illegal register in save/restore 
->>>workaround list\n");
->>>+            ret = -EPERM;
->>>+            break;
->>>+
->>>+        case XE_GUC_LOAD_STATUS_HWCONFIG_START:
->>>+            xe_gt_info(gt, "still extracting hwconfig table.\n");
->>>+            ret = -ETIMEDOUT;
->>>+            break;
->>>        }
->>>+
->>>+        /* Uncommon/unexpected error, see earlier status code 
->>>print for details */
->>>+        if (ret == 0)
->>>+            ret = -ENXIO;
->>>+    } else if (delta_ms > GUC_LOAD_TIME_WARN) {
->>>+        xe_gt_warn(gt, "excessive init time: %lldms! [status = 
->>>0x%08X, count = %d, ret = %d]\n",
->>>+               delta_ms, status, count, ret);
->>>+        xe_gt_warn(gt, "excessive init time: [freq = %dMHz, 
->>>before = %dMHz, perf_limit_reasons = 0x%08X]\n",
->>>+               xe_guc_pc_get_act_freq(guc_pc), before_freq,
->>>+               xe_read_perf_limit_reasons(gt));
->>>    } else {
->>>-        drm_dbg(&xe->drm, "GuC successfully loaded");
->>>+        xe_gt_dbg(gt, "init took %lldms, freq = %dMHz, before = 
->>>%dMHz, status = 0x%08X, count = %d, ret = %d\n",
->>>+              delta_ms, xe_guc_pc_get_act_freq(guc_pc),
->>>+              before_freq, status, count, ret);
->>>    }
->>>
->>>    return ret;
->>>diff --git a/drivers/gpu/drm/xe/xe_macros.h 
->>>b/drivers/gpu/drm/xe/xe_macros.h
->>>index daf56c846d03..eac8f2c9fba5 100644
->>>--- a/drivers/gpu/drm/xe/xe_macros.h
->>>+++ b/drivers/gpu/drm/xe/xe_macros.h
->>>@@ -15,4 +15,36 @@
->>>                "Ioctl argument check failed at %s:%d: %s", \
->>>                __FILE__, __LINE__, #cond), 1))
->>>
->>>+/*
->>>+ * xe_wait_for - magic wait macro
->>>+ *
->>>+ * Macro to help avoid open coding check/wait/timeout patterns. 
->>>Note that it's
->>>+ * important that we check the condition again after having timed 
->>>out, since the
->>>+ * timeout could be due to preemption or similar and we've never 
->>>had a chance to
->>>+ * check the condition before the timeout.
->>>+ */
->>>+#define xe_wait_for(COND, US) ({ \
->>
->>we don't want an wait for on arbitrary condition. At most we wait on a
->>register to become something, and for that we already have
->>xe_mmio_wait32().
->Except that function is insufficient in this situation. What we need 
->to wait on is a status enum register, not a bitfield flag. Some values 
->are intermediate steps, some are fatal end conditions, one is a 
->successful end condition. Simply waiting for a single value is 
->useless. And expanding out the macro to have the wait loop inline in 
->the GuC code is against the kernel coding principle of using helpers 
->for anything that could sensibly be a helper function.
-
-not in xe_macros.h, not re-inventing the timeout handling that is in
-xe_mmio_wait32().  You are still waiting on a register. It's just the
-condition check is different. Why have one in xe_macros.h and the other
-in xe_mmio.h?
-
-Lucas De Marchi
-
+> Hi,
 >
->John.
+> On Wed, Feb 21, 2024 at 05:27:15PM +0800, David Gow wrote:
+> > The correct format specifier for p - n (both p and n are pointers) is
+> > %td, as the type should be ptrdiff_t.
 >
->>
->>Lucas De Marchi
->>
->>>+    const ktime_t end__ = ktime_add_ns(ktime_get_raw(), 1000ll * 
->>>(US)); \
->>>+    long wait__ = 10; /* recommended min for usleep is 10 us */    \
->>>+    int ret__;                            \
->>>+    might_sleep();                            \
->>>+    for (;;) {                            \
->>>+        const bool expired__ = ktime_after(ktime_get_raw(), end__); \
->>>+        /* Guarantee COND check prior to timeout */        \
->>>+        barrier();                        \
->>>+        if (COND) {                        \
->>>+            ret__ = 0;                    \
->>>+            break;                        \
->>>+        }                            \
->>>+        if (expired__) {                    \
->>>+            ret__ = -ETIMEDOUT;                \
->>>+            break;                        \
->>>+        }                            \
->>>+        usleep_range(wait__, wait__ * 2);            \
->>>+        if (wait__ < (1000))                    \
->>>+            wait__ <<= 1;                    \
->>>+    }                                \
->>>+    ret__;                                \
->>>+})
->>>+
->>>#endif
->>>-- 
->>>2.43.0
->>>
+> I think %tu is better. d specifies a signed type. I don't doubt that the
+> warning is fixed but I think %tu represents the type semantics here.
 >
+
+While I agree that this should never be negative, I'd still lean on
+this being a signed type, for two reasons:
+- I think, if there's a bug in this code, it's easier to debug this if
+a 'negative' value were to appear as such.
+- While, as I understand it, the C spec does provide for a
+ptrdiff_t-sized unsigned printf specifier in '%tu', the difference
+between two pointers is always signed:
+
+"When two pointers are subtracted, both shall point to elements of the
+same array object,
+or one past the last element of the array object; the result is the
+difference of the
+subscripts of the two array elements. The size of the result is
+implementation-defined,
+and its type (a signed integer type) is ptrdiff_t defined in the
+<stddef.h> header"
+
+(Technically, the kernel's ptrdiff_t type isn't defined in stddef.h,
+so a bit of deviation from the spec is happening anyway, though.)
+
+If there's a particularly good reason to make this unsigned in this
+case, I'd be happy to change it, of course. But I'd otherwise prefer
+to keep it as-is.
+
+Cheers,
+-- David
+
+--000000000000767d550611f2773d
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+MIIPqgYJKoZIhvcNAQcCoIIPmzCCD5cCAQExDzANBglghkgBZQMEAgEFADALBgkqhkiG9w0BBwGg
+gg0EMIIEtjCCA56gAwIBAgIQeAMYYHb81ngUVR0WyMTzqzANBgkqhkiG9w0BAQsFADBMMSAwHgYD
+VQQLExdHbG9iYWxTaWduIFJvb3QgQ0EgLSBSMzETMBEGA1UEChMKR2xvYmFsU2lnbjETMBEGA1UE
+AxMKR2xvYmFsU2lnbjAeFw0yMDA3MjgwMDAwMDBaFw0yOTAzMTgwMDAwMDBaMFQxCzAJBgNVBAYT
+AkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMSowKAYDVQQDEyFHbG9iYWxTaWduIEF0bGFz
+IFIzIFNNSU1FIENBIDIwMjAwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCvLe9xPU9W
+dpiHLAvX7kFnaFZPuJLey7LYaMO8P/xSngB9IN73mVc7YiLov12Fekdtn5kL8PjmDBEvTYmWsuQS
+6VBo3vdlqqXZ0M9eMkjcKqijrmDRleudEoPDzTumwQ18VB/3I+vbN039HIaRQ5x+NHGiPHVfk6Rx
+c6KAbYceyeqqfuJEcq23vhTdium/Bf5hHqYUhuJwnBQ+dAUcFndUKMJrth6lHeoifkbw2bv81zxJ
+I9cvIy516+oUekqiSFGfzAqByv41OrgLV4fLGCDH3yRh1tj7EtV3l2TngqtrDLUs5R+sWIItPa/4
+AJXB1Q3nGNl2tNjVpcSn0uJ7aFPbAgMBAAGjggGKMIIBhjAOBgNVHQ8BAf8EBAMCAYYwHQYDVR0l
+BBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMEMBIGA1UdEwEB/wQIMAYBAf8CAQAwHQYDVR0OBBYEFHzM
+CmjXouseLHIb0c1dlW+N+/JjMB8GA1UdIwQYMBaAFI/wS3+oLkUkrk1Q+mOai97i3Ru8MHsGCCsG
+AQUFBwEBBG8wbTAuBggrBgEFBQcwAYYiaHR0cDovL29jc3AyLmdsb2JhbHNpZ24uY29tL3Jvb3Ry
+MzA7BggrBgEFBQcwAoYvaHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvcm9vdC1y
+My5jcnQwNgYDVR0fBC8wLTAroCmgJ4YlaHR0cDovL2NybC5nbG9iYWxzaWduLmNvbS9yb290LXIz
+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
+7xDrOPfX3COqq162RFg/MFcGA1UdIARQME4wCQYHZ4EMAQUBATBBBgkrBgEEAaAyASgwNDAyBggr
+BgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wDAYDVR0TAQH/
+BAIwADCBmgYIKwYBBQUHAQEEgY0wgYowPgYIKwYBBQUHMAGGMmh0dHA6Ly9vY3NwLmdsb2JhbHNp
+Z24uY29tL2NhL2dzYXRsYXNyM3NtaW1lY2EyMDIwMEgGCCsGAQUFBzAChjxodHRwOi8vc2VjdXJl
+Lmdsb2JhbHNpZ24uY29tL2NhY2VydC9nc2F0bGFzcjNzbWltZWNhMjAyMC5jcnQwHwYDVR0jBBgw
+FoAUfMwKaNei6x4schvRzV2Vb4378mMwRgYDVR0fBD8wPTA7oDmgN4Y1aHR0cDovL2NybC5nbG9i
+YWxzaWduLmNvbS9jYS9nc2F0bGFzcjNzbWltZWNhMjAyMC5jcmwwDQYJKoZIhvcNAQELBQADggEB
+AK0lDd6/eSh3qHmXaw1YUfIFy07B25BEcTvWgOdla99gF1O7sOsdYaTz/DFkZI5ghjgaPJCovgla
+mRMfNcxZCfoBtsB7mAS6iOYjuwFOZxi9cv6jhfiON6b89QWdMaPeDddg/F2Q0bxZ9Z2ZEBxyT34G
+wlDp+1p6RAqlDpHifQJW16h5jWIIwYisvm5QyfxQEVc+XH1lt+taSzCfiBT0ZLgjB9Sg+zAo8ys6
+5PHxFaT2a5Td/fj5yJ5hRSrqy/nj/hjT14w3/ZdX5uWg+cus6VjiiR/5qGSZRjHt8JoApD6t6/tg
+ITv8ZEy6ByumbU23nkHTMOzzQSxczHkT+0q10/MxggJqMIICZgIBATBoMFQxCzAJBgNVBAYTAkJF
+MRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMSowKAYDVQQDEyFHbG9iYWxTaWduIEF0bGFzIFIz
+IFNNSU1FIENBIDIwMjACEAHS+TgZvH/tCq5FcDC0n9IwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZI
+hvcNAQkEMSIEIEVfIukhdrmgDZYImTfgFHXm1aR/Ha7SkKJMmwmfMjttMBgGCSqGSIb3DQEJAzEL
+BgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI0MDIyMjA2MjIyNFowaQYJKoZIhvcNAQkPMVww
+WjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkq
+hkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQAuz9C1
+GA4JUvkgOGu5l5iYkqu8ILyvQ65TdKA5DZ9e4Tzv6vvBGePGEdbQTys62KRPkCGw113nJQXny76K
+6U/IllAVFar3dMMOH/C3Ynp1tRm9E21r65NpSm0p8Q+ctM2NngJ6w3YbvqXg8H4g98XOsdRZrFYs
+xSqB4L4ICshBQeEaHai0uL8U+DwtdkWT4h5yMx1mh8BL4i2cEWGdjypaSdGHsh/8sLicPrIgjoVB
+wAs+tqwDIgqz61KzG1su97MGJIDXIq0A4Icwxm6OaUwGw7DymfJEPrD2aBsZasIbNfY48g9Ewp+x
+8lLfKZ9QOhODBMlkRpXgAO8LU2N1jNj7
+--000000000000767d550611f2773d--
