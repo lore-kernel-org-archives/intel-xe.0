@@ -4,142 +4,141 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20CF6C5478C
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 21:43:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13F9FC5478C
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 21:54:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E120C10EA7C;
-	Thu, 22 Feb 2024 21:43:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0B5410EA94;
+	Thu, 22 Feb 2024 21:54:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ubr/xDSW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KM7Xe8mO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6646A10EA7C
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 21:43:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4A4010EA9B
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 21:54:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708638191; x=1740174191;
+ t=1708638845; x=1740174845;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=LO50Yx3kLI/x0EcP8KIOKoBmea6ig08h1unr/ciaYgw=;
- b=Ubr/xDSWBRxWG1SetESA5swa+7co8/ez/kQpci71J5j3oT5Nh/uIdl+/
- hQf52W64i8+KD7YRCm06hXTuJMSqdaWoK3QwgB4kxXJPPBYwcBkC8AYqZ
- tttct03wa8dea4OSk9ZzlVooR41M+X/xTFGzwGB361W26JnwqwTPy4g8c
- 5pM4EF1QmuC4xzlZaVUC3l0AqQheiW8CdESMkaATZn0Rls5SvqIkdUR7k
- nDekLB+yEap/pMmxSMmZBKeExPVuKHQjRKT0TJmjmFruI6n4cm/AZq81A
- a4pttiRzmA5BerI+WVqcrNT8ZYgWWOPPqNqIwj1ZLcSzYLzEXvve3I7uQ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10992"; a="2765147"
+ bh=NaZmcnIGwOJfs4TXENt2WNPoqe1BXoKGIgCpGgAnSjk=;
+ b=KM7Xe8mOEGWPIOWsSB51SGAGD+NzDq9acRI+tlNAxI3CXsq7DQd+/zqL
+ Xf2RWtAn2gMhT1c3T6O5Ysn4qDI5oc6ENYai0Gbvf6pvipFa68pab+0YM
+ pJqNkKuULJUW6qm9ELTAI9JwzYP0yCSX7oIrfF0rR44bD5sc5e2hFX+BB
+ 2abN4oJU0wjAz4NCbx13P3imuThxXU2eKJvUuYkveu7QnnG27gexshOR8
+ rptLx9hRCogK9JID97VeDaXrnjomFu71EK7EP1kZwmLLOPpP4v8ycZL9q
+ PIcO3lALelstb4OiiVp0CNuO9FvTViwgJUQVAHfwdVjfDKIgTTwiAkTEr g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10992"; a="5856835"
 X-IronPort-AV: E=Sophos;i="6.06,179,1705392000"; 
-   d="scan'208";a="2765147"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2024 13:43:10 -0800
+   d="scan'208";a="5856835"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2024 13:54:04 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,179,1705392000"; 
-   d="scan'208";a="5570566"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 22 Feb 2024 13:43:05 -0800
+X-IronPort-AV: E=McAfee;i="6600,9927,10992"; a="913595908"
+X-IronPort-AV: E=Sophos;i="6.06,179,1705392000"; d="scan'208";a="913595908"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmsmga002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 22 Feb 2024 13:54:04 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 22 Feb 2024 13:54:03 -0800
 Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 22 Feb 2024 13:43:04 -0800
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.1.2507.35; Thu, 22 Feb 2024 13:54:03 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 22 Feb 2024 13:43:04 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Thu, 22 Feb 2024 13:43:04 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Thu, 22 Feb 2024 13:54:03 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 22 Feb 2024 13:43:03 -0800
+ 15.1.2507.35; Thu, 22 Feb 2024 13:54:01 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HXeHPvhD2cJlxq5fIORaOKBSVjwFqxCypHmk8l4pD+OPIjc1COvUtM/qr6qz/8hjIXPehXpXq1IAOlwNgWCp2oQyr18psd8QAalOZ2FL1XT4Zj5fo5vyrYsH36F/GOYB2zyh6ZzPC42xjekam6TCIxib9lJ+xWyL9ZkZv5QoV4GARZVDElxstkzkCrzgsSWt6LxhrRArT+iT3mY2nrdh8jv9+i38zUsHQDMgvVKO78XzJkkYZkF8xxn5Suq3lRlKcj0rx1EkPc9QG64FfuMF7/jCG2YP6dCQJ/r94foJ3d+/3dF4Jl0jDila4fDJjkVFkbnN8Xem1wk+RnODKJokKw==
+ b=d3SKk8IyG8BkXAqJxw6u4EfG00wfT5eL+d55IEZjWqZ7RTP8fJHL7rDfjSVOX0yHv7MQ23jRkLCPbyqPnx4pOT1icEn6fvh+8DAutv8LzIGTuRiXqFm73ydrdjYNTCo9YdyOiaNHG2FeJfXW82shFCCD4xJ++yQtEAccma7VMLgevL8Gg3933EafUIFi1gRpkvWXFdtwjFd8C46TY+XUabzHCXVSrvxPjSiYvb8o1JVCKU2HE4McqxDAmpAm8f6d4LpASE/KR+kpCuW5JPPARuP8s2t9w8Dvq/oObU/t3QqWiBbttFL09m2gyVhceS8MXUOMKZ+uDLZp8jBL7EflzQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=f3LKs+JkaoeIsY544StjTfj99TwYygVn8/rFJCHENS0=;
- b=glUoqdG7dvmNRFYm8LPYwRz5rZ3GOluxweVaowtrwCQJEys84IiJQ/5bk6fZn5cfLEryKpkd2BhRzXyYsSoJY3Pr7oBd+WEwO8Xnt6eoeSJJfbI+3lP3NJT/OaPoiqi/ICT9xeX2lKwpkYcz2Eaq6HxXW3kOIF6qnGI7mCZ7iDxf3kKR/2Sfwv/3vfz4YdB/LNEUtEilizhQ6aYyuhAKV52WXUatHNw8nVh37Xzx+NGalosxH+SJaFnMBrvxooa+MMKN89Wr8yexihrHXrul0XNvSRyHeWoG7W/krkrBERNDH2W9MLmnWFaf41k0f3pSgQw+qYjqOKJhlQ155z6JzQ==
+ bh=qqhUP8ECYjS155LfpQim5BnUragM3EV1douXUmp1Tq0=;
+ b=O+HoB5YYZQ/Ar6OR6KAzq8zhc3B3gSMI1DuCAJU3X2WyzBidHEXXp/L8a9BwyYvGwAkaNEkwwDr5Oj/Ga0oXNpgoaIhKY+cva2M4biNmM6Wn9XJvzkSxOLpaa+ZlxMbJhmZUGtibrhgPDddfjTnHeAppc9qur6ofk+WIKwxakhjA4EiGJuv0LQ5tAEcAr0xuHlXHW9hIj38DGBQB8yzeaPvwnX8MTgfiJ/nqGHX9oXnb8vMU7YvBW4KYJX/wablVf68NMcXI3iA+8vUGDotSNRUKn+ydpKPdQTF1e6dERy8D1kj33EvV0KQxMERAPgrH24dKBX0nJ1hqECGNvyuGjg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by PH0PR11MB5580.namprd11.prod.outlook.com (2603:10b6:510:e5::10)
+Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
+ by PH0PR11MB7614.namprd11.prod.outlook.com (2603:10b6:510:28f::14)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.21; Thu, 22 Feb
- 2024 21:43:01 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::a7f1:384c:5d93:1d1d]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::a7f1:384c:5d93:1d1d%4]) with mapi id 15.20.7339.009; Thu, 22 Feb 2024
- 21:43:01 +0000
-Date: Thu, 22 Feb 2024 16:42:57 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.29; Thu, 22 Feb
+ 2024 21:53:59 +0000
+Received: from MN0PR11MB6135.namprd11.prod.outlook.com
+ ([fe80::6c14:55af:8583:6ba7]) by MN0PR11MB6135.namprd11.prod.outlook.com
+ ([fe80::6c14:55af:8583:6ba7%7]) with mapi id 15.20.7339.009; Thu, 22 Feb 2024
+ 21:53:59 +0000
+Date: Thu, 22 Feb 2024 15:53:56 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
 CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v2 2/2] drm/xe: Don't issue TLB invalidations for VMAs if
- using execlists
-Message-ID: <Zde_4ZO9L4Q8jDRB@intel.com>
-References: <20240222035906.3835257-1-matthew.brost@intel.com>
- <20240222035906.3835257-3-matthew.brost@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+Subject: Re: Re: [PATCH] drm/xe/dg2: Fix number of mocs entries
+Message-ID: <4mbtddukq2uwra4ssin7dufh7ytln6rnvn2ym6xaubxwbrrsag@3wxthrsbuqsb>
+References: <20240222204203.3007498-1-lucas.demarchi@intel.com>
+ <20240222211639.GO718896@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20240222035906.3835257-3-matthew.brost@intel.com>
-X-ClientProxiedBy: BY5PR13CA0015.namprd13.prod.outlook.com
- (2603:10b6:a03:180::28) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+In-Reply-To: <20240222211639.GO718896@mdroper-desk1.amr.corp.intel.com>
+X-ClientProxiedBy: BYAPR05CA0046.namprd05.prod.outlook.com
+ (2603:10b6:a03:74::23) To MN0PR11MB6135.namprd11.prod.outlook.com
+ (2603:10b6:208:3c9::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|PH0PR11MB5580:EE_
-X-MS-Office365-Filtering-Correlation-Id: 700a2110-c5ae-4140-f74b-08dc33ef3e4b
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|PH0PR11MB7614:EE_
+X-MS-Office365-Filtering-Correlation-Id: ec252814-84a1-4994-066e-08dc33f0c5ff
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7XvWsUkhy/9RVAEEzVU05UhB/LlBkPjABKG3QllD+kP9w7fmoMZhCsSQNC2UVuyGTXkFoFjrWNXVA7lIEmKyAxQgxUXcLzYINBaJq0yRQ4mpsK6Gf6ZK4zCV6UMtOQcqWvhRtR6ixftKf8b91ULH0hE6DptbCWQLsnZGHgQwTZXQOkY6ztukrRNY7758VuAHgutnO0+zBzCcaCSqJKapg4WdjT5RlVaA1adZosk/KWvkZHSpA4djVg/TMA12ATqqqm+Z9dyD+yDBvIl+i9F5iOkzXPZndniRCzOhMnb0QaroNzZ1LeHZJxzbQqj429LCVkdeihts8HRelh2B3Z62aPOMEhKjaX4IyARDFtCXxFFCPFGpHf1Ll0k0CUYuL4+7fjNcStokls4StzC8eIHsbU/lsd57pwkFU5Wj6z04h8ByPGlDItBkAj+s8hCkRf0ygFQcR2Nr+v4U0u04BHcXvzAur2b6JfKNXMUQ8ZipIkAFpf+GvOM6nQu7sYvelbl3cSQyGSTEeUfqrcTvUKrCRojA8+0OQvNE93kjJ2Ofc5M=
+X-Microsoft-Antispam-Message-Info: aH0b7SyvhaTVJMrkYUSIBtI7aP2R2penmVTYwwGO208vHQalmXCITCIz2cnjlbdzKgjcBGD0y/w8r/DQzFA0wxAqcSZV3QqsY8qFiX7SpHZ4QdWTSmuafYUCwBEAt7hRmCRp4RgCmYAifF2wjOYudXwuJMphtjYoHz4GZKmrxOzndrJe9GXG7DSWCfjpTkBdP4Kv2EA44iNGf7N/SAYIFAoYpYu6mS4aoYMaw2ZxhO/0TM69sDpXtIJNkuMxkSw44ICc53+JaouIuCNAQRFp518mxMX3vy8FSwrxxU1fqY8+sivloU6sRe4e2m+5OjL7RX9gulKLuqHDmPCh85RGPPLx0Fh+lzcasRccOmN6zgsoAqU2TXkGjHD8cclg96eJYlytjL+yjx7feS0DyLsk1QvDJoU90JrQx7fIO4yNsJRM3cn0lRJXY6/jXxP44cL4Iwb6xKY+Oiq3qzGfIpmNclY5OY/NiLVN9UgRHHK0hCYZtweaDzPHCXHolmOfEWbJTaLmqkE+LaIycny/OTk12703brXF4IEradp6XloXF78=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?aDd6Vkw7pqgtBL5v7vlKES+ELJwJLYl79vXXIQGnBbpj7NFQlv3HhTNTsMg3?=
- =?us-ascii?Q?zbXIPM6gcksPSN8txtik2GruQruyN15gVqpOOMxs/sgBPj3yfmYLJxxyVGBq?=
- =?us-ascii?Q?/4aLs3HsBEOHUinlpIMuR2xLNv0SP2ZeJSbOqk8XmdJy32iGy/7w/mTc1zeA?=
- =?us-ascii?Q?LFZ9annejlgpF7XF001W1TQ4rFJYfZQFhQ6gwjKticWiX97tTB953PiEFi7G?=
- =?us-ascii?Q?mERerVuZYQkCtSwwipqRxq0Z6m/2BDQpqXcg6cL/1Ziw1EBXwXvlxmyayTzb?=
- =?us-ascii?Q?rByJhX+y0QjJkUKPzHyhVnS4baK2QeFgYbrhRQ4ikP7iAmxcJ35LC1UucOsk?=
- =?us-ascii?Q?MCUTrTFlSJvzc1fl/Hq8x6rAUmP0liDfjwcWWDXLyAS0zO7uCWCzjNlNYJF4?=
- =?us-ascii?Q?tV3x693FD3NQMr5pIxRbP+7sHq1D5xlBWwZAn9L0Mz4pRcfqaMYjTiOqPBUw?=
- =?us-ascii?Q?+MO1ZZJNKwDeiMo8aGEqIAnlPEcs1bPQvKWl7pbg2hJD9CVgpL1Mo5yF4a0q?=
- =?us-ascii?Q?FLQgzjPSaU+/KbZf0e4zoUh+7fQkx/o9MT0gPwUlf0XlfUvimzLQaUKVCy+X?=
- =?us-ascii?Q?yEGXLUYImWRMGbCoIjfDXp3QgEeRJmIU+sMo4ZxakpD9heT9vY3C7z7muumh?=
- =?us-ascii?Q?IAppf+IQRj2vDQ7jTBzsU/QmegAK8WjgNdOKRvSN+XqC4fLSPsx5Shtt4QqU?=
- =?us-ascii?Q?STqjR6PzjGbPWjng/R52P+6MByrRLcKXR68FE9wejDttXEZnMqvTFS7xYtcv?=
- =?us-ascii?Q?MTOMsxR4Xne9mR9JZhs5kpMrEq/W8B9D8sK0R6st6u8nHwOarrmHhWE59l7/?=
- =?us-ascii?Q?9W6nSu7KF3YY27OxdFuDlkM9nv9kH/xYUlxDTe500ztXy7qKSVgPLfTo7Fj6?=
- =?us-ascii?Q?Q0d3ebKimKmi6xJT+vrNuH+scweDBm1D0Bn4687paKjoDVgTIfe+Wv+90xXq?=
- =?us-ascii?Q?JIhd4RQdus6f5hkdvb26NmBkeBk73hmA0PQk/Ghhgf2t6Vm+KkTbRY2y0oPG?=
- =?us-ascii?Q?7Kssip/Rab1yrryutPGwV5vfAeOptl3J9CBvu1DWfgFCXWxi0C1qFom2Z5XB?=
- =?us-ascii?Q?51mUPiHNIQObZkZAYHmOPYX2zwUeDCVXdtjGR8h5PzCfLS48HcsGxFlf57SU?=
- =?us-ascii?Q?dKEKlmvCFCM2ay3Lo1Q8LbKNMzoodQUdA7fQ8YVMoG5Td3/OQb8WC0TWFUFO?=
- =?us-ascii?Q?eR6LM1nwWq7RXToP2BzbLpSV/pN7/gCqRPhvv9bKjid5ZSw0WcjNHNNus90x?=
- =?us-ascii?Q?ZemBQwXECMa4LdFeNBI1IfEEHCCpbzuU02hyC1FxrDM9m1kBQWDiXWPGBPnw?=
- =?us-ascii?Q?Cxb/VA4Z7URGRwQjTsiIssc4nx6fNY3wJQMk9I6N2eihQ6bhV9YQJvzVmuFo?=
- =?us-ascii?Q?bzGASjBo55snADetofzf9qf3ECPxQt2ME1mocPwuDJ3dAlX22du72QxdvEqZ?=
- =?us-ascii?Q?2oYfSjAkOXEF35DyGzr/63GamHhhaFaswfukccguFjaKHleyJZ+m4biSb+yy?=
- =?us-ascii?Q?KwAT/scb0ZMQyqtY4spIVTydTE2om8G07J+3+RW179h/zSzuIpveUEOcpHjo?=
- =?us-ascii?Q?ku3mfc1YCok8PlA8Icgnt1zsR5AQZZ15BmdDEUBNE5s6nRZTy/LKoKVK99AO?=
- =?us-ascii?Q?Eg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 700a2110-c5ae-4140-f74b-08dc33ef3e4b
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?wKcXmsSNlRqJEOJ+umKvwE2aYURkX7txG9PrdID24VXBbJ0sCYM0OyGK8/ZM?=
+ =?us-ascii?Q?Q7G2Jaep0THgUh9G/3yBYDDj7RFRkI0ePUD0QkHpDOtSPoi4Ea4F/nnzxYjm?=
+ =?us-ascii?Q?cLSVxb3bwYz+79oqu5KA5hqFS06fzuUQXVzdfy5RhN9agBQtZ3TxpBbvJ1Ny?=
+ =?us-ascii?Q?uhlqFELr5JG2Die7rNSLZJdiObVj+pT/1aL0HgXQxrtOourL53a5IHw8ob8T?=
+ =?us-ascii?Q?igiIiANdIwfgpQ0lJesrj3nieJm6edH3yfp1jcOY7jGmG38+Qdg00ae4lXeH?=
+ =?us-ascii?Q?TZ+8+kaRf4igZLGGh/RT1PF2Ph4EKBrqub+qr4Q8OKGprdYAwPT7PG4GP7VP?=
+ =?us-ascii?Q?OKkqHdjScasDBQWrzzVwRaTslAosJZ7ae9AbosHg7zd8Qbk9o6lDultEdGK3?=
+ =?us-ascii?Q?3r/vWbgcaeID1XQE33VC3NmQAS1p+P7qr8Vxe6ADkziwuYOya/IUMkZOJGAK?=
+ =?us-ascii?Q?YZHRYofzNgo9prOKSokgSrZ96C70aWjw+pkteMCAc2qx/C21p8LmnL7Sk4eW?=
+ =?us-ascii?Q?AGhFZI+EKT7DKkKCIkmKXVUKqNT3GwlPf3hCm5ugb4lFrO4kQcX0vuiBnvpt?=
+ =?us-ascii?Q?lMEOIPOifOGWUQrv1xjlpYMP6VqwBezq5oLQtxMcBZijwRN1VDx2xS6TikU5?=
+ =?us-ascii?Q?W1wQgdHGDvweDKK7KlI66tjP0iUrm9n1qud4IGthpi6UFzjRwhH1VLsiYPUu?=
+ =?us-ascii?Q?QsF75PXcI09lU2b/ODCHPhKFuxepWsQpixI0FiL+bSFmp7EVY0U0RW2Dq+3s?=
+ =?us-ascii?Q?g6Jm1oxgDu6vwBuXAnG+qmTQcU6DNuLZfmD3nWqpMqpcQ77FegQ5XUYxTjgm?=
+ =?us-ascii?Q?90rpAyAWdjXoaDY3JQvrOuiZeSAGP0bKX5JnfokNgm8HyImSnJ0XZb64++iC?=
+ =?us-ascii?Q?TRaHHIMruIBS3qlld29Yq3EwjcaLzT8TD3j8ZgCvZMXhAii8hIsM/EMUrbZM?=
+ =?us-ascii?Q?7Ivw2eIo1Ykn04VDsCiPhJME4bc8l3A4V5Hr+R08O/rlk21QzODQuBFFWxZj?=
+ =?us-ascii?Q?eFYX3O2oVw5ZFBkMuvX1vRK5TAMStqjnwEYr7tAGPpyaD5c8nvWF/VxMtkQE?=
+ =?us-ascii?Q?MAiokuArcBEVx2STQ5jyDuhgZ1qIQziA/fKshxZaSBROrSz34YBwkTNrz7Xq?=
+ =?us-ascii?Q?lu0BNWBtCUmeHuqzuOm0iktyMHurd5B7jcMg8ZEh8LeZ7U+gcARZPTRCFW0o?=
+ =?us-ascii?Q?4D7QV9fu+xtXR0jLU3O00AJ2GLEyDnVDKansBu/M0BdCwI+9htuV/1lgm690?=
+ =?us-ascii?Q?UUK/YvE3ZvjXpPOxc3DBxjbPmpW9abCjTIt38u5LTRaoBSwWSlqLuJwPzQv1?=
+ =?us-ascii?Q?bHxcoJZquAihAvgVxjGtm4zGyse6LJhVSPRXW7ggQ53d9ZZpYEFprMshGL8N?=
+ =?us-ascii?Q?AKgga10dU+DGSmakhxFX0LzpYOFc3w6i9w/lkpXhZIDF6c4qiYVM7Yf8iULq?=
+ =?us-ascii?Q?B8pSa8HIDnVOgLlzaab3bvzI27f5ZS8aazBj0RgHXCEkBFjxhsG1/EmAePEV?=
+ =?us-ascii?Q?qNpmL5wipB4ud/3XmKDW24SLGogxI38xFRYLkZLIUE7nZoD4x0YZJqEvepG9?=
+ =?us-ascii?Q?a1qstGlL7j+g4pILArmYR1t2qsmDaSJQd+9YskdHFZHIanpDr3gRamfELEEs?=
+ =?us-ascii?Q?ew=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: ec252814-84a1-4994-066e-08dc33f0c5ff
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Feb 2024 21:43:01.7076 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Feb 2024 21:53:59.3043 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rtbjRL2ChT8doM+h12p44HgwTE8W77IPcCVt0uIlQRVpx3H22Asy/qeO30p1Ilc/5QRnaLKUvczTEa0ZG/V47g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5580
+X-MS-Exchange-CrossTenant-UserPrincipalName: nICpOKbVeamk2X5blkMuH/rQtHtRFX0lOXTZFW8s59mJ9NaAOpmhlKZvhc+7sDR8BZNnr6EreuQ5si+QtYwLaQgClWKHrF52f5Iwzdu58VE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7614
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -155,91 +154,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Feb 21, 2024 at 07:59:06PM -0800, Matthew Brost wrote:
-> TLB invalidations for VMAs are currently only implemented with the GuC
-> enabled. Do not issue TLB invalidations if using execlists. A longer
-> term fix would be up the TLB invalidation layer to be execlist aware.
-> 
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_pt.c | 32 +++++++++++++++++++-------------
->  1 file changed, 19 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-> index 7f54bc3e389d..c4de13bcfe85 100644
-> --- a/drivers/gpu/drm/xe/xe_pt.c
-> +++ b/drivers/gpu/drm/xe/xe_pt.c
-> @@ -1256,9 +1256,11 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
->  	 */
->  	if ((rebind && !xe_vm_in_lr_mode(vm) && !vm->batch_invalidate_tlb) ||
->  	    (!rebind && xe_vm_has_scratch(vm) && xe_vm_in_preempt_fence_mode(vm))) {
-> -		ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
-> -		if (!ifence)
-> -			return ERR_PTR(-ENOMEM);
-> +		if (!vm->xe->info.force_execlist) {
-> +			ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
-> +			if (!ifence)
-> +				return ERR_PTR(-ENOMEM);
-> +		}
->  	}
->  
->  	rfence = kzalloc(sizeof(*rfence), GFP_KERNEL);
-> @@ -1574,7 +1576,7 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queu
->  	struct xe_vm *vm = xe_vma_vm(vma);
->  	u32 num_entries;
->  	struct dma_fence *fence = NULL;
-> -	struct invalidation_fence *ifence;
-> +	struct invalidation_fence *ifence = NULL;
->  	struct xe_range_fence *rfence;
->  
->  	LLIST_HEAD(deferred);
-> @@ -1593,9 +1595,11 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queu
->  	xe_pt_calc_rfence_interval(vma, &unbind_pt_update, entries,
->  				   num_entries);
->  
-> -	ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
-> -	if (!ifence)
-> -		return ERR_PTR(-ENOMEM);
-> +	if (!vm->xe->info.force_execlist) {
-> +		ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
-> +		if (!ifence)
-> +			return ERR_PTR(-ENOMEM);
-> +	}
->  
->  	rfence = kzalloc(sizeof(*rfence), GFP_KERNEL);
->  	if (!rfence) {
-> @@ -1625,13 +1629,15 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queu
->  			dma_fence_wait(fence, false);
->  
->  		/* TLB invalidation must be done before signaling unbind */
-> -		err = invalidation_fence_init(tile->primary_gt, ifence, fence, vma);
-> -		if (err) {
-> -			dma_fence_put(fence);
-> -			kfree(ifence);
-> -			return ERR_PTR(err);
-> +		if (ifence) {
+On Thu, Feb 22, 2024 at 01:16:39PM -0800, Matt Roper wrote:
+>On Thu, Feb 22, 2024 at 12:42:03PM -0800, Lucas De Marchi wrote:
+>> While investigating why xe_mocs kunit was failing for DG2, Matt Roper
+>> noticed that LNCFCMOCS[31] is actually RO for DG2. It would be a spec
+>> bug to document a register to be programmed that is actually RO. However
+>> upon further inspection, it seems like we should not be programming the
+>> other values. Early DG2 SKUs documented that the entire set of
+>> LNCFCMOCS registers needed to be programmed, but this is not true
+>> anymore.
+>
+>Wait...it's not the bspec that required us to program every index, but
+>rather the Linux-specific need to ensure we don't break ABI in the
+>future.  Although rare, it's consisdered legal for the hardware team to
+>add additional documented MOCS index values to the table as long as they
+>aren't changing/removing any of the pre-existing values.  If we have
+>(buggy) userspace today that's already using an undocumented MOCS index
+>and operating properly (due to luck), adding the new "official" settings
+>based on a future bspec update could regress userspace if those new
+>settings do something like reduce the coherency.  So to guard against
+>this, we always need to program every undocumented index to maximum
+>caching, minimum coherency.  That way, if [buggy] userspace can operate
+>properly with those settings, it should continue to operate in a
+>functionally correct manner if the index suddenly becomes more coherent
+>in a future spec update.
 
-I'm not so sure about the indirections of the conditions here...
+from checking past platforms and the updates I was actually under the
+impression that the table  in e.g. bspec 45101 would always document the
+possible indexes the HW can use, leaving holes to complete it. And those
+*holes*  would be the ones to change for future use.
 
-probably deserves some refactor with earlier return or different functions?
+from what you said above, it seems it's not really the case?
 
-But anyway, let's unbreak things first while we think on a better
-organization/separation.
+>
+>>
+>> Do like is done in MTL: the additional registers are there, but we are
+>> not supposed to program them, not even with the unused_index value.
+>
+>It looks like this was actually a mistake on MTL that was overlooked;
+>the bspec documents only 16 entries, but the hardware supports 32, so we
+>should be explicitly programming all the unused ones as mentioned above
+>to protect against future table updates.
+>
+>
+>At this point I think we're far enough along that it's extremely
+>unlikely these MOCS tables for Xe1 platforms like DG2 and MTL are going
+>to have any further spec additions, so this MTL mistake wound up not
+>being a big problem for us.  But replacing XELP_NUM_MOCS_ENTRIES with
+>XEHP_NUM_MOCS_ENTRIES on DG2 is going to extend that mistake farther and
+>make it more likely for someone to copy/paste the same logic in future
+>platforms.
+>
+>The fact that DG2's entry #63 is RO and can't be reprogrammed by the KMD
+>also means that it's 100% impossible for a future bspec update to
+>request different values for it.  So whether or not we try to write the
+>"unused entry" value into it doesn't really matter (it's easiest to just
+>keep doing so, especially due to the way two MOCS indices are packed
+>into the same register), but the test should be updated to not try to
+>verify that last entry.
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+what I don't like is special casing the test, because the driver tried
+to write a WO value.
 
-> +			err = invalidation_fence_init(tile->primary_gt, ifence, fence, vma);
-> +			if (err) {
-> +				dma_fence_put(fence);
-> +				kfree(ifence);
-> +				return ERR_PTR(err);
-> +			}
-> +			fence = &ifence->base.base;
->  		}
-> -		fence = &ifence->base.base;
->  
->  		/* add shared fence now for pagetable delayed destroy */
->  		dma_resv_add_fence(xe_vm_resv(vm), fence,
-> -- 
-> 2.34.1
-> 
+Would reducing the number of entries for DG2 like
+
+	/*
+	 * last entry is RO on hardware, don't bother with what was
+	 * written when checking later
+	 */
+	info->n_entries = XELP_NUM_MOCS_ENTRIES - 1;
+
+(also increasing it for MTL, for consistency),  and then making the test
+do the right thing for odd number of entries be ok in your opinion?
+get_entry_l3cc() already does the right thing, but we are not ignoring
+the value read back.
+
+Lucas De Marchi
