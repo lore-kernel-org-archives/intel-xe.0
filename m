@@ -4,26 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDF6EC48BF8
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 20:19:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12636C48BF8
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 20:41:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA33410EA5F;
-	Thu, 22 Feb 2024 20:19:14 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBD6010EA67;
- Thu, 22 Feb 2024 20:19:13 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id B57EF10EA60;
+	Thu, 22 Feb 2024 20:41:39 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kcij3Mgz";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2A0010EA60
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 20:41:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1708634498; x=1740170498;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=LC/87nW1vqlinW65UaPlZ+KjR9wyXAmOdnjibRG0KaU=;
+ b=kcij3Mgz0A83DiPOQp/r4Bho1udVihC3u7RUQFWxbWlL6ni3LdaEDcFB
+ dE3Y3kMdF6cQkwqIGWBpu0YKEkSL43RGa3SbWQmohULXPkyCzZmMGdRu6
+ DVgijO0xfqlRY337Wm2l5QAAHV1v3qvBBLqhQSl3GlRxU+TsJiJ+/D2dz
+ YWQjBYUqV6/XKVtmb6bWzY7CIikLIOjMauZT2XdrzLluzV3lY9o0HAM6B
+ PG0BbgEalAtkygMEaya67bgbYB49ianNeYXFl36qew0ZrboS20crT9W9X
+ UB1ImaG5PE68Atq8sqwDUp4HhVryNqOTXAuDfRuX9F6T4wK+9XF1xntTx Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10992"; a="13601793"
+X-IronPort-AV: E=Sophos;i="6.06,179,1705392000"; d="scan'208";a="13601793"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2024 12:41:38 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,179,1705392000"; 
+   d="scan'208";a="5520435"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2024 12:41:38 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: [PATCH] drm/xe/dg2: Fix number of mocs entries
+Date: Thu, 22 Feb 2024 12:42:03 -0800
+Message-ID: <20240222204203.3007498-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_Update_PVC_GuC_FW?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 22 Feb 2024 20:19:13 -0000
-Message-ID: <170863315396.217031.765517768180546209@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240222190606.724747-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20240222190606.724747-1-daniele.ceraolospurio@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,37 +59,56 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+While investigating why xe_mocs kunit was failing for DG2, Matt Roper
+noticed that LNCFCMOCS[31] is actually RO for DG2. It would be a spec
+bug to document a register to be programmed that is actually RO. However
+upon further inspection, it seems like we should not be programming the
+other values. Early DG2 SKUs documented that the entire set of
+LNCFCMOCS registers needed to be programmed, but this is not true
+anymore.
 
-Series: Update PVC GuC FW
-URL   : https://patchwork.freedesktop.org/series/130281/
-State : success
+Do like is done in MTL: the additional registers are there, but we are
+not supposed to program them, not even with the unused_index value.
 
-== Summary ==
+While at it, fix MTL define to follow the same alignment as others, with
+tabs.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 5dfa3c2da4803652582408bfb3c529970735f594
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+Bspec: 44988, 55267
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1253
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1233
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_mocs.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
+index 609d997b3e9b0..bb28c26a46d5b 100644
+--- a/drivers/gpu/drm/xe/xe_mocs.c
++++ b/drivers/gpu/drm/xe/xe_mocs.c
+@@ -71,8 +71,9 @@ struct xe_mocs_info {
+ 
+ /* Helper defines */
+ #define XELP_NUM_MOCS_ENTRIES	64  /* 63-64 are reserved, but configured. */
++#define XEHP_NUM_MOCS_ENTRIES	4
+ #define PVC_NUM_MOCS_ENTRIES	3
+-#define MTL_NUM_MOCS_ENTRIES    16
++#define MTL_NUM_MOCS_ENTRIES	16
+ #define XE2_NUM_MOCS_ENTRIES	16
+ 
+ /* (e)LLC caching options */
+@@ -401,7 +402,7 @@ static unsigned int get_mocs_settings(struct xe_device *xe,
+ 		info->size = ARRAY_SIZE(dg2_mocs_desc);
+ 		info->table = dg2_mocs_desc;
+ 		info->uc_index = 1;
+-		info->n_entries = XELP_NUM_MOCS_ENTRIES;
++		info->n_entries = XEHP_NUM_MOCS_ENTRIES;
+ 		info->unused_entries_index = 3;
+ 		break;
+ 	case XE_DG1:
+-- 
+2.43.0
 
