@@ -4,47 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1863BC48BF8
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 03:58:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6614AC48BEB
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 03:59:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B330410E3AE;
-	Thu, 22 Feb 2024 03:58:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 215D210E3AE;
+	Thu, 22 Feb 2024 03:59:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="WC+T892F";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d4IJ4GxO";
 	dkim-atps=neutral
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A886210E3AE
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 03:58:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1708574324;
- bh=emV0MkgJME9zlEcVVPyA53ouLSsHaJyiSI9ys/B7uzw=;
- h=Date:From:To:Cc:Subject:From;
- b=WC+T892FO1v5FRGYWML2pkV/JGvBkjWNxWHVFw0JaF4BykGV0Fjuce34YLjlQoXny
- N7E8w9PbFEvG9JFTT6AI2hdK9+G7/SmGTJupNoPidnfbqu9nWxxnATXDZKzBBMKCAT
- ImX8/ubTQq4a3IYmge6NHibJkGg7PIzrlEXW2STT49/82sAo7Oo+lA7+P1EjafmtU8
- rGu53vaEr4N+nAezJMI8U5mT0//y2XLVuvWLnMD2/wwrqF8fD3gw5LjdAp26H0z2u8
- lhF3HFv5uPW/XzICtrPX/hRwq1vZ3T1uSZ6R5JaQVden25O+CErPRlA5f6V1UcZoO6
- wokwWE4QCBgZQ==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4TgKBW3gDPz4wb2;
- Thu, 22 Feb 2024 14:58:43 +1100 (AEDT)
-Date: Thu, 22 Feb 2024 14:58:42 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Paolo Bonzini <pbonzini@redhat.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>, Oded Gabbay <ogabbay@kernel.org>, Thomas
- =?UTF-8?B?SGVsbHN0csO2bQ==?= <thomas.hellstrom@linux.intel.com>
-Cc: DRM XE List <intel-xe@lists.freedesktop.org>, KVM <kvm@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
- Mailing List <linux-next@vger.kernel.org>, Yury Norov
- <yury.norov@gmail.com>
-Subject: linux-next: manual merge of the kvm tree with the drm-xe tree
-Message-ID: <20240222145842.1714b195@canb.auug.org.au>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03C2B10E864
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 03:59:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1708574360; x=1740110360;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=abZDFxHqifpb1xjzduBTge1DHvdeUGoH82FEuiKYS8s=;
+ b=d4IJ4GxOoPhAtKKSWxlm/cUhzWg2crCXkBdWolSn1e3BM151PzobK6es
+ Yq1hNYjOfveuSnITyI11ZLarHUZyV1yb/GMCQiSfZAKPdngmu//78w5G2
+ Th+YQAVdaCFhzC3gVqMMvWVpNI0cWPSBO1THvvZMbzkf05BLt4EpGtVjd
+ runMFYfUQNUETI6cITg6jA0SEj32bdW6G/gmYrlHcCVEFhXgQSOTNsq9D
+ omHf1yeoqlVw9VXqMVvQHRruXQ76mRQJ6rbMvYgaXLZnd9Bl9XY+rJOGD
+ EWgt3xtw8N44WRhFhWL2XuaZ8QAIaHzO6+J52I560+WSJa6ZsltynHaux A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="14198954"
+X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; d="scan'208";a="14198954"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2024 19:59:20 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="913442880"
+X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; d="scan'208";a="913442880"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2024 19:59:10 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v2 0/2] Fix execlist mode
+Date: Wed, 21 Feb 2024 19:59:04 -0800
+Message-Id: <20240222035906.3835257-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/ikOHUZBlsvlN1FF4nRb3mHW";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,128 +61,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---Sig_/ikOHUZBlsvlN1FF4nRb3mHW
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+While not supported, execlist mode shouldn't be totally broken either.
+Fix execlist mode so some basic tests work without a kernel panic (e.g.
+xe_exec_basic.once-basic)
 
-Hi all,
+v2: send with correct patches 
 
-Today's linux-next merge of the kvm tree got a conflict in:
+Matthew Brost (2):
+  drm/xe: Fix execlist splat
+  drm/xe: Don't issue TLB invalidations for VMAs if using execlists
 
-  include/linux/bits.h
+ drivers/gpu/drm/xe/xe_execlist.c |  2 +-
+ drivers/gpu/drm/xe/xe_pt.c       | 32 +++++++++++++++++++-------------
+ 2 files changed, 20 insertions(+), 14 deletions(-)
 
-between commits:
+-- 
+2.34.1
 
-  b77cb9640f1f ("bits: introduce fixed-type genmasks")
-  34b80df456ca ("bits: Introduce fixed-type BIT")
-
-from the drm-xe tree and commit:
-
-  3c7a8e190bc5 ("uapi: introduce uapi-friendly macros for GENMASK")
-
-from the kvm tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
-
---=20
-Cheers,
-Stephen Rothwell
-
-diff --cc include/linux/bits.h
-index 811846ce110e,0eb24d21aac2..000000000000
---- a/include/linux/bits.h
-+++ b/include/linux/bits.h
-@@@ -4,10 -4,9 +4,11 @@@
- =20
-  #include <linux/const.h>
-  #include <vdso/bits.h>
-+ #include <uapi/linux/bits.h>
-  #include <asm/bitsperlong.h>
- =20
- +#define BITS_PER_TYPE(type)	(sizeof(type) * BITS_PER_BYTE)
- +
-  #define BIT_MASK(nr)		(UL(1) << ((nr) % BITS_PER_LONG))
-  #define BIT_WORD(nr)		((nr) / BITS_PER_LONG)
-  #define BIT_ULL_MASK(nr)	(ULL(1) << ((nr) % BITS_PER_LONG_LONG))
-@@@ -33,42 -29,11 +34,42 @@@
-   * disable the input check if that is the case.
-   */
-  #define GENMASK_INPUT_CHECK(h, l) 0
- +#define BIT_INPUT_CHECK(type, b) 0
-  #endif
- =20
- -#define GENMASK(h, l) \
- -	(GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))
- -#define GENMASK_ULL(h, l) \
- -	(GENMASK_INPUT_CHECK(h, l) + __GENMASK_ULL(h, l))
- +/*
- + * Generate a mask for the specified type @t. Additional checks are made =
-to
- + * guarantee the value returned fits in that type, relying on
- + * shift-count-overflow compiler check to detect incompatible arguments.
- + * For example, all these create build errors or warnings:
- + *
- + * - GENMASK(15, 20): wrong argument order
- + * - GENMASK(72, 15): doesn't fit unsigned long
- + * - GENMASK_U32(33, 15): doesn't fit in a u32
- + */
-- #define __GENMASK(t, h, l) \
-++#define ___GENMASK(t, h, l) \
- +	(GENMASK_INPUT_CHECK(h, l) + \
- +	 (((t)~0ULL - ((t)(1) << (l)) + 1) & \
- +	 ((t)~0ULL >> (BITS_PER_TYPE(t) - 1 - (h)))))
- +
-- #define GENMASK(h, l)		__GENMASK(unsigned long,  h, l)
-- #define GENMASK_ULL(h, l)	__GENMASK(unsigned long long, h, l)
-- #define GENMASK_U8(h, l)	__GENMASK(u8,  h, l)
-- #define GENMASK_U16(h, l)	__GENMASK(u16, h, l)
-- #define GENMASK_U32(h, l)	__GENMASK(u32, h, l)
-- #define GENMASK_U64(h, l)	__GENMASK(u64, h, l)
-++#define GENMASK(h, l)		___GENMASK(unsigned long,  h, l)
-++#define GENMASK_ULL(h, l)	___GENMASK(unsigned long long, h, l)
-++#define GENMASK_U8(h, l)	___GENMASK(u8,  h, l)
-++#define GENMASK_U16(h, l)	___GENMASK(u16, h, l)
-++#define GENMASK_U32(h, l)	___GENMASK(u32, h, l)
-++#define GENMASK_U64(h, l)	___GENMASK(u64, h, l)
- +
- +/*
--  * Fixed-type variants of BIT(), with additional checks like __GENMASK().=
-  The
-++ * Fixed-type variants of BIT(), with additional checks like ___GENMASK()=
-.  The
- + * following examples generate compiler warnings due to shift-count-overf=
-low:
- + *
- + * - BIT_U8(8)
- + * - BIT_U32(-1)
- + * - BIT_U32(40)
- + */
- +#define BIT_U8(b)		((u8)(BIT_INPUT_CHECK(u8, b) + BIT(b)))
- +#define BIT_U16(b)		((u16)(BIT_INPUT_CHECK(u16, b) + BIT(b)))
- +#define BIT_U32(b)		((u32)(BIT_INPUT_CHECK(u32, b) + BIT(b)))
- +#define BIT_U64(b)		((u64)(BIT_INPUT_CHECK(u64, b) + BIT(b)))
- =20
-  #endif	/* __LINUX_BITS_H */
-
---Sig_/ikOHUZBlsvlN1FF4nRb3mHW
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmXWxnIACgkQAVBC80lX
-0GyLjQgAm6+l36vr//Nbkn+sd1Ov5uGVFWeFODu5hfsKFwUMBCEhqQtS3RbnD5Ea
-vLgm1TIuNZaHdSRloymHtrRt+A46BHnNqxzVGjRsNCw2DkXXJuI9tOBpgagLbU8i
-o1veOF74FBWjk/oJrNZ2ZzSETLKh7NzXLrOEJL/iDoUSp+8mOMCSi0D/Dplzn4J7
-5mYu1V0UFFeJcXRDOS+bujcmmLv9XqpT/NcwWoj1kS6TlqULrvSIXt3vDG808osT
-UMz7l2zFx2gvu1rvpxNwY9bgucK1M1pSyBwHAZNEdmGKLR4iVN/BiXOXt0w8zKHr
-cm75A3NyEJIYIweJZbWGUNjVWKDrZw==
-=p2KP
------END PGP SIGNATURE-----
-
---Sig_/ikOHUZBlsvlN1FF4nRb3mHW--
