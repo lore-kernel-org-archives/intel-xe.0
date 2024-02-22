@@ -4,79 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 106C4C47DD9
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 21:31:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCFBEC47DD9
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 21:40:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CF4610EA9E;
-	Thu, 22 Feb 2024 21:31:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="IfZOTuV9";
-	dkim-atps=neutral
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com
- [209.85.128.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D850210EA9E;
- Thu, 22 Feb 2024 21:31:19 +0000 (UTC)
-Received: by mail-yw1-f175.google.com with SMTP id
- 00721157ae682-6083befe2a7so2626807b3.0; 
- Thu, 22 Feb 2024 13:31:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1708637479; x=1709242279; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=wUw2xYuDibxwJNkicWQfSsXUxs7Znk2YsGnDeUj+5YE=;
- b=IfZOTuV9M9v4Ku43bhyNKdXOtB7BIO9y/5RFds4WUa7Xwi5k/sHdSmilIt22QZRoEX
- sgrQ2ynqjLKYjS4fkcUkfZPlzX7cll1dqepeu40cy801SLqO5QozGrYe/Jm9orhoOhs+
- wTPjeOjXPOyLZAPjiJi7WBguk5txQ0ZLrCqbjP9x3OgXfU1R7d2dMuik9l28AP2JqBiY
- v35Lw21AtZuPhxHlklOv6RXquIemhTyaY8n8Yy1BaTg9WyhF+su7pPvsqNf94KdGtGOA
- xaFh8J6Oar5gB1b5wjh28/BoaDEW71RwRHjUwplOPfs1bkdHozGg/So6+5PBoODnUr3X
- ZZTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1708637479; x=1709242279;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=wUw2xYuDibxwJNkicWQfSsXUxs7Znk2YsGnDeUj+5YE=;
- b=iCbOo+4CIzWTNnDEZxzjI5Cba7ztf/ia5NGdaQIbGGPVjhsXa/V2ZY3nQzwUWl+aME
- qSKZacreVRFvFMXZ5F9a9wBvbiJ6ZGTqIc4f10pzOscCm6/fYO1XuFk0ctJJBWt6UrW4
- EQuKeRUvlNte221/jH0+oajz3hAwS8caVvtMCZIfta8HcQfzIYNRdKiCjlJ9O1gtbMQY
- /yQTtgQ0uU/yHvIqvR7JcV1XhLRGqwsbZ9CdfYvoM8HQWStE6tkEdApxdkgvggYu/7cH
- zlaEiXhqVLfXy3F/+dGS4mY7f+6yZGL4QV8av2/KFpPdcnOYjzLj7SXIAW+EcLZHlR/R
- joVA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVWjIsSR6DjfdUm5xdwQC6fY5KGhKNxo+8rQT9HqFJwLrVq7aGeOCPJ5XslibgMv6AStthYLxp5hhoo0chkC3LnXrGBe29Bf4ZE1VnBGrjzxIL3KPnQFgrAo5BJwY8m9x+9zP+zokoREyRarFRrtI1gXPRVJBlWs+ZFMGbWJ2qPIGZbACaxVlJN5rQ6AVeB5AU=
-X-Gm-Message-State: AOJu0YyrUGFxnj3W/c26Tl81Kqcsn3o2JeA3zZ3rAMg7+e7NRpAnw2pD
- uHY91mTLWMI/EFYafh5xQMY2DJyu3rGHf+vuQZWz9VyNj3NQbUey
-X-Google-Smtp-Source: AGHT+IEJzEq+ITFpoFT5d2FCW0FabJu/wW6r9SFjgCowaIPDswaadHMeAEHodcDXQSdliSMncRMnMA==
-X-Received: by 2002:a81:451d:0:b0:608:b15e:4686 with SMTP id
- s29-20020a81451d000000b00608b15e4686mr380500ywa.16.1708637478751; 
- Thu, 22 Feb 2024 13:31:18 -0800 (PST)
-Received: from localhost ([2601:344:8301:57f0:6d56:5106:b1c5:46d5])
- by smtp.gmail.com with ESMTPSA id
- u129-20020a816087000000b006083c19ea91sm2041632ywb.66.2024.02.22.13.31.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 22 Feb 2024 13:31:18 -0800 (PST)
-Date: Thu, 22 Feb 2024 13:31:17 -0800
-From: Yury Norov <yury.norov@gmail.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Jani Nikula <jani.nikula@intel.com>
-Subject: Re: Re: [PATCH v3 1/3] bits: introduce fixed-type genmasks
-Message-ID: <Zde9Je1C0LLbXE6z@yury-ThinkPad>
-References: <20240208074521.577076-1-lucas.demarchi@intel.com>
- <20240208074521.577076-2-lucas.demarchi@intel.com>
- <CAA8EJpprfrtOjNzT6TFhV1n6MXzLdTahanfxcRW4uVjeHaBduA@mail.gmail.com>
- <ZdZlVn9BI-0q1Xdn@smile.fi.intel.com>
- <btssirjumey2kcp5dyhe6m3embdwd5bswjz3c6swrhxfijfhld@lztxaptkegw6>
- <ZddfF7kb54o2c/QR@yury-ThinkPad>
- <Zddiav19kX8FGKY9@smile.fi.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 986E610EA8C;
+	Thu, 22 Feb 2024 21:40:29 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D46EA10EA8C;
+ Thu, 22 Feb 2024 21:40:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1964988786094695538=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zddiav19kX8FGKY9@smile.fi.intel.com>
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/dg2=3A_Fix_number_of_mocs?=
+ =?utf-8?q?_entries?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 22 Feb 2024 21:40:28 -0000
+Message-ID: <170863802887.217031.3395719660799542082@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240222204203.3007498-1-lucas.demarchi@intel.com>
+In-Reply-To: <20240222204203.3007498-1-lucas.demarchi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,48 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Feb 22, 2024 at 05:04:10PM +0200, Andy Shevchenko wrote:
-> On Thu, Feb 22, 2024 at 06:49:59AM -0800, Yury Norov wrote:
-> > On Wed, Feb 21, 2024 at 03:59:06PM -0600, Lucas De Marchi wrote:
-> 
-> ...
-> 
-> > +#define __GENMASK(t, h, l) \
-> > +	((~0 - (1 << (l)) + 1) & (~0 >> (BITS_PER_LONG - 1 - (h))))
-> 
-> What's wrong on using the UL/ULL() macros?
+--===============1964988786094695538==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Nothing wrong except that in the !__ASSEMBLY section they all are
-useless. And having that in mind, useless macros may hurt readability.
- 
-> Also it would be really good to avoid bifurcation of the implementations of
-> __GENMASK() for both cases.
+== Series Details ==
 
-Not exactly. It would be really good if GENMASK_XX() will share the
-implementation (and they do). The underscored helper macro is not
-intended to be used directly, and I think nobody cares.
+Series: drm/xe/dg2: Fix number of mocs entries
+URL   : https://patchwork.freedesktop.org/series/130286/
+State : success
 
-> ...
-> 
-> > -#define __GENMASK(h, l) \
-> > -	(((~UL(0)) - (UL(1) << (l)) + 1) & \
-> > -	 (~UL(0) >> (BITS_PER_LONG - 1 - (h))))
-> 
-> This at bare minimum can be left untouched for asm case, no?
+== Summary ==
 
-As soon as we have to have different versions for the macro depending
-on __ASSEMBLY__, I would prefer to remove all compatibility black
-magic. After all, the <linux/bits.h> machinery to me is about the same
-level of abstraction as the stuff in <linux/const.h>, and in future we
-can try to remove dependency on it.
+CI Bug Log - changes from xe-829-5dfa3c2da4803652582408bfb3c529970735f594_BAT -> xe-pw-130286v1_BAT
+====================================================
 
-This all is not a big deal to me. I can keep the old implementation
-for the asm, if you think it's really important.
+Summary
+-------
 
-What are you thinking guys?
+  **SUCCESS**
 
-Thanks,
-Yury
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-130286v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_evict@evict-mixed-threads-small-multi-vm:
+    - bat-pvc-2:          [DMESG-WARN][1] ([Intel XE#1009]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-829-5dfa3c2da4803652582408bfb3c529970735f594/bat-pvc-2/igt@xe_evict@evict-mixed-threads-small-multi-vm.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130286v1/bat-pvc-2/igt@xe_evict@evict-mixed-threads-small-multi-vm.html
+
+  
+  [Intel XE#1009]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1009
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7724 -> IGT_7725
+  * Linux: xe-829-5dfa3c2da4803652582408bfb3c529970735f594 -> xe-pw-130286v1
+
+  IGT_7724: a7c03f7521f88f74fdf17c744fd847a775f9951f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7725: 7725
+  xe-829-5dfa3c2da4803652582408bfb3c529970735f594: 5dfa3c2da4803652582408bfb3c529970735f594
+  xe-pw-130286v1: 130286v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130286v1/index.html
+
+--===============1964988786094695538==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/dg2: Fix number of mocs entries</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130286/">https://patchwork.freedesktop.org/series/130286/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130286v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130286v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-829-5dfa3c2da4803652582408bfb3c529970735f594_BAT -&gt; xe-pw-130286v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-130286v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_evict@evict-mixed-threads-small-multi-vm:<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-829-5dfa3c2da4803652582408bfb3c529970735f594/bat-pvc-2/igt@xe_evict@evict-mixed-threads-small-multi-vm.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1009">Intel XE#1009</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130286v1/bat-pvc-2/igt@xe_evict@evict-mixed-threads-small-multi-vm.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7724 -&gt; IGT_7725</li>
+<li>Linux: xe-829-5dfa3c2da4803652582408bfb3c529970735f594 -&gt; xe-pw-130286v1</li>
+</ul>
+<p>IGT_7724: a7c03f7521f88f74fdf17c744fd847a775f9951f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7725: 7725<br />
+  xe-829-5dfa3c2da4803652582408bfb3c529970735f594: 5dfa3c2da4803652582408bfb3c529970735f594<br />
+  xe-pw-130286v1: 130286v1</p>
+
+</body>
+</html>
+
+--===============1964988786094695538==--
