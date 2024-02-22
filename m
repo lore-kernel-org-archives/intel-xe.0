@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAE5CC5478C
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 19:56:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C82FC48BF8
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 19:59:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BEE910EA55;
-	Thu, 22 Feb 2024 19:56:54 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dDE7VA68";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 650D410EA54;
- Thu, 22 Feb 2024 19:56:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708631813; x=1740167813;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=S36oj1zNqOvtqoh+zeZsUov4SwAYKn6+VNs9pFFIT+I=;
- b=dDE7VA68nxAqGbi6lxbAaYYrv/SQOpD22OAVqVzwvHRNNunPVXNjYkMK
- D0xBlm0HX/Fq6uFYP3k/qGHcQ6Iolrj87RzB6ris5QzAb9UCzZNyhCeX0
- PkpBuAH8CdQSfhf+sFC08117U9Jrs3TGrmJPlqO9Fe4xQml4vNNm3Y8XR
- f8mWF5oX00t6zA6G0hdEbnSaEAs3+W2iDPxxliEqScwzMD5od3grbWaaq
- sHv56zgOzOxoYPA5mgPw6bj13qMJjz8OCC95N+J2i5ZkU4XNSpd81nmr/
- eX80s4JWTx6/3BllTOXwcJg4Doxk4iu9PiuLWv8MFjvd59svVAGeT9ziQ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10992"; a="3015208"
-X-IronPort-AV: E=Sophos;i="6.06,179,1705392000"; 
-   d="scan'208";a="3015208"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2024 11:56:53 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,179,1705392000"; 
-   d="scan'208";a="5969349"
-Received: from kdtweet-mobl.amr.corp.intel.com (HELO gjsousa-mobl2.intel.com)
- ([10.125.144.156])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2024 11:56:53 -0800
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: linux-firmware@kernel.org
-Cc: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Subject: PR for Xe2LPD DMC v2.18
-Date: Thu, 22 Feb 2024 16:56:34 -0300
-Message-ID: <20240222195634.291662-1-gustavo.sousa@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 390E510EA5A;
+	Thu, 22 Feb 2024 19:59:42 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9687E10EA5A;
+ Thu, 22 Feb 2024 19:59:40 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8099735036655480288=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Add_LRC_parsing_for_mo?=
+ =?utf-8?q?re_GPU_instructions?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 22 Feb 2024 19:59:40 -0000
+Message-ID: <170863198061.217031.7044808087597995476@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240222184009.6857-2-matthew.d.roper@intel.com>
+In-Reply-To: <20240222184009.6857-2-matthew.d.roper@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,26 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The following changes since commit 78b99e9ebad8e4e24dded99842f94a8a7db3a5e8:
+--===============8099735036655480288==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-  Merge branch 'robot/pr-0-1708610465' into 'main' (2024-02-22 14:24:47 +0000)
+== Series Details ==
 
-are available in the Git repository at:
+Series: drm/xe: Add LRC parsing for more GPU instructions
+URL   : https://patchwork.freedesktop.org/series/130280/
+State : success
 
-  git://anongit.freedesktop.org/drm/drm-firmware xe2lpd_dmc_2.18
+== Summary ==
 
-for you to fetch changes up to 94d9a511a605cc0794bbe2d13328143e86df26e9:
+CI Bug Log - changes from xe-829-5dfa3c2da4803652582408bfb3c529970735f594_BAT -> xe-pw-130280v1_BAT
+====================================================
 
-  i915: Add Xe2LPD DMC v2.18 (2024-02-22 16:54:31 -0300)
+Summary
+-------
 
-----------------------------------------------------------------
-Gustavo Sousa (1):
-      i915: Add Xe2LPD DMC v2.18
+  **SUCCESS**
 
- WHENCE              |   3 +++
- i915/xe2lpd_dmc.bin | Bin 0 -> 61208 bytes
- 2 files changed, 3 insertions(+)
- create mode 100644 i915/xe2lpd_dmc.bin
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-130280v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_evict@evict-mixed-threads-small-multi-vm:
+    - bat-pvc-2:          [DMESG-WARN][1] ([Intel XE#1009]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-829-5dfa3c2da4803652582408bfb3c529970735f594/bat-pvc-2/igt@xe_evict@evict-mixed-threads-small-multi-vm.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130280v1/bat-pvc-2/igt@xe_evict@evict-mixed-threads-small-multi-vm.html
+
+  
+  [Intel XE#1009]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1009
+
+
+Build changes
+-------------
+
+  * Linux: xe-829-5dfa3c2da4803652582408bfb3c529970735f594 -> xe-pw-130280v1
+
+  IGT_7724: a7c03f7521f88f74fdf17c744fd847a775f9951f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-829-5dfa3c2da4803652582408bfb3c529970735f594: 5dfa3c2da4803652582408bfb3c529970735f594
+  xe-pw-130280v1: 130280v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130280v1/index.html
+
+--===============8099735036655480288==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Add LRC parsing for more GPU instructions</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130280/">https://patchwork.freedesktop.org/series/130280/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130280v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130280v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-829-5dfa3c2da4803652582408bfb3c529970735f594_BAT -&gt; xe-pw-130280v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-130280v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_evict@evict-mixed-threads-small-multi-vm:<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-829-5dfa3c2da4803652582408bfb3c529970735f594/bat-pvc-2/igt@xe_evict@evict-mixed-threads-small-multi-vm.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1009">Intel XE#1009</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130280v1/bat-pvc-2/igt@xe_evict@evict-mixed-threads-small-multi-vm.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-829-5dfa3c2da4803652582408bfb3c529970735f594 -&gt; xe-pw-130280v1</li>
+</ul>
+<p>IGT_7724: a7c03f7521f88f74fdf17c744fd847a775f9951f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-829-5dfa3c2da4803652582408bfb3c529970735f594: 5dfa3c2da4803652582408bfb3c529970735f594<br />
+  xe-pw-130280v1: 130280v1</p>
+
+</body>
+</html>
+
+--===============8099735036655480288==--
