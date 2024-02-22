@@ -4,138 +4,142 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DB1DC47DD9
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 22:05:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E832C5478C
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 22:25:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0510D10EAA2;
-	Thu, 22 Feb 2024 22:05:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2006010EAA2;
+	Thu, 22 Feb 2024 22:25:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bqZVOC0L";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GVUYenLD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E4F110EAA0
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 22:05:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66E2710EAA2
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 22:25:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708639559; x=1740175559;
+ t=1708640723; x=1740176723;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=80QusVAl+MyZvlTLjBvEyDmTgv//w1O6+x6+FIiEDjc=;
- b=bqZVOC0LRezRin/+cM24HmUJnq6YCPwUtIehZ+Gq5kQ5gLAkwmGNgaYq
- CsOFSEcb3L6NzaewcVX4HH5VTF7XQrTUIp1M+ekh0x/KMTJE+zEBKb1b8
- esxYsW/ahMH3QnfCuMw/TFFpoGVMyEzPfNJFDDdzF+HCZ8A9m/tegMl4c
- n479AUMj4CaAIPeDZfnZjm7ST2JIX0/zHnt2T738VfW6BZ2/CB1WOLQcr
- Mbt0HTrshhPCZKRhYH1PN3XN2f0jdTSy9hkzcYPKscMhe+hQN61tMTNsz
- 24tZ2CrRshUVyJ4+poD0eTGO026IhmXe2qbfxzXl7hzT/p4zG09aZb9sl w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10992"; a="6682566"
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=K0233D9n7QHxfq6qzWBJ38+VOSum3/Xlm7noCSDKjKE=;
+ b=GVUYenLDZlKHxDOBZHFkUDjUA+LeNJNcRj1nkLmakejmDJUpTHc5CV8g
+ V9/NC5eUT2Y7qB96Kj/I7jse8AKINCCFXbNixD12W84CUDEONui3Y3966
+ meo74dAtka4fHbGrq8prf85da9cT+MEt7/6W5oswJox2IGV25ET4jc3aC
+ 1bxnOS5vY5QeI+88AesN4EsKDLG/7y81iw6ekkjOVP7GCnwBhxRNOHgfz
+ x8dxqGKaAOJvnitJH8pjiNZyMoHov5PzmvgY8kJiiDlpsOJvC5CxCgB6s
+ PsgG93eE7sDmQ4xGBnxlflUHP551VWVRbHSvwNwSC9nuDzyBOlh3mLRCk w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10992"; a="6684996"
 X-IronPort-AV: E=Sophos;i="6.06,179,1705392000"; 
-   d="scan'208";a="6682566"
+   d="scan'208";a="6684996"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2024 14:05:58 -0800
+ 22 Feb 2024 14:25:23 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,179,1705392000"; 
-   d="scan'208";a="5945470"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+   d="scan'208";a="5950815"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
  by orviesa007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 22 Feb 2024 14:05:57 -0800
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ 22 Feb 2024 14:25:23 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 22 Feb 2024 14:05:57 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ 15.1.2507.35; Thu, 22 Feb 2024 14:25:22 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Thu, 22 Feb 2024 14:05:57 -0800
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Thu, 22 Feb 2024 14:25:22 -0800
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.169)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 22 Feb 2024 14:05:57 -0800
+ 15.1.2507.35; Thu, 22 Feb 2024 14:25:22 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JhPuppUF8KlkBQJrBqXQVAPqjZJpTMo4g+EYBirLDqz4zyaH4STXKGVLIO9Zu+HY/JlXgW1qk5CcBjsKax9IfL1RGzbXRGS7D3ckUccnTRXE/EgDFiwlQoTIJ1qjDJwkJiJORPDC/DhgSaSI9VsYqMQxaVwvh27et4GisHTPm+7S3Uu6Rfi0dx02mD1U42ev6e3/iTBA5nWx8EJqbE1GIHh1ENNge8njPJmUA7JxQAgasIOYVPCHm2qSCBmfbtjq6dUusOuTpNMiuQsZBm/pK7lhyTSq7ueG+1Go2IDwdjkUsvW5U+LS28aGhuMHEfBZqMtQmm0GU0QryPOBhn/0NA==
+ b=SMVV82cv1IPibfQD6dIEH3pTL7S6hSFqDZVVcPlOy4KDeeNY3TJLUm/xbhEFV1TQjEHd0YYfdpVe8ExXnTw8SbhdpEncW3Pw1qVFJIhIDxB0VllaQKruaR9pKbpdSKoxcM/z2m61eSm5l6WbtqXaihmnSBsKzZkiCA1TNJEhtsNO/oWfmv3tYEbFA8ZhI6JBljWs/sWOH/CgEM7X6+wHGIfkPZyyx6PI3D0fTNenBGCtHShSyfZFGaeTzDMCMtc7A0Lj/a+eyD4Ih3vUMkOnXBLjdyJx/BIuxY22lSkPJvB8nrdehzR/h6ALOtfulYP3PCJC4c8VUxFyQrcQEbyU0A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=X/NUPdid8EpDaEcqYOyhIuqPgNIQ5HmrPbE7lWMnRZU=;
- b=Da6Y1yV6dBYKxP54Ugkl9fHJMuqIyAgDRKo+FaILvepOfYphTptQt9bAMTcuqKgnjIDLjRCup/dIc3KIPMD5vwjApdltl6BZuDRDyuzrtE+m2tHfXlh5v8beP/MHqMPE3V21xKxy8j7A0AaWJwBE8RmxYundptxzFRZSu1vtZW3kSObMCcgCQNTnJAwxEN/SNYmimI8dOBlglYaeV6JfnzWPAg/kBsavwNErf///7UuhyzIuDvC72K9BvokTv5S4uLCIr3yckqdTauzOT+mB0w+6gScXDpe5ZaPTYhvDh5qTSzmNfvm0QqvULJ+QgAbLU0Xlhjy/2ScvypSWqbwzXA==
+ bh=kFYltuP4lEnUgKEQnA0dMmKX3uogDeW0qjMT3XTHRos=;
+ b=UWNtGf7rAhQ4y8zkHJM2+JzgvWQEzEezWp5IV50O12Y6KD5eeoU0DChuPNmsc4S/gU/lZmFXAxMirBs6Eye83/FouPQh/H7J/WkUBe5dM4lA4SjfLXPwtlYrrNiyzD12qkZ520f1e9Gb2xWUAjsu02QSEn4JXBwGYvL9/6PGsIWmmbPZCHgzZCWHyqQWH91RUGc8O0aotV8tuf5EhlNiVLJKtfloJoiULlcrp3GSe+FLOpX1XxkGKhNNW5d/KnoQDznQFV2rg8pMFuKQELeaJjhUiLfmVUs4djNOHBSPh99da1O91T8td5PRlbtzwdcCm3JyUJrIHxRJViFBZwpbRw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by BL3PR11MB5683.namprd11.prod.outlook.com (2603:10b6:208:33e::11) with
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by DS7PR11MB5967.namprd11.prod.outlook.com (2603:10b6:8:72::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.22; Thu, 22 Feb
- 2024 22:05:54 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::e8bb:5354:3889:6092]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::e8bb:5354:3889:6092%3]) with mapi id 15.20.7292.036; Thu, 22 Feb 2024
- 22:05:53 +0000
-Date: Thu, 22 Feb 2024 14:05:51 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: Re: [PATCH] drm/xe/dg2: Fix number of mocs entries
-Message-ID: <20240222220551.GI5347@mdroper-desk1.amr.corp.intel.com>
-References: <20240222204203.3007498-1-lucas.demarchi@intel.com>
- <20240222211639.GO718896@mdroper-desk1.amr.corp.intel.com>
- <4mbtddukq2uwra4ssin7dufh7ytln6rnvn2ym6xaubxwbrrsag@3wxthrsbuqsb>
-Content-Type: text/plain; charset="us-ascii"
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.10; Thu, 22 Feb
+ 2024 22:25:19 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7352:aa4b:e13e:cb01]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7352:aa4b:e13e:cb01%7]) with mapi id 15.20.7339.009; Thu, 22 Feb 2024
+ 22:25:19 +0000
+Date: Thu, 22 Feb 2024 16:25:17 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Ville =?utf-8?B?U3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>, Matt Roper <matthew.d.roper@intel.com>,
+ Priyanka Dandamudi <priyanka.dandamudi@intel.com>, Oak Zeng
+ <oak.zeng@intel.com>
+Subject: Re: Re: [PATCH] drm/xe: Use pointers in trace events
+Message-ID: <zcnft4trtmidlvv3acin6gg35xpsmnahfzo6x6irjbr7iicopw@zmutqemp6zsc>
+References: <20240222144125.2862546-1-lucas.demarchi@intel.com>
+ <b27b522576d493cac238b7f68e29ee569eec9a2c.camel@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <4mbtddukq2uwra4ssin7dufh7ytln6rnvn2ym6xaubxwbrrsag@3wxthrsbuqsb>
-X-ClientProxiedBy: SJ0PR03CA0372.namprd03.prod.outlook.com
- (2603:10b6:a03:3a1::17) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b27b522576d493cac238b7f68e29ee569eec9a2c.camel@linux.intel.com>
+X-ClientProxiedBy: BYAPR21CA0013.namprd21.prod.outlook.com
+ (2603:10b6:a03:114::23) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|BL3PR11MB5683:EE_
-X-MS-Office365-Filtering-Correlation-Id: 45a64338-8fbc-462a-024d-08dc33f2702d
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DS7PR11MB5967:EE_
+X-MS-Office365-Filtering-Correlation-Id: e05517ea-a667-4ec5-aacb-08dc33f52721
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: eVSIiwgLEVI+93/yAHNedrBpmB7CSZaxwUP5vj0Qm2jvg4peiL2IcF5sIq7+ppGC8a28xEcQSTwsdT0irl6uY0s0ICbiHn4LRjqLRJ2QDBUbIJ4hXAfKx5JAcLXXLY1w0uIQm/9yPACOqL6zjjukWYIvWsYRw1+PoaB635BffLxtb9ePzoifDZqeUiUDCpMDPEP4uJpH2CTtPPEM42DbDWNrQp71Md/vZ9UEciArNMgZO1BvzYxElGAqjmNTtQdAUKh1fR/hal+ksbb+db+v7ZhoJdpJeq4b7VCkaDkwIAJr6s41RRGIBimLIX0ikZrujz31Bj06XtOOvlNhPDD+B12Mblnr1rF+lajZ8YovDncbp9ZYPkB0c1IrOjn/6W/9w4HdBYWZrp/+fiIVBNF3OThSN2FTr3uBhnOiClqSP1XTUutE05o1n93ot9ef2EZgNZAXZFmURZpChOFMI+tDlus0Ktpzee6gnth1xY+RZCmWKtQWvmtrr11iEGSzjRHL3cISSkLPdpri90GJHncmUeJyE4YAzWii/4dAt0sqOuI=
+X-Microsoft-Antispam-Message-Info: A6DWIzR75qMZuvFXLtVHQySTC6kS0ggN22gfEYfMyzY/bxBCVxZHzVsjn02xzyRf9i1jRUNCHl2RyXAV2kGVdDvh4DPgSV2iJbvIakVJY7wFf12saBQWed1UZkpZVPG32mILH2MH9t/+Kv2PCMio0WInfXtCK+1T7gnujowb3ydQIWQmT5eUENJizQ1PxMpJH9vWoiTFaWoQvNxZ+xSDtpd4I21/iVFR/7LVc0VW7m3pZlNm3lanN0cC+Aj90bXdOHgF4eEQIV9xrS0pXyTwsqrTHGaacz85cjzoLw/FJNNLTLUq2ICdpx7LUek75Qlz1S3r6w5ytZdA9yL7V540UB3vS9zJsRyrwfmrlKZGFem2499B6N//waQiLeCk/OC8cGFU9v4p2IPd4PZazm/ucnvAwTUrVumlLuFOjDf8eoAeXMav01OXqpmSvwPqqCNCByTnWJ/9UXmTI/H+Bv4f4D4eVuTd39fuUwymqN+7xsz5zPoKB+1vzHP3XMDbscksF3IRKPIldIvIEXqtWcLn8A5ZsQNTg01/aVkSQHi02Ic=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?TTjEdjnG/OJoY5fZ7U63+Ghc3uC5+i4zKM5rxnAkwz+yZT6/gYJseKTkwPG0?=
- =?us-ascii?Q?h8KXfA8diFn7vBuz0rYeoPVp3r24Agd3j8l1a8ErJqfNMLPK8dilHzQezI8n?=
- =?us-ascii?Q?p3AQ+0UgREtuJaYHlx8x4uh04ht2fRscTb2qE2BNTLBpHhfxe76uOrBbwqfu?=
- =?us-ascii?Q?6/GXGtjiBNKBwIZTvTSabUr5iCp1aGTb7GX/hD8BbkjRvxe/DWAnHb7imAI7?=
- =?us-ascii?Q?xLPC/JEqhUQ1aXpFRn71+/5kXLdZLujz4vecsUih/1yWoKeP7twi2Y2aGVKM?=
- =?us-ascii?Q?/o/ghvF8VjHHRVlh7joesISXZk94FmBK7g5L90yKez14/FFMkrkDWdsZ5uDS?=
- =?us-ascii?Q?OFhm0CmLHOttSbcG6rukcmiu8cF0qMse/aMpp/pl0Lih3l9dzGdaUW5doC44?=
- =?us-ascii?Q?hobg9I0pDuMtIxA8AJk/U6jZYX0MNlyGDvRr/Nrk+QV4FpDeqeWHjvQN01+L?=
- =?us-ascii?Q?JG+a8un2fdzoF1GPYCzDlpA3eIg7sEFl3vrNWnuZK5Wq7fic0N5gAk8lcZQG?=
- =?us-ascii?Q?clUXYXufsfC35PIRUf7IM4m7XgoQg7HolacZLIKNKoM3QmhaZCIb+wcC7RQU?=
- =?us-ascii?Q?SB0Y2REg2Tri+z4jO5T5fF1bzT2Wq0mItwYlaW2g9vGlsZnZyBHMEi8GjBGH?=
- =?us-ascii?Q?bTkx8vgndkUpn8KXmOibeQPtSa7GulsUYBr2G2Ry6Sy+vmKHy1KK1kI00/du?=
- =?us-ascii?Q?/8hne3itWPNeaerdXVKk1dzPvw4vhPWwqZP5L88H1/rWuqoLxbP/AZ3/94+T?=
- =?us-ascii?Q?WX8BerCB7w4wUEkJ5sI7dyxjBaIb3XqWmRxQxx4uJnTixhTkYi1uFfO8hLH7?=
- =?us-ascii?Q?Y1RQZRgJDG0mVAQ1gA6J7nmJUPXvFQ5dWg2jnBngkEzO4triwrjB+HDUxxBF?=
- =?us-ascii?Q?vkwJT2GJDCsY3MWf1DKBsPlW4Y5fGbWkekm8eV0IJCpSMMtV+0qzUFdY4nsb?=
- =?us-ascii?Q?KD2oqApGSau1U78jsef+kizS8vSFg3sCUgSKzPqUfKmOKqfYMGrZoi4nTWl9?=
- =?us-ascii?Q?NOLnK0RAxUIXrhS3mM3NocBqTp+qCi8++gc1kq2avNthtZ5ce+h5Zj9wuK9N?=
- =?us-ascii?Q?p+oAuMeCwrLiB0BOrXz+ZZfapJdls9AhZ9ch944hgA/ldDDvVEOm0H97loKe?=
- =?us-ascii?Q?YxC3CnTAZqPU9AeudfJcPYp5ji0DAOSo3LASm058HmFv++/pA6iJrggbp51m?=
- =?us-ascii?Q?U/yCx1NzX6uf13MDfv9hlXu++9PyEl9Hn1fWW0+DoP/CDFSEv8ZBKirX/rM6?=
- =?us-ascii?Q?GJW6JTV4FYF9rZlXWa0DRSrfVdpuxOeo0Sghys2UByoaSkD4On78CE3Gw1tS?=
- =?us-ascii?Q?ydsKqwsMS9IRtbaGfKAMeJt+YEUdHXh4vXyDOCIh01leomBGWbS9/+reOJ6q?=
- =?us-ascii?Q?4UrKVIZP4Ei0Csu/ZeKktWiMX2IDoI6gIy+xfDlw2a5VQQz5SnPwba5mbqKD?=
- =?us-ascii?Q?PAzIqRBMnAQvLsf5YUK/dhJRBevS9b7HIOkC/dejz/Htq2mtBaL+f3A7jF2y?=
- =?us-ascii?Q?MfQOjjN5I8gZvw9oa9gWYMKVmuhL3Ug5QTrpB1gZOwns5R+HnV/lZAYmuYW2?=
- =?us-ascii?Q?BjA21qa1QH/MkWo5d7bWfLB29VeOdJhzbrvAMt033U8Yg4DJpgeY+Gh3cP85?=
- =?us-ascii?Q?EA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 45a64338-8fbc-462a-024d-08dc33f2702d
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?Y8iOO6/afBKQ4bYHjoyWYN7yI0G/fX6kW3RHPFASvTG30jtrecUBNOPvJJ?=
+ =?iso-8859-1?Q?LswOtm5275chOKXhD8JVKBn6XRwGCEw5DZF7bQC61wlr1SkxgaDkqd3niO?=
+ =?iso-8859-1?Q?DjKtXTeD+Nu7U287xjEXdef4cc6c/h1SsZXrPj6+759SBvwHVf/mSw7UOe?=
+ =?iso-8859-1?Q?IoVxt9a3oIFFH6BBuE9iaC3HW94ZAkDY/vKdRl4xOmLRK24fvPU5/2rjZN?=
+ =?iso-8859-1?Q?wGgHgf9HCXIxO/J4hqCS5jU1U5dAhMpovoh36Lm7k8R2Q6Dauzqs8azqeA?=
+ =?iso-8859-1?Q?+3+Y/bqtjEjPzctI4PNkg65DswZOEYakYHwW5njJ8TlGcuv6k3r6d0T5UM?=
+ =?iso-8859-1?Q?jh/1W33JZTEaxunBGq+dz5tF07kHYhsU5uz8vz99I/o/7rQ+qXE77ZAlWE?=
+ =?iso-8859-1?Q?Db4WWqhIDkxRpXcGnxrdg64cNLvoGnamfFMmsujCgNgPM6O1+CoVt3s41G?=
+ =?iso-8859-1?Q?RL+1fIOOW4o+JCjzbwpMhmLT35CQ1Bu5mSMmtxkOyKeR2o5gAKqGLRI8OH?=
+ =?iso-8859-1?Q?Mup1DBnsWIjTyGbAodlOBQVqe8qnxcs6L59ZoTpdc8RJgoQN15fy2RsBFc?=
+ =?iso-8859-1?Q?d2FQv9LRB+sQlW0k2NwI8qshbkhuaDOfTSiRHRrRZL43i/aa4qFbuiSunm?=
+ =?iso-8859-1?Q?3kWmHaKOicXIxXV4/7ayiBycEzg2yNIPd+6XLHTaWf3ORa+6bghSZ0aq/p?=
+ =?iso-8859-1?Q?0hEL4J4mHx/K5vnmYiXDx5Gf5SNl3IkaO+cAEd6S3D7KJfzP+FBcCyxOUs?=
+ =?iso-8859-1?Q?KhKTOxl5O5MeuKTLdNai1fGry62BDdPzPdR/teUgPzSZkM5X2gx3PydR9E?=
+ =?iso-8859-1?Q?Vs45Hy1HOdDL0PSjHM2k4Z3l0UVTnoguX5iVC7rn9HJmanT81QexGkLsAC?=
+ =?iso-8859-1?Q?e+lS5BenWH3M60AMRKdiio8xDfpbSvjX5mrblYsD4O7w1K5tMXZoYbCR94?=
+ =?iso-8859-1?Q?Sbkhb9AqjNGw3+8Ixz4+79wmPjC4bi4cRULBLU8Lamuuk4twN+8DVOVwEr?=
+ =?iso-8859-1?Q?FAJqNxOjo9WnEBYI2GX9d4FC7VU7/JVj+1b92Sx6s9PMFQhh/1RjxcNx+J?=
+ =?iso-8859-1?Q?ehbG5eT5YgBF24SNTW9BOsKxUii2FIgFPWGy6iucosLcA+fOK09kK6+wOZ?=
+ =?iso-8859-1?Q?IbMcyWCTF3cB5E/+lTtPhUlTAxWsERaE/MYOWdxBD2N6/qHVXcp/4LfIEU?=
+ =?iso-8859-1?Q?XAFQiiBH8dGxiX60+qpX3oPC15gROuNbHb3FSDwzJMAdgUBcvYAwKeMJDE?=
+ =?iso-8859-1?Q?LAkJh6ckcm8x2emHo6C4et1v8j1sIYR6Ot8Y+tRfPjiYssTN3Qnuwu93W1?=
+ =?iso-8859-1?Q?oI/1s6FPNoNKOdIe245env1YY831Bxh6xKsckDCefSUtR5XZHGrDkP/g/l?=
+ =?iso-8859-1?Q?6Sqwvi5JhMmWfPGPfQY0mvmWe56Gtqnfay/Kld6pWiuBy9GCino3h61AJr?=
+ =?iso-8859-1?Q?OHJ4e2NDKKwpDW2zrKFoLfGD2wVItqn4wJmFGZ1CgeXXUZ2KG+dODyAXGr?=
+ =?iso-8859-1?Q?Ab0G6T/AdDhRZhJEJ+i54bBxQv55FBZLITGM/jMopJmPDGnuKpp85tIYJs?=
+ =?iso-8859-1?Q?LDKegRdgkeCXKtm2iq/Pf1tRr4FKm8pVO3Au0mFiooUEGrojbzWU+5pX5l?=
+ =?iso-8859-1?Q?O0vw6e+hVfbFuyf0p3+Vk9rT9mLje6Fk+3141btq786nND6A4d+PGk0w?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e05517ea-a667-4ec5-aacb-08dc33f52721
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Feb 2024 22:05:53.7772 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Feb 2024 22:25:19.8213 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QcDp9yK1/rE40MO5jfoFv2l251q3DsO9vLBgOYG3Wq+qSfXzC2AZ4YitduBA3tG7X0N1mPExcLGBt2ldYNhTD31zcAn6B2GkTelGDMVRZkI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB5683
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6o8BsjMAHRgqtzANsvEqYfCJGJEWgJve+jRrA3x5UmvYTIVzUuxpckwAjvILWeNf/i9iH/K0Aqe0JxHMeApubmTYtxAyDzwq/s0tSAiO+TU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB5967
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -151,103 +155,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Feb 22, 2024 at 03:53:56PM -0600, Lucas De Marchi wrote:
-> On Thu, Feb 22, 2024 at 01:16:39PM -0800, Matt Roper wrote:
-> > On Thu, Feb 22, 2024 at 12:42:03PM -0800, Lucas De Marchi wrote:
-> > > While investigating why xe_mocs kunit was failing for DG2, Matt Roper
-> > > noticed that LNCFCMOCS[31] is actually RO for DG2. It would be a spec
-> > > bug to document a register to be programmed that is actually RO. However
-> > > upon further inspection, it seems like we should not be programming the
-> > > other values. Early DG2 SKUs documented that the entire set of
-> > > LNCFCMOCS registers needed to be programmed, but this is not true
-> > > anymore.
-> > 
-> > Wait...it's not the bspec that required us to program every index, but
-> > rather the Linux-specific need to ensure we don't break ABI in the
-> > future.  Although rare, it's consisdered legal for the hardware team to
-> > add additional documented MOCS index values to the table as long as they
-> > aren't changing/removing any of the pre-existing values.  If we have
-> > (buggy) userspace today that's already using an undocumented MOCS index
-> > and operating properly (due to luck), adding the new "official" settings
-> > based on a future bspec update could regress userspace if those new
-> > settings do something like reduce the coherency.  So to guard against
-> > this, we always need to program every undocumented index to maximum
-> > caching, minimum coherency.  That way, if [buggy] userspace can operate
-> > properly with those settings, it should continue to operate in a
-> > functionally correct manner if the index suddenly becomes more coherent
-> > in a future spec update.
-> 
-> from checking past platforms and the updates I was actually under the
-> impression that the table  in e.g. bspec 45101 would always document the
-> possible indexes the HW can use, leaving holes to complete it. And those
-> *holes*  would be the ones to change for future use.
-> 
-> from what you said above, it seems it's not really the case?
+On Thu, Feb 22, 2024 at 05:12:11PM +0100, Thomas Hellström wrote:
+>On Thu, 2024-02-22 at 06:41 -0800, Lucas De Marchi wrote:
+>> Commit a0df2cc858c3 ("drm/xe/xe_bo_move: Enhance xe_bo_move trace")
+>> inadvertently reverted commit 8d038f49c1f3 ("drm/xe: Fix cast on
+>> trace
+>> variable"), breaking the build on 32bits.
+>>
+>> As noted by Ville, there's no point in converting the pointers to u64
+>> and add casts everywhere. In fact, it's better to just use %p and let
+>> the address be hashed. Convert all the cases in xe_trace.h to use
+>> pointers.
+>>
+>> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>> Cc: Matt Roper <matthew.d.roper@intel.com>
+>> Cc: Priyanka Dandamudi <priyanka.dandamudi@intel.com>
+>> Cc: Oak Zeng <oak.zeng@intel.com>
+>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>
+>Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-The authoritative way to check is to list all the MOCS registers for a
-platform.  E.g., on MTL the LNCFCMOCS registers have instances from 0-31
-and the GLOB_MOCS registers have instances from 0-15 (since two indices
-are packed into a single register via upper/lower fields).  On DG2,
-there are 0-31 for LNCFCMOCS.
+normally I'd leave it on the the mailing list a little bit more for
+people involved in previous discussion to chime in. However this is
+blocking the pull request to 6.9, so I'm applying it.
 
-> 
-> > 
-> > > 
-> > > Do like is done in MTL: the additional registers are there, but we are
-> > > not supposed to program them, not even with the unused_index value.
-> > 
-> > It looks like this was actually a mistake on MTL that was overlooked;
-> > the bspec documents only 16 entries, but the hardware supports 32, so we
-> > should be explicitly programming all the unused ones as mentioned above
-> > to protect against future table updates.
-> > 
-> > 
-> > At this point I think we're far enough along that it's extremely
-> > unlikely these MOCS tables for Xe1 platforms like DG2 and MTL are going
-> > to have any further spec additions, so this MTL mistake wound up not
-> > being a big problem for us.  But replacing XELP_NUM_MOCS_ENTRIES with
-> > XEHP_NUM_MOCS_ENTRIES on DG2 is going to extend that mistake farther and
-> > make it more likely for someone to copy/paste the same logic in future
-> > platforms.
-> > 
-> > The fact that DG2's entry #63 is RO and can't be reprogrammed by the KMD
-> > also means that it's 100% impossible for a future bspec update to
-> > request different values for it.  So whether or not we try to write the
-> > "unused entry" value into it doesn't really matter (it's easiest to just
-> > keep doing so, especially due to the way two MOCS indices are packed
-> > into the same register), but the test should be updated to not try to
-> > verify that last entry.
-> 
-> what I don't like is special casing the test, because the driver tried
-> to write a WO value.
-> 
-> Would reducing the number of entries for DG2 like
-> 
-> 	/*
-> 	 * last entry is RO on hardware, don't bother with what was
-> 	 * written when checking later
-> 	 */
-> 	info->n_entries = XELP_NUM_MOCS_ENTRIES - 1;
-> 
-> (also increasing it for MTL, for consistency),  and then making the test
-> do the right thing for odd number of entries be ok in your opinion?
-> get_entry_l3cc() already does the right thing, but we are not ignoring
-> the value read back.
-
-Yeah, that should be okay.  If this were a platform that used both
-LNCFCMOCS and GLOB_MOCS it would have been problematic when only one of
-the registers was RO and the other was RW, but since we only have a
-single register controlling the settings per index on this platform it
-should be fine.
-
-
-Matt
-
-> 
-> Lucas De Marchi
-
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+thanks
+Lucas De Marchi
