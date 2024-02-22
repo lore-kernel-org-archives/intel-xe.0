@@ -4,139 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35E9DC54791
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 16:40:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C46F2C48BF8
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 16:44:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8C6710E9B4;
-	Thu, 22 Feb 2024 16:40:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C70110E9B9;
+	Thu, 22 Feb 2024 16:44:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OPmQP7vo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HWBhoCrC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAE7410E9B5
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 16:40:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D1BF10E30B;
+ Thu, 22 Feb 2024 16:44:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708620030; x=1740156030;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=5ilIHpSoBsW1tOsENeYTIo7Hhmjs7Mk1dKvti3x2uBE=;
- b=OPmQP7voTV7OLOJMUqn0hEsV1HAg+N3GaocY1NzBk2K/WYeW6CdPzSLm
- uBLuHdXAoINaeCC/QHr16wjjKckLDoGxSXbIAjLYuU3ybPUQsIwymzTgd
- n97oTaM2fIo+nm4RLPy/U1l3xSiIpLECkMxkCBbXUoX+tiCOGVeGRO3L+
- 58psOi2dJHTImLxtXGJNgpOUtxjD59W2bcgRODGxNi92eNbiUAQBX6Czf
- /GZEAeAjZKhK+1XXbTy3osvjcFGwHs2lwxAMXanpaDdEpFOUgclIMpb91
- QxCrZ8aWYo7utUZEEWsyngpug5dPQaxg058rka/82gVv+W+XwlDiSUJ3W g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10992"; a="28296340"
-X-IronPort-AV: E=Sophos;i="6.06,179,1705392000"; d="scan'208";a="28296340"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2024 08:40:29 -0800
-X-ExtLoop1: 1
+ t=1708620256; x=1740156256;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=hzQJmorMTV5rdTl82QUGox6zoC899///hh48jdQr9E4=;
+ b=HWBhoCrCQytrX0Fv0VR65D4+pDWPcVCSQ6kYsGsEOOCkOwK3nl2804mu
+ hh/fn4T/7V/rW4MUEHfsM8XDIlzgEWhVPbyY7tlFwLxzsZUOlTdg6mT7K
+ GayNpnFFqw8QOd8rjr3Y7k8tLTi3n97pduVn7KBgY7nTBkJDrWAR0Cty4
+ +mvtKBsjpMyr+8lJFMu74IKAGBEJ+3nLREsa8mR5pgjcIR/hn9+AesUve
+ PxjLVYXeOGPgs5hAeK1l0L4J0SnhV7x/2VjokgCdyD/2MbNaTMZwwSbew
+ hZTe9Y2M5gTptglf4TxXIfgqXxWfp/fp65kUQvjAuibZI+ofuIDOMTGfX g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10992"; a="2718255"
 X-IronPort-AV: E=Sophos;i="6.06,179,1705392000"; 
-   d="scan'208";a="5490400"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 22 Feb 2024 08:40:29 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 22 Feb 2024 08:40:28 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Thu, 22 Feb 2024 08:40:28 -0800
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.41) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 22 Feb 2024 08:40:28 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JNhlw7d6GCzAsjuIOo8qmXwQMOi9fYj491zIM4KKHhu2Q4XOLcOdyWip4aM+2s5p8UeujQ5I8xhrfDJSpS6f7dpoDre+EdZ9tbRIrYWAdEPYwyHIRly41THeAuSmY+iC4+cvtwxay6iVXM8ipD+zWeGmixaeGmJFcc3NSrt2clem8ivMAzL06mrbVYsRF7DUBN2a3YUCRmMqkho1OcAiSDp9h3CjossP3ESf2cpKcyBHNyVTFPXCbnnLIqjDCs2F/7tj1mkwM6g1opQZeAWqUKpU78lgyfz8ExP6VeSMqn66kSE+rIyiST+spwa9so83izSFHgTICO1wEjVfuzYXWg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5qIi8cTcFPym3A32AXJapIrJwh9SqPIP2TvWyrzpC2A=;
- b=FqGPGpPZ4Ba3eZ2ZXo6lR7CNjFvfb4zSevxQc27ZrjQ3aLdmKeusKLBXfWFmFwA7CWzq6N1GqOSmQ3wFczzdCGFUz88bgUgskY4Exk10Xcmd2BobrOYDQcZ3keG8FFcDGbSPb+/NPXGlJtNiWVittNZD+G9Vue57Pnaj0mZaG/YVRxslDYi2boW+pxq0aOYGzogm/fzwgF6pVKA/HabuVegxIs8jfo4p60dQHRPpKbSjw9z24wvpyFvrBVW/bnDnsrCyIeyVsbtRg0QqidmK/NuH5v9SKvf1XQHFZ+W2K6cya+SrSRvlNr2P6L3rlNcqLTljExXEDK+wnRV0rOMWJw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by DS0PR11MB8764.namprd11.prod.outlook.com (2603:10b6:8:192::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.22; Thu, 22 Feb
- 2024 16:40:25 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::a7f1:384c:5d93:1d1d]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::a7f1:384c:5d93:1d1d%4]) with mapi id 15.20.7339.009; Thu, 22 Feb 2024
- 16:40:23 +0000
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-CC: Rodrigo Vivi <rodrigo.vivi@intel.com>, Matthew Brost
- <matthew.brost@intel.com>, Matthew Auld <matthew.auld@intel.com>
-Subject: [PATCH 13/14] drm/xe: Convert gt_reset from mem_access to
- xe_pm_runtime
-Date: Thu, 22 Feb 2024 11:39:36 -0500
-Message-ID: <20240222163937.138342-13-rodrigo.vivi@intel.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240222163937.138342-1-rodrigo.vivi@intel.com>
-References: <20240222163937.138342-1-rodrigo.vivi@intel.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BY5PR04CA0027.namprd04.prod.outlook.com
- (2603:10b6:a03:1d0::37) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+   d="scan'208";a="2718255"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2024 08:44:15 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,179,1705392000"; d="scan'208";a="10289434"
+Received: from mhaehnex-mobl1.ger.corp.intel.com (HELO [10.252.2.135])
+ ([10.252.2.135])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2024 08:44:10 -0800
+Message-ID: <03e62bcf-137c-4947-8f34-0cbfcba92a30@intel.com>
+Date: Thu, 22 Feb 2024 16:44:06 +0000
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|DS0PR11MB8764:EE_
-X-MS-Office365-Filtering-Correlation-Id: a8d7c88f-3922-4fdc-d60a-08dc33c4f6fc
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: MoE9a2Tu5amEltDvwcieB34uwnddoyJpX6379G0fcNYWiXTV0+cHX8hVpYSG4aianDvYe1DMrddgy/+E+Gn9ySKP7xG32NAp0gYZlDAhV7erajBFhTWQsfPJOYVRyRkDBdGxJxtclTX7ZD+6QHH77sS8vZ6AXCtU4Q8/WKF8OEVQliSCHgJzs9Hb4mChcsiAvc6am9X2jZAkMdUy5MQKD2EFdjd51XTPl2/gx4xzeEhG4ePeSONLYUToDk/UwV8odzRYV7CHpdClwNhiD+tv7f2Pf17GapjXCqm4QVVTexBZwlq/3nJX/HfigA1XxJGTiqMryrqvdcsdsUFEYGK08iT7a/NpdN/sQXHmuForuHaTmd9c+B+hvB1wTvOVTTZZF+4FsahCxnhgnil4O8ZExIm5Wfe+gZ3euKFkqb+/vJVvJfP7hCKmh/d0vjqC6o71el5FHNdre6u+M2+RUMrNvNu30FV5JOZ3v6n3Q4XONeWKfctVIaDwYi2y96l7Vz4C1rBoYCebUygf5IFzs70oXNGxmhOdQiQQVGn/bh37PfE=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?uo3o/QcqmFFzzV50S79XVFv2OC8a3t01VGrUUhXigdVHwCrzOw44WAxvO2Qz?=
- =?us-ascii?Q?7Mpyb5f3WTkLUqA8R8t61jztXAYvTLCA1lE6wl8t7mPT2jYueCrsZTkOYX6e?=
- =?us-ascii?Q?ZHaIl5MgpmZ0yZCBPYVxCjQh+Bytgm/Xiy4lYVJTq0TVJgYZUiDBNH53A6vf?=
- =?us-ascii?Q?GjV55hYx31SDPqdCBl12/B+7IVwnmx8KB+VlEFuxOMHEGopdGb1eqtrmeXWM?=
- =?us-ascii?Q?VBeBrDYIHdLKh9JVW8h3jjGEva3sG6+01+SjGMjKiks2KgYhq3gZMUjg4KlO?=
- =?us-ascii?Q?DateKlLskkhQXgQqOaRxB/hrLpL6UF5pjUJoiiPHG0EDFhC5UdTGi0OCytqF?=
- =?us-ascii?Q?NT0vSZCtQXs6cOpspjZ3phTnp7EsQVQ6T9jxDN2vtedhz/UH+Y/FwkPCzkvv?=
- =?us-ascii?Q?Xh9a4SUiZzh7jAH9hrU8uLlL6gwIoxoqPESoq9y2pC7D4VfHY7bDpr6i8KzZ?=
- =?us-ascii?Q?Jjt8f+eA7Gq2n3URzwObA5oJfUx2TaXngY/Gb6ng9IS6t2QPt45ernpmV9Y+?=
- =?us-ascii?Q?UjXS2UgAUDRXTv13O0DwwE0ySPKTHfF/ZYL4CglVSlguGrRSpGess3Sz/sGh?=
- =?us-ascii?Q?aoDNFAcVKxIJIQ9SvReo8C3KoDjKcnPTbdDBcmGNFN3B5X88BB8z73psIp4B?=
- =?us-ascii?Q?41tHEb7VZwe7mhGAdgrIg/tkhwKBq56MG1S3ba/4lxc8xPEnQYUgLRxGK72n?=
- =?us-ascii?Q?ttCvN48Hxf34pYua8M1prHm4FuuIoivW8j/hjAWA5i8xRK9gPf9+aOa3NS2K?=
- =?us-ascii?Q?V70Z2B232g+5qPit7dWMtmbVFgFEXoSe7rl3zL5f+N7eqzH1WAfTzgc5esac?=
- =?us-ascii?Q?qHWnSdmHaq7TgunoYE+Ny++Jv3uns30PkAH3AVTzBNeCRi2PnyaFAo1g6ieb?=
- =?us-ascii?Q?TzKgs0fA6WfK0bSI9VytfCoS/XmFPS6DaNYueV6j4/qssYhOvp3Ro3/9njh+?=
- =?us-ascii?Q?Tp7Gwe+xZuJxlf0j2l5gV7pXnhM+1b8On2qwkqbFJ76sDb8TwWAHUM8xIC8c?=
- =?us-ascii?Q?ayFur0Tub0N0URoNLSnS+Jln5QFLX/oUnlDZQGxhUfjVNGZqsu49balPYEna?=
- =?us-ascii?Q?RGh4/4NJfbRn8UjEJmn16NwE1mBUVSFmtnpY6xMw9MGJZQMe5GD1+t+pqBhS?=
- =?us-ascii?Q?4BrwSemx0AayrycHgIA5NBMn/tXqWgk3h89RVpcGul6FKqnN1ISg7Sf9darL?=
- =?us-ascii?Q?l7fhWE/X7UznXtLPbf4ISyS1T4m8nrtGsrM+etFC+wuG8URzoZx7T7L82lF9?=
- =?us-ascii?Q?mI2v+niKmuUhCdBywodTWHxv4IxvoGKEKjS425iD9auOxBG+0hAoDQgh5nOT?=
- =?us-ascii?Q?FoY4Nnfw9+2ggdkJ3WSosMnOV+YQ4v7oRTmVGn29RkvH+Uh5FTznOH4OtQqI?=
- =?us-ascii?Q?tV39KOCHYYWatGFJ9+5wZpLkFW+gdrQ+ipVwo6fyWUAE9l8S6ml5GRlpCekn?=
- =?us-ascii?Q?vwPib0RcPDuhxb20buPCdtz62tl18TqdA9PgZBjMACp80eFEVzSB4oTLr6Pt?=
- =?us-ascii?Q?ulsCvBKlRXTLElYRNU4o/PzVcIhWO0c/EIoJsmZh9k5a0Gl1d2RrxoJYM90c?=
- =?us-ascii?Q?POpMsn5BsQZo4YMH5lW6C1J91xIVTZ/F0+sNeeBGx8VmG3I7vcXFuZzigGOB?=
- =?us-ascii?Q?Fg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a8d7c88f-3922-4fdc-d60a-08dc33c4f6fc
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Feb 2024 16:40:23.2860 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: x8dycBP1BxZszjlTK6kLN29JRmOEBk8XWluzIOQ/veLtGSiTK+AJPVTq3ClcP70bonUUDo4Q40/QbrEYO07KIA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB8764
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] devm-helpers: Add resource managed version of mutex
+ init
+Content-Language: en-GB
+To: =?UTF-8?Q?Marek_Beh=C3=BAn?= <kabel@kernel.org>,
+ linux-kernel@vger.kernel.org, Hans de Goede <hdegoede@redhat.com>,
+ Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
+ <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Aleksandr Mezin <mezin.alexander@gmail.com>, Jean Delvare
+ <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+ Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+ Sebastian Reichel <sre@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ linux-gpio@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-hwmon@vger.kernel.org,
+ linux-leds@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20240222145838.12916-1-kabel@kernel.org>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20240222145838.12916-1-kabel@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,60 +86,352 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We need to ensure that device is in D0 on any kind of GT reset.
-We are likely already protected by outer bounds like exec,
-but if exec/sched ref gets dropped on a hang, we might transition
-to D3 before we are able to perform the gt_reset and recover.
+On 22/02/2024 14:58, Marek Behún wrote:
+> A few drivers are doing resource-managed mutex initialization by
+> implementing ad-hoc one-liner mutex dropping functions and using them
+> with devm_add_action_or_reset(). Help drivers avoid these repeated
+> one-liners by adding managed version of mutex initialization.
+> 
+> Use the new function devm_mutex_init() in the following drivers:
+>    drivers/gpio/gpio-pisosr.c
+>    drivers/gpio/gpio-sim.c
+>    drivers/gpu/drm/xe/xe_hwmon.c
+>    drivers/hwmon/nzxt-smart2.c
+>    drivers/leds/leds-is31fl319x.c
+>    drivers/power/supply/mt6370-charger.c
+>    drivers/power/supply/rt9467-charger.c
+> 
+> Signed-off-by: Marek Behún <kabel@kernel.org>
+> ---
+>   drivers/gpio/gpio-pisosr.c            |  9 ++-----
+>   drivers/gpio/gpio-sim.c               | 12 ++--------
+>   drivers/gpu/drm/xe/xe_hwmon.c         | 11 ++-------
+>   drivers/hwmon/nzxt-smart2.c           |  9 ++-----
+>   drivers/leds/leds-is31fl319x.c        |  9 ++-----
+>   drivers/power/supply/mt6370-charger.c | 11 +--------
+>   drivers/power/supply/rt9467-charger.c | 34 ++++-----------------------
+>   include/linux/devm-helpers.h          | 32 +++++++++++++++++++++++++
+>   8 files changed, 47 insertions(+), 80 deletions(-)
+> 
+> diff --git a/drivers/gpio/gpio-pisosr.c b/drivers/gpio/gpio-pisosr.c
+> index e3013e778e15..dddbf37e855f 100644
+> --- a/drivers/gpio/gpio-pisosr.c
+> +++ b/drivers/gpio/gpio-pisosr.c
+> @@ -7,6 +7,7 @@
+>   #include <linux/bitmap.h>
+>   #include <linux/bitops.h>
+>   #include <linux/delay.h>
+> +#include <linux/devm-helpers.h>
+>   #include <linux/gpio/consumer.h>
+>   #include <linux/gpio/driver.h>
+>   #include <linux/module.h>
+> @@ -116,11 +117,6 @@ static const struct gpio_chip template_chip = {
+>   	.can_sleep		= true,
+>   };
+>   
+> -static void pisosr_mutex_destroy(void *lock)
+> -{
+> -	mutex_destroy(lock);
+> -}
+> -
+>   static int pisosr_gpio_probe(struct spi_device *spi)
+>   {
+>   	struct device *dev = &spi->dev;
+> @@ -147,8 +143,7 @@ static int pisosr_gpio_probe(struct spi_device *spi)
+>   		return dev_err_probe(dev, PTR_ERR(gpio->load_gpio),
+>   				     "Unable to allocate load GPIO\n");
+>   
+> -	mutex_init(&gpio->lock);
+> -	ret = devm_add_action_or_reset(dev, pisosr_mutex_destroy, &gpio->lock);
+> +	ret = devm_mutex_init(dev, &gpio->lock);
+>   	if (ret)
+>   		return ret;
+>   
+> diff --git a/drivers/gpio/gpio-sim.c b/drivers/gpio/gpio-sim.c
+> index c4106e37e6db..fcfcaa4efe70 100644
+> --- a/drivers/gpio/gpio-sim.c
+> +++ b/drivers/gpio/gpio-sim.c
+> @@ -12,6 +12,7 @@
+>   #include <linux/completion.h>
+>   #include <linux/configfs.h>
+>   #include <linux/device.h>
+> +#include <linux/devm-helpers.h>
+>   #include <linux/err.h>
+>   #include <linux/gpio/consumer.h>
+>   #include <linux/gpio/driver.h>
+> @@ -307,13 +308,6 @@ static ssize_t gpio_sim_sysfs_pull_store(struct device *dev,
+>   	return len;
+>   }
+>   
+> -static void gpio_sim_mutex_destroy(void *data)
+> -{
+> -	struct mutex *lock = data;
+> -
+> -	mutex_destroy(lock);
+> -}
+> -
+>   static void gpio_sim_put_device(void *data)
+>   {
+>   	struct device *dev = data;
+> @@ -457,9 +451,7 @@ static int gpio_sim_add_bank(struct fwnode_handle *swnode, struct device *dev)
+>   	if (ret)
+>   		return ret;
+>   
+> -	mutex_init(&chip->lock);
+> -	ret = devm_add_action_or_reset(dev, gpio_sim_mutex_destroy,
+> -				       &chip->lock);
+> +	ret = devm_mutex_init(dev, &chip->lock);
+>   	if (ret)
+>   		return ret;
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+> index 174ed2185481..bb88ae1c196c 100644
+> --- a/drivers/gpu/drm/xe/xe_hwmon.c
+> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+> @@ -3,6 +3,7 @@
+>    * Copyright © 2023 Intel Corporation
+>    */
+>   
+> +#include <linux/devm-helpers.h>
+>   #include <linux/hwmon-sysfs.h>
+>   #include <linux/hwmon.h>
+>   #include <linux/types.h>
+> @@ -729,13 +730,6 @@ xe_hwmon_get_preregistration_info(struct xe_device *xe)
+>   		xe_hwmon_energy_get(hwmon, &energy);
+>   }
+>   
+> -static void xe_hwmon_mutex_destroy(void *arg)
+> -{
+> -	struct xe_hwmon *hwmon = arg;
+> -
+> -	mutex_destroy(&hwmon->hwmon_lock);
+> -}
+> -
+>   void xe_hwmon_register(struct xe_device *xe)
+>   {
+>   	struct device *dev = xe->drm.dev;
+> @@ -751,8 +745,7 @@ void xe_hwmon_register(struct xe_device *xe)
+>   
+>   	xe->hwmon = hwmon;
+>   
+> -	mutex_init(&hwmon->hwmon_lock);
+> -	if (devm_add_action_or_reset(dev, xe_hwmon_mutex_destroy, hwmon))
+> +	if (devm_mutex_init(dev, &hwmon->hwmon_lock))
+>   		return;
+>   
+>   	/* primary GT to access device level properties */
+> diff --git a/drivers/hwmon/nzxt-smart2.c b/drivers/hwmon/nzxt-smart2.c
+> index 7aa586eb74be..00bc89607673 100644
+> --- a/drivers/hwmon/nzxt-smart2.c
+> +++ b/drivers/hwmon/nzxt-smart2.c
+> @@ -5,6 +5,7 @@
+>    * Copyright (c) 2021 Aleksandr Mezin
+>    */
+>   
+> +#include <linux/devm-helpers.h>
+>   #include <linux/hid.h>
+>   #include <linux/hwmon.h>
+>   #include <linux/math.h>
+> @@ -721,11 +722,6 @@ static int __maybe_unused nzxt_smart2_hid_reset_resume(struct hid_device *hdev)
+>   	return init_device(drvdata, drvdata->update_interval);
+>   }
+>   
+> -static void mutex_fini(void *lock)
+> -{
+> -	mutex_destroy(lock);
+> -}
+> -
+>   static int nzxt_smart2_hid_probe(struct hid_device *hdev,
+>   				 const struct hid_device_id *id)
+>   {
+> @@ -741,8 +737,7 @@ static int nzxt_smart2_hid_probe(struct hid_device *hdev,
+>   
+>   	init_waitqueue_head(&drvdata->wq);
+>   
+> -	mutex_init(&drvdata->mutex);
+> -	ret = devm_add_action_or_reset(&hdev->dev, mutex_fini, &drvdata->mutex);
+> +	ret = devm_mutex_init(&hdev->dev, &drvdata->mutex);
+>   	if (ret)
+>   		return ret;
+>   
+> diff --git a/drivers/leds/leds-is31fl319x.c b/drivers/leds/leds-is31fl319x.c
+> index 66c65741202e..e9d7cf6a386c 100644
+> --- a/drivers/leds/leds-is31fl319x.c
+> +++ b/drivers/leds/leds-is31fl319x.c
+> @@ -8,6 +8,7 @@
+>    * effect LEDs.
+>    */
+>   
+> +#include <linux/devm-helpers.h>
+>   #include <linux/err.h>
+>   #include <linux/i2c.h>
+>   #include <linux/leds.h>
+> @@ -495,11 +496,6 @@ static inline int is31fl3196_db_to_gain(u32 dezibel)
+>   	return dezibel / IS31FL3196_AUDIO_GAIN_DB_STEP;
+>   }
+>   
+> -static void is31f1319x_mutex_destroy(void *lock)
+> -{
+> -	mutex_destroy(lock);
+> -}
+> -
+>   static int is31fl319x_probe(struct i2c_client *client)
+>   {
+>   	struct is31fl319x_chip *is31;
+> @@ -515,8 +511,7 @@ static int is31fl319x_probe(struct i2c_client *client)
+>   	if (!is31)
+>   		return -ENOMEM;
+>   
+> -	mutex_init(&is31->lock);
+> -	err = devm_add_action_or_reset(dev, is31f1319x_mutex_destroy, &is31->lock);
+> +	err = devm_mutex_init(dev, &is31->lock);
+>   	if (err)
+>   		return err;
+>   
+> diff --git a/drivers/power/supply/mt6370-charger.c b/drivers/power/supply/mt6370-charger.c
+> index e24fce087d80..fa0517d0352d 100644
+> --- a/drivers/power/supply/mt6370-charger.c
+> +++ b/drivers/power/supply/mt6370-charger.c
+> @@ -766,13 +766,6 @@ static int mt6370_chg_init_psy(struct mt6370_priv *priv)
+>   	return PTR_ERR_OR_ZERO(priv->psy);
+>   }
+>   
+> -static void mt6370_chg_destroy_attach_lock(void *data)
+> -{
+> -	struct mutex *attach_lock = data;
+> -
+> -	mutex_destroy(attach_lock);
+> -}
+> -
+>   static void mt6370_chg_destroy_wq(void *data)
+>   {
+>   	struct workqueue_struct *wq = data;
+> @@ -900,9 +893,7 @@ static int mt6370_chg_probe(struct platform_device *pdev)
+>   	if (ret)
+>   		return dev_err_probe(dev, ret, "Failed to init psy\n");
+>   
+> -	mutex_init(&priv->attach_lock);
+> -	ret = devm_add_action_or_reset(dev, mt6370_chg_destroy_attach_lock,
+> -				       &priv->attach_lock);
+> +	ret = devm_mutex_init(dev, &priv->attach_lock);
+>   	if (ret)
+>   		return dev_err_probe(dev, ret, "Failed to init attach lock\n");
+>   
+> diff --git a/drivers/power/supply/rt9467-charger.c b/drivers/power/supply/rt9467-charger.c
+> index fdfdc83ab045..84f07c22077f 100644
+> --- a/drivers/power/supply/rt9467-charger.c
+> +++ b/drivers/power/supply/rt9467-charger.c
+> @@ -10,6 +10,7 @@
+>   #include <linux/bitfield.h>
+>   #include <linux/completion.h>
+>   #include <linux/delay.h>
+> +#include <linux/devm-helpers.h>
+>   #include <linux/gpio/consumer.h>
+>   #include <linux/i2c.h>
+>   #include <linux/interrupt.h>
+> @@ -1149,27 +1150,6 @@ static int rt9467_reset_chip(struct rt9467_chg_data *data)
+>   	return regmap_field_write(data->rm_field[F_RST], 1);
+>   }
+>   
+> -static void rt9467_chg_destroy_adc_lock(void *data)
+> -{
+> -	struct mutex *adc_lock = data;
+> -
+> -	mutex_destroy(adc_lock);
+> -}
+> -
+> -static void rt9467_chg_destroy_attach_lock(void *data)
+> -{
+> -	struct mutex *attach_lock = data;
+> -
+> -	mutex_destroy(attach_lock);
+> -}
+> -
+> -static void rt9467_chg_destroy_ichg_ieoc_lock(void *data)
+> -{
+> -	struct mutex *ichg_ieoc_lock = data;
+> -
+> -	mutex_destroy(ichg_ieoc_lock);
+> -}
+> -
+>   static void rt9467_chg_complete_aicl_done(void *data)
+>   {
+>   	struct completion *aicl_done = data;
+> @@ -1222,21 +1202,15 @@ static int rt9467_charger_probe(struct i2c_client *i2c)
+>   	if (ret)
+>   		return dev_err_probe(dev, ret, "Failed to add irq chip\n");
+>   
+> -	mutex_init(&data->adc_lock);
+> -	ret = devm_add_action_or_reset(dev, rt9467_chg_destroy_adc_lock,
+> -				       &data->adc_lock);
+> +	ret = devm_mutex_init(dev, &data->adc_lock);
+>   	if (ret)
+>   		return dev_err_probe(dev, ret, "Failed to init ADC lock\n");
+>   
+> -	mutex_init(&data->attach_lock);
+> -	ret = devm_add_action_or_reset(dev, rt9467_chg_destroy_attach_lock,
+> -				       &data->attach_lock);
+> +	ret = devm_mutex_init(dev, &data->attach_lock);
+>   	if (ret)
+>   		return dev_err_probe(dev, ret, "Failed to init attach lock\n");
+>   
+> -	mutex_init(&data->ichg_ieoc_lock);
+> -	ret = devm_add_action_or_reset(dev, rt9467_chg_destroy_ichg_ieoc_lock,
+> -				       &data->ichg_ieoc_lock);
+> +	ret = devm_mutex_init(dev, &data->ichg_ieoc_lock);
+>   	if (ret)
+>   		return dev_err_probe(dev, ret, "Failed to init ICHG/IEOC lock\n");
+>   
+> diff --git a/include/linux/devm-helpers.h b/include/linux/devm-helpers.h
+> index 74891802200d..70640fb96117 100644
+> --- a/include/linux/devm-helpers.h
+> +++ b/include/linux/devm-helpers.h
+> @@ -24,6 +24,8 @@
+>    */
+>   
+>   #include <linux/device.h>
+> +#include <linux/kconfig.h>
+> +#include <linux/mutex.h>
+>   #include <linux/workqueue.h>
+>   
+>   static inline void devm_delayed_work_drop(void *res)
+> @@ -76,4 +78,34 @@ static inline int devm_work_autocancel(struct device *dev,
+>   	return devm_add_action(dev, devm_work_drop, w);
+>   }
+>   
+> +static inline void devm_mutex_drop(void *res)
+> +{
+> +	mutex_destroy(res);
+> +}
+> +
+> +/**
+> + * devm_mutex_init - Resource managed mutex initialization
+> + * @dev:	Device which lifetime mutex is bound to
+> + * @lock:	Mutex to be initialized (and automatically destroyed)
+> + *
+> + * Initialize mutex which is automatically destroyed when driver is detached.
+> + * A few drivers initialize mutexes which they want destroyed before driver is
+> + * detached, for debugging purposes.
+> + * devm_mutex_init() can be used to omit the explicit mutex_destroy() call when
+> + * driver is detached.
+> + */
+> +static inline int devm_mutex_init(struct device *dev, struct mutex *lock)
+> +{
+> +	mutex_init(lock);
 
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/xe/xe_gt.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+Do you know if this this needs __always_inline? The static lockdep key 
+in mutex_init() should be different for each caller class. See 
+c21f11d182c2 ("drm: fix drmm_mutex_init()").
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index e0c79351a131..45646d3aea2d 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -43,6 +43,7 @@
- #include "xe_migrate.h"
- #include "xe_mmio.h"
- #include "xe_pat.h"
-+#include "xe_pm.h"
- #include "xe_mocs.h"
- #include "xe_reg_sr.h"
- #include "xe_ring_ops.h"
-@@ -644,9 +645,9 @@ static int gt_reset(struct xe_gt *gt)
- 		goto err_fail;
- 	}
- 
-+	xe_pm_runtime_get(gt_to_xe(gt));
- 	xe_gt_sanitize(gt);
- 
--	xe_device_mem_access_get(gt_to_xe(gt));
- 	err = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
- 	if (err)
- 		goto err_msg;
-@@ -670,8 +671,8 @@ static int gt_reset(struct xe_gt *gt)
- 		goto err_out;
- 
- 	err = xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
--	xe_device_mem_access_put(gt_to_xe(gt));
- 	XE_WARN_ON(err);
-+	xe_pm_runtime_put(gt_to_xe(gt));
- 
- 	xe_gt_info(gt, "reset done\n");
- 
-@@ -681,7 +682,7 @@ static int gt_reset(struct xe_gt *gt)
- 	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
- err_msg:
- 	XE_WARN_ON(xe_uc_start(&gt->uc));
--	xe_device_mem_access_put(gt_to_xe(gt));
-+	xe_pm_runtime_put(gt_to_xe(gt));
- err_fail:
- 	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
- 
--- 
-2.43.2
-
+> +
+> +	/*
+> +	 * mutex_destroy() is an empty function if CONFIG_DEBUG_MUTEXES is
+> +	 * disabled. No need to allocate an action in that case.
+> +	 */
+> +	if (IS_ENABLED(CONFIG_DEBUG_MUTEXES))
+> +		return devm_add_action_or_reset(dev, devm_mutex_drop, lock);
+> +	else
+> +		return 0;
+> +}
+> +
+>   #endif
