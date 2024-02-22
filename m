@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1724BC5478C
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 19:14:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6ADA1C5478C
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 19:14:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8EE010E977;
-	Thu, 22 Feb 2024 19:14:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1335210E1AD;
+	Thu, 22 Feb 2024 19:14:26 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD83110EA4C;
- Thu, 22 Feb 2024 19:14:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A93C10E1AD;
+ Thu, 22 Feb 2024 19:14:25 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Add_LRC_pa?=
- =?utf-8?q?rsing_for_more_GPU_instructions?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Add_LRC_parsing?=
+ =?utf-8?q?_for_more_GPU_instructions?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matt Roper" <matthew.d.roper@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 22 Feb 2024 19:14:12 -0000
-Message-ID: <170862925290.216122.4423535893249899145@8e613ede5ea5>
+Date: Thu, 22 Feb 2024 19:14:25 -0000
+Message-ID: <170862926543.217031.9289512743063361535@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240222184009.6857-2-matthew.d.roper@intel.com>
 In-Reply-To: <20240222184009.6857-2-matthew.d.roper@intel.com>
@@ -44,13 +44,42 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Add LRC parsing for more GPU instructions
 URL   : https://patchwork.freedesktop.org/series/130280/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 5dfa3c2da480 drm-tip: 2024y-02m-22d-18h-11m-19s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Add LRC parsing for more GPU instructions
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+35591fb8b4d5305b37ce31483f85ac0956eaa536
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2bb3b2df61dd830a93cee7a0dcdee53f17120c0d
+Author: Matt Roper <matthew.d.roper@intel.com>
+Date:   Thu Feb 22 10:40:08 2024 -0800
+
+    drm/xe: Add LRC parsing for more GPU instructions
+    
+    The LRCs on some of our newer platforms appear to contain a few GPU
+    instructions that weren't handled in our LRC parser.  Add the relevant
+    instruction names and opcodes so that our debugfs LRC dumps will
+    properly indicate what these are.
+    
+    Bspec: 55866, 64848, 46931
+    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
++ /mt/dim checkpatch 5dfa3c2da4803652582408bfb3c529970735f594 drm-intel
+2bb3b2df61dd drm/xe: Add LRC parsing for more GPU instructions
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:15: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#15: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 101 lines checked
 
 
