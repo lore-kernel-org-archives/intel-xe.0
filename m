@@ -4,80 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46AF6C48BEB
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 10:42:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2775C48BF8
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Feb 2024 11:13:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BA0610E8F4;
-	Thu, 22 Feb 2024 10:42:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46DBC10E8FF;
+	Thu, 22 Feb 2024 11:13:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="dsl+0PXl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lb0tLQVt";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52BC110E8F4
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 10:42:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1708598536;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=IVi5xtqagqhQr4yQkZ21VVqriPXn5rhJhhfioOmJJms=;
- b=dsl+0PXl7xUQ+poY/ZuamV1NQgy3wUnIGhUtwp2xHAfyeLLR2OMkOoRU83G67kHo8BAQ3r
- CdXjMkgiFRKG/+a1D2ISYVCQhmWR1nhDs9Ye+Pbzxi1/TaIA2SOrTtT4bgET0nJMEVcIkr
- VU0tpT1U2eunmrso3SOIgXQZVYiYgzE=
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
- [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-442-Grl59SeHO4SRxniR_odjgQ-1; Thu, 22 Feb 2024 05:42:14 -0500
-X-MC-Unique: Grl59SeHO4SRxniR_odjgQ-1
-Received: by mail-wr1-f72.google.com with SMTP id
- ffacd0b85a97d-33d10bd57d7so2597147f8f.3
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 02:42:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1708598533; x=1709203333;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=IVi5xtqagqhQr4yQkZ21VVqriPXn5rhJhhfioOmJJms=;
- b=XoB9ABXZkTuSggpPWMRUKoizfgi2/8CfHPObyrdpu1D4e06NDo0QPWfLjaal9xBfMf
- 6pcfPYAVWjMRC2eUxfOMyl1P1JG+qZUGsxog5hcoqIVBEbOlfj3vniGD7JRrOPYEoxyB
- F9SVzcTvVlzq3oPzFHU4zwrO6nwcIMDVl0C5dIUyZXqzY1qRsqqsaDLprrSt8eDM81K/
- 8i6Nt9PwaAecsayQUWV7vln0QcE8p81UWq0HhKZYbuSMnV4bshePeazjybiRdgJ1PNWS
- D14vYgtoWKwY+54/sgbm+scu2u38c0v8NTVlkJvaPsX9WdGvahHWWohpBfdU3p4E9/CX
- P7yQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVi2b9xfMaxHcg5wleUDmzmtRTb0S5m7U7a2bLITPVBg728IwC1bGed7d1C+R5+BjTod0L2BzUWZwa18KWDx4GIG+2AshceHDKSH4FIgFw=
-X-Gm-Message-State: AOJu0YzBY3VKfOj2WfUAbPGdsUOLu0Vcyn5kN8B8Gy5p9drqpzxBk07o
- QeWmB3Ltc+wfYivu8yQpIphwrPwn8JmdxOFYjfXPb6WKs/0qdeDEXJtpCabtGB39Fx31IyHa6Sx
- ffaOaMSBtI9B5jtdhKmv0i9jBoeDRiyYn7idcC01jSWtsdnBUjMzh6d/NgsEvNmvdaXyk9yppo0
- hTaLlBIsNFQ+p40n6rVGgA7eKV0jj0TE9DakrXFL4=
-X-Received: by 2002:a5d:4850:0:b0:33d:391b:8db2 with SMTP id
- n16-20020a5d4850000000b0033d391b8db2mr9472706wrs.61.1708598533682; 
- Thu, 22 Feb 2024 02:42:13 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFt816+aUtSBUADBI4CYXrHxRHYjhYyzfPh3WwqLeFMhlmXg2tNA3B2shw4FqT67BiVbto4PUojvsiihkGZ5Sc=
-X-Received: by 2002:a5d:4850:0:b0:33d:391b:8db2 with SMTP id
- n16-20020a5d4850000000b0033d391b8db2mr9472691wrs.61.1708598533378; Thu, 22
- Feb 2024 02:42:13 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43B0F10E25B;
+ Thu, 22 Feb 2024 11:13:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1708600398; x=1740136398;
+ h=date:from:to:cc:subject:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6mY7amn0xbeZUMVa77tyrpin6OBztF/JoIRQ7PFk2IY=;
+ b=lb0tLQVtpLJPEGi92AOJoHheGXcY5hNztXugXjFoe7NxudGYHMus67Um
+ OQyEQS3gXfwJ4b0FxTRs2/VqE8qZQLjowrFI2P5srR1bflSe8z4Mrs1cJ
+ mHHsmTZEUrhYaMp/nCOrPnKTpVx2vpB16tj7NA8MhTYgJHxgtApC4Ir5+
+ ubsktLACpeP0IXGU36tb9ZL/Zvxx+RH/CYSCn0bzzydMRspR0KlEgDT25
+ 2G2P4X1yv120J5SWposO8H30T4DuQgDOrPufe0TBbNcyZ2EHw2YxSZ/6j
+ 3qW1QA/+gp/GtmLNZCnIdIg6aCTNKg15ZkS8Vq/G0EkGAgbLo+OOXIG0C A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="13947580"
+X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; d="scan'208";a="13947580"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2024 03:13:17 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; 
+   d="scan'208";a="5365803"
+Received: from binm223x-mobl2.gar.corp.intel.com (HELO fedora)
+ ([10.249.254.168])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2024 03:13:12 -0800
+Date: Thu, 22 Feb 2024 12:12:54 +0100
+From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: [PULL] drm-xe-fixes
+Message-ID: <ZdcsNrxdWMMM417v@fedora>
 MIME-Version: 1.0
-References: <20240222145842.1714b195@canb.auug.org.au>
-In-Reply-To: <20240222145842.1714b195@canb.auug.org.au>
-From: Paolo Bonzini <pbonzini@redhat.com>
-Date: Thu, 22 Feb 2024 11:42:01 +0100
-Message-ID: <CABgObfaDQMxj9CZBzea+=1fcFQXEemAJoH5Jvc9+tfiC7NAvrQ@mail.gmail.com>
-Subject: Re: linux-next: manual merge of the kvm tree with the drm-xe tree
-To: Stephen Rothwell <sfr@canb.auug.org.au>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- DRM XE List <intel-xe@lists.freedesktop.org>, KVM <kvm@vger.kernel.org>, 
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, 
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Yury Norov <yury.norov@gmail.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,36 +74,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Feb 22, 2024 at 4:58=E2=80=AFAM Stephen Rothwell <sfr@canb.auug.org=
-.au> wrote:
->
-> Hi all,
->
-> Today's linux-next merge of the kvm tree got a conflict in:
->
->   include/linux/bits.h
->
-> between commits:
->
->   b77cb9640f1f ("bits: introduce fixed-type genmasks")
->   34b80df456ca ("bits: Introduce fixed-type BIT")
->
-> from the drm-xe tree and commit:
->
->   3c7a8e190bc5 ("uapi: introduce uapi-friendly macros for GENMASK")
->
-> from the kvm tree.
->
-> I fixed it up (see below) and can carry the fix as necessary. This
-> is now fixed as far as linux-next is concerned, but any non trivial
-> conflicts should be mentioned to your upstream maintainer when your tree
-> is submitted for merging.  You may also want to consider cooperating
-> with the maintainer of the conflicting tree to minimise any particularly
-> complex conflicts.
+Hi, Dave Sima
 
-Lucas, Oded, Thomas,
+The Xe pull request for 6.8-rc6
+The uAPI fixes / adjustments we've been discussing
+are starting to appear, and I will hopefully have the rest
+for next week's PR. In addition two driver fixes.
 
-do you have a topic branch that I can merge?
+drm-xe-fixes-2024-02-22:
+UAPI Changes:
+- Remove support for persistent exec_queues
+- Drop a reduntant sysfs newline printout
 
-Paolo
+Cross-subsystem Changes:
 
+Core Changes:
+
+Driver Changes:
+- A three-patch fix for a VM_BIND rebind optimization path
+- Fix a modpost warning on an xe KUNIT module
+
+/Thomas
+
+The following changes since commit b401b621758e46812da61fa58a67c3fd8d91de0d:
+
+  Linux 6.8-rc5 (2024-02-18 12:56:25 -0800)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2024-02-22
+
+for you to fetch changes up to 6650d23f3e20ca00482a71a4ef900f0ea776fb15:
+
+  drm/xe: Fix modpost warning on xe_mocs kunit module (2024-02-21 11:06:52 +0100)
+
+----------------------------------------------------------------
+UAPI Changes:
+- Remove support for persistent exec_queues
+- Drop a reduntant sysfs newline printout
+
+Cross-subsystem Changes:
+
+Core Changes:
+
+Driver Changes:
+- A three-patch fix for a VM_BIND rebind optimization path
+- Fix a modpost warning on an xe KUNIT module
+
+----------------------------------------------------------------
+Ashutosh Dixit (2):
+      drm/xe/xe_gt_idle: Drop redundant newline in name
+      drm/xe: Fix modpost warning on xe_mocs kunit module
+
+Matthew Brost (3):
+      drm/xe: Fix xe_vma_set_pte_size
+      drm/xe: Add XE_VMA_PTE_64K VMA flag
+      drm/xe: Return 2MB page size for compact 64k PTEs
+
+Thomas Hellström (1):
+      drm/xe/uapi: Remove support for persistent exec_queues
+
+ drivers/gpu/drm/xe/tests/xe_mocs_test.c  |  1 +
+ drivers/gpu/drm/xe/xe_device.c           | 39 --------------------------------
+ drivers/gpu/drm/xe/xe_device.h           |  4 ----
+ drivers/gpu/drm/xe/xe_device_types.h     |  8 -------
+ drivers/gpu/drm/xe/xe_exec_queue.c       | 33 ++++-----------------------
+ drivers/gpu/drm/xe/xe_exec_queue_types.h | 10 --------
+ drivers/gpu/drm/xe/xe_execlist.c         |  2 --
+ drivers/gpu/drm/xe/xe_gt_idle.c          |  4 ++--
+ drivers/gpu/drm/xe/xe_guc_submit.c       |  2 --
+ drivers/gpu/drm/xe/xe_pt.c               | 11 ++++++---
+ drivers/gpu/drm/xe/xe_vm.c               | 14 ++++++++----
+ drivers/gpu/drm/xe/xe_vm_types.h         |  2 ++
+ include/uapi/drm/xe_drm.h                |  1 -
+ 13 files changed, 28 insertions(+), 103 deletions(-)
