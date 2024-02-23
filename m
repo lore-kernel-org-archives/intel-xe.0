@@ -4,27 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4885C5478C
-	for <intel-xe@archiver.kernel.org>; Fri, 23 Feb 2024 19:55:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D67FC54798
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Feb 2024 20:01:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 584AA10ECAD;
-	Fri, 23 Feb 2024 19:55:41 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89D7C10ECAD;
- Fri, 23 Feb 2024 19:55:40 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51C2E10ECAE;
+	Fri, 23 Feb 2024 20:01:57 +0000 (UTC)
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA35110ECAE;
+ Fri, 23 Feb 2024 20:01:55 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sin.source.kernel.org (Postfix) with ESMTP id 8B5A9CE2E7B;
+ Fri, 23 Feb 2024 20:01:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84C71C433F1;
+ Fri, 23 Feb 2024 20:01:46 +0000 (UTC)
+Date: Fri, 23 Feb 2024 15:03:39 -0500
+From: Steven Rostedt <rostedt@goodmis.org>
+To: Kent Overstreet <kent.overstreet@linux.dev>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>, LKML
+ <linux-kernel@vger.kernel.org>, Linux Trace Kernel
+ <linux-trace-kernel@vger.kernel.org>, Masami Hiramatsu
+ <mhiramat@kernel.org>, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ linuxppc-dev@lists.ozlabs.org, kvm@vger.kernel.org,
+ linux-block@vger.kernel.org, linux-cxl@vger.kernel.org,
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, virtualization@lists.linux.dev,
+ linux-rdma@vger.kernel.org, linux-pm@vger.kernel.org,
+ iommu@lists.linux.dev, linux-tegra@vger.kernel.org, netdev@vger.kernel.org,
+ linux-hyperv@vger.kernel.org, ath10k@lists.infradead.org,
+ linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+ ath12k@lists.infradead.org, brcm80211@lists.linux.dev,
+ brcm80211-dev-list.pdl@broadcom.com, linux-usb@vger.kernel.org,
+ linux-bcachefs@vger.kernel.org, linux-nfs@vger.kernel.org,
+ ocfs2-devel@lists.linux.dev, linux-cifs@vger.kernel.org,
+ linux-xfs@vger.kernel.org, linux-edac@vger.kernel.org,
+ selinux@vger.kernel.org, linux-btrfs@vger.kernel.org,
+ linux-erofs@lists.ozlabs.org, linux-f2fs-devel@lists.sourceforge.net,
+ linux-hwmon@vger.kernel.org, io-uring@vger.kernel.org,
+ linux-sound@vger.kernel.org, bpf@vger.kernel.org,
+ linux-wpan@vger.kernel.org, dev@openvswitch.org,
+ linux-s390@vger.kernel.org, tipc-discussion@lists.sourceforge.net, Julia
+ Lawall <Julia.Lawall@inria.fr>
+Subject: Re: [FYI][PATCH] tracing/treewide: Remove second parameter of
+ __assign_str()
+Message-ID: <20240223150339.2249bc95@gandalf.local.home>
+In-Reply-To: <qsksxrdinia3cxr52tfe4p3pafsy4biktnodlfn4vyzud73p2j@6ycnhrhzwsv6>
+References: <20240223125634.2888c973@gandalf.local.home>
+ <0aed6cf2-17ae-45aa-b7ff-03da932ea4e0@quicinc.com>
+ <20240223134653.524a5c9e@gandalf.local.home>
+ <qsksxrdinia3cxr52tfe4p3pafsy4biktnodlfn4vyzud73p2j@6ycnhrhzwsv6>
+X-Mailer: Claws Mail 3.19.1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_Use_vmalloc_fo?=
- =?utf-8?q?r_array_of_bind_allocation_in_bind_IOCTL?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 23 Feb 2024 19:55:40 -0000
-Message-ID: <170871814056.264278.12220467155115858368@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240223193719.6495-1-matthew.brost@intel.com>
-In-Reply-To: <20240223193719.6495-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +70,52 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, 23 Feb 2024 14:50:49 -0500
+Kent Overstreet <kent.overstreet@linux.dev> wrote:
 
-Series: drm/xe: Use vmalloc for array of bind allocation in bind IOCTL
-URL   : https://patchwork.freedesktop.org/series/130325/
-State : success
+> Tangentially related though, what would make me really happy is if we
+> could create the string with in the TP__fast_assign() section. I have to
+> have a bunch of annoying wrappers right now because the string length
+> has to be known when we invoke the tracepoint.
 
-== Summary ==
+You can use __string_len() to determine the string length in the tracepoint
+(which is executed in the TP_fast_assign() section).
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast aed3f498154b240f09098da53b8fd5639ee54ecf
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+My clean up patches will make __assign_str_len() obsolete too (I'm working
+on them now), and you can just use __assign_str().
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+I noticed that I don't have a string_len example in the sample code and I'm
+actually writing it now.
+
+// cutting out everything else:
+
+TRACE_EVENT(foo_bar,
+
+	TP_PROTO(const char *foo, int bar),
+
+	TP_ARGS(foo, bar),
+
+	TP_STRUCT__entry(
+		__string_len(	lstr,	foo,	bar < strlen(foo) ? bar : strlen(foo) )
+	),
+
+	TP_fast_assign(
+		__assign_str(lstr, foo);
+
+// Note, the above is with my updates, without them, you need to duplicate the logic
+
+//		__assign_str_len(lstr, foo, bar < strlen(foo) ? bar : strlen(foo));
+	),
+
+	TP_printk("%s", __get_str(lstr))
+);
 
 
+The above will allocate "bar < strlen(foo) ? bar : strlen(foo)" size on the
+ring buffer. As the size is already stored, my clean up code uses that
+instead of requiring duplicating the logic again.
+
+-- Steve
