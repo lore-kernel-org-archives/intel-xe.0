@@ -4,76 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F350C54E51
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E228C54E55
 	for <intel-xe@archiver.kernel.org>; Mon, 26 Feb 2024 13:47:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B46FC10F1D5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB61810F1D7;
 	Mon, 26 Feb 2024 13:47:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="Xq9oa2sn";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="uWxPu15j";
 	dkim-atps=neutral
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C38F10EC4B;
- Fri, 23 Feb 2024 15:50:11 +0000 (UTC)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id
- 41N6wkh5025091; Fri, 23 Feb 2024 15:50:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
- message-id:date:mime-version:to:cc:from:subject:content-type
- :content-transfer-encoding; s=qcppdkim1; bh=3exk5qV0X1GJG2wbXB2Z
- JX1n03Di0j+dJ8xw5YC41kY=; b=Xq9oa2snBrxmOaOMoOUGaBvPqwE+wtlNpL7A
- jab5ddtsH2+IFMe9RUjFd4hVD6GyzU1gmY4vvQRB3P68fCHXyByMWyqDPzlCNCzN
- Sd20jQTg3T3/7f8TOCLJ4d9hBcpvOhQBfpZSJ0WqhcmWSU4UBbakUVHmWOq22ppm
- Qq+9NTLV6OeUMoiob9IlSYa/evLX6CTPXTgpJxu0t8lBJKM3tep27xKJwHKZ9vOG
- BfVSlKqURpp2zF/dMeUBCj1ehKt6I7EHf1qv7Og1pX6tTU8J5FwzoOQYpSVN09zn
- N7e+vrRBwjophQD00y8Yllrjdtp7BWvN733Pea+EBzMyHduLQQ==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com
- [129.46.96.20])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3weg88swec-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 23 Feb 2024 15:50:08 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
- [10.47.209.196])
- by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41NFo8Eq032361
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 23 Feb 2024 15:50:08 GMT
-Received: from [10.226.59.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 23 Feb
- 2024 07:50:07 -0800
-Message-ID: <fe8b2841-cbf0-775e-6e74-50476b652f9f@quicinc.com>
-Date: Fri, 23 Feb 2024 08:50:06 -0700
+X-Greylist: delayed 624 seconds by postgrey-1.36 at gabe;
+ Fri, 23 Feb 2024 20:01:32 UTC
+Received: from out-178.mta1.migadu.com (out-178.mta1.migadu.com
+ [95.215.58.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D6A310ECB3
+ for <intel-xe@lists.freedesktop.org>; Fri, 23 Feb 2024 20:01:31 +0000 (UTC)
+Date: Fri, 23 Feb 2024 14:50:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1708717865;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=G9nEEkfFGj8WFYt7yvHDxsoouHxXt+6aC7E5xhimc9A=;
+ b=uWxPu15jxbBy5Qv8sUU4/FKz9vhwMVdq24ex7AxwdBDTkpdTty7N4oFt5H+WpItVhn5h2q
+ QhDNbk6QMiXNrrlkBl7kMfsoV81d2NhOFvXWC0sVWqoHMtRJN5Tm42Zzvb2Qci9w4QIV6Q
+ wpkGE4FwRbb7rZDimmKQkBl02FYhYXk=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+From: Kent Overstreet <kent.overstreet@linux.dev>
+To: Steven Rostedt <rostedt@goodmis.org>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>, 
+ LKML <linux-kernel@vger.kernel.org>,
+ Linux Trace Kernel <linux-trace-kernel@vger.kernel.org>, 
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
+ Linus Torvalds <torvalds@linux-foundation.org>, linuxppc-dev@lists.ozlabs.org,
+ kvm@vger.kernel.org, 
+ linux-block@vger.kernel.org, linux-cxl@vger.kernel.org,
+ linux-media@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, 
+ virtualization@lists.linux.dev, linux-rdma@vger.kernel.org,
+ linux-pm@vger.kernel.org, 
+ iommu@lists.linux.dev, linux-tegra@vger.kernel.org, netdev@vger.kernel.org, 
+ linux-hyperv@vger.kernel.org, ath10k@lists.infradead.org,
+ linux-wireless@vger.kernel.org, 
+ ath11k@lists.infradead.org, ath12k@lists.infradead.org,
+ brcm80211@lists.linux.dev, 
+ brcm80211-dev-list.pdl@broadcom.com, linux-usb@vger.kernel.org,
+ linux-bcachefs@vger.kernel.org, 
+ linux-nfs@vger.kernel.org, ocfs2-devel@lists.linux.dev,
+ linux-cifs@vger.kernel.org, 
+ linux-xfs@vger.kernel.org, linux-edac@vger.kernel.org, selinux@vger.kernel.org,
+ linux-btrfs@vger.kernel.org, linux-erofs@lists.ozlabs.org, 
+ linux-f2fs-devel@lists.sourceforge.net, linux-hwmon@vger.kernel.org,
+ io-uring@vger.kernel.org, 
+ linux-sound@vger.kernel.org, bpf@vger.kernel.org, linux-wpan@vger.kernel.org, 
+ dev@openvswitch.org, linux-s390@vger.kernel.org, 
+ tipc-discussion@lists.sourceforge.net, Julia Lawall <Julia.Lawall@inria.fr>
+Subject: Re: [FYI][PATCH] tracing/treewide: Remove second parameter of
+ __assign_str()
+Message-ID: <qsksxrdinia3cxr52tfe4p3pafsy4biktnodlfn4vyzud73p2j@6ycnhrhzwsv6>
+References: <20240223125634.2888c973@gandalf.local.home>
+ <0aed6cf2-17ae-45aa-b7ff-03da932ea4e0@quicinc.com>
+ <20240223134653.524a5c9e@gandalf.local.home>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Content-Language: en-US
-To: Jani Nikula <jani.nikula@linux.intel.com>, <rodrigo.vivi@intel.com>,
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
- <tvrtko.ursulin@linux.intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>, "open
- list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>
-From: Jeffrey Hugo <quic_jhugo@quicinc.com>
-Subject: i915 build error on drm-misc-next
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
- signatures=585085
-X-Proofpoint-ORIG-GUID: 4CyBkN13sxwokaB0aDhMkzWFlnt-n7av
-X-Proofpoint-GUID: 4CyBkN13sxwokaB0aDhMkzWFlnt-n7av
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-23_02,2024-02-23_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxlogscore=823
- malwarescore=0 suspectscore=0 impostorscore=0 clxscore=1011 adultscore=0
- phishscore=0 priorityscore=1501 bulkscore=0 mlxscore=0 spamscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2402230113
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240223134653.524a5c9e@gandalf.local.home>
+X-Migadu-Flow: FLOW_OUT
 X-Mailman-Approved-At: Mon, 26 Feb 2024 13:47:09 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -89,40 +89,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With the x86_64_defconfig I see the following when building drm-misc-next:
+On Fri, Feb 23, 2024 at 01:46:53PM -0500, Steven Rostedt wrote:
+> On Fri, 23 Feb 2024 10:30:45 -0800
+> Jeff Johnson <quic_jjohnson@quicinc.com> wrote:
+> 
+> > On 2/23/2024 9:56 AM, Steven Rostedt wrote:
+> > > From: "Steven Rostedt (Google)" <rostedt@goodmis.org>
+> > > 
+> > > [
+> > >    This is a treewide change. I will likely re-create this patch again in
+> > >    the second week of the merge window of v6.9 and submit it then. Hoping
+> > >    to keep the conflicts that it will cause to a minimum.
+> > > ]
+> > > 
+> > > With the rework of how the __string() handles dynamic strings where it
+> > > saves off the source string in field in the helper structure[1], the
+> > > assignment of that value to the trace event field is stored in the helper
+> > > value and does not need to be passed in again.  
+> > 
+> > Just curious if this could be done piecemeal by first changing the
+> > macros to be variadic macros which allows you to ignore the extra
+> > argument. The callers could then be modified in their separate trees.
+> > And then once all the callers have be merged, the macros could be
+> > changed to no longer be variadic.
+> 
+> I weighed doing that, but I think ripping off the band-aid is a better
+> approach. One thing I found is that leaving unused parameters in the macros
+> can cause bugs itself. I found one case doing my clean up, where an unused
+> parameter in one of the macros was bogus, and when I made it a used
+> parameter, it broke the build.
+> 
+> I think for tree-wide changes, the preferred approach is to do one big
+> patch at once. And since this only affects TRACE_EVENT() macros, it
+> hopefully would not be too much of a burden (although out of tree users may
+> suffer from this, but do we care?)
 
-   CC      drivers/gpu/drm/i915/display/intel_crt.o
-   CC      drivers/gpu/drm/i915/display/intel_cx0_phy.o
-   CC      drivers/gpu/drm/i915/display/intel_ddi.o
-   CC      drivers/gpu/drm/i915/display/intel_ddi_buf_trans.o
-   CC      drivers/gpu/drm/i915/display/intel_display_device.o
-   CC      drivers/gpu/drm/i915/display/intel_display_trace.o
-   CC      drivers/gpu/drm/i915/display/intel_dkl_phy.o
-   CC      drivers/gpu/drm/i915/display/intel_dp.o
-   CC      drivers/gpu/drm/i915/display/intel_dp_aux.o
-   CC      drivers/gpu/drm/i915/display/intel_dp_aux_backlight.o
-   CC      drivers/gpu/drm/i915/display/intel_dp_hdcp.o
-   CC      drivers/gpu/drm/i915/display/intel_dp_link_training.o
-   CC      drivers/gpu/drm/i915/display/intel_dp_mst.o
-   CC      drivers/gpu/drm/i915/display/intel_dsi.o
-   CC      drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.o
-   CC      drivers/gpu/drm/i915/display/intel_dsi_vbt.o
-   CC      drivers/gpu/drm/i915/display/intel_dvo.o
-   CC      drivers/gpu/drm/i915/display/intel_gmbus.o
-   CC      drivers/gpu/drm/i915/display/intel_hdmi.o
-   CC      drivers/gpu/drm/i915/display/intel_lspcon.o
-   CC      drivers/gpu/drm/i915/display/intel_lvds.o
-   CC      drivers/gpu/drm/i915/display/intel_panel.o
-   CC      drivers/gpu/drm/i915/display/intel_pps.o
-drivers/gpu/drm/i915/display/intel_dp.c: In function 
-‘intel_write_dp_vsc_sdp’:
-drivers/gpu/drm/i915/display/intel_dp.c:4232:15: error: implicit 
-declaration of function ‘intel_dp_vsc_sdp_pack’; did you mean 
-‘drm_dp_vsc_sdp_pack’? [-Werror=implicit-function-declaration]
-  4232 |         len = intel_dp_vsc_sdp_pack(vsc, &sdp, sizeof(sdp));
-       |               ^~~~~~~~~~~~~~~~~~~~~
-       |               drm_dp_vsc_sdp_pack
+Agreed on doing it all at once, it'll be way less spam for people to
+deal with.
 
-Is this a known issue?
-
--Jeff
+Tangentially related though, what would make me really happy is if we
+could create the string with in the TP__fast_assign() section. I have to
+have a bunch of annoying wrappers right now because the string length
+has to be known when we invoke the tracepoint.
