@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5B9FC5478C
-	for <intel-xe@archiver.kernel.org>; Fri, 23 Feb 2024 20:51:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 619BFC5478C
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Feb 2024 20:55:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 553DE10ECBE;
-	Fri, 23 Feb 2024 20:51:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 275F010E050;
+	Fri, 23 Feb 2024 20:55:42 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DB4C10E031;
- Fri, 23 Feb 2024 20:51:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3708910E050;
+ Fri, 23 Feb 2024 20:55:41 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_tracing/treewide=3A_?=
- =?utf-8?q?Remove_second_parameter_of_=5F=5Fassign=5Fstr=28=29_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/guc=3A_Handle?=
+ =?utf-8?q?_timing_out_of_signaled_jobs_gracefully?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Steven Rostedt" <rostedt@goodmis.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 23 Feb 2024 20:51:09 -0000
-Message-ID: <170872146925.264278.13283239833354045223@8e613ede5ea5>
+Date: Fri, 23 Feb 2024 20:55:41 -0000
+Message-ID: <170872174122.264276.11676161799200545351@8e613ede5ea5>
 X-Patchwork-Hint: ignore
-References: <20240223125634.2888c973@gandalf.local.home>
-In-Reply-To: <20240223125634.2888c973@gandalf.local.home>
+References: <20240223204659.40750-1-matthew.brost@intel.com>
+In-Reply-To: <20240223204659.40750-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,22 +42,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: tracing/treewide: Remove second parameter of __assign_str() (rev2)
-URL   : https://patchwork.freedesktop.org/series/130321/
-State : failure
+Series: drm/xe/guc: Handle timing out of signaled jobs gracefully
+URL   : https://patchwork.freedesktop.org/series/130333/
+State : success
 
 == Summary ==
 
 === Applying kernel patches on branch 'drm-tip' with base: ===
 Base commit: 7661e4e4b6e5 drm-tip: 2024y-02m-23d-19h-45m-56s UTC integration manifest
 === git am output follows ===
-error: patch failed: include/trace/stages/stage6_event_callback.h:35
-error: include/trace/stages/stage6_event_callback.h: patch does not apply
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Applying: tracing/treewide: Remove second parameter of __assign_str()
-Patch failed at 0001 tracing/treewide: Remove second parameter of __assign_str()
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Applying: drm/xe/guc: Handle timing out of signaled jobs gracefully
 
 
