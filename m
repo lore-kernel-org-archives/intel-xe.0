@@ -4,86 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37CC3C54798
-	for <intel-xe@archiver.kernel.org>; Fri, 23 Feb 2024 14:28:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66D01C5478C
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Feb 2024 14:44:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9320810EC20;
-	Fri, 23 Feb 2024 14:28:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E656410EC2D;
+	Fri, 23 Feb 2024 14:44:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="E8RlOOzj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kIi0sGBl";
 	dkim-atps=neutral
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com
- [209.85.208.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7C5510E972
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 15:11:26 +0000 (UTC)
-Received: by mail-lj1-f176.google.com with SMTP id
- 38308e7fff4ca-2d204e102a9so101390761fa.0
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Feb 2024 07:11:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1708614684; x=1709219484;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=+1MyTAa9W6rwmrz4X17WTkjYYC8wuvxkD+qfkCmD8gA=;
- b=E8RlOOzj+fvUj6RTK9I62HdmZUzcEaos4LoKkR1vVmcLQRmnRcHD4lHyTi2vSBW65V
- XjrmxB9U3l7Z9Kd66FfL0/fh7nUZmlnrD9UqikDPmqmJz0XZazLDqV8gXBlV+fWRwe6t
- ja+rkGGR9bP/rrid3Pmm85+KGq62zvsxjjXZtQCXJIS7fcXP14VS2qakSyYvVHyBJJ/R
- O60ERtOIlxte7f1WpGIDCADYYcWgyFLSy12Lt2Noa2Nq8jrZFJ4JDD5lr7vu36BkmlNl
- nWMMND4Iklys4gm0ALYr+CmMjbzRbH8q65J6UfJLBuA8twtKVXsQH5czPMVIODxF+qvZ
- ua3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1708614684; x=1709219484;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=+1MyTAa9W6rwmrz4X17WTkjYYC8wuvxkD+qfkCmD8gA=;
- b=OS8OCfq2TwOm+wxXRmU7lU034gNYufWU/9fZRpCvrLSPMpzTHdRiWVRV0sMLR178FW
- AHkpHoQ7OtDFPjTQYiJIQcRqGVHZZxqasVgwqijNAT4rL9IZ7T8JoqaUbOEmPwnAwv/Q
- e/qwM7Ztr3SggwJBDD7Pc9psCCRP7JkvJVw3KG50J3XofSXPMUCVXxslTwYDj7inZTvz
- gM4t/U4XVVtPVXdepU9Xbm+dTGQar5/+wrPcv47FFvlsHiReyVeFhF4IMYvu97fLzY+2
- xiq930cxO3Lm9YniOVovT3f1hhIpbzmSvhyzFfh+Dn3ZjXSD8lAQ2a8FpNj61iBQdaq8
- vEjQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCW3+9k4PCAXpQRjIXeUsj8nct6CiZua40ziWADMWOjObIEXDW0hwaleNz08sl2hUJL4FnzqrDg7fsw4a2uJzqH0RdKYJS3u0tNkY6VFWVk=
-X-Gm-Message-State: AOJu0YzsXM9YtVi7lL8kRRmxloAB/770lAe5TE2UrpFOMwV+kc/QWRM7
- 2OzRY+e5PbHlLMkiOt0p+JmW2T7O9B17SWZFmCfrLPrPYFthlgSz1gdsBLOjDN6B1BCTk/NZVbk
- adUXM+/w2+YS6PvXLdQn56lsSDIP0xxbkzYWpGA==
-X-Google-Smtp-Source: AGHT+IGw3hbqPWYN/3vfhhQBFzrTvi1PbeoR9WvH0886TzS1KyGrr602I8E8lLCB6pIuc8bHxZF8tDM1xPYr0gG8zd8=
-X-Received: by 2002:a2e:b166:0:b0:2d2:6002:c239 with SMTP id
- a6-20020a2eb166000000b002d26002c239mr1510902ljm.3.1708614684451; Thu, 22 Feb
- 2024 07:11:24 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3217A10EC2D
+ for <intel-xe@lists.freedesktop.org>; Fri, 23 Feb 2024 14:44:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1708699462; x=1740235462;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zQpdgtn2QgPg0lBd4GQIVjAf9AnHrLZL3Fv08WS2nU4=;
+ b=kIi0sGBl0xPaKlGVieH7U8kF8cYW3QZA0gBa89UmA+oU2SVd9ATXEV37
+ V7H6ICRX/g8+76b9KWt8QJxkMTB3PdydIndUtuw69r3lqaWQwvMOzhOxy
+ b5C4qJEJyugTrr6QyK1X4SpwxeukV7x1mVd+nJWv1RZkIaMLnc54r/02n
+ tMeDPWm75vrQr0cx1OQmZQ/beyKnUQIWwK2bwilYj9vEkWH0JrVhtttQa
+ juSm8k4LbSuVLVwzmCgo3moYjGMA6bXHn+FvvyP7DUsiRBnT1bgnpbkfJ
+ NOXTu4sf668qy91lsyRNVMr6sd0k4tyOsm7gX1X3Bb8zjPDzZCEPhqhRW Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10993"; a="13655789"
+X-IronPort-AV: E=Sophos;i="6.06,180,1705392000"; d="scan'208";a="13655789"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2024 06:44:22 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,180,1705392000"; 
+   d="scan'208";a="6323102"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2024 06:44:21 -0800
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Nirmoy Das <nirmoy.das@intel.com>,
+	Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH v2] drm/xe: Remove unused 'create' parameter from queue
+ property logic
+Date: Fri, 23 Feb 2024 15:30:43 +0100
+Message-ID: <20240223143043.22779-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-References: <20240222145838.12916-1-kabel@kernel.org>
-In-Reply-To: <20240222145838.12916-1-kabel@kernel.org>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Thu, 22 Feb 2024 16:11:11 +0100
-Message-ID: <CAMRc=McWhC0ZdR55TMkkdVov=dwT0=H-4_c4J-bq0quRpvyoBw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] devm-helpers: Add resource managed version of mutex
- init
-To: =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Hans de Goede <hdegoede@redhat.com>, 
- Matti Vaittinen <mazziesaccount@gmail.com>,
- Linus Walleij <linus.walleij@linaro.org>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay <ogabbay@kernel.org>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, 
- Aleksandr Mezin <mezin.alexander@gmail.com>, Jean Delvare <jdelvare@suse.com>, 
- Guenter Roeck <linux@roeck-us.net>, Pavel Machek <pavel@ucw.cz>,
- Lee Jones <lee@kernel.org>, 
- Sebastian Reichel <sre@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- linux-gpio@vger.kernel.org, 
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-hwmon@vger.kernel.org, linux-leds@vger.kernel.org, 
- linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Fri, 23 Feb 2024 14:28:01 +0000
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany,
+ Commercial Register: Amtsgericht Muenchen HRB 186928 
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,20 +66,136 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Feb 22, 2024 at 3:58=E2=80=AFPM Marek Beh=C3=BAn <kabel@kernel.org>=
- wrote:
->
-> A few drivers are doing resource-managed mutex initialization by
-> implementing ad-hoc one-liner mutex dropping functions and using them
-> with devm_add_action_or_reset(). Help drivers avoid these repeated
-> one-liners by adding managed version of mutex initialization.
->
-> Use the new function devm_mutex_init() in the following drivers:
->   drivers/gpio/gpio-pisosr.c
->   drivers/gpio/gpio-sim.c
+The 'create' parameter in exec_queue_user_extensions was always true.
+This commit removes the dead parameter and all the relevant dead code.
 
-Yes, please!
+v2: rebase.
 
-For GPIO part:
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_exec_queue.c | 30 +++++++++++-------------------
+ 1 file changed, 11 insertions(+), 19 deletions(-)
 
-Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 11e150f4c0c1..6a83bc57826a 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -31,7 +31,7 @@ enum xe_exec_queue_sched_prop {
+ };
+ 
+ static int exec_queue_user_extensions(struct xe_device *xe, struct xe_exec_queue *q,
+-				      u64 extensions, int ext_number, bool create);
++				      u64 extensions, int ext_number);
+ 
+ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
+ 						   struct xe_vm *vm,
+@@ -79,7 +79,7 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
+ 		 * may set q->usm, must come before xe_lrc_init(),
+ 		 * may overwrite q->sched_props, must come before q->ops->init()
+ 		 */
+-		err = exec_queue_user_extensions(xe, q, extensions, 0, true);
++		err = exec_queue_user_extensions(xe, q, extensions, 0);
+ 		if (err) {
+ 			kfree(q);
+ 			return ERR_PTR(err);
+@@ -268,7 +268,7 @@ xe_exec_queue_device_get_max_priority(struct xe_device *xe)
+ }
+ 
+ static int exec_queue_set_priority(struct xe_device *xe, struct xe_exec_queue *q,
+-				   u64 value, bool create)
++				   u64 value)
+ {
+ 	if (XE_IOCTL_DBG(xe, value > XE_EXEC_QUEUE_PRIORITY_HIGH))
+ 		return -EINVAL;
+@@ -276,9 +276,6 @@ static int exec_queue_set_priority(struct xe_device *xe, struct xe_exec_queue *q
+ 	if (XE_IOCTL_DBG(xe, value > xe_exec_queue_device_get_max_priority(xe)))
+ 		return -EPERM;
+ 
+-	if (!create)
+-		return q->ops->set_priority(q, value);
+-
+ 	q->sched_props.priority = value;
+ 	return 0;
+ }
+@@ -336,7 +333,7 @@ xe_exec_queue_get_prop_minmax(struct xe_hw_engine_class_intf *eclass,
+ }
+ 
+ static int exec_queue_set_timeslice(struct xe_device *xe, struct xe_exec_queue *q,
+-				    u64 value, bool create)
++				    u64 value)
+ {
+ 	u32 min = 0, max = 0;
+ 
+@@ -347,16 +344,13 @@ static int exec_queue_set_timeslice(struct xe_device *xe, struct xe_exec_queue *
+ 	    !xe_hw_engine_timeout_in_range(value, min, max))
+ 		return -EINVAL;
+ 
+-	if (!create)
+-		return q->ops->set_timeslice(q, value);
+-
+ 	q->sched_props.timeslice_us = value;
+ 	return 0;
+ }
+ 
+ typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
+ 					     struct xe_exec_queue *q,
+-					     u64 value, bool create);
++					     u64 value);
+ 
+ static const xe_exec_queue_set_property_fn exec_queue_set_property_funcs[] = {
+ 	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY] = exec_queue_set_priority,
+@@ -365,8 +359,7 @@ static const xe_exec_queue_set_property_fn exec_queue_set_property_funcs[] = {
+ 
+ static int exec_queue_user_ext_set_property(struct xe_device *xe,
+ 					    struct xe_exec_queue *q,
+-					    u64 extension,
+-					    bool create)
++					    u64 extension)
+ {
+ 	u64 __user *address = u64_to_user_ptr(extension);
+ 	struct drm_xe_ext_set_property ext;
+@@ -388,13 +381,12 @@ static int exec_queue_user_ext_set_property(struct xe_device *xe,
+ 	if (!exec_queue_set_property_funcs[idx])
+ 		return -EINVAL;
+ 
+-	return exec_queue_set_property_funcs[idx](xe, q, ext.value,  create);
++	return exec_queue_set_property_funcs[idx](xe, q, ext.value);
+ }
+ 
+ typedef int (*xe_exec_queue_user_extension_fn)(struct xe_device *xe,
+ 					       struct xe_exec_queue *q,
+-					       u64 extension,
+-					       bool create);
++					       u64 extension);
+ 
+ static const xe_exec_queue_set_property_fn exec_queue_user_extension_funcs[] = {
+ 	[DRM_XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY] = exec_queue_user_ext_set_property,
+@@ -402,7 +394,7 @@ static const xe_exec_queue_set_property_fn exec_queue_user_extension_funcs[] = {
+ 
+ #define MAX_USER_EXTENSIONS	16
+ static int exec_queue_user_extensions(struct xe_device *xe, struct xe_exec_queue *q,
+-				      u64 extensions, int ext_number, bool create)
++				      u64 extensions, int ext_number)
+ {
+ 	u64 __user *address = u64_to_user_ptr(extensions);
+ 	struct drm_xe_user_extension ext;
+@@ -423,13 +415,13 @@ static int exec_queue_user_extensions(struct xe_device *xe, struct xe_exec_queue
+ 
+ 	idx = array_index_nospec(ext.name,
+ 				 ARRAY_SIZE(exec_queue_user_extension_funcs));
+-	err = exec_queue_user_extension_funcs[idx](xe, q, extensions, create);
++	err = exec_queue_user_extension_funcs[idx](xe, q, extensions);
+ 	if (XE_IOCTL_DBG(xe, err))
+ 		return err;
+ 
+ 	if (ext.next_extension)
+ 		return exec_queue_user_extensions(xe, q, ext.next_extension,
+-					      ++ext_number, create);
++						  ++ext_number);
+ 
+ 	return 0;
+ }
+-- 
+2.42.0
+
