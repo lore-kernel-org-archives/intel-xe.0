@@ -4,26 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B53AC54798
-	for <intel-xe@archiver.kernel.org>; Fri, 23 Feb 2024 00:10:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A64CEC54798
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Feb 2024 00:14:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3AFE510EAC8;
-	Fri, 23 Feb 2024 00:10:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56DD010EACD;
+	Fri, 23 Feb 2024 00:14:39 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC0B210EAC8;
- Fri, 23 Feb 2024 00:10:02 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6505956522006411959=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2233C10EABB;
+ Fri, 23 Feb 2024 00:14:38 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Fix_execlist_mode?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/uapi=3A_Remov?=
+ =?utf-8?q?e_unused_flags_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
+To: "Francois Dugast" <francois.dugast@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 23 Feb 2024 00:10:02 -0000
-Message-ID: <170864700288.235433.2009110513448324338@8e613ede5ea5>
+Date: Fri, 23 Feb 2024 00:14:38 -0000
+Message-ID: <170864727814.217031.4569189939099306894@8e613ede5ea5>
 X-Patchwork-Hint: ignore
-References: <20240222232021.3911545-1-matthew.brost@intel.com>
-In-Reply-To: <20240222232021.3911545-1-matthew.brost@intel.com>
+References: <20240222232356.175431-1-rodrigo.vivi@intel.com>
+In-Reply-To: <20240222232356.175431-1-rodrigo.vivi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,106 +40,17 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6505956522006411959==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Fix execlist mode
-URL   : https://patchwork.freedesktop.org/series/130289/
+Series: drm/xe/uapi: Remove unused flags (rev4)
+URL   : https://patchwork.freedesktop.org/series/129781/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-831-5e139b8dd8049fee9f42fe76c603b5cfc286af7f_BAT -> xe-pw-130289v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 5e139b8dd804 drm-tip: 2024y-02m-22d-22h-25m-54s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/uapi: Remove unused flags
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_7726 -> IGT_7727
-  * Linux: xe-831-5e139b8dd8049fee9f42fe76c603b5cfc286af7f -> xe-pw-130289v1
-
-  IGT_7726: 7726
-  IGT_7727: 7727
-  xe-831-5e139b8dd8049fee9f42fe76c603b5cfc286af7f: 5e139b8dd8049fee9f42fe76c603b5cfc286af7f
-  xe-pw-130289v1: 130289v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130289v1/index.html
-
---===============6505956522006411959==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fix execlist mode</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130289/">https://patchwork.freedesktop.org/series/130289/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130289v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130289v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-831-5e139b8dd8049fee9f42fe76c603b5cfc286af7f_BAT -&gt; xe-pw-130289v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7726 -&gt; IGT_7727</li>
-<li>Linux: xe-831-5e139b8dd8049fee9f42fe76c603b5cfc286af7f -&gt; xe-pw-130289v1</li>
-</ul>
-<p>IGT_7726: 7726<br />
-  IGT_7727: 7727<br />
-  xe-831-5e139b8dd8049fee9f42fe76c603b5cfc286af7f: 5e139b8dd8049fee9f42fe76c603b5cfc286af7f<br />
-  xe-pw-130289v1: 130289v1</p>
-
-</body>
-</html>
-
---===============6505956522006411959==--
