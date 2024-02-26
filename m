@@ -4,23 +4,21 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB95FC54E4A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90837C5478C
 	for <intel-xe@archiver.kernel.org>; Mon, 26 Feb 2024 15:59:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6952F10E453;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A97E10E614;
 	Mon, 26 Feb 2024 15:59:26 +0000 (UTC)
 Received: from mblankhorst.nl (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 429C910E453
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4078B10E073
  for <intel-xe@lists.freedesktop.org>; Mon, 26 Feb 2024 15:59:23 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v2 2/3] drm/xe: Move LRC snapshot capture to HW engine.
-Date: Mon, 26 Feb 2024 16:59:12 +0100
-Message-ID: <20240226155913.77158-2-dev@lankhorst.se>
+Subject: [PATCH v2 1/3] drm/xe: Move lrc snapshot capturing to xe_lrc.c
+Date: Mon, 26 Feb 2024 16:59:11 +0100
+Message-ID: <20240226155913.77158-1-dev@lankhorst.se>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240226155913.77158-1-dev@lankhorst.se>
-References: <20240226155913.77158-1-dev@lankhorst.se>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -39,165 +37,203 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-We want to start dumping status pages. Since we created some functions
-to dump LRC, I think it makes sense to move it to HW engine section.
+This allows the dumping of HWSP and HW Context without exporting more
+functions.
+
+Changes since v1:
+- GFP_KERNEL -> GFP_NOWAIT. (Souza)
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-
---
-XXX: I've used a linear mapping for HW Engine to LRC.
-LRC[0] belonging to lowest HW engine instance, etc..
-Is this correct for parallel submissions?
 ---
- drivers/gpu/drm/xe/xe_devcoredump.c       | 19 +++++++++++++++++--
- drivers/gpu/drm/xe/xe_devcoredump_types.h |  6 ++++++
- drivers/gpu/drm/xe/xe_guc_submit.c        | 21 ---------------------
- drivers/gpu/drm/xe/xe_guc_submit_types.h  |  3 ---
- 4 files changed, 23 insertions(+), 26 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c       | 33 ++++++-----------
+ drivers/gpu/drm/xe/xe_guc_submit_types.h | 13 +------
+ drivers/gpu/drm/xe/xe_lrc.c              | 45 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_lrc.h              |  4 +++
+ drivers/gpu/drm/xe/xe_lrc_types.h        |  2 ++
+ 5 files changed, 63 insertions(+), 34 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index 68d3d623a05b..7002e3b698f2 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.c
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -16,6 +16,7 @@
- #include "xe_guc_ct.h"
- #include "xe_guc_submit.h"
- #include "xe_hw_engine.h"
-+#include "xe_lrc.h"
- #include "xe_sched_job.h"
- #include "xe_vm.h"
- 
-@@ -113,10 +114,20 @@ static ssize_t xe_devcoredump_read(char *buffer, loff_t offset,
- 	xe_sched_job_snapshot_print(coredump->snapshot.job, &p);
- 
- 	drm_printf(&p, "\n**** HW Engines ****\n");
--	for (i = 0; i < XE_NUM_HW_ENGINES; i++)
-+	for (i = 0; i < XE_NUM_HW_ENGINES; i++) {
- 		if (coredump->snapshot.hwe[i])
- 			xe_hw_engine_snapshot_print(coredump->snapshot.hwe[i],
- 						    &p);
-+	}
-+
-+	drm_puts(&p, "\n**** LRC ****\n");
-+	for (i = 0; i < ARRAY_SIZE(coredump->snapshot.lrc); i++) {
-+		if (!coredump->snapshot.lrc[i])
-+			continue;
-+		drm_printf(&p, "LRC %i\n", i);
-+		xe_lrc_snapshot_print(coredump->snapshot.lrc[i], &p);
-+	}
-+
- 	if (coredump->snapshot.vm) {
- 		drm_printf(&p, "\n**** VM state ****\n");
- 		xe_vm_snapshot_print(coredump->snapshot.vm, &p);
-@@ -139,9 +150,11 @@ static void xe_devcoredump_free(void *data)
- 	xe_guc_ct_snapshot_free(coredump->snapshot.ct);
- 	xe_guc_exec_queue_snapshot_free(coredump->snapshot.ge);
- 	xe_sched_job_snapshot_free(coredump->snapshot.job);
--	for (i = 0; i < XE_NUM_HW_ENGINES; i++)
-+	for (i = 0; i < XE_NUM_HW_ENGINES; i++) {
-+		xe_lrc_snapshot_free(coredump->snapshot.lrc[i]);
- 		if (coredump->snapshot.hwe[i])
- 			xe_hw_engine_snapshot_free(coredump->snapshot.hwe[i]);
-+	}
- 	xe_vm_snapshot_free(coredump->snapshot.vm);
- 
- 	/* To prevent stale data on next snapshot, clear everything */
-@@ -195,6 +208,8 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
- 		}
- 		coredump->snapshot.hwe[id] = xe_hw_engine_snapshot_capture(hwe);
- 	}
-+	for (i = 0; i < q->width; i++)
-+		coredump->snapshot.lrc[i] = xe_lrc_snapshot_capture(&q->lrc[i]);
- 
- 	if (ss->vm)
- 		queue_work(system_unbound_wq, &ss->work);
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump_types.h b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-index 6f654b63c7f1..d56ac20e2ca9 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump_types.h
-+++ b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-@@ -14,6 +14,8 @@
- struct xe_device;
- struct xe_gt;
- 
-+struct xe_lrc_snapshot;
-+
- /**
-  * struct xe_devcoredump_snapshot - Crash snapshot
-  *
-@@ -40,6 +42,10 @@ struct xe_devcoredump_snapshot {
- 
- 	/** @hwe: HW Engine snapshot array */
- 	struct xe_hw_engine_snapshot *hwe[XE_NUM_HW_ENGINES];
-+
-+	/** @lrc: Snapshot of each LRC */
-+	struct xe_lrc_snapshot *lrc[XE_NUM_HW_ENGINES];
-+
- 	/** @job: Snapshot of job state */
- 	struct xe_sched_job_snapshot *job;
- 	/** @vm: Snapshot of VM state */
 diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 7348689ec5ae..66dc561336df 100644
+index ff77bc8da1b2..7348689ec5ae 100644
 --- a/drivers/gpu/drm/xe/xe_guc_submit.c
 +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1814,17 +1814,6 @@ xe_guc_exec_queue_snapshot_capture(struct xe_sched_job *job)
+@@ -1814,21 +1814,14 @@ xe_guc_exec_queue_snapshot_capture(struct xe_sched_job *job)
  	snapshot->sched_props.preempt_timeout_us =
  		q->sched_props.preempt_timeout_us;
  
--	snapshot->lrc = kmalloc_array(q->width, sizeof(struct xe_lrc_snapshot *),
--				      GFP_ATOMIC);
--
--	if (snapshot->lrc) {
--		for (i = 0; i < q->width; ++i) {
--			struct xe_lrc *lrc = q->lrc + i;
--
--			snapshot->lrc[i] = xe_lrc_snapshot_capture(lrc);
--		}
--	}
--
- 	snapshot->schedule_state = atomic_read(&q->guc->state);
- 	snapshot->exec_queue_flags = q->flags;
+-	snapshot->lrc = kmalloc_array(q->width, sizeof(struct lrc_snapshot),
++	snapshot->lrc = kmalloc_array(q->width, sizeof(struct xe_lrc_snapshot *),
+ 				      GFP_ATOMIC);
  
-@@ -1886,10 +1875,6 @@ xe_guc_exec_queue_snapshot_print(struct xe_guc_submit_exec_queue_snapshot *snaps
- 		   snapshot->sched_props.timeslice_us);
+ 	if (snapshot->lrc) {
+ 		for (i = 0; i < q->width; ++i) {
+ 			struct xe_lrc *lrc = q->lrc + i;
+ 
+-			snapshot->lrc[i].context_desc =
+-				lower_32_bits(xe_lrc_ggtt_addr(lrc));
+-			snapshot->lrc[i].head = xe_lrc_ring_head(lrc);
+-			snapshot->lrc[i].tail.internal = lrc->ring.tail;
+-			snapshot->lrc[i].tail.memory =
+-				xe_lrc_read_ctx_reg(lrc, CTX_RING_TAIL);
+-			snapshot->lrc[i].start_seqno = xe_lrc_start_seqno(lrc);
+-			snapshot->lrc[i].seqno = xe_lrc_seqno(lrc);
++			snapshot->lrc[i] = xe_lrc_snapshot_capture(lrc);
+ 		}
+ 	}
+ 
+@@ -1894,18 +1887,9 @@ xe_guc_exec_queue_snapshot_print(struct xe_guc_submit_exec_queue_snapshot *snaps
  	drm_printf(p, "\tPreempt timeout: %u (us)\n",
  		   snapshot->sched_props.preempt_timeout_us);
--
--	for (i = 0; snapshot->lrc && i < snapshot->width; ++i)
--		xe_lrc_snapshot_print(snapshot->lrc[i], p);
--
+ 
+-	for (i = 0; snapshot->lrc && i < snapshot->width; ++i) {
+-		drm_printf(p, "\tHW Context Desc: 0x%08x\n",
+-			   snapshot->lrc[i].context_desc);
+-		drm_printf(p, "\tLRC Head: (memory) %u\n",
+-			   snapshot->lrc[i].head);
+-		drm_printf(p, "\tLRC Tail: (internal) %u, (memory) %u\n",
+-			   snapshot->lrc[i].tail.internal,
+-			   snapshot->lrc[i].tail.memory);
+-		drm_printf(p, "\tStart seqno: (memory) %d\n",
+-			   snapshot->lrc[i].start_seqno);
+-		drm_printf(p, "\tSeqno: (memory) %d\n", snapshot->lrc[i].seqno);
+-	}
++	for (i = 0; snapshot->lrc && i < snapshot->width; ++i)
++		xe_lrc_snapshot_print(snapshot->lrc[i], p);
++
  	drm_printf(p, "\tSchedule State: 0x%x\n", snapshot->schedule_state);
  	drm_printf(p, "\tFlags: 0x%lx\n", snapshot->exec_queue_flags);
  
-@@ -1914,15 +1899,9 @@ xe_guc_exec_queue_snapshot_print(struct xe_guc_submit_exec_queue_snapshot *snaps
+@@ -1930,10 +1914,15 @@ xe_guc_exec_queue_snapshot_print(struct xe_guc_submit_exec_queue_snapshot *snaps
   */
  void xe_guc_exec_queue_snapshot_free(struct xe_guc_submit_exec_queue_snapshot *snapshot)
  {
--	int i;
++	int i;
  	if (!snapshot)
  		return;
  
--	if (snapshot->lrc) {
--		for (i = 0; i < snapshot->width; i++)
--			xe_lrc_snapshot_free(snapshot->lrc[i]);
--		kfree(snapshot->lrc);
--	}
+-	kfree(snapshot->lrc);
++	if (snapshot->lrc) {
++		for (i = 0; i < snapshot->width; i++)
++			xe_lrc_snapshot_free(snapshot->lrc[i]);
++		kfree(snapshot->lrc);
++	}
  	kfree(snapshot->pending_list);
  	kfree(snapshot);
  }
 diff --git a/drivers/gpu/drm/xe/xe_guc_submit_types.h b/drivers/gpu/drm/xe/xe_guc_submit_types.h
-index dc7456c34583..92a7b7bcb899 100644
+index 72fc0f42b0a5..dc7456c34583 100644
 --- a/drivers/gpu/drm/xe/xe_guc_submit_types.h
 +++ b/drivers/gpu/drm/xe/xe_guc_submit_types.h
-@@ -97,9 +97,6 @@ struct xe_guc_submit_exec_queue_snapshot {
- 		u32 preempt_timeout_us;
+@@ -61,17 +61,6 @@ struct guc_submit_parallel_scratch {
+ 	u32 wq[WQ_SIZE / sizeof(u32)];
+ };
+ 
+-struct lrc_snapshot {
+-	u32 context_desc;
+-	u32 head;
+-	struct {
+-		u32 internal;
+-		u32 memory;
+-	} tail;
+-	u32 start_seqno;
+-	u32 seqno;
+-};
+-
+ struct pending_list_snapshot {
+ 	u32 seqno;
+ 	bool fence;
+@@ -109,7 +98,7 @@ struct xe_guc_submit_exec_queue_snapshot {
  	} sched_props;
  
--	/** @lrc: LRC Snapshot */
--	struct xe_lrc_snapshot **lrc;
--
+ 	/** @lrc: LRC Snapshot */
+-	struct lrc_snapshot *lrc;
++	struct xe_lrc_snapshot **lrc;
+ 
  	/** @schedule_state: Schedule State at the moment of Crash */
  	u32 schedule_state;
- 	/** @exec_queue_flags: Flags of the faulty exec_queue */
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 7ad853b0788a..8233d4512fc6 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -31,6 +31,17 @@
+ #define ENGINE_CLASS_SHIFT			61
+ #define ENGINE_INSTANCE_SHIFT			48
+ 
++struct xe_lrc_snapshot {
++	u32 context_desc;
++	u32 head;
++	struct {
++		u32 internal;
++		u32 memory;
++	} tail;
++	u32 start_seqno;
++	u32 seqno;
++};
++
+ static struct xe_device *
+ lrc_to_xe(struct xe_lrc *lrc)
+ {
+@@ -1300,3 +1311,37 @@ void xe_lrc_emit_hwe_state_instructions(struct xe_exec_queue *q, struct xe_bb *b
+ 		bb->len += num_dw;
+ 	}
+ }
++
++struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
++{
++	struct xe_lrc_snapshot *snapshot = kmalloc(sizeof(*snapshot), GFP_NOWAIT);
++
++	if (!snapshot)
++		return NULL;
++
++	snapshot->context_desc = lower_32_bits(xe_lrc_ggtt_addr(lrc));
++	snapshot->head = xe_lrc_ring_head(lrc);
++	snapshot->tail.internal = lrc->ring.tail;
++	snapshot->tail.memory = xe_lrc_read_ctx_reg(lrc, CTX_RING_TAIL);
++	snapshot->start_seqno = xe_lrc_start_seqno(lrc);
++	snapshot->seqno = xe_lrc_seqno(lrc);
++	return snapshot;
++}
++
++void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer *p)
++{
++	if (!snapshot)
++		return;
++
++	drm_printf(p, "\tHW Context Desc: 0x%08x\n", snapshot->context_desc);
++	drm_printf(p, "\tLRC Head: (memory) %u\n", snapshot->head);
++	drm_printf(p, "\tLRC Tail: (internal) %u, (memory) %u\n",
++		   snapshot->tail.internal, snapshot->tail.memory);
++	drm_printf(p, "\tStart seqno: (memory) %d\n", snapshot->start_seqno);
++	drm_printf(p, "\tSeqno: (memory) %d\n", snapshot->seqno);
++}
++
++void xe_lrc_snapshot_free(struct xe_lrc_snapshot *snapshot)
++{
++	kfree(snapshot);
++}
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index 28b1d3f404d4..d6dd4045d6d7 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -55,4 +55,8 @@ void xe_lrc_dump_default(struct drm_printer *p,
+ 
+ void xe_lrc_emit_hwe_state_instructions(struct xe_exec_queue *q, struct xe_bb *bb);
+ 
++struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc);
++void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer *p);
++void xe_lrc_snapshot_free(struct xe_lrc_snapshot *snapshot);
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
+index 24f20ed66fd1..b716df0dfb4e 100644
+--- a/drivers/gpu/drm/xe/xe_lrc_types.h
++++ b/drivers/gpu/drm/xe/xe_lrc_types.h
+@@ -43,4 +43,6 @@ struct xe_lrc {
+ 	struct xe_hw_fence_ctx fence_ctx;
+ };
+ 
++struct xe_lrc_snapshot;
++
+ #endif
 -- 
 2.43.0
 
