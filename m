@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6ED2C54E49
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Feb 2024 12:48:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA3F8C48BF6
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Feb 2024 12:53:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6202710F169;
-	Mon, 26 Feb 2024 12:48:58 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="j5gwv/oL";
-	dkim-atps=neutral
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDAB210F161;
- Mon, 26 Feb 2024 12:48:56 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id AD80ACE17B0;
- Mon, 26 Feb 2024 12:48:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD553C43390;
- Mon, 26 Feb 2024 12:48:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1708951734;
- bh=Q3NH181a85YRTFivknWhvRlGzUVX6ut6yEVQtESkJik=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=j5gwv/oLxGBvshYM4XJsakKQspn+4PiYoY+JB8H+VNY+uM3lMbovSewvvS7qT4pPq
- NSpcoaLyasTfkJ9GZE0Ekv0zTg4XXDqtbcUNwIa2GVPeWQe70PVIrWjdD6hzUaCMKg
- hG24PwowVape7egBViKaXaknYe26QfBheDfrpqGdB6IE4W81shxhUm6pSrLgtDMM9C
- +RDgNYsJh8GwsjSI8kboes7lAMcB+jJH7zl70rs8XL+f6J+pgewKs/puDY8dj2mX3U
- 5h1Khj5tIT8dSvdkzBje5gz/b6PPaTcopUTRzqdEVRU6BHxqN8SfcOcS0G42nq+oWN
- 54jKq5HRKHgiw==
-From: Arnd Bergmann <arnd@kernel.org>
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: Arnd Bergmann <arnd@arndb.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] [v2] drm/xe/xe2: fix 64-bit division in pte_update_size
-Date: Mon, 26 Feb 2024 13:46:38 +0100
-Message-Id: <20240226124736.1272949-3-arnd@kernel.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240226124736.1272949-1-arnd@kernel.org>
-References: <20240226124736.1272949-1-arnd@kernel.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 649FE10F178;
+	Mon, 26 Feb 2024 12:53:45 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AF4810F177;
+ Mon, 26 Feb 2024 12:53:44 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
+ =?utf-8?q?_=5B1/3=2Cv2=5D_drm/xe/kunit=3A_fix_link_failure_with_built-in_xe?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arnd Bergmann" <arnd@kernel.org>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 26 Feb 2024 12:53:44 -0000
+Message-ID: <170895202404.299440.4024913974013661603@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240226124736.1272949-1-arnd@kernel.org>
+In-Reply-To: <20240226124736.1272949-1-arnd@kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,44 +36,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Arnd Bergmann <arnd@arndb.de>
+== Series Details ==
 
-This function does not build on 32-bit targets when the compiler
-fails to reduce DIV_ROUND_UP() into a shift:
+Series: series starting with [1/3,v2] drm/xe/kunit: fix link failure with built-in xe
+URL   : https://patchwork.freedesktop.org/series/130384/
+State : success
 
-ld.lld: error: undefined symbol: __aeabi_uldivmod
->>> referenced by xe_migrate.c
->>>               drivers/gpu/drm/xe/xe_migrate.o:(pte_update_size) in archive vmlinux.a
+== Summary ==
 
-There are two instances in this function. Change the first to
-use an open-coded shift with the same behavior, and the second
-one to a 32-bit calculation, which is sufficient here as the size
-is never more than 2^32 pages (16TB).
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 54533144f802 drm-tip: 2024y-02m-26d-12h-34m-57s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/kunit: fix link failure with built-in xe
+Applying: drm/xe/mmio: fix build warning for BAR resize on 32-bit
+Applying: drm/xe/xe2: fix 64-bit division in pte_update_size
 
-Fixes: 237412e45390 ("drm/xe: Enable 32bits build")
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
----
-v2: use correct Fixes tag
----
- drivers/gpu/drm/xe/xe_migrate.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index a66fdf2d2991..ee1bb938c493 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -462,7 +462,7 @@ static u32 pte_update_size(struct xe_migrate *m,
- 	} else {
- 		/* Clip L0 to available size */
- 		u64 size = min(*L0, (u64)avail_pts * SZ_2M);
--		u64 num_4k_pages = DIV_ROUND_UP(size, XE_PAGE_SIZE);
-+		u32 num_4k_pages = (size + XE_PAGE_SIZE - 1) >> XE_PTE_SHIFT;
- 
- 		*L0 = size;
- 		*L0_ofs = xe_migrate_vm_addr(pt_ofs, 0);
--- 
-2.39.2
 
