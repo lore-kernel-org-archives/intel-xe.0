@@ -4,65 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30A9EC54E49
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Feb 2024 11:21:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FA41C48BF6
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Feb 2024 12:10:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8B7210F09A;
-	Mon, 26 Feb 2024 11:21:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E79810E706;
+	Mon, 26 Feb 2024 12:10:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dGw+l9fw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KAnpNEi7";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F7F810F096;
- Mon, 26 Feb 2024 11:21:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66C6C10E706
+ for <intel-xe@lists.freedesktop.org>; Mon, 26 Feb 2024 12:10:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708946494; x=1740482494;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=WLaaa9FNkYtE987XLlar4G18RF+/r/Aa+/az8OOyJKk=;
- b=dGw+l9fwN30HIT6SkJk3hjXmMlihdNW/xnTasgo4IobyHYt6q9n9Yx8K
- VIk2d6gcgBdtUxZwYvkrRC/Jv+1v+t655Bz4YWUhUzNp6GfDlopkeKwMH
- FIsAfxLLnqnAdZ5ie9mEyA/i08AHE2L6k/pfnkYfsGeWomuWUW4d85+X8
- uLG8o18a0ch5yF8fm8b551KUeZ9xJXZAplzul3OIdXw/OBgwKMbVRiztW
- 5/FDjt7MDiBzmvPFuXUfxlSXbyaF99hbVAZFh0660lll2pP3l64BIxBQN
- QOU9s6LnfHz3peu83xFT/r3ybhuve60Fn2S/btT6nU1HEOuGqIK5S3LNx w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10995"; a="3770100"
+ t=1708949449; x=1740485449;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=P0xiCgPdMmpnLAckbm3JtHGa/n2BNRvv3exXfRyuGs0=;
+ b=KAnpNEi7yL510twwXcRLTlhnOMr/fM9dFxWxtlNMgfwVRPymt6yNVaFI
+ 4KL9GR6auSbOF6nLu1L2ZgttKBuJy2DyM2hTJuRJ+ymaY0g5uJLprNqnD
+ W4K1SpY707gHnjtB6QUiMvylk6iud49ORbA4fpZoV06PQm2ytn8cDldFO
+ 0Xy+ku7MncdAKo4b1ugNrfRWquLjvpK4LIe7aeJBCmrsL2ULBjW9hk05L
+ wGYDeBf4eJZo93PpjrXmYyUxKWh3w0KMFBrN+UtxzE09IyC6IBG6dpQRE
+ JSu0E8T7VvsBaaAj6EGW/iKKrfrdfihL9Fk7R0YEcnXTffxPT7wPfHdYP w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10995"; a="3346488"
 X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; 
-   d="scan'208";a="3770100"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2024 03:21:33 -0800
+   d="scan'208";a="3346488"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2024 04:10:49 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; d="scan'208";a="11232552"
-Received: from gtobin-mobl.ger.corp.intel.com (HELO [10.252.23.74])
- ([10.252.23.74])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2024 03:21:32 -0800
-Message-ID: <29a24cb1-233a-45f9-ac0a-0a78ce2dbb9d@intel.com>
-Date: Mon, 26 Feb 2024 11:21:30 +0000
+X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; d="scan'208";a="11317109"
+Received: from hibeid-mobl.amr.corp.intel.com (HELO localhost)
+ ([10.252.46.254])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2024 04:10:47 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>, kernel test robot <lkp@intel.com>
+Subject: Re: [PATCH] drm/xe: Fix build error in xe_ggtt.c
+In-Reply-To: <20240225001448.81513-1-matthew.brost@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240225001448.81513-1-matthew.brost@intel.com>
+Date: Mon, 26 Feb 2024 14:10:46 +0200
+Message-ID: <87v86bmnnd.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] drm/tests/drm_buddy: fix 32b build
-Content-Language: en-GB
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- Maxime Ripard <mripard@redhat.com>
-References: <20240215174431.285069-7-matthew.auld@intel.com>
- <96bb6e97-34d9-4e4a-b618-85c17e809738@intel.com>
- <5a9e1f30-19fc-486f-b7f5-016d82580d2f@amd.com>
- <4aea62d4-8c2a-4406-b81e-240dca772da4@intel.com>
- <45059d66-6e80-406b-aae2-72f8b8d142cb@amd.com>
- <dc8c7d2b-4c2f-41dd-9812-3699444d5273@intel.com>
- <94afe80c-9e4f-47a7-a758-17ab26eb4c00@intel.com>
- <58e423e8-316e-40e0-b622-136ca6cc0189@intel.com>
- <CAMuHMdUjwXS=Ow+DccWbcee9+vbkdD7dWp5M9FrnC-nFRZcwTw@mail.gmail.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <CAMuHMdUjwXS=Ow+DccWbcee9+vbkdD7dWp5M9FrnC-nFRZcwTw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,63 +64,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+On Sat, 24 Feb 2024, Matthew Brost <matthew.brost@intel.com> wrote:
+> Need to include io-64-nonatomic-lo-hi.h for writeq function.
+>
+> Fixes: 3121fed0c51b drm/xe: ("Cleanup some layering in GGTT")
 
-On 26/02/2024 10:38, Geert Uytterhoeven wrote:
-> Hi Matthew,
-> 
-> On Mon, Feb 26, 2024 at 10:58 AM Matthew Auld <matthew.auld@intel.com> wrote:
->> On 19/02/2024 12:24, Matthew Auld wrote:
->>> On 19/02/2024 10:48, Matthew Auld wrote:
->>>> On 19/02/2024 10:30, Christian König wrote:
->>>>> Am 19.02.24 um 11:28 schrieb Matthew Auld:
->>>>>> On 19/02/2024 09:53, Christian König wrote:
->>>>>>> Am 19.02.24 um 10:42 schrieb Matthew Auld:
->>>>>>>> On 15/02/2024 17:44, Matthew Auld wrote:
->>>>>>>>> Doesn't seem to compile on 32b, presumably due to u64 mod/division.
->>>>>>>>> Simplest is to just switch over to u32 here. Also make print
->>>>>>>>> modifiers
->>>>>>>>> consistent with that.
->>>>>>>>>
->>>>>>>>> Fixes: a64056bb5a32 ("drm/tests/drm_buddy: add alloc_contiguous
->>>>>>>>> test")
->>>>>>>>> Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
->>>>>>>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->>>>>>>>> Cc: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
->>>>>>>>> Cc: Christian König <christian.koenig@amd.com>
->>>>>>>>> Cc: Maxime Ripard <mripard@redhat.com>
->>>>>>>>
->>>>>>>> Any chance someone can push just this single patch here, since it
->>>>>>>> fixes 32b build? It already has an r-b from Arun.
->>>>>>>
->>>>>>> Already working on this. Just give me a few more minutes.
->>>>>>
->>>>>> Thanks.
->>>>>
->>>>> No, problem. I would have pushed this earlier, but my build server
->>>>> doesn't want to work any more. Looks like the SSD has passed its
->>>>> warranty :(
->>>>>
->>>>> Should I push the other three patches to drm-misc-fixes as well? I
->>>>> currently can't even build test them.
->>>>
->>>> Need to send a v2 for that. One minor change in the test just to be
->>>> consistent with using u32. Thanks.
->>>
->>> Sent v2. If you could push that when you get a chance. Thanks.
->>>
->>> https://patchwork.freedesktop.org/series/130075/
->>
->> Gentle ping on merging v2.
-> 
-> Your v1 and a fix from Linus already made it upstream:
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/log/drivers/gpu/drm/tests?h=v6.8-rc6
+The format should be:
 
-Ah, right. I meant v2 for the remaining drm_buddy patches in this series:
-https://patchwork.freedesktop.org/series/130075/
+Fixes: 3121fed0c51b ("drm/xe: Cleanup some layering in GGTT")
 
-> 
-> Gr{oetje,eeting}s,
-> 
->                          Geert
-> 
+but is that really accurate? The commit does not start using writeq?
+
+BR,
+Jani.
+
+
+
+> Reported-by: kernel test robot <lkp@intel.com>
+> Closes: https://lore.kernel.org/oe-kbuild-all/202402241903.R5J8hKVI-lkp@intel.com/
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_ggtt.c | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+> index 5d46958e3144..717d0e76277a 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt.c
+> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+> @@ -5,6 +5,7 @@
+>  
+>  #include "xe_ggtt.h"
+>  
+> +#include <linux/io-64-nonatomic-lo-hi.h>
+>  #include <linux/sizes.h>
+>  
+>  #include <drm/drm_managed.h>
+
+-- 
+Jani Nikula, Intel
