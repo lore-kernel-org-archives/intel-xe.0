@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A2CDC5478C
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Feb 2024 20:43:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E60EC5478C
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Feb 2024 20:43:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 955A310E58A;
-	Mon, 26 Feb 2024 20:43:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD2DC10E802;
+	Mon, 26 Feb 2024 20:43:18 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0229810E58A;
- Mon, 26 Feb 2024 20:43:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A15410E803;
+ Mon, 26 Feb 2024 20:43:17 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
- =?utf-8?q?Disable_AuxCCS_framebuffers_if_built_for_Xe?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/i915/display=3A_Disab?=
+ =?utf-8?q?le_AuxCCS_framebuffers_if_built_for_Xe?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 26 Feb 2024 20:43:05 -0000
-Message-ID: <170898018500.318338.7343766100015118195@8e613ede5ea5>
+Date: Mon, 26 Feb 2024 20:43:17 -0000
+Message-ID: <170898019763.318338.13328929156594986557@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240226203651.818678-1-juhapekka.heikkila@gmail.com>
 In-Reply-To: <20240226203651.818678-1-juhapekka.heikkila@gmail.com>
@@ -48,9 +48,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: c815c7fa9257 drm-tip: 2024y-02m-26d-15h-49m-08s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/display: Disable AuxCCS framebuffers if built for Xe
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+0c154c094f54266ae5de84733202d44dc09fb988
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ad622ad6c105a80a0a4f54444516f7d0fe17088c
+Author: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Date:   Mon Feb 26 22:36:51 2024 +0200
+
+    drm/i915/display: Disable AuxCCS framebuffers if built for Xe
+    
+    AuxCCS framebuffers don't work on Xe driver hence disable them
+    from plane capabilities until they are fixed. FlatCCS framebuffers
+    work and they are left enabled. CCS is left untouched for i915
+    driver.
+    
+    Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/933
+    Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
++ /mt/dim checkpatch c815c7fa9257eb8ff4433c43058dd292b16347eb drm-intel
+ad622ad6c105 drm/i915/display: Disable AuxCCS framebuffers if built for Xe
 
 
