@@ -4,47 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AA07C5478C
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Feb 2024 15:55:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB95FC54E4A
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Feb 2024 15:59:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8F5410E78F;
-	Mon, 26 Feb 2024 15:55:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k5eRpJWj";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D42010E791
- for <intel-xe@lists.freedesktop.org>; Mon, 26 Feb 2024 15:55:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708962943; x=1740498943;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ghf2+FymL4AscVMiwUBh9lSi4QU8Ss0r5DPZL4WBxL4=;
- b=k5eRpJWjqAgT9fqErvuCZTgZ4QoRv5e1kjubkixB7F4wIiHO3cWmfTzw
- 3v4065W7c7uuHLqtdzo4bguTJsrxeqLumUzlBCTRHN6H6wFaIR57piGJv
- nf7XtSOQVTQetDPhx5TvDT7a49cWVnyjlykor1c2Y0gz3xWHwHKdzKjXF
- 37Z6TleFulK7uyFkHuF/InP04iqVIc3R69rrh/SfX/HXbH/v6lKrhYdTZ
- U/3hdY08IWEXpVrqCDoPReE9xAGqW4+0o3v/A4nseperr18oGI2Bio0Y5
- W6j68GBL3IY41dXfUgpZ8Zhob2evwyu+h2S/Lrd8CCukGPtX50J+Tpqll w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="25722151"
-X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; d="scan'208";a="25722151"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2024 07:55:43 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; d="scan'208";a="11270774"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2024 07:55:42 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-Cc: <thomas.hellstrom@linux.intel.com>, Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v2] drm/xe: Use vmalloc for array of bind allocation in bind
- IOCTL
-Date: Mon, 26 Feb 2024 07:55:54 -0800
-Message-Id: <20240226155554.103384-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6952F10E453;
+	Mon, 26 Feb 2024 15:59:26 +0000 (UTC)
+Received: from mblankhorst.nl (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 429C910E453
+ for <intel-xe@lists.freedesktop.org>; Mon, 26 Feb 2024 15:59:23 +0000 (UTC)
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: intel-xe@lists.freedesktop.org
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: [PATCH v2 2/3] drm/xe: Move LRC snapshot capture to HW engine.
+Date: Mon, 26 Feb 2024 16:59:12 +0100
+Message-ID: <20240226155913.77158-2-dev@lankhorst.se>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240226155913.77158-1-dev@lankhorst.se>
+References: <20240226155913.77158-1-dev@lankhorst.se>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -61,89 +37,167 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use vmalloc in effort to allow a user pass in a large number of binds in
-an IOCTL (mesa use case). Also use array allocations rather open coding
-the size calculation.
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-v2: Use __GFP_ACCOUNT for allocations (Thomas)
+We want to start dumping status pages. Since we created some functions
+to dump LRC, I think it makes sense to move it to HW engine section.
 
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+
+--
+XXX: I've used a linear mapping for HW Engine to LRC.
+LRC[0] belonging to lowest HW engine instance, etc..
+Is this correct for parallel submissions?
 ---
- drivers/gpu/drm/xe/xe_vm.c | 25 ++++++++++++++-----------
- 1 file changed, 14 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/xe/xe_devcoredump.c       | 19 +++++++++++++++++--
+ drivers/gpu/drm/xe/xe_devcoredump_types.h |  6 ++++++
+ drivers/gpu/drm/xe/xe_guc_submit.c        | 21 ---------------------
+ drivers/gpu/drm/xe/xe_guc_submit_types.h  |  3 ---
+ 4 files changed, 23 insertions(+), 26 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index db3f049a47dc..4154ef75e369 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2770,8 +2770,9 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
- 		u64 __user *bind_user =
- 			u64_to_user_ptr(args->vector_of_binds);
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index 68d3d623a05b..7002e3b698f2 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -16,6 +16,7 @@
+ #include "xe_guc_ct.h"
+ #include "xe_guc_submit.h"
+ #include "xe_hw_engine.h"
++#include "xe_lrc.h"
+ #include "xe_sched_job.h"
+ #include "xe_vm.h"
  
--		*bind_ops = kmalloc(sizeof(struct drm_xe_vm_bind_op) *
--				    args->num_binds, GFP_KERNEL);
-+		*bind_ops = kvmalloc_array(args->num_binds,
-+					   sizeof(struct drm_xe_vm_bind_op),
-+					   GFP_KERNEL | __GFP_ACCOUNT);
- 		if (!*bind_ops)
- 			return -ENOMEM;
+@@ -113,10 +114,20 @@ static ssize_t xe_devcoredump_read(char *buffer, loff_t offset,
+ 	xe_sched_job_snapshot_print(coredump->snapshot.job, &p);
  
-@@ -2861,7 +2862,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+ 	drm_printf(&p, "\n**** HW Engines ****\n");
+-	for (i = 0; i < XE_NUM_HW_ENGINES; i++)
++	for (i = 0; i < XE_NUM_HW_ENGINES; i++) {
+ 		if (coredump->snapshot.hwe[i])
+ 			xe_hw_engine_snapshot_print(coredump->snapshot.hwe[i],
+ 						    &p);
++	}
++
++	drm_puts(&p, "\n**** LRC ****\n");
++	for (i = 0; i < ARRAY_SIZE(coredump->snapshot.lrc); i++) {
++		if (!coredump->snapshot.lrc[i])
++			continue;
++		drm_printf(&p, "LRC %i\n", i);
++		xe_lrc_snapshot_print(coredump->snapshot.lrc[i], &p);
++	}
++
+ 	if (coredump->snapshot.vm) {
+ 		drm_printf(&p, "\n**** VM state ****\n");
+ 		xe_vm_snapshot_print(coredump->snapshot.vm, &p);
+@@ -139,9 +150,11 @@ static void xe_devcoredump_free(void *data)
+ 	xe_guc_ct_snapshot_free(coredump->snapshot.ct);
+ 	xe_guc_exec_queue_snapshot_free(coredump->snapshot.ge);
+ 	xe_sched_job_snapshot_free(coredump->snapshot.job);
+-	for (i = 0; i < XE_NUM_HW_ENGINES; i++)
++	for (i = 0; i < XE_NUM_HW_ENGINES; i++) {
++		xe_lrc_snapshot_free(coredump->snapshot.lrc[i]);
+ 		if (coredump->snapshot.hwe[i])
+ 			xe_hw_engine_snapshot_free(coredump->snapshot.hwe[i]);
++	}
+ 	xe_vm_snapshot_free(coredump->snapshot.vm);
  
- free_bind_ops:
- 	if (args->num_binds > 1)
--		kfree(*bind_ops);
-+		kvfree(*bind_ops);
- 	return err;
- }
- 
-@@ -2949,13 +2950,15 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	}
- 
- 	if (args->num_binds) {
--		bos = kcalloc(args->num_binds, sizeof(*bos), GFP_KERNEL);
-+		bos = kvcalloc(args->num_binds, sizeof(*bos),
-+			       GFP_KERNEL | __GFP_ACCOUNT);
- 		if (!bos) {
- 			err = -ENOMEM;
- 			goto release_vm_lock;
+ 	/* To prevent stale data on next snapshot, clear everything */
+@@ -195,6 +208,8 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
  		}
+ 		coredump->snapshot.hwe[id] = xe_hw_engine_snapshot_capture(hwe);
+ 	}
++	for (i = 0; i < q->width; i++)
++		coredump->snapshot.lrc[i] = xe_lrc_snapshot_capture(&q->lrc[i]);
  
--		ops = kcalloc(args->num_binds, sizeof(*ops), GFP_KERNEL);
-+		ops = kvcalloc(args->num_binds, sizeof(*ops),
-+			       GFP_KERNEL | __GFP_ACCOUNT);
- 		if (!ops) {
- 			err = -ENOMEM;
- 			goto release_vm_lock;
-@@ -3096,10 +3099,10 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	for (i = 0; bos && i < args->num_binds; ++i)
- 		xe_bo_put(bos[i]);
+ 	if (ss->vm)
+ 		queue_work(system_unbound_wq, &ss->work);
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump_types.h b/drivers/gpu/drm/xe/xe_devcoredump_types.h
+index 6f654b63c7f1..d56ac20e2ca9 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump_types.h
++++ b/drivers/gpu/drm/xe/xe_devcoredump_types.h
+@@ -14,6 +14,8 @@
+ struct xe_device;
+ struct xe_gt;
  
--	kfree(bos);
--	kfree(ops);
-+	kvfree(bos);
-+	kvfree(ops);
- 	if (args->num_binds > 1)
--		kfree(bind_ops);
-+		kvfree(bind_ops);
++struct xe_lrc_snapshot;
++
+ /**
+  * struct xe_devcoredump_snapshot - Crash snapshot
+  *
+@@ -40,6 +42,10 @@ struct xe_devcoredump_snapshot {
  
- 	return err;
+ 	/** @hwe: HW Engine snapshot array */
+ 	struct xe_hw_engine_snapshot *hwe[XE_NUM_HW_ENGINES];
++
++	/** @lrc: Snapshot of each LRC */
++	struct xe_lrc_snapshot *lrc[XE_NUM_HW_ENGINES];
++
+ 	/** @job: Snapshot of job state */
+ 	struct xe_sched_job_snapshot *job;
+ 	/** @vm: Snapshot of VM state */
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 7348689ec5ae..66dc561336df 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1814,17 +1814,6 @@ xe_guc_exec_queue_snapshot_capture(struct xe_sched_job *job)
+ 	snapshot->sched_props.preempt_timeout_us =
+ 		q->sched_props.preempt_timeout_us;
  
-@@ -3123,10 +3126,10 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	if (q)
- 		xe_exec_queue_put(q);
- free_objs:
--	kfree(bos);
--	kfree(ops);
-+	kvfree(bos);
-+	kvfree(ops);
- 	if (args->num_binds > 1)
--		kfree(bind_ops);
-+		kvfree(bind_ops);
- 	return err;
+-	snapshot->lrc = kmalloc_array(q->width, sizeof(struct xe_lrc_snapshot *),
+-				      GFP_ATOMIC);
+-
+-	if (snapshot->lrc) {
+-		for (i = 0; i < q->width; ++i) {
+-			struct xe_lrc *lrc = q->lrc + i;
+-
+-			snapshot->lrc[i] = xe_lrc_snapshot_capture(lrc);
+-		}
+-	}
+-
+ 	snapshot->schedule_state = atomic_read(&q->guc->state);
+ 	snapshot->exec_queue_flags = q->flags;
+ 
+@@ -1886,10 +1875,6 @@ xe_guc_exec_queue_snapshot_print(struct xe_guc_submit_exec_queue_snapshot *snaps
+ 		   snapshot->sched_props.timeslice_us);
+ 	drm_printf(p, "\tPreempt timeout: %u (us)\n",
+ 		   snapshot->sched_props.preempt_timeout_us);
+-
+-	for (i = 0; snapshot->lrc && i < snapshot->width; ++i)
+-		xe_lrc_snapshot_print(snapshot->lrc[i], p);
+-
+ 	drm_printf(p, "\tSchedule State: 0x%x\n", snapshot->schedule_state);
+ 	drm_printf(p, "\tFlags: 0x%lx\n", snapshot->exec_queue_flags);
+ 
+@@ -1914,15 +1899,9 @@ xe_guc_exec_queue_snapshot_print(struct xe_guc_submit_exec_queue_snapshot *snaps
+  */
+ void xe_guc_exec_queue_snapshot_free(struct xe_guc_submit_exec_queue_snapshot *snapshot)
+ {
+-	int i;
+ 	if (!snapshot)
+ 		return;
+ 
+-	if (snapshot->lrc) {
+-		for (i = 0; i < snapshot->width; i++)
+-			xe_lrc_snapshot_free(snapshot->lrc[i]);
+-		kfree(snapshot->lrc);
+-	}
+ 	kfree(snapshot->pending_list);
+ 	kfree(snapshot);
  }
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit_types.h b/drivers/gpu/drm/xe/xe_guc_submit_types.h
+index dc7456c34583..92a7b7bcb899 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit_types.h
+@@ -97,9 +97,6 @@ struct xe_guc_submit_exec_queue_snapshot {
+ 		u32 preempt_timeout_us;
+ 	} sched_props;
  
+-	/** @lrc: LRC Snapshot */
+-	struct xe_lrc_snapshot **lrc;
+-
+ 	/** @schedule_state: Schedule State at the moment of Crash */
+ 	u32 schedule_state;
+ 	/** @exec_queue_flags: Flags of the faulty exec_queue */
 -- 
-2.34.1
+2.43.0
 
