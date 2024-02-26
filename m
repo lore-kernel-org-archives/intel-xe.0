@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B481FC54E49
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Feb 2024 09:06:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0189CC54E49
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Feb 2024 09:18:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D28610EFAA;
-	Mon, 26 Feb 2024 09:06:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C87710EFC8;
+	Mon, 26 Feb 2024 09:18:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vuq7Pl5f";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="goUnjXls";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBBA810EFAC
- for <intel-xe@lists.freedesktop.org>; Mon, 26 Feb 2024 09:06:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E05FC10EFCA
+ for <intel-xe@lists.freedesktop.org>; Mon, 26 Feb 2024 09:18:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708938363; x=1740474363;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=OAMGngopj0jFC33tUwDSJTzc9vWjGu/15Sf2NCiYzZA=;
- b=Vuq7Pl5ffWHECeqqeYAXbCCbQL+9G/ySEw+uvFFjREjaHofuJXSj1JCJ
- SQvnr5WvKxw/ODEie/USh3JGqcbXwjht3DWusHUVovaQt35Mr9rjsJC4s
- mgmO2lfeTZbWrV7CGLKgzDhn6Dzhv6EaOwmFnTMczvdhn4Mjbo8iH5ywW
- P2oZK5b2Xp6nG/whIgQpz0bRvefsoV7i1GVENx70GRJr6bcZEdeNxSozE
- MFw8WdYkwFKkvSBSiPlj9p65d+qOsq2y3mojhD80pYZahZkq7+Wv6uioA
- 1i58B3Sij2cXuZw55Pg1AtmqyvoRJyauECKyeqEmsKJkvouWcL7F7mCHk g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10995"; a="14628243"
-X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; d="scan'208";a="14628243"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2024 01:06:02 -0800
+ t=1708939091; x=1740475091;
+ h=message-id:subject:from:to:date:in-reply-to:references:
+ content-transfer-encoding:mime-version;
+ bh=6F3bIf8uMbVyM6cAmjh0THYuXR2Q9jhA2hMFSrtow8U=;
+ b=goUnjXls+/ASpA6ynEIqW3q9+BCkrBxmiHn5C1Lg5CSwUoCMs9ySrGuk
+ D/IKThU7KMhob7foZSDOthGbUhff3TZ04vEvL/d5CsZeTQKwpnOCL7BWc
+ GOlMctV/huW3mbqdZbtC6qLZM0cDg4aseoKsDdZ+bDKnDTfBBpCOWgZbT
+ 968avSMOtIz21mGFlhHMJ4e9i9ZgFr6JqGZc2szIqIUpyXTrkr8OXgQt3
+ jxUN0gfM7gOh8zYhTfQxzZG/y/6k+zBeSGWi64jGTj3c1CUt0C+DUfWWs
+ kgXoYyqcKBcYj1xb8psPf5TIbZQIH33Ia+G6inhJiRYwiumzWLP423HWL w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10995"; a="25682034"
+X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; d="scan'208";a="25682034"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2024 01:18:11 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; 
-   d="scan'208";a="6631998"
+X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; d="scan'208";a="44087740"
 Received: from hekner-mobl1.ger.corp.intel.com (HELO [10.249.254.134])
  ([10.249.254.134])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2024 01:06:00 -0800
-Message-ID: <98e9c8ea0f51cb308f02a1cf2ce61d06fd5bbc0a.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/xe: Fix build error in xe_ggtt.c
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2024 01:18:09 -0800
+Message-ID: <5d3d54c8a37debbff3f597c1fad36be90637ae81.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/xe: Use vmalloc for array of bind allocation in
+ bind IOCTL
 From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
 To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-Cc: kernel test robot <lkp@intel.com>
-Date: Mon, 26 Feb 2024 10:05:58 +0100
-In-Reply-To: <20240225001448.81513-1-matthew.brost@intel.com>
-References: <20240225001448.81513-1-matthew.brost@intel.com>
+Date: Mon, 26 Feb 2024 10:18:06 +0100
+In-Reply-To: <20240223193719.6495-1-matthew.brost@intel.com>
+References: <20240223193719.6495-1-matthew.brost@intel.com>
 Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
  keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
 Organization: Intel Sweden AB, Registration Number: 556189-6027
@@ -68,40 +67,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sat, 2024-02-24 at 16:14 -0800, Matthew Brost wrote:
-> Need to include io-64-nonatomic-lo-hi.h for writeq function.
+Hi, Matt
+On Fri, 2024-02-23 at 11:37 -0800, Matthew Brost wrote:
+> Use vmalloc in effort to allow a user pass in a large number of binds
+> in
+> an IOCTL (mesa use case). Also use array allocations rather open
+> coding
+> the size calculation.
 
-As I understand it, the choice of header here determines the dword
-write order on 32-bit systems that don't have an atomic writeq(),
+I still think allowing a large number of binds like this is a bit
+dangerous, because to avoid out-of-memory DOSes we will need to
+restrict the number of binds in some way. And if the UMDs can't
+gracefully handle the OOMS and retry with a smaller number of binds
+they will break. And we're not allowed to break the.....
 
-So is writing the low dword first the correct order in this case?
-Perhaps add a motivation in the commit message?
+Did we end up keeping a max number of binds that we guarantee for
+forseeable future?
 
 /Thomas
 
 
 >=20
-> Fixes: 3121fed0c51b drm/xe: ("Cleanup some layering in GGTT")
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes:
-> https://lore.kernel.org/oe-kbuild-all/202402241903.R5J8hKVI-lkp@intel.com=
-/
+> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel
+> GPUs")
 > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > ---
-> =C2=A0drivers/gpu/drm/xe/xe_ggtt.c | 1 +
-> =C2=A01 file changed, 1 insertion(+)
+> =C2=A0drivers/gpu/drm/xe/xe_vm.c | 23 ++++++++++++-----------
+> =C2=A01 file changed, 12 insertions(+), 11 deletions(-)
 >=20
-> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c
-> b/drivers/gpu/drm/xe/xe_ggtt.c
-> index 5d46958e3144..717d0e76277a 100644
-> --- a/drivers/gpu/drm/xe/xe_ggtt.c
-> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-> @@ -5,6 +5,7 @@
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index e3bde897f6e8..45a12207ebf5 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -2778,8 +2778,9 @@ static int vm_bind_ioctl_check_args(struct
+> xe_device *xe,
+> =C2=A0		u64 __user *bind_user =3D
+> =C2=A0			u64_to_user_ptr(args->vector_of_binds);
 > =C2=A0
-> =C2=A0#include "xe_ggtt.h"
+> -		*bind_ops =3D kmalloc(sizeof(struct drm_xe_vm_bind_op)
+> *
+> -				=C2=A0=C2=A0=C2=A0 args->num_binds, GFP_KERNEL);
+> +		*bind_ops =3D kvmalloc_array(args->num_binds,
+> +					=C2=A0=C2=A0 sizeof(struct
+> drm_xe_vm_bind_op),
+> +					=C2=A0=C2=A0 GFP_KERNEL);
+> =C2=A0		if (!*bind_ops)
+> =C2=A0			return -ENOMEM;
 > =C2=A0
-> +#include <linux/io-64-nonatomic-lo-hi.h>
-> =C2=A0#include <linux/sizes.h>
+> @@ -2869,7 +2870,7 @@ static int vm_bind_ioctl_check_args(struct
+> xe_device *xe,
 > =C2=A0
-> =C2=A0#include <drm/drm_managed.h>
+> =C2=A0free_bind_ops:
+> =C2=A0	if (args->num_binds > 1)
+> -		kfree(*bind_ops);
+> +		kvfree(*bind_ops);
+> =C2=A0	return err;
+> =C2=A0}
+> =C2=A0
+> @@ -2957,13 +2958,13 @@ int xe_vm_bind_ioctl(struct drm_device *dev,
+> void *data, struct drm_file *file)
+> =C2=A0	}
+> =C2=A0
+> =C2=A0	if (args->num_binds) {
+> -		bos =3D kcalloc(args->num_binds, sizeof(*bos),
+> GFP_KERNEL);
+> +		bos =3D kvcalloc(args->num_binds, sizeof(*bos),
+> GFP_KERNEL);
+> =C2=A0		if (!bos) {
+> =C2=A0			err =3D -ENOMEM;
+> =C2=A0			goto release_vm_lock;
+> =C2=A0		}
+> =C2=A0
+> -		ops =3D kcalloc(args->num_binds, sizeof(*ops),
+> GFP_KERNEL);
+> +		ops =3D kvcalloc(args->num_binds, sizeof(*ops),
+> GFP_KERNEL);
+> =C2=A0		if (!ops) {
+> =C2=A0			err =3D -ENOMEM;
+> =C2=A0			goto release_vm_lock;
+> @@ -3104,10 +3105,10 @@ int xe_vm_bind_ioctl(struct drm_device *dev,
+> void *data, struct drm_file *file)
+> =C2=A0	for (i =3D 0; bos && i < args->num_binds; ++i)
+> =C2=A0		xe_bo_put(bos[i]);
+> =C2=A0
+> -	kfree(bos);
+> -	kfree(ops);
+> +	kvfree(bos);
+> +	kvfree(ops);
+> =C2=A0	if (args->num_binds > 1)
+> -		kfree(bind_ops);
+> +		kvfree(bind_ops);
+> =C2=A0
+> =C2=A0	return err;
+> =C2=A0
+> @@ -3131,10 +3132,10 @@ int xe_vm_bind_ioctl(struct drm_device *dev,
+> void *data, struct drm_file *file)
+> =C2=A0	if (q)
+> =C2=A0		xe_exec_queue_put(q);
+> =C2=A0free_objs:
+> -	kfree(bos);
+> -	kfree(ops);
+> +	kvfree(bos);
+> +	kvfree(ops);
+> =C2=A0	if (args->num_binds > 1)
+> -		kfree(bind_ops);
+> +		kvfree(bind_ops);
+> =C2=A0	return err;
+> =C2=A0}
+> =C2=A0
 
