@@ -4,26 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9242C54798
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Feb 2024 03:21:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AE13C54798
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Feb 2024 05:34:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61F4110E84F;
-	Tue, 27 Feb 2024 03:21:11 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 106F210E84F;
- Tue, 27 Feb 2024 03:21:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5998196756619575745=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4438210F2C5;
+	Tue, 27 Feb 2024 05:34:04 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CuEne5CN";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D26AE10E86B;
+ Tue, 27 Feb 2024 05:34:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1709012043; x=1740548043;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=vPqiEEkSZ0w6soHa/K8KC6tZhM4hudHF2t8kdyufQfU=;
+ b=CuEne5CNp4eGYV9prnGJeSeNJnDNWWNI3iHiMyuD/93c5PGMW51KL08C
+ Mm4llB7TV6eHiHcX9kpO1MYbx5HbOFNB9eKzJ2nYPwvCLTumGWaNEbM14
+ b9lJsvSA3Lf/OQOQ/6xYralcQsWEMs9YjQYpekUqPBuGc10rlw3GSwBRO
+ OdUVlrzP30eeq3WKK2vtcLtew7IvkdkVsq+no4IkTpBMuHovhY1g87u8t
+ LMaWLRV3a8MNocboW+fb8EeT4zX4ibYPq5trhUT800hdVnFJhn940FskO
+ tnOSyg5ODpt09wqlhL6z2w6/QMUepPkvGAXkVXGTR7ANAfKquen83FFKb g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="3182898"
+X-IronPort-AV: E=Sophos;i="6.06,187,1705392000"; 
+   d="scan'208";a="3182898"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2024 21:34:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,187,1705392000"; 
+   d="scan'208";a="6857575"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
+ by fmviesa009.fm.intel.com with ESMTP; 26 Feb 2024 21:34:01 -0800
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH 0/4] XE HDCP Enablement
+Date: Tue, 27 Feb 2024 11:02:00 +0530
+Message-ID: <20240227053204.1748920-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.43.2
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_xe=5Fsync_and_ufence_rework?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 Feb 2024 03:21:10 -0000
-Message-ID: <170900407006.299097.241437916743785746@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240227024337.141585-1-matthew.brost@intel.com>
-In-Reply-To: <20240227024337.141585-1-matthew.brost@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,106 +59,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5998196756619575745==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This patch series enables HDCP on XE.
+Mainly includes rewriting functions that were responsible for
+sending hdcp messages via gsc cs.
 
-== Series Details ==
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-Series: xe_sync and ufence rework
-URL   : https://patchwork.freedesktop.org/series/130418/
-State : success
+Suraj Kandpal (4):
+  drm/i915/hdcp: Move intel_hdcp_gsc_message def away from header file
+  drm/xe/hdcp: Use xe_device struct
+  drm/xe: Use gsc_proxy_init_done to check proxy status
+  drm/xe/hdcp: Enable HDCP for XE
 
-== Summary ==
+ drivers/gpu/drm/i915/display/intel_hdcp_gsc.c |   6 +
+ drivers/gpu/drm/i915/display/intel_hdcp_gsc.h |   7 +-
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      | 241 +++++++++++++++++-
+ drivers/gpu/drm/xe/xe_gsc_proxy.c             |   4 +-
+ drivers/gpu/drm/xe/xe_gsc_proxy.h             |   1 +
+ drivers/gpu/drm/xe/xe_gsc_submit.c            |  15 ++
+ drivers/gpu/drm/xe/xe_gsc_submit.h            |   1 +
+ 8 files changed, 258 insertions(+), 18 deletions(-)
 
-CI Bug Log - changes from xe-855-b3552bf1e79de200a6ca49c518ead46a1256618c_BAT -> xe-pw-130418v1_BAT
-====================================================
+-- 
+2.43.2
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-855-b3552bf1e79de200a6ca49c518ead46a1256618c -> xe-pw-130418v1
-
-  IGT_7731: 17f897a81868fb35c6a7033a8b07256659742248 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-855-b3552bf1e79de200a6ca49c518ead46a1256618c: b3552bf1e79de200a6ca49c518ead46a1256618c
-  xe-pw-130418v1: 130418v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130418v1/index.html
-
---===============5998196756619575745==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>xe_sync and ufence rework</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130418/">https://patchwork.freedesktop.org/series/130418/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130418v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130418v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-855-b3552bf1e79de200a6ca49c518ead46a1256618c_BAT -&gt; xe-pw-130418v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-855-b3552bf1e79de200a6ca49c518ead46a1256618c -&gt; xe-pw-130418v1</li>
-</ul>
-<p>IGT_7731: 17f897a81868fb35c6a7033a8b07256659742248 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-855-b3552bf1e79de200a6ca49c518ead46a1256618c: b3552bf1e79de200a6ca49c518ead46a1256618c<br />
-  xe-pw-130418v1: 130418v1</p>
-
-</body>
-</html>
-
---===============5998196756619575745==--
