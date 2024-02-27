@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31471C5478C
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Feb 2024 15:10:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D39CC54798
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Feb 2024 15:11:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D670410E907;
-	Tue, 27 Feb 2024 15:10:56 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 028B310E907;
- Tue, 27 Feb 2024 15:10:56 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8063874854454520515=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8CF010E915;
+	Tue, 27 Feb 2024 15:11:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JsvwxBzf";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 224A810E907;
+ Tue, 27 Feb 2024 15:11:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1709046705; x=1740582705;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=WIJhB/6M0WY9wW+vSfXg/ZFwCIg6QVfmpWJ6zfkCsRA=;
+ b=JsvwxBzfPNDcbWXpCM3+FhyoAvoTjKyf/IqgGydLr4ugiy5HZu9JHitW
+ ZWlyIQzVpXffcne89kmyP2XMFukUYxlJPxqQ8cFF7a3/r7Nj042KLI/DR
+ 3hzNosZm3AvnQLYAVUF96IXjt+cAkwR/GcbO2wB7Is7NMRIm+yICmTPBJ
+ 1OB+F3LZsBM2z3d5Cg79XVJZzwFZFPIRouigE32lXCxCmCaLe2mJ7u5JJ
+ Mcf5rftnm0Z9Pwimvfjz2vNIVtOwM5EZBpHBP2BOkmodtXD1HxqXbgg2Q
+ V0Vb0eYzer0q73vh2DnVrP4rB9xFGfaeEGOAyvaLn+8bKlVz2B5qT3mvZ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="3260406"
+X-IronPort-AV: E=Sophos;i="6.06,188,1705392000"; 
+   d="scan'208";a="3260406"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2024 07:11:44 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,188,1705392000"; 
+   d="scan'208";a="7635334"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.4.234])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2024 07:11:43 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH i-g-t v2 0/2] lib/kunit: Execute test cases synchronously
+Date: Tue, 27 Feb 2024 16:10:40 +0100
+Message-ID: <20240227151128.16802-4-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/xe2=5Flpm=3A_Rename_media?=
- =?utf-8?q?_descriptor_to_media=5Fxe2=5Flpm?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Balasubramani Vivekanandan" <balasubramani.vivekanandan@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 Feb 2024 15:10:56 -0000
-Message-ID: <170904665601.337279.16359225853762012942@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240227143209.346005-1-balasubramani.vivekanandan@intel.com>
-In-Reply-To: <20240227143209.346005-1-balasubramani.vivekanandan@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +62,53 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8063874854454520515==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Up to now we were loading a KUnit test module in test execution mode only
+once per subtest, in background, and then, in parallel with execution of
+test cases while the module was loading, we were looking through dmesg for
+KTAP results from each expected test case.  As a consequence, our IGT
+messages were more or less delayed, never in full sync with kernel
+messages.  Moreover, parsing of KTAP results from already completed test
+cases could be abandoned on a failure from loading the test module or
+kernel taint caused by a subsequent test case.  Also, parsing of KTAP
+results from all subsequent test cases could be abandoned on a failure of
+the parser caused by any test case.  Other than that, if a user requested
+a single dynamic sub-subtest, all test cases were executed anyway while
+results from only one of them that corresponded to the selected dynamic
+sub-subtest were reported.  That way, kernel messages from unrelated test
+cases, not only the selected one, could contribute to dmesg-fail or dmesg-
+warn CI results from that sub-subtest.
 
-== Series Details ==
+Since recent KUnit implementation is capable of executing only those test
+cases that match a user filter, stop executing all of them asynchronously
+and parsing their KTAP results as they appear.  Instead, reload the test
+module once per each dynamic sub-subtest with a filter that selects a
+specific test case and wait for its completion.  If successful and no
+kernel taint has occurred then parse the whole KTAP report from a single
+test case it has produced and translate it to IGT result of that single
+corresponding sub-subtest.
 
-Series: drm/xe/xe2_lpm: Rename media descriptor to media_xe2_lpm
-URL   : https://patchwork.freedesktop.org/series/130435/
-State : success
+v2: Refresh the series on top of changes to KUnit filters handling,
+  - move the code of a new helper from a previous patch 1 to a previous
+    patch 2 which now becomes patch 1,
+  - actually limit the scope of the helper to fetching a KTAP report from
+    a file descriptor, and let the callers decide on how other steps, like
+    setting up filters or loading a test module, and errors they return
+    are handled,
+  - update commit description with a more detailed justification of why we
+    need these changes,
+  - rebase the former patch 1 on top of the new patch 1, update its commit
+    message and description and provide it as patch 2.
 
-== Summary ==
+Janusz Krzysztofik (2):
+  lib/kunit: Execute test cases synchronously
+  lib/kunit: Minimize code duplication
 
-CI Bug Log - changes from xe-858-ed7aa4acb76bb65356169f2261a95c201a77f38a_BAT -> xe-pw-130435v1_BAT
-====================================================
+ lib/igt_kmod.c | 172 ++++++++++++++++---------------------------------
+ 1 file changed, 54 insertions(+), 118 deletions(-)
 
-Summary
--------
+-- 
+2.43.0
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-858-ed7aa4acb76bb65356169f2261a95c201a77f38a -> xe-pw-130435v1
-
-  IGT_7731: 17f897a81868fb35c6a7033a8b07256659742248 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-858-ed7aa4acb76bb65356169f2261a95c201a77f38a: ed7aa4acb76bb65356169f2261a95c201a77f38a
-  xe-pw-130435v1: 130435v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130435v1/index.html
-
---===============8063874854454520515==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/xe2_lpm: Rename media descriptor to media_xe2_lpm</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130435/">https://patchwork.freedesktop.org/series/130435/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130435v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130435v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-858-ed7aa4acb76bb65356169f2261a95c201a77f38a_BAT -&gt; xe-pw-130435v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-858-ed7aa4acb76bb65356169f2261a95c201a77f38a -&gt; xe-pw-130435v1</li>
-</ul>
-<p>IGT_7731: 17f897a81868fb35c6a7033a8b07256659742248 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-858-ed7aa4acb76bb65356169f2261a95c201a77f38a: ed7aa4acb76bb65356169f2261a95c201a77f38a<br />
-  xe-pw-130435v1: 130435v1</p>
-
-</body>
-</html>
-
---===============8063874854454520515==--
