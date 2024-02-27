@@ -4,26 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97DBCC5478C
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Feb 2024 06:23:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98F21C5478C
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Feb 2024 06:36:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CC6A10E5AF;
-	Tue, 27 Feb 2024 06:23:07 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF52210E59F;
- Tue, 27 Feb 2024 06:23:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7631694305654561217=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1535E10E871;
+	Tue, 27 Feb 2024 06:36:09 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jdn48pFE";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD09A10E107;
+ Tue, 27 Feb 2024 06:36:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1709015766; x=1740551766;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Wm2IeWsqWrB4ahIZakVkmmGYLPIb8c+hTWMPeGaOSP0=;
+ b=Jdn48pFEL6zq5W13kiSYarZlheiaNjm42/ctkabXhyT13xvaE20Uoewx
+ sxYil2WpAz++o/HKFO63nuOJ2d1PORLINlVW2WXVrikboipf1ZEboTY6w
+ tFXp0TvDr0yb5CnkepwZXaz6TEy/kouBsdJC1fhIT2kZkuhVk4uFer3Ih
+ 5jaUgSwjkxvb8FkKWZp5w3CV2wPoPGHOK3idnnEtpoc+F0GaFhqpESekf
+ xzCHVHVu6c4jFG/cCxSzzqd+C/dJf9rFALMZeQ+gRBtnfk+k4YuQIavhU
+ LHkmhBro53fZjknP2kxRTd1c7996bchsrlll0lgPdlwni6ZsgaQEPQbYV Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="14781596"
+X-IronPort-AV: E=Sophos;i="6.06,187,1705392000"; d="scan'208";a="14781596"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2024 22:35:27 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,187,1705392000"; 
+   d="scan'208";a="7140868"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
+ by fmviesa006.fm.intel.com with ESMTP; 26 Feb 2024 22:35:25 -0800
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH 1/4] drm/i915/hdcp: Move intel_hdcp_gsc_message def away from
+ header file
+Date: Tue, 27 Feb 2024 12:03:31 +0530
+Message-ID: <20240227063330.1775323-2-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20240227053204.1748920-2-suraj.kandpal@intel.com>
+References: <20240227053204.1748920-2-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_XE_HDCP_Enablement_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 Feb 2024 06:23:06 -0000
-Message-ID: <170901498684.336701.11913658060162815001@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240227053204.1748920-1-suraj.kandpal@intel.com>
-In-Reply-To: <20240227053204.1748920-1-suraj.kandpal@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,133 +61,56 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7631694305654561217==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Move intel_hdcp_gsc_message definition into intel_hdcp_gsc.c
+so that intel_hdcp_gsc_message can be redefined for xe as needed.
 
-== Series Details ==
+--v2
+-Correct commit message to reflect what patch is actually doing [Arun]
 
-Series: XE HDCP Enablement (rev6)
-URL   : https://patchwork.freedesktop.org/series/129457/
-State : failure
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_hdcp_gsc.c | 6 ++++++
+ drivers/gpu/drm/i915/display/intel_hdcp_gsc.h | 7 +------
+ 2 files changed, 7 insertions(+), 6 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+index 302bff75b06c..35823e1f65d6 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+@@ -13,6 +13,12 @@
+ #include "intel_hdcp_gsc.h"
+ #include "intel_hdcp_gsc_message.h"
+ 
++struct intel_hdcp_gsc_message {
++	struct i915_vma *vma;
++	void *hdcp_cmd_in;
++	void *hdcp_cmd_out;
++};
++
+ bool intel_hdcp_gsc_cs_required(struct drm_i915_private *i915)
+ {
+ 	return DISPLAY_VER(i915) >= 14;
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
+index eba2057c5a9e..5f610df61cc9 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
++++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
+@@ -10,12 +10,7 @@
+ #include <linux/types.h>
+ 
+ struct drm_i915_private;
+-
+-struct intel_hdcp_gsc_message {
+-	struct i915_vma *vma;
+-	void *hdcp_cmd_in;
+-	void *hdcp_cmd_out;
+-};
++struct intel_hdcp_gsc_message;
+ 
+ bool intel_hdcp_gsc_cs_required(struct drm_i915_private *i915);
+ ssize_t intel_hdcp_gsc_msg_send(struct drm_i915_private *i915, u8 *msg_in,
+-- 
+2.43.2
 
-CI Bug Log - changes from xe-855-b3552bf1e79de200a6ca49c518ead46a1256618c_BAT -> xe-pw-129457v6_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-129457v6_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-129457v6_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-129457v6_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind:
-    - bat-pvc-2:          [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-855-b3552bf1e79de200a6ca49c518ead46a1256618c/bat-pvc-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v6/bat-pvc-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind.html
-
-  
-
-
-Build changes
--------------
-
-  * Linux: xe-855-b3552bf1e79de200a6ca49c518ead46a1256618c -> xe-pw-129457v6
-
-  IGT_7731: 17f897a81868fb35c6a7033a8b07256659742248 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-855-b3552bf1e79de200a6ca49c518ead46a1256618c: b3552bf1e79de200a6ca49c518ead46a1256618c
-  xe-pw-129457v6: 129457v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v6/index.html
-
---===============7631694305654561217==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>XE HDCP Enablement (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129457/">https://patchwork.freedesktop.org/series/129457/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-855-b3552bf1e79de200a6ca49c518ead46a1256618c_BAT -&gt; xe-pw-129457v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-129457v6_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-129457v6_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-129457v6_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind:<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-855-b3552bf1e79de200a6ca49c518ead46a1256618c/bat-pvc-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v6/bat-pvc-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-855-b3552bf1e79de200a6ca49c518ead46a1256618c -&gt; xe-pw-129457v6</li>
-</ul>
-<p>IGT_7731: 17f897a81868fb35c6a7033a8b07256659742248 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-855-b3552bf1e79de200a6ca49c518ead46a1256618c: b3552bf1e79de200a6ca49c518ead46a1256618c<br />
-  xe-pw-129457v6: 129457v6</p>
-
-</body>
-</html>
-
---===============7631694305654561217==--
