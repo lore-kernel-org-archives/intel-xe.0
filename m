@@ -4,27 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24081C5478C
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Feb 2024 14:28:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD093C5478C
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Feb 2024 14:37:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF35110E57A;
-	Wed, 28 Feb 2024 14:28:58 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 326A710E112;
- Wed, 28 Feb 2024 14:28:57 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 502EF10E681;
+	Wed, 28 Feb 2024 14:37:52 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="hERC8G3L";
+	dkim-atps=neutral
+Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB30110E0F9;
+ Tue, 27 Feb 2024 20:35:23 +0000 (UTC)
+Received: from relay8-d.mail.gandi.net (unknown [IPv6:2001:4b98:dc4:8::228])
+ by mslow1.mail.gandi.net (Postfix) with ESMTP id 7A960C26B7;
+ Tue, 27 Feb 2024 20:32:52 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id DE5001BF204;
+ Tue, 27 Feb 2024 20:32:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+ t=1709065969;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=wvxfxWjaLutlzwBuNGZe/hZYj/M5jqDhw7tveByHAzE=;
+ b=hERC8G3LaA8JY7wMbCyhJKrjL4sPlqLlanim3qsGSCgJw5Dl1oT5pZcsXGkVC0cWuGMOcU
+ j+ofXy4OyaXeQpxREaWY6IPtb+yupGSYwKfByF7MPTbFflprTXL6aDLQ7ARST491n4ykMh
+ TyB9G8z6wFuiAN2sm15XUMgWe3NKOFVr2DrPPs5JOlv4KCeAi026PEfUMCVxIBut/YEWne
+ mZqvk8vuGznc2J9QmsdTn+fkXzTPKzOjHT5Qp55HUuStQOd+ytAO3QwH87yxDEqEMePaR0
+ InWrTLvihxQ3e7Hw82nSd1SIpOr8QPhzxBofMlGmbbxPvCT/YskO5LBQWBfujA==
+Date: Tue, 27 Feb 2024 21:32:43 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: David Gow <davidgow@google.com>
+Cc: Linus Torvalds <torvalds@linux-foundation.org>,
+ Shuah Khan <skhan@linuxfoundation.org>,
+ Guenter Roeck <linux@roeck-us.net>, Rae Moar <rmoar@google.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Kees Cook <keescook@chromium.org>,
+ =?iso-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Willem de Bruijn <willemb@google.com>, Florian Westphal <fw@strlen.de>,
+ Cassio Neri <cassio.neri@gmail.com>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Arthur Grillo <arthur.grillo@usp.br>,
+ Brendan Higgins <brendan.higgins@linux.dev>,
+ Daniel Latypov <dlatypov@google.com>,
+ Stephen Boyd <sboyd@kernel.org>, David Airlie <airlied@gmail.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ "David S . Miller" <davem@davemloft.net>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, linux-rtc@vger.kernel.org,
+ linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com,
+ linux-hardening@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH 5/9] rtc: test: Fix invalid format specifier.
+Message-ID: <20240227203243070e7d85@mail.local>
+References: <20240221092728.1281499-1-davidgow@google.com>
+ <20240221092728.1281499-6-davidgow@google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/display=3A_Disa?=
- =?utf-8?q?ble_AuxCCS_framebuffers_if_built_for_Xe_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 28 Feb 2024 14:28:57 -0000
-Message-ID: <170913053720.369198.12663391653245230647@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240228140225.858145-1-juhapekka.heikkila@gmail.com>
-In-Reply-To: <20240228140225.858145-1-juhapekka.heikkila@gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240221092728.1281499-6-davidgow@google.com>
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-Mailman-Approved-At: Wed, 28 Feb 2024 14:37:51 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,35 +78,45 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hello,
 
-Series: drm/i915/display: Disable AuxCCS framebuffers if built for Xe (rev2)
-URL   : https://patchwork.freedesktop.org/series/130400/
-State : warning
+On 21/02/2024 17:27:18+0800, David Gow wrote:
+> 'days' is a s64 (from div_s64), and so should use a %lld specifier.
+> 
+> This was found by extending KUnit's assertion macros to use gcc's
+> __printf attribute.
+> 
+> Fixes: 1d1bb12a8b18 ("rtc: Improve performance of rtc_time64_to_tm(). Add tests.")
+> Signed-off-by: David Gow <davidgow@google.com>
 
-== Summary ==
+Who do you expect to take this patch?
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 5911a71f0d896bebb7af7cf60d60e0d36c3dde99
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+> ---
+>  drivers/rtc/lib_test.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/rtc/lib_test.c b/drivers/rtc/lib_test.c
+> index d5caf36c56cd..225c859d6da5 100644
+> --- a/drivers/rtc/lib_test.c
+> +++ b/drivers/rtc/lib_test.c
+> @@ -54,7 +54,7 @@ static void rtc_time64_to_tm_test_date_range(struct kunit *test)
+>  
+>  		days = div_s64(secs, 86400);
+>  
+> -		#define FAIL_MSG "%d/%02d/%02d (%2d) : %ld", \
+> +		#define FAIL_MSG "%d/%02d/%02d (%2d) : %lld", \
+>  			year, month, mday, yday, days
+>  
+>  		KUNIT_ASSERT_EQ_MSG(test, year - 1900, result.tm_year, FAIL_MSG);
+> -- 
+> 2.44.0.rc0.258.g7320e95886-goog
+> 
+> 
 
-
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
