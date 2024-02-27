@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 275DEC54798
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Feb 2024 08:57:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97CC2C54798
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Feb 2024 10:37:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B792610E8B9;
-	Tue, 27 Feb 2024 08:57:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3569F10E8E7;
+	Tue, 27 Feb 2024 10:37:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mf34IioT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mnWrOZiQ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 663C810E8B8;
- Tue, 27 Feb 2024 08:57:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57CF210F2EA
+ for <intel-xe@lists.freedesktop.org>; Tue, 27 Feb 2024 10:37:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709024232; x=1740560232;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ZQoqMBY8QfGcpP/PpX7IeyyZFQ9W9B12ya9zymo8HGM=;
- b=Mf34IioT7CF9ScLl4Yb3bHwLyh1TIBbLcNZVou2s4SmpIBk8jh406Cmp
- uMVYFg0uUgsv0JY4XQJninnSbt22FoAXu+/ozhh1C/RtxpvMvAIDzMsOe
- nxnHovjPwAwhhrB6oX2LkVbgROu3l7z8OBq2UqEM3K8iNmVHDswIY70Tx
- XmxQtXMgaNzRIn3JiDPcpy1WZMAnV+u7PtEBDVuaRxz4mCqhqiy1Mr1RV
- YyYfuKRSQeJK/Kw21hBUQHCTm6mcKQdzeKqKav9siprCBCpb2FQAnrZXu
- 1QA+EcQbFkpM6E4cxVzGk4XxfbjeojsL6PdJtD2/4S1D8dnlZNg3jCXgc A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="14777591"
-X-IronPort-AV: E=Sophos;i="6.06,187,1705392000"; d="scan'208";a="14777591"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2024 00:57:11 -0800
-X-ExtLoop1: 1
+ t=1709030250; x=1740566250;
+ h=message-id:subject:from:to:date:in-reply-to:references:
+ content-transfer-encoding:mime-version;
+ bh=jaCsgNIwCrz5aEm9UeV5x/tisIwxZ9Itx1PtcAE1ork=;
+ b=mnWrOZiQlZlX5JmN/beCGbO5iB3CpAsDgajl3U0Cqyz9vFX8oXf52YvE
+ DB/e8ZD2/9a7stp64aHIwIjs6PnCDcqjsTJEeAxO9y/LyriKJ7qNKgdMA
+ 40+aGwx4DD4bd+tDQFLYrrgQuwFchQ2SEt+ALL2ZEpwmUOiQxu9rEh+KJ
+ z7MQ64uGSQ7J/4wYX/cq2CCLyt5xVEzZhVBWkY+Qp/3UI5XHzFDLkP9QH
+ yfizuUtzk3/CcgKpPi2p1nupbXUQLYVKBCcN5FPgmSLypexRSkkJg3veA
+ OLDnj9TKcFAZ9pIZiQKgcoZbRjBw032poqBgg1sBhMlwWXaVp+jkDHFNA Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="3480785"
 X-IronPort-AV: E=Sophos;i="6.06,187,1705392000"; 
-   d="scan'208";a="6838519"
-Received: from bdallmer-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.49.187])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2024 00:57:09 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>, "Souza, Jose"
- <jose.souza@intel.com>, Ville =?utf-8?B?U3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH] drm/i915/display: Disable AuxCCS framebuffers if built
- for Xe
-In-Reply-To: <20240226203651.818678-1-juhapekka.heikkila@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240226203651.818678-1-juhapekka.heikkila@gmail.com>
-Date: Tue, 27 Feb 2024 10:57:06 +0200
-Message-ID: <871q8yl1y5.fsf@intel.com>
+   d="scan'208";a="3480785"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2024 02:37:29 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,187,1705392000"; d="scan'208";a="11571094"
+Received: from rbriscox-mobl1.ger.corp.intel.com (HELO [10.252.3.86])
+ ([10.252.3.86])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2024 02:37:27 -0800
+Message-ID: <fad1ce00bc6d1edd7a518f323082f5a75fb2d165.camel@linux.intel.com>
+Subject: Re: [PATCH 1/3] drm/xe: Remove used xe_sync_entry_wait
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+Date: Tue, 27 Feb 2024 11:37:25 +0100
+In-Reply-To: <20240227024337.141585-2-matthew.brost@intel.com>
+References: <20240227024337.141585-1-matthew.brost@intel.com>
+ <20240227024337.141585-2-matthew.brost@intel.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
 MIME-Version: 1.0
-Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,64 +68,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 26 Feb 2024, Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com> wrote:
-> AuxCCS framebuffers don't work on Xe driver hence disable them
-> from plane capabilities until they are fixed. FlatCCS framebuffers
-> work and they are left enabled. CCS is left untouched for i915
-> driver.
->
-> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/933
-> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+On Mon, 2024-02-26 at 18:43 -0800, Matthew Brost wrote:
+> xe_sync_entry_wait is no longer used, remove it.
+>=20
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+
 > ---
-> Let's try adding those ifdefs as IS_ENABLED(I915) will result in
-> warnings from checkpatch and there was wishes not to break
-> universal plane into smaller parts. IS_ENABLED(CONFIG_I915) is
-> always true when building both Xe and i915.
+> =C2=A0drivers/gpu/drm/xe/xe_sync.c | 8 --------
+> =C2=A0drivers/gpu/drm/xe/xe_sync.h | 1 -
+> =C2=A02 files changed, 9 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_sync.c
+> b/drivers/gpu/drm/xe/xe_sync.c
+> index aab92bee1d7c..da8799bf7237 100644
+> --- a/drivers/gpu/drm/xe/xe_sync.c
+> +++ b/drivers/gpu/drm/xe/xe_sync.c
+> @@ -198,14 +198,6 @@ int xe_sync_entry_parse(struct xe_device *xe,
+> struct xe_file *xef,
+> =C2=A0	return 0;
+> =C2=A0}
+> =C2=A0
+> -int xe_sync_entry_wait(struct xe_sync_entry *sync)
+> -{
+> -	if (sync->fence)
+> -		dma_fence_wait(sync->fence, true);
+> -
+> -	return 0;
+> -}
+> -
+> =C2=A0int xe_sync_entry_add_deps(struct xe_sync_entry *sync, struct
+> xe_sched_job *job)
+> =C2=A0{
+> =C2=A0	int err;
+> diff --git a/drivers/gpu/drm/xe/xe_sync.h
+> b/drivers/gpu/drm/xe/xe_sync.h
+> index f43cdcaca6c5..8c231ce643c4 100644
+> --- a/drivers/gpu/drm/xe/xe_sync.h
+> +++ b/drivers/gpu/drm/xe/xe_sync.h
+> @@ -22,7 +22,6 @@ int xe_sync_entry_parse(struct xe_device *xe,
+> struct xe_file *xef,
+> =C2=A0			struct xe_sync_entry *sync,
+> =C2=A0			struct drm_xe_sync __user *sync_user,
+> =C2=A0			unsigned int flags);
+> -int xe_sync_entry_wait(struct xe_sync_entry *sync);
+> =C2=A0int xe_sync_entry_add_deps(struct xe_sync_entry *sync,
+> =C2=A0			=C2=A0=C2=A0 struct xe_sched_job *job);
+> =C2=A0void xe_sync_entry_signal(struct xe_sync_entry *sync,
 
-Please ignore the checkpatch warning in this case.
-
-BR,
-Jani.
-
->
->  .../gpu/drm/i915/display/skl_universal_plane.c  | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index e941e2e4fd14..7e0a7283d01d 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -2283,6 +2283,15 @@ static bool gen12_plane_has_mc_ccs(struct drm_i915_private *i915,
->  	return plane_id < PLANE_SPRITE4;
->  }
->  
-> +static bool running_on_i915(void)
-> +{
-> +#ifdef I915
-> +	return true;
-> +#else
-> +	return false;
-> +#endif
-> +}
-> +
->  static u8 skl_get_plane_caps(struct drm_i915_private *i915,
->  			     enum pipe pipe, enum plane_id plane_id)
->  {
-> @@ -2295,6 +2304,14 @@ static u8 skl_get_plane_caps(struct drm_i915_private *i915,
->  	if (HAS_4TILE(i915))
->  		caps |= INTEL_PLANE_CAP_TILING_4;
->  
-> +	/*
-> +	 * FIXME: Below if(running_on_i915()..) is because Xe driver
-> +	 * can't use AuxCCS framebuffers. Once they are fixed this need to be
-> +	 * removed.
-> +	 */
-> +	if (!running_on_i915() && !HAS_FLAT_CCS(i915))
-> +		return caps;
-> +
->  	if (skl_plane_has_rc_ccs(i915, pipe, plane_id)) {
->  		caps |= INTEL_PLANE_CAP_CCS_RC;
->  		if (DISPLAY_VER(i915) >= 12)
-
--- 
-Jani Nikula, Intel
