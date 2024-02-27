@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC85BC54798
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Feb 2024 21:00:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7008C5478C
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Feb 2024 21:00:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 871FE10E21C;
-	Tue, 27 Feb 2024 21:00:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 599C910E4EF;
+	Tue, 27 Feb 2024 21:00:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nhxqhSbD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FNWniD1z";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCB5210E21C
- for <intel-xe@lists.freedesktop.org>; Tue, 27 Feb 2024 21:00:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A47BC10E4B4
+ for <intel-xe@lists.freedesktop.org>; Tue, 27 Feb 2024 21:00:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709067618; x=1740603618;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=RE/r0QBlJkpfsDcdAyyvBwd5gHrITMQLec9sLSeOxDo=;
- b=nhxqhSbDiBp972rNAyv08Ln4t9PLnmkQgDaICHyWe3Tuye5TMSmUjS1o
- 6Qxr5l0faIRc18FVnVTWur+nxzsBnbXzDoOKjDZzxUvXtqo39WCg9J9GF
- 7TL8h2Hu5YeXD+gPErhybN/mJIsR25tXhEkz+PHrtT+bDN3JAC7p25LXi
- vKjXtzq+NIRshzUGUQ5NWzy5rkamGpxId/WOU1p9Vy9lS8KN+jCnE6727
- 20ziw6YPpQGb6BmA9sE4Dvda466O/rl3RYRe0VeeuQrsiQlpI8t8PJ8gN
- AUS1ttYSdneEiCeONHDRZvuKnnN8W3cZvDtIhLk8w0so9/u6aMoqCNETc w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="14858443"
-X-IronPort-AV: E=Sophos;i="6.06,188,1705392000"; d="scan'208";a="14858443"
+ t=1709067621; x=1740603621;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=AIkMM1NMy91FDgmfFFaJ0HxHDsRelsqEiKUcFIg+iw8=;
+ b=FNWniD1zrr9PoKOCcGiMrAj2+KWZxw26DhT1sCDcBpk1XLKobm7brJhV
+ 3+AryNna8+FNQaKdowZN+ucUXMUPk9ldGBt127k7WLu+0uMi7TPOzVTEM
+ ZZUeZY8+V8LHBl+x94LbvW7aqCrzWx/MKYa6K9LV1dIRbMZWINU5Mr4zY
+ PuMlJs1svdmB7waivjv8BwTlIqSS55WC3Jb0x1UXink0zXcge3Pd6Xrbt
+ fu2AAE8UWrrI3qnUSn/dD/ew+EWfKMQzZ7OefaPeKA9ipSroQ8yFKEIZq
+ 4/13L78axYeqJmZGYlnteq0I4JRE7N3eHIzuDowEWhzsqdKiFPvlBVD9U g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="14858451"
+X-IronPort-AV: E=Sophos;i="6.06,188,1705392000"; d="scan'208";a="14858451"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2024 13:00:17 -0800
+ 27 Feb 2024 13:00:21 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,188,1705392000"; 
-   d="scan'208";a="7150405"
+   d="scan'208";a="7150425"
 Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2024 13:00:14 -0800
+ 27 Feb 2024 13:00:19 -0800
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: linux-kernel@vger.kernel.org,
 	intel-xe@lists.freedesktop.org
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Mukesh Ojha <quic_mojha@quicinc.com>,
- Johannes Berg <johannes@sipsolutions.net>,
  Jonathan Cavitt <jonathan.cavitt@intel.com>,
  =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Subject: [PATCH 1/4] devcoredump: Add dev_coredump_put()
-Date: Tue, 27 Feb 2024 13:00:05 -0800
-Message-ID: <20240227210008.182904-1-jose.souza@intel.com>
+Subject: [PATCH 3/4] drm/xe: Remove devcoredump during driver release
+Date: Tue, 27 Feb 2024 13:00:07 -0800
+Message-ID: <20240227210008.182904-3-jose.souza@intel.com>
 X-Mailer: git-send-email 2.44.0
+In-Reply-To: <20240227210008.182904-1-jose.souza@intel.com>
+References: <20240227210008.182904-1-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -67,77 +67,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is useful for drivers that don't want to keep a coredump
-available after unloading.
-Otherwise, the coredump would only be removed after DEVCD_TIMEOUT
-seconds.
+This will remove devcoredump from file system and free its resources
+during driver unload.
+
+This fix the driver unload after gpu hang happened, otherwise this
+it would report that Xe KMD is still in use and it would leave the
+kernel in a state that Xe KMD can't be unload without a reboot.
 
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Mukesh Ojha <quic_mojha@quicinc.com>
-Cc: Johannes Berg <johannes@sipsolutions.net>
 Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
 Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/base/devcoredump.c  | 22 ++++++++++++++++++++++
- include/linux/devcoredump.h |  5 +++++
- 2 files changed, 27 insertions(+)
+ drivers/gpu/drm/xe/xe_devcoredump.c | 13 ++++++++++++-
+ drivers/gpu/drm/xe/xe_devcoredump.h |  5 +++++
+ drivers/gpu/drm/xe/xe_device.c      |  4 ++++
+ 3 files changed, 21 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/base/devcoredump.c b/drivers/base/devcoredump.c
-index 7e2d1f0d903a6..e96427411b87c 100644
---- a/drivers/base/devcoredump.c
-+++ b/drivers/base/devcoredump.c
-@@ -304,6 +304,28 @@ static ssize_t devcd_read_from_sgtable(char *buffer, loff_t offset,
- 				  offset);
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index 68d3d623a05bf..3fef81396fe8a 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -9,6 +9,8 @@
+ #include <linux/devcoredump.h>
+ #include <generated/utsrelease.h>
+ 
++#include <drm/drm_managed.h>
++
+ #include "xe_device.h"
+ #include "xe_exec_queue.h"
+ #include "xe_force_wake.h"
+@@ -231,5 +233,14 @@ void xe_devcoredump(struct xe_sched_job *job)
+ 	dev_coredumpm(xe->drm.dev, THIS_MODULE, coredump, 0, GFP_KERNEL,
+ 		      xe_devcoredump_read, xe_devcoredump_free);
  }
+-#endif
  
-+/**
-+ * dev_coredump_put - remove device coredump
-+ * @dev: the struct device for the crashed device
-+ *
-+ * If giving device has a coredump this removes it from file system and free
-+ * associated data otherwise does nothing.
-+ * This is useful for drivers that don't want to keep a coredump
-+ * available after unloading.
-+ */
-+void dev_coredump_put(struct device *dev)
++static void xe_driver_devcoredump_fini(struct drm_device *drm, void *arg)
 +{
-+	struct device *existing;
-+
-+	existing = class_find_device(&devcd_class, NULL, dev,
-+				     devcd_match_failing);
-+	if (existing) {
-+		devcd_free(existing, NULL);
-+		put_device(existing);
-+	}
++	dev_coredump_put(drm->dev);
 +}
-+EXPORT_SYMBOL_GPL(dev_coredump_put);
 +
- /**
-  * dev_coredumpm - create device coredump with read/free methods
-  * @dev: the struct device for the crashed device
-diff --git a/include/linux/devcoredump.h b/include/linux/devcoredump.h
-index c008169ed2c6f..c8f7eb6cc1915 100644
---- a/include/linux/devcoredump.h
-+++ b/include/linux/devcoredump.h
-@@ -63,6 +63,8 @@ void dev_coredumpm(struct device *dev, struct module *owner,
++int xe_devcoredump_init(struct xe_device *xe)
++{
++	return drmm_add_action_or_reset(&xe->drm, xe_driver_devcoredump_fini, xe);
++}
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.h b/drivers/gpu/drm/xe/xe_devcoredump.h
+index df8671f0b5eb2..9eba67f37234f 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.h
++++ b/drivers/gpu/drm/xe/xe_devcoredump.h
+@@ -11,10 +11,15 @@ struct xe_sched_job;
  
- void dev_coredumpsg(struct device *dev, struct scatterlist *table,
- 		    size_t datalen, gfp_t gfp);
-+
-+void dev_coredump_put(struct device *dev);
+ #ifdef CONFIG_DEV_COREDUMP
+ void xe_devcoredump(struct xe_sched_job *job);
++int xe_devcoredump_init(struct xe_device *xe);
  #else
- static inline void dev_coredumpv(struct device *dev, void *data,
- 				 size_t datalen, gfp_t gfp)
-@@ -85,6 +87,9 @@ static inline void dev_coredumpsg(struct device *dev, struct scatterlist *table,
+ static inline void xe_devcoredump(struct xe_sched_job *job)
  {
- 	_devcd_free_sgtable(table);
  }
-+static inline void dev_coredump_put(struct device *dev)
++static inline int xe_devcoredump_init(struct xe_device *xe)
 +{
++	return 0;
 +}
- #endif /* CONFIG_DEV_COREDUMP */
+ #endif
  
- #endif /* __DEVCOREDUMP_H */
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 919ad88f0495a..22be76537c7da 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -20,6 +20,7 @@
+ #include "regs/xe_regs.h"
+ #include "xe_bo.h"
+ #include "xe_debugfs.h"
++#include "xe_devcoredump.h"
+ #include "xe_dma_buf.h"
+ #include "xe_drm_client.h"
+ #include "xe_drv.h"
+@@ -502,6 +503,9 @@ int xe_device_probe(struct xe_device *xe)
+ 			return err;
+ 	}
+ 
++	err = xe_devcoredump_init(xe);
++	if (err)
++		return err;
+ 	err = drmm_add_action_or_reset(&xe->drm, xe_driver_flr_fini, xe);
+ 	if (err)
+ 		return err;
 -- 
 2.44.0
 
