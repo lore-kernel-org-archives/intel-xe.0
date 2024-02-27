@@ -4,27 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 068AAC54798
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Feb 2024 21:19:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8F9FC54798
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Feb 2024 21:23:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C301110E3A1;
-	Tue, 27 Feb 2024 21:19:41 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BF6310E387;
- Tue, 27 Feb 2024 21:19:41 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D86A10E415;
+	Tue, 27 Feb 2024 21:23:34 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="Er9y5KP8";
+	dkim-atps=neutral
+Received: from mail-io1-f48.google.com (mail-io1-f48.google.com
+ [209.85.166.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17DB310E3A1
+ for <intel-xe@lists.freedesktop.org>; Tue, 27 Feb 2024 21:23:31 +0000 (UTC)
+Received: by mail-io1-f48.google.com with SMTP id
+ ca18e2360f4ac-7bff8f21b74so45635839f.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 27 Feb 2024 13:23:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linuxfoundation.org; s=google; t=1709069011; x=1709673811;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=DbGdkLlpvK16N0hfZoWh5Gw9/QwXnepLBQjOEcjQHHM=;
+ b=Er9y5KP8iZWR2QMkOSp+CsGIyi3SFUPAOlx94TyEP+xtc20pzUpAYjlK22fSmYROTQ
+ 4dqYp2LYlqU6g11rqkUf/PQ5p0deN6QJnZ25iUdUoLPgtIVQf5oDaqzzqBciTiepAZvE
+ OkGJwZhK7cmpF+QdaipU6RY6SvaLjFrRdF2fQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1709069011; x=1709673811;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=DbGdkLlpvK16N0hfZoWh5Gw9/QwXnepLBQjOEcjQHHM=;
+ b=aOYiGPdQ/iqvIb4JiQFBHJJWydAZpvKUqT7deGmipYkvm8Mq4Q4G5AUCr4DVb3xQ5f
+ KCVLQPcmYFg+BTrTKo/ldYTCb4cIgUDza84/61dn5gO0Sa2TrGmz3ONzjMK0K6tKS+Yv
+ 8iJcWwKaLsyIOAVQZOAi53LChUZRYZYvvmSmOOJObveEK7wVp0e0RmL1eRPedA7eKhXo
+ VjAkD5qDQOWac36yN1VKSPlm9gB4022G7WdBE7o732btTwddYb9mWMlzw1RcQkkaQq5s
+ LC1UVr3xmnYMtAc17KFKAk23srCGFipj1hrhCViXw95nqH/a8G1DDHEGHJLFfWPwAc6r
+ vzYg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCULb8E/pq5bfH1wtyubA0ORljnoU53l9CR2oUws2PIeSDVUjnDADbIjnsf9sRtL/H7nr7io2kAwjabcdZwdWrAwvoWyP4GzmKJ3ZqXEXi0=
+X-Gm-Message-State: AOJu0YzwsHrYgcbhfZ77wIGsv18GpE2a5yisg7kyQA/IsS344rulmaBJ
+ fWvay7eSZ7/RUhvLzE3qDraUD1MDDGf1h2PNdcQF/sFgukRH9GXhryo8DX3tJJE=
+X-Google-Smtp-Source: AGHT+IFc3RgJRdGVkP2NPs5Y/GfM+e2c3LeD0bxO2noPvCmHIWJaDhFOLsvOZQ0IljP20IzU/UY25Q==
+X-Received: by 2002:a05:6e02:214d:b0:365:3fb7:f77 with SMTP id
+ d13-20020a056e02214d00b003653fb70f77mr11217673ilv.3.1709069010744; 
+ Tue, 27 Feb 2024 13:23:30 -0800 (PST)
+Received: from [192.168.1.128] ([38.175.170.29])
+ by smtp.gmail.com with ESMTPSA id
+ bf19-20020a056e02309300b0036524b8c632sm2413353ilb.0.2024.02.27.13.23.29
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 27 Feb 2024 13:23:30 -0800 (PST)
+Message-ID: <56680d34-59f1-460c-a835-f1258abf4569@linuxfoundation.org>
+Date: Tue, 27 Feb 2024 14:23:29 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/9] rtc: test: Fix invalid format specifier.
+Content-Language: en-US
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ David Gow <davidgow@google.com>
+Cc: Linus Torvalds <torvalds@linux-foundation.org>,
+ Guenter Roeck <linux@roeck-us.net>, Rae Moar <rmoar@google.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Kees Cook <keescook@chromium.org>, =?UTF-8?Q?Ma=C3=ADra_Canal?=
+ <mcanal@igalia.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Willem de Bruijn <willemb@google.com>, Florian Westphal <fw@strlen.de>,
+ Cassio Neri <cassio.neri@gmail.com>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Arthur Grillo <arthur.grillo@usp.br>,
+ Brendan Higgins <brendan.higgins@linux.dev>,
+ Daniel Latypov <dlatypov@google.com>, Stephen Boyd <sboyd@kernel.org>,
+ David Airlie <airlied@gmail.com>, Maxime Ripard <mripard@kernel.org>,
+ "David S . Miller" <davem@davemloft.net>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ linux-rtc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ kunit-dev@googlegroups.com, linux-hardening@vger.kernel.org,
+ netdev@vger.kernel.org, Shuah Khan <skhan@linuxfoundation.org>
+References: <20240221092728.1281499-1-davidgow@google.com>
+ <20240221092728.1281499-6-davidgow@google.com>
+ <20240227203243070e7d85@mail.local>
+From: Shuah Khan <skhan@linuxfoundation.org>
+In-Reply-To: <20240227203243070e7d85@mail.local>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_series_starting_with_=5B?=
- =?utf-8?q?1/4=5D_devcoredump=3A_Add_dev=5Fcoredump=5Fput=28=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 Feb 2024 21:19:41 -0000
-Message-ID: <170906878151.351698.15441722961368436902@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240227210008.182904-1-jose.souza@intel.com>
-In-Reply-To: <20240227210008.182904-1-jose.souza@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +100,27 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 2/27/24 13:32, Alexandre Belloni wrote:
+> Hello,
+> 
+> On 21/02/2024 17:27:18+0800, David Gow wrote:
+>> 'days' is a s64 (from div_s64), and so should use a %lld specifier.
+>>
+>> This was found by extending KUnit's assertion macros to use gcc's
+>> __printf attribute.
+>>
+>> Fixes: 1d1bb12a8b18 ("rtc: Improve performance of rtc_time64_to_tm(). Add tests.")
+>> Signed-off-by: David Gow <davidgow@google.com>
+> 
+> Who do you expect to take this patch?
+> 
 
-Series: series starting with [1/4] devcoredump: Add dev_coredump_put()
-URL   : https://patchwork.freedesktop.org/series/130459/
-State : success
+I am going to be applying this series to linux-kselftest kunit next
+in just a bit. Would you like to ack the pacth?
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 0d7a78693be62a8d1cd311376815b89b18de8204
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+thanks,
+-- Shuah
 
