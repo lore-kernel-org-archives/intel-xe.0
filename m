@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F047C5478C
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Feb 2024 12:27:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB7FDC5478C
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Feb 2024 12:32:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F00A710E664;
-	Wed, 28 Feb 2024 12:27:58 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KB3pClLY";
-	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62C4F10E40C;
- Wed, 28 Feb 2024 12:27:57 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 7FAC760ED6;
- Wed, 28 Feb 2024 12:27:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9966DC433F1;
- Wed, 28 Feb 2024 12:27:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1709123276;
- bh=zJkyW1REgGcoo5I8xkc1mIm72bDArJYrzYMZkYH4CyE=;
- h=From:To:Cc:Subject:Date:From;
- b=KB3pClLY5dKCrRpGkbtavnPw1utKoKmS/kX8Uohz+oFYrGvdIXg7tvVk9Lo3h4EPc
- o4WcwGJbOcn6pnyqzT8vd426E4eA4utqcx7B8E0ROL0jzRyCFio6LBB0NIz0D7P6eu
- viaQgw14TQFfcg1FWjm6Y9dJ5SRqTIxPBpRKoHbEvPaHmfyUkAEIc705MRY75IygYF
- dMoM0tMEA9lvhHulq+bxGtvhC4FTBru8fhQdvr+AfJfTZLQUHqmQKLSwoKHCJ9i+gl
- H5zL9urT2k/1YO97uS8YF4FSObxmPm4j8S7Vp0IP+wgfm3c730fy93NH5l4IaDS+V+
- n0L4ar7Z6GNyw==
-From: Arnd Bergmann <arnd@kernel.org>
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: Arnd Bergmann <arnd@arndb.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] xe: avoid using writeq() on 32-bit
-Date: Wed, 28 Feb 2024 13:27:33 +0100
-Message-Id: <20240228122746.3091608-1-arnd@kernel.org>
-X-Mailer: git-send-email 2.39.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40A0910E860;
+	Wed, 28 Feb 2024 12:32:27 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A8DC10E7FC;
+ Wed, 28 Feb 2024 12:32:26 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_xe=3A_avoid_using_wr?=
+ =?utf-8?q?iteq=28=29_on_32-bit?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arnd Bergmann" <arnd@kernel.org>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 28 Feb 2024 12:32:26 -0000
+Message-ID: <170912354643.368864.6829634559330066007@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240228122746.3091608-1-arnd@kernel.org>
+In-Reply-To: <20240228122746.3091608-1-arnd@kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,42 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Arnd Bergmann <arnd@arndb.de>
+== Series Details ==
 
-32-bit kernels do not provide a writeq(), failing the build:
+Series: xe: avoid using writeq() on 32-bit
+URL   : https://patchwork.freedesktop.org/series/130494/
+State : success
 
-drivers/gpu/drm/xe/xe_ggtt.c:78:2: error: use of undeclared identifier 'writeq'
-   78 |         writeq(pte, &ggtt->gsm[addr >> XE_PTE_SHIFT]);
+== Summary ==
 
-Using lo_hi_writeq() instead will write the lower 32 bits to the address
-before writing the upper 32 bits to the following word, which is likely
-the correct replacement to do on 32-bit targets.
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: bef66e9b0047 drm-tip: 2024y-02m-28d-11h-18m-27s UTC integration manifest
+=== git am output follows ===
+Applying: xe: avoid using writeq() on 32-bit
 
-Include the linux/io-64-nonatomic-lo-hi.h header to automatically pick
-the regular writeq() on 64-bit machines but fall back to lo_hi_writeq()
-on 32-bit ones.
-
-Fixes: 237412e45390 ("drm/xe: Enable 32bits build")
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
----
- drivers/gpu/drm/xe/xe_ggtt.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 5d46958e3144..1ffcc63ca86d 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -6,6 +6,7 @@
- #include "xe_ggtt.h"
- 
- #include <linux/sizes.h>
-+#include <linux/io-64-nonatomic-lo-hi.h>
- 
- #include <drm/drm_managed.h>
- #include <drm/i915_drm.h>
--- 
-2.39.2
 
