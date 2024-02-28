@@ -4,57 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0737BC47DD9
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Feb 2024 11:02:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E070EC5478C
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Feb 2024 12:27:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E42A10E330;
-	Wed, 28 Feb 2024 11:02:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D3AC10E40C;
+	Wed, 28 Feb 2024 12:27:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mYifyglH";
+	dkim=pass (2048-bit key; unprotected) header.d=arndb.de header.i=@arndb.de header.b="hTJOvhKL";
+	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="LwGTjde4";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9380510E330;
- Wed, 28 Feb 2024 11:02:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709118155; x=1740654155;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=6qUCxmFbflDlJlXRfbHoHUwRdpCmzb5lDTHq3HFZwtU=;
- b=mYifyglH1Olp1V5IhE8SolIWM959Hd/pEteIYOKlNndxugEDrxVhZov1
- hfMGVsfjhGSDxAXvX4YSDYp3TZM2wUM3QnROSxlCUqDYTBQG24+0TYc2n
- qIAOoiNYGJnx5bwbI3LCZtaj+lOVSCw09bPQqAYzkIkuM4TbyGOs18wxO
- 2e+IgbuCgf3ZEgBHG45FkNoEfPpBoNWJie+k21h+dOc3cLvL9rU1rcYiA
- nQTIp8iZnNcK3WUSYmMIFzKBTSYBJrsAnyR7SgrdMjvP4kob0Xt8GVony
- eJBQg70HVawZ86JH11WV6N+GSDT9Q0avYKKURDhk4mVeMw6QSOHuHhUaH Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="25976973"
-X-IronPort-AV: E=Sophos;i="6.06,190,1705392000"; d="scan'208";a="25976973"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2024 03:02:34 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,190,1705392000"; 
-   d="scan'208";a="7336043"
-Received: from tmelzer-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.32.33])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2024 03:02:29 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Colin Ian King <colin.i.king@gmail.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
- <tvrtko.ursulin@linux.intel.com>, David Airlie <airlied@gmail.com>, Daniel
- Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH][next] drm/i915/dp: Fix spelling mistake "redect" ->
- "reject"
-In-Reply-To: <20240228092042.4125617-1-colin.i.king@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240228092042.4125617-1-colin.i.king@gmail.com>
-Date: Wed, 28 Feb 2024 13:02:26 +0200
-Message-ID: <87bk80am2l.fsf@intel.com>
+Received: from fhigh4-smtp.messagingengine.com
+ (fhigh4-smtp.messagingengine.com [103.168.172.155])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 140FC10E40C;
+ Wed, 28 Feb 2024 12:27:06 +0000 (UTC)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+ by mailfhigh.nyi.internal (Postfix) with ESMTP id EC53811400B2;
+ Wed, 28 Feb 2024 07:27:05 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+ by compute5.internal (MEProxy); Wed, 28 Feb 2024 07:27:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+ :cc:content-type:content-type:date:date:from:from:in-reply-to
+ :in-reply-to:message-id:mime-version:references:reply-to:subject
+ :subject:to:to; s=fm3; t=1709123225; x=1709209625; bh=NvXreyBpDp
+ tssmYJWYfiUdp7AMo/Vkt6KKjFpA50xek=; b=hTJOvhKLUIRULLUpBy0nU4WxD2
+ LNOikhUWSV4dZ4K3XVFdwx5vFRUFtZhPKQMmSHGL3Em9BZefNI3opWoomZPO3cuK
+ dDti8ZykaispBUIihQCaJJISsMBcoIyFqI3PqldO2FQq2mlg26qawbG8jV3233Gi
+ WWth2SR68Ao6/iSuYfCkP9+Q+HGAp8dI/T2c6uF8GjM0G0uXqT9oPVrnDo0Bxx5e
+ Ymy3TBza9zjNR2Kn21fkUgQBGXph0bqUtouo2CYPAPT2kcWVbz1Ls8JktvoSaHcs
+ 8SZJcFjB4rWjBUfzzyyMg+Iz4isKniR4+H8ldpQRWVdxWAyzAD5NApKmZhow==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:content-type:date:date
+ :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:subject:subject:to
+ :to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm1; t=1709123225; x=1709209625; bh=NvXreyBpDptssmYJWYfiUdp7AMo/
+ Vkt6KKjFpA50xek=; b=LwGTjde4yuDMXoy0vchb84skXNMkqtmVTCm4LsaKwi+W
+ Ra0vJ3LHJNQ396P+w5maIIV6OxDj+d69cLuJ3mF8oKsyaZOLe5hE76qBFJWwf8bk
+ ADN88i7s8Wlj9jV6NdQ2hLd3c/T14apsWfCYrjvE0oIfKDiq6R0xoaSUtXaPOkxD
+ gSrHgruCyj/CyM1SwPogTKUj8cKX2A9K32AcpRBIA3qpjf5SrphJLJslgxmRjO2y
+ 3nCmfbuObMgjR7HYByPZbVeMG07ys4UMs5YooF+vMUtHTm2ayj+FtyhyTqMTsDcK
+ 3lPn8TRYIKeymhPmVHjkePj3DoKJwHDbEvQg8BL8uw==
+X-ME-Sender: <xms:mSbfZZQuIwMkl6tnbBxHGj0eIpl4i43TVltp0-45yGCPjW_K5pbG0Q>
+ <xme:mSbfZSzpOYJkm3U5uhSkWAYY5WOZ1e3bATNd_yggZmjGNcjqPYbH17cTcQwmfydYo
+ NXtg8T1IMYH8nMO_Uk>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrgeejgdefiecutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
+ ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
+ gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
+ ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
+ hnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:mSbfZe0nFo7etxjN5tiz5X-sskqp_-8Y4zmh7qmJAzhw64qDOQwmgw>
+ <xmx:mSbfZRBarQB6eEKB82mrB9aI0M7u43KL-jzPUbafWLhHf8GK66OSUA>
+ <xmx:mSbfZSh9vSvBFLtoVDuIMgMwveJBnRhOH9jffZ-khp40oO_VTWFZIA>
+ <xmx:mSbfZS6u1fwf3B3fgkKLB_bwvXKxE3IHgr0IV0X-4_8et7Kh09ohSw>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+ id 2B6F2B6008D; Wed, 28 Feb 2024 07:27:05 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.11.0-alpha0-182-gaab6630818-fm-20240222.002-gaab66308
 MIME-Version: 1.0
+Message-Id: <0c6127da-53d8-4c37-8337-e64e3e91bbaf@app.fastmail.com>
+In-Reply-To: <kq3cpbz4ctqvfhtlh7f7wxd7ub3izdjovhv2jqkjasre7u6y2k@exaw42ber3f6>
+References: <20240226124736.1272949-1-arnd@kernel.org>
+ <20240226124736.1272949-3-arnd@kernel.org>
+ <kq3cpbz4ctqvfhtlh7f7wxd7ub3izdjovhv2jqkjasre7u6y2k@exaw42ber3f6>
+Date: Wed, 28 Feb 2024 13:26:29 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>,
+ "Arnd Bergmann" <arnd@kernel.org>
+Cc: "Oded Gabbay" <ogabbay@kernel.org>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
+ "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "Dave Airlie" <airlied@gmail.com>, 
+ "Daniel Vetter" <daniel@ffwll.ch>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
+ "Matt Roper" <matthew.d.roper@intel.com>,
+ "Matthew Brost" <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] [v2] drm/xe/xe2: fix 64-bit division in
+ pte_update_size
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,33 +100,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 28 Feb 2024, Colin Ian King <colin.i.king@gmail.com> wrote:
-> There is a spelling mistake in a drm_dbg_kms message. Fix it.
+On Mon, Feb 26, 2024, at 17:40, Lucas De Marchi wrote:
+> On Mon, Feb 26, 2024 at 01:46:38PM +0100, Arnd Bergmann wrote:
+>>
+>>Fixes: 237412e45390 ("drm/xe: Enable 32bits build")
+>>Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+>>---
+>>v2: use correct Fixes tag
 >
-> Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+> but what about the other comment? How are we supposed to use
+> DIV_ROUND_UP() but then in some places (which?) have to open code it?
 
-Pushed to drm-intel-next, thanks for the patch.
+The problem is not DIV_ROUND_UP() but the division but the 64-bit
+division itself. There is a DIV_ROUND_UP_ULL() macro that would
+address the build failure as well, but doing the shift is much
+more efficient here since it can be done in a couple of instructions.
 
-BR,
-Jani.
+> What compiler does this fail on?
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_tunnel.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+I saw it with clang-19 on 32-bit arm, but I assume it happens
+on others as well.
+
+>> drivers/gpu/drm/xe/xe_migrate.c | 2 +-
+>> 1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>>diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+>>index a66fdf2d2991..ee1bb938c493 100644
+>>--- a/drivers/gpu/drm/xe/xe_migrate.c
+>>+++ b/drivers/gpu/drm/xe/xe_migrate.c
+>>@@ -462,7 +462,7 @@ static u32 pte_update_size(struct xe_migrate *m,
+>> 	} else {
+>> 		/* Clip L0 to available size */
+>> 		u64 size = min(*L0, (u64)avail_pts * SZ_2M);
+>>-		u64 num_4k_pages = DIV_ROUND_UP(size, XE_PAGE_SIZE);
+>>+		u32 num_4k_pages = (size + XE_PAGE_SIZE - 1) >> XE_PTE_SHIFT;
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_tunnel.c b/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
-> index 75d76f91ecbd..6503abdc2b98 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
-> @@ -348,7 +348,7 @@ void intel_dp_tunnel_resume(struct intel_dp *intel_dp,
->  
->  out_err:
->  	drm_dbg_kms(&i915->drm,
-> -		    "[DPTUN %s][CONNECTOR:%d:%s][ENCODER:%d:%s] Tunnel can't be resumed, will drop and redect it (err %pe)\n",
-> +		    "[DPTUN %s][CONNECTOR:%d:%s][ENCODER:%d:%s] Tunnel can't be resumed, will drop and reject it (err %pe)\n",
->  		    drm_dp_tunnel_name(intel_dp->tunnel),
->  		    connector->base.base.id, connector->base.name,
->  		    encoder->base.base.id, encoder->base.name,
+> also the commit message doesn't seem to match the patch as you are only
+> changing one instance.
 
--- 
-Jani Nikula, Intel
+Not sure what you mean. As I wrote in the changelog, the
+second instance is fixed by using a 32-bit division here,
+which does not cause link failures.
+
+      Arnd
