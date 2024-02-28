@@ -4,79 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14388C47DD9
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Feb 2024 14:37:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 472D9C54E49
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Feb 2024 14:37:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEDE810E6A0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AD8D10E673;
 	Wed, 28 Feb 2024 14:37:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="NG/D2gkU";
+	dkim=pass (2048-bit key; unprotected) header.d=salutedevices.com header.i=@salutedevices.com header.b="qLatxXAR";
 	dkim-atps=neutral
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 040D910E1E6
- for <intel-xe@lists.freedesktop.org>; Wed, 28 Feb 2024 08:27:23 +0000 (UTC)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id
- 41S4twrA021683; Wed, 28 Feb 2024 08:27:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
- message-id:date:mime-version:subject:to:cc:references:from
- :in-reply-to:content-type:content-transfer-encoding; s=
- qcppdkim1; bh=wsEWQ3QUsZVhNCo9dRnsW5c+SXw+Ssb7NEUatGHZr1E=; b=NG
- /D2gkUp8QlKzRMom6zUZtV+2rmAS6wkjF+M1zpwHJOdRyJ1rk2a2MonL1U/o2WO2
- ylmfg+ToR4mEgint8C9ADPry+LQb2c2QztXXEagaUWGQK2JLHhCXhU2HP/Ye2y5/
- be2rw4JjTEpWaMyqzj/Ssu1/j23cdt45UzQOQUXchoqTr6o5rtALdWjkINAhDvqb
- 7V9s5zHtGa87yiN8eGdx5/mB62hr+uM/yYnYh7ZQ8BCBfKtz1a4IyH7UperLJgv+
- jn2NH57Z4RcKJoUiJKl6665jtxW0FiWIOWEOYO5XzXTAfffLQdMtqUTQkGESR6dx
- ktvRdz5HuW+hZSB3PMvQ==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com
- [199.106.103.254])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3whtbw8r94-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 28 Feb 2024 08:27:21 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com
- [10.45.79.139])
- by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41S8QxO8010087
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 28 Feb 2024 08:26:59 GMT
-Received: from [10.214.66.81] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 28 Feb
- 2024 00:26:57 -0800
-Message-ID: <27b24aa4-f5d8-0936-051d-59f298da2315@quicinc.com>
-Date: Wed, 28 Feb 2024 13:56:53 +0530
+X-Greylist: delayed 499 seconds by postgrey-1.36 at gabe;
+ Wed, 28 Feb 2024 00:35:27 UTC
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8FBC10E228;
+ Wed, 28 Feb 2024 00:35:27 +0000 (UTC)
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+ by mx1.sberdevices.ru (Postfix) with ESMTP id 8814D120031;
+ Wed, 28 Feb 2024 03:27:05 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 8814D120031
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+ s=mail; t=1709080025;
+ bh=WFSesTI6AKgWxIyZBgA4VNH7+YIxoCmy6FNQCkaJmb8=;
+ h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+ b=qLatxXAR7X400BA7yaSZOrZmgm+u/ztJ9pmTDuq1aWYlIaFhx4RHUzNm34Hn6N123
+ J5r/Yp1/TUxsLcoIts/B87901veNCOud1mqfa+skmLc2DFccMlynrXmoxMiCzjqpLt
+ 7W8GUIA3LZrvC7hvMPkaCumqFnNmXjpRez5vlLIkvS9nEdDlHx6YUwvK2Gn1nXrbHb
+ 6D7FSaAI0Cqp7qKt3ACruZAQWJFjqTnEU1yEb3fzaBl7ONsRHrfm1+SEc3pLGPor64
+ eOQcEzSdFyXqSNArd2DPIWd72YvRUPsj/kzBKOVIq8qxYeyQFExUjB6sn9Prff3+eU
+ bOu79fQjKuyHw==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru
+ [172.16.192.107])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mx1.sberdevices.ru (Postfix) with ESMTPS;
+ Wed, 28 Feb 2024 03:27:05 +0300 (MSK)
+Received: from [192.168.1.143] (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 28 Feb 2024 03:27:04 +0300
+Message-ID: <4cc76f3a-dc64-4146-b8d6-761386a4abde@salutedevices.com>
+Date: Wed, 28 Feb 2024 03:27:04 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 2/4] devcoredump: Add dev_coredump_timeout_set()
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] devm-helpers: Add resource managed version of mutex
+ init
 Content-Language: en-US
-To: =?UTF-8?Q?Jos=c3=a9_Roberto_de_Souza?= <jose.souza@intel.com>,
- <linux-kernel@vger.kernel.org>, <intel-xe@lists.freedesktop.org>
-CC: Rodrigo Vivi <rodrigo.vivi@intel.com>, Johannes Berg
- <johannes@sipsolutions.net>, Jonathan Cavitt <jonathan.cavitt@intel.com>
-References: <20240227210008.182904-1-jose.souza@intel.com>
- <20240227210008.182904-2-jose.souza@intel.com>
-From: Mukesh Ojha <quic_mojha@quicinc.com>
-In-Reply-To: <20240227210008.182904-2-jose.souza@intel.com>
+To: <andy.shevchenko@gmail.com>, =?UTF-8?Q?Marek_Beh=C3=BAn?=
+ <kabel@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>, Matti
+ Vaittinen <mazziesaccount@gmail.com>, Linus Walleij
+ <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Lucas De
+ Marchi <lucas.demarchi@intel.com>, Oded Gabbay <ogabbay@kernel.org>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Aleksandr Mezin
+ <mezin.alexander@gmail.com>, Jean Delvare <jdelvare@suse.com>, Guenter Roeck
+ <linux@roeck-us.net>, Pavel Machek <pavel@ucw.cz>, Lee Jones
+ <lee@kernel.org>, Sebastian Reichel <sre@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, <linux-gpio@vger.kernel.org>,
+ <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-hwmon@vger.kernel.org>, <linux-leds@vger.kernel.org>,
+ <linux-pm@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-mediatek@lists.infradead.org>, "kernel@salutedevices.com"
+ <kernel@salutedevices.com>
+References: <20240222145838.12916-1-kabel@kernel.org>
+ <Zde_s8iecR2ArKjC@surfacebook.localdomain> <20240223132641.3e2ba16c@dellmb>
+From: George Stark <gnstark@salutedevices.com>
+In-Reply-To: <20240223132641.3e2ba16c@dellmb>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
- signatures=585085
-X-Proofpoint-GUID: rCVqc3m1TCZ9raiuZE0_9veRAzXkZTVc
-X-Proofpoint-ORIG-GUID: rCVqc3m1TCZ9raiuZE0_9veRAzXkZTVc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-28_04,2024-02-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 phishscore=0
- suspectscore=0 priorityscore=1501 impostorscore=0 malwarescore=0
- spamscore=0 mlxlogscore=999 lowpriorityscore=0 mlxscore=0 bulkscore=0
- clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2402280066
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 183791 [Feb 27 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.3
+X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7
+ 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Tracking_uf_ne_domains},
+ {Tracking_urls_end_caps}, {Tracking_from_domain_doesnt_match_to},
+ d41d8cd98f00b204e9800998ecf8427e.com:7.1.1; 127.0.0.199:7.1.2;
+ smtp.sberdevices.ru:5.0.1,7.1.1; 100.64.160.123:7.1.2; salutedevices.com:7.1.1;
+ lore.kernel.org:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/02/27 23:49:00
+X-KSMG-LinksScanning: Clean, bases: 2024/02/27 23:49:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960,
+ bases: 2024/02/27 18:14:00 #23853308
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-Mailman-Approved-At: Wed, 28 Feb 2024 14:37:51 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -93,99 +115,52 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-
-On 2/28/2024 2:30 AM, José Roberto de Souza wrote:
-> Add function to set a custom coredump timeout.
+On 2/23/24 15:26, Marek Behún wrote:
+> On Thu, 22 Feb 2024 23:42:11 +0200
+> andy.shevchenko@gmail.com wrote:
 > 
-> Current 5-minute timeout may be too short for users to search and
-> understand what needs to be done to capture coredump to report bugs.
+>> Thu, Feb 22, 2024 at 03:58:37PM +0100, Marek Behún kirjoitti:
+>>> A few drivers are doing resource-managed mutex initialization by
+>>> implementing ad-hoc one-liner mutex dropping functions and using them
+>>> with devm_add_action_or_reset(). Help drivers avoid these repeated
+>>> one-liners by adding managed version of mutex initialization.
+>>>
+>>> Use the new function devm_mutex_init() in the following drivers:
+>>>    drivers/gpio/gpio-pisosr.c
+>>>    drivers/gpio/gpio-sim.c
+>>>    drivers/gpu/drm/xe/xe_hwmon.c
+>>>    drivers/hwmon/nzxt-smart2.c
+>>>    drivers/leds/leds-is31fl319x.c
+>>>    drivers/power/supply/mt6370-charger.c
+>>>    drivers/power/supply/rt9467-charger.c
+>>
+>> Pardon me, but why?
+>>
+>> https://lore.kernel.org/linux-leds/20231214173614.2820929-1-gnstark@salutedevices.com/
+>>
+>> Can you cooperate, folks, instead of doing something independently?
+
+Hello Andy
+
+Thanks for pointing to my patch series
 > 
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Mukesh Ojha <quic_mojha@quicinc.com>
-> Cc: Johannes Berg <johannes@sipsolutions.net>
-> Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
-> ---
->   drivers/base/devcoredump.c  | 23 +++++++++++++++++++++++
->   include/linux/devcoredump.h |  6 ++++++
->   2 files changed, 29 insertions(+)
+> Thanks Andy for pointing to George's patch series.
 > 
-> diff --git a/drivers/base/devcoredump.c b/drivers/base/devcoredump.c
-> index e96427411b87c..2857ceb3eb3aa 100644
-> --- a/drivers/base/devcoredump.c
-> +++ b/drivers/base/devcoredump.c
-> @@ -326,6 +326,29 @@ void dev_coredump_put(struct device *dev)
->   }
->   EXPORT_SYMBOL_GPL(dev_coredump_put);
->   
-> +/**
-> + * dev_coredump_timeout_set - set coredump timeout
-> + * @dev: the struct device for the crashed device
-> + * @secs_timeout: new timeout in seconds
-> + *
-> + * If giving device has a coredump this sets a new timeout for coredump.
-> + */
-> +void dev_coredump_timeout_set(struct device *dev, unsigned long secs_timeout)
-> +{
-> +	struct device *existing;
-> +	struct devcd_entry *devcd;
-> +
-> +	existing = class_find_device(&devcd_class, NULL, dev,
-> +				     devcd_match_failing);
-> +	if (!existing)
-> +		return;
-> +
-> +	devcd = dev_to_devcd(existing);
-> +	mod_delayed_work(system_wq, &devcd->del_wk, HZ * secs_timeout);
-> +	put_device(existing);
-> +}
-> +EXPORT_SYMBOL_GPL(dev_coredump_timeout_set);
+> I can drop the mutex_init() part and add just the debugfs part.
 
-Why don't we provide a new exported function like [1] as calling
-dev_coredumpm() and just another function to configure the timeout
-does not look good.
+Hello Marek
 
-[1]
+I started to propose devm_mutex_init in December 2023. We tried to put 
+it in devm-helpers.h firstly then we came to conclusion that 
+linux/mutex.h would be a better place for it. Now I'm waiting for this 
+series [1] to be merged because my patch depends on it. I'll let you 
+know when I have an update.
 
-dev_coredump_timeout(..., timeout);
-  __dev_coredump_timeout(...);
+[1] 
+https://lore.kernel.org/lkml/20240222150540.79981-2-longman@redhat.com/T/
+> 
+> Marek
 
-dev_coredumpm(..)
-  __dev_coredump_timeout(..., DEVCD_TIMEOUT);
-
-dev_coredumpv()
-  __dev_coredump_timeout(..., DEVCD_TIMEOUT);
-
-dev_coredumpsg()
-   __dev_coredump_timeout(..., DEVCD_TIMEOUT);
-
--Mukesh
-
-> +
->   /**
->    * dev_coredumpm - create device coredump with read/free methods
->    * @dev: the struct device for the crashed device
-> diff --git a/include/linux/devcoredump.h b/include/linux/devcoredump.h
-> index c8f7eb6cc1915..70fe72a5c6d36 100644
-> --- a/include/linux/devcoredump.h
-> +++ b/include/linux/devcoredump.h
-> @@ -65,6 +65,7 @@ void dev_coredumpsg(struct device *dev, struct scatterlist *table,
->   		    size_t datalen, gfp_t gfp);
->   
->   void dev_coredump_put(struct device *dev);
-> +void dev_coredump_timeout_set(struct device *dev, unsigned long secs_timeout);
->   #else
->   static inline void dev_coredumpv(struct device *dev, void *data,
->   				 size_t datalen, gfp_t gfp)
-> @@ -90,6 +91,11 @@ static inline void dev_coredumpsg(struct device *dev, struct scatterlist *table,
->   static inline void dev_coredump_put(struct device *dev)
->   {
->   }
-> +
-> +static inline void dev_coredump_timeout_set(struct device *dev,
-> +					    unsigned long secs_timeout)
-> +{
-> +}
->   #endif /* CONFIG_DEV_COREDUMP */
->   
->   #endif /* __DEVCOREDUMP_H */
+-- 
+Best regards
+George
