@@ -4,26 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFBAFC47DD9
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Feb 2024 06:36:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 493C9C47DD9
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Feb 2024 06:40:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 745B710E4A6;
-	Wed, 28 Feb 2024 06:36:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBB3E10E131;
+	Wed, 28 Feb 2024 06:40:53 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AB7210E4A6;
- Wed, 28 Feb 2024 06:36:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0816287809911962841=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CCE110E567;
+ Wed, 28 Feb 2024 06:40:52 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_XE_HDCP_Enablement_=28rev8=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Refactor_and_fix_moc?=
+ =?utf-8?q?s_live_kunit?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 28 Feb 2024 06:36:37 -0000
-Message-ID: <170910219763.351698.8575724285019130297@8e613ede5ea5>
+Date: Wed, 28 Feb 2024 06:40:52 -0000
+Message-ID: <170910245207.351698.7839761574994633766@8e613ede5ea5>
 X-Patchwork-Hint: ignore
-References: <20240227053204.1748920-1-suraj.kandpal@intel.com>
-In-Reply-To: <20240227053204.1748920-1-suraj.kandpal@intel.com>
+References: <20240228061048.3661978-1-lucas.demarchi@intel.com>
+In-Reply-To: <20240228061048.3661978-1-lucas.demarchi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,102 +40,21 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0816287809911962841==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: XE HDCP Enablement (rev8)
-URL   : https://patchwork.freedesktop.org/series/129457/
+Series: Refactor and fix mocs live kunit
+URL   : https://patchwork.freedesktop.org/series/130474/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-863-269ea0ff7988bc743e1f66a928e778950eabf59c_BAT -> xe-pw-129457v8_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 269ea0ff7988 drm-tip: 2024y-02m-28d-04h-20m-43s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/mocs: Refactor mocs/l3cc loop
+Applying: drm/xe/mocs: Be explicit when logging number of entries
+Applying: drm/xe/mocs: Move warn/assertion up
+Applying: drm/xe/mocs: Allow odd number of entries on test
+Applying: drm/xe/mocs: Fix DG2 kunit
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-863-269ea0ff7988bc743e1f66a928e778950eabf59c -> xe-pw-129457v8
-
-  IGT_7731: 17f897a81868fb35c6a7033a8b07256659742248 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-863-269ea0ff7988bc743e1f66a928e778950eabf59c: 269ea0ff7988bc743e1f66a928e778950eabf59c
-  xe-pw-129457v8: 129457v8
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v8/index.html
-
---===============0816287809911962841==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>XE HDCP Enablement (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129457/">https://patchwork.freedesktop.org/series/129457/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v8/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v8/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-863-269ea0ff7988bc743e1f66a928e778950eabf59c_BAT -&gt; xe-pw-129457v8_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-863-269ea0ff7988bc743e1f66a928e778950eabf59c -&gt; xe-pw-129457v8</li>
-</ul>
-<p>IGT_7731: 17f897a81868fb35c6a7033a8b07256659742248 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-863-269ea0ff7988bc743e1f66a928e778950eabf59c: 269ea0ff7988bc743e1f66a928e778950eabf59c<br />
-  xe-pw-129457v8: 129457v8</p>
-
-</body>
-</html>
-
---===============0816287809911962841==--
