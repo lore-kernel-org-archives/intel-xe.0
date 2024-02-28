@@ -4,53 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 500B6C47DD9
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Feb 2024 06:10:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFBAFC47DD9
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Feb 2024 06:36:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DBF110E109;
-	Wed, 28 Feb 2024 06:10:39 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iXyyedL/";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C70C10E3CB
- for <intel-xe@lists.freedesktop.org>; Wed, 28 Feb 2024 06:10:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709100626; x=1740636626;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Ot3CJmYtMv/eAfsus3dANmcY72C4Q3oEZl9NvgoIf+w=;
- b=iXyyedL/tEfujNAPqFxccJc8PvB+0eEDDknD6P5r1lc8uXNA6GUEARLA
- 2uUJzO7OQsoC0GWJQ4VhUs+gJxmBK1FQuwldQtlxBXXUUD6HisbBJVDPw
- 5YQKEWyhoukgjOpfaIcgVB+iqAiR0F0O+JcmthMrSA1O9GevEL/svPtud
- LD0bp0shGnvcf6lSoOBewWcUEiMv9yFokxNiaWNRG6HZ5eNmiTYRCfA3C
- cmX7ACSalCUjcFywM13XwarCD19k4/BxrUU9NMo9u9D/YLVtCdHZgkEFf
- iQHtFTpEYtN+rGcwzYqInsiIfC9cf6d92VkQmGjmAZnEs9fpxFGztZbGB w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="25950315"
-X-IronPort-AV: E=Sophos;i="6.06,190,1705392000"; d="scan'208";a="25950315"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2024 22:10:25 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,190,1705392000"; 
-   d="scan'208";a="7290281"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2024 22:10:24 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-Cc: Matt Roper <matthew.d.roper@intel.com>,
- Ruthuvikas Ravikumar <ruthuvikas.ravikumar@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH 2/5] drm/xe/mocs: Be explicit when logging number of entries
-Date: Tue, 27 Feb 2024 22:10:45 -0800
-Message-ID: <20240228061048.3661978-3-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240228061048.3661978-1-lucas.demarchi@intel.com>
-References: <20240228061048.3661978-1-lucas.demarchi@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 745B710E4A6;
+	Wed, 28 Feb 2024 06:36:39 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AB7210E4A6;
+ Wed, 28 Feb 2024 06:36:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0816287809911962841=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_XE_HDCP_Enablement_=28rev8=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 28 Feb 2024 06:36:37 -0000
+Message-ID: <170910219763.351698.8575724285019130297@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240227053204.1748920-1-suraj.kandpal@intel.com>
+In-Reply-To: <20240227053204.1748920-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,42 +35,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Make sure to log if number of entries are l3cc or mocs so it doesn't
-depend on the context. Also the warn-once in __init_mocs_table()
-is more a sanity check that should be done as the first thing in that
-function, so move it up.
+--===============0816287809911962841==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/xe/xe_mocs.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
-index 001e4301c639d..bdb755b963238 100644
---- a/drivers/gpu/drm/xe/xe_mocs.c
-+++ b/drivers/gpu/drm/xe/xe_mocs.c
-@@ -470,7 +470,7 @@ static void __init_mocs_table(struct xe_gt *gt,
- 	unsigned int i;
- 	u32 mocs;
- 
--	mocs_dbg(&gt_to_xe(gt)->drm, "entries:%d\n", info->n_entries);
-+	mocs_dbg(&gt_to_xe(gt)->drm, "mocs entries: %d\n", info->n_entries);
- 	drm_WARN_ONCE(&xe->drm, !info->unused_entries_index,
- 		      "Unused entries index should have been defined\n");
- 	for (i = 0; i < info->n_entries; i++) {
-@@ -510,7 +510,8 @@ static void init_l3cc_table(struct xe_gt *gt,
- 	unsigned int i;
- 	u32 l3cc;
- 
--	mocs_dbg(&gt_to_xe(gt)->drm, "entries:%d\n", info->n_entries);
-+	mocs_dbg(&gt_to_xe(gt)->drm, "l3cc entries: %d\n", info->n_entries);
-+
- 	for (i = 0; i < (info->n_entries + 1) / 2; i++) {
- 		l3cc = l3cc_combine(get_entry_l3cc(info, 2 * i),
- 				    get_entry_l3cc(info, 2 * i + 1));
--- 
-2.43.0
+Series: XE HDCP Enablement (rev8)
+URL   : https://patchwork.freedesktop.org/series/129457/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-863-269ea0ff7988bc743e1f66a928e778950eabf59c_BAT -> xe-pw-129457v8_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-863-269ea0ff7988bc743e1f66a928e778950eabf59c -> xe-pw-129457v8
+
+  IGT_7731: 17f897a81868fb35c6a7033a8b07256659742248 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-863-269ea0ff7988bc743e1f66a928e778950eabf59c: 269ea0ff7988bc743e1f66a928e778950eabf59c
+  xe-pw-129457v8: 129457v8
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v8/index.html
+
+--===============0816287809911962841==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>XE HDCP Enablement (rev8)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129457/">https://patchwork.freedesktop.org/series/129457/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v8/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v8/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-863-269ea0ff7988bc743e1f66a928e778950eabf59c_BAT -&gt; xe-pw-129457v8_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-863-269ea0ff7988bc743e1f66a928e778950eabf59c -&gt; xe-pw-129457v8</li>
+</ul>
+<p>IGT_7731: 17f897a81868fb35c6a7033a8b07256659742248 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-863-269ea0ff7988bc743e1f66a928e778950eabf59c: 269ea0ff7988bc743e1f66a928e778950eabf59c<br />
+  xe-pw-129457v8: 129457v8</p>
+
+</body>
+</html>
+
+--===============0816287809911962841==--
