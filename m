@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 253C7C5478C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63579C54E49
 	for <intel-xe@archiver.kernel.org>; Wed, 28 Feb 2024 01:12:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6CAD10E690;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFB6810E692;
 	Wed, 28 Feb 2024 01:12:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zf0fpTvc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I7cxaWPC";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B2AE10E690
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AAF4810E692
  for <Intel-Xe@lists.freedesktop.org>; Wed, 28 Feb 2024 01:12:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1709082726; x=1740618726;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZV12/5pLOv751KoE0r25t8XUWragaYWKokaNQ2BTtdw=;
- b=Zf0fpTvc2yH7hG5IeAP9rdUi8uFQFDCsFed49BJr6T/qIDBA7gZ+pnni
- YDE3DRbfVejijpgfbdQojSllsEArRnlBSfa0ZyXwT77aq2Vm/L8tr+A09
- RNNtptcrJGjDtURwr7dV8CZ3J5H9tSft2i0YxXCV+l5qNtQ0tUlXsFKp8
- 09bxTnUopqU3+FriVwBXDH4zzADrJkXRynW3IcMpZr3TDZQ5lm+hQn1xe
- 6sk4+cY/K/gleTxbzMdA9Fc6lO8d81fk5bRf0oXc2IkpPb2/oUvk5RmIa
- 0XUjThuvHTWQ9EqdU48Ze0VWb85w2BVZcKt7oQ/IoMrh3lyap/9m5AhRE Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="3618731"
+ bh=8h5lkmige/+4lItz6RjrI4KVgUApF6kDBX7rMosmPdI=;
+ b=I7cxaWPCPcrgVaZ/wrL+iwZrhkJCxwk8f0XUMats+k4xC0Lu/tcAHykb
+ /DQLySmGoYjXoM27vDXr/yU72XCg5GyqA7LIMoDSwcmgF7GgQT9F0BfB4
+ SXcrvG7YNamJvi48ZDz49ZQHTrHe85MQz3LKEjnxbcbAe6p4uO6p5QXyN
+ A9bVOnoKwWNSj02IbQ72neuo0E/h+4TCTbl2zxmA2Di+o1+DyjZnAv62d
+ 9HyRlgjALCR+PiYT26E4BcE2TkMF7VuZA5Llw6YZaQ4rrarJmMymk1aab
+ G64PuMtREI557u7fNS/9Jp88uOJ71U5EX8HME0Wrp6KJRe4nINyJD1KZv A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="3618732"
 X-IronPort-AV: E=Sophos;i="6.06,189,1705392000"; 
-   d="scan'208";a="3618731"
+   d="scan'208";a="3618732"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Feb 2024 17:12:05 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,189,1705392000"; 
-   d="scan'208";a="7808449"
+   d="scan'208";a="7808452"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
  by orviesa008.jf.intel.com with ESMTP; 27 Feb 2024 17:12:04 -0800
 From: John.C.Harrison@Intel.com
 To: Intel-Xe@Lists.FreeDesktop.Org
 Cc: John Harrison <John.C.Harrison@Intel.com>
-Subject: [PATCH v4 1/2] drm/xe: Make read_perf_limit_reasons globally
- accessible
-Date: Tue, 27 Feb 2024 17:09:55 -0800
-Message-ID: <20240228011002.2454419-2-John.C.Harrison@Intel.com>
+Subject: [PATCH v4 2/2] drm/xe/guc: Port over the slow GuC loading support
+ from i915
+Date: Tue, 27 Feb 2024 17:09:56 -0800
+Message-ID: <20240228011002.2454419-3-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240228011002.2454419-1-John.C.Harrison@Intel.com>
 References: <20240228011002.2454419-1-John.C.Harrison@Intel.com>
 MIME-Version: 1.0
 Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
  Swindon SN3 1RJ
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,219 +68,428 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: John Harrison <John.C.Harrison@Intel.com>
 
-Other driver code beyond the sysfs interface wants to know about
-throttling. So make the query function globally accessible.
+GuC loading can take longer than it is supposed to for various
+reasons. So add in the code to cope with that and to report it when it
+happens. There are also many different reasons why GuC loading can
+fail, so add in the code for checking for those and for reporting
+issues in a meaningful manner rather than just hitting a timeout and
+saying 'fail: status = %x'.
 
-v2: Revert include order change (review feedback from Lucas)
-v3: Remove '_sysfs' from throttle file names and keep limit query in
-the same file rather than moving elsewhere (review feedback from
-Rodrigo).
+Also, remove the 'FIXME' comment about an i915 bug that has never been
+applicable to Xe!
+
+v2: Actually report the requested and granted frequencies rather than
+showing granted twice (review feedback from Badal).
+v3: Locally code all the timeout and end condition handling because a
+helper function is not allowed (review feedback from Lucas/Rodrigo).
 
 Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 ---
- drivers/gpu/drm/xe/Makefile                   |  2 +-
- drivers/gpu/drm/xe/xe_gt_freq.c               |  4 +--
- ...e_gt_throttle_sysfs.c => xe_gt_throttle.c} | 26 +++++++++----------
- drivers/gpu/drm/xe/xe_gt_throttle.h           | 17 ++++++++++++
- drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h     | 16 ------------
- 5 files changed, 33 insertions(+), 32 deletions(-)
- rename drivers/gpu/drm/xe/{xe_gt_throttle_sysfs.c => xe_gt_throttle.c} (86%)
- create mode 100644 drivers/gpu/drm/xe/xe_gt_throttle.h
- delete mode 100644 drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h
+ drivers/gpu/drm/xe/abi/guc_errors_abi.h |  26 ++-
+ drivers/gpu/drm/xe/regs/xe_guc_regs.h   |   2 +
+ drivers/gpu/drm/xe/xe_guc.c             | 226 +++++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_mmio.c            |  61 +++++++
+ drivers/gpu/drm/xe/xe_mmio.h            |   2 +
+ 5 files changed, 274 insertions(+), 43 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index c531210695db..82b6a3a6a987 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -87,7 +87,7 @@ xe-y += xe_bb.o \
- 	xe_gt_mcr.o \
- 	xe_gt_pagefault.o \
- 	xe_gt_sysfs.o \
--	xe_gt_throttle_sysfs.o \
-+	xe_gt_throttle.o \
- 	xe_gt_tlb_invalidation.o \
- 	xe_gt_topology.o \
- 	xe_guc.o \
-diff --git a/drivers/gpu/drm/xe/xe_gt_freq.c b/drivers/gpu/drm/xe/xe_gt_freq.c
-index 32b9a743629c..d2e035671820 100644
---- a/drivers/gpu/drm/xe/xe_gt_freq.c
-+++ b/drivers/gpu/drm/xe/xe_gt_freq.c
-@@ -13,7 +13,7 @@
+diff --git a/drivers/gpu/drm/xe/abi/guc_errors_abi.h b/drivers/gpu/drm/xe/abi/guc_errors_abi.h
+index ec83551bf9c0..d0b5fed6876f 100644
+--- a/drivers/gpu/drm/xe/abi/guc_errors_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_errors_abi.h
+@@ -7,8 +7,12 @@
+ #define _ABI_GUC_ERRORS_ABI_H
  
- #include "xe_device_types.h"
- #include "xe_gt_sysfs.h"
--#include "xe_gt_throttle_sysfs.h"
-+#include "xe_gt_throttle.h"
- #include "xe_guc_pc.h"
- #include "xe_pm.h"
+ enum xe_guc_response_status {
+-	XE_GUC_RESPONSE_STATUS_SUCCESS = 0x0,
+-	XE_GUC_RESPONSE_STATUS_GENERIC_FAIL = 0xF000,
++	XE_GUC_RESPONSE_STATUS_SUCCESS                      = 0x0,
++	XE_GUC_RESPONSE_NOT_SUPPORTED                       = 0x20,
++	XE_GUC_RESPONSE_NO_ATTRIBUTE_TABLE                  = 0x201,
++	XE_GUC_RESPONSE_NO_DECRYPTION_KEY                   = 0x202,
++	XE_GUC_RESPONSE_DECRYPTION_FAILED                   = 0x204,
++	XE_GUC_RESPONSE_STATUS_GENERIC_FAIL                 = 0xF000,
+ };
  
-@@ -250,5 +250,5 @@ void xe_gt_freq_init(struct xe_gt *gt)
- 		drm_warn(&xe->drm,  "failed to add freq attrs to %s, err: %d\n",
- 			 kobject_name(gt->freq), err);
+ enum xe_guc_load_status {
+@@ -17,6 +21,9 @@ enum xe_guc_load_status {
+ 	XE_GUC_LOAD_STATUS_ERROR_DEVID_BUILD_MISMATCH       = 0x02,
+ 	XE_GUC_LOAD_STATUS_GUC_PREPROD_BUILD_MISMATCH       = 0x03,
+ 	XE_GUC_LOAD_STATUS_ERROR_DEVID_INVALID_GUCTYPE      = 0x04,
++	XE_GUC_LOAD_STATUS_HWCONFIG_START                   = 0x05,
++	XE_GUC_LOAD_STATUS_HWCONFIG_DONE                    = 0x06,
++	XE_GUC_LOAD_STATUS_HWCONFIG_ERROR                   = 0x07,
+ 	XE_GUC_LOAD_STATUS_GDT_DONE                         = 0x10,
+ 	XE_GUC_LOAD_STATUS_IDT_DONE                         = 0x20,
+ 	XE_GUC_LOAD_STATUS_LAPIC_DONE                       = 0x30,
+@@ -34,4 +41,19 @@ enum xe_guc_load_status {
+ 	XE_GUC_LOAD_STATUS_READY                            = 0xF0,
+ };
  
--	xe_gt_throttle_sysfs_init(gt);
-+	xe_gt_throttle_init(gt);
- }
-diff --git a/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c b/drivers/gpu/drm/xe/xe_gt_throttle.c
-similarity index 86%
-rename from drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
-rename to drivers/gpu/drm/xe/xe_gt_throttle.c
-index 9c33045ff1ef..e5113cca41f2 100644
---- a/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_throttle.c
-@@ -9,14 +9,14 @@
++enum xe_bootrom_load_status {
++	XE_BOOTROM_STATUS_NO_KEY_FOUND                      = 0x13,
++	XE_BOOTROM_STATUS_AES_PROD_KEY_FOUND                = 0x1A,
++	XE_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE            = 0x2B,
++	XE_BOOTROM_STATUS_RSA_FAILED                        = 0x50,
++	XE_BOOTROM_STATUS_PAVPC_FAILED                      = 0x73,
++	XE_BOOTROM_STATUS_WOPCM_FAILED                      = 0x74,
++	XE_BOOTROM_STATUS_LOADLOC_FAILED                    = 0x75,
++	XE_BOOTROM_STATUS_JUMP_PASSED                       = 0x76,
++	XE_BOOTROM_STATUS_JUMP_FAILED                       = 0x77,
++	XE_BOOTROM_STATUS_RC6CTXCONFIG_FAILED               = 0x79,
++	XE_BOOTROM_STATUS_MPUMAP_INCORRECT                  = 0x7A,
++	XE_BOOTROM_STATUS_EXCEPTION                         = 0x7E,
++};
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/regs/xe_guc_regs.h b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+index 4e7f809d2b00..2e54c9e6a4fe 100644
+--- a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+@@ -40,6 +40,8 @@
+ #define   GS_BOOTROM_JUMP_PASSED		REG_FIELD_PREP(GS_BOOTROM_MASK, 0x76)
+ #define   GS_MIA_IN_RESET			REG_BIT(0)
+ 
++#define GUC_HEADER_INFO				XE_REG(0xc014)
++
+ #define GUC_WOPCM_SIZE				XE_REG(0xc050)
+ #define   GUC_WOPCM_SIZE_MASK			REG_GENMASK(31, 12)
+ #define   GUC_WOPCM_SIZE_LOCKED			REG_BIT(0)
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 0d2a2dd13f11..771971110600 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -17,6 +17,7 @@
  #include "xe_device.h"
+ #include "xe_force_wake.h"
  #include "xe_gt.h"
- #include "xe_gt_sysfs.h"
--#include "xe_gt_throttle_sysfs.h"
 +#include "xe_gt_throttle.h"
- #include "xe_mmio.h"
- #include "xe_pm.h"
- 
- /**
-  * DOC: Xe GT Throttle
-  *
-- * Provides sysfs entries for frequency throttle reasons in GT
-+ * Provides sysfs entries and other helpers for frequency throttle reasons in GT
-  *
-  * device/gt#/freq0/throttle/status - Overall status
-  * device/gt#/freq0/throttle/reason_pl1 - Frequency throttle due to PL1
-@@ -35,7 +35,7 @@ dev_to_gt(struct device *dev)
- 	return kobj_to_gt(dev->kobj.parent);
+ #include "xe_guc_ads.h"
+ #include "xe_guc_ct.h"
+ #include "xe_guc_hwconfig.h"
+@@ -461,58 +462,201 @@ static int guc_xfer_rsa(struct xe_guc *guc)
+ 	return 0;
  }
  
--static u32 read_perf_limit_reasons(struct xe_gt *gt)
-+u32 xe_gt_throttle_get_limit_reasons(struct xe_gt *gt)
- {
- 	u32 reg;
- 
-@@ -51,63 +51,63 @@ static u32 read_perf_limit_reasons(struct xe_gt *gt)
- 
- static u32 read_status(struct xe_gt *gt)
- {
--	u32 status = read_perf_limit_reasons(gt) & GT0_PERF_LIMIT_REASONS_MASK;
-+	u32 status = xe_gt_throttle_get_limit_reasons(gt) & GT0_PERF_LIMIT_REASONS_MASK;
- 
- 	return status;
- }
- 
- static u32 read_reason_pl1(struct xe_gt *gt)
- {
--	u32 pl1 = read_perf_limit_reasons(gt) & POWER_LIMIT_1_MASK;
-+	u32 pl1 = xe_gt_throttle_get_limit_reasons(gt) & POWER_LIMIT_1_MASK;
- 
- 	return pl1;
- }
- 
- static u32 read_reason_pl2(struct xe_gt *gt)
- {
--	u32 pl2 = read_perf_limit_reasons(gt) & POWER_LIMIT_2_MASK;
-+	u32 pl2 = xe_gt_throttle_get_limit_reasons(gt) & POWER_LIMIT_2_MASK;
- 
- 	return pl2;
- }
- 
- static u32 read_reason_pl4(struct xe_gt *gt)
- {
--	u32 pl4 = read_perf_limit_reasons(gt) & POWER_LIMIT_4_MASK;
-+	u32 pl4 = xe_gt_throttle_get_limit_reasons(gt) & POWER_LIMIT_4_MASK;
- 
- 	return pl4;
- }
- 
- static u32 read_reason_thermal(struct xe_gt *gt)
- {
--	u32 thermal = read_perf_limit_reasons(gt) & THERMAL_LIMIT_MASK;
-+	u32 thermal = xe_gt_throttle_get_limit_reasons(gt) & THERMAL_LIMIT_MASK;
- 
- 	return thermal;
- }
- 
- static u32 read_reason_prochot(struct xe_gt *gt)
- {
--	u32 prochot = read_perf_limit_reasons(gt) & PROCHOT_MASK;
-+	u32 prochot = xe_gt_throttle_get_limit_reasons(gt) & PROCHOT_MASK;
- 
- 	return prochot;
- }
- 
- static u32 read_reason_ratl(struct xe_gt *gt)
- {
--	u32 ratl = read_perf_limit_reasons(gt) & RATL_MASK;
-+	u32 ratl = xe_gt_throttle_get_limit_reasons(gt) & RATL_MASK;
- 
- 	return ratl;
- }
- 
- static u32 read_reason_vr_thermalert(struct xe_gt *gt)
- {
--	u32 thermalert = read_perf_limit_reasons(gt) & VR_THERMALERT_MASK;
-+	u32 thermalert = xe_gt_throttle_get_limit_reasons(gt) & VR_THERMALERT_MASK;
- 
- 	return thermalert;
- }
- 
- static u32 read_reason_vr_tdc(struct xe_gt *gt)
- {
--	u32 tdc = read_perf_limit_reasons(gt) & VR_TDC_MASK;
-+	u32 tdc = xe_gt_throttle_get_limit_reasons(gt) & VR_TDC_MASK;
- 
- 	return tdc;
- }
-@@ -236,7 +236,7 @@ static void gt_throttle_sysfs_fini(struct drm_device *drm, void *arg)
- 	sysfs_remove_group(gt->freq, &throttle_group_attrs);
- }
- 
--void xe_gt_throttle_sysfs_init(struct xe_gt *gt)
-+void xe_gt_throttle_init(struct xe_gt *gt)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
- 	int err;
-diff --git a/drivers/gpu/drm/xe/xe_gt_throttle.h b/drivers/gpu/drm/xe/xe_gt_throttle.h
-new file mode 100644
-index 000000000000..03c20c837e67
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_gt_throttle.h
-@@ -0,0 +1,17 @@
-+/* SPDX-License-Identifier: MIT */
+-static int guc_wait_ucode(struct xe_guc *guc)
 +/*
-+ * Copyright © 2023 Intel Corporation
++ * Check a previously read GuC status register (GUC_STATUS) looking for
++ * known terminal states (either completion or failure) of either the
++ * microkernel status field or the boot ROM status field. Returns +1 for
++ * successful completion, -1 for failure and 0 for any intermediate state.
 + */
++static int guc_load_done(u32 status)
+ {
+-	struct xe_device *xe = guc_to_xe(guc);
+-	u32 status;
+-	int ret;
++	u32 uk_val = REG_FIELD_GET(GS_UKERNEL_MASK, status);
++	u32 br_val = REG_FIELD_GET(GS_BOOTROM_MASK, status);
 +
-+#ifndef _XE_GT_THROTTLE_H_
-+#define _XE_GT_THROTTLE_H_
++	switch (uk_val) {
++	case XE_GUC_LOAD_STATUS_READY:
++		return 1;
 +
-+#include <drm/drm_managed.h>
++	case XE_GUC_LOAD_STATUS_ERROR_DEVID_BUILD_MISMATCH:
++	case XE_GUC_LOAD_STATUS_GUC_PREPROD_BUILD_MISMATCH:
++	case XE_GUC_LOAD_STATUS_ERROR_DEVID_INVALID_GUCTYPE:
++	case XE_GUC_LOAD_STATUS_HWCONFIG_ERROR:
++	case XE_GUC_LOAD_STATUS_DPC_ERROR:
++	case XE_GUC_LOAD_STATUS_EXCEPTION:
++	case XE_GUC_LOAD_STATUS_INIT_DATA_INVALID:
++	case XE_GUC_LOAD_STATUS_MPU_DATA_INVALID:
++	case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
++		return -1;
++	}
 +
-+struct xe_gt;
++	switch (br_val) {
++	case XE_BOOTROM_STATUS_NO_KEY_FOUND:
++	case XE_BOOTROM_STATUS_RSA_FAILED:
++	case XE_BOOTROM_STATUS_PAVPC_FAILED:
++	case XE_BOOTROM_STATUS_WOPCM_FAILED:
++	case XE_BOOTROM_STATUS_LOADLOC_FAILED:
++	case XE_BOOTROM_STATUS_JUMP_FAILED:
++	case XE_BOOTROM_STATUS_RC6CTXCONFIG_FAILED:
++	case XE_BOOTROM_STATUS_MPUMAP_INCORRECT:
++	case XE_BOOTROM_STATUS_EXCEPTION:
++	case XE_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE:
++		return -1;
++	}
 +
-+void xe_gt_throttle_init(struct xe_gt *gt);
++	return 0;
++}
 +
-+u32 xe_gt_throttle_get_limit_reasons(struct xe_gt *gt);
++static s32 guc_pc_get_cur_freq(struct xe_guc_pc *guc_pc)
++{
++	u32 freq;
++	int ret = xe_guc_pc_get_cur_freq(guc_pc, &freq);
 +
-+#endif /* _XE_GT_THROTTLE_H_ */
-diff --git a/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h
-deleted file mode 100644
-index 3ecfd4beffe1..000000000000
---- a/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h
-+++ /dev/null
-@@ -1,16 +0,0 @@
--/* SPDX-License-Identifier: MIT */
--/*
-- * Copyright © 2023 Intel Corporation
-- */
++	return ret ? ret : freq;
++}
++
++/*
++ * Wait for the GuC to start up.
++ *
++ * Measurements indicate this should take no more than 20ms (assuming the GT
++ * clock is at maximum frequency). However, thermal throttling and other issues
++ * can prevent the clock hitting max and thus making the load take significantly
++ * longer. Indeed, if the GT is clamped to minimum frequency then the load times
++ * can be in the seconds range. As, there is a limit on how long an individual
++ * usleep_range() can wait for, the wait is wrapped in a loop. The loop count
++ * is increased for debug builds so that problems can be detected and analysed.
++ * For release builds, the timeout is kept short so that user's don't wait
++ * forever to find out there is a problem. In either case, if the load took longer
++ * than is reasonable even with some 'sensible' throttling, then flag a warning
++ * because something is not right.
++ *
++ * Note that the only reason an end user should hit the timeout is in case of
++ * extreme thermal throttling. And a system that is that hot during boot is
++ * probably dead anyway!
++ */
++#if defined(CONFIG_DRM_XE_DEBUG)
++#define GUC_LOAD_RETRY_LIMIT	20
++#else
++#define GUC_LOAD_RETRY_LIMIT	3
++#endif
++#define GUC_LOAD_TIME_WARN      200
+ 
++static int guc_wait_ucode(struct xe_guc *guc)
++{
++	struct xe_gt *gt = guc_to_gt(guc);
++	struct xe_guc_pc *guc_pc = &gt->uc.guc.pc;
++	ktime_t before, after, delta;
++	int load_done;
++	u32 status = 0;
++	int ret, count;
++	u64 delta_ms;
++	u32 before_freq;
++
++	before_freq = xe_guc_pc_get_act_freq(guc_pc);
++	before = ktime_get();
+ 	/*
+-	 * Wait for the GuC to start up.
+-	 * NB: Docs recommend not using the interrupt for completion.
+-	 * Measurements indicate this should take no more than 20ms
+-	 * (assuming the GT clock is at maximum frequency). So, a
+-	 * timeout here indicates that the GuC has failed and is unusable.
+-	 * (Higher levels of the driver may decide to reset the GuC and
+-	 * attempt the ucode load again if this happens.)
+-	 *
+-	 * FIXME: There is a known (but exceedingly unlikely) race condition
+-	 * where the asynchronous frequency management code could reduce
+-	 * the GT clock while a GuC reload is in progress (during a full
+-	 * GT reset). A fix is in progress but there are complex locking
+-	 * issues to be resolved. In the meantime bump the timeout to
+-	 * 200ms. Even at slowest clock, this should be sufficient. And
+-	 * in the working case, a larger timeout makes no difference.
++	 * Note, can't use any kind of timing information from the call to xe_mmio_wait.
++	 * It could return a thousand intermediate stages at random times. Instead, must
++	 * manually track the total time taken and locally implement the timeout.
+ 	 */
+-	ret = xe_mmio_wait32(guc_to_gt(guc), GUC_STATUS, GS_UKERNEL_MASK,
+-			     FIELD_PREP(GS_UKERNEL_MASK, XE_GUC_LOAD_STATUS_READY),
+-			     200000, &status, false);
++	do {
++		u32 last_status = status & (GS_UKERNEL_MASK | GS_BOOTROM_MASK);
+ 
+-	if (ret) {
+-		struct drm_device *drm = &xe->drm;
 -
--#ifndef _XE_GT_THROTTLE_SYSFS_H_
--#define _XE_GT_THROTTLE_SYSFS_H_
+-		drm_info(drm, "GuC load failed: status = 0x%08X\n", status);
+-		drm_info(drm, "GuC load failed: status: Reset = %d, BootROM = 0x%02X, UKernel = 0x%02X, MIA = 0x%02X, Auth = 0x%02X\n",
+-			 REG_FIELD_GET(GS_MIA_IN_RESET, status),
+-			 REG_FIELD_GET(GS_BOOTROM_MASK, status),
+-			 REG_FIELD_GET(GS_UKERNEL_MASK, status),
+-			 REG_FIELD_GET(GS_MIA_MASK, status),
+-			 REG_FIELD_GET(GS_AUTH_STATUS_MASK, status));
 -
--#include <drm/drm_managed.h>
--
--struct xe_gt;
--
--void xe_gt_throttle_sysfs_init(struct xe_gt *gt);
--
--#endif /* _XE_GT_THROTTLE_SYSFS_H_ */
--
+-		if ((status & GS_BOOTROM_MASK) == GS_BOOTROM_RSA_FAILED) {
+-			drm_info(drm, "GuC firmware signature verification failed\n");
++		/*
++		 * Wait for any change (intermediate or terminal) in the status register.
++		 * Note, the return value is a don't care. The only failure code is timeout
++		 * but the timeouts need to be accumulated over all the intermediate partial
++		 * timeouts rather than allowing a huge timeout each time. So basically, need
++		 * to treat a timeout no different to a value change.
++		 */
++		xe_mmio_wait32_not(gt, GUC_STATUS, GS_UKERNEL_MASK | GS_BOOTROM_MASK,
++				   last_status, 1000 * 1000, &status, false);
++
++		after = ktime_get();
++		delta = ktime_sub(after, before);
++		delta_ms = ktime_to_ms(delta);
++
++		load_done = guc_load_done(status);
++		if (load_done != 0)
++			break;
++
++		if (delta_ms >= (GUC_LOAD_RETRY_LIMIT * 1000))
++			break;
++
++		xe_gt_dbg(gt, "load still in progress, count = %d, freq = %dMHz (req %dMHz), status = 0x%08X [0x%02X/%02X]\n",
++			  count, xe_guc_pc_get_act_freq(guc_pc),
++			  guc_pc_get_cur_freq(guc_pc), status,
++			  REG_FIELD_GET(GS_BOOTROM_MASK, status),
++			  REG_FIELD_GET(GS_UKERNEL_MASK, status));
++	} while (1);
++
++	if (load_done != 1) {
++		u32 ukernel = REG_FIELD_GET(GS_UKERNEL_MASK, status);
++		u32 bootrom = REG_FIELD_GET(GS_BOOTROM_MASK, status);
++
++		xe_gt_info(gt, "load failed: status = 0x%08X, time = %lldms, freq = %dMHz (req %dMHz), done = %d\n",
++			   status, delta_ms, xe_guc_pc_get_act_freq(guc_pc),
++			   guc_pc_get_cur_freq(guc_pc), load_done);
++		xe_gt_info(gt, "load failed: status: Reset = %d, BootROM = 0x%02X, UKernel = 0x%02X, MIA = 0x%02X, Auth = 0x%02X\n",
++			   REG_FIELD_GET(GS_MIA_IN_RESET, status),
++			   bootrom, ukernel,
++			   REG_FIELD_GET(GS_MIA_MASK, status),
++			   REG_FIELD_GET(GS_AUTH_STATUS_MASK, status));
++
++		switch (bootrom) {
++		case XE_BOOTROM_STATUS_NO_KEY_FOUND:
++			xe_gt_info(gt, "invalid key requested, header = 0x%08X\n",
++				   xe_mmio_read32(gt, GUC_HEADER_INFO));
+ 			ret = -ENOEXEC;
++			break;
++
++		case XE_BOOTROM_STATUS_RSA_FAILED:
++			xe_gt_info(gt, "firmware signature verification failed\n");
++			ret = -ENOEXEC;
++			break;
++
++		case XE_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE:
++			xe_gt_info(gt, "firmware production part check failure\n");
++			ret = -ENOEXEC;
++			break;
++		}
++
++		switch (ukernel) {
++		case XE_GUC_LOAD_STATUS_EXCEPTION:
++			xe_gt_info(gt, "firmware exception. EIP: %#x\n",
++				   xe_mmio_read32(gt, SOFT_SCRATCH(13)));
++			ret = -ENXIO;
++			break;
++
++		case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
++			xe_gt_info(gt, "illegal register in save/restore workaround list\n");
++			ret = -EPERM;
++			break;
++
++		case XE_GUC_LOAD_STATUS_HWCONFIG_START:
++			xe_gt_info(gt, "still extracting hwconfig table.\n");
++			ret = -ETIMEDOUT;
++			break;
+ 		}
+ 
+-		if (REG_FIELD_GET(GS_UKERNEL_MASK, status) ==
+-		    XE_GUC_LOAD_STATUS_EXCEPTION) {
+-			drm_info(drm, "GuC firmware exception. EIP: %#x\n",
+-				 xe_mmio_read32(guc_to_gt(guc),
+-						SOFT_SCRATCH(13)));
++		if (load_done == 0) {
++			/* No terminal state was reached */
++			ret = -ETIMEDOUT;
++		} else {
++			/* Uncommon/unexpected error, see earlier status code print for details */
+ 			ret = -ENXIO;
+ 		}
++	} else if (delta_ms > GUC_LOAD_TIME_WARN) {
++		xe_gt_warn(gt, "excessive init time: %lldms! [status = 0x%08X, count = %d, ret = %d]\n",
++			   delta_ms, status, count, ret);
++		xe_gt_warn(gt, "excessive init time: [freq = %dMHz (req = %dMHz), before = %dMHz, perf_limit_reasons = 0x%08X]\n",
++			   xe_guc_pc_get_act_freq(guc_pc), guc_pc_get_cur_freq(guc_pc),
++			   before_freq, xe_gt_throttle_get_limit_reasons(gt));
++		ret = 0;
+ 	} else {
+-		drm_dbg(&xe->drm, "GuC successfully loaded");
++		xe_gt_dbg(gt, "init took %lldms, freq = %dMHz (req = %dMHz), before = %dMHz, status = 0x%08X, count = %d, ret = %d\n",
++			  delta_ms, xe_guc_pc_get_act_freq(guc_pc), guc_pc_get_cur_freq(guc_pc),
++			  before_freq, status, count, ret);
++		ret = 0;
+ 	}
+ 
+ 	return ret;
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index e3db3a178760..d16dffcd978c 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -529,3 +529,64 @@ int xe_mmio_wait32(struct xe_gt *gt, struct xe_reg reg, u32 mask, u32 val, u32 t
+ 
+ 	return ret;
+ }
++
++/**
++ * xe_mmio_wait32_not() - Wait for a register to return anything other than the given masked value
++ * @gt: MMIO target GT
++ * @reg: register to read value from
++ * @mask: mask to be applied to the value read from the register
++ * @val: value to match after applying the mask
++ * @timeout_us: time out after this period of time. Wait logic tries to be
++ * smart, applying an exponential backoff until @timeout_us is reached.
++ * @out_val: if not NULL, points where to store the last unmasked value
++ * @atomic: needs to be true if calling from an atomic context
++ *
++ * This function polls for a masked value to change from a given value and
++ * returns zero on success or -ETIMEDOUT if timed out.
++ *
++ * Note that @timeout_us represents the minimum amount of time to wait before
++ * giving up. The actual time taken by this function can be a little more than
++ * @timeout_us for different reasons, specially in non-atomic contexts. Thus,
++ * it is possible that this function succeeds even after @timeout_us has passed.
++ */
++int xe_mmio_wait32_not(struct xe_gt *gt, struct xe_reg reg, u32 mask, u32 val, u32 timeout_us,
++		       u32 *out_val, bool atomic)
++{
++	ktime_t cur = ktime_get_raw();
++	const ktime_t end = ktime_add_us(cur, timeout_us);
++	int ret = -ETIMEDOUT;
++	s64 wait = 10;
++	u32 read;
++
++	for (;;) {
++		read = xe_mmio_read32(gt, reg);
++		if ((read & mask) != val) {
++			ret = 0;
++			break;
++		}
++
++		cur = ktime_get_raw();
++		if (!ktime_before(cur, end))
++			break;
++
++		if (ktime_after(ktime_add_us(cur, wait), end))
++			wait = ktime_us_delta(end, cur);
++
++		if (atomic)
++			udelay(wait);
++		else
++			usleep_range(wait, wait << 1);
++		wait <<= 1;
++	}
++
++	if (ret != 0) {
++		read = xe_mmio_read32(gt, reg);
++		if ((read & mask) == val)
++			ret = 0;
++	}
++
++	if (out_val)
++		*out_val = read;
++
++	return ret;
++}
+diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
+index 98de5c13c89b..e9df2f030de5 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.h
++++ b/drivers/gpu/drm/xe/xe_mmio.h
+@@ -103,5 +103,7 @@ int xe_mmio_probe_vram(struct xe_device *xe);
+ u64 xe_mmio_read64_2x32(struct xe_gt *gt, struct xe_reg reg);
+ int xe_mmio_wait32(struct xe_gt *gt, struct xe_reg reg, u32 mask, u32 val, u32 timeout_us,
+ 		   u32 *out_val, bool atomic);
++int xe_mmio_wait32_not(struct xe_gt *gt, struct xe_reg reg, u32 mask, u32 val, u32 timeout_us,
++		       u32 *out_val, bool atomic);
+ 
+ #endif
 -- 
 2.43.0
 
