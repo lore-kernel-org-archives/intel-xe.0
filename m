@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A17FC54798
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Feb 2024 07:12:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D8CCC48BF6
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Feb 2024 07:12:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2249410E14B;
-	Thu, 29 Feb 2024 07:12:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FAA510E14B;
+	Thu, 29 Feb 2024 07:12:48 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AA6910E14B;
- Thu, 29 Feb 2024 07:12:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8D4D10E14B;
+ Thu, 29 Feb 2024 07:12:46 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/arl=3A_Add_Ar?=
- =?utf-8?q?row_Lake_H_support_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/arl=3A_Add_Arrow_L?=
+ =?utf-8?q?ake_H_support_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Dnyaneshwar Bhadane" <dnyaneshwar.bhadane@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 29 Feb 2024 07:12:33 -0000
-Message-ID: <170919075350.375728.18078314314843885590@8e613ede5ea5>
+Date: Thu, 29 Feb 2024 07:12:46 -0000
+Message-ID: <170919076669.393540.2661792711922009584@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240229070806.3402641-1-dnyaneshwar.bhadane@intel.com>
 In-Reply-To: <20240229070806.3402641-1-dnyaneshwar.bhadane@intel.com>
@@ -48,11 +48,36 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: eec7a135b960 drm-tip: 2024y-02m-28d-23h-42m-58s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/xelpg: Recognize graphics version 12.74 as Xe_LPG
-Applying: drm/xe/xelpg: Extend some workarounds to graphics version 12.74
-Applying: drm/xe/arl: Add Arrow Lake H support
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9ab59fc4b7cb7663906ac4471a262434aef57f03
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a88a3ec65cac53e92260e5bfd8eeb6083a6da71f
+Author: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Date:   Thu Feb 29 12:38:06 2024 +0530
+
+    drm/xe/arl: Add Arrow Lake H support
+    
+    ARL-H uses the same media and display IP as MTL, and a version 12.74
+    graphics IP (referred to as Xe_LPG+). From a driver point of view, we
+    should be able to just treat the whole platform as MTL and rely on
+    GRAPHICS_VERx100 checks to handle any spots where ARL's Xe_LPG+ needs
+    different handling from MTL's Xe_LPG (i.e., workarounds).
+    
+    v2: Resolve conflict and Reorder PCI ids in sorted order
+    v3: Append signed-off-by commiter to this commit
+    
+    Bspec: 55420
+    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+    Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
++ /mt/dim checkpatch eec7a135b960c7b83b13a7c821e30f956074e439 drm-intel
+56d7a414f55a drm/xe/xelpg: Recognize graphics version 12.74 as Xe_LPG
+d7e7bc42861c drm/xe/xelpg: Extend some workarounds to graphics version 12.74
+a88a3ec65cac drm/xe/arl: Add Arrow Lake H support
 
 
