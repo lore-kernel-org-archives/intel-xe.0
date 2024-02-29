@@ -4,60 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DB19C54E49
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Feb 2024 13:07:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B807C54E49
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Feb 2024 13:37:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35F1010E08F;
-	Thu, 29 Feb 2024 13:07:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 113F410E168;
+	Thu, 29 Feb 2024 13:37:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OSACl6xN";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="LDRmYOpX";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C49C10E08F;
- Thu, 29 Feb 2024 13:07:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709212074; x=1740748074;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=qZrjrJoQ7nPZZFqulomubYTs00zz6ojJVToACP2OeVo=;
- b=OSACl6xN6ZD4POa+tcQzdE63tYXN7L+0awFytxK3dInOMJgEXdAOkOdl
- 5v+6Ng4vAYBKwQRXAFfQ97aNdQLbgdjCVAgtP+BxXllMwWyZnASNZwVKf
- mtslVgIiXInL5QQ/MNJs84NUGfdQtiaPMnIxUktnGrmZdKhGi04Dvag77
- eTL3rzSxcsew5pdMnax4EJiM/m8eNb32ayYkfr+JuvcxMSZy2iFPTs6rm
- wnae3joekZDsaxZd2bUnegmnrDIJthvxkShzWqjxwJtygMuplyVwUl0Ue
- bJ6NtssUapQ1NwQv/lcYJ+nIN5zSys12mQViK14bWyjHp0OU2qov5mRYa Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10998"; a="15120438"
-X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; d="scan'208";a="15120438"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Feb 2024 05:07:54 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; d="scan'208";a="12501066"
-Received: from srdoo-mobl1.ger.corp.intel.com (HELO fedora) ([10.252.3.93])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Feb 2024 05:07:50 -0800
-Date: Thu, 29 Feb 2024 14:07:36 +0100
-From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9329610E145
+ for <intel-xe@lists.freedesktop.org>; Thu, 29 Feb 2024 13:37:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1709213847;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=vDUSEAJwQ4YGsrivsXMVw4pvN15mO+5wYFypQLio1vw=;
+ b=LDRmYOpXK3VuN6KNsYsliNoCT+/ssJ7bR/BqRHl9Vw0YNNjD3l5amovV3sE4J7O9XAZ2n2
+ SIWQ5JQjvqY7RN4lVtIn1QINw1zf8onqKrCTFb0/yow4XJ2hNsOTTiBEG+XPPWCJoWlong
+ X2p1GqaRBnZHgovJ+b9wlV1zWHhUFFs=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-643-y_1dFmXoP-meFmdEI3_ECA-1; Thu, 29 Feb 2024 08:37:25 -0500
+X-MC-Unique: y_1dFmXoP-meFmdEI3_ECA-1
+Received: by mail-wr1-f72.google.com with SMTP id
+ ffacd0b85a97d-33d9f425eaaso421652f8f.3
+ for <intel-xe@lists.freedesktop.org>; Thu, 29 Feb 2024 05:37:25 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1709213844; x=1709818644;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=vDUSEAJwQ4YGsrivsXMVw4pvN15mO+5wYFypQLio1vw=;
+ b=UYjD1rNK+DihwjPOZ6zwVXkPRjG1jwh/8Xw7oVgXyYLUp6N0cNL7BMgew2aHqaPCox
+ YGRlJTCwPYBheFxapfDfa7bpLodaww42ERHk5mna7CEh+DTMQvbS4En4Z8C1CjjIg0fp
+ gAnEec2FLvxLu/zWUZ43PzFbLI81W16yos6LE2KTzkWayO+wvxEP0YZyeYIPijoBv7Re
+ KKQr3IciZ4Q7Uz7vsFA3jG7dxWGQFo06Q9PjlJ/Fp8bdNnaVkaNv9qtRY9JXRPTK83Nl
+ 2h1LAX8OfC6qWQTdBry4Ds9faiOsUpQZRlf/UprVJXa5kDHEhCrCl23+wIjQi8xcM5cz
+ ro/g==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX3yMGjma3Jgg6C5ezGBnbkKHnxSOr975viQzzyK6g2RHReqAdYGYm8Mym7OF8vFObbOeuU1sbLHQ7HArpUFraOg0uypc3Qrkyq+d9q8DY=
+X-Gm-Message-State: AOJu0Yz2iIU3qjSw0gnL3z6CRQRfgpwHPnbkfrm52KBVpu0FoVML21y5
+ 0M8TEoTmNd119UgcpAORojep5U9bo0TZqdikj6BmRRP3p+qnjUSsjsa3se9UYExBiZXyCQndHmh
+ DYlNr/O8Zgd7VBVXMlhCmQ45ne3nXvhJ3mxYLNj5jUYz92VABAVDDRfUmR/SX1gjr
+X-Received: by 2002:adf:cd10:0:b0:33d:9d21:ea8f with SMTP id
+ w16-20020adfcd10000000b0033d9d21ea8fmr1297596wrm.3.1709213844247; 
+ Thu, 29 Feb 2024 05:37:24 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEbHkP82IIB7bdvKg7ovelrCBgb68WwrAqg7dUtfNpmvupJWrHzhm5EJTHcXysxLHIRKqnagg==
+X-Received: by 2002:adf:cd10:0:b0:33d:9d21:ea8f with SMTP id
+ w16-20020adfcd10000000b0033d9d21ea8fmr1297581wrm.3.1709213843797; 
+ Thu, 29 Feb 2024 05:37:23 -0800 (PST)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
+ by smtp.gmail.com with ESMTPSA id
+ m19-20020a056000181300b0033d3b8820f8sm1781552wrh.109.2024.02.29.05.37.23
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 29 Feb 2024 05:37:23 -0800 (PST)
+Date: Thu, 29 Feb 2024 14:37:23 +0100
+From: Maxime Ripard <mripard@redhat.com>
+To: Dave Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, 
  intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-xe-fixes
-Message-ID: <ZeCBg4MA2hd1oggN@fedora>
+Subject: [PULL] drm-misc-fixes
+Message-ID: <20240229-angelic-adorable-teal-fbfabb@houat>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="ht65tpmkjawo5wje"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,95 +95,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Dave, Sima
 
-The xe fixes for -rc7. It's mostly uapi sanitizing and future-proofing,
-and a couple of driver fixes.
+--ht65tpmkjawo5wje
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-drm-xe-fixes-2024-02-29:
-UAPI Changes:
-- A couple of tracepoint updates from Priyanka and Lucas.
-- Make sure BINDs are completed before accepting UNBINDs on LR vms.
-- Don't arbitrarily restrict max number of batched binds.
-- Add uapi for dumpable bos (agreed on IRC).
-- Remove unused uapi flags and a leftover comment.
+Hi,
 
-Driver Changes:
-- A couple of fixes related to the execlist backend.
-- A 32-bit fix.
+Here's this week drm-misc fixes PR.
 
-/Thomas
+There's two commits for files unders drivers/soc/qcom that don't have a
+maintainer Acked-by. Bjorn's Acked-by was provided on IRC, and Konrad
+provided it by mail after the facts so we're covered.
 
+Maxime
 
-The following changes since commit 6650d23f3e20ca00482a71a4ef900f0ea776fb15:
+drm-misc-fixes-2024-02-29:
+A reset fix for host1x, a resource leak fix and a probe fix for aux-hpd,
+a use-after-free fix and a boot fix for a pmic_glink qcom driver in
+drivers/soc, a fix for the simpledrm/tegra transition, a kunit fix for
+the TTM tests, a font handling fix for fbcon, two allocation fixes and a
+kunit test to cover them for drm/buddy
+The following changes since commit 72fa02fdf83306c52bc1eede28359e3fa32a151a:
 
-  drm/xe: Fix modpost warning on xe_mocs kunit module (2024-02-21 11:06:52 +0100)
+  nouveau: add an ioctl to report vram usage (2024-02-23 10:20:07 +1000)
 
 are available in the Git repository at:
 
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2024-02-29
+  https://anongit.freedesktop.org/git/drm/drm-misc tags/drm-misc-fixes-2024=
+-02-29
 
-for you to fetch changes up to 8188cae3cc3d8018ec97ca9ab8caa3acc69a056d:
+for you to fetch changes up to c70703320e557ff30847915e6a7631a9abdda16b:
 
-  drm/xe/xe_trace: Add move_lacks_source detail to xe_bo_move trace (2024-02-29 12:32:15 +0100)
+  drm/tests/drm_buddy: add alloc_range_bias test (2024-02-28 08:03:29 +0100)
 
 ----------------------------------------------------------------
-UAPI Changes:
-- A couple of tracepoint updates from Priyanka and Lucas.
-- Make sure BINDs are completed before accepting UNBINDs on LR vms.
-- Don't arbitrarily restrict max number of batched binds.
-- Add uapi for dumpable bos (agreed on IRC).
-- Remove unused uapi flags and a leftover comment.
+A reset fix for host1x, a resource leak fix and a probe fix for aux-hpd,
+a use-after-free fix and a boot fix for a pmic_glink qcom driver in
+drivers/soc, a fix for the simpledrm/tegra transition, a kunit fix for
+the TTM tests, a font handling fix for fbcon, two allocation fixes and a
+kunit test to cover them for drm/buddy
 
-Driver Changes:
-- A couple of fixes related to the execlist backend.
-- A 32-bit fix.
 ----------------------------------------------------------------
-Arnd Bergmann (1):
-      drm/xe/mmio: fix build warning for BAR resize on 32-bit
+Christian K=F6nig (1):
+      drm/ttm/tests: depend on UML || COMPILE_TEST
 
-Francois Dugast (1):
-      drm/xe/uapi: Remove unused flags
+Jiri Slaby (SUSE) (1):
+      fbcon: always restore the old font data in fbcon_do_set_font()
 
-José Roberto de Souza (1):
-      drm/xe/uapi: Remove DRM_XE_VM_BIND_FLAG_ASYNC comment left over
+Johan Hovold (3):
+      drm/bridge: aux-hpd: fix OF node leaks
+      drm/bridge: aux-hpd: separate allocation and registration
+      soc: qcom: pmic_glink_altmode: fix drm bridge use-after-free
 
-Lucas De Marchi (1):
-      drm/xe: Use pointers in trace events
+Matthew Auld (3):
+      drm/buddy: fix range bias
+      drm/buddy: check range allocation matches alignment
+      drm/tests/drm_buddy: add alloc_range_bias test
 
-Maarten Lankhorst (1):
-      drm/xe: Add uapi for dumpable bos
+Maxime Ripard (1):
+      Merge drm/drm-fixes into drm-misc-fixes
 
-Matthew Brost (3):
-      drm/xe: Fix execlist splat
-      drm/xe: Don't support execlists in xe_gt_tlb_invalidation layer
-      drm/xe: Use vmalloc for array of bind allocation in bind IOCTL
+Mikko Perttunen (1):
+      gpu: host1x: Skip reset assert on Tegra186
 
-Mika Kuoppala (2):
-      drm/xe: Expose user fence from xe_sync_entry
-      drm/xe: Deny unbinds if uapi ufence pending
+Rob Clark (1):
+      soc: qcom: pmic_glink: Fix boot when QRTR=3Dm
 
-Paulo Zanoni (1):
-      drm/xe: get rid of MAX_BINDS
+Thierry Reding (1):
+      drm/tegra: Remove existing framebuffer only if we support display
 
-Priyanka Dandamudi (2):
-      drm/xe/xe_bo_move: Enhance xe_bo_move trace
-      drm/xe/xe_trace: Add move_lacks_source detail to xe_bo_move trace
+ drivers/gpu/drm/Kconfig                 |   5 +-
+ drivers/gpu/drm/bridge/aux-hpd-bridge.c |  70 +++++++---
+ drivers/gpu/drm/drm_buddy.c             |  16 ++-
+ drivers/gpu/drm/tegra/drm.c             |  23 +++-
+ drivers/gpu/drm/tests/drm_buddy_test.c  | 218 ++++++++++++++++++++++++++++=
+++++
+ drivers/gpu/host1x/dev.c                |  15 ++-
+ drivers/gpu/host1x/dev.h                |   6 +
+ drivers/soc/qcom/pmic_glink.c           |  21 +--
+ drivers/soc/qcom/pmic_glink_altmode.c   |  16 ++-
+ drivers/video/fbdev/core/fbcon.c        |   8 +-
+ include/drm/bridge/aux-bridge.h         |  15 +++
+ 11 files changed, 368 insertions(+), 45 deletions(-)
 
- drivers/gpu/drm/xe/xe_bo.c                  | 11 +++-
- drivers/gpu/drm/xe/xe_bo.h                  |  1 +
- drivers/gpu/drm/xe/xe_drm_client.c          | 12 +---
- drivers/gpu/drm/xe/xe_exec_queue.c          | 88 +----------------------------
- drivers/gpu/drm/xe/xe_exec_queue_types.h    | 10 ----
- drivers/gpu/drm/xe/xe_execlist.c            |  2 +-
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 12 ++++
- drivers/gpu/drm/xe/xe_lrc.c                 | 10 +---
- drivers/gpu/drm/xe/xe_mmio.c                |  2 +-
- drivers/gpu/drm/xe/xe_sync.c                | 58 +++++++++++++++----
- drivers/gpu/drm/xe/xe_sync.h                |  4 ++
- drivers/gpu/drm/xe/xe_sync_types.h          |  2 +-
- drivers/gpu/drm/xe/xe_trace.h               | 59 +++++++++++++------
- drivers/gpu/drm/xe/xe_vm.c                  | 80 ++++++++++++++++++--------
- drivers/gpu/drm/xe/xe_vm_types.h            | 11 ++--
- include/uapi/drm/xe_drm.h                   | 21 +------
- 16 files changed, 187 insertions(+), 196 deletions(-)
+--ht65tpmkjawo5wje
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZeCIkgAKCRDj7w1vZxhR
+xXBcAP4g73FPfLU2Ntqt4YBg2PBEajW7xQXJS64S3PbnsGdiyAD/Tf7iMZ4wzpLK
+sK2PdMNxsuyskzI9/iGgLFnJLhuaAwI=
+=AjLi
+-----END PGP SIGNATURE-----
+
+--ht65tpmkjawo5wje--
+
