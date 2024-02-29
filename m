@@ -4,149 +4,143 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DC7CC5478C
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Feb 2024 23:39:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BE0AC5478C
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Feb 2024 00:52:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42FC110E0B9;
-	Wed, 28 Feb 2024 23:39:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBE8910E045;
+	Thu, 29 Feb 2024 00:52:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a/PrZj4q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VDgMT5hA";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75A4210E0B9;
- Wed, 28 Feb 2024 23:39:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D95DD10E045
+ for <intel-xe@lists.freedesktop.org>; Thu, 29 Feb 2024 00:52:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709163569; x=1740699569;
+ t=1709167931; x=1740703931;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=FdpSF3mA33YrKVZ0sIHZoDi2dMkptRNqMXoWmRpa1fE=;
- b=a/PrZj4q4Kze9MSbpeFOuBsxsJYUq0Em/oPzBAL1LlFEiQTCirAxqEl2
- GA7JbsJnnOgA5wOkkhaDeujPxbVZhOojL9VBECiham+bCg4B7pKJbnn4s
- rSEZfzJpcNybwdSei5u9BWvD11uCbl9BUn8sR91HwIdu9W0+0PwCTtl+B
- VjxvEjD5Q+qP5ccx3E7H5+1H2c4+y8iYrH9fNmEuGVxRcvOnI/D8L9Oys
- l+v4PswxWAYQaT8pC3NFhfooXrnhH1H42bzGYfay6rj3Mz+cwz3QtDbev
- TgeeASAQTY4Xc06y+gFMHa/XNBs1qqYlSq+Wxp+kd/qrRm8EGr2QFSzgA Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10998"; a="7420538"
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=zZVSMZ+krwTVclizEWbwXE+BCOg87nFSNx2pvWV098s=;
+ b=VDgMT5hAVuyORJoZIWUDETmylvP/ZTIh1E85ep4rm+mNaZSkXS3+eLVO
+ oMYA9IdP9YtXxRU+wIakOHLv+bZkp7YfSVfzPIPPQq6qt1FuVGl/1p9QN
+ 18JLkhn/DWyzBnlFyU9gJhqR/ffvrSutjZev65EZ9YSq4m78ATLBxGNLW
+ J7vXb1IqKogHL4kNSgm4bBM/40Ivq5mKGxMTQGkhn8hyULTu55RKzbzaB
+ coYwNukotu4GnpzdH1t3n8OlaAK8gh8BdD1U+zJb7Rv1Gz44Wk2sgnwQj
+ xIKqjx7a9TYqmtAUUxU7SGlsfKjkB0gnaLNG5DFIu2inZPd3PRHaNqp8l Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10998"; a="3459253"
 X-IronPort-AV: E=Sophos;i="6.06,191,1705392000"; 
-   d="scan'208";a="7420538"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2024 15:39:28 -0800
+   d="scan'208";a="3459253"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2024 16:52:10 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,191,1705392000"; d="scan'208";a="12173853"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 28 Feb 2024 15:39:28 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.06,191,1705392000"; 
+   d="scan'208";a="8181113"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orviesa008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 28 Feb 2024 16:52:09 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 28 Feb 2024 15:39:27 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.35; Wed, 28 Feb 2024 16:52:08 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 28 Feb 2024 15:39:26 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 28 Feb 2024 15:39:26 -0800
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Wed, 28 Feb 2024 16:52:08 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 28 Feb 2024 15:39:26 -0800
+ 15.1.2507.35; Wed, 28 Feb 2024 16:52:08 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=itoNmKvBsFbdKVz4q5xmYijPd583QPn631Wd/z8zi+lHpitUHwKAB5YD7crNwxgclvUgSZWvRgN15ShErGUXcgFSKGKwk2ZwRWlWVM3ojGDdukoxk03V6pL24zgY7Kq5RasZkJdB8i5cCCoVnFebzpANjaM+AsTte1OXPSqG4l8hH9UFkjnxCYCtkqjj+hRLnki1g5RqPSSTO2YtIgrIzukMME2WfP9fRzhXi1reCf65Se5koEpeYpRZm9nCmRDF/9x/4pdU9E9J7jtzK+OrguZHM51UOPONwEqNhGvy5T4asdkp0mglMoAvfFrnVOr3tP3/qC8vWJ/UNAlLWkNxgA==
+ b=g0a+HC0pSmBoWR0ubuCMS+km2/vJCm4I6ILlmeTwoM4O/hGgT/MNLmyn9aBwkvajNuSnmQ/jbB4k9dnHrmmI4RQH6/jg68vKPK7NV1AFV+rhm+IVBE5sERpsnKJWMONNuUMZi8n5uD92CWFr7OFWRriwhHYtPXMpdGw1zLcJjgSDMF+8g+Uvf11HnDytK43j/Plh7nIstOloeP5FtX4Bac6vAA6BnCDxO2DWOc82gc+lW3vnzDUh00EWsq2ZhFzclCo6XplZeFefBGOOon0ngSeJ0PDcVNWEjZj+lK6K3fSTeSfIa9WDF2vb8OpPvSn7+IdOoYe+3HejpjPRtBL2QQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4MIx0LmLU1ai9jv9CNlEDqa5zy7YM1Fdcu3yosxIwWk=;
- b=aNuMPfx8Huimc1tVZwBS5/9Qn4w8k2hiWtYtjayy/hDG0F4nQPRT1HcPqXJGLw4b9rO8NvrAdGxEytSm0gZANlL9IEp3Ckvo+YZQlLGvd/y6s1v1Ue3cFh6UjDOuzN3Y8rP5qYMvJjLCdoeHCxirEC2BcbIYdmZ3FruQ6ecuJguk49ufffomwxBB0HKI7DJ005gXt/wzX/3HZkXz98HqVWVqbjMpy3FLhtaklUtJP9Fgxc0WezPMy/CS1rUb8NJ3ojxBbeJh3y8/wu9sp5UjCm3AcIvg1TYHSDT12bp7gl+3/EORq1ogFEu9gJGEHwjreGZCoC/BZWoMVrd3TUTDrQ==
+ bh=Ls0OlI4S5QBJHcz31Kv4vwu2Weco/PrqHzVvbU69IMg=;
+ b=nccTAt0dhV+d43csZuG8zKye8LUJVV6jhip7vLaFkDZ1n3QBExvgSKkm/PErUlk68/j0ndRb3Wk8MJFA4/Uv8tKJUAzyWKTyKV+0la6VLuGfOZfxgUbqiz6RIm/lNngT5YCDcwZ9l1TbvD0/QNUYpVTe4n5UgumehTaxoeNwMxuAgMp3dl6f6Ps7TcI5tYqSPJcFdtNjRBOZ/qio/tdAM1RdQAEE4qKzkmmMaL/osCo0xq7/9yFxfinEEyL1bZOYpDRloLD460Igjws9ZBitRCCr+xKEotx6nvk/swEPuEptOTv3v9Ds4ZhmyxXFcvEEfyXc60VCZSAVVUEJ2WSGyw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by SA1PR11MB8327.namprd11.prod.outlook.com (2603:10b6:806:378::20)
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by CY5PR11MB6487.namprd11.prod.outlook.com (2603:10b6:930:31::17)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.23; Wed, 28 Feb
- 2024 23:39:24 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7352:aa4b:e13e:cb01]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7352:aa4b:e13e:cb01%7]) with mapi id 15.20.7339.024; Wed, 28 Feb 2024
- 23:39:24 +0000
-Date: Wed, 28 Feb 2024 17:39:21 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Yury Norov <yury.norov@gmail.com>
-CC: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Dmitry Baryshkov
- <dmitry.baryshkov@linaro.org>, <linux-kernel@vger.kernel.org>,
- <dri-devel@lists.freedesktop.org>, Jani Nikula <jani.nikula@linux.intel.com>, 
- <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>, "Jani
- Nikula" <jani.nikula@intel.com>
-Subject: Re: [PATCH v3 1/3] bits: introduce fixed-type genmasks
-Message-ID: <3o3nvkg76sofrhgcuogo3wuhitnz3bgus6qzle7pejng3v4s62@frdbuj46uiu7>
-References: <20240208074521.577076-1-lucas.demarchi@intel.com>
- <20240208074521.577076-2-lucas.demarchi@intel.com>
- <CAA8EJpprfrtOjNzT6TFhV1n6MXzLdTahanfxcRW4uVjeHaBduA@mail.gmail.com>
- <ZdZlVn9BI-0q1Xdn@smile.fi.intel.com>
- <btssirjumey2kcp5dyhe6m3embdwd5bswjz3c6swrhxfijfhld@lztxaptkegw6>
- <ZddfF7kb54o2c/QR@yury-ThinkPad>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.12; Thu, 29 Feb
+ 2024 00:52:06 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e7c:ccbc:a71c:6c15]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e7c:ccbc:a71c:6c15%5]) with mapi id 15.20.7339.022; Thu, 29 Feb 2024
+ 00:52:06 +0000
+Date: Thu, 29 Feb 2024 00:52:26 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+CC: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ <intel-xe@lists.freedesktop.org>, kernel test robot <lkp@intel.com>
+Subject: Re: [PATCH] drm/xe: Fix build error in xe_ggtt.c
+Message-ID: <Zd/VSucJCHVFbryn@DUT025-TGLU.fm.intel.com>
+References: <20240225001448.81513-1-matthew.brost@intel.com>
+ <98e9c8ea0f51cb308f02a1cf2ce61d06fd5bbc0a.camel@linux.intel.com>
+ <Zdyw6OT/SDir+3Op@DUT025-TGLU.fm.intel.com>
+ <2552f1145d30d79669cfae860abbeb361ce723c4.camel@linux.intel.com>
+ <zsa63c56nccbw4hwbq4refcbpnfrxamxgqo4wjukykvu6o4cvs@cykqrhdxiuld>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <ZddfF7kb54o2c/QR@yury-ThinkPad>
-X-ClientProxiedBy: SJ0PR13CA0126.namprd13.prod.outlook.com
- (2603:10b6:a03:2c6::11) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <zsa63c56nccbw4hwbq4refcbpnfrxamxgqo4wjukykvu6o4cvs@cykqrhdxiuld>
+X-ClientProxiedBy: BY3PR05CA0028.namprd05.prod.outlook.com
+ (2603:10b6:a03:254::33) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SA1PR11MB8327:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2df533cd-d098-4dc8-9013-08dc38b67ec5
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CY5PR11MB6487:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4166f7bc-d358-4018-d12c-08dc38c0a6c7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: d/B1BOzQXnKdNIlwq0egx0qWfs1f0fRVyIIc6jKIyx+nIMpNc1ucqC/JdtBOmQEylBsG15S4txQWljGGrmpyNO60Zn+zccVdaL35fb0Cf7MrKJtRC9bJy3EPlJhhpOPjXckJquslXsniJXfELFFO8tHJWevDeW1BI3+nfY+cGpsQRL9xE9O0duwT97PFKALuZr5xeZ4EahnIoI3cWA5xW9U/Vd7RQXA/EgHOmJCbzFqc4jwDOeS7x7dfqAvRhLOEF7bU70/R8Ugz+kI5ab3M6Ek33zCBGB4INGoeAWYQ7TXEuDWWOHRc6L+rgFHeDUAHAYq4cOJOdlH3j57d0yywPY0ShEg5bNT5sSdqCu9qOMv3+iC+rJGHCgswVORNxkYhzJENn5n2Hryu+8QLMlG99EJ/yq0XJi7MMD5R9Nc+CDJ6NOgHb3cNCvkIfqjrWHnVi/QjVCY75BxRgaoO3jo8uWsicRxFLtL6HSKTT2/GU7pDpH0z4XdoF3IlVGhqSXMXr5ZK7AlHGnRD5Kf30AEd4S7h7zLYR1z7rND1ZzcS4NXNgHgUqZ2/mNY4qy86MRXoC+KFm58dzlqUjscraqeyYY17m+7L1S6VpmXTemWEwrb4811R+1U3EtWMsZoebDWRQp8/mPTG6Rttt1zKqf6JfA==
+X-Microsoft-Antispam-Message-Info: wz434b57FKWl/haJUh0G2ZPnG0Xcz8VnRkwFjsIL3MgUxs98aKqdnfKwpaYygY73xVDwR7apSPV8DCulkP8qnu7VIjqeW6mJS8tSW5ViO95TrpZdvd4kBo1WNJMcArBiOE5WTNehcq/Fvcu73wh8y9sVQFhI1dLOjhxL0bHy7gRJcBQAlLe4tR+OLj3gGzKKhI6MC6w9mqQmAtC+lCa5Y1upy/lndS3cUoAJ6/ScNS97Y/8lLx0vW9RLGRvlSk9OL8aIX6ZvQSESywMv8RxxinvWHvje6VM8dWfhyG61nW1fLjO5opCzfc34BIR3XskQy/RBxktdamkK0SOCjqz+vTUPThYx3AWXo/jBP9XW1Z5OI4tBePIgIiFXctKMOxLqtLZNPPdVqx1uEVC3WMvF49UNgkf4ApUOzrcu4yEvhv87ooQlZwSnAj5+0Fzm0I7w0L0WwSV3r4xs0yfRRpQ/X0zt57CU9T9Xtj7ko8BAR0IdFOaDTs4SB+12120WlzJu+b/+LA7NXXKSU8Uzocr0JbxkWJ68H9ksw+UXzcydpbHIxw6viv2Lf1DifdSfJyoeXOJe5hyyg0NtHLVCpBIAcWzfwgDep/dPdKqlJPVOeOtzZHg483GlHUJKCWR7Xuom
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Dbt+y6tqBG3Q0wGaIQLNHRFd0d8T5rQGNXuBvIG0whgB+F+POKKYKtGLyPlZ?=
- =?us-ascii?Q?wGkPKXfwVZk+i++waMcD4lXRdahQvtXSoPqkf5ZKr0/0b5KpXHfY7lH3RnP8?=
- =?us-ascii?Q?lPvgonNrdUcYP7+9YwhQFyn0DgJNSiMWVwcUSk6VNMCvX7eqKzyVw6NS5TG6?=
- =?us-ascii?Q?5rXJ4udoJsblgKpbgupnFh1q0OOjB7Vra984wx1rQHUubk1Rrg3Tdtr95sxd?=
- =?us-ascii?Q?ispS2+nR+ST9sZhbQNHLUYU94eXTvfif9wdd0DuQh6SVN6UKR/fgCy8ZKHPJ?=
- =?us-ascii?Q?Xv6vHvK4h1MLrSV77lqyuF8YTV/iSwxkFRX0TX//rWPeMZ9CTNGO1s2UAkD+?=
- =?us-ascii?Q?3LIXaX2JZVgJRj7nUs0iRzGue9KZnSVY7duFwbgEq9VMzY5Tiy1DaKyzwv7w?=
- =?us-ascii?Q?vJSdurqKqNodBaxGvB7X8wPXLGnXl/rlaLp+iJccPH1WyYpkoyEyprMwViNj?=
- =?us-ascii?Q?QOduYIYS5YNDatT1PgCtBhK+dvViefMjr9TG9K3PqY3DLdR0pejWv75kND1d?=
- =?us-ascii?Q?oblncmFGnLWvrsDftitDbNDPIs5orOvA15y/dW/gEdxh6Cx8L+GTcneN1sLu?=
- =?us-ascii?Q?qSnnKrmqHcAA1P9etgttd+GNQ/JyeZeYQ6hL5bkFwEdgfCjMACWrpPINiwUQ?=
- =?us-ascii?Q?a/n427+VPs40FesqHcTu5h3nK7lteeUoV4nGCkY5tSKIDkn2sPmgGDrgZqt8?=
- =?us-ascii?Q?CncNtZcCSEF/DsWwb6YW2dYn3OyheXG9WqpnrqVKyDi3rJl8x+M5+byKnfij?=
- =?us-ascii?Q?bdviPvKhaMb0Lg8DrZRniwDBZ9XyqkBGLnSdeMEqXSpL+oClTcFIcz0dpHKl?=
- =?us-ascii?Q?R5LcMBS+BY35Frz7ztivVnG3dgKM6DrdehwJ5a2wpl/Juv8E1CFPLD2CfKCv?=
- =?us-ascii?Q?k91QikCILxb+2sqIWyS7wm7YLMJCF/tv/fZl523KAQmpc7VW2aTsfaYy8x3E?=
- =?us-ascii?Q?kbsywoyfTbs9nsSv1dc0K14jD0iqUbKFy1GLzK//fDDm5EORwM7TWxMVFIyb?=
- =?us-ascii?Q?U2Oh78vkRCY+SSe4Egl2TWUaWOpxJeqEjNMWPMwEtB/lzVoglKGQL8JLK8nk?=
- =?us-ascii?Q?+jPL1pq5Y3Nr58ojyF+n/wFGAF01eJtYhhcpsMwnzXW52QGo0VN1J//KqyLu?=
- =?us-ascii?Q?gQ4oxaDW0/e0MP1yjOBPwrl16RWnna/AqMkPdRl4GUhJ430SrxtmUXNv7zzs?=
- =?us-ascii?Q?PlPCye+dLVeoJeTaPcuHH7C82WTuC/E7nx0SuEu10kLBJusoUJkuv75X97qf?=
- =?us-ascii?Q?uaUkd7ncfqRNAfnVn7W0ULxilv6g618s3GT4GA/T2XAB7q+kr7eJfEglXckv?=
- =?us-ascii?Q?/JI1pTWQ8yNVQWcWo/2oPgQZbMYkd8GRyuB5canW7AY1DDYyj/CJDxiBQC4c?=
- =?us-ascii?Q?Wc9NtkS30GwY1DjvqXU41x9guNjS0t0L1Ysn/OVGeo1m5vxeaEIldCGD4hPJ?=
- =?us-ascii?Q?W0LnB2wtqxeIOr1EdnJ/kHrwguXGSXDje9zjS3JfPvBTWNbdFtj1AxYEvTGm?=
- =?us-ascii?Q?4+T7bSy4vLLkI6BH7WnyiRetemN6Q9NPNvRVUf92m6zgmFevLQmH+JuXb9k/?=
- =?us-ascii?Q?5K/xJaq24jWwT8h0Xlv64IbhvKd+Gqy4SJTBHXE89VeYg2X8WG4XrpTIZtYB?=
- =?us-ascii?Q?CA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2df533cd-d098-4dc8-9013-08dc38b67ec5
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?ERK5AV+l+TG/9FeOzz2rJzfdNhkAtpuPsHqk3Ac3LSnRu2Jv2HZwCZCIZ5?=
+ =?iso-8859-1?Q?Pvv2MBlOu4xJO1JqOjItZclCn+dTqQgRO5jO2NfbO8iNd2pJzAFSdhJQnz?=
+ =?iso-8859-1?Q?VZTfrkzdozx2keCNfmmAsmjCQFt8CUSLli5+b9esIHiW9NM4S+juRkeNx9?=
+ =?iso-8859-1?Q?sacdBd0ZJlRPCmUJnCI7SxzlSuINDWdg/TAIAd4EoblnfZ6yLdAGODxrS3?=
+ =?iso-8859-1?Q?wGGRhf8eX0Vv5x4UkmLSBS3M+kM3UMEOn0X2BeAlQp6ps35CxxUD+MMlpH?=
+ =?iso-8859-1?Q?y9Gv+5oj1C/kfi5px5Nay/NqZ+D3HjFG4ugfpAK7/7CCH4t2QTajpLYMMu?=
+ =?iso-8859-1?Q?e1PAsb0F7iMrXkECD9lNjMt6ZW+86d17Oxeb2Ow5N0eNF2QbZEOikkmYw4?=
+ =?iso-8859-1?Q?LVjKbNclJazYADCNUsN4uorduNeicH8mEhUTbzZMTwaFmTcapETkoLrnR7?=
+ =?iso-8859-1?Q?ypwQ7xI4nouu4DmwySdRkanqO5ydMiFOIhdyzfiu9kYRCYrVTJTb1BrReL?=
+ =?iso-8859-1?Q?oM6PEPWjK5JdNyb0THCdYUOIIxYq1cRgS5o/qWDAtLLmXxsP4qVIQs+v+f?=
+ =?iso-8859-1?Q?lwKy20Te0ehQq+tyVmNnXaa3k1eDILDA30e2dE+6eLr8SsesADHfCgK3zF?=
+ =?iso-8859-1?Q?nvlyCkfosX+eYCZDIlY2KJWwcyiPO453nqngBRWTefpe0uCsFcdctdST/u?=
+ =?iso-8859-1?Q?WTyWv9rXfsTj8EbZ8GzXvcBW/ia/B4K/baF5HDSk1W5RdqspMenYHow8A/?=
+ =?iso-8859-1?Q?GkS8BWxsyO6pBA6dxu4GXFToVA90c7hCbGwP6n6LI2UaddifVOFWNQaiNr?=
+ =?iso-8859-1?Q?rfrCi4yDhfuCL6ZsAzKsFM5coMSZiPgzN5i+hJPewLqny4fnWFzkoB613D?=
+ =?iso-8859-1?Q?pwWvprrc21JkBQq8z2UT9U4t+HfI7HUXNRbIOiYxMWkn/79EsEfgsQwGMp?=
+ =?iso-8859-1?Q?NmSpA0X7qQ2/d4n4RQ8omm6cphINPfSob3/78lkOz3bpU5n0r5wMwDfykc?=
+ =?iso-8859-1?Q?uVTo8uWnUhRPnT4HwFLh7pOdBQs+V2A258sPyycShgvS6aKwTo3e4XCK9G?=
+ =?iso-8859-1?Q?kofekzdzuQO1hUeJUMRWryz1NXEqNLbhwlL86mKHHrYNc9Axfyo7pLKV2g?=
+ =?iso-8859-1?Q?s3zJYXqXXkaw9BydPMtPOobwmFnHdtAa5FV2jDduafIewhNwT2oBNjrj0A?=
+ =?iso-8859-1?Q?2vYKmwwGvoIIcboNdJ/2uZx0WhhD4uxQXqoI1N+wYpVSEAHPb9tqfzxg+b?=
+ =?iso-8859-1?Q?NkSv5ygfCaNhwx8mmA2yJ3KwXy3sz/DV8YEQ+6Y4Gcaa7GS+0gRwBA0OPu?=
+ =?iso-8859-1?Q?bPjpf6XMWxw6X9HMBWreImIX95/k6mqKV+rcHDrNBDGz9TbO7EMEZsAhYV?=
+ =?iso-8859-1?Q?HTLGNUKB67gruHdaXuxsmk+XTx8UPUgornLsfopLqLRnBdcfUC8P4nrbBP?=
+ =?iso-8859-1?Q?LVoIEJo9U08mlh1WOrXqoq1M1K8PkuMO3QjrxguB1fIhBjxfkiFeIQmTAk?=
+ =?iso-8859-1?Q?CI5Nt2hPXI5jTSbA3oF7rFXpPwhh/g9q9wy6VIUZcfiaiHhJwonWsHHpDa?=
+ =?iso-8859-1?Q?usu6iso3qnv2F43L9QAa9ljuVJv8gFInVmUrYq5QLbnGvea6l1n4+Aw3EA?=
+ =?iso-8859-1?Q?jCUO7DO7UkUOkBA9WtRc9wBxarB8TlcAe8KPCESzcOBMXVmcURq5+zhw?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4166f7bc-d358-4018-d12c-08dc38c0a6c7
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Feb 2024 23:39:24.3950 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Feb 2024 00:52:06.4046 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cvHKny9rKTXSyuL8LLBw4TEGA4X5/WslLfo4W71ReyrBCzdvq4txcTcrm44EPBeTEhUvbM3exPrvHL0t2tyIBnlCGJFd+LXaGjYBDNJwtKM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8327
+X-MS-Exchange-CrossTenant-UserPrincipalName: fKq5LELT20IwOZL/KRnHFdbikAHOBSrgnoPK5Kn2OaRo3MvXep/lSFeXA3KPJ0iJHF+gK/Aer3HqgJPv3bsIeQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6487
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -162,185 +156,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Feb 22, 2024 at 06:49:59AM -0800, Yury Norov wrote:
->On Wed, Feb 21, 2024 at 03:59:06PM -0600, Lucas De Marchi wrote:
->> On Wed, Feb 21, 2024 at 11:04:22PM +0200, Andy Shevchenko wrote:
->> > On Wed, Feb 21, 2024 at 10:30:02PM +0200, Dmitry Baryshkov wrote:
->> > > On Thu, 8 Feb 2024 at 09:45, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->> >
->> > ...
->> >
->> > > > +#define BITS_PER_TYPE(type)    (sizeof(type) * BITS_PER_BYTE)
->> >
->> > Can sizeof() be used in assembly?
->> >
->> > ...
->> >
->> > > > -#define __GENMASK(h, l) \
->> > > > -       (((~UL(0)) - (UL(1) << (l)) + 1) & \
->> > > > -        (~UL(0) >> (BITS_PER_LONG - 1 - (h))))
->> > > > -#define GENMASK(h, l) \
->> > > > -       (GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))
->> >
->> > > > +#define __GENMASK(t, h, l) \
->> > > > +       (GENMASK_INPUT_CHECK(h, l) + \
->> > > > +        (((t)~0ULL - ((t)(1) << (l)) + 1) & \
->> > > > +        ((t)~0ULL >> (BITS_PER_TYPE(t) - 1 - (h)))))
->> >
->> > Nevertheless, the use ~0ULL is not proper assembly, this broke initial
->> > implementation using UL() / ULL().
->>
->> indeed.
->>
->> >
->> >
->> > > > -#define __GENMASK_ULL(h, l) \
->> > > > -       (((~ULL(0)) - (ULL(1) << (l)) + 1) & \
->> > > > -        (~ULL(0) >> (BITS_PER_LONG_LONG - 1 - (h))))
->> > > > -#define GENMASK_ULL(h, l) \
->> > > > -       (GENMASK_INPUT_CHECK(h, l) + __GENMASK_ULL(h, l))
->> >
->> > Ditto.
->>
->> problem here seems actually because of the cast to the final type. My
->> previous impl was avoiding that, but was too verbose compared to this.
->>
->> I will look at reverting this.
->>
->> Lucas De Marchi
->
->The fix is quite straightforward. Can you consider the following
->patch? I tested it for C and x86_64 asm parts, and it compiles well.
->
->Thanks,
->Yury
->
->From 78b2887eea26f208aac50ae283ba9a4d062bb997 Mon Sep 17 00:00:00 2001
->From: Yury Norov <yury.norov@gmail.com>
->Date: Wed, 7 Feb 2024 23:45:19 -0800
->Subject: [PATCH v2] bits: introduce fixed-type GENMASKs
->
->Generalize __GENMASK() to support different types, and implement
->fixed-types versions of GENMASK() based on it. The fixed-type version
->allows more strict checks to the min/max values accepted, which is
->useful for defining registers like implemented by i915 and xe drivers
->with their REG_GENMASK*() macros.
->
->The strict checks rely on shift-count-overflow compiler check to
->fail the build if a number outside of the range allowed is passed.
->Example:
->
->	#define FOO_MASK GENMASK_U32(33, 4)
->
->will generate a warning like:
->
->	../include/linux/bits.h:41:31: error: left shift count >= width of type [-Werror=shift-count-overflow]
->	   41 |          (((t)~0ULL - ((t)(1) << (l)) + 1) & \
->	      |                               ^~
->
->CC: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>	
->Signed-off-by: Yury Norov <yury.norov@gmail.com>
->Acked-by: Jani Nikula <jani.nikula@intel.com>
->Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+On Wed, Feb 28, 2024 at 12:49:05PM -0600, Lucas De Marchi wrote:
+> On Wed, Feb 28, 2024 at 03:47:13PM +0100, Thomas Hellström wrote:
+> > On Mon, 2024-02-26 at 15:40 +0000, Matthew Brost wrote:
+> > > On Mon, Feb 26, 2024 at 10:05:58AM +0100, Thomas Hellström wrote:
+> > > > On Sat, 2024-02-24 at 16:14 -0800, Matthew Brost wrote:
+> > > > > Need to include io-64-nonatomic-lo-hi.h for writeq function.
+> > > >
+> > > > As I understand it, the choice of header here determines the dword
+> > > > write order on 32-bit systems that don't have an atomic writeq(),
+> > > >
+> > > > So is writing the low dword first the correct order in this case?
+> > > > Perhaps add a motivation in the commit message?
+> > > >
+> > > 
+> > > "Cleanup some layering in GGTT" removed xe_mmio.h from xe_gt.c and
+> > > that
+> > > file includes linux/io-64-nonatomic-lo-hi.h. Perhaps it is better
+> > > just
+> > > to include xe_mmio.h again in xe_gt.c?
+> > 
+> > I think it then makes sense to use your original patch, so that it's
+> > easier to follow for each subsystem what ordering is used.
+> 
+> what original patch, I only find this one in the mailing list.
+> and it seems correct to me, following the "include what you use"
+> approach.
+> 
 
-I build-tested this in x86-64, x86-32 and arm64. I didn't like much the
-need to fork the __GENMASK() implementation on the 2 sides of the ifdef
-since I think the GENMASK_INPUT_CHECK() should be the one covering the
-input checks. However to make it common we'd need to solve 2 problems:
-the casts and the sizeof. The sizeof can be passed as arg to
-__GENMASK(), however the casts I think would need a __CAST_U8(x)
-or the like and sprinkle it everywhere, which would hurt readability.
-Not pretty. Or go back to the original submission and make it less
-horrible :-/
+I'm also confused by Thomas comment.
 
->
->---
-> include/linux/bitops.h |  1 -
-> include/linux/bits.h   | 41 ++++++++++++++++++++++++++++-------------
-> 2 files changed, 28 insertions(+), 14 deletions(-)
->
->diff --git a/include/linux/bitops.h b/include/linux/bitops.h
->index 2ba557e067fe..1db50c69cfdb 100644
->--- a/include/linux/bitops.h
->+++ b/include/linux/bitops.h
->@@ -15,7 +15,6 @@
-> #  define aligned_byte_mask(n) (~0xffUL << (BITS_PER_LONG - 8 - 8*(n)))
-> #endif
->
->-#define BITS_PER_TYPE(type)	(sizeof(type) * BITS_PER_BYTE)
-> #define BITS_TO_LONGS(nr)	__KERNEL_DIV_ROUND_UP(nr, BITS_PER_TYPE(long))
-> #define BITS_TO_U64(nr)		__KERNEL_DIV_ROUND_UP(nr, BITS_PER_TYPE(u64))
-> #define BITS_TO_U32(nr)		__KERNEL_DIV_ROUND_UP(nr, BITS_PER_TYPE(u32))
->diff --git a/include/linux/bits.h b/include/linux/bits.h
->index 7c0cf5031abe..f3cf8d5f2b55 100644
->--- a/include/linux/bits.h
->+++ b/include/linux/bits.h
->@@ -6,6 +6,8 @@
-> #include <vdso/bits.h>
-> #include <asm/bitsperlong.h>
->
->+#define BITS_PER_TYPE(type)	(sizeof(type) * BITS_PER_BYTE)
->+
-> #define BIT_MASK(nr)		(UL(1) << ((nr) % BITS_PER_LONG))
-> #define BIT_WORD(nr)		((nr) / BITS_PER_LONG)
-> #define BIT_ULL_MASK(nr)	(ULL(1) << ((nr) % BITS_PER_LONG_LONG))
->@@ -22,24 +24,37 @@
-> #define GENMASK_INPUT_CHECK(h, l) \
-> 	(BUILD_BUG_ON_ZERO(__builtin_choose_expr( \
-> 		__is_constexpr((l) > (h)), (l) > (h), 0)))
->+#define __GENMASK(t, h, l) \
->+	(GENMASK_INPUT_CHECK(h, l) + \
->+	 (((t)~0ULL - ((t)(1) << (l)) + 1) & \
->+	 ((t)~0ULL >> (BITS_PER_TYPE(t) - 1 - (h)))))
-> #else
-> /*
->- * BUILD_BUG_ON_ZERO is not available in h files included from asm files,
->- * disable the input check if that is the case.
->+ * BUILD_BUG_ON_ZERO is not available in h files included from asm files.
->+ * Similarly, assembler lacks for C types. So no parameters check in asm.
->+ * It's users' responsibility to provide bitranges within a machine word
->+ * boundaries.
->  */
-> #define GENMASK_INPUT_CHECK(h, l) 0
->+#define __GENMASK(t, h, l) \
->+	((~0 - (1 << (l)) + 1) & (~0 >> (BITS_PER_LONG - 1 - (h))))
+Let me ask directly - do you prefer xe_mmio.h or
+linux/io-64-nonatomic-lo-hi.h to be included in xe_ggtt.c?
 
-humn... this builds, but does it work if GENMASK_ULL() is used in
-assembly? That BITS_PER_LONG does not match the type width.
+Matt
 
-Lucas De Marchi
-
-> #endif
->
->-#define __GENMASK(h, l) \
->-	(((~UL(0)) - (UL(1) << (l)) + 1) & \
->-	 (~UL(0) >> (BITS_PER_LONG - 1 - (h))))
->-#define GENMASK(h, l) \
->-	(GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))
->-
->-#define __GENMASK_ULL(h, l) \
->-	(((~ULL(0)) - (ULL(1) << (l)) + 1) & \
->-	 (~ULL(0) >> (BITS_PER_LONG_LONG - 1 - (h))))
->-#define GENMASK_ULL(h, l) \
->-	(GENMASK_INPUT_CHECK(h, l) + __GENMASK_ULL(h, l))
->+/*
->+ * Generate a mask for the specified type @t. Additional checks are made to
->+ * guarantee the value returned fits in that type, relying on
->+ * shift-count-overflow compiler check to detect incompatible arguments.
->+ * For example, all these create build errors or warnings:
->+ *
->+ * - GENMASK(15, 20): wrong argument order
->+ * - GENMASK(72, 15): doesn't fit unsigned long
->+ * - GENMASK_U32(33, 15): doesn't fit in a u32
->+ */
->+#define GENMASK(h, l)		__GENMASK(unsigned long,  h, l)
->+#define GENMASK_ULL(h, l)	__GENMASK(unsigned long long, h, l)
->+#define GENMASK_U8(h, l)	__GENMASK(u8,  h, l)
->+#define GENMASK_U16(h, l)	__GENMASK(u16, h, l)
->+#define GENMASK_U32(h, l)	__GENMASK(u32, h, l)
->+#define GENMASK_U64(h, l)	__GENMASK(u64, h, l)
->
-> #endif	/* __LINUX_BITS_H */
->-- 
->2.40.1
->
+> Also see some more details in commit 9a6e6c14bfde ("drm/xe/mmio: Use
+> non-atomic writeq/readq variant for 32b"):
+> 
+> 	writeq() and readq() and other functions working on 64 bit variables
+> 	are not provided by 32b arch. For that it's needed to choose between
+> 	linux/io-64-nonatomic-hi-lo.h and linux/io-64-nonatomic-lo-hi.h,
+> 	spliting the read/write in 2 accesses. For xe driver, it doesn't matter
+> 	much, so just choose one and include in xe_mmio.h.
+> 
+> Aside from the "Fixes:" trailer, Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> 
+> thanks
+> Lucas De Marchi
+> 
+> > 
+> > Also note Jani's comment. We should use "dim fixes <hash>" to get the
+> > fixes tag correct.
+> > 
+> > Thanks,
+> > Thomas
+> > 
+> > 
+> > > 
+> > > Matt
+> > > 
+> > > > /Thomas
+> > > >
+> > > >
+> > > > >
+> > > > > Fixes: 3121fed0c51b drm/xe: ("Cleanup some layering in GGTT")
+> > > > > Reported-by: kernel test robot <lkp@intel.com>
+> > > > > Closes:
+> > > > > https://lore.kernel.org/oe-kbuild-all/202402241903.R5J8hKVI-lkp@intel.com/
+> > > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > > > > ---
+> > > > >  drivers/gpu/drm/xe/xe_ggtt.c | 1 +
+> > > > >  1 file changed, 1 insertion(+)
+> > > > >
+> > > > > diff --git a/drivers/gpu/drm/xe/xe_ggtt.c
+> > > > > b/drivers/gpu/drm/xe/xe_ggtt.c
+> > > > > index 5d46958e3144..717d0e76277a 100644
+> > > > > --- a/drivers/gpu/drm/xe/xe_ggtt.c
+> > > > > +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+> > > > > @@ -5,6 +5,7 @@
+> > > > >  
+> > > > >  #include "xe_ggtt.h"
+> > > > >  
+> > > > > +#include <linux/io-64-nonatomic-lo-hi.h>
+> > > > >  #include <linux/sizes.h>
+> > > > >  
+> > > > >  #include <drm/drm_managed.h>
+> > > >
+> > 
