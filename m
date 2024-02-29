@@ -4,66 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1EDCC54E41
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Feb 2024 13:54:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B517C48BF6
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Feb 2024 14:46:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9432910E0FD;
-	Thu, 29 Feb 2024 13:54:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2702910E366;
+	Thu, 29 Feb 2024 14:46:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E+BK1lDK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nx4DrTWh";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DDBE10E0BF;
- Thu, 29 Feb 2024 13:54:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC4B210E34F;
+ Thu, 29 Feb 2024 14:46:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709214878; x=1740750878;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=iBI0xnd7Mg37QjrQpGvQUFwvYvz/xUb59/vMsiBf7UU=;
- b=E+BK1lDK2HBJja7t8M9Erbeswzn6aN+LLCxSWtFaHgAEGaKwoUCDKc8L
- 4llkBUIzznSaG+9Gbd9arEmi5YILJIYdZ7KDTFC7GXstTHSrk1IT8ZbQ8
- itAhJ3l6qs3Nz4StDRMxM1pcFnqNRneVAE9zw+pVY/r+1KvOssJM4YcHm
- 0EgkLlHomPkPsOsdN8bPQsQhJOocnbpa7HmiKKX+Qfmsab2ZlTGugQF4p
- 2d/zWgvd/D6vD4ybuZBu+QznV6fZ8ar+xyCXvHBnysnuitShUjisKxjCf
- ScgFmtZPdKvoAMxMtS/YRlxz5CK349Uc3/QNvJN9J6fJfcOHwx60ROX/2 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10998"; a="6632515"
-X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; 
-   d="scan'208";a="6632515"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Feb 2024 05:54:37 -0800
+ t=1709217974; x=1740753974;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=3oJedtpUCDtslx7gH0XWE1db//lVWLZiW0moWQs5pns=;
+ b=Nx4DrTWhVC49Th+tSpQVjHaVueYcYd/zpj2fiTuktm4IzKhEjVXuQAif
+ VhSlWhQEbV7ZnfhOFwY3Hz4Q/E93ryVOI7Dj+STxAbSN0Nw7gUK09bPNZ
+ 2ldyst25rw59deXTuLJcDa+f5fqMcZB5m9eAu+gR6aQpmNPJERx0BTCpc
+ RhaKi6gNqk+uyB00FJl7ozysAf/L3aON3qW6KnsNWQktzrta/Y7CWSgEf
+ W6mAGZ27g5BMF/5lPEiLnshykFCixpd7lT9uet2bkDM7rI7DjGTzLZkwS
+ 55pqB0JhgZEcJXXrPP6AgnjVdnuyNgrQK0JNI6nXv20suYU5C36tHnTvZ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10998"; a="14398436"
+X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; d="scan'208";a="14398436"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Feb 2024 06:46:13 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; d="scan'208";a="45350095"
-Received: from mhaehnex-mobl1.ger.corp.intel.com (HELO [10.252.3.131])
- ([10.252.3.131])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Feb 2024 05:54:32 -0800
-Message-ID: <455d1cf5-e885-42bf-9bda-4cf6d51b2de0@intel.com>
-Date: Thu, 29 Feb 2024 13:54:30 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PULL] drm-misc-fixes
-Content-Language: en-GB
-To: Maxime Ripard <mripard@redhat.com>, Dave Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, Lucas De Marchi
- <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
+X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; 
+   d="scan'208";a="8080548"
+Received: from unknown (HELO localhost) ([10.237.66.160])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Feb 2024 06:46:09 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
+ <tvrtko.ursulin@linux.intel.com>, David Airlie <airlied@gmail.com>, Daniel
+ Vetter <daniel@ffwll.ch>
+Cc: linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dim-tools@lists.freedesktop.org
-References: <20240229-angelic-adorable-teal-fbfabb@houat>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20240229-angelic-adorable-teal-fbfabb@houat>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/display: Save a few bytes of memory in
+ intel_backlight_device_register()
+In-Reply-To: <ecfdb3af5005e05131e2fb93fd870830f39a8c29.1708708142.git.christophe.jaillet@wanadoo.fr>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <ecfdb3af5005e05131e2fb93fd870830f39a8c29.1708708142.git.christophe.jaillet@wanadoo.fr>
+Date: Thu, 29 Feb 2024 16:46:07 +0200
+Message-ID: <8734tb8h1s.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,84 +71,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 29/02/2024 13:37, Maxime Ripard wrote:
-> Hi,
-> 
-> Here's this week drm-misc fixes PR.
-> 
-> There's two commits for files unders drivers/soc/qcom that don't have a
-> maintainer Acked-by. Bjorn's Acked-by was provided on IRC, and Konrad
-> provided it by mail after the facts so we're covered.
-> 
-> Maxime
-> 
-> drm-misc-fixes-2024-02-29:
-> A reset fix for host1x, a resource leak fix and a probe fix for aux-hpd,
-> a use-after-free fix and a boot fix for a pmic_glink qcom driver in
-> drivers/soc, a fix for the simpledrm/tegra transition, a kunit fix for
-> the TTM tests, a font handling fix for fbcon, two allocation fixes and a
-> kunit test to cover them for drm/buddy
-> The following changes since commit 72fa02fdf83306c52bc1eede28359e3fa32a151a:
-> 
->    nouveau: add an ioctl to report vram usage (2024-02-23 10:20:07 +1000)
-> 
-> are available in the Git repository at:
-> 
->    https://anongit.freedesktop.org/git/drm/drm-misc tags/drm-misc-fixes-2024-02-29
-> 
-> for you to fetch changes up to c70703320e557ff30847915e6a7631a9abdda16b:
-> 
->    drm/tests/drm_buddy: add alloc_range_bias test (2024-02-28 08:03:29 +0100)
-> 
-> ----------------------------------------------------------------
-> A reset fix for host1x, a resource leak fix and a probe fix for aux-hpd,
-> a use-after-free fix and a boot fix for a pmic_glink qcom driver in
-> drivers/soc, a fix for the simpledrm/tegra transition, a kunit fix for
-> the TTM tests, a font handling fix for fbcon, two allocation fixes and a
-> kunit test to cover them for drm/buddy
-> 
-> ----------------------------------------------------------------
-> Christian König (1):
->        drm/ttm/tests: depend on UML || COMPILE_TEST
-> 
-> Jiri Slaby (SUSE) (1):
->        fbcon: always restore the old font data in fbcon_do_set_font()
-> 
-> Johan Hovold (3):
->        drm/bridge: aux-hpd: fix OF node leaks
->        drm/bridge: aux-hpd: separate allocation and registration
->        soc: qcom: pmic_glink_altmode: fix drm bridge use-after-free
-> 
-> Matthew Auld (3):
->        drm/buddy: fix range bias
->        drm/buddy: check range allocation matches alignment
->        drm/tests/drm_buddy: add alloc_range_bias test
+On Fri, 23 Feb 2024, Christophe JAILLET <christophe.jaillet@wanadoo.fr> wrote:
+> 'name' may still be "intel_backlight" when backlight_device_register() is
+> called.
+> In such a case, using kstrdup_const() saves a memory duplication when
+> dev_set_name() is called in backlight_device_register().
+>
+> Use kfree_const() accordingly.
+>
+> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
 
-Note that there is a build fix needed for this one:
-https://patchwork.freedesktop.org/patch/580568/?series=130552&rev=1
+Thanks, pushed to drm-intel-next.
 
-> 
-> Maxime Ripard (1):
->        Merge drm/drm-fixes into drm-misc-fixes
-> 
-> Mikko Perttunen (1):
->        gpu: host1x: Skip reset assert on Tegra186
-> 
-> Rob Clark (1):
->        soc: qcom: pmic_glink: Fix boot when QRTR=m
-> 
-> Thierry Reding (1):
->        drm/tegra: Remove existing framebuffer only if we support display
-> 
->   drivers/gpu/drm/Kconfig                 |   5 +-
->   drivers/gpu/drm/bridge/aux-hpd-bridge.c |  70 +++++++---
->   drivers/gpu/drm/drm_buddy.c             |  16 ++-
->   drivers/gpu/drm/tegra/drm.c             |  23 +++-
->   drivers/gpu/drm/tests/drm_buddy_test.c  | 218 ++++++++++++++++++++++++++++++++
->   drivers/gpu/host1x/dev.c                |  15 ++-
->   drivers/gpu/host1x/dev.h                |   6 +
->   drivers/soc/qcom/pmic_glink.c           |  21 +--
->   drivers/soc/qcom/pmic_glink_altmode.c   |  16 ++-
->   drivers/video/fbdev/core/fbcon.c        |   8 +-
->   include/drm/bridge/aux-bridge.h         |  15 +++
->   11 files changed, 368 insertions(+), 45 deletions(-)
+BR,
+Jani.
+
+> ---
+> Compile tested only
+> ---
+>  drivers/gpu/drm/i915/display/intel_backlight.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
+> index 1946d7fb3c2e..9e4a9d4f1585 100644
+> --- a/drivers/gpu/drm/i915/display/intel_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_backlight.c
+> @@ -949,7 +949,7 @@ int intel_backlight_device_register(struct intel_connector *connector)
+>  	else
+>  		props.power = FB_BLANK_POWERDOWN;
+>  
+> -	name = kstrdup("intel_backlight", GFP_KERNEL);
+> +	name = kstrdup_const("intel_backlight", GFP_KERNEL);
+>  	if (!name)
+>  		return -ENOMEM;
+>  
+> @@ -963,7 +963,7 @@ int intel_backlight_device_register(struct intel_connector *connector)
+>  		 * compatibility. Use unique names for subsequent backlight devices as a
+>  		 * fallback when the default name already exists.
+>  		 */
+> -		kfree(name);
+> +		kfree_const(name);
+>  		name = kasprintf(GFP_KERNEL, "card%d-%s-backlight",
+>  				 i915->drm.primary->index, connector->base.name);
+>  		if (!name)
+> @@ -987,7 +987,7 @@ int intel_backlight_device_register(struct intel_connector *connector)
+>  		    connector->base.base.id, connector->base.name, name);
+>  
+>  out:
+> -	kfree(name);
+> +	kfree_const(name);
+>  
+>  	return ret;
+>  }
+
+-- 
+Jani Nikula, Intel
