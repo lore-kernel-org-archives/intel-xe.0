@@ -4,71 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38870C54E49
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Feb 2024 17:13:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AEB9C54E49
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Feb 2024 17:34:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4B4110E49D;
-	Thu, 29 Feb 2024 17:13:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BB1510E4EB;
+	Thu, 29 Feb 2024 17:34:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hVxk5CU/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R3jK5BaE";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D751210E49D;
- Thu, 29 Feb 2024 17:13:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B663810E49D;
+ Thu, 29 Feb 2024 17:34:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709226834; x=1740762834;
+ t=1709228082; x=1740764082;
  h=message-id:subject:from:to:cc:date:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=ggL2ejLmDl3iKLECeOmUsD/VQnpDkbc4+L4hSOY54DI=;
- b=hVxk5CU/1L91oiutcsdH4GjhOBUbvevf6Gi9EaxsZJQTUKDWhN5CiQRw
- u/JYSMsqREXwUsgW3/6iNOKuS8OX7HSBKNJvzMnnjhWVEULqQmwSSmx1D
- XXi0B8wWYJ9F9Wxc7ZjAFoN/jv1ZbK8E5Xj4NI1NYMAvu9hDsigz0s8xN
- jSJzTDoyzE6mBHZ9bXOZMGxBpilg4+g5X2kNG58DcnkeLAlmQFCOetMha
- nvvfebwCRKjk3muYjXV7HZGyCu04ZJf9H0Nohn2OiJ/vx+LzOS7RXXkVy
- 6JgjtoPPRyh4lH5jr4aGEEjcEvvFFvWYFyuKsjkUu2oOktfbzcncV/pyu g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10999"; a="3597607"
+ bh=FjDDGDdUpYxiJd/WwLLEmIR+gp3oS/ZEnUYu0d6wNCE=;
+ b=R3jK5BaEkTm0k+WiwBpxBm/68SGLv+69QmIQOcyQz5O8BF4LJerlgYmu
+ ImcXVXw/Za2crWNuZJphaZuefcimMFBTpxcgvxNyP/mtFk3ehvLUF3FWl
+ tXmB43vgBpkUVqSPrBUx04DV05j3ZsbUaEfdeAdBkW4wbpPnp7/D6lRfN
+ MY/MTwaLhXMLoNWMWibvZsWfJ4t7mdMgKB6hQ+cB8F1a+8H5ysrWJZU6W
+ L6I4Yf1xVmMMoUOV6AZWhl3SMpAwU/W5Q/tdqKEEpvw35BnWF1Rtz1dml
+ g5qlydTLI9Fq/aeaYG7zPoSHLLPXCP75E/FCLkSkMwk/D64bnBFsISWrr g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10999"; a="3586159"
 X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; 
-   d="scan'208";a="3597607"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Feb 2024 09:12:08 -0800
+   d="scan'208";a="3586159"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Feb 2024 09:34:28 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; 
-   d="scan'208";a="8459162"
+   d="scan'208";a="7821659"
 Received: from srdoo-mobl1.ger.corp.intel.com (HELO [10.252.3.93])
  ([10.252.3.93])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Feb 2024 09:12:04 -0800
-Message-ID: <7eb835594110980f2e9f061512fd488bbd63fd11.camel@linux.intel.com>
-Subject: Re: Making drm_gpuvm work across gpu devices
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Feb 2024 09:34:26 -0800
+Message-ID: <c2e29b31a1654625ef316264e2335a0158b3a228.camel@linux.intel.com>
+Subject: Re: [PATCH 0/4] TTM unlockable restartable LRU list iteration
 From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, "Zeng,
- Oak" <oak.zeng@intel.com>, Danilo Krummrich <dakr@redhat.com>, Dave Airlie
- <airlied@redhat.com>, Daniel Vetter <daniel@ffwll.ch>, Felix Kuehling
- <felix.kuehling@amd.com>, "jglisse@redhat.com" <jglisse@redhat.com>
-Cc: "Welty, Brian" <brian.welty@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Bommu,
- Krishnaiah" <krishnaiah.bommu@intel.com>, "Ghimiray, Himal Prasad"
- <himal.prasad.ghimiray@intel.com>, "Vishwanathapura, Niranjana"
- <niranjana.vishwanathapura@intel.com>, "Brost, Matthew"
- <matthew.brost@intel.com>, "Gupta, saurabhg" <saurabhg.gupta@intel.com>
-Date: Thu, 29 Feb 2024 18:12:02 +0100
-In-Reply-To: <ada8e6cc-a7d2-4b6f-8f70-f0448cc2e420@amd.com>
-References: <20240117221223.18540-1-oak.zeng@intel.com>
- <20240117221223.18540-22-oak.zeng@intel.com>
- <ad21ec11-a9cb-4fb2-b9fd-00a4fa11525f@intel.com>
- <PH7PR11MB70049E7E6A2F40BF6282ECC292742@PH7PR11MB7004.namprd11.prod.outlook.com>
- <PH7PR11MB700440CE88BC0A94CFF8499792742@PH7PR11MB7004.namprd11.prod.outlook.com>
- <2928ce36-06a6-4bee-b115-8dd61cc41dca@amd.com>
- <SA1PR11MB699192584C01A26C781E2F9992742@SA1PR11MB6991.namprd11.prod.outlook.com>
- <ccf34f6a-d704-43de-a15e-2ae2890f9381@amd.com>
- <SA1PR11MB6991FDAFF07E3654538F5BBF92552@SA1PR11MB6991.namprd11.prod.outlook.com>
- <df2df998-af26-4ae9-a0a4-5aac1b9e3c73@amd.com>
- <SA1PR11MB6991786DA69422A1A6095A1E92592@SA1PR11MB6991.namprd11.prod.outlook.com>
- <SA1PR11MB6991B3DA606280EBC6952D1092582@SA1PR11MB6991.namprd11.prod.outlook.com>
- <ada8e6cc-a7d2-4b6f-8f70-f0448cc2e420@amd.com>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
+ intel-xe@lists.freedesktop.org, intel-gfx@list.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+Date: Thu, 29 Feb 2024 18:34:23 +0100
+In-Reply-To: <c4f85901-1461-42e4-8db1-49877837e398@amd.com>
+References: <20240216131306.101932-1-thomas.hellstrom@linux.intel.com>
+ <29000a0d-19ce-4727-945b-d5734313c7f1@amd.com>
+ <47fc8e42dcfd868341ffc32754c302e58ac49484.camel@linux.intel.com>
+ <c4f85901-1461-42e4-8db1-49877837e398@amd.com>
 Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
  keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
 Organization: Intel Sweden AB, Registration Number: 556189-6027
@@ -92,153 +75,122 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Hi, Christian.
 
-On Thu, 2024-02-29 at 10:41 +0100, Christian K=C3=B6nig wrote:
-> Am 28.02.24 um 20:51 schrieb Zeng, Oak:
+Thanks for having a look.
+
+On Thu, 2024-02-29 at 16:08 +0100, Christian K=C3=B6nig wrote:
+> Am 16.02.24 um 15:20 schrieb Thomas Hellstr=C3=B6m:
+> [SNIP]
+> > > My approach was basically to not only lock the current BO, but
+> > > also
+> > > the
+> > > next one. Since only a locked BO can move on the LRU we
+> > > effectively
+> > > created an anchor.
+> > >=20
+> > > Before I dig into the code a couple of questions:
+> > These are described in the patches but brief comments inline.
 > >=20
-> > The mail wasn=E2=80=99t indent/preface correctly. Manually format it.
-> >=20
-> > *From:*Christian K=C3=B6nig <christian.koenig@amd.com>
-> > *Sent:* Tuesday, February 27, 2024 1:54 AM
-> > *To:* Zeng, Oak <oak.zeng@intel.com>; Danilo Krummrich=20
-> > <dakr@redhat.com>; Dave Airlie <airlied@redhat.com>; Daniel Vetter=20
-> > <daniel@ffwll.ch>; Felix Kuehling <felix.kuehling@amd.com>;=20
-> > jglisse@redhat.com
-> > *Cc:* Welty, Brian <brian.welty@intel.com>;=20
-> > dri-devel@lists.freedesktop.org; intel-xe@lists.freedesktop.org;=20
-> > Bommu, Krishnaiah <krishnaiah.bommu@intel.com>; Ghimiray, Himal
-> > Prasad=20
-> > <himal.prasad.ghimiray@intel.com>;
-> > Thomas.Hellstrom@linux.intel.com;=20
-> > Vishwanathapura, Niranjana <niranjana.vishwanathapura@intel.com>;=20
-> > Brost, Matthew <matthew.brost@intel.com>; Gupta, saurabhg=20
-> > <saurabhg.gupta@intel.com>
-> > *Subject:* Re: Making drm_gpuvm work across gpu devices
-> >=20
-> > Hi Oak,
-> >=20
-> > Am 23.02.24 um 21:12 schrieb Zeng, Oak:
-> >=20
-> > =C2=A0=C2=A0=C2=A0 Hi Christian,
-> >=20
-> > =C2=A0=C2=A0=C2=A0 I go back this old email to ask a question.
-> >=20
-> >=20
-> > sorry totally missed that one.
-> >=20
-> > =C2=A0=C2=A0=C2=A0 Quote from your email:
-> >=20
-> > =C2=A0=C2=A0=C2=A0 =E2=80=9CThose ranges can then be used to implement =
-the SVM feature
-> > =C2=A0=C2=A0=C2=A0 required for higher level APIs and not something you=
- need at
-> > the
-> > =C2=A0=C2=A0=C2=A0 UAPI or even inside the low level kernel memory mana=
-gement.=E2=80=9D
-> >=20
-> > =C2=A0=C2=A0=C2=A0 =E2=80=9CSVM is a high level concept of OpenCL, Cuda=
-, ROCm etc.. This
-> > =C2=A0=C2=A0=C2=A0 should not have any influence on the design of the k=
-ernel
-> > UAPI.=E2=80=9D
-> >=20
-> > =C2=A0=C2=A0=C2=A0 There are two category of SVM:
-> >=20
-> > =C2=A0=C2=A0=C2=A0 1.driver svm allocator: this is implemented in user =
-space,
-> > =C2=A0i.g.,
-> > =C2=A0=C2=A0=C2=A0 cudaMallocManaged (cuda) or zeMemAllocShared (L0) or
-> > =C2=A0=C2=A0=C2=A0 clSVMAlloc(openCL). Intel already have gem_create/vm=
-_bind in
-> > xekmd
-> > =C2=A0=C2=A0=C2=A0 and our umd implemented clSVMAlloc and zeMemAllocSha=
-red on top
-> > of
-> > =C2=A0=C2=A0=C2=A0 gem_create/vm_bind. Range A..B of the process addres=
-s space is
-> > =C2=A0=C2=A0=C2=A0 mapped into a range C..D of the GPU address space, e=
-xactly as
-> > you
-> > =C2=A0=C2=A0=C2=A0 said.
-> >=20
-> > =C2=A0=C2=A0=C2=A0 2.system svm allocator: =C2=A0This doesn=E2=80=99t i=
-ntroduce extra driver
-> > API
-> > =C2=A0=C2=A0=C2=A0 for memory allocation. Any valid CPU virtual address=
- can be
-> > used
-> > =C2=A0=C2=A0=C2=A0 directly transparently in a GPU program without any =
-extra
-> > driver
-> > =C2=A0=C2=A0=C2=A0 API call. Quote from kernel Documentation/vm/hmm.hst=
-: =E2=80=9CAny
-> > =C2=A0=C2=A0=C2=A0 application memory region (private anonymous, shared=
- memory, or
-> > =C2=A0=C2=A0=C2=A0 regular file backed memory) can be used by a device
-> > transparently=E2=80=9D
-> > =C2=A0=C2=A0=C2=A0 and =E2=80=9Cto share the address space by duplicati=
-ng the CPU page
-> > table
-> > =C2=A0=C2=A0=C2=A0 in the device page table so the same address points =
-to the same
-> > =C2=A0=C2=A0=C2=A0 physical memory for any valid main memory address in=
- the
-> > process
-> > =C2=A0=C2=A0=C2=A0 address space=E2=80=9D. In system svm allocator, we =
-don=E2=80=99t need that
-> > A..B
-> > =C2=A0=C2=A0=C2=A0 C..D mapping.
-> >=20
-> > =C2=A0=C2=A0=C2=A0 It looks like you were talking of 1). Were you?
-> >=20
-> >=20
-> > No, even when you fully mirror the whole address space from a
-> > process=20
-> > into the GPU you still need to enable this somehow with an IOCTL.
-> >=20
-> > And while enabling this you absolutely should specify to which part
-> > of=20
-> > the address space this mirroring applies and where it maps to.
-> >=20
-> > */[Zeng, Oak] /*
-> >=20
-> > Lets say we have a hardware platform where both CPU and GPU support
-> > 57bit(use it for example. The statement apply to any address range)
-> > virtual address range, how do you decide =E2=80=9Cwhich part of the add=
-ress
-> > space this mirroring applies=E2=80=9D? You have to mirror the whole add=
-ress
-> > space [0~2^57-1], do you? As you designed it, the gigantic=20
-> > vm_bind/mirroring happens at the process initialization time, and
-> > at=20
-> > that time, you don=E2=80=99t know which part of the address space will =
-be
-> > used=20
-> > for gpu program. Remember for system allocator, *any* valid CPU=20
-> > address can be used for GPU program. =C2=A0If you add an offset to=20
-> > [0~2^57-1], you get an address out of 57bit address range. Is this
-> > a=20
-> > valid concern?
-> >=20
+> > > 1. How do you distinct BOs and iteration anchors on the LRU?
+> > Using a struct ttm_lru_item, containing a struct list_head and the
+> > type. List nodes embeds this instead of a struct list_head. This is
+> > larger than the list head but makes it explicit what we're doing.
 >=20
-> Well you can perfectly mirror on demand. You just need something
-> similar=20
-> to userfaultfd() for the GPU. This way you don't need to mirror the
-> full=20
-> address space, but can rather work with large chunks created on
-> demand,=20
-> let's say 1GiB or something like that.
+> Need to look deeper into the code of this, but it would be nice if we
+> could abstract that better somehow.
+
+Do you have any specific concerns or improvements in mind? I think
+patch 1 and 2 are pretty straigthforward. Patch 3 is indeed a bit
+hairy.
+
+>=20
+> > > 2. How do you detect that a bulk list moved on the LRU?
+> > An age u64 counter on the bulk move that we're comparing against.
+> > It's
+> > updated each time it moves.
+> >=20
+> >=20
+> > > 3. How do you remove the iteration anchors from the bulk list?
+> > A function call at the end of iteration, that the function
+> > iterating is
+> > requried to call.
+>=20
+> Thinking quite a bit about that in the last week and I came to the=20
+> conclusion that this might be overkill.
+>=20
+> All BOs in a bulk share the same reservation object. So when you=20
+> acquired one you can just keep the dma-resv locked even after
+> evicting=20
+> the BO.
+>=20
+> Since moving BOs requires locking the dma-resv object the whole
+> problem=20
+> then just boils down to a list_for_each_element_safe().
+>=20
+> That's probably a bit simpler than doing the add/remove dance.
+
+I think the problem with the "lock the next object" approach is that
+there are situations that it might not work. First, where not asserting
+anywhere that all bulk move resource have the same lock, and after
+individualization they certainly don't. (I think I had a patch
+somewhere to try to enforce that, but I don't think it ever got
+reviewed). I tried to sort out the locking rules at one point for
+resources switching bos to ghost object but I long since forgot those.
+
+I guess it all boils down to the list elements being resources, not
+bos.
+
+Also I'm concerned about keeping a resv held for a huge number of
+evictions will block out a higher priority ticket for a substantial
+amount of time.
+
+I think while the suggested solution here might be a bit of an
+overkill, it's simple enough to understand, but the locking
+implications of resources switching resvs arent.
+
+But please let me know how we should proceed here. This is a blocker
+for other pending work we have.
+
+/Thomas
 
 
-What we're looking at as the current design is an augmented userptr
-(A..B -> C..D mapping) which is internally sparsely populated in
-chunks. KMD manages the population using gpu pagefaults. We acknowledge
-that some parts of this mirror will not have a valid CPU mapping. That
-is, no vma so a gpu page-fault that resolves to such a mirror address
-will cause an error. Would you have any concerns / objections against
-such an approach?
 
-Thanks,
-Thomas
-
-
+>=20
+> Regards,
+> Christian.
+>=20
+> >=20
+> >=20
+> > /Thomas
+> >=20
+> > > Regards,
+> > > Christian.
+> > >=20
+> > > > The restartable property is used in patch 4 to restart swapout
+> > > > if
+> > > > needed, but the main purpose is this paves the way for
+> > > > shrinker- and exhaustive eviction.
+> > > >=20
+> > > > Cc: Christian K=C3=B6nig<christian.koenig@amd.com>
+> > > > Cc:<dri-devel@lists.freedesktop.org>
+> > > >=20
+> > > > Thomas Hellstr=C3=B6m (4):
+> > > > =C2=A0=C2=A0=C2=A0 drm/ttm: Allow TTM LRU list nodes of different t=
+ypes
+> > > > =C2=A0=C2=A0=C2=A0 drm/ttm: Use LRU hitches
+> > > > =C2=A0=C2=A0=C2=A0 drm/ttm: Consider hitch moves within bulk sublis=
+t moves
+> > > > =C2=A0=C2=A0=C2=A0 drm/ttm: Allow continued swapout after -ENOSPC f=
+alure
+> > > >=20
+> > > > =C2=A0=C2=A0 drivers/gpu/drm/ttm/ttm_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> > > > =C2=A0=C2=A0 drivers/gpu/drm/ttm/ttm_device.c=C2=A0=C2=A0 |=C2=A0 3=
+3 +++--
+> > > > =C2=A0=C2=A0 drivers/gpu/drm/ttm/ttm_resource.c | 202
+> > > > +++++++++++++++++++++++-
+> > > > -----
+> > > > =C2=A0=C2=A0 include/drm/ttm/ttm_resource.h=C2=A0=C2=A0=C2=A0=C2=A0=
+ |=C2=A0 91 +++++++++++--
+> > > > =C2=A0=C2=A0 4 files changed, 267 insertions(+), 60 deletions(-)
+> > > >=20
 
