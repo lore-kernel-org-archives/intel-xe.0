@@ -4,49 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D364C48BF6
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AA3DC54E41
 	for <intel-xe@archiver.kernel.org>; Thu, 29 Feb 2024 06:13:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 440A410E0AE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 588A810E129;
 	Thu, 29 Feb 2024 06:13:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SOM8KKgs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HqD+htLE";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D90A10E0AE
- for <intel-xe@lists.freedesktop.org>; Thu, 29 Feb 2024 06:13:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 848BA10E0AE
+ for <intel-xe@lists.freedesktop.org>; Thu, 29 Feb 2024 06:13:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709187210; x=1740723210;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Hx3mt2kkInOnT1+2GrZ2M5+R3Ii92V1ZCiWsIjJT8BQ=;
- b=SOM8KKgsg0p2AQUtrlwD0iMsBc8WlsTebaw0dVmEkTIziTEFfZcbhR/O
- 8I9QzphOPFDEoP7hgdmbi9c/oIB8nPIqkS+kCAqz1N6drK4vQ5YgErY5s
- wxpzVFA7iVFiC1wS2aan3ZxrhrWagY1a6g9hnm8S0s3cEaumtEC3ZPIIp
- +o2dsGq3cIL8qcz6xGkLax9TIS5Ufr/0NzA3AOXG5akOfZZR9lA8HRqPt
- lQem34jLHJdWHcYiXWabPRvOD+hFS6Pr+oUCOdkK684YlH5Dgg7K+SDGY
- FlsAIwkYGtSoLrK6c5uAvXeyVSI/jsHK9s5vHKtXYO/qmWv4KVxNGkh1G Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10998"; a="3802664"
+ t=1709187209; x=1740723209;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=64avR8JdXSQndXUcvApsk4iCXoiZT6PeE5ZMzcbvZH8=;
+ b=HqD+htLEYbr2lsd0R1jTfhqJ7Kx2nk/0sLDQEiUSlT5L3pO3dQH9RKxD
+ Hm8GdgHLNDw/u/UZYzthhhiWArQZrIfCwHF3TMSJsqrtCyRMZKW8MmWKj
+ icVoiV0ssMMofk7vCmJDypazXFv/9Vsp3W+OyENBohGHwpoV+ndNECf/f
+ +RBgw+0tUznUoEodrOxrFxEvd8AOru/VaoGBnl3pjvkN6di9c8e8jNbMt
+ fl8z4Pv8f+LaF1qYtTF4fCCIK4VCyzJ44LBXSjzw3VcDLMkrqGTa0W83d
+ KItomCNjZ0KtKBZ7SIRnzl0ImLF8PFOF/EB49VNrEC7MkZGTBQwRR9V0x Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10998"; a="3802659"
 X-IronPort-AV: E=Sophos;i="6.06,192,1705392000"; 
-   d="scan'208";a="3802664"
+   d="scan'208";a="3802659"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2024 22:13:30 -0800
+ 28 Feb 2024 22:13:28 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,192,1705392000"; d="scan'208";a="12400567"
+X-IronPort-AV: E=Sophos;i="6.06,192,1705392000"; d="scan'208";a="12400561"
 Received: from pltuser2-ms-7d25.iind.intel.com ([10.190.239.58])
- by orviesa003.jf.intel.com with ESMTP; 28 Feb 2024 22:13:28 -0800
+ by orviesa003.jf.intel.com with ESMTP; 28 Feb 2024 22:13:27 -0800
 From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH V1 1/3] drm/xe/xelpg: Recognize graphics version 12.74 as
- Xe_LPG
-Date: Thu, 29 Feb 2024 11:43:29 +0530
-Message-Id: <20240229061331.3398966-2-dnyaneshwar.bhadane@intel.com>
+Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Subject: [PATCH V1 0/3] drm/xe/arl: Add Arrow Lake H support
+Date: Thu, 29 Feb 2024 11:43:28 +0530
+Message-Id: <20240229061331.3398966-1-dnyaneshwar.bhadane@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240229061331.3398966-1-dnyaneshwar.bhadane@intel.com>
-References: <20240229061331.3398966-1-dnyaneshwar.bhadane@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -63,53 +60,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matt Roper <matthew.d.roper@intel.com>
+These patches includes the new PCI ids and support of workarounds 
+for ARL-H platform.
 
-Graphics version 12.74 (which is technically called "Xe_LPG+") should be
-handled the same as versions Xe_LPG 12.70/12.71 by the KMD.  Only the
-workaround lists (handled in the next patch) will be a bit different.
+Graphics version 12.74 (which is technically called "Xe_LPG+") should 
+be handled the same as versions Xe_LPG 12.70/12.71 by the KMD.
 
-Bspec: 55420
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/xe/xe_pci.c    | 1 +
- drivers/gpu/drm/xe/xe_tuning.c | 4 ++--
- 2 files changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 5b5c29761c5d..986c07d8b168 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -343,6 +343,7 @@ __diag_pop();
- static const struct gmdid_map graphics_ip_map[] = {
- 	{ 1270, &graphics_xelpg },
- 	{ 1271, &graphics_xelpg },
-+	{ 1274, &graphics_xelpg },	/* Xe_LPG+ */
- 	{ 2004, &graphics_xe2 },
- };
- 
-diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
-index 5c83c75bc497..bb6db2817ada 100644
---- a/drivers/gpu/drm/xe/xe_tuning.c
-+++ b/drivers/gpu/drm/xe/xe_tuning.c
-@@ -50,7 +50,7 @@ static const struct xe_rtp_entry_sr gt_tunings[] = {
- 
- static const struct xe_rtp_entry_sr engine_tunings[] = {
- 	{ XE_RTP_NAME("Tuning: Set Indirect State Override"),
--	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1271),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1274),
- 		       ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(SAMPLER_MODE, INDIRECT_STATE_BASE_ADDR_OVERRIDE))
- 	},
-@@ -88,7 +88,7 @@ static const struct xe_rtp_entry_sr lrc_tunings[] = {
- 	/* Xe_LPG */
- 
- 	{ XE_RTP_NAME("Tuning: L3 cache"),
--	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1270, 1271), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1270, 1274), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(FIELD_SET(XEHP_L3SQCREG5, L3_PWM_TIMER_INIT_VAL_MASK,
- 				   REG_FIELD_PREP(L3_PWM_TIMER_INIT_VAL_MASK, 0x7f)))
- 	},
+Matt Roper (2):
+  drm/xe/xelpg: Recognize graphics version 12.74 as Xe_LPG
+  drm/xe/xelpg: Extend some workarounds to graphics version 12.74
+  drm/xe/arl: Add Arrow Lake H support
+
+ drivers/gpu/drm/xe/tests/xe_wa_test.c | 1 +
+ drivers/gpu/drm/xe/xe_pci.c           | 1 +
+ drivers/gpu/drm/xe/xe_tuning.c        | 4 ++--
+ drivers/gpu/drm/xe/xe_wa.c            | 8 ++++----
+ include/drm/xe_pciids.h               | 3 +++
+ 5 files changed, 11 insertions(+), 6 deletions(-)
+
 -- 
 2.34.1
 
