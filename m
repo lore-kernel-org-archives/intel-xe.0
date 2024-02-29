@@ -4,154 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC8D8C48BF6
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Feb 2024 16:45:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38870C54E49
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Feb 2024 17:13:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 911C410E092;
-	Thu, 29 Feb 2024 16:45:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4B4110E49D;
+	Thu, 29 Feb 2024 17:13:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UPqaKUzf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hVxk5CU/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8154310E092;
- Thu, 29 Feb 2024 16:45:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D751210E49D;
+ Thu, 29 Feb 2024 17:13:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709225102; x=1740761102;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=W1VM0X8O08MY0KKCEXU7xGJe0VYR70IwuxkgNLOcNOc=;
- b=UPqaKUzfjstLXaUBEefWFKgqvBOBHx1K/twVE/D7WPnbGbw+iODIuRZ8
- 4xrsC2E+O+UFG64/t7vPvInmW0EVCkRfSNqcGXKFtOX1AhwSTDfYFtpCP
- ebF0oDEDOnPAmn8aSKtF1f6yXc3rwmlhJtueEqcZyHzzwh6e5g4V3rRyG
- WsYN1v68LUzj7T2A4J3Gv7BntkEN/SMpe0Ji2yx5OmoELUQ80csmfc2BR
- P9EPbdfjru7sIpRTbKfcBTwuB7XtdBXd8vc5LHgMoM2yd2Jwn+3NO//01
- mPioqMUcZFpVfboT3WBREbwSKiGaeEeSznkQEtwkTySBuVgJSS1EdwQmA w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10999"; a="3877203"
+ t=1709226834; x=1740762834;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=ggL2ejLmDl3iKLECeOmUsD/VQnpDkbc4+L4hSOY54DI=;
+ b=hVxk5CU/1L91oiutcsdH4GjhOBUbvevf6Gi9EaxsZJQTUKDWhN5CiQRw
+ u/JYSMsqREXwUsgW3/6iNOKuS8OX7HSBKNJvzMnnjhWVEULqQmwSSmx1D
+ XXi0B8wWYJ9F9Wxc7ZjAFoN/jv1ZbK8E5Xj4NI1NYMAvu9hDsigz0s8xN
+ jSJzTDoyzE6mBHZ9bXOZMGxBpilg4+g5X2kNG58DcnkeLAlmQFCOetMha
+ nvvfebwCRKjk3muYjXV7HZGyCu04ZJf9H0Nohn2OiJ/vx+LzOS7RXXkVy
+ 6JgjtoPPRyh4lH5jr4aGEEjcEvvFFvWYFyuKsjkUu2oOktfbzcncV/pyu g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10999"; a="3597607"
 X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; 
-   d="scan'208";a="3877203"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Feb 2024 08:44:56 -0800
+   d="scan'208";a="3597607"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Feb 2024 09:12:08 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; d="scan'208";a="12540109"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orviesa004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 29 Feb 2024 08:44:53 -0800
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 29 Feb 2024 08:44:51 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Thu, 29 Feb 2024 08:44:51 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.168)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 29 Feb 2024 08:44:51 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IMAthKTfz8Q/LUEAlPv9jUVf1fqOMQFjXAk6edeXuNtCPEtYi3fhpZ1HWofymt/5t/hzwMEmK3K0joSo9orQk6XSRAo0ncQzQrOBH8D+ZOMCidhK+v8qbImuLfyW7myhzIE5r4o7HEiF0s8M7eWgTUNAIW3/31sr/ADcvF6cbu4/UCqQfsBoXBIrRmAVInHLNQ1U0EVtbr4Qy6sxLCisrywEa5bDDiQLxNeMsQoJLbRa02faxryLZaVPW1zkUjdD3JKwapXic0j8KlBxkX67xIqt6u+iaFFQA9FinoVcreaQiBZf5KJtEdUpGBCjI+LnGZm0Frvjhkky2AOaa4W3qw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=W1VM0X8O08MY0KKCEXU7xGJe0VYR70IwuxkgNLOcNOc=;
- b=U9idtMWCeGYU2Rfi1zaAD+c5rxVp6FNwilHuE5Vd/469Ewzs0Gp62GI5llbTyFlGSJwM2tjHYp7D2QYObw9AdX9PazsTKCB295AC2PsUxmr8R/Z5Qmzv45VKGQ/bXv4mCsG2dYYYvhLzbuyuDLemjCa+mHEGEzI9InlSAJApABEQswZZIzhK7LYIlVOcd8CDkh2uOWeg1Qzl6rSoI10wmJHN+exmnxTPYyOy4M2nDeVe9nod4c8fnITrd7FaLT4gQNrOB8hxbLJtNje+APkoYXTl4ND2N+iLBYk8iaB4w3xDGZxAgmNK83Atp4o8mdo3Wm1Hv9LpA0lAGETn6w4WcA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB8179.namprd11.prod.outlook.com (2603:10b6:8:18e::22)
- by SN7PR11MB7994.namprd11.prod.outlook.com (2603:10b6:806:2e6::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.12; Thu, 29 Feb
- 2024 16:44:48 +0000
-Received: from DM4PR11MB8179.namprd11.prod.outlook.com
- ([fe80::c563:8fb8:d95:71ac]) by DM4PR11MB8179.namprd11.prod.outlook.com
- ([fe80::c563:8fb8:d95:71ac%3]) with mapi id 15.20.7339.024; Thu, 29 Feb 2024
- 16:44:48 +0000
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "juhapekka.heikkila@gmail.com" <juhapekka.heikkila@gmail.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>
-Subject: Re: [PATCH] drm/i915/display: Disable AuxCCS framebuffers if built
- for Xe
-Thread-Topic: [PATCH] drm/i915/display: Disable AuxCCS framebuffers if built
- for Xe
-Thread-Index: AQHaak7SyehPNIvZvkGXeCdOLcfE4LEfyZaAgAG/AAA=
-Date: Thu, 29 Feb 2024 16:44:48 +0000
-Message-ID: <70165ba67dc882f9171fdc9d6807f0cd60ebfe19.camel@intel.com>
-References: <20240228140225.858145-1-juhapekka.heikkila@gmail.com>
- <1dcc4bc35070f9da7f3f275e2765edb8f9a20e3c.camel@intel.com>
-In-Reply-To: <1dcc4bc35070f9da7f3f275e2765edb8f9a20e3c.camel@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB8179:EE_|SN7PR11MB7994:EE_
-x-ms-office365-filtering-correlation-id: ab2d3419-944e-4762-19f3-08dc3945be4e
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: E7OxnF90YBI57IF4MWEEoEVlU3fTlefkI+zNSGu8rd3cpKwBTtpbLi6jCvHjNXS/Y/bCfSwv+1VN54bEesYWMOrxjasR6ijlB8MRCXJ3Kx2uTvkizvJCZcRJDWd0AKyE9nL/xq1/nSLdzf++eMOkV0dimhUMvhQTLfWBhyb7/LfYetm8LtTBBDpr9MujiLHimPyKl7ouhOWau3IvxT8XwV/USJ5Djm8J3f3M369D9CtnptFrJS2Guuo1rDZ3YISjJ6sUe06FWIH1a865vDb+wqTaP/7jFMlAzuerG8TBTq2ezHojNDhHd7tzvS5ALdqbakgB5b3lP0ohjxPYGDe/9J5dEZU9PH1dOLBs2pc2WoproMXCWGZKzoXZoiXSo9M5NL4lvyuE2B0ukuyEs++cQdFnpTDJJWStsoa+/RNnFt1/Z7kdtnu+92VEZ9bPfN5LRrYU8qcpfjF2rWT25rYvc2wPrFfd6aTbs7FGG2JP1PfYAXrIM1YsivXhNta/NUqglWzxe838BOx4OMU6f+7xnsbv29VBgk+8XPdE75TjnUKAggY2VRiNiGbcvKmni/xv2JIIMQfAU2ExI1uQtrtp9CBJpF9UR2Nr3uNdHz3fdL3ouTGCRWgVAAI2Wi3hXWJ1IUom5NrvQvVckFA3UNnhCgg4UmeZ2PgkSnCfW4WsPyg=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB8179.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(38070700009); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bHFuMXJBK2h5ckNRMmFrUUdUeFY0d1dpaGZ2UnlyVTY5U1hSTU9jTVB3dDNX?=
- =?utf-8?B?MUd0QjZXRGJ5b0tjcUJRZHUzWks2dlZuOHphZ1AyVjJ1eWhqR1I1NUx3NEI0?=
- =?utf-8?B?NFhtTk9oODJKWk5FcDdHOXVveFZmVFRadFZXb0JaanFBWnVCQlRIbG9laDF0?=
- =?utf-8?B?cmxDRlVQQTJGZjd5U0VoZE5mNVNOWlBSRTBJeit2eUR3azN3WHQyb0lpQ0Jv?=
- =?utf-8?B?eitua1YyWXlJcWdaKzQrMFRkbHB5bG5lUzYzZENWYzREQ01MTFZJRWczdHlH?=
- =?utf-8?B?SkhWZ1c0ajlBd1g4SW5TMXNRUzdncUdYN245ZitHTUNmeW9PWDBvaXpNVEFu?=
- =?utf-8?B?ZENMeXJCR2QyaGpTdkgvT2t6aCtDZWtxY0I5MUNNaEsyejJ2T3puNEM3aEZ5?=
- =?utf-8?B?N3FCNEt4TEppTXJGRVpyL1dKRk05RjB5MW5MRnVhNWxmNHJrQ3VyNjUvZVNh?=
- =?utf-8?B?eHpsd1V5S3FLeDlUeG1FNkpCUFJBaEtZNFNYVDZlRzI1RGt1dmd1UVE1Tzkv?=
- =?utf-8?B?SThRUkZESWRWQ0NjUWdNVUoyUjl2emlZRmErQjhyT3hMSlhBZkFZTWR5U2tp?=
- =?utf-8?B?c0NDRDhCUCtGcmxkNkNRRjJEeUFneDJGWGlCOGdIRTlISGlERjVkSCtOcGZQ?=
- =?utf-8?B?V0ZsZEdob3g5Wmk2bUhHaSt2R0hldEI5dEs5WUJuMWIrT3prSnF5dk15TFcr?=
- =?utf-8?B?aFpBaHhoT3BTNUNSZExxS1ZuSjBBd3g4LzZaVFc3VmZMU0FVMjh1V0VnUXF2?=
- =?utf-8?B?YjhaVEkzS3JjVjEzaTBSNUNqNTRqQ2VOU25sUHdNTDNmemFjUW9pUlB1d0s0?=
- =?utf-8?B?aVZibnRoVDA2a2xsWGpkM2poYWpYU2ZaZGlTVXAzUG1GQ3Zray9lak9RVmJL?=
- =?utf-8?B?bGFraW5yZ0M1OGJJK2UyclEzbit6cFpvSGFuTlFwczNXQjBUNUVzQTI4UWZu?=
- =?utf-8?B?NGxyMUNRN1VtN2lZRUc4bFh5R0QxVnJPUUw1WjgwN0tPWlIwNnBPSzRoTlFV?=
- =?utf-8?B?b2hFbkExTU5wYkRLendFUFZKUEc1bGNNcC9GR2o1dnRnVjIzaC9CUEdVSnF6?=
- =?utf-8?B?UVZ5SWtwM3piU3NjVWFVRlU4ZGhTR0J1RHZQS0l4RjZaK2VMK2Q1ZnQrSTZU?=
- =?utf-8?B?Y0I4d2YyYUF1TCszYVorSEx2REpqUnFJeEhHTjlwc3pia0hLRGEzVTlBb0xE?=
- =?utf-8?B?VG1jTmJpRDN3L1gwVVZNejdKNmxOZUU1RERLUVMzQVNFbmkzekFWaDBienJR?=
- =?utf-8?B?bUtvYXV3UDdsTmIrZ1ZoM0gwTVJYSFY4Q0FNa0sxUUsrZlUrTVRCRDVRb0V3?=
- =?utf-8?B?cHo3Uzh1M3NRUUU3S1hyYW1jazg5UW1JL0Q4YlowRUJCRTFBc1EzNERmY0Zu?=
- =?utf-8?B?QityN3BZWGliQnpqSnpDNEYrN245L3hXOTc3eCtOV3V4YWwzcFRVTGZ1SHNx?=
- =?utf-8?B?NHdwQWNURGc2eWtJSnFJaTY2SGx1ZFF2b1dXTU1DdCtoVVRFZm5QN2JCbGxX?=
- =?utf-8?B?a0ZsZTQ5RCtmdzFKcFMzdmhTVUVwZDNqeHU3OXd6d0swSVQ5QTBmYjRPbXAy?=
- =?utf-8?B?MTZHdUxuMXQ3S1pVdStNb1QraVgzZVJna2lWd2FCRkdnRVRSSjZibnZPUlQ3?=
- =?utf-8?B?T2JWOU0wVFhER0dVdHV6U0lFaVNObFF1cUo2eEVXNFlWT2MzanpnVnQ2V2JW?=
- =?utf-8?B?RHdSTWV0TGFOeEdNZForbVJObE92dU8vMmhxdithREQrTUVsM0xSUWxmVlN1?=
- =?utf-8?B?SkxFOGsyQkZDTjdvWGllRElPaVlPUTZwU2xWQ3RZbkZ0VHB1MC9UcHBJTmhy?=
- =?utf-8?B?WFFmTFJBNUhHY0k2TmN4enM0bys0T09rR2FmRk1XWlczQ210SktXWlR0aXNm?=
- =?utf-8?B?aVpOY1VPclNRNThZaWhqaEIyWVlqaW5SbHBZSS9DSEdrMUFESXlyVWptRXBm?=
- =?utf-8?B?OCszOVlCQ0tiaVdqL2EvTzhvMS9iVUZOY3UwQVBZZExiQnI3bHNjcjFaUEds?=
- =?utf-8?B?SUloUlN4cUhicStjalhFWDhBOWRLRlJhK2xnbnp4ODBua3Y0N3crYmJCd2Vy?=
- =?utf-8?B?UW8wZTc2Y05lOEprSjF2dnF2U1JVSzIzcWdUK1IrRmM4QlhkeHZFZXJWbTFu?=
- =?utf-8?B?RWJqU3NpWjBObytIL0pnWjBuUnd0ZzBTSDRFQnNaNmtQVng4YWdSZjl1VGlF?=
- =?utf-8?B?SFE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <D865A4E912308245BE7A8AE061A54C6D@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; 
+   d="scan'208";a="8459162"
+Received: from srdoo-mobl1.ger.corp.intel.com (HELO [10.252.3.93])
+ ([10.252.3.93])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Feb 2024 09:12:04 -0800
+Message-ID: <7eb835594110980f2e9f061512fd488bbd63fd11.camel@linux.intel.com>
+Subject: Re: Making drm_gpuvm work across gpu devices
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, "Zeng,
+ Oak" <oak.zeng@intel.com>, Danilo Krummrich <dakr@redhat.com>, Dave Airlie
+ <airlied@redhat.com>, Daniel Vetter <daniel@ffwll.ch>, Felix Kuehling
+ <felix.kuehling@amd.com>, "jglisse@redhat.com" <jglisse@redhat.com>
+Cc: "Welty, Brian" <brian.welty@intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Bommu,
+ Krishnaiah" <krishnaiah.bommu@intel.com>, "Ghimiray, Himal Prasad"
+ <himal.prasad.ghimiray@intel.com>, "Vishwanathapura, Niranjana"
+ <niranjana.vishwanathapura@intel.com>, "Brost, Matthew"
+ <matthew.brost@intel.com>, "Gupta, saurabhg" <saurabhg.gupta@intel.com>
+Date: Thu, 29 Feb 2024 18:12:02 +0100
+In-Reply-To: <ada8e6cc-a7d2-4b6f-8f70-f0448cc2e420@amd.com>
+References: <20240117221223.18540-1-oak.zeng@intel.com>
+ <20240117221223.18540-22-oak.zeng@intel.com>
+ <ad21ec11-a9cb-4fb2-b9fd-00a4fa11525f@intel.com>
+ <PH7PR11MB70049E7E6A2F40BF6282ECC292742@PH7PR11MB7004.namprd11.prod.outlook.com>
+ <PH7PR11MB700440CE88BC0A94CFF8499792742@PH7PR11MB7004.namprd11.prod.outlook.com>
+ <2928ce36-06a6-4bee-b115-8dd61cc41dca@amd.com>
+ <SA1PR11MB699192584C01A26C781E2F9992742@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <ccf34f6a-d704-43de-a15e-2ae2890f9381@amd.com>
+ <SA1PR11MB6991FDAFF07E3654538F5BBF92552@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <df2df998-af26-4ae9-a0a4-5aac1b9e3c73@amd.com>
+ <SA1PR11MB6991786DA69422A1A6095A1E92592@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <SA1PR11MB6991B3DA606280EBC6952D1092582@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <ada8e6cc-a7d2-4b6f-8f70-f0448cc2e420@amd.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB8179.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ab2d3419-944e-4762-19f3-08dc3945be4e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Feb 2024 16:44:48.7720 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: XKlUqEdO2PXx7OdvZAKc/3b+dAR0MCtE2B8ZQ7wrZS84wXX+ETkMAvOUXlj+1JueGeMSMv4Nm0cRPM813oMBCA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7994
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -166,29 +90,155 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDI0LTAyLTI4IGF0IDA2OjA0IC0wODAwLCBKb3PDqSBSb2JlcnRvIGRlIFNvdXph
-IHdyb3RlOg0KPiBPbiBXZWQsIDIwMjQtMDItMjggYXQgMTY6MDIgKzAyMDAsIEp1aGEtUGVra2Eg
-SGVpa2tpbGEgd3JvdGU6DQo+ID4gQXV4Q0NTIGZyYW1lYnVmZmVycyBkb24ndCB3b3JrIG9uIFhl
-IGRyaXZlciBoZW5jZSBkaXNhYmxlIHRoZW0NCj4gPiBmcm9tIHBsYW5lIGNhcGFiaWxpdGllcyB1
-bnRpbCB0aGV5IGFyZSBmaXhlZC4gRmxhdENDUyBmcmFtZWJ1ZmZlcnMNCj4gPiB3b3JrIGFuZCB0
-aGV5IGFyZSBsZWZ0IGVuYWJsZWQuIENDUyBpcyBsZWZ0IHVudG91Y2hlZCBmb3IgaTkxNQ0KPiA+
-IGRyaXZlci4NCj4gPiANCj4gDQo+IFJldmlld2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXph
-IDxqb3NlLnNvdXphQGludGVsLmNvbT4NCg0KVGhpcyBuZWVkcyBhIEZpeGVzIHRhZyBzbyBpdCBn
-ZXRzIGJhY2twb3J0ZWQgdG8gTGludXggNi44Lg0KDQo+IA0KPiA+IENsb3NlczogaHR0cHM6Ly9n
-aXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS94ZS9rZXJuZWwvLS9pc3N1ZXMvOTMzDQo+ID4gU2ln
-bmVkLW9mZi1ieTogSnVoYS1QZWtrYSBIZWlra2lsYSA8anVoYXBla2thLmhlaWtraWxhQGdtYWls
-LmNvbT4NCj4gPiAtLS0NCj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9za2xfdW5p
-dmVyc2FsX3BsYW5lLmMgfCAzICsrKw0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25z
-KCspDQo+ID4gDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-c2tsX3VuaXZlcnNhbF9wbGFuZS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9za2xf
-dW5pdmVyc2FsX3BsYW5lLmMNCj4gPiBpbmRleCBlOTQxZTJlNGZkMTQuLjg2MDU3NGQwNGY4OCAx
-MDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L3NrbF91bml2ZXJz
-YWxfcGxhbmUuYw0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvc2tsX3Vu
-aXZlcnNhbF9wbGFuZS5jDQo+ID4gQEAgLTIyOTUsNiArMjI5NSw5IEBAIHN0YXRpYyB1OCBza2xf
-Z2V0X3BsYW5lX2NhcHMoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsDQo+ID4gIAlpZiAo
-SEFTXzRUSUxFKGk5MTUpKQ0KPiA+ICAJCWNhcHMgfD0gSU5URUxfUExBTkVfQ0FQX1RJTElOR180
-Ow0KPiA+ICANCj4gPiArCWlmICghSVNfRU5BQkxFRChJOTE1KSAmJiAhSEFTX0ZMQVRfQ0NTKGk5
-MTUpKQ0KPiA+ICsJCXJldHVybiBjYXBzOw0KPiA+ICsNCj4gPiAgCWlmIChza2xfcGxhbmVfaGFz
-X3JjX2NjcyhpOTE1LCBwaXBlLCBwbGFuZV9pZCkpIHsNCj4gPiAgCQljYXBzIHw9IElOVEVMX1BM
-QU5FX0NBUF9DQ1NfUkM7DQo+ID4gIAkJaWYgKERJU1BMQVlfVkVSKGk5MTUpID49IDEyKQ0KPiAN
-Cg0K
+Hi, Christian.
+
+On Thu, 2024-02-29 at 10:41 +0100, Christian K=C3=B6nig wrote:
+> Am 28.02.24 um 20:51 schrieb Zeng, Oak:
+> >=20
+> > The mail wasn=E2=80=99t indent/preface correctly. Manually format it.
+> >=20
+> > *From:*Christian K=C3=B6nig <christian.koenig@amd.com>
+> > *Sent:* Tuesday, February 27, 2024 1:54 AM
+> > *To:* Zeng, Oak <oak.zeng@intel.com>; Danilo Krummrich=20
+> > <dakr@redhat.com>; Dave Airlie <airlied@redhat.com>; Daniel Vetter=20
+> > <daniel@ffwll.ch>; Felix Kuehling <felix.kuehling@amd.com>;=20
+> > jglisse@redhat.com
+> > *Cc:* Welty, Brian <brian.welty@intel.com>;=20
+> > dri-devel@lists.freedesktop.org; intel-xe@lists.freedesktop.org;=20
+> > Bommu, Krishnaiah <krishnaiah.bommu@intel.com>; Ghimiray, Himal
+> > Prasad=20
+> > <himal.prasad.ghimiray@intel.com>;
+> > Thomas.Hellstrom@linux.intel.com;=20
+> > Vishwanathapura, Niranjana <niranjana.vishwanathapura@intel.com>;=20
+> > Brost, Matthew <matthew.brost@intel.com>; Gupta, saurabhg=20
+> > <saurabhg.gupta@intel.com>
+> > *Subject:* Re: Making drm_gpuvm work across gpu devices
+> >=20
+> > Hi Oak,
+> >=20
+> > Am 23.02.24 um 21:12 schrieb Zeng, Oak:
+> >=20
+> > =C2=A0=C2=A0=C2=A0 Hi Christian,
+> >=20
+> > =C2=A0=C2=A0=C2=A0 I go back this old email to ask a question.
+> >=20
+> >=20
+> > sorry totally missed that one.
+> >=20
+> > =C2=A0=C2=A0=C2=A0 Quote from your email:
+> >=20
+> > =C2=A0=C2=A0=C2=A0 =E2=80=9CThose ranges can then be used to implement =
+the SVM feature
+> > =C2=A0=C2=A0=C2=A0 required for higher level APIs and not something you=
+ need at
+> > the
+> > =C2=A0=C2=A0=C2=A0 UAPI or even inside the low level kernel memory mana=
+gement.=E2=80=9D
+> >=20
+> > =C2=A0=C2=A0=C2=A0 =E2=80=9CSVM is a high level concept of OpenCL, Cuda=
+, ROCm etc.. This
+> > =C2=A0=C2=A0=C2=A0 should not have any influence on the design of the k=
+ernel
+> > UAPI.=E2=80=9D
+> >=20
+> > =C2=A0=C2=A0=C2=A0 There are two category of SVM:
+> >=20
+> > =C2=A0=C2=A0=C2=A0 1.driver svm allocator: this is implemented in user =
+space,
+> > =C2=A0i.g.,
+> > =C2=A0=C2=A0=C2=A0 cudaMallocManaged (cuda) or zeMemAllocShared (L0) or
+> > =C2=A0=C2=A0=C2=A0 clSVMAlloc(openCL). Intel already have gem_create/vm=
+_bind in
+> > xekmd
+> > =C2=A0=C2=A0=C2=A0 and our umd implemented clSVMAlloc and zeMemAllocSha=
+red on top
+> > of
+> > =C2=A0=C2=A0=C2=A0 gem_create/vm_bind. Range A..B of the process addres=
+s space is
+> > =C2=A0=C2=A0=C2=A0 mapped into a range C..D of the GPU address space, e=
+xactly as
+> > you
+> > =C2=A0=C2=A0=C2=A0 said.
+> >=20
+> > =C2=A0=C2=A0=C2=A0 2.system svm allocator: =C2=A0This doesn=E2=80=99t i=
+ntroduce extra driver
+> > API
+> > =C2=A0=C2=A0=C2=A0 for memory allocation. Any valid CPU virtual address=
+ can be
+> > used
+> > =C2=A0=C2=A0=C2=A0 directly transparently in a GPU program without any =
+extra
+> > driver
+> > =C2=A0=C2=A0=C2=A0 API call. Quote from kernel Documentation/vm/hmm.hst=
+: =E2=80=9CAny
+> > =C2=A0=C2=A0=C2=A0 application memory region (private anonymous, shared=
+ memory, or
+> > =C2=A0=C2=A0=C2=A0 regular file backed memory) can be used by a device
+> > transparently=E2=80=9D
+> > =C2=A0=C2=A0=C2=A0 and =E2=80=9Cto share the address space by duplicati=
+ng the CPU page
+> > table
+> > =C2=A0=C2=A0=C2=A0 in the device page table so the same address points =
+to the same
+> > =C2=A0=C2=A0=C2=A0 physical memory for any valid main memory address in=
+ the
+> > process
+> > =C2=A0=C2=A0=C2=A0 address space=E2=80=9D. In system svm allocator, we =
+don=E2=80=99t need that
+> > A..B
+> > =C2=A0=C2=A0=C2=A0 C..D mapping.
+> >=20
+> > =C2=A0=C2=A0=C2=A0 It looks like you were talking of 1). Were you?
+> >=20
+> >=20
+> > No, even when you fully mirror the whole address space from a
+> > process=20
+> > into the GPU you still need to enable this somehow with an IOCTL.
+> >=20
+> > And while enabling this you absolutely should specify to which part
+> > of=20
+> > the address space this mirroring applies and where it maps to.
+> >=20
+> > */[Zeng, Oak] /*
+> >=20
+> > Lets say we have a hardware platform where both CPU and GPU support
+> > 57bit(use it for example. The statement apply to any address range)
+> > virtual address range, how do you decide =E2=80=9Cwhich part of the add=
+ress
+> > space this mirroring applies=E2=80=9D? You have to mirror the whole add=
+ress
+> > space [0~2^57-1], do you? As you designed it, the gigantic=20
+> > vm_bind/mirroring happens at the process initialization time, and
+> > at=20
+> > that time, you don=E2=80=99t know which part of the address space will =
+be
+> > used=20
+> > for gpu program. Remember for system allocator, *any* valid CPU=20
+> > address can be used for GPU program. =C2=A0If you add an offset to=20
+> > [0~2^57-1], you get an address out of 57bit address range. Is this
+> > a=20
+> > valid concern?
+> >=20
+>=20
+> Well you can perfectly mirror on demand. You just need something
+> similar=20
+> to userfaultfd() for the GPU. This way you don't need to mirror the
+> full=20
+> address space, but can rather work with large chunks created on
+> demand,=20
+> let's say 1GiB or something like that.
+
+
+What we're looking at as the current design is an augmented userptr
+(A..B -> C..D mapping) which is internally sparsely populated in
+chunks. KMD manages the population using gpu pagefaults. We acknowledge
+that some parts of this mirror will not have a valid CPU mapping. That
+is, no vma so a gpu page-fault that resolves to such a mirror address
+will cause an error. Would you have any concerns / objections against
+such an approach?
+
+Thanks,
+Thomas
+
+
+
