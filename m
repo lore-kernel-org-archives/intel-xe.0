@@ -4,140 +4,140 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B52B9C5478C
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Mar 2024 07:01:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB428C5478C
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Mar 2024 07:46:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6580910EB89;
-	Fri,  1 Mar 2024 07:01:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3E8010EA22;
+	Fri,  1 Mar 2024 07:46:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="lOOH67e/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fy4uVG+X";
 	dkim-atps=neutral
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2052.outbound.protection.outlook.com [40.107.93.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44D7E10EB87;
- Fri,  1 Mar 2024 07:01:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A44110EA22
+ for <intel-xe@lists.freedesktop.org>; Fri,  1 Mar 2024 07:46:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1709279192; x=1740815192;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=ngSKx9ClhSLWmO4LSlxE3oGx8b2liDzNTg6vCq5G3gA=;
+ b=fy4uVG+XgXav/kfGurS9Gr+4phPlUY+2QC+2fob0GP+Jr9rfZSmEjunD
+ YO952ksAbVbNEKoq4lPPXFz4PTe+qDftBL/ZleDzPqp9+mvgjhHCOA7Km
+ Od6kLjk0v45K2cU1qR9bwFCVYQDucz9s0hxci3cByLFM35qBWwohEB0zR
+ cXaqd4Qm9zyZbXVmRsO/xbfXjE28dB5Ki5PDxCQP7xz7zlhIkRwW+Ge7e
+ yYkogrJzMdJ/fBni6dzzm8KevRxqJwbD3BZVf0ZCpAYHEocjwrQ7julKM
+ LcEYHMLv+OwOxSRJkQ3+8B/bk5R9nVqOb0qDNuArQNIgXe6unoiizrvqx Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10999"; a="3690877"
+X-IronPort-AV: E=Sophos;i="6.06,195,1705392000"; 
+   d="scan'208";a="3690877"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Feb 2024 23:46:31 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,195,1705392000"; d="scan'208";a="38962338"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 29 Feb 2024 23:46:31 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 29 Feb 2024 23:46:29 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Thu, 29 Feb 2024 23:46:29 -0800
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Thu, 29 Feb 2024 23:46:29 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=n2jIxs4StJhDmNIcr/uYKpz+WchapSd6U4RTTvEl0rDvL1ZG3+wFDGHjM7fcYxQVRI5rCVNN+ynle5ylnBmudB8MYFUyFpQpFcFaFJeRhOyC3FhnOLO2ao6+IqwTv7aqtCh3oGE1hMmzTRZQacDgdnpCUz4Tuj6fOWjIk+EMKdV7Kj3hmxvrwVYOdA8Pr7jCxHgVuwN3F7enrjfMOmWrCHfWcyl/PKoQSD800m6GBlhyii3eTNM0IXCmoI54hhUhonc65lH5OfGENlAcI0xNYryL+wxUKnePUM+AS1eZgsEtxQWBvGUrNQ8tVrQLbdXAHYkCtDdUFJ4YjOdnGYcaxQ==
+ b=Zr1gS+dEI1zhepHUMETuELoC949MpaDxmTpgtsbqT8W+5ATWZyFvcJfNMa6vpVSSkgBKWXHAGRjcFcqMFOqYVImorlXpuJ/3QA/xgFM9JTdKTkchiyZa+DN9tfA8OQqtB6Po5b4BXgJEpMI0hdd0R4U9ekBw+nDaYJB8fLkQTsRYjAQI6H7Bc6q6uZyvkuGQefNO6fUROsS1zyr6yFOrCCVRFu3y81VufhkcXQSTF1nT0KJXvjtZZspT7euNkX4nBNu/o7pJ2oWBUU4TV/QvyIMoR0pTsn5mpwMVOeL9kLjwJZ8+fhT+C+YTW2SjwFQ+0m/+pUhJETe2cECZgxOEsw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=u5tUGYntaUd53xaqzIZYrZvK4BIYOF11ajrkgKUsExk=;
- b=cU/SZh70BW4p0DVKXRFQbs/sYKf8OY8+VXWa5jYUthKZUgz8aKPYu4LY732gcGZbSBmrqaZU+sH0aJHjZPekGhIE/wV3xvB0fDmwhLowDJP585JDVMRM22MgYER5sX6dq2ENKlPkjyUfsydN9NzYoqghvSMirwFE8YUP8qu87L2fEEHrghYohztkEqN0ZPyZe89AInkj56Ozbe6Et0nWnE16OM9rh8cj6FFlgyWG5z9vuTIGLY7qXkxjltk43LEMHHwI1JhfKUOFk9GsTZntnOXzexk+tl63XQR1wtxWVnWNZdLuNjS0sPMwOUzvJhoUnzwysvh9DZZ72yi4hUxLHw==
+ bh=9owZFTOEbzz7Y8bE9HI/8KIQmMBA6fGkvAS/NPSitLE=;
+ b=U+hHRSe8xbiuPDtpYUKpQC/bbqxHdeXY2uBWY+MA8Iu9tCebfzf9vH4Lls6XUijYWUrgWmGYKrYoMg/4opW9dK4r+1nnyf72xr6x0Cmik6PVnxajFvgGh0q/jy3GLiqJr2XCC0r6bJ/ZaW8o/LU095P9lcw0JlpxnrAxlJf2XFtkVHJmuDfgAcx2DYqw6u2FW9bFiVOdOBVUGlhHBimKXfdZf8aIfVYZf00lUildGO6RLv/JKzOvmONuSgaTfzx0DmEOXiDUTQxVecQz5kujoOHIaXYr5O+rf1dDndM/bBsj4HiU+J8rt0gvVWjlMG/EMQS5Tg4+UZX/4raHvGI4ZA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=u5tUGYntaUd53xaqzIZYrZvK4BIYOF11ajrkgKUsExk=;
- b=lOOH67e/DDUiVxhm2kWR52rmVGeNX7Wpj3Fl4y6yW8la+0bLdYs5YejoXlxOf7UxAaLUqoE3MEi1BYCc4u1oBYqRRL48CGMcYy5K8CgRzITI9BBZ1RV/0+Y546dm6+be1Gvd7kwqho08qUlR5XRuvU9qVcGuU0GXVmrqMk3n4DM=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SA0PR12MB4382.namprd12.prod.outlook.com (2603:10b6:806:9a::14)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by MN2PR11MB4552.namprd11.prod.outlook.com (2603:10b6:208:263::9)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.41; Fri, 1 Mar
- 2024 07:01:25 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::f2b6:1034:76e8:f15a]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::f2b6:1034:76e8:f15a%6]) with mapi id 15.20.7339.031; Fri, 1 Mar 2024
- 07:01:24 +0000
-Message-ID: <ef555237-4745-4765-b7e3-093460d7a8e5@amd.com>
-Date: Fri, 1 Mar 2024 08:01:15 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: Making drm_gpuvm work across gpu devices
-Content-Language: en-US
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Zeng, Oak" <oak.zeng@intel.com>, Danilo Krummrich <dakr@redhat.com>,
- Dave Airlie <airlied@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
- Felix Kuehling <felix.kuehling@amd.com>,
- "jglisse@redhat.com" <jglisse@redhat.com>
-Cc: "Welty, Brian" <brian.welty@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Bommu, Krishnaiah" <krishnaiah.bommu@intel.com>,
- "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>,
- "Vishwanathapura, Niranjana" <niranjana.vishwanathapura@intel.com>,
- "Brost, Matthew" <matthew.brost@intel.com>,
- "Gupta, saurabhg" <saurabhg.gupta@intel.com>
-References: <20240117221223.18540-1-oak.zeng@intel.com>
- <20240117221223.18540-22-oak.zeng@intel.com>
- <ad21ec11-a9cb-4fb2-b9fd-00a4fa11525f@intel.com>
- <PH7PR11MB70049E7E6A2F40BF6282ECC292742@PH7PR11MB7004.namprd11.prod.outlook.com>
- <PH7PR11MB700440CE88BC0A94CFF8499792742@PH7PR11MB7004.namprd11.prod.outlook.com>
- <2928ce36-06a6-4bee-b115-8dd61cc41dca@amd.com>
- <SA1PR11MB699192584C01A26C781E2F9992742@SA1PR11MB6991.namprd11.prod.outlook.com>
- <ccf34f6a-d704-43de-a15e-2ae2890f9381@amd.com>
- <SA1PR11MB6991FDAFF07E3654538F5BBF92552@SA1PR11MB6991.namprd11.prod.outlook.com>
- <df2df998-af26-4ae9-a0a4-5aac1b9e3c73@amd.com>
- <SA1PR11MB6991786DA69422A1A6095A1E92592@SA1PR11MB6991.namprd11.prod.outlook.com>
- <SA1PR11MB6991B3DA606280EBC6952D1092582@SA1PR11MB6991.namprd11.prod.outlook.com>
- <ada8e6cc-a7d2-4b6f-8f70-f0448cc2e420@amd.com>
- <7eb835594110980f2e9f061512fd488bbd63fd11.camel@linux.intel.com>
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <7eb835594110980f2e9f061512fd488bbd63fd11.camel@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.26; Fri, 1 Mar
+ 2024 07:46:26 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e7c:ccbc:a71c:6c15]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e7c:ccbc:a71c:6c15%5]) with mapi id 15.20.7339.031; Fri, 1 Mar 2024
+ 07:46:26 +0000
+Date: Fri, 1 Mar 2024 07:46:09 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v2 3/3] drm/xe: Get page on user fence creation
+Message-ID: <ZeGHwQZ7tLj9oAv8@DUT025-TGLU.fm.intel.com>
+References: <20240301035522.238307-1-matthew.brost@intel.com>
+ <20240301035522.238307-4-matthew.brost@intel.com>
+ <6235b4c6c6d537d928795cd2dde24c27ce77ecce.camel@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR3P281CA0048.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:4a::20) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+In-Reply-To: <6235b4c6c6d537d928795cd2dde24c27ce77ecce.camel@linux.intel.com>
+X-ClientProxiedBy: BYAPR11CA0055.namprd11.prod.outlook.com
+ (2603:10b6:a03:80::32) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SA0PR12MB4382:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9c19e9e8-7a3b-4c1d-904a-08dc39bd6862
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|MN2PR11MB4552:EE_
+X-MS-Office365-Filtering-Correlation-Id: c9cd6add-6044-47b1-a2ef-08dc39c3b2fc
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZZ5PyzFDDIX29oWKLcdKZh6UYoOsR3+WR+rwfHRWFpA/2bxOETBIiJ4znN/hqA08r4pBU7R7TDRmF53q2LBd4K0WYFK/x2DuhzCsmQQSZT1R2uX9ZdoSEbwUiLbXAeYb7opOgFDXi19SzhdjeQJXxEPmhudPXtfTpS2KkW7qIU6ADZr5Al17VM7xc5KTMXZ1Vj53tgGhFkDtmRnAc8MD6ECFEVX3ucLrAOYmG/KyHi7GX1Z1EQ16dJrytIgHVnrvIttYvAQMueIZwWOlzPuT8MLVb1isZ7xC98T++Bj2h6RsFJoAaKqVo8drKZfY7HhFb550SmdSRvjjnDKbShdgXgiZLbT974sFSXEZ9DQv+FNIHqicU0TRYJQybRprZ6FZzbeiHKq1FRUxVZFVWyyuotO0/JZn99mZjf68n6Myal4eOA4A46MlbeL3YtisGqNpMGhZzUTIOgLmDDaCJxipy9mMfKXxoHXvpuEo707NDvhi2vq0EV3hKbjF3Q+n+nO+6Xt9baMj4SCghu1efQl8bDpHXMUGefD2tRNKxXCOBA3vECtPYVYkjZSOm4t1IX0g4BOpz2A/XKZDkr6LXeSJ+uo02mMKGDvVTRgkn+cyLNneWLyypRcfaSvxPEmFMocZ
+X-Microsoft-Antispam-Message-Info: O057eEr3CTWOWog30Dy2SDw/G933wKYUtGHOY96xpouKWI/VcQhBBDMOG7xXdO56grhvr99gO1aGpz5+5bLGHsju0czHAMl9rgvBX0mnOCiKuUiZ8IWUUeUthelDesj0Kt8EI0r6H09FVXC+rnIq8JC4yJe3qp5+kyDpQUihVxipjiaOg2JYFsQuTwotCo+L6ArtHwLMei+085UDJ1llohfs26S8TcNWs0az6GFguzDfYtvUKxrZ2DXxlJUgu5UiaMq78R89WxB26+P1eIYhWRwK5xy7Fo5uVzIPdm5KyC9bBcuiyMI11pVRJIketuMQZh0XbpHSUlqP29TwnjCQax9qNgx9CW/ao0SnIqzWfE/U56lxx/W5++/15xL3rL56HzQg+ae5x5jFPr9R0/avHQ+IhO5Qr6LbCu2Z0Jn82bNj903D/HJhFlCR1upbJTiIH844EkDZOXD4d+dO0dOoyeDmIRFiREUTEVsJzmEkGEDCgqf1YpUPLcqUTXkldSRUUPWepZ2iTs8+Kos7krl5ltJE3N1JE8xukLOYBNCJn1dOhBjQbBea1bOcwsH5UoXol8o4kvvuy6tzavzRujFs5g==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MTVwb000WkUvR3gvOCtDSEYvdWVqa0tHYU1Cd1B5cmkxRzc5UUozRFdEb1NO?=
- =?utf-8?B?d0ZFQnkrai9DdU5KeTdpZVdseVExbE1OVWExc1NMRWtTZTgzT1ZYSHZmZGUw?=
- =?utf-8?B?c0lVdHQ5M2FucWdQRW0waXIxdWVXT1dER00yckJHWERUZlRXUGc3blVmRHFz?=
- =?utf-8?B?RTI0WHNjUVlBSlNrQXNuUTFlMGw2OTZOeGE5TGxVQlRzekI1ZE1BRGczT2ZW?=
- =?utf-8?B?OS9TOUJiWVJxYmkrWGdaRzlicm5McUF2TU9tZVRQd2tNWTNJamd0QlpBTmJr?=
- =?utf-8?B?dlVHa2t4NmVOMFNkdVVFZmlPK0R0SXRNTHhhVXRmdEh6MVdab3VFR2N3cjZl?=
- =?utf-8?B?RW1LMCtGZUl2OGxpWFhSRDVnRGRTdWplSkZ2WU5GUkVJV3BETFBiUkRYK1J5?=
- =?utf-8?B?bjJpbXBWRnk1LzlQdTdvcGpqem5VTmlSTVFSalAzM0pOZk5JS2FOR0N4V0pP?=
- =?utf-8?B?K0l4cFVDVCs3ZS95UlZYZVB5Ym42U3gxQzc5WVNpQVRkMVZzWUlLNzhWSjZh?=
- =?utf-8?B?cU43cDdRUVpaQkc1WUh4N2creHRJZTF4enRCb1huTlY2RjU0dHBtVGo2Smty?=
- =?utf-8?B?b2VVQ3VNUTZWZDVCMHZUQ1BBY0o1RzN1SmFBRTFVVTJ3WDB2YjBqc2dTTnpH?=
- =?utf-8?B?ZHFRaFAvUlREU0MxYjVqcHRnMUIvcUo2bmg2dWo2cmJLMVptMHZzUEYxVWNK?=
- =?utf-8?B?RHR0VEs1NzYveGxWN1FneS90aWpIeGlVVnB5ZllUcmJDdkVORGV0V2xwSHdK?=
- =?utf-8?B?VmxEVFFKdHVmWC9VZlZNK1FoVGM4Nko1aUpUS3pkMVV0TGdMTHlkZWZidzdK?=
- =?utf-8?B?RDd5NGFIWllLUXBaQ2xFNFhiMDdFNEFLSFM4WWNuZ3RkYnRIcmtEY2lCTkNH?=
- =?utf-8?B?TDNQYzhhci9NelNpQ3hZM3lGWGVZaVZyM3NTKzNjU1J6NG1EZmdLSmlrcjJU?=
- =?utf-8?B?R1JEMGZwYWczZzEvMDhVNXBxazZicElINGtaTENVZ3ZPVTdFN2hpVnFpVDFu?=
- =?utf-8?B?Zm5RcE1jTWFWMklySWdmRVNmRFdXMmlmNzlJVnRhSGx4dUtZS0RrQzNEeVZy?=
- =?utf-8?B?eDZDUVk0Zlg3N09CR2k1MTZxaThSTzUyWlN5MHpQMkxnUFlNWWZsWDNzVXYw?=
- =?utf-8?B?Wk5Pc3AvVzYxZ0NkOE9xWlFwMkVCbVkvd25pK3NScjlzNGh5VzhtTEtJWTZi?=
- =?utf-8?B?UkZqbkRaOHNxOXB0WHpQOVJscE5RdFFSa2dxelNmK1Jna1kzU3JGRkllTkdk?=
- =?utf-8?B?T0RtWDJ2UjFPU0h1VDVUSGxtd1FKRG11dEV4V0xEZGlROVBJMUY3czEyb2VY?=
- =?utf-8?B?Q1ZTWDg3UVB3YjE5d0VmWFpkUzN3NVBWOE9CMFIrdzcxYk5MaXB5a3VkbGxN?=
- =?utf-8?B?bjQwOUFNZFNKVlpqa1gyOEhXeGJ0bTdyZFFObDJkc0FZeHhLREV3RjE3UTBX?=
- =?utf-8?B?VWVyUHpzSEdUNWlEUStrcVdiL2hxN0xUeHlhZzZmdFZCbU1QRFJ2TjlzaWZC?=
- =?utf-8?B?SERCRVI1YkVZaUZSQVpMd1NIMERuYTkyT1hZL3V6ZHNYNTNvNTluSlladDVS?=
- =?utf-8?B?bmpEUG5qYXNEaC9iTWxadmVwWGVFWGRsRStlbE5nZFhxQWVIMXVXNkF2WkFt?=
- =?utf-8?B?MVRqdlRXNXBFWUNtdnJVeVp1MGlrRFBOcS9qUTAxMEtaMDRES05KRzZuUHAz?=
- =?utf-8?B?S1NycXVsYWdsdFl0QVErd29mK3JNb05zNnZTK2s5c3FUOUNrbUI5R0RDOW04?=
- =?utf-8?B?OEVjeG9EVHVkTUhUakx2eW0yNmFvUnpZbjg0Znl0R1NPeHNydHhKVC9jeXR0?=
- =?utf-8?B?c2ViTzNTeGp6aytKMVF1cGpqRU5LNGZBV2l1b0JVdUhBQURSNmJTYjJLdFFq?=
- =?utf-8?B?c1NRT1RjcllZVmwzeCsrMlpLUEZlcGxBaTBNL3V2Y0ZnU0hGZG1uaHpKalYr?=
- =?utf-8?B?NHhtd3F4b3hnU2VBVjVsQkpBbkVEWjhGSU9pLytMRCtvZVZkVnFPM1owUDl3?=
- =?utf-8?B?NS9qT2s2UjVSRnp1dWxxT3VSRFJPRm1Ndm1ZVVBubFFuUzlpR3AvVlNINnRa?=
- =?utf-8?B?NjZuOVNoaENiQVFURGMyYXg5RmN4TkZWb3BqNmdNOWV6c3FTMGR5UEZKRFhE?=
- =?utf-8?Q?GpNqHTo5f3W24lhFqKH6FsdpH?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9c19e9e8-7a3b-4c1d-904a-08dc39bd6862
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?jMJtVS8lmV9CP0RW4352i3PyFB55vsWXYwc6fvObuVLVxWbWuHCVNgrxzH?=
+ =?iso-8859-1?Q?hiHDu8/q0EyLtuPFaG0i43t/I6r1Gc8dVA0IcPGusT3W7atGqXfLsPNAym?=
+ =?iso-8859-1?Q?185S10EzCxI9+jSZwONEiZ+47zo0auKJYTlW0aJxTkwQSjbKfLlCPFu5Vs?=
+ =?iso-8859-1?Q?RkTkKleWCil453LLjzyPDmtsh9mnToytnbTM77fXB8atvRID2U8pt4PBOe?=
+ =?iso-8859-1?Q?AcIPqUFDswlTD0TyH8S4jM40XAOPtwPercgaCQifrilVF0iZfZcN1LxQ2K?=
+ =?iso-8859-1?Q?0opjk5JXum+POXrcJsHb2R6NkzKtopu25voXfimB6hMlI2jiyV+GC89g2K?=
+ =?iso-8859-1?Q?IkMdNGkPUgm9eS3BDTIqdr7FPWMrwUdGbG5hhZ7GRHLa2t52RP4AIY10Gr?=
+ =?iso-8859-1?Q?xt9WEUMp5ByNbD4RrAWiEyXcpuFVFixomsinahGrGORY2jTKzLRPwdARum?=
+ =?iso-8859-1?Q?I0WqIKd3GODeOn2iaq06uZZs6NpVMwffBgcmirp8xTP084V6MsZhXAz5A1?=
+ =?iso-8859-1?Q?ltiHSJc9SWMhm3En1LIFvXHkA9cLP0X95SQiVx/9IpMolB1sNbKKtuePqu?=
+ =?iso-8859-1?Q?9QqwAqOY0uc6f5ZAd9EhDpbXupg+qI3inOPqVLt2AoQEje508AJ6aBYV13?=
+ =?iso-8859-1?Q?ame3IWaUm6SfAwdiQFzvhbx4sPVhIaiVrEGMFKXWxvh7XwLhmYOHwYKzvP?=
+ =?iso-8859-1?Q?tHY4OO2bbkiQuotYKYid023e7QV8ncS6+zkt/EKhKgmvW+GV10J8iHHKKO?=
+ =?iso-8859-1?Q?vFZ6J+vbRdUm4iX5i0kf6wzPPSle2G5kUKDu0X1vjwM3weXa+78jY6x89U?=
+ =?iso-8859-1?Q?aN9pQ24OTmE93x0fibTdWo+mYJkFyn4dRPMIuwcz3F4Da82+Y85+AuAKzj?=
+ =?iso-8859-1?Q?ka2z/WiKSCtNAW/lPJdT+dHb1y+ncirDYHwI0xalkz6ljMbmY1XLnJH/0k?=
+ =?iso-8859-1?Q?bE2qHeyvPtt0HghES7HaofCmtVZ8wT1fC/Zi9AU2UOJDgaD0f9Qc/qGHV7?=
+ =?iso-8859-1?Q?kC9/on8W6SyDCIJPZZ31b7DG3vk2/aM1QGFwIIiai9rQJZURLtnK/SQDXh?=
+ =?iso-8859-1?Q?JTGaa7ABh7sPDp4ro9DgWroUhsWauYRl0f2kBR91hmzlzcZT0WKV74eTbi?=
+ =?iso-8859-1?Q?fwNABR0AHzpQ85SdujaFOCHhO2f/RO/Jquo6ImpIYXE2jFDtzrtAjKp5Px?=
+ =?iso-8859-1?Q?IFSy3kfmEXQIz1faY3uDnmsidRGiq49x81++u2WlyhdQgkBwQbkod35oW3?=
+ =?iso-8859-1?Q?CK5u5nhN7Mm2bRUKNoJrTpDhcuLTy0Qy2XNPWpyK/K9UKZ+b7hM5KacnwT?=
+ =?iso-8859-1?Q?D7xylFU5D/CCaX6ATXO/gak36DDxQYHWZ9pRT5rrEDwFYb7Vx8kHUf6EQ7?=
+ =?iso-8859-1?Q?jvtkI1BjCnufF4W+NHu0KZnFnrNJpGD3xo5IX6Pj6i//a1qJzJBptLq6vC?=
+ =?iso-8859-1?Q?QfK/bJxGv2uttMRNBkBB9jSUGtlh/gKpg1BnT69RqH+hkUIx8yol8rt8pQ?=
+ =?iso-8859-1?Q?Kcepb2RgwEXJo/iZ0+JuyoUNYhcTKplmQeYOV8iiZik66cnEgXVWxUEBCm?=
+ =?iso-8859-1?Q?WvX7kMS76SavJFm8FyULDBORpQhAzjcBv048h8rchLY399wd4IFkoIqDcZ?=
+ =?iso-8859-1?Q?h7YiAw0adATpqJhL6ttA0osbDZ6zcr4z4HG8WWaInyEQxfEnfeYZwd8Q?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c9cd6add-6044-47b1-a2ef-08dc39c3b2fc
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Mar 2024 07:01:24.5152 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Mar 2024 07:46:26.5815 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: FvSbBu2DQZMOMlGWU/L1rrjIYRG6qyl04BzQtTH/ZQnx3RLkb2/irNwgysKVqQFc
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4382
+X-MS-Exchange-CrossTenant-UserPrincipalName: JDHXgJyQFOXIF4uOhC80JTlzvh97yNd0bC8IISWMOKRYYxaZmbG3nFeZ71oanqhp8jr8i9YXMe0NZ7fFQUMLJA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4552
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,140 +152,158 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Thomas,
+On Fri, Mar 01, 2024 at 07:36:01AM +0100, Thomas Hellstr�m wrote:
+> On Thu, 2024-02-29 at 19:55 -0800, Matthew Brost wrote:
+> > Attempt to get page on user fence creation and kmap_local_page on
+> > signaling. Should reduce latency and can ensure 64 bit atomicity
+> > compared to copy_to_user.
+> > 
+> > v2:
+> > �- Prefault page and drop ref (Thomas)
+> > �- Use set_page_dirty_lock (Thomas)
+> > �- try_cmpxchg64 loop (Thomas)
+> > 
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> > �drivers/gpu/drm/xe/xe_sync.c | 52 +++++++++++++++++++++++++++++++---
+> > --
+> > �1 file changed, 45 insertions(+), 7 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_sync.c
+> > b/drivers/gpu/drm/xe/xe_sync.c
+> > index c20e1f9ad267..bf7f22519cc5 100644
+> > --- a/drivers/gpu/drm/xe/xe_sync.c
+> > +++ b/drivers/gpu/drm/xe/xe_sync.c
+> > @@ -6,6 +6,7 @@
+> > �#include "xe_sync.h"
+> > �
+> > �#include <linux/dma-fence-array.h>
+> > +#include <linux/highmem.h>
+> > �#include <linux/kthread.h>
+> > �#include <linux/sched/mm.h>
+> > �#include <linux/uaccess.h>
+> > @@ -28,6 +29,7 @@ struct xe_user_fence {
+> > �	u64 __user *addr;
+> > �	u64 value;
+> > �	int signalled;
+> > +	bool use_page;
+> > �};
+> > �
+> > �static void user_fence_destroy(struct kref *kref)
+> > @@ -53,7 +55,9 @@ static struct xe_user_fence
+> > *user_fence_create(struct xe_device *xe, u64 addr,
+> > �					������ u64 value)
+> > �{
+> > �	struct xe_user_fence *ufence;
+> > +	struct page *page;
+> > �	u64 __user *ptr = u64_to_user_ptr(addr);
+> > +	int ret;
+> > �
+> > �	if (!access_ok(ptr, sizeof(ptr)))
+> > �		return ERR_PTR(-EFAULT);
+> > @@ -69,19 +73,53 @@ static struct xe_user_fence
+> > *user_fence_create(struct xe_device *xe, u64 addr,
+> > �	ufence->mm = current->mm;
+> > �	mmgrab(ufence->mm);
+> > �
+> > +	/* Prefault page */
+> > +	ret = get_user_pages_fast(addr, 1, FOLL_WRITE, &page);
+> > +	if (ret == 1) {
+> > +		ufence->use_page = true;
+> > +		put_page(page);
+> > +	}
+> > +
+> > �	return ufence;
+> > �}
+> > �
+> > �static void user_fence_worker(struct work_struct *w)
+> > �{
+> > �	struct xe_user_fence *ufence = container_of(w, struct
+> > xe_user_fence, worker);
+> > -
+> > -	if (mmget_not_zero(ufence->mm)) {
+> > -		kthread_use_mm(ufence->mm);
+> > -		if (copy_to_user(ufence->addr, &ufence->value,
+> > sizeof(ufence->value)))
+> > -			XE_WARN_ON("Copy to user failed");
+> > -		kthread_unuse_mm(ufence->mm);
+> > -		mmput(ufence->mm);
+> > +	struct mm_struct *mm = ufence->mm;
+> > +
+> > +	if (mmget_not_zero(mm)) {
+> > +		kthread_use_mm(mm);
+> > +		if (ufence->use_page) {
+> > +			struct page *page;
+> > +			int ret;
+> > +
+> > +			ret = get_user_pages_fast((unsigned
+> > long)ufence->addr,
+> > +						� 1, FOLL_WRITE,
+> > &page);
+> > +			if (ret == 1) {
+> > +				u64 *ptr;
+> > +				u64 old = 0;
+> > +				void *va;
+> > +
+> > +				va = kmap_local_page(page);
+> > +				ptr = va + offset_in_page(ufence-
+> > >addr);
+> > +				while (!try_cmpxchg64(ptr, &old,
+> > ufence->value))
+> > +					continue;
+> > +				kunmap_local(va);
+> > +
+> > +				set_page_dirty_lock(page);
+> > +				put_page(page);
+> > +			} else {
+> > +				ufence->use_page = false;
+> > +			}
+> > +		}
+> > +		if (!ufence->use_page) {
+> 
+> Hmm. Trying to figure out the semantics here. If ever used on 32-bit,
+> and get_user_pages() fails, then I figure we can't guarantee atomicity.
+> That would typically be if the user-fence is in buffer-object or device
+> memory?
+> 
 
-Am 29.02.24 um 18:12 schrieb Thomas Hellström:
-> Hi, Christian.
->
-> On Thu, 2024-02-29 at 10:41 +0100, Christian König wrote:
->> Am 28.02.24 um 20:51 schrieb Zeng, Oak:
->>> The mail wasn’t indent/preface correctly. Manually format it.
->>>
->>> *From:*Christian König <christian.koenig@amd.com>
->>> *Sent:* Tuesday, February 27, 2024 1:54 AM
->>> *To:* Zeng, Oak <oak.zeng@intel.com>; Danilo Krummrich
->>> <dakr@redhat.com>; Dave Airlie <airlied@redhat.com>; Daniel Vetter
->>> <daniel@ffwll.ch>; Felix Kuehling <felix.kuehling@amd.com>;
->>> jglisse@redhat.com
->>> *Cc:* Welty, Brian <brian.welty@intel.com>;
->>> dri-devel@lists.freedesktop.org; intel-xe@lists.freedesktop.org;
->>> Bommu, Krishnaiah <krishnaiah.bommu@intel.com>; Ghimiray, Himal
->>> Prasad
->>> <himal.prasad.ghimiray@intel.com>;
->>> Thomas.Hellstrom@linux.intel.com;
->>> Vishwanathapura, Niranjana <niranjana.vishwanathapura@intel.com>;
->>> Brost, Matthew <matthew.brost@intel.com>; Gupta, saurabhg
->>> <saurabhg.gupta@intel.com>
->>> *Subject:* Re: Making drm_gpuvm work across gpu devices
->>>
->>> Hi Oak,
->>>
->>> Am 23.02.24 um 21:12 schrieb Zeng, Oak:
->>>
->>>      Hi Christian,
->>>
->>>      I go back this old email to ask a question.
->>>
->>>
->>> sorry totally missed that one.
->>>
->>>      Quote from your email:
->>>
->>>      “Those ranges can then be used to implement the SVM feature
->>>      required for higher level APIs and not something you need at
->>> the
->>>      UAPI or even inside the low level kernel memory management.”
->>>
->>>      “SVM is a high level concept of OpenCL, Cuda, ROCm etc.. This
->>>      should not have any influence on the design of the kernel
->>> UAPI.”
->>>
->>>      There are two category of SVM:
->>>
->>>      1.driver svm allocator: this is implemented in user space,
->>>   i.g.,
->>>      cudaMallocManaged (cuda) or zeMemAllocShared (L0) or
->>>      clSVMAlloc(openCL). Intel already have gem_create/vm_bind in
->>> xekmd
->>>      and our umd implemented clSVMAlloc and zeMemAllocShared on top
->>> of
->>>      gem_create/vm_bind. Range A..B of the process address space is
->>>      mapped into a range C..D of the GPU address space, exactly as
->>> you
->>>      said.
->>>
->>>      2.system svm allocator:  This doesn’t introduce extra driver
->>> API
->>>      for memory allocation. Any valid CPU virtual address can be
->>> used
->>>      directly transparently in a GPU program without any extra
->>> driver
->>>      API call. Quote from kernel Documentation/vm/hmm.hst: “Any
->>>      application memory region (private anonymous, shared memory, or
->>>      regular file backed memory) can be used by a device
->>> transparently”
->>>      and “to share the address space by duplicating the CPU page
->>> table
->>>      in the device page table so the same address points to the same
->>>      physical memory for any valid main memory address in the
->>> process
->>>      address space”. In system svm allocator, we don’t need that
->>> A..B
->>>      C..D mapping.
->>>
->>>      It looks like you were talking of 1). Were you?
->>>
->>>
->>> No, even when you fully mirror the whole address space from a
->>> process
->>> into the GPU you still need to enable this somehow with an IOCTL.
->>>
->>> And while enabling this you absolutely should specify to which part
->>> of
->>> the address space this mirroring applies and where it maps to.
->>>
->>> */[Zeng, Oak] /*
->>>
->>> Lets say we have a hardware platform where both CPU and GPU support
->>> 57bit(use it for example. The statement apply to any address range)
->>> virtual address range, how do you decide “which part of the address
->>> space this mirroring applies”? You have to mirror the whole address
->>> space [0~2^57-1], do you? As you designed it, the gigantic
->>> vm_bind/mirroring happens at the process initialization time, and
->>> at
->>> that time, you don’t know which part of the address space will be
->>> used
->>> for gpu program. Remember for system allocator, *any* valid CPU
->>> address can be used for GPU program.  If you add an offset to
->>> [0~2^57-1], you get an address out of 57bit address range. Is this
->>> a
->>> valid concern?
->>>
->> Well you can perfectly mirror on demand. You just need something
->> similar
->> to userfaultfd() for the GPU. This way you don't need to mirror the
->> full
->> address space, but can rather work with large chunks created on
->> demand,
->> let's say 1GiB or something like that.
->
-> What we're looking at as the current design is an augmented userptr
-> (A..B -> C..D mapping) which is internally sparsely populated in
-> chunks. KMD manages the population using gpu pagefaults. We acknowledge
-> that some parts of this mirror will not have a valid CPU mapping. That
-> is, no vma so a gpu page-fault that resolves to such a mirror address
-> will cause an error. Would you have any concerns / objections against
-> such an approach?
+I think so, based on [1] if the ufence is a mapped BO on TGL
+get_user_pages_fast doesn't work and !use_page path is used. Hence I add
+malloc ufence section in [1].
 
-Nope, as far as I can see that sounds like a perfectly valid design to me.
+[1] https://patchwork.freedesktop.org/patch/580147/?series=130417&rev=1
 
-Regards,
-Christian.
+> > +			if (copy_to_user(ufence->addr, &ufence-
+> > >value,
+> > +					 sizeof(ufence->value)))
+> 
+> We should probably use put_user() here. On 64-bit I think that always
+> translates to an atomic write. And we should IMO precede with an mb()
+> to avoid in-kernel reordering. That would typically need to pair with
+> an mb() in the reader as well.
+> 
 
->
-> Thanks,
-> Thomas
->
->
->
+Got on on the put_user(), seems to work.
 
+A little unclear on mb() usage.
+
+Would it be?
+mb()
+put_user()
+
+And then in xe_wait_user_fence.c:do_compare?
+mb()
+copy_from_user
+
+Matt
+
+> 
+> > +				drm_warn(&ufence->xe->drm, "Copy to
+> > user failed\n");
+> > +		}
+> > +		kthread_unuse_mm(mm);
+> > +		mmput(mm);
+> > �	}
+> > �
+> > �	wake_up_all(&ufence->xe->ufence_wq);
+> 
