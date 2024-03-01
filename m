@@ -4,50 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA68AC5475B
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Mar 2024 08:38:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 711FCC5475B
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Mar 2024 08:57:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 491D310EC0A;
-	Fri,  1 Mar 2024 08:38:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FB3D10EC24;
+	Fri,  1 Mar 2024 08:57:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=sipsolutions.net header.i=@sipsolutions.net header.b="nlwr3IzI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TEZvGBpm";
 	dkim-atps=neutral
-Received: from sipsolutions.net (s3.sipsolutions.net [168.119.38.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D11AC10EC0A
- for <intel-xe@lists.freedesktop.org>; Fri,  1 Mar 2024 08:38:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
- Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
- Resent-Cc:Resent-Message-ID; bh=vuG8csCkwvbPWQAQ1iQPW5EjQIodYKZO0NB6u/TNuN8=; 
- t=1709282324; x=1710491924; b=nlwr3IzIRgVOaJqyMoqFJA7tTkusSGDSi1rQQcK5onRGKYL
- oAkN0vtq6ekFkyUwIeHh8FW7JY6sH4E8McidekjqGaDBgDWJ8n3/TwrrJKKU9lYDYpvsW+CJ4mkr4
- jnx7gjcKvQokRN7R1OOEjTkGIiirMCwpDudeZ1LdGVc7Fi86E1u09U23mlzoL6aWHL6MZ+1fswBJ/
- MvHF30eUf1UJaO/n/iVh3TSh6UBdJFXqn36rszOqmwk+Q9e7yC/BEJZLCLtB+R5vm1jeZs8HC9ktH
- iO1/qGDSpQ6bLbXbZ4ahL0glFYdy3wnDhabzEb4jKgh/fNS0M+oUlFc+Ac9N99Ow==;
-Received: by sipsolutions.net with esmtpsa
- (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
- (Exim 4.97) (envelope-from <johannes@sipsolutions.net>)
- id 1rfyPh-0000000EqAR-03E2; Fri, 01 Mar 2024 09:38:41 +0100
-Message-ID: <0f4244ea6866f451f3f8a5b5e2db8be53de1f0c2.camel@sipsolutions.net>
-Subject: Re: [PATCH v2 2/4] devcoredump: Add dev_coredumpm_timeout()
-From: Johannes Berg <johannes@sipsolutions.net>
-To: "Souza, Jose" <jose.souza@intel.com>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>
-Cc: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, "quic_mojha@quicinc.com"
- <quic_mojha@quicinc.com>, "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-Date: Fri, 01 Mar 2024 09:38:39 +0100
-In-Reply-To: <a27ac0d3bc52c2181852a25641b7020f50a50648.camel@intel.com>
-References: <20240228165709.82089-1-jose.souza@intel.com>
- <20240228165709.82089-2-jose.souza@intel.com>
- <84e4f0d70c5552dd7fa350c61c28de9637628ee6.camel@sipsolutions.net>
- <a27ac0d3bc52c2181852a25641b7020f50a50648.camel@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E41BA10EC23
+ for <intel-xe@lists.freedesktop.org>; Fri,  1 Mar 2024 08:57:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1709283424; x=1740819424;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=iUL5KWbzTdcaKrLUxySccri7nl0oWuyKHPlUb6O2W+4=;
+ b=TEZvGBpmnFcefjtEpujLclOdGAiF8DftFlkL4xb2CTouO9SfDce6pQPp
+ YnA/cyeiAA+NrhTUFKNqOdcja109d0IjX3CymazDhbqun0w/9Bq4bXoIg
+ YCnm2b26eC34eI6e6CErd2DFcSujpuBrEIg+dbkswKG6pcmWZa/uGmJM3
+ qzH9pgZXgHCabwnWbiiWkMat0caSGs6xCT+zXrPicfI1AVhFpv2HgTwbF
+ oJULecRASxhHVkq+itbeKgg9lJAMNwUrJyU9YldSO1Ypam1b1YqzdCKjo
+ LesixcIATkt9ZEsCt+wSxj38Go9KVElangt6hwI+zkUK/a6Xo8EOXM4bK A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10999"; a="6762181"
+X-IronPort-AV: E=Sophos;i="6.06,195,1705392000"; 
+   d="scan'208";a="6762181"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2024 00:57:03 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,195,1705392000"; d="scan'208";a="12736835"
+Received: from yuyingfa-mobl.ccr.corp.intel.com (HELO [10.249.254.26])
+ ([10.249.254.26])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2024 00:57:00 -0800
+Message-ID: <e278d2f506078a50d072f132cd51835391f3b3a9.camel@linux.intel.com>
+Subject: Re: [PATCH v2 3/3] drm/xe: Get page on user fence creation
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 01 Mar 2024 09:56:57 +0100
+In-Reply-To: <ZeGHwQZ7tLj9oAv8@DUT025-TGLU.fm.intel.com>
+References: <20240301035522.238307-1-matthew.brost@intel.com>
+ <20240301035522.238307-4-matthew.brost@intel.com>
+ <6235b4c6c6d537d928795cd2dde24c27ce77ecce.camel@linux.intel.com>
+ <ZeGHwQZ7tLj9oAv8@DUT025-TGLU.fm.intel.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
 MIME-Version: 1.0
-X-malware-bazaar: not-scanned
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,38 +71,194 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2024-02-28 at 17:56 +0000, Souza, Jose wrote:
+On Fri, 2024-03-01 at 07:46 +0000, Matthew Brost wrote:
+> On Fri, Mar 01, 2024 at 07:36:01AM +0100, Thomas Hellstr=C3=B6m wrote:
+> > On Thu, 2024-02-29 at 19:55 -0800, Matthew Brost wrote:
+> > > Attempt to get page on user fence creation and kmap_local_page on
+> > > signaling. Should reduce latency and can ensure 64 bit atomicity
+> > > compared to copy_to_user.
+> > >=20
+> > > v2:
+> > > =C2=A0- Prefault page and drop ref (Thomas)
+> > > =C2=A0- Use set_page_dirty_lock (Thomas)
+> > > =C2=A0- try_cmpxchg64 loop (Thomas)
+> > >=20
+> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > > ---
+> > > =C2=A0drivers/gpu/drm/xe/xe_sync.c | 52
+> > > +++++++++++++++++++++++++++++++---
+> > > --
+> > > =C2=A01 file changed, 45 insertions(+), 7 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/xe/xe_sync.c
+> > > b/drivers/gpu/drm/xe/xe_sync.c
+> > > index c20e1f9ad267..bf7f22519cc5 100644
+> > > --- a/drivers/gpu/drm/xe/xe_sync.c
+> > > +++ b/drivers/gpu/drm/xe/xe_sync.c
+> > > @@ -6,6 +6,7 @@
+> > > =C2=A0#include "xe_sync.h"
+> > > =C2=A0
+> > > =C2=A0#include <linux/dma-fence-array.h>
+> > > +#include <linux/highmem.h>
+> > > =C2=A0#include <linux/kthread.h>
+> > > =C2=A0#include <linux/sched/mm.h>
+> > > =C2=A0#include <linux/uaccess.h>
+> > > @@ -28,6 +29,7 @@ struct xe_user_fence {
+> > > =C2=A0	u64 __user *addr;
+> > > =C2=A0	u64 value;
+> > > =C2=A0	int signalled;
+> > > +	bool use_page;
+> > > =C2=A0};
+> > > =C2=A0
+> > > =C2=A0static void user_fence_destroy(struct kref *kref)
+> > > @@ -53,7 +55,9 @@ static struct xe_user_fence
+> > > *user_fence_create(struct xe_device *xe, u64 addr,
+> > > =C2=A0					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u64 value)
+> > > =C2=A0{
+> > > =C2=A0	struct xe_user_fence *ufence;
+> > > +	struct page *page;
+> > > =C2=A0	u64 __user *ptr =3D u64_to_user_ptr(addr);
+> > > +	int ret;
+> > > =C2=A0
+> > > =C2=A0	if (!access_ok(ptr, sizeof(ptr)))
+> > > =C2=A0		return ERR_PTR(-EFAULT);
+> > > @@ -69,19 +73,53 @@ static struct xe_user_fence
+> > > *user_fence_create(struct xe_device *xe, u64 addr,
+> > > =C2=A0	ufence->mm =3D current->mm;
+> > > =C2=A0	mmgrab(ufence->mm);
+> > > =C2=A0
+> > > +	/* Prefault page */
+> > > +	ret =3D get_user_pages_fast(addr, 1, FOLL_WRITE, &page);
+> > > +	if (ret =3D=3D 1) {
+> > > +		ufence->use_page =3D true;
+> > > +		put_page(page);
+> > > +	}
+> > > +
+> > > =C2=A0	return ufence;
+> > > =C2=A0}
+> > > =C2=A0
+> > > =C2=A0static void user_fence_worker(struct work_struct *w)
+> > > =C2=A0{
+> > > =C2=A0	struct xe_user_fence *ufence =3D container_of(w, struct
+> > > xe_user_fence, worker);
+> > > -
+> > > -	if (mmget_not_zero(ufence->mm)) {
+> > > -		kthread_use_mm(ufence->mm);
+> > > -		if (copy_to_user(ufence->addr, &ufence->value,
+> > > sizeof(ufence->value)))
+> > > -			XE_WARN_ON("Copy to user failed");
+> > > -		kthread_unuse_mm(ufence->mm);
+> > > -		mmput(ufence->mm);
+> > > +	struct mm_struct *mm =3D ufence->mm;
+> > > +
+> > > +	if (mmget_not_zero(mm)) {
+> > > +		kthread_use_mm(mm);
+> > > +		if (ufence->use_page) {
+> > > +			struct page *page;
+> > > +			int ret;
+> > > +
+> > > +			ret =3D get_user_pages_fast((unsigned
+> > > long)ufence->addr,
+> > > +						=C2=A0 1, FOLL_WRITE,
+> > > &page);
+> > > +			if (ret =3D=3D 1) {
+> > > +				atomic64_t *ptr;
+> > > +				u64 old =3D 0;
+> > > +				void *va;
+> > > +
+> > > +				va =3D kmap_local_page(page);
+> > > +				ptr =3D va +
+> > > offset_in_page(ufence-
+> > > > addr);
+> > > +				while (!try_cmpxchg64(ptr, &old,
+> > > ufence->value))
+> > > +					continue;
+
+I'm still a little worried about the availability of this, like when
+the build-bot tests on all available architectures, and Linus has
+already pulled the stuff. It's definitely there on i386, and it seems
+to be used generically in sched/clock.c. Might be worth-wile to CC dri-
+devel/lkml and have the build bots pick it up...
+
+
+> > > +				kunmap_local(va);
+> > > +
+> > > +				set_page_dirty_lock(page);
+> > > +				put_page(page);
+> > > +			} else {
+> > > +				ufence->use_page =3D false;
+> > > +			}
+> > > +		}
+> > > +		if (!ufence->use_page) {
+> >=20
+> > Hmm. Trying to figure out the semantics here. If ever used on 32-
+> > bit,
+> > and get_user_pages() fails, then I figure we can't guarantee
+> > atomicity.
+> > That would typically be if the user-fence is in buffer-object or
+> > device
+> > memory?
+> >=20
 >=20
-> In my opinion, the timeout should depend on the type of device driver.
+> I think so, based on [1] if the ufence is a mapped BO on TGL
+> get_user_pages_fast doesn't work and !use_page path is used. Hence I
+> add
+> malloc ufence section in [1].
 >=20
-> In the case of server-class Ethernet cards, where corporate users automat=
-e most tasks, five minutes might even be considered excessive.
+> [1]
+> https://patchwork.freedesktop.org/patch/580147/?series=3D130417&rev=3D1
 >=20
-> For our case, GPUs, users might experience minor glitches and only search=
- for what happened after finishing their current task (writing an email,
-> ending a gaming match, watching a YouTube video, etc.).
-> If they land on https://drm.pages.freedesktop.org/intel-docs/how-to-file-=
-i915-bugs.html or the future Xe version of that page, following the
-> instructions alone may take inexperienced Linux users more than five minu=
-tes.
+> > > +			if (copy_to_user(ufence->addr, &ufence-
+> > > > value,
+> > > +					 sizeof(ufence->value)))
+> >=20
+> > We should probably use put_user() here. On 64-bit I think that
+> > always
+> > translates to an atomic write. And we should IMO precede with an
+> > mb()
+> > to avoid in-kernel reordering. That would typically need to pair
+> > with
+> > an mb() in the reader as well.
+> >=20
+>=20
+> Got on on the put_user(), seems to work.
+>=20
+> A little unclear on mb() usage.
+>=20
+> Would it be?
+> mb()
+> put_user()
 
-That's all not wrong, but I don't see why you wouldn't automate this
-even on end user machines? I feel you're boxing the problem in by
-wanting to solve it entirely in the kernel?
+Yes, this is correct. Actually we'd want smp_store_release() semantics
+here, but this is stricter.
 
-> I have set the timeout to one hour in the Xe driver, but this could incre=
-ase if we start receiving user complaints.
 
-At an hour now, people will probably start arguing that "indefinitely"
-is about right? But at that point you're probably back to persisting
-them on disk anyway? Or maybe glitches happen during logout/shutdown ...
+>=20
+> And then in xe_wait_user_fence.c:do_compare?
+> mb()
+> copy_from_user
 
-Anyway, I don't want to block this because I just don't care enough
-about how you do things, but I think the kernel is the wrong place to
-solve this problem... The intent here was to give some userspace time to
-grab it (and yes for that 5 minutes is already way too long), not the
-users. That's also part of the reason we only hold on to a single
-instance, since I didn't want it to keep consuming more and more memory
-for it if happens repeatedly.
+Here we'd want smp_read_acquire() but we'd have to do with the below.
+get_user()
+mb();
 
-johannes
+And user-space should use a similar mb() as well if they need to be
+sure things are indeed done after the signalling.
+
+/Thomas
+
+>=20
+> Matt
+>=20
+> >=20
+> > > +				drm_warn(&ufence->xe->drm, "Copy
+> > > to
+> > > user failed\n");
+> > > +		}
+> > > +		kthread_unuse_mm(mm);
+> > > +		mmput(mm);
+> > > =C2=A0	}
+> > > =C2=A0
+> > > =C2=A0	wake_up_all(&ufence->xe->ufence_wq);
+> >=20
+
