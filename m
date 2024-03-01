@@ -4,51 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FF98C5475B
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Mar 2024 08:12:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D287BC54E41
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Mar 2024 08:14:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF43B10EA22;
-	Fri,  1 Mar 2024 08:12:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CD0410EB11;
+	Fri,  1 Mar 2024 08:14:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PtU9Qoi+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MqLoMibE";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE3E810EA22
- for <intel-xe@lists.freedesktop.org>; Fri,  1 Mar 2024 08:12:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A3A1B10EA3B;
+ Fri,  1 Mar 2024 08:14:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709280772; x=1740816772;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ER7k7gKM+u1j7NbVKoFwEANdfk9rEQ3o4cND2BPPzKE=;
- b=PtU9Qoi+W+ngkMAAcUNnaW/PMPIlH22+RBi55WB9KZqWXLzkGZjnAfDD
- KSzbHfaRKeL9pm01H0q/X5Ghd4TSm9CpYWkLZIjJFiYl/LrUSODlqLSYw
- ijGPWPoqvFMNvJ4RhwjKpxz/aUa9IWzdqq6rh0tDCzxDFacilXBn7L0xg
- R95DJAYw41rZIGZyToBGxbPrnH/U8pM/oAs7DjTZZQiLCPn4Lhn1kBYKQ
- MhB60c5RTLc+gz7/sTSLWybzrSH75rdtpRpsZ6Z5D3t4nryfELAd9e/Vn
- iWUw6jL0lvF1hrA/CgNpQFnpEuXqF6Woe3j0VqZTDmdgfvVt8mLLgzTSU Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10999"; a="3977674"
+ t=1709280858; x=1740816858;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=pwpjYiMv+SKiEf0sR52rY1sdKjzkT3+BbjY5Yly0ziw=;
+ b=MqLoMibEejliL/O0UHQ2HcNZy0K8BlCHsIsDZVfrh9TreoFEr5KJ8g+r
+ wbHFKg4Ctbpz9duxFUaXlcszVgmDlgMuAyrGcO9oZ4v5/kgdziLF3kI5z
+ wBbRDEdW2c/w04e99amNGGyOl5Yk6uttu7gAlQK0vfnSXxfW6fQhb/Syr
+ rQsr5Sp6+jxKhwaWmLJJrqZMy0lT8myFf7ZzBCQeuxZlyt7efBH2vKEa5
+ crDnABeTZJiSDwj7pbF3sd9D1hU3P8P7yQHJnJIjNr5/+G+js/GAKpPcF
+ 9CYrLdHsjoT5mYI+W67ytVM+9RRNxwRfdkL3lwcaeMBeAplTkDNm8rJhI w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10999"; a="3693951"
 X-IronPort-AV: E=Sophos;i="6.06,195,1705392000"; 
-   d="scan'208";a="3977674"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2024 00:12:51 -0800
+   d="scan'208";a="3693951"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2024 00:14:17 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,195,1705392000"; 
-   d="scan'208";a="8269165"
-Received: from mkuoppal-desk.fi.intel.com (HELO localhost) ([10.237.72.193])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2024 00:12:49 -0800
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>
-Subject: Re: [PATCH] drm/xe: Fix ref counting leak on page fault
-In-Reply-To: <20240301041036.238471-1-matthew.brost@intel.com>
-References: <20240301041036.238471-1-matthew.brost@intel.com>
-Date: Fri, 01 Mar 2024 10:07:10 +0200
-Message-ID: <87v866tlxt.fsf@mkuoppal-desk>
+X-IronPort-AV: E=Sophos;i="6.06,195,1705392000"; d="scan'208";a="45656600"
+Received: from unknown (HELO localhost) ([10.245.244.89])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2024 00:14:12 -0800
+Date: Fri, 1 Mar 2024 10:14:09 +0200
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-fixes
+Message-ID: <ZeGOUTfiA0_FNKLg@jlahtine-mobl.ger.corp.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,37 +71,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Matthew Brost <matthew.brost@intel.com> writes:
+Hi Dave & Sima,
 
-> If a page fault occurs on VM not in fault a ref can be leaked. Fix this.
->
-> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Here's the drm-intel-fixes towards v6.8(-rc7).
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+One NULL check for mmu notifier and HDCP fix to read from primary
+connector.
 
-> ---
->  drivers/gpu/drm/xe/xe_gt_pagefault.c | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> index c26e4fcca01e..73c535193a98 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> @@ -146,10 +146,12 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
->  	/* ASID to VM */
->  	mutex_lock(&xe->usm.lock);
->  	vm = xa_load(&xe->usm.asid_to_vm, pf->asid);
-> -	if (vm)
-> +	if (vm && xe_vm_in_fault_mode(vm))
->  		xe_vm_get(vm);
-> +	else
-> +		vm = NULL;
->  	mutex_unlock(&xe->usm.lock);
-> -	if (!vm || !xe_vm_in_fault_mode(vm))
-> +	if (!vm)
->  		return -EINVAL;
->  
->  retry_userptr:
-> -- 
-> 2.34.1
+Regards, Joonas
+
+***
+
+drm-intel-fixes-2024-03-01:
+
+- Fix to extract HDCP information from primary connector
+- Check for NULL mmu_interval_notifier before removing
+
+The following changes since commit d206a76d7d2726f3b096037f2079ce0bd3ba329b:
+
+  Linux 6.8-rc6 (2024-02-25 15:46:06 -0800)
+
+are available in the Git repository at:
+
+  https://anongit.freedesktop.org/git/drm/drm-intel tags/drm-intel-fixes-2024-03-01
+
+for you to fetch changes up to 01bb1ae35006e473138c90711bad1a6b614a1823:
+
+  drm/i915: Check before removing mm notifier (2024-02-29 14:14:40 +0200)
+
+----------------------------------------------------------------
+- Fix to extract HDCP information from primary connector
+- Check for NULL mmu_interval_notifier before removing
+
+----------------------------------------------------------------
+Nirmoy Das (1):
+      drm/i915: Check before removing mm notifier
+
+Suraj Kandpal (3):
+      drm/i915/hdcp: Move to direct reads for HDCP
+      drm/i915/hdcp: Remove additional timing for reading mst hdcp message
+      drm/i915/hdcp: Extract hdcp structure from correct connector
+
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 47 ++++++++++------------------
+ drivers/gpu/drm/i915/gem/i915_gem_userptr.c  |  3 ++
+ 2 files changed, 19 insertions(+), 31 deletions(-)
