@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA67FC54E55
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Mar 2024 03:55:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38CD0C5475B
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Mar 2024 03:59:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CED210EA7D;
-	Fri,  1 Mar 2024 03:55:13 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CiGoKqKi";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2FA410EA79
- for <intel-xe@lists.freedesktop.org>; Fri,  1 Mar 2024 03:55:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709265312; x=1740801312;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=IrXy3/HMqneGquGtKBpQ1rrLkPt9qOmW7CvwNEfyaH4=;
- b=CiGoKqKiimyXaAH+StSI1Elw0QK+b7fAMbXbFzQkXBxY+Sb4GKPNETm3
- g8wS3GjjyIHnnzqh511EsX9zny52d6IKC54BO3jPKC53WTf7BFlqDR7xi
- Lr+tkh/WJLc0Tg9+sJPayg5fo9vkTFKyNCEHaHDiI25g7fKEvocWuHs5q
- MwnOkn4uaKr0Hozs6s1jMzsBGxTH9idV5W1CO9Bl0P9NoG3mEEa4oO72p
- cdIKUbdxkkfhFDQu5i10AXsqXgKkxU1At3umbaqAEZmJFdwA/s/gnyO+9
- Ubi83bXXkJ/+eH2k8QAVJOA0NAgozuMDxTmZQKbK4Gu08GITjj424gGJP g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10999"; a="14425066"
-X-IronPort-AV: E=Sophos;i="6.06,195,1705392000"; d="scan'208";a="14425066"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Feb 2024 19:55:11 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,195,1705392000"; d="scan'208";a="45607200"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Feb 2024 19:55:10 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-Cc: Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH v2 1/3] drm/xe: Remove used xe_sync_entry_wait
-Date: Thu, 29 Feb 2024 19:55:20 -0800
-Message-Id: <20240301035522.238307-2-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240301035522.238307-1-matthew.brost@intel.com>
-References: <20240301035522.238307-1-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF64F10EA59;
+	Fri,  1 Mar 2024 03:59:53 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5033110EA59;
+ Fri,  1 Mar 2024 03:59:52 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_xe=5Fsync_and_ufence?=
+ =?utf-8?q?_rework_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 01 Mar 2024 03:59:52 -0000
+Message-ID: <170926559232.414572.15778052932713154821@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240301035522.238307-1-matthew.brost@intel.com>
+In-Reply-To: <20240301035522.238307-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,49 +36,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_sync_entry_wait is no longer used, remove it.
+== Series Details ==
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_sync.c | 8 --------
- drivers/gpu/drm/xe/xe_sync.h | 1 -
- 2 files changed, 9 deletions(-)
+Series: xe_sync and ufence rework (rev2)
+URL   : https://patchwork.freedesktop.org/series/130418/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
-index 02c9577fe418..c836a5f3a1ea 100644
---- a/drivers/gpu/drm/xe/xe_sync.c
-+++ b/drivers/gpu/drm/xe/xe_sync.c
-@@ -200,14 +200,6 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
- 	return 0;
- }
- 
--int xe_sync_entry_wait(struct xe_sync_entry *sync)
--{
--	if (sync->fence)
--		dma_fence_wait(sync->fence, true);
--
--	return 0;
--}
--
- int xe_sync_entry_add_deps(struct xe_sync_entry *sync, struct xe_sched_job *job)
- {
- 	int err;
-diff --git a/drivers/gpu/drm/xe/xe_sync.h b/drivers/gpu/drm/xe/xe_sync.h
-index 0fd0d51208e6..cb88715ac9af 100644
---- a/drivers/gpu/drm/xe/xe_sync.h
-+++ b/drivers/gpu/drm/xe/xe_sync.h
-@@ -22,7 +22,6 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
- 			struct xe_sync_entry *sync,
- 			struct drm_xe_sync __user *sync_user,
- 			unsigned int flags);
--int xe_sync_entry_wait(struct xe_sync_entry *sync);
- int xe_sync_entry_add_deps(struct xe_sync_entry *sync,
- 			   struct xe_sched_job *job);
- void xe_sync_entry_signal(struct xe_sync_entry *sync,
--- 
-2.34.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: c1763f7b4fa5 drm-tip: 2024y-03m-01d-03h-43m-13s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Remove used xe_sync_entry_wait
+Applying: drm/xe: Validate user fence during creation
+Applying: drm/xe: Get page on user fence creation
+
 
