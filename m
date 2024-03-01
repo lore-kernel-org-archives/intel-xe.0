@@ -4,60 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6949C5475B
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Mar 2024 08:22:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA68AC5475B
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Mar 2024 08:38:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A38BB10E326;
-	Fri,  1 Mar 2024 08:22:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 491D310EC0A;
+	Fri,  1 Mar 2024 08:38:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KkPD7RMX";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=sipsolutions.net header.i=@sipsolutions.net header.b="nlwr3IzI";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A1D910E326
- for <intel-xe@lists.freedesktop.org>; Fri,  1 Mar 2024 08:22:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709281342; x=1740817342;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=2rPWBcwr+72sXujmrCiyvd5v4lKK3NwYrJj6asyJ1Gk=;
- b=KkPD7RMX1mwkR126d7o8ygWOUcCHHP8TGy63KCMFEZ7FluhkfOOV0FhV
- BvbERXc+TCf/rKDJX160oBHS2sAACWag/9vyrmFRCSYI94X/4pnel8qgA
- rvGJ3O0a7aFP2UU7veyTjBb/buiB/W25Oiy9CKX+LoTCgXUjHqWCKT6u2
- YAVXYAIxrCBH/Mu1IkMbIJpOK6xR4Osukv0xWHo+YWDNOfVTARdbTakVw
- zOrDtdSRTMK+CZHlx26yFlG6MoQVyY2v58sKNA6CZk9Bai87y160LkYur
- 6YL5Ko8gCZE28Pi0zfPILzIQ3u4AuxmMPeVthAfJPBI6v/7snln9Zi9c0 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10999"; a="3926343"
-X-IronPort-AV: E=Sophos;i="6.06,195,1705392000"; 
-   d="scan'208";a="3926343"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2024 00:22:21 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,195,1705392000"; 
-   d="scan'208";a="8064384"
-Received: from yuyingfa-mobl.ccr.corp.intel.com (HELO [10.249.254.26])
- ([10.249.254.26])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2024 00:22:19 -0800
-Message-ID: <394fddb5ce8505141c0dfd2ea543e64ad87c67f7.camel@linux.intel.com>
-Subject: Re: [PATCH v2 2/3] drm/xe: Validate user fence during creation
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 01 Mar 2024 09:22:17 +0100
-In-Reply-To: <ZeGKrlrFLfDp/Q+Z@DUT025-TGLU.fm.intel.com>
-References: <20240301035522.238307-1-matthew.brost@intel.com>
- <20240301035522.238307-3-matthew.brost@intel.com>
- <6f8409697d39299e3672fd42f7057e421cb54f19.camel@linux.intel.com>
- <ZeGKrlrFLfDp/Q+Z@DUT025-TGLU.fm.intel.com>
-Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
- keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
-Organization: Intel Sweden AB, Registration Number: 556189-6027
+Received: from sipsolutions.net (s3.sipsolutions.net [168.119.38.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D11AC10EC0A
+ for <intel-xe@lists.freedesktop.org>; Fri,  1 Mar 2024 08:38:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
+ Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+ :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
+ Resent-Cc:Resent-Message-ID; bh=vuG8csCkwvbPWQAQ1iQPW5EjQIodYKZO0NB6u/TNuN8=; 
+ t=1709282324; x=1710491924; b=nlwr3IzIRgVOaJqyMoqFJA7tTkusSGDSi1rQQcK5onRGKYL
+ oAkN0vtq6ekFkyUwIeHh8FW7JY6sH4E8McidekjqGaDBgDWJ8n3/TwrrJKKU9lYDYpvsW+CJ4mkr4
+ jnx7gjcKvQokRN7R1OOEjTkGIiirMCwpDudeZ1LdGVc7Fi86E1u09U23mlzoL6aWHL6MZ+1fswBJ/
+ MvHF30eUf1UJaO/n/iVh3TSh6UBdJFXqn36rszOqmwk+Q9e7yC/BEJZLCLtB+R5vm1jeZs8HC9ktH
+ iO1/qGDSpQ6bLbXbZ4ahL0glFYdy3wnDhabzEb4jKgh/fNS0M+oUlFc+Ac9N99Ow==;
+Received: by sipsolutions.net with esmtpsa
+ (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+ (Exim 4.97) (envelope-from <johannes@sipsolutions.net>)
+ id 1rfyPh-0000000EqAR-03E2; Fri, 01 Mar 2024 09:38:41 +0100
+Message-ID: <0f4244ea6866f451f3f8a5b5e2db8be53de1f0c2.camel@sipsolutions.net>
+Subject: Re: [PATCH v2 2/4] devcoredump: Add dev_coredumpm_timeout()
+From: Johannes Berg <johannes@sipsolutions.net>
+To: "Souza, Jose" <jose.souza@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>
+Cc: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, "quic_mojha@quicinc.com"
+ <quic_mojha@quicinc.com>, "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
+Date: Fri, 01 Mar 2024 09:38:39 +0100
+In-Reply-To: <a27ac0d3bc52c2181852a25641b7020f50a50648.camel@intel.com>
+References: <20240228165709.82089-1-jose.souza@intel.com>
+ <20240228165709.82089-2-jose.souza@intel.com>
+ <84e4f0d70c5552dd7fa350c61c28de9637628ee6.camel@sipsolutions.net>
+ <a27ac0d3bc52c2181852a25641b7020f50a50648.camel@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 MIME-Version: 1.0
+X-malware-bazaar: not-scanned
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,82 +62,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2024-03-01 at 07:58 +0000, Matthew Brost wrote:
-> On Fri, Mar 01, 2024 at 07:55:40AM +0100, Thomas Hellstr=C3=B6m wrote:
-> > On Thu, 2024-02-29 at 19:55 -0800, Matthew Brost wrote:
-> > > Fail invalidate addresses during user fence creation.
-> > >=20
-> > > Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for
-> > > Intel
-> > > GPUs")
-> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > > ---
-> > > =C2=A0drivers/gpu/drm/xe/xe_sync.c | 12 ++++++++----
-> > > =C2=A01 file changed, 8 insertions(+), 4 deletions(-)
-> > >=20
-> > > diff --git a/drivers/gpu/drm/xe/xe_sync.c
-> > > b/drivers/gpu/drm/xe/xe_sync.c
-> > > index c836a5f3a1ea..c20e1f9ad267 100644
-> > > --- a/drivers/gpu/drm/xe/xe_sync.c
-> > > +++ b/drivers/gpu/drm/xe/xe_sync.c
-> > > @@ -53,14 +53,18 @@ static struct xe_user_fence
-> > > *user_fence_create(struct xe_device *xe, u64 addr,
-> > > =C2=A0					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u64 value)
-> > > =C2=A0{
-> > > =C2=A0	struct xe_user_fence *ufence;
-> > > +	u64 __user *ptr =3D u64_to_user_ptr(addr);
-> > > +
-> > > +	if (!access_ok(ptr, sizeof(ptr)))
-> > > +		return ERR_PTR(-EFAULT);
-> >=20
-> > I think we also need to enforce u64 alignment. Otherwise,
-> > particularly
-> > on 32-bit user-space the user fence memory could cross a page-
-> > border?=20
-> >=20
+On Wed, 2024-02-28 at 17:56 +0000, Souza, Jose wrote:
 >=20
-> We already do this in xe_sync_entry_parse:
+> In my opinion, the timeout should depend on the type of device driver.
 >=20
-> 221=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (XE_IOCTL_DBG(xe, sync_in.addr & 0x7))
-> 222=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- return -EINVAL;
+> In the case of server-class Ethernet cards, where corporate users automat=
+e most tasks, five minutes might even be considered excessive.
 >=20
-> Matt
+> For our case, GPUs, users might experience minor glitches and only search=
+ for what happened after finishing their current task (writing an email,
+> ending a gaming match, watching a YouTube video, etc.).
+> If they land on https://drm.pages.freedesktop.org/intel-docs/how-to-file-=
+i915-bugs.html or the future Xe version of that page, following the
+> instructions alone may take inexperienced Linux users more than five minu=
+tes.
 
-Ah, Great.
+That's all not wrong, but I don't see why you wouldn't automate this
+even on end user machines? I feel you're boxing the problem in by
+wanting to solve it entirely in the kernel?
 
+> I have set the timeout to one hour in the Xe driver, but this could incre=
+ase if we start receiving user complaints.
 
->=20
-> > > =C2=A0
-> > > =C2=A0	ufence =3D kmalloc(sizeof(*ufence), GFP_KERNEL);
-> > > =C2=A0	if (!ufence)
-> > > -		return NULL;
-> > > +		return ERR_PTR(-ENOMEM);
-> > > =C2=A0
-> > > =C2=A0	ufence->xe =3D xe;
-> > > =C2=A0	kref_init(&ufence->refcount);
-> > > -	ufence->addr =3D u64_to_user_ptr(addr);
-> > > +	ufence->addr =3D ptr;
-> > > =C2=A0	ufence->value =3D value;
-> > > =C2=A0	ufence->mm =3D current->mm;
-> > > =C2=A0	mmgrab(ufence->mm);
-> > > @@ -183,8 +187,8 @@ int xe_sync_entry_parse(struct xe_device *xe,
-> > > struct xe_file *xef,
-> > > =C2=A0		} else {
-> > > =C2=A0			sync->ufence =3D user_fence_create(xe,
-> > > sync_in.addr,
-> > > =C2=A0						=09
-> > > sync_in.timeline_value);
-> > > -			if (XE_IOCTL_DBG(xe, !sync->ufence))
-> > > -				return -ENOMEM;
-> > > +			if (XE_IOCTL_DBG(xe, IS_ERR(sync-
-> > > >ufence)))
-> > > +				return PTR_ERR(sync->ufence);
-> > > =C2=A0		}
-> > > =C2=A0
-> > > =C2=A0		break;
-> >=20
+At an hour now, people will probably start arguing that "indefinitely"
+is about right? But at that point you're probably back to persisting
+them on disk anyway? Or maybe glitches happen during logout/shutdown ...
 
+Anyway, I don't want to block this because I just don't care enough
+about how you do things, but I think the kernel is the wrong place to
+solve this problem... The intent here was to give some userspace time to
+grab it (and yes for that 5 minutes is already way too long), not the
+users. That's also part of the reason we only hold on to a single
+instance, since I didn't want it to keep consuming more and more memory
+for it if happens repeatedly.
+
+johannes
