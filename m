@@ -4,61 +4,105 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78725C5475B
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Mar 2024 13:31:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55DBBC5478C
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Mar 2024 13:44:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A5C010EDC3;
-	Fri,  1 Mar 2024 13:31:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E041810EE44;
+	Fri,  1 Mar 2024 13:44:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jDsEzNJ7";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="ZUvDyrzR";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="oOv3sycy";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="ZUvDyrzR";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="oOv3sycy";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF16910EDC2
- for <intel-xe@lists.freedesktop.org>; Fri,  1 Mar 2024 13:31:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709299911; x=1740835911;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=P8m0cpIJtPjvn7cae2Q5QulxA3vAETqCQhhUQUcXXUg=;
- b=jDsEzNJ7vCC9Q/Azxym9oohxlO6GBn9l82E1Vnxf2nPPK/0I3cJOvmMr
- 2ijiswn2Q0pf2CoMqIwAwkZs/w8W9hfIUFmu8A7Omn7ZHNszJ6HxQh5Pb
- PFwR/IekgVFum/CZx1QRNPuBOdQTSmsURJu88MN4QbJaDlTYhfombJyjR
- tGDKj+AmJMzc9Tf4cYM75UfS7HcJd6RIKHbFpkL9ut7DhRw3pjp/JXHdz
- zX/+crT7Ne59GyQCZ78E8+c0BcEh0Ws6wOFkmGv1t5GSy2/Yj4RwQcqHQ
- 4QamLEmIY66OBeD7slPgGeKtTZ175WVWzqqT37p7l45BSsjZF86ymxf8y w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10999"; a="7650931"
-X-IronPort-AV: E=Sophos;i="6.06,196,1705392000"; 
-   d="scan'208";a="7650931"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2024 05:31:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,196,1705392000"; 
-   d="scan'208";a="8428688"
-Received: from yuyingfa-mobl.ccr.corp.intel.com (HELO [10.249.254.26])
- ([10.249.254.26])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2024 05:31:50 -0800
-Message-ID: <40f34e9547577df7ce4925cbd5e96d1d9fde5dec.camel@linux.intel.com>
-Subject: Re: [PATCH v2 3/3] drm/xe: Get page on user fence creation
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 01 Mar 2024 14:31:47 +0100
-In-Reply-To: <e278d2f506078a50d072f132cd51835391f3b3a9.camel@linux.intel.com>
-References: <20240301035522.238307-1-matthew.brost@intel.com>
- <20240301035522.238307-4-matthew.brost@intel.com>
- <6235b4c6c6d537d928795cd2dde24c27ce77ecce.camel@linux.intel.com>
- <ZeGHwQZ7tLj9oAv8@DUT025-TGLU.fm.intel.com>
- <e278d2f506078a50d072f132cd51835391f3b3a9.camel@linux.intel.com>
-Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
- keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B176410EE40;
+ Fri,  1 Mar 2024 13:44:53 +0000 (UTC)
+Received: from imap2.dmz-prg2.suse.org (imap2.dmz-prg2.suse.org [10.150.64.98])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 5175233A51;
+ Fri,  1 Mar 2024 13:44:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1709300692; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=3nkrJKh2MojfrzqOL5jipvFkkIlooWHQQGfVX1moNqk=;
+ b=ZUvDyrzRXlgtXPduUtByvx4sKNLICYKFDnbqe9ng53MvqoYNfAZx7vCCY+w5XGPcAgV+Ot
+ AqYhFmeBSzq2X6LRNGHYIADYAhoPzF4kAOYLvonMonSgekFPcF9H4xlk7r7AUTHa++u7St
+ zgFOtJg8g7t6Sw5vBgi7Xulya+7LfSw=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1709300692;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=3nkrJKh2MojfrzqOL5jipvFkkIlooWHQQGfVX1moNqk=;
+ b=oOv3sycyLRA86rqNmQ12oCZDeSZaVPjgbP0hZvazsSlaamHzvXi+Kfm+KcgTDKI3JMH+DI
+ PJ5Uxp0AgXuAxPDQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1709300692; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=3nkrJKh2MojfrzqOL5jipvFkkIlooWHQQGfVX1moNqk=;
+ b=ZUvDyrzRXlgtXPduUtByvx4sKNLICYKFDnbqe9ng53MvqoYNfAZx7vCCY+w5XGPcAgV+Ot
+ AqYhFmeBSzq2X6LRNGHYIADYAhoPzF4kAOYLvonMonSgekFPcF9H4xlk7r7AUTHa++u7St
+ zgFOtJg8g7t6Sw5vBgi7Xulya+7LfSw=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1709300692;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=3nkrJKh2MojfrzqOL5jipvFkkIlooWHQQGfVX1moNqk=;
+ b=oOv3sycyLRA86rqNmQ12oCZDeSZaVPjgbP0hZvazsSlaamHzvXi+Kfm+KcgTDKI3JMH+DI
+ PJ5Uxp0AgXuAxPDQ==
+Received: from imap2.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap2.dmz-prg2.suse.org (Postfix) with ESMTPS id C3F0D13A87;
+ Fri,  1 Mar 2024 13:44:51 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([10.150.64.162])
+ by imap2.dmz-prg2.suse.org with ESMTPSA id +MtdLtPb4WU2WAAAn2gu4w
+ (envelope-from <tzimmermann@suse.de>); Fri, 01 Mar 2024 13:44:51 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tvrtko.ursulin@linux.intel.com,
+ ville.syrjala@linux.intel.com, imre.deak@intel.com,
+ tejas.upadhyay@intel.com, jouni.hogander@intel.com, javierm@redhat.com,
+ airlied@gmail.com, daniel@ffwll.ch, lucas.demarchi@intel.com,
+ ogabbay@kernel.org, thomas.hellstrom@linux.intel.com
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH v7 1/6] drm/client: Export drm_client_dev_unregister()
+Date: Fri,  1 Mar 2024 14:42:54 +0100
+Message-ID: <20240301134448.31289-2-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20240301134448.31289-1-tzimmermann@suse.de>
+References: <20240301134448.31289-1-tzimmermann@suse.de>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Authentication-Results: smtp-out1.suse.de;
+	none
+X-Spamd-Result: default: False [3.66 / 50.00]; ARC_NA(0.00)[];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; R_MISSING_CHARSET(2.50)[];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ MIME_GOOD(-0.10)[text/plain]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ BROKEN_CONTENT_TYPE(1.50)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
+ RCVD_COUNT_THREE(0.00)[3];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; RCPT_COUNT_TWELVE(0.00)[18];
+ MID_CONTAINS_FROM(1.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email];
+ FREEMAIL_TO(0.00)[linux.intel.com,intel.com,redhat.com,gmail.com,ffwll.ch,kernel.org];
+ FUZZY_BLOCKED(0.00)[rspamd.com]; FROM_EQ_ENVFROM(0.00)[];
+ MIME_TRACE(0.00)[0:+]; RCVD_TLS_ALL(0.00)[];
+ BAYES_HAM(-0.04)[58.31%]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,210 +117,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2024-03-01 at 09:56 +0100, Thomas Hellstr=C3=B6m wrote:
-> On Fri, 2024-03-01 at 07:46 +0000, Matthew Brost wrote:
-> > On Fri, Mar 01, 2024 at 07:36:01AM +0100, Thomas Hellstr=C3=B6m wrote:
-> > > On Thu, 2024-02-29 at 19:55 -0800, Matthew Brost wrote:
-> > > > Attempt to get page on user fence creation and kmap_local_page
-> > > > on
-> > > > signaling. Should reduce latency and can ensure 64 bit
-> > > > atomicity
-> > > > compared to copy_to_user.
-> > > >=20
-> > > > v2:
-> > > > =C2=A0- Prefault page and drop ref (Thomas)
-> > > > =C2=A0- Use set_page_dirty_lock (Thomas)
-> > > > =C2=A0- try_cmpxchg64 loop (Thomas)
-> > > >=20
-> > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > > ---
-> > > > =C2=A0drivers/gpu/drm/xe/xe_sync.c | 52
-> > > > +++++++++++++++++++++++++++++++---
-> > > > --
-> > > > =C2=A01 file changed, 45 insertions(+), 7 deletions(-)
-> > > >=20
-> > > > diff --git a/drivers/gpu/drm/xe/xe_sync.c
-> > > > b/drivers/gpu/drm/xe/xe_sync.c
-> > > > index c20e1f9ad267..bf7f22519cc5 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_sync.c
-> > > > +++ b/drivers/gpu/drm/xe/xe_sync.c
-> > > > @@ -6,6 +6,7 @@
-> > > > =C2=A0#include "xe_sync.h"
-> > > > =C2=A0
-> > > > =C2=A0#include <linux/dma-fence-array.h>
-> > > > +#include <linux/highmem.h>
-> > > > =C2=A0#include <linux/kthread.h>
-> > > > =C2=A0#include <linux/sched/mm.h>
-> > > > =C2=A0#include <linux/uaccess.h>
-> > > > @@ -28,6 +29,7 @@ struct xe_user_fence {
-> > > > =C2=A0	u64 __user *addr;
-> > > > =C2=A0	u64 value;
-> > > > =C2=A0	int signalled;
-> > > > +	bool use_page;
-> > > > =C2=A0};
-> > > > =C2=A0
-> > > > =C2=A0static void user_fence_destroy(struct kref *kref)
-> > > > @@ -53,7 +55,9 @@ static struct xe_user_fence
-> > > > *user_fence_create(struct xe_device *xe, u64 addr,
-> > > > =C2=A0					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u64 value)
-> > > > =C2=A0{
-> > > > =C2=A0	struct xe_user_fence *ufence;
-> > > > +	struct page *page;
-> > > > =C2=A0	u64 __user *ptr =3D u64_to_user_ptr(addr);
-> > > > +	int ret;
-> > > > =C2=A0
-> > > > =C2=A0	if (!access_ok(ptr, sizeof(ptr)))
-> > > > =C2=A0		return ERR_PTR(-EFAULT);
-> > > > @@ -69,19 +73,53 @@ static struct xe_user_fence
-> > > > *user_fence_create(struct xe_device *xe, u64 addr,
-> > > > =C2=A0	ufence->mm =3D current->mm;
-> > > > =C2=A0	mmgrab(ufence->mm);
-> > > > =C2=A0
-> > > > +	/* Prefault page */
-> > > > +	ret =3D get_user_pages_fast(addr, 1, FOLL_WRITE, &page);
-> > > > +	if (ret =3D=3D 1) {
-> > > > +		ufence->use_page =3D true;
-> > > > +		put_page(page);
-> > > > +	}
-> > > > +
-> > > > =C2=A0	return ufence;
-> > > > =C2=A0}
-> > > > =C2=A0
-> > > > =C2=A0static void user_fence_worker(struct work_struct *w)
-> > > > =C2=A0{
-> > > > =C2=A0	struct xe_user_fence *ufence =3D container_of(w, struct
-> > > > xe_user_fence, worker);
-> > > > -
-> > > > -	if (mmget_not_zero(ufence->mm)) {
-> > > > -		kthread_use_mm(ufence->mm);
-> > > > -		if (copy_to_user(ufence->addr, &ufence->value,
-> > > > sizeof(ufence->value)))
-> > > > -			XE_WARN_ON("Copy to user failed");
-> > > > -		kthread_unuse_mm(ufence->mm);
-> > > > -		mmput(ufence->mm);
-> > > > +	struct mm_struct *mm =3D ufence->mm;
-> > > > +
-> > > > +	if (mmget_not_zero(mm)) {
-> > > > +		kthread_use_mm(mm);
-> > > > +		if (ufence->use_page) {
-> > > > +			struct page *page;
-> > > > +			int ret;
-> > > > +
-> > > > +			ret =3D get_user_pages_fast((unsigned
-> > > > long)ufence->addr,
-> > > > +						=C2=A0 1,
-> > > > FOLL_WRITE,
-> > > > &page);
-> > > > +			if (ret =3D=3D 1) {
-> > > > +				atomic64_t *ptr;
-> > > > +				u64 old =3D 0;
-> > > > +				void *va;
-> > > > +
-> > > > +				va =3D kmap_local_page(page);
-> > > > +				ptr =3D va +
-> > > > offset_in_page(ufence-
-> > > > > addr);
-> > > > +				while (!try_cmpxchg64(ptr,
-> > > > &old,
-> > > > ufence->value))
-> > > > +					continue;
->=20
-> I'm still a little worried about the availability of this, like when
-> the build-bot tests on all available architectures, and Linus has
-> already pulled the stuff. It's definitely there on i386, and it seems
-> to be used generically in sched/clock.c. Might be worth-wile to CC
-> dri-
-> devel/lkml and have the build bots pick it up...
->=20
->=20
-> > > > +				kunmap_local(va);
-> > > > +
-> > > > +				set_page_dirty_lock(page);
-> > > > +				put_page(page);
-> > > > +			} else {
-> > > > +				ufence->use_page =3D false;
-> > > > +			}
-> > > > +		}
-> > > > +		if (!ufence->use_page) {
-> > >=20
-> > > Hmm. Trying to figure out the semantics here. If ever used on 32-
-> > > bit,
-> > > and get_user_pages() fails, then I figure we can't guarantee
-> > > atomicity.
-> > > That would typically be if the user-fence is in buffer-object or
-> > > device
-> > > memory?
-> > >=20
-> >=20
-> > I think so, based on [1] if the ufence is a mapped BO on TGL
-> > get_user_pages_fast doesn't work and !use_page path is used. Hence
-> > I
-> > add
-> > malloc ufence section in [1].
-> >=20
-> > [1]
-> > https://patchwork.freedesktop.org/patch/580147/?series=3D130417&rev=3D1
-> >=20
-> > > > +			if (copy_to_user(ufence->addr,
-> > > > &ufence-
-> > > > > value,
-> > > > +					 sizeof(ufence-
-> > > > >value)))
-> > >=20
-> > > We should probably use put_user() here. On 64-bit I think that
-> > > always
-> > > translates to an atomic write. And we should IMO precede with an
-> > > mb()
-> > > to avoid in-kernel reordering. That would typically need to pair
-> > > with
-> > > an mb() in the reader as well.
-> > >=20
-> >=20
-> > Got on on the put_user(), seems to work.
-> >=20
-> > A little unclear on mb() usage.
-> >=20
-> > Would it be?
-> > mb()
-> > put_user()
->=20
-> Yes, this is correct. Actually we'd want smp_store_release()
-> semantics
-> here, but this is stricter.
->=20
->=20
-> >=20
-> > And then in xe_wait_user_fence.c:do_compare?
-> > mb()
-> > copy_from_user
->=20
-> Here we'd want smp_read_acquire() but we'd have to do with the below.
-> get_user()
-> mb();
+Export drm_client_dev_unregister() for use by the i915 driver. The
+driver does not use drm_dev_unregister(), so it has to clean up the
+in-kernel DRM clients by itself.
 
-Oh, and actually smp_mb() should be sufficient here.
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+---
+ drivers/gpu/drm/drm_client.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-
->=20
-> And user-space should use a similar mb() as well if they need to be
-> sure things are indeed done after the signalling.
->=20
-> /Thomas
->=20
-> >=20
-> > Matt
-> >=20
-> > >=20
-> > > > +				drm_warn(&ufence->xe->drm,
-> > > > "Copy
-> > > > to
-> > > > user failed\n");
-> > > > +		}
-> > > > +		kthread_unuse_mm(mm);
-> > > > +		mmput(mm);
-> > > > =C2=A0	}
-> > > > =C2=A0
-> > > > =C2=A0	wake_up_all(&ufence->xe->ufence_wq);
-> > >=20
->=20
+diff --git a/drivers/gpu/drm/drm_client.c b/drivers/gpu/drm/drm_client.c
+index 9403b3f576f7b..3d4f8b77d0789 100644
+--- a/drivers/gpu/drm/drm_client.c
++++ b/drivers/gpu/drm/drm_client.c
+@@ -172,6 +172,18 @@ void drm_client_release(struct drm_client_dev *client)
+ }
+ EXPORT_SYMBOL(drm_client_release);
+ 
++/**
++ * drm_client_dev_unregister - Unregister clients
++ * @dev: DRM device
++ *
++ * This function releases all clients by calling each client's
++ * &drm_client_funcs.unregister callback. The callback function
++ * is responsibe for releaseing all resources including the client
++ * itself.
++ *
++ * The helper drm_dev_unregister() calls this function. Drivers
++ * that use it don't need to call this function themselves.
++ */
+ void drm_client_dev_unregister(struct drm_device *dev)
+ {
+ 	struct drm_client_dev *client, *tmp;
+@@ -191,6 +203,7 @@ void drm_client_dev_unregister(struct drm_device *dev)
+ 	}
+ 	mutex_unlock(&dev->clientlist_mutex);
+ }
++EXPORT_SYMBOL(drm_client_dev_unregister);
+ 
+ /**
+  * drm_client_dev_hotplug - Send hotplug event to clients
+-- 
+2.43.2
 
