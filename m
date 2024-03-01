@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CD45C5478C
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Mar 2024 05:22:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F37ADC5475B
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Mar 2024 06:36:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B43C10EAF1;
-	Fri,  1 Mar 2024 05:22:24 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEE2C10EAF1;
- Fri,  1 Mar 2024 05:22:22 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4167393258595453002=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id A93ED10EB61;
+	Fri,  1 Mar 2024 06:36:09 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mGhy9BDE";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8720710EB62
+ for <intel-xe@lists.freedesktop.org>; Fri,  1 Mar 2024 06:36:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1709274968; x=1740810968;
+ h=message-id:subject:from:to:date:in-reply-to:references:
+ content-transfer-encoding:mime-version;
+ bh=eNrnHzu2sYpnJLFHUgZMoFoYbGh5qXfPcvRYOwrf7X4=;
+ b=mGhy9BDElYPre/wvKWo8cDPQxsfzWc+a+UDLYQ2jWW8AeTokqXf2Z2XX
+ XhqGW49zXKvavHJ8vhYtBDfVImyhvOzxjg920tyNdyZevA6qq8EEEWxr9
+ gbNKjzUKRFoZGMfs1vRZaBz1s2DvmmUPLePJoUpbjo8vTncLW2F6k9zqe
+ ZC8k3idZ/B/5/qjBoMA2pTbDea0MtOlCwbFsY96LT03yM/CdVJhcdbwWa
+ ncpLbYf+ZglfNWygn5mjT8s8IP2XfZvIxl7OO1aFP8Pd/V7GBcAxYZtTg
+ jrDPSRMuMdUQ02X6O0Ofd6/Lywk6rU7eAlp6XsxNxfo16BVQZQIe3t58o g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10999"; a="3969848"
+X-IronPort-AV: E=Sophos;i="6.06,195,1705392000"; 
+   d="scan'208";a="3969848"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Feb 2024 22:36:06 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,195,1705392000"; d="scan'208";a="12679482"
+Received: from yuyingfa-mobl.ccr.corp.intel.com (HELO [10.249.254.26])
+ ([10.249.254.26])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Feb 2024 22:36:04 -0800
+Message-ID: <6235b4c6c6d537d928795cd2dde24c27ce77ecce.camel@linux.intel.com>
+Subject: Re: [PATCH v2 3/3] drm/xe: Get page on user fence creation
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+Date: Fri, 01 Mar 2024 07:36:01 +0100
+In-Reply-To: <20240301035522.238307-4-matthew.brost@intel.com>
+References: <20240301035522.238307-1-matthew.brost@intel.com>
+ <20240301035522.238307-4-matthew.brost@intel.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Fix_ref_counting_leak_?=
- =?utf-8?q?on_page_fault?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 01 Mar 2024 05:22:22 -0000
-Message-ID: <170927054297.434929.13625116065786625110@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240301041036.238471-1-matthew.brost@intel.com>
-In-Reply-To: <20240301041036.238471-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +65,139 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4167393258595453002==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 2024-02-29 at 19:55 -0800, Matthew Brost wrote:
+> Attempt to get page on user fence creation and kmap_local_page on
+> signaling. Should reduce latency and can ensure 64 bit atomicity
+> compared to copy_to_user.
+>=20
+> v2:
+> =C2=A0- Prefault page and drop ref (Thomas)
+> =C2=A0- Use set_page_dirty_lock (Thomas)
+> =C2=A0- try_cmpxchg64 loop (Thomas)
+>=20
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_sync.c | 52 +++++++++++++++++++++++++++++++--=
+-
+> --
+> =C2=A01 file changed, 45 insertions(+), 7 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_sync.c
+> b/drivers/gpu/drm/xe/xe_sync.c
+> index c20e1f9ad267..bf7f22519cc5 100644
+> --- a/drivers/gpu/drm/xe/xe_sync.c
+> +++ b/drivers/gpu/drm/xe/xe_sync.c
+> @@ -6,6 +6,7 @@
+> =C2=A0#include "xe_sync.h"
+> =C2=A0
+> =C2=A0#include <linux/dma-fence-array.h>
+> +#include <linux/highmem.h>
+> =C2=A0#include <linux/kthread.h>
+> =C2=A0#include <linux/sched/mm.h>
+> =C2=A0#include <linux/uaccess.h>
+> @@ -28,6 +29,7 @@ struct xe_user_fence {
+> =C2=A0	u64 __user *addr;
+> =C2=A0	u64 value;
+> =C2=A0	int signalled;
+> +	bool use_page;
+> =C2=A0};
+> =C2=A0
+> =C2=A0static void user_fence_destroy(struct kref *kref)
+> @@ -53,7 +55,9 @@ static struct xe_user_fence
+> *user_fence_create(struct xe_device *xe, u64 addr,
+> =C2=A0					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u64 value)
+> =C2=A0{
+> =C2=A0	struct xe_user_fence *ufence;
+> +	struct page *page;
+> =C2=A0	u64 __user *ptr =3D u64_to_user_ptr(addr);
+> +	int ret;
+> =C2=A0
+> =C2=A0	if (!access_ok(ptr, sizeof(ptr)))
+> =C2=A0		return ERR_PTR(-EFAULT);
+> @@ -69,19 +73,53 @@ static struct xe_user_fence
+> *user_fence_create(struct xe_device *xe, u64 addr,
+> =C2=A0	ufence->mm =3D current->mm;
+> =C2=A0	mmgrab(ufence->mm);
+> =C2=A0
+> +	/* Prefault page */
+> +	ret =3D get_user_pages_fast(addr, 1, FOLL_WRITE, &page);
+> +	if (ret =3D=3D 1) {
+> +		ufence->use_page =3D true;
+> +		put_page(page);
+> +	}
+> +
+> =C2=A0	return ufence;
+> =C2=A0}
+> =C2=A0
+> =C2=A0static void user_fence_worker(struct work_struct *w)
+> =C2=A0{
+> =C2=A0	struct xe_user_fence *ufence =3D container_of(w, struct
+> xe_user_fence, worker);
+> -
+> -	if (mmget_not_zero(ufence->mm)) {
+> -		kthread_use_mm(ufence->mm);
+> -		if (copy_to_user(ufence->addr, &ufence->value,
+> sizeof(ufence->value)))
+> -			XE_WARN_ON("Copy to user failed");
+> -		kthread_unuse_mm(ufence->mm);
+> -		mmput(ufence->mm);
+> +	struct mm_struct *mm =3D ufence->mm;
+> +
+> +	if (mmget_not_zero(mm)) {
+> +		kthread_use_mm(mm);
+> +		if (ufence->use_page) {
+> +			struct page *page;
+> +			int ret;
+> +
+> +			ret =3D get_user_pages_fast((unsigned
+> long)ufence->addr,
+> +						=C2=A0 1, FOLL_WRITE,
+> &page);
+> +			if (ret =3D=3D 1) {
+> +				u64 *ptr;
+> +				u64 old =3D 0;
+> +				void *va;
+> +
+> +				va =3D kmap_local_page(page);
+> +				ptr =3D va + offset_in_page(ufence-
+> >addr);
+> +				while (!try_cmpxchg64(ptr, &old,
+> ufence->value))
+> +					continue;
+> +				kunmap_local(va);
+> +
+> +				set_page_dirty_lock(page);
+> +				put_page(page);
+> +			} else {
+> +				ufence->use_page =3D false;
+> +			}
+> +		}
+> +		if (!ufence->use_page) {
 
-== Series Details ==
+Hmm. Trying to figure out the semantics here. If ever used on 32-bit,
+and get_user_pages() fails, then I figure we can't guarantee atomicity.
+That would typically be if the user-fence is in buffer-object or device
+memory?
 
-Series: drm/xe: Fix ref counting leak on page fault
-URL   : https://patchwork.freedesktop.org/series/130590/
-State : success
+> +			if (copy_to_user(ufence->addr, &ufence-
+> >value,
+> +					 sizeof(ufence->value)))
 
-== Summary ==
-
-CI Bug Log - changes from xe-881-c1763f7b4fa52f922a0b507246013779acc58611_BAT -> xe-pw-130590v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
+We should probably use put_user() here. On 64-bit I think that always
+translates to an atomic write. And we should IMO precede with an mb()
+to avoid in-kernel reordering. That would typically need to pair with
+an mb() in the reader as well.
 
 
-Changes
--------
+> +				drm_warn(&ufence->xe->drm, "Copy to
+> user failed\n");
+> +		}
+> +		kthread_unuse_mm(mm);
+> +		mmput(mm);
+> =C2=A0	}
+> =C2=A0
+> =C2=A0	wake_up_all(&ufence->xe->ufence_wq);
 
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-881-c1763f7b4fa52f922a0b507246013779acc58611 -> xe-pw-130590v1
-
-  IGT_7738: 7738
-  xe-881-c1763f7b4fa52f922a0b507246013779acc58611: c1763f7b4fa52f922a0b507246013779acc58611
-  xe-pw-130590v1: 130590v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130590v1/index.html
-
---===============4167393258595453002==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix ref counting leak on page fault</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130590/">https://patchwork.freedesktop.org/series/130590/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130590v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130590v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-881-c1763f7b4fa52f922a0b507246013779acc58611_BAT -&gt; xe-pw-130590v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-881-c1763f7b4fa52f922a0b507246013779acc58611 -&gt; xe-pw-130590v1</li>
-</ul>
-<p>IGT_7738: 7738<br />
-  xe-881-c1763f7b4fa52f922a0b507246013779acc58611: c1763f7b4fa52f922a0b507246013779acc58611<br />
-  xe-pw-130590v1: 130590v1</p>
-
-</body>
-</html>
-
---===============4167393258595453002==--
