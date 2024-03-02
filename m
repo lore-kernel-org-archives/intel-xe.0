@@ -4,50 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 225DEC54798
-	for <intel-xe@archiver.kernel.org>; Sat,  2 Mar 2024 06:50:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A097C54798
+	for <intel-xe@archiver.kernel.org>; Sat,  2 Mar 2024 15:40:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0CF810E9C0;
-	Sat,  2 Mar 2024 06:50:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA74D10F06C;
+	Sat,  2 Mar 2024 15:40:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OxNm6464";
+	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="Je1FuYJL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E07710E9C0
- for <intel-xe@lists.freedesktop.org>; Sat,  2 Mar 2024 06:50:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709362201; x=1740898201;
- h=date:from:to:cc:subject:message-id;
- bh=KBX9jNOBoLkaNggyv3t/ljJwpanTF6mtMb+JH9I9cuQ=;
- b=OxNm6464xLBnBWBYY9wDo+3SbjIcou/51spVQBwDuyRDjp9AyNgfNCOc
- bDxtmoeJeiUy4Z3n5/qVsQf3RDvn54eML5jSZok2n5tkolUsIQT3J4mHd
- Po7KduNJGDerHeGlv+7Ythyt8qTXzeJ8G523/Fok6f1a6rvVskVbOYTA2
- EDYH3m+UFViRBKxDV5lqBBS98vYrQB0JJ/W81x3mRWt/4JdA1actqA375
- aQgdJAINGudYEdZD+kFkvIyf9D7GwqvnApTBEq+O32s3g/FRf2Ixev94v
- k9g3DqWt/oTYGti34BBvmQy6tE6JdCH3gLwkcGwrG+KHCsqpICwktoKiA w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11000"; a="3763598"
-X-IronPort-AV: E=Sophos;i="6.06,199,1705392000"; 
-   d="scan'208";a="3763598"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2024 22:50:00 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,199,1705392000"; 
-   d="scan'208";a="8646655"
-Received: from lkp-server02.sh.intel.com (HELO 3c78fa4d504c) ([10.239.97.151])
- by fmviesa006.fm.intel.com with ESMTP; 01 Mar 2024 22:49:58 -0800
-Received: from kbuild by 3c78fa4d504c with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1rgJC0-000EP5-0g;
- Sat, 02 Mar 2024 06:49:56 +0000
-Date: Sat, 02 Mar 2024 14:49:33 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- 27b5a3f237fe66dbf2288c2b50973aee8a427e41
-Message-ID: <202403021430.xyDJtsmS-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+Received: from mail02.habana.ai (habanamailrelay.habana.ai [213.57.90.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B71F510F06C
+ for <intel-xe@lists.freedesktop.org>; Sat,  2 Mar 2024 15:40:10 +0000 (UTC)
+Received: internal info suppressed
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
+ t=1709393989; bh=/apcQ4OfYeoYQ/y1Y1RcGK8rScS87R5a9/Db3xbe8yM=;
+ h=From:To:Cc:Subject:Date:From;
+ b=Je1FuYJLLzPXXatfNWtLUmqTCBMENFTBDfxkN7MshR9RUthAe8h3YAJAD34Yp9xw4
+ rxrql39eYUVvpeKoKsK8zsz3W1YOcULoPYMBU6VbvZc2NkrWxIhGZ3iGUNgOmQwsnb
+ craU2kg/pMOERHXR9SbnECl0GY7+Oo+REy+8LLu9KGM4PdSRdm1vQ2mzKGCOIsppcP
+ MYHJnZtrQ8CjSnfvGitBNf23HdfHj//oFPhc0SGztPeNtq8+dXr4Zd67YjVHK/6t2J
+ 0lbVeFTMesRMcvTeY1q0q6oIWz9apVQ/2JRveYeSIKURgOcPwe/m5nP5QUxQewfY5F
+ XOxte1VYr+L6w==
+Received: from dhirschfeld-vm-u22.habana-labs.com (localhost [127.0.0.1])
+ by dhirschfeld-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with
+ ESMTPS id 422Fdj7d2602263
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+ Sat, 2 Mar 2024 17:39:45 +0200
+Received: (from dhirschfeld@localhost)
+ by dhirschfeld-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id
+ 422FdjW52602262; Sat, 2 Mar 2024 17:39:45 +0200
+From: Dafna Hirschfeld <dhirschfeld@habana.ai>
+To: intel-xe@lists.freedesktop.org
+Cc: ogabbay@kernel.org, obitton@habana.ai, lucas.demarchi@intel.com,
+ Dafna Hirschfeld <dhirschfeld@habana.ai>
+Subject: [PATCH v3] replace 'grouped target' in Makefile with pattern rule
+Date: Sat,  2 Mar 2024 17:39:28 +0200
+Message-Id: <20240302153927.2602241-1-dhirschfeld@habana.ai>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,152 +57,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: 27b5a3f237fe66dbf2288c2b50973aee8a427e41  drm/xe: Fix ref counting leak on page fault
+Since 'grouped target' is used only in 'make' 4.3, it should
+be avoided. Replace it with 'multi-target pattern rule' which
+has the same behavior.
 
-elapsed time: 724m
+Signed-off-by: Dafna Hirschfeld <dhirschfeld@habana.ai>
+---
+ drivers/gpu/drm/xe/Makefile | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-configs tested: 133
-configs skipped: 3
-
-The following configs have been built successfully.
-More configs may be tested in the coming days.
-
-tested configs:
-alpha                             allnoconfig   gcc  
-alpha                            allyesconfig   gcc  
-alpha                               defconfig   gcc  
-arc                              allmodconfig   gcc  
-arc                               allnoconfig   gcc  
-arc                              allyesconfig   gcc  
-arc                                 defconfig   gcc  
-arc                   randconfig-001-20240302   gcc  
-arc                   randconfig-002-20240302   gcc  
-arm                              allmodconfig   gcc  
-arm                               allnoconfig   clang
-arm                              allyesconfig   gcc  
-arm                                 defconfig   clang
-arm                   randconfig-001-20240302   gcc  
-arm                   randconfig-002-20240302   gcc  
-arm                   randconfig-003-20240302   gcc  
-arm                   randconfig-004-20240302   clang
-arm64                            allmodconfig   clang
-arm64                             allnoconfig   gcc  
-arm64                               defconfig   gcc  
-arm64                 randconfig-001-20240302   gcc  
-arm64                 randconfig-002-20240302   gcc  
-arm64                 randconfig-003-20240302   clang
-arm64                 randconfig-004-20240302   gcc  
-csky                             allmodconfig   gcc  
-csky                              allnoconfig   gcc  
-csky                             allyesconfig   gcc  
-csky                                defconfig   gcc  
-csky                  randconfig-001-20240302   gcc  
-csky                  randconfig-002-20240302   gcc  
-hexagon                          allmodconfig   clang
-hexagon                           allnoconfig   clang
-hexagon                          allyesconfig   clang
-hexagon                             defconfig   clang
-hexagon               randconfig-001-20240302   clang
-hexagon               randconfig-002-20240302   clang
-i386                             allmodconfig   gcc  
-i386                              allnoconfig   gcc  
-i386                             allyesconfig   gcc  
-i386         buildonly-randconfig-001-20240302   clang
-i386         buildonly-randconfig-002-20240302   gcc  
-i386         buildonly-randconfig-003-20240302   gcc  
-i386         buildonly-randconfig-004-20240302   clang
-i386         buildonly-randconfig-005-20240302   gcc  
-i386         buildonly-randconfig-006-20240302   gcc  
-i386                                defconfig   clang
-i386                  randconfig-001-20240302   clang
-i386                  randconfig-002-20240302   gcc  
-i386                  randconfig-003-20240302   clang
-i386                  randconfig-004-20240302   gcc  
-i386                  randconfig-005-20240302   gcc  
-i386                  randconfig-006-20240302   clang
-i386                  randconfig-011-20240302   gcc  
-i386                  randconfig-012-20240302   gcc  
-i386                  randconfig-013-20240302   gcc  
-i386                  randconfig-014-20240302   gcc  
-i386                  randconfig-015-20240302   clang
-i386                  randconfig-016-20240302   gcc  
-loongarch                        allmodconfig   gcc  
-loongarch                         allnoconfig   gcc  
-loongarch                           defconfig   gcc  
-loongarch             randconfig-001-20240302   gcc  
-loongarch             randconfig-002-20240302   gcc  
-m68k                             allmodconfig   gcc  
-m68k                              allnoconfig   gcc  
-m68k                             allyesconfig   gcc  
-m68k                                defconfig   gcc  
-microblaze                       allmodconfig   gcc  
-microblaze                        allnoconfig   gcc  
-microblaze                       allyesconfig   gcc  
-microblaze                          defconfig   gcc  
-mips                              allnoconfig   gcc  
-mips                             allyesconfig   gcc  
-nios2                            allmodconfig   gcc  
-nios2                             allnoconfig   gcc  
-nios2                            allyesconfig   gcc  
-nios2                               defconfig   gcc  
-nios2                 randconfig-001-20240302   gcc  
-nios2                 randconfig-002-20240302   gcc  
-openrisc                          allnoconfig   gcc  
-openrisc                         allyesconfig   gcc  
-openrisc                            defconfig   gcc  
-parisc                           allmodconfig   gcc  
-parisc                            allnoconfig   gcc  
-parisc                           allyesconfig   gcc  
-parisc                              defconfig   gcc  
-parisc                randconfig-001-20240302   gcc  
-parisc                randconfig-002-20240302   gcc  
-parisc64                            defconfig   gcc  
-powerpc                          allmodconfig   gcc  
-powerpc                           allnoconfig   gcc  
-powerpc                          allyesconfig   clang
-powerpc               randconfig-001-20240302   clang
-powerpc               randconfig-002-20240302   clang
-powerpc               randconfig-003-20240302   gcc  
-powerpc64             randconfig-001-20240302   clang
-powerpc64             randconfig-002-20240302   gcc  
-powerpc64             randconfig-003-20240302   gcc  
-riscv                            allmodconfig   clang
-riscv                             allnoconfig   gcc  
-riscv                            allyesconfig   clang
-riscv                               defconfig   clang
-riscv                 randconfig-001-20240302   gcc  
-riscv                 randconfig-002-20240302   gcc  
-s390                             allmodconfig   clang
-s390                              allnoconfig   clang
-s390                             allyesconfig   gcc  
-s390                                defconfig   clang
-s390                  randconfig-001-20240302   gcc  
-s390                  randconfig-002-20240302   clang
-sh                               allmodconfig   gcc  
-sh                                allnoconfig   gcc  
-sh                               allyesconfig   gcc  
-sh                                  defconfig   gcc  
-sh                    randconfig-001-20240302   gcc  
-sh                    randconfig-002-20240302   gcc  
-sparc                            allmodconfig   gcc  
-sparc                             allnoconfig   gcc  
-sparc                               defconfig   gcc  
-sparc64                          allmodconfig   gcc  
-sparc64                          allyesconfig   gcc  
-sparc64                             defconfig   gcc  
-um                               allmodconfig   clang
-um                                allnoconfig   clang
-um                               allyesconfig   gcc  
-um                                  defconfig   clang
-um                             i386_defconfig   gcc  
-um                           x86_64_defconfig   clang
-x86_64                            allnoconfig   clang
-x86_64                           allyesconfig   clang
-x86_64                              defconfig   gcc  
-x86_64                          rhel-8.3-rust   clang
-xtensa                            allnoconfig   gcc  
-
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 1a59c15f4d66..5a428ca00f10 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -42,7 +42,8 @@ generated_oob := $(obj)/generated/xe_wa_oob.c $(obj)/generated/xe_wa_oob.h
+ quiet_cmd_wa_oob = GEN     $(notdir $(generated_oob))
+       cmd_wa_oob = mkdir -p $(@D); $^ $(generated_oob)
+ 
+-$(generated_oob) &: $(obj)/xe_gen_wa_oob $(srctree)/$(src)/xe_wa_oob.rules
++$(obj)/generated/%_wa_oob.c $(obj)/generated/%_wa_oob.h: $(obj)/xe_gen_wa_oob \
++		 $(srctree)/$(src)/xe_wa_oob.rules
+ 	$(call cmd,wa_oob)
+ 
+ uses_generated_oob := \
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
