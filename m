@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14C05C54798
-	for <intel-xe@archiver.kernel.org>; Sat,  2 Mar 2024 15:58:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61554C5478C
+	for <intel-xe@archiver.kernel.org>; Sat,  2 Mar 2024 16:17:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3CD910E77C;
-	Sat,  2 Mar 2024 15:58:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12DBD10F4E2;
+	Sat,  2 Mar 2024 16:17:28 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81FE710E777;
- Sat,  2 Mar 2024 15:58:45 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AE7010F4E1;
+ Sat,  2 Mar 2024 16:17:27 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7231630223978614862=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_replace_=27grouped_targe?=
- =?utf-8?q?t=27_in_Makefile_with_pattern_rule?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_replace_=27grouped_target=27_in_?=
+ =?utf-8?q?Makefile_with_pattern_rule?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Dafna Hirschfeld" <dhirschfeld@habana.ai>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 02 Mar 2024 15:58:45 -0000
-Message-ID: <170939512552.470106.7406609821658210689@8e613ede5ea5>
+Date: Sat, 02 Mar 2024 16:17:27 -0000
+Message-ID: <170939624704.470069.2608347440888962415@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240302153927.2602241-1-dhirschfeld@habana.ai>
 In-Reply-To: <20240302153927.2602241-1-dhirschfeld@habana.ai>
@@ -40,6 +40,11 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============7231630223978614862==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: replace 'grouped target' in Makefile with pattern rule
@@ -48,25 +53,89 @@ State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 5f60548dd58e2ad93005c933fd2633d98db60de4
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+CI Bug Log - changes from xe-888-5f60548dd58e2ad93005c933fd2633d98db60de4_BAT -> xe-pw-130635v1_BAT
+====================================================
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-888-5f60548dd58e2ad93005c933fd2633d98db60de4 -> xe-pw-130635v1
+
+  IGT_7742: 7742
+  xe-888-5f60548dd58e2ad93005c933fd2633d98db60de4: 5f60548dd58e2ad93005c933fd2633d98db60de4
+  xe-pw-130635v1: 130635v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130635v1/index.html
+
+--===============7231630223978614862==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>replace &#x27;grouped target&#x27; in Makefile with pattern rule</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130635/">https://patchwork.freedesktop.org/series/130635/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130635v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130635v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-888-5f60548dd58e2ad93005c933fd2633d98db60de4_BAT -&gt; xe-pw-130635v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-888-5f60548dd58e2ad93005c933fd2633d98db60de4 -&gt; xe-pw-130635v1</li>
+</ul>
+<p>IGT_7742: 7742<br />
+  xe-888-5f60548dd58e2ad93005c933fd2633d98db60de4: 5f60548dd58e2ad93005c933fd2633d98db60de4<br />
+  xe-pw-130635v1: 130635v1</p>
+
+</body>
+</html>
+
+--===============7231630223978614862==--
