@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D2B4C48BF6
-	for <intel-xe@archiver.kernel.org>; Mon,  4 Mar 2024 15:44:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C3FAC48BF6
+	for <intel-xe@archiver.kernel.org>; Mon,  4 Mar 2024 15:59:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F341210E67A;
-	Mon,  4 Mar 2024 15:44:11 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38C1E10E67A;
- Mon,  4 Mar 2024 15:44:11 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id F16C310EA1B;
+	Mon,  4 Mar 2024 15:59:17 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NsRtF3Bt";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06C9E10EA0A;
+ Mon,  4 Mar 2024 15:59:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1709567957; x=1741103957;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=M62yflQrSjoobTrZn9IvDAf2b25hqhKT67yZXHT7xVk=;
+ b=NsRtF3Bt48IQY/fkdLbKm/3i5qQyMwHswGIobgRlnh3els0Skea9EUSw
+ RnT1Cb9Mwm2eew1LKh4UHLuJKtVea02W2QUIaE5t3410gHgP2NoALN5Vz
+ 1EynD/Res1I2Qqq/R6cc59C5WURSs4zFz0LVWh8RJoZHxbVB1hZgCFO6M
+ BhpJkZ8Wbz5HccbiuUQcDpTv7op+QUL8fE6F63isNYk6kM9dOTVbWfv3s
+ h59NAOKCybFlnwuZicNxq/yM+UPL6pPZ0OsiPFOe/nnlgK5VTAxC0cLaG
+ cGQMpxNlkwkvwHjnAEptPtsO4XzBodcbAIT60Xs9vHLqgXNB4Xutz/VAT w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11002"; a="3930187"
+X-IronPort-AV: E=Sophos;i="6.06,203,1705392000"; 
+   d="scan'208";a="3930187"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2024 07:59:16 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,203,1705392000"; d="scan'208";a="13538773"
+Received: from syakovle-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.51.3])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2024 07:59:12 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>
+Subject: Re: [PATCH 1/4] drm/i915/hdcp: Move intel_hdcp_gsc_message def away
+ from header file
+In-Reply-To: <20240227053204.1748920-2-suraj.kandpal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240227053204.1748920-1-suraj.kandpal@intel.com>
+ <20240227053204.1748920-2-suraj.kandpal@intel.com>
+Date: Mon, 04 Mar 2024 17:59:01 +0200
+Message-ID: <87il223s56.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/gsc=3A_Handle_GSC?=
- =?utf-8?q?CS_ER_interrupt_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 04 Mar 2024 15:44:11 -0000
-Message-ID: <170956705123.502968.13398976135146552295@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240304145634.820684-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20240304145634.820684-1-daniele.ceraolospurio@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +65,66 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 27 Feb 2024, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> Move intel_hdcp_gsc_message definition into intel_hdcp_gsc.h
+> so that intel_hdcp_gsc_message can be redefined for xe as needed.
+>
+> --v2
+> -Correct commit message to reflect what patch is actually doing [Arun]
+>
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-Series: drm/xe/gsc: Handle GSCCS ER interrupt (rev2)
-URL   : https://patchwork.freedesktop.org/series/129182/
-State : success
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 
-== Summary ==
+for merging this patch via drm-xe-next.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 1636103d7fa7ca9dedb181d611cd214af79b04d1
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+BR,
+Jani.
 
 
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdcp_gsc.c | 6 ++++++
+>  drivers/gpu/drm/i915/display/intel_hdcp_gsc.h | 7 +------
+>  2 files changed, 7 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+> index 302bff75b06c..35823e1f65d6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+> @@ -13,6 +13,12 @@
+>  #include "intel_hdcp_gsc.h"
+>  #include "intel_hdcp_gsc_message.h"
+>  
+> +struct intel_hdcp_gsc_message {
+> +	struct i915_vma *vma;
+> +	void *hdcp_cmd_in;
+> +	void *hdcp_cmd_out;
+> +};
+> +
+>  bool intel_hdcp_gsc_cs_required(struct drm_i915_private *i915)
+>  {
+>  	return DISPLAY_VER(i915) >= 14;
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
+> index eba2057c5a9e..5f610df61cc9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
+> @@ -10,12 +10,7 @@
+>  #include <linux/types.h>
+>  
+>  struct drm_i915_private;
+> -
+> -struct intel_hdcp_gsc_message {
+> -	struct i915_vma *vma;
+> -	void *hdcp_cmd_in;
+> -	void *hdcp_cmd_out;
+> -};
+> +struct intel_hdcp_gsc_message;
+>  
+>  bool intel_hdcp_gsc_cs_required(struct drm_i915_private *i915);
+>  ssize_t intel_hdcp_gsc_msg_send(struct drm_i915_private *i915, u8 *msg_in,
+
+-- 
+Jani Nikula, Intel
