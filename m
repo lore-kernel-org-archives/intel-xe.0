@@ -4,27 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21C87C48BF6
-	for <intel-xe@archiver.kernel.org>; Sun,  3 Mar 2024 14:02:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DB98C5475B
+	for <intel-xe@archiver.kernel.org>; Mon,  4 Mar 2024 01:05:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB83C10F3CF;
-	Sun,  3 Mar 2024 14:02:11 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E14A10EB84;
- Sun,  3 Mar 2024 14:02:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7516510317182021289=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_support_sharing_VM_inf?=
- =?utf-8?q?o_between_XE_drivers_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Moti Haimovski" <mhaimovski@habana.ai>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EE7C10F1F6;
+	Mon,  4 Mar 2024 01:05:41 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KE1zwJMI";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EDAA10F1F6
+ for <intel-xe@lists.freedesktop.org>; Mon,  4 Mar 2024 01:05:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1709514339; x=1741050339;
+ h=date:from:to:cc:subject:message-id;
+ bh=PfnfTXxzdJOY22DnwfhS7m2gK+06ioBZZAJc80Yp4U8=;
+ b=KE1zwJMIqXP7PbikkZgUJWGxBrf+ZOYVWmaOcfg8mK4PKTywvh5qtW/r
+ W2fIfiwCQNRUTo8wW4Iwk8HxT2b+v8tMmQNl1lWUdjUv3BRypc4ItBhIn
+ /0jUc/Xe3zSRw0e3pxDfiXbVNMI90iBbElmZg6BTmM6+/HyiMU4sVaPzl
+ dLq/5MotwW1Wy5VAiGOBWbEOfdOKMec66gho+/2bUK5yzSA6N5tUFTh2B
+ HSCZCpVnvti0hwHptbZ171xdDwaqF+qwhbh9kPMRzuHtCYlSmdQnGifJo
+ Y8WvNTLPHhYbFU5RJVSK/onkIM/zSZ4g6oMkoAtAJlcuulWFQaegskq5b w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11002"; a="3878813"
+X-IronPort-AV: E=Sophos;i="6.06,201,1705392000"; 
+   d="scan'208";a="3878813"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2024 17:05:38 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,201,1705392000"; d="scan'208";a="13487027"
+Received: from lkp-server01.sh.intel.com (HELO b21307750695) ([10.239.97.150])
+ by orviesa004.jf.intel.com with ESMTP; 03 Mar 2024 17:05:37 -0800
+Received: from kbuild by b21307750695 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1rgwlq-0002Ef-0e;
+ Mon, 04 Mar 2024 01:05:34 +0000
+Date: Mon, 04 Mar 2024 09:05:24 +0800
+From: kernel test robot <lkp@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sun, 03 Mar 2024 14:02:10 -0000
-Message-ID: <170947453058.470069.5560724852505878114@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240303132055.2851336-1-mhaimovski@habana.ai>
-In-Reply-To: <20240303132055.2851336-1-mhaimovski@habana.ai>
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ be3939be12c3bdf83ca724aba936197cf1c13c61
+Message-ID: <202403040920.toQ2iYos-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +58,170 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7516510317182021289==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: be3939be12c3bdf83ca724aba936197cf1c13c61  replace 'grouped target' in Makefile with pattern rule
 
-== Series Details ==
+elapsed time: 1399m
 
-Series: drm/xe: support sharing VM info between XE drivers (rev2)
-URL   : https://patchwork.freedesktop.org/series/130639/
-State : success
+configs tested: 148
+configs skipped: 10
 
-== Summary ==
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-CI Bug Log - changes from xe-889-511ffdbe886328239e946608243048f8296fa095_BAT -> xe-pw-130639v2_BAT
-====================================================
+tested configs:
+alpha                             allnoconfig   gcc  
+alpha                            allyesconfig   gcc  
+alpha                               defconfig   gcc  
+arc                               allnoconfig   gcc  
+arc                          axs101_defconfig   gcc  
+arc                                 defconfig   gcc  
+arc                   randconfig-001-20240303   gcc  
+arc                   randconfig-002-20240303   gcc  
+arm                               allnoconfig   clang
+arm                       aspeed_g5_defconfig   gcc  
+arm                                 defconfig   clang
+arm                          exynos_defconfig   clang
+arm                          moxart_defconfig   gcc  
+arm                   randconfig-001-20240303   gcc  
+arm                   randconfig-002-20240303   clang
+arm                   randconfig-003-20240303   clang
+arm                   randconfig-004-20240303   clang
+arm64                             allnoconfig   gcc  
+arm64                               defconfig   gcc  
+arm64                 randconfig-001-20240303   clang
+arm64                 randconfig-002-20240303   gcc  
+arm64                 randconfig-003-20240303   gcc  
+arm64                 randconfig-004-20240303   gcc  
+csky                              allnoconfig   gcc  
+csky                             allyesconfig   gcc  
+csky                                defconfig   gcc  
+csky                  randconfig-001-20240303   gcc  
+csky                  randconfig-002-20240303   gcc  
+hexagon                          allmodconfig   clang
+hexagon                           allnoconfig   clang
+hexagon                          allyesconfig   clang
+hexagon                             defconfig   clang
+hexagon               randconfig-001-20240303   clang
+hexagon               randconfig-002-20240303   clang
+i386                             allmodconfig   gcc  
+i386                              allnoconfig   gcc  
+i386                             allyesconfig   gcc  
+i386                                defconfig   clang
+loongarch                        allmodconfig   gcc  
+loongarch                         allnoconfig   gcc  
+loongarch                           defconfig   gcc  
+loongarch             randconfig-001-20240303   gcc  
+loongarch             randconfig-002-20240303   gcc  
+m68k                             alldefconfig   gcc  
+m68k                             allmodconfig   gcc  
+m68k                              allnoconfig   gcc  
+m68k                             allyesconfig   gcc  
+m68k                                defconfig   gcc  
+m68k                       m5249evb_defconfig   gcc  
+microblaze                       allmodconfig   gcc  
+microblaze                        allnoconfig   gcc  
+microblaze                       allyesconfig   gcc  
+microblaze                          defconfig   gcc  
+microblaze                      mmu_defconfig   gcc  
+mips                              allnoconfig   gcc  
+mips                             allyesconfig   gcc  
+nios2                            allmodconfig   gcc  
+nios2                             allnoconfig   gcc  
+nios2                            allyesconfig   gcc  
+nios2                               defconfig   gcc  
+nios2                 randconfig-001-20240303   gcc  
+nios2                 randconfig-002-20240303   gcc  
+openrisc                          allnoconfig   gcc  
+openrisc                         allyesconfig   gcc  
+openrisc                            defconfig   gcc  
+parisc                           allmodconfig   gcc  
+parisc                            allnoconfig   gcc  
+parisc                           allyesconfig   gcc  
+parisc                              defconfig   gcc  
+parisc                randconfig-001-20240303   gcc  
+parisc                randconfig-002-20240303   gcc  
+parisc64                            defconfig   gcc  
+powerpc                    adder875_defconfig   gcc  
+powerpc                          allmodconfig   gcc  
+powerpc                           allnoconfig   gcc  
+powerpc                          allyesconfig   clang
+powerpc                    amigaone_defconfig   gcc  
+powerpc                    gamecube_defconfig   clang
+powerpc                 mpc834x_itx_defconfig   clang
+powerpc                     rainier_defconfig   gcc  
+powerpc               randconfig-001-20240303   clang
+powerpc               randconfig-002-20240303   gcc  
+powerpc               randconfig-003-20240303   gcc  
+powerpc                     stx_gp3_defconfig   clang
+powerpc                     taishan_defconfig   clang
+powerpc64             randconfig-001-20240303   gcc  
+powerpc64             randconfig-002-20240303   clang
+powerpc64             randconfig-003-20240303   clang
+riscv                            allmodconfig   clang
+riscv                             allnoconfig   gcc  
+riscv                            allyesconfig   clang
+riscv                               defconfig   clang
+riscv                 randconfig-001-20240303   gcc  
+riscv                 randconfig-002-20240303   clang
+s390                             allmodconfig   clang
+s390                              allnoconfig   clang
+s390                             allyesconfig   gcc  
+s390                                defconfig   clang
+s390                  randconfig-001-20240303   clang
+s390                  randconfig-002-20240303   gcc  
+sh                               allmodconfig   gcc  
+sh                                allnoconfig   gcc  
+sh                               allyesconfig   gcc  
+sh                                  defconfig   gcc  
+sh                               j2_defconfig   gcc  
+sh                            migor_defconfig   gcc  
+sh                    randconfig-001-20240303   gcc  
+sh                    randconfig-002-20240303   gcc  
+sparc                            allmodconfig   gcc  
+sparc                             allnoconfig   gcc  
+sparc                               defconfig   gcc  
+sparc64                          allmodconfig   gcc  
+sparc64                          allyesconfig   gcc  
+sparc64                             defconfig   gcc  
+um                               allmodconfig   clang
+um                                allnoconfig   clang
+um                               allyesconfig   gcc  
+um                                  defconfig   clang
+um                             i386_defconfig   gcc  
+um                           x86_64_defconfig   clang
+x86_64                            allnoconfig   clang
+x86_64       buildonly-randconfig-001-20240303   clang
+x86_64       buildonly-randconfig-002-20240303   clang
+x86_64       buildonly-randconfig-003-20240303   clang
+x86_64       buildonly-randconfig-004-20240303   clang
+x86_64       buildonly-randconfig-005-20240303   gcc  
+x86_64       buildonly-randconfig-006-20240303   gcc  
+x86_64                              defconfig   gcc  
+x86_64                randconfig-001-20240303   clang
+x86_64                randconfig-002-20240303   gcc  
+x86_64                randconfig-003-20240303   clang
+x86_64                randconfig-004-20240303   clang
+x86_64                randconfig-005-20240303   clang
+x86_64                randconfig-006-20240303   gcc  
+x86_64                randconfig-011-20240303   gcc  
+x86_64                randconfig-012-20240303   gcc  
+x86_64                randconfig-013-20240303   clang
+x86_64                randconfig-014-20240303   gcc  
+x86_64                randconfig-015-20240303   clang
+x86_64                randconfig-016-20240303   gcc  
+x86_64                randconfig-071-20240303   clang
+x86_64                randconfig-072-20240303   gcc  
+x86_64                randconfig-073-20240303   gcc  
+x86_64                randconfig-074-20240303   gcc  
+x86_64                randconfig-075-20240303   clang
+x86_64                randconfig-076-20240303   clang
+x86_64                          rhel-8.3-rust   clang
+xtensa                            allnoconfig   gcc  
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-889-511ffdbe886328239e946608243048f8296fa095 -> xe-pw-130639v2
-
-  IGT_7742: 7742
-  xe-889-511ffdbe886328239e946608243048f8296fa095: 511ffdbe886328239e946608243048f8296fa095
-  xe-pw-130639v2: 130639v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130639v2/index.html
-
---===============7516510317182021289==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: support sharing VM info between XE drivers (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130639/">https://patchwork.freedesktop.org/series/130639/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130639v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130639v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-889-511ffdbe886328239e946608243048f8296fa095_BAT -&gt; xe-pw-130639v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-889-511ffdbe886328239e946608243048f8296fa095 -&gt; xe-pw-130639v2</li>
-</ul>
-<p>IGT_7742: 7742<br />
-  xe-889-511ffdbe886328239e946608243048f8296fa095: 511ffdbe886328239e946608243048f8296fa095<br />
-  xe-pw-130639v2: 130639v2</p>
-
-</body>
-</html>
-
---===============7516510317182021289==--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
