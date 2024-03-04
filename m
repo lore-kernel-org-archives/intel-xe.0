@@ -4,66 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 666A8C5478C
-	for <intel-xe@archiver.kernel.org>; Mon,  4 Mar 2024 11:11:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5045FC48BF6
+	for <intel-xe@archiver.kernel.org>; Mon,  4 Mar 2024 14:05:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCF9610FFEA;
-	Mon,  4 Mar 2024 11:11:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C59AF1121C6;
+	Mon,  4 Mar 2024 14:05:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f9CripOA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k4GxTGD9";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A44E10FFE3;
- Mon,  4 Mar 2024 11:11:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6868F1121C6
+ for <intel-xe@lists.freedesktop.org>; Mon,  4 Mar 2024 14:05:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709550684; x=1741086684;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=0T0lhm8LzcAdzbLDuBp+ZTGZjesoCjhi5zU7O8aSCKI=;
- b=f9CripOA53/9SXNGSz+zq2JlTMz1QpfLG06Rp8dFiiv6jRJJC3zGadXv
- URNX0JDSLzzLF4LrHSbcuVRwVHrSPJ7/SP/6wkmRw4odyWRzODjmthBZB
- er9wzOk5XBC8mIZFTyCFM83crmdnA9Ndfw5hijyTEFQlaeX5iPRvu0O2G
- UMhW6hh5f3kHo6RFGmZRTpLi2eQe3iWu3yGMkUj0fngd/K7sQXQimppR/
- A1v6DCvMTrOw8Yzhvu6kGXRnE7Y12n5bwgIO+xZ6Q11njjRPnLjVrfbuW
- Q896JnC3KpaUZDtusRcL3O6D5nJughBec5rh9OuJVqO+PFv8gQViBGWkI w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11002"; a="4160899"
+ t=1709561125; x=1741097125;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=I/lz+psv6F4OgvJ0mxjhONVFYdt9W1sFKQdr2X0qvNs=;
+ b=k4GxTGD9KTomTlneNEixLf1eYH7LayE0xmxen8oVCew6UKZkOArQ5ITB
+ H0Qf+RYjPEcyegTmZgamU+Wv6X9ompemOjPzC3owOZbMJ/itR7Shy6uX+
+ vxPnoaaNbeBEMI4YsfaUsOfFt9M2eNREEFho23XNbzVacjGDjO8toqIFt
+ BdFMsTAdkHBAwjZq2oK37CG2NZf3udUVwv+zm5wo9AyrtR7hgdfwZQYCM
+ NYwozLXIxmref9VMv2xJVwhxbByASXa2eKEtlgpj95Txlx1q1mdb8PnVI
+ WqxykBRZpbM8JzuohuJ5J22qgfjqYRqi8y8gKnDNuNKsfYPZ+QbxTX+rn g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11002"; a="4175441"
 X-IronPort-AV: E=Sophos;i="6.06,203,1705392000"; 
-   d="scan'208";a="4160899"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2024 03:11:24 -0800
+   d="scan'208";a="4175441"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2024 06:05:24 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11002"; a="827773138"
-X-IronPort-AV: E=Sophos;i="6.06,203,1705392000"; d="scan'208";a="827773138"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 04 Mar 2024 03:11:18 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 04 Mar 2024 13:11:17 +0200
-Date: Mon, 4 Mar 2024 13:11:17 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Nikita Kiryushin <kiryushin@ancud.ru>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Manasi Navare <manasi.d.navare@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- lvc-project@linuxtesting.org
-Subject: Re: [PATCH] drm/i915: Remove unneeded double drm_rect_visible call
- in check_overlay_dst
-Message-ID: <ZeWsVXhj1AUD4q3G@intel.com>
-References: <> <79c92cfa-cf5a-4a23-8a93-11c1af7432fc@ancud.ru>
- <ZeB45WKv4lP8QQpv@intel.com>
- <ecfb0f31-a454-4a51-9fb8-9cd0aca3195c@ancud.ru>
+X-IronPort-AV: E=Sophos;i="6.06,203,1705392000"; 
+   d="scan'208";a="8920929"
+Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2024 06:05:22 -0800
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+Subject: [PATCH 1/4] drm/xe: Make devcoredump VM error state print consistent
+Date: Mon,  4 Mar 2024 06:05:11 -0800
+Message-ID: <20240304140514.24768-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.44.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ecfb0f31-a454-4a51-9fb8-9cd0aca3195c@ancud.ru>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,45 +64,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Mar 01, 2024 at 09:56:41PM +0300, Nikita Kiryushin wrote:
-> On 2/29/24 15:30, Ville Syrj‰l‰ wrote:
-> > I prefer the current way where we have no side effects in
-> > the if statement.
-> >
-> 
-> This seem like a valid concern from readability and maintainability 
-> standpoint. My patch was aimed mostly at performance and maintainability 
-> using tools: some more pedantic analyzers are sensitive to non-checked 
-> return values (as of now, drm_rect_intersect is ignored).
-> 
-> Would it be a better idea to make an update to the patch with second 
-> drm_rect_visible call changed to an appropriately named state flag set 
-> with drm_rect_intersect result?
+This makes VM error consistent with [x].length and [x].data.
 
-I was thinking of maybe removing that drm_rect_visible() from
-drm_rect_intersect() entirely, but looks like it's used fairly
-extensively, so would require a bunch of work.
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Signed-off-by: Jos√© Roberto de Souza <jose.souza@intel.com>
+---
+ drivers/gpu/drm/xe/xe_vm.c | 19 ++++++++-----------
+ 1 file changed, 8 insertions(+), 11 deletions(-)
 
-But now that I though about this I recalled that there was an earlier
-patch trying to do exactly what you suggested in this patch. And looks
-like there was a second version posted which I completely missed:
-https://patchwork.freedesktop.org/series/115605/
-
-While that does still have drm_rect_intersect() with its side effects
-inside the if() I don't find it quite as objectionable since it's the
-only thing in there. So it's a bit more obvious what is happening.
-I've gone and merged that one.
-
-Thanks for the patch regardless. At least I reminded me to look at the
-earlier attempt ;)
-
-> 
-> BTW, the original patch somehow got mangled while it made its way to the 
-> patchwork: source list line in patch got broken, which permits the patch 
-> from being applied (the original version did not have that line break). 
-> Any ideas how to prevent this happening with the second version of patch 
-> (in case the idea is viable)?
-
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 643b3701a7386..df9360a4c9e8e 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -3435,12 +3435,15 @@ void xe_vm_snapshot_print(struct xe_vm_snapshot *snap, struct drm_printer *p)
+ 	unsigned long i, j;
+ 
+ 	for (i = 0; i < snap->num_snaps; i++) {
+-		if (IS_ERR(snap->snap[i].data))
+-			goto uncaptured;
+-
+ 		drm_printf(p, "[%llx].length: 0x%lx\n", snap->snap[i].ofs, snap->snap[i].len);
+-		drm_printf(p, "[%llx].data: ",
+-			   snap->snap[i].ofs);
++
++		if (IS_ERR(snap->snap[i].data)) {
++			drm_printf(p, "[%llx].error: %li\n", snap->snap[i].ofs,
++				   PTR_ERR(snap->snap[i].data));
++			continue;
++		}
++
++		drm_printf(p, "[%llx].data: ", snap->snap[i].ofs);
+ 
+ 		for (j = 0; j < snap->snap[i].len; j += sizeof(u32)) {
+ 			u32 *val = snap->snap[i].data + j;
+@@ -3450,12 +3453,6 @@ void xe_vm_snapshot_print(struct xe_vm_snapshot *snap, struct drm_printer *p)
+ 		}
+ 
+ 		drm_puts(p, "\n");
+-		continue;
+-
+-uncaptured:
+-		drm_printf(p, "Unable to capture range [%llx-%llx]: %li\n",
+-			   snap->snap[i].ofs, snap->snap[i].ofs + snap->snap[i].len - 1,
+-			   PTR_ERR(snap->snap[i].data));
+ 	}
+ }
+ 
 -- 
-Ville Syrj‰l‰
-Intel
+2.44.0
+
