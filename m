@@ -4,21 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1AB5C54798
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Mar 2024 13:12:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DDF7C54E49
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Mar 2024 13:12:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA7F6112ABE;
-	Tue,  5 Mar 2024 13:12:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55ECF112ABD;
+	Tue,  5 Mar 2024 13:12:53 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AFCE112ABE
- for <intel-xe@lists.freedesktop.org>; Tue,  5 Mar 2024 13:12:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B40E5112ABD
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 Mar 2024 13:12:51 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
  Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH 1/4] fix "drm/xe: Cleanup some layering in GGTT"
-Date: Tue,  5 Mar 2024 14:12:47 +0100
-Message-ID: <20240305131250.5330-2-maarten.lankhorst@linux.intel.com>
+Subject: [PATCH 2/4] drm/xe: Do not grab forcewakes when issuing GGTT TLB
+ invalidation via GuC
+Date: Tue,  5 Mar 2024 14:12:48 +0100
+Message-ID: <20240305131250.5330-3-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240305131250.5330-1-maarten.lankhorst@linux.intel.com>
 References: <20240305131250.5330-1-maarten.lankhorst@linux.intel.com>
@@ -38,36 +41,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The null check for GT is after calling gt_to_xe, fix it.
+Forcewakes are not required for communication with the GuC via CTB
+as it is a memory based interfaced. Acquring forcewakes takes
+considerable time. With that, do not grab a forcewake when issuing a
+GGTT TLB invalidation via the GuC.
 
-Fixes: 3121fed0c51b ("drm/xe: Cleanup some layering in GGTT")
-Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_ggtt.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_ggtt.c                | 7 -------
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 2 ++
+ 2 files changed, 2 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 717d0e76277a..0435e1202c46 100644
+index 0435e1202c46..325337c38961 100644
 --- a/drivers/gpu/drm/xe/xe_ggtt.c
 +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -251,7 +251,6 @@ int xe_ggtt_init(struct xe_ggtt *ggtt)
- 
- static void ggtt_invalidate_gt_tlb(struct xe_gt *gt)
- {
--	struct xe_device *xe = gt_to_xe(gt);
- 	int err;
- 
+@@ -256,16 +256,9 @@ static void ggtt_invalidate_gt_tlb(struct xe_gt *gt)
  	if (!gt)
-@@ -265,7 +264,7 @@ static void ggtt_invalidate_gt_tlb(struct xe_gt *gt)
- 	xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+ 		return;
+ 
+-	/*
+-	 * Invalidation can happen when there's no in-flight work keeping the
+-	 * GT awake.  We need to explicitly grab forcewake to ensure the GT
+-	 * and GuC are accessible.
+-	 */
+-	xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
  	err = xe_gt_tlb_invalidation_ggtt(gt);
  	if (err)
--		drm_warn(&xe->drm, "xe_gt_tlb_invalidation_ggtt error=%d", err);
-+		drm_warn(&gt_to_xe(gt)->drm, "xe_gt_tlb_invalidation_ggtt error=%d", err);
- 	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
+ 		drm_warn(&gt_to_xe(gt)->drm, "xe_gt_tlb_invalidation_ggtt error=%d", err);
+-	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
  }
  
+ void xe_ggtt_invalidate(struct xe_ggtt *ggtt)
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index f29ee1ccfa71..a3c4ffba679d 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -247,6 +247,7 @@ int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt)
+ 
+ 		xe_gt_tlb_invalidation_wait(gt, seqno);
+ 	} else if (xe_device_uc_enabled(xe)) {
++		xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+ 		if (xe->info.platform == XE_PVC || GRAPHICS_VER(xe) >= 20) {
+ 			xe_mmio_write32(gt, PVC_GUC_TLB_INV_DESC1,
+ 					PVC_GUC_TLB_INV_DESC1_INVALIDATE);
+@@ -256,6 +257,7 @@ int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt)
+ 			xe_mmio_write32(gt, GUC_TLB_INV_CR,
+ 					GUC_TLB_INV_CR_INVALIDATE);
+ 		}
++		xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
+ 	}
+ 
+ 	return 0;
 -- 
 2.43.0
 
