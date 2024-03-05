@@ -4,53 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB657C5478C
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Mar 2024 05:51:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D918AC54798
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Mar 2024 06:09:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79EC7112710;
-	Tue,  5 Mar 2024 05:51:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c+W2RJi2";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35995112710;
- Tue,  5 Mar 2024 05:51:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709617879; x=1741153879;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=3Zg7i/ZzdfjetNS/XB5okJZYHRy8k1+wT83SqXKo4JM=;
- b=c+W2RJi2SDgRzuF7zcEYF8ZSRZn98qimd9/wNp5jI7CaCU7yDnhujr9b
- gzqpxnxH0ltOfLOoo8J5/aAuAUXaAshW7So72hlYZ3TBzukIHew7CQoQe
- 7uaxzsTKCHpYQ+hTRSgH9stGAV6HFGNXsukgb6PWh3OhvIy5Q6yj1RgKd
- P3n2ZF3qP8UbBRgrBBnsYl8QgXL4n0jU70wgieMOiXD9nibg3DeBGZl+e
- 1LsLYnt0X8sKgYvPzsr56cRt0joTKp2wHQKNirmx7847DIuZKLlTdqj7m
- nRhHYS9H082tUPUzk7G7ebYV9iUm4Wpqx+YIDAJpbeFDjLHQ/03DzXDV1 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11003"; a="4307662"
-X-IronPort-AV: E=Sophos;i="6.06,205,1705392000"; 
-   d="scan'208";a="4307662"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2024 21:51:18 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,205,1705392000"; 
-   d="scan'208";a="9219482"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2024 21:51:17 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, ankit.k.nautiyal@intel.com,
- stanislav.lisovskiy@intel.com, jani.nikula@linux.intel.com,
- stable@vger.kernel.org
-Subject: [PATCH] drm/i915/dp: Fix the computation for compressed_bpp for
- DISPLAY < 13
-Date: Tue,  5 Mar 2024 11:14:43 +0530
-Message-Id: <20240305054443.2489895-1-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.40.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EA00112877;
+	Tue,  5 Mar 2024 06:09:54 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A170112877;
+ Tue,  5 Mar 2024 06:09:53 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8518038478679060538=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5B1/4=5D_d?=
+ =?utf-8?q?rm/xe=3A_Make_devcoredump_VM_error_state_print_consistent_=28rev2?=
+ =?utf-8?q?=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 05 Mar 2024 06:09:53 -0000
+Message-ID: <170961899343.503981.16202163337485575355@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240304140514.24768-1-jose.souza@intel.com>
+In-Reply-To: <20240304140514.24768-1-jose.souza@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,40 +37,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For DISPLAY < 13, compressed bpp is chosen from a list of
-supported compressed bpps. Fix the condition to choose the
-appropriate compressed bpp from the list.
+--===============8518038478679060538==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fixes: 1c56e9a39833 ("drm/i915/dp: Get optimal link config to have best compressed bpp")
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: <stable@vger.kernel.org> # v6.7+
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/10162
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index e13121dc3a03..d579195f84ee 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1918,8 +1918,9 @@ icl_dsc_compute_link_config(struct intel_dp *intel_dp,
- 	dsc_max_bpp = min(dsc_max_bpp, pipe_bpp - 1);
- 
- 	for (i = 0; i < ARRAY_SIZE(valid_dsc_bpp); i++) {
--		if (valid_dsc_bpp[i] < dsc_min_bpp ||
--		    valid_dsc_bpp[i] > dsc_max_bpp)
-+		if (valid_dsc_bpp[i] < dsc_min_bpp)
-+			continue;
-+		if (valid_dsc_bpp[i] > dsc_max_bpp)
- 			break;
- 
- 		ret = dsc_compute_link_config(intel_dp,
--- 
-2.40.1
+Series: series starting with [1/4] drm/xe: Make devcoredump VM error state print consistent (rev2)
+URL   : https://patchwork.freedesktop.org/series/130668/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-893-e90b5046fce6ed727427eec0d52e4f9626609ed0_BAT -> xe-pw-130668v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-893-e90b5046fce6ed727427eec0d52e4f9626609ed0 -> xe-pw-130668v2
+
+  IGT_7745: 838ad56bf511c1caf56851c661fb5828c0440e3b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-893-e90b5046fce6ed727427eec0d52e4f9626609ed0: e90b5046fce6ed727427eec0d52e4f9626609ed0
+  xe-pw-130668v2: 130668v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130668v2/index.html
+
+--===============8518038478679060538==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/4] drm/xe: Make devcoredump VM error state print consistent (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130668/">https://patchwork.freedesktop.org/series/130668/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130668v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130668v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-893-e90b5046fce6ed727427eec0d52e4f9626609ed0_BAT -&gt; xe-pw-130668v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-893-e90b5046fce6ed727427eec0d52e4f9626609ed0 -&gt; xe-pw-130668v2</li>
+</ul>
+<p>IGT_7745: 838ad56bf511c1caf56851c661fb5828c0440e3b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-893-e90b5046fce6ed727427eec0d52e4f9626609ed0: e90b5046fce6ed727427eec0d52e4f9626609ed0<br />
+  xe-pw-130668v2: 130668v2</p>
+
+</body>
+</html>
+
+--===============8518038478679060538==--
