@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 241A2C5478C
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Mar 2024 05:35:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89410C54798
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Mar 2024 05:35:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD9F310E805;
-	Tue,  5 Mar 2024 05:35:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D5F310E805;
+	Tue,  5 Mar 2024 05:35:56 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DDBBB10F092;
- Tue,  5 Mar 2024 05:35:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4D7D10E805;
+ Tue,  5 Mar 2024 05:35:54 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5B1/4=5D_drm/xe=3A_Make_devcoredump_VM_error_state_print_consis?=
- =?utf-8?q?tent_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5B1?=
+ =?utf-8?q?/4=5D_drm/xe=3A_Make_devcoredump_VM_error_state_print_consistent_?=
+ =?utf-8?q?=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 05 Mar 2024 05:35:41 -0000
-Message-ID: <170961694190.503981.16553991552426102849@8e613ede5ea5>
+Date: Tue, 05 Mar 2024 05:35:54 -0000
+Message-ID: <170961695493.503981.5327815457633963062@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240304140514.24768-1-jose.souza@intel.com>
 In-Reply-To: <20240304140514.24768-1-jose.souza@intel.com>
@@ -45,16 +45,38 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: series starting with [1/4] drm/xe: Make devcoredump VM error state print consistent (rev2)
 URL   : https://patchwork.freedesktop.org/series/130668/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: e90b5046fce6 drm-tip: 2024y-03m-04d-23h-59m-21s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Make devcoredump VM error state print consistent
-Applying: drm/xe/devcoredump: Print errno if VM snapshot was not captured
-Applying: drm/xe/devcoredump: Lock snap_mutex earlier
-Applying: drm/xe: Nuke EXEC_QUEUE_FLAG_PERSISTENT
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+4dc7d0cc630cdd9ac56065b1a22afc329345a519
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 9792e79ae788d7b5c911ea1b4104086e8892061d
+Author: José Roberto de Souza <jose.souza@intel.com>
+Date:   Mon Mar 4 06:05:14 2024 -0800
+
+    drm/xe: Nuke EXEC_QUEUE_FLAG_PERSISTENT
+    
+    This is a left over of commit f1a9abc0cf31 ("drm/xe/uapi: Remove support for persistent exec_queues").
+    
+    Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+    Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
++ /mt/dim checkpatch e90b5046fce6ed727427eec0d52e4f9626609ed0 drm-intel
+4071578ffbff drm/xe: Make devcoredump VM error state print consistent
+d83020d97045 drm/xe/devcoredump: Print errno if VM snapshot was not captured
+f7b743a3ce3a drm/xe/devcoredump: Lock snap_mutex earlier
+9792e79ae788 drm/xe: Nuke EXEC_QUEUE_FLAG_PERSISTENT
+-:9: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#9: 
+This is a left over of commit f1a9abc0cf31 ("drm/xe/uapi: Remove support for persistent exec_queues").
+
+total: 0 errors, 1 warnings, 0 checks, 17 lines checked
 
 
