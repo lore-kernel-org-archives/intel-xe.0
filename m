@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9F1CC54E41
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Mar 2024 09:13:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F0BBC54E41
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Mar 2024 09:13:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D9E2112971;
-	Tue,  5 Mar 2024 09:13:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3B9710E178;
+	Tue,  5 Mar 2024 09:13:37 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52F5D112971;
- Tue,  5 Mar 2024 09:13:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16AC210E185;
+ Tue,  5 Mar 2024 09:13:36 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm=3A_enable_W=3D1_?=
- =?utf-8?q?warnings_by_default_across_the_subsystem_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm=3A_enable_W=3D1_warni?=
+ =?utf-8?q?ngs_by_default_across_the_subsystem_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 05 Mar 2024 09:13:09 -0000
-Message-ID: <170962998934.522830.9728750421311145986@8e613ede5ea5>
+Date: Tue, 05 Mar 2024 09:13:36 -0000
+Message-ID: <170963001609.503981.16282745556801134177@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <cover.1709629403.git.jani.nikula@intel.com>
 In-Reply-To: <cover.1709629403.git.jani.nikula@intel.com>
@@ -48,10 +48,32 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 2772cf5417c5 drm-tip: 2024y-03m-05d-08h-48m-55s UTC integration manifest
-=== git am output follows ===
-Applying: drm: enable (most) W=1 warnings by default across the subsystem
-Applying: drm: Add CONFIG_DRM_WERROR
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+4dc7d0cc630cdd9ac56065b1a22afc329345a519
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 24fea95b5f5f9d9c92e9b5510d46770c13e3138e
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Tue Mar 5 11:07:36 2024 +0200
+
+    drm: Add CONFIG_DRM_WERROR
+    
+    Add kconfig to enable -Werror subsystem wide. This is useful for
+    development and CI to keep the subsystem warning free, while avoiding
+    issues outside of the subsystem that kernel wide CONFIG_WERROR=y might
+    hit.
+    
+    v2: Don't depend on COMPILE_TEST
+    
+    Reviewed-by: Hamza Mahfooz <hamza.mahfooz@amd.com> # v1
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 2772cf5417c580b365fdd356aac662255f9f10ac drm-intel
+416f8538cc6a drm: enable (most) W=1 warnings by default across the subsystem
+24fea95b5f5f drm: Add CONFIG_DRM_WERROR
 
 
