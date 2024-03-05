@@ -4,46 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DA87C5478C
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Mar 2024 05:33:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C2B6C54E55
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Mar 2024 05:33:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD5DF112711;
-	Tue,  5 Mar 2024 05:33:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7B7A112710;
+	Tue,  5 Mar 2024 05:33:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A8eWcT2P";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nE4QmOEM";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C8D71126C3
- for <intel-xe@lists.freedesktop.org>; Tue,  5 Mar 2024 05:33:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B696D112713
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 Mar 2024 05:33:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709616810; x=1741152810;
+ t=1709616812; x=1741152812;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=aAz+uv+1jjvxLzx3O1xQEDbLCCzQ72/hV0fIs9O/ELM=;
- b=A8eWcT2P7+Tz2b/WnWdgb2o6/cYWsggVX0HtKvrCXBH/UG/42IkP9qZY
- 4Y6qCxOAzQqGtSkjV4zXmF8QSrBH4V0HFfMEaZwXj3wHU8/tqHmb5Xr+z
- v77KC1PgalrCxeSRS7l8tsQI7u2kC632PPPs4hSQQKprl6egp92oPjsWI
- xt+LLvUgKE3Kfw8cJt4XsZPx0BNTS/BEzttFQt2oLQ5zoYgR59edSJKpL
- Z1RGZPMfwh96xtJ7IC2msSCsVyIYiqB0jGItwEqzr7o3sX4k1Wwb+YcfW
- lw6bDlkfheNFXMqY685+0bHsypnbFv3Cbq4eT8Ztl3gi0emMDFOCtgCZT w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11003"; a="21601471"
-X-IronPort-AV: E=Sophos;i="6.06,205,1705392000"; d="scan'208";a="21601471"
+ bh=ZHn+mLTO27t/m2m8efvZbOAlOS5kym++52py+Kt1Gk4=;
+ b=nE4QmOEM5yqr4JujQZSURoj/1632Jih2/oKBiWlWu2hbEzvJuQPML3Gc
+ vpQRxFfPmW0INgMVECi/Y8l99/s6RFKOpuhGMczv6QSFsQ7mfHQkv3SUz
+ 8xsQJyL4Iv0wGDf35QLokLd43mazK2kqfOnaj8oiXfK7Se4LusVKBHWNj
+ v6ZM7kCLpStj6Dj3R0mDW4RTKQaTfzBl8qJW4vUd+/GM4beX1fgQhBv53
+ 6vg3Wzi1H0DY3NVA+m3tEWCUukUQgTaGQAEQwxE9/AvNzto/w2q5rgsba
+ 5PcCSLtSGY+IDSss3/toQe+oRmbuvZRqz5kN28T/HyCNRwYTZcxi/0z88 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11003"; a="21601508"
+X-IronPort-AV: E=Sophos;i="6.06,205,1705392000"; d="scan'208";a="21601508"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2024 21:33:12 -0800
+ 04 Mar 2024 21:33:15 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,205,1705392000"; 
-   d="scan'208";a="9660203"
+   d="scan'208";a="9660213"
 Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.jf.intel.com)
  ([10.165.21.138])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  04 Mar 2024 21:33:12 -0800
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 02/16] drm/xe/perf/uapi: Add perf_stream_paranoid sysctl
-Date: Mon,  4 Mar 2024 21:32:46 -0800
-Message-ID: <20240305053300.2406240-3-ashutosh.dixit@intel.com>
+Subject: [PATCH 12/16] drm/xe/oa: Add OAC support
+Date: Mon,  4 Mar 2024 21:32:56 -0800
+Message-ID: <20240305053300.2406240-13-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20240305053300.2406240-1-ashutosh.dixit@intel.com>
 References: <20240305053300.2406240-1-ashutosh.dixit@intel.com>
@@ -63,104 +63,164 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Normally only superuser/root can access perf counter data. However,
-superuser can set perf_stream_paranoid sysctl to 0 to allow non-privileged
-users to also access perf data. perf_stream_paranoid is introduced at the
-perf layer to allow different perf stream types to share this access
-mechanism.
+Similar to OAR, allow userspace to execute MI_REPORT_PERF_COUNT on compute
+engines of a specified exec queue.
 
 Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/xe/xe_module.c |  5 +++++
- drivers/gpu/drm/xe/xe_perf.c   | 28 ++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_perf.h   |  4 ++++
- 3 files changed, 37 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h |  1 +
+ drivers/gpu/drm/xe/regs/xe_oa_regs.h     |  3 +
+ drivers/gpu/drm/xe/xe_oa.c               | 74 +++++++++++++++++++++++-
+ 3 files changed, 75 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index 110b69864656..42085a4b56be 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -11,6 +11,7 @@
- #include "xe_drv.h"
- #include "xe_hw_fence.h"
- #include "xe_pci.h"
-+#include "xe_perf.h"
- #include "xe_sched_job.h"
+diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+index b6ef2df0e5ac..9e430f56b3b8 100644
+--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+@@ -127,6 +127,7 @@
  
- struct xe_modparam xe_modparam = {
-@@ -66,6 +67,10 @@ static const struct init_funcs init_funcs[] = {
- 		.init = xe_register_pci_driver,
- 		.exit = xe_unregister_pci_driver,
- 	},
-+	{
-+		.init = xe_perf_sysctl_register,
-+		.exit = xe_perf_sysctl_unregister,
-+	},
- };
+ #define RING_CONTEXT_CONTROL(base)		XE_REG((base) + 0x244, XE_REG_OPTION_MASKED)
+ #define	  CTX_CTRL_OAC_CONTEXT_ENABLE		REG_BIT(8)
++#define	  CTX_CTRL_RUN_ALONE			REG_BIT(7)
+ #define	  CTX_CTRL_INHIBIT_SYN_CTX_SWITCH	REG_BIT(3)
+ #define	  CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT	REG_BIT(0)
  
- static int __init xe_init(void)
-diff --git a/drivers/gpu/drm/xe/xe_perf.c b/drivers/gpu/drm/xe/xe_perf.c
-index a130076b59aa..37538e98dcc0 100644
---- a/drivers/gpu/drm/xe/xe_perf.c
-+++ b/drivers/gpu/drm/xe/xe_perf.c
-@@ -4,9 +4,13 @@
-  */
+diff --git a/drivers/gpu/drm/xe/regs/xe_oa_regs.h b/drivers/gpu/drm/xe/regs/xe_oa_regs.h
+index 09d6d4f169f5..6f7d300f56c8 100644
+--- a/drivers/gpu/drm/xe/regs/xe_oa_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_oa_regs.h
+@@ -69,6 +69,9 @@
+ #define  OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS	REG_BIT(1)
  
- #include <linux/errno.h>
-+#include <linux/sysctl.h>
- 
- #include "xe_perf.h"
- 
-+u32 xe_perf_stream_paranoid = true;
-+static struct ctl_table_header *sysctl_header;
+ #define OAG_OASTATUS			XE_REG(0xdafc)
++/* OAC unit */
++#define OAC_OACONTROL			XE_REG(0x15114)
 +
- int xe_perf_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- {
- 	struct drm_xe_perf_param *arg = data;
-@@ -19,3 +23,27 @@ int xe_perf_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		return -EINVAL;
- 	}
+ /* OAM unit */
+ #define OAM_HEAD_POINTER_OFFSET			(0x1a0)
+ #define OAM_TAIL_POINTER_OFFSET			(0x1a4)
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index bc08a8200154..7273fd93b278 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -406,6 +406,19 @@ static u32 __format_to_oactrl(const struct xe_oa_format *format, int counter_sel
+ 		REG_FIELD_PREP(OA_OACONTROL_COUNTER_SIZE_MASK, format->counter_size);
  }
-+
-+static struct ctl_table perf_ctl_table[] = {
-+	{
-+	 .procname = "perf_stream_paranoid",
-+	 .data = &xe_perf_stream_paranoid,
-+	 .maxlen = sizeof(xe_perf_stream_paranoid),
-+	 .mode = 0644,
-+	 .proc_handler = proc_dointvec_minmax,
-+	 .extra1 = SYSCTL_ZERO,
-+	 .extra2 = SYSCTL_ONE,
-+	 },
-+	{}
-+};
-+
-+int xe_perf_sysctl_register(void)
+ 
++static u32 __oa_ccs_select(struct xe_oa_stream *stream)
 +{
-+	sysctl_header = register_sysctl("dev/xe", perf_ctl_table);
-+	return 0;
++	u32 val;
++
++	if (stream->hwe->class != XE_ENGINE_CLASS_COMPUTE)
++		return 0;
++
++	val = REG_FIELD_PREP(OAG_OACONTROL_OA_CCS_SELECT_MASK, stream->hwe->instance);
++	xe_assert(stream->oa->xe,
++		  REG_FIELD_GET(OAG_OACONTROL_OA_CCS_SELECT_MASK, val) == stream->hwe->instance);
++	return val;
 +}
 +
-+void xe_perf_sysctl_unregister(void)
+ static void xe_oa_enable(struct xe_oa_stream *stream)
+ {
+ 	const struct xe_oa_format *format = stream->oa_buffer.format;
+@@ -420,7 +433,7 @@ static void xe_oa_enable(struct xe_oa_stream *stream)
+ 
+ 	regs = __oa_regs(stream);
+ 	val = __format_to_oactrl(format, regs->oa_ctrl_counter_select_mask) |
+-		OAG_OACONTROL_OA_COUNTER_ENABLE;
++		__oa_ccs_select(stream) | OAG_OACONTROL_OA_COUNTER_ENABLE;
+ 
+ 	xe_mmio_write32(stream->gt, regs->oa_ctrl, val);
+ }
+@@ -679,6 +692,57 @@ static int xe_oa_configure_oar_context(struct xe_oa_stream *stream, bool enable)
+ 	return xe_oa_load_with_lri(stream, &reg_lri);
+ }
+ 
++static int xe_oa_configure_oac_context(struct xe_oa_stream *stream, bool enable)
 +{
-+	unregister_sysctl_table(sysctl_header);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_perf.h b/drivers/gpu/drm/xe/xe_perf.h
-index 254cc7cf49fe..1ff0a07ebab3 100644
---- a/drivers/gpu/drm/xe/xe_perf.h
-+++ b/drivers/gpu/drm/xe/xe_perf.h
-@@ -11,6 +11,10 @@
- struct drm_device;
- struct drm_file;
- 
-+extern u32 xe_perf_stream_paranoid;
++	const struct xe_oa_format *format = stream->oa_buffer.format;
++	struct xe_lrc *lrc = &stream->exec_q->lrc[0];
++	u32 regs_offset = xe_lrc_regs_offset(lrc) / sizeof(u32);
++	u32 oacontrol = __format_to_oactrl(format, OAR_OACONTROL_COUNTER_SEL_MASK) |
++		(enable ? OAR_OACONTROL_COUNTER_ENABLE : 0);
++	struct flex regs_context[] = {
++		{
++			OACTXCONTROL(stream->hwe->mmio_base),
++			stream->oa->ctx_oactxctrl_offset[stream->hwe->class] + 1,
++			enable ? OA_COUNTER_RESUME : 0,
++		},
++		{
++			RING_CONTEXT_CONTROL(stream->hwe->mmio_base),
++			regs_offset + CTX_CONTEXT_CONTROL,
++			_MASKED_FIELD(CTX_CTRL_OAC_CONTEXT_ENABLE,
++				      enable ? CTX_CTRL_OAC_CONTEXT_ENABLE : 0) |
++			_MASKED_FIELD(CTX_CTRL_RUN_ALONE,
++				      enable ? CTX_CTRL_RUN_ALONE : 0),
++		},
++	};
++	struct xe_oa_reg reg_lri = { OAC_OACONTROL, oacontrol };
++	int err;
 +
- int xe_perf_ioctl(struct drm_device *dev, void *data, struct drm_file *file);
-+int xe_perf_sysctl_register(void);
-+void xe_perf_sysctl_unregister(void);
++	/* Set ccs select to enable programming of OAC_OACONTROL */
++	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_ctrl, __oa_ccs_select(stream));
++
++	/* Modify stream hwe context image with regs_context */
++	err = xe_oa_modify_ctx_image(stream, &stream->exec_q->lrc[0],
++				     regs_context, ARRAY_SIZE(regs_context));
++	if (err)
++		return err;
++
++	/* Apply reg_lri using LRI */
++	return xe_oa_load_with_lri(stream, &reg_lri);
++}
++
++static int xe_oa_configure_oa_context(struct xe_oa_stream *stream, bool enable)
++{
++	switch (stream->hwe->class) {
++	case XE_ENGINE_CLASS_RENDER:
++		return xe_oa_configure_oar_context(stream, enable);
++	case XE_ENGINE_CLASS_COMPUTE:
++		return xe_oa_configure_oac_context(stream, enable);
++	default:
++		/* Video engines do not support MI_REPORT_PERF_COUNT */
++		return 0;
++	}
++}
++
+ #define HAS_OA_BPC_REPORTING(xe) (GRAPHICS_VERx100(xe) >= 1255)
  
- #endif
+ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
+@@ -698,7 +762,7 @@ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
+ 
+ 	/* disable the context save/restore or OAR counters */
+ 	if (stream->exec_q)
+-		xe_oa_configure_oar_context(stream, false);
++		xe_oa_configure_oa_context(stream, false);
+ 
+ 	/* Make sure we disable noa to save power. */
+ 	xe_mmio_rmw32(stream->gt, RPM_CONFIG1, GT_NOA_ENABLE, 0);
+@@ -865,8 +929,9 @@ static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
+ 
+ 	xe_mmio_rmw32(stream->gt, XELPMP_SQCNT1, 0, sqcnt1);
+ 
++	/* Configure OAR/OAC */
+ 	if (stream->exec_q) {
+-		ret = xe_oa_configure_oar_context(stream, true);
++		ret = xe_oa_configure_oa_context(stream, true);
+ 		if (ret)
+ 			return ret;
+ 	}
+@@ -1511,6 +1576,9 @@ int xe_oa_stream_open_ioctl(struct drm_device *dev, void *data, struct drm_file
+ 		param.exec_q = xe_exec_queue_lookup(xef, param.exec_queue_id);
+ 		if (XE_IOCTL_DBG(oa->xe, !param.exec_q))
+ 			return -ENOENT;
++
++		if (param.exec_q->width > 1)
++			drm_dbg(&oa->xe->drm, "exec_q->width > 1, programming only exec_q->lrc[0]\n");
+ 	}
+ 
+ 	/*
 -- 
 2.41.0
 
