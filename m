@@ -4,138 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAC65C54798
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Mar 2024 22:30:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38454C54798
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Mar 2024 22:43:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D7BB112D3D;
-	Tue,  5 Mar 2024 22:30:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3CC6112D51;
+	Tue,  5 Mar 2024 22:43:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lKZ4MRLH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lenLGwbF";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64E45112D3D
- for <intel-xe@lists.freedesktop.org>; Tue,  5 Mar 2024 22:29:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A2D3112D51;
+ Tue,  5 Mar 2024 22:43:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709677798; x=1741213798;
+ t=1709678586; x=1741214586;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=UddfGs6AlmjH1ltiOpa+SoXCLzWQuKp+E1r9KRUzgs0=;
- b=lKZ4MRLHeY9JLxXkq9mvOADYGUVGRbXOy9aqwDiJfskUU9WV1rv4V6Ee
- umlUceUt56vSBvZb8rNkUm3PkD5wkBJ/fW651Rc6O9w4i0QN/1SkpIjY+
- LMRQuHUgy6DLIl7Rve7kjy5q9/RGb1zCLlayJgAPZ3XmzrnEhAF2vbSKw
- FVA7Kgfhxm2G3Jn+0f8wtjqTvMB6+qbHVyOGETynjET2fkEiesfLZHz63
- +ZMxvA6O3R0hzQTUNPCn+QllIu/654eq1i0vx8PKe4TXmLecWvOvQlMPn
- jAJnNQA36SSSE08KwSN5MuG/QEtASjitFuINutayENzEVuq9DEHQUo7Fz w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11004"; a="15404593"
-X-IronPort-AV: E=Sophos;i="6.06,206,1705392000"; d="scan'208";a="15404593"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2024 14:29:52 -0800
+ mime-version:in-reply-to;
+ bh=le9HD0ePIZrUYFtILTonALuNq0Gj6sGXYh79C0C39bs=;
+ b=lenLGwbF238TJb5xvNFLLrO++Z9RbBcBxyG6Ia88POQbz3IaW5lyxQgE
+ C3cfSbXVmd7OjHkz8/LfRfJoXwGtNYRkVUq2gmKt67Sw7yaXbYt3kNuVo
+ /roBtY9z07mpIKyX2d3Kw0HV8d6lDRNEbUh4jtMF8wQKcqjvGWx7p7R5Y
+ 8Gq5p86URxJ9eUF4svun0lH+CYu0eommOcmZWj1+MoYbTb0S9yj8IMQS2
+ l0xVUd9qGOeWXrbcJTpj0TguF0exWHZnvxEMa/80XerGicyfr5adijyWh
+ n/doYihTjnzwWCDFweyaXZSXbVMrZ9c6TM3qgCwpTsxyUajzzCD70n3QI Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11004"; a="4384355"
+X-IronPort-AV: E=Sophos;i="6.06,206,1705392000"; 
+   d="scan'208";a="4384355"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2024 14:43:05 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,206,1705392000"; d="scan'208";a="14185612"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 05 Mar 2024 14:29:52 -0800
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 5 Mar 2024 14:29:51 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 5 Mar 2024 14:29:51 -0800
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 5 Mar 2024 14:29:51 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lyGV3r3qsqqwmoVU9sgcyu4XpYhXRo3978HgKmIzu2oKZAxbAhvwARvPciGLfZGxxDIzvywm5oWnbbq8Abqcl1qz/X0pN989VRCdn4meFvkXZlLsQgVddS9Lj3nGladPxL8ye+vA7OFM4Lmwbd59aQboggx7iORD/Tf5qkpSPhbcq/vhXmCUhO16oJjwz4YOP3mAjybmALp/LpPitjH0s7p6Mu8mhfcQal7py2SBMvVsqH/tbyZj0+whdtIw2PwNS9hSAioqd38e71M1GwStnTuZ9foVK7wPDanuPb0Z5U6uaXa9AUm/i9Sk3BhzknnSghn1xh5NOt29hsiHh0aniA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lrHNYIfpc1oLOHurGXJRVLJg5gBxg54a8Ik7L3e69wk=;
- b=FsO96PmWV/uZiS8z/mxnfcKrDb6jpwdVjZWH+688Jvwc1NA0G4QXTljaigX7ySJ0nm0QzuMfA91HzDqS+H+ytvmW2a3it7eIel6Rw9aC/b/xJjg2pPHGizNxrMZXG+O6lv3pSupgBpYI8D+kVYYLL3wJ50dZ9e+6z+x6jN52kkdw1QX0YIJcbOoelkrQBdNxjkbhOY8XiQVSJeGxk8NONDFWFcxobFAVfpHIOvN7bRmCtD7ce8j1cQYxV7EnvCmXB4jKSvReYuiyAfLvORACp9WBC9gfxIdPaDi6p9loyoDrftM3OSsVgO/Sq2JA8jnGSuGnbH4qGTpJSH8U9BkupQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by BL1PR11MB5979.namprd11.prod.outlook.com (2603:10b6:208:386::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.24; Tue, 5 Mar
- 2024 22:29:45 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::a7f1:384c:5d93:1d1d]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::a7f1:384c:5d93:1d1d%4]) with mapi id 15.20.7362.019; Tue, 5 Mar 2024
- 22:29:45 +0000
-Date: Tue, 5 Mar 2024 17:29:42 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 2/9] drm/xe: Convert xe_gem_fault to use direct
- xe_pm_runtime calls
-Message-ID: <Zeec1opYgnXMuJEr@intel.com>
-References: <20240304182154.42611-1-rodrigo.vivi@intel.com>
- <20240304182154.42611-2-rodrigo.vivi@intel.com>
- <d5af5b39-75a1-47e2-b41a-23d6c23b62ea@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <d5af5b39-75a1-47e2-b41a-23d6c23b62ea@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0010.namprd03.prod.outlook.com
- (2603:10b6:a03:33a::15) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+X-IronPort-AV: E=Sophos;i="6.06,206,1705392000"; d="scan'208";a="14107416"
+Received: from lkp-server01.sh.intel.com (HELO b21307750695) ([10.239.97.150])
+ by fmviesa003.fm.intel.com with ESMTP; 05 Mar 2024 14:43:02 -0800
+Received: from kbuild by b21307750695 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1rhdUy-0003ij-0z;
+ Tue, 05 Mar 2024 22:43:00 +0000
+Date: Wed, 6 Mar 2024 06:42:38 +0800
+From: kernel test robot <lkp@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v3 3/4] drm/ttm, drm/amdgpu, drm/xe: Consider hitch moves
+ within bulk sublist moves
+Message-ID: <202403060640.zCXpVObi-lkp@intel.com>
+References: <20240305160202.3555-4-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|BL1PR11MB5979:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2a09c97c-382e-48f6-7d8b-08dc3d63c239
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: wcDo6xBpZoFtpdFSmIsZcxqa+EpiHdc06QNSpe0sx8T4nMmy7IHdoZ/zTo0hz6aYakH9lAk/1LG3Pqh40WFhxFGkdmJhVdpqDGJySLwPGL1fZrvodcvhVrFl95dHbsYVGzlAAyCx408g9lyerySWcztccXmMd4HVxD5Y3GK+S6UkRposCLCUksNj3b6brv5LkAq7nOLfo3VY2O3dsV2qrXuSFQFLjsECsumOBkosJyzq6mPoWX90LfUSl9uiubJIoydw2VQV8JUOFFX7P2jbH9uHOd5ne59+JYx5FajcXT2Stn2I2j+yoiPaxKK+5umL0xY8QCegO/zE+U3SUuUmu6cV/l+h+8BGTwD/3Vquwyd1serbOpOP8sK5twMeh0x9mzVPvPaVxcOP18ool2XZXyrzEfLDXnBbGm6SyVjI+RXRHmUI42aKPq2r6I6/wQw5Ay88u3W7h4P69nRkC6kwGhKfxPTGXPpyo8s9ooV0t31HelyvYSI1pUBkYeISoBIdyR6j+UZ7Iue293cmA53Q1NVqJX4JjQq8rb5eYLzHYb+4w44Kit41Tod2ZUy87J+MBbDh/W58aBv1RBUyRNcxHpRBAu1t3mVlIXdSa5Rd4jaH6oyckEJI0sXnOtKhRvT3
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?aVhbBleRhK+zee6qNh909hgiWbqFGkYOaa65hegK3j7afc+B2WJvqjB8bLo3?=
- =?us-ascii?Q?ZYZNNvR/GoXzP7+mp2PzKgyM3awe9drv+6xn//vg3c2t/OS89NY7insnnsKm?=
- =?us-ascii?Q?P1DFR9i25TJ7B0wLjHuLYqFD587cbyVTpwoaSn7xCGXDj6ND7P6HwPhYb9FO?=
- =?us-ascii?Q?WF6VQWMLwdjhQN8JUmuDkD803oz/6sVAPnW0+gsMueb9McFOzaaM56bCpSQs?=
- =?us-ascii?Q?WgnzJtevsge22LF5SkQldjncdleLzHp64ph+U340VPMQKhoPmfWSugrO7JZM?=
- =?us-ascii?Q?l4zqQQOtS9w+UlSM6TvhiMN3cn36y+RZ7U7S6OBZxg17ZXWB8ObGOgzdXdt5?=
- =?us-ascii?Q?xdjH3ktR9EVl9jPWOVIaPC0lPK4PQMym0gjbW2J3C0ppHnziCkvmxl7fKzts?=
- =?us-ascii?Q?OZSlvTYwmC4BpCQBIuzE0TnGmfPa0qJNtnLGZlpcRLsj6mjgIVzQWtZGjD4Q?=
- =?us-ascii?Q?GkYYCvE5pJtPM1tFOaaVHL9wD3SwuM0BL4vhgRIivEFqIKlW/Fr7tURviiNy?=
- =?us-ascii?Q?tqv1Esr7RJWHm9XW0iEc+EqK42AgO6ham2mtNitEjp/VtsrjDxSIDCRNt+tv?=
- =?us-ascii?Q?hhPL/gSrF3K9Zr0qee4dEAU5S058E452MY0YFYgQ8fdy694mlIEQ+fse8rTv?=
- =?us-ascii?Q?h+bwWH4GiPyfH14mY/nYuzUcessHxy+g3gg9Xen4FAK7EQciSW5hAQbSuk2R?=
- =?us-ascii?Q?T4Al1KUmQfq4zfQie1vhOyT4Z3LgJQy4MfhoDnDFtR/8Gqu7KakGxsDe40js?=
- =?us-ascii?Q?nkiXJ5hw7zDItM/nbzBm1qo8p5U3M4bfAHbAnHWUtTSwBlaw7HYPSLivow/j?=
- =?us-ascii?Q?OiEK2GrDDHickFWld3R1SEfWRRmRtn4Q3nWhH2wWBcXauXqd25rK0vvjwZbl?=
- =?us-ascii?Q?MPsaHv1t/6d261FzJmM8nzBsZrFSJqz8DM9LqsHMNBgJtIs1qICQI62JP4b+?=
- =?us-ascii?Q?8NJao8LvYnBZWkoYpYuSMQnFdaB3uKDGfupNBh/JgWMOXHXJDbMWiF2K2pgA?=
- =?us-ascii?Q?Deih2dKGEqxlWG5IT82IbDtZ6mpOUa9R4yI3e8jcq7j+9KxRHWP6+zvl/c26?=
- =?us-ascii?Q?IkTAwRh7X4mfD01PgNkTjocKIecMM1au7XXfN7TDOOk4q5rt9ckeld4XZF44?=
- =?us-ascii?Q?KFGwmzph7TwDgNrIjnEVNDVXPW36KYHia5nwJbVg8/ZXMncJSVtUvln9W+de?=
- =?us-ascii?Q?+8snvnlmiOrleXSebZzIzsC2R638StUygaW4w548QMRIuPay6zS1LLDWfYXu?=
- =?us-ascii?Q?gQI7BbNaiB5gTe/Gt7ZyiXzYmdKvnp89cUPNccG1nHpE53ivWExF4nvjeoHS?=
- =?us-ascii?Q?YNbpqMz4d/YmIbsteZ2TJFRExWTbflaqzQnaYHJXlgGRnyoEcEe8yTIMz2jE?=
- =?us-ascii?Q?CS16MaADQNnL3qvOx3xgKxf5Dd0CKjXoqgPtOYMKOTLBDpr6CdEvRPSmKWS6?=
- =?us-ascii?Q?bL6POFfj/nA59qaY1ZjJsee764yyecbE79ANXsb/q65zkPEe+3ZWOfqnMC3J?=
- =?us-ascii?Q?1rsETXeiVPnRMAD8ZCbbM93mrVoTvhP7aeU7HpT+RNsJe3xQTHsZOA7s5tRt?=
- =?us-ascii?Q?DH9UdoCNrm3Csbwx8s/NyhkEMlyCJt1CNEbWLzA0S4yMwqYBrfig6X90EBv6?=
- =?us-ascii?Q?+g=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2a09c97c-382e-48f6-7d8b-08dc3d63c239
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2024 22:29:45.2671 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Xz3MmiurdccnIO96xOpmErhHamcxM+TIPgwCZGTPXSgbANWOwjVLCvjbS9xGCkfTnHbOCGX4IpJD0rWGa+GvnA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5979
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240305160202.3555-4-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,63 +71,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Mar 05, 2024 at 11:29:22AM +0000, Matthew Auld wrote:
-> On 04/03/2024 18:21, Rodrigo Vivi wrote:
-> > The gem page fault is one of the outer bound protections where
-> > we want to ensure that the hardware is in D0 before proceeding
-> > with memory access. Let's convert it towards the xe_pm_runtime
-> > functions directly so we can then convert the mem_access to be
-> > inner protection only and then Kill it for good.
-> > 
-> > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> 
-> Not strictly related to this, but FYI there is:
-> 
-> https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1100
-> https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1300
-> 
-> Which is on the GPU fault path. Looks like VM is maybe nuked before the
-> worker can process the fault from the GuC? In that case there no RPM ref.
+Hi Thomas,
 
-not related indeed, but a true issue. Part of that is the guc_ct
-refactor that we need to to...  on the g2h processing.
+kernel test robot noticed the following build warnings:
 
-one idea that is crossing my mind is the to perhaps queue the interrupt
-job in a same ordered queue, right after the get_resume one... with this
-we could have this g2h and perhaps even enable more irq cases and allow
-display hotplug for instance. thoughts?
+[auto build test WARNING on drm-misc/drm-misc-next]
+[also build test WARNING on drm-intel/for-linux-next drm-tip/drm-tip]
+[cannot apply to drm-intel/for-linux-next-fixes linus/master v6.8-rc7 next-20240305]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-also, for this patch itself, are you okay with this if the lockdep is okay?
+url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Hellstr-m/drm-ttm-Allow-TTM-LRU-list-nodes-of-different-types/20240306-000453
+base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
+patch link:    https://lore.kernel.org/r/20240305160202.3555-4-thomas.hellstrom%40linux.intel.com
+patch subject: [PATCH v3 3/4] drm/ttm, drm/amdgpu, drm/xe: Consider hitch moves within bulk sublist moves
+config: arm-defconfig (https://download.01.org/0day-ci/archive/20240306/202403060640.zCXpVObi-lkp@intel.com/config)
+compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project.git f28c006a5895fc0e329fe15fead81e37457cb1d1)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240306/202403060640.zCXpVObi-lkp@intel.com/reproduce)
 
-> 
-> > ---
-> >   drivers/gpu/drm/xe/xe_bo.c | 5 +++--
-> >   1 file changed, 3 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> > index 6603a0ea79c5..def68528cd40 100644
-> > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > @@ -22,6 +22,7 @@
-> >   #include "xe_gt.h"
-> >   #include "xe_map.h"
-> >   #include "xe_migrate.h"
-> > +#include "xe_pm.h"
-> >   #include "xe_preempt_fence.h"
-> >   #include "xe_res_cursor.h"
-> >   #include "xe_trace.h"
-> > @@ -1144,7 +1145,7 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
-> >   	int idx, r = 0;
-> >   	if (needs_rpm)
-> > -		xe_device_mem_access_get(xe);
-> > +		xe_pm_runtime_get(xe);
-> >   	ret = ttm_bo_vm_reserve(tbo, vmf);
-> >   	if (ret)
-> > @@ -1184,7 +1185,7 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
-> >   	dma_resv_unlock(tbo->base.resv);
-> >   out:
-> >   	if (needs_rpm)
-> > -		xe_device_mem_access_put(xe);
-> > +		xe_pm_runtime_put(xe);
-> >   	return ret;
-> >   }
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202403060640.zCXpVObi-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from drivers/gpu/drm/drm_gem_ttm_helper.c:5:
+   In file included from include/drm/drm_gem_ttm_helper.h:10:
+   In file included from include/drm/ttm/ttm_bo.h:39:
+>> include/drm/ttm/ttm_device.h:286:31: warning: variable 'old' set but not used [-Wunused-but-set-variable]
+           struct ttm_resource_manager *old;
+                                        ^
+   1 warning generated.
+
+
+vim +/old +286 include/drm/ttm/ttm_device.h
+
+   282	
+   283	static inline void ttm_set_driver_manager(struct ttm_device *bdev, int type,
+   284						  struct ttm_resource_manager *manager)
+   285	{
+ > 286		struct ttm_resource_manager *old;
+   287	
+   288		BUILD_BUG_ON(__builtin_constant_p(type) && type >= TTM_NUM_MEM_TYPES);
+   289		old = bdev->man_drv[type];
+   290		bdev->man_drv[type] = manager;
+   291		if (manager)
+   292			manager->mem_type = type;
+   293	}
+   294	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
