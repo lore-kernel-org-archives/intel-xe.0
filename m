@@ -4,148 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3C5DC54E41
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Mar 2024 16:11:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CDDBC54E41
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Mar 2024 16:12:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74352112BCE;
-	Tue,  5 Mar 2024 16:11:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NXoJf51U";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4687112BCD;
- Tue,  5 Mar 2024 16:11:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709655079; x=1741191079;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=LDx2B5dK71U1P4uKUA7uaTTKJF0oUtjpk75mVOYQzxg=;
- b=NXoJf51USPE0UVW8l2wUhm39zkhDf9HEGG3sdE5BdbiuVUfe46FdYCsN
- 00wkKA4cK3QLi+QnGK8VxiuM2+LzgnyQ+Ltvw7QvjBEe0gGuKF0aAMh/K
- b9+qJSzlw6t20IdgYm8MUDbWf3quvtyuUtjSwQKRMdYQRHm2QEFJ5QVLs
- syJXk/wZgyXfQnQA9vg18DQBe096KaGRL48B7NVKHV0HmLDY6h+1ZBZwR
- ok7OsjI6BGuzk5Kj+YH1Tqv7Yk9z9bev6fIFAnYRCtLv8A9paMkHW/ahH
- CRvhUEe+r8pWjpjeVsx49/lKSSWagVgX22jPgrI9H62ECWarqEe7vkZ1b A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11003"; a="8037369"
-X-IronPort-AV: E=Sophos;i="6.06,205,1705392000"; 
-   d="scan'208";a="8037369"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2024 08:07:10 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,205,1705392000"; d="scan'208";a="14090387"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 05 Mar 2024 08:07:09 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 5 Mar 2024 08:07:08 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 5 Mar 2024 08:07:08 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 5 Mar 2024 08:07:08 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 5 Mar 2024 08:07:08 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MgDOXX49ARFtMsIJa60l8MJcbEqFZautce57mtegLq9QJUwwdjaQAekSRPM67tvQUyaxO6pfS92UsB7pj31MG8gAWgAU/bYo/15r9Zp0sBCmJPIc/oBrh5mnM9bfIflpSYLDT3o+uNcnfrgFdfNu+26ncMWXN4uKwZWKp2DnfEAxvWEwHyfdWZQVDLFz4Cd3vmPAJBR3StOi7xDAsGYgxLyGzhorzpDcQSgIV3bQjaJmTwiZVauaS/SG46Irgr/6bqne6RG+XvrFNWGj+MyXm2SrKAYyKJN98BIHVj8Oc4aA2oynYevpX8jn6oH/DNdYwuenQAj4RPFHIZHcES91pg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fSgyuSNeWjt36aqzoWFvVgFN4P4PT1n7P/VBKGQbIoc=;
- b=KIaeidF25++Su83NtSekkuQuhZU5vd3y29Ns6HFEprbyxXoTyQ+W3AZYvYdjQVTUYJviMzd9lKk5P5aEwUPDPAgPpKsCyX/Wu20AeZHScnDVn0/9pzMsrC8UpJJNd/E4N33vQpCER+Q6GEO6Pm7G1c9Y8CD/gRgBFv04i7sQsTskT/miBTCvq1HrJNht8ONimhU4ZB1kXpSIUCvd3iQ/9X5Dx1pw9f3Aie/UH4iydpYO+la3xEaoLsV683UM2J5WtyxU1f0wsrWRfkRxQ5kJYNr12lP6o1HV9I6VkHjz1t5CNU6k6ob7P3PsOSzBUO5bZSZTLZ6T1wh38/gk5SXVrw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by CH3PR11MB7347.namprd11.prod.outlook.com (2603:10b6:610:14f::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.22; Tue, 5 Mar
- 2024 16:06:58 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::a7f1:384c:5d93:1d1d]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::a7f1:384c:5d93:1d1d%4]) with mapi id 15.20.7362.019; Tue, 5 Mar 2024
- 16:06:58 +0000
-Date: Tue, 5 Mar 2024 11:06:52 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-CC: <jani.nikula@linux.intel.com>, <joonas.lahtinen@linux.intel.com>,
- <tvrtko.ursulin@linux.intel.com>, <ville.syrjala@linux.intel.com>,
- <imre.deak@intel.com>, <tejas.upadhyay@intel.com>,
- <jouni.hogander@intel.com>, <javierm@redhat.com>, <airlied@gmail.com>,
- <daniel@ffwll.ch>, <lucas.demarchi@intel.com>, <ogabbay@kernel.org>,
- <thomas.hellstrom@linux.intel.com>, <intel-gfx@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v7 2/6] drm/i915: Unregister in-kernel clients
-Message-ID: <ZedDHPupthhNWte8@intel.com>
-References: <20240301134448.31289-1-tzimmermann@suse.de>
- <20240301134448.31289-3-tzimmermann@suse.de>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240301134448.31289-3-tzimmermann@suse.de>
-X-ClientProxiedBy: SJ0PR03CA0111.namprd03.prod.outlook.com
- (2603:10b6:a03:333::26) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17BED1124BC;
+	Tue,  5 Mar 2024 16:12:34 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03104112BCE;
+ Tue,  5 Mar 2024 16:12:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|CH3PR11MB7347:EE_
-X-MS-Office365-Filtering-Correlation-Id: c2854c09-c238-4bd1-907c-08dc3d2e48ce
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: fMsEIjfwKHjC5cgq4WZb9fetO8YoyJZ+wpCWHxj0SDEgBuG39ziN2GVfIAl6jMBcVFJdxXWAawPlC3pLvIb67QDX+HBMDYwZXGOcKMP0W7ClsnBQNDZUzxyXp1igWRvuJn0kYBJeX3KpJLd+HlVwy3RxJaXW6yrT/abUGdHmRhzX3c0Oc7MFRVRt10QvJTEV5QwyqBg0ukpXv8x2tQVw7VFvOLx8xug0qud0zbWvAmRCtNGSTH4asiQ570JIUAsk4N7aJ2HnNs8X/5GHZDvJirDijNoW1BPyl6fXyBE/x3zeAjXieLtjOeUUmw9T5pJV1jNzn66KsIAEzuh6IsUKZsD2OQ5Om6dUL6Km+95KDGWxmGTtC8ACYuOQRziWEG88P4NAwEYv8ARZoTPZp3CjH2FBh6PsXtsFz/CVYlJD+m+5smhMEBWZSCPGqtSoLDbTHEtD2VIMGAXdCD9IxHCSL+WUVSLGc+WM28Ys6mUrEW9nDiCTmpKt0dbIp+uxusb9vTrBXr60n78MsRR/orWGfguTsRa0igljMkupaNtS3pmWW05wptFcq0ZwqroF/a4IYeAio4f7k7rj4tJ3/l1G4riSPAN8jGz6g2jC766wQdMPVdfeIylyn/f7+THUToQEzuEHkmz+PeM9+62nAL2wU/izFUA9khSgY4qwNL0A5LA=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?TfKkGIGgqn5dDwKQ5TQb+LMFcOpdMwPBNAyQ0W8t07325TkkTvCp3jYGY4D+?=
- =?us-ascii?Q?Kd74FgJbpX+Wl5SOfp3W/kLUjaZmrHIx6S6bFMDZu/Fsglph+mVrqqj01I6r?=
- =?us-ascii?Q?OeG+pFkMhiIVg/c5xc9pJ4mUN2Ht5RjH1SEikIUjWnSZxgO0xg9WIzCml7pZ?=
- =?us-ascii?Q?lWgpw4EHKyKllp84tftVRXuLjq2cBxuJzv61JTMQVOuiXi7ZalfCMi43134L?=
- =?us-ascii?Q?i0sWLdyrBnApm2fHlKTIZ0MsB8kkpQLu1o583Fv/T9JvDOrPhwRuz7yR8C0T?=
- =?us-ascii?Q?DK+HmeiVgzVuQ/uv3NhlGBdQ5ud8xQxq+1vu8+NuGE6nL53H7dKCSFQ+TbwS?=
- =?us-ascii?Q?KZxx5t2JMwxQt7svPVAwpP2r8zDhPxRUEQ1zxUJe5HM9mM9vtjpJ/7TcLlDz?=
- =?us-ascii?Q?YNPj1VVVbF7VqBaSucbZYNM34nlrY8Xvnv5++APOHRLbaRR2eQ6Q/w8GNSI1?=
- =?us-ascii?Q?hUlRBuBSPql7Wixu0XRpJlU6NGGWTcScvXO9uTAX5DvuHjOxsudjJIo4nbIn?=
- =?us-ascii?Q?S7iCtyC22Kzuc8Q+TgH0jKYYG7ofVvESgkNMMXc8UdEQXn/uBs6YiYKkywyC?=
- =?us-ascii?Q?5ptlOsQR+pCBVJbQwhR5IsAH1RynDmuES/eqS8gMv+pvay1R1U1Y1VnLHKZW?=
- =?us-ascii?Q?/+qsM5rZAfCXxURNihDyjQrP9bMCBMjjdscI0GZpzm/35fG2KP98aNlRdn0Q?=
- =?us-ascii?Q?v7xFUmkgoBUoVzkEcGU1aoioP5GQFuCUJtcol21rHIKGoKfAuR3WOd9ul0gu?=
- =?us-ascii?Q?JttX/lcG6QCPZet+LftjL4my698ZRmRHbd3EQQt6Fc0IHuJf1t6H5f+mM0yu?=
- =?us-ascii?Q?1iHDAy5RGzpc3JwoGoN7QLSUnLJej5E5iqPO2lpKa9eUT6sgOce/om7iPIkc?=
- =?us-ascii?Q?cZd+opeBw9wpmzhLAxCWJqo36S2NAYB9hjEtmnw/d/5uc9Br+5CurFs6aFRM?=
- =?us-ascii?Q?ITMZCRKGJhpwnkMnlZmzGeb2/dRaDROo4FapP4lzIGaXuhd+PcVXcf9MW9uV?=
- =?us-ascii?Q?HKXDIit5OenJOZBMiL1i5V0ILs+gfDJVrTnxXvVnIK/ack7m1Qf8Ml1g7b/y?=
- =?us-ascii?Q?ebhoeIucwrWtr/ABAyZwOCJjb9tsvBGRxKaf62VDe7h2G/ul+dLKPBbYyuSh?=
- =?us-ascii?Q?mkk+kQj6aiIqFAmfL6Mius05ecZTvbO4tMHkdCc4/t0+goSFsbS1RXDq2yZv?=
- =?us-ascii?Q?h5M2F8hGM/APoK1uaNPsIb507MHWCKqSB0dq84B3u3a8TXAKo5akODIzdyQd?=
- =?us-ascii?Q?BAhN5MnmwJ+2StDdHZtZ01+GPp210V5mwwH/j5PrlEvJLHn418tokLtOQt4F?=
- =?us-ascii?Q?ponRPMjuzyD1Vtkz9vzaQ9SsPfY5C04cmV7HRfXcFCcSLllsqPJZ6jwpFRi8?=
- =?us-ascii?Q?FdKayk7K0cnI1NP/lUNq1KHPP6NikumbhTKZRq0gx3LJqqlv/mE4b+321kcy?=
- =?us-ascii?Q?v+S3pD1GRVy3Lv/0ZfK3RDxBUXyuW9oYaoF7rW8IvNUPjxdMv9CHs/C6nsfB?=
- =?us-ascii?Q?rEbZ4Vag+CA+xqb7i4Bpw8A2coUbKkA0Hp175/yLILgfCHuo0vFZb8LJysGb?=
- =?us-ascii?Q?KQajLU8joM8hYCGw3RBiGNNO0KOD39rYTiFE/MNl9eK2KD2kBrIDr2ChUCk/?=
- =?us-ascii?Q?QQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: c2854c09-c238-4bd1-907c-08dc3d2e48ce
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2024 16:06:58.2465 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hlzsb26/vhyEBfx9+e16ld2brrrKNimhNctoVkn6Wz1kVeUL3AMCMbgbku3rUOQzHE5C7sSBkJ6498bfQt/34g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7347
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EKUnit=3A_success_for_TTM_unlockable_restartable_LRU?=
+ =?utf-8?q?_list_iteration_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 05 Mar 2024 16:12:33 -0000
+Message-ID: <170965515300.524258.11613855801856124854@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240305160202.3555-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20240305160202.3555-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,72 +36,1605 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Mar 01, 2024 at 02:42:55PM +0100, Thomas Zimmermann wrote:
-> Unregister all in-kernel clients before unloading the i915 driver. For
-> other drivers, drm_dev_unregister() does this automatically. As i915
-> does not use this helper, it has to perform the call by itself. For xe,
-> do the same in xe_device_remove()
-> 
-> Note that there are currently no in-kernel clients in i915 or xe. The
-> patch prepares the drivers for a related update of their fbdev support.
-> 
-> v7:
-> 	* update xe driver
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> ---
->  drivers/gpu/drm/i915/i915_driver.c | 3 +++
->  drivers/gpu/drm/xe/xe_device.c     | 3 +++
->  2 files changed, 6 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index 9ee902d5b72c4..97910a85e3917 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -41,6 +41,7 @@
->  
->  #include <drm/drm_aperture.h>
->  #include <drm/drm_atomic_helper.h>
-> +#include <drm/drm_client.h>
->  #include <drm/drm_ioctl.h>
->  #include <drm/drm_managed.h>
->  #include <drm/drm_probe_helper.h>
-> @@ -852,6 +853,8 @@ void i915_driver_remove(struct drm_i915_private *i915)
->  {
->  	intel_wakeref_t wakeref;
->  
-> +	drm_client_dev_unregister(&i915->drm);
-> +
->  	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
->  
->  	i915_driver_unregister(i915);
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index 919ad88f0495a..7f41f0ec819f0 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
+== Series Details ==
 
-probably deserves a separate patch since this is one here is named 'drm/i915:'
+Series: TTM unlockable restartable LRU list iteration (rev3)
+URL   : https://patchwork.freedesktop.org/series/130000/
+State : success
 
-> @@ -9,6 +9,7 @@
->  
->  #include <drm/drm_aperture.h>
->  #include <drm/drm_atomic_helper.h>
-> +#include <drm/drm_client.h>
->  #include <drm/drm_gem_ttm_helper.h>
->  #include <drm/drm_ioctl.h>
->  #include <drm/drm_managed.h>
-> @@ -614,6 +615,8 @@ void xe_device_remove(struct xe_device *xe)
->  	struct xe_gt *gt;
->  	u8 id;
->  
-> +	drm_client_dev_unregister(&xe->drm);
-> +
->  	xe_device_remove_display(xe);
->  
->  	xe_display_fini(xe);
-> -- 
-> 2.43.2
-> 
+== Summary ==
+
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+[16:09:29] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[16:09:36] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
+../arch/x86/um/user-offsets.c:17:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
+   17 | void foo(void)
+      |      ^~~
+In file included from ../arch/um/kernel/asm-offsets.c:1:
+../arch/x86/um/shared/sysdep/kernel-offsets.h:9:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
+    9 | void foo(void)
+      |      ^~~
+../arch/x86/um/vdso/um_vdso.c:16:5: warning: no previous prototype for ‘__vdso_clock_gettime’ [-Wmissing-prototypes]
+   16 | int __vdso_clock_gettime(clockid_t clock, struct __kernel_old_timespec *ts)
+      |     ^~~~~~~~~~~~~~~~~~~~
+../arch/x86/um/vdso/um_vdso.c:30:5: warning: no previous prototype for ‘__vdso_gettimeofday’ [-Wmissing-prototypes]
+   30 | int __vdso_gettimeofday(struct __kernel_old_timeval *tv, struct timezone *tz)
+      |     ^~~~~~~~~~~~~~~~~~~
+../arch/x86/um/vdso/um_vdso.c:44:21: warning: no previous prototype for ‘__vdso_time’ [-Wmissing-prototypes]
+   44 | __kernel_old_time_t __vdso_time(__kernel_old_time_t *t)
+      |                     ^~~~~~~~~~~
+../arch/x86/um/vdso/um_vdso.c:57:1: warning: no previous prototype for ‘__vdso_getcpu’ [-Wmissing-prototypes]
+   57 | __vdso_getcpu(unsigned *cpu, unsigned *node, struct getcpu_cache *unused)
+      | ^~~~~~~~~~~~~
+../arch/x86/um/os-Linux/mcontext.c:7:6: warning: no previous prototype for ‘get_regs_from_mc’ [-Wmissing-prototypes]
+    7 | void get_regs_from_mc(struct uml_pt_regs *regs, mcontext_t *mc)
+      |      ^~~~~~~~~~~~~~~~
+../arch/x86/um/os-Linux/registers.c:146:15: warning: no previous prototype for ‘get_thread_reg’ [-Wmissing-prototypes]
+  146 | unsigned long get_thread_reg(int reg, jmp_buf *buf)
+      |               ^~~~~~~~~~~~~~
+../arch/x86/um/bugs_64.c:9:6: warning: no previous prototype for ‘arch_check_bugs’ [-Wmissing-prototypes]
+    9 | void arch_check_bugs(void)
+      |      ^~~~~~~~~~~~~~~
+../arch/x86/um/bugs_64.c:13:6: warning: no previous prototype for ‘arch_examine_signal’ [-Wmissing-prototypes]
+   13 | void arch_examine_signal(int sig, struct uml_pt_regs *regs)
+      |      ^~~~~~~~~~~~~~~~~~~
+../arch/x86/um/fault.c:18:5: warning: no previous prototype for ‘arch_fixup’ [-Wmissing-prototypes]
+   18 | int arch_fixup(unsigned long address, struct uml_pt_regs *regs)
+      |     ^~~~~~~~~~
+../arch/um/os-Linux/skas/process.c:107:6: warning: no previous prototype for ‘wait_stub_done’ [-Wmissing-prototypes]
+  107 | void wait_stub_done(int pid)
+      |      ^~~~~~~~~~~~~~
+../arch/um/os-Linux/skas/process.c:683:6: warning: no previous prototype for ‘__switch_mm’ [-Wmissing-prototypes]
+  683 | void __switch_mm(struct mm_id *mm_idp)
+      |      ^~~~~~~~~~~
+../arch/um/kernel/skas/process.c:36:12: warning: no previous prototype for ‘start_uml’ [-Wmissing-prototypes]
+   36 | int __init start_uml(void)
+      |            ^~~~~~~~~
+../arch/um/kernel/skas/mmu.c:17:5: warning: no previous prototype for ‘init_new_context’ [-Wmissing-prototypes]
+   17 | int init_new_context(struct task_struct *task, struct mm_struct *mm)
+      |     ^~~~~~~~~~~~~~~~
+../arch/um/kernel/skas/mmu.c:60:6: warning: no previous prototype for ‘destroy_context’ [-Wmissing-prototypes]
+   60 | void destroy_context(struct mm_struct *mm)
+      |      ^~~~~~~~~~~~~~~
+../arch/um/os-Linux/main.c:187:7: warning: no previous prototype for ‘__wrap_malloc’ [-Wmissing-prototypes]
+  187 | void *__wrap_malloc(int size)
+      |       ^~~~~~~~~~~~~
+../arch/um/os-Linux/main.c:208:7: warning: no previous prototype for ‘__wrap_calloc’ [-Wmissing-prototypes]
+  208 | void *__wrap_calloc(int n, int size)
+      |       ^~~~~~~~~~~~~
+../arch/um/os-Linux/main.c:222:6: warning: no previous prototype for ‘__wrap_free’ [-Wmissing-prototypes]
+  222 | void __wrap_free(void *ptr)
+      |      ^~~~~~~~~~~
+../arch/um/os-Linux/mem.c:28:6: warning: no previous prototype for ‘kasan_map_memory’ [-Wmissing-prototypes]
+   28 | void kasan_map_memory(void *start, size_t len)
+      |      ^~~~~~~~~~~~~~~~
+../arch/um/os-Linux/mem.c:212:13: warning: no previous prototype for ‘check_tmpexec’ [-Wmissing-prototypes]
+  212 | void __init check_tmpexec(void)
+      |             ^~~~~~~~~~~~~
+../arch/um/kernel/mem.c:202:8: warning: no previous prototype for ‘pgd_alloc’ [-Wmissing-prototypes]
+  202 | pgd_t *pgd_alloc(struct mm_struct *mm)
+      |        ^~~~~~~~~
+../arch/um/kernel/mem.c:215:7: warning: no previous prototype for ‘uml_kmalloc’ [-Wmissing-prototypes]
+  215 | void *uml_kmalloc(int size, int flags)
+      |       ^~~~~~~~~~~
+../arch/um/os-Linux/signal.c:75:6: warning: no previous prototype for ‘sig_handler’ [-Wmissing-prototypes]
+   75 | void sig_handler(int sig, struct siginfo *si, mcontext_t *mc)
+      |      ^~~~~~~~~~~
+../arch/um/os-Linux/signal.c:111:6: warning: no previous prototype for ‘timer_alarm_handler’ [-Wmissing-prototypes]
+  111 | void timer_alarm_handler(int sig, struct siginfo *unused_si, mcontext_t *mc)
+      |      ^~~~~~~~~~~~~~~~~~~
+../arch/um/os-Linux/start_up.c:301:12: warning: no previous prototype for ‘parse_iomem’ [-Wmissing-prototypes]
+  301 | int __init parse_iomem(char *str, int *add)
+      |            ^~~~~~~~~~~
+../arch/x86/um/ptrace_64.c:111:5: warning: no previous prototype for ‘poke_user’ [-Wmissing-prototypes]
+  111 | int poke_user(struct task_struct *child, long addr, long data)
+      |     ^~~~~~~~~
+../arch/x86/um/ptrace_64.c:171:5: warning: no previous prototype for ‘peek_user’ [-Wmissing-prototypes]
+  171 | int peek_user(struct task_struct *child, long addr, long data)
+      |     ^~~~~~~~~
+../arch/x86/um/signal.c:560:6: warning: no previous prototype for ‘sys_rt_sigreturn’ [-Wmissing-prototypes]
+  560 | long sys_rt_sigreturn(void)
+      |      ^~~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:51:5: warning: no previous prototype for ‘pid_to_processor_id’ [-Wmissing-prototypes]
+   51 | int pid_to_processor_id(int pid)
+      |     ^~~~~~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:87:7: warning: no previous prototype for ‘__switch_to’ [-Wmissing-prototypes]
+   87 | void *__switch_to(struct task_struct *from, struct task_struct *to)
+      |       ^~~~~~~~~~~
+../arch/um/kernel/process.c:140:6: warning: no previous prototype for ‘fork_handler’ [-Wmissing-prototypes]
+  140 | void fork_handler(void)
+      |      ^~~~~~~~~~~~
+../arch/um/kernel/process.c:217:6: warning: no previous prototype for ‘arch_cpu_idle’ [-Wmissing-prototypes]
+  217 | void arch_cpu_idle(void)
+      |      ^~~~~~~~~~~~~
+../arch/um/kernel/process.c:253:5: warning: no previous prototype for ‘copy_to_user_proc’ [-Wmissing-prototypes]
+  253 | int copy_to_user_proc(void __user *to, void *from, int size)
+      |     ^~~~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:263:5: warning: no previous prototype for ‘clear_user_proc’ [-Wmissing-prototypes]
+  263 | int clear_user_proc(void __user *buf, int size)
+      |     ^~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:271:6: warning: no previous prototype for ‘set_using_sysemu’ [-Wmissing-prototypes]
+  271 | void set_using_sysemu(int value)
+      |      ^~~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:278:5: warning: no previous prototype for ‘get_using_sysemu’ [-Wmissing-prototypes]
+  278 | int get_using_sysemu(void)
+      |     ^~~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:316:12: warning: no previous prototype for ‘make_proc_sysemu’ [-Wmissing-prototypes]
+  316 | int __init make_proc_sysemu(void)
+      |            ^~~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:348:15: warning: no previous prototype for ‘arch_align_stack’ [-Wmissing-prototypes]
+  348 | unsigned long arch_align_stack(unsigned long sp)
+      |               ^~~~~~~~~~~~~~~~
+../arch/um/kernel/reboot.c:45:6: warning: no previous prototype for ‘machine_restart’ [-Wmissing-prototypes]
+   45 | void machine_restart(char * __unused)
+      |      ^~~~~~~~~~~~~~~
+../arch/um/kernel/reboot.c:51:6: warning: no previous prototype for ‘machine_power_off’ [-Wmissing-prototypes]
+   51 | void machine_power_off(void)
+      |      ^~~~~~~~~~~~~~~~~
+../arch/um/kernel/reboot.c:57:6: warning: no previous prototype for ‘machine_halt’ [-Wmissing-prototypes]
+   57 | void machine_halt(void)
+      |      ^~~~~~~~~~~~
+../arch/um/kernel/tlb.c:579:6: warning: no previous prototype for ‘flush_tlb_mm_range’ [-Wmissing-prototypes]
+  579 | void flush_tlb_mm_range(struct mm_struct *mm, unsigned long start,
+      |      ^~~~~~~~~~~~~~~~~~
+../arch/um/kernel/tlb.c:594:6: warning: no previous prototype for ‘force_flush_all’ [-Wmissing-prototypes]
+  594 | void force_flush_all(void)
+      |      ^~~~~~~~~~~~~~~
+../arch/um/kernel/kmsg_dump.c:60:12: warning: no previous prototype for ‘kmsg_dumper_stdout_init’ [-Wmissing-prototypes]
+   60 | int __init kmsg_dumper_stdout_init(void)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+../arch/um/kernel/um_arch.c:408:19: warning: no previous prototype for ‘read_initrd’ [-Wmissing-prototypes]
+  408 | int __init __weak read_initrd(void)
+      |                   ^~~~~~~~~~~
+../arch/um/kernel/um_arch.c:461:7: warning: no previous prototype for ‘text_poke’ [-Wmissing-prototypes]
+  461 | void *text_poke(void *addr, const void *opcode, size_t len)
+      |       ^~~~~~~~~
+../arch/um/kernel/um_arch.c:473:6: warning: no previous prototype for ‘text_poke_sync’ [-Wmissing-prototypes]
+  473 | void text_poke_sync(void)
+      |      ^~~~~~~~~~~~~~
+../arch/x86/um/syscalls_64.c:48:6: warning: no previous prototype for ‘arch_switch_to’ [-Wmissing-prototypes]
+   48 | void arch_switch_to(struct task_struct *to)
+      |      ^~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_device.h:15,
+                 from ../drivers/gpu/drm/xe/tests/xe_wa_test.c:11:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_device.h:15,
+                 from ../drivers/gpu/drm/xe/xe_bb.c:10:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_device.h:15,
+                 from ../drivers/gpu/drm/xe/tests/xe_pci_test.c:13:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_device.h:15,
+                 from ../drivers/gpu/drm/xe/tests/xe_rtp_test.c:16:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../include/drm/ttm/ttm_bo.h:39,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:12,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
+                 from ../drivers/gpu/drm/xe/xe_bo_evict.c:8:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../include/drm/ttm/ttm_bo.h:39,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:12,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
+                 from ../drivers/gpu/drm/xe/xe_bo.c:6:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_device.h:15,
+                 from ../drivers/gpu/drm/xe/xe_devcoredump.c:12:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../include/drm/ttm/ttm_bo.h:39,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:12,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
+                 from ../drivers/gpu/drm/xe/xe_debugfs.c:12:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_device.h:15,
+                 from ../drivers/gpu/drm/xe/xe_device.c:6:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_device.h:15,
+                 from ../drivers/gpu/drm/xe/xe_device_sysfs.c:12:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../include/drm/ttm/ttm_bo.h:39,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:12,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
+                 from ../drivers/gpu/drm/xe/xe_drm_client.c:12:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../include/drm/ttm/ttm_bo.h:39,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:12,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
+                 from ../drivers/gpu/drm/xe/xe_dma_buf.c:17:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../include/drm/ttm/ttm_bo.h:39,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:12,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
+                 from ../drivers/gpu/drm/xe/xe_exec.c:14:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_exec_queue.h:10,
+                 from ../drivers/gpu/drm/xe/xe_exec_queue.c:6:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_execlist.c:15:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_ggtt.c:16:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
+                 from ../drivers/gpu/drm/xe/xe_force_wake.c:6:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_gt_ccs_mode.c:9:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../include/drm/ttm/ttm_bo.h:39,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:12,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
+                 from ../drivers/gpu/drm/xe/xe_gsc_proxy.c:17:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_exec_queue.h:10,
+                 from ../drivers/gpu/drm/xe/xe_gsc_submit.c:12:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_gt_freq.c:14:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_gt.h:11,
+                 from ../drivers/gpu/drm/xe/xe_gt.c:6:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_device.h:15,
+                 from ../drivers/gpu/drm/xe/xe_gt_clock.c:10:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_device.h:15,
+                 from ../drivers/gpu/drm/xe/xe_gt_debugfs.c:11:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../include/drm/ttm/ttm_bo.h:39,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:12,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
+                 from ../drivers/gpu/drm/xe/xe_gt_pagefault.c:16:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_device.h:15,
+                 from ../drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c:9:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_gt.h:11,
+                 from ../drivers/gpu/drm/xe/xe_gt_topology.c:11:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_gt.h:11,
+                 from ../drivers/gpu/drm/xe/xe_gt_sysfs.c:13:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../include/drm/ttm/ttm_bo.h:39,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:12,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
+                 from ../drivers/gpu/drm/xe/xe_guc_ct.c:19:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_device.h:15,
+                 from ../drivers/gpu/drm/xe/xe_gt_idle.c:8:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../include/drm/ttm/ttm_bo.h:39,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:12,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
+                 from ../drivers/gpu/drm/xe/xe_guc_ads.c:13:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_device.h:15,
+                 from ../drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:9:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_gt.h:11,
+                 from ../drivers/gpu/drm/xe/xe_gt_mcr.c:9:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../include/drm/ttm/ttm_bo.h:39,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:12,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
+                 from ../drivers/gpu/drm/xe/xe_guc_hwconfig.c:11:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_device.h:15,
+                 from ../drivers/gpu/drm/xe/xe_guc_debugfs.c:11:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_guc_db_mgr.c:13:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_guc_submit.c:19:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../include/drm/ttm/ttm_bo.h:39,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:12,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
+                 from ../drivers/gpu/drm/xe/xe_guc_pc.c:16:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../include/drm/ttm/ttm_bo.h:39,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:12,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
+                 from ../drivers/gpu/drm/xe/xe_guc_log.c:10:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../include/drm/ttm/ttm_bo.h:39,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:12,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
+                 from ../drivers/gpu/drm/xe/xe_hw_fence.c:11:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_gt.h:11,
+                 from ../drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c:10:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_device.h:15,
+                 from ../drivers/gpu/drm/xe/xe_huc_debugfs.c:11:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_migrate.c:20:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_hw_engine.c:12:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_huc.c:13:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_heci_gsc.c:11:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../include/drm/ttm/ttm_bo.h:39,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:12,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
+                 from ../drivers/gpu/drm/xe/xe_lrc.c:17:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_pat.c:11:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_device.h:15,
+                 from ../drivers/gpu/drm/xe/display/xe_display.h:9,
+                 from ../drivers/gpu/drm/xe/xe_irq.c:12:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_mmio.h:13,
+                 from ../drivers/gpu/drm/xe/xe_mmio.c:8:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_device.h:15,
+                 from ../drivers/gpu/drm/xe/display/xe_display.h:9,
+                 from ../drivers/gpu/drm/xe/xe_pci.c:18:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../include/drm/ttm/ttm_bo.h:39,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:12,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
+                 from ../drivers/gpu/drm/xe/xe_mocs.c:9:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_gt.h:11,
+                 from ../drivers/gpu/drm/xe/xe_pcode.c:13:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_device.h:15,
+                 from ../drivers/gpu/drm/xe/display/xe_display.h:9,
+                 from ../drivers/gpu/drm/xe/xe_pm.c:13:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../include/drm/ttm/ttm_bo.h:39,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:12,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
+                 from ../drivers/gpu/drm/xe/xe_query.c:15:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../include/drm/ttm/ttm_bo.h:39,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:12,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
+                 from ../drivers/gpu/drm/xe/xe_pt.c:8:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_vm_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_exec_queue.h:10,
+                 from ../drivers/gpu/drm/xe/xe_preempt_fence.c:10:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_reg_sr.c:18:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_gt.h:11,
+                 from ../drivers/gpu/drm/xe/xe_rtp.c:12:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_device.h:15,
+                 from ../drivers/gpu/drm/xe/xe_sched_job.c:11:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../include/drm/ttm/ttm_bo.h:39,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:12,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
+                 from ../drivers/gpu/drm/xe/xe_trace.h:15,
+                 from ../drivers/gpu/drm/xe/xe_trace.c:8:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_tile.h:9,
+                 from ../drivers/gpu/drm/xe/xe_tile_sysfs.c:11:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_device.h:15,
+                 from ../drivers/gpu/drm/xe/xe_tile.c:8:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_gt.h:11,
+                 from ../drivers/gpu/drm/xe/xe_ring_ops.c:16:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../include/drm/ttm/ttm_bo.h:39,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:12,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
+                 from ../drivers/gpu/drm/xe/xe_sa.c:12:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../include/drm/ttm/ttm_range_manager.h:7,
+                 from ../drivers/gpu/drm/xe/xe_ttm_vram_mgr.c:10:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_sync.c:17:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_device.h:15,
+                 from ../drivers/gpu/drm/xe/xe_step.c:10:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../include/drm/ttm/ttm_range_manager.h:7,
+                 from ../drivers/gpu/drm/xe/xe_ttm_sys_mgr.c:12:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c:10:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_gt.h:11,
+                 from ../drivers/gpu/drm/xe/xe_uc_debugfs.c:8:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_device.h:15,
+                 from ../drivers/gpu/drm/xe/xe_uc.c:8:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_sriov.c:8:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_lmtt.c:12:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../include/drm/ttm/ttm_bo.h:39,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:12,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
+                 from ../drivers/gpu/drm/xe/xe_uc_fw.c:12:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../include/drm/ttm/ttm_bo.h:39,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:12,
+                 from ../drivers/gpu/drm/xe/xe_vm.h:9,
+                 from ../drivers/gpu/drm/xe/xe_vm.c:6:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_tile.h:9,
+                 from ../drivers/gpu/drm/xe/xe_vram_freq.c:11:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_guc_relay.c:18:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_device.h:15,
+                 from ../drivers/gpu/drm/xe/xe_wait_user_fence.c:13:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_device.h:15,
+                 from ../drivers/gpu/drm/xe/xe_wopcm.c:9:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_memirq.c:12:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_device.h:15,
+                 from ../drivers/gpu/drm/xe/xe_hwmon.c:14:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_wa.c:17:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/tests/xe_kunit_helpers.c:15:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_gt.h:11,
+                 from ../drivers/gpu/drm/xe/xe_guc.h:9,
+                 from ../drivers/gpu/drm/xe/xe_guc.c:6:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+In file included from ../include/drm/ttm/ttm_bo.h:39,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:12,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
+                 from ../drivers/gpu/drm/xe/xe_gsc.c:14:
+../include/drm/ttm/ttm_device.h: In function ‘ttm_set_driver_manager’:
+../include/drm/ttm/ttm_device.h:286:31: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  286 |  struct ttm_resource_manager *old;
+      |                               ^~~
+stty: 'standard input': Inappropriate ioctl for device
+
+[16:10:27] Starting KUnit Kernel (1/1)...
+[16:10:27] ============================================================
+[16:10:27] =================== guc_dbm (7 subtests) ===================
+[16:10:27] [PASSED] test_empty
+[16:10:27] [PASSED] test_default
+[16:10:27] ======================== test_size  ========================
+[16:10:27] [PASSED] 4
+[16:10:27] [PASSED] 8
+[16:10:27] [PASSED] 32
+[16:10:27] [PASSED] 256
+[16:10:27] ==================== [PASSED] test_size ====================
+[16:10:27] ======================= test_reuse  ========================
+[16:10:27] [PASSED] 4
+[16:10:27] [PASSED] 8
+[16:10:27] [PASSED] 32
+[16:10:27] [PASSED] 256
+[16:10:27] =================== [PASSED] test_reuse ====================
+[16:10:27] =================== test_range_overlap  ====================
+[16:10:27] [PASSED] 4
+[16:10:27] [PASSED] 8
+[16:10:27] [PASSED] 32
+[16:10:27] [PASSED] 256
+[16:10:27] =============== [PASSED] test_range_overlap ================
+[16:10:27] =================== test_range_compact  ====================
+[16:10:27] [PASSED] 4
+[16:10:27] [PASSED] 8
+[16:10:27] [PASSED] 32
+[16:10:27] [PASSED] 256
+[16:10:27] =============== [PASSED] test_range_compact ================
+[16:10:27] ==================== test_range_spare  =====================
+[16:10:27] [PASSED] 4
+[16:10:27] [PASSED] 8
+[16:10:27] [PASSED] 32
+[16:10:27] [PASSED] 256
+[16:10:27] ================ [PASSED] test_range_spare =================
+[16:10:27] ===================== [PASSED] guc_dbm =====================
+[16:10:27] ================== no_relay (3 subtests) ===================
+[16:10:27] [PASSED] xe_drops_guc2pf_if_not_ready
+[16:10:27] [PASSED] xe_drops_guc2vf_if_not_ready
+[16:10:27] [PASSED] xe_rejects_send_if_not_ready
+[16:10:27] ==================== [PASSED] no_relay =====================
+[16:10:27] ================== pf_relay (14 subtests) ==================
+[16:10:27] [PASSED] pf_rejects_guc2pf_too_short
+[16:10:27] [PASSED] pf_rejects_guc2pf_too_long
+[16:10:27] [PASSED] pf_rejects_guc2pf_no_payload
+[16:10:27] [PASSED] pf_fails_no_payload
+[16:10:27] [PASSED] pf_fails_bad_origin
+[16:10:27] [PASSED] pf_fails_bad_type
+[16:10:27] [PASSED] pf_txn_reports_error
+[16:10:27] [PASSED] pf_txn_sends_pf2guc
+[16:10:27] [PASSED] pf_sends_pf2guc
+[16:10:27] [SKIPPED] pf_loopback_nop
+[16:10:27] [SKIPPED] pf_loopback_echo
+[16:10:27] [SKIPPED] pf_loopback_fail
+[16:10:27] [SKIPPED] pf_loopback_busy
+[16:10:27] [SKIPPED] pf_loopback_retry
+[16:10:27] ==================== [PASSED] pf_relay =====================
+[16:10:27] ================== vf_relay (3 subtests) ===================
+[16:10:27] [PASSED] vf_rejects_guc2vf_too_short
+[16:10:27] [PASSED] vf_rejects_guc2vf_too_long
+[16:10:27] [PASSED] vf_rejects_guc2vf_no_payload
+[16:10:27] ==================== [PASSED] vf_relay =====================
+[16:10:27] ===================== lmtt (1 subtest) =====================
+[16:10:27] ======================== test_ops  =========================
+[16:10:27] [PASSED] 2-level
+[16:10:27] [PASSED] multi-level
+[16:10:27] ==================== [PASSED] test_ops =====================
+[16:10:27] ====================== [PASSED] lmtt =======================
+[16:10:27] ==================== xe_bo (2 subtests) ====================
+[16:10:27] [SKIPPED] xe_ccs_migrate_kunit
+[16:10:27] [SKIPPED] xe_bo_evict_kunit
+[16:10:27] ===================== [SKIPPED] xe_bo ======================
+[16:10:27] ================== xe_dma_buf (1 subtest) ==================
+[16:10:27] [SKIPPED] xe_dma_buf_kunit
+[16:10:27] =================== [SKIPPED] xe_dma_buf ===================
+[16:10:27] ================== xe_migrate (1 subtest) ==================
+[16:10:27] [SKIPPED] xe_migrate_sanity_kunit
+[16:10:27] =================== [SKIPPED] xe_migrate ===================
+[16:10:27] =================== xe_mocs (2 subtests) ===================
+[16:10:27] [SKIPPED] xe_live_mocs_kernel_kunit
+[16:10:27] [SKIPPED] xe_live_mocs_reset_kunit
+[16:10:27] ==================== [SKIPPED] xe_mocs =====================
+[16:10:27] =================== xe_pci (2 subtests) ====================
+[16:10:27] [PASSED] xe_gmdid_graphics_ip
+[16:10:27] [PASSED] xe_gmdid_media_ip
+[16:10:27] ===================== [PASSED] xe_pci ======================
+[16:10:27] ==================== xe_rtp (1 subtest) ====================
+[16:10:27] ================== xe_rtp_process_tests  ===================
+[16:10:27] [PASSED] coalesce-same-reg
+[16:10:27] [PASSED] no-match-no-add
+[16:10:27] [PASSED] no-match-no-add-multiple-rules
+[16:10:27] [PASSED] two-regs-two-entries
+[16:10:27] [PASSED] clr-one-set-other
+[16:10:27] [PASSED] set-field
+[16:10:27] [PASSED] conflict-duplicate
+[16:10:27] [PASSED] conflict-not-disjoint
+[16:10:27] [PASSED] conflict-reg-type
+[16:10:27] ============== [PASSED] xe_rtp_process_tests ===============
+[16:10:27] ===================== [PASSED] xe_rtp ======================
+[16:10:27] ==================== xe_wa (1 subtest) =====================
+[16:10:27] ======================== xe_wa_gt  =========================
+[16:10:27] [PASSED] TIGERLAKE (B0)
+[16:10:27] [PASSED] DG1 (A0)
+[16:10:27] [PASSED] DG1 (B0)
+[16:10:27] [PASSED] ALDERLAKE_S (A0)
+[16:10:27] [PASSED] ALDERLAKE_S (B0)
+[16:10:27] [PASSED] ALDERLAKE_S (C0)
+[16:10:27] [PASSED] ALDERLAKE_S (D0)
+[16:10:27] [PASSED] ALDERLAKE_P (A0)
+[16:10:27] [PASSED] ALDERLAKE_P (B0)
+[16:10:27] [PASSED] ALDERLAKE_P (C0)
+[16:10:27] [PASSED] ALDERLAKE_S_RPLS (D0)
+[16:10:27] [PASSED] ALDERLAKE_P_RPLU (E0)
+[16:10:27] [PASSED] DG2_G10 (C0)
+[16:10:27] [PASSED] DG2_G11 (B1)
+[16:10:27] [PASSED] DG2_G12 (A1)
+[16:10:27] [PASSED] METEORLAKE (g:A0, m:A0)
+[16:10:27] [PASSED] METEORLAKE (g:A0, m:A0)
+[16:10:27] [PASSED] LUNARLAKE (g:A0, m:A0)
+[16:10:27] [PASSED] LUNARLAKE (g:B0, m:A0)
+[16:10:27] ==================== [PASSED] xe_wa_gt =====================
+[16:10:27] ====================== [PASSED] xe_wa ======================
+[16:10:27] ============================================================
+[16:10:27] Testing complete. Ran 80 tests: passed: 69, skipped: 11
+[16:10:27] Elapsed time: 58.224s total, 6.454s configuring, 51.550s building, 0.205s running
+
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/tests/.kunitconfig
+[16:10:28] Configuring KUnit Kernel ...
+Regenerating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[16:10:30] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
+In file included from ../arch/um/kernel/asm-offsets.c:1:
+../arch/x86/um/shared/sysdep/kernel-offsets.h:9:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
+    9 | void foo(void)
+      |      ^~~
+../arch/x86/um/signal.c:560:6: warning: no previous prototype for ‘sys_rt_sigreturn’ [-Wmissing-prototypes]
+  560 | long sys_rt_sigreturn(void)
+      |      ^~~~~~~~~~~~~~~~
+../arch/x86/um/syscalls_64.c:48:6: warning: no previous prototype for ‘arch_switch_to’ [-Wmissing-prototypes]
+   48 | void arch_switch_to(struct task_struct *to)
+      |      ^~~~~~~~~~~~~~
+../arch/um/kernel/process.c:51:5: warning: no previous prototype for ‘pid_to_processor_id’ [-Wmissing-prototypes]
+   51 | int pid_to_processor_id(int pid)
+      |     ^~~~~~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:87:7: warning: no previous prototype for ‘__switch_to’ [-Wmissing-prototypes]
+   87 | void *__switch_to(struct task_struct *from, struct task_struct *to)
+      |       ^~~~~~~~~~~
+../arch/um/kernel/process.c:140:6: warning: no previous prototype for ‘fork_handler’ [-Wmissing-prototypes]
+  140 | void fork_handler(void)
+      |      ^~~~~~~~~~~~
+../arch/um/kernel/process.c:217:6: warning: no previous prototype for ‘arch_cpu_idle’ [-Wmissing-prototypes]
+  217 | void arch_cpu_idle(void)
+      |      ^~~~~~~~~~~~~
+../arch/um/kernel/process.c:253:5: warning: no previous prototype for ‘copy_to_user_proc’ [-Wmissing-prototypes]
+  253 | int copy_to_user_proc(void __user *to, void *from, int size)
+      |     ^~~~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:263:5: warning: no previous prototype for ‘clear_user_proc’ [-Wmissing-prototypes]
+  263 | int clear_user_proc(void __user *buf, int size)
+      |     ^~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:271:6: warning: no previous prototype for ‘set_using_sysemu’ [-Wmissing-prototypes]
+  271 | void set_using_sysemu(int value)
+      |      ^~~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:278:5: warning: no previous prototype for ‘get_using_sysemu’ [-Wmissing-prototypes]
+  278 | int get_using_sysemu(void)
+      |     ^~~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:316:12: warning: no previous prototype for ‘make_proc_sysemu’ [-Wmissing-prototypes]
+  316 | int __init make_proc_sysemu(void)
+      |            ^~~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:348:15: warning: no previous prototype for ‘arch_align_stack’ [-Wmissing-prototypes]
+  348 | unsigned long arch_align_stack(unsigned long sp)
+      |               ^~~~~~~~~~~~~~~~
+../arch/x86/um/ptrace_64.c:111:5: warning: no previous prototype for ‘poke_user’ [-Wmissing-prototypes]
+  111 | int poke_user(struct task_struct *child, long addr, long data)
+      |     ^~~~~~~~~
+../arch/x86/um/ptrace_64.c:171:5: warning: no previous prototype for ‘peek_user’ [-Wmissing-prototypes]
+  171 | int peek_user(struct task_struct *child, long addr, long data)
+      |     ^~~~~~~~~
+../arch/um/kernel/mem.c:202:8: warning: no previous prototype for ‘pgd_alloc’ [-Wmissing-prototypes]
+  202 | pgd_t *pgd_alloc(struct mm_struct *mm)
+      |        ^~~~~~~~~
+../arch/um/kernel/mem.c:215:7: warning: no previous prototype for ‘uml_kmalloc’ [-Wmissing-prototypes]
+  215 | void *uml_kmalloc(int size, int flags)
+      |       ^~~~~~~~~~~
+../arch/um/kernel/tlb.c:579:6: warning: no previous prototype for ‘flush_tlb_mm_range’ [-Wmissing-prototypes]
+  579 | void flush_tlb_mm_range(struct mm_struct *mm, unsigned long start,
+      |      ^~~~~~~~~~~~~~~~~~
+../arch/um/kernel/tlb.c:594:6: warning: no previous prototype for ‘force_flush_all’ [-Wmissing-prototypes]
+  594 | void force_flush_all(void)
+      |      ^~~~~~~~~~~~~~~
+../arch/um/kernel/reboot.c:45:6: warning: no previous prototype for ‘machine_restart’ [-Wmissing-prototypes]
+   45 | void machine_restart(char * __unused)
+      |      ^~~~~~~~~~~~~~~
+../arch/um/kernel/reboot.c:51:6: warning: no previous prototype for ‘machine_power_off’ [-Wmissing-prototypes]
+   51 | void machine_power_off(void)
+      |      ^~~~~~~~~~~~~~~~~
+../arch/um/kernel/reboot.c:57:6: warning: no previous prototype for ‘machine_halt’ [-Wmissing-prototypes]
+   57 | void machine_halt(void)
+      |      ^~~~~~~~~~~~
+../arch/um/kernel/um_arch.c:408:19: warning: no previous prototype for ‘read_initrd’ [-Wmissing-prototypes]
+  408 | int __init __weak read_initrd(void)
+      |                   ^~~~~~~~~~~
+../arch/um/kernel/um_arch.c:461:7: warning: no previous prototype for ‘text_poke’ [-Wmissing-prototypes]
+  461 | void *text_poke(void *addr, const void *opcode, size_t len)
+      |       ^~~~~~~~~
+../arch/um/kernel/um_arch.c:473:6: warning: no previous prototype for ‘text_poke_sync’ [-Wmissing-prototypes]
+  473 | void text_poke_sync(void)
+      |      ^~~~~~~~~~~~~~
+../arch/um/kernel/kmsg_dump.c:60:12: warning: no previous prototype for ‘kmsg_dumper_stdout_init’ [-Wmissing-prototypes]
+   60 | int __init kmsg_dumper_stdout_init(void)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+../arch/um/kernel/skas/process.c:36:12: warning: no previous prototype for ‘start_uml’ [-Wmissing-prototypes]
+   36 | int __init start_uml(void)
+      |            ^~~~~~~~~
+../arch/um/kernel/skas/mmu.c:17:5: warning: no previous prototype for ‘init_new_context’ [-Wmissing-prototypes]
+   17 | int init_new_context(struct task_struct *task, struct mm_struct *mm)
+      |     ^~~~~~~~~~~~~~~~
+../arch/um/kernel/skas/mmu.c:60:6: warning: no previous prototype for ‘destroy_context’ [-Wmissing-prototypes]
+   60 | void destroy_context(struct mm_struct *mm)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+
+[16:10:54] Starting KUnit Kernel (1/1)...
+[16:10:54] ============================================================
+[16:10:54] ============ drm_test_pick_cmdline (2 subtests) ============
+[16:10:54] [PASSED] drm_test_pick_cmdline_res_1920_1080_60
+[16:10:54] =============== drm_test_pick_cmdline_named  ===============
+[16:10:54] [PASSED] NTSC
+[16:10:54] [PASSED] NTSC-J
+[16:10:54] [PASSED] PAL
+[16:10:54] [PASSED] PAL-M
+[16:10:54] =========== [PASSED] drm_test_pick_cmdline_named ===========
+[16:10:54] ============== [PASSED] drm_test_pick_cmdline ==============
+[16:10:54] ================== drm_buddy (6 subtests) ==================
+[16:10:54] [PASSED] drm_test_buddy_alloc_limit
+[16:10:54] [PASSED] drm_test_buddy_alloc_optimistic
+[16:10:54] [PASSED] drm_test_buddy_alloc_pessimistic
+[16:10:54] [PASSED] drm_test_buddy_alloc_pathological
+[16:10:54] [PASSED] drm_test_buddy_alloc_contiguous
+[16:10:54] [PASSED] drm_test_buddy_alloc_range_bias
+[16:10:54] ==================== [PASSED] drm_buddy ====================
+[16:10:54] ============= drm_cmdline_parser (40 subtests) =============
+[16:10:54] [PASSED] drm_test_cmdline_force_d_only
+[16:10:54] [PASSED] drm_test_cmdline_force_D_only_dvi
+[16:10:54] [PASSED] drm_test_cmdline_force_D_only_hdmi
+[16:10:54] [PASSED] drm_test_cmdline_force_D_only_not_digital
+[16:10:54] [PASSED] drm_test_cmdline_force_e_only
+[16:10:54] [PASSED] drm_test_cmdline_res
+[16:10:54] [PASSED] drm_test_cmdline_res_vesa
+[16:10:54] [PASSED] drm_test_cmdline_res_vesa_rblank
+[16:10:54] [PASSED] drm_test_cmdline_res_rblank
+[16:10:54] [PASSED] drm_test_cmdline_res_bpp
+[16:10:54] [PASSED] drm_test_cmdline_res_refresh
+[16:10:54] [PASSED] drm_test_cmdline_res_bpp_refresh
+[16:10:54] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced
+[16:10:54] [PASSED] drm_test_cmdline_res_bpp_refresh_margins
+[16:10:54] [PASSED] drm_test_cmdline_res_bpp_refresh_force_off
+[16:10:54] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on
+[16:10:54] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_analog
+[16:10:54] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_digital
+[16:10:54] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced_margins_force_on
+[16:10:54] [PASSED] drm_test_cmdline_res_margins_force_on
+[16:10:54] [PASSED] drm_test_cmdline_res_vesa_margins
+[16:10:54] [PASSED] drm_test_cmdline_name
+[16:10:54] [PASSED] drm_test_cmdline_name_bpp
+[16:10:54] [PASSED] drm_test_cmdline_name_option
+[16:10:54] [PASSED] drm_test_cmdline_name_bpp_option
+[16:10:54] [PASSED] drm_test_cmdline_rotate_0
+[16:10:54] [PASSED] drm_test_cmdline_rotate_90
+[16:10:54] [PASSED] drm_test_cmdline_rotate_180
+[16:10:54] [PASSED] drm_test_cmdline_rotate_270
+[16:10:54] [PASSED] drm_test_cmdline_hmirror
+[16:10:54] [PASSED] drm_test_cmdline_vmirror
+[16:10:54] [PASSED] drm_test_cmdline_margin_options
+[16:10:54] [PASSED] drm_test_cmdline_multiple_options
+[16:10:54] [PASSED] drm_test_cmdline_bpp_extra_and_option
+[16:10:54] [PASSED] drm_test_cmdline_extra_and_option
+[16:10:54] [PASSED] drm_test_cmdline_freestanding_options
+[16:10:54] [PASSED] drm_test_cmdline_freestanding_force_e_and_options
+[16:10:54] [PASSED] drm_test_cmdline_panel_orientation
+[16:10:54] ================ drm_test_cmdline_invalid  =================
+[16:10:54] [PASSED] margin_only
+[16:10:54] [PASSED] interlace_only
+[16:10:54] [PASSED] res_missing_x
+[16:10:54] [PASSED] res_missing_y
+[16:10:54] [PASSED] res_bad_y
+[16:10:54] [PASSED] res_missing_y_bpp
+[16:10:54] [PASSED] res_bad_bpp
+[16:10:54] [PASSED] res_bad_refresh
+[16:10:54] [PASSED] res_bpp_refresh_force_on_off
+[16:10:54] [PASSED] res_invalid_mode
+[16:10:54] [PASSED] res_bpp_wrong_place_mode
+[16:10:54] [PASSED] name_bpp_refresh
+[16:10:54] [PASSED] name_refresh
+[16:10:54] [PASSED] name_refresh_wrong_mode
+[16:10:54] [PASSED] name_refresh_invalid_mode
+[16:10:54] [PASSED] rotate_multiple
+[16:10:54] [PASSED] rotate_invalid_val
+[16:10:54] [PASSED] rotate_truncated
+[16:10:54] [PASSED] invalid_option
+[16:10:54] [PASSED] invalid_tv_option
+[16:10:54] [PASSED] truncated_tv_option
+[16:10:54] ============ [PASSED] drm_test_cmdline_invalid =============
+[16:10:54] =============== drm_test_cmdline_tv_options  ===============
+[16:10:54] [PASSED] NTSC
+[16:10:54] [PASSED] NTSC_443
+[16:10:54] [PASSED] NTSC_J
+[16:10:54] [PASSED] PAL
+[16:10:54] [PASSED] PAL_M
+[16:10:54] [PASSED] PAL_N
+[16:10:54] [PASSED] SECAM
+[16:10:54] =========== [PASSED] drm_test_cmdline_tv_options ===========
+[16:10:54] =============== [PASSED] drm_cmdline_parser ================
+[16:10:54] ============= drmm_connector_init (3 subtests) =============
+[16:10:54] [PASSED] drm_test_drmm_connector_init
+[16:10:54] [PASSED] drm_test_drmm_connector_init_null_ddc
+[16:10:54] ========= drm_test_drmm_connector_init_type_valid  =========
+[16:10:54] [PASSED] Unknown
+[16:10:54] [PASSED] VGA
+[16:10:54] [PASSED] DVI-I
+[16:10:54] [PASSED] DVI-D
+[16:10:54] [PASSED] DVI-A
+[16:10:54] [PASSED] Composite
+[16:10:54] [PASSED] SVIDEO
+[16:10:54] [PASSED] LVDS
+[16:10:54] [PASSED] Component
+[16:10:54] [PASSED] DIN
+[16:10:54] [PASSED] DP
+[16:10:54] [PASSED] HDMI-A
+[16:10:54] [PASSED] HDMI-B
+[16:10:54] [PASSED] TV
+[16:10:54] [PASSED] eDP
+[16:10:54] [PASSED] Virtual
+[16:10:54] [PASSED] DSI
+[16:10:54] [PASSED] DPI
+[16:10:54] [PASSED] Writeback
+[16:10:54] [PASSED] SPI
+[16:10:54] [PASSED] USB
+[16:10:54] ===== [PASSED] drm_test_drmm_connector_init_type_valid =====
+[16:10:54] =============== [PASSED] drmm_connector_init ===============
+[16:10:54] ========== drm_get_tv_mode_from_name (2 subtests) ==========
+[16:10:54] ========== drm_test_get_tv_mode_from_name_valid  ===========
+[16:10:54] [PASSED] NTSC
+[16:10:54] [PASSED] NTSC-443
+[16:10:54] [PASSED] NTSC-J
+[16:10:54] [PASSED] PAL
+[16:10:54] [PASSED] PAL-M
+[16:10:54] [PASSED] PAL-N
+[16:10:54] [PASSED] SECAM
+[16:10:54] ====== [PASSED] drm_test_get_tv_mode_from_name_valid =======
+[16:10:54] [PASSED] drm_test_get_tv_mode_from_name_truncated
+[16:10:54] ============ [PASSED] drm_get_tv_mode_from_name ============
+[16:10:54] ============= drm_damage_helper (21 subtests) ==============
+[16:10:54] [PASSED] drm_test_damage_iter_no_damage
+[16:10:54] [PASSED] drm_test_damage_iter_no_damage_fractional_src
+[16:10:54] [PASSED] drm_test_damage_iter_no_damage_src_moved
+[16:10:54] [PASSED] drm_test_damage_iter_no_damage_fractional_src_moved
+[16:10:54] [PASSED] drm_test_damage_iter_no_damage_not_visible
+[16:10:54] [PASSED] drm_test_damage_iter_no_damage_no_crtc
+[16:10:54] [PASSED] drm_test_damage_iter_no_damage_no_fb
+[16:10:54] [PASSED] drm_test_damage_iter_simple_damage
+[16:10:54] [PASSED] drm_test_damage_iter_single_damage
+[16:10:54] [PASSED] drm_test_damage_iter_single_damage_intersect_src
+[16:10:54] [PASSED] drm_test_damage_iter_single_damage_outside_src
+[16:10:54] [PASSED] drm_test_damage_iter_single_damage_fractional_src
+[16:10:54] [PASSED] drm_test_damage_iter_single_damage_intersect_fractional_src
+[16:10:54] [PASSED] drm_test_damage_iter_single_damage_outside_fractional_src
+[16:10:54] [PASSED] drm_test_damage_iter_single_damage_src_moved
+[16:10:54] [PASSED] drm_test_damage_iter_single_damage_fractional_src_moved
+[16:10:54] [PASSED] drm_test_damage_iter_damage
+[16:10:54] [PASSED] drm_test_damage_iter_damage_one_intersect
+[16:10:54] [PASSED] drm_test_damage_iter_damage_one_outside
+[16:10:54] [PASSED] drm_test_damage_iter_damage_src_moved
+[16:10:54] [PASSED] drm_test_damage_iter_damage_not_visible
+[16:10:54] ================ [PASSED] drm_damage_helper ================
+[16:10:54] ============== drm_dp_mst_helper (3 subtests) ==============
+[16:10:54] ============== drm_test_dp_mst_calc_pbn_mode  ==============
+[16:10:54] [PASSED] Clock 154000 BPP 30 DSC disabled
+[16:10:54] [PASSED] Clock 234000 BPP 30 DSC disabled
+[16:10:54] [PASSED] Clock 297000 BPP 24 DSC disabled
+[16:10:54] [PASSED] Clock 332880 BPP 24 DSC enabled
+[16:10:54] [PASSED] Clock 324540 BPP 24 DSC enabled
+[16:10:54] ========== [PASSED] drm_test_dp_mst_calc_pbn_mode ==========
+[16:10:54] ============== drm_test_dp_mst_calc_pbn_div  ===============
+[16:10:54] [PASSED] Link rate 2000000 lane count 4
+[16:10:54] [PASSED] Link rate 2000000 lane count 2
+[16:10:54] [PASSED] Link rate 2000000 lane count 1
+[16:10:54] [PASSED] Link rate 1350000 lane count 4
+[16:10:54] [PASSED] Link rate 1350000 lane count 2
+[16:10:54] [PASSED] Link rate 1350000 lane count 1
+[16:10:54] [PASSED] Link rate 1000000 lane count 4
+[16:10:54] [PASSED] Link rate 1000000 lane count 2
+[16:10:54] [PASSED] Link rate 1000000 lane count 1
+[16:10:54] [PASSED] Link rate 810000 lane count 4
+[16:10:54] [PASSED] Link rate 810000 lane count 2
+[16:10:54] [PASSED] Link rate 810000 lane count 1
+[16:10:54] [PASSED] Link rate 540000 lane count 4
+[16:10:54] [PASSED] Link rate 540000 lane count 2
+[16:10:54] [PASSED] Link rate 540000 lane count 1
+[16:10:54] [PASSED] Link rate 270000 lane count 4
+[16:10:54] [PASSED] Link rate 270000 lane count 2
+[16:10:54] [PASSED] Link rate 270000 lane count 1
+[16:10:54] [PASSED] Link rate 162000 lane count 4
+[16:10:54] [PASSED] Link rate 162000 lane count 2
+[16:10:54] [PASSED] Link rate 162000 lane count 1
+[16:10:54] ========== [PASSED] drm_test_dp_mst_calc_pbn_div ===========
+[16:10:54] ========= drm_test_dp_mst_sideband_msg_req_decode  =========
+[16:10:54] [PASSED] DP_ENUM_PATH_RESOURCES with port number
+[16:10:54] [PASSED] DP_POWER_UP_PHY with port number
+[16:10:54] [PASSED] DP_POWER_DOWN_PHY with port number
+[16:10:54] [PASSED] DP_ALLOCATE_PAYLOAD with SDP stream sinks
+[16:10:54] [PASSED] DP_ALLOCATE_PAYLOAD with port number
+[16:10:54] [PASSED] DP_ALLOCATE_PAYLOAD with VCPI
+[16:10:54] [PASSED] DP_ALLOCATE_PAYLOAD with PBN
+[16:10:54] [PASSED] DP_QUERY_PAYLOAD with port number
+[16:10:54] [PASSED] DP_QUERY_PAYLOAD with VCPI
+[16:10:54] [PASSED] DP_REMOTE_DPCD_READ with port number
+[16:10:54] [PASSED] DP_REMOTE_DPCD_READ with DPCD address
+[16:10:54] [PASSED] DP_REMOTE_DPCD_READ with max number of bytes
+[16:10:54] [PASSED] DP_REMOTE_DPCD_WRITE with port number
+[16:10:54] [PASSED] DP_REMOTE_DPCD_WRITE with DPCD address
+[16:10:54] [PASSED] DP_REMOTE_DPCD_WRITE with data array
+[16:10:54] [PASSED] DP_REMOTE_I2C_READ with port number
+[16:10:54] [PASSED] DP_REMOTE_I2C_READ with I2C device ID
+[16:10:54] [PASSED] DP_REMOTE_I2C_READ with transactions array
+[16:10:54] [PASSED] DP_REMOTE_I2C_WRITE with port number
+[16:10:54] [PASSED] DP_REMOTE_I2C_WRITE with I2C device ID
+[16:10:54] [PASSED] DP_REMOTE_I2C_WRITE with data array
+[16:10:54] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream ID
+[16:10:54] [PASSED] DP_QUERY_STREAM_ENC_STATUS with client ID
+[16:10:54] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream event
+[16:10:54] [PASSED] DP_QUERY_STREAM_ENC_STATUS with valid stream event
+[16:10:54] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream behavior
+[16:10:54] [PASSED] DP_QUERY_STREAM_ENC_STATUS with a valid stream behavior
+[16:10:54] ===== [PASSED] drm_test_dp_mst_sideband_msg_req_decode =====
+[16:10:54] ================ [PASSED] drm_dp_mst_helper ================
+[16:10:54] ================== drm_exec (7 subtests) ===================
+[16:10:54] [PASSED] sanitycheck
+[16:10:54] [PASSED] test_lock
+[16:10:54] [PASSED] test_lock_unlock
+[16:10:54] [PASSED] test_duplicates
+[16:10:54] [PASSED] test_prepare
+[16:10:54] [PASSED] test_prepare_array
+[16:10:54] [PASSED] test_multiple_loops
+[16:10:54] ==================== [PASSED] drm_exec =====================
+[16:10:54] =========== drm_format_helper_test (17 subtests) ===========
+[16:10:54] ============== drm_test_fb_xrgb8888_to_gray8  ==============
+[16:10:54] [PASSED] single_pixel_source_buffer
+[16:10:54] [PASSED] single_pixel_clip_rectangle
+[16:10:54] [PASSED] well_known_colors
+[16:10:54] [PASSED] destination_pitch
+[16:10:54] ========== [PASSED] drm_test_fb_xrgb8888_to_gray8 ==========
+[16:10:54] ============= drm_test_fb_xrgb8888_to_rgb332  ==============
+[16:10:54] [PASSED] single_pixel_source_buffer
+[16:10:54] [PASSED] single_pixel_clip_rectangle
+[16:10:54] [PASSED] well_known_colors
+[16:10:54] [PASSED] destination_pitch
+[16:10:54] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb332 ==========
+[16:10:54] ============= drm_test_fb_xrgb8888_to_rgb565  ==============
+[16:10:54] [PASSED] single_pixel_source_buffer
+[16:10:54] [PASSED] single_pixel_clip_rectangle
+[16:10:54] [PASSED] well_known_colors
+[16:10:54] [PASSED] destination_pitch
+[16:10:54] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb565 ==========
+[16:10:54] ============ drm_test_fb_xrgb8888_to_xrgb1555  =============
+[16:10:54] [PASSED] single_pixel_source_buffer
+[16:10:54] [PASSED] single_pixel_clip_rectangle
+[16:10:54] [PASSED] well_known_colors
+[16:10:54] [PASSED] destination_pitch
+[16:10:54] ======== [PASSED] drm_test_fb_xrgb8888_to_xrgb1555 =========
+[16:10:54] ============ drm_test_fb_xrgb8888_to_argb1555  =============
+[16:10:54] [PASSED] single_pixel_source_buffer
+[16:10:54] [PASSED] single_pixel_clip_rectangle
+[16:10:54] [PASSED] well_known_colors
+[16:10:54] [PASSED] destination_pitch
+[16:10:54] ======== [PASSED] drm_test_fb_xrgb8888_to_argb1555 =========
+[16:10:54] ============ drm_test_fb_xrgb8888_to_rgba5551  =============
+[16:10:54] [PASSED] single_pixel_source_buffer
+[16:10:54] [PASSED] single_pixel_clip_rectangle
+[16:10:54] [PASSED] well_known_colors
+[16:10:54] [PASSED] destination_pitch
+[16:10:54] ======== [PASSED] drm_test_fb_xrgb8888_to_rgba5551 =========
+[16:10:54] ============= drm_test_fb_xrgb8888_to_rgb888  ==============
+[16:10:54] [PASSED] single_pixel_source_buffer
+[16:10:54] [PASSED] single_pixel_clip_rectangle
+[16:10:54] [PASSED] well_known_colors
+[16:10:54] [PASSED] destination_pitch
+[16:10:54] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb888 ==========
+[16:10:54] ============ drm_test_fb_xrgb8888_to_argb8888  =============
+[16:10:54] [PASSED] single_pixel_source_buffer
+[16:10:54] [PASSED] single_pixel_clip_rectangle
+[16:10:54] [PASSED] well_known_colors
+[16:10:54] [PASSED] destination_pitch
+[16:10:54] ======== [PASSED] drm_test_fb_xrgb8888_to_argb8888 =========
+[16:10:54] =========== drm_test_fb_xrgb8888_to_xrgb2101010  ===========
+[16:10:54] [PASSED] single_pixel_source_buffer
+[16:10:54] [PASSED] single_pixel_clip_rectangle
+[16:10:54] [PASSED] well_known_colors
+[16:10:54] [PASSED] destination_pitch
+[16:10:54] ======= [PASSED] drm_test_fb_xrgb8888_to_xrgb2101010 =======
+[16:10:54] =========== drm_test_fb_xrgb8888_to_argb2101010  ===========
+[16:10:54] [PASSED] single_pixel_source_buffer
+[16:10:54] [PASSED] single_pixel_clip_rectangle
+[16:10:54] [PASSED] well_known_colors
+[16:10:54] [PASSED] destination_pitch
+[16:10:54] ======= [PASSED] drm_test_fb_xrgb8888_to_argb2101010 =======
+[16:10:54] ============== drm_test_fb_xrgb8888_to_mono  ===============
+[16:10:54] [PASSED] single_pixel_source_buffer
+[16:10:54] [PASSED] single_pixel_clip_rectangle
+[16:10:54] [PASSED] well_known_colors
+[16:10:54] [PASSED] destination_pitch
+[16:10:54] ========== [PASSED] drm_test_fb_xrgb8888_to_mono ===========
+[16:10:54] ==================== drm_test_fb_swab  =====================
+[16:10:54] [PASSED] single_pixel_source_buffer
+[16:10:54] [PASSED] single_pixel_clip_rectangle
+[16:10:54] [PASSED] well_known_colors
+[16:10:54] [PASSED] destination_pitch
+[16:10:54] ================ [PASSED] drm_test_fb_swab =================
+[16:10:54] ============ drm_test_fb_xrgb8888_to_xbgr8888  =============
+[16:10:54] [PASSED] single_pixel_source_buffer
+[16:10:54] [PASSED] single_pixel_clip_rectangle
+[16:10:54] [PASSED] well_known_colors
+[16:10:54] [PASSED] destination_pitch
+[16:10:54] ======== [PASSED] drm_test_fb_xrgb8888_to_xbgr8888 =========
+[16:10:54] ============ drm_test_fb_xrgb8888_to_abgr8888  =============
+[16:10:54] [PASSED] single_pixel_source_buffer
+[16:10:54] [PASSED] single_pixel_clip_rectangle
+[16:10:54] [PASSED] well_known_colors
+[16:10:54] [PASSED] destination_pitch
+[16:10:54] ======== [PASSED] drm_test_fb_xrgb8888_to_abgr8888 =========
+[16:10:54] ================= drm_test_fb_clip_offset  =================
+[16:10:54] [PASSED] pass through
+[16:10:54] [PASSED] horizontal offset
+[16:10:54] [PASSED] vertical offset
+[16:10:54] [PASSED] horizontal and vertical offset
+[16:10:54] [PASSED] horizontal offset (custom pitch)
+[16:10:54] [PASSED] vertical offset (custom pitch)
+[16:10:54] [PASSED] horizontal and vertical offset (custom pitch)
+[16:10:54] ============= [PASSED] drm_test_fb_clip_offset =============
+[16:10:54] ============== drm_test_fb_build_fourcc_list  ==============
+[16:10:54] [PASSED] no native formats
+[16:10:54] [PASSED] XRGB8888 as native format
+[16:10:54] [PASSED] remove duplicates
+[16:10:54] [PASSED] convert alpha formats
+[16:10:54] [PASSED] random formats
+[16:10:54] ========== [PASSED] drm_test_fb_build_fourcc_list ==========
+[16:10:54] =================== drm_test_fb_memcpy  ====================
+[16:10:54] [PASSED] single_pixel_source_buffer: XR24 little-endian (0x34325258)
+[16:10:54] [PASSED] single_pixel_source_buffer: XRA8 little-endian (0x38415258)
+[16:10:54] [PASSED] single_pixel_source_buffer: YU24 little-endian (0x34325559)
+[16:10:54] [PASSED] single_pixel_clip_rectangle: XB24 little-endian (0x34324258)
+[16:10:54] [PASSED] single_pixel_clip_rectangle: XRA8 little-endian (0x38415258)
+[16:10:54] [PASSED] single_pixel_clip_rectangle: YU24 little-endian (0x34325559)
+[16:10:54] [PASSED] well_known_colors: XB24 little-endian (0x34324258)
+[16:10:54] [PASSED] well_known_colors: XRA8 little-endian (0x38415258)
+[16:10:54] [PASSED] well_known_colors: YU24 little-endian (0x34325559)
+[16:10:54] [PASSED] destination_pitch: XB24 little-endian (0x34324258)
+[16:10:54] [PASSED] destination_pitch: XRA8 little-endian (0x38415258)
+[16:10:54] [PASSED] destination_pitch: YU24 little-endian (0x34325559)
+[16:10:54] =============== [PASSED] drm_test_fb_memcpy ================
+[16:10:54] ============= [PASSED] drm_format_helper_test ==============
+[16:10:54] ================= drm_format (18 subtests) =================
+[16:10:54] [PASSED] drm_test_format_block_width_invalid
+[16:10:54] [PASSED] drm_test_format_block_width_one_plane
+[16:10:54] [PASSED] drm_test_format_block_width_two_plane
+[16:10:54] [PASSED] drm_test_format_block_width_three_plane
+[16:10:54] [PASSED] drm_test_format_block_width_tiled
+[16:10:54] [PASSED] drm_test_format_block_height_invalid
+[16:10:54] [PASSED] drm_test_format_block_height_one_plane
+[16:10:54] [PASSED] drm_test_format_block_height_two_plane
+[16:10:54] [PASSED] drm_test_format_block_height_three_plane
+[16:10:54] [PASSED] drm_test_format_block_height_tiled
+[16:10:54] [PASSED] drm_test_format_min_pitch_invalid
+[16:10:54] [PASSED] drm_test_format_min_pitch_one_plane_8bpp
+[16:10:54] [PASSED] drm_test_format_min_pitch_one_plane_16bpp
+[16:10:54] [PASSED] drm_test_format_min_pitch_one_plane_24bpp
+[16:10:54] [PASSED] drm_test_format_min_pitch_one_plane_32bpp
+[16:10:54] [PASSED] drm_test_format_min_pitch_two_plane
+[16:10:54] [PASSED] drm_test_format_min_pitch_three_plane_8bpp
+[16:10:54] [PASSED] drm_test_format_min_pitch_tiled
+[16:10:54] =================== [PASSED] drm_format ====================
+[16:10:54] =============== drm_framebuffer (1 subtest) ================
+[16:10:54] =============== drm_test_framebuffer_create  ===============
+[16:10:54] [PASSED] ABGR8888 normal sizes
+[16:10:54] [PASSED] ABGR8888 max sizes
+[16:10:54] [PASSED] ABGR8888 pitch greater than min required
+[16:10:54] [PASSED] ABGR8888 pitch less than min required
+[16:10:54] [PASSED] ABGR8888 Invalid width
+[16:10:54] [PASSED] ABGR8888 Invalid buffer handle
+[16:10:54] [PASSED] No pixel format
+[16:10:54] [PASSED] ABGR8888 Width 0
+[16:10:54] [PASSED] ABGR8888 Height 0
+[16:10:54] [PASSED] ABGR8888 Out of bound height * pitch combination
+[16:10:54] [PASSED] ABGR8888 Large buffer offset
+[16:10:54] [PASSED] ABGR8888 Set DRM_MODE_FB_MODIFIERS without modifiers
+[16:10:54] [PASSED] ABGR8888 Valid buffer modifier
+[16:10:54] [PASSED] ABGR8888 Invalid buffer modifier(DRM_FORMAT_MOD_SAMSUNG_64_32_TILE)
+[16:10:54] [PASSED] ABGR8888 Extra pitches without DRM_MODE_FB_MODIFIERS
+[16:10:54] [PASSED] ABGR8888 Extra pitches with DRM_MODE_FB_MODIFIERS
+[16:10:54] [PASSED] NV12 Normal sizes
+[16:10:54] [PASSED] NV12 Max sizes
+[16:10:54] [PASSED] NV12 Invalid pitch
+[16:10:54] [PASSED] NV12 Invalid modifier/missing DRM_MODE_FB_MODIFIERS flag
+[16:10:54] [PASSED] NV12 different  modifier per-plane
+[16:10:54] [PASSED] NV12 with DRM_FORMAT_MOD_SAMSUNG_64_32_TILE
+[16:10:54] [PASSED] NV12 Valid modifiers without DRM_MODE_FB_MODIFIERS
+[16:10:54] [PASSED] NV12 Modifier for inexistent plane
+[16:10:54] [PASSED] NV12 Handle for inexistent plane
+[16:10:54] [PASSED] NV12 Handle for inexistent plane without DRM_MODE_FB_MODIFIERS
+[16:10:54] [PASSED] YVU420 DRM_MODE_FB_MODIFIERS set without modifier
+[16:10:54] [PASSED] YVU420 Normal sizes
+[16:10:54] [PASSED] YVU420 Max sizes
+[16:10:54] [PASSED] YVU420 Invalid pitch
+[16:10:54] [PASSED] YVU420 Different pitches
+[16:10:54] [PASSED] YVU420 Different buffer offsets/pitches
+[16:10:54] [PASSED] YVU420 Modifier set just for plane 0, without DRM_MODE_FB_MODIFIERS
+[16:10:54] [PASSED] YVU420 Modifier set just for planes 0, 1, without DRM_MODE_FB_MODIFIERS
+[16:10:54] [PASSED] YVU420 Modifier set just for plane 0, 1, with DRM_MODE_FB_MODIFIERS
+[16:10:54] [PASSED] YVU420 Valid modifier
+[16:10:54] [PASSED] YVU420 Different modifiers per plane
+[16:10:54] [PASSED] YVU420 Modifier for inexistent plane
+[16:10:54] [PASSED] X0L2 Normal sizes
+[16:10:54] [PASSED] X0L2 Max sizes
+[16:10:54] [PASSED] X0L2 Invalid pitch
+[16:10:54] [PASSED] X0L2 Pitch greater than minimum required
+[16:10:54] [PASSED] X0L2 Handle for inexistent plane
+[16:10:54] [PASSED] X0L2 Offset for inexistent plane, without DRM_MODE_FB_MODIFIERS set
+[16:10:54] [PASSED] X0L2 Modifier without DRM_MODE_FB_MODIFIERS set
+[16:10:54] [PASSED] X0L2 Valid modifier
+[16:10:54] [PASSED] X0L2 Modifier for inexistent plane
+[16:10:54] =========== [PASSED] drm_test_framebuffer_create ===========
+[16:10:54] ================= [PASSED] drm_framebuffer =================
+[16:10:54] ================ drm_gem_shmem (8 subtests) ================
+[16:10:54] [PASSED] drm_gem_shmem_test_obj_create
+[16:10:54] [PASSED] drm_gem_shmem_test_obj_create_private
+[16:10:54] [PASSED] drm_gem_shmem_test_pin_pages
+[16:10:54] [PASSED] drm_gem_shmem_test_vmap
+[16:10:54] [PASSED] drm_gem_shmem_test_get_pages_sgt
+[16:10:54] [PASSED] drm_gem_shmem_test_get_sg_table
+[16:10:54] [PASSED] drm_gem_shmem_test_madvise
+[16:10:54] [PASSED] drm_gem_shmem_test_purge
+[16:10:54] ================== [PASSED] drm_gem_shmem ==================
+[16:10:54] ================= drm_managed (2 subtests) =================
+[16:10:54] [PASSED] drm_test_managed_release_action
+[16:10:54] [PASSED] drm_test_managed_run_action
+[16:10:54] =================== [PASSED] drm_managed ===================
+[16:10:54] =================== drm_mm (6 subtests) ====================
+[16:10:54] [PASSED] drm_test_mm_init
+[16:10:54] [PASSED] drm_test_mm_debug
+[16:10:54] [PASSED] drm_test_mm_align32
+[16:10:54] [PASSED] drm_test_mm_align64
+[16:10:54] [PASSED] drm_test_mm_lowest
+[16:10:54] [PASSED] drm_test_mm_highest
+[16:10:54] ===================== [PASSED] drm_mm ======================
+[16:10:54] ============= drm_modes_analog_tv (4 subtests) =============
+[16:10:54] [PASSED] drm_test_modes_analog_tv_ntsc_480i
+[16:10:54] [PASSED] drm_test_modes_analog_tv_ntsc_480i_inlined
+[16:10:54] [PASSED] drm_test_modes_analog_tv_pal_576i
+[16:10:54] [PASSED] drm_test_modes_analog_tv_pal_576i_inlined
+[16:10:54] =============== [PASSED] drm_modes_analog_tv ===============
+[16:10:54] ============== drm_plane_helper (2 subtests) ===============
+[16:10:54] =============== drm_test_check_plane_state  ================
+[16:10:54] [PASSED] clipping_simple
+[16:10:54] [PASSED] clipping_rotate_reflect
+[16:10:54] [PASSED] positioning_simple
+[16:10:54] [PASSED] upscaling
+[16:10:54] [PASSED] downscaling
+[16:10:54] [PASSED] rounding1
+[16:10:54] [PASSED] rounding2
+[16:10:54] [PASSED] rounding3
+[16:10:54] [PASSED] rounding4
+[16:10:54] =========== [PASSED] drm_test_check_plane_state ============
+[16:10:54] =========== drm_test_check_invalid_plane_state  ============
+[16:10:54] [PASSED] positioning_invalid
+[16:10:54] [PASSED] upscaling_invalid
+[16:10:54] [PASSED] downscaling_invalid
+[16:10:54] ======= [PASSED] drm_test_check_invalid_plane_state ========
+[16:10:54] ================ [PASSED] drm_plane_helper =================
+[16:10:54] ====== drm_connector_helper_tv_get_modes (1 subtest) =======
+[16:10:54] ====== drm_test_connector_helper_tv_get_modes_check  =======
+[16:10:54] [PASSED] None
+[16:10:54] [PASSED] PAL
+[16:10:54] [PASSED] NTSC
+[16:10:54] [PASSED] Both, NTSC Default
+[16:10:54] [PASSED] Both, PAL Default
+[16:10:54] [PASSED] Both, NTSC Default, with PAL on command-line
+[16:10:54] [PASSED] Both, PAL Default, with NTSC on command-line
+[16:10:54] == [PASSED] drm_test_connector_helper_tv_get_modes_check ===
+[16:10:54] ======== [PASSED] drm_connector_helper_tv_get_modes ========
+[16:10:54] ================== drm_rect (9 subtests) ===================
+[16:10:54] [PASSED] drm_test_rect_clip_scaled_div_by_zero
+[16:10:54] [PASSED] drm_test_rect_clip_scaled_not_clipped
+[16:10:54] [PASSED] drm_test_rect_clip_scaled_clipped
+[16:10:54] [PASSED] drm_test_rect_clip_scaled_signed_vs_unsigned
+[16:10:54] ================= drm_test_rect_intersect  =================
+[16:10:54] [PASSED] top-left x bottom-right: 2x2+1+1 x 2x2+0+0
+stty: 'standard input': Inappropriate ioctl for device
+[16:10:54] [PASSED] top-right x bottom-left: 2x2+0+0 x 2x2+1-1
+[16:10:54] [PASSED] bottom-left x top-right: 2x2+1-1 x 2x2+0+0
+[16:10:54] [PASSED] bottom-right x top-left: 2x2+0+0 x 2x2+1+1
+[16:10:54] [PASSED] right x left: 2x1+0+0 x 3x1+1+0
+[16:10:54] [PASSED] left x right: 3x1+1+0 x 2x1+0+0
+[16:10:54] [PASSED] up x bottom: 1x2+0+0 x 1x3+0-1
+[16:10:54] [PASSED] bottom x up: 1x3+0-1 x 1x2+0+0
+[16:10:54] [PASSED] touching corner: 1x1+0+0 x 2x2+1+1
+[16:10:54] [PASSED] touching side: 1x1+0+0 x 1x1+1+0
+[16:10:54] [PASSED] equal rects: 2x2+0+0 x 2x2+0+0
+[16:10:54] [PASSED] inside another: 2x2+0+0 x 1x1+1+1
+[16:10:54] [PASSED] far away: 1x1+0+0 x 1x1+3+6
+[16:10:54] [PASSED] points intersecting: 0x0+5+10 x 0x0+5+10
+[16:10:54] [PASSED] points not intersecting: 0x0+0+0 x 0x0+5+10
+[16:10:54] ============= [PASSED] drm_test_rect_intersect =============
+[16:10:54] ================ drm_test_rect_calc_hscale  ================
+[16:10:54] [PASSED] normal use
+[16:10:54] [PASSED] out of max range
+[16:10:54] [PASSED] out of min range
+[16:10:54] [PASSED] zero dst
+[16:10:54] [PASSED] negative src
+[16:10:54] [PASSED] negative dst
+[16:10:54] ============ [PASSED] drm_test_rect_calc_hscale ============
+[16:10:54] ================ drm_test_rect_calc_vscale  ================
+[16:10:54] [PASSED] normal use
+[16:10:54] [PASSED] out of max range
+[16:10:54] [PASSED] out of min range
+[16:10:54] [PASSED] zero dst
+[16:10:54] [PASSED] negative src
+[16:10:54] [PASSED] negative dst
+[16:10:54] ============ [PASSED] drm_test_rect_calc_vscale ============
+[16:10:54] ================== drm_test_rect_rotate  ===================
+[16:10:54] [PASSED] reflect-x
+[16:10:54] [PASSED] reflect-y
+[16:10:54] [PASSED] rotate-0
+[16:10:54] [PASSED] rotate-90
+[16:10:54] [PASSED] rotate-180
+[16:10:54] [PASSED] rotate-270
+[16:10:54] ============== [PASSED] drm_test_rect_rotate ===============
+[16:10:54] ================ drm_test_rect_rotate_inv  =================
+[16:10:54] [PASSED] reflect-x
+[16:10:54] [PASSED] reflect-y
+[16:10:54] [PASSED] rotate-0
+[16:10:54] [PASSED] rotate-90
+[16:10:54] [PASSED] rotate-180
+[16:10:54] [PASSED] rotate-270
+[16:10:54] ============ [PASSED] drm_test_rect_rotate_inv =============
+[16:10:54] ==================== [PASSED] drm_rect =====================
+[16:10:54] ============================================================
+[16:10:54] Testing complete. Ran 416 tests: passed: 416
+[16:10:54] Elapsed time: 26.841s total, 2.307s configuring, 24.405s building, 0.126s running
+
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
