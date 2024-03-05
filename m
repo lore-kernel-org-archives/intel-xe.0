@@ -4,139 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC755C54E41
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Mar 2024 15:11:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2249CC5475B
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Mar 2024 15:40:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60D83113263;
-	Wed,  6 Mar 2024 15:11:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="DaqG7OJw";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="LmYXCuku";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="DaqG7OJw";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="LmYXCuku";
-	dkim-atps=neutral
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C1CC11325D;
- Wed,  6 Mar 2024 15:11:57 +0000 (UTC)
-Received: from imap2.dmz-prg2.suse.org (imap2.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:98])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 79D876B809;
- Wed,  6 Mar 2024 15:11:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1709737915; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=xSHZJFgJ6t6OPb0WJLKwK70uS4BJMetdUpY9bID4bsI=;
- b=DaqG7OJw0bplBCpHuR3snpRiIMCO7SnheE9Bhh5fGRLs+7CZtEngntgIfHMBaJBxuLsZHK
- mIhLC+FuMo4jyd8nnATFzzuoavaqZSro8cxEm+zirnCVvye6EBaEfReC/Qd3aZ3mNL6FwB
- AehEJaSKETIDslbWQv/OsO0jdGPHt/M=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1709737915;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=xSHZJFgJ6t6OPb0WJLKwK70uS4BJMetdUpY9bID4bsI=;
- b=LmYXCukuzvG1GMrhqTV2vYunHai0CdvnJeqG+s1VSXrvzoAxIq02HM1wFX8wxTJz5SSK+l
- NozqgCdhGS3QBPBQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1709737915; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=xSHZJFgJ6t6OPb0WJLKwK70uS4BJMetdUpY9bID4bsI=;
- b=DaqG7OJw0bplBCpHuR3snpRiIMCO7SnheE9Bhh5fGRLs+7CZtEngntgIfHMBaJBxuLsZHK
- mIhLC+FuMo4jyd8nnATFzzuoavaqZSro8cxEm+zirnCVvye6EBaEfReC/Qd3aZ3mNL6FwB
- AehEJaSKETIDslbWQv/OsO0jdGPHt/M=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1709737915;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=xSHZJFgJ6t6OPb0WJLKwK70uS4BJMetdUpY9bID4bsI=;
- b=LmYXCukuzvG1GMrhqTV2vYunHai0CdvnJeqG+s1VSXrvzoAxIq02HM1wFX8wxTJz5SSK+l
- NozqgCdhGS3QBPBQ==
-Received: from imap2.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap2.dmz-prg2.suse.org (Postfix) with ESMTPS id F41B013A79;
- Wed,  6 Mar 2024 15:11:54 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap2.dmz-prg2.suse.org with ESMTPSA id /I4IOrqH6GXKdQAAn2gu4w
- (envelope-from <tzimmermann@suse.de>); Wed, 06 Mar 2024 15:11:54 +0000
-Message-ID: <a562fc9c-7e11-4149-b20c-f65347fa8032@suse.de>
-Date: Wed, 6 Mar 2024 16:11:54 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id B27321132BF;
+	Wed,  6 Mar 2024 15:40:37 +0000 (UTC)
+Received: from smtpbguseast2.qq.com (smtpbguseast2.qq.com [54.204.34.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92C54112813;
+ Tue,  5 Mar 2024 01:52:39 +0000 (UTC)
+X-QQ-mid: bizesmtp62t1709603425tlfm1u6g
+X-QQ-Originating-IP: bOfoihEMseawlWRMJfUotn4eIapOK4hJzqa7PVtpX9M=
+Received: from localhost ( [112.22.30.30]) by bizesmtp.qq.com (ESMTP) with 
+ id ; Tue, 05 Mar 2024 09:50:24 +0800 (CST)
+X-QQ-SSF: 01400000000000505000000A0001000
+X-QQ-FEAT: aBJFcW+uBGaR7RCsuQoBy5eXJ1KZuuHUtRBZZSI216HiitWH8P8cUz2Cg2MDR
+ 6WqYitRnkgbwfvlT/0blMffY3wNXYkK5uMhGTeLXZ3Iuzb+eFyMN2aEkk9guJSpYlgC3KxY
+ z+w2R2C5Q6fQKuRLC2DGW2tGX9dDFRnhESPT9CPgwTyYsM6nuhviYA7jYWR/uu6q8X2SsM3
+ 7Ji4l8FhFdCRxux7wuDMywVd5qLLnOfHlVjTv/OWCNiKTuJjcblHWtQ4FiOXZPSWLn84LRu
+ /5vh0+dzeb+rr68ICK34GULzlCh0ayPn7SqzI+y7JkGRd/4NlmebYRru5ssz+XRYCb9T937
+ PaGtuXjfD72hrxLllYKzb/3SWJKOct2fU9SMMw9uclhD8X3uPfUPkIgQ+ofXsCGeORpxxN7
+X-QQ-GoodBg: 2
+X-BIZMAIL-ID: 14154700281966297232
+Date: Tue, 5 Mar 2024 09:50:23 +0800
+From: Dawei Li <dawei.li@shingroup.cn>
+To: lucas.demarchi@intel.com, ogabbay@kernel.org,
+ thomas.hellstrom@linux.intel.com
+Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, kernel test robot <lkp@intel.com>
+Subject: Re: [PATCH] drm/xe: Declare __xe_lrc_*_ggtt_addr with __maybe__unused
+Message-ID: <1543D46042445CE9+ZeZ6X5Ng2rq3swoo@centos8>
+References: <20240204062324.3548268-1-dawei.li@shingroup.cn>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/6] drm/i915: Unregister in-kernel clients
-Content-Language: en-US
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: joonas.lahtinen@linux.intel.com, tvrtko.ursulin@linux.intel.com,
- ville.syrjala@linux.intel.com, imre.deak@intel.com,
- tejas.upadhyay@intel.com, jouni.hogander@intel.com, javierm@redhat.com,
- airlied@gmail.com, daniel@ffwll.ch, lucas.demarchi@intel.com,
- ogabbay@kernel.org, thomas.hellstrom@linux.intel.com,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-References: <20240301134448.31289-1-tzimmermann@suse.de>
- <20240301134448.31289-3-tzimmermann@suse.de> <ZedDHPupthhNWte8@intel.com>
- <878r2w1w93.fsf@intel.com>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <878r2w1w93.fsf@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=DaqG7OJw;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=LmYXCuku
-X-Spamd-Result: default: False [-5.30 / 50.00]; ARC_NA(0.00)[];
- RCVD_VIA_SMTP_AUTH(0.00)[];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- XM_UA_NO_VERSION(0.01)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; MIME_GOOD(-0.10)[text/plain];
- DWL_DNSWL_MED(-2.00)[suse.de:dkim]; BAYES_HAM(-3.00)[100.00%];
- RCVD_COUNT_THREE(0.00)[3];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- DKIM_TRACE(0.00)[suse.de:+]; MX_GOOD(-0.01)[];
- RCPT_COUNT_TWELVE(0.00)[17];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,suse.de:email,intel.com:email];
- FUZZY_BLOCKED(0.00)[rspamd.com]; FROM_EQ_ENVFROM(0.00)[];
- MIME_TRACE(0.00)[0:+];
- FREEMAIL_CC(0.00)[linux.intel.com,intel.com,redhat.com,gmail.com,ffwll.ch,kernel.org,lists.freedesktop.org];
- RCVD_TLS_ALL(0.00)[]; MID_RHS_MATCH_FROM(0.00)[]
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Rspamd-Queue-Id: 79D876B809
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240204062324.3548268-1-dawei.li@shingroup.cn>
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:shingroup.cn:qybglogicsvrgz:qybglogicsvrgz5a-1
+X-Mailman-Approved-At: Wed, 06 Mar 2024 15:40:36 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,95 +57,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi
+Hi,
 
-Am 05.03.24 um 17:25 schrieb Jani Nikula:
-> On Tue, 05 Mar 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
->> On Fri, Mar 01, 2024 at 02:42:55PM +0100, Thomas Zimmermann wrote:
->>> Unregister all in-kernel clients before unloading the i915 driver. For
->>> other drivers, drm_dev_unregister() does this automatically. As i915
->>> does not use this helper, it has to perform the call by itself. For xe,
->>> do the same in xe_device_remove()
->>>
->>> Note that there are currently no in-kernel clients in i915 or xe. The
->>> patch prepares the drivers for a related update of their fbdev support.
->>>
->>> v7:
->>> 	* update xe driver
->>>
->>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
->>> ---
->>>   drivers/gpu/drm/i915/i915_driver.c | 3 +++
->>>   drivers/gpu/drm/xe/xe_device.c     | 3 +++
->>>   2 files changed, 6 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
->>> index 9ee902d5b72c4..97910a85e3917 100644
->>> --- a/drivers/gpu/drm/i915/i915_driver.c
->>> +++ b/drivers/gpu/drm/i915/i915_driver.c
->>> @@ -41,6 +41,7 @@
->>>   
->>>   #include <drm/drm_aperture.h>
->>>   #include <drm/drm_atomic_helper.h>
->>> +#include <drm/drm_client.h>
->>>   #include <drm/drm_ioctl.h>
->>>   #include <drm/drm_managed.h>
->>>   #include <drm/drm_probe_helper.h>
->>> @@ -852,6 +853,8 @@ void i915_driver_remove(struct drm_i915_private *i915)
->>>   {
->>>   	intel_wakeref_t wakeref;
->>>   
->>> +	drm_client_dev_unregister(&i915->drm);
->>> +
->>>   	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
->>>   
->>>   	i915_driver_unregister(i915);
->>> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
->>> index 919ad88f0495a..7f41f0ec819f0 100644
->>> --- a/drivers/gpu/drm/xe/xe_device.c
->>> +++ b/drivers/gpu/drm/xe/xe_device.c
->> probably deserves a separate patch since this is one here is named 'drm/i915:'
-> Or do this for both in intel_display_driver_unregister()?
+On Sun, Feb 04, 2024 at 02:23:24PM +0800, Dawei Li wrote:
+> Kernel test robot reports building error:
+> 
+> drivers/gpu/drm/xe/xe_lrc.c:544:1: error: unused function
+> '__xe_lrc_regs_ggtt_addr' [-Werror,-Wunused-function]
+> 544 | DECL_MAP_ADDR_HELPERS(regs)
+>     | ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+> 
+> drivers/gpu/drm/xe/xe_lrc.c:536:19: note: expanded from macro
+> 'DECL_MAP_ADDR_HELPERS'
+> 536 | static inline u32 __xe_lrc_##elem##_ggtt_addr(struct xe_lrc *lrc) \
+>     |                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+> 
+> <scratch space>:54:1: note: expanded from here
+> 54 | __xe_lrc_regs_ggtt_addr
+>    | ^~~~~~~~~~~~~~~~~~~~~~~
+> 
+> 1 error generated.
+> 
+> Declare __xe_lrc_*_ggtt_addr with __maybe_unused to address it.
+> 
+> Reported-by: kernel test robot <lkp@intel.com>
+> Closes: https://lore.kernel.org/oe-kbuild-all/202402010928.g3j2aSBL-lkp@intel.com/
+> Signed-off-by: Dawei Li <dawei.li@shingroup.cn>
+> ---
+>  drivers/gpu/drm/xe/xe_lrc.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-Ok, sure. I'll update this. I also have to update i915 and xe in patches 
-5 and 6. I don't see how I can change them individually. How would I 
-best log against both of them? drm/{i915,xe}? or drm/intel?
+Just a gentle ping.
 
-Best regards
-Thomas
+Thanks,
 
->
-> BR,
-> Jani.
->
->
->>> @@ -9,6 +9,7 @@
->>>   
->>>   #include <drm/drm_aperture.h>
->>>   #include <drm/drm_atomic_helper.h>
->>> +#include <drm/drm_client.h>
->>>   #include <drm/drm_gem_ttm_helper.h>
->>>   #include <drm/drm_ioctl.h>
->>>   #include <drm/drm_managed.h>
->>> @@ -614,6 +615,8 @@ void xe_device_remove(struct xe_device *xe)
->>>   	struct xe_gt *gt;
->>>   	u8 id;
->>>   
->>> +	drm_client_dev_unregister(&xe->drm);
->>> +
->>>   	xe_device_remove_display(xe);
->>>   
->>>   	xe_display_fini(xe);
->>> -- 
->>> 2.43.2
->>>
+    Dawei
 
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
-
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+> index 0ec5ad2539f1..f70e60a2f8a3 100644
+> --- a/drivers/gpu/drm/xe/xe_lrc.c
+> +++ b/drivers/gpu/drm/xe/xe_lrc.c
+> @@ -614,7 +614,7 @@ static inline struct iosys_map __xe_lrc_##elem##_map(struct xe_lrc *lrc) \
+>  	iosys_map_incr(&map, __xe_lrc_##elem##_offset(lrc)); \
+>  	return map; \
+>  } \
+> -static inline u32 __xe_lrc_##elem##_ggtt_addr(struct xe_lrc *lrc) \
+> +static inline u32 __maybe_unused __xe_lrc_##elem##_ggtt_addr(struct xe_lrc *lrc) \
+>  { \
+>  	return xe_bo_ggtt_addr(lrc->bo) + __xe_lrc_##elem##_offset(lrc); \
+>  } \
+> -- 
+> 2.27.0
+> 
