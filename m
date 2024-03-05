@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEADDC54E41
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Mar 2024 11:29:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B89EFC54798
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Mar 2024 11:32:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A086610E463;
-	Tue,  5 Mar 2024 11:29:29 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MEi+8ZK2";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 549E610E44B
- for <intel-xe@lists.freedesktop.org>; Tue,  5 Mar 2024 11:29:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709638167; x=1741174167;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=CZ3Hwn5wmoCGvPcnOpxscCdmEybs4UgJ0aSF4p/nvOg=;
- b=MEi+8ZK2QMyJFXjVAr0vZa5Kkm6J4YM4EjTVSfg1e492Ge0nmxbkpib1
- LCm9LWxPzNSGa8mh6f3J7yYPyEUJQfGrx7ekva5CREZCZ5MXq0dd5CyZ0
- Ud/vgBwNKwKoThkjCmoOFGE6wHfTKRju098cQAhy8yMYj+5tbkzT1VjEc
- ee9VROOUEOuFkSMh/G7WyNJQpeccA4LlxX0dWmSmC4D0o9gZIxVkHcHY1
- nomNq5eSw+OnDtdkv/2Cx5cNLYgMTZaz5xszwtjhMv/GuuRWqRHtS/fiv
- ZDdQgrCNjjLLAP6VkyktbhR5g0MBKZEKfoEKvdvrlREzVFaAZmAYqGLad w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11003"; a="4345549"
-X-IronPort-AV: E=Sophos;i="6.06,205,1705392000"; 
-   d="scan'208";a="4345549"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2024 03:29:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,205,1705392000"; 
-   d="scan'208";a="9762391"
-Received: from pkunieck-mobl.ger.corp.intel.com (HELO [10.249.140.91])
- ([10.249.140.91])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2024 03:29:26 -0800
-Message-ID: <d5af5b39-75a1-47e2-b41a-23d6c23b62ea@intel.com>
-Date: Tue, 5 Mar 2024 11:29:22 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FF42112964;
+	Tue,  5 Mar 2024 11:32:35 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8E7F112964;
+ Tue,  5 Mar 2024 11:32:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3782974890636865076=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/9] drm/xe: Convert xe_gem_fault to use direct
- xe_pm_runtime calls
-Content-Language: en-GB
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
-References: <20240304182154.42611-1-rodrigo.vivi@intel.com>
- <20240304182154.42611-2-rodrigo.vivi@intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20240304182154.42611-2-rodrigo.vivi@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_TTM_unlockable_restartable_LRU_l?=
+ =?utf-8?q?ist_iteration_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 05 Mar 2024 11:32:34 -0000
+Message-ID: <170963835482.524258.15093471208167498849@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240305103445.75919-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20240305103445.75919-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,57 +36,157 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 04/03/2024 18:21, Rodrigo Vivi wrote:
-> The gem page fault is one of the outer bound protections where
-> we want to ensure that the hardware is in D0 before proceeding
-> with memory access. Let's convert it towards the xe_pm_runtime
-> functions directly so we can then convert the mem_access to be
-> inner protection only and then Kill it for good.
-> 
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+--===============3782974890636865076==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Not strictly related to this, but FYI there is:
+== Series Details ==
 
-https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1100
-https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1300
+Series: TTM unlockable restartable LRU list iteration (rev2)
+URL   : https://patchwork.freedesktop.org/series/130000/
+State : failure
 
-Which is on the GPU fault path. Looks like VM is maybe nuked before the 
-worker can process the fault from the GuC? In that case there no RPM ref.
+== Summary ==
 
-> ---
->   drivers/gpu/drm/xe/xe_bo.c | 5 +++--
->   1 file changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 6603a0ea79c5..def68528cd40 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -22,6 +22,7 @@
->   #include "xe_gt.h"
->   #include "xe_map.h"
->   #include "xe_migrate.h"
-> +#include "xe_pm.h"
->   #include "xe_preempt_fence.h"
->   #include "xe_res_cursor.h"
->   #include "xe_trace.h"
-> @@ -1144,7 +1145,7 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
->   	int idx, r = 0;
->   
->   	if (needs_rpm)
-> -		xe_device_mem_access_get(xe);
-> +		xe_pm_runtime_get(xe);
->   
->   	ret = ttm_bo_vm_reserve(tbo, vmf);
->   	if (ret)
-> @@ -1184,7 +1185,7 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
->   	dma_resv_unlock(tbo->base.resv);
->   out:
->   	if (needs_rpm)
-> -		xe_device_mem_access_put(xe);
-> +		xe_pm_runtime_put(xe);
->   
->   	return ret;
->   }
+CI Bug Log - changes from xe-896-43f6eaa500e2d57c8864758c5333fc53f278ba92_BAT -> xe-pw-130000v2_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-130000v2_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-130000v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-130000v2_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-adlp-7:         [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-896-43f6eaa500e2d57c8864758c5333fc53f278ba92/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130000v2/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
+    - bat-dg2-oem2:       [PASS][3] -> [ABORT][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-896-43f6eaa500e2d57c8864758c5333fc53f278ba92/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130000v2/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html
+    - bat-atsm-2:         [PASS][5] -> [ABORT][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-896-43f6eaa500e2d57c8864758c5333fc53f278ba92/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130000v2/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html
+
+  
+#### Warnings ####
+
+  * igt@xe_module_load@load:
+    - bat-pvc-2:          [DMESG-FAIL][7] ([Intel XE#1315]) -> [ABORT][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-896-43f6eaa500e2d57c8864758c5333fc53f278ba92/bat-pvc-2/igt@xe_module_load@load.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130000v2/bat-pvc-2/igt@xe_module_load@load.html
+
+  
+  [Intel XE#1315]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1315
+
+
+Build changes
+-------------
+
+  * Linux: xe-896-43f6eaa500e2d57c8864758c5333fc53f278ba92 -> xe-pw-130000v2
+
+  IGT_7745: 838ad56bf511c1caf56851c661fb5828c0440e3b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-896-43f6eaa500e2d57c8864758c5333fc53f278ba92: 43f6eaa500e2d57c8864758c5333fc53f278ba92
+  xe-pw-130000v2: 130000v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130000v2/index.html
+
+--===============3782974890636865076==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>TTM unlockable restartable LRU list iteration (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130000/">https://patchwork.freedesktop.org/series/130000/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130000v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130000v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-896-43f6eaa500e2d57c8864758c5333fc53f278ba92_BAT -&gt; xe-pw-130000v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-130000v2_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-130000v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-130000v2_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-896-43f6eaa500e2d57c8864758c5333fc53f278ba92/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130000v2/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-896-43f6eaa500e2d57c8864758c5333fc53f278ba92/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130000v2/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-896-43f6eaa500e2d57c8864758c5333fc53f278ba92/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130000v2/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_module_load@load:<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-896-43f6eaa500e2d57c8864758c5333fc53f278ba92/bat-pvc-2/igt@xe_module_load@load.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1315">Intel XE#1315</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130000v2/bat-pvc-2/igt@xe_module_load@load.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-896-43f6eaa500e2d57c8864758c5333fc53f278ba92 -&gt; xe-pw-130000v2</li>
+</ul>
+<p>IGT_7745: 838ad56bf511c1caf56851c661fb5828c0440e3b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-896-43f6eaa500e2d57c8864758c5333fc53f278ba92: 43f6eaa500e2d57c8864758c5333fc53f278ba92<br />
+  xe-pw-130000v2: 130000v2</p>
+
+</body>
+</html>
+
+--===============3782974890636865076==--
