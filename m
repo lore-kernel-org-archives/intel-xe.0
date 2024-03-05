@@ -4,26 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3400AC5475B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72ED0C54E41
 	for <intel-xe@archiver.kernel.org>; Wed,  6 Mar 2024 15:40:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7C131132CC;
-	Wed,  6 Mar 2024 15:40:56 +0000 (UTC)
-X-Greylist: delayed 302 seconds by postgrey-1.36 at gabe;
- Tue, 05 Mar 2024 11:24:04 UTC
-Received: from out0-194.mail.aliyun.com (out0-194.mail.aliyun.com
- [140.205.0.194])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBE63112A3A
- for <intel-xe@lists.freedesktop.org>; Tue,  5 Mar 2024 11:24:04 +0000 (UTC)
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R951e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018047190;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20B231132D6;
+	Wed,  6 Mar 2024 15:40:57 +0000 (UTC)
+Received: from out0-213.mail.aliyun.com (out0-213.mail.aliyun.com
+ [140.205.0.213])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E816112B3F
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 Mar 2024 14:26:57 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R181e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018047194;
  MF=tiwei.btw@antgroup.com; NM=1; PH=DS; RN=7; SR=0;
- TI=SMTPD_---.WfsbWle_1709637532; 
-Received: from 30.230.19.235(mailfrom:tiwei.btw@antgroup.com
- fp:SMTPD_---.WfsbWle_1709637532) by smtp.aliyun-inc.com;
- Tue, 05 Mar 2024 19:18:58 +0800
-Message-ID: <9d297bf5-4f54-431b-ab8d-c5be825f129e@antgroup.com>
-Date: Tue, 05 Mar 2024 19:18:50 +0800
+ TI=SMTPD_---.WfwGJqM_1709648800; 
+Received: from 30.121.51.238(mailfrom:tiwei.btw@antgroup.com
+ fp:SMTPD_---.WfwGJqM_1709648800) by smtp.aliyun-inc.com;
+ Tue, 05 Mar 2024 22:26:54 +0800
+Message-ID: <496c61e9-0f0a-41d1-ac3c-61992b3f0b96@antgroup.com>
+Date: Tue, 05 Mar 2024 22:26:39 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: -Wmissing-prototypes warnings in user-mode linux
@@ -36,8 +34,10 @@ Cc: intel-xe@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
 References: <87jzmh2chs.fsf@intel.com>
  <5d1dfb9fce5d7647ff3203080416eadc9806059a.camel@sipsolutions.net>
  <87frx52btl.fsf@intel.com>
+ <9d297bf5-4f54-431b-ab8d-c5be825f129e@antgroup.com>
+ <87y1aw23n3.fsf@intel.com>
 From: "Tiwei Bie" <tiwei.btw@antgroup.com>
-In-Reply-To: <87frx52btl.fsf@intel.com>
+In-Reply-To: <87y1aw23n3.fsf@intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Wed, 06 Mar 2024 15:40:55 +0000
@@ -55,48 +55,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 3/5/24 6:49 PM, Jani Nikula wrote:
-> On Tue, 05 Mar 2024, Johannes Berg <johannes@sipsolutions.net> wrote:
->> On Tue, 2024-03-05 at 12:34 +0200, Jani Nikula wrote:
->>> We're seeing a lot of -Wmissing-prototypes warnings when building
->>> user-mode Linux. For example, our CI hits things like [1], and it's just
->>> extra noise in the build.
+On 3/5/24 9:45 PM, Jani Nikula wrote:
+> On Tue, 05 Mar 2024, Tiwei Bie <tiwei.btw@antgroup.com> wrote:
+>> Thanks for raising this topic!                            
+>>                                                               
+>> Indeed. To make it easier to review, the current series only addressed
+>> the -Wmissing-prototypes warnings that can be fixed straightforwardly (e.g.
+>> by turning into static functions or including missing headers). The remaining 
+>> -Wmissing-prototypes warnings mainly fall into the following categories:
 >>
->> Yeah ...
+>> - Symbols defined and used in os-Linux/;                
+>> - Symbols defined in os-Linux/, but declared in kernel headers;
+>> - Symbols defined in individual files and not called explicitly;
 >>
->>> I started adding some prototypes, but I lost my way around the arch/
->>> subdirectory a bit. I'm not always quite sure what should or could be
->>> included where, or whether a new header should be added instead, etc.,
->>> so it wasn't going as quickly as I'd hoped.
->>>
->>> Do you perhaps already have plans or, better yet, patches to address
->>> this? Feels like it should be fairly quick for someone familiar with the
->>> arch/um codebase.
->>
->> I think this series addressed most already?
->>
->> https://patchwork.ozlabs.org/project/linux-um/list/?series=393619
->>
->> But I haven't checked myself yet.
+>> My plan was to fix the remaining warnings in followup series. Ultimately,
+>> I wish we can let cc treat -Wmissing-prototypes warnings as errors.
 > 
-> Oh, nice, it certainly helps!
+> Yay! That's good to hear.
 > 
-> But after applying that in my branch, I do still get a bunch of
-> warnings.
+> If you want to get build testing from our CI, using our configs, please
+> just Cc: intel-xe@lists.freedesktop.org when sending the patches. You'll
+> get the results in reply.
 
-Thanks for raising this topic!                            
-                                                              
-Indeed. To make it easier to review, the current series only addressed
-the -Wmissing-prototypes warnings that can be fixed straightforwardly (e.g.
-by turning into static functions or including missing headers). The remaining 
--Wmissing-prototypes warnings mainly fall into the following categories:
-
-- Symbols defined and used in os-Linux/;                
-- Symbols defined in os-Linux/, but declared in kernel headers;
-- Symbols defined in individual files and not called explicitly;
-
-My plan was to fix the remaining warnings in followup series. Ultimately,
-I wish we can let cc treat -Wmissing-prototypes warnings as errors.
+Cool. Will Cc the list in the future. Thanks! :)
 
 Regards,
 Tiwei
