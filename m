@@ -4,153 +4,141 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6B58C54E41
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Mar 2024 14:45:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3D06C54798
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Mar 2024 14:46:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92EDE112B6F;
-	Tue,  5 Mar 2024 14:45:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D0B1112B76;
+	Tue,  5 Mar 2024 14:46:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G5A7wOI5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Gd/7MATs";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0568E112B6D;
- Tue,  5 Mar 2024 14:45:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED0F3112B75
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 Mar 2024 14:46:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709649906; x=1741185906;
- h=content-transfer-encoding:in-reply-to:references:subject:
- from:cc:to:date:message-id:mime-version;
- bh=4n3zUzCncBi9W3AVLuxgIk9LjNBSR+rsr3FaJ3t0VEg=;
- b=G5A7wOI5g5uR5G/+B3j4Ai/BuNVR5xDL/iWOYc+VoVROHP9gAiQanAZk
- a6sa+KhF/wcLpG6ujLkrRTe7EXeO1JLoW7lS9ua3QWbeliMgrSXfVr3Hd
- VQjnjyuKxtCGZ3mi0Pb/RToKy4S/aBNhFZwc8OutsMeQv01swjlhhP1G9
- 1dUOBQyjn6tkdEwVIBkT2eq/cavCZMj89zcSeXJfYO2XsqcjGjgapNx10
- sa/yglQLeasOzoqmP4s2onizL8gaR6IkfwAAEAcDTGci1ZfmzNVDb+E+x
- RB0cVuNf5lrNAt/ZZ0TfYDxdISB1jklsqKJN3prbaATtoNEZjZiDpIWye Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11003"; a="15633257"
-X-IronPort-AV: E=Sophos;i="6.06,205,1705392000"; d="scan'208";a="15633257"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2024 06:45:05 -0800
-X-ExtLoop1: 1
+ t=1709650018; x=1741186018;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=TS/kpKhHazkYrneHEEIre21QhdYnVZwl0Pv2q++qqSc=;
+ b=Gd/7MATske07PdtrrbxYW8JsgXlETZ0PQygBOzztpfi8eHVVtD3u2EX+
+ mFSnPD3JaSRCmnQ9JYpalJeMxvHPcddGElkqjEX1w2x3tpGdbhF3FIgwc
+ y1O9GRg/NZ0HzqMiDDyafZC8CBXAQJTx/4sPWUuXMMQOvG7jXhruwpdav
+ +JjsRkv2KujmHKnxn+RSA+G2an9VqUSD8GRKamEGLjBlBH/nu0gQbg33g
+ Z6/IWD6HaHyE0r45lJNmxlXRLoz1+tUAslHTXwzsCAtnmuDc3MO9y3c6q
+ 0RAK6zHP1sZEoPYxVMR+Wu7nWf7EK87Z55v17fmYUoiIcImk3EOvl/ocw A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11003"; a="8023289"
 X-IronPort-AV: E=Sophos;i="6.06,205,1705392000"; 
-   d="scan'208";a="9799987"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 05 Mar 2024 06:45:06 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+   d="scan'208";a="8023289"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2024 06:46:58 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,205,1705392000"; d="scan'208";a="40286576"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 05 Mar 2024 06:46:58 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 5 Mar 2024 06:45:05 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.1.2507.35; Tue, 5 Mar 2024 06:46:56 -0800
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 5 Mar 2024 06:45:04 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.35; Tue, 5 Mar 2024 06:46:56 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 5 Mar 2024 06:45:04 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.101)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Tue, 5 Mar 2024 06:46:56 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.40) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 5 Mar 2024 06:45:04 -0800
+ 15.1.2507.35; Tue, 5 Mar 2024 06:46:56 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Up1T13DgW1bH4jHN0eQOyzbv1JVzz7PBs0U3ZiPpZtotf4vhuTrtLXUji6m2neOZYYgMZur0PV9zJ3EOZLKqGEUSM4ygeU1uUK6KF7DpV635NAONO1clvnE6u2dW0Lse669W3frVRZ4Tx0zQn/Z6iddCsz5JEDka8A/Euy4/BmfTCcWhPrj4bAhT3M402XvwRnyLoDrZcrV8nUNoPixrZakG34hK0HClH8MZE9UImhx2Zal1lu+m9yF/NWRmw9e8LSxlaT1rHbevXNuysz2Dgx/XLGUdLNpqpvqVpTs1Vj8QSeEi0CMq/UaP/2+mUVbo+8D4NvH1/HnEyFaU+svrxQ==
+ b=d3S+Y1GRKWxjtbA7Sy3q814jrxA6rUK9T+lvhJBE0xSUioclSi9AlAKmyr/ZDcxc4qclXQTnQqNqOSq14boeObsP2jNNd360dGtQ5AS3MGsYiMz9gWj4MsbjuyDkWZS+azA/egQon/4xEUbG8S1NM8Sd0o9SgaYPPMaIfpxpZ+eyNakJe5z7aZ0Hv75dPnQ082y4G0e2vls7qmvZOUz8pAjZdI8noDeIuLgV2sHbOFYTrfwybTp6GpVnrzlRkNZfXAtd3bzIInOMpbgYj8Rx3vhz4GySGRDxYUQhm4l7B86Ha+cZiVJwpDz7fas0zKMnvLbSEsWp+EuJD/ajMDCXhQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NYnXMq4ITRHWFWhWyuLjGniUFqalCS3rZ33/ecutjA8=;
- b=ek+e2TDJKrpzwCFHJhFB4/zpVhN0Xn/Kyn7EagTg7kV4OY3Od89HAab3TLNa67bzWGn7yP/i5xYuQaWmzyPjwp2NGMpqJ1l1cxHsOZOYyMRbDUyki3cfA/4fLkSV4kRmjVfiBWEalDUO25012p/RwRgT33wMVUQbaYen/oALTIaXH7IG2RUwI+TFmy4amfxsFZk90j4w3dzgdhhPHAwZcPcrACFESuZu+ybbfAytZvVSmkIwwwtymb8wv66I+rmgZ8euOYMzBg9phb27sLzT17atkcvzkTP/Ag4lgG+Y4nPugFx1jV7pBmYUFvmshoh9qROLE+Bc0jadsAmse834mA==
+ bh=RgMb8/xIZY/aeyxciAkmVHI0MYSa6pnvElZLILuX1Cg=;
+ b=S3ICiByPt9/vRUNvL5+xQvAUrvEkYgH74/1pnv6WPfTy/wBFl7tp8Zq00kTFQChBh9l3R0sNPXciW/Astsd6SDAX+qTciyecfrR47v8oWb/cBWqXHJUiiljO5fHzwS1hSSUgj2PKrmmdjhKcEYM1jg+E/tpA5Ff5cPHjpyqyBk8HakW4co6dAkeqo/ox/k0hEiiVEXP11sAGPQeK0jsow9pchc9q1qw94EhzSYtCGpYLhSzZcG6Avl0YZ/3G0i5uVKFBiSuabDzHkkZap4ISBjDyJ6GGVVhfboRg9HAh/zMqQ517ic4AdAR4ocf01NFr7RapJWbnLbAW2zv51DFSYQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by PH7PR11MB7720.namprd11.prod.outlook.com (2603:10b6:510:2b3::17)
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by PH7PR11MB7662.namprd11.prod.outlook.com (2603:10b6:510:27d::19)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.21; Tue, 5 Mar
- 2024 14:45:02 +0000
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::3a8d:b57a:4dae:a25b]) by PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::3a8d:b57a:4dae:a25b%7]) with mapi id 15.20.7362.019; Tue, 5 Mar 2024
- 14:45:02 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240304232531.GV5347@mdroper-desk1.amr.corp.intel.com>
-References: <20240304183028.195057-1-gustavo.sousa@intel.com>
- <20240304183028.195057-6-gustavo.sousa@intel.com>
- <20240304232531.GV5347@mdroper-desk1.amr.corp.intel.com>
-Subject: Re: [PATCH 5/8] drm/i915: Add mdclk_cdclk_ratio to intel_dbuf_state
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>, Lucas
- De Marchi <lucas.demarchi@intel.com>, <vinod.govindapillai@intel.com>,
- <stanislav.lisovskiy@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Date: Tue, 5 Mar 2024 11:44:58 -0300
-Message-ID: <170964989861.109629.4443773393434802936@gjsousa-mobl2>
-User-Agent: alot/0.10
-X-ClientProxiedBy: BYAPR21CA0019.namprd21.prod.outlook.com
- (2603:10b6:a03:114::29) To PH8PR11MB8287.namprd11.prod.outlook.com
- (2603:10b6:510:1c7::14)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.18; Tue, 5 Mar
+ 2024 14:46:51 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::a7f1:384c:5d93:1d1d]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::a7f1:384c:5d93:1d1d%4]) with mapi id 15.20.7362.019; Tue, 5 Mar 2024
+ 14:46:51 +0000
+Date: Tue, 5 Mar 2024 09:46:47 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 3/4] drm/xe: Do not perform GuC TLB invalidation for
+ display GGTT
+Message-ID: <ZecwVzfIoKwhHj8z@intel.com>
+References: <20240305131250.5330-1-maarten.lankhorst@linux.intel.com>
+ <20240305131250.5330-4-maarten.lankhorst@linux.intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240305131250.5330-4-maarten.lankhorst@linux.intel.com>
+X-ClientProxiedBy: BYAPR07CA0070.namprd07.prod.outlook.com
+ (2603:10b6:a03:60::47) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|PH7PR11MB7720:EE_
-X-MS-Office365-Filtering-Correlation-Id: 150d0cd0-c5e8-49da-5dbe-08dc3d22d6fc
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|PH7PR11MB7662:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1b378980-4f97-4f70-1350-08dc3d2317ca
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: nIzY5wyYvh9nOdbgyUE24CBJcfVzHmGai59/uUOXnmWRMWDb1pRcgNoxK55HkRbCG5oc82kQYdYnE59hCdVM8c8+PoFRTn0Uk6z1h+5Dl/O6/hx2L6ugioAuv7VD4je+8zpFhlasdmXQtrdEgDzpv853Md4t0Hdg9AsV9tYgPng0/M7XsS2tFu+8gB20rRLQgWEZqAWtdnM/sLxTshOm3SuIZIyAZfaMz2m9/Kn8esUtyY3yCn71CNo+s7i9Qh7tJB/mLOz74V8V/bM2HiDbsBUrsccVyPSirpLH8c4PVK86aAQnZBXiiy1KHTdZ7NGJ0Vt1ppok/959cscVeJS4GIbGCYjmaqjNaQDEQeA/KmyHubyTcIMHl1RCUPnuKbfunkTcLriST+h48TREMqoZGwW5qzmaG8GGe1srMdfaS8AIheLvl6dpzIKk5eGVcScdCYSLstwmIWU1eiV3+3f4xUgoHnqnG28R1krRuiCP3rVgzJV9bYjHpGalL2MDWno5byED1T0VSX2ptzHf9s/O3mxjW71i+/x9lx+6is2P3RwJE/HmUpT9Ec/52ITcBV6d/e78ETYqR1ivp+hvB25PcLH+8nA+y8xAo6ODLUM8zy6EAHxSeEgJ2fOhSesgzjnliyRdp1EnnbVdKC6Hl3TzUTfDby3lv7aeUs2YxjLlYv4=
+X-Microsoft-Antispam-Message-Info: GU09NBBEmFvWj6+wOEWnGEzUKgFrGnVjjrC+6YEhKclzbhZnJtJ2TSHL2Kw3AEpCgz37kZ5UtwRIIW0Lk8ZjlIQAaRZeuT7l2Ybdy7JyzfFzQcMHv3508QeHXac/u2NFOYACUfWc/phgDWpRQz4gu8JKQJ7nL4+tQGKktI3w0Zf+vtMoAuvntmDja6nsPD1tlB0NMQ8HQKQljHnTWOshBV5tLvAeVapO9mC6panwuuNks9BpVU+ZNmbqmFihUmI+P7BZJjvOFe+pXdrn6CwI86o9pI/sV7YFs8k0NilEZrnBZLcocmys39TnFYDM/pskpKYWjYA7LpotOUjmtTIgx71Zjon/U+JTOudy9np9BfFztDzY0XIrCSKzRUS9AsvszW0kXQkB65B7VFFvO4eyORS+YI+ShF7vUpsm6hJ1/ADX83mge96fc61yRMC8NkosQnYAfUu92Vm75fpQ4DH232ZrwjcUVSThT2LYcZhZcC4jIrgEB7CYyAHXXHhzAqkNf04kTNT1h9mjiV5/lb5Pyot92sFvOmg4uX+e9jnALbZI0b4EeExpQ1mk1AGy6/EQfXvrdarWIKWYlgU6RZgma673CNbdpVq4VSQgf7xj4HiatO42dsQQsE7bQnJkztWKEIaf4JsnmNXT3MHG2oj/jp7GYdRefp6B1Bz4O5e09f4=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(376005); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eWZBY1MvQWc5K1A4bDY0NXA4cHJmcjdONndaU1lubEhnQ0I4REpZWFkwNCt6?=
- =?utf-8?B?MngvdzVEWjAxbUE3SVdTYy80VXFWa2hJSUpiaWtoeEFLOFpQWCtkYlJRSEhE?=
- =?utf-8?B?TmIrSGdXNDBHSHB3K3N4cW1sUlVGa0pXWDJ6d1N5UnRFdmdNaTBRTUdZQ1dJ?=
- =?utf-8?B?Y0QzMjBCanRqQXdNTHh3YU5PcmhqSS9OaDR3UzdlRDhTM0tqMlkvd3Rhb2dD?=
- =?utf-8?B?L3EzbzIwR2x1VEdOdjlSSVRDUjdSRmlDSnVibzRScWE2SktzclYvNmczWDIr?=
- =?utf-8?B?Wlg1L0FBVkNwcWhnR01pR0h0ZlZpSndsZGFMY0ZIdFFZOHRSQlpIVCs3QmhG?=
- =?utf-8?B?VmZrQXk1N3pMbUE1enBHSzNLRkVVc3gvVUNQY3NjNWhCamN3bk1rN3Qxamo5?=
- =?utf-8?B?d0FMUHUxaWROM2ZqT1BYdTRUZm1VN2NhVlp5YStqZGZiK1FLWmlkLzF5ejNT?=
- =?utf-8?B?VHhudXNNa0pNdkMwb2o2RHlsOEVCV1JsaktiMjJiYXo5b2MxdVFzYVFyZnlV?=
- =?utf-8?B?UWtXeXFrNkQyeW14MWhwbGkrWitMK05NY2NhMGdrUWpIUTRoVWdzUnJSeExU?=
- =?utf-8?B?L3dkSWNyb0tqZVBOVHdEbVpPOWQrRHNRZWNkT0pHTVFVbWlUeHVJZWtlZGVL?=
- =?utf-8?B?c2RHQXl4OU5NV1NvTVNkSU1YbmpsMXhCL0ZpNFNSSXlQMFhBbmNyeU5uakVE?=
- =?utf-8?B?dzJsOE1icEsyWjhEdEE2MmNrRE5ZWTd2a0VoUkdMNWtxRmhxMyt4VGN5ekdJ?=
- =?utf-8?B?VXprL2Z1d2dFUWMyb3VXU2wxODhLSmxVY2pZWmkrd2lKSjZQSkgxbXExK0Vv?=
- =?utf-8?B?UVZLRDBJWEtEaGppQm1jQXJScnI4YU9WSmJ4Z1o5S1UxVXNKOGZvd3E0NDgv?=
- =?utf-8?B?Y1c1alhUN3RjQXRGbVhHSVl4T2hQb1BEWkpYeXRmemRJcFZDZW80WU5LbEda?=
- =?utf-8?B?RnBiaGpVV2NPNlNDTXdtZW5oZEROaVVYN0hIK0tOQytPRm4xa1dzSHdNVDNv?=
- =?utf-8?B?N04ra1RicGpzeUpTZldFencrTzBKOFVXY1VCTkUyZzNDSi9CVGZoTVVKNDQr?=
- =?utf-8?B?aVNNazJMWnFNMGNWVjlxSU5MZkYwWVFiZDRZWUVtS2ZneVlyUHh0QmJJZzFv?=
- =?utf-8?B?YUtkMk1jTkp6bWx1RCtYODVQanBObWk4YVptQnA0MWtHeitHb3ZHWVBDWjhq?=
- =?utf-8?B?aXFNT1J1ZS9RdGIyN1hNaE5KRXdIZDg0VHM3Qy8wMWc2bGpiSmVaeE9vdHc2?=
- =?utf-8?B?V2E4VlZWTStLbU0wY2JaeHEraEpHN0hrNnIxS0hkaGcxNkxtdGJERVh6dkxJ?=
- =?utf-8?B?SlNRRU9PTmFqMkpHYm5CeHh3cG9YWmxYMldHbEY0QmdoT2VzemJ1azZCbVdS?=
- =?utf-8?B?WWFrbzhvcDMwWWhDUUNRNmV2Q1N5QkVQdjhjOGN2dVRvSkpvQytEQnRoRHZk?=
- =?utf-8?B?QWdoMWh0WHFneUNOV1JOdWpPQVl1K1hKbEhFbFd3ZDRsVFgyM3B3UlArSDBX?=
- =?utf-8?B?ajg0TEtVaGs4bEZpZ2t2dzN6d1NwbXo2dys5OXJVOEUzOEN4b0hRZkd5OVJl?=
- =?utf-8?B?K0FPUHJRSUwvdCtZbHFLcnBjSmhTLzRpY0xtTFVhdEdZaUw5MUcrNTVOZU1N?=
- =?utf-8?B?aGdqT3Y5OG1jQTFiQ2RteEZURUgrUXZ3NjhtOFN4SnY5S1VncnlXQmlrajBy?=
- =?utf-8?B?RmIvN2NFeTl6c1VaTUFTZUFsWGhDSG5XNURlUUNrallGNXh1YWpqck11ck9t?=
- =?utf-8?B?c1kwVTVXU0pWYlpuUUgyTU1WRjJORk5BM09iRVRPNFJreWNXNnFCVlk1eHhK?=
- =?utf-8?B?Y2k0UXV4ZmxLamxDTURsWHZrbjNhdExvcFVLMXgxQ3pBbUxHSlQ0aDJ1YWxJ?=
- =?utf-8?B?c0o2QURHUVF5ZFhlajhGbnIvK1dQQS9IdFViOEJCdGJ0aGl3akpHWnJsWFov?=
- =?utf-8?B?VCs1aHdzckRTVGEwYjFFQVdac3hQdU9YNld2V3RNZHRsSDFlRndCb0VWc0VW?=
- =?utf-8?B?ci9BQTBQZ1orZmZZcnNxOGxHMlJIOStIV0VvY3BlL2kwSmJBZkNLRnNqVWt1?=
- =?utf-8?B?aG12a3BMU20zUlpIRnl6NEcyRE9ialZwWlhCVlpmQ05pU0FXTzhqY3RkL2g5?=
- =?utf-8?B?UGtHQ200VWdtekF5L0RQb3g3anZXS1plWEdQcmV0VDhDT0wxRU9ka0tuOUNQ?=
- =?utf-8?B?cFE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 150d0cd0-c5e8-49da-5dbe-08dc3d22d6fc
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?HPFVw9qefcdxPZ4OYNEF+G4t6/JBbXqpbD3ajHNo4rCN4gvS7yUEeYJcw5yL?=
+ =?us-ascii?Q?VN+rYJQtz+s/PvQygiKNtXkQoHfP3lLor30bSHbujRB492fv5B38EuFvleEe?=
+ =?us-ascii?Q?U8vqXJqmANEyZ2zBcE29W+ABYD0b3PQkoTcrsKBdSfRDem4SBuH5VMVBwl8N?=
+ =?us-ascii?Q?LbsLIVMdNgz6dHRU1nGFTDDyg9bxA6C6FzUNe8RJAGVeqEvZeWpH8YPMq1cw?=
+ =?us-ascii?Q?AQ61Grd+uei5iOIhNnAPreWYTf18ntSEXvlj7Ps3rud01U0AzVX/yqbY0b56?=
+ =?us-ascii?Q?bIDGEvlIOfSeJCgTtoQ56G3m371G0vvvz15iMuM795M2RwiZPAj4Xu9zeW9m?=
+ =?us-ascii?Q?s6KFXef5PuNXoRz6DC2vhcR7I71GkWAKmqSd7YUrbZADSFSHISsPtrxelLwI?=
+ =?us-ascii?Q?40rD5Vi8w52DcrpTo0Do1tuyBVrVDumkJxXKsRX98KGvXyl5UMuM0keJQF1L?=
+ =?us-ascii?Q?M9LARuT2ms3oDkthmjhVwIy9MBaA1rDGt/TyP2UZRy7rHbUl7Yc13881mG4E?=
+ =?us-ascii?Q?uTXVV/pGc74kwYGA2pZCt7LsbX0L+Izo9VHjiCwc66HWTS8nwHw2GJJc4oig?=
+ =?us-ascii?Q?azCs/NCBqupNBL0XnFY2YfUxgAFRbK5DQ4ufu1BpkjpK2eFMhcAQT3qNL+ui?=
+ =?us-ascii?Q?5ILzI41RVYwJDzoIAn1WNEK2ZdihNNSNRZJXfEfatIJJITDohuDXHQon3OHx?=
+ =?us-ascii?Q?6/HKFk3x+yHjzAnk0XYaDlKzydHXoLdFlBeNZcukNtRYtSrZF8vz4O8FS75X?=
+ =?us-ascii?Q?SeaS5iKmfP9YkNrbtRTyar2ZprRXZzX0OthI5iGCMFrjNGDOhIjaIbjKYs3J?=
+ =?us-ascii?Q?HPBKVLdB2OvNk4aqlVeoP5u6K0p3Bd1DexNPKOwbuw4vHq+zIK/msNtHOpLG?=
+ =?us-ascii?Q?K0a5XHDDptrzwNft8Xm2qpXvWDyeE6UdQlvCQlRuvaWB5o0R1sA4GejjhK/q?=
+ =?us-ascii?Q?jmyT82H56qFLilJG8vo/gwryg67r0XQG3C9CXWcsE4Nb8t8VgMKM6qvYt5vh?=
+ =?us-ascii?Q?j4OJis39A2d+xiz17gjtla+pEsKbdiv8O42MoyD2rGyvWvqBhTbvcKRSJpp4?=
+ =?us-ascii?Q?OvO3I1aOK1X9TWKR4IxmEypRtigemeGhyUdZt0WOEg8QbbCCbQ5bijcUM/xt?=
+ =?us-ascii?Q?JMJtmFrO3jYocAQACs5NGVlAi91x8ksXmgDVh/OE9ABRGPuI6l91P+lDxvPw?=
+ =?us-ascii?Q?Kk2leoULUqe5E0+p7XCs1FDKGzzA0xYSD5ntsTzZ0of4UuyDGocgumH24hVw?=
+ =?us-ascii?Q?Y+BhiSJX91hAHSpLH49bmqhhsC8vIVzMHKHEOF/Dk6BhpkfhDHX8kieXPMls?=
+ =?us-ascii?Q?j0InQBXUEVN76ZaG5zyDu/fFJGIZpGyhQCvvr3rzoIKF6rgCDKlE1YjHj3NV?=
+ =?us-ascii?Q?o99vO4QXkhkeUgqNBNUhg84g05PSt5NVew7n3AepwHb+ZtPAO6V+8IjM8eeP?=
+ =?us-ascii?Q?KErLTRff2Mc5pNG2cjqpxX4Km5RIhABOTr+KvwIjDBdII1u8ttYXCquyLXmA?=
+ =?us-ascii?Q?tav0Xx0yhCre7BrGNjIB0gNNLy+kZfLsoczoObwSvbJtb7CgR7SPdJdh5EQc?=
+ =?us-ascii?Q?KTbrVn6xXwc1+2M6/rIXZwM9uv7kN2HFozrhpSn5L9+kbXru5lR94i35yXS4?=
+ =?us-ascii?Q?Jg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1b378980-4f97-4f70-1350-08dc3d2317ca
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2024 14:45:02.5961 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2024 14:46:51.4703 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: exzPajc42pOokh2Viv9u/sx5+o3U1av7FbgqTIi3YH0MltNq/M57gMHRikbbEkAYaXtyZR4l0fbrfyhSOw19QA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7720
+X-MS-Exchange-CrossTenant-UserPrincipalName: jswmuWaUWgMh8oigA+NtD/vW+ukRWBEyvaiF12LXRRpC31dmxHyQFvoj3t4zP/9JK+UYTTJCBdXoQdEVpqR8TQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7662
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -166,217 +154,199 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Quoting Matt Roper (2024-03-04 20:25:31-03:00)
->On Mon, Mar 04, 2024 at 03:30:24PM -0300, Gustavo Sousa wrote:
->> CDCLK programming Xe2LPD always selects the CDCLK PLL as source for the
->
->I think something got a bit muddled while rewriting this sentence.
->Maybe the first two words were supposed to be dropped?
+On Tue, Mar 05, 2024 at 02:12:49PM +0100, Maarten Lankhorst wrote:
+> There should be no need to invalidate GuC for display, and it adds
+> a lot of latency for pinning/unpinning.
 
-Yeah. The original intention here was "CDCLK programming for Xe2LPD
-...". Dropping the first two words also works :-)
+why 'display' is the special condition that doesn't need invalidation?
+isn't there anything else we can use to differentiate the issues?
+aren't we over invalidating then?
 
-Will reword this in v2.
+> 
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> ---
+>  drivers/gpu/drm/xe/display/xe_fb_pin.c        | 11 ++++++++---
+>  drivers/gpu/drm/xe/display/xe_plane_initial.c |  3 ++-
+>  drivers/gpu/drm/xe/xe_bo.h                    |  2 ++
+>  drivers/gpu/drm/xe/xe_ggtt.c                  | 16 ++++++++++------
+>  drivers/gpu/drm/xe/xe_ggtt.h                  |  4 ++--
+>  5 files changed, 24 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> index 722c84a56607..95595d2cf1dc 100644
+> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> @@ -100,16 +100,20 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
+>  		dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
+>  					   ttm_bo_type_kernel,
+>  					   XE_BO_CREATE_VRAM0_BIT |
+> +					   XE_BO_CREATE_GGTT_BIT |
+> +					   XE_BO_DISPLAY_GGTT_BIT |
+>  					   XE_BO_CREATE_GGTT_BIT);
+>  	else
+>  		dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
+>  					   ttm_bo_type_kernel,
+>  					   XE_BO_CREATE_STOLEN_BIT |
+> +					   XE_BO_DISPLAY_GGTT_BIT |
+>  					   XE_BO_CREATE_GGTT_BIT);
+>  	if (IS_ERR(dpt))
+>  		dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
+>  					   ttm_bo_type_kernel,
+>  					   XE_BO_CREATE_SYSTEM_BIT |
+> +					   XE_BO_DISPLAY_GGTT_BIT |
+>  					   XE_BO_CREATE_GGTT_BIT);
+>  	if (IS_ERR(dpt))
+>  		return PTR_ERR(dpt);
+> @@ -201,6 +205,7 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
+>  
+>  	if (bo->ggtt_node.size && view->type == I915_GTT_VIEW_NORMAL) {
+>  		vma->node = bo->ggtt_node;
+> +		goto out_unlock;
+>  	} else if (view->type == I915_GTT_VIEW_NORMAL) {
+>  		u32 x, size = bo->ttm.base.size;
+>  
+> @@ -238,7 +243,7 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
+>  					   rot_info->plane[i].dst_stride);
+>  	}
+>  
+> -	xe_ggtt_invalidate(ggtt);
+> +	xe_ggtt_invalidate(ggtt, true);
 
->
->Otherwise,
->
->Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+this is a bogus call... isn't it better to simply remove this line?
+and perhaps not even adding the display condition inside the function
+but checking on the outside?
 
-Thanks!
-
---
-Gustavo Sousa
-
->
->> MDCLK. Because of that, the ratio between MDCLK and CDCLK is not be
->> constant anymore. As such, make sure to have the current ratio available
->> in intel_dbuf_state so that it can be used during dbuf programming.
->>=20
->> Note that we write-lock the global state instead of serializing to a
->> hardware commit because a change in the ratio should be rather handled
->> in the CDCLK change sequence, which will need to take care of updating
->> the necessary registers in that case. We will implement that in upcoming
->> changes.
->>=20
->> That said, changes in the MBus joining state should be handled by the
->> DBUF/MBUS logic, just like it is already done, but the logic will need
->> to know the ratio to properly update the registers.
->>=20
->> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_cdclk.c   | 26 ++++++++++++++++++++
->>  drivers/gpu/drm/i915/display/intel_cdclk.h   |  2 ++
->>  drivers/gpu/drm/i915/display/skl_watermark.c | 18 +++++++++++++-
->>  drivers/gpu/drm/i915/display/skl_watermark.h |  3 +++
->>  4 files changed, 48 insertions(+), 1 deletion(-)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/dr=
-m/i915/display/intel_cdclk.c
->> index cdf3ae766f9e..04a6e9806254 100644
->> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
->> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
->> @@ -39,6 +39,7 @@
->>  #include "intel_pcode.h"
->>  #include "intel_psr.h"
->>  #include "intel_vdsc.h"
->> +#include "skl_watermark.h"
->>  #include "vlv_sideband.h"
->> =20
->>  /**
->> @@ -1891,6 +1892,22 @@ static u32 xe2lpd_mdclk_source_sel(struct drm_i91=
-5_private *i915)
->>          return MDCLK_SOURCE_SEL_CD2XCLK;
->>  }
->> =20
->> +u8 intel_mdclk_cdclk_ratio(struct drm_i915_private *i915,
->> +                           const struct intel_cdclk_config *cdclk_confi=
-g)
->> +{
->> +        u32 source_sel =3D xe2lpd_mdclk_source_sel(i915);
->> +
->> +        switch (source_sel) {
->> +        case MDCLK_SOURCE_SEL_CD2XCLK:
->> +                return 2;
->> +        case MDCLK_SOURCE_SEL_CDCLK_PLL:
->> +                return DIV_ROUND_UP(cdclk_config->vco, cdclk_config->cd=
-clk);
->> +        default:
->> +                MISSING_CASE(source_sel);
->> +                return 2;
->> +        }
->> +}
->> +
->>  static bool cdclk_compute_crawl_and_squash_midpoint(struct drm_i915_pri=
-vate *i915,
->>                                                      const struct intel_=
-cdclk_config *old_cdclk_config,
->>                                                      const struct intel_=
-cdclk_config *new_cdclk_config,
->> @@ -3281,6 +3298,15 @@ int intel_modeset_calc_cdclk(struct intel_atomic_=
-state *state)
->>                              "Modeset required for cdclk change\n");
->>          }
->> =20
->> +        if (intel_mdclk_cdclk_ratio(dev_priv, &old_cdclk_state->actual)=
- !=3D
->> +            intel_mdclk_cdclk_ratio(dev_priv, &new_cdclk_state->actual)=
-) {
->> +                u8 ratio =3D intel_mdclk_cdclk_ratio(dev_priv, &new_cdc=
-lk_state->actual);
->> +
->> +                ret =3D intel_dbuf_state_set_mdclk_cdclk_ratio(state, r=
-atio);
->> +                if (ret)
->> +                        return ret;
->> +        }
->> +
->>          drm_dbg_kms(&dev_priv->drm,
->>                      "New cdclk calculated to be logical %u kHz, actual =
-%u kHz\n",
->>                      new_cdclk_state->logical.cdclk,
->> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/dr=
-m/i915/display/intel_cdclk.h
->> index fa301495e7f1..8e6e302bd599 100644
->> --- a/drivers/gpu/drm/i915/display/intel_cdclk.h
->> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
->> @@ -62,6 +62,8 @@ void intel_update_cdclk(struct drm_i915_private *dev_p=
-riv);
->>  u32 intel_read_rawclk(struct drm_i915_private *dev_priv);
->>  bool intel_cdclk_clock_changed(const struct intel_cdclk_config *a,
->>                                 const struct intel_cdclk_config *b);
->> +u8 intel_mdclk_cdclk_ratio(struct drm_i915_private *i915,
->> +                           const struct intel_cdclk_config *cdclk_confi=
-g);
->>  void intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)=
-;
->>  void intel_set_cdclk_post_plane_update(struct intel_atomic_state *state=
-);
->>  void intel_cdclk_dump_config(struct drm_i915_private *i915,
->> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/=
-drm/i915/display/skl_watermark.c
->> index d9e49cd60d3a..4410e21888ad 100644
->> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
->> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
->> @@ -3057,6 +3057,8 @@ static void skl_wm_get_hw_state(struct drm_i915_pr=
-ivate *i915)
->>          if (HAS_MBUS_JOINING(i915))
->>                  dbuf_state->joined_mbus =3D intel_de_read(i915, MBUS_CT=
-L) & MBUS_JOIN;
->> =20
->> +        dbuf_state->mdclk_cdclk_ratio =3D intel_mdclk_cdclk_ratio(i915,=
- &i915->display.cdclk.hw);
->> +
->>          for_each_intel_crtc(&i915->drm, crtc) {
->>                  struct intel_crtc_state *crtc_state =3D
->>                          to_intel_crtc_state(crtc->base.state);
->> @@ -3530,6 +3532,19 @@ int intel_dbuf_init(struct drm_i915_private *i915=
-)
->>          return 0;
->>  }
->> =20
->> +int intel_dbuf_state_set_mdclk_cdclk_ratio(struct intel_atomic_state *s=
-tate, u8 ratio)
->> +{
->> +        struct intel_dbuf_state *dbuf_state;
->> +
->> +        dbuf_state =3D intel_atomic_get_dbuf_state(state);
->> +        if (IS_ERR(dbuf_state))
->> +                return PTR_ERR(dbuf_state);
->> +
->> +        dbuf_state->mdclk_cdclk_ratio =3D ratio;
->> +
->> +        return intel_atomic_lock_global_state(&dbuf_state->base);
->> +}
->> +
->>  static void intel_dbuf_mdclk_cdclk_ratio_update(struct drm_i915_private=
- *i915,
->>                                                  u8 ratio,
->>                                                  bool joined_mbus)
->> @@ -3574,7 +3589,8 @@ static void update_mbus_pre_enable(struct intel_at=
-omic_state *state)
->>                       MBUS_HASHING_MODE_MASK | MBUS_JOIN |
->>                       MBUS_JOIN_PIPE_SELECT_MASK, mbus_ctl);
->> =20
->> -        intel_dbuf_mdclk_cdclk_ratio_update(i915, 2, dbuf_state->joined=
-_mbus);
->> +        intel_dbuf_mdclk_cdclk_ratio_update(i915, dbuf_state->mdclk_cdc=
-lk_ratio,
->> +                                            dbuf_state->joined_mbus);
->>  }
->> =20
->>  void intel_dbuf_pre_plane_update(struct intel_atomic_state *state)
->> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.h b/drivers/gpu/=
-drm/i915/display/skl_watermark.h
->> index e3d1d74a7b17..fed4d12df584 100644
->> --- a/drivers/gpu/drm/i915/display/skl_watermark.h
->> +++ b/drivers/gpu/drm/i915/display/skl_watermark.h
->> @@ -58,6 +58,7 @@ struct intel_dbuf_state {
->>          u8 slices[I915_MAX_PIPES];
->>          u8 enabled_slices;
->>          u8 active_pipes;
->> +        u8 mdclk_cdclk_ratio;
->>          bool joined_mbus;
->>  };
->> =20
->> @@ -71,6 +72,8 @@ intel_atomic_get_dbuf_state(struct intel_atomic_state =
-*state);
->>          to_intel_dbuf_state(intel_atomic_get_new_global_obj_state(state=
-, &to_i915(state->base.dev)->display.dbuf.obj))
->> =20
->>  int intel_dbuf_init(struct drm_i915_private *i915);
->> +int intel_dbuf_state_set_mdclk_cdclk_ratio(struct intel_atomic_state *s=
-tate, u8 ratio);
->> +
->>  void intel_dbuf_pre_plane_update(struct intel_atomic_state *state);
->>  void intel_dbuf_post_plane_update(struct intel_atomic_state *state);
->>  void intel_mbus_dbox_update(struct intel_atomic_state *state);
->> --=20
->> 2.44.0
->>=20
->
->--=20
->Matt Roper
->Graphics Software Engineer
->Linux GPU Platform Enablement
->Intel Corporation
+>  out_unlock:
+>  	mutex_unlock(&ggtt->lock);
+>  out:
+> @@ -321,7 +326,7 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma)
+>  		xe_bo_unpin_map_no_vm(vma->dpt);
+>  	else if (!drm_mm_node_allocated(&vma->bo->ggtt_node) ||
+>  		 vma->bo->ggtt_node.start != vma->node.start)
+> -		xe_ggtt_remove_node(ggtt, &vma->node);
+> +		xe_ggtt_remove_node(ggtt, &vma->node, true);
+>  
+>  	ttm_bo_reserve(&vma->bo->ttm, false, false, NULL);
+>  	ttm_bo_unpin(&vma->bo->ttm);
+> @@ -381,4 +386,4 @@ struct i915_address_space *intel_dpt_create(struct intel_framebuffer *fb)
+>  void intel_dpt_destroy(struct i915_address_space *vm)
+>  {
+>  	return;
+> -}
+> \ No newline at end of file
+> +}
+> diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+> index 866d1dd6eeb4..79766b561d16 100644
+> --- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
+> +++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+> @@ -62,7 +62,8 @@ initial_plane_bo(struct xe_device *xe,
+>  	if (plane_config->size == 0)
+>  		return NULL;
+>  
+> -	flags = XE_BO_CREATE_PINNED_BIT | XE_BO_SCANOUT_BIT | XE_BO_CREATE_GGTT_BIT;
+> +	flags = XE_BO_CREATE_PINNED_BIT | XE_BO_SCANOUT_BIT |
+> +		XE_BO_CREATE_GGTT_BIT | XE_BO_DISPLAY_GGTT_BIT;
+>  
+>  	base = round_down(plane_config->base, page_size);
+>  	if (IS_DGFX(xe)) {
+> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+> index c59ad15961ce..1290c17c10f9 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.h
+> +++ b/drivers/gpu/drm/xe/xe_bo.h
+> @@ -45,6 +45,8 @@
+>  #define XE_BO_PAGETABLE			BIT(12)
+>  #define XE_BO_NEEDS_CPU_ACCESS		BIT(13)
+>  #define XE_BO_NEEDS_UC			BIT(14)
+> +#define XE_BO_DISPLAY_GGTT_BIT		BIT(15)
+> +
+>  /* this one is trigger internally only */
+>  #define XE_BO_INTERNAL_TEST		BIT(30)
+>  #define XE_BO_INTERNAL_64K		BIT(31)
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+> index 325337c38961..bda5055a2a18 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt.c
+> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+> @@ -211,7 +211,7 @@ static void xe_ggtt_initial_clear(struct xe_ggtt *ggtt)
+>  	drm_mm_for_each_hole(hole, &ggtt->mm, start, end)
+>  		xe_ggtt_clear(ggtt, start, end - start);
+>  
+> -	xe_ggtt_invalidate(ggtt);
+> +	xe_ggtt_invalidate(ggtt, false);
+>  	mutex_unlock(&ggtt->lock);
+>  	xe_device_mem_access_put(tile_to_xe(ggtt->tile));
+>  }
+> @@ -261,8 +261,12 @@ static void ggtt_invalidate_gt_tlb(struct xe_gt *gt)
+>  		drm_warn(&gt_to_xe(gt)->drm, "xe_gt_tlb_invalidation_ggtt error=%d", err);
+>  }
+>  
+> -void xe_ggtt_invalidate(struct xe_ggtt *ggtt)
+> +void xe_ggtt_invalidate(struct xe_ggtt *ggtt, bool display)
+>  {
+> +	/* Nothing to invalidate for display */
+> +	if (display)
+> +		return;
+> +
+>  	/* Each GT in a tile has its own TLB to cache GGTT lookups */
+>  	ggtt_invalidate_gt_tlb(ggtt->tile->primary_gt);
+>  	ggtt_invalidate_gt_tlb(ggtt->tile->media_gt);
+> @@ -388,7 +392,7 @@ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+>  		xe_ggtt_set_pte(ggtt, start + offset, pte);
+>  	}
+>  
+> -	xe_ggtt_invalidate(ggtt);
+> +	xe_ggtt_invalidate(ggtt, bo->flags & XE_BO_DISPLAY_GGTT_BIT);
+>  }
+>  
+>  static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+> @@ -433,7 +437,7 @@ int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+>  	return __xe_ggtt_insert_bo_at(ggtt, bo, 0, U64_MAX);
+>  }
+>  
+> -void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node)
+> +void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node, bool display)
+>  {
+>  	xe_device_mem_access_get(tile_to_xe(ggtt->tile));
+>  	mutex_lock(&ggtt->lock);
+> @@ -442,7 +446,7 @@ void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node)
+>  	drm_mm_remove_node(node);
+>  	node->size = 0;
+>  
+> -	xe_ggtt_invalidate(ggtt);
+> +	xe_ggtt_invalidate(ggtt, display);
+>  
+>  	mutex_unlock(&ggtt->lock);
+>  	xe_device_mem_access_put(tile_to_xe(ggtt->tile));
+> @@ -456,7 +460,7 @@ void xe_ggtt_remove_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+>  	/* This BO is not currently in the GGTT */
+>  	xe_tile_assert(ggtt->tile, bo->ggtt_node.size == bo->size);
+>  
+> -	xe_ggtt_remove_node(ggtt, &bo->ggtt_node);
+> +	xe_ggtt_remove_node(ggtt, &bo->ggtt_node, bo->flags & XE_BO_DISPLAY_GGTT_BIT);
+>  }
+>  
+>  int xe_ggtt_dump(struct xe_ggtt *ggtt, struct drm_printer *p)
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+> index 42705e1338e1..bc2a6379a2e9 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt.h
+> +++ b/drivers/gpu/drm/xe/xe_ggtt.h
+> @@ -11,7 +11,7 @@
+>  struct drm_printer;
+>  
+>  void xe_ggtt_set_pte(struct xe_ggtt *ggtt, u64 addr, u64 pte);
+> -void xe_ggtt_invalidate(struct xe_ggtt *ggtt);
+> +void xe_ggtt_invalidate(struct xe_ggtt *ggtt, bool display);
+>  int xe_ggtt_init_early(struct xe_ggtt *ggtt);
+>  int xe_ggtt_init(struct xe_ggtt *ggtt);
+>  void xe_ggtt_printk(struct xe_ggtt *ggtt, const char *prefix);
+> @@ -24,7 +24,7 @@ int xe_ggtt_insert_special_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
+>  int xe_ggtt_insert_special_node_locked(struct xe_ggtt *ggtt,
+>  				       struct drm_mm_node *node,
+>  				       u32 size, u32 align, u32 mm_flags);
+> -void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node);
+> +void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node, bool display);
+>  void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
+>  int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
+>  int xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+> -- 
+> 2.43.0
+> 
