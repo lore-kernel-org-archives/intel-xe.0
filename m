@@ -4,45 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2249CC5475B
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Mar 2024 15:40:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3400AC5475B
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Mar 2024 15:40:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B27321132BF;
-	Wed,  6 Mar 2024 15:40:37 +0000 (UTC)
-Received: from smtpbguseast2.qq.com (smtpbguseast2.qq.com [54.204.34.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92C54112813;
- Tue,  5 Mar 2024 01:52:39 +0000 (UTC)
-X-QQ-mid: bizesmtp62t1709603425tlfm1u6g
-X-QQ-Originating-IP: bOfoihEMseawlWRMJfUotn4eIapOK4hJzqa7PVtpX9M=
-Received: from localhost ( [112.22.30.30]) by bizesmtp.qq.com (ESMTP) with 
- id ; Tue, 05 Mar 2024 09:50:24 +0800 (CST)
-X-QQ-SSF: 01400000000000505000000A0001000
-X-QQ-FEAT: aBJFcW+uBGaR7RCsuQoBy5eXJ1KZuuHUtRBZZSI216HiitWH8P8cUz2Cg2MDR
- 6WqYitRnkgbwfvlT/0blMffY3wNXYkK5uMhGTeLXZ3Iuzb+eFyMN2aEkk9guJSpYlgC3KxY
- z+w2R2C5Q6fQKuRLC2DGW2tGX9dDFRnhESPT9CPgwTyYsM6nuhviYA7jYWR/uu6q8X2SsM3
- 7Ji4l8FhFdCRxux7wuDMywVd5qLLnOfHlVjTv/OWCNiKTuJjcblHWtQ4FiOXZPSWLn84LRu
- /5vh0+dzeb+rr68ICK34GULzlCh0ayPn7SqzI+y7JkGRd/4NlmebYRru5ssz+XRYCb9T937
- PaGtuXjfD72hrxLllYKzb/3SWJKOct2fU9SMMw9uclhD8X3uPfUPkIgQ+ofXsCGeORpxxN7
-X-QQ-GoodBg: 2
-X-BIZMAIL-ID: 14154700281966297232
-Date: Tue, 5 Mar 2024 09:50:23 +0800
-From: Dawei Li <dawei.li@shingroup.cn>
-To: lucas.demarchi@intel.com, ogabbay@kernel.org,
- thomas.hellstrom@linux.intel.com
-Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH] drm/xe: Declare __xe_lrc_*_ggtt_addr with __maybe__unused
-Message-ID: <1543D46042445CE9+ZeZ6X5Ng2rq3swoo@centos8>
-References: <20240204062324.3548268-1-dawei.li@shingroup.cn>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7C131132CC;
+	Wed,  6 Mar 2024 15:40:56 +0000 (UTC)
+X-Greylist: delayed 302 seconds by postgrey-1.36 at gabe;
+ Tue, 05 Mar 2024 11:24:04 UTC
+Received: from out0-194.mail.aliyun.com (out0-194.mail.aliyun.com
+ [140.205.0.194])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBE63112A3A
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 Mar 2024 11:24:04 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R951e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018047190;
+ MF=tiwei.btw@antgroup.com; NM=1; PH=DS; RN=7; SR=0;
+ TI=SMTPD_---.WfsbWle_1709637532; 
+Received: from 30.230.19.235(mailfrom:tiwei.btw@antgroup.com
+ fp:SMTPD_---.WfsbWle_1709637532) by smtp.aliyun-inc.com;
+ Tue, 05 Mar 2024 19:18:58 +0800
+Message-ID: <9d297bf5-4f54-431b-ab8d-c5be825f129e@antgroup.com>
+Date: Tue, 05 Mar 2024 19:18:50 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240204062324.3548268-1-dawei.li@shingroup.cn>
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:shingroup.cn:qybglogicsvrgz:qybglogicsvrgz5a-1
-X-Mailman-Approved-At: Wed, 06 Mar 2024 15:40:36 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: -Wmissing-prototypes warnings in user-mode linux
+Content-Language: en-US
+To: Jani Nikula <jani.nikula@intel.com>,
+ Johannes Berg <johannes@sipsolutions.net>,
+ Richard Weinberger <richard@nod.at>,
+ Anton Ivanov <anton.ivanov@cambridgegreys.com>, linux-um@lists.infradead.org
+Cc: intel-xe@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+References: <87jzmh2chs.fsf@intel.com>
+ <5d1dfb9fce5d7647ff3203080416eadc9806059a.camel@sipsolutions.net>
+ <87frx52btl.fsf@intel.com>
+From: "Tiwei Bie" <tiwei.btw@antgroup.com>
+In-Reply-To: <87frx52btl.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Wed, 06 Mar 2024 15:40:55 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,56 +55,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+On 3/5/24 6:49 PM, Jani Nikula wrote:
+> On Tue, 05 Mar 2024, Johannes Berg <johannes@sipsolutions.net> wrote:
+>> On Tue, 2024-03-05 at 12:34 +0200, Jani Nikula wrote:
+>>> We're seeing a lot of -Wmissing-prototypes warnings when building
+>>> user-mode Linux. For example, our CI hits things like [1], and it's just
+>>> extra noise in the build.
+>>
+>> Yeah ...
+>>
+>>> I started adding some prototypes, but I lost my way around the arch/
+>>> subdirectory a bit. I'm not always quite sure what should or could be
+>>> included where, or whether a new header should be added instead, etc.,
+>>> so it wasn't going as quickly as I'd hoped.
+>>>
+>>> Do you perhaps already have plans or, better yet, patches to address
+>>> this? Feels like it should be fairly quick for someone familiar with the
+>>> arch/um codebase.
+>>
+>> I think this series addressed most already?
+>>
+>> https://patchwork.ozlabs.org/project/linux-um/list/?series=393619
+>>
+>> But I haven't checked myself yet.
+> 
+> Oh, nice, it certainly helps!
+> 
+> But after applying that in my branch, I do still get a bunch of
+> warnings.
 
-On Sun, Feb 04, 2024 at 02:23:24PM +0800, Dawei Li wrote:
-> Kernel test robot reports building error:
-> 
-> drivers/gpu/drm/xe/xe_lrc.c:544:1: error: unused function
-> '__xe_lrc_regs_ggtt_addr' [-Werror,-Wunused-function]
-> 544 | DECL_MAP_ADDR_HELPERS(regs)
->     | ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-> 
-> drivers/gpu/drm/xe/xe_lrc.c:536:19: note: expanded from macro
-> 'DECL_MAP_ADDR_HELPERS'
-> 536 | static inline u32 __xe_lrc_##elem##_ggtt_addr(struct xe_lrc *lrc) \
->     |                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-> 
-> <scratch space>:54:1: note: expanded from here
-> 54 | __xe_lrc_regs_ggtt_addr
->    | ^~~~~~~~~~~~~~~~~~~~~~~
-> 
-> 1 error generated.
-> 
-> Declare __xe_lrc_*_ggtt_addr with __maybe_unused to address it.
-> 
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202402010928.g3j2aSBL-lkp@intel.com/
-> Signed-off-by: Dawei Li <dawei.li@shingroup.cn>
-> ---
->  drivers/gpu/drm/xe/xe_lrc.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+Thanks for raising this topic!                            
+                                                              
+Indeed. To make it easier to review, the current series only addressed
+the -Wmissing-prototypes warnings that can be fixed straightforwardly (e.g.
+by turning into static functions or including missing headers). The remaining 
+-Wmissing-prototypes warnings mainly fall into the following categories:
 
-Just a gentle ping.
+- Symbols defined and used in os-Linux/;                
+- Symbols defined in os-Linux/, but declared in kernel headers;
+- Symbols defined in individual files and not called explicitly;
 
-Thanks,
+My plan was to fix the remaining warnings in followup series. Ultimately,
+I wish we can let cc treat -Wmissing-prototypes warnings as errors.
 
-    Dawei
-
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-> index 0ec5ad2539f1..f70e60a2f8a3 100644
-> --- a/drivers/gpu/drm/xe/xe_lrc.c
-> +++ b/drivers/gpu/drm/xe/xe_lrc.c
-> @@ -614,7 +614,7 @@ static inline struct iosys_map __xe_lrc_##elem##_map(struct xe_lrc *lrc) \
->  	iosys_map_incr(&map, __xe_lrc_##elem##_offset(lrc)); \
->  	return map; \
->  } \
-> -static inline u32 __xe_lrc_##elem##_ggtt_addr(struct xe_lrc *lrc) \
-> +static inline u32 __maybe_unused __xe_lrc_##elem##_ggtt_addr(struct xe_lrc *lrc) \
->  { \
->  	return xe_bo_ggtt_addr(lrc->bo) + __xe_lrc_##elem##_offset(lrc); \
->  } \
-> -- 
-> 2.27.0
-> 
+Regards,
+Tiwei
