@@ -4,50 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62E8FC54E5D
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Mar 2024 18:32:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFE98C54E55
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Mar 2024 18:32:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4B36113430;
-	Wed,  6 Mar 2024 18:32:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B974113436;
+	Wed,  6 Mar 2024 18:32:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YxLH1Cn2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DCorpvOn";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A930113425;
- Wed,  6 Mar 2024 18:32:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C39DB113432;
+ Wed,  6 Mar 2024 18:32:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709749930; x=1741285930;
+ t=1709749939; x=1741285939;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zIg4GVdUuYUfyl+sUeMI8sE6rIfLshsrEAeTPIft9xY=;
- b=YxLH1Cn24SaAS7fgvtuKbtFYx3BhDsutHTd0m4IuLMxZG/nsFFgghfDQ
- +Za4yUd1b9ltp4hZ/tqtLRr3Mgdh1NbMgt11OSfii/bv8Mx/xkTNZ5pTF
- TiCjL+Yu0s/PN5bKxEpSVD60Vnb54bOG9/3CPATfy/cUVS/CRd720iioe
- 6h+GivwTEsIiE0YKImZVMiscBpSAw/XkI9CCHQQ3JO/8gX/yu5DYfPxZz
- mDgqPhXnUEu3f38eKS4/G403rrrgcfUHR5kdSzrxdNYloHp2fCPu14Hnn
- fEFEa+5t89hqWcaJlQES3gW3HVnNpcE3lctDgNkrAFS/Xb2ObrC4xvi8U Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11005"; a="8142913"
-X-IronPort-AV: E=Sophos;i="6.06,209,1705392000"; 
-   d="scan'208";a="8142913"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2024 10:32:09 -0800
+ bh=Xq9/p/3XxdYm4p2rYJtNEydQpVZ0FF6DFo0mUZC9v6o=;
+ b=DCorpvOnGaRLTLnBQdcCePREib5GOrQaUdg7k3MX34iALJfKsvKCCV9v
+ 4zUBbtPMxy8L1agwJtKn6jdJoQj2/nE7YIvOpYoS8kgbnVGfuOHHyE1cb
+ p9bATSw1L5fPFBRtcv47wk4LJHzH0P9T9deGkhYFXSjUVcN5lW6txSHR1
+ Ix0DuqZFC4Mlog4SGl7+F3W/c/3BJQrybDUpFdTUvO1J6MhubHpUNPncx
+ 4PA2kBXk49hQTNPgQ1/ZOaybuJ0CxlpZtwaFsdmf65UqorPDymthfaHKo
+ XJ98KJnx6qUNmVC+e/0idZLcTbFlfLWX58lPIDWK1hcnCBY3hmMsI4t7b A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11005"; a="15102685"
+X-IronPort-AV: E=Sophos;i="6.06,209,1705392000"; d="scan'208";a="15102685"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2024 10:32:19 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,209,1705392000"; 
-   d="scan'208";a="9709862"
+X-IronPort-AV: E=Sophos;i="6.06,209,1705392000"; d="scan'208";a="14415778"
 Received: from rjongalo-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.33.211])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2024 10:32:07 -0800
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2024 10:32:17 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: dri-devel@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  jani.nikula@intel.com
-Subject: [PATCH 07/22] drm/crc: make drm_debugfs_crc.h self-contained and fix
- kernel-doc
-Date: Wed,  6 Mar 2024 20:31:12 +0200
-Message-Id: <290b006bb348a03bd7c4c062d337df21fdaced53.1709749576.git.jani.nikula@intel.com>
+Subject: [PATCH 09/22] drm: fix drm_format_helper.h kernel-doc warnings
+Date: Wed,  6 Mar 2024 20:31:14 +0200
+Message-Id: <6dc5b1df34abc10d416c2db5b390440cf56e21ce.1709749576.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1709749576.git.jani.nikula@intel.com>
 References: <cover.1709749576.git.jani.nikula@intel.com>
@@ -68,39 +65,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a number of require includes and forward declare struct
-drm_crtc. s/crc/crcs/ kernel-doc to match code.
+As the documentation says, all the fields are considered private. Mark
+them private also for kernel-doc to silence warnings.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- include/drm/drm_debugfs_crc.h | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ include/drm/drm_format_helper.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/include/drm/drm_debugfs_crc.h b/include/drm/drm_debugfs_crc.h
-index b225eeb30d05..1b4c98c2f838 100644
---- a/include/drm/drm_debugfs_crc.h
-+++ b/include/drm/drm_debugfs_crc.h
-@@ -22,13 +22,19 @@
- #ifndef __DRM_DEBUGFS_CRC_H__
- #define __DRM_DEBUGFS_CRC_H__
- 
-+#include <linux/spinlock_types.h>
-+#include <linux/types.h>
-+#include <linux/wait.h>
-+
-+struct drm_crtc;
-+
- #define DRM_MAX_CRC_NR		10
- 
- /**
-  * struct drm_crtc_crc_entry - entry describing a frame's content
-  * @has_frame_counter: whether the source was able to provide a frame number
-  * @frame: number of the frame this CRC is about, if @has_frame_counter is true
-- * @crc: array of values that characterize the frame
-+ * @crcs: array of values that characterize the frame
+diff --git a/include/drm/drm_format_helper.h b/include/drm/drm_format_helper.h
+index f13b34e0b752..428d81afe215 100644
+--- a/include/drm/drm_format_helper.h
++++ b/include/drm/drm_format_helper.h
+@@ -25,6 +25,7 @@ struct iosys_map;
+  * All fields are considered private.
   */
- struct drm_crtc_crc_entry {
- 	bool has_frame_counter;
+ struct drm_format_conv_state {
++	/* private: */
+ 	struct {
+ 		void *mem;
+ 		size_t size;
 -- 
 2.39.2
 
