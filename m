@@ -4,50 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DE46C5475B
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Mar 2024 19:21:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 185FCC5475B
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Mar 2024 19:26:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C8CA11349C;
-	Wed,  6 Mar 2024 19:21:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hBojcuZt";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3860A11349A
- for <intel-xe@lists.freedesktop.org>; Wed,  6 Mar 2024 19:21:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709752868; x=1741288868;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ch7iUuK848zslPMGPDLaRaSXJL0qj4tiPSZ+0Kp1cMQ=;
- b=hBojcuZtWrGEIqogn7evweddLmu9EFxC3yGut6XWfOWDQKsyF4X6YpHw
- IPFQmBBmtPVfb1vLqDHYWJzW40DWLwNVuapagRBs9z8wRLlSCKaM/QNdE
- vGHRlk76UjQ1QigJrG5Jq2QgRW+QyNRSW9FWxF9Gd+lh/g3q/amOneq2O
- GnMWnbuUE+MUYV/UoK350kyzu3kqR8soy6ZIaI54/9obT2X/+Tyo1Gk3i
- tILfAvXLtdzKtvfXEqNt9YADep4PkrrTNNOZHF5lNgXJlxyGcJ36YbW/L
- Fx2TqQPDbNSuV9Zhmr7OKiDOr5Nx/C0AqtaeH2Z1pQsCxAlqLQzNuMZwI Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11005"; a="4235351"
-X-IronPort-AV: E=Sophos;i="6.06,209,1705392000"; 
-   d="scan'208";a="4235351"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2024 11:21:07 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,209,1705392000"; 
-   d="scan'208";a="9775887"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2024 11:21:07 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH 1/2] drm/xe: Remove unused FF_SLICE_CS_CHICKEN2
-Date: Wed,  6 Mar 2024 11:21:27 -0800
-Message-ID: <20240306192128.1895603-1-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9057D10F037;
+	Wed,  6 Mar 2024 19:26:04 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3944B10F037;
+ Wed,  6 Mar 2024 19:26:03 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7650359567356306162=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm=3A_fix_headers=2C_add_header?=
+ =?utf-8?q?_test_facility?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 06 Mar 2024 19:26:03 -0000
+Message-ID: <170975316323.562293.10147883411803166087@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <cover.1709749576.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1709749576.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,31 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Commit e89f4967d90c ("drm/xe: Drop WA 16015675438") removed the only
-user of that register and should have removed it. Remove it now.
+--===============7650359567356306162==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_engine_regs.h | 3 ---
- 1 file changed, 3 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-index 0b1266c88a6a..a08528d9c76b 100644
---- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-@@ -104,9 +104,6 @@
- #define FF_SLICE_CS_CHICKEN1(base)		XE_REG((base) + 0xe0, XE_REG_OPTION_MASKED)
- #define   FFSC_PERCTX_PREEMPT_CTRL		REG_BIT(14)
- 
--#define FF_SLICE_CS_CHICKEN2(base)		XE_REG((base) + 0xe4, XE_REG_OPTION_MASKED)
--#define   PERF_FIX_BALANCING_CFE_DISABLE	REG_BIT(15)
--
- #define CS_DEBUG_MODE1(base)			XE_REG((base) + 0xec, XE_REG_OPTION_MASKED)
- #define   FF_DOP_CLOCK_GATE_DISABLE		REG_BIT(1)
- #define   REPLAY_MODE_GRANULARITY		REG_BIT(0)
--- 
-2.43.0
+Series: drm: fix headers, add header test facility
+URL   : https://patchwork.freedesktop.org/series/130823/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-908-e96742a33719079709b8e180448b491622e6a427_BAT -> xe-pw-130823v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-908-e96742a33719079709b8e180448b491622e6a427 -> xe-pw-130823v1
+
+  IGT_7749: 2fd91b8c3cf9aa2b0bb78537a6b5e2bc3de50e0e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-908-e96742a33719079709b8e180448b491622e6a427: e96742a33719079709b8e180448b491622e6a427
+  xe-pw-130823v1: 130823v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130823v1/index.html
+
+--===============7650359567356306162==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm: fix headers, add header test facility</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130823/">https://patchwork.freedesktop.org/series/130823/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130823v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130823v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-908-e96742a33719079709b8e180448b491622e6a427_BAT -&gt; xe-pw-130823v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-908-e96742a33719079709b8e180448b491622e6a427 -&gt; xe-pw-130823v1</li>
+</ul>
+<p>IGT_7749: 2fd91b8c3cf9aa2b0bb78537a6b5e2bc3de50e0e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-908-e96742a33719079709b8e180448b491622e6a427: e96742a33719079709b8e180448b491622e6a427<br />
+  xe-pw-130823v1: 130823v1</p>
+
+</body>
+</html>
+
+--===============7650359567356306162==--
