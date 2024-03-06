@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB069C5475B
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Mar 2024 18:31:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF3E0C5475B
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Mar 2024 18:32:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA6F1113422;
-	Wed,  6 Mar 2024 18:31:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A045411341F;
+	Wed,  6 Mar 2024 18:32:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DgIseS9A";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hoxMsrL5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B92AD113420;
- Wed,  6 Mar 2024 18:31:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D99E11341B;
+ Wed,  6 Mar 2024 18:32:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709749906; x=1741285906;
+ t=1709749921; x=1741285921;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yG1LpTcJqzmN8OP4k89EVBJEUwWfcGkn17HFCUkG1l8=;
- b=DgIseS9AC/Y1pIp7tJrmGx02jMXQ5xCsa9Bl8eTcQN5Du08Iv7AJFrOd
- +Ala/6l7s+A40BoR3KvK5EYUBhxkN/XCVi7LlzfbdBqlAYqaJySa0IPNL
- r5gDT1X7z99y7r2+Q+IEeZrLbPazPNjdR/dRdaxh9Ar1tYIb4HycW03Ju
- X5bQZZrN7auSwB5MSW2jOxznXMNbg81en2OZwEnAFWx/NDo3lG7TmabpQ
- 7CaxKMHI6QCSfff/AmyqB5mI/26+9aYS/ZboG+RwHwTJVIWe9+CWIkTAw
- v4ngIrgPaNODM2hk4s51OPQWujtK6fNOpfDi5dMZzElMbWiGsnx6hsiFY Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11005"; a="15818021"
-X-IronPort-AV: E=Sophos;i="6.06,209,1705392000"; d="scan'208";a="15818021"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2024 10:31:46 -0800
+ bh=CDlJdmBn+/5hYwZU+GfnjgEUxtNwTEj1RL6tbIlKtk8=;
+ b=hoxMsrL5idHah48ftFXhKjubFWaK/rRwGfU15oIPK33R5wzVClNqSjib
+ JGBKcBoPbgMuBYlLyG8/FJGMtTwT729J8VrPiMdPJ89tg/zJPiqcf1LZa
+ wPI9zMaVtrfaekqkTO0u0XlbW2gKkBDaPhKO/TPMPw13ETgA+Hs98/nbu
+ 1xxTSJSUllENDzcJQdEH9C7dVIR8zx+eU16oOl/jDODK+FqFdoXaeR+t4
+ L+voppy1FKlcSw3Ad9tS5m+HMbyV6AKrh+6CHBwSHk1LE5K+lvuV9hwyX
+ ax+pAYAT10j9HZqkBsJ+RAtx6MJKlZR6utUkrpOtzsusrziO2ngmeEP9+ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11005"; a="15102609"
+X-IronPort-AV: E=Sophos;i="6.06,209,1705392000"; d="scan'208";a="15102609"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2024 10:32:00 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,209,1705392000"; 
-   d="scan'208";a="9922777"
+X-IronPort-AV: E=Sophos;i="6.06,209,1705392000"; d="scan'208";a="14415759"
 Received: from rjongalo-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.33.211])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2024 10:31:45 -0800
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2024 10:31:58 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: dri-devel@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  jani.nikula@intel.com
-Subject: [PATCH 02/22] drm: add missing header guards to drm_internal.h
-Date: Wed,  6 Mar 2024 20:31:07 +0200
-Message-Id: <6e744360513e581765147ea7b1e693f4bffe03a9.1709749576.git.jani.nikula@intel.com>
+Subject: [PATCH 05/22] drm: bridge: samsung-dsim: make samsung-dsim.h
+ self-contained
+Date: Wed,  6 Mar 2024 20:31:10 +0200
+Message-Id: <9534ca7dfba96580950e116c84ce0fa68fdf93a4.1709749576.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1709749576.git.jani.nikula@intel.com>
 References: <cover.1709749576.git.jani.nikula@intel.com>
@@ -66,33 +66,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Including the file twice leads to errors.
+Include <drm/drm_bridge.h> and forward declare struct platform device.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/drm_internal.h | 5 +++++
- 1 file changed, 5 insertions(+)
+ include/drm/bridge/samsung-dsim.h | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/drm_internal.h b/drivers/gpu/drm/drm_internal.h
-index 8e4faf0a28e6..d69744c9ac15 100644
---- a/drivers/gpu/drm/drm_internal.h
-+++ b/drivers/gpu/drm/drm_internal.h
-@@ -21,6 +21,9 @@
-  * OTHER DEALINGS IN THE SOFTWARE.
-  */
+diff --git a/include/drm/bridge/samsung-dsim.h b/include/drm/bridge/samsung-dsim.h
+index e0c105051246..9764d6eb5beb 100644
+--- a/include/drm/bridge/samsung-dsim.h
++++ b/include/drm/bridge/samsung-dsim.h
+@@ -11,9 +11,11 @@
+ #include <linux/regulator/consumer.h>
  
-+#ifndef __DRM_INTERNAL_H__
-+#define __DRM_INTERNAL_H__
-+
- #include <linux/kthread.h>
- #include <linux/types.h>
+ #include <drm/drm_atomic_helper.h>
+-#include <drm/drm_of.h>
++#include <drm/drm_bridge.h>
+ #include <drm/drm_mipi_dsi.h>
++#include <drm/drm_of.h>
  
-@@ -276,3 +279,5 @@ void drm_framebuffer_debugfs_init(struct drm_device *dev);
- /* drm_edid.c */
- void drm_edid_cta_sad_get(const struct cea_sad *cta_sad, u8 *sad);
- void drm_edid_cta_sad_set(struct cea_sad *cta_sad, const u8 *sad);
-+
-+#endif /* __DRM_INTERNAL_H__ */
++struct platform_device;
+ struct samsung_dsim;
+ 
+ #define DSIM_STATE_ENABLED		BIT(0)
 -- 
 2.39.2
 
