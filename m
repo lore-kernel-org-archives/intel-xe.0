@@ -4,34 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E19C9C54E41
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Mar 2024 10:19:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EEC1C54E5D
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Mar 2024 10:19:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 763DD11217E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4CDE11217B;
 	Wed,  6 Mar 2024 10:19:49 +0000 (UTC)
-Received: from out0-198.mail.aliyun.com (out0-198.mail.aliyun.com
- [140.205.0.198])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70F45112012
- for <intel-xe@lists.freedesktop.org>; Wed,  6 Mar 2024 10:19:45 +0000 (UTC)
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R161e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018047211;
+Received: from out0-211.mail.aliyun.com (out0-211.mail.aliyun.com
+ [140.205.0.211])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8FF610EC67
+ for <intel-xe@lists.freedesktop.org>; Wed,  6 Mar 2024 10:19:47 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R181e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018047207;
  MF=tiwei.btw@antgroup.com; NM=1; PH=DS; RN=8; SR=0;
- TI=SMTPD_---.Wgbn-Jk_1709720382; 
+ TI=SMTPD_---.Wgbn-K1_1709720384; 
 Received: from ubuntu..(mailfrom:tiwei.btw@antgroup.com
- fp:SMTPD_---.Wgbn-Jk_1709720382) by smtp.aliyun-inc.com;
- Wed, 06 Mar 2024 18:19:42 +0800
+ fp:SMTPD_---.Wgbn-K1_1709720384) by smtp.aliyun-inc.com;
+ Wed, 06 Mar 2024 18:19:44 +0800
 From: "Tiwei Bie" <tiwei.btw@antgroup.com>
 To: richard@nod.at, anton.ivanov@cambridgegreys.com, johannes@sipsolutions.net
 Cc: <jani.nikula@intel.com>, <linux-um@lists.infradead.org>,
  <linux-kernel@vger.kernel.org>, <intel-xe@lists.freedesktop.org>,
  "Tiwei Bie" <tiwei.btw@antgroup.com>
-Subject: [PATCH v3 4/9] um: Fix the return type of __switch_to
-Date: Wed, 06 Mar 2024 18:19:20 +0800
-Message-Id: <20240306101925.1088870-5-tiwei.btw@antgroup.com>
+Subject: [PATCH v3 8/9] um: Fix -Wmissing-prototypes warnings for text_poke*
+Date: Wed, 06 Mar 2024 18:19:24 +0800
+Message-Id: <20240306101925.1088870-9-tiwei.btw@antgroup.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240306101925.1088870-1-tiwei.btw@antgroup.com>
 References: <20240306101925.1088870-1-tiwei.btw@antgroup.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -47,35 +48,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Make it match the declaration in asm-generic/switch_to.h. And
-also include the header to allow the compiler to check it.
+The prototypes for text_poke* are declared in asm/text-patching.h
+under arch/x86/include/. It's safe to include this header, as it's
+UML-aware (by checking CONFIG_UML_X86).
+
+This will address below -Wmissing-prototypes warnings:
+
+arch/um/kernel/um_arch.c:461:7: warning: no previous prototype for ‘text_poke’ [-Wmissing-prototypes]
+arch/um/kernel/um_arch.c:473:6: warning: no previous prototype for ‘text_poke_sync’ [-Wmissing-prototypes]
 
 Signed-off-by: Tiwei Bie <tiwei.btw@antgroup.com>
 ---
- arch/um/kernel/process.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ arch/um/kernel/um_arch.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/um/kernel/process.c b/arch/um/kernel/process.c
-index 292c8014aaa6..a7607ef1b02f 100644
---- a/arch/um/kernel/process.c
-+++ b/arch/um/kernel/process.c
-@@ -26,6 +26,7 @@
- #include <linux/resume_user_mode.h>
- #include <asm/current.h>
- #include <asm/mmu_context.h>
-+#include <asm/switch_to.h>
- #include <linux/uaccess.h>
+diff --git a/arch/um/kernel/um_arch.c b/arch/um/kernel/um_arch.c
+index 7a9820797eae..e95f805e5004 100644
+--- a/arch/um/kernel/um_arch.c
++++ b/arch/um/kernel/um_arch.c
+@@ -23,6 +23,7 @@
+ #include <asm/cpufeature.h>
+ #include <asm/sections.h>
+ #include <asm/setup.h>
++#include <asm/text-patching.h>
  #include <as-layout.h>
- #include <kern_util.h>
-@@ -73,7 +74,7 @@ static inline void set_current(struct task_struct *task)
- 
- extern void arch_switch_to(struct task_struct *to);
- 
--void *__switch_to(struct task_struct *from, struct task_struct *to)
-+struct task_struct *__switch_to(struct task_struct *from, struct task_struct *to)
- {
- 	to->thread.prev_sched = from;
- 	set_current(to);
+ #include <arch.h>
+ #include <init.h>
 -- 
 2.34.1
 
