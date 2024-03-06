@@ -4,26 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9323FC54E41
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Mar 2024 11:58:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8AA9C54E41
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Mar 2024 12:24:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4879D10EB59;
-	Wed,  6 Mar 2024 11:58:50 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1FEE10ECB5;
- Wed,  6 Mar 2024 11:58:48 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4012382393149374708=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id A65B4113113;
+	Wed,  6 Mar 2024 12:24:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZIfFRpm1";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F5D310FB48;
+ Wed,  6 Mar 2024 12:24:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1709727886; x=1741263886;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=I1I05jo2oMaaHdFHae5qNJzPD4AqvEtoTgEfA7l4/+k=;
+ b=ZIfFRpm1CoNUmnWSOxrIfQ2AZcLE5ZoiSxvfpFXWuNW8Bb9QvzTaSB2Z
+ SGscQR5bCJtH9sPYRuzTzrgNJU9WhagmCrmKSQJWxaV9A/6qS6vIIpjnz
+ MzhtPqAT9XvSroz/PQ+x7IJabMEKaxlp4MKECsSajx0u770nv++97OdhC
+ a3TXQ5n2QuqTGzlbj0lyAiXjagvXV+O0dj2Do1abmV7pZsdktY1J3DPvr
+ GvXl5y+J3EbO/djASNy3zkXaYVxHxZVE5JPOdV+kqw0cys0zkZ2l+tI+y
+ XVMtU0k2pZ63w2G1CSu5NOotjC7YV09s2DHm3FaXi7GRDHL4fE5sw5YRk A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11004"; a="4200268"
+X-IronPort-AV: E=Sophos;i="6.06,208,1705392000"; 
+   d="scan'208";a="4200268"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2024 04:24:44 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,208,1705392000"; 
+   d="scan'208";a="9894838"
+Received: from rjongalo-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.33.211])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2024 04:24:42 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: rodrigo.vivi@intel.com, lucas.demarchi@intel.com,
+ ville.syrjala@linux.intel.com, jani.nikula@intel.com
+Subject: [RFC v2 0/4] drm/i915: better high level abstraction for display
+Date: Wed,  6 Mar 2024 14:24:34 +0200
+Message-Id: <cover.1709727127.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_um=3A_Minor_fixes_and_cleanups?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tiwei Bie" <tiwei.btw@antgroup.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 06 Mar 2024 11:58:48 -0000
-Message-ID: <170972632873.561238.15644289144584883868@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240306101925.1088870-1-tiwei.btw@antgroup.com>
-In-Reply-To: <20240306101925.1088870-1-tiwei.btw@antgroup.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,110 +63,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4012382393149374708==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This is v2 of [1]. Improve the abstractions for display code.
 
-== Series Details ==
+The main goals are:
 
-Series: um: Minor fixes and cleanups
-URL   : https://patchwork.freedesktop.org/series/130801/
-State : success
+1) The display code does not access struct drm_i915_private or struct
+   xe_device. It only uses its own struct intel_display instead.
 
-== Summary ==
+2) The i915 and xe driver cores do not access struct intel_display
+   directly. It becomes an opaque pointer to them, stored in struct
+   drm_i915_private and struct xe_device, and passed to display code.
 
-CI Bug Log - changes from xe-906-6e50187af603728329f9d3c3a53ad162d7eda9a4_BAT -> xe-pw-130801v1_BAT
-====================================================
+This will mean a lot of churn, unfortunately. But it will better
+separate the display code from the xe and i915 driver cores, and pave
+the way for a) removing -Ddrm_i915_private=xe_device from xe Makefile,
+and b) stop building the display code twice.
 
-Summary
--------
+What's presented here goes a long way, and could get us started. But
+there are still opens, such as:
 
-  **SUCCESS**
+1) How to handle platform checks such as IS_TIGERLAKE().
 
-  No regressions found.
+2) How to handle access to non-display members of i915/xe, such as
+   i915->uncore.
 
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
+There are other similar things, but I believe those are the most
+prevalent, and are the biggest blockers for converting a lot of
+functions over from i915 -> intel_display.
 
 
-Changes
--------
+BR,
+Jani.
 
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_7747 -> IGT_7749
-  * Linux: xe-906-6e50187af603728329f9d3c3a53ad162d7eda9a4 -> xe-pw-130801v1
-
-  IGT_7747: 7747
-  IGT_7749: 2fd91b8c3cf9aa2b0bb78537a6b5e2bc3de50e0e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-906-6e50187af603728329f9d3c3a53ad162d7eda9a4: 6e50187af603728329f9d3c3a53ad162d7eda9a4
-  xe-pw-130801v1: 130801v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130801v1/index.html
-
---===============4012382393149374708==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+[1] https://lore.kernel.org/r/cover.1695747484.git.jani.nikula@intel.com
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+Jani Nikula (4):
+  drm/i915/display: ideas for further separating display code from the
+    rest
+  drm/i915/display: add generic to_intel_display() macro
+  drm/i915/display: accept either i915 or display for feature tests
+  drm/i915/display: test various to_intel_display() scenarios
 
+ .../gpu/drm/i915/display/intel_display_core.h |  3 ++
+ .../drm/i915/display/intel_display_device.c   | 13 ++++++
+ .../drm/i915/display/intel_display_device.h   | 10 +++-
+ .../drm/i915/display/intel_display_types.h    | 46 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dp.c       |  6 +--
+ drivers/gpu/drm/i915/display/intel_hdmi.c     | 13 +++---
+ drivers/gpu/drm/i915/i915_drv.h               | 11 ++++-
+ drivers/gpu/drm/xe/xe_device_types.h          | 15 +++++-
+ 8 files changed, 103 insertions(+), 14 deletions(-)
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>um: Minor fixes and cleanups</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130801/">https://patchwork.freedesktop.org/series/130801/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+-- 
+2.39.2
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130801v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130801v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-906-6e50187af603728329f9d3c3a53ad162d7eda9a4_BAT -&gt; xe-pw-130801v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7747 -&gt; IGT_7749</li>
-<li>Linux: xe-906-6e50187af603728329f9d3c3a53ad162d7eda9a4 -&gt; xe-pw-130801v1</li>
-</ul>
-<p>IGT_7747: 7747<br />
-  IGT_7749: 2fd91b8c3cf9aa2b0bb78537a6b5e2bc3de50e0e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-906-6e50187af603728329f9d3c3a53ad162d7eda9a4: 6e50187af603728329f9d3c3a53ad162d7eda9a4<br />
-  xe-pw-130801v1: 130801v1</p>
-
-</body>
-</html>
-
---===============4012382393149374708==--
