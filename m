@@ -4,24 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24E74C54798
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Mar 2024 03:03:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FC16C5475B
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Mar 2024 03:45:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5B5210F927;
-	Wed,  6 Mar 2024 03:03:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2AEB112E78;
+	Wed,  6 Mar 2024 03:45:11 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 727D910F927;
- Wed,  6 Mar 2024 03:03:18 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CFC4112E78;
+ Wed,  6 Mar 2024 03:45:10 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7990140545553212342=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_XE_HDCP_Enablement_=28re?=
- =?utf-8?q?v9=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_XE_HDCP_Enablement_=28rev9=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Suraj Kandpal" <suraj.kandpal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 06 Mar 2024 03:03:18 -0000
-Message-ID: <170969419846.524851.1884430800245647813@8e613ede5ea5>
+Date: Wed, 06 Mar 2024 03:45:10 -0000
+Message-ID: <170969671051.524258.16848260358978183495@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240306024247.1857881-2-suraj.kandpal@intel.com>
 In-Reply-To: <20240306024247.1857881-2-suraj.kandpal@intel.com>
@@ -40,31 +39,102 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============7990140545553212342==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: XE HDCP Enablement (rev9)
 URL   : https://patchwork.freedesktop.org/series/129457/
-State : warning
+State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast dd08fd912fdc1b72984a39852fdbee49b97b8ce4
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+CI Bug Log - changes from xe-905-dd08fd912fdc1b72984a39852fdbee49b97b8ce4_BAT -> xe-pw-129457v9_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 3)
+------------------------------
+
+  Missing    (1): bat-adlp-7 
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-905-dd08fd912fdc1b72984a39852fdbee49b97b8ce4 -> xe-pw-129457v9
+
+  IGT_7746: 7746
+  xe-905-dd08fd912fdc1b72984a39852fdbee49b97b8ce4: dd08fd912fdc1b72984a39852fdbee49b97b8ce4
+  xe-pw-129457v9: 129457v9
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v9/index.html
+
+--===============7990140545553212342==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>XE HDCP Enablement (rev9)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129457/">https://patchwork.freedesktop.org/series/129457/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v9/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v9/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-905-dd08fd912fdc1b72984a39852fdbee49b97b8ce4_BAT -&gt; xe-pw-129457v9_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 3)</h2>
+<p>Missing    (1): bat-adlp-7 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-905-dd08fd912fdc1b72984a39852fdbee49b97b8ce4 -&gt; xe-pw-129457v9</li>
+</ul>
+<p>IGT_7746: 7746<br />
+  xe-905-dd08fd912fdc1b72984a39852fdbee49b97b8ce4: dd08fd912fdc1b72984a39852fdbee49b97b8ce4<br />
+  xe-pw-129457v9: 129457v9</p>
+
+</body>
+</html>
+
+--===============7990140545553212342==--
