@@ -4,51 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BEE1C54E58
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Mar 2024 02:45:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0754FC54E55
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Mar 2024 02:45:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1A0B112E2B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65338112E29;
 	Wed,  6 Mar 2024 02:45:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MK91/8qa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V3aB+Yk+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15028112E26;
- Wed,  6 Mar 2024 02:45:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FFBB112E25;
+ Wed,  6 Mar 2024 02:45:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1709693103; x=1741229103;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=N5BrMet3eCn3R8KY5IkDFIhXqEW/YLDByI2OfkLsl8M=;
- b=MK91/8qaUvTNRqplbrC2vzp0Dr1DifR6QTaYoZqvDu1JS3WpW5PIzn3S
- pJWfH25995goXYWCS3dkxSZEtggADs/bI2srhGjonpQMzG5vkUptpTPBV
- zXCraMCR004R6bwl2PNUBCce9xkRuW4x8fcwReT/NOfIeydL7aiSivbSt
- krx930WZASOhKoBaM1y1X7SjyC40hwon0Ryp6QjjwGGCcc6PccciFOvAI
- WNfY8z546icqdROXpyUOrxz2OzT/fqTGaJHs7LtwI80xEgYi5APIKfa3s
- swA/8JGzVonfEH2EJxc23peMoioGpv9dUFh1WtwLXERICIlRXN7Vk/IR2 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11004"; a="8049989"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=U4PCyC5AiV544XLpxQ1e7LSM8ODypSjVk7RLqotfg3w=;
+ b=V3aB+Yk+IHuR6niJyB5bH7oyZEO9EEDyqA3+YCGXqISfe4pF/cbhvS2Q
+ iKLNC2uY+gx76zgpu4gw52qrszEO0C4lLA4dA7Ue2IIbUhX4A+nTmEr73
+ qSaBF4ElRBL6MUOGrdPqA7HxgohHbS+RQAuHhJKae+Rw8/IbUMuRr/M7e
+ HvbWHz2cyEIvkw+Lk8jIpW3C6ul+Bvn+lwpogsOjt5sxguzLR5T1AQKg5
+ M/tpOgIGyqyC6y/vHHHWrknNL9rdhpHUleqCBx4bCq2r0qtvBTdgllgFr
+ 9gUMef1og+9nC7VOWNBZQpsl9GNK/BFoB1gwEZomNop/GfUesg9gMCFH1 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11004"; a="8049984"
 X-IronPort-AV: E=Sophos;i="6.06,207,1705392000"; 
-   d="scan'208";a="8049989"
+   d="scan'208";a="8049984"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2024 18:45:03 -0800
+ 05 Mar 2024 18:45:01 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,207,1705392000"; d="scan'208";a="10175828"
+X-IronPort-AV: E=Sophos;i="6.06,207,1705392000"; d="scan'208";a="10175823"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orviesa008.jf.intel.com with ESMTP; 05 Mar 2024 18:45:01 -0800
+ by orviesa008.jf.intel.com with ESMTP; 05 Mar 2024 18:45:00 -0800
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Suraj Kandpal <suraj.kandpal@intel.com>,
- Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 1/4] drm/i915/hdcp: Move intel_hdcp_gsc_message def away from
- header file
-Date: Wed,  6 Mar 2024 08:12:45 +0530
-Message-ID: <20240306024247.1857881-3-suraj.kandpal@intel.com>
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH 0/4] XE HDCP Enablement
+Date: Wed,  6 Mar 2024 08:12:44 +0530
+Message-ID: <20240306024247.1857881-2-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240306024247.1857881-2-suraj.kandpal@intel.com>
-References: <20240306024247.1857881-2-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,54 +62,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move intel_hdcp_gsc_message definition into intel_hdcp_gsc.c
-so that intel_hdcp_gsc_message can be redefined for xe as needed.
-
---v2
--Correct commit message to reflect what patch is actually doing [Arun]
+This patch series enables HDCP on XE.
+Mainly includes rewriting functions that were responsible for
+sending hdcp messages via gsc cs.
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Acked-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_hdcp_gsc.c | 6 ++++++
- drivers/gpu/drm/i915/display/intel_hdcp_gsc.h | 7 +------
- 2 files changed, 7 insertions(+), 6 deletions(-)
+Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-index 302bff75b06c..35823e1f65d6 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-@@ -13,6 +13,12 @@
- #include "intel_hdcp_gsc.h"
- #include "intel_hdcp_gsc_message.h"
- 
-+struct intel_hdcp_gsc_message {
-+	struct i915_vma *vma;
-+	void *hdcp_cmd_in;
-+	void *hdcp_cmd_out;
-+};
-+
- bool intel_hdcp_gsc_cs_required(struct drm_i915_private *i915)
- {
- 	return DISPLAY_VER(i915) >= 14;
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
-index eba2057c5a9e..5f610df61cc9 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
-@@ -10,12 +10,7 @@
- #include <linux/types.h>
- 
- struct drm_i915_private;
--
--struct intel_hdcp_gsc_message {
--	struct i915_vma *vma;
--	void *hdcp_cmd_in;
--	void *hdcp_cmd_out;
--};
-+struct intel_hdcp_gsc_message;
- 
- bool intel_hdcp_gsc_cs_required(struct drm_i915_private *i915);
- ssize_t intel_hdcp_gsc_msg_send(struct drm_i915_private *i915, u8 *msg_in,
+Suraj Kandpal (4):
+  drm/i915/hdcp: Move intel_hdcp_gsc_message def away from header file
+  drm/xe/hdcp: Use xe_device struct
+  drm/xe: Use gsc_proxy_init_done to check proxy status
+  drm/xe/hdcp: Enable HDCP for XE
+
+ drivers/gpu/drm/i915/display/intel_hdcp_gsc.c |   6 +
+ drivers/gpu/drm/i915/display/intel_hdcp_gsc.h |   7 +-
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      | 240 +++++++++++++++++-
+ drivers/gpu/drm/xe/xe_gsc_proxy.c             |   4 +-
+ drivers/gpu/drm/xe/xe_gsc_proxy.h             |   1 +
+ drivers/gpu/drm/xe/xe_gsc_submit.c            |  15 ++
+ drivers/gpu/drm/xe/xe_gsc_submit.h            |   1 +
+ 8 files changed, 257 insertions(+), 18 deletions(-)
+
 -- 
 2.43.2
 
