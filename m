@@ -4,33 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4437DC54E5C
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Mar 2024 10:19:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E435C54E49
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Mar 2024 10:19:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE3B410EC55;
-	Wed,  6 Mar 2024 10:19:48 +0000 (UTC)
-Received: from out0-201.mail.aliyun.com (out0-201.mail.aliyun.com
- [140.205.0.201])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D169410EC55
- for <intel-xe@lists.freedesktop.org>; Wed,  6 Mar 2024 10:19:46 +0000 (UTC)
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R201e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018047208;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C405C112012;
+	Wed,  6 Mar 2024 10:19:47 +0000 (UTC)
+Received: from out0-205.mail.aliyun.com (out0-205.mail.aliyun.com
+ [140.205.0.205])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D7C210EC62
+ for <intel-xe@lists.freedesktop.org>; Wed,  6 Mar 2024 10:19:44 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R101e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018047205;
  MF=tiwei.btw@antgroup.com; NM=1; PH=DS; RN=8; SR=0;
- TI=SMTPD_---.Wgbn-Jx_1709720383; 
+ TI=SMTPD_---.Wgbn-I5_1709720375; 
 Received: from ubuntu..(mailfrom:tiwei.btw@antgroup.com
- fp:SMTPD_---.Wgbn-Jx_1709720383) by smtp.aliyun-inc.com;
- Wed, 06 Mar 2024 18:19:43 +0800
+ fp:SMTPD_---.Wgbn-I5_1709720375) by smtp.aliyun-inc.com;
+ Wed, 06 Mar 2024 18:19:40 +0800
 From: "Tiwei Bie" <tiwei.btw@antgroup.com>
 To: richard@nod.at, anton.ivanov@cambridgegreys.com, johannes@sipsolutions.net
 Cc: <jani.nikula@intel.com>, <linux-um@lists.infradead.org>,
  <linux-kernel@vger.kernel.org>, <intel-xe@lists.freedesktop.org>,
  "Tiwei Bie" <tiwei.btw@antgroup.com>
-Subject: [PATCH v3 7/9] um: Move declarations to proper headers
-Date: Wed, 06 Mar 2024 18:19:23 +0800
-Message-Id: <20240306101925.1088870-8-tiwei.btw@antgroup.com>
+Subject: [PATCH v3 0/9] um: Minor fixes and cleanups
+Date: Wed, 06 Mar 2024 18:19:16 +0800
+Message-Id: <20240306101925.1088870-1-tiwei.btw@antgroup.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240306101925.1088870-1-tiwei.btw@antgroup.com>
-References: <20240306101925.1088870-1-tiwei.btw@antgroup.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -48,165 +46,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This will address below -Wmissing-prototypes warnings:
+A series of minor fixes and cleanups for UML.
 
-arch/um/kernel/initrd.c:18:12: warning: no previous prototype for ‘read_initrd’ [-Wmissing-prototypes]
-arch/um/kernel/um_arch.c:408:19: warning: no previous prototype for ‘read_initrd’ [-Wmissing-prototypes]
-arch/um/os-Linux/start_up.c:301:12: warning: no previous prototype for ‘parse_iomem’ [-Wmissing-prototypes]
-arch/x86/um/ptrace_32.c:15:6: warning: no previous prototype for ‘arch_switch_to’ [-Wmissing-prototypes]
-arch/x86/um/ptrace_32.c:101:5: warning: no previous prototype for ‘poke_user’ [-Wmissing-prototypes]
-arch/x86/um/ptrace_32.c:153:5: warning: no previous prototype for ‘peek_user’ [-Wmissing-prototypes]
-arch/x86/um/ptrace_64.c:111:5: warning: no previous prototype for ‘poke_user’ [-Wmissing-prototypes]
-arch/x86/um/ptrace_64.c:171:5: warning: no previous prototype for ‘peek_user’ [-Wmissing-prototypes]
-arch/x86/um/syscalls_64.c:48:6: warning: no previous prototype for ‘arch_switch_to’ [-Wmissing-prototypes]
-arch/x86/um/tls_32.c:184:5: warning: no previous prototype for ‘arch_switch_tls’ [-Wmissing-prototypes]
+Most changes in this series are very straightforward. Please consider
+picking this series for v6.9.
 
-Signed-off-by: Tiwei Bie <tiwei.btw@antgroup.com>
----
- arch/um/include/asm/ptrace-generic.h | 3 +++
- arch/um/include/shared/kern_util.h   | 1 +
- arch/um/kernel/physmem.c             | 3 +--
- arch/um/kernel/process.c             | 2 --
- arch/um/kernel/ptrace.c              | 3 ---
- arch/um/kernel/um_arch.h             | 2 ++
- arch/um/os-Linux/start_up.c          | 1 +
- arch/x86/um/asm/ptrace.h             | 6 ++++++
- arch/x86/um/ptrace_32.c              | 2 --
- 9 files changed, 14 insertions(+), 9 deletions(-)
+There are still some remaining -Wmissing-prototypes warnings. I plan to
+send a followup RFC series first to fix those warnings.
 
-diff --git a/arch/um/include/asm/ptrace-generic.h b/arch/um/include/asm/ptrace-generic.h
-index adf91ef553ae..4696f24d1492 100644
---- a/arch/um/include/asm/ptrace-generic.h
-+++ b/arch/um/include/asm/ptrace-generic.h
-@@ -36,6 +36,9 @@ extern long subarch_ptrace(struct task_struct *child, long request,
- extern unsigned long getreg(struct task_struct *child, int regno);
- extern int putreg(struct task_struct *child, int regno, unsigned long value);
- 
-+extern int poke_user(struct task_struct *child, long addr, long data);
-+extern int peek_user(struct task_struct *child, long addr, long data);
-+
- extern int arch_set_tls(struct task_struct *new, unsigned long tls);
- extern void clear_flushed_tls(struct task_struct *task);
- extern int syscall_trace_enter(struct pt_regs *regs);
-diff --git a/arch/um/include/shared/kern_util.h b/arch/um/include/shared/kern_util.h
-index 789b83013f35..81bc38a2e3fc 100644
---- a/arch/um/include/shared/kern_util.h
-+++ b/arch/um/include/shared/kern_util.h
-@@ -41,6 +41,7 @@ extern void uml_pm_wake(void);
- 
- extern int start_uml(void);
- extern void paging_init(void);
-+extern int parse_iomem(char *str, int *add);
- 
- extern void uml_cleanup(void);
- extern void do_uml_exitcalls(void);
-diff --git a/arch/um/kernel/physmem.c b/arch/um/kernel/physmem.c
-index 91485119ae67..fb2adfb49945 100644
---- a/arch/um/kernel/physmem.c
-+++ b/arch/um/kernel/physmem.c
-@@ -12,6 +12,7 @@
- #include <as-layout.h>
- #include <init.h>
- #include <kern.h>
-+#include <kern_util.h>
- #include <mem_user.h>
- #include <os.h>
- 
-@@ -161,8 +162,6 @@ __uml_setup("mem=", uml_mem_setup,
- "	Example: mem=64M\n\n"
- );
- 
--extern int __init parse_iomem(char *str, int *add);
--
- __uml_setup("iomem=", parse_iomem,
- "iomem=<name>,<file>\n"
- "    Configure <file> as an IO memory region named <name>.\n\n"
-diff --git a/arch/um/kernel/process.c b/arch/um/kernel/process.c
-index 1201c1a79b23..30bf7739ed0f 100644
---- a/arch/um/kernel/process.c
-+++ b/arch/um/kernel/process.c
-@@ -67,8 +67,6 @@ static inline void set_current(struct task_struct *task)
- 	cpu_tasks[task_thread_info(task)->cpu] = ((struct cpu_task) { task });
- }
- 
--extern void arch_switch_to(struct task_struct *to);
--
- struct task_struct *__switch_to(struct task_struct *from, struct task_struct *to)
- {
- 	to->thread.prev_sched = from;
-diff --git a/arch/um/kernel/ptrace.c b/arch/um/kernel/ptrace.c
-index 6600a2782796..2124624b7817 100644
---- a/arch/um/kernel/ptrace.c
-+++ b/arch/um/kernel/ptrace.c
-@@ -35,9 +35,6 @@ void ptrace_disable(struct task_struct *child)
- 	user_disable_single_step(child);
- }
- 
--extern int peek_user(struct task_struct * child, long addr, long data);
--extern int poke_user(struct task_struct * child, long addr, long data);
--
- long arch_ptrace(struct task_struct *child, long request,
- 		 unsigned long addr, unsigned long data)
- {
-diff --git a/arch/um/kernel/um_arch.h b/arch/um/kernel/um_arch.h
-index 1e07fb7ee35e..46e731ab9dfc 100644
---- a/arch/um/kernel/um_arch.h
-+++ b/arch/um/kernel/um_arch.h
-@@ -11,4 +11,6 @@ extern void __init uml_dtb_init(void);
- static inline void uml_dtb_init(void) { }
- #endif
- 
-+extern int __init read_initrd(void);
-+
- #endif
-diff --git a/arch/um/os-Linux/start_up.c b/arch/um/os-Linux/start_up.c
-index 8b0e98ab842c..6b21061c431c 100644
---- a/arch/um/os-Linux/start_up.c
-+++ b/arch/um/os-Linux/start_up.c
-@@ -20,6 +20,7 @@
- #include <asm/unistd.h>
- #include <init.h>
- #include <os.h>
-+#include <kern_util.h>
- #include <mem_user.h>
- #include <ptrace_user.h>
- #include <registers.h>
-diff --git a/arch/x86/um/asm/ptrace.h b/arch/x86/um/asm/ptrace.h
-index 83822fd42204..2fef3da55533 100644
---- a/arch/x86/um/asm/ptrace.h
-+++ b/arch/x86/um/asm/ptrace.h
-@@ -54,6 +54,8 @@ extern int ptrace_get_thread_area(struct task_struct *child, int idx,
- extern int ptrace_set_thread_area(struct task_struct *child, int idx,
-                                   struct user_desc __user *user_desc);
- 
-+extern int arch_switch_tls(struct task_struct *to);
-+
- #else
- 
- #define PT_REGS_R8(r) UPT_R8(&(r)->regs)
-@@ -83,5 +85,9 @@ extern long arch_prctl(struct task_struct *task, int option,
- 		       unsigned long __user *addr);
- 
- #endif
-+
- #define user_stack_pointer(regs) PT_REGS_SP(regs)
-+
-+extern void arch_switch_to(struct task_struct *to);
-+
- #endif /* __UM_X86_PTRACE_H */
-diff --git a/arch/x86/um/ptrace_32.c b/arch/x86/um/ptrace_32.c
-index 7f1abde2c84b..b0a71c6cdc6e 100644
---- a/arch/x86/um/ptrace_32.c
-+++ b/arch/x86/um/ptrace_32.c
-@@ -10,8 +10,6 @@
- #include <registers.h>
- #include <skas.h>
- 
--extern int arch_switch_tls(struct task_struct *to);
--
- void arch_switch_to(struct task_struct *to)
- {
- 	int err = arch_switch_tls(to);
+Feedbacks on this series would be appreciated. Thanks!
+
+Changes since v2:
+https://lore.kernel.org/lkml/20240205114708.25235-1-tiwei.btw@antgroup.com/
+- Add "um: Move declarations to proper headers";
+- Add "um: Fix -Wmissing-prototypes warnings for text_poke*";
+- Add "um: Fix -Wmissing-prototypes warnings for __warp_* and foo";
+- Make do_set_thread_area() static;
+- Add the missing header for calibrate_delay_is_known;
+
+Tiwei Bie (9):
+  um: Make local functions and variables static
+  um: Fix the declaration of vfree
+  um: Remove unused functions
+  um: Fix the return type of __switch_to
+  um: Add missing headers
+  um: Stop tracking host PID in cpu_tasks
+  um: Move declarations to proper headers
+  um: Fix -Wmissing-prototypes warnings for text_poke*
+  um: Fix -Wmissing-prototypes warnings for __warp_* and foo
+
+ arch/um/drivers/pcap_kern.c                |  4 +-
+ arch/um/drivers/ubd_user.c                 |  2 +-
+ arch/um/include/asm/ptrace-generic.h       |  3 ++
+ arch/um/include/shared/as-layout.h         |  1 -
+ arch/um/include/shared/kern_util.h         |  1 +
+ arch/um/include/shared/um_malloc.h         |  2 +-
+ arch/um/kernel/kmsg_dump.c                 |  2 +-
+ arch/um/kernel/mem.c                       |  2 +
+ arch/um/kernel/physmem.c                   |  3 +-
+ arch/um/kernel/process.c                   | 48 +++++-----------------
+ arch/um/kernel/ptrace.c                    |  3 --
+ arch/um/kernel/reboot.c                    |  1 +
+ arch/um/kernel/skas/mmu.c                  |  1 +
+ arch/um/kernel/skas/process.c              |  5 +--
+ arch/um/kernel/time.c                      |  7 ++--
+ arch/um/kernel/tlb.c                       |  7 +---
+ arch/um/kernel/um_arch.c                   |  1 +
+ arch/um/kernel/um_arch.h                   |  2 +
+ arch/um/os-Linux/drivers/ethertap_kern.c   |  2 +-
+ arch/um/os-Linux/drivers/tuntap_kern.c     |  2 +-
+ arch/um/os-Linux/main.c                    |  5 +++
+ arch/um/os-Linux/signal.c                  |  4 +-
+ arch/um/os-Linux/start_up.c                |  1 +
+ arch/x86/um/asm/ptrace.h                   |  6 +++
+ arch/x86/um/bugs_32.c                      |  1 +
+ arch/x86/um/bugs_64.c                      |  1 +
+ arch/x86/um/elfcore.c                      |  1 +
+ arch/x86/um/fault.c                        |  1 +
+ arch/x86/um/os-Linux/mcontext.c            |  1 +
+ arch/x86/um/os-Linux/registers.c           |  2 +-
+ arch/x86/um/os-Linux/tls.c                 |  1 +
+ arch/x86/um/ptrace_32.c                    |  2 -
+ arch/x86/um/shared/sysdep/kernel-offsets.h |  3 ++
+ arch/x86/um/tls_32.c                       |  2 +-
+ arch/x86/um/user-offsets.c                 |  3 ++
+ 35 files changed, 63 insertions(+), 70 deletions(-)
+
 -- 
 2.34.1
 
