@@ -4,53 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 869A8C5475B
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Mar 2024 10:01:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46CC1C54E41
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Mar 2024 10:03:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 389BF10FC06;
-	Wed,  6 Mar 2024 10:01:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E94A610EC54;
+	Wed,  6 Mar 2024 10:03:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eA1VSGKt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hxOZpX4r";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 042D210EC52
- for <intel-xe@lists.freedesktop.org>; Wed,  6 Mar 2024 10:01:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD79310EC2B
+ for <intel-xe@lists.freedesktop.org>; Wed,  6 Mar 2024 10:03:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709719304; x=1741255304;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=mD5CdXPIFcHVbDcV7ysdbEhDSsuk/8z5MXdvzkUSZE4=;
- b=eA1VSGKtyc1KeGGXXZUsu6JDS8qZwLbuR5ZTy0jhJ3Y/wcNx728A5x2G
- 5PRTwMBzXt8OtNAqlXbKoCJxOLwJ3BthwBl9AfMUZb5dxnmwXyLWPEcYV
- synl7tRtBVOewzz9a8b0A6RXmupUSt5APrNh+aVZV0lhfL4ozMZVIQ8CT
- jYEl9ZCijVXw1ArJJKDaYOtP5Uoudai0/psHAas+ajsdxVhpKrdqAfh3V
- /oSV41lIc9Iz6fzKZPl0KFQzhNmLqQdHHd0sV9Hjngvk3r4pUMCC3UR+w
- YBOgB6nfu2qUyJCcU+pZqNfvf7hNCKGKc+aHjcTCsvYvTDw/QPGOegy2t g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11004"; a="4255154"
+ t=1709719426; x=1741255426;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=UUgFqFS7MtZrha8enHhFnipOANhZcufhrcaW1+KglQQ=;
+ b=hxOZpX4ryWoUQhdhCmbGra+6EfIw9cHT1Gq1gz7fXPTtH7DlXNIkQ0Ze
+ wJzHl8x8JYidTuSafyw7apPv//xwXvx3TDXqXSwNHc8AudHMlGCmJv1/J
+ EBPpX+BiXvxtgyE9XdXrekZp5SqauE9bWBfpf9j1fuFwlkspfYgfDCqyt
+ bjGbhvbH+jXPGPfvPvSyRc4sOKgt4hBJtwuhIQEx+0rnkVUcHv8U9kiad
+ Vs4CSIeYHM3l7aPKCJOTqAAaM5o1XkrfbmNanJCJ8EMtP7dzAzU9TYM9Z
+ 2q2PSRQQOt5Z1JqdYldkH26S0IQTBh3edTQC7f7fVHkevZ2bmsEsEo7oz g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11004"; a="8084649"
 X-IronPort-AV: E=Sophos;i="6.06,208,1705392000"; 
-   d="scan'208";a="4255154"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2024 02:01:44 -0800
+   d="scan'208";a="8084649"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2024 02:03:39 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,208,1705392000"; 
-   d="scan'208";a="9587652"
-Received: from fatinf5x-mobl.gar.corp.intel.com (HELO fedora..)
- ([10.249.254.40])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2024 02:01:42 -0800
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [CI 2/2] drm/xe: Move vma rebinding to the drm_exec locking loop
-Date: Wed,  6 Mar 2024 11:01:33 +0100
-Message-ID: <20240306100133.4962-2-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240306100133.4962-1-thomas.hellstrom@linux.intel.com>
-References: <20240306100133.4962-1-thomas.hellstrom@linux.intel.com>
+   d="scan'208";a="9643749"
+Received: from cpetrove-mobl.ger.corp.intel.com (HELO [10.249.46.28])
+ ([10.249.46.28])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2024 02:03:38 -0800
+Message-ID: <70628840-088c-4896-aeb3-f567b23e103f@linux.intel.com>
+Date: Wed, 6 Mar 2024 11:03:43 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/4] Spin of Reduce GGTT display pinning latency.
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+Cc: rodrigo.vivi@intel.com
+References: <20240306052002.311196-1-matthew.brost@intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20240306052002.311196-1-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,61 +67,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Rebinding might allocate page-table bos, causing evictions.
-To support blocking locking during these evictions,
-perform the rebinding in the drm_exec locking loop.
+For the series:
 
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_exec.c |  4 ++++
- drivers/gpu/drm/xe/xe_vm.c   | 12 +++++++-----
- 2 files changed, 11 insertions(+), 5 deletions(-)
+Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-index 5124663a9694..b683ce415ef1 100644
---- a/drivers/gpu/drm/xe/xe_exec.c
-+++ b/drivers/gpu/drm/xe/xe_exec.c
-@@ -106,6 +106,10 @@ static int xe_exec_fn(struct drm_gpuvm_exec *vm_exec)
- 	if (ret)
- 		return ret;
- 
-+	ret = xe_vm_rebind(vm, false);
-+	if (ret)
-+		return ret;
-+
- 	/*
- 	 * 1 fence slot for the final submit, and 1 more for every per-tile for
- 	 * GPU bind and 1 extra for CPU bind. Note that there are potentially
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 427b2063d876..732132bba537 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -515,7 +515,13 @@ static int xe_preempt_work_begin(struct drm_exec *exec, struct xe_vm *vm,
- 	if (err)
- 		return err;
- 
--	return drm_gpuvm_validate(&vm->gpuvm, exec);
-+	err = drm_gpuvm_validate(&vm->gpuvm, exec);
-+	if (err)
-+		return err;
-+
-+	err = xe_vm_rebind(vm, true);
-+
-+	return err;
- }
- 
- static void preempt_rebind_work_func(struct work_struct *w)
-@@ -567,10 +573,6 @@ static void preempt_rebind_work_func(struct work_struct *w)
- 	if (err)
- 		goto out_unlock;
- 
--	err = xe_vm_rebind(vm, true);
--	if (err)
--		goto out_unlock;
--
- 	if (vm->rebind_fence) {
- 		dma_fence_wait(vm->rebind_fence, false);
- 		dma_fence_put(vm->rebind_fence);
--- 
-2.44.0
+Not sure how it's supposed to work when I wrote some patches, but this 
+version looks good. :)
 
+Den 2024-03-06 kl. 06:19, skrev Matthew Brost:
+> Verison of [1] with changes discussed in reviews, mainly the addition of
+> XE_BO_GGTT_INVALIDATE_BIT.
+>
+> [1] https://patchwork.freedesktop.org/series/130739/
+>
+> Maarten Lankhorst (2):
+>    drm/xe: Fix NULL check in xe_ggtt_init()
+>    drm/xe: Move xe_ggtt_invalidate out from ggtt->lock
+>
+> Matthew Brost (2):
+>    drm/xe: Drop ggtt invalidate from display code
+>    drm/xe: Add XE_BO_GGTT_INVALIDATE_BIT flag
+>
+>   drivers/gpu/drm/xe/display/xe_fb_pin.c |  5 ++---
+>   drivers/gpu/drm/xe/xe_bo.c             |  2 +-
+>   drivers/gpu/drm/xe/xe_bo.h             |  1 +
+>   drivers/gpu/drm/xe/xe_ggtt.c           | 25 +++++++++++++++----------
+>   drivers/gpu/drm/xe/xe_ggtt.h           |  4 ++--
+>   drivers/gpu/drm/xe/xe_guc_ads.c        |  3 ++-
+>   drivers/gpu/drm/xe/xe_guc_ct.c         |  3 ++-
+>   drivers/gpu/drm/xe/xe_guc_hwconfig.c   |  3 ++-
+>   drivers/gpu/drm/xe/xe_guc_log.c        |  3 ++-
+>   drivers/gpu/drm/xe/xe_guc_pc.c         |  3 ++-
+>   drivers/gpu/drm/xe/xe_hw_engine.c      |  3 ++-
+>   drivers/gpu/drm/xe/xe_lrc.c            |  3 ++-
+>   drivers/gpu/drm/xe/xe_memirq.c         |  1 +
+>   drivers/gpu/drm/xe/xe_sa.c             |  3 ++-
+>   drivers/gpu/drm/xe/xe_uc_fw.c          |  3 ++-
+>   15 files changed, 40 insertions(+), 25 deletions(-)
+>
