@@ -4,26 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89944C5475B
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Mar 2024 04:33:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 464E4C54E49
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Mar 2024 05:19:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41A38112EA6;
-	Wed,  6 Mar 2024 04:33:12 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EA4E112EA6;
- Wed,  6 Mar 2024 04:33:11 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5111466085948954636=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3B7310EE18;
+	Wed,  6 Mar 2024 05:19:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fPpmj47Y";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A73510EAD9
+ for <intel-xe@lists.freedesktop.org>; Wed,  6 Mar 2024 05:19:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1709702396; x=1741238396;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=oskKYFv6cgSpfJnsEL98LtRoWFtmC1Vogukk8KxyWHs=;
+ b=fPpmj47YVQfi5t1WKZqeV7JmXWxzEyAQX3SxJxpzhu6PEMAyx2QjH3xy
+ qNX/wx1nywd1FldbY1JgoYqHgXBlZshL9VRo53K9tAl5mFW+0cAWdhxhD
+ 1vJ5G8ZJ56gb9/zRxEPkUmMOFY91a/uj4JqV+QcdSktYOtpHsNROzzMQb
+ 0/Ge9E635NxN3+G9Vv9MDHSH3B6cLNTaTDVn0qW5UF95uqQUfA9wpOqR8
+ OOhbPII36GameeQXrWUr+oDOVnCXxlWeNcgq6gmYorU4L6/SUGVz5+4Le
+ MHq+BP9ZawtkcF/GnmcuNst6OVtV++dPgJj9xT9MlNYHK6wEA3LsyOFlJ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11004"; a="4415011"
+X-IronPort-AV: E=Sophos;i="6.06,207,1705392000"; 
+   d="scan'208";a="4415011"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2024 21:19:55 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,207,1705392000"; d="scan'208";a="32789804"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2024 21:19:54 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Cc: rodrigo.vivi@intel.com,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH 1/4] drm/xe: Fix NULL check in xe_ggtt_init()
+Date: Tue,  5 Mar 2024 21:19:59 -0800
+Message-Id: <20240306052002.311196-2-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240306052002.311196-1-matthew.brost@intel.com>
+References: <20240306052002.311196-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_XE_HDCP_Enablement_=28rev10=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 06 Mar 2024 04:33:11 -0000
-Message-ID: <170969959138.524258.6145041359354300960@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240306024247.1857881-2-suraj.kandpal@intel.com>
-In-Reply-To: <20240306024247.1857881-2-suraj.kandpal@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,106 +62,43 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5111466085948954636==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-== Series Details ==
+The null check for GT is after calling gt_to_xe, fix it.
 
-Series: XE HDCP Enablement (rev10)
-URL   : https://patchwork.freedesktop.org/series/129457/
-State : success
+Fixes: 3121fed0c51b ("drm/xe: Cleanup some layering in GGTT")
+Cc: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_ggtt.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 5e739513ab0a..325337c38961 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -251,7 +251,6 @@ int xe_ggtt_init(struct xe_ggtt *ggtt)
+ 
+ static void ggtt_invalidate_gt_tlb(struct xe_gt *gt)
+ {
+-	struct xe_device *xe = gt_to_xe(gt);
+ 	int err;
+ 
+ 	if (!gt)
+@@ -259,7 +258,7 @@ static void ggtt_invalidate_gt_tlb(struct xe_gt *gt)
+ 
+ 	err = xe_gt_tlb_invalidation_ggtt(gt);
+ 	if (err)
+-		drm_warn(&xe->drm, "xe_gt_tlb_invalidation_ggtt error=%d", err);
++		drm_warn(&gt_to_xe(gt)->drm, "xe_gt_tlb_invalidation_ggtt error=%d", err);
+ }
+ 
+ void xe_ggtt_invalidate(struct xe_ggtt *ggtt)
+-- 
+2.34.1
 
-CI Bug Log - changes from xe-905-dd08fd912fdc1b72984a39852fdbee49b97b8ce4_BAT -> xe-pw-129457v10_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-905-dd08fd912fdc1b72984a39852fdbee49b97b8ce4 -> xe-pw-129457v10
-
-  IGT_7746: 7746
-  xe-905-dd08fd912fdc1b72984a39852fdbee49b97b8ce4: dd08fd912fdc1b72984a39852fdbee49b97b8ce4
-  xe-pw-129457v10: 129457v10
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v10/index.html
-
---===============5111466085948954636==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>XE HDCP Enablement (rev10)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129457/">https://patchwork.freedesktop.org/series/129457/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v10/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-129457v10/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-905-dd08fd912fdc1b72984a39852fdbee49b97b8ce4_BAT -&gt; xe-pw-129457v10_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-905-dd08fd912fdc1b72984a39852fdbee49b97b8ce4 -&gt; xe-pw-129457v10</li>
-</ul>
-<p>IGT_7746: 7746<br />
-  xe-905-dd08fd912fdc1b72984a39852fdbee49b97b8ce4: dd08fd912fdc1b72984a39852fdbee49b97b8ce4<br />
-  xe-pw-129457v10: 129457v10</p>
-
-</body>
-</html>
-
---===============5111466085948954636==--
