@@ -4,27 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B705C48BF6
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Mar 2024 14:45:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B318C54798
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Mar 2024 14:50:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50F1D10EAB5;
-	Thu,  7 Mar 2024 14:45:01 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28C6B10EAB5;
- Thu,  7 Mar 2024 14:45:00 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2361506681254999310=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA86010F480;
+	Thu,  7 Mar 2024 14:50:06 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oKTiARTW";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8634110F1EA;
+ Thu,  7 Mar 2024 14:50:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1709823005; x=1741359005;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=1uFg9lgmSZDO3+m4zi6sLWaEhSEtqe7jeK4xCy4bEbM=;
+ b=oKTiARTWjaA5DMgKb6phq1LfXnVRiVRvfTtk2zTtEZsKgXNxu5cMayBN
+ NreLiSQW676ILtj+crPWPo8kQxUlAp2BwgLrhkqJU/99Igs6dmRoYO1UN
+ IUI2cSjS3IbsYeV960/aLkaQLCTIVAhY9Ef7y8rOfQ2BrADxADynfyS+K
+ 9XJCYpl0j7/59FdSmfbrZICI3PdLdc7OCoiQT8YLhH/CbW64Ox37DplK8
+ rI37Ig9dx4Qc+z+hNdQ39WLHGz0LWoWhUfV1LAv8yRX0vFArsvPAFa/iD
+ 1lEgAIHOb558vebIzZC6sFs6JKtO8QYZf3w+Fw82L7+VEuTUd7coiLKf9 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="15633934"
+X-IronPort-AV: E=Sophos;i="6.07,211,1708416000"; d="scan'208";a="15633934"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2024 06:50:04 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,211,1708416000"; d="scan'208";a="10025879"
+Received: from lkp-server01.sh.intel.com (HELO b21307750695) ([10.239.97.150])
+ by fmviesa007.fm.intel.com with ESMTP; 07 Mar 2024 06:50:01 -0800
+Received: from kbuild by b21307750695 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1riF4I-0005HP-2D;
+ Thu, 07 Mar 2024 14:49:58 +0000
+Date: Thu, 7 Mar 2024 22:49:41 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jani.nikula@intel.com, Daniel Vetter <daniel@ffwll.ch>,
+ David Airlie <airlied@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Masahiro Yamada <masahiroy@kernel.org>
+Subject: Re: [PATCH 22/22] drm: ensure drm headers are self-contained and
+ pass kernel-doc
+Message-ID: <202403072259.EEC2Vf1X-lkp@intel.com>
+References: <e22ab28836ee1689ea4781ed53fd2e4e4f84728e.1709749576.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5Bv2=2C1/3?=
- =?utf-8?q?=5D_drm/xe=3A_Make_devcoredump_VM_error_state_print_consistent?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 07 Mar 2024 14:45:00 -0000
-Message-ID: <170982270016.580282.13755148779668357887@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240307135229.41973-1-jose.souza@intel.com>
-In-Reply-To: <20240307135229.41973-1-jose.souza@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <e22ab28836ee1689ea4781ed53fd2e4e4f84728e.1709749576.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +70,47 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2361506681254999310==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Jani,
 
-== Series Details ==
+kernel test robot noticed the following build warnings:
 
-Series: series starting with [v2,1/3] drm/xe: Make devcoredump VM error state print consistent
-URL   : https://patchwork.freedesktop.org/series/130866/
-State : success
+[auto build test WARNING on drm-misc/drm-misc-next]
+[cannot apply to drm/drm-next drm-intel/for-linux-next drm-intel/for-linux-next-fixes linus/master v6.8-rc7 next-20240307]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-== Summary ==
+url:    https://github.com/intel-lab-lkp/linux/commits/Jani-Nikula/drm-crtc-make-drm_crtc_internal-h-self-contained/20240307-023603
+base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
+patch link:    https://lore.kernel.org/r/e22ab28836ee1689ea4781ed53fd2e4e4f84728e.1709749576.git.jani.nikula%40intel.com
+patch subject: [PATCH 22/22] drm: ensure drm headers are self-contained and pass kernel-doc
+config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20240307/202403072259.EEC2Vf1X-lkp@intel.com/config)
+compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project 325f51237252e6dab8e4e1ea1fa7acbb4faee1cd)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240307/202403072259.EEC2Vf1X-lkp@intel.com/reproduce)
 
-CI Bug Log - changes from xe-913-52039ea425493b1ee6e3362f46f6d0b179d380b5_BAT -> xe-pw-130866v1_BAT
-====================================================
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202403072259.EEC2Vf1X-lkp@intel.com/
 
-Summary
--------
+All warnings (new ones prefixed by >>):
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
+   In file included from <built-in>:4:
+>> include/drm/ttm/ttm_pool.h:89:52: warning: declaration of 'struct seq_file' will not be visible outside of this function [-Wvisibility]
+      89 | int ttm_pool_debugfs(struct ttm_pool *pool, struct seq_file *m);
+         |                                                    ^
+   1 warning generated.
 
 
-Build changes
--------------
+vim +89 include/drm/ttm/ttm_pool.h
 
-  * Linux: xe-913-52039ea425493b1ee6e3362f46f6d0b179d380b5 -> xe-pw-130866v1
+d099fc8f540add Christian König 2020-10-22  88  
+d099fc8f540add Christian König 2020-10-22 @89  int ttm_pool_debugfs(struct ttm_pool *pool, struct seq_file *m);
+d099fc8f540add Christian König 2020-10-22  90  
 
-  IGT_7749: 2fd91b8c3cf9aa2b0bb78537a6b5e2bc3de50e0e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-913-52039ea425493b1ee6e3362f46f6d0b179d380b5: 52039ea425493b1ee6e3362f46f6d0b179d380b5
-  xe-pw-130866v1: 130866v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130866v1/index.html
-
---===============2361506681254999310==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v2,1/3] drm/xe: Make devcoredump VM error state print consistent</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130866/">https://patchwork.freedesktop.org/series/130866/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130866v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130866v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-913-52039ea425493b1ee6e3362f46f6d0b179d380b5_BAT -&gt; xe-pw-130866v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-913-52039ea425493b1ee6e3362f46f6d0b179d380b5 -&gt; xe-pw-130866v1</li>
-</ul>
-<p>IGT_7749: 2fd91b8c3cf9aa2b0bb78537a6b5e2bc3de50e0e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-913-52039ea425493b1ee6e3362f46f6d0b179d380b5: 52039ea425493b1ee6e3362f46f6d0b179d380b5<br />
-  xe-pw-130866v1: 130866v1</p>
-
-</body>
-</html>
-
---===============2361506681254999310==--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
