@@ -4,67 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2B4EC54E4A
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Mar 2024 14:36:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B705C48BF6
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Mar 2024 14:45:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A9DB112D85;
-	Thu,  7 Mar 2024 14:36:46 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="h7EQIs8T";
-	dkim-atps=neutral
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com
- [209.85.219.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59647112ECD;
- Thu,  7 Mar 2024 14:36:44 +0000 (UTC)
-Received: by mail-yb1-f175.google.com with SMTP id
- 3f1490d57ef6-dcc80d6006aso1044258276.0; 
- Thu, 07 Mar 2024 06:36:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1709822203; x=1710427003; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=uHybDwoUQOGEnt+QSZ4qpGKiQdZfRISLyzghHxirBk4=;
- b=h7EQIs8TAN0ZKEIRl4D8rtR1VKmlOb4/6+JrNI6Dakr6fEiWiBJ+R7r8aTSHZTXo5o
- DM9dnbsQHbGP2narC2C45DKdZccqzCUYqyqpRKex7Gq+mKWscTl1Cni2Ct5ecGJYtcKu
- Kf8uOfaXCih61+OpTj+yAJGIB12Hdd/VonBlgfB5P6nMWWIjMQMRyGpRWfr/dhOVkZkD
- PxMVEn67UsUiL5CwI2YhARAuTHudMXVrK/+vNSQSY8zLMCwsj7Scmv95jRqe7a8je1df
- tgL9Gpq34HB1yEg9jPuieIP50XzBH0YAT7O12SwF0bGknT6eGORdCBnYN0M9/9n5KYHi
- JN1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1709822203; x=1710427003;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=uHybDwoUQOGEnt+QSZ4qpGKiQdZfRISLyzghHxirBk4=;
- b=triaQp4WaTX6PaAEuv/684pAM5/CvC+NWD0i4QB+5EPrxbAycvXHevwWC6bLTs8j3W
- oLFsHhfKnJ7Xb9bFXjP7NRwVkkU/DvhCo78wOjbRftQbTUaO6NcfjrSXgFgBIGl5o9NS
- TyZhVF2um9qQmXjiHgRxXlB7FBuS1ygJkc3R+rvePLLdZjI0KG6ICrRG7g5bR46xc2Cf
- cQGDEKk+zQnJzY1vL8w/MbiCSBly34O5Sf4Dmt7n/Sq55Jol3vy8Ld7Qo8lQuMB82/Qq
- Tyw5i1nufshphT1urPD9jglQs9o3FG5jl3o2U1kUhTJaa20k1yxTA0++WSILaN5SwY3Z
- 95PA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUXYQh3VVgVcLYiVZt6sB6O1ZfwDalAKzpYntwqEtNp065mPazsRu4NeG8kaboJrHZ+d5QbqNlJcpBqPk/8YRgXHiHi9494EWqn+ePKvnFNApRfAX+hPjL1VIMS5au8T6SSczh729DioGcsnMoD9b4=
-X-Gm-Message-State: AOJu0YwvLUcCMUX1ibxGLq+/tVEka0UGofU1Z2ED31aICt5TXAZ9TdSN
- jmu7Aj/6/6/2O3dTBL/w4H61F8QZ9guYFe5Ww2/z4+hbOLlCVHSpy6cOfVHVSZkY2lj5N3TX/cG
- GQ7Jx5GSusm/62LBsDY65AbDg33Y=
-X-Google-Smtp-Source: AGHT+IHqGNr5ebrqhQZaCNGX931iRI358HI2V8ahGtUjcv4saDmeLQ+WBuZgDziGoSCFNHMzUxpws4F/TTL43G3uKd4=
-X-Received: by 2002:a25:aaaf:0:b0:dcd:ef35:91d5 with SMTP id
- t44-20020a25aaaf000000b00dcdef3591d5mr15657405ybi.2.1709822202973; Thu, 07
- Mar 2024 06:36:42 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50F1D10EAB5;
+	Thu,  7 Mar 2024 14:45:01 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28C6B10EAB5;
+ Thu,  7 Mar 2024 14:45:00 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2361506681254999310=="
 MIME-Version: 1.0
-References: <cover.1709749576.git.jani.nikula@intel.com>
- <115327b880b69b1c8ad157e5ff7f6b419868fab0.1709749576.git.jani.nikula@intel.com>
-In-Reply-To: <115327b880b69b1c8ad157e5ff7f6b419868fab0.1709749576.git.jani.nikula@intel.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 7 Mar 2024 09:36:30 -0500
-Message-ID: <CADnq5_NXUYjq1bTbK1xGW-zREfMvNxYyg=B0jxA4oytGnUoi3A@mail.gmail.com>
-Subject: Re: [PATCH 04/22] drm/amdgpu: make amd_asic_type.h self-contained
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5Bv2=2C1/3?=
+ =?utf-8?q?=5D_drm/xe=3A_Make_devcoredump_VM_error_state_print_consistent?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 07 Mar 2024 14:45:00 -0000
+Message-ID: <170982270016.580282.13755148779668357887@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240307135229.41973-1-jose.souza@intel.com>
+In-Reply-To: <20240307135229.41973-1-jose.souza@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,41 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Mar 6, 2024 at 1:43=E2=80=AFPM Jani Nikula <jani.nikula@intel.com> =
-wrote:
->
-> Include <linux/types.h> for u8.
->
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+--===============2361506681254999310==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+== Series Details ==
 
-Do you want me to pick this up? Otherwise, feel free to take it via
-whatever tree makes sense.
+Series: series starting with [v2,1/3] drm/xe: Make devcoredump VM error state print consistent
+URL   : https://patchwork.freedesktop.org/series/130866/
+State : success
 
-Alex
+== Summary ==
 
-> ---
->  include/drm/amd_asic_type.h | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/include/drm/amd_asic_type.h b/include/drm/amd_asic_type.h
-> index 724c45e3e9a7..9be85b821aa6 100644
-> --- a/include/drm/amd_asic_type.h
-> +++ b/include/drm/amd_asic_type.h
-> @@ -22,6 +22,9 @@
->
->  #ifndef __AMD_ASIC_TYPE_H__
->  #define __AMD_ASIC_TYPE_H__
-> +
-> +#include <linux/types.h>
-> +
->  /*
->   * Supported ASIC types
->   */
-> --
-> 2.39.2
->
+CI Bug Log - changes from xe-913-52039ea425493b1ee6e3362f46f6d0b179d380b5_BAT -> xe-pw-130866v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-913-52039ea425493b1ee6e3362f46f6d0b179d380b5 -> xe-pw-130866v1
+
+  IGT_7749: 2fd91b8c3cf9aa2b0bb78537a6b5e2bc3de50e0e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-913-52039ea425493b1ee6e3362f46f6d0b179d380b5: 52039ea425493b1ee6e3362f46f6d0b179d380b5
+  xe-pw-130866v1: 130866v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130866v1/index.html
+
+--===============2361506681254999310==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v2,1/3] drm/xe: Make devcoredump VM error state print consistent</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130866/">https://patchwork.freedesktop.org/series/130866/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130866v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130866v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-913-52039ea425493b1ee6e3362f46f6d0b179d380b5_BAT -&gt; xe-pw-130866v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-913-52039ea425493b1ee6e3362f46f6d0b179d380b5 -&gt; xe-pw-130866v1</li>
+</ul>
+<p>IGT_7749: 2fd91b8c3cf9aa2b0bb78537a6b5e2bc3de50e0e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-913-52039ea425493b1ee6e3362f46f6d0b179d380b5: 52039ea425493b1ee6e3362f46f6d0b179d380b5<br />
+  xe-pw-130866v1: 130866v1</p>
+
+</body>
+</html>
+
+--===============2361506681254999310==--
