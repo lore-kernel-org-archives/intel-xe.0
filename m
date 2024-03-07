@@ -4,73 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D77E7C54798
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Mar 2024 19:32:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01039C54E5C
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Mar 2024 20:14:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84E16113818;
-	Thu,  7 Mar 2024 19:32:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C36610E7A0;
+	Thu,  7 Mar 2024 20:14:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="d0/Roda7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EzEHvR+7";
 	dkim-atps=neutral
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com
- [209.85.210.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE9851132FC
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Mar 2024 19:32:42 +0000 (UTC)
-Received: by mail-pf1-f175.google.com with SMTP id
- d2e1a72fcca58-6e09143c7bdso1063389b3a.3
- for <intel-xe@lists.freedesktop.org>; Thu, 07 Mar 2024 11:32:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1709839962; x=1710444762;
- darn=lists.freedesktop.org; 
- h=content-disposition:mime-version:message-id:subject:cc:to:date:from
- :from:to:cc:subject:date:message-id:reply-to;
- bh=Y7tFAO5LyLvnL3+HqT9Xq5HyhhJG+8Hgt83qwkFfBN8=;
- b=d0/Roda7lQgY9JaNRHcI9u7Ypmex6rnpY74ddZ7qu76t0+UVe2lcTREi5L9/tM3dMd
- CsImvwJH4Y8wwBezJTxNCIvvaR++0xWRWVASdKadDUh3vA3TbiAej/+tlrOtByuroatk
- RzVpyK1Wq6vO0agY81pxRXTW9UFfvekojvLCg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1709839962; x=1710444762;
- h=content-disposition:mime-version:message-id:subject:cc:to:date:from
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=Y7tFAO5LyLvnL3+HqT9Xq5HyhhJG+8Hgt83qwkFfBN8=;
- b=RA7pLP+KajtWFmsILTM0T8KWxkChnO2YDEusMm0TCbx1Ylkov2bGvYeihDtl7DqRZv
- bsmffcK7w4j8pBP8DcoA9P2tOFlIdkU7fxsAAd8OoFVyaayoV48m4G20ROaMI4IAKcRy
- N7OFek03xH4F07MPjp7ZYT/3TpBEMcBbP81mENQbqlRT9MAm1K6BEJeia7+zOjb4sWwh
- KLj0Y5vjH5Hh1kHGEJSdrMHnsse+LNGlFQ31JmBl/fMvTyQdKVlpy8kfRPAG6wSGRs5T
- WqhWiQnD7C2YhD/eCj9W7IWaa0OJeBS4AbBjRd+5Wbt1D6obMMdEaDgW7NCfHJu+ZCEj
- RBJA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWPxJ8uhS/Uh9d/ZmYzXUepZfz7NEHyl7InceHu0Zq/n3dVnZriqCVh1kul2e670eDonyAFQMPUdaknG6u5pCnh5Yae6FFEn3roEege+K4=
-X-Gm-Message-State: AOJu0Yw3Kqd2MnwoV66OmM7oR5AMuexamACCShXnB+AjuPbW4kZ879HJ
- ON0JUL7s2LYluSdNFGQnjirJ5a75UlDkuLYdxxWj9g4nmxX6DUFo1aL3ond/tg==
-X-Google-Smtp-Source: AGHT+IEXA1GnqxDeU9jnlIUs1LLr1HCKc49pvwZhgKzU/0L/Llfntwa/OA4IWFglH8mIi9V2Pf//fw==
-X-Received: by 2002:a05:6a00:3cca:b0:6e5:9342:f0fb with SMTP id
- ln10-20020a056a003cca00b006e59342f0fbmr21379242pfb.14.1709839961147; 
- Thu, 07 Mar 2024 11:32:41 -0800 (PST)
-Received: from www.outflux.net ([198.0.35.241])
- by smtp.gmail.com with ESMTPSA id
- x20-20020a056a000bd400b006e65d66bb3csm1526541pfu.21.2024.03.07.11.32.40
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 07 Mar 2024 11:32:40 -0800 (PST)
-From: coverity-bot <keescook@chromium.org>
-X-Google-Original-From: coverity-bot <keescook+coverity-bot@chromium.org>
-Date: Thu, 7 Mar 2024 11:32:40 -0800
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, intel-xe@lists.freedesktop.org,
- Oded Gabbay <ogabbay@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
- dri-devel@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, linux-kernel@vger.kernel.org,
- "Gustavo A. R. Silva" <gustavo@embeddedor.com>,
- linux-next@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Coverity: xe_gt_tlb_invalidation_ggtt(): Error handling issues
-Message-ID: <202403071132.198D11C@keescook>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7948E10E4F7;
+ Thu,  7 Mar 2024 20:13:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1709842436; x=1741378436;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=Me+2cUABqkmJjm+ZelE/vRdSwiXm8ntEwh24V58sBqE=;
+ b=EzEHvR+7x8TRGYpYJo8lY1pqkQ4HZIB7IUGTgvrWBwth6n7YAocgsE41
+ xvVOiLfhVP6MmYa6Dys5I0n52MlplT9zL+LG5zWoStpl5ORoQefKTxyBF
+ 3LXB+LUdIulpsL/aGS9Oq3VoGiLD2ANmg6KodJ1h+1t+HtG0sEuyiJmRd
+ DrRzQAEnp2W5W8qQ4DnnodtjNbNtlRHr15jUCW+tVN2/j9PcuUKAmkKyV
+ aDrhSFM5AiI6ChZtdkMKA6dVdb2FbkyqixORnOr6tAVPihVi9nJgbUrbY
+ 47DedI6qZpxmcAIjhR/GLElxQGwfmWNmYCxJ3eRc43XQC3IzLVOHyMMtJ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="4383858"
+X-IronPort-AV: E=Sophos;i="6.07,107,1708416000"; 
+   d="scan'208";a="4383858"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2024 12:13:49 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,107,1708416000"; d="scan'208";a="47705565"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2024 12:13:47 -0800
+Date: Thu, 7 Mar 2024 22:14:12 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Matthew Auld <matthew.auld@intel.com>
+Subject: Re: [PATCH 01/10] drm/i915/display: convert inner wakeref get
+ towards get_if_in_use
+Message-ID: <ZeogFEKNw4QYTG1J@ideak-desk.fi.intel.com>
+References: <20240307001554.162153-1-rodrigo.vivi@intel.com>
+ <ZekKtpIobqZzyvDR@intel.com> <ZenTPngZUhMx5V4z@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZenTPngZUhMx5V4z@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,50 +65,111 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hello!
+On Thu, Mar 07, 2024 at 09:46:22AM -0500, Rodrigo Vivi wrote:
+> On Thu, Mar 07, 2024 at 02:30:46AM +0200, Ville Syrjälä wrote:
+> > On Wed, Mar 06, 2024 at 07:15:45PM -0500, Rodrigo Vivi wrote:
+> > > This patch brings no functional change. Since at this point of
+> > > the code we are already asserting a wakeref was held, it means
+> > > that we are with runtime_pm 'in_use' and in practical terms we
+> > > are only bumping the pm_runtime usage counter and moving on.
+> > > 
+> > > However, xe driver has a lockdep annotation that warned us that
+> > > if a sync resume was actually called at this point, we could have
+> > > a deadlock because we are inside the power_domains->lock locked
+> > > area and the resume would call the irq_reset, which would also
+> > > try to get the power_domains->lock.
+> > > 
+> > > For this reason, let's convert this call to a safer option and
+> > > calm lockdep on.
+> > > 
+> > > Cc: Matthew Auld <matthew.auld@intel.com>
+> > > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_display_power.c | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > > index 6fd4fa52253a..4c5168a5bbf4 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > > @@ -646,7 +646,7 @@ release_async_put_domains(struct i915_power_domains *power_domains,
+> > >  	 * power well disabling.
+> > >  	 */
+> > >  	assert_rpm_raw_wakeref_held(rpm);
+> > > -	wakeref = intel_runtime_pm_get(rpm);
+> > > +	wakeref = intel_runtime_pm_get_if_in_use(rpm);
+> > 
+> > On first glance that sequence looks like complete nonsense, and
+> > thus likely to be cleaned up by someone later.
+> 
+> indeed. as many other things around i915's rpm infra.
+> 
+> > 
+> > To me _noresume() would seem like the more sensible thing to use
+> > here.
+> 
+> well, same effect actually. we would use the _noresume if we
+> put it without checking if the usage counter was bumped.
+> However, since our put takes the 'wakeref' into consideration
+> anyway, let's use this one that is more straight forward for
+> our current code.
+> 
+> > And even that might still warrant a comment to explain
+> > why that one is used specifically.
+> 
+> In general we grab this inner references when we want to ensure
+> that we have full control of the situation, i.e. ensuring that the
+> other reference which we are relying are not dropped while we still
+> have some operation to do. It is safe to have and cheap, so that's okay.
+> 
+> > 
+> > I'm also confused by the wakeref vs. wakelock stuff in the runtime pm
+> > code. Is that there just because not all places track the wakerefs?
+> > Do we still have those left?
+> 
+> yeap, those are very nasty and not documented. But looking a bit of
+> the history and the documentation about our get vs get_raw, it looks
+> like wakelock only exists so gem/gt side could ensure that gem/gt
+> side itself is holding the reference, and not relying on some reference
+> that was actually taken by display.
 
-This is an experimental semi-automated report about issues detected by
-Coverity from a scan of next-20240307 as part of the linux-next scan project:
-https://scan.coverity.com/projects/linux-next-weekly-scan
+The difference between a wakeref (aka wakelock) and a raw-wakeref is
+that the former is required for accessing the HW, which is asserted when
+reading/writing a register. A raw-wakeref is not enough for this and is
+only taken to prevent runtime suspending, for instance held after
+dropping a display power reference, until the power well is actually
+disabled in a delayed manner. During this time any register access is
+considered invalid.
 
-You're getting this email because you were associated with the identified
-lines of code (noted below) that were touched by commits:
+Both wakerefs and raw-wakerefs are tracked.
 
-  Tue Mar 5 16:48:55 2024 -0800
-    27ee413bbc0b ("drm/xe: Do not grab forcewakes when issuing GGTT TLB invalidation via GuC")
-
-Coverity reported the following:
-
-*** CID 1584246:  Error handling issues  (CHECKED_RETURN)
-drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:250 in xe_gt_tlb_invalidation_ggtt()
-244     		seqno = xe_gt_tlb_invalidation_guc(gt);
-245     		if (seqno <= 0)
-246     			return seqno;
-247
-248     		xe_gt_tlb_invalidation_wait(gt, seqno);
-249     	} else if (xe_device_uc_enabled(xe)) {
-vvv     CID 1584246:  Error handling issues  (CHECKED_RETURN)
-vvv     Calling "xe_force_wake_get" without checking return value (as is done elsewhere 15 out of 16 times).
-250     		xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-251     		if (xe->info.platform == XE_PVC || GRAPHICS_VER(xe) >= 20) {
-252     			xe_mmio_write32(gt, PVC_GUC_TLB_INV_DESC1,
-253     					PVC_GUC_TLB_INV_DESC1_INVALIDATE);
-254     			xe_mmio_write32(gt, PVC_GUC_TLB_INV_DESC0,
-255     					PVC_GUC_TLB_INV_DESC0_VALID);
-
-If this is a false positive, please let us know so we can mark it as
-such, or teach the Coverity rules to be smarter. If not, please make
-sure fixes get into linux-next. :) For patches fixing this, please
-include these lines (but double-check the "Fixes" first):
-
-Reported-by: coverity-bot <keescook+coverity-bot@chromium.org>
-Addresses-Coverity-ID: 1584246 ("Error handling issues")
-Fixes: 27ee413bbc0b ("drm/xe: Do not grab forcewakes when issuing GGTT TLB invalidation via GuC")
-
-Thanks for your attention!
-
--- 
-Coverity-bot
+> One thing that crossed my mind many times already is to simply entirely
+> remove the runtime_pm from display and do like other drivers simply
+> checking for crtc connection at runtime_idle.
+> 
+> But then there are places where current display code uses the rpm
+> in use to take different code paths, and also all the possible impact
+> with the dc states transitions and other cases that I always gave up
+> on the thought very quickly.
+> 
+> But you are right, we will have to comeback and clean things up
+> one way or another.
+> 
+> But I wish we can have at least this small change in first so I don't
+> get blocked by xe's lockdep annotation and I also don't have to
+> workaround the annotation itself.
+> 
+> > 
+> > >  
+> > >  	for_each_power_domain(domain, mask) {
+> > >  		/* Clear before put, so put's sanity check is happy. */
+> > > -- 
+> > > 2.43.2
+> > 
+> > -- 
+> > Ville Syrjälä
+> > Intel
