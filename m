@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 437CEC54E58
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Mar 2024 08:35:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9DE2C54E49
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Mar 2024 08:39:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B79E411366C;
-	Thu,  7 Mar 2024 08:35:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZrFL+MmR";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3810F10F17A;
- Thu,  7 Mar 2024 08:35:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709800535; x=1741336535;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=rK7kWWs4+hVfvlukxJc/lA8cslM+lNCJn3z4mbIHEm8=;
- b=ZrFL+MmRZMitqQw78qloaH0mE0yju7RUXF9YY6AJ5ltmWNM763SHoYZC
- 4cI7GOBUIooZcIE8K/T7v9qhehcGGwItvqearOyquExYhJ3wBaQPW7/I7
- cTJ1OpakUCwB0XGoNTGNn1sOO3C5+2BcZO0+3EgIwA6dQ+qFwI+6Vpn8t
- vS90bxvSiVcQCpjA4xKX+TYcdDC7RjRP2WMYil9MXQ2jVjBKkmDozAymh
- H6bVc/CTh3FtL371Em3pvoz1ct8uNKxRseLWa+Z4eMdV9PkVDLACgZ0lD
- eXPnUjOy86B6jjsNC4fLKygLMtjrT/Z8HS9xzn98aO7D07NQQH9X2Scs1 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11005"; a="4577769"
-X-IronPort-AV: E=Sophos;i="6.06,210,1705392000"; 
-   d="scan'208";a="4577769"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2024 00:35:34 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,210,1705392000"; d="scan'208";a="10199079"
-Received: from tcavalax-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.33.241])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2024 00:35:31 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>,
-	dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm: add missing header guards to drm_crtc_internal.h
-Date: Thu,  7 Mar 2024 10:35:26 +0200
-Message-Id: <20240307083526.2605475-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1709749576.git.jani.nikula@intel.com>
-References: <cover.1709749576.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9423410E546;
+	Thu,  7 Mar 2024 08:39:35 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59F5710E546;
+ Thu,  7 Mar 2024 08:39:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm=3A_add_missing_h?=
+ =?utf-8?q?eader_guards_to_drm=5Fcrtc=5Finternal=2Eh_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 07 Mar 2024 08:39:34 -0000
+Message-ID: <170980077437.580282.10565255273735445732@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <cover.1709749576.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1709749576.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,36 +36,42 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Including the file twice can lead to errors.
+== Series Details ==
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/drm_crtc_internal.h | 5 +++++
- 1 file changed, 5 insertions(+)
+Series: drm: add missing header guards to drm_crtc_internal.h (rev2)
+URL   : https://patchwork.freedesktop.org/series/130823/
+State : success
 
-diff --git a/drivers/gpu/drm/drm_crtc_internal.h b/drivers/gpu/drm/drm_crtc_internal.h
-index c0c5d79ed4c9..0c693229a1c9 100644
---- a/drivers/gpu/drm/drm_crtc_internal.h
-+++ b/drivers/gpu/drm/drm_crtc_internal.h
-@@ -32,6 +32,9 @@
-  * and are not exported to drivers.
-  */
- 
-+#ifndef __DRM_CRTC_INTERNAL_H__
-+#define __DRM_CRTC_INTERNAL_H__
-+
- #include <linux/err.h>
- #include <linux/types.h>
- 
-@@ -305,3 +308,5 @@ drm_edid_load_firmware(struct drm_connector *connector)
- 	return ERR_PTR(-ENOENT);
- }
- #endif
-+
-+#endif /* __DRM_CRTC_INTERNAL_H__ */
--- 
-2.39.2
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 2e45ab4961e3 drm-tip: 2024y-03m-07d-08h-28m-14s UTC integration manifest
+=== git am output follows ===
+Applying: drm/crtc: make drm_crtc_internal.h self-contained
+Applying: drm: add missing header guards to drm_internal.h
+Applying: drm/kunit: fix drm_kunit_helpers.h kernel-doc
+Applying: drm/amdgpu: make amd_asic_type.h self-contained
+Applying: drm: bridge: samsung-dsim: make samsung-dsim.h self-contained
+Applying: drm/dp_mst: fix drm_dp_mst_helper.h kernel-doc
+Applying: drm/crc: make drm_debugfs_crc.h self-contained and fix kernel-doc
+Applying: drm/encoder: silence drm_encoder_slave.h kernel-doc
+Applying: drm: fix drm_format_helper.h kernel-doc warnings
+Applying: drm/lease: make drm_lease.h self-contained
+Applying: drm: fix drm_gem_vram_helper.h kernel-doc
+Applying: drm/of: make drm_of.h self-contained
+Applying: drm/i2c: silence ch7006.h and sil164.h kernel-doc warnings
+Applying: drm/suballoc: fix drm_suballoc.h kernel-doc
+Applying: drm/i915: fix i915_gsc_proxy_mei_interface.h kernel-doc
+Applying: drm/i915/hdcp: fix i915_hdcp_interface.h kernel-doc warnings
+Applying: drm/i915/pxp: fix i915_pxp_tee_interface.h kernel-doc warnings
+Applying: drm/ttm: fix ttm_bo.h kernel-doc warnings
+Applying: drm/ttm: make ttm_caching.h self-contained
+Applying: drm/ttm: fix ttm_execbuf_util.h kernel-doc warnings
+Applying: drm/ttm: fix ttm_kmap_iter.h kernel-doc warnings
+Applying: drm: ensure drm headers are self-contained and pass kernel-doc
+
 
