@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13EB0C54E4A
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Mar 2024 13:42:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58A40C54E4A
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Mar 2024 13:45:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAE5110FA00;
-	Fri,  8 Mar 2024 13:42:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PsK2igCw";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5901F10F9FE
- for <intel-xe@lists.freedesktop.org>; Fri,  8 Mar 2024 13:42:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709905329; x=1741441329;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=KT38fFPO469/HqRtPI7mm96ebbjuREaq0m+U3qOV86M=;
- b=PsK2igCwMf9Yknu4jR6Ylp9zevS0wMT5qfVy7+XVCg24h9fMyuS2S2pG
- HefBkXY3xS2EomzPMbCnFR4WHjfS1ADM5OqOvrQLT+Hh5A7etib7fI5Vj
- w/CJ0OJrJmrHSNNCL9PWVW9O5rigvuPZ1lMgJShu6OJQSOg4gyP9NU41A
- R4LUKzgg1loraNFwF+JFoczbRVCA8+a2zVBLxOBj0zTvo83nwa5P/n5oN
- uTXSjFIHDOzATwRHaEAZ5E5gq+WqFQzj4sTWxWKle3hhWTwri5ZXqDgkg
- r6AyvBjQIUhIzW6RXtsrtA3GykyTUyDGBN9qHACP7p1nuWqtkKzOSrFRw g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="8434862"
-X-IronPort-AV: E=Sophos;i="6.07,109,1708416000"; 
-   d="scan'208";a="8434862"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2024 05:42:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,109,1708416000"; d="scan'208";a="15024339"
-Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2024 05:42:09 -0800
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>,
- Gustavo Sousa <gustavo.sousa@intel.com>
-Subject: [PATCH xe-for-ci] drm/xe/pvc: fix CI GuC FW path
-Date: Fri,  8 Mar 2024 05:42:02 -0800
-Message-ID: <20240308134202.901394-1-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D0CA10F3EA;
+	Fri,  8 Mar 2024 13:45:57 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 123CD10F3EA;
+ Fri,  8 Mar 2024 13:45:56 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5671925259861845792=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Pcode_init_status_and_lmem_check?=
+ =?utf-8?q?_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Riana Tauro" <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 08 Mar 2024 13:45:56 -0000
+Message-ID: <170990555607.628604.14882354137330503978@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240308085517.2030484-1-riana.tauro@intel.com>
+In-Reply-To: <20240308085517.2030484-1-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,38 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The new repo flow has the CI firmwares located under the intel-ci/
-folder, so we need to update the path in the driver. This messes a bit
-with the formatting, but since this is a CI-only patch it doesn't really
-matter.
+--===============5671925259861845792==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
----
+== Series Details ==
 
-This patch can be squashed in the existing fw definition patch
+Series: Pcode init status and lmem check (rev2)
+URL   : https://patchwork.freedesktop.org/series/130904/
+State : success
 
- drivers/gpu/drm/xe/xe_uc_fw.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index 7751d6ba6ce0..44b8c5f58fd8 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -105,7 +105,7 @@ struct fw_blobs_by_type {
- #define XE_GUC_FIRMWARE_DEFS(fw_def, mmp_ver, major_ver)			\
- 	fw_def(LUNARLAKE,	major_ver(xe,	guc,	lnl,	70, 19, 2))	\
- 	fw_def(METEORLAKE,	major_ver(i915,	guc,	mtl,	70, 19, 2))	\
--	fw_def(PVC,		mmp_ver(xe,	guc,	pvc,	70, 20, 0))	\
-+	fw_def(PVC,		mmp_ver(intel-ci/xe, guc, pvc,	70, 20, 0))	\
- 	fw_def(DG2,		major_ver(i915,	guc,	dg2,	70, 19, 2))	\
- 	fw_def(DG1,		major_ver(i915,	guc,	dg1,	70, 19, 2))	\
- 	fw_def(ALDERLAKE_N,	major_ver(i915,	guc,	tgl,	70, 19, 2))	\
--- 
-2.43.0
+CI Bug Log - changes from xe-923-024301d28b0b2cf492ffdb3ce688044cd9923f38_BAT -> xe-pw-130904v2_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-130904v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_exec_threads@threads-mixed-fd-basic:
+    - bat-dg2-oem2:       [TIMEOUT][1] ([Intel XE#1167]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-923-024301d28b0b2cf492ffdb3ce688044cd9923f38/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-fd-basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130904v2/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-fd-basic.html
+
+  
+  [Intel XE#1167]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1167
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7749 -> IGT_7750
+  * Linux: xe-923-024301d28b0b2cf492ffdb3ce688044cd9923f38 -> xe-pw-130904v2
+
+  IGT_7749: 2fd91b8c3cf9aa2b0bb78537a6b5e2bc3de50e0e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7750: 856773abcf75b3beba8a0ae1561b07a5f00b3337 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-923-024301d28b0b2cf492ffdb3ce688044cd9923f38: 024301d28b0b2cf492ffdb3ce688044cd9923f38
+  xe-pw-130904v2: 130904v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130904v2/index.html
+
+--===============5671925259861845792==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Pcode init status and lmem check (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130904/">https://patchwork.freedesktop.org/series/130904/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130904v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130904v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-923-024301d28b0b2cf492ffdb3ce688044cd9923f38_BAT -&gt; xe-pw-130904v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-130904v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_exec_threads@threads-mixed-fd-basic:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-923-024301d28b0b2cf492ffdb3ce688044cd9923f38/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-fd-basic.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1167">Intel XE#1167</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130904v2/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-fd-basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7749 -&gt; IGT_7750</li>
+<li>Linux: xe-923-024301d28b0b2cf492ffdb3ce688044cd9923f38 -&gt; xe-pw-130904v2</li>
+</ul>
+<p>IGT_7749: 2fd91b8c3cf9aa2b0bb78537a6b5e2bc3de50e0e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7750: 856773abcf75b3beba8a0ae1561b07a5f00b3337 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-923-024301d28b0b2cf492ffdb3ce688044cd9923f38: 024301d28b0b2cf492ffdb3ce688044cd9923f38<br />
+  xe-pw-130904v2: 130904v2</p>
+
+</body>
+</html>
+
+--===============5671925259861845792==--
