@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61519C5475B
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Mar 2024 10:44:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5687EC5475B
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Mar 2024 10:47:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2224C10F354;
-	Fri,  8 Mar 2024 10:44:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AF0310F969;
+	Fri,  8 Mar 2024 10:47:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dqLV3tmC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Re/R5CIb";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC38D10F354
- for <intel-xe@lists.freedesktop.org>; Fri,  8 Mar 2024 10:44:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 477D310F969
+ for <intel-xe@lists.freedesktop.org>; Fri,  8 Mar 2024 10:47:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709894693; x=1741430693;
+ t=1709894875; x=1741430875;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=LK/kmO3Xu+S6kOP/pfEE6I9nkf/0+zjI8CL6BxRHbpk=;
- b=dqLV3tmCV3xHyYVdz6VZn+pVi9j8tDHhT7btoG2tpJac8VC/7dX3IgUa
- S5+n5aDL7F5RpzkNoK3wHalvV0a/R522YhDUNKqFgdAC9jFBNsw2JeP6C
- B9fz/ZNF6KK3yQWzUmFS5MzCePPAcTAXhjFuOncyWJp27LTg5OXwZm6Yp
- rU6F+7By2JFuaeyJbmYstD5IkA7buvqean5nTl6eFa75g6/Swn+8g7oYR
- WND8J2Yf3ETcUCB/1YQCkwIG0kpopgAWWooWJK4JduS3/ogFSm2VGU0B/
- iBQORcmGSlZ5Rlxp7Z4JxN+/29T5EfGcL9rR4qS6zADgNJioVH8Wx3eBH g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="4537137"
+ bh=o4cz1Wld69bulwfAgWCv1At8hChgdBmndMAobSjRjRU=;
+ b=Re/R5CIb38mvOe1y/NP9G3QOlBj3YuDx8hV7IqNW63EFiwTYVDFGcqvb
+ lElRHlPUaQ8dETMEAgmhp5HUQMhyH2Homdfqm1MLQsj/K5ZfpNUKA60+4
+ PRiiin6lJqnvkHUH9uoHprB3dFBgOZ7p2YMAkHtJzc9h3qCN1ynwtgGR2
+ 1TNc0/WuEHuvDkF/Tn6eme+5o4otbWrjiVC1AFk7fepLq+qJF0QEMvAyy
+ ifKw0w4xBOQHyF80FkOBmAs6YGKou23TFIWFtb3/qUv/inpXX72iU0pd9
+ huBwpMZxDHnpPrmLrTDl3/89xod1MtuFoFiKE/KBMiiRBdCY9i8Dz+JCF A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="4778473"
 X-IronPort-AV: E=Sophos;i="6.07,109,1708416000"; 
-   d="scan'208";a="4537137"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2024 02:44:41 -0800
+   d="scan'208";a="4778473"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2024 02:47:54 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,109,1708416000"; d="scan'208";a="10440421"
+X-IronPort-AV: E=Sophos;i="6.07,109,1708416000"; d="scan'208";a="15012701"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orviesa010.jf.intel.com with ESMTP; 08 Mar 2024 02:44:39 -0800
+ by fmviesa004.fm.intel.com with ESMTP; 08 Mar 2024 02:47:53 -0800
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
  Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
  Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH] drm/xe: Modify min various scheduler timeout to 0.
-Date: Fri,  8 Mar 2024 16:27:44 +0530
-Message-Id: <20240308105744.2478794-1-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH] drm/xe: Modify minimum of  various scheduler timeout to 0.
+Date: Fri,  8 Mar 2024 16:30:58 +0530
+Message-Id: <20240308110058.2479126-1-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -63,9 +63,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The sysman teams needs to disable preemption and timneslice to
+The sysman teams needs to disable preemption and timeslice to
 test exclusivity mode and are relying on setting 'timeslice_duration_us'
-and 'preempt_timeout_us' to 0 for using exclusive mode. Hence seting the
+and 'preempt_timeout_us' to 0 for the same. Hence set the
 min configs to 0.
 
 Cc: Matthew Brost <matthew.brost@intel.com>
