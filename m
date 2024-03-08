@@ -4,50 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34D19C54E63
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Mar 2024 05:08:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3ADEC54E60
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Mar 2024 05:08:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5492112EDD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7286E112EBD;
 	Fri,  8 Mar 2024 05:08:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R+aaNwwn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e+uuXgdK";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D33B11259C
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E94B10F7AB
  for <intel-xe@lists.freedesktop.org>; Fri,  8 Mar 2024 05:07:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709874475; x=1741410475;
+ t=1709874474; x=1741410474;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3OWuVNcWKIbRa9SxrDzQm/d9lf61oelrruRPmrcs5hM=;
- b=R+aaNwwnq8N4qZMnYgz267ug+FvKQm7ZC8VFH9sWJLu/rIntUnFnirOt
- ip+NfPRvBztHY6H0buo3zVZk6HQmQkgP/ifLcqKd/L2UC+LZjUapQI7FE
- 9DkukwzdzvUAQF0BB5N8xIz7Ib6ZV6zhdsPUjRcD1UlYPVpkiHc4/JrXj
- mrunU0g8zwzPaS8+el/OEPllpUtqVes4UBWU3JdlatP3F5sFbNLCZ22pJ
- Ele0c5uyeg5Qv47ASgbJDP16bsLq0k+DvLOw66dP3dxHNb8medOZ/uhqk
- blyHArSNh8FJ41XuiCZw7BhtCcC1Wztw3mC31ua9gB4K0ubxjVqYiR8ya Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="4761983"
+ bh=OHk+usE0GFk/3nYYjuA9XwlVvOQZbRvQEfHayDogqac=;
+ b=e+uuXgdKOixeP8UzLEGDv2obFavyTF4U5H95hFh/u812f198rUDXM02U
+ JyxRG0cZr2y4NeNDF+Rg4wKWwuvpVhdad85txfB9OqbxgX7gBO5iUA+b8
+ UGD9Qyz0AkQgUIpOfBXzb76IQPvUXwohWH567EJVq2X1RDw7K1d+WtSLi
+ gAJL3u8awFH628IZmaOVR12lhA4FakkyDXLTHfHzQOZWYw7fqpso5zJur
+ TFoluIqdE9OcR3UaZtwHeFAMhLkE9AC2hqfyE9QWaqVfqJrSqY7XEQCzU
+ eiq7DEUA5stjOCe92ZjLNKmhd308MmLNmztbQMT7++p3zFrfYNt9tOFzu w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="4761976"
 X-IronPort-AV: E=Sophos;i="6.07,108,1708416000"; 
-   d="scan'208";a="4761983"
+   d="scan'208";a="4761976"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2024 21:07:54 -0800
+ 07 Mar 2024 21:07:53 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,108,1708416000"; d="scan'208";a="10403053"
+X-IronPort-AV: E=Sophos;i="6.07,108,1708416000"; d="scan'208";a="10403032"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Mar 2024 21:07:52 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v4 28/30] drm/xe: Add VM bind IOCTL error injection
-Date: Thu,  7 Mar 2024 21:08:04 -0800
-Message-Id: <20240308050806.577176-29-matthew.brost@intel.com>
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v4 21/30] drm/xe: Update xe_vm_rebind to return int
+Date: Thu,  7 Mar 2024 21:07:57 -0800
+Message-Id: <20240308050806.577176-22-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240308050806.577176-1-matthew.brost@intel.com>
 References: <20240308050806.577176-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,157 +65,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add VM bind IOCTL error injection which steals MSB of the bind flags
-field which if set injects errors at various points in the VM bind
-IOCTL. Intended to validate error paths. Enabled by CONFIG_DRM_XE_DEBUG.
+From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+
+Now that rebinds are installed in the kernel dma-resv slot the fence
+returned from xe_vm_rebind is unused aside from error checking. Update
+to xe_vm_rebind to return int.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h | 12 ++++++++++++
- drivers/gpu/drm/xe/xe_pt.c           | 12 ++++++++++++
- drivers/gpu/drm/xe/xe_vm.c           | 20 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vm_types.h     | 14 ++++++++++++++
- 4 files changed, 58 insertions(+)
+ drivers/gpu/drm/xe/xe_exec.c |  8 ++------
+ drivers/gpu/drm/xe/xe_vm.c   | 17 +++++++----------
+ drivers/gpu/drm/xe/xe_vm.h   |  2 +-
+ 3 files changed, 10 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 3d86ab07a5cd..e73b9a086718 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -22,6 +22,10 @@
- #include "xe_sriov_types.h"
- #include "xe_step_types.h"
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index 4feff67620c4..7d676e3610fa 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -152,7 +152,6 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	struct drm_exec *exec = &vm_exec.exec;
+ 	u32 i, num_syncs = 0, num_ufence = 0;
+ 	struct xe_sched_job *job;
+-	struct dma_fence *rebind_fence;
+ 	struct xe_vm *vm;
+ 	bool write_locked, skip_retry = false;
+ 	ktime_t end = 0;
+@@ -289,12 +288,9 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	 * Rebind any invalidated userptr or evicted BOs in the VM, non-compute
+ 	 * VM mode only.
+ 	 */
+-	rebind_fence = xe_vm_rebind(vm, false);
+-	if (IS_ERR(rebind_fence)) {
+-		err = PTR_ERR(rebind_fence);
++	err = xe_vm_rebind(vm, false);
++	if (err)
+ 		goto err_put_job;
+-	}
+-	dma_fence_put(rebind_fence);
  
-+#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-+#define TEST_VM_OPS_ERROR
-+#endif
-+
- #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
- #include "soc/intel_pch.h"
- #include "intel_display_core.h"
-@@ -459,6 +463,14 @@ struct xe_device {
- 	/** @needs_flr_on_fini: requests function-reset on fini */
- 	bool needs_flr_on_fini;
- 
-+#ifdef TEST_VM_OPS_ERROR
-+	/**
-+	 * @vm_inject_error_position: inject errors at different places in VM
-+	 * bind IOCTL based on this value
-+	 */
-+	u8 vm_inject_error_position;
-+#endif
-+
- 	/* private: */
- 
- #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index c941a73d408a..e0b0f6593ddc 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -1766,6 +1766,12 @@ int xe_pt_update_ops_prepare(struct xe_tile *tile, struct xe_vma_ops *vops)
- 	xe_tile_assert(tile, pt_update_ops->current_op ==
- 		       pt_update_ops->num_ops);
- 
-+#ifdef TEST_VM_OPS_ERROR
-+	if (vops->inject_error &&
-+	    vops->vm->xe->vm_inject_error_position == FORCE_OP_ERROR_PREPARE)
-+		return -ENOSPC;
-+#endif
-+
- 	return 0;
- }
- 
-@@ -1899,6 +1905,12 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
- 	lockdep_assert_held(&vm->lock);
- 	xe_vm_assert_held(vm);
- 
-+#ifdef TEST_VM_OPS_ERROR
-+	if (vops->inject_error &&
-+	    vm->xe->vm_inject_error_position == FORCE_OP_ERROR_RUN)
-+		return ERR_PTR(-ENOSPC);
-+#endif
-+
- 	if (pt_update_ops->needs_invalidation) {
- 		ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
- 		if (!ifence) {
+ 	/* Wait for rebinds */
+ 	if (!xe_vm_in_lr_mode(vm)) {
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index dad8bd10d900..906734b423c5 100644
+index 47658465b735..47a0d3a6cda5 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2473,6 +2473,12 @@ static int vm_bind_ioctl_ops_lock(struct drm_exec *exec,
- 			return err;
- 	}
+@@ -526,7 +526,6 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ {
+ 	struct xe_vm *vm = container_of(w, struct xe_vm, preempt.rebind_work);
+ 	struct drm_exec exec;
+-	struct dma_fence *rebind_fence;
+ 	unsigned int fence_count = 0;
+ 	LIST_HEAD(preempt_fences);
+ 	ktime_t end = 0;
+@@ -572,12 +571,9 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 	if (err)
+ 		goto out_unlock;
  
-+#ifdef TEST_VM_OPS_ERROR
-+	if (vops->inject_error &&
-+	    vm->xe->vm_inject_error_position == FORCE_OP_ERROR_LOCK)
-+		return -ENOSPC;
-+#endif
-+
- 	return 0;
+-	rebind_fence = xe_vm_rebind(vm, true);
+-	if (IS_ERR(rebind_fence)) {
+-		err = PTR_ERR(rebind_fence);
++	err = xe_vm_rebind(vm, true);
++	if (err)
+ 		goto out_unlock;
+-	}
+-	dma_fence_put(rebind_fence);
+ 
+ 	/* Wait on rebinds */
+ 	wait = dma_resv_wait_timeout(xe_vm_resv(vm),
+@@ -796,14 +792,14 @@ void xe_vm_populate_dummy_rebind(struct xe_vm *vm, struct xe_vma *vma,
+ 	vm->dummy_ops.op.map.is_null = xe_vma_is_null(vma);
  }
  
-@@ -2718,8 +2724,13 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
- 	return err;
- }
+-struct dma_fence *xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
++int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
+ {
+ 	struct dma_fence *fence = NULL;
+ 	struct xe_vma *vma, *next;
  
-+#ifdef TEST_VM_OPS_ERROR
-+#define SUPPORTED_FLAGS	(FORCE_OP_ERROR | DRM_XE_VM_BIND_FLAG_NULL | \
-+	 DRM_XE_VM_BIND_FLAG_DUMPABLE)
-+#else
- #define SUPPORTED_FLAGS	(DRM_XE_VM_BIND_FLAG_NULL | \
- 	 DRM_XE_VM_BIND_FLAG_DUMPABLE)
-+#endif
- #define XE_64K_PAGE_MASK 0xffffull
- #define ALL_DRM_XE_SYNCS_FLAGS (DRM_XE_SYNCS_FLAG_WAIT_FOR_OP)
+ 	lockdep_assert_held(&vm->lock);
+ 	if (xe_vm_in_lr_mode(vm) && !rebind_worker)
+-		return NULL;
++		return 0;
  
-@@ -3047,6 +3058,15 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 					      &vops, i == args->num_binds - 1);
- 		if (err)
- 			goto unwind_ops;
-+
-+#ifdef TEST_VM_OPS_ERROR
-+		if (flags & FORCE_OP_ERROR) {
-+			vops.inject_error = true;
-+			vm->xe->vm_inject_error_position =
-+				(vm->xe->vm_inject_error_position + 1) %
-+				FORCE_OP_ERROR_COUNT;
-+		}
-+#endif
+ 	xe_vm_assert_held(vm);
+ 	list_for_each_entry_safe(vma, next, &vm->rebind_list,
+@@ -820,10 +816,11 @@ struct dma_fence *xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
+ 		xe_vm_populate_dummy_rebind(vm, vma, vma->tile_present);
+ 		fence = xe_vm_ops_execute(vm, &vm->dummy_ops.vops);
+ 		if (IS_ERR(fence))
+-			return fence;
++			return PTR_ERR(fence);
  	}
  
- 	/* Nothing to do */
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 83cb13275904..a069989fd82c 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -24,6 +24,16 @@ struct xe_user_fence;
- struct xe_vm;
- struct xe_vm_pgtable_update_op;
+-	return fence;
++	dma_fence_put(fence);
++	return 0;
+ }
  
-+#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-+#define TEST_VM_OPS_ERROR
-+#define FORCE_OP_ERROR	BIT(31)
-+
-+#define FORCE_OP_ERROR_LOCK	0
-+#define FORCE_OP_ERROR_PREPARE	1
-+#define FORCE_OP_ERROR_RUN	2
-+#define FORCE_OP_ERROR_COUNT	3
-+#endif
-+
- #define XE_VMA_READ_ONLY	DRM_GPUVA_USERBITS
- #define XE_VMA_DESTROYED	(DRM_GPUVA_USERBITS << 1)
- #define XE_VMA_ATOMIC_PTE_BIT	(DRM_GPUVA_USERBITS << 2)
-@@ -211,6 +221,10 @@ struct xe_vma_ops {
- 	u32 num_syncs;
- 	/** @pt_update_ops: page table update operations */
- 	struct xe_vm_pgtable_update_ops pt_update_ops[XE_MAX_TILES_PER_DEVICE];
-+#ifdef TEST_VM_OPS_ERROR
-+	/** @inject_error: inject error to test error handling */
-+	bool inject_error;
-+#endif
- };
+ static void xe_vma_free(struct xe_vma *vma)
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 8201ecb8f05a..c849ad0d44b5 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -207,7 +207,7 @@ int __xe_vm_userptr_needs_repin(struct xe_vm *vm);
  
- struct xe_vm {
+ int xe_vm_userptr_check_repin(struct xe_vm *vm);
+ 
+-struct dma_fence *xe_vm_rebind(struct xe_vm *vm, bool rebind_worker);
++int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker);
+ 
+ int xe_vm_invalidate_vma(struct xe_vma *vma);
+ 
 -- 
 2.34.1
 
