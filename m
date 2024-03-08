@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88F6CC5475B
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Mar 2024 05:38:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C940C54E41
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Mar 2024 05:42:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E117010F4DA;
-	Fri,  8 Mar 2024 05:38:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28FC810F109;
+	Fri,  8 Mar 2024 05:42:44 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0815910F4DA;
- Fri,  8 Mar 2024 05:38:19 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5702474956443572934=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39CA610F109;
+ Fri,  8 Mar 2024 05:42:43 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Minor_fixes_for_errors_reported_?=
- =?utf-8?q?by_static_analyzer?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Refactor_VM_bind_cod?=
+ =?utf-8?q?e_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 08 Mar 2024 05:38:19 -0000
-Message-ID: <170987629903.611156.16556254385912043576@8e613ede5ea5>
+Date: Fri, 08 Mar 2024 05:42:43 -0000
+Message-ID: <170987656323.611088.12166758276629844358@8e613ede5ea5>
 X-Patchwork-Hint: ignore
-References: <20240308043651.2010165-1-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20240308043651.2010165-1-himal.prasad.ghimiray@intel.com>
+References: <20240308050806.577176-1-matthew.brost@intel.com>
+In-Reply-To: <20240308050806.577176-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,46 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5702474956443572934==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Minor fixes for errors reported by static analyzer
-URL   : https://patchwork.freedesktop.org/series/130895/
+Series: Refactor VM bind code (rev5)
+URL   : https://patchwork.freedesktop.org/series/125608/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-918-5f7465b78af407c2d7e6d449430c145834df9c97_BAT -> xe-pw-130895v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-918-5f7465b78af407c2d7e6d449430c145834df9c97 -> xe-pw-130895v1
-
-  IGT_7749: 2fd91b8c3cf9aa2b0bb78537a6b5e2bc3de50e0e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-918-5f7465b78af407c2d7e6d449430c145834df9c97: 5f7465b78af407c2d7e6d449430c145834df9c97
-  xe-pw-130895v1: 130895v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130895v1/index.html
-
---===============5702474956443572934==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: ee6e5c86f4d5 drm-tip: 2024y-03m-08d-03h-42m-43s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Lock all gpuva ops during VM bind IOCTL
+Applying: drm/xe: Add ops_execute function which returns a fence
+Applying: drm/xe: Move migrate to prefetch to op_lock function
+Applying: drm/xe: Add struct xe_vma_ops abstraction
+Applying: drm/xe: Update xe_vm_rebind to use dummy VMA operations
+Applying: drm/xe: Simplify VM bind IOCTL error handling and cleanup
+Applying: drm/xe: Update pagefaults to use dummy VMA operations
+Applying: drm/xe: s/xe_tile_migrate_engine/xe_tile_migrate_exec_queue
+Applying: drm/xe: Add some members to xe_vma_ops
+Applying: drm/xe: Add vm_bind_ioctl_ops_install_fences helper
+Applying: drm/xe: Move setting last fence to vm_bind_ioctl_ops_install_fences
+Applying: drm/xe: Move ufence check to op_lock
+Applying: drm/xe: Move ufence add to vm_bind_ioctl_ops_install_fences
+Applying: drm/xe: Add xe_gt_tlb_invalidation_range and convert PT layer to use this
+Applying: drm/xe: Add xe_vm_pgtable_update_op to xe_vma_ops
+Applying: drm/xe: Use ordered WQ for TLB invalidation fences
+Applying: drm/xe: Delete PT update selftest
+Applying: drm/xe: Convert multiple bind ops into single job
+Applying: drm/xe: Remove old functions defs in xe_pt.h
+Applying: drm/xe: Update PT layer with better error handling
+Applying: drm/xe: Update xe_vm_rebind to return int
+Applying: drm/xe: Move vma rebinding to the drm_exec locking loop
+Applying: drm/xe: Update VM trace events
+Applying: drm/xe: Update clear / populate arguments
+Applying: drm/xe: Add __xe_migrate_update_pgtables_cpu helper
+Applying: drm/xe: CPU binds for jobs
+Applying: drm/xe: Don't use migrate exec queue for page fault binds
+Applying: drm/xe: Add VM bind IOCTL error injection
+Applying: drm/xe/guc: Assert time'd out jobs are not from a VM exec queue
+Applying: drm/xe: Add PT exec queues
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Minor fixes for errors reported by static analyzer</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130895/">https://patchwork.freedesktop.org/series/130895/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130895v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130895v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-918-5f7465b78af407c2d7e6d449430c145834df9c97_BAT -&gt; xe-pw-130895v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-918-5f7465b78af407c2d7e6d449430c145834df9c97 -&gt; xe-pw-130895v1</li>
-</ul>
-<p>IGT_7749: 2fd91b8c3cf9aa2b0bb78537a6b5e2bc3de50e0e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-918-5f7465b78af407c2d7e6d449430c145834df9c97: 5f7465b78af407c2d7e6d449430c145834df9c97<br />
-  xe-pw-130895v1: 130895v1</p>
-
-</body>
-</html>
-
---===============5702474956443572934==--
