@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C186C5475B
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Mar 2024 11:32:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFC2CC5475B
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Mar 2024 11:36:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 257BD113873;
-	Fri,  8 Mar 2024 11:32:48 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jt9TYXyA";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DBB7113873
- for <intel-xe@lists.freedesktop.org>; Fri,  8 Mar 2024 11:32:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709897567; x=1741433567;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=DE1khRTalsKY+fwgQ4s4KlzWlqswhrPO/Hr68C4z+vc=;
- b=jt9TYXyAjSdFnk7NUVZm5rVYo+Q0/1b+MTZGbuwmNzVKNQbwnnQNl8RM
- YXV7Jh3JFYgaXefSJ6JGm2mbi3pV71X3tQhOam5fzEKRzM5E92czMrhyy
- VvknMqjaH+nh2MOSeXtwdZ5WRkQJ2/q5DoKM/YYSy7Qoq8GP8XjdrG5Ed
- ITnWGnw2NjBTXngY9KBiiSlT816M2W9ZihkJqMZqVwTYHZGcJgCWZrDfY
- IFyL+3Okhc0L8RAqHfJJPqTtz013G+oDF8ndWXKE5WZ+kEG5U08jgULnx
- 3cYwCL8kDP3JwjcKZAhtksLQn6PB+Z/c8N/8nLnp7rAE+b5F06+p9H13r A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="8425046"
-X-IronPort-AV: E=Sophos;i="6.07,109,1708416000"; 
-   d="scan'208";a="8425046"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2024 03:32:46 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,109,1708416000"; d="scan'208";a="15136583"
-Received: from unknown (HELO intel.com) ([10.247.118.107])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2024 03:32:43 -0800
-Date: Fri, 8 Mar 2024 12:32:36 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
-Cc: "Wajdeczko, Michal" <Michal.Wajdeczko@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- "Vishwanathapura, Niranjana" <niranjana.vishwanathapura@intel.com>
-Subject: Re: [PATCH] drm/xe/gt: Remove redundant num_engine check
-Message-ID: <Zer3VEMhwktXTg36@ashyti-mobl2.lan>
-References: <20240308070308.2651954-1-tejas.upadhyay@intel.com>
- <ca8373be-d0a8-402d-8e4a-09637c1e3217@intel.com>
- <SJ1PR11MB6204115AB85BA65F78AC3C2981272@SJ1PR11MB6204.namprd11.prod.outlook.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C19F10F9A5;
+	Fri,  8 Mar 2024 11:36:25 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B5BC10F9A5;
+ Fri,  8 Mar 2024 11:36:24 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2704744098891601508=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <SJ1PR11MB6204115AB85BA65F78AC3C2981272@SJ1PR11MB6204.namprd11.prod.outlook.com>
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe=3A_Modify_min_various_sch?=
+ =?utf-8?q?eduler_timeout_to_0=2E?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 08 Mar 2024 11:36:24 -0000
+Message-ID: <170989778411.612184.3103149998027477619@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240308105744.2478794-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20240308105744.2478794-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,61 +36,260 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-> > > In __xe_gt_apply_ccs_mode num_engines will never be 0 as it is already
-> > > checked by parent function.
-> > 
-> > and that's why we are using xe_assert() instead of explicit checks, so you can't
-> > say it's redundant
-> > 
-> > note that the purpose of xe_assert() inside one function is to enforce the SLA
-> > for the caller who should be responsible for doing actual runtime checks
-> 
-> The static analysis tool Coverity is also complaining about checking obvious condition on num_engines to be 0. So decided to remove this.
+--===============2704744098891601508==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-yesm because it was checked before, as well.
+== Series Details ==
 
-BTW, please do not consider static analysis failures as bugs to
-be fixed with the Fixes tag.
+Series: drm/xe: Modify min various scheduler timeout to 0.
+URL   : https://patchwork.freedesktop.org/series/130912/
+State : failure
 
-Unless they really are bugs, of course. Coverity is also able to
-detect memory leaks and buffer overflows that need to be fixed
-with massive Fixes tag :-)
+== Summary ==
 
-Andi
+CI Bug Log - changes from xe-922-26818ad5cd84eebe6d6dccbe1d9aade48de59f17_BAT -> xe-pw-130912v1_BAT
+====================================================
 
-> 
-> Thanks,
-> Tejas
-> > 
-> > >
-> > > Fixes: 0d97ecce16bd ("drm/xe: Enable Fixed CCS mode setting")
-> > > Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/xe/xe_gt_ccs_mode.c | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-> > > b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-> > > index 529fc286cd06..2bbd7b203cc2 100644
-> > > --- a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-> > > +++ b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-> > > @@ -22,7 +22,7 @@ static void __xe_gt_apply_ccs_mode(struct xe_gt *gt,
-> > > u32 num_engines)
-> > >
-> > >  	xe_assert(xe, xe_gt_ccs_mode_enabled(gt));
-> > >
-> > > -	xe_assert(xe, num_engines && num_engines <= num_slices);
-> > 
-> > btw, instead of dropping num_engines condition completely this should be
-> > rather split into two separate xe_asserts():
-> > 
-> > 	xe_assert(xe, num_engines);
-> > 	xe_assert(xe, num_engines <= num_slices);
-> > 
-> > > +	xe_assert(xe, num_engines <= num_slices);
-> > >  	xe_assert(xe, !(num_slices % num_engines));
-> > >
-> > >  	/*
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-130912v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-130912v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-130912v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_sysfs_defaults@engine-defaults:
+    - bat-dg2-oem2:       NOTRUN -> [FAIL][1] +5 other tests fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130912v1/bat-dg2-oem2/igt@xe_sysfs_defaults@engine-defaults.html
+
+  * igt@xe_sysfs_defaults@engine-defaults@ccs:
+    - bat-atsm-2:         [PASS][2] -> [FAIL][3] +5 other tests fail
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-922-26818ad5cd84eebe6d6dccbe1d9aade48de59f17/bat-atsm-2/igt@xe_sysfs_defaults@engine-defaults@ccs.html
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130912v1/bat-atsm-2/igt@xe_sysfs_defaults@engine-defaults@ccs.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-130912v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][4] ([Intel XE#623])
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130912v1/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][5] ([Intel XE#455])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130912v1/bat-dg2-oem2/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_force_connector_basic@prune-stale-modes:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][6] ([i915#5274])
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130912v1/bat-dg2-oem2/igt@kms_force_connector_basic@prune-stale-modes.html
+
+  * igt@kms_hdmi_inject@inject-audio:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][7] ([Intel XE#417])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130912v1/bat-dg2-oem2/igt@kms_hdmi_inject@inject-audio.html
+
+  * igt@kms_psr@psr-cursor-plane-move:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][8] ([Intel XE#929]) +2 other tests skip
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130912v1/bat-dg2-oem2/igt@kms_psr@psr-cursor-plane-move.html
+
+  * igt@xe_exec_fault_mode@many-basic:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][9] ([Intel XE#288]) +22 other tests skip
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130912v1/bat-dg2-oem2/igt@xe_exec_fault_mode@many-basic.html
+
+  * igt@xe_huc_copy@huc_copy:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][10] ([Intel XE#255])
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130912v1/bat-dg2-oem2/igt@xe_huc_copy@huc_copy.html
+
+  * igt@xe_pat@pat-index-xe2:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][11] ([Intel XE#977])
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130912v1/bat-dg2-oem2/igt@xe_pat@pat-index-xe2.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][12] ([Intel XE#979]) +1 other test skip
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130912v1/bat-dg2-oem2/igt@xe_pat@pat-index-xehpc.html
+
+  
+  [Intel XE#255]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/255
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#417]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/417
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+  [Intel XE#623]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/623
+  [Intel XE#929]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/929
+  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
+  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
+
+
+Build changes
+-------------
+
+  * Linux: xe-922-26818ad5cd84eebe6d6dccbe1d9aade48de59f17 -> xe-pw-130912v1
+
+  IGT_7749: 2fd91b8c3cf9aa2b0bb78537a6b5e2bc3de50e0e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-922-26818ad5cd84eebe6d6dccbe1d9aade48de59f17: 26818ad5cd84eebe6d6dccbe1d9aade48de59f17
+  xe-pw-130912v1: 130912v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130912v1/index.html
+
+--===============2704744098891601508==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Modify min various scheduler timeout to 0.</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130912/">https://patchwork.freedesktop.org/series/130912/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130912v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130912v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-922-26818ad5cd84eebe6d6dccbe1d9aade48de59f17_BAT -&gt; xe-pw-130912v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-130912v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-130912v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-130912v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@xe_sysfs_defaults@engine-defaults:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130912v1/bat-dg2-oem2/igt@xe_sysfs_defaults@engine-defaults.html">FAIL</a> +5 other tests fail</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_sysfs_defaults@engine-defaults@ccs:</p>
+<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-922-26818ad5cd84eebe6d6dccbe1d9aade48de59f17/bat-atsm-2/igt@xe_sysfs_defaults@engine-defaults@ccs.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130912v1/bat-atsm-2/igt@xe_sysfs_defaults@engine-defaults@ccs.html">FAIL</a> +5 other tests fail</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-130912v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130912v1/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/623">Intel XE#623</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130912v1/bat-dg2-oem2/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130912v1/bat-dg2-oem2/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5274">i915#5274</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdmi_inject@inject-audio:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130912v1/bat-dg2-oem2/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/417">Intel XE#417</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-cursor-plane-move:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130912v1/bat-dg2-oem2/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/929">Intel XE#929</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@many-basic:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130912v1/bat-dg2-oem2/igt@xe_exec_fault_mode@many-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +22 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_huc_copy@huc_copy:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130912v1/bat-dg2-oem2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/255">Intel XE#255</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xe2:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130912v1/bat-dg2-oem2/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130912v1/bat-dg2-oem2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>) +1 other test skip</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-922-26818ad5cd84eebe6d6dccbe1d9aade48de59f17 -&gt; xe-pw-130912v1</li>
+</ul>
+<p>IGT_7749: 2fd91b8c3cf9aa2b0bb78537a6b5e2bc3de50e0e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-922-26818ad5cd84eebe6d6dccbe1d9aade48de59f17: 26818ad5cd84eebe6d6dccbe1d9aade48de59f17<br />
+  xe-pw-130912v1: 130912v1</p>
+
+</body>
+</html>
+
+--===============2704744098891601508==--
