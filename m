@@ -4,46 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C693CC54E61
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 669A1C54E4A
 	for <intel-xe@archiver.kernel.org>; Fri,  8 Mar 2024 05:07:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0556C10FCF0;
-	Fri,  8 Mar 2024 05:07:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E814810FCE3;
+	Fri,  8 Mar 2024 05:07:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CKRla0su";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ToQlFPEo";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06FEB112339
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4927110F966
  for <intel-xe@lists.freedesktop.org>; Fri,  8 Mar 2024 05:07:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709874474; x=1741410474;
+ t=1709874473; x=1741410473;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gR8VyhJCM+/iZsiNrQaUVP6W0OURL3t10yY2cKGo+pg=;
- b=CKRla0suzGci1qHMvXRdA5PRk2WAf9dN2/ajelXyii1bgFA3zG5p1h8t
- AAALnKJWcnQ71pAxUiPeOpsts7utu28eNslK091fHkrS/q5mwpOjTG+1o
- 3EbmVNOcK3TD8oV08sCoii2buHdrPG6jAuliUewZqwkh6bgEyvVyBwBiG
- iI53qw+A+XtIhIWlwWr3PgzcKu8yn6C8/7m9b0UU5dKUSTWceJxcmLOlH
- m2xzd93Xb2ZAgk/QnGgkEciKROEKfPfHnyeIMcvTlOexTH08X7dfzd0D9
- UkK+hvXfysbZV1WhQVF33knGG28JSjglSzZAYcH20YtzO+d82w6PumU9W Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="4761972"
+ bh=S/BrYIi8WfeBf8zFIArpXXCv9ooLCAmyidMujlJsFvc=;
+ b=ToQlFPEotSDHOX/GOiZaQUZmZ99BPCKVOyYZn7jZ/R1/jemYhfXY9YJG
+ KY9t/aAkLC49LtVyCOB8njwDhsl47NsUcHEyQ1vAAcQUmat/zyUsGsxiV
+ 8M4MPWNwBdi4FlvQPHWZSPk/5Ff6y2SC1WgsGB+HBDRII75kqBnnYQ8Qv
+ 8p7U9aS1UA5h79+ZmBqzI8+5zC53GbjvopEUOQKUgzUDza9OduFl67HE7
+ eOIAe4f0BLDp3neG8kEUgg5aVTsCXLNulYdwm53dpdoooiY0Vm9GbOU+M
+ wBb6WISFEg0XLPojQ0FtWwPR/KeN6tVev4eRzXD7Mv/xnZ1N6u49pBoB4 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="4761960"
 X-IronPort-AV: E=Sophos;i="6.07,108,1708416000"; 
-   d="scan'208";a="4761972"
+   d="scan'208";a="4761960"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2024 21:07:53 -0800
+ 07 Mar 2024 21:07:52 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,108,1708416000"; d="scan'208";a="10403017"
+X-IronPort-AV: E=Sophos;i="6.07,108,1708416000"; d="scan'208";a="10402983"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Mar 2024 21:07:51 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 Cc: Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v4 17/30] drm/xe: Delete PT update selftest
-Date: Thu,  7 Mar 2024 21:07:53 -0800
-Message-Id: <20240308050806.577176-18-matthew.brost@intel.com>
+Subject: [PATCH v4 06/30] drm/xe: Simplify VM bind IOCTL error handling and
+ cleanup
+Date: Thu,  7 Mar 2024 21:07:42 -0800
+Message-Id: <20240308050806.577176-7-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240308050806.577176-1-matthew.brost@intel.com>
 References: <20240308050806.577176-1-matthew.brost@intel.com>
@@ -63,127 +64,162 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-IGTs (e.g. xe_vm) can provide the exact same coverage as the PT update
-selftest. The PT update selftest is dependent on internal functions
-which can change thus maintaining this test is costly and provide no
-extra coverage. Delete this test.
+Clean up everything in VM bind IOCTL in 1 path for both errors and
+non-errors. Also move VM bind IOCTL cleanup from ops (also used by
+non-IOCTL binds) to the VM bind IOCTL.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_migrate.c | 86 ---------------------------
- 1 file changed, 86 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c       | 60 +++++---------------------------
+ drivers/gpu/drm/xe/xe_vm_types.h |  5 ---
+ 2 files changed, 9 insertions(+), 56 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-index ce531498f57f..de2c1b7ec371 100644
---- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-@@ -62,36 +62,6 @@ static int run_sanity_job(struct xe_migrate *m, struct xe_device *xe,
- 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 0bb807c05d7b..dde777c807cf 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -769,8 +769,7 @@ static void xe_vm_populate_dummy_rebind(struct xe_vm *vm, struct xe_vma *vma)
  }
  
--static void
--sanity_populate_cb(struct xe_migrate_pt_update *pt_update,
--		   struct xe_tile *tile, struct iosys_map *map, void *dst,
--		   u32 qword_ofs, u32 num_qwords,
--		   const struct xe_vm_pgtable_update *update)
--{
--	struct migrate_test_params *p =
--		to_migrate_test_params(xe_cur_kunit_priv(XE_TEST_LIVE_MIGRATE));
--	int i;
--	u64 *ptr = dst;
--	u64 value;
--
--	for (i = 0; i < num_qwords; i++) {
--		value = (qword_ofs + i - update->ofs) * 0x1111111111111111ULL;
--		if (map)
--			xe_map_wr(tile_to_xe(tile), map, (qword_ofs + i) *
--				  sizeof(u64), u64, value);
--		else
--			ptr[i] = value;
--	}
--
--	kunit_info(xe_cur_kunit(), "Used %s.\n", map ? "CPU" : "GPU");
--	if (p->force_gpu && map)
--		KUNIT_FAIL(xe_cur_kunit(), "GPU pagetable update used CPU.\n");
--}
--
--static const struct xe_migrate_pt_update_ops sanity_ops = {
--	.populate = sanity_populate_cb,
--};
--
- #define check(_retval, _expected, str, _test)				\
- 	do { if ((_retval) != (_expected)) {				\
- 			KUNIT_FAIL(_test, "Sanity check failed: " str	\
-@@ -209,57 +179,6 @@ static void test_copy_vram(struct xe_migrate *m, struct xe_bo *bo,
- 	test_copy(m, bo, test, region);
- }
+ static struct dma_fence *ops_execute(struct xe_vm *vm,
+-				     struct xe_vma_ops *vops,
+-				     bool cleanup);
++				     struct xe_vma_ops *vops);
  
--static void test_pt_update(struct xe_migrate *m, struct xe_bo *pt,
--			   struct kunit *test, bool force_gpu)
--{
--	struct xe_device *xe = tile_to_xe(m->tile);
--	struct dma_fence *fence;
--	u64 retval, expected;
--	ktime_t then, now;
--	int i;
--
--	struct xe_vm_pgtable_update update = {
--		.ofs = 1,
--		.qwords = 0x10,
--		.pt_bo = pt,
--	};
--	struct xe_migrate_pt_update pt_update = {
--		.ops = &sanity_ops,
--	};
--	struct migrate_test_params p = {
--		.base.id = XE_TEST_LIVE_MIGRATE,
--		.force_gpu = force_gpu,
--	};
--
--	test->priv = &p;
--	/* Test xe_migrate_update_pgtables() updates the pagetable as expected */
--	expected = 0xf0f0f0f0f0f0f0f0ULL;
--	xe_map_memset(xe, &pt->vmap, 0, (u8)expected, pt->size);
--
--	then = ktime_get();
--	fence = xe_migrate_update_pgtables(m, m->q->vm, NULL, m->q, &update, 1,
--					   NULL, 0, &pt_update);
--	now = ktime_get();
--	if (sanity_fence_failed(xe, fence, "Migration pagetable update", test))
--		return;
--
--	kunit_info(test, "Updating without syncing took %llu us,\n",
--		   (unsigned long long)ktime_to_us(ktime_sub(now, then)));
--
--	dma_fence_put(fence);
--	retval = xe_map_rd(xe, &pt->vmap, 0, u64);
--	check(retval, expected, "PTE[0] must stay untouched", test);
--
--	for (i = 0; i < update.qwords; i++) {
--		retval = xe_map_rd(xe, &pt->vmap, (update.ofs + i) * 8, u64);
--		check(retval, i * 0x1111111111111111ULL, "PTE update", test);
--	}
--
--	retval = xe_map_rd(xe, &pt->vmap, 8 * (update.ofs + update.qwords),
--			   u64);
--	check(retval, expected, "PTE[0x11] must stay untouched", test);
--}
--
- static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+ struct dma_fence *xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
  {
- 	struct xe_tile *tile = m->tile;
-@@ -398,11 +317,6 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
- 		test_copy_vram(m, big, test);
+@@ -794,7 +793,7 @@ struct dma_fence *xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
+ 			trace_xe_vma_rebind_exec(vma);
+ 
+ 		xe_vm_populate_dummy_rebind(vm, vma);
+-		fence = ops_execute(vm, &vm->dummy_ops.vops, false);
++		fence = ops_execute(vm, &vm->dummy_ops.vops);
+ 		if (IS_ERR(fence))
+ 			return fence;
+ 	}
+@@ -2474,7 +2473,6 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
+ 	if (!last_op)
+ 		return 0;
+ 
+-	last_op->ops = ops;
+ 	if (last) {
+ 		last_op->flags |= XE_VMA_OP_LAST;
+ 		last_op->num_syncs = num_syncs;
+@@ -2643,25 +2641,6 @@ xe_vma_op_execute(struct xe_vm *vm, struct xe_vma_op *op)
+ 	return fence;
+ }
+ 
+-static void xe_vma_op_cleanup(struct xe_vm *vm, struct xe_vma_op *op)
+-{
+-	bool last = op->flags & XE_VMA_OP_LAST;
+-
+-	if (last) {
+-		while (op->num_syncs--)
+-			xe_sync_entry_cleanup(&op->syncs[op->num_syncs]);
+-		kfree(op->syncs);
+-		if (op->q)
+-			xe_exec_queue_put(op->q);
+-	}
+-	if (!list_empty(&op->link))
+-		list_del(&op->link);
+-	if (op->ops)
+-		drm_gpuva_ops_free(&vm->gpuvm, op->ops);
+-	if (last)
+-		xe_vm_put(vm);
+-}
+-
+ static void xe_vma_op_unwind(struct xe_vm *vm, struct xe_vma_op *op,
+ 			     bool post_commit, bool prev_post_commit,
+ 			     bool next_post_commit)
+@@ -2738,8 +2717,6 @@ static void vm_bind_ioctl_ops_unwind(struct xe_vm *vm,
+ 					 op->flags & XE_VMA_OP_PREV_COMMITTED,
+ 					 op->flags & XE_VMA_OP_NEXT_COMMITTED);
+ 		}
+-
+-		drm_gpuva_ops_free(&vm->gpuvm, __ops);
+ 	}
+ }
+ 
+@@ -2818,8 +2795,7 @@ static int vm_bind_ioctl_ops_lock(struct drm_exec *exec,
+ }
+ 
+ static struct dma_fence *ops_execute(struct xe_vm *vm,
+-				     struct xe_vma_ops *vops,
+-				     bool cleanup)
++				     struct xe_vma_ops *vops)
+ {
+ 	struct xe_vma_op *op, *next;
+ 	struct dma_fence *fence = NULL;
+@@ -2834,8 +2810,6 @@ static struct dma_fence *ops_execute(struct xe_vm *vm,
+ 				 op->base.op, PTR_ERR(fence));
+ 			fence = ERR_PTR(-ENOSPC);
+ 		}
+-		if (cleanup)
+-			xe_vma_op_cleanup(vm, op);
  	}
  
--	kunit_info(test, "Testing page table update using CPU if GPU idle.\n");
--	test_pt_update(m, pt, test, false);
--	kunit_info(test, "Testing page table update using GPU\n");
--	test_pt_update(m, pt, test, true);
+ 	return fence;
+@@ -2858,7 +2832,7 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
+ 		if (err)
+ 			goto unlock;
+ 
+-		fence = ops_execute(vm, vops, true);
++		fence = ops_execute(vm, vops);
+ 		if (IS_ERR(fence)) {
+ 			err = PTR_ERR(fence);
+ 			/* FIXME: Killing VM rather than proper error handling */
+@@ -3211,30 +3185,14 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		goto unwind_ops;
+ 	}
+ 
+-	xe_vm_get(vm);
+-	if (q)
+-		xe_exec_queue_get(q);
 -
- out:
- 	xe_bb_free(bb, NULL);
- free_tiny:
+ 	err = vm_bind_ioctl_ops_execute(vm, &vops);
+ 
+-	up_write(&vm->lock);
+-
+-	if (q)
+-		xe_exec_queue_put(q);
+-	xe_vm_put(vm);
+-
+-	for (i = 0; bos && i < args->num_binds; ++i)
+-		xe_bo_put(bos[i]);
+-
+-	kvfree(bos);
+-	kvfree(ops);
+-	if (args->num_binds > 1)
+-		kvfree(bind_ops);
+-
+-	return err;
+-
+ unwind_ops:
+-	vm_bind_ioctl_ops_unwind(vm, ops, args->num_binds);
++	if (err && err != -ENODATA)
++		vm_bind_ioctl_ops_unwind(vm, ops, args->num_binds);
++	for (i = args->num_binds - 1; i >= 0; --i)
++		if (ops[i])
++			drm_gpuva_ops_free(&vm->gpuvm, ops[i]);
+ free_syncs:
+ 	if (err == -ENODATA)
+ 		err = vm_bind_ioctl_signal_fences(vm, q, syncs, num_syncs);
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 7ef9e632154a..f097fe318a74 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -181,11 +181,6 @@ enum xe_vma_op_flags {
+ struct xe_vma_op {
+ 	/** @base: GPUVA base operation */
+ 	struct drm_gpuva_op base;
+-	/**
+-	 * @ops: GPUVA ops, when set call drm_gpuva_ops_free after this
+-	 * operations is processed
+-	 */
+-	struct drm_gpuva_ops *ops;
+ 	/** @q: exec queue for this operation */
+ 	struct xe_exec_queue *q;
+ 	/**
 -- 
 2.34.1
 
