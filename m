@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32951C5475B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64946C54E41
 	for <intel-xe@archiver.kernel.org>; Fri,  8 Mar 2024 05:07:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1CE710FAE6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED9EB10FB99;
 	Fri,  8 Mar 2024 05:07:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EbifGrBV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lThPalJ7";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0937110FB99
- for <intel-xe@lists.freedesktop.org>; Fri,  8 Mar 2024 05:07:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D41310F966
+ for <intel-xe@lists.freedesktop.org>; Fri,  8 Mar 2024 05:07:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1709874473; x=1741410473;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=iinZRW1Big5NQPhBD+/rLWTAOCSpKcVHn8FcrBfeGwo=;
- b=EbifGrBVcL+Lk5Y9gwkYi4pdpfIQIApvJ5RtCR3PSxG9zq5dXOC6JnLJ
- /s418/SeFw7hlSeB/cJFqFhNBk4SWwqT2S+s73V+dQcMKhQQIKncpAUHu
- KNmpHE1nsHADXpne8w5DfgkOQXKRkXhLuAYSgqF8uxvzpzCISrEfQxd8i
- BrwBT1kv80/fQfZFnmN1FJKWcT0vV6Lwr5S/AMSh1YeDOePRbTX66Glwf
- 9kq/9+MQEOaunlUwlEh4z6aC5WLDoNd9Suu80aGD/EyW0573n3i1TjDtf
- pixMc6z+1/TYLK1auy2ZF7qrEUetJmWBIKLjga70lh6OU142/ggszZFgj w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="4761957"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=teMtPc6nk2Rpm9sQXq93DG7MUjnpoGi0q9srsOXXD2c=;
+ b=lThPalJ75twO238VoJ/HypjVvNO4wG3qF6BvR3LrYXuJrpc2I1nMINAC
+ ITc5yHd4wdFVd/UlOgf3++JY5frZNRXWQhqX4Ys1iMtFikerxS0RJ6/Q+
+ xZ4+f9MlfN5WHs4tJMLMs2GgPLViGAlUuydd8O7bX144BNzb6iXZyL2Qp
+ RBYhYrX1Fbl5Dxf8bo9z4l9GvXeytrjNuu50R1yNiSAz5FU5r5rlfQydd
+ 5+I/SodAxFS8AKiApGsAARuHO+28G1FluW/F2gaq7mB/DaVYaminwPAxo
+ Biwo6TAHpFLioX6Hb+cpFOWSM0PPIbx2twigqpqbopnXLXdyEp/4Jtgo5 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="4761952"
 X-IronPort-AV: E=Sophos;i="6.07,108,1708416000"; 
-   d="scan'208";a="4761957"
+   d="scan'208";a="4761952"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Mar 2024 21:07:52 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,108,1708416000"; d="scan'208";a="10402973"
+X-IronPort-AV: E=Sophos;i="6.07,108,1708416000"; d="scan'208";a="10402965"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Mar 2024 21:07:51 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 Cc: Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v4 03/30] drm/xe: Move migrate to prefetch to op_lock function
-Date: Thu,  7 Mar 2024 21:07:39 -0800
-Message-Id: <20240308050806.577176-4-matthew.brost@intel.com>
+Subject: [PATCH v4 00/30] Refactor VM bind code
+Date: Thu,  7 Mar 2024 21:07:36 -0800
+Message-Id: <20240308050806.577176-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240308050806.577176-1-matthew.brost@intel.com>
-References: <20240308050806.577176-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,70 +62,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Migrates need to be done under drm exec to make lockdep happy, move
-the migrate done for prefetches under the op_lock function.
+Broken into roughly 5 parts:
+Part 1: Prep patches, patches 1-14
+Part 2: 1 jobs per VM bind IOCTL and error handling, patches 15-23
+Part 3: CPU binds, patches 24-27
+Part 4: Error injection for testing, patch 28
+Part 5: PT exec queues 29-30
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_vm.c | 28 +++++++++++++---------------
- 1 file changed, 13 insertions(+), 15 deletions(-)
+For reviewing, let's focus on part 1 for now and see if patches from
+that part can start to get merged.
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index fb73afcab3b7..70a5ba621e4e 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1994,20 +1994,10 @@ static const u32 region_to_mem_type[] = {
- 
- static struct dma_fence *
- xe_vm_prefetch(struct xe_vm *vm, struct xe_vma *vma,
--	       struct xe_exec_queue *q, u32 region,
--	       struct xe_sync_entry *syncs, u32 num_syncs,
--	       bool first_op, bool last_op)
-+	       struct xe_exec_queue *q, struct xe_sync_entry *syncs,
-+	       u32 num_syncs, bool first_op, bool last_op)
- {
- 	struct xe_exec_queue *wait_exec_queue = to_wait_exec_queue(vm, q);
--	int err;
--
--	xe_assert(vm->xe, region <= ARRAY_SIZE(region_to_mem_type));
--
--	if (!xe_vma_has_no_bo(vma)) {
--		err = xe_bo_migrate(xe_vma_bo(vma), region_to_mem_type[region]);
--		if (err)
--			return ERR_PTR(err);
--	}
- 
- 	if (vma->tile_mask != (vma->tile_present & ~vma->usm.tile_invalidated)) {
- 		return xe_vm_bind(vm, vma, q, xe_vma_bo(vma), syncs, num_syncs,
-@@ -2540,8 +2530,7 @@ static struct dma_fence *op_execute(struct xe_vm *vm, struct xe_vma *vma,
- 				     op->flags & XE_VMA_OP_LAST);
- 		break;
- 	case DRM_GPUVA_OP_PREFETCH:
--		fence = xe_vm_prefetch(vm, vma, op->q, op->prefetch.region,
--				       op->syncs, op->num_syncs,
-+		fence = xe_vm_prefetch(vm, vma, op->q, op->syncs, op->num_syncs,
- 				       op->flags & XE_VMA_OP_FIRST,
- 				       op->flags & XE_VMA_OP_LAST);
- 		break;
-@@ -2766,8 +2755,17 @@ static int op_lock(struct drm_exec *exec, struct xe_vm *vm,
- 		err = vma_lock(exec, gpuva_to_vma(op->base.unmap.va), false);
- 		break;
- 	case DRM_GPUVA_OP_PREFETCH:
--		err = vma_lock(exec, gpuva_to_vma(op->base.prefetch.va), true);
-+	{
-+		struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
-+		u32 region = op->prefetch.region;
-+
-+		xe_assert(vm->xe, region <= ARRAY_SIZE(region_to_mem_type));
-+
-+		err = vma_lock(exec, vma, false);
-+		if (!err && !xe_vma_has_no_bo(vma))
-+			err = xe_bo_migrate(xe_vma_bo(vma), region);
- 		break;
-+	}
- 	default:
- 		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
- 	}
+Tested with [1] and new error handling appears to be working. Also
+tested with existing tests at every patch in the series and should be
+working at every patch in the series.
+
+Latest version includes some of Thomas's patches too [2].
+
+Matt
+
+[1] https://patchwork.freedesktop.org/series/129606/
+[2] https://patchwork.freedesktop.org/series/130871/
+
+Matthew Brost (28):
+  drm/xe: Lock all gpuva ops during VM bind IOCTL
+  drm/xe: Add ops_execute function which returns a fence
+  drm/xe: Move migrate to prefetch to op_lock function
+  drm/xe: Add struct xe_vma_ops abstraction
+  drm/xe: Update xe_vm_rebind to use dummy VMA operations
+  drm/xe: Simplify VM bind IOCTL error handling and cleanup
+  drm/xe: Update pagefaults to use dummy VMA operations
+  drm/xe: s/xe_tile_migrate_engine/xe_tile_migrate_exec_queue
+  drm/xe: Add some members to xe_vma_ops
+  drm/xe: Add vm_bind_ioctl_ops_install_fences helper
+  drm/xe: Move setting last fence to vm_bind_ioctl_ops_install_fences
+  drm/xe: Move ufence check to op_lock
+  drm/xe: Move ufence add to vm_bind_ioctl_ops_install_fences
+  drm/xe: Add xe_gt_tlb_invalidation_range and convert PT layer to use
+    this
+  drm/xe: Add xe_vm_pgtable_update_op to xe_vma_ops
+  drm/xe: Use ordered WQ for TLB invalidation fences
+  drm/xe: Delete PT update selftest
+  drm/xe: Convert multiple bind ops into single job
+  drm/xe: Remove old functions defs in xe_pt.h
+  drm/xe: Update PT layer with better error handling
+  drm/xe: Update VM trace events
+  drm/xe: Update clear / populate arguments
+  drm/xe: Add __xe_migrate_update_pgtables_cpu helper
+  drm/xe: CPU binds for jobs
+  drm/xe: Don't use migrate exec queue for page fault binds
+  drm/xe: Add VM bind IOCTL error injection
+  drm/xe/guc: Assert time'd out jobs are not from a VM exec queue
+  drm/xe: Add PT exec queues
+
+Thomas Hellström (2):
+  drm/xe: Update xe_vm_rebind to return int
+  drm/xe: Move vma rebinding to the drm_exec locking loop
+
+ drivers/gpu/drm/xe/Makefile                 |    1 +
+ drivers/gpu/drm/xe/tests/xe_migrate.c       |   86 --
+ drivers/gpu/drm/xe/xe_bo.c                  |    7 +-
+ drivers/gpu/drm/xe/xe_bo.h                  |    4 +-
+ drivers/gpu/drm/xe/xe_device.c              |   35 +
+ drivers/gpu/drm/xe/xe_device.h              |    2 +
+ drivers/gpu/drm/xe/xe_device_types.h        |   16 +
+ drivers/gpu/drm/xe/xe_exec.c                |   41 +-
+ drivers/gpu/drm/xe/xe_exec_queue.c          |  120 +-
+ drivers/gpu/drm/xe/xe_exec_queue_types.h    |   20 +-
+ drivers/gpu/drm/xe/xe_gt_pagefault.c        |   10 +-
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |   59 +-
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h |    3 +
+ drivers/gpu/drm/xe/xe_guc_submit.c          |   22 +-
+ drivers/gpu/drm/xe/xe_migrate.c             |  385 ++----
+ drivers/gpu/drm/xe/xe_migrate.h             |   46 +-
+ drivers/gpu/drm/xe/xe_pt.c                  | 1236 ++++++++++++-------
+ drivers/gpu/drm/xe/xe_pt.h                  |   15 +-
+ drivers/gpu/drm/xe/xe_pt_exec_queue.c       |  180 +++
+ drivers/gpu/drm/xe/xe_pt_exec_queue.h       |   14 +
+ drivers/gpu/drm/xe/xe_pt_types.h            |   53 +
+ drivers/gpu/drm/xe/xe_sched_job.c           |   68 +-
+ drivers/gpu/drm/xe/xe_sched_job_types.h     |   31 +-
+ drivers/gpu/drm/xe/xe_sync.c                |   15 +
+ drivers/gpu/drm/xe/xe_sync.h                |    1 +
+ drivers/gpu/drm/xe/xe_trace.h               |   21 +-
+ drivers/gpu/drm/xe/xe_vm.c                  | 1124 ++++++++---------
+ drivers/gpu/drm/xe/xe_vm.h                  |    9 +-
+ drivers/gpu/drm/xe/xe_vm_types.h            |  198 +--
+ 29 files changed, 2118 insertions(+), 1704 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_pt_exec_queue.c
+ create mode 100644 drivers/gpu/drm/xe/xe_pt_exec_queue.h
+
 -- 
 2.34.1
 
