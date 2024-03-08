@@ -4,46 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B697C54E5D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3CA2C54E66
 	for <intel-xe@archiver.kernel.org>; Fri,  8 Mar 2024 05:07:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31BD5112495;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59598112CB7;
 	Fri,  8 Mar 2024 05:07:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vc8Ypl9y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hrr2DM/8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68C0510FCF0
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 704571127D9
  for <intel-xe@lists.freedesktop.org>; Fri,  8 Mar 2024 05:07:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1709874475; x=1741410475;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=GXKls1bnZoAR91pUSMIkS/j/UnKjclrjjulZzHfvaPE=;
- b=Vc8Ypl9yAr9lULZ0n3D2Y4y/cmeKVnYudME+wuoTvRztGssQxZSoK8aQ
- mrpXBJPQ9F3MfwDHWwfOQ5dgLIPjqVlF9oXi6Pf0afGTNmRyxhFEqqk4E
- VNelYTQ9CsfbCfLrD8kA3YStj4ywDKohgHo/XfHkodsa2u5rCztlh6fDr
- UHPCn7SIwI81CUHvKCcg7Ypca2ujSAfhJrG0LD8giqe0c4cCf+DKLatOT
- pcLBWiXG859zZgFVoXAkHBO8p/yUpBIL27vJ5KLnd06LoT+fTM61h+gNG
- IjwVFHVRGNqgxNwZzjmGg/8I4n9CE1s5hBmpyv02T9UIUBsZs+bmypqkM w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="4761978"
+ bh=lRN3Ojdn3BPlTN5fn88zhbjoTeLrS7Zb0yqli2q/K5s=;
+ b=Hrr2DM/8qlfhXDo5mjdeThePxjdFSFQU/ZdxHQ5CJlejxbu/WXGxj6zI
+ hXA6cTYXvGIlXmkEJO/YVwPuFo3q3fPyZbUR0tVCGuVYnzyQBEg4JP8jb
+ 6Dwty2VION5VS9y/CXRvToTX7isPpiDn7vd+yJga2/6Vo/KkZNOcQfnpZ
+ InZhrOvhWCSciudCm3gRhoyEY3RVhd2pZPG6IKquNUyyyA+98mQkGA+zw
+ eWw67MONi/CQDFB0buQJIxcySHJiaP6JAPs/dVMXAzPOiO69dgiiAkk6M
+ 9UjuPC0xJnx4EGAz1NzLjBIAtYtcGR3yCR7fUtgoppYSHy0rEtdfUXFCh g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="4761980"
 X-IronPort-AV: E=Sophos;i="6.07,108,1708416000"; 
-   d="scan'208";a="4761978"
+   d="scan'208";a="4761980"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Mar 2024 21:07:53 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,108,1708416000"; d="scan'208";a="10403040"
+X-IronPort-AV: E=Sophos;i="6.07,108,1708416000"; d="scan'208";a="10403043"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Mar 2024 21:07:52 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 Cc: Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v4 24/30] drm/xe: Update clear / populate arguments
-Date: Thu,  7 Mar 2024 21:08:00 -0800
-Message-Id: <20240308050806.577176-25-matthew.brost@intel.com>
+Subject: [PATCH v4 25/30] drm/xe: Add __xe_migrate_update_pgtables_cpu helper
+Date: Thu,  7 Mar 2024 21:08:01 -0800
+Message-Id: <20240308050806.577176-26-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240308050806.577176-1-matthew.brost@intel.com>
 References: <20240308050806.577176-1-matthew.brost@intel.com>
@@ -63,129 +63,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This will help implement CPU binds in run_job() as 'struct
-xe_migrate_pt_update' is not available at the time of run_job().
+This will help implement CPU binds as the submision backend can call
+this helper when a bind jobs dependencies are resolved.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_migrate.c |  9 +++++----
- drivers/gpu/drm/xe/xe_migrate.h | 12 +++++-------
- drivers/gpu/drm/xe/xe_pt.c      | 12 +++++-------
- 3 files changed, 15 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/xe/xe_migrate.c | 54 +++++++++++++++++++--------------
+ 1 file changed, 31 insertions(+), 23 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index cc0499f3702c..c8cf0a71a1a9 100644
+index c8cf0a71a1a9..cb0d94c8debb 100644
 --- a/drivers/gpu/drm/xe/xe_migrate.c
 +++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -1111,6 +1111,7 @@ static void write_pgtable(struct xe_tile *tile, struct xe_bb *bb, u64 ppgtt_ofs,
- 			  struct xe_migrate_pt_update *pt_update)
- {
- 	const struct xe_migrate_pt_update_ops *ops = pt_update->ops;
-+	struct xe_vm *vm = pt_update->vops->vm;
- 	u32 chunk;
- 	u32 ofs = update->ofs, size = update->qwords;
+@@ -1170,6 +1170,34 @@ struct migrate_test_params {
+ 	container_of(_priv, struct migrate_test_params, base)
+ #endif
  
-@@ -1142,10 +1143,10 @@ static void write_pgtable(struct xe_tile *tile, struct xe_bb *bb, u64 ppgtt_ofs,
- 		bb->cs[bb->len++] = lower_32_bits(addr);
- 		bb->cs[bb->len++] = upper_32_bits(addr);
- 		if (pt_op->bind)
--			ops->populate(pt_update, tile, NULL, bb->cs + bb->len,
-+			ops->populate(tile, NULL, bb->cs + bb->len,
- 				      ofs, chunk, update);
- 		else
--			ops->clear(pt_update, tile, NULL, bb->cs + bb->len,
-+			ops->clear(vm, tile, NULL, bb->cs + bb->len,
- 				   ofs, chunk, update);
++static void
++__xe_migrate_update_pgtables_cpu(struct xe_vm *vm, struct xe_tile *tile,
++				 const struct xe_migrate_pt_update_ops *ops,
++				 struct xe_vm_pgtable_update_op *pt_op,
++				 int num_ops)
++{
++	u32 j, i;
++
++	for (j = 0; j < num_ops; ++j, ++pt_op) {
++		for (i = 0; i < pt_op->num_entries; i++) {
++			const struct xe_vm_pgtable_update *update =
++				&pt_op->entries[i];
++
++			if (pt_op->bind)
++				ops->populate(tile, &update->pt_bo->vmap,
++					      NULL, update->ofs, update->qwords,
++					      update);
++			else
++				ops->clear(vm, tile, &update->pt_bo->vmap,
++					   NULL, update->ofs, update->qwords,
++					   update);
++		}
++	}
++
++	trace_xe_vm_cpu_bind(vm);
++	xe_device_wmb(vm->xe);
++}
++
+ static struct dma_fence *
+ xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
+ 			       struct xe_migrate_pt_update *pt_update)
+@@ -1182,7 +1210,6 @@ xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
+ 	struct xe_vm_pgtable_update_ops *pt_update_ops =
+ 		&pt_update->vops->pt_update_ops[pt_update->tile_id];
+ 	int err;
+-	u32 j, i;
  
- 		bb->len += chunk * 2;
-@@ -1202,12 +1203,12 @@ xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
- 				&pt_op->entries[i];
+ 	if (XE_TEST_ONLY(test && test->force_gpu))
+ 		return ERR_PTR(-ETIME);
+@@ -1194,28 +1221,9 @@ xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
+ 			return ERR_PTR(err);
+ 	}
  
- 			if (pt_op->bind)
--				ops->populate(pt_update, m->tile,
-+				ops->populate(m->tile,
- 					      &update->pt_bo->vmap, NULL,
- 					      update->ofs, update->qwords,
- 					      update);
- 			else
--				ops->clear(pt_update, m->tile,
-+				ops->clear(vm, m->tile,
- 					   &update->pt_bo->vmap, NULL,
- 					   update->ofs, update->qwords, update);
- 		}
-diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
-index bd8eba1d3552..18f5a8e40b5c 100644
---- a/drivers/gpu/drm/xe/xe_migrate.h
-+++ b/drivers/gpu/drm/xe/xe_migrate.h
-@@ -31,7 +31,6 @@ struct xe_vma;
- struct xe_migrate_pt_update_ops {
- 	/**
- 	 * @populate: Populate a command buffer or page-table with ptes.
--	 * @pt_update: Embeddable callback argument.
- 	 * @tile: The tile for the current operation.
- 	 * @map: struct iosys_map into the memory to be populated.
- 	 * @pos: If @map is NULL, map into the memory to be populated.
-@@ -43,13 +42,12 @@ struct xe_migrate_pt_update_ops {
- 	 * page-table system to populate command buffers or shared
- 	 * page-tables with PTEs.
- 	 */
--	void (*populate)(struct xe_migrate_pt_update *pt_update,
--			 struct xe_tile *tile, struct iosys_map *map,
-+	void (*populate)(struct xe_tile *tile, struct iosys_map *map,
- 			 void *pos, u32 ofs, u32 num_qwords,
- 			 const struct xe_vm_pgtable_update *update);
- 	/**
- 	 * @clear: Clear a command buffer or page-table with ptes.
--	 * @pt_update: Embeddable callback argument.
-+	 * @vm: VM being updated
- 	 * @tile: The tile for the current operation.
- 	 * @map: struct iosys_map into the memory to be populated.
- 	 * @pos: If @map is NULL, map into the memory to be populated.
-@@ -61,9 +59,9 @@ struct xe_migrate_pt_update_ops {
- 	 * page-table system to populate command buffers or shared
- 	 * page-tables with PTEs.
- 	 */
--	void (*clear)(struct xe_migrate_pt_update *pt_update,
--		      struct xe_tile *tile, struct iosys_map *map,
--		      void *pos, u32 ofs, u32 num_qwords,
-+	void (*clear)(struct xe_vm *vm, struct xe_tile *tile,
-+		      struct iosys_map *map, void *pos, u32 ofs,
-+		      u32 num_qwords,
- 		      const struct xe_vm_pgtable_update *update);
+-	for (j = 0; j < pt_update_ops->num_ops; ++j) {
+-		const struct xe_vm_pgtable_update_op *pt_op =
+-			&pt_update_ops->ops[j];
+-
+-		for (i = 0; i < pt_op->num_entries; i++) {
+-			const struct xe_vm_pgtable_update *update =
+-				&pt_op->entries[i];
+-
+-			if (pt_op->bind)
+-				ops->populate(m->tile,
+-					      &update->pt_bo->vmap, NULL,
+-					      update->ofs, update->qwords,
+-					      update);
+-			else
+-				ops->clear(vm, m->tile,
+-					   &update->pt_bo->vmap, NULL,
+-					   update->ofs, update->qwords, update);
+-		}
+-	}
+-
+-	trace_xe_vm_cpu_bind(vm);
+-	xe_device_wmb(vm->xe);
++	__xe_migrate_update_pgtables_cpu(vm, m->tile, ops,
++					 pt_update_ops->ops,
++					 pt_update_ops->num_ops);
  
- 	/**
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 6691efd13911..c963ed48cf3b 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -794,9 +794,8 @@ bool xe_pt_zap_ptes(struct xe_tile *tile, struct xe_vma *vma)
+ 	return dma_fence_get_stub();
  }
- 
- static void
--xe_vm_populate_pgtable(struct xe_migrate_pt_update *pt_update, struct xe_tile *tile,
--		       struct iosys_map *map, void *data,
--		       u32 qword_ofs, u32 num_qwords,
-+xe_vm_populate_pgtable(struct xe_tile *tile, struct iosys_map *map,
-+		       void *data, u32 qword_ofs, u32 num_qwords,
- 		       const struct xe_vm_pgtable_update *update)
- {
- 	struct xe_pt_entry *ptes = update->pt_entries;
-@@ -1489,12 +1488,11 @@ static unsigned int xe_pt_stage_unbind(struct xe_tile *tile, struct xe_vma *vma,
- }
- 
- static void
--xe_migrate_clear_pgtable_callback(struct xe_migrate_pt_update *pt_update,
--				  struct xe_tile *tile, struct iosys_map *map,
--				  void *ptr, u32 qword_ofs, u32 num_qwords,
-+xe_migrate_clear_pgtable_callback(struct xe_vm *vm, struct xe_tile *tile,
-+				  struct iosys_map *map, void *ptr,
-+				  u32 qword_ofs, u32 num_qwords,
- 				  const struct xe_vm_pgtable_update *update)
- {
--	struct xe_vm *vm = pt_update->vops->vm;
- 	u64 empty = __xe_pt_empty_pte(tile, vm, update->pt->level);
- 	int i;
- 
 -- 
 2.34.1
 
