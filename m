@@ -4,142 +4,148 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3F9CC5475B
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Mar 2024 15:13:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78A92C5475B
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Mar 2024 15:14:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C8751138EF;
-	Fri,  8 Mar 2024 15:13:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3899510EA9B;
+	Fri,  8 Mar 2024 15:14:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HoTcdU5Z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d7w2rNcH";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BBEA1138EF;
- Fri,  8 Mar 2024 15:13:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61E1010EA9B
+ for <intel-xe@lists.freedesktop.org>; Fri,  8 Mar 2024 15:14:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709910781; x=1741446781;
+ t=1709910883; x=1741446883;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=dMGcZz0pvTtpPEXoiBLgZc6hs/2ABWk07jQQhHRbCQI=;
- b=HoTcdU5Zuna5Uym6EM0R2kHkpptRP8ccSluSkXTQE1Fxv5yv6JgsDc+M
- mZz4bk5Oy4xwSqz+4M28sfOpir87++WXs7+/XmqqvnxJ4W3IFj2EgJpET
- Wi/KhkdUnu0ddZE3fd/6ABR7ZC/AKeL2V1Axjpv8b2APy1W3vtFJXbAz4
- 4iDH1CYq1+Mhl4uH2/FHyIPL8O0AMMRGuM9plrz1Wt+h39czgqhp8y/m2
- NG3N7vBJqscLpMoSGX6P149Eo09P/T2ragQVbWwIukc+dLvOYZhhJ4Zpx
- NauiIZaVBTHeTqqNK7vf+q/FyRyzv9ZEZR9FAIU7Gq2TQsknzgH4RMYBb Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="4477091"
+ bh=AcnpDmDho0WoZG0W/flTbnmxQy4gN+FBMHiVVqktALk=;
+ b=d7w2rNcHPbM+KMfSo69elsYCBW1B7Q1ejP9+jR/3RTtQyfgu88ranrJy
+ +R9AmUwa0Ses+UpcWcn+ABXg0HkbtNJmUJaGewleK0QKnGZHjlPVbtpU/
+ dc9LlbKLQUU5JaAX/NMKtJLnqmoeDN1Mtz6UKlkDT1S9N7T5oSaH9HffW
+ eSy+/UuyNqtXR5Hgms9uzst2gg+/7w41A+a3V/wqLaK6kOgRAnlz1Wdny
+ 6ZlqnIdHEqImr163bDVST6ofoP9YVKUsqs1MCXvfhzrCtWTUabucqIvDk
+ in3B6VC8PI0yovciAAEA34+MgSwu+ZYEFsn6DwMmCg2WaIn/xogLP/bW9 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="5232257"
 X-IronPort-AV: E=Sophos;i="6.07,109,1708416000"; 
-   d="scan'208";a="4477091"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2024 07:12:59 -0800
+   d="scan'208";a="5232257"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2024 07:10:20 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,109,1708416000"; d="scan'208";a="15188264"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 08 Mar 2024 07:12:59 -0800
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.07,109,1708416000"; d="scan'208";a="10416184"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 08 Mar 2024 07:10:19 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 8 Mar 2024 07:12:58 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ 15.1.2507.35; Fri, 8 Mar 2024 07:10:19 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Fri, 8 Mar 2024 07:12:58 -0800
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.40) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Fri, 8 Mar 2024 07:10:18 -0800
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Fri, 8 Mar 2024 07:12:58 -0800
+ 15.1.2507.35; Fri, 8 Mar 2024 07:10:18 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LigYCj9bQM27+IUijoiHQ2Mo81nEByq67ONpOlXdHyB1wM2q66AexKEITMgToF2g6bJiQwSXZLxx7zk+leo45f3YT487lpHkqGqn+m3NuZBd5CInfqCZCV417jl3cX2wTLpDQU7L6eO4zvD85FGeHCXO5dDuvzXq1F0B82i/IeSnQbxSEHFNuPMFtMndj8Aa7VeRRquSGBlcF7qdYOg0JZNbA2zdQ7p0KtO28zfhfdgomaaKvAu88NI2SA+MwKlbFpFzw10acf2u31ThEpY7rOrmsuCgMeO0IDzqIMtHW45EFWVJ5tcIOBQgUXo0NFVuGSPwZ4G+SUd8nod1Yv5jSw==
+ b=iabtNgK4fZJQ1MmcR9ImxJ5zX14gqsK/nsoDRZ0HsqhmF2gF+DDO+bntenXUuPrNBUQF0AqYbV6R4xJo8I3RAFzlQufPKIYODAN6pHgC2Y1ARlguwhUBiY428GLAt3FdjzMusmlbVEBfjI1lwkIvwLivil5WP1HTOwxJnCebgENueQGTvFHdMBVVQO8j7MNX9ZW/U1lpSRdpa3bnbvmb9umc4cFsz/YMsfd9D8zBmLf3gKeffi+zxNyljNULbHTSTrpLfNQNdiWwdmOyAxUnk09Xuxjfu4lOxb20v2svL/ZCN6XnxgPuzYEka9UulatXOJTqiDDWF3MMVQm6rzh8XQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=m2Z8Aaho7cSVc7ky0Ek95Syf3icSyDFdCMZhaAYEe0Y=;
- b=czoPed29u1Iib/KbAdgrELkuLPXOhS16+g0p7jiq+OcJuKXsUhMyjv0vgjcrErsUy77DwOG6lDXRitkVN9WML0cJCk8drZHMalzEWUvYAXFM0By3Hu5VDpLrUGmWuIe2XFtiqu/ym2Xm+crJeobvH6WzPgrakWaqis46CJ4YLJ33HavCoi0AE76Ae5Vbk6Ov8YTJsfThFZ15925H3d36PtNr9usnS+GqDGed6J4CwUno/MJwcNpczKt6Rr0mL7795S0i/ru+g8ZhFzGa0FSFKiz41pOtVW5krcTJ1rgDp4Zm2ASbujHzIgMuOAQYC4CVpChJbtXgcleFBONRt/r5og==
+ bh=3nABWLSmvOjLJDnpFP0L4FZ5e6J5iK1pdQ/wz3RF2u8=;
+ b=EsgNfAdxMpgTANXHzfzX9N4ULU1rc+M/vWqaoNE2sxJKCZovE/Bcupaa94ByUG4viLVSCuAoJOO8R6PmrqA7WD7siZ+aps1QmOgIedkIxipjOzXra2V6NoMwfXJHQBhQ6eDUxWlE47Sv7u2Xd/Q3KVWkTDHwqdXppDLVxj1W+lTut9WBan1nhyi/4ZJyh3wAOgoNKHIHHbHC2Bi8P8SVccD8nQcLx8DZjkHLi47EeKVrLrEdj08Gbt6FtMNeDOWWxeBVVJLrPNAWWLy7/hu6Wtj7Aq0x2WJ7OInZj4nB+ViKs9hlCMT0bVe94+5LEerg/jhAmOgFgIsRp3rZgXTSKg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by SA2PR11MB4812.namprd11.prod.outlook.com (2603:10b6:806:f8::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.8; Fri, 8 Mar
- 2024 15:12:56 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::e9dd:320:976f:e257]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::e9dd:320:976f:e257%4]) with mapi id 15.20.7386.006; Fri, 8 Mar 2024
- 15:12:56 +0000
-Date: Fri, 8 Mar 2024 09:12:53 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-CC: <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, David Airlie <airlied@gmail.com>, "Daniel
- Vetter" <daniel@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Masahiro Yamada
- <masahiroy@kernel.org>
-Subject: Re: [PATCH v2 15/16] drm: avoid includes in drm_crtc_helper_internal.h
-Message-ID: <q252pusyd7c6awvx7rw67d5haqltbw74i2sk44yu4dyqxpsmky@4xpcdpw2ibfg>
-References: <cover.1709898638.git.jani.nikula@intel.com>
- <fb7fb2986e19f949bf3a9b16230a59e0f7aaebdf.1709898638.git.jani.nikula@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by PH0PR11MB4855.namprd11.prod.outlook.com (2603:10b6:510:41::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.9; Fri, 8 Mar
+ 2024 15:10:16 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::a7f1:384c:5d93:1d1d]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::a7f1:384c:5d93:1d1d%4]) with mapi id 15.20.7362.019; Fri, 8 Mar 2024
+ 15:10:16 +0000
+Date: Fri, 8 Mar 2024 10:10:12 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+CC: "Souza, Jose" <jose.souza@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, "quic_mojha@quicinc.com"
+ <quic_mojha@quicinc.com>, "johannes@sipsolutions.net"
+ <johannes@sipsolutions.net>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "Cavitt, Jonathan"
+ <jonathan.cavitt@intel.com>
+Subject: Re: [PATCH v2 2/4] devcoredump: Add dev_coredumpm_timeout()
+Message-ID: <ZesqVChUizIBmkvK@intel.com>
+References: <20240228165709.82089-2-jose.souza@intel.com>
+ <84e4f0d70c5552dd7fa350c61c28de9637628ee6.camel@sipsolutions.net>
+ <a27ac0d3bc52c2181852a25641b7020f50a50648.camel@intel.com>
+ <0f4244ea6866f451f3f8a5b5e2db8be53de1f0c2.camel@sipsolutions.net>
+ <bdaf62020388d3dcf8d3a95ae465c0ae2db7eca1.camel@intel.com>
+ <zfrpz4vuhjwmilbqft5d4qh4s3gs3okzyxbsh4lc5rhzjy5ktx@xuu32mxhun4c>
+ <f7c2d3381e50dd9c5e9211461e0abe487f5059df.camel@intel.com>
+ <u4tngmdxcciblq327yi75fdfkadv3fomnopnpgbwkk7smh3knp@d2h7373q4msf>
+ <04cee1ad22cdb1d6a6a4a7482e4ebf7d28cd63e9.camel@intel.com>
+ <f4fjvfx6a3gk55mdbqrirlyxdzsjxelynhosqonrtmsiiorqe7@m6q2kkuwhgdt>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <fb7fb2986e19f949bf3a9b16230a59e0f7aaebdf.1709898638.git.jani.nikula@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0108.namprd13.prod.outlook.com
- (2603:10b6:a03:2c5::23) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+In-Reply-To: <f4fjvfx6a3gk55mdbqrirlyxdzsjxelynhosqonrtmsiiorqe7@m6q2kkuwhgdt>
+X-ClientProxiedBy: SJ0PR05CA0075.namprd05.prod.outlook.com
+ (2603:10b6:a03:332::20) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SA2PR11MB4812:EE_
-X-MS-Office365-Filtering-Correlation-Id: 342edcb1-a65d-44c0-aa9a-08dc3f823bd3
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|PH0PR11MB4855:EE_
+X-MS-Office365-Filtering-Correlation-Id: d8e2c6a0-e833-473e-e58d-08dc3f81dc65
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: EosaK//vlhh5r7Vl6KvX++z/6AxAlgOQmGO5uFLzs6+aqfGZjv81StL5J7A2MOa/lMqV0r/kdscjQ84Oss/29sDpcAaIgmd7rk0V+OPFzyXpQoPYwB8vf+prmaKHQmZ21kVw1N0SnnZlrM7TRre854i7NXqpFH8KLmvIX4m3F6o+D4e0H6tqTp1it7jg/vN40cvMyTQjq3Y3rro8VERhzxynUyZot3UOrKuf2Eb5Cs5e9DijYGGKn9th+A12+FNCtNxcQU4Pujd7fowvKekpJznemi655KjASSgZ/VsFrP4NVVjz4FMRYz6M1xlfOklrGZaAwVjoxbfjoIrtcbrxsMEQ2D2Fwx7QEbwjSEXu3EJYJRSPp4YAdybSvc0/mHblNfx7D/Wxj3V4cw/UTzlDSQ56YNbYpRbr1dc+dV6h2fJjAu54ZEStPT7KF8HXlxp3uU4RYp69Xq9PGA1Ow9GU3Z7PWeMGAwRiS0o+qubjWBVVUHzFRWAiu/sgXL4MrJU22tceYEbwNLC6hKW7VaP2ceizoN61aMoMtMT6mcNRj1fjSiIOH+CEIDAHUz6rzNDc6djASOiPzkHtk1EdbOkcKtBkLNVIOSIpIaiJyhXIlwkQLkyywrBzMrktrusucl0bkhWa+3yWyoCuNchc4CT/eWrqBr/rjg+RJ/GApqKd/tI=
+X-Microsoft-Antispam-Message-Info: PeqiS/8aa/+l4vH1RWNV+kpX2V3SC+GWbY3N0vhLYgELkZujKI+CbvCTdubcqF/aVngKAaSCztiFauiY5nEqeSNhOEG4s2n76jglYC+SbL7Rn6LVOYpps7+y+gEURvQ2m6ZJuDwVErIsSLuepgLyunBV1Hu0LybSdsxIyogxBIJaturnxmZzpP/Q6Et1JGVczpRWAxuxlTMUoEIfV98+PBdr+Pv1w78iEtT99uhFIAnEnPjfrY3wkFne+ut2tYe7vw0Pb5wm54RufmY7/aqktiyAXGt+yBeiRdWyN0W+ACTYpAlVQPPccyDesGVyBMo8tfUGUoZCl6z5F+BJXPToI0hyUyHYuPe3q2da4FUue1ntDeWNfzf7JiltLy+gltNdFOjVe8YdT/NvjKyQHQIbrVNypMafshilW4FVtvCnLHzK5ELuwUW7mE+e+eqSYKwP/2zCqnvKkz8yVSwddBJeecES4zExATRS8MxIcz6igdkuhnlRM/QjdKL0135P27av1xy02Ekh3dUKkk1HPtQwyXbhXjojmnWGjDH9BlqTv5wRrz68iNlXCVR5lSvHgcdxgJEBCJFvvyBWn9Iffecdc8ZhGyJeMFgDaHp0dhm3ihs=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(1800799015)(376005); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ydV/nL5hbyk+QyfGPIjXfnouQe+y51ygQHaJUIISeO6v60TI4HZ3OZx9bzzp?=
- =?us-ascii?Q?gpdZe0CZzofyogRLgPaCmHznKrrGd2TsHdWgVl9Qpqo0VJM/6/GuIN3Hqmdd?=
- =?us-ascii?Q?7qurWRcxONEZ2yWghVj63hAefFHaDHxAi8J+oDI61VKyW6vDoiZ+iB6Xslsp?=
- =?us-ascii?Q?S1nTLy+lMgF2ohFzzKrenNkW0d7Yp9ZQHoUx1yP7NabzFgI9BFCKfNDTf0Oi?=
- =?us-ascii?Q?4mqxnHakXp6l1og2ajPvaZA2R1DHBSOo7psL6xEajhwd4QBc2iPBiZjYeFJr?=
- =?us-ascii?Q?jMK88rSh/5+UywRQlaGZsvCX3gGkyHF6K4K77Lry8NHR7v052VdydhIbtapO?=
- =?us-ascii?Q?v2qH1ERZtMVbQ1vYfZ8IJnxwhG1K6n7bOIeCoJ3/MJYT0V7UR7kMe0AJTj0F?=
- =?us-ascii?Q?K+IB0NNT00bw1JSYWj+0jGQ3W9UpmJzJRP4UlSVQuxUt5immLbInkCj74BKy?=
- =?us-ascii?Q?HyA+dyDCugN9i+iH2tz6afvHYAw/5rd6wROVjovw9yH7pNI/hL7Z8fh2EhhG?=
- =?us-ascii?Q?eW/vRCFA1LndwgXSA2oquvid3b70SgqW7NtPXaCE3Ps+4zWLXfloZ90xZn1k?=
- =?us-ascii?Q?SyP+2TmemY4ytQNfL1GJ3o20FnTYE5fXL+WGLxO8uWrYGsAGlLjXZeOBBoU8?=
- =?us-ascii?Q?q2/FdbJNmMKWdg0By3ICjt3Ryw0WLUC/HL9jL8ZsiWzOQZZ6HVMBNcWKVrra?=
- =?us-ascii?Q?9vuXruk7udt+6F5fgDECk2GPLEpApEpl8BSHZgF/oZArpmDzBaR5VU7l+0kd?=
- =?us-ascii?Q?h+8kltY7DCuXVU/dtXFGVvL/4YKPKCuHBRJFjFA94oJGD37ZZtHwmv1Noqln?=
- =?us-ascii?Q?bsREteoRPWwpUPJImQblywNP+SYIN8/4KDtudFi/w1BZK5nHI7q+VUHlb3hc?=
- =?us-ascii?Q?+kbVtV+IwogbfC5MH+HfXKOIIKm8iG58sr46jxcHrftK27TikLZ+ioZ33rVM?=
- =?us-ascii?Q?STmCObLBY5DoOQCDhwHQRHqJgPc+ethvy9PmcB449o/T14SR+QucN6mo7xqR?=
- =?us-ascii?Q?7MFiZ/G9GXXCZcC1J4/VEwfuo7l8ONyDS4ej7jtUdzCkYVGCprx85F88OOxY?=
- =?us-ascii?Q?tqOx3aaRg4fZKpLIpZ2hpQWywH3MF6GlRt2ZImBkTz4hvGybZZNiBVrGfSKN?=
- =?us-ascii?Q?NUcE55w0HkRpn8O+bpWxSWreOEmTFzEaUVeu4MqkHGOPu7hc4ZXCe4KVf7J6?=
- =?us-ascii?Q?uBoaLnJ/x+ZXWyIwmobYdhn+iLRbPInG1E3l5fwLcPTo5yNjut7KNSQ8kckG?=
- =?us-ascii?Q?+EBNWp9OilaBNKvEmYbP0oM1hkzlVdzrPTQ4nwtDXBCPDKJiNrrKfJKfk8I0?=
- =?us-ascii?Q?NvRkviyyNwCLKonyW1LBU9Vs4caxLB0ujOZj3HjDNzKGCxf+ljb8XBB7xU4n?=
- =?us-ascii?Q?4y/RP+6JtBt5UshoxxbUyX4I6WHsn3Y570+6XPHJrGmPWu8WJelg/pr35Phi?=
- =?us-ascii?Q?Byvyjv6nsfX6Wyb0Cmuo7YUjEXg7AxPA2/7tSLasQvnKJK3iUQQoUOC5PoJP?=
- =?us-ascii?Q?509HuPqF4/z8CTn0qt7VAaYHD8QdLWPYOVLrI+KEZRMZWme/A7+EdikhyDHu?=
- =?us-ascii?Q?3jM8CR9tLWzE9ZDm3eHbTpe1WsO5cKzzMwqD9qtkfmBGQ421MfQDFlmX+QCg?=
- =?us-ascii?Q?uA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 342edcb1-a65d-44c0-aa9a-08dc3f823bd3
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?irTlVArBqFCfFZv+PxYgPP7nlGhNlkqcwWawI6hwMmPEwkcfH6KkTsksSNZb?=
+ =?us-ascii?Q?DBo00ZyDIA+TYxV9ZotFgOoSBl75DAGvGn229VsoHWmv2FkaxsxiHU2EAVSE?=
+ =?us-ascii?Q?Pajo0ZjgBqaDaHSB5fB9kMq8cDkuoWBbtcZwn/CL7KHjTvopDkABop2UIWVV?=
+ =?us-ascii?Q?ZyaTrT3mE2+l4OT1VC/j8lYPIBG+3ozCXFlEvZTtDVfLv/l+RMpXm5yH8dsU?=
+ =?us-ascii?Q?9lF5RJS4dOBuUDqrqlljAnGn2tBzVwfUj6IQnTJKWjKThGOi3hdRhx/jHjqu?=
+ =?us-ascii?Q?5Uqw+2u4XW0Ysf9TP8vHzl0/YZzlXJGQb5JPG3MJXXxJGiZW2eHOepJTbz3B?=
+ =?us-ascii?Q?2ln18imZ6ogUBnKsLsD3wb6a06if5BFR9pHn57GX0l83wje3OIuq2rEgEuDy?=
+ =?us-ascii?Q?Idra4IDyTgMMhMULFNJeiTJiPQBK5Lbv1pZl5+0bKVvZZbvGz4p5wqweC/FJ?=
+ =?us-ascii?Q?k5M22SiW27W/twm4jbQ37dzGnkebEz54KMA5Bgvj8a2mvzT2r27hRTq2hNaS?=
+ =?us-ascii?Q?3RN0OQwNuPtUF8kNc+gI6OIRqzOJMOXSxHt9k3zbA78zojKLFgKs3y3rtSDu?=
+ =?us-ascii?Q?QkvXFcMtwmPcT2awTF4tk+BawJqV7tFVhzyJ3kkzSVxr36msHKV417aQ1yoz?=
+ =?us-ascii?Q?My93iPtmPR3YtuRQLSE9DsLztY2lVegdyc5Heqbl5uu5Ea8vu5Xwn35wx5Rm?=
+ =?us-ascii?Q?CKDFGtyE4Qq55+9ingOxHoQZIsNCDC/Vycj7EArmuLtteZh77QmGvbb5ILwo?=
+ =?us-ascii?Q?Mjuc3hZQIU/r+ADJl1DNrxJHnVUU2LwxBZmMTUNvJ+NW1Lba1eRBM0O2DpIE?=
+ =?us-ascii?Q?wvG67/NoFEXBOc5wJe+aysMzoomNFmZhwL1Am8xwHCuR/Q45S2A8Y/8jghbf?=
+ =?us-ascii?Q?zyfrPSpMLT95W4QUbKEFwrSPidMX1o5BS0+M8ogH2APUQjb5MhT/gQpQ3rgq?=
+ =?us-ascii?Q?yNzRi3Xq6bb7yR2UFuaQv3o8v1kyUg6raqEE4YZKNGHwzBFwKP345lPlKHqD?=
+ =?us-ascii?Q?apkexAC5OU3hHCQ1RcRHojh/4va59ctTH1Gkg6yPtTE34gB4xoJe0/ma3Zka?=
+ =?us-ascii?Q?t0DMTQ+5lQM5LNIhntcTsNZJPy6kdrIj2d7+VzdZjpacem68SjZyiKpHx+2j?=
+ =?us-ascii?Q?uaixIIjsM0yZX4rkjwUtoevb28FlNDdLD9rMjYoQCCLO9ToDRHBk1pgrbaiX?=
+ =?us-ascii?Q?fx28x7VJ0mC7HqBfsPgH0+VHOuo+xbRAPYq9SC496BZwWsTYsLOzW1DYY6Sx?=
+ =?us-ascii?Q?Sy9Nvj1W6ZFaNvqpLo8l8oQVxWthie0uv1abrv70A86moqxvJrC0Fob3VtI8?=
+ =?us-ascii?Q?BtAd0FPItXL0rUQziOIBFcs6WHl23aBpan2WFOjKpW3BWHkijzrYfVoTRzil?=
+ =?us-ascii?Q?XzzEIA76NsdOF2szylGvLSHYlqWci3sdWZOmSWGJW7Vbo9lHZ3S7fL0M+nRK?=
+ =?us-ascii?Q?a9t19M9fIkIwkaOfnvPoUNJy9YxDmEEse4baNgScVOrkOoE2GdYcWYcJB/gp?=
+ =?us-ascii?Q?PH77ANBONHSe5Rv4P/Sx2q4SRqqxWuqDQ4gohMWV8Wid9sNtpE8qI6XSEtzS?=
+ =?us-ascii?Q?/ZVmEI+dQ4MBOzFIpbzY27PLdmDwkkX7hezpg55e?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: d8e2c6a0-e833-473e-e58d-08dc3f81dc65
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Mar 2024 15:12:56.3149 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Mar 2024 15:10:16.2816 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SxOk/zDIfimEE5APnAhzsz0+CHVb4FnE6KvcYdyTkGBuD8JOMnvK/0O9DR7wdFPMkwmWMwfxjNtSexnJNfAHU5Fjp/aCZ/D86cKLgmH6+aU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4812
+X-MS-Exchange-CrossTenant-UserPrincipalName: xy6X0zGR20oS5v1kA07ZRSee3acaxqDBa/LoulVp8oHGlwJAJ6uBWZu+4eAvSLu63fMynKWDucVvPX7XMrziKg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4855
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -155,41 +161,143 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Mar 08, 2024 at 01:55:53PM +0200, Jani Nikula wrote:
->Prefer forward declarations over includes where possible.
->
->Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+On Fri, Mar 08, 2024 at 08:53:24AM -0600, Lucas De Marchi wrote:
+> On Tue, Mar 05, 2024 at 03:38:58PM +0000, Jose Souza wrote:
+> > On Tue, 2024-03-05 at 09:22 -0600, Lucas De Marchi wrote:
+> > > On Tue, Mar 05, 2024 at 02:21:45PM +0000, Jose Souza wrote:
+> > > > On Mon, 2024-03-04 at 17:55 -0600, Lucas De Marchi wrote:
+> > > > > On Mon, Mar 04, 2024 at 02:29:03PM +0000, Jose Souza wrote:
+> > > > > > On Fri, 2024-03-01 at 09:38 +0100, Johannes Berg wrote:
+> > > > > > > > On Wed, 2024-02-28 at 17:56 +0000, Souza, Jose wrote:
+> > > > > > > > > >
+> > > > > > > > > > In my opinion, the timeout should depend on the type of device driver.
+> > > > > > > > > >
+> > > > > > > > > > In the case of server-class Ethernet cards, where corporate users automate most tasks, five minutes might even be considered excessive.
+> > > > > > > > > >
+> > > > > > > > > > For our case, GPUs, users might experience minor glitches and only search for what happened after finishing their current task (writing an email,
+> > > > > > > > > > ending a gaming match, watching a YouTube video, etc.).
+> > > > > > > > > > If they land on https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html or the future Xe version of that page, following the
+> > > > > > > > > > instructions alone may take inexperienced Linux users more than five minutes.
+> > > > > > > >
+> > > > > > > > That's all not wrong, but I don't see why you wouldn't automate this
+> > > > > > > > even on end user machines? I feel you're boxing the problem in by
+> > > > > > > > wanting to solve it entirely in the kernel?
+> > > > > >
+> > > > > > The other part of the stack that we provide are the libraries implementing Vulkan and OpenGL APIs, I don't think we could ship scripts that needs
+> > > > > > elevated privileges to read and store coredump.
+> > > > >
+> > > > > it's still a very valid point though. Why are we doing this only on
+> > > > > kernel side or mesa side rather than doing it in the proper place?  As
+> > > > > Johannes said, this could very well be automated via udev rules.
+> > > > > Distros automate getting the coredump already with systemd-coredump and
+> > > > > the like.  Why wouldn't we do it similarly for GPU?  Handling this at
+> > > > > the proper place you leave the policy there for "how long to retain the
+> > > > > log", "maximum size", "rotation", etc.... outside of the kernel.
+> > > >
+> > > > Where and how would this udev rules be distributed?
 
+Perhaps we can have igt tool to distribute the udev rule?
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> > > 
+> > > it depends on where you implement such a logic to collect gpu coredump.
+> > > It might be a new project, it might be a daemon from mesa itself, it
+> > > might be extending systemd-coredump.  Your decision on where to
+> > > implement it will influence what's the reach it will have.
+> > 
+> > Don't make sense to be in Mesa, compute and media stacks also needs it.
+> 
+> so what? A project can't have something that is useful to other
+> projects? Anyway, having it in mesa is just one of the possibilities I
+> mentinoned.
 
-Lucas De Marchi
+There's one big case that I don't see in this discussion here but some
+folks might be wondering about.
 
->---
-> drivers/gpu/drm/drm_crtc_helper_internal.h | 10 ++++++----
-> 1 file changed, 6 insertions(+), 4 deletions(-)
->
->diff --git a/drivers/gpu/drm/drm_crtc_helper_internal.h b/drivers/gpu/drm/drm_crtc_helper_internal.h
->index ed4deed07abd..8059f65c5d6c 100644
->--- a/drivers/gpu/drm/drm_crtc_helper_internal.h
->+++ b/drivers/gpu/drm/drm_crtc_helper_internal.h
->@@ -29,10 +29,12 @@
-> #ifndef __DRM_CRTC_HELPER_INTERNAL_H__
-> #define __DRM_CRTC_HELPER_INTERNAL_H__
->
->-#include <drm/drm_connector.h>
->-#include <drm/drm_crtc.h>
->-#include <drm/drm_encoder.h>
->-#include <drm/drm_modes.h>
->+enum drm_mode_status;
->+struct drm_connector;
->+struct drm_crtc;
->+struct drm_display_mode;
->+struct drm_encoder;
->+struct drm_modeset_acquire_ctx;
->
-> /* drm_probe_helper.c */
-> enum drm_mode_status drm_crtc_mode_valid(struct drm_crtc *crtc,
->-- 
->2.39.2
->
+It might not be a matter of where and how we distribute the rule or how
+we capture the log.
+
+We might have cases where the dump is extremely huge: 2GB+ if we are
+setting to capture all the textures and everything else.
+And only the very first hang is useful for debugging.
+
+So, in this case we perhaps want to avoid extra huge captures.
+Okay, most of that could be scripted out with udev. If the dump
+is huge don't write 1 back to data so you don't keep capturing
+more, but then after 5 minutes we will have more huge captures
+that we could likely be avoided to start with if we had the option
+to do so.
+
+This would possibly be one argument for a single capture or longer
+timeout before coredump removal.
+
+But well, I believe this case only happen in debug machines by devs
+so maybe not a so strong case in the end of the day.
+
+> 
+> > 
+> > > 
+> > > > There is portable way to do that for distros that don't ship with systemd?
+> > > 
+> > > If you do it in one place, people who care can probably replicate to
+> > > other environments.
+> > 
+> > But then the 5 min timeout is still problematic.
+> > 
+> > In my opinion we can have this automation, make it store codedump in disk, do the dump rotation... but also have a 1 hour timeout.
+> > The automation can write "0" to devcoredump/data and free the dump from memory for the distros that supports this automation.
+> 
+> IMO it should not be treated as advanced automation, but rather the
+> normal way to collect dev coredump. It's much more useful to the end user
+> than documenting "oh, if you see a glitch on the screen, hurry up you
+> have X min to look at file /path/to/log to get it from the kernel. And
+> btw the glitch couldn be something else that does not generate a
+> coredump, so if you don't have it, it's normal)".
+> 
+> It's not up to me to decide though. If maintainers think it's ok due to
+> be a small change with no dire consequences, then fine.
+> 
+> Lucas De Marchi
+> 
+> > 
+> > > 
+> > > Lucas De Marchi
+> > > 
+> > > >
+> > > > >
+> > > > > For the purposes of reporting a bug, wouldn't it be better to instruct
+> > > > > users to get the log that was saved to disk so they don't risk losing
+> > > > > it? I view the timeout more as a "protection" from the kernel side to
+> > > > > not waste memory if the complete stack is not in place. It shoudln't
+> > > > > be viewed as a timeout for how long the *user* will take to get the log
+> > > > > and create bug reports.
+> > > > >
+> > > > > Lucas De Marchi
+> > > > >
+> > > > > >
+> > > > > > > >
+> > > > > > > > > > I have set the timeout to one hour in the Xe driver, but this could increase if we start receiving user complaints.
+> > > > > > > >
+> > > > > > > > At an hour now, people will probably start arguing that "indefinitely"
+> > > > > > > > is about right? But at that point you're probably back to persisting
+> > > > > > > > them on disk anyway? Or maybe glitches happen during logout/shutdown ...
+> > > > > >
+> > > > > > i915 driver don't use coredump and it persist the error dump in memory until user frees it or reboot it and we got no complains.
+> > > > > >
+> > > > > > > >
+> > > > > > > > Anyway, I don't want to block this because I just don't care enough
+> > > > > > > > about how you do things, but I think the kernel is the wrong place to
+> > > > > > > > solve this problem... The intent here was to give some userspace time to
+> > > > > > > > grab it (and yes for that 5 minutes is already way too long), not the
+> > > > > > > > users. That's also part of the reason we only hold on to a single
+> > > > > > > > instance, since I didn't want it to keep consuming more and more memory
+> > > > > > > > for it if happens repeatedly.
+> > > > > > > >
+> > > > > >
+> > > > > > okay so will move forward with other version applying your suggestion to make dev_coredumpm() static inline and move to the header.
+> > > > > >
+> > > > > > thank you for the feedback
+> > > > > >
+> > > > > > > > johannes
+> > > > > >
+> > > >
+> > 
