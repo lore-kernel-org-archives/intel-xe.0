@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD591C5475B
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Mar 2024 15:34:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 102F3C5475B
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Mar 2024 15:34:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7067A10E0BD;
-	Fri,  8 Mar 2024 15:34:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF70A10E0BD;
+	Fri,  8 Mar 2024 15:34:51 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F04ED10E0BD;
- Fri,  8 Mar 2024 15:34:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 77A4010E6E3;
+ Fri,  8 Mar 2024 15:34:50 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/hdcp=3A_Fix_c?=
- =?utf-8?q?ondition_for_hdcp_gsc_cs_requirement?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/hdcp=3A_Fix_condit?=
+ =?utf-8?q?ion_for_hdcp_gsc_cs_requirement?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Suraj Kandpal" <suraj.kandpal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 08 Mar 2024 15:34:37 -0000
-Message-ID: <170991207798.621641.12239267782939211839@8e613ede5ea5>
+Date: Fri, 08 Mar 2024 15:34:50 -0000
+Message-ID: <170991209049.621641.4445766731355334567@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240308134817.1940638-2-suraj.kandpal@intel.com>
 In-Reply-To: <20240308134817.1940638-2-suraj.kandpal@intel.com>
@@ -48,9 +48,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: dfd62d0c182e drm-tip: 2024y-03m-08d-15h-21m-05s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/hdcp: Fix condition for hdcp gsc cs requirement
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+a9bb2a8a17457065eb398a81e8fd9aec2b519fd6
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 06e6953098228d1a7293dc210ed5953059c0181e
+Author: Suraj Kandpal <suraj.kandpal@intel.com>
+Date:   Fri Mar 8 19:18:18 2024 +0530
+
+    drm/xe/hdcp: Fix condition for hdcp gsc cs requirement
+    
+    Add condition for check of hdcp gsc cs requirement rather than
+    assuming gsc cs to always be required when xe is loaded. It is not
+    required for Gen pre-MTL
+    
+    Fixes: 152f2df954d8 ("drm/xe/hdcp: Enable HDCP for XE")
+    Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+    Acked-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch dfd62d0c182e06ae11999b117c3569bfef6c8413 drm-intel
+06e695309822 drm/xe/hdcp: Fix condition for hdcp gsc cs requirement
 
 
