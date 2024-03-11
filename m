@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7C36C5475B
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Mar 2024 20:29:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A312C5475B
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Mar 2024 20:33:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AC3C10E6D6;
-	Mon, 11 Mar 2024 20:29:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C43D810F554;
+	Mon, 11 Mar 2024 20:33:57 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C67C110E6D6;
- Mon, 11 Mar 2024 20:29:14 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7060993988515412644=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1771210F554;
+ Mon, 11 Mar 2024 20:33:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Invalidate_userptr_VMA?=
- =?utf-8?q?_on_page_pin_fault_=28rev3=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Introduce_?=
+ =?utf-8?q?xe=5Fpm=5Fruntime=5Fget=5Fnoresume_for_inner_callers_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
+To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 11 Mar 2024 20:29:14 -0000
-Message-ID: <171018895481.681532.15180735708627289834@8e613ede5ea5>
+Date: Mon, 11 Mar 2024 20:33:56 -0000
+Message-ID: <171018923609.680152.13002971103878373317@8e613ede5ea5>
 X-Patchwork-Hint: ignore
-References: <20240311192045.852975-1-matthew.brost@intel.com>
-In-Reply-To: <20240311192045.852975-1-matthew.brost@intel.com>
+References: <20240311192303.33961-1-rodrigo.vivi@intel.com>
+In-Reply-To: <20240311192303.33961-1-rodrigo.vivi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,27 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7060993988515412644==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Invalidate userptr VMA on page pin fault (rev3)
-URL   : https://patchwork.freedesktop.org/series/130935/
+Series: drm/xe: Introduce xe_pm_runtime_get_noresume for inner callers (rev2)
+URL   : https://patchwork.freedesktop.org/series/130996/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad_BAT -> xe-pw-130935v3_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 61fa386186cb drm-tip: 2024y-03m-11d-17h-54m-33s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Introduce xe_pm_runtime_get_noresume for inner callers
+Applying: drm/xe: Introduce intel_runtime_pm_get_noresume at compat-i915-headers for display
+Applying: drm/i915/display: convert inner wakeref get towards get_if_in_use
+Applying: drm/xe: Move lockdep protection from mem_access to xe_pm_runtime
+Applying: drm/xe: Convert GSC HDCP from mem_access to direct xe_pm_runtime calls
+Applying: drm/xe: Remove useless mem_access during probe
+Applying: drm/xe: Convert xe_gem_fault to use direct xe_pm_runtime calls
+Applying: drm/xe: Removing extra mem_access protection from runtime pm
+Applying: drm/xe: Convert mem_access_if_ongoing to direct xe_pm_runtime_get_if_active
+Applying: drm/xe: Ensure all the inner access are using the _noresume variant
+Applying: drm/xe: Kill xe_device_mem_access_{get*,put}
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad -> xe-pw-130935v3
-
-  IGT_7754: 5fb3239299b5be2c110aafa483c9e197c53f8bb8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad: 61fa386186cb302cf26e29aef76d5b1a6ffe57ad
-  xe-pw-130935v3: 130935v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130935v3/index.html
-
---===============7060993988515412644==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Invalidate userptr VMA on page pin fault (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130935/">https://patchwork.freedesktop.org/series/130935/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130935v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130935v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad_BAT -&gt; xe-pw-130935v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad -&gt; xe-pw-130935v3</li>
-</ul>
-<p>IGT_7754: 5fb3239299b5be2c110aafa483c9e197c53f8bb8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad: 61fa386186cb302cf26e29aef76d5b1a6ffe57ad<br />
-  xe-pw-130935v3: 130935v3</p>
-
-</body>
-</html>
-
---===============7060993988515412644==--
