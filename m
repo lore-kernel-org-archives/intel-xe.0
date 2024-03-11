@@ -4,137 +4,138 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8425C5475B
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Mar 2024 19:50:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 746EEC5475B
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Mar 2024 20:12:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EB95112C4D;
-	Mon, 11 Mar 2024 19:50:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 321F610E8E3;
+	Mon, 11 Mar 2024 20:12:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RzNSJcUW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HCbtl9Bz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B74D112C4D
- for <intel-xe@lists.freedesktop.org>; Mon, 11 Mar 2024 19:50:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A57510E8E3
+ for <intel-xe@lists.freedesktop.org>; Mon, 11 Mar 2024 20:12:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710186611; x=1741722611;
+ t=1710187972; x=1741723972;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=Mz6r5IJfG6eSZ01kLW4V20bJSoTnZTNMqpw0+VdU5Nc=;
- b=RzNSJcUWe7FcI1LXlqlH7NHbXXvi4HTiCypyUOH78KAsMMgzJ1JMmOcc
- m8HDPs1GuGJTHX8XcK0OjkbPJxpQVNCmPShrPQKogmQ11G+kR4/i8EFeb
- hpAc0CMhYu6/u12Fh7SkIAXzyniF1JYuYxT6D8hn+YECAHoyy83K65f//
- 33EEnoLVLlheOEiWiN619dS+wMNRZ38zbtfob2v3U7fFIsXOxlsOIFvys
- k5L1/4PGX5YQbBgLorOOzxVlwBchsUUzBySM7K6zh957raiDv+DeT6sAG
- 4zmkn2Vi44jjZIYtHdzM2mG2LH4ZroUAcqjGfZHjepA9NCCA2kAyMLmbI g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11010"; a="5474908"
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=zdt+9LpNOWPwaAF0CcFTVgPzP+/1Fxde2OjDS5nNzAY=;
+ b=HCbtl9BzGtshdw8QlIJAalZi7vuCPs45vyu7w4YwD8ZhbOQopqxLNm5V
+ Qd1hRrCc3aO76nNmOPUNJCigMvdo0gruGG24ZhDjvqRVO85udegGibod8
+ D3QH146HRGAFAzqU1IFwRY/6oaNpoMN44GQg7+8VnleGIRLfuCs7yj4K1
+ I5JpkGL2g9oHiYP3PJ0ho9vtIzsu1PH762rATTP9Nk/8ooOV0CMULmsSC
+ KLaIzCMHKYi0Pyu6olK4zuTZEGuvtAaNAYoDzGKeaulW6eTYGfE68ObOk
+ V7/EUqV4oiIOZp5qxiCwYAZ8JOJryTmsWYUsCRYIAoCJvrlvBCPiaG2VA A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11010"; a="4730808"
 X-IronPort-AV: E=Sophos;i="6.07,117,1708416000"; 
-   d="scan'208";a="5474908"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2024 12:50:07 -0700
+   d="scan'208";a="4730808"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2024 13:12:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,117,1708416000"; d="scan'208";a="15849156"
+X-IronPort-AV: E=Sophos;i="6.07,117,1708416000"; d="scan'208";a="11703539"
 Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 11 Mar 2024 12:50:06 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 11 Mar 2024 13:12:51 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
  ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 11 Mar 2024 12:50:06 -0700
+ 15.1.2507.35; Mon, 11 Mar 2024 13:12:50 -0700
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Mon, 11 Mar 2024 12:50:06 -0700
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.41) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Mon, 11 Mar 2024 13:12:50 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.100)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Mon, 11 Mar 2024 12:50:06 -0700
+ 15.1.2507.35; Mon, 11 Mar 2024 13:12:50 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Eb3jmv3/18kkEqd0TK+kWrr9hI5Wn1PmshVzKV/NR2A9pm+EhueT4nOL96bRc0oNUZOTFFRinfc3lYWNsAle9NqF052xZcdcxQ/Bw26gyob/B04dnoUQznMTn4ZtHj/ptpp6rCpAowNPQqfZwo9ndwJKoHje6uGhewYqFmGnHUYnXE7nrDFkl1WY0rheDI92BS7VJ0ypxUWxyUeNV94M/VBZbJSmhdb3BCsxEAjjqv+Qq2I9W8gQlD8gjjfFT733t2zEFt91D/LAXNfVP+rCqGwTndFDoCNjpBUR4XK47jeJa4lon3wrqnQy3CMb3Z8imAlNZpqy9700xGCodIr+mQ==
+ b=lXEZzzUyRDsgk8TKaIu8Jg9IernUnVYkCajimSalrEs1advwOGdjdXuHrhOKpAhqNo9GxHFxSSA8l5PvycQoMSgnAHJMQfyPQeSjn2H1XVaxwJwG+6PY3POWPx1hZrTQq3Opzd6l8HiqB64pX3D7qf+lrpPJcnyCJgdRAKZPr+1bgkwiZUa7ku6YvXYsQ3XA7hexEgyuYcnUi9exwoGh3GvV5mg0BRlLMU/YkRfLQryT77i24gHl2A0qVn5T59q4A691vA8BgoEjFJlQfqH+u8M9cyuRomKZeffoXM8fhWd1HbJnSVU00Jj8F7ko4nVP0cVoqq7XBBWz3dwdGSRfjA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jBAth2x8SYM2f2U1/Zf78mhmMxHpGMfTZtmIQ2Qrtbo=;
- b=oO9sGCFKsmbMHEySRVheItUFO+rE280mpj00zgGBoeCFlV7iM2bOn0sfxS0bxWVXXmu0fjtbOkFWzA5oq5kcYvRpsyvDzLNHwTWyUCPAuV8NxJ9oPJHKAIhBxKdxTwLydO+gLR5JVZQzBGEgmrSzIrH90stvfPWY8nacMC0pzjDLd3OtQ2oyYhGKV7SZlDbS1SMmWhTpMRNHwZcjX3tYv2qQGclYqtdNRwZabKSh4yuXSLvaupjNjMZl6o6GQ/C+1XEirdu9hTnj6A1PYwftOIZ8gjD9rxXew7tQm+G9nNdZG0pTzpzGd8fKSOCrL47uqFLtvF1zXWm9sMeCKay8FQ==
+ bh=TiQ7bo5NhaPxPfwhXNiIGP3S/UoH4AD/FXf4LT1517Q=;
+ b=YiQRm/wNHdXzpIc8lHJf6rB6gxZRgz+GaC+ywW70tZmbG2vN29YwrZi5aNorribg7Mn25l/zEn/2Z4nbEbg18EPD0yKk5lTOwCzAb+4Vtot2UX7CMfVrIvMZYtMurm7K1psj8MfXIBDtiOUv6DNIDusVRyj92QoheAfgJz5OzosFCs7HwoFrtdIXZDBa+RilFvCtVmpty+ZlHjDDcp1/i7xrbSSHI3K+T0DcDYIKEDqopRB4lk9IK4DEiy+NFT8j7Sby+/PMnTkCJDXy9bLg6KetQX75wMiAf/SnM8vuuMSxrROULwoYkwbU+lwbf6njACFSVAHGCtVBQU9fzXXWGA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SA0PR11MB4576.namprd11.prod.outlook.com (2603:10b6:806:97::10)
- with Microsoft SMTP Server (version=TLS1_2,
+ by DM4PR11MB7303.namprd11.prod.outlook.com (2603:10b6:8:108::21) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.16; Mon, 11 Mar
- 2024 19:49:59 +0000
+ 2024 20:12:46 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e7c:ccbc:a71c:6c15]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e7c:ccbc:a71c:6c15%5]) with mapi id 15.20.7386.016; Mon, 11 Mar 2024
- 19:49:59 +0000
-Date: Mon, 11 Mar 2024 19:48:59 +0000
+ 20:12:46 +0000
+Date: Mon, 11 Mar 2024 20:11:46 +0000
 From: Matthew Brost <matthew.brost@intel.com>
-To: "Zeng, Oak" <oak.zeng@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v4 01/30] drm/xe: Lock all gpuva ops during VM bind IOCTL
-Message-ID: <Ze9gKyDiycibP6g5@DUT025-TGLU.fm.intel.com>
-References: <20240308050806.577176-1-matthew.brost@intel.com>
- <20240308050806.577176-2-matthew.brost@intel.com>
- <SA1PR11MB6991E7ECA4A2ADD89DA05C1792252@SA1PR11MB6991.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="us-ascii"
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <fei.yang@intel.com>
+Subject: Re: [PATCH v3] drm/xe: Invalidate userptr VMA on page pin fault
+Message-ID: <Ze9lgpge9lcXpMoM@DUT025-TGLU.fm.intel.com>
+References: <20240311192045.852975-1-matthew.brost@intel.com>
+ <3c16d6322a6d0127f9448c11a9b5876c688fe41d.camel@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <SA1PR11MB6991E7ECA4A2ADD89DA05C1792252@SA1PR11MB6991.namprd11.prod.outlook.com>
-X-ClientProxiedBy: SJ0PR05CA0130.namprd05.prod.outlook.com
- (2603:10b6:a03:33d::15) To PH7PR11MB6522.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3c16d6322a6d0127f9448c11a9b5876c688fe41d.camel@linux.intel.com>
+X-ClientProxiedBy: SJ0PR03CA0183.namprd03.prod.outlook.com
+ (2603:10b6:a03:2ef::8) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA0PR11MB4576:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5d9fab8a-aeb7-4709-cba9-08dc42046f00
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DM4PR11MB7303:EE_
+X-MS-Office365-Filtering-Correlation-Id: 590158f3-7a01-4faf-dc91-08dc42079de1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: tR14Toi0AvTIeKJHJ3Swwra6O6T8+J64aaevKtEHK67MHe7ESr6gNuIkTt+AH+w6bnPYPytQmZMIPZdkQRv0Srm51lpmLVlcLnygPR8UjaCSVM+vFDrPYVLPQ5fzceemYypqmh2OgA0hk/oP071eB9bUWdh0qqkmQl1fbxKoqbR+wx5zeRPP0AI46eZzppibQzEOA4kWfI+nqwCk1voCf+WOeOx5Q4Quen3bDLqtS2R7KAutfhjD8Wd/Vw7aPkNMc7FveCchTQATh6P5uRxVFESKoiTDjlLj0Qj5v9wPjuJ2zK9gGIUuN/KI1yiNFYyMh+Oayh2lhyJHg1fQwFArQcGtD53DGdUx0BBQpEcUAqH+a9OntiUcYFX9tv92kJbjLVW8qXxxvBcL5UAO5B9hFyH2hOIKQP0FoKwlA9eUSHpyMhMXyr4Xw3j7zQhr4msNLwVJHbcPOOEHCKK/HJAJZxX3Pk5qiiFldm+OjJzMLR8PZ9EkuiRUpPzlSgwLfkC4ScCqEW+4xvlyuHpID00fAT95EBwtXvx/Tm0Jo05W7v5KDrshZ14Uapm//CPEWrcAkYSk13vA0ZR3DHsg/C5rYPpRu3NfC1cLOP1vkbPetXQpFLG5SofwqkJt8vItJcjRpO5MNRDmWXj00BuufLADNicHw3VoiBGvYioIA8f8Q7s=
+X-Microsoft-Antispam-Message-Info: Ac4fJubyWkcNIBIYbJMVeDNDEqU5XbORdhK8hUJqOWomJZVir0J4XwkiNPQ1NLkT0e/xEDz4slai8tocfGndc0cJLJZAFkX2s7C8brUxEUKdsu6cN2bZhIp/bhf46ttbx6qI+OZdIXbkOZ+R4ksXxpws93hIs7JjMVVnptk96KCtP8qAkFNd2Ji1JL2tk/mD4J+D6/UzyXbQ6apYScFKovvugtFrO1KFiWjl+O1tj1gvT+TEgkaWhPo6WjklQPwJR+pYR5renrzOsjaVhg7eut79xXvwDULlySjWd5Vxeu6v8YgT/nXaVdbpLoffD2+lrtqrKNQuN30T4ae7coNaaFZdFJI4hlW37MS2dSejcI29bPTuEquwQkw8mygn176PsycZy9HzYwbh6tQpiCSTzf9Oji9L3/2T2+fJWEW7NfNTQumu02qa/d8Q+y2GbB1bm6RVeGbbX/q7bvlkmVLCO+7Evl8mTDR2sakv+Bmto+v5wrr5KBFrEiSM1u2YkygYx4mn4zX4l0dGpp2GveC7csPvmMrKUZf+QxwgxUh0fboM/Bmb71fb5UGtZJu4Xs6ziGuqkDyyb2DcO4Zrfrj6AH6Mm6yzZLewjYap0QmNAUJzV8zid3LYSUmgw4/8lb+YHjf3Kq6APQF+ce1vFBNYN/0I9pKPc0fpUPpjg2XJrys=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(1800799015)(376005); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?HqfPl2ctFIZa1NONgDb5fKYG/upRNKkXHtdc/O/4aKxao1L103mkVNG52Ko4?=
- =?us-ascii?Q?XRIHRhZdf5JXfcPSz/HNddbGpqhJiFpywcDYWRY8vr6umxJ3IznQzzE528us?=
- =?us-ascii?Q?ZRqYQ9oPl/w3wvdpcFuXzz7mTJQxzrCE4VVSkdgYWP/K79vFyA/fJmeNUYWp?=
- =?us-ascii?Q?pW6oXHB2UTpGFhJVHrUKEYXpmDOov8DgiUkh2lMaxdH1kJtQ9w9z7YBJUpfc?=
- =?us-ascii?Q?XcmY/B/lLGSi4YX4G0wukQ4Pdq/IQCsRou3VjPXDcISOVh3Fsw0VjCJhlYIK?=
- =?us-ascii?Q?QkmdUch8EJIU/d/xAoaAH9+tJPeAFJLwKs1AlC5LYK8ZborbTNHrQItPapcx?=
- =?us-ascii?Q?HeKxvQOxWjPLA6KNykycFho+B2tgJibycCNBejG9iECLe8jDbiYD1cT5WhoZ?=
- =?us-ascii?Q?aVpWd1RubgJW2R7CiBhG219qoabLNyJo8urOp/G8tsFv7YsE/qbB9Rq3Bafk?=
- =?us-ascii?Q?6SUmYX86igzbDxgkkQNxBaFQRfkXH39jevrJfdryGSGL8M/ymsdy0KfsxSu3?=
- =?us-ascii?Q?PNV9gZA1wU0S4miuDPSZXRvxkNo6WVYPxm/vpO8vI+mYOQwCqcKxTH8uhF/0?=
- =?us-ascii?Q?KC0EKXgci5iDSPIJu2BUU18TjNLcnVx/POKwaoNONBCxgOTKzbcRubLXk6fU?=
- =?us-ascii?Q?c2dmRavdnGhlUlNxXwe95mTga/jRoKEalLeayCqaEabXmfuQJUM+RDC00/8C?=
- =?us-ascii?Q?ES5eTxmUkh4dHl7UL/uWVkL5acjGH8Zipu2t9Eg3iuMQGo0sk1fYNPHdHfT/?=
- =?us-ascii?Q?m1z7av9+j1Le9IdHA56+V3MlDUC3MpgvclO/80dF4tIOrkLRC06ni2OuBwz8?=
- =?us-ascii?Q?wP8miWEdyLk+HaPe32TEzgH28Cl1/NbPNRXG8Ea3DY3cUrpHS1pbJg7o6Lwc?=
- =?us-ascii?Q?OaF2UNFzlF4IVTL5sAwCe4MmzpCItlA8yNtH9+Losu8mR9kosoOas+XCzd6U?=
- =?us-ascii?Q?fJWTDo8S8AVUkJkFrxQNCFzDT98bd1z3fbtNrPogEjXzljy65VBiAvuEmWDc?=
- =?us-ascii?Q?6O1k5dn/EUaa/bmDYsyumfyXc8EBV0TiXQFWj489UHpiXqzhYrQ9QOB80jWx?=
- =?us-ascii?Q?Z3c1rqOe/DZwZ6k9h+/EnZ6JiBqx5Cc7JaHvx6gCppSuCtOoXk7ea7qXt0Le?=
- =?us-ascii?Q?DtalVVlTf5o+rspm3kLxnheeFq6P/wXoDg03OCmib5HlZh8Gqs2S/899X1zR?=
- =?us-ascii?Q?fY8yvJJDdpaHLaQCW3OEeXbigOlpWUmFX5Pb+ZGDmhFcuX73dlrKB/uw7EW2?=
- =?us-ascii?Q?h/3+fUrBqsW8O3tC2VQttRYLDxNsSuxaqpWMw3Wx/+fExJ6U7T5nkYkl7qO/?=
- =?us-ascii?Q?+ilDvZnr3SE1vKDJ6DIaFjckZ9mrUCizkl00E9ztum6X4jygwc99tws7bSPe?=
- =?us-ascii?Q?1E+ST1VCwdZAVRtYs8dceE92Z59d2+c2OzPF9scGdNJTUU1Qwf725dqtFhAs?=
- =?us-ascii?Q?g8X8s46yE1VLDe0wfgnRaw1SQ4io+HxHvc0iNH4WggnxwWIMcbkd8xHQ8RbS?=
- =?us-ascii?Q?xiaiddCTty8+GpTywz+8cOjW+6yV1vZihHWJMU3q7Nk+Zxghr1IDAs6YVsI2?=
- =?us-ascii?Q?WrY+7HAjURU78pOYo6rMwOL0nCoQ6qIKXZA7EjEHhmvpVEnJLhj1gzUVZ7a3?=
- =?us-ascii?Q?zA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5d9fab8a-aeb7-4709-cba9-08dc42046f00
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?P9WFHmo6m8QnBGXpiS8b9Du60gSQsvwr52tIDq5ylVsWo15bywXrK7EBV1?=
+ =?iso-8859-1?Q?WofLwQidT9em8Co9L9rnBkgEyW1EQGvZKf+X+J6BzRerUy/s16jUetbdvG?=
+ =?iso-8859-1?Q?lppST2S/KClA+lJVF/hwTIr2zLZ+tDVhNW0oXbXO5w+6BzyGBC6QHpRsIl?=
+ =?iso-8859-1?Q?ys+rVvluXcM4Hla/1CRaQJi+66gxazY18Rd9CEq+zMkJaRbkBf6lu5kaNh?=
+ =?iso-8859-1?Q?j6gLkCHO48UKlLevteXIjbpRH54l66GPmhLFhn070mMMqMtoAHsdI5AG6y?=
+ =?iso-8859-1?Q?GOOYXK2QDzCIzhiZHbauuPX8C1DVoIvOzh+LR+gkYrkYZdqziJiDLD6/St?=
+ =?iso-8859-1?Q?34QB1iX6LKoG5jLQuRvOH+xl1ECeuCEZbKRQToxO3PncjZ5MztE9wra+Le?=
+ =?iso-8859-1?Q?/gXTpYMljbwXg3MFZtGt1T8Cfz7YiV8dHmc1i4CC+ihF/mQzryWaZMYji0?=
+ =?iso-8859-1?Q?2eTd6dJlrjyE2X9ymCJWR/ydAP8A+iLM5edPwbMi8IDzafPSVMBiHIccJc?=
+ =?iso-8859-1?Q?1WlL+vbj0unj8F6iuApnSsd7/ZdkxDBEBSixG1eTcDwXL+2NNGeCxqw+d6?=
+ =?iso-8859-1?Q?Q9Ht+z7x6heOu4mrZfdOiKF3yNkjST5fnrg5sVXfgoSgRB5h7cSNa7M95C?=
+ =?iso-8859-1?Q?yu8rXp4y4SGSxE1a/vhAXcixSj56HGsKvl4jdZAvYfnKQk4jxV9TLIoJ2d?=
+ =?iso-8859-1?Q?2bWOpSUECuVJ0RJ9Hh5TEazY8ffbmDwR3k+gOgGiAr8jVZAv5kxqhuScMw?=
+ =?iso-8859-1?Q?1cAdfG/2D/JCZT2yBjFbqPHkrlh485kkW8kN//glN2rCHXELpSXVkWlMji?=
+ =?iso-8859-1?Q?RE+HuX/vtkot6MnTz4Eug+jpbP/UiSLpANaD94mdOFDBkxS6r3AmFSdxIv?=
+ =?iso-8859-1?Q?RsPKoinlJb2AZ1fyj4RptdSXz+g6NQjsJFvFruxOkwvuVstlRp1q2hYAvw?=
+ =?iso-8859-1?Q?4cql7kku5v2d6po9FKmh74fw7ghKH0wZOM2PahifTx3VCBkM237N6fJADx?=
+ =?iso-8859-1?Q?8kPTQaikJ/MqCM0D80bk5zW/IlzRH9C9+kXWrP2uVSTfmzyULq/sRiLkhC?=
+ =?iso-8859-1?Q?2zgQq+wdbfQAX3vRL8WHthe07vp49Ahzg85K8suekczWGuU8ryMk31eVNv?=
+ =?iso-8859-1?Q?ReAkAF0e0SDaBrXh9mIU9vXBmA9+5wHiw5ETUvXJqqWL04IqOSy6KykkQX?=
+ =?iso-8859-1?Q?LrmwPk0WY/YDNULpdU22AkcRstYMgcwkA+TG3mOdKXxsAj5v6KEuTHtYuO?=
+ =?iso-8859-1?Q?E1vpjMQKwC9w0eCpTXnqPqxh4OVbVUcIzqySlk701M48QeQ2SZPeKJqKRk?=
+ =?iso-8859-1?Q?Lhb0hPxGE6/0mpjUZNCzBB8JDY1A6li+IJnx32gbmeM8ffBY+TD4dickF6?=
+ =?iso-8859-1?Q?K901fsEvukMThIlbYy5Hk1UhZ0CJ1xDH5MjFCOYKyYLDaCs8BawpYV53YW?=
+ =?iso-8859-1?Q?02JAjzXOr2aC+FaKGBFgLnuGTbDPqt4jUXA0heSuwpoKwq+sE9rAewZG0u?=
+ =?iso-8859-1?Q?cNOdsSqMmTktVy12+9zu+Ci6RoJdGcLXz/HOIiQP2FkeEto7tdby1D9TFb?=
+ =?iso-8859-1?Q?5ah5ns4l//7TBGO3s4sjRAVeg8i6iO2we2yb6zwoZxR1tKljlkar5fVkSo?=
+ =?iso-8859-1?Q?6NrNQ2Gwb+VopvOzGgyf5pmGSAcWAWOCwmoSsPmsNb+3lcRxZay3VnyA?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 590158f3-7a01-4faf-dc91-08dc42079de1
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2024 19:49:59.0900 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2024 20:12:46.2262 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UfnJTtW27j2BfHr2fy5tP3LgymJ803y7ihLJkdy2fu6EUnas1c1ZsVa0Ahr9EWmW181i7zZoyrNydgfKs1uoUQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4576
+X-MS-Exchange-CrossTenant-UserPrincipalName: RLWNBAvSzcwqZKM/WhNB0SHWtsOl8IZ2zsiW7Fd7lO7MQK+p+wpEl/m3zn102k9wNxvnA9pRk1dUmDOP6oJx9Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7303
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -150,301 +151,199 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sun, Mar 10, 2024 at 11:44:00AM -0600, Zeng, Oak wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Matthew
-> > Brost
-> > Sent: Friday, March 8, 2024 12:08 AM
-> > To: intel-xe@lists.freedesktop.org
-> > Cc: Brost, Matthew <matthew.brost@intel.com>
-> > Subject: [PATCH v4 01/30] drm/xe: Lock all gpuva ops during VM bind IOCTL
+On Mon, Mar 11, 2024 at 08:47:50PM +0100, Thomas Hellström wrote:
+> On Mon, 2024-03-11 at 12:20 -0700, Matthew Brost wrote:
+> > Rather than return an error to the user or ban the VM when userptr
+> > VMA
+> > page pin fails with -EFAULT, invalidate VMA mappings. This supports
+> > the
+> > UMD use case of freeing userptr while still having bindings.
 > > 
-> > Lock all gpuva ops
-> 
-> Can we have a better wording? Better to say locking all Bos used in gpuva ops? 
-> 
-> Or maybe lock ops by locking and validating all Bos used in ops.
-> 
->  and validate all BOs in a single step durin the VM
-
-
-Lock all BOs used in gpuva ops and validate all BOs in a single step
-during the VM bind IOCTL?
-
-> > bind IOCTL. This help with the transition to making all gpuva ops in a
-> > VM bind IOCTL a single atomic job.
-> 
-> Can you also explain, why you want bind to be a atomic job? 
-> 
-> My guess is, bind ioctl can end up with a series of operations, if some (not all) of those operations fail in the middle, it is hard to revert the successful operations before failure. 
-
-Yes, exactly. It is ensure if we fail at some point in the bind IOCTL
-(e.g. memory allocation failure) we can unwind to the initial state.
-Also another benefit is we get 1 fence per IOCTL which is installed
-dma-resv slots and returned to the user via out-syncs. Lastly, it
-logically makes sense that 1 IOCTL translates to 1 job.
-
-The cover letter at some point explained this. I add something in the
-next rev.
-
+> > Now that non-faulting VMs can invalidate VMAs, drop the usm prefix
+> > for
+> > the tile_invalidated member.
+> > 
+> > v2:
+> >  - Fix build error (CI)
+> > v3:
+> >  - Don't invalidate VMA if in fault mode, rather kill VM (Thomas)
+> >  - Update commit message with tile_invalidated name chagne (Thomas)
+> >  - Wait VM bookkeep slots with VM resv lock (Thomas)
 > > 
 > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > > ---
-> >  drivers/gpu/drm/xe/xe_vm.c | 142 ++++++++++++++++++++++++++-----------
-> >  1 file changed, 101 insertions(+), 41 deletions(-)
+> >  drivers/gpu/drm/xe/xe_gt_pagefault.c |  4 ++--
+> >  drivers/gpu/drm/xe/xe_trace.h        |  2 +-
+> >  drivers/gpu/drm/xe/xe_vm.c           | 29 ++++++++++++++++++++------
+> > --
+> >  drivers/gpu/drm/xe/xe_vm_types.h     |  7 ++-----
+> >  4 files changed, 26 insertions(+), 16 deletions(-)
 > > 
+> > diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> > b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> > index 73c535193a98..241c294270d9 100644
+> > --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> > +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> > @@ -69,7 +69,7 @@ static bool access_is_atomic(enum access_type
+> > access_type)
+> >  static bool vma_is_valid(struct xe_tile *tile, struct xe_vma *vma)
+> >  {
+> >  	return BIT(tile->id) & vma->tile_present &&
+> > -		!(BIT(tile->id) & vma->usm.tile_invalidated);
+> > +		!(BIT(tile->id) & vma->tile_invalidated);
+> >  }
+> >  
+> >  static bool vma_matches(struct xe_vma *vma, u64 page_addr)
+> > @@ -226,7 +226,7 @@ static int handle_pagefault(struct xe_gt *gt,
+> > struct pagefault *pf)
+> >  
+> >  	if (xe_vma_is_userptr(vma))
+> >  		ret =
+> > xe_vma_userptr_check_repin(to_userptr_vma(vma));
+> > -	vma->usm.tile_invalidated &= ~BIT(tile->id);
+> > +	vma->tile_invalidated &= ~BIT(tile->id);
+> >  
+> >  unlock_dma_resv:
+> >  	drm_exec_fini(&exec);
+> > diff --git a/drivers/gpu/drm/xe/xe_trace.h
+> > b/drivers/gpu/drm/xe/xe_trace.h
+> > index 4ddc55527f9a..846f14507d5f 100644
+> > --- a/drivers/gpu/drm/xe/xe_trace.h
+> > +++ b/drivers/gpu/drm/xe/xe_trace.h
+> > @@ -468,7 +468,7 @@ DEFINE_EVENT(xe_vma, xe_vma_userptr_invalidate,
+> >  	     TP_ARGS(vma)
+> >  );
+> >  
+> > -DEFINE_EVENT(xe_vma, xe_vma_usm_invalidate,
+> > +DEFINE_EVENT(xe_vma, xe_vma_invalidate,
+> >  	     TP_PROTO(struct xe_vma *vma),
+> >  	     TP_ARGS(vma)
+> >  );
 > > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> > index 643b3701a738..3b5dc6de07f7 100644
+> > index 643b3701a738..19323b411cb2 100644
 > > --- a/drivers/gpu/drm/xe/xe_vm.c
 > > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > @@ -413,19 +413,23 @@ int __xe_vm_userptr_needs_repin(struct xe_vm *vm)
-> > 
-> >  #define XE_VM_REBIND_RETRY_TIMEOUT_MS 1000
-> > 
-> > -static void xe_vm_kill(struct xe_vm *vm)
-> > +static void xe_vm_kill(struct xe_vm *vm, bool unlocked)
-> >  {
-> >  	struct xe_exec_queue *q;
-> > 
-> >  	lockdep_assert_held(&vm->lock);
-> > 
-> > -	xe_vm_lock(vm, false);
-> > +	if (unlocked)
-> > +		xe_vm_lock(vm, false);
-> > +
-> 
-> Can you explain why we need xe_vm_lock in the first place here? 
-> 
-> My understanding is, xe_vm_lock protect gpu page table update. Below kill function eventually calls into guc_exec_queue_kill where I don't see any page table operation there. So I doubt whether we need the lock in the first place.
-> 
-
-I think it it protect vm->preempt.exec_queues list but that could
-probably be reworked. For this series I'd rather leave the locking as is
-and then in follow up rework the locking a bit and fully document it.
-
-> >  	vm->flags |= XE_VM_FLAG_BANNED;
-> >  	trace_xe_vm_kill(vm);
-> > 
-> >  	list_for_each_entry(q, &vm->preempt.exec_queues, compute.link)
-> >  		q->ops->kill(q);
-> > -	xe_vm_unlock(vm);
-> > +
-> > +	if (unlocked)
-> > +		xe_vm_unlock(vm);
-> > 
-> >  	/* TODO: Inform user the VM is banned */
-> >  }
-> > @@ -621,7 +625,7 @@ static void preempt_rebind_work_func(struct work_struct
-> > *w)
-> > 
-> >  	if (err) {
-> >  		drm_warn(&vm->xe->drm, "VM worker error: %d\n", err);
-> > -		xe_vm_kill(vm);
-> > +		xe_vm_kill(vm, true);
-> >  	}
-> >  	up_write(&vm->lock);
-> > 
-> > @@ -1831,17 +1835,9 @@ static int xe_vm_bind(struct xe_vm *vm, struct xe_vma
-> > *vma, struct xe_exec_queue
-> >  		      u32 num_syncs, bool immediate, bool first_op,
-> >  		      bool last_op)
-> >  {
-> > -	int err;
-> > -
-> >  	xe_vm_assert_held(vm);
-> >  	xe_bo_assert_held(bo);
-> > 
-> > -	if (bo && immediate) {
-> > -		err = xe_bo_validate(bo, vm, true);
-> > -		if (err)
+> > @@ -724,11 +724,25 @@ int xe_vm_userptr_pin(struct xe_vm *vm)
+> >  	list_for_each_entry_safe(uvma, next, &vm-
+> > >userptr.repin_list,
+> >  				 userptr.repin_link) {
+> >  		err = xe_vma_userptr_pin_pages(uvma);
+> > -		if (err < 0)
 > > -			return err;
-> > -	}
 > > -
-> >  	return __xe_vm_bind(vm, vma, q, syncs, num_syncs, immediate, first_op,
-> >  			    last_op);
-> >  }
-> > @@ -2488,17 +2484,12 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm,
-> > struct xe_exec_queue *q,
-> >  	return 0;
-> >  }
-> > 
-> > -static int op_execute(struct drm_exec *exec, struct xe_vm *vm,
-> > -		      struct xe_vma *vma, struct xe_vma_op *op)
-> > +static int op_execute(struct xe_vm *vm, struct xe_vma *vma,
-> > +		      struct xe_vma_op *op)
-> >  {
-> >  	int err;
-> > 
-> >  	lockdep_assert_held_write(&vm->lock);
-> > -
-> > -	err = xe_vm_prepare_vma(exec, vma, 1);
-> > -	if (err)
-> > -		return err;
-> > -
-> >  	xe_vm_assert_held(vm);
-> >  	xe_bo_assert_held(xe_vma_bo(vma));
-> > 
-> > @@ -2579,19 +2570,10 @@ static int op_execute(struct drm_exec *exec, struct
-> > xe_vm *vm,
-> >  static int __xe_vma_op_execute(struct xe_vm *vm, struct xe_vma *vma,
-> >  			       struct xe_vma_op *op)
-> >  {
-> > -	struct drm_exec exec;
-> >  	int err;
-> > 
-> >  retry_userptr:
-> > -	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT, 0);
-> > -	drm_exec_until_all_locked(&exec) {
-> > -		err = op_execute(&exec, vm, vma, op);
-> > -		drm_exec_retry_on_contention(&exec);
-> > -		if (err)
-> > -			break;
-> > -	}
-> > -	drm_exec_fini(&exec);
-> > -
-> > +	err = op_execute(vm, vma, op);
-> >  	if (err == -EAGAIN) {
-> >  		lockdep_assert_held_write(&vm->lock);
-> > 
-> > @@ -2756,29 +2738,107 @@ static void vm_bind_ioctl_ops_unwind(struct xe_vm
-> > *vm,
-> >  	}
-> >  }
-> > 
-> > +static int vma_lock(struct drm_exec *exec, struct xe_vma *vma, bool validate)
-> > +{
-> > +	struct xe_bo *bo = xe_vma_bo(vma);
-> > +	int err = 0;
+> >  		list_del_init(&uvma->userptr.repin_link);
+> > -		list_move_tail(&uvma->vma.combined_links.rebind,
+> > &vm->rebind_list);
+> > +		if (err == -EFAULT && !xe_vm_in_fault_mode(vm)) {
+
+Just remembered this now. This function is not called in fault mode
+either. It is called by the exec IOCTL (dma-fence mode) or preempt
+rebind worker.
+
+I'll delete this part and add an assert at the top of the function.
+
+> > +			/* Wait for pending binds */
+> > +			xe_vm_lock(vm, false);
+> > +			dma_resv_wait_timeout(xe_vm_resv(vm),
+> > +					     
+> > DMA_RESV_USAGE_BOOKKEEP,
+> > +					      false,
+> > MAX_SCHEDULE_TIMEOUT);
 > > +
-> > +	if (bo) {
-> > +		if (!bo->vm)
-> > +			err = drm_exec_prepare_obj(exec, &bo->ttm.base, 1);
-> > +		if (!err && validate)
-> > +			err = xe_bo_validate(bo, xe_vma_vm(vma), true);
-> > +	}
-> > +
-> > +	return err;
-> > +}
-> > +
-> > +static int op_lock(struct drm_exec *exec, struct xe_vm *vm,
-> > +		   struct xe_vma_op *op)
-> > +{
-> > +	int err = 0;
-> > +
-> > +	switch (op->base.op) {
-> > +	case DRM_GPUVA_OP_MAP:
-> > +		err = vma_lock(exec, op->map.vma, !xe_vm_in_fault_mode(vm));
-> > +		break;
-> > +	case DRM_GPUVA_OP_REMAP:
-> > +		err = vma_lock(exec, gpuva_to_vma(op->base.remap.unmap->va),
-> > +			       false);
-> > +		if (!err && op->remap.prev)
-> > +			err = vma_lock(exec, op->remap.prev, true);
-> > +		if (!err && op->remap.next)
-> > +			err = vma_lock(exec, op->remap.next, true);
-> > +		break;
-> > +	case DRM_GPUVA_OP_UNMAP:
-> > +		err = vma_lock(exec, gpuva_to_vma(op->base.unmap.va), false);
-> > +		break;
-> > +	case DRM_GPUVA_OP_PREFETCH:
-> > +		err = vma_lock(exec, gpuva_to_vma(op->base.prefetch.va), true);
-> > +		break;
-> > +	default:
-> > +		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
-> > +	}
-> > +
-> > +	return err;
-> > +}
-> > +
-> > +static int vm_bind_ioctl_ops_lock(struct drm_exec *exec,
-> > +				  struct xe_vm *vm,
-> > +				  struct list_head *ops_list)
-> > +{
-> > +	struct xe_vma_op *op;
-> > +	int err;
-> > +
-> > +	err = drm_exec_prepare_obj(exec, xe_vm_obj(vm), 1);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	list_for_each_entry(op, ops_list, link) {
-> > +		err = op_lock(exec, vm, op);
-> > +		if (err)
-> > +			return err;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
-> >  				     struct list_head *ops_list)
-> >  {
-> > +	struct drm_exec exec;
-> >  	struct xe_vma_op *op, *next;
-> >  	int err;
-> > 
-> >  	lockdep_assert_held_write(&vm->lock);
-> > 
-> > -	list_for_each_entry_safe(op, next, ops_list, link) {
-> > -		err = xe_vma_op_execute(vm, op);
-> > -		if (err) {
-> > -			drm_warn(&vm->xe->drm, "VM op(%d) failed with %d",
-> > -				 op->base.op, err);
-> > -			/*
-> > -			 * FIXME: Killing VM rather than proper error handling
-> > -			 */
-> > -			xe_vm_kill(vm);
-> > -			return -ENOSPC;
-> > +	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT |
-> > +		      DRM_EXEC_IGNORE_DUPLICATES, 0);
-> > +	drm_exec_until_all_locked(&exec) {
-> > +		err = vm_bind_ioctl_ops_lock(&exec, vm, ops_list);
-> > +		drm_exec_retry_on_contention(&exec);
-> > +		if (err)
-> > +			goto unlock;
-> > +
+> > +			err = xe_vm_invalidate_vma(&uvma->vma);
 > 
-> Do you need below ops inside the drm_exec_until_all_locked loop? After you locked all objects, you can close the drm_exec_until_all_locked loop, then perform below out of drm_exec_until_all_locked loop. 
+> This can still race with yet another notifier, I think.
 > 
 
-Yes, xe_vma_op_execute can GPU allocate memory. GPU memory allocations
-can trigger evictions which try to grab more locks. Once the
-drm_exec_until_all_locked loop is broken we are not allowed try grab
-more locks. Also eventually on memory allocations I think we will pass
-in drm_exec state so the looking can hook into that.
+Wouldn't another invalidate just add it back to the
+&vm->userptr.invalidated list and trigger xe_vm_userptr_pin again? That
+seems to be fine to me.
 
+The lockdep in xe_vm_invalidate_vma would be unhappy though (I think)?
+Maybe we call a version of xe_vm_invalidate_vma here where the lockdep
+checks are skipped?
+
+> > +			xe_vm_unlock(vm);
+> > +			if (err)
+> > +				return err;
+> > +		} else {
+> > +			if (err < 0)
+> 
+> And here we should've kept the userptr on the repin list.
+> 
+
+Yes this is a change in behavior but this change is fine as I think we
+try to kill the VM at this point, right? I can change it back if you
+feel strongly.
+ 
 Matt
 
-> Oak 
 > 
-> > +		list_for_each_entry_safe(op, next, ops_list, link) {
-> > +			err = xe_vma_op_execute(vm, op);
-> > +			if (err) {
-> > +				drm_warn(&vm->xe->drm, "VM op(%d) failed
-> > with %d",
-> > +					 op->base.op, err);
-> > +				/*
-> > +				 * FIXME: Killing VM rather than proper error
-> > handling
-> > +				 */
-> > +				xe_vm_kill(vm, false);
-> > +				err = -ENOSPC;
-> > +				goto unlock;
-> > +			}
-> > +			xe_vma_op_cleanup(vm, op);
-> >  		}
-> > -		xe_vma_op_cleanup(vm, op);
-> >  	}
-> > 
-> > -	return 0;
-> > +unlock:
-> > +	drm_exec_fini(&exec);
-> > +	return err;
-> >  }
-> > 
-> >  #define SUPPORTED_FLAGS	(DRM_XE_VM_BIND_FLAG_NULL | \
-> > --
-> > 2.34.1
+> /Thomas
+> 
+> 
+> > +				return err;
+> > +
+> 
+> 
+> > +			list_move_tail(&uvma-
+> > >vma.combined_links.rebind,
+> > +				       &vm->rebind_list);
+> > +		}
+> >  	}
+> >  
+> >  	return 0;
+> > @@ -2024,7 +2038,7 @@ static int xe_vm_prefetch(struct xe_vm *vm,
+> > struct xe_vma *vma,
+> >  			return err;
+> >  	}
+> >  
+> > -	if (vma->tile_mask != (vma->tile_present & ~vma-
+> > >usm.tile_invalidated)) {
+> > +	if (vma->tile_mask != (vma->tile_present & ~vma-
+> > >tile_invalidated)) {
+> >  		return xe_vm_bind(vm, vma, q, xe_vma_bo(vma), syncs,
+> > num_syncs,
+> >  				  true, first_op, last_op);
+> >  	} else {
+> > @@ -3214,9 +3228,8 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
+> >  	u8 id;
+> >  	int ret;
+> >  
+> > -	xe_assert(xe, xe_vm_in_fault_mode(xe_vma_vm(vma)));
+> >  	xe_assert(xe, !xe_vma_is_null(vma));
+> > -	trace_xe_vma_usm_invalidate(vma);
+> > +	trace_xe_vma_invalidate(vma);
+> >  
+> >  	/* Check that we don't race with page-table updates */
+> >  	if (IS_ENABLED(CONFIG_PROVE_LOCKING)) {
+> > @@ -3254,7 +3267,7 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
+> >  		}
+> >  	}
+> >  
+> > -	vma->usm.tile_invalidated = vma->tile_mask;
+> > +	vma->tile_invalidated = vma->tile_mask;
+> >  
+> >  	return 0;
+> >  }
+> > diff --git a/drivers/gpu/drm/xe/xe_vm_types.h
+> > b/drivers/gpu/drm/xe/xe_vm_types.h
+> > index 79b5cab57711..ae5fb565f6bf 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> > @@ -84,11 +84,8 @@ struct xe_vma {
+> >  		struct work_struct destroy_work;
+> >  	};
+> >  
+> > -	/** @usm: unified shared memory state */
+> > -	struct {
+> > -		/** @tile_invalidated: VMA has been invalidated */
+> > -		u8 tile_invalidated;
+> > -	} usm;
+> > +	/** @tile_invalidated: VMA has been invalidated */
+> > +	u8 tile_invalidated;
+> >  
+> >  	/** @tile_mask: Tile mask of where to create binding for
+> > this VMA */
+> >  	u8 tile_mask;
 > 
