@@ -4,59 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0097C54E58
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Mar 2024 13:13:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F683C5475B
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Mar 2024 13:29:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFD2F10ECCB;
-	Mon, 11 Mar 2024 13:13:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAB2011264E;
+	Mon, 11 Mar 2024 13:29:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R26NrJKA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g/ShFQvf";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A2E510ECCB
- for <intel-xe@lists.freedesktop.org>; Mon, 11 Mar 2024 13:13:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D759511264E
+ for <intel-xe@lists.freedesktop.org>; Mon, 11 Mar 2024 13:29:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710162820; x=1741698820;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=PbjuQcaJXvwDFeU/RR+LpX7RO04hKaTEYsAO6C8N5iU=;
- b=R26NrJKAAng7/b062SwLXb9jRvV+rK4bc1vv5jBtq4Z+PvG9e5fk5isI
- Q2EQcvr5GncjlsWFAN3Uib4o6gmgCW1QUCw9/Y5lOPTOYZuoWjlY3bHF9
- z0iYvLZmXc/i8vY8rAKLVvLaWA8gqavpC9WU4oKGH0zSvtjqW81ivDjPp
- R+M5wg7A/2SB9OkaVJ4W/93sNnGbmEWpVggrUShL1ZT0sNVo3T6hJ/3uO
- rfBHrJ7x+hCaronslcB2Rz34p9b96VM8fxyIJ4B2jPlPnbpGOjNFYl3lo
- oytdM4gxBdu2PP6YW5YLSqFCJwQqv9/p9LN+/6iaBo25oJn6Vq9qDpIpo Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11009"; a="15552718"
-X-IronPort-AV: E=Sophos;i="6.07,116,1708416000"; d="scan'208";a="15552718"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2024 06:13:40 -0700
+ t=1710163770; x=1741699770;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=TreiVF2hUpiBDcGVgCZuAWn0xc5k//QAbMc2I2Kv9rY=;
+ b=g/ShFQvfN8Z7P3JSH+R5/pGnPV7GMCX/y2eXspAZ94snAb6EKdnbZlt6
+ y+/tbAV4TKJXaOZjz+S3R1IJqnAW6xQsyoLHNwb0HBiFUIs/9OattF/o8
+ f//aWxi94pDquICILDi188DLcvhcN00BnVqYuQnLY8kMJlw2RoFTIVLM2
+ gFmAY/kMx0LMpNk5/ZebXd9QaOpws6W9E93ubnKQ+2yB+5l1524+zOamu
+ 3WkhNgFycQVb1pUAVVG1DqxF0HMWKUeL/9npfJ2uo9dJixhqSgV6ee+E/
+ iPeUv6BgbycjcTjLNMbIimz/SA+hsutvmX3wBTRG4FI501B2HkwtzUpdH A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11009"; a="8639674"
+X-IronPort-AV: E=Sophos;i="6.07,116,1708416000"; 
+   d="scan'208";a="8639674"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2024 06:29:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,116,1708416000"; d="scan'208";a="11737500"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa008.jf.intel.com with ESMTP; 11 Mar 2024 06:13:37 -0700
-Received: from [10.249.155.53] (unknown [10.249.155.53])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id BB5D534925;
- Mon, 11 Mar 2024 13:13:32 +0000 (GMT)
-Message-ID: <cdaaae9e-ce38-410c-97dd-b522c645bbca@intel.com>
-Date: Mon, 11 Mar 2024 14:13:31 +0100
+X-IronPort-AV: E=Sophos;i="6.07,116,1708416000"; d="scan'208";a="15660497"
+Received: from binis42x-mobl.gar.corp.intel.com (HELO [10.249.254.59])
+ ([10.249.254.59])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2024 06:29:28 -0700
+Message-ID: <de53c4465285bb4cc25ad4ebd23a950ce1dd12eb.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/xe: Invalidate userptr VMA on page pin fault
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+Cc: fei.yang@intel.com, rodrigo.vivi@intel.com
+Date: Mon, 11 Mar 2024 14:29:26 +0100
+In-Reply-To: <8203b1a23e65a876d02a5929a8e489eb9ad387de.camel@linux.intel.com>
+References: <20240308213747.597649-1-matthew.brost@intel.com>
+ <8203b1a23e65a876d02a5929a8e489eb9ad387de.camel@linux.intel.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] drm/xe/vf: Remove lmtt->ops null check in
- xe_lmtt_estimate_pt_size
-Content-Language: en-US
-To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-References: <20240308043651.2010165-1-himal.prasad.ghimiray@intel.com>
- <20240308043651.2010165-3-himal.prasad.ghimiray@intel.com>
- <ZesmInDmDsLY1uPh@intel.com> <ad13f0ba-4dbb-4f37-8a1d-879b2cb111cd@intel.com>
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <ad13f0ba-4dbb-4f37-8a1d-879b2cb111cd@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,100 +69,165 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Mon, 2024-03-11 at 11:55 +0100, Thomas Hellstr=C3=B6m wrote:
+> Hi, Matthew
+>=20
+> On Fri, 2024-03-08 at 13:37 -0800, Matthew Brost wrote:
+> > Rather than return an error to the user or ban the VM when userptr
+> > VMA
+> > page pin fails with -EFAULT, invalidate VMA mappings. This supports
+> > the
+> > UMD use case of freeing userptr while still having bindings.
+> >=20
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> > =C2=A0drivers/gpu/drm/xe/xe_gt_pagefault.c |=C2=A0 4 ++--
+> > =C2=A0drivers/gpu/drm/xe/xe_trace.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0 2 +-
+> > =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 | 20 +++++++++++++-------
+> > =C2=A0drivers/gpu/drm/xe/xe_vm_types.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 =
+7 ++-----
+> > =C2=A04 files changed, 18 insertions(+), 15 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> > b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> > index 73c535193a98..241c294270d9 100644
+> > --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> > +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> > @@ -69,7 +69,7 @@ static bool access_is_atomic(enum access_type
+> > access_type)
+> > =C2=A0static bool vma_is_valid(struct xe_tile *tile, struct xe_vma *vma=
+)
+> > =C2=A0{
+> > =C2=A0	return BIT(tile->id) & vma->tile_present &&
+> > -		!(BIT(tile->id) & vma->usm.tile_invalidated);
+> > +		!(BIT(tile->id) & vma->tile_invalidated);
+> > =C2=A0}
+> > =C2=A0
+> > =C2=A0static bool vma_matches(struct xe_vma *vma, u64 page_addr)
+> > @@ -226,7 +226,7 @@ static int handle_pagefault(struct xe_gt *gt,
+> > struct pagefault *pf)
+> > =C2=A0
+> > =C2=A0	if (xe_vma_is_userptr(vma))
+> > =C2=A0		ret =3D
+> > xe_vma_userptr_check_repin(to_userptr_vma(vma));
+> > -	vma->usm.tile_invalidated &=3D ~BIT(tile->id);
+> > +	vma->tile_invalidated &=3D ~BIT(tile->id);
+> > =C2=A0
+> > =C2=A0unlock_dma_resv:
+> > =C2=A0	drm_exec_fini(&exec);
+> > diff --git a/drivers/gpu/drm/xe/xe_trace.h
+> > b/drivers/gpu/drm/xe/xe_trace.h
+> > index 4ddc55527f9a..846f14507d5f 100644
+> > --- a/drivers/gpu/drm/xe/xe_trace.h
+> > +++ b/drivers/gpu/drm/xe/xe_trace.h
+> > @@ -468,7 +468,7 @@ DEFINE_EVENT(xe_vma, xe_vma_userptr_invalidate,
+> > =C2=A0	=C2=A0=C2=A0=C2=A0=C2=A0 TP_ARGS(vma)
+> > =C2=A0);
+> > =C2=A0
+> > -DEFINE_EVENT(xe_vma, xe_vma_usm_invalidate,
+> > +DEFINE_EVENT(xe_vma, xe_vma_invalidate,
+> > =C2=A0	=C2=A0=C2=A0=C2=A0=C2=A0 TP_PROTO(struct xe_vma *vma),
+> > =C2=A0	=C2=A0=C2=A0=C2=A0=C2=A0 TP_ARGS(vma)
+> > =C2=A0);
+> > diff --git a/drivers/gpu/drm/xe/xe_vm.c
+> > b/drivers/gpu/drm/xe/xe_vm.c
+> > index 643b3701a738..9a19044f7ef6 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm.c
+> > +++ b/drivers/gpu/drm/xe/xe_vm.c
+> > @@ -724,11 +724,18 @@ int xe_vm_userptr_pin(struct xe_vm *vm)
+> > =C2=A0	list_for_each_entry_safe(uvma, next, &vm-
+> > > userptr.repin_list,
+> > =C2=A0				 userptr.repin_link) {
+> > =C2=A0		err =3D xe_vma_userptr_pin_pages(uvma);
+> > -		if (err < 0)
+> > -			return err;
+> > -
+> > =C2=A0		list_del_init(&uvma->userptr.repin_link);
+> > -		list_move_tail(&uvma->vma.combined_links.rebind,
+> > &vm->rebind_list);
+> > +		if (err =3D=3D -EFAULT) {
+> > +			err =3D xe_vm_invalidate_vma(&uvma->vma);
+>=20
+> I think we need to check for FAULT_MODE here. If we hit this path in
+> FAULT_MODE, we already have an invalid gpu access and can kill the
+> VM.
+>=20
+> In preempt-fence mode, we should probably be calling
+> xe_vm_unbind_vma(), because xe_vm_invalidate_vma() isn't safe to call
+> outside of the mmu_notifier, and if there are still BOOKKEEP fences
+> pending- see the asserts in that function.
 
 
-On 08.03.2024 17:22, Ghimiray, Himal Prasad wrote:
-> 
-> On 08-03-2024 20:22, Rodrigo Vivi wrote:
->> On Fri, Mar 08, 2024 at 10:06:50AM +0530, Himal Prasad Ghimiray wrote:
->>> In xe_lmtt_estimate_pt_size: Pointer is checked against null but then
->>> dereferenced anyway.
->> And what's the problem?
->>
->> In the line below it access beyond this pointer, so it is a fair
->> case.
-> 
-> The problem is even if it is NULL it will be  try to derefrence it.
-> Which might lead to segmentation fault.
-> 
->>
->>> Since xe_lmtt_init ensures lmtt->ops is populated
->>> remove the check.
->> With this in mind we could simply remove all the asserts in the code.
+Actually, xe_vm_invalidate_vma() would probably work if we grabbed the
+vm resv and waited for bookkeep fences first, and updated the asserts.=C2=
+=A0
 
-the purpose of this particular xe_assert() in xe_lmtt_estimate_pt_size()
-is to express the SLA for the caller that it shall call the
-xe_lmtt_init() prior to calling this function
+But then xe_vm_unbind_vma() might still be better since we also clean
+up the page-tables.
 
->>
->> I believe that if someone introduced it here it is likely because
->> during some development or refactor this ended up being a problem
->> and want some earlier kind of warning with backtrace information.
+/Thomas
 
-true as this is the goal of all our xe_assert() to have early and clear
-notification about the problem due to code refactor or new development
 
->>
->>> Reported by static analyzer.
->> Perhaps then replace with an
->> if (!lmtt->ops) {
->>      drm_WARN(...);
->>      return;
->> }
+>=20
+> > +			if (err)
+> > +				return err;
+> > +		} else {
+> > +			if (err < 0)
+> > +				return err;
+> > +
+> > +			list_move_tail(&uvma-
+> > > vma.combined_links.rebind,
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &vm->rebind_list);
+> > +		}
+> > =C2=A0	}
+> > =C2=A0
+> > =C2=A0	return 0;
+> > @@ -3214,9 +3221,8 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
+> > =C2=A0	u8 id;
+> > =C2=A0	int ret;
+> > =C2=A0
+> > -	xe_assert(xe, xe_vm_in_fault_mode(xe_vma_vm(vma)));
+> > =C2=A0	xe_assert(xe, !xe_vma_is_null(vma));
+> > -	trace_xe_vma_usm_invalidate(vma);
+> > +	trace_xe_vma_invalidate(vma);
+> > =C2=A0
+> > =C2=A0	/* Check that we don't race with page-table updates */
+> > =C2=A0	if (IS_ENABLED(CONFIG_PROVE_LOCKING)) {
+> > @@ -3254,7 +3260,7 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
+> > =C2=A0		}
+> > =C2=A0	}
+> > =C2=A0
+> > -	vma->usm.tile_invalidated =3D vma->tile_mask;
+> > +	vma->tile_invalidated =3D vma->tile_mask;
+> > =C2=A0
+> > =C2=A0	return 0;
+> > =C2=A0}
+> > diff --git a/drivers/gpu/drm/xe/xe_vm_types.h
+> > b/drivers/gpu/drm/xe/xe_vm_types.h
+> > index 79b5cab57711..ae5fb565f6bf 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> > @@ -84,11 +84,8 @@ struct xe_vma {
+> > =C2=A0		struct work_struct destroy_work;
+> > =C2=A0	};
+> > =C2=A0
+> > -	/** @usm: unified shared memory state */
+> > -	struct {
+> > -		/** @tile_invalidated: VMA has been invalidated */
+> > -		u8 tile_invalidated;
+> > -	} usm;
+> > +	/** @tile_invalidated: VMA has been invalidated */
+> > +	u8 tile_invalidated;
+>=20
+> Add a comment in the commit message about removing the usm struct?
+> /Thomas
+>=20
+>=20
+> > =C2=A0
+> > =C2=A0	/** @tile_mask: Tile mask of where to create binding for
+> > this VMA */
+> > =C2=A0	u8 tile_mask;
+>=20
 
-no, we don't want to have runtime checks in production driver against
-programming errors that should be seen only during early development
-
-> 
-> I am also of the opinion that this is the correct check to have instead
-> of just warning
-
-see also [1] why we use xe_asserts instead of BUG or WARN
-
-[1] https://docs.kernel.org/gpu/xe/xe_debugging.html
-
-> 
-> about lmtt->ops being NULL and continue to dereference it. Need clarity
-> on what should we return in
-> 
-> case of lmtt->ops being NULL since expected return type is u64.
-
-we shouldn't try to hide the problem with fake result as we shall never
-call this function with lmtt->ops being NULL in the first place
-
-> 
->>
->> and/or mark the tool as a false positive?!
-
-I would make another step and just fix the tool to be run against the
-production code, without xe_assert() being enabled, as all our
-xe_asserts() are to some extend "redundant" with the production code,
-and the tool will complain not only against extra/missed NULL checks but
-also against other conditions that will look like 'not-possible' at
-given code snapshot, but the purpose of xe_asserts is to protect
-ourselves against future code updates/changes that current code might
-not be prepared to or it has different assumptions.
-
-Michal
-
->>
->>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
->>> ---
->>>   drivers/gpu/drm/xe/xe_lmtt.c | 1 -
->>>   1 file changed, 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_lmtt.c b/drivers/gpu/drm/xe/xe_lmtt.c
->>> index 0d7c5514e092..d6d75414bb99 100644
->>> --- a/drivers/gpu/drm/xe/xe_lmtt.c
->>> +++ b/drivers/gpu/drm/xe/xe_lmtt.c
->>> @@ -487,7 +487,6 @@ u64 xe_lmtt_estimate_pt_size(struct xe_lmtt
->>> *lmtt, u64 size)
->>>         lmtt_assert(lmtt, IS_SRIOV_PF(lmtt_to_xe(lmtt)));
->>>       lmtt_assert(lmtt, IS_DGFX(lmtt_to_xe(lmtt)));
->>> -    lmtt_assert(lmtt, lmtt->ops);
->>>         pt_size = PAGE_ALIGN(lmtt->ops->lmtt_pte_size(level) *
->>>                    lmtt->ops->lmtt_pte_num(level));
->>> -- 
->>> 2.25.1
->>>
