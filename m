@@ -4,153 +4,140 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51ED1C5475B
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Mar 2024 05:23:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39275C5475B
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Mar 2024 05:25:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8B4110E0EA;
-	Mon, 11 Mar 2024 05:23:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7E4B10E0F0;
+	Mon, 11 Mar 2024 05:25:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OVveDhCI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K14WLtZu";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6E8510E0EA
- for <intel-xe@lists.freedesktop.org>; Mon, 11 Mar 2024 05:23:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 037DA10E0F0
+ for <intel-xe@lists.freedesktop.org>; Mon, 11 Mar 2024 05:24:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710134602; x=1741670602;
- h=message-id:date:subject:to:cc:references:from:
+ t=1710134701; x=1741670701;
+ h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=sArq/TrsxYF26FIbtOErCbBgMn+j3X3XwvGtnZER4ck=;
- b=OVveDhCIAXdzc3KCf9SdI5T78j01/tOVLvNNFJvHyT3QXXe3bnMg4IIa
- Y08zaDXPTrULxNdFd3pG+7IlChWFiOaoFFShAhYSVGN2IzBcBvd0ev5A6
- UtMPZ1l1V9BRijTWai1vCB22QFge1xq6bFRq9tdw2Wi799GteyzPJd1AF
- 9QAMfGreWkucpzWJDnDLZvqdAoLoRvt28PPTKQG6P7EA//gcu8K7fcOx3
- CUa+BqJKQmPAHxTRTsJJLkC6reHgqTQNmGeYD+VSebJkp/8hbEqxffjir
- G2HTSq2tgT8DSLBLzRC5nz9Aysr4Sv71TM8JwreSZbqoGPVOjcC3Jz1v1 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11009"; a="4920091"
-X-IronPort-AV: E=Sophos;i="6.07,115,1708416000"; 
-   d="scan'208";a="4920091"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2024 22:23:21 -0700
+ bh=Ajlgpdp/UGSydO+EdcKW2RnEYNc9e80EsDGMRnR8oqc=;
+ b=K14WLtZuHXOgH0f7W5S/wrS4z/N+sr7XrKz+3dRhqwU+C4gKhgDDIjjS
+ PaeJG0QpKtiVkvPB6zDXD937+TViCw2AVYTZ2feAoX6/JvWTlJKxilH05
+ Uv9RTXj5jRdxGjXYHI/WkJvvdOaOBNjRiMEBjm6jS5F5Y/9G4nol3dQmf
+ +1oVPwpjURxAnfmWQW+4HrsYEbumrG4emS74Uo7nlrwLlmB4ke5oO8Esr
+ G1rROMB77z/a0sh/ejcpgFYe1N2BoOORtJDyWPbgs2jfUfGtm4Y5sXH3i
+ CTAgtceumqJlMX/dDZ/iRbiMwl8eW5USUW8sTFvg0TNlbs9qcgG6nrpV7 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11009"; a="16219272"
+X-IronPort-AV: E=Sophos;i="6.07,115,1708416000"; d="scan'208";a="16219272"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2024 22:25:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,115,1708416000"; d="scan'208";a="15614975"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 10 Mar 2024 22:23:21 -0700
+X-IronPort-AV: E=Sophos;i="6.07,115,1708416000"; d="scan'208";a="10932387"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 10 Mar 2024 22:24:59 -0700
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Sun, 10 Mar 2024 22:23:20 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ 15.1.2507.35; Sun, 10 Mar 2024 22:24:58 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Sun, 10 Mar 2024 22:23:19 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Sun, 10 Mar 2024 22:23:19 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Sun, 10 Mar 2024 22:24:58 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.100)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Sun, 10 Mar 2024 22:23:19 -0700
+ 15.1.2507.35; Sun, 10 Mar 2024 22:24:58 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NQRL049PFCiHz4sEh1NZV7caRzPOrXspZ4lj3AophLLxNkFsJ0uXvm0k1CTzBcoAGdvu7LoRTELd/xEu5ILwmspJJtrk3wOlUQDcSiOk5VmfblmD5ICf8MInZeEnGIC122oEa2ijsw5x1alorG9p6QP9lzSL9DBuflbDIIJG86WOs8Kbu0hN1Vg87USb8X3nSAJt8wXpiPdcbyS4pw0H/6KTOJSAS7c9sudSoqtAGOn14e3jcEJTbaj/SF4FZGaZBLCclpwDuHMiZrmLHSZGfqNmzlfmtH+urD6S2hU6yl5hYrp5iII+3doOnDDVj9qWvJC+SBbJoP9cVlljKEiMNQ==
+ b=n69UYe31pC82cmhH/FdhEPMcEWWiKpjd4niMxMYZLfqOLQz/mcuT5BmrW388DlUh45lLzVmVHPyV/a843cdOtRtdk87y9izj/fGsAinem46KF23JQo1YGWFA/cju/sJVliWztmQ6Aspa9oyFHgCXpXn/HHR+ul+E+tV+JqWmtRbVExkz5oKjwP6om8w70GAgvcYJKKwqstYLXnrWJp4YEAVmKnfsCsy7u91s67BIvJBI9YLsSqZEWeYeXlqabS4TZm+dgj5P2lePRk2CrbCSlyvw4cx1AFltGmw6pzHF0RW4oP3xwl7cNEJ2lYoBOUrGZj2bK5kkhfT/JUDpiqZuog==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=O4tMdKpKdZsRfL+ZcH9r1KYnP7v/wroSzYEBpHjk/T0=;
- b=jSIG/AYKTQFhK/60FpgFPb7Jvf/P2IuUfbxzOFCzOS1/vu+D0UkNgObFNkUL5zVff2J5SYyMgYXJq9eOeWCpQCSS6tDy0i+rL/VgZKGn/VtzuXOpxn9iJbydw8lQtxqwVyx1FRk8mKPVOB7ARK5ByETMxfdyv7P3u3/SU669gzQsbgCm4SkI4oB1MZCeXh744dicWfrzSckMk50Pb6PNkO1SK3mZLG6miIIEFZafgx4tmBNT3gbqjbwVxY8ntpXa/Tg71FwK0kHfJsn154cHAkRae4SmnHokiYq+bIhFngOhKdE8SRlxyr3mW7jBpSOp+qa6EaM9doffrj2wV77jBw==
+ bh=mX2D6lCRS4rV/zMHLQL8QpIs1ncqKpVhcIy4zYsa3Z8=;
+ b=YX4ulgjxMdzQmsy4zSkPn5MRZZ+L7NiCUR2870ob0X6vVn/21VyKZgcrOdku8XTFsALhlDGZwItaKBywHUUCyJr9yv7JnKOVjUlEiUnqE2fMdsmD/mf8cuh9JrgKgmKXkfUXAeO/1NUwnoi/psPhWJeK2RQZGkd3UFle5Sn8A5/5evzL2EVZGF8R5KpMVZhL1tk+U+6UJGjFvY7UKMEVj1eYSdkAep8L30W9WzEXLNTwL4ke/TOV+4JZeqB8z9onKW887bWVbwZWTN47pHp5uWb91USYLAG3xOW6wM5h+b7rDiVc3tVKWOluXZqzSYO5ooR67DLOL3iKlMA/L7p5og==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
- PH7PR11MB7099.namprd11.prod.outlook.com (2603:10b6:510:20e::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.14; Mon, 11 Mar
- 2024 05:23:17 +0000
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::bf36:ca7c:bb6f:68a5]) by DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::bf36:ca7c:bb6f:68a5%4]) with mapi id 15.20.7386.016; Mon, 11 Mar 2024
- 05:23:16 +0000
-Message-ID: <72814323-19e7-4ddc-9551-892f582490cc@intel.com>
-Date: Mon, 11 Mar 2024 10:53:08 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] RFC drm/xe: re-order lmem init check and wait for
- initialization to complete
+Received: from DM4PR11MB6360.namprd11.prod.outlook.com (2603:10b6:8:bd::12) by
+ DS0PR11MB8050.namprd11.prod.outlook.com (2603:10b6:8:117::5) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7386.16; Mon, 11 Mar 2024 05:24:55 +0000
+Received: from DM4PR11MB6360.namprd11.prod.outlook.com
+ ([fe80::b37a:9d1d:cb38:f4ff]) by DM4PR11MB6360.namprd11.prod.outlook.com
+ ([fe80::b37a:9d1d:cb38:f4ff%7]) with mapi id 15.20.7386.016; Mon, 11 Mar 2024
+ 05:24:54 +0000
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "Kandpal, Suraj" <suraj.kandpal@intel.com>, "Nikula, Jani"
+ <jani.nikula@intel.com>, "De Marchi, Lucas" <lucas.demarchi@intel.com>
+Subject: RE: [PATCH] drm/xe/hdcp: Fix condition for hdcp gsc cs requirement
+Thread-Topic: [PATCH] drm/xe/hdcp: Fix condition for hdcp gsc cs requirement
+Thread-Index: AQHacV+eWul1Ct9Y706vK7DewsLq5bEt/bYAgAQIRLA=
+Date: Mon, 11 Mar 2024 05:24:54 +0000
+Message-ID: <DM4PR11MB636045D57FAF90E78FB21271F4242@DM4PR11MB6360.namprd11.prod.outlook.com>
+References: <20240308134817.1940638-2-suraj.kandpal@intel.com>
+ <20240308154939.1940960-2-suraj.kandpal@intel.com>
+In-Reply-To: <20240308154939.1940960-2-suraj.kandpal@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
- <aravind.iddamsetty@intel.com>, <badal.nilawar@intel.com>,
- <matthew.d.roper@intel.com>
-References: <20240308085517.2030484-1-riana.tauro@intel.com>
- <20240308085517.2030484-3-riana.tauro@intel.com> <Zesj1vgtwk877OhR@intel.com>
-From: Riana Tauro <riana.tauro@intel.com>
-In-Reply-To: <Zesj1vgtwk877OhR@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BMXPR01CA0091.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:b00:54::31) To DS0PR11MB7958.namprd11.prod.outlook.com
- (2603:10b6:8:f9::19)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB6360:EE_|DS0PR11MB8050:EE_
+x-ms-office365-filtering-correlation-id: 884b4d5e-e87f-4557-79f9-08dc418b95ab
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: r1XVbf/h/MwuvX2PBtwEATZb8qMgW2NRO6fs7d3YRFdw12icjZvshVcTJrGTlbaDTzxqeao1tA72qlJ61KjhSRqptPzccq6eGfepNDPGTlK5AK8RGFkQ5+obspZd+NabuWCnjZQlCqcpVboTUdJNVCaVQvfMwFN2ad3X/scA6HP3DRlFsdHWbdAy8QR//cy1bJAdj92vEBLGNoPy7Qgzc0DuhUzi0xtEd7Jlu2T7EERr+Ynk27JyYtg7iyHR9l2wZW0KnIbph2YJuy8gtxbJlsRRWKVjHPVskRYZ/uHwR7eTtDi3Luxl/K0K7tE/M3YYuzPcjHWoMcZt411MPkCGbmZ3FmvzFTYXnuBGSYXz2iunxHdTsFpJMPZR3iANX/SexMi8ZCGEPJGLBjRx3qcdcAXObxWJYEnqZiR3btt5LXZmRVpJjj8dHXuI80N/pA/RE6g/MVVDwwm8TOq2N/ELvxIaZwAGNrUuNndLl6H6EKYWcZo4lmlso5P9VaCRdn7azHgRGzECuIL2/fFdzic8aCIrwKHIk3kaJZy2Q8wU3OXLO5c4UvPoGpCUBhLzekTuGfhc6n+rP6oHflWRXbLTLH9O3txrACCslpJ/oTinoQqgRYKqPgSTBXkntzSYGDaaen0R0t0xSZYXg58KXVIBJaivoJkp88aqjcXqsLnY7yQRDeR076wiuicEih0O22lxD4V66lDZHo3I3cDoHsGsDpnRVDnx3viBItSUL2Q31Mc=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB6360.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005)(1800799015)(38070700009); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?T1ZmY08cnMhQixHp5NgR9w0Ja95Zh5zxtK8p8Xn8wPMfRxY/X3/FxpswIzXm?=
+ =?us-ascii?Q?pzDIXyYxRa13uHadDMEjSKj1/K2k8g9Zg+vebUhb07heTTaPhGDudwONGYGQ?=
+ =?us-ascii?Q?so5RpePJjVv4PGevom4/TlWiRMxnPnrb1vrR34+PqfCMbw6DZDXL4x6wHIH+?=
+ =?us-ascii?Q?NwJDlGGz3A8pX+PVfGCGbuPP1era9lPSkQ+LvzKWoyIC1F7jz8ThD346jit5?=
+ =?us-ascii?Q?Mm2ERy54b8jY1GwuOt+AtqSES5BafWSt4rzgaR/qMTwISOEUJEYKRURaW+28?=
+ =?us-ascii?Q?+EXh/50R2yZ7DITJ5hWTbdSh5vgb21IU5SVjXRm9HfvsBZuKcrehoQXh43bI?=
+ =?us-ascii?Q?9MpC8RdCGai9QnmE0hRpfhGY6az9hNzL8o6fzHMhjqZWqrIHY0dSevhw+qq6?=
+ =?us-ascii?Q?wbD7NYvBjFNdh1ytgmPGXaISVGSeVJrsOqwXl/5sy50pQveLA4Tbk09kSSkv?=
+ =?us-ascii?Q?XAbmGXRDXGonz7Q3vYHs/4WQxIseYdauf7msLe9vo1m1S/Y7pIoByqjZPRjD?=
+ =?us-ascii?Q?azY8RUWV03fpmJ9HmGwb8ek3qlXYkwrYrn7lsk8dQokvDCLXbzasUFP1KEiP?=
+ =?us-ascii?Q?xpYWJAYCT8AzdNwCElv0N2mtm9FmTF0MtpYTDx5uvLtFGhQKyEDOjQ1wYsbN?=
+ =?us-ascii?Q?7OQmBCIbHegzOzpn82djSkNjT36Gr8dTeJBYcmpMj0IhJZ6U/QRiqOksZEZa?=
+ =?us-ascii?Q?LJOXF2q+WM0DVr+aXwAyFw8M3fATnN8S764bEgPkPnh15K/+mQUhr/qm+E07?=
+ =?us-ascii?Q?Yz2ZQ+dum4b5zBYxdzVseycjY678+QhOq30tWnpbeffgv+gswjUdRuJsp1aV?=
+ =?us-ascii?Q?h7xznzNxaCNunN96A63Oxlp4dXYpMnrLUsPwf2XqYAzIhraHEcyArazH2SnY?=
+ =?us-ascii?Q?K3af3n8ApKNKKo9RDXMjOh89E4tMYJE9Ijvyd3rn4pKWGk4rqM8SO5h8UbEC?=
+ =?us-ascii?Q?QXzi/z71CdwY2HWiBfaPnjwO+mlsignHJb9dNE4B6p7Q61d684LmXK2XnWve?=
+ =?us-ascii?Q?eVBdp8HvdyfzKmv6OOthZAx85S5mCMhx6HFLebAeXH14qGDN8itlS65dVIHI?=
+ =?us-ascii?Q?NDgVdi1sLTiNSbeV8OTPXE+deQi0AqrcD4uDYWChU0+93u/VCm0boB/Gg6CI?=
+ =?us-ascii?Q?jksBQqgaSicyALPJP6fqq8G2vRNwwk7jXFgAt6IytFkWvBazfY4RtXcIMOiF?=
+ =?us-ascii?Q?KM1/ApNSa7ujOOeB7bFOH1dIHZ3sHFPv5OMQQ5skbv1OuZwz4qWXzLwk4wrf?=
+ =?us-ascii?Q?aQ3+hXpWr0il7ZQv45e19hMhqVDea69p66cRppTxmTRFZOOTps6zWQuPaLSr?=
+ =?us-ascii?Q?992gXYz+EeZudmoveXEaorz8ajzgch75LK3vIqKOu6WmYG7kcywN0evNInSC?=
+ =?us-ascii?Q?LEJz2tq9ZlyT/F5VBr5lyxzlI7q3a7Ix098Cur7wr0UI1pgAAi+sOrDANIru?=
+ =?us-ascii?Q?e7B33k7f7hAs0h2E4M4m4HAjSx0iMqSb6FwjKwxL2NFa8GoN+1JTSX94nbD0?=
+ =?us-ascii?Q?xvp48QozijrWUoFv6iQlwbd3pK2ZbHZ1lAD58SJuSoRYAVHt+cMOcRkPB64L?=
+ =?us-ascii?Q?DpRXF71IdoJsKPFiAQsAa1IPUKXY51jO+Aftv31L?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|PH7PR11MB7099:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3964ef08-ca8c-4c26-4d8d-08dc418b5af4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ObnDAIw3rD4w0Wq/YiL0ks6fylLxivMIjoFYGPlJlINRRjbwLK6ORstIcrdZe2mmmJl98YPBucjJE63Ly0OWnKlOf1os2ngWpHyqQjzX6gA6xO7Rs+aIQLgiOKLY4M6uSRz7ZTjDjmHBYMW+YfXP5faxrfDtnvSg0e3LGuqLhd3a8dJfiNf5QhnB+jJdI3KQq8AsI+hE/57gpU41kQxuTAY5w/RhZ4kfsRgoJ6s7szvUmmDm4OTIL6EniF0ngnwcWeCbPWe9Q0RXupMsRdImCyZJLKIk52b1IFhAf8scy7aFaxM7JWUrDehqITJ7NB9D3dHfgORuSKHl/WXBQ0o7iQnQZNReu8cY3BVY6VXhr5l0PZ7tX/aVhAEw2cmcLJHE6yOJXA2tL2Q/grtDJ0TtBjF23BAi5DAWn7dKKJiezj6sZGoXwWm3b1d7C4H3oDVTap9mOw2kGgAkxrde2cLEiDkD3aKtimVlYXVV95WUmavIficIfUaLhAKmrBQ5+sVihbMItqkKmeuSeGBJM62zN4RA07RtISC5uGlqTjacvLWqPYMsPpNPVV3h36b9rQs4urDBRVEzG2wSNloSFmVj0uxNdP7VaRdHMOlo68Sr+yF2rLfvojIP4+U/qAnwy4IJMq7Bkod9IPkL3Y6sBZ7SV8YuuLCxs/JxStS7f0bBdIA=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(1800799015); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NDFUVUZLSzBqNkFnU01QdWFEM3lBWGUxWjRXYUdjR3B2L2hMUURqYVR2Ry9p?=
- =?utf-8?B?Sk0vQWFOY3VMOXdXQ2NsSmYvYWxkZnJ0REkya2VtbCswMXR1eWhwSWdtbno3?=
- =?utf-8?B?Z3JsNXhHcVRBY2NhUHlRT1JUM1RFSXZDakl2eENZWXpDTG8rMWoxTUdMNFdy?=
- =?utf-8?B?ZEJLZTRMTGdOYzF4WFRFWWxpalkybkk2MFp5M3pnb0NWbEtwNEdabTFWdjRD?=
- =?utf-8?B?Skw4UmpTYzNFUXFaSjFlSHBUMUVrclRjb3gycm9KNUNiZUpKb0JqQWp1TUp1?=
- =?utf-8?B?SFlqTkdkY2JlcmdWUEt6RDBsSU1vUmNNWlFhK1VEdEM1MTlYMmY1RXNPZVlq?=
- =?utf-8?B?Tm1lM3NIeEMyVW02c1QrbzdRUkpweFRxb0xIWmlCc0Vrb0lGblY0bmd2bDgx?=
- =?utf-8?B?aTVnaEJtSlExUDNpOVZxbGVkVC9xWGNMWEd1NENsYVBvVFVyZkV4Q1BoRTV1?=
- =?utf-8?B?LzU0dlpRZlR2TWFmYUZ4bE9vWEdHUEdtKy8rWnpiRllsRmdNa0NPZFhOT0J5?=
- =?utf-8?B?S3FjRlpBZkkzcGN3SkhTbFlCU1hQQ0NrdWcyV3JBcG9WcHRlREk3ZGl5QVBr?=
- =?utf-8?B?UWtHL1FLSm9xZGJCSEYyYWJJcFgzZmF6YWQ0c1BqYWZIS3VUZzlyUmZFZ2U0?=
- =?utf-8?B?OEZ2MC9KQXIvNDlvcnAxL0c2Y2Y4eWFKRU5ZU3B6N2o1c21oRFNPNCtZelcv?=
- =?utf-8?B?b2Npa0R3MzBDajdia05hdUYzdzRzVENwZlNBQS8vTXVadC9WalF0TzJXQTg5?=
- =?utf-8?B?cW1QeTFtYnB6RG1DVm04QUJkZ2hZN25QQ3lFZnRNNWlkZ0xISkVxL1E1ODVs?=
- =?utf-8?B?RjJBQUhrK1ZrWk9NNUoySEpPc0xUMDM5TjZPbVBINjV1aVVsMmRxcDFuZmtN?=
- =?utf-8?B?a25CbXJ0dWhWVlVkN2p0L2ZFamNtSlYvbXVqeVZ1M2hia05LaXVKUEVFL3BJ?=
- =?utf-8?B?KzlFVldBODJkZk96L3JrTFNLM3V5dDg2MWMxc1Fwc0tZTkNpWlJjZWFudnhK?=
- =?utf-8?B?S1FVRERYWEZtNmtFd002QTFGK1daQ0M2RytDN3VwTnVuU1ZQM2huU0RNV1ZQ?=
- =?utf-8?B?ODZMdmtKU0NRL3VtT2NkcFUzUjQ1V1plMnQ3eXc0SzlvaWkrQ2REZXp1cGll?=
- =?utf-8?B?MFpDTWkwR2x3YXF6T0p6cUhISlFLZGhaS0Zsam5YY0Y5R3B5NzV1NldDa0t6?=
- =?utf-8?B?VDM2UG1BREZWZldsS1RQYUVkeXdpL2NFeTZxWTdVZkRjYVBmMHhMdS9aZ1JR?=
- =?utf-8?B?YVBtM0VkSUxGYUZmOEtna2t3YzBYZk0yZklQSTh0em9TdWR6UmVMZVErUnQ1?=
- =?utf-8?B?bytjenI2dzQxUG1jMDBGVUJmYmNqSHZhK2tJQnYzendGdGRNc3EvVGtQUTNo?=
- =?utf-8?B?akl0ZWhoUTYxTmtYdDZ5bWoxZUhDZGhiM1FiTGNSTSszR3Y0NHI3RXl1ZWo1?=
- =?utf-8?B?akFmM0xmTUtDRkRXa21VSDZsTFdTK2VVL2lCbXI3RkhZMURVWWVVU3VkNnFN?=
- =?utf-8?B?ZjN5SXpQS3hYT2svdTExN3NZd0ZDbGpDK096em13cEwwaWlqbk9ZdTltSlhP?=
- =?utf-8?B?S1J6bmkzUmVLN2ZEWmMzMjFJZ0hQaHRHcXV4di9KUkh4R0xRUnJwSWEzZ1o4?=
- =?utf-8?B?L0MyOUJrdVpvSjRhUjVJWDVJbjlqSHM0OUhCZGpaajJSQWgwL1o2NEVjcjN2?=
- =?utf-8?B?QkMxV3dPdit6NTJwVWlNaWw0VCtrNDc4VUxZcHIxN3R4b2FCcVNDRlJqZ042?=
- =?utf-8?B?MXRyRDVva0RzUHNOV1Bqa2QzWDRrTHBPR0RTZXFqU0hKa3VZd0xIVU41TTVw?=
- =?utf-8?B?aXEybzhGSWE1Z2h1VldXb2h2MC9iQWJKODBuKzN0aGIvcUN2MFcvN25KMGVY?=
- =?utf-8?B?UHFmTHVCZFgvNytiTU81TFhWMjMrZytIWU4ybmFoNVNDRzRKc2twbFBaRXpT?=
- =?utf-8?B?c3V2KzV4WVZnbzliWXJVTDNVb0RzTWNmZEZxZ0RpeGdram5DZUZZSC93RnF3?=
- =?utf-8?B?SjlNY1RKeGNrOWVpY2hkdkJ5VTJKRk1jTGdxcnFlQXhWYTBwMms5SjRpUXNV?=
- =?utf-8?B?UTdEWEEzNElTQkdLSHROZDMvL1Y5L0dFZmZyRVZORlhKekdUcXpsUlh1MzJa?=
- =?utf-8?Q?haPbL/OASxVkZzK8xl60D/qZD?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3964ef08-ca8c-4c26-4d8d-08dc418b5af4
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2024 05:23:16.5352 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QaU5DmHP13xUQL0N1qD8LoyODuaBVy+4v6RqxVvNbZKuZcLSw+sE0KUL2HAaNFvWno39Y0gV+fmzX+5utTDdpw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7099
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6360.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 884b4d5e-e87f-4557-79f9-08dc418b95ab
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Mar 2024 05:24:54.7039 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: m4NqGTo623onv91ckLjvBXt89E9sQ3oubV3Q/d96QXpGLLWsauk/fZZZr4Ov5FiD6pXOCnym9tmAZnUCPwDfug==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB8050
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -166,171 +153,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Rodrigo
 
-On 3/8/2024 8:12 PM, Rodrigo Vivi wrote:
-> On Fri, Mar 08, 2024 at 02:25:17PM +0530, Riana Tauro wrote:
->> Lmem init check should be done only after pcode initialization
->> status is complete. Move lmem init check after pcode status
->> check. Also wait for a short while after pcode status check
->> to allow completion of the task.
->>
->> Failing to do so, can lead to aborting the module load
->> leaving the system unusable. Wait until the lmem initialization
->> is complete within a timeout (60s) or till the user aborts.
->>
->> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_device.c | 53 +++++++++++++++++++++++++++++++++-
->>   drivers/gpu/drm/xe/xe_mmio.c   | 29 -------------------
->>   2 files changed, 52 insertions(+), 30 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
->> index 83dd60f68566..4806e7806be5 100644
->> --- a/drivers/gpu/drm/xe/xe_device.c
->> +++ b/drivers/gpu/drm/xe/xe_device.c
->> @@ -413,12 +413,59 @@ static int xe_set_dma_info(struct xe_device *xe)
->>   	return err;
->>   }
->>   
->> +static int verify_lmem_ready(struct xe_gt *gt)
-> 
-> maybe bool?
-will change this
-> 
->> +{
->> +	return xe_mmio_read32(gt, GU_CNTL) & LMEM_INIT;
->> +}
->> +
->> +static int wait_for_lmem_ready(struct xe_device *xe)
->> +{
->> +	struct xe_gt *gt = xe_root_mmio_gt(xe);
->> +	unsigned long timeout, start;
->> +
->> +	if (!IS_DGFX(xe))
->> +		return 0;
->> +
->> +	if (IS_SRIOV_VF(xe))
->> +		return 0;
->> +	/*
->> +	 * The boot firmware initializes local memory and assesses its health.
->> +	 * If memory training fails, the punit will have been instructed to
->> +	 * keep the GT powered down; we won't be able to communicate with it
->> +	 * and we should not continue with driver initialization.
->> +	 */
-> 
-> the comment is negative in a positive outcome.
-> I mean, one reading this comment above might conclude that we are returning below
-> because we won't be able to communicate with the GT.
-> 
-> but the code is right and we need this change. thanks for taking care of it.
-Will move it to the place where its returning EPROBE_DEFER on timeout.
-Thanks for the ack. Will fix these in the next rev
 
-Thanks
-Riana
-> 
-> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> 
->> +	if (verify_lmem_ready(gt))
->> +		return 0;
->> +
->> +	drm_dbg(&xe->drm, "Waiting for lmem initialisation\n");
->> +
->> +	start = jiffies;
->> +	timeout = start + msecs_to_jiffies(60 * 1000); /* 60 sec! */
->> +
->> +	do {
->> +		if (signal_pending(current))
->> +			return -EINTR;
->> +
->> +		if (time_after(jiffies, timeout))
->> +			return -EPROBE_DEFER;
->> +
->> +		msleep(20);
->> +
->> +	} while (!verify_lmem_ready(gt));
->> +
->> +	drm_dbg(&xe->drm, "lmem ready after %ums",
->> +		jiffies_to_msecs(jiffies - start));
->> +
->> +	return 0;
->> +}
->> +
->>   /**
->>    * xe_device_probe_early: Device early probe
->>    * @xe: xe device instance
->>    *
->>    * Initialize MMIO resources that don't require any
->> - * knowledge about tile count. Also initialize pcode
->> + * knowledge about tile count. Also initialize pcode and
->> + * check vram initialization on root tile.
->>    *
->>    * Return: 0 on success, error code on failure
->>    */
->> @@ -438,6 +485,10 @@ int xe_device_probe_early(struct xe_device *xe)
->>   	if (err)
->>   		return err;
->>   
->> +	err = wait_for_lmem_ready(xe);
->> +	if (err)
->> +		return err;
->> +
->>   	return 0;
->>   }
->>   
->> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
->> index 7ba2477452d7..7fc0c5453b21 100644
->> --- a/drivers/gpu/drm/xe/xe_mmio.c
->> +++ b/drivers/gpu/drm/xe/xe_mmio.c
->> @@ -360,30 +360,6 @@ static void mmio_fini(struct drm_device *drm, void *arg)
->>   		iounmap(xe->mem.vram.mapping);
->>   }
->>   
->> -static int xe_verify_lmem_ready(struct xe_device *xe)
->> -{
->> -	struct xe_gt *gt = xe_root_mmio_gt(xe);
->> -
->> -	if (!IS_DGFX(xe))
->> -		return 0;
->> -
->> -	if (IS_SRIOV_VF(xe))
->> -		return 0;
->> -
->> -	/*
->> -	 * The boot firmware initializes local memory and assesses its health.
->> -	 * If memory training fails, the punit will have been instructed to
->> -	 * keep the GT powered down; we won't be able to communicate with it
->> -	 * and we should not continue with driver initialization.
->> -	 */
->> -	if (!(xe_mmio_read32(gt, GU_CNTL) & LMEM_INIT)) {
->> -		drm_err(&xe->drm, "VRAM not initialized by firmware\n");
->> -		return -ENODEV;
->> -	}
->> -
->> -	return 0;
->> -}
->> -
->>   int xe_mmio_init(struct xe_device *xe)
->>   {
->>   	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
->> @@ -407,16 +383,11 @@ int xe_mmio_init(struct xe_device *xe)
->>   int xe_mmio_root_tile_init(struct xe_device *xe)
->>   {
->>   	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
->> -	int err;
->>   
->>   	/* Setup first tile; other tiles (if present) will be setup later. */
->>   	root_tile->mmio.size = SZ_16M;
->>   	root_tile->mmio.regs = xe->mmio.regs;
->>   
->> -	err = xe_verify_lmem_ready(xe);
->> -	if (err)
->> -		return err;
->> -
->>   	return 0;
->>   }
->>   
->> -- 
->> 2.40.0
->>
+> -----Original Message-----
+> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Sura=
+j
+> Kandpal
+> Sent: Friday, March 8, 2024 9:20 PM
+> To: intel-xe@lists.freedesktop.org
+> Cc: Kandpal, Suraj <suraj.kandpal@intel.com>; Nikula, Jani
+> <jani.nikula@intel.com>; De Marchi, Lucas <lucas.demarchi@intel.com>
+> Subject: [PATCH] drm/xe/hdcp: Fix condition for hdcp gsc cs requirement
+>=20
+> Add condition for check of hdcp gsc cs requirement rather than assuming g=
+sc cs to
+> always be required when xe is loaded. It is not required for display vers=
+ion < 14
+>=20
+> --v2
+> -Use display version in commit message [Lucas]
+
+Pushed to drm-xe-next. Thanks for the patch and reviews.
+
+Regards,
+Uma Shankar
+
+> Fixes: 152f2df954d8 ("drm/xe/hdcp: Enable HDCP for XE")
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> Acked-by: Jani Nikula <jani.nikula@intel.com>
+> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>  drivers/gpu/drm/xe/display/xe_hdcp_gsc.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+> b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+> index dcde1d0ac1f8..25c73602ef55 100644
+> --- a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+> +++ b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+> @@ -32,7 +32,7 @@ struct intel_hdcp_gsc_message {
+>=20
+>  bool intel_hdcp_gsc_cs_required(struct xe_device *xe)  {
+> -	return true;
+> +	return DISPLAY_VER(xe) >=3D 14;
+>  }
+>=20
+>  bool intel_hdcp_gsc_check_status(struct xe_device *xe)
+> --
+> 2.43.2
+
