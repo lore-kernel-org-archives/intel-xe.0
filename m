@@ -4,149 +4,153 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31BCDC5475B
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Mar 2024 05:11:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51ED1C5475B
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Mar 2024 05:23:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7AAE10E0E6;
-	Mon, 11 Mar 2024 05:11:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8B4110E0EA;
+	Mon, 11 Mar 2024 05:23:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n3MTXx7P";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OVveDhCI";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FECE10E0E6
- for <intel-xe@lists.freedesktop.org>; Mon, 11 Mar 2024 05:11:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6E8510E0EA
+ for <intel-xe@lists.freedesktop.org>; Mon, 11 Mar 2024 05:23:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710133903; x=1741669903;
+ t=1710134602; x=1741670602;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=fZ5R4CMb3iD3h9pVkTQEmhnb3vMZBYSjWbuTbvF3bqU=;
- b=n3MTXx7PCJeUjFhbyFy2kDzukAU3H4mnjvLz7WPdMvOSb3Nfm4IE/yrL
- fc57BA4a4dMLQTg5wTLkA6PV42cSsKVBY4QskbhxLoTJD6r6wp4MaBe0T
- cjxoSVbVJMs/Zj/lja2IotJQfnskNMAsZuMqKKZtZ8RrLxNmDF2SdXTrY
- HuBGOVu5E4FJIsFsPq5H4/qeLMVt9f1SOcqytMwpvP7V9+saye7aC07pd
- MT7mwdJPyVLz0G4VjEhwmhnJ1/8tmaNF3v5r5+w9ka4EDprkOF0wOSUfe
- o9gM0pTkx2tCkcC8Og+myx+C2rvUmQb7OsPbCmapVrjIV4Q3M3XbQfr+r g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11009"; a="8598751"
+ bh=sArq/TrsxYF26FIbtOErCbBgMn+j3X3XwvGtnZER4ck=;
+ b=OVveDhCIAXdzc3KCf9SdI5T78j01/tOVLvNNFJvHyT3QXXe3bnMg4IIa
+ Y08zaDXPTrULxNdFd3pG+7IlChWFiOaoFFShAhYSVGN2IzBcBvd0ev5A6
+ UtMPZ1l1V9BRijTWai1vCB22QFge1xq6bFRq9tdw2Wi799GteyzPJd1AF
+ 9QAMfGreWkucpzWJDnDLZvqdAoLoRvt28PPTKQG6P7EA//gcu8K7fcOx3
+ CUa+BqJKQmPAHxTRTsJJLkC6reHgqTQNmGeYD+VSebJkp/8hbEqxffjir
+ G2HTSq2tgT8DSLBLzRC5nz9Aysr4Sv71TM8JwreSZbqoGPVOjcC3Jz1v1 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11009"; a="4920091"
 X-IronPort-AV: E=Sophos;i="6.07,115,1708416000"; 
-   d="scan'208";a="8598751"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2024 22:11:43 -0700
+   d="scan'208";a="4920091"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2024 22:23:21 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,115,1708416000"; d="scan'208";a="11114354"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 10 Mar 2024 22:11:42 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.07,115,1708416000"; d="scan'208";a="15614975"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 10 Mar 2024 22:23:21 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Sun, 10 Mar 2024 22:11:42 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.1.2507.35; Sun, 10 Mar 2024 22:23:20 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Sun, 10 Mar 2024 22:11:42 -0700
+ 15.1.2507.35; Sun, 10 Mar 2024 22:23:19 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Sun, 10 Mar 2024 22:23:19 -0700
 Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Sun, 10 Mar 2024 22:11:41 -0700
+ 15.1.2507.35; Sun, 10 Mar 2024 22:23:19 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=M+vA9YWS1tzyUGiqje+UxLCBCV1qEqm1gdCjaMpcpmcODqv6a3/XPTZxc5E9kbqiwAbNdb5yJsAL/XWolLg/Q/ckqHhIrVyVGSYzXlO1Q6G0GDpAp+vLZQjAuRMqKJrlUJTwDPcD1awfa+Y6vByc20fuU+Nt/CZumdG0CYxOGlPRisrDPMqkqZQohL9KxzBvB/Vd5UsOtLYrW8uVCZcQ11nP70hJp2sWwp0in+MyRznN1VU9ubbSxZiwgsvBlsWNNqX/AI2BRotsptpAgHLP2PQKek1EKqExGd4BUhwvkP6QoPLIuPguBrQWXPQ/2GhiX4LeI2wFVrODncvGA1/EwA==
+ b=NQRL049PFCiHz4sEh1NZV7caRzPOrXspZ4lj3AophLLxNkFsJ0uXvm0k1CTzBcoAGdvu7LoRTELd/xEu5ILwmspJJtrk3wOlUQDcSiOk5VmfblmD5ICf8MInZeEnGIC122oEa2ijsw5x1alorG9p6QP9lzSL9DBuflbDIIJG86WOs8Kbu0hN1Vg87USb8X3nSAJt8wXpiPdcbyS4pw0H/6KTOJSAS7c9sudSoqtAGOn14e3jcEJTbaj/SF4FZGaZBLCclpwDuHMiZrmLHSZGfqNmzlfmtH+urD6S2hU6yl5hYrp5iII+3doOnDDVj9qWvJC+SBbJoP9cVlljKEiMNQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZkvjqC6hRanQtw9hl3tGU5Ew+eQ8/jrMuMTANovi9TI=;
- b=RT/SPUXU2r2PupRuRolBg/851d7vbFlefhuBrKUGgUCWyDJRYuaMFkfQgI0VXVShig5/7P8R+EvUMIqoE80Ok8aCDgqrZrQweslaFqBHMQCKOruhNU4pOk25+dsHApf1XlDE5zvv0pwE5RAVwBJtdFpKmypql8TwdrjOqHfwyX7sM5kwBhJx/glt/PUgqfxE6q3RXghgBLNBwgbs/C+8e8xwY+S1jk0/FpVQaIoc6L+kQPr6KeTD/LV9cHZtl/lnKu9lYK/uMdcV5riJLjUZ4z6zi4v+z6Dhq8MRjyKtGlHUNDydh49P19glZChXJuw6/OGPqeOgSRBJUFPH8xtVUQ==
+ bh=O4tMdKpKdZsRfL+ZcH9r1KYnP7v/wroSzYEBpHjk/T0=;
+ b=jSIG/AYKTQFhK/60FpgFPb7Jvf/P2IuUfbxzOFCzOS1/vu+D0UkNgObFNkUL5zVff2J5SYyMgYXJq9eOeWCpQCSS6tDy0i+rL/VgZKGn/VtzuXOpxn9iJbydw8lQtxqwVyx1FRk8mKPVOB7ARK5ByETMxfdyv7P3u3/SU669gzQsbgCm4SkI4oB1MZCeXh744dicWfrzSckMk50Pb6PNkO1SK3mZLG6miIIEFZafgx4tmBNT3gbqjbwVxY8ntpXa/Tg71FwK0kHfJsn154cHAkRae4SmnHokiYq+bIhFngOhKdE8SRlxyr3mW7jBpSOp+qa6EaM9doffrj2wV77jBw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
- SJ1PR11MB6131.namprd11.prod.outlook.com (2603:10b6:a03:45e::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7386.16; Mon, 11 Mar 2024 05:11:40 +0000
+ PH7PR11MB7099.namprd11.prod.outlook.com (2603:10b6:510:20e::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.14; Mon, 11 Mar
+ 2024 05:23:17 +0000
 Received: from DS0PR11MB7958.namprd11.prod.outlook.com
  ([fe80::bf36:ca7c:bb6f:68a5]) by DS0PR11MB7958.namprd11.prod.outlook.com
  ([fe80::bf36:ca7c:bb6f:68a5%4]) with mapi id 15.20.7386.016; Mon, 11 Mar 2024
- 05:11:39 +0000
-Message-ID: <09edb54d-3245-49b7-aacf-e39b5ce3da92@intel.com>
-Date: Mon, 11 Mar 2024 10:41:31 +0530
+ 05:23:16 +0000
+Message-ID: <72814323-19e7-4ddc-9551-892f582490cc@intel.com>
+Date: Mon, 11 Mar 2024 10:53:08 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] RFC drm/xe: check pcode init status only on root gt
- of root tile
+Subject: Re: [PATCH 2/2] RFC drm/xe: re-order lmem init check and wait for
+ initialization to complete
+Content-Language: en-US
 To: Rodrigo Vivi <rodrigo.vivi@intel.com>
 CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
  <aravind.iddamsetty@intel.com>, <badal.nilawar@intel.com>,
  <matthew.d.roper@intel.com>
 References: <20240308085517.2030484-1-riana.tauro@intel.com>
- <20240308085517.2030484-2-riana.tauro@intel.com> <ZesirH8C1mDsC6If@intel.com>
-Content-Language: en-US
+ <20240308085517.2030484-3-riana.tauro@intel.com> <Zesj1vgtwk877OhR@intel.com>
 From: Riana Tauro <riana.tauro@intel.com>
-In-Reply-To: <ZesirH8C1mDsC6If@intel.com>
+In-Reply-To: <Zesj1vgtwk877OhR@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BM1PR01CA0150.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:b00:68::20) To DS0PR11MB7958.namprd11.prod.outlook.com
+X-ClientProxiedBy: BMXPR01CA0091.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:b00:54::31) To DS0PR11MB7958.namprd11.prod.outlook.com
  (2603:10b6:8:f9::19)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|SJ1PR11MB6131:EE_
-X-MS-Office365-Filtering-Correlation-Id: bb90d982-7ae0-456d-da22-08dc4189bbbb
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|PH7PR11MB7099:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3964ef08-ca8c-4c26-4d8d-08dc418b5af4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: /6RVNrnhyWBmGwRn1xPAbi55Y4A12SgmZY+WozbYYREOQ4Gyq8AW74dTrP5fKUVv6vbzJzpF4hlX1CW3vEKW/RNd5W6Yt9XfBUjq2XnjCmid9F7Su9rjwjb41++2dMHeI74FWjQmYUWXayMwcughxeD20zIrhO+qPfx43j1v5jCMEsTjcmPRBW8aSBdx7hmuDLrWKxA73ozCA1yt/AskevkeUB84Fok1hwyK5ncWf5Nb4mD7vieb86jsdImDRFAFknQRgGrN6Cjs3FLR/+kUnKGIb5tPLbr3BDIWmpP9S47x2YxzaXbvLOMDiZ9r504QacPvk8WssXz5AAZWeB/+40znSFP1Zjo2QOoR/LkHgs8vG+dpRYlWE6cJuvSZIDcMMBoWZwbLALoyIi9+MVXY/mdPfy3FEv4m8cNXEhUkMaqP5U1MiMGGcLyfubUq4/w9vVkjyTv049jiN3dzFlrJ5n6YdsRmUpS0fH7zQ36WK9Nj4Ht7MeDJRIHzc3vn7dILc5CpeQ3o4Av5L7Okt45VmciYAOSqgwMJ8rSfUrYZiodMLGIXq1MtzIAfLMj2RRPnjq07gOf9fTicTbTSikp0ZnUOo8wxGVfIuy8C96IKjk/xrFxghUb9PdONCplVFWWyoeRWevb3Oh1IhyTvTrR09jeZ9e7LjELShE7k7Qmj7uk=
+X-Microsoft-Antispam-Message-Info: ObnDAIw3rD4w0Wq/YiL0ks6fylLxivMIjoFYGPlJlINRRjbwLK6ORstIcrdZe2mmmJl98YPBucjJE63Ly0OWnKlOf1os2ngWpHyqQjzX6gA6xO7Rs+aIQLgiOKLY4M6uSRz7ZTjDjmHBYMW+YfXP5faxrfDtnvSg0e3LGuqLhd3a8dJfiNf5QhnB+jJdI3KQq8AsI+hE/57gpU41kQxuTAY5w/RhZ4kfsRgoJ6s7szvUmmDm4OTIL6EniF0ngnwcWeCbPWe9Q0RXupMsRdImCyZJLKIk52b1IFhAf8scy7aFaxM7JWUrDehqITJ7NB9D3dHfgORuSKHl/WXBQ0o7iQnQZNReu8cY3BVY6VXhr5l0PZ7tX/aVhAEw2cmcLJHE6yOJXA2tL2Q/grtDJ0TtBjF23BAi5DAWn7dKKJiezj6sZGoXwWm3b1d7C4H3oDVTap9mOw2kGgAkxrde2cLEiDkD3aKtimVlYXVV95WUmavIficIfUaLhAKmrBQ5+sVihbMItqkKmeuSeGBJM62zN4RA07RtISC5uGlqTjacvLWqPYMsPpNPVV3h36b9rQs4urDBRVEzG2wSNloSFmVj0uxNdP7VaRdHMOlo68Sr+yF2rLfvojIP4+U/qAnwy4IJMq7Bkod9IPkL3Y6sBZ7SV8YuuLCxs/JxStS7f0bBdIA=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(376005)(1800799015); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dURkMUVSQVFhamRVWmUwbDJiamJ3d0l0Qm05ampwNC9XQ3RKWW5SSUkrZ3VG?=
- =?utf-8?B?Vi9kaFMwb0M3ZGVHbnZRZ2FQRWlYaHBDR28rN3N5QzUrQ3VId3hKM3RlRml5?=
- =?utf-8?B?TU5ZS1ltRXFhcUtjelpNT0docGpsTi9uNG91Z1R0d2FRM3hCTjUwVEtWUVBk?=
- =?utf-8?B?MUpXM2ZpaE5zQVlEQ0s4bVJxV29xZ3A2STBnQUpNRUpHckpqaU9hWU1oVUh1?=
- =?utf-8?B?bG9hZlNsdHZGb282VythV0VvMEFwNm14Tm05T1FqR0doM2xFVnBPaUpZQ2NT?=
- =?utf-8?B?SUIwZ09lc1JMaGhkYXhiV1piVEN3ajUwbnV4QXR3U0NlcGR6YUZQV3R1bnF0?=
- =?utf-8?B?Z0ZOQUNIdlg5VU1DZkUrSHR6TjZ1d21xWFJHUkhTSm5ucjEvajRNTlVVa05t?=
- =?utf-8?B?dXREMG5vUFBpUmQrOGRPcWJHK293WS85bXJ4RFpZdHZyUUI4eUdPYUdRM2Na?=
- =?utf-8?B?NHh4NGtSN2NpVm1jQ2VtYm5QN0htNXp3ZXJUYWNBTmYwY1ZMa2JKNXhncTcr?=
- =?utf-8?B?aVlaOUZBT1RyOGdacFNJeitjeU54MGZLSEdXbjM4NDhSaUEySlRQRmt5eFZi?=
- =?utf-8?B?anVkRnkxMlEyb2x3SWJseU1BamtxN3EwbEZFRUNTQWhmTFA5SmtJZjByMFRG?=
- =?utf-8?B?aEFvYnhoZ2FJQWtaTWNpN0txWDlORXZwcHNGbTVWY3owL0tHZTFXZFFmVndq?=
- =?utf-8?B?dEF3aGtTY3NOdm5HM1RjZnM1eGFyTDEyM2FRQkIrd0V5VGM5VE9ZZkJtL051?=
- =?utf-8?B?ekZWd3lmbUdvajBSMmhiZ3Vna1M3MjVqbUF2b29obUU1TXoyMmJCREJ0aGZU?=
- =?utf-8?B?VGpwdllFcUN6WERHWGtWQzZuWkk4eVFVQ3NuSXIwOEo1QzlNdU4wODlrTXdT?=
- =?utf-8?B?aFVBZ1NrT2p6MnRoOUpBZVg2Y0NYZ0dJMzVEa0RWZC9MQlNJcy9mZ1BaWjIv?=
- =?utf-8?B?TnZZaDI1ck5FdHpEMlBXdVVqYWtNOWJPWjRhR0NTRjNDaDRZQk83aWtKNGxw?=
- =?utf-8?B?NUpGZFRETnFacS9ucFRmR1F6bUprbWVYTzFkTWxHTTFMU05TMXpVbVlCNDVy?=
- =?utf-8?B?T0dZa29MNTJzVGJEZ1lKSDVMWXA4QWdkaFRyZDBBNGNiNGRucXZRUUNWR1ND?=
- =?utf-8?B?SmFQM2N4eGROSVZON1ZNUHYwT2JlTThmeE9veGJtS2NjSDhZU1pzcFNZWkxL?=
- =?utf-8?B?SXY3TzlHYms1NnBtZmFWbmdOV0xYd0V5bGNMZVZpV0R0Q1NFdGhKOENjMUdJ?=
- =?utf-8?B?c3p6U2R3aXFGRy83WG5CVENtTzZPVEhqWjhjN05WUDFEUHZlc0tpZEZ4TzIx?=
- =?utf-8?B?NUVQOVFmRVdJdFRYbHNEeUYzcWtVczRoZ3R2UW5pSG5NdGFqNW5EQkdmck1p?=
- =?utf-8?B?UUVOYUs2alIzSWE1N1I2R080cjY4R1daWXRVRVAxOUNxRkhaR3RvV0NadUh4?=
- =?utf-8?B?ZEkxdXRES3J2cDFQV0Q2a2hnQlQ5UENMNTdwVHQrb3VUWXdveUxqS1JUeG8x?=
- =?utf-8?B?Q3dNa2FYc0hVSW94RUlJckpzcDhrZGxvY056WXNKZm5rVUllNTdnbUY0Y0NC?=
- =?utf-8?B?QVZ3YzNJVE5tMEhrbkVRNUo0NVF1bW1neXNXZ3NBa29YM3prU1B3V0tZcHFh?=
- =?utf-8?B?RHV2SUU0RWpjNnlmTUtsNWhRc05Ga05uOWx4bzdyWldOaTdtcit6c2FLcDRt?=
- =?utf-8?B?NHRFd0xwMVFyOWRXbEpKUlhaRnUzS3ZOdmVYUWViU0FXOGVkYUY1OU5BQXg5?=
- =?utf-8?B?eis3dk16MDRxSEU2blNvTS92eTJqYXhmbjB1MEJWeVF5ZGRCV3V2ZXdCaUdZ?=
- =?utf-8?B?ZWZSKytEQmE3aTJqekphR1JGa2xvK1grMGJBOXo0REsvY1pTWWJ4TXRCRU9w?=
- =?utf-8?B?Ynh5TDV6R2J6QlI3VE5XcGd6R0RqYisveFRsa3EvMDV3U3EwQW96QmRYOGpB?=
- =?utf-8?B?TU44SHlpVWpNenlNVVRydWJ2dDNFSy9xTVAzNXNsVll0NHJxaVg1YW1MR3N3?=
- =?utf-8?B?VEM4NHEzU2RyY0tqMFJobTJZdUdSWWpMamFDeHhheEVtWjUzRlZDenk4cTlx?=
- =?utf-8?B?Q0ptZmJOSDZnTVJCRnQwcXRJTXZiZUZFTGpGT01EWmpOa1FkaHA2S1gya2tZ?=
- =?utf-8?Q?LmP8QDxgurnoG5i1yjhlMcAwA?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: bb90d982-7ae0-456d-da22-08dc4189bbbb
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NDFUVUZLSzBqNkFnU01QdWFEM3lBWGUxWjRXYUdjR3B2L2hMUURqYVR2Ry9p?=
+ =?utf-8?B?Sk0vQWFOY3VMOXdXQ2NsSmYvYWxkZnJ0REkya2VtbCswMXR1eWhwSWdtbno3?=
+ =?utf-8?B?Z3JsNXhHcVRBY2NhUHlRT1JUM1RFSXZDakl2eENZWXpDTG8rMWoxTUdMNFdy?=
+ =?utf-8?B?ZEJLZTRMTGdOYzF4WFRFWWxpalkybkk2MFp5M3pnb0NWbEtwNEdabTFWdjRD?=
+ =?utf-8?B?Skw4UmpTYzNFUXFaSjFlSHBUMUVrclRjb3gycm9KNUNiZUpKb0JqQWp1TUp1?=
+ =?utf-8?B?SFlqTkdkY2JlcmdWUEt6RDBsSU1vUmNNWlFhK1VEdEM1MTlYMmY1RXNPZVlq?=
+ =?utf-8?B?Tm1lM3NIeEMyVW02c1QrbzdRUkpweFRxb0xIWmlCc0Vrb0lGblY0bmd2bDgx?=
+ =?utf-8?B?aTVnaEJtSlExUDNpOVZxbGVkVC9xWGNMWEd1NENsYVBvVFVyZkV4Q1BoRTV1?=
+ =?utf-8?B?LzU0dlpRZlR2TWFmYUZ4bE9vWEdHUEdtKy8rWnpiRllsRmdNa0NPZFhOT0J5?=
+ =?utf-8?B?S3FjRlpBZkkzcGN3SkhTbFlCU1hQQ0NrdWcyV3JBcG9WcHRlREk3ZGl5QVBr?=
+ =?utf-8?B?UWtHL1FLSm9xZGJCSEYyYWJJcFgzZmF6YWQ0c1BqYWZIS3VUZzlyUmZFZ2U0?=
+ =?utf-8?B?OEZ2MC9KQXIvNDlvcnAxL0c2Y2Y4eWFKRU5ZU3B6N2o1c21oRFNPNCtZelcv?=
+ =?utf-8?B?b2Npa0R3MzBDajdia05hdUYzdzRzVENwZlNBQS8vTXVadC9WalF0TzJXQTg5?=
+ =?utf-8?B?cW1QeTFtYnB6RG1DVm04QUJkZ2hZN25QQ3lFZnRNNWlkZ0xISkVxL1E1ODVs?=
+ =?utf-8?B?RjJBQUhrK1ZrWk9NNUoySEpPc0xUMDM5TjZPbVBINjV1aVVsMmRxcDFuZmtN?=
+ =?utf-8?B?a25CbXJ0dWhWVlVkN2p0L2ZFamNtSlYvbXVqeVZ1M2hia05LaXVKUEVFL3BJ?=
+ =?utf-8?B?KzlFVldBODJkZk96L3JrTFNLM3V5dDg2MWMxc1Fwc0tZTkNpWlJjZWFudnhK?=
+ =?utf-8?B?S1FVRERYWEZtNmtFd002QTFGK1daQ0M2RytDN3VwTnVuU1ZQM2huU0RNV1ZQ?=
+ =?utf-8?B?ODZMdmtKU0NRL3VtT2NkcFUzUjQ1V1plMnQ3eXc0SzlvaWkrQ2REZXp1cGll?=
+ =?utf-8?B?MFpDTWkwR2x3YXF6T0p6cUhISlFLZGhaS0Zsam5YY0Y5R3B5NzV1NldDa0t6?=
+ =?utf-8?B?VDM2UG1BREZWZldsS1RQYUVkeXdpL2NFeTZxWTdVZkRjYVBmMHhMdS9aZ1JR?=
+ =?utf-8?B?YVBtM0VkSUxGYUZmOEtna2t3YzBYZk0yZklQSTh0em9TdWR6UmVMZVErUnQ1?=
+ =?utf-8?B?bytjenI2dzQxUG1jMDBGVUJmYmNqSHZhK2tJQnYzendGdGRNc3EvVGtQUTNo?=
+ =?utf-8?B?akl0ZWhoUTYxTmtYdDZ5bWoxZUhDZGhiM1FiTGNSTSszR3Y0NHI3RXl1ZWo1?=
+ =?utf-8?B?akFmM0xmTUtDRkRXa21VSDZsTFdTK2VVL2lCbXI3RkhZMURVWWVVU3VkNnFN?=
+ =?utf-8?B?ZjN5SXpQS3hYT2svdTExN3NZd0ZDbGpDK096em13cEwwaWlqbk9ZdTltSlhP?=
+ =?utf-8?B?S1J6bmkzUmVLN2ZEWmMzMjFJZ0hQaHRHcXV4di9KUkh4R0xRUnJwSWEzZ1o4?=
+ =?utf-8?B?L0MyOUJrdVpvSjRhUjVJWDVJbjlqSHM0OUhCZGpaajJSQWgwL1o2NEVjcjN2?=
+ =?utf-8?B?QkMxV3dPdit6NTJwVWlNaWw0VCtrNDc4VUxZcHIxN3R4b2FCcVNDRlJqZ042?=
+ =?utf-8?B?MXRyRDVva0RzUHNOV1Bqa2QzWDRrTHBPR0RTZXFqU0hKa3VZd0xIVU41TTVw?=
+ =?utf-8?B?aXEybzhGSWE1Z2h1VldXb2h2MC9iQWJKODBuKzN0aGIvcUN2MFcvN25KMGVY?=
+ =?utf-8?B?UHFmTHVCZFgvNytiTU81TFhWMjMrZytIWU4ybmFoNVNDRzRKc2twbFBaRXpT?=
+ =?utf-8?B?c3V2KzV4WVZnbzliWXJVTDNVb0RzTWNmZEZxZ0RpeGdram5DZUZZSC93RnF3?=
+ =?utf-8?B?SjlNY1RKeGNrOWVpY2hkdkJ5VTJKRk1jTGdxcnFlQXhWYTBwMms5SjRpUXNV?=
+ =?utf-8?B?UTdEWEEzNElTQkdLSHROZDMvL1Y5L0dFZmZyRVZORlhKekdUcXpsUlh1MzJa?=
+ =?utf-8?Q?haPbL/OASxVkZzK8xl60D/qZD?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3964ef08-ca8c-4c26-4d8d-08dc418b5af4
 X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2024 05:11:39.9441 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2024 05:23:16.5352 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: RwcWFuuTRhIuuaCEE6EHRlr3n2z6qcnqVFGLoEKR3swsKOe3xZGsg5veZok5bK2C/P2M/CE01HemEJIMygo9zw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6131
+X-MS-Exchange-CrossTenant-UserPrincipalName: QaU5DmHP13xUQL0N1qD8LoyODuaBVy+4v6RqxVvNbZKuZcLSw+sE0KUL2HAaNFvWno39Y0gV+fmzX+5utTDdpw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7099
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -164,340 +168,169 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Hi Rodrigo
 
-On 3/8/2024 8:07 PM, Rodrigo Vivi wrote:
-> On Fri, Mar 08, 2024 at 02:25:16PM +0530, Riana Tauro wrote:
->> The root tile indicates the pcode initialization is complete
->> when all tiles have completed their initialization.
->> So the mailbox can be polled only on the root tile.
->> Check pcode init status only on root tile and move it to
->> device probe early as root tile is initialized there.
->> Also make similar changes in resume paths.
+On 3/8/2024 8:12 PM, Rodrigo Vivi wrote:
+> On Fri, Mar 08, 2024 at 02:25:17PM +0530, Riana Tauro wrote:
+>> Lmem init check should be done only after pcode initialization
+>> status is complete. Move lmem init check after pcode status
+>> check. Also wait for a short while after pcode status check
+>> to allow completion of the task.
 >>
->> v2: Add lock/unlocked version of pcode_mailbox_rw
->>      to allow pcode init to be called in device
->>      early probe (Rodrigo)
+>> Failing to do so, can lead to aborting the module load
+>> leaving the system unusable. Wait until the lmem initialization
+>> is complete within a timeout (60s) or till the user aborts.
 >>
 >> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 >> ---
->>   drivers/gpu/drm/xe/xe_device.c | 21 +++++---
->>   drivers/gpu/drm/xe/xe_pcode.c  | 93 ++++++++++++++++++++--------------
->>   drivers/gpu/drm/xe/xe_pcode.h  |  3 +-
->>   drivers/gpu/drm/xe/xe_pm.c     | 16 +++---
->>   4 files changed, 78 insertions(+), 55 deletions(-)
+>>   drivers/gpu/drm/xe/xe_device.c | 53 +++++++++++++++++++++++++++++++++-
+>>   drivers/gpu/drm/xe/xe_mmio.c   | 29 -------------------
+>>   2 files changed, 52 insertions(+), 30 deletions(-)
 >>
 >> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
->> index 919ad88f0495..83dd60f68566 100644
+>> index 83dd60f68566..4806e7806be5 100644
 >> --- a/drivers/gpu/drm/xe/xe_device.c
 >> +++ b/drivers/gpu/drm/xe/xe_device.c
->> @@ -413,8 +413,14 @@ static int xe_set_dma_info(struct xe_device *xe)
+>> @@ -413,12 +413,59 @@ static int xe_set_dma_info(struct xe_device *xe)
 >>   	return err;
 >>   }
 >>   
->> -/*
->> - * Initialize MMIO resources that don't require any knowledge about tile count.
->> +/**
->> + * xe_device_probe_early: Device early probe
->> + * @xe: xe device instance
->> + *
->> + * Initialize MMIO resources that don't require any
->> + * knowledge about tile count. Also initialize pcode
->> + *
->> + * Return: 0 on success, error code on failure
->>    */
->>   int xe_device_probe_early(struct xe_device *xe)
->>   {
->> @@ -428,6 +434,10 @@ int xe_device_probe_early(struct xe_device *xe)
->>   	if (err)
->>   		return err;
->>   
->> +	err = xe_pcode_ready(xe_root_mmio_gt(xe), false);
+>> +static int verify_lmem_ready(struct xe_gt *gt)
 > 
-> my first thought here was that we should also put a comment on why
-> it is okay to use only root tile. A simpler version of what you
-> told in the commit message above.
+> maybe bool?
+will change this
 > 
-> But then, looking further below, I started asking myself about
-> the names.
+>> +{
+>> +	return xe_mmio_read32(gt, GU_CNTL) & LMEM_INIT;
+>> +}
+>> +
+>> +static int wait_for_lmem_ready(struct xe_device *xe)
+>> +{
+>> +	struct xe_gt *gt = xe_root_mmio_gt(xe);
+>> +	unsigned long timeout, start;
+>> +
+>> +	if (!IS_DGFX(xe))
+>> +		return 0;
+>> +
+>> +	if (IS_SRIOV_VF(xe))
+>> +		return 0;
+>> +	/*
+>> +	 * The boot firmware initializes local memory and assesses its health.
+>> +	 * If memory training fails, the punit will have been instructed to
+>> +	 * keep the GT powered down; we won't be able to communicate with it
+>> +	 * and we should not continue with driver initialization.
+>> +	 */
 > 
-> what about have a
+> the comment is negative in a positive outcome.
+> I mean, one reading this comment above might conclude that we are returning below
+> because we won't be able to communicate with the GT.
 > 
-> xe_pcode_probe_early(xe)
-> that calls xe_pcode_ready(xe, false);
-> 
-> and inside the xe_pcode_ready you do the xe_root_mmio_gt(xe).
-> 
-> and you use the bool to grab (or not) the lock inside xe_pcode_ready.
-> 
-> then xe_pcode_probe continue to be only the lock initialization
-> although that could also be named xe_pcode_init.
-> 
-> And then on the resume paths you call xe_pcode_ready(xe, true).
-> There on resume paths we also only need the root tile check.
-
-> 
-> But only some extra thoughts that I had now seeing the final patch,
-> but since this already is a good movement towards our goal and is
-> correct, if you add the code comment about the root-tile being
-> enough, you can feel free to use:
-
-I'll add the comment and the changes suggested. Thank you for the review
+> but the code is right and we need this change. thanks for taking care of it.
+Will move it to the place where its returning EPROBE_DEFER on timeout.
+Thanks for the ack. Will fix these in the next rev
 
 Thanks
 Riana
 > 
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > 
->> +	if (err)
->> +		return err;
+>> +	if (verify_lmem_ready(gt))
+>> +		return 0;
 >> +
->>   	return 0;
->>   }
->>   
->> @@ -506,11 +516,8 @@ int xe_device_probe(struct xe_device *xe)
+>> +	drm_dbg(&xe->drm, "Waiting for lmem initialisation\n");
+>> +
+>> +	start = jiffies;
+>> +	timeout = start + msecs_to_jiffies(60 * 1000); /* 60 sec! */
+>> +
+>> +	do {
+>> +		if (signal_pending(current))
+>> +			return -EINTR;
+>> +
+>> +		if (time_after(jiffies, timeout))
+>> +			return -EPROBE_DEFER;
+>> +
+>> +		msleep(20);
+>> +
+>> +	} while (!verify_lmem_ready(gt));
+>> +
+>> +	drm_dbg(&xe->drm, "lmem ready after %ums",
+>> +		jiffies_to_msecs(jiffies - start));
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>   /**
+>>    * xe_device_probe_early: Device early probe
+>>    * @xe: xe device instance
+>>    *
+>>    * Initialize MMIO resources that don't require any
+>> - * knowledge about tile count. Also initialize pcode
+>> + * knowledge about tile count. Also initialize pcode and
+>> + * check vram initialization on root tile.
+>>    *
+>>    * Return: 0 on success, error code on failure
+>>    */
+>> @@ -438,6 +485,10 @@ int xe_device_probe_early(struct xe_device *xe)
 >>   	if (err)
 >>   		return err;
 >>   
->> -	for_each_gt(gt, xe, id) {
->> -		err = xe_pcode_probe(gt);
->> -		if (err)
->> -			return err;
->> -	}
->> +	for_each_gt(gt, xe, id)
->> +		xe_pcode_probe(gt);
->>   
->>   	err = xe_display_init_noirq(xe);
->>   	if (err)
->> diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
->> index b324dc2a5deb..6c0009fcd2fe 100644
->> --- a/drivers/gpu/drm/xe/xe_pcode.c
->> +++ b/drivers/gpu/drm/xe/xe_pcode.c
->> @@ -43,8 +43,6 @@ static int pcode_mailbox_status(struct xe_gt *gt)
->>   		[PCODE_ERROR_MASK] = {-EPROTO, "Unknown"},
->>   	};
->>   
->> -	lockdep_assert_held(&gt->pcode.lock);
->> -
->>   	err = xe_mmio_read32(gt, PCODE_MAILBOX) & PCODE_ERROR_MASK;
->>   	if (err) {
->>   		drm_err(&gt_to_xe(gt)->drm, "PCODE Mailbox failed: %d %s", err,
->> @@ -55,17 +53,15 @@ static int pcode_mailbox_status(struct xe_gt *gt)
+>> +	err = wait_for_lmem_ready(xe);
+>> +	if (err)
+>> +		return err;
+>> +
 >>   	return 0;
 >>   }
 >>   
->> -static int pcode_mailbox_rw(struct xe_gt *gt, u32 mbox, u32 *data0, u32 *data1,
->> -			    unsigned int timeout_ms, bool return_data,
->> -			    bool atomic)
->> +static int __pcode_mailbox_rw(struct xe_gt *gt, u32 mbox, u32 *data0, u32 *data1,
->> +			      unsigned int timeout_ms, bool return_data,
->> +			      bool atomic)
->>   {
->>   	int err;
+>> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+>> index 7ba2477452d7..7fc0c5453b21 100644
+>> --- a/drivers/gpu/drm/xe/xe_mmio.c
+>> +++ b/drivers/gpu/drm/xe/xe_mmio.c
+>> @@ -360,30 +360,6 @@ static void mmio_fini(struct drm_device *drm, void *arg)
+>>   		iounmap(xe->mem.vram.mapping);
+>>   }
 >>   
->>   	if (gt_to_xe(gt)->info.skip_pcode)
->>   		return 0;
->>   
->> -	lockdep_assert_held(&gt->pcode.lock);
+>> -static int xe_verify_lmem_ready(struct xe_device *xe)
+>> -{
+>> -	struct xe_gt *gt = xe_root_mmio_gt(xe);
 >> -
->>   	if ((xe_mmio_read32(gt, PCODE_MAILBOX) & PCODE_READY) != 0)
->>   		return -EAGAIN;
->>   
->> @@ -87,6 +83,18 @@ static int pcode_mailbox_rw(struct xe_gt *gt, u32 mbox, u32 *data0, u32 *data1,
->>   	return pcode_mailbox_status(gt);
->>   }
->>   
->> +static int pcode_mailbox_rw(struct xe_gt *gt, u32 mbox, u32 *data0, u32 *data1,
->> +			    unsigned int timeout_ms, bool return_data,
->> +			    bool atomic)
->> +{
->> +	if (gt_to_xe(gt)->info.skip_pcode)
->> +		return 0;
->> +
->> +	lockdep_assert_held(&gt->pcode.lock);
->> +
->> +	return __pcode_mailbox_rw(gt, mbox, data0, data1, timeout_ms, return_data, atomic);
->> +}
->> +
->>   int xe_pcode_write_timeout(struct xe_gt *gt, u32 mbox, u32 data, int timeout)
->>   {
->>   	int err;
->> @@ -109,15 +117,19 @@ int xe_pcode_read(struct xe_gt *gt, u32 mbox, u32 *val, u32 *val1)
->>   	return err;
->>   }
->>   
->> -static int xe_pcode_try_request(struct xe_gt *gt, u32 mbox,
->> -				u32 request, u32 reply_mask, u32 reply,
->> -				u32 *status, bool atomic, int timeout_us)
->> +static int pcode_try_request(struct xe_gt *gt, u32 mbox,
->> +			     u32 request, u32 reply_mask, u32 reply,
->> +			     u32 *status, bool atomic, int timeout_us, bool locked)
->>   {
->>   	int slept, wait = 10;
->>   
->>   	for (slept = 0; slept < timeout_us; slept += wait) {
->> -		*status = pcode_mailbox_rw(gt, mbox, &request, NULL, 1, true,
->> -					   atomic);
->> +		if (locked)
->> +			*status = pcode_mailbox_rw(gt, mbox, &request, NULL, 1, true,
->> +						   atomic);
->> +		else
->> +			*status = __pcode_mailbox_rw(gt, mbox, &request, NULL, 1, true,
->> +						     atomic);
->>   		if ((*status == 0) && ((request & reply_mask) == reply))
->>   			return 0;
->>   
->> @@ -158,8 +170,8 @@ int xe_pcode_request(struct xe_gt *gt, u32 mbox, u32 request,
->>   
->>   	mutex_lock(&gt->pcode.lock);
->>   
->> -	ret = xe_pcode_try_request(gt, mbox, request, reply_mask, reply, &status,
->> -				   false, timeout_base_ms * 1000);
->> +	ret = pcode_try_request(gt, mbox, request, reply_mask, reply, &status,
->> +				false, timeout_base_ms * 1000, true);
->>   	if (!ret)
->>   		goto out;
->>   
->> @@ -177,8 +189,8 @@ int xe_pcode_request(struct xe_gt *gt, u32 mbox, u32 request,
->>   		"PCODE timeout, retrying with preemption disabled\n");
->>   	drm_WARN_ON_ONCE(&gt_to_xe(gt)->drm, timeout_base_ms > 1);
->>   	preempt_disable();
->> -	ret = xe_pcode_try_request(gt, mbox, request, reply_mask, reply, &status,
->> -				   true, timeout_base_ms * 1000);
->> +	ret = pcode_try_request(gt, mbox, request, reply_mask, reply, &status,
->> +				true, timeout_base_ms * 1000, true);
->>   	preempt_enable();
->>   
->>   out:
->> @@ -238,15 +250,16 @@ int xe_pcode_init_min_freq_table(struct xe_gt *gt, u32 min_gt_freq,
->>   }
->>   
->>   /**
->> - * xe_pcode_init - Ensure PCODE is initialized
->> + * xe_pcode_ready - Ensure PCODE is initialized
->>    * @gt: gt instance
->> + * @locked: true if lock held, false otherwise
->>    *
->> - * This function ensures that PCODE is properly initialized. To be called during
->> - * probe and resume paths.
->> + * This function ensures that PCODE is properly initialized. Can be called
->> + * without locks only in early probe.
->>    *
->>    * It returns 0 on success, and -error number on failure.
->>    */
->> -int xe_pcode_init(struct xe_gt *gt)
->> +int xe_pcode_ready(struct xe_gt *gt, bool locked)
->>   {
->>   	u32 status, request = DGFX_GET_INIT_STATUS;
->>   	int timeout_us = 180000000; /* 3 min */
->> @@ -258,12 +271,10 @@ int xe_pcode_init(struct xe_gt *gt)
->>   	if (!IS_DGFX(gt_to_xe(gt)))
->>   		return 0;
->>   
->> -	mutex_lock(&gt->pcode.lock);
->> -	ret = xe_pcode_try_request(gt, DGFX_PCODE_STATUS, request,
->> -				   DGFX_INIT_STATUS_COMPLETE,
->> -				   DGFX_INIT_STATUS_COMPLETE,
->> -				   &status, false, timeout_us);
->> -	mutex_unlock(&gt->pcode.lock);
->> +	ret = pcode_try_request(gt, DGFX_PCODE_STATUS, request,
->> +				DGFX_INIT_STATUS_COMPLETE,
->> +				DGFX_INIT_STATUS_COMPLETE,
->> +				&status, false, timeout_us, locked);
->>   
->>   	if (ret)
->>   		drm_err(&gt_to_xe(gt)->drm,
->> @@ -273,24 +284,32 @@ int xe_pcode_init(struct xe_gt *gt)
->>   }
->>   
->>   /**
->> - * xe_pcode_probe - Prepare xe_pcode and also ensure PCODE is initialized.
->> + * xe_pcode_init - initialize pcode
->>    * @gt: gt instance
->>    *
->> - * This function initializes the xe_pcode component, and when needed, it ensures
->> - * that PCODE has properly performed its initialization and it is really ready
->> - * to go. To be called once only during probe.
->> + * This function initializes pcode. Used in resume paths
->>    *
->>    * It returns 0 on success, and -error number on failure.
->>    */
->> -int xe_pcode_probe(struct xe_gt *gt)
->> +int xe_pcode_init(struct xe_gt *gt)
->>   {
->> -	drmm_mutex_init(&gt_to_xe(gt)->drm, &gt->pcode.lock);
->> +	int ret;
->>   
->> -	if (gt_to_xe(gt)->info.skip_pcode)
+>> -	if (!IS_DGFX(xe))
 >> -		return 0;
->> +	mutex_lock(&gt->pcode.lock);
->> +	ret = xe_pcode_ready(gt, true);
->> +	mutex_unlock(&gt->pcode.lock);
->>   
->> -	if (!IS_DGFX(gt_to_xe(gt)))
+>> -
+>> -	if (IS_SRIOV_VF(xe))
 >> -		return 0;
->> +	return ret;
->> +}
->>   
->> -	return xe_pcode_init(gt);
->> +/**
->> + * xe_pcode_probe - Prepare pcode component
->> + * @gt: gt instance
->> + *
->> + * This function initializes the xe_pcode component.
->> + * To be called once only during probe.
->> + */
->> +void xe_pcode_probe(struct xe_gt *gt)
->> +{
->> +	drmm_mutex_init(&gt_to_xe(gt)->drm, &gt->pcode.lock);
->>   }
->> diff --git a/drivers/gpu/drm/xe/xe_pcode.h b/drivers/gpu/drm/xe/xe_pcode.h
->> index 08cb1d047cba..e597dcc8ad9f 100644
->> --- a/drivers/gpu/drm/xe/xe_pcode.h
->> +++ b/drivers/gpu/drm/xe/xe_pcode.h
->> @@ -9,8 +9,9 @@
->>   #include <linux/types.h>
->>   struct xe_gt;
->>   
->> -int xe_pcode_probe(struct xe_gt *gt);
->> +void xe_pcode_probe(struct xe_gt *gt);
->>   int xe_pcode_init(struct xe_gt *gt);
->> +int xe_pcode_ready(struct xe_gt *gt, bool locked);
->>   int xe_pcode_init_min_freq_table(struct xe_gt *gt, u32 min_gt_freq,
->>   				 u32 max_gt_freq);
->>   int xe_pcode_read(struct xe_gt *gt, u32 mbox, u32 *val, u32 *val1);
->> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
->> index 9fbb6f6c598a..83c316254e43 100644
->> --- a/drivers/gpu/drm/xe/xe_pm.c
->> +++ b/drivers/gpu/drm/xe/xe_pm.c
->> @@ -121,11 +121,9 @@ int xe_pm_resume(struct xe_device *xe)
->>   	for_each_tile(tile, xe, id)
->>   		xe_wa_apply_tile_workarounds(tile);
->>   
->> -	for_each_gt(gt, xe, id) {
->> -		err = xe_pcode_init(gt);
->> -		if (err)
->> -			return err;
+>> -
+>> -	/*
+>> -	 * The boot firmware initializes local memory and assesses its health.
+>> -	 * If memory training fails, the punit will have been instructed to
+>> -	 * keep the GT powered down; we won't be able to communicate with it
+>> -	 * and we should not continue with driver initialization.
+>> -	 */
+>> -	if (!(xe_mmio_read32(gt, GU_CNTL) & LMEM_INIT)) {
+>> -		drm_err(&xe->drm, "VRAM not initialized by firmware\n");
+>> -		return -ENODEV;
 >> -	}
->> +	err = xe_pcode_init(xe_root_mmio_gt(xe));
->> +	if (err)
->> +		return err;
+>> -
+>> -	return 0;
+>> -}
+>> -
+>>   int xe_mmio_init(struct xe_device *xe)
+>>   {
+>>   	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+>> @@ -407,16 +383,11 @@ int xe_mmio_init(struct xe_device *xe)
+>>   int xe_mmio_root_tile_init(struct xe_device *xe)
+>>   {
+>>   	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
+>> -	int err;
 >>   
->>   	xe_display_pm_resume_early(xe);
+>>   	/* Setup first tile; other tiles (if present) will be setup later. */
+>>   	root_tile->mmio.size = SZ_16M;
+>>   	root_tile->mmio.regs = xe->mmio.regs;
 >>   
->> @@ -374,11 +372,9 @@ int xe_pm_runtime_resume(struct xe_device *xe)
->>   	xe->d3cold.power_lost = xe_guc_in_reset(&gt->uc.guc);
+>> -	err = xe_verify_lmem_ready(xe);
+>> -	if (err)
+>> -		return err;
+>> -
+>>   	return 0;
+>>   }
 >>   
->>   	if (xe->d3cold.allowed && xe->d3cold.power_lost) {
->> -		for_each_gt(gt, xe, id) {
->> -			err = xe_pcode_init(gt);
->> -			if (err)
->> -				goto out;
->> -		}
->> +		err = xe_pcode_init(xe_root_mmio_gt(xe));
->> +		if (err)
->> +			goto out;
->>   
->>   		/*
->>   		 * This only restores pinned memory which is the memory
 >> -- 
 >> 2.40.0
 >>
