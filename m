@@ -4,27 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6160C54E58
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Mar 2024 14:25:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94C22C54E58
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Mar 2024 14:51:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9072B112E50;
-	Tue, 12 Mar 2024 14:25:37 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA5F2112E50;
- Tue, 12 Mar 2024 14:25:35 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 651701127DD;
+	Tue, 12 Mar 2024 14:51:30 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ARLRPk1P";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B2E61127DD
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Mar 2024 14:51:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1710255089; x=1741791089;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=6YbryoVSPHV2R6s8zfwzPtn28OsKGU/zJOjtkQ2AU0c=;
+ b=ARLRPk1PIuFkbMhTlF1NZGCYXUNgLMfh2VH6/Cm+AlcxILzcw+/w+Yfy
+ taYwYJcdKvx26mlRxn2k2eAJoZdjGqL4qHD4b1G4v0bPIWgdUM/naySvj
+ kKCuhANvbxOUGcKTrmiL8H4u5q3R0Gs1OMOWbUj2TZ1SZdj1kpLcFAnDt
+ zi6AL1in7EnDzwxC/awvp9YI6AoclJs8rzezr3FDQPN8OMigywBH1lhtm
+ T79Fb93dRXLSysBUFUuKuR2c8V1gbXg5PYAlKEQaAMs4ByLoECQ9ElGIQ
+ qPEjANAdFnnxhRfje22zczIKIFhZy3VT2S0I5kNGLu9WPkErBw1ca0CEQ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11011"; a="16109788"
+X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; d="scan'208";a="16109788"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2024 07:51:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; d="scan'208";a="11468364"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2024 07:51:28 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Subject: [CI 2/2] CI: add MODULE_ALIAS for compat
+Date: Tue, 12 Mar 2024 07:51:58 -0700
+Message-ID: <20240312145158.2295351-2-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240312145158.2295351-1-lucas.demarchi@intel.com>
+References: <20240312145158.2295351-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_series_starting_with_=5B?=
- =?utf-8?q?CI=2C1/7=5D_drm/xe=3A_Make_TLB_invalidation_fences_unordered?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 12 Mar 2024 14:25:35 -0000
-Message-ID: <171025353596.695179.1353515363418991389@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240312140447.50437-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20240312140447.50437-1-thomas.hellstrom@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +58,30 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Probably just to test in CI and not worth squashing in previous patch.
 
-Series: series starting with [CI,1/7] drm/xe: Make TLB invalidation fences unordered
-URL   : https://patchwork.freedesktop.org/series/131028/
-State : success
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/tests/xe_live_test_mod.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 458c381b7940c8449da1c06eb8ed5b5ee727bdac
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/xe/tests/xe_live_test_mod.c b/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
+index eb1ea99a5a8b..d11086f44af1 100644
+--- a/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
++++ b/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
+@@ -8,3 +8,9 @@ MODULE_AUTHOR("Intel Corporation");
+ MODULE_LICENSE("GPL");
+ MODULE_DESCRIPTION("xe live kunit tests");
+ MODULE_IMPORT_NS(EXPORTED_FOR_KUNIT_TESTING);
++
++/* compat with previous names */
++MODULE_ALIAS("xe_bo_test");
++MODULE_ALIAS("xe_dma_buf_test");
++MODULE_ALIAS("xe_migrate_test");
++MODULE_ALIAS("xe_mocs_test");
+-- 
+2.43.0
 
