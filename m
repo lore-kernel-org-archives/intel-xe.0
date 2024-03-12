@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96020C54E5D
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Mar 2024 15:35:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE662C54E60
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Mar 2024 15:36:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46E73112EA6;
-	Tue, 12 Mar 2024 15:35:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gdN8LLtn";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FB4C112EA1
- for <intel-xe@lists.freedesktop.org>; Tue, 12 Mar 2024 15:35:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710257711; x=1741793711;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=qLTNF6G2P/O9GXjdAmSV4x+NpWehdlRIy+17b02pFy0=;
- b=gdN8LLtnlftYnAMVmkTmD4KIGCeatOg7UP6jYnW34mI4VJZUgiQkXCcJ
- 0JY5llix0lPsjHvPS6JTmWuuoX4mXsjMkEoFOPStk33aL2AKQuhpdUDOC
- 5k2zHpVNdHOH5Yu9Ksjv9zgniA1g7l9DbD/X/Ho9fZG90BwRydwLp5B54
- /k0/3lISI/GlQ1NGyMStM9DZoHPsDbRviWHxE3plalfQ/TGK39Lr1VGfe
- +Q7fxGHxca5mDaMu5nT8Eolp0tsf+np66mJ1q480hNAnTPn6Wh2VSjua6
- KLlRI0PB6Ojsq4RSc/yl4TK4TcKam+Ulp6Vv+VItnF8nsIlAu+6JWkxpB Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11011"; a="4830698"
-X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; 
-   d="scan'208";a="4830698"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2024 08:35:11 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; d="scan'208";a="12178357"
-Received: from amirafax-mobl4.gar.corp.intel.com (HELO fedora..)
- ([10.249.254.59])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2024 08:35:10 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [CI 5/7] drm/xe/bo: Forward the decision to evict local objects
- during validation
-Date: Tue, 12 Mar 2024 16:34:57 +0100
-Message-ID: <20240312153459.10185-5-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240312153459.10185-1-thomas.hellstrom@linux.intel.com>
-References: <20240312153459.10185-1-thomas.hellstrom@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9361A10F67E;
+	Tue, 12 Mar 2024 15:36:15 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1818510F67E;
+ Tue, 12 Mar 2024 15:36:14 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8833138340881949445=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/gsc=3A_Check_for_possible?=
+ =?utf-8?q?_err_in_forcewake_GT?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 12 Mar 2024 15:36:14 -0000
+Message-ID: <171025777409.695179.13336588323097478608@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240312142424.3152951-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20240312142424.3152951-1-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,390 +36,234 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently we refuse evicting the VM's local objects. However that
-is necessary for some objects. Most notably completely unbound objects.
-Forward this decision to be per-object based in the TTM
-eviction_valuable() callback.
+--===============8833138340881949445==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fixes: 24f947d58fe5 ("drm/xe: Use DRM GPUVM helpers for external- and evicted objects")
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Oded Gabbay <ogabbay@kernel.org>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/display/xe_fb_pin.c |  4 +--
- drivers/gpu/drm/xe/tests/xe_bo.c       |  6 ++---
- drivers/gpu/drm/xe/tests/xe_dma_buf.c  |  4 +--
- drivers/gpu/drm/xe/tests/xe_migrate.c  |  2 +-
- drivers/gpu/drm/xe/xe_bo.c             | 36 ++++++++++++++++++--------
- drivers/gpu/drm/xe/xe_bo.h             |  2 +-
- drivers/gpu/drm/xe/xe_dma_buf.c        |  2 +-
- drivers/gpu/drm/xe/xe_exec.c           | 11 +++++---
- drivers/gpu/drm/xe/xe_ggtt.c           |  2 +-
- drivers/gpu/drm/xe/xe_gt_pagefault.c   |  2 +-
- drivers/gpu/drm/xe/xe_vm.c             | 15 +++++++----
- drivers/gpu/drm/xe/xe_vm_types.h       | 10 +++++++
- 12 files changed, 65 insertions(+), 31 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 722c84a56607..974d182b9537 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -286,7 +286,7 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
- 	if (IS_DGFX(xe))
- 		ret = xe_bo_migrate(bo, XE_PL_VRAM0);
- 	else
--		ret = xe_bo_validate(bo, NULL, true);
-+		ret = xe_bo_validate(bo, bo->vm);
- 	if (!ret)
- 		ttm_bo_pin(&bo->ttm);
- 	ttm_bo_unreserve(&bo->ttm);
-@@ -381,4 +381,4 @@ struct i915_address_space *intel_dpt_create(struct intel_framebuffer *fb)
- void intel_dpt_destroy(struct i915_address_space *vm)
- {
- 	return;
--}
-\ No newline at end of file
-+}
-diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
-index 0926a1c2eb86..5410cb1780a6 100644
---- a/drivers/gpu/drm/xe/tests/xe_bo.c
-+++ b/drivers/gpu/drm/xe/tests/xe_bo.c
-@@ -28,7 +28,7 @@ static int ccs_test_migrate(struct xe_tile *tile, struct xe_bo *bo,
- 	u32 offset;
- 
- 	/* Move bo to VRAM if not already there. */
--	ret = xe_bo_validate(bo, NULL, false);
-+	ret = xe_bo_validate(bo, NULL);
- 	if (ret) {
- 		KUNIT_FAIL(test, "Failed to validate bo.\n");
- 		return ret;
-@@ -274,7 +274,7 @@ static int evict_test_run_tile(struct xe_device *xe, struct xe_tile *tile, struc
- 		if (i) {
- 			down_read(&vm->lock);
- 			xe_vm_lock(vm, false);
--			err = xe_bo_validate(bo, bo->vm, false);
-+			err = xe_bo_validate(bo, bo->vm);
- 			xe_vm_unlock(vm);
- 			up_read(&vm->lock);
- 			if (err) {
-@@ -283,7 +283,7 @@ static int evict_test_run_tile(struct xe_device *xe, struct xe_tile *tile, struc
- 				goto cleanup_all;
- 			}
- 			xe_bo_lock(external, false);
--			err = xe_bo_validate(external, NULL, false);
-+			err = xe_bo_validate(external, NULL);
- 			xe_bo_unlock(external);
- 			if (err) {
- 				KUNIT_FAIL(test, "external bo valid err=%pe\n",
-diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf.c b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-index 9f6d571d7fa9..37bcf812f3ca 100644
---- a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-+++ b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-@@ -80,7 +80,7 @@ static void check_residency(struct kunit *test, struct xe_bo *exported,
- 	}
- 
- 	/* Re-validate the importer. This should move also exporter in. */
--	ret = xe_bo_validate(imported, NULL, false);
-+	ret = xe_bo_validate(imported, NULL);
- 	if (ret) {
- 		if (ret != -EINTR && ret != -ERESTARTSYS)
- 			KUNIT_FAIL(test, "Validating importer failed with err=%d.\n",
-@@ -156,7 +156,7 @@ static void xe_test_dmabuf_import_same_driver(struct xe_device *xe)
- 
- 			/* Is everything where we expect it to be? */
- 			xe_bo_lock(import_bo, false);
--			err = xe_bo_validate(import_bo, NULL, false);
-+			err = xe_bo_validate(import_bo, NULL);
- 
- 			/* Pinning in VRAM is not allowed. */
- 			if (!is_dynamic(params) &&
-diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-index ce531498f57f..97735a3c66ab 100644
---- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-@@ -120,7 +120,7 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
- 		return;
- 	}
- 
--	err = xe_bo_validate(remote, NULL, false);
-+	err = xe_bo_validate(remote, NULL);
- 	if (err) {
- 		KUNIT_FAIL(test, "Failed to validate system bo for %s: %li\n",
- 			   str, err);
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 6603a0ea79c5..eddac9f93ef1 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1049,6 +1049,23 @@ static void xe_ttm_bo_delete_mem_notify(struct ttm_buffer_object *ttm_bo)
- 	}
- }
- 
-+static bool xe_bo_eviction_valuable(struct ttm_buffer_object *ttm_bo,
-+				    const struct ttm_place *place)
-+{
-+	if (xe_bo_is_xe_bo(ttm_bo)) {
-+		struct xe_bo *xe_bo = ttm_to_xe_bo(ttm_bo);
-+		struct xe_vm *vm = xe_bo->vm;
-+
-+		if (vm && !drm_gpuvm_is_extobj(&vm->gpuvm, &ttm_bo->base) &&
-+		    vm->is_validating) {
-+			xe_vm_assert_held(vm);
-+			return false;
-+		}
-+	}
-+
-+	return ttm_bo_eviction_valuable(ttm_bo, place);
-+}
-+
- const struct ttm_device_funcs xe_ttm_funcs = {
- 	.ttm_tt_create = xe_ttm_tt_create,
- 	.ttm_tt_populate = xe_ttm_tt_populate,
-@@ -1059,7 +1076,7 @@ const struct ttm_device_funcs xe_ttm_funcs = {
- 	.io_mem_reserve = xe_ttm_io_mem_reserve,
- 	.io_mem_pfn = xe_ttm_io_mem_pfn,
- 	.release_notify = xe_ttm_bo_release_notify,
--	.eviction_valuable = ttm_bo_eviction_valuable,
-+	.eviction_valuable = xe_bo_eviction_valuable,
- 	.delete_mem_notify = xe_ttm_bo_delete_mem_notify,
- };
- 
-@@ -1677,7 +1694,7 @@ int xe_bo_pin_external(struct xe_bo *bo)
- 	xe_assert(xe, xe_bo_is_user(bo));
- 
- 	if (!xe_bo_is_pinned(bo)) {
--		err = xe_bo_validate(bo, NULL, false);
-+		err = xe_bo_validate(bo, NULL);
- 		if (err)
- 			return err;
- 
-@@ -1721,7 +1738,7 @@ int xe_bo_pin(struct xe_bo *bo)
- 	/* We only expect at most 1 pin */
- 	xe_assert(xe, !xe_bo_is_pinned(bo));
- 
--	err = xe_bo_validate(bo, NULL, false);
-+	err = xe_bo_validate(bo, bo->vm);
- 	if (err)
- 		return err;
- 
-@@ -1818,19 +1835,17 @@ void xe_bo_unpin(struct xe_bo *bo)
-  * xe_bo_validate() - Make sure the bo is in an allowed placement
-  * @bo: The bo,
-  * @vm: Pointer to a the vm the bo shares a locked dma_resv object with, or
-- *      NULL. Used together with @allow_res_evict.
-- * @allow_res_evict: Whether it's allowed to evict bos sharing @vm's
-- *                   reservation object.
-+ *      NULL.
-  *
-  * Make sure the bo is in allowed placement, migrating it if necessary. If
-  * needed, other bos will be evicted. If bos selected for eviction shares
-- * the @vm's reservation object, they can be evicted iff @allow_res_evict is
-- * set to true, otherwise they will be bypassed.
-+ * the @vm's reservation object, they can be evicted if the
-+ * xe_bo_eviction_valuable() function allows it.
-  *
-  * Return: 0 on success, negative error code on failure. May return
-  * -EINTR or -ERESTARTSYS if internal waits are interrupted by a signal.
-  */
--int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict)
-+int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm)
- {
- 	struct ttm_operation_ctx ctx = {
- 		.interruptible = true,
-@@ -1838,10 +1853,9 @@ int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict)
- 	};
- 
- 	if (vm) {
--		lockdep_assert_held(&vm->lock);
- 		xe_vm_assert_held(vm);
- 
--		ctx.allow_res_evict = allow_res_evict;
-+		ctx.allow_res_evict = true;
- 		ctx.resv = xe_vm_resv(vm);
- 	}
- 
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index c59ad15961ce..df5e10a50cf3 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -191,7 +191,7 @@ int xe_bo_pin_external(struct xe_bo *bo);
- int xe_bo_pin(struct xe_bo *bo);
- void xe_bo_unpin_external(struct xe_bo *bo);
- void xe_bo_unpin(struct xe_bo *bo);
--int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict);
-+int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm);
- 
- static inline bool xe_bo_is_pinned(struct xe_bo *bo)
- {
-diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
-index 5b26af21e029..f1dc2bc5179b 100644
---- a/drivers/gpu/drm/xe/xe_dma_buf.c
-+++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-@@ -102,7 +102,7 @@ static struct sg_table *xe_dma_buf_map(struct dma_buf_attachment *attach,
- 		if (!attach->peer2peer)
- 			r = xe_bo_migrate(bo, XE_PL_TT);
- 		else
--			r = xe_bo_validate(bo, NULL, false);
-+			r = xe_bo_validate(bo, NULL);
- 		if (r)
- 			return ERR_PTR(r);
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-index f36fb22a7861..ef360a9d9360 100644
---- a/drivers/gpu/drm/xe/xe_exec.c
-+++ b/drivers/gpu/drm/xe/xe_exec.c
-@@ -101,23 +101,27 @@ static int xe_exec_fn(struct drm_gpuvm_exec *vm_exec)
- 	unsigned long index;
- 	int ret;
- 
-+	vm->is_validating = true;
- 	do {
- 		ret = drm_gpuvm_validate(vm_exec->vm, &vm_exec->exec);
- 		if (ret)
--			return ret;
-+			goto out;
- 
- 		ret = xe_vm_rebind(vm, false);
- 		if (ret)
--			return ret;
-+			goto out;
- 	} while (!list_empty(&vm->gpuvm.evict.list));
- 
- 	drm_exec_for_each_locked_object(&vm_exec->exec, index, obj) {
- 		ret = dma_resv_reserve_fences(obj->resv, 1);
- 		if (ret)
--			return ret;
-+			goto out;
- 	}
- 
- 	return 0;
-+out:
-+	vm->is_validating = false;
-+	return ret;
- }
- 
- int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-@@ -351,6 +355,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	if (err)
- 		xe_sched_job_put(job);
- err_exec:
-+	vm->is_validating = false;
- 	drm_exec_fini(exec);
- err_unlock_list:
- 	if (write_locked)
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 717d0e76277a..275e18e36b13 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -414,7 +414,7 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
- 		return 0;
- 	}
- 
--	err = xe_bo_validate(bo, NULL, false);
-+	err = xe_bo_validate(bo, bo->vm);
- 	if (err)
- 		return err;
- 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index 12a5735f4352..3e93e9008392 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -118,7 +118,7 @@ static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
- 			return err;
- 	} else if (bo) {
- 		/* Create backing store if needed */
--		err = xe_bo_validate(bo, vm, true);
-+		err = xe_bo_validate(bo, vm);
- 		if (err)
- 			return err;
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index fad5b1ae7f2d..f3e6922fe688 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -475,7 +475,7 @@ static int xe_gpuvm_validate(struct drm_gpuvm_bo *vm_bo, struct drm_exec *exec)
- 		list_move_tail(&gpuva_to_vma(gpuva)->combined_links.rebind,
- 			       &vm->rebind_list);
- 
--	ret = xe_bo_validate(gem_to_xe_bo(vm_bo->obj), vm, false);
-+	ret = xe_bo_validate(gem_to_xe_bo(vm_bo->obj), vm);
- 	if (ret)
- 		return ret;
- 
-@@ -513,23 +513,27 @@ static int xe_preempt_work_begin(struct drm_exec *exec, struct xe_vm *vm,
- 	if (err)
- 		return err;
- 
-+	vm->is_validating = true;
- 	do {
- 		err = drm_gpuvm_validate(&vm->gpuvm, exec);
- 		if (err)
--			return err;
-+			goto out;
- 
- 		err = xe_vm_rebind(vm, true);
- 		if (err)
--			return err;
-+			goto out;
- 	} while (!list_empty(&vm->gpuvm.evict.list));
- 
- 	drm_exec_for_each_locked_object(exec, index, obj) {
- 		err = dma_resv_reserve_fences(obj->resv, vm->preempt.num_exec_queues);
- 		if (err)
--			return err;
-+			goto out;
- 	}
- 
- 	return 0;
-+out:
-+	vm->is_validating = false;
-+	return err;
- }
- 
- static void preempt_rebind_work_func(struct work_struct *w)
-@@ -620,6 +624,7 @@ static void preempt_rebind_work_func(struct work_struct *w)
- 	up_read(&vm->userptr.notifier_lock);
- 
- out_unlock:
-+	vm->is_validating = false;
- 	drm_exec_fini(&exec);
- out_unlock_outer:
- 	if (err == -EAGAIN) {
-@@ -1876,7 +1881,7 @@ static int xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma, struct xe_exec_queue
- 	xe_bo_assert_held(bo);
- 
- 	if (bo && immediate) {
--		err = xe_bo_validate(bo, vm, true);
-+		err = xe_bo_validate(bo, vm);
- 		if (err)
- 			return err;
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 79b5cab57711..5085593236a8 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -269,6 +269,16 @@ struct xe_vm {
- 
- 	/** @batch_invalidate_tlb: Always invalidate TLB before batch start */
- 	bool batch_invalidate_tlb;
-+
-+	/**
-+	 * @is_validaing: Whether we are validating the vm's local objects.
-+	 * This field is protected by the vm's resv. Note that this
-+	 * is needed only since TTM doesn't forward the ttm_operation_ctx to the
-+	 * eviction_valuable() callback, so if / when that is in place, this
-+	 * should be removed.
-+	 */
-+	bool is_validating;
-+
- 	/** @xef: XE file handle for tracking this VM's drm client */
- 	struct xe_file *xef;
- };
--- 
-2.44.0
+Series: drm/xe/gsc: Check for possible err in forcewake GT
+URL   : https://patchwork.freedesktop.org/series/131029/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad_BAT -> xe-pw-131029v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-131029v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-adlp-7:         NOTRUN -> [SKIP][1] ([Intel XE#455])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131029v1/bat-adlp-7/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         NOTRUN -> [FAIL][2] ([Intel XE#616])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131029v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_hdmi_inject@inject-audio:
+    - bat-adlp-7:         NOTRUN -> [SKIP][3] ([Intel XE#417])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131029v1/bat-adlp-7/igt@kms_hdmi_inject@inject-audio.html
+
+  * igt@xe_evict@evict-small-cm:
+    - bat-adlp-7:         NOTRUN -> [SKIP][4] ([Intel XE#261] / [Intel XE#688]) +15 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131029v1/bat-adlp-7/igt@xe_evict@evict-small-cm.html
+
+  * igt@xe_evict_ccs@evict-overcommit-simple:
+    - bat-adlp-7:         NOTRUN -> [SKIP][5] ([Intel XE#688]) +1 other test skip
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131029v1/bat-adlp-7/igt@xe_evict_ccs@evict-overcommit-simple.html
+
+  * igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:
+    - bat-adlp-7:         NOTRUN -> [SKIP][6] ([Intel XE#288]) +22 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131029v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
+
+  * igt@xe_mmap@vram:
+    - bat-adlp-7:         NOTRUN -> [SKIP][7] ([Intel XE#1008])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131029v1/bat-adlp-7/igt@xe_mmap@vram.html
+
+  * igt@xe_pat@pat-index-xe2:
+    - bat-adlp-7:         NOTRUN -> [SKIP][8] ([Intel XE#977])
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131029v1/bat-adlp-7/igt@xe_pat@pat-index-xe2.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-adlp-7:         NOTRUN -> [SKIP][9] ([Intel XE#979]) +1 other test skip
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131029v1/bat-adlp-7/igt@xe_pat@pat-index-xehpc.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_module_load@load:
+    - bat-adlp-7:         [INCOMPLETE][10] ([Intel XE#1319]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad/bat-adlp-7/igt@xe_module_load@load.html
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131029v1/bat-adlp-7/igt@xe_module_load@load.html
+
+  
+  [Intel XE#1008]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1008
+  [Intel XE#1319]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1319
+  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#417]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/417
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+  [Intel XE#616]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/616
+  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7754 -> IGT_7756
+  * Linux: xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad -> xe-pw-131029v1
+
+  IGT_7754: 5fb3239299b5be2c110aafa483c9e197c53f8bb8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7756: 7756
+  xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad: 61fa386186cb302cf26e29aef76d5b1a6ffe57ad
+  xe-pw-131029v1: 131029v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131029v1/index.html
+
+--===============8833138340881949445==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/gsc: Check for possible err in forcewake GT</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131029/">https://patchwork.freedesktop.org/series/131029/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131029v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131029v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad_BAT -&gt; xe-pw-131029v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-131029v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131029v1/bat-adlp-7/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131029v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/616">Intel XE#616</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdmi_inject@inject-audio:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131029v1/bat-adlp-7/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/417">Intel XE#417</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict@evict-small-cm:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131029v1/bat-adlp-7/igt@xe_evict@evict-small-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +15 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict_ccs@evict-overcommit-simple:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131029v1/bat-adlp-7/igt@xe_evict_ccs@evict-overcommit-simple.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131029v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +22 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_mmap@vram:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131029v1/bat-adlp-7/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1008">Intel XE#1008</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xe2:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131029v1/bat-adlp-7/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131029v1/bat-adlp-7/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>) +1 other test skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_module_load@load:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad/bat-adlp-7/igt@xe_module_load@load.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1319">Intel XE#1319</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131029v1/bat-adlp-7/igt@xe_module_load@load.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7754 -&gt; IGT_7756</li>
+<li>Linux: xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad -&gt; xe-pw-131029v1</li>
+</ul>
+<p>IGT_7754: 5fb3239299b5be2c110aafa483c9e197c53f8bb8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7756: 7756<br />
+  xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad: 61fa386186cb302cf26e29aef76d5b1a6ffe57ad<br />
+  xe-pw-131029v1: 131029v1</p>
+
+</body>
+</html>
+
+--===============8833138340881949445==--
