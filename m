@@ -4,56 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAAEDC54E66
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Mar 2024 08:27:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98CE4C54E66
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Mar 2024 10:04:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56F6510E5AB;
-	Tue, 12 Mar 2024 08:27:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4371D10F347;
+	Tue, 12 Mar 2024 10:04:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c8qqblRb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SO4+PJzY";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95DF889F41;
- Tue, 12 Mar 2024 08:27:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B0A010F30A;
+ Tue, 12 Mar 2024 10:04:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710232039; x=1741768039;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=VR7AXCR/ulY6Qc3eFhwfGTs18I0wJeuR7+ZvNSzGhDY=;
- b=c8qqblRbJ/lOwICQ05sqSQOW5PAPKKvpTkUH5DmS413NY6pD8MIlpjBJ
- NESgRH7vKhXrzrB+JHagqydjcPgYJVjecAi5CsrSblu9OoFHT8LGpbBDp
- WlNslS7ZQNn6rDsNj+yiSN1qQw6Z90vbRsghTps/c5Kbex41vHtkpubNe
- V3F+qVT/hGZl//bf0XVC4EDCOjAupmltIkWQm8iH6vmqVV2veDfBDqXjR
- //t8b/srd8vdX+3Gz1+pc8Oj7NZA4Z+cnD2N7DLBXONgBf6LzQsc0pg5o
- 94n+4KB7m0JsW/1C+yJE2vWp7qgiJ+2tV8jPkGGpXTRkZDOzKF4eLrYwZ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11010"; a="5115761"
-X-IronPort-AV: E=Sophos;i="6.07,118,1708416000"; 
-   d="scan'208";a="5115761"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2024 01:27:19 -0700
+ t=1710237887; x=1741773887;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=IpuPnfTEDNwxO17jDA10oYjukIw3E/5powuOknsvP+w=;
+ b=SO4+PJzYtP9FJcJPireH+XPqSkB2TjTnxKzjt2SV7DAoQjMizQCRvZKr
+ AQF2O7vfEnV42Iwa9TV1GYUSy3VE6Gdxsme/MOqm+7Q5PFhRgquC9DH5E
+ g+37mXwmyDTWCNtorUPAuHPLw4nhfZyf++j/Ok+Gj6l4jg+lQy89gEClH
+ GuNcdAm2Sv0MlNAgmuFYqqddVOMXyYi8bZ1ewtC+ikRasutktZ9VMY3jS
+ uZmmtY8U2XE8YD9kgoaaTGxP8onLSfBDAVfJgpD3x59MN12WDvaV7vSz7
+ MNjN8HmTJzYkGR0tsh29eV5O/YS6Vpu7yuxn/bxofublfmWk68xTxZr9b w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11010"; a="7883317"
+X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; 
+   d="scan'208";a="7883317"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2024 03:04:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,118,1708416000"; d="scan'208";a="16098803"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2024 01:27:17 -0700
-Date: Tue, 12 Mar 2024 10:27:09 +0200
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, vinod.govindapillai@intel.com,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: Re: [PATCH 6/8] drm/i915/xe2lpd: Support MDCLK:CDCLK ratio changes
-Message-ID: <ZfAR3d5EzXqTzypa@intel.com>
-References: <20240304183028.195057-1-gustavo.sousa@intel.com>
- <20240304183028.195057-7-gustavo.sousa@intel.com>
- <Ze9xEIf2wBsl5iOY@intel.com>
- <171019160954.2042.4426543267974940607@gjsousa-mobl2>
+X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; d="scan'208";a="15979658"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by fmviesa005.fm.intel.com with ESMTP; 12 Mar 2024 03:04:45 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCH] drm/xe/display: fix potential overflow when multiplying 2 u32
+Date: Tue, 12 Mar 2024 15:24:41 +0530
+Message-Id: <20240312095441.3684038-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <171019160954.2042.4426543267974940607@gjsousa-mobl2>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,304 +61,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Mar 11, 2024 at 06:13:29PM -0300, Gustavo Sousa wrote:
-> Quoting Lisovskiy, Stanislav (2024-03-11 18:01:04-03:00)
-> >On Mon, Mar 04, 2024 at 03:30:25PM -0300, Gustavo Sousa wrote:
-> >> Commit 394b4b7df9f7 ("drm/i915/lnl: Add CDCLK table") and commit
-> >> 3d3696c0fed1 ("drm/i915/lnl: Start using CDCLK through PLL") started
-> >> adding support for CDCLK programming support for Xe2LPD. One final piece
-> >> is missing, which is the programming necessary for changed in the ratio
-> >> between MDCLK and CDCLK. Let's do that now.
-> >> 
-> >> BSpec instructs us to update MBUS_CTL and DBUF_CTL_S* registers when the
-> >> ratio between MDCLK and CDCLK changes. The updates must be done before
-> >> changing the CDCLK when decreasing the frequency; or after it when
-> >> increasing the frequency.
-> >> 
-> >> Ratio-related updates to MBUS_CTL also depend on the state of MBus
-> >> joining, so they are performed by either CDCLK change sequence or by
-> >> changes in MBus joining. Since one might happen independently of the
-> >> other, we need to make sure that both logics see the necessary state
-> >> values when programming that register. MBus joining logic needs to know
-> >> the MDCLK:CDCLK ratio and that's already provided via mdclk_cdclk_ratio
-> >> field of struct intel_dbuf_state.
-> >> 
-> >> For the CDCLK logic, we need to have something similar: we need to
-> >> propagate the status of MBus joining to struct intel_cdclk_state. Do
-> >> that by adding the field joined_mbus to struct intel_cdclk_config.
-> >> (Preferably, that field would be added to intel_cdclk_state, however
-> >> currently only intel_cdclk_config is passed down to the functions that
-> >> do the register programming. We might revisit this decision if we find
-> >> that refactoring the code to pass the whole intel_cdclk_state is worth
-> >> it.)
-> >> 
-> >> Bspec: 68864, 68868, 69090, 69482
-> >> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> >> ---
-> >>  drivers/gpu/drm/i915/display/intel_cdclk.c    | 31 ++++++++++++++
-> >>  drivers/gpu/drm/i915/display/intel_cdclk.h    |  3 ++
-> >>  drivers/gpu/drm/i915/display/skl_watermark.c  | 40 +++++++++++++++----
-> >>  drivers/gpu/drm/i915/display/skl_watermark.h  |  1 +
-> >>  .../gpu/drm/i915/display/skl_watermark_regs.h | 18 +++++----
-> >>  5 files changed, 77 insertions(+), 16 deletions(-)
-> >> 
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> >> index 04a6e9806254..12753589072d 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> >> @@ -40,6 +40,7 @@
-> >>  #include "intel_psr.h"
-> >>  #include "intel_vdsc.h"
-> >>  #include "skl_watermark.h"
-> >> +#include "skl_watermark_regs.h"
-> >>  #include "vlv_sideband.h"
-> >>  
-> >>  /**
-> >> @@ -1683,6 +1684,8 @@ static void bxt_get_cdclk(struct drm_i915_private *dev_priv,
-> >>          }
-> >>  
-> >>   out:
-> >> +        if (DISPLAY_VER(dev_priv) >= 20)
-> >> +                cdclk_config->joined_mbus = intel_de_read(dev_priv, MBUS_CTL) & MBUS_JOIN;
-> >>          /*
-> >>           * Can't read this out :( Let's assume it's
-> >>           * at least what the CDCLK frequency requires.
-> >> @@ -1908,6 +1911,14 @@ u8 intel_mdclk_cdclk_ratio(struct drm_i915_private *i915,
-> >>          }
-> >>  }
-> >>  
-> >> +static void xe2lpd_mdclk_cdclk_ratio_program(struct drm_i915_private *i915,
-> >> +                                             const struct intel_cdclk_config *cdclk_config)
-> >> +{
-> >> +        intel_dbuf_mdclk_cdclk_ratio_update(i915,
-> >> +                                            intel_mdclk_cdclk_ratio(i915, cdclk_config),
-> >> +                                            cdclk_config->joined_mbus);
-> >> +}
-> >> +
-> >>  static bool cdclk_compute_crawl_and_squash_midpoint(struct drm_i915_private *i915,
-> >>                                                      const struct intel_cdclk_config *old_cdclk_config,
-> >>                                                      const struct intel_cdclk_config *new_cdclk_config,
-> >> @@ -2089,6 +2100,9 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
-> >>                  return;
-> >>          }
-> >>  
-> >> +        if (DISPLAY_VER(dev_priv) >= 20 && cdclk < dev_priv->display.cdclk.hw.cdclk)
-> >> +                xe2lpd_mdclk_cdclk_ratio_program(dev_priv, cdclk_config);
-> >> +
-> >>          if (cdclk_compute_crawl_and_squash_midpoint(dev_priv, &dev_priv->display.cdclk.hw,
-> >>                                                      cdclk_config, &mid_cdclk_config)) {
-> >>                  _bxt_set_cdclk(dev_priv, &mid_cdclk_config, pipe);
-> >> @@ -2097,6 +2111,9 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
-> >>                  _bxt_set_cdclk(dev_priv, cdclk_config, pipe);
-> >>          }
-> >>  
-> >> +        if (DISPLAY_VER(dev_priv) >= 20 && cdclk > dev_priv->display.cdclk.hw.cdclk)
-> >> +                xe2lpd_mdclk_cdclk_ratio_program(dev_priv, cdclk_config);
-> >> +
-> >>          if (DISPLAY_VER(dev_priv) >= 14)
-> >>                  /*
-> >>                   * NOOP - No Pcode communication needed for
-> >> @@ -3179,6 +3196,20 @@ int intel_cdclk_atomic_check(struct intel_atomic_state *state,
-> >>          return 0;
-> >>  }
-> >>  
-> >> +int intel_cdclk_state_set_joined_mbus(struct intel_atomic_state *state, bool joined_mbus)
-> >> +{
-> >> +        struct intel_cdclk_state *cdclk_state;
-> >> +
-> >> +        cdclk_state = intel_atomic_get_cdclk_state(state);
-> >> +        if (IS_ERR(cdclk_state))
-> >> +                return PTR_ERR(cdclk_state);
-> >> +
-> >> +        cdclk_state->actual.joined_mbus = joined_mbus;
-> >> +        cdclk_state->logical.joined_mbus = joined_mbus;
-> >> +
-> >> +        return intel_atomic_lock_global_state(&cdclk_state->base);
-> >
-> >Shouldn't we actually lock global state already before we modify
-> >the cdclk_state?
-> 
-> I don't think so. The cdclk_state that we have here is already a copy
-> that belongs only to this commit. I think it is actually critical that
-> we have the write locked at the swap time, which is done only after the
-> atomic checks.
-> 
-> As such, I think locking after we modify the copy should be fine. In
-> fact, we already have places in the code using the same pattern.
-> 
-> --
-> Gustavo Sousa
+Multiplying XE_PAGE_SIZE with another u32 and the product stored in
+u64 can potentially lead to overflow. Change one of the value to u64 so
+as to perform 64 bit arithmetic operation as the product is u64.
 
-Yes, right. We lock global state if we modify it and/or serialize commit
-if we want to write the hardware.
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+---
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 722c84a56607..c9d26345ae6e 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -29,7 +29,7 @@ write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_
+ 		u32 src_idx = src_stride * (height - 1) + column + bo_ofs;
+ 
+ 		for (row = 0; row < height; row++) {
+-			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
++			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * (u64)XE_PAGE_SIZE,
+ 							      xe->pat.idx[XE_CACHE_WB]);
+ 
+ 			iosys_map_wr(map, *dpt_ofs, u64, pte);
+@@ -61,7 +61,7 @@ write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
+ 
+ 		for (column = 0; column < width; column++) {
+ 			iosys_map_wr(map, *dpt_ofs, u64,
+-				     pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
++				     pte_encode_bo(bo, src_idx * (u64)XE_PAGE_SIZE,
+ 				     xe->pat.idx[XE_CACHE_WB]));
+ 
+ 			*dpt_ofs += 8;
+@@ -118,7 +118,7 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
+ 		u32 x;
+ 
+ 		for (x = 0; x < size / XE_PAGE_SIZE; x++) {
+-			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x * XE_PAGE_SIZE,
++			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x * (u64)XE_PAGE_SIZE,
+ 							      xe->pat.idx[XE_CACHE_WB]);
+ 
+ 			iosys_map_wr(&dpt->vmap, x * 8, u64, pte);
+@@ -164,7 +164,7 @@ write_ggtt_rotated(struct xe_bo *bo, struct xe_ggtt *ggtt, u32 *ggtt_ofs, u32 bo
+ 		u32 src_idx = src_stride * (height - 1) + column + bo_ofs;
+ 
+ 		for (row = 0; row < height; row++) {
+-			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
++			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * (u64)XE_PAGE_SIZE,
+ 							      xe->pat.idx[XE_CACHE_WB]);
+ 
+ 			xe_ggtt_set_pte(ggtt, *ggtt_ofs, pte);
+@@ -381,4 +381,4 @@ struct i915_address_space *intel_dpt_create(struct intel_framebuffer *fb)
+ void intel_dpt_destroy(struct i915_address_space *vm)
+ {
+ 	return;
+-}
+\ No newline at end of file
++}
+-- 
+2.25.1
 
-
-> 
-> >
-> >
-> >Stan
-> >
-> >> +}
-> >> +
-> >>  int intel_cdclk_init(struct drm_i915_private *dev_priv)
-> >>  {
-> >>          struct intel_cdclk_state *cdclk_state;
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
-> >> index 8e6e302bd599..e358234bfe26 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_cdclk.h
-> >> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
-> >> @@ -18,6 +18,8 @@ struct intel_crtc_state;
-> >>  struct intel_cdclk_config {
-> >>          unsigned int cdclk, vco, ref, bypass;
-> >>          u8 voltage_level;
-> >> +        /* This field is only valid for Xe2LPD and above. */
-> >> +        bool joined_mbus;
-> >>  };
-> >>  
-> >>  struct intel_cdclk_state {
-> >> @@ -74,6 +76,7 @@ void intel_cdclk_get_cdclk(struct drm_i915_private *dev_priv,
-> >>                             struct intel_cdclk_config *cdclk_config);
-> >>  int intel_cdclk_atomic_check(struct intel_atomic_state *state,
-> >>                               bool *need_cdclk_calc);
-> >> +int intel_cdclk_state_set_joined_mbus(struct intel_atomic_state *state, bool joined_mbus);
-> >>  struct intel_cdclk_state *
-> >>  intel_atomic_get_cdclk_state(struct intel_atomic_state *state);
-> >>  
-> >> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-> >> index 4410e21888ad..bc341abcab2f 100644
-> >> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> >> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> >> @@ -12,6 +12,7 @@
-> >>  #include "intel_atomic.h"
-> >>  #include "intel_atomic_plane.h"
-> >>  #include "intel_bw.h"
-> >> +#include "intel_cdclk.h"
-> >>  #include "intel_crtc.h"
-> >>  #include "intel_de.h"
-> >>  #include "intel_display.h"
-> >> @@ -2601,10 +2602,17 @@ skl_compute_ddb(struct intel_atomic_state *state)
-> >>                          return ret;
-> >>          }
-> >>  
-> >> -        if (HAS_MBUS_JOINING(i915))
-> >> +        if (HAS_MBUS_JOINING(i915)) {
-> >>                  new_dbuf_state->joined_mbus =
-> >>                          adlp_check_mbus_joined(new_dbuf_state->active_pipes);
-> >>  
-> >> +                if (old_dbuf_state->joined_mbus != new_dbuf_state->joined_mbus) {
-> >> +                        ret = intel_cdclk_state_set_joined_mbus(state, new_dbuf_state->joined_mbus);
-> >> +                        if (ret)
-> >> +                                return ret;
-> >> +                }
-> >> +        }
-> >> +
-> >>          for_each_intel_crtc(&i915->drm, crtc) {
-> >>                  enum pipe pipe = crtc->pipe;
-> >>  
-> >> @@ -3545,12 +3553,14 @@ int intel_dbuf_state_set_mdclk_cdclk_ratio(struct intel_atomic_state *state, u8
-> >>          return intel_atomic_lock_global_state(&dbuf_state->base);
-> >>  }
-> >>  
-> >> -static void intel_dbuf_mdclk_cdclk_ratio_update(struct drm_i915_private *i915,
-> >> -                                                u8 ratio,
-> >> -                                                bool joined_mbus)
-> >> +void intel_dbuf_mdclk_cdclk_ratio_update(struct drm_i915_private *i915, u8 ratio, bool joined_mbus)
-> >>  {
-> >>          enum dbuf_slice slice;
-> >>  
-> >> +        if (DISPLAY_VER(i915) >= 20)
-> >> +                intel_de_rmw(i915, MBUS_CTL, MBUS_TRANSLATION_THROTTLE_MIN_MASK,
-> >> +                             MBUS_TRANSLATION_THROTTLE_MIN(ratio - 1));
-> >> +
-> >>          if (joined_mbus)
-> >>                  ratio *= 2;
-> >>  
-> >> @@ -3568,7 +3578,9 @@ static void update_mbus_pre_enable(struct intel_atomic_state *state)
-> >>  {
-> >>          struct drm_i915_private *i915 = to_i915(state->base.dev);
-> >>          u32 mbus_ctl;
-> >> -        const struct intel_dbuf_state *dbuf_state =
-> >> +        const struct intel_dbuf_state *old_dbuf_state =
-> >> +                intel_atomic_get_old_dbuf_state(state);
-> >> +        const struct intel_dbuf_state *new_dbuf_state =
-> >>                  intel_atomic_get_new_dbuf_state(state);
-> >>  
-> >>          if (!HAS_MBUS_JOINING(i915))
-> >> @@ -3578,7 +3590,7 @@ static void update_mbus_pre_enable(struct intel_atomic_state *state)
-> >>           * TODO: Implement vblank synchronized MBUS joining changes.
-> >>           * Must be properly coordinated with dbuf reprogramming.
-> >>           */
-> >> -        if (dbuf_state->joined_mbus)
-> >> +        if (new_dbuf_state->joined_mbus)
-> >>                  mbus_ctl = MBUS_HASHING_MODE_1x4 | MBUS_JOIN |
-> >>                          MBUS_JOIN_PIPE_SELECT_NONE;
-> >>          else
-> >> @@ -3589,8 +3601,20 @@ static void update_mbus_pre_enable(struct intel_atomic_state *state)
-> >>                       MBUS_HASHING_MODE_MASK | MBUS_JOIN |
-> >>                       MBUS_JOIN_PIPE_SELECT_MASK, mbus_ctl);
-> >>  
-> >> -        intel_dbuf_mdclk_cdclk_ratio_update(i915, dbuf_state->mdclk_cdclk_ratio,
-> >> -                                            dbuf_state->joined_mbus);
-> >> +        if (DISPLAY_VER(i915) >= 20 &&
-> >> +            old_dbuf_state->mdclk_cdclk_ratio != new_dbuf_state->mdclk_cdclk_ratio) {
-> >> +                /*
-> >> +                 * For Xe2LPD and beyond, when there is a change in the ratio
-> >> +                 * between MDCLK and CDCLK, updates to related registers need to
-> >> +                 * happen at a specific point in the CDCLK change sequence. In
-> >> +                 * that case, we defer to the call to
-> >> +                 * intel_dbuf_mdclk_cdclk_ratio_update() to the CDCLK logic.
-> >> +                 */
-> >> +                return;
-> >> +        }
-> >> +
-> >> +        intel_dbuf_mdclk_cdclk_ratio_update(i915, new_dbuf_state->mdclk_cdclk_ratio,
-> >> +                                            new_dbuf_state->joined_mbus);
-> >>  }
-> >>  
-> >>  void intel_dbuf_pre_plane_update(struct intel_atomic_state *state)
-> >> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.h b/drivers/gpu/drm/i915/display/skl_watermark.h
-> >> index fed4d12df584..3a90741cab06 100644
-> >> --- a/drivers/gpu/drm/i915/display/skl_watermark.h
-> >> +++ b/drivers/gpu/drm/i915/display/skl_watermark.h
-> >> @@ -76,6 +76,7 @@ int intel_dbuf_state_set_mdclk_cdclk_ratio(struct intel_atomic_state *state, u8
-> >>  
-> >>  void intel_dbuf_pre_plane_update(struct intel_atomic_state *state);
-> >>  void intel_dbuf_post_plane_update(struct intel_atomic_state *state);
-> >> +void intel_dbuf_mdclk_cdclk_ratio_update(struct drm_i915_private *i915, u8 ratio, bool joined_mbus);
-> >>  void intel_mbus_dbox_update(struct intel_atomic_state *state);
-> >>  
-> >>  #endif /* __SKL_WATERMARK_H__ */
-> >> diff --git a/drivers/gpu/drm/i915/display/skl_watermark_regs.h b/drivers/gpu/drm/i915/display/skl_watermark_regs.h
-> >> index 20b30c9a6613..269163fa3350 100644
-> >> --- a/drivers/gpu/drm/i915/display/skl_watermark_regs.h
-> >> +++ b/drivers/gpu/drm/i915/display/skl_watermark_regs.h
-> >> @@ -32,14 +32,16 @@
-> >>  #define MBUS_BBOX_CTL_S1                _MMIO(0x45040)
-> >>  #define MBUS_BBOX_CTL_S2                _MMIO(0x45044)
-> >>  
-> >> -#define MBUS_CTL                        _MMIO(0x4438C)
-> >> -#define MBUS_JOIN                        REG_BIT(31)
-> >> -#define MBUS_HASHING_MODE_MASK                REG_BIT(30)
-> >> -#define MBUS_HASHING_MODE_2x2                REG_FIELD_PREP(MBUS_HASHING_MODE_MASK, 0)
-> >> -#define MBUS_HASHING_MODE_1x4                REG_FIELD_PREP(MBUS_HASHING_MODE_MASK, 1)
-> >> -#define MBUS_JOIN_PIPE_SELECT_MASK        REG_GENMASK(28, 26)
-> >> -#define MBUS_JOIN_PIPE_SELECT(pipe)        REG_FIELD_PREP(MBUS_JOIN_PIPE_SELECT_MASK, pipe)
-> >> -#define MBUS_JOIN_PIPE_SELECT_NONE        MBUS_JOIN_PIPE_SELECT(7)
-> >> +#define MBUS_CTL                                _MMIO(0x4438C)
-> >> +#define   MBUS_JOIN                                REG_BIT(31)
-> >> +#define   MBUS_HASHING_MODE_MASK                REG_BIT(30)
-> >> +#define   MBUS_HASHING_MODE_2x2                        REG_FIELD_PREP(MBUS_HASHING_MODE_MASK, 0)
-> >> +#define   MBUS_HASHING_MODE_1x4                        REG_FIELD_PREP(MBUS_HASHING_MODE_MASK, 1)
-> >> +#define   MBUS_JOIN_PIPE_SELECT_MASK                REG_GENMASK(28, 26)
-> >> +#define   MBUS_JOIN_PIPE_SELECT(pipe)                REG_FIELD_PREP(MBUS_JOIN_PIPE_SELECT_MASK, pipe)
-> >> +#define   MBUS_JOIN_PIPE_SELECT_NONE                MBUS_JOIN_PIPE_SELECT(7)
-> >> +#define   MBUS_TRANSLATION_THROTTLE_MIN_MASK        REG_GENMASK(15, 13)
-> >> +#define   MBUS_TRANSLATION_THROTTLE_MIN(val)        REG_FIELD_PREP(MBUS_TRANSLATION_THROTTLE_MIN_MASK, val)
-> >>  
-> >>  /* Watermark register definitions for SKL */
-> >>  #define _CUR_WM_A_0                0x70140
-> >> -- 
-> >> 2.44.0
-> >>
