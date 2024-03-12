@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E043CC54E58
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Mar 2024 15:40:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54E59C54E5D
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Mar 2024 15:41:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A49B7112EA6;
-	Tue, 12 Mar 2024 15:40:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16913112EA6;
+	Tue, 12 Mar 2024 15:41:06 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DBCC112EA6;
- Tue, 12 Mar 2024 15:40:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C018112EA6;
+ Tue, 12 Mar 2024 15:41:05 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5BCI=2C1/2=5D_drm/xe=3A_Group_live_kunit_tests?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5BC?=
+ =?utf-8?q?I=2C1/2=5D_drm/xe=3A_Group_live_kunit_tests?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 12 Mar 2024 15:40:51 -0000
-Message-ID: <171025805158.695179.1644630622841197356@8e613ede5ea5>
+Date: Tue, 12 Mar 2024 15:41:05 -0000
+Message-ID: <171025806505.695179.9093015111945178598@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240312145158.2295351-1-lucas.demarchi@intel.com>
 In-Reply-To: <20240312145158.2295351-1-lucas.demarchi@intel.com>
@@ -44,14 +44,39 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: series starting with [CI,1/2] drm/xe: Group live kunit tests
 URL   : https://patchwork.freedesktop.org/series/131032/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 1dfbf3ced622 drm-tip: 2024y-03m-12d-14h-18m-23s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Group live kunit tests
-Applying: CI: add MODULE_ALIAS for compat
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+a9eb1ac8298ef9f9146567c29fa762d8e9efa1ef
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6fde69ba0a80583f543c2fc2320ca2b9c310953b
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Tue Mar 12 07:51:58 2024 -0700
+
+    CI: add MODULE_ALIAS for compat
+    
+    Probably just to test in CI and not worth squashing in previous patch.
+    
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch 1dfbf3ced62236dd318c701e3f21f5a33c226d0d drm-intel
+fe572181057c drm/xe: Group live kunit tests
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:54: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#54: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 31 lines checked
+6fde69ba0a80 CI: add MODULE_ALIAS for compat
 
 
