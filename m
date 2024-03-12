@@ -4,46 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12713C54E49
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Mar 2024 03:39:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD567C54E58
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Mar 2024 03:39:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B851B112640;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7824010EE49;
 	Tue, 12 Mar 2024 03:39:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nozpILdB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZRP584pw";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 569B710EE35
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CAB410EE49
  for <intel-xe@lists.freedesktop.org>; Tue, 12 Mar 2024 03:39:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1710214761; x=1741750761;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=1Ryq656JRX3hh0K8IZIU1bxJWyYoEXbPJxXiRGmsEZk=;
- b=nozpILdBdaasdV3Yw85zRKTIELsKaOETpA0crRrFMqNvb8heEMiq8KWm
- 2wZhStGUGEaJosk/Ag+7b5+Y1fCX35SeBMsWdScO5tt+W07/aCp+XB91R
- 8BJYELSETI2z9VY+I+/ED8i7OrYwopazFW/wE08kUB4lxPGytk+PPwfu9
- G/KyiUHO4kDbkdQOjCIJtKF08QkT4rKKhTCu44CgBeCzfm+xwtJgLjjsi
- PhlzWjeNgnyluvlSqHL+ZGM8r9zTxABUSLvNrjb0qPixuoW4Rm3vbEiwK
- SGBJEIEGzM1C2dkx34DLJH+fjup1wjjBEDm0F8C0JSD41nG8qy2HNN5JE w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11010"; a="5080189"
+ bh=XQpacDPVverKbq1GxrmMiTATJIOVFY2nn6BIu1PrpmM=;
+ b=ZRP584pw6dC57krsScw0oUazLBIQA5snN4OS63o0UFRgaLzpqAbUqxm8
+ 6bJBAG8iD8btyBvMl3A63Gc1JiL1Bur/lUGXArfuENlVzvuGnF4mSO7OS
+ ZV/6TZutN9ZjHRFsALZ9yhxXNeciMu1xuWhnIcKtzal5e1079mC6K7+0z
+ isa3e3rEsWOVsgwcqf8xHMRA83yHtovAFAJ/DlhEF07bQdAbvCZOZDbFo
+ 0NuvlUfDaxYCbLzIk3dyxmhejzem0qidA+77h2/Se8rYhDdPW6H5usbDO
+ zSWzzx+kf2XIKDlSkieQrqhzuaEJa+0KSqSfDvSFOuX115HW0WfAJ+xjA g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11010"; a="5080187"
 X-IronPort-AV: E=Sophos;i="6.07,118,1708416000"; 
-   d="scan'208";a="5080189"
+   d="scan'208";a="5080187"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2024 20:39:21 -0700
+ 11 Mar 2024 20:39:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,118,1708416000"; d="scan'208";a="11488743"
+X-IronPort-AV: E=Sophos;i="6.07,118,1708416000"; d="scan'208";a="11488741"
 Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.jf.intel.com)
  ([10.165.21.138])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Mar 2024 20:39:21 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 13/17] drm/xe/oa/uapi: OA buffer mmap
-Date: Mon, 11 Mar 2024 20:39:12 -0700
-Message-ID: <20240312033914.2747740-14-ashutosh.dixit@intel.com>
+Subject: [PATCH 11/17] drm/xe/oa: Add OAC support
+Date: Mon, 11 Mar 2024 20:39:10 -0700
+Message-ID: <20240312033914.2747740-12-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20240312033914.2747740-1-ashutosh.dixit@intel.com>
 References: <20240312033914.2747740-1-ashutosh.dixit@intel.com>
@@ -63,92 +63,164 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Allow the OA buffer to be mmap'd to userspace. This is needed for the MMIO
-trigger use case. Even otherwise, with whitelisted OA head/tail ptr
-registers, userspace can receive/interpret OA data from the mmap'd buffer
-without issuing read()'s on the OA stream fd.
+Similar to OAR, allow userspace to execute MI_REPORT_PERF_COUNT on compute
+engines of a specified exec queue.
 
-v2: Remove unmap_mapping_range from xe_oa_release (Thomas H)
-    Use vm_flags_mod (Umesh)
-
-Suggested-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/xe/xe_oa.c | 46 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 46 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h |  1 +
+ drivers/gpu/drm/xe/regs/xe_oa_regs.h     |  3 +
+ drivers/gpu/drm/xe/xe_oa.c               | 74 +++++++++++++++++++++++-
+ 3 files changed, 75 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+index cf43783e2295..527bbb625303 100644
+--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+@@ -124,6 +124,7 @@
+ 
+ #define RING_CONTEXT_CONTROL(base)		XE_REG((base) + 0x244, XE_REG_OPTION_MASKED)
+ #define	  CTX_CTRL_OAC_CONTEXT_ENABLE		REG_BIT(8)
++#define	  CTX_CTRL_RUN_ALONE			REG_BIT(7)
+ #define	  CTX_CTRL_INHIBIT_SYN_CTX_SWITCH	REG_BIT(3)
+ #define	  CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT	REG_BIT(0)
+ 
+diff --git a/drivers/gpu/drm/xe/regs/xe_oa_regs.h b/drivers/gpu/drm/xe/regs/xe_oa_regs.h
+index 00d0c9763e8d..6b682c0dda83 100644
+--- a/drivers/gpu/drm/xe/regs/xe_oa_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_oa_regs.h
+@@ -68,6 +68,9 @@
+ #define  OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS	REG_BIT(1)
+ 
+ #define OAG_OASTATUS			XE_REG(0xdafc)
++/* OAC unit */
++#define OAC_OACONTROL			XE_REG(0x15114)
++
+ /* OAM unit */
+ #define OAM_HEAD_POINTER_OFFSET			(0x1a0)
+ #define OAM_TAIL_POINTER_OFFSET			(0x1a4)
 diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index b8d880797c16..f59d08894cd3 100644
+index 611aaffc1da0..a696cc54886d 100644
 --- a/drivers/gpu/drm/xe/xe_oa.c
 +++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -791,6 +791,8 @@ static int xe_oa_alloc_oa_buffer(struct xe_oa_stream *stream)
- 		return PTR_ERR(bo);
- 
- 	stream->oa_buffer.bo = bo;
-+	/* mmap implementation requires OA buffer to be in system memory */
-+	xe_assert(stream->oa->xe, bo->vmap.is_iomem == 0);
- 	stream->oa_buffer.vaddr = bo->vmap.vaddr;
- 	return 0;
- }
-@@ -1085,6 +1087,49 @@ static int xe_oa_release(struct inode *inode, struct file *file)
- 	return 0;
+@@ -389,6 +389,19 @@ static u32 __format_to_oactrl(const struct xe_oa_format *format, int counter_sel
+ 		REG_FIELD_PREP(OA_OACONTROL_COUNTER_SIZE_MASK, format->counter_size);
  }
  
-+static int xe_oa_mmap(struct file *file, struct vm_area_struct *vma)
++static u32 __oa_ccs_select(struct xe_oa_stream *stream)
 +{
-+	struct xe_oa_stream *stream = file->private_data;
-+	struct xe_bo *bo = stream->oa_buffer.bo;
-+	unsigned long start = vma->vm_start;
-+	int i, ret;
++	u32 val;
 +
-+	if (xe_perf_stream_paranoid && !perfmon_capable()) {
-+		drm_dbg(&stream->oa->xe->drm, "Insufficient privilege to map OA buffer\n");
-+		return -EACCES;
-+	}
++	if (stream->hwe->class != XE_ENGINE_CLASS_COMPUTE)
++		return 0;
 +
-+	/* Can mmap the entire OA buffer or nothing (no partial OA buffer mmaps) */
-+	if (vma->vm_end - vma->vm_start != XE_OA_BUFFER_SIZE) {
-+		drm_dbg(&stream->oa->xe->drm, "Wrong mmap size, must be OA buffer size\n");
-+		return -EINVAL;
-+	}
-+
-+	/*
-+	 * Only support VM_READ, enforce MAP_PRIVATE by checking for
-+	 * VM_MAYSHARE, don't copy the vma on fork
-+	 */
-+	if (vma->vm_flags & (VM_WRITE | VM_EXEC | VM_SHARED | VM_MAYSHARE)) {
-+		drm_dbg(&stream->oa->xe->drm, "mmap must be read only\n");
-+		return -EINVAL;
-+	}
-+	vm_flags_mod(vma, VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP | VM_DONTCOPY,
-+		     VM_MAYWRITE | VM_MAYEXEC);
-+
-+	xe_assert(stream->oa->xe, bo->ttm.ttm->num_pages ==
-+		  (vma->vm_end - vma->vm_start) >> PAGE_SHIFT);
-+	for (i = 0; i < bo->ttm.ttm->num_pages; i++) {
-+		ret = remap_pfn_range(vma, start, page_to_pfn(bo->ttm.ttm->pages[i]),
-+				      PAGE_SIZE, vma->vm_page_prot);
-+		if (ret)
-+			break;
-+
-+		start += PAGE_SIZE;
-+	}
-+
-+	return ret;
++	val = REG_FIELD_PREP(OAG_OACONTROL_OA_CCS_SELECT_MASK, stream->hwe->instance);
++	xe_assert(stream->oa->xe,
++		  REG_FIELD_GET(OAG_OACONTROL_OA_CCS_SELECT_MASK, val) == stream->hwe->instance);
++	return val;
 +}
 +
- static const struct file_operations xe_oa_fops = {
- 	.owner		= THIS_MODULE,
- 	.llseek		= no_llseek,
-@@ -1092,6 +1137,7 @@ static const struct file_operations xe_oa_fops = {
- 	.poll		= xe_oa_poll,
- 	.read		= xe_oa_read,
- 	.unlocked_ioctl	= xe_oa_ioctl,
-+	.mmap		= xe_oa_mmap,
- };
+ static void xe_oa_enable(struct xe_oa_stream *stream)
+ {
+ 	const struct xe_oa_format *format = stream->oa_buffer.format;
+@@ -403,7 +416,7 @@ static void xe_oa_enable(struct xe_oa_stream *stream)
  
- static bool engine_supports_mi_query(struct xe_hw_engine *hwe)
+ 	regs = __oa_regs(stream);
+ 	val = __format_to_oactrl(format, regs->oa_ctrl_counter_select_mask) |
+-		OAG_OACONTROL_OA_COUNTER_ENABLE;
++		__oa_ccs_select(stream) | OAG_OACONTROL_OA_COUNTER_ENABLE;
+ 
+ 	xe_mmio_write32(stream->gt, regs->oa_ctrl, val);
+ }
+@@ -662,6 +675,57 @@ static int xe_oa_configure_oar_context(struct xe_oa_stream *stream, bool enable)
+ 	return xe_oa_load_with_lri(stream, &reg_lri);
+ }
+ 
++static int xe_oa_configure_oac_context(struct xe_oa_stream *stream, bool enable)
++{
++	const struct xe_oa_format *format = stream->oa_buffer.format;
++	struct xe_lrc *lrc = &stream->exec_q->lrc[0];
++	u32 regs_offset = xe_lrc_regs_offset(lrc) / sizeof(u32);
++	u32 oacontrol = __format_to_oactrl(format, OAR_OACONTROL_COUNTER_SEL_MASK) |
++		(enable ? OAR_OACONTROL_COUNTER_ENABLE : 0);
++	struct flex regs_context[] = {
++		{
++			OACTXCONTROL(stream->hwe->mmio_base),
++			stream->oa->ctx_oactxctrl_offset[stream->hwe->class] + 1,
++			enable ? OA_COUNTER_RESUME : 0,
++		},
++		{
++			RING_CONTEXT_CONTROL(stream->hwe->mmio_base),
++			regs_offset + CTX_CONTEXT_CONTROL,
++			_MASKED_FIELD(CTX_CTRL_OAC_CONTEXT_ENABLE,
++				      enable ? CTX_CTRL_OAC_CONTEXT_ENABLE : 0) |
++			_MASKED_FIELD(CTX_CTRL_RUN_ALONE,
++				      enable ? CTX_CTRL_RUN_ALONE : 0),
++		},
++	};
++	struct xe_oa_reg reg_lri = { OAC_OACONTROL, oacontrol };
++	int err;
++
++	/* Set ccs select to enable programming of OAC_OACONTROL */
++	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_ctrl, __oa_ccs_select(stream));
++
++	/* Modify stream hwe context image with regs_context */
++	err = xe_oa_modify_ctx_image(stream, &stream->exec_q->lrc[0],
++				     regs_context, ARRAY_SIZE(regs_context));
++	if (err)
++		return err;
++
++	/* Apply reg_lri using LRI */
++	return xe_oa_load_with_lri(stream, &reg_lri);
++}
++
++static int xe_oa_configure_oa_context(struct xe_oa_stream *stream, bool enable)
++{
++	switch (stream->hwe->class) {
++	case XE_ENGINE_CLASS_RENDER:
++		return xe_oa_configure_oar_context(stream, enable);
++	case XE_ENGINE_CLASS_COMPUTE:
++		return xe_oa_configure_oac_context(stream, enable);
++	default:
++		/* Video engines do not support MI_REPORT_PERF_COUNT */
++		return 0;
++	}
++}
++
+ #define HAS_OA_BPC_REPORTING(xe) (GRAPHICS_VERx100(xe) >= 1255)
+ 
+ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
+@@ -681,7 +745,7 @@ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
+ 
+ 	/* disable the context save/restore or OAR counters */
+ 	if (stream->exec_q)
+-		xe_oa_configure_oar_context(stream, false);
++		xe_oa_configure_oa_context(stream, false);
+ 
+ 	/* Make sure we disable noa to save power. */
+ 	xe_mmio_rmw32(stream->gt, RPM_CONFIG1, GT_NOA_ENABLE, 0);
+@@ -848,8 +912,9 @@ static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
+ 
+ 	xe_mmio_rmw32(stream->gt, XELPMP_SQCNT1, 0, sqcnt1);
+ 
++	/* Configure OAR/OAC */
+ 	if (stream->exec_q) {
+-		ret = xe_oa_configure_oar_context(stream, true);
++		ret = xe_oa_configure_oa_context(stream, true);
+ 		if (ret)
+ 			return ret;
+ 	}
+@@ -1494,6 +1559,9 @@ int xe_oa_stream_open_ioctl(struct drm_device *dev, void *data, struct drm_file
+ 		param.exec_q = xe_exec_queue_lookup(xef, param.exec_queue_id);
+ 		if (XE_IOCTL_DBG(oa->xe, !param.exec_q))
+ 			return -ENOENT;
++
++		if (param.exec_q->width > 1)
++			drm_dbg(&oa->xe->drm, "exec_q->width > 1, programming only exec_q->lrc[0]\n");
+ 	}
+ 
+ 	/*
 -- 
 2.41.0
 
