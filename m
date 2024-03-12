@@ -4,48 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 810CFC54E5D
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Mar 2024 14:51:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3E7AC54E5D
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Mar 2024 14:56:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43A0410FD7F;
-	Tue, 12 Mar 2024 14:51:30 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HXqfQDei";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1D3310FD7F
- for <intel-xe@lists.freedesktop.org>; Tue, 12 Mar 2024 14:51:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710255089; x=1741791089;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Pb/TYnqPIrwop0CNOQuv89qmDgfwKhfyaem1XFeApo4=;
- b=HXqfQDeiUy1x3dVm1LGwXpXB7p/XQAlo8bV7mE93hPZR2rqEJQx818LN
- Y68Y5iLmO8iFrsCaFBnohLRon6nlvbrVuqmosePcnsp3hjj7DrIsRdfqM
- Tf2EmUqxSIsxG0xzzpePLgGAAxilg9pjLc3dFsfVPhNaIREMu7LXV8vzD
- 6Wf137zwJ2gviXnU70VtNgdAr3vKLSOvtqGLGfOndcjsJYv4XOmP3fxZH
- XMfTBJ10dFYXPvyK3MVPXk+JMY5Qeub+UNRPehDLZhpPU+alFGngPxRFf
- rg3Si+elCeB4lgeGDDMGn4mV+ehsK0+58YOYc4wxhhsVqrjSEBUtCrSpj w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11011"; a="16109787"
-X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; d="scan'208";a="16109787"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2024 07:51:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; d="scan'208";a="11468361"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2024 07:51:28 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-Subject: [CI 1/2] drm/xe: Group live kunit tests
-Date: Tue, 12 Mar 2024 07:51:57 -0700
-Message-ID: <20240312145158.2295351-1-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6197610FD7F;
+	Tue, 12 Mar 2024 14:56:30 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2FB710FD7F;
+ Tue, 12 Mar 2024 14:56:29 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4502246591619893787=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_series_starting_with_=5BCI=2C1/7?=
+ =?utf-8?q?=5D_drm/xe=3A_Make_TLB_invalidation_fences_unordered?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 12 Mar 2024 14:56:29 -0000
+Message-ID: <171025538973.694325.13463558680525123936@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240312140447.50437-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20240312140447.50437-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,107 +36,180 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-As was done for the normal kunit tests, group the live tests into a
-single module, xe_live_test.ko.
+--===============4502246591619893787==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Link: https://lore.kernel.org/r/20240221055038.2071063-1-lucas.demarchi@intel.com
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/xe/tests/Makefile           |  3 ++-
- drivers/gpu/drm/xe/tests/xe_bo_test.c       |  5 -----
- drivers/gpu/drm/xe/tests/xe_dma_buf_test.c  |  5 -----
- drivers/gpu/drm/xe/tests/xe_live_test_mod.c | 10 ++++++++++
- drivers/gpu/drm/xe/tests/xe_migrate_test.c  |  5 -----
- drivers/gpu/drm/xe/tests/xe_mocs_test.c     |  5 -----
- 6 files changed, 12 insertions(+), 21 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/tests/xe_live_test_mod.c
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/tests/Makefile b/drivers/gpu/drm/xe/tests/Makefile
-index 9d1d88af8b2f..8cf2367449d8 100644
---- a/drivers/gpu/drm/xe/tests/Makefile
-+++ b/drivers/gpu/drm/xe/tests/Makefile
-@@ -1,7 +1,8 @@
- # SPDX-License-Identifier: GPL-2.0
- 
- # "live" kunit tests
--obj-$(CONFIG_DRM_XE_KUNIT_TEST) += \
-+obj-$(CONFIG_DRM_XE_KUNIT_TEST) += xe_live_test.o
-+xe_live_test-y = xe_live_test_mod.o \
- 	xe_bo_test.o \
- 	xe_dma_buf_test.o \
- 	xe_migrate_test.o \
-diff --git a/drivers/gpu/drm/xe/tests/xe_bo_test.c b/drivers/gpu/drm/xe/tests/xe_bo_test.c
-index f408f17f2164..a324cde77db8 100644
---- a/drivers/gpu/drm/xe/tests/xe_bo_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_bo_test.c
-@@ -19,8 +19,3 @@ static struct kunit_suite xe_bo_test_suite = {
- };
- 
- kunit_test_suite(xe_bo_test_suite);
--
--MODULE_AUTHOR("Intel Corporation");
--MODULE_LICENSE("GPL");
--MODULE_DESCRIPTION("xe_bo kunit test");
--MODULE_IMPORT_NS(EXPORTED_FOR_KUNIT_TESTING);
-diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf_test.c b/drivers/gpu/drm/xe/tests/xe_dma_buf_test.c
-index 9f5a9cda8c0f..99cdb718b6c6 100644
---- a/drivers/gpu/drm/xe/tests/xe_dma_buf_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_dma_buf_test.c
-@@ -18,8 +18,3 @@ static struct kunit_suite xe_dma_buf_test_suite = {
- };
- 
- kunit_test_suite(xe_dma_buf_test_suite);
--
--MODULE_AUTHOR("Intel Corporation");
--MODULE_LICENSE("GPL");
--MODULE_DESCRIPTION("xe_dma_buf kunit test");
--MODULE_IMPORT_NS(EXPORTED_FOR_KUNIT_TESTING);
-diff --git a/drivers/gpu/drm/xe/tests/xe_live_test_mod.c b/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
-new file mode 100644
-index 000000000000..eb1ea99a5a8b
---- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
-@@ -0,0 +1,10 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+#include <linux/module.h>
-+
-+MODULE_AUTHOR("Intel Corporation");
-+MODULE_LICENSE("GPL");
-+MODULE_DESCRIPTION("xe live kunit tests");
-+MODULE_IMPORT_NS(EXPORTED_FOR_KUNIT_TESTING);
-diff --git a/drivers/gpu/drm/xe/tests/xe_migrate_test.c b/drivers/gpu/drm/xe/tests/xe_migrate_test.c
-index cf0c173b945f..eb0d8963419c 100644
---- a/drivers/gpu/drm/xe/tests/xe_migrate_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_migrate_test.c
-@@ -18,8 +18,3 @@ static struct kunit_suite xe_migrate_test_suite = {
- };
- 
- kunit_test_suite(xe_migrate_test_suite);
--
--MODULE_AUTHOR("Intel Corporation");
--MODULE_LICENSE("GPL");
--MODULE_DESCRIPTION("xe_migrate kunit test");
--MODULE_IMPORT_NS(EXPORTED_FOR_KUNIT_TESTING);
-diff --git a/drivers/gpu/drm/xe/tests/xe_mocs_test.c b/drivers/gpu/drm/xe/tests/xe_mocs_test.c
-index ee40f31e1e12..6315886b659e 100644
---- a/drivers/gpu/drm/xe/tests/xe_mocs_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_mocs_test.c
-@@ -19,8 +19,3 @@ static struct kunit_suite xe_mocs_test_suite = {
- };
- 
- kunit_test_suite(xe_mocs_test_suite);
--
--MODULE_AUTHOR("Intel Corporation");
--MODULE_LICENSE("GPL");
--MODULE_DESCRIPTION("xe_mocs kunit test");
--MODULE_IMPORT_NS(EXPORTED_FOR_KUNIT_TESTING);
--- 
-2.43.0
+Series: series starting with [CI,1/7] drm/xe: Make TLB invalidation fences unordered
+URL   : https://patchwork.freedesktop.org/series/131028/
+State : failure
 
+== Summary ==
+
+CI Bug Log - changes from xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad_BAT -> xe-pw-131028v1_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-131028v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-131028v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-131028v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_intel_bb@create-in-region:
+    - bat-dg2-oem2:       [PASS][1] -> [DMESG-WARN][2] +211 other tests dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131028v1/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html
+
+  * igt@xe_module_load@load:
+    - bat-atsm-2:         [PASS][3] -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad/bat-atsm-2/igt@xe_module_load@load.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131028v1/bat-atsm-2/igt@xe_module_load@load.html
+    - bat-pvc-2:          [PASS][5] -> [INCOMPLETE][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad/bat-pvc-2/igt@xe_module_load@load.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131028v1/bat-pvc-2/igt@xe_module_load@load.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-131028v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-dg2-oem2:       [PASS][7] -> [SKIP][8] ([Intel XE#1192]) +2 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad/bat-dg2-oem2/igt@xe_live_ktest@xe_bo.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131028v1/bat-dg2-oem2/igt@xe_live_ktest@xe_bo.html
+
+  
+  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7754 -> IGT_7756
+  * Linux: xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad -> xe-pw-131028v1
+
+  IGT_7754: 5fb3239299b5be2c110aafa483c9e197c53f8bb8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7756: 7756
+  xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad: 61fa386186cb302cf26e29aef76d5b1a6ffe57ad
+  xe-pw-131028v1: 131028v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131028v1/index.html
+
+--===============4502246591619893787==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [CI,1/7] drm/xe: Make TLB invalidation fences unordered</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131028/">https://patchwork.freedesktop.org/series/131028/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131028v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131028v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad_BAT -&gt; xe-pw-131028v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-131028v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-131028v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-131028v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@xe_intel_bb@create-in-region:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131028v1/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html">DMESG-WARN</a> +211 other tests dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_module_load@load:</p>
+<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad/bat-atsm-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131028v1/bat-atsm-2/igt@xe_module_load@load.html">INCOMPLETE</a></li>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad/bat-pvc-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131028v1/bat-pvc-2/igt@xe_module_load@load.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-131028v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad/bat-dg2-oem2/igt@xe_live_ktest@xe_bo.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131028v1/bat-dg2-oem2/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +2 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7754 -&gt; IGT_7756</li>
+<li>Linux: xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad -&gt; xe-pw-131028v1</li>
+</ul>
+<p>IGT_7754: 5fb3239299b5be2c110aafa483c9e197c53f8bb8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7756: 7756<br />
+  xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad: 61fa386186cb302cf26e29aef76d5b1a6ffe57ad<br />
+  xe-pw-131028v1: 131028v1</p>
+
+</body>
+</html>
+
+--===============4502246591619893787==--
