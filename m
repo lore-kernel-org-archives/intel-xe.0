@@ -4,27 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95178C54E58
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Mar 2024 04:46:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E5C5C54E58
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Mar 2024 06:56:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2388110F53B;
-	Tue, 12 Mar 2024 04:46:02 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4FD310F53B;
- Tue, 12 Mar 2024 04:46:00 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5337864309512797204=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF2C710F277;
+	Tue, 12 Mar 2024 06:56:43 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dq9W5M5c";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C68810F277
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Mar 2024 06:56:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1710226601; x=1741762601;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=cA99E9gw4jPgrP26pWJyOehLXRTd46/XctGudwg2f7I=;
+ b=dq9W5M5coKQ9G3+rqCt0AJZVgEry1ZG4yUhRXm2Bpfz2ayzum/CXv0kD
+ FYtXkuFO0WalQ53xBITi/JpimUD0IpFhFKRoD6qeKnUFZul+ZanrHQGAk
+ +YePQzA088pZEKH7a3fGaOL16cTyvci6/RycTiVsD0+HaO+minjYzI9S0
+ Qqwt7OEQBbHZS160L1LngIS+3JLaBlsQDct6OQf/3nysb7wt0xon70bMd
+ hnRBLMXN3iokF/tPZdfqBvjzUktilTI4FbEfKSuTOyaj7JoGMu42boG0h
+ gnNSgHj+gakl4Fj2GiZeWEOVCZ2Z2ON3Rhl7pVg/6ywBiDV2xIRfdgKgG A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11010"; a="7866626"
+X-IronPort-AV: E=Sophos;i="6.07,118,1708416000"; 
+   d="scan'208";a="7866626"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2024 23:56:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,118,1708416000"; d="scan'208";a="15929481"
+Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.61])
+ by fmviesa005.fm.intel.com with ESMTP; 11 Mar 2024 23:56:37 -0700
+From: Shuicheng Lin <shuicheng.lin@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+Subject: [PATCH] drm/xe/xe_tracer: Align fence output format in ftrace log
+Date: Tue, 12 Mar 2024 06:53:38 +0000
+Message-Id: <20240312065338.1357531-1-shuicheng.lin@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Add_OA_functionality_to_Xe_=28re?=
- =?utf-8?q?v12=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 12 Mar 2024 04:46:00 -0000
-Message-ID: <171021876087.685601.18353549076981050062@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240312033914.2747740-1-ashutosh.dixit@intel.com>
-In-Reply-To: <20240312033914.2747740-1-ashutosh.dixit@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +57,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5337864309512797204==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The fence print in xe_sched_job class is with "0x" prefix.
+Add the "0x" prefix for other fence output, so that they
+could be searched in the same way.
 
-== Series Details ==
+Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+---
+ drivers/gpu/drm/xe/xe_trace.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Series: Add OA functionality to Xe (rev12)
-URL   : https://patchwork.freedesktop.org/series/121084/
-State : success
+diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+index 4ddc55527f9a..c3ac3b2bad3a 100644
+--- a/drivers/gpu/drm/xe/xe_trace.h
++++ b/drivers/gpu/drm/xe/xe_trace.h
+@@ -36,7 +36,7 @@ DECLARE_EVENT_CLASS(xe_gt_tlb_invalidation_fence,
+ 			   __entry->seqno = fence->seqno;
+ 			   ),
+ 
+-		    TP_printk("fence=%p, seqno=%d",
++		    TP_printk("fence=0x%p, seqno=%d",
+ 			      __entry->fence, __entry->seqno)
+ );
+ 
+@@ -359,7 +359,7 @@ DECLARE_EVENT_CLASS(xe_hw_fence,
+ 			   __entry->fence = fence;
+ 			   ),
+ 
+-		    TP_printk("ctx=0x%016llx, fence=%p, seqno=%u",
++		    TP_printk("ctx=0x%016llx, fence=0x%p, seqno=%u",
+ 			      __entry->ctx, __entry->fence, __entry->seqno)
+ );
+ 
+-- 
+2.25.1
 
-== Summary ==
-
-CI Bug Log - changes from xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad_BAT -> xe-pw-121084v12_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad -> xe-pw-121084v12
-
-  IGT_7754: 5fb3239299b5be2c110aafa483c9e197c53f8bb8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad: 61fa386186cb302cf26e29aef76d5b1a6ffe57ad
-  xe-pw-121084v12: 121084v12
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v12/index.html
-
---===============5337864309512797204==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add OA functionality to Xe (rev12)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/121084/">https://patchwork.freedesktop.org/series/121084/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v12/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v12/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad_BAT -&gt; xe-pw-121084v12_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad -&gt; xe-pw-121084v12</li>
-</ul>
-<p>IGT_7754: 5fb3239299b5be2c110aafa483c9e197c53f8bb8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-929-61fa386186cb302cf26e29aef76d5b1a6ffe57ad: 61fa386186cb302cf26e29aef76d5b1a6ffe57ad<br />
-  xe-pw-121084v12: 121084v12</p>
-
-</body>
-</html>
-
---===============5337864309512797204==--
