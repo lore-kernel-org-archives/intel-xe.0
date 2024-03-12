@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79598C54E68
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Mar 2024 16:37:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10A92C54E5D
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Mar 2024 16:37:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7931310F4CC;
-	Tue, 12 Mar 2024 16:37:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C19F2112542;
+	Tue, 12 Mar 2024 16:37:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CoY74d/Q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WaCzR5LC";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73A0610F3D3;
- Tue, 12 Mar 2024 16:37:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C5E4112542;
+ Tue, 12 Mar 2024 16:37:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710261422; x=1741797422;
+ t=1710261426; x=1741797426;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gVBrQvUFz0hWizFC+IxA+QzCLseYBf7KAgU93qZcM5E=;
- b=CoY74d/QpT5hch+CgLl6Mu48brKg4g1yi9ypK39D6+R635ObBDOOCGDq
- fx2+1//txJ7ZwtGsyMp/KlhbC3bbF3OwPNVxYmBX/6KMJ6RVkWySP+dQd
- hdpu3xRfaVphn/ksRweMStT2n7bmC3NRn2W/Le440dzp+vSCkFpyh5M4y
- HwOOTFOLWBm3dB66DU7B6yZp33pCUAohDgIxTKxXV8RgbolShQqGTgMyN
- aGV4d/zubKN8/ylsIYk831h1Br+EB1EJ0zxpPzsXpPcUNI0xA9xL0wlVQ
- 9GMPf1J1YPEImtW7lpjPf0pp3ANN3wQ1KpArm7E0KLtVkdp67uL0ukiUH g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11011"; a="27458067"
-X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; d="scan'208";a="27458067"
+ bh=j+tXq9ROjA4UYaqqgLtr593YMy7s0LZEMqZp1HjYufM=;
+ b=WaCzR5LCOuZpQHkZJRxMJCpIDFAn/onAmcUlbOqmuGn7AsqC/4xy+ueO
+ v2R4vOWvjqtAk8N5+yGr/c0yzoYPC47RTd6d7sUe8FDLrzdoK6h+xjvAo
+ rs9Dl7N4pnx0JWfmHpvELSbj57LObHXZEEkGK1I8yAU0TMSXk+kEQs5LM
+ u/rt1Me1SQXPTevRMCys+qpFYsa10o7VfqiSSbiF/jsNqoQmuXYlOnju4
+ ycAzIT72LjW/BcD7oYyBGxOIGrfPbaw0Q4ngMcK1uM9iXVAfEaStOMnMb
+ KQu1mDCxlc+LraplrKtqgqpgIa3nFEk1WXPrIsvifdMJUO6zFQ7WpJaFA g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11011"; a="27458076"
+X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; d="scan'208";a="27458076"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2024 09:37:02 -0700
+ 12 Mar 2024 09:37:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; d="scan'208";a="16245811"
+X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; d="scan'208";a="16245830"
 Received: from ticela-or-524.amr.corp.intel.com (HELO gjsousa-mobl2.intel.com)
  ([10.255.33.238])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2024 09:37:01 -0700
+ 12 Mar 2024 09:37:05 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
@@ -45,9 +45,9 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>,
  Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
  gustavo.sousa@intel.com
-Subject: [PATCH v2 2/8] drm/i915/cdclk: Add and use mdclk_source_is_cdclk_pll()
-Date: Tue, 12 Mar 2024 13:36:33 -0300
-Message-ID: <20240312163639.172321-3-gustavo.sousa@intel.com>
+Subject: [PATCH v2 4/8] drm/i915: Extract intel_dbuf_mdclk_cdclk_ratio_update()
+Date: Tue, 12 Mar 2024 13:36:35 -0300
+Message-ID: <20240312163639.172321-5-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240312163639.172321-1-gustavo.sousa@intel.com>
 References: <20240312163639.172321-1-gustavo.sousa@intel.com>
@@ -67,82 +67,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently, only Xe2LPD uses CDCLK PLL as the source of MDCLK and
-previous display IPs use the CD2XCLK. There will be changes in code
-paths common to those platforms that will rely on which source is being
-used. As such, let's make that information explicit with the addition of
-the predicate function mdclk_source_is_cdclk_pll().
+As of Xe2LPD, it is now possible to select the source of the MDCLK
+as either the CD2XCLK or the CDCLK PLL.
 
-Arguably, an enum could be created, but using a boolean should suffice
-here, since we there are only two possible sources and the logic that
-will rely on it will be very localized.
+Previous display IPs were hardcoded to use the CD2XCLK. For those, the
+ratio between MDCLK and CDCLK remained constant, namely 2. For Xe2LPD,
+when we select the CDCLK PLL as the source, the ratio will vary
+according to the squashing configuration (since the cd2x divisor is
+fixed for all supported configurations).
 
-In order to get the code into a more consistent state, let's also take
-this opportunity to hook the selection of CDCLK_CTL's "MDCLK Source
-Select" to that new function. Even though currently only
-MDCLK_SOURCE_SEL_CDCLK_PLL will be returned, having this extra logic is
-arguably better than keeping stuff untied and prone to bugs.
+To help the transition to supporting changes in the ratio, extract the
+function intel_dbuf_mdclk_cdclk_ratio_update() from the existing logic
+and call it using 2 as hardcoded ratio. Upcoming changes will use that
+function for updates in the ratio due to CDCLK changes.
 
-v2:
-  - Extract mdclk_source_is_cdclk_pll() out of xe2lpd_mdclk_source_sel()
-    to make latter only about the register's field.
-
-Bspec: 69090
-Cc: Matt Roper <matthew.d.roper@intel.com>
+Bspec: 50057, 69445, 49213, 68868
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c | 15 ++++++++++++++-
- drivers/gpu/drm/i915/i915_reg.h            |  4 +++-
- 2 files changed, 17 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 30 +++++++++++++-------
+ 1 file changed, 19 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index be268c6abe21..ad0f03e51e4a 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -1876,6 +1876,19 @@ static bool cdclk_pll_is_unknown(unsigned int vco)
- 	return vco == ~0;
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index c6b9be80d83c..d9e49cd60d3a 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -3530,6 +3530,21 @@ int intel_dbuf_init(struct drm_i915_private *i915)
+ 	return 0;
  }
  
-+static bool mdclk_source_is_cdclk_pll(struct drm_i915_private *i915)
++static void intel_dbuf_mdclk_cdclk_ratio_update(struct drm_i915_private *i915,
++						u8 ratio,
++						bool joined_mbus)
 +{
-+	return DISPLAY_VER(i915) >= 20;
++	enum dbuf_slice slice;
++
++	if (joined_mbus)
++		ratio *= 2;
++
++	for_each_dbuf_slice(i915, slice)
++		intel_de_rmw(i915, DBUF_CTL_S(slice),
++			     DBUF_MIN_TRACKER_STATE_SERVICE_MASK,
++			     DBUF_MIN_TRACKER_STATE_SERVICE(ratio - 1));
 +}
 +
-+static u32 xe2lpd_mdclk_source_sel(struct drm_i915_private *i915)
-+{
-+	if (mdclk_source_is_cdclk_pll(i915))
-+		return MDCLK_SOURCE_SEL_CDCLK_PLL;
-+
-+	return MDCLK_SOURCE_SEL_CD2XCLK;
-+}
-+
- static bool cdclk_compute_crawl_and_squash_midpoint(struct drm_i915_private *i915,
- 						    const struct intel_cdclk_config *old_cdclk_config,
- 						    const struct intel_cdclk_config *new_cdclk_config,
-@@ -1980,7 +1993,7 @@ static u32 bxt_cdclk_ctl(struct drm_i915_private *i915,
- 		val |= BXT_CDCLK_SSA_PRECHARGE_ENABLE;
+ /*
+  * Configure MBUS_CTL and all DBUF_CTL_S of each slice to join_mbus state before
+  * update the request state of all DBUS slices.
+@@ -3537,8 +3552,7 @@ int intel_dbuf_init(struct drm_i915_private *i915)
+ static void update_mbus_pre_enable(struct intel_atomic_state *state)
+ {
+ 	struct drm_i915_private *i915 = to_i915(state->base.dev);
+-	u32 mbus_ctl, dbuf_min_tracker_val;
+-	enum dbuf_slice slice;
++	u32 mbus_ctl;
+ 	const struct intel_dbuf_state *dbuf_state =
+ 		intel_atomic_get_new_dbuf_state(state);
  
- 	if (DISPLAY_VER(i915) >= 20)
--		val |= MDCLK_SOURCE_SEL_CDCLK_PLL;
-+		val |= xe2lpd_mdclk_source_sel(i915);
- 	else
- 		val |= skl_cdclk_decimal(cdclk);
+@@ -3549,24 +3563,18 @@ static void update_mbus_pre_enable(struct intel_atomic_state *state)
+ 	 * TODO: Implement vblank synchronized MBUS joining changes.
+ 	 * Must be properly coordinated with dbuf reprogramming.
+ 	 */
+-	if (dbuf_state->joined_mbus) {
++	if (dbuf_state->joined_mbus)
+ 		mbus_ctl = MBUS_HASHING_MODE_1x4 | MBUS_JOIN |
+ 			MBUS_JOIN_PIPE_SELECT_NONE;
+-		dbuf_min_tracker_val = DBUF_MIN_TRACKER_STATE_SERVICE(3);
+-	} else {
++	else
+ 		mbus_ctl = MBUS_HASHING_MODE_2x2 |
+ 			MBUS_JOIN_PIPE_SELECT_NONE;
+-		dbuf_min_tracker_val = DBUF_MIN_TRACKER_STATE_SERVICE(1);
+-	}
  
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 8823531b8770..d6193c858a74 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -5891,7 +5891,9 @@ enum skl_power_gate {
- #define  CDCLK_FREQ_540		REG_FIELD_PREP(CDCLK_FREQ_SEL_MASK, 1)
- #define  CDCLK_FREQ_337_308		REG_FIELD_PREP(CDCLK_FREQ_SEL_MASK, 2)
- #define  CDCLK_FREQ_675_617		REG_FIELD_PREP(CDCLK_FREQ_SEL_MASK, 3)
--#define  MDCLK_SOURCE_SEL_CDCLK_PLL	REG_BIT(25)
-+#define  MDCLK_SOURCE_SEL_MASK		REG_GENMASK(25, 25)
-+#define  MDCLK_SOURCE_SEL_CD2XCLK	REG_FIELD_PREP(MDCLK_SOURCE_SEL_MASK, 0)
-+#define  MDCLK_SOURCE_SEL_CDCLK_PLL	REG_FIELD_PREP(MDCLK_SOURCE_SEL_MASK, 1)
- #define  BXT_CDCLK_CD2X_DIV_SEL_MASK	REG_GENMASK(23, 22)
- #define  BXT_CDCLK_CD2X_DIV_SEL_1	REG_FIELD_PREP(BXT_CDCLK_CD2X_DIV_SEL_MASK, 0)
- #define  BXT_CDCLK_CD2X_DIV_SEL_1_5	REG_FIELD_PREP(BXT_CDCLK_CD2X_DIV_SEL_MASK, 1)
+ 	intel_de_rmw(i915, MBUS_CTL,
+ 		     MBUS_HASHING_MODE_MASK | MBUS_JOIN |
+ 		     MBUS_JOIN_PIPE_SELECT_MASK, mbus_ctl);
+ 
+-	for_each_dbuf_slice(i915, slice)
+-		intel_de_rmw(i915, DBUF_CTL_S(slice),
+-			     DBUF_MIN_TRACKER_STATE_SERVICE_MASK,
+-			     dbuf_min_tracker_val);
++	intel_dbuf_mdclk_cdclk_ratio_update(i915, 2, dbuf_state->joined_mbus);
+ }
+ 
+ void intel_dbuf_pre_plane_update(struct intel_atomic_state *state)
 -- 
 2.44.0
 
