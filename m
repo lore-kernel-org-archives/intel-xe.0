@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05162C54E5D
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Mar 2024 21:50:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37226C54E58
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Mar 2024 21:52:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8383510EBB4;
-	Tue, 12 Mar 2024 21:50:26 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pi28oxGU";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47E7310EBB4
- for <intel-xe@lists.freedesktop.org>; Tue, 12 Mar 2024 21:50:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710280224; x=1741816224;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=7YzzHUKT9G88vUijTJY23FzhpQsLoyWBj5psMQN/UGE=;
- b=Pi28oxGUucIZkQMsRuVPkwLjDH63L1BH5/6qKyC5hJ46ROyCpFrTYncS
- fwBQq80wN2hhsGVJGpHWtCU9bittpQRJhN2ZfflEWlVlpjSD0knjNdYGK
- RtTjy3c9M6pViJvAxyNDvdBcf+xQlW8oLh+B7YIN2iiRNIwMAUldONMxw
- ijGUPAwSSEUphIFG42+YIkhizXoFaxJlD0kXevejaEmE48POu3Ia9jmJk
- vg/t3ccmOP6c+Cxvsjz7jlUyvwyzkh4WR8n+FnCwBTVi3YIuGgfFWA44a
- /SuTiELMjGRqNWXlAJJ+azf3irSYlJ6r3LQah6cQLU3P5nUJYljjuMd2h w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11011"; a="30458085"
-X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; d="scan'208";a="30458085"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2024 14:50:19 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; d="scan'208";a="11619911"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa010.jf.intel.com with ESMTP; 12 Mar 2024 14:50:15 -0700
-Received: from [10.249.155.68] (mwajdecz-MOBL.ger.corp.intel.com
- [10.249.155.68])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 3167F34337;
- Tue, 12 Mar 2024 21:50:07 +0000 (GMT)
-Message-ID: <1f18385d-010a-4146-8a59-40efd1fbf330@intel.com>
-Date: Tue, 12 Mar 2024 22:49:58 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE93610EBC0;
+	Tue, 12 Mar 2024 21:52:12 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5C4410EBC0;
+ Tue, 12 Mar 2024 21:52:11 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8040570040082648292=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 1/1] drm/xe: Add helper macro to loop each dss
-Content-Language: en-US
-To: Zhanjun Dong <zhanjun.dong@intel.com>, intel-xe@lists.freedesktop.org
-References: <20240220161937.11714-1-zhanjun.dong@intel.com>
- <20240220161937.11714-2-zhanjun.dong@intel.com>
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20240220161937.11714-2-zhanjun.dong@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_xe=3A_Add_IP_versions_to_GT_quer?=
+ =?utf-8?q?y?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 12 Mar 2024 21:52:11 -0000
+Message-ID: <171028033174.714564.4117168724636150254@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240312211229.2871288-3-matthew.d.roper@intel.com>
+In-Reply-To: <20240312211229.2871288-3-matthew.d.roper@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,236 +36,289 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============8040570040082648292==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: xe: Add IP versions to GT query
+URL   : https://patchwork.freedesktop.org/series/131047/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d_BAT -> xe-pw-131047v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-131047v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-dg2-oem2:       [SKIP][1] ([Intel XE#1136]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@kms_addfb_basic@bad-pitch-128:
+    - bat-dg2-oem2:       [SKIP][3] ([i915#2575]) -> [PASS][4] +49 other tests pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@kms_addfb_basic@bad-pitch-128.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@kms_addfb_basic@bad-pitch-128.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-dg2-oem2:       [SKIP][5] ([Intel XE#1134]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@kms_frontbuffer_tracking@basic.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@xe_intel_bb@create-in-region:
+    - bat-dg2-oem2:       [SKIP][7] ([Intel XE#1130]) -> [PASS][8] +155 other tests pass
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html
+
+  * igt@xe_module_load@load:
+    - bat-dg2-oem2:       [FAIL][9] ([Intel XE#1132]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@xe_module_load@load.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@xe_module_load@load.html
+
+  
+#### Warnings ####
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-dg2-oem2:       [SKIP][11] ([i915#2575]) -> [SKIP][12] ([Intel XE#623])
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-dg2-oem2:       [SKIP][13] ([Intel XE#1134]) -> [SKIP][14] ([Intel XE#455])
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@kms_dsc@dsc-basic.html
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_force_connector_basic@prune-stale-modes:
+    - bat-dg2-oem2:       [SKIP][15] ([i915#2575]) -> [SKIP][16] ([i915#5274])
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@kms_force_connector_basic@prune-stale-modes.html
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@kms_force_connector_basic@prune-stale-modes.html
+
+  * igt@kms_hdmi_inject@inject-audio:
+    - bat-dg2-oem2:       [SKIP][17] ([i915#2575]) -> [SKIP][18] ([Intel XE#417])
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@kms_hdmi_inject@inject-audio.html
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@kms_hdmi_inject@inject-audio.html
+
+  * igt@kms_psr@psr-cursor-plane-move:
+    - bat-dg2-oem2:       [SKIP][19] ([Intel XE#1134]) -> [SKIP][20] ([Intel XE#929]) +2 other tests skip
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@kms_psr@psr-cursor-plane-move.html
+   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@kms_psr@psr-cursor-plane-move.html
+
+  * igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate:
+    - bat-dg2-oem2:       [SKIP][21] ([Intel XE#1130]) -> [SKIP][22] ([Intel XE#288]) +22 other tests skip
+   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate.html
+   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate.html
+
+  * igt@xe_huc_copy@huc_copy:
+    - bat-dg2-oem2:       [SKIP][23] ([Intel XE#1130]) -> [SKIP][24] ([Intel XE#255])
+   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@xe_huc_copy@huc_copy.html
+   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@xe_huc_copy@huc_copy.html
+
+  * igt@xe_pat@pat-index-xe2:
+    - bat-dg2-oem2:       [SKIP][25] ([Intel XE#1130]) -> [SKIP][26] ([Intel XE#977])
+   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@xe_pat@pat-index-xe2.html
+   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@xe_pat@pat-index-xe2.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-dg2-oem2:       [SKIP][27] ([Intel XE#1130]) -> [SKIP][28] ([Intel XE#979]) +1 other test skip
+   [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@xe_pat@pat-index-xehpc.html
+   [28]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@xe_pat@pat-index-xehpc.html
+
+  
+  [Intel XE#1130]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1130
+  [Intel XE#1132]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1132
+  [Intel XE#1134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1134
+  [Intel XE#1136]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1136
+  [Intel XE#255]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/255
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#417]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/417
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+  [Intel XE#623]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/623
+  [Intel XE#929]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/929
+  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
 
 
-On 20.02.2024 17:19, Zhanjun Dong wrote:
-> Add helper macro to loop each dss. This is a precursor patch to allow
+Build changes
+-------------
 
-please be consistent in naming: s/dss/DSS
+  * Linux: xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d -> xe-pw-131047v1
 
-> for easier iteration through MCR registers and other per-DSS uses.
-> 
-> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_gt_mcr.c      | 40 ++++++++++++++++++++++++-----
->  drivers/gpu/drm/xe/xe_gt_mcr.h      | 16 ++++++++++++
->  drivers/gpu/drm/xe/xe_gt_topology.c | 31 +++++++++++++++++++---
->  drivers/gpu/drm/xe/xe_gt_topology.h |  1 +
->  drivers/gpu/drm/xe/xe_gt_types.h    |  6 +++--
->  5 files changed, 83 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
-> index a7ab9ba645f9..2ee727ebc4a2 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_mcr.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
-> @@ -6,6 +6,7 @@
->  #include "xe_gt_mcr.h"
->  
->  #include "regs/xe_gt_regs.h"
-> +#include "xe_assert.h"
->  #include "xe_gt.h"
->  #include "xe_gt_topology.h"
->  #include "xe_gt_types.h"
-> @@ -294,14 +295,41 @@ static void init_steering_mslice(struct xe_gt *gt)
->  	gt->steering[LNCF].instance_target = 0;		/* unused */
->  }
->  
-> -static void init_steering_dss(struct xe_gt *gt)
-> +static unsigned int get_dss_per_group(struct xe_gt *gt)
+  IGT_7756: 7756
+  xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d: 1dfbf3ced62236dd318c701e3f21f5a33c226d0d
+  xe-pw-131047v1: 131047v1
 
-nit: as there is no "set" then maybe s/get_dss_per_group/dss_per_group ?
+== Logs ==
 
-> +{
-> +	return gt_to_xe(gt)->info.platform == XE_PVC ? 8 : 4;
-> +}
-> +
-> +/**
-> + * xe_gt_mcr_get_dss_steering - Get the group/instance steering for a DSS
-> + * @gt: GT structure
-> + * @dss: DSS ID to obtain steering for
-> + * @group: pointer to storage for steering group ID
-> + * @instance: pointer to storage for steering instance ID
-> + *
-> + * Return: Always return true. The steering IDs (via the @group and @instance parameters) that
-> + * correspond to a specific DSS ID is saved to *group and *instance
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/index.html
 
-if return is always true then maybe function should be void and just use
-comma operator if you need bool somewhere in the macro
+--===============8040570040082648292==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> + */
-> +bool xe_gt_mcr_get_dss_steering(struct xe_gt *gt, unsigned int dss, u16 *group, u16 *instance)
->  {
-> -	unsigned int dss = min(xe_dss_mask_group_ffs(gt->fuse_topo.g_dss_mask, 0, 0),
-> -			       xe_dss_mask_group_ffs(gt->fuse_topo.c_dss_mask, 0, 0));
-> -	unsigned int dss_per_grp = gt_to_xe(gt)->info.platform == XE_PVC ? 8 : 4;
-> +	int dss_per_grp = get_dss_per_group(gt);
-> +
-> +	xe_gt_assert(gt, dss < XE_MAX_DSS_FUSE_BITS);
-> +	xe_gt_assert(gt, group);
-> +	xe_gt_assert(gt, instance);
 
-as general rule we shouldn't assert NULL pointers as any NPD will end
-with nice report anyway
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
->  
-> -	gt->steering[DSS].group_target = dss / dss_per_grp;
-> -	gt->steering[DSS].instance_target = dss % dss_per_grp;
-> +	*group = dss / dss_per_grp;
-> +	*instance = dss % dss_per_grp;
-> +	return true;
-> +}
-> +
-> +static void init_steering_dss(struct xe_gt *gt)
-> +{
-> +	xe_gt_mcr_get_dss_steering(gt,
-> +				   min(xe_dss_mask_group_ffs(gt->fuse_topo.g_dss_mask, 0, 0),
-> +				       xe_dss_mask_group_ffs(gt->fuse_topo.c_dss_mask, 0, 0)),
-> +				   &gt->steering[DSS].group_target,
-> +				   &gt->steering[DSS].instance_target);
->  }
->  
->  static void init_steering_oaddrm(struct xe_gt *gt)
-> diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.h b/drivers/gpu/drm/xe/xe_gt_mcr.h
-> index 27ca1bc880a0..0d8abd320e08 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_mcr.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_mcr.h
-> @@ -7,6 +7,7 @@
->  #define _XE_GT_MCR_H_
->  
->  #include "regs/xe_reg_defs.h"
-> +#include "xe_gt_topology.h"
->  
->  struct drm_printer;
->  struct xe_gt;
-> @@ -25,5 +26,20 @@ void xe_gt_mcr_multicast_write(struct xe_gt *gt, struct xe_reg_mcr mcr_reg,
->  			       u32 value);
->  
->  void xe_gt_mcr_steering_dump(struct xe_gt *gt, struct drm_printer *p);
-> +bool xe_gt_mcr_get_dss_steering(struct xe_gt *gt, unsigned int dss, u16 *group, u16 *instance);
-> +
-> +/*
-> + * Loop over each DSS and determine the group and instance IDs that
-> + * should be used to steer MCR accesses toward this DSS.
-> + * @dss_: DSS ID to obtain steering for
-> + * @gt_: GT structure
-> + * @group_: steering group ID, data type: u16
-> + * @instance_: steering instance ID, data type: u16
-> + */
 
-1) no need to use underscore in param names
-2) remember to wrap params into ()
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>xe: Add IP versions to GT query</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131047/">https://patchwork.freedesktop.org/series/131047/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
-> +#define for_each_dss_steering(dss_, gt_, group_, instance_) \
-> +	for (dss_ = xe_gt_topology_get_next_dss(gt_, 0); \
-> +	     dss_ >= 0; \
-> +	     dss_ = xe_gt_topology_get_next_dss(gt_, dss_ + 1)) \
-> +		for_each_if(xe_gt_mcr_get_dss_steering(gt_, dss_, &(group_), &(instance_)))
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/index.html</a></td></tr>
 
-I was hoping that there could be for_each_dss defined in gt_topology.h
-something like this:
+</table>
 
-#define for_each_dss(dss, gt) 					\
-	for ((dss) = xe_gt_topology_get_next_dss((gt), 0); 	\
-	     (dss) >= 0;					\
-	     (dss) = xe_gt_topology_get_next_dss((gt), (dss) + 1))
 
-followed by:
+    <h1>CI Bug Log - changes from xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d_BAT -&gt; xe-pw-131047v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-131047v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1136">Intel XE#1136</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@bad-pitch-128:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@kms_addfb_basic@bad-pitch-128.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@kms_addfb_basic@bad-pitch-128.html">PASS</a> +49 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1134">Intel XE#1134</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_intel_bb@create-in-region:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1130">Intel XE#1130</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html">PASS</a> +155 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_module_load@load:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@xe_module_load@load.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1132">Intel XE#1132</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@xe_module_load@load.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/623">Intel XE#623</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1134">Intel XE#1134</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5274">i915#5274</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdmi_inject@inject-audio:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/417">Intel XE#417</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-cursor-plane-move:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1134">Intel XE#1134</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/929">Intel XE#929</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1130">Intel XE#1130</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +22 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_huc_copy@huc_copy:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1130">Intel XE#1130</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/255">Intel XE#255</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xe2:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1130">Intel XE#1130</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d/bat-dg2-oem2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1130">Intel XE#1130</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131047v1/bat-dg2-oem2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>) +1 other test skip</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d -&gt; xe-pw-131047v1</li>
+</ul>
+<p>IGT_7756: 7756<br />
+  xe-930-1dfbf3ced62236dd318c701e3f21f5a33c226d0d: 1dfbf3ced62236dd318c701e3f21f5a33c226d0d<br />
+  xe-pw-131047v1: 131047v1</p>
 
-#define for_each_dss_steering(dss, gt, group, instance) \
-  for_each_dss((dss), (gt))
-    for_each_if(get_dss_steering((gt), (dss), &(group), &(instance)))
+</body>
+</html>
 
->  
->  #endif /* _XE_GT_MCR_H_ */
-> diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
-> index a8d7f272c30a..d9566867c7ef 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_topology.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_topology.c
-> @@ -11,9 +11,6 @@
->  #include "xe_gt.h"
->  #include "xe_mmio.h"
->  
-> -#define XE_MAX_DSS_FUSE_BITS (32 * XE_MAX_DSS_FUSE_REGS)
-> -#define XE_MAX_EU_FUSE_BITS (32 * XE_MAX_EU_FUSE_REGS)
-
-nit: this definition move could be a small separate patch
-
-> -
->  static void
->  load_dss_mask(struct xe_gt *gt, xe_dss_mask_t mask, int numregs, ...)
->  {
-> @@ -167,3 +164,31 @@ bool xe_gt_topology_has_dss_in_quadrant(struct xe_gt *gt, int quad)
->  
->  	return quad_first < (quad + 1) * dss_per_quad;
->  }
-> +
-> +/**
-> + * xe_gt_topology_get_next_dss - returns the next DSS id from a start position
-> + * @gt: GT structure
-> + * @from: An index to start search from
-> + *
-> + * Search from this GT's DSS-fuses-topology and return the DSS-ID of the
-> + * next valid DSS instance after DSS-ID 'from'. Depending on the platform
-> + * construction, DSS instances could be for geometry (RENDER engine) or
-> + * compute (COMPUTE engine). However, all current platforms that have
-> + * both engines have the same instances thus we can combine both masks
-> + * internally before performing this operation.
-> + *
-> + * Return: The next DSS id from a start position if found, otherwise -1.
-> + */
-> +int xe_gt_topology_get_next_dss(struct xe_gt *gt, int from)
-> +{
-> +	xe_dss_mask_t all_dss;
-> +	unsigned long next;
-> +
-> +	bitmap_or(all_dss, gt->fuse_topo.g_dss_mask, gt->fuse_topo.c_dss_mask,
-> +		  XE_MAX_DSS_FUSE_BITS);
-> +
-> +	next = find_next_bit(all_dss, XE_MAX_DSS_FUSE_BITS, from);
-> +	if (next == XE_MAX_DSS_FUSE_BITS)
-> +		return -1;
-> +	return next;
-> +}
-
-maybe there is no need for this function at all as likely below macro
-could do the trick:
-
-#define for_each_dss(dss, gt) 					\
-	for_each_or_bit((dss),					\
-			(gt)->fuse_topo.g_dss_mask,  		\
-			(gt)->fuse_topo.c_dss_mask,		\
-			XE_MAX_DSS_FUSE_BITS)
-
-> diff --git a/drivers/gpu/drm/xe/xe_gt_topology.h b/drivers/gpu/drm/xe/xe_gt_topology.h
-> index d1b54fb52ea6..44bd8a58f9ce 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_topology.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_topology.h
-> @@ -21,5 +21,6 @@ bool xe_dss_mask_empty(const xe_dss_mask_t mask);
->  
->  bool
->  xe_gt_topology_has_dss_in_quadrant(struct xe_gt *gt, int quad);
-> +int xe_gt_topology_get_next_dss(struct xe_gt *gt, int from);
->  
->  #endif /* _XE_GT_TOPOLOGY_H_ */
-> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-> index 70c615dd1498..f6da2ad9719f 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_types.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
-> @@ -25,10 +25,12 @@ enum xe_gt_type {
->  };
->  
->  #define XE_MAX_DSS_FUSE_REGS	3
-> +#define XE_MAX_DSS_FUSE_BITS	(32 * XE_MAX_DSS_FUSE_REGS)
->  #define XE_MAX_EU_FUSE_REGS	1
-> +#define XE_MAX_EU_FUSE_BITS	(32 * XE_MAX_EU_FUSE_REGS)
->  
-> -typedef unsigned long xe_dss_mask_t[BITS_TO_LONGS(32 * XE_MAX_DSS_FUSE_REGS)];
-> -typedef unsigned long xe_eu_mask_t[BITS_TO_LONGS(32 * XE_MAX_EU_FUSE_REGS)];
-> +typedef unsigned long xe_dss_mask_t[BITS_TO_LONGS(XE_MAX_DSS_FUSE_BITS)];
-> +typedef unsigned long xe_eu_mask_t[BITS_TO_LONGS(XE_MAX_EU_FUSE_BITS)];
->  
->  struct xe_mmio_range {
->  	u32 start;
+--===============8040570040082648292==--
