@@ -4,49 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C513CC54E58
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Mar 2024 08:47:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DCB7C54E58
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Mar 2024 08:52:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E73210E88C;
-	Wed, 13 Mar 2024 08:47:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="W1Jk2b1G";
-	dkim-atps=neutral
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25A9E10E87F;
- Wed, 13 Mar 2024 08:47:46 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 3CFDBCE1A80;
- Wed, 13 Mar 2024 08:47:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CF25C433F1;
- Wed, 13 Mar 2024 08:47:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1710319662;
- bh=DOtrx5taZpCaGGzBrVh7vSdllhCDtiQSs7F4mlLOxMk=;
- h=From:To:Cc:Subject:Date:From;
- b=W1Jk2b1GyJrAyokLXa1F9I9wi/qsE+mo1ksbL6UFjdrfHuvfEP4CIgxksyVWQrCkQ
- Qh8Ul/pEFsLrggxR1JNsVsHqjSP3ULjZeQikNqwib4IJGZR9Q723bitsvIVKcp04wp
- U57zdK9hhIpvQdoc4nTCIgdYzBmcDECQOfZC5Tb1WjWR5hErjTGl7eD6F8BI34b1AH
- UnMr+q+J7MVCWt/p4kv9wQrwUFhSekLOv3vt90tli/2NUcDWKjnTyEfqpYbMJ5DwDs
- ERspbYZZgM61PI5Yo+MCUaSzO2ZAhw7TgVvWQ8E3xp9sN3w6oKkBG1cZHx5H+lcBgZ
- d1HyZK9qZK69g==
-From: Arnd Bergmann <arnd@kernel.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Cc: Arnd Bergmann <arnd@arndb.de>, Imre Deak <imre.deak@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/i915: add intel_opregion_vbt_present() stub function
-Date: Wed, 13 Mar 2024 09:47:26 +0100
-Message-Id: <20240313084735.3305424-1-arnd@kernel.org>
-X-Mailer: git-send-email 2.39.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FFF910E5F3;
+	Wed, 13 Mar 2024 08:52:36 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC46210E5F3;
+ Wed, 13 Mar 2024 08:52:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/i915=3A_add_inte?=
+ =?utf-8?q?l=5Fopregion=5Fvbt=5Fpresent=28=29_stub_function?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arnd Bergmann" <arnd@kernel.org>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 13 Mar 2024 08:52:33 -0000
+Message-ID: <171031995388.715418.14282873821545198234@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240313084735.3305424-1-arnd@kernel.org>
+In-Reply-To: <20240313084735.3305424-1-arnd@kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,40 +36,28 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Arnd Bergmann <arnd@arndb.de>
+== Series Details ==
 
-The newly added function is not available without CONFIG_ACPI, causing
-a build failure:
+Series: drm/i915: add intel_opregion_vbt_present() stub function
+URL   : https://patchwork.freedesktop.org/series/131062/
+State : failure
 
-drivers/gpu/drm/i915/display/intel_bios.c:3424:24: error: implicit declaration of function 'intel_opregion_vbt_present'; did you mean 'intel_opregion_asle_present'? [-Werror=implicit-function-declaration]
+== Summary ==
 
-Add an empty stub in the same place as the other stubs.
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 66de9026cd45 drm-tip: 2024y-03m-13d-08h-34m-34s UTC integration manifest
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/i915/display/intel_opregion.h:120
+error: drivers/gpu/drm/i915/display/intel_opregion.h: patch does not apply
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Applying: drm/i915: add intel_opregion_vbt_present() stub function
+Patch failed at 0001 drm/i915: add intel_opregion_vbt_present() stub function
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
-Fixes: 9d9bb71f3e11 ("drm/i915: Extract opregion vbt presence check")
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
----
- drivers/gpu/drm/i915/display/intel_opregion.h | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_opregion.h b/drivers/gpu/drm/i915/display/intel_opregion.h
-index 63573c38d735..4b2b8e752632 100644
---- a/drivers/gpu/drm/i915/display/intel_opregion.h
-+++ b/drivers/gpu/drm/i915/display/intel_opregion.h
-@@ -120,6 +120,11 @@ intel_opregion_get_edid(struct intel_connector *connector)
- 	return NULL;
- }
- 
-+static inline bool intel_opregion_vbt_present(struct drm_i915_private *i915)
-+{
-+	return false;
-+}
-+
- static inline const void *
- intel_opregion_get_vbt(struct drm_i915_private *i915, size_t *size)
- {
--- 
-2.39.2
 
