@@ -4,27 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95232C54791
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Mar 2024 18:08:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07058C54791
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Mar 2024 18:44:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3729610F44B;
-	Wed, 13 Mar 2024 18:08:38 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E950410EC43;
- Wed, 13 Mar 2024 18:08:36 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3943531148221476014=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id A861710EF6F;
+	Wed, 13 Mar 2024 18:44:22 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K9rh6Gnn";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F0CA10EF6F
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 Mar 2024 18:44:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1710355462; x=1741891462;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=f5rJnJNbNTYpjCSmzLMB8Ihitr7nXiDTm66u3WNKZ9I=;
+ b=K9rh6Gnnwej+YF+vOh4IsphgTTmU0RMZGQoU1liVVbkBWfpFcLmUDdLy
+ 9Hp8YIb8aV5tL1HDd4if8t7rwjpvoMo7ULX7A90eutkzMiPcY67s8H3we
+ RIF5vc0K1iJCpNyk+LyhaOes9d/5iuxvIurrjaybAOiclZJsMXR/1wTd/
+ suJX7HV8Mc+SZs2FL1C+a0eUNawe40bFzUVPkl6rGxHRe2pFlXaJwdL8j
+ Jh2aJwMz0Zaw4RCKI+ONz+O9hM96PRH9QSQ0ArQ58Yag7aFnhLRj4NRiU
+ UoInkirFx2X+J0XJ7gIhA91joM+XNK2HrUaXx85DS6NOFFf3gUlUbUfXq A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11012"; a="5268790"
+X-IronPort-AV: E=Sophos;i="6.07,123,1708416000"; 
+   d="scan'208";a="5268790"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2024 11:44:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,123,1708416000"; d="scan'208";a="16613425"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2024 11:44:20 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Cc: Matthew Brost <matthew.brost@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH] drm/xe: Use xe_assert in xe_device_assert_mem_access
+Date: Wed, 13 Mar 2024 11:44:30 -0700
+Message-Id: <20240313184430.999397-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Skip_VMAs_pin_when_req?=
- =?utf-8?q?uesting_signal_to_the_last_XE=5FEXEC?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 13 Mar 2024 18:08:36 -0000
-Message-ID: <171035331694.732671.18078109816798202512@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240313171318.121066-1-jose.souza@intel.com>
-In-Reply-To: <20240313171318.121066-1-jose.souza@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +59,32 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3943531148221476014==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The implementation of xe_device_assert_mem_access has a non-zero cost.
+Use xe_assert rather than XE_WARN_ON so it will compile out in non-debug
+kernel builds (Kconfig CONFIG_DRM_XE_DEBUG=n).
 
-== Series Details ==
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Series: drm/xe: Skip VMAs pin when requesting signal to the last XE_EXEC
-URL   : https://patchwork.freedesktop.org/series/131085/
-State : success
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 919ad88f0495..b0bfe75eb59f 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -666,7 +666,7 @@ bool xe_device_mem_access_ongoing(struct xe_device *xe)
+  */
+ void xe_device_assert_mem_access(struct xe_device *xe)
+ {
+-	XE_WARN_ON(xe_pm_runtime_suspended(xe));
++	xe_assert(xe, !xe_pm_runtime_suspended(xe));
+ }
+ 
+ bool xe_device_mem_access_get_if_ongoing(struct xe_device *xe)
+-- 
+2.34.1
 
-== Summary ==
-
-CI Bug Log - changes from xe-935-72f447f984cf5526e6ad32a6e2770124c67d59d3_BAT -> xe-pw-131085v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-131085v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_evict@evict-beng-mixed-threads-small-multi-vm:
-    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#1259]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-935-72f447f984cf5526e6ad32a6e2770124c67d59d3/bat-dg2-oem2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131085v1/bat-dg2-oem2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html
-
-  
-  [Intel XE#1259]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1259
-
-
-Build changes
--------------
-
-  * Linux: xe-935-72f447f984cf5526e6ad32a6e2770124c67d59d3 -> xe-pw-131085v1
-
-  IGT_7759: 7759
-  xe-935-72f447f984cf5526e6ad32a6e2770124c67d59d3: 72f447f984cf5526e6ad32a6e2770124c67d59d3
-  xe-pw-131085v1: 131085v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131085v1/index.html
-
---===============3943531148221476014==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Skip VMAs pin when requesting signal to the last XE_EXEC</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131085/">https://patchwork.freedesktop.org/series/131085/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131085v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131085v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-935-72f447f984cf5526e6ad32a6e2770124c67d59d3_BAT -&gt; xe-pw-131085v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-131085v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_evict@evict-beng-mixed-threads-small-multi-vm:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-935-72f447f984cf5526e6ad32a6e2770124c67d59d3/bat-dg2-oem2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1259">Intel XE#1259</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131085v1/bat-dg2-oem2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-935-72f447f984cf5526e6ad32a6e2770124c67d59d3 -&gt; xe-pw-131085v1</li>
-</ul>
-<p>IGT_7759: 7759<br />
-  xe-935-72f447f984cf5526e6ad32a6e2770124c67d59d3: 72f447f984cf5526e6ad32a6e2770124c67d59d3<br />
-  xe-pw-131085v1: 131085v1</p>
-
-</body>
-</html>
-
---===============3943531148221476014==--
