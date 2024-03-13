@@ -4,141 +4,135 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADE75C54E58
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Mar 2024 02:16:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DC4CC54E58
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Mar 2024 02:24:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49FBF10F3F7;
-	Wed, 13 Mar 2024 02:16:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEB3110E768;
+	Wed, 13 Mar 2024 02:24:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CsFq7umu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nesA/9Qd";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CC5B10F3F7
- for <intel-xe@lists.freedesktop.org>; Wed, 13 Mar 2024 02:16:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C35610E768
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 Mar 2024 02:24:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710296193; x=1741832193;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=elkBu3Qlj8zCeCu1f3Jkb/l0E88i7xIKxoWFTu/MRW4=;
- b=CsFq7umuE3kSF8ftoi0VMEa7FXfMtFunQl77mCLhJgS5s6vmPmLH55pn
- QVdv/NkepCb17QoVD9xjDa+wO3L36Z5CannGKIfv7iGkDV4wXNl32pZiA
- jVzWhCFvCtvV5EI5yXoWBCQ5siY+1KMEgX9vSd7YA5yMhSjZlltUHz7pT
- 9pios79cliOvDGJd3ing05kllojXWFVg9n2qlHyggA8Hcvaa9Bec51ZF3
- zGahM/2v81Eqw/Opsd/snluECtbAZhbdwuza/ZBMp+h4kOqDOs/ZJn5u5
- KOEx/ZWcuanEGLVY8CUd1ygMFBqbM1TGBq/b5Un7xhAcfXF3eCuJFcqwj Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11011"; a="5172621"
+ t=1710296679; x=1741832679;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=E7NU1JlL+FQO1+Tjtg5mG45WP0im+vgys6KmnPebZR4=;
+ b=nesA/9Qd+mAEPZTRr35NmuuzcnKzlK8VD+8UIOi9Km3FrwEqEHzGEIzU
+ WAsyggZerM420NgRFBoZz16iCGMfGDZMiOwzIGj8XiPhSooynTiiTwUf/
+ aj4SMWYSWrxb6g8QrE1fUK8ue0h/DmdIjcwv9l/fg+yOJCB3qIibyeZb8
+ /9aER7vIsCETfR4CnqxHH/5yWOUFz+mWfO0S84lJL7N5nsRK/8pUWavrI
+ xxSPvFepvZbboNn1cOQiwabgg2DjI7DbxyDnM06vAaK9xYOW3l4f6Tfqa
+ Ktg9uz/ri6RmY3N2WsTxFEoOASe+MgJwLX+e36wSGyWd5ov8dQT0nO0AN w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11011"; a="5229445"
 X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; 
-   d="scan'208";a="5172621"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2024 19:16:28 -0700
+   d="scan'208";a="5229445"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2024 19:24:35 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; d="scan'208";a="16341820"
+X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; d="scan'208";a="11841169"
 Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 12 Mar 2024 19:16:27 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ by fmviesa008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 12 Mar 2024 19:24:35 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
  fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 12 Mar 2024 19:16:27 -0700
+ 15.1.2507.35; Tue, 12 Mar 2024 19:24:35 -0700
 Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 12 Mar 2024 19:16:27 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
+ 15.1.2507.35 via Frontend Transport; Tue, 12 Mar 2024 19:24:35 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
  by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 12 Mar 2024 19:16:26 -0700
+ 15.1.2507.35; Tue, 12 Mar 2024 19:24:34 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Q/BNOnhpjy/OaOWML74ZdsbuBJ/ykX63l8iOvAPMJdvYBUGhN0vplekDabRCbE29m9U2xCF41B3cNPZEFK1+oe387aRZG1Kl0w3jobzo0dfXcIKuMVnHEeIS1Z2tjZoP28g5hXS1WcNPBew5IkRAn36sP368HiWPnMB3kyGbtl8XriKzhQoQ33Nge2urW48y4W6G64jlPf1GBnn5Tr1BCan2uCpqzFFrYymi83NQfrqDh6oshzcIN6r6TkfO1rZintLuemB/g7kMjMhkY2FY4XvrViKJbl5d3DfKBSrMmX0itTglHxPq3TdhRWqn6U73bo8sQKbJBWe0npbjFpYhDA==
+ b=IhVi3aSC4m1OMEf54e/HmFrYuJs4d/QPgp5x0H69d271c2aEeO1MoWU6KppAVGze9gAjyNk6AFVUzFOvYHxSgGTYljEPzNUBI0CpdMpHw6hau4WIFpmWol6rMhFigw60Fv9o1bDNCMH/hzvNN1TGZnZGx+ldScHHp+9T8XOdhuNwFjrR6v34ucLp71TTHmaGytcrE3rNQ1FLLu8s9T1AUaIdbfSmXA2+WugfAIz4LBO9kglN7SzGmacZCKk47D/rsjZNZpw6h3i7Wx/fsxyvZUxBJPahNh+ncBXdUBz5//CV2bKDwrPnMS/Yp2VRa9x+iYAIjTWN0rDGemRkF5GMmQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=elkBu3Qlj8zCeCu1f3Jkb/l0E88i7xIKxoWFTu/MRW4=;
- b=bCLDy5nU7SiHh/IlEWo/eFWMyGVjVDQWbm+o603GD0bz197xSHHQK8DDIcFvieN9tlNzNtSJWKXTlP+KEkrwV5FSTn7WwJoMrISLsm6N7U92f5YID8jQ03823C8caDn34HKMLv8/089HFt90YAaNDycUg2Yc1M3qfUBnLv0z/UAERIe9JG4OhHfxEjEYHItVfnt8sF3RUVhrHPuGOyoR1lYvgJRINyqe4Sq1oL+7gFcUQ/EeiDM2EonbXEgnPIhCZkVoXFMl+hSbIQulh1cEBbpgCS0PtvjHNubVt0D210/IMb15vabJ1eBqPJdcxp4cYMoh5l3qaf3cglQ8lsVPUg==
+ bh=fVKBQ/hWqpiW7ZOphuw+veyeeeoYFGLYECr40W4s4tU=;
+ b=j13tQP2MhenuTWcUGpM2ov/L2eca0L4A2+hBu9n6J8oaBXfvQ8jPdPvqt/CR9ZSaS87gvczZjUCxGn8PELKXWY7wqxbfZ9o9CqJn8+ZZHN1PRAms0+khPGA8mTpvmCPbxNQMInW22zJepZUpqft+inQXyRvkdPLprdKTpgooH3oaYfuY0cdaNsdkGWjEUOgX+OkmkZq17JhCRNPLH711VLqMdx4V4goGTsjcz0jSJXyWct86yQl6iVmlyBchuI7BLyr5Hhs51mlk7k/oUkzpQfmmKEvoMNNLBH2hB8xi5TLi+Ih6o4EejbaDgyJWLmT6erjNIEDVKoktfgZARz96Mw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from SA1PR11MB6991.namprd11.prod.outlook.com (2603:10b6:806:2b8::21)
- by CH3PR11MB7796.namprd11.prod.outlook.com (2603:10b6:610:121::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.17; Wed, 13 Mar
- 2024 02:16:24 +0000
-Received: from SA1PR11MB6991.namprd11.prod.outlook.com
- ([fe80::c06c:bf95:b3f4:198d]) by SA1PR11MB6991.namprd11.prod.outlook.com
- ([fe80::c06c:bf95:b3f4:198d%5]) with mapi id 15.20.7362.017; Wed, 13 Mar 2024
- 02:16:24 +0000
-From: "Zeng, Oak" <oak.zeng@intel.com>
-To: "Brost, Matthew" <matthew.brost@intel.com>
-CC: =?iso-8859-1?Q?Thomas_Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: Separating xe_vma- and page-table state
-Thread-Topic: Separating xe_vma- and page-table state
-Thread-Index: AQHadFDywx5K1cRH40+OxAMGoL7g0rE0pF2ggAA+GgCAAAmNEA==
-Date: Wed, 13 Mar 2024 02:16:24 +0000
-Message-ID: <SA1PR11MB69912840ED414B40B6F3A829922A2@SA1PR11MB6991.namprd11.prod.outlook.com>
-References: <72ea6bc36260bcc2eaeb97d1abcb8bebf69f3f53.camel@linux.intel.com>
- <SA1PR11MB699139B15B97B2B056312F41922B2@SA1PR11MB6991.namprd11.prod.outlook.com>
- <ZfEA5ieJ+M9rttI3@DUT025-TGLU.fm.intel.com>
-In-Reply-To: <ZfEA5ieJ+M9rttI3@DUT025-TGLU.fm.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SA1PR11MB6991:EE_|CH3PR11MB7796:EE_
-x-ms-office365-filtering-correlation-id: 4a0a1014-5292-4ab4-da7c-08dc43039507
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 5EsN+zUxtOhRa3jpa4agmVG62O7dyUUB2xhqwDj58N1O5bXtfDwEWC/pEr+O2rFUW9mVJVaVSobeY1ldTe+dcq0TtKqgsfMW5lrKOggMr4mDUnydVRLqSEOFoBVYNnvtuLhVjLcU8rINmaY2uauOJpYZj8jNz+bvybob0wThviufJ3wN7ra5GcTpb3iPw9gvVa2uXMBjV/Kj/50O8yXr1wbAnqZyKFXJC57fSGw4JoTPE+WHbVx7m8GglNvHYc6qaPJIlLVEYO67kUGSfZgbrDXM3YDDOb+EGdfmMMxxtVIq+UFmNgIaQEC8HyaXGLl0pSfcm6NblLaW6eLTLyqatXlu4dvPEdMcOkDk+zgZIa7eavNOPR8qmiy2hhN5cCuVhoSvaEdJsKLjkXSS7eFgiI3nDwJjP1YPc7EXDPCzJjEIAjKg3tQd1JzNjFPYWjnKKO2CGvtWABb3Curii7osMMD1b8GZCAyDaAQnQwVeQIup9JpAPUfS+uaYmhzPS5yIMCJEvmB4nSYTdKOs3xPn0n2o1A64G8u2GNEQVIgaZIxIHRh9t+G2iH9dBgjb6T41BcJSAGSiAxIe2egFsd+oer1wxxNBkRoECrwByS7j91EvpwDZJXC40/t48cr0Xgkwdls5g8S5lxPoGbXoFhIL2m2Bge3NLU32DUCXULJDuOQ5Y4k/VQ4PaETSgVfug+9l
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA1PR11MB6991.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(1800799015)(38070700009); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?ClHtFwgMLuIjwksNJNToEcyG7NKUS2PQoppsJOqccKFM0zBoSCnVdUOX6V?=
- =?iso-8859-1?Q?GPtJonKy3N3jOIO9fVYbDG3FiQzscE3x2vmuci8IkQn1KkWjo/RW3Nq4Mm?=
- =?iso-8859-1?Q?Pnmh3IsDrzD5vmoh/VjCLJl29gutq8C04gEswlXaWlt17ZBEVXgOmLQ5DT?=
- =?iso-8859-1?Q?Cy1mP1sbE/A0A2AhhVbWm/HlrUYUdvgcd0GN1zOcyLAOb90ReTl5tCQEN2?=
- =?iso-8859-1?Q?R+4zoTd3vB00C7shutWb5CDZpSTwYzgewxelJQgMQxbmhaSZtD2tUIknxo?=
- =?iso-8859-1?Q?fhJnFPLP3bB2/49Mwx+jUNfHIUxCE4MuUq9IGyAzdcjZYkdWgVIFegK56/?=
- =?iso-8859-1?Q?ZqLL/C9o6VEepDdFbXkUwIf2kUqwI+dWpwjP4+VKXHi2lOdYzmniBhFLzK?=
- =?iso-8859-1?Q?3FIfyweqhBN77KN6jpi0XVJVvpquxkWo2CvmLB+PtR4OFdQlZZT7LzBYOQ?=
- =?iso-8859-1?Q?Etkc8jBO8O8Hmos99WbX9smbdsiUTQyp4hsnvOnxp3HbooVkdhscLGk43g?=
- =?iso-8859-1?Q?dX3/K6DfURuTkxRJnUpEbT9m6odFt1xoH5+3KgvUs+mGEge3TkNElTfXxl?=
- =?iso-8859-1?Q?Y81AGfhlA+xZdgFqaGENYKx7+BsFVgOv5Y0KIYNYyAiF+o8fHEqrvX9H3K?=
- =?iso-8859-1?Q?h24FpEF9ryr3BzcQGzoUf9CpmvTpqJ+Ip5+JKqEP8WzReqPfd5Cctn9Rwv?=
- =?iso-8859-1?Q?cC6SwfBj+L0HRn3qGVEw1nNytY1A3MJzRWu0qn73CuDfXSxUYXFSAykRDQ?=
- =?iso-8859-1?Q?zsdx2RbvOMidJU/MyoSt6eCHOk6REDTC2YDREZe3nTLHu+Ob6ytRb1Bn2R?=
- =?iso-8859-1?Q?OK4v1Ud/mHig4BtYpy7e6rP45/StOgdwLPdO2hrftZ2qaKoG8YxNDjxgyx?=
- =?iso-8859-1?Q?AbM0tX6wu6J5Y7YXvrbWC9xlBDxhNsL802OZfHCsDxz524s3375R2P+e25?=
- =?iso-8859-1?Q?uR8ysxWrI4YPIdFj5UkFNPu2bJxzcNTquQKVw/kPU57YXVu8AlXlSi6yev?=
- =?iso-8859-1?Q?2TwCtn1JkhzXhUT3RQSzgefIH97pD18bfsLhmnUYFNlV4bACUNEEf1kYZF?=
- =?iso-8859-1?Q?wVkbvrDT0LnrgW7ai6a3KygAWklJtuAP7vZiSYY0cq1DK2VUeIw5kdQdF4?=
- =?iso-8859-1?Q?JE58vTCOpZd6ep8EuxXwNKqWSCOKO0JIdnVu5XS8dQIrO8E1zT1ewvVJ7u?=
- =?iso-8859-1?Q?L0lbJepU+4+QJlk1dFfrBWEFW85m+tM31ZRmXOFPbPYg27bHrnPvIZk0wF?=
- =?iso-8859-1?Q?jYTiV47biGGnLC5fSAVpGntv0QR2ElYqUX2TepgLyuWV38Tj+qWdn3CSi4?=
- =?iso-8859-1?Q?CJkgBtR/TaVRjtzGsQAX6u1yLzoHbV3TJeBwjlZoai7SB/xiqEfgXY2GR/?=
- =?iso-8859-1?Q?kwe0sdHciZtQZUTC7UckL9npFCCWznSMPGUxXnnaaAFiMko3IHetTuzPut?=
- =?iso-8859-1?Q?mPESH3ifMo5tqDSY3cJayEZtWiN+gaBc3YtjJYHl+mWmyCpqjSZHpL2fMk?=
- =?iso-8859-1?Q?domlAmuhN+sHmwPFPQz7uIoLVC17hlFJGX0Fv8iYDQDn9wEeSPdbzVj3DX?=
- =?iso-8859-1?Q?GLpgCoIkRWg/hfat1v+Ox+AlMh9Jj68nDKU3z8cjDbgAbMQSx4zX1l0RTI?=
- =?iso-8859-1?Q?iwmuG1K3jou8I=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by SA2PR11MB4985.namprd11.prod.outlook.com (2603:10b6:806:111::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.16; Wed, 13 Mar
+ 2024 02:24:28 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::e9dd:320:976f:e257]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::e9dd:320:976f:e257%4]) with mapi id 15.20.7386.017; Wed, 13 Mar 2024
+ 02:24:28 +0000
+Date: Tue, 12 Mar 2024 21:24:24 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Shuicheng Lin <shuicheng.lin@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/xe/xe_tracer: Align fence output format in ftrace log
+Message-ID: <p5eagsy44hggmngjdspsk5gievsrhehssbcfvj5czy4r2e4e3e@4gkxtcsw6mfc>
+References: <20240313014915.1400077-1-shuicheng.lin@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20240313014915.1400077-1-shuicheng.lin@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0195.namprd03.prod.outlook.com
+ (2603:10b6:a03:2ef::20) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SA2PR11MB4985:EE_
+X-MS-Office365-Filtering-Correlation-Id: ee2f2163-f8ec-436d-73e8-08dc4304b566
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 4A2QuqMVNCg15tZyXAiXE7Ks6mQGfNRT+drSfeeAg2tft1ULpuuGWoDi8zf+Zq38l4AANWPV6zNZgA5GPULcsxqaF147QIyBaVlbIihTLcbaZktQP0JJ2vKD2egCCPdWcsRKJhmZm6A/LBxGDkU2NYye8ZTCCGWei6pmK3HPTkS2yzXUOAFou1dHKkfEW5SLBIXTQ/zeEvvGUH3NWIOQNXpxkqzJrzktnovoYe1sMAOLuiJuDkWgwA85pDzhWW4T8Ee2GqJRXuF5CyWDFeVGdKKag89CyILkj9b+NQAXLDHhugNLwsrPQfXx76d3smHpDbd0p4LVViiu53VTnz8KuYVi+Svyp2NcF+FTzr/QLQtcq16Wt+tA0kRc/L1VFJsiGml5ns0ooU45mtFpzzL1oKVe8sbjJfxKGMEh5tlXKBYt0xiK4wHnK31gzYqgPFjYy0bbIxQI+w/MUgvNFs7JTJ1W8hs4I28+FaunW1Hs/BuSfdEfTwK10akcAX3VukFMgRIuEBIExf7LZAtrk708Mx/IRr6obfBaDs/6PX43vjY3SuKKSYijPi2jUInIrXqNOkNK9WST3wWauld8NEijwp3+RtzUYUxJ4tdxAiGWLsB+q+l7oVeAXprhjUOTId9JTmGhlntrvf5qH0m/fQiE7RQva4KC5UOf7WohNh3Eo+8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005)(1800799015); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?QLZXSEQfJtRmS9W2PU2wBm7kssDqY3r/tmv1dPUIWuy65kyHPxTT+waroNsj?=
+ =?us-ascii?Q?jaxbIGXm821ekvkKKjpDOkXGPcOIpU09jUdGpxNouMglA4HwbF78k/Ciz1fC?=
+ =?us-ascii?Q?nJCZqXBQRH/JuU872YTqxsrXkv1Frwu8sAVhDj0aTKdoQdo+T7X+w2Zq7JwP?=
+ =?us-ascii?Q?epGzRhX0AIFQouA/TlNGDaaQXGl8XZbbbuzdLMG5DN39I68ArNBq3whrRRlm?=
+ =?us-ascii?Q?4cL2dw7E2frphjdH4wGeQDdKYOC9EH0lwHFOJi03mmcPITDejEuyyaiJcLZ4?=
+ =?us-ascii?Q?6kr6TsNG6Y5yfUJTKw++Bxqqt056sJzlkjlZtJSGu1czL8H3hlEZ6wuMXoPn?=
+ =?us-ascii?Q?BKZqf6083MVU3xIFu+0MvYuKZTfD9knrrsGyKVi5WIh8yXFeB1e/xAPXagOd?=
+ =?us-ascii?Q?g7SLWcEOGoW2dM5e5a4SYap+cJgt8oTyHAi5TJrb1Nqvex3bkJs+NIet+Y+6?=
+ =?us-ascii?Q?YRGL4uZn4/Kq527IzPrEJqsXkM59k37u+SsZQMOzFa7eXF5KAYmHgmWOLP4v?=
+ =?us-ascii?Q?HKq1tImfhQG+6Ww0/I7/wMETA8TFGot+F2PPaGXEphUuauO90L5Pjkm6QZC7?=
+ =?us-ascii?Q?5bdvcuF1eTLNZLkixqGNhPkphx+02hfgB39w53CxVbnIn7yw4hf1rfR/tly/?=
+ =?us-ascii?Q?I69J2ojCDe8KMytqc548OAEhd0/wHEVq4PEF9c6ZGDJFx6oPYBLn3DaV5Sgh?=
+ =?us-ascii?Q?l49okeFA6jzCLoVuQXb2O5u3I+eagPKreXpXNh6xzrCvzl7lhoImief1tRsM?=
+ =?us-ascii?Q?MBW2Bz2kjMY7m5kgREA4CzViKJVLX6KJFMtpiudh90gwxHcY0MxXyRxUsNb7?=
+ =?us-ascii?Q?qLr4wOkdBrdRUgsHnnTg5EMI7wGIIqnCjPy/xE5/girDc/pnibvCWxyjIL5a?=
+ =?us-ascii?Q?dovvN6vqP/E08v9IVaWFKeSIoBBsGV+1mtc4p3A6mPHKvLVIEzzs7llmFOz3?=
+ =?us-ascii?Q?45Y4ySbB28Dd/iUv7wROiP2Z9XrHtVGBxGeSs5wBRQDlrG89P+GUiPgClyoq?=
+ =?us-ascii?Q?mko3QHnDHLWCgG4HalCnxMFcm8JOUPBnvZlwRy47+ieeU8+q9i3HJZOx9PYk?=
+ =?us-ascii?Q?JDwDTAJqtxaKKTTYQpA0kVLfpjOgj967l1iNsWkSlcdXGq0/f6gbf2hSMVET?=
+ =?us-ascii?Q?PDgxKeMPTVFEc21D5LSSbtrHwdwB5V6NXjjdMHP1nWfHZZy9q3czeq4hhRyn?=
+ =?us-ascii?Q?AVPEs3ZtdHkIi9I7tjIbw4Xz+qDW7UITMOmJotT6dijoYAAViw6i/flaz7I0?=
+ =?us-ascii?Q?W35O/SLbJ9Zl8p2J2UgHjsfIt3NWSSSe+Rd6ZGPvpP4PhXCAO7SfKcF9KQ6l?=
+ =?us-ascii?Q?FMR43q1K7RPAMHuA4Lt5ldxit7ktVWrbfNolEvjq7H0MIqb94rkTd0UXmOe0?=
+ =?us-ascii?Q?ubXg2OAO/ajEw54JXFls+MMa/83wxodDNP0TqpVlyOVFnRLYNnzi7MGNgAWW?=
+ =?us-ascii?Q?XKtsBu02Rxs3juUsOjSysJd459eaEpn0ZnJNY6PgZJmRaT7PthRC/7U1F2IO?=
+ =?us-ascii?Q?IG1xrRQdSQ3PrzMG5Gwuin66p5NmTO+VPlU+wJBgWKA3bd7QO8kofWdHrGeG?=
+ =?us-ascii?Q?EVb+eWIGZ2tJVsS63we/NzFJQsPBd3nkgEIeZ7vJF0gqUxxNnSVmtehUW+ZA?=
+ =?us-ascii?Q?tg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: ee2f2163-f8ec-436d-73e8-08dc4304b566
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SA1PR11MB6991.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4a0a1014-5292-4ab4-da7c-08dc43039507
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Mar 2024 02:16:24.3793 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: dDaKmw/NmDJzEBG4n+yS5PcU8rwEywODin82ynk/2uHpnDa0r2zSSr4eT2WSIqHc/f8RZhb0rL7KI5aIthtccw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7796
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2024 02:24:28.3598 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +yiOBSouv702gZVAMuGUcflIc5xtG8SxuCdRbfF9WAlJpxp2HpIAoOTf6jzU9EsoQ+nndVvowBKGmU4RCTlGsBzcQbSVsUh9FfXyvmWePB4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4985
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -154,218 +148,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Matt,
+On Wed, Mar 13, 2024 at 01:49:15AM +0000, Shuicheng Lin wrote:
+>The fence print in xe_gt_tlb_invalidation_fence and xe_hw_fence
+>is with "%p", change fence print in xe_sched_job to "%p" also.
 
-> -----Original Message-----
-> From: Brost, Matthew <matthew.brost@intel.com>
-> Sent: Tuesday, March 12, 2024 9:27 PM
-> To: Zeng, Oak <oak.zeng@intel.com>
-> Cc: Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.com>; intel-
-> xe@lists.freedesktop.org
-> Subject: Re: Separating xe_vma- and page-table state
->=20
-> On Tue, Mar 12, 2024 at 05:02:20PM -0600, Zeng, Oak wrote:
-> > Hi Thomas,
->=20
-> Going to reply to both Thomas and Oak to not split this thread.
->=20
-> >
-> > > -----Original Message-----
-> > > From: Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.com>
-> > > Sent: Tuesday, March 12, 2024 3:43 AM
-> > > To: intel-xe@lists.freedesktop.org
-> > > Cc: Brost, Matthew <matthew.brost@intel.com>; Zeng, Oak
-> > > <oak.zeng@intel.com>
-> > > Subject: Separating xe_vma- and page-table state
-> > >
-> > > Hi,
-> > >
-> > > It's IMO become apparent both in the system allocator discussion and =
-in
-> > > the patch that enables the presence of invalid vmas
-> > > that we need to be
-> > > better at separating xe_vma and page-table state, so that xe_vma stat=
-e
-> > > would contain things that are mostly immutable and that the user
-> > > requested: PAT index, memory attributes, requested tile presence etc,
-> > > whereas the page-table state would contain mutable state like actual
-> > > tile presence, invalidaton state and MMU notifier.
->=20
-> Thomas:
->=20
-> 100% agree with the idea. There are 2 distict parts of xe_vma - what I
-> call GPUVM state and PT state. In addition, there is what I call IOCTL
-> state (sync objs, etc...) that is updated in various places in xe_vm.c.
->=20
-> Functions to update these respective states should be clearly seperated.
-> In the current implementaion is a complete mess in this regard, you
-> mention xe_vm_unbind_vma below, in its current state there is no way
-> this function could be easily be reused.
->=20
-> My series [1] vastly improves this seperation. It still could be split a
-> bit better though. In my next rebase I can look at this series through
-> the lens of clearly maintaining seperation + likely update [2] to do an
-> unbind rather than a invalidation.
->=20
-> [1] https://patchwork.freedesktop.org/series/125608/
-> [2] https://patchwork.freedesktop.org/series/130935/
->=20
-> >
-> > It is a valid reasoning to me... if we want to do what community want u=
-s to do
-> with system allocator,
-> > And if we want to meet our umd's requirement of "free w/o vm_unbind", y=
-es,
-> we need this "invalid" vma concept.
-> >
-> > The strange thing is, it seems Matt can still achieve the goal without =
-introducing
-> invalid vma concept... it doesn't look like he has
-> > This concept in his patch....
-> >
->=20
-> Oak:
->=20
-> I'm a little confused by what mean by "invalid" vma concept. Does
-> that mean no GPU backing or page tables? That is essentially what I call
-> system allocator VMA in [3], right?
+ack
 
-Thomas also mentioned this "invalid vmas" concept. Here is my understanding=
-:
+>Add the "0x" prefix as the "%p" is with hex format.
 
-1) from the system allocator discussion: we introduced a gigantic vma which=
- is invalid because address in this gigantic vma are not a valid gpu addres=
-s.
-When we create a vma in gpu page fault handler, we carve out a vma from gig=
-antic vma, this vma is a valid vma.=20
+nack.
 
-Note there is subtle difference b/t invalid vma and vma without backing or =
-page table. A valid vma can be migrated to system memory and at that time i=
-t lost its gpu backing or gpu page table but it is still a valid vma.
+	$ git grep -c %p -- drivers/gpu/drm/xe/xe_trace.h
+	drivers/gpu/drm/xe/xe_trace.h:6
+	$ git grep -c 0x%p -- drivers/gpu/drm/xe/xe_trace.h
+	$
 
-In the POC code you give, you don't the migration logic, so you don't need =
-the note of "invalid vma".
+even if you change those below, you are not changing all. Let's keep %p.
 
-2) from the userptr discussion "free userptr without vm_unbind": in your pa=
-tch, when user free userptr without vm_unbind, the code behavior is, you in=
-validate that userptr from gpu page table and put it into a repin list. Use=
-rptr vma will be repined on the next exec submission. I guess Thomas call s=
-uch vma (freed, but not vm_unbind) as "invalid vma"
+considering the whole kernel, most places don't bother with
+the 0x neither.
 
-For me this behavior causes unnecessary complication. I would destroy the u=
-serptr vma when user free it. We can create a new userptr vma on next umd v=
-m_bind. Is this simpler?
+	$ git grep -c "%p" | cut -d: -f2 | paste -s -d+ |bc
+	22288
+	$ git grep -c "0x%p" | cut -d: -f2 | paste -s -d+ |bc
+	1727
 
-Oak
+for numbers, rather than addresses, it's more 50/50:
 
+	$ git grep -c "%x" | cut -d: -f2 | paste -s -d+ |bc
+	33209
+	$ git grep -c "0x%x" | cut -d: -f2 | paste -s -d+ |bc 
+	16502
 
->=20
-> Also based on Thomas say below related to xe_vm_unbind_vma and [2] we
-> should be able to have VMA that points to a backing store (either
-> userptr or BO) but doesn't have GPU mappings. We do have this for
-> faulting VMs before the initial bind of a VMA but we cannot currently
-> dynamically change this (we can invalidate page tables but cannot remove
-> them without destroying the VMA). We should fix that.
->=20
-> [3] https://gitlab.freedesktop.org/mbrost/xe-kernel-driver-system-allocat=
-or/-
-> /commit/3fcc83c9b075364a9d83415ca73a9f9625543d7c
->=20
-> >
-> > >
-> > > So far we have had no reason to separate the two, but with hmmptr we
-> > > would likely end up with multiple page-table regions per xe-vma,
-> >
-> > Can we still maintain 1 xe-vma : 1 page table region relationship for s=
-implicity?
-> >
-> > This requires vma splitting. i.e., if you have a hmmptr vma cover range=
- [0~100],
-> > And fault happens at range [40~60], then we will end up with 3 vmas:
-> > [0~40], a dummy hmmptr vma, not mapped gpu
-> > [40~60], hmmptr vma mapped to gp
-> > [60~100], dummy, not mapped to gpu.
-> >
-> > Does this work for you? Or do you see a benefit of not splitting vma?
-> >
->=20
-> Thomas / Oak:
->=20
-> Agree for at least the initial implementation a 1 to 1 relationship will
-> be easier. Also unsure what the benefit of not splitting VMAs is?
->=20
-> That being said, I don't think this is something we need to decide now.
->=20
-> >
-> >
-> > and
-> > > with the patch discussed earlier we could've easily reused
-> > > xe_vm_unbind_vma() that only touches the mutable page-table state and
-> > > does the correct locking.
-> > >
-> > > The page table could would then typically take a const xe_vma *, and
-> > > and xe_pt_state *, or whatever we choose to call it. All xe_vmas exce=
-pt
-> > > hmmptr ones would have an 1:1 xe_vma <-> xe_pt_state relationship.
->=20
-> Thomas:
->=20
-> I like the idea of VMAs in the PT code function being marked as const
-> and having the xe_pt_state as non const. It makes ownership very clear.
->=20
-> Not sure how that will fit into [1] as that series passes around
-> a "struct xe_vm_ops" which is a list of "struct xe_vma_op". It does this
-> to make "struct xe_vm_ops" a single atomic operation. The VMAs are
-> extracted either the GPUVM base operation or "struct xe_vma_op". Maybe
-> these can be const? I'll look into that but this might not work out in
-> practice.
->=20
-> Agree also unsure how 1:N xe_vma <-> xe_pt_state relationship fits in
-> hmmptrs. Could you explain your thinking here?
->=20
-> > >
-> >
-> > Matt has POC codes which works for me for system allocator w/o this
-> vma/pt_state splitting: https://gitlab.freedesktop.org/mbrost/xe-kernel-d=
-river-
-> system-allocator/-/commits/system_allocator_poc?ref_type=3Dheads
-> >
-> > Can you take a look also...
-> >
->=20
-> Thomas:
->=20
-> It might be helpful to look at that branch too, the last 3 patches [3]
-> [4] [5] implement a PoC system allocator design built on top of [1],
-> using existing userptrs for now, and is based on our discussions in the
-> system allocator design doc. Coding is sometimes the easiest way to
-> convay ideas and this roughly what I had in mind. Not complete by any
-> means and still tons of work to do to make this a working solution.
->=20
-> [4] https://gitlab.freedesktop.org/mbrost/xe-kernel-driver-system-allocat=
-or/-
-> /commit/3fcc83c9b075364a9d83415ca73a9f9625543d7c
-> [5] https://gitlab.freedesktop.org/mbrost/xe-kernel-driver-system-allocat=
-or/-
-> /commit/d2371e7c007406fb5e84e6605da238d12caa5c62
-> [6] https://gitlab.freedesktop.org/mbrost/xe-kernel-driver-system-allocat=
-or/-
-> /commit/91cf8b38428ae9180c92435d3519193d074e837a
->=20
-> > When I worked on system allocator HLD, I pictured the invalid vma conce=
-pt also.
-> But somehow Matt was able to make it working without such concept....
-> >
->=20
-> Oak:
->=20
-> Still unclear on this. Maybe we can chat offline to clear this up.
->=20
-> Matt
->=20
-> > Oak
-> >
-> > > Thoughts, comments?
-> > >
-> > > Thanks,
-> > > Thomas
+Lucas De Marchi
+
+>
+>Cc: De Marchi, Lucas <lucas.demarchi@intel.com>
+>Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+>---
+> drivers/gpu/drm/xe/xe_trace.h | 10 +++++-----
+> 1 file changed, 5 insertions(+), 5 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+>index 4ddc55527f9a..9214c6add766 100644
+>--- a/drivers/gpu/drm/xe/xe_trace.h
+>+++ b/drivers/gpu/drm/xe/xe_trace.h
+>@@ -36,7 +36,7 @@ DECLARE_EVENT_CLASS(xe_gt_tlb_invalidation_fence,
+> 			   __entry->seqno = fence->seqno;
+> 			   ),
+>
+>-		    TP_printk("fence=%p, seqno=%d",
+>+		    TP_printk("fence=0x%p, seqno=%d",
+> 			      __entry->fence, __entry->seqno)
+> );
+>
+>@@ -258,7 +258,7 @@ DECLARE_EVENT_CLASS(xe_sched_job,
+> 			     __field(u32, guc_state)
+> 			     __field(u32, flags)
+> 			     __field(int, error)
+>-			     __field(u64, fence)
+>+			     __field(struct dma_fence *, fence)
+> 			     __field(u64, batch_addr)
+> 			     ),
+>
+>@@ -269,11 +269,11 @@ DECLARE_EVENT_CLASS(xe_sched_job,
+> 			   atomic_read(&job->q->guc->state);
+> 			   __entry->flags = job->q->flags;
+> 			   __entry->error = job->fence->error;
+>-			   __entry->fence = (unsigned long)job->fence;
+>+			   __entry->fence = job->fence;
+> 			   __entry->batch_addr = (u64)job->batch_addr[0];
+> 			   ),
+>
+>-		    TP_printk("fence=0x%016llx, seqno=%u, guc_id=%d, batch_addr=0x%012llx, guc_state=0x%x, flags=0x%x, error=%d",
+>+		    TP_printk("fence=0x%p, seqno=%u, guc_id=%d, batch_addr=0x%012llx, guc_state=0x%x, flags=0x%x, error=%d",
+> 			      __entry->fence, __entry->seqno, __entry->guc_id,
+> 			      __entry->batch_addr, __entry->guc_state,
+> 			      __entry->flags, __entry->error)
+>@@ -359,7 +359,7 @@ DECLARE_EVENT_CLASS(xe_hw_fence,
+> 			   __entry->fence = fence;
+> 			   ),
+>
+>-		    TP_printk("ctx=0x%016llx, fence=%p, seqno=%u",
+>+		    TP_printk("ctx=0x%016llx, fence=0x%p, seqno=%u",
+> 			      __entry->ctx, __entry->fence, __entry->seqno)
+> );
+>
+>-- 
+>2.25.1
+>
