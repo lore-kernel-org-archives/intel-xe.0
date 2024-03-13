@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F05CC54E66
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC125C54E68
 	for <intel-xe@archiver.kernel.org>; Wed, 13 Mar 2024 22:11:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E94910F069;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EA3B10F082;
 	Wed, 13 Mar 2024 22:11:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MsQYdwH1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N2GCw/GX";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2C8410F00A
- for <intel-xe@lists.freedesktop.org>; Wed, 13 Mar 2024 22:11:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 833CA10F027
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 Mar 2024 22:11:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710367888; x=1741903888;
+ t=1710367890; x=1741903890;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LQ3I2OcrIepS2S7ERd4FrCn8iKo/RhBBV56rWD4kPkQ=;
- b=MsQYdwH1JWEDAxtkZxFQG6RqinmEmoiD6TZiGkbWYhB01RsldOMaNV9f
- kzaIY3INBwX0nIG+g1n47tqg1I07PZGav0LU0bLH157JaGmOQBvHvf12p
- 7a3bitRgtkTihT3axzCkoU0Zpu7qE+h1biynxjHrdYmjsMuWPq0GI8fOK
- nI3EUEodgs8n1Z6P7qmwUjPKm2e8bvW04UbI3ISqR5fWkZOXmNdOwiovt
- Ihy0ARfgIMnPKMARZ8RxrUR/tIlLFg1m3REts3FoEDPbqqAi/BpWUrx8w
- 1o/wfPqbt+ApUARe4J8rVzgD4cot4hoZtNm4tPfPyjOfSsrS+8ouXRmbc A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11012"; a="5027633"
+ bh=oavOsGibw9xymeic0gVfKTSiedONgBHCref8yaNj6Lo=;
+ b=N2GCw/GXn7Fv+MgopvwjV5lYFcJomjaMJ4FXMc2dMlG9Rds96tXwDFMu
+ mED70l13W9gANzauaqr8Ci4UMl+wusKHC3fGad2M/LsF/h/yUfJ29VPoU
+ sylegwCK0bE+wbjWpuLLW9SDiHcchwi6VjlkQPqccyUqNgDDKfPtRlHA9
+ KIAbuGtIKQSkkcETOkoWxzIOEIRfRGgfRL4xBoInM2U+ebHkRyuAL5rBl
+ dT05Wdcam6pAjXIqdRMja74FykFzwnWEMIyRr9RPReLSBMpGcFWDMP3Jx
+ 1WOUTUvO2SMUp67ohYVOEKrk2Vwfn60kyprxljRJaFgWjdECLDpzfJLGH g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11012"; a="5027642"
 X-IronPort-AV: E=Sophos;i="6.07,123,1708416000"; 
-   d="scan'208";a="5027633"
+   d="scan'208";a="5027642"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2024 15:11:28 -0700
+ 13 Mar 2024 15:11:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,123,1708416000"; d="scan'208";a="11964308"
+X-IronPort-AV: E=Sophos;i="6.07,123,1708416000"; d="scan'208";a="11964323"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.141.133])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2024 15:11:26 -0700
+ 13 Mar 2024 15:11:29 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v2 2/4] drm/xe/guc: Introduce GuC context ID Manager
-Date: Wed, 13 Mar 2024 23:11:10 +0100
-Message-Id: <20240313221112.1089-3-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 4/4] drm/xe/guc: Use GuC ID Manager in submission code
+Date: Wed, 13 Mar 2024 23:11:12 +0100
+Message-Id: <20240313221112.1089-5-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240313221112.1089-1-michal.wajdeczko@intel.com>
 References: <20240313221112.1089-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,385 +64,135 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-While we are already managing GuC IDs directly in GuC submission
-code, using bitmap() for MLRC and ida() for SLRC, this code can't
-be easily extended to meet additional requirements for SR-IOV use
-cases, like limited number of IDs available on VFs, or ID range
-reservation for provisioning VFs by the PF.
-
-Add a separate component for managing GuC IDs, that will replace
-existing ID management. Start with bitmap() based implementation
-that could be optimized later based on perf data.
+We are ready to replace private guc_ids management code with
+separate GuC ID Manager that can be shared with upcoming SR-IOV
+PF provisioning code.
 
 Cc: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
-v2: apply review comments from Matt
----
- drivers/gpu/drm/xe/Makefile        |   1 +
- drivers/gpu/drm/xe/xe_guc_id_mgr.c | 275 +++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_id_mgr.h |  22 +++
- drivers/gpu/drm/xe/xe_guc_types.h  |  17 ++
- 4 files changed, 315 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_guc_id_mgr.c
- create mode 100644 drivers/gpu/drm/xe/xe_guc_id_mgr.h
+ drivers/gpu/drm/xe/xe_guc_submit.c | 42 +++++++-----------------------
+ drivers/gpu/drm/xe/xe_guc_types.h  |  4 ---
+ 2 files changed, 10 insertions(+), 36 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 3c3e67885559..705c0eaf6e71 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -97,6 +97,7 @@ xe-y += xe_bb.o \
- 	xe_guc_db_mgr.o \
- 	xe_guc_debugfs.o \
- 	xe_guc_hwconfig.o \
-+	xe_guc_id_mgr.o \
- 	xe_guc_log.o \
- 	xe_guc_pc.o \
- 	xe_guc_submit.o \
-diff --git a/drivers/gpu/drm/xe/xe_guc_id_mgr.c b/drivers/gpu/drm/xe/xe_guc_id_mgr.c
-new file mode 100644
-index 000000000000..bee49bc908bb
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_guc_id_mgr.c
-@@ -0,0 +1,275 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#include <linux/bitmap.h>
-+#include <linux/mutex.h>
-+
-+#include <drm/drm_managed.h>
-+
-+#include "xe_assert.h"
-+#include "xe_gt_printk.h"
-+#include "xe_guc.h"
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 9f8ce2d1f6a0..78b471636470 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -27,6 +27,7 @@
+ #include "xe_guc.h"
+ #include "xe_guc_ct.h"
+ #include "xe_guc_exec_queue_types.h"
 +#include "xe_guc_id_mgr.h"
-+#include "xe_guc_types.h"
+ #include "xe_guc_submit_types.h"
+ #include "xe_hw_engine.h"
+ #include "xe_hw_fence.h"
+@@ -236,16 +237,10 @@ static void guc_submit_fini(struct drm_device *drm, void *arg)
+ 	struct xe_guc *guc = arg;
+ 
+ 	xa_destroy(&guc->submission_state.exec_queue_lookup);
+-	ida_destroy(&guc->submission_state.guc_ids);
+-	bitmap_free(guc->submission_state.guc_ids_bitmap);
+ 	free_submit_wq(guc);
+ 	mutex_destroy(&guc->submission_state.lock);
+ }
+ 
+-#define GUC_ID_NUMBER_MLRC	4096
+-#define GUC_ID_NUMBER_SLRC	(GUC_ID_MAX - GUC_ID_NUMBER_MLRC)
+-#define GUC_ID_START_MLRC	GUC_ID_NUMBER_SLRC
+-
+ static const struct xe_exec_queue_ops guc_exec_queue_ops;
+ 
+ static void primelockdep(struct xe_guc *guc)
+@@ -268,22 +263,14 @@ int xe_guc_submit_init(struct xe_guc *guc)
+ 	struct xe_gt *gt = guc_to_gt(guc);
+ 	int err;
+ 
+-	guc->submission_state.guc_ids_bitmap =
+-		bitmap_zalloc(GUC_ID_NUMBER_MLRC, GFP_KERNEL);
+-	if (!guc->submission_state.guc_ids_bitmap)
+-		return -ENOMEM;
+-
+ 	err = alloc_submit_wq(guc);
+-	if (err) {
+-		bitmap_free(guc->submission_state.guc_ids_bitmap);
++	if (err)
+ 		return err;
+-	}
+ 
+ 	gt->exec_queue_ops = &guc_exec_queue_ops;
+ 
+ 	mutex_init(&guc->submission_state.lock);
+ 	xa_init(&guc->submission_state.exec_queue_lookup);
+-	ida_init(&guc->submission_state.guc_ids);
+ 
+ 	spin_lock_init(&guc->submission_state.suspend.lock);
+ 	guc->submission_state.suspend.context = dma_fence_context_alloc(1);
+@@ -294,6 +281,10 @@ int xe_guc_submit_init(struct xe_guc *guc)
+ 	if (err)
+ 		return err;
+ 
++	err = xe_guc_id_mgr_init(&guc->submission_state.idm, ~0);
++	if (err)
++		return err;
 +
-+static struct xe_guc *idm_to_guc(struct xe_guc_id_mgr *idm)
-+{
-+	return container_of(idm, struct xe_guc, submission_state.idm);
-+}
-+
-+static struct xe_gt *idm_to_gt(struct xe_guc_id_mgr *idm)
-+{
-+	return guc_to_gt(idm_to_guc(idm));
-+}
-+
-+static struct xe_device *idm_to_xe(struct xe_guc_id_mgr *idm)
-+{
-+	return gt_to_xe(idm_to_gt(idm));
-+}
-+
-+#define idm_assert(idm, cond)		xe_gt_assert(idm_to_gt(idm), cond)
-+#define idm_mutex(idm)			(&idm_to_guc(idm)->submission_state.lock)
-+
-+static void idm_print_locked(struct xe_guc_id_mgr *idm, struct drm_printer *p, int indent);
-+
-+static void __fini_idm(struct drm_device *drm, void *arg)
-+{
-+	struct xe_guc_id_mgr *idm = arg;
-+
-+	mutex_lock(idm_mutex(idm));
-+
-+	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
-+		unsigned int weight = bitmap_weight(idm->bitmap, idm->total);
-+
-+		if (weight) {
-+			struct drm_printer p = xe_gt_info_printer(idm_to_gt(idm));
-+
-+			xe_gt_err(idm_to_gt(idm), "GUC ID manager unclean (%u/%u)\n",
-+				  weight, idm->total);
-+			idm_print_locked(idm, &p, 1);
-+		}
-+	}
-+
-+	bitmap_free(idm->bitmap);
-+	idm->bitmap = NULL;
-+	idm->total = 0;
-+	idm->used = 0;
-+
-+	mutex_unlock(idm_mutex(idm));
-+}
-+
-+/**
-+ * xe_guc_id_mgr_init() - Initialize GuC context ID Manager.
-+ * @idm: the &xe_guc_id_mgr to initialize
-+ * @limit: number of IDs to manage
-+ *
-+ * The bare-metal or PF driver can pass ~0 as &limit to indicate that all
-+ * context IDs supported by the GuC firmware are available for use.
-+ *
-+ * Only VF drivers will have to provide explicit number of context IDs
-+ * that they can use.
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
-+int xe_guc_id_mgr_init(struct xe_guc_id_mgr *idm, unsigned int limit)
-+{
-+	int ret;
-+
-+	idm_assert(idm, !idm->bitmap);
-+	idm_assert(idm, !idm->total);
-+	idm_assert(idm, !idm->used);
-+
-+	if (limit == ~0)
-+		limit = GUC_ID_MAX;
-+	else if (limit > GUC_ID_MAX)
-+		return -ERANGE;
-+	else if (!limit)
-+		return -EINVAL;
-+
-+	idm->bitmap = bitmap_zalloc(limit, GFP_KERNEL);
-+	if (!idm->bitmap)
-+		return -ENOMEM;
-+	idm->total = limit;
-+
-+	ret = drmm_add_action_or_reset(&idm_to_xe(idm)->drm, __fini_idm, idm);
-+	if (ret)
-+		return ret;
-+
-+	xe_gt_info(idm_to_gt(idm), "using %u GUC ID(s)\n", idm->total);
-+	return 0;
-+}
-+
-+static unsigned int find_last_zero_area(unsigned long *bitmap,
-+					unsigned int total,
-+					unsigned int count)
-+{
-+	unsigned int found = total;
-+	unsigned int rs, re, range;
-+
-+	for_each_clear_bitrange(rs, re, bitmap, total) {
-+		range = re - rs;
-+		if (range < count)
-+			continue;
-+		found = rs + (range - count);
-+	}
-+	return found;
-+}
-+
-+static int idm_reserve_chunk_locked(struct xe_guc_id_mgr *idm,
-+				    unsigned int count, unsigned int retain)
-+{
-+	int id;
-+
-+	idm_assert(idm, count);
-+	lockdep_assert_held(idm_mutex(idm));
-+
-+	if (!idm->total)
-+		return -ENODATA;
-+
-+	if (retain) {
-+		/*
-+		 * For IDs reservations (used on PF for VFs) we want to make
-+		 * sure there will be at least 'retain' available for the PF
-+		 */
-+		if (idm->used + count + retain > idm->total)
-+			return -EDQUOT;
-+		/*
-+		 * ... and we want to reserve highest IDs close to the end.
-+		 */
-+		id = find_last_zero_area(idm->bitmap, idm->total, count);
-+	} else {
-+		/*
-+		 * For regular IDs reservations (used by submission code)
-+		 * we start searching from the lower range of IDs.
-+		 */
-+		id = bitmap_find_next_zero_area(idm->bitmap, idm->total, 0, count, 0);
-+	}
-+	if (id >= idm->total)
-+		return -ENOSPC;
-+
-+	bitmap_set(idm->bitmap, id, count);
-+	idm->used += count;
-+
-+	return id;
-+}
-+
-+static void idm_release_chunk_locked(struct xe_guc_id_mgr *idm,
-+				     unsigned int start, unsigned int count)
-+{
-+	idm_assert(idm, count);
-+	idm_assert(idm, count <= idm->used);
-+	idm_assert(idm, start < idm->total);
-+	idm_assert(idm, start + count - 1 < idm->total);
-+	lockdep_assert_held(idm_mutex(idm));
-+
-+	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
-+		unsigned int n;
-+
-+		for (n = 0; n < count; n++)
-+			idm_assert(idm, test_bit(start + n, idm->bitmap));
-+	}
-+	bitmap_clear(idm->bitmap, start, count);
-+	idm->used -= count;
-+}
-+
-+/**
-+ * xe_guc_id_mgr_reserve_locked() - Reserve one or more GuC context IDs.
-+ * @idm: the &xe_guc_id_mgr
-+ * @count: number of IDs to allocate (can't be 0)
-+ *
-+ * This function is dedicated for the use by the GuC submission code,
-+ * where submission lock is already taken.
-+ *
-+ * Return: ID of allocated GuC context or a negative error code on failure.
-+ */
-+int xe_guc_id_mgr_reserve_locked(struct xe_guc_id_mgr *idm, unsigned int count)
-+{
-+	return idm_reserve_chunk_locked(idm, count, 0);
-+}
-+
-+/**
-+ * xe_guc_id_mgr_release_locked() - Release one or more GuC context IDs.
-+ * @idm: the &xe_guc_id_mgr
-+ * @id: the GuC context ID to release
-+ * @count: number of IDs to release (can't be 0)
-+ *
-+ * This function is dedicated for the use by the GuC submission code,
-+ * where submission lock is already taken.
-+ */
-+void xe_guc_id_mgr_release_locked(struct xe_guc_id_mgr *idm, unsigned int id,
-+				  unsigned int count)
-+{
-+	return idm_release_chunk_locked(idm, id, count);
-+}
-+
-+/**
-+ * xe_guc_id_mgr_reserve() - Reserve a range of GuC context IDs.
-+ * @idm: the &xe_guc_id_mgr
-+ * @count: number of GuC context IDs to reserve (can't be 0)
-+ * @retain: number of GuC context IDs to keep available (can't be 0)
-+ *
-+ * This function is dedicated for the use by the PF driver which expects that
-+ * reserved range of IDs will be contiguous and that there will be at least
-+ * &retain IDs still available for the PF after this reservation.
-+ *
-+ * Return: starting ID of the allocated GuC context ID range or
-+ *         a negative error code on failure.
-+ */
-+int xe_guc_id_mgr_reserve(struct xe_guc_id_mgr *idm,
-+			  unsigned int count, unsigned int retain)
-+{
-+	int ret;
-+
-+	idm_assert(idm, count);
-+	idm_assert(idm, retain);
-+
-+	mutex_lock(idm_mutex(idm));
-+	ret = idm_reserve_chunk_locked(idm, count, retain);
-+	mutex_unlock(idm_mutex(idm));
-+
-+	return ret;
-+}
-+
-+/**
-+ * xe_guc_id_mgr_release() - Release a range of GuC context IDs.
-+ * @idm: the &xe_guc_id_mgr
-+ * @start: the starting ID of GuC context range to release
-+ * @count: number of GuC context IDs to release
-+ */
-+void xe_guc_id_mgr_release(struct xe_guc_id_mgr *idm,
-+			   unsigned int start, unsigned int count)
-+{
-+	mutex_lock(idm_mutex(idm));
-+	idm_release_chunk_locked(idm, start, count);
-+	mutex_unlock(idm_mutex(idm));
-+}
-+
-+static void idm_print_locked(struct xe_guc_id_mgr *idm, struct drm_printer *p, int indent)
-+{
-+	unsigned int rs, re;
-+
-+	lockdep_assert_held(idm_mutex(idm));
-+
-+	drm_printf_indent(p, indent, "total %u\n", idm->total);
-+	if (!idm->bitmap)
-+		return;
-+
-+	drm_printf_indent(p, indent, "used %u\n", idm->used);
-+	for_each_set_bitrange(rs, re, idm->bitmap, idm->total)
-+		drm_printf_indent(p, indent, "range %u..%u (%u)\n", rs, re - 1, re - rs);
-+}
-+
-+/**
-+ * xe_guc_id_mgr_print() - Print status of GuC ID Manager.
-+ * @idm: the &xe_guc_id_mgr to print
-+ * @p: the &drm_printer to print to
-+ * @indent: tab indentation level
-+ */
-+void xe_guc_id_mgr_print(struct xe_guc_id_mgr *idm, struct drm_printer *p, int indent)
-+{
-+	mutex_lock(idm_mutex(idm));
-+	idm_print_locked(idm, p, indent);
-+	mutex_unlock(idm_mutex(idm));
-+}
-diff --git a/drivers/gpu/drm/xe/xe_guc_id_mgr.h b/drivers/gpu/drm/xe/xe_guc_id_mgr.h
-new file mode 100644
-index 000000000000..368f8c80e4c7
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_guc_id_mgr.h
-@@ -0,0 +1,22 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#ifndef _XE_GUC_ID_MGR_H_
-+#define _XE_GUC_ID_MGR_H_
-+
-+struct drm_printer;
-+struct xe_guc_id_mgr;
-+
-+int xe_guc_id_mgr_init(struct xe_guc_id_mgr *idm, unsigned int count);
-+
-+int xe_guc_id_mgr_reserve_locked(struct xe_guc_id_mgr *idm, unsigned int count);
-+void xe_guc_id_mgr_release_locked(struct xe_guc_id_mgr *idm, unsigned int id, unsigned int count);
-+
-+int xe_guc_id_mgr_reserve(struct xe_guc_id_mgr *idm, unsigned int count, unsigned int retain);
-+void xe_guc_id_mgr_release(struct xe_guc_id_mgr *idm, unsigned int start, unsigned int count);
-+
-+void xe_guc_id_mgr_print(struct xe_guc_id_mgr *idm, struct drm_printer *p, int indent);
-+
-+#endif
+ 	return 0;
+ }
+ 
+@@ -306,12 +297,8 @@ static void __release_guc_id(struct xe_guc *guc, struct xe_exec_queue *q, u32 xa
+ 	for (i = 0; i < xa_count; ++i)
+ 		xa_erase(&guc->submission_state.exec_queue_lookup, q->guc->id + i);
+ 
+-	if (xe_exec_queue_is_parallel(q))
+-		bitmap_release_region(guc->submission_state.guc_ids_bitmap,
+-				      q->guc->id - GUC_ID_START_MLRC,
+-				      order_base_2(q->width));
+-	else
+-		ida_free(&guc->submission_state.guc_ids, q->guc->id);
++	xe_guc_id_mgr_release_locked(&guc->submission_state.idm,
++				     q->guc->id, q->width);
+ }
+ 
+ static int alloc_guc_id(struct xe_guc *guc, struct xe_exec_queue *q)
+@@ -329,21 +316,12 @@ static int alloc_guc_id(struct xe_guc *guc, struct xe_exec_queue *q)
+ 	 */
+ 	lockdep_assert_held(&guc->submission_state.lock);
+ 
+-	if (xe_exec_queue_is_parallel(q)) {
+-		void *bitmap = guc->submission_state.guc_ids_bitmap;
+-
+-		ret = bitmap_find_free_region(bitmap, GUC_ID_NUMBER_MLRC,
+-					      order_base_2(q->width));
+-	} else {
+-		ret = ida_alloc_max(&guc->submission_state.guc_ids,
+-				    GUC_ID_NUMBER_SLRC - 1, GFP_NOWAIT);
+-	}
++	ret = xe_guc_id_mgr_reserve_locked(&guc->submission_state.idm,
++					   q->width);
+ 	if (ret < 0)
+ 		return ret;
+ 
+ 	q->guc->id = ret;
+-	if (xe_exec_queue_is_parallel(q))
+-		q->guc->id += GUC_ID_START_MLRC;
+ 
+ 	for (i = 0; i < q->width; ++i) {
+ 		ptr = xa_store(&guc->submission_state.exec_queue_lookup,
 diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
-index edcd1a950bd3..69be1fb83047 100644
+index 69be1fb83047..82bd93f7867d 100644
 --- a/drivers/gpu/drm/xe/xe_guc_types.h
 +++ b/drivers/gpu/drm/xe/xe_guc_types.h
-@@ -31,6 +31,21 @@ struct xe_guc_db_mgr {
- 	unsigned long *bitmap;
- };
- 
-+/**
-+ * struct xe_guc_id_mgr - GuC context ID Manager.
-+ *
-+ * Note: GuC context ID Manager is relying on &xe_guc::submission_state.lock
-+ * to protect its members.
-+ */
-+struct xe_guc_id_mgr {
-+	/** @bitmap: bitmap to track allocated IDs */
-+	unsigned long *bitmap;
-+	/** @total: total number of IDs being managed */
-+	unsigned int total;
-+	/** @used: number of IDs currently in use */
-+	unsigned int used;
-+};
-+
- /**
-  * struct xe_guc - Graphic micro controller
-  */
-@@ -49,6 +64,8 @@ struct xe_guc {
- 	struct xe_guc_db_mgr dbm;
- 	/** @submission_state: GuC submission state */
- 	struct {
-+		/** @submission_state.idm: GuC context ID Manager */
-+		struct xe_guc_id_mgr idm;
+@@ -68,10 +68,6 @@ struct xe_guc {
+ 		struct xe_guc_id_mgr idm;
  		/** @submission_state.exec_queue_lookup: Lookup an xe_engine from guc_id */
  		struct xarray exec_queue_lookup;
- 		/** @submission_state.guc_ids: used to allocate new guc_ids, single-lrc */
+-		/** @submission_state.guc_ids: used to allocate new guc_ids, single-lrc */
+-		struct ida guc_ids;
+-		/** @submission_state.guc_ids_bitmap: used to allocate new guc_ids, multi-lrc */
+-		unsigned long *guc_ids_bitmap;
+ 		/** @submission_state.stopped: submissions are stopped */
+ 		atomic_t stopped;
+ 		/** @submission_state.lock: protects submission state */
 -- 
 2.43.0
 
