@@ -4,52 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D853DC54791
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Mar 2024 14:52:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7487FC54791
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Mar 2024 14:56:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8553B10E750;
-	Wed, 13 Mar 2024 14:52:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21C0E10F05F;
+	Wed, 13 Mar 2024 14:56:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n6UuDJUf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m+NV79ar";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE72A10E70F
- for <intel-xe@lists.freedesktop.org>; Wed, 13 Mar 2024 14:52:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D283F10F030
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 Mar 2024 14:56:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710341556; x=1741877556;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=qfCvPljgKUysW28A1g77wvjgTufEf1xNZgRGj3cVMD0=;
- b=n6UuDJUfp1RWRCF7LWl4MIy0RIYiYz9gosGFZIxtjxWx1+GOj2LiBfe9
- AEZkHv4BAGV5urUB57oPNeJ36fs4FWywGs0mJwZI0hb46zjhWd0g3bFFp
- p736QdkkIdurIFXtCpQSU3lqu4fZJI5ChM5BHNIVI250DgFXPNVitoVDy
- rqDHAjKTp7KN/14F0jTdJ8t/aKyQ4wE79T/N9MMnUHNsgRLuAfYzonSnx
- qOWkTrvlrldSOnFKdwM5ADiljVIGfd6vtPFEQhxnzr+HmVOuD9/YqMirh
- w90dCZAex+Wa9DjOU1s2mUiX1BoNcCCCPEeyX3DHKbXya++o6Z55YcrOA g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11011"; a="22623989"
-X-IronPort-AV: E=Sophos;i="6.07,122,1708416000"; d="scan'208";a="22623989"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2024 07:52:36 -0700
+ t=1710341803; x=1741877803;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=IexXHtDynKD/R/lIJgoAN1eGTYoFUKVLe2IdzSfMbjM=;
+ b=m+NV79ar06NA0G74+BOYwTL0fw9BYL7jIP0KWqONVEIzkw+wKcLsQySx
+ Z6/E+NRp8/xSjQYjex98BzfOTWa4E9ja0ds3YLj6+M4Tyeaw7wQqMiLO6
+ A2L3aIgq1XRy3zsEH9gZlkWcn+CREhU4AilIKlylDsPmH1kttipKJZCCy
+ R2/6CZjgLQ3pZPG5LYLQ0vmipNDzAWiITWCcQ7Q4jUhufzO2h++gUBFr5
+ iUOAs58vSEP76PNi8HNVG64qn5asuYICtjjOjoFTqOdtvaca5omVWlwxm
+ 81GvpkiVD29kK9VyWoAq/jW7uJ0Mj49tAzGgxQ6ZF97/CEPYzovHy8fe2 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11011"; a="8053052"
+X-IronPort-AV: E=Sophos;i="6.07,122,1708416000"; 
+   d="scan'208";a="8053052"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2024 07:56:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,122,1708416000"; d="scan'208";a="16545928"
-Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by fmviesa004.fm.intel.com with ESMTP; 13 Mar 2024 07:52:34 -0700
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>,
- Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-Subject: [PATCH v2 1/2] drm/xe: Return if kobj creation is failed
-Date: Wed, 13 Mar 2024 20:35:44 +0530
-Message-Id: <20240313150545.2830408-2-himal.prasad.ghimiray@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240313150545.2830408-1-himal.prasad.ghimiray@intel.com>
-References: <20240313150545.2830408-1-himal.prasad.ghimiray@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,122,1708416000"; d="scan'208";a="12358766"
+Received: from jbakowsk-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.53.28])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2024 07:56:42 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: Re: [PATCH] drm/xe: Always check force_wake_get return code
+In-Reply-To: <76b70dd3-794b-45a1-994a-020525954d9f@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240312194256.965685-1-daniele.ceraolospurio@intel.com>
+ <87h6hasfbj.fsf@intel.com>
+ <76b70dd3-794b-45a1-994a-020525954d9f@intel.com>
+Date: Wed, 13 Mar 2024 16:56:38 +0200
+Message-ID: <875xxqrxi1.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,34 +67,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Return after warning regarding kobj creation failure.
+On Wed, 13 Mar 2024, Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com> wrote:
+> On 3/13/2024 1:31 AM, Jani Nikula wrote:
+>> On Tue, 12 Mar 2024, Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com> wrote:
+>>> diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
+>>> index d9aa815a5bc2..902c52d95a8a 100644
+>>> --- a/drivers/gpu/drm/xe/xe_gsc.c
+>>> +++ b/drivers/gpu/drm/xe/xe_gsc.c
+>>> @@ -287,7 +287,7 @@ static void gsc_work(struct work_struct *work)
+>>>   	spin_unlock_irq(&gsc->lock);
+>>>   
+>>>   	xe_pm_runtime_get(xe);
+>>> -	xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
+>>> +	XE_WARN_ON(xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC));
+>> Up to the xe maintainers to decide, but I'm really not a fan of hiding
+>> functionality inside warn ons. My approach usually is, would it work if
+>> all the warns were removed? If yes, it's good. If not, maybe reconsider.
+>
+> The code works even without the warns, they're only there so we know 
+> that there was a forcewake issue if/when some other error crops up down 
+> the line (which will be handled appropriately). There is nothing we can 
+> do to actually handle the forcewake failure as it can only happen if the 
+> HW is in a bad state.
 
-Fixes: 4ae3aeab32d7 ("drm/xe: Add vram frequency sysfs attributes")
-Cc: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
-Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
- drivers/gpu/drm/xe/xe_vram_freq.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+My point is, I personally prefer:
 
-diff --git a/drivers/gpu/drm/xe/xe_vram_freq.c b/drivers/gpu/drm/xe/xe_vram_freq.c
-index 079cc283a186..c5f6b5a5d117 100644
---- a/drivers/gpu/drm/xe/xe_vram_freq.c
-+++ b/drivers/gpu/drm/xe/xe_vram_freq.c
-@@ -111,8 +111,10 @@ void xe_vram_freq_sysfs_init(struct xe_tile *tile)
- 		return;
- 
- 	kobj = kobject_create_and_add("memory", tile->sysfs);
--	if (!kobj)
-+	if (!kobj) {
- 		drm_warn(&xe->drm, "failed to add memory directory, err: %d\n", -ENOMEM);
-+		return;
-+	}
- 
- 	err = sysfs_create_group(kobj, &freq_group_attrs);
- 	if (err) {
+	ret = do_stuff():
+
+	WARN_ON(ret);
+
+over:
+
+	WARN_ON(do_stuff());
+
+because in the former do_stuff() stands out as something we actually
+want to do functionally, while in the latter the fact that we do
+anything at all is hidden inside the WARN_ON().
+
+I prefer WARN_ON()'s to only have stuff inside them that have no
+side-effects:
+
+	WARN_ON(check_stuff_but_dont_do_stuff());
+
+Again, not my call to make here, just musing on style. ;)
+
+
+BR,
+Jani.
+
+
 -- 
-2.25.1
-
+Jani Nikula, Intel
