@@ -4,35 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C99CC54E58
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Mar 2024 23:26:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F39B3C54E66
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Mar 2024 23:30:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F32A610F52E;
-	Wed, 13 Mar 2024 23:26:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 981A810E343;
+	Wed, 13 Mar 2024 23:30:31 +0000 (UTC)
 Received: from coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7074510F52E
- for <intel-xe@lists.freedesktop.org>; Wed, 13 Mar 2024 23:26:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA62710E343
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 Mar 2024 23:30:29 +0000 (UTC)
 Received: from 91-156-7-239.elisa-laajakaista.fi ([91.156.7.239]
  helo=[192.168.100.137])
  by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
  (Exim 4.97-RC1) (envelope-from <luca@coelho.fi>)
- id 1rkXzA-00000002O4S-1sB9; Thu, 14 Mar 2024 01:26:14 +0200
-Message-ID: <d99c643f608353c8113cebd8686f2a4103d21518.camel@coelho.fi>
+ id 1rkY3F-00000002O4r-07Y3; Thu, 14 Mar 2024 01:30:26 +0200
+Message-ID: <00a2f446a7c2e94327d746de8e958b825272991e.camel@coelho.fi>
 From: Luca Coelho <luca@coelho.fi>
 To: Gustavo Sousa <gustavo.sousa@intel.com>, Luca Coelho
  <luciano.coelho@intel.com>, intel-xe@lists.freedesktop.org
 Cc: uma.shankar@intel.com, ville.syrjala@linux.intel.com, jani.nikula@intel.com
-Date: Thu, 14 Mar 2024 01:26:00 +0200
-In-Reply-To: <170844753905.44184.14573630659444462264@gjsousa-mobl2>
+Date: Thu, 14 Mar 2024 01:30:13 +0200
+In-Reply-To: <170844757726.44184.11571357997726792092@gjsousa-mobl2>
 References: <20240207103007.665367-1-luciano.coelho@intel.com>
- <20240207103007.665367-3-luciano.coelho@intel.com>
- <170844753905.44184.14573630659444462264@gjsousa-mobl2>
+ <20240207103007.665367-4-luciano.coelho@intel.com>
+ <170844757726.44184.11571357997726792092@gjsousa-mobl2>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
 MIME-Version: 1.0
-Subject: Re: [PATCH 2/6] drm/i915/display: use wakelock in the remaining
- read operations
+Subject: Re: [PATCH 3/6] drm/i915/display: use wakelock in register waiting
+ functions
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,101 +47,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2024-02-20 at 13:45 -0300, Gustavo Sousa wrote:
-> Quoting Luca Coelho (2024-02-07 07:30:03-03:00)
-> > In the patch where the framework is implemented, we only add the
-> > wakelock usage in the read-modify-write operations.  This patch brings
-> > in the wakelock implementation to the remaining read operations.  The
-> > idea is to keep these in separate blocks to ease bisections in case
-> > there are any issues.
+On Tue, 2024-02-20 at 13:46 -0300, Gustavo Sousa wrote:
+> Quoting Luca Coelho (2024-02-07 07:30:04-03:00)
+> > Add the wakelock functonality to the functions that help wait for
+> > register bits to be set.
 >=20
-> Hm, while I understand the motivation, I can't help but think that we
-> are making the first patch somewhat incomplete. For example, if we were
-> to pick up the first patch and then have a new one on top enabling the
-> DMC Wakelock, we would have code paths in the display code that would
-> not grab the wakelock.
->=20
-> Furthermore, not sure if we would have bisection really working here
-> (without further instrumentation), because the wakelock feature is only
-> enabled later on the series.
+> Same comment goes here and for the next patch regarding the splitting of
+> the patches.
 
-Yeah, you're totally right.  It seemed to make more sense when I
-started the implementation, before moving a lot of stuff around, but
-now it should just be squashed.
+Yep, will squash.
 
 
 > > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 > > ---
-> > drivers/gpu/drm/i915/display/intel_de.h | 38 +++++++++++++++++++++++--
-> > 1 file changed, 35 insertions(+), 3 deletions(-)
+> > drivers/gpu/drm/i915/display/intel_de.h | 42 ++++++++++++++++++++++---
+> > 1 file changed, 37 insertions(+), 5 deletions(-)
 > >=20
 > > diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/=
 i915/display/intel_de.h
-> > index ef24748d522d..0bf73b1e1cfe 100644
+> > index 0bf73b1e1cfe..d8941995808c 100644
 > > --- a/drivers/gpu/drm/i915/display/intel_de.h
 > > +++ b/drivers/gpu/drm/i915/display/intel_de.h
-> > @@ -13,26 +13,58 @@
-> > static inline u32
-> > intel_de_read(struct drm_i915_private *i915, i915_reg_t reg)
+> > @@ -121,7 +121,15 @@ static inline int
+> > intel_de_wait_for_register_fw(struct drm_i915_private *i915, i915_reg_t=
+ reg,
+> >                               u32 mask, u32 value, unsigned int timeout=
+)
 > > {
-> > -        return intel_uncore_read(&i915->uncore, reg);
-> > +        u32 val;
+> > -        return intel_wait_for_register_fw(&i915->uncore, reg, mask, va=
+lue, timeout);
+> > +        int ret;
 > > +
 > > +        intel_dmc_wl_get(i915, reg);
 > > +
-> > +        val =3D intel_uncore_read(&i915->uncore, reg);
+> > +        ret =3D intel_wait_for_register_fw(&i915->uncore, reg, mask, v=
+alue, timeout);
 > > +
 > > +        intel_dmc_wl_put(i915, reg);
 > > +
-> > +        return val;
+> > +        return ret;
 > > }
 > >=20
-> > static inline u8
-> > intel_de_read8(struct drm_i915_private *i915, i915_reg_t reg)
+> > static inline int
+> > @@ -130,22 +138,46 @@ __intel_de_wait_for_register(struct drm_i915_priv=
+ate *i915, i915_reg_t reg,
+> >                              unsigned int fast_timeout_us,
+> >                              unsigned int slow_timeout_ms, u32 *out_val=
+ue)
 > > {
-> > -        return intel_uncore_read8(&i915->uncore, reg);
-> > +        u8 val;
+> > -        return __intel_wait_for_register(&i915->uncore, reg, mask, val=
+ue,
+> > -                                         fast_timeout_us, slow_timeout=
+_ms, out_value);
+> > +        int ret;
 > > +
 > > +        intel_dmc_wl_get(i915, reg);
 > > +
-> > +        val =3D intel_uncore_read8(&i915->uncore, reg);
+> > +        ret =3D __intel_wait_for_register(&i915->uncore, reg, mask, va=
+lue,
+> > +                                        fast_timeout_us, slow_timeout_=
+ms, out_value);
 > > +
 > > +        intel_dmc_wl_put(i915, reg);
 > > +
-> > +        return val;
+> > +        return ret;
 > > }
 > >=20
-> > static inline u64
-> > intel_de_read64_2x32(struct drm_i915_private *i915,
-> >                      i915_reg_t lower_reg, i915_reg_t upper_reg)
+> > static inline int
+> > intel_de_wait_for_set(struct drm_i915_private *i915, i915_reg_t reg,
+> >                       u32 mask, unsigned int timeout)
 > > {
-> > -        return intel_uncore_read64_2x32(&i915->uncore, lower_reg, uppe=
-r_reg);
-> > +        u64 val;
+> > -        return intel_de_wait_for_register(i915, reg, mask, mask, timeo=
+ut);
+> > +        int ret;
 > > +
-> > +        /* Both lower and upper registers will almost certainly be in
-> > +         * the same range (and very likely one immediately after the
-> > +         * other), so we can check only the lower one.
-> > +         */
+> > +        intel_dmc_wl_get(i915, reg);
+> > +
+> > +        ret =3D intel_de_wait_for_register(i915, reg, mask, mask, time=
+out);
 >=20
-> The words "almost certainly" and "very likely" concern me :-)
+> The wakelock is already grabbed by intel_de_wait_for_register(), we
+> could skip it here.
+>=20
+> > +
+> > +        intel_dmc_wl_put(i915, reg);
+> > +
+> > +        return ret;
+> > }
+> >=20
+> > static inline int
+> > intel_de_wait_for_clear(struct drm_i915_private *i915, i915_reg_t reg,
+> >                         u32 mask, unsigned int timeout)
+> > {
+> > -        return intel_de_wait_for_register(i915, reg, mask, 0, timeout)=
+;
+> > +        int ret;
+> > +
+> > +        intel_dmc_wl_get(i915, reg);
+> > +
+> > +        ret =3D intel_de_wait_for_register(i915, reg, mask, 0, timeout=
+);
+>=20
+> The wakelock is already grabbed by intel_de_wait_for_register(), we
+> could skip it here.
 
-Okay, my choice of words was too soft, apparently.  In more direct
-words, I don't see any reason for two 32-bit reads to be combined into
-one 64-bit read, unless  the two 32-bit reads are contiguous. =C2=A0And thi=
-s
-is the case in the two places where this function is currently used,
-namely in i915_get_vblank_counter() and in intel_vrr_get_config().
-
-I also can't see why these two "half-registers" would be in separate
-power wells.  But then again, I don't see anything explicitly
-forbidding this to happen in the code, so...
-
-
-> I think it doesn't really hurt to also intel_dmc_wl_get(i915, upper_reg)
-> here, since it would actually just bump the refcount, no?
-
-...I'll check the upper reg as you suggest as well. :)
+Thanks for noticing.  I'll fix this in both places.
 
 --
 Cheers,
