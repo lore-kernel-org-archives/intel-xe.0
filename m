@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DCB7C54E58
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Mar 2024 08:52:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EDE4C54791
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Mar 2024 09:53:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FFF910E5F3;
-	Wed, 13 Mar 2024 08:52:36 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC46210E5F3;
- Wed, 13 Mar 2024 08:52:33 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/i915=3A_add_inte?=
- =?utf-8?q?l=5Fopregion=5Fvbt=5Fpresent=28=29_stub_function?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arnd Bergmann" <arnd@kernel.org>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 13 Mar 2024 08:52:33 -0000
-Message-ID: <171031995388.715418.14282873821545198234@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240313084735.3305424-1-arnd@kernel.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1922F10E969;
+	Wed, 13 Mar 2024 09:53:24 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i2CGP3/z";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F9A410E840;
+ Wed, 13 Mar 2024 09:53:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1710323601; x=1741859601;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=MHm9FFtBz7Eh6MOhx4kKxazsP44RUIvwo8+ERZRUVmw=;
+ b=i2CGP3/za5AN29FxTCKQDSok160K3hdnzH/TpyBi9oJNTQ9Yz2Iz+Tg4
+ ZmLXD6ImT/PsLRGMMmNntIV26TCC2d1O7sy2lEaXxgnXipP34U71ibNPc
+ R2CBIIlyLTbbZqctgazNDIZwqul3QWGomko4cIvi51GTkHk+DYxWgsya+
+ aYDH1tZTPse5mh9qcKezWd/udaRhbTq391qFe7CM2JXh4CqPakPEtbMm1
+ iJpIoH7aG1LPUFmFX+XgT+7Z62bRaLLWd8skn9/HEz6LVXCAw8t4EsSn/
+ vO/txO/Zcs0T4nO+uUTd2CSm1gFLc1jlGS3Zqq2/KpawbudZilLV3EEHK A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11011"; a="5201267"
+X-IronPort-AV: E=Sophos;i="6.07,122,1708416000"; 
+   d="scan'208";a="5201267"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2024 02:53:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,122,1708416000"; d="scan'208";a="16436868"
+Received: from jbakowsk-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.53.28])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2024 02:53:16 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Arnd Bergmann <arnd@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, Daniel Vetter
+ <daniel@ffwll.ch>, Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Cc: Arnd Bergmann <arnd@arndb.de>, Imre Deak <imre.deak@intel.com>, Nirmoy
+ Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] drm/i915: add intel_opregion_vbt_present() stub function
 In-Reply-To: <20240313084735.3305424-1-arnd@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240313084735.3305424-1-arnd@kernel.org>
+Date: Wed, 13 Mar 2024 11:53:14 +0200
+Message-ID: <87bk7isbjp.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,28 +67,50 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, 13 Mar 2024, Arnd Bergmann <arnd@kernel.org> wrote:
+> From: Arnd Bergmann <arnd@arndb.de>
+>
+> The newly added function is not available without CONFIG_ACPI, causing
+> a build failure:
+>
+> drivers/gpu/drm/i915/display/intel_bios.c:3424:24: error: implicit declaration of function 'intel_opregion_vbt_present'; did you mean 'intel_opregion_asle_present'? [-Werror=implicit-function-declaration]
+>
+> Add an empty stub in the same place as the other stubs.
+>
+> Fixes: 9d9bb71f3e11 ("drm/i915: Extract opregion vbt presence check")
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 
-Series: drm/i915: add intel_opregion_vbt_present() stub function
-URL   : https://patchwork.freedesktop.org/series/131062/
-State : failure
+Thanks, but just applied the identical [1].
 
-== Summary ==
-
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 66de9026cd45 drm-tip: 2024y-03m-13d-08h-34m-34s UTC integration manifest
-=== git am output follows ===
-error: patch failed: drivers/gpu/drm/i915/display/intel_opregion.h:120
-error: drivers/gpu/drm/i915/display/intel_opregion.h: patch does not apply
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Applying: drm/i915: add intel_opregion_vbt_present() stub function
-Patch failed at 0001 drm/i915: add intel_opregion_vbt_present() stub function
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+BR,
+Jani.
 
 
+[1] https://lore.kernel.org/r/20240312115757.683584-1-jani.nikula@intel.com
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_opregion.h | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.h b/drivers/gpu/drm/i915/display/intel_opregion.h
+> index 63573c38d735..4b2b8e752632 100644
+> --- a/drivers/gpu/drm/i915/display/intel_opregion.h
+> +++ b/drivers/gpu/drm/i915/display/intel_opregion.h
+> @@ -120,6 +120,11 @@ intel_opregion_get_edid(struct intel_connector *connector)
+>  	return NULL;
+>  }
+>  
+> +static inline bool intel_opregion_vbt_present(struct drm_i915_private *i915)
+> +{
+> +	return false;
+> +}
+> +
+>  static inline const void *
+>  intel_opregion_get_vbt(struct drm_i915_private *i915, size_t *size)
+>  {
+
+-- 
+Jani Nikula, Intel
