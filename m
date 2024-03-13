@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75224C54E66
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D853DC54791
 	for <intel-xe@archiver.kernel.org>; Wed, 13 Mar 2024 14:52:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0362810E70F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8553B10E750;
 	Wed, 13 Mar 2024 14:52:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VgfgSHm5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n6UuDJUf";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFC8710E70F
- for <intel-xe@lists.freedesktop.org>; Wed, 13 Mar 2024 14:52:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE72A10E70F
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 Mar 2024 14:52:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710341558; x=1741877558;
+ t=1710341556; x=1741877556;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rHh0oDZRa4DW6ZNwhueqxcflChs3Ikkt6I9fY3tGc5s=;
- b=VgfgSHm5wWjj2uqJ7u1ZnDeKVJEptbq2rI4i+42VWcjLF8G6ZEmM6t2M
- 94xxj//iv+7TY3cf/YFLgzseED1rIkayD6Q5HBKkmSJbHXVK7xb8pFXmP
- hZpK5iPAsKWIiWCaxsjHESVtwXIz35/ZqaB9fU5V0Gg3OTQxABSYODoX7
- 3SQVRCrCP3wK2Y6qNF3AAW/m2QLMByQI821dyk9L3fk2ZfwEp4e07S1at
- 0gA6pipbhgqAtSjEmIm6GKTX77S0vgAyjBun9z0vj/TDr2U8bbOCOqIRZ
- HCFWwKjLsPzONqYxRC0MSXtJWEYds4SdrXF5CpjYelEjP4wE79LJXFUV4 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11011"; a="22623994"
-X-IronPort-AV: E=Sophos;i="6.07,122,1708416000"; d="scan'208";a="22623994"
+ bh=qfCvPljgKUysW28A1g77wvjgTufEf1xNZgRGj3cVMD0=;
+ b=n6UuDJUfp1RWRCF7LWl4MIy0RIYiYz9gosGFZIxtjxWx1+GOj2LiBfe9
+ AEZkHv4BAGV5urUB57oPNeJ36fs4FWywGs0mJwZI0hb46zjhWd0g3bFFp
+ p736QdkkIdurIFXtCpQSU3lqu4fZJI5ChM5BHNIVI250DgFXPNVitoVDy
+ rqDHAjKTp7KN/14F0jTdJ8t/aKyQ4wE79T/N9MMnUHNsgRLuAfYzonSnx
+ qOWkTrvlrldSOnFKdwM5ADiljVIGfd6vtPFEQhxnzr+HmVOuD9/YqMirh
+ w90dCZAex+Wa9DjOU1s2mUiX1BoNcCCCPEeyX3DHKbXya++o6Z55YcrOA g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11011"; a="22623989"
+X-IronPort-AV: E=Sophos;i="6.07,122,1708416000"; d="scan'208";a="22623989"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2024 07:52:38 -0700
+ 13 Mar 2024 07:52:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,122,1708416000"; d="scan'208";a="16545939"
+X-IronPort-AV: E=Sophos;i="6.07,122,1708416000"; d="scan'208";a="16545928"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by fmviesa004.fm.intel.com with ESMTP; 13 Mar 2024 07:52:36 -0700
+ by fmviesa004.fm.intel.com with ESMTP; 13 Mar 2024 07:52:34 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
+ Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>,
  Tejas Upadhyay <tejas.upadhyay@intel.com>,
  Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-Subject: [PATCH v2 2/2] drm/xe/xe_exec : In xe_exec_ioctl remove deadcode
-Date: Wed, 13 Mar 2024 20:35:45 +0530
-Message-Id: <20240313150545.2830408-3-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v2 1/2] drm/xe: Return if kobj creation is failed
+Date: Wed, 13 Mar 2024 20:35:44 +0530
+Message-Id: <20240313150545.2830408-2-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240313150545.2830408-1-himal.prasad.ghimiray@intel.com>
 References: <20240313150545.2830408-1-himal.prasad.ghimiray@intel.com>
@@ -64,36 +64,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-At label err_unlock_list the condition write_label will never be true.
-Remove the deadcode line for write_label true.
+Return after warning regarding kobj creation failure.
 
-Reported by static analyzer.
-
-Cc: Matthew Brost <matthew.brost@intel.com>
+Fixes: 4ae3aeab32d7 ("drm/xe: Add vram frequency sysfs attributes")
+Cc: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
 Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
 Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
 Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_vram_freq.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-index 952496c6260d..acc066e405d0 100644
---- a/drivers/gpu/drm/xe/xe_exec.c
-+++ b/drivers/gpu/drm/xe/xe_exec.c
-@@ -380,10 +380,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- err_exec:
- 	drm_exec_fini(exec);
- err_unlock_list:
--	if (write_locked)
--		up_write(&vm->lock);
--	else
--		up_read(&vm->lock);
-+	up_read(&vm->lock);
- 	if (err == -EAGAIN && !skip_retry)
- 		goto retry;
- err_syncs:
+diff --git a/drivers/gpu/drm/xe/xe_vram_freq.c b/drivers/gpu/drm/xe/xe_vram_freq.c
+index 079cc283a186..c5f6b5a5d117 100644
+--- a/drivers/gpu/drm/xe/xe_vram_freq.c
++++ b/drivers/gpu/drm/xe/xe_vram_freq.c
+@@ -111,8 +111,10 @@ void xe_vram_freq_sysfs_init(struct xe_tile *tile)
+ 		return;
+ 
+ 	kobj = kobject_create_and_add("memory", tile->sysfs);
+-	if (!kobj)
++	if (!kobj) {
+ 		drm_warn(&xe->drm, "failed to add memory directory, err: %d\n", -ENOMEM);
++		return;
++	}
+ 
+ 	err = sysfs_create_group(kobj, &freq_group_attrs);
+ 	if (err) {
 -- 
 2.25.1
 
