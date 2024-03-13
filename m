@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58398C54E58
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Mar 2024 01:55:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FC28C54E5D
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Mar 2024 01:55:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D748C10EED3;
-	Wed, 13 Mar 2024 01:55:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2002D10EED3;
+	Wed, 13 Mar 2024 01:55:27 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E20210EED3;
- Wed, 13 Mar 2024 01:55:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70B7110EF0A;
+ Wed, 13 Mar 2024 01:55:25 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/xe=5Ftracer?=
- =?utf-8?q?=3A_Align_fence_output_format_in_ftrace_log_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/xe=5Ftracer=3A_Ali?=
+ =?utf-8?q?gn_fence_output_format_in_ftrace_log_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Shuicheng Lin" <shuicheng.lin@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 13 Mar 2024 01:55:13 -0000
-Message-ID: <171029491345.714564.3592696001972768958@8e613ede5ea5>
+Date: Wed, 13 Mar 2024 01:55:25 -0000
+Message-ID: <171029492545.714563.3612835009864411744@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240313014915.1400077-1-shuicheng.lin@intel.com>
 In-Reply-To: <20240313014915.1400077-1-shuicheng.lin@intel.com>
@@ -48,9 +48,28 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 876245325867 drm-tip: 2024y-03m-12d-21h-54m-30s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/xe_tracer: Align fence output format in ftrace log
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+a9eb1ac8298ef9f9146567c29fa762d8e9efa1ef
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ad86dd126b1dd7dc8b2a499ca630a5a530c99414
+Author: Shuicheng Lin <shuicheng.lin@intel.com>
+Date:   Wed Mar 13 01:49:15 2024 +0000
+
+    drm/xe/xe_tracer: Align fence output format in ftrace log
+    
+    The fence print in xe_gt_tlb_invalidation_fence and xe_hw_fence
+    is with "%p", change fence print in xe_sched_job to "%p" also.
+    Add the "0x" prefix as the "%p" is with hex format.
+    
+    Cc: De Marchi, Lucas <lucas.demarchi@intel.com>
+    Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
++ /mt/dim checkpatch 8762453258673794e13e4d59cb9df1042b97ba01 drm-intel
+ad86dd126b1d drm/xe/xe_tracer: Align fence output format in ftrace log
 
 
