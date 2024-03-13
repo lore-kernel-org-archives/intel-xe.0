@@ -4,27 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E383C54791
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Mar 2024 08:46:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C513CC54E58
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Mar 2024 08:47:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E32F910F6EF;
-	Wed, 13 Mar 2024 08:46:33 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D39B10F6EF;
- Wed, 13 Mar 2024 08:46:32 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5013210626528508805=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E73210E88C;
+	Wed, 13 Mar 2024 08:47:49 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="W1Jk2b1G";
+	dkim-atps=neutral
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25A9E10E87F;
+ Wed, 13 Mar 2024 08:47:46 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sin.source.kernel.org (Postfix) with ESMTP id 3CFDBCE1A80;
+ Wed, 13 Mar 2024 08:47:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CF25C433F1;
+ Wed, 13 Mar 2024 08:47:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1710319662;
+ bh=DOtrx5taZpCaGGzBrVh7vSdllhCDtiQSs7F4mlLOxMk=;
+ h=From:To:Cc:Subject:Date:From;
+ b=W1Jk2b1GyJrAyokLXa1F9I9wi/qsE+mo1ksbL6UFjdrfHuvfEP4CIgxksyVWQrCkQ
+ Qh8Ul/pEFsLrggxR1JNsVsHqjSP3ULjZeQikNqwib4IJGZR9Q723bitsvIVKcp04wp
+ U57zdK9hhIpvQdoc4nTCIgdYzBmcDECQOfZC5Tb1WjWR5hErjTGl7eD6F8BI34b1AH
+ UnMr+q+J7MVCWt/p4kv9wQrwUFhSekLOv3vt90tli/2NUcDWKjnTyEfqpYbMJ5DwDs
+ ERspbYZZgM61PI5Yo+MCUaSzO2ZAhw7TgVvWQ8E3xp9sN3w6oKkBG1cZHx5H+lcBgZ
+ d1HyZK9qZK69g==
+From: Arnd Bergmann <arnd@kernel.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Cc: Arnd Bergmann <arnd@arndb.de>, Imre Deak <imre.deak@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/i915: add intel_opregion_vbt_present() stub function
+Date: Wed, 13 Mar 2024 09:47:26 +0100
+Message-Id: <20240313084735.3305424-1-arnd@kernel.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/hwmon=3A_Add_infra_to_sup?=
- =?utf-8?q?port_card_power_and_energy_attributes?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Karthik Poosa" <karthik.poosa@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 13 Mar 2024 08:46:32 -0000
-Message-ID: <171031959244.715418.1009652646875206283@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240313081503.828375-1-karthik.poosa@intel.com>
-In-Reply-To: <20240313081503.828375-1-karthik.poosa@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +58,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5013210626528508805==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Arnd Bergmann <arnd@arndb.de>
 
-== Series Details ==
+The newly added function is not available without CONFIG_ACPI, causing
+a build failure:
 
-Series: drm/xe/hwmon: Add infra to support card power and energy attributes
-URL   : https://patchwork.freedesktop.org/series/131059/
-State : success
+drivers/gpu/drm/i915/display/intel_bios.c:3424:24: error: implicit declaration of function 'intel_opregion_vbt_present'; did you mean 'intel_opregion_asle_present'? [-Werror=implicit-function-declaration]
 
-== Summary ==
+Add an empty stub in the same place as the other stubs.
 
-CI Bug Log - changes from xe-932-8762453258673794e13e4d59cb9df1042b97ba01_BAT -> xe-pw-131059v1_BAT
-====================================================
+Fixes: 9d9bb71f3e11 ("drm/i915: Extract opregion vbt presence check")
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+---
+ drivers/gpu/drm/i915/display/intel_opregion.h | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Summary
--------
+diff --git a/drivers/gpu/drm/i915/display/intel_opregion.h b/drivers/gpu/drm/i915/display/intel_opregion.h
+index 63573c38d735..4b2b8e752632 100644
+--- a/drivers/gpu/drm/i915/display/intel_opregion.h
++++ b/drivers/gpu/drm/i915/display/intel_opregion.h
+@@ -120,6 +120,11 @@ intel_opregion_get_edid(struct intel_connector *connector)
+ 	return NULL;
+ }
+ 
++static inline bool intel_opregion_vbt_present(struct drm_i915_private *i915)
++{
++	return false;
++}
++
+ static inline const void *
+ intel_opregion_get_vbt(struct drm_i915_private *i915, size_t *size)
+ {
+-- 
+2.39.2
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_7757 -> IGT_7758
-  * Linux: xe-932-8762453258673794e13e4d59cb9df1042b97ba01 -> xe-pw-131059v1
-
-  IGT_7757: 7757
-  IGT_7758: 7758
-  xe-932-8762453258673794e13e4d59cb9df1042b97ba01: 8762453258673794e13e4d59cb9df1042b97ba01
-  xe-pw-131059v1: 131059v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131059v1/index.html
-
---===============5013210626528508805==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/hwmon: Add infra to support card power and energy attributes</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131059/">https://patchwork.freedesktop.org/series/131059/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131059v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131059v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-932-8762453258673794e13e4d59cb9df1042b97ba01_BAT -&gt; xe-pw-131059v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7757 -&gt; IGT_7758</li>
-<li>Linux: xe-932-8762453258673794e13e4d59cb9df1042b97ba01 -&gt; xe-pw-131059v1</li>
-</ul>
-<p>IGT_7757: 7757<br />
-  IGT_7758: 7758<br />
-  xe-932-8762453258673794e13e4d59cb9df1042b97ba01: 8762453258673794e13e4d59cb9df1042b97ba01<br />
-  xe-pw-131059v1: 131059v1</p>
-
-</body>
-</html>
-
---===============5013210626528508805==--
