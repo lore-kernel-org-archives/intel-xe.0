@@ -4,35 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29077C54E58
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Mar 2024 00:14:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21657C54E66
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Mar 2024 00:47:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E78FF10E3CE;
-	Thu, 14 Mar 2024 00:14:11 +0000 (UTC)
-Received: from coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1733310E3CE
- for <intel-xe@lists.freedesktop.org>; Thu, 14 Mar 2024 00:14:10 +0000 (UTC)
-Received: from 91-156-7-239.elisa-laajakaista.fi ([91.156.7.239]
- helo=[192.168.100.137])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97-RC1) (envelope-from <luca@coelho.fi>)
- id 1rkYjV-00000002O6U-2u3l; Thu, 14 Mar 2024 02:14:07 +0200
-Message-ID: <f882bd2c7f54b6ec395b235924b9c204021353fa.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Gustavo Sousa <gustavo.sousa@intel.com>, Luca Coelho
- <luciano.coelho@intel.com>, intel-xe@lists.freedesktop.org
-Cc: uma.shankar@intel.com, ville.syrjala@linux.intel.com, jani.nikula@intel.com
-Date: Thu, 14 Mar 2024 02:13:54 +0200
-In-Reply-To: <170844763454.44184.7132459305280750890@gjsousa-mobl2>
-References: <20240207103007.665367-1-luciano.coelho@intel.com>
- <20240207103007.665367-7-luciano.coelho@intel.com>
- <170844763454.44184.7132459305280750890@gjsousa-mobl2>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F9D410E959;
+	Thu, 14 Mar 2024 00:47:44 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AiCXPRPl";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24A3D10E959
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Mar 2024 00:47:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1710377264; x=1741913264;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=l1t5A9Vg9nnUpnRTb6smJWGC8UZf1raWHS9jOLdtQpg=;
+ b=AiCXPRPl7TKoifNudtoQrvTYIN30AFQuWq9yEARgVCl3UjWIKYCPHw3W
+ 5ivuuHrFY+CP8Fn/V0hGD6W4z+eJXtU0Rbc9jGklOM4qDDl4hKTeq+vhJ
+ aLBiSTRNX2sSOiKkEy2/NUwGy52mfziAmnzscnNhRI8WxVVTLf6dFRFgf
+ 3PYOJoG11iAN8pXwjIw/tUDxuRmvcOUEyiWYQCLWk+vc22aDFGN5JOR79
+ OyHlj+An6GAjRDp3Fnj6kcxjGaG2+bAmVeMWcK1QJDtlrPALQREXOuw3G
+ nvNkFeMBIAK0C9+9T3JdvMS93NKcE55xSrUKTTkowNzT8SWgXXObu37Ah A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11012"; a="5045070"
+X-IronPort-AV: E=Sophos;i="6.07,124,1708416000"; 
+   d="scan'208";a="5045070"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2024 17:47:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,124,1708416000"; d="scan'208";a="12527980"
+Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.jf.intel.com)
+ ([10.165.21.138])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2024 17:47:44 -0700
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH 17/17] drm/xe/oa: Enable Xe2+ overrun mode
+Date: Wed, 13 Mar 2024 17:47:36 -0700
+Message-ID: <20240314004736.2805826-1-ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Subject: Re: [PATCH 6/6] drm/i915/display: call DMC wakelock enable when DMC
- is loaded
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,24 +62,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2024-02-20 at 13:47 -0300, Gustavo Sousa wrote:
-> Quoting Luca Coelho (2024-02-07 07:30:07-03:00)
-> > Although the documentation says that this should be done in the first
-> > modeset, it makes more sense to enable and disable it when DMC is
-> > enabled and disabled, including during suspend and resume operations.
->=20
-> I remember suggesting the pairing wakelock enable/disable with DMC
-> enable/disable in the RFC. However, after some thought and re-reading
-> the spec, I actually believe that this should actually be part of the
-> transition to and out of DC-off power state. Thoughts?
+Enable Xe2+ overrun mode. For Xe2+, when overrun mode is enabled, there are
+no partial reports at the end of buffer, making the OA buffer effectively a
+non-power-of-2 size circular buffer whose size, circ_size, is a multiple of
+the report size.
 
-Right, this makes more sense and is more aligned with the
-documentation.  I've made the needed changes in this patch, so it will
-be sent out with a completely different subject and content.
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/xe/xe_oa.c       | 35 ++++++++++++++++++++++++--------
+ drivers/gpu/drm/xe/xe_oa_types.h |  3 +++
+ 2 files changed, 30 insertions(+), 8 deletions(-)
 
-Thanks for all the reviews! New version of this patchset coming out
-soon.
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index 6f5bbb0787d9..1ad17cc14532 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -106,7 +106,14 @@ static const struct xe_oa_format oa_formats[] = {
+ 
+ static u32 xe_oa_circ_diff(struct xe_oa_stream *stream, u32 tail, u32 head)
+ {
+-	return (tail - head) & (XE_OA_BUFFER_SIZE - 1);
++	return tail >= head ? tail - head :
++		tail + stream->oa_buffer.circ_size - head;
++}
++
++static u32 xe_oa_circ_incr(struct xe_oa_stream *stream, u32 ptr, u32 n)
++{
++	return ptr + n >= stream->oa_buffer.circ_size ?
++		ptr + n - stream->oa_buffer.circ_size : ptr + n;
+ }
+ 
+ static void xe_oa_config_release(struct kref *ref)
+@@ -280,7 +287,7 @@ static int xe_oa_append_report(struct xe_oa_stream *stream, char __user *buf,
+ 
+ 	buf += *offset;
+ 
+-	oa_buf_end = stream->oa_buffer.vaddr + XE_OA_BUFFER_SIZE;
++	oa_buf_end = stream->oa_buffer.vaddr + stream->oa_buffer.circ_size;
+ 	report_size_partial = oa_buf_end - report;
+ 
+ 	if (report_size_partial < report_size) {
+@@ -306,7 +313,6 @@ static int xe_oa_append_reports(struct xe_oa_stream *stream, char __user *buf,
+ 	int report_size = stream->oa_buffer.format->size;
+ 	u8 *oa_buf_base = stream->oa_buffer.vaddr;
+ 	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
+-	u32 mask = (XE_OA_BUFFER_SIZE - 1);
+ 	size_t start_offset = *offset;
+ 	unsigned long flags;
+ 	u32 head, tail;
+@@ -317,21 +323,23 @@ static int xe_oa_append_reports(struct xe_oa_stream *stream, char __user *buf,
+ 	tail = stream->oa_buffer.tail;
+ 	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
+ 
+-	xe_assert(stream->oa->xe, head < XE_OA_BUFFER_SIZE && tail < XE_OA_BUFFER_SIZE);
++	xe_assert(stream->oa->xe,
++		  head < stream->oa_buffer.circ_size && tail < stream->oa_buffer.circ_size);
+ 
+-	for (; xe_oa_circ_diff(stream, tail, head); head = (head + report_size) & mask) {
++	for (; xe_oa_circ_diff(stream, tail, head);
++	     head = xe_oa_circ_incr(stream, head, report_size)) {
+ 		u8 *report = oa_buf_base + head;
+ 
+ 		ret = xe_oa_append_report(stream, buf, count, offset, report);
+ 		if (ret)
+ 			break;
+ 
+-		if (is_power_of_2(report_size)) {
++		if (!(stream->oa_buffer.circ_size % report_size)) {
+ 			/* Clear out report id and timestamp to detect unlanded reports */
+ 			oa_report_id_clear(stream, (void *)report);
+ 			oa_timestamp_clear(stream, (void *)report);
+ 		} else {
+-			u8 *oa_buf_end = stream->oa_buffer.vaddr + XE_OA_BUFFER_SIZE;
++			u8 *oa_buf_end = stream->oa_buffer.vaddr + stream->oa_buffer.circ_size;
+ 			u32 part = oa_buf_end - report;
+ 
+ 			/* Zero out the entire report */
+@@ -369,7 +377,6 @@ static void xe_oa_init_oa_buffer(struct xe_oa_stream *stream)
+ 	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_head_ptr,
+ 			gtt_offset & OAG_OAHEADPTR_MASK);
+ 	stream->oa_buffer.head = 0;
+-
+ 	/*
+ 	 * PRM says: "This MMIO must be set before the OATAILPTR register and after the
+ 	 * OAHEADPTR register. This is to enable proper functionality of the overflow bit".
+@@ -1256,6 +1263,18 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
+ 	stream->periodic = param->period_exponent > 0;
+ 	stream->period_exponent = param->period_exponent;
+ 
++	/*
++	 * For Xe2+, when overrun mode is enabled, there are no partial reports at the end
++	 * of buffer, making the OA buffer effectively a non-power-of-2 size circular
++	 * buffer whose size, circ_size, is a multiple of the report size
++	 */
++	if (GRAPHICS_VER(stream->oa->xe) >= 20 &&
++	    stream->hwe->oa_unit->type == DRM_XE_OA_UNIT_TYPE_OAG && stream->sample)
++		stream->oa_buffer.circ_size =
++			XE_OA_BUFFER_SIZE - XE_OA_BUFFER_SIZE % stream->oa_buffer.format->size;
++	else
++		stream->oa_buffer.circ_size = XE_OA_BUFFER_SIZE;
++
+ 	if (stream->exec_q && engine_supports_mi_query(stream->hwe)) {
+ 		/* If we don't find the context offset, just return error */
+ 		ret = xe_oa_set_ctx_ctrl_offset(stream);
+diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
+index 6984e7d04be5..d8d5c9d8c22e 100644
+--- a/drivers/gpu/drm/xe/xe_oa_types.h
++++ b/drivers/gpu/drm/xe/xe_oa_types.h
+@@ -163,6 +163,9 @@ struct xe_oa_buffer {
+ 
+ 	/** @tail: The last verified cached tail where HW has completed writing */
+ 	u32 tail;
++
++	/** @circ_size: The effective circular buffer size, for Xe2+ */
++	u32 circ_size;
+ };
+ 
+ /**
+-- 
+2.41.0
 
---
-Cheers,
-Luca.
