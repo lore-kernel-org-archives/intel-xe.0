@@ -4,51 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F27E9C54E67
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Mar 2024 12:07:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82E3BC5475B
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Mar 2024 12:16:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A245D10F253;
-	Thu, 14 Mar 2024 12:07:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2340310E4FF;
+	Thu, 14 Mar 2024 12:16:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="We50L1xr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GxJaZA/g";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 346AE10F21A;
- Thu, 14 Mar 2024 12:07:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 671A510E4FF
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Mar 2024 12:16:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710418066; x=1741954066;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=PLPAoVjq0t4xaNG0muI4Yd+yt2YiB407PxAHXEz9hF0=;
- b=We50L1xrOr+rZ46mZ6FpZy6Lz+uQ13AhrSBtBFHJ34GIpy5OJml2P+gK
- 1Qa9vgVUmU3lNwKtCJWGbOQLurri2zWfYCpS6o+8+M7XZLYGPX0wavM0P
- uVd0Amb6mwJxhL33UPJI3V0WMUuXFWifIVlYdKHCMXf7kn2Re5Lg4RHxs
- pi3rI0+L9TA5M+WnsYXb3Fnh+yjaDZXyMEjqX4CdUKuAgVfdztQQL4g2G
- FLA/tYsSCIhZAxk9dxz+DOwoSiwm4lyyiPZvpPb1ADVXY7qXUumAStTsV
- g7Bsshx9MZ64cy12IvXCoFRhXGADDKTb3IdXPM4sXRhmxREEunhMg7Dvr w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11012"; a="5082286"
+ t=1710418569; x=1741954569;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=WcYs4emD/Zt7MyklsByCKvprVWbpEcv07K373J1dD70=;
+ b=GxJaZA/gqiqLTR21zy6H3eX5hCmgMgYfNgUMAtoMSwZzPth9QXMhiU+C
+ IUxJJ7syUrsreRqImZL3dA7lJuTdUVu+z7FKvZfxWdZU/O++sFPVU8yy/
+ Duk82jLV2sxXQ1SacDZlA7dH4XpcsC9tbBKSUdSOdekFhjF8Vl8eMx/g0
+ gZw38r0KChAPoJ2y6wu4alOOKHCIV/CWbQT1PeisLtWLpX3EPll4J+Jsv
+ EqGyosxMe8UmmPZvsyCVpTCj5nidZeqRP3xT1L/kLfCu+5MSbMTH9ksY9
+ +Q2i/wh5y1ajwRmPa4JQYKVpqVmhx6LcrARBZIxRsk7ck2hnpcmETdRkJ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11012"; a="5097763"
 X-IronPort-AV: E=Sophos;i="6.07,125,1708416000"; 
-   d="scan'208";a="5082286"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2024 05:07:46 -0700
+   d="scan'208";a="5097763"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2024 05:16:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,125,1708416000"; d="scan'208";a="16929659"
-Received: from unknown (HELO localhost) ([10.237.66.160])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2024 05:07:44 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 0/6] drm: debug logging improvements
-In-Reply-To: <cover.1709843865.git.jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1709843865.git.jani.nikula@intel.com>
-Date: Thu, 14 Mar 2024 14:07:41 +0200
-Message-ID: <87r0gdqanm.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,125,1708416000"; d="scan'208";a="16738284"
+Received: from unknown (HELO mwauld-mobl1.intel.com) ([10.245.244.240])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2024 05:16:06 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH] drm/xe/guc_submit: use jiffies for job timeout
+Date: Thu, 14 Mar 2024 12:15:55 +0000
+Message-ID: <20240314121554.223229-2-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.44.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,28 +61,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 07 Mar 2024, Jani Nikula <jani.nikula@intel.com> wrote:
-> Switch a handful of places over to drm device based logging and WARNs,
-> unify connector and crtc logging, etc.
+drm_sched_init() expects jiffies for the timeout, but here we are
+passing the timeout in ms. Convert to jiffies instead.
 
-Ping for review, please. :)
+Fixes: eef55700f302 ("drm/xe: Add sysfs for default engine scheduler properties")
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_submit.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-
->
-> Jani Nikula (6):
->   drm/modes: add drm_mode_print() to dump mode in drm_printer
->   drm/probe-helper: switch to drm device based logging
->   drm/modes: switch drm_mode_prune_invalid() to use struct drm_printer
->   drm/modes: switch to drm device based error logging
->   drm/sysfs: switch to drm device based logging
->   drm/client: switch to drm device based logging, and more
->
->  drivers/gpu/drm/drm_client_modeset.c | 129 +++++++++++++++------------
->  drivers/gpu/drm/drm_modes.c          |  51 +++++++----
->  drivers/gpu/drm/drm_probe_helper.c   |  41 ++++-----
->  drivers/gpu/drm/drm_sysfs.c          |  21 +++--
->  include/drm/drm_modes.h              |   2 +
->  5 files changed, 137 insertions(+), 107 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 19efdb2f881f..82c955a2a15c 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1226,7 +1226,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ 	init_waitqueue_head(&ge->suspend_wait);
+ 
+ 	timeout = (q->vm && xe_vm_in_lr_mode(q->vm)) ? MAX_SCHEDULE_TIMEOUT :
+-		  q->sched_props.job_timeout_ms;
++		  msecs_to_jiffies(q->sched_props.job_timeout_ms);
+ 	err = xe_sched_init(&ge->sched, &drm_sched_ops, &xe_sched_ops,
+ 			    get_submit_wq(guc),
+ 			    q->lrc[0].ring.size / MAX_JOB_SIZE_BYTES, 64,
 -- 
-Jani Nikula, Intel
+2.44.0
+
