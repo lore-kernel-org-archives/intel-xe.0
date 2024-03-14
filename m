@@ -4,54 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C90CFC54E66
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Mar 2024 01:38:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4B0DC5475B
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Mar 2024 03:23:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C93410E8B3;
-	Thu, 14 Mar 2024 01:38:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 890D510F88B;
+	Thu, 14 Mar 2024 03:23:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d/rAtOVm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ckB+D5QB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5846410E8B3
- for <intel-xe@lists.freedesktop.org>; Thu, 14 Mar 2024 01:38:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEEC010F82F
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Mar 2024 03:23:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710380327; x=1741916327;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=UXxyWZWKcgXk3ShFzBC+ITkqApLg3P2NN0rkgecgwcA=;
- b=d/rAtOVmkqFHeJTkJss3nSnCXSecWSgxxdGln5lGKAIn3AFrBOM2Ew+R
- xqwN+WXF8u5PFat7g4UJySJSTKyylZRr/93GapQC60sDaIM3Q5BLFxaLI
- NP8ctNjPQReaNmwkbRCO+DrEJ3QWkqqfKbXy7sw3mUBqbg+ICU9YdZJFP
- DVa8BH76IR44ZCQ3XkiapIolEdAR+SiROPOgxhlRRgBUlu9mj5erhkYIf
- bmSKwZGd6XAJmN89lNwWpNo447v1ItDCKHFH5au55tcKa+u0XuWwEyOIW
- X3IFoOd6ntLwAP7n2grcZ6LKdS92TG94H1XZKiIIhzUTLGx2Cd6TIw6oq A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11012"; a="5785733"
+ t=1710386627; x=1741922627;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=L1dkq/9AJf1Oyek1MyBE1urUqGMYXC5DqR+CXebjMok=;
+ b=ckB+D5QBlP6XOQh6B9pC1HIG3UDXjMZ//7AGuCmom8Ae1scG+AlJ+qUk
+ oSne8o4cnG5SNBbuB6ziTYP+XXcZzLZ3mnGEs/3C15zPXlC36D8poesf2
+ 0XGb4p+M5/ZJxs84AfT8W8ckrGiWO7btAEPwOTSe3HpUw9pq22uSWfXeH
+ zYwi2AdRN6lHDHyG2ayOgzz74LWJzkXZzjSUmV/tCdcz/6rl5Qdt44Cqt
+ lJPK/Cw7NDCGL2NrLZdez1E5wreKs2jrydhlfOb788QxzNKDU8VE0avra
+ TMxYKXL4yQiNQtgrCxy+QC5Un8h2dn49ueKhqyQE8jW6E3nwDuROxkEIP A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11012"; a="8966473"
 X-IronPort-AV: E=Sophos;i="6.07,124,1708416000"; 
-   d="scan'208";a="5785733"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2024 18:38:47 -0700
+   d="scan'208";a="8966473"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2024 20:23:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,124,1708416000"; d="scan'208";a="12198862"
-Received: from aravind-dev.iind.intel.com (HELO [10.145.162.146])
- ([10.145.162.146])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2024 18:38:45 -0700
-Message-ID: <8609d8ba-7a7f-4513-9cda-ad5029f6cccf@linux.intel.com>
-Date: Thu, 14 Mar 2024 07:10:12 +0530
+X-IronPort-AV: E=Sophos;i="6.07,124,1708416000"; d="scan'208";a="12084613"
+Received: from szeng-desk.jf.intel.com ([10.165.21.149])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2024 20:23:47 -0700
+From: Oak Zeng <oak.zeng@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: thomas.hellstrom@intel.com, matthew.brost@intel.com, airlied@gmail.com,
+ brian.welty@intel.com, himal.prasad.ghimiray@intel.com
+Subject: [PATCH 0/5] Use hmm_range_fault to populate user page
+Date: Wed, 13 Mar 2024 23:35:48 -0400
+Message-Id: <20240314033553.1379444-1-oak.zeng@intel.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] drm/xe: Introduce a simple wedged state
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Anshuman Gupta <anshuman.gupta@intel.com>
-References: <20240313195459.141463-1-rodrigo.vivi@intel.com>
-Content-Language: en-US
-From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-In-Reply-To: <20240313195459.141463-1-rodrigo.vivi@intel.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,145 +63,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+This is an effort to unify hmmptr (system allocator) and userptr.
+A helper xe_hmm_populate_range is created to populate a user
+page using hmm_range_fault, instead of using get_user_pages_fast.
+This helper is then used to replace some userptr codes.
 
-On 14/03/24 01:24, Rodrigo Vivi wrote:
+The same help will be used later for hmmptr.
 
-Hi Rodrigo,
+This is part of the hmmptr (system allocator) codes. Since this
+part can be merged separately, send it out for CI and review first.
+It will be followed by other hmmptr codes.
 
-> Introduce a very simple 'wedged' state where any attempt
-> to access the GPU is entirely blocked.
->
-> On some critical cases, like on gt_reset failure, we need to
-> block any other attempt to use the GPU. Otherwise we are at
-> a risk of reaching cases that would force us to reboot the machine.
->
-> So, when this cases are identified we corner and block any GPU
-> access. No IOCTL and not even another GT reset should be attempted.
->
-> The 'wedged' state in Xe is an end state with no way back.
-> Only a module reload can restore the GPU access.
-I believe we should also expose this wedged state to userspace so that
-any admin can take action, typically sysman is interested to know that.
+Oak Zeng (5):
+  drm/xe/svm: Remap and provide memmap backing for GPU vram
+  drm/xe: Helper to get memory region from tile
+  drm/xe: Helper to get dpa from pfn
+  drm/xe: Helper to populate a userptr or hmmptr
+  drm/xe: Use hmm_range_fault to populate user pages
 
-A sysfs at the pci device level?
+ drivers/gpu/drm/xe/Makefile          |   4 +-
+ drivers/gpu/drm/xe/xe_device_types.h |  22 +++
+ drivers/gpu/drm/xe/xe_hmm.c          | 213 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_hmm.h          |  12 ++
+ drivers/gpu/drm/xe/xe_mmio.c         |   8 +
+ drivers/gpu/drm/xe/xe_svm.h          |  14 ++
+ drivers/gpu/drm/xe/xe_svm_devmem.c   |  91 ++++++++++++
+ drivers/gpu/drm/xe/xe_vm.c           | 105 +------------
+ 8 files changed, 367 insertions(+), 102 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_hmm.c
+ create mode 100644 drivers/gpu/drm/xe/xe_hmm.h
+ create mode 100644 drivers/gpu/drm/xe/xe_svm.h
+ create mode 100644 drivers/gpu/drm/xe/xe_svm_devmem.c
 
-Thanks,
-Aravind.
->
-> Cc: Anshuman Gupta <anshuman.gupta@intel.com>
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_device.c       |  6 ++++++
->  drivers/gpu/drm/xe/xe_device.h       | 11 +++++++++++
->  drivers/gpu/drm/xe/xe_device_types.h |  6 ++++++
->  drivers/gpu/drm/xe/xe_gt.c           |  4 ++++
->  drivers/gpu/drm/xe/xe_migrate.c      |  6 ++++++
->  5 files changed, 33 insertions(+)
->
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index 919ad88f0495..5f0a2bdb7c24 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -142,6 +142,9 @@ static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
->  	struct xe_device *xe = to_xe_device(file_priv->minor->dev);
->  	long ret;
->  
-> +	if (xe_device_wedged(xe))
-> +		return -ECANCELED;
-> +
->  	ret = xe_pm_runtime_get_ioctl(xe);
->  	if (ret >= 0)
->  		ret = drm_ioctl(file, cmd, arg);
-> @@ -157,6 +160,9 @@ static long xe_drm_compat_ioctl(struct file *file, unsigned int cmd, unsigned lo
->  	struct xe_device *xe = to_xe_device(file_priv->minor->dev);
->  	long ret;
->  
-> +	if (xe_device_wedged(xe))
-> +		return -ECANCELED;
-> +
->  	ret = xe_pm_runtime_get_ioctl(xe);
->  	if (ret >= 0)
->  		ret = drm_compat_ioctl(file, cmd, arg);
-> diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-> index 14be34d9f543..d10664d32f7f 100644
-> --- a/drivers/gpu/drm/xe/xe_device.h
-> +++ b/drivers/gpu/drm/xe/xe_device.h
-> @@ -176,4 +176,15 @@ void xe_device_snapshot_print(struct xe_device *xe, struct drm_printer *p);
->  u64 xe_device_canonicalize_addr(struct xe_device *xe, u64 address);
->  u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64 address);
->  
-> +static inline bool xe_device_wedged(struct xe_device *xe)
-> +{
-> +	return atomic_read(&xe->wedged);
-> +}
-> +
-> +static inline void xe_device_declare_wedged(struct xe_device *xe)
-> +{
-> +	atomic_set(&xe->wedged, 1);
-> +	drm_err(&xe->drm, "CRITICAL: Xe has been declared wedged. A module reload is required.\n");
-> +}
-> +
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index 9785eef2e5a4..13971eb2334f 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -455,6 +455,12 @@ struct xe_device {
->  	/** @needs_flr_on_fini: requests function-reset on fini */
->  	bool needs_flr_on_fini;
->  
-> +	/**
-> +	 * @wedged: Xe device faced a critical error and is now blocked.
-> +	 * It cannot return to life without a module reload.
-> +	 */
-> +	atomic_t wedged;
-> +
->  	/* private: */
->  
->  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index 85408e7a932b..972c0c6d0608 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -633,6 +633,9 @@ static int gt_reset(struct xe_gt *gt)
->  {
->  	int err;
->  
-> +	if (xe_device_wedged(gt_to_xe(gt)))
-> +	    return -ECANCELED;
-> +
->  	/* We only support GT resets with GuC submission */
->  	if (!xe_device_uc_enabled(gt_to_xe(gt)))
->  		return -ENODEV;
-> @@ -686,6 +689,7 @@ static int gt_reset(struct xe_gt *gt)
->  	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
->  
->  	gt_to_xe(gt)->needs_flr_on_fini = true;
-> +	xe_device_declare_wedged(gt_to_xe(gt));
->  
->  	return err;
->  }
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-> index ee1bb938c493..5b2eeb2048b5 100644
-> --- a/drivers/gpu/drm/xe/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> @@ -713,6 +713,9 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
->  		xe_bo_needs_ccs_pages(src_bo) && xe_bo_needs_ccs_pages(dst_bo);
->  	bool copy_system_ccs = copy_ccs && (!src_is_vram || !dst_is_vram);
->  
-> +	if (xe_device_wedged(xe))
-> +	    return ERR_PTR(-ECANCELED);
-> +
->  	/* Copying CCS between two different BOs is not supported yet. */
->  	if (XE_WARN_ON(copy_ccs && src_bo != dst_bo))
->  		return ERR_PTR(-EINVAL);
-> @@ -986,6 +989,9 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
->  	int err;
->  	int pass = 0;
->  
-> +	if (xe_device_wedged(xe))
-> +	    return ERR_PTR(-ECANCELED);
-> +
->  	if (!clear_vram)
->  		xe_res_first_sg(xe_bo_sg(bo), 0, bo->size, &src_it);
->  	else
+-- 
+2.26.3
+
