@@ -4,35 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C12C8C54E66
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Mar 2024 00:12:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29077C54E58
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Mar 2024 00:14:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77DBC10ECF3;
-	Thu, 14 Mar 2024 00:12:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E78FF10E3CE;
+	Thu, 14 Mar 2024 00:14:11 +0000 (UTC)
 Received: from coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF51B10ECF3
- for <intel-xe@lists.freedesktop.org>; Thu, 14 Mar 2024 00:11:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1733310E3CE
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Mar 2024 00:14:10 +0000 (UTC)
 Received: from 91-156-7-239.elisa-laajakaista.fi ([91.156.7.239]
  helo=[192.168.100.137])
  by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
  (Exim 4.97-RC1) (envelope-from <luca@coelho.fi>)
- id 1rkYhO-00000002O6D-249U; Thu, 14 Mar 2024 02:11:56 +0200
-Message-ID: <ec85ee885d4fdc7a6860ab0e39348e86af3f50ac.camel@coelho.fi>
+ id 1rkYjV-00000002O6U-2u3l; Thu, 14 Mar 2024 02:14:07 +0200
+Message-ID: <f882bd2c7f54b6ec395b235924b9c204021353fa.camel@coelho.fi>
 From: Luca Coelho <luca@coelho.fi>
 To: Gustavo Sousa <gustavo.sousa@intel.com>, Luca Coelho
  <luciano.coelho@intel.com>, intel-xe@lists.freedesktop.org
 Cc: uma.shankar@intel.com, ville.syrjala@linux.intel.com, jani.nikula@intel.com
-Date: Thu, 14 Mar 2024 02:11:42 +0200
-In-Reply-To: <170844760861.44184.10196635667916849405@gjsousa-mobl2>
+Date: Thu, 14 Mar 2024 02:13:54 +0200
+In-Reply-To: <170844763454.44184.7132459305280750890@gjsousa-mobl2>
 References: <20240207103007.665367-1-luciano.coelho@intel.com>
- <20240207103007.665367-6-luciano.coelho@intel.com>
- <170844760861.44184.10196635667916849405@gjsousa-mobl2>
+ <20240207103007.665367-7-luciano.coelho@intel.com>
+ <170844763454.44184.7132459305280750890@gjsousa-mobl2>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
 MIME-Version: 1.0
-Subject: Re: [PATCH 5/6] drm/i915/display: add module parameter to enable
- DMC wakelock
+Subject: Re: [PATCH 6/6] drm/i915/display: call DMC wakelock enable when DMC
+ is loaded
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,132 +47,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2024-02-20 at 13:46 -0300, Gustavo Sousa wrote:
-> Quoting Luca Coelho (2024-02-07 07:30:06-03:00)
-> > This feature should be disabled by default until properly tested and
-> > mature.  Add a module parameter to enable the feature for testing,
-> > while keeping it disabled by default for now.
-> >=20
-> > Additionally, only allow enabling via module parameter if the display
-> > version is greater than 20.
+On Tue, 2024-02-20 at 13:47 -0300, Gustavo Sousa wrote:
+> Quoting Luca Coelho (2024-02-07 07:30:07-03:00)
+> > Although the documentation says that this should be done in the first
+> > modeset, it makes more sense to enable and disable it when DMC is
+> > enabled and disabled, including during suspend and resume operations.
 >=20
-> I would have two separate patches here, one for the display version
-> check and another for the module parameter, since we are dealing with
-> two different concepts.
+> I remember suggesting the pairing wakelock enable/disable with DMC
+> enable/disable in the RFC. However, after some thought and re-reading
+> the spec, I actually believe that this should actually be part of the
+> transition to and out of DC-off power state. Thoughts?
 
-Done.
+Right, this makes more sense and is more aligned with the
+documentation.  I've made the needed changes in this patch, so it will
+be sent out with a completely different subject and content.
 
-
-> > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
-> > ---
-> > .../gpu/drm/i915/display/intel_display_params.c  |  5 +++++
-> > .../gpu/drm/i915/display/intel_display_params.h  |  1 +
-> > drivers/gpu/drm/i915/display/intel_dmc_wl.c      | 16 ++++++++++++++--
-> > 3 files changed, 20 insertions(+), 2 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/driv=
-ers/gpu/drm/i915/display/intel_display_params.c
-> > index 11e03cfb774d..f40b223cc8a1 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_params.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
-> > @@ -116,6 +116,11 @@ intel_display_param_named_unsafe(enable_psr2_sel_f=
-etch, bool, 0400,
-> >         "(0=3Ddisabled, 1=3Denabled) "
-> >         "Default: 1");
-> >=20
-> > +intel_display_param_named_unsafe(enable_dmc_wl, bool, 0400,
-> > +        "Enable DMC wakelock "
-> > +        "(0=3Ddisabled, 1=3Denabled) "
-> > +        "Default: 0");
-> > +
-> > __maybe_unused
-> > static void _param_print_bool(struct drm_printer *p, const char *driver=
-_name,
-> >                               const char *name, bool val)
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/driv=
-ers/gpu/drm/i915/display/intel_display_params.h
-> > index 6206cc51df04..bf8dbbdb20a1 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_params.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_params.h
-> > @@ -46,6 +46,7 @@ struct drm_i915_private;
-> >         param(int, enable_psr, -1, 0600) \
-> >         param(bool, psr_safest_params, false, 0400) \
-> >         param(bool, enable_psr2_sel_fetch, true, 0400) \
-> > +        param(bool, enable_dmc_wl, false, 0400) \
-> >=20
-> > #define MEMBER(T, member, ...) T member;
-> > struct intel_display_params {
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/=
-drm/i915/display/intel_dmc_wl.c
-> > index abe1ea92cf65..21ab67805ff1 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-> > @@ -79,6 +79,10 @@ void intel_dmc_wl_enable(struct drm_i915_private *i9=
-15)
-> >         struct intel_dmc_wl *wl =3D &i915->display.wl;
-> >         unsigned long flags;
-> >=20
-> > +        if (!i915->display.params.enable_dmc_wl ||
-> > +            DISPLAY_VER(i915) <=3D 20)
->=20
-> s/<=3D 20/< 20/ ?
->=20
-> > +                return;
-> > +
-> >         spin_lock_irqsave(&wl->lock, flags);
-> >=20
-> >         if (wl->enabled)
-> > @@ -105,6 +109,10 @@ void intel_dmc_wl_disable(struct drm_i915_private =
-*i915)
-> >         struct intel_dmc_wl *wl =3D &i915->display.wl;
-> >         unsigned long flags;
-> >=20
-> > +        if (!i915->display.params.enable_dmc_wl ||
-> > +            DISPLAY_VER(i915) <=3D 20)
->=20
-> s/<=3D 20/< 20/ ?
->=20
-> > +                return;
-> > +
-> >         spin_lock_irqsave(&wl->lock, flags);
-> >=20
-> >         /* FIXME: should we cancel the work? */
-> > @@ -135,7 +143,9 @@ void intel_dmc_wl_get(struct drm_i915_private *i915=
-, i915_reg_t reg)
-> >         unsigned long flags;
-> >         u32 ctl_value;
-> >=20
-> > -        if (!intel_dmc_wl_check_range(reg.reg))
-> > +        if (!i915->display.params.enable_dmc_wl ||
-> > +            DISPLAY_VER(i915) <=3D 20 ||
->=20
-> s/<=3D 20/< 20/ ?
-
-Right, I fixed all these.
-
-
-> > +            !intel_dmc_wl_check_range(reg.reg))
->=20
-> I would keep this condition line into its own "if" statement, just
-> because the first two conditions are like "is this thing enabled?" and
-> this last one is like "do we need the lock for this reg?".
->=20
-> >                 return;
-> >=20
-> >         spin_lock_irqsave(&wl->lock, flags);
-> > @@ -166,7 +176,9 @@ void intel_dmc_wl_put(struct drm_i915_private *i915=
-, i915_reg_t reg)
-> >         struct intel_dmc_wl *wl =3D &i915->display.wl;
-> >         unsigned long flags;
-> >=20
-> > -        if (!intel_dmc_wl_check_range(reg.reg))
-> > +        if (!i915->display.params.enable_dmc_wl ||
-> > +            DISPLAY_VER(i915) <=3D 20 ||
-> > +            !intel_dmc_wl_check_range(reg.reg))
->=20
-> Ditto.
-
-Done in both places.
+Thanks for all the reviews! New version of this patchset coming out
+soon.
 
 --
 Cheers,
