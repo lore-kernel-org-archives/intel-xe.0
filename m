@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F27C8C54E5D
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Mar 2024 03:28:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7194C5475B
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Mar 2024 03:29:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB4B110F89C;
-	Thu, 14 Mar 2024 03:28:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF0E410F88F;
+	Thu, 14 Mar 2024 03:29:24 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 140D510F8A3;
- Thu, 14 Mar 2024 03:28:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD93E10F88F;
+ Thu, 14 Mar 2024 03:29:22 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Use_hmm=5Frange=5Ffault_t?=
- =?utf-8?q?o_populate_user_page?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Use_hmm=5Frange=5Ffault_to_pop?=
+ =?utf-8?q?ulate_user_page?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Oak Zeng" <oak.zeng@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 14 Mar 2024 03:28:54 -0000
-Message-ID: <171038693408.750287.12490356717484329362@8e613ede5ea5>
+Date: Thu, 14 Mar 2024 03:29:22 -0000
+Message-ID: <171038696290.750251.2007803107345931554@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240314033553.1379444-1-oak.zeng@intel.com>
 In-Reply-To: <20240314033553.1379444-1-oak.zeng@intel.com>
@@ -44,154 +44,214 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Use hmm_range_fault to populate user page
 URL   : https://patchwork.freedesktop.org/series/131117/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-a9eb1ac8298ef9f9146567c29fa762d8e9efa1ef
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 949ff440ef2fd98f08340e015405731c9c20401c
-Author: Oak Zeng <oak.zeng@intel.com>
-Date:   Wed Mar 13 23:35:53 2024 -0400
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../arch/x86/um/user-offsets.c:17:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
+   17 | void foo(void)
+      |      ^~~
+In file included from ../arch/um/kernel/asm-offsets.c:1:
+../arch/x86/um/shared/sysdep/kernel-offsets.h:9:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
+    9 | void foo(void)
+      |      ^~~
+../arch/x86/um/bugs_64.c:9:6: warning: no previous prototype for ‘arch_check_bugs’ [-Wmissing-prototypes]
+    9 | void arch_check_bugs(void)
+      |      ^~~~~~~~~~~~~~~
+../arch/x86/um/bugs_64.c:13:6: warning: no previous prototype for ‘arch_examine_signal’ [-Wmissing-prototypes]
+   13 | void arch_examine_signal(int sig, struct uml_pt_regs *regs)
+      |      ^~~~~~~~~~~~~~~~~~~
+../arch/x86/um/fault.c:18:5: warning: no previous prototype for ‘arch_fixup’ [-Wmissing-prototypes]
+   18 | int arch_fixup(unsigned long address, struct uml_pt_regs *regs)
+      |     ^~~~~~~~~~
+../arch/x86/um/os-Linux/registers.c:146:15: warning: no previous prototype for ‘get_thread_reg’ [-Wmissing-prototypes]
+  146 | unsigned long get_thread_reg(int reg, jmp_buf *buf)
+      |               ^~~~~~~~~~~~~~
+../arch/x86/um/vdso/um_vdso.c:16:5: warning: no previous prototype for ‘__vdso_clock_gettime’ [-Wmissing-prototypes]
+   16 | int __vdso_clock_gettime(clockid_t clock, struct __kernel_old_timespec *ts)
+      |     ^~~~~~~~~~~~~~~~~~~~
+../arch/x86/um/vdso/um_vdso.c:30:5: warning: no previous prototype for ‘__vdso_gettimeofday’ [-Wmissing-prototypes]
+   30 | int __vdso_gettimeofday(struct __kernel_old_timeval *tv, struct timezone *tz)
+      |     ^~~~~~~~~~~~~~~~~~~
+../arch/x86/um/vdso/um_vdso.c:44:21: warning: no previous prototype for ‘__vdso_time’ [-Wmissing-prototypes]
+   44 | __kernel_old_time_t __vdso_time(__kernel_old_time_t *t)
+      |                     ^~~~~~~~~~~
+../arch/x86/um/vdso/um_vdso.c:57:1: warning: no previous prototype for ‘__vdso_getcpu’ [-Wmissing-prototypes]
+   57 | __vdso_getcpu(unsigned *cpu, unsigned *node, struct getcpu_cache *unused)
+      | ^~~~~~~~~~~~~
+../arch/x86/um/os-Linux/mcontext.c:7:6: warning: no previous prototype for ‘get_regs_from_mc’ [-Wmissing-prototypes]
+    7 | void get_regs_from_mc(struct uml_pt_regs *regs, mcontext_t *mc)
+      |      ^~~~~~~~~~~~~~~~
+../arch/um/os-Linux/skas/process.c:107:6: warning: no previous prototype for ‘wait_stub_done’ [-Wmissing-prototypes]
+  107 | void wait_stub_done(int pid)
+      |      ^~~~~~~~~~~~~~
+../arch/um/os-Linux/skas/process.c:683:6: warning: no previous prototype for ‘__switch_mm’ [-Wmissing-prototypes]
+  683 | void __switch_mm(struct mm_id *mm_idp)
+      |      ^~~~~~~~~~~
+../arch/um/os-Linux/main.c:187:7: warning: no previous prototype for ‘__wrap_malloc’ [-Wmissing-prototypes]
+  187 | void *__wrap_malloc(int size)
+      |       ^~~~~~~~~~~~~
+../arch/um/os-Linux/main.c:208:7: warning: no previous prototype for ‘__wrap_calloc’ [-Wmissing-prototypes]
+  208 | void *__wrap_calloc(int n, int size)
+      |       ^~~~~~~~~~~~~
+../arch/um/os-Linux/main.c:222:6: warning: no previous prototype for ‘__wrap_free’ [-Wmissing-prototypes]
+  222 | void __wrap_free(void *ptr)
+      |      ^~~~~~~~~~~
+../arch/um/os-Linux/mem.c:28:6: warning: no previous prototype for ‘kasan_map_memory’ [-Wmissing-prototypes]
+   28 | void kasan_map_memory(void *start, size_t len)
+      |      ^~~~~~~~~~~~~~~~
+../arch/um/os-Linux/mem.c:212:13: warning: no previous prototype for ‘check_tmpexec’ [-Wmissing-prototypes]
+  212 | void __init check_tmpexec(void)
+      |             ^~~~~~~~~~~~~
+../arch/x86/um/ptrace_64.c:111:5: warning: no previous prototype for ‘poke_user’ [-Wmissing-prototypes]
+  111 | int poke_user(struct task_struct *child, long addr, long data)
+      |     ^~~~~~~~~
+../arch/x86/um/ptrace_64.c:171:5: warning: no previous prototype for ‘peek_user’ [-Wmissing-prototypes]
+  171 | int peek_user(struct task_struct *child, long addr, long data)
+      |     ^~~~~~~~~
+../arch/um/kernel/skas/mmu.c:17:5: warning: no previous prototype for ‘init_new_context’ [-Wmissing-prototypes]
+   17 | int init_new_context(struct task_struct *task, struct mm_struct *mm)
+      |     ^~~~~~~~~~~~~~~~
+../arch/um/kernel/skas/mmu.c:60:6: warning: no previous prototype for ‘destroy_context’ [-Wmissing-prototypes]
+   60 | void destroy_context(struct mm_struct *mm)
+      |      ^~~~~~~~~~~~~~~
+../arch/um/os-Linux/signal.c:75:6: warning: no previous prototype for ‘sig_handler’ [-Wmissing-prototypes]
+   75 | void sig_handler(int sig, struct siginfo *si, mcontext_t *mc)
+      |      ^~~~~~~~~~~
+../arch/um/os-Linux/signal.c:111:6: warning: no previous prototype for ‘timer_alarm_handler’ [-Wmissing-prototypes]
+  111 | void timer_alarm_handler(int sig, struct siginfo *unused_si, mcontext_t *mc)
+      |      ^~~~~~~~~~~~~~~~~~~
+../arch/um/os-Linux/start_up.c:301:12: warning: no previous prototype for ‘parse_iomem’ [-Wmissing-prototypes]
+  301 | int __init parse_iomem(char *str, int *add)
+      |            ^~~~~~~~~~~
+../arch/um/kernel/skas/process.c:36:12: warning: no previous prototype for ‘start_uml’ [-Wmissing-prototypes]
+   36 | int __init start_uml(void)
+      |            ^~~~~~~~~
+../arch/x86/um/signal.c:560:6: warning: no previous prototype for ‘sys_rt_sigreturn’ [-Wmissing-prototypes]
+  560 | long sys_rt_sigreturn(void)
+      |      ^~~~~~~~~~~~~~~~
+../arch/x86/um/syscalls_64.c:48:6: warning: no previous prototype for ‘arch_switch_to’ [-Wmissing-prototypes]
+   48 | void arch_switch_to(struct task_struct *to)
+      |      ^~~~~~~~~~~~~~
+../arch/um/kernel/mem.c:202:8: warning: no previous prototype for ‘pgd_alloc’ [-Wmissing-prototypes]
+  202 | pgd_t *pgd_alloc(struct mm_struct *mm)
+      |        ^~~~~~~~~
+../arch/um/kernel/mem.c:215:7: warning: no previous prototype for ‘uml_kmalloc’ [-Wmissing-prototypes]
+  215 | void *uml_kmalloc(int size, int flags)
+      |       ^~~~~~~~~~~
+../arch/um/kernel/process.c:51:5: warning: no previous prototype for ‘pid_to_processor_id’ [-Wmissing-prototypes]
+   51 | int pid_to_processor_id(int pid)
+      |     ^~~~~~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:87:7: warning: no previous prototype for ‘__switch_to’ [-Wmissing-prototypes]
+   87 | void *__switch_to(struct task_struct *from, struct task_struct *to)
+      |       ^~~~~~~~~~~
+../arch/um/kernel/process.c:140:6: warning: no previous prototype for ‘fork_handler’ [-Wmissing-prototypes]
+  140 | void fork_handler(void)
+      |      ^~~~~~~~~~~~
+../arch/um/kernel/process.c:217:6: warning: no previous prototype for ‘arch_cpu_idle’ [-Wmissing-prototypes]
+  217 | void arch_cpu_idle(void)
+      |      ^~~~~~~~~~~~~
+../arch/um/kernel/process.c:253:5: warning: no previous prototype for ‘copy_to_user_proc’ [-Wmissing-prototypes]
+  253 | int copy_to_user_proc(void __user *to, void *from, int size)
+      |     ^~~~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:263:5: warning: no previous prototype for ‘clear_user_proc’ [-Wmissing-prototypes]
+  263 | int clear_user_proc(void __user *buf, int size)
+      |     ^~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:271:6: warning: no previous prototype for ‘set_using_sysemu’ [-Wmissing-prototypes]
+  271 | void set_using_sysemu(int value)
+      |      ^~~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:278:5: warning: no previous prototype for ‘get_using_sysemu’ [-Wmissing-prototypes]
+  278 | int get_using_sysemu(void)
+      |     ^~~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:316:12: warning: no previous prototype for ‘make_proc_sysemu’ [-Wmissing-prototypes]
+  316 | int __init make_proc_sysemu(void)
+      |            ^~~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:348:15: warning: no previous prototype for ‘arch_align_stack’ [-Wmissing-prototypes]
+  348 | unsigned long arch_align_stack(unsigned long sp)
+      |               ^~~~~~~~~~~~~~~~
+../arch/um/kernel/reboot.c:45:6: warning: no previous prototype for ‘machine_restart’ [-Wmissing-prototypes]
+   45 | void machine_restart(char * __unused)
+      |      ^~~~~~~~~~~~~~~
+../arch/um/kernel/reboot.c:51:6: warning: no previous prototype for ‘machine_power_off’ [-Wmissing-prototypes]
+   51 | void machine_power_off(void)
+      |      ^~~~~~~~~~~~~~~~~
+../arch/um/kernel/reboot.c:57:6: warning: no previous prototype for ‘machine_halt’ [-Wmissing-prototypes]
+   57 | void machine_halt(void)
+      |      ^~~~~~~~~~~~
+../arch/um/kernel/tlb.c:579:6: warning: no previous prototype for ‘flush_tlb_mm_range’ [-Wmissing-prototypes]
+  579 | void flush_tlb_mm_range(struct mm_struct *mm, unsigned long start,
+      |      ^~~~~~~~~~~~~~~~~~
+../arch/um/kernel/tlb.c:594:6: warning: no previous prototype for ‘force_flush_all’ [-Wmissing-prototypes]
+  594 | void force_flush_all(void)
+      |      ^~~~~~~~~~~~~~~
+../arch/um/kernel/um_arch.c:408:19: warning: no previous prototype for ‘read_initrd’ [-Wmissing-prototypes]
+  408 | int __init __weak read_initrd(void)
+      |                   ^~~~~~~~~~~
+../arch/um/kernel/um_arch.c:461:7: warning: no previous prototype for ‘text_poke’ [-Wmissing-prototypes]
+  461 | void *text_poke(void *addr, const void *opcode, size_t len)
+      |       ^~~~~~~~~
+../arch/um/kernel/um_arch.c:473:6: warning: no previous prototype for ‘text_poke_sync’ [-Wmissing-prototypes]
+  473 | void text_poke_sync(void)
+      |      ^~~~~~~~~~~~~~
+../arch/um/kernel/kmsg_dump.c:60:12: warning: no previous prototype for ‘kmsg_dumper_stdout_init’ [-Wmissing-prototypes]
+   60 | int __init kmsg_dumper_stdout_init(void)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_hmm.c: In function ‘build_sg’:
+../drivers/gpu/drm/xe/xe_hmm.c:93:9: error: implicit declaration of function ‘page_to_mem_region’; did you mean ‘release_mem_region’? [-Werror=implicit-function-declaration]
+   93 |    mr = page_to_mem_region(page);
+      |         ^~~~~~~~~~~~~~~~~~
+      |         release_mem_region
+../drivers/gpu/drm/xe/xe_hmm.c:93:7: warning: assignment to ‘struct xe_mem_region *’ from ‘int’ makes pointer from integer without a cast [-Wint-conversion]
+   93 |    mr = page_to_mem_region(page);
+      |       ^
+cc1: some warnings being treated as errors
+make[7]: *** [../scripts/Makefile.build:243: drivers/gpu/drm/xe/xe_hmm.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:481: drivers/gpu/drm/xe] Error 2
+make[5]: *** [../scripts/Makefile.build:481: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:481: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:481: drivers] Error 2
+make[2]: *** [/kernel/Makefile:1921: .] Error 2
+make[1]: *** [/kernel/Makefile:240: __sub-make] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
 
-    drm/xe: Use hmm_range_fault to populate user pages
-    
-    This is an effort to unify hmmptr (aka system allocator)
-    and userptr code. hmm_range_fault is used to populate
-    a virtual address range for both hmmptr and userptr,
-    instead of hmmptr using hmm_range_fault and userptr
-    using get_user_pages_fast.
-    
-    This also aligns with AMD gpu driver's behavior. In
-    long term, we plan to put some common helpers in this
-    area to drm layer so it can be re-used by different
-    vendors.
-    
-    Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-+ /mt/dim checkpatch 790a1d4e546a1d7f1cc5316c77f21379a4083250 drm-intel
-835de08a6cb6 drm/xe/svm: Remap and provide memmap backing for GPU vram
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:58: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#58: FILE: drivers/gpu/drm/xe/xe_device_types.h:103:
-+    struct dev_pagemap pagemap;$
-
--:64: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#64: FILE: drivers/gpu/drm/xe/xe_device_types.h:109:
-+    resource_size_t hpa_base;$
-
--:93: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#93: FILE: drivers/gpu/drm/xe/xe_mmio.c:359:
-+    struct xe_tile *tile;$
-
--:94: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#94: FILE: drivers/gpu/drm/xe/xe_mmio.c:360:
-+    u8 id;$
-
--:107: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#107: 
-new file mode 100644
-
--:112: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/xe/xe_svm.h', please use '/*' instead
-#112: FILE: drivers/gpu/drm/xe/xe_svm.h:1:
-+// SPDX-License-Identifier: MIT
-
--:112: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
-#112: FILE: drivers/gpu/drm/xe/xe_svm.h:1:
-+// SPDX-License-Identifier: MIT
-
--:144: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#144: FILE: drivers/gpu/drm/xe/xe_svm_devmem.c:13:
-+
-+
-
--:194: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#194: FILE: drivers/gpu/drm/xe/xe_svm_devmem.c:63:
-+		drm_err(&tile->xe->drm, "Failed to remap tile %d memory, errno %d\n",
-+				tile->id, ret);
-
--:200: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#200: FILE: drivers/gpu/drm/xe/xe_svm_devmem.c:69:
-+	drm_info(&tile->xe->drm, "Added tile %d memory [%llx-%llx] to devm, remapped to %pr\n",
-+			tile->id, mr->io_start, mr->io_start + mr->usable_size, res);
-
--:212: WARNING:IF_0: Consider removing the code enclosed by this #if 0 and its #endif
-#212: FILE: drivers/gpu/drm/xe/xe_svm_devmem.c:81:
-+#if 0
-
--:218: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#218: FILE: drivers/gpu/drm/xe/xe_svm_devmem.c:87:
-+		devm_release_mem_region(dev, mr->pagemap.range.start,
-+			mr->pagemap.range.end - mr->pagemap.range.start +1);
-
--:218: CHECK:SPACING: spaces preferred around that '+' (ctx:WxV)
-#218: FILE: drivers/gpu/drm/xe/xe_svm_devmem.c:87:
-+			mr->pagemap.range.end - mr->pagemap.range.start +1);
- 			                                                ^
-
-total: 0 errors, 8 warnings, 5 checks, 159 lines checked
-2d11ab5ab4ca drm/xe: Helper to get memory region from tile
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
-total: 0 errors, 1 warnings, 0 checks, 9 lines checked
-244ff8649c11 drm/xe: Helper to get dpa from pfn
--:24: WARNING:LINE_SPACING: Missing a blank line after declarations
-#24: FILE: drivers/gpu/drm/xe/xe_device_types.h:583:
-+	u64 offset = (pfn << PAGE_SHIFT) - mr->hpa_base;
-+	dpa = mr->dpa_base + offset;
-
-total: 0 errors, 1 warnings, 0 checks, 12 lines checked
-c0b901d8869e drm/xe: Helper to populate a userptr or hmmptr
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:46: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#46: 
-new file mode 100644
-
--:123: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#123: FILE: drivers/gpu/drm/xe/xe_hmm.c:73:
-+static int build_sg(struct xe_device *xe, struct hmm_range *range,
-+			     struct sg_table *st, bool write)
-
--:147: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#147: FILE: drivers/gpu/drm/xe/xe_hmm.c:97:
-+			addr = dma_map_page(dev, page, 0, PAGE_SIZE,
-+					write ? DMA_BIDIRECTIONAL : DMA_TO_DEVICE);
-
--:194: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#194: FILE: drivers/gpu/drm/xe/xe_hmm.c:144:
-+int xe_hmm_populate_range(struct xe_vma *vma, struct hmm_range *hmm_range,
-+						bool write)
-
--:228: WARNING:REPEATED_WORD: Possible repeated word: 'the'
-#228: FILE: drivers/gpu/drm/xe/xe_hmm.c:178:
-+	 * Set the the dev_private_owner can prevent hmm_range_fault to fault
-
--:270: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/xe/xe_hmm.h', please use '/*' instead
-#270: FILE: drivers/gpu/drm/xe/xe_hmm.h:1:
-+// SPDX-License-Identifier: MIT
-
--:270: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
-#270: FILE: drivers/gpu/drm/xe/xe_hmm.h:1:
-+// SPDX-License-Identifier: MIT
-
--:281: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#281: FILE: drivers/gpu/drm/xe/xe_hmm.h:12:
-+int xe_hmm_populate_range(struct xe_vma *vma, struct hmm_range *hmm_range,
-+						bool write);
-
-total: 0 errors, 4 warnings, 4 checks, 234 lines checked
-949ff440ef2f drm/xe: Use hmm_range_fault to populate user pages
+[03:28:55] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[03:28:59] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
