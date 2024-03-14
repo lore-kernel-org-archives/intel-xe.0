@@ -4,27 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BC7DC54E60
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Mar 2024 16:49:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1709C54E60
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Mar 2024 16:49:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C3F810E095;
-	Thu, 14 Mar 2024 16:49:05 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9F8610FA4F;
- Thu, 14 Mar 2024 16:49:03 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B58B10F11F;
+	Thu, 14 Mar 2024 16:49:24 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YjP0sAGP";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0DB210F11F
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Mar 2024 16:49:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1710434964; x=1741970964;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=x0Mh7Fd1wEpgK54SVPaqd2EvZQA8nqt4Z8BdoONY5sA=;
+ b=YjP0sAGPAhaJ5qPyyIwM+ljub77aBu+s1Zcql5szowkWqvhT3eReaZj1
+ kDVUE3mGeCzeVZ0+HqrNKY3AJOis1Uqlgn0n8Czq5+vA+oBTER1NrOwI3
+ SXAI0o8eldAbmxan/FUis/4JSWxXm6ZwAsmN8GOPfGbrPnmMZYQCYTc1F
+ Gg1p9p5HInGowmlM5EyvUvCKNY5HHu7Ia1iWV49fN2MZMAqrdIABNAHV2
+ f9Ww2kARYcRzboAWxa3Y1xVBVQq9wEGGOVpg0jJYLbI9QdYjAgd+neTvC
+ 2071eEWJQzK/oJ2ZBhQ0uVqAaI68XK0tW4CFm7wxJdz0dxKuxv9pSkPn9 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11013"; a="9047022"
+X-IronPort-AV: E=Sophos;i="6.07,126,1708416000"; 
+   d="scan'208";a="9047022"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2024 09:49:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,126,1708416000"; d="scan'208";a="12290165"
+Received: from unknown (HELO mwauld-mobl1.intel.com) ([10.245.244.240])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2024 09:49:22 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Subject: [PATCH] drm/xe/display: mark DPT with XE_BO_PAGETABLE
+Date: Thu, 14 Mar 2024 16:49:06 +0000
+Message-ID: <20240314164905.239449-2-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.44.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/guc=3A_Don=27t_sup?=
- =?utf-8?q?port_older_GuC_70=2Ex_releases_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 14 Mar 2024 16:49:03 -0000
-Message-ID: <171043494369.754222.4343025985948842593@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240304162616.824884-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20240304162616.824884-1-daniele.ceraolospurio@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,58 +58,49 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Otherwise in the case where we use normal system memory, the CPU access
+will always be cached, like when filling the DPT PTEs, which is likely
+not what we want since HW access could be incoherent on platforms like
+LNL. Marking as XE_BO_PAGETABLE will force wc/uc underneath on such
+platforms.
 
-Series: drm/xe/guc: Don't support older GuC 70.x releases (rev2)
-URL   : https://patchwork.freedesktop.org/series/130677/
-State : success
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+---
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-== Summary ==
-
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-a9eb1ac8298ef9f9146567c29fa762d8e9efa1ef
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit efa54ccd2ca3637cc410ca7b4750c843293759e6
-Author: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Date:   Mon Mar 4 08:26:16 2024 -0800
-
-    drm/xe/guc: Don't support older GuC 70.x releases
-    
-    Supporting older GuC versions comes with baggage, both on the coding
-    side (due to interfaces only being available from a certain version
-    onwards) and on the testing side (due to having to make sure the driver
-    works as expected with older GuCs).
-    Since all of our Xe platform are still under force probe, we haven't
-    committed to support any specific GuC version and we therefore don't
-    need to support the older once, which means that we can force a bottom
-    limit to what GuC we accept. This allows us to remove any conditional
-    statements based on older GuC versions and also to approach newer
-    additions knowing that we'll never attempt to load something older
-    than our minimum requirement.
-    
-    As an initial value, the minimum expected version is set to 70.19,
-    which is the version currently in the firmware table, but the
-    expectation is that this will be bumbed every time we update the
-    table, until we remove the force probe.
-    
-    Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-    Cc: John Harrison <John.C.Harrison@Intel.com>
-    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-    Cc: Matt Roper <matthew.d.roper@intel.com>
-    Cc: Matthew Brost <matthew.brost@intel.com>
-    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-    Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-+ /mt/dim checkpatch 6ef6a88b113169e4637be283b2514cfed22f8d99 drm-intel
-efa54ccd2ca3 drm/xe/guc: Don't support older GuC 70.x releases
-
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 722c84a56607..b220f136be70 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -100,17 +100,20 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
+ 		dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
+ 					   ttm_bo_type_kernel,
+ 					   XE_BO_CREATE_VRAM0_BIT |
+-					   XE_BO_CREATE_GGTT_BIT);
++					   XE_BO_CREATE_GGTT_BIT |
++					   XE_BO_PAGETABLE);
+ 	else
+ 		dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
+ 					   ttm_bo_type_kernel,
+ 					   XE_BO_CREATE_STOLEN_BIT |
+-					   XE_BO_CREATE_GGTT_BIT);
++					   XE_BO_CREATE_GGTT_BIT |
++					   XE_BO_PAGETABLE);
+ 	if (IS_ERR(dpt))
+ 		dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
+ 					   ttm_bo_type_kernel,
+ 					   XE_BO_CREATE_SYSTEM_BIT |
+-					   XE_BO_CREATE_GGTT_BIT);
++					   XE_BO_CREATE_GGTT_BIT |
++					   XE_BO_PAGETABLE);
+ 	if (IS_ERR(dpt))
+ 		return PTR_ERR(dpt);
+ 
+-- 
+2.44.0
 
