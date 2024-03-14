@@ -4,28 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7ACFC5475B
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Mar 2024 10:38:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF359C5475B
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Mar 2024 10:53:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AA2D10E095;
-	Thu, 14 Mar 2024 10:38:00 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B63E310ECF7;
- Thu, 14 Mar 2024 10:37:58 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id B923F10F2B6;
+	Thu, 14 Mar 2024 10:53:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HVBBkuQe";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3862710FA4E
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Mar 2024 10:53:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1710413604; x=1741949604;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=5S/pTuSTZ2bJjpLjfukOAZoYbRUEHexk2fwO24C9PHM=;
+ b=HVBBkuQe+JkdaZ629hjwN665rojUNiRcCRhE8mNvAM+Ir5dTwAeJBIf+
+ /TrAYnRywrQ2gyUtTEVzH53DXAmR0ac39tdoae1J5x9UuscXxGRfUAn78
+ 78SvU25QOjqndOHNL3Udt+V6rR3h7QmHI2YGqQd6yEm1LBwzxhegupAfR
+ NuIHzuHk6XaMRbexpC3KHOgtfNjVSdCsQtSyMsOKbcby2MO9+0jhDTraQ
+ qkcxqK8OcpA4oveFtLsu0L5ShjCdLutLkuVd2lfSZvhuBxDgn5L+53aTF
+ 1rmj4DTC8KFXXxq5Nq2s15IgU9FPSJIcbqZ9M7CPkyxMIK5fNgX5L5tNP Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11012"; a="5075612"
+X-IronPort-AV: E=Sophos;i="6.07,125,1708416000"; 
+   d="scan'208";a="5075612"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2024 03:53:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,125,1708416000"; d="scan'208";a="16847405"
+Received: from unknown (HELO [10.245.244.240]) ([10.245.244.240])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2024 03:53:22 -0700
+Message-ID: <73503874-c5d7-4f73-a9e9-7ff62cb5745b@intel.com>
+Date: Thu, 14 Mar 2024 10:53:20 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_series_starting_with_=5B?=
- =?utf-8?q?1/3=5D_drm/xe=3A_Fix_out-of-bounds_warning_in_vm=5Fbind=5Fioctl?=
- =?utf-8?q?=5Fcheck=5Fargs?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nirmoy Das" <nirmoy.das@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 14 Mar 2024 10:37:58 -0000
-Message-ID: <171041267874.754222.18282337366806391269@8e613ede5ea5>
-X-Patchwork-Hint: ignore
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] drm/xe: Warn on NULL job when user fence used in
+ xe_sync_entry_signal
+Content-Language: en-GB
+To: Nirmoy Das <nirmoy.das@intel.com>, intel-xe@lists.freedesktop.org,
+ Matthew Brost <matthew.brost@intel.com>
 References: <20240314095442.32153-1-nirmoy.das@intel.com>
-In-Reply-To: <20240314095442.32153-1-nirmoy.das@intel.com>
+ <20240314095442.32153-3-nirmoy.das@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20240314095442.32153-3-nirmoy.das@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,37 +64,44 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 14/03/2024 09:54, Nirmoy Das wrote:
+> Added a check and warn for NULL job when sync->type is
+> DRM_XE_SYNC_TYPE_USER_FENCE to prevent potential crashes
+> and aid in debugging
+> 
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_sync.c | 10 +++++++---
+>   1 file changed, 7 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
+> index 02c9577fe418..fae466ba8e75 100644
+> --- a/drivers/gpu/drm/xe/xe_sync.c
+> +++ b/drivers/gpu/drm/xe/xe_sync.c
+> @@ -255,9 +255,13 @@ void xe_sync_entry_signal(struct xe_sync_entry *sync, struct xe_sched_job *job,
+>   			dma_fence_put(fence);
+>   		}
+>   	} else if (sync->type == DRM_XE_SYNC_TYPE_USER_FENCE) {
+> -		job->user_fence.used = true;
+> -		job->user_fence.addr = sync->addr;
+> -		job->user_fence.value = sync->timeline_value;
+> +		if (job) {
+> +			job->user_fence.used = true;
+> +			job->user_fence.addr = sync->addr;
+> +			job->user_fence.value = sync->timeline_value;
+> +		} else {
+> +			XE_WARN_ON("NULL job passed with DRM_XE_SYNC_TYPE_USER_FENCE");
 
-Series: series starting with [1/3] drm/xe: Fix out-of-bounds warning in vm_bind_ioctl_check_args
-URL   : https://patchwork.freedesktop.org/series/131129/
-State : success
+Just wondering if it might be better to just let it crash if that ever 
+happens? Assumption is that it's impossible and would be programmer error.
 
-== Summary ==
+Matt, any thoughts here?
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 9bedef916cef04bba9e98430c1c1de637219a573
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+> +		}
+>   	}
+>   }
+>   
