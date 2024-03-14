@@ -4,26 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14E6DC5475B
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Mar 2024 06:31:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97AF8C54E5D
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Mar 2024 07:38:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A858410F8F0;
-	Thu, 14 Mar 2024 06:31:53 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 975C510F8EE;
- Thu, 14 Mar 2024 06:31:52 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8544590720623159391=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DB0B10E305;
+	Thu, 14 Mar 2024 07:38:23 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Uq0jUH6f";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 916B610E305;
+ Thu, 14 Mar 2024 07:38:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1710401903; x=1741937903;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=UfqNqBz/Iv0wLPeWGEHMF0OaaGHEjrE2N6VKy1MzreE=;
+ b=Uq0jUH6ft5SOtKck7mTlds9Yk1dddzaATGzux4wd1Jq42IIJ9HL6gUMu
+ QoKOOBMmXL6ruWMnfVR990tMbTpGTFJ1nGUKlfTHTih+cNWryLiEyu4Qe
+ xiIhxAzwnAlm+Ufl8CyVyBoOvaYVyMBDmMQq3Ek7TS8d5bf7umxfK3b/2
+ LivJrr2ReLT9X1MTD0BxMn85UlzrdbnU9QqlLG6WFHPBgzKTinFXuX1od
+ YWE6ZCsPOCoFMFMzZWdHqOXtR6geFimcW3DY/zLwPTqbI9fO6NTAjgV8k
+ /i9/VtAl6Ifj8UP3yKV0O9MTWL0kBQYR/01c2N6LfRxNk2ASA3PNnAAdV w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11012"; a="5330850"
+X-IronPort-AV: E=Sophos;i="6.07,124,1708416000"; 
+   d="scan'208";a="5330850"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2024 00:38:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,124,1708416000"; d="scan'208";a="12216645"
+Received: from rscales-mobl4.ger.corp.intel.com (HELO hazy.ger.corp.intel.com)
+ ([10.251.209.110])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2024 00:38:20 -0700
+From: Luca Coelho <luciano.coelho@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, uma.shankar@intel.com,
+ ville.syrjala@linux.intel.com, jani.nikula@intel.com
+Subject: [PATCH v2 0/4] drm/i915/display: DMC wakelock implementation
+Date: Thu, 14 Mar 2024 09:37:48 +0200
+Message-Id: <20240314073752.1245879-1-luciano.coelho@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe=3A_Refactor_BO_flags?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 14 Mar 2024 06:31:52 -0000
-Message-ID: <171039791262.753907.1073892033267196048@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240314052619.2628396-1-lucas.demarchi@intel.com>
-In-Reply-To: <20240314052619.2628396-1-lucas.demarchi@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,122 +60,53 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8544590720623159391==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi,
 
-== Series Details ==
+This is the fourth version of my series, the second as a proper
+patchset.  Now sent for the drm-tip (intel-gfx).
 
-Series: drm/xe: Refactor BO flags
-URL   : https://patchwork.freedesktop.org/series/131120/
-State : failure
+The changes comparing to v1 are just addressing Gustavo's comments.
+The major changes are:
 
-== Summary ==
+  * Enable/disable the wakelocks on DC5-6 entry and exit instead of on
+    DMC load and unload;
+  * Added bspec link to the commit message;
+  * A bunch of other small changes.
 
-CI Bug Log - changes from xe-938-96e47e3f3a5952e104d56352872becdc0048d26e_BAT -> xe-pw-131120v1_BAT
-====================================================
+For the complete list of changes and discussions, please look at the
+patchset in patchwork: https://patchwork.freedesktop.org/series/128628/
 
-Summary
--------
+Please review.
 
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-131120v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-131120v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (4 -> 0)
-------------------------------
-
-  ERROR: It appears as if the changes made in xe-pw-131120v1_BAT prevented too many machines from booting.
-
-  Missing    (4): bat-pvc-2 bat-dg2-oem2 bat-adlp-7 bat-atsm-2 
+Cheers,
+Luca.
 
 
-Changes
--------
+Luca Coelho (4):
+  drm/i915/display: add support for DMC wakelocks
+  drm/i915/display: don't allow DMC wakelock on older hardware
+  drm/i915/display: add module parameter to enable DMC wakelock
+  drm/i915/display: tie DMC wakelock to DC5/6 state transitions
 
-  No changes found
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/display/intel_de.h       |  97 ++++++-
+ .../gpu/drm/i915/display/intel_display_core.h |   2 +
+ .../drm/i915/display/intel_display_driver.c   |   1 +
+ .../drm/i915/display/intel_display_params.c   |   5 +
+ .../drm/i915/display/intel_display_params.h   |   1 +
+ .../i915/display/intel_display_power_well.c   |   7 +
+ drivers/gpu/drm/i915/display/intel_dmc.c      |   4 +
+ drivers/gpu/drm/i915/display/intel_dmc_regs.h |   6 +
+ drivers/gpu/drm/i915/display/intel_dmc_wl.c   | 244 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dmc_wl.h   |  30 +++
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ 12 files changed, 391 insertions(+), 8 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dmc_wl.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dmc_wl.h
 
+-- 
+2.39.2
 
-Build changes
--------------
-
-  * IGT: IGT_7760 -> IGT_7761
-  * Linux: xe-938-96e47e3f3a5952e104d56352872becdc0048d26e -> xe-pw-131120v1
-
-  IGT_7760: 7760
-  IGT_7761: 67af6998a7e0467a7a0718cbbfe05a9fd383206f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-938-96e47e3f3a5952e104d56352872becdc0048d26e: 96e47e3f3a5952e104d56352872becdc0048d26e
-  xe-pw-131120v1: 131120v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131120v1/index.html
-
---===============8544590720623159391==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Refactor BO flags</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131120/">https://patchwork.freedesktop.org/series/131120/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131120v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131120v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-938-96e47e3f3a5952e104d56352872becdc0048d26e_BAT -&gt; xe-pw-131120v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-131120v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-131120v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (4 -&gt; 0)</h2>
-<p>ERROR: It appears as if the changes made in xe-pw-131120v1_BAT prevented too many machines from booting.</p>
-<p>Missing    (4): bat-pvc-2 bat-dg2-oem2 bat-adlp-7 bat-atsm-2 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7760 -&gt; IGT_7761</li>
-<li>Linux: xe-938-96e47e3f3a5952e104d56352872becdc0048d26e -&gt; xe-pw-131120v1</li>
-</ul>
-<p>IGT_7760: 7760<br />
-  IGT_7761: 67af6998a7e0467a7a0718cbbfe05a9fd383206f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-938-96e47e3f3a5952e104d56352872becdc0048d26e: 96e47e3f3a5952e104d56352872becdc0048d26e<br />
-  xe-pw-131120v1: 131120v1</p>
-
-</body>
-</html>
-
---===============8544590720623159391==--
