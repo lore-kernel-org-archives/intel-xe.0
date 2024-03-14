@@ -4,27 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34013C54E60
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Mar 2024 19:17:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08D36C54E60
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Mar 2024 19:17:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B296A10F5F7;
-	Thu, 14 Mar 2024 19:17:35 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED34810E795;
- Thu, 14 Mar 2024 19:17:34 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFD4910F38C;
+	Thu, 14 Mar 2024 19:17:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Nefsyn5j";
+	dkim-atps=neutral
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com
+ [209.85.208.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87FB810F9D0
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Mar 2024 19:17:45 +0000 (UTC)
+Received: by mail-ed1-f42.google.com with SMTP id
+ 4fb4d7f45d1cf-563c595f968so1748793a12.0
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Mar 2024 12:17:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1710443864; x=1711048664; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:to:subject:reply-to:user-agent:mime-version:date
+ :message-id:from:to:cc:subject:date:message-id:reply-to;
+ bh=3ZhzbajSi0eNhbPPNhshTMy+0Fic2MeSQi61SNXVtks=;
+ b=Nefsyn5juH90PsBqP3d5nUClJWz/7IRCsGBAIuEvr96QNjNMdz47ZBfn1qEPSxtWsb
+ /u+dPRtX173qLaQchy7/xTZ4n8ilKv2WEHHKQrv3EWQUPMYAYuML493mbpODVXJf4sFy
+ 8QoKblpanSo0JjbQFJdgmd6uMyIWtF544/iwX70N/5gaOCLjv38rSvl3StOVcUq6N+R0
+ JCYJNjaZRp9PsK0hLr/BHj0samK9cppfpaXBhOLgfvEJmnxBeYQwn4CeFikDilz1+Wkx
+ p+IujJSqKvsW52l8nx84ag4GnojL+htDPARTTUekVztDQD4Fk8HbBU45mjLxKRtakK/y
+ Dl9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1710443864; x=1711048664;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:to:subject:reply-to:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=3ZhzbajSi0eNhbPPNhshTMy+0Fic2MeSQi61SNXVtks=;
+ b=bOu2xCSVthWWXaPka0aXrMf3Rbu6dh68JV9S0dwV5HHJSzl7EYDXZI5L05UtM8PPa7
+ /Tw+Zg80KpnJaTwNCMTAkstU3t//l2zMUqMWhWN/9g+d0FsCHGoWIl1WwjaN0P1DkzRm
+ qMUqlOzcwwTDRLDauyE481g067Dg4mbOl5roe3/lK7cmM/P61e7DBHIQL9yQi2z9Zubi
+ 61WkBJOipfE6oU0h7eMoc/nhZRgoqUpU9tUkahMHPYC4/8jvvym4t0SPR5Du7mMnS7yh
+ pV2hiHoywrBja8rGTN5FOZvlFRsNl/EwOXVeu3SzY3iPvVIswrL/QpSkuVMieq7QW9ui
+ 7mug==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU8p8udinIhhguWb6Om8pDPw0bx/zIgAaiygf+97ZgOiaoFlHC+SdWwCIV2OvrbmHDg5gp39kloBK5tR3PFe6nZ6eizig+7O5YctZIRQvQ=
+X-Gm-Message-State: AOJu0Yw1esitrxNU2XrTwjeJpcIN470okOJDsWJktKawO6QqNh2LxcTk
+ YDvBjmXDN1/3z+XPXr31w7v9fYNwEfaYn/6Jurlq4UpYo/EeL2zqzMC9NKg2W5oGmw==
+X-Google-Smtp-Source: AGHT+IFAlgppbJhSVV3BEczMVfp7hm14GvZV70RPkT5F0ZdoT6cxxMm2FFFEVezww1UO2vYs3lMPXg==
+X-Received: by 2002:a05:6402:530f:b0:568:a67f:34af with SMTP id
+ eo15-20020a056402530f00b00568a67f34afmr1159168edb.17.1710443863574; 
+ Thu, 14 Mar 2024 12:17:43 -0700 (PDT)
+Received: from [0.0.0.0] ([134.134.137.84])
+ by smtp.googlemail.com with ESMTPSA id
+ o1-20020aa7dd41000000b00568830944f9sm970237edw.19.2024.03.14.12.17.41
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 14 Mar 2024 12:17:43 -0700 (PDT)
+Message-ID: <a14651ca-1f4a-462d-b6d1-daa3694e47b8@gmail.com>
+Date: Thu, 14 Mar 2024 21:17:38 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Refactor_BO_fla?=
- =?utf-8?q?gs_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 14 Mar 2024 19:17:34 -0000
-Message-ID: <171044385497.756215.16362455807265303471@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240314052619.2628396-1-lucas.demarchi@intel.com>
-In-Reply-To: <20240314052619.2628396-1-lucas.demarchi@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe/display: mark dpt as uncached
+To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
+References: <20240314162054.75751-1-juhapekka.heikkila@gmail.com>
+ <4c12d45a-366d-454e-ba1d-af813732c551@intel.com>
+Content-Language: en-US
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+In-Reply-To: <4c12d45a-366d-454e-ba1d-af813732c551@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,85 +81,98 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: juhapekka.heikkila@gmail.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 14.3.2024 19.05, Matthew Auld wrote:
+> On 14/03/2024 16:20, Juha-Pekka Heikkila wrote:
+>> make dpt as uncached to avoid pipe faults on some devices
+> 
+> s/make/Mark/
+> 
+> Also missing full stop.
+> 
+>>
+>> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+> 
+> Did this help on ADL btw? I don't think there are any PAT bits in the 
+> GGTT on that hw so this just noops, right? Or am I misremembering...
 
-Series: drm/xe: Refactor BO flags (rev2)
-URL   : https://patchwork.freedesktop.org/series/131120/
-State : warning
+adlp go through here setting up dpt..but turn out there was bit of 
+mismatch is results. I don't have proper hw to test and my friend 
+initially thought this fixed dpt issues on adlp. Turn out he had changed 
+fbdev configs that affected results, which maybe point towards some 
+issue on stolen. I'll yet need to ask for more logs from him.
 
-== Summary ==
+> 
+> In addition to this I think we might also want something like:
+> https://patchwork.freedesktop.org/series/131148/
+> 
+>> ---
+>>   drivers/gpu/drm/xe/display/xe_fb_pin.c | 10 +++++-----
+>>   1 file changed, 5 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c 
+>> b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+>> index 722c84a56607..98592994c8d4 100644
+>> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+>> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+>> @@ -30,7 +30,7 @@ write_dpt_rotated(struct xe_bo *bo, struct iosys_map 
+>> *map, u32 *dpt_ofs, u32 bo_
+>>           for (row = 0; row < height; row++) {
+>>               u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * 
+>> XE_PAGE_SIZE,
+>> -                                  xe->pat.idx[XE_CACHE_WB]);
+>> +                                  xe->pat.idx[XE_CACHE_NONE]);
+>>               iosys_map_wr(map, *dpt_ofs, u64, pte);
+>>               *dpt_ofs += 8;
+>> @@ -62,7 +62,7 @@ write_dpt_remapped(struct xe_bo *bo, struct 
+>> iosys_map *map, u32 *dpt_ofs,
+>>           for (column = 0; column < width; column++) {
+>>               iosys_map_wr(map, *dpt_ofs, u64,
+>>                        pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
+>> -                     xe->pat.idx[XE_CACHE_WB]));
+>> +                     xe->pat.idx[XE_CACHE_NONE]));
+>>               *dpt_ofs += 8;
+>>               src_idx++;
+>> @@ -119,7 +119,7 @@ static int __xe_pin_fb_vma_dpt(struct 
+>> intel_framebuffer *fb,
+>>           for (x = 0; x < size / XE_PAGE_SIZE; x++) {
+>>               u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x * XE_PAGE_SIZE,
+>> -                                  xe->pat.idx[XE_CACHE_WB]);
+>> +                                  xe->pat.idx[XE_CACHE_NONE]);
+>>               iosys_map_wr(&dpt->vmap, x * 8, u64, pte);
+>>           }
+>> @@ -165,7 +165,7 @@ write_ggtt_rotated(struct xe_bo *bo, struct 
+>> xe_ggtt *ggtt, u32 *ggtt_ofs, u32 bo
+>>           for (row = 0; row < height; row++) {
+>>               u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * 
+>> XE_PAGE_SIZE,
+>> -                                  xe->pat.idx[XE_CACHE_WB]);
+>> +                                  xe->pat.idx[XE_CACHE_NONE]);
+>>               xe_ggtt_set_pte(ggtt, *ggtt_ofs, pte);
+>>               *ggtt_ofs += XE_PAGE_SIZE;
+>> @@ -211,7 +211,7 @@ static int __xe_pin_fb_vma_ggtt(struct 
+>> intel_framebuffer *fb,
+>>           for (x = 0; x < size; x += XE_PAGE_SIZE) {
+>>               u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x,
+>> -                                  xe->pat.idx[XE_CACHE_WB]);
+>> +                                  xe->pat.idx[XE_CACHE_NONE]);
+> 
+> This looks unrelated to DPT? Maybe tweak the commit title/message.
+> 
+> Anyway, I think change looks reasonable since you usually don't want to 
+> mess around with caching for display stuff.
+> 
+> With commit title/message tweaked,
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-a9eb1ac8298ef9f9146567c29fa762d8e9efa1ef
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 979d5ad4e62e9165c6dac5847c9ae8f62eff13bb
-Author: Lucas De Marchi <lucas.demarchi@intel.com>
-Date:   Wed Mar 13 22:26:19 2024 -0700
+Thanks
 
-    drm/xe: Normalize bo flags macros
-    
-    The flags stored in the BO grew over time without following
-    much a naming pattern. First of all, get rid of the _BIT suffix that was
-    banned from everywhere else due to the guideline in
-    drivers/gpu/drm/i915/i915_reg.h that xe kind of follows:
-    
-            Define bits using ``REG_BIT(N)``. Do **not** add ``_BIT`` suffix to the name.
-    
-    Here the flags aren't for a register, but it's good practice to keep it
-    consistent.
-    
-    Second divergence on names is the use or not of "CREATE". This is
-    because most of the flags are passed to xe_bo_create*() family of
-    functions, changing its behavior. However, since the flags are also
-    stored in the bo itself and checked elsewhere in the code, it seems
-    better to just omit the CREATE part.
-    
-    With those 2 guidelines, all the flags are given the form
-    XE_BO_FLAG_<FLAG_NAME> with the following commands:
-    
-            git grep -le "XE_BO_" -- drivers/gpu/drm/xe | xargs sed -i \
-                    -e "s/XE_BO_\([_A-Z0-9]*\)_BIT/XE_BO_\1/g" \
-                    -e 's/XE_BO_CREATE_/XE_BO_FLAG_/g'
-            git grep -le "XE_BO_" -- drivers/gpu/drm/xe | xargs sed -i -r \
-                    -e 's/XE_BO_(DEFER_BACKING|SCANOUT|FIXED_PLACEMENT|PAGETABLE|NEEDS_CPU_ACCESS|NEEDS_UC|INTERNAL_TEST|INTERNAL_64k)/XE_BO_FLAG_\1/g'
-    
-    And then the defines in drivers/gpu/drm/xe/xe_bo.h are adjusted to
-    follow the coding style.
-    
-    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-    Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-+ /mt/dim checkpatch f5246a1cf97dd1b9bf955148b0ca2cbf0b18d31e drm-intel
-cae87073d223 drm/xe: Stop passing user flag to xe_bo_create_user()
-979d5ad4e62e drm/xe: Normalize bo flags macros
--:11: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#11: 
-	Define bits using ``REG_BIT(N)``. Do **not** add ``_BIT`` suffix to the name.
+/Juha-Pekka
 
--:109: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#109: FILE: drivers/gpu/drm/xe/display/intel_fbdev_fb.c:56:
-+					  XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(dev_priv)) |
-
--:598: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
-#598: FILE: drivers/gpu/drm/xe/xe_bo.c:1327:
-+	if (flags & (XE_BO_FLAG_USER|XE_BO_FLAG_SYSTEM))
- 	                            ^
-
--:824: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'tile' - possible side-effects?
-#824: FILE: drivers/gpu/drm/xe/xe_bo.h:34:
-+#define XE_BO_FLAG_VRAM_IF_DGFX(tile) (IS_DGFX(tile_to_xe(tile)) ? \
-+					XE_BO_FLAG_VRAM0 << (tile)->id : \
-+					XE_BO_FLAG_SYSTEM)
-
-total: 0 errors, 2 warnings, 2 checks, 927 lines checked
-
+> 
+>>               xe_ggtt_set_pte(ggtt, vma->node.start + x, pte);
+>>           }
 
