@@ -4,107 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF0C5C54E5D
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Mar 2024 08:28:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDE71C54E5D
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Mar 2024 08:52:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97DB010F96E;
-	Thu, 14 Mar 2024 08:28:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8485210E6B1;
+	Thu, 14 Mar 2024 08:52:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="mnRiWAbE";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="KV+d02jv";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="mnRiWAbE";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="KV+d02jv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M3Z9CL1y";
 	dkim-atps=neutral
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E89B510F965;
- Thu, 14 Mar 2024 08:28:36 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 30A6B1F812;
- Thu, 14 Mar 2024 08:28:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1710404915; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=W/PwK9NmBZy7kAoDA/4HoaQwsTKIoX8v8arhci1DZhY=;
- b=mnRiWAbEvMTMxB9YnnCWDn3u2k5/jBVQ1C9m44HhPNJUuIw3ZJ5ZGBbUhAE2RLqQmDPjGf
- 9fa/Qkg0yPDrv6v3N5yKZ3fqF3/eSESkice4lIAiYIGcHE8hrzYvIWH/ncrtMdwKmk1l/6
- impDjlH8NA1+ZpC97jUP4hIr5DTxOok=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1710404915;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=W/PwK9NmBZy7kAoDA/4HoaQwsTKIoX8v8arhci1DZhY=;
- b=KV+d02jvSNOSO0AJvzpH+FtyFZnsGbX/gfahX8DItO5vnuRezZEG2bSHyxguDhctqKl735
- nziCWYiF82/ierCg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1710404915; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=W/PwK9NmBZy7kAoDA/4HoaQwsTKIoX8v8arhci1DZhY=;
- b=mnRiWAbEvMTMxB9YnnCWDn3u2k5/jBVQ1C9m44HhPNJUuIw3ZJ5ZGBbUhAE2RLqQmDPjGf
- 9fa/Qkg0yPDrv6v3N5yKZ3fqF3/eSESkice4lIAiYIGcHE8hrzYvIWH/ncrtMdwKmk1l/6
- impDjlH8NA1+ZpC97jUP4hIr5DTxOok=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1710404915;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=W/PwK9NmBZy7kAoDA/4HoaQwsTKIoX8v8arhci1DZhY=;
- b=KV+d02jvSNOSO0AJvzpH+FtyFZnsGbX/gfahX8DItO5vnuRezZEG2bSHyxguDhctqKl735
- nziCWYiF82/ierCg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id B15171386D;
- Thu, 14 Mar 2024 08:28:34 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id 7p3LKTK18mV7JAAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 14 Mar 2024 08:28:34 +0000
-Date: Thu, 14 Mar 2024 09:28:33 +0100
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-next-fixes
-Message-ID: <20240314082833.GA8761@localhost.localdomain>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 212B110E6B1
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Mar 2024 08:52:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1710406348; x=1741942348;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=PUs2XT3LY5W3U4MvL+a0NAIDFsEP/IgKTT/Ja8W9yUA=;
+ b=M3Z9CL1y8W+hK1x0MkiATIOUkQ5D8tXsVptLexdFJO/goErd23D+/6vk
+ tpOGwxk9h7a1G0UfLH1ixXRaknHUlpSy41ucAc3UVUcF/Un8BWC90zDXS
+ SfulBouhcaVpJwG1S4vaDukIicjN+Sz+NY/8GyahKH5ZPmtLR83V6C0q7
+ rzwu8LHvS+w3Wr3xE8frEW6de9cQIAgPdMoMQZDpXR2fKNrXJNvEe/xmD
+ TukoG1ZANJBU1MweY2JtmOBUfepULbLqBSCFY52fRnu0f9ElnEpksG1RC
+ YKXvNRFjNrEoEEJFVs0ZD0JzZXPJy2U/ZSS+CGlIVeExVu5FmCsfu27Lp w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11012"; a="16607917"
+X-IronPort-AV: E=Sophos;i="6.07,124,1708416000"; d="scan'208";a="16607917"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2024 01:52:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,124,1708416000"; d="scan'208";a="16815658"
+Received: from mstribae-mobl.ger.corp.intel.com (HELO [10.249.254.78])
+ ([10.249.254.78])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2024 01:52:26 -0700
+Message-ID: <5165406f368cc023a5d0fd9879e33b8ac01d8aa7.camel@linux.intel.com>
+Subject: Re: Separating xe_vma- and page-table state
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: "Zeng, Oak" <oak.zeng@intel.com>, "Brost, Matthew"
+ <matthew.brost@intel.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Date: Thu, 14 Mar 2024 09:52:23 +0100
+In-Reply-To: <SA1PR11MB69915B6A778A81CD41F6A544922A2@SA1PR11MB6991.namprd11.prod.outlook.com>
+References: <72ea6bc36260bcc2eaeb97d1abcb8bebf69f3f53.camel@linux.intel.com>
+ <SA1PR11MB699139B15B97B2B056312F41922B2@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <ZfEA5ieJ+M9rttI3@DUT025-TGLU.fm.intel.com>
+ <a8c507084e016186e0fb75c45b826f612ddc6c40.camel@linux.intel.com>
+ <SA1PR11MB69915B6A778A81CD41F6A544922A2@SA1PR11MB6991.namprd11.prod.outlook.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Authentication-Results: smtp-out2.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=mnRiWAbE;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=KV+d02jv
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Spamd-Result: default: False [-4.51 / 50.00]; ARC_NA(0.00)[];
- RCVD_VIA_SMTP_AUTH(0.00)[];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
- FROM_HAS_DN(0.00)[]; TO_DN_SOME(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; MIME_GOOD(-0.10)[text/plain];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- DWL_DNSWL_BLOCKED(0.00)[suse.de:dkim];
- RCVD_COUNT_THREE(0.00)[3];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- DKIM_TRACE(0.00)[suse.de:+]; MX_GOOD(-0.01)[];
- RCPT_COUNT_TWELVE(0.00)[16];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
- FUZZY_BLOCKED(0.00)[rspamd.com]; FROM_EQ_ENVFROM(0.00)[];
- MIME_TRACE(0.00)[0:+]; NEURAL_HAM_SHORT(-0.20)[-1.000];
- RCVD_TLS_ALL(0.00)[]; BAYES_HAM(-3.00)[100.00%]
-X-Rspamd-Queue-Id: 30A6B1F812
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,80 +72,163 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+On Wed, 2024-03-13 at 17:06 +0000, Zeng, Oak wrote:
+> Hi Thomas,
+>=20
+> For simplicity of the discussion, let's forget about BO vm_bind,
+> forget about memory attributes for a moment... Only consider system
+> allocator. So with the scheme below, we have a gigantic xe_vma in the
+> background holding some immutable state, never split. And we have
+> mutable page-table state which is created during GPU access and
+> destroyed during CPU munmap/invalidation, dynamically
+>=20
+> For the mutable page-table state, you would maintain another RB-tree
+> so you can searching it, as I did=C2=A0 in POC, the tree is in xe_svm. Fo=
+r
+> BO driver, you don=E2=80=99t need this extra tree, you just need the xe_v=
+ma
+> tree as xe_vma has 1:1 mapping with page-table-state for BO driver...
+>=20
+> I saw this scheme can be aligned with my POC....
+>=20
+> Mapping this scheme to the userptr "free without vm_unbind" thing, I
+> can see when user free, we can destroy page-table-state during mmu
+> notifier callback, while keep the xe_vma. Is this also how you look
+> at it?=20
+>=20
+> Need to say, the "free without vm_unbind" thing should only affect
+> our decision temporarily: once system allocator is ready, UMD
+> wouldn't need the userptr vm_bind anymore, so the problem will be
+> more perfectly solved with system allocator - umd just remove the
+> vm_bind, things would magically work with system allocator. I guess
+> what user need is really a system allocator but we don't have it at
+> that time, so userptr technology is used. For long term, system
+> allocator should eventually replace userptr.
 
-here's the PR for drm-misc-next-fixes for this week. There's a fix
-for nouveau BOs and quite a few fixes for get_modes() functions.
+I mostly agree on the above, I think.
 
-Best regards
-Thomas
+>=20
+> One thing I can't picture clearly is, how hard is it to change the
+> current xekmd to separate xe_vma into mutable and unmutable?
 
-drm-misc-next-fixes-2024-03-14:
-Short summary of fixes pull:
+It's not that hard at all, it's mostly changing the xe_pt.c interfaces.
+An obstacle, though, is that we don't want to do this before Matt's big
+vm_bind refactoring is reviewed and in place.
 
-probe-helper:
-- never return negative values from .get_modes() plus driver fixes
+> =20
+>=20
+> Is the split scheme with xe_vma maintaining both mutable and
+> unmutable simpler? It doesn't have xe_svm concept. No
+> xe_svm_range/page_table-state, single RB tree per gpuvm, no need to
+> re-construct xe_vma....depending on how we want to solve the multiple
+> device problem, the xe_svm concept can come back though...
 
-nouveau:
-- clear bo resource bus after eviction
-- documentation fixes
-The following changes since commit 838f865802b9f26135ea7df4e30f89ac2f50c23e:
+For the ordinary VMA types we have today, Userptr / Bo /NULL it's
+neither simpler nor more complex IMO, but it makes the code clearer and
+hopefully easier to maintain.
 
-  arch/powerpc: Remove <linux/fb.h> from backlight code (2024-03-07 13:34:14 +0100)
+For hmmptr/SVM system it's too early to answer. Here it depends really
+on whether 1) we do an 1:1 mapping between xe_vma and svm_range, or
+whether 2) we do an 1:N mapping of xe_vma and svm_range. Probably both
+approaches have their benefits so I'd tend to favour Matt's suggestion
+there that we start off with 1), make it work and then do a POC with 2)
+to see what it looks like.
 
-are available in the Git repository at:
+Comments, suggestions?
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-fixes-2024-03-14
+/Thomas
 
-for you to fetch changes up to 9dd81b2e1ec72a3759f8d6bb6e9cbef93aab6227:
 
-  drm/exynos: simplify the return value handling in exynos_dp_get_modes() (2024-03-13 10:44:14 +0200)
+>=20
+> Oak
+>=20
+> > -----Original Message-----
+> > From: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > Sent: Wednesday, March 13, 2024 6:56 AM
+> > To: Brost, Matthew <matthew.brost@intel.com>; Zeng, Oak
+> > <oak.zeng@intel.com>
+> > Cc: intel-xe@lists.freedesktop.org
+> > Subject: Re: Separating xe_vma- and page-table state
+> >=20
+> > On Wed, 2024-03-13 at 01:27 +0000, Matthew Brost wrote:
+> > > On Tue, Mar 12, 2024 at 05:02:20PM -0600, Zeng, Oak wrote:
+> > > > Hi Thomas,
+> > >=20
+> > >=20
+> >=20
+> > ....
+> >=20
+> > > Thomas:
+> > >=20
+> > > I like the idea of VMAs in the PT code function being marked as
+> > > const
+> > > and having the xe_pt_state as non const. It makes ownership very
+> > > clear.
+> > >=20
+> > > Not sure how that will fit into [1] as that series passes around
+> > > a "struct xe_vm_ops" which is a list of "struct xe_vma_op". It
+> > > does
+> > > this
+> > > to make "struct xe_vm_ops" a single atomic operation. The VMAs
+> > > are
+> > > extracted either the GPUVM base operation or "struct xe_vma_op".
+> > > Maybe
+> > > these can be const? I'll look into that but this might not work
+> > > out
+> > > in
+> > > practice.
+> > >=20
+> > > Agree also unsure how 1:N xe_vma <-> xe_pt_state relationship
+> > > fits in
+> > > hmmptrs. Could you explain your thinking here?
+> >=20
+> > There is a need for hmmptrs to be sparse. When we fault we create a
+> > chunk of PTEs that we populate. This chunk could potentially be
+> > large
+> > and covering the whole CPU vma or it could be limited to, say 2MiB
+> > and
+> > aligned to allow for large page-table entries. In Oak's POC these
+> > chunks are called "svm ranges"
+> >=20
+> > So the question arises, how do we map that to the current vma
+> > management and page-table code? There are basically two ways:
+> >=20
+> > 1) Split VMAs so they are either fully populated or unpopulated,
+> > each
+> > svm_range becomes an xe_vma.
+> > 2) Create xe_pt_range / xe_pt_state whatever with an 1:1 mapping
+> > with
+> > the svm_mange and a 1:N mapping with xe_vmas.
+> >=20
+> > Initially my thinking was that 1) Would be the simplest approach
+> > with
+> > the code we have today. I lifted that briefly with Sima and he
+> > answered
+> > "And why would we want to do that?", and the answer at hand was ofc
+> > that the page-table code worked with vmas. Or rather that we mix
+> > vma
+> > state (the hmmptr range / attributes) and page-table state (the
+> > regions
+> > of the hmmptr that are actually populated), so it would be a
+> > consequence of our current implementation (limitations).
+> >=20
+> > With the suggestion to separate vma state and pt state, the xe_svm
+> > ranges map to pt state and are managed per hmmptr vma. The vmas
+> > would
+> > then be split mainly as a result of UMD mapping something else (bo)
+> > on
+> > top, or UMD giving new memory attributes for a range (madvise type
+> > of
+> > operations).
+> >=20
+> > /Thomas
+> >=20
+> >=20
+> >=20
+> >=20
+> >=20
+> >=20
+> >=20
+> >=20
+>=20
 
-----------------------------------------------------------------
-Short summary of fixes pull:
-
-probe-helper:
-- never return negative values from .get_modes() plus driver fixes
-
-nouveau:
-- clear bo resource bus after eviction
-- documentation fixes
-
-----------------------------------------------------------------
-Dave Airlie (1):
-      nouveau: reset the bo resource bus info after an eviction
-
-Jani Nikula (8):
-      drm/probe-helper: warn about negative .get_modes()
-      drm/panel: do not return negative error codes from drm_panel_get_modes()
-      drm/exynos: do not return negative values from .get_modes()
-      drm/bridge: lt8912b: do not return negative values from .get_modes()
-      drm/imx/ipuv3: do not return negative values from .get_modes()
-      drm/vc4: hdmi: do not return negative values from .get_modes()
-      drm/bridge: lt9611uxc: use int for holding number of modes
-      drm/exynos: simplify the return value handling in exynos_dp_get_modes()
-
-Timur Tabi (1):
-      drm/nouveau: fix kerneldoc warnings
-
- drivers/gpu/drm/bridge/lontium-lt8912b.c       | 16 +++++++---------
- drivers/gpu/drm/bridge/lontium-lt9611uxc.c     |  2 +-
- drivers/gpu/drm/drm_panel.c                    | 17 +++++++++++------
- drivers/gpu/drm/drm_probe_helper.c             |  7 +++++++
- drivers/gpu/drm/exynos/exynos_dp.c             |  7 +++----
- drivers/gpu/drm/exynos/exynos_drm_vidi.c       |  4 ++--
- drivers/gpu/drm/exynos/exynos_hdmi.c           |  4 ++--
- drivers/gpu/drm/imx/ipuv3/parallel-display.c   |  4 ++--
- drivers/gpu/drm/nouveau/nouveau_bo.c           |  2 ++
- drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c |  9 +++++++++
- drivers/gpu/drm/vc4/vc4_hdmi.c                 |  2 +-
- include/drm/drm_modeset_helper_vtables.h       |  3 ++-
- 12 files changed, 49 insertions(+), 28 deletions(-)
-
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
