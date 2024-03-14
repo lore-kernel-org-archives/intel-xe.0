@@ -4,142 +4,138 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37709C54E5D
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Mar 2024 17:58:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B92FBC54E5D
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Mar 2024 18:04:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3EB510FC73;
-	Thu, 14 Mar 2024 17:58:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CFC710F51F;
+	Thu, 14 Mar 2024 18:04:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oJaU3spl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iluweDHf";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6597F10FC6F;
- Thu, 14 Mar 2024 17:58:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADCDB10F51F;
+ Thu, 14 Mar 2024 18:04:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710439093; x=1741975093;
+ t=1710439455; x=1741975455;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=o/PjpgUGmf0jFfdfeVti6FCU1Ca+JUer3Ue41mvliUY=;
- b=oJaU3spl4rTd+e0Or+LJ49zajijA75/Apfy5uIwLBrI/yhOB1rDytoaz
- cOieTGJxin1lJTG/ASGnSNHdlZxE/3NRIlvKrpM5fsm6BNekDZxmk/stO
- PuX27IzGfSrB0bEoVzNr7fr0sSPQRQD5obD19izHYlxqWcHITjKFH/g7U
- 5Dy+28aeDfjRUpzDu0QBdpzGU32FezG20OVRG/DSaGkZjYgbSpKYCnfzC
- 3LGOIYxT7Kt7y4fT5Cngqr/0BykVsfevR+qsP5LtnSO/QMSCM19RRRbK+
- 3LQIA2ZyTPdbKwuzVvrPQL244q4ZsFR7VMpZgzjpQxFEsd5iz1/xhd/G4 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11013"; a="16005008"
-X-IronPort-AV: E=Sophos;i="6.07,126,1708416000"; d="scan'208";a="16005008"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2024 10:58:12 -0700
+ in-reply-to:mime-version;
+ bh=g37wYEFgd3WZtyeKTVjyfyuYTM1GnhkQaXan6ih7/6o=;
+ b=iluweDHfnNc/FHLIzBkOdeQv2jMH2tK/1V2Lhgwa+8TJur4wCKHLo3Xn
+ 2cNwMMg8MfRCF9DmFshv6cAVbkB7fD8/douVI0EZrt5mLW5BYvtgi/8vU
+ mEWuzLrS41iHdO51aWFUVFNw9CQ8i68Na6MjFba42Vfxb20HGguYlL79s
+ sl5NNLtQdd09r5d6xh+ZSafCPfV3obGNPIhtp2rgNlFZzK5qQxntZuRec
+ 1A4D5ljPbX+jgAUU0ggKifCfJkuDGJ4udCQSapRRLYODhrJYbE24ednFg
+ MztvU6NVy30HIUOsafU2Y43bknm1PBhF3B6i1VGLh5iqk94+o6feAgZDk Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11013"; a="5149084"
+X-IronPort-AV: E=Sophos;i="6.07,126,1708416000"; 
+   d="scan'208";a="5149084"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2024 11:04:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,126,1708416000"; d="scan'208";a="17040901"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orviesa004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 14 Mar 2024 10:58:13 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.07,126,1708416000"; d="scan'208";a="12280330"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 14 Mar 2024 11:04:13 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 14 Mar 2024 10:58:11 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.1.2507.35; Thu, 14 Mar 2024 11:04:11 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 14 Mar 2024 10:58:11 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Thu, 14 Mar 2024 10:58:11 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Thu, 14 Mar 2024 11:04:11 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.101)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 14 Mar 2024 10:58:10 -0700
+ 15.1.2507.35; Thu, 14 Mar 2024 11:04:11 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mJcJWwami5b9O+9E13pIllTT+yKqMOxFX8gBniouPiFQ/L8nDfVYtYvSXziPrQL+GHZawSOW5SbsWdVncRLaSQ6p8LhkQ7iSjQhhBe+p1jgG3Ombv8CRZLbaYPgOKaeVsyt7PuYgkWHUpt0bc110OlEHXkbBwML8XV9E037cF6z0314gdQUtfAqRwa3Sejo7CP8kQ1W/GfxmsgAr1jsb35AZ1IMh7EiFCqt4wShUTj1T7mTQgh7mmxARPv9vj26XeQ1wXjZJKERk6TbAApU9YDP9biMJLcGLp4xdJGKo5ULvod4+uviknDi7js0lDY3lAG9DiYYGwJpu0y7fAq9OPA==
+ b=Uq3BV5OFQFL5Bt9VgUKRPuFFuuEZrbpEnWxJgw1x1SKOKlZtLTcNyiiS87mfQcYWFiPcWHjpfkiaVEpYnHBQ0Z6w7qJxxlssumxVUYAqneUDrUCL7a0zmBKbUbkpnuPsIA0ofQn6+OoA9fX3auqmSO+QPQ+On/bmbjZRZepkGOPn0u4m0cDPVcMCEtFUJ9QBKGr0JbpeT2tXMLAUe36ZZaeT58dFqkBsgnvGknopRLR1sW7s0o/qDv3HMI8tPatZlxvhGxlgGD9bINdtYc7K10YFGIhbMdEBi3PZsuxXYYyIZuq6cjadLHyVgYLvNoe7Fd7fRex+GicA75KE/dt4XA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mpSbFW9NkDDC+au5Qz3p2+KaGUC4dfp0kfk2sFWnsGY=;
- b=mfvolUWTuVwgxI7QHb8jvsCIANVcaXR120YSbSwu8CC3AnV1KO9SV9jRkVOf0ZZZPTuHdYX8tdNFpZqhS29INLgq+qFQhRUAoOUoMRtNiF/W0SRQ+Zu3+4RzEwQFvrasfVCSwqqug/XPeKrk6j25WSlHYPHR3TImXSMbTRRjtgYqPnCHAB6BRtc03ZFKcgB6DjEAhzt1mmMBJGckOsV4UUC8iz8pI/41nC6X5TYNIv+hxWlIPf32g6buc8hsEAkNP6NmVAatOVtUWh/JYU5YIQtiSIS3ujVfAPr4OGCAf7KPuetUFDdPyPAcLdIIdg3i2I78Q9DFZG44zgEcCWqTSw==
+ bh=w3mo9xQI7A2Q0yvMVE3nziLU1+m/zYRIuHfD2mgDgzw=;
+ b=b6z0ak9IN8iNUpsdqAySpOOXR2NwNNbHYxPFrlLt48+FWcwQfOlqasPmu/REzcFDVMXaIMcvsuThxwb3tDb0pZYUucl7TdjansmG70pj6FbPUopT5PZ6LfvTiPWFSJr5UY6uYD2bO7lTaGD7EqAVVauj5CGgCpzG592RQK3A7LVqboXetewX8P46p7q7Y1T5xGwEJhYMpaR8sqRNzmwrLjlNaHnDyAV6iXstehzcaru5+mpLxdmh60Rludd0c+Mg48stTAk0K2ERsyh29ac4dRD3eYVywVZiSsmKHdpj4nD7OyB1kn9KlxZ2WwZ+X1u8Gn2gDdkZGgPXJEt+0nWvBQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by SN7PR11MB7438.namprd11.prod.outlook.com (2603:10b6:806:32b::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.16; Thu, 14 Mar
- 2024 17:58:03 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::7607:bd60:9638:7189]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::7607:bd60:9638:7189%4]) with mapi id 15.20.7386.017; Thu, 14 Mar 2024
- 17:58:03 +0000
-Date: Thu, 14 Mar 2024 13:57:54 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-CC: <igt-dev@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>, "Himal
- Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
-Subject: Re: [PATCH i-g-t] tests/intel/xe_wedged: Introduce a new test for Xe
- device wedged state
-Message-ID: <ZfM6ogyMbRxQwMkS@intel.com>
-References: <20240313195530.141586-1-rodrigo.vivi@intel.com>
- <rkw7vdk6fssletnevhneqciacoq5rxgbwfb6engvpf4yuqvmqb@x5koe4zreiwo>
-Content-Type: text/plain; charset="iso-8859-1"
+Received: from CY8PR11MB7828.namprd11.prod.outlook.com (2603:10b6:930:78::8)
+ by PH7PR11MB6377.namprd11.prod.outlook.com (2603:10b6:510:1fb::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.23; Thu, 14 Mar
+ 2024 18:04:08 +0000
+Received: from CY8PR11MB7828.namprd11.prod.outlook.com
+ ([fe80::35b3:d12c:df86:fe22]) by CY8PR11MB7828.namprd11.prod.outlook.com
+ ([fe80::35b3:d12c:df86:fe22%7]) with mapi id 15.20.7386.015; Thu, 14 Mar 2024
+ 18:04:08 +0000
+Date: Thu, 14 Mar 2024 19:04:02 +0100
+From: Francois Dugast <francois.dugast@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 02/11] drm/xe: Introduce intel_runtime_pm_get_noresume at
+ compat-i915-headers for display
+Message-ID: <ZfM8EnZZOFpnPCMl@fdugast-desk.home>
+References: <20240314141021.161009-1-rodrigo.vivi@intel.com>
+ <20240314141021.161009-2-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <rkw7vdk6fssletnevhneqciacoq5rxgbwfb6engvpf4yuqvmqb@x5koe4zreiwo>
-X-ClientProxiedBy: BYAPR11CA0048.namprd11.prod.outlook.com
- (2603:10b6:a03:80::25) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+In-Reply-To: <20240314141021.161009-2-rodrigo.vivi@intel.com>
+Organization: Intel Corporation
+X-ClientProxiedBy: ZR0P278CA0115.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:20::12) To CY8PR11MB7828.namprd11.prod.outlook.com
+ (2603:10b6:930:78::8)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|SN7PR11MB7438:EE_
-X-MS-Office365-Filtering-Correlation-Id: 55e80618-a54b-4984-e7e8-08dc445048d1
+X-MS-TrafficTypeDiagnostic: CY8PR11MB7828:EE_|PH7PR11MB6377:EE_
+X-MS-Office365-Filtering-Correlation-Id: 88dd983e-1752-42fd-18c5-08dc445124f5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: MlxBrs1wgMPqGfpuNqWcDpTh13ass70hymK0u26jXOnIju2vcSIqABQKfelstoPpxBC+Vvd3S1JtDaxDts8cbRwNujs9xMIweWkEJmuQsP0CUJrLRhMDfEmS/7fNNpeTRPpkxHADPFZ/TnvpXaH+egtzhoH/wUo55S6kbqjiUc6rBqaGqIzQJiwTZqWIUP49EWx1Tf/jSXWSq3gBeLdAJVZVzOW0TBFA6r/096zCO1le/0hUh0KXh6eG4/QNVKkOmYaTCnfah4fVWg5bfey29YXKNdiQqP4jDrn+l0YZ2HTMJoa/NRZXtYzTRhia3D8eAs2NQdqZD87ZP9JTilT+UMPEsoijr+Q7wYpUP5naI67os5i5+2tPi15NsptmUwCIjuOpY/hQ3A4KcMZqxdtfKp4frut+1SJ1NCxNC7d3m1c9VzEiYi/XMEc032US7FmhO5Gb5xn5zSERT/ipZ+ibRyLcqWPYOEIhDfD4tr9+ZsX0uuKc2y7IiD6fCSJFN3NxkPxCr91q7s655lTxBf8QmSoiin5LKLKAbjU3bhdjIyXxJ3uXozjYWrN+fO4Zn6uK1NUy7h7fs0un4EVyel5ECS9ZVgTW/+TtFxmWzhkAy1TnE2OoDr8do8V9mYS3H5Lxtt+O5BCcKq3+P8Uwy6ueGvfj/mbvO8jGuUdLEnxejL0=
+X-Microsoft-Antispam-Message-Info: jXaYa+W9x7K6ic3UM1eImf73LprfQ9DfdW1Ab0cJrfEYPoXgEbdR0+c0yzhRaipcg6Mlq1EKoPi/VRF9U4wyEbjGP6j4rjW1q54fzerbbbmC65M6wxBtqSnwCUF4HyFPzM5UHep+e3Gy07meF5QYGtmfJX0vDcY/ELbNClsDoOVsAbB7flM/z7t/kL3PC3+VjrKOwa0sqoIq/seeQ0zORcdpcMCceB+2WeLa0iDQ/PknyiEZWSaEcCY0e1Kos8A1rphCoCLqeZO5h0KPaoVoTI8Uznd7z9oawSkC7j+pTqBIRssBr+jfSgYnbGHDyE731au1hnunFRvpjGhWWZJgHA3K8wGl6BSjVOuejClGjJK6HYE0Pts6Y5Q5gEIbKUGc4gD/5KijeE/n4tCwzWrETn/CnY8LXByNsZMYI/bF5RO6+jt16XSeYh+L8Jx7H0jOWgSgoQrM+cVqSqgBwoLVd1PbyyWqhHUSYT/U1wu8D22VO9ecUvdChpJWZKpwyohDlyQQnPlfpNk0noOg0gq++i3mHXqRa2vTSgh+96UsPCcxzVjXPCiy3OOS7vKNTpZFxEzMhW8p4aCdCSDd/ff4lF/hRNWFTde6jJsBRKvzgEhlDiUHO4tUhUvdAOsy3C4cq3UkDa/5dRibmCEAmnykF65y5qoI+gJmRTnrD41OIS0=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(376005); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CY8PR11MB7828.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005)(1800799015); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?0rDvFX/vVXtjFWVBY0sLJnPSO+Ymy/ZAkBOz1TR6yCLd/oTohV5RLL/4nS?=
- =?iso-8859-1?Q?vu7VdKQXiFwj4wBkhvQtKlUsMDKagK/LZLU3e8wKEabeznT5QUFMfqj7Di?=
- =?iso-8859-1?Q?s69P0bMDkloL+HdvF9dJb+Iz7Z8BFaEvOku3ljCJDlp5PDTHaYBfpB2SRX?=
- =?iso-8859-1?Q?E+4lFk1z1JnKGf+kKIes5pNlksBNaTY8OugQS3wi3Z1//ggF8p1m5BmNbp?=
- =?iso-8859-1?Q?w0/rFjPYVXGmGsGsR44d/qnVIHaRDN6pchLajQSoPXQkkF9+jN9KJKFjx4?=
- =?iso-8859-1?Q?ocVlFFjp+H+r/X0DQMOajFTEqoMCVohDi5tLudeYT1PsEDqbKuaS1306f5?=
- =?iso-8859-1?Q?9ykfpSHZ8ucOy/nUv/gwahbiIUm9K9WrQB7KTiCV7pGvVaqzBFDjGrvOxY?=
- =?iso-8859-1?Q?vXxBqVx7hdRue1E4BK3p8oi+4zM+c+F55DSExZBsXRjbhFHOHAp7TLnZTy?=
- =?iso-8859-1?Q?1siENY7YbgLzLh+UmIKyoJwekoLQkEfN87MZgrNPZG4VNyTx7el4TESav2?=
- =?iso-8859-1?Q?KDJSzwUctQkJ7hx3ItpQWZwwB3laPMkOAQsGeNdGzk6MctbGYBuGe5+zoK?=
- =?iso-8859-1?Q?g6iUOM/xrRVxVkuqsKuCBqJVIN+FLVPoIJpJwRUcGJ4Yp46AZB6pnMgMLz?=
- =?iso-8859-1?Q?9QXZf47M0kqIGsTDfr4N+8ftkBTloe8Mhl08P7K3IWuOIFQggZQXe4JrTk?=
- =?iso-8859-1?Q?3AURFQx91AXa5tDLleHDdwMqJq1zEfxmlHDtD045p3WDHlbyL0GrCrHtyS?=
- =?iso-8859-1?Q?kPzdfBDG/eBkseaUlsNZ4mNhev8l1hMaSkOGLoZdHzgLDVkqKLo3SVnwX0?=
- =?iso-8859-1?Q?mBKwJ+DktBPFlR3vTM2JH3S3rgu1rZo1CHJkvRFzfgC0SPtNyPZR+4o4J0?=
- =?iso-8859-1?Q?H9IkyJlFWwHQeZoYN0zfAorXio5JxbnJ7RIokp5G3fulc5FE+VwlLMknXS?=
- =?iso-8859-1?Q?OwpWd5Ev8Xb/g5ZJGCo8Izcso47ZmX3kKiQTbxzdDVSgAa3p0zmwimzw96?=
- =?iso-8859-1?Q?yV2sWi3Loz7DI+4ZCUVyR4EAQ7i8NSS9Lf1xlxaQADcKqcXF6gaVoVgEgr?=
- =?iso-8859-1?Q?RenBORkg+oiHay3Av8+WeZ6Hyixac7vGbhFYBO42bnJ4zZ0PzDs/iHqKP3?=
- =?iso-8859-1?Q?TDFAuJsJE0xPUx39k27L8mdEB3q5x+4Xs2sUitSDDVX89jIBfLg82yDfkt?=
- =?iso-8859-1?Q?155A/MnLUwF9iOPpElYM67k0Gp45aaafevCtOzR6zgP+xboslEz3Xs6tvR?=
- =?iso-8859-1?Q?0yFngvxyMhP2WaY5xOR5xTbdQAgMNB0XuVefFhnxnSGKN8O+XxmkQZa3Kq?=
- =?iso-8859-1?Q?ew7dRGPylue4rT5iOCGBasHhvdZ2QYePeEgc7DMCmESbJamQDfXuDveVFA?=
- =?iso-8859-1?Q?UvWSBEI42MY9FneHxOGuRhB5KV47P9X1pNmiaRvyHV5Deey01vnA58ENx+?=
- =?iso-8859-1?Q?MnUhHWSZU9eSDFcD/VTWeTBTExQHc5K79onRDkLjAkCV+Ko5Iag4Y73ey7?=
- =?iso-8859-1?Q?A4evbudN/tKd5qmGG46iqfCEqfxg9jQlfHSqqsaf12ZXRscUeFqKa5j4Ab?=
- =?iso-8859-1?Q?KZvYRa9gBPikt1BDJJDdG443aTnDe26Kpb0NNCyMAA9wugYDgOl6Og5yCH?=
- =?iso-8859-1?Q?qD7YS3ggfxawRCmQ0UxuIb85/iQo6wQDwY?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 55e80618-a54b-4984-e7e8-08dc445048d1
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?J1AEGIwG30+1Yga3CG4hvVzUElIavPBSfsEhWZ5p3IqHGcmC+mg29KhFhSSS?=
+ =?us-ascii?Q?HjFpyKfutYx0k7MNCafNkOWWmkA2oxMe6qqyX7e45Bs7yTp4egBZCJF0ZXHp?=
+ =?us-ascii?Q?W7K8kQ9jFAM8IG6T4I9ZoK/UOzl0g7BZDMrEj0xR/i12Bgk2/qJ0nQt6P94E?=
+ =?us-ascii?Q?K0ZhyOC2SzwguHgqfrbG27aP2OQueUqjcKB0AFxD31ixq81U6YroHc417+Fz?=
+ =?us-ascii?Q?7pRiJ8q4dhWahnkOzI0J1gYjv3GveUtaXCFYpunX/hTmqkwrpll5W6QhXIRV?=
+ =?us-ascii?Q?3bBhkk9Da4KD9thNTrElnWyheJNmXsiBaXb95kBDh84QU2TEAg2C67iR1sp9?=
+ =?us-ascii?Q?QmL5SBBbEup4udUCaugPTB67U9S0iM/HHf+u5usWSgsLpKVUHPyVo51+S4Jz?=
+ =?us-ascii?Q?5TH5AI4qXn3zPF/eICVmyalvQPdb7r/6BGdYhmEyVehGuhJo7H6tBYEm+Ptx?=
+ =?us-ascii?Q?Hsm7rWUrcurvgO0bdhzFkb/UwMKW0kRZjccq0S5LkVi4LaW5HpKHmrBiLI7q?=
+ =?us-ascii?Q?NSxOzyLrLBq02eWUCQWAtA8sVlvJewTthoNauveLrrEQ0+zKjKi8RObrywbX?=
+ =?us-ascii?Q?pR+Zf2ZQQtAP8oEztjioLDWeSw5qpjHTl1Wo2mY1HrSaIxTq61G62rJxDGVi?=
+ =?us-ascii?Q?SpmCZallKGlhMIrrzwibuQORZ6tYCIPosSIJqDQCgHu1yrsiwCsofwe/g6o1?=
+ =?us-ascii?Q?pw5rgWbSoE22Mfdn+ot5b1qnOGEmxlaUSkwnupp2Bt/0wKtyPibCYZUJ/5UO?=
+ =?us-ascii?Q?XG+RwisIM/kjcjFCkPIc+8ckBlxj7UXfoTSS2cLh4yiZ4DmYMcHIiDA/uL5I?=
+ =?us-ascii?Q?B2lqFsLbzYiWLFOS1I6cDj+3QQO2aeJw6TkhsLXeHCyDMPvsWiAU61Yiivv3?=
+ =?us-ascii?Q?kXo7Y5HJSEVF6UtlFO7GONAxxLC/qA+wdE3HEEXua6spKkKYZINfw8OS9MSK?=
+ =?us-ascii?Q?diTcBdQqxlOPwV0lNrOvREljwsxTHE9ZeNsbWnrGlYM7aQF+++uoyys8Xkq2?=
+ =?us-ascii?Q?GYN2ZKo0TCkjHFky+tNich1zqP+y1HF6mC22312xxNNpjs2ePXfOPTyOHcZd?=
+ =?us-ascii?Q?7nUGKPBILSyJwZckNil6FU3QnM+ArKkGr8xDVCiCvL0jlAL0SrpPbRzFjbis?=
+ =?us-ascii?Q?O1NpbNDRtP7tfWpYYgljxKkEysiqrODT9QDKG1HqrcoH+L5bn+BXofXDCUdA?=
+ =?us-ascii?Q?oHUbUwY+gPoitHAHV3tZ6AddXA20GTgERdMMKtcV+lIuVUQ48I02pnKEJFuH?=
+ =?us-ascii?Q?M/uRDD0i97zy3JUlXN68OZX+X/x6lQpyY58HAVenaM4EMa38LWBwtk3GGGpL?=
+ =?us-ascii?Q?fErHihq4SAarOD9p3tE4npuOIES0HmhDxD18x//VbTZdCb5TpsbJAtxDwr7F?=
+ =?us-ascii?Q?JnWYC5Q5Gpo9uE0XSstTFt/f4vlEgTVQzN/Fq26aA2pmi5JjS9tkrd6F+97r?=
+ =?us-ascii?Q?Br5Aoq4H4NjjuVXSX89eDRRriZOtoNYB97Ucb0AO9dbce2qQXImiY9nsYHTs?=
+ =?us-ascii?Q?G3fHD6ttoR2Zek6Ri7OlWRMeIXWVplzwpSlYOuEPeueosSXZWZRYqz40h0bb?=
+ =?us-ascii?Q?wZfDLJuElSKf+8qIJyQyC9dqjb2stMidEvdmFgiHF0Iha9HnUQedjulahVkV?=
+ =?us-ascii?Q?xg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 88dd983e-1752-42fd-18c5-08dc445124f5
+X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB7828.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2024 17:58:03.1984 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2024 18:04:08.3910 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kBSAMTtij7bd5dr/3Z3uwPczxS4a27bBiAKdzJcNJm5H32f3hb5cy5iMf2WeIcqcnt5r8lumeEser5UXJYdBhg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7438
+X-MS-Exchange-CrossTenant-UserPrincipalName: gt4l1/4BgBC4H2f+1J/BKCO2aSEBbi4W+NmG4H4VgbcgXGmk4o/JKGmISCbRc3m4tO7Q3ZLDCtqCcYptjd5UuHWvhmwu9JAhdOJEvwhLeA0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6377
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -155,193 +151,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Mar 13, 2024 at 03:07:44PM -0500, Lucas De Marchi wrote:
-> On Wed, Mar 13, 2024 at 03:55:28PM -0400, Rodrigo Vivi wrote:
-> > Let's inject a gt_reset failure that will put Xe device in the
-> > new wedged state, then we confirm the IOCTL is blocked and we
-> > reload the driver to get back to a clean state for other test
-> > execution, since wedged state in Xe is a final state that can only
-> > be cleared with a module reload.
-> > 
-> > This new test case is entirely based on xe_uevent provided by
-> > Himal.
-> 
-> /me confused... I don't see any uevent handling here.
+Hi,
 
-the uevent part is gone, but the failure injection came from there.
+On Thu, Mar 14, 2024 at 10:10:12AM -0400, Rodrigo Vivi wrote:
+> The i915-display will start using the intel_runtime_pm_noresume.
+> So we need to add the compat header before it.
+
+Or "So we need to add it to the compat header before"?
 
 > 
-> > 
-> > Cc:  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > ---
-> > tests/intel/xe_wedged.c | 91 +++++++++++++++++++++++++++++++++++++++++
-> > tests/meson.build       |  1 +
-> > 2 files changed, 92 insertions(+)
-> > create mode 100644 tests/intel/xe_wedged.c
-> > 
-> > diff --git a/tests/intel/xe_wedged.c b/tests/intel/xe_wedged.c
-> > new file mode 100644
-> > index 000000000..f767e2511
-> > --- /dev/null
-> > +++ b/tests/intel/xe_wedged.c
-> > @@ -0,0 +1,91 @@
-> > +// SPDX-License-Identifier: MIT
-> > +/*
-> > + * Copyright © 2024 Intel Corporation
-> > + */
-> > +
-> > +/**
-> > + * TEST: cause fake gt reset failure which put Xe device in wedged state
-> > + * Category: Software building block
-> > + * Sub-category: driver
-> > + * Functionality: wedged
-> > + * Test category: functionality test
-> > + */
-> > +
-> > +#include "igt.h"
-> > +#include "igt_kmod.h"
-> > +
-> > +#include "xe/xe_ioctl.h"
-> > +
-> > +static void force_wedged(int fd)
-> > +{
-> > +	igt_debugfs_write(fd, "fail_gt_reset/probability", "100");
-> > +	igt_debugfs_write(fd, "fail_gt_reset/times", "2");
-> > +
-> > +	xe_force_gt_reset(fd, 0);
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> ---
+>  drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
-> humn... do we have to check the writes above did anything?
+> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+> index fef969112b1d..ecaaef3df4bf 100644
+> --- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+> +++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+> @@ -176,6 +176,14 @@ static inline intel_wakeref_t intel_runtime_pm_get_if_in_use(struct xe_runtime_p
+>  	return xe_pm_runtime_get_if_in_use(xe);
+>  }
+>  
+> +static inline intel_wakeref_t intel_runtime_pm_get_noresume(struct xe_runtime_pm *pm)
+> +{
+> +	struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
+> +
+> +	xe_pm_runtime_get_noresume(xe);
+> +	return true;
+> +}
+> +
 
-unfortunately the debugfs_write is a void return...
+LGTM but wondering if this and the next patch in the series should be
+combined in order to have at least one use of this new definition.
 
-we could read it back, but I don't believe it brings anything...
+Either way:
+Reviewed-by: Francois Dugast <francois.dugast@intel.com>
 
->  I also don't
-> see the kernel side, but if it just resets normally, the test would
-> still pass afaics.
+Francois
 
-nope, if the reset works normally without injecting the failure and
-declaring the gt busted, then we would fail below
-
-igt_assert_eq(simple_ioctl(fd), 0);
-force_busted(fd);
-igt_assert_neq(simple_ioctl(fd), 0);
-fd = rebind_xe(fd);
-igt_assert_eq(simple_ioctl(fd), 0);
-
-notice that the middle one is != 0,
-
-
-but I'm considering to change that to
-
-igt_assert_eq(simple_ioctl(fd), -ECANCELED);
-
-for clarity.
-
+>  static inline void intel_runtime_pm_put_unchecked(struct xe_runtime_pm *pm)
+>  {
+>  	struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
+> -- 
+> 2.44.0
 > 
-> > +	sleep(1);
-> > +}
-> > +
-> > +static int reload_xe(int fd)
-> > +{
-> > +	int error;
-> > +
-> > +	drm_close_driver(fd);
-> > +	igt_xe_driver_unload();
-> 
-> 
-> what if we are running on e.g. MTL with a DG2 and want to debug one of
-> them? Rather than re-loading the module and possibly causing unrelated
-> issues (if e.g. module removal from the other card crashes), why not
-> just unbind the module from the card under test?
-> 
-> i.e. the equivalent in C of:
-> 
-> rebind() {
-> 	pci_slot=$1
-> 	echo -n "0000:$pci_slot" > /sys/bus/pci/drivers/$driver/unbind
-> 	echo -n "0000:$pci_slot" > /sys/bus/pci/drivers/$driver/bind
-> }
-
-Thanks, that indeed is a better choice.
-
-the only caveat is that I need to close the main fd client for a proper
-exit before we can rebind cleanly. But I could finally get that working.
-
-> 
-> Lucas De Marchi
-> 
-> > +
-> > +	error = igt_xe_driver_load(NULL);
-> > +
-> > +	igt_assert_eq(error, 0);
-> > +
-> > +	/* driver is ready, check if it's bound */
-> > +	fd = __drm_open_driver(DRIVER_XE);
-> > +	igt_fail_on_f(fd < 0, "Cannot open the xe DRM driver while reloading xe after wedged\n");
-> > +	return fd;
-> > +}
-> > +
-> > +static int simple_ioctl(int fd)
-> > +{
-> > +	int ret;
-> > +
-> > +	struct drm_xe_vm_create create = {
-> > +		.extensions = 0,
-> > +		.flags = 0,
-> > +	};
-> > +
-> > +	ret = igt_ioctl(fd, DRM_IOCTL_XE_VM_CREATE, &create);
-> > +
-> > +	if (ret == 0)
-> > +		xe_vm_destroy(fd, create.vm_id);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +/**
-> > + * SUBTEST: basic-wedged
-> > + * Description: Force Xe device wedged after injecting a failure in GT reset
-> > + */
-> > +igt_main
-> > +{
-> > +	int fd;
-> > +
-> > +	igt_fixture {
-> > +		fd = drm_open_driver(DRIVER_XE);
-> > +		igt_require(igt_debugfs_exists(fd, "fail_gt_reset/probability",
-> > +					       O_RDWR));
-> > +	}
-> > +
-> > +	igt_subtest("basic-wedged") {
-> > +		igt_assert_eq(simple_ioctl(fd), 0);
-> > +		force_wedged(fd);
-> > +		igt_assert_neq(simple_ioctl(fd), 0);
-> > +		fd = reload_xe(fd);
-> > +		igt_assert_eq(simple_ioctl(fd), 0);
-> > +	}
-> > +
-> > +	igt_fixture {
-> > +		if (igt_debugfs_exists(fd, "fail_gt_reset/probability", O_RDWR)) {
-> > +			igt_debugfs_write(fd, "fail_gt_reset/probability", "0");
-> > +			igt_debugfs_write(fd, "fail_gt_reset/times", "1");
-> > +		}
-> > +		drm_close_driver(fd);
-> > +	}
-> > +}
-> > diff --git a/tests/meson.build b/tests/meson.build
-> > index a856510fc..e590d4348 100644
-> > --- a/tests/meson.build
-> > +++ b/tests/meson.build
-> > @@ -312,6 +312,7 @@ intel_xe_progs = [
-> > 	'xe_render_copy',
-> > 	'xe_vm',
-> > 	'xe_waitfence',
-> > +	'xe_wedged',
-> > 	'xe_spin_batch',
-> > 	'xe_sysfs_defaults',
-> > 	'xe_sysfs_scheduler',
-> > -- 
-> > 2.44.0
-> > 
