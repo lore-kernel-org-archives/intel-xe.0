@@ -4,58 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C479AC54E58
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Mar 2024 14:01:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1DDFC54E69
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Mar 2024 14:01:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81B7011225D;
-	Fri, 15 Mar 2024 14:01:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F68711225A;
+	Fri, 15 Mar 2024 14:01:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q4NGyUaw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bXaaBGiD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1E5911225A
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Mar 2024 14:01:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 540BD11225A
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Mar 2024 14:01:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710511294; x=1742047294;
+ t=1710511296; x=1742047296;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=z1imJt4gb2PRvAIVpyzVk+L3eFQuo534wB5k9mDd72k=;
- b=Q4NGyUawjticPGxmVrNlrYX82392SEStOZUzQCUuXCX3XikRpuc6BX7j
- I4exn/A+Dv7U34I97PHUuOUxfFaJqKmbN67yIhyFVuE4Or9UVnFeFgQNt
- 7EZRfadQMtJt476WlJ/d1VoLQj/5Rdy/RDqOoyAAdQax+VfYsX3HvjDXI
- ZmyQY83vQNtTrG5jgSgkgbB7oAM0SeRZtolXwF+ahdzbGGookI6aMbEPP
- elWu5EhmzEONETO9YabFAX8xUGHNsV4fIX/KwkRtIdIsYn9ieiylXXX7c
- 7PqXXT2/v0rGdT4fFOZYfNYZUK5NHwy4iL7DMDk7OCrRc8EehZ3NFpsl9 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11013"; a="16780089"
-X-IronPort-AV: E=Sophos;i="6.07,128,1708416000"; d="scan'208";a="16780089"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2024 07:01:32 -0700
+ bh=Q7ITJGR9cMUtaqbrfCynI1D6grmEdQnLJ3Six75PlFs=;
+ b=bXaaBGiDaMRUnZVNwNzRveCEOGyFawzpYgGx0Dyu1hgK5jyvimDpuiMQ
+ uknkHgOgCudjgCAMwM8tyIs9sqTbYX3Xmg8D8TltUJv1IdGQJwhraGDEp
+ Oh8aM2N9jzp5gpLMorbnSq2UYN9RuNt08PeGtFgXpcQCKXlkpSv5oniz+
+ ANo2ITVcGNd6GkmU99Q4EEBxP/SCkTzJAf+8VjU++qn/Dl19W+9EGceJ2
+ WjAwjFrq7Dilcq4SGp6IBfS2M4EOkdHB/P3SqY0qxbYyjhyj50PvFYGPh
+ 6mG4yQ+cXp8DW+RJBw4r3IZy3l65V9ngIKUEXp8WamfSXr7y7kYg6zJli g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11013"; a="9213684"
+X-IronPort-AV: E=Sophos;i="6.07,128,1708416000"; 
+   d="scan'208";a="9213684"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2024 07:01:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,128,1708416000"; d="scan'208";a="12589879"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 15 Mar 2024 07:01:32 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.07,128,1708416000"; d="scan'208";a="12765171"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 15 Mar 2024 07:01:35 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 15 Mar 2024 07:01:30 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.35; Fri, 15 Mar 2024 07:01:34 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Fri, 15 Mar 2024 07:01:30 -0700
+ 15.1.2507.35 via Frontend Transport; Fri, 15 Mar 2024 07:01:34 -0700
 Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.40) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Fri, 15 Mar 2024 07:01:30 -0700
+ 15.1.2507.35; Fri, 15 Mar 2024 07:01:34 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=W5nWMNhZe6fFKLJBiMRvYhPrl5vSi/+aPnEmP6yhdNnhNFYuMXDlY6p2RUgf/DOOMsCO0yj+ucR8jFtc8vyBUlGCF1QryvE1/pu38R2Yq1pHIa8Et2ffkIVXM/g/3TXP3TYNz1MrPyteTGzCQnl/6BlCZLyVK/f2FBt9KnMqjlB7ee/RH4HyeIeoi898E72naWN5OUIwl4N/a2A/ZT+FZPtP2aFhuQP9j9gxOCeSkIGkqEegV+HemzcCjXW/KkQBGyj+GSxKHMmR2AUPzIsdAfSZnjp9jJy7yEeYVXuKquhYeRgWt1k0ZqfVH1UkGxde6IS43mnaUMZlubGeRJfGig==
+ b=SmDIijctPbygVf0T3z5t5DA8o7hSsOWnlhdXkWSKoDSMkO5Zbjlu7lxhsoLd+djDNTGZR+spcijjeeu1WyMP3PY0VLUynqd9zcTjcJUTSAG9bKGrLXGnSFDlLj0fsqpenMQ8KDdo95tpGfzGjkpHN/pHltINTxzX1DEqlfGwHk2HntBylUmab9/8eAgWZ9W2EMNNndt35A1UFTbfDREQidOCs2Sabm5BnNrndWtAeb7RGrDGYlQjLLV2WD/jqVNLCU6AA2duT/NgbxbMvJpTlUbBYDfxWarpWhHdQtqJAynn1LkHczQ3MMUhMjXwPjD9oAZO0J+Q9GIAPR0jXWUg2Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NK6TbxXrVLtavnJ92pr+M6NErSboJBQDu5NspXoIgmo=;
- b=QBOOopWitfhGQA9n10fNJCcKKijugYox59B6ULs/TjS2+Q6h9D3HOaBbPYOHbslp3bo2ddp03tIBVCTCkDOZZrvG4L7jvQ2c9afUBP8CwI4S4hp73yTVdtU/eGVBrUy9vY0thJoj1WNVB3MX3B15LRE2ehbzog/IdZSF/+oO4dSJGdtVwhGsyPUBYhPKoKurQxNdmdCIHIW/+t4rntOBgzMQuwM+ALsqqOcK5KNJrT3Jq+hWAmQgER7HokTi/ff+upw0gQnMvZtZIc7OSi1JXtVKG0TchZybhJh97fF9Q0UVUHEjy5cdjCtc5+OriRtfIF17Rx7ejtQnPVk+VMTQZA==
+ bh=A/osX1Q6CjmZ7pfVleR1dgL2Lwo5hgUbyNr4A1oEiU8=;
+ b=new4SI3hBCqIKjsb1BZLvBnJPEvXisOV3I+er6mGW5MWG8i25oRxO9SgacZixrDQXT2SCNlYbtGsoiB9/o8piOVS5bvFQRO73iw2fFSvTIhqajHTsYQcWjSYbsK4K+kbjzfW9RFdEhoTihL3dmB8HqDrkupYRM6kjD6mItxiTFXS3kKp1GRjJWfc2NtaIGDXWlE9pQfDE2+eck247D3ErpfcyJkH4AsWqjO8YrDSAp2rnSBfmCYW1mekavWXi36ewwshaFJKaULPVMxbE5fdgO89IcU+diqRfibJ62tJi6dPT/1QaqLDjO+kf0PBTBMHQcJV663afcLCkWeX62V/Hw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -65,74 +66,76 @@ Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
  by PH0PR11MB7523.namprd11.prod.outlook.com (2603:10b6:510:280::22)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.18; Fri, 15 Mar
- 2024 14:01:28 +0000
+ 2024 14:01:32 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::7607:bd60:9638:7189]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::7607:bd60:9638:7189%4]) with mapi id 15.20.7386.017; Fri, 15 Mar 2024
- 14:01:28 +0000
+ 14:01:32 +0000
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-CC: Rodrigo Vivi <rodrigo.vivi@intel.com>, Matthew Brost
- <matthew.brost@intel.com>
-Subject: [PATCH 3/6] drm/xe: Add extra busted protection for the no GuC reset
-Date: Fri, 15 Mar 2024 10:01:05 -0400
-Message-ID: <20240315140108.217862-3-rodrigo.vivi@intel.com>
+CC: Rodrigo Vivi <rodrigo.vivi@intel.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Alan Previn <alan.previn.teres.alexis@intel.com>, 
+ Himanshu Somaiya <himanshu.somaiya@intel.com>
+Subject: [PATCH 4/6] drm/xe: Force busted state and block GT reset upon any
+ GPU hang
+Date: Fri, 15 Mar 2024 10:01:06 -0400
+Message-ID: <20240315140108.217862-4-rodrigo.vivi@intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240315140108.217862-1-rodrigo.vivi@intel.com>
 References: <20240315140108.217862-1-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR05CA0177.namprd05.prod.outlook.com
- (2603:10b6:a03:339::32) To MN0PR11MB6059.namprd11.prod.outlook.com
+X-ClientProxiedBy: BY5PR04CA0013.namprd04.prod.outlook.com
+ (2603:10b6:a03:1d0::23) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|PH0PR11MB7523:EE_
-X-MS-Office365-Filtering-Correlation-Id: 37c51916-6eb7-4297-b4a2-08dc44f86906
+X-MS-Office365-Filtering-Correlation-Id: 264bf868-b5bf-442d-d192-08dc44f86b7c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: t7pk0mPmJP/61ZQrH4bPWk22XKsRL1dwa1R2bhc1DnbNPwpqIETY6nVC4w6NoLU+iUWQOC+vJ2fu8ThJ6zBfYT9zXjSedie9ShIfFraB5u2bpzTzgmAm0XeJHVRJMqJKaRxhon9YhqhRLTlWQr8dihOuMkyRVeEBgAKagcMXBF77YfW8ZOsY67SMVch3w7FnlHSJDrE5V4BjZo2Oq3RqmLfrLMiQN56zoDLjHkZlmQ7y3xLgmfcWWCuXWRlTQsT8TLvvGd2EmFM20J0CXLrdl/DUOvyhoQInzhpLgKVqy5iSai9qxP8jefHf/1QK63q89XSOEgXP4kv91WJcnGmTahPfWPOWL3xcJqGrCZo/6P820lStWXuY6j+JuMpos9yYBHdTs7OEsqCD3Km6kBfL0ePOkSJnoKst3vZRTkQamB7gNFNGJfIXMvRT89nLkmXNtU1WS9iDK8oxX7VTsCwiuh8ZkQ6VnmrsX6mpkHZ/NIH1hvt2Ib6rz2/FLn8ceZDvDLGCdD3Umo4+K/tHyZedpnmqfbONn7iI2sKApAAo/2JJtUtPUmW0C2VKdeh0gdNbZamuNthbyWODpsTM/3Ng9gvTdkKEsM3u+F6y1Ossv5VeUD1BZoIUKJrYW0veflpY6eUmHZRx2S2vRCoZ6r5UvJO3k8xTWYWBBYGNA+f3HGA=
+X-Microsoft-Antispam-Message-Info: YGpzClKVeRk9TMv1sZ9Cee0Hp64r3gLvWysmVuc1eqAF+FCb5T1s9g79Rt5UqdjmlL8QTAFJixQbEnxkFJCzDr4E/uMQQU6Jv59fT27izRdwfS6TtAmztaoFUKsMAFJ/1eqLQiA4EOBQH4t46/yT/Ma+yS8v3WEWxWjWaISut2/KCsxKLf8stk5hlcYBLAJzL+eYTm5O/8iZepofECgMFVQgsoIzntxfViZyjb3fgZX+ivcPxbB46sRSRN54vvy2uwwXVwD7cLNzwH5L5D6S1HJuCW7cDqTTCzARYY2SW+vkZ/LjVG4Zt2dfQlTYDaLpwvQlHjDn6Hlnw48FyWSaqVyP6TNXsqtPe2xPJTyoneoYkpEEAc6GPQ7D/Fi7yvUf9XrKAejncq+WeKxXccwSzDd5CHfMr5HQVNJiXJcJhDsVp2ncMnd0JPkaRQlpM1twGXxkFsXf8192Hta2hxBQp4aNJlATkAxrnMSkBg64SSLaof3WMH800IuIG5rUl37NdHidQsFvoMr1wakjL+ias3imR/OFUN+xeVOUPijY6z4oVKpJCQqrq9mtimAmJ4W3hepO0crSj+dB56hIp/MnNHGumyqyYNO4jsRSJK6sA+8=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(1800799015)(376005)(366007); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ub5z23/A5B3ieL68+em5/sqK/na10FZK0YgSQufdgJws+D3ChscNGNyZg0l7?=
- =?us-ascii?Q?7BPMida2OGrrKmjgvpJuIaruY4mOB7TN2Jv+W+9a/fb+VP5lypgP/mLioMck?=
- =?us-ascii?Q?j1oz6ByRYU3etHhQigFjnkaL4bHf9VmiG9W5rxn+mRaIJsA4QAuFhAALdLKI?=
- =?us-ascii?Q?AoVAeExe9qc6iJy8tFZL1SZuUPiTSKUspZI9bTs4u7sBp7L0FPTipMbBnJFn?=
- =?us-ascii?Q?lYngxAI4sDvxCBHJ7uEu3EYcJ9LV8cB5rmiC/jsbBjRxscMSXZSZVB+Yf4V6?=
- =?us-ascii?Q?S+FHx8VLOb//ALnmfdKtjUNs/0/sA8G+uuoyiBApIUIPxLZ72dLfDcfg9mQV?=
- =?us-ascii?Q?r1KqR3I6TYx4EEhNYYqb1NWTTXN2HeqtBGQzBm6J1m5lKfPdheRVTbSO/Lhi?=
- =?us-ascii?Q?Oj+X12e4L3p0G+cKl73aP+8Wb6NYf9JM5ILZtB9Udc2IJdNy9p7hmPNSoZbf?=
- =?us-ascii?Q?g1M5+ewKBk/XnFEKZRSBDi5AJ3jEkYTAktcDPTYOE1JPg+3yPU41oShVAGwi?=
- =?us-ascii?Q?JILthdcOJmxkjKKKUY227yiT+VDRu7Y4tR0eRGDV6SNwIHCM3AG1oNmPU8v5?=
- =?us-ascii?Q?vDOpqeE1TwstzwVkj4/ePqbyOge/QreA7Q5cR8YU+mID1ivnOE+7j1Usr0Ci?=
- =?us-ascii?Q?puB7UWDgMdPhdypkpChplFijUXEcaxvdbRe82FBc47PVGDiWgGvn5HYre7wc?=
- =?us-ascii?Q?r+8iF1+OZSdrPXbPX6Gvm35MQiGmeO+Q8GK1D1WpzPfG5o4eZxn3ZH5biHWC?=
- =?us-ascii?Q?7XVFd+OhJLNqGWj1ISlTZmT1+up1VKdOXKkprbH74mNp6j0puIjpuUlCxbcF?=
- =?us-ascii?Q?StUCvHAZIj97Xeray9CymVUUsCXVMDqgR2QdLN67ERNrGfTECXV81uLkxX33?=
- =?us-ascii?Q?5hl7SRbpnx73RhLq5rcku1c8VhP55minkJdui08P9J74k8d2cfjnYVCflAsz?=
- =?us-ascii?Q?sWj0K1m5sQCOiBQ4oo+wwOdqsQxbT15VPadiGJ3t5hXUxQ19mzL+/eI4ipET?=
- =?us-ascii?Q?cJnwRKRk9KNR2pF8OTcrqTzHXkkksgyHgNtsKK345Op/1UoJgxAQtslK3huJ?=
- =?us-ascii?Q?qifbMrDFX/8uzOeiZTTt+f3wa1RxTBOJI48R8Wc4DFa/OfwDIEnD6Q8ylMRp?=
- =?us-ascii?Q?9Vh8wfG/1SrspCYmyBF64s6hUYXescvmV9MtOQxRQMUrSjbQZfH2Q6Jod3ep?=
- =?us-ascii?Q?l/HggoJvVJBdW+piZIa9J+0BC87008z7mvpsPWNJ593XwhlpMkCxTHgNOvWn?=
- =?us-ascii?Q?qwC2I3VYpgdangwEeLeOiqW9oXd0aBdcB3LBnkXHuyY1ejCOcVj7bD15DRMe?=
- =?us-ascii?Q?nvrcbK7T5q7wBrNMfVmW+azxyJnHlXboMuSJSkMD093oay9FznJ8Z8zL1LqS?=
- =?us-ascii?Q?MD2ZVoPOm/ysR9HUts276Lyer0j54IOIO0fqiGxAMBE1bZvZVlY38QCKsMi6?=
- =?us-ascii?Q?+1JwoR4mRgBesVfsm1kQt2fZFUbc1jpMuQYG8peBIiytL7gfg977NvRjgj4F?=
- =?us-ascii?Q?ODpvfqGKcrS+NdO7FtOQ2lrJ0oDuw/ywus59gUNb/lO2svUMUjgKWYkuVm7C?=
- =?us-ascii?Q?6L22PTuzZ1RmLB6IaW/k9oVfCClCP7exXY0q5DbHDPmDHVKfpA10vmfx8IjG?=
- =?us-ascii?Q?gg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 37c51916-6eb7-4297-b4a2-08dc44f86906
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ZanJ/I7h5/Goa4gIsXR8nadIADiAYkhW7/WADJbPeOuzLdXJaUmMsBfDYE25?=
+ =?us-ascii?Q?lrOkP2OLzI2fvFBQFnx4HyxhJj3TS2XUGreCAMupOcxNt1ypslrfu21cpH1y?=
+ =?us-ascii?Q?h1hKTV0/I4N+gXi1kzZVFHYcAYW6CYuBGnltCQ4MOoXjNOb1CduqmFjaUwP0?=
+ =?us-ascii?Q?mWx8OruHpzyd9O9a3/ndV2Yb56zJD7r2GCe01FAwfc8zMUflAAvm19uk+0Wi?=
+ =?us-ascii?Q?hnJ6Yy8iAez7yNHhaDZ72zUr8XMpWqqXr0ueUALPSJUwnrwC3KoZSfH4Lcld?=
+ =?us-ascii?Q?2jXTW8+Y1PY3KOAhZugppRAhnl0gsyrghDQFDpPFOxmvxCCiL7n/adpuRr09?=
+ =?us-ascii?Q?PJjkUkGaO6OcTXC1U3DtAsuKlWTw7S8VxQaPAmomsFPt8TFaCachpY0U33Ci?=
+ =?us-ascii?Q?I3oot5XKnb1wzJK85Oem4Cb0iz8w82cFwmiXWt++E63/QfrvIX8PcKVDxt2w?=
+ =?us-ascii?Q?r62qzsbDG6xyXTPIG17WiNyMC1t4JNsRSZWgrpvPWHU8DvzlPyjMAB7E9FX2?=
+ =?us-ascii?Q?NoxGbzUScsMJbJin8pDeSktx6yNElNGrLynQz7JX3Ev7RQEh8JoZ3QYKgDSV?=
+ =?us-ascii?Q?rYmxaGg7jhBL3ysUHYM2WccuB5SzzfZ9igo+x9yJnb7tG5s2/cagpQ3e+4jP?=
+ =?us-ascii?Q?J6ynD+ZUN2CirR0UXT3Fuv8IAO7CAjGs7GTC4FU+sKpoqFg2T0DZ5gXSYiit?=
+ =?us-ascii?Q?0Qp8Qk6Cg//cO7tsB4A7QKAX5nGOEMfYVHvJJf80fzMBWZM1y9IQnWYh5Xws?=
+ =?us-ascii?Q?pxPUfpLfKcDYp5w1ddR6/aPvfQSftuIlvth7XINXBl3V1MLTyauDYLAbwKoV?=
+ =?us-ascii?Q?mmcekWq/aDkQTLjlJvajODWdTmP5fLlFwwszQQpg4h/iE5aw0QjJVWegMZbh?=
+ =?us-ascii?Q?wEL34WrAt9w7weLAewV9n0t1eqooVBJ6nYm6XjIXq/Xky7P+f6zzveoXin+c?=
+ =?us-ascii?Q?bHK9yPMF2znVRbgssYRrRdid5VJ7uXNMb3NpsnL2SDFCDmSMRsopAEO2+tei?=
+ =?us-ascii?Q?PqoO8/7A8aWVS3l+kDuE15hpNzPhqz684TSi9z8fyL7TRlyBpEj6cO1/wVGH?=
+ =?us-ascii?Q?YyGCD1e/dDzDaT31Cwb8ojBJqwyx1uZOAb1BE3edvj3MODfPgbdFUBlzSODk?=
+ =?us-ascii?Q?Zv6TRnOIebRTfb6HI2dPyssnLgSnfIss8PRYQhhLxzTl2lJCHysx6HNitDyG?=
+ =?us-ascii?Q?uwXA/gLSIWohV8tYCV2uck6GpTlpvPxbXjar7cIjA3K8P8zuZ6xds4DF0NO1?=
+ =?us-ascii?Q?c0J8gqb5P43rl9wQAct93XjLNTfK0jfg+uUpWUcp38Yp8Nrz7m0s+jDg3U7l?=
+ =?us-ascii?Q?MQWiATcPbdzcUSY2CLwvxLfn51L0ZoqCI6UkAWHwsoEs9KWQaRfd2hqziGiy?=
+ =?us-ascii?Q?Hi05DB7QL1uYuLL8wkbey/WYaGPl3AySPlCoSHENdlhUO5ic9jrncv8NUN28?=
+ =?us-ascii?Q?7SuTDy6veg9E29uMMapan2wvtukqVIlzNLmX5hGzgNilElGUt7AkPARwRP72?=
+ =?us-ascii?Q?aocvDyTHdoDRLIJJnuHHo/2o2tUXBLIH9mvuz6kpZz+XuDS1vjG3jUFUbquh?=
+ =?us-ascii?Q?lJb4Sv7SpTBXsmaDHT6wPxiFs+1bnkLqPl1FMuPD8sKFi3ba2alHMDy+0d+3?=
+ =?us-ascii?Q?Fg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 264bf868-b5bf-442d-d192-08dc44f86b7c
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Mar 2024 14:01:28.6751 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Mar 2024 14:01:32.7975 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7wm0RHEfnZ9n8mZE3wmNMPrl4O8+pjS7KuONvRFJTit8sEiwHg3y19TJwTB9UCmLjVkVEyVpTm25FWPnvE2tAg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: lKQks1F4vm/eyGGdQXtobRkc1+GC4ghBxh5585cWF48ilLcF8Vglxu7gMl/a+pfDM+Btq5vqOLc0MTidEuOSKA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7523
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -149,82 +152,181 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When GuC doesn't reset the GPU on our behalf we need to be
-extra cautious on timeout and skip scheduling jobs or
-manually forcing gt_reset. Otherwise we get in infinite loop
-of timeout and reschedule.
+In many validation situations when debugging GPU Hangs,
+it is useful to preserve the GT situation from the moment
+that the timeout occurred.
 
-So, this is a preparation for introducing the busted mode
-where it gets busted in any single timeout/hang without
-allowing GuC to reset.
+This patch introduces a module parameter that could be used
+on situations like this.
 
-XXX: This is enough to get a clean stop for the software
-validation teams to debug the memory. However the device
-unbind will splat some WARNS because memory is not entirely
-free since hw_fences were not released.
+If xe.busted module parameter is set to 2, Xe will be declared
+busted on every single execution timeout (a.k.a. GPU hang) right
+after devcoredump snapshot capture and without attempting any
+kind of GT reset and blocking entirely any kind of execution.
 
-Cc: Matthew Brost <matthew.brost@intel.com>
+v2: Really block gt_reset from guc side. (Lucas)
+    s/wedged/busted (Lucas)
+
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: Himanshu Somaiya <himanshu.somaiya@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c | 17 +++++++++++------
- 1 file changed, 11 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c     | 30 ++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_device.h     | 13 +------------
+ drivers/gpu/drm/xe/xe_guc_ads.c    |  7 +++++++
+ drivers/gpu/drm/xe/xe_guc_submit.c |  4 ++++
+ drivers/gpu/drm/xe/xe_module.c     |  5 +++++
+ drivers/gpu/drm/xe/xe_module.h     |  1 +
+ 6 files changed, 48 insertions(+), 12 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index d02e59fb49eb..e28e3628744f 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -774,3 +774,33 @@ u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64 address)
+ {
+ 	return address & GENMASK_ULL(xe->info.va_bits - 1, 0);
+ }
++
++/**
++ * xe_device_declare_busted - Declare device busted
++ * @xe: xe device instance
++ *
++ * This is a final state that can only be cleared with a module
++ * re-probe (unbind + bind).
++ * In this state every IOCTL will be blocked so the GT cannot be used.
++ * In general it will be called upon any critical error such as gt reset
++ * failure or guc loading failure.
++ * If xe.busted module parameter is set to 2, this function will be called
++ * on every single execution timeout (a.k.a. GPU hang) right after devcoredump
++ * snapshot capture. In this mode, GT reset won't be attempted so the state of
++ * the issue is preserved for further debugging.
++ */
++void xe_device_declare_busted(struct xe_device *xe)
++{
++	if (xe_modparam.busted_mode == 0)
++		return;
++
++	if (!atomic_xchg(&xe->busted, 1))
++		drm_err(&xe->drm,
++			"CRITICAL: Xe has declared device %s as busted.\n"
++			"IOCTLs and executions are blocked until device is probed again with unbind and bind operations:\n"
++			"echo '%s' | sudo tee /sys/bus/pci/drivers/xe/unbind\n"
++			"echo '%s' | sudo tee /sys/bus/pci/drivers/xe/bind\n"
++			"Please file a _new_ bug report at https://gitlab.freedesktop.org/drm/xe/kernel/issues/new\n",
++			dev_name(xe->drm.dev), dev_name(xe->drm.dev),
++			dev_name(xe->drm.dev));
++}
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index 2c6d9b77821a..e6edf2d3ee4a 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -181,17 +181,6 @@ static inline bool xe_device_busted(struct xe_device *xe)
+ 	return atomic_read(&xe->busted);
+ }
+ 
+-static inline void xe_device_declare_busted(struct xe_device *xe)
+-{
+-	if (!atomic_xchg(&xe->busted, 1))
+-		drm_err(&xe->drm,
+-			"CRITICAL: Xe has declared device %s as busted.\n"
+-			"IOCTLs and executions are blocked until device is probed again with unbind and bind operations:\n"
+-			"echo '%s' | sudo tee /sys/bus/pci/drivers/xe/unbind\n"
+-			"echo '%s' | sudo tee /sys/bus/pci/drivers/xe/bind\n"
+-			"Please file a _new_ bug report at https://gitlab.freedesktop.org/drm/xe/kernel/issues/new\n",
+-			dev_name(xe->drm.dev), dev_name(xe->drm.dev),
+-			dev_name(xe->drm.dev));
+-}
++void xe_device_declare_busted(struct xe_device *xe);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index 6ad4c1a90a78..ecf45289b187 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -18,6 +18,7 @@
+ #include "xe_lrc.h"
+ #include "xe_map.h"
+ #include "xe_mmio.h"
++#include "xe_module.h"
+ #include "xe_platform_types.h"
+ 
+ /* Slack of a few additional entries per engine */
+@@ -312,10 +313,16 @@ int xe_guc_ads_init_post_hwconfig(struct xe_guc_ads *ads)
+ 
+ static void guc_policies_init(struct xe_guc_ads *ads)
+ {
++	u32 global_flags = 0;
++
+ 	ads_blob_write(ads, policies.dpc_promote_time,
+ 		       GLOBAL_POLICY_DEFAULT_DPC_PROMOTE_TIME_US);
+ 	ads_blob_write(ads, policies.max_num_work_items,
+ 		       GLOBAL_POLICY_MAX_NUM_WI);
++
++	if (xe_modparam.busted_mode == 2)
++		global_flags |= GLOBAL_POLICY_DISABLE_ENGINE_RESET;
++
+ 	ads_blob_write(ads, policies.global_flags, 0);
+ 	ads_blob_write(ads, policies.is_valid, 1);
+ }
 diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 82c955a2a15c..ee663683e9eb 100644
+index ee663683e9eb..3f3160373631 100644
 --- a/drivers/gpu/drm/xe/xe_guc_submit.c
 +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -176,7 +176,8 @@ static void set_exec_queue_killed(struct xe_exec_queue *q)
+@@ -34,6 +34,7 @@
+ #include "xe_macros.h"
+ #include "xe_map.h"
+ #include "xe_mocs.h"
++#include "xe_module.h"
+ #include "xe_ring_ops_types.h"
+ #include "xe_sched_job.h"
+ #include "xe_trace.h"
+@@ -950,6 +951,9 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 	simple_error_capture(q);
+ 	xe_devcoredump(job);
  
- static bool exec_queue_killed_or_banned(struct xe_exec_queue *q)
- {
--	return exec_queue_killed(q) || exec_queue_banned(q);
-+	return xe_device_busted(gt_to_xe(q->gt)) ||
-+		exec_queue_killed(q) || exec_queue_banned(q);
- }
- 
- #ifdef CONFIG_PROVE_LOCKING
-@@ -960,7 +961,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	 */
- 	if (q->flags & EXEC_QUEUE_FLAG_KERNEL ||
- 	    (q->flags & EXEC_QUEUE_FLAG_VM && !exec_queue_killed(q))) {
--		if (!xe_sched_invalidate_job(job, 2)) {
-+		if (!xe_sched_invalidate_job(job, 2) && !xe_device_busted(xe)) {
- 			xe_sched_add_pending_job(sched, job);
- 			xe_sched_submission_start(sched);
- 			xe_gt_reset_async(q->gt);
-@@ -969,7 +970,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	}
- 
- 	/* Engine state now stable, disable scheduling if needed */
--	if (exec_queue_registered(q)) {
-+	if (exec_queue_registered(q) && !xe_device_busted(xe)) {
- 		struct xe_guc *guc = exec_queue_to_guc(q);
- 		int ret;
- 
-@@ -1010,8 +1011,11 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	 * Fence state now stable, stop / start scheduler which cleans up any
- 	 * fences that are complete
- 	 */
--	xe_sched_add_pending_job(sched, job);
--	xe_sched_submission_start(sched);
-+	if (!xe_device_busted(xe)) {
-+		xe_sched_add_pending_job(sched, job);
-+		xe_sched_submission_start(sched);
-+	}
++	if (xe_modparam.busted_mode == 2)
++		xe_device_declare_busted(xe);
 +
- 	xe_guc_exec_queue_trigger_cleanup(q);
+ 	trace_xe_sched_job_timedout(job);
  
- 	/* Mark all outstanding jobs as bad, thus completing them */
-@@ -1024,7 +1028,8 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	xe_hw_fence_irq_start(q->fence_irq);
+ 	/* Kill the run_job entry point */
+diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
+index 110b69864656..f81970e8d713 100644
+--- a/drivers/gpu/drm/xe/xe_module.c
++++ b/drivers/gpu/drm/xe/xe_module.c
+@@ -17,6 +17,7 @@ struct xe_modparam xe_modparam = {
+ 	.enable_display = true,
+ 	.guc_log_level = 5,
+ 	.force_probe = CONFIG_DRM_XE_FORCE_PROBE,
++	.busted_mode = 1,
+ 	/* the rest are 0 by default */
+ };
  
- out:
--	return DRM_GPU_SCHED_STAT_NOMINAL;
-+	return xe_device_busted(xe) ? DRM_GPU_SCHED_STAT_ENODEV :
-+		DRM_GPU_SCHED_STAT_NOMINAL;
- }
+@@ -48,6 +49,10 @@ module_param_named_unsafe(force_probe, xe_modparam.force_probe, charp, 0400);
+ MODULE_PARM_DESC(force_probe,
+ 		 "Force probe options for specified devices. See CONFIG_DRM_XE_FORCE_PROBE for details.");
  
- static void __guc_exec_queue_fini_async(struct work_struct *w)
++module_param_named_unsafe(busted_mode, xe_modparam.busted_mode, int, 0600);
++MODULE_PARM_DESC(busted_mode,
++		 "Module's default policy for the busted mode - 0=never, 1=upon-critical-errors[default], 2=upon-any-hang");
++
+ struct init_funcs {
+ 	int (*init)(void);
+ 	void (*exit)(void);
+diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
+index 88ef0e8b2bfd..bbf88c34e4f4 100644
+--- a/drivers/gpu/drm/xe/xe_module.h
++++ b/drivers/gpu/drm/xe/xe_module.h
+@@ -18,6 +18,7 @@ struct xe_modparam {
+ 	char *huc_firmware_path;
+ 	char *gsc_firmware_path;
+ 	char *force_probe;
++	int busted_mode;
+ };
+ 
+ extern struct xe_modparam xe_modparam;
 -- 
 2.44.0
 
