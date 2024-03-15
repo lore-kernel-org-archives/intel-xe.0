@@ -4,141 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79A32C54E67
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Mar 2024 13:59:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5090EC54E58
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Mar 2024 14:01:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AB9C10E416;
-	Fri, 15 Mar 2024 13:59:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F14C510FC06;
+	Fri, 15 Mar 2024 14:01:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LSnxJjzG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Au0d/ap+";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B355A10E416
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Mar 2024 13:59:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CECA410FC06
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Mar 2024 14:01:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710511169; x=1742047169;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=lPzt/HFCOPCGrhPfuzi3VipvDPssowaPN4FKw4RN6Ig=;
- b=LSnxJjzGJT/4OrD29+oOxKPyc99HN02z2+/prSY6idxgOYWYupd5O4Te
- hR6dYuLfEI0kVmealNekb6f2p6L16wWFEnB0L2AqZkLteTCdXy78g6QCK
- gb0s1SVCNBJA030sKKUqDqHDD69UfQ1MO2RdzWRtFW0501Y4ZWeAJ1oRB
- ghxFhLVdG+vs/wweVFIZMv3JayMVTlGxJghQBcUw7UPZfkzwyik9ATN5l
- KcQrFBjjcNAW48TXj7lpd6Ku8eraZbMp7+McAjuj+j9/J4rF0LmHXG6Xx
- 4OoQ2G2MrV2g0UC176XWM3oKTy/x3GV+z64iG+5IT9pWbDjPRcngISPfl A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11013"; a="5514014"
+ t=1710511285; x=1742047285;
+ h=from:to:cc:subject:date:message-id:
+ content-transfer-encoding:mime-version;
+ bh=0x8Nl9e//3pCPwlk3riYd9L2WRKuXv8Hlv6aUTMIpts=;
+ b=Au0d/ap+uGAI5XKW8xo62aveWXAyvL5Okvw4CBmHFvwfHstZZmoCIokb
+ IUlqsL/rz1CzPB+2xWxQyPUOQ67O8r5V7tlbTTSViH1ZfbvYEU1MNdp1i
+ +gTSJpoqH30wj3Q78Z9Hzp60k9Ho1aKHjK5o9D02Lsz6Xx/H+0LMipoU3
+ kgylJX2BmIKyFLKCmd5KT6sEcysRNrSOV3Wz6zlhAIbRMPgVmxOg4xFZN
+ Pr0Yg0G3OoZcTR4aDWC7Kx3R6+2JpzR9s6rp/r18BXa200w0FVcH0wn8k
+ IajG1jClhlXQpuZ40iN5QThcL04MQCOruO8ToS+RWzzSykYmwIg6O5uRX g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11013"; a="9213637"
 X-IronPort-AV: E=Sophos;i="6.07,128,1708416000"; 
-   d="scan'208";a="5514014"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2024 06:59:28 -0700
+   d="scan'208";a="9213637"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2024 07:01:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,128,1708416000"; d="scan'208";a="13134584"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orviesa007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 15 Mar 2024 06:59:28 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.07,128,1708416000"; d="scan'208";a="12765135"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 15 Mar 2024 07:01:24 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 15 Mar 2024 06:59:27 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.1.2507.35; Fri, 15 Mar 2024 07:01:23 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Fri, 15 Mar 2024 06:59:27 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.169)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Fri, 15 Mar 2024 07:01:23 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.101)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Fri, 15 Mar 2024 06:59:27 -0700
+ 15.1.2507.35; Fri, 15 Mar 2024 07:01:23 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Cts730bQcR8F8h5vJs8IaAnoWiB2bsVIpd3jH7GZ7P8FJdu2qsr1jiS/LUziBvFlYbYDY21WGc9mfowVhghPOSLD4QnRjCCdtwQ5B2LTXRJMbEqXPh4+EY7OWAQih4B9fY70KmFyxWh1f5CHduxm+2MTUKfBHyNFZWP3EVZAdAPsElchFrmgLDacmh88BSbiMH1/ucFwmtP3sVu9LNFrdRDtrXP5WOztga4ppeyxPSbYAV6PFrC14FCW0WPTqU4VFinF6gzIbu2BTmJsmsg5XqkhEXScpecN+pGCICVq0sR6CB/LzYPv2xxLi7q9Dy0eGBDmvudiQKsdEGtlTYvtHw==
+ b=bvACL3loWPeJH5KaE25KoIylxWnkBtJ8nKFpAt/K9braZGxbFIhGz4lKYWNXt9xeL3hFC+7zZY4T9YbQPxRLMplwtrKiRt7bfjZx2z9TIZrJ5uI3ZNhu69Jgt/gsH+Q9AfX3Io6wHJpBuawjbunyJdsXcYa6E+cfGjWDPE0qDr13OvYnNSUSO6d29pxJtzWVQXjGU1nZvgs6sYIsPeE7cO3wqH5B13u67vbPPJPGOy2sXuAUQhluoeZBK1FN+oRI24sdbA12Lprq8t5YSTxQDhciSJV/42my4Fe6M+t0hGNuSByDqcdFG/mbrzIEmhWIIFjnU26sf7QUSVf4tLTDDQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7Eqm79oGDfuXovgLOxOCe32HycZAvqIiIot7d4hr3xI=;
- b=cv45o8ne7moDTWbvb5RvfnHhIoCH17zvL+Nb1xcCaOpmQtEr0Jv7FpsBPshAcvhtLxAo6S+ZPV1tcwDQLOyLjU7DTfEicEdyxNyD3Q0eiRrZ9TdaHBOrxLg/SFq9Ap5oiryfHzW52S1xcBSyNcxI/U3wYTthUKDxY5KzHer/4riivm4svCFu8FctB+cj3g89l8PTqloJErhZSXyat98Yd+zvvaKNRj3ly6WeqVNATgYoGo3Kp+qV9PUO70j8mcCbUwF6uuC3l0az/08O0iM0KOlswJs7TCXL2o4SRE3fqzzR5H77b9GXxiEpd6VLPRM/TUrY9uI9xWWv8uRK/NpkLQ==
+ bh=wK5ryIWxyclVRIvIATrHXMh15NS4Sse+Pe21mGxWJ4I=;
+ b=W5NPIJKu5rodKw88nT5ZVOFcvlSVoChN5hHLNO3LQ+kVlQWU68ioxUZYnoc1MxUV0vS9btAcvWPJ5EFB9GZxDTtDIkSNPLaOsVn5OHEcfbn4i+N44WvfKuuYY2XFxppo2ivhpZE+KpKvEHMLkK0Mkr/T2fti/fpcqf9Y/UO9Rbh59Pa6/lJHCSbJUifUMTHvGXLI62vfZ1UZJQkmaw00QpS3LH2AqOMw3V+Vr7vDP1G0bWtBcgRWuNClEHpgGzoJM8BseyevGvZAGtaTjjcxXozgCp4SE4Pe/2ynla9tVbS649LT6kIQvVoc8FLzkBLaioB8ilWk9aGtRqkACbTvDw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by PH0PR11MB7523.namprd11.prod.outlook.com (2603:10b6:510:280::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.18; Fri, 15 Mar
- 2024 13:59:24 +0000
+ by DM6PR11MB4596.namprd11.prod.outlook.com (2603:10b6:5:2a6::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.19; Fri, 15 Mar
+ 2024 14:01:20 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::7607:bd60:9638:7189]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::7607:bd60:9638:7189%4]) with mapi id 15.20.7386.017; Fri, 15 Mar 2024
- 13:59:24 +0000
-Date: Fri, 15 Mar 2024 09:59:19 -0400
+ 14:01:20 +0000
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "De
- Marchi, Lucas" <lucas.demarchi@intel.com>, "Teres Alexis, Alan Previn"
- <alan.previn.teres.alexis@intel.com>, "Somaiya, Himanshu"
- <himanshu.somaiya@intel.com>, <matthew.brost@intel.com>
-Subject: Re: [PATCH 3/3] drm/xe: Force busted state and block GT reset upon
- any GPU hang
-Message-ID: <ZfRUN4oinqjQfTJz@intel.com>
-References: <20240315010317.193756-1-rodrigo.vivi@intel.com>
- <20240315010317.193756-3-rodrigo.vivi@intel.com>
- <MW4PR11MB7056DA60DFEDC7ECDCEA2D0FB3282@MW4PR11MB7056.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <MW4PR11MB7056DA60DFEDC7ECDCEA2D0FB3282@MW4PR11MB7056.namprd11.prod.outlook.com>
-X-ClientProxiedBy: BY5PR17CA0024.namprd17.prod.outlook.com
- (2603:10b6:a03:1b8::37) To MN0PR11MB6059.namprd11.prod.outlook.com
+To: <intel-xe@lists.freedesktop.org>
+CC: Rodrigo Vivi <rodrigo.vivi@intel.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Anshuman Gupta <anshuman.gupta@intel.com>, "Himal
+ Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+Subject: [PATCH 1/6] drm/xe: Introduce a simple busted state
+Date: Fri, 15 Mar 2024 10:01:03 -0400
+Message-ID: <20240315140108.217862-1-rodrigo.vivi@intel.com>
+X-Mailer: git-send-email 2.44.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BY5PR04CA0004.namprd04.prod.outlook.com
+ (2603:10b6:a03:1d0::14) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|PH0PR11MB7523:EE_
-X-MS-Office365-Filtering-Correlation-Id: b1fcbc7c-aa45-4e6d-6b28-08dc44f81f1a
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|DM6PR11MB4596:EE_
+X-MS-Office365-Filtering-Correlation-Id: f4b5d08f-c432-48ce-bf1f-08dc44f86434
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: rFIw3IjP5s+iSFy8b6vILiWlY87991zo/pKRpeGATUdiTuKCiPeFJZDiv1LW6Zs2m/xiIP5ezpZQ3qHbJ0i4/b2MaJTbI5Sv4aJA6GJkOnLFWRwX/6RcyZArE6N9kwMmbQ3Axe5pCBnqXBTTORUHM0vjREx9wcl5NzK8GvMVZQGZ3reDFYS9qpWAJid5He71ZmrsxQ1ak9nSHDt5cQ6dHnf6i4NzV6G6p7Mh7JvQI2XaWvcCAnkqn6pClGWQvJcOxW6MTLw38Aikk90f/vABY6CQiSI2zBmZ+la12uOubV3NysL1NuXALyXWH5ed8OOlX2SjkXSeh9RmhlT8jH9M4m/rgoQTAShTcqoeI41KTJRIF16qOoJgxpy+lQz72AY2KXzP+CSqSGFr6gj6rCCk5U7B9mHn7LV391Ij7p7fhgR7X9lJfBYREdeen83QbtEvbGJGgwky1aI+GP6D5jdW9IZpySR7jd6Vsjp+ka8SR79XDrS1fbP0olzLoWfy4GWIgakBrhRzJhmSQQIdZYWAHd38dspkLy3qJfq+aoeJHkAcJBy32GwMHG6MwAoUG7CQO0KnNb1Cn89qiLQHiV+IeO0NUAxe7hLUi2lQ3DDpKds=
+X-Microsoft-Antispam-Message-Info: cCkFjXbaqLtuQj/qVQare5JW9e0UbxIUdIoxbPEcZCY+4W5AFL2rPkCiKMpmch0Z8h3HkoByXGxb1SL/41djKHf7l7F8kF10aqeY4mmC4uUR6oAS4j1AlEOzdCpHY2RYn4j9g14d06VLwCPyPMafuskNPdHuxJVI1dAqyrXFbU/hnezsvONz6eX2XedxKl9LSHu6sTshY8z3OW8dexCJVOUsrRY5jCHSUfulfXpo2wlBxM+pCRTpJ0uyxMOg4SWzYOIM+M0QKqqVgAfzCv3n3AX4XRXOsGW4Z1VPEbvS95BZ5gCIEd/WoeleFk3I8iqDNSFZvj1xfZvc9Z/3BiKy2DDuzyyQdHkg4tUihlo34BSo/PQ+VpCklJnRm9FT/SrcyFY0oPAqbQgPiOC8Ev4WDFlyZH+fxxZUSS+c+FTvQ0xUVHbjTp88P/VjrcB5KNfBgXW0bKnCEL3ENe4Fjl8n3tOQ9IbOgbjMf0RIq2N+RkmXezac0ViRGFg0HKnSYVAEBcZHrNFKK9jEKupfzTlQ4EY9e+Hfi1seFjgUc6rVbLrGtLIUoHtqtSWWgaS7KVDkKE2tMHbfG3fJqzo5E/acTOLrsyECXdgsgY1LVTLQxfI=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(376005)(366007); DIR:OUT; SFP:1101; 
+ SFS:(13230031)(376005)(1800799015)(366007); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Py/VWceoLdsn1oS+ZHJi+S5BoRpwfO25aMXohDgdLNfZV+OdyhbjlMskytZH?=
- =?us-ascii?Q?UeDLvlxuVulKaDlf6PqkfJN3onuWv5Gic8daI0MwXfXrWE0ziToCqFAWP7zU?=
- =?us-ascii?Q?c2T8qxrfB8DPDD+3kKJckViCrbmljm53wI/dOMT5ZVzMEZkSO+l7f/60th88?=
- =?us-ascii?Q?8i0Qd0k8/jja9wGgq8/y3zF4+9n8/yIhinefF8bYdYiYIBbTWxlXWHi9uIAG?=
- =?us-ascii?Q?gLHfoulZRIqZkku6wSwh3gLsb89P3hJAViFxR0QPtonIVNUlm588uMn8P3ri?=
- =?us-ascii?Q?Et0lWJ1RgbWXOjk4c97zgz0IiSt9IjaP4MSrslsb2FOUWpCnng/NAQ02lDAY?=
- =?us-ascii?Q?UL7P5dGN3OjQc6XsvP0Pf3dlDZTKrJWKR+T2mAfrcHfJbeQm9jtEJ+352+pj?=
- =?us-ascii?Q?1/HDFAgkRmo2nrCBjQYqoeBNGDc9c9qsiVNUd0By2YSxFkqYeE2vENmAd0X0?=
- =?us-ascii?Q?n6h9YFcHK5LvCG5me2ZNTFrk9B5zn5qyRXTqodo5a8GFoADIRRkyHrSVb+ax?=
- =?us-ascii?Q?AIDfxrHI6Na++PtIY6G4xSgS++D71CjQrgq6r/5N+FY8ZCo8KlkKxtIhIQx1?=
- =?us-ascii?Q?+5B00FWwZVpaduY4hVKzAGFbEYTU5NsiKDLPVvNhAnGS6zj2+tPRGnz++jHJ?=
- =?us-ascii?Q?fDxGoJCKJQa2bq0jYIMy/piDxyp/3fiZdH0aMrtqy6fEL0vFHzxIPVKNozIo?=
- =?us-ascii?Q?JCZ9eKZ77N98QbkyOUXmd+hobpPj00sDXOzqLhcBWDC03tjqgAvC8ZrLvLii?=
- =?us-ascii?Q?h21P3UTDtVcOPvi6KN1hGQ62oK7Yqz6fQuE+JbqQqSiGKZxkF0zPoR6EmX4T?=
- =?us-ascii?Q?8TxKqO5m9EPs4mC6XiSDfmxZSTyhzgdKTOgPUW6A0plZXDHkH+rc6i/zaliI?=
- =?us-ascii?Q?2XXHr3KALUxOua81YY07xmnrL5gxw1X1s6OAlzeCLFv24lCsOkz1jvYU0Sm+?=
- =?us-ascii?Q?MhPbK6ZUII2PihphKrV13WH1a+2ZHsjdk8DNxnEF5ir6v/XegUG8Onh4S1qO?=
- =?us-ascii?Q?H1ZSEgHiShnglbVzP12HeseFz+NimfjSOVtmNnqxBavz/IW66FcubrPeYyjq?=
- =?us-ascii?Q?atztGOGFreNgdlK8QD5AomXe1F273R9rot5ZzFMQ69hcbpg2q7yd5LEVzwgd?=
- =?us-ascii?Q?uCbrxNrcajkGPV2RaIVwZRUxowjCYNlAa4DQ/Vvxp66J2a1J9lwiC4+GxktL?=
- =?us-ascii?Q?0xg8qTxgc5NeenC1h0O5L6ghiDmxxQGJFEynhsKEZPb88AOsGl9Tu0KRXGID?=
- =?us-ascii?Q?H6hIDlsF0si1+NW93VdI5VnPlA2Y4yNpeKbXa+LxmTh/dI0lX5VvcQ8i0J0F?=
- =?us-ascii?Q?Iq/Qy0zcu/g1MXRguCrOQWfq9ks5gu9IvxxyACEJzP8LCCOvrTvJ3nJlMJWt?=
- =?us-ascii?Q?eidamecHTNgtpgfxBXCAROI3+N1tcfHK1/+PIkvhsR1lZhkbjERQcZkeLtH1?=
- =?us-ascii?Q?+nMFq+NpxwCqMaaRDk7E1BAanuOnPGhwjDA/xGTsdh1YmUsyETuxGcO24cR/?=
- =?us-ascii?Q?uSeSF6zwEipzkqk5BrYs4rENo7XpLgNlgNln1mRvrxE6TuRN50Z9cd6EmjSc?=
- =?us-ascii?Q?EWTE39B4+Uc6JmL9aAmg6FXB25O2RXr9uzVLCmT9+iXBifRDsP9EXtjvprwz?=
- =?us-ascii?Q?dA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b1fcbc7c-aa45-4e6d-6b28-08dc44f81f1a
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?cMrC0L1lJCRbcx1q2i52i/C2Eoc8t/LGW26c3bB5LZ3gRMBIijuuWovIxCpo?=
+ =?us-ascii?Q?HsLvNps8loEAl4PjCCwrtNxNV1CcUSfBuIDHkaLBHDKbGAJ+8y/Q5jBAWhkE?=
+ =?us-ascii?Q?kwv0Xvk5u//6U1mtDooGZW3FV5cvgtd/m8ZR0MqjUENffXe6msXYkXjs1a8M?=
+ =?us-ascii?Q?OqF4nYW7VxfaGDpM89PhR8R+Qa+T9JdSwvOjfnXTulWupjgPGKZXXElNXwSa?=
+ =?us-ascii?Q?EtZ2IpXsQUdggTYUBam//d/4qHq+xzI03ftRVsmZReDhnGV1gAGPOsatDsTF?=
+ =?us-ascii?Q?VmAZswwM0gChpCkBuj6iqM/sHSe2cyOUWXj1kiH73dHxoznYVL2LYym/b5BP?=
+ =?us-ascii?Q?ikSiRacE++DlMdBSxUWgehPSn/9e8yHDtnPePo8Padi1ckZ1zW1uwpc3nZe1?=
+ =?us-ascii?Q?2PY6jT9qQR+XzHAwdwyICBy3KWAzgcQoN2T8ULveaa1FNAr6bOQI4BzUlXyX?=
+ =?us-ascii?Q?W0ZCHygSExAooA7oLf/ygME4sWPH4t8+p4+8swJjZQj7MLj3U3/jMnqtMEAk?=
+ =?us-ascii?Q?vqcfqlVA9J5x6I94co8rQrNcOzjo1vszgasC+C0ZfODrJmTaB+F2CP0MiJ7f?=
+ =?us-ascii?Q?bPx2CfXCHyVU6G0iUweLlJ7rMdvYQDku3+vnN53cvmeYLMPLNJ4MLzVWG/1Q?=
+ =?us-ascii?Q?tdgg2qjKdCC4wW5yJSrrSV3C5JenuB0sQtQBo4IWttir5vPc97B8DqsgaWfn?=
+ =?us-ascii?Q?Zo4O5TId8q6C4eQR/7KN8g4fmqQVXcn2r99+pWviRG+Q+W5RJYIo6Ssk2ltF?=
+ =?us-ascii?Q?5Dn1GWhyFZxvl1rvgT3RNzSc4o0DDS16qEjqXQ/c159Z3Z2+99Tr0MW4KpyI?=
+ =?us-ascii?Q?mOUAwo34301Kfc0DA0OTR/RESo0JmmvkcZJCxxtT5wUYzRBW09PQ2Ebj0POU?=
+ =?us-ascii?Q?LaMWdFXg+7RzQDNFV4oH+egWzo+K0T1lrs9VglUKlotqEbyAn1azbM+xZqvJ?=
+ =?us-ascii?Q?dNIl8sgpRYUYrkRtHAzmpGGacym1Zi0JsWN93vCcykcXPxG4DPB/skQlBPKo?=
+ =?us-ascii?Q?rgqQBfVWbsz7GPBrXjV7MV2WwVpJzplgvu2KUgDpBgNIrGcwKD69CMfiZcnj?=
+ =?us-ascii?Q?lXGenasQsxVgxVAWPQnRL7jwxEOw8noXc0PvXxLv+RaPcIUjQYYF83Nlm3Zg?=
+ =?us-ascii?Q?pMf6HRkcEYzxk8nU/yuOzAFHcKkr6dmF19JfqCquEK5c20unZu7mNLGKOPU+?=
+ =?us-ascii?Q?yBmNlMrsmxG+1QaF0V1zqdmyu3Lx2MQQHCk2TdHCegwNvEhS3o2ojn7AVYjL?=
+ =?us-ascii?Q?CU1wyArtt7XAVn5zgeLbJqN9eZB03zBZNdh+NaW+68/tb7Gpb+FviOaorhyx?=
+ =?us-ascii?Q?hBw+wmQeSQGMZ9Zh/yc6OWUNi8dWZEWtukXutd7tPoOmdOFfRWupPB4WBm3/?=
+ =?us-ascii?Q?vKn0ROuu2tRRiiijkahYJiHme3T/vmdkqWW3ev8suG3X4PEYfrNU4nl6QWHh?=
+ =?us-ascii?Q?6dqJo1WNRVhkvsP+F9eRihbf11l8kFUugTYJr+x+7mNaeg4VZxF5C3uPgFaM?=
+ =?us-ascii?Q?0mkovI/FKkREhsvRkiZI+xV/jT0MvJBWmnaD3c1goWl3hTtrSt5Q+GVs2hSd?=
+ =?us-ascii?Q?1UopVqmikOpG08BCs6YoiYwg+M3s7yIliBKA484+LIWKO7gPndnXNHGA8uNP?=
+ =?us-ascii?Q?lw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: f4b5d08f-c432-48ce-bf1f-08dc44f86434
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Mar 2024 13:59:24.7477 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Mar 2024 14:01:20.6653 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: n7Y0ag9jTEEIpEy8mKq5OjYZ91BBieH3JgIcY1y8owXC5g6q9kZd1PxsZlwRqFxFJv1+bSAih4WQ6NG/T3cPbQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7523
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1ZVJhpycRM8GrAz0IMiNlEmUclrs0X6CLpM1iDcJC3TVT0ShRLEIzoUhH9w1x6gIXn+a2CK13h3TuuWjUpqxXg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4596
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -154,228 +149,147 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Mar 15, 2024 at 04:31:54AM +0000, Ghimiray, Himal Prasad wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of
-> > Rodrigo Vivi
-> > Sent: 15 March 2024 06:33
-> > To: intel-xe@lists.freedesktop.org
-> > Cc: Vivi, Rodrigo <rodrigo.vivi@intel.com>; De Marchi, Lucas
-> > <lucas.demarchi@intel.com>; Teres Alexis, Alan Previn
-> > <alan.previn.teres.alexis@intel.com>; Somaiya, Himanshu
-> > <himanshu.somaiya@intel.com>
-> > Subject: [PATCH 3/3] drm/xe: Force busted state and block GT reset upon any
-> > GPU hang
-> > 
-> > In many validation situations when debugging GPU Hangs, it is useful to
-> > preserve the GT situation from the moment that the timeout occurred.
-> > 
-> > This patch introduces a module parameter that could be used on situations
-> > like this.
-> > 
-> > If xe.busted module parameter is set to 2, Xe will be declared busted on
-> > every single execution timeout (a.k.a. GPU hang) right after devcoredump
-> > snapshot capture and without attempting any kind of GT reset and blocking
-> > entirely any kind of execution.
-> > 
-> > v2: Really block gt_reset from guc side. (Lucas)
-> >     s/wedged/busted (Lucas)
-> > 
-> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> > Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
-> > Cc: Himanshu Somaiya <himanshu.somaiya@intel.com>
-> > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_device.c     | 30 ++++++++++++++++++++++++++++++
-> >  drivers/gpu/drm/xe/xe_device.h     | 13 +------------
-> >  drivers/gpu/drm/xe/xe_guc_ads.c    |  7 +++++++
-> >  drivers/gpu/drm/xe/xe_guc_submit.c |  4 ++++
-> >  drivers/gpu/drm/xe/xe_module.c     |  5 +++++
-> >  drivers/gpu/drm/xe/xe_module.h     |  1 +
-> >  6 files changed, 48 insertions(+), 12 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_device.c
-> > b/drivers/gpu/drm/xe/xe_device.c index d02e59fb49eb..e28e3628744f
-> > 100644
-> > --- a/drivers/gpu/drm/xe/xe_device.c
-> > +++ b/drivers/gpu/drm/xe/xe_device.c
-> > @@ -774,3 +774,33 @@ u64 xe_device_uncanonicalize_addr(struct
-> > xe_device *xe, u64 address)  {
-> >  	return address & GENMASK_ULL(xe->info.va_bits - 1, 0);  }
-> > +
-> > +/**
-> > + * xe_device_declare_busted - Declare device busted
-> > + * @xe: xe device instance
-> > + *
-> > + * This is a final state that can only be cleared with a module
-> > + * re-probe (unbind + bind).
-> > + * In this state every IOCTL will be blocked so the GT cannot be used.
-> > + * In general it will be called upon any critical error such as gt
-> > +reset
-> > + * failure or guc loading failure.
-> > + * If xe.busted module parameter is set to 2, this function will be
-> > +called
-> > + * on every single execution timeout (a.k.a. GPU hang) right after
-> > +devcoredump
-> > + * snapshot capture. In this mode, GT reset won't be attempted so the
-> > +state of
-> > + * the issue is preserved for further debugging.
-> > + */
-> > +void xe_device_declare_busted(struct xe_device *xe) {
-> > +	if (xe_modparam.busted_mode == 0)
-> > +		return;
->  
-> Do you see any usecase or benefit of providing the option to disable busted mode with modparam ?
+Introduce a very simple 'busted' state where any attempt
+to access the GPU is entirely blocked.
 
-honestly? No!
-I just wanted to have a chicken way back to the current status quo...
+On some critical cases, like on gt_reset failure, we need to
+block any other attempt to use the GPU. Otherwise we are at
+a risk of reaching cases that would force us to reboot the machine.
 
-Matt?
-Lucas?
-thoughts?
+So, when this cases are identified we corner and block any GPU
+access. No IOCTL and not even another GT reset should be attempted.
 
-> 
-> BR
-> Himal 
-> 
-> > +
-> > +	if (!atomic_xchg(&xe->busted, 1))
-> > +		drm_err(&xe->drm,
-> > +			"CRITICAL: Xe has declared device %s as busted.\n"
-> > +			"IOCTLs and executions are blocked until device is
-> > probed again with unbind and bind operations:\n"
-> > +			"echo '%s' | sudo tee
-> > /sys/bus/pci/drivers/xe/unbind\n"
-> > +			"echo '%s' | sudo tee
-> > /sys/bus/pci/drivers/xe/bind\n"
-> > +			"Please file a _new_ bug report at
-> > https://gitlab.freedesktop.org/drm/xe/kernel/issues/new\n",
-> > +			dev_name(xe->drm.dev), dev_name(xe->drm.dev),
-> > +			dev_name(xe->drm.dev));
-> > +}
-> > diff --git a/drivers/gpu/drm/xe/xe_device.h
-> > b/drivers/gpu/drm/xe/xe_device.h index 2c6d9b77821a..e6edf2d3ee4a
-> > 100644
-> > --- a/drivers/gpu/drm/xe/xe_device.h
-> > +++ b/drivers/gpu/drm/xe/xe_device.h
-> > @@ -181,17 +181,6 @@ static inline bool xe_device_busted(struct xe_device
-> > *xe)
-> >  	return atomic_read(&xe->busted);
-> >  }
-> > 
-> > -static inline void xe_device_declare_busted(struct xe_device *xe) -{
-> > -	if (!atomic_xchg(&xe->busted, 1))
-> > -		drm_err(&xe->drm,
-> > -			"CRITICAL: Xe has declared device %s as busted.\n"
-> > -			"IOCTLs and executions are blocked until device is
-> > probed again with unbind and bind operations:\n"
-> > -			"echo '%s' | sudo tee
-> > /sys/bus/pci/drivers/xe/unbind\n"
-> > -			"echo '%s' | sudo tee
-> > /sys/bus/pci/drivers/xe/bind\n"
-> > -			"Please file a _new_ bug report at
-> > https://gitlab.freedesktop.org/drm/xe/kernel/issues/new\n",
-> > -			dev_name(xe->drm.dev), dev_name(xe->drm.dev),
-> > -			dev_name(xe->drm.dev));
-> > -}
-> > +void xe_device_declare_busted(struct xe_device *xe);
-> > 
-> >  #endif
-> > diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c
-> > b/drivers/gpu/drm/xe/xe_guc_ads.c index 6ad4c1a90a78..ecf45289b187
-> > 100644
-> > --- a/drivers/gpu/drm/xe/xe_guc_ads.c
-> > +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-> > @@ -18,6 +18,7 @@
-> >  #include "xe_lrc.h"
-> >  #include "xe_map.h"
-> >  #include "xe_mmio.h"
-> > +#include "xe_module.h"
-> >  #include "xe_platform_types.h"
-> > 
-> >  /* Slack of a few additional entries per engine */ @@ -312,10 +313,16 @@
-> > int xe_guc_ads_init_post_hwconfig(struct xe_guc_ads *ads)
-> > 
-> >  static void guc_policies_init(struct xe_guc_ads *ads)  {
-> > +	u32 global_flags = 0;
-> > +
-> >  	ads_blob_write(ads, policies.dpc_promote_time,
-> >  		       GLOBAL_POLICY_DEFAULT_DPC_PROMOTE_TIME_US);
-> >  	ads_blob_write(ads, policies.max_num_work_items,
-> >  		       GLOBAL_POLICY_MAX_NUM_WI);
-> > +
-> > +	if (xe_modparam.busted_mode == 2)
-> > +		global_flags |= GLOBAL_POLICY_DISABLE_ENGINE_RESET;
-> > +
-> >  	ads_blob_write(ads, policies.global_flags, 0);
-> >  	ads_blob_write(ads, policies.is_valid, 1);  } diff --git
-> > a/drivers/gpu/drm/xe/xe_guc_submit.c
-> > b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > index 82c955a2a15c..e7ddf35c1dac 100644
-> > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > @@ -34,6 +34,7 @@
-> >  #include "xe_macros.h"
-> >  #include "xe_map.h"
-> >  #include "xe_mocs.h"
-> > +#include "xe_module.h"
-> >  #include "xe_ring_ops_types.h"
-> >  #include "xe_sched_job.h"
-> >  #include "xe_trace.h"
-> > @@ -949,6 +950,9 @@ guc_exec_queue_timedout_job(struct
-> > drm_sched_job *drm_job)
-> >  	simple_error_capture(q);
-> >  	xe_devcoredump(job);
-> > 
-> > +	if (xe_modparam.busted_mode == 2)
-> > +		xe_device_declare_busted(xe);
-> > +
-> >  	trace_xe_sched_job_timedout(job);
-> > 
-> >  	/* Kill the run_job entry point */
-> > diff --git a/drivers/gpu/drm/xe/xe_module.c
-> > b/drivers/gpu/drm/xe/xe_module.c index 110b69864656..f81970e8d713
-> > 100644
-> > --- a/drivers/gpu/drm/xe/xe_module.c
-> > +++ b/drivers/gpu/drm/xe/xe_module.c
-> > @@ -17,6 +17,7 @@ struct xe_modparam xe_modparam = {
-> >  	.enable_display = true,
-> >  	.guc_log_level = 5,
-> >  	.force_probe = CONFIG_DRM_XE_FORCE_PROBE,
-> > +	.busted_mode = 1,
-> >  	/* the rest are 0 by default */
-> >  };
-> > 
-> > @@ -48,6 +49,10 @@ module_param_named_unsafe(force_probe,
-> > xe_modparam.force_probe, charp, 0400);
-> > MODULE_PARM_DESC(force_probe,
-> >  		 "Force probe options for specified devices. See
-> > CONFIG_DRM_XE_FORCE_PROBE for details.");
-> > 
-> > +module_param_named_unsafe(busted_mode,
-> > xe_modparam.busted_mode, int,
-> > +0600); MODULE_PARM_DESC(busted_mode,
-> > +		 "Module's default policy for the busted mode - 0=never,
-> > +1=upon-critical-errors[default], 2=upon-any-hang");
-> > +
-> >  struct init_funcs {
-> >  	int (*init)(void);
-> >  	void (*exit)(void);
-> > diff --git a/drivers/gpu/drm/xe/xe_module.h
-> > b/drivers/gpu/drm/xe/xe_module.h index 88ef0e8b2bfd..bbf88c34e4f4
-> > 100644
-> > --- a/drivers/gpu/drm/xe/xe_module.h
-> > +++ b/drivers/gpu/drm/xe/xe_module.h
-> > @@ -18,6 +18,7 @@ struct xe_modparam {
-> >  	char *huc_firmware_path;
-> >  	char *gsc_firmware_path;
-> >  	char *force_probe;
-> > +	int busted_mode;
-> >  };
-> > 
-> >  extern struct xe_modparam xe_modparam;
-> > --
-> > 2.44.0
-> 
+The 'busted' state in Xe is an end state with no way back.
+Only a device "re-probe" (unbind + bind) can restore the GPU access.
+
+v2: - s/wedged/busted (Lucas)
+    - use unbind+bind instead of module reload (Lucas)
+    - added more info on unbind operations and instruction on bug report
+    - only print the message once.
+
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.c       |  6 ++++++
+ drivers/gpu/drm/xe/xe_device.h       | 18 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_device_types.h |  3 +++
+ drivers/gpu/drm/xe/xe_gt.c           |  4 ++++
+ drivers/gpu/drm/xe/xe_migrate.c      |  6 ++++++
+ 5 files changed, 37 insertions(+)
+
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index b0bfe75eb59f..d02e59fb49eb 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -142,6 +142,9 @@ static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
+ 	struct xe_device *xe = to_xe_device(file_priv->minor->dev);
+ 	long ret;
+ 
++	if (xe_device_busted(xe))
++		return -ECANCELED;
++
+ 	ret = xe_pm_runtime_get_ioctl(xe);
+ 	if (ret >= 0)
+ 		ret = drm_ioctl(file, cmd, arg);
+@@ -157,6 +160,9 @@ static long xe_drm_compat_ioctl(struct file *file, unsigned int cmd, unsigned lo
+ 	struct xe_device *xe = to_xe_device(file_priv->minor->dev);
+ 	long ret;
+ 
++	if (xe_device_busted(xe))
++		return -ECANCELED;
++
+ 	ret = xe_pm_runtime_get_ioctl(xe);
+ 	if (ret >= 0)
+ 		ret = drm_compat_ioctl(file, cmd, arg);
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index 14be34d9f543..2c6d9b77821a 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -176,4 +176,22 @@ void xe_device_snapshot_print(struct xe_device *xe, struct drm_printer *p);
+ u64 xe_device_canonicalize_addr(struct xe_device *xe, u64 address);
+ u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64 address);
+ 
++static inline bool xe_device_busted(struct xe_device *xe)
++{
++	return atomic_read(&xe->busted);
++}
++
++static inline void xe_device_declare_busted(struct xe_device *xe)
++{
++	if (!atomic_xchg(&xe->busted, 1))
++		drm_err(&xe->drm,
++			"CRITICAL: Xe has declared device %s as busted.\n"
++			"IOCTLs and executions are blocked until device is probed again with unbind and bind operations:\n"
++			"echo '%s' | sudo tee /sys/bus/pci/drivers/xe/unbind\n"
++			"echo '%s' | sudo tee /sys/bus/pci/drivers/xe/bind\n"
++			"Please file a _new_ bug report at https://gitlab.freedesktop.org/drm/xe/kernel/issues/new\n",
++			dev_name(xe->drm.dev), dev_name(xe->drm.dev),
++			dev_name(xe->drm.dev));
++}
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 9785eef2e5a4..2633fdfc1a38 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -455,6 +455,9 @@ struct xe_device {
+ 	/** @needs_flr_on_fini: requests function-reset on fini */
+ 	bool needs_flr_on_fini;
+ 
++	/** @busted: Xe device faced a critical error and is now blocked. */
++	atomic_t busted;
++
+ 	/* private: */
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 85408e7a932b..2f29f7fa682b 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -633,6 +633,9 @@ static int gt_reset(struct xe_gt *gt)
+ {
+ 	int err;
+ 
++	if (xe_device_busted(gt_to_xe(gt)))
++		return -ECANCELED;
++
+ 	/* We only support GT resets with GuC submission */
+ 	if (!xe_device_uc_enabled(gt_to_xe(gt)))
+ 		return -ENODEV;
+@@ -686,6 +689,7 @@ static int gt_reset(struct xe_gt *gt)
+ 	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
+ 
+ 	gt_to_xe(gt)->needs_flr_on_fini = true;
++	xe_device_declare_busted(gt_to_xe(gt));
+ 
+ 	return err;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index ee1bb938c493..d7eb409e8415 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -713,6 +713,9 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 		xe_bo_needs_ccs_pages(src_bo) && xe_bo_needs_ccs_pages(dst_bo);
+ 	bool copy_system_ccs = copy_ccs && (!src_is_vram || !dst_is_vram);
+ 
++	if (xe_device_busted(xe))
++		return ERR_PTR(-ECANCELED);
++
+ 	/* Copying CCS between two different BOs is not supported yet. */
+ 	if (XE_WARN_ON(copy_ccs && src_bo != dst_bo))
+ 		return ERR_PTR(-EINVAL);
+@@ -986,6 +989,9 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 	int err;
+ 	int pass = 0;
+ 
++	if (xe_device_busted(xe))
++		return ERR_PTR(-ECANCELED);
++
+ 	if (!clear_vram)
+ 		xe_res_first_sg(xe_bo_sg(bo), 0, bo->size, &src_it);
+ 	else
+-- 
+2.44.0
+
