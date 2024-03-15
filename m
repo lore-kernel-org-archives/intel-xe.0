@@ -4,47 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14BA1C54E69
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8104C54E6A
 	for <intel-xe@archiver.kernel.org>; Fri, 15 Mar 2024 01:35:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77D2310FF30;
-	Fri, 15 Mar 2024 01:35:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CFD010FF3E;
+	Fri, 15 Mar 2024 01:35:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fg6C6LX7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RzRRCTgD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1554010FF30
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Mar 2024 01:35:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D431910FF30
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Mar 2024 01:35:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710466524; x=1742002524;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=iVKdfzfYkIqhvU0SVyh0XPUt9F1UiEZtbNqjkTO2byI=;
- b=Fg6C6LX7HA02JYI8ZqeXMJV4EbkPV36ZGuyON+kyInk9/cs7cE40R9nm
- ZSfxGTgXR4zSomhNGmK2XI4o+bLxqwJBw4EgM8mEz/N1NAOcq5ylKkw9K
- ZgITj/svWnDd2RxA2ZTgr3gNjYwT1SyV90GbXIYeOeoyyLz/y0VUBQr5M
- IR/gIWiPL3oT9ar8pQptbAl6YT3pMQdZlkUOaNw3u0+8cYu1WWeK/6d0A
- +cO1uLb23PG0sDBAEtLzWY7glqOCn8SZjZv/SV7/JYztEP0nS9rp2ZKI6
- mA9YQMpfMaUjHEupgo4maNc0WKuwajmiVE0h4yEl8Euv1tNqP2sOnZr+J A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11013"; a="15963121"
-X-IronPort-AV: E=Sophos;i="6.07,127,1708416000"; d="scan'208";a="15963121"
+ t=1710466525; x=1742002525;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=wa5j3woH8jjNqwFdAhPkepwMIGsH9V17MVgKkEu2qjw=;
+ b=RzRRCTgD8oKuV41aukpQ1JDVnkoKTBUIyjTLbJMUZiYmOw1A6adEKI05
+ xmlvHC0WOifdhOPAhn2lvVVseXchguEprmfx+8Fe7WedbQb5/qTXWf8n/
+ hPWMO88fodGP9U2kBR5QUvvZsGxEtN3YI39ZgGw0dLp+PLTOfx8InTPNM
+ fEdlbPzbO7wxJObFaQXmAYTnue9CISCXhE2vK6RLvUDOBdhDNBTtUfn3P
+ iptXkE9DwhpGUIZVYdpB6aNnJdbJmSShVoVRnrVsh7QLJnJNCpex1dpJ/
+ H1No3wRCv0CAIVqvaV7OhyM+yALc8Ka5i+2mOQ2q/jglqZEAGQ+YXrd2w A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11013"; a="15963124"
+X-IronPort-AV: E=Sophos;i="6.07,127,1708416000"; d="scan'208";a="15963124"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2024 18:35:23 -0700
+ 14 Mar 2024 18:35:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,127,1708416000"; d="scan'208";a="43397256"
+X-IronPort-AV: E=Sophos;i="6.07,127,1708416000"; d="scan'208";a="43397260"
 Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.jf.intel.com)
  ([10.165.21.138])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Mar 2024 18:35:23 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 00/17] Add OA functionality to Xe
-Date: Thu, 14 Mar 2024 18:35:01 -0700
-Message-ID: <20240315013518.2848986-1-ashutosh.dixit@intel.com>
+Subject: [PATCH 03/17] drm/xe/oa/uapi: Add OA data formats
+Date: Thu, 14 Mar 2024 18:35:04 -0700
+Message-ID: <20240315013518.2848986-4-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20240315013518.2848986-1-ashutosh.dixit@intel.com>
+References: <20240315013518.2848986-1-ashutosh.dixit@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,85 +63,354 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Please see cover letter for v7 here:
-https://patchwork.freedesktop.org/series/121084/#rev7
+Add and initialize supported OA data formats for various platforms
+(including Xe2). User can request OA data in any supported format.
 
-For changes in v8 through v10, see:
-https://patchwork.freedesktop.org/series/128993/
+Bspec: 52198, 60942, 61101
 
-For changes in v11, see:
-https://patchwork.freedesktop.org/series/130705/
+v2: Start 'xe_oa_format_name' enum from 0 (Umesh)
+    Fix error rewind with OA (Umesh)
+v3: Use graphics versions rather than absolute platform names
 
-This series is also available at:
-        https://gitlab.freedesktop.org/adixit/kernel/-/tree/xe-oa
-
-The series has been tested against this IGT series:
-        https://gitlab.freedesktop.org/adixit/igt-gpu-tools/-/tree/xe-oa, or,
-	https://patchwork.freedesktop.org/series/130033/
-
-v2: Fix build
-v3: Rebase, due to s/xe_engine/xe_exec_queue/
-v4: Re-run for testing
-v5: Address review comments, new patches 11 through 17
-v6: New patches 18 through 21
-v7: Patches are completely redone and don't start with i915 version of the uapi
-v8: See https://patchwork.freedesktop.org/patch/575214/?series=128993&rev=1
-v9: See https://patchwork.freedesktop.org/patch/577441/?series=128993&rev=2
-v10: See https://patchwork.freedesktop.org/patch/577943/?series=128993&rev=3
-v11: See https://patchwork.freedesktop.org/patch/581239/?series=130705&rev=1
-v12: Add last two new patches to enable Xe2+ overrun mode
-v13: Update last two patches after code review completion
-
-Ashutosh Dixit (17):
-  drm/xe/perf/uapi: "Perf" layer to support multiple perf counter stream
-    types
-  drm/xe/perf/uapi: Add perf_stream_paranoid sysctl
-  drm/xe/oa/uapi: Add OA data formats
-  drm/xe/oa/uapi: Initialize OA units
-  drm/xe/oa/uapi: Add/remove OA config perf ops
-  drm/xe/oa/uapi: Define and parse OA stream properties
-  drm/xe/oa: OA stream initialization (OAG)
-  drm/xe/oa/uapi: Expose OA stream fd
-  drm/xe/oa/uapi: Read file_operation
-  drm/xe/oa: Add OAR support
-  drm/xe/oa: Add OAC support
-  drm/xe/oa/uapi: Query OA unit properties
-  drm/xe/oa/uapi: OA buffer mmap
-  drm/xe/oa: Add MMIO trigger support
-  drm/xe/oa: Override GuC RC with OA on PVC
-  drm/xe/oa: Changes to OA_TAKEN
-  drm/xe/oa: Enable Xe2+ overrun mode
-
- drivers/gpu/drm/xe/Makefile                   |    2 +
- .../gpu/drm/xe/instructions/xe_mi_commands.h  |    3 +
- drivers/gpu/drm/xe/regs/xe_engine_regs.h      |    4 +-
- drivers/gpu/drm/xe/regs/xe_gt_regs.h          |    3 +
- drivers/gpu/drm/xe/regs/xe_oa_regs.h          |   99 +
- drivers/gpu/drm/xe/xe_device.c                |   18 +-
- drivers/gpu/drm/xe/xe_device_types.h          |    4 +
- drivers/gpu/drm/xe/xe_gt_types.h              |    4 +
- drivers/gpu/drm/xe/xe_guc_pc.c                |   56 +
- drivers/gpu/drm/xe/xe_guc_pc.h                |    3 +
- drivers/gpu/drm/xe/xe_hw_engine_types.h       |    2 +
- drivers/gpu/drm/xe/xe_lrc.c                   |   11 +-
- drivers/gpu/drm/xe/xe_lrc.h                   |    1 +
- drivers/gpu/drm/xe/xe_module.c                |    6 +
- drivers/gpu/drm/xe/xe_oa.c                    | 2334 +++++++++++++++++
- drivers/gpu/drm/xe/xe_oa.h                    |   30 +
- drivers/gpu/drm/xe/xe_oa_types.h              |  229 ++
- drivers/gpu/drm/xe/xe_perf.c                  |   67 +
- drivers/gpu/drm/xe/xe_perf.h                  |   20 +
- drivers/gpu/drm/xe/xe_query.c                 |   77 +
- drivers/gpu/drm/xe/xe_reg_whitelist.c         |   24 +-
- include/uapi/drm/xe_drm.h                     |  286 ++
- 22 files changed, 3275 insertions(+), 8 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/regs/xe_oa_regs.h
+Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/xe/Makefile          |  1 +
+ drivers/gpu/drm/xe/xe_device.c       | 12 +++-
+ drivers/gpu/drm/xe/xe_device_types.h |  4 ++
+ drivers/gpu/drm/xe/xe_module.c       |  1 +
+ drivers/gpu/drm/xe/xe_oa.c           | 99 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_oa.h           | 16 +++++
+ drivers/gpu/drm/xe/xe_oa_types.h     | 76 +++++++++++++++++++++
+ include/uapi/drm/xe_drm.h            | 10 +++
+ 8 files changed, 218 insertions(+), 1 deletion(-)
  create mode 100644 drivers/gpu/drm/xe/xe_oa.c
  create mode 100644 drivers/gpu/drm/xe/xe_oa.h
  create mode 100644 drivers/gpu/drm/xe/xe_oa_types.h
- create mode 100644 drivers/gpu/drm/xe/xe_perf.c
- create mode 100644 drivers/gpu/drm/xe/xe_perf.h
 
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 9ee89529bcc4..d5910de47763 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -112,6 +112,7 @@ xe-y += xe_bb.o \
+ 	xe_mmio.o \
+ 	xe_mocs.o \
+ 	xe_module.o \
++	xe_oa.o \
+ 	xe_pat.o \
+ 	xe_pci.o \
+ 	xe_pcode.o \
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 6f679b515184..20ca2f966981 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -34,6 +34,7 @@
+ #include "xe_memirq.h"
+ #include "xe_mmio.h"
+ #include "xe_module.h"
++#include "xe_oa.h"
+ #include "xe_pat.h"
+ #include "xe_pcode.h"
+ #include "xe_perf.h"
+@@ -565,10 +566,14 @@ int xe_device_probe(struct xe_device *xe)
+ 
+ 	xe_heci_gsc_init(xe);
+ 
+-	err = xe_display_init(xe);
++	err = xe_oa_init(xe);
+ 	if (err)
+ 		goto err_fini_gt;
+ 
++	err = xe_display_init(xe);
++	if (err)
++		goto err_oa_fini;
++
+ 	err = drm_dev_register(&xe->drm, 0);
+ 	if (err)
+ 		goto err_fini_display;
+@@ -588,6 +593,9 @@ int xe_device_probe(struct xe_device *xe)
+ err_fini_display:
+ 	xe_display_driver_remove(xe);
+ 
++err_oa_fini:
++	xe_oa_fini(xe);
++
+ err_fini_gt:
+ 	for_each_gt(gt, xe, id) {
+ 		if (id < last_gt)
+@@ -620,6 +628,8 @@ void xe_device_remove(struct xe_device *xe)
+ 
+ 	xe_display_fini(xe);
+ 
++	xe_oa_fini(xe);
++
+ 	xe_heci_gsc_fini(xe);
+ 
+ 	for_each_gt(gt, xe, id)
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 9785eef2e5a4..4e624a257c20 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -17,6 +17,7 @@
+ #include "xe_gt_types.h"
+ #include "xe_lmtt_types.h"
+ #include "xe_memirq_types.h"
++#include "xe_oa.h"
+ #include "xe_platform_types.h"
+ #include "xe_pt_types.h"
+ #include "xe_sriov_types.h"
+@@ -452,6 +453,9 @@ struct xe_device {
+ 	/** @heci_gsc: graphics security controller */
+ 	struct xe_heci_gsc heci_gsc;
+ 
++	/** @oa: oa perf counter subsystem */
++	struct xe_oa oa;
++
+ 	/** @needs_flr_on_fini: requests function-reset on fini */
+ 	bool needs_flr_on_fini;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
+index 42085a4b56be..b5108e66dd1e 100644
+--- a/drivers/gpu/drm/xe/xe_module.c
++++ b/drivers/gpu/drm/xe/xe_module.c
+@@ -10,6 +10,7 @@
+ 
+ #include "xe_drv.h"
+ #include "xe_hw_fence.h"
++#include "xe_oa.h"
+ #include "xe_pci.h"
+ #include "xe_perf.h"
+ #include "xe_sched_job.h"
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+new file mode 100644
+index 000000000000..ae6b2005be11
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -0,0 +1,99 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#include <drm/xe_drm.h>
++
++#include "xe_device.h"
++#include "xe_oa.h"
++
++#define DRM_FMT(x) DRM_XE_OA_FMT_TYPE_##x
++
++static const struct xe_oa_format oa_formats[] = {
++	[XE_OA_FORMAT_C4_B8]			= { 7, 64,  DRM_FMT(OAG) },
++	[XE_OA_FORMAT_A12]			= { 0, 64,  DRM_FMT(OAG) },
++	[XE_OA_FORMAT_A12_B8_C8]		= { 2, 128, DRM_FMT(OAG) },
++	[XE_OA_FORMAT_A32u40_A4u32_B8_C8]	= { 5, 256, DRM_FMT(OAG) },
++	[XE_OAR_FORMAT_A32u40_A4u32_B8_C8]	= { 5, 256, DRM_FMT(OAR) },
++	[XE_OA_FORMAT_A24u40_A14u32_B8_C8]	= { 5, 256, DRM_FMT(OAG) },
++	[XE_OAC_FORMAT_A24u64_B8_C8]		= { 1, 320, DRM_FMT(OAC), HDR_64_BIT },
++	[XE_OAC_FORMAT_A22u32_R2u32_B8_C8]	= { 2, 192, DRM_FMT(OAC), HDR_64_BIT },
++	[XE_OAM_FORMAT_MPEC8u64_B8_C8]		= { 1, 192, DRM_FMT(OAM_MPEC), HDR_64_BIT },
++	[XE_OAM_FORMAT_MPEC8u32_B8_C8]		= { 2, 128, DRM_FMT(OAM_MPEC), HDR_64_BIT },
++	[XE_OA_FORMAT_PEC64u64]			= { 1, 576, DRM_FMT(PEC), HDR_64_BIT, 1, 0 },
++	[XE_OA_FORMAT_PEC64u64_B8_C8]		= { 1, 640, DRM_FMT(PEC), HDR_64_BIT, 1, 1 },
++	[XE_OA_FORMAT_PEC64u32]			= { 1, 320, DRM_FMT(PEC), HDR_64_BIT },
++	[XE_OA_FORMAT_PEC32u64_G1]		= { 5, 320, DRM_FMT(PEC), HDR_64_BIT, 1, 0 },
++	[XE_OA_FORMAT_PEC32u32_G1]		= { 5, 192, DRM_FMT(PEC), HDR_64_BIT },
++	[XE_OA_FORMAT_PEC32u64_G2]		= { 6, 320, DRM_FMT(PEC), HDR_64_BIT, 1, 0 },
++	[XE_OA_FORMAT_PEC32u32_G2]		= { 6, 192, DRM_FMT(PEC), HDR_64_BIT },
++	[XE_OA_FORMAT_PEC36u64_G1_32_G2_4]	= { 3, 320, DRM_FMT(PEC), HDR_64_BIT, 1, 0 },
++	[XE_OA_FORMAT_PEC36u64_G1_4_G2_32]	= { 4, 320, DRM_FMT(PEC), HDR_64_BIT, 1, 0 },
++};
++
++static void oa_format_add(struct xe_oa *oa, enum xe_oa_format_name format)
++{
++	__set_bit(format, oa->format_mask);
++}
++
++static void xe_oa_init_supported_formats(struct xe_oa *oa)
++{
++	if (GRAPHICS_VER(oa->xe) >= 20) {
++		/* Xe2+ */
++		oa_format_add(oa, XE_OAM_FORMAT_MPEC8u64_B8_C8);
++		oa_format_add(oa, XE_OAM_FORMAT_MPEC8u32_B8_C8);
++		oa_format_add(oa, XE_OA_FORMAT_PEC64u64);
++		oa_format_add(oa, XE_OA_FORMAT_PEC64u64_B8_C8);
++		oa_format_add(oa, XE_OA_FORMAT_PEC64u32);
++		oa_format_add(oa, XE_OA_FORMAT_PEC32u64_G1);
++		oa_format_add(oa, XE_OA_FORMAT_PEC32u32_G1);
++		oa_format_add(oa, XE_OA_FORMAT_PEC32u64_G2);
++		oa_format_add(oa, XE_OA_FORMAT_PEC32u32_G2);
++		oa_format_add(oa, XE_OA_FORMAT_PEC36u64_G1_32_G2_4);
++		oa_format_add(oa, XE_OA_FORMAT_PEC36u64_G1_4_G2_32);
++	} else if (GRAPHICS_VERx100(oa->xe) >= 1270) {
++		/* XE_METEORLAKE */
++		oa_format_add(oa, XE_OAR_FORMAT_A32u40_A4u32_B8_C8);
++		oa_format_add(oa, XE_OA_FORMAT_A24u40_A14u32_B8_C8);
++		oa_format_add(oa, XE_OAC_FORMAT_A24u64_B8_C8);
++		oa_format_add(oa, XE_OAC_FORMAT_A22u32_R2u32_B8_C8);
++		oa_format_add(oa, XE_OAM_FORMAT_MPEC8u64_B8_C8);
++		oa_format_add(oa, XE_OAM_FORMAT_MPEC8u32_B8_C8);
++	} else if (GRAPHICS_VERx100(oa->xe) >= 1255) {
++		/* XE_DG2, XE_PVC */
++		oa_format_add(oa, XE_OAR_FORMAT_A32u40_A4u32_B8_C8);
++		oa_format_add(oa, XE_OA_FORMAT_A24u40_A14u32_B8_C8);
++		oa_format_add(oa, XE_OAC_FORMAT_A24u64_B8_C8);
++		oa_format_add(oa, XE_OAC_FORMAT_A22u32_R2u32_B8_C8);
++	} else {
++		/* Gen12+ */
++		xe_assert(oa->xe, GRAPHICS_VER(oa->xe) >= 12);
++		oa_format_add(oa, XE_OA_FORMAT_A12);
++		oa_format_add(oa, XE_OA_FORMAT_A12_B8_C8);
++		oa_format_add(oa, XE_OA_FORMAT_A32u40_A4u32_B8_C8);
++		oa_format_add(oa, XE_OA_FORMAT_C4_B8);
++	}
++}
++
++int xe_oa_init(struct xe_device *xe)
++{
++	struct xe_oa *oa = &xe->oa;
++
++	/* Support OA only with GuC submission and Gen12+ */
++	if (XE_WARN_ON(!xe_device_uc_enabled(xe)) || XE_WARN_ON(GRAPHICS_VER(xe) < 12))
++		return 0;
++
++	oa->xe = xe;
++	oa->oa_formats = oa_formats;
++
++	xe_oa_init_supported_formats(oa);
++	return 0;
++}
++
++void xe_oa_fini(struct xe_device *xe)
++{
++	struct xe_oa *oa = &xe->oa;
++
++	oa->xe = NULL;
++}
+diff --git a/drivers/gpu/drm/xe/xe_oa.h b/drivers/gpu/drm/xe/xe_oa.h
+new file mode 100644
+index 000000000000..a2f301e2be57
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_oa.h
+@@ -0,0 +1,16 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _XE_OA_H_
++#define _XE_OA_H_
++
++#include "xe_oa_types.h"
++
++struct xe_device;
++
++int xe_oa_init(struct xe_device *xe);
++void xe_oa_fini(struct xe_device *xe);
++
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
+new file mode 100644
+index 000000000000..1e339090c90d
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_oa_types.h
+@@ -0,0 +1,76 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _XE_OA_TYPES_H_
++#define _XE_OA_TYPES_H_
++
++#include <linux/math.h>
++#include <linux/types.h>
++
++enum xe_oa_report_header {
++	HDR_32_BIT = 0,
++	HDR_64_BIT,
++};
++
++enum xe_oa_format_name {
++	XE_OA_FORMAT_C4_B8,
++
++	/* Gen8+ */
++	XE_OA_FORMAT_A12,
++	XE_OA_FORMAT_A12_B8_C8,
++	XE_OA_FORMAT_A32u40_A4u32_B8_C8,
++
++	/* DG2 */
++	XE_OAR_FORMAT_A32u40_A4u32_B8_C8,
++	XE_OA_FORMAT_A24u40_A14u32_B8_C8,
++
++	/* DG2/MTL OAC */
++	XE_OAC_FORMAT_A24u64_B8_C8,
++	XE_OAC_FORMAT_A22u32_R2u32_B8_C8,
++
++	/* MTL OAM */
++	XE_OAM_FORMAT_MPEC8u64_B8_C8,
++	XE_OAM_FORMAT_MPEC8u32_B8_C8,
++
++	/* Xe2+ */
++	XE_OA_FORMAT_PEC64u64,
++	XE_OA_FORMAT_PEC64u64_B8_C8,
++	XE_OA_FORMAT_PEC64u32,
++	XE_OA_FORMAT_PEC32u64_G1,
++	XE_OA_FORMAT_PEC32u32_G1,
++	XE_OA_FORMAT_PEC32u64_G2,
++	XE_OA_FORMAT_PEC32u32_G2,
++	XE_OA_FORMAT_PEC36u64_G1_32_G2_4,
++	XE_OA_FORMAT_PEC36u64_G1_4_G2_32,
++
++	XE_OA_FORMAT_MAX,
++};
++
++/** struct xe_oa_format - Format fields for supported OA formats */
++struct xe_oa_format {
++	u32 counter_select;
++	int size;
++	int type;
++	enum xe_oa_report_header header;
++	u16 counter_size;
++	u16 bc_report;
++};
++
++/**
++ * struct xe_oa - OA device level information
++ */
++struct xe_oa {
++	/** @xe: back pointer to xe device */
++	struct xe_device *xe;
++
++	/** @oa_formats: tracks all OA formats across platforms */
++	const struct xe_oa_format *oa_formats;
++
++#define FORMAT_MASK_SIZE DIV_ROUND_UP(XE_OA_FORMAT_MAX - 1, BITS_PER_LONG)
++
++	/** @format_mask: tracks valid OA formats for a platform */
++	unsigned long format_mask[FORMAT_MASK_SIZE];
++};
++#endif
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 6fc5a8ca1dbb..37d75db82ee1 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -1423,6 +1423,16 @@ enum drm_xe_perf_ioctls {
+ 	DRM_XE_PERF_IOCTL_INFO = _IO('i', 0x4),
+ };
+ 
++/** enum drm_xe_oa_format_type - OA format types */
++enum drm_xe_oa_format_type {
++	DRM_XE_OA_FMT_TYPE_OAG,
++	DRM_XE_OA_FMT_TYPE_OAR,
++	DRM_XE_OA_FMT_TYPE_OAM,
++	DRM_XE_OA_FMT_TYPE_OAC,
++	DRM_XE_OA_FMT_TYPE_OAM_MPEC,
++	DRM_XE_OA_FMT_TYPE_PEC,
++};
++
+ #if defined(__cplusplus)
+ }
+ #endif
 -- 
 2.41.0
 
