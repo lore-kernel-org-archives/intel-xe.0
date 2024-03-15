@@ -4,150 +4,150 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47E80C54E58
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Mar 2024 18:37:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 536C6C54E67
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Mar 2024 20:41:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0044D10F5EC;
-	Fri, 15 Mar 2024 18:37:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A7D8112511;
+	Fri, 15 Mar 2024 20:41:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FBN2zspA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lFm+/ScY";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BC8110F5EC
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Mar 2024 18:37:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65242112511
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Mar 2024 20:41:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710527866; x=1742063866;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=1IZR6qSacOb9WvCWOqafaF2+yfcc3qT98C4FK49oNz0=;
- b=FBN2zspACyC34EczMl7YvApOsLmBsKVb0Ul030UiFpKo1ji7qL5Qya4P
- 7AajkjVIucGgI8wE8Z82KvNt+rrhkmdcSmYyYWfuIMwYHy1pSQ8Bk6OD/
- cjAlFeFov604B0joZqdMFW4kSUs+Rb4Iqui8SbYCK33o2fg/UbN1TOhie
- 3IF4njfmTD2XBFaIADR9FtW687//QkgvfyDBSnBr8xPAawnQLdUaw+CZk
- FGvvHoq5P5ZMBiIbm0KaefgO5l/Z5E0Fx9PAAjv39vdKn7TSgml/xw30t
- jkXd0BuSF2AHxFW8prK3IV5qDEOwKrugyhOBXe2PBd8dlX9twZFLLfOl5 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11014"; a="22932528"
-X-IronPort-AV: E=Sophos;i="6.07,129,1708416000"; d="scan'208";a="22932528"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2024 11:37:45 -0700
+ t=1710535286; x=1742071286;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=8UBjTR/ZsS1Z1PTlLyaE1HRYtmoQw4SQ9YqLn2YPzNA=;
+ b=lFm+/ScYpHTILv17/4LyPCqT99cSIHgHhmOFbj2/qkD/h27dRztOdgnb
+ TE0tz/6pDHZuzmS8E+OQx0LECrpgIpdw9xS+1T9GY/BjRrXmtdFR+OFTJ
+ j1w5gFTXhgYCC71W6QNyQJl/MQUb56D/N3tKBzD+62nr8aT0S0dABmVFV
+ XqaqlGdNdB8CmR3lV+xc+WNskE9viGYXy61M3sX+OhO3khW3y/lJOidNI
+ 0aHsM/f9vYNJlHc6js1IMN0KY3E/Sg7c2B0SZRTjiMV7OGROY69fX/ujm
+ ubLcmCuut5Ug1zZn4m0ccBoHspuVNevbXBepQEjKGkplv5t2r0qlkOxq0 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11014"; a="5556564"
+X-IronPort-AV: E=Sophos;i="6.07,129,1708416000"; 
+   d="scan'208";a="5556564"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2024 13:41:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,129,1708416000"; d="scan'208";a="43807131"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 15 Mar 2024 11:37:45 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.07,129,1708416000"; d="scan'208";a="12690037"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 15 Mar 2024 13:41:24 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 15 Mar 2024 11:37:45 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2507.35; Fri, 15 Mar 2024 13:41:23 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Fri, 15 Mar 2024 11:37:45 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.40) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.35; Fri, 15 Mar 2024 13:41:23 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Fri, 15 Mar 2024 13:41:23 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Fri, 15 Mar 2024 11:37:44 -0700
+ 15.1.2507.35; Fri, 15 Mar 2024 13:41:23 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=b+lr2KXB2cEAgXWde1eN/3grA5p3iovVQPo+y6XrResiGc61G+9awzmNjgVqFaoRJsF5Mq6XQR+yjdVCys6ukpvdLJ4t/KnWDKfXTQjMQ8yYdqAjXdph2u60sR67aHIiz+TZocIhrkTKR7jaN+XYxorGS41Osf7jkcmGN629JUc4CUfQH6KyeR+gozP9DJJlnU8e6goCL5Fl4E02vMaTHBPLQIQAhbQZ9+4JgXQvi206Nz2Sd8K9sYqonbR8dNk1w3A1HgjFipbPFE3wP+yMtP7q7QP7GtwnsAzMkDkUUwOb/yTwffibnlDiJAKA7UoD9Ms1rbzdSccOxLec2lJJgw==
+ b=U0mvUWnFYDZ61ZM+7WI9KCb652iyXuv6Mb73Job27W9Ht7fjRAStyJwDSBZzMmcRMpjCqWQZ+IxgWUMBmwU8Ku9AZJk51+jfHjlAvD98EjYp7ilzp2MnFwD8+Ett9HUfjmAqXFcUjd5B0Rut4Bw2OqS2D715Mlo9Idjwk1j9aiWWjSKnFN+MaxnY6BLdsQ8LUdTydfyDWjXco75WSao7y8tF5JWJRma6pOLNz+3BEo4KNoojjwPlySGaDaJD3ekRk7TLIukklBk+MXj22igDirKQY4FMk41u3NCd4PwnJ7ewiVOWXefqHIza803pwn9Ijg1/eOY7Ap8gc5ZEDGSx/w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HSL/+UXUOJ+YjEQvM+c+Fy1eTTuwqbMRv/mtYW2LJFc=;
- b=Z/OuvjVgSfOzUF93xtCYY+W96hlgeC1t6T7DAlwHbneXG7CSfG3al3HtNI+LX2W1S8al2aCMpnd9YoWi96xe699QnVIFhQdOWVy3dVqZ4427AGGuFtpZqnhKDeugtxvpIvEPFcbEKKEtJUSyWSKCM6v0ybQzb2k9o0TchUXDi6I6mGWHKJNLrToHENa7O6izLwnFls5t9Ra+npCyYmBplwTEBq0QaLmF/SP5D/gKFX2eE+pkgboYyb0/GXb1V2PHmQXTa/d41JIwoA6J9u4YQEzlljWb7Z86xNm+7LIGukmjA7G9VhGHZ68yCaeweLj/HEhiaz4ToX7L/USRGRbhrA==
+ bh=2UVMzOtEBCYF70QUZqOT3NVv0Qn0kTUuYPsDY6a0feU=;
+ b=dMjdQbFGCknVuSA01+6aXge0q/CgWJSptNnmBDrxvpazhn4l0ND2nKb/R9TZrqNvQZXbbzVWWM/Wasia4asQ62CbeLKE15QhAzsaacoRloxpChcOSvKRtC1fRwO6POS5O9pluNjG67RolXEPVbCCbUs/4PcWMMAMZpdjmuoz8ZMnGkvNlFCxZZMIeAUPks9yqWRJ/mJtIC7DWYylQmuBnp2c3Yxq5WuFQ8i4U38l65ZZ44oR32X22fQqImEHFVUhhuwaneE6+mKPEn/t+jk23ryBPO0H3FakrM0qRHQKnCpC1zcZenh5uMR9eDw4LbqO924FrQlOKcezgfVhu90NWw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CH3PR11MB8441.namprd11.prod.outlook.com (2603:10b6:610:1bc::12)
- by CO1PR11MB4803.namprd11.prod.outlook.com (2603:10b6:303:95::21)
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by SA0PR11MB4559.namprd11.prod.outlook.com (2603:10b6:806:9a::19)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.16; Fri, 15 Mar
- 2024 18:37:37 +0000
-Received: from CH3PR11MB8441.namprd11.prod.outlook.com
- ([fe80::71ea:e0ea:808d:793b]) by CH3PR11MB8441.namprd11.prod.outlook.com
- ([fe80::71ea:e0ea:808d:793b%4]) with mapi id 15.20.7386.017; Fri, 15 Mar 2024
- 18:37:37 +0000
-Message-ID: <d817e344-71f2-4d7b-9607-7c63483b0228@intel.com>
-Date: Fri, 15 Mar 2024 11:37:34 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/guc: Don't support older GuC 70.x releases
-Content-Language: en-GB
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Matt Roper <matthew.d.roper@intel.com>, 
- Matthew Brost <matthew.brost@intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>
-References: <20240304162616.824884-1-daniele.ceraolospurio@intel.com>
- <dw54uqzedkjsbhoiadem4lzjhuwpud7m7njenel7tfbc5fuxwm@latczhpxzijn>
- <ff14df57-690b-46bc-986e-90b428cd694c@intel.com>
-From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <ff14df57-690b-46bc-986e-90b428cd694c@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.20; Fri, 15 Mar
+ 2024 20:41:21 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e7c:ccbc:a71c:6c15]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e7c:ccbc:a71c:6c15%5]) with mapi id 15.20.7386.017; Fri, 15 Mar 2024
+ 20:41:21 +0000
+Date: Fri, 15 Mar 2024 20:39:40 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: "Zeng, Oak" <oak.zeng@intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Hellstrom, Thomas" <thomas.hellstrom@intel.com>, "airlied@gmail.com"
+ <airlied@gmail.com>, "Welty, Brian" <brian.welty@intel.com>, "Ghimiray, Himal
+ Prasad" <himal.prasad.ghimiray@intel.com>
+Subject: Re: [PATCH 1/5] drm/xe/svm: Remap and provide memmap backing for GPU
+ vram
+Message-ID: <ZfSyDEioCxXpJrTc@DUT025-TGLU.fm.intel.com>
+References: <20240314033553.1379444-1-oak.zeng@intel.com>
+ <20240314033553.1379444-2-oak.zeng@intel.com>
+ <ZfMxR/YHY/LP88KZ@DUT025-TGLU.fm.intel.com>
+ <SA1PR11MB6991042C806081949493087592292@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <ZfNiw+M8ClCaR9Xn@DUT025-TGLU.fm.intel.com>
+ <SA1PR11MB6991E3115AC96F4A6FF257A792282@SA1PR11MB6991.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BY3PR03CA0025.namprd03.prod.outlook.com
- (2603:10b6:a03:39a::30) To CH3PR11MB8441.namprd11.prod.outlook.com
- (2603:10b6:610:1bc::12)
+In-Reply-To: <SA1PR11MB6991E3115AC96F4A6FF257A792282@SA1PR11MB6991.namprd11.prod.outlook.com>
+X-ClientProxiedBy: BY3PR03CA0014.namprd03.prod.outlook.com
+ (2603:10b6:a03:39a::19) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR11MB8441:EE_|CO1PR11MB4803:EE_
-X-MS-Office365-Filtering-Correlation-Id: c9d9007e-4dc8-4059-30b7-08dc451efcd3
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA0PR11MB4559:EE_
+X-MS-Office365-Filtering-Correlation-Id: bb0c7558-3144-4cbe-2c45-08dc453045c9
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: l8IhpIGEZDavmkxxqgfj7rWID6fW2/EzYBapx0qR1l/twIbeObjjTNmMwfyRqNZjQzi7CLSnfbuOjfprzwyrlbZwGx2nnMhJjryAAmn70Px4NmL1Pt/l50jPEEKyUSEXH62hCbrKZdXjIJxwH96kkQbfr6Z/vrhPR/VShukC1yD6kk8GXuEUkmuVeGFRtFWEi3MA4NwiDsd/l6G88OjV2uapFDEQQwDD9uYWJvQ5ctU+PmWa5hkRgQwAsSiY/+DE7xNCUwopxUdv6sJ1b7JZiolxFjDopAb8O6sdc9O/D6rnDvF7QaxOHMO7Bz03/Qk2TvPugfMXqhaF52RUYnfFSDiiQ9gGU1Ec5bW9rsJbzIGLdgnq9X6mvOVmp+E4sZ9IbqrCCizEU4jUFMyxvtRCvO13lQDjUsK3qCMH66frLcs9dyFUJGwQ2AItxBDzrKhvXM9z6lIchMiH7HVmrznRzAdMwCsQLSF0k/xeH4X3zFBlJwYhQ+MKZuJ48kIENWpiNjnDoax17FDRFC/+qvDUjDnJeEDLFRaPu4mWHQtwWHo2gtmAlgk6iTy+EHyZT+8/4+ah2SOygQPnUg6T4aYvA3ongqH0Hd99jUvRlUSeRqx2wGBd2dc+IyxCD2//1alvTLs4pcbOEuTaIPfAkLRnm8rJJh4eKkkbevDny1qe07g=
+X-Microsoft-Antispam-Message-Info: Lqoy7OortH+qxhAofXJuFsHUZe2AGMeyCmsMg7icqRiyAanuzYphwVcEeXoY8kPt/EYJeEM+k6N1h9W/iwLIdixm0Bpz2ysgY1nIZ9TN9/4F2qs9nFq5hTjP8KI6x38NlXWAZUp0grW3Yn6mB5cPHfNTcUOktUpGLv53ZE8Goz/6XqPhHu2/baSW1Py9m198igQfr4neRaVlG8PWcM7XPs+IxM8AeQnjhbRyKwsn0vQv25wJYvdQ64hVrKTsW8Q8QQV5eqBe6WLr35T+HNYLMw1qJ8ForSlJkLgMIj2Vv56AADg1dKsqOLxsYWwgy+iwTQDAtd5xZMLaA1Mfh+pDMNrbykHjnRLW6nVIQq3pLg8WkJ/CXVEReNQOQz1N+FLg8IQHBaihbzTsSBf6HKomZ1yzrtzDCrROVU8Tyg/Z8YQi9GQXy0QyypIwuasqmFjEOffVA1SPox2UyENJ6vBv4lZDPv1Jm4Y1CyDHL0LGlwI3pY/YyNuHRDMHtUtml8BLpQvSfgR0Rp3ZZdeQxnvIIKTnsZOvkkYn6lZkJHEYxpCaWjH7Cd5edhFf+pIJ/PKjO9hqQXhOsoIKlhrsHiO63GaEBT10EMKgWU686OuYkRg=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH3PR11MB8441.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366007)(376005)(1800799015); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005)(1800799015)(366007); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L3JxbFdkUFBFUElzUFZuM29lMHJKMFBNcnB2bmY1eGxxeDdMcDI4ZzlWdStG?=
- =?utf-8?B?Z00xaEtBL0dqWVprQ2JUd2xBa2pkNWFwV3dVQWFHcDNpVlByRGplK3ZSVUh0?=
- =?utf-8?B?VGw5eHlUYkhqVWg5TUdEZmE1a2pINWFwdFVqQ3RWcW5SSlRVVjk2N1RHVTE3?=
- =?utf-8?B?NWxHaXdEVUFUZHpKQ1A3eUxEWWVqKysxMERxRjlNZ3hlSDVWWlhYaS8vMktM?=
- =?utf-8?B?Z2FjczZvdi9RcDhlUms0WW1vZnRYbFUvWjZsMHh2VUVNNDBxcEx4OExMd0Vi?=
- =?utf-8?B?SXNtbjR1RGF1SGtjR2dUWmU5VmNhcE9Kb3NVbGFlU1luVWdVUjducWs5eWFY?=
- =?utf-8?B?WVRzVmtMTUswVm42OFFyOEZBZG52SmtoNS9BazlkV2NabTE0V3dIRzhXWC94?=
- =?utf-8?B?V3NyMzFKWGxDbS9uQkFCeVNDU29oWlAvbUlLbFI2cWprK0FRUFNVaEpJbU1x?=
- =?utf-8?B?ekRobDI0bGJiQmJGNzhmelZ0cnJBb0gyeTd3ME5IMVY3cXU4QUFVUXFSWTVU?=
- =?utf-8?B?UWRqN1lONkw5MERKOUNHbmpvSzNsdHJxVWwxZjFvTXVOYzExTDEwYUVrc21a?=
- =?utf-8?B?QkliU2cxZTZ1UXBDa1MvR3Y5bnJmaXZKS2lSUis3WlVkaG9PSDk2YndkQnhY?=
- =?utf-8?B?S0Z6UzJVNjA1eWZ2a2tBRGlFeDk3ZUpyVDZndlFWRlJiSk1VM0V1K0JRZEo1?=
- =?utf-8?B?TndRR21Bc0UzRWlLZ3k0TFNOTXBXTXNlcTJ5cmpza3A3K0x3VDRteklXcndI?=
- =?utf-8?B?dHlPa29aRzVtZEttaWlHWmVoa0l6OS9ybVl3NW05bUdvb2ZPQ092Z0VWeHlH?=
- =?utf-8?B?Y1c3V1JhbEJDZFRsc2ZwUUlCWE1nb1lsRCtuaGJaM2FrZHhoSmVyam9MRXkw?=
- =?utf-8?B?YWhCZVpJZ0pFNkJPZFo2WmtOR1JNci9tamhyeHd2cE1ZaWY2TWFLV0V6dVMy?=
- =?utf-8?B?REY0ZnBCYzM3Ym1YdU5Mb0labWNiSFJPK1BBaDVBMnhHYXovRWUxUHlXWE4w?=
- =?utf-8?B?WHZ0K2pKb296NXZrc012ZUE1eEJ5cVhiSjZ2MkVXNUNTQ3Npa1A2OUhDaVZp?=
- =?utf-8?B?WHdZTHBXcmduSytpek16SnZkRXdtckM1WHhCczAvOEIxdU1mMGF0dzhwZ0gr?=
- =?utf-8?B?bUFDYTQ4UFdqcHlJaTlDZEpBK09uWGQvQUE5eElOODh6Y0t1NlVNQk8vQk5V?=
- =?utf-8?B?b3dHcEhGMmxVWkJDaUZ2S0RUV0lON3M2RjdpcFRDN2I4bFBiZlVpTitpWnIy?=
- =?utf-8?B?dnluT0RMMlQyKytMRzhJMHRUbE9VQ1oxNytDYlM0TW5wSzR4bTZRVklkek5N?=
- =?utf-8?B?NWF1dmZpOUtHekdQaWFKaDZrQnE1Ni95cU9YWSt6Q2VSSHVDRzNJR2xsK0VI?=
- =?utf-8?B?WHVuSThoa0lkb3JoUndSMHFuNjNNTXpILy83REJvSXY0U2FNS1dVbVpIYmNl?=
- =?utf-8?B?V3hiWEZqRnZ0cGJHeXVtN2laNjZtUFdnVHJOcVlWVjU0OGs2eXYwU1JCVU5r?=
- =?utf-8?B?RTU0RDRxT0dnTUJqb0lKeXpubFdYNEcvMys0QitHSGdSVi9vYmZyenVRdHg3?=
- =?utf-8?B?RWdCazRnS2lZbGxFVUE2c0N2aGs5bjZrOXZwTVprQUE2b0ozWHgwUDljdTBj?=
- =?utf-8?B?dDdkRFlnbTBFWUN3ZmRTVjJ3bFdkcXR1RTYrTHRndnF0VEJhdDRMWEJ3UXJk?=
- =?utf-8?B?Mk8wcHNkZGxtb1VxN0UxendxK3RvcVB0VEtxMWVYZ05MTVY3NitiZnd4emto?=
- =?utf-8?B?RjBxbno0MktMeUNCOFFzRlBlUXdsRm9VL0czQWs2RU40cE5BNTZPMTJJR0N1?=
- =?utf-8?B?enVZQ1hwTUJjNXZkMjMvUHNZS1MxSUszYzhWZUNxb0hFWXRKeUc4dDJZcGRr?=
- =?utf-8?B?SCs3NTI5UnB4RmVpcDdzVGMyQWJsSFZwZ241RkFMbUZla2pudmg5dElqRjla?=
- =?utf-8?B?YUdLclA2OXVCRTJKSW5UUkczKzQ2cDdnV25lK3V4N1ZxcGMvYlpHNjVFZUpP?=
- =?utf-8?B?VHNYZUFzMURoYzdPM2N4Smd2STNLc2lDNndwOUN0ODNSWFRXQkRmWVhIa1BQ?=
- =?utf-8?B?LzFKa2Fvd1RvNnk3MDQrQ08vQmtPODdrTnJ4cEg3b2VsandhTzBGVWltMllJ?=
- =?utf-8?B?SEVtd05FanhWaEgvdHFsUHh0d1RXWWV2NEQrWlNpWG9IU2VMVUZBaXZiU2NK?=
- =?utf-8?B?S1E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: c9d9007e-4dc8-4059-30b7-08dc451efcd3
-X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8441.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?Fgu/+kmp3thDo2FTuakDPCTkUOdRb0u2gJWEnrob3P0vghU4Ik+AXDHk3o?=
+ =?iso-8859-1?Q?BXV12BxvHfMaXZTE2KGBt7wZQ/g/fCxvPhNPNK7z6RfM46LWPe2xdMv2Zh?=
+ =?iso-8859-1?Q?WLw9HWzpb//SdfFYnrBEP+63ZAvLaQqrdhaKPfxsKjB8hKwAhuAlBq1wV0?=
+ =?iso-8859-1?Q?TXk3TIAMgfHB4xp9CcpQ9phieIYkbsnojZLOKmKGVblwtKC2qLtbZ8dJbf?=
+ =?iso-8859-1?Q?CVtjzCcnBWR97ImtGC4Pis49oCCl9VEjur94K0zZH1s+HFIcEW0j0NSYJx?=
+ =?iso-8859-1?Q?CozOBtGC9/NAAioWordv1lQxsi5YJr9nd+TXsMR/98gxpyKCYy0Z6WpXoL?=
+ =?iso-8859-1?Q?d+I041HTk+gnz/k9C/VeQj/uAaEK2MKHHsphJU6k0+TK2odm0RD4Ct2Yej?=
+ =?iso-8859-1?Q?JHkMPKwJCSMcjwVAl/EyvYJ6fCsaUO7eFzBJ22LhIOaHJU85KtzVx0UuLQ?=
+ =?iso-8859-1?Q?+SgkhnOrF02tWbylyqhjn8ympTnCkqSVXKnd9VVEd3or3U9J/W1UoHuUI4?=
+ =?iso-8859-1?Q?SJqfEj5xWrXuBq2g3loe25VNIobLq2TPwvU+MCPcmpUS51g7owewIsqc4p?=
+ =?iso-8859-1?Q?6/9BkLk0E3FNHcb+Qj8w1SO2xXDy6jDgaSgJR1KGtH+sPdn1NuXsHum99E?=
+ =?iso-8859-1?Q?iegB2xVa5b1LD38N0VM0pMCiPamo4nK1/sKdYyWUkCW/Yv+EViWi0/0Ztk?=
+ =?iso-8859-1?Q?qAfwiIA55oU4PiugcInYbFijuHWXtZ+mYNnkcY4KYFKVXE6hT4nsOllYGI?=
+ =?iso-8859-1?Q?V8t9UKdWWldLfRZWclfV6wuv31BUFWLeS5YXRP1JPEumfFqvT5l2ngYZiu?=
+ =?iso-8859-1?Q?q2vn3+aTdFL1J1h045cdZW1Rc7nh8yozdjo9KO/uxTyjWraya7LZ/K6XZq?=
+ =?iso-8859-1?Q?MxleKAqzJOJF2tWTVbKmWjvCWtVCeSrknU7SG0oiCVC9Appx72B90okRKi?=
+ =?iso-8859-1?Q?b4YAiuvUYKJG6ppTeK+9ig0SUZgWO7OeTgqtHllk5SART+QzEdZ7BhHYbr?=
+ =?iso-8859-1?Q?vI/UNEjUZCRZBZiWyzC6nmHHFBceeONQmougwZbdzTHFVEIXfQNz8bmFlX?=
+ =?iso-8859-1?Q?DVCMXqBcIlhsDwGl79QkGGgC5yQlvCebvPCKzAIavNSuC1xexu1B9V4j0j?=
+ =?iso-8859-1?Q?L9afPzkg0XuHWB05fCUhPFpGSfMayb3tsGA2pcTc57Y0i6N2h2qIfImrei?=
+ =?iso-8859-1?Q?yE2GPpSh4Cyg8Gh78k9N1B3OrsVea8XnhE7fM7Az11nTRntu/3KHYGlTDY?=
+ =?iso-8859-1?Q?S+PPeLylfActBD70x896NCkx4TPRo7HBnh72wWeyqk+wOnr5huKEKfA4J7?=
+ =?iso-8859-1?Q?3I4RJPjfxc3kv6aqa/RkD/Y615iBHrmesoQrCaU4+T8at1KoZxvAQq+wnh?=
+ =?iso-8859-1?Q?7PdygZjm7TxrEFiAYAhfyJyx9f2u5LSGZojJipdojPQf7N/rU08DASaHu4?=
+ =?iso-8859-1?Q?2YOrsEqKKG/cXOr0GaPbpKdOySlLlx1+9qJW/Sa9INKXBpVFrBREuY9osd?=
+ =?iso-8859-1?Q?hvbs/45ON58blhk+J7BOg865CyWfL3Jn0z8Rt77TWbrcqWW4ygko1IoyLP?=
+ =?iso-8859-1?Q?ySJwBbMVnOv6IxKkbc7y0PTZpLiP3t3C2bIFyPQj3FS33Zlk6JK9CII5Fl?=
+ =?iso-8859-1?Q?J9EaDqBcJ/fGMSCQO9vSiK6KESYNPQZ+HfsJ1hPrKCJvqNu7wTOyK5nw?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: bb0c7558-3144-4cbe-2c45-08dc453045c9
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Mar 2024 18:37:37.4799 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Mar 2024 20:41:21.2864 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: BT5LgUqCh11rihBdmvjpNghgU2cFk1w71pPLVSskmvKGlXdDJc+z16HGbvIy80A65eqMdmDuo5kvshs4p0msebjrUiO8dtWTQXMornKybw4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4803
+X-MS-Exchange-CrossTenant-UserPrincipalName: z4DhhpStGn+J6PbuPsimoGA84g9psCAFN/3TYvLJ+zOaV37QQdXD04XRatFFpIgLvTEfFi62e4mQ9jKcT4O4Zw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4559
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -163,163 +163,492 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 3/6/2024 03:06, Daniele Ceraolo Spurio wrote:
-> On 3/4/2024 8:38 AM, Lucas De Marchi wrote:
->> On Mon, Mar 04, 2024 at 08:26:16AM -0800, Daniele Ceraolo Spurio wrote:
->>> Supporting older GuC versions comes with baggage, both on the coding
->>> side (due to interfaces only being available from a certain version
->>> onwards) and on the testing side (due to having to make sure the driver
->>> works as expected with older GuCs).
->>> Since all of our Xe platform are still under force probe, we haven't
->>> committed to support any specific GuC version and we therefore don't
->>> need to support the older once, which means that we can force a bottom
->>> limit to what GuC we accept. This allows us to remove any conditional
->>> statements based on older GuC versions and also to approach newer
->>> additions knowing that we'll never attempt to load something older
->>> than our minimum requirement.
->>>
->>> As an initial value, the minimum expected version is set to 70.19,
->>> which is the version currently in the firmware table, but the
->>> expectation is that this will be bumbed every time we update the
->>> table, until we remove the force probe.
->>>
->>> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->>> Cc: John Harrison <John.C.Harrison@Intel.com>
->>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->>> Cc: Matt Roper <matthew.d.roper@intel.com>
->>> Cc: Matthew Brost <matthew.brost@intel.com>
->>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>> ---
->>> drivers/gpu/drm/xe/xe_guc.c   | 14 ++------------
->>> drivers/gpu/drm/xe/xe_uc_fw.c | 36 ++++++++++++++---------------------
->>> 2 files changed, 16 insertions(+), 34 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
->>> index 0d2a2dd13f11..ba2ca6895917 100644
->>> --- a/drivers/gpu/drm/xe/xe_guc.c
->>> +++ b/drivers/gpu/drm/xe/xe_guc.c
->>> @@ -133,15 +133,10 @@ static u32 guc_ctl_ads_flags(struct xe_guc *guc)
->>>     return flags;
->>> }
->>>
->>> -#define GUC_VER(maj, min, pat)    (((maj) << 16) | ((min) << 8) | 
->>> (pat))
->>> -
->>> static u32 guc_ctl_wa_flags(struct xe_guc *guc)
->>> {
->>>     struct xe_device *xe = guc_to_xe(guc);
->>>     struct xe_gt *gt = guc_to_gt(guc);
->>> -    struct xe_uc_fw *uc_fw = &guc->fw;
->>> -    struct xe_uc_fw_version *version = 
->>> &uc_fw->versions.found[XE_UC_FW_VER_RELEASE];
->>> -
->>>     u32 flags = 0;
->>>
->>>     if (XE_WA(gt, 22012773006))
->>> @@ -171,13 +166,8 @@ static u32 guc_ctl_wa_flags(struct xe_guc *guc)
->>>     if (XE_WA(gt, 1509372804))
->>>         flags |= GUC_WA_RENDER_RST_RC6_EXIT;
->>>
->>> -    if (XE_WA(gt, 14018913170)) {
->>> -        if (GUC_VER(version->major, version->minor, version->patch) 
->>> >= GUC_VER(70, 7, 0))
->>> -            flags |= GUC_WA_ENABLE_TSC_CHECK_ON_RC6;
->>> -        else
->>> -            drm_dbg(&xe->drm, "Skip WA 14018913170: GUC version 
->>> expected >= 70.7.0, found %u.%u.%u\n",
->>> -                version->major, version->minor, version->patch);
->>> -    }
->>> +    if (XE_WA(gt, 14018913170))
->>> +        flags |= GUC_WA_ENABLE_TSC_CHECK_ON_RC6;
->>>
->>>     return flags;
->>> }
->>> diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c 
->>> b/drivers/gpu/drm/xe/xe_uc_fw.c
->>> index 7751d6ba6ce0..fa06b57d2af5 100644
->>> --- a/drivers/gpu/drm/xe/xe_uc_fw.c
->>> +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
->>> @@ -297,36 +297,28 @@ static void uc_fw_fini(struct drm_device *drm, 
->>> void *arg)
->>>     xe_uc_fw_change_status(uc_fw, XE_UC_FIRMWARE_SELECTED);
->>> }
->>>
->>> -static void guc_read_css_info(struct xe_uc_fw *uc_fw, struct 
->>> uc_css_header *css)
->>> +static int guc_read_css_info(struct xe_uc_fw *uc_fw, struct 
->>> uc_css_header *css)
->>> {
->>>     struct xe_gt *gt = uc_fw_to_gt(uc_fw);
->>>     struct xe_uc_fw_version *release = 
->>> &uc_fw->versions.found[XE_UC_FW_VER_RELEASE];
->>>     struct xe_uc_fw_version *compatibility = 
->>> &uc_fw->versions.found[XE_UC_FW_VER_COMPATIBILITY];
->>>
->>>     xe_gt_assert(gt, uc_fw->type == XE_UC_FW_TYPE_GUC);
->>> -    xe_gt_assert(gt, release->major >= 70);
->>> -
->>> -    if (release->major > 70 || release->minor >= 6) {
->>> -        /* v70.6.0 adds CSS header support */
->>> -        compatibility->major = FIELD_GET(CSS_SW_VERSION_UC_MAJOR,
->>> -                         css->submission_version);
->>> -        compatibility->minor = FIELD_GET(CSS_SW_VERSION_UC_MINOR,
->>> -                         css->submission_version);
->>> -        compatibility->patch = FIELD_GET(CSS_SW_VERSION_UC_PATCH,
->>> -                         css->submission_version);
->>> -    } else if (release->minor >= 3) {
->>> -        /* v70.3.0 introduced v1.1.0 */
->>> -        compatibility->major = 1;
->>> -        compatibility->minor = 1;
->>> -        compatibility->patch = 0;
->>> -    } else {
->>> -        /* v70.0.0 introduced v1.0.0 */
->>> -        compatibility->major = 1;
->>> -        compatibility->minor = 0;
->>> -        compatibility->patch = 0;
->>> +
->>> +    /* We don't support GuC releases older than 70.19 */
->>> +    if (release->major < 70 || (release->major == 70 && 
->>> release->minor < 19)) {
->>
->> there's slight chance of this getting out of sync with the firmware 
->> versions we
->> define. What about adding a define with minimum version just above
->> XE_GUC_FIRMWARE_DEFS ?
->
-> I thought about that, but I was worried that'd make it easier to 
-> accidentally update it after the force_probe has been removed, while 
-> updating it here would have to be more deliberate. I guess I could put 
-> a big warning comment above the define for safety.
->
-> John, as the one who most often does the GuC updates, any preference 
-> here?
-I'm not seeing a need to tie the two together. Indeed. it is absolutely 
-forbidden to tie the two together post force-probe. So what exactly has 
-a 'chance of getting out of sync'?
-
-For sure, you could have a define of the minimum supported version 
-rather than having it hard coded with magic numbers. But I would keep 
-that define local to this file. Nothing else but this one test should 
-ever need to know. Or rather, anywhere else that does need to know needs 
-to be coded accordingly. I.e. if the check is above the minimum version 
-then it needs to be present but if the check is below the minimum 
-version then it should not be coded at all but just assumed.
-
-John.
-
->
->>
->> Anyway,
->>
->> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
->>
->> for this patch or to carry over to a v2.
->>
->
-> Thanks!
-> Daniele
->
->> thanks
->> Lucas De Marchi
+On Fri, Mar 15, 2024 at 10:00:06AM -0600, Zeng, Oak wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Brost, Matthew <matthew.brost@intel.com>
+> > Sent: Thursday, March 14, 2024 4:49 PM
+> > To: Zeng, Oak <oak.zeng@intel.com>
+> > Cc: intel-xe@lists.freedesktop.org; Hellstrom, Thomas
+> > <thomas.hellstrom@intel.com>; airlied@gmail.com; Welty, Brian
+> > <brian.welty@intel.com>; Ghimiray, Himal Prasad
+> > <himal.prasad.ghimiray@intel.com>
+> > Subject: Re: [PATCH 1/5] drm/xe/svm: Remap and provide memmap backing for
+> > GPU vram
+> > 
+> > On Thu, Mar 14, 2024 at 12:32:36PM -0600, Zeng, Oak wrote:
+> > > Hi Matt,
+> > >
+> > > > -----Original Message-----
+> > > > From: Brost, Matthew <matthew.brost@intel.com>
+> > > > Sent: Thursday, March 14, 2024 1:18 PM
+> > > > To: Zeng, Oak <oak.zeng@intel.com>
+> > > > Cc: intel-xe@lists.freedesktop.org; Hellstrom, Thomas
+> > > > <thomas.hellstrom@intel.com>; airlied@gmail.com; Welty, Brian
+> > > > <brian.welty@intel.com>; Ghimiray, Himal Prasad
+> > > > <himal.prasad.ghimiray@intel.com>
+> > > > Subject: Re: [PATCH 1/5] drm/xe/svm: Remap and provide memmap backing
+> > for
+> > > > GPU vram
+> > > >
+> > > > On Wed, Mar 13, 2024 at 11:35:49PM -0400, Oak Zeng wrote:
+> > > > > Memory remap GPU vram using devm_memremap_pages, so each GPU
+> > vram
+> > > > > page is backed by a struct page.
+> > > > >
+> > > > > Those struct pages are created to allow hmm migrate buffer b/t
+> > > > > GPU vram and CPU system memory using existing Linux migration
+> > > > > mechanism (i.e., migrating b/t CPU system memory and hard disk).
+> > > > >
+> > > > > This is prepare work to enable svm (shared virtual memory) through
+> > > > > Linux kernel hmm framework. The memory remap's page map type is set
+> > > > > to MEMORY_DEVICE_PRIVATE for now. This means even though each GPU
+> > > > > vram page get a struct page and can be mapped in CPU page table,
+> > > > > but such pages are treated as GPU's private resource, so CPU can't
+> > > > > access them. If CPU access such page, a page fault is triggered
+> > > > > and page will be migrate to system memory.
+> > > > >
+> > > >
+> > > > Is this really true? We can map VRAM BOs to the CPU without having
+> > > > migarte back and forth. Admittedly I don't know the inner workings of
+> > > > how this works but in IGTs we do this all the time.
+> > > >
+> > > >   54         batch_bo = xe_bo_create(fd, vm, batch_size,
+> > > >   55                                 vram_if_possible(fd, 0),
+> > > >   56                                 DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM);
+> > > >   57         batch_map = xe_bo_map(fd, batch_bo, batch_size);
+> > > >
+> > > > The BO is created in VRAM and then mapped to the CPU.
+> > > >
+> > > > I don't think there is an expectation of coherence rather caching mode
+> > > > and exclusive access of the memory based on synchronization.
+> > > >
+> > > > e.g.
+> > > > User write BB/data via CPU to GPU memory
+> > > > User calls exec
+> > > > GPU read / write memory
+> > > > User wait on sync indicating exec done
+> > > > User reads result
+> > > >
+> > > > All of this works without migration. Are we not planing supporting flow
+> > > > with SVM?
+> > > >
+> > > > Afaik this migration dance really only needs to be done if the CPU and
+> > > > GPU are using atomics on a shared memory region and the GPU device
+> > > > doesn't support a coherent memory protocol (e.g. PVC).
+> > >
+> > > All you said is true. On many of our HW, CPU can actually access device memory,
+> > cache coherently or not.
+> > >
+> > > The problem is, this is not true for all GPU vendors. For example, on some HW
+> > from some vendor, CPU can only access partially of device memory. The so called
+> > small bar concept.
+> > >
+> > > So when HMM is defined, such factors were considered, and
+> > MEMORY_DEVICE_PRIVATE is defined. With this definition, CPU can't access
+> > device memory.
+> > >
+> > > So you can think it is a limitation of HMM.
+> > >
+> > 
+> > Is it though? I see other type MEMORY_DEVICE_FS_DAX,
+> > MEMORY_DEVICE_GENERIC, and MEMORY_DEVICE_PCI_P2PDMA. From my
+> > limited
+> > understanding it looks to me like one of those modes would support my
+> > example.
+> 
+> 
+> No, above are for other purposes. HMM only support DEVICE_PRIVATE and DEVICE_COHERENT.
+> 
+> > 
+> > > Note this is only part 1 of our system allocator work. We do plan to support
+> > DEVICE_COHERENT for our newer device, see below. With this option, we don't
+> > have unnecessary migration back and forth.
+> > >
+> > > You can think this is just work out all the code path. 90% of the driver code for
+> > DEVICE_PRIVATE and DEVICE_COHERENT will be same. Our real use of system
+> > allocator will be DEVICE_COHERENT mode. While DEVICE_PRIVATE mode allow us
+> > to exercise the code on old HW.
+> > >
+> > > Make sense?
+> > >
+> > 
+> > I guess if we want the system allocator to always coherent, then yes you
+> > need this dynamic migration with faulting on either side.
+> > 
+> > I was thinking the system allocator would be behave like my example
+> > above with madvise dictating the coherence rules.
+> > 
+> > Maybe I missed this in system allocator design but my feeling is we
+> > shouldn't arbitrarily enforce coherence as that could lead to poor
+> > performance due to constant migration.
+> 
+> System allocator itself doesn't enforce coherence. Coherence is built in user programming model. So system allocator allow both GPU and CPU access system allocated pointers, but it doesn't necessarily guarantee the data accessed from CPU/GPU is coherent. It is user program's responsibility to maintain data coherence.
+> 
+> Data migration in driver is optional, depending on platform capability, user preference, correctness and performance consideration. Driver internal data migration of course shouldn't break data coherence. 
+> 
+> Of course different vendor can have different data coherence scheme. For example, it is completely designer's flexibility to build model that is HW automatic data coherence or software explicit data coherence. On our platform, we allow user program to select different coherence mode by setting pat_index for gpu and cpu_caching mode for CPU. So we have completely give the flexibility to user program. Nothing of this contract is changed in system allocator design. 
+> 
+> Going back to the question of what memory type we should use to register our vram to core mm. HMM currently support two types: PRIVATE and COHERENT. The coherent type requires some HW and BIOS support which we don't have right now. So the only available is PRIVATE. We have not other option right now. As said, we plan to support coherent type where we can avoid unnecessary data migration. But that is stage 2.
 >
 
+Thanks for the explaination. After reading your replies, the HMM doc,
+and looking at code this all makes sense.
+
+> > 
+> > >
+> > > >
+> > > > > For GPU device which supports coherent memory protocol b/t CPU and
+> > > > > GPU (such as CXL and CAPI protocol), we can remap device memory as
+> > > > > MEMORY_DEVICE_COHERENT. This is TBD.
+> > > > >
+> > > > > Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+> > > > > Co-developed-by: Niranjana Vishwanathapura
+> > > > <niranjana.vishwanathapura@intel.com>
+> > > > > Signed-off-by: Niranjana Vishwanathapura
+> > > > <niranjana.vishwanathapura@intel.com>
+> > > > > Cc: Matthew Brost <matthew.brost@intel.com>
+> > > > > Cc: Thomas Hellstr�m <thomas.hellstrom@intel.com>
+> > > > > Cc: Brian Welty <brian.welty@intel.com>
+> > > > > ---
+> > > > >  drivers/gpu/drm/xe/Makefile          |  3 +-
+> > > > >  drivers/gpu/drm/xe/xe_device_types.h |  9 +++
+> > > > >  drivers/gpu/drm/xe/xe_mmio.c         |  8 +++
+> > > > >  drivers/gpu/drm/xe/xe_svm.h          | 14 +++++
+> > > > >  drivers/gpu/drm/xe/xe_svm_devmem.c   | 91
+> > > > ++++++++++++++++++++++++++++
+> > > > >  5 files changed, 124 insertions(+), 1 deletion(-)
+> > > > >  create mode 100644 drivers/gpu/drm/xe/xe_svm.h
+> > > > >  create mode 100644 drivers/gpu/drm/xe/xe_svm_devmem.c
+> > > > >
+> > > > > diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> > > > > index c531210695db..840467080e59 100644
+> > > > > --- a/drivers/gpu/drm/xe/Makefile
+> > > > > +++ b/drivers/gpu/drm/xe/Makefile
+> > > > > @@ -142,7 +142,8 @@ xe-y += xe_bb.o \
+> > > > >  	xe_vram_freq.o \
+> > > > >  	xe_wait_user_fence.o \
+> > > > >  	xe_wa.o \
+> > > > > -	xe_wopcm.o
+> > > > > +	xe_wopcm.o \
+> > > > > +	xe_svm_devmem.o
+> > > >
+> > > > These should be in alphabetical order.
+> > >
+> > > Will fix
+> > > >
+> > > > >
+> > > > >  # graphics hardware monitoring (HWMON) support
+> > > > >  xe-$(CONFIG_HWMON) += xe_hwmon.o
+> > > > > diff --git a/drivers/gpu/drm/xe/xe_device_types.h
+> > > > b/drivers/gpu/drm/xe/xe_device_types.h
+> > > > > index 9785eef2e5a4..f27c3bee8ce7 100644
+> > > > > --- a/drivers/gpu/drm/xe/xe_device_types.h
+> > > > > +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> > > > > @@ -99,6 +99,15 @@ struct xe_mem_region {
+> > > > >  	resource_size_t actual_physical_size;
+> > > > >  	/** @mapping: pointer to VRAM mappable space */
+> > > > >  	void __iomem *mapping;
+> > > > > +	/** @pagemap: Used to remap device memory as ZONE_DEVICE */
+> > > > > +    struct dev_pagemap pagemap;
+> > > > > +    /**
+> > > > > +     * @hpa_base: base host physical address
+> > > > > +     *
+> > > > > +     * This is generated when remap device memory as ZONE_DEVICE
+> > > > > +     */
+> > > > > +    resource_size_t hpa_base;
+> > > >
+> > > > Weird indentation. This goes for the entire series, look at checkpatch.
+> > >
+> > > Will fix
+> > > >
+> > > > > +
+> > > > >  };
+> > > > >
+> > > > >  /**
+> > > > > diff --git a/drivers/gpu/drm/xe/xe_mmio.c
+> > b/drivers/gpu/drm/xe/xe_mmio.c
+> > > > > index e3db3a178760..0d795394bc4c 100644
+> > > > > --- a/drivers/gpu/drm/xe/xe_mmio.c
+> > > > > +++ b/drivers/gpu/drm/xe/xe_mmio.c
+> > > > > @@ -22,6 +22,7 @@
+> > > > >  #include "xe_module.h"
+> > > > >  #include "xe_sriov.h"
+> > > > >  #include "xe_tile.h"
+> > > > > +#include "xe_svm.h"
+> > > > >
+> > > > >  #define XEHP_MTCFG_ADDR		XE_REG(0x101800)
+> > > > >  #define TILE_COUNT		REG_GENMASK(15, 8)
+> > > > > @@ -286,6 +287,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+> > > > >  		}
+> > > > >
+> > > > >  		io_size -= min_t(u64, tile_size, io_size);
+> > > > > +		xe_svm_devm_add(tile, &tile->mem.vram);
+> > > >
+> > > > Do we want to do this probe for all devices with VRAM or only a subset?
+> > >
+> > > All
+> > 
+> > Can you explain why?
+> 
+> It is natural for me to add all device memory to hmm. In hmm design, device memory is used as a special swap out for system memory. I would ask why we only want to add a subset of vram? By a subset, do you mean only vram of one tile instead of all tiles?
+> 
+
+I think we talking about different things, my bad on wording in the
+original question.
+
+Let me ask again - should be calling xe_svm_devm_add on all *platforms*
+that have VRAM. i.e. Should we do this on PVC but not DG2?
+
+Matt
+
+> Oak
+> 
+> 
+> > 
+> > > >
+> > > > >  	}
+> > > > >
+> > > > >  	xe->mem.vram.actual_physical_size = total_size;
+> > > > > @@ -354,10 +356,16 @@ void xe_mmio_probe_tiles(struct xe_device *xe)
+> > > > >  static void mmio_fini(struct drm_device *drm, void *arg)
+> > > > >  {
+> > > > >  	struct xe_device *xe = arg;
+> > > > > +    struct xe_tile *tile;
+> > > > > +    u8 id;
+> > > > >
+> > > > >  	pci_iounmap(to_pci_dev(xe->drm.dev), xe->mmio.regs);
+> > > > >  	if (xe->mem.vram.mapping)
+> > > > >  		iounmap(xe->mem.vram.mapping);
+> > > > > +
+> > > > > +	for_each_tile(tile, xe, id)
+> > > > > +		xe_svm_devm_remove(xe, &tile->mem.vram);
+> > > >
+> > > > This should probably be above existing code. Typical on fini to do
+> > > > things in reverse order from init.
+> > >
+> > > Will fix
+> > > >
+> > > > > +
+> > > > >  }
+> > > > >
+> > > > >  static int xe_verify_lmem_ready(struct xe_device *xe)
+> > > > > diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+> > > > > new file mode 100644
+> > > > > index 000000000000..09f9afb0e7d4
+> > > > > --- /dev/null
+> > > > > +++ b/drivers/gpu/drm/xe/xe_svm.h
+> > > > > @@ -0,0 +1,14 @@
+> > > > > +// SPDX-License-Identifier: MIT
+> > > > > +/*
+> > > > > + * Copyright � 2023 Intel Corporation
+> > > >
+> > > > 2024?
+> > >
+> > > This patch was actually written 2023
+> > > >
+> > > > > + */
+> > > > > +
+> > > > > +#ifndef __XE_SVM_H
+> > > > > +#define __XE_SVM_H
+> > > > > +
+> > > > > +#include "xe_device_types.h"
+> > > >
+> > > > I don't think you need to include this. Rather just forward decl structs
+> > > > used here.
+> > >
+> > > Will fix
+> > > >
+> > > > e.g.
+> > > >
+> > > > struct xe_device;
+> > > > struct xe_mem_region;
+> > > > struct xe_tile;
+> > > >
+> > > > > +
+> > > > > +int xe_svm_devm_add(struct xe_tile *tile, struct xe_mem_region *mem);
+> > > > > +void xe_svm_devm_remove(struct xe_device *xe, struct xe_mem_region
+> > > > *mem);
+> > > >
+> > > > The arguments here are incongruent here. Typically we want these to
+> > > > match.
+> > >
+> > > Will fix
+> > > >
+> > > > > +
+> > > > > +#endif
+> > > > > diff --git a/drivers/gpu/drm/xe/xe_svm_devmem.c
+> > > > b/drivers/gpu/drm/xe/xe_svm_devmem.c
+> > > >
+> > > > Incongruent between xe_svm.h and xe_svm_devmem.c.
+> > >
+> > > Did you mean mem vs mr? if yes, will fix
+> > >
+> > > Again these two
+> > > > should
+> > > > match.
+> > > >
+> > > > > new file mode 100644
+> > > > > index 000000000000..63b7a1961cc6
+> > > > > --- /dev/null
+> > > > > +++ b/drivers/gpu/drm/xe/xe_svm_devmem.c
+> > > > > @@ -0,0 +1,91 @@
+> > > > > +// SPDX-License-Identifier: MIT
+> > > > > +/*
+> > > > > + * Copyright � 2023 Intel Corporation
+> > > >
+> > > > 2024?
+> > > It is from 2023
+> > > >
+> > > > > + */
+> > > > > +
+> > > > > +#include <linux/mm_types.h>
+> > > > > +#include <linux/sched/mm.h>
+> > > > > +
+> > > > > +#include "xe_device_types.h"
+> > > > > +#include "xe_trace.h"
+> > > >
+> > > > xe_trace.h appears to be unused.
+> > >
+> > > Will fix
+> > > >
+> > > > > +#include "xe_svm.h"
+> > > > > +
+> > > > > +
+> > > > > +static vm_fault_t xe_devm_migrate_to_ram(struct vm_fault *vmf)
+> > > > > +{
+> > > > > +	return 0;
+> > > > > +}
+> > > > > +
+> > > > > +static void xe_devm_page_free(struct page *page)
+> > > > > +{
+> > > > > +}
+> > > > > +
+> > > > > +static const struct dev_pagemap_ops xe_devm_pagemap_ops = {
+> > > > > +	.page_free = xe_devm_page_free,
+> > > > > +	.migrate_to_ram = xe_devm_migrate_to_ram,
+> > > > > +};
+> > > > > +
+> > > >
+> > > > Assume these are placeholders that will be populated later?
+> > >
+> > >
+> > > corrrect
+> > > >
+> > > > > +/**
+> > > > > + * xe_svm_devm_add: Remap and provide memmap backing for device
+> > > > memory
+> > > > > + * @tile: tile that the memory region blongs to
+> > > > > + * @mr: memory region to remap
+> > > > > + *
+> > > > > + * This remap device memory to host physical address space and create
+> > > > > + * struct page to back device memory
+> > > > > + *
+> > > > > + * Return: 0 on success standard error code otherwise
+> > > > > + */
+> > > > > +int xe_svm_devm_add(struct xe_tile *tile, struct xe_mem_region *mr)
+> > > >
+> > > > Here I see the xe_mem_region is from tile->mem.vram, wondering rather
+> > > > than using the tile->mem.vram we should use xe->mem.vram when enabling
+> > > > svm? Isn't the idea behind svm the entire memory is 1 view?
+> > >
+> > > Still need to use tile. The reason is, memory of different tile can have different
+> > characteristics, such as latency. So we want to differentiate memory b/t tiles also
+> > in svm. I need to change below " mr->pagemap.owner = tile->xe->drm.dev ". the
+> > owner should also be tile. This is the way hmm differentiate memory of different
+> > tile.
+> > >
+> > > With svm it is 1 view, from virtual address space perspective and from physical
+> > struct page perspective. You can think of all the tile's vram is stacked together to
+> > form a unified view together with system memory. This doesn't prohibit us from
+> > differentiate memory from different tile. This differentiation allow us to optimize
+> > performance, i.e., we can wisely place memory in specific tile. If we don't
+> > differentiate, this is not possible.
+> > >
+> > 
+> > Ok makes sense.
+> > 
+> > Matt
+> > 
+> > > >
+> > > > I suppose if we do that we also only use 1 TTM VRAM manager / buddy
+> > > > allocator too. I thought I saw some patches flying around for that too.
+> > >
+> > > Ttm vram manager is not in the picture. We deliberately avoided it per previous
+> > discussion
+> > >
+> > > Yes same buddy allocator. It is in my previous POC: https://lore.kernel.org/dri-
+> > devel/20240117221223.18540-12-oak.zeng@intel.com/. I didn't put those patches
+> > in this series because I want to merge this small patches separately.
+> > > >
+> > > > > +{
+> > > > > +	struct device *dev = &to_pci_dev(tile->xe->drm.dev)->dev;
+> > > > > +	struct resource *res;
+> > > > > +	void *addr;
+> > > > > +	int ret;
+> > > > > +
+> > > > > +	res = devm_request_free_mem_region(dev, &iomem_resource,
+> > > > > +					   mr->usable_size);
+> > > > > +	if (IS_ERR(res)) {
+> > > > > +		ret = PTR_ERR(res);
+> > > > > +		return ret;
+> > > > > +	}
+> > > > > +
+> > > > > +	mr->pagemap.type = MEMORY_DEVICE_PRIVATE;
+> > > > > +	mr->pagemap.range.start = res->start;
+> > > > > +	mr->pagemap.range.end = res->end;
+> > > > > +	mr->pagemap.nr_range = 1;
+> > > > > +	mr->pagemap.ops = &xe_devm_pagemap_ops;
+> > > > > +	mr->pagemap.owner = tile->xe->drm.dev;
+> > > > > +	addr = devm_memremap_pages(dev, &mr->pagemap);
+> > > > > +	if (IS_ERR(addr)) {
+> > > > > +		devm_release_mem_region(dev, res->start, resource_size(res));
+> > > > > +		ret = PTR_ERR(addr);
+> > > > > +		drm_err(&tile->xe->drm, "Failed to remap tile %d memory,
+> > > > errno %d\n",
+> > > > > +				tile->id, ret);
+> > > > > +		return ret;
+> > > > > +	}
+> > > > > +	mr->hpa_base = res->start;
+> > > > > +
+> > > > > +	drm_info(&tile->xe->drm, "Added tile %d memory [%llx-%llx] to devm,
+> > > > remapped to %pr\n",
+> > > > > +			tile->id, mr->io_start, mr->io_start + mr->usable_size,
+> > > > res);
+> > > > > +	return 0;
+> > > > > +}
+> > > > > +
+> > > > > +/**
+> > > > > + * xe_svm_devm_remove: Unmap device memory and free resources
+> > > > > + * @xe: xe device
+> > > > > + * @mr: memory region to remove
+> > > > > + */
+> > > > > +void xe_svm_devm_remove(struct xe_device *xe, struct xe_mem_region
+> > > > *mr)
+> > > > > +{
+> > > > > +	/*FIXME: below cause a kernel hange during moduel remove*/
+> > > > > +#if 0
+> > > > > +	struct device *dev = &to_pci_dev(xe->drm.dev)->dev;
+> > > > > +
+> > > > > +	if (mr->hpa_base) {
+> > > > > +		devm_memunmap_pages(dev, &mr->pagemap);
+> > > > > +		devm_release_mem_region(dev, mr->pagemap.range.start,
+> > > > > +			mr->pagemap.range.end - mr->pagemap.range.start +1);
+> > > > > +	}
+> > > > > +#endif
+> > > >
+> > > > This would need to be fixed too.
+> > >
+> > >
+> > > Yes...
+> > >
+> > > Oak
+> > > >
+> > > > Matt
+> > > >
+> > > > > +}
+> > > > > +
+> > > > > --
+> > > > > 2.26.3
+> > > > >
