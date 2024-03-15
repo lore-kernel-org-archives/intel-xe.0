@@ -4,27 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21019C54E69
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Mar 2024 10:48:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A51AC54E67
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Mar 2024 11:08:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8799310FA17;
-	Fri, 15 Mar 2024 10:48:05 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58C2510FA17;
- Fri, 15 Mar 2024 10:48:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8559836932506879306=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08C4211200A;
+	Fri, 15 Mar 2024 11:08:05 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I39VGSqs";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA15911200A
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Mar 2024 11:08:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1710500884; x=1742036884;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=gxu3epwNqewLRg8nc7PC32ha0o5lmXh41644YrtXf/g=;
+ b=I39VGSqsE3sa4EGs5r8tEgwZYJSdAbA+zYW7rK0g79q+oF9ObHnxLsKw
+ CN0p0qe29lEPLleTmtyn18Ecwm2aKMrJqbb3iSiXwFxZd0rbS7xK7swSl
+ blD6mBvPVgWolo7ReT//7nsTywW4fwcmPQnLh+wvF9QCMgGCKTqndUk7i
+ dNnt8zDdmKobzrGPhbp28z4AyD5WvU9fvjxyEJmlKO9RDLaEqKpWnIC55
+ 2e5VWr8RXGdpvJFW30SLsWjvDf+0S7dfcMHz6rwZbZzhOEvvg97CR11Dy
+ DSn4dpoEmuWAWWcf6du6mHHIWmxO5d3fn8q6d4tFEFFL4okkKyKBIQ1E0 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11013"; a="5229475"
+X-IronPort-AV: E=Sophos;i="6.07,128,1708416000"; 
+   d="scan'208";a="5229475"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2024 04:08:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,128,1708416000"; d="scan'208";a="17340722"
+Received: from bnilawar-desk1.iind.intel.com ([10.145.169.158])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2024 04:08:01 -0700
+From: Badal Nilawar <badal.nilawar@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: anshuman.gupta@intel.com, lucas.demarchi@intel.com,
+ john.c.harrison@intel.com, matthew.d.roper@intel.com
+Subject: [PATCH 0/2] Add support for Wa KLVs
+Date: Fri, 15 Mar 2024 16:51:45 +0530
+Message-Id: <20240315112147.2460691-1-badal.nilawar@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Pcode_init_status_and_lmem_check?=
- =?utf-8?q?_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Riana Tauro" <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 15 Mar 2024 10:48:04 -0000
-Message-ID: <171049968436.795503.14787597824260043086@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240315100530.3051944-1-riana.tauro@intel.com>
-In-Reply-To: <20240315100530.3051944-1-riana.tauro@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +59,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8559836932506879306==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Add infra to opt-in GuC Wa via KLV interface. 
+Enable Wa_14019882105 for LNL A step
 
-== Series Details ==
+Badal Nilawar (2):
+  drm/xe/guc: Add support for w/a KLVs
+  drm/xe/lnl: Enable GuC Wa_14019882105
 
-Series: Pcode init status and lmem check (rev3)
-URL   : https://patchwork.freedesktop.org/series/130904/
-State : success
+ drivers/gpu/drm/xe/abi/guc_klvs_abi.h |  7 +++
+ drivers/gpu/drm/xe/xe_guc_ads.c       | 91 ++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_guc_ads_types.h |  2 +
+ drivers/gpu/drm/xe/xe_guc_fwif.h      |  5 +-
+ drivers/gpu/drm/xe/xe_wa_oob.rules    |  1 +
+ 5 files changed, 103 insertions(+), 3 deletions(-)
 
-== Summary ==
+-- 
+2.25.1
 
-CI Bug Log - changes from xe-946-b7ead5c90db25002638773b1a9289220e6a36b4d_BAT -> xe-pw-130904v3_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_7766 -> IGT_7768
-  * Linux: xe-946-b7ead5c90db25002638773b1a9289220e6a36b4d -> xe-pw-130904v3
-
-  IGT_7766: 08cf1b2fa6b2f422f417ea74f41b12b93e91156f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_7768: 7768
-  xe-946-b7ead5c90db25002638773b1a9289220e6a36b4d: b7ead5c90db25002638773b1a9289220e6a36b4d
-  xe-pw-130904v3: 130904v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130904v3/index.html
-
---===============8559836932506879306==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Pcode init status and lmem check (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130904/">https://patchwork.freedesktop.org/series/130904/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130904v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130904v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-946-b7ead5c90db25002638773b1a9289220e6a36b4d_BAT -&gt; xe-pw-130904v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7766 -&gt; IGT_7768</li>
-<li>Linux: xe-946-b7ead5c90db25002638773b1a9289220e6a36b4d -&gt; xe-pw-130904v3</li>
-</ul>
-<p>IGT_7766: 08cf1b2fa6b2f422f417ea74f41b12b93e91156f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_7768: 7768<br />
-  xe-946-b7ead5c90db25002638773b1a9289220e6a36b4d: b7ead5c90db25002638773b1a9289220e6a36b4d<br />
-  xe-pw-130904v3: 130904v3</p>
-
-</body>
-</html>
-
---===============8559836932506879306==--
