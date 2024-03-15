@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85EB6C54E58
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Mar 2024 11:08:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F02D5C54E67
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Mar 2024 11:08:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 483EB112175;
-	Fri, 15 Mar 2024 11:08:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80228112176;
+	Fri, 15 Mar 2024 11:08:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eebGLCH4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h2z7UARZ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0C74112175
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Mar 2024 11:08:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D106112176
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Mar 2024 11:08:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710500886; x=1742036886;
+ t=1710500888; x=1742036888;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2Q73hDkdTuqNvuu4OPD+zakT/ww4W39HzVVB6HMPc1U=;
- b=eebGLCH49DJv8O405pHH7do8ZtcawQOCc3oMXA0L28qbavNB3pftTH3h
- myaj/pQBAHNNAGU/19mCEqrfQfaRzOGB79A4Ox4TDNt7p5LUFvBKPwmHk
- YgTESGOX4nupem1lo/J8nbk2WfupEOVs65vRPD9uPeLf3+byp7tUYH4VK
- PZTcibmT8PsEFiaNeqqjrODdpHUEl3d64GPzL0s00c2Hqi/eAL4r6Pgn+
- 7bKKjBbRSyJPmJ0pTRMcwkNXUQ/gyDiJhXYcILQ2n5GCAeUqunDpRHfZo
- 0jT8fgJx4nMHfW8Og/lzZVF2hiw6t9Ea2QM4AP6vvJ1GXxPluH4R9RxmG w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11013"; a="5229478"
+ bh=7FjmtJePFOjhF6YI8g1TSwHDwGxppGGs/WHvwqvZIXg=;
+ b=h2z7UARZkWmz1LMQGsVsLe2DzjCr5sc7BS0OtOuKNjcviFq50D/Hdnx6
+ ysV7IU6sXkLkGQtPs3bebvSqRRIkUtqj6OOPElM3sve06yp92cNkQ37nJ
+ PZ1ZnVygF2fyIM+Ixn5VC1X1sBzQSe5jYNwBIEpiUDRbqbPEo+BuFq4VT
+ 6bFcDLTghOcqpkaUAbw/27o80lnAinrERMkfNTmr3aJsaInLKFsVv5wsO
+ 9mvNSQOaYRixMub2vPep/IW04EOWl2AQvbzcP0ETctR0FDOdD8dDuCs0u
+ sMGt7YWgP9y4VGj58Bsl0D3s5wYKGYnAQsggjmCW5sPpVbKj5GKv+1lut Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11013"; a="5229481"
 X-IronPort-AV: E=Sophos;i="6.07,128,1708416000"; 
-   d="scan'208";a="5229478"
+   d="scan'208";a="5229481"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2024 04:08:06 -0700
+ 15 Mar 2024 04:08:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,128,1708416000"; d="scan'208";a="17340744"
+X-IronPort-AV: E=Sophos;i="6.07,128,1708416000"; d="scan'208";a="17340758"
 Received: from bnilawar-desk1.iind.intel.com ([10.145.169.158])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2024 04:08:04 -0700
+ 15 Mar 2024 04:08:06 -0700
 From: Badal Nilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com, lucas.demarchi@intel.com,
  john.c.harrison@intel.com, matthew.d.roper@intel.com
-Subject: [PATCH 1/2] drm/xe/guc: Add support for w/a KLVs
-Date: Fri, 15 Mar 2024 16:51:46 +0530
-Message-Id: <20240315112147.2460691-2-badal.nilawar@intel.com>
+Subject: [PATCH 2/2] drm/xe/lnl: Enable GuC Wa_14019882105
+Date: Fri, 15 Mar 2024 16:51:47 +0530
+Message-Id: <20240315112147.2460691-3-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240315112147.2460691-1-badal.nilawar@intel.com>
 References: <20240315112147.2460691-1-badal.nilawar@intel.com>
@@ -64,164 +64,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To prevent running out of bits, new w/a enable flags are being added
-via a KLV system instead of a 32 bit flags word.
+Enable GuC Wa_14019882105 to block interrupts during C6 flow
+when the memory path has been blocked
 
-Cc: John Harrison <John.C.Harrison@intel.com>
+Cc: John Harrison <john.harrison@intel.com>
 Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ads.c       | 68 ++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_guc_ads_types.h |  2 +
- drivers/gpu/drm/xe/xe_guc_fwif.h      |  5 +-
- 3 files changed, 72 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/abi/guc_klvs_abi.h |  7 +++++
+ drivers/gpu/drm/xe/xe_guc_ads.c       | 41 +++++++++++++++++++++------
+ drivers/gpu/drm/xe/xe_wa_oob.rules    |  1 +
+ 3 files changed, 40 insertions(+), 9 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+index 0400bc0fccdc..5dd45e06f0b6 100644
+--- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+@@ -319,4 +319,11 @@ enum  {
+ #define GUC_KLV_VF_CFG_BEGIN_CONTEXT_ID_KEY	0x8a0b
+ #define GUC_KLV_VF_CFG_BEGIN_CONTEXT_ID_LEN	1u
+ 
++/*
++ * Workaround keys:
++ */
++enum xe_guc_klv_ids {
++	GUC_WORKAROUND_KLV_BLOCK_INTERRUPTS_WHEN_MGSR_BLOCKED				= 0x9002,
++};
++
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index 6ad4c1a90a78..ee48cf01fe22 100644
+index ee48cf01fe22..3d2048747230 100644
 --- a/drivers/gpu/drm/xe/xe_guc_ads.c
 +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -80,6 +80,10 @@ ads_to_map(struct xe_guc_ads *ads)
-  *      +---------------------------------------+
-  *      | padding                               |
-  *      +---------------------------------------+ <== 4K aligned
-+ *      | w/a KLVs                              |
-+ *      +---------------------------------------+
-+ *      | padding                               |
-+ *      +---------------------------------------+ <== 4K aligned
-  *      | capture lists                         |
-  *      +---------------------------------------+
-  *      | padding                               |
-@@ -131,6 +135,11 @@ static size_t guc_ads_golden_lrc_size(struct xe_guc_ads *ads)
- 	return PAGE_ALIGN(ads->golden_lrc_size);
- }
+@@ -7,6 +7,8 @@
  
-+static u32 guc_ads_waklv_size(struct xe_guc_ads *ads)
+ #include <drm/drm_managed.h>
+ 
++#include <generated/xe_wa_oob.h>
++
+ #include "regs/xe_engine_regs.h"
+ #include "regs/xe_gt_regs.h"
+ #include "regs/xe_guc_regs.h"
+@@ -19,6 +21,7 @@
+ #include "xe_map.h"
+ #include "xe_mmio.h"
+ #include "xe_platform_types.h"
++#include "xe_wa.h"
+ 
+ /* Slack of a few additional entries per engine */
+ #define ADS_REGSET_EXTRA_MAX	8
+@@ -281,8 +284,30 @@ static size_t calculate_golden_lrc_size(struct xe_guc_ads *ads)
+ 
+ #define GUC_VER(maj, min, pat)	(((maj) << 16) | ((min) << 8) | (pat))
+ 
++static u32 guc_waklv_opt_in(struct xe_guc_ads *ads,
++			    enum xe_guc_klv_ids klv_id, u32 offset, u32 remain)
 +{
-+	return PAGE_ALIGN(ads->ads_waklv_size);
++	u32 size;
++	u32 klv_entry[] = {
++		/* 16:16 key/length */
++		FIELD_PREP(GUC_KLV_0_KEY, klv_id) |
++		FIELD_PREP(GUC_KLV_0_LEN, 0),
++		/* 0 dwords data */
++	};
++
++	size = sizeof(klv_entry);
++
++	if (remain < size)
++		drm_warn(&ads_to_xe(ads)->drm, "Cannot apply guc wa klv_id %d\n", klv_id);
++	else
++		xe_map_memcpy_to(ads_to_xe(ads), ads_to_map(ads), offset,
++				 klv_entry, size);
++	return size;
 +}
 +
- static size_t guc_ads_capture_size(struct xe_guc_ads *ads)
+ static void guc_waklv_init(struct xe_guc_ads *ads)
  {
- 	/* FIXME: Allocate a proper capture list */
-@@ -167,12 +176,22 @@ static size_t guc_ads_golden_lrc_offset(struct xe_guc_ads *ads)
- 	return PAGE_ALIGN(offset);
- }
++	struct xe_gt *gt = ads_to_gt(ads);
+ 	u32 addr_ggtt, offset, remain, size;
+ 	struct xe_uc_fw *uc_fw = &ads_to_guc(ads)->fw;
+ 	struct xe_uc_fw_version *version = &uc_fw->versions.found[XE_UC_FW_VER_RELEASE];
+@@ -293,15 +318,13 @@ static void guc_waklv_init(struct xe_guc_ads *ads)
+ 	offset = guc_ads_waklv_offset(ads);
+ 	remain = guc_ads_waklv_size(ads);
  
-+static size_t guc_ads_waklv_offset(struct xe_guc_ads *ads)
-+{
-+	u32 offset;
-+
-+	offset = guc_ads_golden_lrc_offset(ads) +
-+		 guc_ads_golden_lrc_size(ads);
-+
-+	return PAGE_ALIGN(offset);
-+}
-+
- static size_t guc_ads_capture_offset(struct xe_guc_ads *ads)
- {
- 	size_t offset;
+-	/*
+-	 * Add workarounds here:
+-	 *
+-	 * if (want_wa_<name>) {
+-	 *      size = guc_waklv_<name>(guc, offset, remain);
+-	 *      offset += size;
+-	 *      remain -= size;
+-	 * }
+-	 */
++	if (XE_WA(gt, 14019882105)) {
++		size = guc_waklv_opt_in(ads,
++					GUC_WORKAROUND_KLV_BLOCK_INTERRUPTS_WHEN_MGSR_BLOCKED,
++					offset, remain);
++		offset += size;
++		remain -= size;
++	}
  
--	offset = guc_ads_golden_lrc_offset(ads) +
--		guc_ads_golden_lrc_size(ads);
-+	offset = guc_ads_waklv_offset(ads) +
-+		 guc_ads_waklv_size(ads);
- 
- 	return PAGE_ALIGN(offset);
- }
-@@ -260,6 +279,48 @@ static size_t calculate_golden_lrc_size(struct xe_guc_ads *ads)
- 	return total_size;
- }
- 
-+#define GUC_VER(maj, min, pat)	(((maj) << 16) | ((min) << 8) | (pat))
-+
-+static void guc_waklv_init(struct xe_guc_ads *ads)
-+{
-+	u32 addr_ggtt, offset, remain, size;
-+	struct xe_uc_fw *uc_fw = &ads_to_guc(ads)->fw;
-+	struct xe_uc_fw_version *version = &uc_fw->versions.found[XE_UC_FW_VER_RELEASE];
-+
-+	if (GUC_VER(version->major, version->minor, version->patch) >= GUC_VER(70, 10, 0))
-+		return;
-+
-+	offset = guc_ads_waklv_offset(ads);
-+	remain = guc_ads_waklv_size(ads);
-+
-+	/*
-+	 * Add workarounds here:
-+	 *
-+	 * if (want_wa_<name>) {
-+	 *      size = guc_waklv_<name>(guc, offset, remain);
-+	 *      offset += size;
-+	 *      remain -= size;
-+	 * }
-+	 */
-+
-+	size = guc_ads_waklv_size(ads) - remain;
-+	if (!size)
-+		return;
-+
-+	offset = guc_ads_waklv_offset(ads);
-+	addr_ggtt = xe_bo_ggtt_addr(ads->bo) + offset;
-+
-+	ads_blob_write(ads, ads.wa_klv_addr_lo, addr_ggtt);
-+	ads_blob_write(ads, ads.wa_klv_addr_hi, 0);
-+	ads_blob_write(ads, ads.wa_klv_size, size);
-+}
-+
-+static int calculate_waklv_size(struct xe_guc_ads *ads)
-+{
-+	/* Fudge something chunky for now: */
-+	return PAGE_SIZE;
-+}
-+
- #define MAX_GOLDEN_LRC_SIZE	(SZ_4K * 64)
- 
- int xe_guc_ads_init(struct xe_guc_ads *ads)
-@@ -271,6 +332,7 @@ int xe_guc_ads_init(struct xe_guc_ads *ads)
- 
- 	ads->golden_lrc_size = calculate_golden_lrc_size(ads);
- 	ads->regset_size = calculate_regset_size(gt);
-+	ads->ads_waklv_size = calculate_waklv_size(ads);
- 
- 	bo = xe_managed_bo_create_pin_map(xe, tile, guc_ads_size(ads) + MAX_GOLDEN_LRC_SIZE,
- 					  XE_BO_CREATE_SYSTEM_BIT |
-@@ -597,6 +659,8 @@ void xe_guc_ads_populate(struct xe_guc_ads *ads)
- 	guc_mapping_table_init(gt, &info_map);
- 	guc_capture_list_init(ads);
- 	guc_doorbell_init(ads);
-+	/* Workaround KLV list */
-+	guc_waklv_init(ads);
- 
- 	if (xe->info.has_usm) {
- 		guc_um_init_params(ads);
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads_types.h b/drivers/gpu/drm/xe/xe_guc_ads_types.h
-index 4afe44bece4b..62235b2a6fe3 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_ads_types.h
-@@ -20,6 +20,8 @@ struct xe_guc_ads {
- 	size_t golden_lrc_size;
- 	/** @regset_size: size of register set passed to GuC for save/restore */
- 	u32 regset_size;
-+	/** @ads_waklv_size: waklv size */
-+	u32 ads_waklv_size;
- };
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
-index c281fdbfd2d6..52503719d2aa 100644
---- a/drivers/gpu/drm/xe/xe_guc_fwif.h
-+++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
-@@ -207,7 +207,10 @@ struct guc_ads {
- 	u32 capture_instance[GUC_CAPTURE_LIST_INDEX_MAX][GUC_MAX_ENGINE_CLASSES];
- 	u32 capture_class[GUC_CAPTURE_LIST_INDEX_MAX][GUC_MAX_ENGINE_CLASSES];
- 	u32 capture_global[GUC_CAPTURE_LIST_INDEX_MAX];
--	u32 reserved[14];
-+	u32 wa_klv_addr_lo;
-+	u32 wa_klv_addr_hi;
-+	u32 wa_klv_size;
-+	u32 reserved[11];
- } __packed;
- 
- /* Engine usage stats */
+ 	size = guc_ads_waklv_size(ads) - remain;
+ 	if (!size)
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 48cdba1cbf95..a8d15f004b6c 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -19,3 +19,4 @@
+ 		GRAPHICS_VERSION_RANGE(1270, 1274)
+ 		MEDIA_VERSION(1300)
+ 		PLATFORM(DG2)
++14019882105	GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0)
 -- 
 2.25.1
 
