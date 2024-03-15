@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9D4FC54E5D
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Mar 2024 01:24:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4DAEC54E60
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Mar 2024 01:35:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BB4210FF23;
-	Fri, 15 Mar 2024 01:24:13 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87F1410FF23;
- Fri, 15 Mar 2024 01:24:11 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29F9E10FF33;
+	Fri, 15 Mar 2024 01:35:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TEoybZUf";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 444CD10FF33
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Mar 2024 01:35:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1710466524; x=1742002524;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=FYor0PAI06Rz88PPRnQI+uHs9wzaoPRZIlDIRZN72xQ=;
+ b=TEoybZUfZENvc4+tauq+ZL0VrYOEeCuJuM0v7Jk4DmpxI7MpMfpjHIiS
+ YTRZYmcmdo6vJxcuNatlHBWAoGv0KVek7qZDB9qT1jY3s//d5khLBdYmv
+ zC0YuGcXB+Qn9v3Xnmq2k23a3ypssNjlo88xMFgyAkRKN8Lisl5EzW5IN
+ xA2nhuQjgJpuHm8TTIVLypOj/y/Gf01wbUbqzC+E4HXLBY8+lyfuWNjPe
+ ntKHfOIWuGQYS5gJxX18fP2DROD6SfLyG8zVhrwm7ZUhVYV/aqrIR3r7+
+ SsUCgbQ8Ow+CvjbZUk8Y4R20CIS/7hOUHBlAtVxqk1lAPbJGKRV21jdzB Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11013"; a="15963122"
+X-IronPort-AV: E=Sophos;i="6.07,127,1708416000"; d="scan'208";a="15963122"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2024 18:35:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,127,1708416000"; d="scan'208";a="43397257"
+Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.jf.intel.com)
+ ([10.165.21.138])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2024 18:35:23 -0700
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH 01/17] drm/xe/perf/uapi: "Perf" layer to support multiple perf
+ counter stream types
+Date: Thu, 14 Mar 2024 18:35:02 -0700
+Message-ID: <20240315013518.2848986-2-ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20240315013518.2848986-1-ashutosh.dixit@intel.com>
+References: <20240315013518.2848986-1-ashutosh.dixit@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_series_starting_with_=5B?=
- =?utf-8?q?1/3=5D_drm/xe=3A_Introduce_a_simple_busted_state?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 15 Mar 2024 01:24:11 -0000
-Message-ID: <171046585155.794418.7580227234619284044@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240315010317.193756-1-rodrigo.vivi@intel.com>
-In-Reply-To: <20240315010317.193756-1-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +61,212 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+In Xe, the plan is to support multiple types of perf counter streams (OA is
+only one type of these streams). Rather than introduce NxM ioctls for
+these (N perf streams with M ioctl's per perf stream), we decide to
+multiplex these (N different stream types and the M ops for each of these
+stream types) through a single PERF ioctl. This multiplexing is the purpose
+of the PERF layer.
 
-Series: series starting with [1/3] drm/xe: Introduce a simple busted state
-URL   : https://patchwork.freedesktop.org/series/131156/
-State : success
+In addition to PERF DRM ioctl's, another set of ioctl's on the PERF fd are
+defined. These are expected to be common to different PERF stream types and
+therefore defined at the PERF layer itself.
 
-== Summary ==
+v2: Add param_size to 'struct drm_xe_perf_param' (Umesh)
+v3: Rename 'enum drm_xe_perf_ops' to
+    'enum drm_xe_perf_ioctls' (Guy Zadicario)
+    Add DRM_ prefix to ioctl names to indicate uapi names
+v4: Add 'enum drm_xe_perf_op' previously missed out (Guy Zadicario)
+v5: Squash the ops and PERF layer patches into a single patch (Umesh)
+    Remove param_size from struct 'drm_xe_perf_param' (Umesh)
+v6: Add DRM_XE_PERF_IOCTL_STATUS
+v7: Add DRM_XE_PERF_IOCTL_INFO
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast b7ead5c90db25002638773b1a9289220e6a36b4d
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Acked-by: Guy Zadicario <gzadicario@habana.ai>
+---
+ drivers/gpu/drm/xe/Makefile    |  1 +
+ drivers/gpu/drm/xe/xe_device.c |  2 ++
+ drivers/gpu/drm/xe/xe_perf.c   | 21 ++++++++++++
+ drivers/gpu/drm/xe/xe_perf.h   | 16 +++++++++
+ include/uapi/drm/xe_drm.h      | 63 ++++++++++++++++++++++++++++++++++
+ 5 files changed, 103 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_perf.c
+ create mode 100644 drivers/gpu/drm/xe/xe_perf.h
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 3c3e67885559..9ee89529bcc4 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -115,6 +115,7 @@ xe-y += xe_bb.o \
+ 	xe_pat.o \
+ 	xe_pci.o \
+ 	xe_pcode.o \
++	xe_perf.o \
+ 	xe_pm.o \
+ 	xe_preempt_fence.o \
+ 	xe_pt.o \
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index b0bfe75eb59f..6f679b515184 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -36,6 +36,7 @@
+ #include "xe_module.h"
+ #include "xe_pat.h"
+ #include "xe_pcode.h"
++#include "xe_perf.h"
+ #include "xe_pm.h"
+ #include "xe_query.h"
+ #include "xe_sriov.h"
+@@ -134,6 +135,7 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
+ 			  DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(XE_WAIT_USER_FENCE, xe_wait_user_fence_ioctl,
+ 			  DRM_RENDER_ALLOW),
++	DRM_IOCTL_DEF_DRV(XE_PERF, xe_perf_ioctl, DRM_RENDER_ALLOW),
+ };
+ 
+ static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
+diff --git a/drivers/gpu/drm/xe/xe_perf.c b/drivers/gpu/drm/xe/xe_perf.c
+new file mode 100644
+index 000000000000..a130076b59aa
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_perf.c
+@@ -0,0 +1,21 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#include <linux/errno.h>
++
++#include "xe_perf.h"
++
++int xe_perf_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
++{
++	struct drm_xe_perf_param *arg = data;
++
++	if (arg->extensions)
++		return -EINVAL;
++
++	switch (arg->perf_type) {
++	default:
++		return -EINVAL;
++	}
++}
+diff --git a/drivers/gpu/drm/xe/xe_perf.h b/drivers/gpu/drm/xe/xe_perf.h
+new file mode 100644
+index 000000000000..254cc7cf49fe
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_perf.h
+@@ -0,0 +1,16 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _XE_PERF_H_
++#define _XE_PERF_H_
++
++#include <drm/xe_drm.h>
++
++struct drm_device;
++struct drm_file;
++
++int xe_perf_ioctl(struct drm_device *dev, void *data, struct drm_file *file);
++
++#endif
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 808ad1c308ec..6fc5a8ca1dbb 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -100,6 +100,8 @@ extern "C" {
+ #define DRM_XE_EXEC_QUEUE_GET_PROPERTY	0x08
+ #define DRM_XE_EXEC			0x09
+ #define DRM_XE_WAIT_USER_FENCE		0x0a
++#define DRM_XE_PERF			0x0b
++
+ /* Must be kept compact -- no holes */
+ 
+ #define DRM_IOCTL_XE_DEVICE_QUERY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_DEVICE_QUERY, struct drm_xe_device_query)
+@@ -113,6 +115,7 @@ extern "C" {
+ #define DRM_IOCTL_XE_EXEC_QUEUE_GET_PROPERTY	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_GET_PROPERTY, struct drm_xe_exec_queue_get_property)
+ #define DRM_IOCTL_XE_EXEC			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
+ #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
++#define DRM_IOCTL_XE_PERF			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_PERF, struct drm_xe_perf_param)
+ 
+ /**
+  * DOC: Xe IOCTL Extensions
+@@ -1360,6 +1363,66 @@ struct drm_xe_wait_user_fence {
+ 	__u64 reserved[2];
+ };
+ 
++/** enum drm_xe_perf_type - Perf stream types */
++enum drm_xe_perf_type {
++	DRM_XE_PERF_TYPE_MAX,
++};
++
++/**
++ * enum drm_xe_perf_op - Perf stream ops
++ */
++enum drm_xe_perf_op {
++	/** @DRM_XE_PERF_OP_STREAM_OPEN: Open a perf counter stream */
++	DRM_XE_PERF_OP_STREAM_OPEN,
++
++	/** @DRM_XE_PERF_OP_ADD_CONFIG: Add perf stream config */
++	DRM_XE_PERF_OP_ADD_CONFIG,
++
++	/** @DRM_XE_PERF_OP_REMOVE_CONFIG: Remove perf stream config */
++	DRM_XE_PERF_OP_REMOVE_CONFIG,
++};
++
++/**
++ * struct drm_xe_perf_param - Input of &DRM_XE_PERF
++ *
++ * The perf layer enables multiplexing perf counter streams of multiple
++ * types. The actual params for a particular stream operation are supplied
++ * via the @param pointer (use __copy_from_user to get these params).
++ */
++struct drm_xe_perf_param {
++	/** @extensions: Pointer to the first extension struct, if any */
++	__u64 extensions;
++	/** @perf_type: Perf stream type, of enum @drm_xe_perf_type */
++	__u64 perf_type;
++	/** @perf_op: Perf op, of enum @drm_xe_perf_op */
++	__u64 perf_op;
++	/** @param: Pointer to actual stream params */
++	__u64 param;
++};
++
++/**
++ * enum drm_xe_perf_ioctls - Perf fd ioctl's
++ *
++ * Information exchanged between userspace and kernel for perf fd ioctl's
++ * is stream type specific
++ */
++enum drm_xe_perf_ioctls {
++	/** @DRM_XE_PERF_IOCTL_ENABLE: Enable data capture for a stream */
++	DRM_XE_PERF_IOCTL_ENABLE = _IO('i', 0x0),
++
++	/** @DRM_XE_PERF_IOCTL_DISABLE: Disable data capture for a stream */
++	DRM_XE_PERF_IOCTL_DISABLE = _IO('i', 0x1),
++
++	/** @DRM_XE_PERF_IOCTL_CONFIG: Change stream configuration */
++	DRM_XE_PERF_IOCTL_CONFIG = _IO('i', 0x2),
++
++	/** @DRM_XE_PERF_IOCTL_STATUS: Return stream status */
++	DRM_XE_PERF_IOCTL_STATUS = _IO('i', 0x3),
++
++	/** @DRM_XE_PERF_IOCTL_INFO: Return stream info */
++	DRM_XE_PERF_IOCTL_INFO = _IO('i', 0x4),
++};
++
+ #if defined(__cplusplus)
+ }
+ #endif
+-- 
+2.41.0
 
