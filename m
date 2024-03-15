@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E303C54E69
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFF7AC54E60
 	for <intel-xe@archiver.kernel.org>; Fri, 15 Mar 2024 01:35:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C56810FF4B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 577AB10FF4E;
 	Fri, 15 Mar 2024 01:35:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kHiywrtp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kv2U+wag";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCE0510FF3D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 661BF10FF3B
  for <intel-xe@lists.freedesktop.org>; Fri, 15 Mar 2024 01:35:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710466527; x=1742002527;
+ t=1710466526; x=1742002526;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=zQAyEQx76PoEORhjb82XLOzXEih/ScOl5waf42oa6s0=;
- b=kHiywrtpZj50EffRm3ch3xUmE/f88J+42X5WvspEaCqh/rU9d5yfrbuj
- 1Jx52uAmpbib6G2WYXfy0Vny7ad01ZIv11Rvxc1zN+H6aAtDgLgAYpaJ7
- eFPic/e8/8EbS60xs6QZnjZkEZhYswxo1kFZTRj+shxB6T7EulT37E5pz
- qTVMf8Nst09yMScenj/YVrvO78EPa2tlmQUb2/0vgeJ3lDuCh2lVSXYQa
- g8NNDZPnF+CbWPEb6kcOihPYpWqjmiWiMVjg6YXsbhEXQ/r3xVb/9cAmT
- k/BrdXNbC28wCkeeAnY7neNzF89HCc6UtfRrIc7qPydiO5EraIQtOXNie A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11013"; a="15963134"
-X-IronPort-AV: E=Sophos;i="6.07,127,1708416000"; d="scan'208";a="15963134"
+ bh=cJtFrZYj+1/vvZjp1V7hCVfktYX4eB7Cbx5RJEFDElA=;
+ b=Kv2U+wag4Q/zorpFhdNmLPnew/vgYZZMALN4Qb/YKd2KnMvO5ptPFNEu
+ nHadKo+FsjfqVxZB2vqTmQBgwbnm0ZlWLrtjOsPCAL4sKuP8RLcGXxxRD
+ Bb3502OQPNC/iyVTfcxVSHu2LQ8SSws2rRpZf1e+Xp6/G4gkagddAqrmv
+ c1wNhC+JQ6DBNzsKEVhpM84n++9v/m92AlnZZYsfo9MKP02YFzrAbdCw1
+ Sr0sJ9+S15qvwsOPzTzx2KTNw0Y7mypDiKl/UhO0c6tqwq9IYPami4bw3
+ 8D2bT36TO8+R2abhTQFZgKFPhxe/xQqJnoM2CjzHH10Gb64h1jhqxVfkt A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11013"; a="15963132"
+X-IronPort-AV: E=Sophos;i="6.07,127,1708416000"; d="scan'208";a="15963132"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Mar 2024 18:35:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,127,1708416000"; d="scan'208";a="43397269"
+X-IronPort-AV: E=Sophos;i="6.07,127,1708416000"; d="scan'208";a="43397267"
 Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.jf.intel.com)
  ([10.165.21.138])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Mar 2024 18:35:24 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 12/17] drm/xe/oa/uapi: Query OA unit properties
-Date: Thu, 14 Mar 2024 18:35:13 -0700
-Message-ID: <20240315013518.2848986-13-ashutosh.dixit@intel.com>
+Subject: [PATCH 10/17] drm/xe/oa: Add OAR support
+Date: Thu, 14 Mar 2024 18:35:11 -0700
+Message-ID: <20240315013518.2848986-11-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20240315013518.2848986-1-ashutosh.dixit@intel.com>
 References: <20240315013518.2848986-1-ashutosh.dixit@intel.com>
@@ -62,256 +62,379 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Implement query for properties of OA units present on a device.
+Add OAR support to allow userspace to execute MI_REPORT_PERF_COUNT on
+render engines. Configuration batches are used to program the OAR unit, as
+well as modifying the render engine context image of a specified exec queue
+(to have correct register values when that context switches in).
 
-v2: Clean up reserved/pad fields (Umesh)
-    Follow the same scheme as other query structs
-v3: Skip reporting reserved engines attached to OA units
-v4: Expose oa_buf_size via DRM_XE_PERF_IOCTL_INFO (Umesh)
-v5: Don't expose capabilities as OR of properties (Umesh)
-v6: Add extensions to query output structs: drm_xe_oa_unit,
-    drm_xe_query_oa_units and drm_xe_oa_stream_info
+v2: Rename/refactor xe_oa_modify_self (Umesh)
 
 Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/xe/xe_oa.c    | 13 ++++++
- drivers/gpu/drm/xe/xe_query.c | 77 +++++++++++++++++++++++++++++++++
- include/uapi/drm/xe_drm.h     | 81 +++++++++++++++++++++++++++++++++++
- 3 files changed, 171 insertions(+)
+ .../gpu/drm/xe/instructions/xe_mi_commands.h  |   3 +
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h      |   3 +-
+ drivers/gpu/drm/xe/xe_lrc.c                   |  11 +-
+ drivers/gpu/drm/xe/xe_lrc.h                   |   1 +
+ drivers/gpu/drm/xe/xe_oa.c                    | 190 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_oa_types.h              |   4 +
+ 6 files changed, 206 insertions(+), 6 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+index c74ceb550dce..48d4c759c688 100644
+--- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
++++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+@@ -45,6 +45,9 @@
+ #define   MI_LRI_MMIO_REMAP_EN		REG_BIT(17)
+ #define   MI_LRI_NUM_REGS(x)		XE_INSTR_NUM_DW(2 * (x) + 1)
+ #define   MI_LRI_FORCE_POSTED		REG_BIT(12)
++#define   IS_MI_LRI_CMD(x)		(REG_FIELD_GET(MI_OPCODE, (x)) == \
++					 REG_FIELD_GET(MI_OPCODE, MI_LOAD_REGISTER_IMM))
++#define   MI_LRI_LEN(x)			(((x) & 0xff) + 1)
+ 
+ #define MI_FLUSH_DW			__MI_INSTR(0x26)
+ #define   MI_FLUSH_DW_STORE_INDEX	REG_BIT(21)
+diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+index a08528d9c76b..cf43783e2295 100644
+--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+@@ -122,7 +122,8 @@
+ #define RING_EXECLIST_STATUS_LO(base)		XE_REG((base) + 0x234)
+ #define RING_EXECLIST_STATUS_HI(base)		XE_REG((base) + 0x234 + 4)
+ 
+-#define RING_CONTEXT_CONTROL(base)		XE_REG((base) + 0x244)
++#define RING_CONTEXT_CONTROL(base)		XE_REG((base) + 0x244, XE_REG_OPTION_MASKED)
++#define	  CTX_CTRL_OAC_CONTEXT_ENABLE		REG_BIT(8)
+ #define	  CTX_CTRL_INHIBIT_SYN_CTX_SWITCH	REG_BIT(3)
+ #define	  CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT	REG_BIT(0)
+ 
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 3c4d31703207..6d4f99e1cd29 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -604,12 +604,18 @@ u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc)
+ 
+ /* Make the magic macros work */
+ #define __xe_lrc_pphwsp_offset xe_lrc_pphwsp_offset
++#define __xe_lrc_regs_offset xe_lrc_regs_offset
+ 
+ #define LRC_SEQNO_PPHWSP_OFFSET 512
+ #define LRC_START_SEQNO_PPHWSP_OFFSET (LRC_SEQNO_PPHWSP_OFFSET + 8)
+ #define LRC_PARALLEL_PPHWSP_OFFSET 2048
+ #define LRC_PPHWSP_SIZE SZ_4K
+ 
++u32 xe_lrc_regs_offset(struct xe_lrc *lrc)
++{
++	return xe_lrc_pphwsp_offset(lrc) + LRC_PPHWSP_SIZE;
++}
++
+ static size_t lrc_reg_size(struct xe_device *xe)
+ {
+ 	if (GRAPHICS_VERx100(xe) >= 1250)
+@@ -641,11 +647,6 @@ static inline u32 __xe_lrc_parallel_offset(struct xe_lrc *lrc)
+ 	return xe_lrc_pphwsp_offset(lrc) + LRC_PARALLEL_PPHWSP_OFFSET;
+ }
+ 
+-static inline u32 __xe_lrc_regs_offset(struct xe_lrc *lrc)
+-{
+-	return xe_lrc_pphwsp_offset(lrc) + LRC_PPHWSP_SIZE;
+-}
+-
+ #define DECL_MAP_ADDR_HELPERS(elem) \
+ static inline struct iosys_map __xe_lrc_##elem##_map(struct xe_lrc *lrc) \
+ { \
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index d32fa31faa2c..fae5688b7e8d 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -23,6 +23,7 @@ void xe_lrc_finish(struct xe_lrc *lrc);
+ 
+ size_t xe_lrc_size(struct xe_device *xe, enum xe_engine_class class);
+ u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc);
++u32 xe_lrc_regs_offset(struct xe_lrc *lrc);
+ 
+ void xe_lrc_set_ring_head(struct xe_lrc *lrc, u32 head);
+ u32 xe_lrc_ring_head(struct xe_lrc *lrc);
 diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index a696cc54886d..b8d880797c16 100644
+index 183e3dc14385..611aaffc1da0 100644
 --- a/drivers/gpu/drm/xe/xe_oa.c
 +++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -1010,6 +1010,17 @@ static long xe_oa_status_locked(struct xe_oa_stream *stream, unsigned long arg)
- 	return 0;
+@@ -11,7 +11,9 @@
+ #include <drm/xe_drm.h>
+ 
+ #include "instructions/xe_mi_commands.h"
++#include "regs/xe_engine_regs.h"
+ #include "regs/xe_gt_regs.h"
++#include "regs/xe_lrc_layout.h"
+ #include "regs/xe_oa_regs.h"
+ #include "xe_device.h"
+ #include "xe_exec_queue.h"
+@@ -19,6 +21,7 @@
+ #include "xe_bo.h"
+ #include "xe_gt.h"
+ #include "xe_gt_mcr.h"
++#include "xe_lrc.h"
+ #include "xe_mmio.h"
+ #include "xe_oa.h"
+ #include "xe_sched_job.h"
+@@ -51,6 +54,12 @@ struct xe_oa_config {
+ 	struct rcu_head rcu;
+ };
+ 
++struct flex {
++	struct xe_reg reg;
++	u32 offset;
++	u32 value;
++};
++
+ struct xe_oa_open_param {
+ 	u32 oa_unit_id;
+ 	bool sample;
+@@ -566,6 +575,93 @@ static void xe_oa_free_configs(struct xe_oa_stream *stream)
+ 		free_oa_config_bo(oa_bo);
  }
  
-+static long xe_oa_info_locked(struct xe_oa_stream *stream, unsigned long arg)
++static void xe_oa_store_flex(struct xe_oa_stream *stream, struct xe_lrc *lrc,
++			     struct xe_bb *bb, const struct flex *flex, u32 count)
 +{
-+	struct drm_xe_oa_stream_info info = { .oa_buf_size = XE_OA_BUFFER_SIZE, };
-+	void __user *uaddr = (void __user *)arg;
++	u32 offset = xe_bo_ggtt_addr(lrc->bo);
 +
-+	if (copy_to_user(uaddr, &info, sizeof(info)))
-+		return -EFAULT;
++	do {
++		bb->cs[bb->len++] = MI_STORE_DATA_IMM | BIT(22) /* GGTT */ | 2;
++		bb->cs[bb->len++] = offset + flex->offset * sizeof(u32);
++		bb->cs[bb->len++] = 0;
++		bb->cs[bb->len++] = flex->value;
 +
-+	return 0;
++	} while (flex++, --count);
 +}
 +
- static long xe_oa_ioctl_locked(struct xe_oa_stream *stream,
- 			       unsigned int cmd,
- 			       unsigned long arg)
-@@ -1025,6 +1036,8 @@ static long xe_oa_ioctl_locked(struct xe_oa_stream *stream,
- 		return xe_oa_config_locked(stream, arg);
- 	case DRM_XE_PERF_IOCTL_STATUS:
- 		return xe_oa_status_locked(stream, arg);
-+	case DRM_XE_PERF_IOCTL_INFO:
-+		return xe_oa_info_locked(stream, arg);
++static int xe_oa_modify_ctx_image(struct xe_oa_stream *stream, struct xe_lrc *lrc,
++				  const struct flex *flex, u32 count)
++{
++	struct xe_bb *bb;
++	int err;
++
++	bb = xe_bb_new(stream->gt, 4 * count, false);
++	if (IS_ERR(bb)) {
++		err = PTR_ERR(bb);
++		goto exit;
++	}
++
++	xe_oa_store_flex(stream, lrc, bb, flex, count);
++
++	err = xe_oa_submit_bb(stream, bb);
++	xe_bb_free(bb, NULL);
++exit:
++	return err;
++}
++
++static int xe_oa_load_with_lri(struct xe_oa_stream *stream, struct xe_oa_reg *reg_lri)
++{
++	struct xe_bb *bb;
++	int err;
++
++	bb = xe_bb_new(stream->gt, 3, false);
++	if (IS_ERR(bb)) {
++		err = PTR_ERR(bb);
++		goto exit;
++	}
++
++	write_cs_mi_lri(bb, reg_lri, 1);
++
++	err = xe_oa_submit_bb(stream, bb);
++	xe_bb_free(bb, NULL);
++exit:
++	return err;
++}
++
++static int xe_oa_configure_oar_context(struct xe_oa_stream *stream, bool enable)
++{
++	const struct xe_oa_format *format = stream->oa_buffer.format;
++	struct xe_lrc *lrc = &stream->exec_q->lrc[0];
++	u32 regs_offset = xe_lrc_regs_offset(lrc) / sizeof(u32);
++	u32 oacontrol = __format_to_oactrl(format, OAR_OACONTROL_COUNTER_SEL_MASK) |
++		(enable ? OAR_OACONTROL_COUNTER_ENABLE : 0);
++
++	struct flex regs_context[] = {
++		{
++			OACTXCONTROL(stream->hwe->mmio_base),
++			stream->oa->ctx_oactxctrl_offset[stream->hwe->class] + 1,
++			enable ? OA_COUNTER_RESUME : 0,
++		},
++		{
++			RING_CONTEXT_CONTROL(stream->hwe->mmio_base),
++			regs_offset + CTX_CONTEXT_CONTROL,
++			_MASKED_FIELD(CTX_CTRL_OAC_CONTEXT_ENABLE,
++				      enable ? CTX_CTRL_OAC_CONTEXT_ENABLE : 0)
++		},
++	};
++	struct xe_oa_reg reg_lri = { OAR_OACONTROL, oacontrol };
++	int err;
++
++	/* Modify stream hwe context image with regs_context */
++	err = xe_oa_modify_ctx_image(stream, &stream->exec_q->lrc[0],
++				     regs_context, ARRAY_SIZE(regs_context));
++	if (err)
++		return err;
++
++	/* Apply reg_lri using LRI */
++	return xe_oa_load_with_lri(stream, &reg_lri);
++}
++
+ #define HAS_OA_BPC_REPORTING(xe) (GRAPHICS_VERx100(xe) >= 1255)
+ 
+ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
+@@ -583,6 +679,10 @@ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
+ 					  _MASKED_BIT_DISABLE(DISABLE_DOP_GATING));
  	}
  
- 	return -EINVAL;
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index e80321b34918..e477c2a71ffe 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -593,6 +593,82 @@ query_uc_fw_version(struct xe_device *xe, struct drm_xe_device_query *query)
- 	return 0;
++	/* disable the context save/restore or OAR counters */
++	if (stream->exec_q)
++		xe_oa_configure_oar_context(stream, false);
++
+ 	/* Make sure we disable noa to save power. */
+ 	xe_mmio_rmw32(stream->gt, RPM_CONFIG1, GT_NOA_ENABLE, 0);
+ 
+@@ -710,6 +810,7 @@ static u32 oag_report_ctx_switches(const struct xe_oa_stream *stream)
+ static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
+ {
+ 	u32 oa_debug, sqcnt1;
++	int ret;
+ 
+ 	/*
+ 	 * Wa_1508761755:xehpsdv, dg2
+@@ -747,6 +848,12 @@ static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
+ 
+ 	xe_mmio_rmw32(stream->gt, XELPMP_SQCNT1, 0, sqcnt1);
+ 
++	if (stream->exec_q) {
++		ret = xe_oa_configure_oar_context(stream, true);
++		if (ret)
++			return ret;
++	}
++
+ 	return xe_oa_emit_oa_config(stream);
  }
  
-+static size_t calc_oa_unit_query_size(struct xe_device *xe)
+@@ -909,6 +1016,78 @@ static const struct file_operations xe_oa_fops = {
+ 	.unlocked_ioctl	= xe_oa_ioctl,
+ };
+ 
++static bool engine_supports_mi_query(struct xe_hw_engine *hwe)
 +{
-+	size_t size = sizeof(struct drm_xe_query_oa_units);
-+	struct xe_gt *gt;
-+	int i, id;
++	return hwe->class == XE_ENGINE_CLASS_RENDER ||
++		hwe->class == XE_ENGINE_CLASS_COMPUTE;
++}
 +
-+	for_each_gt(gt, xe, id) {
-+		for (i = 0; i < gt->oa.num_oa_units; i++) {
-+			size += sizeof(struct drm_xe_oa_unit);
-+			size += gt->oa.oa_unit[i].num_engines *
-+				sizeof(struct drm_xe_engine_class_instance);
++static bool xe_oa_find_reg_in_lri(u32 *state, u32 reg, u32 *offset, u32 end)
++{
++	u32 idx = *offset;
++	u32 len = min(MI_LRI_LEN(state[idx]) + idx, end);
++	bool found = false;
++
++	idx++;
++	for (; idx < len; idx += 2) {
++		if (state[idx] == reg) {
++			found = true;
++			break;
 +		}
 +	}
 +
-+	return size;
++	*offset = idx;
++	return found;
 +}
 +
-+static int query_oa_units(struct xe_device *xe,
-+			  struct drm_xe_device_query *query)
++static u32 xe_oa_context_image_offset(struct xe_oa_stream *stream, u32 reg)
 +{
-+	void __user *query_ptr = u64_to_user_ptr(query->data);
-+	size_t size = calc_oa_unit_query_size(xe);
-+	struct drm_xe_query_oa_units *qoa;
-+	enum xe_hw_engine_id hwe_id;
-+	struct drm_xe_oa_unit *du;
-+	struct xe_hw_engine *hwe;
-+	struct xe_oa_unit *u;
-+	int gt_id, i, j, ret;
-+	struct xe_gt *gt;
-+	u8 *pdu;
++	struct xe_lrc *lrc = &stream->exec_q->lrc[0];
++	u32 len = (xe_lrc_size(stream->oa->xe, stream->hwe->class) +
++		   lrc->ring.size) / sizeof(u32);
++	u32 offset = xe_lrc_regs_offset(lrc) / sizeof(u32);
++	u32 *state = (u32 *)lrc->bo->vmap.vaddr;
 +
-+	if (query->size == 0) {
-+		query->size = size;
-+		return 0;
-+	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
-+		return -EINVAL;
-+	}
++	if (drm_WARN_ON(&stream->oa->xe->drm, !state))
++		return U32_MAX;
 +
-+	qoa = kzalloc(size, GFP_KERNEL);
-+	if (!qoa)
-+		return -ENOMEM;
++	for (; offset < len; ) {
++		if (IS_MI_LRI_CMD(state[offset])) {
++			/*
++			 * We expect reg-value pairs in MI_LRI command, so
++			 * MI_LRI_LEN() should be even
++			 */
++			drm_WARN_ON(&stream->oa->xe->drm,
++				    MI_LRI_LEN(state[offset]) & 0x1);
 +
-+	pdu = (u8 *)&qoa->oa_units[0];
-+	for_each_gt(gt, xe, gt_id) {
-+		for (i = 0; i < gt->oa.num_oa_units; i++) {
-+			u = &gt->oa.oa_unit[i];
-+			du = (struct drm_xe_oa_unit *)pdu;
-+
-+			du->oa_unit_id = u->oa_unit_id;
-+			du->oa_unit_type = u->type;
-+			du->oa_timestamp_freq = xe_oa_timestamp_frequency(gt);
-+			du->capabilities = DRM_XE_OA_CAPS_BASE;
-+
-+			j = 0;
-+			for_each_hw_engine(hwe, gt, hwe_id) {
-+				if (!xe_hw_engine_is_reserved(hwe) &&
-+				    xe_oa_unit_id(hwe) == u->oa_unit_id) {
-+					du->eci[j].engine_class =
-+						xe_to_user_engine_class[hwe->class];
-+					du->eci[j].engine_instance = hwe->logical_instance;
-+					du->eci[j].gt_id = gt->info.id;
-+					j++;
-+				}
-+			}
-+			du->num_engines = j;
-+			pdu += sizeof(*du) + j * sizeof(du->eci[0]);
-+			qoa->num_oa_units++;
++			if (xe_oa_find_reg_in_lri(state, reg, &offset, len))
++				break;
++		} else {
++			offset++;
 +		}
 +	}
 +
-+	ret = copy_to_user(query_ptr, qoa, size);
-+	kfree(qoa);
-+
-+	return ret ? -EFAULT : 0;
++	return offset < len ? offset : U32_MAX;
 +}
 +
- static int (* const xe_query_funcs[])(struct xe_device *xe,
- 				      struct drm_xe_device_query *query) = {
- 	query_engines,
-@@ -603,6 +679,7 @@ static int (* const xe_query_funcs[])(struct xe_device *xe,
- 	query_gt_topology,
- 	query_engine_cycles,
- 	query_uc_fw_version,
-+	query_oa_units,
- };
++static int xe_oa_set_ctx_ctrl_offset(struct xe_oa_stream *stream)
++{
++	struct xe_reg reg = OACTXCONTROL(stream->hwe->mmio_base);
++	u32 offset = stream->oa->ctx_oactxctrl_offset[stream->hwe->class];
++
++	/* Do this only once. Failure is stored as offset of U32_MAX */
++	if (offset)
++		goto exit;
++
++	offset = xe_oa_context_image_offset(stream, reg.addr);
++	stream->oa->ctx_oactxctrl_offset[stream->hwe->class] = offset;
++
++	drm_dbg(&stream->oa->xe->drm, "%s oa ctx control at 0x%08x dword offset\n",
++		stream->hwe->name, offset);
++exit:
++	return offset && offset != U32_MAX ? 0 : -ENODEV;
++}
++
+ static int xe_oa_stream_init(struct xe_oa_stream *stream,
+ 			     struct xe_oa_open_param *param)
+ {
+@@ -926,6 +1105,17 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
+ 	stream->periodic = param->period_exponent > 0;
+ 	stream->period_exponent = param->period_exponent;
  
- int xe_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 4bfa06ebf6da..54d0912f2ba8 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -686,6 +686,7 @@ struct drm_xe_device_query {
- #define DRM_XE_DEVICE_QUERY_GT_TOPOLOGY		5
- #define DRM_XE_DEVICE_QUERY_ENGINE_CYCLES	6
- #define DRM_XE_DEVICE_QUERY_UC_FW_VERSION	7
-+#define DRM_XE_DEVICE_QUERY_OA_UNITS		8
- 	/** @query: The type of data to query */
- 	__u32 query;
++	if (stream->exec_q && engine_supports_mi_query(stream->hwe)) {
++		/* If we don't find the context offset, just return error */
++		ret = xe_oa_set_ctx_ctrl_offset(stream);
++		if (ret) {
++			drm_err(&stream->oa->xe->drm,
++				"xe_oa_set_ctx_ctrl_offset failed for %s\n",
++				stream->hwe->name);
++			goto exit;
++		}
++	}
++
+ 	stream->oa_config = xe_oa_get_oa_config(stream->oa, param->metric_set);
+ 	if (!stream->oa_config) {
+ 		drm_dbg(&stream->oa->xe->drm, "Invalid OA config id=%i\n", param->metric_set);
+diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
+index 91ecb1a0c7cc..b58b4f59f40b 100644
+--- a/drivers/gpu/drm/xe/xe_oa_types.h
++++ b/drivers/gpu/drm/xe/xe_oa_types.h
+@@ -13,6 +13,7 @@
  
-@@ -1436,6 +1437,71 @@ enum drm_xe_oa_unit_type {
- 	DRM_XE_OA_UNIT_TYPE_OAM,
- };
+ #include <drm/xe_drm.h>
+ #include "regs/xe_reg_defs.h"
++#include "xe_hw_engine_types.h"
  
-+/**
-+ * struct drm_xe_oa_unit - describe OA unit
-+ */
-+struct drm_xe_oa_unit {
-+	/** @extensions: Pointer to the first extension struct, if any */
-+	__u64 extensions;
-+
-+	/** @oa_unit_id: OA unit ID */
-+	__u32 oa_unit_id;
-+
-+	/** @oa_unit_type: OA unit type of @drm_xe_oa_unit_type */
-+	__u32 oa_unit_type;
-+
-+	/** @capabilities: OA capabilities bit-mask */
-+	__u64 capabilities;
-+#define DRM_XE_OA_CAPS_BASE		(1 << 0)
-+
-+	/** @oa_timestamp_freq: OA timestamp freq */
-+	__u64 oa_timestamp_freq;
-+
-+	/** @reserved: MBZ */
-+	__u64 reserved[4];
-+
-+	/** @num_engines: number of engines in @eci array */
-+	__u64 num_engines;
-+
-+	/** @eci: engines attached to this OA unit */
-+	struct drm_xe_engine_class_instance eci[];
-+};
-+
-+/**
-+ * struct drm_xe_query_oa_units - describe OA units
-+ *
-+ * If a query is made with a struct drm_xe_device_query where .query
-+ * is equal to DRM_XE_DEVICE_QUERY_OA_UNITS, then the reply uses struct
-+ * drm_xe_query_oa_units in .data.
-+ *
-+ * OA unit properties for all OA units can be accessed using a code block
-+ * such as the one below:
-+ *
-+ * .. code-block:: C
-+ *
-+ *	struct drm_xe_query_oa_units *qoa;
-+ *	struct drm_xe_oa_unit *oau;
-+ *	u8 *poau;
-+ *
-+ *	// malloc qoa and issue DRM_XE_DEVICE_QUERY_OA_UNITS. Then:
-+ *	poau = (u8 *)&qoa->oa_units[0];
-+ *	for (int i = 0; i < qoa->num_oa_units; i++) {
-+ *		oau = (struct drm_xe_oa_unit *)poau;
-+ *		// Access 'struct drm_xe_oa_unit' fields here
-+ *		poau += sizeof(*oau) + oau->num_engines * sizeof(oau->eci[0]);
-+ *	}
-+ */
-+struct drm_xe_query_oa_units {
-+	/** @extensions: Pointer to the first extension struct, if any */
-+	__u64 extensions;
-+	/** @num_oa_units: number of OA units returned in oau[] */
-+	__u32 num_oa_units;
-+	/** @pad: MBZ */
-+	__u32 pad;
-+	/** @oa_units: OA units returned for this device */
-+	struct drm_xe_oa_unit oa_units[];
-+};
-+
- /** enum drm_xe_oa_format_type - OA format types */
- enum drm_xe_oa_format_type {
- 	DRM_XE_OA_FMT_TYPE_OAG,
-@@ -1565,6 +1631,21 @@ struct drm_xe_oa_stream_status {
- 	__u64 reserved[3];
- };
+ #define XE_OA_BUFFER_SIZE SZ_16M
  
-+/**
-+ * struct drm_xe_oa_stream_info - OA stream info returned from
-+ * @DRM_XE_PERF_IOCTL_INFO perf fd ioctl
-+ */
-+struct drm_xe_oa_stream_info {
-+	/** @extensions: Pointer to the first extension struct, if any */
-+	__u64 extensions;
+@@ -128,6 +129,9 @@ struct xe_oa {
+ 	/** @metrics_idr: List of dynamic configurations (struct xe_oa_config) */
+ 	struct idr metrics_idr;
+ 
++	/** @ctx_oactxctrl_offset: offset of OACTXCONTROL register in context image */
++	u32 ctx_oactxctrl_offset[XE_ENGINE_CLASS_MAX];
 +
-+	/** @oa_buf_size: OA buffer size */
-+	__u64 oa_buf_size;
-+
-+	/** @reserved: reserved for future use */
-+	__u64 reserved[3];
-+};
-+
- #if defined(__cplusplus)
- }
- #endif
+ 	/** @oa_formats: tracks all OA formats across platforms */
+ 	const struct xe_oa_format *oa_formats;
+ 
 -- 
 2.41.0
 
