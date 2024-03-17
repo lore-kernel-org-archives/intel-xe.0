@@ -4,66 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30028C54E60
-	for <intel-xe@archiver.kernel.org>; Sun, 17 Mar 2024 16:14:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31823C54E60
+	for <intel-xe@archiver.kernel.org>; Sun, 17 Mar 2024 18:02:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB21110ED7A;
-	Sun, 17 Mar 2024 16:14:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98AF010E226;
+	Sun, 17 Mar 2024 18:02:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HFEb9aDU";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="X3YnJCWO";
 	dkim-atps=neutral
-Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com
- [209.85.161.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2870C10ED7A
- for <intel-xe@lists.freedesktop.org>; Sun, 17 Mar 2024 16:14:18 +0000 (UTC)
-Received: by mail-oo1-f53.google.com with SMTP id
- 006d021491bc7-5a4b35ff84eso175628eaf.2
- for <intel-xe@lists.freedesktop.org>; Sun, 17 Mar 2024 09:14:18 -0700 (PDT)
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com
+ [209.85.167.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BF3C10E226;
+ Sun, 17 Mar 2024 18:02:13 +0000 (UTC)
+Received: by mail-lf1-f42.google.com with SMTP id
+ 2adb3069b0e04-512e4f4e463so3991833e87.1; 
+ Sun, 17 Mar 2024 11:02:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1710692057; x=1711296857; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
- :reply-to; bh=1CrtQg3eDqyxxQhKnuesKlP9su1zViMHhRMDXJ4pnqU=;
- b=HFEb9aDU4ecT+i0koBiQuo3XdSMtnIJ4KZMD1b6CaG01aQ+q0Mm5DcbdSouauc2uqI
- SSvfK//WuBttRsoNS44EBSOdv7sQysAHut6/N/Zd0IBtkpxTnpH4LuwORHyCoLxDRzrj
- dPaV8MI3vCLFjgkA4ERMfTG8rbTHGfQM1JBz2ca2tYP8qe6M638fAFhAAowxoXeDH69u
- wWMBP1grfYtVo9nlcpUa/sdMvrW36Xgnw4HW2PSzm10cbwdqYMU5LO/pL/VRV3vuVWjn
- sPbY3Vgf4k6d6JlBBe8+b30heiZXd9d46mjMXypSYv/9GKRvhmcWJf3A7oRrVx/KLqin
- wPyQ==
+ d=gmail.com; s=20230601; t=1710698531; x=1711303331; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=MzKqTULejlRdhOCK57EtCsKlcFoP0JMCOwXzk5JnzwA=;
+ b=X3YnJCWOMmjh0Ff3o2WvC5F+IghIRHflSYfbuhbI1h4ZNixfsGppu8vprIimSkb1lY
+ 3uo/g/02OCprUJzJ2e4sayt4aT6xLmngZ11PmLfrpx8zgYc7kydNrHsAJi7PM3A0B550
+ alkLHGrO6MXQvPAsd39P1swF5tGIPJTD3K9wfTQxCVGfQH9zrElRfNYPuS/1YKbuIYsl
+ 8Pj4Y5v3pX6UEBc6Z2Iy2av0WtFzikZ16hDqSZo+1PAZG+k7WP7z9nrEr0BmBrpoct+P
+ PcfmA1ytyzSzYRvNy5U81gcDoUruGWrm0jvXGD+utblWBZCTVj5xHaiOREmnNlFLAWPX
+ yo+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1710692057; x=1711296857;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=1CrtQg3eDqyxxQhKnuesKlP9su1zViMHhRMDXJ4pnqU=;
- b=e+LtGzXpMU+ZwFyWKVY+mtesiw5mQcN5sxVaeFrvkheXn4+RCZ7PPpPUJhY9ukZs7o
- fIU59hd03UquZQLz/o0EbuDN94ITeHzfSo1CHJEjqRqEuaFI3IHpejj7YHexDe3NVT5n
- i5EPv9uSQvIEz3povdtPRQSJlqI8Pn5nOwDpEdi+Tp1Voz2uxbS1IvEN9tUc0T1HaOhM
- 2frJ0jI2aAW0P+joDgAqU5aFwd8mXqTqLl8dxHOKq6Y0XDeOuQY4h2PvT8gqi0sQ1UCQ
- fCn8ZGGfTVEgvt0rSskgVPlnTVNYRKhG/JqWlEEdiemMi59wqcP40R4ruxFrMbu9uZ56
- RjpQ==
-X-Gm-Message-State: AOJu0YwP20DXt2LPWj6thi2wkMfVYPtlFvukk22VUCsjhUOTZMGL4WUH
- HrFjQDFsCC1r+gNnr3Cv/ECQbJOObNSkwgu226uEYcbNprkspLBK
-X-Google-Smtp-Source: AGHT+IGMr1XNnU+JU8QHz/l1FqI/mlUeysjuUve/mk72gECMbhn4gq9yqlQkPdQZ//5Dq8TBHBbZtg==
-X-Received: by 2002:a05:6358:4041:b0:17b:8706:fd39 with SMTP id
- a1-20020a056358404100b0017b8706fd39mr14522975rwa.10.1710692056906; 
- Sun, 17 Mar 2024 09:14:16 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
- by smtp.gmail.com with ESMTPSA id
- q11-20020a65624b000000b0059b2316be86sm4877030pgv.46.2024.03.17.09.14.15
+ d=1e100.net; s=20230601; t=1710698531; x=1711303331;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=MzKqTULejlRdhOCK57EtCsKlcFoP0JMCOwXzk5JnzwA=;
+ b=FqX7Ref4oMfAJlsnmzXdAByLgg0Du+/nMy/D0lF67xQUCa96NtIFxdB+YhLT71/ToQ
+ Po5aHPZnhbg3CfnEt+27ScYuNIsG8bnrw1GXhIbALnx+JTkHsxoADGEyRKsHx8lZoIbb
+ fN9LLTnllOrRJcV+329gp+oLnFifdE8ya2tAhh8ZoCEve8SP1ldlySDOy8ElQ6M/vE8b
+ hTV8DCLqASlXHvCdrjZqNrzpwg1cn6sz9uhF92GFhEmFUCuX8NxCuFuhsPXJwXthxKdT
+ iZkTwJ4E/8eNiEsReveJAyMeJGAd1tG5DJLhR90uXHb+ebiyF4NvyrGwRQLfHGlvF8Dk
+ CgCQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX+GVKJWYTwgv3dZ3hMFBKbNB/JQVpyLDhvZLZ0d6AbpoZyj0hVdc+6RtdBgoRyKlhLyAUhG5Mleti0d5YrreZAEk3Mayxyg32Byw7tVHEDNTtKlapYTV89AZNxVQc2LO5d4r1UY+Hwv1totd8c7G7NGKI7joiDEzlcljGRiN8Ly78IAkA10UJkjZ4xX95CRYUuQBHmDGOmXryDbD2YojBopmVNyxHmLRnuWPIcHydo
+X-Gm-Message-State: AOJu0Yw/fzAL36knyTFNHce8eja9hbzbR0RS3mK22h2+852xeJoqudGC
+ d1mDiWmMDkuDFEJweavXmr1gksH54I4qxSewKCan9R/utjTaKUUnYbRucCsedb4=
+X-Google-Smtp-Source: AGHT+IFCus1zUTDDRuMKlHSuX7mZxcmUN2oBoDJZChg/lN8tzdLoS7uVD3wjUYqAFNQG1yYzEapq8A==
+X-Received: by 2002:a05:6512:3294:b0:513:c95c:4dc4 with SMTP id
+ p20-20020a056512329400b00513c95c4dc4mr7747510lfe.7.1710698530912; 
+ Sun, 17 Mar 2024 11:02:10 -0700 (PDT)
+Received: from betty.fdsoft.se (213-67-237-183-no99.tbcn.telia.com.
+ [213.67.237.183]) by smtp.gmail.com with ESMTPSA id
+ g21-20020ac24d95000000b00513cdde18efsm1318346lfe.75.2024.03.17.11.02.10
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 17 Mar 2024 09:14:16 -0700 (PDT)
-Date: Sun, 17 Mar 2024 09:14:14 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>
-Subject: Re: [v3,5/5] drm/xe: Enable 32bits build
-Message-ID: <d53d2da5-22de-4f81-9fbc-2f54e5da9ac6@roeck-us.net>
-References: <20240119001612.2991381-6-lucas.demarchi@intel.com>
+ Sun, 17 Mar 2024 11:02:10 -0700 (PDT)
+Received: from ester.fdsoft.se ([192.168.1.2])
+ by betty.fdsoft.se with esmtp (Exim 4.97.1)
+ (envelope-from <frej.drejhammar@gmail.com>)
+ id 1rlupl-000000005e0-3xex; Sun, 17 Mar 2024 19:02:10 +0100
+From: Frej Drejhammar <frej.drejhammar@gmail.com>
+To: dri-devel@lists.freedesktop.org
+Cc: Frej Drejhammar <frej.drejhammar@gmail.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Alim Akhtar <alim.akhtar@samsung.com>, amd-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ freedreno@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, linux-tegra@vger.kernel.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Maxime Ripard <mripard@kernel.org>,
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ Rob Clark <robdclark@gmail.com>, Russell King <linux@armlinux.org.uk>,
+ Sean Paul <sean@poorly.run>, stable@vger.kernel.org,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Subject: [PATCH 00/11] drm: Only try to set formats supported by the hardware
+Date: Sun, 17 Mar 2024 19:01:25 +0100
+Message-ID: <cover.1710698386.git.frej.drejhammar@gmail.com>
+X-Mailer: git-send-email 2.44.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240119001612.2991381-6-lucas.demarchi@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,42 +102,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+When userland uses DRM_IOCTL_MODE_ADDFB to add a framebuffer, the DRM
+subsystem tries to find a pixel format from the supplied depth and
+bpp-values. It does this by calling drm_driver_legacy_fb_format().
+Unfortunately drm_driver_legacy_fb_format() can return formats not
+supported by the underlying hardware. This series of patches remedies
+this problem in patch 1.
 
-On Thu, Jan 18, 2024 at 04:16:12PM -0800, Lucas De Marchi wrote:
-> Now that all the issues with 32bits are fixed, enable it again.
-> 
-> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
->  drivers/gpu/drm/xe/Kconfig | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-> index 1b57ae38210d..1b0ef91a5d2c 100644
-> --- a/drivers/gpu/drm/xe/Kconfig
-> +++ b/drivers/gpu/drm/xe/Kconfig
-> @@ -1,7 +1,7 @@
->  # SPDX-License-Identifier: GPL-2.0-only
->  config DRM_XE
->  	tristate "Intel Xe Graphics"
-> -	depends on DRM && PCI && MMU && (m || (y && KUNIT=y)) && 64BIT
-> +	depends on DRM && PCI && MMU && (m || (y && KUNIT=y))
+In order to use the same logic for determining the pixel format, when
+a fbdev adds a framebuffer as userland does, patches 2 to 11 migrates
+fbdev users of drm_mode_legacy_fb_format() to
+drm_driver_legacy_fb_format().
 
-I am curious about changes like this. Enabling 32-bit builds results in
-build failures for mips_allmodconfig because the driver redefines END.
-END is also used as macro in assembler code, the define happens to be
-included for mips builds, and it would be difficult to change it there.
+This series has been tested with the nouveau and modesetting drivers
+on a NVIDIA NV96, the modesetting driver on Beagleboard Black, and
+with the Intel and modesetting drivers on an Intel HD Graphics 4000
+chipset.
 
-Unlike the i915 code, DRM_XE is not marked as depending on x86. This means
-it will be built for pretty much all "allmodconfig" builds for all
-architectures. Yet, there have been recent complaints about "allmodconfig"
-builds of drm code causing build failures on "oddball" architectures.
-Is there an assumption that DRM_XE (or DRM in general) is manually
-excluded from all architectures where it fails to build ? If so, would
-it be possible to mark DRM_XE (and/or DRM in general) as depending on
-architectures where it is supported ? Maintaining a set of exclusions
-in test builds does not really scale, after all.
+This is an evolved version of the changes proposed in "drm: Don't
+return unsupported formats in drm_mode_legacy_fb_format" [1] following
+the suggestions of Thomas Zimmermann.
 
-Thanks,
-Guenter
+Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
+Cc: Alim Akhtar <alim.akhtar@samsung.com>
+Cc: amd-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: dri-devel@lists.freedesktop.org
+Cc: freedreno@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-samsung-soc@vger.kernel.org
+Cc: linux-tegra@vger.kernel.org
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: "Maíra Canal" <mcanal@igalia.com>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
+Cc: Rob Clark <robdclark@gmail.com>
+Cc: Russell King <linux@armlinux.org.uk>
+Cc: Sean Paul <sean@poorly.run>
+Cc: stable@vger.kernel.org
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: "Ville Syrjälä" <ville.syrjala@linux.intel.com>
+
+[1] https://lore.kernel.org/all/20240310152803.3315-1-frej.drejhammar@gmail.com/
+
+Frej Drejhammar (11):
+  drm: Only return supported formats from drm_driver_legacy_fb_format
+  drm/fbdev_generic: Use drm_driver_legacy_fb_format() for fbdev
+  drm/armada: Use drm_driver_legacy_fb_format() for fbdev
+  drm/exynos: Use drm_driver_legacy_fb_format() for fbdev
+  drm/gma500: Use drm_driver_legacy_fb_format() for fbdev
+  drm/i915: Use drm_driver_legacy_fb_format() for fbdev
+  drm/msm: Use drm_driver_legacy_fb_format() for fbdev
+  drm/omapdrm: Use drm_driver_legacy_fb_format() for fbdev
+  drm/radeon: Use drm_driver_legacy_fb_format() for fbdev
+  drm/tegra: Use drm_driver_legacy_fb_format() for fbdev
+  drm/xe: Use drm_driver_legacy_fb_format() for fbdev
+
+ drivers/gpu/drm/armada/armada_fbdev.c         |  5 +-
+ drivers/gpu/drm/drm_fb_helper.c               |  2 +-
+ drivers/gpu/drm/drm_fbdev_dma.c               |  4 +-
+ drivers/gpu/drm/drm_fbdev_generic.c           |  4 +-
+ drivers/gpu/drm/drm_fourcc.c                  | 83 +++++++++++++++++++
+ drivers/gpu/drm/exynos/exynos_drm_fbdev.c     |  6 +-
+ drivers/gpu/drm/gma500/fbdev.c                |  2 +-
+ drivers/gpu/drm/i915/display/intel_fbdev_fb.c |  6 +-
+ drivers/gpu/drm/msm/msm_fbdev.c               |  4 +-
+ drivers/gpu/drm/omapdrm/omap_fbdev.c          |  6 +-
+ drivers/gpu/drm/radeon/radeon_fbdev.c         |  6 +-
+ drivers/gpu/drm/tegra/fbdev.c                 |  5 +-
+ drivers/gpu/drm/xe/display/intel_fbdev_fb.c   |  5 +-
+ 13 files changed, 119 insertions(+), 19 deletions(-)
+
+
+base-commit: 119b225f01e4d3ce974cd3b4d982c76a380c796d
+-- 
+2.44.0
+
