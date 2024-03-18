@@ -4,50 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01558C54E58
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Mar 2024 18:06:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09DB4C54E58
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Mar 2024 18:12:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAE9A10F651;
-	Mon, 18 Mar 2024 18:06:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A93110F35A;
+	Mon, 18 Mar 2024 18:12:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KeQZv/KL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OCActmiW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 704DC10F690
- for <intel-xe@lists.freedesktop.org>; Mon, 18 Mar 2024 18:05:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 506A410F35A
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Mar 2024 18:12:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710785157; x=1742321157;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=nMtiAjk4hTuT3XW7yjH6yVNXpscZI+pGwVCwTBXNqLM=;
- b=KeQZv/KLwWt6Zt9nemnffRzmpPtK/bZ/JOf4HQa7u+X8YY3mXa2I/aOo
- M4R8TM012pzOKIqRf0X84KQRNgiPBpT/s1Bi9TI4hrGzsBBMJrbw4yEoO
- TypIZibya/S8AvGDCbnj0uOQFmgchevbAP1Tv1mFNnDM7q2gAPW9uLcAU
- P3M300fptFHfB8IqO9guyr71YROu73mKoJypSnLxIcSlxxhPPNuglEyPH
- SXc4+qi0MPoqUazxwYGMDxEv7QfwKcRntk0ukKv1Md4TUrRMU8Ev0yti2
- j8rkiOTIfCBB88Ldh0MAijv7zMLRS1/fVtqLeExIb6g20NDaFRsKW12pv w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11017"; a="16255911"
-X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="16255911"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2024 11:05:56 -0700
+ t=1710785568; x=1742321568;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=Cd1N6ShQ+u5r0goZrHa7QU08vGzYJCHBXnintPfGo3M=;
+ b=OCActmiWNiwFH2WaWqMPqxwTXxGUdPyd7+5Geod8CZnRd6IjeTlfAsOt
+ gzak/ZsNr6ACLza7VBYXS2+3YFy1POKyyAqdhDEj+VWD2+cOZ45y14EPO
+ w5O1+IsclU6x3lbhhecK/7dfkd6WAAebZcFjdcTSWAwUohrcSUFxfBS3i
+ wDl9q/MbkArwK0ani8gB4a83eE02xPyMzfxgS7AX3WWcFkkIYm/4eJIKZ
+ C7fYBC+hG+OqtLKrMM2psVZtfshE63pzYr0cKuAGose7Qa+gsYW2hqMZ8
+ cZMX2zO0TqLP9QYWpanoIjxMuoGd/kdj7uh6SjAfrtd5dVHfoTlBC55PY w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11017"; a="31053092"
+X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="31053092"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2024 11:12:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="13598137"
-Received: from unknown (HELO mwauld-mobl1.intel.com) ([10.245.245.16])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2024 11:05:55 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Nirmoy Das <nirmoy.das@intel.com>
-Subject: [PATCH 2/3] drm/xe/device: fix XE_MAX_GT_PER_TILE check
-Date: Mon, 18 Mar 2024 18:05:34 +0000
-Message-ID: <20240318180532.57522-5-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240318180532.57522-4-matthew.auld@intel.com>
-References: <20240318180532.57522-4-matthew.auld@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="18280655"
+Received: from unknown (HELO [10.245.245.16]) ([10.245.245.16])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2024 11:12:46 -0700
+Message-ID: <8f2a95fa-2acc-46ba-8618-c7e784f69d25@intel.com>
+Date: Mon, 18 Mar 2024 18:12:44 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] drm/xe: Add dbg messages on the suspend resume
+ functions.
+Content-Language: en-GB
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
+Cc: francois.dugast@intel.com
+References: <20240318180141.267458-1-rodrigo.vivi@intel.com>
+ <20240318180141.267458-2-rodrigo.vivi@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20240318180141.267458-2-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,29 +66,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Here XE_MAX_GT_PER_TILE is the total, therefore the gt index should
-always be less than.
+On 18/03/2024 18:01, Rodrigo Vivi wrote:
+> In case of the suspend/resume flow getting locked up we
+> can get reports with some useful hints on where it might
+> get locked and if that has failed.
+> 
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Nirmoy Das <nirmoy.das@intel.com>
----
- drivers/gpu/drm/xe/xe_device.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Makes sense. What about maybe also adding that to the rpm versions? 
+Those can also be fun, and so would be useful to get hints when inside 
+the callbacks.
 
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index 14be34d9f543..5c254ec9c602 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -58,7 +58,7 @@ static inline struct xe_tile *xe_device_get_root_tile(struct xe_device *xe)
- 
- static inline struct xe_gt *xe_tile_get_gt(struct xe_tile *tile, u8 gt_id)
- {
--	if (drm_WARN_ON(&tile_to_xe(tile)->drm, gt_id > XE_MAX_GT_PER_TILE))
-+	if (drm_WARN_ON(&tile_to_xe(tile)->drm, gt_id >= XE_MAX_GT_PER_TILE))
- 		gt_id = 0;
- 
- 	return gt_id ? tile->media_gt : tile->primary_gt;
--- 
-2.44.0
-
+> ---
+>   drivers/gpu/drm/xe/xe_pm.c | 22 +++++++++++++++++-----
+>   1 file changed, 17 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+> index 9fbb6f6c598a..cc650a92c2fc 100644
+> --- a/drivers/gpu/drm/xe/xe_pm.c
+> +++ b/drivers/gpu/drm/xe/xe_pm.c
+> @@ -80,13 +80,15 @@ int xe_pm_suspend(struct xe_device *xe)
+>   	u8 id;
+>   	int err;
+>   
+> +	drm_dbg(&xe->drm, "Suspending device\n");
+> +
+>   	for_each_gt(gt, xe, id)
+>   		xe_gt_suspend_prepare(gt);
+>   
+>   	/* FIXME: Super racey... */
+>   	err = xe_bo_evict_all(xe);
+>   	if (err)
+> -		return err;
+> +		goto err;
+>   
+>   	xe_display_pm_suspend(xe);
+>   
+> @@ -94,7 +96,7 @@ int xe_pm_suspend(struct xe_device *xe)
+>   		err = xe_gt_suspend(gt);
+>   		if (err) {
+>   			xe_display_pm_resume(xe);
+> -			return err;
+> +			goto err;
+>   		}
+>   	}
+>   
+> @@ -102,7 +104,11 @@ int xe_pm_suspend(struct xe_device *xe)
+>   
+>   	xe_display_pm_suspend_late(xe);
+>   
+> +	drm_dbg(&xe->drm, "Device suspended\n");
+>   	return 0;
+> +err:
+> +	drm_dbg(&xe->drm, "Device suspend failed %d\n", err);
+> +	return err;
+>   }
+>   
+>   /**
+> @@ -118,13 +124,15 @@ int xe_pm_resume(struct xe_device *xe)
+>   	u8 id;
+>   	int err;
+>   
+> +	drm_dbg(&xe->drm, "Resuming device\n");
+> +
+>   	for_each_tile(tile, xe, id)
+>   		xe_wa_apply_tile_workarounds(tile);
+>   
+>   	for_each_gt(gt, xe, id) {
+>   		err = xe_pcode_init(gt);
+>   		if (err)
+> -			return err;
+> +			goto err;
+>   	}
+>   
+>   	xe_display_pm_resume_early(xe);
+> @@ -135,7 +143,7 @@ int xe_pm_resume(struct xe_device *xe)
+>   	 */
+>   	err = xe_bo_restore_kernel(xe);
+>   	if (err)
+> -		return err;
+> +		goto err;
+>   
+>   	xe_irq_resume(xe);
+>   
+> @@ -146,9 +154,13 @@ int xe_pm_resume(struct xe_device *xe)
+>   
+>   	err = xe_bo_restore_user(xe);
+>   	if (err)
+> -		return err;
+> +		goto err;
+>   
+> +	drm_dbg(&xe->drm, "Device resumed\n");
+>   	return 0;
+> +err:
+> +	drm_dbg(&xe->drm, "Device resume failed %d\n", err);
+> +	return err;
+>   }
+>   
+>   static bool xe_pm_pci_d3cold_capable(struct xe_device *xe)
