@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40B6BC54E5D
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Mar 2024 04:12:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CF49C54E5D
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Mar 2024 04:17:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8EF210E1F7;
-	Mon, 18 Mar 2024 04:12:53 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f/ZriTdP";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CE6110E110;
- Mon, 18 Mar 2024 04:12:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710735172; x=1742271172;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Q0B4Vrp20I6xvXHyIvu2roSZtbpiXkTd9aergIICdxM=;
- b=f/ZriTdP2fErudaxJEeN0Al6gDUdWyxvAtPuZqexBMsu/BPLgQ9sa4K9
- qzm8CFK8rPGyoaL/yUQDuBJ5QlVsLMCUdTu1e8Q7gwEPp7IqvoVGpmLH6
- 24gwAgicqua2re6ovQSPmcoHunVfy4byJGL3PGrJZGPSfYIJ4oWmyD1qf
- x4xhbM/aDlu7WZZc8BGDg5OvzMeMZriO+l3sjMHcwYUxpxLLxbadoMa9W
- HFN0dmSria9CKYp7dqWDxXrjyqgIb62XpuVd6UcfcpBIR3/pFwSOebFW0
- BSbu5g7vfmzQWefazGPY4PaL8ix7F7sa77WDtQxKyIT+SATMnSQnm/X33 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11016"; a="5393851"
-X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; 
-   d="scan'208";a="5393851"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2024 21:12:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="44383679"
-Received: from tgl-lenovo-03.sh.intel.com ([10.239.87.93])
- by fmviesa001.fm.intel.com with ESMTP; 17 Mar 2024 21:12:48 -0700
-From: wangxiaoming321 <xiaoming.wang@intel.com>
-To: lucas.demarchi@intel.com, ogabbay@kernel.org,
- thomas.hellstrom@linux.intel.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
- daniel@ffwll.ch, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Cc: wangxiaoming321 <xiaoming.wang@intel.com>
-Subject: [PATCH] drm/xe: Failed getting VMA cause display stuck
-Date: Mon, 18 Mar 2024 12:12:44 +0800
-Message-Id: <20240318041244.1239610-1-xiaoming.wang@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 200DD10EFA1;
+	Mon, 18 Mar 2024 04:17:38 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86B7E10EA8A;
+ Mon, 18 Mar 2024 04:17:37 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Failed_get?=
+ =?utf-8?q?ting_VMA_cause_display_stuck?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "wangxiaoming321" <xiaoming.wang@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 18 Mar 2024 04:17:37 -0000
+Message-ID: <171073545755.883671.5766788520763233143@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240318041244.1239610-1-xiaoming.wang@intel.com>
+In-Reply-To: <20240318041244.1239610-1-xiaoming.wang@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,31 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The failure of binding VMA is duing to interrupt,
-So it needs to retry while return fail.
+== Series Details ==
 
-Signed-off-by: wangxiaoming321 <xiaoming.wang@intel.com>
----
- drivers/gpu/drm/xe/xe_vm.c | 3 +++
- 1 file changed, 3 insertions(+)
+Series: drm/xe: Failed getting VMA cause display stuck
+URL   : https://patchwork.freedesktop.org/series/131237/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 99aa5ffb0ef1..d33476b631e1 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2621,6 +2621,9 @@ static int __xe_vma_op_execute(struct xe_vm *vm, struct xe_vma *vma,
- 	}
- 	drm_exec_fini(&exec);
- 
-+	if (err == -ERESTARTSYS)
-+		goto retry_userptr;
-+
- 	if (err == -EAGAIN) {
- 		lockdep_assert_held_write(&vm->lock);
- 
--- 
-2.25.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: bb2b694350f7 drm-tip: 2024y-03m-15d-22h-50m-47s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Failed getting VMA cause display stuck
+
 
