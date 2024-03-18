@@ -4,48 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38E38C54E58
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82F8EC54E69
 	for <intel-xe@archiver.kernel.org>; Mon, 18 Mar 2024 09:34:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C521010E868;
-	Mon, 18 Mar 2024 09:34:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F6A210EC36;
+	Mon, 18 Mar 2024 09:34:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FH4QE4gE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eXLaX/cu";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C09310EC36
- for <intel-xe@lists.freedesktop.org>; Mon, 18 Mar 2024 09:34:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCA6410E868
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Mar 2024 09:34:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1710754483; x=1742290483;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=E1Qy0pvv3oDB9PP1h6EyBOAgEbtRK0zdb0HBXunMAF8=;
- b=FH4QE4gE/kGxD6db/7GjuVDtEdSiIGojhzDa+BRa2/jQNt6WUjgYOhu+
- yKR/nXD5eCIX659SKTwjAJg/lKHlMBDBKhlPYdjf2nDtN7V1m2IR3V0MV
- 7v2EyMT4JYUxF6EoYiOcFafldJxcM3MtTew4ANcrNcdJ0hMqTM0KfH73b
- 9LIFbnreXNfMRUZOlWIOftojbVgavj8T5NYVGslWjMH7k7g7yTvUb3dub
- qcl7ZoPsE5/z+4QlVmD3SnYsgRz4FX+5IcpxXu1Eh7wzogtdfDFD+QYkV
- xg9ZzgAqlNRjPmQin6A2qWerSreh50L9YihBI3A1t2J2WURFNwqBUXQ8C g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11016"; a="16103644"
-X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="16103644"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=lOK1AfZht+uAlcaEsNBJwsVPhcHvMnAVZnHAJgzff1U=;
+ b=eXLaX/cuxJALL9UDdtkkljGRYzgjRrva/nMZedCPEHZtVVeh96TfdPSe
+ yE08KY70biskIKZJR0zB71EKy1LshbAZVtgGFqUKxLmgVONE91Ra0/5Ko
+ NoRqRSLQzxhorzYmUs+SU+S3Jk2T/IMIvqxWkJUvkHh8KQJQHN17IxKa+
+ k+LFCz0xBSncGpi1D+XzjC5eFQJksynE1oe5HTcn6Qm+/7l8pGljyLxIk
+ bxtkMFBu7abMYrOCodR6sirBBl+PsQZhTHMipArsKj8JasV6iQlqdSHOW
+ iQT67tG+UUEzlI21RhhYOreGaASUe+ap+s+2LQNNvijbdzQS3AIU8760k g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11016"; a="16103641"
+X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="16103641"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2024 02:34:43 -0700
+ 18 Mar 2024 02:34:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="13516933"
+X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="13516926"
 Received: from unknown (HELO mwauld-mobl1.intel.com) ([10.245.245.16])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2024 02:34:43 -0700
+ 18 Mar 2024 02:34:41 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Nirmoy Das <nirmoy.das@intel.com>
-Subject: [PATCH v2 2/2] drm/xe/client: drop bogus bo NULL check
-Date: Mon, 18 Mar 2024 09:34:33 +0000
-Message-ID: <20240318093431.21075-4-matthew.auld@intel.com>
+Subject: [PATCH v2 1/2] drm/xe/client: remove bogus rcu list usage
+Date: Mon, 18 Mar 2024 09:34:32 +0000
+Message-ID: <20240318093431.21075-3-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240318093431.21075-3-matthew.auld@intel.com>
-References: <20240318093431.21075-3-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -62,28 +60,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If we fished it out the list then it can't be null; the list entry is
-embedded in the bo.
+We use plain spinlock to protect readers and writers, so there is no
+actual RCU here. Rather use the more appropriate non-rcu list based API.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Nirmoy Das <nirmoy.das@intel.com>
 ---
- drivers/gpu/drm/xe/xe_drm_client.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_drm_client.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
-index 59b01d838229..08f0b7c95901 100644
+index 87c10bd7958b..59b01d838229 100644
 --- a/drivers/gpu/drm/xe/xe_drm_client.c
 +++ b/drivers/gpu/drm/xe/xe_drm_client.c
-@@ -155,7 +155,7 @@ static void show_meminfo(struct drm_printer *p, struct drm_file *file)
+@@ -78,7 +78,7 @@ void xe_drm_client_add_bo(struct xe_drm_client *client,
+ 
+ 	spin_lock(&client->bos_lock);
+ 	bo->client = xe_drm_client_get(client);
+-	list_add_tail_rcu(&bo->client_link, &client->bos_list);
++	list_add_tail(&bo->client_link, &client->bos_list);
+ 	spin_unlock(&client->bos_lock);
+ }
+ 
+@@ -96,7 +96,7 @@ void xe_drm_client_remove_bo(struct xe_bo *bo)
+ 	struct xe_drm_client *client = bo->client;
+ 
+ 	spin_lock(&client->bos_lock);
+-	list_del_rcu(&bo->client_link);
++	list_del(&bo->client_link);
+ 	spin_unlock(&client->bos_lock);
+ 
+ 	xe_drm_client_put(client);
+@@ -154,7 +154,7 @@ static void show_meminfo(struct drm_printer *p, struct drm_file *file)
+ 
  	/* Internal objects. */
  	spin_lock(&client->bos_lock);
- 	list_for_each_entry(bo, &client->bos_list, client_link) {
--		if (!bo || !kref_get_unless_zero(&bo->ttm.base.refcount))
-+		if (!kref_get_unless_zero(&bo->ttm.base.refcount))
+-	list_for_each_entry_rcu(bo, &client->bos_list, client_link) {
++	list_for_each_entry(bo, &client->bos_list, client_link) {
+ 		if (!bo || !kref_get_unless_zero(&bo->ttm.base.refcount))
  			continue;
  		bo_meminfo(bo, stats);
- 		xe_bo_put(bo);
 -- 
 2.44.0
 
