@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E22A0C54E5D
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Mar 2024 13:38:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78458C54E58
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Mar 2024 14:03:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2DC010F74D;
-	Mon, 18 Mar 2024 13:38:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 340C710E4AC;
+	Mon, 18 Mar 2024 14:03:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WvbJ5Ws4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O65RC5sE";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 604C510F74F;
- Mon, 18 Mar 2024 13:38:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3007E10E4AC
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Mar 2024 14:03:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710769105; x=1742305105;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=mCdSMUfq6nstTWjKtY5hhEi2Q94CFeV1UhqEmEv3iik=;
- b=WvbJ5Ws411/PdQ1XVDpscXiOKs4YFnDVZmuRXqHC98e6oZHCSepGZdyp
- qtdSnnvXSP3pQ1ESOjnMHSMHYeeJgOvyceRhfwkPCpWOJcyAP8jYa4exx
- cet9c9GVm6xrp+0mBG2SQsQk80PaW0uBjdjzrX84+xm9JlDwykpGSNb30
- 3WkXby4TAMn9k+02lgH/s0uhnnifmIL7nMm9wOABNiAufpDMWQpmNQiMp
- 2/AQPLDfRYU35K6+OYrg5QXzdClwMZsrfpPGZBGs7dTF5Ei9oB8R2dmaF
- BdVvxfTefFC+wkWI9+M3pewoNlOnn63K6eelYr710oAZ9YeNQR8eb/Va/ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11016"; a="16218024"
-X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="16218024"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2024 06:38:25 -0700
+ t=1710770628; x=1742306628;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=fi0FOSo2EcBqHL9mchu4NwB5nQedq98Hsr/3WY7IDjs=;
+ b=O65RC5sECbP7xHum6MNihO803p2dNDSbpOY4SxPVf0i2DxxPqmBvURnK
+ j77Sy4dJFF79eLecoR+pn6349DvGeVQ/y9QjRYmNgB/PRDyBwaCDWIV8k
+ e4ssnIjAFOLrTQR/at/lv8qBCUuI5bDZp7oE3n+LLK11ZgFZUCGYrSt/J
+ 3vGB7Qi9s0F4udruY/L5GpylN7p/KJQXl4KFAglFvLaONQmfO2OiKmKVr
+ hUWerZDKXAAFKEb602rZQEfbs6RJbpCVk7EDg8VAK+OVm8kGeskSaQipH
+ SAPN0wlfvKOsqX9UOotuRJk3QglW7Ysnhn4mUqwfI5Z21VPGpwmMgu4cn Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11016"; a="23098537"
+X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="23098537"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2024 07:03:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="13570081"
-Received: from dcroitox-mobl1.ger.corp.intel.com (HELO
- hazy.ger.corp.intel.com) ([10.251.210.126])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2024 06:38:22 -0700
-From: Luca Coelho <luciano.coelho@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, uma.shankar@intel.com,
- ville.syrjala@linux.intel.com, jani.nikula@intel.com
-Subject: [PATCH v3 3/4] drm/i915/display: add module parameter to enable DMC
- wakelock
-Date: Mon, 18 Mar 2024 15:37:56 +0200
-Message-Id: <20240318133757.1479189-4-luciano.coelho@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240318133757.1479189-1-luciano.coelho@intel.com>
-References: <20240318133757.1479189-1-luciano.coelho@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="44410214"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2024 07:03:45 -0700
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Nirmoy Das <nirmoy.das@intel.com>, Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH 1/2] drm/xe: Fix potential integer overflow in page size
+ calculation
+Date: Mon, 18 Mar 2024 14:49:59 +0100
+Message-ID: <20240318135000.13032-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany,
+ Commercial Register: Amtsgericht Muenchen HRB 186928 
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,89 +65,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This feature should be disabled by default until properly tested and
-mature.  Add a module parameter to enable the feature for testing,
-while keeping it disabled by default for now.
+Explicitly cast tbo->page_alignment to u64 before bit-shifting to
+prevent overflow when assigning to min_page_size.
 
-Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_params.c |  5 +++++
- drivers/gpu/drm/i915/display/intel_display_params.h |  1 +
- drivers/gpu/drm/i915/display/intel_dmc_wl.c         | 12 ++++++++----
- 3 files changed, 14 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/drivers/gpu/drm/i915/display/intel_display_params.c
-index 11e03cfb774d..f40b223cc8a1 100644
---- a/drivers/gpu/drm/i915/display/intel_display_params.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_params.c
-@@ -116,6 +116,11 @@ intel_display_param_named_unsafe(enable_psr2_sel_fetch, bool, 0400,
- 	"(0=disabled, 1=enabled) "
- 	"Default: 1");
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 115ec745e502..0678faf83212 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -91,7 +91,7 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
  
-+intel_display_param_named_unsafe(enable_dmc_wl, bool, 0400,
-+	"Enable DMC wakelock "
-+	"(0=disabled, 1=enabled) "
-+	"Default: 0");
-+
- __maybe_unused
- static void _param_print_bool(struct drm_printer *p, const char *driver_name,
- 			      const char *name, bool val)
-diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/drivers/gpu/drm/i915/display/intel_display_params.h
-index 6206cc51df04..bf8dbbdb20a1 100644
---- a/drivers/gpu/drm/i915/display/intel_display_params.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_params.h
-@@ -46,6 +46,7 @@ struct drm_i915_private;
- 	param(int, enable_psr, -1, 0600) \
- 	param(bool, psr_safest_params, false, 0400) \
- 	param(bool, enable_psr2_sel_fetch, true, 0400) \
-+	param(bool, enable_dmc_wl, false, 0400) \
+ 	min_page_size = mgr->default_page_size;
+ 	if (tbo->page_alignment)
+-		min_page_size = tbo->page_alignment << PAGE_SHIFT;
++		min_page_size = (u64)tbo->page_alignment << PAGE_SHIFT;
  
- #define MEMBER(T, member, ...) T member;
- struct intel_display_params {
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-index 7c991e22c616..84d054bcb2c1 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-@@ -120,7 +120,8 @@ void intel_dmc_wl_enable(struct drm_i915_private *i915)
- 	struct intel_dmc_wl *wl = &i915->display.wl;
- 	unsigned long flags;
- 
--	if (DISPLAY_VER(i915) < 20)
-+	if (!i915->display.params.enable_dmc_wl ||
-+	    DISPLAY_VER(i915) < 20)
- 		return;
- 
- 	spin_lock_irqsave(&wl->lock, flags);
-@@ -146,7 +147,8 @@ void intel_dmc_wl_disable(struct drm_i915_private *i915)
- 	struct intel_dmc_wl *wl = &i915->display.wl;
- 	unsigned long flags;
- 
--	if (DISPLAY_VER(i915) < 20)
-+	if (!i915->display.params.enable_dmc_wl ||
-+	    DISPLAY_VER(i915) < 20)
- 		return;
- 
- 	flush_delayed_work(&wl->work);
-@@ -177,7 +179,8 @@ void intel_dmc_wl_get(struct drm_i915_private *i915, i915_reg_t reg)
- 	struct intel_dmc_wl *wl = &i915->display.wl;
- 	unsigned long flags;
- 
--	if (DISPLAY_VER(i915) < 20)
-+	if (!i915->display.params.enable_dmc_wl ||
-+	    DISPLAY_VER(i915) < 20)
- 		return;
- 
- 	if (!intel_dmc_wl_check_range(reg.reg))
-@@ -212,7 +215,8 @@ void intel_dmc_wl_put(struct drm_i915_private *i915, i915_reg_t reg)
- 	struct intel_dmc_wl *wl = &i915->display.wl;
- 	unsigned long flags;
- 
--	if (DISPLAY_VER(i915) < 20)
-+	if (!i915->display.params.enable_dmc_wl ||
-+	    DISPLAY_VER(i915) < 20)
- 		return;
- 
- 	if (!intel_dmc_wl_check_range(reg.reg))
+ 	if (WARN_ON(min_page_size < mm->chunk_size)) {
+ 		err = -EINVAL;
 -- 
-2.39.2
+2.42.0
 
