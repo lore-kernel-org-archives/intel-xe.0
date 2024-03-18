@@ -4,119 +4,140 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F801C54E71
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Mar 2024 14:34:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7724C54E58
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Mar 2024 14:38:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBABF10EE9C;
-	Mon, 18 Mar 2024 14:34:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D0E610F7CC;
+	Mon, 18 Mar 2024 14:38:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="f5qLNDAi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HALpcOU0";
 	dkim-atps=neutral
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com
- [209.85.215.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8EA610EE9C;
- Mon, 18 Mar 2024 14:34:14 +0000 (UTC)
-Received: by mail-pg1-f180.google.com with SMTP id
- 41be03b00d2f7-5d3912c9a83so2241247a12.3; 
- Mon, 18 Mar 2024 07:34:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1710772454; x=1711377254; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
- :to:content-language:subject:user-agent:mime-version:date:message-id
- :sender:from:to:cc:subject:date:message-id:reply-to;
- bh=pCUApaONo8ehyXHQqRUbNVk/TB7fiQ1m1hWXI6brQnc=;
- b=f5qLNDAisbgxBeF+pyT4hkn+9Bi0TjTiclAa0kZg7vkFUVFBq52yDWJPHoP9KGO3O0
- ba8oANo/j5ETy55pYqXjjJowOyn9aEASwztdThDnnFniTYu5s3DLMObi+205KerJ4YNk
- af5LqsDwKUApB8tzc4CLHvY1W9hj7z1uSd3T3HHOnMDFcVH2sIwmeOJjrTnwX5y7Uki3
- 8NepNXk9UOlAAHX4wqWRu3OclP32mSBgrnrlEx5K59UB8vjzqepB9My6BCwP8t+N7w+3
- 4n7TS63l8638VAr1YliAnIGMiDamI+ODRYP3PZpaPwSR9I9iaUjrR2gpWevK0/iVAYGq
- zg3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1710772454; x=1711377254;
- h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
- :to:content-language:subject:user-agent:mime-version:date:message-id
- :sender:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=pCUApaONo8ehyXHQqRUbNVk/TB7fiQ1m1hWXI6brQnc=;
- b=UxCLeDRLjagy6bototFKpPVKQDGDttkLK/g1+hhKNAkIVIdPOsQWS29yL3Brk/GUjm
- +3JNlOZLpril228VqwOXfOIv1RZ9u7fs8Z4g36bmV2ncjE5c/WftfbHSIbHzaSeC2MY5
- 7YDIsQoYONAE6SDlbExrHvDWCPsKFTzE70ue6uxb0rEQAO/Y+fhQRKIjGjeFvV/Ukz+u
- Cy4qp3D0w2XAFb+kBxb2Si5kumiOWc2BCKLMOy/8KLryiQdd2b5k/7xK+qfWFaIJW1MH
- hBB/q843hdn+5ID5G2V+8E5yVpo5pq96Knm6dkB6bUZsn1/6RdTH94vGpGIKA3WCv42B
- JIlA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWG7OUbUQtUt3tiQtZoV8W0LFfb9tPgi6vahHLwgAZn8AR/PpG1no9akhRIJVWvDq0wwvo9eOcm712uzw0+Uiqxx8Mr5FHfxZ9tsOj4VZAQ
-X-Gm-Message-State: AOJu0YwkK7h9hB7IhW2DTP/gouSHixpVmqk5HhVjCAFNPSPxAFqSqISJ
- w3ncExtMHsWmZ8bSSVGO9zS+ESOZmeLni7ZdnlrDIucxM9U92AgF
-X-Google-Smtp-Source: AGHT+IFhgkXLDH1Nsb2bn/tOkKam9Q5dzrQx71TLlzh9hIPane69cJemjbETVa60AWVap2hwH8gRGg==
-X-Received: by 2002:a17:90b:60e:b0:29d:eea9:c800 with SMTP id
- gb14-20020a17090b060e00b0029deea9c800mr7483571pjb.7.1710772454041; 
- Mon, 18 Mar 2024 07:34:14 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c?
- ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
- by smtp.gmail.com with ESMTPSA id
- nc16-20020a17090b37d000b0029bb5a95a3csm7697477pjb.55.2024.03.18.07.34.12
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 18 Mar 2024 07:34:13 -0700 (PDT)
-Message-ID: <e6ebb8ee-406e-4d2d-9932-7b48ae3721e3@roeck-us.net>
-Date: Mon, 18 Mar 2024 07:34:11 -0700
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 619CA10F7CC
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Mar 2024 14:38:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1710772729; x=1742308729;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=gHE59LlW++qmuLFprCExTopug47gMN1w52u/kguuKz0=;
+ b=HALpcOU0EhDtQ7w8W/MkUMg1eWslOpPOAM3IB0lC2e18nAOBRQr7pVr8
+ aHnAEQ9e9pHxBJvkYSE3stse7grInT4Kg1yaXCdEZLVqGSC1ZijCS20r+
+ u5aEmdvuy6LvY5Pl+U/T3EtnjDkcl4NzV14SANVwIE01Kn5ydQ0f5JfOo
+ YyGYAg1guh5WqlY9HUAoDfFQT1BS75OeFF0V7HKDEpUDA49gh9ltdGDkq
+ 5mZt0kspyahrMtKmkDF3jCLVSTxaEDcNvGJunES27ZNnzyMaDdi2CxYA7
+ 5ilzOGh5Bp+EIoDoV/2/VJx7G941SDZqJE7FjE0Jn17AoMax9YT5zNsm5 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11016"; a="6193523"
+X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; 
+   d="scan'208";a="6193523"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2024 07:38:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="13519872"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 18 Mar 2024 07:38:49 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 18 Mar 2024 07:38:48 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 18 Mar 2024 07:38:47 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Mon, 18 Mar 2024 07:38:47 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.169)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Mon, 18 Mar 2024 07:38:47 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dppLhsXLR2oBSCGTOpaeQVXuA8Py/LPhmGYAoJkIl4XZivyvdnsm7B4KN2ZLdVQxb73jGn+hY4wufspDvf1X8CkAW1uVO1EjysW9a3znLU0lMzxzip49tpWJCmNE6xJrv53j5iMBNHbxqhsvE1msT+cGJXOybQd+zKd7FqiEbOHhBZ0CCiP/0TbyNe7w0vWvPTwEZFOibAiS9ngR5U1hjXXBVjgSrELfondIso1j4buMLIFtDcrd998Qucemq/qoX5ucNRHj8q1ZVo70/j1yvb/ssZKrhBFuV9o2DCFGzRWp5eTxUzQ+qXPuLxqLU8RAITCwxGmbsWUL7c+urNFKeg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vgwCcHEOPXLOMunJco4eTa7iID7p7hjWgY05EuXMIiE=;
+ b=RwGVpH6hA2uoaFY3knfqjWPOx81LNlW5OUDSiI2i6ZGY+lMvwIG9QGSUC4r23SbLlMN9KBda9dUG1OMZLifIKtE6k4iTstCm/KZOV8fslUW27OqxOZpLhAeJZAo+BfaXkpUxVR5iIVtSsCKupX6rD5CeGGvL5b5VgzXxZ+snhEK/Olp79FTI90L+fbWD+WYgcwat4IJL2Zp7Lc+HlwtqlhMNXqRekuCREXFLvbKHaZDAGADKsfnXJ+XTkerp7Yd4U+Bd/7YEY0eNwFxEWcvnL6nlqN/5cYgulJLBttg47iWl7LyY4E0Jmn+K2AMoY0yWchlf3vaVhpzkgID6TjFTaw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by SN7PR11MB7465.namprd11.prod.outlook.com (2603:10b6:806:34e::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.10; Mon, 18 Mar
+ 2024 14:38:43 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::e9dd:320:976f:e257]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::e9dd:320:976f:e257%4]) with mapi id 15.20.7409.010; Mon, 18 Mar 2024
+ 14:38:43 +0000
+Date: Mon, 18 Mar 2024 09:38:36 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Nirmoy Das <nirmoy.das@intel.com>
+Subject: Re: [PATCH] drm/xe/device: fix drm_WARN_ON() check
+Message-ID: <n3ifwq53z4tiz3brimofvwx53ixetx7yzgdwtjtny6xtvi7jv2@lnwp3n3nmqpw>
+References: <20240318113708.32938-2-matthew.auld@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20240318113708.32938-2-matthew.auld@intel.com>
+X-ClientProxiedBy: BYAPR07CA0086.namprd07.prod.outlook.com
+ (2603:10b6:a03:12b::27) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [v3,5/5] drm/xe: Enable 32bits build
-Content-Language: en-US
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>,
- dri-devel@lists.freedesktop.org, daniel@ffwll.ch, airlied@gmail.com
-References: <20240119001612.2991381-6-lucas.demarchi@intel.com>
- <d53d2da5-22de-4f81-9fbc-2f54e5da9ac6@roeck-us.net>
- <qm5q44hs7vmq6erio7ome323xemwrg5mrxhaozkwblf6qjjvow@dqwy2oz2rrrj>
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <qm5q44hs7vmq6erio7ome323xemwrg5mrxhaozkwblf6qjjvow@dqwy2oz2rrrj>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SN7PR11MB7465:EE_
+X-MS-Office365-Filtering-Correlation-Id: 259f136e-6c9f-4f5d-2ba3-08dc47591c5e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: +Ax8TxzQjiWSOEy8bDR2vmQQWtYWDGrpNwqtcRuAm+wNF7A2Ql8VqW/i06uxk6F2n0Qw1WrCfkzyDNv15TUtRFCd7nFhm9c/yVGAQtJ4gGVvOK9X544sblGxHT2tsx35YXMVbxNuZv25Pnmtt+lTPlkgSjfw5fLeKu4UjSSwr34XbGTLXGfIhYxvq8MvQt1ZXGi1kOhAxouy0FqJhJMmJik6iJb11hjSPqon8iMSnEmf0ooP1MYePVUX3/bJscDDExfkS8IBixHjxwC6l1W4r4z0Hf0myHjRgC+gV6cWEu9U99blU5j/3b/RLm846p4ysmxpG3na3rLcf5i0OO7jKG4Tjp0lT5KKR/kXbf+XO6TZHtZwaUOBL5RQHPh/MoQqaRiOTtM5zWVRUIPm6S1ZnAqc0lbnPJ0jQcVbN/EdhG1fgoXB11M9uId8u49Q/dR5LADHaUt07dFKHmMkiGHkGmiD94R0kGylRosYZt3TZY5BH5MTrPOJWK6IcLddPRkUN5ZHCBLpOtNxaqAoiE/kJN6HOS8SLPvNEmIzdUrBIiuXWnP5IDHb1zSYLfvfHtixqvGrWz0Ja562oVJkCq5BJLE7qHAReBtZk5/8DsCBWzdpq2JIjmhrJDwI3IWrm/Y01PHFmeCKK7R0bUEmHrkeBAfyTVEaMuXlusX9wah4dVM=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005)(1800799015)(366007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?GwVXt6H0QBY/zjZyv1qDVEwKlh2QKqQXbR2yTM1YxEl+4nS82StuYp9ymGbY?=
+ =?us-ascii?Q?h4KVGeDOcFWyXvD/FqZ3oLMxXCXhD+cOpWWXpVgxU2BEfE92WzX6okqttGD1?=
+ =?us-ascii?Q?qN8mweSkrq1iY288uokxDFXYiD7GEsfbtDBMO2vVw41PcQkKiuHMSQf/fesr?=
+ =?us-ascii?Q?EKK5TTaJq7MEzWknM72T2yD/jVazFdz1kBawJhU1xVWqgbcuw2jqwywZUH1r?=
+ =?us-ascii?Q?MRJ4ZttIuHopPACBbbl8bNFtu+pNDKtPYKBIhrT48kUHYvF/GwPEtJWWPbOC?=
+ =?us-ascii?Q?N1LshcPqAT93I6dop2MwrA+9x9pmlxekZJHva56lng4yYcJF9EqEB3IR3WlP?=
+ =?us-ascii?Q?qNXth0Nluk6a35g4TB4Yk6cbDOHR2BU70nXmuFiuM+z31h70t3a+HrU+4v5L?=
+ =?us-ascii?Q?0RJrCxMD6T9WpXewmx9zGpPngPIzx3kExDqQECOd6VhG+F0B76w6plEaXzW2?=
+ =?us-ascii?Q?LHkdLn3bbk7SNIXbDmi459iHeNYv2qtcw34PFy4hlJR2sModYfvHRwLJs2/F?=
+ =?us-ascii?Q?NfCyEO4BL56bXo69DScxYmK0lHNkzbi8biEBZjTHPs1X03bfXnggP7wrOLu0?=
+ =?us-ascii?Q?4+NShKLFVW36d+JvCTdu6VXYA71qqB9Ch9nrNyUrSObP/aeIFcGhLVZ5/uo9?=
+ =?us-ascii?Q?tbs+qI/rZ5iqm2eB6u5/qkEQ5oST9/R9OPfP6GS2RX02XQB6dlFj7iQ6OwFa?=
+ =?us-ascii?Q?0AFrXENuhWUv8uq1skFL4pRQu1iwl9nFgPE3ZyMPOOOR0YHHa241LOroFEeK?=
+ =?us-ascii?Q?kGxWHLq5xFKiO2TkvnDjf2JXJMwYHkYAnqPsm28sfEK7eKWiedr2s+jW8+UB?=
+ =?us-ascii?Q?9QUaGRlgS1kZ8iC3fNgHUjynaHOH79dxjmdQojFwRie47w8fux8j/S+l8s7R?=
+ =?us-ascii?Q?iYW2yqSK82Xi4cYz480uJCP94hRdRuezkUM176rux/luiY/bPN0G2nmfBMHq?=
+ =?us-ascii?Q?V3Q5gl7T0jWS/MjMvvWxcwTbjXthpWbBytGRUHZCjyGKSbGf9B0YGOkhqgn/?=
+ =?us-ascii?Q?2SXI06g7Q3GhDXOtkDh9ChRHZnyb1Gfh5L/t+4h2qwDlM+ArzOPcdNDLHZT9?=
+ =?us-ascii?Q?H23ACJ+JHKp7T2oDY+sQpnF6ekELciNIVwBQQOgVtL9syB6gVNhd8i9lEbk3?=
+ =?us-ascii?Q?1jQfGm7kT1WPETuA2Rvf/Ai9NoQM0BLFdFSUkHCwbygOpMhGjBqpxEnmJiTB?=
+ =?us-ascii?Q?lp25lilKvyfKToAxFGTTgzwlz27tRw+r5pNh07zo6noYcF8OTB5UIFScKuN+?=
+ =?us-ascii?Q?a2qn+Psm2wAvjUiP8jUUgX4pgHxDZ/KO6NsloJDduQ8XvJWGG6Oci4/qg/XT?=
+ =?us-ascii?Q?hel4D+jQ6oxG7cxtthP+yUnax9xc6ur0t47Z8S49/JQLR+2liGA5iwsGLG3n?=
+ =?us-ascii?Q?ghJL3ZR0BoOEDyBAPkDnYPqNDYQlsYMyJK9p/NgMNaDRn1ATgIqZ6v/zYYjn?=
+ =?us-ascii?Q?JqYuQe1fpg4Fi+Ge9LSp/iiLShIxf7/5CZYBorOG6JwziNtsq2Sk4rWR017k?=
+ =?us-ascii?Q?gEa7z/c5bsPxGfBxbsy+ng+ICPGwpYggCyFr9F1koGzpdyxzZUAFB3YyS19Z?=
+ =?us-ascii?Q?Yfp9Z89e/hKhmxvhjt22kQIUmsb32Q0a3clSPQ7VrLGpRDrO+g4Y+ZKj13DM?=
+ =?us-ascii?Q?/Q=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 259f136e-6c9f-4f5d-2ba3-08dc47591c5e
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2024 14:38:43.4849 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: l0tGS2ELGc7EltqZM9656GwxuTPKLwQbyvT4CNAONhxnCk4LQX0NCvQtLNz4/UhFv2p5tZQTW0gIqpEhES6LeqzyoLWSOZtQ/gZyzW3GOHQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7465
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,70 +152,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 3/18/24 06:28, Lucas De Marchi wrote:
-> On Sun, Mar 17, 2024 at 09:14:14AM -0700, Guenter Roeck wrote:
->> Hi,
->>
->> On Thu, Jan 18, 2024 at 04:16:12PM -0800, Lucas De Marchi wrote:
->>> Now that all the issues with 32bits are fixed, enable it again.
->>>
->>> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
->>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->>> ---
->>>  drivers/gpu/drm/xe/Kconfig | 2 +-
->>>  1 file changed, 1 insertion(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
->>> index 1b57ae38210d..1b0ef91a5d2c 100644
->>> --- a/drivers/gpu/drm/xe/Kconfig
->>> +++ b/drivers/gpu/drm/xe/Kconfig
->>> @@ -1,7 +1,7 @@
->>>  # SPDX-License-Identifier: GPL-2.0-only
->>>  config DRM_XE
->>>      tristate "Intel Xe Graphics"
->>> -    depends on DRM && PCI && MMU && (m || (y && KUNIT=y)) && 64BIT
->>> +    depends on DRM && PCI && MMU && (m || (y && KUNIT=y))
->>
->> I am curious about changes like this. Enabling 32-bit builds results in
->> build failures for mips_allmodconfig because the driver redefines END.
->> END is also used as macro in assembler code, the define happens to be
->> included for mips builds, and it would be difficult to change it there.
->>
->> Unlike the i915 code, DRM_XE is not marked as depending on x86. This means
->> it will be built for pretty much all "allmodconfig" builds for all
->> architectures. Yet, there have been recent complaints about "allmodconfig"
->> builds of drm code causing build failures on "oddball" architectures.
->> Is there an assumption that DRM_XE (or DRM in general) is manually
->> excluded from all architectures where it fails to build ? If so, would
-> 
-> for all the reports we've been receiving we fixed the build and improved
-> CI to try to avoid the regressions. DRM_XE doesn't really depend on x86,
-> but I see your point of filtering out the "oddball architectures" or just
-> expose the ones we know it builds against. Yet, I don't see that
-> approach done in the wild in other drivers. At least on the build side, we
-> constantly check the reports from lkp like
-> 
-> https://lore.kernel.org/all/202403152008.KlwyYggO-lkp@intel.com/
-> 
-> which also includes mips:
-> 
->      mips                              allnoconfig   gcc
->      mips                             allyesconfig   gcc
-> 
-> is that not sufficient? allyesconfig should be covering it afaics
-> 
+On Mon, Mar 18, 2024 at 11:37:09AM +0000, Matthew Auld wrote:
+>Here XE_MAX_TILES_PER_DEVICE is the gt array size, therefore the gt
+>index should always be less than.
 
-All I can say is that drivers/gpu/drm/xe/xe_lrc.c doesn't build for
-mips builds in the mainline kernel. This is for both allmodconfig and
-allyesconfig. Both automatically build 32-bit kernels. Those builds are
-only enabled with this commit. The problem is also seen with 64-bit
-builds, but those are not enabled with allmodconfig/alldefconfig.
-I don't know what and how exactly 0-day runs its tests, but the failure
-is also seen in the drm-xe-next branch.
+I went through the history and the bug seems propagated in different
+forms since the initial commit. So this probably deserves
 
-I am going to blame this on my environment and just exclude DRM_XE
-from mips test builds going forward.
+Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
 
-Thanks,
-Guenter
 
+Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
+
+thanks
+Lucas De Marchi
+
+>
+>Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>Cc: Nirmoy Das <nirmoy.das@intel.com>
+>---
+> drivers/gpu/drm/xe/xe_device.h | 2 +-
+> 1 file changed, 1 insertion(+), 1 deletion(-)
+>
+>diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+>index 14be34d9f543..6b32f09a4c89 100644
+>--- a/drivers/gpu/drm/xe/xe_device.h
+>+++ b/drivers/gpu/drm/xe/xe_device.h
+>@@ -79,7 +79,7 @@ static inline struct xe_gt *xe_device_get_gt(struct xe_device *xe, u8 gt_id)
+> 	if (MEDIA_VER(xe) >= 13) {
+> 		gt = xe_tile_get_gt(root_tile, gt_id);
+> 	} else {
+>-		if (drm_WARN_ON(&xe->drm, gt_id > XE_MAX_TILES_PER_DEVICE))
+>+		if (drm_WARN_ON(&xe->drm, gt_id >= XE_MAX_TILES_PER_DEVICE))
+> 			gt_id = 0;
+>
+> 		gt = xe->tiles[gt_id].primary_gt;
+>-- 
+>2.44.0
+>
