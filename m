@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2709EC54E5D
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Mar 2024 11:11:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC125C54E5D
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Mar 2024 11:28:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C34310F581;
-	Mon, 18 Mar 2024 11:11:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E86C10F3A4;
+	Mon, 18 Mar 2024 11:28:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P/bDbIos";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FIcg9Woi";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5B5310EDDA;
- Mon, 18 Mar 2024 11:11:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB31910F3A4
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Mar 2024 11:28:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710760269; x=1742296269;
+ t=1710761294; x=1742297294;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=8AvsA15UgAI0L9njipCoxWiKDQpPhGRkapasjgHJhCc=;
- b=P/bDbIosr5iiNp9sfbDWQUmSB9MhTGeM3D+SSNw8dDXuR1S8A+De1HEi
- JqgBssJpCgUnFyTc54s/QjaCtwk8h/NVzqfsLl91BNq6M9feieJtVEikl
- 2mud+v6bEXLmZLXhGU5TGCLRJ7Fjx7Wr3x3l595YxVYOyUZeFSYTQJE9J
- abFE0/dkrrtdUM4NUhewOaZ/MQv0AZ/0x/FImyDAQCJYRR4mxHGLYdug+
- cimSzHk8Nsuoj6Hf2hNO7OeSUnyfh31RDQTDwTCMw+HwveVwiV2oWLyBs
- i6MiAC/soOtUH3r3J2Hy2t8PVSEWW59w+ly3PevL3fmJOQU8jgckIZzP9 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11016"; a="31002312"
-X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="31002312"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2024 04:11:09 -0700
+ bh=e81WVQdE8Lnc6O3ZV/kOQLvZYSnVRaMjIOSnXRSrVQs=;
+ b=FIcg9WoikfPvDCvdHt6TwxRFTLAzjHUMaa/xUNsCuyRHuKr1m1HAGXxW
+ /haurJ6RYsEoIMEp/u9mfXLbbu9nzel0dWIOkaIgJTu+HY5nnB2cVSt2Y
+ dFoTzvxbgFKN2fcjYqKXoqp/G+X+AemzGtOKaHhfl18msB0W9WeLnqeJ9
+ LjK+n+QSng9voV3zubBaJpi1RiHFdDEMw+4IHXglcnAAS0TEQUgXy/gKw
+ c/ZUDyAsw+dmPEDrtPk37Uv+rAKRM0Tq79bI5LU8rwCoFrW/DmBqu9MC1
+ rDX1jfpo5M2uvKdwCrNYWGTbbqe/PR8dPdC6J8SPQJJzhFLSytYlQMRq2 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11016"; a="16204667"
+X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="16204667"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2024 04:28:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="13337215"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa010.jf.intel.com with ESMTP; 18 Mar 2024 04:11:08 -0700
-From: Arun R Murthy <arun.r.murthy@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [PATCH] drm/xe/display: fix potential overflow when multiplying 2 u32
-Date: Mon, 18 Mar 2024 16:31:03 +0530
-Message-Id: <20240318110103.3872169-1-arun.r.murthy@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="18147603"
+Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
+ by orviesa003.jf.intel.com with ESMTP; 18 Mar 2024 04:28:12 -0700
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH] drm/xe/gt: Remove continue statement which has no effect
+Date: Mon, 18 Mar 2024 17:10:57 +0530
+Message-Id: <20240318114057.3831274-1-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -60,61 +60,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Multiplying XE_PAGE_SIZE with another u32 and the product stored in
-u64 can potentially lead to overflow, use mul_u32_u32 instead.
+Remove continue statement which does not have real effect
+as no actions are to be taken post continue.
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_irq.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 722c84a56607..e0b511ff7eab 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -29,7 +29,7 @@ write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_
- 		u32 src_idx = src_stride * (height - 1) + column + bo_ofs;
- 
- 		for (row = 0; row < height; row++) {
--			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
-+			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, mul_u32_u32(src_idx, XE_PAGE_SIZE),
- 							      xe->pat.idx[XE_CACHE_WB]);
- 
- 			iosys_map_wr(map, *dpt_ofs, u64, pte);
-@@ -61,7 +61,7 @@ write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
- 
- 		for (column = 0; column < width; column++) {
- 			iosys_map_wr(map, *dpt_ofs, u64,
--				     pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
-+				     pte_encode_bo(bo, mul_u32_u32(src_idx, XE_PAGE_SIZE),
- 				     xe->pat.idx[XE_CACHE_WB]));
- 
- 			*dpt_ofs += 8;
-@@ -118,7 +118,7 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
- 		u32 x;
- 
- 		for (x = 0; x < size / XE_PAGE_SIZE; x++) {
--			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x * XE_PAGE_SIZE,
-+			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, mul_u32_u32(x, XE_PAGE_SIZE),
- 							      xe->pat.idx[XE_CACHE_WB]);
- 
- 			iosys_map_wr(&dpt->vmap, x * 8, u64, pte);
-@@ -164,7 +164,7 @@ write_ggtt_rotated(struct xe_bo *bo, struct xe_ggtt *ggtt, u32 *ggtt_ofs, u32 bo
- 		u32 src_idx = src_stride * (height - 1) + column + bo_ofs;
- 
- 		for (row = 0; row < height; row++) {
--			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
-+			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, mul_u32_u32(src_idx, XE_PAGE_SIZE),
- 							      xe->pat.idx[XE_CACHE_WB]);
- 
- 			xe_ggtt_set_pte(ggtt, *ggtt_ofs, pte);
-@@ -381,4 +381,4 @@ struct i915_address_space *intel_dpt_create(struct intel_framebuffer *fb)
- void intel_dpt_destroy(struct i915_address_space *vm)
- {
- 	return;
--}
-\ No newline at end of file
-+}
+diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+index 2275ca35a3c7..996806353171 100644
+--- a/drivers/gpu/drm/xe/xe_irq.c
++++ b/drivers/gpu/drm/xe/xe_irq.c
+@@ -326,7 +326,6 @@ static void gt_irq_handler(struct xe_tile *tile,
+ 					xe_heci_gsc_irq_handler(xe, intr_vec);
+ 				else
+ 					gt_other_irq_handler(engine_gt, instance, intr_vec);
+-				continue;
+ 			}
+ 		}
+ 	}
 -- 
 2.25.1
 
