@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66ACAC54E58
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Mar 2024 16:55:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F953C54E5D
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Mar 2024 16:57:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E72810FC9D;
-	Mon, 18 Mar 2024 16:55:34 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33DD610FC9D;
- Mon, 18 Mar 2024 16:55:33 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B64210E5B8;
+	Mon, 18 Mar 2024 16:57:33 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mMFU9gDp";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B32B610E5B8
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Mar 2024 16:57:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1710781051; x=1742317051;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=fi0FOSo2EcBqHL9mchu4NwB5nQedq98Hsr/3WY7IDjs=;
+ b=mMFU9gDpH9CmGITsNcI0fZsrWnMpn7p/GbDHGetSjEIFT6ijDD6d/4WQ
+ wZCdyAxiU/IXmSB+TzPjCr0evUixq7bnADNp2UN5aNP+mNyChwGqPwINN
+ NGYlx28UrAEyO3tbNJtBV37iDZKWMZb5TZ9mJTBNsWXLt0UbqujYS8tRQ
+ xNSAht7xF+eXByxESBkq/k0U4rWopJy3AIATFPoG/hcLZ0kf4FmdeRRbn
+ DJ5zDHrsoMUZkkU5KF7NrbCg89EMy6s1KX9FduUk+dgzLVYHn7BtBIika
+ CjNT60RQhQiPdL3OpL+MREnco/e8eQMmduHP/rr4pgNVS2LzuN7CPskKn A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11017"; a="5441783"
+X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; 
+   d="scan'208";a="5441783"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2024 09:57:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="44579565"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2024 09:57:29 -0700
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Nirmoy Das <nirmoy.das@intel.com>, Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v2 1/2] drm/xe: Fix potential integer overflow in page size
+ calculation
+Date: Mon, 18 Mar 2024 17:43:41 +0100
+Message-ID: <20240318164342.3094-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_Drop_bogus_vma?=
- =?utf-8?q?_NULL_check?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nirmoy Das" <nirmoy.das@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 18 Mar 2024 16:55:33 -0000
-Message-ID: <171078093321.885956.5835406711227717147@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240318093547.16326-1-nirmoy.das@intel.com>
-In-Reply-To: <20240318093547.16326-1-nirmoy.das@intel.com>
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany,
+ Commercial Register: Amtsgericht Muenchen HRB 186928 
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +63,33 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Explicitly cast tbo->page_alignment to u64 before bit-shifting to
+prevent overflow when assigning to min_page_size.
 
-Series: drm/xe: Drop bogus vma NULL check
-URL   : https://patchwork.freedesktop.org/series/131251/
-State : success
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast ce8cc731d53f9197a853b0d00386d7835f2b80e6
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 115ec745e502..0678faf83212 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -91,7 +91,7 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+ 
+ 	min_page_size = mgr->default_page_size;
+ 	if (tbo->page_alignment)
+-		min_page_size = tbo->page_alignment << PAGE_SHIFT;
++		min_page_size = (u64)tbo->page_alignment << PAGE_SHIFT;
+ 
+ 	if (WARN_ON(min_page_size < mm->chunk_size)) {
+ 		err = -EINVAL;
+-- 
+2.42.0
 
