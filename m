@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01068C54E60
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Mar 2024 13:08:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FB43C54E60
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Mar 2024 13:08:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B113710E398;
-	Tue, 19 Mar 2024 13:08:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2382710E398;
+	Tue, 19 Mar 2024 13:08:38 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0318010F15B;
- Tue, 19 Mar 2024 13:08:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F43810E398;
+ Tue, 19 Mar 2024 13:08:37 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/display=3A_fi?=
- =?utf-8?q?x_type_of_intel=5Funcore=5Fread*=28=29_functions_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/display=3A_fix_typ?=
+ =?utf-8?q?e_of_intel=5Funcore=5Fread*=28=29_functions_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Luca Coelho" <luciano.coelho@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 19 Mar 2024 13:08:17 -0000
-Message-ID: <171085369701.901865.14354814253203912695@8e613ede5ea5>
+Date: Tue, 19 Mar 2024 13:08:37 -0000
+Message-ID: <171085371732.902384.9022864008313550765@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240314065221.1181158-1-luciano.coelho@intel.com>
 In-Reply-To: <20240314065221.1181158-1-luciano.coelho@intel.com>
@@ -48,9 +48,27 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 35753891ce6e drm-tip: 2024y-03m-19d-09h-20m-18s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/display: fix type of intel_uncore_read*() functions
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+a9eb1ac8298ef9f9146567c29fa762d8e9efa1ef
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 82bec618d685a29fce422826150c17f0b96b9d75
+Author: Luca Coelho <luciano.coelho@intel.com>
+Date:   Thu Mar 14 08:52:21 2024 +0200
+
+    drm/xe/display: fix type of intel_uncore_read*() functions
+    
+    Some of the backported intel_uncore_read*() functions used the wrong
+    types.  Change the function declarations accordingly.
+    
+    Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+    Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
++ /mt/dim checkpatch 35753891ce6efb425769165a90643177a86a8652 drm-intel
+82bec618d685 drm/xe/display: fix type of intel_uncore_read*() functions
 
 
