@@ -4,49 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B724C04EBA
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Mar 2024 14:37:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAEADC54F7B
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Mar 2024 14:38:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDDE110E733;
-	Tue, 19 Mar 2024 14:37:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CDFC10E0AA;
+	Tue, 19 Mar 2024 14:38:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U/vsfMIp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A+t1xdsV";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCA4510F91B
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Mar 2024 14:36:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1813410E0AA
+ for <intel-xe@lists.freedesktop.org>; Tue, 19 Mar 2024 14:38:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710859007; x=1742395007;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=QAEjOy35+FLRsnWDcyZf9MSBkf8HpwpQDD2CODhiVug=;
- b=U/vsfMIpNQgEePsT1rkbBssTqQbv044zIm15NLTYeNDF1iuXvLb4Tl+U
- MGZHKi8bn5BuF7+8FUCVs2HI+00C4jADMzX+hCcR664G+F5ZPQHGSlFVh
- hdOh1reEFWm+v/F4WqQqQ5opJJ4WJokdgT+xbpC7saEo5yC1rQ8d8VEu2
- psfIoNdp+BmD7R9gER4AC7YPPb+WQ+DG9Z+g2BGc6vHcPt568Bu/j6d8s
- Ab22WpiRPLN3zw2rl/O6rkBJqiy6q64fC2yjLJlBzB7MTM8V+lZxuPc1h
- l1vV0ffHljs9OPzIlu3YNsSn2y7AOesGSLkUmNxclnfFq/a9LnPJv5bno A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11017"; a="31161889"
-X-IronPort-AV: E=Sophos;i="6.07,137,1708416000"; d="scan'208";a="31161889"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2024 07:36:46 -0700
+ t=1710859103; x=1742395103;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=L1KIcwoZLCCF5nqpcnW6L6YpCvOz4USY/8JS88l+otA=;
+ b=A+t1xdsVYSLHBNpk0CyyPR7R1AtGAWUxeJO2Xk1lFk5u3JB9l/2yf1kI
+ Sp68FJ4wrqt8QVMzUg20SFNm5VHbztuF2lkvT8GVAkU2OwFk/byuV7H+K
+ UGq6oqEnEWs1IUPWoGbld99FEip1JVRE1+tomH8YBxf99hAWPOGv7c/QI
+ 2HGsSvLm9PQETdGx3b5cuekTks/iZHquxf+OSo2V5cORzFhtFu7utwUDP
+ OYgYpfOp4MVV4eWGYkVg1iQmAAK/IiXO/abr6aCi9G7I6/2GFLrmZP6QN
+ I2SNgnrO4+5lPuVZiXRkf5Z+iPyvI3HMcNTXMSwtyz1iPNQ2EwXmq/Y3l A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11018"; a="16462776"
+X-IronPort-AV: E=Sophos;i="6.07,137,1708416000"; d="scan'208";a="16462776"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2024 07:38:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,137,1708416000"; d="scan'208";a="18562755"
-Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
- by orviesa005.jf.intel.com with ESMTP; 19 Mar 2024 07:36:46 -0700
-From: Zhanjun Dong <zhanjun.dong@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Zhanjun Dong <zhanjun.dong@intel.com>
-Subject: [PATCH v6 5/8] drm/xe/guc: Check sizing of guc_capture output
-Date: Tue, 19 Mar 2024 07:36:18 -0700
-Message-Id: <20240319143621.371087-6-zhanjun.dong@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240319143621.371087-1-zhanjun.dong@intel.com>
-References: <20240319143621.371087-1-zhanjun.dong@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,137,1708416000"; d="scan'208";a="14216382"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 19 Mar 2024 07:38:15 -0700
+Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 19 Mar 2024 07:38:14 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Tue, 19 Mar 2024 07:38:14 -0700
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.41) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Tue, 19 Mar 2024 07:38:13 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=OVmqndW8ICqiMUPgFcR21WBrHKfR06fKhesapi+dBG5/DMJwEKvOx3pPRnItaoh2XHooxDVvqlDIzCgTppBnCQ7Qmz7L2vtuIxdtcZPUbbegG2FDNIv3/7IkEyE5PFZVzx4HLwKIziSz886zRxX4gCpCcsZ/2ihSrH08sXHLX+Qwe73L0MI9mX7plW+GlxLJLi9QWI0AWPut3gSBsuxJkwXb0i6LFNoF27ACYPJEai158Qbfc3DvhsASjM4BmkYQqGOX/SbVQp4rYaWzJva5inXsDls3zit1iWBYNh+7PQEBVrkXEIVYpRGFdhwLVummWFaT/HDePxiyjxWGoZJrdg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Vf8zKJYqYWumtDdOgA+fpuoEdN02IpCmha1e6CkqLxo=;
+ b=ldvrmC36h5pMBog92dns/0A3pUFl/XB1Qcr80DMwaV/3eDP1noRIn4LUABvU2uJ910ZE3omNUvFbT/XUHgLLyETdNUKMjtKlZHwOso/pqHreyUvWpMtkFtVi7rnjqVDrdakZeHk1eS1OTl3RkVRoZY9WiVI4aC1Qx062cWc7lYb8piQdvIDvPJcKoV3GCG4OEuOmVAbB/5QKHkf5NF7mtvx+6hEwvdRxGsmxqH7VcIV6UfHbo+SklZABwcajQy1+JdEdtXYVth1UhNvIEd3Dpa78BkJxNKc7o+l+UGsQDPF2XFRNAR19OFZAFUTKAHWmZfts8/0kXQfG+w6Z6/IKkQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by BN9PR11MB5241.namprd11.prod.outlook.com (2603:10b6:408:132::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.12; Tue, 19 Mar
+ 2024 14:38:11 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::7607:bd60:9638:7189]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::7607:bd60:9638:7189%4]) with mapi id 15.20.7409.010; Tue, 19 Mar 2024
+ 14:38:11 +0000
+Date: Tue, 19 Mar 2024 10:38:06 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
+ <badal.nilawar@intel.com>, <lucas.demarchi@intel.com>,
+ <himal.prasad.ghimiray@intel.com>
+Subject: Re: [PATCH v2 3/3] RFC drm/xe: add fault injection for lmem init check
+Message-ID: <ZfmjTgCTsppFxe6j@intel.com>
+References: <20240315100530.3051944-1-riana.tauro@intel.com>
+ <20240315100530.3051944-4-riana.tauro@intel.com>
+ <Zfiu8C6FJGA3xezD@intel.com>
+ <d214b05e-2107-4ee5-9b4d-ebfb5b7dd0f0@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <d214b05e-2107-4ee5-9b4d-ebfb5b7dd0f0@intel.com>
+X-ClientProxiedBy: BYAPR21CA0028.namprd21.prod.outlook.com
+ (2603:10b6:a03:114::38) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|BN9PR11MB5241:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: QwC2oXysI9Ks1GYjSY189EAbZXKebxUismGgrjmm227lMSPK41nVGLdY6rZeZMs4wqd0oMXiVSyonKf1fh/y3tLvcVnnHwkDWVw+n7Unx8erKYpigJ3frBhdj4R39hk+1SeEtKudC95CMlK1PFbxs+iqSxhIwbiYxvKKgR3+kPSeXRl5FajYPE/OFJVDO4xdZ81kSGX9G4CpfyMfGFPG+wBFp8OqDVhi9XQrpMqw87z9T+ZDb5c6SllpujcYZ2iPE2+pzH3QTlgMo+91p6Sazw9ftf6SINYGtjfeyG7umoXEnxeMOnRYjjG3qHh3V6OgP9FnsW2XqmLuEY9lbOFfAD/LGqZnGLpc9iK2NANmz8H5aPj+yhI3QWCghToKwu9yr8Rcu9DakNy9deTvi937/sw9eJGD53wHYvU77roVG/t/DNcPV0NU+uy3gjeu9ZhmNnr6cVA+W9R52YsvUL0TVUlcxS3AnfG137xppxXQ8Oei+e8dot46/HdNmjI9PaSYprmNK/gT09ANpgNJBgdBnG2w2pBIltSOFLjPPc8XJpqd76BJ/CjXWw19bk9YetOg4wfqsynXCGz8YX+Cj3kApur+Uc/ClYl342oJ6iH10aU=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366007)(376005)(1800799015); DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ae9NlyxjmZ6NMzA7PCqFlFtcdFx96/14jaWmHV5T4Q2OIO+B3toloIjMmrSh?=
+ =?us-ascii?Q?IgH+m5nMOQWsW5ig+ID1rC5oKpPK5TD6PYiXnY8ThdGLLNqCeoTU+fo6LJmM?=
+ =?us-ascii?Q?vE10Pg+j7FmIx/TrStT9rjAtOk94b07HLJNlbAqNOtL5TooHJ/BDNkYzg0qW?=
+ =?us-ascii?Q?SPoeeHK9FeapkiBlQAD9yIKvRNb4uW456N0fgua1y+4nkOrSI+xVKQUl+Hlz?=
+ =?us-ascii?Q?9mm/7Vnfs7+6+6aRBMI8qlqKJh6zfO6UvDcU3zRNEU8aGD6Hr5U/eA3cI3YI?=
+ =?us-ascii?Q?E0UVKJoWK+wx+AJVSbCQP4cra1t8ESrDc2e0pAWY5C5T0f+vt6j0ZjO11HUW?=
+ =?us-ascii?Q?AcM6WLLgWYVRH0dUfsVGAkAISACzgWGaySEHtUjRInpoLFbm+x6OmRJF6Eri?=
+ =?us-ascii?Q?Fzgh6WDgrACg+PfCc6lF5cjHJmHWD0n7KDEsgr2TcL99kEqenEDQMkt4jLJT?=
+ =?us-ascii?Q?RsaVpn+FjaDeceysPpPVlDhSlNGcz7e43BYNinbzHUkyr9U9fFZM3UaP9Zeh?=
+ =?us-ascii?Q?YViP1lpKcIk6BrfLGUzS32OCOLTjcDFX+zLmefsaYZL572Ws3CZKB5l0F6Ho?=
+ =?us-ascii?Q?Sbdua8raOjy9lyFsB1XUdsdg9tx4s74js+7uvVSCLOOwydURFhbTa3Gg7hHv?=
+ =?us-ascii?Q?UjzgAOcRTdL7JLGCaSMCKOZ9HUKZh9/wtSelBcMlmdYRQqpekWn09FSB76Hz?=
+ =?us-ascii?Q?09aLKOVLYdyAhuFDd+NKMjVQ7STjuYS0PCDJbjywglc9hoaA8dH8uPnVR54K?=
+ =?us-ascii?Q?c5NVgHSGXWOE4Oi+mtEfrqgTZRKfFDvHtAYF8U+QyafPHaZSrjehmdh8T91O?=
+ =?us-ascii?Q?FGUdFZyIuEwbhCo3EsIbLKHYaH0KL28pN6M34f6WSmDJ/vQ3T8zpQuVVywUE?=
+ =?us-ascii?Q?hGXx6GLsmqaxlHpWVsouC6KYg/z0oQEMH7oJVKG2zDyZWdGPBFxOTYJjzZ8i?=
+ =?us-ascii?Q?eH8iXi1zABeHECz1z7B99H4MwJM4y0zaYYm7AhIEJcqjqEj+abDN32WohFym?=
+ =?us-ascii?Q?plZqRMEX2ZsCeKhrqN4VbyscuTzO8V9VGxa6A8D8ZgYyXvUR7BGdhpzcbtHM?=
+ =?us-ascii?Q?8FVt+lW1j1Go+YdHjLkULShcb6Jk3al0wbHlzvS+lOvVIyx4DQBS4t0qkP1G?=
+ =?us-ascii?Q?ppwuXiohlaCRPIR7CAxd9709y/0QhPU5suwG/dmZSTnawdP7MZUkS07XZFWV?=
+ =?us-ascii?Q?ErVykgSsVd2m3JHrabEwqyjvivXou2i5+RPekK+AtgzDH9DLXrDxUe1F4x4T?=
+ =?us-ascii?Q?mpFkR3OI+uo2sZMvhvrXVJdP6V7Jk5KDiIMwv2RopSTKAfxRaXAOnuYTLCWS?=
+ =?us-ascii?Q?aDP3fpXIzFrjIXre7kaszJkESkFmDyewZ70CV+W45TTiAKc9pZENEkg7PHHb?=
+ =?us-ascii?Q?EnvV+nZOGUEP8Twr9jswHBiava7UKZ8KeKJXZ0LJMAkEhKR6WyK4kgugiht+?=
+ =?us-ascii?Q?TQBsFxT/yM3AGJYV0TLRB1NBTsL8z/kPO7c3XsE01CMmipEaOgBkUaiDQyZB?=
+ =?us-ascii?Q?wvxUxRVgcmB/q8Oe0G5gZ9JyK4JPNjwe9+uU0qdgrtRxllTZm5MHFAx54no3?=
+ =?us-ascii?Q?BMP6bulVZgF7JFfwSm8rsP+9VkN2p+kh47yhkjE23M6IiLgJ2Rypb+TUUUbn?=
+ =?us-ascii?Q?QQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: bc4d330d-fc6f-4846-63ea-08dc4822336d
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2024 14:38:11.0925 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: WbCbM4FE5LB7C0BBn4OdH89xEtsnm/5JBqdjP1jgM4IAIzTljq1w660FdwRFScReO9wI7g05QpyXw4sgpH2ljA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5241
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,167 +149,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add capture output size check function to provide a reasonable
-minimum size for error capture region before allocating the shared
-buffer.
-Add guc capture data structure definition.
+On Tue, Mar 19, 2024 at 10:16:47AM +0530, Riana Tauro wrote:
+> Hi Rodrigo
+> 
+> On 3/19/2024 2:45 AM, Rodrigo Vivi wrote:
+> > On Fri, Mar 15, 2024 at 03:35:30PM +0530, Riana Tauro wrote:
+> > > add a boot time fault injection for lmem init check.
+> > > This can be triggered by adding a modparam fail_lmem_init
+> > > 
+> > > xe.fail_lmem_init=<interval>,<probability>,<space>,<times>
+> > 
+> > Please let's avoid module parameters as much as we can.
+> > 
+> > Let's use the CONFIG_FAULT_INJECTION_DEBUG_FS
+> > similarly to
+> > 
+> > fault_create_debugfs_attr("fail_gt_reset", root, &gt_reset_f\
+> > ailure);
+> > 
+> lmem init check is done during early probe. We cannot set debugfs before
+> probe completes. So i added the module parameter.
 
-Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_capture.c      | 76 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_capture_fwif.h | 45 ++++++++++++++
- 2 files changed, 121 insertions(+)
+doh! indeed! sorry about that.
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
-index 1cd95b6ec165..9e0134d9811a 100644
---- a/drivers/gpu/drm/xe/xe_guc_capture.c
-+++ b/drivers/gpu/drm/xe/xe_guc_capture.c
-@@ -492,6 +492,81 @@ xe_guc_capture_getnullheader(struct xe_guc *guc, void **outptr, size_t *size)
- 	return 0;
- }
- 
-+static int
-+guc_capture_output_min_size_est(struct xe_guc *guc)
-+{
-+	struct xe_gt *gt = guc_to_gt(guc);
-+	struct xe_hw_engine *hwe;
-+	enum xe_hw_engine_id id;
-+
-+	int worst_min_size = 0;
-+	size_t tmp = 0;
-+
-+	if (!guc->capture)
-+		return -ENODEV;
-+
-+	/*
-+	 * If every single engine-instance suffered a failure in quick succession but
-+	 * were all unrelated, then a burst of multiple error-capture events would dump
-+	 * registers for every one engine instance, one at a time. In this case, GuC
-+	 * would even dump the global-registers repeatedly.
-+	 *
-+	 * For each engine instance, there would be 1 x guc_state_capture_group_t output
-+	 * followed by 3 x guc_state_capture_t lists. The latter is how the register
-+	 * dumps are split across different register types (where the '3' are global vs class
-+	 * vs instance).
-+	 */
-+	for_each_hw_engine(hwe, gt, id) {
-+		worst_min_size += sizeof(struct guc_state_capture_group_header_t) +
-+					 (3 * sizeof(struct guc_state_capture_header_t));
-+
-+		if (!guc_capture_getlistsize(guc, 0, GUC_CAPTURE_LIST_TYPE_GLOBAL, 0, &tmp, true))
-+			worst_min_size += tmp;
-+
-+		if (!guc_capture_getlistsize(guc, 0, GUC_CAPTURE_LIST_TYPE_ENGINE_CLASS,
-+					     hwe->class, &tmp, true)) {
-+			worst_min_size += tmp;
-+		}
-+		if (!guc_capture_getlistsize(guc, 0, GUC_CAPTURE_LIST_TYPE_ENGINE_INSTANCE,
-+					     hwe->class, &tmp, true)) {
-+			worst_min_size += tmp;
-+		}
-+	}
-+
-+	return worst_min_size;
-+}
-+
-+/*
-+ * Add on a 3x multiplier to allow for multiple back-to-back captures occurring
-+ * before the i915 can read the data out and process it
-+ */
-+#define GUC_CAPTURE_OVERBUFFER_MULTIPLIER 3
-+
-+static void check_guc_capture_size(struct xe_guc *guc)
-+{
-+	int min_size = guc_capture_output_min_size_est(guc);
-+	int spare_size = min_size * GUC_CAPTURE_OVERBUFFER_MULTIPLIER;
-+	u32 buffer_size = xe_guc_log_section_size_capture(&guc->log);
-+
-+	/*
-+	 * NOTE: min_size is much smaller than the capture region allocation (DG2: <80K vs 1MB)
-+	 * Additionally, its based on space needed to fit all engines getting reset at once
-+	 * within the same G2H handler task slot. This is very unlikely. However, if GuC really
-+	 * does run out of space for whatever reason, we will see an separate warning message
-+	 * when processing the G2H event capture-notification, search for:
-+	 * xe_guc_STATE_CAPTURE_EVENT_STATUS_NOSPACE.
-+	 */
-+	if (min_size < 0)
-+		xe_gt_warn(guc_to_gt(guc), "Failed to calculate error state capture buffer minimum size: %d!\n",
-+			   min_size);
-+	else if (min_size > buffer_size)
-+		xe_gt_warn(guc_to_gt(guc), "Error state capture buffer maybe small: %d < %d\n",
-+			   buffer_size, min_size);
-+	else if (spare_size > buffer_size)
-+		xe_gt_dbg(guc_to_gt(guc), "Error state capture buffer lacks spare size: %d < %d (min = %d)\n",
-+			  buffer_size, spare_size, min_size);
-+}
-+
- int xe_guc_capture_init(struct xe_guc *guc)
- {
- 	guc->capture = kzalloc(sizeof(*guc->capture), GFP_KERNEL);
-@@ -503,6 +578,7 @@ int xe_guc_capture_init(struct xe_guc *guc)
- 	INIT_LIST_HEAD(&guc->capture->outlist);
- 	INIT_LIST_HEAD(&guc->capture->cachelist);
- 
-+	check_guc_capture_size(guc);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_capture_fwif.h b/drivers/gpu/drm/xe/xe_guc_capture_fwif.h
-index 4bb94ac1ff48..b975a65b64e7 100644
---- a/drivers/gpu/drm/xe/xe_guc_capture_fwif.h
-+++ b/drivers/gpu/drm/xe/xe_guc_capture_fwif.h
-@@ -10,6 +10,51 @@
- #include "regs/xe_reg_defs.h"
- #include "xe_guc_fwif.h"
- 
-+/*
-+ * struct __guc_capture_bufstate
-+ *
-+ * Book-keeping structure used to track read and write pointers
-+ * as we extract error capture data from the GuC-log-buffer's
-+ * error-capture region as a stream of dwords.
-+ */
-+struct __guc_capture_bufstate {
-+	u32 size;
-+	void *data;
-+	u32 rd;
-+	u32 wr;
-+};
-+
-+/*
-+ * struct __guc_capture_parsed_output - extracted error capture node
-+ *
-+ * A single unit of extracted error-capture output data grouped together
-+ * at an engine-instance level. We keep these nodes in a linked list.
-+ * See cachelist and outlist below.
-+ */
-+struct __guc_capture_parsed_output {
-+	/*
-+	 * A single set of 3 capture lists: a global-list
-+	 * an engine-class-list and an engine-instance list.
-+	 * outlist in __guc_capture_parsed_output will keep
-+	 * a linked list of these nodes that will eventually
-+	 * be detached from outlist and attached into to
-+	 * i915_gpu_codedump in response to a context reset
-+	 */
-+	struct list_head link;
-+	bool is_partial;
-+	u32 eng_class;
-+	u32 eng_inst;
-+	u32 guc_id;
-+	u32 lrca;
-+	struct gcap_reg_list_info {
-+		u32 vfid;
-+		u32 num_regs;
-+		struct guc_mmio_reg *regs;
-+	} reginfo[GUC_CAPTURE_LIST_TYPE_MAX];
-+#define GCAP_PARSED_REGLIST_INDEX_GLOBAL   BIT(GUC_CAPTURE_LIST_TYPE_GLOBAL)
-+#define GCAP_PARSED_REGLIST_INDEX_ENGCLASS BIT(GUC_CAPTURE_LIST_TYPE_ENGINE_CLASS)
-+};
-+
- /*
-  * struct guc_debug_capture_list_header / struct guc_debug_capture_list
-  *
--- 
-2.34.1
+> 
+> I can try to set static values before injecting fault if module param is not
+> needed.
+> 
+> lmem_init_fail.times = 1;
+> lmem_init_fail.probability = 100;
 
+no, let's go with the module parameter. It would be good if we could have
+something per-device, but there's no way to pass argument to the bind/probe
+operation...
+
+hmm, unless if we also require the pci id as the input to the param.
+The bad part would be that we need to parse the str, then make another
+string for the setup_fault_attr().
+
+also I agree with Himal, an igt case is important here.
+
+Thanks,
+Rodrigo.
+
+> 
+> Thanks
+> Riana
+> > And then use it like this:
+> > 
+> > https://lore.kernel.org/all/20240315010843.194335-1-rodrigo.vivi@intel.com/
+> > 
+> > > 
+> > > Adding this causes the lmem init check to fail causing
+> > > the probe to defer.
+> > > 
+> > > v2: add fault injection (Lucas)
+> > > 
+> > > Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+> > > ---
+> > >   drivers/gpu/drm/xe/xe_device.c | 21 +++++++++++++++++++++
+> > >   drivers/gpu/drm/xe/xe_module.c |  5 +++++
+> > >   drivers/gpu/drm/xe/xe_module.h |  3 +++
+> > >   3 files changed, 29 insertions(+)
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> > > index 50473329cce7..393610e95bd1 100644
+> > > --- a/drivers/gpu/drm/xe/xe_device.c
+> > > +++ b/drivers/gpu/drm/xe/xe_device.c
+> > > @@ -51,6 +51,10 @@ struct lockdep_map xe_device_mem_access_lockdep_map = {
+> > >   };
+> > >   #endif
+> > > +#ifdef CONFIG_FAULT_INJECTION
+> > > +DECLARE_FAULT_ATTR(lmem_init_fail);
+> > > +#endif
+> > > +
+> > >   static int xe_file_open(struct drm_device *dev, struct drm_file *file)
+> > >   {
+> > >   	struct xe_device *xe = to_xe_device(dev);
+> > > @@ -431,6 +435,23 @@ static int wait_for_lmem_ready(struct xe_device *xe)
+> > >   	if (IS_SRIOV_VF(xe))
+> > >   		return 0;
+> > > +#ifdef CONFIG_FAULT_INJECTION
+> > > +	/*
+> > > +	 * use fault injection to cause a lmem init failure to validate
+> > > +	 * deferred probe. Set the verbose to 0 to  avoid dump stack
+> > > +	 */
+> > > +	if (xe_modparam.fail_lmem_init) {
+> > > +		setup_fault_attr(&lmem_init_fail, xe_modparam.fail_lmem_init);
+> > > +		lmem_init_fail.verbose = 0;
+> > > +		if (should_fail(&lmem_init_fail, 1)) {
+> > > +			/* add delay to reduce the number of deferred probe attempts */
+> > > +			msleep(500);
+> > > +			drm_dbg(&xe->drm, "Fault Injection lmem init failure\n");
+> > > +			return -EPROBE_DEFER;
+> > > +		}
+> > > +	}
+> > > +#endif
+> > > +
+> > >   	if (verify_lmem_ready(gt))
+> > >   		return 0;
+> > > diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
+> > > index 110b69864656..c4efbab430a7 100644
+> > > --- a/drivers/gpu/drm/xe/xe_module.c
+> > > +++ b/drivers/gpu/drm/xe/xe_module.c
+> > > @@ -48,6 +48,11 @@ module_param_named_unsafe(force_probe, xe_modparam.force_probe, charp, 0400);
+> > >   MODULE_PARM_DESC(force_probe,
+> > >   		 "Force probe options for specified devices. See CONFIG_DRM_XE_FORCE_PROBE for details.");
+> > > +#ifdef CONFIG_FAULT_INJECTION
+> > > +module_param_named_unsafe(fail_lmem_init, xe_modparam.fail_lmem_init, charp, 0400);
+> > > +MODULE_PARM_DESC(fail_lmem_init, "Fault injection. fail_lmem_init=<interval>,<probability>,<space>,<times>");
+> > > +#endif
+> > > +
+> > >   struct init_funcs {
+> > >   	int (*init)(void);
+> > >   	void (*exit)(void);
+> > > diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
+> > > index 88ef0e8b2bfd..ccbeacbc3efb 100644
+> > > --- a/drivers/gpu/drm/xe/xe_module.h
+> > > +++ b/drivers/gpu/drm/xe/xe_module.h
+> > > @@ -18,6 +18,9 @@ struct xe_modparam {
+> > >   	char *huc_firmware_path;
+> > >   	char *gsc_firmware_path;
+> > >   	char *force_probe;
+> > > +#if IS_ENABLED(CONFIG_FAULT_INJECTION)
+> > > +	char *fail_lmem_init;
+> > > +#endif /* CONFIG_FAULT_INJECTION */
+> > >   };
+> > >   extern struct xe_modparam xe_modparam;
+> > > -- 
+> > > 2.40.0
+> > > 
