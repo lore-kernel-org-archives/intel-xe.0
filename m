@@ -4,145 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8CD7C54E67
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Mar 2024 12:50:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60FB2C54E58
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Mar 2024 12:59:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69D0A10E46F;
-	Wed, 20 Mar 2024 12:50:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04B1310F752;
+	Wed, 20 Mar 2024 12:59:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hdHtlEQy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="anocZIa5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C4C710E46F
- for <intel-xe@lists.freedesktop.org>; Wed, 20 Mar 2024 12:50:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71C1710F752
+ for <intel-xe@lists.freedesktop.org>; Wed, 20 Mar 2024 12:59:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710939018; x=1742475018;
- h=message-id:date:subject:to:references:from:in-reply-to:
- mime-version; bh=X/aIem/SIE+NtJecB+2X2KAq0PxZTwSEnU9Fbg6hw3o=;
- b=hdHtlEQyFmnxkDDXObzCH0SsVus8GeAdkSZw8x+9IJzVUpXFlk6L/Nr0
- pCS+j3M3mEgx2uucHsXpkOUWHUl+4AkIuhx8yedesjm1pQWCwR7OXez+x
- 9Q+W4ehMR1e1MSgSP4tX2ONxRQaSUzDFtX30UKhUM9VRbCnNN79RjymEd
- SlfbEuJLv66yBggS33bwx6OFQ5goSeVqREAcqL7Sv+3oGJDjNtv0/C1gQ
- bDEsdmcZYV+WTF5mR82S0gK66Ur7GfadDjBGhO8astOIF4Uy02sOF9cHY
- ZlKze33ZqaYhc+5DuaS6ZFPPK7CJSGLQspZGt86NxXAZF3a0BosR1flK3 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11018"; a="5739577"
-X-IronPort-AV: E=Sophos;i="6.07,140,1708416000"; d="scan'208,217";a="5739577"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2024 05:50:10 -0700
+ t=1710939586; x=1742475586;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ySzIYKHXzPmHfXwPaQCRPbwSHbPLHa36rdbomlpP2aY=;
+ b=anocZIa5lmAVehdbQNCF8wOJYn8Fhx4qaMUtC61uCcdWkRSvunMKJzbD
+ m1NqpjYJOt79TaqI90pSnO6Ae/8nQC0K8JRiS62OlR1czcTjkJDQK3ZAl
+ poh5pD5V0dgTz/6tz7BRmo+9p3kQIoh8ZPuiGs0MBme9mrC7HOUU2cNna
+ bBox074istmeN8sPGJsUdtbqaGzTsikJAKXtoQIuTtoOZpI56zP/ohX+t
+ dNneA0Qwqiz3u7jk9M/9JTe2qjzV32vQYFftj/QQj/AnNtX7+w6zAJQL5
+ Yy18uLDGnlJl4sD+aGV3/VKrvXqutVOtAI4Wp0Ae4B/1D4F4qf4ZIctAc g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11018"; a="17264458"
+X-IronPort-AV: E=Sophos;i="6.07,140,1708416000"; d="scan'208";a="17264458"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2024 05:59:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,140,1708416000"; d="scan'208,217";a="14044160"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 20 Mar 2024 05:50:10 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 20 Mar 2024 05:50:09 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 20 Mar 2024 05:50:09 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.169)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 20 Mar 2024 05:50:09 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KGUFvjHubnaOxa2A5RUHa3HatDNmanTHx6jp20UERBeFzQQAZ8R5LXMUKW/WJ+La/rJPpTUPGgAIJGgnt/3d2Yqvs/pu2bTF8ZAcbX0vNyK/195Cw67wzL6xlepLb3Hwb4l/CDWjs05d4GK5cDjEOTFBFRWwCRISCbmdmqM7cWzfbEblQqYkc17CAd+hMMveR0Noq1+TEkIbHPpWgMceiQw+A7O1fAW5SlQk8SvdcrMAbQZDpxSD+x2o+UFzBLiekPHT2vx+Pflbi6if8O5PeXCrUkyFQIliIzQnatRnqMRtLffZS/3fbVZuEX5RM51nrIMeejaok5z0yDCJVGeLdQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8hRlxVaDhXfmtOgwqfQsLyAkr3qY0xQjV+n+oo3SPqc=;
- b=d56IN33C98Q+YE8kogJvEWaM88I18/ZSRbJbAq3dLnB8gzrFjUHmT7ZGDt05C1dUUgQVgKEdAvVLHkIKoyeyG3kp3Un18woUqkKs1gUFU63EBqVrjYmZa/vDgE8pFMVRIgsdk/E3EQ+W3KlryyBHvBbqu4wnRpiu6oI/Ic+Vo5F0c2VpPGnFXeyizdjdqjlYNOYxhGJIk2Q1Mqm2wjvnMGTeBv5LbX62LUWPJ4R3C6RHbfMbkQrOfVbqzooLRCVnlRsajggx2WQ59FRHXHhFE+8sjeUH+zZnrtxwPRwxtjrjhdydz56M2ctPDtgGFjU7a9nWc4J5MPXDra3dAVTj5A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB6541.namprd11.prod.outlook.com (2603:10b6:8:d3::14) by
- DM4PR11MB8132.namprd11.prod.outlook.com (2603:10b6:8:17e::13) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7409.11; Wed, 20 Mar 2024 12:50:07 +0000
-Received: from DS0PR11MB6541.namprd11.prod.outlook.com
- ([fe80::a8f5:a774:62a3:dd1e]) by DS0PR11MB6541.namprd11.prod.outlook.com
- ([fe80::a8f5:a774:62a3:dd1e%7]) with mapi id 15.20.7409.010; Wed, 20 Mar 2024
- 12:50:07 +0000
-Content-Type: multipart/alternative;
- boundary="------------3AuTBUuw8LFi2mFvhEtVAsWR"
-Message-ID: <1ad16f6a-3bb9-4161-afc2-47db741b2897@intel.com>
-Date: Wed, 20 Mar 2024 13:50:07 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/xe/bb: assert width in
- xe_bb_create_migration_job()
-Content-Language: en-US
-To: Matthew Auld <matthew.auld@intel.com>, <intel-xe@lists.freedesktop.org>
-References: <20240320112730.219854-3-matthew.auld@intel.com>
- <20240320112730.219854-4-matthew.auld@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,140,1708416000"; d="scan'208";a="18614315"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2024 05:59:43 -0700
 From: Nirmoy Das <nirmoy.das@intel.com>
-In-Reply-To: <20240320112730.219854-4-matthew.auld@intel.com>
-X-ClientProxiedBy: PA7P264CA0392.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:102:399::8) To DS0PR11MB6541.namprd11.prod.outlook.com
- (2603:10b6:8:d3::14)
+To: intel-xe@lists.freedesktop.org
+Cc: Nirmoy Das <nirmoy.das@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH] drm/xe: Create a helper function to init job's user fence
+Date: Wed, 20 Mar 2024 13:45:56 +0100
+Message-ID: <20240320124556.10337-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB6541:EE_|DM4PR11MB8132:EE_
-X-MS-Office365-Filtering-Correlation-Id: 67ea868a-ef8f-454c-5eec-08dc48dc458a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: j+opurQkjBz58LYaB6K1MESRb0wT+atlFv2FygJs02xicmTiL47s8mj7OORtJQeVBz4nm3yiZRUJQBDvcxLi0Jp6frerDCKZ4DMzQyJF9xtmgqjH6N4zY7rJxMXdq2YlAMdBmqk3yjZ8XxPFkUJWK4wsSEoH2O5iC0bixp57WE2XM6fivolY7+YtPjln+E5uPVVFGMWmIsmPdMgmrFt9/G97fgNHsIvDc5WO4/q3Lwx+ElpBO8KvPJTStqsehVEjgG48AjFCdQ8zt3blhg/Y1i3ORsl4Ye18GyeCEpvc3ciM+9hqXmmPXeUXiQ9VU+rOy7gZjHAQH7fqGPi/x7MfycewNXiq0MHda61W8a3S1szh9/PG23UrxEkI4UNb90ifOzQMigVHEOl9e2DH18UIv29Tatr4PJD09nlMV4qnvxfmlD0zwlxz2bjY8jngmtl380cZZTbz0Lau4NzsyhAcZR7yJWnxTElASffxT6+p9lCslG2uBhYsjp7oIKSg/Ew2ui6gOuwSoCk6zD59AE3x9xRBsuydd1Zj80psal7y9bYJwWWSJiLqEFBkdrASj4JsPWMMdYarPM3xWQ8D0qPikgwuHSwrp+4LY98iB6vAzJdTbt46lLR9+1MfbV2r/aazt1V2dpH/53yzCwxOMGu0p3NuxuA5OOV/8StI8Tr5K4o=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB6541.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(366007)(1800799015); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?djN5Nnd3OURGV0pmcGVGNysxbWtURktNZm1vZitpTVBJS3JvV1ZCYkxDNnBD?=
- =?utf-8?B?dU9CYjl3TkNpMEpRVWlFclJ3b3BsVWpGeDhhNm1TWmlzSkF1RTVkRVFaT0xM?=
- =?utf-8?B?VkJWVCsvOVN0M2I5dWNoai9HSmxjYjdzVzZTYmIxOEwyT1dwaXRRMlc3aytv?=
- =?utf-8?B?N0Q4YTZzTUF4b3c0MTMzWm0yS3lIRWpxQUdTTkg5RzhmMVVJaCt4UGsxNWVu?=
- =?utf-8?B?S3Y3dmJvWktxK3JLNVJuQ1JHd1poVnB1SjBvekRXZTZHZEVweEgrUVltY21O?=
- =?utf-8?B?b1ZHenZPbUF6MEQ3NU9MV09PVldQNXZ1VG9KK29JMTJXR2JyR0RtVzZoQlhG?=
- =?utf-8?B?V0JiZC9OOHYzNjEzTnR2YXNRRGtPa3VGYWRUY1E1NDlYZFc0UkJXNXpqSnY5?=
- =?utf-8?B?WHp3SlVrWVVDNzRTV0swbzhtQ1l3SUtBOUJVQjNVL0tWZEw2WE9CYm1qVjNo?=
- =?utf-8?B?dnA5ZytuRFhPdHJxcU1rVUNJa2lReXlIVjJsa052RnJrS05tbUFIWU1mY1pa?=
- =?utf-8?B?b0NrdmJtcW1jSC93ZnJMak54Rm1DNGh4bFFhWWQ0eVFCMEd1K0t5UHpwSThY?=
- =?utf-8?B?aEhhZkFxYndwS2sxUGhqTVN6cnRNbVVWUDUrYTZSVHlkeXdvUDUyN3dlRjRv?=
- =?utf-8?B?WjljQ0FVVlFTZXNOWVhVYXdablRTbnRiTnJ0VTR3c0dKN0VLQnh1dndObXhD?=
- =?utf-8?B?c2lBallnSzRBNmQ3RS8vZGJxajRLWlFWK2MveDQxMkx0RlRQdUYxUGxacnpL?=
- =?utf-8?B?VExNNHgxOUROZnUrZ1JFSWtVUUcyRFhmNUdzWEpFZ3Y1eDA5WVdHbVZPMUNw?=
- =?utf-8?B?VUNqR2k0Rkx2WXpNZGtpTTRaUlNlclV0aFJkS1kwUmxTWGtjZ3hpNGlKRlRE?=
- =?utf-8?B?UTlzdVZTVGVkOGZEcGE0Y2pXSjY1ejRFbjBDdDBtV2NXemR6MUVTS0tiR1pQ?=
- =?utf-8?B?UUJjRitvU0MxRW9LSGlnVFlTY1BnemhEeWxYUkd4b2pNWDR4bVc3ZzU3MUxI?=
- =?utf-8?B?R1M2bHhRZDgxWmJtdndYU2Nxc3kzbk5oU09CTEFNYXVDenBTdGZTdEhsWFQ5?=
- =?utf-8?B?UWk3Z1VwNmFhaDZaOGlaWkRUaFlIY1RRdmJOdFJFVE9ic09vNWxMZkNFRGRs?=
- =?utf-8?B?VXQzbU9hcy9ZN1A4THNIK2FmeUMyNEY5OFBrS3JUTFNTVTBza0hHcGVNcm8r?=
- =?utf-8?B?eVd5Vi9qa29hUW5jNllKb3FTYVJxaXM2U1BkOUxNZjV0VnVua0tURjV6R2w0?=
- =?utf-8?B?eHBoTkU3YnQvL2RUdlpqUjVVbUZaQ2xibUJBODhRd0JPOGJmVm9KVUt1aVor?=
- =?utf-8?B?ZEZpUW9XODNXcm42Ny9mdWFrMjMxQUhwaDdDR3diQ3pCeGVvSEtJU0Nyc1NR?=
- =?utf-8?B?UThsR2ZNYzVEOElSYTFNR2pTc1JiL29vaDZSR1FZUlVJRGl3Y1pJRERJYjJ5?=
- =?utf-8?B?dm0vNDZNYnBCdWVtVmRCNXBwOGd5Umw0ZXdITU9LY3M1MG40amtVb0Mrdi83?=
- =?utf-8?B?eGlSUTkvYm5LeisrTWI3Tjh5QnhmY1Rsayt6bUZRRndqd1pKMVhXZWR6dmZE?=
- =?utf-8?B?MnIxM1gvUm0xeS9tQlIrTVNzV1JDUzMwbFYvT1hWdXdjYzR5R21pYXByR3NH?=
- =?utf-8?B?NUQ0SXE0VG1LdHN2ZnpDRWtuQ0JHUnNXWW1Rek9QZFFZTU01MU9YajJJcTBD?=
- =?utf-8?B?S0lteXpKU2FsWCtJQnBLcTlVeHlwRE12NW45MkQ0YWd0UW5vSks5d2lyUFZ4?=
- =?utf-8?B?MWw4WWg0TEQrT3lrSk5jRGU0UEZCWThsOERwUUk3R1JtNFJhblgwdmVSUEhH?=
- =?utf-8?B?SWZtVFh4KzZwL3dYT2E5dGN6bUdpSkRad2djWGY3VGgyaW1neU90eStmSTNp?=
- =?utf-8?B?RTFDZG5GVnBMWXBRQmQvRlFvajV2UlFqNDRqVnlXUVpVYU9BSEtrWlYxbkZC?=
- =?utf-8?B?enBmZFFNRTAxVk01M3N2R05oWjBjK1dKZkpZTklCRFdvcXFVcE5WNlJrQmpY?=
- =?utf-8?B?RTF0cU41eXR5VlVxY3ZyOXp1cFg2WmV6QVlPUVFCY1EzV1Y4OENZWWQ1NGZh?=
- =?utf-8?B?YkZOYWgxRlMxaGFwMEs2VEZqaXdtcWFFazB6ZVNtQXp0Y2FkL3hWUUlXWmY2?=
- =?utf-8?Q?kpkeTH7R9ey/mtKVPBeLZWk77?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 67ea868a-ef8f-454c-5eec-08dc48dc458a
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB6541.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2024 12:50:07.7405 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +A+3XwN1O2bRfjBWn8JUi5tHcChPH4yq+nMYscKxcr9fkpnbDYAExybLNv/yvoQB9oXXF1NL7sVRIUkvDlFatQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB8132
-X-OriginatorOrg: intel.com
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany,
+ Commercial Register: Amtsgericht Muenchen HRB 186928 
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,86 +67,191 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---------------3AuTBUuw8LFi2mFvhEtVAsWR
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Refactor xe_sync_entry_signal so it doesn't have to
+modify xe_sched_job struct instead create a new helper function
+to set user fence values for a job.
 
-
-On 3/20/2024 12:27 PM, Matthew Auld wrote:
-> The q->width should always be exactly one here for migration queue/vm.
-> The width will anyway be overridden later since we need to emit two
-> jumps for special migration jobs. Enforce that here to ensure caller is
-> not doing something strange. While here also convert to the helper to
-> determine if the queue is migration based.
->
-> Signed-off-by: Matthew Auld<matthew.auld@intel.com>
-> Cc: Nirmoy Das<nirmoy.das@intel.com>
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_bb.c | 3 ++-
->   1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
-> index a35e0781b7b9..541361caff3b 100644
-> --- a/drivers/gpu/drm/xe/xe_bb.c
-> +++ b/drivers/gpu/drm/xe/xe_bb.c
-> @@ -86,7 +86,8 @@ struct xe_sched_job *xe_bb_create_migration_job(struct xe_exec_queue *q,
->   	};
->   
->   	xe_gt_assert(q->gt, second_idx <= bb->len);
-> -	xe_gt_assert(q->gt, q->vm->flags & XE_VM_FLAG_MIGRATION);
-> +	xe_gt_assert(q->gt, xe_sched_job_is_migration(q));
-> +	xe_gt_assert(q->gt, q->width == 1);
->   
->   	return __xe_bb_create_job(q, bb, addr);
->   }
---------------3AuTBUuw8LFi2mFvhEtVAsWR
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 3/20/2024 12:27 PM, Matthew Auld
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:20240320112730.219854-4-matthew.auld@intel.com">
-      <pre class="moz-quote-pre" wrap="">The q-&gt;width should always be exactly one here for migration queue/vm.
-The width will anyway be overridden later since we need to emit two
-jumps for special migration jobs. Enforce that here to ensure caller is
-not doing something strange. While here also convert to the helper to
-determine if the queue is migration based.
-
-Signed-off-by: Matthew Auld <a class="moz-txt-link-rfc2396E" href="mailto:matthew.auld@intel.com">&lt;matthew.auld@intel.com&gt;</a>
-Cc: Nirmoy Das <a class="moz-txt-link-rfc2396E" href="mailto:nirmoy.das@intel.com">&lt;nirmoy.das@intel.com&gt;</a></pre>
-    </blockquote>
-    Reviewed-by: <span style="white-space: pre-wrap"> Nirmoy Das <a class="moz-txt-link-rfc2396E" href="mailto:nirmoy.das@intel.com">&lt;nirmoy.das@intel.com&gt;</a></span>
-    <blockquote type="cite" cite="mid:20240320112730.219854-4-matthew.auld@intel.com">
-      <pre class="moz-quote-pre" wrap="">
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bb.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_exec.c      | 10 ++++++----
+ drivers/gpu/drm/xe/xe_sched_job.c | 14 ++++++++++++++
+ drivers/gpu/drm/xe/xe_sched_job.h |  3 +++
+ drivers/gpu/drm/xe/xe_sync.c      |  7 +------
+ drivers/gpu/drm/xe/xe_sync.h      |  1 -
+ drivers/gpu/drm/xe/xe_vm.c        | 10 +++++-----
+ 6 files changed, 29 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
-index a35e0781b7b9..541361caff3b 100644
---- a/drivers/gpu/drm/xe/xe_bb.c
-+++ b/drivers/gpu/drm/xe/xe_bb.c
-@@ -86,7 +86,8 @@ struct xe_sched_job *xe_bb_create_migration_job(struct xe_exec_queue *q,
- 	};
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index 7692ebfe7d47..1fb4dd4d0557 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -249,7 +249,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 				goto err_unlock_list;
+ 			}
+ 			for (i = 0; i < num_syncs; i++)
+-				xe_sync_entry_signal(&syncs[i], NULL, fence);
++				xe_sync_entry_signal(&syncs[i], fence);
+ 			xe_exec_queue_last_fence_set(q, vm, fence);
+ 			dma_fence_put(fence);
+ 		}
+@@ -359,9 +359,11 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		drm_gpuvm_resv_add_fence(&vm->gpuvm, exec, &job->drm.s_fence->finished,
+ 					 DMA_RESV_USAGE_BOOKKEEP, DMA_RESV_USAGE_WRITE);
  
- 	xe_gt_assert(q-&gt;gt, second_idx &lt;= bb-&gt;len);
--	xe_gt_assert(q-&gt;gt, q-&gt;vm-&gt;flags &amp; XE_VM_FLAG_MIGRATION);
-+	xe_gt_assert(q-&gt;gt, xe_sched_job_is_migration(q));
-+	xe_gt_assert(q-&gt;gt, q-&gt;width == 1);
+-	for (i = 0; i < num_syncs; i++)
+-		xe_sync_entry_signal(&syncs[i], job,
+-				     &job->drm.s_fence->finished);
++	for (i = 0; i < num_syncs; i++) {
++		xe_sync_entry_signal(&syncs[i], &job->drm.s_fence->finished);
++		if (syncs[i].type == DRM_XE_SYNC_TYPE_USER_FENCE)
++			xe_sched_job_init_user_fence(job, &syncs[i]);
++	}
  
- 	return __xe_bb_create_job(q, bb, addr);
+ 	if (xe_exec_queue_is_lr(q))
+ 		q->ring_ops->emit_job(job);
+diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
+index 8151ddafb940..734900b9c7d2 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job.c
++++ b/drivers/gpu/drm/xe/xe_sched_job.c
+@@ -17,6 +17,7 @@
+ #include "xe_macros.h"
+ #include "xe_trace.h"
+ #include "xe_vm.h"
++#include "xe_sync_types.h"
+ 
+ static struct kmem_cache *xe_sched_job_slab;
+ static struct kmem_cache *xe_sched_job_parallel_slab;
+@@ -278,6 +279,19 @@ int xe_sched_job_last_fence_add_dep(struct xe_sched_job *job, struct xe_vm *vm)
+ 	return drm_sched_job_add_dependency(&job->drm, fence);
  }
-</pre>
-    </blockquote>
-  </body>
-</html>
+ 
++/**
++ * xe_sched_job_init_user_fence - Initialize user_fence for the job
++ * @job: job whose user_fence needs an init:w
++ * @sync: sync to be use to init user_fence
++ */
++void xe_sched_job_init_user_fence(struct xe_sched_job *job,
++				  struct xe_sync_entry *sync)
++{
++	job->user_fence.used = true;
++	job->user_fence.addr = sync->addr;
++	job->user_fence.value = sync->timeline_value;
++}
++
+ struct xe_sched_job_snapshot *
+ xe_sched_job_snapshot_capture(struct xe_sched_job *job)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_sched_job.h b/drivers/gpu/drm/xe/xe_sched_job.h
+index f1a660648cf0..c75018f4660d 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job.h
++++ b/drivers/gpu/drm/xe/xe_sched_job.h
+@@ -10,6 +10,7 @@
+ 
+ struct drm_printer;
+ struct xe_vm;
++struct xe_sync_entry;
+ 
+ #define XE_SCHED_HANG_LIMIT 1
+ #define XE_SCHED_JOB_TIMEOUT LONG_MAX
+@@ -58,6 +59,8 @@ void xe_sched_job_arm(struct xe_sched_job *job);
+ void xe_sched_job_push(struct xe_sched_job *job);
+ 
+ int xe_sched_job_last_fence_add_dep(struct xe_sched_job *job, struct xe_vm *vm);
++void xe_sched_job_init_user_fence(struct xe_sched_job *job,
++				  struct xe_sync_entry *sync);
+ 
+ static inline struct xe_sched_job *
+ to_xe_sched_job(struct drm_sched_job *drm)
+diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
+index 02c9577fe418..65f1f1628235 100644
+--- a/drivers/gpu/drm/xe/xe_sync.c
++++ b/drivers/gpu/drm/xe/xe_sync.c
+@@ -224,8 +224,7 @@ int xe_sync_entry_add_deps(struct xe_sync_entry *sync, struct xe_sched_job *job)
+ 	return 0;
+ }
+ 
+-void xe_sync_entry_signal(struct xe_sync_entry *sync, struct xe_sched_job *job,
+-			  struct dma_fence *fence)
++void xe_sync_entry_signal(struct xe_sync_entry *sync, struct dma_fence *fence)
+ {
+ 	if (!(sync->flags & DRM_XE_SYNC_FLAG_SIGNAL))
+ 		return;
+@@ -254,10 +253,6 @@ void xe_sync_entry_signal(struct xe_sync_entry *sync, struct xe_sched_job *job,
+ 			user_fence_put(sync->ufence);
+ 			dma_fence_put(fence);
+ 		}
+-	} else if (sync->type == DRM_XE_SYNC_TYPE_USER_FENCE) {
+-		job->user_fence.used = true;
+-		job->user_fence.addr = sync->addr;
+-		job->user_fence.value = sync->timeline_value;
+ 	}
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sync.h b/drivers/gpu/drm/xe/xe_sync.h
+index 0fd0d51208e6..3e03396af2c6 100644
+--- a/drivers/gpu/drm/xe/xe_sync.h
++++ b/drivers/gpu/drm/xe/xe_sync.h
+@@ -26,7 +26,6 @@ int xe_sync_entry_wait(struct xe_sync_entry *sync);
+ int xe_sync_entry_add_deps(struct xe_sync_entry *sync,
+ 			   struct xe_sched_job *job);
+ void xe_sync_entry_signal(struct xe_sync_entry *sync,
+-			  struct xe_sched_job *job,
+ 			  struct dma_fence *fence);
+ void xe_sync_entry_cleanup(struct xe_sync_entry *sync);
+ struct dma_fence *
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 80d43d75b1da..497e49b867fc 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1696,7 +1696,7 @@ xe_vm_unbind_vma(struct xe_vma *vma, struct xe_exec_queue *q,
+ 		xe_exec_queue_last_fence_get(wait_exec_queue, vm) : fence;
+ 	if (last_op) {
+ 		for (i = 0; i < num_syncs; i++)
+-			xe_sync_entry_signal(&syncs[i], NULL, fence);
++			xe_sync_entry_signal(&syncs[i], fence);
+ 	}
+ 
+ 	return fence;
+@@ -1770,7 +1770,7 @@ xe_vm_bind_vma(struct xe_vma *vma, struct xe_exec_queue *q,
+ 
+ 	if (last_op) {
+ 		for (i = 0; i < num_syncs; i++)
+-			xe_sync_entry_signal(&syncs[i], NULL,
++			xe_sync_entry_signal(&syncs[i],
+ 					     cf ? &cf->base : fence);
+ 	}
+ 
+@@ -1831,7 +1831,7 @@ static int __xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma,
+ 		fence = xe_exec_queue_last_fence_get(wait_exec_queue, vm);
+ 		if (last_op) {
+ 			for (i = 0; i < num_syncs; i++)
+-				xe_sync_entry_signal(&syncs[i], NULL, fence);
++				xe_sync_entry_signal(&syncs[i], fence);
+ 		}
+ 	}
+ 
+@@ -2052,7 +2052,7 @@ static int xe_vm_prefetch(struct xe_vm *vm, struct xe_vma *vma,
+ 				struct dma_fence *fence =
+ 					xe_exec_queue_last_fence_get(wait_exec_queue, vm);
+ 
+-				xe_sync_entry_signal(&syncs[i], NULL, fence);
++				xe_sync_entry_signal(&syncs[i], fence);
+ 				dma_fence_put(fence);
+ 			}
+ 		}
+@@ -2930,7 +2930,7 @@ static int vm_bind_ioctl_signal_fences(struct xe_vm *vm,
+ 		return PTR_ERR(fence);
+ 
+ 	for (i = 0; i < num_syncs; i++)
+-		xe_sync_entry_signal(&syncs[i], NULL, fence);
++		xe_sync_entry_signal(&syncs[i], fence);
+ 
+ 	xe_exec_queue_last_fence_set(to_wait_exec_queue(vm, q), vm,
+ 				     fence);
+-- 
+2.42.0
 
---------------3AuTBUuw8LFi2mFvhEtVAsWR--
