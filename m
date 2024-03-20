@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46D36CD11BF
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Mar 2024 18:40:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55575C54E58
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Mar 2024 18:40:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0209010FEDE;
-	Wed, 20 Mar 2024 18:40:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D4A410FEDF;
+	Wed, 20 Mar 2024 18:40:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xv5FtL3c";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jloqPHa1";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C2B910FED9
- for <intel-xe@lists.freedesktop.org>; Wed, 20 Mar 2024 18:40:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3A4310FEDA
+ for <intel-xe@lists.freedesktop.org>; Wed, 20 Mar 2024 18:40:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1710960008; x=1742496008;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=gHYBYFDXKsJgTXQiwTr+Nx8zJYcgL0E03nMuUk9IN+E=;
- b=Xv5FtL3cLkZArNrLPnuE6Zm/jKxr2NJFNSHIbUNBzNy4tWhavRNBUg6x
- CIT2MqiPNXesJI2EMLvjGPfoGgj7yWzM5P1iZwj+NS/kO4SZbbx7lm/So
- uGKsvF/TnostycMjtRKLR64oQkohUsBiztDGHkk+UkspUyg9I+nzG9zXo
- f8KH5uMQ5vaFv0WnC3qKJAt2i5v87ktHZ+DtGDsioZgfcaaMqEIzlyfqe
- KBjGZFNk0kur4YtB+s8aavQhY72t+6TaHCnRCc8ZzyZTO0ReJiiM2KEZx
- EIaLtyCh4sgweIX6rpWwGcHyayxTbKoQy3rRd37G1vl9Yq9dscVa3dr0M A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11019"; a="28382690"
-X-IronPort-AV: E=Sophos;i="6.07,140,1708416000"; d="scan'208";a="28382690"
+ bh=8HmiO0JWa8R76U7X6MFMD2dJ7U1HscuV79ycWsQJnEU=;
+ b=jloqPHa1EzzHfPH/tWvUOzq9dtq+YQsH8vxtszFODW4dBgQ5W0BIhfGx
+ 9Zy8WeTmQ603+BWbo/GKwqcmlPSh7A2cdA9TuTtovEY+y7LRWRAS6amq+
+ 5HgK9ixQu2Sbwz0XsogEDdUtw+myfHtsJcvwJ6C2LMJZH3HBWWYPkYYfm
+ aaWHMHxBSE58BWAno4W3vSd6eC39utZU+YSbGgOLkdumE9qLf6AMUdtM4
+ tQ1sugkiv4LrprI7A0tsK3GjkPMawZ04vh+sfgMOiBlmGhJHZrn4yXKVX
+ bDYA0W8CcUV9EtQnqUYYFKrf7AIgURe6gLk7Mips1GL6+qnCHNwgHIURf A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11019"; a="28382684"
+X-IronPort-AV: E=Sophos;i="6.07,140,1708416000"; d="scan'208";a="28382684"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2024 11:33:24 -0700
+ 20 Mar 2024 11:33:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,140,1708416000"; d="scan'208";a="14262467"
+X-IronPort-AV: E=Sophos;i="6.07,140,1708416000"; d="scan'208";a="14262463"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Mar 2024 11:33:22 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI  8/8] drm/xe: Use hmm_range_fault to populate user pages
-Date: Wed, 20 Mar 2024 14:45:42 -0400
-Message-Id: <20240320184542.2239076-8-oak.zeng@intel.com>
+Subject: [CI  4/8] drm/xe: Introduce a helper to get dpa from pfn
+Date: Wed, 20 Mar 2024 14:45:38 -0400
+Message-Id: <20240320184542.2239076-4-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240320184542.2239076-1-oak.zeng@intel.com>
 References: <20240320184542.2239076-1-oak.zeng@intel.com>
@@ -61,185 +61,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is an effort to unify hmmptr (aka system allocator)
-and userptr code. hmm_range_fault is used to populate
-a virtual address range for both hmmptr and userptr,
-instead of hmmptr using hmm_range_fault and userptr
-using get_user_pages_fast.
+Since we now create struct page backing for each vram page,
+each vram page now also has a pfn, just like system memory.
+This allow us to calcuate device physical address from pfn.
 
-This also aligns with AMD gpu driver's behavior. In
-long term, we plan to put some common helpers in this
-area to drm layer so it can be re-used by different
-vendors.
+v1: move the function to xe_svm.h (Matt)
+    s/vram_pfn_to_dpa/xe_mem_region_pfn_to_dpa (Matt)
+    add kernel document for the helper (Thomas)
 
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 122 ++++---------------------------------
- 1 file changed, 12 insertions(+), 110 deletions(-)
+ drivers/gpu/drm/xe/xe_svm.h | 27 +++++++++++++++++++++++++--
+ 1 file changed, 25 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 51d62323d9ee..11a4bb9d5415 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -38,6 +38,7 @@
- #include "xe_sync.h"
- #include "xe_trace.h"
- #include "xe_wa.h"
-+#include "xe_hmm.h"
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index e944971cfc6d..8a34429eb674 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -6,8 +6,31 @@
+ #ifndef __XE_SVM_H
+ #define __XE_SVM_H
  
- static struct drm_gem_object *xe_vm_obj(struct xe_vm *vm)
- {
-@@ -65,113 +66,21 @@ int xe_vma_userptr_check_repin(struct xe_userptr_vma *uvma)
+-struct xe_tile;
+-struct xe_mem_region;
++#include "xe_device_types.h"
++#include "xe_device.h"
++#include "xe_assert.h"
++
++/**
++ * xe_mem_region_pfn_to_dpa() - Calculate page's dpa from pfn
++ *
++ * @mr: The memory region that page resides in
++ * @pfn: page frame number of the page
++ *
++ * Returns: the device physical address of the page
++ */
++static inline u64 xe_mem_region_pfn_to_dpa(struct xe_mem_region *mr, u64 pfn)
++{
++	u64 dpa;
++	struct xe_tile *tile = xe_mem_region_to_tile(mr);
++	struct xe_device *xe = tile_to_xe(tile);
++	u64 offset;
++
++	xe_assert(xe, (pfn << PAGE_SHIFT) >= mr->hpa_base);
++	offset = (pfn << PAGE_SHIFT) - mr->hpa_base;
++	dpa = mr->dpa_base + offset;
++
++	return dpa;
++}
  
- int xe_vma_userptr_pin_pages(struct xe_userptr_vma *uvma)
- {
--	struct xe_userptr *userptr = &uvma->userptr;
- 	struct xe_vma *vma = &uvma->vma;
- 	struct xe_vm *vm = xe_vma_vm(vma);
- 	struct xe_device *xe = vm->xe;
--	const unsigned long num_pages = xe_vma_size(vma) >> PAGE_SHIFT;
--	struct page **pages;
--	bool in_kthread = !current->mm;
--	unsigned long notifier_seq;
--	int pinned, ret, i;
--	bool read_only = xe_vma_read_only(vma);
-+	struct xe_userptr *userptr;
-+	int ret;
- 
- 	lockdep_assert_held(&vm->lock);
- 	xe_assert(xe, xe_vma_is_userptr(vma));
--retry:
--	if (vma->gpuva.flags & XE_VMA_DESTROYED)
--		return 0;
--
--	notifier_seq = mmu_interval_read_begin(&userptr->notifier);
--	if (notifier_seq == userptr->notifier_seq)
--		return 0;
--
--	pages = kvmalloc_array(num_pages, sizeof(*pages), GFP_KERNEL);
--	if (!pages)
--		return -ENOMEM;
--
--	if (userptr->sg) {
--		dma_unmap_sgtable(xe->drm.dev,
--				  userptr->sg,
--				  read_only ? DMA_TO_DEVICE :
--				  DMA_BIDIRECTIONAL, 0);
--		sg_free_table(userptr->sg);
--		userptr->sg = NULL;
--	}
- 
--	pinned = ret = 0;
--	if (in_kthread) {
--		if (!mmget_not_zero(userptr->notifier.mm)) {
--			ret = -EFAULT;
--			goto mm_closed;
--		}
--		kthread_use_mm(userptr->notifier.mm);
--	}
--
--	while (pinned < num_pages) {
--		ret = get_user_pages_fast(xe_vma_userptr(vma) +
--					  pinned * PAGE_SIZE,
--					  num_pages - pinned,
--					  read_only ? 0 : FOLL_WRITE,
--					  &pages[pinned]);
--		if (ret < 0)
--			break;
-+	userptr = &uvma->userptr;
-+	mmap_read_lock(userptr->notifier.mm);
-+	ret = xe_userptr_populate_range(uvma);
-+	mmap_read_unlock(userptr->notifier.mm);
- 
--		pinned += ret;
--		ret = 0;
--	}
--
--	if (in_kthread) {
--		kthread_unuse_mm(userptr->notifier.mm);
--		mmput(userptr->notifier.mm);
--	}
--mm_closed:
--	if (ret)
--		goto out;
--
--	ret = sg_alloc_table_from_pages_segment(&userptr->sgt, pages,
--						pinned, 0,
--						(u64)pinned << PAGE_SHIFT,
--						xe_sg_segment_size(xe->drm.dev),
--						GFP_KERNEL);
--	if (ret) {
--		userptr->sg = NULL;
--		goto out;
--	}
--	userptr->sg = &userptr->sgt;
--
--	ret = dma_map_sgtable(xe->drm.dev, userptr->sg,
--			      read_only ? DMA_TO_DEVICE :
--			      DMA_BIDIRECTIONAL,
--			      DMA_ATTR_SKIP_CPU_SYNC |
--			      DMA_ATTR_NO_KERNEL_MAPPING);
--	if (ret) {
--		sg_free_table(userptr->sg);
--		userptr->sg = NULL;
--		goto out;
--	}
--
--	for (i = 0; i < pinned; ++i) {
--		if (!read_only) {
--			lock_page(pages[i]);
--			set_page_dirty(pages[i]);
--			unlock_page(pages[i]);
--		}
--
--		mark_page_accessed(pages[i]);
--	}
--
--out:
--	release_pages(pages, pinned);
--	kvfree(pages);
--
--	if (!(ret < 0)) {
--		userptr->notifier_seq = notifier_seq;
--		if (xe_vma_userptr_check_repin(uvma) == -EAGAIN)
--			goto retry;
--	}
--
--	return ret < 0 ? ret : 0;
-+	return ret;
- }
- 
- static bool preempt_fences_waiting(struct xe_vm *vm)
-@@ -917,8 +826,6 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- static void xe_vma_destroy_late(struct xe_vma *vma)
- {
- 	struct xe_vm *vm = xe_vma_vm(vma);
--	struct xe_device *xe = vm->xe;
--	bool read_only = xe_vma_read_only(vma);
- 
- 	if (vma->ufence) {
- 		xe_sync_ufence_put(vma->ufence);
-@@ -926,16 +833,11 @@ static void xe_vma_destroy_late(struct xe_vma *vma)
- 	}
- 
- 	if (xe_vma_is_userptr(vma)) {
--		struct xe_userptr *userptr = &to_userptr_vma(vma)->userptr;
-+		struct xe_userptr_vma *uvma = to_userptr_vma(vma);
-+		struct xe_userptr *userptr = &uvma->userptr;
- 
--		if (userptr->sg) {
--			dma_unmap_sgtable(xe->drm.dev,
--					  userptr->sg,
--					  read_only ? DMA_TO_DEVICE :
--					  DMA_BIDIRECTIONAL, 0);
--			sg_free_table(userptr->sg);
--			userptr->sg = NULL;
--		}
-+		if (userptr->sg)
-+			xe_userptr_free_sg(uvma);
- 
- 		/*
- 		 * Since userptr pages are not pinned, we can't remove
+ int xe_devm_add(struct xe_tile *tile, struct xe_mem_region *mr);
+ void xe_devm_remove(struct xe_tile *tile, struct xe_mem_region *mr);
 -- 
 2.26.3
 
