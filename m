@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30572CD11BF
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Mar 2024 13:44:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23DC8C6FD1F
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Mar 2024 13:44:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4EE510F9DA;
-	Wed, 20 Mar 2024 13:44:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HH5pv3Ks";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C91C210EE34
- for <intel-xe@lists.freedesktop.org>; Wed, 20 Mar 2024 13:44:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710942255; x=1742478255;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=NS4jYhi/d5Jwg4d4lKxf1WdmB8V2QBucZ4+25XzCZe0=;
- b=HH5pv3KsffD6UQtkgH97K03LQ+LNNp0M/llNUntnszDASg4q2VyPgLYc
- MHdxQs/45nscUsXhEuH0W7F6wQgKz9SgI6IkivXjO6Ogh8O8UhNZEf2oi
- Dj1EY6iLSAZYyfBWW5RAW/jD0HdPsAZAjhq1SYJ5WaK1s11ZrYX37vjQO
- gCCY5wYzL85Ml+9Gf0fjp6UhzOq8X3bOQtvj/TTm5WFBMxhnO8hzE7OgX
- N/HHSvnP3fDljizR+zEtVkbj0puZmN/I3dtFtQmcUh4CJlFtEogIzWilc
- /hBfMoJWIge0qNDEjItDCKMEdsqCRXXtMxsAPTX+fVzGZoRVY31MO9Eyl Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11018"; a="8811909"
-X-IronPort-AV: E=Sophos;i="6.07,140,1708416000"; 
-   d="scan'208";a="8811909"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2024 06:44:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,140,1708416000"; d="scan'208";a="18810099"
-Received: from prabaaax-mobl.gar.corp.intel.com (HELO fedora..)
- ([10.249.254.176])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2024 06:44:14 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [CI 8/8] drm/xe/bo: Allow migrating local bos to TT to make room in
- VRAM
-Date: Wed, 20 Mar 2024 14:43:56 +0100
-Message-ID: <20240320134356.73655-8-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240320134356.73655-1-thomas.hellstrom@linux.intel.com>
-References: <20240320134356.73655-1-thomas.hellstrom@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF68210E47E;
+	Wed, 20 Mar 2024 13:44:34 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C756A10E14E;
+ Wed, 20 Mar 2024 13:44:24 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2755045328785870663=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Create_a_helper_functi?=
+ =?utf-8?q?on_to_init_job=27s_user_fence?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 20 Mar 2024 13:44:24 -0000
+Message-ID: <171094226481.921315.127804340759746759@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240320124556.10337-1-nirmoy.das@intel.com>
+In-Reply-To: <20240320124556.10337-1-nirmoy.das@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,63 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If VRAM is full and we want to evict local bos we can't typically
-do that, since we require all local bos to be residient at
-execution time.
-But we're allowed to migrate to TT if that's a valid placement
-for GPU access, so in that case, do that.
+--===============2755045328785870663==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fixes: 24f947d58fe5 ("drm/xe: Use DRM GPUVM helpers for external- and evicted objects")
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Oded Gabbay <ogabbay@kernel.org>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_bo.c | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 87e6aff52ca6..1ed91fc83a05 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1019,6 +1019,21 @@ static void xe_ttm_bo_delete_mem_notify(struct ttm_buffer_object *ttm_bo)
- 	}
- }
- 
-+/*
-+ * Does @bo have @mem_type as an allowed placement?
-+ */
-+static bool xe_bo_may_reside_in(const struct xe_bo *bo, unsigned int mem_type)
-+{
-+	const struct ttm_placement *placement = &bo->placement;
-+	unsigned int i;
-+
-+	for (i = 0; i < placement->num_placement; ++i) {
-+		if (placement->placement[i].mem_type == mem_type)
-+			return true;
-+	}
-+	return false;
-+}
-+
- static bool xe_bo_eviction_valuable(struct ttm_buffer_object *ttm_bo,
- 				    const struct ttm_place *place)
- {
-@@ -1032,6 +1047,10 @@ static bool xe_bo_eviction_valuable(struct ttm_buffer_object *ttm_bo,
- 			/* Not bound to the vm? */
- 			if (list_empty(&ttm_bo->base.gpuva.list))
- 				goto allow;
-+			/* Is the bo gpu accessible even if placed in TT? */
-+			if (ttm_bo->resource && ttm_bo->resource->mem_type !=
-+			    XE_PL_TT && xe_bo_may_reside_in(xe_bo, XE_PL_TT))
-+				goto allow;
- 			return false;
- 		}
- 	}
--- 
-2.44.0
+Series: drm/xe: Create a helper function to init job's user fence
+URL   : https://patchwork.freedesktop.org/series/131371/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-964-b87a8b85562fc94e2314b61279ffa80b6c294cfa_BAT -> xe-pw-131371v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-964-b87a8b85562fc94e2314b61279ffa80b6c294cfa -> xe-pw-131371v1
+
+  IGT_7770: fef0422fd296f7c65724315f2a455ffb6959fb0d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-964-b87a8b85562fc94e2314b61279ffa80b6c294cfa: b87a8b85562fc94e2314b61279ffa80b6c294cfa
+  xe-pw-131371v1: 131371v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131371v1/index.html
+
+--===============2755045328785870663==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Create a helper function to init job&#x27;s user fence</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131371/">https://patchwork.freedesktop.org/series/131371/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131371v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131371v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-964-b87a8b85562fc94e2314b61279ffa80b6c294cfa_BAT -&gt; xe-pw-131371v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-964-b87a8b85562fc94e2314b61279ffa80b6c294cfa -&gt; xe-pw-131371v1</li>
+</ul>
+<p>IGT_7770: fef0422fd296f7c65724315f2a455ffb6959fb0d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-964-b87a8b85562fc94e2314b61279ffa80b6c294cfa: b87a8b85562fc94e2314b61279ffa80b6c294cfa<br />
+  xe-pw-131371v1: 131371v1</p>
+
+</body>
+</html>
+
+--===============2755045328785870663==--
