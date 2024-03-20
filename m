@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55DD5C54E58
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Mar 2024 10:10:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F27F1C54E67
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Mar 2024 10:13:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBDDB10F5C3;
-	Wed, 20 Mar 2024 10:10:51 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TDaaZwqo";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60C3410F58B
- for <intel-xe@lists.freedesktop.org>; Wed, 20 Mar 2024 10:10:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710929450; x=1742465450;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=3QGUfXU8rhFM12q/eC8vh8y4eCTmdlvVFGwC4IDyxHQ=;
- b=TDaaZwqoivTCGgFnvfuLHeOMvf5lOaSyXAhh6Xr+E+zfP+xYmk6ID/+I
- W2cx+5co3LmnnxdeNVDELj0pV6tsCeifyoS5EEoVrcu/CCJV/L4w6ot4g
- QP+wd78DR6BHncb+Eu+FchgHmDJjyZQiQIpwT7XUBVu3GgUT6pQCnsRxp
- RCHv2n/6yt2QhS0tgPcHxFImYc5BKTJBK5wt8MNBrsWJ22+FtU4T5d7ew
- AfKOp3rjMRvzfEIwRs+zj7AsCGXlAUeDesaPs4fjjRVCrlX7PFmbAT4vV
- 4kg1oA9kDgODGfWAQ8OvKVEdJMe6y0GRbW58trYA+Mx/hNi4gPD7b9mfN g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11018"; a="5723765"
-X-IronPort-AV: E=Sophos;i="6.07,139,1708416000"; 
-   d="scan'208";a="5723765"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2024 03:10:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,139,1708416000"; d="scan'208";a="37232890"
-Received: from suntharx-mobl1.gar.corp.intel.com (HELO fedora..)
- ([10.249.254.177])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2024 03:10:33 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [CI 5/8] drm/xe: Move vma rebinding to the drm_exec locking loop
-Date: Wed, 20 Mar 2024 11:10:17 +0100
-Message-ID: <20240320101020.5611-5-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240320101020.5611-1-thomas.hellstrom@linux.intel.com>
-References: <20240320101020.5611-1-thomas.hellstrom@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA3CA10F5C3;
+	Wed, 20 Mar 2024 10:13:00 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7878C10F5C3;
+ Wed, 20 Mar 2024 10:12:59 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/xe=5Fmigrate?=
+ =?utf-8?q?=3A_Fix_potential_overflows_expression?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 20 Mar 2024 10:12:59 -0000
+Message-ID: <171092957949.921171.1703755081475969362@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240320101835.3266429-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20240320101835.3266429-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,70 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Rebinding might allocate page-table bos, causing evictions.
-To support blocking locking during these evictions,
-perform the rebinding in the drm_exec locking loop.
+== Series Details ==
 
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_exec.c | 13 ++++++++++---
- drivers/gpu/drm/xe/xe_vm.c   | 12 +++++++++---
- 2 files changed, 19 insertions(+), 6 deletions(-)
+Series: drm/xe/xe_migrate: Fix potential overflows expression
+URL   : https://patchwork.freedesktop.org/series/131363/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-index 70b1c0ef3fee..a14a17588315 100644
---- a/drivers/gpu/drm/xe/xe_exec.c
-+++ b/drivers/gpu/drm/xe/xe_exec.c
-@@ -96,13 +96,20 @@
- 
- static int xe_exec_fn(struct drm_gpuvm_exec *vm_exec)
- {
-+	struct xe_vm *vm = container_of(vm_exec->vm, struct xe_vm, gpuvm);
- 	struct drm_gem_object *obj;
- 	unsigned long index;
- 	int ret;
- 
--	ret = drm_gpuvm_validate(vm_exec->vm, &vm_exec->exec);
--	if (ret)
--		return ret;
-+	do {
-+		ret = drm_gpuvm_validate(vm_exec->vm, &vm_exec->exec);
-+		if (ret)
-+			return ret;
-+
-+		ret = xe_vm_rebind(vm, false);
-+		if (ret)
-+			return ret;
-+	} while (!list_empty(&vm->gpuvm.evict.list));
- 
- 	drm_exec_for_each_locked_object(&vm_exec->exec, index, obj) {
- 		ret = dma_resv_reserve_fences(obj->resv, 1);
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index c8416d1d0bd6..5352654e2f61 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -512,9 +512,15 @@ static int xe_preempt_work_begin(struct drm_exec *exec, struct xe_vm *vm,
- 	if (err)
- 		return err;
- 
--	err = drm_gpuvm_validate(&vm->gpuvm, exec);
--	if (err)
--		return err;
-+	do {
-+		err = drm_gpuvm_validate(&vm->gpuvm, exec);
-+		if (err)
-+			return err;
-+
-+		err = xe_vm_rebind(vm, true);
-+		if (err)
-+			return err;
-+	} while (!list_empty(&vm->gpuvm.evict.list));
- 
- 	drm_exec_for_each_locked_object(exec, index, obj) {
- 		err = dma_resv_reserve_fences(obj->resv, vm->preempt.num_exec_queues);
--- 
-2.44.0
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 3f544919f5a9 drm-tip: 2024y-03m-20d-09h-16m-19s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/xe_migrate: Fix potential overflows expression
+
 
