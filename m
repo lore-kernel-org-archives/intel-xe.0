@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19B06CD11BF
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Mar 2024 03:12:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2653C54E58
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Mar 2024 03:12:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84A7B10E4BE;
-	Wed, 20 Mar 2024 03:12:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 882DF10E568;
+	Wed, 20 Mar 2024 03:12:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dBbI5pAI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iUPz053C";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2ABD210E4BE
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0B8510E4BE
  for <intel-xe@lists.freedesktop.org>; Wed, 20 Mar 2024 03:12:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710904361; x=1742440361;
+ t=1710904362; x=1742440362;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=uVqoHX45a0L1DY+/eU1yyseVvsPgwcWxeIwW5nSRAlk=;
- b=dBbI5pAIy/HaJqOHJU4dGN3ecDOTD9G/b+QfWigGkeTQUjTe/bEjjL9O
- yKSsvCA37Z8QSy0Fr8buea90r4gg8LKHfeoc+nhABswoTeb/wrQ1FIFmZ
- 5+uusd3W4GfMpI76W8lyXe4y1nMdz0lQCeZflxq2YmkXqJbxss9FztrZD
- Xqb5EMp77Y+0EChAbYgvV/077mlC/60N2aXIvCeEkMwKoO/pOroL0AfdJ
- E6bPtUplOqALWlmKedvdBav4af8fIE6b++yOYrjydFyl6jBlcF02yjHGo
- NtnNINSuTgV0k04qecoEy52UEMZ0dyHWyY+rf2ofCVFqat2LAhEcFB3cJ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11018"; a="16356325"
-X-IronPort-AV: E=Sophos;i="6.07,138,1708416000"; d="scan'208";a="16356325"
+ bh=gHYBYFDXKsJgTXQiwTr+Nx8zJYcgL0E03nMuUk9IN+E=;
+ b=iUPz053C9Rvud6F/ENu1ae3Go9sHa/BGS/1IxwkPeNw/7DIvO4kh5qY7
+ 4VZ6bwvi8MGcJse9GB659U7mso3OWxFH+IO9TnoGGMNLG3nV65MQ3EjcC
+ M2ghEVpDBovxilNOJu/09Z/QBb31OWRX+qR1cBiYwDpn+nPbU5TLxQk1I
+ O6n0W5WOHLd6L2mApc1OQxlSjuH8nxVCQWBkRhfJrHF8ojU34ABM9kd3u
+ Mgp/6Aqg+01flzypFgSyjqjpWijbiuPuMToY5k0pUkfxq4yoslgso0O9o
+ mOEX/cMtq1wzAkRvzCJWMroVN09Z/BGnN5nZBqTwNv7ksQG1s2Pot/Wnw w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11018"; a="16356331"
+X-IronPort-AV: E=Sophos;i="6.07,138,1708416000"; d="scan'208";a="16356331"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2024 20:12:40 -0700
+ 19 Mar 2024 20:12:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,138,1708416000"; d="scan'208";a="18666583"
+X-IronPort-AV: E=Sophos;i="6.07,138,1708416000"; d="scan'208";a="18666601"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2024 20:12:40 -0700
+ 19 Mar 2024 20:12:41 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: thomas.hellstrom@intel.com, matthew.brost@intel.com, brian.welty@intel.com,
  himal.prasad.ghimiray@intel.com
-Subject: [PATCH 2/8] drm/xe/svm: Introduce DRM_XE_SVM kernel config
-Date: Tue, 19 Mar 2024 23:24:51 -0400
-Message-Id: <20240320032457.1778608-3-oak.zeng@intel.com>
+Subject: [PATCH 8/8] drm/xe: Use hmm_range_fault to populate user pages
+Date: Tue, 19 Mar 2024 23:24:57 -0400
+Message-Id: <20240320032457.1778608-9-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240320032457.1778608-1-oak.zeng@intel.com>
 References: <20240320032457.1778608-1-oak.zeng@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,79 +63,185 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce a DRM_XE_SVM kernel config entry for
-xe svm feature. xe svm feature allows share
-virtual address space between CPU and GPU program.
+This is an effort to unify hmmptr (aka system allocator)
+and userptr code. hmm_range_fault is used to populate
+a virtual address range for both hmmptr and userptr,
+instead of hmmptr using hmm_range_fault and userptr
+using get_user_pages_fast.
 
-v1: Improve commit message (Thomas)
-    Avoid using #if directive (Thomas)
+This also aligns with AMD gpu driver's behavior. In
+long term, we plan to put some common helpers in this
+area to drm layer so it can be re-used by different
+vendors.
 
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-Co-developed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@intel.com>
-Cc: Brian Welty <brian.welty@intel.com>
 ---
- drivers/gpu/drm/xe/Kconfig   | 21 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_tile.c |  4 +++-
- 2 files changed, 24 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_vm.c | 122 ++++---------------------------------
+ 1 file changed, 12 insertions(+), 110 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-index 1a556d087e63..e244165459c5 100644
---- a/drivers/gpu/drm/xe/Kconfig
-+++ b/drivers/gpu/drm/xe/Kconfig
-@@ -83,6 +83,27 @@ config DRM_XE_FORCE_PROBE
- 	  4571.
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 51d62323d9ee..11a4bb9d5415 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -38,6 +38,7 @@
+ #include "xe_sync.h"
+ #include "xe_trace.h"
+ #include "xe_wa.h"
++#include "xe_hmm.h"
  
- 	  Use "!*" to block the probe of the driver for all known devices.
-+config DRM_XE_SVM
-+	bool "Enable Shared Virtual Memory support in xe"
-+	depends on DRM_XE
-+	depends on ARCH_ENABLE_MEMORY_HOTPLUG
-+	depends on ARCH_ENABLE_MEMORY_HOTREMOVE
-+	depends on MEMORY_HOTPLUG
-+	depends on MEMORY_HOTREMOVE
-+	depends on ARCH_HAS_PTE_DEVMAP
-+	depends on SPARSEMEM_VMEMMAP
-+	depends on ZONE_DEVICE
-+	depends on DEVICE_PRIVATE
-+	depends on MMU
-+	select HMM_MIRROR
-+	select MMU_NOTIFIER
-+	default y
-+	help
-+	  Choose this option if you want Shared Virtual Memory (SVM)
-+	  support in xe. With SVM, virtual address space is shared
-+	  between CPU and GPU. This means any virtual address such
-+	  as malloc or mmap returns, variables on stack, or global
-+	  memory pointers, can be used for GPU transparently.
- 
- menu "drm/Xe Debugging"
- depends on DRM_XE
-diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-index f1c4f9de51df..a484799364c9 100644
---- a/drivers/gpu/drm/xe/xe_tile.c
-+++ b/drivers/gpu/drm/xe/xe_tile.c
-@@ -159,7 +159,9 @@ static int tile_ttm_mgr_init(struct xe_tile *tile)
-  */
- int xe_tile_init_noalloc(struct xe_tile *tile)
+ static struct drm_gem_object *xe_vm_obj(struct xe_vm *vm)
  {
-+#if IS_ENABLED(CONFIG_DRM_XE_SVM)
- 	struct xe_device *xe = tile_to_xe(tile);
-+#endif
- 	int err;
+@@ -65,113 +66,21 @@ int xe_vma_userptr_check_repin(struct xe_userptr_vma *uvma)
  
- 	xe_device_mem_access_get(tile_to_xe(tile));
-@@ -177,7 +179,7 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
+ int xe_vma_userptr_pin_pages(struct xe_userptr_vma *uvma)
+ {
+-	struct xe_userptr *userptr = &uvma->userptr;
+ 	struct xe_vma *vma = &uvma->vma;
+ 	struct xe_vm *vm = xe_vma_vm(vma);
+ 	struct xe_device *xe = vm->xe;
+-	const unsigned long num_pages = xe_vma_size(vma) >> PAGE_SHIFT;
+-	struct page **pages;
+-	bool in_kthread = !current->mm;
+-	unsigned long notifier_seq;
+-	int pinned, ret, i;
+-	bool read_only = xe_vma_read_only(vma);
++	struct xe_userptr *userptr;
++	int ret;
  
- 	xe_tile_sysfs_init(tile);
+ 	lockdep_assert_held(&vm->lock);
+ 	xe_assert(xe, xe_vma_is_userptr(vma));
+-retry:
+-	if (vma->gpuva.flags & XE_VMA_DESTROYED)
+-		return 0;
+-
+-	notifier_seq = mmu_interval_read_begin(&userptr->notifier);
+-	if (notifier_seq == userptr->notifier_seq)
+-		return 0;
+-
+-	pages = kvmalloc_array(num_pages, sizeof(*pages), GFP_KERNEL);
+-	if (!pages)
+-		return -ENOMEM;
+-
+-	if (userptr->sg) {
+-		dma_unmap_sgtable(xe->drm.dev,
+-				  userptr->sg,
+-				  read_only ? DMA_TO_DEVICE :
+-				  DMA_BIDIRECTIONAL, 0);
+-		sg_free_table(userptr->sg);
+-		userptr->sg = NULL;
+-	}
  
--	if (xe->info.has_usm)
-+	if (IS_ENABLED(CONFIG_DRM_XE_SVM) && xe->info.has_usm)
- 		xe_devm_add(tile, &tile->mem.vram);
- err_mem_access:
- 	xe_device_mem_access_put(tile_to_xe(tile));
+-	pinned = ret = 0;
+-	if (in_kthread) {
+-		if (!mmget_not_zero(userptr->notifier.mm)) {
+-			ret = -EFAULT;
+-			goto mm_closed;
+-		}
+-		kthread_use_mm(userptr->notifier.mm);
+-	}
+-
+-	while (pinned < num_pages) {
+-		ret = get_user_pages_fast(xe_vma_userptr(vma) +
+-					  pinned * PAGE_SIZE,
+-					  num_pages - pinned,
+-					  read_only ? 0 : FOLL_WRITE,
+-					  &pages[pinned]);
+-		if (ret < 0)
+-			break;
++	userptr = &uvma->userptr;
++	mmap_read_lock(userptr->notifier.mm);
++	ret = xe_userptr_populate_range(uvma);
++	mmap_read_unlock(userptr->notifier.mm);
+ 
+-		pinned += ret;
+-		ret = 0;
+-	}
+-
+-	if (in_kthread) {
+-		kthread_unuse_mm(userptr->notifier.mm);
+-		mmput(userptr->notifier.mm);
+-	}
+-mm_closed:
+-	if (ret)
+-		goto out;
+-
+-	ret = sg_alloc_table_from_pages_segment(&userptr->sgt, pages,
+-						pinned, 0,
+-						(u64)pinned << PAGE_SHIFT,
+-						xe_sg_segment_size(xe->drm.dev),
+-						GFP_KERNEL);
+-	if (ret) {
+-		userptr->sg = NULL;
+-		goto out;
+-	}
+-	userptr->sg = &userptr->sgt;
+-
+-	ret = dma_map_sgtable(xe->drm.dev, userptr->sg,
+-			      read_only ? DMA_TO_DEVICE :
+-			      DMA_BIDIRECTIONAL,
+-			      DMA_ATTR_SKIP_CPU_SYNC |
+-			      DMA_ATTR_NO_KERNEL_MAPPING);
+-	if (ret) {
+-		sg_free_table(userptr->sg);
+-		userptr->sg = NULL;
+-		goto out;
+-	}
+-
+-	for (i = 0; i < pinned; ++i) {
+-		if (!read_only) {
+-			lock_page(pages[i]);
+-			set_page_dirty(pages[i]);
+-			unlock_page(pages[i]);
+-		}
+-
+-		mark_page_accessed(pages[i]);
+-	}
+-
+-out:
+-	release_pages(pages, pinned);
+-	kvfree(pages);
+-
+-	if (!(ret < 0)) {
+-		userptr->notifier_seq = notifier_seq;
+-		if (xe_vma_userptr_check_repin(uvma) == -EAGAIN)
+-			goto retry;
+-	}
+-
+-	return ret < 0 ? ret : 0;
++	return ret;
+ }
+ 
+ static bool preempt_fences_waiting(struct xe_vm *vm)
+@@ -917,8 +826,6 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ static void xe_vma_destroy_late(struct xe_vma *vma)
+ {
+ 	struct xe_vm *vm = xe_vma_vm(vma);
+-	struct xe_device *xe = vm->xe;
+-	bool read_only = xe_vma_read_only(vma);
+ 
+ 	if (vma->ufence) {
+ 		xe_sync_ufence_put(vma->ufence);
+@@ -926,16 +833,11 @@ static void xe_vma_destroy_late(struct xe_vma *vma)
+ 	}
+ 
+ 	if (xe_vma_is_userptr(vma)) {
+-		struct xe_userptr *userptr = &to_userptr_vma(vma)->userptr;
++		struct xe_userptr_vma *uvma = to_userptr_vma(vma);
++		struct xe_userptr *userptr = &uvma->userptr;
+ 
+-		if (userptr->sg) {
+-			dma_unmap_sgtable(xe->drm.dev,
+-					  userptr->sg,
+-					  read_only ? DMA_TO_DEVICE :
+-					  DMA_BIDIRECTIONAL, 0);
+-			sg_free_table(userptr->sg);
+-			userptr->sg = NULL;
+-		}
++		if (userptr->sg)
++			xe_userptr_free_sg(uvma);
+ 
+ 		/*
+ 		 * Since userptr pages are not pinned, we can't remove
 -- 
 2.26.3
 
