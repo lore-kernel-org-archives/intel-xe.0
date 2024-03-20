@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C13BC6FD1F
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Mar 2024 14:36:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02C2AC54E58
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Mar 2024 15:01:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE24510F950;
-	Wed, 20 Mar 2024 14:36:12 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD1CB10FD02;
- Wed, 20 Mar 2024 14:36:11 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1502718602572885548=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id A301B10FD29;
+	Wed, 20 Mar 2024 15:01:31 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XpCySmLw";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8351310FD29
+ for <intel-xe@lists.freedesktop.org>; Wed, 20 Mar 2024 15:01:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1710946891; x=1742482891;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Ezny5WcoBhIECU7/MPmqcmmf5yzvxNrEJJyqCarSok8=;
+ b=XpCySmLwTXN5zXqhbfcLVx9KROzGTCvvtVovSdxSV0lZiPkZmhMzWwXn
+ givW1p85IoJv723TEWcOBzOP4DCn78uP5dxgS6oMrYteAyla6IE+5Q9nR
+ dNXoiVcEzRLJ254IrY2bhblUQhiJensCqUESZJn7EOZQs9jtq/GTSJRLU
+ jlQ4ezQTXfc3cUUA6oAXo5OhBB+udwbwWQOzE1djXncY04Dy9QhEY7uTI
+ tJibaaBZzCO0peq+YwkymhR7I5YkPKEE/iM2gyzG1T8HsWnrgaeLWU60U
+ Ds1NIs4Br8+uJvd3pv6/ZBwH91w1d2YmB5DHdFJ6aOIOWp2Ah/B7Uy91k g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11019"; a="6083835"
+X-IronPort-AV: E=Sophos;i="6.07,140,1708416000"; 
+   d="scan'208";a="6083835"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2024 08:00:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,140,1708416000"; d="scan'208";a="37295445"
+Received: from nneronin-mobl1.ger.corp.intel.com (HELO 5667c389f9fd.intel.com)
+ ([10.249.32.77])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2024 08:00:43 -0700
+From: Francois Dugast <francois.dugast@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Francois Dugast <francois.dugast@intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ Robert Krzemien <robert.krzemien@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: [PATCH v2] drm/xe/uapi: Add L3 bank mask to topology query
+Date: Wed, 20 Mar 2024 15:00:27 +0000
+Message-Id: <20240320150027.7-1-francois.dugast@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_series_starting_with_=5BCI=2C1/8?=
- =?utf-8?q?=5D_drm/xe=3A_Make_TLB_invalidation_fences_unordered?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 20 Mar 2024 14:36:11 -0000
-Message-ID: <171094537177.921419.14355853147837352604@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240320134356.73655-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20240320134356.73655-1-thomas.hellstrom@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,174 +62,227 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1502718602572885548==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Extend the existing topology uAPI to expose the masks of L3 banks
+to user space. L3 count is not sufficient because in some configuration
+not all banks are enabled. User space needs to know which ones are
+enabled, in the context of OA.
 
-== Series Details ==
+v2:
+- Remove "Fixes" and make uAPI change explicit in commit message
+  (Lucas De Marchi and Matt Roper)
+- Add separate conditions for Xe2 and for PVC (Matt Roper)
+- Return the L3 bank mask instead of the L3 node mask and the L3
+  banks per node mask, as the node mask can be derived from the
+  bank mask by user space, just like slice masks are derived from
+  subslice masks today (Francois Dugast)
 
-Series: series starting with [CI,1/8] drm/xe: Make TLB invalidation fences unordered
-URL   : https://patchwork.freedesktop.org/series/131373/
-State : failure
+Bspec: 52545, 52546, 62482
+Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Cc: Robert Krzemien <robert.krzemien@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |  3 ++
+ drivers/gpu/drm/xe/xe_gt_topology.c  | 72 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_types.h     | 14 ++++--
+ drivers/gpu/drm/xe/xe_query.c        | 12 ++++-
+ include/uapi/drm/xe_drm.h            |  1 +
+ 5 files changed, 96 insertions(+), 6 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 95969935f58b..be5b4936eb53 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -156,7 +156,10 @@
+ #define	MIRROR_FUSE3				XE_REG(0x9118)
+ #define   XE2_NODE_ENABLE_MASK			REG_GENMASK(31, 16)
+ #define   L3BANK_PAIR_COUNT			4
++#define   XEHPC_GT_L3_MODE_MASK			REG_GENMASK(7, 4)
++#define   XE2_GT_L3_MODE_MASK			REG_GENMASK(7, 4)
+ #define   L3BANK_MASK				REG_GENMASK(3, 0)
++#define   XELP_GT_L3_MODE_MASK			REG_GENMASK(7, 0)
+ /* on Xe_HP the same fuses indicates mslices instead of L3 banks */
+ #define   MAX_MSLICES				4
+ #define   MEML3_EN_MASK				REG_GENMASK(3, 0)
+diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
+index f5773a14f3c8..8920426332dd 100644
+--- a/drivers/gpu/drm/xe/xe_gt_topology.c
++++ b/drivers/gpu/drm/xe/xe_gt_topology.c
+@@ -59,6 +59,75 @@ load_eu_mask(struct xe_gt *gt, xe_eu_mask_t mask)
+ 	bitmap_from_arr32(mask, &val, XE_MAX_EU_FUSE_BITS);
+ }
+ 
++static void
++load_l3_bank_mask(struct xe_gt *gt, xe_l3_bank_mask_t l3_bank_mask)
++{
++	struct xe_device *xe = gt_to_xe(gt);
++	u64 node_mask, bank_mask = 0;
++	u64 banks_per_node_fuse, banks_per_node_mask = 0;
++	int i;
++
++	if (GRAPHICS_VER(xe) >= 20) {
++		node_mask =
++			REG_FIELD_GET(XE2_NODE_ENABLE_MASK,
++				      xe_mmio_read32(gt, MIRROR_FUSE3));
++		banks_per_node_mask =
++			REG_FIELD_GET(XE2_GT_L3_MODE_MASK,
++				      xe_mmio_read32(gt, MIRROR_FUSE3));
++		for (i = 0; i < fls(node_mask); i++)
++			if (node_mask & BIT(i))
++				bank_mask |= banks_per_node_mask << 4 * i;
++	} else if (GRAPHICS_VERx100(xe) >= 1270) {
++		node_mask =
++			REG_FIELD_GET(MEML3_EN_MASK,
++				      xe_mmio_read32(gt, MIRROR_FUSE3));
++		banks_per_node_fuse =
++			REG_FIELD_GET(GT_L3_EXC_MASK,
++				      xe_mmio_read32(gt, XEHP_FUSE4));
++		/* Each bit represents 2 banks in the node. */
++		for (i = 0; i < fls(banks_per_node_fuse); i++)
++			if (banks_per_node_fuse & BIT(i))
++				banks_per_node_mask |= 0x3 << 2 * i;
++		for (i = 0; i < fls(node_mask); i++)
++			if (node_mask & BIT(i))
++				bank_mask |= banks_per_node_mask << 4 * i;
++	} else if (xe->info.platform == XE_PVC) {
++		node_mask =
++			REG_FIELD_GET(MEML3_EN_MASK,
++				      xe_mmio_read32(gt, MIRROR_FUSE3));
++		banks_per_node_fuse =
++			REG_FIELD_GET(XEHPC_GT_L3_MODE_MASK,
++				      xe_mmio_read32(gt, MIRROR_FUSE3));
++		/* Each bit represents 4 banks in the node. */
++		for (i = 0; i < fls(banks_per_node_fuse); i++)
++			if (banks_per_node_fuse & BIT(i))
++				banks_per_node_mask |= 0xf << 4 * i;
++		for (i = 0; i < fls(node_mask); i++)
++			if (node_mask & BIT(i))
++				bank_mask |= banks_per_node_mask << 16 * i;
++	} else if (xe->info.platform == XE_DG2) {
++		node_mask =
++			REG_FIELD_GET(MEML3_EN_MASK,
++				      xe_mmio_read32(gt, MIRROR_FUSE3));
++		/*
++		 * In this case, if a node is present then all 8 banks inside of
++		 * it are present.
++		 */
++		for (i = 0; i < fls(node_mask); i++)
++			if (node_mask & BIT(i))
++				bank_mask |= 0xfful << 8 * i;
++	} else {
++		/*
++		 * Here the mask logic is reversed: a bit is set if the bank is
++		 * disabled.
++		 */
++		bank_mask = REG_FIELD_GET(XELP_GT_L3_MODE_MASK,
++					  ~xe_mmio_read32(gt, MIRROR_FUSE3));
++	}
++
++	bitmap_from_arr64(l3_bank_mask, &bank_mask, XE_MAX_L3_BANK_FUSE_BITS);
++}
++
+ static void
+ get_num_dss_regs(struct xe_device *xe, int *geometry_regs, int *compute_regs)
+ {
+@@ -103,6 +172,7 @@ xe_gt_topology_init(struct xe_gt *gt)
+ 		      XEHPC_GT_COMPUTE_DSS_ENABLE_EXT,
+ 		      XE2_GT_COMPUTE_DSS_2);
+ 	load_eu_mask(gt, gt->fuse_topo.eu_mask_per_dss);
++	load_l3_bank_mask(gt, gt->fuse_topo.l3_bank_mask);
+ 
+ 	p = drm_dbg_printer(&gt_to_xe(gt)->drm, DRM_UT_DRIVER, "GT topology");
+ 
+@@ -120,6 +190,8 @@ xe_gt_topology_dump(struct xe_gt *gt, struct drm_printer *p)
+ 	drm_printf(p, "EU mask per DSS:     %*pb\n", XE_MAX_EU_FUSE_BITS,
+ 		   gt->fuse_topo.eu_mask_per_dss);
+ 
++	drm_printf(p, "L3 bank mask:        %*pb\n", XE_MAX_L3_BANK_FUSE_BITS,
++		   gt->fuse_topo.l3_bank_mask);
+ }
+ 
+ /*
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index f6da2ad9719f..e1438a478f94 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -24,13 +24,16 @@ enum xe_gt_type {
+ 	XE_GT_TYPE_MEDIA,
+ };
+ 
+-#define XE_MAX_DSS_FUSE_REGS	3
+-#define XE_MAX_DSS_FUSE_BITS	(32 * XE_MAX_DSS_FUSE_REGS)
+-#define XE_MAX_EU_FUSE_REGS	1
+-#define XE_MAX_EU_FUSE_BITS	(32 * XE_MAX_EU_FUSE_REGS)
++#define XE_MAX_DSS_FUSE_REGS		3
++#define XE_MAX_DSS_FUSE_BITS		(32 * XE_MAX_DSS_FUSE_REGS)
++#define XE_MAX_EU_FUSE_REGS		1
++#define XE_MAX_EU_FUSE_BITS		(32 * XE_MAX_EU_FUSE_REGS)
++#define XE_MAX_L3_BANK_FUSE_REGS	2
++#define XE_MAX_L3_BANK_FUSE_BITS	(32 * XE_MAX_L3_BANK_FUSE_REGS)
+ 
+ typedef unsigned long xe_dss_mask_t[BITS_TO_LONGS(XE_MAX_DSS_FUSE_BITS)];
+ typedef unsigned long xe_eu_mask_t[BITS_TO_LONGS(XE_MAX_EU_FUSE_BITS)];
++typedef unsigned long xe_l3_bank_mask_t[BITS_TO_LONGS(XE_MAX_L3_BANK_FUSE_BITS)];
+ 
+ struct xe_mmio_range {
+ 	u32 start;
+@@ -334,6 +337,9 @@ struct xe_gt {
+ 
+ 		/** @fuse_topo.eu_mask_per_dss: EU mask per DSS*/
+ 		xe_eu_mask_t eu_mask_per_dss;
++
++		/** @l3_bank_mask: L3 bank mask */
++		xe_l3_bank_mask_t l3_bank_mask;
+ 	} fuse_topo;
+ 
+ 	/** @steering: register steering for individual HW units */
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index e80321b34918..0a064c12d80a 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -453,10 +453,11 @@ static int query_hwconfig(struct xe_device *xe,
+ static size_t calc_topo_query_size(struct xe_device *xe)
+ {
+ 	return xe->info.gt_count *
+-		(3 * sizeof(struct drm_xe_query_topology_mask) +
++		(4 * sizeof(struct drm_xe_query_topology_mask) +
+ 		 sizeof_field(struct xe_gt, fuse_topo.g_dss_mask) +
+ 		 sizeof_field(struct xe_gt, fuse_topo.c_dss_mask) +
+-		 sizeof_field(struct xe_gt, fuse_topo.eu_mask_per_dss));
++		 sizeof_field(struct xe_gt, fuse_topo.eu_mask_per_dss) +
++		 sizeof_field(struct xe_gt, fuse_topo.l3_bank_mask));
+ }
+ 
+ static int copy_mask(void __user **ptr,
+@@ -515,6 +516,13 @@ static int query_gt_topology(struct xe_device *xe,
+ 				sizeof(gt->fuse_topo.eu_mask_per_dss));
+ 		if (err)
+ 			return err;
++
++		topo.type = DRM_XE_TOPO_L3_BANK;
++		err = copy_mask(&query_ptr, &topo,
++				gt->fuse_topo.l3_bank_mask,
++				sizeof(gt->fuse_topo.l3_bank_mask));
++		if (err)
++			return err;
+ 	}
+ 
+ 	return 0;
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 808ad1c308ec..aa917308cdeb 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -521,6 +521,7 @@ struct drm_xe_query_topology_mask {
+ #define DRM_XE_TOPO_DSS_GEOMETRY	(1 << 0)
+ #define DRM_XE_TOPO_DSS_COMPUTE		(1 << 1)
+ #define DRM_XE_TOPO_EU_PER_DSS		(1 << 2)
++#define DRM_XE_TOPO_L3_BANK		(1 << 3)
+ 	/** @type: type of mask */
+ 	__u16 type;
+ 
+-- 
+2.34.1
 
-CI Bug Log - changes from xe-964-b87a8b85562fc94e2314b61279ffa80b6c294cfa_BAT -> xe-pw-131373v1_BAT
-====================================================
-
-Summary
--------
-
-  **WARNING**
-
-  Minor unknown changes coming with xe-pw-131373v1_BAT need to be verified
-  manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-131373v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-131373v1_BAT:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@xe_evict@evict-beng-small:
-    - bat-pvc-2:          [FAIL][1] ([Intel XE#1000]) -> [TIMEOUT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-964-b87a8b85562fc94e2314b61279ffa80b6c294cfa/bat-pvc-2/igt@xe_evict@evict-beng-small.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131373v1/bat-pvc-2/igt@xe_evict@evict-beng-small.html
-
-  * igt@xe_evict@evict-beng-small-cm:
-    - bat-pvc-2:          [DMESG-FAIL][3] ([Intel XE#482]) -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-964-b87a8b85562fc94e2314b61279ffa80b6c294cfa/bat-pvc-2/igt@xe_evict@evict-beng-small-cm.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131373v1/bat-pvc-2/igt@xe_evict@evict-beng-small-cm.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-131373v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_evict@evict-cm-threads-small:
-    - bat-dg2-oem2:       [PASS][5] -> [TIMEOUT][6] ([Intel XE#1259])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-964-b87a8b85562fc94e2314b61279ffa80b6c294cfa/bat-dg2-oem2/igt@xe_evict@evict-cm-threads-small.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131373v1/bat-dg2-oem2/igt@xe_evict@evict-cm-threads-small.html
-
-  
-  [Intel XE#1000]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1000
-  [Intel XE#1259]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1259
-  [Intel XE#482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/482
-
-
-Build changes
--------------
-
-  * Linux: xe-964-b87a8b85562fc94e2314b61279ffa80b6c294cfa -> xe-pw-131373v1
-
-  IGT_7770: fef0422fd296f7c65724315f2a455ffb6959fb0d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-964-b87a8b85562fc94e2314b61279ffa80b6c294cfa: b87a8b85562fc94e2314b61279ffa80b6c294cfa
-  xe-pw-131373v1: 131373v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131373v1/index.html
-
---===============1502718602572885548==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [CI,1/8] drm/xe: Make TLB invalidation fences unordered</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131373/">https://patchwork.freedesktop.org/series/131373/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131373v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131373v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-964-b87a8b85562fc94e2314b61279ffa80b6c294cfa_BAT -&gt; xe-pw-131373v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>WARNING</strong></p>
-<p>Minor unknown changes coming with xe-pw-131373v1_BAT need to be verified<br />
-  manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-131373v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-131373v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@xe_evict@evict-beng-small:</p>
-<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-964-b87a8b85562fc94e2314b61279ffa80b6c294cfa/bat-pvc-2/igt@xe_evict@evict-beng-small.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1000">Intel XE#1000</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131373v1/bat-pvc-2/igt@xe_evict@evict-beng-small.html">TIMEOUT</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-beng-small-cm:</p>
-<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-964-b87a8b85562fc94e2314b61279ffa80b6c294cfa/bat-pvc-2/igt@xe_evict@evict-beng-small-cm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/482">Intel XE#482</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131373v1/bat-pvc-2/igt@xe_evict@evict-beng-small-cm.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-131373v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_evict@evict-cm-threads-small:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-964-b87a8b85562fc94e2314b61279ffa80b6c294cfa/bat-dg2-oem2/igt@xe_evict@evict-cm-threads-small.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131373v1/bat-dg2-oem2/igt@xe_evict@evict-cm-threads-small.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1259">Intel XE#1259</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-964-b87a8b85562fc94e2314b61279ffa80b6c294cfa -&gt; xe-pw-131373v1</li>
-</ul>
-<p>IGT_7770: fef0422fd296f7c65724315f2a455ffb6959fb0d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-964-b87a8b85562fc94e2314b61279ffa80b6c294cfa: b87a8b85562fc94e2314b61279ffa80b6c294cfa<br />
-  xe-pw-131373v1: 131373v1</p>
-
-</body>
-</html>
-
---===============1502718602572885548==--
