@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69F6EC54E67
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Mar 2024 03:13:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 709BBC54E67
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Mar 2024 03:13:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23E8D10E4B1;
-	Wed, 20 Mar 2024 03:13:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DA4110E179;
+	Wed, 20 Mar 2024 03:13:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W9np9Y9r";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nesRMwuV";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3BFF10E4B2
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39EA710E568
  for <intel-xe@lists.freedesktop.org>; Wed, 20 Mar 2024 03:12:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1710904361; x=1742440361;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=j4E4oIDJdfwA0J7BT0iedgyky2D/c+Cj4Vuy3MmF5/s=;
- b=W9np9Y9ruHxtZUyyRmmxst+xwcz+g5Vd6bmjUBZ1XuW1gO7NQ3b6vD4Q
- PPSRCoypxoHUsc+cAYcZhtMM77dxi5l6P6b5slTEQqrsPnxp4tKL06ppz
- e32LyBVnw0q1uH7aobG0UkZqLm6O4cwn5Xza8hImGZ8IchkO24D8H6RdD
- p1nRhnEWd+G56+S4eeRA0qP1lN8khspvs90kGRumebiFv6DcqLUXkRqTP
- c6MAOvEHsaAmz7bVU8X1GKAOtspkGIZWlNTXAoCg5mOXTgH1ANzr8ckae
- JPWbj813IDDigw3Ps2r+70M3brKe10YE+hJwNMcwK+DxpZED7rIk9dPQn Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11018"; a="16356330"
-X-IronPort-AV: E=Sophos;i="6.07,138,1708416000"; d="scan'208";a="16356330"
+ bh=8HmiO0JWa8R76U7X6MFMD2dJ7U1HscuV79ycWsQJnEU=;
+ b=nesRMwuVZ691otGTS6O9f3cLog5PgLbLCy5hv/Ory5BxqCLXMpkf2HEu
+ u9JwlvpwyhXMXg4RzYfNi6HJnAusZZITwnoFO1oT+uYGG4yv18JAHhKEG
+ VyFgEWpL+E/Rxw2hUZLYJyO50wZeA9lE0XF01+vu9SklBka+rUuQEun36
+ cUq2NvJSmTPXlLMKjCwpUkV2lHRJ3lKIp4lxBoJzI+iZvCdHp9ri2SAYX
+ bZV6GcyHrmykbwfyusCkW6zVna8NVMYPvdGJ4Fwc7N8eyV/t/wGBax8dg
+ jQerFs/PKeobQmWs4CaTkVUNP0g/xY872dKhPx37KhhdyCUpCgmllCc47 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11018"; a="16356327"
+X-IronPort-AV: E=Sophos;i="6.07,138,1708416000"; d="scan'208";a="16356327"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2024 20:12:41 -0700
+ 19 Mar 2024 20:12:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,138,1708416000"; d="scan'208";a="18666598"
+X-IronPort-AV: E=Sophos;i="6.07,138,1708416000"; d="scan'208";a="18666589"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2024 20:12:41 -0700
+ 19 Mar 2024 20:12:40 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: thomas.hellstrom@intel.com, matthew.brost@intel.com, brian.welty@intel.com,
  himal.prasad.ghimiray@intel.com
-Subject: [PATCH 7/8] drm/xe: Introduce a helper to free sg table
-Date: Tue, 19 Mar 2024 23:24:56 -0400
-Message-Id: <20240320032457.1778608-8-oak.zeng@intel.com>
+Subject: [PATCH 4/8] drm/xe: Introduce a helper to get dpa from pfn
+Date: Tue, 19 Mar 2024 23:24:53 -0400
+Message-Id: <20240320032457.1778608-5-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240320032457.1778608-1-oak.zeng@intel.com>
 References: <20240320032457.1778608-1-oak.zeng@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,80 +63,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce xe_userptr_free_sg helper to dma-unmap all
-addresses in userptr's sg table and free sg table.
+Since we now create struct page backing for each vram page,
+each vram page now also has a pfn, just like system memory.
+This allow us to calcuate device physical address from pfn.
+
+v1: move the function to xe_svm.h (Matt)
+    s/vram_pfn_to_dpa/xe_mem_region_pfn_to_dpa (Matt)
+    add kernel document for the helper (Thomas)
 
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-Suggested by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hmm.c | 30 ++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_hmm.h |  1 +
- 2 files changed, 31 insertions(+)
+ drivers/gpu/drm/xe/xe_svm.h | 27 +++++++++++++++++++++++++--
+ 1 file changed, 25 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hmm.c b/drivers/gpu/drm/xe/xe_hmm.c
-index 829fdfe12d96..65739b3bef64 100644
---- a/drivers/gpu/drm/xe/xe_hmm.c
-+++ b/drivers/gpu/drm/xe/xe_hmm.c
-@@ -3,6 +3,7 @@
-  * Copyright © 2024 Intel Corporation
-  */
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index e944971cfc6d..8a34429eb674 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -6,8 +6,31 @@
+ #ifndef __XE_SVM_H
+ #define __XE_SVM_H
  
-+#include <linux/scatterlist.h>
- #include <linux/mmu_notifier.h>
- #include <linux/dma-mapping.h>
- #include <linux/memremap.h>
-@@ -108,6 +109,32 @@ static int xe_build_sg(struct xe_device *xe, struct hmm_range *range,
- 	return ret;
- }
- 
+-struct xe_tile;
+-struct xe_mem_region;
++#include "xe_device_types.h"
++#include "xe_device.h"
++#include "xe_assert.h"
++
 +/**
-+ * xe_userptr_free_sg() - Free the scatter gather table of userptr
++ * xe_mem_region_pfn_to_dpa() - Calculate page's dpa from pfn
 + *
-+ * @uvma: the userptr vma which hold the scatter gather table
++ * @mr: The memory region that page resides in
++ * @pfn: page frame number of the page
 + *
-+ * With function xe_userptr_populate_range, we allocate storage of
-+ * the userptr sg table. This is a helper function to free this
-+ * sg table, and dma unmap the address in the table.
++ * Returns: the device physical address of the page
 + */
-+void xe_userptr_free_sg(struct xe_userptr_vma *uvma)
++static inline u64 xe_mem_region_pfn_to_dpa(struct xe_mem_region *mr, u64 pfn)
 +{
-+	struct xe_userptr *userptr = &uvma->userptr;
-+	struct xe_vma *vma = &uvma->vma;
-+	bool write = !xe_vma_read_only(vma);
-+	struct xe_vm *vm = xe_vma_vm(vma);
-+	struct xe_device *xe = vm->xe;
-+	struct device *dev = xe->drm.dev;
++	u64 dpa;
++	struct xe_tile *tile = xe_mem_region_to_tile(mr);
++	struct xe_device *xe = tile_to_xe(tile);
++	u64 offset;
 +
-+	xe_assert(xe, userptr->sg);
-+	dma_unmap_sgtable(dev, userptr->sg,
-+			write ? DMA_BIDIRECTIONAL : DMA_TO_DEVICE, 0);
++	xe_assert(xe, (pfn << PAGE_SHIFT) >= mr->hpa_base);
++	offset = (pfn << PAGE_SHIFT) - mr->hpa_base;
++	dpa = mr->dpa_base + offset;
 +
-+	sg_free_table(userptr->sg);
-+	userptr->sg = NULL;
++	return dpa;
 +}
-+
- /**
-  * xe_userptr_populate_range() - Populate physical pages of a virtual
-  * address range
-@@ -152,6 +179,9 @@ int xe_userptr_populate_range(struct xe_userptr_vma *uvma)
- 	if (vma->gpuva.flags & XE_VMA_DESTROYED)
- 		return 0;
  
-+	if (userptr->sg)
-+		xe_userptr_free_sg(uvma);
-+
- 	npages = xe_npages_in_range(start, end);
- 	pfns = kvmalloc_array(npages, sizeof(*pfns), GFP_KERNEL);
- 	if (unlikely(!pfns))
-diff --git a/drivers/gpu/drm/xe/xe_hmm.h b/drivers/gpu/drm/xe/xe_hmm.h
-index fa5ddc11f10b..037ed3bf76da 100644
---- a/drivers/gpu/drm/xe/xe_hmm.h
-+++ b/drivers/gpu/drm/xe/xe_hmm.h
-@@ -8,3 +8,4 @@
- struct xe_userptr_vma;
- 
- int xe_userptr_populate_range(struct xe_userptr_vma *uvma);
-+void xe_userptr_free_sg(struct xe_userptr_vma *uvma);
+ int xe_devm_add(struct xe_tile *tile, struct xe_mem_region *mr);
+ void xe_devm_remove(struct xe_tile *tile, struct xe_mem_region *mr);
 -- 
 2.26.3
 
