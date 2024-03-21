@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 230A0C6FD1F
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 19:30:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B50F0C6FD1F
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 19:35:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A43C310F750;
-	Thu, 21 Mar 2024 19:30:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FC0C10E8D4;
+	Thu, 21 Mar 2024 19:35:16 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BE5910F750;
- Thu, 21 Mar 2024 19:30:46 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3966257030538524201=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D61B810E8D4;
+ Thu, 21 Mar 2024 19:35:14 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_remove_unused_struct_x?=
- =?utf-8?q?e=5Fdevice_members?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
+ =?utf-8?q?move_dmc=5Ffirmware=5Fpath_to_display_params?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 21 Mar 2024 19:30:46 -0000
-Message-ID: <171104944637.941104.11293634182286845619@8e613ede5ea5>
+Date: Thu, 21 Mar 2024 19:35:14 -0000
+Message-ID: <171104971487.941104.4332049820051768803@8e613ede5ea5>
 X-Patchwork-Hint: ignore
-References: <20240321161548.3509672-1-jani.nikula@intel.com>
-In-Reply-To: <20240321161548.3509672-1-jani.nikula@intel.com>
+References: <20240321161856.3517856-1-jani.nikula@intel.com>
+In-Reply-To: <20240321161856.3517856-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +40,17 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3966257030538524201==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: remove unused struct xe_device members
-URL   : https://patchwork.freedesktop.org/series/131439/
+Series: drm/i915/display: move dmc_firmware_path to display params
+URL   : https://patchwork.freedesktop.org/series/131442/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-972-0cd99ca612f004f19c35f4966a584f0a729bbc31_BAT -> xe-pw-131439v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: ad4a10c6d0e2 drm-tip: 2024y-03m-21d-19h-14m-14s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/display: move dmc_firmware_path to display params
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_7774 -> IGT_7775
-  * Linux: xe-972-0cd99ca612f004f19c35f4966a584f0a729bbc31 -> xe-pw-131439v1
-
-  IGT_7774: 7774
-  IGT_7775: 0ee4074685c1e184f2d3612ea6eb4d126f9a2e23 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-972-0cd99ca612f004f19c35f4966a584f0a729bbc31: 0cd99ca612f004f19c35f4966a584f0a729bbc31
-  xe-pw-131439v1: 131439v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131439v1/index.html
-
---===============3966257030538524201==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: remove unused struct xe_device members</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131439/">https://patchwork.freedesktop.org/series/131439/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131439v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131439v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-972-0cd99ca612f004f19c35f4966a584f0a729bbc31_BAT -&gt; xe-pw-131439v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7774 -&gt; IGT_7775</li>
-<li>Linux: xe-972-0cd99ca612f004f19c35f4966a584f0a729bbc31 -&gt; xe-pw-131439v1</li>
-</ul>
-<p>IGT_7774: 7774<br />
-  IGT_7775: 0ee4074685c1e184f2d3612ea6eb4d126f9a2e23 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-972-0cd99ca612f004f19c35f4966a584f0a729bbc31: 0cd99ca612f004f19c35f4966a584f0a729bbc31<br />
-  xe-pw-131439v1: 131439v1</p>
-
-</body>
-</html>
-
---===============3966257030538524201==--
