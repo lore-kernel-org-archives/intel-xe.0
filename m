@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 403CFC54E58
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 07:39:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C87DC54E68
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 07:39:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E569C10F5C3;
-	Thu, 21 Mar 2024 07:39:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02CEC10FF1B;
+	Thu, 21 Mar 2024 07:39:54 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40A9810F5C3;
- Thu, 21 Mar 2024 07:39:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81D6610FF1B;
+ Thu, 21 Mar 2024 07:39:53 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Use_FIELD?=
- =?utf-8?q?=5FPREP_for_lrc_descriptor_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Use_FIELD=5FPRE?=
+ =?utf-8?q?P_for_lrc_descriptor_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 21 Mar 2024 07:39:43 -0000
-Message-ID: <171100678326.938557.10777335841403906231@8e613ede5ea5>
+Date: Thu, 21 Mar 2024 07:39:53 -0000
+Message-ID: <171100679353.938557.17739078934382981081@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240321063453.13306-1-niranjana.vishwanathapura@intel.com>
 In-Reply-To: <20240321063453.13306-1-niranjana.vishwanathapura@intel.com>
@@ -48,9 +48,28 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 620f5fba1078 drm-tip: 2024y-03m-21d-07h-20m-35s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Use FIELD_PREP for lrc descriptor
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+a9eb1ac8298ef9f9146567c29fa762d8e9efa1ef
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 07aace2bdd50c4997a58026536735b0546b52ce4
+Author: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Date:   Wed Mar 20 23:34:53 2024 -0700
+
+    drm/xe: Use FIELD_PREP for lrc descriptor
+    
+    Use FIELD_PREP for setting lrc descriptor fields instead
+    of shifting values to fields.
+    
+    v2: Use ULL macro variants
+    
+    Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
++ /mt/dim checkpatch 620f5fba107875d50d89042ba5af63912d2eefff drm-intel
+07aace2bdd50 drm/xe: Use FIELD_PREP for lrc descriptor
 
 
