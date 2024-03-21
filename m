@@ -4,27 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C64DC54E68
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 14:34:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00C8AC54E68
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 14:39:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D60F10EB49;
-	Thu, 21 Mar 2024 14:34:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B69AB10EB49;
+	Thu, 21 Mar 2024 14:39:19 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 528E010EB3B;
- Thu, 21 Mar 2024 14:34:48 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0889635915594158093=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C19810EB4C;
+ Thu, 21 Mar 2024 14:39:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/mocs=3A_Add_debugfs_node_?=
- =?utf-8?q?to_dump_mocs?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
+ =?utf-8?q?_=5Bv3=2C1/2=5D_drm/xe/query=3A_Define_and_use_a_constant_for_the?=
+ =?utf-8?q?_number_of_masks?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Janga Rahul Kumar" <janga.rahul.kumar@intel.com>
+To: "Francois Dugast" <francois.dugast@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 21 Mar 2024 14:34:48 -0000
-Message-ID: <171103168833.940819.4467854763932422030@8e613ede5ea5>
+Date: Thu, 21 Mar 2024 14:39:18 -0000
+Message-ID: <171103195805.940819.17673872864459102171@8e613ede5ea5>
 X-Patchwork-Hint: ignore
-References: <20240321130739.3311199-1-janga.rahul.kumar@intel.com>
-In-Reply-To: <20240321130739.3311199-1-janga.rahul.kumar@intel.com>
+References: <20240321142154.7-1-francois.dugast@intel.com>
+In-Reply-To: <20240321142154.7-1-francois.dugast@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,138 +41,18 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0889635915594158093==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/mocs: Add debugfs node to dump mocs
-URL   : https://patchwork.freedesktop.org/series/131425/
+Series: series starting with [v3,1/2] drm/xe/query: Define and use a constant for the number of masks
+URL   : https://patchwork.freedesktop.org/series/131426/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-971-9ae91289c9ed219b53a3fbd25be9f414651ce4f2_BAT -> xe-pw-131425v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-131425v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_evict@evict-mixed-threads-small:
-    - bat-dg2-oem2:       [PASS][1] -> [TIMEOUT][2] ([Intel XE#1027] / [Intel XE#1259])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-971-9ae91289c9ed219b53a3fbd25be9f414651ce4f2/bat-dg2-oem2/igt@xe_evict@evict-mixed-threads-small.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131425v1/bat-dg2-oem2/igt@xe_evict@evict-mixed-threads-small.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_exec_threads@threads-mixed-fd-basic:
-    - bat-dg2-oem2:       [TIMEOUT][3] ([Intel XE#1167]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-971-9ae91289c9ed219b53a3fbd25be9f414651ce4f2/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-fd-basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131425v1/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-fd-basic.html
-
-  
-  [Intel XE#1027]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1027
-  [Intel XE#1167]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1167
-  [Intel XE#1259]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1259
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 0cd99ca612f0 drm-tip: 2024y-03m-21d-14h-26m-53s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/query: Define and use a constant for the number of masks
+Applying: drm/xe/uapi: Add L3 bank mask to topology query
 
 
-Build changes
--------------
-
-  * Linux: xe-971-9ae91289c9ed219b53a3fbd25be9f414651ce4f2 -> xe-pw-131425v1
-
-  IGT_7773: 7773
-  xe-971-9ae91289c9ed219b53a3fbd25be9f414651ce4f2: 9ae91289c9ed219b53a3fbd25be9f414651ce4f2
-  xe-pw-131425v1: 131425v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131425v1/index.html
-
---===============0889635915594158093==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/mocs: Add debugfs node to dump mocs</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131425/">https://patchwork.freedesktop.org/series/131425/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131425v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131425v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-971-9ae91289c9ed219b53a3fbd25be9f414651ce4f2_BAT -&gt; xe-pw-131425v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-131425v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_evict@evict-mixed-threads-small:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-971-9ae91289c9ed219b53a3fbd25be9f414651ce4f2/bat-dg2-oem2/igt@xe_evict@evict-mixed-threads-small.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131425v1/bat-dg2-oem2/igt@xe_evict@evict-mixed-threads-small.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1027">Intel XE#1027</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1259">Intel XE#1259</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_exec_threads@threads-mixed-fd-basic:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-971-9ae91289c9ed219b53a3fbd25be9f414651ce4f2/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-fd-basic.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1167">Intel XE#1167</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131425v1/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-fd-basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-971-9ae91289c9ed219b53a3fbd25be9f414651ce4f2 -&gt; xe-pw-131425v1</li>
-</ul>
-<p>IGT_7773: 7773<br />
-  xe-971-9ae91289c9ed219b53a3fbd25be9f414651ce4f2: 9ae91289c9ed219b53a3fbd25be9f414651ce4f2<br />
-  xe-pw-131425v1: 131425v1</p>
-
-</body>
-</html>
-
---===============0889635915594158093==--
