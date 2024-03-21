@@ -4,47 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D87A1C54E58
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 22:39:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87616CD11BF
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 22:39:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 856691121F8;
-	Thu, 21 Mar 2024 22:39:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 198291121FD;
+	Thu, 21 Mar 2024 22:39:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MfBwG0I4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RgNQs5Z2";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9EBD1121F8
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Mar 2024 22:39:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 314AE1121FD
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 Mar 2024 22:39:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711060747; x=1742596747;
+ t=1711060768; x=1742596768;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
  bh=wvvivim2hJzQjbOUTIGZdrFaQhGZVqDEzXqzfkydY4E=;
- b=MfBwG0I4Am/pEcegtPizoZoaL5rHFecbthjSsrMXMDABZZe478IJgPdK
- MFkYVGKoGwb2/SYHB3vqvl+dLX2QLZ2QVgOUMhi0+/8jGqWXXjeG/4tHb
- HP13LUSLFmfH243qYVpiF8aHnXLi8X+nOYsDjCirrbdhZTmBsgkShKiIc
- x1Ht4om3jxV+7Xn81Imtu2nqYy4oQLKMhxoFBDI9f7WNgcyUXM/QvDGIq
- pgs+3YMKh3qqGBN7EsxOTb/pNKRLpUXBVqmrwFNQWjfDbC57ZJ1fhVS/f
- OafhRBr2ERknJKIuQo+jeOtgbzdedQKekT3jdsWgnFHaBQIAdfIIxPWOx A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="5954267"
-X-IronPort-AV: E=Sophos;i="6.07,144,1708416000"; 
-   d="scan'208";a="5954267"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2024 15:39:07 -0700
+ b=RgNQs5Z2/JbPcoANmpCAnLIBXtAog+hGSuovlci7F3jIQQvDgEsT/+hq
+ HcPo3c3qB/dDOniCFwPmSeG+GGjPl6F8R6lQy0WxvRXzUzKfo2Wea5ec2
+ xPLP33mEhycTpRz0MEOl7uolErlRLYqWV16cYzQl9RdlHzz7DECYTuuZ1
+ vaq9yQPWEVrIA8dRqskly1B1deANM8T86l2pUYIfzcb2fxcfn+7BrkqRC
+ /RY/AbrhTz6YdXCLLtJAaW9ai7RDhUyAhN5EX2B4P9HI3J6xcr5X/nO7P
+ kkxMh8KB0r7vUihFRuX1d9xh4nNBPCm1Z3iWoDYR9TXlJESpGE7sbswnN Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="17529015"
+X-IronPort-AV: E=Sophos;i="6.07,144,1708416000"; d="scan'208";a="17529015"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2024 15:39:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,144,1708416000"; d="scan'208";a="45667007"
+X-IronPort-AV: E=Sophos;i="6.07,144,1708416000"; d="scan'208";a="19386201"
 Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
  ([10.165.21.138])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2024 15:39:06 -0700
-Date: Thu, 21 Mar 2024 15:39:06 -0700
-Message-ID: <85jzlv5hx1.wl-ashutosh.dixit@intel.com>
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2024 15:39:23 -0700
+Date: Thu, 21 Mar 2024 15:39:22 -0700
+Message-ID: <85il1f5hwl.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: <intel-xe@lists.freedesktop.org>,
-	Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Subject: Re: [PATCH] drm/xe: Remove redundant functions to get xe
 In-Reply-To: <20240321213818.72311-1-lucas.demarchi@intel.com>
 References: <20240321213818.72311-1-lucas.demarchi@intel.com>
