@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 591B3C54E58
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 13:44:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 476CCC54E58
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 13:50:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F225E10E9F1;
-	Thu, 21 Mar 2024 13:44:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B12F10EA8D;
+	Thu, 21 Mar 2024 13:50:11 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0F5110E9F1;
- Thu, 21 Mar 2024 13:44:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AB5A10EA8D;
+ Thu, 21 Mar 2024 13:50:10 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/xe=3A_Rework_reb?=
- =?utf-8?q?inding_and_allow_same-vm_eviction?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/mocs=3A_Add_d?=
+ =?utf-8?q?ebugfs_node_to_dump_mocs?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: "Janga Rahul Kumar" <janga.rahul.kumar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 21 Mar 2024 13:44:01 -0000
-Message-ID: <171102864166.940727.13796606357518147224@8e613ede5ea5>
+Date: Thu, 21 Mar 2024 13:50:10 -0000
+Message-ID: <171102901050.940727.8944306508042359807@8e613ede5ea5>
 X-Patchwork-Hint: ignore
-References: <20240321113720.120865-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20240321113720.120865-1-thomas.hellstrom@linux.intel.com>
+References: <20240321130739.3311199-1-janga.rahul.kumar@intel.com>
+In-Reply-To: <20240321130739.3311199-1-janga.rahul.kumar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,33 +42,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe: Rework rebinding and allow same-vm eviction
-URL   : https://patchwork.freedesktop.org/series/131421/
-State : failure
+Series: drm/xe/mocs: Add debugfs node to dump mocs
+URL   : https://patchwork.freedesktop.org/series/131425/
+State : success
 
 == Summary ==
 
 === Applying kernel patches on branch 'drm-tip' with base: ===
 Base commit: 9ae91289c9ed drm-tip: 2024y-03m-21d-13h-03m-03s UTC integration manifest
 === git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/xe_exec.c:96
-error: drivers/gpu/drm/xe/xe_exec.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_gt_pagefault.c:100
-error: drivers/gpu/drm/xe/xe_gt_pagefault.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_pt.c:1235
-error: drivers/gpu/drm/xe/xe_pt.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_vm.c:485
-error: drivers/gpu/drm/xe/xe_vm.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_vm.h:242
-error: drivers/gpu/drm/xe/xe_vm.h: patch does not apply
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Applying: drm/xe: Use ring ops TLB invalidation for rebinds
-Applying: drm/xe: Rework rebinding
-Applying: drm/xe: Reserve fences where needed
-Applying: drm/xe: Reserve fences where needed
-Patch failed at 0004 drm/xe: Reserve fences where needed
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Applying: drm/xe/mocs: Add debugfs node to dump mocs
 
 
