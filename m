@@ -4,49 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6D69CD11DC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83ADCCD11DB
 	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 11:37:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A03F10E7CF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C26210E75F;
 	Thu, 21 Mar 2024 11:37:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hB4gW99H";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nu1cwM58";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 991F210E7D4
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Mar 2024 11:37:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0436D10E7EE
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 Mar 2024 11:37:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711021067; x=1742557067;
+ t=1711021069; x=1742557069;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=UEvWUw7ggzTsQt+U8b6u/Gypez/AINZu9zNau1mK7/Q=;
- b=hB4gW99HLRDfRYLhxlENNqLz66jmg1mn1WZVcUylbmOpy30NDYDPWk+K
- hPW1VBp66akbz9rVm2cxliwDvqepnLWSo1Fc3E/rXYdCVz/xlTbYjkwYx
- vI5ix1MNkh/4Lxx9gKTwgZ5EfjDRJ0rGtWOkR9GZ6q3i5SolfLtB9YITM
- 3hNjSq2HH9AeJYFBT46gm2a60Zrk86Hu7z1qH9/T1/kLRZrXpwR3IGcKR
- z+02GQKF22pU/vSULemrGvzpE6W4T6bX6G1/rU6pDPiX0pp4ovVJN5D9T
- MwU+/CDDZemAXnMxIrHms/HSmKf0DQuqdR0D7TrB3z/OyNafH4BZRd24A w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11019"; a="6127360"
+ bh=ZTeFOI1xAv2/CzV9snNZwPuHqbh/YdPHyrCZPjEUhqU=;
+ b=nu1cwM58/sq4pZwAyKH4WzovEJu8J2wV2JYSLQf49n9IJUw2qC62STqK
+ c/cQBCzHRGny/UAWcLfCFXLBdXR+Qlf9KD4l8atQYxvHdwm68S2i1hR0u
+ scokc7jqP2sUB7KLgiSueIbFh6/NgC5kLRvLJmqAquBk3chCFIDqr4p2x
+ Ws3SEGyqpY8cCGzi+lO7U1Q10belfTGs8MjwQEn3CViFYvr6zsSxLWzjl
+ g5rwWnur2xiVUyscfNZ5KHb74u2yKSdxz1NNDn2zQFwYw2ZgxIlsAuvqC
+ zBDC8jHVJ6fLU4LSQOeinDQWgEP5dFc9KuBMSBknzAwabWWajEHwTfMKQ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11019"; a="6127363"
 X-IronPort-AV: E=Sophos;i="6.07,142,1708416000"; 
-   d="scan'208";a="6127360"
+   d="scan'208";a="6127363"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2024 04:37:47 -0700
+ 21 Mar 2024 04:37:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,142,1708416000"; d="scan'208";a="19053286"
+X-IronPort-AV: E=Sophos;i="6.07,142,1708416000"; d="scan'208";a="19053292"
 Received: from dinieasx-mobl1.gar.corp.intel.com (HELO fedora..)
  ([10.249.254.100])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2024 04:37:45 -0700
+ 21 Mar 2024 04:37:47 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matthew Brost <matthew.brost@intel.com>, stable@vger.kernel.org
-Subject: [PATCH 4/7] drm/xe: Rework rebinding
-Date: Thu, 21 Mar 2024 12:37:17 +0100
-Message-ID: <20240321113720.120865-9-thomas.hellstrom@linux.intel.com>
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>
+Subject: [PATCH 6/7] drm/xe/bo: Forward the decision to evict local objects
+ during validation
+Date: Thu, 21 Mar 2024 12:37:19 +0100
+Message-ID: <20240321113720.120865-11-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240321113720.120865-1-thomas.hellstrom@linux.intel.com>
 References: <20240321113720.120865-1-thomas.hellstrom@linux.intel.com>
@@ -67,195 +70,380 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Instead of handling the vm's rebind fence separately,
-which is error prone if they are not strictly ordered,
-attach rebind fences as kernel fences to the vm's resv.
+Currently we refuse evicting the VM's local objects. However that
+is necessary for some objects. Most notably completely unbound objects.
+Forward this decision to be per-object based in the TTM
+eviction_valuable() callback.
 
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Fixes: 24f947d58fe5 ("drm/xe: Use DRM GPUVM helpers for external- and evicted objects")
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: <stable@vger.kernel.org> # v6.8+
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Oded Gabbay <ogabbay@kernel.org>
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec.c     | 31 +++----------------------------
- drivers/gpu/drm/xe/xe_pt.c       |  2 +-
- drivers/gpu/drm/xe/xe_vm.c       | 27 +++++++++------------------
- drivers/gpu/drm/xe/xe_vm.h       |  2 +-
- drivers/gpu/drm/xe/xe_vm_types.h |  3 ---
- 5 files changed, 14 insertions(+), 51 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c |  2 +-
+ drivers/gpu/drm/xe/tests/xe_bo.c       |  6 ++---
+ drivers/gpu/drm/xe/tests/xe_dma_buf.c  |  4 +--
+ drivers/gpu/drm/xe/tests/xe_migrate.c  |  2 +-
+ drivers/gpu/drm/xe/xe_bo.c             | 36 ++++++++++++++++++--------
+ drivers/gpu/drm/xe/xe_bo.h             |  2 +-
+ drivers/gpu/drm/xe/xe_dma_buf.c        |  2 +-
+ drivers/gpu/drm/xe/xe_exec.c           | 11 +++++---
+ drivers/gpu/drm/xe/xe_ggtt.c           |  2 +-
+ drivers/gpu/drm/xe/xe_gt_pagefault.c   |  2 +-
+ drivers/gpu/drm/xe/xe_vm.c             | 15 +++++++----
+ drivers/gpu/drm/xe/xe_vm_types.h       | 10 +++++++
+ 12 files changed, 64 insertions(+), 30 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-index 511d23426a5e..397a49b731f1 100644
---- a/drivers/gpu/drm/xe/xe_exec.c
-+++ b/drivers/gpu/drm/xe/xe_exec.c
-@@ -127,7 +127,6 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	struct drm_exec *exec = &vm_exec.exec;
- 	u32 i, num_syncs = 0, num_ufence = 0;
- 	struct xe_sched_job *job;
--	struct dma_fence *rebind_fence;
- 	struct xe_vm *vm;
- 	bool write_locked, skip_retry = false;
- 	ktime_t end = 0;
-@@ -269,35 +268,11 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	 * Rebind any invalidated userptr or evicted BOs in the VM, non-compute
- 	 * VM mode only.
- 	 */
--	rebind_fence = xe_vm_rebind(vm, false);
--	if (IS_ERR(rebind_fence)) {
--		err = PTR_ERR(rebind_fence);
-+	err = xe_vm_rebind(vm, false);
-+	if (err)
- 		goto err_put_job;
--	}
--
--	/*
--	 * We store the rebind_fence in the VM so subsequent execs don't get
--	 * scheduled before the rebinds of userptrs / evicted BOs is complete.
--	 */
--	if (rebind_fence) {
--		dma_fence_put(vm->rebind_fence);
--		vm->rebind_fence = rebind_fence;
--	}
--	if (vm->rebind_fence) {
--		if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
--			     &vm->rebind_fence->flags)) {
--			dma_fence_put(vm->rebind_fence);
--			vm->rebind_fence = NULL;
--		} else {
--			dma_fence_get(vm->rebind_fence);
--			err = drm_sched_job_add_dependency(&job->drm,
--							   vm->rebind_fence);
--			if (err)
--				goto err_put_job;
--		}
--	}
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 2a50a7eaaa31..1bf50f694110 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -288,7 +288,7 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
+ 	if (IS_DGFX(xe))
+ 		ret = xe_bo_migrate(bo, XE_PL_VRAM0);
+ 	else
+-		ret = xe_bo_validate(bo, NULL, true);
++		ret = xe_bo_validate(bo, bo->vm);
+ 	if (!ret)
+ 		ttm_bo_pin(&bo->ttm);
+ 	ttm_bo_unreserve(&bo->ttm);
+diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
+index 0926a1c2eb86..5410cb1780a6 100644
+--- a/drivers/gpu/drm/xe/tests/xe_bo.c
++++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+@@ -28,7 +28,7 @@ static int ccs_test_migrate(struct xe_tile *tile, struct xe_bo *bo,
+ 	u32 offset;
  
--	/* Wait behind munmap style rebinds */
-+	/* Wait behind rebinds */
- 	if (!xe_vm_in_lr_mode(vm)) {
- 		err = drm_sched_job_add_resv_dependencies(&job->drm,
- 							  xe_vm_resv(vm),
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 7add08b2954e..92cd660fbcef 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -1304,7 +1304,7 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
- 		}
- 
- 		/* add shared fence now for pagetable delayed destroy */
--		dma_resv_add_fence(xe_vm_resv(vm), fence, !rebind &&
-+		dma_resv_add_fence(xe_vm_resv(vm), fence, rebind ||
- 				   last_munmap_rebind ?
- 				   DMA_RESV_USAGE_KERNEL :
- 				   DMA_RESV_USAGE_BOOKKEEP);
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index cff8db605743..33a85e702e2c 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -529,7 +529,6 @@ static void preempt_rebind_work_func(struct work_struct *w)
- {
- 	struct xe_vm *vm = container_of(w, struct xe_vm, preempt.rebind_work);
- 	struct drm_exec exec;
--	struct dma_fence *rebind_fence;
- 	unsigned int fence_count = 0;
- 	LIST_HEAD(preempt_fences);
- 	ktime_t end = 0;
-@@ -575,18 +574,11 @@ static void preempt_rebind_work_func(struct work_struct *w)
- 	if (err)
- 		goto out_unlock;
- 
--	rebind_fence = xe_vm_rebind(vm, true);
--	if (IS_ERR(rebind_fence)) {
--		err = PTR_ERR(rebind_fence);
-+	err = xe_vm_rebind(vm, true);
-+	if (err)
- 		goto out_unlock;
--	}
--
--	if (rebind_fence) {
--		dma_fence_wait(rebind_fence, false);
--		dma_fence_put(rebind_fence);
--	}
- 
--	/* Wait on munmap style VM unbinds */
-+	/* Wait on rebinds and munmap style VM unbinds */
- 	wait = dma_resv_wait_timeout(xe_vm_resv(vm),
- 				     DMA_RESV_USAGE_KERNEL,
- 				     false, MAX_SCHEDULE_TIMEOUT);
-@@ -780,14 +772,14 @@ xe_vm_bind_vma(struct xe_vma *vma, struct xe_exec_queue *q,
- 	       struct xe_sync_entry *syncs, u32 num_syncs,
- 	       bool first_op, bool last_op);
- 
--struct dma_fence *xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
-+int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
- {
--	struct dma_fence *fence = NULL;
-+	struct dma_fence *fence;
- 	struct xe_vma *vma, *next;
- 
- 	lockdep_assert_held(&vm->lock);
- 	if (xe_vm_in_lr_mode(vm) && !rebind_worker)
--		return NULL;
-+		return 0;
- 
- 	xe_vm_assert_held(vm);
- 	list_for_each_entry_safe(vma, next, &vm->rebind_list,
-@@ -795,17 +787,17 @@ struct dma_fence *xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
- 		xe_assert(vm->xe, vma->tile_present);
- 
- 		list_del_init(&vma->combined_links.rebind);
--		dma_fence_put(fence);
- 		if (rebind_worker)
- 			trace_xe_vma_rebind_worker(vma);
- 		else
- 			trace_xe_vma_rebind_exec(vma);
- 		fence = xe_vm_bind_vma(vma, NULL, NULL, 0, false, false);
- 		if (IS_ERR(fence))
--			return fence;
-+			return PTR_ERR(fence);
-+		dma_fence_put(fence);
+ 	/* Move bo to VRAM if not already there. */
+-	ret = xe_bo_validate(bo, NULL, false);
++	ret = xe_bo_validate(bo, NULL);
+ 	if (ret) {
+ 		KUNIT_FAIL(test, "Failed to validate bo.\n");
+ 		return ret;
+@@ -274,7 +274,7 @@ static int evict_test_run_tile(struct xe_device *xe, struct xe_tile *tile, struc
+ 		if (i) {
+ 			down_read(&vm->lock);
+ 			xe_vm_lock(vm, false);
+-			err = xe_bo_validate(bo, bo->vm, false);
++			err = xe_bo_validate(bo, bo->vm);
+ 			xe_vm_unlock(vm);
+ 			up_read(&vm->lock);
+ 			if (err) {
+@@ -283,7 +283,7 @@ static int evict_test_run_tile(struct xe_device *xe, struct xe_tile *tile, struc
+ 				goto cleanup_all;
+ 			}
+ 			xe_bo_lock(external, false);
+-			err = xe_bo_validate(external, NULL, false);
++			err = xe_bo_validate(external, NULL);
+ 			xe_bo_unlock(external);
+ 			if (err) {
+ 				KUNIT_FAIL(test, "external bo valid err=%pe\n",
+diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf.c b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
+index 9f6d571d7fa9..37bcf812f3ca 100644
+--- a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
+@@ -80,7 +80,7 @@ static void check_residency(struct kunit *test, struct xe_bo *exported,
  	}
  
--	return fence;
-+	return 0;
+ 	/* Re-validate the importer. This should move also exporter in. */
+-	ret = xe_bo_validate(imported, NULL, false);
++	ret = xe_bo_validate(imported, NULL);
+ 	if (ret) {
+ 		if (ret != -EINTR && ret != -ERESTARTSYS)
+ 			KUNIT_FAIL(test, "Validating importer failed with err=%d.\n",
+@@ -156,7 +156,7 @@ static void xe_test_dmabuf_import_same_driver(struct xe_device *xe)
+ 
+ 			/* Is everything where we expect it to be? */
+ 			xe_bo_lock(import_bo, false);
+-			err = xe_bo_validate(import_bo, NULL, false);
++			err = xe_bo_validate(import_bo, NULL);
+ 
+ 			/* Pinning in VRAM is not allowed. */
+ 			if (!is_dynamic(params) &&
+diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+index ce531498f57f..97735a3c66ab 100644
+--- a/drivers/gpu/drm/xe/tests/xe_migrate.c
++++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+@@ -120,7 +120,7 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
+ 		return;
+ 	}
+ 
+-	err = xe_bo_validate(remote, NULL, false);
++	err = xe_bo_validate(remote, NULL);
+ 	if (err) {
+ 		KUNIT_FAIL(test, "Failed to validate system bo for %s: %li\n",
+ 			   str, err);
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 9298546909b5..db4cd1da8ef3 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1019,6 +1019,23 @@ static void xe_ttm_bo_delete_mem_notify(struct ttm_buffer_object *ttm_bo)
+ 	}
  }
  
- static void xe_vma_free(struct xe_vma *vma)
-@@ -1586,7 +1578,6 @@ static void vm_destroy_work_func(struct work_struct *w)
- 		XE_WARN_ON(vm->pt_root[id]);
++static bool xe_bo_eviction_valuable(struct ttm_buffer_object *ttm_bo,
++				    const struct ttm_place *place)
++{
++	if (xe_bo_is_xe_bo(ttm_bo)) {
++		struct xe_bo *xe_bo = ttm_to_xe_bo(ttm_bo);
++		struct xe_vm *vm = xe_bo->vm;
++
++		if (vm && !drm_gpuvm_is_extobj(&vm->gpuvm, &ttm_bo->base) &&
++		    vm->is_validating) {
++			xe_vm_assert_held(vm);
++			return false;
++		}
++	}
++
++	return ttm_bo_eviction_valuable(ttm_bo, place);
++}
++
+ const struct ttm_device_funcs xe_ttm_funcs = {
+ 	.ttm_tt_create = xe_ttm_tt_create,
+ 	.ttm_tt_populate = xe_ttm_tt_populate,
+@@ -1029,7 +1046,7 @@ const struct ttm_device_funcs xe_ttm_funcs = {
+ 	.io_mem_reserve = xe_ttm_io_mem_reserve,
+ 	.io_mem_pfn = xe_ttm_io_mem_pfn,
+ 	.release_notify = xe_ttm_bo_release_notify,
+-	.eviction_valuable = ttm_bo_eviction_valuable,
++	.eviction_valuable = xe_bo_eviction_valuable,
+ 	.delete_mem_notify = xe_ttm_bo_delete_mem_notify,
+ };
  
- 	trace_xe_vm_free(vm);
--	dma_fence_put(vm->rebind_fence);
- 	kfree(vm);
+@@ -1631,7 +1648,7 @@ int xe_bo_pin_external(struct xe_bo *bo)
+ 	xe_assert(xe, xe_bo_is_user(bo));
+ 
+ 	if (!xe_bo_is_pinned(bo)) {
+-		err = xe_bo_validate(bo, NULL, false);
++		err = xe_bo_validate(bo, NULL);
+ 		if (err)
+ 			return err;
+ 
+@@ -1675,7 +1692,7 @@ int xe_bo_pin(struct xe_bo *bo)
+ 	/* We only expect at most 1 pin */
+ 	xe_assert(xe, !xe_bo_is_pinned(bo));
+ 
+-	err = xe_bo_validate(bo, NULL, false);
++	err = xe_bo_validate(bo, bo->vm);
+ 	if (err)
+ 		return err;
+ 
+@@ -1772,19 +1789,17 @@ void xe_bo_unpin(struct xe_bo *bo)
+  * xe_bo_validate() - Make sure the bo is in an allowed placement
+  * @bo: The bo,
+  * @vm: Pointer to a the vm the bo shares a locked dma_resv object with, or
+- *      NULL. Used together with @allow_res_evict.
+- * @allow_res_evict: Whether it's allowed to evict bos sharing @vm's
+- *                   reservation object.
++ *      NULL.
+  *
+  * Make sure the bo is in allowed placement, migrating it if necessary. If
+  * needed, other bos will be evicted. If bos selected for eviction shares
+- * the @vm's reservation object, they can be evicted iff @allow_res_evict is
+- * set to true, otherwise they will be bypassed.
++ * the @vm's reservation object, they can be evicted if the
++ * xe_bo_eviction_valuable() function allows it.
+  *
+  * Return: 0 on success, negative error code on failure. May return
+  * -EINTR or -ERESTARTSYS if internal waits are interrupted by a signal.
+  */
+-int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict)
++int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm)
+ {
+ 	struct ttm_operation_ctx ctx = {
+ 		.interruptible = true,
+@@ -1792,10 +1807,9 @@ int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict)
+ 	};
+ 
+ 	if (vm) {
+-		lockdep_assert_held(&vm->lock);
+ 		xe_vm_assert_held(vm);
+ 
+-		ctx.allow_res_evict = allow_res_evict;
++		ctx.allow_res_evict = true;
+ 		ctx.resv = xe_vm_resv(vm);
+ 	}
+ 
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 52e441f77e96..18776a70c843 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -193,7 +193,7 @@ int xe_bo_pin_external(struct xe_bo *bo);
+ int xe_bo_pin(struct xe_bo *bo);
+ void xe_bo_unpin_external(struct xe_bo *bo);
+ void xe_bo_unpin(struct xe_bo *bo);
+-int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict);
++int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm);
+ 
+ static inline bool xe_bo_is_pinned(struct xe_bo *bo)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
+index 5b26af21e029..f1dc2bc5179b 100644
+--- a/drivers/gpu/drm/xe/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+@@ -102,7 +102,7 @@ static struct sg_table *xe_dma_buf_map(struct dma_buf_attachment *attach,
+ 		if (!attach->peer2peer)
+ 			r = xe_bo_migrate(bo, XE_PL_TT);
+ 		else
+-			r = xe_bo_validate(bo, NULL, false);
++			r = xe_bo_validate(bo, NULL);
+ 		if (r)
+ 			return ERR_PTR(r);
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index e00910246741..e4074a9e870f 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -101,23 +101,27 @@ static int xe_exec_fn(struct drm_gpuvm_exec *vm_exec)
+ 	unsigned long index;
+ 	int ret;
+ 
++	vm->is_validating = true;
+ 	do {
+ 		ret = drm_gpuvm_validate(vm_exec->vm, &vm_exec->exec);
+ 		if (ret)
+-			return ret;
++			goto out;
+ 
+ 		ret = xe_vm_rebind(vm, false);
+ 		if (ret)
+-			return ret;
++			goto out;
+ 	} while (!list_empty(&vm->gpuvm.evict.list));
+ 
+ 	drm_exec_for_each_locked_object(&vm_exec->exec, index, obj) {
+ 		ret = dma_resv_reserve_fences(obj->resv, 1);
+ 		if (ret)
+-			return ret;
++			goto out;
+ 	}
+ 
+ 	return 0;
++out:
++	vm->is_validating = false;
++	return ret;
  }
  
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index 47f3960120a0..20009d8b4702 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -207,7 +207,7 @@ int __xe_vm_userptr_needs_repin(struct xe_vm *vm);
+ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+@@ -340,6 +344,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	if (err)
+ 		xe_sched_job_put(job);
+ err_exec:
++	vm->is_validating = false;
+ 	drm_exec_fini(exec);
+ err_unlock_list:
+ 	up_read(&vm->lock);
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index f54523d7d03c..312dbfcf9de5 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -406,7 +406,7 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+ 		return 0;
+ 	}
  
- int xe_vm_userptr_check_repin(struct xe_vm *vm);
+-	err = xe_bo_validate(bo, NULL, false);
++	err = xe_bo_validate(bo, bo->vm);
+ 	if (err)
+ 		return err;
  
--struct dma_fence *xe_vm_rebind(struct xe_vm *vm, bool rebind_worker);
-+int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker);
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index fa9e9853c53b..090f38848b23 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -118,7 +118,7 @@ static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
+ 			return err;
+ 	} else if (bo) {
+ 		/* Create backing store if needed */
+-		err = xe_bo_validate(bo, vm, true);
++		err = xe_bo_validate(bo, vm);
+ 		if (err)
+ 			return err;
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index f9da055180b3..4424b867e29d 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -474,7 +474,7 @@ static int xe_gpuvm_validate(struct drm_gpuvm_bo *vm_bo, struct drm_exec *exec)
+ 		list_move_tail(&gpuva_to_vma(gpuva)->combined_links.rebind,
+ 			       &vm->rebind_list);
  
- int xe_vm_invalidate_vma(struct xe_vma *vma);
+-	ret = xe_bo_validate(gem_to_xe_bo(vm_bo->obj), vm, false);
++	ret = xe_bo_validate(gem_to_xe_bo(vm_bo->obj), vm);
+ 	if (ret)
+ 		return ret;
  
+@@ -512,23 +512,27 @@ static int xe_preempt_work_begin(struct drm_exec *exec, struct xe_vm *vm,
+ 	if (err)
+ 		return err;
+ 
++	vm->is_validating = true;
+ 	do {
+ 		err = drm_gpuvm_validate(&vm->gpuvm, exec);
+ 		if (err)
+-			return err;
++			goto out;
+ 
+ 		err = xe_vm_rebind(vm, true);
+ 		if (err)
+-			return err;
++			goto out;
+ 	} while (!list_empty(&vm->gpuvm.evict.list));
+ 
+ 	drm_exec_for_each_locked_object(exec, index, obj) {
+ 		err = dma_resv_reserve_fences(obj->resv, vm->preempt.num_exec_queues);
+ 		if (err)
+-			return err;
++			goto out;
+ 	}
+ 
+ 	return 0;
++out:
++	vm->is_validating = false;
++	return err;
+ }
+ 
+ static void preempt_rebind_work_func(struct work_struct *w)
+@@ -617,6 +621,7 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 	up_read(&vm->userptr.notifier_lock);
+ 
+ out_unlock:
++	vm->is_validating = false;
+ 	drm_exec_fini(&exec);
+ out_unlock_outer:
+ 	if (err == -EAGAIN) {
+@@ -1848,7 +1853,7 @@ static int xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma, struct xe_exec_queue
+ 	xe_bo_assert_held(bo);
+ 
+ 	if (bo && immediate) {
+-		err = xe_bo_validate(bo, vm, true);
++		err = xe_bo_validate(bo, vm);
+ 		if (err)
+ 			return err;
+ 	}
 diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 5747f136d24d..badf3945083d 100644
+index badf3945083d..0d286da148c0 100644
 --- a/drivers/gpu/drm/xe/xe_vm_types.h
 +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -177,9 +177,6 @@ struct xe_vm {
- 	 */
- 	struct list_head rebind_list;
- 
--	/** @rebind_fence: rebind fence from execbuf */
--	struct dma_fence *rebind_fence;
--
- 	/**
- 	 * @destroy_work: worker to destroy VM, needed as a dma_fence signaling
- 	 * from an irq context can be last put and the destroy needs to be able
+@@ -268,6 +268,16 @@ struct xe_vm {
+ 	u64 tlb_flush_seqno;
+ 	/** @batch_invalidate_tlb: Always invalidate TLB before batch start */
+ 	bool batch_invalidate_tlb;
++
++	/**
++	 * @is_validaing: Whether we are validating the vm's local objects.
++	 * This field is protected by the vm's resv. Note that this
++	 * is needed only since TTM doesn't forward the ttm_operation_ctx to the
++	 * eviction_valuable() callback, so if / when that is in place, this
++	 * should be removed.
++	 */
++	bool is_validating;
++
+ 	/** @xef: XE file handle for tracking this VM's drm client */
+ 	struct xe_file *xef;
+ };
 -- 
 2.44.0
 
