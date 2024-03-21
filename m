@@ -4,24 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C26D9C54E58
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 14:56:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A13EC54E58
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 14:58:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D1F010EBC2;
-	Thu, 21 Mar 2024 14:56:41 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C5AD10EBC2
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Mar 2024 14:56:39 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- stable@vger.kernel.org
-Subject: [PATCH] drm/xe: Fix bo leak in intel_fb_bo_framebuffer_init
-Date: Thu, 21 Mar 2024 15:56:44 +0100
-Message-ID: <20240321145644.33091-1-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8AD310E57E;
+	Thu, 21 Mar 2024 14:58:00 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5972110E57E;
+ Thu, 21 Mar 2024 14:57:59 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_series_starting_with_=5B?=
+ =?utf-8?q?v3=2C1/2=5D_drm/xe/query=3A_Define_and_use_a_constant_for_the_num?=
+ =?utf-8?q?ber_of_masks?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Francois Dugast" <francois.dugast@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 21 Mar 2024 14:57:59 -0000
+Message-ID: <171103307936.940727.18287754025891400150@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240321142154.7-1-francois.dugast@intel.com>
+In-Reply-To: <20240321142154.7-1-francois.dugast@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,44 +37,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a reference to bo after all error paths, to prevent leaking a bo
-ref.
+== Series Details ==
 
-Return 0 to clarify that this is the success path.
+Series: series starting with [v3,1/2] drm/xe/query: Define and use a constant for the number of masks
+URL   : https://patchwork.freedesktop.org/series/131426/
+State : success
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Fixes: 44e694958b95 ("drm/xe/display: Implement display support")
-Cc: <stable@vger.kernel.org> # v6.8+
----
- drivers/gpu/drm/xe/display/intel_fb_bo.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/display/intel_fb_bo.c b/drivers/gpu/drm/xe/display/intel_fb_bo.c
-index b21da7b745a5..7262bbca9baf 100644
---- a/drivers/gpu/drm/xe/display/intel_fb_bo.c
-+++ b/drivers/gpu/drm/xe/display/intel_fb_bo.c
-@@ -27,8 +27,6 @@ int intel_fb_bo_framebuffer_init(struct intel_framebuffer *intel_fb,
- 	struct drm_i915_private *i915 = to_i915(bo->ttm.base.dev);
- 	int ret;
- 
--	xe_bo_get(bo);
--
- 	ret = ttm_bo_reserve(&bo->ttm, true, false, NULL);
- 	if (ret)
- 		return ret;
-@@ -48,7 +46,8 @@ int intel_fb_bo_framebuffer_init(struct intel_framebuffer *intel_fb,
- 	}
- 	ttm_bo_unreserve(&bo->ttm);
- 
--	return ret;
-+	xe_bo_get(bo);
-+	return 0;
- }
- 
- struct xe_bo *intel_fb_bo_lookup_valid_bo(struct drm_i915_private *i915,
--- 
-2.43.0
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast 0cd99ca612f004f19c35f4966a584f0a729bbc31
+Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
+Fast mode used, each commit won't be checked separately.
+Okay!
+
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
