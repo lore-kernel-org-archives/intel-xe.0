@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B50F0C6FD1F
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 19:35:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 787F7C6FD1F
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 19:35:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FC0C10E8D4;
-	Thu, 21 Mar 2024 19:35:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 107D510E6FA;
+	Thu, 21 Mar 2024 19:35:49 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D61B810E8D4;
- Thu, 21 Mar 2024 19:35:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 155CF10E6FA;
+ Thu, 21 Mar 2024 19:35:48 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
- =?utf-8?q?move_dmc=5Ffirmware=5Fpath_to_display_params?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_move_?=
+ =?utf-8?q?dmc=5Ffirmware=5Fpath_to_display_params?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 21 Mar 2024 19:35:14 -0000
-Message-ID: <171104971487.941104.4332049820051768803@8e613ede5ea5>
+Date: Thu, 21 Mar 2024 19:35:48 -0000
+Message-ID: <171104974808.941104.7523476827771856198@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240321161856.3517856-1-jani.nikula@intel.com>
 In-Reply-To: <20240321161856.3517856-1-jani.nikula@intel.com>
@@ -44,13 +44,36 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/i915/display: move dmc_firmware_path to display params
 URL   : https://patchwork.freedesktop.org/series/131442/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: ad4a10c6d0e2 drm-tip: 2024y-03m-21d-19h-14m-14s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/display: move dmc_firmware_path to display params
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+a9eb1ac8298ef9f9146567c29fa762d8e9efa1ef
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 0de0d6418805ddb952e2c1d22d1375d116cc9423
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Thu Mar 21 18:18:56 2024 +0200
+
+    drm/i915/display: move dmc_firmware_path to display params
+    
+    The dmc_firmware_path parameter is clearly a display parameter. Move it
+    there. This also cleans up the ugly member in struct xe_device.
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch ad4a10c6d0e21df4bd830c20c96b795ae2d03962 drm-intel
+0de0d6418805 drm/i915/display: move dmc_firmware_path to display params
+-:20: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#20: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:31:
++intel_display_param_named_unsafe(dmc_firmware_path, charp, 0400,
++	"DMC firmware path to use instead of the default one");
+
+total: 0 errors, 0 warnings, 1 checks, 66 lines checked
 
 
