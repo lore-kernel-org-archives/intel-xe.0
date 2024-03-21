@@ -4,144 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97930C6FD1F
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 20:00:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9637C6FD1F
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 20:11:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AC99112092;
-	Thu, 21 Mar 2024 20:00:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 975791120AC;
+	Thu, 21 Mar 2024 20:11:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nd+kfgIT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fc1to22B";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA6D6112091
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Mar 2024 20:00:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E025F1120AC
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 Mar 2024 20:11:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711051225; x=1742587225;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=dgZ9sBps7CclueFrFJIMGGlU2hZISwPt8LPdXONnMlE=;
- b=nd+kfgITltKAPFk8GYSSVSx82kwuk3r3sGoUWqYaM7a/jrgIksricPDu
- 0m80vW55zGgVYs7xQEjljxhWWf38tc2T9zZlIklBun5su0cq1px7+pj2g
- fyvsjcjICrjBtXVnAmutul1zeqvJEnyeeUIyOyj3nbfiVIsgKl6Fr5VU3
- HyVtMpWDORzLHbsiFsTFHRmaK4dGge6pa11FLxNM+Yf6/wvdLjeR9RHjF
- oR538lVUYdi4fI9W4gTJsx+Y8jZ9+015hXBD3zgjwTKlXkUqS+qPRmULH
- pI6SLr9x+5qP8yrhA2fuAI3zD4PgHP5DVZMNP1wOzl4pxKUC48mQAXP+F w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="28542905"
-X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; d="scan'208";a="28542905"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2024 13:00:24 -0700
+ t=1711051893; x=1742587893;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=Q9Ff7bfYdguP8oPezKDYAuyy/lKgDkuCmtGTMJENrwM=;
+ b=Fc1to22Bbh2gZrMTm9SLVOGWHtlm5oL+S8VgWC5UFR8KmgRwH0o7Gl53
+ C5PF8df8IlNjRCFVaOpzrBDlEmzFYZneYzk7jsBekmbS8C+i5Yphmew1W
+ gUvt9yqxjXMQbpz0n1YjeZm1sRXccQrGcjbj6QrZ0ZEPWjEaQdiR2XR/N
+ QpVi+Lj5OKUP7U6d4YBvFzXJ2XPip6MPqHQEXKWL+3vv0S6DpvoFlKXyl
+ UVBSsn1/SpD5pkIyU3m9Djv8A/lBmRmQyd+freR+6DiSeXtnqtH/1JLBE
+ YSENMFT0Yfan+NmLDZ2ZQi/XtLA8RrgLZM8i2/zwh81LExrXjUArDOCSa Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="23524537"
+X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; d="scan'208";a="23524537"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2024 13:11:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; d="scan'208";a="37760772"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 21 Mar 2024 13:00:23 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; d="scan'208";a="15052380"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 21 Mar 2024 13:11:32 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 21 Mar 2024 13:00:23 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.35; Thu, 21 Mar 2024 13:11:31 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Thu, 21 Mar 2024 13:00:23 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.40) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Thu, 21 Mar 2024 13:11:31 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 21 Mar 2024 13:00:22 -0700
+ 15.1.2507.35; Thu, 21 Mar 2024 13:11:31 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=d9AB9PBdZ6nvZy+YJ+xLorH8GcN+4NTF1jY6/1iKF0NtaDYmh7wCFbVVPCMsD8XbxLuvcOjD3afNTIHtW7Ml9OoGzWncyNfo3LpuMmPmbP+Vim9/jIiWw4zC+uNYwZzfqtquf/6n9vUfMV3z8XommAF7RA/3Fr/izbtVQNVUlLiOBXWev0nNL0e3/4rm1VxJQXzJu6akJrtAJETud6iQEvoWFHDPM3qEBqKIkhsWSLbZLrHzA9rjuDK/u7S5cYEwt7sTQCPuphsSwMTBMDHPajZGzLmbjYhYteYIJKvvy/+B5y0uUqqAi3qgc/HLDl637niGU/liFNcNiIi9Me9irg==
+ b=Fea+AuGA4Elki70bqb7pBaFrzB5xaysPt77PLcJJFCCZDAoIoxgGmJwKEeekkhAtHscrM6hpEpVF/AKp3+v8b0LqOXFhjxiNT4I8w2EKQWaGvFbxDI0iPfSdssaqcawrC8xjnOASkMgC4bhC4XVTrsrTUid7Jfp066O67YWczR1Y7KqEa45jDI+POACoodm0Rul7v+4iz6eH92ZODJHrgnhY7BXxF08AGo3ceClTpu50w1EeVtwuMN9KlDdo7b9hheN2sED+J46WMBWXgW3JOeKrXZdSCC+7OswC/+WN0i3sNhSXsdktOvi+n1XjFgynTnC/NQbdRvskewMbKhICTA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EvLBejQ/lDr/j6RQ/Lz3Fql66W6YNvLe9WbSRc9IatQ=;
- b=Xb63ojiEZtI2sM3w9z7j+8fXeOJmy3Fd/PkDZWPp2Tc3Q74SZYI3QIZA5BZwpxUEnw9HALfYjxODbVzXJD84te41ZmVfUJ2aJzY5OGD8Fge47Yq4IyU6zn0vx51oz7nC+iart7ns6YLPB6SkpGHBnxAfPRyPFocaAeVGOPzPlMGcc2fo3fhk2GavUh8Gjetv3KwALy/V1K827k3cDVn8xMvS1S4T5PcUlFjO2Pb0reTv/STrPLHBvld8KTL9fhpc+JaPxh/JT3JG67no1RjouHMn1Ah0x75f+64npmJO+TJcuQDJ0wo70vLoUiY6Ajx6ePsfc73lJkbZa4QJ3c0pLg==
+ bh=rEif7soWHhZhT85/yIFutPGdJjVKb6n0eA5QhAStNGo=;
+ b=lzZg8V4DM1w33CYYVp24qc73NVHKXwL/MegVDl7xkk+ax6HK0SI60VPcoD/YI/MamI6/szEviie0CorYCSe9l0R1UasG2tbJrCPNibCnej61P4Ca9lifTuVqFv3fYwkjIq4d7Uj5SBEmBgWMeot3fK9Yb2jgSfINlY9pV55EvmI3KbOyovpRxXqtEl7qWf02F2uc9ugRrOvnmBnH47ECx2VkMmT53dBZ+GcO9cZ2GQB6YKUzXOZ49xR1OClp190kXHD19NftJT6Zv/rkMsciS/PtLkDxP9Fo0CMmR85JkBX8y81Csf9auv+OGUvnuhRVq3QFtdKewv5DU5DvSZEU+A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from SA1PR11MB6991.namprd11.prod.outlook.com (2603:10b6:806:2b8::21)
- by LV3PR11MB8744.namprd11.prod.outlook.com (2603:10b6:408:215::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.23; Thu, 21 Mar
- 2024 20:00:20 +0000
-Received: from SA1PR11MB6991.namprd11.prod.outlook.com
- ([fe80::c06c:bf95:b3f4:198d]) by SA1PR11MB6991.namprd11.prod.outlook.com
- ([fe80::c06c:bf95:b3f4:198d%5]) with mapi id 15.20.7362.017; Thu, 21 Mar 2024
- 20:00:20 +0000
-From: "Zeng, Oak" <oak.zeng@intel.com>
-To: "Brost, Matthew" <matthew.brost@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Hellstrom, Thomas" <thomas.hellstrom@intel.com>, "Welty, Brian"
- <brian.welty@intel.com>, "Ghimiray, Himal Prasad"
- <himal.prasad.ghimiray@intel.com>, "De Marchi, Lucas"
- <lucas.demarchi@intel.com>
-Subject: RE: [PATCH 4/4] drm/xe: destroy userptr vma on UNMAP event
-Thread-Topic: [PATCH 4/4] drm/xe: destroy userptr vma on UNMAP event
-Thread-Index: AQHaezXx8ukTkUkttEKudqvoYNITzLFBh1kAgAC2QECAAC7pAIAACXVg
-Date: Thu, 21 Mar 2024 20:00:20 +0000
-Message-ID: <SA1PR11MB6991842B4F24CA71A7159B1B92322@SA1PR11MB6991.namprd11.prod.outlook.com>
-References: <20240321022939.2279979-1-oak.zeng@intel.com>
- <20240321022939.2279979-5-oak.zeng@intel.com>
- <ZfunwkSUxdlFWmcn@DUT025-TGLU.fm.intel.com>
- <SA1PR11MB699154B66898A29896FFB5D192322@SA1PR11MB6991.namprd11.prod.outlook.com>
- <Zfxn/o1Qugq1hG6C@DUT025-TGLU.fm.intel.com>
-In-Reply-To: <Zfxn/o1Qugq1hG6C@DUT025-TGLU.fm.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SA1PR11MB6991:EE_|LV3PR11MB8744:EE_
-x-ms-office365-filtering-correlation-id: a49c1e50-da63-48a7-eec7-08dc49e189be
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: jNOZ12QAeaEOckzUtv1xUBhe4GFf1pD5sP+2+ZuliDe8RSGgCpJIWi6AkTer0wM0vZ+dws5rgCr6iMyVL2vnk1rw5BWSSvYKghcIrijYfqeVPxQ+r/zzI1uR+8bQH6n44NjzXFMtNyxToTZw5QhXUstbmo1RnUgUBF1falUzMDT7KOChTMXPV1pNZZ1ufBkpCjbX5st62ERi+dJvQAhCiwHi/jrZmbPm59uI/VsyvXtkTB9sNuddZ21jvE2s3dQO16LO6sXOtFfe28A/bMsFlOne3fFRey29FuGezNfQsKm1LugJ8PLenEIPnP5T1ZnHn4fcZ4cDEqyn5U5pfW6PoEKk8DHvFdVDzJ9KVAgsht1pe3NZqycfjxTPF0pnHmnUb4KWXOgks4hxcgHZitYjI42EVKcp5rfas5Dl7ARTxhMRG361rD3s9vWc95uMhp+xuS5kdQg25DVPmw8cyz8A+llNWCkOtYtsbO6CVGPoQWbZMbsxPY15npTiRphSCumgkb+TBFn88dfwwjnMqSrPNn1oxzV2jdM1gGYGYMJvyELiskDC0JrJ/IH+bhkUw7JKd2HHC8UsraihrQKS7AWg7gtpPlkNTTwdlgf3NASzv3p6YDcw9l1Y3kvxUnaY7bu/QSeFDomg8zVv1qU1sD4ZxHzJz+eVGRZOIW3CW/LXpqA9gWc5kuWiKKvbXRbBUCVa
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA1PR11MB6991.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(366007)(1800799015)(38070700009); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?5Y3RgReRqdWuaAZweUoUlw6/F1OsJ8eq2cc2BfOEqL6s7b2/g2zv3peshESc?=
- =?us-ascii?Q?wR6hfOxxP37IRuHFnTm5v82QPysOxW721nnj/xwM9tj+37haKXjqwgXwzkPI?=
- =?us-ascii?Q?nGqa5mGMc/3v1V5xNLwPCV+Rd65roVzW90N1A4a8jeDyQxl/qCsjVnbnagQ3?=
- =?us-ascii?Q?pgbCQnLxVB7MWkM23PBeP9WmpQa5TsHvxAJg1Hu4soprIVMUyssC5GEZhVyP?=
- =?us-ascii?Q?CBrA4apuptjAas/jlZuYIiWEsm342U99gyIgYE7QUPsVgQv0AgYP7WGaBwXt?=
- =?us-ascii?Q?df32DqnAKnodot++8aRhdc2tau3cIvBRyaNZ2bkvv4DBdfVQa4clfXeLcvZM?=
- =?us-ascii?Q?ivIbuW8O4BlERaV5gTE94YqpoDbF5/w3VYexc9bCWfcavdNOg5zztIXn/H8A?=
- =?us-ascii?Q?h+K+sfqfe4n7H1J1an5OE7fVTFL/F0m1XPnzzffuFASnPe40L2eFLt/ZY/BU?=
- =?us-ascii?Q?f9cVgyqhCOR0mqT7/blSAuGT3RU9MLCZhzTuJ2R3+VUL6tTDhm/25AlIw1KS?=
- =?us-ascii?Q?LKx+246IVtkiehdbsiF0Ld2nJxsFciMMyWmvho+B6WW+RbatNpcKR2nN4U8Z?=
- =?us-ascii?Q?iCHElWgz0LDUnI/u4u/8vpnGAORpR4khHV1OC+WN1twhSZ0K0ofhlzsmuo4h?=
- =?us-ascii?Q?yBuoCqWu1lYqCzk4e5QRviakgeZ9pN+PwyrZyEierC1zNZ1HqrYiEd7fD5Lo?=
- =?us-ascii?Q?v53CkcDSUiT56TaTCLIZop3Fdvg1wfNU2rj9gBGWJpKkfoqKHo55VYAJrXDG?=
- =?us-ascii?Q?3ACyO+fN1iCVl0L7TWNFFOag0QkjQrHwBjovTqYZ+tTH3dvnvcT4ikWkqefJ?=
- =?us-ascii?Q?go2D29zwU0E6tcKXIpR6m30wU+ABc+bnQSIultArUP3INLddCO2oyUkj05Bo?=
- =?us-ascii?Q?BotMbxbQeEXigc+eLXHXiucyZtGrW+7UdR9ThtzPhTpFEYPElIu1A3yuw52f?=
- =?us-ascii?Q?LA9E/M9Nu/Z3ORKQ6BdQqptjUFin53gMDkabk82/GZLhGuSRs+oMpbNVtapy?=
- =?us-ascii?Q?FMuhcF3F8JeVvkJeJDnfhSx+/nT+xB3OomO5Ax3RauCaAbCeCMNn4PeFv5an?=
- =?us-ascii?Q?gUZhfOA66jLSx9q4n3SIO3P2G7wbtLgzqFFvsy862m5peAFuXKrSq2PdgRFW?=
- =?us-ascii?Q?b4niRo+vhwEzCD1HD4KtcRIZ96faU+IZpUP4/FFz8t7nDklT5sYzZBQQiN+S?=
- =?us-ascii?Q?bKIAP3J08VN1g0HzlWPtCPg6kfGjzNq2/7kFjOA3TFMutM2GboMgg6xgjxzJ?=
- =?us-ascii?Q?aEqj7qNED0BJKpJvR+YHR2BTzqMrjRSjDDKL37UJiGVfrkVPdDQsNDu00Ir2?=
- =?us-ascii?Q?N6MskN5RkDjWMmy8Tx4zD2DUD2w5bSzd6yu6UIK7Bdu5o0wLjkv7BPD1wQQ9?=
- =?us-ascii?Q?j4rsQvtFvohBm/K3tA3HOzEyLMtgFv4XgfIXDpHKvfRZsvEHSd18bC/t2HLn?=
- =?us-ascii?Q?x0qsAhDYcaAgPua27ZG5r28PkAgi/Wu9FmE2LlmJ2LhrJMoDyDqmPzgLSpmk?=
- =?us-ascii?Q?oK6/mtiHgQMgQykO1TqyvxzD8JbWnIfF0ISlxhOe6loBvxuKjhLILO/0jC29?=
- =?us-ascii?Q?42svszWgom9eerSCyVE=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by SJ0PR11MB4975.namprd11.prod.outlook.com (2603:10b6:a03:2d0::23)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.11; Thu, 21 Mar
+ 2024 20:11:30 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e7c:ccbc:a71c:6c15]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e7c:ccbc:a71c:6c15%5]) with mapi id 15.20.7409.010; Thu, 21 Mar 2024
+ 20:11:29 +0000
+Date: Thu, 21 Mar 2024 20:10:56 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Matthew Auld <matthew.auld@intel.com>
+Subject: Re: [PATCH 3/7] drm/xe: Reserve fences where needed
+Message-ID: <ZfyUUOYtnOwz56sB@DUT025-TGLU.fm.intel.com>
+References: <20240321113720.120865-1-thomas.hellstrom@linux.intel.com>
+ <20240321113720.120865-7-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240321113720.120865-7-thomas.hellstrom@linux.intel.com>
+X-ClientProxiedBy: SJ2PR07CA0021.namprd07.prod.outlook.com
+ (2603:10b6:a03:505::23) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SJ0PR11MB4975:EE_
+X-MS-Office365-Filtering-Correlation-Id: 07f98997-3896-4d8d-2125-08dc49e3187e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: sVvvIfE62HI2BPsiv4yNZfHjB6de7752N/W5fbGbfceWO2gYpcxfpZkewybKITv2x7APHFmtksj9qRlcD8eZP1YBnChEUOhEmqCSIWnlX/pCoJVRiDwVMDx5oX+Yy0rFyUoDRFxxF0c+IuxP3Ruv7TB8TNvIMfuN+qR2ewX0T8c9VMmEeCvox647I9KvC+OEnJDIS1V58OSaSvHPYmzNiGNvbHu6CAZJvhH7jqHkYnqkOy1tLpe2517UIKNSh18SpELPyu5Jf564WgVjPoomUSFYIH1KFrlp6LumZHSP1jdaG1K6WEdeAxVnO0S690G2o4blQ3d8kBuViIEwj0N+vLJbuOWovlXtEG+w38p6m7N5oSTjfnyfgBP6PYnePSuXIKu+N+t5fsZLvxpE7ggbpks2/uuSa+vfjJG0xvLsRjAMTRro3RUEFO/4xyIVu+4O1y8EdpgOuIUgtMaWaT6qfFj8zAfpS+LUjfnWwNgSUqbyGWs2cd3hx8Pwk1UbuDexPUDHJEqitFFrj++unBQupsUQhadZcOAY6DfqYsWPWL7Y+lPCmgBjrgxEsxHtmlajUlYZuuTFfcQnasO0ekAwpWmRR4NPaK6kr7rUqd53Txo=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005)(1800799015)(366007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?7g7ga9RZEG3Uj2uE0MwrbHpbJ/mE9KJEvjqjCWM5/UPDzfDU4t4sG1qsma?=
+ =?iso-8859-1?Q?vCuLGRPlHH4XY420gu2aloQZ00QFBI03WCJDhHNfIpCopVs/VfA9DovYI6?=
+ =?iso-8859-1?Q?Oq/Ueymnwve6TYLBc+Ytt+nO80WocDi5w/hwweqy20ahXMCRa7NLINgMCr?=
+ =?iso-8859-1?Q?PFKYNjQ14ZxJY6ai3rvPDPaJqFioDFO/uIMc2scqo5eWBPFlns12CWj0zu?=
+ =?iso-8859-1?Q?Um/D4zooMyxOnccJhL/rSJiQ5ZYl2dALiYt3vs0R+ljPS7M3s1pWxwKUYq?=
+ =?iso-8859-1?Q?noRCOe8NLVE1k47DhRjq8LCS85ElKonsUB5O7Ow6icklfm8SzuUE0dvWUi?=
+ =?iso-8859-1?Q?l220OkWqATCfifjbIwSa1AoK664rZY8UZ+kxx0vXQ/2t+2RUGF5DtdjBmv?=
+ =?iso-8859-1?Q?nDJ+6n+R6VT6J1EfLZasMQ0shW01/D/0bOjPnF9fm8PeKIR8YrE5C96zsa?=
+ =?iso-8859-1?Q?xyySz3lK2lsPb2DQaoidw9KLAp1s4IH9flzSxKNxoyebYBNdwSCAbwkNXE?=
+ =?iso-8859-1?Q?MV95Kt291igaGyndLqTye2SlRB4jJIJjpWwM5D7gg3+QRsDQ6e2huPLNT9?=
+ =?iso-8859-1?Q?bQYjKzbTkvdxAeoGHQrehzHNLsMehqB+xFpBRyGSruwiHugCZiR2Z7IIEL?=
+ =?iso-8859-1?Q?dkjHvLDtN5hFUVmIvBD+Hq8W0eHNM+PNsPaLhHkJV1UaEarI/ptfQG0lRZ?=
+ =?iso-8859-1?Q?3fyIW1LTZa/bBvLW1mW4Tp8i0IJ7Boo1hBBVngqwVu5w9CEwNqSNsitXKP?=
+ =?iso-8859-1?Q?XZ95f2VT+GSWU1bwp88qO0uZyNKqtsCG/gSxK4Om4yXHjllK1LvTotzXMY?=
+ =?iso-8859-1?Q?6aPkb1EaxWzkOq+pRJrBVblxkOWAIF7Wk4B450UVC4vVt/+upFts67wgTJ?=
+ =?iso-8859-1?Q?6e1ytXKqkp1OuZCXrHDAmvXSs+H3S4sTr1gjAQKDaobAPB4H7ck74Hd+wy?=
+ =?iso-8859-1?Q?YwxWpwwpI/ycZoX3rV9R9M5SGm8if3OT03R66vDHuIiEizXufgaN691JzR?=
+ =?iso-8859-1?Q?C71rSFa866XKR6K2dxG4J+PzgnRHtEIPXjh6mLdl9YVPT8dj+3SREMIzul?=
+ =?iso-8859-1?Q?UWuq1WtFP5xrR6+8am5MLV9HZZYEOwLNuEeykgyRPPAB4Bpp1Mtmu0aPH9?=
+ =?iso-8859-1?Q?gY5G6NIk6Jb1IydiqmUX7Ax3PYPrwhc9cxOHW05YvqC1sGh0zDCmCdK+wb?=
+ =?iso-8859-1?Q?pw+kN+DS1z1MNY3MBqOEn0xkiwS3alA9cITR1RP5MBE3ETxLaj12mSO+Qd?=
+ =?iso-8859-1?Q?r5HBpCpsYgULIAw8uSR/MfNhyDQPDMr6Wh8h+dm+HMQUl4FgRC/1BfybQx?=
+ =?iso-8859-1?Q?39glPkJlaCGtd6YNu/T6TlW/D0rUkxmNr4qm2OIe1izCc6BWR9RKHHVoHP?=
+ =?iso-8859-1?Q?obylrDbnyGHVciRz1f4AKLFu7iub/XnP7485xx7Dq40NCTA4xjF6joO4Qw?=
+ =?iso-8859-1?Q?hVSaMcDSgu4Jv5+iG4jjtJ2h44l/MCNJwIkW0wvJFeukxbtLHg05UTmk34?=
+ =?iso-8859-1?Q?nrThXz+3xBFsDrcks2BsJo9fVcJJdPdcU6F65EwDtZ2AHunr2FUjA6ltmk?=
+ =?iso-8859-1?Q?h1sza49QXNAoGHOglAIo9ynMRRCWuQ4EqhTaCPaoBBfmRI2ED6vJQBzmfg?=
+ =?iso-8859-1?Q?XomGxrjJYjmJSNWTKCMdm2+8PnX/CTnzZYCMy390Ad7UZprvsXgOQ2gA?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 07f98997-3896-4d8d-2125-08dc49e3187e
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SA1PR11MB6991.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a49c1e50-da63-48a7-eec7-08dc49e189be
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Mar 2024 20:00:20.6677 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 0A1xChW/tvHt46VbyhwGuu4ITJEyRBlaOnWSkVRUIff4HpzgdojkelqE/Zs4zg/fPxNQmK1LBDPcjeaKtWS72w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR11MB8744
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Mar 2024 20:11:29.8416 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: YBG9K0VH4QWTOO8Lz6+IIenT8bzMHpBoEMRfHW7EFrFnIZ2/gEDroAhO4OOY0cFcFZ94nJG/bvcYIgmUu+qdcA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4975
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -157,251 +150,279 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Matt,=20
+On Thu, Mar 21, 2024 at 12:37:15PM +0100, Thomas Hellström wrote:
+> Reserve fence slots where actually needed rather than trying to
+> predict how many fence slots will be needed over a complete
+> wound-wait transaction.
+> 
 
-Per yours and Thomas comments, most likely we want to keep the current beha=
-vior. I will drop this patch.=20
+You include this patch twice in the series.
 
-I might still need this behavior for system allocator. But that will be lef=
-t over to the system allocator patches.
+> Fixes: 29f424eb8702 ("drm/xe/exec: move fence reservation")
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_exec.c         | 27 +---------------
+>  drivers/gpu/drm/xe/xe_gt_pagefault.c |  3 +-
+>  drivers/gpu/drm/xe/xe_pt.c           | 14 ++++++++
+>  drivers/gpu/drm/xe/xe_vm.c           | 48 +++++++++++++---------------
+>  drivers/gpu/drm/xe/xe_vm.h           |  3 +-
+>  5 files changed, 40 insertions(+), 55 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+> index 7692ebfe7d47..511d23426a5e 100644
+> --- a/drivers/gpu/drm/xe/xe_exec.c
+> +++ b/drivers/gpu/drm/xe/xe_exec.c
+> @@ -96,41 +96,16 @@
+>  
+>  static int xe_exec_fn(struct drm_gpuvm_exec *vm_exec)
+>  {
+> -	struct xe_vm *vm = container_of(vm_exec->vm, struct xe_vm, gpuvm);
+>  	struct drm_gem_object *obj;
+>  	unsigned long index;
+> -	int num_fences;
+>  	int ret;
+>  
+>  	ret = drm_gpuvm_validate(vm_exec->vm, &vm_exec->exec);
+>  	if (ret)
+>  		return ret;
+>  
+> -	/*
+> -	 * 1 fence slot for the final submit, and 1 more for every per-tile for
+> -	 * GPU bind and 1 extra for CPU bind. Note that there are potentially
+> -	 * many vma per object/dma-resv, however the fence slot will just be
+> -	 * re-used, since they are largely the same timeline and the seqno
+> -	 * should be in order. In the case of CPU bind there is dummy fence used
+> -	 * for all CPU binds, so no need to have a per-tile slot for that.
+> -	 */
+> -	num_fences = 1 + 1 + vm->xe->info.tile_count;
+> -
+> -	/*
+> -	 * We don't know upfront exactly how many fence slots we will need at
+> -	 * the start of the exec, since the TTM bo_validate above can consume
+> -	 * numerous fence slots. Also due to how the dma_resv_reserve_fences()
+> -	 * works it only ensures that at least that many fence slots are
+> -	 * available i.e if there are already 10 slots available and we reserve
+> -	 * two more, it can just noop without reserving anything.  With this it
+> -	 * is quite possible that TTM steals some of the fence slots and then
+> -	 * when it comes time to do the vma binding and final exec stage we are
+> -	 * lacking enough fence slots, leading to some nasty BUG_ON() when
+> -	 * adding the fences. Hence just add our own fences here, after the
+> -	 * validate stage.
+> -	 */
+>  	drm_exec_for_each_locked_object(&vm_exec->exec, index, obj) {
+> -		ret = dma_resv_reserve_fences(obj->resv, num_fences);
+> +		ret = dma_resv_reserve_fences(obj->resv, 1);
+>  		if (ret)
+>  			return ret;
+>  	}
+> diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> index 241c294270d9..fa9e9853c53b 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> @@ -100,10 +100,9 @@ static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
+>  {
+>  	struct xe_bo *bo = xe_vma_bo(vma);
+>  	struct xe_vm *vm = xe_vma_vm(vma);
+> -	unsigned int num_shared = 2; /* slots for bind + move */
+>  	int err;
+>  
+> -	err = xe_vm_prepare_vma(exec, vma, num_shared);
+> +	err = xe_vm_lock_vma(exec, vma);
+>  	if (err)
+>  		return err;
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> index 109c26e5689e..7add08b2954e 100644
+> --- a/drivers/gpu/drm/xe/xe_pt.c
+> +++ b/drivers/gpu/drm/xe/xe_pt.c
+> @@ -1235,6 +1235,13 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
+>  	err = xe_pt_prepare_bind(tile, vma, entries, &num_entries);
+>  	if (err)
+>  		goto err;
+> +
+> +	err = dma_resv_reserve_fences(xe_vm_resv(vm), 1);
+> +	if (!err && !xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
+> +		err = dma_resv_reserve_fences(xe_vma_bo(vma)->ttm.base.resv, 1);
+> +	if (err)
+> +		goto err;
+> +
 
-See some comments inline just for discussion purpose.
+Again not a huge fan of updating __xe_pt_bind_vma / __xe_pt_unbind_vma
+here because these are going away [1] but again conceptually this is
+more or less correct the place.
 
-> -----Original Message-----
-> From: Brost, Matthew <matthew.brost@intel.com>
-> Sent: Thursday, March 21, 2024 1:02 PM
-> To: Zeng, Oak <oak.zeng@intel.com>
-> Cc: intel-xe@lists.freedesktop.org; Hellstrom, Thomas
-> <thomas.hellstrom@intel.com>; Welty, Brian <brian.welty@intel.com>; Ghimi=
-ray,
-> Himal Prasad <himal.prasad.ghimiray@intel.com>; De Marchi, Lucas
-> <lucas.demarchi@intel.com>
-> Subject: Re: [PATCH 4/4] drm/xe: destroy userptr vma on UNMAP event
->=20
-> On Thu, Mar 21, 2024 at 08:56:15AM -0600, Zeng, Oak wrote:
-> > Hi Matt,
-> >
-> > > -----Original Message-----
-> > > From: Brost, Matthew <matthew.brost@intel.com>
-> > > Sent: Wednesday, March 20, 2024 11:22 PM
-> > > To: Zeng, Oak <oak.zeng@intel.com>
-> > > Cc: intel-xe@lists.freedesktop.org; Hellstrom, Thomas
-> > > <thomas.hellstrom@intel.com>; Welty, Brian <brian.welty@intel.com>;
-> Ghimiray,
-> > > Himal Prasad <himal.prasad.ghimiray@intel.com>; De Marchi, Lucas
-> > > <lucas.demarchi@intel.com>
-> > > Subject: Re: [PATCH 4/4] drm/xe: destroy userptr vma on UNMAP event
-> > >
-> > > On Wed, Mar 20, 2024 at 10:29:39PM -0400, Oak Zeng wrote:
-> > > > When there is MMU_NOTIFY_UNMAP event happens, the userptr
-> > > > is munmapped from CPU. There is no need to keep the xe_vma
-> > > > for this userptr from GPU side. So we destroy it.
-> > > >
-> > > > But we can't destroy vma directly from the mmu notifier
-> > > > callback function, because we need to remove mmu
-> > > > notifier during vma destroy. If we remove mmu notifier
-> > > > directly from mmu notifier callback, it is a deadlock.
-> > > > xe_vma_destroy is modified to destroy vma in a worker
-> > > > thread.
-> > > >
-> > > > Another reason of this change is, for the future
-> > > > hmmptr codes, we destroy vma when hmmptr is unmapped
-> > > > from CPU. We want to unify the hmmptr and userptr
-> > > > code.
-> > > >
-> > > > I believe this is also the correct behavior for userptr.
-> > >
-> > > It is not, the user is still responsible for unmapping.
-> >
-> > Do you see a problem of the scheme I described? In that scheme, if user
-> vm_unbind after userptr is freed/munmapped, we can return user an error
-> "userptr is already freed". Is this a problem to you?
-> >
->=20
-> We did this until was merged - the next userpr pin pages would return
-> -EFAULT.=20
+[1] https://patchwork.freedesktop.org/series/125608/
 
-That is a little different than my scheme. In my scheme, the user freed use=
-rptr is destroyed completely. It won't be on any repin list - it won't be r=
-epined anymore.
+>  	xe_tile_assert(tile, num_entries <= ARRAY_SIZE(entries));
+>  
+>  	xe_vm_dbg_print_entries(tile_to_xe(tile), entries, num_entries);
+> @@ -1576,6 +1583,7 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queu
+>  	struct dma_fence *fence = NULL;
+>  	struct invalidation_fence *ifence;
+>  	struct xe_range_fence *rfence;
+> +	int err;
+>  
+>  	LLIST_HEAD(deferred);
+>  
+> @@ -1593,6 +1601,12 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queu
+>  	xe_pt_calc_rfence_interval(vma, &unbind_pt_update, entries,
+>  				   num_entries);
+>  
+> +	err = dma_resv_reserve_fences(xe_vm_resv(vm), 1);
+> +	if (!err && !xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
+> +		err = dma_resv_reserve_fences(xe_vma_bo(vma)->ttm.base.resv, 1);
+> +	if (err)
+> +		return ERR_PTR(err);
+> +
+>  	ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
+>  	if (!ifence)
+>  		return ERR_PTR(-ENOMEM);
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 80d43d75b1da..cff8db605743 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -485,14 +485,11 @@ static int xe_gpuvm_validate(struct drm_gpuvm_bo *vm_bo, struct drm_exec *exec)
+>  static int xe_preempt_work_begin(struct drm_exec *exec, struct xe_vm *vm,
+>  				 bool *done)
+>  {
+> +	struct drm_gem_object *obj;
+> +	unsigned long index;
+>  	int err;
+>  
+> -	/*
+> -	 * 1 fence for each preempt fence plus a fence for each tile from a
+> -	 * possible rebind
+> -	 */
+> -	err = drm_gpuvm_prepare_vm(&vm->gpuvm, exec, vm->preempt.num_exec_queues +
+> -				   vm->xe->info.tile_count);
+> +	err = drm_gpuvm_prepare_vm(&vm->gpuvm, exec, 0);
+>  	if (err)
+>  		return err;
+>  
+> @@ -507,7 +504,7 @@ static int xe_preempt_work_begin(struct drm_exec *exec, struct xe_vm *vm,
+>  		return 0;
+>  	}
+>  
+> -	err = drm_gpuvm_prepare_objects(&vm->gpuvm, exec, vm->preempt.num_exec_queues);
+> +	err = drm_gpuvm_prepare_objects(&vm->gpuvm, exec, 0);
 
+I think this needs to be 1 as drm_gpuvm_validate needs a fence slot,
+right?
 
-Turns out the compute apps call free / munmap on userptrs with
-> bindings as the time for performance reasons. Thus the [1] we just
-> invalidate the userptr if we can't pin the pages.
+>  	if (err)
+>  		return err;
+>  
+> @@ -515,7 +512,17 @@ static int xe_preempt_work_begin(struct drm_exec *exec, struct xe_vm *vm,
+>  	if (err)
+>  		return err;
+>  
+> -	return drm_gpuvm_validate(&vm->gpuvm, exec);
+> +	err = drm_gpuvm_validate(&vm->gpuvm, exec);
+> +	if (err)
+> +		return err;
+> +
+> +	drm_exec_for_each_locked_object(exec, index, obj) {
+> +		err = dma_resv_reserve_fences(obj->resv, vm->preempt.num_exec_queues);
 
-I understand the performance consideration. But in my scheme, it doesn't ha=
-ve the performance problem either. My scheme allows user free without vm_un=
-bind, with same performance perspective.
+What if we only have external BOs? Do we allocate slots in the VM
+dma-resv slot with this loop?
 
-Thomas mentioned user can free the userptr, then malloc the same userptr, t=
-hen use it for gpu workload. I wrote an email to confirm this behavior to U=
-MD. If this is the case, then my scheme doesn't work.
+Also what is the behavior of?
 
+dma_resv_reserve_fences(obj, 1);
+dma_resv_reserve_fences(obj, 1);
 
->=20
-> [1] https://patchwork.freedesktop.org/series/130935/
->=20
-> > My thinking is, the xe_vma state for userptr depends on a valid userptr=
-. When
-> user free/munmap userptr, the userptr is gone, so the xe_vma should also =
-be
-> gone. Isn't this a general valid design principle? Xekmd itself seems app=
-ly this
-> principle a lot. For example, when we destroy a vm, all the exec queue of=
- this vm
-> is destroyed, not requiring user explicitly destroy queues.
-> >
->=20
-> Not a wrong of thinking about it but see above.
->=20
-> >
-> > Even if this was
-> > > the correct behavior we'd have to unmap from the GPU and update inter=
-nal
-> > > PT state before calling xe_vma_destroy.
-> >
-> > In vma_userptr_invalidate, we called xe_vm_invalidate_vma to zap PT sta=
-te.
-> But currently it is done only for fault mode. If we use my scheme, this s=
-hould be
-> done for both fault and non-fault mode during a MMU_NOTIFY_UNMAP event.
-> >
->=20
-> I'm unsure where it done in this patch - xe_vma_destroy free the KMD
-> state / memory for the xe_vma. It does not remove / update the GPUVM
-> state, the PT state or interact with the GPU to update the page tables.
+Do we have 2 slots now? e.g. to calls to reserve slots accumulate?
 
-I wasn't clear. It is not in this patch yet. I meant this behavior:
+Lastly, strickly speaking I don't we need to patch in this series, do
+we? It doesn't appaer to being fixing anything unless I'm missing
+something.
 
-Regardless it is fault or non-fault mode, if user free/unmap userptr (aka M=
-MU_NOTIFY_UNMAP event in the mmu notifier callback), we should always:
+Matt
 
-1) update GPUVM state/ZAP PTEs
-2)destroy xe_vma for the userptr, also makes sure this xe_vma won't be on a=
-ny repin list..
-
-Again, this scheme depends on UMD behavior as said above.
-
->=20
-> We only call xe_vm_invalidate_vma in notifier for fault because the
-> other modes (dma-fence / preempt fence) it is call somewhere else (exec
-> IOCTL / preempt rebind worker respectully). The dma-resv slots in these
-> modes ensure that after vma_userptr_invalidate returns the GPU will not
-> be touching the userptr. GPU exection is resumed in exec IOCTL or
-> preempt rebind worker either the userptr is rebound or invalidated.
->=20
-> Make sense?
-
-For non-fault mode, what we have today (with your merged patch) works for m=
-e. Let's keep the current behavior. Note my scheme would also work: in MMU_=
-NOTIFY_UNMAP, we can do above 1) and 2) without pre-empt GPU workload - if =
-GPU touch this userptr later, it is user program error and it is fatal. I a=
-gree we keep the current behavior=20
-
->=20
-> >
-> > >
-> > > The correct behavior in this is case just let the userptr page pin fa=
-il
-> > > and invalidate GPU mappings. This recently got merge in [1].
-> >
-> > This also works, but the design is not as clean as my scheme IMO.
-> >
->=20
-> The UMDs have requested the existing behavior.
-
-Sure, lets keep it.
-
->=20
-> > For hmmptr, there is no vm_bind (except the initial gigantic bind which=
- doesn't
-> count). It is reasonable to destroy vma when user free/munmap, otherwise =
-we
-> left over a lot of zombie vmas. So at least for hmmptr we should apply my
-> scheme. Whether we should unify the scheme for both userptr and hmmptr, I
-> think it is still debatable.
-> >
->=20
-> The HMMPTR case, this concept is correct. Hence I implemented garbage
-> collector in my PoC [2]. The implementation however, is not. See my
-> comments above about what xe_vma_destroy does. Rather than calling that
-> function - it should be addded to a list which a worker picks up and
-> proper modifies all state (GPUVM, internal PT state, and GPU page
-> tables) needed to destroy the VMA. The garbage collector can be thought
-> od mini-IOCTL that only implements DRM_XE_VM_BIND_OP_UNMAP for the
-> VMA.
-> Hence in my PoC it calls the same functions the bind IOCTL calls albiet
-> with slightly different arguments.
->=20
-> Again, does this make sense?
-
-Yes, that make sense.
-
-Oak
-
->=20
-> Matt
->=20
-> [2] https://gitlab.freedesktop.org/mbrost/xe-kernel-driver-system-allocat=
-or/-
-> /commit/91cf8b38428ae9180c92435d3519193d074e837a
->=20
-> > Oak
-> >
-> > >
-> > > Have a pending test for this in [2].
-> > >
-> > > Matt
-> > >
-> > > [1] https://patchwork.freedesktop.org/series/130935/
-> > > [2] https://patchwork.freedesktop.org/series/131211/
-> > >
-> > > > This patch is experimental for CI and open to discuss
-> > > >
-> > > > Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/xe/xe_vm.c | 8 +++++++-
-> > > >  1 file changed, 7 insertions(+), 1 deletion(-)
-> > > >
-> > > > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.=
-c
-> > > > index 11a4bb9d5415..90d1163c1090 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_vm.c
-> > > > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > > > @@ -40,6 +40,8 @@
-> > > >  #include "xe_wa.h"
-> > > >  #include "xe_hmm.h"
-> > > >
-> > > > +static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence
-> *fence);
-> > > > +
-> > > >  static struct drm_gem_object *xe_vm_obj(struct xe_vm *vm)
-> > > >  {
-> > > >  	return vm->gpuvm.r_obj;
-> > > > @@ -604,6 +606,9 @@ static bool vma_userptr_invalidate(struct
-> > > mmu_interval_notifier *mni,
-> > > >
-> > > >  	trace_xe_vma_userptr_invalidate_complete(vma);
-> > > >
-> > > > +	if (range->event =3D=3D MMU_NOTIFY_UNMAP)
-> > > > +		xe_vma_destroy(vma, NULL);
-> > > > +
-> > > >  	return true;
-> > > >  }
-> > > >
-> > > > @@ -901,7 +906,8 @@ static void xe_vma_destroy(struct xe_vma *vma,
-> struct
-> > > dma_fence *fence)
-> > > >  			xe_vma_destroy_late(vma);
-> > > >  		}
-> > > >  	} else {
-> > > > -		xe_vma_destroy_late(vma);
-> > > > +		INIT_WORK(&vma->destroy_work, vma_destroy_work_func);
-> > > > +		queue_work(system_unbound_wq, &vma->destroy_work);
-> > > >  	}
-> > > >  }
-> > > >
-> > > > --
-> > > > 2.26.3
-> > > >
+> +		if (err)
+> +			return err;
+> +	}
+> +
+> +	return 0;
+>  }
+>  
+>  static void preempt_rebind_work_func(struct work_struct *w)
+> @@ -1004,35 +1011,26 @@ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
+>  }
+>  
+>  /**
+> - * xe_vm_prepare_vma() - drm_exec utility to lock a vma
+> + * xe_vm_lock_vma() - drm_exec utility to lock a vma
+>   * @exec: The drm_exec object we're currently locking for.
+>   * @vma: The vma for witch we want to lock the vm resv and any attached
+>   * object's resv.
+> - * @num_shared: The number of dma-fence slots to pre-allocate in the
+> - * objects' reservation objects.
+>   *
+>   * Return: 0 on success, negative error code on error. In particular
+>   * may return -EDEADLK on WW transaction contention and -EINTR if
+>   * an interruptible wait is terminated by a signal.
+>   */
+> -int xe_vm_prepare_vma(struct drm_exec *exec, struct xe_vma *vma,
+> -		      unsigned int num_shared)
+> +int xe_vm_lock_vma(struct drm_exec *exec, struct xe_vma *vma)
+>  {
+>  	struct xe_vm *vm = xe_vma_vm(vma);
+>  	struct xe_bo *bo = xe_vma_bo(vma);
+>  	int err;
+>  
+>  	XE_WARN_ON(!vm);
+> -	if (num_shared)
+> -		err = drm_exec_prepare_obj(exec, xe_vm_obj(vm), num_shared);
+> -	else
+> -		err = drm_exec_lock_obj(exec, xe_vm_obj(vm));
+> -	if (!err && bo && !bo->vm) {
+> -		if (num_shared)
+> -			err = drm_exec_prepare_obj(exec, &bo->ttm.base, num_shared);
+> -		else
+> -			err = drm_exec_lock_obj(exec, &bo->ttm.base);
+> -	}
+> +
+> +	err = drm_exec_lock_obj(exec, xe_vm_obj(vm));
+> +	if (!err && bo && !bo->vm)
+> +		err = drm_exec_lock_obj(exec, &bo->ttm.base);
+>  
+>  	return err;
+>  }
+> @@ -1044,7 +1042,7 @@ static void xe_vma_destroy_unlocked(struct xe_vma *vma)
+>  
+>  	drm_exec_init(&exec, 0, 0);
+>  	drm_exec_until_all_locked(&exec) {
+> -		err = xe_vm_prepare_vma(&exec, vma, 0);
+> +		err = xe_vm_lock_vma(&exec, vma);
+>  		drm_exec_retry_on_contention(&exec);
+>  		if (XE_WARN_ON(err))
+>  			break;
+> @@ -2511,7 +2509,7 @@ static int op_execute(struct drm_exec *exec, struct xe_vm *vm,
+>  
+>  	lockdep_assert_held_write(&vm->lock);
+>  
+> -	err = xe_vm_prepare_vma(exec, vma, 1);
+> +	err = xe_vm_lock_vma(exec, vma);
+>  	if (err)
+>  		return err;
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+> index 6df1f1c7f85d..47f3960120a0 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.h
+> +++ b/drivers/gpu/drm/xe/xe_vm.h
+> @@ -242,8 +242,7 @@ bool xe_vm_validate_should_retry(struct drm_exec *exec, int err, ktime_t *end);
+>  
+>  int xe_analyze_vm(struct drm_printer *p, struct xe_vm *vm, int gt_id);
+>  
+> -int xe_vm_prepare_vma(struct drm_exec *exec, struct xe_vma *vma,
+> -		      unsigned int num_shared);
+> +int xe_vm_lock_vma(struct drm_exec *exec, struct xe_vma *vma);
+>  
+>  /**
+>   * xe_vm_resv() - Return's the vm's reservation object
+> -- 
+> 2.44.0
+> 
