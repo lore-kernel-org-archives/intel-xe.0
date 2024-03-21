@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAD93C6FD1F
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 21:16:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BBD9C6FD1F
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 21:16:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B033112145;
-	Thu, 21 Mar 2024 21:16:14 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bT7AZfAY";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27E22112145
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Mar 2024 21:16:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711055773; x=1742591773;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=w9/3jNHeCzMYxvMU5Dsvfdl94dM7OFDuedB3s6bP9NU=;
- b=bT7AZfAYsfuSUXUseqxmHhpml7xm3iEX6mr3yXsv3m/VdN2sb9l+/WOr
- 9o7hlVd8BVmGc8xn0TwblTBvMpqMFUSlhNkgCYUlh79WeNBkwa/QB/+ar
- R24rKedOus1AgE3DdFV5MN7goK465jZQFNxqEkeDnHskBKqRYmjj6HGJ2
- kByzMkROEhLcdLORKEG45QW3J1UMFjJ1Ed7nNn5mY2OrJWfp6UeDQa3Ar
- ErLFWn/++Cs/xG1SxO9tIriH/RipaDzudKfCFTue1i9K231RotKxFLVyN
- gQmvfNEIfAYIayBCj4wASd29ygpmKYns4pueJd7DPhbr1+XdMq76LlYUI w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="16814670"
-X-IronPort-AV: E=Sophos;i="6.07,144,1708416000"; d="scan'208";a="16814670"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2024 14:16:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,144,1708416000"; d="scan'208";a="19223170"
-Received: from sinampud-mobl.amr.corp.intel.com (HELO [10.249.254.176])
- ([10.249.254.176])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2024 14:16:11 -0700
-Message-ID: <a20fb42c340caea1b22ee0a7784e5a9ffb3c08af.camel@linux.intel.com>
-Subject: Re: [PATCH 2/7] drm/xe: Rework rebinding
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- stable@vger.kernel.org
-Date: Thu, 21 Mar 2024 22:16:09 +0100
-In-Reply-To: <ZfyHMmxStlECaGs3@DUT025-TGLU.fm.intel.com>
-References: <20240321113720.120865-1-thomas.hellstrom@linux.intel.com>
- <20240321113720.120865-4-thomas.hellstrom@linux.intel.com>
- <ZfyHMmxStlECaGs3@DUT025-TGLU.fm.intel.com>
-Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
- keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3D46112148;
+	Thu, 21 Mar 2024 21:16:44 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78A08112146;
+ Thu, 21 Mar 2024 21:16:44 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/guc=3A_Remove_exp?=
+ =?utf-8?q?licit_shutdown_of_SLPC?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 21 Mar 2024 21:16:44 -0000
+Message-ID: <171105580449.941104.11801670727763640974@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240321184924.234579-1-vinay.belgaumkar@intel.com>
+In-Reply-To: <20240321184924.234579-1-vinay.belgaumkar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,253 +36,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 2024-03-21 at 19:14 +0000, Matthew Brost wrote:
-> On Thu, Mar 21, 2024 at 12:37:12PM +0100, Thomas Hellstr=C3=B6m wrote:
-> > Instead of handling the vm's rebind fence separately,
-> > which is error prone if they are not strictly ordered,
-> > attach rebind fences as kernel fences to the vm's resv.
-> >=20
->=20
-> See comment from previous, do not like updates to __xe_pt_bind_vma
-> but I
-> guess I can live with it. Otherwise LGTM.
+== Series Details ==
 
-Thanks, yeah same reason there, unfortunately.
+Series: drm/xe/guc: Remove explicit shutdown of SLPC
+URL   : https://patchwork.freedesktop.org/series/131449/
+State : success
 
-/Thomas
+== Summary ==
 
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast ad4a10c6d0e21df4bd830c20c96b795ae2d03962
+Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
+Fast mode used, each commit won't be checked separately.
+Okay!
 
->=20
-> With that:
-> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
->=20
-> > Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel
-> > GPUs")
-> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Cc: Matthew Brost <matthew.brost@intel.com>
-> > Cc: <stable@vger.kernel.org> # v6.8+
-> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > ---
-> > =C2=A0drivers/gpu/drm/xe/xe_exec.c=C2=A0=C2=A0=C2=A0=C2=A0 | 31 +++----=
----------------------
-> > ---
-> > =C2=A0drivers/gpu/drm/xe/xe_pt.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=
-=C2=A0 2 +-
-> > =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | =
-27 +++++++++------------------
-> > =C2=A0drivers/gpu/drm/xe/xe_vm.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=
-=C2=A0 2 +-
-> > =C2=A0drivers/gpu/drm/xe/xe_vm_types.h |=C2=A0 3 ---
-> > =C2=A05 files changed, 14 insertions(+), 51 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/xe/xe_exec.c
-> > b/drivers/gpu/drm/xe/xe_exec.c
-> > index 7692ebfe7d47..759497d4a102 100644
-> > --- a/drivers/gpu/drm/xe/xe_exec.c
-> > +++ b/drivers/gpu/drm/xe/xe_exec.c
-> > @@ -152,7 +152,6 @@ int xe_exec_ioctl(struct drm_device *dev, void
-> > *data, struct drm_file *file)
-> > =C2=A0	struct drm_exec *exec =3D &vm_exec.exec;
-> > =C2=A0	u32 i, num_syncs =3D 0, num_ufence =3D 0;
-> > =C2=A0	struct xe_sched_job *job;
-> > -	struct dma_fence *rebind_fence;
-> > =C2=A0	struct xe_vm *vm;
-> > =C2=A0	bool write_locked, skip_retry =3D false;
-> > =C2=A0	ktime_t end =3D 0;
-> > @@ -294,35 +293,11 @@ int xe_exec_ioctl(struct drm_device *dev,
-> > void *data, struct drm_file *file)
-> > =C2=A0	 * Rebind any invalidated userptr or evicted BOs in the
-> > VM, non-compute
-> > =C2=A0	 * VM mode only.
-> > =C2=A0	 */
-> > -	rebind_fence =3D xe_vm_rebind(vm, false);
-> > -	if (IS_ERR(rebind_fence)) {
-> > -		err =3D PTR_ERR(rebind_fence);
-> > +	err =3D xe_vm_rebind(vm, false);
-> > +	if (err)
-> > =C2=A0		goto err_put_job;
-> > -	}
-> > -
-> > -	/*
-> > -	 * We store the rebind_fence in the VM so subsequent execs
-> > don't get
-> > -	 * scheduled before the rebinds of userptrs / evicted BOs
-> > is complete.
-> > -	 */
-> > -	if (rebind_fence) {
-> > -		dma_fence_put(vm->rebind_fence);
-> > -		vm->rebind_fence =3D rebind_fence;
-> > -	}
-> > -	if (vm->rebind_fence) {
-> > -		if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
-> > -			=C2=A0=C2=A0=C2=A0=C2=A0 &vm->rebind_fence->flags)) {
-> > -			dma_fence_put(vm->rebind_fence);
-> > -			vm->rebind_fence =3D NULL;
-> > -		} else {
-> > -			dma_fence_get(vm->rebind_fence);
-> > -			err =3D drm_sched_job_add_dependency(&job-
-> > >drm,
-> > -							=C2=A0=C2=A0 vm-
-> > >rebind_fence);
-> > -			if (err)
-> > -				goto err_put_job;
-> > -		}
-> > -	}
-> > =C2=A0
-> > -	/* Wait behind munmap style rebinds */
-> > +	/* Wait behind rebinds */
-> > =C2=A0	if (!xe_vm_in_lr_mode(vm)) {
-> > =C2=A0		err =3D drm_sched_job_add_resv_dependencies(&job-
-> > >drm,
-> > =C2=A0							=C2=A0
-> > xe_vm_resv(vm),
-> > diff --git a/drivers/gpu/drm/xe/xe_pt.c
-> > b/drivers/gpu/drm/xe/xe_pt.c
-> > index 21bc0d13fccf..0484ed5b495f 100644
-> > --- a/drivers/gpu/drm/xe/xe_pt.c
-> > +++ b/drivers/gpu/drm/xe/xe_pt.c
-> > @@ -1298,7 +1298,7 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct
-> > xe_vma *vma, struct xe_exec_queue
-> > =C2=A0		}
-> > =C2=A0
-> > =C2=A0		/* add shared fence now for pagetable delayed
-> > destroy */
-> > -		dma_resv_add_fence(xe_vm_resv(vm), fence, !rebind
-> > &&
-> > +		dma_resv_add_fence(xe_vm_resv(vm), fence, rebind
-> > ||
-> > =C2=A0				=C2=A0=C2=A0 last_munmap_rebind ?
-> > =C2=A0				=C2=A0=C2=A0 DMA_RESV_USAGE_KERNEL :
-> > =C2=A0				=C2=A0=C2=A0 DMA_RESV_USAGE_BOOKKEEP);
-> > diff --git a/drivers/gpu/drm/xe/xe_vm.c
-> > b/drivers/gpu/drm/xe/xe_vm.c
-> > index 80d43d75b1da..35fba6e3f889 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm.c
-> > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > @@ -522,7 +522,6 @@ static void preempt_rebind_work_func(struct
-> > work_struct *w)
-> > =C2=A0{
-> > =C2=A0	struct xe_vm *vm =3D container_of(w, struct xe_vm,
-> > preempt.rebind_work);
-> > =C2=A0	struct drm_exec exec;
-> > -	struct dma_fence *rebind_fence;
-> > =C2=A0	unsigned int fence_count =3D 0;
-> > =C2=A0	LIST_HEAD(preempt_fences);
-> > =C2=A0	ktime_t end =3D 0;
-> > @@ -568,18 +567,11 @@ static void preempt_rebind_work_func(struct
-> > work_struct *w)
-> > =C2=A0	if (err)
-> > =C2=A0		goto out_unlock;
-> > =C2=A0
-> > -	rebind_fence =3D xe_vm_rebind(vm, true);
-> > -	if (IS_ERR(rebind_fence)) {
-> > -		err =3D PTR_ERR(rebind_fence);
-> > +	err =3D xe_vm_rebind(vm, true);
-> > +	if (err)
-> > =C2=A0		goto out_unlock;
-> > -	}
-> > -
-> > -	if (rebind_fence) {
-> > -		dma_fence_wait(rebind_fence, false);
-> > -		dma_fence_put(rebind_fence);
-> > -	}
-> > =C2=A0
-> > -	/* Wait on munmap style VM unbinds */
-> > +	/* Wait on rebinds and munmap style VM unbinds */
-> > =C2=A0	wait =3D dma_resv_wait_timeout(xe_vm_resv(vm),
-> > =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 DMA_RESV_USAGE_KERNEL,
-> > =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 false, MAX_SCHEDULE_TIMEOUT);
-> > @@ -773,14 +765,14 @@ xe_vm_bind_vma(struct xe_vma *vma, struct
-> > xe_exec_queue *q,
-> > =C2=A0	=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_sync_entry *syncs=
-, u32 num_syncs,
-> > =C2=A0	=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bool first_op, bool last_op=
-);
-> > =C2=A0
-> > -struct dma_fence *xe_vm_rebind(struct xe_vm *vm, bool
-> > rebind_worker)
-> > +int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
-> > =C2=A0{
-> > -	struct dma_fence *fence =3D NULL;
-> > +	struct dma_fence *fence;
-> > =C2=A0	struct xe_vma *vma, *next;
-> > =C2=A0
-> > =C2=A0	lockdep_assert_held(&vm->lock);
-> > =C2=A0	if (xe_vm_in_lr_mode(vm) && !rebind_worker)
-> > -		return NULL;
-> > +		return 0;
-> > =C2=A0
-> > =C2=A0	xe_vm_assert_held(vm);
-> > =C2=A0	list_for_each_entry_safe(vma, next, &vm->rebind_list,
-> > @@ -788,17 +780,17 @@ struct dma_fence *xe_vm_rebind(struct xe_vm
-> > *vm, bool rebind_worker)
-> > =C2=A0		xe_assert(vm->xe, vma->tile_present);
-> > =C2=A0
-> > =C2=A0		list_del_init(&vma->combined_links.rebind);
-> > -		dma_fence_put(fence);
-> > =C2=A0		if (rebind_worker)
-> > =C2=A0			trace_xe_vma_rebind_worker(vma);
-> > =C2=A0		else
-> > =C2=A0			trace_xe_vma_rebind_exec(vma);
-> > =C2=A0		fence =3D xe_vm_bind_vma(vma, NULL, NULL, 0, false,
-> > false);
-> > =C2=A0		if (IS_ERR(fence))
-> > -			return fence;
-> > +			return PTR_ERR(fence);
-> > +		dma_fence_put(fence);
-> > =C2=A0	}
-> > =C2=A0
-> > -	return fence;
-> > +	return 0;
-> > =C2=A0}
-> > =C2=A0
-> > =C2=A0static void xe_vma_free(struct xe_vma *vma)
-> > @@ -1588,7 +1580,6 @@ static void vm_destroy_work_func(struct
-> > work_struct *w)
-> > =C2=A0		XE_WARN_ON(vm->pt_root[id]);
-> > =C2=A0
-> > =C2=A0	trace_xe_vm_free(vm);
-> > -	dma_fence_put(vm->rebind_fence);
-> > =C2=A0	kfree(vm);
-> > =C2=A0}
-> > =C2=A0
-> > diff --git a/drivers/gpu/drm/xe/xe_vm.h
-> > b/drivers/gpu/drm/xe/xe_vm.h
-> > index 6df1f1c7f85d..4853354336f2 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm.h
-> > +++ b/drivers/gpu/drm/xe/xe_vm.h
-> > @@ -207,7 +207,7 @@ int __xe_vm_userptr_needs_repin(struct xe_vm
-> > *vm);
-> > =C2=A0
-> > =C2=A0int xe_vm_userptr_check_repin(struct xe_vm *vm);
-> > =C2=A0
-> > -struct dma_fence *xe_vm_rebind(struct xe_vm *vm, bool
-> > rebind_worker);
-> > +int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker);
-> > =C2=A0
-> > =C2=A0int xe_vm_invalidate_vma(struct xe_vma *vma);
-> > =C2=A0
-> > diff --git a/drivers/gpu/drm/xe/xe_vm_types.h
-> > b/drivers/gpu/drm/xe/xe_vm_types.h
-> > index 5747f136d24d..badf3945083d 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-> > @@ -177,9 +177,6 @@ struct xe_vm {
-> > =C2=A0	 */
-> > =C2=A0	struct list_head rebind_list;
-> > =C2=A0
-> > -	/** @rebind_fence: rebind fence from execbuf */
-> > -	struct dma_fence *rebind_fence;
-> > -
-> > =C2=A0	/**
-> > =C2=A0	 * @destroy_work: worker to destroy VM, needed as a
-> > dma_fence signaling
-> > =C2=A0	 * from an irq context can be last put and the destroy
-> > needs to be able
-> > --=20
-> > 2.44.0
-> >=20
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
