@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EC73C54E68
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 16:13:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C610CC54E68
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 16:14:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C60C910EEDE;
-	Thu, 21 Mar 2024 16:13:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84A3810EEB5;
+	Thu, 21 Mar 2024 16:14:07 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C127910EEB5;
- Thu, 21 Mar 2024 16:13:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 537C910EEB5;
+ Thu, 21 Mar 2024 16:14:05 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Fix_bo_lea?=
- =?utf-8?q?k_in_intel=5Ffb=5Fbo=5Fframebuffer=5Finit?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Fix_bo_leak_in_?=
+ =?utf-8?q?intel=5Ffb=5Fbo=5Fframebuffer=5Finit?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 21 Mar 2024 16:13:52 -0000
-Message-ID: <171103763279.941104.7706399572340321074@8e613ede5ea5>
+Date: Thu, 21 Mar 2024 16:14:05 -0000
+Message-ID: <171103764534.941104.12252995486302012342@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240321145644.33091-1-maarten.lankhorst@linux.intel.com>
 In-Reply-To: <20240321145644.33091-1-maarten.lankhorst@linux.intel.com>
@@ -48,9 +48,30 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 0cd99ca612f0 drm-tip: 2024y-03m-21d-14h-26m-53s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Fix bo leak in intel_fb_bo_framebuffer_init
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+a9eb1ac8298ef9f9146567c29fa762d8e9efa1ef
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 54e7b8c8e399b8ef2388ae352d3cfbb3eefcd44b
+Author: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Date:   Thu Mar 21 15:56:44 2024 +0100
+
+    drm/xe: Fix bo leak in intel_fb_bo_framebuffer_init
+    
+    Add a reference to bo after all error paths, to prevent leaking a bo
+    ref.
+    
+    Return 0 to clarify that this is the success path.
+    
+    Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+    Fixes: 44e694958b95 ("drm/xe/display: Implement display support")
+    Cc: <stable@vger.kernel.org> # v6.8+
++ /mt/dim checkpatch 0cd99ca612f004f19c35f4966a584f0a729bbc31 drm-intel
+54e7b8c8e399 drm/xe: Fix bo leak in intel_fb_bo_framebuffer_init
 
 
