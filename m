@@ -4,49 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AA71C54E58
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 16:21:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81138CD11C2
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 16:25:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC0AB10EF21;
-	Thu, 21 Mar 2024 16:21:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DDCD10EF53;
+	Thu, 21 Mar 2024 16:25:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SYHPzxD0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i5dLDilF";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88D7110EF0C;
- Thu, 21 Mar 2024 16:21:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35B7610EF92
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 Mar 2024 16:25:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711038062; x=1742574062;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=KDM2KKMxOL6lej3aKQB4LEAYT8VIGaIrSxfqhOosfd0=;
- b=SYHPzxD0OuhvqDyiPe36R3X8Ts0DP/GQMe2COB8ib6psU6dhZRQKo1Zk
- WTPHzW1qGNYf40KSxbV8kLXn7Li8cFQl7KF9xyPUUvWO36SPixPmH4De/
- 3a7iwp5gissuZwJzD0Ep393apHCE4zcqqJcFDAjRiMfI/c/8uugsHdBYb
- ZtndHVQsJVEEbDOYp4OTYq9+jqQ9+XUCFALN4Ba4TflbBLUiU9cF5eM7l
- gCCmhPVMlSGfYb96XBYwLVOECdDWJMnJPFWiIBMv/lYk0gXv9Ryd8Yew2
- Slet+IpDW1qk622XeMW2ZlURqd1eQQ9q+kd2cay+kfEgotQXeqbv8GtNt g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="9847196"
-X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; 
-   d="scan'208";a="9847196"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2024 09:21:01 -0700
+ t=1711038345; x=1742574345;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=8d7V2h8PjKSaoo9tFtHrXryzS1G7MF1gZcKrnyzwdJY=;
+ b=i5dLDilFX8Sf5TYPceNu/w8RJASS/UVKzwX3xM7YV8mGu9I43VNiRojG
+ 9zhAn1D1XEJgZYkLx36GT+VHljIRxIdcpnr102gGeHEKj/KpWZeEcVGqu
+ 4gB13icEfjj1TOh5QobEWuPEjDnWm6oZtGcatxlN1k5bSWuYCix6RTgTT
+ EVGjME/wogrKuiCu+6isveiVrK2/tkKNffCMpzW7Lylc0S/J2UhhFAH4C
+ epLqL9zaBpUcrgtxD80GUOo9qifJ/27yzJFLTmIxlFHMofSFCyGvs8X9O
+ Ff1vCGYt/05cPC7jwzDBxtnC/Lsy5ShalBXQ+I+Rtmn4hmnQyjJujYKP5 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="28510497"
+X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; d="scan'208";a="28510497"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2024 09:25:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; d="scan'208";a="14595556"
-Received: from unknown (HELO localhost) ([10.237.66.160])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2024 09:21:00 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/display: move dmc_firmware_path to display params
-In-Reply-To: <20240321161856.3517856-1-jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240321161856.3517856-1-jani.nikula@intel.com>
-Date: Thu, 21 Mar 2024 18:20:57 +0200
-Message-ID: <87y1ablfo6.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; d="scan'208";a="14463798"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2024 09:25:30 -0700
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Nirmoy Das <nirmoy.das@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH v2] drm/xe: Create a helper function to init job's user fence
+Date: Thu, 21 Mar 2024 17:11:42 +0100
+Message-ID: <20240321161142.4954-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany,
+ Commercial Register: Amtsgericht Muenchen HRB 186928 
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,120 +67,203 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 21 Mar 2024, Jani Nikula <jani.nikula@intel.com> wrote:
-> The dmc_firmware_path parameter is clearly a display parameter. Move it
-> there. This also cleans up the ugly member in struct xe_device.
+Refactor xe_sync_entry_signal so it doesn't have to
+modify xe_sched_job struct instead create a new helper function
+to set user fence values for a job.
 
-Hmm, does this actually fix the parameter on xe?!
+v2: Move the sync type check to xe_sched_job_init_user_fence(Lucas)
 
->
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_params.c | 3 +++
->  drivers/gpu/drm/i915/display/intel_display_params.h | 1 +
->  drivers/gpu/drm/i915/display/intel_dmc.c            | 8 ++++----
->  drivers/gpu/drm/i915/i915_params.c                  | 3 ---
->  drivers/gpu/drm/i915/i915_params.h                  | 1 -
->  drivers/gpu/drm/xe/xe_device_types.h                | 3 ---
->  6 files changed, 8 insertions(+), 11 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/drivers/gpu/drm/i915/display/intel_display_params.c
-> index 11e03cfb774d..c8e3d6892e23 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_params.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
-> @@ -27,6 +27,9 @@ static struct intel_display_params intel_display_modparams __read_mostly = {
->   * debugfs mode to 0.
->   */
->  
-> +intel_display_param_named_unsafe(dmc_firmware_path, charp, 0400,
-> +	"DMC firmware path to use instead of the default one");
-> +
->  intel_display_param_named_unsafe(vbt_firmware, charp, 0400,
->  	"Load VBT from specified file under /lib/firmware");
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/drivers/gpu/drm/i915/display/intel_display_params.h
-> index 6206cc51df04..f95a6f79904f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_params.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_params.h
-> @@ -24,6 +24,7 @@ struct drm_i915_private;
->   *       debugfs file
->   */
->  #define INTEL_DISPLAY_PARAMS_FOR_EACH(param) \
-> +	param(char *, dmc_firmware_path, NULL, 0400) \
->  	param(char *, vbt_firmware, NULL, 0400) \
->  	param(int, lvds_channel_mode, 0, 0400) \
->  	param(int, panel_use_ssc, -1, 0600) \
-> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-> index 3fa851b5c7a6..b4e730882ce2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-> @@ -927,7 +927,7 @@ static void dmc_load_work_fn(struct work_struct *work)
->  
->  	err = request_firmware(&fw, dmc->fw_path, i915->drm.dev);
->  
-> -	if (err == -ENOENT && !i915->params.dmc_firmware_path) {
-> +	if (err == -ENOENT && !i915->display.params.dmc_firmware_path) {
->  		fallback_path = dmc_fallback_path(i915);
->  		if (fallback_path) {
->  			drm_dbg_kms(&i915->drm, "%s not found, falling back to %s\n",
-> @@ -1034,14 +1034,14 @@ void intel_dmc_init(struct drm_i915_private *i915)
->  		dmc->max_fw_size = BXT_DMC_MAX_FW_SIZE;
->  	}
->  
-> -	if (i915->params.dmc_firmware_path) {
-> -		if (strlen(i915->params.dmc_firmware_path) == 0) {
-> +	if (i915->display.params.dmc_firmware_path) {
-> +		if (strlen(i915->display.params.dmc_firmware_path) == 0) {
->  			drm_info(&i915->drm,
->  				 "Disabling DMC firmware and runtime PM\n");
->  			goto out;
->  		}
->  
-> -		dmc->fw_path = i915->params.dmc_firmware_path;
-> +		dmc->fw_path = i915->display.params.dmc_firmware_path;
->  	}
->  
->  	if (!dmc->fw_path) {
-> diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
-> index de43048543e8..8c00169e3ab7 100644
-> --- a/drivers/gpu/drm/i915/i915_params.c
-> +++ b/drivers/gpu/drm/i915/i915_params.c
-> @@ -108,9 +108,6 @@ i915_param_named_unsafe(guc_firmware_path, charp, 0400,
->  i915_param_named_unsafe(huc_firmware_path, charp, 0400,
->  	"HuC firmware path to use instead of the default one");
->  
-> -i915_param_named_unsafe(dmc_firmware_path, charp, 0400,
-> -	"DMC firmware path to use instead of the default one");
-> -
->  i915_param_named_unsafe(gsc_firmware_path, charp, 0400,
->  	"GSC firmware path to use instead of the default one");
->  
-> diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
-> index 1315d7fac850..2eb3f2115ff2 100644
-> --- a/drivers/gpu/drm/i915/i915_params.h
-> +++ b/drivers/gpu/drm/i915/i915_params.h
-> @@ -51,7 +51,6 @@ struct drm_printer;
->  	param(int, guc_log_level, -1, 0400) \
->  	param(char *, guc_firmware_path, NULL, 0400) \
->  	param(char *, huc_firmware_path, NULL, 0400) \
-> -	param(char *, dmc_firmware_path, NULL, 0400) \
->  	param(char *, gsc_firmware_path, NULL, 0400) \
->  	param(bool, memtest, false, 0400) \
->  	param(int, mmio_debug, -IS_ENABLED(CONFIG_DRM_I915_DEBUG_MMIO), 0600) \
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index 9785eef2e5a4..eeab2002d6db 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -524,9 +524,6 @@ struct xe_device {
->  		unsigned int fsb_freq, mem_freq, is_ddr3;
->  		u8 vblank_enabled;
->  	};
-> -	struct {
-> -		const char *dmc_firmware_path;
-> -	} params;
->  
->  	void *pxp;
->  #endif
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+---
+ drivers/gpu/drm/xe/xe_exec.c      |  9 +++++----
+ drivers/gpu/drm/xe/xe_sched_job.c | 18 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sched_job.h |  3 +++
+ drivers/gpu/drm/xe/xe_sync.c      |  7 +------
+ drivers/gpu/drm/xe/xe_sync.h      |  1 -
+ drivers/gpu/drm/xe/xe_vm.c        | 10 +++++-----
+ 6 files changed, 32 insertions(+), 16 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index 7692ebfe7d47..9d53ef8c49cc 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -249,7 +249,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 				goto err_unlock_list;
+ 			}
+ 			for (i = 0; i < num_syncs; i++)
+-				xe_sync_entry_signal(&syncs[i], NULL, fence);
++				xe_sync_entry_signal(&syncs[i], fence);
+ 			xe_exec_queue_last_fence_set(q, vm, fence);
+ 			dma_fence_put(fence);
+ 		}
+@@ -359,9 +359,10 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		drm_gpuvm_resv_add_fence(&vm->gpuvm, exec, &job->drm.s_fence->finished,
+ 					 DMA_RESV_USAGE_BOOKKEEP, DMA_RESV_USAGE_WRITE);
+ 
+-	for (i = 0; i < num_syncs; i++)
+-		xe_sync_entry_signal(&syncs[i], job,
+-				     &job->drm.s_fence->finished);
++	for (i = 0; i < num_syncs; i++) {
++		xe_sync_entry_signal(&syncs[i], &job->drm.s_fence->finished);
++		xe_sched_job_init_user_fence(job, &syncs[i]);
++	}
+ 
+ 	if (xe_exec_queue_is_lr(q))
+ 		q->ring_ops->emit_job(job);
+diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
+index 8151ddafb940..bfbce9b69087 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job.c
++++ b/drivers/gpu/drm/xe/xe_sched_job.c
+@@ -5,6 +5,7 @@
+ 
+ #include "xe_sched_job.h"
+ 
++#include <drm/xe_drm.h>
+ #include <linux/dma-fence-array.h>
+ #include <linux/slab.h>
+ 
+@@ -17,6 +18,7 @@
+ #include "xe_macros.h"
+ #include "xe_trace.h"
+ #include "xe_vm.h"
++#include "xe_sync_types.h"
+ 
+ static struct kmem_cache *xe_sched_job_slab;
+ static struct kmem_cache *xe_sched_job_parallel_slab;
+@@ -278,6 +280,22 @@ int xe_sched_job_last_fence_add_dep(struct xe_sched_job *job, struct xe_vm *vm)
+ 	return drm_sched_job_add_dependency(&job->drm, fence);
+ }
+ 
++/**
++ * xe_sched_job_init_user_fence - Initialize user_fence for the job
++ * @job: job whose user_fence needs an init
++ * @sync: sync to be use to init user_fence
++ */
++void xe_sched_job_init_user_fence(struct xe_sched_job *job,
++				  struct xe_sync_entry *sync)
++{
++	if (sync->type != DRM_XE_SYNC_TYPE_USER_FENCE)
++		return;
++
++	job->user_fence.used = true;
++	job->user_fence.addr = sync->addr;
++	job->user_fence.value = sync->timeline_value;
++}
++
+ struct xe_sched_job_snapshot *
+ xe_sched_job_snapshot_capture(struct xe_sched_job *job)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_sched_job.h b/drivers/gpu/drm/xe/xe_sched_job.h
+index f1a660648cf0..c75018f4660d 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job.h
++++ b/drivers/gpu/drm/xe/xe_sched_job.h
+@@ -10,6 +10,7 @@
+ 
+ struct drm_printer;
+ struct xe_vm;
++struct xe_sync_entry;
+ 
+ #define XE_SCHED_HANG_LIMIT 1
+ #define XE_SCHED_JOB_TIMEOUT LONG_MAX
+@@ -58,6 +59,8 @@ void xe_sched_job_arm(struct xe_sched_job *job);
+ void xe_sched_job_push(struct xe_sched_job *job);
+ 
+ int xe_sched_job_last_fence_add_dep(struct xe_sched_job *job, struct xe_vm *vm);
++void xe_sched_job_init_user_fence(struct xe_sched_job *job,
++				  struct xe_sync_entry *sync);
+ 
+ static inline struct xe_sched_job *
+ to_xe_sched_job(struct drm_sched_job *drm)
+diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
+index 02c9577fe418..65f1f1628235 100644
+--- a/drivers/gpu/drm/xe/xe_sync.c
++++ b/drivers/gpu/drm/xe/xe_sync.c
+@@ -224,8 +224,7 @@ int xe_sync_entry_add_deps(struct xe_sync_entry *sync, struct xe_sched_job *job)
+ 	return 0;
+ }
+ 
+-void xe_sync_entry_signal(struct xe_sync_entry *sync, struct xe_sched_job *job,
+-			  struct dma_fence *fence)
++void xe_sync_entry_signal(struct xe_sync_entry *sync, struct dma_fence *fence)
+ {
+ 	if (!(sync->flags & DRM_XE_SYNC_FLAG_SIGNAL))
+ 		return;
+@@ -254,10 +253,6 @@ void xe_sync_entry_signal(struct xe_sync_entry *sync, struct xe_sched_job *job,
+ 			user_fence_put(sync->ufence);
+ 			dma_fence_put(fence);
+ 		}
+-	} else if (sync->type == DRM_XE_SYNC_TYPE_USER_FENCE) {
+-		job->user_fence.used = true;
+-		job->user_fence.addr = sync->addr;
+-		job->user_fence.value = sync->timeline_value;
+ 	}
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sync.h b/drivers/gpu/drm/xe/xe_sync.h
+index 0fd0d51208e6..3e03396af2c6 100644
+--- a/drivers/gpu/drm/xe/xe_sync.h
++++ b/drivers/gpu/drm/xe/xe_sync.h
+@@ -26,7 +26,6 @@ int xe_sync_entry_wait(struct xe_sync_entry *sync);
+ int xe_sync_entry_add_deps(struct xe_sync_entry *sync,
+ 			   struct xe_sched_job *job);
+ void xe_sync_entry_signal(struct xe_sync_entry *sync,
+-			  struct xe_sched_job *job,
+ 			  struct dma_fence *fence);
+ void xe_sync_entry_cleanup(struct xe_sync_entry *sync);
+ struct dma_fence *
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 80d43d75b1da..497e49b867fc 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1696,7 +1696,7 @@ xe_vm_unbind_vma(struct xe_vma *vma, struct xe_exec_queue *q,
+ 		xe_exec_queue_last_fence_get(wait_exec_queue, vm) : fence;
+ 	if (last_op) {
+ 		for (i = 0; i < num_syncs; i++)
+-			xe_sync_entry_signal(&syncs[i], NULL, fence);
++			xe_sync_entry_signal(&syncs[i], fence);
+ 	}
+ 
+ 	return fence;
+@@ -1770,7 +1770,7 @@ xe_vm_bind_vma(struct xe_vma *vma, struct xe_exec_queue *q,
+ 
+ 	if (last_op) {
+ 		for (i = 0; i < num_syncs; i++)
+-			xe_sync_entry_signal(&syncs[i], NULL,
++			xe_sync_entry_signal(&syncs[i],
+ 					     cf ? &cf->base : fence);
+ 	}
+ 
+@@ -1831,7 +1831,7 @@ static int __xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma,
+ 		fence = xe_exec_queue_last_fence_get(wait_exec_queue, vm);
+ 		if (last_op) {
+ 			for (i = 0; i < num_syncs; i++)
+-				xe_sync_entry_signal(&syncs[i], NULL, fence);
++				xe_sync_entry_signal(&syncs[i], fence);
+ 		}
+ 	}
+ 
+@@ -2052,7 +2052,7 @@ static int xe_vm_prefetch(struct xe_vm *vm, struct xe_vma *vma,
+ 				struct dma_fence *fence =
+ 					xe_exec_queue_last_fence_get(wait_exec_queue, vm);
+ 
+-				xe_sync_entry_signal(&syncs[i], NULL, fence);
++				xe_sync_entry_signal(&syncs[i], fence);
+ 				dma_fence_put(fence);
+ 			}
+ 		}
+@@ -2930,7 +2930,7 @@ static int vm_bind_ioctl_signal_fences(struct xe_vm *vm,
+ 		return PTR_ERR(fence);
+ 
+ 	for (i = 0; i < num_syncs; i++)
+-		xe_sync_entry_signal(&syncs[i], NULL, fence);
++		xe_sync_entry_signal(&syncs[i], fence);
+ 
+ 	xe_exec_queue_last_fence_set(to_wait_exec_queue(vm, q), vm,
+ 				     fence);
 -- 
-Jani Nikula, Intel
+2.42.0
+
