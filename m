@@ -4,53 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4818C54E58
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 14:22:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFD1AC54E68
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 14:25:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9510610EAF4;
-	Thu, 21 Mar 2024 14:22:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 87DF810EB11;
+	Thu, 21 Mar 2024 14:25:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PQBs+1Ri";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V6WmU+p/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BD3710EB11
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Mar 2024 14:22:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B021910EAFA
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 Mar 2024 14:25:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711030926; x=1742566926;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=JG9QBpZnKSf0w72aAXPKmAmx9mKW6snIH6sHTQ8Y86w=;
- b=PQBs+1RiHJFr6/Az0Q6trpYAuXBHkCevUwGSXE4MAGyDVBF2cHFj9aKI
- 4I/89Dhq56ib3kJ1AFrxEL1TtDOpZWZtIatCJX4q/ZcZFWd2LUNXe6geP
- 1YvizvwjHwpzeGl9omcxRZ7V8fdDvPeeybCVfrNnVNb5xkXciZsk2UAWI
- iYsZgS+eVTFsGWOG4WXgVe0Zum9jNECrPgfmJe9isRRhtHE4ivAQ8ft8s
- 1Qn/ciLIsR34nEYf0ICbzUkhmit06S/D5CEAD68RgRRPAgheUE1JMLtTU
- Xd++B/ewyp6pI3jtaoCSYkwNwPoZGOtGycN+OQ5n5A3jJ7OQr65b1GE5o A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="17160807"
-X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; d="scan'208";a="17160807"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2024 07:22:05 -0700
+ t=1711031131; x=1742567131;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=tKPBXSQ2EWOPQHnq+OQJKRbkzmstAE3F00jrEfGQDdU=;
+ b=V6WmU+p/EHJz2sYFNFDRSPTpRdwc6WwvZo40nntlNAydJpEYrdLMWhCm
+ i9/B11SVqKLOkqDd5znrhTtUBOJEbgsnB90D5Bnsk5jEQwKvvgCOf+tiK
+ JWtyMks2XixZJeL9i/hC0eIdpRaLlwZjhkcE08iv+f+XCSdrIg7HxEBuw
+ I0yEn01upzi3nfXDnhcAU7a5FBp0I+yFBYcZDSDVE25StEbe+8ED2mWRZ
+ DnFWNWwsCzXIZWZ4FdXvm3faXwyuqbcB9ZjhVbADyfZUZ6hLQyNG1kmoV
+ MtTVPtfn3Vw4954JqhMUcPOAaHo7TPnkOgbkrsi3Sx1uRDEl89l9g24ps A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="17469183"
+X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; d="scan'208";a="17469183"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2024 07:25:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; d="scan'208";a="14926661"
-Received: from wanxiufe-mobl.ccr.corp.intel.com (HELO 717bf816bce1.intel.com)
+X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; d="scan'208";a="37633307"
+Received: from wanxiufe-mobl.ccr.corp.intel.com (HELO 0f71f048c3a7.intel.com)
  ([10.252.54.215])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2024 07:22:03 -0700
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2024 07:25:29 -0700
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Francois Dugast <francois.dugast@intel.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Robert Krzemien <robert.krzemien@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
  Zhanjun Dong <zhanjun.dong@intel.com>
-Subject: [PATCH v3 2/2] drm/xe/uapi: Add L3 bank mask to topology query
-Date: Thu, 21 Mar 2024 14:21:54 +0000
-Message-Id: <20240321142154.7-2-francois.dugast@intel.com>
+Subject: [PATCH v4 1/2] drm/xe/query: Define and use a constant for the number
+ of masks
+Date: Thu, 21 Mar 2024 14:25:20 +0000
+Message-Id: <20240321142521.7-1-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240321142154.7-1-francois.dugast@intel.com>
-References: <20240321142154.7-1-francois.dugast@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,223 +63,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Extend the existing topology uAPI to expose the masks of L3 banks
-to user space. L3 count is not sufficient because in some configuration
-not all banks are enabled. User space needs to know which ones are
-enabled, in the context of OA.
+Replace a magic value by a constant with an explicit name to make clear
+what it stands for: the number of masks returned by the topology query.
 
-v2:
-- Remove "Fixes" and make uAPI change explicit in commit message
-  (Lucas De Marchi and Matt Roper)
-- Add separate conditions for Xe2 and for PVC (Matt Roper)
-- Return the L3 bank mask instead of the L3 node mask and the L3
-  banks per node mask, as the node mask can be derived from the
-  bank mask by user space, just like slice masks are derived from
-  subslice masks today (Francois Dugast)
-
-v3: Use TOPO_NUMBER_OF_MASKS for the number of masks (Zhanjun Dong)
-
-Bspec: 52545, 52546, 62482
+Suggested-by: Zhanjun Dong <zhanjun.dong@intel.com>
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Cc: Robert Krzemien <robert.krzemien@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Zhanjun Dong <zhanjun.dong@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gt_regs.h |  3 ++
- drivers/gpu/drm/xe/xe_gt_topology.c  | 72 ++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_types.h     | 14 ++++--
- drivers/gpu/drm/xe/xe_query.c        | 10 +++-
- include/uapi/drm/xe_drm.h            |  1 +
- 5 files changed, 95 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_query.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 95969935f58b..be5b4936eb53 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -156,7 +156,10 @@
- #define	MIRROR_FUSE3				XE_REG(0x9118)
- #define   XE2_NODE_ENABLE_MASK			REG_GENMASK(31, 16)
- #define   L3BANK_PAIR_COUNT			4
-+#define   XEHPC_GT_L3_MODE_MASK			REG_GENMASK(7, 4)
-+#define   XE2_GT_L3_MODE_MASK			REG_GENMASK(7, 4)
- #define   L3BANK_MASK				REG_GENMASK(3, 0)
-+#define   XELP_GT_L3_MODE_MASK			REG_GENMASK(7, 0)
- /* on Xe_HP the same fuses indicates mslices instead of L3 banks */
- #define   MAX_MSLICES				4
- #define   MEML3_EN_MASK				REG_GENMASK(3, 0)
-diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
-index f5773a14f3c8..8920426332dd 100644
---- a/drivers/gpu/drm/xe/xe_gt_topology.c
-+++ b/drivers/gpu/drm/xe/xe_gt_topology.c
-@@ -59,6 +59,75 @@ load_eu_mask(struct xe_gt *gt, xe_eu_mask_t mask)
- 	bitmap_from_arr32(mask, &val, XE_MAX_EU_FUSE_BITS);
- }
- 
-+static void
-+load_l3_bank_mask(struct xe_gt *gt, xe_l3_bank_mask_t l3_bank_mask)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+	u64 node_mask, bank_mask = 0;
-+	u64 banks_per_node_fuse, banks_per_node_mask = 0;
-+	int i;
-+
-+	if (GRAPHICS_VER(xe) >= 20) {
-+		node_mask =
-+			REG_FIELD_GET(XE2_NODE_ENABLE_MASK,
-+				      xe_mmio_read32(gt, MIRROR_FUSE3));
-+		banks_per_node_mask =
-+			REG_FIELD_GET(XE2_GT_L3_MODE_MASK,
-+				      xe_mmio_read32(gt, MIRROR_FUSE3));
-+		for (i = 0; i < fls(node_mask); i++)
-+			if (node_mask & BIT(i))
-+				bank_mask |= banks_per_node_mask << 4 * i;
-+	} else if (GRAPHICS_VERx100(xe) >= 1270) {
-+		node_mask =
-+			REG_FIELD_GET(MEML3_EN_MASK,
-+				      xe_mmio_read32(gt, MIRROR_FUSE3));
-+		banks_per_node_fuse =
-+			REG_FIELD_GET(GT_L3_EXC_MASK,
-+				      xe_mmio_read32(gt, XEHP_FUSE4));
-+		/* Each bit represents 2 banks in the node. */
-+		for (i = 0; i < fls(banks_per_node_fuse); i++)
-+			if (banks_per_node_fuse & BIT(i))
-+				banks_per_node_mask |= 0x3 << 2 * i;
-+		for (i = 0; i < fls(node_mask); i++)
-+			if (node_mask & BIT(i))
-+				bank_mask |= banks_per_node_mask << 4 * i;
-+	} else if (xe->info.platform == XE_PVC) {
-+		node_mask =
-+			REG_FIELD_GET(MEML3_EN_MASK,
-+				      xe_mmio_read32(gt, MIRROR_FUSE3));
-+		banks_per_node_fuse =
-+			REG_FIELD_GET(XEHPC_GT_L3_MODE_MASK,
-+				      xe_mmio_read32(gt, MIRROR_FUSE3));
-+		/* Each bit represents 4 banks in the node. */
-+		for (i = 0; i < fls(banks_per_node_fuse); i++)
-+			if (banks_per_node_fuse & BIT(i))
-+				banks_per_node_mask |= 0xf << 4 * i;
-+		for (i = 0; i < fls(node_mask); i++)
-+			if (node_mask & BIT(i))
-+				bank_mask |= banks_per_node_mask << 16 * i;
-+	} else if (xe->info.platform == XE_DG2) {
-+		node_mask =
-+			REG_FIELD_GET(MEML3_EN_MASK,
-+				      xe_mmio_read32(gt, MIRROR_FUSE3));
-+		/*
-+		 * In this case, if a node is present then all 8 banks inside of
-+		 * it are present.
-+		 */
-+		for (i = 0; i < fls(node_mask); i++)
-+			if (node_mask & BIT(i))
-+				bank_mask |= 0xfful << 8 * i;
-+	} else {
-+		/*
-+		 * Here the mask logic is reversed: a bit is set if the bank is
-+		 * disabled.
-+		 */
-+		bank_mask = REG_FIELD_GET(XELP_GT_L3_MODE_MASK,
-+					  ~xe_mmio_read32(gt, MIRROR_FUSE3));
-+	}
-+
-+	bitmap_from_arr64(l3_bank_mask, &bank_mask, XE_MAX_L3_BANK_FUSE_BITS);
-+}
-+
- static void
- get_num_dss_regs(struct xe_device *xe, int *geometry_regs, int *compute_regs)
- {
-@@ -103,6 +172,7 @@ xe_gt_topology_init(struct xe_gt *gt)
- 		      XEHPC_GT_COMPUTE_DSS_ENABLE_EXT,
- 		      XE2_GT_COMPUTE_DSS_2);
- 	load_eu_mask(gt, gt->fuse_topo.eu_mask_per_dss);
-+	load_l3_bank_mask(gt, gt->fuse_topo.l3_bank_mask);
- 
- 	p = drm_dbg_printer(&gt_to_xe(gt)->drm, DRM_UT_DRIVER, "GT topology");
- 
-@@ -120,6 +190,8 @@ xe_gt_topology_dump(struct xe_gt *gt, struct drm_printer *p)
- 	drm_printf(p, "EU mask per DSS:     %*pb\n", XE_MAX_EU_FUSE_BITS,
- 		   gt->fuse_topo.eu_mask_per_dss);
- 
-+	drm_printf(p, "L3 bank mask:        %*pb\n", XE_MAX_L3_BANK_FUSE_BITS,
-+		   gt->fuse_topo.l3_bank_mask);
- }
- 
- /*
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index f6da2ad9719f..e1438a478f94 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -24,13 +24,16 @@ enum xe_gt_type {
- 	XE_GT_TYPE_MEDIA,
- };
- 
--#define XE_MAX_DSS_FUSE_REGS	3
--#define XE_MAX_DSS_FUSE_BITS	(32 * XE_MAX_DSS_FUSE_REGS)
--#define XE_MAX_EU_FUSE_REGS	1
--#define XE_MAX_EU_FUSE_BITS	(32 * XE_MAX_EU_FUSE_REGS)
-+#define XE_MAX_DSS_FUSE_REGS		3
-+#define XE_MAX_DSS_FUSE_BITS		(32 * XE_MAX_DSS_FUSE_REGS)
-+#define XE_MAX_EU_FUSE_REGS		1
-+#define XE_MAX_EU_FUSE_BITS		(32 * XE_MAX_EU_FUSE_REGS)
-+#define XE_MAX_L3_BANK_FUSE_REGS	2
-+#define XE_MAX_L3_BANK_FUSE_BITS	(32 * XE_MAX_L3_BANK_FUSE_REGS)
- 
- typedef unsigned long xe_dss_mask_t[BITS_TO_LONGS(XE_MAX_DSS_FUSE_BITS)];
- typedef unsigned long xe_eu_mask_t[BITS_TO_LONGS(XE_MAX_EU_FUSE_BITS)];
-+typedef unsigned long xe_l3_bank_mask_t[BITS_TO_LONGS(XE_MAX_L3_BANK_FUSE_BITS)];
- 
- struct xe_mmio_range {
- 	u32 start;
-@@ -334,6 +337,9 @@ struct xe_gt {
- 
- 		/** @fuse_topo.eu_mask_per_dss: EU mask per DSS*/
- 		xe_eu_mask_t eu_mask_per_dss;
-+
-+		/** @l3_bank_mask: L3 bank mask */
-+		xe_l3_bank_mask_t l3_bank_mask;
- 	} fuse_topo;
- 
- 	/** @steering: register steering for individual HW units */
 diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index fa8de1a77b1e..b830eac7a621 100644
+index e80321b34918..fa8de1a77b1e 100644
 --- a/drivers/gpu/drm/xe/xe_query.c
 +++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -459,7 +459,8 @@ static size_t calc_topo_query_size(struct xe_device *xe)
- 		 * sizeof(struct drm_xe_query_topology_mask) +
+@@ -23,6 +23,8 @@
+ #include "xe_mmio.h"
+ #include "xe_ttm_vram_mgr.h"
+ 
++#define TOPO_NUMBER_OF_MASKS   (3)
++
+ static const u16 xe_to_user_engine_class[] = {
+ 	[XE_ENGINE_CLASS_RENDER] = DRM_XE_ENGINE_CLASS_RENDER,
+ 	[XE_ENGINE_CLASS_COPY] = DRM_XE_ENGINE_CLASS_COPY,
+@@ -453,7 +455,8 @@ static int query_hwconfig(struct xe_device *xe,
+ static size_t calc_topo_query_size(struct xe_device *xe)
+ {
+ 	return xe->info.gt_count *
+-		(3 * sizeof(struct drm_xe_query_topology_mask) +
++		(TOPO_NUMBER_OF_MASKS
++		 * sizeof(struct drm_xe_query_topology_mask) +
  		 sizeof_field(struct xe_gt, fuse_topo.g_dss_mask) +
  		 sizeof_field(struct xe_gt, fuse_topo.c_dss_mask) +
--		 sizeof_field(struct xe_gt, fuse_topo.eu_mask_per_dss));
-+		 sizeof_field(struct xe_gt, fuse_topo.eu_mask_per_dss) +
-+		 sizeof_field(struct xe_gt, fuse_topo.l3_bank_mask));
- }
- 
- static int copy_mask(void __user **ptr,
-@@ -518,6 +519,13 @@ static int query_gt_topology(struct xe_device *xe,
- 				sizeof(gt->fuse_topo.eu_mask_per_dss));
- 		if (err)
- 			return err;
-+
-+		topo.type = DRM_XE_TOPO_L3_BANK;
-+		err = copy_mask(&query_ptr, &topo,
-+				gt->fuse_topo.l3_bank_mask,
-+				sizeof(gt->fuse_topo.l3_bank_mask));
-+		if (err)
-+			return err;
- 	}
- 
- 	return 0;
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 808ad1c308ec..aa917308cdeb 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -521,6 +521,7 @@ struct drm_xe_query_topology_mask {
- #define DRM_XE_TOPO_DSS_GEOMETRY	(1 << 0)
- #define DRM_XE_TOPO_DSS_COMPUTE		(1 << 1)
- #define DRM_XE_TOPO_EU_PER_DSS		(1 << 2)
-+#define DRM_XE_TOPO_L3_BANK		(1 << 3)
- 	/** @type: type of mask */
- 	__u16 type;
- 
+ 		 sizeof_field(struct xe_gt, fuse_topo.eu_mask_per_dss));
 -- 
 2.34.1
 
