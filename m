@@ -4,51 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 896DCCD11C2
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 15:17:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2457C54E68
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 15:24:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E42D810EC00;
-	Thu, 21 Mar 2024 15:17:44 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DzG/12eg";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FFA710EBE9
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Mar 2024 15:17:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711034264; x=1742570264;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=nyyZeaNgbmIEevFgpzQe9GOEFHV56Ay+v9TsDym8Viw=;
- b=DzG/12eg0YNiENkpxBfwnx4/Y+eh8lYYBdr4j4RxblYEFQWleutlUtF6
- +aaOejty+LrVPWBh80FzXzGTXDRdes/4X/sqUrTdRe0q22evMCAITbkQh
- rGKIETZkK55kFARDzXgDFACU8CpxP+EKY4VtqPrG2hgz9fV0F34/PkfSL
- 4TgVL7OQkWfu6pVMwKw9wxQeZcxzwZwD66KDNS9bKHG/ysVOKkMN0hRDR
- 9mTueGeKgjHzsAkwbH6McwSlRaKe5F8ZV/sOGrcHbr7pxq0IJGReloCHP
- DOtE4qFHOEC84l5oq+CYCPaqBqFGBZE5J+v7sDd81YmbeoMMm2fxN0xzR w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="5862373"
-X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; 
-   d="scan'208";a="5862373"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2024 08:17:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; d="scan'208";a="19013167"
-Received: from szeng-desk.jf.intel.com ([10.165.21.149])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2024 08:17:41 -0700
-From: Oak Zeng <oak.zeng@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [CI  2/3] drm/xe: Introduce a helper to free sg table
-Date: Thu, 21 Mar 2024 11:30:01 -0400
-Message-Id: <20240321153002.2281670-2-oak.zeng@intel.com>
-X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20240321153002.2281670-1-oak.zeng@intel.com>
-References: <20240321153002.2281670-1-oak.zeng@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9058310EC27;
+	Thu, 21 Mar 2024 15:24:26 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73DD810EC20;
+ Thu, 21 Mar 2024 15:24:25 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6257074279235806815=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_series_starting_with_=5Bv3=2C1/2?=
+ =?utf-8?q?=5D_drm/xe/query=3A_Define_and_use_a_constant_for_the_number_of_m?=
+ =?utf-8?q?asks?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Francois Dugast" <francois.dugast@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 21 Mar 2024 15:24:25 -0000
+Message-ID: <171103466547.941104.4375343116670677092@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240321142154.7-1-francois.dugast@intel.com>
+In-Reply-To: <20240321142154.7-1-francois.dugast@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,83 +37,167 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce xe_userptr_free_sg helper to dma-unmap all
-addresses in userptr's sg table and free sg table.
+--===============6257074279235806815==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-Suggested by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_hmm.c | 30 ++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_hmm.h |  1 +
- 2 files changed, 31 insertions(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_hmm.c b/drivers/gpu/drm/xe/xe_hmm.c
-index 4011207630a5..427c6bc49949 100644
---- a/drivers/gpu/drm/xe/xe_hmm.c
-+++ b/drivers/gpu/drm/xe/xe_hmm.c
-@@ -3,6 +3,7 @@
-  * Copyright © 2024 Intel Corporation
-  */
- 
-+#include <linux/scatterlist.h>
- #include <linux/mmu_notifier.h>
- #include <linux/dma-mapping.h>
- #include <linux/memremap.h>
-@@ -107,6 +108,32 @@ static int xe_build_sg(struct xe_device *xe, struct hmm_range *range,
- 	return ret;
- }
- 
-+/**
-+ * xe_userptr_free_sg() - Free the scatter gather table of userptr
-+ *
-+ * @uvma: the userptr vma which hold the scatter gather table
-+ *
-+ * With function xe_userptr_populate_range, we allocate storage of
-+ * the userptr sg table. This is a helper function to free this
-+ * sg table, and dma unmap the address in the table.
-+ */
-+void xe_userptr_free_sg(struct xe_userptr_vma *uvma)
-+{
-+	struct xe_userptr *userptr = &uvma->userptr;
-+	struct xe_vma *vma = &uvma->vma;
-+	bool write = !xe_vma_read_only(vma);
-+	struct xe_vm *vm = xe_vma_vm(vma);
-+	struct xe_device *xe = vm->xe;
-+	struct device *dev = xe->drm.dev;
-+
-+	xe_assert(xe, userptr->sg);
-+	dma_unmap_sgtable(dev, userptr->sg,
-+			write ? DMA_BIDIRECTIONAL : DMA_TO_DEVICE, 0);
-+
-+	sg_free_table(userptr->sg);
-+	userptr->sg = NULL;
-+}
-+
- /**
-  * xe_userptr_populate_range() - Populate physical pages of a virtual
-  * address range
-@@ -156,6 +183,9 @@ int xe_userptr_populate_range(struct xe_userptr_vma *uvma)
- 	if (notifier_seq == userptr->notifier_seq)
- 		return 0;
- 
-+	if (userptr->sg)
-+		xe_userptr_free_sg(uvma);
-+
- 	npages = xe_npages_in_range(start, end);
- 	pfns = kvmalloc_array(npages, sizeof(*pfns), GFP_KERNEL);
- 	if (unlikely(!pfns))
-diff --git a/drivers/gpu/drm/xe/xe_hmm.h b/drivers/gpu/drm/xe/xe_hmm.h
-index 91686a751711..7bb49bbde5a4 100644
---- a/drivers/gpu/drm/xe/xe_hmm.h
-+++ b/drivers/gpu/drm/xe/xe_hmm.h
-@@ -15,3 +15,4 @@ static inline int xe_userptr_populate_range(struct xe_userptr_vma *uvma)
- 	return -ENODEV;
- }
- #endif
-+void xe_userptr_free_sg(struct xe_userptr_vma *uvma);
--- 
-2.26.3
+Series: series starting with [v3,1/2] drm/xe/query: Define and use a constant for the number of masks
+URL   : https://patchwork.freedesktop.org/series/131426/
+State : failure
 
+== Summary ==
+
+CI Bug Log - changes from xe-971-9ae91289c9ed219b53a3fbd25be9f414651ce4f2_BAT -> xe-pw-131426v1_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-131426v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-131426v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (4 -> 3)
+------------------------------
+
+  Missing    (1): bat-pvc-2 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-131426v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_query@query-topology:
+    - bat-dg2-oem2:       [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-971-9ae91289c9ed219b53a3fbd25be9f414651ce4f2/bat-dg2-oem2/igt@xe_query@query-topology.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131426v1/bat-dg2-oem2/igt@xe_query@query-topology.html
+    - bat-adlp-7:         [PASS][3] -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-971-9ae91289c9ed219b53a3fbd25be9f414651ce4f2/bat-adlp-7/igt@xe_query@query-topology.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131426v1/bat-adlp-7/igt@xe_query@query-topology.html
+    - bat-atsm-2:         [PASS][5] -> [INCOMPLETE][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-971-9ae91289c9ed219b53a3fbd25be9f414651ce4f2/bat-atsm-2/igt@xe_query@query-topology.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131426v1/bat-atsm-2/igt@xe_query@query-topology.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-131426v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_exec_threads@threads-mixed-fd-basic:
+    - bat-dg2-oem2:       [TIMEOUT][7] ([Intel XE#1167]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-971-9ae91289c9ed219b53a3fbd25be9f414651ce4f2/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-fd-basic.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131426v1/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-fd-basic.html
+
+  
+  [Intel XE#1167]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1167
+
+
+Build changes
+-------------
+
+  * Linux: xe-971-9ae91289c9ed219b53a3fbd25be9f414651ce4f2 -> xe-pw-131426v1
+
+  IGT_7773: 7773
+  xe-971-9ae91289c9ed219b53a3fbd25be9f414651ce4f2: 9ae91289c9ed219b53a3fbd25be9f414651ce4f2
+  xe-pw-131426v1: 131426v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131426v1/index.html
+
+--===============6257074279235806815==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v3,1/2] drm/xe/query: Define and use a constant for the number of masks</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131426/">https://patchwork.freedesktop.org/series/131426/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131426v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131426v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-971-9ae91289c9ed219b53a3fbd25be9f414651ce4f2_BAT -&gt; xe-pw-131426v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-131426v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-131426v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (4 -&gt; 3)</h2>
+<p>Missing    (1): bat-pvc-2 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-131426v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_query@query-topology:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-971-9ae91289c9ed219b53a3fbd25be9f414651ce4f2/bat-dg2-oem2/igt@xe_query@query-topology.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131426v1/bat-dg2-oem2/igt@xe_query@query-topology.html">INCOMPLETE</a></li>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-971-9ae91289c9ed219b53a3fbd25be9f414651ce4f2/bat-adlp-7/igt@xe_query@query-topology.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131426v1/bat-adlp-7/igt@xe_query@query-topology.html">INCOMPLETE</a></li>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-971-9ae91289c9ed219b53a3fbd25be9f414651ce4f2/bat-atsm-2/igt@xe_query@query-topology.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131426v1/bat-atsm-2/igt@xe_query@query-topology.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-131426v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_exec_threads@threads-mixed-fd-basic:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-971-9ae91289c9ed219b53a3fbd25be9f414651ce4f2/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-fd-basic.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1167">Intel XE#1167</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131426v1/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-fd-basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-971-9ae91289c9ed219b53a3fbd25be9f414651ce4f2 -&gt; xe-pw-131426v1</li>
+</ul>
+<p>IGT_7773: 7773<br />
+  xe-971-9ae91289c9ed219b53a3fbd25be9f414651ce4f2: 9ae91289c9ed219b53a3fbd25be9f414651ce4f2<br />
+  xe-pw-131426v1: 131426v1</p>
+
+</body>
+</html>
+
+--===============6257074279235806815==--
