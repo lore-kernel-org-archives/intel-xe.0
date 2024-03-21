@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0595DC54E68
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 06:47:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C0ADC54E58
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 06:48:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B69E410EDAB;
-	Thu, 21 Mar 2024 06:47:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E1F710F0E0;
+	Thu, 21 Mar 2024 06:48:15 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A89C10EDAB;
- Thu, 21 Mar 2024 06:47:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5D9710EDAB;
+ Thu, 21 Mar 2024 06:48:14 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/display=3A_ch?=
- =?utf-8?q?eck_for_error_on_drmm=5Fmutex=5Finit_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/display=3A_check_f?=
+ =?utf-8?q?or_error_on_drmm=5Fmutex=5Finit_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Arun R Murthy" <arun.r.murthy@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 21 Mar 2024 06:47:54 -0000
-Message-ID: <171100367437.938898.7500853321254706261@8e613ede5ea5>
+Date: Thu, 21 Mar 2024 06:48:14 -0000
+Message-ID: <171100369468.938557.3371175802820940028@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240321060124.4074773-1-arun.r.murthy@intel.com>
 In-Reply-To: <20240321060124.4074773-1-arun.r.murthy@intel.com>
@@ -48,9 +48,26 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: b82909921086 drm-tip: 2024y-03m-20d-21h-42m-28s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/display: check for error on drmm_mutex_init
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+a9eb1ac8298ef9f9146567c29fa762d8e9efa1ef
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 5bf2d834e10c6b7aa4a14257214d55e4a4af4130
+Author: Arun R Murthy <arun.r.murthy@intel.com>
+Date:   Thu Mar 21 11:31:24 2024 +0530
+
+    drm/xe/display: check for error on drmm_mutex_init
+    
+    Check return value for drmm_mutex_init as it can fail and return on
+    failure.
+    
+    Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
++ /mt/dim checkpatch b8290992108644cb99d7d9db2921bb25369ead3c drm-intel
+5bf2d834e10c drm/xe/display: check for error on drmm_mutex_init
 
 
