@@ -4,50 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E42ADC6FD1F
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 21:18:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11562C54E58
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 21:21:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FAEB10EE32;
-	Thu, 21 Mar 2024 21:18:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF3D7112150;
+	Thu, 21 Mar 2024 21:21:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cNSy8LrW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hmwGlTEW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB82910EE32
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Mar 2024 21:18:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74759112150
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 Mar 2024 21:21:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711055935; x=1742591935;
+ t=1711056071; x=1742592071;
  h=message-id:subject:from:to:cc:date:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=ndBMarDRcK6uB9g+q00OGgktfF7b8GdL8f4GARbx9EQ=;
- b=cNSy8LrWPsLFeSMhIJYHrI6ZW6eeIPqza9fu4jLC79ZTX42h481GU35i
- I1+42day80us94u9L30jvrm1zdTWNEgyDuqIYBfnmKerjuQQSir5DohXt
- Gdc/tnEl9YiI2N1RzbufmIT8Bqo7g8jHYY0xfmO0wLjFPeFtv9vsS06XT
- lpU//W2WfDR5C0MY3W2T04qDSc6FZDve5E3aPebn8vaPKWPYQ/tO2n5eO
- x3dQtviJFHXvBTBuU0QUEhUdFv96w2qhFDigJHYrpJNNjTFlRHes1I9Oq
- wtZdEBxPG4WmLqOaq2sibqOcD/6wkxD3ANrW3aMRdiLBzKiSHqY+j9dGR w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="16631261"
-X-IronPort-AV: E=Sophos;i="6.07,144,1708416000"; d="scan'208";a="16631261"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2024 14:18:55 -0700
+ bh=IIOoL+IpCaeF080glbmy/0i9gzlV5nd1+G2+QP4qGrU=;
+ b=hmwGlTEW7nY1CApfsj5nvEBiV6OFWSi1fBwx8jJrPnt+JDK23U4gb3YD
+ RNx/zRLFNNJfty11+42948Rlk9LZ6yArNuFh/tFIAfWjKl/f2Y4GzbZNI
+ OMna5w3NOweNti+7w/0izPSTWaoGL/Ls2lbmJA0+JyEAhwvnHIALY6Kyh
+ n2v8wZ0hLgp2BXUQKZNjsxGYuL+RKAEYth5RPw6PNeqJiVkBOzz3NL/xQ
+ /+gjDcB0rlrDrwreCzpbJicb8T0ktFFoMEQjuMXtZnpsyw2rBrGw55HPy
+ itKGIEopWpBZ2LLQeOBQ/DB9gFvUW/3WZGPUU2kmO2g/xedCNq8wHJWpO w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="9846943"
+X-IronPort-AV: E=Sophos;i="6.07,144,1708416000"; 
+   d="scan'208";a="9846943"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2024 14:21:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,144,1708416000"; d="scan'208";a="14657818"
+X-IronPort-AV: E=Sophos;i="6.07,144,1708416000"; d="scan'208";a="14627198"
 Received: from sinampud-mobl.amr.corp.intel.com (HELO [10.249.254.176])
  ([10.249.254.176])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2024 14:18:53 -0700
-Message-ID: <29071b51eab6912bf06a67b6ec4cfd018affeffc.camel@linux.intel.com>
-Subject: Re: [CI 4/7] drm/xe: Move vma rebinding to the drm_exec locking loop
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2024 14:21:09 -0700
+Message-ID: <4edbc1b5f4aa01f590c28109567dc5d97eeef71f.camel@linux.intel.com>
+Subject: Re: [PATCH 1/7] drm/xe: Use ring ops TLB invalidation for rebinds
 From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
 To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 21 Mar 2024 22:18:50 +0100
-In-Reply-To: <ZfyIsim3qY/W38DY@DUT025-TGLU.fm.intel.com>
-References: <20240312140447.50437-1-thomas.hellstrom@linux.intel.com>
- <20240312140447.50437-4-thomas.hellstrom@linux.intel.com>
- <ZfyIsim3qY/W38DY@DUT025-TGLU.fm.intel.com>
+Cc: intel-xe@lists.freedesktop.org, stable@vger.kernel.org
+Date: Thu, 21 Mar 2024 22:21:07 +0100
+In-Reply-To: <f06fb3dcf8e377e064a30e0a62324f952f93cfe5.camel@linux.intel.com>
+References: <20240321113720.120865-1-thomas.hellstrom@linux.intel.com>
+ <20240321113720.120865-3-thomas.hellstrom@linux.intel.com>
+ <ZfyF7kfCE+xcMFa7@DUT025-TGLU.fm.intel.com>
+ <f06fb3dcf8e377e064a30e0a62324f952f93cfe5.camel@linux.intel.com>
 Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
  keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
 Organization: Intel Sweden AB, Registration Number: 556189-6027
@@ -69,110 +71,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Matt,
-
-apparently I forget to remove the old series of patches before hitting
-git-send-email so the whole series got mixed. :(, but please see below.
-
-
-On Thu, 2024-03-21 at 19:21 +0000, Matthew Brost wrote:
-> On Tue, Mar 12, 2024 at 03:04:44PM +0100, Thomas Hellstr=C3=B6m wrote:
-> > Rebinding might allocate page-table bos, causing evictions.
-> > To support blocking locking during these evictions,
-> > perform the rebinding in the drm_exec locking loop.
-> >=20
-> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > ---
-> > =C2=A0drivers/gpu/drm/xe/xe_exec.c | 13 ++++++++++---
-> > =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0 | 16 +++++++++-------
-> > =C2=A02 files changed, 19 insertions(+), 10 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/xe/xe_exec.c
-> > b/drivers/gpu/drm/xe/xe_exec.c
-> > index 13d1fba2c9d7..f36fb22a7861 100644
-> > --- a/drivers/gpu/drm/xe/xe_exec.c
-> > +++ b/drivers/gpu/drm/xe/xe_exec.c
-> > @@ -96,13 +96,20 @@
-> > =C2=A0
-> > =C2=A0static int xe_exec_fn(struct drm_gpuvm_exec *vm_exec)
-> > =C2=A0{
-> > +	struct xe_vm *vm =3D container_of(vm_exec->vm, struct xe_vm,
-> > gpuvm);
-> > =C2=A0	struct drm_gem_object *obj;
-> > =C2=A0	unsigned long index;
-> > =C2=A0	int ret;
-> > =C2=A0
-> > -	ret =3D drm_gpuvm_validate(vm_exec->vm, &vm_exec->exec);
-> > -	if (ret)
-> > -		return ret;
-> > +	do {
-> > +		ret =3D drm_gpuvm_validate(vm_exec->vm, &vm_exec-
-> > >exec);
-> > +		if (ret)
-> > +			return ret;
-> > +
-> > +		ret =3D xe_vm_rebind(vm, false);
-> > +		if (ret)
-> > +			return ret;
-> > +	} while (!list_empty(&vm->gpuvm.evict.list));
-> > =C2=A0
+On Thu, 2024-03-21 at 22:14 +0100, Thomas Hellstr=C3=B6m wrote:
+> Hi, Matthew,
 >=20
-> You need to delete xe_vm_rebind from xe_exec_ioctl too.
-
-Good catch. Thanks, I'll do that.
-
-
+> Thanks for reviewing, please see inline.
 >=20
-> > =C2=A0	drm_exec_for_each_locked_object(&vm_exec->exec, index,
-> > obj) {
-> > =C2=A0		ret =3D dma_resv_reserve_fences(obj->resv, 1);
-> > diff --git a/drivers/gpu/drm/xe/xe_vm.c
-> > b/drivers/gpu/drm/xe/xe_vm.c
-> > index faad7f52b3ca..fad5b1ae7f2d 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm.c
-> > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > @@ -513,9 +513,15 @@ static int xe_preempt_work_begin(struct
-> > drm_exec *exec, struct xe_vm *vm,
-> > =C2=A0	if (err)
-> > =C2=A0		return err;
-> > =C2=A0
-> > -	err =3D drm_gpuvm_validate(&vm->gpuvm, exec);
-> > -	if (err)
-> > -		return err;
-> > +	do {
-> > +		err =3D drm_gpuvm_validate(&vm->gpuvm, exec);
-> > +		if (err)
-> > +			return err;
-> > +
-> > +		err =3D xe_vm_rebind(vm, true);
-> > +		if (err)
-> > +			return err;
-> > +	} while (!list_empty(&vm->gpuvm.evict.list));
->=20
-> Same code pattern twice here? Opportunity for a helper?
+> On Thu, 2024-03-21 at 19:09 +0000, Matthew Brost wrote:
+> > On Thu, Mar 21, 2024 at 12:37:11PM +0100, Thomas Hellstr=C3=B6m wrote:
+> > > For each rebind we insert a GuC TLB invalidation and add a
+> > > corresponding unordered TLB invalidation fence. This might
+> > > add a huge number of TLB invalidation fences to wait for so
+> > > rather than doing that, defer the TLB invalidation to the
+> > > next ring ops for each affected exec queue. Since the TLB
+> > > is invalidated on exec_queue switch, we need to invalidate
+> > > once for each affected exec_queue.
+> > >=20
+> > > Fixes: 5387e865d90e ("drm/xe: Add TLB invalidation fence after
+> > > rebinds issued from execs")
+> > > Cc: Matthew Brost <matthew.brost@intel.com>
+> > > Cc: <stable@vger.kernel.org> # v6.8+
+> > > Signed-off-by: Thomas Hellstr=C3=B6m
+> > > <thomas.hellstrom@linux.intel.com>
+> > > ---
+> > > =C2=A0drivers/gpu/drm/xe/xe_exec_queue_types.h |=C2=A0 2 ++
+> > > =C2=A0drivers/gpu/drm/xe/xe_pt.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 5 +++--
+> > > =C2=A0drivers/gpu/drm/xe/xe_ring_ops.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 | 11 ++++-------
+> > > =C2=A0drivers/gpu/drm/xe/xe_sched_job.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 | 11 +++++++++++
+> > > =C2=A0drivers/gpu/drm/xe/xe_sched_job_types.h=C2=A0 |=C2=A0 2 ++
+> > > =C2=A0drivers/gpu/drm/xe/xe_vm_types.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0 5 +++++
+> > > =C2=A06 files changed, 27 insertions(+), 9 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > > b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > > index 62b3d9d1d7cd..891ad30e906f 100644
+> > > --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > > +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > > @@ -148,6 +148,8 @@ struct xe_exec_queue {
+> > > =C2=A0	const struct xe_ring_ops *ring_ops;
+> > > =C2=A0	/** @entity: DRM sched entity for this exec queue (1 to
+> > > 1
+> > > relationship) */
+> > > =C2=A0	struct drm_sched_entity *entity;
+> > > +	/** @tlb_flush_seqno: The seqno of the last rebind tlb
+> > > flush performed */
+> > > +	u64 tlb_flush_seqno;
+> > > =C2=A0	/** @lrc: logical ring context for this exec queue */
+> > > =C2=A0	struct xe_lrc lrc[];
+> > > =C2=A0};
+> > > diff --git a/drivers/gpu/drm/xe/xe_pt.c
+> > > b/drivers/gpu/drm/xe/xe_pt.c
+> > > index 8d3922d2206e..21bc0d13fccf 100644
+> > > --- a/drivers/gpu/drm/xe/xe_pt.c
+> > > +++ b/drivers/gpu/drm/xe/xe_pt.c
+> > > @@ -1254,11 +1254,12 @@ __xe_pt_bind_vma(struct xe_tile *tile,
+> > > struct xe_vma *vma, struct xe_exec_queue
+> > > =C2=A0	 * non-faulting LR, in particular on user-space batch
+> > > buffer chaining,
+> > > =C2=A0	 * it needs to be done here.
+> > > =C2=A0	 */
+> > > -	if ((rebind && !xe_vm_in_lr_mode(vm) && !vm-
 
-I'll take a look.
+While I remember it. When looking at your series I noticed that this
+line got incorrectly moved there. Looks like you used
+xe_vm_in_lr_mode() rather than !xe_vm_in_lr_mode()..
 
->=20
-> Matt
->=20
-> > =C2=A0
-> > =C2=A0	drm_exec_for_each_locked_object(exec, index, obj) {
-> > =C2=A0		err =3D dma_resv_reserve_fences(obj->resv, vm-
-> > >preempt.num_exec_queues);
-> > @@ -575,10 +581,6 @@ static void preempt_rebind_work_func(struct
-> > work_struct *w)
-> > =C2=A0	if (err)
-> > =C2=A0		goto out_unlock;
-> > =C2=A0
-> > -	err =3D xe_vm_rebind(vm, true);
-> > -	if (err)
-> > -		goto out_unlock;
-> > -
-> > =C2=A0	if (vm->rebind_fence) {
-> > =C2=A0		dma_fence_wait(vm->rebind_fence, false);
-> > =C2=A0		dma_fence_put(vm->rebind_fence);
-> > --=20
-> > 2.44.0
-> >=20
+Thomas
 
