@@ -4,48 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46866C54E68
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 896DCCD11C2
 	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 15:17:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF19F10EBE9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E42D810EC00;
 	Thu, 21 Mar 2024 15:17:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IAKCT5i1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DzG/12eg";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63E4E10EBE9
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Mar 2024 15:17:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FFA710EBE9
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 Mar 2024 15:17:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711034263; x=1742570263;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=b4Ka2b9aDUzkcTc+5gFEtlzeBi/7lkqNwjmwUEDFg1A=;
- b=IAKCT5i1PzxZaNZlpl3G/8PaoQllBvAIGDBb/fqK8Bj/nmB9n9yrKv+R
- U5iHiOeIandW0xgO0bsQr8oX4HEheprDm8jS3uYkjwVraDw2KRl+AAmTw
- GauszYBmlH9Fv2RjWfTNj+Nei+t+5JVDPB362kuc9JMS4awiNlALx02NC
- cKuTyRDTkf7JgUTgIdukQsrOni8bw3v0TtRxpC5ZQxRNvLn1b44WTtrDG
- mgUQRE6FyYFlMc2ER6e7ZieZxqS/PRfmenoLBmJuOk1j8SX4ymO25XPFl
- 2zolC6C/8vuuLXeJENhZRrU5h+sZbhbcEnhKH72y5w+STrphWVN9niRUj g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="5862369"
+ t=1711034264; x=1742570264;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=nyyZeaNgbmIEevFgpzQe9GOEFHV56Ay+v9TsDym8Viw=;
+ b=DzG/12eg0YNiENkpxBfwnx4/Y+eh8lYYBdr4j4RxblYEFQWleutlUtF6
+ +aaOejty+LrVPWBh80FzXzGTXDRdes/4X/sqUrTdRe0q22evMCAITbkQh
+ rGKIETZkK55kFARDzXgDFACU8CpxP+EKY4VtqPrG2hgz9fV0F34/PkfSL
+ 4TgVL7OQkWfu6pVMwKw9wxQeZcxzwZwD66KDNS9bKHG/ysVOKkMN0hRDR
+ 9mTueGeKgjHzsAkwbH6McwSlRaKe5F8ZV/sOGrcHbr7pxq0IJGReloCHP
+ DOtE4qFHOEC84l5oq+CYCPaqBqFGBZE5J+v7sDd81YmbeoMMm2fxN0xzR w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="5862373"
 X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; 
-   d="scan'208";a="5862369"
+   d="scan'208";a="5862373"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Mar 2024 08:17:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; d="scan'208";a="19013166"
+X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; d="scan'208";a="19013167"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Mar 2024 08:17:41 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI  1/3] drm/xe: Introduce helper to populate userptr
-Date: Thu, 21 Mar 2024 11:30:00 -0400
-Message-Id: <20240321153002.2281670-1-oak.zeng@intel.com>
+Subject: [CI  2/3] drm/xe: Introduce a helper to free sg table
+Date: Thu, 21 Mar 2024 11:30:01 -0400
+Message-Id: <20240321153002.2281670-2-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
+In-Reply-To: <20240321153002.2281670-1-oak.zeng@intel.com>
+References: <20240321153002.2281670-1-oak.zeng@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,325 +63,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce a helper function xe_userptr_populate_range to populate
-a a userptr range. This functions calls hmm_range_fault to read
-CPU page tables and populate all pfns/pages of this virtual address
-range.
-
-If the populated page is system memory page, dma-mapping is performed
-to get a dma-address which can be used later for GPU to access pages.
-
-If the populated page is device private page, we calculate the dpa (
-device physical address) of the page. This will be handled in future
-patches.
-
-The dma-address or dpa is then saved in userptr's sg table. This is
-prepare work to replace the get_user_pages_fast code in userptr code
-path.
-
-v1: Address review comments:
-    separate a npage_in_range function (Matt)
-    reparameterize function xe_userptr_populate_range function (Matt)
-    move mmu_interval_read_begin() call into while loop (Thomas)
-    s/mark_range_accessed/xe_mark_range_accessed (Thomas)
-    use set_page_dirty_lock (vs set_page_dirty) (Thomas)
-    move a few checking in xe_vma_userptr_pin_pages to hmm.c (Matt)
-v2: Remove device private page support. Only support system
-    pages for now. use dma-map-sg rather than dma-map-page (Matt/Thomas)
+Introduce xe_userptr_free_sg helper to dma-unmap all
+addresses in userptr's sg table and free sg table.
 
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-Co-developed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@intel.com>
-Cc: Brian Welty <brian.welty@intel.com>
+Suggested by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/Kconfig  |   1 +
- drivers/gpu/drm/xe/Makefile |   2 +
- drivers/gpu/drm/xe/xe_hmm.c | 224 ++++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_hmm.h |  17 +++
- 4 files changed, 244 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_hmm.c
- create mode 100644 drivers/gpu/drm/xe/xe_hmm.h
+ drivers/gpu/drm/xe/xe_hmm.c | 30 ++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_hmm.h |  1 +
+ 2 files changed, 31 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-index 1a556d087e63..449a1ecbc92a 100644
---- a/drivers/gpu/drm/xe/Kconfig
-+++ b/drivers/gpu/drm/xe/Kconfig
-@@ -41,6 +41,7 @@ config DRM_XE
- 	select MMU_NOTIFIER
- 	select WANT_DEV_COREDUMP
- 	select AUXILIARY_BUS
-+	select HMM_MIRROR
- 	help
- 	  Experimental driver for Intel Xe series GPUs
- 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 3c3e67885559..a805a543056d 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -145,6 +145,8 @@ xe-y += xe_bb.o \
- 	xe_wa.o \
- 	xe_wopcm.o
- 
-+xe-$(CONFIG_HMM_MIRROR) += xe_hmm.o
-+
- # graphics hardware monitoring (HWMON) support
- xe-$(CONFIG_HWMON) += xe_hwmon.o
- 
 diff --git a/drivers/gpu/drm/xe/xe_hmm.c b/drivers/gpu/drm/xe/xe_hmm.c
-new file mode 100644
-index 000000000000..4011207630a5
---- /dev/null
+index 4011207630a5..427c6bc49949 100644
+--- a/drivers/gpu/drm/xe/xe_hmm.c
 +++ b/drivers/gpu/drm/xe/xe_hmm.c
-@@ -0,0 +1,224 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#include <linux/mmu_notifier.h>
-+#include <linux/dma-mapping.h>
-+#include <linux/memremap.h>
-+#include <linux/swap.h>
-+#include <linux/hmm.h>
-+#include <linux/mm.h>
-+#include "xe_hmm.h"
-+#include "xe_vm.h"
-+#include "xe_bo.h"
-+
-+static u64 xe_npages_in_range(unsigned long start, unsigned long end)
-+{
-+	return (PAGE_ALIGN(end) - PAGE_ALIGN_DOWN(start)) >> PAGE_SHIFT;
-+}
-+
+@@ -3,6 +3,7 @@
+  * Copyright © 2024 Intel Corporation
+  */
+ 
++#include <linux/scatterlist.h>
+ #include <linux/mmu_notifier.h>
+ #include <linux/dma-mapping.h>
+ #include <linux/memremap.h>
+@@ -107,6 +108,32 @@ static int xe_build_sg(struct xe_device *xe, struct hmm_range *range,
+ 	return ret;
+ }
+ 
 +/**
-+ * xe_mark_range_accessed() - mark a range is accessed, so core mm
-+ * have such information for memory eviction or write back to
-+ * hard disk
++ * xe_userptr_free_sg() - Free the scatter gather table of userptr
 + *
-+ * @range: the range to mark
-+ * @write: if write to this range, we mark pages in this range
-+ * as dirty
++ * @uvma: the userptr vma which hold the scatter gather table
++ *
++ * With function xe_userptr_populate_range, we allocate storage of
++ * the userptr sg table. This is a helper function to free this
++ * sg table, and dma unmap the address in the table.
 + */
-+static void xe_mark_range_accessed(struct hmm_range *range, bool write)
++void xe_userptr_free_sg(struct xe_userptr_vma *uvma)
 +{
-+	struct page *page;
-+	u64 i, npages;
-+
-+	npages = xe_npages_in_range(range->start, range->end);
-+	for (i = 0; i < npages; i++) {
-+		page = hmm_pfn_to_page(range->hmm_pfns[i]);
-+		if (write)
-+			set_page_dirty_lock(page);
-+
-+		mark_page_accessed(page);
-+	}
-+}
-+
-+/**
-+ * xe_build_sg() - build a scatter gather table for all the physical pages/pfn
-+ * in a hmm_range. dma-map pages if necessary. dma-address is save in sg table
-+ * and will be used to program GPU page table later.
-+ *
-+ * @xe: the xe device who will access the dma-address in sg table
-+ * @range: the hmm range that we build the sg table from. range->hmm_pfns[]
-+ * has the pfn numbers of pages that back up this hmm address range.
-+ * @st: pointer to the sg table.
-+ * @write: whether we write to this range. This decides dma map direction
-+ * for system pages. If write we map it bi-diretional; otherwise
-+ * DMA_TO_DEVICE
-+ *
-+ * All the contiguous pfns will be collapsed into one entry in
-+ * the scatter gather table. This is for the purpose of efficiently
-+ * programming GPU page table.
-+ *
-+ * The dma_address in the sg table will later be used by GPU to
-+ * access memory. So if the memory is system memory, we need to
-+ * do a dma-mapping so it can be accessed by GPU/DMA.
-+ *
-+ * FIXME: This function currently only support pages in system
-+ * memory. If the memory is GPU local memory (of the GPU who
-+ * is going to access memory), we need gpu dpa (device physical
-+ * address), and there is no need of dma-mapping. This is TBD.
-+ *
-+ * FIXME: dma-mapping for peer gpu device to access remote gpu's
-+ * memory. Add this when you support p2p
-+ *
-+ * This function allocates the storage of the sg table. It is
-+ * caller's responsibility to free it calling sg_free_table.
-+ *
-+ * Returns 0 if successful; -ENOMEM if fails to allocate memory
-+ */
-+static int xe_build_sg(struct xe_device *xe, struct hmm_range *range,
-+			     struct sg_table *st, bool write)
-+{
-+	struct device *dev = xe->drm.dev;
-+	struct page **pages;
-+	u64 i, npages;
-+	int ret;
-+
-+	npages = xe_npages_in_range(range->start, range->end);
-+	pages = kvmalloc_array(npages, sizeof(*pages), GFP_KERNEL);
-+	if (!pages)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < npages; i++) {
-+		pages[i] = hmm_pfn_to_page(range->hmm_pfns[i]);
-+		xe_assert(xe, !is_device_private_page(pages[i]));
-+	}
-+
-+	ret = sg_alloc_table_from_pages_segment(st, pages, npages, 0,
-+			npages << PAGE_SHIFT, xe_sg_segment_size(dev), GFP_KERNEL);
-+	if (ret)
-+		goto free_pages;
-+
-+	ret = dma_map_sgtable(dev, st, write ? DMA_BIDIRECTIONAL : DMA_TO_DEVICE,
-+			DMA_ATTR_SKIP_CPU_SYNC | DMA_ATTR_NO_KERNEL_MAPPING);
-+
-+free_pages:
-+	kvfree(pages);
-+	return ret;
-+}
-+
-+/**
-+ * xe_userptr_populate_range() - Populate physical pages of a virtual
-+ * address range
-+ *
-+ * @uvma: userptr vma which has information of the range to populate.
-+ *
-+ * This function populate the physical pages of a virtual
-+ * address range. The populated physical pages is saved in
-+ * userptr's sg table. It is similar to get_user_pages but call
-+ * hmm_range_fault.
-+ *
-+ * This function also read mmu notifier sequence # (
-+ * mmu_interval_read_begin), for the purpose of later
-+ * comparison (through mmu_interval_read_retry).
-+ *
-+ * This must be called with mmap read or write lock held.
-+ *
-+ * This function allocates the storage of the userptr sg table.
-+ * It is caller's responsibility to free it calling sg_free_table.
-+ *
-+ * returns: 0 for succuss; negative error no on failure
-+ */
-+int xe_userptr_populate_range(struct xe_userptr_vma *uvma)
-+{
-+	unsigned long timeout =
-+		jiffies + msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
-+	unsigned long *pfns, flags = HMM_PFN_REQ_FAULT;
-+	struct xe_userptr *userptr;
++	struct xe_userptr *userptr = &uvma->userptr;
 +	struct xe_vma *vma = &uvma->vma;
-+	u64 start = xe_vma_userptr(vma);
-+	u64 end = start + xe_vma_size(vma);
-+	struct xe_vm *vm = xe_vma_vm(vma);
-+	struct hmm_range hmm_range;
 +	bool write = !xe_vma_read_only(vma);
-+	bool in_kthread = !current->mm;
-+	unsigned long notifier_seq;
-+	u64 npages;
-+	int ret;
++	struct xe_vm *vm = xe_vma_vm(vma);
++	struct xe_device *xe = vm->xe;
++	struct device *dev = xe->drm.dev;
 +
-+	userptr = &uvma->userptr;
-+	mmap_assert_locked(userptr->notifier.mm);
++	xe_assert(xe, userptr->sg);
++	dma_unmap_sgtable(dev, userptr->sg,
++			write ? DMA_BIDIRECTIONAL : DMA_TO_DEVICE, 0);
 +
-+	if (vma->gpuva.flags & XE_VMA_DESTROYED)
-+		return 0;
-+
-+	notifier_seq = mmu_interval_read_begin(&userptr->notifier);
-+	if (notifier_seq == userptr->notifier_seq)
-+		return 0;
-+
-+	npages = xe_npages_in_range(start, end);
-+	pfns = kvmalloc_array(npages, sizeof(*pfns), GFP_KERNEL);
-+	if (unlikely(!pfns))
-+		return -ENOMEM;
-+
-+	if (write)
-+		flags |= HMM_PFN_REQ_WRITE;
-+
-+	if (in_kthread) {
-+		if (!mmget_not_zero(userptr->notifier.mm)) {
-+			ret = -EFAULT;
-+			goto free_pfns;
-+		}
-+		kthread_use_mm(userptr->notifier.mm);
-+	}
-+
-+	memset64((u64 *)pfns, (u64)flags, npages);
-+	hmm_range.hmm_pfns = pfns;
-+	hmm_range.notifier = &userptr->notifier;
-+	hmm_range.start = start;
-+	hmm_range.end = end;
-+	hmm_range.pfn_flags_mask = HMM_PFN_REQ_FAULT | HMM_PFN_REQ_WRITE;
-+	/**
-+	 * FIXME:
-+	 * Set the dev_private_owner can prevent hmm_range_fault to fault
-+	 * in the device private pages owned by caller. See function
-+	 * hmm_vma_handle_pte. In multiple GPU case, this should be set to the
-+	 * device owner of the best migration destination. e.g., device0/vm0
-+	 * has a page fault, but we have determined the best placement of
-+	 * the fault address should be on device1, we should set below to
-+	 * device1 instead of device0.
-+	 */
-+	hmm_range.dev_private_owner = vm->xe;
-+
-+	while (true) {
-+		hmm_range.notifier_seq = mmu_interval_read_begin(&userptr->notifier);
-+		ret = hmm_range_fault(&hmm_range);
-+		if (time_after(jiffies, timeout))
-+			break;
-+
-+		if (ret == -EBUSY)
-+			continue;
-+		break;
-+	}
-+
-+	if (in_kthread) {
-+		kthread_unuse_mm(userptr->notifier.mm);
-+		mmput(userptr->notifier.mm);
-+	}
-+
-+	if (ret)
-+		goto free_pfns;
-+
-+	ret = xe_build_sg(vm->xe, &hmm_range, &userptr->sgt, write);
-+	if (ret)
-+		goto free_pfns;
-+
-+	xe_mark_range_accessed(&hmm_range, write);
-+	userptr->sg = &userptr->sgt;
-+	userptr->notifier_seq = hmm_range.notifier_seq;
-+
-+free_pfns:
-+	kvfree(pfns);
-+	return ret;
++	sg_free_table(userptr->sg);
++	userptr->sg = NULL;
 +}
 +
+ /**
+  * xe_userptr_populate_range() - Populate physical pages of a virtual
+  * address range
+@@ -156,6 +183,9 @@ int xe_userptr_populate_range(struct xe_userptr_vma *uvma)
+ 	if (notifier_seq == userptr->notifier_seq)
+ 		return 0;
+ 
++	if (userptr->sg)
++		xe_userptr_free_sg(uvma);
++
+ 	npages = xe_npages_in_range(start, end);
+ 	pfns = kvmalloc_array(npages, sizeof(*pfns), GFP_KERNEL);
+ 	if (unlikely(!pfns))
 diff --git a/drivers/gpu/drm/xe/xe_hmm.h b/drivers/gpu/drm/xe/xe_hmm.h
-new file mode 100644
-index 000000000000..91686a751711
---- /dev/null
+index 91686a751711..7bb49bbde5a4 100644
+--- a/drivers/gpu/drm/xe/xe_hmm.h
 +++ b/drivers/gpu/drm/xe/xe_hmm.h
-@@ -0,0 +1,17 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#include <linux/types.h>
-+
-+struct xe_userptr_vma;
-+
-+#if IS_ENABLED(CONFIG_HMM_MIRROR)
-+int xe_userptr_populate_range(struct xe_userptr_vma *uvma);
-+#else
-+static inline int xe_userptr_populate_range(struct xe_userptr_vma *uvma)
-+{
-+	return -ENODEV;
-+}
-+#endif
+@@ -15,3 +15,4 @@ static inline int xe_userptr_populate_range(struct xe_userptr_vma *uvma)
+ 	return -ENODEV;
+ }
+ #endif
++void xe_userptr_free_sg(struct xe_userptr_vma *uvma);
 -- 
 2.26.3
 
