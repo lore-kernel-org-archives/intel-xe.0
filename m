@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34A08C54E58
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 11:37:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45169CD11DD
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Mar 2024 11:37:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7E8A10E437;
-	Thu, 21 Mar 2024 11:37:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00EE210E7D4;
+	Thu, 21 Mar 2024 11:37:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CzK58+0h";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Oj3ZWmsq";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 400A710E437
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Mar 2024 11:37:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F81210E7E4
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 Mar 2024 11:37:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711021058; x=1742557058;
+ t=1711021068; x=1742557068;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=WtN0UBCWMg2Zq7F9H7sTe8kq/+Y/RtD7ichY8UYUJAo=;
- b=CzK58+0hLHQ2RQXiPbvbl/gs7DpTp6BMOG3V+6ZI+F0MdKczCQgfOjqo
- P8IG/6VR0pmZVgalDB2udmPVjUywZEhHjfIbLDpbbU21nuCNIgLEoz06Z
- NU1UA5/AmtnlKQpjy2oEuDqhj6RXQlj/KFa0ps2ya1VT1aAKOWED0Zzs1
- p0V55MKx/M8vH0goVryc8C3oUExEhSdt8Eqcf4iVSGNGT8SHdXI1nDpg1
- IHM3ESSmIgyfUtAu2t+cuSiMTxQkFUHQ9hNjB/HcsK8J16CU8cugVxyBd
- +erfnKOSzwz41/JSRbpH0F4Wl4svdgfJZwE38UmrZF7bFFSw/ADm+rZDs A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11019"; a="6127330"
+ bh=aPap9wwIdCgmLMRIKD8OVhLjrIJIzKStYCmfFlK0u5Y=;
+ b=Oj3ZWmsqC/Cg3GnXQLREOoOeMD7VkEB7Hqbkc3eUmq33AvctBxT4v6KF
+ GO0fI2Sfnzua7uY7DH8Nr6jGGeJBXADBc46SN05U0HJUeLKGknSQWNZwA
+ eMXiVAuMAmSJ8SevOTCwgLkX5MpsaxOXof2TatMtC8w9nYcAJg2YCU/n9
+ J2rhiQCSJeB5dyczsGjE3fYFNNZAwgOTRH3dDP9UpG53KhRRqN36w+p0k
+ Ee+5Jn1xRkteXOc93LfkhAfi39DPin43qqcYBalLkREctY4Ub4tTiQePi
+ eFY+9zSoC8cHZuXl0tZOdujfMZxHKzenZTFpiOzdNF9crOl/deNiLIz72 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11019"; a="6127361"
 X-IronPort-AV: E=Sophos;i="6.07,142,1708416000"; 
-   d="scan'208";a="6127330"
+   d="scan'208";a="6127361"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2024 04:37:38 -0700
+ 21 Mar 2024 04:37:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,142,1708416000"; d="scan'208";a="19053230"
+X-IronPort-AV: E=Sophos;i="6.07,142,1708416000"; d="scan'208";a="19053287"
 Received: from dinieasx-mobl1.gar.corp.intel.com (HELO fedora..)
  ([10.249.254.100])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2024 04:37:36 -0700
+ 21 Mar 2024 04:37:46 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>, stable@vger.kernel.org
-Subject: [PATCH 1/7] drm/xe: Make TLB invalidation fences unordered
-Date: Thu, 21 Mar 2024 12:37:10 +0100
-Message-ID: <20240321113720.120865-2-thomas.hellstrom@linux.intel.com>
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: [PATCH 5/7] drm/xe: Move vma rebinding to the drm_exec locking loop
+Date: Thu, 21 Mar 2024 12:37:18 +0100
+Message-ID: <20240321113720.120865-10-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240321113720.120865-1-thomas.hellstrom@linux.intel.com>
 References: <20240321113720.120865-1-thomas.hellstrom@linux.intel.com>
@@ -66,63 +65,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-They can actually complete out-of-order, so allocate a unique
-fence context for each fence.
+Rebinding might allocate page-table bos, causing evictions.
+To support blocking locking during these evictions,
+perform the rebinding in the drm_exec locking loop.
 
-Fixes: 5387e865d90e ("drm/xe: Add TLB invalidation fence after rebinds issued from execs")
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: <stable@vger.kernel.org> # v6.8+
+Fixes: 24f947d58fe5 ("drm/xe: Use DRM GPUVM helpers for external- and evicted objects")
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 1 -
- drivers/gpu/drm/xe/xe_gt_types.h            | 7 -------
- drivers/gpu/drm/xe/xe_pt.c                  | 3 +--
- 3 files changed, 1 insertion(+), 10 deletions(-)
+ drivers/gpu/drm/xe/xe_exec.c | 13 ++++++++++---
+ drivers/gpu/drm/xe/xe_vm.c   | 12 +++++++++---
+ 2 files changed, 19 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-index a3c4ffba679d..787cba5e49a1 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-@@ -63,7 +63,6 @@ int xe_gt_tlb_invalidation_init(struct xe_gt *gt)
- 	INIT_LIST_HEAD(&gt->tlb_invalidation.pending_fences);
- 	spin_lock_init(&gt->tlb_invalidation.pending_lock);
- 	spin_lock_init(&gt->tlb_invalidation.lock);
--	gt->tlb_invalidation.fence_context = dma_fence_context_alloc(1);
- 	INIT_DELAYED_WORK(&gt->tlb_invalidation.fence_tdr,
- 			  xe_gt_tlb_fence_timeout);
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index 397a49b731f1..e00910246741 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -96,13 +96,20 @@
  
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index f6da2ad9719f..2143dffcaf11 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -179,13 +179,6 @@ struct xe_gt {
- 		 * xe_gt_tlb_fence_timeout after the timeut interval is over.
- 		 */
- 		struct delayed_work fence_tdr;
--		/** @tlb_invalidation.fence_context: context for TLB invalidation fences */
--		u64 fence_context;
--		/**
--		 * @tlb_invalidation.fence_seqno: seqno to TLB invalidation fences, protected by
--		 * tlb_invalidation.lock
--		 */
--		u32 fence_seqno;
- 		/** @tlb_invalidation.lock: protects TLB invalidation fences */
- 		spinlock_t lock;
- 	} tlb_invalidation;
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 8d3922d2206e..a5bb8d20f815 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -1135,8 +1135,7 @@ static int invalidation_fence_init(struct xe_gt *gt,
- 	spin_lock_irq(&gt->tlb_invalidation.lock);
- 	dma_fence_init(&ifence->base.base, &invalidation_fence_ops,
- 		       &gt->tlb_invalidation.lock,
--		       gt->tlb_invalidation.fence_context,
--		       ++gt->tlb_invalidation.fence_seqno);
-+		       dma_fence_context_alloc(1), 1);
- 	spin_unlock_irq(&gt->tlb_invalidation.lock);
+ static int xe_exec_fn(struct drm_gpuvm_exec *vm_exec)
+ {
++	struct xe_vm *vm = container_of(vm_exec->vm, struct xe_vm, gpuvm);
+ 	struct drm_gem_object *obj;
+ 	unsigned long index;
+ 	int ret;
  
- 	INIT_LIST_HEAD(&ifence->base.link);
+-	ret = drm_gpuvm_validate(vm_exec->vm, &vm_exec->exec);
+-	if (ret)
+-		return ret;
++	do {
++		ret = drm_gpuvm_validate(vm_exec->vm, &vm_exec->exec);
++		if (ret)
++			return ret;
++
++		ret = xe_vm_rebind(vm, false);
++		if (ret)
++			return ret;
++	} while (!list_empty(&vm->gpuvm.evict.list));
+ 
+ 	drm_exec_for_each_locked_object(&vm_exec->exec, index, obj) {
+ 		ret = dma_resv_reserve_fences(obj->resv, 1);
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 33a85e702e2c..f9da055180b3 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -512,9 +512,15 @@ static int xe_preempt_work_begin(struct drm_exec *exec, struct xe_vm *vm,
+ 	if (err)
+ 		return err;
+ 
+-	err = drm_gpuvm_validate(&vm->gpuvm, exec);
+-	if (err)
+-		return err;
++	do {
++		err = drm_gpuvm_validate(&vm->gpuvm, exec);
++		if (err)
++			return err;
++
++		err = xe_vm_rebind(vm, true);
++		if (err)
++			return err;
++	} while (!list_empty(&vm->gpuvm.evict.list));
+ 
+ 	drm_exec_for_each_locked_object(exec, index, obj) {
+ 		err = dma_resv_reserve_fences(obj->resv, vm->preempt.num_exec_queues);
 -- 
 2.44.0
 
