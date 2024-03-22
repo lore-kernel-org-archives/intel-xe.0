@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5A71C47DD9
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Mar 2024 03:44:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85064C47DD9
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Mar 2024 03:54:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B49610EDC1;
-	Fri, 22 Mar 2024 03:44:51 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q7lq6zPL";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2FAA10EDC1
- for <intel-xe@lists.freedesktop.org>; Fri, 22 Mar 2024 03:44:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711079091; x=1742615091;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=rRASzHl3/K4dqz5w6r3PybXYyHZINXfJDTBcvVqjx7s=;
- b=Q7lq6zPL5APrjJ2V2aC9eheDRHrDiCt6Mw883LG8zHrNTKDw9coa0JH6
- B+FGu/3jxm7yJRbR9RLM0d//uqCWWtt9j+nzyyexBh5v7o4Q0C9Xp34Xq
- aM6muIuo9kpHco5sDrITfjTRIih6Pq/LlKYFInNWyJRh1MrWyA9aL/Lew
- JMS1H6aFK44WGpQ4f+dSpN2vc/dNlwUvYz2Mv1AMX6GZc4DoOuwb7ZNy5
- LcNjN2H5HICp6lN4NSSlBHbhAwlsYnjI2m9w/hrvJg0csnwVwDoaNcxDa
- 9dTaxVPvVh3O9BK4nnUVvFtriJZ29zYI2eBOhgiC/MjV9uqec+w2ZeNE3 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="6233811"
-X-IronPort-AV: E=Sophos;i="6.07,144,1708416000"; 
-   d="scan'208";a="6233811"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2024 20:44:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,144,1708416000"; d="scan'208";a="14627050"
-Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orviesa010.jf.intel.com with ESMTP; 21 Mar 2024 20:44:49 -0700
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Ashutosh Dixit <ashutosh.dixit@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v3] drm/xe/xe_devcoredump: Check NULL before dereferencing
-Date: Fri, 22 Mar 2024 09:28:10 +0530
-Message-Id: <20240322035810.3347272-1-himal.prasad.ghimiray@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4876D11240F;
+	Fri, 22 Mar 2024 03:54:28 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EA2311240F;
+ Fri, 22 Mar 2024 03:54:26 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1167145002566620000=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Use_enum_instead_of_ha?=
+ =?utf-8?q?rd_coding?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 22 Mar 2024 03:54:26 -0000
+Message-ID: <171107966658.941104.14645085949989607753@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240322031558.3343719-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20240322031558.3343719-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,58 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Dereference 'coredump' to access 'xe_devcoredump_snapshot' only if
-'coredump' is not NULL,
+--===============1167145002566620000==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2
-- Fix commit messages.
+== Series Details ==
 
-v3
-- Define variables before code.(Ashutosh/Jose)
+Series: drm/xe: Use enum instead of hard coding
+URL   : https://patchwork.freedesktop.org/series/131460/
+State : success
 
-Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/xe/xe_devcoredump.c | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index 7d3aa6bd3524..5b7be3b5b906 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.c
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -77,17 +77,22 @@ static ssize_t xe_devcoredump_read(char *buffer, loff_t offset,
- 				   size_t count, void *data, size_t datalen)
- {
- 	struct xe_devcoredump *coredump = data;
--	struct xe_device *xe = coredump_to_xe(coredump);
--	struct xe_devcoredump_snapshot *ss = &coredump->snapshot;
-+	struct xe_device *xe;
-+	struct xe_devcoredump_snapshot *ss;
- 	struct drm_printer p;
- 	struct drm_print_iterator iter;
- 	struct timespec64 ts;
- 	int i;
- 
--	/* Our device is gone already... */
--	if (!data || !coredump_to_xe(coredump))
-+	if (!coredump)
-+		return -ENODATA;
-+
-+	xe = coredump_to_xe(coredump);
-+	if (!xe)
- 		return -ENODEV;
- 
-+	ss = &coredump->snapshot;
-+
- 	/* Ensure delayed work is captured before continuing */
- 	flush_work(&ss->work);
- 
--- 
-2.25.1
+CI Bug Log - changes from xe-974-198e9d7559f7aa6daadd6a395315b7e88f70083b_BAT -> xe-pw-131460v1_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-974-198e9d7559f7aa6daadd6a395315b7e88f70083b -> xe-pw-131460v1
+
+  IGT_7776: 7776
+  xe-974-198e9d7559f7aa6daadd6a395315b7e88f70083b: 198e9d7559f7aa6daadd6a395315b7e88f70083b
+  xe-pw-131460v1: 131460v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131460v1/index.html
+
+--===============1167145002566620000==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Use enum instead of hard coding</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131460/">https://patchwork.freedesktop.org/series/131460/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131460v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131460v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-974-198e9d7559f7aa6daadd6a395315b7e88f70083b_BAT -&gt; xe-pw-131460v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-974-198e9d7559f7aa6daadd6a395315b7e88f70083b -&gt; xe-pw-131460v1</li>
+</ul>
+<p>IGT_7776: 7776<br />
+  xe-974-198e9d7559f7aa6daadd6a395315b7e88f70083b: 198e9d7559f7aa6daadd6a395315b7e88f70083b<br />
+  xe-pw-131460v1: 131460v1</p>
+
+</body>
+</html>
+
+--===============1167145002566620000==--
