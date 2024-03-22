@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFC39C54E71
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Mar 2024 04:51:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 077CDC47DD9
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Mar 2024 04:52:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 662D010E1A9;
-	Fri, 22 Mar 2024 04:51:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92A1410E1A9;
+	Fri, 22 Mar 2024 04:52:08 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E61DE10ED51;
- Fri, 22 Mar 2024 04:51:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B48410E1A9;
+ Fri, 22 Mar 2024 04:52:07 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Use_hmm=5Frange=5Ffa?=
- =?utf-8?q?ult_to_populate_user_page?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Use_hmm=5Frange=5Ffault_t?=
+ =?utf-8?q?o_populate_user_page?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Oak Zeng" <oak.zeng@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 22 Mar 2024 04:51:52 -0000
-Message-ID: <171108311294.941104.15213431968186485053@8e613ede5ea5>
+Date: Fri, 22 Mar 2024 04:52:07 -0000
+Message-ID: <171108312744.941104.1930553965890363838@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240322035520.2382600-1-oak.zeng@intel.com>
 In-Reply-To: <20240322035520.2382600-1-oak.zeng@intel.com>
@@ -44,18 +44,78 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Use hmm_range_fault to populate user page
 URL   : https://patchwork.freedesktop.org/series/131463/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 236ae2b6b695 drm-tip: 2024y-03m-22d-04h-37m-55s UTC integration manifest
-=== git am output follows ===
-.git/rebase-apply/patch:264: new blank line at EOF.
-+
-warning: 1 line adds whitespace errors.
-Applying: drm/xe: Introduce helper to populate userptr
-Applying: drm/xe: Introduce a helper to free sg table
-Applying: drm/xe: Use hmm_range_fault to populate user pages
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+a9eb1ac8298ef9f9146567c29fa762d8e9efa1ef
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 9f50e64e9469a68d11f62bb319ba73fd2521d212
+Author: Oak Zeng <oak.zeng@intel.com>
+Date:   Thu Mar 21 23:55:20 2024 -0400
+
+    drm/xe: Use hmm_range_fault to populate user pages
+    
+    This is an effort to unify hmmptr (aka system allocator)
+    and userptr code. hmm_range_fault is used to populate
+    a virtual address range for both hmmptr and userptr,
+    instead of hmmptr using hmm_range_fault and userptr
+    using get_user_pages_fast.
+    
+    This also aligns with AMD gpu driver's behavior. In
+    long term, we plan to put some common helpers in this
+    area to drm layer so it can be re-used by different
+    vendors.
+    
+    Signed-off-by: Oak Zeng <oak.zeng@intel.com>
++ /mt/dim checkpatch 236ae2b6b695ecedc3cf4453a1679d53b2e06f32 drm-intel
+967214f493d2 drm/xe: Introduce helper to populate userptr
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:68: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#68: 
+new file mode 100644
+
+-:152: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#152: FILE: drivers/gpu/drm/xe/xe_hmm.c:80:
++static int xe_build_sg(struct xe_device *xe, struct hmm_range *range,
++			     struct sg_table *st, bool write)
+
+-:170: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#170: FILE: drivers/gpu/drm/xe/xe_hmm.c:98:
++	ret = sg_alloc_table_from_pages_segment(st, pages, npages, 0,
++			npages << PAGE_SHIFT, xe_sg_segment_size(dev), GFP_KERNEL);
+
+-:175: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#175: FILE: drivers/gpu/drm/xe/xe_hmm.c:103:
++	ret = dma_map_sgtable(dev, st, write ? DMA_BIDIRECTIONAL : DMA_TO_DEVICE,
++			DMA_ATTR_SKIP_CPU_SYNC | DMA_ATTR_NO_KERNEL_MAPPING);
+
+-:303: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/xe/xe_hmm.h', please use '/*' instead
+#303: FILE: drivers/gpu/drm/xe/xe_hmm.h:1:
++// SPDX-License-Identifier: MIT
+
+-:303: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#303: FILE: drivers/gpu/drm/xe/xe_hmm.h:1:
++// SPDX-License-Identifier: MIT
+
+total: 0 errors, 3 warnings, 3 checks, 256 lines checked
+e49e9279c690 drm/xe: Introduce a helper to free sg table
+-:48: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#48: FILE: drivers/gpu/drm/xe/xe_hmm.c:131:
++	dma_unmap_sgtable(dev, userptr->sg,
++			write ? DMA_BIDIRECTIONAL : DMA_TO_DEVICE, 0);
+
+total: 0 errors, 0 warnings, 1 checks, 52 lines checked
+9f50e64e9469 drm/xe: Use hmm_range_fault to populate user pages
 
 
