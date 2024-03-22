@@ -4,49 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C69D0C47DD9
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Mar 2024 14:25:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69273C54E71
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Mar 2024 14:26:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C0721124DE;
-	Fri, 22 Mar 2024 14:25:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2530B1124E1;
+	Fri, 22 Mar 2024 14:26:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aj2n5czN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N8iMuvi5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D5451124DD
- for <intel-xe@lists.freedesktop.org>; Fri, 22 Mar 2024 14:25:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCCBC1124E1
+ for <intel-xe@lists.freedesktop.org>; Fri, 22 Mar 2024 14:26:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711117521; x=1742653521;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ZqvbRAI+e2x+7+vMrk33ErPxZLIHi2dX7Y25Sj10tZc=;
- b=aj2n5czNK95B45AQXxv4Ow0v16rEA6sxS7oijlLtUIp4Blem89SRTziI
- cOFLHCLOIyQ3aVo3OSX2DWWk6tloFZAKdPa3TOz1RaX7ZKVVpSBNyIthm
- 5/v4W/IxNg5h/C1f4gawIYJIDSGy/lXSqpEiVl61dAwMNfwRk8nJD0fw2
- bGMUMyh6Vd4epX5syYg1wKw5N0KJkMxEvltVdr4ufDEyTwIzirbK0/5DL
- SsOWXTBEvk/Yej1yea2X2aOrsSKPq2WmA+QCXCwczYFIoj/5SlW58KcnZ
- deZNjrzIB52KVedcNHM3mweXsWo266nEVFYdA2Yyv/9n4HUWotNrpaffs g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="23622660"
-X-IronPort-AV: E=Sophos;i="6.07,146,1708416000"; d="scan'208";a="23622660"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2024 07:25:21 -0700
+ t=1711117612; x=1742653612;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=o4E/Zj83U0Y6YxG0rpC9OFsnUQMyBjXmE47shmXfxs8=;
+ b=N8iMuvi52GpPQ9Vna/IKtGOz9UzYPvBtvdfZIW1o+IvoLAIwbmvbOnDV
+ oGDJ8ZWcKpXRXlOaRz1+3jyJzXMSda+SR6cf7Kt4KzV2tr9ZqJgSblFVX
+ mEKTNKd6tZT+TYF1VLObZyw8lCUG/P/JuFwyWi8yE3ICbNuCmMx3mIMrA
+ PHZoGCh6AfRvptoiST4l52mHTXmgM136hjKObhWPDKm7SILPSxHpLsB02
+ YsIP5XRJMeOMH//EMrAIu+C0XkMjVTFCOjul2C+pauNMfYwwoqSJT4IEq
+ xhB2nYntFzE7z45rHio850hQGojUw6JRZee10yuzG1iH60oaeDpx+hFaq A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="5996398"
+X-IronPort-AV: E=Sophos;i="6.07,146,1708416000"; 
+   d="scan'208";a="5996398"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2024 07:26:37 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,146,1708416000"; d="scan'208";a="15334226"
-Received: from sinjan-super-server.iind.intel.com ([10.145.169.153])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2024 07:25:19 -0700
-From: Karthik Poosa <karthik.poosa@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
- Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH 2/2] drm/xe/hwmon: Fix static analysis tool reported issues
-Date: Fri, 22 Mar 2024 20:05:23 +0530
-Message-Id: <20240322143523.2531519-3-karthik.poosa@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240322143523.2531519-1-karthik.poosa@intel.com>
-References: <20240322143523.2531519-1-karthik.poosa@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,146,1708416000"; d="scan'208";a="19587353"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2024 07:26:37 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [CI 0/2] drm/xe: Refactor BO flag
+Date: Fri, 22 Mar 2024 07:27:00 -0700
+Message-ID: <20240322142702.186529-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -63,95 +61,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Update xe hwmon with fixes for issues reported by static analysis
-tool.
-Fix integer overflow with upcasting.
-Initialize uninitialized variables.
+Change the flag names to follow a specific pattern. There shouldn't be
+any change in behavior here.
 
-Fixes: 4446fcf220ce ("drm/xe/hwmon: Expose power1_max_interval")
-Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
----
- drivers/gpu/drm/xe/xe_hwmon.c | 18 +++++++++---------
- 1 file changed, 9 insertions(+), 9 deletions(-)
+Lucas De Marchi (2):
+  drm/xe: Stop passing user flag to xe_bo_create_user()
+  drm/xe: Normalize bo flags macros
 
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index a256af8c2012..6ed9d5c4f6b1 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -153,7 +153,7 @@ static void xe_hwmon_process_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon
-  */
- static void xe_hwmon_power_max_read(struct xe_hwmon *hwmon, long *value)
- {
--	u64 reg_val, min, max;
-+	u64 reg_val = 0, min, max;
- 
- 	mutex_lock(&hwmon->hwmon_lock);
- 
-@@ -182,7 +182,7 @@ static void xe_hwmon_power_max_read(struct xe_hwmon *hwmon, long *value)
- static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, long value)
- {
- 	int ret = 0;
--	u64 reg_val;
-+	u64 reg_val = 0;
- 
- 	mutex_lock(&hwmon->hwmon_lock);
- 
-@@ -212,7 +212,7 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, long value)
- 
- static void xe_hwmon_power_rated_max_read(struct xe_hwmon *hwmon, long *value)
- {
--	u64 reg_val;
-+	u64 reg_val = 0;
- 
- 	xe_hwmon_process_reg(hwmon, REG_PKG_POWER_SKU, REG_READ32, &reg_val, 0, 0);
- 	reg_val = REG_FIELD_GET(PKG_TDP, reg_val);
-@@ -243,7 +243,7 @@ static void
- xe_hwmon_energy_get(struct xe_hwmon *hwmon, long *energy)
- {
- 	struct xe_hwmon_energy_info *ei = &hwmon->ei;
--	u64 reg_val;
-+	u64 reg_val = 0;
- 
- 	xe_hwmon_process_reg(hwmon, REG_PKG_ENERGY_STATUS, REG_READ32,
- 			     &reg_val, 0, 0);
-@@ -264,8 +264,8 @@ xe_hwmon_power1_max_interval_show(struct device *dev, struct device_attribute *a
- 				  char *buf)
- {
- 	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
--	u32 x, y, x_w = 2; /* 2 bits */
--	u64 r, tau4, out;
-+	u32 x = 0, y = 0, x_w = 2; /* 2 bits */
-+	u64 r = 0, tau4, out;
- 
- 	xe_pm_runtime_get(gt_to_xe(hwmon->gt));
- 
-@@ -291,7 +291,7 @@ xe_hwmon_power1_max_interval_show(struct device *dev, struct device_attribute *a
- 	 * As y can be < 2, we compute tau4 = (4 | x) << y
- 	 * and then add 2 when doing the final right shift to account for units
- 	 */
--	tau4 = ((1 << x_w) | x) << y;
-+	tau4 = (u64)((1 << x_w) | x) << y;
- 
- 	/* val in hwmon interface units (millisec) */
- 	out = mul_u64_u32_shr(tau4, SF_TIME, hwmon->scl_shift_time + x_w);
-@@ -331,7 +331,7 @@ xe_hwmon_power1_max_interval_store(struct device *dev, struct device_attribute *
- 	r = FIELD_PREP(PKG_MAX_WIN, PKG_MAX_WIN_DEFAULT);
- 	x = REG_FIELD_GET(PKG_MAX_WIN_X, r);
- 	y = REG_FIELD_GET(PKG_MAX_WIN_Y, r);
--	tau4 = ((1 << x_w) | x) << y;
-+	tau4 = (u64)((1 << x_w) | x) << y;
- 	max_win = mul_u64_u32_shr(tau4, SF_TIME, hwmon->scl_shift_time + x_w);
- 
- 	if (val > max_win)
-@@ -466,7 +466,7 @@ static int xe_hwmon_power_curr_crit_write(struct xe_hwmon *hwmon, long value, u3
- 
- static void xe_hwmon_get_voltage(struct xe_hwmon *hwmon, long *value)
- {
--	u64 reg_val;
-+	u64 reg_val = 0;
- 
- 	xe_hwmon_process_reg(hwmon, REG_GT_PERF_STATUS,
- 			     REG_READ32, &reg_val, 0, 0);
+ .../xe/compat-i915-headers/i915_gem_stolen.h  |   2 +-
+ drivers/gpu/drm/xe/display/intel_fb_bo.c      |   8 +-
+ drivers/gpu/drm/xe/display/intel_fbdev_fb.c   |  16 +--
+ drivers/gpu/drm/xe/display/xe_dsb_buffer.c    |   4 +-
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        |  22 ++--
+ drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      |   4 +-
+ drivers/gpu/drm/xe/display/xe_plane_initial.c |   6 +-
+ drivers/gpu/drm/xe/tests/xe_bo.c              |   4 +-
+ drivers/gpu/drm/xe/tests/xe_dma_buf.c         |  54 ++++-----
+ drivers/gpu/drm/xe/tests/xe_migrate.c         |  20 ++--
+ drivers/gpu/drm/xe/xe_bo.c                    | 106 +++++++++---------
+ drivers/gpu/drm/xe/xe_bo.h                    |  45 ++++----
+ drivers/gpu/drm/xe/xe_bo_evict.c              |   2 +-
+ drivers/gpu/drm/xe/xe_dma_buf.c               |   2 +-
+ drivers/gpu/drm/xe/xe_ggtt.c                  |  12 +-
+ drivers/gpu/drm/xe/xe_gsc.c                   |   8 +-
+ drivers/gpu/drm/xe/xe_gsc_proxy.c             |   4 +-
+ drivers/gpu/drm/xe/xe_guc_ads.c               |   6 +-
+ drivers/gpu/drm/xe/xe_guc_ct.c                |   6 +-
+ drivers/gpu/drm/xe/xe_guc_hwconfig.c          |   6 +-
+ drivers/gpu/drm/xe/xe_guc_log.c               |   6 +-
+ drivers/gpu/drm/xe/xe_guc_pc.c                |   6 +-
+ drivers/gpu/drm/xe/xe_huc.c                   |   4 +-
+ drivers/gpu/drm/xe/xe_hw_engine.c             |   6 +-
+ drivers/gpu/drm/xe/xe_lmtt.c                  |   4 +-
+ drivers/gpu/drm/xe/xe_lrc.c                   |   6 +-
+ drivers/gpu/drm/xe/xe_memirq.c                |  10 +-
+ drivers/gpu/drm/xe/xe_migrate.c               |   4 +-
+ drivers/gpu/drm/xe/xe_pt.c                    |  10 +-
+ drivers/gpu/drm/xe/xe_sa.c                    |   6 +-
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c        |   2 +-
+ drivers/gpu/drm/xe/xe_uc_fw.c                 |   4 +-
+ drivers/gpu/drm/xe/xe_vm.c                    |   2 +-
+ 33 files changed, 203 insertions(+), 204 deletions(-)
+
 -- 
-2.25.1
+2.43.0
 
