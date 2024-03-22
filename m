@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E8B3C54E71
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Mar 2024 15:15:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C88EC54E71
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Mar 2024 15:15:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFE79112551;
-	Fri, 22 Mar 2024 15:15:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3B17112555;
+	Fri, 22 Mar 2024 15:15:35 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AFF8112553;
- Fri, 22 Mar 2024 15:15:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E55C112551;
+ Fri, 22 Mar 2024 15:15:34 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Refactor_B?=
- =?utf-8?q?O_flag?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Refactor_BO_fla?=
+ =?utf-8?q?g?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 22 Mar 2024 15:15:02 -0000
-Message-ID: <171112050217.961263.10188738889448262145@8e613ede5ea5>
+Date: Fri, 22 Mar 2024 15:15:34 -0000
+Message-ID: <171112053458.961263.6766548612294529165@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240322142702.186529-1-lucas.demarchi@intel.com>
 In-Reply-To: <20240322142702.186529-1-lucas.demarchi@intel.com>
@@ -44,14 +44,77 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Refactor BO flag
 URL   : https://patchwork.freedesktop.org/series/131497/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: b89042d4d087 drm-tip: 2024y-03m-22d-14h-45m-54s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Stop passing user flag to xe_bo_create_user()
-Applying: drm/xe: Normalize bo flags macros
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+a9eb1ac8298ef9f9146567c29fa762d8e9efa1ef
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 63b8bbd55d57ab14a574b029425823bebf9f5b1a
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Fri Mar 22 07:27:02 2024 -0700
+
+    drm/xe: Normalize bo flags macros
+    
+    The flags stored in the BO grew over time without following
+    much a naming pattern. First of all, get rid of the _BIT suffix that was
+    banned from everywhere else due to the guideline in
+    drivers/gpu/drm/i915/i915_reg.h that xe kind of follows:
+    
+            Define bits using ``REG_BIT(N)``. Do **not** add ``_BIT`` suffix to the name.
+    
+    Here the flags aren't for a register, but it's good practice to keep it
+    consistent.
+    
+    Second divergence on names is the use or not of "CREATE". This is
+    because most of the flags are passed to xe_bo_create*() family of
+    functions, changing its behavior. However, since the flags are also
+    stored in the bo itself and checked elsewhere in the code, it seems
+    better to just omit the CREATE part.
+    
+    With those 2 guidelines, all the flags are given the form
+    XE_BO_FLAG_<FLAG_NAME> with the following commands:
+    
+            git grep -le "XE_BO_" -- drivers/gpu/drm/xe | xargs sed -i \
+                    -e "s/XE_BO_\([_A-Z0-9]*\)_BIT/XE_BO_\1/g" \
+                    -e 's/XE_BO_CREATE_/XE_BO_FLAG_/g'
+            git grep -le "XE_BO_" -- drivers/gpu/drm/xe | xargs sed -i -r \
+                    -e 's/XE_BO_(DEFER_BACKING|SCANOUT|FIXED_PLACEMENT|PAGETABLE|NEEDS_CPU_ACCESS|NEEDS_UC|INTERNAL_TEST|INTERNAL_64K|GGTT_INVALIDATE)/XE_BO_FLAG_\1/g'
+    
+    And then the defines in drivers/gpu/drm/xe/xe_bo.h are adjusted to
+    follow the coding style.
+    
+    Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch b89042d4d087c1e037c1f7904b4c223e48919b88 drm-intel
+8bf17d865ae3 drm/xe: Stop passing user flag to xe_bo_create_user()
+63b8bbd55d57 drm/xe: Normalize bo flags macros
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#11: 
+	Define bits using ``REG_BIT(N)``. Do **not** add ``_BIT`` suffix to the name.
+
+-:109: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#109: FILE: drivers/gpu/drm/xe/display/intel_fbdev_fb.c:56:
++					  XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(dev_priv)) |
+
+-:617: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#617: FILE: drivers/gpu/drm/xe/xe_bo.c:1328:
++	if (flags & (XE_BO_FLAG_USER|XE_BO_FLAG_SYSTEM))
+ 	                            ^
+
+-:844: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'tile' - possible side-effects?
+#844: FILE: drivers/gpu/drm/xe/xe_bo.h:34:
++#define XE_BO_FLAG_VRAM_IF_DGFX(tile)	(IS_DGFX(tile_to_xe(tile)) ? \
++					 XE_BO_FLAG_VRAM0 << (tile)->id : \
++					 XE_BO_FLAG_SYSTEM)
+
+total: 0 errors, 2 warnings, 2 checks, 996 lines checked
 
 
