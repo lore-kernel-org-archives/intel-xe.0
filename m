@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 753BDC47DD9
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Mar 2024 04:46:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFC39C54E71
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Mar 2024 04:51:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB43511243B;
-	Fri, 22 Mar 2024 04:46:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 662D010E1A9;
+	Fri, 22 Mar 2024 04:51:55 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F168211243B;
- Fri, 22 Mar 2024 04:46:03 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1223368225143916603=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E61DE10ED51;
+ Fri, 22 Mar 2024 04:51:52 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe_=3A_avoid_the_risky_funct?=
- =?utf-8?q?ion_sprintf?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Use_hmm=5Frange=5Ffa?=
+ =?utf-8?q?ult_to_populate_user_page?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Bommu Krishnaiah" <krishnaiah.bommu@intel.com>
+To: "Oak Zeng" <oak.zeng@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 22 Mar 2024 04:46:03 -0000
-Message-ID: <171108276398.940819.2399797204863001014@8e613ede5ea5>
+Date: Fri, 22 Mar 2024 04:51:52 -0000
+Message-ID: <171108311294.941104.15213431968186485053@8e613ede5ea5>
 X-Patchwork-Hint: ignore
-References: <20231206194100.44384-1-krishnaiah.bommu@intel.com>
-In-Reply-To: <20231206194100.44384-1-krishnaiah.bommu@intel.com>
+References: <20240322035520.2382600-1-oak.zeng@intel.com>
+In-Reply-To: <20240322035520.2382600-1-oak.zeng@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,22 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1223368225143916603==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe : avoid the risky function sprintf
-URL   : https://patchwork.freedesktop.org/series/131462/
+Series: Use hmm_range_fault to populate user page
+URL   : https://patchwork.freedesktop.org/series/131463/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-974-198e9d7559f7aa6daadd6a395315b7e88f70083b_BAT -> xe-pw-131462v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 236ae2b6b695 drm-tip: 2024y-03m-22d-04h-37m-55s UTC integration manifest
+=== git am output follows ===
+.git/rebase-apply/patch:264: new blank line at EOF.
++
+warning: 1 line adds whitespace errors.
+Applying: drm/xe: Introduce helper to populate userptr
+Applying: drm/xe: Introduce a helper to free sg table
+Applying: drm/xe: Use hmm_range_fault to populate user pages
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-974-198e9d7559f7aa6daadd6a395315b7e88f70083b -> xe-pw-131462v1
-
-  IGT_7776: 7776
-  xe-974-198e9d7559f7aa6daadd6a395315b7e88f70083b: 198e9d7559f7aa6daadd6a395315b7e88f70083b
-  xe-pw-131462v1: 131462v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131462v1/index.html
-
---===============1223368225143916603==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe : avoid the risky function sprintf</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131462/">https://patchwork.freedesktop.org/series/131462/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131462v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131462v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-974-198e9d7559f7aa6daadd6a395315b7e88f70083b_BAT -&gt; xe-pw-131462v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-974-198e9d7559f7aa6daadd6a395315b7e88f70083b -&gt; xe-pw-131462v1</li>
-</ul>
-<p>IGT_7776: 7776<br />
-  xe-974-198e9d7559f7aa6daadd6a395315b7e88f70083b: 198e9d7559f7aa6daadd6a395315b7e88f70083b<br />
-  xe-pw-131462v1: 131462v1</p>
-
-</body>
-</html>
-
---===============1223368225143916603==--
