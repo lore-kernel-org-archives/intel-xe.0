@@ -4,54 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B68F4C54E71
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Mar 2024 08:48:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB23BC47DD9
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Mar 2024 09:02:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5691A10E193;
-	Fri, 22 Mar 2024 08:48:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 872DA10ECF0;
+	Fri, 22 Mar 2024 09:02:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ACzmcKx1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HcQPfWsl";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DF5E10E193;
- Fri, 22 Mar 2024 08:48:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F89C10E376
+ for <intel-xe@lists.freedesktop.org>; Fri, 22 Mar 2024 09:02:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711097330; x=1742633330;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=u1h6UEcCpBlz+DDTzC0Xh2CRgR70+VyYiGq5D8QE6gQ=;
- b=ACzmcKx1gso8s92yAIRh5hcp2K69mpvidM0XwjiIcHMQwWjEmxJe1XMD
- BDLAa1x7kYd7eopnbTMZciR+LDJ1U/fFknqHP1s6Y6dqrkgxYskYJE9oG
- iN8N35i9XWUxM4S41YmPS1loHjut/TpgkbWw3JZTB5zMXa68NDp+ovnpI
- yg6WcKcA+RzrayVVXK11Dcz8NzJwAk33FgL7vuz9qNFXu3ht7kCdTqA5z
- ljIPHqXjJGRbNBDa7/RbWIMwQQRz0OElZi1PKWcKoJmIkSz7fQSMDbl50
- gzrq85EibprKRaK0QC7cBL2M77raLzdkllkUqpDw87NuvAGC+XiTKei9Q g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="9085671"
+ t=1711098145; x=1742634145;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=RJ5QW+aolqiuSevIxwE58MqLSHY5u6bxagNo72eo/Yk=;
+ b=HcQPfWslaWGcUbTruAvybrs2YK0Ows2FWley/nXFdwn+Hzmske2GGsOx
+ 1IdVdJar8SFTSe+xYABKIGPnt2BfBLAMLziWdQMNO1aY31TtGv6rBxejO
+ AYSMFoBOS6L410gDdscVbTnqQdB2H8FtZYmBwx7FpuCCWs40MRcLpUq1b
+ wv8nWcXYLHAPT29gPdbjkmE/NHsvDmouTaPdpb07n2uZT5EM89jCba1tn
+ RZEnKgzimh33o9/b37KavzdmkpznoFJ/x3/qtmLmsqY46G75d1cexRV+g
+ eIn1uCKIMU5uDZLf3ROy/CXoFfC8FTxKn42tp3e1rCYZbIS0t4Io6JMGs g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="9087164"
 X-IronPort-AV: E=Sophos;i="6.07,145,1708416000"; 
-   d="scan'208";a="9085671"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
+   d="scan'208";a="9087164"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2024 01:48:50 -0700
+ 22 Mar 2024 02:02:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,145,1708416000"; d="scan'208";a="15252324"
-Received: from ghoshsu1-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.55.6])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2024 01:48:49 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/display: move dmc_firmware_path to display params
-In-Reply-To: <64loxwpkjgu2nf4up554hfuqd6oi2quguozom2p2gowem26rbj@rszc3ubdda6u>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240321161856.3517856-1-jani.nikula@intel.com>
- <87y1ablfo6.fsf@intel.com>
- <64loxwpkjgu2nf4up554hfuqd6oi2quguozom2p2gowem26rbj@rszc3ubdda6u>
-Date: Fri, 22 Mar 2024 10:48:43 +0200
-Message-ID: <87v85elkic.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,145,1708416000"; d="scan'208";a="15238763"
+Received: from ettammin-desk.ger.corp.intel.com (HELO fedora..)
+ ([10.249.254.178])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2024 02:02:25 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: [PATCH v2 0/7] drm/xe: Rework rebinding and allow same-vm eviction 
+Date: Fri, 22 Mar 2024 10:02:06 +0100
+Message-ID: <20240322090213.6091-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.44.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,139 +63,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 21 Mar 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> On Thu, Mar 21, 2024 at 06:20:57PM +0200, Jani Nikula wrote:
->>On Thu, 21 Mar 2024, Jani Nikula <jani.nikula@intel.com> wrote:
->>> The dmc_firmware_path parameter is clearly a display parameter. Move it
->>> there. This also cleans up the ugly member in struct xe_device.
->>
->>Hmm, does this actually fix the parameter on xe?!
->
-> not sure what you meant here. Patches makes sense to me.
+We were not allowing eviction / shrinking of completely unbound
+local objects. Since unbinding is the UMD primary means of
+freeing up memory on local VM overcommit situations, fix this.
 
-Unless I'm mistaken, the parameter currently does not work on xe at
-all. I only realized after posting the patch that this probably fixes
-that issue too.
+The funtionality added here also open up the possibility to evict
+purgeable local objects with upcoming changes.
 
-BR,
-Jani.
+To make this work properly, rebinding needs to be moved to the
+while-not-all-locked drm-exec loop, since rebinding may allocate
+gpu page table bos and thus cause evictions which forces us
+to re-run validation.
 
+This is done in patch 5, but when writing that patch, a number
+couple of rebinding flaws were discovered.
 
->
-> Lucas De Marchi
->
->>
->>>
->>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->>> ---
->>>  drivers/gpu/drm/i915/display/intel_display_params.c | 3 +++
->>>  drivers/gpu/drm/i915/display/intel_display_params.h | 1 +
->>>  drivers/gpu/drm/i915/display/intel_dmc.c            | 8 ++++----
->>>  drivers/gpu/drm/i915/i915_params.c                  | 3 ---
->>>  drivers/gpu/drm/i915/i915_params.h                  | 1 -
->>>  drivers/gpu/drm/xe/xe_device_types.h                | 3 ---
->>>  6 files changed, 8 insertions(+), 11 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/drivers/gpu/drm/i915/display/intel_display_params.c
->>> index 11e03cfb774d..c8e3d6892e23 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_display_params.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
->>> @@ -27,6 +27,9 @@ static struct intel_display_params intel_display_modparams __read_mostly = {
->>>   * debugfs mode to 0.
->>>   */
->>>
->>> +intel_display_param_named_unsafe(dmc_firmware_path, charp, 0400,
->>> +	"DMC firmware path to use instead of the default one");
->>> +
->>>  intel_display_param_named_unsafe(vbt_firmware, charp, 0400,
->>>  	"Load VBT from specified file under /lib/firmware");
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/drivers/gpu/drm/i915/display/intel_display_params.h
->>> index 6206cc51df04..f95a6f79904f 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_display_params.h
->>> +++ b/drivers/gpu/drm/i915/display/intel_display_params.h
->>> @@ -24,6 +24,7 @@ struct drm_i915_private;
->>>   *       debugfs file
->>>   */
->>>  #define INTEL_DISPLAY_PARAMS_FOR_EACH(param) \
->>> +	param(char *, dmc_firmware_path, NULL, 0400) \
->>>  	param(char *, vbt_firmware, NULL, 0400) \
->>>  	param(int, lvds_channel_mode, 0, 0400) \
->>>  	param(int, panel_use_ssc, -1, 0600) \
->>> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
->>> index 3fa851b5c7a6..b4e730882ce2 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
->>> @@ -927,7 +927,7 @@ static void dmc_load_work_fn(struct work_struct *work)
->>>
->>>  	err = request_firmware(&fw, dmc->fw_path, i915->drm.dev);
->>>
->>> -	if (err == -ENOENT && !i915->params.dmc_firmware_path) {
->>> +	if (err == -ENOENT && !i915->display.params.dmc_firmware_path) {
->>>  		fallback_path = dmc_fallback_path(i915);
->>>  		if (fallback_path) {
->>>  			drm_dbg_kms(&i915->drm, "%s not found, falling back to %s\n",
->>> @@ -1034,14 +1034,14 @@ void intel_dmc_init(struct drm_i915_private *i915)
->>>  		dmc->max_fw_size = BXT_DMC_MAX_FW_SIZE;
->>>  	}
->>>
->>> -	if (i915->params.dmc_firmware_path) {
->>> -		if (strlen(i915->params.dmc_firmware_path) == 0) {
->>> +	if (i915->display.params.dmc_firmware_path) {
->>> +		if (strlen(i915->display.params.dmc_firmware_path) == 0) {
->>>  			drm_info(&i915->drm,
->>>  				 "Disabling DMC firmware and runtime PM\n");
->>>  			goto out;
->>>  		}
->>>
->>> -		dmc->fw_path = i915->params.dmc_firmware_path;
->>> +		dmc->fw_path = i915->display.params.dmc_firmware_path;
->>>  	}
->>>
->>>  	if (!dmc->fw_path) {
->>> diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
->>> index de43048543e8..8c00169e3ab7 100644
->>> --- a/drivers/gpu/drm/i915/i915_params.c
->>> +++ b/drivers/gpu/drm/i915/i915_params.c
->>> @@ -108,9 +108,6 @@ i915_param_named_unsafe(guc_firmware_path, charp, 0400,
->>>  i915_param_named_unsafe(huc_firmware_path, charp, 0400,
->>>  	"HuC firmware path to use instead of the default one");
->>>
->>> -i915_param_named_unsafe(dmc_firmware_path, charp, 0400,
->>> -	"DMC firmware path to use instead of the default one");
->>> -
->>>  i915_param_named_unsafe(gsc_firmware_path, charp, 0400,
->>>  	"GSC firmware path to use instead of the default one");
->>>
->>> diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
->>> index 1315d7fac850..2eb3f2115ff2 100644
->>> --- a/drivers/gpu/drm/i915/i915_params.h
->>> +++ b/drivers/gpu/drm/i915/i915_params.h
->>> @@ -51,7 +51,6 @@ struct drm_printer;
->>>  	param(int, guc_log_level, -1, 0400) \
->>>  	param(char *, guc_firmware_path, NULL, 0400) \
->>>  	param(char *, huc_firmware_path, NULL, 0400) \
->>> -	param(char *, dmc_firmware_path, NULL, 0400) \
->>>  	param(char *, gsc_firmware_path, NULL, 0400) \
->>>  	param(bool, memtest, false, 0400) \
->>>  	param(int, mmio_debug, -IS_ENABLED(CONFIG_DRM_I915_DEBUG_MMIO), 0600) \
->>> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
->>> index 9785eef2e5a4..eeab2002d6db 100644
->>> --- a/drivers/gpu/drm/xe/xe_device_types.h
->>> +++ b/drivers/gpu/drm/xe/xe_device_types.h
->>> @@ -524,9 +524,6 @@ struct xe_device {
->>>  		unsigned int fsb_freq, mem_freq, is_ddr3;
->>>  		u8 vblank_enabled;
->>>  	};
->>> -	struct {
->>> -		const char *dmc_firmware_path;
->>> -	} params;
->>>
->>>  	void *pxp;
->>>  #endif
->>
->>-- 
->>Jani Nikula, Intel
+1) When saving the rebinding fence we always presumed the
+   rebinding fences were ordered. That is not true, and is
+   fixed in patch 2, where we attach the rebind fences as
+   kernel fences to the vm's resv.
+2) In fact, TLB invalidation fences may currently not be assumed to be
+   ordered at all. This is fixed in patch 3.
+3) The combination of fixes for 1) and 2) makes the rebind
+   of each vma wait for the TLB invalidation of the previous
+   rebind, which is unnecessary and would incur unneeded latency.
+   This is fixed in patch 1 where we move rebind TLB invalidation
+   to the ring ops.
+
+Patch 4 helps avoid fragile fence context assumptions for binds.
+Patch 5 helps us decide which local bos can be evicted
+Patch 6 allows evictions of completely unbound local bos
+
+v2:
+- Simplify if-statements around the tlb_flush_seqno.
+      (Matthew Brost)
+- Add some comments and asserts.
+- Remove a leftover call to xe_vm_rebind() (Matt Brost)
+- Add a helper function xe_vm_validate_rebind() (Matt Brost)
+- Rebasing
+
+Thomas Hellström (7):
+  drm/xe: Use ring ops TLB invalidation for rebinds
+  drm/xe: Rework rebinding
+  drm/xe: Make TLB invalidation fences unordered
+  drm/xe: Reserve fences where needed
+  drm/xe: Move vma rebinding to the drm_exec locking loop
+  drm/xe/bo: Forward the decision to evict local objects during
+    validation
+  drm/xe/bo: Allow eviction of unbound local bos
+
+ drivers/gpu/drm/xe/display/xe_fb_pin.c      |   2 +-
+ drivers/gpu/drm/xe/tests/xe_bo.c            |   6 +-
+ drivers/gpu/drm/xe/tests/xe_dma_buf.c       |   4 +-
+ drivers/gpu/drm/xe/tests/xe_migrate.c       |   2 +-
+ drivers/gpu/drm/xe/xe_bo.c                  |  40 +++++--
+ drivers/gpu/drm/xe/xe_bo.h                  |   2 +-
+ drivers/gpu/drm/xe/xe_dma_buf.c             |   2 +-
+ drivers/gpu/drm/xe/xe_exec.c                |  75 +------------
+ drivers/gpu/drm/xe/xe_exec_queue_types.h    |   5 +
+ drivers/gpu/drm/xe/xe_ggtt.c                |   2 +-
+ drivers/gpu/drm/xe/xe_gt_pagefault.c        |   5 +-
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |   1 -
+ drivers/gpu/drm/xe/xe_gt_types.h            |   7 --
+ drivers/gpu/drm/xe/xe_pt.c                  |  25 ++++-
+ drivers/gpu/drm/xe/xe_ring_ops.c            |  11 +-
+ drivers/gpu/drm/xe/xe_sched_job.c           |  10 ++
+ drivers/gpu/drm/xe/xe_sched_job_types.h     |   2 +
+ drivers/gpu/drm/xe/xe_vm.c                  | 114 ++++++++++++--------
+ drivers/gpu/drm/xe/xe_vm.h                  |   8 +-
+ drivers/gpu/drm/xe/xe_vm_types.h            |  18 +++-
+ 20 files changed, 174 insertions(+), 167 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.44.0
+
