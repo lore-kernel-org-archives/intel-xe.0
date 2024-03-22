@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 756B1C47DD9
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Mar 2024 07:38:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74213C54E71
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Mar 2024 07:38:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39BDC10E12D;
-	Fri, 22 Mar 2024 07:38:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F5CC10F001;
+	Fri, 22 Mar 2024 07:38:42 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0AD010E3FF;
- Fri, 22 Mar 2024 07:38:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1531D10E3FF;
+ Fri, 22 Mar 2024 07:38:41 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe_=3A_avoid_the?=
- =?utf-8?q?_risky_function_sprintf_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe_=3A_avoid_the_risk?=
+ =?utf-8?q?y_function_sprintf_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Bommu Krishnaiah" <krishnaiah.bommu@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 22 Mar 2024 07:38:29 -0000
-Message-ID: <171109310966.959897.13634499326983743015@8e613ede5ea5>
+Date: Fri, 22 Mar 2024 07:38:41 -0000
+Message-ID: <171109312109.959897.8104847506907313344@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20231206214903.46065-1-krishnaiah.bommu@intel.com>
 In-Reply-To: <20231206214903.46065-1-krishnaiah.bommu@intel.com>
@@ -44,13 +44,40 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe : avoid the risky function sprintf (rev2)
 URL   : https://patchwork.freedesktop.org/series/131462/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 236ae2b6b695 drm-tip: 2024y-03m-22d-04h-37m-55s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe : avoid the risky function sprintf
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+a9eb1ac8298ef9f9146567c29fa762d8e9efa1ef
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 76c5214161427d7b65882eb6606da595e91dd4d3
+Author: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+Date:   Thu Dec 7 03:19:03 2023 +0530
+
+    drm/xe : avoid the risky function sprintf
+    
+    These errors were highlighted by Static analyzer. Used snprintf instead of sprint.
+    
+    Static analyzer Reported "Calling risky function (DC.STRING_BUFFER)”
+    
+    v2: Removed hard coded values abd used sizeof()
+    
+    Signed-off-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+    Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
++ /mt/dim checkpatch 236ae2b6b695ecedc3cf4453a1679d53b2e06f32 drm-intel
+76c521416142 drm/xe : avoid the risky function sprintf
+-:9: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#9: 
+These errors were highlighted by Static analyzer. Used snprintf instead of sprint.
+
+total: 0 errors, 1 warnings, 0 checks, 208 lines checked
 
 
