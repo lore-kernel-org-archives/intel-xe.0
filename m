@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 198F9C47DD9
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Mar 2024 16:29:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FB6DC54E71
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Mar 2024 16:29:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C380710E348;
-	Fri, 22 Mar 2024 16:29:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1660610EB4A;
+	Fri, 22 Mar 2024 16:29:30 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39E3A10E348;
- Fri, 22 Mar 2024 16:29:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7310010E348;
+ Fri, 22 Mar 2024 16:29:28 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Fix_END_re?=
- =?utf-8?q?definition?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Fix_END_redefin?=
+ =?utf-8?q?ition?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 22 Mar 2024 16:29:12 -0000
-Message-ID: <171112495223.961263.11785605830979056@8e613ede5ea5>
+Date: Fri, 22 Mar 2024 16:29:28 -0000
+Message-ID: <171112496847.961263.11888716324839234999@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240322145037.196548-1-lucas.demarchi@intel.com>
 In-Reply-To: <20240322145037.196548-1-lucas.demarchi@intel.com>
@@ -44,13 +44,45 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Fix END redefinition
 URL   : https://patchwork.freedesktop.org/series/131499/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: a69187c8b4ee drm-tip: 2024y-03m-22d-15h-50m-20s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Fix END redefinition
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+a9eb1ac8298ef9f9146567c29fa762d8e9efa1ef
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 7d92c5ab392297abc711afd1c0f02d059c7fe570
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Fri Mar 22 07:48:43 2024 -0700
+
+    drm/xe: Fix END redefinition
+    
+    mips declares an END macro in its headers so it can't be used without
+    namespace in a driver like xe.
+    
+    Instead of coming up with a longer name, just remove the macro and
+    replace its use with 0 since it's still clear what that means:
+    set_offsets() was already using that implicitly when checking the data
+    variable.
+    
+    Closes: http://kisskb.ellerman.id.au/kisskb/buildresult/15143996/
+    Reported-by: Guenter Roeck <linux@roeck-us.net>
+    Tested-by: Guenter Roeck <linux@roeck-us.net>
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Reviewed-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch a69187c8b4ee770b05c8acb9754efb80c5447031 drm-intel
+7d92c5ab3922 drm/xe: Fix END redefinition
+-:15: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#15: 
+Reported-by: Guenter Roeck <linux@roeck-us.net>
+Tested-by: Guenter Roeck <linux@roeck-us.net>
+
+total: 0 errors, 1 warnings, 0 checks, 81 lines checked
 
 
