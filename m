@@ -4,149 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DEAAC54E71
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Mar 2024 21:36:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9ABFDC47DD9
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Mar 2024 22:52:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEF7C10FE44;
-	Fri, 22 Mar 2024 21:36:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 175BF10E281;
+	Fri, 22 Mar 2024 22:52:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PldGU1Ph";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TEhSycsL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EECE010FE44
- for <intel-xe@lists.freedesktop.org>; Fri, 22 Mar 2024 21:36:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1B9B10E2BA
+ for <intel-xe@lists.freedesktop.org>; Fri, 22 Mar 2024 22:52:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711143417; x=1742679417;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=iUHsNC8eBgebN9HVHngm1E2Zl0DdILyvv3pNrcjzNU8=;
- b=PldGU1PhnIdBjYh/TOI6HqvDdLA2xWJ/OFiGAEYhBLxFyqlkyZ3hKdzJ
- bP0OVSSqPF5myPSOXs/Zl0UMyoXrPBw9HEJcBZvOQB7m+n2+/UHBC1XSt
- ZVz2xF3fprytMEV/HCjEf33XikHK7FkTAkVNCxDboOKYs404TR7FZxy7G
- KhNjUMRemOUDXOShRXIcY4aGbN4THPwisjYw6zvxWkA62u7oFTAXEvB+u
- /OtvNscwjM/bSCN6gB3IdtL4oQrI3igd7G0YKwV3XB8Ilsimfsw5NKull
- GohB6kN+vw9mKGjQEvNxkF0snrjr2ALjhet1+ihBq/Wrx9DyFK8VmdIf6 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11021"; a="17642064"
-X-IronPort-AV: E=Sophos;i="6.07,147,1708416000"; d="scan'208";a="17642064"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2024 14:36:56 -0700
+ t=1711147945; x=1742683945;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=8bwBzMEmE67irMFLU7mcLZbZKNY5gLUoP/KiTaX9n6M=;
+ b=TEhSycsLjk57d9f6krAdx6uCs9HPONxlErnZCPSfWJ8Pt4McEiCTZlAg
+ 92pSGrrKUyzeBlW78tkJ+BaUw6su5JblFBtRDZ99kLgOX9lHqFgGl7doW
+ KSDA52zCXMwIxMJpYQCYgrtKje/6QX6tPN5mcaxJtcp6rk+KR7S3oaInE
+ FeIvI3hkSu9PPLhMdngrkihSeaDt56Ioz3PjDMZ4esTK/6UFjguUZbXqE
+ Yveb8lpVTlBtAaN3QGi6u9PUpYy1c7BcXkFYrlT3PQ9k9klrFxcSQCwtb
+ QGG+O+xk0BSRE/zLbRRPUHYSPP4nFEkHOzWjP0cvGig//1cXIsXH0DLZK A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11021"; a="16851802"
+X-IronPort-AV: E=Sophos;i="6.07,147,1708416000"; d="scan'208";a="16851802"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2024 15:52:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,147,1708416000"; d="scan'208";a="15474705"
+X-IronPort-AV: E=Sophos;i="6.07,147,1708416000"; d="scan'208";a="14950095"
 Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 22 Mar 2024 14:36:57 -0700
+ by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 22 Mar 2024 15:52:25 -0700
 Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
  fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 22 Mar 2024 14:36:56 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ 15.1.2507.35; Fri, 22 Mar 2024 15:52:24 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
  fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Fri, 22 Mar 2024 14:36:56 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.169)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Fri, 22 Mar 2024 15:52:24 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.168)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Fri, 22 Mar 2024 14:36:55 -0700
+ 15.1.2507.35; Fri, 22 Mar 2024 15:52:24 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=K2LmTwLFZqdUQo98VsVGEUPKRhxMSoSym47JVtkHWnUv6FggdMIUgOErlcjRJ4RAc34jN/BKZ+9BT7oxxFWgKedVGm4qIdEfEcZl7mlNFW6td34SvGN+dZvycvwiBeg6rDMjZ49++wBGgDxNNs9PXLhoEAzF9a+IJhb0/TdQ/FWYWdrEvnuWh6Q2oyY2J+qVlwS3F93336kpqjy3PRBCIall4SdPa9gNaavcgrdF3j/dHlvqPYvk0285eSJKsWaxDpX8LjXggJCCx6yeCFqSuYZkW+sVU7B7DcvB6biw4XIKszi4kAZOutFtlKbEBDRWxleDp6l0bced7ZPHTaGedg==
+ b=VavI4fIPFlhCNBQt1KWxPul13+oH5yof2ZEQnXE7s3misUpixZIYRrVPag+5H/eOzLeBqU1jwbxgXeXM2iAIobZd4GOlNM3NSbUb/Y1n1jv2keTdvc+00LOA1jpz2TgQ9v9onyLLfMb/7OcChHA6xW9Oxq4ICUVvahLmNsUHiUI9kt+IWbJ3BS5ohMr8wEh3T13qs6urLDjJ48LEUXBpKHYWpizBNDXnAGCDSXqpi9xFzglZE/NRBfHr/9dCrO4N0CmH+v6lpePnS05/+WYeY1NSDYiS7JP47Nm7vhWB995LsBsRg5yXUI/pVaxPxDIxjWAbArpGqfyZW56I3UkTLw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=m+GIjp5E+hPt/PIgqzpwjWL9dMvF5JyBq71bAEGgLxg=;
- b=B5rqS592HWgcG1QOe30EqKo9vLnEFI+4K5CinGY6cwd5Af6eGOLDX7qL2vRLkrYznBIaruaFTfmAEsNosmGkkZtuJHkQqjnDET+f2Tweb/GigOQ9TPydFKS37DYCbeEzBLgU9ZNVgn3cUyQHeoK4FUiIA/NSIsN0PfYOYJYc+dFsQ2mIziv9/ajMn8UYQI/OU7oRltk+4Gn4BrL1dbhtYlrv1AlD432K6cjG0LlxBFLezLQMDo1Fce2AM1HzwXP6Rm1+rxJpgAUGCpmCRsuYxNnrNHnqI3BawPVM213Y8cAxwdYS6v8LLuyHHo2uuxPD8/A0CLBmxrxmvm5mDuZJXA==
+ bh=vbGz3V6RGvekyeoc7NRPPwf9KfpzCVI4Cj7IVCWEEpg=;
+ b=bPSTchDmkg3ubtUcDBYTXjLZpWSuMnaBFdPjouJSZrVxuQWgty/JiPxdJVoiUyrauVpIKKWxAijE0IS0r89gpeeklsJ4PdDAyldWGUsnjCamWSlc/rsyese30oF6MkqtI0pt0L75Y/9fbx9cRVHKGQ/vCPaaWt/fO2Clzj5sOM16lbOV/BPvhWMR3ms/V2uHKiYAG8nUQSjEXVRsN+HcXdW35NAPCFJj0wKatmabDSmQOxBCaY7LuDnJ6r0BngVXadBTxwaLkTvtdDrhVH3FUxIZPc+OnCZUQwMhJkqPxRd2O8XsGZQAIXBg3z7679nOkHZPHYu3UYgjGCgOErbTZQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA1PR11MB8200.namprd11.prod.outlook.com (2603:10b6:208:454::6)
- by PH8PR11MB6949.namprd11.prod.outlook.com (2603:10b6:510:227::19)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by DS0PR11MB8113.namprd11.prod.outlook.com (2603:10b6:8:127::11) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.24; Fri, 22 Mar
- 2024 21:36:53 +0000
-Received: from IA1PR11MB8200.namprd11.prod.outlook.com
- ([fe80::8778:d67d:55f9:f68a]) by IA1PR11MB8200.namprd11.prod.outlook.com
- ([fe80::8778:d67d:55f9:f68a%7]) with mapi id 15.20.7409.023; Fri, 22 Mar 2024
- 21:36:53 +0000
-Message-ID: <1226b37a-b163-4b03-97b7-863dc258dca4@intel.com>
-Date: Fri, 22 Mar 2024 17:36:50 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 0/8] drm/xe/guc: Add GuC based register capture for
- error capture
-To: "Souza, Jose" <jose.souza@intel.com>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-CC: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
-References: <20240319143621.371087-1-zhanjun.dong@intel.com>
- <c8d124823fe7da90916042fcd09edd6e550bd5bd.camel@intel.com>
- <545e620aef74383ae1137dd4dc3cf98020d60968.camel@intel.com>
- <ec7b3393368e3371228256785e9edcb0016425ab.camel@intel.com>
-Content-Language: en-US
-From: "Dong, Zhanjun" <zhanjun.dong@intel.com>
-In-Reply-To: <ec7b3393368e3371228256785e9edcb0016425ab.camel@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ0PR05CA0187.namprd05.prod.outlook.com
- (2603:10b6:a03:330::12) To IA1PR11MB8200.namprd11.prod.outlook.com
- (2603:10b6:208:454::6)
+ 2024 22:52:22 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e7c:ccbc:a71c:6c15]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e7c:ccbc:a71c:6c15%5]) with mapi id 15.20.7409.023; Fri, 22 Mar 2024
+ 22:52:22 +0000
+Date: Fri, 22 Mar 2024 22:51:31 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: "Zeng, Oak" <oak.zeng@intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v4 05/30] drm/xe: Update xe_vm_rebind to use dummy VMA
+ operations
+Message-ID: <Zf4LcyPsHYCuo9tE@DUT025-TGLU.fm.intel.com>
+References: <20240308050806.577176-1-matthew.brost@intel.com>
+ <20240308050806.577176-6-matthew.brost@intel.com>
+ <SA1PR11MB69912CD0231A3F2D7F5DC94A92312@SA1PR11MB6991.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <SA1PR11MB69912CD0231A3F2D7F5DC94A92312@SA1PR11MB6991.namprd11.prod.outlook.com>
+X-ClientProxiedBy: SJ0PR13CA0037.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c2::12) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR11MB8200:EE_|PH8PR11MB6949:EE_
-X-MS-Office365-Filtering-Correlation-Id: 96693fb3-a325-4aaa-ef79-08dc4ab830fe
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DS0PR11MB8113:EE_
+X-MS-Office365-Filtering-Correlation-Id: cfa6f9ea-dffb-4286-d376-08dc4ac2bc1b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: IRSWT2UoZl1n0cczKt/vBfnhijIfp+oT+teyoqPu2jwzffYBF13b7/Go6gSFPxOMtnWLvZnEWsBsF9Vqy7jPiXgr9qKIaxmI9SidYi/GBnIQTuf0/+3mGE3j5DZfe1L8iXvLNZx194msnbq1xcs4AC1xgaS37O29/jW3JWChRRV3CSU2fOPbHIoufRWnkEG6T3FNHSpROOCnWJ4CR1QKF/q7dnAlfJe11lkIJ22JrlhX2KMB0n12iyhto7wTKE0gve2V5Fo2xApjqO5K4oOm9ixhEd0zKYWPyj267R7W+fMpu21c4nXfxDAEsCgwIJRvN8UzEn3FdUVAdT2Pm3Oko6ql4Y3gS5TIM7FcYDqxvndz7URwzFbxIHxddPhw3jjFO0MzG1GxHxZhsFatfyIR3/nrO60bAkK+hkjzOwO7k7a9RGJyXCd5Vu3e+i6lQvJXYZBc+YqG7yWLiP7tEkihmKBuXZCxdGnURyG9LEbCDFPZMEenOg2tkyQc9ojIKiUxxTlwTxVu/19pqcCVgQj22SYYDlfE3lVXNHes9vLjzTQ55eSjUdk2jS8Yv1FIMPsybTfuVLvCnQF5b0tBZ5UAhVgV9hIY0pKNCstXG5lYPlCaqRRhGJB4SrlD1yDfDhxKs9xTLOv68IO2uxEH1AZnjeUqMlxQDUZo0mnFztEs3ng=
+X-Microsoft-Antispam-Message-Info: UaTD9MaJRrGzZUjXFRqyrwznVWx+glPAYEMS3/FKQqxVdLgvxfpo8tdDrlIi9t86zjaWyOliST//Uc53uBOKHnMeDfJ8yc4IlQSDFPUfjKeqoEoftYIE4Dvx2YLc3/3C8tjVdZTkeJ62Amvm4QR3cM/JQUcCwiLtJ5xx5Pur9Dx2A1liIUZ6TzV3hd6VeB7XGjWcw4aWxMX9565a0VMFB57y7aSS3RNt5PfRl7TcHouy9MC0RZ1Y9Wtx2HxjSXjsnkW+YDn5eYhdQbcfScuXz5+7yEbrvTIHYFmbc6lvrMj7G3SVAqGpDrGXcF//77KwkuIh6rowDTw49PQcper1QV02V/yaV4m2NrUEedEZ0ncTJddRYzpditS+dYYOSiS8BlR5NuYGWxgqgCk3grreCss69HZMcd4/wUOUojT+7ZZehPMF7P1Pl90YSbAZwHwqSngqnh7eE/Bnrv5SDvIWmgm9Ow40BKIGIJknIfZg+sBh7bP1egXttCSF0ZMlRMbxZ5tz024NivQad1tB2x6TSKUor7MdOEtIP9TVMGDPvixXFiy7ALJjkx6t/0ot9hZOaddK2zHbCRn2tStu1z3m9TG8xKleorqnUmp7XvrLA/Y=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA1PR11MB8200.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(376005)(366007); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005)(1800799015)(366007); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TS8yRFp2THl4L01nNExzODVYNkpscWNSL3ZWYWNad1MzbEJXV0srMThRK3Bs?=
- =?utf-8?B?QVFtanV3QVVXbktydVJXZmprNkRDTzlaTitDUjhtNFM2b1ZiMzI3bVNSVFc5?=
- =?utf-8?B?YkRwR3NxeTV0S1BVdFlOWHNxdlo0Y1JJaUNiWVZESXIwYTFvc3NBYjB0emFK?=
- =?utf-8?B?cE00L1FQaC94R25oSjhRdlI4WFl0Rk1GRFlhMktEMVNteHVpVnQ5cndSY2cy?=
- =?utf-8?B?ZXVMUithWXhKMGdHanFSQmVmdVZDZlBtYU1aUlVscDNuNXh5eHRxNDBtWmVD?=
- =?utf-8?B?UVMzRjIyU3lLRm9nOFRXOExjYllQVGxXb1ZITnNLYzhEM1JLbllMRjYzL3Bj?=
- =?utf-8?B?SU1sV3dBQzh0RkZPS0ZtVVdaRDdXeFc4eVNlN3Z4M3diZ3k2bFowUjFsSjBv?=
- =?utf-8?B?dWozU1Z6L0JnMm1Da2p4MXAyanFiS2hTOWtnRUFKVGZzcDYyOTdhRTRSU21F?=
- =?utf-8?B?SURabnNDZmpveTVRaWR3YXVKa05SVW5vZTMyWlF5TkI4MmxONVNHNUo0WUlY?=
- =?utf-8?B?TXFDOE9HMEtEZU16RFduNHl2QlJickFJOXUzR0kwVXJONjBOYk9Mbk5oWXM5?=
- =?utf-8?B?YWpYL0tockJqTVJ2Q29nWUV0REpsRW1yNi85WU03bDJBNndHMTQ3NXRvL2hl?=
- =?utf-8?B?eml0QnpwWlpPRmtFcWp0eG1TM2hVRFFCMEQrUWRIM2NKckNwa2xHd0w4RDhI?=
- =?utf-8?B?K0pIMXlFWng3RlFMN25qSjNNQXNuWmRJSnh4bTNYSVFHd2R0d0VwR2xUVWlJ?=
- =?utf-8?B?LzU0VU1QVTQxRzZPc2N4MVZtOG93d1Vmc09SZUxqaFNLTmppd1owTVpUMTh1?=
- =?utf-8?B?Wm5lc0Z1QU9SQUFualBkZ3dHUEtsWFhBQVNoUVl1d2V6NG0yOFhHV2d0Y0Fv?=
- =?utf-8?B?RFRvMi9Oc0p5ZlVXaG85OEpDdUswL0N1S2dHbVZKK3dOcnp0UEw1OEhsZVBv?=
- =?utf-8?B?V3V3RGNIYTdKT2MwZ0JPbkFFaHhiWXNnaG8zVUdQMm1wNFFmVVE4Y0Y2UVlK?=
- =?utf-8?B?ejBqMmN3dXRDS0c2ckNzTjZlQmwyQ1RvWE9RaGFzMys3anZuVXRxNEZlOVUw?=
- =?utf-8?B?bE0wdjUwK3ZJRCs4bjZCb09nRVpKVm9RelkwRnhrOTRlMjU3OTAvcUl1bDlj?=
- =?utf-8?B?c0hqLy92NVFBSDNmcnEvalZHMjJDZTJSNVl1ckZBdEFkYUJwU2hWbU5RamRT?=
- =?utf-8?B?bmo0SGp2QlliYy9pUlFOTkRVclRUSjlBMytHV3BIejJiaEhaZ2FqSzJ3YXVP?=
- =?utf-8?B?SHdCdG01SHB1cGxOY0xSbHlpbEd2bjg5OXFTbUhwSDgxZUJVM3RuL0ZmTU4z?=
- =?utf-8?B?UExUbURsTERXQkdNQlpWUjVwYkk5TkYreGhQN1JKMEp6b204NUZwVk4wdS9N?=
- =?utf-8?B?dHNwMjJTRWxlbk03NmpZTVl3YjUzL3E1cGpjVXpsaTZSZ0tiUHdpTmxuWmRh?=
- =?utf-8?B?WWRDdW9tamYyYjErNUg4RVdvRzNnQnUyMk1hUTZBNHNvUndBWC9TUU96WVlo?=
- =?utf-8?B?Mk9uWTR4ejgyRFh0VzdTZDB6YmUzeGNPeWkxNHpNcEs4UjZIZ0RhTmNIQW05?=
- =?utf-8?B?bTQ0V0d6dXBoN0ZnOGM4b01Cd3hDYVhTK1pXRkFwSXM1OCt2VGpxWVpsbW1i?=
- =?utf-8?B?MWJRTTNLYnlUQ2hPZzROYlByckdFN2ZzSTlSaksvSkh6Wkd6eVBibEYxNVNY?=
- =?utf-8?B?WjJIRXdtNHRncFhuQTNWMndiZk1wUEF3QlErOUxadzZKcWRlTUJLNHBMekNT?=
- =?utf-8?B?OVdlWGhJQjVXcU5mbkxxWEdyRVpqb3k4VExzT3N4MDVjeGlxdHBsS2IvSFgw?=
- =?utf-8?B?ZzB0SlgyanVMMU5ZdkhDMTNLcFdmUmpEeUM2Sjh1N1FJQ0lNNTRrOG1QMkxk?=
- =?utf-8?B?SE91TWUvTTB2Q3hDMmNFMVUwTnFDQXB5c1ZpenZoV3BWSU9hQnFyd1BVaVlq?=
- =?utf-8?B?ZVFmdzNRb1RtczVyUW0ycWkyNzhIWExieDcrTnExWmREcVpUakovYW94Yklj?=
- =?utf-8?B?Y2lhcGU1ZVdlRWxFamhNVC8rS2VzVytvaHhnU3o2VU5HOWRrdm9xN051NXJn?=
- =?utf-8?B?cjI2Yk5IU1BROHBXWjUxcEdMRlU1ajJsTzJncVMrbEtwVHR1R1dGc0ZJckZY?=
- =?utf-8?Q?26ljyB+QuHiLB5y03kNTG6Rq/?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 96693fb3-a325-4aaa-ef79-08dc4ab830fe
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB8200.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?kBWzMU59rhQp9oCxjmsZVjT0TS7J5jP5OykWqZozrDD3FedBTWuNtLmGcdGJ?=
+ =?us-ascii?Q?QBFhBpjD3BcSX97HG2erHTvCbcDBDrJnE1m9aWnRFSREuDToydxLbO4kiWk9?=
+ =?us-ascii?Q?AN/tUopn5oLrCs49tS6MP8Y7IDVST+/z3pDwRlwuub697QO0KMZeH4FFwsuJ?=
+ =?us-ascii?Q?q1c7/nEsKoGRB2eJ0r9gEGhPLDPWNpkbC4+RJMt07Fyf//M0qZtCNCx0KSKQ?=
+ =?us-ascii?Q?ZQHvWH+Kmo/K2rsYzYpN2mZWLciXtai7Zy9wBRpDdgrOcpveSA7ZRP8b8oz3?=
+ =?us-ascii?Q?IYC3LxxPM7JJW0iYZm/k+eYz0iyIfcSMs7LIq8bp7WnO4HwAWuysKNHRgv+g?=
+ =?us-ascii?Q?RTSVyXzxLpTWy5Gu1oBqClgg1PfMK7UK337zYyeQliO2ndebcIsYHDhssfNY?=
+ =?us-ascii?Q?8Hi8BCKMhSl418s0zE/W6bzon29YZinV9qE3kjj8DticuBy1niW8CVov15z5?=
+ =?us-ascii?Q?MFqhH08HyN5jBpeGJBHNEYZzA6kzcyQCeIRdeM9D6aRNcVSxzLrVa/DEDPF8?=
+ =?us-ascii?Q?lhBzZG3g6UDVJxDS/UCwYxc6JDAMHKHyJmVgIbWX3rx2XXYgmGNHXohdqHTV?=
+ =?us-ascii?Q?ucksPhStdTPVUjuFoz5mBjbK6JxVIWwWShPPld8GA3ayaaOC2PAJRElSsB5/?=
+ =?us-ascii?Q?38nlCLm3rZvPMwS0gcPbzqGqX7ZKweVfxtS+NMcFdwxWFs7Mgm8g0v213BGv?=
+ =?us-ascii?Q?+RCb4mw0iQQ1qwDECz+z8nAQap07vJfyppyUPu4T6Un3WF4bHdrZgB0qTEGi?=
+ =?us-ascii?Q?Qzld3UzPiQerwk8v+UgG1rVO4oOGLNsCutkTq7CC/MBRdDmq0jIt+QagkrSH?=
+ =?us-ascii?Q?wf827hIwzoKAlvuclpp8hnbigQoZetsw7KaLLYyEK6JdWCp1EO5ifg9WyQ+d?=
+ =?us-ascii?Q?qHFXNvl/TZo+GygJ98ibY9Fll48T7ogQqPNpUeOh9DFGJAoVkmst4FCKmNnK?=
+ =?us-ascii?Q?Qn6wCIwA6Z7FGTosEf4ULSOZ1Yyz9/8IAoi+cizelfmwMfgmR85dN6k+oARx?=
+ =?us-ascii?Q?djmrGhHjEJeEs/5BMwUzlvDEowwUUKUAPB1WObMQvkpG+AvY/VVEbgokTx9U?=
+ =?us-ascii?Q?QdzcVJxeJCZwdBGuq93PSzoAv16dMP47nPh4EblPSW5o5cpUsi5lSxxDQTse?=
+ =?us-ascii?Q?kvCThTEuGeiScoaPMVAfCaD49MC3f03xH+b5zdsR2tEvBUxEiQFR5s+ERwsI?=
+ =?us-ascii?Q?GL4VsDFH2X9R1bdo4ZZkUIzlGNV7kXis8oRuMVrBvZsYSyBZAOst9Qg3XhVf?=
+ =?us-ascii?Q?OwZhemP7CtbDDdHBdPgzk1xa1QyhX7ONdSfiZN8uGqGszZBAjN3JiQAe776l?=
+ =?us-ascii?Q?CwlW1IoqVCQNLwVgE4eOlBAjT56y0dpfJdUUPvfHzDpfjDK+IbUufiWRkAeZ?=
+ =?us-ascii?Q?NvLuApsKVkAmFUAaRjX65hGuTjcOfDBs1WUrVz1AgC1yhjEjAsIlwjSnnP+y?=
+ =?us-ascii?Q?70hyisd3vLnZ4hUjzkkfTM9EcZxJrnFbBtqlMQ8NwehRIWe3eRqTK2y1Nxn5?=
+ =?us-ascii?Q?ItddrEchPadPSpP4AXJmtzJg1GLMCUWNfi7F8wht/C/VYCyY2xRnnaosmccb?=
+ =?us-ascii?Q?TpmFUQh6jgL4lcByitEH4PHq8oUAx6DfzpZInOtAXQdwXgLWmzcPCyQInTXu?=
+ =?us-ascii?Q?cw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: cfa6f9ea-dffb-4286-d376-08dc4ac2bc1b
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Mar 2024 21:36:53.7833 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Mar 2024 22:52:22.1218 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9C3lL0FHmCKGjuDFR8twMUJRjhRiGvKgcu0jMn8vx2gu1EsUTDlP70F6Qev58e5EeNFR5rhJojmt/N+ku/xYIA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6949
+X-MS-Exchange-CrossTenant-UserPrincipalName: fqpVrpIKKsud5UKtZrgzPXMKsV6h7ijn2A7GA9MnwwK4Qm7JnFTSvhk3X3mNFxXASCnNRDVdRU6wU0/XaGVzcQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB8113
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -162,140 +150,421 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-See my comments below.
+On Fri, Mar 22, 2024 at 03:23:08PM -0600, Zeng, Oak wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Matthew
+> > Brost
+> > Sent: Friday, March 8, 2024 12:08 AM
+> > To: intel-xe@lists.freedesktop.org
+> > Cc: Brost, Matthew <matthew.brost@intel.com>
+> > Subject: [PATCH v4 05/30] drm/xe: Update xe_vm_rebind to use dummy VMA
+> > operations
+> > 
+> > All bind interfaces are transitioning to use VMA ops, update
+> > xe_vm_rebind to use VMA ops.
+> > 
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_vm.c       |  47 +++++---
+> >  drivers/gpu/drm/xe/xe_vm_types.h | 189 ++++++++++++++++---------------
+> >  2 files changed, 132 insertions(+), 104 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> > index e342af6b51b1..0bb807c05d7b 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm.c
+> > +++ b/drivers/gpu/drm/xe/xe_vm.c
+> > @@ -755,10 +755,22 @@ int xe_vm_userptr_check_repin(struct xe_vm *vm)
+> >  		list_empty_careful(&vm->userptr.invalidated)) ? 0 : -EAGAIN;
+> >  }
+> > 
+> > -static struct dma_fence *
+> > -xe_vm_bind_vma(struct xe_vma *vma, struct xe_exec_queue *q,
+> > -	       struct xe_sync_entry *syncs, u32 num_syncs,
+> > -	       bool first_op, bool last_op);
+> > +static void xe_vm_populate_dummy_rebind(struct xe_vm *vm, struct xe_vma
+> > *vma)
+> > +{
+> > +	vm->dummy_ops.op.base.op = DRM_GPUVA_OP_MAP;
+> > +	vm->dummy_ops.op.base.map.va.addr = vma->gpuva.va.addr;
+> > +	vm->dummy_ops.op.base.map.va.range = vma->gpuva.va.range;
+> > +	vm->dummy_ops.op.base.map.gem.obj = vma->gpuva.gem.obj;
+> > +	vm->dummy_ops.op.base.map.gem.offset = vma->gpuva.gem.offset;
+> > +	vm->dummy_ops.op.map.vma = vma;
+> > +	vm->dummy_ops.op.map.immediate = true;
+> > +	vm->dummy_ops.op.map.dumpable = vma->gpuva.flags &
+> > XE_VMA_DUMPABLE;
+> > +	vm->dummy_ops.op.map.is_null = xe_vma_is_null(vma);
+> > +}
+> > +
+> > +static struct dma_fence *ops_execute(struct xe_vm *vm,
+> > +				     struct xe_vma_ops *vops,
+> > +				     bool cleanup);
+> > 
+> >  struct dma_fence *xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
+> >  {
+> > @@ -780,7 +792,9 @@ struct dma_fence *xe_vm_rebind(struct xe_vm *vm,
+> > bool rebind_worker)
+> >  			trace_xe_vma_rebind_worker(vma);
+> >  		else
+> >  			trace_xe_vma_rebind_exec(vma);
+> > -		fence = xe_vm_bind_vma(vma, NULL, NULL, 0, false, false);
+> > +
+> > +		xe_vm_populate_dummy_rebind(vm, vma);
+> > +		fence = ops_execute(vm, &vm->dummy_ops.vops, false);
+> >  		if (IS_ERR(fence))
+> >  			return fence;
+> >  	}
+> > @@ -1289,6 +1303,11 @@ static void xe_vm_free_scratch(struct xe_vm *vm)
+> >  	}
+> >  }
+> > 
+> > +static void xe_vma_ops_init(struct xe_vma_ops *vops)
+> > +{
+> > +	INIT_LIST_HEAD(&vops->list);
+> > +}
+> 
+> this already showed up on patch 4... you just add it in patch5, then moved it to another location on patch 5...
+> 
+> can this be better organized?
+> 
 
-Regards,
-Zhanjun
-
-On 2024-03-22 5:28 p.m., Souza, Jose wrote:
-> On Fri, 2024-03-22 at 11:37 -0700, José Roberto de Souza wrote:
->> On Fri, 2024-03-22 at 09:57 -0700, José Roberto de Souza wrote:
->>> On Tue, 2024-03-19 at 07:36 -0700, Zhanjun Dong wrote:
->>>> Port GuC based register capture for error capture from i915 to Xe.
->>>>
->>>> There are 3 parts inside:
->>>> . Prepare for capture registers
->>>>      There is a bo create at guc ads init time, that is very early
->>>>      and engi  ne map is not ready, make it hard to calculate the
->>>>      capture buffer size, new function created for worst case size
->>>>      caluation. Other than that, this part basically follows the i915
->>>>      design.
->>>> . Process capture notification message
->>>>      Basically follows i915 design
->>>> . Sysfs command process.
->>>>      Xe switched to devcoredump, adopted command line process with
->>>>      captured node list.
->>>
->>> Just some notes after trying this to debug a issue with this series:
->>>
->>> - CONFIG_DRM_XE_CAPTURE_ERROR is not a good name for a config to enable GuC based capture.
->>> 	- in my opinion this should not even exist, always capture with GuC if xe_device_uc_enabled() is true.
->>>
->>> - coredump don't have some registers like SAMPLER_INSTDONE, ROW_INSTDONE, XEHPG_INSTDONE_GEOM_SVG...
-
-Yes, those steering register print out is missing.
-
->>> Here the output in LNL:
->>
->> ah this could explain...
->>
->> [  152.189386] xe 0000:00:02.0: [drm:xe_hw_engine_snapshot_from_capture [xe]] GT0: GuC error capture is empty, take snapshot from engine.
->> [  152.190215] xe 0000:00:02.0: [drm] Xe device coredump has been created
->>
->> but both code paths needs to dump the same registers
-
-I found you have another patch:
-drm/xe/devcoredump: Print errno if VM snapshot was not captured
-I will take a look.
+Yes.
 
 > 
-> Hi Zhanjun
+> > +
+> >  struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+> >  {
+> >  	struct drm_gem_object *vm_resv_obj;
+> > @@ -1310,6 +1329,10 @@ struct xe_vm *xe_vm_create(struct xe_device *xe,
+> > u32 flags)
+> >  	init_rwsem(&vm->lock);
+> >  	mutex_init(&vm->snap_mutex);
+> > 
+> > +	xe_vma_ops_init(&vm->dummy_ops.vops);
+> > +	INIT_LIST_HEAD(&vm->dummy_ops.op.link);
+> > +	list_add(&vm->dummy_ops.op.link, &vm->dummy_ops.vops.list);
+> > +
+> >  	INIT_LIST_HEAD(&vm->rebind_list);
+> > 
+> >  	INIT_LIST_HEAD(&vm->userptr.repin_list);
+> > @@ -2140,6 +2163,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct
+> > xe_bo *bo,
+> >  		struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
+> > 
+> >  		if (__op->op == DRM_GPUVA_OP_MAP) {
+> > +			op->map.immediate = !xe_vm_in_fault_mode(vm);
+> >  			op->map.is_null = flags &
+> > DRM_XE_VM_BIND_FLAG_NULL;
+> >  			op->map.dumpable = flags &
+> > DRM_XE_VM_BIND_FLAG_DUMPABLE;
+> >  			op->map.pat_index = pat_index;
+> > @@ -2465,7 +2489,7 @@ static struct dma_fence *op_execute(struct xe_vm
+> > *vm, struct xe_vma *vma,
+> >  {
+> >  	struct dma_fence *fence = NULL;
+> > 
+> > -	lockdep_assert_held_write(&vm->lock);
+> > +	lockdep_assert_held(&vm->lock);
+> >  	xe_vm_assert_held(vm);
+> >  	xe_bo_assert_held(xe_vma_bo(vma));
+> > 
+> > @@ -2473,7 +2497,7 @@ static struct dma_fence *op_execute(struct xe_vm
+> > *vm, struct xe_vma *vma,
+> >  	case DRM_GPUVA_OP_MAP:
+> >  		fence = xe_vm_bind(vm, vma, op->q, xe_vma_bo(vma),
+> >  				   op->syncs, op->num_syncs,
+> > -				   !xe_vm_in_fault_mode(vm),
+> > +				   op->map.immediate,
+> >  				   op->flags & XE_VMA_OP_FIRST,
+> >  				   op->flags & XE_VMA_OP_LAST);
+> >  		break;
+> > @@ -2554,7 +2578,7 @@ __xe_vma_op_execute(struct xe_vm *vm, struct
+> > xe_vma *vma,
+> >  retry_userptr:
+> >  	fence = op_execute(vm, vma, op);
+> >  	if (IS_ERR(fence) && PTR_ERR(fence) == -EAGAIN) {
+> > -		lockdep_assert_held_write(&vm->lock);
+> > +		lockdep_assert_held(&vm->lock);
+> > 
+> >  		if (op->base.op == DRM_GPUVA_OP_REMAP) {
+> >  			if (!op->remap.unmap_done)
+> > @@ -2583,7 +2607,7 @@ xe_vma_op_execute(struct xe_vm *vm, struct
+> > xe_vma_op *op)
+> >  {
+> >  	struct dma_fence *fence = ERR_PTR(-ENOMEM);
+> > 
+> > -	lockdep_assert_held_write(&vm->lock);
+> > +	lockdep_assert_held(&vm->lock);
+> > 
+> >  	switch (op->base.op) {
+> >  	case DRM_GPUVA_OP_MAP:
+> > @@ -2992,11 +3016,6 @@ static int vm_bind_ioctl_signal_fences(struct xe_vm
+> > *vm,
+> >  	return err;
+> >  }
+> > 
+> > -static void xe_vma_ops_init(struct xe_vma_ops *vops)
+> > -{
+> > -	INIT_LIST_HEAD(&vops->list);
+> > -}
+> > -
+> >  int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+> >  {
+> >  	struct xe_device *xe = to_xe_device(dev);
+> > diff --git a/drivers/gpu/drm/xe/xe_vm_types.h
+> > b/drivers/gpu/drm/xe/xe_vm_types.h
+> > index cc3dce893f1e..7ef9e632154a 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> > @@ -18,6 +18,7 @@
+> >  #include "xe_range_fence.h"
+> > 
+> >  struct xe_bo;
+> > +struct xe_device;
+> >  struct xe_sync_entry;
+> >  struct xe_user_fence;
+> >  struct xe_vm;
+> > @@ -124,7 +125,96 @@ struct xe_userptr_vma {
+> >  	struct xe_userptr userptr;
+> >  };
+> > 
+> > -struct xe_device;
+> > +/** struct xe_vma_op_map - VMA map operation */
+> > +struct xe_vma_op_map {
+> > +	/** @vma: VMA to map */
+> > +	struct xe_vma *vma;
+> > +	/** @immediate: Immediate bind */
+> > +	bool immediate;
+> > +	/** @is_null: is NULL binding */
+> > +	bool is_null;
+> > +	/** @dumpable: whether BO is dumped on GPU hang */
+> > +	bool dumpable;
+> > +	/** @pat_index: The pat index to use for this operation. */
+> > +	u16 pat_index;
+> > +};
+> > +
+> > +/** struct xe_vma_op_remap - VMA remap operation */
+> > +struct xe_vma_op_remap {
+> > +	/** @prev: VMA preceding part of a split mapping */
+> > +	struct xe_vma *prev;
+> > +	/** @next: VMA subsequent part of a split mapping */
+> > +	struct xe_vma *next;
+> > +	/** @start: start of the VMA unmap */
+> > +	u64 start;
+> > +	/** @range: range of the VMA unmap */
+> > +	u64 range;
+> > +	/** @skip_prev: skip prev rebind */
+> > +	bool skip_prev;
+> > +	/** @skip_next: skip next rebind */
+> > +	bool skip_next;
+> > +	/** @unmap_done: unmap operation in done */
+> > +	bool unmap_done;
+> > +};
+> > +
+> > +/** struct xe_vma_op_prefetch - VMA prefetch operation */
+> > +struct xe_vma_op_prefetch {
+> > +	/** @region: memory region to prefetch to */
+> > +	u32 region;
+> > +};
+> > +
+> > +/** enum xe_vma_op_flags - flags for VMA operation */
+> > +enum xe_vma_op_flags {
+> > +	/** @XE_VMA_OP_FIRST: first VMA operation for a set of syncs */
+> > +	XE_VMA_OP_FIRST			= BIT(0),
+> > +	/** @XE_VMA_OP_LAST: last VMA operation for a set of syncs */
+> > +	XE_VMA_OP_LAST			= BIT(1),
+> > +	/** @XE_VMA_OP_COMMITTED: VMA operation committed */
+> > +	XE_VMA_OP_COMMITTED		= BIT(2),
+> > +	/** @XE_VMA_OP_PREV_COMMITTED: Previous VMA operation
+> > committed */
+> > +	XE_VMA_OP_PREV_COMMITTED	= BIT(3),
+> > +	/** @XE_VMA_OP_NEXT_COMMITTED: Next VMA operation committed
+> > */
+> > +	XE_VMA_OP_NEXT_COMMITTED	= BIT(4),
+> > +};
+> > +
+> > +/** struct xe_vma_op - VMA operation */
+> > +struct xe_vma_op {
+> > +	/** @base: GPUVA base operation */
+> > +	struct drm_gpuva_op base;
+> > +	/**
+> > +	 * @ops: GPUVA ops, when set call drm_gpuva_ops_free after this
+> > +	 * operations is processed
+> > +	 */
+> > +	struct drm_gpuva_ops *ops;
+> > +	/** @q: exec queue for this operation */
+> > +	struct xe_exec_queue *q;
+> > +	/**
+> > +	 * @syncs: syncs for this operation, only used on first and last
+> > +	 * operation
+> > +	 */
+> > +	struct xe_sync_entry *syncs;
+> > +	/** @num_syncs: number of syncs */
+> > +	u32 num_syncs;
+> > +	/** @link: async operation link */
+> > +	struct list_head link;
+> > +	/** @flags: operation flags */
+> > +	enum xe_vma_op_flags flags;
+> > +
+> > +	union {
+> > +		/** @map: VMA map operation specific data */
+> > +		struct xe_vma_op_map map;
+> > +		/** @remap: VMA remap operation specific data */
+> > +		struct xe_vma_op_remap remap;
+> > +		/** @prefetch: VMA prefetch operation specific data */
+> > +		struct xe_vma_op_prefetch prefetch;
+> > +	};
+> > +};
+> > +
+> > +/** struct xe_vma_ops - VMA operations */
+> > +struct xe_vma_ops {
+> > +	/** @list: list of VMA operations */
+> > +	struct list_head list;
+> > +};
 > 
-> Mesa team needs the INSTDONE registers to debug issues and I have patches implementing the dump of this registers.
-> Do you mind if I send this patches the list?
+> this already showed up on patch 4... you just add it in patch5, then moved it to another location on patch 5...
+> 
 
-Sure, please send it.
+Yes.
 
+> > 
+> >  struct xe_vm {
+> >  	/** @gpuvm: base GPUVM used to track VMAs */
+> > @@ -267,99 +357,18 @@ struct xe_vm {
+> >  		bool capture_once;
+> >  	} error_capture;
+> > 
+> > +	/** @dummy_ops: dummy VMA ops to issue rebinds */
+> > +	struct {
+> > +		/** @dummy_ops.ops: dummy VMA ops */
+> > +		struct xe_vma_ops vops;
+> > +		/** @dummy_ops.op: dummy VMA op */
+> > +		struct xe_vma_op op;
+> > +	} dummy_ops;
 > 
-> I guess this GuC based register capture will need another version and someone with experience on GuC to review, so it will take a while...
+> If only from this patch, it seems you don't have to introduce this dummy_ops member to xe_vm. For example, it can be a local variable in xe_vm_rebind function. But I will keep looking. Maybe you made it this way for future patches.
 > 
->>
->>>
->>> **** HW Engines ****
->>> rcs0 (physical), logical instance=0
->>> 	Forcewake: domain 0x2, ref 1
->>> 	HWSTAM: 0xffffffff
->>> 	RING_HWS_PGA: 0x01693000
->>> 	RING_START: 0x029d5000
->>> 	RING_HEAD: 0x00001914
->>> 	RING_TAIL: 0x00001968
->>> 	RING_CTL: 0x00003001
->>> 	RING_MI_MODE: 0x00001000
->>> 	RING_MODE: 0x00000008
->>> 	RING_IMR: 0x00000000
->>> 	RING_ESR: 0x00000000
->>> 	RING_EMR: 0xffffffff
->>> 	RING_EIR: 0x00000000
->>> 	IPEHR: 0x7a000004
->>> 	ACTHD: 0x0000effeffff9208
->>> 	RING_BBADDR: 0x0000effeffff9209
->>> 	RING_DMA_FADD: 0x00000000029d6968
->>> 	RING_EXECLIST_STATUS: 0x000000004000279c
->>> 	RING_EXECLIST_SQ_CONTENTS: 0x00000000029d9719
->>>
->>> - a lot of style issues, see 'CI.checkpatch'
->>>
->>>>
->>>> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
->>>> Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
->>>>
->>>> Changes from prior revs:
->>>>    v6:-  Change hardcoded register snapshot fill to follow mapping tables
->>>>          When capture is empty, take snapshot from engine
->>>>    v5:-  Split dss helper code out as an standalone patch
->>>>          Remove old platform registers definition.
->>>>          Split register map table to 32 and 64bit each
->>>>    v4:-  Move register map table to xe_hw_engine.c
->>>>    v3:-  Remove condition compilation in code
->>>>    v2:-  Split into multiple chunks
->>>>
->>>> Zhanjun Dong (8):
->>>>    drm/xe/guc: Add kconfig for GuC based register capture
->>>>    drm/xe/guc: Update GuC ADS size for error capture
->>>>    drm/xe/guc: Add XE_LP steered register lists
->>>>    drm/xe/guc: Add capture size check in GuC log buffer
->>>>    drm/xe/guc: Check sizing of guc_capture output
->>>>    drm/xe/guc: Extract GuC error capture lists on G2H notification
->>>>    drm/xe/guc: Pre-allocate output nodes for extraction
->>>>    drm/xe/guc: Plumb GuC-capture into dev coredump
->>>>
->>>>   drivers/gpu/drm/xe/Kconfig               |   11 +
->>>>   drivers/gpu/drm/xe/Makefile              |    1 +
->>>>   drivers/gpu/drm/xe/abi/guc_actions_abi.h |    7 +
->>>>   drivers/gpu/drm/xe/regs/xe_gt_regs.h     |    5 +
->>>>   drivers/gpu/drm/xe/xe_gt_printk.h        |    3 +
->>>>   drivers/gpu/drm/xe/xe_guc.c              |    6 +
->>>>   drivers/gpu/drm/xe/xe_guc_ads.c          |  229 +++-
->>>>   drivers/gpu/drm/xe/xe_guc_ads_types.h    |    2 +
->>>>   drivers/gpu/drm/xe/xe_guc_capture.c      | 1332 ++++++++++++++++++++++
->>>>   drivers/gpu/drm/xe/xe_guc_capture.h      |   21 +
->>>>   drivers/gpu/drm/xe/xe_guc_capture_fwif.h |  221 ++++
->>>>   drivers/gpu/drm/xe/xe_guc_ct.c           |    2 +
->>>>   drivers/gpu/drm/xe/xe_guc_fwif.h         |   68 ++
->>>>   drivers/gpu/drm/xe/xe_guc_log.c          |  179 +++
->>>>   drivers/gpu/drm/xe/xe_guc_log.h          |   15 +
->>>>   drivers/gpu/drm/xe/xe_guc_log_types.h    |   26 +
->>>>   drivers/gpu/drm/xe/xe_guc_submit.c       |   21 +-
->>>>   drivers/gpu/drm/xe/xe_guc_submit.h       |    3 +
->>>>   drivers/gpu/drm/xe/xe_guc_types.h        |    2 +
->>>>   drivers/gpu/drm/xe/xe_hw_engine.c        |  261 ++++-
->>>>   drivers/gpu/drm/xe/xe_hw_engine.h        |    4 +
->>>>   drivers/gpu/drm/xe/xe_hw_engine_types.h  |  117 +-
->>>>   22 files changed, 2421 insertions(+), 115 deletions(-)
->>>>   create mode 100644 drivers/gpu/drm/xe/xe_guc_capture.c
->>>>   create mode 100644 drivers/gpu/drm/xe/xe_guc_capture.h
->>>>   create mode 100644 drivers/gpu/drm/xe/xe_guc_capture_fwif.h
->>>>
->>>
->>
+>
+
+I'm going to rewrite or already have rewritten this to use local
+xe_vm_ops member and execute all rebinds an atomic unit.
+
+You can ignore this patch and also [1] in this rev of the review.
+
+[1] https://patchwork.freedesktop.org/patch/582015/?series=125608&rev=5
+
+> > +
+> >  	/** @batch_invalidate_tlb: Always invalidate TLB before batch start */
+> >  	bool batch_invalidate_tlb;
+> >  	/** @xef: XE file handle for tracking this VM's drm client */
+> >  	struct xe_file *xef;
+> >  };
+> > 
+> > -/** struct xe_vma_op_map - VMA map operation */
+> > -struct xe_vma_op_map {
+> > -	/** @vma: VMA to map */
+> > -	struct xe_vma *vma;
+> > -	/** @is_null: is NULL binding */
+> > -	bool is_null;
+> > -	/** @dumpable: whether BO is dumped on GPU hang */
+> > -	bool dumpable;
+> > -	/** @pat_index: The pat index to use for this operation. */
+> > -	u16 pat_index;
+> > -};
+> > -
+> > -/** struct xe_vma_op_remap - VMA remap operation */
+> > -struct xe_vma_op_remap {
+> > -	/** @prev: VMA preceding part of a split mapping */
+> > -	struct xe_vma *prev;
+> > -	/** @next: VMA subsequent part of a split mapping */
+> > -	struct xe_vma *next;
+> > -	/** @start: start of the VMA unmap */
+> > -	u64 start;
+> > -	/** @range: range of the VMA unmap */
+> > -	u64 range;
+> > -	/** @skip_prev: skip prev rebind */
+> > -	bool skip_prev;
+> > -	/** @skip_next: skip next rebind */
+> > -	bool skip_next;
+> > -	/** @unmap_done: unmap operation in done */
+> > -	bool unmap_done;
+> > -};
+> > -
+> > -/** struct xe_vma_op_prefetch - VMA prefetch operation */
+> > -struct xe_vma_op_prefetch {
+> > -	/** @region: memory region to prefetch to */
+> > -	u32 region;
+> > -};
+> > -
+> > -/** enum xe_vma_op_flags - flags for VMA operation */
+> > -enum xe_vma_op_flags {
+> > -	/** @XE_VMA_OP_FIRST: first VMA operation for a set of syncs */
+> > -	XE_VMA_OP_FIRST			= BIT(0),
+> > -	/** @XE_VMA_OP_LAST: last VMA operation for a set of syncs */
+> > -	XE_VMA_OP_LAST			= BIT(1),
+> > -	/** @XE_VMA_OP_COMMITTED: VMA operation committed */
+> > -	XE_VMA_OP_COMMITTED		= BIT(2),
+> > -	/** @XE_VMA_OP_PREV_COMMITTED: Previous VMA operation
+> > committed */
+> > -	XE_VMA_OP_PREV_COMMITTED	= BIT(3),
+> > -	/** @XE_VMA_OP_NEXT_COMMITTED: Next VMA operation committed
+> > */
+> > -	XE_VMA_OP_NEXT_COMMITTED	= BIT(4),
+> > -};
+> > -
+> > -/** struct xe_vma_op - VMA operation */
+> > -struct xe_vma_op {
+> > -	/** @base: GPUVA base operation */
+> > -	struct drm_gpuva_op base;
+> > -	/**
+> > -	 * @ops: GPUVA ops, when set call drm_gpuva_ops_free after this
+> > -	 * operations is processed
+> > -	 */
+> > -	struct drm_gpuva_ops *ops;
+> > -	/** @q: exec queue for this operation */
+> > -	struct xe_exec_queue *q;
+> > -	/**
+> > -	 * @syncs: syncs for this operation, only used on first and last
+> > -	 * operation
+> > -	 */
+> > -	struct xe_sync_entry *syncs;
+> > -	/** @num_syncs: number of syncs */
+> > -	u32 num_syncs;
+> > -	/** @link: async operation link */
+> > -	struct list_head link;
+> > -	/** @flags: operation flags */
+> > -	enum xe_vma_op_flags flags;
+> > -
+> > -	union {
+> > -		/** @map: VMA map operation specific data */
+> > -		struct xe_vma_op_map map;
+> > -		/** @remap: VMA remap operation specific data */
+> > -		struct xe_vma_op_remap remap;
+> > -		/** @prefetch: VMA prefetch operation specific data */
+> > -		struct xe_vma_op_prefetch prefetch;
+> > -	};
+> > -};
+> > -
+> > -/** struct xe_vma_ops - VMA operations */
+> > -struct xe_vma_ops {
+> > -	/** @list: list of VMA operations */
+> > -	struct list_head list;
+> > -};
+> 
+> It seems you moved a block of codes to another location. It caused more work for code review. Better to avoid this if we can.
+> 
+
+See above, with my refactor dummy binds and this moving this is not
+required.
+
+Matt
+
+> Oak
+> 
+> > -
+> >  #endif
+> > --
+> > 2.34.1
 > 
