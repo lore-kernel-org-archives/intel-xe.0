@@ -4,139 +4,145 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C2F1C47DD9
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Mar 2024 18:32:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66D4ACD11BF
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Mar 2024 18:32:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABFE01126E9;
-	Fri, 22 Mar 2024 18:32:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2588A10E873;
+	Fri, 22 Mar 2024 18:32:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cd0whC3C";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HOj+5MwT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F09A1126E9
- for <intel-xe@lists.freedesktop.org>; Fri, 22 Mar 2024 18:32:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9673E10E873;
+ Fri, 22 Mar 2024 18:32:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711132322; x=1742668322;
+ t=1711132361; x=1742668361;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=ok9mAdq4V9kmCUgXU44iHwced/EJWIKt4t5UZOXoLto=;
- b=cd0whC3CHYgI0mgk8/A/FIeit6LzjJvOwSnlfOukjFb5qTrlh7Zbfb8x
- TZEjX9GlYtOtQuPR0aIYZ2WDnA165YxepSU6OOOGBMFwyC00UIOQBBfGi
- 0etj/xM064TDS2QgIBx4nKTxLG6hvXAsqTiXPGorIBtF9oXk34VKW8Hmy
- ry4nvcKRG4BeYGWvBZEjXWcmmcCiT0OkNUSZoZmYIJM9Kb/wQ7hdrSoS8
- AhPrTG0xINnTSZKuem//pJ4p9BMI6wBAxSpbf3y7+pb/hDHxzt/3Wz7D4
- 4SSwPhy4i15KrAC1fTb5Dm2x1M/P8Lxpy4sH8hH1RQ20HCswLLcDgMV5L A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="6026976"
+ in-reply-to:mime-version;
+ bh=u3SqwcnmaaS26rD3inWeoGiJpDYiHJFEivMj48fGWrU=;
+ b=HOj+5MwTzHAkAeQmOqP7sv2djvkUVgvX1HZdwPL2A2DEBVocYRxFLGkQ
+ t25Zfz77JvlX+e9vPsh39sHYUGBsV7njxIoKRxc1c6dEUitJImuG8unBd
+ 9ewH4+EYhRPWh3pmYHpleojKTX55PFnK0kae3skpcGY46cCn7+GivaJoR
+ Rls04S2wf7HEVaUMf/rpmNqlL3JQZFWh71TLmxwVTpNpdSS6wqddhUWYW
+ n32jSRxb/TrahQOHwhTLka5z+j+nbwz4lJ1ZPjPvOI1qk3gkuHqRYvOU8
+ xrhSsmR1epAIANiRy6a3MZUEZIMBznecJ18feb0BXPmVaQChHQaOZ8JJu A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="6401503"
 X-IronPort-AV: E=Sophos;i="6.07,146,1708416000"; 
-   d="scan'208";a="6026976"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2024 11:31:48 -0700
+   d="scan'208";a="6401503"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2024 11:32:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,146,1708416000"; d="scan'208";a="19558189"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 22 Mar 2024 11:31:48 -0700
+X-IronPort-AV: E=Sophos;i="6.07,146,1708416000"; d="scan'208";a="14977240"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 22 Mar 2024 11:32:40 -0700
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 22 Mar 2024 11:31:47 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ 15.1.2507.35; Fri, 22 Mar 2024 11:32:39 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 22 Mar 2024 11:32:39 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
  orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Fri, 22 Mar 2024 11:31:47 -0700
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.41) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Fri, 22 Mar 2024 11:32:39 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.100)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Fri, 22 Mar 2024 11:31:46 -0700
+ 15.1.2507.35; Fri, 22 Mar 2024 11:32:39 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IgMxB5jvvpYaBK69IuytZYbm4AXe97EXceeJ1er5WJLM7rKaBfK0es1JDcf+4LsGCGTyxhrpC+iUJroTpizNcUHzDRklLx7nWz78BXFcqRoI5Lsds/rdD1pc1r5rCqiXTdNWsULlIxD6R2ERPxa7Qduj+3FuwVU4Z39otrNJmZhBdVc/bfyvogKA+W+vCE/CoAoIGa/jSsp7SrUgXE0TsRYCJvNmV35fZUs5fKAxoezw1SdTbTpF2gQ37V/nIKV5d0E01fvWJN+PF0WSYWWiHFsfPvV/dfaP9drzir/+P5e3xPjjK+jLUET4ajpvu6ROagEAOqgChpR/oAPJCcyW8w==
+ b=oOnpGtan7qULTTtdY2bHhzztIKhUZtjn3gXFnBe3HrnIXEUg17DV8mYoDwVEBE1qM874wxlfrDLe9TW5QP9GdVJ4UASuUKvMkGKtCp+VVZXCJbHbeB58B/Ie/dVy7nFeIN3QtTyxvi/kBpJq0yzxxgIamvxt9OHL8VGXPhFAEu4ve76x0cogIvGhEfvPkG7IfJtwfaFsmSq9XyZbvV5xt+KkH8FJ2HqepfHrI3o52famzImytyc5G4/cG7tDPwnv5sr3OIpdIXkiY8LpeQySItwfR+EYsXQkXJyuOO7YqeQylRsZ9QCdE9PGA3wUHyUsH/d91C/dVXcn7rPMiqBVRg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=y8ZkTo8Xx3GeyoeStaWw+il0Cst4mB7dbJqDFEei7/E=;
- b=HjeLss18ztkpIi2FiOzercpCG/AGpC1/vGkEWdv5tZgklaVCk2LOJd3RqXDKBW57fWMJ4NJFPv7YnMUSmHw0n3PbYfspo9MYTddIdLQ+3br41T0GY0Isv26oNoqkcjoYnR+MUCIbByYgPDe4OwDB3aO0mEy1ol/LcUdSJ6ESpSkWe5DU3xboBTJ27seSoQvYHdry+nswb+W57S5KFoheSxpBAbmCHj3Ew/Jxec+/Pl+vttmqVirNple3miy7FBqHqUPXaLMEfwJmTEE7O3ZWe+D4WMv3HZXdwrnHTEFH2p35NvOO9eLIRNN7esKWhsnH1dL0iDI2DaZqS8FAYja1og==
+ bh=z9BkCbded1lpwzsow+fJfi3qZAQDD3Mu1TT7sNNxv7Q=;
+ b=LqEpae9eFB6mOI7I9kUoqVfJS7kw4tSD9PpkdjgYdvhOeZYVHLXAZNTyr3lf+4ywCKH2HnVEIbqg3lPSH+PzThwMTnUo3Vrul5dUCxOvXqZ15U83eLhUn15j153Mg7DMlNXbtkF7QspJ3GPeoje8CXrpD3hLHWjcTQvx4F2kUIx3+Tn7oh99dLIAyyKYw+Wm5qqJ9mr2+dyz9D6xn2lEXax1lX3d9ZuIycFAy/1KSAhfjVXCSnAJ0QTyxLqQ5IhGbXngu+3Jh36ebHFJu78PC1gdC/igpSEJ9ByPKRrnPgzavX05Chsomag/YvWTjxMSxh2HJgmsartodVLT29bVlQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SJ2PR11MB8403.namprd11.prod.outlook.com (2603:10b6:a03:53c::8)
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by PH7PR11MB8549.namprd11.prod.outlook.com (2603:10b6:510:308::7)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.24; Fri, 22 Mar
- 2024 18:31:45 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e7c:ccbc:a71c:6c15]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e7c:ccbc:a71c:6c15%5]) with mapi id 15.20.7409.023; Fri, 22 Mar 2024
- 18:31:44 +0000
-Date: Fri, 22 Mar 2024 18:30:54 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v2 5/7] drm/xe: Move vma rebinding to the drm_exec
- locking loop
-Message-ID: <Zf3OXvxc/UFKSje7@DUT025-TGLU.fm.intel.com>
-References: <20240322090213.6091-1-thomas.hellstrom@linux.intel.com>
- <20240322090213.6091-6-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+ 2024 18:32:37 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::e9dd:320:976f:e257]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::e9dd:320:976f:e257%4]) with mapi id 15.20.7409.023; Fri, 22 Mar 2024
+ 18:32:37 +0000
+Date: Fri, 22 Mar 2024 13:32:34 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ Gustavo Sousa <gustavo.sousa@intel.com>
+Subject: Re: [PATCH] drm/i915/display: move dmc_firmware_path to display params
+Message-ID: <3bvm45xgjhlwuwc2hhenysknzm2reaj5yn6anvyzmerpi44vgb@jjnbrf2ejnk5>
+References: <20240321161856.3517856-1-jani.nikula@intel.com>
+ <87y1ablfo6.fsf@intel.com>
+ <64loxwpkjgu2nf4up554hfuqd6oi2quguozom2p2gowem26rbj@rszc3ubdda6u>
+ <87v85elkic.fsf@intel.com>
+ <b7o4x73ht2wv6t52h44dofzu36oic3bfazfilt2o4oxuj3zxzg@rzwm4a7cro7p>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240322090213.6091-6-thomas.hellstrom@linux.intel.com>
-X-ClientProxiedBy: SJ0PR05CA0204.namprd05.prod.outlook.com
- (2603:10b6:a03:330::29) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+In-Reply-To: <b7o4x73ht2wv6t52h44dofzu36oic3bfazfilt2o4oxuj3zxzg@rzwm4a7cro7p>
+X-ClientProxiedBy: BYAPR06CA0012.namprd06.prod.outlook.com
+ (2603:10b6:a03:d4::25) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SJ2PR11MB8403:EE_
-X-MS-Office365-Filtering-Correlation-Id: 814c4297-74c8-4619-dda0-08dc4a9e5397
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|PH7PR11MB8549:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3ae59f3e-680b-4315-0351-08dc4a9e72e8
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: S7U9lAB67jXXEey5XeBIxvLODsG477SauL5FA9jwzwxH2qEGpgASo/2/PBgkMbU9p5uBA3InZGAmUbwEWzEBfQMbOD8U3U3S61/arSZ2k6Ll5tHJQ7etP9pKKyKpCnV6fF7yKFK/0bUHDmbDqV0cCQA/yg6AFl05jiflSL9fDnwLhzAVhRGxXpkhyhKF0AYmxlNNsADwplZNd31keRH8nL5Jzzs7/YktaGzxyra237TOo7MdPBTMzWANoIws2ieyBMbrLLf/63QcVEPqPXfk7AYkjfUdlHN5kSLh6fwbW4SFkWeOwEf6TAUTOwkhZ7BpkfKSGSt0INx0BtgTlvljSxL/bEl/eZRnhsSpWhU11kO2tyv92gt8ZKcCDeHsJw/GLHsyQP5i/HGU3w3jyRmb22k7CtK6gHLHGS7m36ER3uVqQxtan7BUAHB4QOIQs/mMgE+wa0hjBVt89VeQ+T81ULIR44fVfvgQzyRcRpI92EYsnev67gW6HvdrKt0IGJAvpWxJlSZgwgLfWthgQLcHqAJPCZN3lrkJma66oGGW44tpGZCg5CbEsBYln1QFmk6Cmu3mjrntYPayb9x5yVFnjTA+R86DC3N4s5WqS6FVDLicvb1VOBLyl8hcMTGgjETuIxLcqH1Zneg+t9H4AgMLDG3yleGVWyKUjYR+1fQcF4Q=
+X-Microsoft-Antispam-Message-Info: H+BBna2v50hi6wQa5rqaKLVLWBe++WVXFnbuQWoowEdzOxyszEeompTzyu6mFyXjdIA366Pu68yOagbkLsNiu0+Y+AgTaKKs+6iQ9Mujl2dnwlhG9brVpSwlKaSK8VyXn/h/6jgCMK+GnUMiPuiT5FCcp+D5YpY84di+aRdjExJQafYfloZ+QHukEf0JPzMLuugNqap/awcEMebgt0Bxah4DcGpoBj9yuXz/7XoGSuh4TDBhPW4v6UG2S1jtEWikWdnSKtXqetLhc+FpYJqWyNEq/8kAs5Lan0cNKTE6CgM67NzSrNsc3J0T/rm+zp+lveErl/7CfBUNdhDFz9AJn9wnqgPhyJq5D9bkyVcvb47+xqWRI62c+ERfVrCw2LkVhaBKe7o1IFqACtO8nA53zkaImbZFBv5lMfIwQfgCn5HxAOLeDgIEyHbRDxvwgchHJNhrSswpz9luXOAbp4qkmLL793kEPzPLuJKQkq84iCozqvlYEckR7D2GQCI1OycM3N/KIaMppaGMsSWuBZi6U3hoifLfmvJbTBj3T2ldkCts1y7V5jFtilMiLMMLGl8E5BMMyNsD+U2wpU+/BeQNQQCrZ5BES3S0nVgJeESLg7dJbJBmoIjpHAaNbwH1CDA8xqY9CjfGIaMMVHObHLzpLd11vq9J5nVeTysGjeT8V5A=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(366007)(1800799015); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(1800799015)(376005)(366007); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?0S0MGCblbn25wF11IjS+W1sdWY5s2FAGJtUca72cTxpsI5tUpJxsFGVdTs?=
- =?iso-8859-1?Q?Je1jgZOOm4GZlIc4/Y55fkHZGtuqZeCK4tA6VHVKH/CvX023gHxwXBFjbD?=
- =?iso-8859-1?Q?9jCbPV3F1rCRfg1AD0OgXRBw6+gGylp1B7aDjHAZvj+EFFTswddgecDfmx?=
- =?iso-8859-1?Q?v/ZL4oEN+sZg6BcPiCN8AhMb+YjmPlk2+hMtB2rV79ZyUkBWWZE6ukE4gd?=
- =?iso-8859-1?Q?mmdDsngOJdvH3n2OI6wIDMY0XNTXMhrpdY6aOUD/zqVYotnZcsrGJ0uhOv?=
- =?iso-8859-1?Q?JwwrgLro59pHIrVvGb9FIhqnIvqM7Z0Qd38iOzd9xXUnJEEig2GuON4QFw?=
- =?iso-8859-1?Q?79h3IlFPxMwtIyexFNoUBApHXi7d90iZeSnJcBQ60MBt+HBN2xoNS7zmjM?=
- =?iso-8859-1?Q?MLHwV7FgI4BLfOF/cvv9jh85/XCAYQBeTKGvCnisXIyox0yDUB8bOLmpaL?=
- =?iso-8859-1?Q?W+FfG06fzxQSQhmlH8PoXtqSF4yb3AJxqU95of+fyj/b/emwtqNB6Vjc9n?=
- =?iso-8859-1?Q?KXoQ5G6m9/12dacwc5N6ZddFtx4tk5cO9giQQDPfdZCPM03Xp75AYbK4hu?=
- =?iso-8859-1?Q?XXIMCjETHCIcyzu7XmOghl1sYXjy3Am1r65YgXglON9E/BvUIn8RhQH8aY?=
- =?iso-8859-1?Q?vOarvkFE+DuYfCIjfnX0//qPhZd/sJcCRmFbPl1qkfpaYgEx8n5rICD1rj?=
- =?iso-8859-1?Q?D5+y6636CO8z7mZgxOSmmzvIZOabu3R2AyDIvSaCGLqAThHYrQPZmdBHrn?=
- =?iso-8859-1?Q?2b4Fxnz/dCl9JEY+SedlAEIrqLsNYoSzvq2zUYPp/NpdKZoKDJ3/zrKcZk?=
- =?iso-8859-1?Q?U3SLPN3Lm8bWFXrSFnQSIcHB9xm8Q7DfiLRieH5XTOAoKrA7JVX4K1mexw?=
- =?iso-8859-1?Q?UuZ+KsQJJorfDkw2caofbRYIt7GbS4SR3YdVS5kI9wq41J70ogiutmIWRn?=
- =?iso-8859-1?Q?1ozxeBXfqmA6dkMBtVDKKkv0zHCv35gkNM6pekBx9ShvE9v+H5JpwX1Wy2?=
- =?iso-8859-1?Q?9FddfMwRvA1rDI/wkkAnS8Fv8CW3ho66oCD9uS+9LTNvKxCcTbqjSjisT1?=
- =?iso-8859-1?Q?fze7MPJzrEE2dtWPS8uUOtYbOjfCcxRW7pMs9C9YT3yD8OlTZqOvcRr8qq?=
- =?iso-8859-1?Q?V+7wseVMviWeAXsDxUm2wUI37rTwqS9uQkKU161Ee5iq6LGMQlSO5cT4IA?=
- =?iso-8859-1?Q?8wSBNBjWU1dPqxaUhx6BusPjj6zPlctOfJVusoJZICqCNhUfpk4LC9eFJq?=
- =?iso-8859-1?Q?u+00yjkvnlMLSWJFDDehGba9PRQIgz8faV+K2ZWvGppvWdypI9CG+r8xgv?=
- =?iso-8859-1?Q?BZ2cUlT6bTRJ3kVF9yxa6YExsrGDZdcFAPaVYbIO9NQsNDaWU79sNhENOx?=
- =?iso-8859-1?Q?FVbV1TbujsCyEFTvGar+VZoskMUECwFrAyESy5AKCtkjqLzZN2g2Ub5/lP?=
- =?iso-8859-1?Q?UA8FzJNYmAx/cjzmSEvTr9WPMEgvm0hW6WjhC+5sFSHqaxL/7bq2dNZkIK?=
- =?iso-8859-1?Q?NO1MhbnwMGYgbgc1hROnCwaoCyZ47+PRyiW32Mvp5KP9JAbZQXkMiDjOBN?=
- =?iso-8859-1?Q?AqORVnAZDqVtBbFLN8tKOS+ej8bAf0/g4xI6WMdqS9Bf05/RZN3xK1YblA?=
- =?iso-8859-1?Q?pIk45kW1DC3SOp0t7ZAxf0lTQX1Zv5MrXacQ/9e2Nwp8voWh+5U+J5qg?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 814c4297-74c8-4619-dda0-08dc4a9e5397
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?NQ+GyxJeghUoS4QfgpaubsPdpL+SDucKGr/EvU3aw41pse7aF6pwJ/bdu20y?=
+ =?us-ascii?Q?K/AUVDFyxL3M4OK6dMwmCAIbvS/GN4VSpKkXJSk6Cgk7kM2dWQvVavvN/3Ha?=
+ =?us-ascii?Q?jhBAT2DKP5PYeg37y20f7Is9Z/zD8Li2cyHyNlQl/mMoB+EXOGXzQHvPDoPJ?=
+ =?us-ascii?Q?8UgUXfLn2vsUBo5LxFWPVWCgrLk/Oh+7OHuHUlaKGRLov9Y+eY/vhXsYtDy3?=
+ =?us-ascii?Q?G1XIWUwvZLQnBtNMPkcau1/sz0Xy4VgHqvXUB7pD0hCIQNpEOXWqec1FVZSN?=
+ =?us-ascii?Q?mSiyzbVJBPyeLr/vwRYdMO4fL8HbF/HVEDNZsRgPHk/Id5wSjM29cx/Cba3s?=
+ =?us-ascii?Q?UmiT95mC5Z5Q4uXqQ09EUt1S8gR4rLv/yuqFKxn4gv8ZG5lH4ztzbq3MflAl?=
+ =?us-ascii?Q?Azib10ab9Afb1hPFyfV0s4kPhma0WNFM/1UU5PVgob/3iMGUqrU+l/7zxr3C?=
+ =?us-ascii?Q?uPee+g48tYTYbmxbhdrYMagRmQ1Cb/pzkARkZL9hRvzlNnpZj1H+IaCyEJSp?=
+ =?us-ascii?Q?VJNgxFnlI+tLV1+CMTYLBEWEs2C9VsJoSZLTBkjergHKaYsPyqJ/MtsemIFO?=
+ =?us-ascii?Q?etinedPWboMux/zHlz4luG5JT9l9hPdwZWlss8qt3dhz4a5zenNqRzDtAso0?=
+ =?us-ascii?Q?brwn4OeWKTAf0A/LRUBz1PZWFGWbwBD/t0urHmsWDApL83LYtenXJUwn2ziI?=
+ =?us-ascii?Q?incqV5KRuDDTBflE7XkphIzF8fwGvDbzgfVjjXYQMxRF8hZPpn5kQ0AlhOzq?=
+ =?us-ascii?Q?2A+vJQisTPmfSIXOz7iNaEhvf8/33XReHq+ovza7y+vxfz/MSoFzaQ1GqNbR?=
+ =?us-ascii?Q?8EbTPrYZ20sepKQYjWXmfmHFAUJYfQCA25YDYOwlDqX3dc1vZ/UlbVoX61Rl?=
+ =?us-ascii?Q?JArR69FLgpxW3Cx2t0gKbwLN48MYLmWw0o+HSVEO+IhgMtRYzLRb5mGi111M?=
+ =?us-ascii?Q?7I0GJrg11USNkekYMg/ALEdFB9s8+qMixNvgDVuVqAnDvsSQHbLAeauutfr/?=
+ =?us-ascii?Q?/PQVeaAXfI9UA4TAu+LlWYd2QAWgI6yAiNEZNfcEwSvo/VyrbFcobl2Z7Sh3?=
+ =?us-ascii?Q?vigi9anRcvw0djS3bfmSuLsUZK26K7OsaeehrJHw8mF6ovzolFU0I6o8oJMj?=
+ =?us-ascii?Q?tcPUBN1vPW/zTZORW1w28l3VcbOOL8KVTBQZv3Cl7KETFYul5uze6IVKh/Bl?=
+ =?us-ascii?Q?WQzVj9zD4aaKLFvHy4TNFJBrsSYOOqFhglCk/SBVNM9SVy0S26/uf19HMhs6?=
+ =?us-ascii?Q?lpKNopfeVoUEjGbiEOEBdsqoWCf7bBSUE8ZT7sj8IsNpNhBhzdFELleT8/49?=
+ =?us-ascii?Q?GyBmhBfN7VhCFgFLUZRYoeC+Xpnm/L36gGwRfCK9I6OHZwOSAGVlZiWKMiko?=
+ =?us-ascii?Q?85PL/1gaf6dDXMI5oABoNoR6+EVfCN64mFf/YMIAgjdkB8AGkh/3YEM+1cvp?=
+ =?us-ascii?Q?Yack7YPoqHzqhF1BlW4DrJNMMY3JJh53G8/ZGhOOaPjInQVEaOdI7ACiC403?=
+ =?us-ascii?Q?yq5+JjjaFQe6LYlf6/q38IKNHz2cOBt5JIvO5HFAQ+Icx4w61zI5TlBQo+El?=
+ =?us-ascii?Q?GwAR+dkazK9kWqaYrZa8/93DAkWX/8a/Ty3PNRaTbUiziANC+lHZ+04d5O+V?=
+ =?us-ascii?Q?0Q=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3ae59f3e-680b-4315-0351-08dc4a9e72e8
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Mar 2024 18:31:44.8641 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Mar 2024 18:32:37.4227 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NgqY11Xw3edW3Pfk8st0euPt473kbyHHkVOKN8k/6JVEPDrA9VN8Oza7zuXvqnV1jFdUUV1Qpy4/P9u5W3Ju5g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB8403
+X-MS-Exchange-CrossTenant-UserPrincipalName: G1DYrVFTSuTsA4J1gOKMIqDKj9rdN3Rq+VJmz5FvBbHoxIZQMd5k8XLM9pDq7/sETvp4O8KBnEEu0DkQEV5BkqGrilkX3EbgaWtOL93U9TY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8549
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -152,166 +158,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Mar 22, 2024 at 10:02:11AM +0100, Thomas Hellström wrote:
-> Rebinding might allocate page-table bos, causing evictions.
-> To support blocking locking during these evictions,
-> perform the rebinding in the drm_exec locking loop.
-> 
-> v2:
-> - Remove a leftover call to xe_vm_rebind() (Matt Brost)
-> - Add a helper function xe_vm_validate_rebind() (Matt Brost)
-> 
-> Fixes: 24f947d58fe5 ("drm/xe: Use DRM GPUVM helpers for external- and evicted objects")
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_exec.c | 24 ++--------------
->  drivers/gpu/drm/xe/xe_vm.c   | 55 +++++++++++++++++++++++++++---------
->  drivers/gpu/drm/xe/xe_vm.h   |  3 ++
->  3 files changed, 47 insertions(+), 35 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-> index 397a49b731f1..f442ef495235 100644
-> --- a/drivers/gpu/drm/xe/xe_exec.c
-> +++ b/drivers/gpu/drm/xe/xe_exec.c
-> @@ -96,21 +96,9 @@
->  
->  static int xe_exec_fn(struct drm_gpuvm_exec *vm_exec)
->  {
-> -	struct drm_gem_object *obj;
-> -	unsigned long index;
-> -	int ret;
-> -
-> -	ret = drm_gpuvm_validate(vm_exec->vm, &vm_exec->exec);
-> -	if (ret)
-> -		return ret;
-> -
-> -	drm_exec_for_each_locked_object(&vm_exec->exec, index, obj) {
-> -		ret = dma_resv_reserve_fences(obj->resv, 1);
-> -		if (ret)
-> -			return ret;
-> -	}
-> +	struct xe_vm *vm = container_of(vm_exec->vm, struct xe_vm, gpuvm);
->  
-> -	return 0;
+On Fri, Mar 22, 2024 at 11:06:20AM -0500, Lucas De Marchi wrote:
+>On Fri, Mar 22, 2024 at 10:48:43AM +0200, Jani Nikula wrote:
+>>On Thu, 21 Mar 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>>>On Thu, Mar 21, 2024 at 06:20:57PM +0200, Jani Nikula wrote:
+>>>>On Thu, 21 Mar 2024, Jani Nikula <jani.nikula@intel.com> wrote:
+>>>>>The dmc_firmware_path parameter is clearly a display parameter. Move it
+>>>>>there. This also cleans up the ugly member in struct xe_device.
+>>>>
+>>>>Hmm, does this actually fix the parameter on xe?!
+>>>
+>>>not sure what you meant here. Patches makes sense to me.
+>>
+>>Unless I'm mistaken, the parameter currently does not work on xe at
+>>all. I only realized after posting the patch that this probably fixes
+>>that issue too.
+>
+>+Gustavo
+>
+>I never really tried the dmc_firmware_path param, but current code
+>contains:
+>
+>drivers/gpu/drm/i915/display/intel_dmc.c:       if (err == -ENOENT && !i915->params.dmc_firmware_path) {
+>drivers/gpu/drm/i915/display/intel_dmc.c:       if (i915->params.dmc_firmware_path) {
+>drivers/gpu/drm/i915/display/intel_dmc.c:               if (strlen(i915->params.dmc_firmware_path) == 0) {
+>drivers/gpu/drm/i915/display/intel_dmc.c:               dmc->fw_path = i915->params.dmc_firmware_path;
+>drivers/gpu/drm/i915/i915_params.c:i915_param_named_unsafe(dmc_firmware_path, charp, 0400,
+>drivers/gpu/drm/i915/i915_params.h:     param(char *, dmc_firmware_path, NULL, 0400) \
+>drivers/gpu/drm/xe/xe_device_types.h:           const char *dmc_firmware_path;
+>
+>So dmc_firmware_path is only dealt with inside display... it would be
+>odd if it was not working. I'll double check.
 
-Same comment as previous patch, maybe reorder these two / squash if you
-think that is required + have a comment here.
 
-> +	return xe_vm_validate_rebind(vm, &vm_exec->exec, 1);
->  }
->  
->  int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-> @@ -264,14 +252,6 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->  		goto err_exec;
->  	}
->  
-> -	/*
-> -	 * Rebind any invalidated userptr or evicted BOs in the VM, non-compute
-> -	 * VM mode only.
-> -	 */
-> -	err = xe_vm_rebind(vm, false);
-> -	if (err)
-> -		goto err_put_job;
-> -
->  	/* Wait behind rebinds */
->  	if (!xe_vm_in_lr_mode(vm)) {
->  		err = drm_sched_job_add_resv_dependencies(&job->drm,
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 6aefd6602310..b1d0df178a2d 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -482,11 +482,50 @@ static int xe_gpuvm_validate(struct drm_gpuvm_bo *vm_bo, struct drm_exec *exec)
->  	return 0;
->  }
->  
-> -static int xe_preempt_work_begin(struct drm_exec *exec, struct xe_vm *vm,
-> -				 bool *done)
-> +/**
-> + * xe_vm_validate_rebind() - Validate buffer objects and rebind vmas
-> + * @vm: The vm for which we are rebinding.
-> + * @exec: The struct drm_exec with the locked GEM objects.
-> + * @num_fences: The number of fences to reserve for the operation, not
-> + * including rebinds and validations.
-> + *
-> + * Validates all evicted gem objects and rebinds their vmas. Note that
-> + * rebindings may cause evictions and hence the validation-rebind
-> + * sequence is rerun until there are no more objects to validate.
-> + *
-> + * Return: 0 on success, negative error code on error. In particular,
-> + * may return -EINTR or -ERESTARTSYS if interrupted, and -EDEADLK if
-> + * the drm_exec transaction needs to be restarted.
-> + */
-> +int xe_vm_validate_rebind(struct xe_vm *vm, struct drm_exec *exec,
-> +			  unsigned int num_fences)
->  {
->  	struct drm_gem_object *obj;
->  	unsigned long index;
-> +	int ret;
-> +
-> +	do {
-> +		ret = drm_gpuvm_validate(&vm->gpuvm, exec);
-> +		if (ret)
-> +			return ret;
-> +
-> +		ret = xe_vm_rebind(vm, false);
-> +		if (ret)
-> +			return ret;
-> +	} while (!list_empty(&vm->gpuvm.evict.list));
-> +
-> +	drm_exec_for_each_locked_object(exec, index, obj) {
-> +		ret = dma_resv_reserve_fences(obj->resv, num_fences);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int xe_preempt_work_begin(struct drm_exec *exec, struct xe_vm *vm,
-> +				 bool *done)
-> +{
->  	int err;
->  
->  	err = drm_gpuvm_prepare_vm(&vm->gpuvm, exec, 0);
-> @@ -512,17 +551,7 @@ static int xe_preempt_work_begin(struct drm_exec *exec, struct xe_vm *vm,
->  	if (err)
->  		return err;
->  
-> -	err = drm_gpuvm_validate(&vm->gpuvm, exec);
-> -	if (err)
-> -		return err;
-> -
-> -	drm_exec_for_each_locked_object(exec, index, obj) {
-> -		err = dma_resv_reserve_fences(obj->resv, vm->preempt.num_exec_queues);
-> -		if (err)
-> -			return err;
-> -	}
-> -
-> -	return 0;
+oh, now I understand. You mean that xe module doesn't have the param
+because it's only declared in drivers/gpu/drm/i915/i915_params.c.
 
-Same goes here wrt a comment, it wouldn't hurt to have one.
+Could you extend the commit message with something like this?
 
-With that:
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+	The dmc_firmware_path parameter is clearly a display parameter. Move it
+	there so it's available to both i915 and xe modules ....
 
-> +	return xe_vm_validate_rebind(vm, exec, vm->preempt.num_exec_queues);
->  }
->  
->  static void preempt_rebind_work_func(struct work_struct *w)
-> diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-> index 20009d8b4702..306cd0934a19 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.h
-> +++ b/drivers/gpu/drm/xe/xe_vm.h
-> @@ -244,6 +244,9 @@ int xe_analyze_vm(struct drm_printer *p, struct xe_vm *vm, int gt_id);
->  
->  int xe_vm_lock_vma(struct drm_exec *exec, struct xe_vma *vma);
->  
-> +int xe_vm_validate_rebind(struct xe_vm *vm, struct drm_exec *exec,
-> +			  unsigned int num_fences);
-> +
->  /**
->   * xe_vm_resv() - Return's the vm's reservation object
->   * @vm: The vm
-> -- 
-> 2.44.0
-> 
+thanks
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+
+Lucas De Marchi
+
+>
+>Lucas De Marchi
