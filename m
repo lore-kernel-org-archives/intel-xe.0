@@ -4,46 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D713C47DD9
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Mar 2024 19:13:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E739C47DD9
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Mar 2024 19:15:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C82D310E8E0;
-	Fri, 22 Mar 2024 19:13:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6ECA10F1CA;
+	Fri, 22 Mar 2024 19:15:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lD771ChS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HasF44t5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E66510E8E0
- for <intel-xe@lists.freedesktop.org>; Fri, 22 Mar 2024 19:13:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39B7A10F0E2
+ for <intel-xe@lists.freedesktop.org>; Fri, 22 Mar 2024 19:14:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711134832; x=1742670832;
+ t=1711134899; x=1742670899;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
  bh=ftkRoRr55CECEsAD706SVeLGE0xvZyIqF23jY2A2eHQ=;
- b=lD771ChSKV6PGoeU2GNHIMaRSWjLhJUUhc2GE/awlnYKJeAd6jzq/ueq
- kYEsdFKnN3F0kyd3QEDf8Rw2zQdlbuNRvY44BlHTQWRxkSjLXIOa5Hq9d
- +VRjDn4HK/o8VQ961efOI+Ag6nClfDR8aFzzPnBAk6k5tnxu/kuwwHZ5T
- pWnFV4vRwhtaYFZj/KRJUxxBucrBr4V+sTeDz3H79go+bldODcYL5QEPC
- Pd1Z9bsNEUPqqeKcUWQuoAu53l9nCwmBVU9o/2uQCFDw6VdrIOWVYtjFG
- BIEuZj4BMUSb+ddvhLVVgnK8uO8BBVSmrzj6CCLkMDJPZ1BgTB42SoaXa A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="6030913"
-X-IronPort-AV: E=Sophos;i="6.07,146,1708416000"; 
-   d="scan'208";a="6030913"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2024 12:13:51 -0700
+ b=HasF44t5URB9KH6UEZnFxxf9eUtxDhkKxg3UpRi7HYATMyoDUEdNGRUA
+ wyKxPOyxovpJx6eNrCxeyy1cPyDEkVRbidfoDg6Rqh2K1cdzylfpecmRt
+ up5xKvz/7k+/2LOkM5WsSUT/kvDHeGfkoCvNgRW115iejNh/8HE1vhO6x
+ W8Ilz0Pl562L0+SAMbq2y8SwEB9kmBwmd52FGd9jz5ztQXFwZ3tq5qGEa
+ TK/LleooE+NTIOBIPnOOWHg2cWH3foRuCvrwB7sReAEtzVQIk1tijQler
+ AqkE4yn4OI2zuDpcbrdEGi8UwFC6HgnZuAnLjaIF9SCFZYwpwFBG6zJCA g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="31637541"
+X-IronPort-AV: E=Sophos;i="6.07,146,1708416000"; d="scan'208";a="31637541"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2024 12:14:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,146,1708416000"; d="scan'208";a="15105001"
+X-IronPort-AV: E=Sophos;i="6.07,146,1708416000"; d="scan'208";a="15041101"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2024 12:13:50 -0700
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2024 12:14:58 -0700
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: lucas.demarchi@intel.com
-Subject: [PATCH v2] drm/xe: Use FIELD_PREP for lrc descriptor
-Date: Fri, 22 Mar 2024 12:13:46 -0700
-Message-ID: <20240322191346.7531-1-niranjana.vishwanathapura@intel.com>
+Subject: [PATCH v3] drm/xe: Use FIELD_PREP for lrc descriptor
+Date: Fri, 22 Mar 2024 12:14:55 -0700
+Message-ID: <20240322191455.7613-1-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
