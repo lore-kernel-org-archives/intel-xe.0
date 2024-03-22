@@ -4,137 +4,141 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0ED6C47DD9
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Mar 2024 17:37:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 572FFC54E71
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Mar 2024 17:48:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8ADA489A88;
-	Fri, 22 Mar 2024 17:37:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 028D410F110;
+	Fri, 22 Mar 2024 17:48:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nnb4dAjD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NoO9frl/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 311A6112663
- for <intel-xe@lists.freedesktop.org>; Fri, 22 Mar 2024 17:37:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 483AF10F110
+ for <intel-xe@lists.freedesktop.org>; Fri, 22 Mar 2024 17:48:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711129037; x=1742665037;
+ t=1711129725; x=1742665725;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=fcpe+ueDUl9c5UF8wrTc9F80LGA0Q4AzPYZQ9PvvmwE=;
- b=Nnb4dAjDXTo//8UlkaBTfJw+jgtmzTFiP7JCEGBjwXGIi4AY0l0qKlAK
- 8wL9dgV0WT5cYGmZ/QBzO6VEyWvZef89WV1y3lljTMFxnpPyH0qKKmTbY
- 2/bmEbSGMjPH/HE4C/0GhjPZhvgEYCHBG/ZpFr7GeAMLOpTdJxaqNYw7R
- sWQDZ1pNjuPdzZNi675ppQ8YJJJ1RDPZLplUfFoW0HI6EnPVPNkOW89TS
- 3tt5gqhenEDL14KY7b2Q3ttt6J0uHv1f6cPj9+1sc3lP0La/J4DSK+Yoy
- nq4yJiCYJ56JuBD5RS80kJwKW4iF3sTiuZFtegeGZgMGZSUXNB8gBoBTB Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="17623344"
-X-IronPort-AV: E=Sophos;i="6.07,146,1708416000"; d="scan'208";a="17623344"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2024 10:37:17 -0700
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=FiKz3yT2E86/mZsgrZoAb+vYSQMKzPKvzvvm5YvEKGc=;
+ b=NoO9frl/5WPlNDojH4c7+RC05z6fwtfuw6fMMo2jvcFJfZl6UFusQ8Av
+ 0Wnj6I6ayadW4R9zZfVDX3M0xfpIcyVKclI1An6bsgko0SVJtTY7XS9US
+ Puj1TL8Urq/54QH2XMnkdd8lcJLppzPj/qLzpWKiCKEkGj5ublwmBz+J2
+ 6apDxPHIBPxIXyOQFeZ50pAt8YwKMWxRM7aHUR/1Ld9u7ape/Z4qQ1LHR
+ 25yk3ZoTmKmf82rDrvx3X6PM/hMNNnF711r0xIC/gnOA1FGSvNhbomKm8
+ PDexrcydCIzO4vAe2SfMPFv+Uaw0r8+hGircqZjVWLUz6jkyyYp6lRfd1 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="28668383"
+X-IronPort-AV: E=Sophos;i="6.07,146,1708416000"; d="scan'208";a="28668383"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2024 10:48:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,146,1708416000"; d="scan'208";a="14874038"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 22 Mar 2024 10:37:17 -0700
+X-IronPort-AV: E=Sophos;i="6.07,146,1708416000"; d="scan'208";a="19679222"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orviesa004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 22 Mar 2024 10:48:25 -0700
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 22 Mar 2024 10:37:16 -0700
+ 15.1.2507.35; Fri, 22 Mar 2024 10:48:24 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 22 Mar 2024 10:48:23 -0700
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Fri, 22 Mar 2024 10:37:16 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.40) by
+ 15.1.2507.35 via Frontend Transport; Fri, 22 Mar 2024 10:48:23 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.41) by
  edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Fri, 22 Mar 2024 10:37:16 -0700
+ 15.1.2507.35; Fri, 22 Mar 2024 10:48:23 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XNe2u7fkz2HjVHRd60OGk0SdHrYNGA8hUGBgebsbaSicjVJdyBL7tTpao3+Z2It5NujFFDWBfrW6+wTQ4yuLFGAAKsQmDe1HCgdsbJ0KlXvgItenlR+uPj/edn9Uconz8NyRufRw7i+4+F5fUGyzn9TRYO67cO+m75bhfYiVLOP9Fd633z5cRxpg5TRaImwxYbHO6eoXDsJUNWx4l16dDOLkk359st3L8zFtP1Z1XZb4h5x18XfrtQVKze7Pc3XV0AVwGZtNU7OZk+Guw5PqUywWBH4qeccCAkhqLSrQSWAnshOPEJdPuF3vVOiaxJJ6CW8EyY4vysyQ7vxkQat55Q==
+ b=Memmgy6q5veqVoI6iNADhNXXIivp2RQBd6O0B4lkjNINl3cZQVBGw6hKgm+B3M96FKy1X3oEHa1bhYPzULeGhP81oS8d1+qTnyEzs3XHKF9XPBHbjviWXfj2CPkm1A4tSlrDkEZ+Snt4mf++VcOnf6YUyZIpSNAYOncSKVIgEmZEsMJ4cXAEDRdRXz1Ksigimy67ymY25jZ8erz89VFgNHWr2O62oQ5vzrj7p7NseRiNaF9qMs61gQIS0Vc4T8gckyJa2T+y7jZ3p2p848sB5Tu/y8fLHNKpZ80EPyaZ5LtRQ7QXDgFqNas7Vn2dzMtlHZaGqJPYj900Nzzg7XpIDQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QCkfZrZaxiI9JPoeiS+c4//oudLjJUdbNz3KXFtgN8E=;
- b=daQI8KJa2Z2xqeRdnKorPxaYGljcBGPb/pRZE5citxwhmL19F6y1/3LzFdY8PRw7Bo6iEFRfQi1HCpXzc77OV7RjlnEelahoootK4qozA034llyIBmoSliCl3nTncafctUY3r0EEtEQteapfZy9r+rMD+a3hMB5ibApjRMBXy16DWGiiilAsh2fhGoBrN9D/nDVxXdGE/O2Ew+1UznQz9Unqi57iSeEUkxYejs6PTgrMURFNKBREbtCmLi/1DqqAwPy/Dzk+1bpk/Be8cvkueYSSiDhCtWKTlkcbNBrdG7UnGMs4j3/WJmHYHPfT71OP1l/aP+rItBzQcD7Bm6vjsQ==
+ bh=q1ueyQiJya8UJZU1XwpvwfDqPYWKMV8DatoSXACGSyM=;
+ b=FDMaXmaUD+FhYnaCfl7vk+g1dUYYpesXJ217bbXjPwSn6sxQ7lcYXVVXrm7C9UD8HVvHufmZ/84FE+qmnMFIZuLLCpBE5ZqMSm11MgRbvyw+SaizbgxfNKinRR7NR3CmnjTJV6HZ52vXfeHx/BzVrLYo6I+/NZpn3gKm1meKtE/6J+MIu6/PEWea2i8niUMh7gcEwIP618kaYmpGdx8JM+UK6t92X1FXsRVId83bchVu4w6Ll4ZIpGAHmRzB0Yl1lz0FlClljQjgf3+tJK2CAXWUM08k54rEttiyECdxuueuVr21HBsC28mkHwl3VNohIV0tpFsim/DIVI17OdImbg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by PH0PR11MB7423.namprd11.prod.outlook.com (2603:10b6:510:282::9)
+ by MN0PR11MB6088.namprd11.prod.outlook.com (2603:10b6:208:3cc::9)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.24; Fri, 22 Mar
- 2024 17:37:13 +0000
+ 2024 17:48:22 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e7c:ccbc:a71c:6c15]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e7c:ccbc:a71c:6c15%5]) with mapi id 15.20.7409.023; Fri, 22 Mar 2024
- 17:37:13 +0000
-Date: Fri, 22 Mar 2024 17:36:23 +0000
+ 17:48:21 +0000
+Date: Fri, 22 Mar 2024 17:47:21 +0000
 From: Matthew Brost <matthew.brost@intel.com>
-To: "Zeng, Oak" <oak.zeng@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v4 03/30] drm/xe: Move migrate to prefetch to op_lock
- function
-Message-ID: <Zf3Bl5l3mgKveFjq@DUT025-TGLU.fm.intel.com>
-References: <20240308050806.577176-1-matthew.brost@intel.com>
- <20240308050806.577176-4-matthew.brost@intel.com>
- <SA1PR11MB699179AF93251BACE99405A592312@SA1PR11MB6991.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="us-ascii"
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <stable@vger.kernel.org>
+Subject: Re: [PATCH v2 1/7] drm/xe: Use ring ops TLB invalidation for rebinds
+Message-ID: <Zf3EKYZ8eRc2Jhnv@DUT025-TGLU.fm.intel.com>
+References: <20240322090213.6091-1-thomas.hellstrom@linux.intel.com>
+ <20240322090213.6091-2-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <SA1PR11MB699179AF93251BACE99405A592312@SA1PR11MB6991.namprd11.prod.outlook.com>
-X-ClientProxiedBy: BY3PR05CA0026.namprd05.prod.outlook.com
- (2603:10b6:a03:254::31) To PH7PR11MB6522.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240322090213.6091-2-thomas.hellstrom@linux.intel.com>
+X-ClientProxiedBy: BYAPR11CA0097.namprd11.prod.outlook.com
+ (2603:10b6:a03:f4::38) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH0PR11MB7423:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8f25e68e-ad2d-4aef-5096-08dc4a96b5d3
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|MN0PR11MB6088:EE_
+X-MS-Office365-Filtering-Correlation-Id: b3a84aed-cce5-4d96-a2b0-08dc4a98440c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QcoLkVowslACCvNo+poSwnTTybNnaOFrOARA0YMWmzQHo0VVyUGAIVZBRgASnQvZgbSShbSzcP/O79xMIO4Np0qkrvQiCdxf4TqBovSMNTx7pTWKUyH8+BTM+954Zz2VjlnK0z48Eoio+CYuAO0aPS8FykSm+ri+DxjRtDWv+q7ypuuqPzmsttLk9UuWHTv6Ip+1i4pB1aqCA/ZeSrQroTQQtOoqvUWwWXntMNXeoOFvm4Xzartq9M6msMT4FE9Y1qo+mNO08HtQiFsyiWYe5764lRo8GRat8heXnqsfYCEru1zCnOQKjw2QoiU803bizph9/cMp43tmbVT0RbaeroULoaWkuxxlqRDWnLjJeD6mSln7QnII5BJYymqtJaT95juilJDHPuaFkoupML6hdU9Gn6JA5uAzj52Rihj204pghGP+jgrQSpH59UNDTFLjLOlk5T6oLPGlKpa+LqEbHVNbfhOjX9PHS29j7ACPv/VrT9qJaAfXTzw17JKvSDwqn0mkE6BgLWzWnGPFMsV3YmcMC8rLEiu9hmO4AW4+pnwubQYqYjOwFXOKXfsFhoCK76D/8k7CWRHQVfdVUEu4jYJIaQqfBMFJUBInRZFscgjvR+uD1mXiE2vEbWc4o7G0ETZX7JMeAsru3knTTMEPrVxAO4HwTgoT31qB4Q88bjI=
+X-Microsoft-Antispam-Message-Info: evwjfsXP0mfNBtJpIQYZxnFBX+s/Z+ttcOB6w5xkh8zh6sZmm9A+vMqDXq3WvXfnsthjLXMLtfe97ocH+PAXt4wg7BX7ljVUDqZnDsn8+Fkw/AoGt6GbbYWF9mv7Nexh9wF1vgVdGNBm3CtbE2nyZFS1ioVVFD69SaMkhcIUM7w8yWnNd/JCZJsEuxlYawgxZcQaOvvGgabCcGIjY6xHFAhrCewhP3PJuH1D3FASarL6mYOoN+vNILy1f1yFdq3x3dLYYRVDLPNETYO4IjNXBWx6XnLsjAShhO0UMuX6uxhSmkh7sXLKwrs1sjPsbU/kvSRpRFpsjsix46+8gQZZKdL2aJsQ2dRLhWNMqBsplyBQ4bv30uR7fXKI+FcdU2ZqyksMO1oOrK20sWzCcD1RixDs8tR5ZjyXw54zudFEvRv1Z4batH2hJLbGqnFHKQw4z7jSG6ekxotwP5ADIVz2dPI+jzSIdiCaoo5Aa7c1kni/rd5pXX+vByySFdsdrN3kYSHcxZ8ztBeSPiFBrXBx1jjh/JHMQyEGf28rOy1jIMcUeYAGyTlDWgklyBqiqeuY4q36szKA+jBdaAb+M49tRaC+afWybSvhubHmBcxdB3YdEduq+MUEOk3Pfk+aaHpSs63Y/kVrLmM7rvkU57sr8KDk7StVo0feMdzrGMCcIOk=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(1800799015)(366007)(376005); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?aUca5g2qJvtMBDjEZbpcJ8tcNd8ZjVHnyIBXx/b+8D55K64VSeIg239gJNzn?=
- =?us-ascii?Q?q0vE+qHubvGl9AkEfaj8Q6Njfn2ODyyY/WH3UHc5pd+gfP1DWHdQQuYmHroW?=
- =?us-ascii?Q?Z1oEF2FiR4fVLddHDxfBlDyfD71T02F+x3bIZsbc2OjOq8yndh3Z/vV+UwgH?=
- =?us-ascii?Q?mfaCkEYeIOdx2myKY1sDMkUY7Htv1AjcqE9EWtVPekpIHPEGsdGCtvulEv5y?=
- =?us-ascii?Q?zqHkQiXP0z9VOZ/aPCkrtrABk0g49cZZC3MqJE8rWl0qL54orTOPkzAdK2Cr?=
- =?us-ascii?Q?+6txAfyeRS1hOtc+cZH75HqcA2c2pUxObYV7GVjC5TbUj9uIa+Ww3tnATqc2?=
- =?us-ascii?Q?TveJnkjhCpsVpIm+fJBBPib22PT87S1UA/I7Mt/twP8eh1A7naDF4LkdpVtF?=
- =?us-ascii?Q?FRSnO0e5doqIcqmVQSvprlCH1B3DSIb7eFlSMC0YoHPLS9qNsPmKhLcCQpwb?=
- =?us-ascii?Q?dDX7PEUGDNrc97YeGrxZPZPrZdYMEpHIfdwV9mrOrcQ56nUQejBk0gl0wkOx?=
- =?us-ascii?Q?DVCOgS/qDSGRtDalI6dNqiPlWSFBXMDIf1mKF29lBitWHSzbzXtxE62gpBk5?=
- =?us-ascii?Q?3ZTJl/YYqlyYKFe4CSGP6sHha7MUCNIwDP4tQT54V3vTZf9o7+kg4hhXhem7?=
- =?us-ascii?Q?PCHhAmaLDTzKOZDq/aoffYalgm/xi/JcBL2h0KLMmMP0F5TI8vSX0OG4P2Dd?=
- =?us-ascii?Q?s0sjAA2WZVRgNfsDeMQQoK2qi4BG01L8tAdNW9wAiNmq48xsUDxXkAS88HSm?=
- =?us-ascii?Q?f8dpdT9TYD2XiewEe2JI8NzbUkcBx/AZvqp1PfohBO+CgtoxMdIUmB5dha10?=
- =?us-ascii?Q?uezsmXtKMOo3kx0rVtec7MjVt1rrsKuX4WiQiTYgvLDdfHnQ+oJXJ6/wZOi8?=
- =?us-ascii?Q?Hzf/2/Kfg9K8IQXCFTgjad8b5BPtZRASM7mpvghNJ3+yiE1Gawri5H+GofbW?=
- =?us-ascii?Q?9K9SiddN0LvK0Oo2axBynI50O+sUqUYKAMIMavDWi9yFSdfKZW0SnnHCuzeB?=
- =?us-ascii?Q?yKEWvpTui2GXADR1CVZPQYYk9seTtNIx5swAyDV1RJb/ENtnd3sBa1ptaAXB?=
- =?us-ascii?Q?5Yj/Ar7o/rEEbcThtL4AslNqeIWrUjQdNj9ABHxZMZ9euzol6dWqJSgVM9M1?=
- =?us-ascii?Q?eabiFCBY0s7Pz9rEsLd74PN6lVOQH3hhhhHF0OatTJ+gEm9v6gf/Kc2Jx4U3?=
- =?us-ascii?Q?tJ7lNYuk2BE9SeX+im7ekforNFjkI4tGcqae9U9ltEywJ6he/bBZHySbgQi1?=
- =?us-ascii?Q?Md43PChClpKxzp1osSu9Iae5blFVJH+4Q97ZmeBOIDKUgmoEFrtqQieLlYWP?=
- =?us-ascii?Q?noKT7H/6mmIakMtuTvkfPC6jHwUVQ9ARaRn1J5lMgPEMuNKQ10hT6a8YPum5?=
- =?us-ascii?Q?W5zVVpDpoCxyqAs9CHNp2BXSdiumSQywQksLTOPy2JhkQzUsTwT1CsbWrreU?=
- =?us-ascii?Q?C0R+uFN+iYuwwRrRBw6u8xGz17c6ccA2PsAoRum3jZE+G7DavHkp93Gd2NjG?=
- =?us-ascii?Q?7aN7aPAPrEH/FQANn4A6eM+JHeWIC1FAcuCO/duumbAxqkMC7vnEatdtVH3u?=
- =?us-ascii?Q?X/8EdWRROg/hx9dcMVQ8eEg6jrZgbDQFDJH/J1d1rA4J4+ofQerkEDoSNirG?=
- =?us-ascii?Q?Lw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8f25e68e-ad2d-4aef-5096-08dc4a96b5d3
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?eLrvP/jqatfDLRLIk9u08doejKLUgMBo+e6TLfptFORHy0b9eob0qKzR1J?=
+ =?iso-8859-1?Q?mjiC6o6zFMCSvgajOyaaHhwEe7vg30Hj6LCSBIWbi7NtdcPXKUDPP59n92?=
+ =?iso-8859-1?Q?3ioVlyNQiNPhrJrQCSOWkIW1k+Gi35b1EGstGdpnRrL9e+B5ubalYnDF/Q?=
+ =?iso-8859-1?Q?4dzF11BmqCGPo5wKiyhJ91t1ESTFulywy2eoQST3ywna3tIhgmYarPShU6?=
+ =?iso-8859-1?Q?y5QGPZMBhIq+c+huYgHPhhaNYNREHfZFerWLcVCZX62le+xONwiNpg1VDv?=
+ =?iso-8859-1?Q?KbZavjjRlM6BzU3F2X9Cth+vEdZusyOxJeW5SNfnv/1nQXW9TNzzrumoMA?=
+ =?iso-8859-1?Q?SQu6S5/Ii3odHwwGQ0BOxYCTYGhttEYrD0wYKfarie+PHGeQAtZ63fHQUd?=
+ =?iso-8859-1?Q?qAXxAtd9TzqVA40q1Lv4VzQjZ5aukHafs2Ael2W5+zlJ3f014kYG5ab+JV?=
+ =?iso-8859-1?Q?HKNgPBTELGv6aHpu69B83qE3bPnY66FmkkjV9sGHg2PE/WYGm9V7AdKd0I?=
+ =?iso-8859-1?Q?b+GhR5CISVL2tgU4NeH6oz/4P7slmTJAamFbbzBfVm3iP+ydVDN4snQDKW?=
+ =?iso-8859-1?Q?PVPk/ABBeCn+CGe2VQRpqs0aduMobAPY7qs3gCOBhodgz+tCpBOYQoIX72?=
+ =?iso-8859-1?Q?LN1Ltmj6luiMo4x3z6CXF4mLBLURoj+DZ6cLKnTO86J6V7HVhHCtqpdoYz?=
+ =?iso-8859-1?Q?bvuMBkFk9Z25HDB/N2IXUp1KLppoP6oB1MlidEMCgpeRUKm6YLWk9bKl8s?=
+ =?iso-8859-1?Q?pFVzseLRht8juxbm5bQ611DSEidp79tGcjJboEXeScA2KNjoXpfW0i9baN?=
+ =?iso-8859-1?Q?kI8iR3ZvAB/KgVw+brfLwJNEkN575idQ7fKtaHoI8rWK+kM3RNyZLgg77c?=
+ =?iso-8859-1?Q?gNhZiQHWA+LRukVJOSXzMpZRmWwBBQc7p+suNlD7g9TnqESZBhAM/M7L8L?=
+ =?iso-8859-1?Q?sBOj1EThOEHDgvKf9HW61XBet0yHXEzTvxQXhbyWtNRVwhMzwpxUGYXtHi?=
+ =?iso-8859-1?Q?qWMS/SVgcukbzvxjtTdR9OMclltXO2mi5jguAePbefhBr5JgjjfPCaFlkA?=
+ =?iso-8859-1?Q?DG5TQ+9kTAs1YRTqRNAAhOP0jP8aQRoekauRCpuKfR7YIq8sLggCQgAz2t?=
+ =?iso-8859-1?Q?3GOsvzZHvFvRCaZec7ce5G9ccaUHB35pG45xzdKECMwV02kXGFHhiQuH+r?=
+ =?iso-8859-1?Q?gqGk19DMeT2Cj/ML4bpph31NloGqheYtmCylhjtUexjAuEZNQaHa9fA5jJ?=
+ =?iso-8859-1?Q?EjGTGzk41Lkrq8k5FwPgPZZ3pjZmS/z3hjX3nODLFh38tNAVhDOe8CuIP2?=
+ =?iso-8859-1?Q?eOOQbaS0gJsi8Po4P8Co2IoiYZ7Y9GhRsbaDEklYst8T9g/W9PnN/Jc9zt?=
+ =?iso-8859-1?Q?of8yCYmul/jHDBbn5kNdP3FAuKzWtRL2ixAz9bhS6q2id6EgV9CvKEsAYo?=
+ =?iso-8859-1?Q?FGAX3V8kNePWxX3jD6UnIDsIWi8QVBVRsAJQTcf3lPDVFzm7hKgOd3v147?=
+ =?iso-8859-1?Q?3nFzVHcKQ5eVsNMgTWSR5AZfFW3cIw51iMlEHzbQL9LU9TieAmokzCFXLk?=
+ =?iso-8859-1?Q?TrZeRXILTsKRiZT/Ru+ZlvNZdLl4Iui5xkqzbIV3obDECtPr/nQ7Bc9MRn?=
+ =?iso-8859-1?Q?d5dSR9m9LzI07hCVG3d/zJLE6yQ+Qo2LZW0txRc+C0dqr71lEoUhvmxw?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b3a84aed-cce5-4d96-a2b0-08dc4a98440c
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Mar 2024 17:37:13.7381 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Mar 2024 17:48:21.8600 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Xhe3ZledN9Bnt2LSjgGJQBATbUTYiWaXYiTVW+1YZiec3Nsj+qweSteHQM4aqYyv3mjEf1VrmyQYUWGFB1VBPw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7423
+X-MS-Exchange-CrossTenant-UserPrincipalName: Llg7pHprqQOIls7D8wbMFFv0oPRdXqMPfoDwLHFIssrymymqkJRUtV8iqoeqn1IgtoQxjvqB/wpvVhtg/xOFZw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6088
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -150,116 +154,179 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Mar 22, 2024 at 11:06:28AM -0600, Zeng, Oak wrote:
+On Fri, Mar 22, 2024 at 10:02:07AM +0100, Thomas Hellström wrote:
+> For each rebind we insert a GuC TLB invalidation and add a
+> corresponding unordered TLB invalidation fence. This might
+> add a huge number of TLB invalidation fences to wait for so
+> rather than doing that, defer the TLB invalidation to the
+> next ring ops for each affected exec queue. Since the TLB
+> is invalidated on exec_queue switch, we need to invalidate
+> once for each affected exec_queue.
 > 
+> v2:
+> - Simplify if-statements around the tlb_flush_seqno.
+>   (Matthew Brost)
+> - Add some comments and asserts.
 > 
-> > -----Original Message-----
-> > From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Matthew
-> > Brost
-> > Sent: Friday, March 8, 2024 12:08 AM
-> > To: intel-xe@lists.freedesktop.org
-> > Cc: Brost, Matthew <matthew.brost@intel.com>
-> > Subject: [PATCH v4 03/30] drm/xe: Move migrate to prefetch to op_lock function
-> > 
-> > Migrates need to be done under drm exec to make lockdep happy,
-> 
-> 
-> Can you explain more here? By under drm exec, do you mean drm_exec_until_all_locked? I do see xe_vm_prefetch/xe_bo_migrate is called inside drm_exec_until_all_locked, in patch 1 of this series, in function vm_bind_ioctl_ops_execute
-> 
+> Fixes: 5387e865d90e ("drm/xe: Add TLB invalidation fence after rebinds issued from execs")
+> Cc: Matthew Brost <matthew.brost@intel.com>
 
-This is a stale comment, will fix. Something like:
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-All non-binding operations in VM bind IOCTL should be in the lock and
-prepare step rather than the execution step. Move prefetch to conform to
-this pattern.
-
->  move
-> > the migrate done for prefetches under the op_lock function.
-> > 
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_vm.c | 28 +++++++++++++---------------
-> >  1 file changed, 13 insertions(+), 15 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> > index fb73afcab3b7..70a5ba621e4e 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm.c
-> > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > @@ -1994,20 +1994,10 @@ static const u32 region_to_mem_type[] = {
-> > 
-> >  static struct dma_fence *
-> >  xe_vm_prefetch(struct xe_vm *vm, struct xe_vma *vma,
-> > -	       struct xe_exec_queue *q, u32 region,
-> > -	       struct xe_sync_entry *syncs, u32 num_syncs,
-> > -	       bool first_op, bool last_op)
-> > +	       struct xe_exec_queue *q, struct xe_sync_entry *syncs,
-> > +	       u32 num_syncs, bool first_op, bool last_op)
-> >  {
-> >  	struct xe_exec_queue *wait_exec_queue = to_wait_exec_queue(vm,
-> > q);
-> > -	int err;
-> > -
-> > -	xe_assert(vm->xe, region <= ARRAY_SIZE(region_to_mem_type));
-> > -
-> > -	if (!xe_vma_has_no_bo(vma)) {
-> > -		err = xe_bo_migrate(xe_vma_bo(vma),
-> > region_to_mem_type[region]);
-> > -		if (err)
-> > -			return ERR_PTR(err);
-> > -	}
-> > 
-> >  	if (vma->tile_mask != (vma->tile_present & ~vma->usm.tile_invalidated))
-> > {
-> >  		return xe_vm_bind(vm, vma, q, xe_vma_bo(vma), syncs,
-> > num_syncs,
-> > @@ -2540,8 +2530,7 @@ static struct dma_fence *op_execute(struct xe_vm
-> > *vm, struct xe_vma *vma,
-> >  				     op->flags & XE_VMA_OP_LAST);
-> >  		break;
-> >  	case DRM_GPUVA_OP_PREFETCH:
-> > -		fence = xe_vm_prefetch(vm, vma, op->q, op->prefetch.region,
-> > -				       op->syncs, op->num_syncs,
-> > +		fence = xe_vm_prefetch(vm, vma, op->q, op->syncs, op-
-> > >num_syncs,
-> >  				       op->flags & XE_VMA_OP_FIRST,
-> >  				       op->flags & XE_VMA_OP_LAST);
-> >  		break;
-> > @@ -2766,8 +2755,17 @@ static int op_lock(struct drm_exec *exec, struct xe_vm
-> > *vm,
-> >  		err = vma_lock(exec, gpuva_to_vma(op->base.unmap.va), false);
-> >  		break;
-> >  	case DRM_GPUVA_OP_PREFETCH:
-> > -		err = vma_lock(exec, gpuva_to_vma(op->base.prefetch.va),
-> > true);
-> > +	{
-> > +		struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
-> > +		u32 region = op->prefetch.region;
-> > +
-> > +		xe_assert(vm->xe, region <=
-> > ARRAY_SIZE(region_to_mem_type));
-> > +
-> > +		err = vma_lock(exec, vma, false);
-> > +		if (!err && !xe_vma_has_no_bo(vma))
-> > +			err = xe_bo_migrate(xe_vma_bo(vma), region);
-> >  		break;
-> > +	}
+> Cc: <stable@vger.kernel.org> # v6.8+
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_exec_queue_types.h |  5 +++++
+>  drivers/gpu/drm/xe/xe_pt.c               |  6 ++++--
+>  drivers/gpu/drm/xe/xe_ring_ops.c         | 11 ++++-------
+>  drivers/gpu/drm/xe/xe_sched_job.c        | 10 ++++++++++
+>  drivers/gpu/drm/xe/xe_sched_job_types.h  |  2 ++
+>  drivers/gpu/drm/xe/xe_vm_types.h         |  5 +++++
+>  6 files changed, 30 insertions(+), 9 deletions(-)
 > 
-> Understand you have a reason to do this. It does introduce confusion: the function is called op_lock and now you have a migration operation inside.
-> 
-
-Yes, how about? s/op_lock/op_lock_and_prepare/
-
-Likewise: s/vma_lock/vma_lock/vma_lock_and_validate/
-
-Matt
-
-> 
-> Oak
-> 
-> 
-> >  	default:
-> >  		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
-> >  	}
-> > --
-> > 2.34.1
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> index 62b3d9d1d7cd..462b33195032 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> @@ -148,6 +148,11 @@ struct xe_exec_queue {
+>  	const struct xe_ring_ops *ring_ops;
+>  	/** @entity: DRM sched entity for this exec queue (1 to 1 relationship) */
+>  	struct drm_sched_entity *entity;
+> +	/**
+> +	 * @tlb_flush_seqno: The seqno of the last rebind tlb flush performed
+> +	 * Protected by @vm's resv. Unused if @vm == NULL.
+> +	 */
+> +	u64 tlb_flush_seqno;
+>  	/** @lrc: logical ring context for this exec queue */
+>  	struct xe_lrc lrc[];
+>  };
+> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> index 8d3922d2206e..37117752cfc9 100644
+> --- a/drivers/gpu/drm/xe/xe_pt.c
+> +++ b/drivers/gpu/drm/xe/xe_pt.c
+> @@ -1254,11 +1254,13 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
+>  	 * non-faulting LR, in particular on user-space batch buffer chaining,
+>  	 * it needs to be done here.
+>  	 */
+> -	if ((rebind && !xe_vm_in_lr_mode(vm) && !vm->batch_invalidate_tlb) ||
+> -	    (!rebind && xe_vm_has_scratch(vm) && xe_vm_in_preempt_fence_mode(vm))) {
+> +	if ((!rebind && xe_vm_has_scratch(vm) && xe_vm_in_preempt_fence_mode(vm))) {
+>  		ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
+>  		if (!ifence)
+>  			return ERR_PTR(-ENOMEM);
+> +	} else if (rebind && !xe_vm_in_lr_mode(vm)) {
+> +		/* We bump also if batch_invalidate_tlb is true */
+> +		vm->tlb_flush_seqno++;
+>  	}
+>  
+>  	rfence = kzalloc(sizeof(*rfence), GFP_KERNEL);
+> diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+> index c4edffcd4a32..5b2b37b59813 100644
+> --- a/drivers/gpu/drm/xe/xe_ring_ops.c
+> +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+> @@ -219,10 +219,9 @@ static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc
+>  {
+>  	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+>  	u32 ppgtt_flag = get_ppgtt_flag(job);
+> -	struct xe_vm *vm = job->q->vm;
+>  	struct xe_gt *gt = job->q->gt;
+>  
+> -	if (vm && vm->batch_invalidate_tlb) {
+> +	if (job->ring_ops_flush_tlb) {
+>  		dw[i++] = preparser_disable(true);
+>  		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+>  					seqno, true, dw, i);
+> @@ -270,7 +269,6 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
+>  	struct xe_gt *gt = job->q->gt;
+>  	struct xe_device *xe = gt_to_xe(gt);
+>  	bool decode = job->q->class == XE_ENGINE_CLASS_VIDEO_DECODE;
+> -	struct xe_vm *vm = job->q->vm;
+>  
+>  	dw[i++] = preparser_disable(true);
+>  
+> @@ -282,13 +280,13 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
+>  			i = emit_aux_table_inv(gt, VE0_AUX_INV, dw, i);
+>  	}
+>  
+> -	if (vm && vm->batch_invalidate_tlb)
+> +	if (job->ring_ops_flush_tlb)
+>  		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+>  					seqno, true, dw, i);
+>  
+>  	dw[i++] = preparser_disable(false);
+>  
+> -	if (!vm || !vm->batch_invalidate_tlb)
+> +	if (!job->ring_ops_flush_tlb)
+>  		i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+>  					seqno, dw, i);
+>  
+> @@ -317,7 +315,6 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+>  	struct xe_gt *gt = job->q->gt;
+>  	struct xe_device *xe = gt_to_xe(gt);
+>  	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
+> -	struct xe_vm *vm = job->q->vm;
+>  	u32 mask_flags = 0;
+>  
+>  	dw[i++] = preparser_disable(true);
+> @@ -327,7 +324,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+>  		mask_flags = PIPE_CONTROL_3D_ENGINE_FLAGS;
+>  
+>  	/* See __xe_pt_bind_vma() for a discussion on TLB invalidations. */
+> -	i = emit_pipe_invalidate(mask_flags, vm && vm->batch_invalidate_tlb, dw, i);
+> +	i = emit_pipe_invalidate(mask_flags, job->ring_ops_flush_tlb, dw, i);
+>  
+>  	/* hsdes: 1809175790 */
+>  	if (has_aux_ccs(xe))
+> diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
+> index 8151ddafb940..b0c7fa4693cf 100644
+> --- a/drivers/gpu/drm/xe/xe_sched_job.c
+> +++ b/drivers/gpu/drm/xe/xe_sched_job.c
+> @@ -250,6 +250,16 @@ bool xe_sched_job_completed(struct xe_sched_job *job)
+>  
+>  void xe_sched_job_arm(struct xe_sched_job *job)
+>  {
+> +	struct xe_exec_queue *q = job->q;
+> +	struct xe_vm *vm = q->vm;
+> +
+> +	if (vm && !xe_sched_job_is_migration(q) && !xe_vm_in_lr_mode(vm) &&
+> +	    (vm->batch_invalidate_tlb || vm->tlb_flush_seqno != q->tlb_flush_seqno)) {
+> +		xe_vm_assert_held(vm);
+> +		q->tlb_flush_seqno = vm->tlb_flush_seqno;
+> +		job->ring_ops_flush_tlb = true;
+> +	}
+> +
+>  	drm_sched_job_arm(&job->drm);
+>  }
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
+> index b1d83da50a53..5e12724219fd 100644
+> --- a/drivers/gpu/drm/xe/xe_sched_job_types.h
+> +++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
+> @@ -39,6 +39,8 @@ struct xe_sched_job {
+>  	} user_fence;
+>  	/** @migrate_flush_flags: Additional flush flags for migration jobs */
+>  	u32 migrate_flush_flags;
+> +	/** @ring_ops_flush_tlb: The ring ops need to flush TLB before payload. */
+> +	bool ring_ops_flush_tlb;
+>  	/** @batch_addr: batch buffer address of job */
+>  	u64 batch_addr[];
+>  };
+> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+> index ae5fb565f6bf..5747f136d24d 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> @@ -264,6 +264,11 @@ struct xe_vm {
+>  		bool capture_once;
+>  	} error_capture;
+>  
+> +	/**
+> +	 * @tlb_flush_seqno: Required TLB flush seqno for the next exec.
+> +	 * protected by the vm resv.
+> +	 */
+> +	u64 tlb_flush_seqno;
+>  	/** @batch_invalidate_tlb: Always invalidate TLB before batch start */
+>  	bool batch_invalidate_tlb;
+>  	/** @xef: XE file handle for tracking this VM's drm client */
+> -- 
+> 2.44.0
 > 
