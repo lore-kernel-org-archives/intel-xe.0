@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66CE2C54E71
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Mar 2024 09:56:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3170CC47DD9
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Mar 2024 10:06:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1883E10F28C;
-	Fri, 22 Mar 2024 09:56:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5BCA10E40F;
+	Fri, 22 Mar 2024 10:06:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n51m+FcF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="axYy5TEy";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D681510F234
- for <intel-xe@lists.freedesktop.org>; Fri, 22 Mar 2024 09:56:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B7E710E40F
+ for <intel-xe@lists.freedesktop.org>; Fri, 22 Mar 2024 10:05:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711101387; x=1742637387;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=sxJ7fBrhwWeuLbfDqql0AwNpaECIV38i0uznO3dF5bY=;
- b=n51m+FcFoZwbN0E0yPCrkUCEaxEVNhX3cUaDkAjSy+iPSpwACocmv4f7
- h5nZLC1kfuiYrjp/+kruarc5K8jDAZwdm12jwdTUOrXPQWfHTwFyZsKsP
- 5FoSSKIsXpzGpfi1VmHHqD2ZNeHhEfLI1CD+e41X/ufLwrkZuyVRBvULW
- eIV9Oylb/Q7I+HHBcTsOaYuaiYC3KA/70FTubzR8UV85x9rEKB40t5RB/
- vGx/kzSsLlUbce1OeUGP6sFitp6RnRb3K02U2s59LTheyDcA+V3kR1pA2
- XHCKGV6D32WKd78xe9fkpvMII8GuwDqc4C18KOoIpqxK6e0+qed7FpLYX Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="9092905"
-X-IronPort-AV: E=Sophos;i="6.07,145,1708416000"; 
-   d="scan'208";a="9092905"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2024 02:56:26 -0700
+ t=1711101959; x=1742637959;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=crcMipWkR4uwceJImraOA8NikGUc/x5euKJv6vKPw5M=;
+ b=axYy5TEyjyG8AJimNfD3CIrYRQybZjJTe3Wwzlx4GGf85fjBe+WhE97Z
+ hx9XfWnr0HF6RVqNl+0gMXIJrXWHlpRRMJmRgMMgGcM00c9VTLIhzZJKh
+ Jna8v3AdNwyKXPk+5li+HLjuiLEXqE58xrs1gwebGMVz80n3tKB31cjZa
+ TkYcRK+zMu+5tyeajhMRBpuEWnteKFvjIjOIEL/eYyuEd4CD4S9aeyd2L
+ AiI9TC2Dsq/SBT8HZSzMpyuE4WApyCYQyZZk7F9JFRSyM9E6aM8XiGx0U
+ fR6j/bP/a7CUD0AljO5hUO2RxZH+Zz2/JkYSE26bQn8Sc2B/0HPfxEESg w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="16870579"
+X-IronPort-AV: E=Sophos;i="6.07,145,1708416000"; d="scan'208";a="16870579"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2024 03:05:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,145,1708416000"; d="scan'208";a="14821636"
+X-IronPort-AV: E=Sophos;i="6.07,145,1708416000"; d="scan'208";a="19521705"
 Received: from ghoshsu1-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.55.6])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2024 02:56:25 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-Subject: Re: [PATCH v3 0/2] drm/xe : avoid the risky function sprintf
-In-Reply-To: <20231207012840.48432-1-krishnaiah.bommu@intel.com>
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2024 03:05:57 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/xe: remove unused struct xe_device members
+In-Reply-To: <e8feb9d32ad698a111acd6ee475ee304b5893db4.camel@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231207012840.48432-1-krishnaiah.bommu@intel.com>
-Date: Fri, 22 Mar 2024 11:56:20 +0200
-Message-ID: <87il1elhdn.fsf@intel.com>
+References: <20240321161548.3509672-1-jani.nikula@intel.com>
+ <e8feb9d32ad698a111acd6ee475ee304b5893db4.camel@intel.com>
+Date: Fri, 22 Mar 2024 12:05:52 +0200
+Message-ID: <87frwilgxr.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -66,19 +65,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 07 Dec 2023, Bommu Krishnaiah <krishnaiah.bommu@intel.com> wrote:
-> These errors were highlighted by Static analyzer. Used snprintf instead o=
-f sprint.
-> Static analyzer Reported "Calling risky function (DC.STRING_BUFFER)=E2=80=
-=9D
+On Thu, 21 Mar 2024, "Souza, Jose" <jose.souza@intel.com> wrote:
+> On Thu, 2024-03-21 at 18:15 +0200, Jani Nikula wrote:
+>> modeset_restore_state has been unused since commit 6af0ffc0db93
+>> ("drm/i915/display: move restore state and ctx under display
+>> sub-struct").
+>>
+>> member global_obj_list has been unused since commit e2925e19c006
+>> ("drm/i915/display: move global_obj_list under display sub-struct").
+>>
+>> hti_state has been unused since commit 62749912540b ("drm/i915/display:
+>> move hti under display sub-struct").
+>>
+>> snps_phy_failed_calibration has been unused since commit 3a7e2d58f800
+>> ("drm/i915: move snps_phy_failed_calibration to display sub-struct under
+>> snps").
+>>
+>
+> Reviewed-by: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
 
-Date: Thu, 07 Dec 2023 06:58:38 +0530
-
-Please fix the clock on your machine.
+Thanks, pushed to drm-xe-next.
 
 BR,
 Jani.
 
-c
+
 --=20
 Jani Nikula, Intel
