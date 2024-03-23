@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 619AFCD11BF
-	for <intel-xe@archiver.kernel.org>; Sat, 23 Mar 2024 12:08:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF66EC54E58
+	for <intel-xe@archiver.kernel.org>; Sat, 23 Mar 2024 12:08:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15AAA10F2F9;
-	Sat, 23 Mar 2024 12:08:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BF8610F5B4;
+	Sat, 23 Mar 2024 12:08:50 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49CDF10F2F9;
- Sat, 23 Mar 2024 12:08:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CFD410F5B4;
+ Sat, 23 Mar 2024 12:08:50 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Fix_static?=
- =?utf-8?q?_analysis_tool_reported_errors_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Fix_static_anal?=
+ =?utf-8?q?ysis_tool_reported_errors_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Karthik Poosa" <karthik.poosa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 23 Mar 2024 12:08:39 -0000
-Message-ID: <171119571930.1016878.634771692439401555@8e613ede5ea5>
+Date: Sat, 23 Mar 2024 12:08:50 -0000
+Message-ID: <171119573012.1017640.7659688437868486245@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240323121359.2928486-1-karthik.poosa@intel.com>
 In-Reply-To: <20240323121359.2928486-1-karthik.poosa@intel.com>
@@ -48,9 +48,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 657dd8fcd2f1 drm-tip: 2024y-03m-22d-21h-26m-30s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Fix static analysis tool reported errors
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+a9eb1ac8298ef9f9146567c29fa762d8e9efa1ef
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f36399461cbd88f2c441b1a9d31e579e7692e393
+Author: Karthik Poosa <karthik.poosa@intel.com>
+Date:   Sat Mar 23 17:43:59 2024 +0530
+
+    drm/xe: Fix static analysis tool reported errors
+    
+    Add a NULL pointer check.
+    
+    v2: Release resources before returning error. (Riana).
+    
+    Fixes: 09d88e3beb64 ("drm/xe/pm: Init pcode and restore vram on power lost")
+    Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+    Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
++ /mt/dim checkpatch 657dd8fcd2f1d1205c6f98fdb8b60915228991d1 drm-intel
+f36399461cbd drm/xe: Fix static analysis tool reported errors
 
 
