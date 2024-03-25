@@ -4,27 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 712AEC54E58
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Mar 2024 23:44:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41527C54E64
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Mar 2024 23:56:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2251610EA37;
-	Mon, 25 Mar 2024 23:44:08 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F70710E7B8;
- Mon, 25 Mar 2024 23:44:07 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2450676949171952653=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0623F10EBA5;
+	Mon, 25 Mar 2024 23:56:51 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="acOcSO6z";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22E2A10EBA5
+ for <intel-xe@lists.freedesktop.org>; Mon, 25 Mar 2024 23:56:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1711411009; x=1742947009;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=vwOnFKkH58GpZpka+FpWwgY8WwIKu79p73bhihU7Wbo=;
+ b=acOcSO6zENWbFV3NvQctjdxF4aZMt07g8pUOpdSjypG/oZNsSxhKAfr+
+ bfFgXqLMRufrDkcNVYfcI/bThtkFwh0Hk14GBWSKnR7hxozE2HiVXyh21
+ fjfO05VRY6sRiRKdUS1IJyX6oqIc69AxjdGDzRwFFnQqzXRngho019gRv
+ K875kCXVHCXKrRd1HLPtifTFBZNnxfiKneWn96nI7LhY4pfPMhK626sXf
+ Qbi8yjZkx3X4P/jqufFn7TZ8UHDqjRphCHL8WsfJhbloqXvj7ybVE+CzZ
+ Ekj0wc61Kz8zDJGRjGnRtdhn2SaWnHw7fPnQnQ3+xDHeXmlWiZ9Ju6GDH Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="16987486"
+X-IronPort-AV: E=Sophos;i="6.07,154,1708416000"; d="scan'208";a="16987486"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2024 16:56:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,154,1708416000"; d="scan'208";a="20439018"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.141])
+ by fmviesa004.fm.intel.com with ESMTP; 25 Mar 2024 16:56:48 -0700
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH] drm/xe/guc: Remove explicit shutdown of SLPC
+Date: Mon, 25 Mar 2024 16:56:02 -0700
+Message-Id: <20240325235602.1155486-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe/guc=3A_Remove_explicit_sh?=
- =?utf-8?q?utdown_of_SLPC_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 25 Mar 2024 23:44:07 -0000
-Message-ID: <171141024713.1038645.8522915778947403980@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240321184924.234579-1-vinay.belgaumkar@intel.com>
-In-Reply-To: <20240321184924.234579-1-vinay.belgaumkar@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +57,80 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2450676949171952653==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+SLPC shutdown is called in reset and suspend paths. In the reset
+path, it is possible that the H2G call gets lost as GuC is in the
+process of being reset. There is no value in stopping SLPC when
+it will happen anyways.
 
-== Series Details ==
+In the suspend path, we disable communication with GuC, so there
+is no need to explicitly shutdown SLPC.
 
-Series: drm/xe/guc: Remove explicit shutdown of SLPC (rev2)
-URL   : https://patchwork.freedesktop.org/series/131449/
-State : failure
+v2: Rebase
 
-== Summary ==
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_pc.c | 29 -----------------------------
+ 1 file changed, 29 deletions(-)
 
-CI Bug Log - changes from xe-990-3dc2116dbf63f02771f241fdabee8a3e3ff9e8a8_BAT -> xe-pw-131449v2_BAT
-====================================================
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index b242af8ed59f..9c110537d135 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -145,25 +145,6 @@ static int pc_action_reset(struct xe_guc_pc *pc)
+ 	return ret;
+ }
+ 
+-static int pc_action_shutdown(struct xe_guc_pc *pc)
+-{
+-	struct  xe_guc_ct *ct = &pc_to_guc(pc)->ct;
+-	int ret;
+-	u32 action[] = {
+-		GUC_ACTION_HOST2GUC_PC_SLPC_REQUEST,
+-		SLPC_EVENT(SLPC_EVENT_SHUTDOWN, 2),
+-		xe_bo_ggtt_addr(pc->bo),
+-		0,
+-	};
+-
+-	ret = xe_guc_ct_send(ct, action, ARRAY_SIZE(action), 0, 0);
+-	if (ret)
+-		drm_err(&pc_to_xe(pc)->drm, "GuC PC shutdown %pe",
+-			ERR_PTR(ret));
+-
+-	return ret;
+-}
+-
+ static int pc_action_query_task_state(struct xe_guc_pc *pc)
+ {
+ 	struct xe_guc_ct *ct = &pc_to_guc(pc)->ct;
+@@ -893,7 +874,6 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
+ int xe_guc_pc_stop(struct xe_guc_pc *pc)
+ {
+ 	struct xe_device *xe = pc_to_xe(pc);
+-	int ret;
+ 
+ 	if (xe->info.skip_guc_pc) {
+ 		xe_gt_idle_disable_c6(pc_to_gt(pc));
+@@ -904,15 +884,6 @@ int xe_guc_pc_stop(struct xe_guc_pc *pc)
+ 	pc->freq_ready = false;
+ 	mutex_unlock(&pc->freq_lock);
+ 
+-	ret = pc_action_shutdown(pc);
+-	if (ret)
+-		return ret;
+-
+-	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_NOT_RUNNING)) {
+-		drm_err(&pc_to_xe(pc)->drm, "GuC PC Shutdown failed\n");
+-		return -EIO;
+-	}
+-
+ 	return 0;
+ }
+ 
+-- 
+2.38.1
 
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-131449v2_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-131449v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (3 -> 0)
-------------------------------
-
-  ERROR: It appears as if the changes made in xe-pw-131449v2_BAT prevented too many machines from booting.
-
-  Missing    (3): bat-pvc-2 bat-adlp-7 bat-atsm-2 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-990-3dc2116dbf63f02771f241fdabee8a3e3ff9e8a8 -> xe-pw-131449v2
-
-  IGT_7782: a404f73182948e843640d00cc279883391cf6ef4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-990-3dc2116dbf63f02771f241fdabee8a3e3ff9e8a8: 3dc2116dbf63f02771f241fdabee8a3e3ff9e8a8
-  xe-pw-131449v2: 131449v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131449v2/index.html
-
---===============2450676949171952653==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Remove explicit shutdown of SLPC (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131449/">https://patchwork.freedesktop.org/series/131449/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131449v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131449v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-990-3dc2116dbf63f02771f241fdabee8a3e3ff9e8a8_BAT -&gt; xe-pw-131449v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-131449v2_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-131449v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (3 -&gt; 0)</h2>
-<p>ERROR: It appears as if the changes made in xe-pw-131449v2_BAT prevented too many machines from booting.</p>
-<p>Missing    (3): bat-pvc-2 bat-adlp-7 bat-atsm-2 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-990-3dc2116dbf63f02771f241fdabee8a3e3ff9e8a8 -&gt; xe-pw-131449v2</li>
-</ul>
-<p>IGT_7782: a404f73182948e843640d00cc279883391cf6ef4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-990-3dc2116dbf63f02771f241fdabee8a3e3ff9e8a8: 3dc2116dbf63f02771f241fdabee8a3e3ff9e8a8<br />
-  xe-pw-131449v2: 131449v2</p>
-
-</body>
-</html>
-
---===============2450676949171952653==--
