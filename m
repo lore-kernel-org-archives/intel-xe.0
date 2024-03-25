@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E5AEC54E58
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Mar 2024 19:25:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2E6EC54E64
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Mar 2024 19:25:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3558D10EADF;
-	Mon, 25 Mar 2024 19:25:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8AC4610EAEA;
+	Mon, 25 Mar 2024 19:25:34 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9041810EADF;
- Mon, 25 Mar 2024 19:25:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50A4D10EADF;
+ Mon, 25 Mar 2024 19:25:33 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5B1/3=5D_drm/xe=3A_Store_xe=5Fhe=5Fengine_in_xe=5Fhw=5Fengine?=
- =?utf-8?q?=5Fsnapshot?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5B1?=
+ =?utf-8?q?/3=5D_drm/xe=3A_Store_xe=5Fhe=5Fengine_in_xe=5Fhw=5Fengine=5Fsnap?=
+ =?utf-8?q?shot?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 25 Mar 2024 19:25:19 -0000
-Message-ID: <171139471958.1037808.14431864237118980842@8e613ede5ea5>
+Date: Mon, 25 Mar 2024 19:25:33 -0000
+Message-ID: <171139473333.1038098.2524821099348333425@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240325190643.150648-1-jose.souza@intel.com>
 In-Reply-To: <20240325190643.150648-1-jose.souza@intel.com>
@@ -45,15 +45,84 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: series starting with [1/3] drm/xe: Store xe_he_engine in xe_hw_engine_snapshot
 URL   : https://patchwork.freedesktop.org/series/131599/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 17ec6923f2c5 drm-tip: 2024y-03m-25d-19h-15m-09s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Store xe_he_engine in xe_hw_engine_snapshot
-Applying: drm/xe: Add helpers to loop over geometry and compute DSS
-Applying: drm/xe: Add INSTDONE registers to devcoredump
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+a9eb1ac8298ef9f9146567c29fa762d8e9efa1ef
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 5f4a2492025d7972b1e29a22594b5a770e996bcd
+Author: José Roberto de Souza <jose.souza@intel.com>
+Date:   Mon Mar 25 12:06:43 2024 -0700
+
+    drm/xe: Add INSTDONE registers to devcoredump
+    
+    This registers contains important information that can help with debug
+    of GPU hangs.
+    
+    While at it also fixing the double line jump at the end of engine
+    registers for CCS engines.
+    
+    v2:
+    - print other INSTDONE registers
+    
+    v3:
+    - add for_each_geometry/compute_dss()
+    
+    v4:
+    - print one slice_common_instdone per glice in DG2+
+    
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Matt Roper <matthew.d.roper@intel.com>
+    Cc: Zhanjun Dong <zhanjun.dong@intel.com>
+    Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
++ /mt/dim checkpatch 17ec6923f2c5bb23280b274d6359a44a6982982e drm-intel
+c2cc1785efff drm/xe: Store xe_he_engine in xe_hw_engine_snapshot
+25a7de1dfe54 drm/xe: Add helpers to loop over geometry and compute DSS
+-:36: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#36: FILE: drivers/gpu/drm/xe/xe_gt_mcr.h:51:
++#define for_each_geometry_dss(dss, gt, group, instance) \
++		for_each_dss_steering(dss, gt, group, instance) \
++			if (xe_gt_has_geometry_dss(gt, dss))
+
+-:36: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dss' - possible side-effects?
+#36: FILE: drivers/gpu/drm/xe/xe_gt_mcr.h:51:
++#define for_each_geometry_dss(dss, gt, group, instance) \
++		for_each_dss_steering(dss, gt, group, instance) \
++			if (xe_gt_has_geometry_dss(gt, dss))
+
+-:36: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'gt' - possible side-effects?
+#36: FILE: drivers/gpu/drm/xe/xe_gt_mcr.h:51:
++#define for_each_geometry_dss(dss, gt, group, instance) \
++		for_each_dss_steering(dss, gt, group, instance) \
++			if (xe_gt_has_geometry_dss(gt, dss))
+
+-:48: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#48: FILE: drivers/gpu/drm/xe/xe_gt_mcr.h:63:
++#define for_each_compute_dss(dss, gt, group, instance) \
++		for_each_dss_steering(dss, gt, group, instance) \
++			if (xe_gt_has_compute_dss(gt, dss))
+
+-:48: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dss' - possible side-effects?
+#48: FILE: drivers/gpu/drm/xe/xe_gt_mcr.h:63:
++#define for_each_compute_dss(dss, gt, group, instance) \
++		for_each_dss_steering(dss, gt, group, instance) \
++			if (xe_gt_has_compute_dss(gt, dss))
+
+-:48: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'gt' - possible side-effects?
+#48: FILE: drivers/gpu/drm/xe/xe_gt_mcr.h:63:
++#define for_each_compute_dss(dss, gt, group, instance) \
++		for_each_dss_steering(dss, gt, group, instance) \
++			if (xe_gt_has_compute_dss(gt, dss))
+
+total: 2 errors, 0 warnings, 4 checks, 55 lines checked
+5f4a2492025d drm/xe: Add INSTDONE registers to devcoredump
 
 
