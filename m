@@ -4,60 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27ABFC54E58
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Mar 2024 17:34:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5ECCBC54E58
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Mar 2024 17:37:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7DE310E720;
-	Mon, 25 Mar 2024 17:34:24 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XgGkWiqn";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8554610E720
- for <intel-xe@lists.freedesktop.org>; Mon, 25 Mar 2024 17:34:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711388064; x=1742924064;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=4DysAQ4SxYsrPEVgP9ckjbfcm/yrxHjhKKOpepx5K/I=;
- b=XgGkWiqnTxNakh1F5HusvHMGJEnYpDsVyy2Gxvl3LgtkqFS91+oWqY+q
- zbSVobV+EZxk3Fhi4EIIk9xwtyfscMn83A7uybgASviQwI/M6w2WAZbmB
- 0nvK/oxfVCOVDtH8w5mbrv6NNuK4TWTJjfxbbWxEI4rBttB1jMCekzj5m
- RUZ0EIZrnPr3pfJFiJJAQ3EkMRQQDccndZUWhv4pRpE1Tue+0n/mKZzWL
- uouXExy5i0Rr/pocqizXm7t5H0s8PzVODamDaD6Yz0d72tiNLgFt71Pda
- AI+sdWok60+ZZyLc3VcUvim1vzf0qI6vqPriHsXBjgw4aTwmn09P5eILY w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="6342821"
-X-IronPort-AV: E=Sophos;i="6.07,153,1708416000"; 
-   d="scan'208";a="6342821"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2024 10:34:23 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,153,1708416000"; d="scan'208";a="20414318"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa005.jf.intel.com with ESMTP; 25 Mar 2024 10:34:22 -0700
-Received: from [10.249.156.183] (mwajdecz-MOBL.ger.corp.intel.com
- [10.249.156.183])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 22CF528791;
- Mon, 25 Mar 2024 17:34:12 +0000 (GMT)
-Message-ID: <5a8f32d8-1321-4f71-ac8e-8e55455e59ad@intel.com>
-Date: Mon, 25 Mar 2024 18:34:01 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16FAA10EA12;
+	Mon, 25 Mar 2024 17:37:12 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1D1A10EA14;
+ Mon, 25 Mar 2024 17:37:10 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2197249948192659009=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] drm/xe: Store pointer to struct xe_gt in gt/ debugfs
- directory
-Content-Language: en-US
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, lucas.demarchi@intel.com,
- ogabbay@kernel.org, thomas.hellstrom@linux.intel.com
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Send_flat=5Fccs_in_config?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Akshata Jahagirdar" <akshata.jahagirdar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-References: <20240214115756.1525-1-michal.wajdeczko@intel.com>
- <20240214115756.1525-2-michal.wajdeczko@intel.com>
- <ZgGuAzMpdheUTPke@intel.com>
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <ZgGuAzMpdheUTPke@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Date: Mon, 25 Mar 2024 17:37:10 -0000
+Message-ID: <171138823092.1037563.16880113387851341817@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <cover.1711427514.git.akshata.jahagirdar@intel.com>
+In-Reply-To: <cover.1711427514.git.akshata.jahagirdar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,92 +35,142 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============2197249948192659009==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: Send flat_ccs in config
+URL   : https://patchwork.freedesktop.org/series/131595/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-988-d1ecfbbbb194e8f7941bd84f77f7c938b461ce14_BAT -> xe-pw-131595v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-131595v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@xe_evict@evict-beng-mixed-threads-small-multi-vm:
+    - bat-dg2-oem2:       [TIMEOUT][1] ([Intel XE#1027] / [Intel XE#1088]) -> [INCOMPLETE][2] ([Intel XE#804])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-988-d1ecfbbbb194e8f7941bd84f77f7c938b461ce14/bat-dg2-oem2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131595v1/bat-dg2-oem2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html
+
+  * igt@xe_exec_threads@threads-mixed-userptr-invalidate:
+    - bat-adlp-7:         [INCOMPLETE][3] ([Intel XE#1044] / [Intel XE#1376]) -> [INCOMPLETE][4] ([Intel XE#1044])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-988-d1ecfbbbb194e8f7941bd84f77f7c938b461ce14/bat-adlp-7/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131595v1/bat-adlp-7/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html
+
+  
+  [Intel XE#1027]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1027
+  [Intel XE#1044]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1044
+  [Intel XE#1088]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1088
+  [Intel XE#1376]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1376
+  [Intel XE#804]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/804
 
 
-On 25.03.2024 18:01, Rodrigo Vivi wrote:
-> On Wed, Feb 14, 2024 at 12:57:54PM +0100, Michal Wajdeczko wrote:
->> Attributes added under 'gt/' directories may wish to use that
->> in case they can't obtain it from elsewhere.
->>
->> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> ---
->>  drivers/gpu/drm/xe/xe_gt_debugfs.c | 3 +++
->>  1 file changed, 3 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
->> index c4b67cf09f8f..207b992f1240 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
->> +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
->> @@ -225,6 +225,9 @@ void xe_gt_debugfs_register(struct xe_gt *gt)
->>  		return;
->>  	}
->>  
->> +	/* other attributes may use parent->d_inode->i_private */
-> 
-> what did you mean with this comment?
-> if others are using, what would be the risks?
-> is this a good thing? is this a bad thing?
+Build changes
+-------------
 
-maybe better wording should be:
+  * Linux: xe-988-d1ecfbbbb194e8f7941bd84f77f7c938b461ce14 -> xe-pw-131595v1
 
-/*
- * Store the xe_gt pointer as private data of the gt/ directory node
- * so other GT specific attributes under that directory may refer to
- * it by looking at its parent node private data.
- */
+  IGT_7781: 7781
+  xe-988-d1ecfbbbb194e8f7941bd84f77f7c938b461ce14: d1ecfbbbb194e8f7941bd84f77f7c938b461ce14
+  xe-pw-131595v1: 131595v1
 
-> 
->> +	root->d_inode->i_private = gt;
-> 
-> At first I thought this was intrusive, but then the following
-> patches made me realize that we are already being intrusive
-> when disrespecting the data:
-> 
-> include/drm/drm_debugfs.h
-> struct drm_debugfs_info
-> /** @data: Driver-private data, should not be device-specific. */
-> 
-> 
-> So it looks that we do need something else.
-> 
-> Looking the i_private that you pointed out seems an alternative
-> 
-> include/linux/fs.h
-> struct inode {
-> void                    *i_private; /* fs or device private pointer */
-> 
-> it is a 'device' pointer rather then a 'driver', but I'm still confident
-> that it is the right one to use.
+== Logs ==
 
-GT aka xe_gt is more a device than a driver, no ?
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131595v1/index.html
 
-> 
-> It looks like the debugfs_create_file functions would override that
-> anyway with the data. Also other places in the fs code where this is
-> used for other checks.
+--===============2197249948192659009==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-the drm_debugfs will use i_private only on nodes that represent
-individual attributes, it will not touch the parent node i_private
-(which is our gt/ directory - and this where we set pointer to xe_gt)
 
-> 
-> So, perhaps we need something more flexible at the drm_debugfs layer
-> that would allow us to have a sub-device pointer?
-> 
-> The other 2 patches are great and you can already use rv-b on them if
-> we agree that this i_private change here is good.
-> 
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Oded Gabbay <ogabbay@kernel.org>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> 
->> +
->>  	/*
->>  	 * Allocate local copy as we need to pass in the GT to the debugfs
->>  	 * entry and drm_debugfs_create_files just references the drm_info_list
->> -- 
->> 2.43.0
->>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Send flat_ccs in config</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131595/">https://patchwork.freedesktop.org/series/131595/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131595v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131595v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-988-d1ecfbbbb194e8f7941bd84f77f7c938b461ce14_BAT -&gt; xe-pw-131595v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-131595v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@xe_evict@evict-beng-mixed-threads-small-multi-vm:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-988-d1ecfbbbb194e8f7941bd84f77f7c938b461ce14/bat-dg2-oem2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1027">Intel XE#1027</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1088">Intel XE#1088</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131595v1/bat-dg2-oem2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/804">Intel XE#804</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_threads@threads-mixed-userptr-invalidate:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-988-d1ecfbbbb194e8f7941bd84f77f7c938b461ce14/bat-adlp-7/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1044">Intel XE#1044</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1376">Intel XE#1376</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131595v1/bat-adlp-7/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1044">Intel XE#1044</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-988-d1ecfbbbb194e8f7941bd84f77f7c938b461ce14 -&gt; xe-pw-131595v1</li>
+</ul>
+<p>IGT_7781: 7781<br />
+  xe-988-d1ecfbbbb194e8f7941bd84f77f7c938b461ce14: d1ecfbbbb194e8f7941bd84f77f7c938b461ce14<br />
+  xe-pw-131595v1: 131595v1</p>
+
+</body>
+</html>
+
+--===============2197249948192659009==--
