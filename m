@@ -4,146 +4,148 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77BFDC54E64
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Mar 2024 18:56:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E246C54E58
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Mar 2024 19:02:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E37C10E362;
-	Mon, 25 Mar 2024 18:56:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0427210EAC6;
+	Mon, 25 Mar 2024 19:02:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YCFCTgOW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZICuq9AY";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 109C810E362
- for <intel-xe@lists.freedesktop.org>; Mon, 25 Mar 2024 18:56:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 086D210E82F
+ for <intel-xe@lists.freedesktop.org>; Mon, 25 Mar 2024 19:02:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711392972; x=1742928972;
+ t=1711393349; x=1742929349;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=GVcJ8uRno+wOvLtRM0wCbC0UQaNJ6YCloIXbTFLg0TM=;
- b=YCFCTgOWA+RceUSTqoaBUmTa4+X3PKUp0Nva/TGIJe8FvdcyFTyznCVO
- 3nQHT3SOv+kCUaqIMry1qcpm9Zq/ZmyVZaqWCr3jskkiP0kq93keRPAa/
- 8vHjRLnFBoFQjduUCOU3YgxDz2qQLygSgsLHpUt9FRf2jxm3RMYgaL09/
- ORbe/pls6GHPygsQ+OKR6NIM+Yu6wLMrQxUDxdbw2uHuRmtsCW518rMiO
- fPjCHzs06FzeT+2ZDY56jigeU0coeA3LFGSieenmKh3S9hFKBD7byCADY
- QQPOehNh1UR8Dfpg5asAHgG0nA7gNCTs+5HzFiitTYNwexUBjPvffZ1ai A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="10208772"
-X-IronPort-AV: E=Sophos;i="6.07,154,1708416000"; d="scan'208";a="10208772"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2024 11:56:11 -0700
+ bh=5JRx1MWleOJXo0+QuzRdUFVtpLk/h/hHKP4FmAmlDno=;
+ b=ZICuq9AYZIy4jeQQRboqz8sA93xZ5bGjEE5z517x6XzMOHtqlr4fBwcU
+ 4xD6oyw+nXgUEZFOPmcCkYcX0JllejL0pSpHi+mNV5DifN5JtYwAPDBfI
+ 8kBaga3wGPyldSKZ9LpBl6HDhTUpwsA2/qm1e4tsdj11djznhE7GNcl2S
+ 2hdDTM2QD+XloG320C5OYFkljFDdy+LQiu13GkZLkYvltoe6BddRs2A7R
+ E+FJYHJtk30gMofVCYX8fcL8Jg6wqiPVx9biMmNGC3l/N7WnYD7Se9LmL
+ YyCTDirybLrdv4pQfDsMfyVZWeik5f6NTrGVsk39QDpYbr3TUZJ6kMzUO g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="6249070"
+X-IronPort-AV: E=Sophos;i="6.07,154,1708416000"; 
+   d="scan'208";a="6249070"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2024 12:02:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,154,1708416000"; d="scan'208";a="16142501"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 25 Mar 2024 11:56:12 -0700
+X-IronPort-AV: E=Sophos;i="6.07,154,1708416000"; d="scan'208";a="20440656"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 25 Mar 2024 12:02:28 -0700
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 25 Mar 2024 11:56:10 -0700
+ 15.1.2507.35; Mon, 25 Mar 2024 12:02:27 -0700
 Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
  orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Mon, 25 Mar 2024 11:56:10 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.168)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Mon, 25 Mar 2024 12:02:27 -0700
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.41) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Mon, 25 Mar 2024 11:56:10 -0700
+ 15.1.2507.35; Mon, 25 Mar 2024 12:02:27 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KDRaSZ44i50LH+jdABEiizIiK+l8m6467Qh0AEl4aw+X8BiG8TyQtNjkKRIeyoqZDzeW+4GPqREPHwfU7ILr4Tf0Lp5gihG6ODAppjwBNhgG6QnZH7yWWmSnU+QLmITp3e5c05bXOvE7SXDknR7BurBEdz83adQPV+hSVJrMeBX1H2R/6mlGLI+Jx7Fx9uPDIxE91lEz4/XsXE9GBQXorRlSmszftpuGxqYLrsA/EzVunDUyMh4iCD787QpnF8b9klLijJPWktnJgiIXSdUrzrrRYyV60qausPuAhZ/VLnQnxmG3a54MyqZWb0MoL/8A5HAF4QntQEx4t7192gK81w==
+ b=TocdS/CMxYQ+3RCiqDJOpMUjIkEyUBPMlhoL+SDfS5Gud4DLi54DixpeQil9mfLOp6/LIh5HGWd/lb6JWxrMVDAWsucszbcRwtTmaNhv0tt0WOrvsJIGaUtnK9rIF7W2h998QLxb9TAc37V4QUwLysJLnNywbXvMefLWUooezTEMR9hm8rtnrvWYuaX7/qlnZ9NSEjkK9ccJfo4EQKUz6h1gW7am1zcukV/XPV8CgbGalq7it0iIElwdkfeO6g7WW4us6eaqgXou/uwY6tvO+zD9l5GWnHkiGjnD9h+1AHp9mmzt6yLb4g88AJxs64cuMcAGtRsUQ+q5yk9MjtNXRg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mlfma2z5kLFvYOYiZUidWZGHmE4SZKXj13KqMAyLbvg=;
- b=LYyex1s67uq5KlfHVvkllWQQvsHhDD1y8RbwGREsDmjPFK0zHKgFywoj/jBkdeBy3O9rRh+3umaf3MR5mwPliOv5plSuBnCFfLxRm6bzVChKghjSZVozjC0q11jU5d2H9c997eK9zbbOuGBkUbUlIN8J3/alPNKQh+IpGv64WGo6qxO24yP+7WDS5d0usLLst2VxFcR46j5bMKPFKxuLCQ+idk/aWBvU/5f1FZD8lYZX1n6sgY0zuE4RORnuI6wJGOm1KQcVqeRGrvnyD4kxo+G/oOjiiwarTmN5/F46z1Yv4xFSS6YFp96oCDiLXo3LPl+FM4Vyy5V+yStyH411mw==
+ bh=H5kH7FiQki0kqmhO3X0lQvxDYJrOLBUrWZ5+cVHSQ6g=;
+ b=lPOblNw35a6uhIGAdgpiR8SuZC1nACqAMc/kle2Tz92hUaaclhB+fBAho6RkFV9Y/y1doSCsJ9zTcdHSfhAYQZv3EfrWYLcyqsUAOJau2hPHZq6QtyGDcT45tS1rOWwK1x8f+RjzX65Tf4jcQfeoSXp0uS9jG4THpgVXbw+8XqyBdOIf62LB7htKSkb9PWJIemdegKNslqq498bxvY0RrwOHyrYvyhEJU192Qr2lW1MTH0r2Cj1JeRb8LYfzFMeBFpdZgzP/ixZgNbxEJmUXI1on2SarpqnnjnqO1I7df0xNRSijiHkcydBuyERJcUE6EgjVYcTS4TPSe9da+1w8YQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from CH3PR11MB8441.namprd11.prod.outlook.com (2603:10b6:610:1bc::12)
- by BL3PR11MB6507.namprd11.prod.outlook.com (2603:10b6:208:38e::8)
+ by PH7PR11MB6606.namprd11.prod.outlook.com (2603:10b6:510:1b1::12)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.31; Mon, 25 Mar
- 2024 18:56:08 +0000
+ 2024 19:02:25 +0000
 Received: from CH3PR11MB8441.namprd11.prod.outlook.com
  ([fe80::71ea:e0ea:808d:793b]) by CH3PR11MB8441.namprd11.prod.outlook.com
  ([fe80::71ea:e0ea:808d:793b%4]) with mapi id 15.20.7409.028; Mon, 25 Mar 2024
- 18:56:08 +0000
-Message-ID: <2636ee70-1b30-4f05-8448-3453d8f7e155@intel.com>
-Date: Mon, 25 Mar 2024 11:56:07 -0700
+ 19:02:25 +0000
+Message-ID: <d712f617-ad11-4f0e-8005-4594c97a87f1@intel.com>
+Date: Mon, 25 Mar 2024 12:02:22 -0700
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v3 2/2] drm/xe/lnl: Enable GuC Wa_14019882105
 Content-Language: en-GB
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>, Badal Nilawar
- <badal.nilawar@intel.com>, <intel-xe@lists.freedesktop.org>
+To: "Nilawar, Badal" <badal.nilawar@intel.com>, Michal Wajdeczko
+ <michal.wajdeczko@intel.com>, <intel-xe@lists.freedesktop.org>
 CC: <anshuman.gupta@intel.com>, <lucas.demarchi@intel.com>,
  <matthew.d.roper@intel.com>, <daniele.ceraolospurio@intel.com>
 References: <20240325150435.2967536-1-badal.nilawar@intel.com>
  <20240325150435.2967536-3-badal.nilawar@intel.com>
  <29f52749-032e-469e-9cae-cad1f01896fd@intel.com>
+ <e1b5afdb-0307-402c-a7fd-778131353a68@intel.com>
 From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <29f52749-032e-469e-9cae-cad1f01896fd@intel.com>
+In-Reply-To: <e1b5afdb-0307-402c-a7fd-778131353a68@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BY3PR03CA0006.namprd03.prod.outlook.com
- (2603:10b6:a03:39a::11) To CH3PR11MB8441.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SJ0PR13CA0217.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c1::12) To CH3PR11MB8441.namprd11.prod.outlook.com
  (2603:10b6:610:1bc::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR11MB8441:EE_|BL3PR11MB6507:EE_
+X-MS-TrafficTypeDiagnostic: CH3PR11MB8441:EE_|PH7PR11MB6606:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: T11uv0dgTw7MSIBuqzhiidyDc4U94J2Sqkpx5XPatLTjrE8O8LtczT1wLGj//5fUgv4NZTUV68Pekq9klTQNyGAWsWlClBZRhEFXYwiVfAibX9Xs+l+Ow1Yr50rMm4I6q0SzG08Pekf7vKvzm6gqYXqmsdVJQsas9Zvp8TBnecGGn7hPAr+rmNQMmfoSyI+yafQ1KMvM0vK5DoALQaSx6URXwBj5SsQfpmqBWrMljkCkOGUAMR3hDhcfDuuTu+qTUDl0MdoP9jk+eZHESG8LfxSR2WTlhlW5pFWxsZvcloEX9uTYGZauyh8xlZce+p86gBVkRMQDm3MCEl6503z5L6L5xYDyS/m1cz14dCdlsMUO2kFZVBJHM3SVQgSWYXSbNErtVuQSN/U0GutH9OzigleTAGiPsK2E3XoUkxkreclNUTQzoK3p1anyfPGitDawPEwA3dNNv38y5U9BV/83gmfzF23AlnhA21zwbSBEj/xamh//NWGd96279QeyBHNHb1ZWffN67ggV2j7TZlY5U87zmOl0jOrBY80xoUti1siHaB6iq6fvnmuW6xoHyevt0xGBFYwjtni2MuVn4FydEjIjZA2vyfycULaumgETbhuqc5Mrn+nmSyZURl5Mlh1KQ9HiYmt1NPurNsRtbUxfxWS5drMe/6rYJtsc+Xa+OJ0=
+X-Microsoft-Antispam-Message-Info: 5/Et5PiABbAPAdqbsIdvKavV/s/OrJxEMIIF/CG5fVE+C/sGk/5kSQiveTOUkFvFqus3bSs5zVWQ+7wnkZnxPP68DEvL8Xe6J1TD/6dlWD+etCuaJF5+GS6tsgsS2UTfcA6gtUGqkJ6za1fjEh7h/5ct9RWzYx9KXHUIRf7F5WjQ1FQ3Qb5nHJ8Mt4iZ3clNd3flVPERr+yPnoPA+nArPYnaqhUWRa9QiZPH8utBJW3R+ewAfOOVA6ICaZy6gX7ISIBCr1178RHy2MjOwrYOXJQkie8BrkB+tRjBebiBk5zkt7p2I14id54dXYwsxdLjKaWHNfdqEiCRrNgLYldXd401Qhz9uqN7h6GT9/7jY6DQb70fjjm4ISbCsfqrpUQFFHbwFSZ57fAM0ZhKxekUN6lkx/vtFsVAktuwTZ2tPMOuSzJcJ9rEWhC9+YV+SKZUnCk/f/BPJZ/tonPEhchBnPL/GFgk9gX+3uvBAVm6zCP41CorlQ5bcSaP63Mqu8CBfSl7mFM2jteOtuQHuvNvCyoR4K2+u96PPcqDKymE9jtS6MbvoxNzwNb7/q7InwFm9iS4IPuZbFkY43qv4GHFIughC2Y0wteaSJqmGdL/nRfg+1rgFjs1fvqs56kpolGFwJPxd5dXhcAnWIGSYOLXlpo9lsEwrvBVTBoCkYXZNjw=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH3PR11MB8441.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366007)(1800799015)(376005); DIR:OUT; SFP:1102; 
+ SFS:(13230031)(376005)(366007)(1800799015); DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UHpqVjFjMU5heEJBSm96V2JpeXhwdXhNYjVZSCtncncxQWFJb0tzKzFFa1hE?=
- =?utf-8?B?SkFaZW1UeXlnK2RUY2NiSGdvdnU5VnlXLzNvMWRYTEo2ZU56Q25kRjBDSkYr?=
- =?utf-8?B?UWpEcSs1eVhNSzNiK1RaZklWZUpOd3BLN1kxV2k0NXVPeUdVaTdtUndndFBL?=
- =?utf-8?B?OXR1M2pXSCs4U082bXI1T0RJY3JrYllRSzBTWHJKVHhGcHgvWXdRUUtoRDVZ?=
- =?utf-8?B?T0ZoTHBEUkozb0hvUDZHcUl6dEhPbDVTOEtBRUgzUEhIYlNXWjJRdzBnbFNH?=
- =?utf-8?B?VG84eUJIc1JPVmM3U2wyNlNPZUZ3ZmIyeU8rTjhqQjN3Rmp0aXhiWmJiMWFs?=
- =?utf-8?B?Ny83UEZDNzRGZnBCQ2U0QXZYODZpb3c0VFpkV0xFUi8vQklaRlNxZUluc3l3?=
- =?utf-8?B?V2JBdW5WempSUllmVFNTU2pUaUwrbHFlYU1hR1RyM3ZEbFI2WUp4M0l6WDhN?=
- =?utf-8?B?djdjWVFVNDdWNDlHN3d2MWdhWFpWSGVBK00rY3F1T3ExdVI1cWZLUFZIVjZS?=
- =?utf-8?B?QmhRVWNYbUhaUUd5dFNya2I3VWwxa2dEUThnRTJ1VDRRZk1lbldBeEhEa0R1?=
- =?utf-8?B?Tjdlb0ZHQWZXUEpmWlIzcjRWYmRJRXNJY1NrWExzZUhqckp6aEtUYmc5SnY5?=
- =?utf-8?B?aGNhZEkwM1IveVBnL25RdXNmdHVTenk2TW04VVlRMlJuTGJVNEZ0NFhTTWk4?=
- =?utf-8?B?QlNwQWx3NTF1YmZ0a1BqamFUQ1REN0pKRjlwa3U0bHJxOFllMUpIZ3U2Zjly?=
- =?utf-8?B?QklBSWtLeUgwWitrc2Q3K1FLYWljRTZoNFNXWDNuMzd6SG5JWTBqU3ZWUzNT?=
- =?utf-8?B?NVZKbHV4ZWEvN21DdktRVGYvKzBONEhGSTQyUlN2TW5iNWxnNWkxb2oxZnBv?=
- =?utf-8?B?dTY3dWpOMjkveEk4OTEvRVlKRzN6ZTdIOG9XL1RyOGIrYklxRXZGejZLdGVF?=
- =?utf-8?B?dElTZEU2cHo2UGh1Zk9oQlo0WXcxRnU4N1hzVS8rd2pIVExLenk1a1RBRWcz?=
- =?utf-8?B?MWZEcFFUYU85aUs1eUdlWEhuaEU1MzloL0VQWDZMdlVrTUJIeG9hcERjMWRa?=
- =?utf-8?B?dXg4akxYNGl1ZTlTWjFCcGFsUzBDTm5MMHdqV3lOdUdaTHM4UGVJTnd5TGU1?=
- =?utf-8?B?LzUyT3VadzM5RWErVUt1TlRSTDlGVW9mbEc3R1hwWDBIeGp6dUt6MUtqYUZS?=
- =?utf-8?B?QmxXTjBZWlJqcWRqd1gwNTNzZFQvbDYrZzZ6U0czQ1hzdjF3aWkybWFheGFx?=
- =?utf-8?B?cDIwaStZOUxsaUhLTlVzcmlIMVRwWURodTJnSnRpWkpPZHQwcXdreW9aenkv?=
- =?utf-8?B?S0lYWmJoZmtGcHhzckJVNWRoT3VaVE5wQTI4VFZCMmZNbTI5Nm5oZFNqUnkv?=
- =?utf-8?B?enI5bFlYcFRsd1VTejdtUVFTYzk1RkJjbmNEeFlqUytXTHJuZCt4U0orMFlZ?=
- =?utf-8?B?M2h2MTgwYngwc0REQ2tjNk9McG4vQ3l0UmFaMFB3eVo0WmsvNkl2Vlkrb0Yz?=
- =?utf-8?B?Y2UrZnVOYU1wa0dNemZFcHhKSjBXblZ6amw5cC82ZFpacCs3YlptemlUb3Vj?=
- =?utf-8?B?RW5YN2JNQXpxYytWN1ZDVkVTQ2hJVm1vUkwwYTFqd1ZBV1lXOXU5dUxzWEIx?=
- =?utf-8?B?YWlDV2xTK1hSODdVRzErLzdhZVdZRktqVldpNWhUejQxV3VxTHoxZ3ljQmJ2?=
- =?utf-8?B?Sjhwck90SCtLTkdlMzJEeDVESzlja1lXMUFSaERpSkJMRFJiWnJXaVp5OTdP?=
- =?utf-8?B?c293OHJPWkhoaHlkVG1JOWR2eGJWUHI0N0k0QThlYXVQNmR2T1R5Y3dsU2Fo?=
- =?utf-8?B?enhCZzBYMzJDVEpna2dPOVdCbW5hVmtQbVJQSC9keFlRVGI4dXdEK0I1V3Rm?=
- =?utf-8?B?L3k2NjRjR043WEFuYVRyeFdWdE93Uk13R01yc1Bsa1h3dUJSVHlsOVRpYUs5?=
- =?utf-8?B?NU1DcmxjekZOTTRNekZqOGM5dWs5T2t2RXhUbVo2QVFMV2FNang1UFJ5VUlS?=
- =?utf-8?B?ZHFEZis1YmQvRmdROWFVWWZwQnhuYnJJRFdPWkdhdUdvYXNBV2JoR2pFMFF1?=
- =?utf-8?B?L2ptUUppMDZyd29QbEZ6TDZHeDlWOEZwRjh1cjdNaW8rR25vNTRRK2plbnR5?=
- =?utf-8?B?cGp6aERYbUVibVlHZ3BTQlVCLzhLTEkyK2JyellsK3RYU2h6ZHZ3NWZxYVlZ?=
- =?utf-8?B?amc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 113234a5-c604-47ef-1a19-08dc4cfd3b19
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UDlnbkViSFU4cVZuaUFBK2xLYVk2cXBwb3NRekRFZ0lERXlzanlvNXhCT1Q1?=
+ =?utf-8?B?VzBIQ21USCtTckdLOGlpeWdlU3d6eWYvOCtLUnpHWGVDNjF6b2U3VmFYK1dQ?=
+ =?utf-8?B?aStQSm9YcTcwU0N1alpzVXVGdno1MWJwWTVabUVYT1Mya3N3YVZra2VVdlAz?=
+ =?utf-8?B?b0RSaEM1UHg4dURMdjc3YjlVYkFVRTJ5a1lXVldWSlVUTHM3NG8yRlZBZUpy?=
+ =?utf-8?B?czJ5TUc3MC9YWkZtbWpOb1JsalhSYW1lNTkvcUpzSml5TldMMy9RbXU1RHUz?=
+ =?utf-8?B?REhIZVkycW9NL2dCWWZ6NGNYMVM2cWpaNGtkY004RUZ5bjE2SjN2Zjdqd1Rz?=
+ =?utf-8?B?ektqWS9OOE1GOGlWUnh3MlFWSCt5amZqTjlVRWdsZHY1cUlGS2ZQRVo1NjRM?=
+ =?utf-8?B?Sjd3ZTVJOUE3RzVydFZhK1hoVWdiTzF5bUpHbmRrRnNEZTBGZVdORzZtOHpB?=
+ =?utf-8?B?ell5Vi92a2dVL2lWRWxJSEZTNlJYeEl0T1NQTEVTWmcyNm1wNnhxbm9VWHBF?=
+ =?utf-8?B?TGVsYUY5TWpaK3YyRjh0eWxHbjZhRFg1citXNE9xVjg4SG1pREZPQlZRTmU1?=
+ =?utf-8?B?TWl6Qy9MYjJsUXh6QmRla0kwK3R3Qk11ODZGUmRlYTFGdXpSbUh5SWRmUWk2?=
+ =?utf-8?B?YjJKa2JVVGxhWjdGMUFuc29YYlV4MENrdzFUMGJtcU5pWkMvL1Y5Q1lmUFlk?=
+ =?utf-8?B?eVBQSGpPYlVLUFhLV1pyYlRSSjBPNml6a2dSR1V6ZGhQb0JoajVFUTNrbC9Y?=
+ =?utf-8?B?ZFdkdVNwMkVxSDRKd2dGUnlnZDNjWVo0dGlUVTNrcVpIRHhYQ2FKcGVXdWlF?=
+ =?utf-8?B?MXlrS1VxekRZajJTTUR3ZlY0TjIwWWRmQXJYdjFDMDFEL2VKVStXa2F3QXBy?=
+ =?utf-8?B?bDJnYzl3bjdpTElNaGpxMmJiTDBOZks2VUFQZzlZMWg5VjhUUXpiNncvUG1w?=
+ =?utf-8?B?Yk5rWFBveGhzYlJ6THpHZFE3WEdKNG1GVFNnbDVSRWN2MGJJd0VqclBGVlJO?=
+ =?utf-8?B?c29pTnBucjlXK2FWSmpwR21Nb1FvNXlBeXgzZ0srdHkwN2ttNDNXSzhJczlv?=
+ =?utf-8?B?N292QWtIa3k1QnJ4QnFtcGxuMVJCL2R4ZWxHRys5ODZjT29rM3VvMVlyYVNL?=
+ =?utf-8?B?SWc5b1JPVXJRSlkwWUdBcUM1dExicTgrbmd1Q0Nva2c0WVJjZFdNVXJCMThz?=
+ =?utf-8?B?UGpRSkdhNHhGTFQwNTlQdjlpakw1aXFMelpkZGo0K0dnS3ErZUZEWEpDTXQr?=
+ =?utf-8?B?ek1PVXovY2V4NXNlNEJNbSs3RHhTRkVzOHlXWkUwSmR0V0tEamwxY2RBb05O?=
+ =?utf-8?B?bW5tY05NK1EwS25pWmR1WXJNZE5rQ3B1T2tTd2g2cGtoc1lxK2RHcmZibm01?=
+ =?utf-8?B?VFRnQ21VaWV6RTNCbWZuQmlXYkxnV2k2TkRnN1krSzN5K3JRVWNaNmwxdVBt?=
+ =?utf-8?B?NG9wWEJQc2ZuRHpOVkc1UW5hWVlBWWVWQlhOTzZvZEYzSFdYdEg4cURVVFJm?=
+ =?utf-8?B?QWlDR3VpTDl0dmN4SlkwYmNnV0E2Ulg3ZDIrMFdZeWNzcWxVc0p5NS9QWS9t?=
+ =?utf-8?B?Ulo4YnJQMU9hTkp0S29GWUNPdlcrb3ZVRnRhZ2lISUNHQVV5eUdISDhFYmZT?=
+ =?utf-8?B?LzMxNk9MZXpJQ2FndXlJV2tBTVY0bTloVjE1ZnppWkV5SzcwNzlINUREZlFE?=
+ =?utf-8?B?K0NMQzRuaTBhbm9FZHpQcStJVjRUaWU0dExKbEJGNmY3MjI5SXl6bzJUMncx?=
+ =?utf-8?B?QkpZY1RZU1JIWXd2UWNlM0NiaElJYnpYQUZaallSMFFMRG9COVFuQ3VORGZM?=
+ =?utf-8?B?NHVHM3BFTGMvUkVMQ090WWdoZ3NYZFpIRGN4dFhXQ3NiSStuL053WkVXSUlK?=
+ =?utf-8?B?SWpFYkV2WmpSSDAzWEs4aTZicm5oWlJHT1lwNFhkeFFvbVYrWkQ2N1RtaDVF?=
+ =?utf-8?B?N1hYSG8zcGZUbVR2ZGRzamtLY05FSzAyNlJlazFGdGNLZnphVzc5dE1aUVJW?=
+ =?utf-8?B?SkswOE5TRk5kSll0NTJoS0VvZTg4WHN1ejd5TUpKaUEyM0NHTkZ2WWRJWE9W?=
+ =?utf-8?B?SUhKRUNJN3krYmI1dGpoYlJkQ3lnckJYcWdETk95VVpybFZkcDk0eW10TE1V?=
+ =?utf-8?B?VHUzbzdTakN1dDJOWVMwSWpySkVGblRZUnNzLzNEZE01blM1SitKaXNNdlJ3?=
+ =?utf-8?B?OEE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2beb204c-c2d3-4205-91bf-08dc4cfe1baa
 X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8441.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2024 18:56:08.3723 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2024 19:02:25.1196 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hrHe7r5gs3wtxSAwtOLlAnhhC5ShPpwzSngALk90kRKdfgHXc35RJu46i0X5ZRS1NElNt1XxzD7yqitkLbTz39UwvBsmAuGPy0iSAJQzh1M=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB6507
+X-MS-Exchange-CrossTenant-UserPrincipalName: t2tft3o2pQtw4o9N9RKxXWzzCZD8R0D/MK7H8kEfBivajxQGg4iQeQKam12A+hnYlcC6cLFnXuNFNxKdyQ2r/Nz2chjN+GAw+rPgeMzF//o=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6606
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -159,152 +161,164 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 3/25/2024 08:32, Michal Wajdeczko wrote:
-> On 25.03.2024 16:04, Badal Nilawar wrote:
->> Enable GuC Wa_14019882105 to block interrupts during C6 flow
->> when the memory path has been blocked
+On 3/25/2024 11:09, Nilawar, Badal wrote:
+> On 25-03-2024 21:02, Michal Wajdeczko wrote:
+>> On 25.03.2024 16:04, Badal Nilawar wrote:
+>>> Enable GuC Wa_14019882105 to block interrupts during C6 flow
+>>> when the memory path has been blocked
+>>>
+>>> v2: Make helper function generic and name it as
+>>>      guc_waklv_enable_simple (John Harrison)
+>>> v3: Make warning descriptive (John Harrison)
+>>>
+>>> Cc: John Harrison <john.harrison@intel.com>
+>>> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/xe/abi/guc_klvs_abi.h |  7 +++++
+>>>   drivers/gpu/drm/xe/xe_guc_ads.c       | 41 
+>>> +++++++++++++++++++++------
+>>>   drivers/gpu/drm/xe/xe_wa_oob.rules    |  1 +
+>>>   3 files changed, 40 insertions(+), 9 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h 
+>>> b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+>>> index 0400bc0fccdc..5dd45e06f0b6 100644
+>>> --- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+>>> +++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+>>> @@ -319,4 +319,11 @@ enum  {
+>>>   #define GUC_KLV_VF_CFG_BEGIN_CONTEXT_ID_KEY    0x8a0b
+>>>   #define GUC_KLV_VF_CFG_BEGIN_CONTEXT_ID_LEN    1u
+>>>   +/*
+>>> + * Workaround keys:
+>>> + */
+>>> +enum xe_guc_klv_ids {
+>>> + GUC_WORKAROUND_KLV_BLOCK_INTERRUPTS_WHEN_MGSR_BLOCKED = 0x9002,
 >>
->> v2: Make helper function generic and name it as
->>      guc_waklv_enable_simple (John Harrison)
->> v3: Make warning descriptive (John Harrison)
->>
->> Cc: John Harrison <john.harrison@intel.com>
->> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
->> ---
->>   drivers/gpu/drm/xe/abi/guc_klvs_abi.h |  7 +++++
->>   drivers/gpu/drm/xe/xe_guc_ads.c       | 41 +++++++++++++++++++++------
->>   drivers/gpu/drm/xe/xe_wa_oob.rules    |  1 +
->>   3 files changed, 40 insertions(+), 9 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
->> index 0400bc0fccdc..5dd45e06f0b6 100644
->> --- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
->> +++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
->> @@ -319,4 +319,11 @@ enum  {
->>   #define GUC_KLV_VF_CFG_BEGIN_CONTEXT_ID_KEY	0x8a0b
->>   #define GUC_KLV_VF_CFG_BEGIN_CONTEXT_ID_LEN	1u
->>   
->> +/*
->> + * Workaround keys:
->> + */
->> +enum xe_guc_klv_ids {
->> +	GUC_WORKAROUND_KLV_BLOCK_INTERRUPTS_WHEN_MGSR_BLOCKED				= 0x9002,
-> how should we know the LEN of the particular W/A KLV ?
-By reading the spec.
+>> how should we know the LEN of the particular W/A KLV ?
+>> as this is the ABI header, IMO we should define that here along the KEY
+> W/A KLV are alternative to flags to enable workaround. So length for 
+> W/A KLV will always be 0. Should I still add length? May be I can 
+> define #define GUC_WORKAROUND_KLV_LENGTH 0 which will be common for 
+> all W/A KLVs.
+Not true. Key 0x9008 in the latest GuC release takes a data field.
 
-> as this is the ABI header, IMO we should define that here along the KEY
-I strongly disagree with copying the entire GuC API spec into the source 
-code just for the sake of copying the spec. The implementation of this 
-w/a (and a whole bunch more that will follow) has no use for extra 
-defines about sizes or fields. And creating defines that will never be 
-used is a pointless exercise.
-
->
->> +};
->> +
->>   #endif
->> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
->> index a98344a0ff4b..633e5fd9c738 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_ads.c
->> +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
->> @@ -7,6 +7,8 @@
->>   
->>   #include <drm/drm_managed.h>
->>   
->> +#include <generated/xe_wa_oob.h>
->> +
->>   #include "regs/xe_engine_regs.h"
->>   #include "regs/xe_gt_regs.h"
->>   #include "regs/xe_guc_regs.h"
->> @@ -19,6 +21,7 @@
->>   #include "xe_map.h"
->>   #include "xe_mmio.h"
->>   #include "xe_platform_types.h"
->> +#include "xe_wa.h"
->>   
->>   /* Slack of a few additional entries per engine */
->>   #define ADS_REGSET_EXTRA_MAX	8
->> @@ -279,23 +282,43 @@ static size_t calculate_golden_lrc_size(struct xe_guc_ads *ads)
->>   	return total_size;
->>   }
->>   
->> +static void guc_waklv_enable_simple(struct xe_guc_ads *ads,
->> +				    enum xe_guc_klv_ids klv_id, u32 *offset, u32 *remain)
->> +{
->> +	u32 size;
->> +	u32 klv_entry[] = {
->> +		/* 16:16 key/length */
-> drop this comment, code is self explanatory
->
->> +		FIELD_PREP(GUC_KLV_0_KEY, klv_id) |
->> +		FIELD_PREP(GUC_KLV_0_LEN, 0),
->> +		/* 0 dwords data */
->> +	};
-> you can define size here:
->
-> 		u32 size = sizeof(klv_entry);
->
->> +
->> +	size = sizeof(klv_entry);
->> +
->> +	if (*remain < size) {
->> +		drm_warn(&ads_to_xe(ads)->drm,
->> +			 "w/a klv buffer too small to add klv id %d\n", klv_id);
-> this looks like our programming error so xe_gt_assert() should be
-> sufficient as we don't expect this ever happen in production
->
-> but if you want to keep the WARN then use xe_gt_WARN() instead
->
->> +	} else {
->> +		xe_map_memcpy_to(ads_to_xe(ads), ads_to_map(ads), *offset,
->> +				 klv_entry, size);
->> +		*offset += size;
->> +		*remain -= size;
->> +	}
->> +}
->> +
->>   static void guc_waklv_init(struct xe_guc_ads *ads)
->>   {
->> +	struct xe_gt *gt = ads_to_gt(ads);
->>   	u64 addr_ggtt;
->>   	u32 offset, remain, size;
->>   
->>   	offset = guc_ads_waklv_offset(ads);
->>   	remain = guc_ads_waklv_size(ads);
->>   
->> -	/*
->> -	 * Add workarounds here:
->> -	 *
->> -	 * if (want_wa_<name>) {
->> -	 *      size = guc_waklv_<name>(guc, offset, remain);
->> -	 *      offset += size;
->> -	 *      remain -= size;
->> -	 * }
->> -	 */
->> +	if (XE_WA(gt, 14019882105))
->> +		guc_waklv_enable_simple(ads,
->> +					GUC_WORKAROUND_KLV_BLOCK_INTERRUPTS_WHEN_MGSR_BLOCKED,
->> +					&offset, &remain);
-> hmm, it looks that your implementation here in patch 2/2 is different
-> than suggested one in patch 1/2
-It looks the same to me. It has simply optimised the the offset/remain 
-calculation to be done inside the helper rather than outside it to avoid 
-replication when all the other 'simple' w/a's are added. The actual 
-behaviour is identical.
+But where/how would you use the GUC_WORKAROUND_KLV_LENGTH define? The 
+whole point of the guc_waklv_enable_simple function is that it adds a 
+KLV which takes no data. Are you going to add a test to every w/a for 
+it's length to be defined as zero and then call _simple() or _fancy() as 
+appropriate? That is pointless complication. The size is static and is 
+known to be zero for all current keys other than 0x9008. So there is 
+zero point in adding code to check the size of those keys.
 
 John.
 
+>>
+>>> +};
+>>> +
+>>>   #endif
+>>> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c 
+>>> b/drivers/gpu/drm/xe/xe_guc_ads.c
+>>> index a98344a0ff4b..633e5fd9c738 100644
+>>> --- a/drivers/gpu/drm/xe/xe_guc_ads.c
+>>> +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+>>> @@ -7,6 +7,8 @@
+>>>     #include <drm/drm_managed.h>
+>>>   +#include <generated/xe_wa_oob.h>
+>>> +
+>>>   #include "regs/xe_engine_regs.h"
+>>>   #include "regs/xe_gt_regs.h"
+>>>   #include "regs/xe_guc_regs.h"
+>>> @@ -19,6 +21,7 @@
+>>>   #include "xe_map.h"
+>>>   #include "xe_mmio.h"
+>>>   #include "xe_platform_types.h"
+>>> +#include "xe_wa.h"
+>>>     /* Slack of a few additional entries per engine */
+>>>   #define ADS_REGSET_EXTRA_MAX    8
+>>> @@ -279,23 +282,43 @@ static size_t calculate_golden_lrc_size(struct 
+>>> xe_guc_ads *ads)
+>>>       return total_size;
+>>>   }
+>>>   +static void guc_waklv_enable_simple(struct xe_guc_ads *ads,
+>>> +                    enum xe_guc_klv_ids klv_id, u32 *offset, u32 
+>>> *remain)
+>>> +{
+>>> +    u32 size;
+>>> +    u32 klv_entry[] = {
+>>> +        /* 16:16 key/length */
+>>
+>> drop this comment, code is self explanatory
+>>
+>>> +        FIELD_PREP(GUC_KLV_0_KEY, klv_id) |
+>>> +        FIELD_PREP(GUC_KLV_0_LEN, 0),
+>>> +        /* 0 dwords data */
+>>> +    };
+>>
+>> you can define size here:
+>>
+>>         u32 size = sizeof(klv_entry);
+> Sure
+>>
+>>> +
+>>> +    size = sizeof(klv_entry);
+>>> +
+>>> +    if (*remain < size) {
+>>> +        drm_warn(&ads_to_xe(ads)->drm,
+>>> +             "w/a klv buffer too small to add klv id %d\n", klv_id);
+>>
+>> this looks like our programming error so xe_gt_assert() should be
+>> sufficient as we don't expect this ever happen in production
+>>
+>> but if you want to keep the WARN then use xe_gt_WARN() instead
+> Ok
+>>
+>>> +    } else {
+>>> +        xe_map_memcpy_to(ads_to_xe(ads), ads_to_map(ads), *offset,
+>>> +                 klv_entry, size);
+>>> +        *offset += size;
+>>> +        *remain -= size;
+>>> +    }
+>>> +}
+>>> +
+>>>   static void guc_waklv_init(struct xe_guc_ads *ads)
+>>>   {
+>>> +    struct xe_gt *gt = ads_to_gt(ads);
+>>>       u64 addr_ggtt;
+>>>       u32 offset, remain, size;
+>>>         offset = guc_ads_waklv_offset(ads);
+>>>       remain = guc_ads_waklv_size(ads);
+>>>   -    /*
+>>> -     * Add workarounds here:
+>>> -     *
+>>> -     * if (want_wa_<name>) {
+>>> -     *      size = guc_waklv_<name>(guc, offset, remain);
+>>> -     *      offset += size;
+>>> -     *      remain -= size;
+>>> -     * }
+>>> -     */
+>>> +    if (XE_WA(gt, 14019882105))
+>>> +        guc_waklv_enable_simple(ads,
+>>> + GUC_WORKAROUND_KLV_BLOCK_INTERRUPTS_WHEN_MGSR_BLOCKED,
+>>> +                    &offset, &remain);
+>>
+>> hmm, it looks that your implementation here in patch 2/2 is different
+>> than suggested one in patch 1/2
+> I wrapped up adding W/A KLV entry inside the function. I will refine 
+> comment in patch 1/2 to align with patch 2/2.
 >
->>   
->>   	size = guc_ads_waklv_size(ads) - remain;
->>   	if (!size)
->> diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
->> index 48cdba1cbf95..a8d15f004b6c 100644
->> --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
->> +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
->> @@ -19,3 +19,4 @@
->>   		GRAPHICS_VERSION_RANGE(1270, 1274)
->>   		MEDIA_VERSION(1300)
->>   		PLATFORM(DG2)
->> +14019882105	GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0)
+> Regards,
+> Badal
+>>
+>>>         size = guc_ads_waklv_size(ads) - remain;
+>>>       if (!size)
+>>> diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules 
+>>> b/drivers/gpu/drm/xe/xe_wa_oob.rules
+>>> index 48cdba1cbf95..a8d15f004b6c 100644
+>>> --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
+>>> +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+>>> @@ -19,3 +19,4 @@
+>>>           GRAPHICS_VERSION_RANGE(1270, 1274)
+>>>           MEDIA_VERSION(1300)
+>>>           PLATFORM(DG2)
+>>> +14019882105    GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0)
 
