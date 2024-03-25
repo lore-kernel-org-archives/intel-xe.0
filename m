@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00164C54E64
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Mar 2024 09:46:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0FBEC54E64
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Mar 2024 09:52:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C085F10E6E0;
-	Mon, 25 Mar 2024 09:46:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1FC010E6E0;
+	Mon, 25 Mar 2024 09:52:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BBrZKLmO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dC6SEQle";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D842D10E700
- for <intel-xe@lists.freedesktop.org>; Mon, 25 Mar 2024 09:46:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 201E710E6E0
+ for <intel-xe@lists.freedesktop.org>; Mon, 25 Mar 2024 09:52:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711359960; x=1742895960;
+ t=1711360343; x=1742896343;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=kaJ/jRZmPxlC7VRXljjGKQRZlIUL+ax567/JGN0l7lM=;
- b=BBrZKLmON7GUXcFUrjJQDWkGNld5VERB+4hA0ZPzDV5aogAHJkWOya48
- bSXkh2sxW2p3F3fM6OWAc0hkgXyJl5tl5dqQb0b4IZuc67lwPdgIp35nE
- 0m9NNQT8WaZG3YthRVDfFafoxX5U0yRNHXSI67kZlqR+UH7N7QZGWRe2X
- z+RcsNF2HVFiYuHgQASC5rwlQGyeorsUcKSvDy3b09cIdTn3rELZwpQgV
- 307bwoq4rdPpqwvo84nrIqyh9C3dNAhdtzsc7NnK/FKIoHNQqr1dYrZeO
- swoIcEvuKQ0VGuaRZuiOHgJCLaIwdCpoTod0UXRStm504hJauOdoyX3v0 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11023"; a="6456942"
+ bh=M8joVDrC5LObjlF6j3EG8jLv2p0EexW3u8snpTkJVYQ=;
+ b=dC6SEQleDMvyhXfgES2heDK+nd69AhQNYCLS2Xb2P63m3Dx8DhUleexp
+ K+MWdwJKWsnaQHXEpdc9ZZYUCS3FLKLIp4QMAvDvyE0QgmHJvmaqs2zfv
+ lp197+Wh15ZwrRVTo4/8RS9SlLwvNlgv69zb8yX2HbQlMNb+db1GmNI6M
+ VVeNUu27U99Cg5VEA41iTWTUPA0tO6aQd58g5gZkPFYJu7orprh88rjde
+ m9B3wCsVZgCeDY3m+PuV0Z77wv4VnZrBHQjaf9FFZ109EKK8x/qYfEmeW
+ WyDOOtQGbBC129ehCm9cHAl5HDOUlremLMBAhqrAlZfu/Lw3yYjNK0An7 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11023"; a="6951056"
 X-IronPort-AV: E=Sophos;i="6.07,152,1708416000"; 
-   d="scan'208";a="6456942"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2024 02:46:00 -0700
+   d="scan'208";a="6951056"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2024 02:52:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,152,1708416000"; d="scan'208";a="15472050"
+X-IronPort-AV: E=Sophos;i="6.07,152,1708416000"; d="scan'208";a="20241837"
 Received: from idirlea-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.55.171])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2024 02:45:57 -0700
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2024 02:52:20 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Karthik Poosa <karthik.poosa@intel.com>, intel-xe@lists.freedesktop.org
-Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
- riana.tauro@intel.com, Karthik Poosa <karthik.poosa@intel.com>
-Subject: Re: [PATCH] drm/xe: Fix static analysis tool reported errors
-In-Reply-To: <87h6guk5my.fsf@intel.com>
+To: "Poosa, Karthik" <karthik.poosa@intel.com>, intel-xe@lists.freedesktop.org
+Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, Riana Tauro
+ <riana.tauro@intel.com>
+Subject: Re: [PATCH 2/2] drm/xe/hwmon: Fix static analysis tool reported issues
+In-Reply-To: <3c1f75ed-5f28-4fd0-8625-5611c7f95df9@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240325080550.3217836-1-karthik.poosa@intel.com>
- <87h6guk5my.fsf@intel.com>
-Date: Mon, 25 Mar 2024 11:45:54 +0200
-Message-ID: <87edbyk5kd.fsf@intel.com>
+References: <20240321104624.2205317-1-karthik.poosa@intel.com>
+ <20240321104624.2205317-3-karthik.poosa@intel.com>
+ <874jczn3io.fsf@intel.com>
+ <3c1f75ed-5f28-4fd0-8625-5611c7f95df9@intel.com>
+Date: Mon, 25 Mar 2024 11:52:17 +0200
+Message-ID: <87bk72k59q.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,56 +68,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 25 Mar 2024, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> The subject should describe the change, not the tool.
+On Fri, 22 Mar 2024, "Poosa, Karthik" <karthik.poosa@intel.com> wrote:
+> Please find replies inline.
 >
-> We're not interested in the tool, we're interested in the change, and
-> why it's being made. And the reason why is also not the tool, but the
-> actual reason the NULL check should be done.
+> On 21-03-2024 18:30, Jani Nikula wrote:
+>> On Thu, 21 Mar 2024, Karthik Poosa <karthik.poosa@intel.com> wrote:
+>>> Update xe hwmon with fixes for issues reported by static analysis
+>>> tool.
+>>> Fix integer overflow with upcasting.
+>>> Initialize uninitialized variables.
+>>>
+>>> Fixes: 4446fcf220ce ("drm/xe/hwmon: Expose power1_max_interval")
+>>> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/xe/xe_hwmon.c | 18 +++++++++---------
+>>>   1 file changed, 9 insertions(+), 9 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+>>> index a256af8c2012..6ed9d5c4f6b1 100644
+>>> --- a/drivers/gpu/drm/xe/xe_hwmon.c
+>>> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+>>> @@ -153,7 +153,7 @@ static void xe_hwmon_process_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon
+>>>    */
+>>>   static void xe_hwmon_power_max_read(struct xe_hwmon *hwmon, long *value)
+>>>   {
+>>> -	u64 reg_val, min, max;
+>>> +	u64 reg_val = 0, min, max;
+>> Nah. Just fix xe_hwmon_process_reg() to set *value = 0.
+> I think the caller has to ensure value is set to 0, it is not needed in 
+> xe_hwmon_process_reg.
 
-PS. git format-patch and send-email have the option -v<N> to add the
-patch version to [PATCH v<N>] so we can actually tell the various
-versions apart on the mailing list just by looking at the
-subject. Please use it.
+If the caller has to set the value to 0, it's a poorly defined
+interface. Since xe_hwmon_process_reg() doesn't return a value
+indicating an error, it better set the value to 0.
+
+>> Side note, xe_hwmon_get_reg() should return struct xe_reg instead of
+>> u32, and xe_hwmon_process_reg() has no business looking into the guts of
+>> struct xe_reg.
+>>
+>>
+>> BR,
+>> Jani.
+>>
+> That change is not related to this patch series. It will be a major 
+> change which will be handled in another patch series.
+
+Not related to this series, thus a "side note". But the change itself is
+trivial.
+
+BR,
+Jani.
+
+
 
 >
-> BR,
-> Jani.
->
->
-> On Mon, 25 Mar 2024, Karthik Poosa <karthik.poosa@intel.com> wrote:
->> Add a NULL pointer check.
->>
->> v2: Release resources before returning error. (Riana)
->>
->> v3: Update commit message. (Badal)
->>
->> v4: Change drm_err to XE_WARN_ON. (Anshuman)
->>
->> v5: Fix XE_WARN_ON check. (Riana)
->>
->> Fixes: 09d88e3beb64 ("drm/xe/pm: Init pcode and restore vram on power lost")
->> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
->> ---
->>  drivers/gpu/drm/xe/xe_pm.c | 5 +++++
->>  1 file changed, 5 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
->> index cc650a92c2fc..f6837bd6f9a3 100644
->> --- a/drivers/gpu/drm/xe/xe_pm.c
->> +++ b/drivers/gpu/drm/xe/xe_pm.c
->> @@ -383,6 +383,11 @@ int xe_pm_runtime_resume(struct xe_device *xe)
->>  	 * really lost power. Detecting primary Gt power is sufficient.
->>  	 */
->>  	gt = xe_device_get_gt(xe, 0);
->> +	if (XE_WARN_ON(!gt)) {
->> +		err = -ENXIO;
->> +		goto out;
->> +	}
->> +
->>  	xe->d3cold.power_lost = xe_guc_in_reset(&gt->uc.guc);
->>  
->>  	if (xe->d3cold.allowed && xe->d3cold.power_lost) {
+>>>   
+>>>   	mutex_lock(&hwmon->hwmon_lock);
+>>>   
+>>> @@ -182,7 +182,7 @@ static void xe_hwmon_power_max_read(struct xe_hwmon *hwmon, long *value)
+>>>   static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, long value)
+>>>   {
+>>>   	int ret = 0;
+>>> -	u64 reg_val;
+>>> +	u64 reg_val = 0;
+>>>   
+>>>   	mutex_lock(&hwmon->hwmon_lock);
+>>>   
+>>> @@ -212,7 +212,7 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, long value)
+>>>   
+>>>   static void xe_hwmon_power_rated_max_read(struct xe_hwmon *hwmon, long *value)
+>>>   {
+>>> -	u64 reg_val;
+>>> +	u64 reg_val = 0;
+>>>   
+>>>   	xe_hwmon_process_reg(hwmon, REG_PKG_POWER_SKU, REG_READ32, &reg_val, 0, 0);
+>>>   	reg_val = REG_FIELD_GET(PKG_TDP, reg_val);
+>>> @@ -243,7 +243,7 @@ static void
+>>>   xe_hwmon_energy_get(struct xe_hwmon *hwmon, long *energy)
+>>>   {
+>>>   	struct xe_hwmon_energy_info *ei = &hwmon->ei;
+>>> -	u64 reg_val;
+>>> +	u64 reg_val = 0;
+>>>   
+>>>   	xe_hwmon_process_reg(hwmon, REG_PKG_ENERGY_STATUS, REG_READ32,
+>>>   			     &reg_val, 0, 0);
+>>> @@ -264,8 +264,8 @@ xe_hwmon_power1_max_interval_show(struct device *dev, struct device_attribute *a
+>>>   				  char *buf)
+>>>   {
+>>>   	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
+>>> -	u32 x, y, x_w = 2; /* 2 bits */
+>>> -	u64 r, tau4, out;
+>>> +	u32 x = 0, y = 0, x_w = 2; /* 2 bits */
+>>> +	u64 r = 0, tau4, out;
+>>>   
+>>>   	xe_pm_runtime_get(gt_to_xe(hwmon->gt));
+>>>   
+>>> @@ -291,7 +291,7 @@ xe_hwmon_power1_max_interval_show(struct device *dev, struct device_attribute *a
+>>>   	 * As y can be < 2, we compute tau4 = (4 | x) << y
+>>>   	 * and then add 2 when doing the final right shift to account for units
+>>>   	 */
+>>> -	tau4 = ((1 << x_w) | x) << y;
+>>> +	tau4 = (u64)((1 << x_w) | x) << y;
+>>>   
+>>>   	/* val in hwmon interface units (millisec) */
+>>>   	out = mul_u64_u32_shr(tau4, SF_TIME, hwmon->scl_shift_time + x_w);
+>>> @@ -331,7 +331,7 @@ xe_hwmon_power1_max_interval_store(struct device *dev, struct device_attribute *
+>>>   	r = FIELD_PREP(PKG_MAX_WIN, PKG_MAX_WIN_DEFAULT);
+>>>   	x = REG_FIELD_GET(PKG_MAX_WIN_X, r);
+>>>   	y = REG_FIELD_GET(PKG_MAX_WIN_Y, r);
+>>> -	tau4 = ((1 << x_w) | x) << y;
+>>> +	tau4 = (u64)((1 << x_w) | x) << y;
+>>>   	max_win = mul_u64_u32_shr(tau4, SF_TIME, hwmon->scl_shift_time + x_w);
+>>>   
+>>>   	if (val > max_win)
+>>> @@ -466,7 +466,7 @@ static int xe_hwmon_power_curr_crit_write(struct xe_hwmon *hwmon, long value, u3
+>>>   
+>>>   static void xe_hwmon_get_voltage(struct xe_hwmon *hwmon, long *value)
+>>>   {
+>>> -	u64 reg_val;
+>>> +	u64 reg_val = 0;
+>>>   
+>>>   	xe_hwmon_process_reg(hwmon, REG_GT_PERF_STATUS,
+>>>   			     REG_READ32, &reg_val, 0, 0);
 
 -- 
 Jani Nikula, Intel
