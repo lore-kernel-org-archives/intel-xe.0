@@ -4,48 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB768C54E58
-	for <intel-xe@archiver.kernel.org>; Tue, 26 Mar 2024 08:00:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03A0BC6FD1F
+	for <intel-xe@archiver.kernel.org>; Tue, 26 Mar 2024 08:26:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1B2B10EDAF;
-	Tue, 26 Mar 2024 08:00:51 +0000 (UTC)
-X-Greylist: delayed 591 seconds by postgrey-1.36 at gabe;
- Tue, 26 Mar 2024 08:00:50 UTC
-Received: from riemann.telenet-ops.be (riemann.telenet-ops.be [195.130.137.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23F3310EDAE
- for <intel-xe@lists.freedesktop.org>; Tue, 26 Mar 2024 08:00:50 +0000 (UTC)
-Received: from xavier.telenet-ops.be (xavier.telenet-ops.be
- [IPv6:2a02:1800:120:4::f00:14])
- by riemann.telenet-ops.be (Postfix) with ESMTPS id 4V3hnF27xHz4wx1f
- for <intel-xe@lists.freedesktop.org>; Tue, 26 Mar 2024 08:50:57 +0100 (CET)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:76d0:2bff:fec8:549])
- by xavier.telenet-ops.be with bizsmtp
- id 3Kqp2C00C0SSLxL01KqpkN; Tue, 26 Mar 2024 08:50:56 +0100
-Received: from geert (helo=localhost)
- by ramsan.of.borg with local-esmtp (Exim 4.95)
- (envelope-from <geert@linux-m68k.org>) id 1rp1a5-004zii-Gc;
- Tue, 26 Mar 2024 08:50:49 +0100
-Date: Tue, 26 Mar 2024 08:50:49 +0100 (CET)
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-To: linux-kernel@vger.kernel.org
-cc: linux-crypto@vger.kernel.org, Chris Zankel <chris@zankel.net>, 
- Max Filippov <jcmvbkbc@gmail.com>, Rob Clark <robdclark@gmail.com>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- Oded Gabbay <ogabbay@kernel.org>, 
- =?ISO-8859-15?Q?Thomas_Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, 
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-mips@vger.kernel.org, sparclinux@vger.kernel.org
-Subject: Re: Build regressions/improvements in v6.9-rc1
-In-Reply-To: <20240325200315.3896021-1-geert@linux-m68k.org>
-Message-ID: <8d78894-dd89-9f4d-52bb-1b873c50be9c@linux-m68k.org>
-References: <CAHk-=wgOw_13JuuX4khpn4K+n09cRG3EBQWufAPBWoa0GLLQ0A@mail.gmail.com>
- <20240325200315.3896021-1-geert@linux-m68k.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A81A10E1D1;
+	Tue, 26 Mar 2024 08:26:01 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y4kMuLZ2";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FFF610E1D1
+ for <intel-xe@lists.freedesktop.org>; Tue, 26 Mar 2024 08:26:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1711441561; x=1742977561;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=6Z3fU7Ij7pnIS53m83dunt3+QD4sP8FM+rsv8O9EWFA=;
+ b=Y4kMuLZ2k0x6Tse7efRfGDMo3Z5Q8JHIgs2p5p0lrKSRF7Mgsf1ndsNz
+ 0CXrgnU7uaur21fh6OXRsnlL4bVy7uLWBcNLAQNB2hmw1jfCvtrVdHyEI
+ UMWJ3VhakiyXD1B3MILJfIfmPsb7Fc9oUB2WkMr5Q36Zp4vy8cB1fP50Q
+ iavb8LAszkNfnZAjZ2JNCtFS0HZ0ptmPaYmfd6VeGSxGP7a8Q57OA4hO/
+ LSTJYsiA16WLziV2K1qns3eYA0nWGUZz+cv8HYn7o8jyrXHdX1Kkf6bvi
+ 6AQf6TqMmC/xvNuZo3/RCfDL8z2RT2RElKw/TcJ8yA/w2X6nh6el9Zd1X Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="17910143"
+X-IronPort-AV: E=Sophos;i="6.07,155,1708416000"; d="scan'208";a="17910143"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2024 01:26:00 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,155,1708416000"; d="scan'208";a="15929513"
+Received: from unknown (HELO [10.245.245.97]) ([10.245.245.97])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2024 01:25:58 -0700
+Message-ID: <f2e72896-8524-44a5-bb75-ff277c50eaa6@intel.com>
+Date: Tue, 26 Mar 2024 08:25:56 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/1] drm/xe/xe2: Send flat_ccs value in struct
+ drm_xe_query_config
+Content-Language: en-GB
+To: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
+Cc: intel-xe@lists.freedesktop.org, zbigniew.kempczynski@intel.com
+References: <cover.1711447408.git.akshata.jahagirdar@intel.com>
+ <b672be6eea948e332ba58b63d6f8c4c71c37a42b.1711447408.git.akshata.jahagirdar@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <b672be6eea948e332ba58b63d6f8c4c71c37a42b.1711447408.git.akshata.jahagirdar@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,50 +66,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 25 Mar 2024, Geert Uytterhoeven wrote:
-> Below is the list of build error/warning regressions/improvements in
-> v6.9-rc1[1] compared to v6.8[2].
->
-> Summarized:
->  - build errors: +8/-8
+On 26/03/2024 10:10, Akshata Jahagirdar wrote:
+> Currently, we don't have any check in IGT testcases if platform supports
+> compression or not. Send this flat_ccs value as part of the struct
+> drm_xe_query_config so that we can read this value in the igt testcases
+> and proceed accordingly.
 
-   + /kisskb/src/crypto/scompress.c: error: unused variable 'dst_page' [-Werror=unused-variable]:  => 174:38
+AFAIK it's not valid to add uAPI just for an IGT. uAPI normally needs a 
+real open source user (like Mesa etc) with UMD acks. However if this is 
+going to be used by Mesa etc, how do they tell the difference between 
+"this device doesn't have flat-CCS" and "this KMD version doesn't 
+support FLAG_HAS_FLAT_CCS"?
 
-xtensa-gcc13/xtensa-allmodconfig
+If userspace doesn't need this, then other option could be debugfs. Or 
+if this just a single test perhaps we can just dynamically check if the 
+CCS state is zero for compressed buffer at the start of the test?
 
-   + /kisskb/src/drivers/gpu/drm/msm/adreno/adreno_gen7_0_0_snapshot.h: error: 'gen7_0_0_external_core_regs' defined but not used [-Werror=unused-variable]:  => 924:19
-   + /kisskb/src/drivers/gpu/drm/msm/adreno/adreno_gen7_2_0_snapshot.h: error: 'gen7_2_0_external_core_regs' defined but not used [-Werror=unused-variable]:  => 748:19
+> Fixes: VLK-56136
+> 
+> Signed-off-by: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_query.c | 3 +++
+>   include/uapi/drm/xe_drm.h     | 1 +
+>   2 files changed, 4 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+> index e80321b34918..8a3a3117491c 100644
+> --- a/drivers/gpu/drm/xe/xe_query.c
+> +++ b/drivers/gpu/drm/xe/xe_query.c
+> @@ -332,6 +332,9 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
+>   	config->num_params = num_params;
+>   	config->info[DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID] =
+>   		xe->info.devid | (xe->info.revid << 16);
+> +	if (xe->info.has_flat_ccs)
+> +		config->info[DRM_XE_QUERY_CONFIG_FLAGS] =
+> +			DRM_XE_QUERY_CONFIG_FLAG_HAS_FLAT_CCS;
+>   	if (xe_device_get_root_tile(xe)->mem.vram.usable_size)
+>   		config->info[DRM_XE_QUERY_CONFIG_FLAGS] =
 
-arm64-gcc5/arm64-allmodconfig
-powerpc-gcc5/powerpc-allmodconfig
-powerpc-gcc5/powerpc-allyesconfig
-powerpc-gcc5/ppc32_allmodconfig
-powerpc-gcc5/ppc64_book3e_allmodconfig
-powerpc-gcc5/ppc64le_allmodconfig
-sparc64-gcc5/sparc64-allmodconfig
+This tramples the previous value AFAICT, like when we have VRAM + CCS on 
+DG2. I think we need |= here.
 
-   + /kisskb/src/drivers/gpu/drm/xe/xe_lrc.c: error: "END" redefined [-Werror]:  => 100
-
-mips-gcc8/mips-allmodconfig
-mips-gcc13/mips-allmodconfig
-
-   + error: arch/sparc/kernel/process_32.o: relocation truncated to fit: R_SPARC_WDISP22 against `.text':  => (.fixup+0xc), (.fixup+0x4)
-   + error: arch/sparc/kernel/signal_32.o: relocation truncated to fit: R_SPARC_WDISP22 against `.text':  => (.fixup+0x18), (.fixup+0x8), (.fixup+0x0), (.fixup+0x20), (.fixup+0x10)
-   + error: relocation truncated to fit: R_SPARC_WDISP22 against `.init.text':  => (.head.text+0x5100), (.head.text+0x5040)
-   + error: relocation truncated to fit: R_SPARC_WDISP22 against symbol `leon_smp_cpu_startup' defined in .text section in arch/sparc/kernel/trampoline_32.o:  => (.init.text+0xa4)
-
-sparc64-gcc13/sparc-allmodconfig
-
-> [1] http://kisskb.ellerman.id.au/kisskb/branch/linus/head/4cece764965020c22cff7665b18a012006359095/ (all 138 configs)
-> [2] http://kisskb.ellerman.id.au/kisskb/branch/linus/head/e8f897f4afef0031fe618a8e94127a0934896aba/ (all 138 configs)
-
-Gr{oetje,eeting}s,
-
- 						Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
- 							    -- Linus Torvalds
+>   			DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM;
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> index f44a19ae9333..08783234bae1 100644
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+> @@ -405,6 +405,7 @@ struct drm_xe_query_config {
+>   #define DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID	0
+>   #define DRM_XE_QUERY_CONFIG_FLAGS			1
+>   	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM	(1 << 0)
+> +	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_FLAT_CCS	(1 << 1)
+>   #define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
+>   #define DRM_XE_QUERY_CONFIG_VA_BITS			3
+>   #define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
