@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B59BFC6FD1F
-	for <intel-xe@archiver.kernel.org>; Tue, 26 Mar 2024 11:21:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EF8ECD11DD
+	for <intel-xe@archiver.kernel.org>; Tue, 26 Mar 2024 11:41:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6520710EEA2;
-	Tue, 26 Mar 2024 11:21:18 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fb2xr4TA";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE7FC10EEA2
- for <intel-xe@lists.freedesktop.org>; Tue, 26 Mar 2024 11:21:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711452078; x=1742988078;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=3aiQr/GZ3+7jvNLON/glHhS++5IhCiq9L3rq6yTl8EI=;
- b=fb2xr4TAnr7nkuJ3iyHkuRF05ZIyVgPIMW6BCa3m08ldozD0m4ZyMNjB
- +nqIpSEKIcYTqKICkG/0Sr9iny1kkEY+eklFX4Gt4gunFjNX31ZjBd/6S
- sqiyuYYmDm1+Crl8bgYbhJ/cwyuNp5Ns1N3Ob163XmFp8u1xg6zaSc2Oq
- 9fhFurdA1tG471r2qgHFiqDecOGvjLwvZX5tu29idRQzm3xr8qeDzgZz2
- 7mbYL2KhJdSXxQLglW9I8i2CDWl/VDcRv8GE7GvleHgTRmLLudCiDlT2w
- 2+eC7XmDT75TCZ817nj4jGup0plL2qsaIHB72PAnZGsD88Xl+UwzW8zuJ g==;
-X-CSE-ConnectionGUID: 7ImMKuy6T/m/OJi67N0W/g==
-X-CSE-MsgGUID: HP9IqOR6SHuP6+xTCutsuw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="10293232"
-X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; d="scan'208";a="10293232"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2024 04:21:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; d="scan'208";a="47089844"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa001.fm.intel.com with ESMTP; 26 Mar 2024 04:21:15 -0700
-Received: from [10.249.156.251] (unknown [10.249.156.251])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id D7A4927BD1;
- Tue, 26 Mar 2024 11:21:13 +0000 (GMT)
-Message-ID: <97e2b27c-4d1c-4eae-8902-5dd84702995d@intel.com>
-Date: Tue, 26 Mar 2024 12:21:13 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03DA110EEC2;
+	Tue, 26 Mar 2024 11:41:45 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B46F010EEC9;
+ Tue, 26 Mar 2024 11:41:43 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5884945552903700466=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] drm/xe/lnl: Enable GuC Wa_14019882105
-Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>,
- Badal Nilawar <badal.nilawar@intel.com>, intel-xe@lists.freedesktop.org
-Cc: anshuman.gupta@intel.com, lucas.demarchi@intel.com,
- matthew.d.roper@intel.com, daniele.ceraolospurio@intel.com
-References: <20240325150435.2967536-1-badal.nilawar@intel.com>
- <20240325150435.2967536-3-badal.nilawar@intel.com>
- <29f52749-032e-469e-9cae-cad1f01896fd@intel.com>
- <2636ee70-1b30-4f05-8448-3453d8f7e155@intel.com>
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <2636ee70-1b30-4f05-8448-3453d8f7e155@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Add_new_PCI_IDs_to_DG2?=
+ =?utf-8?q?_platform?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ravi Kumar Vodapalli" <ravi.kumar.vodapalli@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 26 Mar 2024 11:41:43 -0000
+Message-ID: <171145330373.1039951.1872398660691341788@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240326103825.3832879-1-ravi.kumar.vodapalli@intel.com>
+In-Reply-To: <20240326103825.3832879-1-ravi.kumar.vodapalli@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,174 +36,232 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============5884945552903700466==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/xe: Add new PCI IDs to DG2 platform
+URL   : https://patchwork.freedesktop.org/series/131627/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-992-d652ec2b081fc8e252cc86ee84f72a3b78ee9732_BAT -> xe-pw-131627v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 5)
+------------------------------
+
+  Additional (1): bat-lnl-1 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-131627v1_BAT:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@xe_huc_copy@huc_copy:
+    - {bat-lnl-1}:        NOTRUN -> [SKIP][1] +20 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131627v1/bat-lnl-1/igt@xe_huc_copy@huc_copy.html
+
+  
+New tests
+---------
+
+  New tests have been introduced between xe-992-d652ec2b081fc8e252cc86ee84f72a3b78ee9732_BAT and xe-pw-131627v1_BAT:
+
+### New IGT tests (4) ###
+
+  * igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_decode-instance-0-tile-1-system-memory:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.01] s
+
+  * igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_enhance-instance-0-tile-1-system-memory:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.01] s
+
+  * igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_decode-instance-0-tile-1-system-memory:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.00] s
+
+  * igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_enhance-instance-0-tile-1-system-memory:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.00] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-131627v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_evict@evict-mixed-threads-small:
+    - bat-dg2-oem2:       NOTRUN -> [INCOMPLETE][2] ([Intel XE#804])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131627v1/bat-dg2-oem2/igt@xe_evict@evict-mixed-threads-small.html
+
+  
+#### Warnings ####
+
+  * igt@xe_evict@evict-cm-threads-small:
+    - bat-dg2-oem2:       [INCOMPLETE][3] ([Intel XE#804]) -> [INCOMPLETE][4] ([Intel XE#1027] / [Intel XE#804])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-992-d652ec2b081fc8e252cc86ee84f72a3b78ee9732/bat-dg2-oem2/igt@xe_evict@evict-cm-threads-small.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131627v1/bat-dg2-oem2/igt@xe_evict@evict-cm-threads-small.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#1027]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1027
+  [Intel XE#804]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/804
 
 
-On 25.03.2024 19:56, John Harrison wrote:
-> On 3/25/2024 08:32, Michal Wajdeczko wrote:
->> On 25.03.2024 16:04, Badal Nilawar wrote:
->>> Enable GuC Wa_14019882105 to block interrupts during C6 flow
->>> when the memory path has been blocked
->>>
->>> v2: Make helper function generic and name it as
->>>      guc_waklv_enable_simple (John Harrison)
->>> v3: Make warning descriptive (John Harrison)
->>>
->>> Cc: John Harrison <john.harrison@intel.com>
->>> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
->>> ---
->>>   drivers/gpu/drm/xe/abi/guc_klvs_abi.h |  7 +++++
->>>   drivers/gpu/drm/xe/xe_guc_ads.c       | 41 +++++++++++++++++++++------
->>>   drivers/gpu/drm/xe/xe_wa_oob.rules    |  1 +
->>>   3 files changed, 40 insertions(+), 9 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
->>> b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
->>> index 0400bc0fccdc..5dd45e06f0b6 100644
->>> --- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
->>> +++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
->>> @@ -319,4 +319,11 @@ enum  {
->>>   #define GUC_KLV_VF_CFG_BEGIN_CONTEXT_ID_KEY    0x8a0b
->>>   #define GUC_KLV_VF_CFG_BEGIN_CONTEXT_ID_LEN    1u
->>>   +/*
->>> + * Workaround keys:
->>> + */
->>> +enum xe_guc_klv_ids {
->>> +   
->>> GUC_WORKAROUND_KLV_BLOCK_INTERRUPTS_WHEN_MGSR_BLOCKED               
->>> = 0x9002,
->> how should we know the LEN of the particular W/A KLV ?
-> By reading the spec.
-> 
->> as this is the ABI header, IMO we should define that here along the KEY
-> I strongly disagree with copying the entire GuC API spec into the source
-> code just for the sake of copying the spec. The implementation of this
-> w/a (and a whole bunch more that will follow) has no use for extra
-> defines about sizes or fields. And creating defines that will never be
-> used is a pointless exercise.
+Build changes
+-------------
 
-but without those defines in ABI we are using plain numbers in code:
+  * Linux: xe-992-d652ec2b081fc8e252cc86ee84f72a3b78ee9732 -> xe-pw-131627v1
 
-+	u32 klv_entry[] = {
-+		/* 16:16 key/length */
-+		FIELD_PREP(GUC_KLV_0_KEY, klv_id) |
-+		FIELD_PREP(GUC_KLV_0_LEN, 0),	<<=== hardcoded 0 len
-+		/* 0 dwords data */		<<===
-+	};
+  IGT_7782: a404f73182948e843640d00cc279883391cf6ef4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-992-d652ec2b081fc8e252cc86ee84f72a3b78ee9732: d652ec2b081fc8e252cc86ee84f72a3b78ee9732
+  xe-pw-131627v1: 131627v1
 
-> 
->>
->>> +};
->>> +
->>>   #endif
->>> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c
->>> b/drivers/gpu/drm/xe/xe_guc_ads.c
->>> index a98344a0ff4b..633e5fd9c738 100644
->>> --- a/drivers/gpu/drm/xe/xe_guc_ads.c
->>> +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
->>> @@ -7,6 +7,8 @@
->>>     #include <drm/drm_managed.h>
->>>   +#include <generated/xe_wa_oob.h>
->>> +
->>>   #include "regs/xe_engine_regs.h"
->>>   #include "regs/xe_gt_regs.h"
->>>   #include "regs/xe_guc_regs.h"
->>> @@ -19,6 +21,7 @@
->>>   #include "xe_map.h"
->>>   #include "xe_mmio.h"
->>>   #include "xe_platform_types.h"
->>> +#include "xe_wa.h"
->>>     /* Slack of a few additional entries per engine */
->>>   #define ADS_REGSET_EXTRA_MAX    8
->>> @@ -279,23 +282,43 @@ static size_t calculate_golden_lrc_size(struct
->>> xe_guc_ads *ads)
->>>       return total_size;
->>>   }
->>>   +static void guc_waklv_enable_simple(struct xe_guc_ads *ads,
->>> +                    enum xe_guc_klv_ids klv_id, u32 *offset, u32
->>> *remain)
->>> +{
->>> +    u32 size;
->>> +    u32 klv_entry[] = {
->>> +        /* 16:16 key/length */
->> drop this comment, code is self explanatory
->>
->>> +        FIELD_PREP(GUC_KLV_0_KEY, klv_id) |
->>> +        FIELD_PREP(GUC_KLV_0_LEN, 0),
->>> +        /* 0 dwords data */
->>> +    };
->> you can define size here:
->>
->>         u32 size = sizeof(klv_entry);
->>
->>> +
->>> +    size = sizeof(klv_entry);
->>> +
->>> +    if (*remain < size) {
->>> +        drm_warn(&ads_to_xe(ads)->drm,
->>> +             "w/a klv buffer too small to add klv id %d\n", klv_id);
->> this looks like our programming error so xe_gt_assert() should be
->> sufficient as we don't expect this ever happen in production
->>
->> but if you want to keep the WARN then use xe_gt_WARN() instead
->>
->>> +    } else {
->>> +        xe_map_memcpy_to(ads_to_xe(ads), ads_to_map(ads), *offset,
->>> +                 klv_entry, size);
->>> +        *offset += size;
->>> +        *remain -= size;
->>> +    }
->>> +}
->>> +
->>>   static void guc_waklv_init(struct xe_guc_ads *ads)
->>>   {
->>> +    struct xe_gt *gt = ads_to_gt(ads);
->>>       u64 addr_ggtt;
->>>       u32 offset, remain, size;
->>>         offset = guc_ads_waklv_offset(ads);
->>>       remain = guc_ads_waklv_size(ads);
->>>   -    /*
->>> -     * Add workarounds here:
->>> -     *
->>> -     * if (want_wa_<name>) {
->>> -     *      size = guc_waklv_<name>(guc, offset, remain);
->>> -     *      offset += size;
->>> -     *      remain -= size;
->>> -     * }
->>> -     */
->>> +    if (XE_WA(gt, 14019882105))
->>> +        guc_waklv_enable_simple(ads,
->>> +                   
->>> GUC_WORKAROUND_KLV_BLOCK_INTERRUPTS_WHEN_MGSR_BLOCKED,
->>> +                    &offset, &remain);
->> hmm, it looks that your implementation here in patch 2/2 is different
->> than suggested one in patch 1/2
-> It looks the same to me. It has simply optimised the the offset/remain
-> calculation to be done inside the helper rather than outside it to avoid
-> replication when all the other 'simple' w/a's are added. The actual
-> behaviour is identical.
+== Logs ==
 
-still you can move this 'optimization' to the comment in patch 1/2
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131627v1/index.html
 
-alternatively reconsider the need for this comment in patch 1/2 if you
-drop it immediately in next patch 2/2
+--===============5884945552903700466==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> 
-> John.
-> 
->>
->>>         size = guc_ads_waklv_size(ads) - remain;
->>>       if (!size)
->>> diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules
->>> b/drivers/gpu/drm/xe/xe_wa_oob.rules
->>> index 48cdba1cbf95..a8d15f004b6c 100644
->>> --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
->>> +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
->>> @@ -19,3 +19,4 @@
->>>           GRAPHICS_VERSION_RANGE(1270, 1274)
->>>           MEDIA_VERSION(1300)
->>>           PLATFORM(DG2)
->>> +14019882105    GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0)
-> 
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Add new PCI IDs to DG2 platform</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131627/">https://patchwork.freedesktop.org/series/131627/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131627v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131627v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-992-d652ec2b081fc8e252cc86ee84f72a3b78ee9732_BAT -&gt; xe-pw-131627v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 5)</h2>
+<p>Additional (1): bat-lnl-1 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-131627v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@xe_huc_copy@huc_copy:<ul>
+<li>{bat-lnl-1}:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131627v1/bat-lnl-1/igt@xe_huc_copy@huc_copy.html">SKIP</a> +20 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h2>New tests</h2>
+<p>New tests have been introduced between xe-992-d652ec2b081fc8e252cc86ee84f72a3b78ee9732_BAT and xe-pw-131627v1_BAT:</p>
+<h3>New IGT tests (4)</h3>
+<ul>
+<li>
+<p>igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_decode-instance-0-tile-1-system-memory:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.01] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_enhance-instance-0-tile-1-system-memory:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.01] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_decode-instance-0-tile-1-system-memory:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.00] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_enhance-instance-0-tile-1-system-memory:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.00] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-131627v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_evict@evict-mixed-threads-small:<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131627v1/bat-dg2-oem2/igt@xe_evict@evict-mixed-threads-small.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/804">Intel XE#804</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_evict@evict-cm-threads-small:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-992-d652ec2b081fc8e252cc86ee84f72a3b78ee9732/bat-dg2-oem2/igt@xe_evict@evict-cm-threads-small.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/804">Intel XE#804</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131627v1/bat-dg2-oem2/igt@xe_evict@evict-cm-threads-small.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1027">Intel XE#1027</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/804">Intel XE#804</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-992-d652ec2b081fc8e252cc86ee84f72a3b78ee9732 -&gt; xe-pw-131627v1</li>
+</ul>
+<p>IGT_7782: a404f73182948e843640d00cc279883391cf6ef4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-992-d652ec2b081fc8e252cc86ee84f72a3b78ee9732: d652ec2b081fc8e252cc86ee84f72a3b78ee9732<br />
+  xe-pw-131627v1: 131627v1</p>
+
+</body>
+</html>
+
+--===============5884945552903700466==--
