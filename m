@@ -4,55 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF81ACD11DD
-	for <intel-xe@archiver.kernel.org>; Tue, 26 Mar 2024 16:20:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B33B4C54E67
+	for <intel-xe@archiver.kernel.org>; Tue, 26 Mar 2024 16:21:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A95110ECB2;
-	Tue, 26 Mar 2024 16:20:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68A1D10ECB2;
+	Tue, 26 Mar 2024 16:21:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VrSP9Q0c";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lnkx2JfZ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C09110EC1C
- for <intel-xe@lists.freedesktop.org>; Tue, 26 Mar 2024 16:20:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 300CA10F0F2
+ for <intel-xe@lists.freedesktop.org>; Tue, 26 Mar 2024 16:21:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711470031; x=1743006031;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=C9bMeBN4syNOgKTohdlpni3B17vtVBfVQrweVRHb3CY=;
- b=VrSP9Q0cHp6Fs6rZDljNFCuyn+yGE62i6FwYi+GhEoHxUcO3aXKqs1bv
- eG4p/Z6hZc8usduZQCUwjUVWKBIlGsBmcx4h5tBlSMVM8LVRCMmNvQvlv
- SGLI+4oyaYF/IyRHHnoDNp5821SiWpxSihCR3DBG32AU3OJjeqTK8Q5DD
- 5bof8Tr3O9a3WChFQ0g94Z0WzL7nnYT1dhzEffIXovGKe8GZLs3NKDYze
- qmULxmciAnLTii53wHd0MXP+YBc5sSA7zB2v2M+zkM5hnUHDq/tnunCsr
- HUck18Rsh+uzcM2NJumJ17XDxNjoQGwFj1uVAGzKkQtBvc8jK+KSRNqPg Q==;
-X-CSE-ConnectionGUID: nw1WivEXSsKyxZgK0A2Tdw==
-X-CSE-MsgGUID: AiGwOS42TSau0AfA6cNEfw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11025"; a="6471189"
-X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; 
-   d="scan'208";a="6471189"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2024 09:20:20 -0700
+ t=1711470113; x=1743006113;
+ h=date:from:to:cc:subject:message-id;
+ bh=RkrImOg3sG7xTAIC5OoRitrXTzPOLGe5MwO5G3fqHCY=;
+ b=Lnkx2JfZNCMzAt6vZiZRSQdHdQDzp6YPQKnfZDFdHH1fKmJFFgebE7AQ
+ ZSB7SARwfxYWXgQiI3R6pY2vE72L1y9XRXJsDVNuL66PqJkrsy58LEOOu
+ zZqXjtE2rJzHCEV8mDjNIGbfjmg3/+ZLXbQIMjvyoyn1kl5ReBxM1XaYX
+ nvrUHoUSlY84VFZza4yNNuz/gEdteE8bs+A6bXO2YytwaSaCyHLgD/SnY
+ zjryayXh7bUPnNABFpGBlmupt/oQI6tRJArUG966LhAbpeC6Jr6Tu7OrP
+ UgB7JI9DpCh+VlcIpH3RzSs9/J9IOl8Nqa+abGHJcDf2dKmLw2cQtGosm g==;
+X-CSE-ConnectionGUID: niS2Sdm8QS+BDu0h847mqg==
+X-CSE-MsgGUID: wCXRSncCSW2nDJW2FzyoBQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11025"; a="10332076"
+X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; d="scan'208";a="10332076"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2024 09:21:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; d="scan'208";a="16401347"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2024 09:20:20 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-xe@lists.freedesktop.org,
- Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: Re: [PATCH v3] drm/xe: Use FIELD_PREP for lrc descriptor
-Date: Tue, 26 Mar 2024 09:20:54 -0700
-Message-ID: <171147004253.713364.7651388067462327669.b4-ty@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240322191455.7613-1-niranjana.vishwanathapura@intel.com>
-References: <20240322191455.7613-1-niranjana.vishwanathapura@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; d="scan'208";a="20707718"
+Received: from lkp-server01.sh.intel.com (HELO be39aa325d23) ([10.239.97.150])
+ by orviesa004.jf.intel.com with ESMTP; 26 Mar 2024 09:21:51 -0700
+Received: from kbuild by be39aa325d23 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1rp9Yb-0000CL-0S;
+ Tue, 26 Mar 2024 16:21:49 +0000
+Date: Wed, 27 Mar 2024 00:21:27 +0800
+From: kernel test robot <lkp@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
+ 0d8cf0c924732a045273c6aca6900a340ac88529
+Message-ID: <202403270023.D1EIex9Y-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,22 +62,214 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
+branch HEAD: 0d8cf0c924732a045273c6aca6900a340ac88529  drm/xe: Fix END redefinition
 
-On Fri, 22 Mar 2024 12:14:55 -0700, Niranjana Vishwanathapura wrote:
-> Use FIELD_PREP for setting lrc descriptor fields instead
-> of shifting values to fields.
-> 
-> v2: Use ULL macro variants
-> v3: Do not use FIELD_PREP for 1-bit values
-> 
-> 
-> [...]
+elapsed time: 1162m
 
-Applied, thanks!
+configs tested: 195
+configs skipped: 3
 
-[1/1] drm/xe: Use FIELD_PREP for lrc descriptor
-      commit: cf03825bdd190b7ab323f797278a00fbf163d889
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-Best regards,
+tested configs:
+alpha                             allnoconfig   gcc  
+alpha                            allyesconfig   gcc  
+alpha                               defconfig   gcc  
+arc                              allmodconfig   gcc  
+arc                               allnoconfig   gcc  
+arc                              allyesconfig   gcc  
+arc                          axs101_defconfig   gcc  
+arc                                 defconfig   gcc  
+arc                        nsimosci_defconfig   gcc  
+arc                   randconfig-001-20240326   gcc  
+arc                   randconfig-002-20240326   gcc  
+arm                              allmodconfig   gcc  
+arm                               allnoconfig   clang
+arm                              allyesconfig   gcc  
+arm                                 defconfig   clang
+arm                        multi_v5_defconfig   gcc  
+arm                       netwinder_defconfig   gcc  
+arm                   randconfig-001-20240326   gcc  
+arm                   randconfig-002-20240326   gcc  
+arm                   randconfig-003-20240326   gcc  
+arm                   randconfig-004-20240326   gcc  
+arm                         s3c6400_defconfig   gcc  
+arm                           spitz_defconfig   gcc  
+arm64                            allmodconfig   clang
+arm64                             allnoconfig   gcc  
+arm64                            allyesconfig   clang
+arm64                               defconfig   gcc  
+arm64                 randconfig-003-20240326   gcc  
+csky                             allmodconfig   gcc  
+csky                              allnoconfig   gcc  
+csky                             allyesconfig   gcc  
+csky                                defconfig   gcc  
+csky                  randconfig-001-20240326   gcc  
+csky                  randconfig-002-20240326   gcc  
+hexagon                          allmodconfig   clang
+hexagon                           allnoconfig   clang
+hexagon                          allyesconfig   clang
+hexagon                             defconfig   clang
+i386                             allmodconfig   gcc  
+i386                              allnoconfig   gcc  
+i386                             allyesconfig   gcc  
+i386         buildonly-randconfig-001-20240326   gcc  
+i386         buildonly-randconfig-002-20240326   clang
+i386         buildonly-randconfig-003-20240326   clang
+i386         buildonly-randconfig-004-20240326   gcc  
+i386         buildonly-randconfig-005-20240326   gcc  
+i386         buildonly-randconfig-006-20240326   gcc  
+i386                                defconfig   clang
+i386                  randconfig-001-20240326   gcc  
+i386                  randconfig-002-20240326   gcc  
+i386                  randconfig-003-20240326   gcc  
+i386                  randconfig-004-20240326   clang
+i386                  randconfig-005-20240326   gcc  
+i386                  randconfig-006-20240326   clang
+i386                  randconfig-011-20240326   clang
+i386                  randconfig-012-20240326   gcc  
+i386                  randconfig-013-20240326   clang
+i386                  randconfig-014-20240326   clang
+i386                  randconfig-015-20240326   clang
+i386                  randconfig-016-20240326   clang
+loongarch                        allmodconfig   gcc  
+loongarch                         allnoconfig   gcc  
+loongarch                        allyesconfig   gcc  
+loongarch                           defconfig   gcc  
+loongarch             randconfig-001-20240326   gcc  
+loongarch             randconfig-002-20240326   gcc  
+m68k                             allmodconfig   gcc  
+m68k                              allnoconfig   gcc  
+m68k                             allyesconfig   gcc  
+m68k                                defconfig   gcc  
+m68k                       m5208evb_defconfig   gcc  
+m68k                          multi_defconfig   gcc  
+m68k                        mvme147_defconfig   gcc  
+m68k                           sun3_defconfig   gcc  
+microblaze                       allmodconfig   gcc  
+microblaze                        allnoconfig   gcc  
+microblaze                       allyesconfig   gcc  
+microblaze                          defconfig   gcc  
+mips                             allmodconfig   gcc  
+mips                              allnoconfig   gcc  
+mips                             allyesconfig   gcc  
+mips                       bmips_be_defconfig   gcc  
+mips                         cobalt_defconfig   gcc  
+mips                 decstation_r4k_defconfig   gcc  
+mips                      fuloong2e_defconfig   gcc  
+mips                          malta_defconfig   gcc  
+mips                malta_qemu_32r6_defconfig   gcc  
+mips                       rbtx49xx_defconfig   gcc  
+mips                          rm200_defconfig   gcc  
+nios2                            allmodconfig   gcc  
+nios2                             allnoconfig   gcc  
+nios2                            allyesconfig   gcc  
+nios2                               defconfig   gcc  
+nios2                 randconfig-001-20240326   gcc  
+nios2                 randconfig-002-20240326   gcc  
+openrisc                         allmodconfig   gcc  
+openrisc                          allnoconfig   gcc  
+openrisc                         allyesconfig   gcc  
+openrisc                            defconfig   gcc  
+parisc                           alldefconfig   gcc  
+parisc                           allmodconfig   gcc  
+parisc                            allnoconfig   gcc  
+parisc                           allyesconfig   gcc  
+parisc                              defconfig   gcc  
+parisc                randconfig-001-20240326   gcc  
+parisc                randconfig-002-20240326   gcc  
+parisc64                            defconfig   gcc  
+powerpc                          allmodconfig   gcc  
+powerpc                           allnoconfig   gcc  
+powerpc                          allyesconfig   clang
+powerpc                    amigaone_defconfig   gcc  
+powerpc                      ep88xc_defconfig   gcc  
+powerpc                    klondike_defconfig   gcc  
+powerpc                   microwatt_defconfig   gcc  
+powerpc                 mpc832x_rdb_defconfig   gcc  
+powerpc                 mpc837x_rdb_defconfig   gcc  
+powerpc               randconfig-002-20240326   gcc  
+powerpc                      walnut_defconfig   gcc  
+powerpc64             randconfig-001-20240326   gcc  
+powerpc64             randconfig-002-20240326   gcc  
+powerpc64             randconfig-003-20240326   gcc  
+riscv                            allmodconfig   clang
+riscv                             allnoconfig   gcc  
+riscv                            allyesconfig   clang
+riscv                               defconfig   clang
+riscv             nommu_k210_sdcard_defconfig   gcc  
+riscv                 randconfig-001-20240326   gcc  
+s390                             allmodconfig   clang
+s390                              allnoconfig   clang
+s390                             allyesconfig   gcc  
+s390                          debug_defconfig   gcc  
+s390                                defconfig   clang
+sh                               alldefconfig   gcc  
+sh                               allmodconfig   gcc  
+sh                                allnoconfig   gcc  
+sh                               allyesconfig   gcc  
+sh                         ap325rxa_defconfig   gcc  
+sh                         apsh4a3a_defconfig   gcc  
+sh                                  defconfig   gcc  
+sh                               j2_defconfig   gcc  
+sh                          lboxre2_defconfig   gcc  
+sh                          polaris_defconfig   gcc  
+sh                    randconfig-001-20240326   gcc  
+sh                    randconfig-002-20240326   gcc  
+sh                          rsk7269_defconfig   gcc  
+sh                      rts7751r2d1_defconfig   gcc  
+sh                          sdk7786_defconfig   gcc  
+sh                           se7705_defconfig   gcc  
+sh                        sh7757lcr_defconfig   gcc  
+sh                        sh7785lcr_defconfig   gcc  
+sh                             shx3_defconfig   gcc  
+sh                              ul2_defconfig   gcc  
+sparc                            allmodconfig   gcc  
+sparc                             allnoconfig   gcc  
+sparc                            allyesconfig   gcc  
+sparc                               defconfig   gcc  
+sparc64                          allmodconfig   gcc  
+sparc64                          allyesconfig   gcc  
+sparc64                             defconfig   gcc  
+sparc64               randconfig-001-20240326   gcc  
+sparc64               randconfig-002-20240326   gcc  
+um                               allmodconfig   clang
+um                                allnoconfig   clang
+um                               allyesconfig   gcc  
+um                                  defconfig   clang
+um                             i386_defconfig   gcc  
+um                    randconfig-001-20240326   gcc  
+um                    randconfig-002-20240326   gcc  
+um                           x86_64_defconfig   clang
+x86_64                            allnoconfig   clang
+x86_64                           allyesconfig   clang
+x86_64       buildonly-randconfig-002-20240326   gcc  
+x86_64       buildonly-randconfig-004-20240326   gcc  
+x86_64       buildonly-randconfig-005-20240326   gcc  
+x86_64       buildonly-randconfig-006-20240326   gcc  
+x86_64                              defconfig   gcc  
+x86_64                randconfig-001-20240326   gcc  
+x86_64                randconfig-002-20240326   gcc  
+x86_64                randconfig-003-20240326   gcc  
+x86_64                randconfig-005-20240326   gcc  
+x86_64                randconfig-011-20240326   gcc  
+x86_64                randconfig-013-20240326   gcc  
+x86_64                randconfig-014-20240326   gcc  
+x86_64                randconfig-072-20240326   gcc  
+x86_64                randconfig-073-20240326   gcc  
+x86_64                randconfig-074-20240326   gcc  
+x86_64                randconfig-075-20240326   gcc  
+x86_64                randconfig-076-20240326   gcc  
+x86_64                          rhel-8.3-rust   clang
+x86_64                               rhel-8.3   gcc  
+xtensa                            allnoconfig   gcc  
+xtensa                           allyesconfig   gcc  
+xtensa                randconfig-001-20240326   gcc  
+xtensa                randconfig-002-20240326   gcc  
+xtensa                    xip_kc705_defconfig   gcc  
+
 -- 
-Lucas De Marchi <lucas.demarchi@intel.com>
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
