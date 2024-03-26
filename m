@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03A0BC6FD1F
-	for <intel-xe@archiver.kernel.org>; Tue, 26 Mar 2024 08:26:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A363CD11DF
+	for <intel-xe@archiver.kernel.org>; Tue, 26 Mar 2024 10:35:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A81A10E1D1;
-	Tue, 26 Mar 2024 08:26:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B890B10E592;
+	Tue, 26 Mar 2024 10:35:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y4kMuLZ2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I8aIncve";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FFF610E1D1
- for <intel-xe@lists.freedesktop.org>; Tue, 26 Mar 2024 08:26:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBE8C10E592
+ for <intel-xe@lists.freedesktop.org>; Tue, 26 Mar 2024 10:35:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711441561; x=1742977561;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=6Z3fU7Ij7pnIS53m83dunt3+QD4sP8FM+rsv8O9EWFA=;
- b=Y4kMuLZ2k0x6Tse7efRfGDMo3Z5Q8JHIgs2p5p0lrKSRF7Mgsf1ndsNz
- 0CXrgnU7uaur21fh6OXRsnlL4bVy7uLWBcNLAQNB2hmw1jfCvtrVdHyEI
- UMWJ3VhakiyXD1B3MILJfIfmPsb7Fc9oUB2WkMr5Q36Zp4vy8cB1fP50Q
- iavb8LAszkNfnZAjZ2JNCtFS0HZ0ptmPaYmfd6VeGSxGP7a8Q57OA4hO/
- LSTJYsiA16WLziV2K1qns3eYA0nWGUZz+cv8HYn7o8jyrXHdX1Kkf6bvi
- 6AQf6TqMmC/xvNuZo3/RCfDL8z2RT2RElKw/TcJ8yA/w2X6nh6el9Zd1X Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="17910143"
-X-IronPort-AV: E=Sophos;i="6.07,155,1708416000"; d="scan'208";a="17910143"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2024 01:26:00 -0700
+ t=1711449300; x=1742985300;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=QYxW9+bsHwdGJQEDPdl3sUHmJmRkMPvufSNHSzjfyy0=;
+ b=I8aIncveutgFMv2/tZlXHmjKkKeoRk2cFtJ4Ib4rH6E4A1/x7e+MKBcN
+ GyyasF2R8Hkfr+xeEsru3QarL2QZaKzlCOWHD3i4JyMHEn8SUsdLAaSV3
+ jbaNqxE0zzEcCG2oY4m5lYBN1/fSAve2yL2XQx3Kp+F/FHWnKBdUfRtaA
+ 7FsQhGq9CNfIhV9Lc5e1QePUmXJLTynOmWloXBE8s/8KML4NkmYatn6ZC
+ cNAXNEOsHA0Opr/S9UV3RCihuEMwPgV0dJDZ3sX9wGb6+7QKLP0PV7pXN
+ a+AGIGbYaXVjENUiLlgnyJRYUFwzMu/x1frEvSNXcNGX3g3qHxAjPj/44 Q==;
+X-CSE-ConnectionGUID: +Lr70QVbQxGENbP3PSoOhA==
+X-CSE-MsgGUID: Hf07qOTUT4qWegbu3lSBVA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="6680007"
+X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; 
+   d="scan'208";a="6680007"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2024 03:35:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,155,1708416000"; d="scan'208";a="15929513"
-Received: from unknown (HELO [10.245.245.97]) ([10.245.245.97])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2024 01:25:58 -0700
-Message-ID: <f2e72896-8524-44a5-bb75-ff277c50eaa6@intel.com>
-Date: Tue, 26 Mar 2024 08:25:56 +0000
+X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; d="scan'208";a="39033546"
+Received: from rvodapal-desk.iind.intel.com ([10.145.162.163])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2024 03:34:58 -0700
+From: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: balasubramani.vivekanandan@intel.com, matthew.d.roper@intel.com,
+ lucas.demarchi@intel.com, gustavo.sousa@intel.com,
+ radhakrishna.sripada@intel.com, clinton.a.taylor@intel.com,
+ matthew.s.atwood@intel.com, dnyaneshwar.bhadane@intel.com,
+ haridhar.kalvala@intel.com, shekhar.chauhan@intel.com
+Subject: [PATCH] drm/xe: Add new PCI IDs to DG2 platform
+Date: Tue, 26 Mar 2024 16:08:25 +0530
+Message-Id: <20240326103825.3832879-1-ravi.kumar.vodapalli@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/1] drm/xe/xe2: Send flat_ccs value in struct
- drm_xe_query_config
-Content-Language: en-GB
-To: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
-Cc: intel-xe@lists.freedesktop.org, zbigniew.kempczynski@intel.com
-References: <cover.1711447408.git.akshata.jahagirdar@intel.com>
- <b672be6eea948e332ba58b63d6f8c4c71c37a42b.1711447408.git.akshata.jahagirdar@intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <b672be6eea948e332ba58b63d6f8c4c71c37a42b.1711447408.git.akshata.jahagirdar@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,57 +67,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 26/03/2024 10:10, Akshata Jahagirdar wrote:
-> Currently, we don't have any check in IGT testcases if platform supports
-> compression or not. Send this flat_ccs value as part of the struct
-> drm_xe_query_config so that we can read this value in the igt testcases
-> and proceed accordingly.
+New PCI IDs are added in Bspec for DG2 platform, add them in driver
 
-AFAIK it's not valid to add uAPI just for an IGT. uAPI normally needs a 
-real open source user (like Mesa etc) with UMD acks. However if this is 
-going to be used by Mesa etc, how do they tell the difference between 
-"this device doesn't have flat-CCS" and "this KMD version doesn't 
-support FLAG_HAS_FLAT_CCS"?
+Bspec: 44477
+Signed-off-by: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
+---
+ include/drm/xe_pciids.h | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-If userspace doesn't need this, then other option could be debugfs. Or 
-if this just a single test perhaps we can just dynamically check if the 
-CCS state is zero for compressed buffer at the start of the test?
+diff --git a/include/drm/xe_pciids.h b/include/drm/xe_pciids.h
+index ab4a8987ac65..c7fc288dacee 100644
+--- a/include/drm/xe_pciids.h
++++ b/include/drm/xe_pciids.h
+@@ -134,7 +134,9 @@
+ 	MACRO__(0x5692, ## __VA_ARGS__),	\
+ 	MACRO__(0x56A0, ## __VA_ARGS__),	\
+ 	MACRO__(0x56A1, ## __VA_ARGS__),	\
+-	MACRO__(0x56A2, ## __VA_ARGS__)
++	MACRO__(0x56A2, ## __VA_ARGS__),	\
++	MACRO__(0x56BE, ## __VA_ARGS__),	\
++	MACRO__(0x56BF, ## __VA_ARGS__)
+ 
+ #define XE_DG2_G11_IDS(MACRO__, ...)		\
+ 	MACRO__(0x5693, ## __VA_ARGS__),	\
+-- 
+2.25.1
 
-> Fixes: VLK-56136
-> 
-> Signed-off-by: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_query.c | 3 +++
->   include/uapi/drm/xe_drm.h     | 1 +
->   2 files changed, 4 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-> index e80321b34918..8a3a3117491c 100644
-> --- a/drivers/gpu/drm/xe/xe_query.c
-> +++ b/drivers/gpu/drm/xe/xe_query.c
-> @@ -332,6 +332,9 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
->   	config->num_params = num_params;
->   	config->info[DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID] =
->   		xe->info.devid | (xe->info.revid << 16);
-> +	if (xe->info.has_flat_ccs)
-> +		config->info[DRM_XE_QUERY_CONFIG_FLAGS] =
-> +			DRM_XE_QUERY_CONFIG_FLAG_HAS_FLAT_CCS;
->   	if (xe_device_get_root_tile(xe)->mem.vram.usable_size)
->   		config->info[DRM_XE_QUERY_CONFIG_FLAGS] =
-
-This tramples the previous value AFAICT, like when we have VRAM + CCS on 
-DG2. I think we need |= here.
-
->   			DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM;
-> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> index f44a19ae9333..08783234bae1 100644
-> --- a/include/uapi/drm/xe_drm.h
-> +++ b/include/uapi/drm/xe_drm.h
-> @@ -405,6 +405,7 @@ struct drm_xe_query_config {
->   #define DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID	0
->   #define DRM_XE_QUERY_CONFIG_FLAGS			1
->   	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM	(1 << 0)
-> +	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_FLAT_CCS	(1 << 1)
->   #define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
->   #define DRM_XE_QUERY_CONFIG_VA_BITS			3
->   #define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
