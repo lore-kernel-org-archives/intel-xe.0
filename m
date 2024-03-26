@@ -4,27 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EF8ECD11DD
-	for <intel-xe@archiver.kernel.org>; Tue, 26 Mar 2024 11:41:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64CDBCD11DD
+	for <intel-xe@archiver.kernel.org>; Tue, 26 Mar 2024 12:27:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03DA110EEC2;
-	Tue, 26 Mar 2024 11:41:45 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B46F010EEC9;
- Tue, 26 Mar 2024 11:41:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5884945552903700466=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 017BA10EF2C;
+	Tue, 26 Mar 2024 12:27:38 +0000 (UTC)
+Received: from out0-212.mail.aliyun.com (out0-212.mail.aliyun.com
+ [140.205.0.212])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B543D10E8D0
+ for <intel-xe@lists.freedesktop.org>; Tue, 26 Mar 2024 12:27:36 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R151e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018047204;
+ MF=tiwei.btw@antgroup.com; NM=1; PH=DS; RN=7; SR=0;
+ TI=SMTPD_---.WwV9z9B_1711456045; 
+Received: from 30.230.85.20(mailfrom:tiwei.btw@antgroup.com
+ fp:SMTPD_---.WwV9z9B_1711456045) by smtp.aliyun-inc.com;
+ Tue, 26 Mar 2024 20:27:33 +0800
+Message-ID: <fbd44e8a-713b-4e66-9241-e18fc78c9168@antgroup.com>
+Date: Tue, 26 Mar 2024 20:27:25 +0800
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Add_new_PCI_IDs_to_DG2?=
- =?utf-8?q?_platform?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ravi Kumar Vodapalli" <ravi.kumar.vodapalli@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 26 Mar 2024 11:41:43 -0000
-Message-ID: <171145330373.1039951.1872398660691341788@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240326103825.3832879-1-ravi.kumar.vodapalli@intel.com>
-In-Reply-To: <20240326103825.3832879-1-ravi.kumar.vodapalli@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/9] um: Minor fixes and cleanups
+To: richard@nod.at, anton.ivanov@cambridgegreys.com, johannes@sipsolutions.net
+Cc: jani.nikula@intel.com, linux-um@lists.infradead.org,
+ linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org
+References: <20240306101925.1088870-1-tiwei.btw@antgroup.com>
+Content-Language: en-US
+From: "Tiwei Bie" <tiwei.btw@antgroup.com>
+In-Reply-To: <20240306101925.1088870-1-tiwei.btw@antgroup.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,232 +45,95 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5884945552903700466==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi,
 
-== Series Details ==
+Gentle ping.. Please take a look at this series if possible. The changes
+in this series are very straightforward, so it shouldn't require much effort
+to review. But they cover a wide area, making them prone to conflicts
+with other patches :/, e.g.
 
-Series: drm/xe: Add new PCI IDs to DG2 platform
-URL   : https://patchwork.freedesktop.org/series/131627/
-State : success
+https://lore.kernel.org/linux-um/20240326073750.726636-1-surenb@google.com/T/#u
 
-== Summary ==
+Sorry to be impatient, but pinging this. This series was originally posted
+two months ago, and hasn't received a review yet. Just want to make sure that
+this series is not lost..
 
-CI Bug Log - changes from xe-992-d652ec2b081fc8e252cc86ee84f72a3b78ee9732_BAT -> xe-pw-131627v1_BAT
-====================================================
+PS. I have tested this series on both of 64bit and 32bit platforms manually.
+There is also a CI test report from patchwork@emeril.freedesktop.org:
 
-Summary
--------
+https://lore.kernel.org/all/87bk7rzj70.fsf@intel.com/
 
-  **SUCCESS**
+Thanks,
+Tiwei
 
-  No regressions found.
+On 3/6/24 6:19 PM, Tiwei Bie wrote:
+> A series of minor fixes and cleanups for UML.
+> 
+> Most changes in this series are very straightforward. Please consider
+> picking this series for v6.9.
+> 
+> There are still some remaining -Wmissing-prototypes warnings. I plan to
+> send a followup RFC series first to fix those warnings.
+> 
+> Feedbacks on this series would be appreciated. Thanks!
+> 
+> Changes since v2:
+> https://lore.kernel.org/lkml/20240205114708.25235-1-tiwei.btw@antgroup.com/
+> - Add "um: Move declarations to proper headers";
+> - Add "um: Fix -Wmissing-prototypes warnings for text_poke*";
+> - Add "um: Fix -Wmissing-prototypes warnings for __warp_* and foo";
+> - Make do_set_thread_area() static;
+> - Add the missing header for calibrate_delay_is_known;
+> 
+> Tiwei Bie (9):
+>   um: Make local functions and variables static
+>   um: Fix the declaration of vfree
+>   um: Remove unused functions
+>   um: Fix the return type of __switch_to
+>   um: Add missing headers
+>   um: Stop tracking host PID in cpu_tasks
+>   um: Move declarations to proper headers
+>   um: Fix -Wmissing-prototypes warnings for text_poke*
+>   um: Fix -Wmissing-prototypes warnings for __warp_* and foo
+> 
+>  arch/um/drivers/pcap_kern.c                |  4 +-
+>  arch/um/drivers/ubd_user.c                 |  2 +-
+>  arch/um/include/asm/ptrace-generic.h       |  3 ++
+>  arch/um/include/shared/as-layout.h         |  1 -
+>  arch/um/include/shared/kern_util.h         |  1 +
+>  arch/um/include/shared/um_malloc.h         |  2 +-
+>  arch/um/kernel/kmsg_dump.c                 |  2 +-
+>  arch/um/kernel/mem.c                       |  2 +
+>  arch/um/kernel/physmem.c                   |  3 +-
+>  arch/um/kernel/process.c                   | 48 +++++-----------------
+>  arch/um/kernel/ptrace.c                    |  3 --
+>  arch/um/kernel/reboot.c                    |  1 +
+>  arch/um/kernel/skas/mmu.c                  |  1 +
+>  arch/um/kernel/skas/process.c              |  5 +--
+>  arch/um/kernel/time.c                      |  7 ++--
+>  arch/um/kernel/tlb.c                       |  7 +---
+>  arch/um/kernel/um_arch.c                   |  1 +
+>  arch/um/kernel/um_arch.h                   |  2 +
+>  arch/um/os-Linux/drivers/ethertap_kern.c   |  2 +-
+>  arch/um/os-Linux/drivers/tuntap_kern.c     |  2 +-
+>  arch/um/os-Linux/main.c                    |  5 +++
+>  arch/um/os-Linux/signal.c                  |  4 +-
+>  arch/um/os-Linux/start_up.c                |  1 +
+>  arch/x86/um/asm/ptrace.h                   |  6 +++
+>  arch/x86/um/bugs_32.c                      |  1 +
+>  arch/x86/um/bugs_64.c                      |  1 +
+>  arch/x86/um/elfcore.c                      |  1 +
+>  arch/x86/um/fault.c                        |  1 +
+>  arch/x86/um/os-Linux/mcontext.c            |  1 +
+>  arch/x86/um/os-Linux/registers.c           |  2 +-
+>  arch/x86/um/os-Linux/tls.c                 |  1 +
+>  arch/x86/um/ptrace_32.c                    |  2 -
+>  arch/x86/um/shared/sysdep/kernel-offsets.h |  3 ++
+>  arch/x86/um/tls_32.c                       |  2 +-
+>  arch/x86/um/user-offsets.c                 |  3 ++
+>  35 files changed, 63 insertions(+), 70 deletions(-)
+> 
 
-  
-
-Participating hosts (4 -> 5)
-------------------------------
-
-  Additional (1): bat-lnl-1 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-131627v1_BAT:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@xe_huc_copy@huc_copy:
-    - {bat-lnl-1}:        NOTRUN -> [SKIP][1] +20 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131627v1/bat-lnl-1/igt@xe_huc_copy@huc_copy.html
-
-  
-New tests
----------
-
-  New tests have been introduced between xe-992-d652ec2b081fc8e252cc86ee84f72a3b78ee9732_BAT and xe-pw-131627v1_BAT:
-
-### New IGT tests (4) ###
-
-  * igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_decode-instance-0-tile-1-system-memory:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.01] s
-
-  * igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_enhance-instance-0-tile-1-system-memory:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.01] s
-
-  * igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_decode-instance-0-tile-1-system-memory:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.00] s
-
-  * igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_enhance-instance-0-tile-1-system-memory:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.00] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-131627v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_evict@evict-mixed-threads-small:
-    - bat-dg2-oem2:       NOTRUN -> [INCOMPLETE][2] ([Intel XE#804])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131627v1/bat-dg2-oem2/igt@xe_evict@evict-mixed-threads-small.html
-
-  
-#### Warnings ####
-
-  * igt@xe_evict@evict-cm-threads-small:
-    - bat-dg2-oem2:       [INCOMPLETE][3] ([Intel XE#804]) -> [INCOMPLETE][4] ([Intel XE#1027] / [Intel XE#804])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-992-d652ec2b081fc8e252cc86ee84f72a3b78ee9732/bat-dg2-oem2/igt@xe_evict@evict-cm-threads-small.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131627v1/bat-dg2-oem2/igt@xe_evict@evict-cm-threads-small.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#1027]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1027
-  [Intel XE#804]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/804
-
-
-Build changes
--------------
-
-  * Linux: xe-992-d652ec2b081fc8e252cc86ee84f72a3b78ee9732 -> xe-pw-131627v1
-
-  IGT_7782: a404f73182948e843640d00cc279883391cf6ef4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-992-d652ec2b081fc8e252cc86ee84f72a3b78ee9732: d652ec2b081fc8e252cc86ee84f72a3b78ee9732
-  xe-pw-131627v1: 131627v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131627v1/index.html
-
---===============5884945552903700466==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Add new PCI IDs to DG2 platform</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131627/">https://patchwork.freedesktop.org/series/131627/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131627v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131627v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-992-d652ec2b081fc8e252cc86ee84f72a3b78ee9732_BAT -&gt; xe-pw-131627v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 5)</h2>
-<p>Additional (1): bat-lnl-1 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-131627v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@xe_huc_copy@huc_copy:<ul>
-<li>{bat-lnl-1}:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131627v1/bat-lnl-1/igt@xe_huc_copy@huc_copy.html">SKIP</a> +20 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>New tests</h2>
-<p>New tests have been introduced between xe-992-d652ec2b081fc8e252cc86ee84f72a3b78ee9732_BAT and xe-pw-131627v1_BAT:</p>
-<h3>New IGT tests (4)</h3>
-<ul>
-<li>
-<p>igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_decode-instance-0-tile-1-system-memory:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.01] s</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_enhance-instance-0-tile-1-system-memory:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.01] s</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_decode-instance-0-tile-1-system-memory:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.00] s</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_enhance-instance-0-tile-1-system-memory:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.00] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-131627v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_evict@evict-mixed-threads-small:<ul>
-<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131627v1/bat-dg2-oem2/igt@xe_evict@evict-mixed-threads-small.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/804">Intel XE#804</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_evict@evict-cm-threads-small:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-992-d652ec2b081fc8e252cc86ee84f72a3b78ee9732/bat-dg2-oem2/igt@xe_evict@evict-cm-threads-small.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/804">Intel XE#804</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131627v1/bat-dg2-oem2/igt@xe_evict@evict-cm-threads-small.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1027">Intel XE#1027</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/804">Intel XE#804</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-992-d652ec2b081fc8e252cc86ee84f72a3b78ee9732 -&gt; xe-pw-131627v1</li>
-</ul>
-<p>IGT_7782: a404f73182948e843640d00cc279883391cf6ef4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-992-d652ec2b081fc8e252cc86ee84f72a3b78ee9732: d652ec2b081fc8e252cc86ee84f72a3b78ee9732<br />
-  xe-pw-131627v1: 131627v1</p>
-
-</body>
-</html>
-
---===============5884945552903700466==--
