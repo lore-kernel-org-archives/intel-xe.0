@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC135C47DD9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCC7FCD1284
 	for <intel-xe@archiver.kernel.org>; Wed, 27 Mar 2024 16:05:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E98F10FDCA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FFF810FDCE;
 	Wed, 27 Mar 2024 16:05:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IeaOuXRB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O0QK8T7y";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE2E310FDCA
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C69210FDCA
  for <intel-xe@lists.freedesktop.org>; Wed, 27 Mar 2024 16:05:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711555553; x=1743091553;
+ t=1711555552; x=1743091552;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=kP4sB9e4qIyYFxCv8hqlIcqdu4IrhPe8aBj6QyOhG/4=;
- b=IeaOuXRB4aPI2CJv/Fsh2XHV9iqiXb7QjQD6Zzvke6keISOXmQS3WJM5
- So00D9UJu4SFwpcGEQ7GVUHuRAuLgkMlP6ROSEmpqQi1lcnNggGLPxDQd
- IEavppFCap01emQEPYrovBdvulypuOCJCYuA6nHBq1xHHuVeOG1zOb/Tu
- rIas1Z6y5NayUVB7gzwVY3pdIFCT+5Q88xso65u1IllYgd5nv39H4AtWi
- M73P/IbV+9T4/GIyx9cKvGDIeQ/fgbzwqE07oiBLgJ3SDLp/TN6//vz3D
- cVGuHgbKJByKxmrp13XOIFsy+AbmUNT7TJWFvpdNrdA7Qa0jrVWwS1SPH A==;
-X-CSE-ConnectionGUID: YkhxqckaRcaeIik6utIeNA==
-X-CSE-MsgGUID: Fq0C6t97TmGLFs70aK/WwA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="18056676"
-X-IronPort-AV: E=Sophos;i="6.07,159,1708416000"; d="scan'208";a="18056676"
+ bh=tcQ4DWII7a5vFVqrDp1AZ/G+iqHwm15Ml6TIhcKLkTk=;
+ b=O0QK8T7yIENign/Tw5TGHZABZbthHSN0z9pMm4WI6e0sprdj2LeKvzvc
+ xhUoO3Te3ZsT/DkmsbffleRp+U+BbxugjB38MXtjp1/MhdUnOx556BHe0
+ Wsk4JMPlLyuKWjURgaGzhSuNtboykWCFyMGhaTZzK5Ww8yEez41AMrB3E
+ LZaT3oJfllaIF5ZttvQCvWK6piDgjip4WpBU334TDIh/grB0N2SwzCFSK
+ JxGKcLEGdedQhrA9ajypAa/omLVJW/xF8P8KS3mPFnYd6SovNbX/cMY2A
+ KnqHAyGogGm528QtLaVcFe+/iindS9h0Lp2DjutSxpJ6mo4ODXKAAtmNk g==;
+X-CSE-ConnectionGUID: ZfSateeZQySbruLsHdRyrA==
+X-CSE-MsgGUID: 3fWEirEuTq29uc9Bnh1k2g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="18056675"
+X-IronPort-AV: E=Sophos;i="6.07,159,1708416000"; d="scan'208";a="18056675"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2024 09:05:51 -0700
+ 27 Mar 2024 09:05:50 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,159,1708416000"; d="scan'208";a="16292696"
+X-IronPort-AV: E=Sophos;i="6.07,159,1708416000"; d="scan'208";a="16292694"
 Received: from ktonsber-mobl1.ger.corp.intel.com (HELO fedora..)
  ([10.249.254.184])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2024 09:05:50 -0700
+ 27 Mar 2024 09:05:49 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 5/8] drm/ttm: Add a virtual base class for graphics memory backup
-Date: Wed, 27 Mar 2024 17:05:33 +0100
-Message-ID: <20240327160536.53597-6-thomas.hellstrom@linux.intel.com>
+Subject: [CI 4/8] drm/ttm: Allow continued swapout after -ENOSPC falure
+Date: Wed, 27 Mar 2024 17:05:32 +0100
+Message-ID: <20240327160536.53597-5-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240327160536.53597-1-thomas.hellstrom@linux.intel.com>
 References: <20240327160536.53597-1-thomas.hellstrom@linux.intel.com>
@@ -65,223 +65,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Initially intended for experimenting with different backup
-solutions (shmem vs direct swap cache insertion), abstract
-the backup destination using a virtual base class.
+The -ENOSPC failure from ttm_bo_swapout() meant that the lru_lock
+was dropped and simply restarting the iteration meant we'd likely
+hit the same error again on the same resource. Now that we can
+restart the iteration even if the lock was dropped, do that.
 
-Also provide a sample implementation for shmem.
-
-While when settling on a preferred backup solution, one could
-perhaps skip the abstraction, this functionality may actually
-come in handy for configurable dedicated graphics memory
-backup to fast nvme files or similar, whithout affecting
-swap-space. Could indeed be useful for VRAM backup on S4 and
-other cases.
-
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+Cc: <dri-devel@lists.freedesktop.org>
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/ttm/Makefile           |   2 +-
- drivers/gpu/drm/ttm/ttm_backup_shmem.c | 122 +++++++++++++++++++++++++
- include/drm/ttm/ttm_backup.h           |  48 ++++++++++
- 3 files changed, 171 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/ttm/ttm_backup_shmem.c
- create mode 100644 include/drm/ttm/ttm_backup.h
+ drivers/gpu/drm/ttm/ttm_device.c | 21 +++++++++++++--------
+ 1 file changed, 13 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/ttm/Makefile b/drivers/gpu/drm/ttm/Makefile
-index dad298127226..5e980dd90e41 100644
---- a/drivers/gpu/drm/ttm/Makefile
-+++ b/drivers/gpu/drm/ttm/Makefile
-@@ -4,7 +4,7 @@
+diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_device.c
+index e8a6a1dab669..4a030b4bc848 100644
+--- a/drivers/gpu/drm/ttm/ttm_device.c
++++ b/drivers/gpu/drm/ttm/ttm_device.c
+@@ -168,15 +168,20 @@ int ttm_device_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
  
- ttm-y := ttm_tt.o ttm_bo.o ttm_bo_util.o ttm_bo_vm.o ttm_module.o \
- 	ttm_execbuf_util.o ttm_range_manager.o ttm_resource.o ttm_pool.o \
--	ttm_device.o ttm_sys_manager.o
-+	ttm_device.o ttm_sys_manager.o ttm_backup_shmem.o
- ttm-$(CONFIG_AGP) += ttm_agp_backend.o
- 
- obj-$(CONFIG_DRM_TTM) += ttm.o
-diff --git a/drivers/gpu/drm/ttm/ttm_backup_shmem.c b/drivers/gpu/drm/ttm/ttm_backup_shmem.c
-new file mode 100644
-index 000000000000..af487f479103
---- /dev/null
-+++ b/drivers/gpu/drm/ttm/ttm_backup_shmem.c
-@@ -0,0 +1,122 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#include <drm/ttm/ttm_backup.h>
-+#include <linux/page-flags.h>
-+
-+struct ttm_backup_shmem {
-+	struct ttm_backup backup;
-+	struct file *filp;
-+};
-+
-+static struct ttm_backup_shmem *to_backup_shmem(struct ttm_backup *backup)
-+{
-+	return container_of(backup, struct ttm_backup_shmem, backup);
-+}
-+
-+static void ttm_backup_shmem_drop(struct ttm_backup *backup, unsigned long handle)
-+{
-+	handle -= 1;
-+	shmem_truncate_range(file_inode(to_backup_shmem(backup)->filp), handle,
-+			     handle + 1);
-+}
-+
-+static int ttm_backup_shmem_copy_page(struct ttm_backup *backup, struct page *dst,
-+				      unsigned long handle, bool killable)
-+{
-+	struct file *filp = to_backup_shmem(backup)->filp;
-+	struct address_space *mapping = filp->f_mapping;
-+	struct folio *from_folio;
-+
-+	handle -= 1;
-+	from_folio = shmem_read_folio(mapping, handle);
-+	if (IS_ERR(from_folio))
-+		return PTR_ERR(from_folio);
-+
-+	copy_highpage(dst, folio_file_page(from_folio, handle));
-+	folio_put(from_folio);
-+
-+	return 0;
-+}
-+
-+static unsigned long
-+ttm_backup_shmem_backup_page(struct ttm_backup *backup, struct page *page,
-+			     bool writeback, pgoff_t i, gfp_t page_gfp,
-+			     gfp_t alloc_gfp)
-+{
-+	struct file *filp = to_backup_shmem(backup)->filp;
-+	struct address_space *mapping = filp->f_mapping;
-+	unsigned long handle = 0;
-+	struct folio *to_folio;
-+	int ret;
-+
-+	to_folio = shmem_read_folio_gfp(mapping, i, alloc_gfp);
-+	if (IS_ERR(to_folio))
-+		return handle;
-+
-+	folio_mark_accessed(to_folio);
-+	folio_lock(to_folio);
-+	folio_mark_dirty(to_folio);
-+	copy_highpage(folio_file_page(to_folio, i), page);
-+	handle = i + 1;
-+
-+	if (writeback && !folio_mapped(to_folio) && folio_clear_dirty_for_io(to_folio)) {
-+		struct writeback_control wbc = {
-+			.sync_mode = WB_SYNC_NONE,
-+			.nr_to_write = SWAP_CLUSTER_MAX,
-+			.range_start = 0,
-+			.range_end = LLONG_MAX,
-+			.for_reclaim = 1,
-+		};
-+		folio_set_reclaim(to_folio);
-+		ret = mapping->a_ops->writepage(folio_page(to_folio, 0), &wbc);
-+		if (!folio_test_writeback(to_folio))
-+			folio_clear_reclaim(to_folio);
-+		/* If writepage succeeds, it unlocks the folio */
-+		if (ret)
-+			folio_unlock(to_folio);
-+	} else {
-+		folio_unlock(to_folio);
-+	}
-+
-+	folio_put(to_folio);
-+
-+	return handle;
-+}
-+
-+static void ttm_backup_shmem_fini(struct ttm_backup *backup)
-+{
-+	struct ttm_backup_shmem *sbackup = to_backup_shmem(backup);
-+
-+	fput(sbackup->filp);
-+	kfree(sbackup);
-+}
-+
-+static const struct ttm_backup_ops ttm_backup_shmem_ops = {
-+	.drop = ttm_backup_shmem_drop,
-+	.copy_page = ttm_backup_shmem_copy_page,
-+	.backup_page = ttm_backup_shmem_backup_page,
-+	.fini = ttm_backup_shmem_fini,
-+};
-+
-+struct ttm_backup *ttm_backup_shmem_create(loff_t size)
-+{
-+	struct ttm_backup_shmem *sbackup =
-+		kzalloc(sizeof(*sbackup), GFP_KERNEL | __GFP_ACCOUNT);
-+
-+	if (!sbackup)
-+		return ERR_PTR(-ENOMEM);
-+
-+	sbackup->filp = shmem_file_setup("ttm shmem backup", size, 0);
-+	if (IS_ERR(sbackup->filp)) {
-+		kfree(sbackup);
-+		return ERR_CAST(sbackup->filp);
-+	}
-+
-+	sbackup->backup.ops = &ttm_backup_shmem_ops;
-+
-+	return &sbackup->backup;
-+}
-+EXPORT_SYMBOL_GPL(ttm_backup_shmem_create);
-diff --git a/include/drm/ttm/ttm_backup.h b/include/drm/ttm/ttm_backup.h
-new file mode 100644
-index 000000000000..fe8ba44fd5de
---- /dev/null
-+++ b/include/drm/ttm/ttm_backup.h
-@@ -0,0 +1,48 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#ifndef _TTM_BACKUP_H_
-+#define _TTM_BACKUP_H_
-+
-+#include <linux/mm_types.h>
-+#include <linux/shmem_fs.h>
-+
-+struct ttm_backup;
-+
-+static inline struct page *
-+ttm_backup_handle_to_page_ptr(unsigned long handle)
-+{
-+	return (struct page *)(handle << 1 | 1);
-+}
-+
-+static inline bool ttm_backup_page_ptr_is_handle(const struct page *page)
-+{
-+	return (unsigned long)page & 1;
-+}
-+
-+static inline unsigned long
-+ttm_backup_page_ptr_to_handle(const struct page *page)
-+{
-+	WARN_ON(!ttm_backup_page_ptr_is_handle(page));
-+	return (unsigned long)page >> 1;
-+}
-+
-+struct ttm_backup_ops {
-+	void (*drop)(struct ttm_backup *backup, unsigned long handle);
-+	int (*copy_page)(struct ttm_backup *backup, struct page *dst,
-+			 unsigned long handle, bool intr);
-+	unsigned long (*backup_page)(struct ttm_backup *backup, struct page *page,
-+				     bool writeback, pgoff_t i, gfp_t page_gfp,
-+				     gfp_t alloc_gfp);
-+	void (*fini)(struct ttm_backup *backup);
-+};
-+
-+struct ttm_backup {
-+	const struct ttm_backup_ops *ops;
-+};
-+
-+struct ttm_backup *ttm_backup_shmem_create(loff_t size);
-+
-+#endif
+ 			num_pages = PFN_UP(bo->base.size);
+ 			ret = ttm_bo_swapout(bo, ctx, gfp_flags);
+-			/* ttm_bo_swapout has dropped the lru_lock */
+-			if (!ret) {
+-				ttm_resource_cursor_fini(&cursor);
+-				return num_pages;
+-			}
+-			if (ret != -EBUSY) {
+-				ttm_resource_cursor_fini(&cursor);
+-				return ret;
++			/* Couldn't swap out, and retained the lru_lock */
++			if (ret == -EBUSY)
++				continue;
++			/* Couldn't swap out and dropped the lru_lock */
++			if (ret == -ENOSPC) {
++				spin_lock(&bdev->lru_lock);
++				continue;
+ 			}
++			/*
++			 * Dropped the lock and either succeeded or
++			 * hit an error that forces us to break.
++			 */
++			ttm_resource_cursor_fini(&cursor);
++			return ret ? ret : num_pages;
+ 		}
+ 	}
+ 	ttm_resource_cursor_fini_locked(&cursor);
 -- 
 2.44.0
 
