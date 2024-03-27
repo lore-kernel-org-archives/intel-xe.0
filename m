@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3F37C47DD9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E02C7CD1283
 	for <intel-xe@archiver.kernel.org>; Wed, 27 Mar 2024 18:28:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69D6410F9B3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 750BD10FB68;
 	Wed, 27 Mar 2024 18:28:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gEKZAGYW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OwQQqNX1";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D988E10F8F1
- for <intel-xe@lists.freedesktop.org>; Wed, 27 Mar 2024 18:27:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BC5E10F8F1
+ for <intel-xe@lists.freedesktop.org>; Wed, 27 Mar 2024 18:28:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711564079; x=1743100079;
+ t=1711564080; x=1743100080;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=M4GqvTTX1dhH2UjxildesgvaCJPVjwJbOqmHPUYbpNA=;
- b=gEKZAGYWChOPOxpyD0ohIhM+NqIFgNmwlIvvzOezH93O2eE99XZ82TOr
- 5D3kTeef2ybZ2XnmS+dc5VDIDHH7lBoinx00AX3+lbNgSnLBhMj9u9yhX
- Y/2SE2tdhIBcw/9UcUVMFylsJ0bDdg7fG7HAMA0gTKfuxuxEI3okGFHIY
- LtRUJHZTUnOkm1GRFPLuxfZPGO2PSbTR7RHoR1FMIRSvb3WlMFfCjPtv5
- HfiSNLbzh0WTks+fSI8gCJOQUD2GC59IQwxgySsHmh+6H4kSAU2wxhG1w
- rdq9rVIi/CXeBleLfv7Xe7IeOK+64wUVWAsLPMe2qGvjrad/2jMhJONda w==;
-X-CSE-ConnectionGUID: kPU7FckoTnKb6awWP8XN1g==
-X-CSE-MsgGUID: 2PEw3WnCSUC+xPGruTnzVw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="18074620"
-X-IronPort-AV: E=Sophos;i="6.07,159,1708416000"; d="scan'208";a="18074620"
+ bh=IRDlhjNBRGx0eD/HrTcWXm6lbhDYCeInhv0b86maS2U=;
+ b=OwQQqNX1tmvhjF/lGhrd5Lbc2swFGQvfe0B1CKIrfaWm+a/bSCeNkW2j
+ 8oHp8FinEZTCAbLPinKKtwzWQWKb56aQTLqEhWYdHnxNRNt1gD0KoU6CQ
+ xEKdta8xr9V7V3dgVhzz5pIytVKMQByT4dQyEV1jshjIL/74UCdIWCAJr
+ OBltDbHKyzBBj66cVfcBvNZMCoyizTwra8rPCU/BSO0mHEKoGh3joumhU
+ E4q93tF3nfyP1EEZBEANEZ4T8XiTqFkYRn8fktliLWfeYX3Ql6c5Qvouh
+ TkSR2c4gnL0UKkRadG8nAXaNoN98bknojVxXNW2fYoF6lKDWKZXpB/hoT w==;
+X-CSE-ConnectionGUID: h7pbcMPhTW+uGWK77THz5w==
+X-CSE-MsgGUID: M4G+vPu/SOesPTvUAzcfXg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="18074624"
+X-IronPort-AV: E=Sophos;i="6.07,159,1708416000"; d="scan'208";a="18074624"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2024 11:27:59 -0700
+ 27 Mar 2024 11:28:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,159,1708416000"; d="scan'208";a="20917427"
+X-IronPort-AV: E=Sophos;i="6.07,159,1708416000"; d="scan'208";a="20917434"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.157.17])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2024 11:27:57 -0700
+ 27 Mar 2024 11:27:59 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH 1/3] drm/xe: Separate pure MMIO init from VRAM checkout
-Date: Wed, 27 Mar 2024 19:27:38 +0100
-Message-Id: <20240327182740.407-2-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH 2/3] drm/xe: Move SR-IOV probe to xe_device_probe_early()
+Date: Wed, 27 Mar 2024 19:27:39 +0100
+Message-Id: <20240327182740.407-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240327182740.407-1-michal.wajdeczko@intel.com>
 References: <20240327182740.407-1-michal.wajdeczko@intel.com>
@@ -65,129 +64,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We can setup root tile registers mapping at the same time as we
-do early mapping of the entire MMIO BAR and keep mandatory VRAM
-checkout as a separate step. This will allow us to perform SR-IOV
-VF mode detection between those two steps using regular MMIO regs
-access functions.
+SR-IOV mode detection requires access to the MMIO register and
+this can be done now in xe_device_probe_early().
+
+We can also drop explicit has_sriov parameter as this flag is now
+already available from xe->info.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c |  2 +-
- drivers/gpu/drm/xe/xe_mmio.c   | 59 ++++++++++++++--------------------
- drivers/gpu/drm/xe/xe_mmio.h   |  2 +-
- 3 files changed, 26 insertions(+), 37 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c | 2 ++
+ drivers/gpu/drm/xe/xe_pci.c    | 2 --
+ drivers/gpu/drm/xe/xe_sriov.c  | 4 ++--
+ drivers/gpu/drm/xe/xe_sriov.h  | 2 +-
+ 4 files changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index b0bfe75eb59f..286ebccc3fc8 100644
+index 286ebccc3fc8..01bd5ccf05ca 100644
 --- a/drivers/gpu/drm/xe/xe_device.c
 +++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -424,7 +424,7 @@ int xe_device_probe_early(struct xe_device *xe)
+@@ -424,6 +424,8 @@ int xe_device_probe_early(struct xe_device *xe)
  	if (err)
  		return err;
  
--	err = xe_mmio_root_tile_init(xe);
-+	err = xe_mmio_verify_vram(xe);
++	xe_sriov_probe_early(xe);
++
+ 	err = xe_mmio_verify_vram(xe);
+ 	if (err)
+ 		return err;
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 3c94154051a8..c47ab4b67467 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -740,8 +740,6 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
  	if (err)
  		return err;
  
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 1de9de4f94b6..5d13fc7cb9d2 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -360,32 +360,9 @@ static void mmio_fini(struct drm_device *drm, void *arg)
- 		iounmap(xe->mem.vram.mapping);
- }
- 
--static int xe_verify_lmem_ready(struct xe_device *xe)
--{
--	struct xe_gt *gt = xe_root_mmio_gt(xe);
+-	xe_sriov_probe_early(xe, desc->has_sriov);
 -
--	if (!IS_DGFX(xe))
--		return 0;
--
--	if (IS_SRIOV_VF(xe))
--		return 0;
--
--	/*
--	 * The boot firmware initializes local memory and assesses its health.
--	 * If memory training fails, the punit will have been instructed to
--	 * keep the GT powered down; we won't be able to communicate with it
--	 * and we should not continue with driver initialization.
--	 */
--	if (!(xe_mmio_read32(gt, GU_CNTL) & LMEM_INIT)) {
--		drm_err(&xe->drm, "VRAM not initialized by firmware\n");
--		return -ENODEV;
--	}
--
--	return 0;
--}
--
- int xe_mmio_init(struct xe_device *xe)
+ 	err = xe_device_probe_early(xe);
+ 	if (err)
+ 		return err;
+diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
+index f295d91886b1..2bcef998c8a9 100644
+--- a/drivers/gpu/drm/xe/xe_sriov.c
++++ b/drivers/gpu/drm/xe/xe_sriov.c
+@@ -31,7 +31,6 @@ const char *xe_sriov_mode_to_string(enum xe_sriov_mode mode)
+ /**
+  * xe_sriov_probe_early - Probe a SR-IOV mode.
+  * @xe: the &xe_device to probe mode on
+- * @has_sriov: flag indicating hardware support for SR-IOV
+  *
+  * This function should be called only once and as soon as possible during
+  * driver probe to detect whether we are running a SR-IOV Physical Function
+@@ -40,9 +39,10 @@ const char *xe_sriov_mode_to_string(enum xe_sriov_mode mode)
+  * SR-IOV PF mode detection is based on PCI @dev_is_pf() function.
+  * SR-IOV VF mode detection is based on dedicated MMIO register read.
+  */
+-void xe_sriov_probe_early(struct xe_device *xe, bool has_sriov)
++void xe_sriov_probe_early(struct xe_device *xe)
  {
-+	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 	const int mmio_bar = 0;
+ 	enum xe_sriov_mode mode = XE_SRIOV_MODE_NONE;
++	bool has_sriov = xe->info.has_sriov;
  
-@@ -401,21 +378,33 @@ int xe_mmio_init(struct xe_device *xe)
- 		return -EIO;
- 	}
+ 	/* TODO: replace with proper mode detection */
+ 	xe_assert(xe, !has_sriov);
+diff --git a/drivers/gpu/drm/xe/xe_sriov.h b/drivers/gpu/drm/xe/xe_sriov.h
+index 1545552162c9..9e3f58874e98 100644
+--- a/drivers/gpu/drm/xe/xe_sriov.h
++++ b/drivers/gpu/drm/xe/xe_sriov.h
+@@ -12,7 +12,7 @@
  
--	return drmm_add_action_or_reset(&xe->drm, mmio_fini, xe);
--}
--
--int xe_mmio_root_tile_init(struct xe_device *xe)
--{
--	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
--	int err;
--
- 	/* Setup first tile; other tiles (if present) will be setup later. */
- 	root_tile->mmio.size = SZ_16M;
- 	root_tile->mmio.regs = xe->mmio.regs;
+ const char *xe_sriov_mode_to_string(enum xe_sriov_mode mode);
  
--	err = xe_verify_lmem_ready(xe);
--	if (err)
--		return err;
-+	return drmm_add_action_or_reset(&xe->drm, mmio_fini, xe);
-+}
-+
-+int xe_mmio_verify_vram(struct xe_device *xe)
-+{
-+	struct xe_gt *gt = xe_root_mmio_gt(xe);
-+
-+	if (!IS_DGFX(xe))
-+		return 0;
-+
-+	if (IS_SRIOV_VF(xe))
-+		return 0;
-+
-+	/*
-+	 * The boot firmware initializes local memory and assesses its health.
-+	 * If memory training fails, the punit will have been instructed to
-+	 * keep the GT powered down; we won't be able to communicate with it
-+	 * and we should not continue with driver initialization.
-+	 */
-+	if (!(xe_mmio_read32(gt, GU_CNTL) & LMEM_INIT)) {
-+		drm_err(&xe->drm, "VRAM not initialized by firmware\n");
-+		return -ENODEV;
-+	}
+-void xe_sriov_probe_early(struct xe_device *xe, bool has_sriov);
++void xe_sriov_probe_early(struct xe_device *xe);
+ int xe_sriov_init(struct xe_device *xe);
  
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
-index 67ead99f321b..b1680c4a14fb 100644
---- a/drivers/gpu/drm/xe/xe_mmio.h
-+++ b/drivers/gpu/drm/xe/xe_mmio.h
-@@ -21,7 +21,7 @@ struct xe_device;
- #define LMEM_BAR		2
- 
- int xe_mmio_init(struct xe_device *xe);
--int xe_mmio_root_tile_init(struct xe_device *xe);
-+int xe_mmio_verify_vram(struct xe_device *xe);
- void xe_mmio_probe_tiles(struct xe_device *xe);
- 
- u8 xe_mmio_read8(struct xe_gt *gt, struct xe_reg reg);
+ static inline enum xe_sriov_mode xe_device_sriov_mode(struct xe_device *xe)
 -- 
 2.43.0
 
