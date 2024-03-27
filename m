@@ -4,71 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27FC4C47DD9
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Mar 2024 08:01:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C75A0C54E67
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Mar 2024 08:54:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCF5310F90E;
-	Wed, 27 Mar 2024 08:01:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8539710E642;
+	Wed, 27 Mar 2024 08:54:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kk/lQS6b";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a2quJgTB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1649A10F910;
- Wed, 27 Mar 2024 08:01:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE62D10E642
+ for <intel-xe@lists.freedesktop.org>; Wed, 27 Mar 2024 08:54:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711526479; x=1743062479;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=GucQb4cLBgLnk1QG1F+L4Qynfl5w2SWCeBiPx1JgM5s=;
- b=kk/lQS6b+2azRqEv1dq49LpZXL4EgjnxTV3x7FFp1KFgOpmWvh7uzx7D
- 88Ccu2WIk1epHEwo8fH0k5Nx5zkgluXF6c59v/zQO31JL68v1vH0C+LcQ
- 2FvfrOmzfwqqTZlQL079KxcODQweXDHaKDgb6XNz/wKZyopxTkcSLK77m
- DWQxouJqmjqeputYTCbHKRvcg3OEcB6QJpEVr6aQRriN/CQkPLGL7cGn0
- PDHQjRDzDarGHi+l2IrX4G5LfRBZNDr0m588Uz5k+kuGajS+D7B/jI9E5
- BDGyzHO9ZCzD2Y2f8yecwgrU/RX1NeJFuPiOIQdfiI0uY56MapDY5lvo/ A==;
-X-CSE-ConnectionGUID: h+JdJgi1QNuiEYPaO4/lVQ==
-X-CSE-MsgGUID: LYDdeH7BRWCCxlfKwD9QjQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11025"; a="6725555"
-X-IronPort-AV: E=Sophos;i="6.07,158,1708416000"; 
-   d="scan'208";a="6725555"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2024 00:59:13 -0700
+ t=1711529654; x=1743065654;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=l4l6QzynkF07LFcRXPYMo8shskpK1EpRnsQU4N5USMM=;
+ b=a2quJgTBZaGGF8scpDk5LxOhYy2jqonntv62BYuFp7y11vTob/GsiwvW
+ RjhGgU3PVc5Q+of95YyfYamsz/RjTCmx7MEOu0i71VOjMBCyfKMVsuqtx
+ 2fTbd3qseMDYtyQbQ5oQUdvXuHhUhUDqQNExDMeGJgn2OfDZnLGb5Joxm
+ RgZZo/VU3T3m9fcwkF3xyVs3ou7gvELUOmWwsYECPojUevACu4q1nNaOR
+ H2asCw9JIT8ZPnmH41jboHXMxdNS/1xiWQS8kJRkYxubUfJjLXF9XM2zV
+ Umf7dzTXz17ACC2GJmDYxANegsKAaXE2efqNNkX3XP+qyh4Ew+tBIGrBx Q==;
+X-CSE-ConnectionGUID: BCFrH2YAQ22AKzzb2kSKyQ==
+X-CSE-MsgGUID: QT25/cqwRoSSllK/IdTd9w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11025"; a="29094202"
+X-IronPort-AV: E=Sophos;i="6.07,158,1708416000"; d="scan'208";a="29094202"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2024 01:54:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,158,1708416000"; d="scan'208";a="16863269"
-Received: from mmazilu-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.56.43])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2024 00:59:05 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Maxime Ripard <mripard@kernel.org>, Nathan Chancellor <nathan@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, David Airlie <airlied@gmail.com>, Daniel
- Vetter <daniel@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Alex Deucher <alexander.deucher@amd.com>, Christian
- =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>, "Pan, Xinhui"
- <Xinhui.Pan@amd.com>,
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, Danilo
- Krummrich <dakr@redhat.com>, Rob Clark <robdclark@gmail.com>, Abhinav
- Kumar <quic_abhinavk@quicinc.com>, Dmitry Baryshkov
- <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, Marijn Suijten
- <marijn.suijten@somainline.org>, Hamza Mahfooz <hamza.mahfooz@amd.com>,
- Javier Martinez Canillas <javierm@redhat.com>, Sui Jingfeng
- <sui.jingfeng@linux.dev>, linux-kbuild@vger.kernel.org,
- llvm@lists.linux.dev
-Subject: Re: [RESEND v3 2/2] drm: Add CONFIG_DRM_WERROR
-In-Reply-To: <20240327-cherubic-steel-tiger-e1c36a@houat>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1709629403.git.jani.nikula@intel.com>
- <afe5ed943414f7ec3044c1547503b9941686a867.1709629403.git.jani.nikula@intel.com>
- <20240326225650.GA2784736@dev-arch.thelio-3990X>
- <20240327-cherubic-steel-tiger-e1c36a@houat>
-Date: Wed, 27 Mar 2024 09:59:01 +0200
-Message-ID: <87a5mkgl6i.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,158,1708416000"; d="scan'208";a="20943579"
+Received: from unknown (HELO [10.245.245.112]) ([10.245.245.112])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2024 01:54:13 -0700
+Message-ID: <54ffa436-eb11-4376-81f5-8d449c3d66b5@intel.com>
+Date: Wed, 27 Mar 2024 08:54:10 +0000
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/1] drm/xe/xe2: Send flat_ccs value in struct
+ drm_xe_query_config
+To: =?UTF-8?Q?Zbigniew_Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
+Cc: Akshata Jahagirdar <akshata.jahagirdar@intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <cover.1711447408.git.akshata.jahagirdar@intel.com>
+ <b672be6eea948e332ba58b63d6f8c4c71c37a42b.1711447408.git.akshata.jahagirdar@intel.com>
+ <f2e72896-8524-44a5-bb75-ff277c50eaa6@intel.com>
+ <20240327045410.kjf3sspjfpwe7blh@zkempczy-mobl2>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20240327045410.kjf3sspjfpwe7blh@zkempczy-mobl2>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,85 +71,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 27 Mar 2024, Maxime Ripard <mripard@kernel.org> wrote:
-> Hi,
->
-> On Tue, Mar 26, 2024 at 03:56:50PM -0700, Nathan Chancellor wrote:
->> On Tue, Mar 05, 2024 at 11:07:36AM +0200, Jani Nikula wrote:
->> > Add kconfig to enable -Werror subsystem wide. This is useful for
->> > development and CI to keep the subsystem warning free, while avoiding
->> > issues outside of the subsystem that kernel wide CONFIG_WERROR=y might
->> > hit.
->> > 
->> > v2: Don't depend on COMPILE_TEST
->> > 
->> > Reviewed-by: Hamza Mahfooz <hamza.mahfooz@amd.com> # v1
->> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> > ---
->> >  drivers/gpu/drm/Kconfig  | 13 +++++++++++++
->> >  drivers/gpu/drm/Makefile |  3 +++
->> >  2 files changed, 16 insertions(+)
->> > 
->> > diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
->> > index 6e853acf15da..c08e18108c2a 100644
->> > --- a/drivers/gpu/drm/Kconfig
->> > +++ b/drivers/gpu/drm/Kconfig
->> > @@ -416,3 +416,16 @@ config DRM_LIB_RANDOM
->> >  config DRM_PRIVACY_SCREEN
->> >  	bool
->> >  	default n
->> > +
->> > +config DRM_WERROR
->> > +	bool "Compile the drm subsystem with warnings as errors"
->> > +	depends on EXPERT
->> > +	default n
->> > +	help
->> > +	  A kernel build should not cause any compiler warnings, and this
->> > +	  enables the '-Werror' flag to enforce that rule in the drm subsystem.
->> > +
->> > +	  The drm subsystem enables more warnings than the kernel default, so
->> > +	  this config option is disabled by default.
->> > +
->> > +	  If in doubt, say N.
->> 
->> While I understand the desire for an easy switch that maintainers and
->> developers can use to ensure that their changes are warning free for the
->> drm subsystem specifically, I think subsystem specific configuration
->> options like this are actively detrimental to developers and continuous
->> integration systems that build test the entire kernel. For example, we
->> turned off CONFIG_WERROR for our Hexagon builds because of warnings that
->> appear with -Wextra that are legitimate but require treewide changes to
->> resolve in a manner sufficient for Linus:
->> 
->> https://github.com/ClangBuiltLinux/linux/issues/1285
->> https://lore.kernel.org/all/CAHk-=wg80je=K7madF4e7WrRNp37e3qh6y10Svhdc7O8SZ_-8g@mail.gmail.com/
->> https://lore.kernel.org/all/20230522105049.1467313-1-schnelle@linux.ibm.com/
->> 
->> But now, due to CONFIG_DRM_WERROR getting enabled by all{mod,yes}config
->> and -Wextra being unconditionally enabled for DRM, those warnings hard
->> break the build despite CONFIG_WERROR=n...
->
-> Would making DRM_WERROR depends on WERROR address your concerns?
+On 27/03/2024 04:54, Zbigniew Kempczyński wrote:
+> On Tue, Mar 26, 2024 at 08:25:56AM +0000, Matthew Auld wrote:
+>> On 26/03/2024 10:10, Akshata Jahagirdar wrote:
+>>> Currently, we don't have any check in IGT testcases if platform supports
+>>> compression or not. Send this flat_ccs value as part of the struct
+>>> drm_xe_query_config so that we can read this value in the igt testcases
+>>> and proceed accordingly.
+>>
+>> AFAIK it's not valid to add uAPI just for an IGT. uAPI normally needs a real
+>> open source user (like Mesa etc) with UMD acks. However if this is going to
+>> be used by Mesa etc, how do they tell the difference between "this device
+>> doesn't have flat-CCS" and "this KMD version doesn't support
+>> FLAG_HAS_FLAT_CCS"?
+>>
+>> If userspace doesn't need this, then other option could be debugfs. Or if
+>> this just a single test perhaps we can just dynamically check if the CCS
+>> state is zero for compressed buffer at the start of the test?
+> 
+> Just for making sure - is ctrl-surf-copy behavior defined if there's no
+> flat ccs?
 
-But then what would be the point of having DRM_WERROR at all? For me the
-point is, "werror in drm, ignore the rest, they're someone else's
-problem".
+Yeah, claim is that HW will never compress anything, writes to CCS are 
+dropped and reads from CCS return zero. KMD should also skip any CCS 
+related stuff.
 
-An alternative would be to "depends on !COMPILE_TEST" that we have in
-i915, but then some folks want to have COMPILE_TEST in drm, because some
-drivers are otherwise hard for people to build.
-
-Nathan, we do want to fix any issues switfly. Are you hitting specific
-build problems?
-
-
-BR,
-Jani.
-
-
-
->
-> Maxime
-
--- 
-Jani Nikula, Intel
+> 
+> --
+> Zbigniew
+>>
+>>> Fixes: VLK-56136
+>>>
+>>> Signed-off-by: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
+>>> ---
+>>>    drivers/gpu/drm/xe/xe_query.c | 3 +++
+>>>    include/uapi/drm/xe_drm.h     | 1 +
+>>>    2 files changed, 4 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+>>> index e80321b34918..8a3a3117491c 100644
+>>> --- a/drivers/gpu/drm/xe/xe_query.c
+>>> +++ b/drivers/gpu/drm/xe/xe_query.c
+>>> @@ -332,6 +332,9 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
+>>>    	config->num_params = num_params;
+>>>    	config->info[DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID] =
+>>>    		xe->info.devid | (xe->info.revid << 16);
+>>> +	if (xe->info.has_flat_ccs)
+>>> +		config->info[DRM_XE_QUERY_CONFIG_FLAGS] =
+>>> +			DRM_XE_QUERY_CONFIG_FLAG_HAS_FLAT_CCS;
+>>>    	if (xe_device_get_root_tile(xe)->mem.vram.usable_size)
+>>>    		config->info[DRM_XE_QUERY_CONFIG_FLAGS] =
+>>
+>> This tramples the previous value AFAICT, like when we have VRAM + CCS on
+>> DG2. I think we need |= here.
+>>
+>>>    			DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM;
+>>> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+>>> index f44a19ae9333..08783234bae1 100644
+>>> --- a/include/uapi/drm/xe_drm.h
+>>> +++ b/include/uapi/drm/xe_drm.h
+>>> @@ -405,6 +405,7 @@ struct drm_xe_query_config {
+>>>    #define DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID	0
+>>>    #define DRM_XE_QUERY_CONFIG_FLAGS			1
+>>>    	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM	(1 << 0)
+>>> +	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_FLAT_CCS	(1 << 1)
+>>>    #define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
+>>>    #define DRM_XE_QUERY_CONFIG_VA_BITS			3
+>>>    #define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
