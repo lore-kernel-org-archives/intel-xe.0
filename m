@@ -4,64 +4,159 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 052F4CD1280
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Mar 2024 16:33:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B656AC54E67
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Mar 2024 16:48:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 969B910FE21;
-	Wed, 27 Mar 2024 16:33:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4AD5F10FE3F;
+	Wed, 27 Mar 2024 16:48:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ZCFcREkH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VC1FTg+H";
 	dkim-atps=neutral
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 970DC10FE1F;
- Wed, 27 Mar 2024 16:33:38 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 83DC9CE2748;
- Wed, 27 Mar 2024 16:33:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67878C433F1;
- Wed, 27 Mar 2024 16:33:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1711557214;
- bh=JJGwdu5+tvYciOZj7QulorQIGULSYG5NgjT2ZUaXCGo=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=ZCFcREkHBHdBwZObWwSP8/tuuajCavkjusAk5Vu3ZFbGx91YtVFEZoK1GGODkfSss
- zOfGYzOfRD8f18G93URkH4EhsCteBdGLEOYvMooFGlwHAa3qrFzMaFJompR6KcTbvN
- nuoeyK8w2o/h++AWHV0OaUamKOSgKhgIRlpvzrL9Yp6A0ehowBGHSLjtKZEcYRPsZD
- LeDMW+uYziCpDUHIFjWXEZjbkgpzRmq4DMexH0WoYlOo90zJb82FlUcN5wx3nm9xGb
- mrzElA5p64o1EAYwj8YWQpL+xeH6TACmXm7ESngxzaEX/QzKUFJ8lXSoOYoB3bwPH8
- 2+iZbmSRiLSlw==
-Date: Wed, 27 Mar 2024 09:33:31 -0700
-From: Nathan Chancellor <nathan@kernel.org>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@redhat.com>, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Hamza Mahfooz <hamza.mahfooz@amd.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Sui Jingfeng <sui.jingfeng@linux.dev>, linux-kbuild@vger.kernel.org,
- llvm@lists.linux.dev
-Subject: Re: [RESEND v3 2/2] drm: Add CONFIG_DRM_WERROR
-Message-ID: <20240327163331.GB1153323@dev-arch.thelio-3990X>
-References: <cover.1709629403.git.jani.nikula@intel.com>
- <afe5ed943414f7ec3044c1547503b9941686a867.1709629403.git.jani.nikula@intel.com>
- <20240326225650.GA2784736@dev-arch.thelio-3990X>
- <20240327-cherubic-steel-tiger-e1c36a@houat>
- <87a5mkgl6i.fsf@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C30510FE40
+ for <intel-xe@lists.freedesktop.org>; Wed, 27 Mar 2024 16:48:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1711558132; x=1743094132;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=cB6rJwiutV3BFScm9OsYgCncsGWBbtAiD4LZm/BspVk=;
+ b=VC1FTg+HO4H2a6mHZj1XRwQs0vRSCohLv4D+sAV/uQrfp38qjL+xsbXo
+ gMXipHXNnCXalMJUp4Ju+rRF019IOPT56293ZPayPHNEjchLLF+PrGO+W
+ jtD6xmktns/eJmc4Npyv1Gid+QtEMGEYeOY7SsTjRsejCU7i5b4LetoFN
+ 7SJElaP8yjTDav8JA+Eekz81otYJEcnk/ax6vyaLfh4AqUr5YblNRZQhg
+ 2eqVTYcZad7uD18OCy19Fw/cJ2seyw44Wr1Bx+YWQTaAqlHvfhkvtVvvr
+ TWBemS0FF9YsDMb+6gteXUVvpLBTvWO3IkrEjnusfbfLsAvpPuSH8M2S/ A==;
+X-CSE-ConnectionGUID: 63o8ouwsQ+2gj5Pkvkgirg==
+X-CSE-MsgGUID: VdtGnhE0TWuVuc8VtAkr8g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="6567622"
+X-IronPort-AV: E=Sophos;i="6.07,159,1708416000"; 
+   d="scan'208";a="6567622"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2024 09:48:51 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,159,1708416000"; d="scan'208";a="16369187"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 27 Mar 2024 09:48:51 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 27 Mar 2024 09:48:50 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 27 Mar 2024 09:48:49 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Wed, 27 Mar 2024 09:48:49 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.169)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Wed, 27 Mar 2024 09:48:49 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fj1uHyQ/utu9qsgsEbuZjRtC/QLqTGavPfnlYHSPZD3KD4YEtHUZiHwM/pnnx3IT/6ml+aAeDWNr+xqeFjXDvCNxr+RfnVpql76/ooVZjVc53C/s4lubMaJ8keN6e0l8pyHmE0B/nu5fGdktBu4YDUuQWVa/vLJWUXp0t8obh6FHO5JAtKoX0K5JNB8sEefXeULkWcCHQUhAICUxCoFTocdiMxzd1IfKHGQKll3UVkCf0p/ki3FiqwjurRDc1OFRMsEOp9RPb/gMv58hl1Jch/KyT551VbbH/fLVxihRn0MDw/r7ZXSMqTQ5tjMPhxPC5/Lz1yfYQUJxDuWD4lF2Qg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RAoG4269AW7OhjH08SCfywVWrWsQqSPKlTI72ZcXF3M=;
+ b=XaeyLqn3OGRqj1J0FTCJU/eRyPhidRwowkcE885C9mCMjEFggkbWYuEkgrTHJcJUod/IvPzMoD7Scf00FrIG8AAlGPm96MjhXbTfQhKTRGRd8Gi9HmoxFuVRbnKreRqOlzzv0eXm1o0IT2+Ve4SWKFGoJvgQsr45XvMzmW4vOllTwYiKIkhRl1le3YK+IKY10mmFMMd0/d78WBeNf5wtC/jquDh+bcVH9ST8m0BpyH952fSpBF/NEYkYG1yB4U6JpQiRo41cFi+jhM/biUD6KMoq7okXE2/zjWfAL/nQK3hAOzqTqk8WnNvWqL3YJK+6uD6GdYLcAlku3hpkJYN/KQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB6541.namprd11.prod.outlook.com (2603:10b6:8:d3::14) by
+ IA1PR11MB6242.namprd11.prod.outlook.com (2603:10b6:208:3e8::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.33; Wed, 27 Mar
+ 2024 16:48:46 +0000
+Received: from DS0PR11MB6541.namprd11.prod.outlook.com
+ ([fe80::a8f5:a774:62a3:dd1e]) by DS0PR11MB6541.namprd11.prod.outlook.com
+ ([fe80::a8f5:a774:62a3:dd1e%7]) with mapi id 15.20.7409.031; Wed, 27 Mar 2024
+ 16:48:46 +0000
+Message-ID: <98ce5b38-e6c9-4a1d-ae3e-80f81669c9b7@intel.com>
+Date: Wed, 27 Mar 2024 17:48:40 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/xe: Create a helper function to init job's user
+ fence
+To: Lucas De Marchi <lucas.demarchi@intel.com>, Nirmoy Das
+ <nirmoy.das@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>, Michal Wajdeczko
+ <michal.wajdeczko@intel.com>
+References: <20240321161142.4954-1-nirmoy.das@intel.com>
+ <vgkvzpqwyku2q5lomqvytpeuz7hvybykd4rnetzkgy3siy3c57@jclsubzhsmts>
+ <8c521ff9-950f-480e-911b-9c6210ff6416@linux.intel.com>
+ <p5orrg525ipnqq4xuj5pymekfcoisfqmmm53hxugtiiiz2g2vv@mrp7nupohvd5>
+Content-Language: en-US
+From: Nirmoy Das <nirmoy.das@intel.com>
+In-Reply-To: <p5orrg525ipnqq4xuj5pymekfcoisfqmmm53hxugtiiiz2g2vv@mrp7nupohvd5>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: DU2PR04CA0197.eurprd04.prod.outlook.com
+ (2603:10a6:10:28d::22) To DS0PR11MB6541.namprd11.prod.outlook.com
+ (2603:10b6:8:d3::14)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87a5mkgl6i.fsf@intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB6541:EE_|IA1PR11MB6242:EE_
+X-MS-Office365-Filtering-Correlation-Id: efa616f8-6d95-4561-f919-08dc4e7dc51d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 8NYnHhSO/MC5R7dwDlMSmSE6mi5JisUFetbKkqTVib3UgWDsYNlVfcXlSMnOeP0iJOXXGgd0EUniHH23WTkv5iLwv1MYxbkIJX0cl2K2tLGBfNJ9LKAPdCn4IKSkEPIJGH9uFk40+7By/3LzkrzsDpFzxR16l6p8z/rjkdooLw4s3VsjmY5ERcyrXB0qxAViX833peMT+PsAw5Ajf2+Ra+Z8oKR/vPQTt+i3IdosafGv4NLezs7deMAe8y52rYf+r64Nj+dxnIgA7q0i6Cn5yA4yqvVgIxQ2yjWTgN3w1pVYWgOo8StSMzOYzIXaLLL5EO01EA91BWor0JLjvRq/zhFWnPpVP+wvX0z6ndDPnIlfQ7NWL1DsbHBzXmNd1xBNnRvj/keLEPj2v/UffBXsgACiZXg6WSoFm/Ucu6j45uuirXPzx3mfYEBi3mgZw6M3B0DzJF1eX+VGnTua7MJU4S44C8lFSx6h5yVaYiRYGnYNjKEmKfHtGn3IEDhRAcNs351V6srbQ1+3E73pcNbqAf3DuPXnSyXdywNaDoU1I7HEfrWl6HInInjBbvPSlVaV3cZJ5q/FYGOxGyjF0rDg+eiSUlfsEwnkR41RfyZnxUjdmR8IhDPvT9WliLlF0vVU9SzZcVJgju49fndO3WR2ikOeKSCgRjdqAaqTbcqmbow=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB6541.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(1800799015)(366007)(376005); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eWRXUHlNYjZ4c0JpUTZYbVk0YWQ4eTdVTWZ6T09pTC80NWgxNGNZNUJXK2w1?=
+ =?utf-8?B?MkFHQlF3UnZ2TUVhZDVxVlJFL1dnekljQ2s4eGphYUlJUUd6Tjc1eUorTTRl?=
+ =?utf-8?B?MUNWc0pTcU5WMnRsTy9pMklnV3ZhMEkyWHZiV2daT0p6OGlTVXA4dlU3a3Fi?=
+ =?utf-8?B?YmZobFp0dzdzVzRJcUFXV0I5VFNmM0RoNUJsclZEbVVWTWlmMEM4cUF2SVJq?=
+ =?utf-8?B?V2o5bTBzZlk4NHRyU2xKTzdoYmhtcW5zQ2FvYW9xZTNFR0hteXBnQlJ3Rndj?=
+ =?utf-8?B?WkI1YksxTk9YR1dIdjNtVWlqU1JFOFQxRVNOYjErdVE2REtyTmpFNk1mZU9B?=
+ =?utf-8?B?UkttY09oQnJFNGx4NmFsRVZ6VDdZSUpMckpJYVlycU1jRGVxTW1YQnp3MDQ5?=
+ =?utf-8?B?WEZESm1aWlBzMDg1MHJBZS9YVHh1NEVpb1h5L2hDSktlV3QvWVBwRW1LYi9C?=
+ =?utf-8?B?ck16Yml3aERVZ2VlYUxnSnZsdkNXT1V6U0tBL1QwL3NTTGFwQnN1bENqMXZv?=
+ =?utf-8?B?R2dDUW9mUHdpNEs3M3hCVGoyc1dQRHJEU0s1cWVseld1UnIrZFBNdFZ4bzFZ?=
+ =?utf-8?B?QytGSDhpU0JMMEN1OEJIWW0zczBzQmdNY3dHb01YRy9ZUjdFNUQxcVVDT3E1?=
+ =?utf-8?B?WEJaeUtNakJZS25hYzRHZEFHVTFwK3dNRmVwWWxDbzljR1pzbXdvN3BkT0U2?=
+ =?utf-8?B?ZWJrQTV5Vlk3Rm5QaElOY0xWcDhTL0ZaR2prSDJjRGtYN0Vqbm9WRXlxN3JW?=
+ =?utf-8?B?aWp4ak9HbEc0VjMrL1ZNMVZxaVNHMFVFYUhYU3pGSEhmRTdjc2FmQVpHQWhL?=
+ =?utf-8?B?SGR0b0NjZllHYnRQbnRZM1dRVmZGYjMrRnJadE9adzQrZEFrSUFPRysyOVY2?=
+ =?utf-8?B?VzlDTFZjTVQzUHl1ZDBic3E1OVZHYnZJM2wvNDVUU0p5SmppelpuQWgrU2l0?=
+ =?utf-8?B?VmdEelQ3TWl1YUhQQW9DM2NkM3cvOW5yMXAzR1BLVXcyN0RYNTErdlRLVElW?=
+ =?utf-8?B?eG1RUDBtV2ZRQkg1c3NET2lPSFF0ZHFzM2pXSlZJV2xJdzQvUVZ0RjkwTERF?=
+ =?utf-8?B?SWZsdEdlbHZwdWtYS0FVcG5VcnNuMlBpMk1vY1VJeFc0ekRHY0c1ZURRQkxG?=
+ =?utf-8?B?MTNXQ0htQmZRV2Zpcm5WY3BuY2lQUVNMeW9nVnN3eDRRdUhsZnBXRk9WS0RG?=
+ =?utf-8?B?Y1RvWlBqNWFxNUpxN1VaL3hhdjJ4V0NjSnNrWkxzZk4rSFAvUzhQRHJFa3M0?=
+ =?utf-8?B?ckUvRUd4S1BoeG41V0RsZ3piRmRuNVIyK2JzYmdjWTVnUlMveW5mUFhGb3E3?=
+ =?utf-8?B?cFBYN0JkN2VXdnZ2ek5IdTZvSVFidVZDb0xIUjUxTURjQVgrRjM4WDlrWnVK?=
+ =?utf-8?B?aHdqZklPdFVPSit5c0FVWUtHOVQ4MmtoeUNIZStndHRNM0hlbk1mRk5zdmtU?=
+ =?utf-8?B?d0N6UUlUTitBNlNMdmYyWGFPa0NmQlVPeG1wQlIyLzN2L0VaK2dQemVGTTk2?=
+ =?utf-8?B?SnAvZ3VXZFVSTWRWbTAzTmIyMHpKc1BkVW5mSGdsemE5aWZhTGNPWmNTK2E5?=
+ =?utf-8?B?d1A4MUt6OFVZT09xek9jSjZYcDFEQWt1WTRBVTlsZi9jUjNJbURDTGhFR0hU?=
+ =?utf-8?B?RFdtOW84MXRnT2xrcjhyeGtTWGs1cFB1amVMZmlVL1pablVqUVdsZE1RVmI2?=
+ =?utf-8?B?WmJueVBjQUtSNDZTS2ZrU1g0OThoc2NwY2VCeG9MSDVBTGZVMWxTcGtmUHF4?=
+ =?utf-8?B?cnI3TkFKRkpCSEVQaHdMVkFSc1ZOdjNTTmxrNHRqMXVkRUxIY0FaTklCVUtU?=
+ =?utf-8?B?dHloeXROT21VNHFWdXJtWUkvc0xPUitHQTdLUEVNa2JoSHo2MG1RUkxhcHRk?=
+ =?utf-8?B?UExvUnFteEZiYi9vdmEySTh3OE9GTTZCZkxtSWo3ZkI3V1AwUEdlTVJkYjAr?=
+ =?utf-8?B?RWpSeTkvRGhvQWJVWHJ2d291cGFsQjZodGQ0dUVYS0lOWDZDOTRiYXd3d3NJ?=
+ =?utf-8?B?dDJBYWFmUlZ1N1JHekZoWUtOT2VvU0lOcTZ4Tko5MzJNZFV1SWZqYjh0eWdS?=
+ =?utf-8?B?ZUZOTStqZzY1QkV4bGdGTU1YTzBkb3hFZmFUc0xiOUZoaDEvWlJ2bFI3SXZ1?=
+ =?utf-8?Q?rwtGPm6ZWCzV50Hn//PRYMgrZ?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: efa616f8-6d95-4561-f919-08dc4e7dc51d
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB6541.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Mar 2024 16:48:46.6763 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7pqnIC0khrDsQ7uqpUxRQelYIrmy3TgvU46fl+17s0Oeme+7qdbRioB+VrU3s6icxO4dbBrY0PjyP5qYyNbhgg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6242
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,211 +171,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Mar 27, 2024 at 09:59:01AM +0200, Jani Nikula wrote:
-> On Wed, 27 Mar 2024, Maxime Ripard <mripard@kernel.org> wrote:
-> > On Tue, Mar 26, 2024 at 03:56:50PM -0700, Nathan Chancellor wrote:
-> >> On Tue, Mar 05, 2024 at 11:07:36AM +0200, Jani Nikula wrote:
-> >> > Add kconfig to enable -Werror subsystem wide. This is useful for
-> >> > development and CI to keep the subsystem warning free, while avoiding
-> >> > issues outside of the subsystem that kernel wide CONFIG_WERROR=y might
-> >> > hit.
-> >> > 
-> >> > v2: Don't depend on COMPILE_TEST
-> >> > 
-> >> > Reviewed-by: Hamza Mahfooz <hamza.mahfooz@amd.com> # v1
-> >> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> >> > ---
-> >> >  drivers/gpu/drm/Kconfig  | 13 +++++++++++++
-> >> >  drivers/gpu/drm/Makefile |  3 +++
-> >> >  2 files changed, 16 insertions(+)
-> >> > 
-> >> > diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-> >> > index 6e853acf15da..c08e18108c2a 100644
-> >> > --- a/drivers/gpu/drm/Kconfig
-> >> > +++ b/drivers/gpu/drm/Kconfig
-> >> > @@ -416,3 +416,16 @@ config DRM_LIB_RANDOM
-> >> >  config DRM_PRIVACY_SCREEN
-> >> >  	bool
-> >> >  	default n
-> >> > +
-> >> > +config DRM_WERROR
-> >> > +	bool "Compile the drm subsystem with warnings as errors"
-> >> > +	depends on EXPERT
-> >> > +	default n
-> >> > +	help
-> >> > +	  A kernel build should not cause any compiler warnings, and this
-> >> > +	  enables the '-Werror' flag to enforce that rule in the drm subsystem.
-> >> > +
-> >> > +	  The drm subsystem enables more warnings than the kernel default, so
-> >> > +	  this config option is disabled by default.
-> >> > +
-> >> > +	  If in doubt, say N.
-> >> 
-> >> While I understand the desire for an easy switch that maintainers and
-> >> developers can use to ensure that their changes are warning free for the
-> >> drm subsystem specifically, I think subsystem specific configuration
-> >> options like this are actively detrimental to developers and continuous
-> >> integration systems that build test the entire kernel. For example, we
-> >> turned off CONFIG_WERROR for our Hexagon builds because of warnings that
-> >> appear with -Wextra that are legitimate but require treewide changes to
-> >> resolve in a manner sufficient for Linus:
-> >> 
-> >> https://github.com/ClangBuiltLinux/linux/issues/1285
-> >> https://lore.kernel.org/all/CAHk-=wg80je=K7madF4e7WrRNp37e3qh6y10Svhdc7O8SZ_-8g@mail.gmail.com/
-> >> https://lore.kernel.org/all/20230522105049.1467313-1-schnelle@linux.ibm.com/
-> >> 
-> >> But now, due to CONFIG_DRM_WERROR getting enabled by all{mod,yes}config
-> >> and -Wextra being unconditionally enabled for DRM, those warnings hard
-> >> break the build despite CONFIG_WERROR=n...
-> >
-> > Would making DRM_WERROR depends on WERROR address your concerns?
-> 
-> But then what would be the point of having DRM_WERROR at all? For me the
-> point is, "werror in drm, ignore the rest, they're someone else's
-> problem".
 
-Right, I do think this is a valid view point and one I am sympathetic
-to, especially since it is in the pursuit of increased code quality. I
-do not want to disrupt that.
+On 3/26/2024 11:56 PM, Lucas De Marchi wrote:
+> On Mon, Mar 25, 2024 at 09:54:31PM +0100, Nirmoy Das wrote:
+>> Hi Lucas,
+>>
+>> On 3/22/2024 5:11 PM, Lucas De Marchi wrote:
+>>> On Thu, Mar 21, 2024 at 05:11:42PM +0100, Nirmoy Das wrote:
+>>>> Refactor xe_sync_entry_signal so it doesn't have to
+>>>> modify xe_sched_job struct instead create a new helper function
+>>>> to set user fence values for a job.
+>>>>
+>>>> v2: Move the sync type check to xe_sched_job_init_user_fence(Lucas)
+>>>>
+>>>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>>>> Cc: Matthew Auld <matthew.auld@intel.com>
+>>>> Cc: Matthew Brost <matthew.brost@intel.com>
+>>>> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>>>> ---
+>>>> drivers/gpu/drm/xe/xe_exec.c      |  9 +++++----
+>>>> drivers/gpu/drm/xe/xe_sched_job.c | 18 ++++++++++++++++++
+>>>> drivers/gpu/drm/xe/xe_sched_job.h |  3 +++
+>>>> drivers/gpu/drm/xe/xe_sync.c      |  7 +------
+>>>> drivers/gpu/drm/xe/xe_sync.h      |  1 -
+>>>> drivers/gpu/drm/xe/xe_vm.c        | 10 +++++-----
+>>>> 6 files changed, 32 insertions(+), 16 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/xe/xe_exec.c 
+>>>> b/drivers/gpu/drm/xe/xe_exec.c
+>>>> index 7692ebfe7d47..9d53ef8c49cc 100644
+>>>> --- a/drivers/gpu/drm/xe/xe_exec.c
+>>>> +++ b/drivers/gpu/drm/xe/xe_exec.c
+>>>> @@ -249,7 +249,7 @@ int xe_exec_ioctl(struct drm_device *dev, void 
+>>>> *data, struct drm_file *file)
+>>>>                 goto err_unlock_list;
+>>>>             }
+>>>>             for (i = 0; i < num_syncs; i++)
+>>>> -                xe_sync_entry_signal(&syncs[i], NULL, fence);
+>>>> +                xe_sync_entry_signal(&syncs[i], fence);
+>>>>             xe_exec_queue_last_fence_set(q, vm, fence);
+>>>>             dma_fence_put(fence);
+>>>>         }
+>>>> @@ -359,9 +359,10 @@ int xe_exec_ioctl(struct drm_device *dev, void 
+>>>> *data, struct drm_file *file)
+>>>>         drm_gpuvm_resv_add_fence(&vm->gpuvm, exec, 
+>>>> &job->drm.s_fence->finished,
+>>>>                      DMA_RESV_USAGE_BOOKKEEP, DMA_RESV_USAGE_WRITE);
+>>>>
+>>>> -    for (i = 0; i < num_syncs; i++)
+>>>> -        xe_sync_entry_signal(&syncs[i], job,
+>>>> - &job->drm.s_fence->finished);
+>>>> +    for (i = 0; i < num_syncs; i++) {
+>>>> +        xe_sync_entry_signal(&syncs[i], &job->drm.s_fence->finished);
+>>>> +        xe_sched_job_init_user_fence(job, &syncs[i]);
+>>>> +    }
+>>>>
+>>>>     if (xe_exec_queue_is_lr(q))
+>>>>         q->ring_ops->emit_job(job);
+>>>> diff --git a/drivers/gpu/drm/xe/xe_sched_job.c 
+>>>> b/drivers/gpu/drm/xe/xe_sched_job.c
+>>>> index 8151ddafb940..bfbce9b69087 100644
+>>>> --- a/drivers/gpu/drm/xe/xe_sched_job.c
+>>>> +++ b/drivers/gpu/drm/xe/xe_sched_job.c
+>>>> @@ -5,6 +5,7 @@
+>>>>
+>>>> #include "xe_sched_job.h"
+>>>>
+>>>> +#include <drm/xe_drm.h>
+>>>> #include <linux/dma-fence-array.h>
+>>>> #include <linux/slab.h>
+>>>>
+>>>> @@ -17,6 +18,7 @@
+>>>> #include "xe_macros.h"
+>>>> #include "xe_trace.h"
+>>>> #include "xe_vm.h"
+>>>> +#include "xe_sync_types.h"
+>>>
+>>> wrong placement, otherwise lgtm
+>>>
+>>> Feel free to carry by Reviewed-by: Lucas De Marchi 
+>>> <lucas.demarchi@intel.com>
+>>> with that fixed.
+>>
+>> Could you please help me merge this patch.  I am having issue with my 
+>> dev machine which I use to merge patches.
+>
+> Applied to drm-xe-next, thanks!
+>
+> [1/1] drm/xe: Create a helper function to init job's user fence
+>       commit: 5dffaa1bb94a6bc75393476fbe3c8a704ff4fcf8
 
-> An alternative would be to "depends on !COMPILE_TEST" that we have in
-> i915, but then some folks want to have COMPILE_TEST in drm, because some
-> drivers are otherwise hard for people to build.
+Thanks a lot!
 
-Right. I think it is unfortunate how (at least in my opinion)
-CONFIG_COMPILE_TEST has two meanings: genuinely just compile testing or
-"allmodconfig". For the first case, we would want CONFIG_DRM_WERROR=y
-but for the second case, it would be nice for CONFIG_DRM_WERROR to
-default to off (because CONFIG_WERROR is enabled) but allow developers
-to turn it on explicitly.
+Nirmoy
 
-Another lofty/wistful idea to solve this would be to implement something
-similar to compiler diagnostic groups for Kconfig, where there would be
-a hierarchy like
-
-  CONFIG_WERROR
-    CONFIG_DRM_WERROR
-    CONFIG_SUBSYSTEM_A_WERROR
-    CONFIG_SUBSYSTEM_B_WERROR
-
-where the value of CONFIG_WERROR is the same value for all
-subconfigurations under it but they could still be enabled individually
-without any additional dependencies (ala something like '-Wno-unused
--Wunused-variable'), which would allow my use case of CONFIG_WERROR=n
-removing all instances of -Werror to continue to work but allow other
-developers and CI systems to just set their specific -Werror
-configuration and be done with it. I don't think something like that
-exists but maybe I don't know Kconfig as well as I think I do :)
-
-> Nathan, we do want to fix any issues switfly. Are you hitting specific
-> build problems?
-
-Yes, I see three distinct set of problems from our CI as a direct result
-of this series. I already covered two in the prior mail but I'll be a
-little more expansive below.
-
-1. Instances of -Wunused-but-set-variable from variables that only have
-   unary operations applied to them. Clang can warn in this case where
-   GCC cannot: https://godbolt.org/z/d368q3coP
-
-      int main(void)
-      {
-          int a = 0;
-          a++;
-          return 0;
-      }
-
-   which shows up in a few drm drivers. Most have a patch on the mailing
-   list that has not been applied.
-
-     drivers/gpu/drm/qxl/qxl_cmd.c:424:6: error: variable 'count' set but not used [-Werror,-Wunused-but-set-variable]
-       424 |         int count = 0;
-           |             ^
-     https://lore.kernel.org/all/20230408165023.2706235-1-trix@redhat.com/ (almost a year old)
-
-     drivers/gpu/drm/qxl/qxl_ioctl.c:148:14: error: variable 'num_relocs' set but not used [-Werror,-Wunused-but-set-variable]
-       148 |         int i, ret, num_relocs;
-           |                     ^
-     https://lore.kernel.org/all/20240307104119.1980621-1-colin.i.king@gmail.com/
-
-     drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c:843:6: error: variable 'out' set but not used [-Werror,-Wunused-but-set-variable]
-       843 |         u64 out = dumper->iova + A6XX_CD_DATA_OFFSET;
-           |             ^
-     https://lore.kernel.org/all/20240326212324.185832-1-ojeda@kernel.org/ (recent patch)
-
-     drivers/gpu/drm/panthor/panthor_sched.c:2048:6: error: variable 'csg_mod_mask' set but not used [-Werror,-Wunused-but-set-variable]
-      2048 |         u32 csg_mod_mask = 0, free_csg_slots = 0;
-           |             ^
-     No patch, new driver, not reported yet it seems.
-
-2. High stack usage in AMDGPU files for ARCH=powerpc allmodconfig. This
-   might be a compiler issue but until now, there have been more
-   important fires.
-
-     drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c:1096:12: error: stack frame size (2064) exceeds limit (2048) in 'vcn_v3_0_start' [-Werror,-Wframe-larger-than]
-      1096 | static int vcn_v3_0_start(struct amdgpu_device *adev)
-           |            ^
-
-     drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c:955:12: error: stack frame size (2112) exceeds limit (2048) in 'vcn_v4_0_5_start' [-Werror,-Wframe-larger-than]
-       955 | static int vcn_v4_0_5_start(struct amdgpu_device *adev)
-           |            ^
-
-     drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c:713:12: error: stack frame size (2992) exceeds limit (2048) in 'vcn_v5_0_0_start' [-Werror,-Wframe-larger-than]
-       713 | static int vcn_v5_0_0_start(struct amdgpu_device *adev)
-           |            ^
-
-   Taking a brief look at it while writing this email, it appears
-   related to CONFIG_UBSAN_BOUNDS, as none of the warnings appear when
-   that is disabled on top of allmodconfig. I suspect that the sanitizer
-   instrumentation and inlining might be messing something up here, it
-   has happened with other sanitizers like KASAN and KCSAN in the past.
-   Without CONFIG_UBSAN_BOUNDS, the stack usage of these functions does
-   not seem too bad:
-
-     drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c:1096:12: warning: stack frame size (816) exceeds limit (512) in 'vcn_v3_0_start' [-Wframe-larger-than]
-     drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c:955:12: warning: stack frame size (800) exceeds limit (512) in 'vcn_v4_0_5_start' [-Wframe-larger-than]
-     drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c:713:12: warning: stack frame size (1040) exceeds limit (512) in 'vcn_v5_0_0_start' [-Wframe-larger-than]
-
-3. -Wnull-pointer-arithmetic from IO port accessors on architectures
-   that do not have them (such as hexagon and s390). For example:
-
-     In file included from drivers/gpu/drm/virtio/virtgpu_plane.c:26:
-     In file included from include/drm/drm_atomic_helper.h:31:
-     In file included from include/drm/drm_crtc.h:32:
-     In file included from include/drm/drm_modes.h:33:
-     In file included from include/drm/drm_connector.h:32:
-     In file included from include/drm/drm_util.h:35:
-     In file included from include/linux/interrupt.h:11:
-     In file included from include/linux/hardirq.h:11:
-     In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
-     In file included from include/asm-generic/hardirq.h:17:
-     In file included from include/linux/irq.h:20:
-     In file included from include/linux/io.h:13:
-     In file included from arch/hexagon/include/asm/io.h:328:
-     include/asm-generic/io.h:584:33: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
-       584 |         __raw_writeb(value, PCI_IOBASE + addr);
-           |                             ~~~~~~~~~~ ^
-     include/asm-generic/io.h:594:59: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
-       594 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
-           |                                                       ~~~~~~~~~~ ^
-     include/asm-generic/io.h:604:59: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
-       604 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
-           |                                                       ~~~~~~~~~~ ^
-
-   These warnings are numerous throughout drivers/gpu/drm/ because this
-   warning is enabled with -Wextra. Again, this is not exactly your
-   problem and it should eventually be fixed by [1] (it appears that
-   Niklas is working on a new version at [2]) but it is exacerbated by
-   the default combo of W=1 + -Werror for DRM with allmodconfig now,
-   even with CONFIG_WERROR=n.
-
-Hopefully that helps clear things up. I am more than happy to send
-patches or work towards solutions that satisfies everyone (or at least a
-majority/consensus). Wider testing with clang never hurts as well but I
-understand increasing build matrices is not always an easy sell.
-
-[1]: https://lore.kernel.org/all/20230522105049.1467313-45-schnelle@linux.ibm.com/
-[2]: https://git.kernel.org/niks/l/has_ioport_v6
-
-Cheers,
-Nathan
+>
+> Best regards,
