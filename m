@@ -4,27 +4,139 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D33A8C47DD9
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Mar 2024 19:26:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1573CC54E67
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Mar 2024 19:28:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BA4C10F2E3;
-	Wed, 27 Mar 2024 19:26:56 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5E9F10F2E3;
- Wed, 27 Mar 2024 19:26:54 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id B12F710F2E3;
+	Wed, 27 Mar 2024 19:28:08 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C4aDYiv3";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4141010F2E3
+ for <intel-xe@lists.freedesktop.org>; Wed, 27 Mar 2024 19:28:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1711567687; x=1743103687;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=NM/KDfc6r+wspY24lFtAVpzroXhAgxT83bwGjOIhIc4=;
+ b=C4aDYiv3Uy1WZQgguEHRtgiW67AYAJqFj5pNT3AyZ2k9edqIcLl1L4fR
+ gf8XLPQcleUT2vOLVYfkjzuzON6WlQlots9OFbJkQHyo/mGb4Ya9tlvjX
+ A4NjhQDB47Sgdwbgbg2n6joKc2H+oElMfW+ez1ey+0f111DcgA/hhlGH4
+ jt7dDgp0PQuHanuZ/kSnrbOfl3lfjjd5byyb2Bpn5uwUOOifvxjpJwK7x
+ Xe2s6+9ZbR03vMTQSl5fEsszkozSLBn0sTr4tS29hnXaWFVpTkLRrR53+
+ n3a9//IdjR8GM6Ez+t5DxiUgXZ2b44gVO+bhdkIqAxjjcai3oXBaDrrnw Q==;
+X-CSE-ConnectionGUID: TvKrHMHwRUyh5lERsGxpXw==
+X-CSE-MsgGUID: D2dM1S4GQZOx/6JU59WonA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="17425426"
+X-IronPort-AV: E=Sophos;i="6.07,159,1708416000"; d="scan'208";a="17425426"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2024 12:28:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,159,1708416000"; d="scan'208";a="16424261"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 27 Mar 2024 12:28:06 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 27 Mar 2024 12:28:05 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Wed, 27 Mar 2024 12:28:05 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Wed, 27 Mar 2024 12:28:05 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hSIaTjjfzstHM+cR9p30lO+Ke8fvS5Zf/m+055N1PrtCCYBGwByjub43Law6qG8+aQ0xAGo2QRHw6BDsxPVlZRFqylX6nR/sW9xYXO+xB8xtAAmkxKh7JqX7lQf0P+HbGp+ISLYsG6HNTGiyET9Crg7oXXrx86gz+5HgVc9IeSvR7Hb3PEFP73USI+WA8jxZWMx0sheUW0tj0y5crVwDz4qcTGTACypiByOnREQcgV1AwgxsHxLMyjZdBevWR0ufSdLcDmOepJfkfIR0udhObTJEGaqonFsaaUE6o+vvBMIzr9yyzclZc8ogDeV6WZZJGJYHBMk3jnR9wxB/rIrFUg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/FOl2fTFXsPUhGZjcSG79XhaFS2QEqMr62ctZP8vjx8=;
+ b=nrAvcZhXNMmeAE70CCQkkHAROYfqxuLsVwph2dwVECj303fGJNlsNHDpbBsJFFb5SZ+5galtdZ6Tc1j7B/HJSgMLeK8m/9yDSc/6sGbjQx5qNZJgyIg2J0TPQ0wQ1eRbJR2QlbKBrU/fYhrnIR9nXD95OS7u4u1nLKui+WiEsiVCemW4ER6Yn8me5z0RHox+H1y9N/lZ53xFY4HQ1Hgek1kyxufkSs3JhTYk/v6idRwT1kyPHXFmZ+DPuAhMqqLuirmu42bWTjJT60IsoyKZhbv3TzNDnkSsaxqZfVy/wVavCj8qwOuSEo7W/cH5GhDJFKFKL8eiXK11psPnQM0nJg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by IA0PR11MB7752.namprd11.prod.outlook.com (2603:10b6:208:442::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.33; Wed, 27 Mar
+ 2024 19:28:02 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e7c:ccbc:a71c:6c15]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e7c:ccbc:a71c:6c15%5]) with mapi id 15.20.7409.031; Wed, 27 Mar 2024
+ 19:28:02 +0000
+Date: Wed, 27 Mar 2024 19:26:33 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: "Zeng, Oak" <oak.zeng@intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v4 18/30] drm/xe: Convert multiple bind ops into single job
+Message-ID: <ZgRy6dVwfLUwP/eW@DUT025-TGLU.fm.intel.com>
+References: <20240308050806.577176-1-matthew.brost@intel.com>
+ <20240308050806.577176-19-matthew.brost@intel.com>
+ <SA1PR11MB6991BFD96547D3D199CC604692342@SA1PR11MB6991.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <SA1PR11MB6991BFD96547D3D199CC604692342@SA1PR11MB6991.namprd11.prod.outlook.com>
+X-ClientProxiedBy: SJ0PR05CA0070.namprd05.prod.outlook.com
+ (2603:10b6:a03:332::15) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EKUnit=3A_success_for_series_starting_with_=5BCI-tes?=
- =?utf-8?q?t=2C1/8=5D_drm=3A_Add_drm=5Fvblank=5Fwork=5Fflush=5Fall=28=29=2E?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 27 Mar 2024 19:26:54 -0000
-Message-ID: <171156761474.1060333.17882491140291633817@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240327190710.2359-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20240327190710.2359-1-maarten.lankhorst@linux.intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|IA0PR11MB7752:EE_
+X-MS-Office365-Filtering-Correlation-Id: b3792823-ebf0-4463-01a8-08dc4e94048a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: dujBr+3Q4Wf61gvOmduTBpQziynFIaYk8D5a0d6uV/9BovJ7fmGZmromyMQ9I/u2fhp7Fw6QyUApd3cx6aT0bo6jEF5rxScJiho3TxO71bDw0FRPY8S2zye4NquQYi1ymdXsICgpp0UTfITwEBx8T5iv03/qxstE9wCqx/gpQJxhVeRa9/iWyuA234cRcPdjvzWTS3siJf5wV6ooBZd49Md0E/zQoyOVjzevc2NQP7flaGmnoRsHxpRqBDrPx6BhSQg/2bRtjv8hvJev4lVB63WD6hLhoo+a4JyAPMI2KOFTXCb4hSV2bUU3G6a6BN91hMT1PT7h3O55xZi2+CSIfi8dLHWtQj+QrV9bi6ue/h78yFBUGP8ezDxhhFJnCpfeOe4TSpijoC2v5rps7/9tK/o81qoXVKC6NI0uxAvFr4ZwBW4vNAxNxE2pQZfp/2mPBC4Gar5b/soHZD0EP6VVMaZh4HcRe/0FCF0XFoVLB9CZPygcwY9tD8XRBAH6YocUh3tbHgSoMJcQVK7LjWdFSE1wp0pN9eyTihFza38muUWg5fj7p08fLHmKD1sHqGboacefkeXO+CCcGMPouNTDe8Qbygc2W4COXVbA0DQrI12u6bL5vIlwy5vlzIvA0Gxw
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(1800799015)(366007)(376005); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?vIfH5RI+lvle9L1ZfsPH3NNpFOXGRv7YJYp+Wsk/+45PvHuTXm9bHPC0linn?=
+ =?us-ascii?Q?Ug0B0pE9yeHsMQvcOuExK8Un4Al1Ae7bf1L1H2ZOthIB/u38dUBHI9Dw1Ugv?=
+ =?us-ascii?Q?bxiuftJVqWQhZ7aX3nLT67KjBbkxv3zCiVhV7vl+xeTov39fLbsiyLemzjxT?=
+ =?us-ascii?Q?F4GJkJd6G1WyKE82h0l+sAEcp+xkMB0S/D8W8goU14A/0JDOK/3yhbExNC8J?=
+ =?us-ascii?Q?DDgEx6s/TZqpz0a2AKtJdTCbCFeNlia02dVR+PBty6RGX3drKPYg9CBJmhaR?=
+ =?us-ascii?Q?NRHVWc09AjvHeRJ59OdOrJnAaRgfqIhdIT6Qtv7+qKqdO2Zj8umSsxEv4KLk?=
+ =?us-ascii?Q?RcjNOez0luMIeAruQ9BHnQWWWL1hNvI+ZPotC0FNt9uGh4UlsxdYtKCR4wBt?=
+ =?us-ascii?Q?roqCm/f6aV+Ht+/PMkLTVy54D6npfUDG5T86zb0kg/7BwYs8/HxUEcyIIM0s?=
+ =?us-ascii?Q?3zfl0ZNykSCxIZp5sWsyGZU435Lybjk9njNeInOXO2md44jvUmkLIdqiD97b?=
+ =?us-ascii?Q?VNk7+t3K3g7MkGI27nx90K6/jg42UURmeGZzmeuWVwr/SUhIxJtbA/Zg+llQ?=
+ =?us-ascii?Q?SxZqZxyu715rmt3828J+Nub2QUDLzLGEjZCli/KS7PYZMLfzPsWZckYehqr8?=
+ =?us-ascii?Q?fBSJCfXUqbwB1uOtDl5vEHKYjt0S4mEvZ+h6WW+TIj/WWNiy7bscjC3UlDxr?=
+ =?us-ascii?Q?bO0tJ1jZnx+19syzp9OI/Efb+aw+2RNJFrifYbZYN320iVAIIq2dAqS0egTI?=
+ =?us-ascii?Q?8ddz8aHLLrY2Ib0qv93O9krtmo5epk79i/79mBfqicAg2wk7mwu24kke2iov?=
+ =?us-ascii?Q?tJO/zI5RhpNOAsADeDLw3DEHN5ifVzan282avRRV06UwcNes6b1qwIVV3IKK?=
+ =?us-ascii?Q?ukiOCSIBsI4k2nycUp8nJncOmAszsO6TW8jJY+zrlqE2s5qOXG467WB6JOWJ?=
+ =?us-ascii?Q?AW1NTh8kBMFVBC57RDjiOMYpzJk2bW++pQKzGQdRCDCidRk1srbATbijo+1C?=
+ =?us-ascii?Q?UysN+f/4VZ3QW9P8bJn98wLo8OpNkyqkY76Tfg7MhEvlEYAwC9h6HRn4klEx?=
+ =?us-ascii?Q?Fi30fpat2Crs/48AqVmwk2PY72Ujkm1UZBzun0nSWbDe9uBaTS6b5ZK3bV/Q?=
+ =?us-ascii?Q?Btcw9g2lHEuUI0m8Iq4PJGCDB7/dz1YaBzeKJgJRFm8oxcVpHDFEgJOp+IK7?=
+ =?us-ascii?Q?Nll3bWvPsirrHxO5RrQAkGbaf3uhxx2GM1ACs2zoHZE1mLnBtHyagHgGgLys?=
+ =?us-ascii?Q?uAlgCN7Vaxh7JrEfxxspGZZIcpWuQBJVHS6u83TxdV5RawU/hiEZ2Gb7A/uo?=
+ =?us-ascii?Q?TgRyqiFrPdQj3Q/1in1cNh3l3MzSs0kbKscG65BpJeTx/fsD0L4X/sQZkJ/v?=
+ =?us-ascii?Q?z3N0wCReWrFflay+wirSyXqj82ZG77WZq3yfnr3ldybsKrlURaTgTeRv93PA?=
+ =?us-ascii?Q?2U7hw0172ThapOVrjCGbI6FmiB5DHFMoJwp2IfuTUss4RqNTeG9sNbNGsASO?=
+ =?us-ascii?Q?7uE544wJEFkdBUOS7sfVk6mzQu15NQybAFxDTdA3FzEM9dP2QLOBvVBwoWkk?=
+ =?us-ascii?Q?9L4BfPLLUC3fQuH3quGQFlJ2xo9FSvsUlDNugWIBOYiC6X5PXRxp9YYJCbjE?=
+ =?us-ascii?Q?ow=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b3792823-ebf0-4463-01a8-08dc4e94048a
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Mar 2024 19:28:01.9590 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2P9gptFMtscgKDqOE2Hj3yxLTWLuG+vcbHj1zl5fBzaAl/5TC16HSaQU19eY1L43L1yeun+WMGWTvievfavUfA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7752
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,986 +148,2789 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Mar 26, 2024 at 08:40:05PM -0600, Zeng, Oak wrote:
+> Hi Matt,
+> 
+> This patch is very big to review. I wasn't able to look the whole patch. See some comments inline for now. I need to continue it.
+> 
+> Is it possible to divide into small patches?
+> 
 
-Series: series starting with [CI-test,1/8] drm: Add drm_vblank_work_flush_all().
-URL   : https://patchwork.freedesktop.org/series/131706/
-State : success
+Thanks for the review, yes this is a big patch and unfortunately this
+one probably can't be split up much more without breaking the driver.
 
-== Summary ==
+This is why we likely merge the patches prior to this one first, then
+work through this patch and the next few in a single series.
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-[19:25:44] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[19:25:49] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-../arch/x86/um/user-offsets.c:17:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
-   17 | void foo(void)
-      |      ^~~
-In file included from ../arch/um/kernel/asm-offsets.c:1:
-../arch/x86/um/shared/sysdep/kernel-offsets.h:9:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
-    9 | void foo(void)
-      |      ^~~
-../arch/x86/um/bugs_64.c:9:6: warning: no previous prototype for ‘arch_check_bugs’ [-Wmissing-prototypes]
-    9 | void arch_check_bugs(void)
-      |      ^~~~~~~~~~~~~~~
-../arch/x86/um/bugs_64.c:13:6: warning: no previous prototype for ‘arch_examine_signal’ [-Wmissing-prototypes]
-   13 | void arch_examine_signal(int sig, struct uml_pt_regs *regs)
-      |      ^~~~~~~~~~~~~~~~~~~
-../arch/x86/um/fault.c:18:5: warning: no previous prototype for ‘arch_fixup’ [-Wmissing-prototypes]
-   18 | int arch_fixup(unsigned long address, struct uml_pt_regs *regs)
-      |     ^~~~~~~~~~
-../arch/x86/um/os-Linux/registers.c:146:15: warning: no previous prototype for ‘get_thread_reg’ [-Wmissing-prototypes]
-  146 | unsigned long get_thread_reg(int reg, jmp_buf *buf)
-      |               ^~~~~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:16:5: warning: no previous prototype for ‘__vdso_clock_gettime’ [-Wmissing-prototypes]
-   16 | int __vdso_clock_gettime(clockid_t clock, struct __kernel_old_timespec *ts)
-      |     ^~~~~~~~~~~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:30:5: warning: no previous prototype for ‘__vdso_gettimeofday’ [-Wmissing-prototypes]
-   30 | int __vdso_gettimeofday(struct __kernel_old_timeval *tv, struct timezone *tz)
-      |     ^~~~~~~~~~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:44:21: warning: no previous prototype for ‘__vdso_time’ [-Wmissing-prototypes]
-   44 | __kernel_old_time_t __vdso_time(__kernel_old_time_t *t)
-      |                     ^~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:57:1: warning: no previous prototype for ‘__vdso_getcpu’ [-Wmissing-prototypes]
-   57 | __vdso_getcpu(unsigned *cpu, unsigned *node, struct getcpu_cache *unused)
-      | ^~~~~~~~~~~~~
-../arch/um/os-Linux/skas/process.c:107:6: warning: no previous prototype for ‘wait_stub_done’ [-Wmissing-prototypes]
-  107 | void wait_stub_done(int pid)
-      |      ^~~~~~~~~~~~~~
-../arch/um/os-Linux/skas/process.c:683:6: warning: no previous prototype for ‘__switch_mm’ [-Wmissing-prototypes]
-  683 | void __switch_mm(struct mm_id *mm_idp)
-      |      ^~~~~~~~~~~
-../arch/x86/um/os-Linux/mcontext.c:7:6: warning: no previous prototype for ‘get_regs_from_mc’ [-Wmissing-prototypes]
-    7 | void get_regs_from_mc(struct uml_pt_regs *regs, mcontext_t *mc)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/kernel/skas/process.c:36:12: warning: no previous prototype for ‘start_uml’ [-Wmissing-prototypes]
-   36 | int __init start_uml(void)
-      |            ^~~~~~~~~
-../arch/x86/um/ptrace_64.c:111:5: warning: no previous prototype for ‘poke_user’ [-Wmissing-prototypes]
-  111 | int poke_user(struct task_struct *child, long addr, long data)
-      |     ^~~~~~~~~
-../arch/x86/um/ptrace_64.c:171:5: warning: no previous prototype for ‘peek_user’ [-Wmissing-prototypes]
-  171 | int peek_user(struct task_struct *child, long addr, long data)
-      |     ^~~~~~~~~
-../arch/um/kernel/skas/mmu.c:17:5: warning: no previous prototype for ‘init_new_context’ [-Wmissing-prototypes]
-   17 | int init_new_context(struct task_struct *task, struct mm_struct *mm)
-      |     ^~~~~~~~~~~~~~~~
-../arch/um/kernel/skas/mmu.c:60:6: warning: no previous prototype for ‘destroy_context’ [-Wmissing-prototypes]
-   60 | void destroy_context(struct mm_struct *mm)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/os-Linux/main.c:187:7: warning: no previous prototype for ‘__wrap_malloc’ [-Wmissing-prototypes]
-  187 | void *__wrap_malloc(int size)
-      |       ^~~~~~~~~~~~~
-../arch/um/os-Linux/main.c:208:7: warning: no previous prototype for ‘__wrap_calloc’ [-Wmissing-prototypes]
-  208 | void *__wrap_calloc(int n, int size)
-      |       ^~~~~~~~~~~~~
-../arch/um/os-Linux/main.c:222:6: warning: no previous prototype for ‘__wrap_free’ [-Wmissing-prototypes]
-  222 | void __wrap_free(void *ptr)
-      |      ^~~~~~~~~~~
-../arch/um/os-Linux/mem.c:28:6: warning: no previous prototype for ‘kasan_map_memory’ [-Wmissing-prototypes]
-   28 | void kasan_map_memory(void *start, size_t len)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/os-Linux/mem.c:212:13: warning: no previous prototype for ‘check_tmpexec’ [-Wmissing-prototypes]
-  212 | void __init check_tmpexec(void)
-      |             ^~~~~~~~~~~~~
-../arch/x86/um/signal.c:560:6: warning: no previous prototype for ‘sys_rt_sigreturn’ [-Wmissing-prototypes]
-  560 | long sys_rt_sigreturn(void)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/os-Linux/signal.c:75:6: warning: no previous prototype for ‘sig_handler’ [-Wmissing-prototypes]
-   75 | void sig_handler(int sig, struct siginfo *si, mcontext_t *mc)
-      |      ^~~~~~~~~~~
-../arch/um/os-Linux/signal.c:111:6: warning: no previous prototype for ‘timer_alarm_handler’ [-Wmissing-prototypes]
-  111 | void timer_alarm_handler(int sig, struct siginfo *unused_si, mcontext_t *mc)
-      |      ^~~~~~~~~~~~~~~~~~~
-../arch/um/os-Linux/start_up.c:301:12: warning: no previous prototype for ‘parse_iomem’ [-Wmissing-prototypes]
-  301 | int __init parse_iomem(char *str, int *add)
-      |            ^~~~~~~~~~~
-../arch/um/kernel/mem.c:202:8: warning: no previous prototype for ‘pgd_alloc’ [-Wmissing-prototypes]
-  202 | pgd_t *pgd_alloc(struct mm_struct *mm)
-      |        ^~~~~~~~~
-../arch/um/kernel/mem.c:215:7: warning: no previous prototype for ‘uml_kmalloc’ [-Wmissing-prototypes]
-  215 | void *uml_kmalloc(int size, int flags)
-      |       ^~~~~~~~~~~
-../arch/x86/um/syscalls_64.c:48:6: warning: no previous prototype for ‘arch_switch_to’ [-Wmissing-prototypes]
-   48 | void arch_switch_to(struct task_struct *to)
-      |      ^~~~~~~~~~~~~~
-../arch/um/kernel/process.c:51:5: warning: no previous prototype for ‘pid_to_processor_id’ [-Wmissing-prototypes]
-   51 | int pid_to_processor_id(int pid)
-      |     ^~~~~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:87:7: warning: no previous prototype for ‘__switch_to’ [-Wmissing-prototypes]
-   87 | void *__switch_to(struct task_struct *from, struct task_struct *to)
-      |       ^~~~~~~~~~~
-../arch/um/kernel/process.c:140:6: warning: no previous prototype for ‘fork_handler’ [-Wmissing-prototypes]
-  140 | void fork_handler(void)
-      |      ^~~~~~~~~~~~
-../arch/um/kernel/process.c:217:6: warning: no previous prototype for ‘arch_cpu_idle’ [-Wmissing-prototypes]
-  217 | void arch_cpu_idle(void)
-      |      ^~~~~~~~~~~~~
-../arch/um/kernel/process.c:253:5: warning: no previous prototype for ‘copy_to_user_proc’ [-Wmissing-prototypes]
-  253 | int copy_to_user_proc(void __user *to, void *from, int size)
-      |     ^~~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:263:5: warning: no previous prototype for ‘clear_user_proc’ [-Wmissing-prototypes]
-  263 | int clear_user_proc(void __user *buf, int size)
-      |     ^~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:271:6: warning: no previous prototype for ‘set_using_sysemu’ [-Wmissing-prototypes]
-  271 | void set_using_sysemu(int value)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:278:5: warning: no previous prototype for ‘get_using_sysemu’ [-Wmissing-prototypes]
-  278 | int get_using_sysemu(void)
-      |     ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:316:12: warning: no previous prototype for ‘make_proc_sysemu’ [-Wmissing-prototypes]
-  316 | int __init make_proc_sysemu(void)
-      |            ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:348:15: warning: no previous prototype for ‘arch_align_stack’ [-Wmissing-prototypes]
-  348 | unsigned long arch_align_stack(unsigned long sp)
-      |               ^~~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:45:6: warning: no previous prototype for ‘machine_restart’ [-Wmissing-prototypes]
-   45 | void machine_restart(char * __unused)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:51:6: warning: no previous prototype for ‘machine_power_off’ [-Wmissing-prototypes]
-   51 | void machine_power_off(void)
-      |      ^~~~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:57:6: warning: no previous prototype for ‘machine_halt’ [-Wmissing-prototypes]
-   57 | void machine_halt(void)
-      |      ^~~~~~~~~~~~
-../arch/um/kernel/tlb.c:579:6: warning: no previous prototype for ‘flush_tlb_mm_range’ [-Wmissing-prototypes]
-  579 | void flush_tlb_mm_range(struct mm_struct *mm, unsigned long start,
-      |      ^~~~~~~~~~~~~~~~~~
-../arch/um/kernel/tlb.c:594:6: warning: no previous prototype for ‘force_flush_all’ [-Wmissing-prototypes]
-  594 | void force_flush_all(void)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/kernel/um_arch.c:408:19: warning: no previous prototype for ‘read_initrd’ [-Wmissing-prototypes]
-  408 | int __init __weak read_initrd(void)
-      |                   ^~~~~~~~~~~
-../arch/um/kernel/um_arch.c:461:7: warning: no previous prototype for ‘text_poke’ [-Wmissing-prototypes]
-  461 | void *text_poke(void *addr, const void *opcode, size_t len)
-      |       ^~~~~~~~~
-../arch/um/kernel/um_arch.c:473:6: warning: no previous prototype for ‘text_poke_sync’ [-Wmissing-prototypes]
-  473 | void text_poke_sync(void)
-      |      ^~~~~~~~~~~~~~
-../arch/um/kernel/kmsg_dump.c:60:12: warning: no previous prototype for ‘kmsg_dumper_stdout_init’ [-Wmissing-prototypes]
-   60 | int __init kmsg_dumper_stdout_init(void)
-      |            ^~~~~~~~~~~~~~~~~~~~~~~
-../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-stty: 'standard input': Inappropriate ioctl for device
+Most likely we will another reviewer on this due its large size.
 
-[19:26:13] Starting KUnit Kernel (1/1)...
-[19:26:13] ============================================================
-Running tests with:
-$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
-[19:26:14] =================== guc_dbm (7 subtests) ===================
-[19:26:14] [PASSED] test_empty
-[19:26:14] [PASSED] test_default
-[19:26:14] ======================== test_size  ========================
-[19:26:14] [PASSED] 4
-[19:26:14] [PASSED] 8
-[19:26:14] [PASSED] 32
-[19:26:14] [PASSED] 256
-[19:26:14] ==================== [PASSED] test_size ====================
-[19:26:14] ======================= test_reuse  ========================
-[19:26:14] [PASSED] 4
-[19:26:14] [PASSED] 8
-[19:26:14] [PASSED] 32
-[19:26:14] [PASSED] 256
-[19:26:14] =================== [PASSED] test_reuse ====================
-[19:26:14] =================== test_range_overlap  ====================
-[19:26:14] [PASSED] 4
-[19:26:14] [PASSED] 8
-[19:26:14] [PASSED] 32
-[19:26:14] [PASSED] 256
-[19:26:14] =============== [PASSED] test_range_overlap ================
-[19:26:14] =================== test_range_compact  ====================
-[19:26:14] [PASSED] 4
-[19:26:14] [PASSED] 8
-[19:26:14] [PASSED] 32
-[19:26:14] [PASSED] 256
-[19:26:14] =============== [PASSED] test_range_compact ================
-[19:26:14] ==================== test_range_spare  =====================
-[19:26:14] [PASSED] 4
-[19:26:14] [PASSED] 8
-[19:26:14] [PASSED] 32
-[19:26:14] [PASSED] 256
-[19:26:14] ================ [PASSED] test_range_spare =================
-[19:26:14] ===================== [PASSED] guc_dbm =====================
-[19:26:14] ================== no_relay (3 subtests) ===================
-[19:26:14] [PASSED] xe_drops_guc2pf_if_not_ready
-[19:26:14] [PASSED] xe_drops_guc2vf_if_not_ready
-[19:26:14] [PASSED] xe_rejects_send_if_not_ready
-[19:26:14] ==================== [PASSED] no_relay =====================
-[19:26:14] ================== pf_relay (14 subtests) ==================
-[19:26:14] [PASSED] pf_rejects_guc2pf_too_short
-[19:26:14] [PASSED] pf_rejects_guc2pf_too_long
-[19:26:14] [PASSED] pf_rejects_guc2pf_no_payload
-[19:26:14] [PASSED] pf_fails_no_payload
-[19:26:14] [PASSED] pf_fails_bad_origin
-[19:26:14] [PASSED] pf_fails_bad_type
-[19:26:14] [PASSED] pf_txn_reports_error
-[19:26:14] [PASSED] pf_txn_sends_pf2guc
-[19:26:14] [PASSED] pf_sends_pf2guc
-[19:26:14] [SKIPPED] pf_loopback_nop
-[19:26:14] [SKIPPED] pf_loopback_echo
-[19:26:14] [SKIPPED] pf_loopback_fail
-[19:26:14] [SKIPPED] pf_loopback_busy
-[19:26:14] [SKIPPED] pf_loopback_retry
-[19:26:14] ==================== [PASSED] pf_relay =====================
-[19:26:14] ================== vf_relay (3 subtests) ===================
-[19:26:14] [PASSED] vf_rejects_guc2vf_too_short
-[19:26:14] [PASSED] vf_rejects_guc2vf_too_long
-[19:26:14] [PASSED] vf_rejects_guc2vf_no_payload
-[19:26:14] ==================== [PASSED] vf_relay =====================
-[19:26:14] ===================== lmtt (1 subtest) =====================
-[19:26:14] ======================== test_ops  =========================
-[19:26:14] [PASSED] 2-level
-[19:26:14] [PASSED] multi-level
-[19:26:14] ==================== [PASSED] test_ops =====================
-[19:26:14] ====================== [PASSED] lmtt =======================
-[19:26:14] ==================== xe_bo (2 subtests) ====================
-[19:26:14] [SKIPPED] xe_ccs_migrate_kunit
-[19:26:14] [SKIPPED] xe_bo_evict_kunit
-[19:26:14] ===================== [SKIPPED] xe_bo ======================
-[19:26:14] ================== xe_dma_buf (1 subtest) ==================
-[19:26:14] [SKIPPED] xe_dma_buf_kunit
-[19:26:14] =================== [SKIPPED] xe_dma_buf ===================
-[19:26:14] ================== xe_migrate (1 subtest) ==================
-[19:26:14] [SKIPPED] xe_migrate_sanity_kunit
-[19:26:14] =================== [SKIPPED] xe_migrate ===================
-[19:26:14] =================== xe_mocs (2 subtests) ===================
-[19:26:14] [SKIPPED] xe_live_mocs_kernel_kunit
-[19:26:14] [SKIPPED] xe_live_mocs_reset_kunit
-[19:26:14] ==================== [SKIPPED] xe_mocs =====================
-[19:26:14] =================== xe_pci (2 subtests) ====================
-[19:26:14] [PASSED] xe_gmdid_graphics_ip
-[19:26:14] [PASSED] xe_gmdid_media_ip
-[19:26:14] ===================== [PASSED] xe_pci ======================
-[19:26:14] ==================== xe_rtp (1 subtest) ====================
-[19:26:14] ================== xe_rtp_process_tests  ===================
-[19:26:14] [PASSED] coalesce-same-reg
-[19:26:14] [PASSED] no-match-no-add
-[19:26:14] [PASSED] no-match-no-add-multiple-rules
-[19:26:14] [PASSED] two-regs-two-entries
-[19:26:14] [PASSED] clr-one-set-other
-[19:26:14] [PASSED] set-field
-[19:26:14] [PASSED] conflict-duplicate
-[19:26:14] [PASSED] conflict-not-disjoint
-[19:26:14] [PASSED] conflict-reg-type
-[19:26:14] ============== [PASSED] xe_rtp_process_tests ===============
-[19:26:14] ===================== [PASSED] xe_rtp ======================
-[19:26:14] ==================== xe_wa (1 subtest) =====================
-[19:26:14] ======================== xe_wa_gt  =========================
-[19:26:14] [PASSED] TIGERLAKE (B0)
-[19:26:14] [PASSED] DG1 (A0)
-[19:26:14] [PASSED] DG1 (B0)
-[19:26:14] [PASSED] ALDERLAKE_S (A0)
-[19:26:14] [PASSED] ALDERLAKE_S (B0)
-[19:26:14] [PASSED] ALDERLAKE_S (C0)
-[19:26:14] [PASSED] ALDERLAKE_S (D0)
-[19:26:14] [PASSED] ALDERLAKE_P (A0)
-[19:26:14] [PASSED] ALDERLAKE_P (B0)
-[19:26:14] [PASSED] ALDERLAKE_P (C0)
-[19:26:14] [PASSED] ALDERLAKE_S_RPLS (D0)
-[19:26:14] [PASSED] ALDERLAKE_P_RPLU (E0)
-[19:26:14] [PASSED] DG2_G10 (C0)
-[19:26:14] [PASSED] DG2_G11 (B1)
-[19:26:14] [PASSED] DG2_G12 (A1)
-[19:26:14] [PASSED] METEORLAKE (g:A0, m:A0)
-[19:26:14] [PASSED] METEORLAKE (g:A0, m:A0)
-[19:26:14] [PASSED] METEORLAKE (g:A0, m:A0)
-[19:26:14] [PASSED] LUNARLAKE (g:A0, m:A0)
-[19:26:14] [PASSED] LUNARLAKE (g:B0, m:A0)
-[19:26:14] ==================== [PASSED] xe_wa_gt =====================
-[19:26:14] ====================== [PASSED] xe_wa ======================
-[19:26:14] ============================================================
-[19:26:14] Testing complete. Ran 81 tests: passed: 70, skipped: 11
-[19:26:14] Elapsed time: 29.376s total, 4.257s configuring, 24.898s building, 0.183s running
+> > -----Original Message-----
+> > From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Matthew
+> > Brost
+> > Sent: Friday, March 8, 2024 12:08 AM
+> > To: intel-xe@lists.freedesktop.org
+> > Cc: Brost, Matthew <matthew.brost@intel.com>
+> > Subject: [PATCH v4 18/30] drm/xe: Convert multiple bind ops into single job
+> > 
+> > This aligns with the uAPI of an array of binds or single bind that
+> > results in multiple GPUVA ops to be considered a single atomic
+> > operations.
+> > 
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_bo_types.h     |    2 +
+> >  drivers/gpu/drm/xe/xe_exec.c         |   25 +-
+> >  drivers/gpu/drm/xe/xe_gt_pagefault.c |    6 +-
+> >  drivers/gpu/drm/xe/xe_migrate.c      |  298 ++++----
+> >  drivers/gpu/drm/xe/xe_migrate.h      |   32 +-
+> >  drivers/gpu/drm/xe/xe_pt.c           | 1018 ++++++++++++++++----------
+> >  drivers/gpu/drm/xe/xe_pt.h           |    7 +
+> >  drivers/gpu/drm/xe/xe_pt_types.h     |   34 +
+> >  drivers/gpu/drm/xe/xe_vm.c           |  533 ++++----------
+> >  drivers/gpu/drm/xe/xe_vm.h           |    5 +-
+> >  drivers/gpu/drm/xe/xe_vm_types.h     |   29 +-
+> >  11 files changed, 969 insertions(+), 1020 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_bo_types.h
+> > b/drivers/gpu/drm/xe/xe_bo_types.h
+> > index 14ef13b7b421..1ff5b5a68adc 100644
+> > --- a/drivers/gpu/drm/xe/xe_bo_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_bo_types.h
+> > @@ -77,6 +77,8 @@ struct xe_bo {
+> >  	} props;
+> >  	/** @freed: List node for delayed put. */
+> >  	struct llist_node freed;
+> > +	/** @update_index: Update index if PT BO */
+> > +	int update_index;
+> >  	/** @created: Whether the bo has passed initial creation */
+> >  	bool created;
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+> > index 952496c6260d..4feff67620c4 100644
+> > --- a/drivers/gpu/drm/xe/xe_exec.c
+> > +++ b/drivers/gpu/drm/xe/xe_exec.c
+> > @@ -294,30 +294,9 @@ int xe_exec_ioctl(struct drm_device *dev, void *data,
+> > struct drm_file *file)
+> >  		err = PTR_ERR(rebind_fence);
+> >  		goto err_put_job;
+> >  	}
+> > +	dma_fence_put(rebind_fence);
+> > 
+> > -	/*
+> > -	 * We store the rebind_fence in the VM so subsequent execs don't get
+> > -	 * scheduled before the rebinds of userptrs / evicted BOs is complete.
+> > -	 */
+> > -	if (rebind_fence) {
+> > -		dma_fence_put(vm->rebind_fence);
+> > -		vm->rebind_fence = rebind_fence;
+> > -	}
+> > -	if (vm->rebind_fence) {
+> > -		if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
+> > -			     &vm->rebind_fence->flags)) {
+> > -			dma_fence_put(vm->rebind_fence);
+> > -			vm->rebind_fence = NULL;
+> > -		} else {
+> > -			dma_fence_get(vm->rebind_fence);
+> > -			err = drm_sched_job_add_dependency(&job->drm,
+> > -							   vm->rebind_fence);
+> > -			if (err)
+> > -				goto err_put_job;
+> > -		}
+> > -	}
+> > -
+> > -	/* Wait behind munmap style rebinds */
+> > +	/* Wait for rebinds */
+> >  	if (!xe_vm_in_lr_mode(vm)) {
+> >  		err = drm_sched_job_add_resv_dependencies(&job->drm,
+> >  							  xe_vm_resv(vm),
+> 
+> 
+> Can you explain why you can wait for rebind using above codes? I understand here we make all the fences in vm reservation object a dependency of the job. But did we add rebind_fence to vm's reservation object? I can't find such code in this patch
+> 
 
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/tests/.kunitconfig
-[19:26:14] Configuring KUnit Kernel ...
-Regenerating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[19:26:15] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-In file included from ../arch/um/kernel/asm-offsets.c:1:
-../arch/x86/um/shared/sysdep/kernel-offsets.h:9:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
-    9 | void foo(void)
-      |      ^~~
-../arch/x86/um/ptrace_64.c:111:5: warning: no previous prototype for ‘poke_user’ [-Wmissing-prototypes]
-  111 | int poke_user(struct task_struct *child, long addr, long data)
-      |     ^~~~~~~~~
-../arch/x86/um/ptrace_64.c:171:5: warning: no previous prototype for ‘peek_user’ [-Wmissing-prototypes]
-  171 | int peek_user(struct task_struct *child, long addr, long data)
-      |     ^~~~~~~~~
-../arch/x86/um/signal.c:560:6: warning: no previous prototype for ‘sys_rt_sigreturn’ [-Wmissing-prototypes]
-  560 | long sys_rt_sigreturn(void)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/kernel/mem.c:202:8: warning: no previous prototype for ‘pgd_alloc’ [-Wmissing-prototypes]
-  202 | pgd_t *pgd_alloc(struct mm_struct *mm)
-      |        ^~~~~~~~~
-../arch/um/kernel/mem.c:215:7: warning: no previous prototype for ‘uml_kmalloc’ [-Wmissing-prototypes]
-  215 | void *uml_kmalloc(int size, int flags)
-      |       ^~~~~~~~~~~
-../arch/um/kernel/process.c:51:5: warning: no previous prototype for ‘pid_to_processor_id’ [-Wmissing-prototypes]
-   51 | int pid_to_processor_id(int pid)
-      |     ^~~~~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:87:7: warning: no previous prototype for ‘__switch_to’ [-Wmissing-prototypes]
-   87 | void *__switch_to(struct task_struct *from, struct task_struct *to)
-      |       ^~~~~~~~~~~
-../arch/um/kernel/process.c:140:6: warning: no previous prototype for ‘fork_handler’ [-Wmissing-prototypes]
-  140 | void fork_handler(void)
-      |      ^~~~~~~~~~~~
-../arch/um/kernel/process.c:217:6: warning: no previous prototype for ‘arch_cpu_idle’ [-Wmissing-prototypes]
-  217 | void arch_cpu_idle(void)
-      |      ^~~~~~~~~~~~~
-../arch/um/kernel/process.c:253:5: warning: no previous prototype for ‘copy_to_user_proc’ [-Wmissing-prototypes]
-  253 | int copy_to_user_proc(void __user *to, void *from, int size)
-      |     ^~~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:263:5: warning: no previous prototype for ‘clear_user_proc’ [-Wmissing-prototypes]
-  263 | int clear_user_proc(void __user *buf, int size)
-      |     ^~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:271:6: warning: no previous prototype for ‘set_using_sysemu’ [-Wmissing-prototypes]
-  271 | void set_using_sysemu(int value)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:278:5: warning: no previous prototype for ‘get_using_sysemu’ [-Wmissing-prototypes]
-  278 | int get_using_sysemu(void)
-      |     ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:316:12: warning: no previous prototype for ‘make_proc_sysemu’ [-Wmissing-prototypes]
-  316 | int __init make_proc_sysemu(void)
-      |            ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:348:15: warning: no previous prototype for ‘arch_align_stack’ [-Wmissing-prototypes]
-  348 | unsigned long arch_align_stack(unsigned long sp)
-      |               ^~~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:45:6: warning: no previous prototype for ‘machine_restart’ [-Wmissing-prototypes]
-   45 | void machine_restart(char * __unused)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:51:6: warning: no previous prototype for ‘machine_power_off’ [-Wmissing-prototypes]
-   51 | void machine_power_off(void)
-      |      ^~~~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:57:6: warning: no previous prototype for ‘machine_halt’ [-Wmissing-prototypes]
-   57 | void machine_halt(void)
-      |      ^~~~~~~~~~~~
-../arch/x86/um/syscalls_64.c:48:6: warning: no previous prototype for ‘arch_switch_to’ [-Wmissing-prototypes]
-   48 | void arch_switch_to(struct task_struct *to)
-      |      ^~~~~~~~~~~~~~
-../arch/um/kernel/tlb.c:579:6: warning: no previous prototype for ‘flush_tlb_mm_range’ [-Wmissing-prototypes]
-  579 | void flush_tlb_mm_range(struct mm_struct *mm, unsigned long start,
-      |      ^~~~~~~~~~~~~~~~~~
-../arch/um/kernel/tlb.c:594:6: warning: no previous prototype for ‘force_flush_all’ [-Wmissing-prototypes]
-  594 | void force_flush_all(void)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/kernel/um_arch.c:408:19: warning: no previous prototype for ‘read_initrd’ [-Wmissing-prototypes]
-  408 | int __init __weak read_initrd(void)
-      |                   ^~~~~~~~~~~
-../arch/um/kernel/um_arch.c:461:7: warning: no previous prototype for ‘text_poke’ [-Wmissing-prototypes]
-  461 | void *text_poke(void *addr, const void *opcode, size_t len)
-      |       ^~~~~~~~~
-../arch/um/kernel/um_arch.c:473:6: warning: no previous prototype for ‘text_poke_sync’ [-Wmissing-prototypes]
-  473 | void text_poke_sync(void)
-      |      ^~~~~~~~~~~~~~
-../arch/um/kernel/kmsg_dump.c:60:12: warning: no previous prototype for ‘kmsg_dumper_stdout_init’ [-Wmissing-prototypes]
-   60 | int __init kmsg_dumper_stdout_init(void)
-      |            ^~~~~~~~~~~~~~~~~~~~~~~
-../arch/um/kernel/skas/process.c:36:12: warning: no previous prototype for ‘start_uml’ [-Wmissing-prototypes]
-   36 | int __init start_uml(void)
-      |            ^~~~~~~~~
-../arch/um/kernel/skas/mmu.c:17:5: warning: no previous prototype for ‘init_new_context’ [-Wmissing-prototypes]
-   17 | int init_new_context(struct task_struct *task, struct mm_struct *mm)
-      |     ^~~~~~~~~~~~~~~~
-../arch/um/kernel/skas/mmu.c:60:6: warning: no previous prototype for ‘destroy_context’ [-Wmissing-prototypes]
-   60 | void destroy_context(struct mm_struct *mm)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
+Rebinds set wait_vm_bookkeep == true in xe_vma_ops, which schedules
+rebinds behind the VM's bookkeep slot and inserts the rebind in the
+kernel slot. With rebinds being the kernel slot, no need to wait on the
+rebind_fence as all execs already wait on the kernel slots. Thomas has
+a series [1] in inflight to make this too which will get merged before the
+next rev.
 
-[19:26:37] Starting KUnit Kernel (1/1)...
-[19:26:37] ============================================================
-Running tests with:
-$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
-[19:26:38] ============ drm_test_pick_cmdline (2 subtests) ============
-[19:26:38] [PASSED] drm_test_pick_cmdline_res_1920_1080_60
-[19:26:38] =============== drm_test_pick_cmdline_named  ===============
-[19:26:38] [PASSED] NTSC
-[19:26:38] [PASSED] NTSC-J
-[19:26:38] [PASSED] PAL
-[19:26:38] [PASSED] PAL-M
-[19:26:38] =========== [PASSED] drm_test_pick_cmdline_named ===========
-[19:26:38] ============== [PASSED] drm_test_pick_cmdline ==============
-[19:26:38] ================== drm_buddy (6 subtests) ==================
-[19:26:38] [PASSED] drm_test_buddy_alloc_limit
-[19:26:38] [PASSED] drm_test_buddy_alloc_optimistic
-[19:26:38] [PASSED] drm_test_buddy_alloc_pessimistic
-[19:26:38] [PASSED] drm_test_buddy_alloc_pathological
-[19:26:38] [PASSED] drm_test_buddy_alloc_contiguous
-[19:26:38] [PASSED] drm_test_buddy_alloc_range_bias
-[19:26:38] ==================== [PASSED] drm_buddy ====================
-[19:26:38] ============= drm_cmdline_parser (40 subtests) =============
-[19:26:38] [PASSED] drm_test_cmdline_force_d_only
-[19:26:38] [PASSED] drm_test_cmdline_force_D_only_dvi
-[19:26:38] [PASSED] drm_test_cmdline_force_D_only_hdmi
-[19:26:38] [PASSED] drm_test_cmdline_force_D_only_not_digital
-[19:26:38] [PASSED] drm_test_cmdline_force_e_only
-[19:26:38] [PASSED] drm_test_cmdline_res
-[19:26:38] [PASSED] drm_test_cmdline_res_vesa
-[19:26:38] [PASSED] drm_test_cmdline_res_vesa_rblank
-[19:26:38] [PASSED] drm_test_cmdline_res_rblank
-[19:26:38] [PASSED] drm_test_cmdline_res_bpp
-[19:26:38] [PASSED] drm_test_cmdline_res_refresh
-[19:26:38] [PASSED] drm_test_cmdline_res_bpp_refresh
-[19:26:38] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced
-[19:26:38] [PASSED] drm_test_cmdline_res_bpp_refresh_margins
-[19:26:38] [PASSED] drm_test_cmdline_res_bpp_refresh_force_off
-[19:26:38] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on
-[19:26:38] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_analog
-[19:26:38] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_digital
-[19:26:38] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced_margins_force_on
-[19:26:38] [PASSED] drm_test_cmdline_res_margins_force_on
-[19:26:38] [PASSED] drm_test_cmdline_res_vesa_margins
-[19:26:38] [PASSED] drm_test_cmdline_name
-[19:26:38] [PASSED] drm_test_cmdline_name_bpp
-[19:26:38] [PASSED] drm_test_cmdline_name_option
-[19:26:38] [PASSED] drm_test_cmdline_name_bpp_option
-[19:26:38] [PASSED] drm_test_cmdline_rotate_0
-[19:26:38] [PASSED] drm_test_cmdline_rotate_90
-[19:26:38] [PASSED] drm_test_cmdline_rotate_180
-[19:26:38] [PASSED] drm_test_cmdline_rotate_270
-[19:26:38] [PASSED] drm_test_cmdline_hmirror
-[19:26:38] [PASSED] drm_test_cmdline_vmirror
-[19:26:38] [PASSED] drm_test_cmdline_margin_options
-[19:26:38] [PASSED] drm_test_cmdline_multiple_options
-[19:26:38] [PASSED] drm_test_cmdline_bpp_extra_and_option
-[19:26:38] [PASSED] drm_test_cmdline_extra_and_option
-[19:26:38] [PASSED] drm_test_cmdline_freestanding_options
-[19:26:38] [PASSED] drm_test_cmdline_freestanding_force_e_and_options
-[19:26:38] [PASSED] drm_test_cmdline_panel_orientation
-[19:26:38] ================ drm_test_cmdline_invalid  =================
-[19:26:38] [PASSED] margin_only
-[19:26:38] [PASSED] interlace_only
-[19:26:38] [PASSED] res_missing_x
-[19:26:38] [PASSED] res_missing_y
-[19:26:38] [PASSED] res_bad_y
-[19:26:38] [PASSED] res_missing_y_bpp
-[19:26:38] [PASSED] res_bad_bpp
-[19:26:38] [PASSED] res_bad_refresh
-[19:26:38] [PASSED] res_bpp_refresh_force_on_off
-[19:26:38] [PASSED] res_invalid_mode
-[19:26:38] [PASSED] res_bpp_wrong_place_mode
-[19:26:38] [PASSED] name_bpp_refresh
-[19:26:38] [PASSED] name_refresh
-[19:26:38] [PASSED] name_refresh_wrong_mode
-[19:26:38] [PASSED] name_refresh_invalid_mode
-[19:26:38] [PASSED] rotate_multiple
-[19:26:38] [PASSED] rotate_invalid_val
-[19:26:38] [PASSED] rotate_truncated
-[19:26:38] [PASSED] invalid_option
-[19:26:38] [PASSED] invalid_tv_option
-[19:26:38] [PASSED] truncated_tv_option
-[19:26:38] ============ [PASSED] drm_test_cmdline_invalid =============
-[19:26:38] =============== drm_test_cmdline_tv_options  ===============
-[19:26:38] [PASSED] NTSC
-[19:26:38] [PASSED] NTSC_443
-[19:26:38] [PASSED] NTSC_J
-[19:26:38] [PASSED] PAL
-[19:26:38] [PASSED] PAL_M
-[19:26:38] [PASSED] PAL_N
-[19:26:38] [PASSED] SECAM
-[19:26:38] =========== [PASSED] drm_test_cmdline_tv_options ===========
-[19:26:38] =============== [PASSED] drm_cmdline_parser ================
-[19:26:38] ============= drmm_connector_init (3 subtests) =============
-[19:26:38] [PASSED] drm_test_drmm_connector_init
-[19:26:38] [PASSED] drm_test_drmm_connector_init_null_ddc
-[19:26:38] ========= drm_test_drmm_connector_init_type_valid  =========
-[19:26:38] [PASSED] Unknown
-[19:26:38] [PASSED] VGA
-[19:26:38] [PASSED] DVI-I
-[19:26:38] [PASSED] DVI-D
-[19:26:38] [PASSED] DVI-A
-[19:26:38] [PASSED] Composite
-[19:26:38] [PASSED] SVIDEO
-[19:26:38] [PASSED] LVDS
-[19:26:38] [PASSED] Component
-[19:26:38] [PASSED] DIN
-[19:26:38] [PASSED] DP
-[19:26:38] [PASSED] HDMI-A
-[19:26:38] [PASSED] HDMI-B
-[19:26:38] [PASSED] TV
-[19:26:38] [PASSED] eDP
-[19:26:38] [PASSED] Virtual
-[19:26:38] [PASSED] DSI
-[19:26:38] [PASSED] DPI
-[19:26:38] [PASSED] Writeback
-[19:26:38] [PASSED] SPI
-[19:26:38] [PASSED] USB
-[19:26:38] ===== [PASSED] drm_test_drmm_connector_init_type_valid =====
-[19:26:38] =============== [PASSED] drmm_connector_init ===============
-[19:26:38] ========== drm_get_tv_mode_from_name (2 subtests) ==========
-[19:26:38] ========== drm_test_get_tv_mode_from_name_valid  ===========
-[19:26:38] [PASSED] NTSC
-[19:26:38] [PASSED] NTSC-443
-[19:26:38] [PASSED] NTSC-J
-[19:26:38] [PASSED] PAL
-[19:26:38] [PASSED] PAL-M
-[19:26:38] [PASSED] PAL-N
-[19:26:38] [PASSED] SECAM
-[19:26:38] ====== [PASSED] drm_test_get_tv_mode_from_name_valid =======
-[19:26:38] [PASSED] drm_test_get_tv_mode_from_name_truncated
-[19:26:38] ============ [PASSED] drm_get_tv_mode_from_name ============
-[19:26:38] ============= drm_damage_helper (21 subtests) ==============
-[19:26:38] [PASSED] drm_test_damage_iter_no_damage
-[19:26:38] [PASSED] drm_test_damage_iter_no_damage_fractional_src
-[19:26:38] [PASSED] drm_test_damage_iter_no_damage_src_moved
-[19:26:38] [PASSED] drm_test_damage_iter_no_damage_fractional_src_moved
-[19:26:38] [PASSED] drm_test_damage_iter_no_damage_not_visible
-[19:26:38] [PASSED] drm_test_damage_iter_no_damage_no_crtc
-[19:26:38] [PASSED] drm_test_damage_iter_no_damage_no_fb
-[19:26:38] [PASSED] drm_test_damage_iter_simple_damage
-[19:26:38] [PASSED] drm_test_damage_iter_single_damage
-[19:26:38] [PASSED] drm_test_damage_iter_single_damage_intersect_src
-[19:26:38] [PASSED] drm_test_damage_iter_single_damage_outside_src
-[19:26:38] [PASSED] drm_test_damage_iter_single_damage_fractional_src
-[19:26:38] [PASSED] drm_test_damage_iter_single_damage_intersect_fractional_src
-[19:26:38] [PASSED] drm_test_damage_iter_single_damage_outside_fractional_src
-[19:26:38] [PASSED] drm_test_damage_iter_single_damage_src_moved
-[19:26:38] [PASSED] drm_test_damage_iter_single_damage_fractional_src_moved
-[19:26:38] [PASSED] drm_test_damage_iter_damage
-[19:26:38] [PASSED] drm_test_damage_iter_damage_one_intersect
-[19:26:38] [PASSED] drm_test_damage_iter_damage_one_outside
-[19:26:38] [PASSED] drm_test_damage_iter_damage_src_moved
-[19:26:38] [PASSED] drm_test_damage_iter_damage_not_visible
-[19:26:38] ================ [PASSED] drm_damage_helper ================
-[19:26:38] ============== drm_dp_mst_helper (3 subtests) ==============
-[19:26:38] ============== drm_test_dp_mst_calc_pbn_mode  ==============
-[19:26:38] [PASSED] Clock 154000 BPP 30 DSC disabled
-[19:26:38] [PASSED] Clock 234000 BPP 30 DSC disabled
-[19:26:38] [PASSED] Clock 297000 BPP 24 DSC disabled
-[19:26:38] [PASSED] Clock 332880 BPP 24 DSC enabled
-[19:26:38] [PASSED] Clock 324540 BPP 24 DSC enabled
-[19:26:38] ========== [PASSED] drm_test_dp_mst_calc_pbn_mode ==========
-[19:26:38] ============== drm_test_dp_mst_calc_pbn_div  ===============
-[19:26:38] [PASSED] Link rate 2000000 lane count 4
-[19:26:38] [PASSED] Link rate 2000000 lane count 2
-[19:26:38] [PASSED] Link rate 2000000 lane count 1
-[19:26:38] [PASSED] Link rate 1350000 lane count 4
-[19:26:38] [PASSED] Link rate 1350000 lane count 2
-[19:26:38] [PASSED] Link rate 1350000 lane count 1
-[19:26:38] [PASSED] Link rate 1000000 lane count 4
-[19:26:38] [PASSED] Link rate 1000000 lane count 2
-[19:26:38] [PASSED] Link rate 1000000 lane count 1
-[19:26:38] [PASSED] Link rate 810000 lane count 4
-[19:26:38] [PASSED] Link rate 810000 lane count 2
-[19:26:38] [PASSED] Link rate 810000 lane count 1
-[19:26:38] [PASSED] Link rate 540000 lane count 4
-[19:26:38] [PASSED] Link rate 540000 lane count 2
-[19:26:38] [PASSED] Link rate 540000 lane count 1
-[19:26:38] [PASSED] Link rate 270000 lane count 4
-[19:26:38] [PASSED] Link rate 270000 lane count 2
-[19:26:38] [PASSED] Link rate 270000 lane count 1
-[19:26:38] [PASSED] Link rate 162000 lane count 4
-[19:26:38] [PASSED] Link rate 162000 lane count 2
-[19:26:38] [PASSED] Link rate 162000 lane count 1
-[19:26:38] ========== [PASSED] drm_test_dp_mst_calc_pbn_div ===========
-[19:26:38] ========= drm_test_dp_mst_sideband_msg_req_decode  =========
-[19:26:38] [PASSED] DP_ENUM_PATH_RESOURCES with port number
-[19:26:38] [PASSED] DP_POWER_UP_PHY with port number
-[19:26:38] [PASSED] DP_POWER_DOWN_PHY with port number
-[19:26:38] [PASSED] DP_ALLOCATE_PAYLOAD with SDP stream sinks
-[19:26:38] [PASSED] DP_ALLOCATE_PAYLOAD with port number
-[19:26:38] [PASSED] DP_ALLOCATE_PAYLOAD with VCPI
-[19:26:38] [PASSED] DP_ALLOCATE_PAYLOAD with PBN
-[19:26:38] [PASSED] DP_QUERY_PAYLOAD with port number
-[19:26:38] [PASSED] DP_QUERY_PAYLOAD with VCPI
-[19:26:38] [PASSED] DP_REMOTE_DPCD_READ with port number
-[19:26:38] [PASSED] DP_REMOTE_DPCD_READ with DPCD address
-[19:26:38] [PASSED] DP_REMOTE_DPCD_READ with max number of bytes
-[19:26:38] [PASSED] DP_REMOTE_DPCD_WRITE with port number
-[19:26:38] [PASSED] DP_REMOTE_DPCD_WRITE with DPCD address
-[19:26:38] [PASSED] DP_REMOTE_DPCD_WRITE with data array
-[19:26:38] [PASSED] DP_REMOTE_I2C_READ with port number
-[19:26:38] [PASSED] DP_REMOTE_I2C_READ with I2C device ID
-[19:26:38] [PASSED] DP_REMOTE_I2C_READ with transactions array
-[19:26:38] [PASSED] DP_REMOTE_I2C_WRITE with port number
-[19:26:38] [PASSED] DP_REMOTE_I2C_WRITE with I2C device ID
-[19:26:38] [PASSED] DP_REMOTE_I2C_WRITE with data array
-[19:26:38] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream ID
-[19:26:38] [PASSED] DP_QUERY_STREAM_ENC_STATUS with client ID
-[19:26:38] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream event
-[19:26:38] [PASSED] DP_QUERY_STREAM_ENC_STATUS with valid stream event
-[19:26:38] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream behavior
-[19:26:38] [PASSED] DP_QUERY_STREAM_ENC_STATUS with a valid stream behavior
-[19:26:38] ===== [PASSED] drm_test_dp_mst_sideband_msg_req_decode =====
-[19:26:38] ================ [PASSED] drm_dp_mst_helper ================
-[19:26:38] ================== drm_exec (7 subtests) ===================
-[19:26:38] [PASSED] sanitycheck
-[19:26:38] [PASSED] test_lock
-[19:26:38] [PASSED] test_lock_unlock
-[19:26:38] [PASSED] test_duplicates
-[19:26:38] [PASSED] test_prepare
-[19:26:38] [PASSED] test_prepare_array
-[19:26:38] [PASSED] test_multiple_loops
-[19:26:38] ==================== [PASSED] drm_exec =====================
-[19:26:38] =========== drm_format_helper_test (17 subtests) ===========
-[19:26:38] ============== drm_test_fb_xrgb8888_to_gray8  ==============
-[19:26:38] [PASSED] single_pixel_source_buffer
-[19:26:38] [PASSED] single_pixel_clip_rectangle
-[19:26:38] [PASSED] well_known_colors
-[19:26:38] [PASSED] destination_pitch
-[19:26:38] ========== [PASSED] drm_test_fb_xrgb8888_to_gray8 ==========
-[19:26:38] ============= drm_test_fb_xrgb8888_to_rgb332  ==============
-[19:26:38] [PASSED] single_pixel_source_buffer
-[19:26:38] [PASSED] single_pixel_clip_rectangle
-[19:26:38] [PASSED] well_known_colors
-[19:26:38] [PASSED] destination_pitch
-[19:26:38] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb332 ==========
-[19:26:38] ============= drm_test_fb_xrgb8888_to_rgb565  ==============
-[19:26:38] [PASSED] single_pixel_source_buffer
-[19:26:38] [PASSED] single_pixel_clip_rectangle
-[19:26:38] [PASSED] well_known_colors
-[19:26:38] [PASSED] destination_pitch
-[19:26:38] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb565 ==========
-[19:26:38] ============ drm_test_fb_xrgb8888_to_xrgb1555  =============
-[19:26:38] [PASSED] single_pixel_source_buffer
-[19:26:38] [PASSED] single_pixel_clip_rectangle
-[19:26:38] [PASSED] well_known_colors
-[19:26:38] [PASSED] destination_pitch
-[19:26:38] ======== [PASSED] drm_test_fb_xrgb8888_to_xrgb1555 =========
-[19:26:38] ============ drm_test_fb_xrgb8888_to_argb1555  =============
-[19:26:38] [PASSED] single_pixel_source_buffer
-[19:26:38] [PASSED] single_pixel_clip_rectangle
-[19:26:38] [PASSED] well_known_colors
-[19:26:38] [PASSED] destination_pitch
-[19:26:38] ======== [PASSED] drm_test_fb_xrgb8888_to_argb1555 =========
-[19:26:38] ============ drm_test_fb_xrgb8888_to_rgba5551  =============
-[19:26:38] [PASSED] single_pixel_source_buffer
-[19:26:38] [PASSED] single_pixel_clip_rectangle
-[19:26:38] [PASSED] well_known_colors
-[19:26:38] [PASSED] destination_pitch
-[19:26:38] ======== [PASSED] drm_test_fb_xrgb8888_to_rgba5551 =========
-[19:26:38] ============= drm_test_fb_xrgb8888_to_rgb888  ==============
-[19:26:38] [PASSED] single_pixel_source_buffer
-[19:26:38] [PASSED] single_pixel_clip_rectangle
-[19:26:38] [PASSED] well_known_colors
-[19:26:38] [PASSED] destination_pitch
-[19:26:38] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb888 ==========
-[19:26:38] ============ drm_test_fb_xrgb8888_to_argb8888  =============
-[19:26:38] [PASSED] single_pixel_source_buffer
-[19:26:38] [PASSED] single_pixel_clip_rectangle
-[19:26:38] [PASSED] well_known_colors
-[19:26:38] [PASSED] destination_pitch
-[19:26:38] ======== [PASSED] drm_test_fb_xrgb8888_to_argb8888 =========
-[19:26:38] =========== drm_test_fb_xrgb8888_to_xrgb2101010  ===========
-[19:26:38] [PASSED] single_pixel_source_buffer
-[19:26:38] [PASSED] single_pixel_clip_rectangle
-[19:26:38] [PASSED] well_known_colors
-[19:26:38] [PASSED] destination_pitch
-[19:26:38] ======= [PASSED] drm_test_fb_xrgb8888_to_xrgb2101010 =======
-[19:26:38] =========== drm_test_fb_xrgb8888_to_argb2101010  ===========
-[19:26:38] [PASSED] single_pixel_source_buffer
-[19:26:38] [PASSED] single_pixel_clip_rectangle
-[19:26:38] [PASSED] well_known_colors
-[19:26:38] [PASSED] destination_pitch
-[19:26:38] ======= [PASSED] drm_test_fb_xrgb8888_to_argb2101010 =======
-[19:26:38] ============== drm_test_fb_xrgb8888_to_mono  ===============
-[19:26:38] [PASSED] single_pixel_source_buffer
-[19:26:38] [PASSED] single_pixel_clip_rectangle
-[19:26:38] [PASSED] well_known_colors
-[19:26:38] [PASSED] destination_pitch
-[19:26:38] ========== [PASSED] drm_test_fb_xrgb8888_to_mono ===========
-[19:26:38] ==================== drm_test_fb_swab  =====================
-[19:26:38] [PASSED] single_pixel_source_buffer
-[19:26:38] [PASSED] single_pixel_clip_rectangle
-[19:26:38] [PASSED] well_known_colors
-[19:26:38] [PASSED] destination_pitch
-[19:26:38] ================ [PASSED] drm_test_fb_swab =================
-[19:26:38] ============ drm_test_fb_xrgb8888_to_xbgr8888  =============
-[19:26:38] [PASSED] single_pixel_source_buffer
-[19:26:38] [PASSED] single_pixel_clip_rectangle
-[19:26:38] [PASSED] well_known_colors
-[19:26:38] [PASSED] destination_pitch
-[19:26:38] ======== [PASSED] drm_test_fb_xrgb8888_to_xbgr8888 =========
-[19:26:38] ============ drm_test_fb_xrgb8888_to_abgr8888  =============
-[19:26:38] [PASSED] single_pixel_source_buffer
-[19:26:38] [PASSED] single_pixel_clip_rectangle
-[19:26:38] [PASSED] well_known_colors
-[19:26:38] [PASSED] destination_pitch
-[19:26:38] ======== [PASSED] drm_test_fb_xrgb8888_to_abgr8888 =========
-[19:26:38] ================= drm_test_fb_clip_offset  =================
-[19:26:38] [PASSED] pass through
-[19:26:38] [PASSED] horizontal offset
-[19:26:38] [PASSED] vertical offset
-[19:26:38] [PASSED] horizontal and vertical offset
-[19:26:38] [PASSED] horizontal offset (custom pitch)
-[19:26:38] [PASSED] vertical offset (custom pitch)
-[19:26:38] [PASSED] horizontal and vertical offset (custom pitch)
-[19:26:38] ============= [PASSED] drm_test_fb_clip_offset =============
-[19:26:38] ============== drm_test_fb_build_fourcc_list  ==============
-[19:26:38] [PASSED] no native formats
-[19:26:38] [PASSED] XRGB8888 as native format
-[19:26:38] [PASSED] remove duplicates
-[19:26:38] [PASSED] convert alpha formats
-[19:26:38] [PASSED] random formats
-[19:26:38] ========== [PASSED] drm_test_fb_build_fourcc_list ==========
-[19:26:38] =================== drm_test_fb_memcpy  ====================
-[19:26:38] [PASSED] single_pixel_source_buffer: XR24 little-endian (0x34325258)
-[19:26:38] [PASSED] single_pixel_source_buffer: XRA8 little-endian (0x38415258)
-[19:26:38] [PASSED] single_pixel_source_buffer: YU24 little-endian (0x34325559)
-[19:26:38] [PASSED] single_pixel_clip_rectangle: XB24 little-endian (0x34324258)
-[19:26:38] [PASSED] single_pixel_clip_rectangle: XRA8 little-endian (0x38415258)
-[19:26:38] [PASSED] single_pixel_clip_rectangle: YU24 little-endian (0x34325559)
-[19:26:38] [PASSED] well_known_colors: XB24 little-endian (0x34324258)
-[19:26:38] [PASSED] well_known_colors: XRA8 little-endian (0x38415258)
-[19:26:38] [PASSED] well_known_colors: YU24 little-endian (0x34325559)
-[19:26:38] [PASSED] destination_pitch: XB24 little-endian (0x34324258)
-[19:26:38] [PASSED] destination_pitch: XRA8 little-endian (0x38415258)
-[19:26:38] [PASSED] destination_pitch: YU24 little-endian (0x34325559)
-[19:26:38] =============== [PASSED] drm_test_fb_memcpy ================
-[19:26:38] ============= [PASSED] drm_format_helper_test ==============
-[19:26:38] ================= drm_format (18 subtests) =================
-[19:26:38] [PASSED] drm_test_format_block_width_invalid
-[19:26:38] [PASSED] drm_test_format_block_width_one_plane
-[19:26:38] [PASSED] drm_test_format_block_width_two_plane
-[19:26:38] [PASSED] drm_test_format_block_width_three_plane
-[19:26:38] [PASSED] drm_test_format_block_width_tiled
-[19:26:38] [PASSED] drm_test_format_block_height_invalid
-[19:26:38] [PASSED] drm_test_format_block_height_one_plane
-[19:26:38] [PASSED] drm_test_format_block_height_two_plane
-[19:26:38] [PASSED] drm_test_format_block_height_three_plane
-[19:26:38] [PASSED] drm_test_format_block_height_tiled
-[19:26:38] [PASSED] drm_test_format_min_pitch_invalid
-[19:26:38] [PASSED] drm_test_format_min_pitch_one_plane_8bpp
-[19:26:38] [PASSED] drm_test_format_min_pitch_one_plane_16bpp
-[19:26:38] [PASSED] drm_test_format_min_pitch_one_plane_24bpp
-[19:26:38] [PASSED] drm_test_format_min_pitch_one_plane_32bpp
-[19:26:38] [PASSED] drm_test_format_min_pitch_two_plane
-[19:26:38] [PASSED] drm_test_format_min_pitch_three_plane_8bpp
-[19:26:38] [PASSED] drm_test_format_min_pitch_tiled
-[19:26:38] =================== [PASSED] drm_format ====================
-[19:26:38] =============== drm_framebuffer (1 subtest) ================
-[19:26:38] =============== drm_test_framebuffer_create  ===============
-[19:26:38] [PASSED] ABGR8888 normal sizes
-[19:26:38] [PASSED] ABGR8888 max sizes
-[19:26:38] [PASSED] ABGR8888 pitch greater than min required
-[19:26:38] [PASSED] ABGR8888 pitch less than min required
-[19:26:38] [PASSED] ABGR8888 Invalid width
-[19:26:38] [PASSED] ABGR8888 Invalid buffer handle
-[19:26:38] [PASSED] No pixel format
-[19:26:38] [PASSED] ABGR8888 Width 0
-[19:26:38] [PASSED] ABGR8888 Height 0
-[19:26:38] [PASSED] ABGR8888 Out of bound height * pitch combination
-[19:26:38] [PASSED] ABGR8888 Large buffer offset
-[19:26:38] [PASSED] ABGR8888 Set DRM_MODE_FB_MODIFIERS without modifiers
-[19:26:38] [PASSED] ABGR8888 Valid buffer modifier
-[19:26:38] [PASSED] ABGR8888 Invalid buffer modifier(DRM_FORMAT_MOD_SAMSUNG_64_32_TILE)
-[19:26:38] [PASSED] ABGR8888 Extra pitches without DRM_MODE_FB_MODIFIERS
-[19:26:38] [PASSED] ABGR8888 Extra pitches with DRM_MODE_FB_MODIFIERS
-[19:26:38] [PASSED] NV12 Normal sizes
-[19:26:38] [PASSED] NV12 Max sizes
-[19:26:38] [PASSED] NV12 Invalid pitch
-[19:26:38] [PASSED] NV12 Invalid modifier/missing DRM_MODE_FB_MODIFIERS flag
-[19:26:38] [PASSED] NV12 different  modifier per-plane
-[19:26:38] [PASSED] NV12 with DRM_FORMAT_MOD_SAMSUNG_64_32_TILE
-[19:26:38] [PASSED] NV12 Valid modifiers without DRM_MODE_FB_MODIFIERS
-[19:26:38] [PASSED] NV12 Modifier for inexistent plane
-[19:26:38] [PASSED] NV12 Handle for inexistent plane
-[19:26:38] [PASSED] NV12 Handle for inexistent plane without DRM_MODE_FB_MODIFIERS
-[19:26:38] [PASSED] YVU420 DRM_MODE_FB_MODIFIERS set without modifier
-[19:26:38] [PASSED] YVU420 Normal sizes
-[19:26:38] [PASSED] YVU420 Max sizes
-[19:26:38] [PASSED] YVU420 Invalid pitch
-[19:26:38] [PASSED] YVU420 Different pitches
-[19:26:38] [PASSED] YVU420 Different buffer offsets/pitches
-[19:26:38] [PASSED] YVU420 Modifier set just for plane 0, without DRM_MODE_FB_MODIFIERS
-[19:26:38] [PASSED] YVU420 Modifier set just for planes 0, 1, without DRM_MODE_FB_MODIFIERS
-[19:26:38] [PASSED] YVU420 Modifier set just for plane 0, 1, with DRM_MODE_FB_MODIFIERS
-[19:26:38] [PASSED] YVU420 Valid modifier
-[19:26:38] [PASSED] YVU420 Different modifiers per plane
-[19:26:38] [PASSED] YVU420 Modifier for inexistent plane
-[19:26:38] [PASSED] X0L2 Normal sizes
-[19:26:38] [PASSED] X0L2 Max sizes
-[19:26:38] [PASSED] X0L2 Invalid pitch
-[19:26:38] [PASSED] X0L2 Pitch greater than minimum required
-[19:26:38] [PASSED] X0L2 Handle for inexistent plane
-[19:26:38] [PASSED] X0L2 Offset for inexistent plane, without DRM_MODE_FB_MODIFIERS set
-[19:26:38] [PASSED] X0L2 Modifier without DRM_MODE_FB_MODIFIERS set
-[19:26:38] [PASSED] X0L2 Valid modifier
-[19:26:38] [PASSED] X0L2 Modifier for inexistent plane
-[19:26:38] =========== [PASSED] drm_test_framebuffer_create ===========
-[19:26:38] ================= [PASSED] drm_framebuffer =================
-[19:26:38] ================ drm_gem_shmem (8 subtests) ================
-[19:26:38] [PASSED] drm_gem_shmem_test_obj_create
-[19:26:38] [PASSED] drm_gem_shmem_test_obj_create_private
-[19:26:38] [PASSED] drm_gem_shmem_test_pin_pages
-[19:26:38] [PASSED] drm_gem_shmem_test_vmap
-[19:26:38] [PASSED] drm_gem_shmem_test_get_pages_sgt
-[19:26:38] [PASSED] drm_gem_shmem_test_get_sg_table
-[19:26:38] [PASSED] drm_gem_shmem_test_madvise
-[19:26:38] [PASSED] drm_gem_shmem_test_purge
-[19:26:38] ================== [PASSED] drm_gem_shmem ==================
-[19:26:38] ================= drm_managed (2 subtests) =================
-[19:26:38] [PASSED] drm_test_managed_release_action
-[19:26:38] [PASSED] drm_test_managed_run_action
-[19:26:38] =================== [PASSED] drm_managed ===================
-[19:26:38] =================== drm_mm (6 subtests) ====================
-[19:26:38] [PASSED] drm_test_mm_init
-[19:26:38] [PASSED] drm_test_mm_debug
-[19:26:38] [PASSED] drm_test_mm_align32
-[19:26:38] [PASSED] drm_test_mm_align64
-[19:26:38] [PASSED] drm_test_mm_lowest
-[19:26:38] [PASSED] drm_test_mm_highest
-[19:26:38] ===================== [PASSED] drm_mm ======================
-[19:26:38] ============= drm_modes_analog_tv (4 subtests) =============
-[19:26:38] [PASSED] drm_test_modes_analog_tv_ntsc_480i
-[19:26:38] [PASSED] drm_test_modes_analog_tv_ntsc_480i_inlined
-[19:26:38] [PASSED] drm_test_modes_analog_tv_pal_576i
-[19:26:38] [PASSED] drm_test_modes_analog_tv_pal_576i_inlined
-[19:26:38] =============== [PASSED] drm_modes_analog_tv ===============
-[19:26:38] ============== drm_plane_helper (2 subtests) ===============
-[19:26:38] =============== drm_test_check_plane_state  ================
-[19:26:38] [PASSED] clipping_simple
-[19:26:38] [PASSED] clipping_rotate_reflect
-[19:26:38] [PASSED] positioning_simple
-[19:26:38] [PASSED] upscaling
-[19:26:38] [PASSED] downscaling
-[19:26:38] [PASSED] rounding1
-[19:26:38] [PASSED] rounding2
-[19:26:38] [PASSED] rounding3
-[19:26:38] [PASSED] rounding4
-[19:26:38] =========== [PASSED] drm_test_check_plane_state ============
-[19:26:38] =========== drm_test_check_invalid_plane_state  ============
-[19:26:38] [PASSED] positioning_invalid
-[19:26:38] [PASSED] upscaling_invalid
-[19:26:38] [PASSED] downscaling_invalid
-[19:26:38] ======= [PASSED] drm_test_check_invalid_plane_state ========
-[19:26:38] ================ [PASSED] drm_plane_helper =================
-[19:26:38] ====== drm_connector_helper_tv_get_modes (1 subtest) =======
-[19:26:38] ====== drm_test_connector_helper_tv_get_modes_check  =======
-[19:26:38] [PASSED] None
-[19:26:38] [PASSED] PAL
-[19:26:38] [PASSED] NTSC
-[19:26:38] [PASSED] Both, NTSC Default
-[19:26:38] [PASSED] Both, PAL Default
-[19:26:38] [PASSED] Both, NTSC Default, with PAL on command-line
-[19:26:38] [PASSED] Both, PAL Default, with NTSC on command-line
-[19:26:38] == [PASSED] drm_test_connector_helper_tv_get_modes_check ===
-[19:26:38] ======== [PASSED] drm_connector_helper_tv_get_modes ========
-[19:26:38] ================== drm_rect (9 subtests) ===================
-[19:26:38] [PASSED] drm_test_rect_clip_scaled_div_by_zero
-[19:26:38] [PASSED] drm_test_rect_clip_scaled_not_clipped
-[19:26:38] [PASSED] drm_test_rect_clip_scaled_clipped
-[19:26:38] [PASSED] drm_test_rect_clip_scaled_signed_vs_unsigned
-stty: 'standard input': Inappropriate ioctl for device
-[19:26:38] ================= drm_test_rect_intersect  =================
-[19:26:38] [PASSED] top-left x bottom-right: 2x2+1+1 x 2x2+0+0
-[19:26:38] [PASSED] top-right x bottom-left: 2x2+0+0 x 2x2+1-1
-[19:26:38] [PASSED] bottom-left x top-right: 2x2+1-1 x 2x2+0+0
-[19:26:38] [PASSED] bottom-right x top-left: 2x2+0+0 x 2x2+1+1
-[19:26:38] [PASSED] right x left: 2x1+0+0 x 3x1+1+0
-[19:26:38] [PASSED] left x right: 3x1+1+0 x 2x1+0+0
-[19:26:38] [PASSED] up x bottom: 1x2+0+0 x 1x3+0-1
-[19:26:38] [PASSED] bottom x up: 1x3+0-1 x 1x2+0+0
-[19:26:38] [PASSED] touching corner: 1x1+0+0 x 2x2+1+1
-[19:26:38] [PASSED] touching side: 1x1+0+0 x 1x1+1+0
-[19:26:38] [PASSED] equal rects: 2x2+0+0 x 2x2+0+0
-[19:26:38] [PASSED] inside another: 2x2+0+0 x 1x1+1+1
-[19:26:38] [PASSED] far away: 1x1+0+0 x 1x1+3+6
-[19:26:38] [PASSED] points intersecting: 0x0+5+10 x 0x0+5+10
-[19:26:38] [PASSED] points not intersecting: 0x0+0+0 x 0x0+5+10
-[19:26:38] ============= [PASSED] drm_test_rect_intersect =============
-[19:26:38] ================ drm_test_rect_calc_hscale  ================
-[19:26:38] [PASSED] normal use
-[19:26:38] [PASSED] out of max range
-[19:26:38] [PASSED] out of min range
-[19:26:38] [PASSED] zero dst
-[19:26:38] [PASSED] negative src
-[19:26:38] [PASSED] negative dst
-[19:26:38] ============ [PASSED] drm_test_rect_calc_hscale ============
-[19:26:38] ================ drm_test_rect_calc_vscale  ================
-[19:26:38] [PASSED] normal use
-[19:26:38] [PASSED] out of max range
-[19:26:38] [PASSED] out of min range
-[19:26:38] [PASSED] zero dst
-[19:26:38] [PASSED] negative src
-[19:26:38] [PASSED] negative dst
-[19:26:38] ============ [PASSED] drm_test_rect_calc_vscale ============
-[19:26:38] ================== drm_test_rect_rotate  ===================
-[19:26:38] [PASSED] reflect-x
-[19:26:38] [PASSED] reflect-y
-[19:26:38] [PASSED] rotate-0
-[19:26:38] [PASSED] rotate-90
-[19:26:38] [PASSED] rotate-180
-[19:26:38] [PASSED] rotate-270
-[19:26:38] ============== [PASSED] drm_test_rect_rotate ===============
-[19:26:38] ================ drm_test_rect_rotate_inv  =================
-[19:26:38] [PASSED] reflect-x
-[19:26:38] [PASSED] reflect-y
-[19:26:38] [PASSED] rotate-0
-[19:26:38] [PASSED] rotate-90
-[19:26:38] [PASSED] rotate-180
-[19:26:38] [PASSED] rotate-270
-[19:26:38] ============ [PASSED] drm_test_rect_rotate_inv =============
-[19:26:38] ==================== [PASSED] drm_rect =====================
-[19:26:38] ============================================================
-[19:26:38] Testing complete. Ran 416 tests: passed: 416
-[19:26:38] Elapsed time: 23.868s total, 1.711s configuring, 22.027s building, 0.127s running
+[1] https://patchwork.freedesktop.org/series/131421/
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+> 
+> > diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> > b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> > index 878e234166aa..bd8688b2f462 100644
+> > --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> > +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> > @@ -208,9 +208,9 @@ static int handle_pagefault(struct xe_gt *gt, struct
+> > pagefault *pf)
+> > 
+> >  	/* Bind VMA only to the GT that has faulted */
+> >  	trace_xe_vma_pf_bind(vma);
+> > -	xe_vm_populate_dummy_rebind(vm, vma);
+> > -	vm->dummy_ops.op.tile_mask = BIT(tile->id);
+> > -	vm->dummy_ops.op.q = xe_tile_migrate_exec_queue(tile);
+> > +	xe_vm_populate_dummy_rebind(vm, vma, BIT(tile->id));
+> > +	vm->dummy_ops.vops.pt_update_ops[tile->id].q =
+> > +		xe_tile_migrate_exec_queue(tile);
+> 
+> I guess I will ignore all those dummy_rebind/dummy_ops code for now.
+> 
 
+Yep.
 
+> 
+> >  	fence = xe_vm_ops_execute(vm, &vm->dummy_ops.vops);
+> >  	if (IS_ERR(fence)) {
+> >  		ret = PTR_ERR(fence);
+> > diff --git a/drivers/gpu/drm/xe/xe_migrate.c
+> > b/drivers/gpu/drm/xe/xe_migrate.c
+> > index 3fd76f912fda..cc0499f3702c 100644
+> > --- a/drivers/gpu/drm/xe/xe_migrate.c
+> > +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> > @@ -1106,6 +1106,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate
+> > *m,
+> >  }
+> > 
+> >  static void write_pgtable(struct xe_tile *tile, struct xe_bb *bb, u64 ppgtt_ofs,
+> > +			  const struct xe_vm_pgtable_update_op *pt_op,
+> >  			  const struct xe_vm_pgtable_update *update,
+> >  			  struct xe_migrate_pt_update *pt_update)
+> >  {
+> > @@ -1140,8 +1141,12 @@ static void write_pgtable(struct xe_tile *tile, struct
+> > xe_bb *bb, u64 ppgtt_ofs,
+> >  		bb->cs[bb->len++] = MI_STORE_DATA_IMM |
+> > MI_SDI_NUM_QW(chunk);
+> >  		bb->cs[bb->len++] = lower_32_bits(addr);
+> >  		bb->cs[bb->len++] = upper_32_bits(addr);
+> > -		ops->populate(pt_update, tile, NULL, bb->cs + bb->len, ofs,
+> > chunk,
+> > -			      update);
+> > +		if (pt_op->bind)
+> > +			ops->populate(pt_update, tile, NULL, bb->cs + bb->len,
+> > +				      ofs, chunk, update);
+> > +		else
+> > +			ops->clear(pt_update, tile, NULL, bb->cs + bb->len,
+> > +				   ofs, chunk, update);
+> > 
+> >  		bb->len += chunk * 2;
+> >  		ofs += chunk;
+> > @@ -1166,114 +1171,58 @@ struct migrate_test_params {
+> > 
+> >  static struct dma_fence *
+> >  xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
+> > -			       struct xe_vm *vm, struct xe_bo *bo,
+> > -			       const struct  xe_vm_pgtable_update *updates,
+> > -			       u32 num_updates, bool wait_vm,
+> >  			       struct xe_migrate_pt_update *pt_update)
+> >  {
+> >  	XE_TEST_DECLARE(struct migrate_test_params *test =
+> >  			to_migrate_test_params
+> >  			(xe_cur_kunit_priv(XE_TEST_LIVE_MIGRATE));)
+> >  	const struct xe_migrate_pt_update_ops *ops = pt_update->ops;
+> > -	struct dma_fence *fence;
+> > +	struct xe_vm *vm = pt_update->vops->vm;
+> > +	struct xe_vm_pgtable_update_ops *pt_update_ops =
+> > +		&pt_update->vops->pt_update_ops[pt_update->tile_id];
+> >  	int err;
+> > -	u32 i;
+> > +	u32 j, i;
+> > 
+> >  	if (XE_TEST_ONLY(test && test->force_gpu))
+> >  		return ERR_PTR(-ETIME);
+> > 
+> > -	if (bo && !dma_resv_test_signaled(bo->ttm.base.resv,
+> > -					  DMA_RESV_USAGE_KERNEL))
+> > -		return ERR_PTR(-ETIME);
+> > -
+> > -	if (wait_vm && !dma_resv_test_signaled(xe_vm_resv(vm),
+> > -					       DMA_RESV_USAGE_BOOKKEEP))
+> > -		return ERR_PTR(-ETIME);
+> > -
+> >  	if (ops->pre_commit) {
+> >  		pt_update->job = NULL;
+> >  		err = ops->pre_commit(pt_update);
+> >  		if (err)
+> >  			return ERR_PTR(err);
+> >  	}
+> > -	for (i = 0; i < num_updates; i++) {
+> > -		const struct xe_vm_pgtable_update *update = &updates[i];
+> > -
+> > -		ops->populate(pt_update, m->tile, &update->pt_bo->vmap,
+> > NULL,
+> > -			      update->ofs, update->qwords, update);
+> > -	}
+> > -
+> > -	if (vm) {
+> > -		trace_xe_vm_cpu_bind(vm);
+> > -		xe_device_wmb(vm->xe);
+> > -	}
+> > -
+> > -	fence = dma_fence_get_stub();
+> > -
+> > -	return fence;
+> > -}
+> > -
+> > -static bool no_in_syncs(struct xe_vm *vm, struct xe_exec_queue *q,
+> > -			struct xe_sync_entry *syncs, u32 num_syncs)
+> > -{
+> > -	struct dma_fence *fence;
+> > -	int i;
+> > 
+> > -	for (i = 0; i < num_syncs; i++) {
+> > -		fence = syncs[i].fence;
+> > -
+> > -		if (fence && !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
+> > -				       &fence->flags))
+> > -			return false;
+> > -	}
+> > -	if (q) {
+> > -		fence = xe_exec_queue_last_fence_get(q, vm);
+> > -		if (!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags)) {
+> > -			dma_fence_put(fence);
+> > -			return false;
+> > +	for (j = 0; j < pt_update_ops->num_ops; ++j) {
+> > +		const struct xe_vm_pgtable_update_op *pt_op =
+> > +			&pt_update_ops->ops[j];
+> > +
+> > +		for (i = 0; i < pt_op->num_entries; i++) {
+> > +			const struct xe_vm_pgtable_update *update =
+> > +				&pt_op->entries[i];
+> > +
+> > +			if (pt_op->bind)
+> > +				ops->populate(pt_update, m->tile,
+> > +					      &update->pt_bo->vmap, NULL,
+> > +					      update->ofs, update->qwords,
+> > +					      update);
+> > +			else
+> > +				ops->clear(pt_update, m->tile,
+> > +					   &update->pt_bo->vmap, NULL,
+> > +					   update->ofs, update->qwords, update);
+> >  		}
+> > -		dma_fence_put(fence);
+> >  	}
+> > 
+> > -	return true;
+> > +	trace_xe_vm_cpu_bind(vm);
+> > +	xe_device_wmb(vm->xe);
+> > +
+> > +	return dma_fence_get_stub();
+> >  }
+> > 
+> > -/**
+> > - * xe_migrate_update_pgtables() - Pipelined page-table update
+> > - * @m: The migrate context.
+> > - * @vm: The vm we'll be updating.
+> > - * @bo: The bo whose dma-resv we will await before updating, or NULL if
+> > userptr.
+> > - * @q: The exec queue to be used for the update or NULL if the default
+> > - * migration engine is to be used.
+> > - * @updates: An array of update descriptors.
+> > - * @num_updates: Number of descriptors in @updates.
+> > - * @syncs: Array of xe_sync_entry to await before updating. Note that waits
+> > - * will block the engine timeline.
+> > - * @num_syncs: Number of entries in @syncs.
+> > - * @pt_update: Pointer to a struct xe_migrate_pt_update, which contains
+> > - * pointers to callback functions and, if subclassed, private arguments to
+> > - * those.
+> > - *
+> > - * Perform a pipelined page-table update. The update descriptors are typically
+> > - * built under the same lock critical section as a call to this function. If
+> > - * using the default engine for the updates, they will be performed in the
+> > - * order they grab the job_mutex. If different engines are used, external
+> > - * synchronization is needed for overlapping updates to maintain page-table
+> > - * consistency. Note that the meaing of "overlapping" is that the updates
+> > - * touch the same page-table, which might be a higher-level page-directory.
+> > - * If no pipelining is needed, then updates may be performed by the cpu.
+> > - *
+> > - * Return: A dma_fence that, when signaled, indicates the update completion.
+> > - */
+> > -struct dma_fence *
+> > -xe_migrate_update_pgtables(struct xe_migrate *m,
+> > -			   struct xe_vm *vm,
+> > -			   struct xe_bo *bo,
+> > -			   struct xe_exec_queue *q,
+> > -			   const struct xe_vm_pgtable_update *updates,
+> > -			   u32 num_updates,
+> > -			   struct xe_sync_entry *syncs, u32 num_syncs,
+> > -			   struct xe_migrate_pt_update *pt_update)
+> > +static struct dma_fence *
+> > +__xe_migrate_update_pgtables(struct xe_migrate *m,
+> > +			     struct xe_migrate_pt_update *pt_update,
+> > +			     struct xe_vm_pgtable_update_ops *pt_update_ops)
+> 
+> Maybe rename this function to _gpu?
+> 
+
+I'd rather avoid name class within this patch. If we want to rename an
+existing function I'd do it in own patch as prep or as a follow up.
+
+> >  {
+> >  	const struct xe_migrate_pt_update_ops *ops = pt_update->ops;
+> >  	struct xe_tile *tile = m->tile;
+> > @@ -1282,59 +1231,45 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+> >  	struct xe_sched_job *job;
+> >  	struct dma_fence *fence;
+> >  	struct drm_suballoc *sa_bo = NULL;
+> > -	struct xe_vma *vma = pt_update->vma;
+> >  	struct xe_bb *bb;
+> > -	u32 i, batch_size, ppgtt_ofs, update_idx, page_ofs = 0;
+> > +	u32 i, j, batch_size = 0, ppgtt_ofs, update_idx, page_ofs = 0;
+> > +	u32 num_updates = 0, current_update = 0;
+> >  	u64 addr;
+> >  	int err = 0;
+> > -	bool usm = !q && xe->info.has_usm;
+> > -	bool first_munmap_rebind = vma &&
+> > -		vma->gpuva.flags & XE_VMA_FIRST_REBIND;
+> > -	struct xe_exec_queue *q_override = !q ? m->q : q;
+> > -	u16 pat_index = xe->pat.idx[XE_CACHE_WB];
+> > +	bool is_migrate = pt_update_ops->q == m->q;
+> > +	bool usm = is_migrate && xe->info.has_usm;
+> > 
+> > -	/* Use the CPU if no in syncs and engine is idle */
+> > -	if (no_in_syncs(vm, q, syncs, num_syncs) &&
+> > xe_exec_queue_is_idle(q_override)) {
+> > -		fence =  xe_migrate_update_pgtables_cpu(m, vm, bo, updates,
+> > -							num_updates,
+> > -							first_munmap_rebind,
+> > -							pt_update);
+> > -		if (!IS_ERR(fence) || fence == ERR_PTR(-EAGAIN))
+> > -			return fence;
+> > +	for (i = 0; i < pt_update_ops->num_ops; ++i) {
+> > +		struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops-
+> > >ops[i];
+> > +		struct xe_vm_pgtable_update *updates = pt_op->entries;
+> > +
+> > +		num_updates += pt_op->num_entries;
+> > +		for (j = 0; j < pt_op->num_entries; ++j) {
+> > +			u32 num_cmds = DIV_ROUND_UP(updates[j].qwords,
+> > 0x1ff);
+> > +
+> > +			/* align noop + MI_STORE_DATA_IMM cmd prefix */
+> > +			batch_size += 4 * num_cmds + updates[j].qwords * 2;
+> > +		}
+> >  	}
+> > 
+> >  	/* fixed + PTE entries */
+> >  	if (IS_DGFX(xe))
+> > -		batch_size = 2;
+> > +		batch_size += 2;
+> >  	else
+> > -		batch_size = 6 + num_updates * 2;
+> > +		batch_size += 6 + num_updates * 2;
+> > 
+> > -	for (i = 0; i < num_updates; i++) {
+> > -		u32 num_cmds = DIV_ROUND_UP(updates[i].qwords,
+> > MAX_PTE_PER_SDI);
+> > -
+> > -		/* align noop + MI_STORE_DATA_IMM cmd prefix */
+> > -		batch_size += 4 * num_cmds + updates[i].qwords * 2;
+> > -	}
+> > -
+> > -	/*
+> > -	 * XXX: Create temp bo to copy from, if batch_size becomes too big?
+> > -	 *
+> > -	 * Worst case: Sum(2 * (each lower level page size) + (top level page size))
+> > -	 * Should be reasonably bound..
+> > -	 */
+> > -	xe_tile_assert(tile, batch_size < SZ_128K);
+> > -
+> > -	bb = xe_bb_new(gt, batch_size, !q && xe->info.has_usm);
+> > +	bb = xe_bb_new(gt, batch_size, usm);
+> >  	if (IS_ERR(bb))
+> >  		return ERR_CAST(bb);
+> > 
+> >  	/* For sysmem PTE's, need to map them in our hole.. */
+> >  	if (!IS_DGFX(xe)) {
+> >  		ppgtt_ofs = NUM_KERNEL_PDE - 1;
+> > -		if (q) {
+> > -			xe_tile_assert(tile, num_updates <=
+> > NUM_VMUSA_WRITES_PER_UNIT);
+> > +		if (!is_migrate) {
+> > +			u32 num_units = DIV_ROUND_UP(num_updates,
+> > +
+> > NUM_VMUSA_WRITES_PER_UNIT);
+> > 
+> > -			sa_bo = drm_suballoc_new(&m->vm_update_sa, 1,
+> > +			sa_bo = drm_suballoc_new(&m->vm_update_sa,
+> > num_units,
+> >  						 GFP_KERNEL, true, 0);
+> >  			if (IS_ERR(sa_bo)) {
+> >  				err = PTR_ERR(sa_bo);
+> > @@ -1354,14 +1289,26 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+> >  		bb->cs[bb->len++] = ppgtt_ofs * XE_PAGE_SIZE + page_ofs;
+> >  		bb->cs[bb->len++] = 0; /* upper_32_bits */
+> > 
+> > -		for (i = 0; i < num_updates; i++) {
+> > -			struct xe_bo *pt_bo = updates[i].pt_bo;
+> > +		for (i = 0; i < pt_update_ops->num_ops; ++i) {
+> > +			struct xe_vm_pgtable_update_op *pt_op =
+> > +				&pt_update_ops->ops[i];
+> > +			struct xe_vm_pgtable_update *updates = pt_op-
+> > >entries;
+> > 
+> > -			xe_tile_assert(tile, pt_bo->size == SZ_4K);
+> > +			for (j = 0; j < pt_op->num_entries; ++j, ++current_update)
+> > {
+> > +				struct xe_vm *vm = pt_update->vops->vm;
+> > +				struct xe_bo *pt_bo = updates[j].pt_bo;
+> > 
+> > -			addr = vm->pt_ops->pte_encode_bo(pt_bo, 0,
+> > pat_index, 0);
+> > -			bb->cs[bb->len++] = lower_32_bits(addr);
+> > -			bb->cs[bb->len++] = upper_32_bits(addr);
+> > +				xe_tile_assert(tile, pt_bo->size == SZ_4K);
+> > +
+> > +				/* Map a PT at most once */
+> > +				if (pt_bo->update_index < 0)
+> > +					pt_bo->update_index = current_update;
+> > +
+> > +				addr = vm->pt_ops->pte_encode_bo(pt_bo, 0,
+> > +								 XE_CACHE_WB,
+> > 0);
+> > +				bb->cs[bb->len++] = lower_32_bits(addr);
+> > +				bb->cs[bb->len++] = upper_32_bits(addr);
+> > +			}
+> >  		}
+> > 
+> >  		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+> > @@ -1369,22 +1316,39 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+> > 
+> >  		addr = xe_migrate_vm_addr(ppgtt_ofs, 0) +
+> >  			(page_ofs / sizeof(u64)) * XE_PAGE_SIZE;
+> > -		for (i = 0; i < num_updates; i++)
+> > -			write_pgtable(tile, bb, addr + i * XE_PAGE_SIZE,
+> > -				      &updates[i], pt_update);
+> > +		for (i = 0; i < pt_update_ops->num_ops; ++i) {
+> > +			struct xe_vm_pgtable_update_op *pt_op =
+> > +				&pt_update_ops->ops[i];
+> > +			struct xe_vm_pgtable_update *updates = pt_op-
+> > >entries;
+> > +
+> > +			for (j = 0; j < pt_op->num_entries; ++j) {
+> > +				struct xe_bo *pt_bo = updates[j].pt_bo;
+> > +
+> > +				write_pgtable(tile, bb, addr +
+> > +					      pt_bo->update_index *
+> > XE_PAGE_SIZE,
+> > +					      pt_op, &updates[j], pt_update);
+> > +			}
+> > +		}
+> >  	} else {
+> >  		/* phys pages, no preamble required */
+> >  		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+> >  		update_idx = bb->len;
+> > 
+> > -		for (i = 0; i < num_updates; i++)
+> > -			write_pgtable(tile, bb, 0, &updates[i], pt_update);
+> > +		for (i = 0; i < pt_update_ops->num_ops; ++i) {
+> > +			struct xe_vm_pgtable_update_op *pt_op =
+> > +				&pt_update_ops->ops[i];
+> > +			struct xe_vm_pgtable_update *updates = pt_op-
+> > >entries;
+> > +
+> > +			for (j = 0; j < pt_op->num_entries; ++j)
+> > +				write_pgtable(tile, bb, 0, pt_op, &updates[j],
+> > +					      pt_update);
+> > +		}
+> >  	}
+> > 
+> > -	if (!q)
+> > +	if (is_migrate)
+> >  		mutex_lock(&m->job_mutex);
+> > 
+> > -	job = xe_bb_create_migration_job(q ?: m->q, bb,
+> > +	job = xe_bb_create_migration_job(pt_update_ops->q, bb,
+> >  					 xe_migrate_batch_base(m, usm),
+> >  					 update_idx);
+> >  	if (IS_ERR(job)) {
+> > @@ -1392,32 +1356,6 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+> >  		goto err_bb;
+> >  	}
+> > 
+> > -	/* Wait on BO move */
+> > -	if (bo) {
+> > -		err = job_add_deps(job, bo->ttm.base.resv,
+> > -				   DMA_RESV_USAGE_KERNEL);
+> > -		if (err)
+> > -			goto err_job;
+> > -	}
+> > -
+> > -	/*
+> > -	 * Munmap style VM unbind, need to wait for all jobs to be complete /
+> > -	 * trigger preempts before moving forward
+> > -	 */
+> > -	if (first_munmap_rebind) {
+> > -		err = job_add_deps(job, xe_vm_resv(vm),
+> > -				   DMA_RESV_USAGE_BOOKKEEP);
+> > -		if (err)
+> > -			goto err_job;
+> > -	}
+> > -
+> > -	err = xe_sched_job_last_fence_add_dep(job, vm);
+> > -	for (i = 0; !err && i < num_syncs; i++)
+> > -		err = xe_sync_entry_add_deps(&syncs[i], job);
+> > -
+> > -	if (err)
+> > -		goto err_job;
+> > -
+> >  	if (ops->pre_commit) {
+> >  		pt_update->job = job;
+> >  		err = ops->pre_commit(pt_update);
+> > @@ -1428,7 +1366,7 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+> >  	fence = dma_fence_get(&job->drm.s_fence->finished);
+> >  	xe_sched_job_push(job);
+> > 
+> > -	if (!q)
+> > +	if (is_migrate)
+> >  		mutex_unlock(&m->job_mutex);
+> > 
+> >  	xe_bb_free(bb, fence);
+> > @@ -1439,7 +1377,7 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+> >  err_job:
+> >  	xe_sched_job_put(job);
+> >  err_bb:
+> > -	if (!q)
+> > +	if (is_migrate)
+> >  		mutex_unlock(&m->job_mutex);
+> >  	xe_bb_free(bb, NULL);
+> >  err:
+> > @@ -1447,6 +1385,38 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+> >  	return ERR_PTR(err);
+> >  }
+> > 
+> > +/**
+> > + * xe_migrate_update_pgtables() - Pipelined page-table update
+> > + * @m: The migrate context.
+> > + * @pt_update: PT update arguments
+> > + *
+> > + * Perform a pipelined page-table update. The update descriptors are typically
+> > + * built under the same lock critical section as a call to this function. If
+> > + * using the default engine for the updates, they will be performed in the
+> > + * order they grab the job_mutex. If different engines are used, external
+> > + * synchronization is needed for overlapping updates to maintain page-table
+> > + * consistency. Note that the meaing of "overlapping" is that the updates
+> > + * touch the same page-table, which might be a higher-level page-directory.
+> > + * If no pipelining is needed, then updates may be performed by the cpu.
+> > + *
+> > + * Return: A dma_fence that, when signaled, indicates the update completion.
+> > + */
+> > +struct dma_fence *
+> > +xe_migrate_update_pgtables(struct xe_migrate *m,
+> > +			   struct xe_migrate_pt_update *pt_update)
+> > +
+> > +{
+> > +	struct xe_vm_pgtable_update_ops *pt_update_ops =
+> > +		&pt_update->vops->pt_update_ops[pt_update->tile_id];
+> > +	struct dma_fence *fence;
+> > +
+> > +	fence =  xe_migrate_update_pgtables_cpu(m, pt_update);
+> 
+> So now by default you use cpu to update page table first. Only if there is error you fall back to gpu page table update. Should we also consider performance here? For example, consider page table is usually in vram, isn't cpu writing to page table is usually slower than gpu writing?
+> 
+
+This is existing behavior that is refactored.
+
+The behavior is:
+
+- If no dependencies for the bind execute immediately with the CPU doing a bind
+- If no dependencies, schedule a job which will execute once dependencies are resolved to complete the bind via GPU
+
+Later in series [2] this is reworked so the job uses the CPU to complete
+the bind with a new backend [3]. Yes, the idea is that using the CPU
+will always be faster.
+
+[2] https://patchwork.freedesktop.org/patch/582003/?series=125608&rev=5
+[3] https://patchwork.freedesktop.org/patch/582027/?series=125608&rev=5
+
+> > +	if (!IS_ERR(fence))
+> > +		return fence;
+> > +
+> > +	return __xe_migrate_update_pgtables(m, pt_update, pt_update_ops);
+> > +}
+> > +
+> >  /**
+> >   * xe_migrate_wait() - Complete all operations using the xe_migrate context
+> >   * @m: Migrate context to wait for.
+> > diff --git a/drivers/gpu/drm/xe/xe_migrate.h
+> > b/drivers/gpu/drm/xe/xe_migrate.h
+> > index 9935ce336bae..bd8eba1d3552 100644
+> > --- a/drivers/gpu/drm/xe/xe_migrate.h
+> > +++ b/drivers/gpu/drm/xe/xe_migrate.h
+> > @@ -47,6 +47,24 @@ struct xe_migrate_pt_update_ops {
+> >  			 struct xe_tile *tile, struct iosys_map *map,
+> >  			 void *pos, u32 ofs, u32 num_qwords,
+> >  			 const struct xe_vm_pgtable_update *update);
+> > +	/**
+> > +	 * @clear: Clear a command buffer or page-table with ptes.
+> > +	 * @pt_update: Embeddable callback argument.
+> > +	 * @tile: The tile for the current operation.
+> > +	 * @map: struct iosys_map into the memory to be populated.
+> > +	 * @pos: If @map is NULL, map into the memory to be populated.
+> > +	 * @ofs: qword offset into @map, unused if @map is NULL.
+> > +	 * @num_qwords: Number of qwords to write.
+> > +	 * @update: Information about the PTEs to be inserted.
+> > +	 *
+> > +	 * This interface is intended to be used as a callback into the
+> > +	 * page-table system to populate command buffers or shared
+> > +	 * page-tables with PTEs.
+> > +	 */
+> > +	void (*clear)(struct xe_migrate_pt_update *pt_update,
+> > +		      struct xe_tile *tile, struct iosys_map *map,
+> > +		      void *pos, u32 ofs, u32 num_qwords,
+> > +		      const struct xe_vm_pgtable_update *update);
+> > 
+> >  	/**
+> >  	 * @pre_commit: Callback to be called just before arming the
+> > @@ -67,14 +85,10 @@ struct xe_migrate_pt_update_ops {
+> >  struct xe_migrate_pt_update {
+> >  	/** @ops: Pointer to the struct xe_migrate_pt_update_ops callbacks */
+> >  	const struct xe_migrate_pt_update_ops *ops;
+> > -	/** @vma: The vma we're updating the pagetable for. */
+> > -	struct xe_vma *vma;
+> > +	/** @vops: VMA operations */
+> > +	struct xe_vma_ops *vops;
+> >  	/** @job: The job if a GPU page-table update. NULL otherwise */
+> >  	struct xe_sched_job *job;
+> > -	/** @start: Start of update for the range fence */
+> > -	u64 start;
+> > -	/** @last: Last of update for the range fence */
+> > -	u64 last;
+> >  	/** @tile_id: Tile ID of the update */
+> >  	u8 tile_id;
+> >  };
+> > @@ -96,12 +110,6 @@ struct xe_vm *xe_migrate_get_vm(struct xe_migrate
+> > *m);
+> > 
+> >  struct dma_fence *
+> >  xe_migrate_update_pgtables(struct xe_migrate *m,
+> > -			   struct xe_vm *vm,
+> > -			   struct xe_bo *bo,
+> > -			   struct xe_exec_queue *q,
+> > -			   const struct xe_vm_pgtable_update *updates,
+> > -			   u32 num_updates,
+> > -			   struct xe_sync_entry *syncs, u32 num_syncs,
+> >  			   struct xe_migrate_pt_update *pt_update);
+> > 
+> >  void xe_migrate_wait(struct xe_migrate *m);
+> > diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> > index a878e2217c7f..5a8523d0a049 100644
+> > --- a/drivers/gpu/drm/xe/xe_pt.c
+> > +++ b/drivers/gpu/drm/xe/xe_pt.c
+> > @@ -8,12 +8,14 @@
+> >  #include "xe_bo.h"
+> >  #include "xe_device.h"
+> >  #include "xe_drm_client.h"
+> > +#include "xe_exec_queue.h"
+> >  #include "xe_gt.h"
+> >  #include "xe_gt_tlb_invalidation.h"
+> >  #include "xe_migrate.h"
+> >  #include "xe_pt_types.h"
+> >  #include "xe_pt_walk.h"
+> >  #include "xe_res_cursor.h"
+> > +#include "xe_sync.h"
+> >  #include "xe_trace.h"
+> >  #include "xe_ttm_stolen_mgr.h"
+> >  #include "xe_vm.h"
+> > @@ -324,6 +326,7 @@ xe_pt_new_shared(struct xe_walk_update *wupd, struct
+> > xe_pt *parent,
+> >  	entry->pt = parent;
+> >  	entry->flags = 0;
+> >  	entry->qwords = 0;
+> > +	entry->pt_bo->update_index = -1;
+> > 
+> >  	if (alloc_entries) {
+> >  		entry->pt_entries = kmalloc_array(XE_PDES,
+> > @@ -831,9 +834,7 @@ static void xe_pt_commit_locks_assert(struct xe_vma
+> > *vma)
+> > 
+> >  	lockdep_assert_held(&vm->lock);
+> > 
+> > -	if (xe_vma_is_userptr(vma))
+> > -		lockdep_assert_held_read(&vm->userptr.notifier_lock);
+> > -	else if (!xe_vma_is_null(vma))
+> > +	if (!xe_vma_is_userptr(vma) && !xe_vma_is_null(vma))
+> >  		dma_resv_assert_held(xe_vma_bo(vma)->ttm.base.resv);
+> > 
+> >  	xe_vm_assert_held(vm);
+> > @@ -855,10 +856,8 @@ static void xe_pt_commit_bind(struct xe_vma *vma,
+> >  		if (!rebind)
+> >  			pt->num_live += entries[i].qwords;
+> > 
+> > -		if (!pt->level) {
+> > -			kfree(entries[i].pt_entries);
+> > +		if (!pt->level)
+> >  			continue;
+> > -		}
+> > 
+> >  		pt_dir = as_xe_pt_dir(pt);
+> >  		for (j = 0; j < entries[i].qwords; j++) {
+> > @@ -871,10 +870,18 @@ static void xe_pt_commit_bind(struct xe_vma *vma,
+> > 
+> >  			pt_dir->children[j_] = &newpte->base;
+> >  		}
+> > -		kfree(entries[i].pt_entries);
+> >  	}
+> >  }
+> > 
+> > +static void xe_pt_free_bind(struct xe_vm_pgtable_update *entries,
+> > +			    u32 num_entries)
+> > +{
+> > +	u32 i;
+> > +
+> > +	for (i = 0; i < num_entries; i++)
+> > +		kfree(entries[i].pt_entries);
+> > +}
+> > +
+> >  static int
+> >  xe_pt_prepare_bind(struct xe_tile *tile, struct xe_vma *vma,
+> >  		   struct xe_vm_pgtable_update *entries, u32 *num_entries)
+> > @@ -893,12 +900,13 @@ xe_pt_prepare_bind(struct xe_tile *tile, struct xe_vma
+> > *vma,
+> > 
+> >  static void xe_vm_dbg_print_entries(struct xe_device *xe,
+> >  				    const struct xe_vm_pgtable_update *entries,
+> > -				    unsigned int num_entries)
+> > +				    unsigned int num_entries, bool bind)
+> >  #if (IS_ENABLED(CONFIG_DRM_XE_DEBUG_VM))
+> >  {
+> >  	unsigned int i;
+> > 
+> > -	vm_dbg(&xe->drm, "%u entries to update\n", num_entries);
+> > +	vm_dbg(&xe->drm, "%s: %u entries to update\n", bind ? "bind" :
+> > "unbind",
+> > +	       num_entries);
+> >  	for (i = 0; i < num_entries; i++) {
+> >  		const struct xe_vm_pgtable_update *entry = &entries[i];
+> >  		struct xe_pt *xe_pt = entry->pt;
+> > @@ -919,66 +927,122 @@ static void xe_vm_dbg_print_entries(struct xe_device
+> > *xe,
+> >  {}
+> >  #endif
+> > 
+> > -#ifdef CONFIG_DRM_XE_USERPTR_INVAL_INJECT
+> > +static int job_add_deps(struct xe_sched_job *job, struct dma_resv *resv,
+> > +			enum dma_resv_usage usage)
+> > +{
+> > +	return drm_sched_job_add_resv_dependencies(&job->drm, resv,
+> > usage);
+> > +}
+> > 
+> > -static int xe_pt_userptr_inject_eagain(struct xe_userptr_vma *uvma)
+> > +static bool no_in_syncs(struct xe_sync_entry *syncs, u32 num_syncs)
+> >  {
+> > -	u32 divisor = uvma->userptr.divisor ? uvma->userptr.divisor : 2;
+> > -	static u32 count;
+> > +	int i;
+> > 
+> > -	if (count++ % divisor == divisor - 1) {
+> > -		struct xe_vm *vm = xe_vma_vm(&uvma->vma);
+> > +	for (i = 0; i < num_syncs; i++) {
+> > +		struct dma_fence *fence = syncs[i].fence;
+> > 
+> > -		uvma->userptr.divisor = divisor << 1;
+> > -		spin_lock(&vm->userptr.invalidated_lock);
+> > -		list_move_tail(&uvma->userptr.invalidate_link,
+> > -			       &vm->userptr.invalidated);
+> > -		spin_unlock(&vm->userptr.invalidated_lock);
+> > -		return true;
+> > +		if (fence && !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
+> > +				       &fence->flags))
+> > +			return false;
+> >  	}
+> > 
+> > -	return false;
+> > +	return true;
+> >  }
+> > 
+> > -#else
+> > -
+> > -static bool xe_pt_userptr_inject_eagain(struct xe_userptr_vma *uvma)
+> > +static int vma_add_deps(struct xe_vma *vma, struct xe_sched_job *job)
+> 
+> 
+> From the implementation, it seems this is adding vma as a job's dependency...but the function name says add dependency to vma...
+
+vma_add_deps_to_job?
+
+add_vma_deps_to_job?
+
+> 
+> >  {
+> > -	return false;
+> > +	struct xe_bo *bo = xe_vma_bo(vma);
+> > +
+> > +	xe_bo_assert_held(bo);
+> > +
+> > +	if (bo && !bo->vm) {
+> > +		if (!job) {
+> > +			if (!dma_resv_test_signaled(bo->ttm.base.resv,
+> > +						    DMA_RESV_USAGE_KERNEL))
+> > +				return -ETIME;
+> > +		} else {
+> > +			return job_add_deps(job, bo->ttm.base.resv,
+> > +					    DMA_RESV_USAGE_KERNEL);
+> > +		}
+> > +	}
+> > +
+> > +	return 0;
+> >  }
+> > 
+> > -#endif
+> > +static int op_add_deps(struct xe_vm *vm, struct xe_vma_op *op,
+> > +		       struct xe_sched_job *job)
+> > +{
+> > +	int err = 0;
+> > 
+> > -/**
+> > - * struct xe_pt_migrate_pt_update - Callback argument for pre-commit callbacks
+> > - * @base: Base we derive from.
+> > - * @bind: Whether this is a bind or an unbind operation. A bind operation
+> > - *        makes the pre-commit callback error with -EAGAIN if it detects a
+> > - *        pending invalidation.
+> > - * @locked: Whether the pre-commit callback locked the userptr notifier lock
+> > - *          and it needs unlocking.
+> > - */
+> > -struct xe_pt_migrate_pt_update {
+> > -	struct xe_migrate_pt_update base;
+> > -	bool bind;
+> > -	bool locked;
+> > -};
+> > +	switch (op->base.op) {
+> > +	case DRM_GPUVA_OP_MAP:
+> > +		if (!op->map.immediate && xe_vm_in_fault_mode(vm))
+> > +			break;
+> > +
+> > +		err = vma_add_deps(op->map.vma, job);
+> > +		break;
+> > +	case DRM_GPUVA_OP_REMAP:
+> > +		if (op->remap.prev)
+> > +			err = vma_add_deps(op->remap.prev, job);
+> > +		if (!err && op->remap.next)
+> > +			err = vma_add_deps(op->remap.next, job);
+> > +		break;
+> > +	case DRM_GPUVA_OP_UNMAP:
+> > +		break;
+> > +	case DRM_GPUVA_OP_PREFETCH:
+> > +		err = vma_add_deps(gpuva_to_vma(op->base.prefetch.va), job);
+> > +		break;
+> > +	default:
+> > +		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
+> > +	}
+> > +
+> > +	return err;
+> > +}
+> > 
+> > -/*
+> > - * This function adds the needed dependencies to a page-table update job
+> > - * to make sure racing jobs for separate bind engines don't race writing
+> > - * to the same page-table range, wreaking havoc. Initially use a single
+> > - * fence for the entire VM. An optimization would use smaller granularity.
+> > - */
+> >  static int xe_pt_vm_dependencies(struct xe_sched_job *job,
+> > -				 struct xe_range_fence_tree *rftree,
+> > -				 u64 start, u64 last)
+> > +				 struct xe_vm *vm,
+> > +				 struct xe_vma_ops *vops,
+> > +				 struct xe_vm_pgtable_update_ops
+> > *pt_update_ops,
+> > +				 struct xe_range_fence_tree *rftree)
+> >  {
+> >  	struct xe_range_fence *rtfence;
+> >  	struct dma_fence *fence;
+> > -	int err;
+> > +	struct xe_vma_op *op;
+> > +	int err = 0, i;
+> > +
+> > +	xe_vm_assert_held(vm);
+> > +
+> > +	if (!job && !no_in_syncs(vops->syncs, vops->num_syncs))
+> > +		return -ETIME;
+> > +
+> > +	if (!job && !xe_exec_queue_is_idle(pt_update_ops->q))
+> > +		return -ETIME;
+> > 
+> > -	rtfence = xe_range_fence_tree_first(rftree, start, last);
+> > +	if (pt_update_ops->wait_vm_bookkeep) {
+> > +		if (!job) {
+> > +			if (!dma_resv_test_signaled(xe_vm_resv(vm),
+> > +
+> > DMA_RESV_USAGE_BOOKKEEP))
+> > +				return -ETIME;
+> > +		} else {
+> > +			err = job_add_deps(job, xe_vm_resv(vm),
+> > +					   DMA_RESV_USAGE_BOOKKEEP);
+> > +			if (err)
+> > +				return err;
+> > +		}
+> > +	} else if (pt_update_ops->wait_vm_kernel) {
+> > +		if (!job) {
+> > +			if (!dma_resv_test_signaled(xe_vm_resv(vm),
+> > +						    DMA_RESV_USAGE_KERNEL))
+> > +				return -ETIME;
+> > +		} else {
+> > +			err = job_add_deps(job, xe_vm_resv(vm),
+> > +					   DMA_RESV_USAGE_KERNEL);
+> > +			if (err)
+> > +				return err;
+> > +		}
+> > +	}
+> > +
+> > +	rtfence = xe_range_fence_tree_first(rftree, pt_update_ops->start,
+> > +					    pt_update_ops->last);
+> >  	while (rtfence) {
+> >  		fence = rtfence->fence;
+> > 
+> > @@ -996,80 +1060,136 @@ static int xe_pt_vm_dependencies(struct
+> > xe_sched_job *job,
+> >  				return err;
+> >  		}
+> > 
+> > -		rtfence = xe_range_fence_tree_next(rtfence, start, last);
+> > +		rtfence = xe_range_fence_tree_next(rtfence,
+> > +						   pt_update_ops->start,
+> > +						   pt_update_ops->last);
+> >  	}
+> > 
+> > -	return 0;
+> > +	list_for_each_entry(op, &vops->list, link) {
+> > +		err = op_add_deps(vm, op, job);
+> > +		if (err)
+> > +			return err;
+> > +	}
+> > +
+> > +	for (i = 0; job && !err && i < vops->num_syncs; i++)
+> > +		err = xe_sync_entry_add_deps(&vops->syncs[i], job);
+> > +
+> > +	return err;
+> >  }
+> > 
+> >  static int xe_pt_pre_commit(struct xe_migrate_pt_update *pt_update)
+> >  {
+> > -	struct xe_range_fence_tree *rftree =
+> > -		&xe_vma_vm(pt_update->vma)->rftree[pt_update->tile_id];
+> > +	struct xe_vma_ops *vops = pt_update->vops;
+> > +	struct xe_vm *vm = vops->vm;
+> > +	struct xe_range_fence_tree *rftree = &vm->rftree[pt_update->tile_id];
+> > +	struct xe_vm_pgtable_update_ops *pt_update_ops =
+> > +		&vops->pt_update_ops[pt_update->tile_id];
+> > +
+> > +	return xe_pt_vm_dependencies(pt_update->job, vm, pt_update->vops,
+> > +				     pt_update_ops, rftree);
+> > +}
+> > +
+> > +#ifdef CONFIG_DRM_XE_USERPTR_INVAL_INJECT
+> > +
+> > +static bool xe_pt_userptr_inject_eagain(struct xe_userptr_vma *uvma)
+> > +{
+> > +	u32 divisor = uvma->userptr.divisor ? uvma->userptr.divisor : 2;
+> > +	static u32 count;
+> > +
+> > +	if (count++ % divisor == divisor - 1) {
+> > +		uvma->userptr.divisor = divisor << 1;
+> > +		return true;
+> > +	}
+> > 
+> > -	return xe_pt_vm_dependencies(pt_update->job, rftree,
+> > -				     pt_update->start, pt_update->last);
+> > +	return false;
+> >  }
+> > 
+> > -static int xe_pt_userptr_pre_commit(struct xe_migrate_pt_update *pt_update)
+> > +#else
+> > +
+> > +static bool xe_pt_userptr_inject_eagain(struct xe_userptr_vma *uvma)
+> >  {
+> > -	struct xe_pt_migrate_pt_update *userptr_update =
+> > -		container_of(pt_update, typeof(*userptr_update), base);
+> > -	struct xe_userptr_vma *uvma = to_userptr_vma(pt_update->vma);
+> > -	unsigned long notifier_seq = uvma->userptr.notifier_seq;
+> > -	struct xe_vm *vm = xe_vma_vm(&uvma->vma);
+> > -	int err = xe_pt_vm_dependencies(pt_update->job,
+> > -					&vm->rftree[pt_update->tile_id],
+> > -					pt_update->start,
+> > -					pt_update->last);
+> > +	return false;
+> > +}
+> > 
+> > -	if (err)
+> > -		return err;
+> > +#endif
+> > 
+> > -	userptr_update->locked = false;
+> > +static void vma_check_userptr(struct xe_vm *vm, struct xe_vma *vma)
+> > +{
+> > +	struct xe_userptr_vma *uvma = to_userptr_vma(vma);
+> > +	unsigned long notifier_seq = uvma->userptr.notifier_seq;
+> > 
+> > -	/*
+> > -	 * Wait until nobody is running the invalidation notifier, and
+> > -	 * since we're exiting the loop holding the notifier lock,
+> > -	 * nobody can proceed invalidating either.
+> > -	 *
+> > -	 * Note that we don't update the vma->userptr.notifier_seq since
+> > -	 * we don't update the userptr pages.
+> > -	 */
+> > -	do {
+> > -		down_read(&vm->userptr.notifier_lock);
+> > -		if (!mmu_interval_read_retry(&uvma->userptr.notifier,
+> > -					     notifier_seq))
+> > -			break;
+> > +	lockdep_assert_held_read(&vm->userptr.notifier_lock);
+> > 
+> > -		up_read(&vm->userptr.notifier_lock);
+> > +	if (uvma->userptr.initial_bind || xe_vm_in_fault_mode(vm))
+> > +		return;
+> > 
+> > -		if (userptr_update->bind)
+> > -			return -EAGAIN;
+> > +	if (!mmu_interval_read_retry(&uvma->userptr.notifier,
+> > +				     notifier_seq) &&
+> > +	    !xe_pt_userptr_inject_eagain(uvma))
+> > +		return;
+> 
+> After this, we need to retry the get_user_pages_fast thing but I don't see how this is achieved...
+> 
+
+This is broken for faulting mode...
+
+For dma-fence mode, adding to userptr.invalidated is enough. Next exec
+picks this up, pins userptr pages, and issues a rebind. See
+xe_vm_userptr_pin, xe_vm_rebind.
+
+For preempt fence mode, triggering the DMA_RESV_USAGE_BOOKKEEP fences
+interrupts execution, queue rebind worker, and uses a same list / flow
+as execs to resume exection. I am missing a
+dma_resv_wait(DMA_RESV_USAGE_BOOKKEEP) here though as we need to wait
+for execution to interrupted before moving on. Will include in next rev.
+
+For faulting mode, we should cancel the bind by converting cpu bind /
+job bind to clear the PTEs entries. This will ensure a stale userptr is
+not visable to the GPU and next access will trigger a fault kicking off
+a pin and rebind. Again will fix in next rev.
+
+Matt
+
+> Oak
+> 
+> > 
+> > -		notifier_seq = mmu_interval_read_begin(&uvma-
+> > >userptr.notifier);
+> > -	} while (true);
+> > +	spin_lock(&vm->userptr.invalidated_lock);
+> > +	list_move_tail(&uvma->userptr.invalidate_link,
+> > +		       &vm->userptr.invalidated);
+> > +	spin_unlock(&vm->userptr.invalidated_lock);
+> > 
+> > -	/* Inject errors to test_whether they are handled correctly */
+> > -	if (userptr_update->bind && xe_pt_userptr_inject_eagain(uvma)) {
+> > -		up_read(&vm->userptr.notifier_lock);
+> > -		return -EAGAIN;
+> > +	if (xe_vm_in_preempt_fence_mode(vm)) {
+> > +		struct dma_resv_iter cursor;
+> > +		struct dma_fence *fence;
+> > +
+> > +		dma_resv_iter_begin(&cursor, xe_vm_resv(vm),
+> > +				    DMA_RESV_USAGE_BOOKKEEP);
+> > +		dma_resv_for_each_fence_unlocked(&cursor, fence)
+> > +			dma_fence_enable_sw_signaling(fence);
+> > +		dma_resv_iter_end(&cursor);
+> >  	}
+> > +}
+> > 
+> > -	userptr_update->locked = true;
+> > +static void op_check_userptr(struct xe_vm *vm, struct xe_vma_op *op)
+> > +{
+> > +	lockdep_assert_held_read(&vm->userptr.notifier_lock);
+> > 
+> > -	return 0;
+> > +	switch (op->base.op) {
+> > +	case DRM_GPUVA_OP_MAP:
+> > +		if (!op->map.immediate && xe_vm_in_fault_mode(vm))
+> > +			break;
+> > +
+> > +		vma_check_userptr(vm, op->map.vma);
+> > +		break;
+> > +	case DRM_GPUVA_OP_REMAP:
+> > +		if (op->remap.prev)
+> > +			vma_check_userptr(vm, op->remap.prev);
+> > +		if (op->remap.next)
+> > +			vma_check_userptr(vm, op->remap.next);
+> > +		break;
+> > +	case DRM_GPUVA_OP_UNMAP:
+> > +		break;
+> > +	case DRM_GPUVA_OP_PREFETCH:
+> > +		vma_check_userptr(vm, gpuva_to_vma(op->base.prefetch.va));
+> > +		break;
+> > +	default:
+> > +		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
+> > +	}
+> >  }
+> > 
+> > -static const struct xe_migrate_pt_update_ops bind_ops = {
+> > -	.populate = xe_vm_populate_pgtable,
+> > -	.pre_commit = xe_pt_pre_commit,
+> > -};
+> > +static int xe_pt_userptr_pre_commit(struct xe_migrate_pt_update *pt_update)
+> > +{
+> > +	struct xe_vm *vm = pt_update->vops->vm;
+> > +	struct xe_vma_ops *vops = pt_update->vops;
+> > +	struct xe_vma_op *op;
+> > +	int err;
+> > 
+> > -static const struct xe_migrate_pt_update_ops userptr_bind_ops = {
+> > -	.populate = xe_vm_populate_pgtable,
+> > -	.pre_commit = xe_pt_userptr_pre_commit,
+> > -};
+> > +	err = xe_pt_pre_commit(pt_update);
+> > +	if (err)
+> > +		return err;
+> > +
+> > +	down_read(&vm->userptr.notifier_lock);
+> > +
+> > +	list_for_each_entry(op, &vops->list, link)
+> > +		op_check_userptr(vm, op);
+> > +
+> > +	return 0;
+> > +}
+> > 
+> >  struct invalidation_fence {
+> >  	struct xe_gt_tlb_invalidation_fence base;
+> > @@ -1166,181 +1286,6 @@ static int invalidation_fence_init(struct xe_gt *gt,
+> >  	return ret && ret != -ENOENT ? ret : 0;
+> >  }
+> > 
+> > -static void xe_pt_calc_rfence_interval(struct xe_vma *vma,
+> > -				       struct xe_pt_migrate_pt_update *update,
+> > -				       struct xe_vm_pgtable_update *entries,
+> > -				       u32 num_entries)
+> > -{
+> > -	int i, level = 0;
+> > -
+> > -	for (i = 0; i < num_entries; i++) {
+> > -		const struct xe_vm_pgtable_update *entry = &entries[i];
+> > -
+> > -		if (entry->pt->level > level)
+> > -			level = entry->pt->level;
+> > -	}
+> > -
+> > -	/* Greedy (non-optimal) calculation but simple */
+> > -	update->base.start = ALIGN_DOWN(xe_vma_start(vma),
+> > -					0x1ull << xe_pt_shift(level));
+> > -	update->base.last = ALIGN(xe_vma_end(vma),
+> > -				  0x1ull << xe_pt_shift(level)) - 1;
+> > -}
+> > -
+> > -/**
+> > - * __xe_pt_bind_vma() - Build and connect a page-table tree for the vma
+> > - * address range.
+> > - * @tile: The tile to bind for.
+> > - * @vma: The vma to bind.
+> > - * @q: The exec_queue with which to do pipelined page-table updates.
+> > - * @syncs: Entries to sync on before binding the built tree to the live vm tree.
+> > - * @num_syncs: Number of @sync entries.
+> > - * @rebind: Whether we're rebinding this vma to the same address range
+> > without
+> > - * an unbind in-between.
+> > - *
+> > - * This function builds a page-table tree (see xe_pt_stage_bind() for more
+> > - * information on page-table building), and the xe_vm_pgtable_update entries
+> > - * abstracting the operations needed to attach it to the main vm tree. It
+> > - * then takes the relevant locks and updates the metadata side of the main
+> > - * vm tree and submits the operations for pipelined attachment of the
+> > - * gpu page-table to the vm main tree, (which can be done either by the
+> > - * cpu and the GPU).
+> > - *
+> > - * Return: A valid dma-fence representing the pipelined attachment operation
+> > - * on success, an error pointer on error.
+> > - */
+> > -struct dma_fence *
+> > -__xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct
+> > xe_exec_queue *q,
+> > -		 struct xe_sync_entry *syncs, u32 num_syncs,
+> > -		 bool rebind)
+> > -{
+> > -	struct xe_vm_pgtable_update entries[XE_VM_MAX_LEVEL * 2 + 1];
+> > -	struct xe_pt_migrate_pt_update bind_pt_update = {
+> > -		.base = {
+> > -			.ops = xe_vma_is_userptr(vma) ? &userptr_bind_ops :
+> > &bind_ops,
+> > -			.vma = vma,
+> > -			.tile_id = tile->id,
+> > -		},
+> > -		.bind = true,
+> > -	};
+> > -	struct xe_vm *vm = xe_vma_vm(vma);
+> > -	u32 num_entries;
+> > -	struct dma_fence *fence;
+> > -	struct invalidation_fence *ifence = NULL;
+> > -	struct xe_range_fence *rfence;
+> > -	int err;
+> > -
+> > -	bind_pt_update.locked = false;
+> > -	xe_bo_assert_held(xe_vma_bo(vma));
+> > -	xe_vm_assert_held(vm);
+> > -
+> > -	vm_dbg(&xe_vma_vm(vma)->xe->drm,
+> > -	       "Preparing bind, with range [%llx...%llx) engine %p.\n",
+> > -	       xe_vma_start(vma), xe_vma_end(vma), q);
+> > -
+> > -	err = xe_pt_prepare_bind(tile, vma, entries, &num_entries);
+> > -	if (err)
+> > -		goto err;
+> > -	xe_tile_assert(tile, num_entries <= ARRAY_SIZE(entries));
+> > -
+> > -	xe_vm_dbg_print_entries(tile_to_xe(tile), entries, num_entries);
+> > -	xe_pt_calc_rfence_interval(vma, &bind_pt_update, entries,
+> > -				   num_entries);
+> > -
+> > -	/*
+> > -	 * If rebind, we have to invalidate TLB on !LR vms to invalidate
+> > -	 * cached PTEs point to freed memory. on LR vms this is done
+> > -	 * automatically when the context is re-enabled by the rebind worker,
+> > -	 * or in fault mode it was invalidated on PTE zapping.
+> > -	 *
+> > -	 * If !rebind, and scratch enabled VMs, there is a chance the scratch
+> > -	 * PTE is already cached in the TLB so it needs to be invalidated.
+> > -	 * on !LR VMs this is done in the ring ops preceding a batch, but on
+> > -	 * non-faulting LR, in particular on user-space batch buffer chaining,
+> > -	 * it needs to be done here.
+> > -	 */
+> > -	if ((rebind && !xe_vm_in_lr_mode(vm) && !vm->batch_invalidate_tlb)
+> > ||
+> > -	    (!rebind && xe_vm_has_scratch(vm) &&
+> > xe_vm_in_preempt_fence_mode(vm))) {
+> > -		ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
+> > -		if (!ifence)
+> > -			return ERR_PTR(-ENOMEM);
+> > -	}
+> > -
+> > -	rfence = kzalloc(sizeof(*rfence), GFP_KERNEL);
+> > -	if (!rfence) {
+> > -		kfree(ifence);
+> > -		return ERR_PTR(-ENOMEM);
+> > -	}
+> > -
+> > -	fence = xe_migrate_update_pgtables(tile->migrate,
+> > -					   vm, xe_vma_bo(vma), q,
+> > -					   entries, num_entries,
+> > -					   syncs, num_syncs,
+> > -					   &bind_pt_update.base);
+> > -	if (!IS_ERR(fence)) {
+> > -		bool last_munmap_rebind = vma->gpuva.flags &
+> > XE_VMA_LAST_REBIND;
+> > -		LLIST_HEAD(deferred);
+> > -		int err;
+> > -
+> > -		err = xe_range_fence_insert(&vm->rftree[tile->id], rfence,
+> > -					    &xe_range_fence_kfree_ops,
+> > -					    bind_pt_update.base.start,
+> > -					    bind_pt_update.base.last, fence);
+> > -		if (err)
+> > -			dma_fence_wait(fence, false);
+> > -
+> > -		/* TLB invalidation must be done before signaling rebind */
+> > -		if (ifence) {
+> > -			int err = invalidation_fence_init(tile->primary_gt,
+> > -							  ifence, fence,
+> > -							  xe_vma_start(vma),
+> > -							  xe_vma_end(vma),
+> > -							  xe_vma_vm(vma)-
+> > >usm.asid);
+> > -			if (err) {
+> > -				dma_fence_put(fence);
+> > -				kfree(ifence);
+> > -				return ERR_PTR(err);
+> > -			}
+> > -			fence = &ifence->base.base;
+> > -		}
+> > -
+> > -		/* add shared fence now for pagetable delayed destroy */
+> > -		dma_resv_add_fence(xe_vm_resv(vm), fence, !rebind &&
+> > -				   last_munmap_rebind ?
+> > -				   DMA_RESV_USAGE_KERNEL :
+> > -				   DMA_RESV_USAGE_BOOKKEEP);
+> > -
+> > -		if (!xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
+> > -			dma_resv_add_fence(xe_vma_bo(vma)->ttm.base.resv,
+> > fence,
+> > -					   DMA_RESV_USAGE_BOOKKEEP);
+> > -		xe_pt_commit_bind(vma, entries, num_entries, rebind,
+> > -				  bind_pt_update.locked ? &deferred : NULL);
+> > -
+> > -		/* This vma is live (again?) now */
+> > -		vma->tile_present |= BIT(tile->id);
+> > -
+> > -		if (bind_pt_update.locked) {
+> > -			to_userptr_vma(vma)->userptr.initial_bind = true;
+> > -			up_read(&vm->userptr.notifier_lock);
+> > -			xe_bo_put_commit(&deferred);
+> > -		}
+> > -		if (!rebind && last_munmap_rebind &&
+> > -		    xe_vm_in_preempt_fence_mode(vm))
+> > -			xe_vm_queue_rebind_worker(vm);
+> > -	} else {
+> > -		kfree(rfence);
+> > -		kfree(ifence);
+> > -		if (bind_pt_update.locked)
+> > -			up_read(&vm->userptr.notifier_lock);
+> > -		xe_pt_abort_bind(vma, entries, num_entries);
+> > -	}
+> > -
+> > -	return fence;
+> > -
+> > -err:
+> > -	return ERR_PTR(err);
+> > -}
+> > -
+> >  struct xe_pt_stage_unbind_walk {
+> >  	/** @base: The pagewalk base-class. */
+> >  	struct xe_pt_walk base;
+> > @@ -1491,8 +1436,8 @@ xe_migrate_clear_pgtable_callback(struct
+> > xe_migrate_pt_update *pt_update,
+> >  				  void *ptr, u32 qword_ofs, u32 num_qwords,
+> >  				  const struct xe_vm_pgtable_update *update)
+> >  {
+> > -	struct xe_vma *vma = pt_update->vma;
+> > -	u64 empty = __xe_pt_empty_pte(tile, xe_vma_vm(vma), update->pt-
+> > >level);
+> > +	struct xe_vm *vm = pt_update->vops->vm;
+> > +	u64 empty = __xe_pt_empty_pte(tile, vm, update->pt->level);
+> >  	int i;
+> > 
+> >  	if (map && map->is_iomem)
+> > @@ -1536,144 +1481,443 @@ xe_pt_commit_unbind(struct xe_vma *vma,
+> >  	}
+> >  }
+> > 
+> > -static const struct xe_migrate_pt_update_ops unbind_ops = {
+> > -	.populate = xe_migrate_clear_pgtable_callback,
+> > +static void
+> > +xe_pt_update_ops_rfence_interval(struct xe_vm_pgtable_update_ops
+> > *pt_update_ops,
+> > +				 struct xe_vma *vma)
+> > +{
+> > +	u32 current_op = pt_update_ops->current_op;
+> > +	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops-
+> > >ops[current_op];
+> > +	int i, level = 0;
+> > +	u64 start, last;
+> > +
+> > +	for (i = 0; i < pt_op->num_entries; i++) {
+> > +		const struct xe_vm_pgtable_update *entry = &pt_op->entries[i];
+> > +
+> > +		if (entry->pt->level > level)
+> > +			level = entry->pt->level;
+> > +	}
+> > +
+> > +	/* Greedy (non-optimal) calculation but simple */
+> > +	start = ALIGN_DOWN(xe_vma_start(vma), 0x1ull << xe_pt_shift(level));
+> > +	last = ALIGN(xe_vma_end(vma), 0x1ull << xe_pt_shift(level)) - 1;
+> > +
+> > +	if (start < pt_update_ops->start)
+> > +		pt_update_ops->start = start;
+> > +	if (last > pt_update_ops->last)
+> > +		pt_update_ops->last = last;
+> > +}
+> > +
+> > +static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
+> > +			   struct xe_vm_pgtable_update_ops *pt_update_ops,
+> > +			   struct xe_vma *vma)
+> > +{
+> > +	u32 current_op = pt_update_ops->current_op;
+> > +	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops-
+> > >ops[current_op];
+> > +	struct llist_head *deferred = &pt_update_ops->deferred;
+> > +	int err;
+> > +
+> > +	xe_bo_assert_held(xe_vma_bo(vma));
+> > +
+> > +	vm_dbg(&xe_vma_vm(vma)->xe->drm,
+> > +	       "Preparing bind, with range [%llx...%llx)\n",
+> > +	       xe_vma_start(vma), xe_vma_end(vma) - 1);
+> > +
+> > +	pt_op->bind = true;
+> > +	pt_op->rebind = BIT(tile->id) & vma->tile_present;
+> > +
+> > +	err = xe_pt_prepare_bind(tile, vma, pt_op->entries,
+> > +				 &pt_op->num_entries);
+> > +	if (!err) {
+> > +		xe_tile_assert(tile, pt_op->num_entries <=
+> > +			       ARRAY_SIZE(pt_op->entries));
+> > +		xe_vm_dbg_print_entries(tile_to_xe(tile), pt_op->entries,
+> > +					pt_op->num_entries, true);
+> > +
+> > +		xe_pt_update_ops_rfence_interval(pt_update_ops, vma);
+> > +		++pt_update_ops->current_op;
+> > +		pt_update_ops->needs_userptr_lock |=
+> > xe_vma_is_userptr(vma);
+> > +
+> > +		/*
+> > +		 * If rebind, we have to invalidate TLB on !LR vms to invalidate
+> > +		 * cached PTEs point to freed memory. on LR vms this is done
+> > +		 * automatically when the context is re-enabled by the rebind
+> > +		 * worker, or in fault mode it was invalidated on PTE zapping.
+> > +		 *
+> > +		 * If !rebind, and scratch enabled VMs, there is a chance the
+> > +		 * scratch PTE is already cached in the TLB so it needs to be
+> > +		 * invalidated. on !LR VMs this is done in the ring ops
+> > +		 * preceding a batch, but on non-faulting LR, in particular on
+> > +		 * user-space batch buffer chaining, it needs to be done here.
+> > +		 */
+> > +		pt_update_ops->needs_invalidation |=
+> > +			(pt_op->rebind && xe_vm_in_lr_mode(vm) &&
+> > +			!vm->batch_invalidate_tlb) ||
+> > +			(!pt_op->rebind && vm->scratch_pt[tile->id] &&
+> > +			 xe_vm_in_preempt_fence_mode(vm));
+> > +
+> > +		/* FIXME: Don't commit right away */
+> > +		xe_pt_commit_bind(vma, pt_op->entries, pt_op->num_entries,
+> > +				  pt_op->rebind, deferred);
+> > +	}
+> > +
+> > +	return err;
+> > +}
+> > +
+> > +static int unbind_op_prepare(struct xe_tile *tile,
+> > +			     struct xe_vm_pgtable_update_ops *pt_update_ops,
+> > +			     struct xe_vma *vma)
+> > +{
+> > +	u32 current_op = pt_update_ops->current_op;
+> > +	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops-
+> > >ops[current_op];
+> > +	struct llist_head *deferred = &pt_update_ops->deferred;
+> > +
+> > +	xe_bo_assert_held(xe_vma_bo(vma));
+> > +
+> > +	vm_dbg(&xe_vma_vm(vma)->xe->drm,
+> > +	       "Preparing unbind, with range [%llx...%llx)\n",
+> > +	       xe_vma_start(vma), xe_vma_end(vma) - 1);
+> > +
+> > +	pt_op->bind = false;
+> > +	pt_op->rebind = false;
+> > +
+> > +	pt_op->num_entries = xe_pt_stage_unbind(tile, vma, pt_op->entries);
+> > +
+> > +	xe_vm_dbg_print_entries(tile_to_xe(tile), pt_op->entries,
+> > +				pt_op->num_entries, false);
+> > +	xe_pt_update_ops_rfence_interval(pt_update_ops, vma);
+> > +	++pt_update_ops->current_op;
+> > +	pt_update_ops->needs_userptr_lock |= xe_vma_is_userptr(vma);
+> > +	pt_update_ops->needs_invalidation = true;
+> > +
+> > +	/* FIXME: Don't commit right away */
+> > +	xe_pt_commit_unbind(vma, pt_op->entries, pt_op->num_entries,
+> > +			    deferred);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int op_prepare(struct xe_vm *vm,
+> > +		      struct xe_tile *tile,
+> > +		      struct xe_vm_pgtable_update_ops *pt_update_ops,
+> > +		      struct xe_vma_op *op)
+> > +{
+> > +	int err = 0;
+> > +
+> > +	xe_vm_assert_held(vm);
+> > +
+> > +	switch (op->base.op) {
+> > +	case DRM_GPUVA_OP_MAP:
+> > +		if (!op->map.immediate && xe_vm_in_fault_mode(vm))
+> > +			break;
+> > +
+> > +		err = bind_op_prepare(vm, tile, pt_update_ops, op->map.vma);
+> > +		pt_update_ops->wait_vm_kernel = true;
+> > +		break;
+> > +	case DRM_GPUVA_OP_REMAP:
+> > +		err = unbind_op_prepare(tile, pt_update_ops,
+> > +					gpuva_to_vma(op->base.remap.unmap-
+> > >va));
+> > +
+> > +		if (!err && op->remap.prev) {
+> > +			err = bind_op_prepare(vm, tile, pt_update_ops,
+> > +					      op->remap.prev);
+> > +			pt_update_ops->wait_vm_bookkeep = true;
+> > +		}
+> > +		if (!err && op->remap.next) {
+> > +			err = bind_op_prepare(vm, tile, pt_update_ops,
+> > +					      op->remap.next);
+> > +			pt_update_ops->wait_vm_bookkeep = true;
+> > +		}
+> > +		break;
+> > +	case DRM_GPUVA_OP_UNMAP:
+> > +		err = unbind_op_prepare(tile, pt_update_ops,
+> > +					gpuva_to_vma(op->base.unmap.va));
+> > +		break;
+> > +	case DRM_GPUVA_OP_PREFETCH:
+> > +		err = bind_op_prepare(vm, tile, pt_update_ops,
+> > +				      gpuva_to_vma(op->base.prefetch.va));
+> > +		pt_update_ops->wait_vm_kernel = true;
+> > +		break;
+> > +	default:
+> > +		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
+> > +	}
+> > +
+> > +	return err;
+> > +}
+> > +
+> > +static void
+> > +xe_pt_update_ops_init(struct xe_vm_pgtable_update_ops *pt_update_ops)
+> > +{
+> > +	init_llist_head(&pt_update_ops->deferred);
+> > +	pt_update_ops->start = ~0x0ull;
+> > +	pt_update_ops->last = 0x0ull;
+> > +}
+> > +
+> > +/**
+> > + * xe_pt_update_ops_prepare() - Prepare PT update operations
+> > + * @tile: Tile of PT update operations
+> > + * @vops: VMA operationa
+> > + *
+> > + * Prepare PT update operations which includes updating internal PT state,
+> > + * allocate memory for page tables, populate page table being pruned in, and
+> > + * create PT update operations for leaf insertion / removal.
+> > + *
+> > + * Return: 0 on success, negative error code on error.
+> > + */
+> > +int xe_pt_update_ops_prepare(struct xe_tile *tile, struct xe_vma_ops *vops)
+> > +{
+> > +	struct xe_vm_pgtable_update_ops *pt_update_ops =
+> > +		&vops->pt_update_ops[tile->id];
+> > +	struct xe_vma_op *op;
+> > +	int err;
+> > +
+> > +	lockdep_assert_held(&vops->vm->lock);
+> > +	xe_vm_assert_held(vops->vm);
+> > +
+> > +	xe_pt_update_ops_init(pt_update_ops);
+> > +
+> > +	list_for_each_entry(op, &vops->list, link) {
+> > +		err = op_prepare(vops->vm, tile, pt_update_ops, op);
+> > +
+> > +		if (err)
+> > +			return err;
+> > +	}
+> > +
+> > +	xe_tile_assert(tile, pt_update_ops->current_op ==
+> > +		       pt_update_ops->num_ops);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static void bind_op_commit(struct xe_vm *vm, struct xe_tile *tile,
+> > +			   struct xe_vm_pgtable_update_ops *pt_update_ops,
+> > +			   struct xe_vma *vma, struct dma_fence *fence)
+> > +{
+> > +	if (!xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
+> > +		dma_resv_add_fence(xe_vma_bo(vma)->ttm.base.resv, fence,
+> > +				   pt_update_ops->wait_vm_bookkeep ?
+> > +				   DMA_RESV_USAGE_KERNEL :
+> > +				   DMA_RESV_USAGE_BOOKKEEP);
+> > +	vma->tile_present |= BIT(tile->id);
+> > +	if (xe_vma_is_userptr(vma)) {
+> > +		lockdep_assert_held_read(&vm->userptr.notifier_lock);
+> > +		to_userptr_vma(vma)->userptr.initial_bind = true;
+> > +	}
+> > +
+> > +	/*
+> > +	 * Kick rebind worker if this bind triggers preempt fences and not in
+> > +	 * the rebind worker
+> > +	 */
+> > +	if (pt_update_ops->wait_vm_bookkeep &&
+> > +	    xe_vm_in_preempt_fence_mode(vm) &&
+> > +	    !current->mm)
+> > +		xe_vm_queue_rebind_worker(vm);
+> > +}
+> > +
+> > +static void unbind_op_commit(struct xe_vm *vm, struct xe_tile *tile,
+> > +			     struct xe_vm_pgtable_update_ops *pt_update_ops,
+> > +			     struct xe_vma *vma, struct dma_fence *fence)
+> > +{
+> > +	if (!xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
+> > +		dma_resv_add_fence(xe_vma_bo(vma)->ttm.base.resv, fence,
+> > +				   pt_update_ops->wait_vm_bookkeep ?
+> > +				   DMA_RESV_USAGE_KERNEL :
+> > +				   DMA_RESV_USAGE_BOOKKEEP);
+> > +	vma->tile_present &= ~BIT(tile->id);
+> > +	if (!vma->tile_present) {
+> > +		list_del_init(&vma->combined_links.rebind);
+> > +		if (xe_vma_is_userptr(vma)) {
+> > +			lockdep_assert_held_read(&vm->userptr.notifier_lock);
+> > +
+> > +			spin_lock(&vm->userptr.invalidated_lock);
+> > +			list_del_init(&to_userptr_vma(vma)-
+> > >userptr.invalidate_link);
+> > +			spin_unlock(&vm->userptr.invalidated_lock);
+> > +		}
+> > +	}
+> > +}
+> > +
+> > +static void op_commit(struct xe_vm *vm,
+> > +		      struct xe_tile *tile,
+> > +		      struct xe_vm_pgtable_update_ops *pt_update_ops,
+> > +		      struct xe_vma_op *op, struct dma_fence *fence)
+> > +{
+> > +	xe_vm_assert_held(vm);
+> > +
+> > +	switch (op->base.op) {
+> > +	case DRM_GPUVA_OP_MAP:
+> > +		if (!op->map.immediate && xe_vm_in_fault_mode(vm))
+> > +			break;
+> > +
+> > +		bind_op_commit(vm, tile, pt_update_ops, op->map.vma, fence);
+> > +		break;
+> > +	case DRM_GPUVA_OP_REMAP:
+> > +		unbind_op_commit(vm, tile, pt_update_ops,
+> > +				 gpuva_to_vma(op->base.remap.unmap->va),
+> > fence);
+> > +
+> > +		if (op->remap.prev)
+> > +			bind_op_commit(vm, tile, pt_update_ops, op-
+> > >remap.prev,
+> > +				       fence);
+> > +		if (op->remap.next)
+> > +			bind_op_commit(vm, tile, pt_update_ops, op-
+> > >remap.next,
+> > +				       fence);
+> > +		break;
+> > +	case DRM_GPUVA_OP_UNMAP:
+> > +		unbind_op_commit(vm, tile, pt_update_ops,
+> > +				 gpuva_to_vma(op->base.unmap.va), fence);
+> > +		break;
+> > +	case DRM_GPUVA_OP_PREFETCH:
+> > +		bind_op_commit(vm, tile, pt_update_ops,
+> > +			       gpuva_to_vma(op->base.prefetch.va), fence);
+> > +		break;
+> > +	default:
+> > +		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
+> > +	}
+> > +}
+> > +
+> > +static const struct xe_migrate_pt_update_ops migrate_ops = {
+> > +	.populate = xe_vm_populate_pgtable,
+> > +	.clear = xe_migrate_clear_pgtable_callback,
+> >  	.pre_commit = xe_pt_pre_commit,
+> >  };
+> > 
+> > -static const struct xe_migrate_pt_update_ops userptr_unbind_ops = {
+> > -	.populate = xe_migrate_clear_pgtable_callback,
+> > +static const struct xe_migrate_pt_update_ops userptr_migrate_ops = {
+> > +	.populate = xe_vm_populate_pgtable,
+> > +	.clear = xe_migrate_clear_pgtable_callback,
+> >  	.pre_commit = xe_pt_userptr_pre_commit,
+> >  };
+> > 
+> >  /**
+> > - * __xe_pt_unbind_vma() - Disconnect and free a page-table tree for the vma
+> > - * address range.
+> > - * @tile: The tile to unbind for.
+> > - * @vma: The vma to unbind.
+> > - * @q: The exec_queue with which to do pipelined page-table updates.
+> > - * @syncs: Entries to sync on before disconnecting the tree to be destroyed.
+> > - * @num_syncs: Number of @sync entries.
+> > + * xe_pt_update_ops_run() - Run PT update operations
+> > + * @tile: Tile of PT update operations
+> > + * @vops: VMA operationa
+> >   *
+> > - * This function builds a the xe_vm_pgtable_update entries abstracting the
+> > - * operations needed to detach the page-table tree to be destroyed from the
+> > - * man vm tree.
+> > - * It then takes the relevant locks and submits the operations for
+> > - * pipelined detachment of the gpu page-table from  the vm main tree,
+> > - * (which can be done either by the cpu and the GPU), Finally it frees the
+> > - * detached page-table tree.
+> > + * Run PT update operations which includes committing internal PT state
+> > changes,
+> > + * creating job for PT update operations for leaf insertion / removal, and
+> > + * installing job fence in various places.
+> >   *
+> > - * Return: A valid dma-fence representing the pipelined detachment operation
+> > - * on success, an error pointer on error.
+> > + * Return: fence on success, negative ERR_PTR on error.
+> >   */
+> >  struct dma_fence *
+> > -__xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct
+> > xe_exec_queue *q,
+> > -		   struct xe_sync_entry *syncs, u32 num_syncs)
+> > +xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
+> >  {
+> > -	struct xe_vm_pgtable_update entries[XE_VM_MAX_LEVEL * 2 + 1];
+> > -	struct xe_pt_migrate_pt_update unbind_pt_update = {
+> > -		.base = {
+> > -			.ops = xe_vma_is_userptr(vma) ? &userptr_unbind_ops :
+> > -			&unbind_ops,
+> > -			.vma = vma,
+> > -			.tile_id = tile->id,
+> > -		},
+> > -	};
+> > -	struct xe_vm *vm = xe_vma_vm(vma);
+> > -	u32 num_entries;
+> > -	struct dma_fence *fence = NULL;
+> > -	struct invalidation_fence *ifence;
+> > +	struct xe_vm *vm = vops->vm;
+> > +	struct xe_vm_pgtable_update_ops *pt_update_ops =
+> > +		&vops->pt_update_ops[tile->id];
+> > +	struct dma_fence *fence;
+> > +	struct invalidation_fence *ifence = NULL;
+> >  	struct xe_range_fence *rfence;
+> > +	struct xe_vma_op *op;
+> > +	int err = 0;
+> > +	struct xe_migrate_pt_update update = {
+> > +		.ops = pt_update_ops->needs_userptr_lock ?
+> > +			&userptr_migrate_ops :
+> > +			&migrate_ops,
+> > +		.vops = vops,
+> > +		.tile_id = tile->id
+> > +	};
+> > 
+> > -	LLIST_HEAD(deferred);
+> > -
+> > -	xe_bo_assert_held(xe_vma_bo(vma));
+> > +	lockdep_assert_held(&vm->lock);
+> >  	xe_vm_assert_held(vm);
+> > 
+> > -	vm_dbg(&xe_vma_vm(vma)->xe->drm,
+> > -	       "Preparing unbind, with range [%llx...%llx) engine %p.\n",
+> > -	       xe_vma_start(vma), xe_vma_end(vma), q);
+> > -
+> > -	num_entries = xe_pt_stage_unbind(tile, vma, entries);
+> > -	xe_tile_assert(tile, num_entries <= ARRAY_SIZE(entries));
+> > -
+> > -	xe_vm_dbg_print_entries(tile_to_xe(tile), entries, num_entries);
+> > -	xe_pt_calc_rfence_interval(vma, &unbind_pt_update, entries,
+> > -				   num_entries);
+> > -
+> > -	ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
+> > -	if (!ifence)
+> > -		return ERR_PTR(-ENOMEM);
+> > +	if (pt_update_ops->needs_invalidation) {
+> > +		ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
+> > +		if (!ifence)
+> > +			return ERR_PTR(-ENOMEM);
+> > +	}
+> > 
+> >  	rfence = kzalloc(sizeof(*rfence), GFP_KERNEL);
+> >  	if (!rfence) {
+> > -		kfree(ifence);
+> > -		return ERR_PTR(-ENOMEM);
+> > +		err = -ENOMEM;
+> > +		goto free_ifence;
+> >  	}
+> > 
+> > -	/*
+> > -	 * Even if we were already evicted and unbind to destroy, we need to
+> > -	 * clear again here. The eviction may have updated pagetables at a
+> > -	 * lower level, because it needs to be more conservative.
+> > -	 */
+> > -	fence = xe_migrate_update_pgtables(tile->migrate,
+> > -					   vm, NULL, q ? q :
+> > -					   vm->q[tile->id],
+> > -					   entries, num_entries,
+> > -					   syncs, num_syncs,
+> > -					   &unbind_pt_update.base);
+> > -	if (!IS_ERR(fence)) {
+> > -		int err;
+> > -
+> > -		err = xe_range_fence_insert(&vm->rftree[tile->id], rfence,
+> > -					    &xe_range_fence_kfree_ops,
+> > -					    unbind_pt_update.base.start,
+> > -					    unbind_pt_update.base.last, fence);
+> > -		if (err)
+> > -			dma_fence_wait(fence, false);
+> > +	fence = xe_migrate_update_pgtables(tile->migrate, &update);
+> > +	if (IS_ERR(fence)) {
+> > +		err = PTR_ERR(fence);
+> > +		goto free_rfence;
+> > +	}
+> > +
+> > +	err = xe_range_fence_insert(&vm->rftree[tile->id], rfence,
+> > +				    &xe_range_fence_kfree_ops,
+> > +				    pt_update_ops->start,
+> > +				    pt_update_ops->last, fence);
+> > +	if (err)
+> > +		dma_fence_wait(fence, false);
+> > 
+> > -		/* TLB invalidation must be done before signaling unbind */
+> > +	/* tlb invalidation must be done before signaling rebind */
+> > +	if (ifence) {
+> >  		err = invalidation_fence_init(tile->primary_gt, ifence, fence,
+> > -					      xe_vma_start(vma),
+> > -					      xe_vma_end(vma),
+> > -					      xe_vma_vm(vma)->usm.asid);
+> > -		if (err) {
+> > -			dma_fence_put(fence);
+> > -			kfree(ifence);
+> > -			return ERR_PTR(err);
+> > -		}
+> > +					      pt_update_ops->start,
+> > +					      pt_update_ops->last,
+> > +					      vm->usm.asid);
+> > +		if (err)
+> > +			goto put_fence;
+> >  		fence = &ifence->base.base;
+> > +	}
+> > 
+> > -		/* add shared fence now for pagetable delayed destroy */
+> > -		dma_resv_add_fence(xe_vm_resv(vm), fence,
+> > -				   DMA_RESV_USAGE_BOOKKEEP);
+> > +	dma_resv_add_fence(xe_vm_resv(vm), fence,
+> > +			   pt_update_ops->wait_vm_bookkeep ?
+> > +			   DMA_RESV_USAGE_KERNEL :
+> > +			   DMA_RESV_USAGE_BOOKKEEP);
+> > 
+> > -		/* This fence will be installed by caller when doing eviction */
+> > -		if (!xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
+> > -			dma_resv_add_fence(xe_vma_bo(vma)->ttm.base.resv,
+> > fence,
+> > -					   DMA_RESV_USAGE_BOOKKEEP);
+> > -		xe_pt_commit_unbind(vma, entries, num_entries,
+> > -				    unbind_pt_update.locked ? &deferred : NULL);
+> > -		vma->tile_present &= ~BIT(tile->id);
+> > -	} else {
+> > -		kfree(rfence);
+> > -		kfree(ifence);
+> > -	}
+> > +	list_for_each_entry(op, &vops->list, link)
+> > +		op_commit(vops->vm, tile, pt_update_ops, op, fence);
+> > 
+> > -	if (!vma->tile_present)
+> > -		list_del_init(&vma->combined_links.rebind);
+> > +	if (pt_update_ops->needs_userptr_lock)
+> > +		up_read(&vm->userptr.notifier_lock);
+> > 
+> > -	if (unbind_pt_update.locked) {
+> > -		xe_tile_assert(tile, xe_vma_is_userptr(vma));
+> > +	return fence;
+> > 
+> > -		if (!vma->tile_present) {
+> > -			spin_lock(&vm->userptr.invalidated_lock);
+> > -			list_del_init(&to_userptr_vma(vma)-
+> > >userptr.invalidate_link);
+> > -			spin_unlock(&vm->userptr.invalidated_lock);
+> > -		}
+> > +put_fence:
+> > +	if (pt_update_ops->needs_userptr_lock)
+> >  		up_read(&vm->userptr.notifier_lock);
+> > -		xe_bo_put_commit(&deferred);
+> > +	dma_fence_put(fence);
+> > +free_rfence:
+> > +	kfree(rfence);
+> > +free_ifence:
+> > +	kfree(ifence);
+> > +
+> > +	return ERR_PTR(err);
+> > +}
+> > +
+> > +/**
+> > + * xe_pt_update_ops_fini() - Finish PT update operations
+> > + * @tile: Tile of PT update operations
+> > + * @vops: VMA operations
+> > + *
+> > + * Finish PT update operations by committing to destroy page table memory
+> > + */
+> > +void xe_pt_update_ops_fini(struct xe_tile *tile, struct xe_vma_ops *vops)
+> > +{
+> > +	struct xe_vm_pgtable_update_ops *pt_update_ops =
+> > +		&vops->pt_update_ops[tile->id];
+> > +	int i;
+> > +
+> > +	lockdep_assert_held(&vops->vm->lock);
+> > +	xe_vm_assert_held(vops->vm);
+> > +
+> > +	/* FIXME: Not 100% correct */
+> > +	for (i = 0; i < pt_update_ops->num_ops; ++i) {
+> > +		struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops-
+> > >ops[i];
+> > +
+> > +		if (pt_op->bind)
+> > +			xe_pt_free_bind(pt_op->entries, pt_op->num_entries);
+> >  	}
+> > +	xe_bo_put_commit(&vops->pt_update_ops[tile->id].deferred);
+> > +}
+> > 
+> > -	return fence;
+> > +/**
+> > + * xe_pt_update_ops_abort() - Abort PT update operations
+> > + * @tile: Tile of PT update operations
+> > + * @vops: VMA operationa
+> > + *
+> > + *  Abort PT update operations by unwinding internal PT state
+> > + */
+> > +void xe_pt_update_ops_abort(struct xe_tile *tile, struct xe_vma_ops *vops)
+> > +{
+> > +	lockdep_assert_held(&vops->vm->lock);
+> > +	xe_vm_assert_held(vops->vm);
+> > +
+> > +	/* FIXME: Just kill VM for now + cleanup PTs */
+> > +	xe_bo_put_commit(&vops->pt_update_ops[tile->id].deferred);
+> > +	xe_vm_kill(vops->vm, false);
+> >  }
+> > diff --git a/drivers/gpu/drm/xe/xe_pt.h b/drivers/gpu/drm/xe/xe_pt.h
+> > index 71a4fbfcff43..cbf8170d89cc 100644
+> > --- a/drivers/gpu/drm/xe/xe_pt.h
+> > +++ b/drivers/gpu/drm/xe/xe_pt.h
+> > @@ -17,6 +17,7 @@ struct xe_sync_entry;
+> >  struct xe_tile;
+> >  struct xe_vm;
+> >  struct xe_vma;
+> > +struct xe_vma_ops;
+> > 
+> >  /* Largest huge pte is currently 1GiB. May become device dependent. */
+> >  #define MAX_HUGEPTE_LEVEL 2
+> > @@ -34,6 +35,12 @@ void xe_pt_populate_empty(struct xe_tile *tile, struct
+> > xe_vm *vm,
+> > 
+> >  void xe_pt_destroy(struct xe_pt *pt, u32 flags, struct llist_head *deferred);
+> > 
+> > +int xe_pt_update_ops_prepare(struct xe_tile *tile, struct xe_vma_ops *vops);
+> > +struct dma_fence *xe_pt_update_ops_run(struct xe_tile *tile,
+> > +				       struct xe_vma_ops *vops);
+> > +void xe_pt_update_ops_fini(struct xe_tile *tile, struct xe_vma_ops *vops);
+> > +void xe_pt_update_ops_abort(struct xe_tile *tile, struct xe_vma_ops *vops);
+> > +
+> >  struct dma_fence *
+> >  __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct
+> > xe_exec_queue *q,
+> >  		 struct xe_sync_entry *syncs, u32 num_syncs,
+> > diff --git a/drivers/gpu/drm/xe/xe_pt_types.h
+> > b/drivers/gpu/drm/xe/xe_pt_types.h
+> > index 2093150f461e..16252f1be055 100644
+> > --- a/drivers/gpu/drm/xe/xe_pt_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_pt_types.h
+> > @@ -86,4 +86,38 @@ struct xe_vm_pgtable_update_op {
+> >  	bool rebind;
+> >  };
+> > 
+> > +/** struct xe_vm_pgtable_update_ops: page table update operations */
+> > +struct xe_vm_pgtable_update_ops {
+> > +	/** @ops: operations */
+> > +	struct xe_vm_pgtable_update_op *ops;
+> > +	/** @deferred: deferred list to destroy PT entries */
+> > +	struct llist_head deferred;
+> > +	/** @q: exec queue for PT operations */
+> > +	struct xe_exec_queue *q;
+> > +	/** @start: start address of ops */
+> > +	u64 start;
+> > +	/** @last: last address of ops */
+> > +	u64 last;
+> > +	/** @num_ops: number of operations */
+> > +	u32 num_ops;
+> > +	/** @current_op: current operations */
+> > +	u32 current_op;
+> > +	/** @needs_userptr_lock: Needs userptr lock */
+> > +	bool needs_userptr_lock;
+> > +	/** @needs_invalidation: Needs invalidation */
+> > +	bool needs_invalidation;
+> > +	/**
+> > +	 * @wait_vm_bookkeep: PT operations need to wait until VM is idle
+> > +	 * (bookkeep dma-resv slots are idle) and stage all future VM activity
+> > +	 * behind these operations (install PT operations into VM kernel
+> > +	 * dma-resv slot).
+> > +	 */
+> > +	bool wait_vm_bookkeep;
+> > +	/**
+> > +	 * @wait_vm_kernel: PT operations need to wait until VM kernel dma-
+> > resv
+> > +	 * slots are idle.
+> > +	 */
+> > +	bool wait_vm_kernel;
+> > +};
+> > +
+> >  #endif
+> > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> > index 72e9bdab79d5..47658465b735 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm.c
+> > +++ b/drivers/gpu/drm/xe/xe_vm.c
+> > @@ -413,7 +413,7 @@ int __xe_vm_userptr_needs_repin(struct xe_vm *vm)
+> > 
+> >  #define XE_VM_REBIND_RETRY_TIMEOUT_MS 1000
+> > 
+> > -static void xe_vm_kill(struct xe_vm *vm, bool unlocked)
+> > +void xe_vm_kill(struct xe_vm *vm, bool unlocked)
+> >  {
+> >  	struct xe_exec_queue *q;
+> > 
+> > @@ -577,13 +577,9 @@ static void preempt_rebind_work_func(struct
+> > work_struct *w)
+> >  		err = PTR_ERR(rebind_fence);
+> >  		goto out_unlock;
+> >  	}
+> > +	dma_fence_put(rebind_fence);
+> > 
+> > -	if (rebind_fence) {
+> > -		dma_fence_wait(rebind_fence, false);
+> > -		dma_fence_put(rebind_fence);
+> > -	}
+> > -
+> > -	/* Wait on munmap style VM unbinds */
+> > +	/* Wait on rebinds */
+> >  	wait = dma_resv_wait_timeout(xe_vm_resv(vm),
+> >  				     DMA_RESV_USAGE_KERNEL,
+> >  				     false, MAX_SCHEDULE_TIMEOUT);
+> > @@ -759,11 +755,35 @@ int xe_vm_userptr_check_repin(struct xe_vm *vm)
+> >   * xe_vm_populate_dummy_rebind() - Populate dummy rebind VMA ops
+> >   * @vm: The VM.
+> >   * @vma: VMA to populate dummy VMA ops
+> > + * @tile_mask: tile mask for VMA ops
+> >   *
+> >   * Populate dummy VMA ops which can be used to issue a rebind for the VMA
+> >   */
+> > -void xe_vm_populate_dummy_rebind(struct xe_vm *vm, struct xe_vma *vma)
+> > +void xe_vm_populate_dummy_rebind(struct xe_vm *vm, struct xe_vma *vma,
+> > +				 u8 tile_mask)
+> >  {
+> > +	int i;
+> > +
+> > +	for (i = 0; i < XE_MAX_TILES_PER_DEVICE; ++i) {
+> > +		if (BIT(i) & tile_mask) {
+> > +			struct xe_vm_pgtable_update_op *pt_op =
+> > +				vm->dummy_ops.vops.pt_update_ops[i].ops;
+> > +
+> > +			memset(&vm->dummy_ops.vops.pt_update_ops[i], 0,
+> > +			       sizeof(vm->dummy_ops.vops.pt_update_ops[i]));
+> > +			vm->dummy_ops.vops.pt_update_ops[i].ops = pt_op;
+> > +			vm->dummy_ops.vops.pt_update_ops[i].num_ops = 1;
+> > +
+> > +			/*
+> > +			 * Wait for VM to be idle / schedule execs + resume
+> > +			 * behind rebinds
+> > +			 */
+> > +			vm-
+> > >dummy_ops.vops.pt_update_ops[i].wait_vm_bookkeep =
+> > +				true;
+> > +		} else {
+> > +			vm->dummy_ops.vops.pt_update_ops[i].num_ops = 0;
+> > +		}
+> > +	}
+> >  	vm->dummy_ops.op.base.op = DRM_GPUVA_OP_MAP;
+> >  	vm->dummy_ops.op.base.map.va.addr = vma->gpuva.va.addr;
+> >  	vm->dummy_ops.op.base.map.va.range = vma->gpuva.va.range;
+> > @@ -797,7 +817,7 @@ struct dma_fence *xe_vm_rebind(struct xe_vm *vm,
+> > bool rebind_worker)
+> >  		else
+> >  			trace_xe_vma_rebind_exec(vma);
+> > 
+> > -		xe_vm_populate_dummy_rebind(vm, vma);
+> > +		xe_vm_populate_dummy_rebind(vm, vma, vma->tile_present);
+> >  		fence = xe_vm_ops_execute(vm, &vm->dummy_ops.vops);
+> >  		if (IS_ERR(fence))
+> >  			return fence;
+> > @@ -1653,7 +1673,6 @@ static void vm_destroy_work_func(struct work_struct
+> > *w)
+> >  		XE_WARN_ON(vm->pt_root[id]);
+> > 
+> >  	trace_xe_vm_free(vm);
+> > -	dma_fence_put(vm->rebind_fence);
+> >  	xe_vma_ops_fini(&vm->dummy_ops.vops);
+> >  	kfree(vm);
+> >  }
+> > @@ -1691,147 +1710,6 @@ to_wait_exec_queue(struct xe_vm *vm, struct
+> > xe_exec_queue *q)
+> >  	return q ? q : vm->q[0];
+> >  }
+> > 
+> > -static struct dma_fence *
+> > -xe_vm_unbind_vma(struct xe_vma *vma, struct xe_exec_queue *q,
+> > -		 struct xe_sync_entry *syncs, u32 num_syncs,
+> > -		 bool first_op, bool last_op)
+> > -{
+> > -	struct xe_vm *vm = xe_vma_vm(vma);
+> > -	struct xe_exec_queue *wait_exec_queue = to_wait_exec_queue(vm,
+> > q);
+> > -	struct xe_tile *tile;
+> > -	struct dma_fence *fence = NULL;
+> > -	struct dma_fence **fences = NULL;
+> > -	struct dma_fence_array *cf = NULL;
+> > -	int cur_fence = 0;
+> > -	int number_tiles = hweight8(vma->tile_present);
+> > -	int err;
+> > -	u8 id;
+> > -
+> > -	trace_xe_vma_unbind(vma);
+> > -
+> > -	if (number_tiles > 1) {
+> > -		fences = kmalloc_array(number_tiles, sizeof(*fences),
+> > -				       GFP_KERNEL);
+> > -		if (!fences)
+> > -			return ERR_PTR(-ENOMEM);
+> > -	}
+> > -
+> > -	for_each_tile(tile, vm->xe, id) {
+> > -		if (!(vma->tile_present & BIT(id)))
+> > -			goto next;
+> > -
+> > -		fence = __xe_pt_unbind_vma(tile, vma, q ? q : vm->q[id],
+> > -					   first_op ? syncs : NULL,
+> > -					   first_op ? num_syncs : 0);
+> > -		if (IS_ERR(fence)) {
+> > -			err = PTR_ERR(fence);
+> > -			goto err_fences;
+> > -		}
+> > -
+> > -		if (fences)
+> > -			fences[cur_fence++] = fence;
+> > -
+> > -next:
+> > -		if (q && vm->pt_root[id] && !list_empty(&q->multi_gt_list))
+> > -			q = list_next_entry(q, multi_gt_list);
+> > -	}
+> > -
+> > -	if (fences) {
+> > -		cf = dma_fence_array_create(number_tiles, fences,
+> > -					    vm->composite_fence_ctx,
+> > -					    vm->composite_fence_seqno++,
+> > -					    false);
+> > -		if (!cf) {
+> > -			--vm->composite_fence_seqno;
+> > -			err = -ENOMEM;
+> > -			goto err_fences;
+> > -		}
+> > -	}
+> > -
+> > -	fence = cf ? &cf->base : !fence ?
+> > -		xe_exec_queue_last_fence_get(wait_exec_queue, vm) : fence;
+> > -
+> > -	return fence;
+> > -
+> > -err_fences:
+> > -	if (fences) {
+> > -		while (cur_fence)
+> > -			dma_fence_put(fences[--cur_fence]);
+> > -		kfree(fences);
+> > -	}
+> > -
+> > -	return ERR_PTR(err);
+> > -}
+> > -
+> > -static struct dma_fence *
+> > -xe_vm_bind_vma(struct xe_vma *vma, struct xe_exec_queue *q,
+> > -	       struct xe_sync_entry *syncs, u32 num_syncs,
+> > -	       u8 tile_mask, bool first_op, bool last_op)
+> > -{
+> > -	struct xe_tile *tile;
+> > -	struct dma_fence *fence;
+> > -	struct dma_fence **fences = NULL;
+> > -	struct dma_fence_array *cf = NULL;
+> > -	struct xe_vm *vm = xe_vma_vm(vma);
+> > -	int cur_fence = 0;
+> > -	int number_tiles = hweight8(vma->tile_mask);
+> > -	int err;
+> > -	u8 id;
+> > -
+> > -	trace_xe_vma_bind(vma);
+> > -
+> > -	if (number_tiles > 1) {
+> > -		fences = kmalloc_array(number_tiles, sizeof(*fences),
+> > -				       GFP_KERNEL);
+> > -		if (!fences)
+> > -			return ERR_PTR(-ENOMEM);
+> > -	}
+> > -
+> > -	for_each_tile(tile, vm->xe, id) {
+> > -		if (!(tile_mask & BIT(id)))
+> > -			goto next;
+> > -
+> > -		fence = __xe_pt_bind_vma(tile, vma, q ? q : vm->q[id],
+> > -					 first_op ? syncs : NULL,
+> > -					 first_op ? num_syncs : 0,
+> > -					 vma->tile_present & BIT(id));
+> > -		if (IS_ERR(fence)) {
+> > -			err = PTR_ERR(fence);
+> > -			goto err_fences;
+> > -		}
+> > -
+> > -		if (fences)
+> > -			fences[cur_fence++] = fence;
+> > -
+> > -next:
+> > -		if (q && vm->pt_root[id] && !list_empty(&q->multi_gt_list))
+> > -			q = list_next_entry(q, multi_gt_list);
+> > -	}
+> > -
+> > -	if (fences) {
+> > -		cf = dma_fence_array_create(number_tiles, fences,
+> > -					    vm->composite_fence_ctx,
+> > -					    vm->composite_fence_seqno++,
+> > -					    false);
+> > -		if (!cf) {
+> > -			--vm->composite_fence_seqno;
+> > -			err = -ENOMEM;
+> > -			goto err_fences;
+> > -		}
+> > -	}
+> > -
+> > -	return cf ? &cf->base : fence;
+> > -
+> > -err_fences:
+> > -	if (fences) {
+> > -		while (cur_fence)
+> > -			dma_fence_put(fences[--cur_fence]);
+> > -		kfree(fences);
+> > -	}
+> > -
+> > -	return ERR_PTR(err);
+> > -}
+> > -
+> >  static struct xe_user_fence *
+> >  find_ufence_get(struct xe_sync_entry *syncs, u32 num_syncs)
+> >  {
+> > @@ -1847,47 +1725,6 @@ find_ufence_get(struct xe_sync_entry *syncs, u32
+> > num_syncs)
+> >  	return NULL;
+> >  }
+> > 
+> > -static struct dma_fence *
+> > -xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma, struct xe_exec_queue *q,
+> > -	   struct xe_bo *bo, struct xe_sync_entry *syncs, u32 num_syncs,
+> > -	   u8 tile_mask, bool immediate, bool first_op, bool last_op)
+> > -{
+> > -	struct dma_fence *fence;
+> > -	struct xe_exec_queue *wait_exec_queue = to_wait_exec_queue(vm,
+> > q);
+> > -
+> > -	xe_vm_assert_held(vm);
+> > -	xe_bo_assert_held(bo);
+> > -
+> > -	if (immediate) {
+> > -		fence = xe_vm_bind_vma(vma, q, syncs, num_syncs, tile_mask,
+> > -				       first_op, last_op);
+> > -		if (IS_ERR(fence))
+> > -			return fence;
+> > -	} else {
+> > -		xe_assert(vm->xe, xe_vm_in_fault_mode(vm));
+> > -		fence = xe_exec_queue_last_fence_get(wait_exec_queue, vm);
+> > -	}
+> > -
+> > -	return fence;
+> > -}
+> > -
+> > -static struct dma_fence *
+> > -xe_vm_unbind(struct xe_vm *vm, struct xe_vma *vma,
+> > -	     struct xe_exec_queue *q, struct xe_sync_entry *syncs,
+> > -	     u32 num_syncs, bool first_op, bool last_op)
+> > -{
+> > -	struct dma_fence *fence;
+> > -
+> > -	xe_vm_assert_held(vm);
+> > -	xe_bo_assert_held(xe_vma_bo(vma));
+> > -
+> > -	fence = xe_vm_unbind_vma(vma, q, syncs, num_syncs, first_op,
+> > last_op);
+> > -	if (IS_ERR(fence))
+> > -		return fence;
+> > -
+> > -	return fence;
+> > -}
+> > -
+> >  #define ALL_DRM_XE_VM_CREATE_FLAGS
+> > (DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE | \
+> >  				    DRM_XE_VM_CREATE_FLAG_LR_MODE | \
+> >  				    DRM_XE_VM_CREATE_FLAG_FAULT_MODE)
+> > @@ -2028,21 +1865,6 @@ static const u32 region_to_mem_type[] = {
+> >  	XE_PL_VRAM1,
+> >  };
+> > 
+> > -static struct dma_fence *
+> > -xe_vm_prefetch(struct xe_vm *vm, struct xe_vma *vma,
+> > -	       struct xe_exec_queue *q, struct xe_sync_entry *syncs,
+> > -	       u32 num_syncs, bool first_op, bool last_op)
+> > -{
+> > -	struct xe_exec_queue *wait_exec_queue = to_wait_exec_queue(vm,
+> > q);
+> > -
+> > -	if (vma->tile_mask != (vma->tile_present & ~vma->usm.tile_invalidated))
+> > {
+> > -		return xe_vm_bind(vm, vma, q, xe_vma_bo(vma), syncs,
+> > num_syncs,
+> > -				  vma->tile_mask, true, first_op, last_op);
+> > -	} else {
+> > -		return xe_exec_queue_last_fence_get(wait_exec_queue, vm);
+> > -	}
+> > -}
+> > -
+> >  static void prep_vma_destroy(struct xe_vm *vm, struct xe_vma *vma,
+> >  			     bool post_commit)
+> >  {
+> > @@ -2334,7 +2156,6 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm,
+> > struct xe_exec_queue *q,
+> >  				   struct xe_vma_ops *vops, bool last)
+> >  {
+> >  	struct xe_device *xe = vm->xe;
+> > -	struct xe_vma_op *last_op = NULL;
+> >  	struct drm_gpuva_op *__op;
+> >  	struct xe_tile *tile;
+> >  	u8 id, tile_mask = 0;
+> > @@ -2348,19 +2169,10 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm
+> > *vm, struct xe_exec_queue *q,
+> >  	drm_gpuva_for_each_op(__op, ops) {
+> >  		struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
+> >  		struct xe_vma *vma;
+> > -		bool first = list_empty(&vops->list);
+> >  		unsigned int flags = 0;
+> > 
+> >  		INIT_LIST_HEAD(&op->link);
+> >  		list_add_tail(&op->link, &vops->list);
+> > -
+> > -		if (first) {
+> > -			op->flags |= XE_VMA_OP_FIRST;
+> > -			op->num_syncs = num_syncs;
+> > -			op->syncs = syncs;
+> > -		}
+> > -
+> > -		op->q = q;
+> >  		op->tile_mask = tile_mask;
+> > 
+> >  		switch (op->base.op) {
+> > @@ -2471,196 +2283,21 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm
+> > *vm, struct xe_exec_queue *q,
+> >  		}
+> >  		case DRM_GPUVA_OP_UNMAP:
+> >  		case DRM_GPUVA_OP_PREFETCH:
+> > +			/* FIXME: Need to skip some prefetch ops */
+> >  			xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
+> >  			break;
+> >  		default:
+> >  			drm_warn(&vm->xe->drm, "NOT POSSIBLE");
+> >  		}
+> > 
+> > -		last_op = op;
+> > -
+> >  		err = xe_vma_op_commit(vm, op);
+> >  		if (err)
+> >  			return err;
+> >  	}
+> > 
+> > -	/* FIXME: Unhandled corner case */
+> > -	XE_WARN_ON(!last_op && last && !list_empty(&vops->list));
+> > -
+> > -	if (!last_op)
+> > -		return 0;
+> > -
+> > -	if (last) {
+> > -		last_op->flags |= XE_VMA_OP_LAST;
+> > -		last_op->num_syncs = num_syncs;
+> > -		last_op->syncs = syncs;
+> > -	}
+> > -
+> >  	return 0;
+> >  }
+> > 
+> > -static struct dma_fence *op_execute(struct xe_vm *vm, struct xe_vma *vma,
+> > -				    struct xe_vma_op *op)
+> > -{
+> > -	struct dma_fence *fence = NULL;
+> > -
+> > -	lockdep_assert_held(&vm->lock);
+> > -	xe_vm_assert_held(vm);
+> > -	xe_bo_assert_held(xe_vma_bo(vma));
+> > -
+> > -	switch (op->base.op) {
+> > -	case DRM_GPUVA_OP_MAP:
+> > -		/* FIXME: Override vma->tile_mask for page faults */
+> > -		fence = xe_vm_bind(vm, vma, op->q, xe_vma_bo(vma),
+> > -				   op->syncs, op->num_syncs,
+> > -				   op->map.immediate,
+> > -				   op->tile_mask,
+> > -				   op->flags & XE_VMA_OP_FIRST,
+> > -				   op->flags & XE_VMA_OP_LAST);
+> > -		break;
+> > -	case DRM_GPUVA_OP_REMAP:
+> > -	{
+> > -		bool prev = !!op->remap.prev;
+> > -		bool next = !!op->remap.next;
+> > -
+> > -		if (!op->remap.unmap_done) {
+> > -			if (prev || next)
+> > -				vma->gpuva.flags |= XE_VMA_FIRST_REBIND;
+> > -			fence = xe_vm_unbind(vm, vma, op->q, op->syncs,
+> > -					     op->num_syncs,
+> > -					     op->flags & XE_VMA_OP_FIRST,
+> > -					     op->flags & XE_VMA_OP_LAST &&
+> > -					     !prev && !next);
+> > -			if (IS_ERR(fence))
+> > -				break;
+> > -			op->remap.unmap_done = true;
+> > -		}
+> > -
+> > -		if (prev) {
+> > -			op->remap.prev->gpuva.flags |= XE_VMA_LAST_REBIND;
+> > -			dma_fence_put(fence);
+> > -			fence = xe_vm_bind(vm, op->remap.prev, op->q,
+> > -					   xe_vma_bo(op->remap.prev), op-
+> > >syncs,
+> > -					   op->num_syncs, op->remap.prev-
+> > >tile_mask,
+> > -					   true, false,
+> > -					   op->flags & XE_VMA_OP_LAST
+> > && !next);
+> > -			op->remap.prev->gpuva.flags &=
+> > ~XE_VMA_LAST_REBIND;
+> > -			if (IS_ERR(fence))
+> > -				break;
+> > -			op->remap.prev = NULL;
+> > -		}
+> > -
+> > -		if (next) {
+> > -			op->remap.next->gpuva.flags |= XE_VMA_LAST_REBIND;
+> > -			dma_fence_put(fence);
+> > -			fence = xe_vm_bind(vm, op->remap.next, op->q,
+> > -					   xe_vma_bo(op->remap.next),
+> > -					   op->syncs, op->num_syncs,
+> > -					   op->remap.next->tile_mask, true, false,
+> > -					   op->flags & XE_VMA_OP_LAST);
+> > -			op->remap.next->gpuva.flags &=
+> > ~XE_VMA_LAST_REBIND;
+> > -			if (IS_ERR(fence))
+> > -				break;
+> > -			op->remap.next = NULL;
+> > -		}
+> > -
+> > -		break;
+> > -	}
+> > -	case DRM_GPUVA_OP_UNMAP:
+> > -		fence = xe_vm_unbind(vm, vma, op->q, op->syncs,
+> > -				     op->num_syncs, op->flags &
+> > XE_VMA_OP_FIRST,
+> > -				     op->flags & XE_VMA_OP_LAST);
+> > -		break;
+> > -	case DRM_GPUVA_OP_PREFETCH:
+> > -		fence = xe_vm_prefetch(vm, vma, op->q, op->syncs, op-
+> > >num_syncs,
+> > -				       op->flags & XE_VMA_OP_FIRST,
+> > -				       op->flags & XE_VMA_OP_LAST);
+> > -		break;
+> > -	default:
+> > -		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
+> > -	}
+> > -
+> > -	if (IS_ERR(fence))
+> > -		trace_xe_vma_fail(vma);
+> > -
+> > -	return fence;
+> > -}
+> > -
+> > -static struct dma_fence *
+> > -__xe_vma_op_execute(struct xe_vm *vm, struct xe_vma *vma,
+> > -		    struct xe_vma_op *op)
+> > -{
+> > -	struct dma_fence *fence;
+> > -	int err;
+> > -
+> > -retry_userptr:
+> > -	fence = op_execute(vm, vma, op);
+> > -	if (IS_ERR(fence) && PTR_ERR(fence) == -EAGAIN) {
+> > -		lockdep_assert_held(&vm->lock);
+> > -
+> > -		if (op->base.op == DRM_GPUVA_OP_REMAP) {
+> > -			if (!op->remap.unmap_done)
+> > -				vma = gpuva_to_vma(op->base.remap.unmap-
+> > >va);
+> > -			else if (op->remap.prev)
+> > -				vma = op->remap.prev;
+> > -			else
+> > -				vma = op->remap.next;
+> > -		}
+> > -
+> > -		if (xe_vma_is_userptr(vma)) {
+> > -			err = xe_vma_userptr_pin_pages(to_userptr_vma(vma));
+> > -			if (!err)
+> > -				goto retry_userptr;
+> > -
+> > -			fence = ERR_PTR(err);
+> > -			trace_xe_vma_fail(vma);
+> > -		}
+> > -	}
+> > -
+> > -	return fence;
+> > -}
+> > -
+> > -static struct dma_fence *
+> > -xe_vma_op_execute(struct xe_vm *vm, struct xe_vma_op *op)
+> > -{
+> > -	struct dma_fence *fence = ERR_PTR(-ENOMEM);
+> > -
+> > -	lockdep_assert_held(&vm->lock);
+> > -
+> > -	switch (op->base.op) {
+> > -	case DRM_GPUVA_OP_MAP:
+> > -		fence = __xe_vma_op_execute(vm, op->map.vma, op);
+> > -		break;
+> > -	case DRM_GPUVA_OP_REMAP:
+> > -	{
+> > -		struct xe_vma *vma;
+> > -
+> > -		if (!op->remap.unmap_done)
+> > -			vma = gpuva_to_vma(op->base.remap.unmap->va);
+> > -		else if (op->remap.prev)
+> > -			vma = op->remap.prev;
+> > -		else
+> > -			vma = op->remap.next;
+> > -
+> > -		fence = __xe_vma_op_execute(vm, vma, op);
+> > -		break;
+> > -	}
+> > -	case DRM_GPUVA_OP_UNMAP:
+> > -		fence = __xe_vma_op_execute(vm, gpuva_to_vma(op-
+> > >base.unmap.va),
+> > -					    op);
+> > -		break;
+> > -	case DRM_GPUVA_OP_PREFETCH:
+> > -		fence = __xe_vma_op_execute(vm,
+> > -					    gpuva_to_vma(op->base.prefetch.va),
+> > -					    op);
+> > -		break;
+> > -	default:
+> > -		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
+> > -	}
+> > -
+> > -	return fence;
+> > -}
+> > -
+> >  static void xe_vma_op_unwind(struct xe_vm *vm, struct xe_vma_op *op,
+> >  			     bool post_commit, bool prev_post_commit,
+> >  			     bool next_post_commit)
+> > @@ -2837,6 +2474,32 @@ static int vm_bind_ioctl_ops_lock(struct drm_exec
+> > *exec,
+> >  	return 0;
+> >  }
+> > 
+> > +static int vm_ops_setup_tile_args(struct xe_vm *vm, struct xe_vma_ops *vops)
+> > +{
+> > +	struct xe_exec_queue *q = vops->q;
+> > +	struct xe_tile *tile;
+> > +	int number_tiles = 0;
+> > +	u8 id;
+> > +
+> > +	for_each_tile(tile, vm->xe, id) {
+> > +		if (vops->pt_update_ops[id].num_ops)
+> > +			++number_tiles;
+> > +
+> > +		if (vops->pt_update_ops[id].q)
+> > +			continue;
+> > +
+> > +		if (q) {
+> > +			vops->pt_update_ops[id].q = q;
+> > +			if (vm->pt_root[id] && !list_empty(&q->multi_gt_list))
+> > +				q = list_next_entry(q, multi_gt_list);
+> > +		} else {
+> > +			vops->pt_update_ops[id].q = vm->q[id];
+> > +		}
+> > +	}
+> > +
+> > +	return number_tiles;
+> > +}
+> > +
+> >  /**
+> >   * xe_vm_ops_execute() - Execute VMA ops
+> >   * @vm: The VM.
+> > @@ -2848,21 +2511,81 @@ static int vm_bind_ioctl_ops_lock(struct drm_exec
+> > *exec,
+> >   */
+> >  struct dma_fence *xe_vm_ops_execute(struct xe_vm *vm, struct xe_vma_ops
+> > *vops)
+> >  {
+> > -	struct xe_vma_op *op, *next;
+> > +	struct xe_tile *tile;
+> >  	struct dma_fence *fence = NULL;
+> > +	struct dma_fence **fences = NULL;
+> > +	struct dma_fence_array *cf = NULL;
+> > +	int number_tiles = 0, current_fence = 0, err;
+> > +	u8 id;
+> > +
+> > +	number_tiles = vm_ops_setup_tile_args(vm, vops);
+> > +	if (number_tiles == 0)
+> > +		return ERR_PTR(-ENODATA);
+> > +
+> > +	if (number_tiles > 1) {
+> > +		fences = kmalloc_array(number_tiles, sizeof(*fences),
+> > +				       GFP_KERNEL);
+> > +		if (!fences)
+> > +			return ERR_PTR(-ENOMEM);
+> > +	}
+> > +
+> > +	for_each_tile(tile, vm->xe, id) {
+> > +		if (!vops->pt_update_ops[id].num_ops)
+> > +			continue;
+> > 
+> > -	list_for_each_entry_safe(op, next, &vops->list, link) {
+> > -		if (!IS_ERR(fence)) {
+> > -			dma_fence_put(fence);
+> > -			fence = xe_vma_op_execute(vm, op);
+> > +		err = xe_pt_update_ops_prepare(tile, vops);
+> > +		if (err) {
+> > +			fence = ERR_PTR(err);
+> > +			goto err_out;
+> >  		}
+> > -		if (IS_ERR(fence)) {
+> > -			drm_warn(&vm->xe->drm, "VM op(%d) failed with %ld",
+> > -				 op->base.op, PTR_ERR(fence));
+> > -			fence = ERR_PTR(-ENOSPC);
+> > +	}
+> > +
+> > +	for_each_tile(tile, vm->xe, id) {
+> > +		if (!vops->pt_update_ops[id].num_ops)
+> > +			continue;
+> > +
+> > +		fence = xe_pt_update_ops_run(tile, vops);
+> > +		if (IS_ERR(fence))
+> > +			goto err_out;
+> > +
+> > +		if (fences)
+> > +			fences[current_fence++] = fence;
+> > +	}
+> > +
+> > +	if (fences) {
+> > +		cf = dma_fence_array_create(number_tiles, fences,
+> > +					    vm->composite_fence_ctx,
+> > +					    vm->composite_fence_seqno++,
+> > +					    false);
+> > +		if (!cf) {
+> > +			--vm->composite_fence_seqno;
+> > +			fence = ERR_PTR(-ENOMEM);
+> > +			goto err_out;
+> >  		}
+> > +		fence = &cf->base;
+> > +	}
+> > +
+> > +	for_each_tile(tile, vm->xe, id) {
+> > +		if (!vops->pt_update_ops[id].num_ops)
+> > +			continue;
+> > +
+> > +		xe_pt_update_ops_fini(tile, vops);
+> >  	}
+> > 
+> > +	return fence;
+> > +
+> > +err_out:
+> > +	for_each_tile(tile, vm->xe, id) {
+> > +		if (!vops->pt_update_ops[id].num_ops)
+> > +			continue;
+> > +
+> > +		xe_pt_update_ops_abort(tile, vops);
+> > +	}
+> > +	while (current_fence)
+> > +		dma_fence_put(fences[--current_fence]);
+> > +	kfree(fences);
+> > +	kfree(cf);
+> > +
+> >  	return fence;
+> >  }
+> > 
+> > @@ -2944,12 +2667,10 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm
+> > *vm,
+> >  		fence = xe_vm_ops_execute(vm, vops);
+> >  		if (IS_ERR(fence)) {
+> >  			err = PTR_ERR(fence);
+> > -			/* FIXME: Killing VM rather than proper error handling */
+> > -			xe_vm_kill(vm, false);
+> >  			goto unlock;
+> > -		} else {
+> > -			vm_bind_ioctl_ops_install_fences(vm, vops, fence);
+> >  		}
+> > +
+> > +		vm_bind_ioctl_ops_install_fences(vm, vops, fence);
+> >  	}
+> > 
+> >  unlock:
+> > diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+> > index b40160b1be01..8201ecb8f05a 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm.h
+> > +++ b/drivers/gpu/drm/xe/xe_vm.h
+> > @@ -262,9 +262,12 @@ static inline struct dma_resv *xe_vm_resv(struct xe_vm
+> > *vm)
+> >   */
+> >  #define xe_vm_assert_held(vm) dma_resv_assert_held(xe_vm_resv(vm))
+> > 
+> > -void xe_vm_populate_dummy_rebind(struct xe_vm *vm, struct xe_vma *vma);
+> > +void xe_vm_populate_dummy_rebind(struct xe_vm *vm, struct xe_vma *vma,
+> > +				 u8 tile_mask);
+> >  struct dma_fence *xe_vm_ops_execute(struct xe_vm *vm, struct xe_vma_ops
+> > *vops);
+> > 
+> > +void xe_vm_kill(struct xe_vm *vm, bool unlocked);
+> > +
+> >  #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_VM)
+> >  #define vm_dbg drm_dbg
+> >  #else
+> > diff --git a/drivers/gpu/drm/xe/xe_vm_types.h
+> > b/drivers/gpu/drm/xe/xe_vm_types.h
+> > index f5d740dcbba3..83cb13275904 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> > @@ -166,29 +166,18 @@ struct xe_vma_op_prefetch {
+> > 
+> >  /** enum xe_vma_op_flags - flags for VMA operation */
+> >  enum xe_vma_op_flags {
+> > -	/** @XE_VMA_OP_FIRST: first VMA operation for a set of syncs */
+> > -	XE_VMA_OP_FIRST			= BIT(0),
+> > -	/** @XE_VMA_OP_LAST: last VMA operation for a set of syncs */
+> > -	XE_VMA_OP_LAST			= BIT(1),
+> >  	/** @XE_VMA_OP_COMMITTED: VMA operation committed */
+> > -	XE_VMA_OP_COMMITTED		= BIT(2),
+> > +	XE_VMA_OP_COMMITTED		= BIT(0),
+> >  	/** @XE_VMA_OP_PREV_COMMITTED: Previous VMA operation
+> > committed */
+> > -	XE_VMA_OP_PREV_COMMITTED	= BIT(3),
+> > +	XE_VMA_OP_PREV_COMMITTED	= BIT(1),
+> >  	/** @XE_VMA_OP_NEXT_COMMITTED: Next VMA operation committed
+> > */
+> > -	XE_VMA_OP_NEXT_COMMITTED	= BIT(4),
+> > +	XE_VMA_OP_NEXT_COMMITTED	= BIT(2),
+> >  };
+> > 
+> >  /** struct xe_vma_op - VMA operation */
+> >  struct xe_vma_op {
+> >  	/** @base: GPUVA base operation */
+> >  	struct drm_gpuva_op base;
+> > -	/** @q: exec queue for this operation */
+> > -	struct xe_exec_queue *q;
+> > -	/**
+> > -	 * @syncs: syncs for this operation, only used on first and last
+> > -	 * operation
+> > -	 */
+> > -	struct xe_sync_entry *syncs;
+> >  	/** @num_syncs: number of syncs */
+> >  	u32 num_syncs;
+> >  	/** @link: async operation link */
+> > @@ -214,19 +203,14 @@ struct xe_vma_ops {
+> >  	struct list_head list;
+> >  	/** @vm: VM */
+> >  	struct xe_vm *vm;
+> > -	/** @q: exec queue these operations */
+> > +	/** @q: exec queue for VMA operations */
+> >  	struct xe_exec_queue *q;
+> >  	/** @syncs: syncs these operation */
+> >  	struct xe_sync_entry *syncs;
+> >  	/** @num_syncs: number of syncs */
+> >  	u32 num_syncs;
+> >  	/** @pt_update_ops: page table update operations */
+> > -	struct {
+> > -		/** @ops: operations */
+> > -		struct xe_vm_pgtable_update_op *ops;
+> > -		/** @num_ops: number of operations */
+> > -		u32 num_ops;
+> > -	} pt_update_ops[XE_MAX_TILES_PER_DEVICE];
+> > +	struct xe_vm_pgtable_update_ops
+> > pt_update_ops[XE_MAX_TILES_PER_DEVICE];
+> >  };
+> > 
+> >  struct xe_vm {
+> > @@ -283,9 +267,6 @@ struct xe_vm {
+> >  	 */
+> >  	struct list_head rebind_list;
+> > 
+> > -	/** @rebind_fence: rebind fence from execbuf */
+> > -	struct dma_fence *rebind_fence;
+> > -
+> >  	/**
+> >  	 * @destroy_work: worker to destroy VM, needed as a dma_fence
+> > signaling
+> >  	 * from an irq context can be last put and the destroy needs to be able
+> > --
+> > 2.34.1
+> 
