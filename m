@@ -4,27 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50C4CCD1283
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Mar 2024 19:18:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2967C47DD9
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Mar 2024 19:25:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC3CE10FF70;
-	Wed, 27 Mar 2024 19:18:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FE7710F2E3;
+	Wed, 27 Mar 2024 19:25:24 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8567E10FF70;
- Wed, 27 Mar 2024 19:18:52 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7027766573427483251=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 029F310F2E3;
+ Wed, 27 Mar 2024 19:25:24 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Add_proper_detection_of_the_SR-I?=
- =?utf-8?q?OV_VF_mode?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
+ =?utf-8?q?_=5BCI-test=2C1/8=5D_drm=3A_Add_drm=5Fvblank=5Fwork=5Fflush=5Fall?=
+ =?utf-8?q?=28=29=2E?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 27 Mar 2024 19:18:52 -0000
-Message-ID: <171156713254.1055708.1706365095789753077@8e613ede5ea5>
+Date: Wed, 27 Mar 2024 19:25:24 -0000
+Message-ID: <171156752401.1060333.7816216045221495205@8e613ede5ea5>
 X-Patchwork-Hint: ignore
-References: <20240327182740.407-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20240327182740.407-1-michal.wajdeczko@intel.com>
+References: <20240327190710.2359-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20240327190710.2359-1-maarten.lankhorst@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,122 +41,24 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7027766573427483251==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Add proper detection of the SR-IOV VF mode
-URL   : https://patchwork.freedesktop.org/series/131705/
+Series: series starting with [CI-test,1/8] drm: Add drm_vblank_work_flush_all().
+URL   : https://patchwork.freedesktop.org/series/131706/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-1001-0a8fdcee5ce9a43e8411ea096c7361f8ec7829ca_BAT -> xe-pw-131705v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-131705v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@xe_evict@evict-beng-mixed-threads-small-multi-vm:
-    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#1259]) -> [INCOMPLETE][2] ([Intel XE#804])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1001-0a8fdcee5ce9a43e8411ea096c7361f8ec7829ca/bat-dg2-oem2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131705v1/bat-dg2-oem2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html
-
-  
-  [Intel XE#1259]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1259
-  [Intel XE#804]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/804
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 5e11d8eaccbd drm-tip: 2024y-03m-27d-18h-33m-19s UTC integration manifest
+=== git am output follows ===
+Applying: drm: Add drm_vblank_work_flush_all().
+Applying: drm/i915: Use vblank worker to unpin old legacy cursor fb safely
+Applying: drm/i915: Use the same vblank worker for atomic unpin
+Applying: drm/xe: Fix bo leak in intel_fb_bo_framebuffer_init
+Applying: drm/xe/display: Preparations for preallocating dpt bo
+Applying: drm/xe: Use simple xchg to cache DPT
+Applying: drm/xe/display: Prevent overwriting original GGTT when taking over initial FB.
+Applying: drm/xe/display: Re-use display vmas when possible
 
 
-Build changes
--------------
-
-  * Linux: xe-1001-0a8fdcee5ce9a43e8411ea096c7361f8ec7829ca -> xe-pw-131705v1
-
-  IGT_7786: 1e4a3cd0a4bb3419fb70ed3e01259485b056dcfd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1001-0a8fdcee5ce9a43e8411ea096c7361f8ec7829ca: 0a8fdcee5ce9a43e8411ea096c7361f8ec7829ca
-  xe-pw-131705v1: 131705v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131705v1/index.html
-
---===============7027766573427483251==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add proper detection of the SR-IOV VF mode</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131705/">https://patchwork.freedesktop.org/series/131705/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131705v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131705v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1001-0a8fdcee5ce9a43e8411ea096c7361f8ec7829ca_BAT -&gt; xe-pw-131705v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-131705v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_evict@evict-beng-mixed-threads-small-multi-vm:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1001-0a8fdcee5ce9a43e8411ea096c7361f8ec7829ca/bat-dg2-oem2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1259">Intel XE#1259</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131705v1/bat-dg2-oem2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/804">Intel XE#804</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1001-0a8fdcee5ce9a43e8411ea096c7361f8ec7829ca -&gt; xe-pw-131705v1</li>
-</ul>
-<p>IGT_7786: 1e4a3cd0a4bb3419fb70ed3e01259485b056dcfd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1001-0a8fdcee5ce9a43e8411ea096c7361f8ec7829ca: 0a8fdcee5ce9a43e8411ea096c7361f8ec7829ca<br />
-  xe-pw-131705v1: 131705v1</p>
-
-</body>
-</html>
-
---===============7027766573427483251==--
