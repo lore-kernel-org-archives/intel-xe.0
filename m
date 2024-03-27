@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03449C47DD9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E269CD11DF
 	for <intel-xe@archiver.kernel.org>; Wed, 27 Mar 2024 09:12:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD1B510F988;
-	Wed, 27 Mar 2024 09:12:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C9AB10F98A;
+	Wed, 27 Mar 2024 09:12:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mz2CDaSL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ljxgU1Ma";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 021FD10F42C
- for <intel-xe@lists.freedesktop.org>; Wed, 27 Mar 2024 09:11:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADD7010F986
+ for <intel-xe@lists.freedesktop.org>; Wed, 27 Mar 2024 09:12:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711530716; x=1743066716;
+ t=1711530721; x=1743066721;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kCzvE9/A5ib1+ACoIdz7FS857zdm6pFyWjuGPt9RgJ4=;
- b=mz2CDaSLeqAJ8TGvXNLCG1lFUdzyRilebvDQv2EwsOQqF6M7HYnVXW5z
- 5oI52kaPpSAD5i9mllI6f6+NkJM7C2Sl/uHwQjXaMUMQysOfa0Opx2LRa
- aqGXednb5OHBtc1k4rR0l4hk2j/krDVF5Z2dcbB440d/FjWHJcemXsl20
- he/aKORAOPV55lCCO62iqvMvzn0TpMoDHY+8C1iPBgvYlcmSnWf7rZlWc
- 0gyRtjVQUMPprlFnc04kEca+ckvW7/Pazwfi+WUdMBwIWijzKnOj5kB8N
- 5Vnum6tB+/kvES3++tA6sRs2R7ZT0RD4XqplwWO0MTJc5yn6bNYrmU5Vv A==;
-X-CSE-ConnectionGUID: iATcW9v6TcmdgxA9LL13Bg==
-X-CSE-MsgGUID: oWgtJ+a5SqusNVGwUw6Fsg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11025"; a="29097866"
-X-IronPort-AV: E=Sophos;i="6.07,158,1708416000"; d="scan'208";a="29097866"
+ bh=YpLsxOriWC9+RnRr2Q5YVp5DdAO2/X20f6YxWclCQVo=;
+ b=ljxgU1MaH2q6GWsoRjvJj/hBbtK8Jvcf2FwxO3/uPKZzvqU53iYVQXlZ
+ jLxIIE4zyb12mwP+kdm/8NZrmntKqZRNMkj3yRLRvoPk3fVgPzf6BDl5S
+ nmwK8/WG3+bVHeTd2nDI0nPdzFmq9HOIOLPNXbG2kZteHiTVTPxAs/O/x
+ V/EavjEgmKMqXcYripsIjXcn+6G8YiaP35q2Tx/tvBERlUpxMKcS8FAXW
+ CStOZLKK7I32ZbLYejr5+4V90cD238eYEBX+HhgBo922wfdA5Bch3b7uY
+ 0cZ6n8xz+yN5J3hX9KW0c94T4IkCBKEX0faOVatswLnneop/fwRXM11sH A==;
+X-CSE-ConnectionGUID: EfC2uzPJSoWO5dtP1K3SGg==
+X-CSE-MsgGUID: D8O/bgFSQ+SldxUlEmpxNQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11025"; a="29097883"
+X-IronPort-AV: E=Sophos;i="6.07,158,1708416000"; d="scan'208";a="29097883"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2024 02:11:56 -0700
+ 27 Mar 2024 02:12:01 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,158,1708416000"; d="scan'208";a="16615105"
+X-IronPort-AV: E=Sophos;i="6.07,158,1708416000"; d="scan'208";a="16615129"
 Received: from ktonsber-mobl1.ger.corp.intel.com (HELO fedora..)
  ([10.249.254.184])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2024 02:11:54 -0700
+ 27 Mar 2024 02:11:59 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>, stable@vger.kernel.org
-Subject: [PATCH v3 1/4] drm/xe: Use ring ops TLB invalidation for rebinds
-Date: Wed, 27 Mar 2024 10:11:33 +0100
-Message-ID: <20240327091136.3271-2-thomas.hellstrom@linux.intel.com>
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v3 4/4] drm/xe: Move vma rebinding to the drm_exec locking loop
+Date: Wed, 27 Mar 2024 10:11:36 +0100
+Message-ID: <20240327091136.3271-5-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240327091136.3271-1-thomas.hellstrom@linux.intel.com>
 References: <20240327091136.3271-1-thomas.hellstrom@linux.intel.com>
@@ -67,176 +68,327 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For each rebind we insert a GuC TLB invalidation and add a
-corresponding unordered TLB invalidation fence. This might
-add a huge number of TLB invalidation fences to wait for so
-rather than doing that, defer the TLB invalidation to the
-next ring ops for each affected exec queue. Since the TLB
-is invalidated on exec_queue switch, we need to invalidate
-once for each affected exec_queue.
+Rebinding might allocate page-table bos, causing evictions.
+To support blocking locking during these evictions,
+perform the rebinding in the drm_exec locking loop.
+
+Also Reserve fence slots where actually needed rather than trying to
+predict how many fence slots will be needed over a complete
+wound-wait transaction.
 
 v2:
-- Simplify if-statements around the tlb_flush_seqno.
-  (Matthew Brost)
-- Add some comments and asserts.
+- Remove a leftover call to xe_vm_rebind() (Matt Brost)
+- Add a helper function xe_vm_validate_rebind() (Matt Brost)
+v3:
+- Add comments and squash with previous patch (Matt Brost)
 
-Fixes: 5387e865d90e ("drm/xe: Add TLB invalidation fence after rebinds issued from execs")
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: <stable@vger.kernel.org> # v6.8+
+Fixes: 24f947d58fe5 ("drm/xe: Use DRM GPUVM helpers for external- and evicted objects")
+Fixes: 29f424eb8702 ("drm/xe/exec: move fence reservation")
+Cc: Matthew Auld <matthew.auld@intel.com>
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  5 +++++
- drivers/gpu/drm/xe/xe_pt.c               |  6 ++++--
- drivers/gpu/drm/xe/xe_ring_ops.c         | 11 ++++-------
- drivers/gpu/drm/xe/xe_sched_job.c        | 10 ++++++++++
- drivers/gpu/drm/xe/xe_sched_job_types.h  |  2 ++
- drivers/gpu/drm/xe/xe_vm_types.h         |  5 +++++
- 6 files changed, 30 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/xe_exec.c         | 52 ++---------------
+ drivers/gpu/drm/xe/xe_gt_pagefault.c |  3 +-
+ drivers/gpu/drm/xe/xe_pt.c           | 14 +++++
+ drivers/gpu/drm/xe/xe_vm.c           | 83 +++++++++++++++++++---------
+ drivers/gpu/drm/xe/xe_vm.h           |  6 +-
+ 5 files changed, 83 insertions(+), 75 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 9cc689f50db0..ee78d497d838 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -146,6 +146,11 @@ struct xe_exec_queue {
- 	const struct xe_ring_ops *ring_ops;
- 	/** @entity: DRM sched entity for this exec queue (1 to 1 relationship) */
- 	struct drm_sched_entity *entity;
-+	/**
-+	 * @tlb_flush_seqno: The seqno of the last rebind tlb flush performed
-+	 * Protected by @vm's resv. Unused if @vm == NULL.
-+	 */
-+	u64 tlb_flush_seqno;
- 	/** @lrc: logical ring context for this exec queue */
- 	struct xe_lrc lrc[];
- };
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 8d3922d2206e..37117752cfc9 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -1254,11 +1254,13 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
- 	 * non-faulting LR, in particular on user-space batch buffer chaining,
- 	 * it needs to be done here.
- 	 */
--	if ((rebind && !xe_vm_in_lr_mode(vm) && !vm->batch_invalidate_tlb) ||
--	    (!rebind && xe_vm_has_scratch(vm) && xe_vm_in_preempt_fence_mode(vm))) {
-+	if ((!rebind && xe_vm_has_scratch(vm) && xe_vm_in_preempt_fence_mode(vm))) {
- 		ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
- 		if (!ifence)
- 			return ERR_PTR(-ENOMEM);
-+	} else if (rebind && !xe_vm_in_lr_mode(vm)) {
-+		/* We bump also if batch_invalidate_tlb is true */
-+		vm->tlb_flush_seqno++;
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index b7e26e8e6472..97eeb973e897 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -94,48 +94,16 @@
+  *	Unlock all
+  */
  
- 	rfence = kzalloc(sizeof(*rfence), GFP_KERNEL);
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index c4edffcd4a32..5b2b37b59813 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -219,10 +219,9 @@ static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc
++/*
++ * Add validation and rebinding to the drm_exec locking loop, since both can
++ * trigger eviction which may require sleeping dma_resv locks.
++ */
+ static int xe_exec_fn(struct drm_gpuvm_exec *vm_exec)
  {
- 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
- 	u32 ppgtt_flag = get_ppgtt_flag(job);
--	struct xe_vm *vm = job->q->vm;
- 	struct xe_gt *gt = job->q->gt;
+ 	struct xe_vm *vm = container_of(vm_exec->vm, struct xe_vm, gpuvm);
+-	struct drm_gem_object *obj;
+-	unsigned long index;
+-	int num_fences;
+-	int ret;
+-
+-	ret = drm_gpuvm_validate(vm_exec->vm, &vm_exec->exec);
+-	if (ret)
+-		return ret;
+-
+-	/*
+-	 * 1 fence slot for the final submit, and 1 more for every per-tile for
+-	 * GPU bind and 1 extra for CPU bind. Note that there are potentially
+-	 * many vma per object/dma-resv, however the fence slot will just be
+-	 * re-used, since they are largely the same timeline and the seqno
+-	 * should be in order. In the case of CPU bind there is dummy fence used
+-	 * for all CPU binds, so no need to have a per-tile slot for that.
+-	 */
+-	num_fences = 1 + 1 + vm->xe->info.tile_count;
  
--	if (vm && vm->batch_invalidate_tlb) {
-+	if (job->ring_ops_flush_tlb) {
- 		dw[i++] = preparser_disable(true);
- 		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
- 					seqno, true, dw, i);
-@@ -270,7 +269,6 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
- 	struct xe_gt *gt = job->q->gt;
- 	struct xe_device *xe = gt_to_xe(gt);
- 	bool decode = job->q->class == XE_ENGINE_CLASS_VIDEO_DECODE;
--	struct xe_vm *vm = job->q->vm;
- 
- 	dw[i++] = preparser_disable(true);
- 
-@@ -282,13 +280,13 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
- 			i = emit_aux_table_inv(gt, VE0_AUX_INV, dw, i);
- 	}
- 
--	if (vm && vm->batch_invalidate_tlb)
-+	if (job->ring_ops_flush_tlb)
- 		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
- 					seqno, true, dw, i);
- 
- 	dw[i++] = preparser_disable(false);
- 
--	if (!vm || !vm->batch_invalidate_tlb)
-+	if (!job->ring_ops_flush_tlb)
- 		i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
- 					seqno, dw, i);
- 
-@@ -317,7 +315,6 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 	struct xe_gt *gt = job->q->gt;
- 	struct xe_device *xe = gt_to_xe(gt);
- 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
--	struct xe_vm *vm = job->q->vm;
- 	u32 mask_flags = 0;
- 
- 	dw[i++] = preparser_disable(true);
-@@ -327,7 +324,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 		mask_flags = PIPE_CONTROL_3D_ENGINE_FLAGS;
- 
- 	/* See __xe_pt_bind_vma() for a discussion on TLB invalidations. */
--	i = emit_pipe_invalidate(mask_flags, vm && vm->batch_invalidate_tlb, dw, i);
-+	i = emit_pipe_invalidate(mask_flags, job->ring_ops_flush_tlb, dw, i);
- 
- 	/* hsdes: 1809175790 */
- 	if (has_aux_ccs(xe))
-diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
-index add5a8b89be8..80daee910ae9 100644
---- a/drivers/gpu/drm/xe/xe_sched_job.c
-+++ b/drivers/gpu/drm/xe/xe_sched_job.c
-@@ -252,6 +252,16 @@ bool xe_sched_job_completed(struct xe_sched_job *job)
- 
- void xe_sched_job_arm(struct xe_sched_job *job)
- {
-+	struct xe_exec_queue *q = job->q;
-+	struct xe_vm *vm = q->vm;
-+
-+	if (vm && !xe_sched_job_is_migration(q) && !xe_vm_in_lr_mode(vm) &&
-+	    (vm->batch_invalidate_tlb || vm->tlb_flush_seqno != q->tlb_flush_seqno)) {
-+		xe_vm_assert_held(vm);
-+		q->tlb_flush_seqno = vm->tlb_flush_seqno;
-+		job->ring_ops_flush_tlb = true;
-+	}
-+
- 	drm_sched_job_arm(&job->drm);
+-	/*
+-	 * We don't know upfront exactly how many fence slots we will need at
+-	 * the start of the exec, since the TTM bo_validate above can consume
+-	 * numerous fence slots. Also due to how the dma_resv_reserve_fences()
+-	 * works it only ensures that at least that many fence slots are
+-	 * available i.e if there are already 10 slots available and we reserve
+-	 * two more, it can just noop without reserving anything.  With this it
+-	 * is quite possible that TTM steals some of the fence slots and then
+-	 * when it comes time to do the vma binding and final exec stage we are
+-	 * lacking enough fence slots, leading to some nasty BUG_ON() when
+-	 * adding the fences. Hence just add our own fences here, after the
+-	 * validate stage.
+-	 */
+-	drm_exec_for_each_locked_object(&vm_exec->exec, index, obj) {
+-		ret = dma_resv_reserve_fences(obj->resv, num_fences);
+-		if (ret)
+-			return ret;
+-	}
+-
+-	return 0;
++	/* The fence slot added here is intended for the exec sched job. */
++	return xe_vm_validate_rebind(vm, &vm_exec->exec, 1);
  }
  
-diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
-index b1d83da50a53..5e12724219fd 100644
---- a/drivers/gpu/drm/xe/xe_sched_job_types.h
-+++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
-@@ -39,6 +39,8 @@ struct xe_sched_job {
- 	} user_fence;
- 	/** @migrate_flush_flags: Additional flush flags for migration jobs */
- 	u32 migrate_flush_flags;
-+	/** @ring_ops_flush_tlb: The ring ops need to flush TLB before payload. */
-+	bool ring_ops_flush_tlb;
- 	/** @batch_addr: batch buffer address of job */
- 	u64 batch_addr[];
- };
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index ae5fb565f6bf..5747f136d24d 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -264,6 +264,11 @@ struct xe_vm {
- 		bool capture_once;
- 	} error_capture;
+ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+@@ -289,14 +257,6 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		goto err_exec;
+ 	}
  
-+	/**
-+	 * @tlb_flush_seqno: Required TLB flush seqno for the next exec.
-+	 * protected by the vm resv.
+-	/*
+-	 * Rebind any invalidated userptr or evicted BOs in the VM, non-compute
+-	 * VM mode only.
+-	 */
+-	err = xe_vm_rebind(vm, false);
+-	if (err)
+-		goto err_put_job;
+-
+ 	/* Wait behind rebinds */
+ 	if (!xe_vm_in_lr_mode(vm)) {
+ 		err = drm_sched_job_add_resv_dependencies(&job->drm,
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index 241c294270d9..fa9e9853c53b 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -100,10 +100,9 @@ static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
+ {
+ 	struct xe_bo *bo = xe_vma_bo(vma);
+ 	struct xe_vm *vm = xe_vma_vm(vma);
+-	unsigned int num_shared = 2; /* slots for bind + move */
+ 	int err;
+ 
+-	err = xe_vm_prepare_vma(exec, vma, num_shared);
++	err = xe_vm_lock_vma(exec, vma);
+ 	if (err)
+ 		return err;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index d1b999dbc906..580fe869b414 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -1235,6 +1235,13 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
+ 	err = xe_pt_prepare_bind(tile, vma, entries, &num_entries);
+ 	if (err)
+ 		goto err;
++
++	err = dma_resv_reserve_fences(xe_vm_resv(vm), 1);
++	if (!err && !xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
++		err = dma_resv_reserve_fences(xe_vma_bo(vma)->ttm.base.resv, 1);
++	if (err)
++		goto err;
++
+ 	xe_tile_assert(tile, num_entries <= ARRAY_SIZE(entries));
+ 
+ 	xe_vm_dbg_print_entries(tile_to_xe(tile), entries, num_entries);
+@@ -1577,6 +1584,7 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queu
+ 	struct dma_fence *fence = NULL;
+ 	struct invalidation_fence *ifence;
+ 	struct xe_range_fence *rfence;
++	int err;
+ 
+ 	LLIST_HEAD(deferred);
+ 
+@@ -1594,6 +1602,12 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queu
+ 	xe_pt_calc_rfence_interval(vma, &unbind_pt_update, entries,
+ 				   num_entries);
+ 
++	err = dma_resv_reserve_fences(xe_vm_resv(vm), 1);
++	if (!err && !xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
++		err = dma_resv_reserve_fences(xe_vma_bo(vma)->ttm.base.resv, 1);
++	if (err)
++		return ERR_PTR(err);
++
+ 	ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
+ 	if (!ifence)
+ 		return ERR_PTR(-ENOMEM);
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index e995196862db..8b32aa5003df 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -482,17 +482,53 @@ static int xe_gpuvm_validate(struct drm_gpuvm_bo *vm_bo, struct drm_exec *exec)
+ 	return 0;
+ }
+ 
++/**
++ * xe_vm_validate_rebind() - Validate buffer objects and rebind vmas
++ * @vm: The vm for which we are rebinding.
++ * @exec: The struct drm_exec with the locked GEM objects.
++ * @num_fences: The number of fences to reserve for the operation, not
++ * including rebinds and validations.
++ *
++ * Validates all evicted gem objects and rebinds their vmas. Note that
++ * rebindings may cause evictions and hence the validation-rebind
++ * sequence is rerun until there are no more objects to validate.
++ *
++ * Return: 0 on success, negative error code on error. In particular,
++ * may return -EINTR or -ERESTARTSYS if interrupted, and -EDEADLK if
++ * the drm_exec transaction needs to be restarted.
++ */
++int xe_vm_validate_rebind(struct xe_vm *vm, struct drm_exec *exec,
++			  unsigned int num_fences)
++{
++	struct drm_gem_object *obj;
++	unsigned long index;
++	int ret;
++
++	do {
++		ret = drm_gpuvm_validate(&vm->gpuvm, exec);
++		if (ret)
++			return ret;
++
++		ret = xe_vm_rebind(vm, false);
++		if (ret)
++			return ret;
++	} while (!list_empty(&vm->gpuvm.evict.list));
++
++	drm_exec_for_each_locked_object(exec, index, obj) {
++		ret = dma_resv_reserve_fences(obj->resv, num_fences);
++		if (ret)
++			return ret;
++	}
++
++	return 0;
++}
++
+ static int xe_preempt_work_begin(struct drm_exec *exec, struct xe_vm *vm,
+ 				 bool *done)
+ {
+ 	int err;
+ 
+-	/*
+-	 * 1 fence for each preempt fence plus a fence for each tile from a
+-	 * possible rebind
+-	 */
+-	err = drm_gpuvm_prepare_vm(&vm->gpuvm, exec, vm->preempt.num_exec_queues +
+-				   vm->xe->info.tile_count);
++	err = drm_gpuvm_prepare_vm(&vm->gpuvm, exec, 0);
+ 	if (err)
+ 		return err;
+ 
+@@ -507,7 +543,7 @@ static int xe_preempt_work_begin(struct drm_exec *exec, struct xe_vm *vm,
+ 		return 0;
+ 	}
+ 
+-	err = drm_gpuvm_prepare_objects(&vm->gpuvm, exec, vm->preempt.num_exec_queues);
++	err = drm_gpuvm_prepare_objects(&vm->gpuvm, exec, 0);
+ 	if (err)
+ 		return err;
+ 
+@@ -515,7 +551,13 @@ static int xe_preempt_work_begin(struct drm_exec *exec, struct xe_vm *vm,
+ 	if (err)
+ 		return err;
+ 
+-	return drm_gpuvm_validate(&vm->gpuvm, exec);
++	/*
++	 * Add validation and rebinding to the locking loop since both can
++	 * cause evictions which may require blocing dma_resv locks.
++	 * The fence reservation here is intended for the new preempt fences
++	 * we attach at the end of the rebind work.
 +	 */
-+	u64 tlb_flush_seqno;
- 	/** @batch_invalidate_tlb: Always invalidate TLB before batch start */
- 	bool batch_invalidate_tlb;
- 	/** @xef: XE file handle for tracking this VM's drm client */
++	return xe_vm_validate_rebind(vm, exec, vm->preempt.num_exec_queues);
+ }
+ 
+ static void preempt_rebind_work_func(struct work_struct *w)
+@@ -1000,35 +1042,26 @@ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
+ }
+ 
+ /**
+- * xe_vm_prepare_vma() - drm_exec utility to lock a vma
++ * xe_vm_lock_vma() - drm_exec utility to lock a vma
+  * @exec: The drm_exec object we're currently locking for.
+  * @vma: The vma for witch we want to lock the vm resv and any attached
+  * object's resv.
+- * @num_shared: The number of dma-fence slots to pre-allocate in the
+- * objects' reservation objects.
+  *
+  * Return: 0 on success, negative error code on error. In particular
+  * may return -EDEADLK on WW transaction contention and -EINTR if
+  * an interruptible wait is terminated by a signal.
+  */
+-int xe_vm_prepare_vma(struct drm_exec *exec, struct xe_vma *vma,
+-		      unsigned int num_shared)
++int xe_vm_lock_vma(struct drm_exec *exec, struct xe_vma *vma)
+ {
+ 	struct xe_vm *vm = xe_vma_vm(vma);
+ 	struct xe_bo *bo = xe_vma_bo(vma);
+ 	int err;
+ 
+ 	XE_WARN_ON(!vm);
+-	if (num_shared)
+-		err = drm_exec_prepare_obj(exec, xe_vm_obj(vm), num_shared);
+-	else
+-		err = drm_exec_lock_obj(exec, xe_vm_obj(vm));
+-	if (!err && bo && !bo->vm) {
+-		if (num_shared)
+-			err = drm_exec_prepare_obj(exec, &bo->ttm.base, num_shared);
+-		else
+-			err = drm_exec_lock_obj(exec, &bo->ttm.base);
+-	}
++
++	err = drm_exec_lock_obj(exec, xe_vm_obj(vm));
++	if (!err && bo && !bo->vm)
++		err = drm_exec_lock_obj(exec, &bo->ttm.base);
+ 
+ 	return err;
+ }
+@@ -1040,7 +1073,7 @@ static void xe_vma_destroy_unlocked(struct xe_vma *vma)
+ 
+ 	drm_exec_init(&exec, 0, 0);
+ 	drm_exec_until_all_locked(&exec) {
+-		err = xe_vm_prepare_vma(&exec, vma, 0);
++		err = xe_vm_lock_vma(&exec, vma);
+ 		drm_exec_retry_on_contention(&exec);
+ 		if (XE_WARN_ON(err))
+ 			break;
+@@ -2506,7 +2539,7 @@ static int op_execute(struct drm_exec *exec, struct xe_vm *vm,
+ 
+ 	lockdep_assert_held_write(&vm->lock);
+ 
+-	err = xe_vm_prepare_vma(exec, vma, 1);
++	err = xe_vm_lock_vma(exec, vma);
+ 	if (err)
+ 		return err;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 4853354336f2..306cd0934a19 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -242,8 +242,10 @@ bool xe_vm_validate_should_retry(struct drm_exec *exec, int err, ktime_t *end);
+ 
+ int xe_analyze_vm(struct drm_printer *p, struct xe_vm *vm, int gt_id);
+ 
+-int xe_vm_prepare_vma(struct drm_exec *exec, struct xe_vma *vma,
+-		      unsigned int num_shared);
++int xe_vm_lock_vma(struct drm_exec *exec, struct xe_vma *vma);
++
++int xe_vm_validate_rebind(struct xe_vm *vm, struct drm_exec *exec,
++			  unsigned int num_fences);
+ 
+ /**
+  * xe_vm_resv() - Return's the vm's reservation object
 -- 
 2.44.0
 
