@@ -4,19 +4,19 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B131CCD1287
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BD64CD1283
 	for <intel-xe@archiver.kernel.org>; Wed, 27 Mar 2024 19:07:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CEB410FF72;
-	Wed, 27 Mar 2024 19:07:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E628F10FF6F;
+	Wed, 27 Mar 2024 19:07:11 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D123F10FF6E
- for <intel-xe@lists.freedesktop.org>; Wed, 27 Mar 2024 19:07:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3371210FF6D
+ for <intel-xe@lists.freedesktop.org>; Wed, 27 Mar 2024 19:07:02 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI-test 8/8] drm/xe/display: Re-use display vmas when possible
-Date: Wed, 27 Mar 2024 20:07:09 +0100
-Message-ID: <20240327190710.2359-8-maarten.lankhorst@linux.intel.com>
+Subject: [CI-test 5/8] drm/xe/display: Preparations for preallocating dpt bo
+Date: Wed, 27 Mar 2024 20:07:06 +0100
+Message-ID: <20240327190710.2359-5-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240327190710.2359-1-maarten.lankhorst@linux.intel.com>
 References: <20240327190710.2359-1-maarten.lankhorst@linux.intel.com>
@@ -36,232 +36,216 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-i915 has this really nice, infrastructure where everything becomes
-complicated, GGTT needs eviction, etc..
-
-Lets not do that, and make the dumbest possible interface instead.
-Try to retrieve the VMA from old_plane_state, or intel_fbdev if kernel
-fb.
+The DPT bo should not be allocated when pinning, but in advance when
+creating the framebuffer. Split allocation from bo pinning and GGTT
+insertion.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- .../gpu/drm/i915/display/intel_atomic_plane.c |  2 +-
- drivers/gpu/drm/i915/display/intel_cursor.c   |  2 +-
- drivers/gpu/drm/i915/display/intel_fb_pin.c   |  3 +-
- drivers/gpu/drm/i915/display/intel_fb_pin.h   |  3 +-
- drivers/gpu/drm/i915/display/intel_fbdev.c    |  5 ++
- drivers/gpu/drm/i915/display/intel_fbdev.h    |  9 ++++
- .../gpu/drm/xe/compat-i915-headers/i915_vma.h |  3 ++
- drivers/gpu/drm/xe/display/xe_fb_pin.c        | 46 +++++++++++++++++--
- 8 files changed, 65 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 154 +++++++++++++++++++------
+ 1 file changed, 119 insertions(+), 35 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index ab01c2d15afd..dcb9b7751261 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -1107,7 +1107,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
- 	if (!obj)
- 		return 0;
- 
--	ret = intel_plane_pin_fb(new_plane_state);
-+	ret = intel_plane_pin_fb(new_plane_state, old_plane_state);
- 	if (ret)
- 		return ret;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 7d94d17bda46..661652858623 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -750,7 +750,7 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 	if (ret)
- 		goto out_free;
- 
--	ret = intel_plane_pin_fb(new_plane_state);
-+	ret = intel_plane_pin_fb(new_plane_state, old_plane_state);
- 	if (ret)
- 		goto out_free;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-index b6df9baf481b..7b8a1825ccfc 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-@@ -236,7 +236,8 @@ void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags)
- 	i915_vma_put(vma);
- }
- 
--int intel_plane_pin_fb(struct intel_plane_state *plane_state)
-+int intel_plane_pin_fb(struct intel_plane_state *plane_state,
-+		       const struct intel_plane_state *old_plane_state)
- {
- 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
- 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-index de0efaa25905..48675e6233f0 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
-+++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-@@ -22,7 +22,8 @@ intel_pin_and_fence_fb_obj(struct drm_framebuffer *fb,
- 
- void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags);
- 
--int intel_plane_pin_fb(struct intel_plane_state *plane_state);
-+int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
-+		       const struct intel_plane_state *old_plane_state);
- void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state);
- 
- #endif
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index 99894a855ef0..87b69d398107 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -663,3 +663,8 @@ struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
- 
- 	return to_intel_framebuffer(fbdev->helper.fb);
- }
-+
-+struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev)
-+{
-+	return fbdev ? fbdev->vma : NULL;
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/drm/i915/display/intel_fbdev.h
-index 04fd523a5023..fa6c0c1ae936 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.h
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
-@@ -22,6 +22,8 @@ void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous
- void intel_fbdev_output_poll_changed(struct drm_device *dev);
- void intel_fbdev_restore_mode(struct drm_i915_private *dev_priv);
- struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev);
-+struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev);
-+
- #else
- static inline int intel_fbdev_init(struct drm_device *dev)
- {
-@@ -51,10 +53,17 @@ static inline void intel_fbdev_output_poll_changed(struct drm_device *dev)
- static inline void intel_fbdev_restore_mode(struct drm_i915_private *i915)
- {
- }
-+
- static inline struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
- {
- 	return NULL;
- }
-+
-+static inline struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev)
-+{
-+	return NULL;
-+}
-+
- #endif
- 
- #endif /* __INTEL_FBDEV_H__ */
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-index a20d2638ea7a..193382f97823 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-@@ -9,6 +9,8 @@
- #include <uapi/drm/i915_drm.h>
- #include <drm/drm_mm.h>
- 
-+#include <linux/refcount.h>
-+
- /* We don't want these from i915_drm.h in case of Xe */
- #undef I915_TILING_X
- #undef I915_TILING_Y
-@@ -18,6 +20,7 @@
- struct xe_bo;
- 
- struct i915_vma {
-+	refcount_t ref;
- 	struct xe_bo *bo, *dpt;
- 	struct drm_mm_node node;
- };
 diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 58b6ba01f534..3e24582ffa5c 100644
+index 2a50a7eaaa31..fcbc69c85106 100644
 --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
 +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -8,6 +8,7 @@
- #include "intel_dpt.h"
- #include "intel_fb.h"
- #include "intel_fb_pin.h"
-+#include "intel_fbdev.h"
- #include "xe_fb_pin.h"
- #include "xe_ggtt.h"
- #include "xe_gt.h"
-@@ -347,6 +348,7 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
- 	if (!vma)
- 		return ERR_PTR(-ENODEV);
+@@ -76,47 +76,127 @@ write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
+ 	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
+ }
  
-+	refcount_set(&vma->ref, 1);
- 	if (IS_DGFX(to_xe_device(bo->ttm.base.dev)) &&
- 	    intel_fb_rc_ccs_cc_plane(&fb->base) >= 0 &&
- 	    !(bo->flags & XE_BO_NEEDS_CPU_ACCESS)) {
-@@ -406,6 +408,9 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma, struct intel_framebuffer *fb
+-static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
+-			       const struct i915_gtt_view *view,
+-			       struct i915_vma *vma)
++static struct xe_bo *xe_fb_dpt_alloc(struct intel_framebuffer *fb)
+ {
+ 	struct xe_device *xe = to_xe_device(fb->base.dev);
+ 	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
+-	struct xe_ggtt *ggtt = tile0->mem.ggtt;
+ 	struct xe_bo *bo = intel_fb_obj(&fb->base), *dpt;
+ 	u32 dpt_size, size = bo->ttm.base.size;
+ 
+-	if (view->type == I915_GTT_VIEW_NORMAL)
++	if (!intel_fb_needs_pot_stride_remap(fb))
+ 		dpt_size = ALIGN(size / XE_PAGE_SIZE * 8, XE_PAGE_SIZE);
+-	else if (view->type == I915_GTT_VIEW_REMAPPED)
+-		dpt_size = ALIGN(intel_remapped_info_size(&fb->remapped_view.gtt.remapped) * 8,
+-				 XE_PAGE_SIZE);
+ 	else
+-		/* display uses 4K tiles instead of bytes here, convert to entries.. */
+-		dpt_size = ALIGN(intel_rotation_info_size(&view->rotated) * 8,
++		dpt_size = ALIGN(intel_remapped_info_size(&fb->remapped_view.gtt.remapped) * 8,
+ 				 XE_PAGE_SIZE);
+ 
+ 	if (IS_DGFX(xe))
+-		dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
+-					   ttm_bo_type_kernel,
+-					   XE_BO_CREATE_VRAM0_BIT |
+-					   XE_BO_CREATE_GGTT_BIT |
+-					   XE_BO_PAGETABLE);
+-	else
+-		dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
+-					   ttm_bo_type_kernel,
+-					   XE_BO_CREATE_STOLEN_BIT |
+-					   XE_BO_CREATE_GGTT_BIT |
+-					   XE_BO_PAGETABLE);
++		return xe_bo_create(xe, tile0, NULL, dpt_size,
++				    ttm_bo_type_kernel,
++				    XE_BO_CREATE_VRAM0_BIT |
++				    XE_BO_PAGETABLE);
++
++	dpt = xe_bo_create(xe, tile0, NULL, dpt_size,
++			   ttm_bo_type_kernel,
++			   XE_BO_CREATE_STOLEN_BIT |
++			   XE_BO_PAGETABLE);
+ 	if (IS_ERR(dpt))
+-		dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
+-					   ttm_bo_type_kernel,
+-					   XE_BO_CREATE_SYSTEM_BIT |
+-					   XE_BO_CREATE_GGTT_BIT |
+-					   XE_BO_PAGETABLE);
++		dpt = xe_bo_create(xe, tile0, NULL, dpt_size,
++				   ttm_bo_type_kernel,
++				   XE_BO_CREATE_SYSTEM_BIT |
++				   XE_BO_PAGETABLE);
++
++	return dpt;
++}
++
++static void xe_fb_dpt_free(struct i915_vma *vma)
++{
++	xe_bo_put(vma->dpt);
++	vma->dpt = NULL;
++}
++
++static int xe_fb_dpt_map_ggtt(struct xe_bo *dpt)
++{
++	struct xe_device *xe = xe_bo_device(dpt);
++	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
++	struct xe_ggtt *ggtt = tile0->mem.ggtt;
++	u64 start = 0, end = U64_MAX;
++	u64 alignment = XE_PAGE_SIZE;
++	int err;
++
++	if (xe_bo_is_vram(dpt) && ggtt->flags & XE_GGTT_FLAGS_64K)
++		alignment = SZ_64K;
++
++	if (XE_WARN_ON(dpt->ggtt_node.size))
++		return -EINVAL;
++
++	xe_device_mem_access_get(tile_to_xe(ggtt->tile));
++	err = mutex_lock_interruptible(&ggtt->lock);
++	if (err)
++		goto out_put;
++
++	err = drm_mm_insert_node_in_range(&ggtt->mm, &dpt->ggtt_node, dpt->size,
++					  alignment, 0, start, end, 0);
++	if (!err)
++		xe_ggtt_map_bo(ggtt, dpt);
++	mutex_unlock(&ggtt->lock);
++
++out_put:
++	xe_device_mem_access_put(tile_to_xe(ggtt->tile));
++	return err;
++}
++
++static int
++xe_fb_dpt_alloc_pinned(struct i915_vma *vma, struct intel_framebuffer *fb)
++{
++	struct xe_bo *dpt;
++	int err;
++
++	dpt = xe_fb_dpt_alloc(fb);
+ 	if (IS_ERR(dpt))
+ 		return PTR_ERR(dpt);
+ 
++	vma->dpt = dpt;
++
++	err = ttm_bo_reserve(&dpt->ttm, true, false, NULL);
++	if (!err) {
++		err = xe_bo_validate(dpt, NULL, true);
++		if (!err)
++			err = xe_bo_vmap(dpt);
++		if (!err)
++			ttm_bo_pin(&dpt->ttm);
++		ttm_bo_unreserve(&dpt->ttm);
++	}
++	if (err)
++		xe_fb_dpt_free(vma);
++	return err;
++}
++
++static void xe_fb_dpt_unpin_free(struct i915_vma *vma)
++{
++	ttm_bo_reserve(&vma->dpt->ttm, false, false, NULL);
++	ttm_bo_unpin(&vma->dpt->ttm);
++	ttm_bo_unreserve(&vma->dpt->ttm);
++
++	xe_fb_dpt_free(vma);
++}
++
++static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
++			       const struct i915_gtt_view *view,
++			       struct i915_vma *vma)
++{
++	struct xe_device *xe = to_xe_device(fb->base.dev);
++	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
++	struct xe_ggtt *ggtt = tile0->mem.ggtt;
++	struct xe_bo *bo = intel_fb_obj(&fb->base), *dpt;
++	u32 size = bo->ttm.base.size;
++	int ret;
++
++	ret = xe_fb_dpt_alloc_pinned(vma, fb);
++	if (ret)
++		return ret;
++	dpt = vma->dpt;
++
++	/* Create GGTT mapping.. */
+ 	if (view->type == I915_GTT_VIEW_NORMAL) {
+ 		u32 x;
+ 
+@@ -151,9 +231,10 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
+ 					  rot_info->plane[i].dst_stride);
+ 	}
+ 
+-	vma->dpt = dpt;
+-	vma->node = dpt->ggtt_node;
+-	return 0;
++	ret = xe_fb_dpt_map_ggtt(dpt);
++	if (ret)
++		xe_fb_dpt_unpin_free(vma);
++	return ret;
+ }
+ 
+ static void
+@@ -281,7 +362,7 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
+ 	 * Pin the framebuffer, we can't use xe_bo_(un)pin functions as the
+ 	 * assumptions are incorrect for framebuffers
+ 	 */
+-	ret = ttm_bo_reserve(&bo->ttm, false, false, NULL);
++	ret = ttm_bo_reserve(&bo->ttm, true, false, NULL);
+ 	if (ret)
+ 		goto err;
+ 
+@@ -319,11 +400,14 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma)
  	struct xe_device *xe = to_xe_device(vma->bo->ttm.base.dev);
  	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
  
-+	if (!refcount_dec_and_test(&vma->ref))
-+		return;
-+
- 	if (vma->dpt) {
- 		xe_ggtt_remove_bo(ggtt, vma->dpt);
- 		xe_fb_dpt_unpin_free(vma, fb);
-@@ -447,20 +452,53 @@ void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags)
- 	__xe_unpin_fb_vma(vma, NULL);
- }
- 
--int intel_plane_pin_fb(struct intel_plane_state *plane_state)
-+static bool reuse_vma(struct intel_plane_state *new_plane_state,
-+		      const struct intel_plane_state *old_plane_state)
- {
--	struct drm_framebuffer *fb = plane_state->hw.fb;
-+	struct intel_framebuffer *fb = to_intel_framebuffer(new_plane_state->hw.fb);
-+	struct xe_device *xe = to_xe_device(fb->base.dev);
-+	struct i915_vma *vma;
-+
-+	if (old_plane_state->hw.fb == new_plane_state->hw.fb &&
-+	    !memcmp(&old_plane_state->view.gtt,
-+		    &new_plane_state->view.gtt,
-+	            sizeof(new_plane_state->view.gtt))) {
-+		vma = old_plane_state->ggtt_vma;
-+		goto found;
+-	if (vma->dpt)
+-		xe_bo_unpin_map_no_vm(vma->dpt);
+-	else if (!drm_mm_node_allocated(&vma->bo->ggtt_node) ||
+-		 vma->bo->ggtt_node.start != vma->node.start)
+-		xe_ggtt_remove_node(ggtt, &vma->node, false);
++	if (vma->dpt) {
++		xe_ggtt_remove_bo(ggtt, vma->dpt);
++		xe_fb_dpt_unpin_free(vma);
++	} else {
++		if (!drm_mm_node_allocated(&vma->bo->ggtt_node) ||
++		    vma->bo->ggtt_node.start != vma->node.start)
++			xe_ggtt_remove_node(ggtt, &vma->node, false);
 +	}
-+
-+	if (fb == intel_fbdev_framebuffer(xe->display.fbdev.fbdev)) {
-+		vma = intel_fbdev_vma_pointer(xe->display.fbdev.fbdev);
-+		if (vma)
-+			goto found;
-+	}
-+
-+	return false;
-+
-+found:
-+	refcount_inc(&vma->ref);
-+	new_plane_state->ggtt_vma = vma;
-+	return true;
-+}
-+
-+int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
-+		       const struct intel_plane_state *old_plane_state)
-+{
-+	struct drm_framebuffer *fb = new_plane_state->hw.fb;
- 	struct xe_bo *bo = intel_fb_obj(fb);
- 	struct i915_vma *vma;
  
-+	if (reuse_vma(new_plane_state, old_plane_state))
-+		return 0;
-+
- 	/* We reject creating !SCANOUT fb's, so this is weird.. */
- 	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_SCANOUT_BIT));
- 
--	vma = __xe_pin_fb_vma(to_intel_framebuffer(fb), &plane_state->view.gtt, 0);
-+	vma = __xe_pin_fb_vma(to_intel_framebuffer(fb), &new_plane_state->view.gtt, 0);
- 	if (IS_ERR(vma))
- 		return PTR_ERR(vma);
- 
--	plane_state->ggtt_vma = vma;
-+	new_plane_state->ggtt_vma = vma;
- 	return 0;
- }
- 
+ 	ttm_bo_reserve(&vma->bo->ttm, false, false, NULL);
+ 	ttm_bo_unpin(&vma->bo->ttm);
 -- 
 2.43.0
 
