@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BC54C47DD9
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Mar 2024 20:09:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC1E3C54E67
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Mar 2024 20:40:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E565B10F554;
-	Wed, 27 Mar 2024 20:09:31 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7183810F554;
- Wed, 27 Mar 2024 20:09:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6636674587181888356=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97B5E10FFFF;
+	Wed, 27 Mar 2024 20:40:45 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gZlDIdE6";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16F4510FFFF
+ for <intel-xe@lists.freedesktop.org>; Wed, 27 Mar 2024 20:40:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1711572045; x=1743108045;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=AA616fwFD2EchGUsWUdPa5npqC2UzbntOOXymjCKME4=;
+ b=gZlDIdE67MVsXW4+GbB09EAY3Xn5eTU44xy+rJXlVCAWboFuXe60SoYF
+ zWHDqdxtpAoonWO8eZav8ecA4/5J+vH32vnA7X/YvJUY10huFk6pFfMXi
+ n1Mv4rUdHJPrHE7JSkcLJctlThRKDmwNXblURyFKCLJ1Hqh7R6qOuefb3
+ Im6lB3O5wRDmMxDNfzJdn6yB+Mi2qliXnW04HWlm/pz5vWUl4GHKL4yDO
+ 0NwoEMf/xMMUG7iUhQQZJi6WRw12UKqoSzUVRFLOY/3/G85zEQRaTKlzu
+ 1yTQVYL+jicDfh/7n7jqone6BqOsnGlOZxluFcHT3StBgR/eXPS0NC4aP g==;
+X-CSE-ConnectionGUID: qG8gJwpwR92rKNYO1a3ngA==
+X-CSE-MsgGUID: roxfWBQ4RGmZ0rFjRFXkGg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="29182152"
+X-IronPort-AV: E=Sophos;i="6.07,159,1708416000"; d="scan'208";a="29182152"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2024 13:40:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,159,1708416000"; d="scan'208";a="21109764"
+Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
+ by orviesa005.jf.intel.com with ESMTP; 27 Mar 2024 13:40:45 -0700
+From: Zhanjun Dong <zhanjun.dong@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Zhanjun Dong <zhanjun.dong@intel.com>,
+ Alan Previn <alan.previn.teres.alexis@intel.com>,
+ Jose Souza <jose.souza@intel.com>
+Subject: [PATCH v7 0/7] drm/xe/guc: Add GuC based register capture for error
+ capture
+Date: Wed, 27 Mar 2024 13:40:34 -0700
+Message-Id: <20240327204041.178879-1-zhanjun.dong@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5BCI-test?=
- =?utf-8?q?=2C1/8=5D_drm=3A_Add_drm=5Fvblank=5Fwork=5Fflush=5Fall=28=29=2E?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 27 Mar 2024 20:09:31 -0000
-Message-ID: <171157017146.1060333.5515380896888374061@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240327190710.2359-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20240327190710.2359-1-maarten.lankhorst@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,142 +61,74 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6636674587181888356==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Port GuC based register capture for error capture from i915 to Xe.
 
-== Series Details ==
+There are 3 parts inside:
+. Prepare for capture registers
+    There is a bo create at guc ads init time, that is very early
+    and engi  ne map is not ready, make it hard to calculate the
+    capture buffer size, new function created for worst case size
+    caluation. Other than that, this part basically follows the i915
+    design.
+. Process capture notification message
+    Basically follows i915 design
+. Sysfs command process.
+    Xe switched to devcoredump, adopted command line process with
+    captured node list.
 
-Series: series starting with [CI-test,1/8] drm: Add drm_vblank_work_flush_all().
-URL   : https://patchwork.freedesktop.org/series/131706/
-State : success
+Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: Jose Souza <jose.souza@intel.com>
 
-== Summary ==
+Changes from prior revs:
+  v7:-  Kconfig CONFIG_DRM_XE_CAPTURE_ERROR removed
+  v6:-  Change hardcoded register snapshot fill to follow mapping tables
+        When capture is empty, take snapshot from engine
+  v5:-  Split dss helper code out as an standalone patch
+        Remove old platform registers definition.
+        Split register map table to 32 and 64bit each
+  v4:-  Move register map table to xe_hw_engine.c
+  v3:-  Remove condition compilation in code
+  v2:-  Split into multiple chunks
 
-CI Bug Log - changes from xe-1002-942f9f7739422dcb10052c56d5b518123f2b7406_BAT -> xe-pw-131706v1_BAT
-====================================================
+Zhanjun Dong (7):
+  drm/xe/guc: Update GuC ADS size for error capture
+  drm/xe/guc: Add XE_LP steered register lists
+  drm/xe/guc: Add capture size check in GuC log buffer
+  drm/xe/guc: Check sizing of guc_capture output
+  drm/xe/guc: Extract GuC error capture lists
+  drm/xe/guc: Pre-allocate output nodes for extraction
+  drm/xe/guc: Plumb GuC-capture into dev coredump
 
-Summary
--------
+ drivers/gpu/drm/xe/Makefile              |    1 +
+ drivers/gpu/drm/xe/abi/guc_actions_abi.h |    7 +
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h     |    5 +
+ drivers/gpu/drm/xe/xe_gt_printk.h        |    3 +
+ drivers/gpu/drm/xe/xe_guc.c              |    6 +
+ drivers/gpu/drm/xe/xe_guc_ads.c          |  208 +++-
+ drivers/gpu/drm/xe/xe_guc_ads_types.h    |    2 +
+ drivers/gpu/drm/xe/xe_guc_capture.c      | 1313 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_capture.h      |   21 +
+ drivers/gpu/drm/xe/xe_guc_capture_fwif.h |  221 ++++
+ drivers/gpu/drm/xe/xe_guc_ct.c           |    2 +
+ drivers/gpu/drm/xe/xe_guc_fwif.h         |   68 ++
+ drivers/gpu/drm/xe/xe_guc_log.c          |  179 +++
+ drivers/gpu/drm/xe/xe_guc_log.h          |   15 +
+ drivers/gpu/drm/xe/xe_guc_log_types.h    |   26 +
+ drivers/gpu/drm/xe/xe_guc_submit.c       |   21 +-
+ drivers/gpu/drm/xe/xe_guc_submit.h       |    3 +
+ drivers/gpu/drm/xe/xe_guc_types.h        |    2 +
+ drivers/gpu/drm/xe/xe_hw_engine.c        |  249 ++--
+ drivers/gpu/drm/xe/xe_hw_engine.h        |    4 +
+ drivers/gpu/drm/xe/xe_hw_engine_types.h  |  117 +-
+ 21 files changed, 2358 insertions(+), 115 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_capture.c
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_capture.h
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_capture_fwif.h
 
-  **SUCCESS**
+-- 
+2.34.1
 
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-131706v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@xe_evict@evict-beng-mixed-threads-small-multi-vm:
-    - bat-dg2-oem2:       [TIMEOUT][1] ([Intel XE#1027] / [Intel XE#1088]) -> [INCOMPLETE][2] ([Intel XE#804])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1002-942f9f7739422dcb10052c56d5b518123f2b7406/bat-dg2-oem2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131706v1/bat-dg2-oem2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html
-
-  * igt@xe_exec_threads@threads-mixed-userptr-invalidate:
-    - bat-adlp-7:         [INCOMPLETE][3] ([Intel XE#1044] / [Intel XE#1376]) -> [INCOMPLETE][4] ([Intel XE#1044])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1002-942f9f7739422dcb10052c56d5b518123f2b7406/bat-adlp-7/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131706v1/bat-adlp-7/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html
-
-  
-  [Intel XE#1027]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1027
-  [Intel XE#1044]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1044
-  [Intel XE#1088]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1088
-  [Intel XE#1376]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1376
-  [Intel XE#804]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/804
-
-
-Build changes
--------------
-
-  * Linux: xe-1002-942f9f7739422dcb10052c56d5b518123f2b7406 -> xe-pw-131706v1
-
-  IGT_7786: 1e4a3cd0a4bb3419fb70ed3e01259485b056dcfd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1002-942f9f7739422dcb10052c56d5b518123f2b7406: 942f9f7739422dcb10052c56d5b518123f2b7406
-  xe-pw-131706v1: 131706v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131706v1/index.html
-
---===============6636674587181888356==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [CI-test,1/8] drm: Add drm_vblank_work_flush_all().</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131706/">https://patchwork.freedesktop.org/series/131706/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131706v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131706v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1002-942f9f7739422dcb10052c56d5b518123f2b7406_BAT -&gt; xe-pw-131706v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-131706v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@xe_evict@evict-beng-mixed-threads-small-multi-vm:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1002-942f9f7739422dcb10052c56d5b518123f2b7406/bat-dg2-oem2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1027">Intel XE#1027</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1088">Intel XE#1088</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131706v1/bat-dg2-oem2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/804">Intel XE#804</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_threads@threads-mixed-userptr-invalidate:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1002-942f9f7739422dcb10052c56d5b518123f2b7406/bat-adlp-7/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1044">Intel XE#1044</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1376">Intel XE#1376</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131706v1/bat-adlp-7/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1044">Intel XE#1044</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1002-942f9f7739422dcb10052c56d5b518123f2b7406 -&gt; xe-pw-131706v1</li>
-</ul>
-<p>IGT_7786: 1e4a3cd0a4bb3419fb70ed3e01259485b056dcfd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1002-942f9f7739422dcb10052c56d5b518123f2b7406: 942f9f7739422dcb10052c56d5b518123f2b7406<br />
-  xe-pw-131706v1: 131706v1</p>
-
-</body>
-</html>
-
---===============6636674587181888356==--
