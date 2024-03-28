@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C3EFC54E64
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Mar 2024 10:42:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC6B3C54E67
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Mar 2024 10:42:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BA4A10E24B;
-	Thu, 28 Mar 2024 10:42:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B27710E24B;
+	Thu, 28 Mar 2024 10:42:38 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E5E010E53D;
- Thu, 28 Mar 2024 10:42:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8859B10E526;
+ Thu, 28 Mar 2024 10:42:36 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915=3A_use_fine?=
- =?utf-8?q?_grained_-Woverride-init_disable?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915=3A_use_fine_grai?=
+ =?utf-8?q?ned_-Woverride-init_disable?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 28 Mar 2024 10:42:25 -0000
-Message-ID: <171162254538.1061727.7776324071843838160@8e613ede5ea5>
+Date: Thu, 28 Mar 2024 10:42:36 -0000
+Message-ID: <171162255656.1062663.4635612247856675087@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240328102455.944131-1-jani.nikula@intel.com>
 In-Reply-To: <20240328102455.944131-1-jani.nikula@intel.com>
@@ -44,13 +44,46 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/i915: use fine grained -Woverride-init disable
 URL   : https://patchwork.freedesktop.org/series/131752/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 24d2e3b675ed drm-tip: 2024y-03m-28d-10h-27m-52s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915: use fine grained -Woverride-init disable
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+10b531c2aeb176a1a539b4a77216232f97719cec
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b68213454037023dcc367dfea998a2ac1cc11ada
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Thu Mar 28 12:24:55 2024 +0200
+
+    drm/i915: use fine grained -Woverride-init disable
+    
+    Use localized __diag_push(), __diag_ignore_all() with rationale, and
+    __diag_pop() for specific initializations instead of blanket disabling
+    of -Woverride-init across several files.
+    
+    Note that we've tried this before with commit 88e9664434c9 ("drm/i915:
+    use localized __diag_ignore_all() instead of per file") and reverted in
+    commit 290d16104575 ("Revert "drm/i915: use localized
+    __diag_ignore_all() instead of per file""). The issue turned out to be
+    in __diag_ignore_all() and it was fixed by commit 689b097a06ba
+    ("compiler-gcc: Suppress -Wmissing-prototypes warning for all supported
+    GCC"). So we should be able to pull this off now.
+    
+    Cc: "Arnd Bergmann" <arnd@arndb.de>
+    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 24d2e3b675ed700910939b6bcaeaae3a78cf9c5c drm-intel
+b68213454037 drm/i915: use fine grained -Woverride-init disable
+-:14: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 689b097a06ba ("compiler-gcc: Suppress -Wmissing-prototypes warning for all supported GCC")'
+#14: 
+in __diag_ignore_all() and it was fixed by commit 689b097a06ba
+
+total: 1 errors, 0 warnings, 0 checks, 71 lines checked
 
 
