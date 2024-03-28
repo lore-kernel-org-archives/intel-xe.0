@@ -4,138 +4,144 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46B95CD11DD
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Mar 2024 16:54:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57466CD1284
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Mar 2024 16:59:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEE3010F1BC;
-	Thu, 28 Mar 2024 16:54:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C358910E357;
+	Thu, 28 Mar 2024 16:59:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DaC7snRX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PHtgGPoS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACEB610F1BC
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Mar 2024 16:54:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8F9010E357
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 Mar 2024 16:59:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711644843; x=1743180843;
+ t=1711645142; x=1743181142;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=ML/8eFTEiMNspM4I3B5sdV2ZIoKsR8jYmXNrC4y5J28=;
- b=DaC7snRXdVIOQ4jeN+teI1kWgal53X8HkO7Ryos7uuoWnjJpHvwjPXff
- RHS72SFOipOo+UDa2E1G3ct8nSbN8GRrhXoyFsO04ZAOiAAlZ+mpT/GHj
- IWJkgHu5/xjYqmreE5sSgDTv0s117749RB4N99KNPy1OQ/Az1XrCCbYPf
- Rk3lcukWsiDP+q0GrKiVbSKMemAJO0kMTxL7kWRPU03AD01HfjsQxzlpV
- ytH+t9rqawKcjAoS+/OCVlNBDy/zETU3sCtDJvlonES4XhUjuy74GSD4e
- giFutudxhwdm0bKRrwHx0bfUfeHJ4+jqAdFMg0TWl/s8O4VQ/jhowEOV3 g==;
-X-CSE-ConnectionGUID: XYV+fM2xQZqBTYAzYgDr1A==
-X-CSE-MsgGUID: D9hBpxOjQka2ulRREwCtgg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11027"; a="7005180"
+ bh=SwKe6isARQpBe4XBrgmIFJC2ZlR0wH1MdoI3chLNXe0=;
+ b=PHtgGPoSy040it7UHFxXlaN/zWonkxkr21Xtn35C5n1CzzInpphaGts8
+ TDvDUWoGmmVFncuHn5yo5cvcnzCaRCKgGqrwd9QRssPYzXqCmc+SQuKLY
+ j0Buc2uloVytAXmKikGrl4LbBPGgUAD0Y1XI3YVAHFghFeYWuVfxFCgUj
+ IxrOnaWbK8mjbbrDSx1BVYbEcDVN0H5nvNaW4z4MUdSm3G6mFsqh8fcI+
+ mDZ1eV84//1poiFwByqNI7TdIfLo2UrSDsxh8AH42dic8SN6/I7aLedC2
+ JVko34P8GluGYZNzKKbJFh6c5SzJAyJ6pzGAhbDGy4q1Kwv5mycmcw6hu A==;
+X-CSE-ConnectionGUID: 7o8Cj2nBQheusa0d0tkOQg==
+X-CSE-MsgGUID: Mu5Zt/8oQkOm5cItPjJ27Q==
+X-IronPort-AV: E=McAfee;i="6600,9927,11027"; a="7415668"
 X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; 
-   d="scan'208";a="7005180"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2024 09:54:00 -0700
+   d="scan'208";a="7415668"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2024 09:59:01 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; d="scan'208";a="47674863"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 28 Mar 2024 09:54:01 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; d="scan'208";a="39860051"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 28 Mar 2024 09:59:01 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 28 Mar 2024 09:53:59 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.1.2507.35; Thu, 28 Mar 2024 09:59:00 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Thu, 28 Mar 2024 09:53:59 -0700
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.40) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.35; Thu, 28 Mar 2024 09:58:59 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Thu, 28 Mar 2024 09:58:59 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 28 Mar 2024 09:53:59 -0700
+ 15.1.2507.35; Thu, 28 Mar 2024 09:58:59 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QKGCbPQzd9kPYZ937SftoBuXXHjjN6huQYhN94O6EB0XqLfFwnN492FtPSXPbN0DcZqbV4I2f2LxT1xFJ9Cl+KyT6fH+goH+JdEFzFs3xROL7rqsmPlWXVZY+qmSG4f7D8K+ykPD12bZOyTbxWn5eKdNnUbRsNqlvr8lixTyf/y/jLzcFAo6200TuRENYimwKRfOLN46xShnShMNE6rZmpoCLkb3Nc+f2yP54PjBtFDstDvf1FnDCZprBLXxS19B2ilVvnGx7RKXeHmQ0sg15voh0m5QFTYKjKBO/EauwBqYJrGf2qsDo4UKvTdPanqMMbKFctXVrbvuNJiQTA5knA==
+ b=LueTbIwQMMnl3XltIiUEWG2a40aLice1ul7SgtJMz2pm5RfPo9rV3sgcIzZJ7sQh/9+VuV4s0q+DkWVMn5vdnI0D65qE7ChaP3Oscm8pjFcFxafwlH6wiyHW7QpCBQRJNalg4DONERiBhby0K86cTanNPVCPJBxsrJpW/EKyHGCA7U86fUrjowfW2Q2mUul5XJWquhSRwXZLp1O3R/vbRlWVsRTWU0/D23J2h8STpuajtjByZ61cRorc2bmEX3Xpo058utGkdqufDXztICNZQhdOGEPEHd7GTZ7vUuQyhcMKWGZqfm4qSF6Iw9ruf3rNUC+eE0vU1fLhtFsSR/sMCQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IOuCs4djzH0aVKsgrvc82tYwbOg3ajabPVdWTtWKRrQ=;
- b=Eh49XToquEF/mxbOAQRV/7thZxQc23PRwSYEXiJK40uruzTxBGSV71QOa/M4E2B5vZeFl1+oHA1ggR6Ucd9QRxlMU2YCsG7WwhXTO9/X+x1C/XLDv8P1TKpKSxNVJ4KU9P8rAawUyEu/agwHnBga6YfgsglHKu/YciPobdl8zC87mmu42zHL2j8l8WRmAUc6cQZF9+U9NgVt5697hXBssEJ8hXeHAOctSlRH+W0Ah+k+IngAaZY++Q2g8IoyInlAwl4cDzr4Bepq/6OBS08EXKmRtaJNChJSNOmph4Ppnq0KjVGORIiVbwjeibqQiFLJzI2T3/vQ2wjWUk/LYtcTNw==
+ bh=+Xy+rOTdDGJ6b0tyB8NVT1/WxNS/4UH11H9QRCUQesc=;
+ b=MXAAJxLLypvyvglLhIMVYRZRnaIzL88CxaxIZd1ljgCCZdatC1GMWoEt27A5XP00l/nS1ZLIfwpWw7BOh0gL6S4yqqyF1OdNVryMV/Q79KpiBaV0e5YhIB1qUSc5Y2Ce2BQg5nezwjX2dvEetd26g2dHpOLe//gCPbh+KOr+fwzwhP9FcgrRTg56jq53g+uLBT7BjjMNczpGcvYU7KEaBjHtie2bALbGDs2AIgo3o1eImtCnAnhrPaQkDTGmUMSXcOmjQioFyhxSp99Ck7bBzR7AGNbXoqGYc1Zc4L+SvIf688O7U4zmgS/0DdWzzBc08DgPruQw9c3QOE8425mb4A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by SN7PR11MB6996.namprd11.prod.outlook.com (2603:10b6:806:2af::17)
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by SJ0PR11MB6741.namprd11.prod.outlook.com (2603:10b6:a03:47a::20)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.10; Thu, 28 Mar
- 2024 16:53:56 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::7607:bd60:9638:7189]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::7607:bd60:9638:7189%4]) with mapi id 15.20.7409.031; Thu, 28 Mar 2024
- 16:53:56 +0000
-Date: Thu, 28 Mar 2024 12:53:50 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Karthik Poosa <karthik.poosa@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
- <badal.nilawar@intel.com>
-Subject: Re: [PATCH v4] drm/xe/hwmon: Add infra to support card power and
- energy attributes
-Message-ID: <ZgWgnhUl7UA_Requ@intel.com>
-References: <20240328155129.3839062-1-karthik.poosa@intel.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.32; Thu, 28 Mar
+ 2024 16:58:57 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e7c:ccbc:a71c:6c15]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e7c:ccbc:a71c:6c15%5]) with mapi id 15.20.7409.031; Thu, 28 Mar 2024
+ 16:58:57 +0000
+Date: Thu, 28 Mar 2024 17:00:09 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Francois Dugast <francois.dugast@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Mateusz Jablonski
+ <mateusz.jablonski@intel.com>, Michal Mrozek <michal.mrozek@intel.com>
+Subject: Re: [PATCH v1 1/1] drm/xe/uapi: Restore flags VM_BIND_FLAG_READONLY
+ and VM_BIND_FLAG_IMMEDIATE
+Message-ID: <ZgWiGejixyevimsF@DUT025-TGLU.fm.intel.com>
+References: <20240328143742.7-1-francois.dugast@intel.com>
+ <20240328143742.7-2-francois.dugast@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20240328155129.3839062-1-karthik.poosa@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0084.namprd13.prod.outlook.com
- (2603:10b6:a03:2c4::29) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+In-Reply-To: <20240328143742.7-2-francois.dugast@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0283.namprd03.prod.outlook.com
+ (2603:10b6:a03:39e::18) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|SN7PR11MB6996:EE_
-X-MS-Office365-Filtering-Correlation-Id: 03375e17-5c7e-4359-4dcf-08dc4f47a802
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SJ0PR11MB6741:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5ef01acc-3a83-49b0-cb32-08dc4f485ba5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: EsLKaJ1rIFsWkJW/s3FW/C+82vH7jR/aFKrpWDIM7ID5HF1IDiLwIETZqWOTgEaNGSqhA8J8CirIdYLXSybd/Pt+U2m6ReacniOkXbXNzAgaMftu8qYMKYqzxxAe9SRILLH0KOfJ0qdMdccQioPRY/txjr3e2cFh17q54MxMzh82MlfbSR7JYZrkcqlsJr9Ao+Z+RyJqIvEL9cA8rJZDzSKg7In/gpf2Qu0yGzQPalmOQG4bKYzs7FaXGboYoXwMbpOFbm7iu4NlE9gAuJ4zHKbr1MRzfhJYtBjr3gPkQq4SmK54RCfFXPV33Nkbmxp30C+j1CsOc27JRdGqNf0b2t8gd4NX7KLdm6hRsnsFnVbm2T49dhJD9gUFoH7USgtXyONkrfxENqo4ZHWK8bCbvhb3SdGndOGazt+5oMHBQuWFCaww7oTqaSrCVIdYMskwgEPlE6t4VCMcvhjLc3jJ+8MjI82dKmkk6f9sO36ScshempZv01unjRbWKcyGvPe9vcYne9IXj/d4Ino/2FLk+OX0DXIInhuGEjJsBfdlvFE/LixqsLAwc/IgTq82T4Jo3QHUbWSKOV0/5rCI+nNfKQAKZaD6Ed1cmKUyR/YA+TLMxe5FZxer/oTihAhYdNvg73YejkIKYio+BaCQCSlTpGr46PWu0wJ7fX13hU1id/c=
+X-Microsoft-Antispam-Message-Info: osytLkjWRkSIuMBR0BDUiQbuJQj64PRq7pq/T4XHEnig/iMs27hr6okiCwC4soe3KAxfC9N9NLNDbvxK1suKds1qOm1Kv1a70IFQ/WXBcAohbLWBBCs5eQ2OJXhI3+pbA+O6CjGUcTddb/ubh5HrPyf91lBLJcjoD/yR0ip1GkMWVWsGh1y0kSXuADaGFq/bvlzmUkC/q4AERkLMNGJYvwHjG7TlfoTjxCj5e7k6Mjk6m2pMfCSQBWA0KCTeTv3heySRIdiWruAhuA6zoOM1DdAJDmwIYUSx1wtGpJBBJHsW98G1RsYmag6WW2QcWaStlE4e5QiDofcdBV4uJYRnDT4nKLoFMpOsWWAA4gu2mFvJVk8AUVy+A0pfnUbZuU4wtBO8EfECw7Xpwy2p4CKdxC/jo7/8U/0orukwcmPR93pN8x55ghU3ioEwTgftEB2WTHCIvhEBy6i1YCubjKCADtlSxWplsoBSn31EpbpdrPaFA+Y5pYuwo//8DHBT3PTNxKgrALzU4nRcCM+pZSl/McpSUu9cAy6kd9MOs+vfQnAeii8myXLzVTlQw/7HYVHSc8hM8Cu6HxuBGElzIPklLGwrZ0vA0shPQyDMJjX/Zu92+jWmmQqLetUkzQNIXD3Q8WG1cdZQyAkqbr/AQ+kRJJD/hzElAjY4pUtNY8DxbW4=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(366007)(376005)(1800799015); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?7IAMmX7/ZfiQZkfHW0ovkczTrhyzeafHt6IdQ84fruFnfFqiwkWc3mVxiULq?=
- =?us-ascii?Q?/F9Ghzvf5oqZ0PHUsQSKLOBkK17u3QVVIfYZOCqJcW69qNDxXhgGM39B81G9?=
- =?us-ascii?Q?ddbfqQkuVJtXLyh19A9SJE8dEFR5GoBsydzamXZtjs/16GY6bQcXVM/m8lSB?=
- =?us-ascii?Q?a8rXVFCgs5bJnNqflOg2JxOKTgZEm9axjPiQsjdag0N5xNRhirpVrfTtCXgu?=
- =?us-ascii?Q?rkzNKC6Kzz5czxgsVOsVeZ99jELuYrazkeXaLxs5xQQ9AT2jvEpM2QvYjGEO?=
- =?us-ascii?Q?vhjMcvvao1S19dqItxQpsttcxz6S3Um0q7v0D6GnNM8NO7dY27sOyrPXt8/W?=
- =?us-ascii?Q?mi7n5JAGaXw5HaF/Ur25C3UoqNwB3RVWXtDW0YuOoUBOvxazaMYtQ5OU4KIc?=
- =?us-ascii?Q?ky4cNCM/kUYimZE6l+WmJis/S9YpaosRti+r52SIn3cSSG5nvRsUiU4Ipgb5?=
- =?us-ascii?Q?9/H2v+/Hsh187okuDZcJyNJF7VyoioxPnU8hYv/uH25/zdLtmOBjQ84Ngshc?=
- =?us-ascii?Q?u8m46TxaJqY8wATWfas8ROOE2HHsiANu8+W1Yq4rodraK7DfJZCvszFUYBXF?=
- =?us-ascii?Q?lKwcjiEMyaCni3jWwUzlLDRJ6kxjKMKZIPpiGyi8eIbK23vg2Ui4ce8iV5KB?=
- =?us-ascii?Q?mhD7jE+2qiNJVwrPcCmd/FE4SWAIpiQh+C3IcMpFzNW7h6ukosD/xmlh0EJA?=
- =?us-ascii?Q?oJ1sw1M0ehlKReH/1BcWxq/3Xn8c3x5X5UmbGmOOVwHFHXUb1Tq5X1sbni5z?=
- =?us-ascii?Q?ikUV17CeLc8VlgA4XL3bkk2BfBLLQZBognsgDICNjUJ6x/EhWaBE8TtaLmCy?=
- =?us-ascii?Q?d6xJTiABjog5niocmxuibTw0O/DT6pu+C58FMZDfOkAEHgIBUIVEGq7aWFmv?=
- =?us-ascii?Q?A7dlZe5bL2+f+6RNCHOw4xSuVZX4NSCcVvPk/Y9U4MZooHx5WyEytrrX3Zsj?=
- =?us-ascii?Q?hWeRFVA1jeKfCUOG9WC0kh9KLS3MnlKiwV4tLSvRSxahNnl2O5qmPv7dpM5C?=
- =?us-ascii?Q?NrmVroSQ94eVPgdfqPiy3kC75HQTx0Ia0GR+dFtpSAbnntxbIeuuPs3CP9L6?=
- =?us-ascii?Q?EGV0e+KEGVnEwgFn/ohk16FmQm5G5x0NVndsJ4VaXK4cr2SV8xCKsPmhOL/i?=
- =?us-ascii?Q?mYZ4YTjuNUNZsHMsMeg6UZhmyrfqAdb33JCRf6JXWmWM3AYzi028msz6Hfcd?=
- =?us-ascii?Q?RLh9OxpWrWPxkfoeOCsASPiB3kACvznLbH0puJzCcFlwRUcHZfMLWUuXg8bp?=
- =?us-ascii?Q?nqvzHp2wAQOtzTA4aD4rjphZqdzxDDg4xljqGJXvJviQg9iuuqX4754GEdmC?=
- =?us-ascii?Q?UaPnpHYVY2+c3c+19ldLCVBArgv9DzR7aFf+sxi/He/+1j91OXkg1uXs/6B8?=
- =?us-ascii?Q?NWy7zRIdlvl96IfL+DBA5758F0uGxXpNtQanT6Ii+a+M+RRXHatUOuNd9sgp?=
- =?us-ascii?Q?Y8XIbFF4RXKmUYlEyRWtYhrrJ5g8KRZcLMLR3VaMmjTCdPuI+dP4kQkMxwlt?=
- =?us-ascii?Q?Lb7gKZO8TyZm65xTYwO88LgfXmJsOr2H70Ewl45qciGRIXsSGVEFxY4F0Q3k?=
- =?us-ascii?Q?XBxtrPy8ShqEIn6QdqdEXoKsY8Icu/HNEiKLT1rG?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 03375e17-5c7e-4359-4dcf-08dc4f47a802
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?m5Nuuk3J35Lc44ZDD+4ffvrW6YHOhs0k6K0pLv6maKrTk/9we9I9EY0L8mU6?=
+ =?us-ascii?Q?3fMoYE3fapAKF6DXsSZfLEBOTRvyXasHvwE8bxBQIH1j+BD9RS26BBEheNI3?=
+ =?us-ascii?Q?6aw2K4oSL4FWMZbtlp50i90JtOOiya5Ebg3SEpgI/Z2Yqbp0C8INdXQYcHBo?=
+ =?us-ascii?Q?NV5Nf1+tDjsD/Sb5Yh5wDQKNIguF6G5K00kT1rnu5TFkqaVHMQqu68WqX3ox?=
+ =?us-ascii?Q?R6NBzQn9YAM7U++MRkFKGpcA9KLWg1u33nwF32phnlIMljLXsGBfgBErs05E?=
+ =?us-ascii?Q?g+7FHzgsp8cXL1mr11MKRjcTl38VvNt+nAzg0szlY9gzhDjOLDBGtq7F2pIG?=
+ =?us-ascii?Q?FS+aRMw+p2kszpw2/0vyLG5Kmbvdg9r9PbqytOOcDd0BuEAIbNAM/GUKljdv?=
+ =?us-ascii?Q?rxeT/2LlJ4V0yGey0U8QjESM+l8FVIN+EiaseoupUlER3MPGXN2HRvwzYoNs?=
+ =?us-ascii?Q?0/KLx3MZK6umd2GKiLYssXn+Oy2gFaJgTrqiAlArBe4KNfcN8fl7Q8whxg8c?=
+ =?us-ascii?Q?i8ep6NJjJOkIf0zvs97HPOH2sVQMF5WQpsU6hYPkf68b2dYUw6wYcKNWvrZ+?=
+ =?us-ascii?Q?o10jD2UztCfo4lm74KU7JVS7U+PeKX3VXN5RNbFKnYoL49ZdZhVxvWJxiQbm?=
+ =?us-ascii?Q?fbXlggqDYNTh+nYLN9M4h1wK3pT/KOeVpvdvRquCmhPMdVflTmPpkDmaUZqx?=
+ =?us-ascii?Q?4Na3pKz0/BEa2eGtkVzrkSVI20lpN8wZ7ygfxBVWO+aGTxykBK0v62qk7HbH?=
+ =?us-ascii?Q?n836CtZsNITvdDyTasOcsWSUVCyebQPHue5vATvGCANVPnx7qMnfwYPOHIJY?=
+ =?us-ascii?Q?ripPaXobjPVW00RAhL61h+J7tShIHl8VRert2Tt860W+i0Oq2525E2LnJ7rz?=
+ =?us-ascii?Q?du+x7N1dUPS59aOgLP9gTSqQ7DcvZdSzXzbz5u3hC95k9UzcgWOtYUkUya65?=
+ =?us-ascii?Q?OxKu6Fl7AmPGRC6wddpf5KDIlu+qXdSqCpQD+BIUvnki3shQX0KAgmt+CW2C?=
+ =?us-ascii?Q?N0zdIJ7y9BnXIjDM/qdHX1V1plxHbapBEwI6vu43w418fUa3pNr+uzTP6+Zw?=
+ =?us-ascii?Q?UOK8QxGJtPQJlnaNx7RDRvjmEFBx0RX1Ec2zRDV9mfZ6RZXeCslaxT8T3KOx?=
+ =?us-ascii?Q?N1DOuO6uXoXucd+Ko7RUwMDhCpp3qay2t2vwpwjrxxVFPl3yxmw4epBYVNO0?=
+ =?us-ascii?Q?QHclbwM5QlGMKaSOrr+XeKFVsj2uIkX9yHzekyRL6SXCJAaIhLEiVB5vGokt?=
+ =?us-ascii?Q?SMytbptMtITd3nZ2Enkbz4uW5YN9zv8eYKZppBVJurDhaEAfRCgOz/Pa0v4w?=
+ =?us-ascii?Q?FttU0AESOWvuFtdXSWAFzdW2/4QF9dG0botbokP3MbobSLAmcYIVkaQzupv3?=
+ =?us-ascii?Q?548tVAwtB9QzXfTw+30ducgkP6/C9ReohwYEeiIaID5frmaOVIDFfR6n24Y1?=
+ =?us-ascii?Q?C4X00/zUsZWsuMvzjnh+A+A2LYBDVe2u5AZH8Lc4y93xNbnspDctggI80dr2?=
+ =?us-ascii?Q?UG4tW9Ecaogy1OvqrXhUfN8HWBSwGMf+Mirc8960XEa/0on+jmFCwriFGcxy?=
+ =?us-ascii?Q?yz8ENNG2jS8EOdCsUo3dpon3LpjgSEgO3SL08A2SosPcUde0MA4B/D3QATTl?=
+ =?us-ascii?Q?dA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ef01acc-3a83-49b0-cb32-08dc4f485ba5
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2024 16:53:56.3785 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2024 16:58:57.4939 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ga+osL3qk154GY35IlZveC4/jcRLoerNw5aVtFY9tUWqQfN3YV19Nqu6MAwCyhMCIr4g5GCBaI8FYcx13C0IvQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6996
+X-MS-Exchange-CrossTenant-UserPrincipalName: N074tccZWNnjaS+KtBtJ4veXUXsNrqHAfTQQLbauaXJUzgvRsnmcVjgRj9dXNKxsoongg4Cbg1UlUWuvyiuNJg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6741
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -151,781 +157,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Mar 28, 2024 at 09:21:29PM +0530, Karthik Poosa wrote:
-> Add infra to support card power and energy attributes through channel 0.
-> Package attributes will be now exposed through channel 1 rather than
-> channel 0 as shown below.
+On Thu, Mar 28, 2024 at 02:37:42PM +0000, Francois Dugast wrote:
+> The commit 84a1ed5e6756 ("drm/xe/uapi: Remove unused flags") is partially
+> reverted. At the time, flags not used by user space were removed during
+> some cleanup. There is now a need for flags DRM_XE_VM_BIND_FLAG_READONLY
+> and DRM_XE_VM_BIND_FLAG_IMMEDIATE by the compute runtime, so they are
+> brought back.
 > 
-> Channel 0 i.e power1/energy1_xxx used for card and
-> channel 1 i.e power2/energy2_xxx used for package power,energy attributes.
-> 
-> power1/curr1_crit and in0_input are moved to channel 1, i.e.
-> power2/curr2_crit and in1_input as these are available for package only.
-> 
-> This would be needed for future platforms where they might be
-> separate registers for package and card power and energy.
-> 
-> Each discrete GPU supported by xe driver, would have a directory in
 
-Please use 'Xe' when it is a name and it applies. Specially in the doc
-below.
+I'd include the link to PR in the commit message too so it will be
+included in the log directly.
 
-> /sys/class/hwmon/ with multiple channels under it.
-> Each channel would have attributes for power, energy etc.
-> 
-> Ex: /sys/class/hwmon/hwmon2/power1_max
->                            /power1_label
->                            /energy1_input
->                            /energy1_label
-> 
-> Attributes will have a label to get more description of it.
-> Labelling is as below.
-> 		power1_label/energy1_label - "card",
-> 		power2_label/energy2_label - "pkg".
-> 
-> v2: Fix checkpatch errors.
-> 
-> v3:
->  - Updated intel-xe-hwmon documentation. (Riana, Badal)
->  - Renamed hwmon card channel enum from CHANNEL_PLATFORM
->    to CHANNEL_CARD. (Riana)
-> 
-> v4:
->  - Remove unrelated changes from patch. (Anshuman)
->  - Fix typo in commit msg.
-> 
-> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
-> Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
+With that:
+Reviewed-by: Matthew Brost <matthew.brost@intel.com> 
+
+> Cc: Mateusz Jablonski <mateusz.jablonski@intel.com>
+> Cc: Michal Mrozek <michal.mrozek@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 > ---
->  .../ABI/testing/sysfs-driver-intel-xe-hwmon   |  82 +++++--
->  drivers/gpu/drm/xe/xe_hwmon.c                 | 230 +++++++++++-------
->  2 files changed, 200 insertions(+), 112 deletions(-)
+>  drivers/gpu/drm/xe/xe_vm.c       | 13 +++++++++++--
+>  drivers/gpu/drm/xe/xe_vm_types.h |  4 ++++
+>  include/uapi/drm/xe_drm.h        |  6 ++++++
+>  3 files changed, 21 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> index 023fd82de3f7..2f8279b2ad1a 100644
-> --- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> @@ -20,51 +20,91 @@ Description:	RO. Card default power limit (default TDP setting).
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 8b32aa5003df..6e56b9a3985b 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -2212,6 +2212,10 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+>  		struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
 >  
->  		Only supported for particular Intel xe graphics platforms.
->  
-> -What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/power1_crit
-> +
-> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/energy1_input
->  Date:		September 2023
->  KernelVersion:	6.5
->  Contact:	intel-xe@lists.freedesktop.org
-> -Description:	RW. Card reactive critical (I1) power limit in microwatts.
-> +Description:	RO. Card energy input of device in microjoules.
-> +
-> +		Only supported for particular Intel xe graphics platforms.
-> +
-> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/power1_max_interval
-> +Date:		October 2023
-> +KernelVersion:	6.6
-> +Contact:	intel-xe@lists.freedesktop.org
-> +Description:	RW. Card sustained power limit interval (Tau in PL1/Tau) in
-> +		milliseconds over which sustained power is averaged.
-> +
-> +		Only supported for particular Intel xe graphics platforms.
-
-                                                    ^ like here,
-but everywhere in the doc as well.
-
-> +
-> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/power2_max
-> +Date:		February 2024
-> +KernelVersion:	6.8
-> +Contact:	intel-xe@lists.freedesktop.org
-> +Description:	RW. Package reactive sustained  (PL1) power limit in microwatts.
-> +
-> +		The power controller will throttle the operating frequency
-> +		if the power averaged over a window (typically seconds)
-> +		exceeds this limit. A read value of 0 means that the PL1
-> +		power limit is disabled, writing 0 disables the
-> +		limit. Writing values > 0 and <= TDP will enable the power limit.
-> +
-> +		Only supported for particular Intel xe graphics platforms.
-> +
-> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/power2_rated_max
-> +Date:		February 2024
-> +KernelVersion:	6.8
-> +Contact:	intel-xe@lists.freedesktop.org
-> +Description:	RO. Package default power limit (default TDP setting).
-> +
-> +		Only supported for particular Intel xe graphics platforms.
-> +
-> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/power2_crit
-> +Date:		February 2024
-> +KernelVersion:	6.8
-> +Contact:	intel-xe@lists.freedesktop.org
-> +Description:	RW. Package reactive critical (I1) power limit in microwatts.
->  
-> -		Card reactive critical (I1) power limit in microwatts is exposed
-> +		Package reactive critical (I1) power limit in microwatts is exposed
->  		for client products. The power controller will throttle the
->  		operating frequency if the power averaged over a window exceeds
->  		this limit.
->  
->  		Only supported for particular Intel xe graphics platforms.
->  
-> -What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/curr1_crit
-> -Date:		September 2023
-> -KernelVersion:	6.5
-> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/curr2_crit
-> +Date:		February 2024
-> +KernelVersion:	6.8
->  Contact:	intel-xe@lists.freedesktop.org
-> -Description:	RW. Card reactive critical (I1) power limit in milliamperes.
-> +Description:	RW. Package reactive critical (I1) power limit in milliamperes.
->  
-> -		Card reactive critical (I1) power limit in milliamperes is
-> +		Package reactive critical (I1) power limit in milliamperes is
->  		exposed for server products. The power controller will throttle
->  		the operating frequency if the power averaged over a window
->  		exceeds this limit.
->  
-> -What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/in0_input
-> -Date:		September 2023
-> -KernelVersion:	6.5
-> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/energy2_input
-> +Date:		February 2024
-> +KernelVersion:	6.8
->  Contact:	intel-xe@lists.freedesktop.org
-> -Description:	RO. Current Voltage in millivolt.
-> +Description:	RO. Package energy input of device in microjoules.
->  
->  		Only supported for particular Intel xe graphics platforms.
->  
-> -What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/energy1_input
-> -Date:		September 2023
-> -KernelVersion:	6.5
-> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/power2_max_interval
-> +Date:		February 2024
-> +KernelVersion:	6.8
->  Contact:	intel-xe@lists.freedesktop.org
-> -Description:	RO. Energy input of device in microjoules.
-> +Description:	RW. Package sustained power limit interval (Tau in PL1/Tau) in
-> +		milliseconds over which sustained power is averaged.
->  
->  		Only supported for particular Intel xe graphics platforms.
->  
-> -What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/power1_max_interval
-> -Date:		October 2023
-> -KernelVersion:	6.6
-> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/in1_input
-> +Date:		February 2024
-> +KernelVersion:	6.8
->  Contact:	intel-xe@lists.freedesktop.org
-> -Description:	RW. Sustained power limit interval (Tau in PL1/Tau) in
-> -		milliseconds over which sustained power is averaged.
-> +Description:	RO. Package current voltage in millivolt.
->  
->  		Only supported for particular Intel xe graphics platforms.
-> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> index a256af8c2012..8f5dd77d2b8e 100644
-> --- a/drivers/gpu/drm/xe/xe_hwmon.c
-> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> @@ -34,6 +34,12 @@ enum xe_hwmon_reg_operation {
->  	REG_READ64,
->  };
->  
-> +enum xe_hwmon_channel {
-> +	CHANNEL_CARD,
-> +	CHANNEL_PKG,
-> +	CHANNEL_MAX,
-> +};
-> +
->  /*
->   * SF_* - scale factors for particular quantities according to hwmon spec.
->   */
-> @@ -69,26 +75,26 @@ struct xe_hwmon {
->  	int scl_shift_energy;
->  	/** @scl_shift_time: pkg time unit */
->  	int scl_shift_time;
-> -	/** @ei: Energy info for energy1_input */
-> -	struct xe_hwmon_energy_info ei;
-> +	/** @ei: Energy info for energyN_input */
-> +	struct xe_hwmon_energy_info ei[CHANNEL_MAX];
->  };
->  
-> -static u32 xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon_reg)
-> +static u32 xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon_reg, int channel)
->  {
->  	struct xe_device *xe = gt_to_xe(hwmon->gt);
->  	struct xe_reg reg = XE_REG(0);
->  
->  	switch (hwmon_reg) {
->  	case REG_PKG_RAPL_LIMIT:
-> -		if (xe->info.platform == XE_PVC)
-> +		if (xe->info.platform == XE_PVC && channel == CHANNEL_PKG)
->  			reg = PVC_GT0_PACKAGE_RAPL_LIMIT;
-> -		else if (xe->info.platform == XE_DG2)
-> +		else if ((xe->info.platform == XE_DG2) && (channel == CHANNEL_PKG))
->  			reg = PCU_CR_PACKAGE_RAPL_LIMIT;
+>  		if (__op->op == DRM_GPUVA_OP_MAP) {
+> +			op->map.immediate =
+> +				flags & DRM_XE_VM_BIND_FLAG_IMMEDIATE;
+> +			op->map.read_only =
+> +				flags & DRM_XE_VM_BIND_FLAG_READONLY;
+>  			op->map.is_null = flags & DRM_XE_VM_BIND_FLAG_NULL;
+>  			op->map.dumpable = flags & DRM_XE_VM_BIND_FLAG_DUMPABLE;
+>  			op->map.pat_index = pat_index;
+> @@ -2406,6 +2410,8 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
+>  		switch (op->base.op) {
+>  		case DRM_GPUVA_OP_MAP:
+>  		{
+> +			flags |= op->map.read_only ?
+> +				VMA_CREATE_FLAG_READ_ONLY : 0;
+>  			flags |= op->map.is_null ?
+>  				VMA_CREATE_FLAG_IS_NULL : 0;
+>  			flags |= op->map.dumpable ?
+> @@ -2550,7 +2556,7 @@ static int op_execute(struct drm_exec *exec, struct xe_vm *vm,
+>  	case DRM_GPUVA_OP_MAP:
+>  		err = xe_vm_bind(vm, vma, op->q, xe_vma_bo(vma),
+>  				 op->syncs, op->num_syncs,
+> -				 !xe_vm_in_fault_mode(vm),
+> +				 op->map.immediate || !xe_vm_in_fault_mode(vm),
+>  				 op->flags & XE_VMA_OP_FIRST,
+>  				 op->flags & XE_VMA_OP_LAST);
 >  		break;
->  	case REG_PKG_POWER_SKU:
-> -		if (xe->info.platform == XE_PVC)
-> +		if (xe->info.platform == XE_PVC && channel == CHANNEL_PKG)
->  			reg = PVC_GT0_PACKAGE_POWER_SKU;
-> -		else if (xe->info.platform == XE_DG2)
-> +		else if ((xe->info.platform == XE_DG2) && (channel == CHANNEL_PKG))
->  			reg = PCU_CR_PACKAGE_POWER_SKU;
->  		break;
->  	case REG_PKG_POWER_SKU_UNIT:
-> @@ -98,13 +104,13 @@ static u32 xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon_reg)
->  			reg = PCU_CR_PACKAGE_POWER_SKU_UNIT;
->  		break;
->  	case REG_GT_PERF_STATUS:
-> -		if (xe->info.platform == XE_DG2)
-> +		if (xe->info.platform == XE_DG2 && channel == CHANNEL_PKG)
->  			reg = GT_PERF_STATUS;
->  		break;
->  	case REG_PKG_ENERGY_STATUS:
-> -		if (xe->info.platform == XE_PVC)
-> +		if (xe->info.platform == XE_PVC && channel == CHANNEL_PKG)
->  			reg = PVC_GT0_PLATFORM_ENERGY_STATUS;
-> -		else if (xe->info.platform == XE_DG2)
-> +		else if ((xe->info.platform == XE_DG2) && (channel == CHANNEL_PKG))
->  			reg = PCU_CR_PACKAGE_ENERGY_STATUS;
->  		break;
->  	default:
-> @@ -117,11 +123,11 @@ static u32 xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon_reg)
->  
->  static void xe_hwmon_process_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon_reg,
->  				 enum xe_hwmon_reg_operation operation, u64 *value,
-> -				 u32 clr, u32 set)
-> +				 u32 clr, u32 set, int channel)
->  {
->  	struct xe_reg reg;
->  
-> -	reg.raw = xe_hwmon_get_reg(hwmon, hwmon_reg);
-> +	reg.raw = xe_hwmon_get_reg(hwmon, hwmon_reg, channel);
->  
->  	if (!reg.raw)
->  		return;
-> @@ -151,13 +157,13 @@ static void xe_hwmon_process_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon
->   * same pattern for sysfs, allow arbitrary PL1 limits to be set but display
->   * clamped values when read.
->   */
-> -static void xe_hwmon_power_max_read(struct xe_hwmon *hwmon, long *value)
-> +static void xe_hwmon_power_max_read(struct xe_hwmon *hwmon, int channel, long *value)
->  {
-> -	u64 reg_val, min, max;
-> +	u64 reg_val = 0, min, max;
->  
->  	mutex_lock(&hwmon->hwmon_lock);
->  
-> -	xe_hwmon_process_reg(hwmon, REG_PKG_RAPL_LIMIT, REG_READ32, &reg_val, 0, 0);
-> +	xe_hwmon_process_reg(hwmon, REG_PKG_RAPL_LIMIT, REG_READ32, &reg_val, 0, 0, channel);
->  	/* Check if PL1 limit is disabled */
->  	if (!(reg_val & PKG_PWR_LIM_1_EN)) {
->  		*value = PL1_DISABLE;
-> @@ -167,7 +173,7 @@ static void xe_hwmon_power_max_read(struct xe_hwmon *hwmon, long *value)
->  	reg_val = REG_FIELD_GET(PKG_PWR_LIM_1, reg_val);
->  	*value = mul_u64_u32_shr(reg_val, SF_POWER, hwmon->scl_shift_power);
->  
-> -	xe_hwmon_process_reg(hwmon, REG_PKG_POWER_SKU, REG_READ64, &reg_val, 0, 0);
-> +	xe_hwmon_process_reg(hwmon, REG_PKG_POWER_SKU, REG_READ64, &reg_val, 0, 0, channel);
->  	min = REG_FIELD_GET(PKG_MIN_PWR, reg_val);
->  	min = mul_u64_u32_shr(min, SF_POWER, hwmon->scl_shift_power);
->  	max = REG_FIELD_GET(PKG_MAX_PWR, reg_val);
-> @@ -179,19 +185,19 @@ static void xe_hwmon_power_max_read(struct xe_hwmon *hwmon, long *value)
->  	mutex_unlock(&hwmon->hwmon_lock);
+> @@ -2825,7 +2831,10 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
+>  	return 0;
 >  }
 >  
-> -static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, long value)
-> +static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, int channel, long value)
->  {
->  	int ret = 0;
-> -	u64 reg_val;
-> +	u64 reg_val = 0;
+> -#define SUPPORTED_FLAGS	(DRM_XE_VM_BIND_FLAG_NULL | \
+> +#define SUPPORTED_FLAGS	\
+> +	(DRM_XE_VM_BIND_FLAG_READONLY | \
+> +	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | \
+> +	 DRM_XE_VM_BIND_FLAG_NULL | \
+>  	 DRM_XE_VM_BIND_FLAG_DUMPABLE)
+>  #define XE_64K_PAGE_MASK 0xffffull
+>  #define ALL_DRM_XE_SYNCS_FLAGS (DRM_XE_SYNCS_FLAG_WAIT_FOR_OP)
+> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+> index badf3945083d..0447c79c40a2 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> @@ -276,6 +276,10 @@ struct xe_vm {
+>  struct xe_vma_op_map {
+>  	/** @vma: VMA to map */
+>  	struct xe_vma *vma;
+> +	/** @immediate: Immediate bind */
+> +	bool immediate;
+> +	/** @read_only: Read only */
+> +	bool read_only;
+>  	/** @is_null: is NULL binding */
+>  	bool is_null;
+>  	/** @dumpable: whether BO is dumped on GPU hang */
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> index 808ad1c308ec..94e1f3cfe705 100644
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+> @@ -871,6 +871,10 @@ struct drm_xe_vm_destroy {
+>   *  - %DRM_XE_VM_BIND_OP_PREFETCH
+>   *
+>   * and the @flags can be:
+> + *  - %DRM_XE_VM_BIND_FLAG_READONLY
+> + *  - %DRM_XE_VM_BIND_FLAG_IMMEDIATE - Valid on a faulting VM only, do the
+> + *    MAP operation immediately rather than deferring the MAP to the page
+> + *    fault handler.
+>   *  - %DRM_XE_VM_BIND_FLAG_NULL - When the NULL flag is set, the page
+>   *    tables are setup with a special bit which indicates writes are
+>   *    dropped and all reads return zero. In the future, the NULL flags
+> @@ -963,6 +967,8 @@ struct drm_xe_vm_bind_op {
+>  	/** @op: Bind operation to perform */
+>  	__u32 op;
 >  
->  	mutex_lock(&hwmon->hwmon_lock);
->  
->  	/* Disable PL1 limit and verify, as limit cannot be disabled on all platforms */
->  	if (value == PL1_DISABLE) {
->  		xe_hwmon_process_reg(hwmon, REG_PKG_RAPL_LIMIT, REG_RMW32, &reg_val,
-> -				     PKG_PWR_LIM_1_EN, 0);
-> +				     PKG_PWR_LIM_1_EN, 0, channel);
->  		xe_hwmon_process_reg(hwmon, REG_PKG_RAPL_LIMIT, REG_READ32, &reg_val,
-> -				     PKG_PWR_LIM_1_EN, 0);
-> +				     PKG_PWR_LIM_1_EN, 0, channel);
->  
->  		if (reg_val & PKG_PWR_LIM_1_EN) {
->  			ret = -EOPNOTSUPP;
-> @@ -204,17 +210,17 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, long value)
->  	reg_val = PKG_PWR_LIM_1_EN | REG_FIELD_PREP(PKG_PWR_LIM_1, reg_val);
->  
->  	xe_hwmon_process_reg(hwmon, REG_PKG_RAPL_LIMIT, REG_RMW32, &reg_val,
-> -			     PKG_PWR_LIM_1_EN | PKG_PWR_LIM_1, reg_val);
-> +			     PKG_PWR_LIM_1_EN | PKG_PWR_LIM_1, reg_val, channel);
->  unlock:
->  	mutex_unlock(&hwmon->hwmon_lock);
->  	return ret;
->  }
->  
-> -static void xe_hwmon_power_rated_max_read(struct xe_hwmon *hwmon, long *value)
-> +static void xe_hwmon_power_rated_max_read(struct xe_hwmon *hwmon, int channel, long *value)
->  {
-> -	u64 reg_val;
-> +	u64 reg_val = 0;
->  
-> -	xe_hwmon_process_reg(hwmon, REG_PKG_POWER_SKU, REG_READ32, &reg_val, 0, 0);
-> +	xe_hwmon_process_reg(hwmon, REG_PKG_POWER_SKU, REG_READ32, &reg_val, 0, 0, channel);
->  	reg_val = REG_FIELD_GET(PKG_TDP, reg_val);
->  	*value = mul_u64_u32_shr(reg_val, SF_POWER, hwmon->scl_shift_power);
->  }
-> @@ -237,16 +243,16 @@ static void xe_hwmon_power_rated_max_read(struct xe_hwmon *hwmon, long *value)
->   * the hwmon API. Using x86_64 128 bit arithmetic (see mul_u64_u32_shr()),
->   * a 'long' of 63 bits, SF_ENERGY of 1e6 (~20 bits) and
->   * hwmon->scl_shift_energy of 14 bits we have 57 (63 - 20 + 14) bits before
-> - * energy1_input overflows. This at 1000 W is an overflow duration of 278 years.
-> + * energyN_input overflows. This at 1000 W is an overflow duration of 278 years.
->   */
->  static void
-> -xe_hwmon_energy_get(struct xe_hwmon *hwmon, long *energy)
-> +xe_hwmon_energy_get(struct xe_hwmon *hwmon, int channel, long *energy)
->  {
-> -	struct xe_hwmon_energy_info *ei = &hwmon->ei;
-> -	u64 reg_val;
-> +	struct xe_hwmon_energy_info *ei = &hwmon->ei[channel];
-> +	u64 reg_val = 0;
->  
->  	xe_hwmon_process_reg(hwmon, REG_PKG_ENERGY_STATUS, REG_READ32,
-> -			     &reg_val, 0, 0);
-> +			     &reg_val, 0, 0, channel);
->  
->  	if (reg_val >= ei->reg_val_prev)
->  		ei->accum_energy += reg_val - ei->reg_val_prev;
-> @@ -260,19 +266,20 @@ xe_hwmon_energy_get(struct xe_hwmon *hwmon, long *energy)
->  }
->  
->  static ssize_t
-> -xe_hwmon_power1_max_interval_show(struct device *dev, struct device_attribute *attr,
-> -				  char *buf)
-> +xe_hwmon_power_max_interval_show(struct device *dev, struct device_attribute *attr,
-> +				 char *buf)
->  {
->  	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
-> -	u32 x, y, x_w = 2; /* 2 bits */
-> -	u64 r, tau4, out;
-> +	u32 x = 0, y = 0, x_w = 2; /* 2 bits */
-> +	u64 r = 0, tau4, out;
-> +	int sensor_index = to_sensor_dev_attr(attr)->index;
->  
->  	xe_pm_runtime_get(gt_to_xe(hwmon->gt));
->  
->  	mutex_lock(&hwmon->hwmon_lock);
->  
->  	xe_hwmon_process_reg(hwmon, REG_PKG_RAPL_LIMIT,
-> -			     REG_READ32, &r, 0, 0);
-> +			     REG_READ32, &r, 0, 0, sensor_index);
->  
->  	mutex_unlock(&hwmon->hwmon_lock);
->  
-> @@ -291,7 +298,7 @@ xe_hwmon_power1_max_interval_show(struct device *dev, struct device_attribute *a
->  	 * As y can be < 2, we compute tau4 = (4 | x) << y
->  	 * and then add 2 when doing the final right shift to account for units
->  	 */
-> -	tau4 = ((1 << x_w) | x) << y;
-> +	tau4 = (u64)((1 << x_w) | x) << y;
->  
->  	/* val in hwmon interface units (millisec) */
->  	out = mul_u64_u32_shr(tau4, SF_TIME, hwmon->scl_shift_time + x_w);
-> @@ -300,14 +307,15 @@ xe_hwmon_power1_max_interval_show(struct device *dev, struct device_attribute *a
->  }
->  
->  static ssize_t
-> -xe_hwmon_power1_max_interval_store(struct device *dev, struct device_attribute *attr,
-> -				   const char *buf, size_t count)
-> +xe_hwmon_power_max_interval_store(struct device *dev, struct device_attribute *attr,
-> +				  const char *buf, size_t count)
->  {
->  	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
->  	u32 x, y, rxy, x_w = 2; /* 2 bits */
->  	u64 tau4, r, max_win;
->  	unsigned long val;
->  	int ret;
-> +	int sensor_index = to_sensor_dev_attr(attr)->index;
->  
->  	ret = kstrtoul(buf, 0, &val);
->  	if (ret)
-> @@ -326,12 +334,12 @@ xe_hwmon_power1_max_interval_store(struct device *dev, struct device_attribute *
->  
->  	/*
->  	 * val must be < max in hwmon interface units. The steps below are
-> -	 * explained in xe_hwmon_power1_max_interval_show()
-> +	 * explained in xe_hwmon_power_max_interval_show()
->  	 */
->  	r = FIELD_PREP(PKG_MAX_WIN, PKG_MAX_WIN_DEFAULT);
->  	x = REG_FIELD_GET(PKG_MAX_WIN_X, r);
->  	y = REG_FIELD_GET(PKG_MAX_WIN_Y, r);
-> -	tau4 = ((1 << x_w) | x) << y;
-> +	tau4 = (u64)((1 << x_w) | x) << y;
->  	max_win = mul_u64_u32_shr(tau4, SF_TIME, hwmon->scl_shift_time + x_w);
->  
->  	if (val > max_win)
-> @@ -360,7 +368,7 @@ xe_hwmon_power1_max_interval_store(struct device *dev, struct device_attribute *
->  	mutex_lock(&hwmon->hwmon_lock);
->  
->  	xe_hwmon_process_reg(hwmon, REG_PKG_RAPL_LIMIT, REG_RMW32, (u64 *)&r,
-> -			     PKG_PWR_LIM_1_TIME, rxy);
-> +			     PKG_PWR_LIM_1_TIME, rxy, sensor_index);
->  
->  	mutex_unlock(&hwmon->hwmon_lock);
->  
-> @@ -370,11 +378,16 @@ xe_hwmon_power1_max_interval_store(struct device *dev, struct device_attribute *
->  }
->  
->  static SENSOR_DEVICE_ATTR(power1_max_interval, 0664,
-> -			  xe_hwmon_power1_max_interval_show,
-> -			  xe_hwmon_power1_max_interval_store, 0);
-> +			  xe_hwmon_power_max_interval_show,
-> +			  xe_hwmon_power_max_interval_store, CHANNEL_CARD);
-> +
-> +static SENSOR_DEVICE_ATTR(power2_max_interval, 0664,
-> +			  xe_hwmon_power_max_interval_show,
-> +			  xe_hwmon_power_max_interval_store, CHANNEL_PKG);
->  
->  static struct attribute *hwmon_attributes[] = {
->  	&sensor_dev_attr_power1_max_interval.dev_attr.attr,
-> +	&sensor_dev_attr_power2_max_interval.dev_attr.attr,
->  	NULL
->  };
->  
-> @@ -387,8 +400,7 @@ static umode_t xe_hwmon_attributes_visible(struct kobject *kobj,
->  
->  	xe_pm_runtime_get(gt_to_xe(hwmon->gt));
->  
-> -	if (attr == &sensor_dev_attr_power1_max_interval.dev_attr.attr)
-> -		ret = xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT) ? attr->mode : 0;
-> +	ret = xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, index) ? attr->mode : 0;
->  
->  	xe_pm_runtime_put(gt_to_xe(hwmon->gt));
->  
-> @@ -406,10 +418,11 @@ static const struct attribute_group *hwmon_groups[] = {
->  };
->  
->  static const struct hwmon_channel_info * const hwmon_info[] = {
-> -	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_CRIT),
-> -	HWMON_CHANNEL_INFO(curr, HWMON_C_CRIT),
-> -	HWMON_CHANNEL_INFO(in, HWMON_I_INPUT),
-> -	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT),
-> +	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL,
-> +			   HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_CRIT | HWMON_P_LABEL),
-> +	HWMON_CHANNEL_INFO(curr, HWMON_C_LABEL, HWMON_C_CRIT | HWMON_C_LABEL),
-> +	HWMON_CHANNEL_INFO(in, HWMON_I_INPUT | HWMON_I_LABEL, HWMON_I_INPUT | HWMON_I_LABEL),
-> +	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT | HWMON_E_LABEL, HWMON_E_INPUT | HWMON_E_LABEL),
->  	NULL
->  };
->  
-> @@ -432,7 +445,8 @@ static int xe_hwmon_pcode_write_i1(struct xe_gt *gt, u32 uval)
->  			      uval);
->  }
->  
-> -static int xe_hwmon_power_curr_crit_read(struct xe_hwmon *hwmon, long *value, u32 scale_factor)
-> +static int xe_hwmon_power_curr_crit_read(struct xe_hwmon *hwmon, int channel,
-> +					 long *value, u32 scale_factor)
->  {
->  	int ret;
->  	u32 uval;
-> @@ -450,7 +464,8 @@ static int xe_hwmon_power_curr_crit_read(struct xe_hwmon *hwmon, long *value, u3
->  	return ret;
->  }
->  
-> -static int xe_hwmon_power_curr_crit_write(struct xe_hwmon *hwmon, long value, u32 scale_factor)
-> +static int xe_hwmon_power_curr_crit_write(struct xe_hwmon *hwmon, int channel,
-> +					  long value, u32 scale_factor)
->  {
->  	int ret;
->  	u32 uval;
-> @@ -464,117 +479,127 @@ static int xe_hwmon_power_curr_crit_write(struct xe_hwmon *hwmon, long value, u3
->  	return ret;
->  }
->  
-> -static void xe_hwmon_get_voltage(struct xe_hwmon *hwmon, long *value)
-> +static void xe_hwmon_get_voltage(struct xe_hwmon *hwmon, int channel, long *value)
->  {
-> -	u64 reg_val;
-> +	u64 reg_val = 0;
->  
->  	xe_hwmon_process_reg(hwmon, REG_GT_PERF_STATUS,
-> -			     REG_READ32, &reg_val, 0, 0);
-> +			     REG_READ32, &reg_val, 0, 0, channel);
->  	/* HW register value in units of 2.5 millivolt */
->  	*value = DIV_ROUND_CLOSEST(REG_FIELD_GET(VOLTAGE_MASK, reg_val) * 2500, SF_VOLTAGE);
->  }
->  
->  static umode_t
-> -xe_hwmon_power_is_visible(struct xe_hwmon *hwmon, u32 attr, int chan)
-> +xe_hwmon_power_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
->  {
->  	u32 uval;
->  
->  	switch (attr) {
->  	case hwmon_power_max:
-> -		return xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT) ? 0664 : 0;
-> +		return xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, channel) ? 0664 : 0;
->  	case hwmon_power_rated_max:
-> -		return xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU) ? 0444 : 0;
-> +		return xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU, channel) ? 0444 : 0;
->  	case hwmon_power_crit:
-> -		return (xe_hwmon_pcode_read_i1(hwmon->gt, &uval) ||
-> -			!(uval & POWER_SETUP_I1_WATTS)) ? 0 : 0644;
-> +		if (channel == CHANNEL_PKG)
-> +			return (xe_hwmon_pcode_read_i1(hwmon->gt, &uval) ||
-> +				!(uval & POWER_SETUP_I1_WATTS)) ? 0 : 0644;
-> +		break;
-> +	case hwmon_power_label:
-> +		return xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU_UNIT, channel) ? 0444 : 0;
->  	default:
->  		return 0;
->  	}
-> +	return 0;
->  }
->  
->  static int
-> -xe_hwmon_power_read(struct xe_hwmon *hwmon, u32 attr, int chan, long *val)
-> +xe_hwmon_power_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
->  {
->  	switch (attr) {
->  	case hwmon_power_max:
-> -		xe_hwmon_power_max_read(hwmon, val);
-> +		xe_hwmon_power_max_read(hwmon, channel, val);
->  		return 0;
->  	case hwmon_power_rated_max:
-> -		xe_hwmon_power_rated_max_read(hwmon, val);
-> +		xe_hwmon_power_rated_max_read(hwmon, channel, val);
->  		return 0;
->  	case hwmon_power_crit:
-> -		return xe_hwmon_power_curr_crit_read(hwmon, val, SF_POWER);
-> +		return xe_hwmon_power_curr_crit_read(hwmon, channel, val, SF_POWER);
->  	default:
->  		return -EOPNOTSUPP;
->  	}
->  }
->  
->  static int
-> -xe_hwmon_power_write(struct xe_hwmon *hwmon, u32 attr, int chan, long val)
-> +xe_hwmon_power_write(struct xe_hwmon *hwmon, u32 attr, int channel, long val)
->  {
->  	switch (attr) {
->  	case hwmon_power_max:
-> -		return xe_hwmon_power_max_write(hwmon, val);
-> +		return xe_hwmon_power_max_write(hwmon, channel, val);
->  	case hwmon_power_crit:
-> -		return xe_hwmon_power_curr_crit_write(hwmon, val, SF_POWER);
-> +		return xe_hwmon_power_curr_crit_write(hwmon, channel, val, SF_POWER);
->  	default:
->  		return -EOPNOTSUPP;
->  	}
->  }
->  
->  static umode_t
-> -xe_hwmon_curr_is_visible(const struct xe_hwmon *hwmon, u32 attr)
-> +xe_hwmon_curr_is_visible(const struct xe_hwmon *hwmon, u32 attr, int channel)
->  {
->  	u32 uval;
->  
->  	switch (attr) {
->  	case hwmon_curr_crit:
-> -		return (xe_hwmon_pcode_read_i1(hwmon->gt, &uval) ||
-> -			(uval & POWER_SETUP_I1_WATTS)) ? 0 : 0644;
-> +	case hwmon_curr_label:
-> +		if (channel == CHANNEL_PKG)
-> +			return (xe_hwmon_pcode_read_i1(hwmon->gt, &uval) ||
-> +				(uval & POWER_SETUP_I1_WATTS)) ? 0 : 0644;
-> +		break;
->  	default:
->  		return 0;
->  	}
-> +	return 0;
->  }
->  
->  static int
-> -xe_hwmon_curr_read(struct xe_hwmon *hwmon, u32 attr, long *val)
-> +xe_hwmon_curr_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
->  {
->  	switch (attr) {
->  	case hwmon_curr_crit:
-> -		return xe_hwmon_power_curr_crit_read(hwmon, val, SF_CURR);
-> +		return xe_hwmon_power_curr_crit_read(hwmon, channel, val, SF_CURR);
->  	default:
->  		return -EOPNOTSUPP;
->  	}
->  }
->  
->  static int
-> -xe_hwmon_curr_write(struct xe_hwmon *hwmon, u32 attr, long val)
-> +xe_hwmon_curr_write(struct xe_hwmon *hwmon, u32 attr, int channel, long val)
->  {
->  	switch (attr) {
->  	case hwmon_curr_crit:
-> -		return xe_hwmon_power_curr_crit_write(hwmon, val, SF_CURR);
-> +		return xe_hwmon_power_curr_crit_write(hwmon, channel, val, SF_CURR);
->  	default:
->  		return -EOPNOTSUPP;
->  	}
->  }
->  
->  static umode_t
-> -xe_hwmon_in_is_visible(struct xe_hwmon *hwmon, u32 attr)
-> +xe_hwmon_in_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
->  {
->  	switch (attr) {
->  	case hwmon_in_input:
-> -		return xe_hwmon_get_reg(hwmon, REG_GT_PERF_STATUS) ? 0444 : 0;
-> +	case hwmon_in_label:
-> +		return xe_hwmon_get_reg(hwmon, REG_GT_PERF_STATUS, channel) ? 0444 : 0;
->  	default:
->  		return 0;
->  	}
->  }
->  
->  static int
-> -xe_hwmon_in_read(struct xe_hwmon *hwmon, u32 attr, long *val)
-> +xe_hwmon_in_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
->  {
->  	switch (attr) {
->  	case hwmon_in_input:
-> -		xe_hwmon_get_voltage(hwmon, val);
-> +		xe_hwmon_get_voltage(hwmon, channel, val);
->  		return 0;
->  	default:
->  		return -EOPNOTSUPP;
-> @@ -582,22 +607,23 @@ xe_hwmon_in_read(struct xe_hwmon *hwmon, u32 attr, long *val)
->  }
->  
->  static umode_t
-> -xe_hwmon_energy_is_visible(struct xe_hwmon *hwmon, u32 attr)
-> +xe_hwmon_energy_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
->  {
->  	switch (attr) {
->  	case hwmon_energy_input:
-> -		return xe_hwmon_get_reg(hwmon, REG_PKG_ENERGY_STATUS) ? 0444 : 0;
-> +	case hwmon_energy_label:
-> +		return xe_hwmon_get_reg(hwmon, REG_PKG_ENERGY_STATUS, channel) ? 0444 : 0;
->  	default:
->  		return 0;
->  	}
->  }
->  
->  static int
-> -xe_hwmon_energy_read(struct xe_hwmon *hwmon, u32 attr, long *val)
-> +xe_hwmon_energy_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
->  {
->  	switch (attr) {
->  	case hwmon_energy_input:
-> -		xe_hwmon_energy_get(hwmon, val);
-> +		xe_hwmon_energy_get(hwmon, channel, val);
->  		return 0;
->  	default:
->  		return -EOPNOTSUPP;
-> @@ -618,13 +644,13 @@ xe_hwmon_is_visible(const void *drvdata, enum hwmon_sensor_types type,
->  		ret = xe_hwmon_power_is_visible(hwmon, attr, channel);
->  		break;
->  	case hwmon_curr:
-> -		ret = xe_hwmon_curr_is_visible(hwmon, attr);
-> +		ret = xe_hwmon_curr_is_visible(hwmon, attr, channel);
->  		break;
->  	case hwmon_in:
-> -		ret = xe_hwmon_in_is_visible(hwmon, attr);
-> +		ret = xe_hwmon_in_is_visible(hwmon, attr, channel);
->  		break;
->  	case hwmon_energy:
-> -		ret = xe_hwmon_energy_is_visible(hwmon, attr);
-> +		ret = xe_hwmon_energy_is_visible(hwmon, attr, channel);
->  		break;
->  	default:
->  		ret = 0;
-> @@ -650,13 +676,13 @@ xe_hwmon_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
->  		ret = xe_hwmon_power_read(hwmon, attr, channel, val);
->  		break;
->  	case hwmon_curr:
-> -		ret = xe_hwmon_curr_read(hwmon, attr, val);
-> +		ret = xe_hwmon_curr_read(hwmon, attr, channel, val);
->  		break;
->  	case hwmon_in:
-> -		ret = xe_hwmon_in_read(hwmon, attr, val);
-> +		ret = xe_hwmon_in_read(hwmon, attr, channel, val);
->  		break;
->  	case hwmon_energy:
-> -		ret = xe_hwmon_energy_read(hwmon, attr, val);
-> +		ret = xe_hwmon_energy_read(hwmon, attr, channel, val);
->  		break;
->  	default:
->  		ret = -EOPNOTSUPP;
-> @@ -682,7 +708,7 @@ xe_hwmon_write(struct device *dev, enum hwmon_sensor_types type, u32 attr,
->  		ret = xe_hwmon_power_write(hwmon, attr, channel, val);
->  		break;
->  	case hwmon_curr:
-> -		ret = xe_hwmon_curr_write(hwmon, attr, val);
-> +		ret = xe_hwmon_curr_write(hwmon, attr, channel, val);
->  		break;
->  	default:
->  		ret = -EOPNOTSUPP;
-> @@ -694,10 +720,30 @@ xe_hwmon_write(struct device *dev, enum hwmon_sensor_types type, u32 attr,
->  	return ret;
->  }
->  
-> +static int xe_hwmon_read_label(struct device *dev,
-> +			       enum hwmon_sensor_types type,
-> +			       u32 attr, int channel, const char **str)
-> +{
-> +	switch (type) {
-> +	case hwmon_power:
-> +	case hwmon_energy:
-> +	case hwmon_curr:
-> +	case hwmon_in:
-> +		if (channel == CHANNEL_CARD)
-> +			*str = "card";
-> +		else if (channel == CHANNEL_PKG)
-> +			*str = "pkg";
-> +		return 0;
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +}
-> +
->  static const struct hwmon_ops hwmon_ops = {
->  	.is_visible = xe_hwmon_is_visible,
->  	.read = xe_hwmon_read,
->  	.write = xe_hwmon_write,
-> +	.read_string = xe_hwmon_read_label,
->  };
->  
->  static const struct hwmon_chip_info hwmon_chip_info = {
-> @@ -711,14 +757,15 @@ xe_hwmon_get_preregistration_info(struct xe_device *xe)
->  	struct xe_hwmon *hwmon = xe->hwmon;
->  	long energy;
->  	u64 val_sku_unit = 0;
-> +	int channel;
->  
->  	/*
->  	 * The contents of register PKG_POWER_SKU_UNIT do not change,
->  	 * so read it once and store the shift values.
->  	 */
-> -	if (xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU_UNIT)) {
-> +	if (xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU_UNIT, 0)) {
->  		xe_hwmon_process_reg(hwmon, REG_PKG_POWER_SKU_UNIT,
-> -				     REG_READ32, &val_sku_unit, 0, 0);
-> +				     REG_READ32, &val_sku_unit, 0, 0, 0);
->  		hwmon->scl_shift_power = REG_FIELD_GET(PKG_PWR_UNIT, val_sku_unit);
->  		hwmon->scl_shift_energy = REG_FIELD_GET(PKG_ENERGY_UNIT, val_sku_unit);
->  		hwmon->scl_shift_time = REG_FIELD_GET(PKG_TIME_UNIT, val_sku_unit);
-> @@ -728,8 +775,9 @@ xe_hwmon_get_preregistration_info(struct xe_device *xe)
->  	 * Initialize 'struct xe_hwmon_energy_info', i.e. set fields to the
->  	 * first value of the energy register read
->  	 */
-> -	if (xe_hwmon_is_visible(hwmon, hwmon_energy, hwmon_energy_input, 0))
-> -		xe_hwmon_energy_get(hwmon, &energy);
-> +	for (channel = 0; channel < CHANNEL_MAX; channel++)
-> +		if (xe_hwmon_is_visible(hwmon, hwmon_energy, hwmon_energy_input, channel))
-> +			xe_hwmon_energy_get(hwmon, channel, &energy);
->  }
->  
->  static void xe_hwmon_mutex_destroy(void *arg)
+> +#define DRM_XE_VM_BIND_FLAG_READONLY	(1 << 0)
+> +#define DRM_XE_VM_BIND_FLAG_IMMEDIATE	(1 << 1)
+>  #define DRM_XE_VM_BIND_FLAG_NULL	(1 << 2)
+>  #define DRM_XE_VM_BIND_FLAG_DUMPABLE	(1 << 3)
+>  	/** @flags: Bind flags */
 > -- 
-> 2.25.1
+> 2.34.1
 > 
