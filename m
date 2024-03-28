@@ -4,27 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96D8ACD11DD
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Mar 2024 18:16:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFF23CD11DF
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Mar 2024 18:21:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 413E0112530;
-	Thu, 28 Mar 2024 18:16:09 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C94E8112530;
- Thu, 28 Mar 2024 18:16:07 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7271C112044;
+	Thu, 28 Mar 2024 18:21:29 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="buzqEe6d";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CA2D112044
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 Mar 2024 18:21:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1711650089; x=1743186089;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=lK8IjUMY4vP6HIblzAbHVo6daAG+qZNieGtrEw/Xx5o=;
+ b=buzqEe6d7EzDc3mDOwb4ZRzxxoQ2dUliWwB5FTsSmsi08Ny1Qeh1t54P
+ +spv+m1CiXlc9UkdVsS5Z915vTBC1G/mHT2Yik9akCIMpVRyJPKiCpnZL
+ dHmLTQpAkFj4m+6O3pliMxNE6NGMUQlg+OgdQaTCK3TrsJ7xti9N7dTeY
+ QDN3AgII0KE3TYN1fpBGJ52mcZqNf93sZwQkWpiFOqwONR1HAa/elCgq/
+ KGpp6fKm3z31xmfLOvyrxohCAs8Fv8LFQM+qIBqzwICfoEO0RxztHmxRI
+ xYO9/NM0MhfiicO5UJwXkr7jygVgjnRGj3yrbvV+vX//eD3ndjLi+BCKJ w==;
+X-CSE-ConnectionGUID: gFSgfdbURpaU+iivisj5+Q==
+X-CSE-MsgGUID: PkVRRNJxSImGQclo2Vcdpw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11027"; a="29307490"
+X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; d="scan'208";a="29307490"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2024 11:21:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; d="scan'208";a="16784205"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2024 11:21:27 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Cc: <thomas.hellstrom@linux.intel.com>, rodrigo.vivi@intel.com,
+ lucas.demarchi@intel.com, Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH 0/3] Rework work queue usage 
+Date: Thu, 28 Mar 2024 11:21:44 -0700
+Message-Id: <20240328182147.4169656-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/uapi=3A_Define_to?=
- =?utf-8?q?pology_types_as_indexes_rather_than_masks?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Francois Dugast" <francois.dugast@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 28 Mar 2024 18:16:07 -0000
-Message-ID: <171164976782.1064396.11582178523462309888@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240328140243.7-1-francois.dugast@intel.com>
-In-Reply-To: <20240328140243.7-1-francois.dugast@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +60,35 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Avoid sleeping or grabbing locks in work queues shared with the system.
+Recent changes to work queues [1] have exposed deadlocks [2] in Xe.
 
-Series: drm/xe/uapi: Define topology types as indexes rather than masks
-URL   : https://patchwork.freedesktop.org/series/131768/
-State : success
+I believe only patch #1 is required to unblock CI in 6.9rc1 [2] but
+likely all patches should be included in stable kernels.
 
-== Summary ==
+Matt
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast c185a0400ae0be7c5565e9eae63d5b81f5c242ff
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+[1] https://lore.kernel.org/lkml/Ze7Jz9cQcUMtCqfk@slm.duckdns.org/
+[2] https://intel-gfx-ci.01.org/tree/intel-xe/xe-984-093d82c02921344d8d400989af156aaf79b9d961/bat-adlp-7/igt_runner0.txt
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Matthew Brost (3):
+  drm/xe: Use ordered wq for preempt fence waiting
+  drm/xe: Use device, gt ordered work queues for resource cleanup
+  drm/xe: Use ordered WQ for TLB invalidation fences
 
+ drivers/gpu/drm/xe/xe_device.c        | 7 ++++++-
+ drivers/gpu/drm/xe/xe_device_types.h  | 8 +++++++-
+ drivers/gpu/drm/xe/xe_execlist.c      | 2 +-
+ drivers/gpu/drm/xe/xe_gt_types.h      | 5 ++++-
+ drivers/gpu/drm/xe/xe_guc_submit.c    | 2 +-
+ drivers/gpu/drm/xe/xe_preempt_fence.c | 2 +-
+ drivers/gpu/drm/xe/xe_pt.c            | 2 +-
+ drivers/gpu/drm/xe/xe_vm.c            | 4 ++--
+ 8 files changed, 23 insertions(+), 9 deletions(-)
+
+-- 
+2.34.1
 
