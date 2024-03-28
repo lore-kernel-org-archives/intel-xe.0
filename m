@@ -4,52 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A224ACD11DD
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Mar 2024 18:21:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D924DCD11DF
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Mar 2024 18:31:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 706A011253C;
-	Thu, 28 Mar 2024 18:21:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8942410F3BB;
+	Thu, 28 Mar 2024 18:31:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kuHH7ytR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X3e+o5sB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BABF11253C
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Mar 2024 18:21:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 897A010F984
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 Mar 2024 18:31:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711650089; x=1743186089;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=aYSa6OUzAnA6LYKKQptSTmhsxFkv414NGC9FaX2Qde0=;
- b=kuHH7ytR55Zw+k2YLM+pg3dAZcZYEWriR1O04sIM04ts0JMrF2kYHiY5
- ewkICAE8fc7/Vav6r1tbk1HGViSKbWOyP56WHYbF7vvzjn5EIoYmdHkJN
- ZR0TIQqykTsId51HaAj5KzSHdKFtsIC5LgVmKJvOc1CGvwYeaeFXSFZD7
- ruTyOHT8VYvU0va2hRFITFrqM36ugYqeJmidjwaO/Fm4x1Qu2OD4eKUlQ
- WROeHNAaP9pJZd/54P+9/+XuAAMTK6/i0Ktpgg8STQNOoi0QZy7o3JDN/
- 6TMIf7yrbHxZReTlJ2ACDZv56Xm1CrbFicIkiUygo+l9qqnTH+tiYZ955 g==;
-X-CSE-ConnectionGUID: Ds9ZahllTFCrUGgv8AKwjg==
-X-CSE-MsgGUID: gn2Z9CQuQDSWFOU0MHM8JQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11027"; a="29307492"
-X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; d="scan'208";a="29307492"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2024 11:21:28 -0700
+ t=1711650718; x=1743186718;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=El30SF0FTEkQxVVrh48GmHMOkEzUmaCfgqueRquNTTU=;
+ b=X3e+o5sBiKU6zZxplabSKehMyVdZDBIspVrXt8H67d1oCrN0+NvZ8ZyT
+ K5nrxrlSTjUHWQ3tfJr2Y7vJB51CikPYXTO8r1v3YyUFAoxztyCU5L+LU
+ I5ZNAf55NCW1KS0JTdNF+YWgurMRh8nQPBNAbf/WMFLJN11lnAylWXiWe
+ 1OFBjV42NrFAQqKG27nkPRhtEH1g8zDNnvkxKbiT0s53nvsMwCL30tY/A
+ shPL7UQtEbFMvErZtayamv5MXLeNhVfKkTIAAEdYgrN18b01p6WS6ebXM
+ ZIYVMSHHZA7d8Wgiegbqtf6shbE/lgnVIZUB6lshZWFzlmXgSBW0sJmLM A==;
+X-CSE-ConnectionGUID: MPPYaabwR/i6XhLPCQU3Vw==
+X-CSE-MsgGUID: BT8P2eRcTtWZJjvyN0kFrQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11027"; a="18205402"
+X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; d="scan'208";a="18205402"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2024 11:31:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; d="scan'208";a="16784212"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2024 11:21:27 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-Cc: <thomas.hellstrom@linux.intel.com>, rodrigo.vivi@intel.com,
- lucas.demarchi@intel.com, Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH 2/3] drm/xe: Use device,
- gt ordered work queues for resource cleanup
-Date: Thu, 28 Mar 2024 11:21:46 -0700
-Message-Id: <20240328182147.4169656-3-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240328182147.4169656-1-matthew.brost@intel.com>
-References: <20240328182147.4169656-1-matthew.brost@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; d="scan'208";a="47700369"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.157.82])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2024 11:31:56 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH 1/7] drm/xe/guc: Add PF2GUC_UPDATE_VF_CFG to ABI
+Date: Thu, 28 Mar 2024 19:31:41 +0100
+Message-Id: <20240328183147.495-2-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20240328183147.495-1-michal.wajdeczko@intel.com>
+References: <20240328183147.495-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,99 +63,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Resource cleanup is a device private operations with no expectation of
-performance. Use device, gt ordered work queues to cleanup resources to
-avoid grabbing locks on shared work queues.
+In upcoming patches the PF driver will add support to change VFs
+configuration and will need to use PF2GUC_UPDATE_VF_CFG messages.
+Add necessary definitions to our GuC firmware ABI header.
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h | 5 ++++-
- drivers/gpu/drm/xe/xe_execlist.c     | 2 +-
- drivers/gpu/drm/xe/xe_gt_types.h     | 5 ++++-
- drivers/gpu/drm/xe/xe_guc_submit.c   | 2 +-
- drivers/gpu/drm/xe/xe_vm.c           | 4 ++--
- 5 files changed, 12 insertions(+), 6 deletions(-)
+ .../gpu/drm/xe/abi/guc_actions_sriov_abi.h    | 55 +++++++++++++++++++
+ 1 file changed, 55 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index c710cec835a7..d696aa2de8cc 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -366,7 +366,10 @@ struct xe_device {
- 	/** @preempt_fence_wq: used to serialize preempt fences */
- 	struct workqueue_struct *preempt_fence_wq;
+diff --git a/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
+index 12ee5e9e831f..55cbf5ea05b5 100644
+--- a/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
+@@ -213,6 +213,61 @@
+ #define   GUC_PF_NOTIFY_VF_PAUSE_DONE			3u
+ #define   GUC_PF_NOTIFY_VF_FIXUP_DONE			4u
  
--	/** @ordered_wq: used to serialize compute mode resume */
-+	/**
-+	 * @ordered_wq: used to serialize compute mode resume, cleanup
-+	 * resources
-+	 */
- 	struct workqueue_struct *ordered_wq;
- 
- 	/** @unordered_wq: used to serialize unordered work, mostly display */
-diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-index dece2785933c..1ae922509f05 100644
---- a/drivers/gpu/drm/xe/xe_execlist.c
-+++ b/drivers/gpu/drm/xe/xe_execlist.c
-@@ -393,7 +393,7 @@ static void execlist_exec_queue_kill(struct xe_exec_queue *q)
- static void execlist_exec_queue_fini(struct xe_exec_queue *q)
- {
- 	INIT_WORK(&q->execlist->fini_async, execlist_exec_queue_fini_async);
--	queue_work(system_unbound_wq, &q->execlist->fini_async);
-+	queue_work(q->gt->ordered_wq, &q->execlist->fini_async);
- }
- 
- static int execlist_exec_queue_set_priority(struct xe_exec_queue *q,
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index 2143dffcaf11..cd22ad6e881a 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -268,7 +268,10 @@ struct xe_gt {
- 		} acc_queue[NUM_ACC_QUEUE];
- 	} usm;
- 
--	/** @ordered_wq: used to serialize GT resets and TDRs */
-+	/**
-+	 * @ordered_wq: used to serialize GT resets and TDRs, clean up
-+	 * resources
-+	 */
- 	struct workqueue_struct *ordered_wq;
- 
- 	/** @uc: micro controllers on the GT */
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 13b7e195c7b5..e30ad9fccf6c 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1033,7 +1033,7 @@ static void guc_exec_queue_fini_async(struct xe_exec_queue *q)
- 	if (q->flags & EXEC_QUEUE_FLAG_PERMANENT)
- 		__guc_exec_queue_fini_async(&q->guc->fini_async);
- 	else
--		queue_work(system_wq, &q->guc->fini_async);
-+		queue_work(q->gt->ordered_wq, &q->guc->fini_async);
- }
- 
- static void __guc_exec_queue_fini(struct xe_guc *guc, struct xe_exec_queue *q)
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 8b32aa5003df..7808b540c013 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1005,7 +1005,7 @@ static void vma_destroy_cb(struct dma_fence *fence,
- 	struct xe_vma *vma = container_of(cb, struct xe_vma, destroy_cb);
- 
- 	INIT_WORK(&vma->destroy_work, vma_destroy_work_func);
--	queue_work(system_unbound_wq, &vma->destroy_work);
-+	queue_work(xe_vma_vm(vma)->xe->ordered_wq, &vma->destroy_work);
- }
- 
- static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
-@@ -1625,7 +1625,7 @@ static void xe_vm_free(struct drm_gpuvm *gpuvm)
- 	struct xe_vm *vm = container_of(gpuvm, struct xe_vm, gpuvm);
- 
- 	/* To destroy the VM we need to be able to sleep */
--	queue_work(system_unbound_wq, &vm->destroy_work);
-+	queue_work(vm->xe->ordered_wq, &vm->destroy_work);
- }
- 
- struct xe_vm *xe_vm_lookup(struct xe_file *xef, u32 id)
++/**
++ * DOC: PF2GUC_UPDATE_VF_CFG
++ *
++ * The `PF2GUC_UPDATE_VF_CFG`_ message is used by PF to provision single VF in GuC.
++ *
++ * This message must be sent as `CTB HXG Message`_.
++ *
++ *  +---+-------+--------------------------------------------------------------+
++ *  |   | Bits  | Description                                                  |
++ *  +===+=======+==============================================================+
++ *  | 0 |    31 | ORIGIN = GUC_HXG_ORIGIN_HOST_                                |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   | 30:28 | TYPE = GUC_HXG_TYPE_REQUEST_                                 |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   | 27:16 | MBZ                                                          |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   |  15:0 | ACTION = _`GUC_ACTION_PF2GUC_UPDATE_VF_CFG` = 0x5503         |
++ *  +---+-------+--------------------------------------------------------------+
++ *  | 1 |  31:0 | **VFID** - identifier of the VF that the KLV                 |
++ *  |   |       | configurations are being applied to                          |
++ *  +---+-------+--------------------------------------------------------------+
++ *  | 2 |  31:0 | **CFG_ADDR_LO** - dword aligned GGTT offset that represents  |
++ *  |   |       | the start of a list of virtualization related KLV configs    |
++ *  |   |       | that are to be applied to the VF.                            |
++ *  |   |       | If this parameter is zero, the list is not parsed.           |
++ *  |   |       | If full configs address parameter is zero and configs_size is|
++ *  |   |       | zero associated VF config shall be reset to its default state|
++ *  +---+-------+--------------------------------------------------------------+
++ *  | 3 |  31:0 | **CFG_ADDR_HI** - upper 32 bits of configs address.          |
++ *  +---+-------+--------------------------------------------------------------+
++ *  | 4 |  31:0 | **CFG_SIZE** - size (in dwords) of the config buffer         |
++ *  +---+-------+--------------------------------------------------------------+
++ *
++ *  +---+-------+--------------------------------------------------------------+
++ *  |   | Bits  | Description                                                  |
++ *  +===+=======+==============================================================+
++ *  | 0 |    31 | ORIGIN = GUC_HXG_ORIGIN_GUC_                                 |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   | 30:28 | TYPE = GUC_HXG_TYPE_RESPONSE_SUCCESS_                        |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   |  27:0 | **COUNT** - number of KLVs successfully applied              |
++ *  +---+-------+--------------------------------------------------------------+
++ */
++#define GUC_ACTION_PF2GUC_UPDATE_VF_CFG			0x5503u
++
++#define PF2GUC_UPDATE_VF_CFG_REQUEST_MSG_LEN		(GUC_HXG_REQUEST_MSG_MIN_LEN + 4u)
++#define PF2GUC_UPDATE_VF_CFG_REQUEST_MSG_0_MBZ		GUC_HXG_REQUEST_MSG_0_DATA0
++#define PF2GUC_UPDATE_VF_CFG_REQUEST_MSG_1_VFID		GUC_HXG_REQUEST_MSG_n_DATAn
++#define PF2GUC_UPDATE_VF_CFG_REQUEST_MSG_2_CFG_ADDR_LO	GUC_HXG_REQUEST_MSG_n_DATAn
++#define PF2GUC_UPDATE_VF_CFG_REQUEST_MSG_3_CFG_ADDR_HI	GUC_HXG_REQUEST_MSG_n_DATAn
++#define PF2GUC_UPDATE_VF_CFG_REQUEST_MSG_4_CFG_SIZE	GUC_HXG_REQUEST_MSG_n_DATAn
++
++#define PF2GUC_UPDATE_VF_CFG_RESPONSE_MSG_LEN		GUC_HXG_RESPONSE_MSG_MIN_LEN
++#define PF2GUC_UPDATE_VF_CFG_RESPONSE_MSG_0_COUNT	GUC_HXG_RESPONSE_MSG_0_DATA0
++
+ /**
+  * DOC: PF2GUC_VF_CONTROL
+  *
 -- 
-2.34.1
+2.43.0
 
