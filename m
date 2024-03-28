@@ -4,27 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D9A5C54E67
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Mar 2024 11:31:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00460C54E67
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Mar 2024 11:34:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39DB810F562;
-	Thu, 28 Mar 2024 11:31:25 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B19B010F562;
- Thu, 28 Mar 2024 11:31:23 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5862982517901482038=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA85310FF2D;
+	Thu, 28 Mar 2024 11:34:08 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yd69XgQC";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D46010FF2D;
+ Thu, 28 Mar 2024 11:34:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1711625647; x=1743161647;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=eBy42X35pJreeO0yYa4HjMU6RLBU89fmPu6IVcsQXa4=;
+ b=Yd69XgQCgHNADQiqP8MkFqumlxehwR2w89jdZw8mYC74P3QyZmTpyBzl
+ WrAs8qwUAKMJfP5dw+I8L/RYqSjIwBNcvf/koIFyCAoLvKKjoY1gjJLW1
+ RVqs6dwBI1xhklFlXouiHYtFWK/wmnpxXMV2Lez5aaFT4K0dVHZx8Xu1u
+ zkzMqCtdo0WvW09HvAr22gsofos1N58KAOrYWdLTbehyMc6aG1TNhMizt
+ Y6WwsRtzLWlEnrzna9Q0BK4+/xNWByuys2/i9xHq8PTGzjAxR657qyCdL
+ K+8f/VNqOJY1wg9iGuW2jMDJ5p5pZUkK/QAixXYUfilaRQg19m2EkxF+B A==;
+X-CSE-ConnectionGUID: Db/nJsGZSBGXUz075c2qJw==
+X-CSE-MsgGUID: BvNglSicR1me2xEp0+LJtw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="32175438"
+X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; d="scan'208";a="32175438"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2024 04:34:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; d="scan'208";a="21344061"
+Received: from abdulqaf-mobl2.amr.corp.intel.com (HELO localhost)
+ ([10.252.57.138])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2024 04:33:57 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Nathan Chancellor <nathan@kernel.org>
+Cc: Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, David
+ Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Alex Deucher <alexander.deucher@amd.com>, Christian
+ =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>, "Pan, Xinhui"
+ <Xinhui.Pan@amd.com>,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, Danilo
+ Krummrich <dakr@redhat.com>, Rob Clark <robdclark@gmail.com>, Abhinav
+ Kumar <quic_abhinavk@quicinc.com>, Dmitry Baryshkov
+ <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, Marijn Suijten
+ <marijn.suijten@somainline.org>, Hamza Mahfooz <hamza.mahfooz@amd.com>,
+ Javier Martinez Canillas <javierm@redhat.com>, Sui Jingfeng
+ <sui.jingfeng@linux.dev>, linux-kbuild@vger.kernel.org,
+ llvm@lists.linux.dev
+Subject: Re: [RESEND v3 2/2] drm: Add CONFIG_DRM_WERROR
+In-Reply-To: <20240327163331.GB1153323@dev-arch.thelio-3990X>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1709629403.git.jani.nikula@intel.com>
+ <afe5ed943414f7ec3044c1547503b9941686a867.1709629403.git.jani.nikula@intel.com>
+ <20240326225650.GA2784736@dev-arch.thelio-3990X>
+ <20240327-cherubic-steel-tiger-e1c36a@houat> <87a5mkgl6i.fsf@intel.com>
+ <20240327163331.GB1153323@dev-arch.thelio-3990X>
+Date: Thu, 28 Mar 2024 13:33:53 +0200
+Message-ID: <87il16fv4u.fsf@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/i915=3A_use_fine_grained_-Wo?=
- =?utf-8?q?verride-init_disable?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 28 Mar 2024 11:31:23 -0000
-Message-ID: <171162548372.1061727.1868605729566970337@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240328102455.944131-1-jani.nikula@intel.com>
-In-Reply-To: <20240328102455.944131-1-jani.nikula@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,146 +80,56 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5862982517901482038==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 27 Mar 2024, Nathan Chancellor <nathan@kernel.org> wrote:
+> On Wed, Mar 27, 2024 at 09:59:01AM +0200, Jani Nikula wrote:
+>> An alternative would be to "depends on !COMPILE_TEST" that we have in
+>> i915, but then some folks want to have COMPILE_TEST in drm, because some
+>> drivers are otherwise hard for people to build.
+>
+> Right. I think it is unfortunate how (at least in my opinion)
+> CONFIG_COMPILE_TEST has two meanings: genuinely just compile testing or
+> "allmodconfig". For the first case, we would want CONFIG_DRM_WERROR=y
+> but for the second case, it would be nice for CONFIG_DRM_WERROR to
+> default to off (because CONFIG_WERROR is enabled) but allow developers
+> to turn it on explicitly.
 
-== Series Details ==
+Yes, CONFIG_COMPILE_TEST has become overloaded.
 
-Series: drm/i915: use fine grained -Woverride-init disable
-URL   : https://patchwork.freedesktop.org/series/131752/
-State : success
+> Another lofty/wistful idea to solve this would be to implement something
+> similar to compiler diagnostic groups for Kconfig, where there would be
+> a hierarchy like
+>
+>   CONFIG_WERROR
+>     CONFIG_DRM_WERROR
+>     CONFIG_SUBSYSTEM_A_WERROR
+>     CONFIG_SUBSYSTEM_B_WERROR
+>
+> where the value of CONFIG_WERROR is the same value for all
+> subconfigurations under it but they could still be enabled individually
+> without any additional dependencies (ala something like '-Wno-unused
+> -Wunused-variable'), which would allow my use case of CONFIG_WERROR=n
+> removing all instances of -Werror to continue to work but allow other
+> developers and CI systems to just set their specific -Werror
+> configuration and be done with it. I don't think something like that
+> exists but maybe I don't know Kconfig as well as I think I do :)
 
-== Summary ==
+Yet another idea is to have a way to mark a config option "manual", that
+is, never enable this automatically under any circumstances, not in make
+allyesconfig or allmodconfig, don't ask in make oldconfig, don't allow
+selects. The only way to enable is to toggle it manually. If you want it
+and enable it and see problems, it's on you.
 
-CI Bug Log - changes from xe-1005-8d398ffc40ac37d1589214c28b69c651c1a20792_BAT -> xe-pw-131752v1_BAT
-====================================================
+CONFIG_WERROR and CONFIG_DRM_WERROR could both be like this. The problem
+with them is that they're not so much different configurations, they are
+about how to deal with build errors, and that's not really what, say,
+make allyesconfig should be about.
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-131752v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@xe_evict@evict-cm-threads-small:
-    - bat-dg2-oem2:       [INCOMPLETE][1] ([Intel XE#1027] / [Intel XE#804]) -> [INCOMPLETE][2] ([Intel XE#804])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1005-8d398ffc40ac37d1589214c28b69c651c1a20792/bat-dg2-oem2/igt@xe_evict@evict-cm-threads-small.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131752v1/bat-dg2-oem2/igt@xe_evict@evict-cm-threads-small.html
-
-  * igt@xe_exec_threads@threads-mixed-userptr-invalidate:
-    - bat-adlp-7:         [INCOMPLETE][3] ([Intel XE#1044] / [Intel XE#1376]) -> [INCOMPLETE][4] ([Intel XE#1044] / [Intel XE#1169])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1005-8d398ffc40ac37d1589214c28b69c651c1a20792/bat-adlp-7/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131752v1/bat-adlp-7/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html
-
-  
-  [Intel XE#1027]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1027
-  [Intel XE#1044]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1044
-  [Intel XE#1169]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1169
-  [Intel XE#1376]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1376
-  [Intel XE#804]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/804
+BR,
+Jani.
 
 
-Build changes
--------------
-
-  * IGT: IGT_7786 -> IGT_7787
-  * Linux: xe-1005-8d398ffc40ac37d1589214c28b69c651c1a20792 -> xe-pw-131752v1
-
-  IGT_7786: 1e4a3cd0a4bb3419fb70ed3e01259485b056dcfd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_7787: 7787
-  xe-1005-8d398ffc40ac37d1589214c28b69c651c1a20792: 8d398ffc40ac37d1589214c28b69c651c1a20792
-  xe-pw-131752v1: 131752v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131752v1/index.html
-
---===============5862982517901482038==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: use fine grained -Woverride-init disable</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131752/">https://patchwork.freedesktop.org/series/131752/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131752v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131752v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1005-8d398ffc40ac37d1589214c28b69c651c1a20792_BAT -&gt; xe-pw-131752v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-131752v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@xe_evict@evict-cm-threads-small:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1005-8d398ffc40ac37d1589214c28b69c651c1a20792/bat-dg2-oem2/igt@xe_evict@evict-cm-threads-small.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1027">Intel XE#1027</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/804">Intel XE#804</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131752v1/bat-dg2-oem2/igt@xe_evict@evict-cm-threads-small.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/804">Intel XE#804</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_threads@threads-mixed-userptr-invalidate:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1005-8d398ffc40ac37d1589214c28b69c651c1a20792/bat-adlp-7/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1044">Intel XE#1044</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1376">Intel XE#1376</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131752v1/bat-adlp-7/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1044">Intel XE#1044</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1169">Intel XE#1169</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7786 -&gt; IGT_7787</li>
-<li>Linux: xe-1005-8d398ffc40ac37d1589214c28b69c651c1a20792 -&gt; xe-pw-131752v1</li>
-</ul>
-<p>IGT_7786: 1e4a3cd0a4bb3419fb70ed3e01259485b056dcfd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_7787: 7787<br />
-  xe-1005-8d398ffc40ac37d1589214c28b69c651c1a20792: 8d398ffc40ac37d1589214c28b69c651c1a20792<br />
-  xe-pw-131752v1: 131752v1</p>
-
-</body>
-</html>
-
---===============5862982517901482038==--
+-- 
+Jani Nikula, Intel
