@@ -4,46 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E60B8CD11DD
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Mar 2024 18:32:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5807DCD11DF
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Mar 2024 18:32:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB4BE10F3BB;
-	Thu, 28 Mar 2024 18:32:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D421112517;
+	Thu, 28 Mar 2024 18:32:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CV+D1sEa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B/n78mwW";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0C1510F984
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Mar 2024 18:31:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB4161120CD
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 Mar 2024 18:32:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711650720; x=1743186720;
+ t=1711650723; x=1743186723;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=hYkO/3or+NoZKiO2MSAHAOXqwY9h1YiCfkPRRF6O6NA=;
- b=CV+D1sEa0BYIigEPBlowrX/ZADIJabB5pTpqz8gDGgxkcxoglaMTDOp7
- nEQLxvMl8iNyUbB1DkyPBeJeej6cS8fO6qEJIHFwe3lzTA7QYa5abxaRy
- Q9UxDMqtocktlRD33hHsLUu9JcPQLzgoa72yqJdv9m2X5z7dZtgJXu6yd
- GHnnVbGK0VN8qTgagIED1TBD5ujypwEhQC9//fdXTzKkuYixxICOFSnWm
- 8P9FjcrNoF+DadCkQFIcgjPaMaR74bgB9dzyQVWAjcyRBo4G3AObxRwvf
- eZT/KAup3YORrMCHEE8EKwn7vq0Dj3ZMOIXXJNUlnc9Iksh20CpQQAkpi g==;
-X-CSE-ConnectionGUID: bTVZi3b4TAK/zN9MJ386Cg==
-X-CSE-MsgGUID: g9VoM+hxSTqsVcut3ZXr7A==
-X-IronPort-AV: E=McAfee;i="6600,9927,11027"; a="18205406"
-X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; d="scan'208";a="18205406"
+ bh=4CFE3hXyYHc2FBMNV5sQ5PYReoRADbYt3t/ULOlG330=;
+ b=B/n78mwWqX2iOJNpe9mhZMZjcoxB7QIsWcq6ihttuUlq5t/TJIRW5mro
+ MKSxkC4IHOH0mKC4zT13hORr3ncLtGadsRxL30rRm6o66cdTuR5gHxKQg
+ TAgikE3phUr9QTSKg7zfsbExM4CUyw1xuiAa7jAJFCo8oQx/DcORN7hTh
+ iOlGRIfWuXORUcw296RpeeUNgtulZddaUlayoOHUBxh+0XBY92imNHVr3
+ VhNXzRJdMwTE7coywV++z8HfnHiUn8EjNZ7/J0HdcKdQTmqjrc8gbE0nj
+ JyO9pALTxknRIEk9x56Pdl0A4zb4TZRJJjncLb6nL/Eus7dPnVXhBAFLm w==;
+X-CSE-ConnectionGUID: rX5O/iYHQKODad6X1vBEqg==
+X-CSE-MsgGUID: SpR5BRvzTwuw3aOxDR2q8Q==
+X-IronPort-AV: E=McAfee;i="6600,9927,11027"; a="18205412"
+X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; d="scan'208";a="18205412"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2024 11:32:00 -0700
+ 28 Mar 2024 11:32:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; d="scan'208";a="47700382"
+X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; d="scan'208";a="47700441"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.157.82])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2024 11:31:58 -0700
+ 28 Mar 2024 11:32:02 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 3/7] drm/xe/guc: Add GUC2PF_ADVERSE_EVENT to ABI
-Date: Thu, 28 Mar 2024 19:31:43 +0100
-Message-Id: <20240328183147.495-4-michal.wajdeczko@intel.com>
+Subject: [PATCH 6/7] drm/xe/guc: Add VF2GUC_QUERY_SINGLE_KLV to ABI
+Date: Thu, 28 Mar 2024 19:31:46 +0100
+Message-Id: <20240328183147.495-7-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240328183147.495-1-michal.wajdeczko@intel.com>
 References: <20240328183147.495-1-michal.wajdeczko@intel.com>
@@ -63,57 +63,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In upcoming patches the PF driver will add support to configure
-monitoring of the VFs activities and will must be abel to handle
-related GUC2PF_ADVERSE_EVENT event messages from the GuC.
+In upcoming patches the VF driver will add support to read its
+configuration from the GuC using special H2G actions.
 Add necessary definitions to our GuC firmware ABI header.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- .../gpu/drm/xe/abi/guc_actions_sriov_abi.h    | 30 +++++++++++++++++++
- 1 file changed, 30 insertions(+)
+ .../gpu/drm/xe/abi/guc_actions_sriov_abi.h    | 56 +++++++++++++++++++
+ 1 file changed, 56 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
-index 561c54a86016..ea01b21afe28 100644
+index 7de6c87410ce..31a9c4b13b35 100644
 --- a/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
 +++ b/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
-@@ -171,6 +171,36 @@
- #define VF2GUC_RELAY_TO_PF_REQUEST_MSG_n_RELAY_DATAx	GUC_HXG_REQUEST_MSG_n_DATAn
- #define VF2GUC_RELAY_TO_PF_REQUEST_MSG_NUM_RELAY_DATA	GUC_RELAY_MSG_MAX_LEN
+@@ -498,4 +498,60 @@
+ #define VF2GUC_VF_RESET_RESPONSE_MSG_LEN		GUC_HXG_RESPONSE_MSG_MIN_LEN
+ #define VF2GUC_VF_RESET_RESPONSE_MSG_0_MBZ		GUC_HXG_RESPONSE_MSG_0_DATA0
  
 +/**
-+ * DOC: GUC2PF_ADVERSE_EVENT
++ * DOC: VF2GUC_QUERY_SINGLE_KLV
 + *
-+ * This message is used by the GuC to notify PF about adverse events.
++ * This action is used by VF to query value of the single KLV data.
 + *
-+ * This G2H message must be sent as `CTB HXG Message`_.
++ * This action must be sent over MMIO.
++ *
++ *  +---+-------+--------------------------------------------------------------+
++ *  |   | Bits  | Description                                                  |
++ *  +===+=======+==============================================================+
++ *  | 0 |    31 | ORIGIN = GUC_HXG_ORIGIN_HOST_                                |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   | 30:28 | TYPE = GUC_HXG_TYPE_REQUEST_                                 |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   | 27:16 | MBZ                                                          |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   |  15:0 | ACTION = _`GUC_ACTION_VF2GUC_QUERY_SINGLE_KLV` = 0x5509      |
++ *  +---+-------+--------------------------------------------------------------+
++ *  | 1 | 31:16 | MBZ                                                          |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   |  15:0 | **KEY** - key for which value is requested                   |
++ *  +---+-------+--------------------------------------------------------------+
 + *
 + *  +---+-------+--------------------------------------------------------------+
 + *  |   | Bits  | Description                                                  |
 + *  +===+=======+==============================================================+
 + *  | 0 |    31 | ORIGIN = GUC_HXG_ORIGIN_GUC_                                 |
 + *  |   +-------+--------------------------------------------------------------+
-+ *  |   | 30:28 | TYPE = GUC_HXG_TYPE_EVENT_                                   |
++ *  |   | 30:28 | TYPE = GUC_HXG_TYPE_RESPONSE_SUCCESS_                        |
 + *  |   +-------+--------------------------------------------------------------+
-+ *  |   | 27:16 | DATA0 = MBZ                                                  |
++ *  |   | 27:16 | MBZ                                                          |
 + *  |   +-------+--------------------------------------------------------------+
-+ *  |   |  15:0 | ACTION = _`GUC_ACTION_GUC2PF_ADVERSE_EVENT` = 0x5104         |
++ *  |   |  15:0 | **LENGTH** - length of data in dwords                        |
 + *  +---+-------+--------------------------------------------------------------+
-+ *  | 1 |  31:0 | DATA1 = **VFID** - VF identifier                             |
++ *  | 1 |  31:0 | **VALUE32** - bits 31:0 of value if **LENGTH** >= 1          |
 + *  +---+-------+--------------------------------------------------------------+
-+ *  | 2 |  31:0 | DATA2 = **THRESHOLD** - key of the exceeded threshold        |
++ *  | 2 |  31:0 | **VALUE64** - bits 63:32 of value if **LENGTH** >= 2         |
++ *  +---+-------+--------------------------------------------------------------+
++ *  | 3 |  31:0 | **VALUE96** - bits 95:64 of value if **LENGTH** >= 3         |
 + *  +---+-------+--------------------------------------------------------------+
 + */
-+#define GUC_ACTION_GUC2PF_ADVERSE_EVENT			0x5104
++#define GUC_ACTION_VF2GUC_QUERY_SINGLE_KLV		0x5509u
 +
-+#define GUC2PF_ADVERSE_EVENT_EVENT_MSG_LEN		(GUC_HXG_EVENT_MSG_MIN_LEN + 2u)
-+#define GUC2PF_ADVERSE_EVENT_EVENT_MSG_0_MBZ		GUC_HXG_EVENT_MSG_0_DATA0
-+#define GUC2PF_ADVERSE_EVENT_EVENT_MSG_1_VFID		GUC_HXG_EVENT_MSG_n_DATAn
-+#define GUC2PF_ADVERSE_EVENT_EVENT_MSG_2_THRESHOLD	GUC_HXG_EVENT_MSG_n_DATAn
++#define VF2GUC_QUERY_SINGLE_KLV_REQUEST_MSG_LEN		(GUC_HXG_REQUEST_MSG_MIN_LEN + 1u)
++#define VF2GUC_QUERY_SINGLE_KLV_REQUEST_MSG_0_MBZ	GUC_HXG_REQUEST_MSG_0_DATA0
++#define VF2GUC_QUERY_SINGLE_KLV_REQUEST_MSG_1_MBZ	(0xffffu << 16)
++#define VF2GUC_QUERY_SINGLE_KLV_REQUEST_MSG_1_KEY	(0xffffu << 0)
 +
- /**
-  * DOC: GUC2PF_VF_STATE_NOTIFY
-  *
++#define VF2GUC_QUERY_SINGLE_KLV_RESPONSE_MSG_MIN_LEN	GUC_HXG_RESPONSE_MSG_MIN_LEN
++#define VF2GUC_QUERY_SINGLE_KLV_RESPONSE_MSG_MAX_LEN	(GUC_HXG_RESPONSE_MSG_MIN_LEN + 3u)
++#define VF2GUC_QUERY_SINGLE_KLV_RESPONSE_MSG_0_MBZ	(0xfffu << 16)
++#define VF2GUC_QUERY_SINGLE_KLV_RESPONSE_MSG_0_LENGTH	(0xffffu << 0)
++#define VF2GUC_QUERY_SINGLE_KLV_RESPONSE_MSG_1_VALUE32	GUC_HXG_REQUEST_MSG_n_DATAn
++#define VF2GUC_QUERY_SINGLE_KLV_RESPONSE_MSG_2_VALUE64	GUC_HXG_REQUEST_MSG_n_DATAn
++#define VF2GUC_QUERY_SINGLE_KLV_RESPONSE_MSG_3_VALUE96	GUC_HXG_REQUEST_MSG_n_DATAn
++
+ #endif
 -- 
 2.43.0
 
