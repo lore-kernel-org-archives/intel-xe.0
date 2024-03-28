@@ -4,55 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57ACEC54E64
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Mar 2024 10:46:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E2EDC54E67
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Mar 2024 10:52:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01BA810F0CD;
-	Thu, 28 Mar 2024 10:46:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31F2810E3F1;
+	Thu, 28 Mar 2024 10:52:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GqxzbPPj";
+	dkim=pass (2048-bit key; unprotected) header.d=arndb.de header.i=@arndb.de header.b="BLt9jvNz";
+	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="XS2xnBUC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3814110E53D;
- Thu, 28 Mar 2024 10:46:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711622807; x=1743158807;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=6y7kQCHPSn/ytHJreLVPJDGNY/mFAL5kJwlXVofXPbs=;
- b=GqxzbPPj7nfRZVwi5wfTyx2V9VzYwNMESjNOV5iiaDZe8sJ5Ojb8b3mn
- IKMWvpB4/8zuZyAU/yivBiY++g4LyoXy50r1zn83XBBtjawvR61B7Hds3
- i2+C5KfDN7dSVUzCgaSk8Fp3/Hc+4UkxKRkRLWLZctsOJE65JWTuxmnOR
- vtBlLQ3/wKM6n2VSADPmOgy+Ay/Z4rnPLz7OSvPNQ7W6XnRAuVeuqqIjV
- 8vFx9xOwMtWbqBXnTPlCSenMzHgSv9nnPL01tLnI+BpOUPM+gApGLUeOf
- 4P04FvZq2w2Mf0DANUwQGsB126EWlxH49ts8euAjuPIWhz+IETFAjmDEK Q==;
-X-CSE-ConnectionGUID: P2G2fgDCRgKTlYo4YxqU6A==
-X-CSE-MsgGUID: /1/aG/N6RB6AsCu88CqnqQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="6628933"
-X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; 
-   d="scan'208";a="6628933"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2024 03:46:47 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; d="scan'208";a="21333164"
-Received: from abdulqaf-mobl2.amr.corp.intel.com (HELO localhost)
- ([10.252.57.138])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2024 03:46:45 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Arnd Bergmann <arnd@arndb.de>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: Re: [PATCH] drm/i915: use fine grained -Woverride-init disable
-In-Reply-To: <b9138bc4-61e4-476a-9aa5-8842235bce2e@app.fastmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Received: from fhigh2-smtp.messagingengine.com
+ (fhigh2-smtp.messagingengine.com [103.168.172.153])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B2B810E3F1
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 Mar 2024 10:52:53 +0000 (UTC)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+ by mailfhigh.nyi.internal (Postfix) with ESMTP id 1323D11400DB;
+ Thu, 28 Mar 2024 06:52:53 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+ by compute5.internal (MEProxy); Thu, 28 Mar 2024 06:52:53 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+ :cc:content-type:content-type:date:date:from:from:in-reply-to
+ :in-reply-to:message-id:mime-version:references:reply-to:subject
+ :subject:to:to; s=fm1; t=1711623173; x=1711709573; bh=pYSP327WQF
+ DVmZr6n7v2NiEuO6ZV1nPOeivuxd5HieM=; b=BLt9jvNz5hthy4N8+5JykzYgPC
+ RyR2Kt4srpR8FZvhqE9UwZolwjy9UkgDiU8jmpvrn+guG9q4ww72iOw1B3KSthtf
+ nHLqJyI3829+aCC5BHGqFU05vCbXClHgFHJuBZa9QPacaLx7CpO0BSMx87Ap1YHw
+ GUIjOQnl/3TMwsb4/O7Q60lBBRSUAayuhVbsDCb2HwaT66g8vqv+IJkHViaogjIi
+ cEfTAg7S7n4LBhtI3Ija9tGw6Imk2IwfOdDb9pJc6dNYJheSz71+5/t1B3G9HreX
+ B94kzTGzEnVXQJngAzZWGiKCPoRN8nvKMIjeufHCLPoJv8gpDMateEzqOKeg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:content-type:date:date
+ :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:subject:subject:to
+ :to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm2; t=1711623173; x=1711709573; bh=pYSP327WQFDVmZr6n7v2NiEuO6ZV
+ 1nPOeivuxd5HieM=; b=XS2xnBUCepnAJHRLgcsCubXP1XsFjy6OOTVNxv+0P+76
+ ukUTzYGCbiDEDEM95MyJo21HL+0HhJiI4w5E+ccfhieJv0qbjNALiKdFHBD4G7I5
+ mJCV/A7ejDpfSuhJvrDJSv4HiLX1I54FhMJyZ6XSpYnL29cEpa+vJ5vvXx/6wPJ0
+ ZytjPwl5YQ2BGV2eIY6w9kcT9W/Shd2neMba8WyGisC3x1ccHPy2pCKOZ9Z+RaF4
+ 7aakQtP8pfvSAq278waGWLjzOWYZDYRPXzOf7dOJ+roAEM+wIDP8Hfie57wCVLH0
+ sPjUcZ+22H6wJJuzPf+SdV/QsfC7aHr0Qg/d4EK52w==
+X-ME-Sender: <xms:BEwFZv9jxM0BDAz1baL4uM02Ml6RNROftPOkbjKzAqU8JxG53jRXMA>
+ <xme:BEwFZrvJf6eNq4Y937lpeVHM2fyOpxeisx18g0oB2lDodHVcZOnseBNwc9yUXgVAI
+ Z2WWdejKsEkShPh45A>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudduledgudelucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+ nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+ htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+ teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+ hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:BEwFZtA-azog78eutfczfFlihiGGHZlKj4ml-8hUktdPSQKtpJXI5w>
+ <xmx:BEwFZrcKvMZHlR92jcI9_-6Asa6d5N2MmPl1LJ-7YbTE7qwLGqMv3Q>
+ <xmx:BEwFZkO-qF7k5HExohyO9gtcNMEOIIQhD3f48VZRWJdcE8XpMgpZkA>
+ <xmx:BEwFZtnQc-ll8LflCyOKn3qR-ocduIe3YWUqZTYSvjeXiKKyJsAyJA>
+ <xmx:BUwFZhp1EmcC3sdwiY9YA3Ysuv6PgfrPv1h0cwBUw9K0OxyMcdPZ8w>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+ id C68DDB6008D; Thu, 28 Mar 2024 06:52:52 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.11.0-alpha0-333-gbfea15422e-fm-20240327.001-gbfea1542
+MIME-Version: 1.0
+Message-Id: <84c264bb-0316-42eb-85d2-ddd8f8dbf1d4@app.fastmail.com>
+In-Reply-To: <87o7ayfxbh.fsf@intel.com>
 References: <20240328102455.944131-1-jani.nikula@intel.com>
  <b9138bc4-61e4-476a-9aa5-8842235bce2e@app.fastmail.com>
-Date: Thu, 28 Mar 2024 12:46:42 +0200
-Message-ID: <87o7ayfxbh.fsf@intel.com>
-MIME-Version: 1.0
+ <87o7ayfxbh.fsf@intel.com>
+Date: Thu, 28 Mar 2024 11:52:32 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Jani Nikula" <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Subject: Re: [PATCH] drm/i915: use fine grained -Woverride-init disable
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,38 +92,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 28 Mar 2024, "Arnd Bergmann" <arnd@arndb.de> wrote:
-> On Thu, Mar 28, 2024, at 11:24, Jani Nikula wrote:
->> Use localized __diag_push(), __diag_ignore_all() with rationale, and
->> __diag_pop() for specific initializations instead of blanket disabling
->> of -Woverride-init across several files.
+On Thu, Mar 28, 2024, at 11:46, Jani Nikula wrote:
+> On Thu, 28 Mar 2024, "Arnd Bergmann" <arnd@arndb.de> wrote:
+>> On Thu, Mar 28, 2024, at 11:24, Jani Nikula wrote:
+>>> Use localized __diag_push(), __diag_ignore_all() with rationale, and
+>>> __diag_pop() for specific initializations instead of blanket disabling
+>>> of -Woverride-init across several files.
+>>>
+>>> Note that we've tried this before with commit 88e9664434c9 ("drm/i915:
+>>> use localized __diag_ignore_all() instead of per file") and reverted in
+>>> commit 290d16104575 ("Revert "drm/i915: use localized
+>>> __diag_ignore_all() instead of per file""). The issue turned out to be
+>>> in __diag_ignore_all() and it was fixed by commit 689b097a06ba
+>>> ("compiler-gcc: Suppress -Wmissing-prototypes warning for all supported
+>>> GCC"). So we should be able to pull this off now.
+>>>
+>>> Cc: "Arnd Bergmann" <arnd@arndb.de>
+>>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 >>
->> Note that we've tried this before with commit 88e9664434c9 ("drm/i915:
->> use localized __diag_ignore_all() instead of per file") and reverted in
->> commit 290d16104575 ("Revert "drm/i915: use localized
->> __diag_ignore_all() instead of per file""). The issue turned out to be
->> in __diag_ignore_all() and it was fixed by commit 689b097a06ba
->> ("compiler-gcc: Suppress -Wmissing-prototypes warning for all supported
->> GCC"). So we should be able to pull this off now.
+>> Looks good to me,
 >>
->> Cc: "Arnd Bergmann" <arnd@arndb.de>
->> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> Acked-by: Arnd Bergmann <arnd@arndb.de>
 >
-> Looks good to me,
->
-> Acked-by: Arnd Bergmann <arnd@arndb.de>
+> Thanks! I'll take this via drm-intel-next for v6.10. Up to you what to
+> do with your patch [1], either drop the i915 and xe changes, or we can
+> handle the trivial conflict too if keeping the changes helps you
+> somehow.
 
-Thanks! I'll take this via drm-intel-next for v6.10. Up to you what to
-do with your patch [1], either drop the i915 and xe changes, or we can
-handle the trivial conflict too if keeping the changes helps you
-somehow.
+I'll just drop all of the parts for drivers/gpu and send another
+patch for the amdgpu driver to do the same as your patch.
 
-BR,
-Jani.
-
-
-[1] https://lore.kernel.org/all/20240326144741.3094687-2-arnd@kernel.org/
-
--- 
-Jani Nikula, Intel
+     Arnd
