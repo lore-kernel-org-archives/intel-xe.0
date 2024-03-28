@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61F9CC54E67
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Mar 2024 10:33:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F3FFC54E67
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Mar 2024 10:36:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1ACF710F4FF;
-	Thu, 28 Mar 2024 10:33:17 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U6G7dt85";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6B7210F4FF;
- Thu, 28 Mar 2024 10:33:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711621996; x=1743157996;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=y9L2UfGlxkY+8GYuVqiK8/q8eJLu6O7Ibe3SviJ/fbs=;
- b=U6G7dt85WSQStCkGAEHYrElrHbDsYOP9u6sh5XtcjgLEXThJPibGSqfq
- NkJu3rUjyNdCTVrONjHiDyvaeyADTEOtpqy6j909LvoqfjH1gmPqndYdN
- R1gPoS0t1AvK4qeR6eGjC10lOt0kCO0yN3KdNXB4dKzIbtzDeysdRugJH
- 2j/eUdM6JwBTi+pPoHI/T/v+7ggZrzIkbucbAgN21eUhUaYTg2lbfCmhF
- ++p4yJ//Fdn7IvmB+tdQGyWVZi/p0K8BZzmnChMLsgA5kCSynTdSDsKmf
- QSdFQAJpyZxm2R+kNjl6akN24kedF/WwSm6P8aWv7n8837eqnN0q77S9X Q==;
-X-CSE-ConnectionGUID: /a0V5TQQTg2kPr+E0VvGNg==
-X-CSE-MsgGUID: g6ODgvwqTG+OHpTFHG708Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="6880307"
-X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; 
-   d="scan'208";a="6880307"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2024 03:33:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; d="scan'208";a="21267840"
-Received: from abdulqaf-mobl2.amr.corp.intel.com (HELO localhost)
- ([10.252.57.138])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2024 03:33:12 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>, Arun R Murthy
- <arun.r.murthy@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCHv2] drm/xe/display: check for error on drmm_mutex_init
-In-Reply-To: <ZgUq47D313cr2VYp@ashyti-mobl2.lan>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240328080005.410961-1-arun.r.murthy@intel.com>
- <ZgUq47D313cr2VYp@ashyti-mobl2.lan>
-Date: Thu, 28 Mar 2024 12:33:09 +0200
-Message-ID: <87r0fufxy2.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1847D10F4FF;
+	Thu, 28 Mar 2024 10:36:58 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DDD910F51B;
+ Thu, 28 Mar 2024 10:36:56 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============9124552816792531434=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/ttm=2C_drm/xe=3A_Shrinker_su?=
+ =?utf-8?q?pport_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 28 Mar 2024 10:36:56 -0000
+Message-ID: <171162221657.1061727.7646513220210250708@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240328094454.272050-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20240328094454.272050-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,72 +36,126 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 28 Mar 2024, Andi Shyti <andi.shyti@linux.intel.com> wrote:
-> Hi Arun,
->
-> ...
->
->> -	drmm_mutex_init(&xe->drm, &xe->sb_lock);
->> -	drmm_mutex_init(&xe->drm, &xe->display.backlight.lock);
->> -	drmm_mutex_init(&xe->drm, &xe->display.audio.mutex);
->> -	drmm_mutex_init(&xe->drm, &xe->display.wm.wm_mutex);
->> -	drmm_mutex_init(&xe->drm, &xe->display.pps.mutex);
->> -	drmm_mutex_init(&xe->drm, &xe->display.hdcp.hdcp_mutex);
->> +	if (drmm_mutex_init(&xe->drm, &xe->sb_lock) ||
->> +	    drmm_mutex_init(&xe->drm, &xe->display.backlight.lock) ||
->> +	    drmm_mutex_init(&xe->drm, &xe->display.audio.mutex) ||
->> +	    drmm_mutex_init(&xe->drm, &xe->display.wm.wm_mutex) ||
->> +	    drmm_mutex_init(&xe->drm, &xe->display.pps.mutex) ||
->> +	    drmm_mutex_init(&xe->drm, &xe->display.hdcp.hdcp_mutex))
->> +		return -ENOMEM;
->
-> why not extract the value from drmm_mutex_init()? it would make
-> the code a bit more complex, but better than forcing a -ENOMEM
-> return.
->
-> 	err = drmm_mutex_init(...)
-> 	if (err)
-> 		return err;
->
-> 	err = drmm_mutex_init(...)
-> 	if (err)
-> 		return err;
->
-> 	err = drmm_mutex_init(...)
-> 	if (err)
-> 		return err;
-> 	
-> 	...
->
-> On the other hand drmm_mutex_init(), as of now returns only
-> -ENOMEM, but it's a bad practice to assume it will always do. I'd
-> rather prefer not to check the error value at all.
+--===============9124552816792531434==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-And round and round we go. This is exactly what v1 was [1], but it's not
-clear because the patch doesn't have a changelog.
+== Series Details ==
 
-This is all utterly ridiculous compared to *why* we even have or use
-drmm_mutex_init(). Managed initialization causes more trouble here than
-it gains us. Gah.
+Series: drm/ttm, drm/xe: Shrinker support (rev3)
+URL   : https://patchwork.freedesktop.org/series/131695/
+State : success
 
-BR,
-Jani.
+== Summary ==
+
+CI Bug Log - changes from xe-1005-8d398ffc40ac37d1589214c28b69c651c1a20792_BAT -> xe-pw-131695v3_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-131695v3_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@xe_exec_threads@threads-mixed-userptr-invalidate:
+    - bat-adlp-7:         [INCOMPLETE][1] ([Intel XE#1044] / [Intel XE#1376]) -> [INCOMPLETE][2] ([Intel XE#1044])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1005-8d398ffc40ac37d1589214c28b69c651c1a20792/bat-adlp-7/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131695v3/bat-adlp-7/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html
+
+  
+  [Intel XE#1044]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1044
+  [Intel XE#1376]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1376
 
 
-[1] https://lore.kernel.org/r/ki4ynsl4nmhavf63vzdlt2xkedjo7p7iouzvcksvki3okgz6ak@twlznnlo3g22
+Build changes
+-------------
+
+  * Linux: xe-1005-8d398ffc40ac37d1589214c28b69c651c1a20792 -> xe-pw-131695v3
+
+  IGT_7786: 1e4a3cd0a4bb3419fb70ed3e01259485b056dcfd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1005-8d398ffc40ac37d1589214c28b69c651c1a20792: 8d398ffc40ac37d1589214c28b69c651c1a20792
+  xe-pw-131695v3: 131695v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131695v3/index.html
+
+--===============9124552816792531434==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
->
-> Andi
->
->>  	xe->enabled_irq_mask = ~0;
->>  
->>  	err = drmm_add_action_or_reset(&xe->drm, display_destroy, NULL);
->> -- 
->> 2.25.1
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
--- 
-Jani Nikula, Intel
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/ttm, drm/xe: Shrinker support (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131695/">https://patchwork.freedesktop.org/series/131695/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131695v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131695v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1005-8d398ffc40ac37d1589214c28b69c651c1a20792_BAT -&gt; xe-pw-131695v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-131695v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_exec_threads@threads-mixed-userptr-invalidate:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1005-8d398ffc40ac37d1589214c28b69c651c1a20792/bat-adlp-7/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1044">Intel XE#1044</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1376">Intel XE#1376</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131695v3/bat-adlp-7/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1044">Intel XE#1044</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1005-8d398ffc40ac37d1589214c28b69c651c1a20792 -&gt; xe-pw-131695v3</li>
+</ul>
+<p>IGT_7786: 1e4a3cd0a4bb3419fb70ed3e01259485b056dcfd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1005-8d398ffc40ac37d1589214c28b69c651c1a20792: 8d398ffc40ac37d1589214c28b69c651c1a20792<br />
+  xe-pw-131695v3: 131695v3</p>
+
+</body>
+</html>
+
+--===============9124552816792531434==--
