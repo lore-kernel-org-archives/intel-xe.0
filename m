@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 301DBC54E67
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Mar 2024 11:01:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75FA1C54E67
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Mar 2024 11:08:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB37110E3F1;
-	Thu, 28 Mar 2024 11:01:57 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 852F310E3F1;
- Thu, 28 Mar 2024 11:01:56 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BA4010F524;
+	Thu, 28 Mar 2024 11:08:12 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iZcer+z5";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FEF510F4FF;
+ Thu, 28 Mar 2024 11:08:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1711624090; x=1743160090;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=dsxSQ7j6YAgkLCDxmDPnwUC5gjaZLRO+Vqr/G20RCXI=;
+ b=iZcer+z5tydbfTUU1HzJ8YH7bg7tor1Ol97NIzVnDPRUzffAPtBZWCW2
+ cK+khMoJWERjkfHWzQY5l2YkU7BNBtrBclmGfDco9cwOVQKw3uofIB2lZ
+ TCglHWCBMiLLDWyTvg4teZxTewjuNxkdxMJdwOw9bLuGZm4HbXMnqX7Io
+ CVLa+ZzyHlTYz8p5kVgKFtoZnuuE0ffv/1gHIBhJ9tFPX5GnTHU4CMvHN
+ +zRIoq5cyhNlmFdtKPcTsWf7A28tBBPNnYYGLEfoJ2alMV+z9wtcpruIG
+ mW29h9e/liAXZxVgXTnBZYfYStgpFCHu9eAqL2Ri9aRfgDDYDDtjN+t6F Q==;
+X-CSE-ConnectionGUID: 25AhlhSHTA+VNmgGBaiM7A==
+X-CSE-MsgGUID: x9dsU8FMQVqEMHEzhiRTmQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="10564784"
+X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; d="scan'208";a="10564784"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2024 04:08:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; d="scan'208";a="16609539"
+Received: from unknown (HELO intel.com) ([10.247.118.221])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2024 04:08:05 -0700
+Date: Thu, 28 Mar 2024 12:07:59 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCHv2] drm/xe/display: check for error on drmm_mutex_init
+Message-ID: <ZgVPj8wHbjj2Oyu_@ashyti-mobl2.lan>
+References: <20240328080005.410961-1-arun.r.murthy@intel.com>
+ <ZgUq47D313cr2VYp@ashyti-mobl2.lan> <87r0fufxy2.fsf@intel.com>
+ <ZgVKWBQqEat-3iR3@ashyti-mobl2.lan>
+ <IA0PR11MB730702DC9B3DBCAFB8396B33BA3B2@IA0PR11MB7307.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915=3A_use_fine_gra?=
- =?utf-8?q?ined_-Woverride-init_disable?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 28 Mar 2024 11:01:56 -0000
-Message-ID: <171162371654.1062663.86375587128345269@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240328102455.944131-1-jani.nikula@intel.com>
-In-Reply-To: <20240328102455.944131-1-jani.nikula@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <IA0PR11MB730702DC9B3DBCAFB8396B33BA3B2@IA0PR11MB7307.namprd11.prod.outlook.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,35 +67,74 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Arun,
 
-Series: drm/i915: use fine grained -Woverride-init disable
-URL   : https://patchwork.freedesktop.org/series/131752/
-State : warning
+> > On Thu, Mar 28, 2024 at 12:33:09PM +0200, Jani Nikula wrote:
+> > > On Thu, 28 Mar 2024, Andi Shyti <andi.shyti@linux.intel.com> wrote:
+> > > >> -	drmm_mutex_init(&xe->drm, &xe->sb_lock);
+> > > >> -	drmm_mutex_init(&xe->drm, &xe->display.backlight.lock);
+> > > >> -	drmm_mutex_init(&xe->drm, &xe->display.audio.mutex);
+> > > >> -	drmm_mutex_init(&xe->drm, &xe->display.wm.wm_mutex);
+> > > >> -	drmm_mutex_init(&xe->drm, &xe->display.pps.mutex);
+> > > >> -	drmm_mutex_init(&xe->drm, &xe->display.hdcp.hdcp_mutex);
+> > > >> +	if (drmm_mutex_init(&xe->drm, &xe->sb_lock) ||
+> > > >> +	    drmm_mutex_init(&xe->drm, &xe->display.backlight.lock) ||
+> > > >> +	    drmm_mutex_init(&xe->drm, &xe->display.audio.mutex) ||
+> > > >> +	    drmm_mutex_init(&xe->drm, &xe->display.wm.wm_mutex) ||
+> > > >> +	    drmm_mutex_init(&xe->drm, &xe->display.pps.mutex) ||
+> > > >> +	    drmm_mutex_init(&xe->drm, &xe->display.hdcp.hdcp_mutex))
+> > > >> +		return -ENOMEM;
+> > > >
+> > > > why not extract the value from drmm_mutex_init()? it would make the
+> > > > code a bit more complex, but better than forcing a -ENOMEM return.
+> > > >
+> > > > 	err = drmm_mutex_init(...)
+> > > > 	if (err)
+> > > > 		return err;
+> > > >
+> > > > 	err = drmm_mutex_init(...)
+> > > > 	if (err)
+> > > > 		return err;
+> > > >
+> > > > 	err = drmm_mutex_init(...)
+> > > > 	if (err)
+> > > > 		return err;
+> > > >
+> > > > 	...
+> > > >
+> > > > On the other hand drmm_mutex_init(), as of now returns only -ENOMEM,
+> 
+> The function is also returning -ENOMEM and there is no other error code returned from the error.
 
-== Summary ==
+yes, but it's wrong to assume this will always be true.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 24d2e3b675ed700910939b6bcaeaae3a78cf9c5c
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+> > > > but it's a bad practice to assume it will always do. I'd rather
+> > > > prefer not to check the error value at all.
+> > >
+> > > And round and round we go. This is exactly what v1 was [1], but it's
+> > > not clear because the patch doesn't have a changelog.
+> > 
+> > ha! funny! I missed v1.
+> > 
+> > > This is all utterly ridiculous compared to *why* we even have or use
+> > > drmm_mutex_init(). Managed initialization causes more trouble here
+> > > than it gains us. Gah.
+> > 
+> > As I wrote here:
+> > 
+> > > > I'd rather prefer not to check the error value at all.
+> > 
+> > we could rather drop this patch. Checking the error value is always good, but
+> > checking implausible errors with this price is not really worth it.
+> 
+> This is reported as error from Coverity. My suggestion was also to discard this error from Coverity but the same API used in other places in our driver is considering the return value.
 
+Strictly speaking, coverity is right and if I have to choose, I'd
+prefer your v1. v2, in my opinion, is wrong, even if it's more
+nice and readable.
 
+Thanks,
+Andi
