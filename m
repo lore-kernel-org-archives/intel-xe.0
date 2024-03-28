@@ -4,144 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBCF0C54E64
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Mar 2024 13:16:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 054AAC54E67
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Mar 2024 13:44:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C76710F692;
-	Thu, 28 Mar 2024 13:16:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B12CA10ED9B;
+	Thu, 28 Mar 2024 13:44:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fzsGQbhG";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="iyfG39VZ";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="+ev2veOK";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A31710F694;
- Thu, 28 Mar 2024 13:16:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711631780; x=1743167780;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=VmbwmW+mprjrUiF97O53w1lCb71wk58Pvlq76T2nfuU=;
- b=fzsGQbhGG6Aa2oejdMxcfYYUEeonNmktBlgCxpKSR/Dj6j8Nn3B7/XgP
- Xbhz7tfYVAJcIpN8BbGSByYfbCfbDX2pC4KJuiD59Vm4ZIK0lgVMqRrL2
- 9sbcSOqYpVFkY56kLMjWlBVEuLpmFK33yVhR0DCSXsw47zb0s9H0cxGZ/
- vLiHUBsetlcaiV0Sx8sDklYu4mJl2YLc5+3nu//E9qKVEewlvyDGDTANf
- Jm47FjjZ/Ofko0/Q8aqDBGSp0uuvOBcQtKZQc+oKtTwhB2XkHw+vxzkX+
- uX/RogeYL9ANtpEOS1RmmxrObzOfeVdlmqJGlguqVGh9O+FWqTCBJZOGl A==;
-X-CSE-ConnectionGUID: xma9RG/1TS+wla02SFJNqA==
-X-CSE-MsgGUID: kOsGoZNdTKmvPgR+R0QlMQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="6970063"
-X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; 
-   d="scan'208";a="6970063"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2024 06:16:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; d="scan'208";a="16481497"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 28 Mar 2024 06:16:14 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 28 Mar 2024 06:16:14 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 28 Mar 2024 06:16:14 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Thu, 28 Mar 2024 06:16:14 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.169)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 28 Mar 2024 06:16:14 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NXCo2tehGc2jJCLQ63GF58OAC413VduFqCVdu5VPZMq2rBJNhnHQ0dvPZ4gOnHGV1a+0QU7L1Wkgx+2HuChyT3vQYmqogoArJhLkRuPjSpdv8Uivs5Wg37njnyxoHSmeuLX2nE3qK7oR/sgDR80SWzbSfIt8924B6tXXsLsL+Y+/cyjtWBo6I0NkX1LxYEIW5KavaVpctS1lg5lhOxlTfKrKQ4fjItVfzh2J2sdWb0S5dVUzrLXtdAMcipzwHhkZdkMSfo3yBNNsRiMc8Nxkd4M+I6g2kuym/mVGH2+QdDNRZhGUgypy8bshHpE5sU9D7CI0XMBRD/efkkDxGONEYw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VmbwmW+mprjrUiF97O53w1lCb71wk58Pvlq76T2nfuU=;
- b=HloDm7o4P1MB4xU8mqJHfKP1KJ/imIwI0gb2wuE4tTmxDUht4TtwfDqzaInwcIgQuT9XdB0KIvYRF0JrrhH/p44oWsUahamQ4EcQkNFbpWjNGyjWC2CXi+gl68MhdCzCRVjwZnr61mTOIORlHRtPM9DuwRM0Q5kgdIHStecWw9Kk/q7snyNsubbiFX8fVC3IEnTKpuIJ63X+YmxH2o46Y8UpDZG9oqadgIq/qh8yDm0uLSOpNFPlCdas2teZMb26kJsOzJuY8MMUi5XAxwACClIPEJFN6DeQ43uuekmcbb+eR8+iH9lqJbB3QyX9s0/jwrDKBjsViyn5wozsWZDpqg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by SA1PR11MB6869.namprd11.prod.outlook.com (2603:10b6:806:29c::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.31; Thu, 28 Mar
- 2024 13:16:07 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::e9dd:320:976f:e257]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::e9dd:320:976f:e257%4]) with mapi id 15.20.7409.031; Thu, 28 Mar 2024
- 13:16:07 +0000
-Date: Thu, 28 Mar 2024 08:16:04 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>, "Arnd
- Bergmann" <arnd@arndb.de>
-Subject: Re: [PATCH] drm/i915: use fine grained -Woverride-init disable
-Message-ID: <cgcn2t5xlwurw7fnmm6qwnx26loo7jzf2vplxhggelwsabh7dq@erytjmpl7rnw>
-References: <20240328102455.944131-1-jani.nikula@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20240328102455.944131-1-jani.nikula@intel.com>
-X-ClientProxiedBy: BY5PR13CA0004.namprd13.prod.outlook.com
- (2603:10b6:a03:180::17) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C016910E334;
+ Thu, 28 Mar 2024 13:44:26 +0000 (UTC)
+Received: from imap2.dmz-prg2.suse.org (imap2.dmz-prg2.suse.org [10.150.64.98])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 1A7A2206AC;
+ Thu, 28 Mar 2024 13:44:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1711633465; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=kmTzfL3bcMEfCSVV0rBGQ1+Z9NzunCxP7J4N+YBNjGA=;
+ b=iyfG39VZJrvzgzHnetjWOe+sVITq9OhhomNyxtjvbFtA8rsEbmblJPgfP0T0genjji/12N
+ UpjqsBy6VgJfu5GoQleb3ulavTr5Yw3YiF6x7lVIFXT+AZYaWPK+Qeqk9V4BzdHmlxvFUa
+ ++aTX7tN/1vdCsEpf1/0YmENn8lPwRY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1711633465;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=kmTzfL3bcMEfCSVV0rBGQ1+Z9NzunCxP7J4N+YBNjGA=;
+ b=+ev2veOKxi+y4BfEi5wwpXt+7LDWVmnysEBxn8OLEKtXUWkRC7AcxyEhqj+HxlEp5mWaWl
+ Kk0MRDgMRyBTBOAQ==
+Authentication-Results: smtp-out2.suse.de;
+	none
+Received: from imap2.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap2.dmz-prg2.suse.org (Postfix) with ESMTPS id 6CA9013AF7;
+ Thu, 28 Mar 2024 13:44:24 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap2.dmz-prg2.suse.org with ESMTPSA id +5mAGDh0BWbuQwAAn2gu4w
+ (envelope-from <tzimmermann@suse.de>); Thu, 28 Mar 2024 13:44:24 +0000
+Date: Thu, 28 Mar 2024 14:44:17 +0100
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <20240328134417.GA8673@localhost.localdomain>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SA1PR11MB6869:EE_
-X-MS-Office365-Filtering-Correlation-Id: 060c7197-11de-4bda-91f8-08dc4f293a60
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: N7twJEylVqXS+jsTHG1TXKa8MDkZX75GdtePk65Ins5bbJvstPfPr0eA6KhmX5hyxAE1YyQDseUgbJLdAJKZlxHSCHe54kROsrNYUPwOQaTQVUIelz7+T1m0jazA1M8hstzbxbc4Q0F4ZKAPXzpvikdceCXZsb+JB4LB0197pA8BSPMvVrYGxf89nmb9Hx4n6SG9Uzk/UKBkQdA03TlrizbQ3aPhtd6HgGvuh0LIf5Rl72DByq06eaa1zo8+7HQd/GLKp0zzOeh8NZODPBMERBKNLdfhxpSb8OJD9l9G/jQ6g/h25Nta236j9VWRH3h6Rbq4s8eumzytFaB4vX6E1OLo2Dnj/DTD++cjnjmzxmX2A/zzz9JhsbzbttDojz/2UuAIbXjLIXF7GloldJKnuGiDTONha5WjNed4nK30BMApC2WQXi1Sw0IjE46WafaXG62g5IE4IQulWJU+SGqrI+8lch9JwV3WosQgxo4sJJ4au7/oIZWLPRxyeCqaSN22i3xTjYFWmk04aHdj8bOdfjihlxO9CaXQnbG+Xty6F+wgXJMIgDowc96FwvCOSp4yJfK3zDM8OchtvmuSVrCXrDF8i9fAvDPRite94bXuNpMJPWN62EORbZg/sbNlQe/DAdGcCbyvrZdyHy9Gzw+6VXwf7Wdi6+MnWHxkygKppUI=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366007)(1800799015)(376005); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Pj7Pm8ItPRsyuSvWHXiWxdJmCHrMS2DlZylUnE0//Kre9WxYCKNK1Vpr0smy?=
- =?us-ascii?Q?YpS/KyftX8zA9mx8GH++lfBtEaICEqEoEKFNGVyp79+wRCJGjERc+XQxeXJ0?=
- =?us-ascii?Q?xzVcdlGFBRwmTyhmeAbgH0RzXirzjvAUHoM8bpd2TfPif/uANscjrwQorxxS?=
- =?us-ascii?Q?OxcqAOUjNtFKMpFHSYpL3OcnmI7vAEY4tLMt2v/WgUzIvmy5wgyHcKjWvVLv?=
- =?us-ascii?Q?Gw+vSm5IxWnv3wQvHooz/AfxMABCgH6/9IyQuMfA5TTDah53MZ5KlcgluMWY?=
- =?us-ascii?Q?s1ngtIX14PL7TwcKVZEBlA05ytDZXNh1pEPhEmPZnxteQGqMR0tmET6TetW/?=
- =?us-ascii?Q?JaEKI8YyuZAyf9ekEUV1PTwricDAwlnXkaG+Qvdp7q/WPK0DLOxL7vjvDRlh?=
- =?us-ascii?Q?fGwQLGoBo5LAUEbqWvkoRg01j9oBORlmq+dqRAQVYjhztnqL0B4dngOG0AKq?=
- =?us-ascii?Q?XvhiwYcEf0N2w2yDerabOoNcWtj9eOQEziyU8nAMx4G2F/yZONxB+nD81X7T?=
- =?us-ascii?Q?aosq/kIajNmixEFyzF/ZGjIHzh/3aREFm+VScLIJM9WoMquv0iNVJ7DJ2eQC?=
- =?us-ascii?Q?RqGSOQCbQ8rW7ANhrWenzP9HsuDEpo3sGbMYLFg0LknPcZc/7eHP2mJyTxUq?=
- =?us-ascii?Q?auojQ4V6WcENANRFkB9YAR6GKkTXgacOjaf3GOs0463KtcwowbMuDgeHQBt+?=
- =?us-ascii?Q?/el1xkwLpGMaHdxL8vGz2zghHL+/BD+Simj1tajgADC8t8Z2jHapDsBRhX6l?=
- =?us-ascii?Q?8SMegGZdtlWOaT/NJeVSV2HM5XnITK5bzYBosQ5LEUpRNJf124PnAdTz1PTC?=
- =?us-ascii?Q?9DBzfvxWCVrtnyiZ2CcT4MCxAT1P0OwCmDlsx2Q/S5ALgkSQL7zCl+ovuuvA?=
- =?us-ascii?Q?WOK35C5b5YX0OSpQ9o8gxEztLkqht9LDcvbCmjPjxQ06G/DwFuVwpv8WRhkk?=
- =?us-ascii?Q?dG1RgaCZZ6CQiykuZeYyV2qB2tz9AXda31kh36y0WbJ6DCowjVLZWLXquPHD?=
- =?us-ascii?Q?iTCXqwP+b/K30e5tbO3hqR2sI3Mfd1pSbfx+ZMVvTbY162w0lHMNFg4Uhdme?=
- =?us-ascii?Q?JiLb+/1ZzK55C8Y1oU2vhnhhdlgWZvH3TQSwVezurgrFeGSwq9uQ2MXPGmEQ?=
- =?us-ascii?Q?eXsZ8monZC6FR68PUQdrRIgRNbOpxeY0f9n7ZfAuSKxKAJl25cxiWDylvsXK?=
- =?us-ascii?Q?z2Ibvyq3FGtyeaTfnvKVhHI5tzPxuBBxfBHA3fPDccZ6E50Rhz8Lp9ASYnlx?=
- =?us-ascii?Q?dMR3M0HcmSeVrjGBXLJUj8QV4HFMZDqrRazYkRDRzFTOxieE6tlJgTPY8OZK?=
- =?us-ascii?Q?LIju80DB8ZEdcn4+pymf4FP+QUJ+Nw7Zs22RUbompTi9nsIzme+/ydxgVU9u?=
- =?us-ascii?Q?Dund2qQnGTm2f2/d3i8M5ybeIKdXze4aR/0nQQGG3Vwc4XNits/SfiqHmCuK?=
- =?us-ascii?Q?NQ4vVhrh9ihk1WOs77Hn49dIJ2KZcScQTcvIoi4Yw9SI2s3U95zluu6+RbkN?=
- =?us-ascii?Q?hk9JIvXTYb/vSdkVaQ0bCqZxgkjn031xY0CfKgmwW3OQ+i0hvDxQJoyDUa8H?=
- =?us-ascii?Q?KgH/1oCekqn0wbK5X0+UA41UskhklatUmQvZCar+LpCYafDFaioGSJMKIg+g?=
- =?us-ascii?Q?jg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 060c7197-11de-4bda-91f8-08dc4f293a60
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2024 13:16:07.2449 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LIHyUoKLMUMW7yGJ4r+mdX4lphWcjvnENr5ztOhzrrAISGf04+XbYGcHNcoHKFdVvr9e+I/x0msoHv1Rn6sZQ2qFaf27cTzQXLViKoPGjEA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6869
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spamd-Result: default: False [-3.10 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ MIME_GOOD(-0.10)[text/plain]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ FREEMAIL_TO(0.00)[gmail.com,ffwll.ch]; ARC_NA(0.00)[];
+ MIME_TRACE(0.00)[0:+]; MISSING_XM_UA(0.00)[];
+ RCPT_COUNT_TWELVE(0.00)[16]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FUZZY_BLOCKED(0.00)[rspamd.com]; FROM_EQ_ENVFROM(0.00)[];
+ FROM_HAS_DN(0.00)[]; TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap2.dmz-prg2.suse.org:rdns,
+ imap2.dmz-prg2.suse.org:helo]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,26 +92,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Mar 28, 2024 at 12:24:55PM +0200, Jani Nikula wrote:
->Use localized __diag_push(), __diag_ignore_all() with rationale, and
->__diag_pop() for specific initializations instead of blanket disabling
->of -Woverride-init across several files.
->
->Note that we've tried this before with commit 88e9664434c9 ("drm/i915:
->use localized __diag_ignore_all() instead of per file") and reverted in
->commit 290d16104575 ("Revert "drm/i915: use localized
->__diag_ignore_all() instead of per file""). The issue turned out to be
->in __diag_ignore_all() and it was fixed by commit 689b097a06ba
->("compiler-gcc: Suppress -Wmissing-prototypes warning for all supported
->GCC"). So we should be able to pull this off now.
->
->Cc: "Arnd Bergmann" <arnd@arndb.de>
->Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Hi Dave, Sima,
 
-great! I had a vague memory of us using these localized warning-suppress
-rather than doing it on the entire files.
+this is the weekly PR for drm-misc-fixes.
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Best regards
+Thomas
 
-Lucas De Marchi
+drm-misc-fixes-2024-03-28:
+Short summary of fixes pull:
+
+bridge:
+- select DRM_KMS_HELPER
+
+dma-buf:
+- fix NULL-pointer deref
+
+dp:
+- fix div-by-zero in DP MST unplug code
+
+fbdev:
+- select FB_IOMEM_FOPS for SBus
+
+nouveau:
+- dmem: handle kcalloc() allocation failures
+
+qxl:
+- remove unused variables
+
+rockchip:
+- vop2: remove support for AR30 and AB30 formats
+
+sched:
+- fix NULL-pointer deref
+
+vmwgfx:
+- debugfs: create ttm_resource_manager entry only if needed
+The following changes since commit 4cece764965020c22cff7665b18a012006359095:
+
+  Linux 6.9-rc1 (2024-03-24 14:10:05 -0700)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2024-03-28
+
+for you to fetch changes up to aba2a144c0bf1ecdcbc520525712fb661392e509:
+
+  drm/qxl: remove unused variable from `qxl_process_single_command()` (2024-03-28 11:15:48 +0100)
+
+----------------------------------------------------------------
+Short summary of fixes pull:
+
+bridge:
+- select DRM_KMS_HELPER
+
+dma-buf:
+- fix NULL-pointer deref
+
+dp:
+- fix div-by-zero in DP MST unplug code
+
+fbdev:
+- select FB_IOMEM_FOPS for SBus
+
+nouveau:
+- dmem: handle kcalloc() allocation failures
+
+qxl:
+- remove unused variables
+
+rockchip:
+- vop2: remove support for AR30 and AB30 formats
+
+sched:
+- fix NULL-pointer deref
+
+vmwgfx:
+- debugfs: create ttm_resource_manager entry only if needed
+
+----------------------------------------------------------------
+Andy Yan (1):
+      drm/rockchip: vop2: Remove AR30 and AB30 format support
+
+Chris Bainbridge (1):
+      drm/dp: Fix divide-by-zero regression on DP MST unplug with nouveau
+
+Duoming Zhou (1):
+      nouveau/dmem: handle kcalloc() allocation failure
+
+Jocelyn Falempe (1):
+      drm/vmwgfx: Create debugfs ttm_resource_manager entry only if needed
+
+Luca Weiss (1):
+      drm/bridge: Select DRM_KMS_HELPER for DRM_PANEL_BRIDGE
+
+Miguel Ojeda (2):
+      drm/qxl: remove unused `count` variable from `qxl_surface_id_alloc()`
+      drm/qxl: remove unused variable from `qxl_process_single_command()`
+
+Neil Armstrong (1):
+      Revert "drm/bridge: Select DRM_KMS_HELPER for DRM_PANEL_BRIDGE"
+
+Pavel Sakharov (1):
+      dma-buf: Fix NULL pointer dereference in sanitycheck()
+
+Thomas Zimmermann (3):
+      Merge drm/drm-fixes into drm-misc-fixes
+      Merge drm/drm-fixes into drm-misc-fixes
+      fbdev: Select I/O-memory framebuffer ops for SBus
+
+Vitaly Prosyak (1):
+      drm/sched: fix null-ptr-deref in init entity
+
+ drivers/dma-buf/st-dma-fence-chain.c         |  6 +++---
+ drivers/gpu/drm/display/drm_dp_helper.c      |  7 +++++++
+ drivers/gpu/drm/nouveau/nouveau_dmem.c       | 12 ++++++------
+ drivers/gpu/drm/qxl/qxl_cmd.c                |  2 --
+ drivers/gpu/drm/qxl/qxl_ioctl.c              |  4 +---
+ drivers/gpu/drm/rockchip/rockchip_vop2_reg.c |  2 --
+ drivers/gpu/drm/scheduler/sched_entity.c     | 12 +++++++++---
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.c          | 15 +++++++++------
+ drivers/video/fbdev/Kconfig                  |  3 +++
+ 9 files changed, 38 insertions(+), 25 deletions(-)
+
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
