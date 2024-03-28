@@ -4,73 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A65BCCD11DF
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Mar 2024 19:40:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E414FCD11DD
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Mar 2024 20:03:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5209710E098;
-	Thu, 28 Mar 2024 19:40:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A40AE10E0C6;
+	Thu, 28 Mar 2024 20:03:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Rr30Tzvc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V85j/LrN";
 	dkim-atps=neutral
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com
- [209.85.214.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 623A510E098
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Mar 2024 19:40:20 +0000 (UTC)
-Received: by mail-pl1-f181.google.com with SMTP id
- d9443c01a7336-1e0d8403257so12059195ad.1
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Mar 2024 12:40:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1711654820; x=1712259620; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
- :reply-to; bh=4PSvcRRql6YkVkNUIHWJPLc8q7kBEQ6bjJgV+Sn2YcA=;
- b=Rr30TzvclQ4kN3czRfUO5iOrXEZf1qhqAF1Tv/xeFfbWsFaB5O++7EQa1EK1wZbJqt
- jdnkMxtLIibnA2bYVAHfcgUM0fg63ZgmYXH8sxf3u36Nn5tC2kHYzZwIIIfB1EwjLKdq
- p9XFhehTo78Gu/1BFm0E1bfIb3IET1+aVleyUGve0gTOBWg9NmrX6I4Ad+Oz9OL8uwuD
- 6A4GnFipms08ZM8k+Q5DoKDA2VGzkMkWunvXhcUGVRjdLpqmpKUQ7rh4sB1nVVLLIwZI
- O8JwTzi5iu+4Xod/cV6wouwpeK2EGZ6nVhmHQyzNdR+irCh22T3P/Yi8QvIfH5uUgnGv
- taMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1711654820; x=1712259620;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=4PSvcRRql6YkVkNUIHWJPLc8q7kBEQ6bjJgV+Sn2YcA=;
- b=JDbxivBIg4EXN1rT01tAQj8fMII0ArEG9yUmNYNN89FX+QOoqnMh+fXOWcDwA1iO6v
- RAfjM5Vu/ybPtudesHoGTxfKfLuNFy3suAOpagD38yYfdb53n+yXba2whXxxid1ya63w
- TDAP8NTr1WlzgIhFu7bDtq+y85BSVUo+eUDA4B6EtqC1n+wsv6fhZ6GfIqg+vhbX1HZ6
- LigjVONrW5+7v14JDqpV5uyb56h8zYqR89VlwpJ32s4fUhzvd/KJMaGeDN+Aw5FutRnL
- jBhNEUJ1Hz/jN1+arhX6/gLJSvjLuT/5ImsKD1j1JtkvbmyqRLwqqk816XXcEGxRiDWo
- JFxQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWoVrqJzY2Zzw3Ebg7MXpVDJSj57JntMVFt4OTIh5egxu3XHTOXQni7/WDs89J0XNGYOIRSN2MIg0Sr21OHP88CTZeAnXU+gxZLuI+GbNI=
-X-Gm-Message-State: AOJu0YzTibFM19df2tvHC2ZbaClyjVQiMXdNOyWWpdoVEz6c2vIKwHnQ
- Xk7fHSuFFVpFENOMCJmxKtuLqx45MDd3ZDqluYQj5JI37Mf4mHOL
-X-Google-Smtp-Source: AGHT+IH6SLkqVKrhAdJ/Zhk/mhBRTWHoyCBweSI3ZWItr2QyU6S32JbOCwhx8hH9OzbGUEhHJNosTA==
-X-Received: by 2002:a17:902:da8f:b0:1e0:b29f:4699 with SMTP id
- j15-20020a170902da8f00b001e0b29f4699mr550811plx.14.1711654819717; 
- Thu, 28 Mar 2024 12:40:19 -0700 (PDT)
-Received: from localhost (dhcp-141-239-158-86.hawaiiantel.net.
- [141.239.158.86]) by smtp.gmail.com with ESMTPSA id
- x1-20020a170902a38100b001e0d9daa927sm2026808pla.49.2024.03.28.12.40.19
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 28 Mar 2024 12:40:19 -0700 (PDT)
-Date: Thu, 28 Mar 2024 09:40:18 -1000
-From: Tejun Heo <tj@kernel.org>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: htejun@gmail.com, Lucas De Marchi <lucas.demarchi@intel.com>,
- intel-xe@lists.freedesktop.org, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com
-Subject: Re: [PATCH 0/3] Rework work queue usage
-Message-ID: <ZgXHonaCuJgnCJgR@slm.duckdns.org>
-References: <20240328182147.4169656-1-matthew.brost@intel.com>
- <rfc2tu5zx5qd4sbgpd7rcqproacelziemigx5wrs7xyjmr2fb4@w6wsqxkcpvnr>
- <ZgXBcpRv_FTIoq91@slm.duckdns.org>
- <ZgXFYWuukcLjMtmf@DUT025-TGLU.fm.intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F93110E0C6
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 Mar 2024 20:03:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1711656229; x=1743192229;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=gOLqa7+jTjA5wDoY7ZFz9+1tODWcTFHW80AYrOe7ciQ=;
+ b=V85j/LrN5GSR8gdzF1A03I/MS3t7zWIxlGBUGrWxHiMtFm7F5Tgs3tig
+ T4YEpgYgVY3nhe1ZRzBJ1sGqYfPZfUvpYL4UnkavilnRDQZuOXmOSgohh
+ nFbE2S1Cn4rRvzFXXpsm6Z+QIt5ELxDwmHtSj4KFeyxrk3JDgJ9EKnqpK
+ JInKoFdRyy3BHIU5B/qfPxwxqvZtMITvnBJNqUXk2I/p3c0KtoSIBAH6v
+ rSR0EZh3eUIcqg38BsQTrWxLvbuFHC9G5m7sLTSkzTgmOPGQHxBfQT8oj
+ sh9IM1xzfffuuGX5Ypx8bYJO1uslLPd5Kq/jXKxS8X/wqLhHNRWNiZRZJ w==;
+X-CSE-ConnectionGUID: p1hM71rrTN2DK7ADhsJ4Xg==
+X-CSE-MsgGUID: CgmgQTXySceTIcPh4QE/oQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11027"; a="7436293"
+X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; 
+   d="scan'208";a="7436293"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2024 13:03:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; d="scan'208";a="47719189"
+Received: from jattlan-mobl1.ger.corp.intel.com (HELO a3ae00a07f6c.intel.com)
+ ([10.252.56.46])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2024 13:03:46 -0700
+From: Francois Dugast <francois.dugast@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Francois Dugast <francois.dugast@intel.com>,
+ Mateusz Jablonski <mateusz.jablonski@intel.com>,
+ Michal Mrozek <michal.mrozek@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v2] drm/xe/uapi: Restore flags VM_BIND_FLAG_READONLY and
+ VM_BIND_FLAG_IMMEDIATE
+Date: Thu, 28 Mar 2024 20:03:32 +0000
+Message-Id: <20240328200332.7-1-francois.dugast@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZgXFYWuukcLjMtmf@DUT025-TGLU.fm.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,62 +68,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hello,
+The commit 84a1ed5e6756 ("drm/xe/uapi: Remove unused flags") is partially
+reverted. At the time, flags not used by user space were removed during
+some cleanup. There is now a need for flags DRM_XE_VM_BIND_FLAG_READONLY
+and DRM_XE_VM_BIND_FLAG_IMMEDIATE by the compute runtime, so they are
+brought back.
 
-On Thu, Mar 28, 2024 at 07:30:41PM +0000, Matthew Brost wrote:
-> The test creates 100s of exec queues that all can be preempted in
-> parallel. In the current code this results in each exec queue kicking a
-> worker which is scheduled on the system_unbound_wq, these workers wait
-> and sleep (using a waitqueue) on signaling from another worker. The
-> other worker, which is also scheduled system_unbound_wq, is processing a
-> queue which interacts with the GPU. I'm thinking the worker which
-> interacts with hardware gets straved by the waiter resulting in a
-> deadlock.
-> 
-> This patch changes the waiters to uses a device private ordered work
-> queue so at most we have 1 waiter a time. Regardless of the new work
-> queue behavior this a better design.
-> 
-> It is beyond my knowledge if the old behavior, albiet poorly designed,
-> should still work with the work queue changes in 6.9.
+v2: Include a link to the PR in the commit message (Matthew Brost)
 
-Ah, okay, I think you're hitting the max_active limit which regulates the
-maximum number of work items which can be in flight at any given time. Is
-the test machine a NUMA setup by any chance?
+Cc: Mateusz Jablonski <mateusz.jablonski@intel.com>
+Cc: Michal Mrozek <michal.mrozek@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Link: https://github.com/intel/compute-runtime/pull/717
+Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_vm.c       | 13 +++++++++++--
+ drivers/gpu/drm/xe/xe_vm_types.h |  4 ++++
+ include/uapi/drm/xe_drm.h        |  6 ++++++
+ 3 files changed, 21 insertions(+), 2 deletions(-)
 
-We went through a couple changes in terms of how max_active is enforced on
-NUMA machines. Originally, we applied it per-node, ie. if you have
-max_active of 16, each node would be able to have 16 work items in flight at
-any given time. While introducing the affinity stuff, the enforcement became
-per-CPU - ie. each CPU would get 16 work items, which didn't turn out well
-for some workloads. v6.9 changes it so that it's always applied to the whole
-system for unbound workqueues whether NUMA or not.
-
-system_unbound_wq is created with max_active set at WQ_MAX_ACTIVE which
-happens to be 512. If you stuff more concurrent work items into it which
-have inter-dependency - ie. completion of one work item depends on another,
-it can deadlock, which isn't too unlikely given a lot of basic kernle infra
-depends on system_unbound_wq.
-
-> > > I think we need some of this information in the commit message in patch
-> > > 1. Because patch 1 simply says it's moving to a device private wq to
-> > > avoid hogging the system one, but the issue is much more serious.
-> > > 
-> > > Also, is the "Fixes:"  really correct? It seems more like a regression
-> > > from the wq changes and there could be other drivers showing similar
-> > > issues now. But it could alos be my lack of understanding of the real
-> > > issue.
-> > 
-> > I don't have enough context to tell whether this is a workqueue problem but
-> > if so we should definitely fix workqueue.
-> 
-> It is beyond my knowledge if the old behavior, albeit poorly designed,
-> should still work with the work queue changes in 6.9.
-
-So, yeah, in this case, it makes sense to separate it out to a separate
-workqueue.
-
-Thanks.
-
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 8b32aa5003df..6e56b9a3985b 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2212,6 +2212,10 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+ 		struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
+ 
+ 		if (__op->op == DRM_GPUVA_OP_MAP) {
++			op->map.immediate =
++				flags & DRM_XE_VM_BIND_FLAG_IMMEDIATE;
++			op->map.read_only =
++				flags & DRM_XE_VM_BIND_FLAG_READONLY;
+ 			op->map.is_null = flags & DRM_XE_VM_BIND_FLAG_NULL;
+ 			op->map.dumpable = flags & DRM_XE_VM_BIND_FLAG_DUMPABLE;
+ 			op->map.pat_index = pat_index;
+@@ -2406,6 +2410,8 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
+ 		switch (op->base.op) {
+ 		case DRM_GPUVA_OP_MAP:
+ 		{
++			flags |= op->map.read_only ?
++				VMA_CREATE_FLAG_READ_ONLY : 0;
+ 			flags |= op->map.is_null ?
+ 				VMA_CREATE_FLAG_IS_NULL : 0;
+ 			flags |= op->map.dumpable ?
+@@ -2550,7 +2556,7 @@ static int op_execute(struct drm_exec *exec, struct xe_vm *vm,
+ 	case DRM_GPUVA_OP_MAP:
+ 		err = xe_vm_bind(vm, vma, op->q, xe_vma_bo(vma),
+ 				 op->syncs, op->num_syncs,
+-				 !xe_vm_in_fault_mode(vm),
++				 op->map.immediate || !xe_vm_in_fault_mode(vm),
+ 				 op->flags & XE_VMA_OP_FIRST,
+ 				 op->flags & XE_VMA_OP_LAST);
+ 		break;
+@@ -2825,7 +2831,10 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
+ 	return 0;
+ }
+ 
+-#define SUPPORTED_FLAGS	(DRM_XE_VM_BIND_FLAG_NULL | \
++#define SUPPORTED_FLAGS	\
++	(DRM_XE_VM_BIND_FLAG_READONLY | \
++	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | \
++	 DRM_XE_VM_BIND_FLAG_NULL | \
+ 	 DRM_XE_VM_BIND_FLAG_DUMPABLE)
+ #define XE_64K_PAGE_MASK 0xffffull
+ #define ALL_DRM_XE_SYNCS_FLAGS (DRM_XE_SYNCS_FLAG_WAIT_FOR_OP)
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index badf3945083d..0447c79c40a2 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -276,6 +276,10 @@ struct xe_vm {
+ struct xe_vma_op_map {
+ 	/** @vma: VMA to map */
+ 	struct xe_vma *vma;
++	/** @immediate: Immediate bind */
++	bool immediate;
++	/** @read_only: Read only */
++	bool read_only;
+ 	/** @is_null: is NULL binding */
+ 	bool is_null;
+ 	/** @dumpable: whether BO is dumped on GPU hang */
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 808ad1c308ec..94e1f3cfe705 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -871,6 +871,10 @@ struct drm_xe_vm_destroy {
+  *  - %DRM_XE_VM_BIND_OP_PREFETCH
+  *
+  * and the @flags can be:
++ *  - %DRM_XE_VM_BIND_FLAG_READONLY
++ *  - %DRM_XE_VM_BIND_FLAG_IMMEDIATE - Valid on a faulting VM only, do the
++ *    MAP operation immediately rather than deferring the MAP to the page
++ *    fault handler.
+  *  - %DRM_XE_VM_BIND_FLAG_NULL - When the NULL flag is set, the page
+  *    tables are setup with a special bit which indicates writes are
+  *    dropped and all reads return zero. In the future, the NULL flags
+@@ -963,6 +967,8 @@ struct drm_xe_vm_bind_op {
+ 	/** @op: Bind operation to perform */
+ 	__u32 op;
+ 
++#define DRM_XE_VM_BIND_FLAG_READONLY	(1 << 0)
++#define DRM_XE_VM_BIND_FLAG_IMMEDIATE	(1 << 1)
+ #define DRM_XE_VM_BIND_FLAG_NULL	(1 << 2)
+ #define DRM_XE_VM_BIND_FLAG_DUMPABLE	(1 << 3)
+ 	/** @flags: Bind flags */
 -- 
-tejun
+2.34.1
+
