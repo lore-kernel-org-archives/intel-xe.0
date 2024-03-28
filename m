@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5509C54E64
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Mar 2024 09:45:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A4D9C54E67
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Mar 2024 09:45:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D3A11123A4;
-	Thu, 28 Mar 2024 09:45:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D4251123A6;
+	Thu, 28 Mar 2024 09:45:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U/eLNUkd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lz1Mw6Ni";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3F3F1123A2
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Mar 2024 09:45:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 418981123A6
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 Mar 2024 09:45:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711619124; x=1743155124;
+ t=1711619128; x=1743155128;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=LLM0w2KG02HN6N3M4o0r8A1fTA9BBIsQzlBioceUbqM=;
- b=U/eLNUkdJmdTrPoAbeNRUV+Ym3qnH6iJnk6OAeMZj9KNOj4oIGoXqPcu
- 7JwrDyJA//cl0fl7rKPR3YspaIH4XFQoaOJKihQpG6mWv1tiLzdAqUnqz
- LvBRfixk0Jiab6tObb8v9FXNHKv+Wc+eGvcKkP9mI4weoLUem3GmM17KF
- pBi13MfY/QfgzBqdXM7z4IyPg5GT3q/QnBdx6Hzy9Gjg4rQRA5NcB38AB
- 7CYSyt/JwEZbMYwsfaNBaq5TqXCMInAM0uKyCubZUVMEbgf6eW8nWP4YT
- HLzuHxggTdeCn6SGzR74vGIY1t21TsPHS9i+7yIuUlzR91N7DBGEgLikm Q==;
-X-CSE-ConnectionGUID: tRcZVGQVQieXwSGnJHuk2g==
-X-CSE-MsgGUID: XtcUpv5KTGSbWdIoqb7+lQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="6615429"
+ bh=wGYOleZIc7JtICtxYSWNee1C8O4BAC8SlGGroCXYC4s=;
+ b=lz1Mw6NiaPt3EbDpw2106Obo8TLs1BhcLmsbLkY8CT65zBnK8ZKyO7u3
+ f2Tn6HSYpUlO9aoM62hkWbhL0ZSgwHcxTLQC48h7vtkt+tKSAWbXuzFA/
+ sFhVFQnNl8Y5cEBIufxvtkyt4Vr3fyWKDJ+hbcDmFrADmpSD2ZNZoddV2
+ SwK7iCQz+GCMBHZzoaY/og4N6+Wjhu7RM6RlDs25/PNxuzBmUd5LCI+bX
+ 4e93bqDcQFZyDpYPM9y3Me08JkhQk0/yuAxWbGnZOUPnT3eBK3kxT3OT5
+ e7xeLpEy/Gf8VF6WQmREO/zsIRVWeOM3AgTJSt7pqp2GIo8GPXQTcF1+b A==;
+X-CSE-ConnectionGUID: lSwYpSTDRpOjhJlT58jh3Q==
+X-CSE-MsgGUID: yy1zOgAzRO+aOagFUai4sw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="6615446"
 X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; 
-   d="scan'208";a="6615429"
+   d="scan'208";a="6615446"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2024 02:45:24 -0700
+ 28 Mar 2024 02:45:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; d="scan'208";a="16611724"
+X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; d="scan'208";a="16611736"
 Received: from djustese-mobl.ger.corp.intel.com (HELO fedora..)
  ([10.249.254.185])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2024 02:45:22 -0700
+ 28 Mar 2024 02:45:27 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v3 1/8] drm/ttm: Allow TTM LRU list nodes of different types
-Date: Thu, 28 Mar 2024 10:44:47 +0100
-Message-ID: <20240328094454.272050-2-thomas.hellstrom@linux.intel.com>
+Subject: [CI v3 6/8] drm/ttm/pool: Provide a helper to shrink pages.
+Date: Thu, 28 Mar 2024 10:44:52 +0100
+Message-ID: <20240328094454.272050-7-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240328094454.272050-1-thomas.hellstrom@linux.intel.com>
 References: <20240328094454.272050-1-thomas.hellstrom@linux.intel.com>
@@ -66,292 +66,660 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To be able to handle list unlocking while traversing the LRU
-list, we want the iterators not only to point to the next
-position of the list traversal, but to insert themselves as
-list nodes at that point to work around the fact that the
-next node might otherwise disappear from the list while
-the iterator is pointing to it.
+Provide a helper to shrink ttm_tt page-vectors on a per-page
+basis. A ttm_backup backend could then in theory get away with
+allocating a single temporary page for each struct ttm_tt.
 
-These list nodes need to be easily distinguishable from other
-list nodes so that others traversing the list can skip
-over them.
+This is accomplished by splitting larger pages before trying to
+back them up.
 
-So declare a struct ttm_lru_item, with a struct list_head member
-and a type enum. This will slightly increase the size of a
-struct ttm_resource.
+In the future we could allow ttm_backup to handle backing up
+large pages as well, but currently there's no benefit in
+doing that, since the shmem backup backend would have to
+split those anyway to avoid allocating too much temporary
+memory, and if the backend instead inserts pages into the
+swap-cache, those are split on reclaim by the core.
 
-v2:
-- Update enum ttm_lru_item_type documentation.
+Due to potential backup- and recover errors, allow partially swapped
+out struct ttm_tt's, although mark them as swapped out stopping them
+from being swapped out a second time. More details in the ttm_pool.c
+DOC section.
 
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-Cc: <dri-devel@lists.freedesktop.org>
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/ttm/ttm_device.c   | 13 ++++--
- drivers/gpu/drm/ttm/ttm_resource.c | 70 ++++++++++++++++++++++--------
- include/drm/ttm/ttm_resource.h     | 51 +++++++++++++++++++++-
- 3 files changed, 110 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/ttm/ttm_pool.c | 388 +++++++++++++++++++++++++++++++--
+ drivers/gpu/drm/ttm/ttm_tt.c   |  32 +++
+ include/drm/ttm/ttm_pool.h     |   4 +
+ include/drm/ttm/ttm_tt.h       |  12 +
+ 4 files changed, 423 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_device.c
-index 76027960054f..f27406e851e5 100644
---- a/drivers/gpu/drm/ttm/ttm_device.c
-+++ b/drivers/gpu/drm/ttm/ttm_device.c
-@@ -270,17 +270,22 @@ EXPORT_SYMBOL(ttm_device_fini);
- static void ttm_device_clear_lru_dma_mappings(struct ttm_device *bdev,
- 					      struct list_head *list)
- {
--	struct ttm_resource *res;
-+	struct ttm_lru_item *lru;
+diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
+index 112438d965ff..b9cdbf2ffa00 100644
+--- a/drivers/gpu/drm/ttm/ttm_pool.c
++++ b/drivers/gpu/drm/ttm/ttm_pool.c
+@@ -41,6 +41,7 @@
+ #include <asm/set_memory.h>
+ #endif
  
- 	spin_lock(&bdev->lru_lock);
--	while ((res = list_first_entry_or_null(list, typeof(*res), lru))) {
--		struct ttm_buffer_object *bo = res->bo;
-+	while ((lru = list_first_entry_or_null(list, typeof(*lru), link))) {
-+		struct ttm_buffer_object *bo;
-+
-+		if (!ttm_lru_item_is_res(lru))
-+			continue;
-+
-+		bo = ttm_lru_item_to_res(lru)->bo;
- 
- 		/* Take ref against racing releases once lru_lock is unlocked */
- 		if (!ttm_bo_get_unless_zero(bo))
- 			continue;
- 
--		list_del_init(&res->lru);
-+		list_del_init(&bo->resource->lru.link);
- 		spin_unlock(&bdev->lru_lock);
- 
- 		if (bo->ttm)
-diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
-index be8d286513f9..7aa5ca5c0e33 100644
---- a/drivers/gpu/drm/ttm/ttm_resource.c
-+++ b/drivers/gpu/drm/ttm/ttm_resource.c
-@@ -69,8 +69,8 @@ void ttm_lru_bulk_move_tail(struct ttm_lru_bulk_move *bulk)
- 			dma_resv_assert_held(pos->last->bo->base.resv);
- 
- 			man = ttm_manager_type(pos->first->bo->bdev, i);
--			list_bulk_move_tail(&man->lru[j], &pos->first->lru,
--					    &pos->last->lru);
-+			list_bulk_move_tail(&man->lru[j], &pos->first->lru.link,
-+					    &pos->last->lru.link);
- 		}
- 	}
- }
-@@ -83,14 +83,38 @@ ttm_lru_bulk_move_pos(struct ttm_lru_bulk_move *bulk, struct ttm_resource *res)
- 	return &bulk->pos[res->mem_type][res->bo->priority];
- }
- 
-+/* Return the previous resource on the list (skip over non-resource list items) */
-+static struct ttm_resource *ttm_lru_prev_res(struct ttm_resource *cur)
-+{
-+	struct ttm_lru_item *lru = &cur->lru;
-+
-+	do {
-+		lru = list_prev_entry(lru, link);
-+	} while (!ttm_lru_item_is_res(lru));
-+
-+	return ttm_lru_item_to_res(lru);
-+}
-+
-+/* Return the next resource on the list (skip over non-resource list items) */
-+static struct ttm_resource *ttm_lru_next_res(struct ttm_resource *cur)
-+{
-+	struct ttm_lru_item *lru = &cur->lru;
-+
-+	do {
-+		lru = list_next_entry(lru, link);
-+	} while (!ttm_lru_item_is_res(lru));
-+
-+	return ttm_lru_item_to_res(lru);
-+}
-+
- /* Move the resource to the tail of the bulk move range */
- static void ttm_lru_bulk_move_pos_tail(struct ttm_lru_bulk_move_pos *pos,
- 				       struct ttm_resource *res)
- {
- 	if (pos->last != res) {
- 		if (pos->first == res)
--			pos->first = list_next_entry(res, lru);
--		list_move(&res->lru, &pos->last->lru);
-+			pos->first = ttm_lru_next_res(res);
-+		list_move(&res->lru.link, &pos->last->lru.link);
- 		pos->last = res;
- 	}
- }
-@@ -121,11 +145,11 @@ static void ttm_lru_bulk_move_del(struct ttm_lru_bulk_move *bulk,
- 		pos->first = NULL;
- 		pos->last = NULL;
- 	} else if (pos->first == res) {
--		pos->first = list_next_entry(res, lru);
-+		pos->first = ttm_lru_next_res(res);
- 	} else if (pos->last == res) {
--		pos->last = list_prev_entry(res, lru);
-+		pos->last = ttm_lru_prev_res(res);
- 	} else {
--		list_move(&res->lru, &pos->last->lru);
-+		list_move(&res->lru.link, &pos->last->lru.link);
- 	}
- }
- 
-@@ -154,7 +178,7 @@ void ttm_resource_move_to_lru_tail(struct ttm_resource *res)
- 	lockdep_assert_held(&bo->bdev->lru_lock);
- 
- 	if (bo->pin_count) {
--		list_move_tail(&res->lru, &bdev->pinned);
-+		list_move_tail(&res->lru.link, &bdev->pinned);
- 
- 	} else	if (bo->bulk_move) {
- 		struct ttm_lru_bulk_move_pos *pos =
-@@ -165,7 +189,7 @@ void ttm_resource_move_to_lru_tail(struct ttm_resource *res)
- 		struct ttm_resource_manager *man;
- 
- 		man = ttm_manager_type(bdev, res->mem_type);
--		list_move_tail(&res->lru, &man->lru[bo->priority]);
-+		list_move_tail(&res->lru.link, &man->lru[bo->priority]);
- 	}
- }
- 
-@@ -196,9 +220,9 @@ void ttm_resource_init(struct ttm_buffer_object *bo,
- 	man = ttm_manager_type(bo->bdev, place->mem_type);
- 	spin_lock(&bo->bdev->lru_lock);
- 	if (bo->pin_count)
--		list_add_tail(&res->lru, &bo->bdev->pinned);
-+		list_add_tail(&res->lru.link, &bo->bdev->pinned);
- 	else
--		list_add_tail(&res->lru, &man->lru[bo->priority]);
-+		list_add_tail(&res->lru.link, &man->lru[bo->priority]);
- 	man->usage += res->size;
- 	spin_unlock(&bo->bdev->lru_lock);
- }
-@@ -220,7 +244,7 @@ void ttm_resource_fini(struct ttm_resource_manager *man,
- 	struct ttm_device *bdev = man->bdev;
- 
- 	spin_lock(&bdev->lru_lock);
--	list_del_init(&res->lru);
-+	list_del_init(&res->lru.link);
- 	man->usage -= res->size;
- 	spin_unlock(&bdev->lru_lock);
- }
-@@ -471,14 +495,16 @@ struct ttm_resource *
- ttm_resource_manager_first(struct ttm_resource_manager *man,
- 			   struct ttm_resource_cursor *cursor)
- {
--	struct ttm_resource *res;
-+	struct ttm_lru_item *lru;
- 
- 	lockdep_assert_held(&man->bdev->lru_lock);
- 
- 	for (cursor->priority = 0; cursor->priority < TTM_MAX_BO_PRIORITY;
- 	     ++cursor->priority)
--		list_for_each_entry(res, &man->lru[cursor->priority], lru)
--			return res;
-+		list_for_each_entry(lru, &man->lru[cursor->priority], link) {
-+			if (ttm_lru_item_is_res(lru))
-+				return ttm_lru_item_to_res(lru);
-+		}
- 
- 	return NULL;
- }
-@@ -497,15 +523,21 @@ ttm_resource_manager_next(struct ttm_resource_manager *man,
- 			  struct ttm_resource_cursor *cursor,
- 			  struct ttm_resource *res)
- {
-+	struct ttm_lru_item *lru = &res->lru;
-+
- 	lockdep_assert_held(&man->bdev->lru_lock);
- 
--	list_for_each_entry_continue(res, &man->lru[cursor->priority], lru)
--		return res;
-+	list_for_each_entry_continue(lru, &man->lru[cursor->priority], link) {
-+		if (ttm_lru_item_is_res(lru))
-+			return ttm_lru_item_to_res(lru);
-+	}
- 
- 	for (++cursor->priority; cursor->priority < TTM_MAX_BO_PRIORITY;
- 	     ++cursor->priority)
--		list_for_each_entry(res, &man->lru[cursor->priority], lru)
--			return res;
-+		list_for_each_entry(lru, &man->lru[cursor->priority], link) {
-+			if (ttm_lru_item_is_res(lru))
-+				ttm_lru_item_to_res(lru);
-+		}
- 
- 	return NULL;
- }
-diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_resource.h
-index 69769355139f..4babc4ff10b0 100644
---- a/include/drm/ttm/ttm_resource.h
-+++ b/include/drm/ttm/ttm_resource.h
-@@ -49,6 +49,43 @@ struct io_mapping;
- struct sg_table;
- struct scatterlist;
- 
-+/**
-+ * enum ttm_lru_item_type - enumerate ttm_lru_item subclasses
-+ */
-+enum ttm_lru_item_type {
-+	/** @TTM_LRU_RESOURCE: The resource subclass */
-+	TTM_LRU_RESOURCE,
-+	/** @TTM_LRU_HITCH: The iterator hitch subclass */
-+	TTM_LRU_HITCH
-+};
-+
-+/**
-+ * struct ttm_lru_item - The TTM lru list node base class
-+ * @link: The list link
-+ * @type: The subclass type
-+ */
-+struct ttm_lru_item {
-+	struct list_head link;
-+	enum ttm_lru_item_type type;
-+};
-+
-+/**
-+ * ttm_lru_item_init() - initialize a struct ttm_lru_item
-+ * @item: The item to initialize
-+ * @type: The subclass type
-+ */
-+static inline void ttm_lru_item_init(struct ttm_lru_item *item,
-+				     enum ttm_lru_item_type type)
-+{
-+	item->type = type;
-+	INIT_LIST_HEAD(&item->link);
-+}
-+
-+static inline bool ttm_lru_item_is_res(const struct ttm_lru_item *item)
-+{
-+	return item->type == TTM_LRU_RESOURCE;
-+}
-+
- struct ttm_resource_manager_func {
- 	/**
- 	 * struct ttm_resource_manager_func member alloc
-@@ -217,9 +254,21 @@ struct ttm_resource {
- 	/**
- 	 * @lru: Least recently used list, see &ttm_resource_manager.lru
- 	 */
--	struct list_head lru;
-+	struct ttm_lru_item lru;
++#include <drm/ttm/ttm_backup.h>
+ #include <drm/ttm/ttm_pool.h>
+ #include <drm/ttm/ttm_tt.h>
+ #include <drm/ttm/ttm_bo.h>
+@@ -58,6 +59,32 @@ struct ttm_pool_dma {
+ 	unsigned long vaddr;
  };
  
 +/**
-+ * ttm_lru_item_to_res() - Downcast a struct ttm_lru_item to a struct ttm_resource
-+ * @item: The struct ttm_lru_item to downcast
++ * struct ttm_pool_tt_restore - State representing restore from swap.
++ * @alloced_pages: Total number of already allocated pages for the ttm_tt.
++ * @restored_pages: Number of (sub) pages restored from swap for this
++ *		     chunk of 1 << @order pages.
++ * @first_page: The ttm page ptr representing for @old_pages[0].
++ * @caching_divide: Page pointer where subsequent pages are cached.
++ * @old_pages: Backup copy of page pointers that were replaced by the new
++ *	       page allocation.
++ * @pool: The pool used for page allocation while restoring.
++ * @order: The order of the last page allocated while restoring.
 + *
-+ * Return: Pointer to the embedding struct ttm_resource
++ * Recovery from swap space might fail when we've recovered less than the
++ * full ttm_tt. In order not to loose any data (yet), keep information
++ * around that allows us to restart a failed ttm swap-space recovery.
 + */
-+static inline struct ttm_resource *
-+ttm_lru_item_to_res(struct ttm_lru_item *item)
++struct ttm_pool_tt_restore {
++	pgoff_t alloced_pages;
++	pgoff_t restored_pages;
++	struct page **first_page;
++	struct page **caching_divide;
++	struct ttm_pool *pool;
++	unsigned int order;
++	struct page *old_pages[];
++};
++
+ static unsigned long page_pool_size;
+ 
+ MODULE_PARM_DESC(page_pool_size, "Number of pages in the WC/UC/DMA pool");
+@@ -348,11 +375,101 @@ static unsigned int ttm_pool_page_order(struct ttm_pool *pool, struct page *p)
+ 	return p->private;
+ }
+ 
++/*
++ * To be able to insert single pages into the swap cache directly,
++ * we need to split multi-order page allocations and make them look
++ * like single page-allocations.
++ */
++static void ttm_pool_split_for_swap(struct ttm_pool *pool, struct page *p)
 +{
-+	return container_of(item, struct ttm_resource, lru);
++	unsigned int order = ttm_pool_page_order(pool, p);
++	pgoff_t nr;
++
++	if (!order)
++		return;
++
++	split_page(p, order);
++	nr = 1UL << order;
++	while (nr--)
++		(p++)->private = 0;
++}
++
++/**
++ * DOC: Partial shrinking and restoration of a struct ttm_tt.
++ *
++ * Swapout using swap_backup_folio() and swapin using swap_copy_folio() may fail.
++ * The former most likely due to lack of swap-space or memory, the latter due
++ * to lack of memory or because of signal interruption during waits.
++ *
++ * Swapout failure is easily handled by using a ttm_tt pages vector that holds
++ * both swap entries and page pointers. This has to be taken into account when
++ * restoring such a ttm_tt from swap, and when freeing it while swapped out.
++ * When restoring, for simplicity, new pages are actually allocated from the
++ * pool and the contents of any old pages are copied in and then the old pages
++ * are released.
++ *
++ * For swapin failures, the struct ttm_pool_tt_restore holds sufficient state
++ * to be able to resume an interrupted restore, and that structure is freed once
++ * the restoration is complete. If the struct ttm_tt is destroyed while there
++ * is a valid struct ttm_pool_tt_restore attached, that is also properly taken
++ * care of.
++ */
++
++static bool ttm_pool_restore_valid(const struct ttm_pool_tt_restore *restore)
++{
++	return restore && restore->restored_pages < (1 << restore->order);
++}
++
++static int ttm_pool_swapin(struct ttm_pool_tt_restore *restore,
++			   struct ttm_backup *backup,
++			   struct ttm_operation_ctx *ctx)
++{
++	unsigned int i, nr = 1 << restore->order;
++	int ret = 0;
++
++	if (!ttm_pool_restore_valid(restore))
++		return 0;
++
++	for (i = restore->restored_pages; i < nr; ++i) {
++		struct page *p = restore->old_pages[i];
++
++		if (ttm_backup_page_ptr_is_handle(p)) {
++			unsigned long handle = ttm_backup_page_ptr_to_handle(p);
++
++			if (handle == 0)
++				continue;
++
++			ret = backup->ops->copy_backed_up_page
++				(backup, restore->first_page[i],
++				 handle, ctx->interruptible);
++			if (ret)
++				break;
++
++			backup->ops->drop(backup, handle);
++		} else if (p) {
++			/*
++			 * We could probably avoid splitting the old page
++			 * using clever logic, but ATM we don't care.
++			 */
++			ttm_pool_split_for_swap(restore->pool, p);
++			copy_highpage(restore->first_page[i], p);
++			__free_pages(p, 0);
++		}
++
++		restore->restored_pages++;
++		restore->old_pages[i] = NULL;
++		cond_resched();
++	}
++
++	return ret;
++}
++
+ /* Called when we got a page, either from a pool or newly allocated */
+ static int ttm_pool_page_allocated(struct ttm_pool *pool, unsigned int order,
+ 				   struct page *p, dma_addr_t **dma_addr,
+ 				   unsigned long *num_pages,
+-				   struct page ***pages)
++				   struct page ***pages,
++				   struct ttm_pool_tt_restore *restore)
+ {
+ 	unsigned int i;
+ 	int r;
+@@ -363,6 +480,16 @@ static int ttm_pool_page_allocated(struct ttm_pool *pool, unsigned int order,
+ 			return r;
+ 	}
+ 
++	if (restore) {
++		memcpy(restore->old_pages, *pages,
++		       (1 << order) * sizeof(*restore->old_pages));
++		memset(*pages, 0, (1 << order) * sizeof(**pages));
++		restore->order = order;
++		restore->restored_pages = 0;
++		restore->first_page = *pages;
++		restore->alloced_pages += 1UL << order;
++	}
++
+ 	*num_pages -= 1 << order;
+ 	for (i = 1 << order; i; --i, ++(*pages), ++p)
+ 		**pages = p;
+@@ -388,22 +515,39 @@ static void ttm_pool_free_range(struct ttm_pool *pool, struct ttm_tt *tt,
+ 				pgoff_t start_page, pgoff_t end_page)
+ {
+ 	struct page **pages = &tt->pages[start_page];
++	struct ttm_backup *backup = tt->backup;
+ 	unsigned int order;
+ 	pgoff_t i, nr;
+ 
+ 	for (i = start_page; i < end_page; i += nr, pages += nr) {
+ 		struct ttm_pool_type *pt = NULL;
++		struct page *p = *pages;
++
++		if (ttm_backup_page_ptr_is_handle(p)) {
++			unsigned long handle = ttm_backup_page_ptr_to_handle(p);
++
++			nr = 1;
++			if (handle != 0)
++				backup->ops->drop(backup, handle);
++			continue;
++		}
+ 
+-		order = ttm_pool_page_order(pool, *pages);
+-		nr = (1UL << order);
+-		if (tt->dma_address)
+-			ttm_pool_unmap(pool, tt->dma_address[i], nr);
++		if (pool) {
++			order = ttm_pool_page_order(pool, p);
++			nr = (1UL << order);
++			if (tt->dma_address)
++				ttm_pool_unmap(pool, tt->dma_address[i], nr);
++
++			pt = ttm_pool_select_type(pool, caching, order);
++		} else {
++			order = p->private;
++			nr = (1UL << order);
++		}
+ 
+-		pt = ttm_pool_select_type(pool, caching, order);
+ 		if (pt)
+-			ttm_pool_type_give(pt, *pages);
++			ttm_pool_type_give(pt, p);
+ 		else
+-			ttm_pool_free_page(pool, caching, order, *pages);
++			ttm_pool_free_page(pool, caching, order, p);
+ 	}
+ }
+ 
+@@ -447,9 +591,37 @@ int ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
+ 	else
+ 		gfp_flags |= GFP_HIGHUSER;
+ 
+-	for (order = min_t(unsigned int, MAX_PAGE_ORDER, __fls(num_pages));
+-	     num_pages;
+-	     order = min_t(unsigned int, order, __fls(num_pages))) {
++	order = min_t(unsigned int, MAX_PAGE_ORDER, __fls(num_pages));
++
++	if (tt->page_flags & TTM_TT_FLAG_PRIV_SHRUNKEN) {
++		if (!tt->restore) {
++			gfp_t gfp = GFP_KERNEL | __GFP_NOWARN;
++
++			if (ctx->gfp_retry_mayfail)
++				gfp |= __GFP_RETRY_MAYFAIL;
++
++			tt->restore =
++				kvzalloc(struct_size(tt->restore, old_pages,
++						     (size_t)1 << order), gfp);
++			/* RFC: Possibly loop on -ENOMEM and reduce order. */
++			if (!tt->restore)
++				return -ENOMEM;
++		} else if (ttm_pool_restore_valid(tt->restore)) {
++			struct ttm_pool_tt_restore *restore = tt->restore;
++
++			num_pages -= restore->alloced_pages;
++			order = min_t(unsigned int, order, __fls(num_pages));
++			pages += restore->alloced_pages;
++			r = ttm_pool_swapin(restore, tt->backup, ctx);
++			if (r)
++				return r;
++			caching = restore->caching_divide;
++		}
++
++		tt->restore->pool = pool;
++	}
++
++	for (; num_pages; order = min_t(unsigned int, order, __fls(num_pages))) {
+ 		struct ttm_pool_type *pt;
+ 
+ 		page_caching = tt->caching;
+@@ -466,11 +638,18 @@ int ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
+ 				r = ttm_pool_page_allocated(pool, order, p,
+ 							    &dma_addr,
+ 							    &num_pages,
+-							    &pages);
++							    &pages,
++							    tt->restore);
+ 				if (r)
+ 					goto error_free_page;
+ 
+ 				caching = pages;
++				if (ttm_pool_restore_valid(tt->restore)) {
++					r = ttm_pool_swapin(tt->restore, tt->backup, ctx);
++					if (r)
++						goto error_free_all;
++				}
++
+ 				if (num_pages < (1 << order))
+ 					break;
+ 
+@@ -490,9 +669,17 @@ int ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
+ 				caching = pages;
+ 			}
+ 			r = ttm_pool_page_allocated(pool, order, p, &dma_addr,
+-						    &num_pages, &pages);
++						    &num_pages, &pages,
++						    tt->restore);
+ 			if (r)
+ 				goto error_free_page;
++
++			if (ttm_pool_restore_valid(tt->restore)) {
++				r = ttm_pool_swapin(tt->restore, tt->backup, ctx);
++				if (r)
++					goto error_free_all;
++			}
++
+ 			if (PageHighMem(p))
+ 				caching = pages;
+ 		}
+@@ -511,12 +698,26 @@ int ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
+ 	if (r)
+ 		goto error_free_all;
+ 
++	if (tt->restore) {
++		kvfree(tt->restore);
++		tt->restore = NULL;
++	}
++
++	if (tt->page_flags & TTM_TT_FLAG_PRIV_SHRUNKEN)
++		tt->page_flags &= ~(TTM_TT_FLAG_PRIV_SHRUNKEN |
++				    TTM_TT_FLAG_SWAPPED);
++
+ 	return 0;
+ 
+ error_free_page:
+ 	ttm_pool_free_page(pool, page_caching, order, p);
+ 
+ error_free_all:
++	if (tt->page_flags & TTM_TT_FLAG_PRIV_SHRUNKEN) {
++		tt->restore->caching_divide = caching;
++		return r;
++	}
++
+ 	num_pages = tt->num_pages - num_pages;
+ 	caching_divide = caching - tt->pages;
+ 	ttm_pool_free_range(pool, tt, tt->caching, 0, caching_divide);
+@@ -543,6 +744,167 @@ void ttm_pool_free(struct ttm_pool *pool, struct ttm_tt *tt)
+ }
+ EXPORT_SYMBOL(ttm_pool_free);
+ 
++/**
++ * ttm_pool_release_shrunken() - Release content of a swapped-out struct ttm_tt
++ * @tt: The struct ttm_tt.
++ *
++ * Release swap entries with associated content or any remaining pages of
++ * a swapped-out struct ttm_tt.
++ */
++void ttm_pool_release_shrunken(struct ttm_tt *tt)
++{
++	struct ttm_backup *backup = tt->backup;
++	struct ttm_pool_tt_restore *restore;
++	pgoff_t i, start_page = 0;
++	unsigned long handle;
++
++	if (!(tt->page_flags & TTM_TT_FLAG_PRIV_SHRUNKEN))
++		return;
++
++	restore = tt->restore;
++
++	if (ttm_pool_restore_valid(restore)) {
++		pgoff_t nr = 1UL << restore->order;
++
++		for (i = restore->restored_pages; i < nr; ++i) {
++			struct page *p = restore->old_pages[i];
++
++			if (ttm_backup_page_ptr_is_handle(p)) {
++				handle = ttm_backup_page_ptr_to_handle(p);
++				if (handle == 0)
++					continue;
++
++				backup->ops->drop(backup, handle);
++			} else if (p) {
++				ttm_pool_split_for_swap(restore->pool, p);
++				__free_pages(p, 0);
++			}
++		}
++	}
++
++	if (restore) {
++		pgoff_t mid = restore->caching_divide - tt->pages;
++
++		start_page = restore->alloced_pages;
++		/* Pages that might be dma-mapped and non-cached */
++		ttm_pool_free_range(restore->pool, tt, tt->caching,
++				    0, mid);
++		/* Pages that might be dma-mapped but cached */
++		ttm_pool_free_range(restore->pool, tt, ttm_cached,
++				    mid, restore->alloced_pages);
++	}
++
++	/* Shrunken pages. Cached and not dma-mapped. */
++	ttm_pool_free_range(NULL, tt, ttm_cached, start_page, tt->num_pages);
++
++	if (restore) {
++		kvfree(restore);
++		tt->restore = NULL;
++	}
++
++	tt->page_flags &= ~(TTM_TT_FLAG_PRIV_SHRUNKEN | TTM_TT_FLAG_SWAPPED);
++}
++
++/**
++ * ttm_pool_shrink_tt() - Swap out or purge a struct ttm_tt
++ * @pool: The pool used when allocating the struct ttm_tt.
++ * @ttm: The struct ttm_tt.
++ *
++ * Swap out or purge a struct ttm_tt. If @ttm is marked purgeable, then
++ * all pages will be freed directly to the system rather than to the pool
++ * they were allocated from, making the function behave similarly to
++ * ttm_pool_free(). If @ttm is not marked purgeable, the pages will be
++ * inserted into the swap cache instead, exchanged for a swap entry.
++ * A subsequent call to ttm_pool_alloc() will then read back the content and
++ * a subsequent call to ttm_pool_release_shrunken() will drop it.
++ * If swapout of a page fails for whatever reason, @ttm will still be
++ * partially swapped out, retaining those pages for which swapout fails.
++ *
++ * @Return: Number of pages actually swapped out or freed, or negative
++ * error code on error.
++ */
++long ttm_pool_shrink_tt(struct ttm_pool *pool, struct ttm_tt *ttm, bool purge)
++{
++	struct ttm_backup *backup = ttm->backup;
++	struct page *page;
++	unsigned long handle;
++	gfp_t alloc_gfp;
++	gfp_t gfp;
++	int ret = 0;
++	pgoff_t shrunken = 0;
++	pgoff_t i, num_pages;
++
++	if ((!get_nr_swap_pages() && purge) ||
++	    pool->use_dma_alloc ||
++	    (ttm->page_flags & TTM_TT_FLAG_PRIV_SHRUNKEN))
++		return -EBUSY;
++
++#ifdef CONFIG_X86
++	/* Anything returned to the system needs to be cached. */
++	if (ttm->caching != ttm_cached)
++		set_pages_array_wb(ttm->pages, ttm->num_pages);
++#endif
++
++	if (ttm->dma_address || purge) {
++		for (i = 0; i < ttm->num_pages; i += num_pages) {
++			unsigned int order;
++
++			page = ttm->pages[i];
++			if (unlikely(!page))
++				continue;
++
++			order = 1UL << ttm_pool_page_order(pool, page);
++			num_pages = 1UL << order;
++			if (ttm->dma_address)
++				ttm_pool_unmap(pool, ttm->dma_address[i],
++					       num_pages);
++			if (purge) {
++				shrunken += num_pages;
++				__free_pages(page, order);
++				memset(ttm->pages + i, 0,
++				       num_pages * sizeof(*ttm->pages));
++			}
++		}
++	}
++
++	if (purge)
++		return shrunken;
++
++	if (pool->use_dma32)
++		gfp = GFP_DMA32;
++	else
++		gfp = GFP_HIGHUSER;
++
++	alloc_gfp = GFP_KERNEL | __GFP_HIGH | __GFP_NOWARN | __GFP_RETRY_MAYFAIL;
++
++	for (i = 0; i < ttm->num_pages; ++i) {
++		page = ttm->pages[i];
++		if (unlikely(!page))
++			continue;
++
++		ttm_pool_split_for_swap(pool, page);
++
++		set_page_dirty_lock(page);
++		handle = backup->ops->backup_page(backup, page, false, i, gfp, alloc_gfp);
++		if (handle) {
++			ttm->pages[i] = ttm_backup_handle_to_page_ptr(handle);
++			put_page(page);
++			shrunken++;
++		} else {
++			/* We allow partially shrunken tts */
++			ret = -ENOMEM;
++			break;
++		}
++		cond_resched();
++	}
++
++	if (shrunken)
++		ttm->page_flags |= (TTM_TT_FLAG_PRIV_SHRUNKEN |
++				    TTM_TT_FLAG_SWAPPED);
++
++	return shrunken ? shrunken : ret;
 +}
 +
  /**
-  * struct ttm_resource_cursor
+  * ttm_pool_init - Initialize a pool
   *
+diff --git a/drivers/gpu/drm/ttm/ttm_tt.c b/drivers/gpu/drm/ttm/ttm_tt.c
+index 578a7c37f00b..3670519703d7 100644
+--- a/drivers/gpu/drm/ttm/ttm_tt.c
++++ b/drivers/gpu/drm/ttm/ttm_tt.c
+@@ -39,6 +39,7 @@
+ #include <drm/drm_cache.h>
+ #include <drm/drm_device.h>
+ #include <drm/drm_util.h>
++#include <drm/ttm/ttm_backup.h>
+ #include <drm/ttm/ttm_bo.h>
+ #include <drm/ttm/ttm_tt.h>
+ 
+@@ -157,6 +158,7 @@ static void ttm_tt_init_fields(struct ttm_tt *ttm,
+ 	ttm->swap_storage = NULL;
+ 	ttm->sg = bo->sg;
+ 	ttm->caching = caching;
++	ttm->restore = NULL;
+ }
+ 
+ int ttm_tt_init(struct ttm_tt *ttm, struct ttm_buffer_object *bo,
+@@ -181,6 +183,12 @@ void ttm_tt_fini(struct ttm_tt *ttm)
+ 		fput(ttm->swap_storage);
+ 	ttm->swap_storage = NULL;
+ 
++	ttm_pool_release_shrunken(ttm);
++	if (ttm->backup) {
++		ttm->backup->ops->fini(ttm->backup);
++		ttm->backup = NULL;
++	}
++
+ 	if (ttm->pages)
+ 		kvfree(ttm->pages);
+ 	else
+@@ -251,6 +259,30 @@ int ttm_tt_swapin(struct ttm_tt *ttm)
+ 	return ret;
+ }
+ 
++/**
++ * ttm_tt_shrink() - Helper for the driver bo_shrink() method.
++ * @bdev: The TTM device.
++ * @tt: The struct ttm_tt.
++ *
++ * Helper for a TTM driver to use from the bo_shrink() method to shrink
++ * a struct ttm_tt, after it has done the necessary unbinding. This function
++ * will update the page accounting and call ttm_pool_shrink_tt to free pages
++ * or move them to the swap cache.
++ *
++ * Return: Number of pages freed or swapped out, or negative error code on
++ * error.
++ */
++long ttm_tt_shrink(struct ttm_device *bdev, struct ttm_tt *tt, bool purge)
++{
++	long ret = ttm_pool_shrink_tt(&bdev->pool, tt, purge);
++
++	if (ret > 0)
++		tt->page_flags &= ~TTM_TT_FLAG_PRIV_POPULATED;
++
++	return ret;
++}
++EXPORT_SYMBOL(ttm_tt_shrink);
++
+ /**
+  * ttm_tt_swapout - swap out tt object
+  *
+diff --git a/include/drm/ttm/ttm_pool.h b/include/drm/ttm/ttm_pool.h
+index 160d954a261e..7f9e1952914a 100644
+--- a/include/drm/ttm/ttm_pool.h
++++ b/include/drm/ttm/ttm_pool.h
+@@ -89,6 +89,10 @@ void ttm_pool_fini(struct ttm_pool *pool);
+ 
+ int ttm_pool_debugfs(struct ttm_pool *pool, struct seq_file *m);
+ 
++void ttm_pool_release_shrunken(struct ttm_tt *tt);
++
++long ttm_pool_shrink_tt(struct ttm_pool *pool, struct ttm_tt *ttm, bool purge);
++
+ int ttm_pool_mgr_init(unsigned long num_pages);
+ void ttm_pool_mgr_fini(void);
+ 
+diff --git a/include/drm/ttm/ttm_tt.h b/include/drm/ttm/ttm_tt.h
+index 2b9d856ff388..04d24990fb73 100644
+--- a/include/drm/ttm/ttm_tt.h
++++ b/include/drm/ttm/ttm_tt.h
+@@ -32,11 +32,13 @@
+ #include <drm/ttm/ttm_caching.h>
+ #include <drm/ttm/ttm_kmap_iter.h>
+ 
++struct ttm_backup;
+ struct ttm_device;
+ struct ttm_tt;
+ struct ttm_resource;
+ struct ttm_buffer_object;
+ struct ttm_operation_ctx;
++struct ttm_pool_tt_restore;
+ 
+ /**
+  * struct ttm_tt - This is a structure holding the pages, caching- and aperture
+@@ -85,6 +87,10 @@ struct ttm_tt {
+ 	 * fault handling abuses the DMA api a bit and dma_map_attrs can't be
+ 	 * used to assure pgprot always matches.
+ 	 *
++	 * TTM_TT_FLAG_PRIV_SHRUNKEN: TTM internal only. This is set if the
++	 * struct ttm_tt has been (possibly partially) swapped out to the
++	 * swap cache.
++	 *
+ 	 * TTM_TT_FLAG_PRIV_POPULATED: TTM internal only. DO NOT USE. This is
+ 	 * set by TTM after ttm_tt_populate() has successfully returned, and is
+ 	 * then unset when TTM calls ttm_tt_unpopulate().
+@@ -96,6 +102,7 @@ struct ttm_tt {
+ #define TTM_TT_FLAG_DECRYPTED		BIT(4)
+ 
+ #define TTM_TT_FLAG_PRIV_POPULATED	BIT(5)
++#define TTM_TT_FLAG_PRIV_SHRUNKEN	BIT(6)
+ 	uint32_t page_flags;
+ 	/** @num_pages: Number of pages in the page array. */
+ 	uint32_t num_pages;
+@@ -105,11 +112,13 @@ struct ttm_tt {
+ 	dma_addr_t *dma_address;
+ 	/** @swap_storage: Pointer to shmem struct file for swap storage. */
+ 	struct file *swap_storage;
++	struct ttm_backup *backup;
+ 	/**
+ 	 * @caching: The current caching state of the pages, see enum
+ 	 * ttm_caching.
+ 	 */
+ 	enum ttm_caching caching;
++	struct ttm_pool_tt_restore *restore;
+ };
+ 
+ /**
+@@ -230,6 +239,9 @@ void ttm_tt_mgr_init(unsigned long num_pages, unsigned long num_dma32_pages);
+ struct ttm_kmap_iter *ttm_kmap_iter_tt_init(struct ttm_kmap_iter_tt *iter_tt,
+ 					    struct ttm_tt *tt);
+ unsigned long ttm_tt_pages_limit(void);
++
++long ttm_tt_shrink(struct ttm_device *bdev, struct ttm_tt *tt, bool purge);
++
+ #if IS_ENABLED(CONFIG_AGP)
+ #include <linux/agp_backend.h>
+ 
 -- 
 2.44.0
 
