@@ -4,73 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27D1BCD1296
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Apr 2024 12:48:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9FCACD1288
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Apr 2024 12:48:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5DE910F142;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EDF610F13B;
 	Mon,  1 Apr 2024 12:48:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JZNjXPVA";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="b+Tl2nhY";
 	dkim-atps=neutral
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com
- [209.85.214.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 483AD10E17E
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Mar 2024 19:13:56 +0000 (UTC)
-Received: by mail-pl1-f182.google.com with SMTP id
- d9443c01a7336-1e0b213efa3so12277075ad.0
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Mar 2024 12:13:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1711653236; x=1712258036; darn=lists.freedesktop.org;
- h=48208e010a25250e94a9b24485523acbe79cf861from:in-reply-to
- :content-disposition:mime-version:references:message-id:subject:cc
- :to:date:from:from:to:cc:subject:date:message-id:reply-to;
- bh=t0LXeNPmqyAxge/cGn4Qev/aT/r5g++MEZ69hkgXXfY=;
- b=JZNjXPVAUg6nLMEfSiXIqe2vmznGPdjx3ebZ6ckbOl2+n0yhmJV8yW7PHJegolBbLj
- JyLkDKImXmax6AoK//pIoZnIvC/dZSiL/OjI/DRpf71Ar26/sUNsIA4aaNjN4q50mKgg
- /7NSTv0b36in34Pnu4fvI+3p+maUxlwQkweYLrwFrF4RZCAC+G6i9tQtRo1lkNq9YQH6
- x8IMtsulzK3+MMgtdDQVrrLicOn1aYB9jbNhUEF13+oHZRloRUQCyKCkyWIVZzuXDhCM
- 9F2OONvcRIxfxR6tSeLwc9fEsl7XyQYFH0L25z3ry1N333iOdxjAsFTaa3VbUnFvw7QT
- DJ9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1711653236; x=1712258036;
- h=48208e010a25250e94a9b24485523acbe79cf861from:in-reply-to
- :content-disposition:mime-version:references:message-id:subject:cc
- :to:date:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=t0LXeNPmqyAxge/cGn4Qev/aT/r5g++MEZ69hkgXXfY=;
- b=kWLBv1+C2lDra6uZk8WW52WLSdR1IhQjuAbWZAEKjpV35L4DOMmbIxsdQuPPCXVfby
- xaVA4vnqMaCoO0nPPBAm07+d1bVe7IfdvK1LtdX2yfgdhrlkpKDMawZcKnV7WW7S4Rfi
- TBnkRBcFaxzUNn5FzsCnDnPfsKh4iYu3r75Q5X6Ek+fzeJ5jD+StGoqN6jQQSCSTfMl4
- GnRDFAguQWADci6afw4ZwucPRdzd0l98d6K8BZR14OunIx7DlX765lHvuZAatnsgvmle
- tid+iy1Vvfgl7bugoDDDn/5gcpLbsHFj8hLaSw2puBTeb1e2PxS2uWJ5AuDBxOscEFdQ
- 8qhQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXS6nnPWidNh5WR6CWYp9xZM3tQhyZ2ZR41CkJTB1rDC9LPXSTYDyMVW8z/CP77TkwWB9zhM51yhYE0d6LfsZ/9OJC8+OruSwfsQQMXj+Y=
-X-Gm-Message-State: AOJu0Yz9KMM4kIMWPkJ7ACK/CatkaVVifyGyb2uYPDWzbHD9CWlkzdGq
- 0MkJkKNzvjUqIHYBoJWB69jKmvjY4kIFgzIbbXjTc2MQsMvVNEBlN3PNVVXJ
-X-Google-Smtp-Source: AGHT+IEP5TVGKcxs122LDgEDGgm+rIRZJciDbLsL/k6VZcYjQzgsdyiHzSxUTY0YCFKETdV0hm0cNw==
-X-Received: by 2002:a17:903:32cb:b0:1e0:b629:b009 with SMTP id
- i11-20020a17090332cb00b001e0b629b009mr548242plr.20.1711653235702; 
- Thu, 28 Mar 2024 12:13:55 -0700 (PDT)
-Received: from localhost (dhcp-141-239-158-86.hawaiiantel.net.
- [141.239.158.86]) by smtp.gmail.com with ESMTPSA id
- q17-20020a170902dad100b001e06c1eee22sm1982396plx.74.2024.03.28.12.13.55
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 28 Mar 2024 12:13:55 -0700 (PDT)
-From: htejun@gmail.com
-Date: Thu, 28 Mar 2024 09:13:54 -1000
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com
-Subject: Re: [PATCH 0/3] Rework work queue usage
-Message-ID: <ZgXBcpRv_FTIoq91@slm.duckdns.org>
-References: <20240328182147.4169656-1-matthew.brost@intel.com>
- <rfc2tu5zx5qd4sbgpd7rcqproacelziemigx5wrs7xyjmr2fb4@w6wsqxkcpvnr>
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9EBA710E88E;
+ Fri, 29 Mar 2024 17:02:20 +0000 (UTC)
+Received: from rrs24-12-35.corp.microsoft.com (unknown [131.107.147.137])
+ by linux.microsoft.com (Postfix) with ESMTPSA id EE6F520E6F4C;
+ Fri, 29 Mar 2024 10:02:19 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com EE6F520E6F4C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+ s=default; t=1711731740;
+ bh=t49SSijH5qcn8ATNHvvOtx0aTbYoWILOcpPZfTIIf5A=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=b+Tl2nhYCHS6FtKRbxbOukN4V4yufNBRXQxXpxjRy4FT1iMF4FHj0kmCEY9/iOGP9
+ 810vjByH634Jjyhi4F8eZTuQ50mz0N6b170peelO1xcWydhYP8ZJSDBDr3oRMLSwXY
+ TfEm2CpowjnlO3jIW88+wusfcxhSkotAZmFp6RhQ=
+From: Easwar Hariharan <eahariha@linux.microsoft.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Easwar Hariharan <eahariha@linux.microsoft.com>,
+ linux-media@vger.kernel.org (open list:MEDIA INPUT INFRASTRUCTURE (V4L/DVB)), 
+ linux-kernel@vger.kernel.org (open list)
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
+ dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
+ linux-kernel@vger.kernel.org (open list),
+ intel-gfx@lists.freedesktop.org (open list:INTEL DRM DISPLAY FOR XE AND I915
+ DRIVERS), 
+ intel-xe@lists.freedesktop.org (open list:INTEL DRM DISPLAY FOR XE AND I915
+ DRIVERS), 
+ nouveau@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO
+ GPUS), linux-i2c@vger.kernel.org (open list:I2C SUBSYSTEM HOST DRIVERS),
+ linux-media@vger.kernel.org (open list:BTTV VIDEO4LINUX DRIVER),
+ linux-fbdev@vger.kernel.org (open list:FRAMEBUFFER LAYER)
+Subject: [PATCH v0 07/14] media: cx25821: Make I2C terminology more inclusive
+Date: Fri, 29 Mar 2024 17:00:31 +0000
+Message-Id: <20240329170038.3863998-8-eahariha@linux.microsoft.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
+References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <rfc2tu5zx5qd4sbgpd7rcqproacelziemigx5wrs7xyjmr2fb4@w6wsqxkcpvnr>
-48208e010a25250e94a9b24485523acbe79cf861From: Tejun Heo <tj@kernel.org>
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 01 Apr 2024 12:47:10 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -86,29 +66,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hello,
+I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
+with more appropriate terms. Inspired by and following on to Wolfram's
+series to fix drivers/i2c/[1], fix the terminology for users of
+I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
+in the specification.
 
-On Thu, Mar 28, 2024 at 02:02:47PM -0500, Lucas De Marchi wrote:
-> On Thu, Mar 28, 2024 at 11:21:44AM -0700, Matthew Brost wrote:
-> > Avoid sleeping or grabbing locks in work queues shared with the system.
-> > Recent changes to work queues [1] have exposed deadlocks [2] in Xe.
+Compile tested, no functionality changes intended
 
-Can you elaborate it a bit? I'm having a bit of hard time imagining how the
-latest workqueue changes would have exposed deadlocks.
+[1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
 
-> I think we need some of this information in the commit message in patch
-> 1. Because patch 1 simply says it's moving to a device private wq to
-> avoid hogging the system one, but the issue is much more serious.
-> 
-> Also, is the "Fixes:"  really correct? It seems more like a regression
-> from the wq changes and there could be other drivers showing similar
-> issues now. But it could alos be my lack of understanding of the real
-> issue.
+Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+---
+ drivers/media/pci/cx25821/cx25821-i2c.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-I don't have enough context to tell whether this is a workqueue problem but
-if so we should definitely fix workqueue.
-
-Thanks.
-
+diff --git a/drivers/media/pci/cx25821/cx25821-i2c.c b/drivers/media/pci/cx25821/cx25821-i2c.c
+index 0ef4cd6528a0..bad8fb9f5319 100644
+--- a/drivers/media/pci/cx25821/cx25821-i2c.c
++++ b/drivers/media/pci/cx25821/cx25821-i2c.c
+@@ -33,7 +33,7 @@ do {									\
+ #define I2C_EXTEND  (1 << 3)
+ #define I2C_NOSTOP  (1 << 4)
+ 
+-static inline int i2c_slave_did_ack(struct i2c_adapter *i2c_adap)
++static inline int i2c_client_did_ack(struct i2c_adapter *i2c_adap)
+ {
+ 	struct cx25821_i2c *bus = i2c_adap->algo_data;
+ 	struct cx25821_dev *dev = bus->dev;
+@@ -85,7 +85,7 @@ static int i2c_sendbytes(struct i2c_adapter *i2c_adap,
+ 		if (!i2c_wait_done(i2c_adap))
+ 			return -EIO;
+ 
+-		if (!i2c_slave_did_ack(i2c_adap))
++		if (!i2c_client_did_ack(i2c_adap))
+ 			return -EIO;
+ 
+ 		dprintk(1, "%s(): returns 0\n", __func__);
+@@ -174,7 +174,7 @@ static int i2c_readbytes(struct i2c_adapter *i2c_adap,
+ 		cx_write(bus->reg_ctrl, bus->i2c_period | (1 << 2) | 1);
+ 		if (!i2c_wait_done(i2c_adap))
+ 			return -EIO;
+-		if (!i2c_slave_did_ack(i2c_adap))
++		if (!i2c_client_did_ack(i2c_adap))
+ 			return -EIO;
+ 
+ 		dprintk(1, "%s(): returns 0\n", __func__);
 -- 
-tejun
+2.34.1
+
