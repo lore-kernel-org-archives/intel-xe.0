@@ -4,28 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A3EECD1288
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Mar 2024 23:54:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66DC7CD128A
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Mar 2024 00:01:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA84610E6C2;
-	Thu, 28 Mar 2024 23:54:24 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB4DB10E508;
- Thu, 28 Mar 2024 23:54:22 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3941A10E56C;
+	Fri, 29 Mar 2024 00:01:13 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QXRGAdv9";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14C3410E56C
+ for <intel-xe@lists.freedesktop.org>; Fri, 29 Mar 2024 00:01:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1711670472; x=1743206472;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=p37sU4mu2zxb4VJFnx+M5npJdhpc0+jVRIFMeGRKJ2Y=;
+ b=QXRGAdv9xWAHOWNBFuJLd01lslnCeO1BZr4cOzyeQRB/klJ7V2Y1dZJK
+ 1pij1t4fsy6QvZDLjudnwhTikA63XeyJ3cVDJ4omsMEclVP/CGN11Bdrj
+ 53qK1iLyIknGNQoalCY/q/+88xGSufp0GcYstIKEd9s/RAMuLmZC27M8N
+ Ukr/QmII8pC9gbRfRAtXYXdK1C48Gec8NydD1I9NvurXwxEntTJqR9Kf2
+ YBFDSVVxJCWTz0n4O2Ru1N/1Z9W2ut6XmsuibbaCXDIOl/RLhmWdqWUOO
+ eX01Bv6E+yjpuX8PO5znhkFTZB4y5iiizF4KskXee4YFSBkpczhNMzSlr w==;
+X-CSE-ConnectionGUID: su/ANbfQQtS8ilyzRhVxLg==
+X-CSE-MsgGUID: WHR0+LXaQPuysvlYOdx7jQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11027"; a="18005450"
+X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; d="scan'208";a="18005450"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2024 17:01:09 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; d="scan'208";a="17448828"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2024 17:01:10 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-xe@lists.freedesktop.org, Francois Dugast <francois.dugast@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: Re: [PATCH] drm/xe/uapi: Define topology types as indexes rather than
+ masks
+Date: Thu, 28 Mar 2024 17:01:43 -0700
+Message-ID: <171167047684.911880.10603313579090542664.b4-ty@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240328140243.7-1-francois.dugast@intel.com>
+References: <20240328140243.7-1-francois.dugast@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_ASoC=3A_SOF=3A_Core?=
- =?utf-8?q?=3A_Add_remove=5Flate=28=29_to_sof=5Finit=5Fenvironment_failure_p?=
- =?utf-8?q?ath_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 28 Mar 2024 23:54:22 -0000
-Message-ID: <171167006296.1064396.6903429354346951199@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240328135233.1204694-1-rodrigo.vivi@intel.com>
-In-Reply-To: <20240328135233.1204694-1-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,28 +64,25 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: ASoC: SOF: Core: Add remove_late() to sof_init_environment failure path (rev2)
-URL   : https://patchwork.freedesktop.org/series/131766/
-State : failure
+On Thu, 28 Mar 2024 14:02:43 +0000, Francois Dugast wrote:
+> The topology type is an index (not a mask) so define the values
+> like other indexes instead of using powers of 2. This is also
+> to make clear that the next type can use value 3. This commit
+> does not change the existing values so it does not break
+> compatibility.
+> 
+> 
+> [...]
 
-== Summary ==
+Applied, thanks!
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: d80d79a49622 drm-tip: 2024y-03m-28d-20h-29m-38s UTC integration manifest
-=== git am output follows ===
-error: patch failed: sound/soc/sof/core.c:339
-error: sound/soc/sof/core.c: patch does not apply
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Applying: ASoC: SOF: Core: Add remove_late() to sof_init_environment failure path
-Patch failed at 0001 ASoC: SOF: Core: Add remove_late() to sof_init_environment failure path
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+[1/1] drm/xe/uapi: Define topology types as indexes rather than masks
+      commit: ca83f9d20171ce1ba5f82fb28b77eddabd636443
 
-
+Best regards,
+-- 
+Lucas De Marchi <lucas.demarchi@intel.com>
