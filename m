@@ -4,54 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EF00CD128D
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Mar 2024 19:04:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EFA1CD1283
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Mar 2024 19:11:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E01BB112843;
-	Fri, 29 Mar 2024 19:04:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UFwuUvlP";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B061112846
- for <intel-xe@lists.freedesktop.org>; Fri, 29 Mar 2024 19:04:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711739089; x=1743275089;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=vxwaFgh3ktwUXq/nyaD779HA6AU+IThHePrRTJmFIW0=;
- b=UFwuUvlPyOZIdhurDBb7Q/hAG4x4Lj71q0g8ntqHLJCWjjO8OtCF43tU
- ffzVfMKecwhzDYV7vofurSue+HSxylhSLuKvyxMeYl4rJG6x1vZYVJxNQ
- qTCQYy9uNdK/avWCIVvhdPQL20ARQtE5pC+l5j39vBbcy1YjKAWmP+P4D
- YTjAyq11pELjg4FykCbjA10zuaKNEvZcxmD1+z5+s+ZP/kO8weiD3BVxn
- QtbjAshH7rdHigMWMnarMIQ4aOj60h9QrsGJ0SKyji/HgV9jOjTDr19WH
- mhd+/FxKNR7rmazLIsvcMqpp50dGmtEWAvULxyNMhtvp73bf4EFwRfrp5 A==;
-X-CSE-ConnectionGUID: Yq8RTm8QR06ty8kGhJfV7w==
-X-CSE-MsgGUID: fxgXKOSPQwyuEJHPucg9qg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11028"; a="10720026"
-X-IronPort-AV: E=Sophos;i="6.07,165,1708416000"; d="scan'208";a="10720026"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2024 12:04:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,165,1708416000"; d="scan'208";a="17151862"
-Received: from dut-internal-9dd7.jf.intel.com ([10.165.21.194])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2024 12:04:48 -0700
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: saurabhg.gupta@intel.com, jonathan.cavitt@intel.com,
- matthew.brost@intel.com, lucas.demarchi@intel.com,
- john.c.harrison@intel.com
-Subject: [PATCH 2/3] drm/xe/xe_guc_status: Allow lr exec queues to be banned
-Date: Fri, 29 Mar 2024 11:49:28 -0700
-Message-Id: <20240329184929.3675256-2-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240329184929.3675256-1-jonathan.cavitt@intel.com>
-References: <20240329184929.3675256-1-jonathan.cavitt@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3651D112846;
+	Fri, 29 Mar 2024 19:11:02 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54B1F11284B;
+ Fri, 29 Mar 2024 19:11:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
+ =?utf-8?q?_=5B1/3=5D_drm/xe/xe=5Fguc=5Fsubmit=3A_Fix_exec_queue_stop_race_c?=
+ =?utf-8?q?ondition?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 29 Mar 2024 19:11:00 -0000
+Message-ID: <171173946034.1081852.10240036680750347430@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240329184929.3675256-1-jonathan.cavitt@intel.com>
+In-Reply-To: <20240329184929.3675256-1-jonathan.cavitt@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,55 +37,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-LR queues currently don't get banned during a GT/GuC reset because they
-lack a job.  Though they don't have a job to detect the reset status of,
-it's still possible to tell when they should be banned by looking at the
-LRC: if the LRC head and tail don't match, then the exec queue should be
-banned and cleaned up.
+== Series Details ==
 
-This also requires swapping the usage of xe_sched_tdr_queue_imm with
-xe_guc_exec_queue_trigger_cleanup, as the former is specific to non-lr
-exec queues.
+Series: series starting with [1/3] drm/xe/xe_guc_submit: Fix exec queue stop race condition
+URL   : https://patchwork.freedesktop.org/series/131824/
+State : success
 
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_submit.c | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 294f40ab6aaf1..bc0b5ec0b2ebd 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1424,15 +1424,23 @@ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
- 	 */
- 	if (!(q->flags & (EXEC_QUEUE_FLAG_KERNEL | EXEC_QUEUE_FLAG_VM))) {
- 		struct xe_sched_job *job = xe_sched_first_pending_job(sched);
-+		bool ban = false;
- 
- 		if (job) {
- 			if ((xe_sched_job_started(job) &&
- 			    !xe_sched_job_completed(job)) ||
- 			    xe_sched_invalidate_job(job, 2)) {
- 				trace_xe_sched_job_ban(job);
--				set_exec_queue_banned(q);
--				xe_sched_tdr_queue_imm(&q->guc->sched);
-+				ban = true;
- 			}
-+		} else if (xe_exec_queue_is_lr(q) &&
-+			   (xe_lrc_ring_head(q->lrc) != q->lrc->ring.tail)) {
-+			ban = true;
-+		}
-+
-+		if (ban) {
-+			set_exec_queue_banned(q);
-+			xe_guc_exec_queue_trigger_cleanup(q);
- 		}
- 	}
- }
--- 
-2.25.1
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 15fe5f853b06 drm-tip: 2024y-03m-29d-16h-14m-37s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/xe_guc_submit: Fix exec queue stop race condition
+Applying: drm/xe/xe_guc_status: Allow lr exec queues to be banned
+Applying: drm/xe/xe_guc_submit: Declare reset if banned or killed
+
 
