@@ -4,28 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36977CD11DD
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Mar 2024 13:49:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1819ECD11DD
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Mar 2024 14:57:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DE5011272F;
-	Fri, 29 Mar 2024 13:49:43 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C049E11272F;
- Fri, 29 Mar 2024 13:49:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8704900784997419323=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00FBF11275B;
+	Fri, 29 Mar 2024 14:57:42 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NpAXnaRk";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00542112749;
+ Fri, 29 Mar 2024 14:57:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1711724257; x=1743260257;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=GNdqpKAquUZx1u9uSdNQqDtIipzjj/gWVwDBqQ0JUZ4=;
+ b=NpAXnaRkGwQAK43nRCRBFA2IwjX3+toXgxLjoi/drTdvDLSyoXoDseBm
+ wjvDnFjpgsA42bxyEkDzlWVfKru3srIv+hAdmsl0SMKICLdCdMTMlIszP
+ OAgmKJovtS6OmD8B2IzQAfwZ6SnGXqK9xnb2ETGaA6xUymPVZefNFvj9v
+ MuCPSPJzszuAPqR5W/zh7REm08M1Ag/6BhjgrPyXlkI3tTxkgmj2hHWGm
+ eyMTVfEaZPyMrlF1stGHD49blQkN4qmLdL3SCaBPXRoYh4P4Ps2z587mN
+ g9q2Je4ckVFmZWZJm2LkrvKXwxyMR0+xZ3YY8cfixH8I8hjucLZAKUnTk w==;
+X-CSE-ConnectionGUID: A7Xs1SXHSDKNobWAOIGE4A==
+X-CSE-MsgGUID: CSm/kICiRRirhNI4WPBd1Q==
+X-IronPort-AV: E=McAfee;i="6600,9927,11028"; a="7023671"
+X-IronPort-AV: E=Sophos;i="6.07,165,1708416000"; 
+   d="scan'208";a="7023671"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Mar 2024 07:57:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,165,1708416000"; d="scan'208";a="47962416"
+Received: from satiarax-mobl1.gar.corp.intel.com (HELO fedora..)
+ ([10.249.254.13])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Mar 2024 07:57:25 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH 2/8] drm/ttm: Use LRU hitches
+Date: Fri, 29 Mar 2024 15:57:01 +0100
+Message-ID: <20240329145707.3087-3-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.44.0
+In-Reply-To: <20240329145707.3087-1-thomas.hellstrom@linux.intel.com>
+References: <20240329145707.3087-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/uapi=3A_Restore_flags_VM?=
- =?utf-8?q?=5FBIND=5FFLAG=5FREADONLY_and_VM=5FBIND=5FFLAG=5FIMMEDIATE_=28rev?=
- =?utf-8?q?2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Francois Dugast" <francois.dugast@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 29 Mar 2024 13:49:41 -0000
-Message-ID: <171172018178.1081134.287777016553103828@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240329124403.7-1-francois.dugast@intel.com>
-In-Reply-To: <20240329124403.7-1-francois.dugast@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,314 +67,258 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8704900784997419323==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Have iterators insert themselves into the list they are iterating
+over using hitch list nodes. Since only the iterator owner
+can remove these list nodes from the list, it's safe to unlock
+the list and when continuing, use them as a starting point. Due to
+the way LRU bumping works in TTM, newly added items will not be
+missed, and bumped items will be iterated over a second time before
+reaching the end of the list.
 
-== Series Details ==
+The exception is list with bulk move sublists. When bumping a
+sublist, a hitch that is part of that sublist will also be moved
+and we might miss items if restarting from it. This will be
+addressed in a later patch.
 
-Series: drm/xe/uapi: Restore flags VM_BIND_FLAG_READONLY and VM_BIND_FLAG_IMMEDIATE (rev2)
-URL   : https://patchwork.freedesktop.org/series/131790/
-State : success
+v2:
+- Updated ttm_resource_cursor_fini() documentation.
 
-== Summary ==
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+Cc: <dri-devel@lists.freedesktop.org>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/ttm/ttm_bo.c       |  1 +
+ drivers/gpu/drm/ttm/ttm_device.c   |  9 ++-
+ drivers/gpu/drm/ttm/ttm_resource.c | 94 ++++++++++++++++++++----------
+ include/drm/ttm/ttm_resource.h     | 16 +++--
+ 4 files changed, 82 insertions(+), 38 deletions(-)
 
-CI Bug Log - changes from xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a_BAT -> xe-pw-131790v2_BAT
-====================================================
+diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+index e059b1e1b13b..b6f75a0ff2e5 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo.c
++++ b/drivers/gpu/drm/ttm/ttm_bo.c
+@@ -622,6 +622,7 @@ int ttm_mem_evict_first(struct ttm_device *bdev,
+ 		if (locked)
+ 			dma_resv_unlock(res->bo->base.resv);
+ 	}
++	ttm_resource_cursor_fini_locked(&cursor);
+ 
+ 	if (!bo) {
+ 		if (busy_bo && !ttm_bo_get_unless_zero(busy_bo))
+diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_device.c
+index f27406e851e5..e8a6a1dab669 100644
+--- a/drivers/gpu/drm/ttm/ttm_device.c
++++ b/drivers/gpu/drm/ttm/ttm_device.c
+@@ -169,12 +169,17 @@ int ttm_device_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
+ 			num_pages = PFN_UP(bo->base.size);
+ 			ret = ttm_bo_swapout(bo, ctx, gfp_flags);
+ 			/* ttm_bo_swapout has dropped the lru_lock */
+-			if (!ret)
++			if (!ret) {
++				ttm_resource_cursor_fini(&cursor);
+ 				return num_pages;
+-			if (ret != -EBUSY)
++			}
++			if (ret != -EBUSY) {
++				ttm_resource_cursor_fini(&cursor);
+ 				return ret;
++			}
+ 		}
+ 	}
++	ttm_resource_cursor_fini_locked(&cursor);
+ 	spin_unlock(&bdev->lru_lock);
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
+index 7aa5ca5c0e33..ccc31ad85e3b 100644
+--- a/drivers/gpu/drm/ttm/ttm_resource.c
++++ b/drivers/gpu/drm/ttm/ttm_resource.c
+@@ -32,6 +32,37 @@
+ 
+ #include <drm/drm_util.h>
+ 
++/**
++ * ttm_resource_cursor_fini_locked() - Finalize the LRU list cursor usage
++ * @cursor: The struct ttm_resource_cursor to finalize.
++ *
++ * The function pulls the LRU list cursor off any lists it was previusly
++ * attached to. Needs to be called with the LRU lock held. The function
++ * can be called multiple times after eachother.
++ */
++void ttm_resource_cursor_fini_locked(struct ttm_resource_cursor *cursor)
++{
++	lockdep_assert_held(&cursor->man->bdev->lru_lock);
++	list_del_init(&cursor->hitch.link);
++}
++
++/**
++ * ttm_resource_cursor_fini() - Finalize the LRU list cursor usage
++ * @cursor: The struct ttm_resource_cursor to finalize.
++ *
++ * The function pulls the LRU list cursor off any lists it was previusly
++ * attached to. Needs to be called without the LRU list lock held. The
++ * function can be called multiple times after eachother.
++ */
++void ttm_resource_cursor_fini(struct ttm_resource_cursor *cursor)
++{
++	spinlock_t *lru_lock = &cursor->man->bdev->lru_lock;
++
++	spin_lock(lru_lock);
++	ttm_resource_cursor_fini_locked(cursor);
++	spin_unlock(lru_lock);
++}
++
+ /**
+  * ttm_lru_bulk_move_init - initialize a bulk move structure
+  * @bulk: the structure to init
+@@ -484,62 +515,63 @@ void ttm_resource_manager_debug(struct ttm_resource_manager *man,
+ EXPORT_SYMBOL(ttm_resource_manager_debug);
+ 
+ /**
+- * ttm_resource_manager_first
+- *
+- * @man: resource manager to iterate over
++ * ttm_resource_manager_next() - Continue iterating over the resource manager
++ * resources
+  * @cursor: cursor to record the position
+  *
+- * Returns the first resource from the resource manager.
++ * Return: The next resource from the resource manager.
+  */
+ struct ttm_resource *
+-ttm_resource_manager_first(struct ttm_resource_manager *man,
+-			   struct ttm_resource_cursor *cursor)
++ttm_resource_manager_next(struct ttm_resource_cursor *cursor)
+ {
++	struct ttm_resource_manager *man = cursor->man;
+ 	struct ttm_lru_item *lru;
+ 
+ 	lockdep_assert_held(&man->bdev->lru_lock);
+ 
+-	for (cursor->priority = 0; cursor->priority < TTM_MAX_BO_PRIORITY;
+-	     ++cursor->priority)
+-		list_for_each_entry(lru, &man->lru[cursor->priority], link) {
+-			if (ttm_lru_item_is_res(lru))
++	do {
++		lru = &cursor->hitch;
++		list_for_each_entry_continue(lru, &man->lru[cursor->priority], link) {
++			if (ttm_lru_item_is_res(lru)) {
++				list_move(&cursor->hitch.link, &lru->link);
+ 				return ttm_lru_item_to_res(lru);
++			}
+ 		}
+ 
++		if (++cursor->priority >= TTM_MAX_BO_PRIORITY)
++			break;
++
++		list_move(&cursor->hitch.link, &man->lru[cursor->priority]);
++	} while (true);
++
++	list_del_init(&cursor->hitch.link);
++
+ 	return NULL;
+ }
+ 
+ /**
+- * ttm_resource_manager_next
+- *
++ * ttm_resource_manager_first() - Start iterating over the resources
++ * of a resource manager
+  * @man: resource manager to iterate over
+  * @cursor: cursor to record the position
+- * @res: the current resource pointer
+  *
+- * Returns the next resource from the resource manager.
++ * Initializes the cursor and starts iterating. When done iterating,
++ * the caller must explicitly call ttm_resource_cursor_fini().
++ *
++ * Return: The first resource from the resource manager.
+  */
+ struct ttm_resource *
+-ttm_resource_manager_next(struct ttm_resource_manager *man,
+-			  struct ttm_resource_cursor *cursor,
+-			  struct ttm_resource *res)
++ttm_resource_manager_first(struct ttm_resource_manager *man,
++			   struct ttm_resource_cursor *cursor)
+ {
+-	struct ttm_lru_item *lru = &res->lru;
+-
+ 	lockdep_assert_held(&man->bdev->lru_lock);
+ 
+-	list_for_each_entry_continue(lru, &man->lru[cursor->priority], link) {
+-		if (ttm_lru_item_is_res(lru))
+-			return ttm_lru_item_to_res(lru);
+-	}
++	cursor->priority = 0;
++	cursor->man = man;
++	ttm_lru_item_init(&cursor->hitch, TTM_LRU_HITCH);
++	list_move(&cursor->hitch.link, &man->lru[cursor->priority]);
+ 
+-	for (++cursor->priority; cursor->priority < TTM_MAX_BO_PRIORITY;
+-	     ++cursor->priority)
+-		list_for_each_entry(lru, &man->lru[cursor->priority], link) {
+-			if (ttm_lru_item_is_res(lru))
+-				ttm_lru_item_to_res(lru);
+-		}
+-
+-	return NULL;
++	return ttm_resource_manager_next(cursor);
+ }
+ 
+ static void ttm_kmap_iter_iomap_map_local(struct ttm_kmap_iter *iter,
+diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_resource.h
+index 4babc4ff10b0..dfc01258c981 100644
+--- a/include/drm/ttm/ttm_resource.h
++++ b/include/drm/ttm/ttm_resource.h
+@@ -271,15 +271,23 @@ ttm_lru_item_to_res(struct ttm_lru_item *item)
+ 
+ /**
+  * struct ttm_resource_cursor
+- *
++ * @man: The resource manager currently being iterated over
++ * @hitch: A hitch list node inserted before the next resource
++ * to iterate over.
+  * @priority: the current priority
+  *
+  * Cursor to iterate over the resources in a manager.
+  */
+ struct ttm_resource_cursor {
++	struct ttm_resource_manager *man;
++	struct ttm_lru_item hitch;
+ 	unsigned int priority;
+ };
+ 
++void ttm_resource_cursor_fini_locked(struct ttm_resource_cursor *cursor);
++
++void ttm_resource_cursor_fini(struct ttm_resource_cursor *cursor);
++
+ /**
+  * struct ttm_lru_bulk_move_pos
+  *
+@@ -438,9 +446,7 @@ struct ttm_resource *
+ ttm_resource_manager_first(struct ttm_resource_manager *man,
+ 			   struct ttm_resource_cursor *cursor);
+ struct ttm_resource *
+-ttm_resource_manager_next(struct ttm_resource_manager *man,
+-			  struct ttm_resource_cursor *cursor,
+-			  struct ttm_resource *res);
++ttm_resource_manager_next(struct ttm_resource_cursor *cursor);
+ 
+ /**
+  * ttm_resource_manager_for_each_res - iterate over all resources
+@@ -452,7 +458,7 @@ ttm_resource_manager_next(struct ttm_resource_manager *man,
+  */
+ #define ttm_resource_manager_for_each_res(man, cursor, res)		\
+ 	for (res = ttm_resource_manager_first(man, cursor); res;	\
+-	     res = ttm_resource_manager_next(man, cursor, res))
++	     res = ttm_resource_manager_next(cursor))
+ 
+ struct ttm_kmap_iter *
+ ttm_kmap_iter_iomap_init(struct ttm_kmap_iter_iomap *iter_io,
+-- 
+2.44.0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-131790v2_BAT:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@xe_pat@pat-index-xelpg:
-    - {bat-lnl-1}:        NOTRUN -> [SKIP][1]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-lnl-1/igt@xe_pat@pat-index-xelpg.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-131790v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-dg2-oem2:       [PASS][2] -> [SKIP][3] ([Intel XE#1136])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@kms_addfb_basic@bad-pitch-128:
-    - bat-dg2-oem2:       [PASS][4] -> [SKIP][5] ([i915#2575]) +50 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a/bat-dg2-oem2/igt@kms_addfb_basic@bad-pitch-128.html
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-dg2-oem2/igt@kms_addfb_basic@bad-pitch-128.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-dg2-oem2:       [PASS][6] -> [SKIP][7] ([Intel XE#1134])
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a/bat-dg2-oem2/igt@kms_frontbuffer_tracking@basic.html
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-dg2-oem2/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@xe_intel_bb@create-in-region:
-    - bat-dg2-oem2:       [PASS][8] -> [SKIP][9] ([Intel XE#1130]) +133 other tests skip
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html
-
-  * igt@xe_module_load@load:
-    - bat-dg2-oem2:       [PASS][10] -> [FAIL][11] ([Intel XE#1132])
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a/bat-dg2-oem2/igt@xe_module_load@load.html
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-dg2-oem2/igt@xe_module_load@load.html
-
-  
-#### Warnings ####
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-dg2-oem2:       [SKIP][12] ([Intel XE#623]) -> [SKIP][13] ([i915#2575])
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-dg2-oem2:       [SKIP][14] ([Intel XE#455]) -> [SKIP][15] ([Intel XE#1134])
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a/bat-dg2-oem2/igt@kms_dsc@dsc-basic.html
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-dg2-oem2/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - bat-dg2-oem2:       [SKIP][16] ([i915#5274]) -> [SKIP][17] ([i915#2575])
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a/bat-dg2-oem2/igt@kms_force_connector_basic@prune-stale-modes.html
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-dg2-oem2/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  * igt@kms_psr@psr-cursor-plane-move:
-    - bat-dg2-oem2:       [SKIP][18] ([Intel XE#929]) -> [SKIP][19] ([Intel XE#1134]) +2 other tests skip
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a/bat-dg2-oem2/igt@kms_psr@psr-cursor-plane-move.html
-   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-dg2-oem2/igt@kms_psr@psr-cursor-plane-move.html
-
-  * igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate:
-    - bat-dg2-oem2:       [SKIP][20] ([Intel XE#288]) -> [SKIP][21] ([Intel XE#1130]) +22 other tests skip
-   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate.html
-   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate.html
-
-  * igt@xe_huc_copy@huc_copy:
-    - bat-dg2-oem2:       [SKIP][22] ([Intel XE#255]) -> [SKIP][23] ([Intel XE#1130])
-   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a/bat-dg2-oem2/igt@xe_huc_copy@huc_copy.html
-   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-dg2-oem2/igt@xe_huc_copy@huc_copy.html
-
-  * igt@xe_pat@pat-index-xe2:
-    - bat-dg2-oem2:       [SKIP][24] ([Intel XE#977]) -> [SKIP][25] ([Intel XE#1130])
-   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a/bat-dg2-oem2/igt@xe_pat@pat-index-xe2.html
-   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-dg2-oem2/igt@xe_pat@pat-index-xe2.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-dg2-oem2:       [SKIP][26] ([Intel XE#979]) -> [SKIP][27] ([Intel XE#1130]) +1 other test skip
-   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a/bat-dg2-oem2/igt@xe_pat@pat-index-xehpc.html
-   [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-dg2-oem2/igt@xe_pat@pat-index-xehpc.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#1130]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1130
-  [Intel XE#1132]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1132
-  [Intel XE#1134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1134
-  [Intel XE#1136]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1136
-  [Intel XE#1414]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1414
-  [Intel XE#1415]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1415
-  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
-  [Intel XE#255]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/255
-  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-  [Intel XE#623]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/623
-  [Intel XE#929]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/929
-  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
-  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
-
-
-Build changes
--------------
-
-  * Linux: xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a -> xe-pw-131790v2
-
-  IGT_7790: 5ec1ff6da3535cf80fd4e1844867d75c481ef86a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a: d80d79a49622684f7d0c29e26354fa55c718b48a
-  xe-pw-131790v2: 131790v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/index.html
-
---===============8704900784997419323==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/uapi: Restore flags VM_BIND_FLAG_READONLY and VM_BIND_FLAG_IMMEDIATE (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131790/">https://patchwork.freedesktop.org/series/131790/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a_BAT -&gt; xe-pw-131790v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-131790v2_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@xe_pat@pat-index-xelpg:<ul>
-<li>{bat-lnl-1}:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-lnl-1/igt@xe_pat@pat-index-xelpg.html">SKIP</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-131790v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1136">Intel XE#1136</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@bad-pitch-128:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a/bat-dg2-oem2/igt@kms_addfb_basic@bad-pitch-128.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-dg2-oem2/igt@kms_addfb_basic@bad-pitch-128.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +50 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a/bat-dg2-oem2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-dg2-oem2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1134">Intel XE#1134</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_intel_bb@create-in-region:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1130">Intel XE#1130</a>) +133 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_module_load@load:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a/bat-dg2-oem2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-dg2-oem2/igt@xe_module_load@load.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1132">Intel XE#1132</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/623">Intel XE#623</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a/bat-dg2-oem2/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-dg2-oem2/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1134">Intel XE#1134</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a/bat-dg2-oem2/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5274">i915#5274</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-dg2-oem2/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-cursor-plane-move:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a/bat-dg2-oem2/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/929">Intel XE#929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-dg2-oem2/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1134">Intel XE#1134</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1130">Intel XE#1130</a>) +22 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_huc_copy@huc_copy:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a/bat-dg2-oem2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/255">Intel XE#255</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-dg2-oem2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1130">Intel XE#1130</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xe2:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a/bat-dg2-oem2/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-dg2-oem2/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1130">Intel XE#1130</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a/bat-dg2-oem2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131790v2/bat-dg2-oem2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1130">Intel XE#1130</a>) +1 other test skip</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a -&gt; xe-pw-131790v2</li>
-</ul>
-<p>IGT_7790: 5ec1ff6da3535cf80fd4e1844867d75c481ef86a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1013-d80d79a49622684f7d0c29e26354fa55c718b48a: d80d79a49622684f7d0c29e26354fa55c718b48a<br />
-  xe-pw-131790v2: 131790v2</p>
-
-</body>
-</html>
-
---===============8704900784997419323==--
