@@ -4,25 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A5EECD1283
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Mar 2024 19:27:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A6D4C6FD1F
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Mar 2024 20:00:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78C2711285C;
-	Fri, 29 Mar 2024 19:27:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A05BD112305;
+	Fri, 29 Mar 2024 20:00:40 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B0A011212B;
- Fri, 29 Mar 2024 19:27:24 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10D23112305;
+ Fri, 29 Mar 2024 20:00:39 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2525222276560970970=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_series_starting_with_=5B?=
- =?utf-8?q?1/3=5D_drm/xe/xe=5Fguc=5Fsubmit=3A_Fix_exec_queue_stop_race_condi?=
- =?utf-8?q?tion?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5B1/3=5D_d?=
+ =?utf-8?q?rm/xe/xe=5Fguc=5Fsubmit=3A_Fix_exec_queue_stop_race_condition?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 29 Mar 2024 19:27:24 -0000
-Message-ID: <171174044430.1081852.3237698411453305356@8e613ede5ea5>
+Date: Fri, 29 Mar 2024 20:00:39 -0000
+Message-ID: <171174243906.1081134.7438545977348238005@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240329184929.3675256-1-jonathan.cavitt@intel.com>
 In-Reply-To: <20240329184929.3675256-1-jonathan.cavitt@intel.com>
@@ -41,6 +40,11 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============2525222276560970970==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: series starting with [1/3] drm/xe/xe_guc_submit: Fix exec queue stop race condition
@@ -49,25 +53,89 @@ State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 15fe5f853b066bf84109866c9a1e4bc0bc15faf0
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+CI Bug Log - changes from xe-1017-15fe5f853b066bf84109866c9a1e4bc0bc15faf0_BAT -> xe-pw-131824v1_BAT
+====================================================
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (5 -> 5)
+------------------------------
+
+  No changes in participating hosts
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-1017-15fe5f853b066bf84109866c9a1e4bc0bc15faf0 -> xe-pw-131824v1
+
+  IGT_7791: 7d7be3a56e299d9ad14ac2c6535a7e14b4cfd4df @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1017-15fe5f853b066bf84109866c9a1e4bc0bc15faf0: 15fe5f853b066bf84109866c9a1e4bc0bc15faf0
+  xe-pw-131824v1: 131824v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131824v1/index.html
+
+--===============2525222276560970970==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/3] drm/xe/xe_guc_submit: Fix exec queue stop race condition</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131824/">https://patchwork.freedesktop.org/series/131824/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131824v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131824v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1017-15fe5f853b066bf84109866c9a1e4bc0bc15faf0_BAT -&gt; xe-pw-131824v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (5 -&gt; 5)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1017-15fe5f853b066bf84109866c9a1e4bc0bc15faf0 -&gt; xe-pw-131824v1</li>
+</ul>
+<p>IGT_7791: 7d7be3a56e299d9ad14ac2c6535a7e14b4cfd4df @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1017-15fe5f853b066bf84109866c9a1e4bc0bc15faf0: 15fe5f853b066bf84109866c9a1e4bc0bc15faf0<br />
+  xe-pw-131824v1: 131824v1</p>
+
+</body>
+</html>
+
+--===============2525222276560970970==--
