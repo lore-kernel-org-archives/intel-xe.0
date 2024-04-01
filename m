@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CD66CD1288
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Apr 2024 17:38:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 748BECD1288
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Apr 2024 17:39:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2570410EA3D;
-	Mon,  1 Apr 2024 17:38:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32AAF10EA3D;
+	Mon,  1 Apr 2024 17:39:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GgfXEDx1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="coQCoaIa";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DA3710EA3D
- for <intel-xe@lists.freedesktop.org>; Mon,  1 Apr 2024 17:38:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0775D10EA3D
+ for <intel-xe@lists.freedesktop.org>; Mon,  1 Apr 2024 17:39:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711993114; x=1743529114;
+ t=1711993168; x=1743529168;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
  bh=17GiUitrP6MSxit+PvpFqbgDygOCPFEZIoVQXybEgyQ=;
- b=GgfXEDx1WpFD3+El7K6YXN/4YCIblk5T3lSKgi6KCt9F4c4jod5FuX2t
- M5HQaagM+CXiVNSOCcJIm+MCW0bvWde8tSYQNdfzxVR+g30SXXKawxI14
- gIsyoMqqjNvfuh9Kf0p6sl/JU8YjuOKef3VAg+4qYXLdSXibkj0e6DwKQ
- FVZtCeB4EW7BIHjuQ3rO0UYR+NU72rfcAwpHbILm1CsrHDC/luezfi+4q
- XfM2ZzAWLhb6mUm4DqKQtqSVsvBP9A0Gq6bA4dHFoSTEzzU2lAJpVgn9l
- y0Y+lMavJy0qnt1vgqikbrdCzwHf5IC0QkskVV39LWLjwEzTOKd+a0xWN Q==;
-X-CSE-ConnectionGUID: +TNu77zySbCDiih3INXaIQ==
-X-CSE-MsgGUID: MJ1oxABvQHycC37wU3F+xA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11031"; a="32533817"
-X-IronPort-AV: E=Sophos;i="6.07,172,1708416000"; d="scan'208";a="32533817"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2024 10:38:33 -0700
+ b=coQCoaIaqthIDjndiBxlaQdIWCUbvt/RRtwiWcS/0gvgIzj+2ZKqgWg0
+ 7UIjxq4rORcsFh8z+uPsCmpUb3o/yOEiNbOL6PgNj2A82OlB74ZbMaZsA
+ SSxl2YM/Qo2K3yTOVezQIfgs0j7wASB1ateBaQ1c+4LICUfQgsliUvMV1
+ 1A7KsjpXiXfYEC+5fJSzGd571E+t8bxvH/bihYCXBDMiBoT7p+CUhpAQs
+ EfniNRAFqIxyS8iw6jsM9FRbXpZ0+uKmfEpKxzeDGqZiiRl6tU0y+uH1s
+ 88gAVpBfxeaYuGR5UxIE4+bsghHWtZvKvctG+6VKZHLJh/fnNFzZNnKCG g==;
+X-CSE-ConnectionGUID: mMnJkoz1TmyvPTYppjRohA==
+X-CSE-MsgGUID: b2eNji+sTBikBAPnKi7Jww==
+X-IronPort-AV: E=McAfee;i="6600,9927,11031"; a="7258212"
+X-IronPort-AV: E=Sophos;i="6.07,172,1708416000"; 
+   d="scan'208";a="7258212"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2024 10:39:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,172,1708416000"; d="scan'208";a="17674564"
+X-IronPort-AV: E=Sophos;i="6.07,172,1708416000"; d="scan'208";a="22471852"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by fmviesa010.fm.intel.com with ESMTP; 01 Apr 2024 10:38:32 -0700
+ by orviesa005.jf.intel.com with ESMTP; 01 Apr 2024 10:39:27 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
 Subject: [PATCH v2] drm/xe/xe_migrate: Cast to output precision before
- multiplying operands.
-Date: Mon,  1 Apr 2024 23:22:06 +0530
-Message-Id: <20240401175206.3823519-1-himal.prasad.ghimiray@intel.com>
+ multiplying operands
+Date: Mon,  1 Apr 2024 23:23:00 +0530
+Message-Id: <20240401175300.3823653-1-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
