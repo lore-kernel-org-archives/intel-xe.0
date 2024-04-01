@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66902CD1288
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Apr 2024 12:48:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4D36CD1288
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Apr 2024 12:54:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A39B10F113;
-	Mon,  1 Apr 2024 12:48:34 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="HXt1rRSU";
-	dkim-atps=neutral
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3ABA31127D5;
- Fri, 29 Mar 2024 17:02:28 +0000 (UTC)
-Received: from rrs24-12-35.corp.microsoft.com (unknown [131.107.147.137])
- by linux.microsoft.com (Postfix) with ESMTPSA id E709B20E6F50;
- Fri, 29 Mar 2024 10:02:27 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com E709B20E6F50
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
- s=default; t=1711731748;
- bh=FBEap9UriasmuWH1luz/pYU8Vj/ov3W7GcXI5HcE8Oc=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=HXt1rRSU2n8RHfjdj+dQSPpD5mqqmQZS2xo1RoJb1Tx7aw63Shmx6szGeIXPbhjJ9
- KCJAEVxyAoSUBA0s8+2FYyT4zuT5SAC4MIJ9rIwYY/l4JyWAWCSaJhyxH+uk29eM4h
- Z+uxKwMTyQKbiiWtAXBnNEC7siWDf+GZGFaxGqY8=
-From: Easwar Hariharan <eahariha@linux.microsoft.com>
-To: Edward Cree <ecree.xilinx@gmail.com>,
- Martin Habets <habetsm.xilinx@gmail.com>,
- "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>,
- Easwar Hariharan <eahariha@linux.microsoft.com>,
- netdev@vger.kernel.org (open list:SFC NETWORK DRIVER),
- linux-net-drivers@amd.com (open list:SFC NETWORK DRIVER),
- linux-kernel@vger.kernel.org (open list)
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
- dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
- linux-kernel@vger.kernel.org (open list),
- intel-gfx@lists.freedesktop.org (open list:INTEL DRM DISPLAY FOR XE AND I915
- DRIVERS), 
- intel-xe@lists.freedesktop.org (open list:INTEL DRM DISPLAY FOR XE AND I915
- DRIVERS), 
- nouveau@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO
- GPUS), linux-i2c@vger.kernel.org (open list:I2C SUBSYSTEM HOST DRIVERS),
- linux-media@vger.kernel.org (open list:BTTV VIDEO4LINUX DRIVER),
- linux-fbdev@vger.kernel.org (open list:FRAMEBUFFER LAYER)
-Subject: [PATCH v0 10/14] sfc: falcon: Make I2C terminology more inclusive
-Date: Fri, 29 Mar 2024 17:00:34 +0000
-Message-Id: <20240329170038.3863998-11-eahariha@linux.microsoft.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
-References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2AE110E6F8;
+	Mon,  1 Apr 2024 12:54:18 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8081D10E6F8;
+ Mon,  1 Apr 2024 12:54:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 01 Apr 2024 12:47:10 +0000
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Make_I2C_terminology?=
+ =?utf-8?q?_more_inclusive_for_I2C_Algobit_and_consumers?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Easwar Hariharan" <eahariha@linux.microsoft.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 01 Apr 2024 12:54:17 -0000
+Message-ID: <171197605752.1117021.15383780457832179600@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
+In-Reply-To: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,37 +36,34 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
-with more appropriate terms. Inspired by and following on to Wolfram's
-series to fix drivers/i2c/[1], fix the terminology for users of
-I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
-in the specification.
+== Series Details ==
 
-Compile tested, no functionality changes intended
+Series: Make I2C terminology more inclusive for I2C Algobit and consumers
+URL   : https://patchwork.freedesktop.org/series/131888/
+State : success
 
-[1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+== Summary ==
 
-Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
----
- drivers/net/ethernet/sfc/falcon/falcon.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: a585b1993215 drm-tip: 2024y-04m-01d-05h-29m-14s UTC integration manifest
+=== git am output follows ===
+Applying: IB/hfi1, IB/qib: Make I2C terminology more inclusive
+Applying: drm/amdgpu, drm/radeon: Make I2C terminology more inclusive
+Applying: drm/gma500, drm/i915: Make I2C terminology more inclusive
+Applying: media: au0828: Make I2C terminology more inclusive
+Applying: media: cobalt: Make I2C terminology more inclusive
+Applying: media: cx18: Make I2C terminology more inclusive
+Applying: media: cx25821: Make I2C terminology more inclusive
+Applying: media: ivtv: Make I2C terminology more inclusive
+Applying: media: cx23885: Make I2C terminology more inclusive
+Applying: sfc: falcon: Make I2C terminology more inclusive
+Applying: fbdev/smscufx: Make I2C terminology more inclusive
+Applying: fbdev/viafb: Make I2C terminology more inclusive
+Applying: drm/nouveau: Make I2C terminology more inclusive
+Applying: i2c and treewide: Make I2C terminology more inclusive
 
-diff --git a/drivers/net/ethernet/sfc/falcon/falcon.c b/drivers/net/ethernet/sfc/falcon/falcon.c
-index 7a1c9337081b..147e7c8e3c02 100644
---- a/drivers/net/ethernet/sfc/falcon/falcon.c
-+++ b/drivers/net/ethernet/sfc/falcon/falcon.c
-@@ -367,7 +367,7 @@ static const struct i2c_algo_bit_data falcon_i2c_bit_operations = {
- 	.getsda		= falcon_getsda,
- 	.getscl		= falcon_getscl,
- 	.udelay		= 5,
--	/* Wait up to 50 ms for slave to let us pull SCL high */
-+	/* Wait up to 50 ms for client to let us pull SCL high */
- 	.timeout	= DIV_ROUND_UP(HZ, 20),
- };
- 
--- 
-2.34.1
 
