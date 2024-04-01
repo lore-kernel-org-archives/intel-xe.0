@@ -4,141 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 475F7CD1288
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Apr 2024 12:54:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2FD4CD1292
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Apr 2024 12:55:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0B3A10ED4C;
-	Mon,  1 Apr 2024 12:54:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GDha0ci+";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1387B10E6F8
- for <intel-xe@lists.freedesktop.org>; Mon,  1 Apr 2024 12:54:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711976072; x=1743512072;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=0rLRGjccPmhAlpPFnNTwok16iL7dq7ooWpB4MMBRNmE=;
- b=GDha0ci+Et2hEJge2qKJesjEtx6XEO40x/kFU4DVwFqnma2DoxsLY7C0
- koFRWEAHsH+c03Z4hF7aNMxIoUW2RQOHOOcaFauybg9RyGiXNwZoCVwh8
- SpJu5Xi7KbZXzs2cD6fU7yYdZQf/InPKrOQ6reW3cCaXTF8NZCwJo5tXp
- 47x17ydr4lFnxMndnevIPbpwCsCbT37WDQr5eljapuO550yxoPtIhoslH
- ZswpzOiGt52vepZ0wRVie7Lj8LtGuUJQFC0MtwVzO2V9ZAfOvDh3cXMCl
- P6pBP1SUOPJqHPgMA8pCmoaDH68t0KzCRGTnQQGMeOi4Pxqe0Xu9iTN/U A==;
-X-CSE-ConnectionGUID: fNuBd059RYCFMeSCuvrWeQ==
-X-CSE-MsgGUID: MuxGWqRLSpyQTZ51ePqbSg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11030"; a="6964315"
-X-IronPort-AV: E=Sophos;i="6.07,172,1708416000"; 
-   d="scan'208";a="6964315"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2024 05:54:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,172,1708416000"; d="scan'208";a="17529112"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 01 Apr 2024 05:54:32 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 1 Apr 2024 05:54:30 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 1 Apr 2024 05:54:30 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Mon, 1 Apr 2024 05:54:30 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Mon, 1 Apr 2024 05:54:30 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=E2BDO2ySW//Ya6z7GSzePKZgWtI+NKlHPySJO/54ijALXZKcVB9b5d+2jWSU/zIbdqT/PxQmF+N7PaL+SPhDnn4tR5WKCyMg3MEzbuwQpg13wXDJ4gl7KsQfO0qKrue3Ubcx+jfDqDqPEq1nvXW/eSPnXSvre391Rexoew4MBMviXa/8BJlFzAV5Bn+Q9T40V6TwLO9JNIHR1viCVL13Kq+yHmsX7dl187QBEJ+S/hKK8V2fkPNXTMmKHxEGUsor6hhuuOss4DbP5cg6QX2Uw6TvlTeri3DaMlUR76V9bfytfYISseuOQ1yOKyyzxuVLHLb3dzhX0Gvdu/xOmkHX1A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0rLRGjccPmhAlpPFnNTwok16iL7dq7ooWpB4MMBRNmE=;
- b=EGSffRhourJcqs5MWqjHgpf3x+Rk3sIpXXtTdY1G5hV7RgsRcoIsoxdmb4XeRDdRFr6h5xlvuj9s8azkPcd/W1BH3vcHIWctKHMVE0/Xb2O1Mv5ovHLhT11fxMBSxmKl64SBUSsbGJUuMaVrg8eiPwP1OOUK7vTdOnikKjsVnPThaXEtCfTgJ3v2annLJt8lq45AgIUXTnxcZXybB1wn49GxTy4h0Xh4ioSyWoMdXBongR+2G5oorW0jOTRwwZbh+mL5cB2UJy5lY0+8oPIQtwLIuEuLMuNNoxhWoCWCxQ0Bb28juEF4DBLo26Gf7rGfFrViSl25i8ETg74K2zX9bQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by SJ1PR11MB6082.namprd11.prod.outlook.com (2603:10b6:a03:48b::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.23; Mon, 1 Apr
- 2024 12:54:27 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::e9dd:320:976f:e257]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::e9dd:320:976f:e257%4]) with mapi id 15.20.7452.019; Mon, 1 Apr 2024
- 12:54:27 +0000
-Date: Mon, 1 Apr 2024 07:54:21 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 0/7] Update GuC ABI definitions
-Message-ID: <fwbgnwpthgurnrnbofm3wmeviqh6laehk4ulf2e3hxinphnzyj@fdaweorbztji>
-References: <20240328183147.495-1-michal.wajdeczko@intel.com>
- <xxpank76lzfhakpmqa5srfqzq3fnpxlklttseyczfrajemvjzz@iqxhplnfmpcc>
- <92f47e87-a638-44c3-94a8-34f901a92eb5@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <92f47e87-a638-44c3-94a8-34f901a92eb5@intel.com>
-X-ClientProxiedBy: SJ0P220CA0028.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:41b::11) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55ACA10F142;
+	Mon,  1 Apr 2024 12:55:12 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1178910F142;
+ Mon,  1 Apr 2024 12:55:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SJ1PR11MB6082:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: tt8g4Kwx5236Lf0hW1ta32iRlhJATEMl+64nAl9c70Fq9JieTBvvINJStjLjmy3gRjzIrJAKdvICHbjRXNx//s5fnsMnS122PkLjvZGJFG7H2/R4Te5E+AEiHp1FTLbXxj5VAgDhFPItkp1n/U8BFDMKv5bu1WKT+jnUBaWzvLM12gJDSWK3ODHZSfAEAPC3HiDvLw7hoxE6uDjMI7o9KisJDsicfaLhQRcjXf5UGmnKmzyVwwpW0PQxQBLMk/Mm7EEliJI45U/ERL+/8jcT9wqAcv7aDNQq5hjflcDkD4X8YHJT6azKvvvQq+kBX1BEhSv/k/21fTl+855EHKutgI2A5OWcZNsNqelrlGsssQhjfAsHNM4oPkLo/OS2xcC+rsyJy92uGnO17Qh4UegCdKsEZqNUAjz0H11eadHI3kPrql6oFHncTf4ktTQxXlLCjsQhddwowj6FwtvKcHPQnOBF8jhESX6VrVFMM6mBYOhoxxWThexYx3Dw/oI/Ok5S5yeg0t9hp89cS9SIMMhR6xPP8bc8bRKHzrfulR+0bqxsXH4oXyxhUqpP1TAkTN2LJRvZQ5zHuI5EMLo7HjqKtajAYo+vRWfII1PCb+oOz7Brh2ZyrTu7IXlOzuwg7e60Ond9rH4MXs0GnWnApBDqAiSLarEwPS0ZoUHgiWVF3Fk=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(366007)(376005)(27256008); DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?B9PHWgJLK6zIqtTucB/qO13KHAW90wiuNxSImdtQEzK10TriLFghh7SSPxIg?=
- =?us-ascii?Q?5Wmjm/6FJfSDNblCrNGKtj3H+zRQ210EkUW+Nz5h/qBvv5LoIaTHWfHzIlfO?=
- =?us-ascii?Q?wkWZFITFVzWKc2SLyVsgkktMRJS4W/LS7nxexTQZSiynE+wq51pY0mT1Wgui?=
- =?us-ascii?Q?ajjMEt8INlkSA4l0BsAYjFMmxUTqK0g+EKQ+88IAprZUFMj4kiER10udcxFR?=
- =?us-ascii?Q?q9ff1+awyavo/FD7M15XovRt/rkpPx+m+T325Ww37DmhO9WNYZLnBVOJ529M?=
- =?us-ascii?Q?2YTGoLYJZqlT/MbhK1qH5aZluUGOhEzKyuG7Q/WhzS9upnHC1NVBJEtHs6R1?=
- =?us-ascii?Q?3ZZu8eF78ZH5dm/y/XoqDbvXn8IDNpOo5NVV0+fBhndlX0p9gbc30a9UFrtJ?=
- =?us-ascii?Q?dFBKy8hw4+NPlB2haPacI+LToJQOVwTTlGCnu6sT9IDgxJDVhM6qqV72HZLA?=
- =?us-ascii?Q?bhmZ/uKU5oLK9kvdq2a8QbsBpFSSH0JgvzB+Pbz19B4mhPuDLZe1UYEcyWQb?=
- =?us-ascii?Q?T+/sDkdKhpenlV+YMfIoXhD8RsJGaoHYJbTFqA+7aOSjDvIycc4KDkCIPu7c?=
- =?us-ascii?Q?iBfCGg5mfuW0GCiujgOSDXf4HbWWEYuepney/b+I0NdBq9pvKTtNCLiRUHfS?=
- =?us-ascii?Q?iWfTf6h5DOUg4bU0XG18rpMWzL9j88g2qXsGOgQkKcoZrN2tIv5LroxqGe46?=
- =?us-ascii?Q?xJpS7Hc0SCVWHPTlbe4ySu8MntTyZNXy4MDlEiFaHZpCSbCskS0p4Og7S10s?=
- =?us-ascii?Q?+EW5MtG+SKAPLGf5qMEaImrNmI8/ffItMLXn7+GGsZiUR6Op5Vop6JgXtYIB?=
- =?us-ascii?Q?br20OqyX/Pz/xLJbDaKPPIT2K5HR/xC4vmOaXzSGMvYlsj+GQfLJxvsyKrPE?=
- =?us-ascii?Q?9iE/cn/lvDdehz4gSJ9dA8iwmSTCo/dOKW3WvBd9sbuPCfSGSDZht6Rc5NmY?=
- =?us-ascii?Q?I4S6A3IzJBp/d647VXzH5uHPDSe9ex7oJ57CsJAHTS4qcgO/QurY5cP3bIkP?=
- =?us-ascii?Q?5ozK60VoKLo7L3QXLK+Rr9ZJlMUp4jCdpLzs8EhE1ozt7c1t4Kx8156lNpXu?=
- =?us-ascii?Q?shXq4uerRnUPgVSkSIWfeOKn5u9Q3NHBU7JJDPymWmYNS+W6z9jcs9V6kziu?=
- =?us-ascii?Q?F0FWhBpFiA2K8RlFVNmzsdYZXr0d8+nAO3N2+Oj1NaVKIiYG4HXwqQRKe3cW?=
- =?us-ascii?Q?4z1PMbUCVW6MTGyYqZPMb38aevzQ91DqKwvpHhGZFuoCD6IjxdnsEhPwL9y4?=
- =?us-ascii?Q?3cFKdmX33T8XxlYs5nr2hvb8ZlSt337gIUBjEQnLrLzdNDU7KWtR/23bCsjR?=
- =?us-ascii?Q?igb3pTJO6+7Elx2H+92V5I2FV26OT7S9+iUqAxZqldgdyDIWL6l0w9tbx9l/?=
- =?us-ascii?Q?BlQiru3jkAp7VNThv1v1b+93GyJrt5rlxpm9Qxy5MnY3B4Y38bnH7PeQ/kiC?=
- =?us-ascii?Q?Kp5MSpNgsrIfbSnQrJN+lhbScFPhz+b3tqGGc2smRBDuWGOlOOR8nIygApma?=
- =?us-ascii?Q?HCNUmvQ4gc+yb2rOuweeiFELofL1jlfEixwXDVKnoz8McGTmzEBogfxwvBRo?=
- =?us-ascii?Q?VvJzg2FAPB5ycVBG/WvC0KY2JSO6hre6nUJKdigsuPRAFZ4Yr3FDqYnwwXsQ?=
- =?us-ascii?Q?ig=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: bd494ad8-a1a4-417c-1fd1-08dc524add09
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2024 12:54:27.0840 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +3HLg4wJ/M+xtN7XWlp08Ju66o7z7MYGZOFx+mIGceGflRqX2ozXXEYNHhxYYFMOI+MIPbPGU+KKuPvSlJAF9p04WzoAcUNM1N+LgH+8XrQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6082
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Make_I2C_terminology_more?=
+ =?utf-8?q?_inclusive_for_I2C_Algobit_and_consumers?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Easwar Hariharan" <eahariha@linux.microsoft.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 01 Apr 2024 12:55:11 -0000
+Message-ID: <171197611106.1117021.4343416773619784220@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
+In-Reply-To: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,43 +36,419 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Mar 29, 2024 at 05:50:32PM +0100, Michal Wajdeczko wrote:
->
->
->On 29.03.2024 17:14, Lucas De Marchi wrote:
->> On Thu, Mar 28, 2024 at 07:31:40PM +0100, Michal Wajdeczko wrote:
->>> In upcoming patches we will use additional messages in communication
->>> with the GuC firmware. Add necessary definitions to our ABI header.
->>
->> but it would be better if these additions were done when they are
->> needed. We don't want to keep updating this with things that may not be
->> needed at all (plans always change, ABI may change to fix bugs, etc)
->
->fully understand that, but...
->
->this ABI definitions reflects what current firmware already supports
->and it is just complementary to what was already pushed in initial
->driver drop without supporting code:
-> - [1] GuC VGT Policy KLVs
-> - [2] GuC VF Configuration KLVs
->
->[1]
->https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/xe/abi/guc_klvs_abi.h#L114
->
->[2]
->https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/xe/abi/guc_klvs_abi.h#L154
->
->it will also help me lower my pile of pending patches, so maybe there is
->a chance for a small exception ?
+== Series Details ==
 
-I don't see how it really helps with reviewing your pending changes.
-IMO it will make it harder. When you need these defines, just squash
-them in the commit you are making use of them.
+Series: Make I2C terminology more inclusive for I2C Algobit and consumers
+URL   : https://patchwork.freedesktop.org/series/131888/
+State : warning
 
-I'm looking at this the same way we handle new registers... we don't
-just dump all the registers the hw knows about into regs/*.h
+== Summary ==
 
-Lucas De Marchi
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+10b531c2aeb176a1a539b4a77216232f97719cec
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit eef0e032f04d302f95c3a70943a3c0ab20f5a0b3
+Author: Easwar Hariharan <eahariha@linux.microsoft.com>
+Date:   Fri Mar 29 17:00:38 2024 +0000
+
+    i2c and treewide: Make I2C terminology more inclusive
+    
+    I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
+    with more appropriate terms. Inspired by and following on to Wolfram's
+    series to fix drivers/i2c[1], fix the terminology for users of
+    I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
+    in the specification.
+    
+    Compile tested, no functionality changes intended
+    
+    [1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+    
+    Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
++ /mt/dim checkpatch a585b19932157f2c96293bf00288968ada86d435 drm-intel
+9e4bf55513a4 IB/hfi1, IB/qib: Make I2C terminology more inclusive
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#7: 
+with more appropriate terms. Inspired by and following on to Wolfram's series
+
+total: 0 errors, 1 warnings, 0 checks, 261 lines checked
+6d6982169cfc drm/amdgpu, drm/radeon: Make I2C terminology more inclusive
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#14: 
+[1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+
+-:111: CHECK:CAMELCASE: Avoid CamelCase: <ucClientAddr>
+#111: FILE: drivers/gpu/drm/amd/amdgpu/atombios_i2c.c:86:
++	args.ucClientAddr = client_addr << 1;
+
+-:120: WARNING:LONG_LINE: line length of 118 exceeds 100 columns
+#120: FILE: drivers/gpu/drm/amd/amdgpu/atombios_i2c.c:162:
++void amdgpu_atombios_i2c_channel_trans(struct amdgpu_device *adev, u8 client_addr, u8 line_number, u8 offset, u8 data)
+
+-:208: CHECK:CAMELCASE: Avoid CamelCase: <ucI2CAddr>
+#208: FILE: drivers/gpu/drm/amd/display/dc/bios/bios_parser.c:1874:
++	info->i2c_client_address = record->ucI2CAddr;
+
+-:289: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#289: FILE: drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h:95:
++	uint32_t i2c_client_address;
+
+-:302: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#302: FILE: drivers/gpu/drm/amd/include/atombios.h:8506:
++  UCHAR   ucClientAddr;$
+
+-:315: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#315: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:537:
++  uint8_t  board_i2c_feature_client_addr;$
+
+-:315: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#315: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:537:
++  uint8_t  board_i2c_feature_client_addr;
+
+-:324: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#324: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:565:
++  uint8_t  board_i2c_feature_client_addr;$
+
+-:324: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#324: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:565:
++  uint8_t  board_i2c_feature_client_addr;
+
+-:334: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#334: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:593:
++	uint8_t  board_i2c_feature_client_addr;
+
+-:335: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#335: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:594:
++	uint8_t  ras_rom_i2c_client_addr;
+
+-:345: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#345: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:629:
++  uint8_t  board_i2c_feature_client_addr;$
+
+-:345: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#345: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:629:
++  uint8_t  board_i2c_feature_client_addr;
+
+-:346: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#346: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:630:
++  uint8_t  ras_rom_i2c_client_addr;$
+
+-:346: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#346: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:630:
++  uint8_t  ras_rom_i2c_client_addr;
+
+-:355: WARNING:LONG_LINE_COMMENT: line length of 122 exceeds 100 columns
+#355: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:833:
++  uint8_t i2c_client_addr;                   //The client address, it's 0 when the record is attached to connector for DDC
+
+-:355: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#355: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:833:
++  uint8_t i2c_client_addr;                   //The client address, it's 0 when the record is attached to connector for DDC$
+
+-:355: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#355: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:833:
++  uint8_t i2c_client_addr;                   //The client address, it's 0 when the record is attached to connector for DDC
+
+-:364: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#364: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:2029:
++  uint32_t smb_client_address;$
+
+-:364: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#364: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:2029:
++  uint32_t smb_client_address;
+
+-:373: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#373: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:2086:
++	uint32_t smb_client_address;
+
+-:382: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#382: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:2141:
++	uint32_t smb_client_address;
+
+-:391: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#391: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:2352:
++  uint32_t  clientaddress;$
+
+-:391: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#391: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:2352:
++  uint32_t  clientaddress;
+
+-:400: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#400: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:3513:
++   uint8_t  i2c_client_addr;$
+
+-:400: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#400: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:3513:
++   uint8_t  i2c_client_addr;
+
+-:409: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#409: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:4155:
++  uint8_t   client_addr;$
+
+-:409: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#409: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:4155:
++  uint8_t   client_addr;
+
+-:423: CHECK:CAMELCASE: Avoid CamelCase: <I2cControllers>
+#423: FILE: drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega20_processpptables.c:787:
++		ppsmc_pptable->I2cControllers[i].ClientAddress =
+
+-:423: CHECK:CAMELCASE: Avoid CamelCase: <ClientAddress>
+#423: FILE: drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega20_processpptables.c:787:
++		ppsmc_pptable->I2cControllers[i].ClientAddress =
+
+-:437: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#437: FILE: drivers/gpu/drm/amd/pm/powerplay/inc/smu11_driver_if.h:290:
++  uint32_t ClientAddress;$
+
+-:437: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#437: FILE: drivers/gpu/drm/amd/pm/powerplay/inc/smu11_driver_if.h:290:
++  uint32_t ClientAddress;
+
+-:450: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#450: FILE: drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu11_driver_if_arcturus.h:266:
++  uint32_t  ClientAddress;$
+
+-:450: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#450: FILE: drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu11_driver_if_arcturus.h:266:
++  uint32_t  ClientAddress;
+
+-:463: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#463: FILE: drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu11_driver_if_navi10.h:270:
++  uint32_t  ClientAddress;$
+
+-:463: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#463: FILE: drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu11_driver_if_navi10.h:270:
++  uint32_t  ClientAddress;
+
+-:476: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#476: FILE: drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu11_driver_if_sienna_cichlid.h:345:
++  uint8_t   ClientAddress;$
+
+-:476: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#476: FILE: drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu11_driver_if_sienna_cichlid.h:345:
++  uint8_t   ClientAddress;
+
+-:489: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#489: FILE: drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu13_driver_if_aldebaran.h:170:
++  uint8_t   ClientAddress;$
+
+-:489: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#489: FILE: drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu13_driver_if_aldebaran.h:170:
++  uint8_t   ClientAddress;
+
+-:502: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#502: FILE: drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu13_driver_if_v13_0_0.h:322:
++  uint8_t   ClientAddress;$
+
+-:502: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#502: FILE: drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu13_driver_if_v13_0_0.h:322:
++  uint8_t   ClientAddress;
+
+-:515: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#515: FILE: drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu13_driver_if_v13_0_7.h:323:
++  uint8_t   ClientAddress;$
+
+-:515: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#515: FILE: drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu13_driver_if_v13_0_7.h:323:
++  uint8_t   ClientAddress;
+
+-:530: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#530: FILE: drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c:1913:
++		dev_info(smu->adev->dev, "                   .ClientAddress = 0x%x\n",
++				pptable->I2cControllers[i].ClientAddress);
+
+-:545: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#545: FILE: drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c:2992:
++		dev_info(smu->adev->dev, "                   .ClientAddress = 0x%x\n",
++				pptable->I2cControllers[i].ClientAddress);
+
+-:556: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#556: FILE: drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c:3631:
++		dev_info(smu->adev->dev, "                   .ClientAddress = 0x%x\n",
++				pptable->I2cControllers[i].ClientAddress);
+
+-:569: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#569: FILE: drivers/gpu/drm/radeon/atombios.h:7232:
++  UCHAR   ucClientAddr;$
+
+-:656: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#656: FILE: drivers/gpu/drm/radeon/radeon_combios.c:2890:
++	uint8_t blocks, client_addr, rev;
+
+-:742: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#742: FILE: drivers/gpu/drm/radeon/radeon_mode.h:412:
++	uint8_t client_addr;
+
+total: 0 errors, 21 warnings, 30 checks, 575 lines checked
+dbe76cbd85f8 drm/gma500, drm/i915: Make I2C terminology more inclusive
+-:15: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#15: 
+https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+
+-:54: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#54: FILE: drivers/gpu/drm/gma500/intel_bios.c:361:
++		if (p_child->client_addr != CLIENT_ADDR1 &&
++			p_child->client_addr != CLIENT_ADDR2) {
+
+-:233: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#233: FILE: drivers/gpu/drm/gma500/psb_intel_sdvo.c:482:
++	msgs[i+1].addr = psb_intel_sdvo->client_addr;
+ 	      ^
+
+-:239: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#239: FILE: drivers/gpu/drm/gma500/psb_intel_sdvo.c:487:
++	msgs[i+2].addr = psb_intel_sdvo->client_addr;
+ 	      ^
+
+-:596: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#596: FILE: drivers/gpu/drm/i915/display/dvo_sil164.c:157:
++		DRM_DEBUG_KMS("sil164 not detected got %d: from %s Client %d.\n",
++			  ch, adapter->name, dvo->client_addr);
+
+-:607: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#607: FILE: drivers/gpu/drm/i915/display/dvo_sil164.c:166:
++		DRM_DEBUG_KMS("sil164 not detected got %d: from %s Client %d.\n",
++			  ch, adapter->name, dvo->client_addr);
+
+-:1011: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#1011: FILE: drivers/gpu/drm/i915/display/intel_sdvo.c:502:
++	msgs[i+1].addr = intel_sdvo->client_addr;
+ 	      ^
+
+-:1017: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#1017: FILE: drivers/gpu/drm/i915/display/intel_sdvo.c:507:
++	msgs[i+2].addr = intel_sdvo->client_addr;
+ 	      ^
+
+total: 0 errors, 1 warnings, 7 checks, 1001 lines checked
+7afbcf21b7be media: au0828: Make I2C terminology more inclusive
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#14: 
+[1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+
+total: 0 errors, 1 warnings, 0 checks, 24 lines checked
+536da0a35902 media: cobalt: Make I2C terminology more inclusive
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#14: 
+[1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+
+total: 0 errors, 1 warnings, 0 checks, 20 lines checked
+b7fdb80c34f6 media: cx18: Make I2C terminology more inclusive
+-:18: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#18: 
+[1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+
+total: 0 errors, 1 warnings, 0 checks, 85 lines checked
+324364792089 media: cx25821: Make I2C terminology more inclusive
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#14: 
+[1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+
+total: 0 errors, 1 warnings, 0 checks, 24 lines checked
+4d5858a32c7a media: ivtv: Make I2C terminology more inclusive
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#14: 
+[1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+
+-:27: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#27: FILE: drivers/media/pci/ivtv/ivtv-i2c.c:36:
++    lines.  To communicate on the bus (as a host, we don't act as a client),$
+
+-:27: WARNING:SPACING: space prohibited between function name and open parenthesis '('
+#27: FILE: drivers/media/pci/ivtv/ivtv-i2c.c:36:
++    lines.  To communicate on the bus (as a host, we don't act as a client),
+
+-:27: CHECK:CAMELCASE: Avoid CamelCase: <To>
+#27: FILE: drivers/media/pci/ivtv/ivtv-i2c.c:36:
++    lines.  To communicate on the bus (as a host, we don't act as a client),
+
+-:31: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#31: FILE: drivers/media/pci/ivtv/ivtv-i2c.c:39:
++    that indicates whether this is a read or a write.  The client then issues$
+
+-:36: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#36: FILE: drivers/media/pci/ivtv/ivtv-i2c.c:43:
++    to other hosts.$
+
+total: 0 errors, 5 warnings, 1 checks, 57 lines checked
+a2efeaf9c909 media: cx23885: Make I2C terminology more inclusive
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#14: 
+[1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+
+-:37: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#37: FILE: drivers/media/pci/cx23885/cx23885-f300.c:116:
++		pr_err("%s: timeout, the client no response\n",
+ 								__func__);
+
+total: 0 errors, 1 warnings, 1 checks, 45 lines checked
+3fce06d83845 sfc: falcon: Make I2C terminology more inclusive
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#14: 
+[1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+5d5521a4e534 fbdev/smscufx: Make I2C terminology more inclusive
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#14: 
+[1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+
+total: 0 errors, 1 warnings, 0 checks, 16 lines checked
+ecc7d4a6526b fbdev/viafb: Make I2C terminology more inclusive
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#14: 
+[1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+
+-:91: CHECK:SPACING: No space is necessary after a cast
+#91: FILE: drivers/video/fbdev/via/dvi.c:147:
++			   (u8) viaparinfo->chip_info->tmds_chip_info.tmds_chip_client_addr,
+
+-:100: CHECK:SPACING: No space is necessary after a cast
+#100: FILE: drivers/video/fbdev/via/dvi.c:155:
++			    (u8) viaparinfo->chip_info->tmds_chip_info.tmds_chip_client_addr,
+
+-:178: CHECK:SPACING: No space is necessary after a cast
+#178: FILE: drivers/video/fbdev/via/lcd.c:330:
++			(u8) viaparinfo->chip_info->lvds_chip_info.lvds_chip_client_addr,
+
+-:213: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#213: FILE: drivers/video/fbdev/via/via_i2c.c:118:
++	msgs[0].addr = msgs[1].addr = client_addr / 2;
+
+-:249: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#249: FILE: drivers/video/fbdev/via/via_i2c.c:162:
++	msgs[0].addr = msgs[1].addr = client_addr / 2;
+
+total: 0 errors, 1 warnings, 5 checks, 219 lines checked
+7e687ddd7fdd drm/nouveau: Make I2C terminology more inclusive
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#14: 
+[1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+
+-:63: ERROR:CODE_INDENT: code indent should use tabs where possible
+#63: FILE: drivers/gpu/drm/nouveau/dispnv04/dfp.c:635:
++^I^I        .addr = (dcb->tmdsconf.client_addr == 0x7 ? 0x3a : 0x38),$
+
+total: 1 errors, 1 warnings, 0 checks, 75 lines checked
+eef0e032f04d i2c and treewide: Make I2C terminology more inclusive
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#14: 
+[1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+
+-:203: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#203: FILE: drivers/i2c/algos/i2c-algo-bit.c:146:
++   check ackn. from client */
+
+total: 0 errors, 2 warnings, 0 checks, 232 lines checked
+
+
