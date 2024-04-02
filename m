@@ -4,26 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9F89C6FD1F
-	for <intel-xe@archiver.kernel.org>; Tue,  2 Apr 2024 22:52:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEE1AC6FD1F
+	for <intel-xe@archiver.kernel.org>; Tue,  2 Apr 2024 22:57:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2D8710ED1B;
-	Tue,  2 Apr 2024 22:52:59 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81B6C10ED1B;
- Tue,  2 Apr 2024 22:52:58 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8313040230902205754=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70A9A10F5B8;
+	Tue,  2 Apr 2024 22:57:33 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RSJe0E+z";
+	dkim-atps=neutral
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com
+ [209.85.218.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0361310F5B8;
+ Tue,  2 Apr 2024 22:57:31 +0000 (UTC)
+Received: by mail-ej1-f50.google.com with SMTP id
+ a640c23a62f3a-a4e79d7d21dso127233066b.1; 
+ Tue, 02 Apr 2024 15:57:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1712098650; x=1712703450; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=GEJpRDcbgGxCKBYYYVq8f8EDdRqjSm8WksL8ghlqPtY=;
+ b=RSJe0E+znaeTm+RaUVgW9YJaddsyfbJk9e3O3AMT+pxLXZ/QTR5tGtb1YgNtJDOs0b
+ RFSSDCYsigvrprPr1WKo69qUdCQiPdirNpIFbXWO8FAhgzwHdh/VdbBGb/rBXDNzMuO2
+ BDh//hsk169y2VORPd9NDiI/EQy2qhBBaKTBe2rNT9IhbYYDMB4S0eUsEr+hI46iv7uQ
+ K/20MtTrBDuDWak1vVtjmJQveiwv/y0k9n6xlVJX5Mc2NK8mx0Aw2RGOs+gtM//btI0S
+ Wc6t3oT0oor2yVFSsB/vUMSZRhMW60JvshUURDhBGLEVoO/hj9waw6YH005xnscqISe1
+ xKNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1712098650; x=1712703450;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=GEJpRDcbgGxCKBYYYVq8f8EDdRqjSm8WksL8ghlqPtY=;
+ b=eCJn6wACKWDZkYC0tsJJDO74NuqWg0Sw8/dJy8unzAsk/8QW8CVGIJ2UwkVNH6aW49
+ xOh71aPVgbFFfkCKFbGvCj1qGFT755wF82aZGQsphP22En6BJowD7o9kIcMUYPu9J58y
+ t5UeETHNsrW63IALw9TMZlnWHpJArll5na9o3GIFqez/o1fIFcPAcvxEI9Hcfq0Pge8d
+ lDkPGOfNHHa/P9AoaGrVcIoTMJDAWOzlFdBjeNlDMUVAx/Ge4Le5ZBLw5TJJxIU45xR6
+ oep7Fk0nqdWQQRTCeIQ/tiWyUNI1rQb4ahSO+fFcd2KH4cRId7LvZ2Q/TW7vHamJd3cO
+ 6oNg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXHU2YxvVVmHW5vetnw6+pIznygE4PSJELeWV3aGCzQo0ikMolZYhnlHjg1Aj4/5AI54AjiPMr6XGC6dKU59q6EDhfYF2KvU0Ta9RfnzT8=
+X-Gm-Message-State: AOJu0Ywe6BQRjMm6gtVoXMNGoOS6RuORga3ynZ0Y5pBbYqy6JAcg8B3s
+ PyCEohtpGzCxA3pUwU9M8xX73zpNWAtboWzXDGhaVts/MrW14AuSpHn00YFSAdbSxUs6r4IgYIF
+ yWx4Li68gUy8aEfpvEOVP1NlIVV4=
+X-Google-Smtp-Source: AGHT+IGT4Lgxl4gxvcWfg0u8acNHIiq4lTW+DI1I12n5hEmabUn0rAax/JRefrqGjRh3weiVc1xFHkOg4yxpj1E1hZE=
+X-Received: by 2002:a50:9f44:0:b0:568:a792:276 with SMTP id
+ b62-20020a509f44000000b00568a7920276mr2651576edf.7.1712098649716; Tue, 02 Apr
+ 2024 15:57:29 -0700 (PDT)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Refactor_BO_flags=2C_batch_2?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 02 Apr 2024 22:52:58 -0000
-Message-ID: <171209837853.1155818.16898558239313075686@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240402215455.1839828-1-lucas.demarchi@intel.com>
-In-Reply-To: <20240402215455.1839828-1-lucas.demarchi@intel.com>
+References: <bc4c7b5f19e6479a002ef69949918a45ca89ce69.camel@linux.intel.com>
+In-Reply-To: <bc4c7b5f19e6479a002ef69949918a45ca89ce69.camel@linux.intel.com>
+From: Dave Airlie <airlied@gmail.com>
+Date: Wed, 3 Apr 2024 08:57:17 +1000
+Message-ID: <CAPM=9tyMF2POfE4Sm3717ibH3NSaY-AX3bMz6ZRAeaRaQWEURQ@mail.gmail.com>
+Subject: Re: Cross-device and cross-driver HMM support
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ Matthew Brost <matthew.brost@intel.com>, oak.zeng@intel.com, 
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,116 +77,46 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8313040230902205754==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 27 Mar 2024 at 19:52, Thomas Hellstr=C3=B6m
+<thomas.hellstrom@linux.intel.com> wrote:
+>
+> Hi!
+>
+> With our SVM mirror work we'll soon start looking at HMM cross-device
+> support. The identified needs are
+>
+> 1) Instead of migrating foreign device memory to system when the
+> current device is faulting, leave it in place...
+> 1a) for access using internal interconnect,
+> 1b) for access using PCIE p2p (probably mostly as a reference)
+>
+> 2) Request a foreign device to migrate memory range a..b of a CPU
+> mm_struct to local shareable device memory on that foreign device.
+>
+> and we plan to add an infrastructure for this. Probably this can be
+> done initially without too much (or any) changes to the hmm code
+> itself.
+>
+> So the question is basically whether anybody is interested in a
+> drm-wide solution for this and in that case also whether anybody sees
+> the need for cross-driver support?
+>
+> Otherwise any objections against us starting out with an xe driver
+> helper implementation that could be lifted to drm-level when needed?
 
-== Series Details ==
+I think you'd probably have a better chance of getting others to help
+review it, if we started out outside the driver as much as possible.
 
-Series: Refactor BO flags, batch 2
-URL   : https://patchwork.freedesktop.org/series/131953/
-State : success
+I don't think gpuvm would have worked out as well if we'd just kept it
+inside nouveau from the start, it at least forces you to think about
+what should be driver specific here.
 
-== Summary ==
+> Finally any suggestions or pointers to existing solutions for this?
 
-CI Bug Log - changes from xe-1028-817f62236d84505e987511af22a06bb051755029_BAT -> xe-pw-131953v1_BAT
-====================================================
+I think nvidia's uvm might have some of this type of code, but no idea
+how you'd even consider starting to use it as a reference,
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-131953v1_BAT that come from known issues:
-
-### IGT changes ###
-
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#1414]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1414
-  [Intel XE#1415]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1415
-
-
-Build changes
--------------
-
-  * Linux: xe-1028-817f62236d84505e987511af22a06bb051755029 -> xe-pw-131953v1
-
-  IGT_7796: 2cfed18f6aa776c1593d7cc328d23225dd61bdf9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1028-817f62236d84505e987511af22a06bb051755029: 817f62236d84505e987511af22a06bb051755029
-  xe-pw-131953v1: 131953v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131953v1/index.html
-
---===============8313040230902205754==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Refactor BO flags, batch 2</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131953/">https://patchwork.freedesktop.org/series/131953/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131953v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131953v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1028-817f62236d84505e987511af22a06bb051755029_BAT -&gt; xe-pw-131953v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-131953v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1028-817f62236d84505e987511af22a06bb051755029 -&gt; xe-pw-131953v1</li>
-</ul>
-<p>IGT_7796: 2cfed18f6aa776c1593d7cc328d23225dd61bdf9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1028-817f62236d84505e987511af22a06bb051755029: 817f62236d84505e987511af22a06bb051755029<br />
-  xe-pw-131953v1: 131953v1</p>
-
-</body>
-</html>
-
---===============8313040230902205754==--
+Dave.
