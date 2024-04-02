@@ -4,79 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D9E6CD1284
-	for <intel-xe@archiver.kernel.org>; Tue,  2 Apr 2024 16:53:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BD6BCD1284
+	for <intel-xe@archiver.kernel.org>; Tue,  2 Apr 2024 17:59:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDD1C10EA31;
-	Tue,  2 Apr 2024 16:53:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB11410FF2D;
+	Tue,  2 Apr 2024 17:59:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ikVnJcs1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fcr5v3Pc";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5550D10EA31;
- Tue,  2 Apr 2024 16:53:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8B7B10FF2D
+ for <intel-xe@lists.freedesktop.org>; Tue,  2 Apr 2024 17:59:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712076790; x=1743612790;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=+OIETa7FqtPMYZEyetZK7bSBPqtgACHlQcapBmBrB1s=;
- b=ikVnJcs1tBJ8SnyaglXPhvUo5AgyJftd5ri8/MnztMYAx31SxS0STVBQ
- 0cu5l+Qi26fpOPAPoFfrKZjHELnkM/PgXuXUkuGgx1eOlcXDE0w5vnrAG
- 2nZo31yC2/SoJ5VX+cY9ufoIhvmc7W6hIzw7PHsQlgO20iVT0P5H843bo
- RxtLzXwoyIZ/TYiFUbTktKC7LbpTPwPkNiZKQvB/iXb2UbisnZjQR41W7
- lckCSiEVZR0JIefE/idwClETC6ULLzIRH4TRiTMoPYVRBhdSp+k+oDvTr
- NkbRZtUrA/mSVimMTwvc5rXkvjZhxKCPqxFiFlnyFVYrQLshZgoPsm8hh g==;
-X-CSE-ConnectionGUID: cDsqCvVMQw6aCcavFp65gw==
-X-CSE-MsgGUID: uNt6LdDwSQuHifHcQaiE1Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="7107284"
-X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; 
-   d="scan'208";a="7107284"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2024 09:53:08 -0700
-X-CSE-ConnectionGUID: ffg8/aPXSdikW95Gpql1bg==
-X-CSE-MsgGUID: UqZyC5N1Sx2Vz2k/GRMH4A==
+ t=1712080776; x=1743616776;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4uMl8c4n71PZSUBHohOM57XFichjwKtSLNdg5mY7XG8=;
+ b=Fcr5v3Pc5tZHkZjMWuUd1mkOgbJU4yyFw5PAeCRvDzi2Ot+1mIxQA1mR
+ XngHng6lwpItnCZ+96zBjkdeTrG17CwN+kNtf5XU0+zTGRUHt4EE/qscQ
+ bN1FF1E5WbOc7/FpCF9aMUoOG4/H2KBjrhMLpzwAVk9bN9uRooh698eXd
+ ele5KgsN4JT9NdSAiHXWs3nw8xy5yq5+jUwA1v1skviodMYxe8JRjDbRw
+ 9U2skDvOYnaZgV8zi58Zvbww8iAl/FLXfpvAq3yzxI0G0qObNItA6ON9d
+ YHhKbFb3nSMKF9OML6b5h3jcCDabA66kbdXQ3pSLc4DQPwFGQlt/WT2Oe A==;
+X-CSE-ConnectionGUID: Xy7KpFraShyrBt/ZlZlhBg==
+X-CSE-MsgGUID: VQwgW2nzR8OG9ggVXT9LNw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="17840118"
+X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; d="scan'208";a="17840118"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2024 10:59:28 -0700
+X-CSE-ConnectionGUID: Zr9+fXUbR1aO7ye0G+6sFQ==
+X-CSE-MsgGUID: 7DTXcHE+RIWZnxyZnHhODw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; d="scan'208";a="18552508"
-Received: from pramona-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.57.179])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2024 09:53:02 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Easwar Hariharan <eahariha@linux.microsoft.com>, Patrik Jakobsson
- <patrik.r.jakobsson@gmail.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang
- <zhi.wang.linux@gmail.com>, dri-devel@lists.freedesktop.org, open list
- <linux-kernel@vger.kernel.org>, "open list:INTEL DRM DISPLAY FOR XE AND
- I915 DRIVERS" <intel-gfx@lists.freedesktop.org>, "open list:INTEL DRM
- DISPLAY FOR XE AND I915 DRIVERS" <intel-xe@lists.freedesktop.org>, "open
- list:INTEL GVT-g DRIVERS (Intel GPU Virtualization)"
- <intel-gvt-dev@lists.freedesktop.org>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, "open list:RADEON and
- AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>, "open list:DRM DRIVER
- FOR NVIDIA GEFORCE/QUADRO GPUS" <nouveau@lists.freedesktop.org>, "open
- list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>, "open
- list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>, "open
- list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>
-Subject: Re: [PATCH v0 03/14] drm/gma500,drm/i915: Make I2C terminology more
- inclusive
-In-Reply-To: <fde7a0da-1981-48db-95e2-96d45655c11c@linux.microsoft.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
- <20240329170038.3863998-4-eahariha@linux.microsoft.com>
- <87a5mcfbms.fsf@intel.com>
- <7d5e6ed0-ffe9-46c2-b3b4-a4a47c09532e@linux.microsoft.com>
- <87ttkjesx8.fsf@intel.com>
- <fde7a0da-1981-48db-95e2-96d45655c11c@linux.microsoft.com>
-Date: Tue, 02 Apr 2024 19:52:48 +0300
-Message-ID: <87o7aremfz.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; d="scan'208";a="41302641"
+Received: from sinjan-super-server.iind.intel.com ([10.145.169.153])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2024 10:59:26 -0700
+From: Karthik Poosa <karthik.poosa@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, rodrigo.vivi@intel.com,
+ lucas.demarchi@intel.com, Karthik Poosa <karthik.poosa@intel.com>
+Subject: [PATCH v3] drm/xe/hwmon: Update xe hwmon with couple of fixes
+Date: Tue,  2 Apr 2024 23:39:56 +0530
+Message-Id: <20240402180956.508398-1-karthik.poosa@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,71 +65,214 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 02 Apr 2024, Easwar Hariharan <eahariha@linux.microsoft.com> wrote:
-> On 4/2/2024 7:32 AM, Jani Nikula wrote:
->> On Tue, 02 Apr 2024, Easwar Hariharan <eahariha@linux.microsoft.com> wrote:
->>> On 4/2/2024 12:48 AM, Jani Nikula wrote:
->>>> On Fri, 29 Mar 2024, Easwar Hariharan <eahariha@linux.microsoft.com> wrote:
->>>>> I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
->>>>> with more appropriate terms. Inspired by and following on to Wolfram's
->>>>> series to fix drivers/i2c/[1], fix the terminology for users of
->>>>> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
->>>>> in the specification.
->>>>
->>>> gma500 and i915 changes should be split. See MAINTAINERS.
->>>>
->>>> Might also split the i915 changes to smaller pieces, it's kind of
->>>> random. And the changes here are not strictly related to I2C AFAICT, so
->>>> the commit message should be updated.
->>>>
->>>> BR,
->>>> Jani.
->>>>
->>>>
->>>
->>> <snip>
->>>
->>> I will split gma500 and i915 into their respective patches if possible in v2.
->>>
->>> Can you say more about the changes being "not strictly related to I2C"? My
->>> heuristic was to grep for master/slave, and look in the surrounding context for
->>> i2c-related terminology (i2c_pin, 7-bit address, struct i2c_adapter, i2c_bus, etc)
->>> to confirm that they are i2c-related, then following the references around to
->>> make the compiler happy. For e.g., I did not change the many references to bigjoiner
->>> master and slave because I understood from context they were not i2c references.
->>>
->>> A couple examples would help me restrict the changes to I2C, since as mentioned in the
->>> discussion on Wolfram's thread, there are places where migrating away from master/slave
->>> terms in the code would conflict with the original technical manuals and reduce correlation
->>> and understanding of the code.
->> 
->> I guess I was looking at the VBT changes in intel_bios.c. Granted, they
->> do end up being used as i2c addresses. No big deal.
->> 
->> I think I'd expect the treewide i2c adapter changes to land first, via
->> i2c, and subsequent cleanups to happen next, via individual driver
->> trees. There's quite a bit of conflict potential merging this outside of
->> drm-intel-next, and there's really no need for that.
->> 
->> BR,
->> Jani.
->> 
->
-> Great! Just so I'm clear, do you still want the i915 changes split up more, along with them being
-> split off from gma500?
+Address potential overflows in result of multiplication of two lower
+precision (u32) operands before widening it to higher precision (u64).
 
-If we can merge the i915 changes via drm-intel-next, it's probably fine
-as a big i915 patch. Just the gma500 separated. (The struct
-i2c_algorithm change etc. necessarily has to go via I2C tree of course.)
+Initialize variables which were being used uninitialized.
 
-BR,
-Jani.
+v2:
+ - Rebase.
+ - In xe_hwmon_process_reg, set argument 'value' to 0 on failure.
+   With this change caller function need not initialize value to 0.
 
+v3:
+ - Update commit msg as per review comments (Rodrigo, Lucas).
+ - Update xe_hwmon_get_reg. Return bool from xe_hwmon_get_reg
+   and output xe_reg. This is to have abstracted usage of xe_reg. (Lucas)
 
+Fixes: 4446fcf220ce ("drm/xe/hwmon: Expose power1_max_interval")
+Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
+---
+ drivers/gpu/drm/xe/xe_hwmon.c | 60 ++++++++++++++++++++---------------
+ 1 file changed, 35 insertions(+), 25 deletions(-)
 
->
-> Thanks,
-> Easwar
-
+diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+index 7e8caac838e0..8c805ace592c 100644
+--- a/drivers/gpu/drm/xe/xe_hwmon.c
++++ b/drivers/gpu/drm/xe/xe_hwmon.c
+@@ -79,46 +79,48 @@ struct xe_hwmon {
+ 	struct xe_hwmon_energy_info ei[CHANNEL_MAX];
+ };
+ 
+-static u32 xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon_reg, int channel)
++static bool xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon_reg,
++			     int channel, struct xe_reg *reg)
+ {
+ 	struct xe_device *xe = gt_to_xe(hwmon->gt);
+-	struct xe_reg reg = XE_REG(0);
++
++	*reg = XE_REG(0);
+ 
+ 	switch (hwmon_reg) {
+ 	case REG_PKG_RAPL_LIMIT:
+ 		if (xe->info.platform == XE_PVC && channel == CHANNEL_PKG)
+-			reg = PVC_GT0_PACKAGE_RAPL_LIMIT;
++			*reg = PVC_GT0_PACKAGE_RAPL_LIMIT;
+ 		else if ((xe->info.platform == XE_DG2) && (channel == CHANNEL_PKG))
+-			reg = PCU_CR_PACKAGE_RAPL_LIMIT;
++			*reg = PCU_CR_PACKAGE_RAPL_LIMIT;
+ 		break;
+ 	case REG_PKG_POWER_SKU:
+ 		if (xe->info.platform == XE_PVC && channel == CHANNEL_PKG)
+-			reg = PVC_GT0_PACKAGE_POWER_SKU;
++			*reg = PVC_GT0_PACKAGE_POWER_SKU;
+ 		else if ((xe->info.platform == XE_DG2) && (channel == CHANNEL_PKG))
+-			reg = PCU_CR_PACKAGE_POWER_SKU;
++			*reg = PCU_CR_PACKAGE_POWER_SKU;
+ 		break;
+ 	case REG_PKG_POWER_SKU_UNIT:
+ 		if (xe->info.platform == XE_PVC)
+-			reg = PVC_GT0_PACKAGE_POWER_SKU_UNIT;
++			*reg = PVC_GT0_PACKAGE_POWER_SKU_UNIT;
+ 		else if (xe->info.platform == XE_DG2)
+-			reg = PCU_CR_PACKAGE_POWER_SKU_UNIT;
++			*reg = PCU_CR_PACKAGE_POWER_SKU_UNIT;
+ 		break;
+ 	case REG_GT_PERF_STATUS:
+ 		if (xe->info.platform == XE_DG2 && channel == CHANNEL_PKG)
+-			reg = GT_PERF_STATUS;
++			*reg = GT_PERF_STATUS;
+ 		break;
+ 	case REG_PKG_ENERGY_STATUS:
+ 		if (xe->info.platform == XE_PVC && channel == CHANNEL_PKG)
+-			reg = PVC_GT0_PLATFORM_ENERGY_STATUS;
++			*reg = PVC_GT0_PLATFORM_ENERGY_STATUS;
+ 		else if ((xe->info.platform == XE_DG2) && (channel == CHANNEL_PKG))
+-			reg = PCU_CR_PACKAGE_ENERGY_STATUS;
++			*reg = PCU_CR_PACKAGE_ENERGY_STATUS;
+ 		break;
+ 	default:
+ 		drm_warn(&xe->drm, "Unknown xe hwmon reg id: %d\n", hwmon_reg);
+-		break;
++		return false;
+ 	}
+ 
+-	return reg.raw;
++	return true;
+ }
+ 
+ static void xe_hwmon_process_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon_reg,
+@@ -127,10 +129,10 @@ static void xe_hwmon_process_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon
+ {
+ 	struct xe_reg reg;
+ 
+-	reg.raw = xe_hwmon_get_reg(hwmon, hwmon_reg, channel);
+-
+-	if (!reg.raw)
++	if (!xe_hwmon_get_reg(hwmon, hwmon_reg, channel, &reg)) {
++		*value = 0;
+ 		return;
++	}
+ 
+ 	switch (operation) {
+ 	case REG_READ32:
+@@ -143,6 +145,7 @@ static void xe_hwmon_process_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon
+ 		*value = xe_mmio_read64_2x32(hwmon->gt, reg);
+ 		break;
+ 	default:
++		*value = 0;
+ 		drm_warn(&gt_to_xe(hwmon->gt)->drm, "Invalid xe hwmon reg operation: %d\n",
+ 			 operation);
+ 		break;
+@@ -298,7 +301,7 @@ xe_hwmon_power_max_interval_show(struct device *dev, struct device_attribute *at
+ 	 * As y can be < 2, we compute tau4 = (4 | x) << y
+ 	 * and then add 2 when doing the final right shift to account for units
+ 	 */
+-	tau4 = ((1 << x_w) | x) << y;
++	tau4 = (u64)((1 << x_w) | x) << y;
+ 
+ 	/* val in hwmon interface units (millisec) */
+ 	out = mul_u64_u32_shr(tau4, SF_TIME, hwmon->scl_shift_time + x_w);
+@@ -339,7 +342,7 @@ xe_hwmon_power_max_interval_store(struct device *dev, struct device_attribute *a
+ 	r = FIELD_PREP(PKG_MAX_WIN, PKG_MAX_WIN_DEFAULT);
+ 	x = REG_FIELD_GET(PKG_MAX_WIN_X, r);
+ 	y = REG_FIELD_GET(PKG_MAX_WIN_Y, r);
+-	tau4 = ((1 << x_w) | x) << y;
++	tau4 = (u64)((1 << x_w) | x) << y;
+ 	max_win = mul_u64_u32_shr(tau4, SF_TIME, hwmon->scl_shift_time + x_w);
+ 
+ 	if (val > max_win)
+@@ -397,10 +400,11 @@ static umode_t xe_hwmon_attributes_visible(struct kobject *kobj,
+ 	struct device *dev = kobj_to_dev(kobj);
+ 	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
+ 	int ret = 0;
++	struct xe_reg reg;
+ 
+ 	xe_pm_runtime_get(gt_to_xe(hwmon->gt));
+ 
+-	ret = xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, index) ? attr->mode : 0;
++	ret = xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, index, &reg) ? attr->mode : 0;
+ 
+ 	xe_pm_runtime_put(gt_to_xe(hwmon->gt));
+ 
+@@ -493,19 +497,20 @@ static umode_t
+ xe_hwmon_power_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+ {
+ 	u32 uval;
++	struct xe_reg reg;
+ 
+ 	switch (attr) {
+ 	case hwmon_power_max:
+-		return xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, channel) ? 0664 : 0;
++		return xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, channel, &reg) ? 0664 : 0;
+ 	case hwmon_power_rated_max:
+-		return xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU, channel) ? 0444 : 0;
++		return xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU, channel, &reg) ? 0444 : 0;
+ 	case hwmon_power_crit:
+ 		if (channel == CHANNEL_PKG)
+ 			return (xe_hwmon_pcode_read_i1(hwmon->gt, &uval) ||
+ 				!(uval & POWER_SETUP_I1_WATTS)) ? 0 : 0644;
+ 		break;
+ 	case hwmon_power_label:
+-		return xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU_UNIT, channel) ? 0444 : 0;
++		return xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU_UNIT, channel, &reg) ? 0444 : 0;
+ 	default:
+ 		return 0;
+ 	}
+@@ -585,10 +590,12 @@ xe_hwmon_curr_write(struct xe_hwmon *hwmon, u32 attr, int channel, long val)
+ static umode_t
+ xe_hwmon_in_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+ {
++	struct xe_reg reg;
++
+ 	switch (attr) {
+ 	case hwmon_in_input:
+ 	case hwmon_in_label:
+-		return xe_hwmon_get_reg(hwmon, REG_GT_PERF_STATUS, channel) ? 0444 : 0;
++		return xe_hwmon_get_reg(hwmon, REG_GT_PERF_STATUS, channel, &reg) ? 0444 : 0;
+ 	default:
+ 		return 0;
+ 	}
+@@ -609,10 +616,12 @@ xe_hwmon_in_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
+ static umode_t
+ xe_hwmon_energy_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+ {
++	struct xe_reg reg;
++
+ 	switch (attr) {
+ 	case hwmon_energy_input:
+ 	case hwmon_energy_label:
+-		return xe_hwmon_get_reg(hwmon, REG_PKG_ENERGY_STATUS, channel) ? 0444 : 0;
++		return xe_hwmon_get_reg(hwmon, REG_PKG_ENERGY_STATUS, channel, &reg) ? 0444 : 0;
+ 	default:
+ 		return 0;
+ 	}
+@@ -758,12 +767,13 @@ xe_hwmon_get_preregistration_info(struct xe_device *xe)
+ 	long energy;
+ 	u64 val_sku_unit = 0;
+ 	int channel;
++	struct xe_reg reg;
+ 
+ 	/*
+ 	 * The contents of register PKG_POWER_SKU_UNIT do not change,
+ 	 * so read it once and store the shift values.
+ 	 */
+-	if (xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU_UNIT, 0)) {
++	if (xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU_UNIT, 0, &reg)) {
+ 		xe_hwmon_process_reg(hwmon, REG_PKG_POWER_SKU_UNIT,
+ 				     REG_READ32, &val_sku_unit, 0, 0, 0);
+ 		hwmon->scl_shift_power = REG_FIELD_GET(PKG_PWR_UNIT, val_sku_unit);
 -- 
-Jani Nikula, Intel
+2.25.1
+
