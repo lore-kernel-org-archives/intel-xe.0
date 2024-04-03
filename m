@@ -4,57 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C533CD1288
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Apr 2024 15:47:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0975CCD1288
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Apr 2024 15:48:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BC19112BE0;
-	Wed,  3 Apr 2024 15:47:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC0A910E0EB;
+	Wed,  3 Apr 2024 15:48:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SpuhtVAr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UJylo3mf";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 219258920E
- for <intel-xe@lists.freedesktop.org>; Wed,  3 Apr 2024 15:47:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7001110E0EB
+ for <intel-xe@lists.freedesktop.org>; Wed,  3 Apr 2024 15:48:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712159239; x=1743695239;
+ t=1712159282; x=1743695282;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=WMvhD82WLZNq8D9M5iAuy7ylMiOMi58hYiTpgaiKZ1Q=;
- b=SpuhtVArChGbRuFFH2A+4MMILbQOdMvh1kzzp/J28Q+hPC1JognGhoMM
- TOKLv7VrfIqeWB8D2lCj1BpL5xRupp3KLI/MYLIHX8RA7TgynBWsf2IRX
- 5wLRwnkcrmPuC2oOk9YI9cHmCsFBNxnrapktGCK2EkgpJkZdytPCWH6I/
- tYsT+KOZTeWlMrU7e62RNq+fliCFqGl3Fmx3AbMmGbaQMf3oLqcLAxqeL
- kPL0rOV1oKEUXRxs/BeTWijJizkcCtMJa7p2ZqheI0aXCbz4C2jmTIJmd
- FqvGl3LS+l9i7+vx+rs3Qw/lD2Pty195Qdo1gw4XaxEWDKoVOyqK3pCtg w==;
-X-CSE-ConnectionGUID: U0vgWwQtRHS/EmEtEJRvBg==
-X-CSE-MsgGUID: PpoEkgl7RnOVDWFGI+0HyA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11033"; a="7258184"
+ bh=BKJSaG8UybVYrLhh1efKseyNEwhFX4wed2OexY1CnPM=;
+ b=UJylo3mfsW6zTDRM21XF9kXW9EPAhm+G4P2zXxjPZ9QygSL6fCjXU0wh
+ umTKkB2vtOQhE1B1Xz7lhCJom5EjE7xfFPHfbvsAQ9sBvzBbcdB7in+HR
+ S08DPMhJ6c4Z+e2sdNM0P0fbGP2zCYrig/UOtUgbiI4hOVc7gG/D8QHzN
+ AI5yXwpuU6LkDOnRn29UUB9Td6C6U1pHGF8oo/+vD3mfMeeYzObjxZvp5
+ G1A4LMcVw49e9x7VG1Um0Dfi5NFcjwNV2rwjY2cV02V/O3TWbtnr8/hUp
+ h9NMhKx6lXNmzmoPQtVqAnCRJD8sgnmNgO4gXHN4XDUCheU45qQvsIm3G g==;
+X-CSE-ConnectionGUID: S+Dal3CnTB60K/yqr1hRBQ==
+X-CSE-MsgGUID: RG58HdU0TIiDrMgUar8y1w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11033"; a="7258243"
 X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; 
-   d="scan'208";a="7258184"
+   d="scan'208";a="7258243"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 08:47:18 -0700
-X-CSE-ConnectionGUID: Py98EZqGQhOfLj04tI9RtQ==
-X-CSE-MsgGUID: 6b77cyL8SYWdpo9yboMCpQ==
+ 03 Apr 2024 08:48:02 -0700
+X-CSE-ConnectionGUID: GqHQdklgSlSCTZHgRG9WVQ==
+X-CSE-MsgGUID: LEyCyTh6T9O68whK7xNCYA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="41642775"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="41643164"
 Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.246.36.15])
  ([10.246.36.15])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 08:47:17 -0700
-Message-ID: <da259b55-5bbe-4f1b-82cc-4399d2514c14@linux.intel.com>
-Date: Wed, 3 Apr 2024 17:47:14 +0200
+ 03 Apr 2024 08:48:00 -0700
+Message-ID: <8e1632b4-658b-49fb-817f-99b889d0cea4@linux.intel.com>
+Date: Wed, 3 Apr 2024 17:47:58 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Protect devcoredump_free
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- =?UTF-8?Q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-References: <20240403145054.97414-1-rodrigo.vivi@intel.com>
+Subject: Re: [PATCH 1/2] drm/xe/tile: Set default memory placement for BOs
+To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>, Matthew Auld <matthew.auld@intel.com>
+References: <20240402215455.1839828-1-lucas.demarchi@intel.com>
+ <20240402215455.1839828-2-lucas.demarchi@intel.com>
 Content-Language: en-US
 From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <20240403145054.97414-1-rodrigo.vivi@intel.com>
+In-Reply-To: <20240402215455.1839828-2-lucas.demarchi@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -71,58 +73,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Rodrigo,
+Hi Lucas,
 
-On 4/3/2024 4:50 PM, Rodrigo Vivi wrote:
-> While we don't have the full flow protection when devcoredump
-> is accessed after device unbind. Let's at least for now
-> protect against null dereference:
+On 4/2/2024 11:54 PM, Lucas De Marchi wrote:
+> During initialization, record what should be the default placement for
+> BOs, unless otherwise specified via flags when BO is created. This will
+> allow to remove XE_BO_FLAG_VRAM_IF_DGFX() that is spread all throughout
+> the code.
 >
-> [  422.766508] KASAN: null-ptr-deref in range [0x0000000000000000-0x0000000000000007]
-> [  423.119584] RIP: 0010:xe_vm_snapshot_free+0x30/0x180 [xe]
->
-> While at it, I also fixed a non-standard code-declaration block
-> on the similar function of xe_guc_submit.
->
-> Fixes: e5f661bb56d4 ("drm/xe/devcoredump: Print errno if VM snapshot was not captured")
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: José Roberto de Souza <jose.souza@intel.com>
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_guc_submit.c | 1 +
->   drivers/gpu/drm/xe/xe_vm.c         | 2 +-
->   2 files changed, 2 insertions(+), 1 deletion(-)
+>   drivers/gpu/drm/xe/xe_bo.c           |  9 +++++++++
+>   drivers/gpu/drm/xe/xe_bo.h           | 11 +++++------
+>   drivers/gpu/drm/xe/xe_device_types.h |  9 +++++++++
+>   drivers/gpu/drm/xe/xe_tile.c         |  6 ++++++
+>   4 files changed, 29 insertions(+), 6 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index f42f1b567067..6e32f9ce4eb5 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -1961,6 +1961,7 @@ xe_guc_exec_queue_snapshot_print(struct xe_guc_submit_exec_queue_snapshot *snaps
->   void xe_guc_exec_queue_snapshot_free(struct xe_guc_submit_exec_queue_snapshot *snapshot)
->   {
->   	int i;
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 6166bc715656..71446688c643 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -1368,6 +1368,15 @@ __xe_bo_create_locked(struct xe_device *xe,
+>   	if (vm)
+>   		xe_vm_assert_held(vm);
+>   
+> +	if (!(flags & XE_BO_FLAG_PL_MASK)) {
+> +		struct xe_tile *tile_pl = tile;
 > +
->   	if (!snapshot)
->   		return;
+> +		if (!tile_pl)
+> +			tile_pl = xe_device_get_root_tile(xe);
+> +
+> +		flags |= tile_pl->mem.default_pl_flag;
+> +	}
+> +
+>   	if (start || end != ~0ULL) {
+>   		bo = xe_bo_alloc();
+>   		if (IS_ERR(bo))
+> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+> index bae042b35fa8..8781ee15c253 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.h
+> +++ b/drivers/gpu/drm/xe/xe_bo.h
+> @@ -23,17 +23,16 @@
 >   
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index f4bfb2705956..ccb2e1c67c2c 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -3514,7 +3514,7 @@ void xe_vm_snapshot_free(struct xe_vm_snapshot *snap)
->   {
->   	unsigned long i;
+>   #define XE_DEFAULT_GTT_SIZE_MB          3072ULL /* 3GB by default */
 >   
-> -	if (IS_ERR(snap))
-> +	if (!snap || IS_ERR(snap))
->   		return;
+> -#define XE_BO_FLAG_USER		BIT(0)
+> +#define XE_BO_FLAG_USER			BIT(0)
+>   /* The bits below need to be contiguous, or things break */
+>   #define XE_BO_FLAG_SYSTEM		BIT(1)
+>   #define XE_BO_FLAG_VRAM0		BIT(2)
+>   #define XE_BO_FLAG_VRAM1		BIT(3)
+> -#define XE_BO_FLAG_VRAM_MASK		(XE_BO_FLAG_VRAM0 | XE_BO_FLAG_VRAM1)
+> -/* -- */
+>   #define XE_BO_FLAG_STOLEN		BIT(4)
+> -#define XE_BO_FLAG_VRAM_IF_DGFX(tile)	(IS_DGFX(tile_to_xe(tile)) ? \
+> -					 XE_BO_FLAG_VRAM0 << (tile)->id : \
+> -					 XE_BO_FLAG_SYSTEM)
 
-You can use IS_ERR_OR_NULL() here.
+This should happen in the following patch.  Otherwise this looks good to 
+me.
 
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
 
 Regards,
 
 Nirmoy
 
+
+> +#define XE_BO_FLAG_VRAM_MASK		(XE_BO_FLAG_VRAM0 | XE_BO_FLAG_VRAM1)
+> +#define XE_BO_FLAG_PL_MASK		(XE_BO_FLAG_VRAM_MASK | XE_BO_FLAG_SYSTEM | \
+> +					 XE_BO_FLAG_STOLEN)
+> +
+>   #define XE_BO_FLAG_GGTT			BIT(5)
+>   #define XE_BO_FLAG_IGNORE_MIN_PAGE_SIZE BIT(6)
+>   #define XE_BO_FLAG_PINNED		BIT(7)
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index 47c864f67348..cdcdf27a442a 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -173,6 +173,15 @@ struct xe_tile {
+>   		 */
+>   		struct xe_mem_region vram;
 >   
->   	for (i = 0; i < snap->num_snaps; i++) {
+> +		/**
+> +		 * @mem.default_pl_flag: Default placement for BOs
+> +		 *
+> +		 * Default placement set as one of XE_BO_FLAG_{VRAM*,SYSTEM}.
+> +		 * May still be overriden when creating a bo by setting a
+> +		 * specific flag.
+> +		 */
+> +		u32 default_pl_flag;
+> +
+>   		/** @mem.vram_mgr: VRAM TTM manager */
+>   		struct xe_ttm_vram_mgr *vram_mgr;
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+> index 0650b2fa75ef..a55157f29c2c 100644
+> --- a/drivers/gpu/drm/xe/xe_tile.c
+> +++ b/drivers/gpu/drm/xe/xe_tile.c
+> @@ -5,6 +5,7 @@
+>   
+>   #include <drm/drm_managed.h>
+>   
+> +#include "xe_bo.h"
+>   #include "xe_device.h"
+>   #include "xe_ggtt.h"
+>   #include "xe_gt.h"
+> @@ -162,6 +163,11 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
+>   
+>   	xe_device_mem_access_get(tile_to_xe(tile));
+>   
+> +	if (IS_DGFX(tile->xe))
+> +		tile->mem.default_pl_flag = XE_BO_FLAG_VRAM0 << tile->id;
+> +	else
+> +		tile->mem.default_pl_flag = XE_BO_FLAG_SYSTEM;
+> +
+>   	err = tile_ttm_mgr_init(tile);
+>   	if (err)
+>   		goto err_mem_access;
