@@ -4,59 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B14DCD1297
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Apr 2024 10:52:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25686CD128A
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Apr 2024 10:52:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FA9710E21A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE3AE10E121;
 	Wed,  3 Apr 2024 10:52:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ibcmbRZw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fcnfFa6d";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C00F10E121;
- Wed,  3 Apr 2024 10:52:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00C8610E121;
+ Wed,  3 Apr 2024 10:52:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712141543; x=1743677543;
+ t=1712141545; x=1743677545;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=aXwO+YyrDlXCOTfVyyvxISMPpqPvIKOZ+rBZD0M63z8=;
- b=ibcmbRZwi9MMOIrt9xjDm0UOiypqt/pgscdWGZ0u9iCLtP2xHdmiFQGz
- inb42mWvgIRUvaYXPcBYbtY0VCzBPoKFgB6hjdPAlM06H8AkoYz8K6pea
- ayce8omouUD6VJsI5g2xNaBxJqhOjmJksWUL7DDWi0HmJRJnYbLbvIK9E
- 477cgbHXwk9601u8bwGnX4FXP9i0tsX/JX7RL+xxRMTWkVVwiP8rDiz5k
- QaI3yNVKDwAWVhviMqI5iy/139If0hy6cXloIYOA+Iff/tbZI/Pxxw3Qv
- 8Bn9U8BqiAhVA4HmBsgFuPAQlyZj8Yu2QCWzeRBFu86HLd6pNm2bZxuLA g==;
-X-CSE-ConnectionGUID: jA4WZtDvSvCMm6KEDOO6bw==
-X-CSE-MsgGUID: itHWar0CTryiHp6lO5Cg1A==
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="7212235"
+ bh=FSXs20PJBJyOLgqakwjPbhb+TaNU4Tq3YC8JVaxUI0A=;
+ b=fcnfFa6dCcAGQ5LQIQEplAro8fwqmQWlXBbslmc7HsBl+STf6pdbd+mo
+ iCK1uxQU9YUOyV+IT5gPizoawPsL8tPQk/wgUp2neIO267sgHmLaUszOY
+ TLuw0CCGLd+o8jtwRU7/mjdGuVlyNHkDrm7eKUr5Wt6D94oIZW4xMCnOa
+ CXRJYSWaZWf/J4g33hKCQxIIXr485QOG5gdeTMDD3gpuOCVBr5q7WvOjq
+ VkCk+fSp26CgxYyBz6qjB7waKjMm42ziDWzlIJuaOg7mxZbO//20HwARA
+ CNg4169w/WOkl94S30p8ZUbvTmDg86CBj+uVZGbaBD1mMALl9gV7UeH+t Q==;
+X-CSE-ConnectionGUID: mORvFTE0TEKyGmYUMeC66g==
+X-CSE-MsgGUID: xLdL7FhxQYq0zRsAVJcczw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="7212255"
 X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; 
-   d="scan'208";a="7212235"
+   d="scan'208";a="7212255"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 03:51:53 -0700
-X-CSE-ConnectionGUID: w/flNFAuS1GlBDL8pVahMg==
-X-CSE-MsgGUID: UcO1fm8zSEWgKA7hXP+SrQ==
+ 03 Apr 2024 03:51:57 -0700
+X-CSE-ConnectionGUID: KAZ942raQiKlXYJp+rSE1Q==
+X-CSE-MsgGUID: TtP/CuQ7RJKAlhtClAzBEQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18493413"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18493429"
 Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 03:51:51 -0700
+ 03 Apr 2024 03:51:55 -0700
 From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Subject: [PATCH 19/25] drm/i915/xe2hpd: Do not program MBUS_DBOX BW credits
-Date: Wed,  3 Apr 2024 16:21:17 +0530
-Message-Id: <20240403105123.1327669-20-balasubramani.vivekanandan@intel.com>
+Subject: [PATCH 21/25] drm/i915/xe2hpd: Set maximum DP rate to UHBR13.5
+Date: Wed,  3 Apr 2024 16:21:19 +0530
+Message-Id: <20240403105123.1327669-22-balasubramani.vivekanandan@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240403105123.1327669-1-balasubramani.vivekanandan@intel.com>
 References: <20240403105123.1327669-1-balasubramani.vivekanandan@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,31 +70,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: José Roberto de Souza <jose.souza@intel.com>
+Max supported speed by xe2hpd is UHBR13.5. Limit the max DP source rate
+to it.
 
-Xe2_HPD doesn't have DBOX BW credits, so here programing it with
-zero.
+Bspec: 67066
 
-BSpec: 49213
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_watermark.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index bc341abcab2f..22ae782e89f4 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -3733,7 +3733,7 @@ void intel_mbus_dbox_update(struct intel_atomic_state *state)
- 		if (!new_crtc_state->hw.active)
- 			continue;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index b393ddbb7b35..d9d37f4971dd 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -466,6 +466,9 @@ static int mtl_max_source_rate(struct intel_dp *intel_dp)
+ 	if (intel_encoder_is_c10phy(encoder))
+ 		return 810000;
  
--		if (DISPLAY_VER(i915) >= 14) {
-+		if (DISPLAY_VER(i915) >= 14 && !IS_BATTLEMAGE(i915)) {
- 			if (xelpdp_is_only_pipe_per_dbuf_bank(crtc->pipe,
- 							      new_dbuf_state->active_pipes))
- 				pipe_val |= MBUS_DBOX_BW_8CREDITS_MTL;
++	if (DISPLAY_VER_FULL(to_i915(encoder->base.dev)) == IP_VER(14, 1))
++		return 1350000;
++
+ 	return 2000000;
+ }
+ 
 -- 
 2.25.1
 
