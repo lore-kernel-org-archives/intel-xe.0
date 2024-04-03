@@ -4,27 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49BDAC25B74
-	for <intel-xe@archiver.kernel.org>; Mon, 27 May 2024 14:43:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AB0ECD128A
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 13:39:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECFD210ECD0;
-	Mon, 27 May 2024 14:43:51 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4140410ECD0;
- Mon, 27 May 2024 14:43:48 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3675699594394361445=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 743CB10E705;
+	Mon,  8 Apr 2024 13:39:06 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Re8F0gky";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BB2E112AA4;
+ Wed,  3 Apr 2024 12:37:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1712147822; x=1743683822;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=Gz4IMh43tlqJQMtkQNAmSURtoItRp7LuOPT/d9igbhs=;
+ b=Re8F0gkyxNMG91bQSCmM+sumsuhc/4ehQlP89bNusxXv2SWnXzgjJPFK
+ CLz9kMrGiZewa9C3EdKrNDfRcCrYpPbsat1ytgRlBd62M2VDY1LD+Ppia
+ NDTPfLXiUyQLLgXOSSqOQNJyk3X5i0ksIV9GXnhbegDabHOVxRjkAl+L9
+ 1ZUb0wesnfVDgV3xE0Vkh7pPrQZ9rTHY/OMJpRIVlgvpfqVym6UYOocSe
+ 3WRhKo6d+rlL8wZsHZRVd2l+HJsOaVAjR7TIu82r0UCES6uFWFbRoobwk
+ thIu8GRCft8GFjQQxP3XI20hTDJmOw5HsiI8BC9C8GmiaPYY0NQsXtZx4 w==;
+X-CSE-ConnectionGUID: 9buRWh2zSkumz/QaT0a9MQ==
+X-CSE-MsgGUID: 3jpF2ZTeT7mDQpkXQ84gEg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11033"; a="32764450"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="32764450"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2024 05:36:58 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,11033"; a="827789899"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="827789899"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 03 Apr 2024 05:36:43 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 03 Apr 2024 15:36:43 +0300
+Date: Wed, 3 Apr 2024 15:36:43 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Easwar Hariharan <eahariha@linux.microsoft.com>,
+	Alex Deucher <alexander.deucher@amd.com>,
+	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+	"Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+	Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+	Evan Quan <evan.quan@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
+	Candice Li <candice.li@amd.com>, Ran Sun <sunran001@208suo.com>,
+	Alexander Richards <electrodeyt@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Hamza Mahfooz <hamza.mahfooz@amd.com>,
+	Ruan Jinjie <ruanjinjie@huawei.com>, Alan Liu <haoping.liu@amd.com>,
+	Aurabindo Pillai <aurabindo.pillai@amd.com>,
+	Wayne Lin <wayne.lin@amd.com>, Samson Tam <samson.tam@amd.com>,
+	Alvin Lee <alvin.lee2@amd.com>, Charlene Liu <charlene.liu@amd.com>,
+	Sohaib Nadeem <sohaib.nadeem@amd.com>,
+	Lewis Huang <lewis.huang@amd.com>,
+	Tom Chung <chiahsuan.chung@amd.com>,
+	Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
+	Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>,
+	George Shen <george.shen@amd.com>, Aric Cyr <aric.cyr@amd.com>,
+	Jun Lei <jun.lei@amd.com>,
+	Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+	Qingqing Zhuo <Qingqing.Zhuo@amd.com>,
+	Dillon Varone <dillon.varone@amd.com>, Le Ma <Le.Ma@amd.com>,
+	Lijo Lazar <lijo.lazar@amd.com>, Asad kamal <asad.kamal@amd.com>,
+	Kenneth Feng <kenneth.feng@amd.com>, Ma Jun <Jun.Ma2@amd.com>,
+	Mario Limonciello <mario.limonciello@amd.com>,
+	Yang Wang <kevinyang.wang@amd.com>,
+	Darren Powell <darren.powell@amd.com>,
+	Yifan Zhang <yifan1.zhang@amd.com>,
+	"open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+	"open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+	open list <linux-kernel@vger.kernel.org>, Wolfram@freedesktop.org,
+	"Sang <wsa+renesas"@sang-engineering
+Subject: Re: [PATCH v0 02/14] drm/amdgpu,drm/radeon: Make I2C terminology
+ more inclusive
+Message-ID: <Zg1NW0jqwFn4lvEP@intel.com>
+References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
+ <20240329170038.3863998-3-eahariha@linux.microsoft.com>
+ <Zgb3VYsgLjhJ2HKs@ashyti-mobl2.lan>
+ <ceeaafe1-49d5-4602-8251-eed63a1be2b6@linux.microsoft.com>
+ <Zgb8gieDzZtZmg2q@ashyti-mobl2.lan>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Allow_migrate_vm_gpu_s?=
- =?utf-8?q?ubmissions_from_reclaim_context?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 27 May 2024 14:43:48 -0000
-Message-ID: <171682102826.2213622.8734617736147866670@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240527135912.152156-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20240527135912.152156-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Zgb8gieDzZtZmg2q@ashyti-mobl2.lan>
+X-Patchwork-Hint: comment
+X-Mailman-Approved-At: Mon, 08 Apr 2024 13:38:51 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,161 +108,65 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3675699594394361445==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Mar 29, 2024 at 06:38:10PM +0100, Andi Shyti wrote:
+> Hi,
+> 
+> On Fri, Mar 29, 2024 at 10:28:14AM -0700, Easwar Hariharan wrote:
+> > On 3/29/2024 10:16 AM, Andi Shyti wrote:
+> > > Hi Easwar,
+> > > 
+> > > On Fri, Mar 29, 2024 at 05:00:26PM +0000, Easwar Hariharan wrote:
+> > >> I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
+> > > 
+> > > I don't understand why we forget that i3c is 1.1.1 :-)
+> > 
+> > That's because it's a copy-paste error from Wolfram's cover letter. :) I'll update
+> > next go-around.
+> 
+> not a binding comment, though. Just for completeness, because we
+> are giving the version to the i2c and smbus, but not i3c.
+> 
+> > >> with more appropriate terms. Inspired by and following on to Wolfram's
+> > >> series to fix drivers/i2c/[1], fix the terminology for users of
+> > >> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
+> > >> in the specification.
+> > > 
+> > > The specification talks about:
+> > > 
+> > >  - master -> controller
+> > >  - slave -> target (and not client)
+> > > 
+> > > But both you and Wolfram have used client. I'd like to reach
+> > > some more consistency here.
+> > 
+> > I had the impression that remote targets (i.e external to the device) were to be called clients,
+> > e.g. the QSFP FRUs in drivers/infiniband, and internal ones targets.
+> > I chose the terminology according to that understanding, but now I can't find where I got that
+> > information.
+> 
+> The word "client" does not even appear in the documentation (only
+> one instance in the i3c document), so that the change is not
+> related to the document as stated in the commit log. Unless, of
+> course, I am missing something.
+> 
+> I'm OK with choosing a "customized" naming, but we need to reach
+> an agreement.
+> 
+> I raised the same question to Wolfram.
 
-== Series Details ==
+I don't know where that discussion happened, but my opinion
+is NAK to "client". Life is already confusing enough with
+these renames, so let's not make it even more confusing by
+inventing new names nowhere to be found in the spec.
 
-Series: drm/xe: Allow migrate vm gpu submissions from reclaim context
-URL   : https://patchwork.freedesktop.org/series/134087/
-State : success
+And let's especially not invent names that don't even fit
+the purpose. "Client" makes me think of "client/server" or
+some real world analogy. Neither of which seem to have any
+resemblence to how the term would be used for i2c.
 
-== Summary ==
-
-CI Bug Log - changes from xe-1348-f2c37d7fd878c82ea57075948d614f60a168128c_BAT -> xe-pw-134087v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-134087v1_BAT:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:
-    - {bat-lnl-1}:        [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1348-f2c37d7fd878c82ea57075948d614f60a168128c/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134087v1/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-134087v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_exec_threads@threads-mixed-userptr-invalidate:
-    - bat-dg2-oem2:       [ABORT][3] ([Intel XE#1908] / [Intel XE#1939]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1348-f2c37d7fd878c82ea57075948d614f60a168128c/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134087v1/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#1908]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1908
-  [Intel XE#1939]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1939
-
-
-Build changes
--------------
-
-  * Linux: xe-1348-f2c37d7fd878c82ea57075948d614f60a168128c -> xe-pw-134087v1
-
-  IGT_7871: 1d7b961235e345db20933c057f265898e2e96fd2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1348-f2c37d7fd878c82ea57075948d614f60a168128c: f2c37d7fd878c82ea57075948d614f60a168128c
-  xe-pw-134087v1: 134087v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134087v1/index.html
-
---===============3675699594394361445==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Allow migrate vm gpu submissions from reclaim context</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/134087/">https://patchwork.freedesktop.org/series/134087/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134087v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134087v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1348-f2c37d7fd878c82ea57075948d614f60a168128c_BAT -&gt; xe-pw-134087v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-134087v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:<ul>
-<li>{bat-lnl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1348-f2c37d7fd878c82ea57075948d614f60a168128c/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134087v1/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-134087v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_exec_threads@threads-mixed-userptr-invalidate:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1348-f2c37d7fd878c82ea57075948d614f60a168128c/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1908">Intel XE#1908</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1939">Intel XE#1939</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134087v1/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1348-f2c37d7fd878c82ea57075948d614f60a168128c -&gt; xe-pw-134087v1</li>
-</ul>
-<p>IGT_7871: 1d7b961235e345db20933c057f265898e2e96fd2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1348-f2c37d7fd878c82ea57075948d614f60a168128c: f2c37d7fd878c82ea57075948d614f60a168128c<br />
-  xe-pw-134087v1: 134087v1</p>
-
-</body>
-</html>
-
---===============3675699594394361445==--
+-- 
+Ville Syrjälä
+Intel
