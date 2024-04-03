@@ -4,55 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCD5DCD1294
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Apr 2024 10:51:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0474CD1288
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Apr 2024 10:51:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 880D2112990;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E563D1129C4;
 	Wed,  3 Apr 2024 10:51:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QZ1dnDgg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cfN+mvI/";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AB1111263C;
- Wed,  3 Apr 2024 10:51:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4CE011263D;
+ Wed,  3 Apr 2024 10:51:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712141506; x=1743677506;
+ t=1712141507; x=1743677507;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=CboQQp1pv9ZFmZrda2W5aIS+LzDpsqCiBn7sdOpM8tc=;
- b=QZ1dnDggOD0RspzgiR9UgKsbdnD4MkVz5zT5//BubfzlnU6brhTM20kh
- dQmHfk/GZNQYaBa8pnzbfMdXwkC+dSCuSuwnxc+ZAfcM73hZThdg6wquy
- FGNLZD5PQf9hLcMI4uBfPLyb65qyIu9bH6ayDx9Ak9IwRIsDr0Dze7Suc
- jR3i7yGbMbYBf+DHVV2hLWk3ASZdgEffR0cWQbuX4iZZnhuvpYevZXEa+
- Y08u01iRWqmwQ1UXrirKY4JGLx28+XCw/B3PAWL7kj9tGqMdrmIgc+bER
- KNE48r8Idg9FX4uyT+X6DnjrlS4rC1NUvD2PzYZRZHuRGA4leQouCIDau A==;
-X-CSE-ConnectionGUID: LyC4Hm7wTWOiK6fM0dRG9Q==
-X-CSE-MsgGUID: gOJ147M0SHOYKHwwU4Tm7w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="7212102"
+ bh=xzrFbXEDQUB8nd70SidKMIXoBJZQIcCHF292AjuMF8Q=;
+ b=cfN+mvI/5kkqeWpCsAsgytZZK3h6QfgWa1B4yI0xxtHCFXN7ewC77tix
+ bQVhAv+64Xv4Ikbp08r0uC9LtTvCqXt+jLV7c4Pej+6NAwLvOCrBDeHPu
+ rlhlBJUSi5BRPjoIpY9UjvRypm7ei3q6u45de943VrjnQX5wkAAEhyxBc
+ VgiMzetb1lmpxEaSKIxfjgdoyw/0PoSTVv44MShzuWF62oNKK0gEYyDql
+ 8VULiGhdxGRfTk1az3u0vCcx0sfBwVvbMwyjIBmVHDVO3+5gKRagoqvrW
+ 3821foDzdZg8PGKbwDI0xJp9ak8dm17W4fM1mb7cOC56jYG9ERx7aHLyK Q==;
+X-CSE-ConnectionGUID: M7q/0HqEQkmJFZO0W7onww==
+X-CSE-MsgGUID: zX7xicvWQR6o+1NTVMJcUw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="7212114"
 X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; 
-   d="scan'208";a="7212102"
+   d="scan'208";a="7212114"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 03:51:14 -0700
-X-CSE-ConnectionGUID: gADjxQImSuKuUoEAsp+4Sg==
-X-CSE-MsgGUID: UqzA4HmtSsixQu6kAO9Q1w==
+ 03 Apr 2024 03:51:18 -0700
+X-CSE-ConnectionGUID: ertfrIC3SyS/BSzoz1uaKg==
+X-CSE-MsgGUID: 285I7zt7S3OrRuHgV+0A0A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18493323"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18493332"
 Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 03:51:12 -0700
+ 03 Apr 2024 03:51:16 -0700
 From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
- Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
- Clint Taylor <Clinton.A.Taylor@intel.com>
-Subject: [PATCH 01/25] drm/i915/display: Prepare to handle new C20 PLL
- register address
-Date: Wed,  3 Apr 2024 16:20:59 +0530
-Message-Id: <20240403105123.1327669-2-balasubramani.vivekanandan@intel.com>
+ Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Subject: [PATCH 03/25] drm/xe/bmg: Define IS_BATTLEMAGE macro
+Date: Wed,  3 Apr 2024 16:21:01 +0530
+Message-Id: <20240403105123.1327669-4-balasubramani.vivekanandan@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240403105123.1327669-1-balasubramani.vivekanandan@intel.com>
 References: <20240403105123.1327669-1-balasubramani.vivekanandan@intel.com>
@@ -72,220 +70,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-New platforms have different addresses for C20 PLL registers. This patch
-prepares the driver to work with different register addresses.
-New structure `struct intel_c20pll_reg` is created to hold the register
-addresses for each platform with different register address.
+Common display code requires IS_BATTLEMAGE macro. Defined the macro.
 
-CC: Clint Taylor <Clinton.A.Taylor@intel.com>
 Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 53 +++++++++++++------
- .../gpu/drm/i915/display/intel_cx0_phy_regs.h | 36 ++++++++++---
- 2 files changed, 65 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index a2c4bf33155f..13a2e3db2812 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -759,6 +759,17 @@ static const struct intel_c10pll_state * const mtl_c10_edp_tables[] = {
- 	NULL,
- };
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+index a01d1b869c2d..9161d1fdf239 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+@@ -88,6 +88,7 @@ static inline struct drm_i915_private *kdev_to_i915(struct device *kdev)
+ #define IS_DG2(dev_priv)	IS_PLATFORM(dev_priv, XE_DG2)
+ #define IS_METEORLAKE(dev_priv) IS_PLATFORM(dev_priv, XE_METEORLAKE)
+ #define IS_LUNARLAKE(dev_priv) IS_PLATFORM(dev_priv, XE_LUNARLAKE)
++#define IS_BATTLEMAGE(dev_priv)  IS_PLATFORM(dev_priv, XE_BATTLEMAGE)
  
-+static struct intel_c20pll_reg mtl_c20_reg = {
-+	.tx_cnt_a = MTL_C20_A_TX_CNTX_CFG_ADDR,
-+	.tx_cnt_b = MTL_C20_B_TX_CNTX_CFG_ADDR,
-+	.cmn_cnt_a = MTL_C20_A_CMN_CNTX_CFG_ADDR,
-+	.cmn_cnt_b = MTL_C20_B_CMN_CNTX_CFG_ADDR,
-+	.mplla_a = MTL_C20_A_MPLLA_CFG_ADDR,
-+	.mplla_b = MTL_C20_B_MPLLA_CFG_ADDR,
-+	.mpllb_a = MTL_C20_A_MPLLB_CFG_ADDR,
-+	.mpllb_b = MTL_C20_B_MPLLB_CFG_ADDR
-+};
-+
- /* C20 basic DP 1.4 tables */
- static const struct intel_c20pll_state mtl_c20_dp_rbr = {
- 	.clock = 162000,
-@@ -2161,6 +2172,7 @@ static void intel_c20pll_readout_hw_state(struct intel_encoder *encoder,
- 	bool cntx;
- 	intel_wakeref_t wakeref;
- 	int i;
-+	struct intel_c20pll_reg *pll_reg = &mtl_c20_reg;
- 
- 	wakeref = intel_cx0_phy_transaction_begin(encoder);
- 
-@@ -2171,20 +2183,20 @@ static void intel_c20pll_readout_hw_state(struct intel_encoder *encoder,
- 	for (i = 0; i < ARRAY_SIZE(pll_state->tx); i++) {
- 		if (cntx)
- 			pll_state->tx[i] = intel_c20_sram_read(encoder, INTEL_CX0_LANE0,
--							       PHY_C20_B_TX_CNTX_CFG(i));
-+							       PHY_C20_B_TX_CNTX_CFG(pll_reg, i));
- 		else
- 			pll_state->tx[i] = intel_c20_sram_read(encoder, INTEL_CX0_LANE0,
--							       PHY_C20_A_TX_CNTX_CFG(i));
-+							       PHY_C20_A_TX_CNTX_CFG(pll_reg, i));
- 	}
- 
- 	/* Read common configuration */
- 	for (i = 0; i < ARRAY_SIZE(pll_state->cmn); i++) {
- 		if (cntx)
- 			pll_state->cmn[i] = intel_c20_sram_read(encoder, INTEL_CX0_LANE0,
--								PHY_C20_B_CMN_CNTX_CFG(i));
-+								PHY_C20_B_CMN_CNTX_CFG(pll_reg, i));
- 		else
- 			pll_state->cmn[i] = intel_c20_sram_read(encoder, INTEL_CX0_LANE0,
--								PHY_C20_A_CMN_CNTX_CFG(i));
-+								PHY_C20_A_CMN_CNTX_CFG(pll_reg, i));
- 	}
- 
- 	if (intel_c20phy_use_mpllb(pll_state)) {
-@@ -2192,20 +2204,20 @@ static void intel_c20pll_readout_hw_state(struct intel_encoder *encoder,
- 		for (i = 0; i < ARRAY_SIZE(pll_state->mpllb); i++) {
- 			if (cntx)
- 				pll_state->mpllb[i] = intel_c20_sram_read(encoder, INTEL_CX0_LANE0,
--									  PHY_C20_B_MPLLB_CNTX_CFG(i));
-+									  PHY_C20_B_MPLLB_CNTX_CFG(pll_reg, i));
- 			else
- 				pll_state->mpllb[i] = intel_c20_sram_read(encoder, INTEL_CX0_LANE0,
--									  PHY_C20_A_MPLLB_CNTX_CFG(i));
-+									  PHY_C20_A_MPLLB_CNTX_CFG(pll_reg, i));
- 		}
- 	} else {
- 		/* MPLLA configuration */
- 		for (i = 0; i < ARRAY_SIZE(pll_state->mplla); i++) {
- 			if (cntx)
- 				pll_state->mplla[i] = intel_c20_sram_read(encoder, INTEL_CX0_LANE0,
--									  PHY_C20_B_MPLLA_CNTX_CFG(i));
-+									  PHY_C20_B_MPLLA_CNTX_CFG(pll_reg, i));
- 			else
- 				pll_state->mplla[i] = intel_c20_sram_read(encoder, INTEL_CX0_LANE0,
--									  PHY_C20_A_MPLLA_CNTX_CFG(i));
-+									  PHY_C20_A_MPLLA_CNTX_CFG(pll_reg, i));
- 		}
- 	}
- 
-@@ -2341,6 +2353,7 @@ static void intel_c20_pll_program(struct drm_i915_private *i915,
- 	u32 clock = crtc_state->port_clock;
- 	bool cntx;
- 	int i;
-+	const struct intel_c20pll_reg *pll_reg = &mtl_c20_reg;
- 
- 	if (intel_crtc_has_dp_encoder(crtc_state))
- 		dp = true;
-@@ -2363,17 +2376,25 @@ static void intel_c20_pll_program(struct drm_i915_private *i915,
- 	/* 3.1 Tx configuration */
- 	for (i = 0; i < ARRAY_SIZE(pll_state->tx); i++) {
- 		if (cntx)
--			intel_c20_sram_write(encoder, INTEL_CX0_LANE0, PHY_C20_A_TX_CNTX_CFG(i), pll_state->tx[i]);
-+			intel_c20_sram_write(encoder, INTEL_CX0_LANE0,
-+					     PHY_C20_A_TX_CNTX_CFG(pll_reg, i),
-+					     pll_state->tx[i]);
- 		else
--			intel_c20_sram_write(encoder, INTEL_CX0_LANE0, PHY_C20_B_TX_CNTX_CFG(i), pll_state->tx[i]);
-+			intel_c20_sram_write(encoder, INTEL_CX0_LANE0,
-+					     PHY_C20_B_TX_CNTX_CFG(pll_reg, i),
-+					     pll_state->tx[i]);
- 	}
- 
- 	/* 3.2 common configuration */
- 	for (i = 0; i < ARRAY_SIZE(pll_state->cmn); i++) {
- 		if (cntx)
--			intel_c20_sram_write(encoder, INTEL_CX0_LANE0, PHY_C20_A_CMN_CNTX_CFG(i), pll_state->cmn[i]);
-+			intel_c20_sram_write(encoder, INTEL_CX0_LANE0,
-+					     PHY_C20_A_CMN_CNTX_CFG(pll_reg, i),
-+					     pll_state->cmn[i]);
- 		else
--			intel_c20_sram_write(encoder, INTEL_CX0_LANE0, PHY_C20_B_CMN_CNTX_CFG(i), pll_state->cmn[i]);
-+			intel_c20_sram_write(encoder, INTEL_CX0_LANE0,
-+					     PHY_C20_B_CMN_CNTX_CFG(pll_reg, i),
-+					     pll_state->cmn[i]);
- 	}
- 
- 	/* 3.3 mpllb or mplla configuration */
-@@ -2381,22 +2402,22 @@ static void intel_c20_pll_program(struct drm_i915_private *i915,
- 		for (i = 0; i < ARRAY_SIZE(pll_state->mpllb); i++) {
- 			if (cntx)
- 				intel_c20_sram_write(encoder, INTEL_CX0_LANE0,
--						     PHY_C20_A_MPLLB_CNTX_CFG(i),
-+						     PHY_C20_A_MPLLB_CNTX_CFG(pll_reg, i),
- 						     pll_state->mpllb[i]);
- 			else
- 				intel_c20_sram_write(encoder, INTEL_CX0_LANE0,
--						     PHY_C20_B_MPLLB_CNTX_CFG(i),
-+						     PHY_C20_B_MPLLB_CNTX_CFG(pll_reg, i),
- 						     pll_state->mpllb[i]);
- 		}
- 	} else {
- 		for (i = 0; i < ARRAY_SIZE(pll_state->mplla); i++) {
- 			if (cntx)
- 				intel_c20_sram_write(encoder, INTEL_CX0_LANE0,
--						     PHY_C20_A_MPLLA_CNTX_CFG(i),
-+						     PHY_C20_A_MPLLA_CNTX_CFG(pll_reg, i),
- 						     pll_state->mplla[i]);
- 			else
- 				intel_c20_sram_write(encoder, INTEL_CX0_LANE0,
--						     PHY_C20_B_MPLLA_CNTX_CFG(i),
-+						     PHY_C20_B_MPLLA_CNTX_CFG(pll_reg, i),
- 						     pll_state->mplla[i]);
- 		}
- 	}
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-index bdd0c8c4ef97..882b98dc347b 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-@@ -254,24 +254,44 @@
- #define PHY_C20_VDR_CUSTOM_WIDTH	0xD02
- #define   PHY_C20_CUSTOM_WIDTH_MASK	REG_GENMASK(1, 0)
- #define   PHY_C20_CUSTOM_WIDTH(val)	REG_FIELD_PREP8(PHY_C20_CUSTOM_WIDTH_MASK, val)
--#define PHY_C20_A_TX_CNTX_CFG(idx)	(0xCF2E - (idx))
--#define PHY_C20_B_TX_CNTX_CFG(idx)	(0xCF2A - (idx))
-+#define PHY_C20_A_TX_CNTX_CFG(reg, idx)		((reg)->tx_cnt_a - (idx))
-+#define PHY_C20_B_TX_CNTX_CFG(reg, idx)		((reg)->tx_cnt_b - (idx))
- #define   C20_PHY_TX_RATE		REG_GENMASK(2, 0)
--#define PHY_C20_A_CMN_CNTX_CFG(idx)	(0xCDAA - (idx))
--#define PHY_C20_B_CMN_CNTX_CFG(idx)	(0xCDA5 - (idx))
--#define PHY_C20_A_MPLLA_CNTX_CFG(idx)	(0xCCF0 - (idx))
--#define PHY_C20_B_MPLLA_CNTX_CFG(idx)	(0xCCE5 - (idx))
-+#define PHY_C20_A_CMN_CNTX_CFG(reg, idx)	((reg)->cmn_cnt_a - (idx))
-+#define PHY_C20_B_CMN_CNTX_CFG(reg, idx)	((reg)->cmn_cnt_b - (idx))
-+#define PHY_C20_A_MPLLA_CNTX_CFG(reg, idx)	((reg)->mplla_a - (idx))
-+#define PHY_C20_B_MPLLA_CNTX_CFG(reg, idx)	((reg)->mplla_b - (idx))
- #define   C20_MPLLA_FRACEN		REG_BIT(14)
- #define   C20_FB_CLK_DIV4_EN		REG_BIT(13)
- #define   C20_MPLLA_TX_CLK_DIV_MASK	REG_GENMASK(10, 8)
--#define PHY_C20_A_MPLLB_CNTX_CFG(idx)	(0xCB5A - (idx))
--#define PHY_C20_B_MPLLB_CNTX_CFG(idx)	(0xCB4E - (idx))
-+#define PHY_C20_A_MPLLB_CNTX_CFG(reg, idx)	((reg)->mpllb_a - (idx))
-+#define PHY_C20_B_MPLLB_CNTX_CFG(reg, idx)	((reg)->mpllb_b - (idx))
- #define   C20_MPLLB_TX_CLK_DIV_MASK	REG_GENMASK(15, 13)
- #define   C20_MPLLB_FRACEN		REG_BIT(13)
- #define   C20_REF_CLK_MPLLB_DIV_MASK	REG_GENMASK(12, 10)
- #define   C20_MULTIPLIER_MASK		REG_GENMASK(11, 0)
- #define   C20_PHY_USE_MPLLB		REG_BIT(7)
- 
-+struct intel_c20pll_reg {
-+	u16 tx_cnt_a;
-+	u16 tx_cnt_b;
-+	u16 cmn_cnt_a;
-+	u16 cmn_cnt_b;
-+	u16 mplla_a;
-+	u16 mplla_b;
-+	u16 mpllb_a;
-+	u16 mpllb_b;
-+};
-+
-+#define MTL_C20_A_TX_CNTX_CFG_ADDR	0xCF2E
-+#define MTL_C20_B_TX_CNTX_CFG_ADDR	0xCF2A
-+#define MTL_C20_A_CMN_CNTX_CFG_ADDR	0xCDAA
-+#define MTL_C20_B_CMN_CNTX_CFG_ADDR	0xCDA5
-+#define MTL_C20_A_MPLLA_CFG_ADDR	0xCCF0
-+#define MTL_C20_B_MPLLA_CFG_ADDR	0xCCE5
-+#define MTL_C20_A_MPLLB_CFG_ADDR	0xCB5A
-+#define MTL_C20_B_MPLLB_CFG_ADDR	0xCB4E
-+
- /* C20 Phy VSwing Masks */
- #define C20_PHY_VSWING_PREEMPH_MASK	REG_GENMASK8(5, 0)
- #define C20_PHY_VSWING_PREEMPH(val)	REG_FIELD_PREP8(C20_PHY_VSWING_PREEMPH_MASK, val)
+ #define IS_HASWELL_ULT(dev_priv) (dev_priv && 0)
+ #define IS_BROADWELL_ULT(dev_priv) (dev_priv && 0)
 -- 
 2.25.1
 
