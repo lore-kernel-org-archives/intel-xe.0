@@ -4,26 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B7B8CD1288
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Apr 2024 16:37:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54375CD128A
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Apr 2024 16:44:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2948789B62;
-	Wed,  3 Apr 2024 16:37:26 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0EB810E2E5;
- Wed,  3 Apr 2024 16:37:24 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08A41112D4A;
+	Wed,  3 Apr 2024 16:44:27 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="enc6td2/";
+	dkim-atps=neutral
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6B8EB112D4B;
+ Wed,  3 Apr 2024 16:44:26 +0000 (UTC)
+Received: from [100.64.216.231] (unknown [20.29.225.195])
+ by linux.microsoft.com (Postfix) with ESMTPSA id DEC6420E8CB1;
+ Wed,  3 Apr 2024 09:44:25 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com DEC6420E8CB1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+ s=default; t=1712162666;
+ bh=JXwsd2AxoIuTbqYYBsm2eaH2T3RMwYhW+EuWf51ajaI=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=enc6td2/9wYk/5AJ75GJ+d2KStC4HCCxos5X3NVTZDD2/oIurKS5e5aSfxG20NTAn
+ i6QoaGybHsOcc9F8ukHIPO521Uu8BoKDrrjEMr1X1WvCtk0DqcVkd5bYcJVQCFeQeI
+ efLmLz3IHfJYxowLOTc8KrIggtvkr42zcNpYJ/Ys=
+Message-ID: <2d2a22a5-25cf-4b15-904e-7928a92d6ff5@linux.microsoft.com>
+Date: Wed, 3 Apr 2024 09:44:24 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v0 01/14] IB/hfi1, IB/qib: Make I2C terminology more
+ inclusive
+To: Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
+ Leon Romanovsky <leon@kernel.org>
+Cc: Jason Gunthorpe <jgg@ziepe.ca>,
+ "open list:HFI1 DRIVER" <linux-rdma@vger.kernel.org>,
+ open list <linux-kernel@vger.kernel.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>,
+ "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <nouveau@lists.freedesktop.org>,
+ "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
+ "open list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>,
+ "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>
+References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
+ <20240329170038.3863998-2-eahariha@linux.microsoft.com>
+ <20240403083025.GT11187@unreal>
+ <0214214a-73c4-46b4-a099-189036954aa1@cornelisnetworks.com>
+Content-Language: en-CA
+From: Easwar Hariharan <eahariha@linux.microsoft.com>
+In-Reply-To: <0214214a-73c4-46b4-a099-189036954aa1@cornelisnetworks.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_Introduce_a_wedged_state?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 03 Apr 2024 16:37:24 -0000
-Message-ID: <171216224492.1172471.1623593838743052199@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240403150732.102678-1-rodrigo.vivi@intel.com>
-In-Reply-To: <20240403150732.102678-1-rodrigo.vivi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,37 +69,43 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 4/3/2024 8:54 AM, Dennis Dalessandro wrote:
+> 
+> On 4/3/24 4:30 AM, Leon Romanovsky wrote:
+>> On Fri, Mar 29, 2024 at 05:00:25PM +0000, Easwar Hariharan wrote:
+>>> I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
+>>> with more appropriate terms. Inspired by and following on to Wolfram's series
+>>> to fix drivers/i2c[1], fix the terminology where I had a role to play, now that
+>>> the approved verbiage exists in the specification.
+>>>
+>>> Compile tested, no functionality changes intended
+>>>
+>>> [1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+>>>
+>>> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+>>> ---
+>>>  drivers/infiniband/hw/hfi1/chip.c           |  6 ++--
+>>>  drivers/infiniband/hw/hfi1/chip.h           |  2 +-
+>>>  drivers/infiniband/hw/hfi1/chip_registers.h |  2 +-
+>>>  drivers/infiniband/hw/hfi1/file_ops.c       |  2 +-
+>>>  drivers/infiniband/hw/hfi1/firmware.c       | 22 ++++++-------
+>>>  drivers/infiniband/hw/hfi1/pcie.c           |  2 +-
+>>>  drivers/infiniband/hw/hfi1/qsfp.c           | 36 ++++++++++-----------
+>>>  drivers/infiniband/hw/hfi1/user_exp_rcv.c   |  2 +-
+>>>  drivers/infiniband/hw/qib/qib_twsi.c        |  6 ++--
+>>>  9 files changed, 40 insertions(+), 40 deletions(-)
+>>
+>> hfi1 and qib work perfectly fine with the current terminology. There is
+>> no need to change old code just for the sake of change.
+>>
+>> Let's drop this patch.
+> 
+> Agreed.
 
-Series: Introduce a wedged state
-URL   : https://patchwork.freedesktop.org/series/131998/
-State : success
+Will drop in v1.
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast c8dc2a19ae7157e065d5f0c78bc4d3f83165fdef
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+Thanks,
+Easwar
