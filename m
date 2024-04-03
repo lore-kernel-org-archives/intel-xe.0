@@ -4,117 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83D4DCD1294
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Apr 2024 09:16:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F069CD128A
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Apr 2024 09:58:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C5C7112915;
-	Wed,  3 Apr 2024 09:16:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5A36112977;
+	Wed,  3 Apr 2024 09:58:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="xaqc+MhI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AYbSQF3m";
 	dkim-atps=neutral
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2119.outbound.protection.outlook.com [40.107.220.119])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78B93112915;
- Wed,  3 Apr 2024 09:16:56 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MWutkxa0nL4z7XdJTVuJ++tAuOicBGg7CSH2yn27JuSaZ8o2Q0UMzA54T47+LE8noCX6As8I/rMlDaz1mnwqzevIw5EZBOc80oHP30Meqf//kjEVymOh/NZyzzCBnEPwQxpcCwf1gSITW4gD6Bqj5Gr3vFSwVn8X6PV05x32MZrCb520gEyrdxhlHf138HcE8KbL+zLDyMI0v/hHW4JzHV0qtpRDYCVIdq43cnXZKt553hK4VP+so5M5KyRbMm8rEf5rjnHl3KSJYJ76rqDYmT2zItw4baoLvHo6uqk97VFCQD/00I2hZBtiC+g92WXOzl9cC57MLa3QHetWGA0jJQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bvZ2KD6dhsR1naoLVIdgd9mPSbaMP74h61vN89Zk3yY=;
- b=jfVMt46fVBwyFVAZOdXd1S44wSrwhfz1b8Op/9Ef9xBM0THng9sEFqwf2Y5/JAO26bQXAN9J0uakoLaxKLx5UN4mN806fm8x6l2EJAH8aiCrz5BhuHBZ5SIsPivZqBdBafx/cYz1WF/aBxp7+00g6r6ZPxi99Caeq3l8hCTydXcuUYWu9OjvEW80DfeLVs6xIzhFiDlktYkTqpQ+ZBKtN4tKGG7hwozrGH7ascWWgpoMBVyXvErtg4DhujdpUvA/t+n7HpiJPLcUHu92adOuQGkgx4zqLi5LOerWqMsR/QkNO7CyFecMovMeQ69SI9KNb4eWZ9qmdW4aLJ90tpSqwA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bvZ2KD6dhsR1naoLVIdgd9mPSbaMP74h61vN89Zk3yY=;
- b=xaqc+MhIi+b3XZSXnVlkQPCyC9gXNaLDiRsT/euFQ/lFXzXx1bLjv2ZtAx8JkwJgrZtCJfDkzGupdOfGrsg2UQnSFy5m2nrCQrfKiPpiMWxs3gxunlSMYABAqwqpGXxUe5XxFnmxRiVSCWGTbj9qHVz2O4DAq9B/95epycEFak8=
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SJ1PR12MB6266.namprd12.prod.outlook.com (2603:10b6:a03:457::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Wed, 3 Apr
- 2024 09:16:52 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::f2b6:1034:76e8:f15a]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::f2b6:1034:76e8:f15a%6]) with mapi id 15.20.7409.042; Wed, 3 Apr 2024
- 09:16:52 +0000
-Message-ID: <5495090e-dee1-4c8e-91bc-240632fd3e35@amd.com>
-Date: Wed, 3 Apr 2024 11:16:36 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: Cross-device and cross-driver HMM support
-To: Dave Airlie <airlied@gmail.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Matthew Brost <matthew.brost@intel.com>, oak.zeng@intel.com,
- Daniel Vetter <daniel.vetter@ffwll.ch>
-References: <bc4c7b5f19e6479a002ef69949918a45ca89ce69.camel@linux.intel.com>
- <CAPM=9tyMF2POfE4Sm3717ibH3NSaY-AX3bMz6ZRAeaRaQWEURQ@mail.gmail.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <CAPM=9tyMF2POfE4Sm3717ibH3NSaY-AX3bMz6ZRAeaRaQWEURQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR0P281CA0191.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:ab::14) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SJ1PR12MB6266:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: OkgfDd0UkUFSU+/3bq7worluJbHLCttkhFC+hxL1hDx7heQA0dkWMJXqbmzaYVm6SS8+F7GHAfvNvYHMYgaHmTeLuWsnNEMMkvOwYGLd+mfhaWnzMNGhx9v3XCUpdpK0IeIX9xYDkr6qkfUAB3T8EnqVtDNhgrhgmIfEHlmhrCMCscf8/djDX+xhgfbMNAPBSAc3cPbxbcaBi2L20CxZYMGAWI6JCEELIZPsO6sbyYk5yhcdWsZo7L7DrveO0FMFhCem1rIYj726DYgf+B8yF5/omdxIK1F2+mXlYOSmpC2XECprBcLP0ZW6iFTttcsMj0npNbg1dojK0Hg/zKEec+zEm9VUY3z0bFgE1MoYDkCR5mFDLNXC8lBChxeNpr6ECvPcmLHYRiT2I97tqXW1G9QSoswkjoceXGyT39X7WZVlV32UIWmePFD5cC7Ywi0VL8CAAirU3iOXTTyO/FjyrA+0xpPz+fcrLSB1qQh2HeNb9GtTkKeQrqwabGN486a9kAOs56e5+pdn0eW0440H5WSaAASxDCRl6X751zg189GN4toEjW15+O0xsUl9c3bZYtH8xje8iPmW9jaQvfPJMHP84RylnGc8jrz+yoKDY4N8plgC8YnjoG4GJK5YR6CExXcArjil+xbonUcbPXkzvqmc19vFoUtnlljTmlkmuJ4=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366007)(376005)(1800799015); DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bXBQVEo0TitFQ1VJS0lsNVNtUWN2T2tGUitiR2F1eitiWFBuSkQwVHByVHVk?=
- =?utf-8?B?STFSK2V1cVkzbk1PbDMyek01SGE4YUUrNFl3UTVLZUkzb2JvZmFIT1hmNmJm?=
- =?utf-8?B?N0FNSjRnK1h2ZEpTOUlHSnBuNEpDYTFGOFB2QVZvYktlamVDREpjVmNiWTIr?=
- =?utf-8?B?NVAvOFJXR21lK1hpejNySCsxb1o0SjBGN0gzb3NTNmpnNjA1c2cvb3cwaGMw?=
- =?utf-8?B?YzluYSs0ejgvazJha05ZMjV4L0thWUhacjIrMXpUVWl3WGQ0Sk1XY0Q5S3ZF?=
- =?utf-8?B?am13cDNKelFqUDdVVFZUclkwNjk5RFFUZ2Z1ek9EckhNZkVhUlk2OWFMR0gx?=
- =?utf-8?B?eUlzQ0RnbUQvVWpJV3dPUk16SnZOUWwwclNnUjJ5NTJRUGlIdHloTWZMQVJZ?=
- =?utf-8?B?b0ZWb2RaWFQzb0U5c2UrOEdkTjJBTFZqV1VscjdSYWprNmwzZFRhekFRQVlq?=
- =?utf-8?B?UXgzZVZHNmJOZnI2OTAvR1BuRm9QemZOZmw0Ui9hcVBmVlJrVEt1aXRoUHR0?=
- =?utf-8?B?VU1WVDB0am04THVmY0xiM2hSWjhEbUs5UUlmaHVrY1VGcWlXUzJST0pRekZO?=
- =?utf-8?B?OG11WCtMdmsyUE5rb1M0cFpSZmZCL3ZYaWd6N3BVUWFGcTI2VWwxYVNWTWM0?=
- =?utf-8?B?cVpuQWJpRTgyYzFPcXgxNHZxTExJcy9BblpnUDB2SEJRQk9TOWlTOE8rVFRY?=
- =?utf-8?B?NHBNTzBwZ2ZqVmxRelN6cC8vUGN0T1hlVXZCZXBtTXdGZFNNTE9zT2liQzJK?=
- =?utf-8?B?YS9MVzZCL0hJOTlLMjJsbjBVSURsVXkwNHpyZm8vU0xnbmJmMGtLYXF1U28x?=
- =?utf-8?B?ZDc5c2FHRHBrN1AyUjh0RHVZOUJHWjBYK25oNUFEeGFSZ0U0KzlxYURPRW10?=
- =?utf-8?B?SFhBeTFCaDYyWjB4ZzdRa28vTElad1JycSszTlR5MHdBWXNBNmJ4MUczWHNB?=
- =?utf-8?B?OGNNUUo4dm02ckU3djdXZHZJUEh0VmI5YVp2Z0FETkFZS28vZ0tuRHRITGQ5?=
- =?utf-8?B?UFZCSVZiNEhSbW0vaEJnMCtMenVZcCthakZSZG5FZEZWeldiQVRaQTU2VjJQ?=
- =?utf-8?B?OTZtbVBwSVJFL0M0TWRwZVI2d0tCeUxLNnZicFBLZTlNVkhIRURQREF3V0M1?=
- =?utf-8?B?MHJwR0llM3ZaN0tsOUpHWHFSS1pVQUdTLy9pT1JQaDBaQ1FKcWtiNFV6NmE2?=
- =?utf-8?B?RlhaY2taUjRjcGp4YmFFOW43dmhzUW5seGhleURsZlo2cVJnMG05VzdrUmFP?=
- =?utf-8?B?djA5SkIzb2c0eURJK1ZSdmlJMWprclllaW1DQmRhZStHV1JQeEhzaW9ZdVlt?=
- =?utf-8?B?Tkk2NzY5ck5DYXExMU00NFpnaURHYXh6WXJCTFBWaFgxTW1hZStOU01vU3p5?=
- =?utf-8?B?V01HMWtFNkpvTUtFMUR5NGdjeDlDUzFMTFNnc1doYjBhME5nejJFTzl4ZTJx?=
- =?utf-8?B?OEtjeVUzeEpRZTZWbWtMS1BjMXBHNmI1U0tIbHBGbDdTWDltWitKa0lKdFhX?=
- =?utf-8?B?Z3JLYVVKN1h6ekhmMFFJMDFQYmJxNkNOQ0diWDhnR0xXTzVPb3hKbVZub3E0?=
- =?utf-8?B?d3ZOK3IwbmU0Zmc3NWpFcGdueTFDWHBueEdpeEdYNk4xQnVWWXM1RkhxTGYv?=
- =?utf-8?B?Q1h4MjVFMEgrRjlHOGRsSUJZWFpFNldQVWkvRWk5UGV3c0RzVjRSNG1XTEFH?=
- =?utf-8?B?YWJwU1QzZ21tM0FKYjJmUnRrNndDWXp2eXp2Sk13ZjgvTm1rVENHREtXK1JF?=
- =?utf-8?B?M3Y0WnJ6YTJIL3RRMDRRc2RzV1BJRG1PRVd3bm1oYUV3REdsT3Q5WnlkUFJO?=
- =?utf-8?B?aDJKc3hqc1V6N0VKSWg5WXBIVmFEWFozUWYzM2tRNlVMVDhVVURjUHVEUHli?=
- =?utf-8?B?NERDRThiVUZMUXRlS3BrTzRCVGpUYnhESVVXRk02TGV0ZUhBRmVzTFVIWEtp?=
- =?utf-8?B?c1BJZmRiV3J5WDJ4RzFPbVpETE16YmM5SmhYcEVYRk5IT2RFZWlmaENKeTJZ?=
- =?utf-8?B?a0FrTVg1MjJmQllmTlZaZ3ZyeWpqL1NZZ2hpN2d2VlpBV0dneVhzUG5BZm5i?=
- =?utf-8?B?bnh1SHBYWThWSytDV3lrSnB5SVNXUDNjNnNkaGsvUllzako0eWx3WUw4WmVp?=
- =?utf-8?Q?GCrdJhR1Q5FnUrr/Q+nclL9lg?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 63eaf008-d9ef-48cc-a843-08dc53becc8b
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2024 09:16:52.3343 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: sGMXt05NIszT3cf5uklT3xy0ZMI2vYd0MjXE17bojkBki81JTw06FLw4UMI2rUmG
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6266
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68A8F112975
+ for <intel-xe@lists.freedesktop.org>; Wed,  3 Apr 2024 09:58:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1712138324; x=1743674324;
+ h=date:from:to:cc:subject:message-id;
+ bh=DK0lBXsDEsiXr1vVZJ5Qikj4IKTnLf7I4wm4hMNpIis=;
+ b=AYbSQF3mFYdy8V81qVjkGoMh3BCZeL4OhtrCvKJ3GOxhpVGROWLm2Mj/
+ c926gL9lXXHSkgu52GZ3y1gWD00tq+DBZYsMuwhjKEko+zPxhG8DsaBXN
+ soWaF4LurPhTfuwCVNprbyJWVkPuQsABIc6ZnKmXdwKDK5COrLDVO889V
+ N5oHQDMhnxRLJjQzBHSez52ym+DL0lxoGoMC4om3MzWITUVi0V2+rip8t
+ rp5Ie+C2gztkfkzyLLxZqZavRFQDiHsOUe5FYZDZ31ClmMutUkgBRl2Kq
+ Z6brNTo7eVlw8FRwVoCA2seJBFWAQqrXWqEIxYpA19lfPv642IFoe6WCe w==;
+X-CSE-ConnectionGUID: mHaXDyDjT8259QMExR6mQw==
+X-CSE-MsgGUID: zk/dF78oRF+zymNxmLQiZA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="18803887"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18803887"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2024 02:58:44 -0700
+X-CSE-ConnectionGUID: 7jUXtcbTT1C6PLspzkrQ8A==
+X-CSE-MsgGUID: 6vx616k/RTqfkHlgbGyFqg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18434929"
+Received: from lkp-server02.sh.intel.com (HELO 90ee3aa53dbd) ([10.239.97.151])
+ by fmviesa009.fm.intel.com with ESMTP; 03 Apr 2024 02:58:43 -0700
+Received: from kbuild by 90ee3aa53dbd with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1rrxOC-00025P-2y;
+ Wed, 03 Apr 2024 09:58:40 +0000
+Date: Wed, 03 Apr 2024 17:57:58 +0800
+From: kernel test robot <lkp@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ 9f18b55b6d3f77b9e778257efdec385d2d5dfa8e
+Message-ID: <202404031757.tRmh0gh5-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -129,72 +64,180 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Am 03.04.24 um 00:57 schrieb Dave Airlie:
-> On Wed, 27 Mar 2024 at 19:52, Thomas Hellström
-> <thomas.hellstrom@linux.intel.com> wrote:
->> Hi!
->>
->> With our SVM mirror work we'll soon start looking at HMM cross-device
->> support. The identified needs are
->>
->> 1) Instead of migrating foreign device memory to system when the
->> current device is faulting, leave it in place...
->> 1a) for access using internal interconnect,
->> 1b) for access using PCIE p2p (probably mostly as a reference)
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: 9f18b55b6d3f77b9e778257efdec385d2d5dfa8e  drm/xe/xe2: Add workaround 18033852989
 
-I still agree with Sima that we won't see P2P based on HMM between 
-devices anytime soon if ever.
+elapsed time: 826m
 
-The basic problem is that you are missing a lot of fundamental inter 
-device infrastructure.
+configs tested: 161
+configs skipped: 5
 
-E.g. there is no common representation of DMA addresses with address 
-spaces. In other words you need to know the device which does DMA for an 
-address to make sense.
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-Additional to that we don't have a representation for internal 
-connections, e.g. the common kernel has no idea that device A and device 
-B can talk directly to each other, but not with device C.
+tested configs:
+alpha                             allnoconfig   gcc  
+alpha                            allyesconfig   gcc  
+alpha                               defconfig   gcc  
+arc                              allmodconfig   gcc  
+arc                               allnoconfig   gcc  
+arc                              allyesconfig   gcc  
+arc                                 defconfig   gcc  
+arc                   randconfig-001-20240403   gcc  
+arc                   randconfig-002-20240403   gcc  
+arm                              allmodconfig   gcc  
+arm                               allnoconfig   clang
+arm                              allyesconfig   gcc  
+arm                                 defconfig   clang
+arm                   randconfig-001-20240403   gcc  
+arm                   randconfig-002-20240403   gcc  
+arm                   randconfig-003-20240403   clang
+arm                   randconfig-004-20240403   gcc  
+arm64                            allmodconfig   clang
+arm64                             allnoconfig   gcc  
+arm64                               defconfig   gcc  
+arm64                 randconfig-002-20240403   clang
+arm64                 randconfig-003-20240403   gcc  
+arm64                 randconfig-004-20240403   clang
+csky                             allmodconfig   gcc  
+csky                              allnoconfig   gcc  
+csky                             allyesconfig   gcc  
+csky                                defconfig   gcc  
+csky                  randconfig-001-20240403   gcc  
+csky                  randconfig-002-20240403   gcc  
+hexagon                          allmodconfig   clang
+hexagon                           allnoconfig   clang
+hexagon                          allyesconfig   clang
+hexagon                             defconfig   clang
+hexagon               randconfig-001-20240403   clang
+hexagon               randconfig-002-20240403   clang
+i386                             allmodconfig   gcc  
+i386                              allnoconfig   gcc  
+i386                             allyesconfig   gcc  
+i386         buildonly-randconfig-001-20240403   gcc  
+i386         buildonly-randconfig-002-20240403   clang
+i386         buildonly-randconfig-003-20240403   clang
+i386         buildonly-randconfig-004-20240403   clang
+i386         buildonly-randconfig-005-20240403   gcc  
+i386         buildonly-randconfig-006-20240403   clang
+i386                                defconfig   clang
+i386                  randconfig-001-20240403   gcc  
+i386                  randconfig-002-20240403   clang
+i386                  randconfig-003-20240403   gcc  
+i386                  randconfig-004-20240403   gcc  
+i386                  randconfig-005-20240403   clang
+i386                  randconfig-006-20240403   gcc  
+i386                  randconfig-011-20240403   gcc  
+i386                  randconfig-012-20240403   clang
+i386                  randconfig-013-20240403   gcc  
+i386                  randconfig-014-20240403   clang
+i386                  randconfig-015-20240403   gcc  
+i386                  randconfig-016-20240403   clang
+loongarch                        allmodconfig   gcc  
+loongarch                         allnoconfig   gcc  
+loongarch                           defconfig   gcc  
+loongarch             randconfig-001-20240403   gcc  
+loongarch             randconfig-002-20240403   gcc  
+m68k                             allmodconfig   gcc  
+m68k                              allnoconfig   gcc  
+m68k                             allyesconfig   gcc  
+m68k                                defconfig   gcc  
+microblaze                       allmodconfig   gcc  
+microblaze                        allnoconfig   gcc  
+microblaze                       allyesconfig   gcc  
+microblaze                          defconfig   gcc  
+mips                              allnoconfig   gcc  
+mips                             allyesconfig   gcc  
+nios2                            allmodconfig   gcc  
+nios2                             allnoconfig   gcc  
+nios2                            allyesconfig   gcc  
+nios2                               defconfig   gcc  
+nios2                 randconfig-001-20240403   gcc  
+nios2                 randconfig-002-20240403   gcc  
+openrisc                          allnoconfig   gcc  
+openrisc                         allyesconfig   gcc  
+openrisc                            defconfig   gcc  
+parisc                           allmodconfig   gcc  
+parisc                            allnoconfig   gcc  
+parisc                           allyesconfig   gcc  
+parisc                              defconfig   gcc  
+parisc                randconfig-001-20240403   gcc  
+parisc                randconfig-002-20240403   gcc  
+parisc64                            defconfig   gcc  
+powerpc                          allmodconfig   gcc  
+powerpc                           allnoconfig   gcc  
+powerpc                          allyesconfig   clang
+powerpc               randconfig-001-20240403   gcc  
+powerpc               randconfig-002-20240403   gcc  
+powerpc64             randconfig-001-20240403   gcc  
+powerpc64             randconfig-002-20240403   clang
+powerpc64             randconfig-003-20240403   gcc  
+riscv                            allmodconfig   clang
+riscv                             allnoconfig   gcc  
+riscv                            allyesconfig   clang
+riscv                               defconfig   clang
+riscv                 randconfig-001-20240403   clang
+riscv                 randconfig-002-20240403   clang
+s390                             allmodconfig   clang
+s390                              allnoconfig   clang
+s390                             allyesconfig   gcc  
+s390                                defconfig   clang
+s390                  randconfig-001-20240403   clang
+s390                  randconfig-002-20240403   clang
+sh                               allmodconfig   gcc  
+sh                                allnoconfig   gcc  
+sh                               allyesconfig   gcc  
+sh                                  defconfig   gcc  
+sh                    randconfig-001-20240403   gcc  
+sh                    randconfig-002-20240403   gcc  
+sparc                            allmodconfig   gcc  
+sparc                             allnoconfig   gcc  
+sparc                               defconfig   gcc  
+sparc64                          allmodconfig   gcc  
+sparc64                          allyesconfig   gcc  
+sparc64                             defconfig   gcc  
+sparc64               randconfig-001-20240403   gcc  
+sparc64               randconfig-002-20240403   gcc  
+um                               allmodconfig   clang
+um                                allnoconfig   clang
+um                               allyesconfig   gcc  
+um                                  defconfig   clang
+um                             i386_defconfig   gcc  
+um                    randconfig-001-20240403   gcc  
+um                    randconfig-002-20240403   clang
+um                           x86_64_defconfig   clang
+x86_64                            allnoconfig   clang
+x86_64                           allyesconfig   clang
+x86_64       buildonly-randconfig-001-20240403   gcc  
+x86_64       buildonly-randconfig-002-20240403   gcc  
+x86_64       buildonly-randconfig-003-20240403   clang
+x86_64       buildonly-randconfig-004-20240403   gcc  
+x86_64       buildonly-randconfig-005-20240403   clang
+x86_64       buildonly-randconfig-006-20240403   gcc  
+x86_64                              defconfig   gcc  
+x86_64                randconfig-001-20240403   gcc  
+x86_64                randconfig-002-20240403   clang
+x86_64                randconfig-003-20240403   gcc  
+x86_64                randconfig-004-20240403   gcc  
+x86_64                randconfig-005-20240403   gcc  
+x86_64                randconfig-006-20240403   clang
+x86_64                randconfig-011-20240403   gcc  
+x86_64                randconfig-012-20240403   gcc  
+x86_64                randconfig-013-20240403   gcc  
+x86_64                randconfig-014-20240403   gcc  
+x86_64                randconfig-015-20240403   gcc  
+x86_64                randconfig-016-20240403   gcc  
+x86_64                randconfig-071-20240403   clang
+x86_64                randconfig-072-20240403   gcc  
+x86_64                randconfig-073-20240403   clang
+x86_64                randconfig-074-20240403   gcc  
+x86_64                randconfig-075-20240403   gcc  
+x86_64                randconfig-076-20240403   gcc  
+x86_64                          rhel-8.3-rust   clang
+xtensa                            allnoconfig   gcc  
+xtensa                randconfig-001-20240403   gcc  
+xtensa                randconfig-002-20240403   gcc  
 
->>
->> 2) Request a foreign device to migrate memory range a..b of a CPU
->> mm_struct to local shareable device memory on that foreign device.
->>
->> and we plan to add an infrastructure for this. Probably this can be
->> done initially without too much (or any) changes to the hmm code
->> itself.
->>
->> So the question is basically whether anybody is interested in a
->> drm-wide solution for this and in that case also whether anybody sees
->> the need for cross-driver support?
-
-We have use cases for this as well, yes.
-
-For now XGMI support is something purely AMDGPU internal, but 
-essentially we would like to have that as common framework so that NICs 
-and other devices could interconnect as well.
-
->>
->> Otherwise any objections against us starting out with an xe driver
->> helper implementation that could be lifted to drm-level when needed?
-> I think you'd probably have a better chance of getting others to help
-> review it, if we started out outside the driver as much as possible.
-
-Yeah, completely agree. Especially we need to start with infrastructure 
-and not some in driver hack, we already have the later and it's clearly 
-a dead end.
-
-Regards,
-Christian.
-
->
-> I don't think gpuvm would have worked out as well if we'd just kept it
-> inside nouveau from the start, it at least forces you to think about
-> what should be driver specific here.
->
->> Finally any suggestions or pointers to existing solutions for this?
-> I think nvidia's uvm might have some of this type of code, but no idea
-> how you'd even consider starting to use it as a reference,
->
-> Dave.
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
