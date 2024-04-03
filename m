@@ -4,53 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EF26CD129B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8035CD129D
 	for <intel-xe@archiver.kernel.org>; Wed,  3 Apr 2024 10:51:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A84661129C2;
-	Wed,  3 Apr 2024 10:51:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C8171129C8;
+	Wed,  3 Apr 2024 10:51:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j1oMpelH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ijQcPfsV";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F37DA11263F;
- Wed,  3 Apr 2024 10:51:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89BDD1129C2;
+ Wed,  3 Apr 2024 10:51:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712141507; x=1743677507;
+ t=1712141508; x=1743677508;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gdyAvl2ku3TYX1gG2FKpS39C3vPWe9URIlYDj2KKYoE=;
- b=j1oMpelHeQ1SM9rh4QMWsOFmUM6qez879nZm+YLt555w4UO05Y5CUdHO
- CTUK4SBK6cKF9QxZomMIzt01BlvwcIF5RxwZzkfxAqvOVv5EWM1RkQPsg
- khP6Z+67+6jNBoUjwzPu7DamXdiOZrGQ3ZpD/lAbNZXhsqRIqRvu7u1Fs
- RMUAa8UEDwPeCloi0hDZ8xOLfP+r2uRkFmXkkTtQAHCyhKWCmTQ92qrPi
- pLxd9nuaFRUFm66RaM/xaMqNKYJZoladNlo+wXZ9jexPAu7fsTj2RK6pG
- 9CAiPGslImm5EL1aVvuhv9D33Od/NOdy2XFxXtfRxtlKh374MoGdn4oal A==;
-X-CSE-ConnectionGUID: pGPWIKGgS8SxagZjSGEPxw==
-X-CSE-MsgGUID: hcLRfgl4S+CqwQZ0/8RoYg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="7212119"
+ bh=QxM+kkrrWmnY6l+PtNpH+qYLdv73kcRtv8GuKIRMRN8=;
+ b=ijQcPfsV9p2UHvxKJLui+QRDqcRcTKIRB/kckcDwqcyDmK3HUT2bPGju
+ Jd2fkVGrF2aDFRqq5PWZFFJTm1O110kF52J/Y6/0jETNIXU9qX92vcmKY
+ 2C3Mms6c7EJ8bSKcD/D6KR+QU+UjUgyBgE/s12GCd/6P2O+OW64OnAAFo
+ jdZLZQ5R6W5dNfFYzYM5jGAHN5HDKzk77Gvwnum+HHJds66/oHpnuBUzq
+ DWgtvA2X+h9YMpvIf5jMy1xFeAjezp1FjNcnhP4JcCZeYOz9Y/VLiNw43
+ BjObG8QK/MGc8g+UoI7+dHrO/HRwhgl4wI/0LMuysM+rtlcA6dpfzsj8s A==;
+X-CSE-ConnectionGUID: DzB233w3SDGAKvvMeVC5ng==
+X-CSE-MsgGUID: u3LDsH0xQSOPhkLGXJteyA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="7212136"
 X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; 
-   d="scan'208";a="7212119"
+   d="scan'208";a="7212136"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 03:51:20 -0700
-X-CSE-ConnectionGUID: qb3yywd8RqKIb9iKHNAERw==
-X-CSE-MsgGUID: +BZkcxcbRQKZLd0N2/uQbw==
+ 03 Apr 2024 03:51:27 -0700
+X-CSE-ConnectionGUID: /aoE/YebTz+zGRWwMtzgfg==
+X-CSE-MsgGUID: zf/ztes0Q6GwWPxjBRjvFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18493338"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18493356"
 Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 03:51:18 -0700
+ 03 Apr 2024 03:51:24 -0700
 From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Subject: [PATCH 04/25] drm/i915/bmg: Define IS_BATTLEMAGE macro
-Date: Wed,  3 Apr 2024 16:21:02 +0530
-Message-Id: <20240403105123.1327669-5-balasubramani.vivekanandan@intel.com>
+Subject: [PATCH 07/25] Revert "drm/i915/dgfx: DGFX uses direct VBT pin mapping"
+Date: Wed,  3 Apr 2024 16:21:05 +0530
+Message-Id: <20240403105123.1327669-8-balasubramani.vivekanandan@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240403105123.1327669-1-balasubramani.vivekanandan@intel.com>
 References: <20240403105123.1327669-1-balasubramani.vivekanandan@intel.com>
@@ -70,42 +71,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Display code uses IS_BATTLEMAGE macro but the platform support doesn't
-still exist in i915. So fake IS_BATTLEMAGE macro defined to enable
-building i915 code.  We should make sure the macro parameter is used in
-the always-false expression so that we don't run into "unused variable"
-warnings from i915 builds if the IS_BATTLEMAGE() check is the only place
-the i915 pointer gets used in a function.
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-While we're at it, also update the IS_LUNARLAKE macro to include the
-parameter in the false expression for consistency.
+This reverts commit 562f33836f519a235e5c5e71bcc723ab1faccd2f.
+For BMG it seems that the VBT to DDI mapping does not follow DG1, and
+DG2, but follows ADLP mapping given in Bspec:20124.
 
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 ---
- drivers/gpu/drm/i915/i915_drv.h | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_bios.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index cf52d4adaa20..b41a414079f4 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -546,7 +546,15 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- #define IS_ALDERLAKE_P(i915) IS_PLATFORM(i915, INTEL_ALDERLAKE_P)
- #define IS_DG2(i915)	IS_PLATFORM(i915, INTEL_DG2)
- #define IS_METEORLAKE(i915) IS_PLATFORM(i915, INTEL_METEORLAKE)
--#define IS_LUNARLAKE(i915) 0
-+/*
-+ * Display code shared by i915 and Xe relies on macros like IS_LUNARLAKE,
-+ * so we need to define these even on platforms that the i915 base driver
-+ * doesn't support.  Ensure the parameter is used in the definition to
-+ * avoid 'unused variable' warnings when compiling the shared display code
-+ * for i915.
-+ */
-+#define IS_LUNARLAKE(i915) (0 && i915)
-+#define IS_BATTLEMAGE(i915)  (0 && i915)
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 2abd2d7ceda2..03fbd6c73f3f 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -2238,15 +2238,14 @@ static u8 map_ddc_pin(struct drm_i915_private *i915, u8 vbt_pin)
+ 	const u8 *ddc_pin_map;
+ 	int i, n_entries;
  
- #define IS_DG2_G10(i915) \
- 	IS_SUBPLATFORM(i915, INTEL_DG2, INTEL_SUBPLATFORM_G10)
+-	if (IS_DGFX(i915))
+-		return vbt_pin;
+-
+ 	if (INTEL_PCH_TYPE(i915) >= PCH_MTL || IS_ALDERLAKE_P(i915)) {
+ 		ddc_pin_map = adlp_ddc_pin_map;
+ 		n_entries = ARRAY_SIZE(adlp_ddc_pin_map);
+ 	} else if (IS_ALDERLAKE_S(i915)) {
+ 		ddc_pin_map = adls_ddc_pin_map;
+ 		n_entries = ARRAY_SIZE(adls_ddc_pin_map);
++	} else if (INTEL_PCH_TYPE(i915) >= PCH_DG1) {
++		return vbt_pin;
+ 	} else if (IS_ROCKETLAKE(i915) && INTEL_PCH_TYPE(i915) == PCH_TGP) {
+ 		ddc_pin_map = rkl_pch_tgp_ddc_pin_map;
+ 		n_entries = ARRAY_SIZE(rkl_pch_tgp_ddc_pin_map);
 -- 
 2.25.1
 
