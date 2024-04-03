@@ -4,140 +4,120 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A927CD128A
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Apr 2024 13:51:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7CC0CD1288
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Apr 2024 14:06:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07A19112B27;
-	Wed,  3 Apr 2024 13:51:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BF7E112721;
+	Wed,  3 Apr 2024 14:06:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LY03/h7E";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="cwgXJ9f3";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49464112B34
- for <intel-xe@lists.freedesktop.org>; Wed,  3 Apr 2024 13:51:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712152316; x=1743688316;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=PipBg2McBo7WGscH445UM9RKzdcdOF0nWIj9EB0Yq/c=;
- b=LY03/h7EFMmkRy5RrCEf/CHLdfUZa4ZdhQ7A0JvWuXmdkuCr/H0OOIij
- PrEXW8vWLHGt0citbsn7nzdo4fSCvBneLuKlhI1FEyRAo8Mkyd4ikkXyc
- w4BKv0YSb7WGfbIUowB4sxT1NIKdy2I/vxGAAHZWETKMoHnKDgl2VIhwg
- XIzZhM8gWDo9eihME0eekpJ42b68PXdIzYFPw0zXT6N2k0umDLBSxfd92
- UVhn/vpHu08JcfeMREd5+YbnVqjeOivOZu48eMq6KPBX2vRgZv5GMdGVX
- oNcAc9LInCcUt3uT1rFuBgKNINKzKnvCA+UJ6pUg7HI1dLS/hIOJuUnVR g==;
-X-CSE-ConnectionGUID: EeKemLbiTWuYS+7kyTdQXA==
-X-CSE-MsgGUID: o6u6q5+CSYaDVo623DdDSw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11033"; a="7254213"
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; 
-   d="scan'208";a="7254213"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 06:51:56 -0700
-X-CSE-ConnectionGUID: PDS5W3oATSG/bQtaaG7eqw==
-X-CSE-MsgGUID: 3BoyZ/xRRtuVsaSk2vylrw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18365354"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 03 Apr 2024 06:51:55 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 3 Apr 2024 06:51:55 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 3 Apr 2024 06:51:55 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 3 Apr 2024 06:51:55 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2106.outbound.protection.outlook.com [40.107.93.106])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54EAD112721;
+ Wed,  3 Apr 2024 14:06:19 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=O1FTDW3YmXoPwrzmXyG4QnLrvPGtoCv4FAWyhAMTOv9+1MjZ4ocM2vW28deNHTzkRTlXKyhzhoxT9OM4qlKWMXi9NcgK/lhoQcdbq4cCfdhZ/5L3eg24noFCelsbNjT/wKjm+Ed985ezoj0wHcYNcCPasrBgbVUhAB3DGyyWDf05Twy69qzyni2t2j77qGh0SB9NbNJpFxxjN70uO9o7i8nUMHZCIBZanuFXnd5gssJ16gbCftFtXn0coJXxwDb7n0z/B+CuF44JgWFwPbduYfMwsThIE8j8MZ72aWzMz1ppzHtOB3IQzX2ud9egAJg6TpDY6mDu0zuRmwiLLU5RSw==
+ b=C97vu5SS6wiN7ybe9FG+HMO/DytIc19GxTFj0g0Zd4meNVo9F0frlOvlgrxBFaYTOQFsTU1UICh/AB9egB0EsPksRQUaSt/TMblpGxn8ynlRz4VHfKVQMv0om2sg4vxX6IwErZ3Tcy+MxJSlOGkao32bcBu3Ezhywhe+lLQUr/Rjo8PgFfHizKC9H8FyAr6UDRDZfvld8rAIDbnQioY4gpK7fD/thICus8lFscorR3c/IQG7IlwAK3SU3h/uujlwAXFPBiyyDFv6JasPGU5GZYUadTKLHYjSCeKDSFFhkU479k/f8L8aZfJ2XxY7qrSBxDBgfI2GWHGaGHIzkLSIww==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TUEithj5Sid0iUW5xwvK8C0floQQi7a+VIfipSswaDI=;
- b=goOVMht87Lw/kyd1f+b7q9ykiK8UlihLRosHXD5YFnwFBN9Mm1pXxxiKeuzLvQm/ZHVkn36KmHG3BNc32zYQcx7Ri+MeNOSA6r+G1EecuTpIvLnsF0OTVRVPCFve5UZcqoNFyYk8kNIti7Sf1UEt22CyC/3Ju5EmNPbRs6m5axd+zBME+4+ZWBTXmEphLVdT4QUw2U9kodaPdwGZo6gY4/5b7dAaWYAYQD9b/pQEBjvZDR6nKa8dPM7y13bzs5SfUe0T3W3oiekTZa5qN5PXUjNQ4rdWX6WObCLsy7Z+0qPg9/zGGll+X848FQpZQdA2/yJlhFFTcrd/wte/IZxxHQ==
+ bh=NN8MFStzxPS8poA2VNNL8CZdVRaFHsiQ72cDOySDGJk=;
+ b=Ikcljm3/dR8ltH1KwFWMgjf5Od+xSJzjwzT8UIzJtiUzDKG7dlPZlQl3CpzwL8cjoeMvG2OmeO0S4IZzbLN3rnkxYvecmTbnjdWso4goWbpy2TzKV3ZPkC0B3VrvSA6hxYCnuRCZQIUhevrU8YSXM3YUUr0defOwj0pTVop68ed5rUziMXo8fnzWMQdQ5cCK+AYVpLIDxd8qaMCbPV/gO6OQdvtJs92bWIT+EmRp1Wj9ATCnsKJ0eB/10w/VX0h8tHqe1sdQ2Olv3tkuwGVlyXIhdmV9RdHmxJYtpp8Zfb1awWDRh3v1laOfsjXJApxqOSTolbuNrp8kvLc1lQsppw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by SN7PR11MB6948.namprd11.prod.outlook.com (2603:10b6:806:2ab::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.24; Wed, 3 Apr
- 2024 13:51:51 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::45cf:261e:c084:9493]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::45cf:261e:c084:9493%6]) with mapi id 15.20.7452.019; Wed, 3 Apr 2024
- 13:51:51 +0000
-Date: Wed, 3 Apr 2024 06:51:49 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: "Bommu, Krishnaiah" <krishnaiah.bommu@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
-Subject: Re: [PATCH] drm/xe/xe2: Add workaround 18034896535
-Message-ID: <20240403135149.GK6574@mdroper-desk1.amr.corp.intel.com>
-References: <20240402061129.117196-1-krishnaiah.bommu@intel.com>
- <20240402190105.GD6571@mdroper-desk1.amr.corp.intel.com>
- <DM4PR11MB5293C1345F7F6B2BD014B91B9D3D2@DM4PR11MB5293.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <DM4PR11MB5293C1345F7F6B2BD014B91B9D3D2@DM4PR11MB5293.namprd11.prod.outlook.com>
-X-ClientProxiedBy: SJ0P220CA0023.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:41b::21) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NN8MFStzxPS8poA2VNNL8CZdVRaFHsiQ72cDOySDGJk=;
+ b=cwgXJ9f3lriqnhBVJrg+CUXAkOlbi/8f7FDR8vr5VU96D28mYyOVaDAxjYR1PZ9YR0TYD1nXED9O2owwjFkJ19yJNwfu2S6cQxNWvJo2aJ3WCRyX4zgbtGD0UWmtTNCBYixD+U8Zay9WN75AF2ofyTp/CdqsGEAITX2z0wFNEX8=
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by SA1PR12MB6846.namprd12.prod.outlook.com (2603:10b6:806:25d::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Wed, 3 Apr
+ 2024 14:06:16 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::f2b6:1034:76e8:f15a]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::f2b6:1034:76e8:f15a%6]) with mapi id 15.20.7409.042; Wed, 3 Apr 2024
+ 14:06:16 +0000
+Content-Type: multipart/alternative;
+ boundary="------------0CSKbNyZnNbNIhqrPoIHCV0t"
+Message-ID: <27a15da3-57e8-4c74-81d2-71ad123776e4@amd.com>
+Date: Wed, 3 Apr 2024 16:06:11 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: Cross-device and cross-driver HMM support
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: Dave Airlie <airlied@gmail.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Matthew Brost <matthew.brost@intel.com>, oak.zeng@intel.com,
+ Daniel Vetter <daniel.vetter@ffwll.ch>
+References: <bc4c7b5f19e6479a002ef69949918a45ca89ce69.camel@linux.intel.com>
+ <CAPM=9tyMF2POfE4Sm3717ibH3NSaY-AX3bMz6ZRAeaRaQWEURQ@mail.gmail.com>
+ <5495090e-dee1-4c8e-91bc-240632fd3e35@amd.com>
+ <20240403125712.GA1744080@nvidia.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20240403125712.GA1744080@nvidia.com>
+X-ClientProxiedBy: FR0P281CA0146.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:96::20) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|SN7PR11MB6948:EE_
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SA1PR12MB6846:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: CePj6POjhJAy8yV65/nUcVmd8QG6vKbG3pMOEYz5SVptX4y4M5y8x9HDn9kG9rF2O0efNUaElowS9wAvR8/7UIs2x08vO9ifFlX07PmyVsggMTCKVY3UV+Icw51RQEnGvpxZycgUa31+mYUOYp5UWij9/3go8ACyg5xLpHv5Oc6pu4aOLQA/e/1mTPXXTXSAfvNYOPpZ6KFQ38JFdFgk2RBdkGfsZe/ObOBPMzutILxaKyZo9uJf82jxXHXPxPEOnL7MoJJ9DSebqQgFHkN0vs+HKI7+BgyOkJ75ObDWjH+lEBzspkr5hQ0YAeCezlIVmteVo6KL2FlU7aDICrlYX0WXGNIvftcOanqqddp6cckd6xY4J2kcQJ9rMRC9wThgcc6ptmGtmtDQ4MYfAKmsv527eWgthYL6swzw0PvXJuVEnHj4maJU81f/bX1PfiNTfbG4EmyBUZBdkwHJHzp11oqv4UuYvgKZsihpYhKswAj6pHgxtlfzVOjueeQLuB7v1cklwk6tWslwwu3WcCkADxsgjXBA70kT5nigfqtWxz5wMiQcx7YF3CRuiqZZaNrmwp9+nSf7WH4tiV2QgIztbIjfbGhtT1BQdK063RzHq+cMbRZyVtmCOBccYheVianeWB/Yl+Ja7kIuOiH39/veZxCpg9PAWaNHzn76XzAPknI=
+X-Microsoft-Antispam-Message-Info: /5xJ1Mh7JmoRX4s9Z1YKOCnRFobbMfh3K0oWQZny8KgTxDqcC96Vl4knXPlRSM4T6cCaxgVyBcTEuqBZSnLJSJRlVF/32NzX7qe33MEZ/FTD8jMLaKarnFXFrgh3UveTE76LIz6UgbsfhhGFtrqjYx4KazuCE8ahH31xZVh2lcYPWk8D6rWBvkoWym/6k67ip26jKcaoSxpI/6IkpFTzlLmyIuLcExSe+jEI+iRA8WCxCfeDtof+zJdlnkpLOwtRwpyl1GpUgvndaSR1K1d8opMv0Q8l4cc1IzSVIUBgchIV/fImX+p74ShUk/+zb1aQEFgEY/rWylDIw9m/8SIh/cspbj2MOQw836wZKvo3IUDaz0+/bViCJJnXInqoPOJtI2LUltRtCEdon+62V/jmaS87m+nb+T7YykpbOwouXkaUAOkeADNCe+uDRZwlLa7MgIdtWeJRAFecCnINakqcJRDNc4T7T/lnBD8AozkQWalFurlimrBWFt7YgDepjXmnmh06LR3UqiTfYvWm2FYU1BEiv9oVqWjybHChMeXiwPxlOa+133CejpNAB/O8mA+RsTChYCJFGcURlOW2gPMHbOT5GFMTAhScbRBy6v2LQRMBWtY36qPxKXrhKJdHl7nA
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(366007)(376005); DIR:OUT; SFP:1102; 
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366007)(1800799015)(376005); DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?psKEVHV7EbZFs7a91ZKeRDElufYF/4djLVMLrEIFfj4vvYtccLgrcCGfQm29?=
- =?us-ascii?Q?2+0tyvjtL/N+Bc1D9glwmDVbYr2EtvFFPdszuMkyCSZPVfb2zh4XNTM9hspn?=
- =?us-ascii?Q?Wt+fn4Cb1ZGeMfokXJBeXh2VRo2fG0maCT1vxuJ+pQNsT1SOVNtUv/iX6YlB?=
- =?us-ascii?Q?vjenC/3OmZlX+1xLjLp9pu9syT5LqUa3lHBpYT1b1p1UpDIMtYPuYoc30Jbv?=
- =?us-ascii?Q?fvos2TkbD6GmUPmyOfdWjZLiNGZirFeuAMEveXjObjAN2ACutzcrq4JZlOWS?=
- =?us-ascii?Q?SU92qZYlXUG5IxYiuFdgmJyrdV2TOENCB9YNyaYFnxmBflo6hFNHwZTA6jxw?=
- =?us-ascii?Q?cg5+LmDBHvACAJyEpetoMAhxeeiKIXGc9nlG2OzeuYWykK4eXBFFyqnXGbo9?=
- =?us-ascii?Q?iXxtwRQMEAoELPMF6PWQ+CmGhZEuTbFVeagUS35MBbMAvmfK2GZgwmq09l1z?=
- =?us-ascii?Q?Z2+KLAWzl+hsKiNCEejC+DHkkryH+l2M+7PsA1Ud7koW8igDRDmajC3Fw9G+?=
- =?us-ascii?Q?V7aKAiPTKJXqkI3Jb3aqj57qLDKX4E1ALDrJXoO2kjDOiWQSo+8BPBMJ/axW?=
- =?us-ascii?Q?Ic+lf4cgvmgclPV+L4rZNqL0IEE9TFNcsefJe1TRFIRSrO3v9yJ1AxxwKGYT?=
- =?us-ascii?Q?C5xADsgmCZ/cWpBDR++UEsyXwAJ3L3Rana6PGut6hMgL4R5Shon8i7+arnkF?=
- =?us-ascii?Q?YbiI62yIWkX6WxwR9sInTVa7wnHfaMjp+032XDtZDXqC4r8rG/4sCmxANU6o?=
- =?us-ascii?Q?8YB/+6MmmncwjrINWvq3IWtATEBoWZZ/Ol/6yM/JAvFVvWgrq+j7+XINLsGk?=
- =?us-ascii?Q?5X7yNEWYl91HYucA304n5u8YKYIdNMQJ2IBDp22ZYbwAr3EVSSSY8dCvYVww?=
- =?us-ascii?Q?Kt3Dluz5WBEw7WL/QEbQy/qaeZ9AzqnViZBI5+Zzr8QDF9nT5qfMh0y//Kd9?=
- =?us-ascii?Q?Ms7Pu+O7fLgXAl/Kw06YAobR5NBmKhQS9khMUYduARE+N+4ozGJLgwu0R5Pa?=
- =?us-ascii?Q?66Zfz5Nt4H1Byoni6+m1MgUVv8hyxFZf6i3uT6JoZeNeNnxWzzks/07vdPlK?=
- =?us-ascii?Q?jtshcwJqc5rZHmctf+sVeG7sAUmYvh3S5lvPXZLO5a+I1iFDk2/rC52rhSFL?=
- =?us-ascii?Q?gLOPA3WiV3Aow5fwbLUQ9wUa1/BgYr4O9YzsrgWZ7qkwy6mwbH2MOndJrxmS?=
- =?us-ascii?Q?v4BRBy2mjAa9ObRWhVKfs6Mx8/4cG4q1+/5NvPw7bI5jUf84ibx/xDLluFZN?=
- =?us-ascii?Q?tqkMFpVvusmI/g+9rvFU+GxkJmze17wo7S8xp5rXVPlnH8o249p+kedBWism?=
- =?us-ascii?Q?Ahe9ALjCumhBMNkf6ShqVe8Ymbto7cmb6JJnLLXQiZiibF4+fbZj3AuY2aZH?=
- =?us-ascii?Q?66AwmnW5MKPKB7XV+qCl62KDsBFnmuzNbrHtFh6bp3Uq+Vlv7P08BLrzQfvb?=
- =?us-ascii?Q?elTII5drm09yU1Z6AovKqr8OlECTFZH6w68bBbrkQURzAcDyQQxBobBq/QZy?=
- =?us-ascii?Q?kAjPQs0F8Bh7cFI+z5UHMTVcVbzfTb6cSNAwDOy1ofWsPtKzVVC1Mkp7MSWq?=
- =?us-ascii?Q?IfwjX2RrIlKo0fJUXu0vbKRDcOD7S/1Sxqk9uJenFORisWEGcu3rZfDDyYTL?=
- =?us-ascii?Q?gQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 71bfe4aa-07cd-4de5-bf15-08dc53e5370a
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RFQvRXBEOEo1b2VXbzAzZW82ZkkxNW00dWNhZ0dUOG5XWHBKNE11ekZraURH?=
+ =?utf-8?B?Sk9KMkxPWXl6dlFqa1RWNXNiajFNUVR6cHJpN1ZLQ3hTWnpGTXVEdzNCNTd3?=
+ =?utf-8?B?cCtGQ1B4c2JGeXdHSG4wZFVmR2l0by9sZGxSNVZCSW1uZTMra3MxWFZ4cDRy?=
+ =?utf-8?B?OXFHTGlhaHZ5akJXbEJIT1EwUWJMTHhoN1FDT1IwYkp3UE4xajFlbjZnZlZt?=
+ =?utf-8?B?NnVCWHhuVWdaSWFEVnlIZ0NHNWMrQjl0d2V2dlNaTUQydmNjc3hRbVZMdTlm?=
+ =?utf-8?B?SlFCc2hqQ212M0JKL250KzF5WEl3RlpTL0l2N1czbTBCVHdncjFsbjVHd0Nv?=
+ =?utf-8?B?ZG5WaTNJU0IwemgyRFVGU1ZSYXVwWVUyeDFkZ0tBd0ZwZEpqL3pJTFc0UVJj?=
+ =?utf-8?B?WmwwNWdPc0xFMGxaeDZyNDh3V2J3eDRWMHR1RXpzYStFKzJLL2xiZEpLclh6?=
+ =?utf-8?B?c2YzNm9qa3pHb05jQ0VpbTV5M0ltUWlFcVJWWi9ROGtJNit4MERXR3VNa3dj?=
+ =?utf-8?B?aDM2MDk1S3lwWXkyV3cyQlpJZWUzV3A1bmJGV0xSV3hzbGdmU1pOY1dUb1l6?=
+ =?utf-8?B?S3llQ1JnR0VRYUxjNUJBcXRqL0JzdEwwWDgvY3hvRHdWSEtzVmYxRC8yZ0Vn?=
+ =?utf-8?B?TVoxWUhTL29hTy84SG1VbFdmUlVucW1LWFl3NFhCNXk1Q0Jhc0pYNlVvTUtt?=
+ =?utf-8?B?WGFtYXYzd1MzV05LZE03cEVkSDNnZXkreEZsZVpYcTlPTVBFODNPeDR1ZGd0?=
+ =?utf-8?B?NTkwMHBrRmUyanVhVE44V1B1bHRPZmhJVDY5MjQ2RFVWNnZaVmJteG9CWDYv?=
+ =?utf-8?B?R01XZDhaM09Uclh0WFU1NlloajZneUIwcG5SS2x2SVUySzYxTGpwc083dmZE?=
+ =?utf-8?B?UlNuWFpnM1F5bVh2NTFRNDJnYjhqNmlobFFTU0pzdXFNNVAvbHlicHB4QUJz?=
+ =?utf-8?B?cXQvdW1aaHh6eUpVazY1TGc5aWJ0YzBvNDBHdXZQV0haMG94dVRINFpoQ0NX?=
+ =?utf-8?B?Ri9hZi9UTmxzZDB2UmUrcWZaZ0o0a3JIQlloOUVrU1lIR0E1Q3BnL3FPZkZ6?=
+ =?utf-8?B?TmhxTWhHMmRKYm1NMzl1aDZ4dTdBTEEraWtYLzEzMU4wWWw2OXU2SVlIZGo2?=
+ =?utf-8?B?NFU2KzZqZU8xTWE3dTUwalA2bEExNmpjQ0xTSjB0NmY5aHFzYlRZVitQL29H?=
+ =?utf-8?B?cktoUDg2Q1ViZUZ6cGcwOStNcDlXUlZaK2d0WVNHa0NhTVF4Mmp3bU91RUlS?=
+ =?utf-8?B?d3h5cml0ZVNoV3BJd1F1WktiZzZtdTdNUHVkTlNGSnRoV0dzaFJuYnlWTmxT?=
+ =?utf-8?B?WUVQTjdjZGFFRzRUM0hNaVNTVXZHSVV6bU1iTVB5MXVpN0ZsQVlzd21JN3ZT?=
+ =?utf-8?B?cWhaSlRaVmxvR1dBMFZkOW56MVRQZFdVWWg4bWo1UUNNMkk1VWp3N3BNRWlx?=
+ =?utf-8?B?VWthYXltT25iVDNKTTBJVUtkU3RRS1RwZ2dIdFJRT0RKN2k5TnVianNUWFlS?=
+ =?utf-8?B?NG84VGllY3VBblJFMlQvLzJ5NkZNcTRSUTNtODd0QVZtYm1aeDd6VmVsSTBs?=
+ =?utf-8?B?SHl1anJwcTJkUDZLMEZtc2tRZFdOWVFjMGpEQWFxdDlOOG5XLys2TW05ei9M?=
+ =?utf-8?B?d01lWHZ0bDE1QVplY1FUOWsvS1ZLRmU5bkZqcjhBV2FEb1ZUV3VjRkpXYWRZ?=
+ =?utf-8?B?SHlxeDRSZk1ScUZMYk4zYVdhTEI4RU1IRFlFdlFPdGszRjRDR2diQjRHQkZw?=
+ =?utf-8?B?cEsyL0I2ZGg0bTkwZFNoNWViNFNsdXd1dFdhbVZpRHJwWDlpbmMrNUVXR1RF?=
+ =?utf-8?B?dm5ReWlDZFpnRnFmSzFENGYrUXRvcS9VdlVuN1VxWE1QTlpCN2Y3KzA4Mmxh?=
+ =?utf-8?B?emxUNnZ3OFZZdk85Y3ZhQU0zaE1PbkUxcW1TNFFSeDlVaTM3VWgvakxhS2U2?=
+ =?utf-8?B?S0FqbTQwK3RQZDV6eU0rY05nQXlEY2JNbDRZekxIQ0thcC9tOGZ4VlUwZ0hp?=
+ =?utf-8?B?ZmN5ZVpidlI4WCtmVHVET1dtdTNzVDgrRk03bmdZakE5eFlSS1dXMDQvSVZE?=
+ =?utf-8?B?UEZRZGhnTENCMXA3UEVZMndOUWF2MEZFdjFoSGJpOXp6QjF4NVlZNWcxSnRv?=
+ =?utf-8?Q?3Zxzjcx1itM/CWynLOjAa19Vl?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2367978f-80d0-4af5-36b3-08dc53e73a98
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2024 13:51:51.7130 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2024 14:06:16.6547 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 13IwPCLpi1Yl8aH7rX9llk93BqGsAr8JMqw7FkQM2jegqR9a2hQjuI8kactYRSUlLhnsrSiTtHABIpihELNWEWlO1uQfQRP+NZp02zQFS+w=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6948
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: FtQW1BX/UoHbKmTojdpbr6kULftU4uby5ZmzsUStTky0chNFXgIQNh9oMg2YYkEV
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6846
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,87 +132,305 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Apr 02, 2024 at 11:22:31PM -0700, Bommu, Krishnaiah wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Roper, Matthew D <matthew.d.roper@intel.com>
-> > Sent: Wednesday, April 3, 2024 12:31 AM
-> > To: Bommu, Krishnaiah <krishnaiah.bommu@intel.com>
-> > Cc: intel-xe@lists.freedesktop.org; Upadhyay, Tejas
-> > <tejas.upadhyay@intel.com>
-> > Subject: Re: [PATCH] drm/xe/xe2: Add workaround 18034896535
-> > 
-> > On Tue, Apr 02, 2024 at 11:41:29AM +0530, Bommu Krishnaiah wrote:
-> > > Add 18034896535 as driver permanent workarounds.
-> > > Also reverting temporary workaround 16021540221.
-> > 
-> > Why are we reverting 16021540221?  It's still listed in the workaround database
-> > and I don't think we're at the point where we want to remove preproduction-
-> > only workarounds (in fact I don't think we even know yet exactly which
-> > steppings are considered preproduction).
-> > 
-> > Even when multiple independent workarounds happen to have the same
-> > implementation, we still implement them all in the driver.  The independent
-> > workarounds may extend to future steppings and/or platforms in different ways
-> > and need separate handling.
-> > 
-> 
-> My understanding is 16021540221 is setting the workaround for A0, with current  workaround(18034896535) set for all, so keeping 16021540221 is redundant, so I removed it.
-> 
-> In order to keep workaround number(16021540221) should we need old code ? 
+--------------0CSKbNyZnNbNIhqrPoIHCV0t
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Those are two independent workarounds that just happen to have the same
-implementation.  We want to keep both of them, at least until the point
-where we decide we're ready to drop all of the workarounds that apply
-only to pre-production steppings.
+Am 03.04.24 um 14:57 schrieb Jason Gunthorpe:
+> On Wed, Apr 03, 2024 at 11:16:36AM +0200, Christian König wrote:
+>> Am 03.04.24 um 00:57 schrieb Dave Airlie:
+>>> On Wed, 27 Mar 2024 at 19:52, Thomas Hellström
+>>> <thomas.hellstrom@linux.intel.com>  wrote:
+>>>> Hi!
+>>>>
+>>>> With our SVM mirror work we'll soon start looking at HMM cross-device
+>>>> support. The identified needs are
+>>>>
+>>>> 1) Instead of migrating foreign device memory to system when the
+>>>> current device is faulting, leave it in place...
+>>>> 1a) for access using internal interconnect,
+>>>> 1b) for access using PCIE p2p (probably mostly as a reference)
+>> I still agree with Sima that we won't see P2P based on HMM between devices
+>> anytime soon if ever.
+> We've got a team working on the subset of this problem where we can
+> have a GPU driver install DEVICE_PRIVATE pages and the RDMA driver use
+> hmm_range_fault() to take the DEVICE_PRIVATE and return an equivilent
+> P2P page for DMA.
+>
+> We already have a working prototype that is not too bad code wise.
 
+The problem with that isn't the software but the hardware.
 
-Matt
+At least on the AMD GPUs and Intels Xe accelerators we have seen so far 
+page faults are not fast enough to actually work with the semantics the 
+Linux kernel uses for struct pages.
 
-> 
-> Regards,
-> Krishna.
-> 
-> > workaround 
-> > Matt
-> > 
-> > >
-> > > Signed-off-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-> > > Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> > > Cc: Matt Roper <matthew.d.roper@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/xe/xe_wa.c | 4 ++--
-> > >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-> > > index 74b33a3845f2..4d8e0d64cf42 100644
-> > > --- a/drivers/gpu/drm/xe/xe_wa.c
-> > > +++ b/drivers/gpu/drm/xe/xe_wa.c
-> > > @@ -423,8 +423,8 @@ static const struct xe_rtp_entry_sr engine_was[] = {
-> > >  		       FUNC(xe_rtp_match_first_render_or_compute)),
-> > >  	  XE_RTP_ACTIONS(SET(HALF_SLICE_CHICKEN5,
-> > DISABLE_SAMPLE_G_PERFORMANCE))
-> > >  	},
-> > > -	{ XE_RTP_NAME("16021540221"),
-> > > -	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0),
-> > > +	{ XE_RTP_NAME("18034896535"),
-> > > +	  XE_RTP_RULES(GRAPHICS_VERSION(2004),
-> > >  		       FUNC(xe_rtp_match_first_render_or_compute)),
-> > >  	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4, DISABLE_TDL_PUSH))
-> > >  	},
-> > > --
-> > > 2.25.1
-> > >
-> > 
-> > --
-> > Matt Roper
-> > Graphics Software Engineer
-> > Linux GPU Platform Enablement
-> > Intel Corporation
+That's why for example the SVM implementation really suck with fork(), 
+the transparent huge page deamon and NUMA migrations.
 
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+Somebody should probably sit down and write a performance measurement 
+tool for page faults so that we can start to compare vendors regarding this.
+
+>> E.g. there is no common representation of DMA addresses with address spaces.
+>> In other words you need to know the device which does DMA for an address to
+>> make sense.
+> ? Every device device calls hmm_range_fault() on it's own, to populate
+> its own private mirror page table, and gets a P2P page. The device can
+> DMA map that P2P for its own use to get a topologically appropriate
+> DMA address for its own private page table. The struct page for P2P
+> references the pgmap which references the target struct device, the
+> DMA API provides the requesting struct device. The infrastructure for
+> all this is all there already.
+
+The problem is the DMA API currently has no idea of inter device 
+connectors like XGMI.
+
+So it can create P2P mappings for PCIe, but anything which isn't part of 
+those interconnects is ignore at the moment as far as I can see.
+
+> There is a seperate discussion about optimizing away the P2P pgmap,
+> but for the moment I'm focused on getting things working by relying on
+> it.
+>
+>> Additional to that we don't have a representation for internal connections,
+>> e.g. the common kernel has no idea that device A and device B can talk
+>> directly to each other, but not with device C.
+> We do have this in the PCI P2P framework, it just isn't very complete,
+> but it does handle the immediate cases I see people building where we
+> have switches and ACS/!ACS paths with different addressing depending
+> on topology.
+
+That's not what I meant. I'm talking about direct interconnects which a 
+parallel to the PCIe bus.
+
+As far as I know we haven't even started looking into those.
+
+>>>> and we plan to add an infrastructure for this. Probably this can be
+>>>> done initially without too much (or any) changes to the hmm code
+>>>> itself.
+> It is essential any work in this area is not tied to DRM.
+> hmm_range_fault() and DEVICE_PRIVATE are generic kernel concepts we
+> need to make them work better not build weird DRM side channels.
+
+Completely agree.
+
+>>>> So the question is basically whether anybody is interested in a
+>>>> drm-wide solution for this and in that case also whether anybody sees
+>>>> the need for cross-driver support?
+>> We have use cases for this as well, yes.
+> Unfortunately this is a long journey. The immediate next steps are
+> Alistair's work to untangle the DAX refcounting mess from ZONE_DEVICE
+> pages:
+>
+> https://lore.kernel.org/linux-mm/87ttlhmj9p.fsf@nvdebian.thelocal/
+>
+> Leon is working on improving the DMA API and RDMA's ODP to
+> be better setup for this:
+>
+> https://lore.kernel.org/linux-rdma/cover.1709635535.git.leon@kernel.org/
+>
+> [Which is also the basis for fixing DMABUF's abuse of the DMA API]
+>
+> Then it is pretty simple to teach hmm_range_fault() to convert a
+> DEVICE_PRIVATE page into a P2P page using a new pgmap op and from
+> there the rest already basically exists.
+
+Nice, that's at least one step further than I expected.
+
+> Folks doing non-PCIe topologies will need to teach the P2P layer how
+> address translation works on those buses.
+
+Where to start with that?
+
+Christian.
+
+>
+> Jason
+
+--------------0CSKbNyZnNbNIhqrPoIHCV0t
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    Am 03.04.24 um 14:57 schrieb Jason Gunthorpe:<br>
+    <blockquote type="cite" cite="mid:20240403125712.GA1744080@nvidia.com">
+      <pre class="moz-quote-pre" wrap="">On Wed, Apr 03, 2024 at 11:16:36AM +0200, Christian König wrote:
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">Am 03.04.24 um 00:57 schrieb Dave Airlie:
+</pre>
+        <blockquote type="cite">
+          <pre class="moz-quote-pre" wrap="">On Wed, 27 Mar 2024 at 19:52, Thomas Hellström
+<a class="moz-txt-link-rfc2396E" href="mailto:thomas.hellstrom@linux.intel.com">&lt;thomas.hellstrom@linux.intel.com&gt;</a> wrote:
+</pre>
+          <blockquote type="cite">
+            <pre class="moz-quote-pre" wrap="">Hi!
+
+With our SVM mirror work we'll soon start looking at HMM cross-device
+support. The identified needs are
+
+1) Instead of migrating foreign device memory to system when the
+current device is faulting, leave it in place...
+1a) for access using internal interconnect,
+1b) for access using PCIE p2p (probably mostly as a reference)
+</pre>
+          </blockquote>
+        </blockquote>
+        <pre class="moz-quote-pre" wrap="">
+I still agree with Sima that we won't see P2P based on HMM between devices
+anytime soon if ever.
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
+We've got a team working on the subset of this problem where we can
+have a GPU driver install DEVICE_PRIVATE pages and the RDMA driver use
+hmm_range_fault() to take the DEVICE_PRIVATE and return an equivilent
+P2P page for DMA.
+
+We already have a working prototype that is not too bad code wise.</pre>
+    </blockquote>
+    <br>
+    The problem with that isn't the software but the hardware.<br>
+    <br>
+    At least on the AMD GPUs and Intels Xe accelerators we have seen so
+    far page faults are not fast enough to actually work with the
+    semantics the Linux kernel uses for struct pages.<br>
+    <br>
+    That's why for example the SVM implementation really suck with
+    fork(), the transparent huge page deamon and NUMA migrations.<br>
+    <br>
+    Somebody should probably sit down and write a performance
+    measurement tool for page faults so that we can start to compare
+    vendors regarding this.<br>
+    <br>
+    <span style="white-space: pre-wrap">
+</span>
+    <blockquote type="cite" cite="mid:20240403125712.GA1744080@nvidia.com">
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">E.g. there is no common representation of DMA addresses with address spaces.
+In other words you need to know the device which does DMA for an address to
+make sense.
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
+? Every device device calls hmm_range_fault() on it's own, to populate
+its own private mirror page table, and gets a P2P page. The device can
+DMA map that P2P for its own use to get a topologically appropriate
+DMA address for its own private page table. The struct page for P2P
+references the pgmap which references the target struct device, the
+DMA API provides the requesting struct device. The infrastructure for
+all this is all there already.</pre>
+    </blockquote>
+    <br>
+    The problem is the DMA API currently has no idea of inter device
+    connectors like XGMI.<br>
+    <br>
+    So it can create P2P mappings for PCIe, but anything which isn't
+    part of those interconnects is ignore at the moment as far as I can
+    see.<br>
+    <br>
+    <blockquote type="cite" cite="mid:20240403125712.GA1744080@nvidia.com">
+      <pre class="moz-quote-pre" wrap="">There is a seperate discussion about optimizing away the P2P pgmap,
+but for the moment I'm focused on getting things working by relying on
+it.
+
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">Additional to that we don't have a representation for internal connections,
+e.g. the common kernel has no idea that device A and device B can talk
+directly to each other, but not with device C.
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
+We do have this in the PCI P2P framework, it just isn't very complete,
+but it does handle the immediate cases I see people building where we
+have switches and ACS/!ACS paths with different addressing depending
+on topology.</pre>
+    </blockquote>
+    <br>
+    That's not what I meant. I'm talking about direct interconnects
+    which a parallel to the PCIe bus.<br>
+    <br>
+    As far as I know we haven't even started looking into those.<br>
+    <br>
+    <span style="white-space: pre-wrap">
+</span>
+    <blockquote type="cite" cite="mid:20240403125712.GA1744080@nvidia.com">
+      <blockquote type="cite">
+        <blockquote type="cite">
+          <blockquote type="cite">
+            <pre class="moz-quote-pre" wrap="">and we plan to add an infrastructure for this. Probably this can be
+done initially without too much (or any) changes to the hmm code
+itself.
+</pre>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
+It is essential any work in this area is not tied to DRM.
+hmm_range_fault() and DEVICE_PRIVATE are generic kernel concepts we
+need to make them work better not build weird DRM side channels.</pre>
+    </blockquote>
+    <br>
+    Completely agree.<br>
+    <br>
+    <span style="white-space: pre-wrap">
+</span>
+    <blockquote type="cite" cite="mid:20240403125712.GA1744080@nvidia.com">
+      <blockquote type="cite">
+        <blockquote type="cite">
+          <blockquote type="cite">
+            <pre class="moz-quote-pre" wrap="">So the question is basically whether anybody is interested in a
+drm-wide solution for this and in that case also whether anybody sees
+the need for cross-driver support?
+</pre>
+          </blockquote>
+        </blockquote>
+        <pre class="moz-quote-pre" wrap="">
+We have use cases for this as well, yes.
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
+Unfortunately this is a long journey. The immediate next steps are
+Alistair's work to untangle the DAX refcounting mess from ZONE_DEVICE
+pages:
+
+<a class="moz-txt-link-freetext" href="https://lore.kernel.org/linux-mm/87ttlhmj9p.fsf@nvdebian.thelocal/">https://lore.kernel.org/linux-mm/87ttlhmj9p.fsf@nvdebian.thelocal/</a>
+
+Leon is working on improving the DMA API and RDMA's ODP to
+be better setup for this:
+
+<a class="moz-txt-link-freetext" href="https://lore.kernel.org/linux-rdma/cover.1709635535.git.leon@kernel.org/">https://lore.kernel.org/linux-rdma/cover.1709635535.git.leon@kernel.org/</a>
+
+[Which is also the basis for fixing DMABUF's abuse of the DMA API]
+
+Then it is pretty simple to teach hmm_range_fault() to convert a
+DEVICE_PRIVATE page into a P2P page using a new pgmap op and from
+there the rest already basically exists.</pre>
+    </blockquote>
+    <br>
+    Nice, that's at least one step further than I expected.<br>
+    <br>
+    <blockquote type="cite" cite="mid:20240403125712.GA1744080@nvidia.com">
+      <pre class="moz-quote-pre" wrap="">Folks doing non-PCIe topologies will need to teach the P2P layer how
+address translation works on those buses.</pre>
+    </blockquote>
+    <br>
+    Where to start with that?<br>
+    <br>
+    Christian.<br>
+    <br>
+    <blockquote type="cite" cite="mid:20240403125712.GA1744080@nvidia.com">
+      <pre class="moz-quote-pre" wrap="">
+
+Jason
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------0CSKbNyZnNbNIhqrPoIHCV0t--
