@@ -4,62 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D60BCD128A
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Apr 2024 10:59:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86DC0CD128A
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Apr 2024 11:22:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C02F21129EB;
-	Wed,  3 Apr 2024 10:59:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 161A2112236;
+	Wed,  3 Apr 2024 11:22:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f/SjaP4g";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XbW+e8BN";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB5571129EB;
- Wed,  3 Apr 2024 10:59:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C43610EF3B;
+ Wed,  3 Apr 2024 11:22:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712141987; x=1743677987;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=tOJI/D13MF8ctyDp9p6TM4/zWdzeUe+BarTDcrEw5vQ=;
- b=f/SjaP4gg00e7zRbyq869MwfQjduzIsjcTABD0MW39iR64qJwCP9e75H
- os2iW86hqK+psPSHBybsewSSEboXDdRfISfsz4vlFawocd7PomxP0z9wI
- ycX4Ko8AMewE1Fm7QKlUCPosPjIHZf92sVvu4ZvTHOCmOUW/NCMAtCJ4C
- pu4iN1OoEQGxFMOCbYtw5zFxPKXw43DTVr4/RvibWGbkMGbTkGNP0KdMG
- qkwgnk2HjoSYnZQ2oIE1n6iwx3bgL2jz0i/1x/5kuskMeOQDJRqxzlN9Q
- rB/f3mvmPLVsjx5/aJV3q9xK7CvwL9RcvQgk5ZVZxGEoMQ372rgPqTLZ/ g==;
-X-CSE-ConnectionGUID: R91IPW8ITA2dmPvrcgOoPQ==
-X-CSE-MsgGUID: lS53L22rQa+Y3rdidlYXhw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="7228469"
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; 
-   d="scan'208";a="7228469"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 03:59:46 -0700
-X-CSE-ConnectionGUID: s+n/KoPoR/qhHlENKFX0Sw==
-X-CSE-MsgGUID: gRVz4LVNSSuW9Ax063TRFQ==
+ t=1712143368; x=1743679368;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+slylTHDJXX01Qg+DwDmynh35MlgFUMp6O3VCS7VzC8=;
+ b=XbW+e8BNQcn36jvapYiintOfVJGLfgqamlCEN60KS1+x8gtgL54Zr2vk
+ pHBZXlID3u5U4aqUtvQqu0zoPxifbKk0z16VghDaW2o3gcR9viWJDQDod
+ K/rR7hURhKyhniBHX+ODFCsWvMWinWPW65L+PanwUaBgzFcVYpQn4ClVW
+ Y798lz9YN5vPgouWvb21xJcHYjcfIvB+/An/pzh/d9qrlly1yp4rtT/dK
+ 2HYARWFMuKQn6R1AMhoDXC3KQLQKXHA8acCCkRKUCzFhBDQCh8/NT1ENq
+ bixUB1jMEEw1WrgNXnLCVecXctuNILU0dno7za06KpgSulXJrlWYikTOU w==;
+X-CSE-ConnectionGUID: N1yxjGNdR7iX0DZmsMdsmQ==
+X-CSE-MsgGUID: pjXAWEeZTEyhosuLoOwR4g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="24823976"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="24823976"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2024 04:22:47 -0700
+X-CSE-ConnectionGUID: JTlzke1aSZCqgMrY0ibszw==
+X-CSE-MsgGUID: Ytt8zP+gRp+N6aeXPTc79g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18840848"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.246.36.15])
- ([10.246.36.15])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 03:59:44 -0700
-Message-ID: <005c1f7f-5f00-4210-9686-a49be620c186@linux.intel.com>
-Date: Wed, 3 Apr 2024 12:59:41 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 23/25] drm/xe/device: implement transient flush
-To: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18358482"
+Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2024 04:22:45 -0700
+From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Nirmoy Das
- <nirmoy.das@intel.com>, Matthew Auld <matthew.auld@intel.com>
-References: <20240403105123.1327669-1-balasubramani.vivekanandan@intel.com>
- <20240403105123.1327669-24-balasubramani.vivekanandan@intel.com>
-Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <20240403105123.1327669-24-balasubramani.vivekanandan@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Subject: [PATCH v2 00/25] Enable dislay support for Battlemage
+Date: Wed,  3 Apr 2024 16:52:28 +0530
+Message-Id: <20240403112253.1432390-1-balasubramani.vivekanandan@intel.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,115 +68,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There is new fixup patch(PR#630) which modifies this patch. Could you 
-please bring that in as well.
+Adds display support for Battlemage.
+Reuses the patch "drm/xe/bmg: Add BMG platform definition" from the
+patch series <link> to help build this series. So that review on this
+series can continue without blocking on <link>.
 
+v2: Rebased on latest drm-tip
 
-Regards,
+Ankit Nautiyal (1):
+  Revert "drm/i915/dgfx: DGFX uses direct VBT pin mapping"
 
-Nirmoy
+Anusha Srivatsa (1):
+  drm/i915/xe2hpd: Add missing chicken bit register programming
 
-On 4/3/2024 12:51 PM, Balasubramani Vivekanandan wrote:
-> From: Nirmoy Das <nirmoy.das@intel.com>
->
-> Display surfaces can be tagged as transient by mapping it using one of
-> the various L3:XD PAT index modes on Xe2. The expectation is that KMD
-> needs to request transient data flush at the start of flip sequence to
-> ensure all transient data in L3 cache is flushed to memory. Add a
-> routine for this which we can then call from the display code.
->
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-> Co-developed-by: Matthew Auld <matthew.auld@intel.com>
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-> ---
->   drivers/gpu/drm/xe/regs/xe_gt_regs.h |  3 ++
->   drivers/gpu/drm/xe/xe_device.c       | 49 ++++++++++++++++++++++++++++
->   drivers/gpu/drm/xe/xe_device.h       |  2 ++
->   3 files changed, 54 insertions(+)
->
-> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> index d5b21f03beaa..9c6549830e24 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> @@ -305,6 +305,9 @@
->   
->   #define XE2LPM_L3SQCREG5			XE_REG_MCR(0xb658)
->   
-> +#define XE2_TDF_CTRL				XE_REG(0xb418)
-> +#define   TRANSIENT_FLUSH_REQUEST		REG_BIT(0)
-> +
->   #define XEHP_MERT_MOD_CTRL			XE_REG_MCR(0xcf28)
->   #define RENDER_MOD_CTRL				XE_REG_MCR(0xcf2c)
->   #define COMP_MOD_CTRL				XE_REG_MCR(0xcf30)
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index 01bd5ccf05ca..66182220e663 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -641,6 +641,55 @@ void xe_device_wmb(struct xe_device *xe)
->   		xe_mmio_write32(gt, SOFTWARE_FLAGS_SPR33, 0);
->   }
->   
-> +/**
-> + * xe_device_td_flush() - Flush transient L3 cache entries
-> + * @xe: The device
-> + *
-> + * Display engine has direct access to memory and is never coherent with L3/L4
-> + * caches (or CPU caches), however KMD is responsible for specifically flushing
-> + * transient L3 GPU cache entries prior to the flip sequence to ensure scanout
-> + * can happen from such a surface without seeing corruption.
-> + *
-> + * Display surfaces can be tagged as transient by mapping it using one of the
-> + * various L3:XD PAT index modes on Xe2.
-> + *
-> + * Note: On non-discrete xe2 platforms, like LNL, the entire L3 cache is flushed
-> + * at the end of each submission via PIPE_CONTROL for compute/render, since SA
-> + * Media is not coherent with L3 and we want to support render-vs-media
-> + * usescases. For other engines like copy/blt the HW internally forces uncached
-> + * behaviour, hence why we can skip the TDF on such platforms.
-> + */
-> +void xe_device_td_flush(struct xe_device *xe)
-> +{
-> +	struct xe_gt *gt;
-> +	u8 id;
-> +
-> +	if (!IS_DGFX(xe) || GRAPHICS_VER(xe) < 20)
-> +		return;
-> +
-> +	for_each_gt(gt, xe, id) {
-> +		if (xe_gt_is_media_type(gt))
-> +			continue;
-> +
-> +		xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-> +
-> +		xe_mmio_write32(gt, XE2_TDF_CTRL, TRANSIENT_FLUSH_REQUEST);
-> +		/*
-> +		 * FIXME: We can likely do better here with our choice of
-> +		 * timeout.  Currently we just assume the worst case, but really
-> +		 * we should make this dependent on how much actual L3 there is
-> +		 * for this system. Recomendation is to allow ~64us in the worst
-> +		 * case for 8M of L3 (assumes all entries are transient and need
-> +		 * to be flushed).
-> +		 */
-> +		if (xe_mmio_wait32(gt, XE2_TDF_CTRL, TRANSIENT_FLUSH_REQUEST, 0,
-> +				   150, NULL, false))
-> +			xe_gt_err_once(gt, "TD flush timeout\n");
-> +
-> +		xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
-> +	}
-> +}
-> +
->   u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size)
->   {
->   	return xe_device_has_flat_ccs(xe) ?
-> diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-> index d413bc2c6be5..d3430f4b820a 100644
-> --- a/drivers/gpu/drm/xe/xe_device.h
-> +++ b/drivers/gpu/drm/xe/xe_device.h
-> @@ -176,4 +176,6 @@ void xe_device_snapshot_print(struct xe_device *xe, struct drm_printer *p);
->   u64 xe_device_canonicalize_addr(struct xe_device *xe, u64 address);
->   u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64 address);
->   
-> +void xe_device_td_flush(struct xe_device *xe);
-> +
->   #endif
+Balasubramani Vivekanandan (9):
+  drm/i915/display: Prepare to handle new C20 PLL register address
+  drm/xe/bmg: Define IS_BATTLEMAGE macro
+  drm/i915/bmg: Define IS_BATTLEMAGE macro
+  drm/i915/xe2: Skip CCS modifiers for Xe2 platforms
+  drm/i915/xe2hpd: Add new C20 PLL register address
+  drm/i915/xe2hpd: Add support for eDP PLL configuration
+  drm/xe/xe2hpd: Define a new DRAM type INTEL_DRAM_GDDR
+  drm/i915/xe2hpd: Set maximum DP rate to UHBR13.5
+  drm/xe/bmg: Enable the display support
+
+Clint Taylor (2):
+  drm/i915/xe2hpd: Initial cdclk table
+  drm/xe/display: Lane reversal requires writes to both context lanes
+
+José Roberto de Souza (2):
+  drm/i915/xe2hpd: Properly disable power in port A
+  drm/i915/xe2hpd: Do not program MBUS_DBOX BW credits
+
+Lucas De Marchi (1):
+  drm/i915/xe2hpd: Add display info
+
+Matt Roper (3):
+  drm/xe/bmg: Add BMG platform definition
+  drm/i915/xe2hpd: Add max memory bandwidth algorithm
+  drm/i915/bmg: BMG should re-use MTL's south display logic
+
+Matthew Auld (2):
+  drm/xe/gt_print: add xe_gt_err_once()
+  drm/i915/display: perform transient flush
+
+Mitul Golani (1):
+  drm/i915/display: Enable RM timeout detection
+
+Nirmoy Das (1):
+  drm/xe/device: implement transient flush
+
+Radhakrishna Sripada (1):
+  drm/i915/bmg: Extend DG2 tc check to future
+
+Ravi Kumar Vodapalli (1):
+  drm/i915/xe2hpd: update pll values in sync with Bspec
+
+ drivers/gpu/drm/i915/display/intel_bios.c     |   5 +-
+ drivers/gpu/drm/i915/display/intel_bw.c       |  65 +++-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  11 +
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 297 ++++++++++++++++--
+ .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  45 ++-
+ drivers/gpu/drm/i915/display/intel_display.c  |  10 +-
+ .../drm/i915/display/intel_display_device.c   |  16 +
+ .../gpu/drm/i915/display/intel_display_irq.c  |  10 +
+ .../drm/i915/display/intel_display_power.c    |   4 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |   3 +
+ drivers/gpu/drm/i915/display/intel_fb.c       |  14 +-
+ .../gpu/drm/i915/display/intel_frontbuffer.c  |   2 +
+ drivers/gpu/drm/i915/display/intel_tdf.h      |  25 ++
+ drivers/gpu/drm/i915/display/skl_watermark.c  |   2 +-
+ drivers/gpu/drm/i915/i915_drv.h               |  11 +-
+ drivers/gpu/drm/i915/i915_reg.h               |   4 +
+ drivers/gpu/drm/i915/soc/intel_dram.c         |   4 +
+ drivers/gpu/drm/i915/soc/intel_pch.c          |   4 +-
+ drivers/gpu/drm/xe/Makefile                   |   3 +-
+ .../gpu/drm/xe/compat-i915-headers/i915_drv.h |   1 +
+ drivers/gpu/drm/xe/display/xe_tdf.c           |  13 +
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h          |   3 +
+ drivers/gpu/drm/xe/xe_device.c                |  52 +++
+ drivers/gpu/drm/xe/xe_device.h                |   2 +
+ drivers/gpu/drm/xe/xe_device_types.h          |   1 +
+ drivers/gpu/drm/xe/xe_gt_printk.h             |   3 +
+ drivers/gpu/drm/xe/xe_pci.c                   |   8 +
+ drivers/gpu/drm/xe/xe_platform_types.h        |   1 +
+ include/drm/xe_pciids.h                       |   7 +
+ 29 files changed, 574 insertions(+), 52 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_tdf.h
+ create mode 100644 drivers/gpu/drm/xe/display/xe_tdf.c
+
+-- 
+2.25.1
+
