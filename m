@@ -4,52 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F069CD128A
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Apr 2024 09:58:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0070CCD128A
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Apr 2024 10:51:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5A36112977;
-	Wed,  3 Apr 2024 09:58:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE81311263E;
+	Wed,  3 Apr 2024 10:51:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AYbSQF3m";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IH4GqCQ0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68A8F112975
- for <intel-xe@lists.freedesktop.org>; Wed,  3 Apr 2024 09:58:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1717511263C;
+ Wed,  3 Apr 2024 10:51:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712138324; x=1743674324;
- h=date:from:to:cc:subject:message-id;
- bh=DK0lBXsDEsiXr1vVZJ5Qikj4IKTnLf7I4wm4hMNpIis=;
- b=AYbSQF3mFYdy8V81qVjkGoMh3BCZeL4OhtrCvKJ3GOxhpVGROWLm2Mj/
- c926gL9lXXHSkgu52GZ3y1gWD00tq+DBZYsMuwhjKEko+zPxhG8DsaBXN
- soWaF4LurPhTfuwCVNprbyJWVkPuQsABIc6ZnKmXdwKDK5COrLDVO889V
- N5oHQDMhnxRLJjQzBHSez52ym+DL0lxoGoMC4om3MzWITUVi0V2+rip8t
- rp5Ie+C2gztkfkzyLLxZqZavRFQDiHsOUe5FYZDZ31ClmMutUkgBRl2Kq
- Z6brNTo7eVlw8FRwVoCA2seJBFWAQqrXWqEIxYpA19lfPv642IFoe6WCe w==;
-X-CSE-ConnectionGUID: mHaXDyDjT8259QMExR6mQw==
-X-CSE-MsgGUID: zk/dF78oRF+zymNxmLQiZA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="18803887"
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18803887"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 02:58:44 -0700
-X-CSE-ConnectionGUID: 7jUXtcbTT1C6PLspzkrQ8A==
-X-CSE-MsgGUID: 6vx616k/RTqfkHlgbGyFqg==
+ t=1712141505; x=1743677505;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=KmaOrYy4ZksNXYyql+GFoVkLWugqPOVXu6qkwV7OLbI=;
+ b=IH4GqCQ0ngAC7n/q+DxnOVcGjbeMS3IsynwsGfz5nBRp9uyON3nG9LFW
+ I5V5OywWDGHdv/P7DiQaIAeVBZoz9vybDRfo+Qg5cixYY/lbntgjHOAkf
+ PKFu0S7WAOiKP3Aca3kr9Qzlz+T5dGhmtGC/TYTvVeud9G/6XBB+0N5wV
+ g5IfkTgvvFzTY3VacxoIXB7qD9t/pIEZUSFLV09X1wZj9TD8cuT7vJcoX
+ JTOqqAN63YKdLqfxq7Qomxg4aNQF7pqNoae5r4FZdBA7QJ+S2E+f+SWvh
+ rksIBGL44ITILk6f4Whz+HaitGNMCbSd3HFAF57jzCK6VLNbmzh6s+hWc g==;
+X-CSE-ConnectionGUID: dbqn99r4RhWia3S8qVI+Uw==
+X-CSE-MsgGUID: KcI2zKxKTpyihz7Kv3Aubg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="7212100"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; 
+   d="scan'208";a="7212100"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2024 03:51:12 -0700
+X-CSE-ConnectionGUID: p71Dm6Y1RO62lyLay2xGnw==
+X-CSE-MsgGUID: qBnYk8bxRye6u3bb+0sj/w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18434929"
-Received: from lkp-server02.sh.intel.com (HELO 90ee3aa53dbd) ([10.239.97.151])
- by fmviesa009.fm.intel.com with ESMTP; 03 Apr 2024 02:58:43 -0700
-Received: from kbuild by 90ee3aa53dbd with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1rrxOC-00025P-2y;
- Wed, 03 Apr 2024 09:58:40 +0000
-Date: Wed, 03 Apr 2024 17:57:58 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- 9f18b55b6d3f77b9e778257efdec385d2d5dfa8e
-Message-ID: <202404031757.tRmh0gh5-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18493320"
+Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2024 03:51:10 -0700
+From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Subject: [PATCH 00/25] Enable dislay support for Battlemage
+Date: Wed,  3 Apr 2024 16:20:58 +0530
+Message-Id: <20240403105123.1327669-1-balasubramani.vivekanandan@intel.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,180 +69,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: 9f18b55b6d3f77b9e778257efdec385d2d5dfa8e  drm/xe/xe2: Add workaround 18033852989
+Adds display support for Battlemage.
+Reuses the patch "drm/xe/bmg: Add BMG platform definition" from the
+patch series <link> to help build this series. So that review on this
+series can continue without blocking on <link>.
 
-elapsed time: 826m
+Ankit Nautiyal (1):
+  Revert "drm/i915/dgfx: DGFX uses direct VBT pin mapping"
 
-configs tested: 161
-configs skipped: 5
+Anusha Srivatsa (1):
+  drm/i915/xe2hpd: Add missing chicken bit register programming
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+Balasubramani Vivekanandan (9):
+  drm/i915/display: Prepare to handle new C20 PLL register address
+  drm/xe/bmg: Define IS_BATTLEMAGE macro
+  drm/i915/bmg: Define IS_BATTLEMAGE macro
+  drm/i915/xe2: Skip CCS modifiers for Xe2 platforms
+  drm/i915/xe2hpd: Add new C20 PLL register address
+  drm/i915/xe2hpd: Add support for eDP PLL configuration
+  drm/xe/xe2hpd: Define a new DRAM type INTEL_DRAM_GDDR
+  drm/i915/xe2hpd: Set maximum DP rate to UHBR13.5
+  drm/xe/bmg: Enable the display support
 
-tested configs:
-alpha                             allnoconfig   gcc  
-alpha                            allyesconfig   gcc  
-alpha                               defconfig   gcc  
-arc                              allmodconfig   gcc  
-arc                               allnoconfig   gcc  
-arc                              allyesconfig   gcc  
-arc                                 defconfig   gcc  
-arc                   randconfig-001-20240403   gcc  
-arc                   randconfig-002-20240403   gcc  
-arm                              allmodconfig   gcc  
-arm                               allnoconfig   clang
-arm                              allyesconfig   gcc  
-arm                                 defconfig   clang
-arm                   randconfig-001-20240403   gcc  
-arm                   randconfig-002-20240403   gcc  
-arm                   randconfig-003-20240403   clang
-arm                   randconfig-004-20240403   gcc  
-arm64                            allmodconfig   clang
-arm64                             allnoconfig   gcc  
-arm64                               defconfig   gcc  
-arm64                 randconfig-002-20240403   clang
-arm64                 randconfig-003-20240403   gcc  
-arm64                 randconfig-004-20240403   clang
-csky                             allmodconfig   gcc  
-csky                              allnoconfig   gcc  
-csky                             allyesconfig   gcc  
-csky                                defconfig   gcc  
-csky                  randconfig-001-20240403   gcc  
-csky                  randconfig-002-20240403   gcc  
-hexagon                          allmodconfig   clang
-hexagon                           allnoconfig   clang
-hexagon                          allyesconfig   clang
-hexagon                             defconfig   clang
-hexagon               randconfig-001-20240403   clang
-hexagon               randconfig-002-20240403   clang
-i386                             allmodconfig   gcc  
-i386                              allnoconfig   gcc  
-i386                             allyesconfig   gcc  
-i386         buildonly-randconfig-001-20240403   gcc  
-i386         buildonly-randconfig-002-20240403   clang
-i386         buildonly-randconfig-003-20240403   clang
-i386         buildonly-randconfig-004-20240403   clang
-i386         buildonly-randconfig-005-20240403   gcc  
-i386         buildonly-randconfig-006-20240403   clang
-i386                                defconfig   clang
-i386                  randconfig-001-20240403   gcc  
-i386                  randconfig-002-20240403   clang
-i386                  randconfig-003-20240403   gcc  
-i386                  randconfig-004-20240403   gcc  
-i386                  randconfig-005-20240403   clang
-i386                  randconfig-006-20240403   gcc  
-i386                  randconfig-011-20240403   gcc  
-i386                  randconfig-012-20240403   clang
-i386                  randconfig-013-20240403   gcc  
-i386                  randconfig-014-20240403   clang
-i386                  randconfig-015-20240403   gcc  
-i386                  randconfig-016-20240403   clang
-loongarch                        allmodconfig   gcc  
-loongarch                         allnoconfig   gcc  
-loongarch                           defconfig   gcc  
-loongarch             randconfig-001-20240403   gcc  
-loongarch             randconfig-002-20240403   gcc  
-m68k                             allmodconfig   gcc  
-m68k                              allnoconfig   gcc  
-m68k                             allyesconfig   gcc  
-m68k                                defconfig   gcc  
-microblaze                       allmodconfig   gcc  
-microblaze                        allnoconfig   gcc  
-microblaze                       allyesconfig   gcc  
-microblaze                          defconfig   gcc  
-mips                              allnoconfig   gcc  
-mips                             allyesconfig   gcc  
-nios2                            allmodconfig   gcc  
-nios2                             allnoconfig   gcc  
-nios2                            allyesconfig   gcc  
-nios2                               defconfig   gcc  
-nios2                 randconfig-001-20240403   gcc  
-nios2                 randconfig-002-20240403   gcc  
-openrisc                          allnoconfig   gcc  
-openrisc                         allyesconfig   gcc  
-openrisc                            defconfig   gcc  
-parisc                           allmodconfig   gcc  
-parisc                            allnoconfig   gcc  
-parisc                           allyesconfig   gcc  
-parisc                              defconfig   gcc  
-parisc                randconfig-001-20240403   gcc  
-parisc                randconfig-002-20240403   gcc  
-parisc64                            defconfig   gcc  
-powerpc                          allmodconfig   gcc  
-powerpc                           allnoconfig   gcc  
-powerpc                          allyesconfig   clang
-powerpc               randconfig-001-20240403   gcc  
-powerpc               randconfig-002-20240403   gcc  
-powerpc64             randconfig-001-20240403   gcc  
-powerpc64             randconfig-002-20240403   clang
-powerpc64             randconfig-003-20240403   gcc  
-riscv                            allmodconfig   clang
-riscv                             allnoconfig   gcc  
-riscv                            allyesconfig   clang
-riscv                               defconfig   clang
-riscv                 randconfig-001-20240403   clang
-riscv                 randconfig-002-20240403   clang
-s390                             allmodconfig   clang
-s390                              allnoconfig   clang
-s390                             allyesconfig   gcc  
-s390                                defconfig   clang
-s390                  randconfig-001-20240403   clang
-s390                  randconfig-002-20240403   clang
-sh                               allmodconfig   gcc  
-sh                                allnoconfig   gcc  
-sh                               allyesconfig   gcc  
-sh                                  defconfig   gcc  
-sh                    randconfig-001-20240403   gcc  
-sh                    randconfig-002-20240403   gcc  
-sparc                            allmodconfig   gcc  
-sparc                             allnoconfig   gcc  
-sparc                               defconfig   gcc  
-sparc64                          allmodconfig   gcc  
-sparc64                          allyesconfig   gcc  
-sparc64                             defconfig   gcc  
-sparc64               randconfig-001-20240403   gcc  
-sparc64               randconfig-002-20240403   gcc  
-um                               allmodconfig   clang
-um                                allnoconfig   clang
-um                               allyesconfig   gcc  
-um                                  defconfig   clang
-um                             i386_defconfig   gcc  
-um                    randconfig-001-20240403   gcc  
-um                    randconfig-002-20240403   clang
-um                           x86_64_defconfig   clang
-x86_64                            allnoconfig   clang
-x86_64                           allyesconfig   clang
-x86_64       buildonly-randconfig-001-20240403   gcc  
-x86_64       buildonly-randconfig-002-20240403   gcc  
-x86_64       buildonly-randconfig-003-20240403   clang
-x86_64       buildonly-randconfig-004-20240403   gcc  
-x86_64       buildonly-randconfig-005-20240403   clang
-x86_64       buildonly-randconfig-006-20240403   gcc  
-x86_64                              defconfig   gcc  
-x86_64                randconfig-001-20240403   gcc  
-x86_64                randconfig-002-20240403   clang
-x86_64                randconfig-003-20240403   gcc  
-x86_64                randconfig-004-20240403   gcc  
-x86_64                randconfig-005-20240403   gcc  
-x86_64                randconfig-006-20240403   clang
-x86_64                randconfig-011-20240403   gcc  
-x86_64                randconfig-012-20240403   gcc  
-x86_64                randconfig-013-20240403   gcc  
-x86_64                randconfig-014-20240403   gcc  
-x86_64                randconfig-015-20240403   gcc  
-x86_64                randconfig-016-20240403   gcc  
-x86_64                randconfig-071-20240403   clang
-x86_64                randconfig-072-20240403   gcc  
-x86_64                randconfig-073-20240403   clang
-x86_64                randconfig-074-20240403   gcc  
-x86_64                randconfig-075-20240403   gcc  
-x86_64                randconfig-076-20240403   gcc  
-x86_64                          rhel-8.3-rust   clang
-xtensa                            allnoconfig   gcc  
-xtensa                randconfig-001-20240403   gcc  
-xtensa                randconfig-002-20240403   gcc  
+Clint Taylor (2):
+  drm/i915/xe2hpd: Initial cdclk table
+  drm/xe/display: Lane reversal requires writes to both context lanes
+
+José Roberto de Souza (2):
+  drm/i915/xe2hpd: Properly disable power in port A
+  drm/i915/xe2hpd: Do not program MBUS_DBOX BW credits
+
+Lucas De Marchi (1):
+  drm/i915/xe2hpd: Add display info
+
+Matt Roper (3):
+  drm/xe/bmg: Add BMG platform definition
+  drm/i915/xe2hpd: Add max memory bandwidth algorithm
+  drm/i915/bmg: BMG should re-use MTL's south display logic
+
+Matthew Auld (2):
+  drm/xe/gt_print: add xe_gt_err_once()
+  drm/i915/display: perform transient flush
+
+Mitul Golani (1):
+  drm/i915/display: Enable RM timeout detection
+
+Nirmoy Das (1):
+  drm/xe/device: implement transient flush
+
+Radhakrishna Sripada (1):
+  drm/i915/bmg: Extend DG2 tc check to future
+
+Ravi Kumar Vodapalli (1):
+  drm/i915/xe2hpd: update pll values in sync with Bspec
+
+ drivers/gpu/drm/i915/display/intel_bios.c     |   5 +-
+ drivers/gpu/drm/i915/display/intel_bw.c       |  65 +++-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  11 +
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 297 ++++++++++++++++--
+ .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  45 ++-
+ drivers/gpu/drm/i915/display/intel_display.c  |  10 +-
+ .../drm/i915/display/intel_display_device.c   |  16 +
+ .../gpu/drm/i915/display/intel_display_irq.c  |  10 +
+ .../drm/i915/display/intel_display_power.c    |   4 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |   3 +
+ drivers/gpu/drm/i915/display/intel_fb.c       |  14 +-
+ .../gpu/drm/i915/display/intel_frontbuffer.c  |   2 +
+ drivers/gpu/drm/i915/display/intel_tdf.h      |  25 ++
+ drivers/gpu/drm/i915/display/skl_watermark.c  |   2 +-
+ drivers/gpu/drm/i915/i915_drv.h               |  11 +-
+ drivers/gpu/drm/i915/i915_reg.h               |   4 +
+ drivers/gpu/drm/i915/soc/intel_dram.c         |   4 +
+ drivers/gpu/drm/i915/soc/intel_pch.c          |   4 +-
+ drivers/gpu/drm/xe/Makefile                   |   3 +-
+ .../gpu/drm/xe/compat-i915-headers/i915_drv.h |   1 +
+ drivers/gpu/drm/xe/display/xe_tdf.c           |  13 +
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h          |   3 +
+ drivers/gpu/drm/xe/xe_device.c                |  49 +++
+ drivers/gpu/drm/xe/xe_device.h                |   2 +
+ drivers/gpu/drm/xe/xe_device_types.h          |   1 +
+ drivers/gpu/drm/xe/xe_gt_printk.h             |   3 +
+ drivers/gpu/drm/xe/xe_pci.c                   |   8 +
+ drivers/gpu/drm/xe/xe_platform_types.h        |   1 +
+ include/drm/xe_pciids.h                       |   7 +
+ 29 files changed, 571 insertions(+), 52 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_tdf.h
+ create mode 100644 drivers/gpu/drm/xe/display/xe_tdf.c
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.25.1
+
