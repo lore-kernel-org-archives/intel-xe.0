@@ -4,56 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 161DACD1292
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Apr 2024 09:58:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65120CD1284
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Apr 2024 09:59:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A005311B25E;
-	Thu,  4 Apr 2024 09:58:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D7a/4a3J";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A34211B246
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Apr 2024 09:58:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712224696; x=1743760696;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ZtJctbHttsxo7hcyHdmYyRDi9NMbtujnAT7so/0W1Tc=;
- b=D7a/4a3JOwdHpQdvrT20XvgCADWaBczOHmlg7p7bfXg/hkOYttyt5Rzm
- XA1GgSTheW2tcbJEh0Nbsg5pG6nP+XKOemuSFN0upPPxD+vDnDDLlLqMs
- u+yki3sylQ6N+EXtAJdUfhw0upJKLGVedODOVzlhfIlNLNgOllZPqKBhq
- p5FvW6Ym8FtQLUwp4qpZREZmL+x5H0IDexG3i4OepIr9Fm9BmXf5Z6abD
- KBNmyMbZq1Zg8kDv8B8tZh+tmNlRkq3RV/buDGWjGD5ta+ehA2MnheX2u
- n9b2PxCg+643+VBQmgOulITeUdpqANb1YXdZgzuoYKrHtPfhG7TSZo8e8 A==;
-X-CSE-ConnectionGUID: N3wUwNdQRZCOK7ZG01G6dg==
-X-CSE-MsgGUID: Jf+qqEY7Sx+PykzlBa9bOQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11033"; a="18227773"
-X-IronPort-AV: E=Sophos;i="6.07,179,1708416000"; d="scan'208";a="18227773"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2024 02:58:16 -0700
-X-CSE-ConnectionGUID: OK/JB++vRQq9d+FBervLQA==
-X-CSE-MsgGUID: IUzWVffmTomDeuXdGyLQSg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,179,1708416000"; d="scan'208";a="23422248"
-Received: from sinjan-super-server.iind.intel.com ([10.145.169.153])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2024 02:58:11 -0700
-From: Karthik Poosa <karthik.poosa@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, rodrigo.vivi@intel.com,
- lucas.demarchi@intel.com, Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v6 4/4] drm/xe/hwmon: Cast to output precision before
- multiplying operands
-Date: Thu,  4 Apr 2024 15:38:27 +0530
-Message-Id: <20240404100827.1109447-5-karthik.poosa@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240404100827.1109447-1-karthik.poosa@intel.com>
-References: <20240404100827.1109447-1-karthik.poosa@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC08011B27F;
+	Thu,  4 Apr 2024 09:59:25 +0000 (UTC)
+Received: from coelho.fi (paleale.coelho.fi [176.9.41.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 682DA11B27F;
+ Thu,  4 Apr 2024 09:59:22 +0000 (UTC)
+Received: from 91-156-7-239.elisa-laajakaista.fi ([91.156.7.239]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1rsJsM-000000001UT-1blm; Thu, 04 Apr 2024 12:59:19 +0300
+Message-ID: <3de0b7e2984d026bdd6e1fc163e175937bfb95b4.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: "Shankar, Uma" <uma.shankar@intel.com>, "Coelho, Luciano"
+ <luciano.coelho@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
+ "ville.syrjala@linux.intel.com"
+ <ville.syrjala@linux.intel.com>, "Nikula, Jani" <jani.nikula@intel.com>
+Date: Thu, 04 Apr 2024 12:59:17 +0300
+In-Reply-To: <DM4PR11MB636090731640EEAB0E201D6DF4322@DM4PR11MB6360.namprd11.prod.outlook.com>
+References: <20240318133757.1479189-1-luciano.coelho@intel.com>
+ <20240318133757.1479189-4-luciano.coelho@intel.com>
+ <DM4PR11MB636090731640EEAB0E201D6DF4322@DM4PR11MB6360.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v3 3/4] drm/i915/display: add module parameter to enable
+ DMC wakelock
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,39 +50,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Address potential overflow in result of multiplication of two lower
-precision (u32) operands before widening it to higher precision (u64).
+On Thu, 2024-03-21 at 08:08 +0000, Shankar, Uma wrote:
+>=20
+> > -----Original Message-----
+> > From: Coelho, Luciano <luciano.coelho@intel.com>
+> > Sent: Monday, March 18, 2024 7:08 PM
+> > To: intel-gfx@lists.freedesktop.org
+> > Cc: intel-xe@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.com=
+>;
+> > ville.syrjala@linux.intel.com; Nikula, Jani <jani.nikula@intel.com>
+> > Subject: [PATCH v3 3/4] drm/i915/display: add module parameter to enabl=
+e DMC
+> > wakelock
+> >=20
+> > This feature should be disabled by default until properly tested and ma=
+ture.  Add
+> > a module parameter to enable the feature for testing, while keeping it =
+disabled by
+> > default for now.
+> >=20
+> > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display_params.c |  5 +++++
+> > drivers/gpu/drm/i915/display/intel_display_params.h |  1 +
+> >  drivers/gpu/drm/i915/display/intel_dmc_wl.c         | 12 ++++++++----
+> >  3 files changed, 14 insertions(+), 4 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c
+> > b/drivers/gpu/drm/i915/display/intel_display_params.c
+> > index 11e03cfb774d..f40b223cc8a1 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_params.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
+> > @@ -116,6 +116,11 @@
+> > intel_display_param_named_unsafe(enable_psr2_sel_fetch, bool, 0400,
+> >  	"(0=3Ddisabled, 1=3Denabled) "
+> >  	"Default: 1");
+> >=20
+> > +intel_display_param_named_unsafe(enable_dmc_wl, bool, 0400,
+> > +	"Enable DMC wakelock "
+> > +	"(0=3Ddisabled, 1=3Denabled) "
+> > +	"Default: 0");
+> > +
+> >  __maybe_unused
+> >  static void _param_print_bool(struct drm_printer *p, const char *drive=
+r_name,
+> >  			      const char *name, bool val)
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h
+> > b/drivers/gpu/drm/i915/display/intel_display_params.h
+> > index 6206cc51df04..bf8dbbdb20a1 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_params.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_params.h
+> > @@ -46,6 +46,7 @@ struct drm_i915_private;
+> >  	param(int, enable_psr, -1, 0600) \
+> >  	param(bool, psr_safest_params, false, 0400) \
+> >  	param(bool, enable_psr2_sel_fetch, true, 0400) \
+> > +	param(bool, enable_dmc_wl, false, 0400) \
+> >=20
+> >  #define MEMBER(T, member, ...) T member;  struct intel_display_params =
+{ diff --
+> > git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> > b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> > index 7c991e22c616..84d054bcb2c1 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> > @@ -120,7 +120,8 @@ void intel_dmc_wl_enable(struct drm_i915_private
+> > *i915)
+> >  	struct intel_dmc_wl *wl =3D &i915->display.wl;
+> >  	unsigned long flags;
+> >=20
+> > -	if (DISPLAY_VER(i915) < 20)
+> > +	if (!i915->display.params.enable_dmc_wl ||
+> > +	    DISPLAY_VER(i915) < 20)
+>=20
+> Extend this check to init as well. Else it looks ok to protect under a mo=
+dule parameter.
+> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 
-Fixes: 4446fcf220ce ("drm/xe/hwmon: Expose power1_max_interval")
-Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
-Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
-Cc: Badal Nilawar <badal.nilawar@intel.com>
----
- drivers/gpu/drm/xe/xe_hwmon.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Done.  I now added the module param check to the supported() helper
+function, so it will be checked everywhere.
 
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index e234321c165c..9511476478cb 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -297,7 +297,7 @@ xe_hwmon_power_max_interval_show(struct device *dev, struct device_attribute *at
- 	 * As y can be < 2, we compute tau4 = (4 | x) << y
- 	 * and then add 2 when doing the final right shift to account for units
- 	 */
--	tau4 = ((1 << x_w) | x) << y;
-+	tau4 = (u64)((1 << x_w) | x) << y;
- 
- 	/* val in hwmon interface units (millisec) */
- 	out = mul_u64_u32_shr(tau4, SF_TIME, hwmon->scl_shift_time + x_w);
-@@ -338,7 +338,7 @@ xe_hwmon_power_max_interval_store(struct device *dev, struct device_attribute *a
- 	r = FIELD_PREP(PKG_MAX_WIN, PKG_MAX_WIN_DEFAULT);
- 	x = REG_FIELD_GET(PKG_MAX_WIN_X, r);
- 	y = REG_FIELD_GET(PKG_MAX_WIN_Y, r);
--	tau4 = ((1 << x_w) | x) << y;
-+	tau4 = (u64)((1 << x_w) | x) << y;
- 	max_win = mul_u64_u32_shr(tau4, SF_TIME, hwmon->scl_shift_time + x_w);
- 
- 	if (val > max_win)
--- 
-2.25.1
+Thanks for the r-b.
 
+--
+Cheers,
+Luca.
