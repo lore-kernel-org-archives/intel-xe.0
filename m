@@ -4,80 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1C91CD1284
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Apr 2024 10:48:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2C83CD1297
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Apr 2024 10:53:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC0DA11B3CF;
-	Thu,  4 Apr 2024 10:48:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="Jk6J5UUQ";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="ITfNdB4G";
-	dkim-atps=neutral
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0F0411B3CE;
- Thu,  4 Apr 2024 10:48:16 +0000 (UTC)
-Received: from imap2.dmz-prg2.suse.org (imap2.dmz-prg2.suse.org [10.150.64.98])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id E46AC37ABE;
- Thu,  4 Apr 2024 10:48:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1712227694; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=ifyVFdgsGutaFbG6us/talgSokPtLGYvOTFyqsTEK9A=;
- b=Jk6J5UUQD98vkrCn1Y9tSF1SuoMN4nUKRtn0W+Q0ExbuOIOzkgckn1eVW3lRr+y60Nt0zi
- uTx9kLrtAhVYw5c/bHqemR/9qA7MnUndXwxIuGduUTHV6dkT5rBYqCLavz62mx06J7/ATo
- rWRy1o9MvZnL97giH1wKC/6eyqBz600=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1712227694;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=ifyVFdgsGutaFbG6us/talgSokPtLGYvOTFyqsTEK9A=;
- b=ITfNdB4G2uQm/UG2h1CUc8qNHLTCktdfGDCQVLR/zqHNCCgMH5LTksQHxkQZcUDUOORAOw
- E97Tm42+5NTetLAw==
-Authentication-Results: smtp-out1.suse.de;
-	none
-Received: from imap2.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap2.dmz-prg2.suse.org (Postfix) with ESMTPS id 6F675139E8;
- Thu,  4 Apr 2024 10:48:14 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap2.dmz-prg2.suse.org with ESMTPSA id peC4GW6FDmahPwAAn2gu4w
- (envelope-from <tzimmermann@suse.de>); Thu, 04 Apr 2024 10:48:14 +0000
-Date: Thu, 4 Apr 2024 12:48:13 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <20240404104813.GA27376@localhost.localdomain>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23D0911B3C7;
+	Thu,  4 Apr 2024 10:53:12 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E301810E6A7;
+ Thu,  4 Apr 2024 10:53:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Spamd-Result: default: False [-4.30 / 50.00]; ARC_NA(0.00)[];
- RCVD_VIA_SMTP_AUTH(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; MIME_GOOD(-0.10)[text/plain];
- NEURAL_HAM_LONG(-1.00)[-1.000]; RCVD_COUNT_THREE(0.00)[3];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-0.988]; RCPT_COUNT_TWELVE(0.00)[16];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
- FUZZY_BLOCKED(0.00)[rspamd.com]; FROM_EQ_ENVFROM(0.00)[];
- MIME_TRACE(0.00)[0:+]; RCVD_TLS_ALL(0.00)[];
- BAYES_HAM(-3.00)[100.00%]
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
+ =?utf-8?q?_=5Brebase=2C1/3=5D_drm=3A_Add_drm=5Fvblank=5Fwork=5Fflush=5Fall?=
+ =?utf-8?q?=28=29=2E?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 04 Apr 2024 10:53:08 -0000
+Message-ID: <171222798892.1209579.10713618459845378313@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240404104813.150030-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20240404104813.150030-1-maarten.lankhorst@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,86 +37,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+== Series Details ==
 
-here's the drm-misc-fixes PR for this week.
+Series: series starting with [rebase,1/3] drm: Add drm_vblank_work_flush_all().
+URL   : https://patchwork.freedesktop.org/series/132027/
+State : success
 
-Best regards
-Thomas
+== Summary ==
 
-drm-misc-fixes-2024-04-04:
-Short summary of fixes pull:
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 714417be4833 drm-tip: 2024y-04m-04d-08h-00m-44s UTC integration manifest
+=== git am output follows ===
+Applying: drm: Add drm_vblank_work_flush_all().
+Applying: drm/i915: Use vblank worker to unpin old legacy cursor fb safely
+Applying: drm/i915: Use the same vblank worker for atomic unpin
 
-display:
-- fix typos in kerneldoc
 
-nouveau:
-- uvmm: fix remap address calculation
-- minor cleanups
-
-panfrost:
-- fix power-transition timeouts
-
-prime:
-- unbreak dma-buf export for virt-gpu
-The following changes since commit aba2a144c0bf1ecdcbc520525712fb661392e509:
-
-  drm/qxl: remove unused variable from `qxl_process_single_command()` (2024-03-28 11:15:48 +0100)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2024-04-04
-
-for you to fetch changes up to fddf09273807bf6e51537823aaae896e05f147f9:
-
-  drm/display: fix typo (2024-04-01 22:35:16 +0300)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
-display:
-- fix typos in kerneldoc
-
-nouveau:
-- uvmm: fix remap address calculation
-- minor cleanups
-
-panfrost:
-- fix power-transition timeouts
-
-prime:
-- unbreak dma-buf export for virt-gpu
-
-----------------------------------------------------------------
-Christian Hewitt (1):
-      drm/panfrost: fix power transition timeout warnings
-
-Colin Ian King (1):
-      drm/nouveau/gr/gf100: Remove second semicolon
-
-Dave Airlie (1):
-      nouveau/uvmm: fix addr/range calcs for remap operations
-
-Oleksandr Natalenko (1):
-      drm/display: fix typo
-
-Rob Clark (1):
-      drm/prime: Unbreak virtgpu dma-buf export
-
- drivers/gpu/drm/display/drm_dp_dual_mode_helper.c | 4 ++--
- drivers/gpu/drm/drm_prime.c                       | 7 ++++++-
- drivers/gpu/drm/nouveau/nouveau_uvmm.c            | 6 +++---
- drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c    | 2 +-
- drivers/gpu/drm/panfrost/panfrost_gpu.c           | 6 +++---
- 5 files changed, 15 insertions(+), 10 deletions(-)
-
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
