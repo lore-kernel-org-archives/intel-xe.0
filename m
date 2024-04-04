@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C123CD1284
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Apr 2024 19:11:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37237CD1284
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Apr 2024 19:11:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13113113434;
-	Thu,  4 Apr 2024 19:11:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD4F2113438;
+	Thu,  4 Apr 2024 19:11:46 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02A4E113439;
- Thu,  4 Apr 2024 19:11:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD59A113438;
+ Thu,  4 Apr 2024 19:11:44 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/vf=3A_Mark_su?=
- =?utf-8?q?pported_firmwares_as_preloaded?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/vf=3A_Mark_support?=
+ =?utf-8?q?ed_firmwares_as_preloaded?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 04 Apr 2024 19:11:34 -0000
-Message-ID: <171225789400.1209579.5552940363690579030@8e613ede5ea5>
+Date: Thu, 04 Apr 2024 19:11:44 -0000
+Message-ID: <171225790477.1209579.3311033981023986821@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240404173814.715-1-michal.wajdeczko@intel.com>
 In-Reply-To: <20240404173814.715-1-michal.wajdeczko@intel.com>
@@ -48,9 +48,28 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 7392b2b6f33e drm-tip: 2024y-04m-04d-18h-55m-26s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/vf: Mark supported firmwares as preloaded
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+10b531c2aeb176a1a539b4a77216232f97719cec
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ab450182c07eb39ee924e9d65b2f5fb32087af8f
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Thu Apr 4 19:38:14 2024 +0200
+
+    drm/xe/vf: Mark supported firmwares as preloaded
+    
+    On current platforms supported firmwares, like GuC and HuC, must
+    be loaded by the PF driver.  Mark those firmwares as 'preloaded'
+    so we will skip fetching and loading them on the VF drivers but
+    still correctly report them as 'running'.
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
++ /mt/dim checkpatch 7392b2b6f33eb4d279abf14e33e73f491f7f9191 drm-intel
+ab450182c07e drm/xe/vf: Mark supported firmwares as preloaded
 
 
