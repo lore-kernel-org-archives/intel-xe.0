@@ -4,53 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 588F3CD1284
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Apr 2024 16:14:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D710CD1284
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Apr 2024 16:18:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDC6F113224;
-	Thu,  4 Apr 2024 16:14:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A4A310E8D7;
+	Thu,  4 Apr 2024 16:18:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NlTybMhP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g1B0LJx+";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63063113245
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Apr 2024 16:14:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B9A410E791
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Apr 2024 16:18:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712247267; x=1743783267;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=E3Xk8BFZldR59uUK7DpKqnC0afmJCMWEgml57cax3fE=;
- b=NlTybMhPVijvg9b2YxUeBZktITsk/CQqMq47Ss7ov+utx5K7gWbSiuVb
- uww6VNx8HLsqz/ysZNSgOLtyg7Q02/VSYTCejp+/O/1evIYu3ZwBQrDW4
- L7YhwtUc0awZPo7U58RQFEAP2WlqzJ8tYK5ZLuTKw6oG6ihfpD0/chRe0
- dFQF3UL6UZBR4UNtBxWOTv2ODEr4HZPSzmxwLcMzHAJKwzTSy9eCTUJm2
- +DrlhFBSvTKXI0btIGGa/M+b8yuTklHGarqPw/6ILZtNH+kTIcagsHQfn
- XcSMumVzkQ08mBvDLA1fA49QzJRf6QODYDCdJmaKZvjRp9J7huWtG5qKS w==;
-X-CSE-ConnectionGUID: Z9qWHylFRkGqEH/T/VetbQ==
-X-CSE-MsgGUID: fHAyo514Q4ekUSKa51Nsnw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="7408532"
-X-IronPort-AV: E=Sophos;i="6.07,179,1708416000"; 
-   d="scan'208";a="7408532"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2024 09:13:02 -0700
-X-CSE-ConnectionGUID: 97T2UvhUSKuZraBWux4tvw==
-X-CSE-MsgGUID: wzcUtmjLQMC/dLd9NHkH3g==
+ t=1712247505; x=1743783505;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=LXwVEuCoYCTcQC3KLbPPIFo6EIRCpvC0MYLKaAN2XVI=;
+ b=g1B0LJx+qStK+9xMk1oE6MXfhoirNRdGBKrGZWNkUCLBuOEEsK2/+wVK
+ NigTEuAA6vApQLMMi8f49ej38wFCCRWZWcoU4xMjaQ7ugJU+E+O2R5cIW
+ DIvdhc46Cs23qG9tY5Nz6cl3gjXoYRlIjnT+y1meDbLpMED1EtUhxwPbU
+ V2CcwLlDWw+Pmn4TfzPyka12WOYQ1tqVByK0Y5cV0fIQHIIt+rT6wfBNX
+ ZNdoEYDGvRB0qWOfrPxcCMF3HDq/liSD+Re+yky+F2NgFFPm4Qi7wfY/x
+ YsBR+6z8HbOi7OOweR/AZRNKIVWuSktNI8pcq57cKoZdmIabphxRILlbn Q==;
+X-CSE-ConnectionGUID: fki0d42SQg6/1wNOICS8Gg==
+X-CSE-MsgGUID: GdGwNJORRT+a/tYLZ9tEww==
+X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="32943789"
+X-IronPort-AV: E=Sophos;i="6.07,179,1708416000"; d="scan'208";a="32943789"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2024 09:18:25 -0700
+X-CSE-ConnectionGUID: g7x+aO72RO29gS+Igyp5Xw==
+X-CSE-MsgGUID: LxC73AOjQHGo4Du3dZl/mg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,179,1708416000"; d="scan'208";a="18880359"
-Received: from orsosgc001.jf.intel.com ([10.165.21.138])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2024 09:13:00 -0700
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH] drm/xe: Label RING_CONTEXT_CONTROL as masked
-Date: Thu,  4 Apr 2024 09:12:56 -0700
-Message-ID: <20240404161256.3852502-1-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.41.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-IronPort-AV: E=Sophos;i="6.07,179,1708416000"; d="scan'208";a="18855627"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.138])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2024 09:18:25 -0700
+Date: Thu, 04 Apr 2024 09:18:24 -0700
+Message-ID: <85ttkhumnj.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/xe: Label RING_CONTEXT_CONTROL as masked
+In-Reply-To: <ditc3suqirizkvzij6xecwhcjohwqx4eyagpddv6djtconhjk7@rxj3heqbpeft>
+References: <20240403210207.3839459-1-ashutosh.dixit@intel.com>
+ <ditc3suqirizkvzij6xecwhcjohwqx4eyagpddv6djtconhjk7@rxj3heqbpeft>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,47 +70,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-RING_CONTEXT_CONTROL is a masked register.
+On Thu, 04 Apr 2024 05:46:17 -0700, Lucas De Marchi wrote:
+>
+> On Wed, Apr 03, 2024 at 02:02:07PM -0700, Ashutosh Dixit wrote:
+> > RING_CONTEXT_CONTROL is a masked register.
+> >
+> > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+>
+> Due to the way we end up using it, it's not a problem right now:
+>
+> drivers/gpu/drm/xe/xe_lrc.c-static void set_context_control(u32 *regs, struct xe_hw_engine *hwe)
+> drivers/gpu/drm/xe/xe_lrc.c-{
+> drivers/gpu/drm/xe/xe_lrc.c-    regs[CTX_CONTEXT_CONTROL] = _MASKED_BIT_ENABLE(CTX_CTRL_INHIBIT_SYN_CTX_SWITCH) |
+> drivers/gpu/drm/xe/xe_lrc.c:                                _MASKED_BIT_DISABLE(CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT) |
+> drivers/gpu/drm/xe/xe_lrc.c:                                CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT;
+>
+> it doesn't really use the  masked flag from the register.
+> For consistency, and if we ever change the approach, it does look good.
+>
+> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>
+> That _MASKED_BIT_DISABLE(CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT) |
+> CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT looks odd. Commit
+> b4b9457ae9b619c106ee464c3d75ee52c0b69575 (from xe brach, not drm-xe)
+> blames me while refactoring set_context_control() that always received
+> true as argument (heheh... commit message from those early days were a
+> piece of art). Could you prep a patch on top changing that to
+> ENABLE()?
 
-v2: Also clean up setting register value (Lucas)
+The code actually "works". I have just added the clean-up to v2, changing this to:
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_engine_regs.h | 2 +-
- drivers/gpu/drm/xe/xe_lrc.c              | 5 ++---
- 2 files changed, 3 insertions(+), 4 deletions(-)
+	regs[CTX_CONTEXT_CONTROL] = _MASKED_BIT_ENABLE(CTX_CTRL_INHIBIT_SYN_CTX_SWITCH |
+						       CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT);
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-index a08528d9c76b..af71b87d8030 100644
---- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-@@ -122,7 +122,7 @@
- #define RING_EXECLIST_STATUS_LO(base)		XE_REG((base) + 0x234)
- #define RING_EXECLIST_STATUS_HI(base)		XE_REG((base) + 0x234 + 4)
- 
--#define RING_CONTEXT_CONTROL(base)		XE_REG((base) + 0x244)
-+#define RING_CONTEXT_CONTROL(base)		XE_REG((base) + 0x244, XE_REG_OPTION_MASKED)
- #define	  CTX_CTRL_INHIBIT_SYN_CTX_SWITCH	REG_BIT(3)
- #define	  CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT	REG_BIT(0)
- 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 552ebf6eeee7..615bbc372ac6 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -543,9 +543,8 @@ static const u8 *reg_offsets(struct xe_device *xe, enum xe_engine_class class)
- 
- static void set_context_control(u32 *regs, struct xe_hw_engine *hwe)
- {
--	regs[CTX_CONTEXT_CONTROL] = _MASKED_BIT_ENABLE(CTX_CTRL_INHIBIT_SYN_CTX_SWITCH) |
--				    _MASKED_BIT_DISABLE(CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT) |
--				    CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT;
-+	regs[CTX_CONTEXT_CONTROL] = _MASKED_BIT_ENABLE(CTX_CTRL_INHIBIT_SYN_CTX_SWITCH |
-+						       CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT);
- 
- 	/* TODO: Timestamp */
- }
--- 
-2.41.0
+Thanks.
+--
+Ashutosh
 
+
+>
+> > ---
+> > drivers/gpu/drm/xe/regs/xe_engine_regs.h | 2 +-
+> > 1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+> > index a08528d9c76b..af71b87d8030 100644
+> > --- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+> > +++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+> > @@ -122,7 +122,7 @@
+> > #define RING_EXECLIST_STATUS_LO(base)		XE_REG((base) + 0x234)
+> > #define RING_EXECLIST_STATUS_HI(base)		XE_REG((base) + 0x234 + 4)
+> >
+> > -#define RING_CONTEXT_CONTROL(base)		XE_REG((base) + 0x244)
+> > +#define RING_CONTEXT_CONTROL(base)		XE_REG((base) + 0x244, XE_REG_OPTION_MASKED)
+> > #define	  CTX_CTRL_INHIBIT_SYN_CTX_SWITCH	REG_BIT(3)
+> > #define	  CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT	REG_BIT(0)
+> >
+> > --
+> > 2.41.0
+> >
