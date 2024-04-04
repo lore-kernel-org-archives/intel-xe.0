@@ -4,56 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C124CD1292
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Apr 2024 15:56:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A98F5CD1292
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Apr 2024 15:57:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D93511328C;
-	Thu,  4 Apr 2024 15:56:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37590113280;
+	Thu,  4 Apr 2024 15:57:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cvKSuQnU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m/Vzzd7c";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F33BE113283
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Apr 2024 15:56:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BF0611328E
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Apr 2024 15:56:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712246205; x=1743782205;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=sl7NxldvGj1HwRAHah9xDlko1GGr95lMSMxr8ZLBd+U=;
- b=cvKSuQnUoPEQFYtPzEBvDCplOZhDR71UepxHVnGNPTUsw6tVNopAUUCk
- QIqmIqaChG8QxhYaIDSUl/+G54s7TpcvDM6AALLFpldJzmDT4rBPAm1Gg
- JNGCa5squFh9b26O4XPqfQ0l4I/yGXa/+hO1xFXCwqpKZcgAijvBWUL4k
- fJQtf2xueVuAa9eHEOri4h20NadlwqxJn8wfwkn841MpLlgiLogJgVJW5
- HD36sI5QN/exyG9aSkkIzgtU11qO0loGq0It+TucBgCzxLlnQIyFOCVlf
- 0VAhLB2TiUv0/JL3qV70utsI52jZJbXel71OT4LikRVuKSJFQArkZ3Hdm Q==;
-X-CSE-ConnectionGUID: ukietSV2ToOgdmvgoZo4eQ==
-X-CSE-MsgGUID: 1AXaSDy+RoiclqCeNL7f+g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="8119121"
-X-IronPort-AV: E=Sophos;i="6.07,179,1708416000"; 
-   d="scan'208";a="8119121"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2024 08:54:45 -0700
-X-CSE-ConnectionGUID: DjIYzvg8SQ6r+cbfAbrwmQ==
-X-CSE-MsgGUID: mId15OWSRISeVLHJoHlnMw==
+ t=1712246218; x=1743782218;
+ h=date:from:to:cc:subject:message-id;
+ bh=5hsTP2Q2FwN56MjveSiba55Zk6pS4GtPt06d1oUST/w=;
+ b=m/Vzzd7ckE41mCmBMBp10uRWiqLDZnCz7J2scyrgfUoOmudXktLp7ui9
+ ZLkmKIipv6Aor3o41Rj94a+3gE7VM0wjkv2mPetI5FbzYGS9dHgdwe1jq
+ RO21xRdeEqKJ9tfUi6Rt0qzsu9eE+Usi+dwFP7Kzik2gjpmIrWr1CNPBB
+ UKiunVTlTR729ygUcHFil3JSMHe9HZ1xycVtsWtxpQOcV7T2/vQi1L+Nd
+ RrrHUDYKirV2i1VOzcHKRoQ31zZj96yzkrNLw51CncQAZeoCOgsBy66bz
+ moBY97d4t2OhFhoCLi8iiWaAkS+JOiLkBnzyUxX5lybwAszSEcFugRybG g==;
+X-CSE-ConnectionGUID: 2eiNNSkhRi648/hvsBAtjw==
+X-CSE-MsgGUID: EllvS4ifSXWyXOjEKMPoDg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="11314154"
+X-IronPort-AV: E=Sophos;i="6.07,179,1708416000"; d="scan'208";a="11314154"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2024 08:56:58 -0700
+X-CSE-ConnectionGUID: /7Ha3mtoSwesRyzCy73UOA==
+X-CSE-MsgGUID: Rwf8MJQoQi2vTsi3u8zHdA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,179,1708416000"; d="scan'208";a="41992433"
-Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.158.68])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2024 08:44:44 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 2/3] drm/xe: Add proper detection of the SR-IOV PF mode
-Date: Thu,  4 Apr 2024 17:44:30 +0200
-Message-Id: <20240404154431.583-3-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20240404154431.583-1-michal.wajdeczko@intel.com>
-References: <20240404154431.583-1-michal.wajdeczko@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-IronPort-AV: E=Sophos;i="6.07,179,1708416000"; d="scan'208";a="18936493"
+Received: from lkp-server01.sh.intel.com (HELO e61807b1d151) ([10.239.97.150])
+ by fmviesa008.fm.intel.com with ESMTP; 04 Apr 2024 08:56:57 -0700
+Received: from kbuild by e61807b1d151 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1rsPSQ-0001Es-2v;
+ Thu, 04 Apr 2024 15:56:54 +0000
+Date: Thu, 04 Apr 2024 23:56:23 +0800
+From: kernel test robot <lkp@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ 34820967ae7b45411f8f4f737c2d63b0c608e0d7
+Message-ID: <202404042320.IhWG2v3g-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,229 +64,197 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-SR-IOV PF mode detection is based on PCI capability as reported by
-the PCI dev_is_pf() function and additionally on 'max_vfs' module
-parameter which could be also used to disable PF capability even
-if SR-IOV PF capability is reported by the hardware.
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: 34820967ae7b45411f8f4f737c2d63b0c608e0d7  drm/xe/xe_migrate: Cast to output precision before multiplying operands
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/Makefile          |  3 +-
- drivers/gpu/drm/xe/xe_device_types.h |  4 ++
- drivers/gpu/drm/xe/xe_sriov.c        |  3 +
- drivers/gpu/drm/xe/xe_sriov_pf.c     | 89 ++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_sriov_pf.h     | 24 ++++++++
- drivers/gpu/drm/xe/xe_sriov_types.h  | 15 +++++
- 6 files changed, 137 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf.c
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf.h
+elapsed time: 1234m
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index e5b1715f721e..8d79df05b84f 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -159,7 +159,8 @@ xe-$(CONFIG_PCI_IOV) += \
- 	xe_gt_sriov_pf_control.o \
- 	xe_lmtt.o \
- 	xe_lmtt_2l.o \
--	xe_lmtt_ml.o
-+	xe_lmtt_ml.o \
-+	xe_sriov_pf.o
- 
- # include helpers for tests even when XE is built-in
- ifdef CONFIG_DRM_XE_KUNIT_TEST
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index c710cec835a7..8244b177a6a3 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -321,6 +321,10 @@ struct xe_device {
- 	struct {
- 		/** @sriov.__mode: SR-IOV mode (Don't access directly!) */
- 		enum xe_sriov_mode __mode;
-+
-+		/** @sriov.pf: PF specific data */
-+		struct xe_device_pf pf;
-+
- 		/** @sriov.wq: workqueue used by the virtualization workers */
- 		struct workqueue_struct *wq;
- 	} sriov;
-diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
-index 3e103edf7174..94fa98d8206e 100644
---- a/drivers/gpu/drm/xe/xe_sriov.c
-+++ b/drivers/gpu/drm/xe/xe_sriov.c
-@@ -11,6 +11,7 @@
- #include "xe_device.h"
- #include "xe_mmio.h"
- #include "xe_sriov.h"
-+#include "xe_sriov_pf.h"
- 
- /**
-  * xe_sriov_mode_to_string - Convert enum value to string.
-@@ -58,6 +59,8 @@ void xe_sriov_probe_early(struct xe_device *xe)
- 	if (has_sriov) {
- 		if (test_is_vf(xe))
- 			mode = XE_SRIOV_MODE_VF;
-+		else if (xe_sriov_pf_readiness(xe))
-+			mode = XE_SRIOV_MODE_PF;
- 	}
- 
- 	xe_assert(xe, !xe->sriov.__mode);
-diff --git a/drivers/gpu/drm/xe/xe_sriov_pf.c b/drivers/gpu/drm/xe/xe_sriov_pf.c
-new file mode 100644
-index 000000000000..030c2b69ecc4
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_sriov_pf.c
-@@ -0,0 +1,89 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2023-2024 Intel Corporation
-+ */
-+
-+#include "xe_assert.h"
-+#include "xe_device.h"
-+#include "xe_module.h"
-+#include "xe_sriov.h"
-+#include "xe_sriov_pf.h"
-+#include "xe_sriov_printk.h"
-+
-+static unsigned int wanted_max_vfs(struct xe_device *xe)
-+{
-+	return xe_modparam.max_vfs;
-+}
-+
-+static int pf_reduce_totalvfs(struct xe_device *xe, int limit)
-+{
-+	struct device *dev = xe->drm.dev;
-+	struct pci_dev *pdev = to_pci_dev(dev);
-+	int err;
-+
-+	err = pci_sriov_set_totalvfs(pdev, limit);
-+	if (err)
-+		xe_sriov_notice(xe, "Failed to set number of VFs to %d (%pe)\n",
-+				limit, ERR_PTR(err));
-+	return err;
-+}
-+
-+static bool pf_continue_as_native(struct xe_device *xe, const char *why)
-+{
-+	xe_sriov_dbg(xe, "%s, continuing as native\n", why);
-+	pf_reduce_totalvfs(xe, 0);
-+	return false;
-+}
-+
-+/**
-+ * xe_sriov_pf_readiness - Check if PF functionality can be enabled.
-+ * @xe: the &xe_device to check
-+ *
-+ * This function is called as part of the SR-IOV probe to validate if all
-+ * PF prerequisites are satisfied and we can continue with enabling PF mode.
-+ *
-+ * Return: true if the PF mode can be turned on.
-+ */
-+bool xe_sriov_pf_readiness(struct xe_device *xe)
-+{
-+	struct device *dev = xe->drm.dev;
-+	struct pci_dev *pdev = to_pci_dev(dev);
-+	int totalvfs = pci_sriov_get_totalvfs(pdev);
-+	int newlimit = min_t(u16, wanted_max_vfs(xe), totalvfs);
-+
-+	xe_assert(xe, totalvfs <= U16_MAX);
-+
-+	if (!dev_is_pf(dev))
-+		return false;
-+
-+	if (!xe_device_uc_enabled(xe))
-+		return pf_continue_as_native(xe, "Guc submission disabled");
-+
-+	if (!newlimit)
-+		return pf_continue_as_native(xe, "all VFs disabled");
-+
-+	pf_reduce_totalvfs(xe, newlimit);
-+
-+	xe->sriov.pf.device_total_vfs = totalvfs;
-+	xe->sriov.pf.driver_max_vfs = newlimit;
-+
-+	return true;
-+}
-+
-+/**
-+ * xe_sriov_pf_print_vfs_summary - Print SR-IOV PF information.
-+ * @xe: the &xe_device to print info from
-+ * @p: the &drm_printer
-+ *
-+ * Print SR-IOV PF related information into provided DRM printer.
-+ */
-+void xe_sriov_pf_print_vfs_summary(struct xe_device *xe, struct drm_printer *p)
-+{
-+	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-+
-+	xe_assert(xe, IS_SRIOV_PF(xe));
-+
-+	drm_printf(p, "total: %u\n", xe->sriov.pf.device_total_vfs);
-+	drm_printf(p, "supported: %u\n", xe->sriov.pf.driver_max_vfs);
-+	drm_printf(p, "enabled: %u\n", pci_num_vf(pdev));
-+}
-diff --git a/drivers/gpu/drm/xe/xe_sriov_pf.h b/drivers/gpu/drm/xe/xe_sriov_pf.h
-new file mode 100644
-index 000000000000..ebef2e01838a
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_sriov_pf.h
-@@ -0,0 +1,24 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023-2024 Intel Corporation
-+ */
-+
-+#ifndef _XE_SRIOV_PF_H_
-+#define _XE_SRIOV_PF_H_
-+
-+#include <linux/types.h>
-+
-+struct drm_printer;
-+struct xe_device;
-+
-+#ifdef CONFIG_PCI_IOV
-+bool xe_sriov_pf_readiness(struct xe_device *xe);
-+void xe_sriov_pf_print_vfs_summary(struct xe_device *xe, struct drm_printer *p);
-+#else
-+static inline bool xe_sriov_pf_readiness(struct xe_device *xe)
-+{
-+	return false;
-+}
-+#endif
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_sriov_types.h b/drivers/gpu/drm/xe/xe_sriov_types.h
-index 1a138108d139..fa583e8fa0c2 100644
---- a/drivers/gpu/drm/xe/xe_sriov_types.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_types.h
-@@ -7,6 +7,7 @@
- #define _XE_SRIOV_TYPES_H_
- 
- #include <linux/build_bug.h>
-+#include <linux/types.h>
- 
- /**
-  * VFID - Virtual Function Identifier
-@@ -37,4 +38,18 @@ enum xe_sriov_mode {
- };
- static_assert(XE_SRIOV_MODE_NONE);
- 
-+/**
-+ * struct xe_device_pf - Xe PF related data
-+ *
-+ * The data in this structure is valid only if driver is running in the
-+ * @XE_SRIOV_MODE_PF mode.
-+ */
-+struct xe_device_pf {
-+	/** @device_total_vfs: Maximum number of VFs supported by the device. */
-+	u16 device_total_vfs;
-+
-+	/** @driver_max_vfs: Maximum number of VFs supported by the driver. */
-+	u16 driver_max_vfs;
-+};
-+
- #endif
+configs tested: 178
+configs skipped: 3
+
+The following configs have been built successfully.
+More configs may be tested in the coming days.
+
+tested configs:
+alpha                             allnoconfig   gcc  
+alpha                            allyesconfig   gcc  
+alpha                               defconfig   gcc  
+arc                              allmodconfig   gcc  
+arc                               allnoconfig   gcc  
+arc                              allyesconfig   gcc  
+arc                                 defconfig   gcc  
+arc                   randconfig-001-20240404   gcc  
+arc                   randconfig-002-20240404   gcc  
+arm                              allmodconfig   gcc  
+arm                               allnoconfig   clang
+arm                              allyesconfig   gcc  
+arm                                 defconfig   clang
+arm                      footbridge_defconfig   clang
+arm                   randconfig-001-20240404   gcc  
+arm                   randconfig-002-20240404   gcc  
+arm                   randconfig-003-20240404   clang
+arm                   randconfig-004-20240404   clang
+arm64                            allmodconfig   clang
+arm64                             allnoconfig   gcc  
+arm64                               defconfig   gcc  
+arm64                 randconfig-001-20240404   gcc  
+arm64                 randconfig-002-20240404   gcc  
+arm64                 randconfig-003-20240404   clang
+arm64                 randconfig-004-20240404   gcc  
+csky                             allmodconfig   gcc  
+csky                              allnoconfig   gcc  
+csky                             allyesconfig   gcc  
+csky                                defconfig   gcc  
+csky                  randconfig-001-20240404   gcc  
+csky                  randconfig-002-20240404   gcc  
+hexagon                          allmodconfig   clang
+hexagon                           allnoconfig   clang
+hexagon                          allyesconfig   clang
+hexagon                             defconfig   clang
+hexagon               randconfig-001-20240404   clang
+hexagon               randconfig-002-20240404   clang
+i386                             allmodconfig   gcc  
+i386                              allnoconfig   gcc  
+i386                             allyesconfig   gcc  
+i386         buildonly-randconfig-001-20240404   gcc  
+i386         buildonly-randconfig-002-20240404   clang
+i386         buildonly-randconfig-003-20240404   clang
+i386         buildonly-randconfig-004-20240404   gcc  
+i386         buildonly-randconfig-005-20240404   clang
+i386         buildonly-randconfig-006-20240404   gcc  
+i386                                defconfig   clang
+i386                  randconfig-001-20240404   gcc  
+i386                  randconfig-002-20240404   clang
+i386                  randconfig-003-20240404   clang
+i386                  randconfig-004-20240404   gcc  
+i386                  randconfig-005-20240404   clang
+i386                  randconfig-006-20240404   clang
+i386                  randconfig-011-20240404   gcc  
+i386                  randconfig-012-20240404   clang
+i386                  randconfig-013-20240404   gcc  
+i386                  randconfig-014-20240404   clang
+i386                  randconfig-015-20240404   gcc  
+i386                  randconfig-016-20240404   gcc  
+loongarch                        allmodconfig   gcc  
+loongarch                         allnoconfig   gcc  
+loongarch                           defconfig   gcc  
+loongarch             randconfig-001-20240404   gcc  
+loongarch             randconfig-002-20240404   gcc  
+m68k                             allmodconfig   gcc  
+m68k                              allnoconfig   gcc  
+m68k                             allyesconfig   gcc  
+m68k                                defconfig   gcc  
+microblaze                       allmodconfig   gcc  
+microblaze                        allnoconfig   gcc  
+microblaze                       allyesconfig   gcc  
+microblaze                          defconfig   gcc  
+mips                              allnoconfig   gcc  
+mips                             allyesconfig   gcc  
+mips                      fuloong2e_defconfig   gcc  
+mips                          malta_defconfig   gcc  
+mips                      maltaaprp_defconfig   clang
+mips                        omega2p_defconfig   clang
+nios2                            allmodconfig   gcc  
+nios2                             allnoconfig   gcc  
+nios2                            allyesconfig   gcc  
+nios2                               defconfig   gcc  
+nios2                 randconfig-001-20240404   gcc  
+nios2                 randconfig-002-20240404   gcc  
+openrisc                          allnoconfig   gcc  
+openrisc                         allyesconfig   gcc  
+openrisc                            defconfig   gcc  
+parisc                           allmodconfig   gcc  
+parisc                            allnoconfig   gcc  
+parisc                           allyesconfig   gcc  
+parisc                              defconfig   gcc  
+parisc                randconfig-001-20240404   gcc  
+parisc                randconfig-002-20240404   gcc  
+parisc64                            defconfig   gcc  
+powerpc                          allmodconfig   gcc  
+powerpc                           allnoconfig   gcc  
+powerpc                          allyesconfig   clang
+powerpc                      ep88xc_defconfig   gcc  
+powerpc                        fsp2_defconfig   gcc  
+powerpc                      mgcoge_defconfig   clang
+powerpc                   microwatt_defconfig   gcc  
+powerpc                      pasemi_defconfig   clang
+powerpc                      ppc44x_defconfig   clang
+powerpc               randconfig-001-20240404   gcc  
+powerpc               randconfig-002-20240404   gcc  
+powerpc               randconfig-003-20240404   clang
+powerpc                    sam440ep_defconfig   gcc  
+powerpc64             randconfig-001-20240404   gcc  
+powerpc64             randconfig-002-20240404   clang
+powerpc64             randconfig-003-20240404   clang
+riscv                            allmodconfig   clang
+riscv                             allnoconfig   gcc  
+riscv                            allyesconfig   clang
+riscv                               defconfig   clang
+riscv                 randconfig-001-20240404   clang
+riscv                 randconfig-002-20240404   clang
+s390                             allmodconfig   clang
+s390                              allnoconfig   clang
+s390                             allyesconfig   gcc  
+s390                                defconfig   clang
+s390                  randconfig-001-20240404   gcc  
+s390                  randconfig-002-20240404   gcc  
+sh                               allmodconfig   gcc  
+sh                                allnoconfig   gcc  
+sh                               allyesconfig   gcc  
+sh                         apsh4a3a_defconfig   gcc  
+sh                                  defconfig   gcc  
+sh                    randconfig-001-20240404   gcc  
+sh                    randconfig-002-20240404   gcc  
+sh                          urquell_defconfig   gcc  
+sparc                            allmodconfig   gcc  
+sparc                             allnoconfig   gcc  
+sparc                               defconfig   gcc  
+sparc                       sparc64_defconfig   gcc  
+sparc64                          allmodconfig   gcc  
+sparc64                          allyesconfig   gcc  
+sparc64                             defconfig   gcc  
+sparc64               randconfig-001-20240404   gcc  
+sparc64               randconfig-002-20240404   gcc  
+um                               allmodconfig   clang
+um                                allnoconfig   clang
+um                               allyesconfig   gcc  
+um                                  defconfig   clang
+um                             i386_defconfig   gcc  
+um                    randconfig-001-20240404   clang
+um                    randconfig-002-20240404   clang
+um                           x86_64_defconfig   clang
+x86_64                            allnoconfig   clang
+x86_64                           allyesconfig   clang
+x86_64       buildonly-randconfig-001-20240404   gcc  
+x86_64       buildonly-randconfig-002-20240404   gcc  
+x86_64       buildonly-randconfig-003-20240404   gcc  
+x86_64       buildonly-randconfig-004-20240404   clang
+x86_64       buildonly-randconfig-005-20240404   clang
+x86_64       buildonly-randconfig-006-20240404   clang
+x86_64                              defconfig   gcc  
+x86_64                randconfig-001-20240404   clang
+x86_64                randconfig-002-20240404   gcc  
+x86_64                randconfig-003-20240404   clang
+x86_64                randconfig-004-20240404   gcc  
+x86_64                randconfig-005-20240404   gcc  
+x86_64                randconfig-006-20240404   gcc  
+x86_64                randconfig-011-20240404   clang
+x86_64                randconfig-012-20240404   clang
+x86_64                randconfig-013-20240404   clang
+x86_64                randconfig-014-20240404   clang
+x86_64                randconfig-015-20240404   gcc  
+x86_64                randconfig-016-20240404   gcc  
+x86_64                randconfig-071-20240404   gcc  
+x86_64                randconfig-072-20240404   clang
+x86_64                randconfig-073-20240404   clang
+x86_64                randconfig-074-20240404   gcc  
+x86_64                randconfig-075-20240404   clang
+x86_64                randconfig-076-20240404   gcc  
+x86_64                          rhel-8.3-rust   clang
+xtensa                            allnoconfig   gcc  
+xtensa                randconfig-001-20240404   gcc  
+xtensa                randconfig-002-20240404   gcc  
+
 -- 
-2.43.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
