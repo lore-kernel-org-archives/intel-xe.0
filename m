@@ -4,38 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 967ADCD1297
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Apr 2024 09:30:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0AB2CD1284
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Apr 2024 09:31:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C73211AB49;
-	Thu,  4 Apr 2024 09:30:40 +0000 (UTC)
-Received: from coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2DE811AB72;
- Thu,  4 Apr 2024 09:30:33 +0000 (UTC)
-Received: from 91-156-7-239.elisa-laajakaista.fi ([91.156.7.239]
- helo=[192.168.100.137])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1rsJQP-000000001SA-2eQW; Thu, 04 Apr 2024 12:30:26 +0300
-Message-ID: <48c451ecb46e5a17bd945da376103da39c8e6671.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: "Shankar, Uma" <uma.shankar@intel.com>, "Coelho, Luciano"
- <luciano.coelho@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
- "ville.syrjala@linux.intel.com"
- <ville.syrjala@linux.intel.com>, "Nikula, Jani" <jani.nikula@intel.com>
-Date: Thu, 04 Apr 2024 12:30:23 +0300
-In-Reply-To: <DM4PR11MB6360EA16928F7A0DC285E81EF4322@DM4PR11MB6360.namprd11.prod.outlook.com>
-References: <20240318133757.1479189-1-luciano.coelho@intel.com>
- <20240318133757.1479189-3-luciano.coelho@intel.com>
- <DM4PR11MB6360EA16928F7A0DC285E81EF4322@DM4PR11MB6360.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6436C11ABB5;
+	Thu,  4 Apr 2024 09:31:28 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FDDA11ABA4;
+ Thu,  4 Apr 2024 09:31:25 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: Re: [PATCH v3 2/4] drm/i915/display: don't allow DMC wakelock on
- older hardware
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_Fix_bo_leak_in?=
+ =?utf-8?q?_intel=5Ffb=5Fbo=5Fframebuffer=5Finit_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 04 Apr 2024 09:31:25 -0000
+Message-ID: <171222308558.1209302.8730497220893274040@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240404090302.68422-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20240404090302.68422-1-maarten.lankhorst@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,102 +36,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 2024-03-21 at 08:02 +0000, Shankar, Uma wrote:
->=20
-> > -----Original Message-----
-> > From: Coelho, Luciano <luciano.coelho@intel.com>
-> > Sent: Monday, March 18, 2024 7:08 PM
-> > To: intel-gfx@lists.freedesktop.org
-> > Cc: intel-xe@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.com=
->;
-> > ville.syrjala@linux.intel.com; Nikula, Jani <jani.nikula@intel.com>
-> > Subject: [PATCH v3 2/4] drm/i915/display: don't allow DMC wakelock on o=
-lder
-> > hardware
-> >=20
-> > Only allow running DMC wakelock code if the display version is 20 or gr=
-eater.
->=20
-> One for previous one, don't do intel_dmc_wl_init unconditionally but prot=
-ect it with
-> Platform check.
+== Series Details ==
 
-Good point.  I have removed the call to intel_dmc_wl_init() completely
-from the previous patch, like with intel_dmc_wl_enable(), so the call
-to init will be in this patch and protected by the platform version as
-well.
+Series: drm/xe: Fix bo leak in intel_fb_bo_framebuffer_init (rev3)
+URL   : https://patchwork.freedesktop.org/series/131429/
+State : success
 
+== Summary ==
 
-> > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dmc_wl.c | 12 ++++++++++++
-> >  1 file changed, 12 insertions(+)
-> >=20
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-> > b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-> > index 5c3d8204ae7e..7c991e22c616 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-> > @@ -120,6 +120,9 @@ void intel_dmc_wl_enable(struct drm_i915_private
-> > *i915)
-> >  	struct intel_dmc_wl *wl =3D &i915->display.wl;
-> >  	unsigned long flags;
-> >=20
-> > +	if (DISPLAY_VER(i915) < 20)
-> > +		return;
-> > +
-> >  	spin_lock_irqsave(&wl->lock, flags);
-> >=20
-> >  	if (wl->enabled)
-> > @@ -143,6 +146,9 @@ void intel_dmc_wl_disable(struct drm_i915_private
-> > *i915)
-> >  	struct intel_dmc_wl *wl =3D &i915->display.wl;
-> >  	unsigned long flags;
-> >=20
-> > +	if (DISPLAY_VER(i915) < 20)
-> > +		return;
->=20
-> There can be case where DMC is not loaded, address that as well.
-> We should not do wakelock in that case.
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast 714417be4833696db248e963e5010e6639610bda
+Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
+Fast mode used, each commit won't be checked separately.
+Okay!
 
-Right.  I have added a helper function, intel_dmc_wl_supported(), to
-keep all this checks in one place.
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
-> >  	flush_delayed_work(&wl->work);
-> >=20
-> >  	spin_lock_irqsave(&wl->lock, flags);
-> > @@ -171,6 +177,9 @@ void intel_dmc_wl_get(struct drm_i915_private *i915=
-,
-> > i915_reg_t reg)
-> >  	struct intel_dmc_wl *wl =3D &i915->display.wl;
-> >  	unsigned long flags;
-> >=20
-> > +	if (DISPLAY_VER(i915) < 20)
-> > +		return;
-> > +
-> >  	if (!intel_dmc_wl_check_range(reg.reg))
-> >  		return;
-> >=20
-> > @@ -203,6 +212,9 @@ void intel_dmc_wl_put(struct drm_i915_private *i915=
-,
-> > i915_reg_t reg)
-> >  	struct intel_dmc_wl *wl =3D &i915->display.wl;
-> >  	unsigned long flags;
-> >=20
-> > +	if (DISPLAY_VER(i915) < 20)
-> > +		return;
-> > +
-> >  	if (!intel_dmc_wl_check_range(reg.reg))
-> >  		return;
-> >=20
-> > --
-> > 2.39.2
->=20
-
---
-Cheers,
-Luca.
