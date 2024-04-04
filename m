@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1927CD1299
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Apr 2024 15:56:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70F3ECD1292
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Apr 2024 15:56:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F579113283;
-	Thu,  4 Apr 2024 15:56:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3FC4113287;
+	Thu,  4 Apr 2024 15:56:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K9AU7kuV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ahUaZIDk";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 573B7113287
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96A50113288
  for <intel-xe@lists.freedesktop.org>; Thu,  4 Apr 2024 15:56:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1712246206; x=1743782206;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zDxItJvDro+KuSez4YOcAsXqrnlS7FiLhY0eWrWAP6I=;
- b=K9AU7kuVPdklT+ko4LU+JI3sMr1Lc7w5Opj8HpLH9nzxRfmERUK9PgMt
- wEeqJdCC9bNEQfqYtL0pNJxFwD/cgYin9p0Wai5H5YTaWjUckaV6Y8xDs
- 8STgrMRr1Tbxd69vzayFM8xFZ1TATViPCP/aLENlWVD7LRLPDyDfCRX+Y
- 7ME6qWblN1hxIKVCPNdQdYiALgn3D+5tfgw6Rqz1pyZaQV5e2IAGubG97
- sPkfH9H7gyJO/Xv1ZJGgjSt0V49lm/Cf14EkbQMR6F1Zt14s1WjnWANGK
- BCcLZRcvxFBr5b9elOityN2XccUKHVKqROvLUuXP2wYmXhwvu9OQnXr/e w==;
-X-CSE-ConnectionGUID: OgheJeUsQbqP+KgQGYdNQA==
-X-CSE-MsgGUID: aD/Yc+w8Q9uKe1d29rWUSw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="8119119"
+ bh=hX0nd+Lj/+/a4iuaNP9W6Ed4pL8Xhi4fGI8AGMtMcrQ=;
+ b=ahUaZIDkkYuuDKXl19b1X1EOgw9VvrE2pd0cJc9FR80ImN2gKsL2TCtg
+ Dsj0sI3nB/LK4QXnORHB78YPtGCSSfTOoxe1z4iiw7E8UZPI1XPPqAKgY
+ VwVCJuMq8GxmywFd6++fP1ZjYUwE7GRmq1p24km+D5+wSZ0vcPAvCR6dA
+ OIoNHP/7Hw/2/+X5f9nfWkvNXFWmfq9GRzaaDjetEAuze1JwYsGeEu17Q
+ +8Yk8JHUMd9hPO4i3ZtG8q2izu66OGMk++7n2MmZxf9iLroxtUujSDmeL
+ YhUyuTYJIaaYXwL2Njbtlg6afxdgcgWWR3Um8sxYkrREfiu7LIc6QsahH Q==;
+X-CSE-ConnectionGUID: MN5aTDgSSjq5YdgBl9CHsg==
+X-CSE-MsgGUID: kPiYXJgiTVOP5/UaH8oIsQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="8119124"
 X-IronPort-AV: E=Sophos;i="6.07,179,1708416000"; 
-   d="scan'208";a="8119119"
+   d="scan'208";a="8119124"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2024 08:54:44 -0700
-X-CSE-ConnectionGUID: zbu90IJ4SxyLRLgj2ARLKA==
-X-CSE-MsgGUID: +Oi+bSo/R3KX9424g9lpDw==
+ 04 Apr 2024 08:54:45 -0700
+X-CSE-ConnectionGUID: i9cg9KsYQvG9nMmW4L1shQ==
+X-CSE-MsgGUID: UXoH+1D4S0uSRopYtSPG/A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,179,1708416000"; d="scan'208";a="41992428"
+X-IronPort-AV: E=Sophos;i="6.07,179,1708416000"; d="scan'208";a="41992440"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.158.68])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2024 08:44:43 -0700
+ 04 Apr 2024 08:44:45 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 1/3] drm/xe: Add max_vfs module parameter
-Date: Thu,  4 Apr 2024 17:44:29 +0200
-Message-Id: <20240404154431.583-2-michal.wajdeczko@intel.com>
+Subject: [PATCH 3/3] drm/xe: Add SR-IOV info attribute to debugfs
+Date: Thu,  4 Apr 2024 17:44:31 +0200
+Message-Id: <20240404154431.583-4-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240404154431.583-1-michal.wajdeczko@intel.com>
 References: <20240404154431.583-1-michal.wajdeczko@intel.com>
@@ -67,51 +67,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We want to have an option to limit the number of the VFs that the
-PF driver will be able to manage.  With this limit set to zero we
-will also have a way to completely disable the PF functionality.
-
-Since we currently don't support SR-IOV on any platform, we start
-with this limit set to zero by default.
+As SR-IOV support varies between platforms and the driver can run
+in different SR-IOV modes, add debugfs file with these details.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_module.c | 7 +++++++
- drivers/gpu/drm/xe/xe_module.h | 3 +++
- 2 files changed, 10 insertions(+)
+ drivers/gpu/drm/xe/xe_debugfs.c | 11 +++++++++++
+ drivers/gpu/drm/xe/xe_sriov.c   | 14 ++++++++++++++
+ drivers/gpu/drm/xe/xe_sriov.h   |  3 +++
+ 3 files changed, 28 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index 110b69864656..ceb8345cbca6 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -48,6 +48,13 @@ module_param_named_unsafe(force_probe, xe_modparam.force_probe, charp, 0400);
- MODULE_PARM_DESC(force_probe,
- 		 "Force probe options for specified devices. See CONFIG_DRM_XE_FORCE_PROBE for details.");
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 8abdf3c17e1d..13e13f22ccff 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -13,6 +13,7 @@
+ #include "xe_device.h"
+ #include "xe_gt_debugfs.h"
+ #include "xe_pm.h"
++#include "xe_sriov.h"
+ #include "xe_step.h"
  
-+#ifdef CONFIG_PCI_IOV
-+module_param_named(max_vfs, xe_modparam.max_vfs, uint, 0400);
-+MODULE_PARM_DESC(max_vfs,
-+		 "Limit number of Virtual Functions (VFs) that could be managed. "
-+		 "(0 = no VFs [default]; N = allow up to N VFs)");
-+#endif
+ #ifdef CONFIG_DRM_XE_DEBUG
+@@ -70,8 +71,18 @@ static int info(struct seq_file *m, void *data)
+ 	return 0;
+ }
+ 
++static int sriov_info(struct seq_file *m, void *data)
++{
++	struct xe_device *xe = node_to_xe(m->private);
++	struct drm_printer p = drm_seq_file_printer(m);
 +
- struct init_funcs {
- 	int (*init)(void);
- 	void (*exit)(void);
-diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-index 88ef0e8b2bfd..b369984f08ec 100644
---- a/drivers/gpu/drm/xe/xe_module.h
-+++ b/drivers/gpu/drm/xe/xe_module.h
-@@ -18,6 +18,9 @@ struct xe_modparam {
- 	char *huc_firmware_path;
- 	char *gsc_firmware_path;
- 	char *force_probe;
-+#ifdef CONFIG_PCI_IOV
-+	unsigned int max_vfs;
-+#endif
++	xe_sriov_print_info(xe, &p);
++	return 0;
++}
++
+ static const struct drm_info_list debugfs_list[] = {
+ 	{"info", info, 0},
++	{ .name = "sriov_info", .show = sriov_info, },
  };
  
- extern struct xe_modparam xe_modparam;
+ static int forcewake_open(struct inode *inode, struct file *file)
+diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
+index 94fa98d8206e..d324f131e3da 100644
+--- a/drivers/gpu/drm/xe/xe_sriov.c
++++ b/drivers/gpu/drm/xe/xe_sriov.c
+@@ -101,3 +101,17 @@ int xe_sriov_init(struct xe_device *xe)
+ 
+ 	return drmm_add_action_or_reset(&xe->drm, fini_sriov, xe);
+ }
++
++/**
++ * xe_sriov_print_info - Print basic SR-IOV information.
++ * @xe: the &xe_device to print info from
++ * @p: the &drm_printer
++ *
++ * Print SR-IOV related information into provided DRM printer.
++ */
++void xe_sriov_print_info(struct xe_device *xe, struct drm_printer *p)
++{
++	drm_printf(p, "supported: %s\n", str_yes_no(xe_device_has_sriov(xe)));
++	drm_printf(p, "enabled: %s\n", str_yes_no(IS_SRIOV(xe)));
++	drm_printf(p, "mode: %s\n", xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
++}
+diff --git a/drivers/gpu/drm/xe/xe_sriov.h b/drivers/gpu/drm/xe/xe_sriov.h
+index 9e3f58874e98..f9dec84d77e3 100644
+--- a/drivers/gpu/drm/xe/xe_sriov.h
++++ b/drivers/gpu/drm/xe/xe_sriov.h
+@@ -10,9 +10,12 @@
+ #include "xe_device_types.h"
+ #include "xe_sriov_types.h"
+ 
++struct drm_printer;
++
+ const char *xe_sriov_mode_to_string(enum xe_sriov_mode mode);
+ 
+ void xe_sriov_probe_early(struct xe_device *xe);
++void xe_sriov_print_info(struct xe_device *xe, struct drm_printer *p);
+ int xe_sriov_init(struct xe_device *xe);
+ 
+ static inline enum xe_sriov_mode xe_device_sriov_mode(struct xe_device *xe)
 -- 
 2.43.0
 
