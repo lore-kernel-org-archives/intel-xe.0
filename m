@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8440CD1284
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Apr 2024 06:03:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3795CD1284
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Apr 2024 06:08:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55DEC10E281;
-	Thu,  4 Apr 2024 06:03:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O7sq0/V8";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63F4510EC42
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Apr 2024 06:03:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712210581; x=1743746581;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=I4axfoY7u9EJGuj9wMYbb42f4k66IkS/zFzsKE5TFXU=;
- b=O7sq0/V8Nz7z2ZQyQCUzWRP093yhvL3O8KiOIjCZl7YTGHKLcni1s4Zs
- yAEmBE/4vMyTvWGInmQHkXGNktxCqtIN0cvbFAUDM8vVGkeqfkiLlo1qi
- CTPr7b7GFVKDTrZ/IhJwHNIWyIfv4o/58Q3+irHUFvYp1xEJByDBnhWIK
- A7j8wA6uOe6Xcvgzp2von7ko7XO8tE3jw3fW0TORzGhFd8v7jKTsOAdqx
- oFnOZoS72yJeP6WitBJhYDifFD7lBIb8/KEphezcMIr2Hv6U6FwKjdiJV
- fbWNMKi41IPwnPMb4Rh/M8S0lDCMqocTsKHuLLc0rAd+obpQdvTpcm8ku A==;
-X-CSE-ConnectionGUID: H33i/RciQey0cLV1jIN0OA==
-X-CSE-MsgGUID: cooQgdliS5KjfeHtkmJGrA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11033"; a="8053060"
-X-IronPort-AV: E=Sophos;i="6.07,178,1708416000"; 
-   d="scan'208";a="8053060"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 23:03:00 -0700
-X-CSE-ConnectionGUID: 9A5A4l57RrCDQJByl2sf8Q==
-X-CSE-MsgGUID: 8LMNUGt6Tk+dJc8pRdOwAA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,178,1708416000"; d="scan'208";a="18657162"
-Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orviesa009.jf.intel.com with ESMTP; 03 Apr 2024 23:02:58 -0700
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Oak Zeng <oak.zeng@intel.com>, Matthew Brost <matthew.brost@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v3 2/2] drm/xe: Use hmm_range_fault to populate user pages
-Date: Thu,  4 Apr 2024 11:46:31 +0530
-Message-Id: <20240404061631.4150858-3-himal.prasad.ghimiray@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240404061631.4150858-1-himal.prasad.ghimiray@intel.com>
-References: <20240404061631.4150858-1-himal.prasad.ghimiray@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 678421125BC;
+	Thu,  4 Apr 2024 06:08:15 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BADCD11214A;
+ Thu,  4 Apr 2024 06:08:12 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Use_hmm=5Frange=5Ffa?=
+ =?utf-8?q?ult_to_populate_user_page?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 04 Apr 2024 06:08:12 -0000
+Message-ID: <171221089276.1200090.17507164677144032982@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240404061631.4150858-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20240404061631.4150858-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,192 +36,25 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Oak Zeng <oak.zeng@intel.com>
+== Series Details ==
 
-This is an effort to unify hmmptr (aka system allocator)
-and userptr code. hmm_range_fault is used to populate
-a virtual address range for both hmmptr and userptr,
-instead of hmmptr using hmm_range_fault and userptr
-using get_user_pages_fast.
+Series: Use hmm_range_fault to populate user page
+URL   : https://patchwork.freedesktop.org/series/132015/
+State : success
 
-This also aligns with AMD gpu driver's behavior. In
-long term, we plan to put some common helpers in this
-area to drm layer so it can be re-used by different
-vendors.
+== Summary ==
 
--v1
-use the function with parameter to confirm whether lock is
-acquired by the caller or needs to be acquired in hmm_range_fault.
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 406e10d886a2 drm-tip: 2024y-04m-03d-19h-05m-06s UTC integration manifest
+=== git am output follows ===
+.git/rebase-apply/patch:293: new blank line at EOF.
++
+warning: 1 line adds whitespace errors.
+Applying: drm/xe: Introduce helper to populate userptr
+Applying: drm/xe: Use hmm_range_fault to populate user pages
 
-Cc: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
- drivers/gpu/drm/xe/xe_vm.c | 118 +++----------------------------------
- 1 file changed, 8 insertions(+), 110 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index f4bfb2705956..61448e9520b0 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -38,6 +38,7 @@
- #include "xe_sync.h"
- #include "xe_trace.h"
- #include "xe_wa.h"
-+#include "xe_hmm.h"
- 
- static struct drm_gem_object *xe_vm_obj(struct xe_vm *vm)
- {
-@@ -65,113 +66,17 @@ int xe_vma_userptr_check_repin(struct xe_userptr_vma *uvma)
- 
- int xe_vma_userptr_pin_pages(struct xe_userptr_vma *uvma)
- {
--	struct xe_userptr *userptr = &uvma->userptr;
- 	struct xe_vma *vma = &uvma->vma;
- 	struct xe_vm *vm = xe_vma_vm(vma);
- 	struct xe_device *xe = vm->xe;
--	const unsigned long num_pages = xe_vma_size(vma) >> PAGE_SHIFT;
--	struct page **pages;
--	bool in_kthread = !current->mm;
--	unsigned long notifier_seq;
--	int pinned, ret, i;
--	bool read_only = xe_vma_read_only(vma);
-+	int ret;
- 
- 	lockdep_assert_held(&vm->lock);
- 	xe_assert(xe, xe_vma_is_userptr(vma));
--retry:
--	if (vma->gpuva.flags & XE_VMA_DESTROYED)
--		return 0;
--
--	notifier_seq = mmu_interval_read_begin(&userptr->notifier);
--	if (notifier_seq == userptr->notifier_seq)
--		return 0;
--
--	pages = kvmalloc_array(num_pages, sizeof(*pages), GFP_KERNEL);
--	if (!pages)
--		return -ENOMEM;
--
--	if (userptr->sg) {
--		dma_unmap_sgtable(xe->drm.dev,
--				  userptr->sg,
--				  read_only ? DMA_TO_DEVICE :
--				  DMA_BIDIRECTIONAL, 0);
--		sg_free_table(userptr->sg);
--		userptr->sg = NULL;
--	}
- 
--	pinned = ret = 0;
--	if (in_kthread) {
--		if (!mmget_not_zero(userptr->notifier.mm)) {
--			ret = -EFAULT;
--			goto mm_closed;
--		}
--		kthread_use_mm(userptr->notifier.mm);
--	}
--
--	while (pinned < num_pages) {
--		ret = get_user_pages_fast(xe_vma_userptr(vma) +
--					  pinned * PAGE_SIZE,
--					  num_pages - pinned,
--					  read_only ? 0 : FOLL_WRITE,
--					  &pages[pinned]);
--		if (ret < 0)
--			break;
-+	ret = xe_hmm_userptr_populate_range(uvma, false);
- 
--		pinned += ret;
--		ret = 0;
--	}
--
--	if (in_kthread) {
--		kthread_unuse_mm(userptr->notifier.mm);
--		mmput(userptr->notifier.mm);
--	}
--mm_closed:
--	if (ret)
--		goto out;
--
--	ret = sg_alloc_table_from_pages_segment(&userptr->sgt, pages,
--						pinned, 0,
--						(u64)pinned << PAGE_SHIFT,
--						xe_sg_segment_size(xe->drm.dev),
--						GFP_KERNEL);
--	if (ret) {
--		userptr->sg = NULL;
--		goto out;
--	}
--	userptr->sg = &userptr->sgt;
--
--	ret = dma_map_sgtable(xe->drm.dev, userptr->sg,
--			      read_only ? DMA_TO_DEVICE :
--			      DMA_BIDIRECTIONAL,
--			      DMA_ATTR_SKIP_CPU_SYNC |
--			      DMA_ATTR_NO_KERNEL_MAPPING);
--	if (ret) {
--		sg_free_table(userptr->sg);
--		userptr->sg = NULL;
--		goto out;
--	}
--
--	for (i = 0; i < pinned; ++i) {
--		if (!read_only) {
--			lock_page(pages[i]);
--			set_page_dirty(pages[i]);
--			unlock_page(pages[i]);
--		}
--
--		mark_page_accessed(pages[i]);
--	}
--
--out:
--	release_pages(pages, pinned);
--	kvfree(pages);
--
--	if (!(ret < 0)) {
--		userptr->notifier_seq = notifier_seq;
--		if (xe_vma_userptr_check_repin(uvma) == -EAGAIN)
--			goto retry;
--	}
--
--	return ret < 0 ? ret : 0;
-+	return ret;
- }
- 
- static bool preempt_fences_waiting(struct xe_vm *vm)
-@@ -955,8 +860,6 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- static void xe_vma_destroy_late(struct xe_vma *vma)
- {
- 	struct xe_vm *vm = xe_vma_vm(vma);
--	struct xe_device *xe = vm->xe;
--	bool read_only = xe_vma_read_only(vma);
- 
- 	if (vma->ufence) {
- 		xe_sync_ufence_put(vma->ufence);
-@@ -964,16 +867,11 @@ static void xe_vma_destroy_late(struct xe_vma *vma)
- 	}
- 
- 	if (xe_vma_is_userptr(vma)) {
--		struct xe_userptr *userptr = &to_userptr_vma(vma)->userptr;
-+		struct xe_userptr_vma *uvma = to_userptr_vma(vma);
-+		struct xe_userptr *userptr = &uvma->userptr;
- 
--		if (userptr->sg) {
--			dma_unmap_sgtable(xe->drm.dev,
--					  userptr->sg,
--					  read_only ? DMA_TO_DEVICE :
--					  DMA_BIDIRECTIONAL, 0);
--			sg_free_table(userptr->sg);
--			userptr->sg = NULL;
--		}
-+		if (userptr->sg)
-+			xe_hmm_userptr_free_sg(uvma);
- 
- 		/*
- 		 * Since userptr pages are not pinned, we can't remove
--- 
-2.25.1
 
