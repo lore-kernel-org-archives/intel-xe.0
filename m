@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3795CD1284
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Apr 2024 06:08:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9B97CD1284
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Apr 2024 06:08:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 678421125BC;
-	Thu,  4 Apr 2024 06:08:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64AAD1127D9;
+	Thu,  4 Apr 2024 06:08:28 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BADCD11214A;
- Thu,  4 Apr 2024 06:08:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FDA810E482;
+ Thu,  4 Apr 2024 06:08:25 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Use_hmm=5Frange=5Ffa?=
- =?utf-8?q?ult_to_populate_user_page?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Use_hmm=5Frange=5Ffault_t?=
+ =?utf-8?q?o_populate_user_page?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 04 Apr 2024 06:08:12 -0000
-Message-ID: <171221089276.1200090.17507164677144032982@8e613ede5ea5>
+Date: Thu, 04 Apr 2024 06:08:25 -0000
+Message-ID: <171221090519.1200090.10581528486621045183@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240404061631.4150858-1-himal.prasad.ghimiray@intel.com>
 In-Reply-To: <20240404061631.4150858-1-himal.prasad.ghimiray@intel.com>
@@ -44,17 +44,58 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Use hmm_range_fault to populate user page
 URL   : https://patchwork.freedesktop.org/series/132015/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 406e10d886a2 drm-tip: 2024y-04m-03d-19h-05m-06s UTC integration manifest
-=== git am output follows ===
-.git/rebase-apply/patch:293: new blank line at EOF.
-+
-warning: 1 line adds whitespace errors.
-Applying: drm/xe: Introduce helper to populate userptr
-Applying: drm/xe: Use hmm_range_fault to populate user pages
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+10b531c2aeb176a1a539b4a77216232f97719cec
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b9374941083192cad4ea1d9929a9f933f52c5c76
+Author: Oak Zeng <oak.zeng@intel.com>
+Date:   Thu Apr 4 11:46:31 2024 +0530
+
+    drm/xe: Use hmm_range_fault to populate user pages
+    
+    This is an effort to unify hmmptr (aka system allocator)
+    and userptr code. hmm_range_fault is used to populate
+    a virtual address range for both hmmptr and userptr,
+    instead of hmmptr using hmm_range_fault and userptr
+    using get_user_pages_fast.
+    
+    This also aligns with AMD gpu driver's behavior. In
+    long term, we plan to put some common helpers in this
+    area to drm layer so it can be re-used by different
+    vendors.
+    
+    -v1
+    use the function with parameter to confirm whether lock is
+    acquired by the caller or needs to be acquired in hmm_range_fault.
+    
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
++ /mt/dim checkpatch 406e10d886a22211d2866bfa9322aec1727171f8 drm-intel
+c2d63eb76c3c drm/xe: Introduce helper to populate userptr
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:80: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#80: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 286 lines checked
+b93749410831 drm/xe: Use hmm_range_fault to populate user pages
 
 
