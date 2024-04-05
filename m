@@ -4,47 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80091CD129E
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 14:28:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B95D3CD11C2
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 14:28:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8DF410FA69;
-	Fri,  5 Apr 2024 14:28:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B49C113C39;
+	Fri,  5 Apr 2024 14:28:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="4X2vm3fe";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="2TT/JtE+";
+	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="w/0izk0i";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="08O/PDZA";
 	dkim-atps=neutral
 Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC48710EC8A;
- Fri,  5 Apr 2024 14:27:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97B441138A4;
+ Fri,  5 Apr 2024 14:27:56 +0000 (UTC)
 From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1712327261;
+ s=2020; t=1712327263;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=14ULkwgKeFspTajsZK3eHl6oUrjMDGK7QLn4YtpJCsU=;
- b=4X2vm3feMgXBL5ckuWAE85N+5vfP5qJ9QJg70jlhC5k6J4yDNAbirDKyNx9SenDRQXisnR
- PmfHoOIP4ifa1lDvz2b00/Xlod9IfPf5RTNO6YOvTM2XUcg65ip0WIuFe77XsnmphFDCX7
- 7ZxbhUEcUVCBv+P4pRq2ZKIVpd6Yx8D1MA4atqO/HtB42kYBLrvmJqXqKE3ade7j8r9MWl
- fsIMGlvxdIGF3KdxBV9aiaN3bCBUJYz/bS4nhfgFJKcdQOUa6rogynKVb0EUuiKg6sI6Mk
- srTOZikKqLgYiXvAwoMUTOI3q2/YIBk6dZcQOCiTluj9CrlNOez5N+eQV/39Tg==
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=gcQW0Opk3PnCDS0PJerd3AtjKp9uGXp2wG1z67PPjUA=;
+ b=w/0izk0itClzPi7AVGuB97lLEJc6NkNPGQ9p8Yru8Q6mi98PI58I2HosG4xXln9F/5SI9a
+ WshAhKFx5x4QTq7b27VbXqBtQW0MusRnZLw71JnUZiF+z6ipRvmIWN1Amg8Q7/kq5gxhmA
+ B4x/heNcEv4yl0pB3RJzhqEjKt8c+cZcIvymuxoZqxZg/a+Z+xZWTuOJ6szbyarOtc4BzY
+ doUQtWBYqd2DVLSzIdGkkxoiWpiLCpGgotoQgjIffUofx/25thc+Rnc340793PsJJ18gFb
+ kBfr0Ab9B8f/pgiFYQ8wBQmtC4xRCQHR339KsY1F7Fd0kcwhMtUjkXB5FXwKpg==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1712327261;
+ s=2020e; t=1712327263;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=14ULkwgKeFspTajsZK3eHl6oUrjMDGK7QLn4YtpJCsU=;
- b=2TT/JtE+zkqtoPhk3S7NdRHktSK6amFW7OMeC6BdAIqv+7g2cLfhU+R1beXMXRydQJw0HF
- lkN4EbKUifxHreBw==
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=gcQW0Opk3PnCDS0PJerd3AtjKp9uGXp2wG1z67PPjUA=;
+ b=08O/PDZAAt3BMJdWcV29TIQYaD14bWaF8lym8oYoF+k6Xt3hCLPd+6+KAiTNMDzJAULatz
+ xKSsHHPLe8kxChBQ==
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Gleixner <tglx@linutronix.de>, Tvrtko Ursulin <tursulin@ursulin.net>
-Subject: [PATCH 00/10] drm/i915: PREEMPT_RT related fixups.
-Date: Fri,  5 Apr 2024 16:18:18 +0200
-Message-ID: <20240405142737.920626-1-bigeasy@linutronix.de>
+ Thomas Gleixner <tglx@linutronix.de>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Clark Williams <williams@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: [PATCH 06/10] drm/i915/gt: Queue and wait for the irq_work item.
+Date: Fri,  5 Apr 2024 16:18:24 +0200
+Message-ID: <20240405142737.920626-7-bigeasy@linutronix.de>
+In-Reply-To: <20240405142737.920626-1-bigeasy@linutronix.de>
+References: <20240405142737.920626-1-bigeasy@linutronix.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -61,21 +69,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+Disabling interrupts and invoking the irq_work function directly breaks
+on PREEMPT_RT.
+PREEMPT_RT does not invoke all irq_work from hardirq context because
+some of the user have spinlock_t locking in the callback function.
+These locks are then turned into a sleeping locks which can not be
+acquired with disabled interrupts.
 
-The following patches are from the PREEMPT_RT queue.  It is mostly about
-disabling interrupts/preemption which leads to problems. Unfortunately
-DRM_I915_LOW_LEVEL_TRACEPOINTS had to be disabled because it acquires locks
-from within trace points. Making the lock a raw_spinlock_t led to higher
-latencies during video playback
-  https://lore.kernel.org/all/20211006164628.s2mtsdd2jdbfyf7g@linutronix.de/
+Using irq_work_queue() has the benefit that the irqwork will be invoked
+in the regular context. In general there is "no" delay between enqueuing
+the callback and its invocation because the interrupt is raised right
+away on architectures which support it (which includes x86).
 
-and I'm not sure if I hit the worse case here.
-I tested it on a SandyBridge with built-in i915 by using X, OpenGL and
-playing videos without noticing any warnings. However, some code paths
-were not entered.
-I carry them for some time now and most issues were reported by other
-people and they reported that things work for them since.
+Use irq_work_queue() + irq_work_sync() instead invoking the callback
+directly.
 
-Sebastian
+Reported-by: Clark Williams <williams@redhat.com>
+Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/=
+i915/gt/intel_breadcrumbs.c
+index d650beb8ed22f..3dd3e516b80c1 100644
+--- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
++++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+@@ -317,10 +317,9 @@ void __intel_breadcrumbs_park(struct intel_breadcrumbs=
+ *b)
+ 	/* Kick the work once more to drain the signalers, and disarm the irq */
+ 	irq_work_sync(&b->irq_work);
+ 	while (READ_ONCE(b->irq_armed) && !atomic_read(&b->active)) {
+-		local_irq_disable();
+-		signal_irq_work(&b->irq_work);
+-		local_irq_enable();
++		irq_work_queue(&b->irq_work);
+ 		cond_resched();
++		irq_work_sync(&b->irq_work);
+ 	}
+ }
+=20
+--=20
+2.43.0
 
