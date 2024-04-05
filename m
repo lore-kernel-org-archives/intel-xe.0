@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55E02CD11C2
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 14:06:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 692E5CD11C2
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 14:20:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2122113C2D;
-	Fri,  5 Apr 2024 14:06:26 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GqXbSXZc";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C106310F4BD
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Apr 2024 14:06:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712325979; x=1743861979;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=4eSz62lvjUkl8pRBIt1zR1G/RTACOgXjWdCx+tM4Rj0=;
- b=GqXbSXZcOpKC/5FtdxwPW6f90UrWryZFHg4eA7hKUC0/1q2794XlmL8p
- kOgmUFQI6M8DxGw+FwLKitam1CJYnMmsRUF4bLzFpIf8FJXn6wx/gpmHg
- xmCJ/SBbEAW9QMuqQAlTnHuKgLeqF3PjtIAeg9puT1YNrM3mvf/kiSQN0
- VjJiJx9+lhLP9vkSUIQPDtN7OobIWchhGXS6AF0ue1p0HUZIY49PQCzyJ
- 5ErdBk+JZYcpmRhht9oIchFJGlzuhYQ4XHcsZ4u7+8nnmra2UpL1wVTOZ
- JdZe6MBT3csgK/dzYldG1B2ydGUP141GAD6vuhVib8vYiUlkPPL69BTgW A==;
-X-CSE-ConnectionGUID: by3zlnvIQqC5cNZOcA2cxg==
-X-CSE-MsgGUID: XsQZt17KTZan8+WeaWjoKA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11035"; a="7782426"
-X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; 
-   d="scan'208";a="7782426"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2024 07:06:19 -0700
-X-CSE-ConnectionGUID: yLgMox0GSCiVviaG5n37NQ==
-X-CSE-MsgGUID: jEW19BESQ3e6iQA7b3FGTw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="19197787"
-Received: from dut-internal-9dd7.jf.intel.com ([10.165.21.194])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2024 07:06:18 -0700
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: saurabhg.gupta@intel.com, jonathan.cavitt@intel.com,
- matthew.brost@intel.com, lucas.demarchi@intel.com,
- john.c.harrison@intel.com
-Subject: [PATCH v3 1/3] drm/xe/xe_guc_submit: Fix exec queue stop race
- condition
-Date: Fri,  5 Apr 2024 06:50:58 -0700
-Message-Id: <20240405135100.967990-1-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01184113937;
+	Fri,  5 Apr 2024 14:20:24 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73A62113938;
+ Fri,  5 Apr 2024 14:20:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/hwmon=3A_Upda?=
+ =?utf-8?q?te_xe_hwmon_with_couple_of_fixes_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Karthik Poosa" <karthik.poosa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 05 Apr 2024 14:20:18 -0000
+Message-ID: <171232681847.1236915.4569181894277746596@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240405130127.1392426-1-karthik.poosa@intel.com>
+In-Reply-To: <20240405130127.1392426-1-karthik.poosa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,39 +36,24 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Reorder the xe_sched_tdr_queue_imm and set_exec_queue_banned calls in
-guc_exec_queue_stop.  This prevents a possible race condition between
-the two events in which it's possible for xe_sched_tdr_queue_imm to
-wake the ufence waiter before the exec queue is banned, causing the
-ufence waiter to miss the banned state.
+== Series Details ==
 
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
+Series: drm/xe/hwmon: Update xe hwmon with couple of fixes (rev7)
+URL   : https://patchwork.freedesktop.org/series/131765/
+State : success
 
-v2: Expand on cause of race condition
+== Summary ==
 
- drivers/gpu/drm/xe/xe_guc_submit.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 5714711c6612 drm-tip: 2024y-04m-05d-13h-18m-58s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Define xe_reg_is_valid
+Applying: drm/xe/hwmon: Update xe_hwmon_get_reg to return struct xe_reg
+Applying: drm/xe/hwmon: Update xe_hwmon_process_reg
+Applying: drm/xe/hwmon: Cast result to output precision on left shift of operand
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 9c30bd9ac8c06..1a6abb10a960e 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1430,8 +1430,8 @@ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
- 			    !xe_sched_job_completed(job)) ||
- 			    xe_sched_invalidate_job(job, 2)) {
- 				trace_xe_sched_job_ban(job);
--				xe_sched_tdr_queue_imm(&q->guc->sched);
- 				set_exec_queue_banned(q);
-+				xe_sched_tdr_queue_imm(&q->guc->sched);
- 			}
- 		}
- 	}
--- 
-2.25.1
 
