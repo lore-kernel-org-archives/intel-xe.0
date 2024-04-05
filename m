@@ -4,27 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95EE5C67861
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 19:15:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A45EC67861
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 19:20:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12C3E10E6CA;
-	Fri,  5 Apr 2024 19:15:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4080310E725;
+	Fri,  5 Apr 2024 19:20:44 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05EB910E6CA;
- Fri,  5 Apr 2024 19:15:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3BEC10E72B;
+ Fri,  5 Apr 2024 19:20:39 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_lib/kunit=3A_Read_re?=
- =?utf-8?q?sults_from_debugfs_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
+ =?utf-8?q?_=5Bv4=2C1/3=5D_drm/xe/xe=5Fguc=5Fsubmit=3A_Fix_exec_queue_stop_r?=
+ =?utf-8?q?ace_condition?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
+To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 05 Apr 2024 19:15:56 -0000
-Message-ID: <171234455601.1239316.11899938013535902548@8e613ede5ea5>
+Date: Fri, 05 Apr 2024 19:20:39 -0000
+Message-ID: <171234483980.1239316.13301476102267327974@8e613ede5ea5>
 X-Patchwork-Hint: ignore
-References: <20240405175544.6047-2-janusz.krzysztofik@linux.intel.com>
-In-Reply-To: <20240405175544.6047-2-janusz.krzysztofik@linux.intel.com>
+References: <20240405175505.1161756-1-jonathan.cavitt@intel.com>
+In-Reply-To: <20240405175505.1161756-1-jonathan.cavitt@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,21 +43,17 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: lib/kunit: Read results from debugfs (rev2)
-URL   : https://patchwork.freedesktop.org/series/131687/
-State : failure
+Series: series starting with [v4,1/3] drm/xe/xe_guc_submit: Fix exec queue stop race condition
+URL   : https://patchwork.freedesktop.org/series/132094/
+State : success
 
 == Summary ==
 
 === Applying kernel patches on branch 'drm-tip' with base: ===
 Base commit: 11155f150a41 drm-tip: 2024y-04m-05d-18h-03m-49s UTC integration manifest
 === git am output follows ===
-error: lib/igt_kmod.c: does not exist in index
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Applying: lib/kunit: Read results from debugfs
-Patch failed at 0001 lib/kunit: Read results from debugfs
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Applying: drm/xe/xe_guc_submit: Fix exec queue stop race condition
+Applying: drm/xe/xe_guc_submit: Allow lr exec queues to be banned
+Applying: drm/xe/xe_guc_submit: Declare reset if banned or killed
 
 
