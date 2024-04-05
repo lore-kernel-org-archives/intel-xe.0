@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0166CCD11C2
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 17:21:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77BDBC67861
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 17:21:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE6BC10ED62;
-	Fri,  5 Apr 2024 17:21:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18E6610ED62;
+	Fri,  5 Apr 2024 17:21:55 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6898A10ED62;
- Fri,  5 Apr 2024 17:21:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3020D10ED70;
+ Fri,  5 Apr 2024 17:21:53 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Check_pat?=
- =?utf-8?q?=2Eops_before_dumping_PAT_settings?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Check_pat=2Eops?=
+ =?utf-8?q?_before_dumping_PAT_settings?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 05 Apr 2024 17:21:40 -0000
-Message-ID: <171233770042.1239329.2989740046965490048@8e613ede5ea5>
+Date: Fri, 05 Apr 2024 17:21:53 -0000
+Message-ID: <171233771319.1239316.16778141201322484278@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240405143625.935-1-michal.wajdeczko@intel.com>
 In-Reply-To: <20240405143625.935-1-michal.wajdeczko@intel.com>
@@ -48,9 +48,31 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 8cb1ee178ef7 drm-tip: 2024y-04m-05d-16h-52m-43s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Check pat.ops before dumping PAT settings
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+10b531c2aeb176a1a539b4a77216232f97719cec
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f6cb0876c70567fce1da54403d0b2fef969f67d6
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Fri Apr 5 16:36:25 2024 +0200
+
+    drm/xe: Check pat.ops before dumping PAT settings
+    
+    We may leave pat.ops unset when running on brand new platform or
+    when running as a VF.  While the former is unlikely, the latter
+    is valid (future) use case and will cause NPD when someone will
+    try to dump PAT settings by debugfs.
+    
+    It's better to check pointer to pat.ops instead of specific .dump
+    hook, as we have this hook always defined for every .ops variant.
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
++ /mt/dim checkpatch 8cb1ee178ef7e504e233814ef50c1f18f42dac72 drm-intel
+f6cb0876c705 drm/xe: Check pat.ops before dumping PAT settings
 
 
