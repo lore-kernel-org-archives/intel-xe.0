@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B292BCD11C2
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 18:10:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D3CCC67861
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 18:10:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61F7710E5D6;
-	Fri,  5 Apr 2024 18:10:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0F3410E610;
+	Fri,  5 Apr 2024 18:10:58 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D581A10E5D6;
- Fri,  5 Apr 2024 18:10:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B370210E610;
+ Fri,  5 Apr 2024 18:10:57 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Remove_deb?=
- =?utf-8?q?ug_message_from_migrate=5Fclear=28=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Remove_debug_me?=
+ =?utf-8?q?ssage_from_migrate=5Fclear=28=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Souza, Jose" <jose.souza@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 05 Apr 2024 18:10:44 -0000
-Message-ID: <171234064487.1239329.1052206944903271368@8e613ede5ea5>
+Date: Fri, 05 Apr 2024 18:10:57 -0000
+Message-ID: <171234065773.1239316.5706611701795148143@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240405153849.44906-1-jose.souza@intel.com>
 In-Reply-To: <20240405153849.44906-1-jose.souza@intel.com>
@@ -48,9 +48,26 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 11155f150a41 drm-tip: 2024y-04m-05d-18h-03m-49s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Remove debug message from migrate_clear()
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+10b531c2aeb176a1a539b4a77216232f97719cec
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ec7f83459ad3c297fe4605b8c5c982a97cb2cede
+Author: José Roberto de Souza <jose.souza@intel.com>
+Date:   Fri Apr 5 08:38:49 2024 -0700
+
+    drm/xe: Remove debug message from migrate_clear()
+    
+    This messages is printed a lot and from my understanding it do not
+    bring any value, so here dropping it.
+    
+    Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
++ /mt/dim checkpatch 11155f150a41d028c6ac7a141924fd4c8798721d drm-intel
+ec7f83459ad3 drm/xe: Remove debug message from migrate_clear()
 
 
