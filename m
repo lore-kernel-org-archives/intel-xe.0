@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D3F8C67861
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 17:11:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FBB5C67861
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 17:11:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12F1C10EBE3;
-	Fri,  5 Apr 2024 17:11:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38B0B10EBE3;
+	Fri,  5 Apr 2024 17:11:30 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66EBE10EBE3;
- Fri,  5 Apr 2024 17:11:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C871910ECDC;
+ Fri,  5 Apr 2024 17:11:27 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5Bv3=2C1/3=5D_drm/xe/xe=5Fguc=5Fsubmit=3A_Fix_exec_queue_stop_r?=
- =?utf-8?q?ace_condition?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5Bv?=
+ =?utf-8?q?3=2C1/3=5D_drm/xe/xe=5Fguc=5Fsubmit=3A_Fix_exec_queue_stop_race_c?=
+ =?utf-8?q?ondition?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 05 Apr 2024 17:11:15 -0000
-Message-ID: <171233707542.1239316.16503127548404700388@8e613ede5ea5>
+Date: Fri, 05 Apr 2024 17:11:27 -0000
+Message-ID: <171233708782.1239316.17342073950430494161@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240405135100.967990-1-jonathan.cavitt@intel.com>
 In-Reply-To: <20240405135100.967990-1-jonathan.cavitt@intel.com>
@@ -45,18 +45,42 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: series starting with [v3,1/3] drm/xe/xe_guc_submit: Fix exec queue stop race condition
 URL   : https://patchwork.freedesktop.org/series/132081/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 8cb1ee178ef7 drm-tip: 2024y-04m-05d-16h-52m-43s UTC integration manifest
-=== git am output follows ===
-.git/rebase-apply/patch:35: trailing whitespace.
-		
-warning: 1 line adds whitespace errors.
-Applying: drm/xe/xe_guc_submit: Fix exec queue stop race condition
-Applying: drm/xe/xe_guc_submit: Allow lr exec queues to be banned
-Applying: drm/xe/xe_guc_submit: Declare reset if banned or killed
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+10b531c2aeb176a1a539b4a77216232f97719cec
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1f3fe4cfad873ed7d6c5a6122acd01db404642a4
+Author: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Date:   Fri Apr 5 06:51:00 2024 -0700
+
+    drm/xe/xe_guc_submit: Declare reset if banned or killed
+    
+    Add an additional condition to the reset_status guc_exec_queue_op that
+    returns true if the exec queue has been banned or killed.  The
+    reset_status op is only used for exiting any xe_wait_user_fence_ioctl
+    that waits on an exec queue without timing out, so doing this will exit
+    the ioctl early in cases where the exec queue can no longer function,
+    such as after a GuC stop during a reset.
+    
+    Suggested-by: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
++ /mt/dim checkpatch 8cb1ee178ef7e504e233814ef50c1f18f42dac72 drm-intel
+b4a6a304abd7 drm/xe/xe_guc_submit: Fix exec queue stop race condition
+41e462090b81 drm/xe/xe_guc_submit: Allow lr exec queues to be banned
+-:43: ERROR:TRAILING_WHITESPACE: trailing whitespace
+#43: FILE: drivers/gpu/drm/xe/xe_guc_submit.c:1440:
++^I^I$
+
+total: 1 errors, 0 warnings, 0 checks, 25 lines checked
+1f3fe4cfad87 drm/xe/xe_guc_submit: Declare reset if banned or killed
 
 
