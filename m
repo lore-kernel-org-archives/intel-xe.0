@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11BF9CD11C2
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 18:45:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E730CD1296
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 18:51:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99C6D10E62C;
-	Fri,  5 Apr 2024 18:45:58 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NSjdyWw+";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A866210E605;
- Fri,  5 Apr 2024 18:45:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712342756; x=1743878756;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=flxZxA0X7GWBi74qPpdlRrbph7KZWrQDcITyvFz4TeM=;
- b=NSjdyWw+0zbhLG2YWRGh37JTm2qo3sJD5LcSFGiOrs1jgB9R2FY3YmR8
- K0T3KTbuqCm9zvTfjxV7RFQ88nTvB7GjsjxvM++EaOhHEGNxPWKx+vGIc
- iemVH7pWkmj8nJXpyWNXwYCDjr5pJZD/fZQUR3yWN3n0cRcxM1mQ1bULl
- k2Z/DKGF30yg3yPz558t1/FV9DEdApS4XeuIIG3SApE0YSuESg2PfAYZ1
- TJPugkqMRqg0+ZbWgQU6zqY+g6A/3xD3wo3AOElFx3c3XfyMArT7ihYHR
- y7bzavrFVQxWQmTiQhoUZ1HqihFWbiM/YXXPUYMYUQtzPjGCvSv8DvPjv g==;
-X-CSE-ConnectionGUID: RBAUpPSgR0+OgFWggsnX1g==
-X-CSE-MsgGUID: 0sG+dtOpTka4rEBaL9eyqg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11035"; a="25190931"
-X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="25190931"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2024 11:45:55 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11035"; a="827790985"
-X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="827790985"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 05 Apr 2024 11:45:52 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 05 Apr 2024 21:45:51 +0300
-Date: Fri, 5 Apr 2024 21:45:51 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 1/6] drm/modes: add drm_mode_print() to dump mode in
- drm_printer
-Message-ID: <ZhBG36AFIbFQ3dYk@intel.com>
-References: <cover.1709843865.git.jani.nikula@intel.com>
- <54199d36993bfb00e29cc059ab9a215495405a99.1709843865.git.jani.nikula@intel.com>
- <375332cc-5d12-4afb-b00f-a9ef08209038@suse.de>
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACE9410FA6A;
+	Fri,  5 Apr 2024 18:51:46 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B82B810FA6A;
+ Fri,  5 Apr 2024 18:51:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6785947454237330185=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <375332cc-5d12-4afb-b00f-a9ef08209038@suse.de>
-X-Patchwork-Hint: comment
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Remove_debug_message_f?=
+ =?utf-8?q?rom_migrate=5Fclear=28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 05 Apr 2024 18:51:45 -0000
+Message-ID: <171234310575.1239329.13666570540218801847@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240405153849.44906-1-jose.souza@intel.com>
+In-Reply-To: <20240405153849.44906-1-jose.souza@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,54 +36,144 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Apr 05, 2024 at 10:45:42AM +0200, Thomas Zimmermann wrote:
-> Hi
-> 
-> Am 07.03.24 um 21:39 schrieb Jani Nikula:
-> > Add a printer based function for dumping the modeline, so it's not
-> > limited to KMS debug.
-> >
-> > Note: The printed output intentionally does not have the "Modeline"
-> > prefix. Prefix, if any, is for the caller to decide when initializing
-> > drm_printer.
-> >
-> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> > ---
-> >   drivers/gpu/drm/drm_modes.c | 13 +++++++++++++
-> >   include/drm/drm_modes.h     |  2 ++
-> >   2 files changed, 15 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/drm_modes.c b/drivers/gpu/drm/drm_modes.c
-> > index c4f88c3a93b7..711750ab57c7 100644
-> > --- a/drivers/gpu/drm/drm_modes.c
-> > +++ b/drivers/gpu/drm/drm_modes.c
-> > @@ -49,6 +49,19 @@
-> >   
-> >   #include "drm_crtc_internal.h"
-> >   
-> > +/**
-> > + * drm_mode_print - print a mode to drm printer
-> > + * @p: drm printer
-> > + * @mode: mode to print
-> > + *
-> > + * Write @mode description to struct drm_printer @p.
-> > + */
-> > +void drm_mode_print(struct drm_printer *p, const struct drm_display_mode *mode)
-> 
-> Could this be a printf function with a trailing format string as final 
-> argument? The printed mode could then be part of another string instead 
-> of just at the end of it.
+--===============6785947454237330185==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-All this seems pretty much redundant. We already have
-DRM_MODE_FMT/ARGS so people can include the mode in any
-kind of format string they want.
+== Series Details ==
 
-I would just nuke drm_mode_print() and all its ilk and
-let people format things themselves.
+Series: drm/xe: Remove debug message from migrate_clear()
+URL   : https://patchwork.freedesktop.org/series/132088/
+State : success
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+CI Bug Log - changes from xe-1048-8cb1ee178ef7e504e233814ef50c1f18f42dac72_BAT -> xe-pw-132088v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (5 -> 5)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-132088v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_evict@evict-mixed-threads-small:
+    - bat-dg2-oem2:       [TIMEOUT][1] ([Intel XE#1259] / [Intel XE#1473]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1048-8cb1ee178ef7e504e233814ef50c1f18f42dac72/bat-dg2-oem2/igt@xe_evict@evict-mixed-threads-small.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132088v1/bat-dg2-oem2/igt@xe_evict@evict-mixed-threads-small.html
+
+  * igt@xe_exec_threads@threads-mixed-userptr-invalidate:
+    - {bat-lnl-1}:        [FAIL][3] -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1048-8cb1ee178ef7e504e233814ef50c1f18f42dac72/bat-lnl-1/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132088v1/bat-lnl-1/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#1259]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1259
+  [Intel XE#1473]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1473
+
+
+Build changes
+-------------
+
+  * Linux: xe-1048-8cb1ee178ef7e504e233814ef50c1f18f42dac72 -> xe-pw-132088v1
+
+  IGT_7801: 7801
+  xe-1048-8cb1ee178ef7e504e233814ef50c1f18f42dac72: 8cb1ee178ef7e504e233814ef50c1f18f42dac72
+  xe-pw-132088v1: 132088v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132088v1/index.html
+
+--===============6785947454237330185==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Remove debug message from migrate_clear()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132088/">https://patchwork.freedesktop.org/series/132088/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132088v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132088v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1048-8cb1ee178ef7e504e233814ef50c1f18f42dac72_BAT -&gt; xe-pw-132088v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (5 -&gt; 5)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-132088v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@xe_evict@evict-mixed-threads-small:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1048-8cb1ee178ef7e504e233814ef50c1f18f42dac72/bat-dg2-oem2/igt@xe_evict@evict-mixed-threads-small.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1259">Intel XE#1259</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1473">Intel XE#1473</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132088v1/bat-dg2-oem2/igt@xe_evict@evict-mixed-threads-small.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_threads@threads-mixed-userptr-invalidate:</p>
+<ul>
+<li>{bat-lnl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1048-8cb1ee178ef7e504e233814ef50c1f18f42dac72/bat-lnl-1/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132088v1/bat-lnl-1/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1048-8cb1ee178ef7e504e233814ef50c1f18f42dac72 -&gt; xe-pw-132088v1</li>
+</ul>
+<p>IGT_7801: 7801<br />
+  xe-1048-8cb1ee178ef7e504e233814ef50c1f18f42dac72: 8cb1ee178ef7e504e233814ef50c1f18f42dac72<br />
+  xe-pw-132088v1: 132088v1</p>
+
+</body>
+</html>
+
+--===============6785947454237330185==--
