@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C78D8C67861
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 15:03:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0386CC67861
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 15:03:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FF1310ECD0;
-	Fri,  5 Apr 2024 15:03:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 967CD10ECF3;
+	Fri,  5 Apr 2024 15:03:19 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2E2E10ECD0;
- Fri,  5 Apr 2024 15:03:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4597710ECD0;
+ Fri,  5 Apr 2024 15:03:17 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5Bv2=5D_drm=3A_Add_drm=5Fvblank=5Fwork=5Fflush=5Fall=28=29=2E_?=
- =?utf-8?q?=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5Bv?=
+ =?utf-8?q?2=5D_drm=3A_Add_drm=5Fvblank=5Fwork=5Fflush=5Fall=28=29=2E_=28rev?=
+ =?utf-8?q?2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 05 Apr 2024 15:03:00 -0000
-Message-ID: <171232938099.1237482.1356524442263063426@8e613ede5ea5>
+Date: Fri, 05 Apr 2024 15:03:17 -0000
+Message-ID: <171232939728.1237174.12738236827752635503@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240404104813.150030-1-maarten.lankhorst@linux.intel.com>
 In-Reply-To: <20240404104813.150030-1-maarten.lankhorst@linux.intel.com>
@@ -45,15 +45,58 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: series starting with [v2] drm: Add drm_vblank_work_flush_all(). (rev2)
 URL   : https://patchwork.freedesktop.org/series/132027/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 5714711c6612 drm-tip: 2024y-04m-05d-13h-18m-58s UTC integration manifest
-=== git am output follows ===
-Applying: drm: Add drm_vblank_work_flush_all().
-Applying: drm/i915: Use vblank worker to unpin old legacy cursor fb safely
-Applying: drm/i915: Use the same vblank worker for atomic unpin
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+10b531c2aeb176a1a539b4a77216232f97719cec
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 3a7630ceae6828e67aab07add547a33d3c6dbeb7
+Author: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Date:   Thu Apr 4 12:48:13 2024 +0200
+
+    drm/i915: Use the same vblank worker for atomic unpin
+    
+    In case of legacy cursor update, the cursor VMA needs to be unpinned
+    only after vblank. This exceeds the lifetime of the whole atomic commit.
+    
+    Any trick I attempted to keep the atomic commit alive didn't work, as
+    drm_atomic_helper_setup_commit() force throttles on any old commit that
+    wasn't cleaned up.
+    
+    The only option remaining is to remove the plane from the atomic commit,
+    and use the same path as the legacy cursor update to clean the state
+    after vblank.
+    
+    Changes since previous version:
+    - Call the memset for plane state immediately when scheduling vblank,
+      this prevents a use-after-free in cursor cleanup.
+    
+    Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
++ /mt/dim checkpatch 5714711c6612120bd9c306824ec807d322c0735b drm-intel
+3b17abb3980c drm: Add drm_vblank_work_flush_all().
+-:33: WARNING:WAITQUEUE_ACTIVE: waitqueue_active without comment
+#33: FILE: drivers/gpu/drm/drm_vblank_work.c:249:
++			    !waitqueue_active(&vblank->work_wait_queue),
+
+total: 0 errors, 1 warnings, 0 checks, 41 lines checked
+853c9a5b399a drm/i915: Use vblank worker to unpin old legacy cursor fb safely
+3a7630ceae68 drm/i915: Use the same vblank worker for atomic unpin
+-:107: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#107: FILE: drivers/gpu/drm/i915/display/intel_crtc.c:641:
++							 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
+
+-:110: WARNING:LONG_LINE_COMMENT: line length of 110 exceeds 100 columns
+#110: FILE: drivers/gpu/drm/i915/display/intel_crtc.c:644:
++				/* Remove plane from atomic state, cleanup/free is done from vblank worker. */
+
+total: 0 errors, 2 warnings, 0 checks, 98 lines checked
 
 
