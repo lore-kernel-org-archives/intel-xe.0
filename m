@@ -4,53 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA2CBC67861
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 15:38:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB039CD1284
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 15:41:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A72410E2E4;
-	Fri,  5 Apr 2024 15:38:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2714F11358C;
+	Fri,  5 Apr 2024 15:41:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CbuE3dxD";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VifUXvR5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 087C310E2E4
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Apr 2024 15:38:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712331538; x=1743867538;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=9VHFiPNk3vDW7ekU8tUavhuhOxJJA08LbYJEu/ObCtA=;
- b=CbuE3dxDb+aWX6UaoMla5rRCUvqlB9JFqwLvUo1wPqXy279/KPGL2SPR
- kZyBYrVgwa/itXv1hTMRdVl1mH+1bFdU/S7I1ica2cpoidt1j7L93rP6C
- HapmhhWLiASv4wbkBFZeYp+xGMHHIBb5sRwELdlzRjauy1eh5udiBbj8G
- foNUzzr06MYKjC8slvi44XST+3jfM6xnfh7Rcg1OkHCs4DLyHMGDvD94F
- Lifs6DPdfbPJsjRrcFQlR3hGr45cbnIYju69eXD/nfMEIe/crKONlW7/Y
- HuVDXtSvaRC5h+j8AqRTeUUTfWM2Xd3DPb+6C5WHvcaBGTzT1g52VrIiC g==;
-X-CSE-ConnectionGUID: rIurfUI5SkqgcMglRAXpYA==
-X-CSE-MsgGUID: e693+QQpQgOMEmP0SLvUQg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11035"; a="25106836"
-X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="25106836"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2024 08:38:56 -0700
-X-CSE-ConnectionGUID: UxDyKRwmTueDiAzD6pMraA==
-X-CSE-MsgGUID: J5MsFY1ORMuGPO+dvO6CTQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="23680395"
-Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2024 08:38:55 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Subject: [PATCH] drm/xe: Remove debug message from migrate_clear()
-Date: Fri,  5 Apr 2024 08:38:49 -0700
-Message-ID: <20240405153849.44906-1-jose.souza@intel.com>
-X-Mailer: git-send-email 2.44.0
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com
+ [209.85.128.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93AC710EB8F;
+ Fri,  5 Apr 2024 15:41:15 +0000 (UTC)
+Received: by mail-wm1-f49.google.com with SMTP id
+ 5b1f17b1804b1-4162f7ea50cso6399805e9.3; 
+ Fri, 05 Apr 2024 08:41:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1712331674; x=1712936474; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=vWae/TQVR4lDMRxTHKpFB8Vkf/PIFo/hlHy1KJVttno=;
+ b=VifUXvR5xab+VNxBPzVH1apw0GqirSUqXD0sW3jSflJBrW/2p25OiPqBq1PbwzARcS
+ Ymc3xY1B4epIghvMYz0JnoF3GOdI4dBc94WOnwcLClR8Q1TgBwyByIxv+gcDMqirJs4w
+ 0pgb/hI4/xotFmFfedNgpr9TuZ6kDxeQz1JZ9fCFGTZzwsw2cah14pJWttC48nSMNIHl
+ FRgK5n6W/Cec1MOAciuJIsjKp+qB7pWSqmQKocVI0s7smR5delKR9OoQFYR+6159yOBo
+ 8lIBXTU13JXaesECFVWQUq1nBOLT5rpu20GP23nPWnCIldT3XZd7+OqGdfi2wpIQynpb
+ df4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1712331674; x=1712936474;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=vWae/TQVR4lDMRxTHKpFB8Vkf/PIFo/hlHy1KJVttno=;
+ b=h60hl/zBR5uFjL1ebOYuYURoA8NB5+0fW/s+Y5XMnNkKyqhgzxv8w4Qeg/1qMSrHU7
+ HT6/JuLx0bNpHAgr10dG2gNbi2wV1SHnrPogSrI1xhV1Ay9M75y3LLMByqiW4uITXBTI
+ FlQTmIkvTrcS4ibTUxR/H+2vl+916NT7celmRYZ6ab3AKBmnSnahiTJD2wiXAbZCocIM
+ jMuW3OrVecBoX6xm3SCwaZIEr5tecoaJQQC9RFhtTJQcIvcLjUN/nf/UCuF3HZJSPWP9
+ OwfN46qUeTVPzbhP8yTdyT6jYNVrkoM1KHL9t8su1er0h49/IOqOB70B3XYcEBq+2mZp
+ r1qQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWudLql74iYGov2MbtDDP5IscQfKF32dEKNBDhc4qfDg5wd4t5u2pulf5VVBq96TbXYcKi4GtC0GYSLm6/awharU4ey9CeEQOptTTUyPtS3GDudmx6L91izC7BctwjrneAJltFSG9aUgR4zO5CFCJKnUHdl2gRbLXiprRIL+y66GFJrw1xjbhE5cmi1xpkx94TgEP3vKLkWtAhJ9GXomDAL6/5j2/pdpyvH/9vdyeLuHz8UFTw/j+zQ3kQrhILQVVDfKVMfBMDGF6xaj70Ymq/WLJlq5lVxDB2vllW5miJCUvbCDwPI60W3vLfiAJExzYhZhjl3Xos2sMXxfMbIJ/QTcAcUcYI68cXpIr8=
+X-Gm-Message-State: AOJu0YyHJwq2DT2IFV+MfrA6O5v/mo9EbIP7oj8EQugjUizIKqDxcp0f
+ 3omusJV61gqUP1SHVI0YTTLAoow9HSB4eb8dHq3mydAFDYRS/GqehUMF5kqhZwN6UHPIqEauFuQ
+ MzyuSbUHpTvajRExWRLd0welb/Fo=
+X-Google-Smtp-Source: AGHT+IEH9WiGdwQmFDR3UUpRkcaEXiGYsc+rbm05qeGkTnAd0VuAIEH5g2EodOENEkeRm+TdhthkOlf3f027HucPkCY=
+X-Received: by 2002:a05:600c:19cd:b0:416:2bef:ce81 with SMTP id
+ u13-20020a05600c19cd00b004162befce81mr1484706wmq.1.1712331657141; Fri, 05 Apr
+ 2024 08:40:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <202404052349.lQch9J7G-lkp@intel.com>
+In-Reply-To: <202404052349.lQch9J7G-lkp@intel.com>
+From: Alexei Starovoitov <alexei.starovoitov@gmail.com>
+Date: Fri, 5 Apr 2024 08:40:45 -0700
+Message-ID: <CAADnVQJXq1bSe20FgBN=BL1E5d8qOfLv_Ettq+724h5QfRuuKg@mail.gmail.com>
+Subject: Re: [linux-next:master] BUILD REGRESSION
+ 8568bb2ccc278f344e6ac44af6ed010a90aa88dc
+To: kernel test robot <lkp@intel.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>, 
+ Linux Memory Management List <linux-mm@kvack.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, 
+ bpf <bpf@vger.kernel.org>, dri-devel@lists.freedesktop.org, 
+ freedreno@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, lima@lists.freedesktop.org, 
+ linux-arch <linux-arch@vger.kernel.org>, linux-arm-msm@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org, 
+ linux-pwm@vger.kernel.org, Linux-Renesas <linux-renesas-soc@vger.kernel.org>, 
+ nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,35 +87,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This messages is printed a lot and from my understanding it do not
-bring any value, so here dropping it.
+On Fri, Apr 5, 2024 at 8:37=E2=80=AFAM kernel test robot <lkp@intel.com> wr=
+ote:
+>
+> tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-n=
+ext.git master
+> branch HEAD: 8568bb2ccc278f344e6ac44af6ed010a90aa88dc  Add linux-next spe=
+cific files for 20240405
+>
+> Error/Warning reports:
+>
+> https://lore.kernel.org/oe-kbuild-all/202404051333.7und7PPW-lkp@intel.com
+> https://lore.kernel.org/oe-kbuild-all/202404051423.eiaXLwhX-lkp@intel.com
+> https://lore.kernel.org/oe-kbuild-all/202404051659.aawUkGUQ-lkp@intel.com
+> https://lore.kernel.org/oe-kbuild-all/202404052022.Cwf2ilBp-lkp@intel.com
+>
+> Error/Warning: (recently discovered and may have been fixed)
+>
+> aarch64-linux-ld: kernel/bpf/verifier.c:20223:(.text+0xdbb4): undefined r=
+eference to `__SCK__perf_snapshot_branch_stack'
+> aarch64-linux-ld: verifier.c:(.text+0x17c3c): undefined reference to `__S=
+CK__perf_snapshot_branch_stack'
+> drivers/i2c/busses/i2c-i801.c:1407:(.text+0x1d2ef4a): undefined reference=
+ to `i2c_root_adapter'
+> kernel/bpf/verifier.c:20223:(.text+0xdba4): dangerous relocation: unsuppo=
+rted relocation
+> loongarch64-linux-ld: kernel/bpf/verifier.c:20223:(.text+0xa818): undefin=
+ed reference to `__SCK__perf_snapshot_branch_stack'
+> loongarch64-linux-ld: verifier.c:(.text+0xa964): undefined reference to `=
+__SCK__perf_snapshot_branch_stack'
+> mips64el-linux-ld: verifier.c:(.text.do_misc_fixups+0xd9c): undefined ref=
+erence to `__SCK__perf_snapshot_branch_stack'
+> riscv32-linux-ld: section .data LMA [00369000,00907967] overlaps section =
+.text LMA [0007899c,01a6a6af]
+> s390-linux-ld: verifier.c:(.text+0x13038): undefined reference to `__SCK_=
+_perf_snapshot_branch_stack'
+> verifier.c:(.text+0x17c14): relocation truncated to fit: R_AARCH64_ADR_PR=
+EL_PG_HI21 against undefined symbol `__SCK__perf_snapshot_branch_stack'
+> verifier.c:(.text+0xa960): undefined reference to `__SCK__perf_snapshot_b=
+ranch_stack'
+> verifier.c:(.text+0xadd0): dangerous relocation: unsupported relocation
+> verifier.c:(.text.do_misc_fixups+0xd98): undefined reference to `__SCK__p=
+erf_snapshot_branch_stack'
 
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/xe/xe_migrate.c | 3 ---
- 1 file changed, 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 524b0198fcae3..2e37cbe35d16e 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -984,7 +984,6 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 	struct xe_res_cursor src_it;
- 	struct ttm_resource *src = dst;
- 	int err;
--	int pass = 0;
- 
- 	if (!clear_vram)
- 		xe_res_first_sg(xe_bo_sg(bo), 0, bo->size, &src_it);
-@@ -1005,8 +1004,6 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 
- 		clear_L0 = xe_migrate_res_sizes(m, &src_it);
- 
--		drm_dbg(&xe->drm, "Pass %u, size: %llu\n", pass++, clear_L0);
--
- 		/* Calculate final sizes and batch size.. */
- 		batch_size = 2 +
- 			pte_update_size(m, clear_vram, src, &src_it,
--- 
-2.44.0
-
+Fixed in bpf-next with commit:
+https://lore.kernel.org/all/20240405142637.577046-1-arnd@kernel.org/
