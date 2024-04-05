@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C524FCD129C
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 14:28:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73FD8CD1299
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 14:27:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5F681138A4;
-	Fri,  5 Apr 2024 14:27:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0590410FA69;
+	Fri,  5 Apr 2024 14:27:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="aXpHo0Dl";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="nYIrAtD4";
+	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="IwQru6yd";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="Bq/S1JjW";
 	dkim-atps=neutral
 Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 998B91139D9;
- Fri,  5 Apr 2024 14:27:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDBE41138A4;
+ Fri,  5 Apr 2024 14:27:44 +0000 (UTC)
 From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1712327264;
+ s=2020; t=1712327262;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=XBLFyfoGqPJo1ar/myYaKzvZLCXjGn35eyi0wX24FR8=;
- b=aXpHo0Dlugbxz9Ub5YKbVFmRDpp43FrHqBsVlXC2zMTQAttItyvbqzRC36HQQEbCv6AmJr
- HfBSdH8HXPcf/gCYjm1fPFBSYgYRVYLhWQZb9uAGhV+e7FlsvXOIO1ivJlsGA3PhtDD2Hm
- /rvcWA8VE8TsDwy7Se/ePhRUbEewaQ1RGYYx2B16LmoSqRXovOURsDDVj9lLycit1lDZlE
- bKMT0ENkm6c9o3GZ5edJN2SVgSqZ5LCfZcZoYeuylSizBFTVIqSb9YPibMPkw8m8cGikSR
- ks2BjdrpQj9bi7on3GJ/6+DQD9m5HdmgyO1PRM3LE59o+7HNiXCOyCTxDJmWGw==
+ bh=LF0lR9gKoUcj3viuJ13IKUQLlb/u8XMnHEXpAb1TJwE=;
+ b=IwQru6ydNVWp2rV5r7jZRPjLeviR03ErYkK5TfzrbjTwX7fufmVTskP8rjxbZHDESiEidr
+ jrGTdfGLxi984Wa8B8sy8MjdcM83VXudlBjnf1rCcW853D0xV6A4oowOKYMsZYSQmYh+a2
+ 7Il2dDYhMMtXMbmMvy+Z7FENOJQoFC9UjYoGZAlKKiWNxdSFg+JWNApV+hZcm1gOcUyl3H
+ agtVxGpVekap9dvlJ4uV3HWEnuiNKcQqLbXwnXHbdV/CQk8zuWY5bVlg4rGCqusck3ptlf
+ WU9BkyGmrivBGXEYiWi4/H9WdGWoWnYoE5SWcxpS7fFLxr2HrMvF+eXaSsvAxQ==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1712327264;
+ s=2020e; t=1712327262;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=XBLFyfoGqPJo1ar/myYaKzvZLCXjGn35eyi0wX24FR8=;
- b=nYIrAtD4WVSPrXTxeX1PlFhw4On9z301sxiksQtxlIfLQLJs0PLhrYfJklrmYOkVqOjlnz
- N+1N67jFAtDdluCw==
+ bh=LF0lR9gKoUcj3viuJ13IKUQLlb/u8XMnHEXpAb1TJwE=;
+ b=Bq/S1JjW9vSRWPkDOQYOYfYTMreWgoNAoGO6dpoA3MqW/I+zhn6dBY+ohq60JahibRfwe9
+ AXnwzNGOSjUoz+Cg==
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@linux.intel.com>,
@@ -45,11 +45,10 @@ Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Thomas Gleixner <tglx@linutronix.de>,
  Tvrtko Ursulin <tursulin@ursulin.net>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH 08/10] drm/i915: Drop the irqs_disabled() check
-Date: Fri,  5 Apr 2024 16:18:26 +0200
-Message-ID: <20240405142737.920626-9-bigeasy@linutronix.de>
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Subject: [PATCH 03/10] drm/i915: Don't check for atomic context on PREEMPT_RT
+Date: Fri,  5 Apr 2024 16:18:21 +0200
+Message-ID: <20240405142737.920626-4-bigeasy@linutronix.de>
 In-Reply-To: <20240405142737.920626-1-bigeasy@linutronix.de>
 References: <20240405142737.920626-1-bigeasy@linutronix.de>
 MIME-Version: 1.0
@@ -68,44 +67,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The !irqs_disabled() check triggers on PREEMPT_RT even with
-i915_sched_engine::lock acquired. The reason is the lock is transformed
-into a sleeping lock on PREEMPT_RT and does not disable interrupts.
+The !in_atomic() check in _wait_for_atomic() triggers on PREEMPT_RT
+because the uncore::lock is a spinlock_t and does not disable
+preemption or interrupts.
 
-There is no need to check for disabled interrupts. The lockdep
-annotation below already check if the lock has been acquired by the
-caller and will yell if the interrupts are not disabled.
+Changing the uncore:lock to a raw_spinlock_t doubles the worst case
+latency on an otherwise idle testbox during testing. Therefore I'm
+currently unsure about changing this.
 
-Remove the !irqs_disabled() check.
-
-Reported-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Link: https://lore.kernel.org/all/20211006164628.s2mtsdd2jdbfyf7g@linutroni=
+x.de/
 Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 ---
- drivers/gpu/drm/i915/i915_request.c | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/gpu/drm/i915/i915_utils.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i91=
-5_request.c
-index 519e096c607cd..466b5ee8ed6d2 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -608,7 +608,6 @@ bool __i915_request_submit(struct i915_request *request)
+diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_=
+utils.h
+index b45ef0560611a..7c6077d2d3dc0 100644
+--- a/drivers/gpu/drm/i915/i915_utils.h
++++ b/drivers/gpu/drm/i915/i915_utils.h
+@@ -288,7 +288,7 @@ wait_remaining_ms_from_jiffies(unsigned long timestamp_=
+jiffies, int to_wait_ms)
+ #define wait_for(COND, MS)		_wait_for((COND), (MS) * 1000, 10, 1000)
 =20
- 	RQ_TRACE(request, "\n");
-=20
--	GEM_BUG_ON(!irqs_disabled());
- 	lockdep_assert_held(&engine->sched_engine->lock);
-=20
- 	/*
-@@ -717,7 +716,6 @@ void __i915_request_unsubmit(struct i915_request *reque=
-st)
- 	 */
- 	RQ_TRACE(request, "\n");
-=20
--	GEM_BUG_ON(!irqs_disabled());
- 	lockdep_assert_held(&engine->sched_engine->lock);
-=20
- 	/*
+ /* If CONFIG_PREEMPT_COUNT is disabled, in_atomic() always reports false. =
+*/
+-#if defined(CONFIG_DRM_I915_DEBUG) && defined(CONFIG_PREEMPT_COUNT)
++#if defined(CONFIG_DRM_I915_DEBUG) && defined(CONFIG_PREEMPT_COUNT) && !de=
+fined(CONFIG_PREEMPT_RT)
+ # define _WAIT_FOR_ATOMIC_CHECK(ATOMIC) WARN_ON_ONCE((ATOMIC) && !in_atomi=
+c())
+ #else
+ # define _WAIT_FOR_ATOMIC_CHECK(ATOMIC) do { } while (0)
 --=20
 2.43.0
 
