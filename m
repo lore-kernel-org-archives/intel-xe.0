@@ -4,61 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9D41CD11C2
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 10:15:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDBDACD11C2
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 10:15:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D8F5112407;
-	Fri,  5 Apr 2024 10:15:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B54D113ABA;
+	Fri,  5 Apr 2024 10:15:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jg4UpKeU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MhkgGXVW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25A5E112407
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Apr 2024 10:15:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D5F8113AB7
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 Apr 2024 10:15:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712312118; x=1743848118;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=vJfWq7slcBOhYFbtyGhUbyj9MzySPbqlB8o7i1uXqes=;
- b=jg4UpKeUt22obL1cd0kSVQipYxRlUyFudvmu51UHOhK3+mRmsd/ZKPZu
- FD/SO4sCFfkRAdQk2v3nXfWH1zTZ7ACR9ou8gaWiLnwbdltgAXP1H+7vy
- 2cdkGZiBvMEHaNISXQlgtAz9pnT31/MHzuoIxuah8hYFTj+EURDe4e4aZ
- +umI9ZXPO+lsxc6yItVawqLPStnE4W5udcwPP9ReN2ryrgi7D9dl2wv0c
- a+FkDS7i/y7JQxf4vpuIhiMrDVG8ZOcfALNgZaPldojL/e/m6qkbBc6HJ
- yVs+CUtFV2UD/agTG417osViXJKC0ZyZBzwz1Y10THe9WEkC68D0RrRCn g==;
-X-CSE-ConnectionGUID: G+cw9nhhSlyvsGn4ejbc9g==
-X-CSE-MsgGUID: I1f/KC48RRSmywNAZY5iRg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="7481173"
-X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; 
-   d="scan'208";a="7481173"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2024 03:15:15 -0700
-X-CSE-ConnectionGUID: 2roBHGWYRoKM3NQPZpVVrg==
-X-CSE-MsgGUID: g3icRSvvR7y8zVcafzPXjQ==
+ t=1712312142; x=1743848142;
+ h=date:from:to:cc:subject:message-id;
+ bh=xgWNiySTm/GtR263c/MrYjzODDkm9Q6/Za7R+777780=;
+ b=MhkgGXVWYeo76o01kl7XhtzJS3DShsUl1kibH/Hi24Vcms5+nxcl+oJW
+ gUp3vABUvK+PpGHxKnNvTUAaJ+Mv4mnhxnbjNTfO1ys8iWwLZm9KzNm3S
+ oi3ayOzZbAWlTrS5wz08Zr+YJDinEYC/8a3Q9mxeujDn9nkQ6BFeEOUBE
+ uSOIo8aURr71rOVyr+saP9Vzx8mH7q24xQ8BYwuY0a+W5Zyt+CwligM/O
+ IPwl63WH5frhhZApkuBIDINGPf3c21B80oRuCv9IDXIhH9UwsukxJGnrI
+ ey38UhtlsJim7AKxenZdRQe4OO9PB14EC4E8JcoqOjmZX84QJLN3mlUnA w==;
+X-CSE-ConnectionGUID: bwt+laNqRdyZ5YJc4u9MWg==
+X-CSE-MsgGUID: at5arPmES7Oyh3jCiZJrsA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="10603433"
+X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="10603433"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2024 03:15:42 -0700
+X-CSE-ConnectionGUID: O1Vrnwh1QSCP/n+OgUPIAg==
+X-CSE-MsgGUID: Kgo3mqppRBeINxpNF7o08g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="19224979"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa008.fm.intel.com with ESMTP; 05 Apr 2024 03:15:11 -0700
-Received: from [10.249.143.198] (unknown [10.249.143.198])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 7A2893496E
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Apr 2024 11:15:10 +0100 (IST)
-Message-ID: <af3bf5d9-7a3a-4a4a-9b12-3ca93f6a45b7@intel.com>
-Date: Fri, 5 Apr 2024 12:15:09 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?Q?Re=3A_=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_w?=
- =?UTF-8?Q?ith_=5BCI=2C1/2=5D_drm/xe/guc=3A_Prefer_GT_oriented_logs_for_GuC_?=
- =?UTF-8?Q?messages?=
-Content-Language: en-US
-To: intel-xe@lists.freedesktop.org
-References: <20240404155046.627-1-michal.wajdeczko@intel.com>
- <171225301670.1209302.1881814550715168124@8e613ede5ea5>
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <171225301670.1209302.1881814550715168124@8e613ede5ea5>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="23758760"
+Received: from lkp-server01.sh.intel.com (HELO e61807b1d151) ([10.239.97.150])
+ by fmviesa004.fm.intel.com with ESMTP; 05 Apr 2024 03:15:41 -0700
+Received: from kbuild by e61807b1d151 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1rsgbi-00028M-0r;
+ Fri, 05 Apr 2024 10:15:38 +0000
+Date: Fri, 05 Apr 2024 18:15:37 +0800
+From: kernel test robot <lkp@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
+ 77a011012d7d8b98368a763bf74317c6d5ce00f1
+Message-ID: <202404051835.yxSurLlQ-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,59 +64,199 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
+branch HEAD: 77a011012d7d8b98368a763bf74317c6d5ce00f1  drm/xe: Use ordered wq for preempt fence waiting
 
+elapsed time: 1210m
 
-On 04.04.2024 19:50, Patchwork wrote:
-> == Series Details ==
-> 
-> Series: series starting with [CI,1/2] drm/xe/guc: Prefer GT oriented logs for GuC messages
-> URL   : https://patchwork.freedesktop.org/series/132041/
-> State : success
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from xe-1039-f1408ebd4c6b508ff23139fcbc7275fa227b197b_BAT -> xe-pw-132041v1_BAT
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **SUCCESS**
-> 
->   No regressions found.
-> 
+configs tested: 180
+configs skipped: 3
 
-CI.FULL complains about
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-  * igt@xe_exec_basic@twice-rebind:
-    - shard-adlp:  NOTRUN -> [DMESG-FAIL][1] +1 other test dmesg-fail
+tested configs:
+alpha                             allnoconfig   gcc  
+alpha                            allyesconfig   gcc  
+alpha                               defconfig   gcc  
+arc                              allmodconfig   gcc  
+arc                               allnoconfig   gcc  
+arc                              allyesconfig   gcc  
+arc                                 defconfig   gcc  
+arc                     haps_hs_smp_defconfig   gcc  
+arc                   randconfig-001-20240405   gcc  
+arc                   randconfig-002-20240405   gcc  
+arm                              allmodconfig   gcc  
+arm                               allnoconfig   clang
+arm                              allyesconfig   gcc  
+arm                                 defconfig   clang
+arm                        neponset_defconfig   gcc  
+arm                   randconfig-001-20240405   gcc  
+arm                   randconfig-003-20240405   gcc  
+arm                           tegra_defconfig   gcc  
+arm                           u8500_defconfig   gcc  
+arm                        vexpress_defconfig   gcc  
+arm                         vf610m4_defconfig   gcc  
+arm64                            allmodconfig   clang
+arm64                             allnoconfig   gcc  
+arm64                            allyesconfig   clang
+arm64                               defconfig   gcc  
+arm64                 randconfig-001-20240405   gcc  
+arm64                 randconfig-002-20240405   gcc  
+arm64                 randconfig-003-20240405   gcc  
+arm64                 randconfig-004-20240405   gcc  
+csky                             allmodconfig   gcc  
+csky                              allnoconfig   gcc  
+csky                             allyesconfig   gcc  
+csky                                defconfig   gcc  
+csky                  randconfig-001-20240405   gcc  
+csky                  randconfig-002-20240405   gcc  
+hexagon                          allmodconfig   clang
+hexagon                           allnoconfig   clang
+hexagon                          allyesconfig   clang
+hexagon                             defconfig   clang
+i386                             allmodconfig   gcc  
+i386                              allnoconfig   gcc  
+i386                             allyesconfig   gcc  
+i386         buildonly-randconfig-001-20240405   gcc  
+i386         buildonly-randconfig-002-20240405   gcc  
+i386         buildonly-randconfig-003-20240405   clang
+i386         buildonly-randconfig-004-20240405   gcc  
+i386         buildonly-randconfig-005-20240405   clang
+i386         buildonly-randconfig-006-20240405   clang
+i386                                defconfig   clang
+i386                  randconfig-001-20240405   clang
+i386                  randconfig-002-20240405   gcc  
+i386                  randconfig-003-20240405   clang
+i386                  randconfig-004-20240405   clang
+i386                  randconfig-005-20240405   clang
+i386                  randconfig-006-20240405   gcc  
+i386                  randconfig-011-20240405   clang
+i386                  randconfig-012-20240405   gcc  
+i386                  randconfig-013-20240405   gcc  
+i386                  randconfig-014-20240405   gcc  
+i386                  randconfig-015-20240405   gcc  
+i386                  randconfig-016-20240405   clang
+loongarch                        allmodconfig   gcc  
+loongarch                         allnoconfig   gcc  
+loongarch                        allyesconfig   gcc  
+loongarch                           defconfig   gcc  
+loongarch             randconfig-001-20240405   gcc  
+loongarch             randconfig-002-20240405   gcc  
+m68k                             allmodconfig   gcc  
+m68k                              allnoconfig   gcc  
+m68k                             allyesconfig   gcc  
+m68k                         amcore_defconfig   gcc  
+m68k                                defconfig   gcc  
+microblaze                       allmodconfig   gcc  
+microblaze                        allnoconfig   gcc  
+microblaze                       allyesconfig   gcc  
+microblaze                          defconfig   gcc  
+mips                             allmodconfig   gcc  
+mips                              allnoconfig   gcc  
+mips                             allyesconfig   gcc  
+mips                 decstation_r4k_defconfig   gcc  
+nios2                            allmodconfig   gcc  
+nios2                             allnoconfig   gcc  
+nios2                            allyesconfig   gcc  
+nios2                               defconfig   gcc  
+nios2                 randconfig-001-20240405   gcc  
+nios2                 randconfig-002-20240405   gcc  
+openrisc                         allmodconfig   gcc  
+openrisc                          allnoconfig   gcc  
+openrisc                         allyesconfig   gcc  
+openrisc                            defconfig   gcc  
+parisc                           allmodconfig   gcc  
+parisc                            allnoconfig   gcc  
+parisc                           allyesconfig   gcc  
+parisc                              defconfig   gcc  
+parisc                randconfig-001-20240405   gcc  
+parisc                randconfig-002-20240405   gcc  
+parisc64                         alldefconfig   gcc  
+parisc64                            defconfig   gcc  
+powerpc                          allmodconfig   gcc  
+powerpc                           allnoconfig   gcc  
+powerpc                          allyesconfig   clang
+powerpc                        cell_defconfig   gcc  
+powerpc                      walnut_defconfig   gcc  
+powerpc                         wii_defconfig   gcc  
+powerpc64             randconfig-001-20240405   gcc  
+powerpc64             randconfig-002-20240405   gcc  
+riscv                            allmodconfig   clang
+riscv                             allnoconfig   gcc  
+riscv                            allyesconfig   clang
+riscv                               defconfig   clang
+riscv                 randconfig-002-20240405   gcc  
+s390                             allmodconfig   clang
+s390                              allnoconfig   clang
+s390                             allyesconfig   gcc  
+s390                          debug_defconfig   gcc  
+s390                                defconfig   clang
+s390                  randconfig-002-20240405   gcc  
+sh                               allmodconfig   gcc  
+sh                                allnoconfig   gcc  
+sh                               allyesconfig   gcc  
+sh                                  defconfig   gcc  
+sh                ecovec24-romimage_defconfig   gcc  
+sh                          kfr2r09_defconfig   gcc  
+sh                    randconfig-001-20240405   gcc  
+sh                    randconfig-002-20240405   gcc  
+sh                   rts7751r2dplus_defconfig   gcc  
+sh                           sh2007_defconfig   gcc  
+sh                        sh7757lcr_defconfig   gcc  
+sh                   sh7770_generic_defconfig   gcc  
+sparc                            allmodconfig   gcc  
+sparc                             allnoconfig   gcc  
+sparc                            allyesconfig   gcc  
+sparc                               defconfig   gcc  
+sparc                       sparc32_defconfig   gcc  
+sparc64                          allmodconfig   gcc  
+sparc64                          allyesconfig   gcc  
+sparc64                             defconfig   gcc  
+sparc64               randconfig-001-20240405   gcc  
+sparc64               randconfig-002-20240405   gcc  
+um                               allmodconfig   clang
+um                                allnoconfig   clang
+um                               allyesconfig   gcc  
+um                                  defconfig   clang
+um                             i386_defconfig   gcc  
+um                    randconfig-001-20240405   gcc  
+um                           x86_64_defconfig   clang
+x86_64                            allnoconfig   clang
+x86_64                           allyesconfig   clang
+x86_64       buildonly-randconfig-001-20240405   clang
+x86_64       buildonly-randconfig-002-20240405   clang
+x86_64       buildonly-randconfig-003-20240405   gcc  
+x86_64       buildonly-randconfig-004-20240405   gcc  
+x86_64       buildonly-randconfig-005-20240405   clang
+x86_64       buildonly-randconfig-006-20240405   clang
+x86_64                              defconfig   gcc  
+x86_64                randconfig-001-20240405   clang
+x86_64                randconfig-002-20240405   clang
+x86_64                randconfig-003-20240405   clang
+x86_64                randconfig-004-20240405   gcc  
+x86_64                randconfig-005-20240405   clang
+x86_64                randconfig-006-20240405   gcc  
+x86_64                randconfig-011-20240405   clang
+x86_64                randconfig-012-20240405   gcc  
+x86_64                randconfig-013-20240405   gcc  
+x86_64                randconfig-014-20240405   clang
+x86_64                randconfig-015-20240405   gcc  
+x86_64                randconfig-016-20240405   gcc  
+x86_64                randconfig-071-20240405   gcc  
+x86_64                randconfig-072-20240405   gcc  
+x86_64                randconfig-073-20240405   gcc  
+x86_64                randconfig-074-20240405   gcc  
+x86_64                randconfig-075-20240405   gcc  
+x86_64                randconfig-076-20240405   gcc  
+x86_64                          rhel-8.3-rust   clang
+x86_64                               rhel-8.3   gcc  
+xtensa                            allnoconfig   gcc  
+xtensa                           allyesconfig   gcc  
+xtensa                  audio_kc705_defconfig   gcc  
+xtensa                randconfig-001-20240405   gcc  
+xtensa                randconfig-002-20240405   gcc  
 
-but that's unrelated to this series
-
->   
-> 
-> Participating hosts (5 -> 5)
-> ------------------------------
-> 
->   No changes in participating hosts
-> 
-> 
-> Changes
-> -------
-> 
->   No changes found
-> 
-> 
-> Build changes
-> -------------
-> 
->   * Linux: xe-1039-f1408ebd4c6b508ff23139fcbc7275fa227b197b -> xe-pw-132041v1
-> 
->   IGT_7798: 5e3263748a636ebc91ecfafbd339870c77e3eed6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
->   xe-1039-f1408ebd4c6b508ff23139fcbc7275fa227b197b: f1408ebd4c6b508ff23139fcbc7275fa227b197b
->   xe-pw-132041v1: 132041v1
-> 
-> == Logs ==
-> 
-> For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132041v1/index.html
-> 
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
