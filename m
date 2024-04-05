@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D419CD1284
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 14:28:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1D4AC67861
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 14:28:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E3F5113C42;
-	Fri,  5 Apr 2024 14:28:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48F1E113C49;
+	Fri,  5 Apr 2024 14:28:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="aRN93+lx";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="v85ZY+SP";
+	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="AJQvOutg";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="u2YUmi3D";
 	dkim-atps=neutral
 Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96FDF10EA34;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBF6210EC8A;
  Fri,  5 Apr 2024 14:27:56 +0000 (UTC)
 From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1712327263;
+ s=2020; t=1712327264;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=mjwX3QlCU66IDmZDq9AA2g57L+zVqsIfccpIYP3wU0M=;
- b=aRN93+lxq3kvtOsnqI+er9KRu8uQc3AFbH27XAYvwkpSX1sIWtGTS7o1z5sDrlscUhcGni
- 1IRrgg/DltKxyn+OtWdGjIYqxnfak8TO9fYJ5ciFpbefB+ELW6aoKL7ezWj0BykBUneuqZ
- +d3fcu6cYLLTNHJHo6WeEnm/cOM4Q5DnIBxqlIlpU5eHxgFPBdiIxZAwqQ3M/2CaoPSTT+
- wTsJuTCUeq6csNTzUDUuuiMjJau508J8QIOBFrWpk3jHnB9sJTgYFEPwQte1tMaiXLXEx8
- eAiyjAkVeR/ElmdQujcNp/v9YjUpCBGcU7fCLPVxOAttRaWuYrWZQSJgkrrIJg==
+ bh=J5+Ui7f7wPR3cxxqtyYSsU0h2Riqeo+WaN5i1s2XWPs=;
+ b=AJQvOutg08RM9DRWO0Wc0vlDzDKA7tFgd3J9Ef4lEHzy13Q5XphfktpAYHeikEOZMIelHe
+ mSpODoO0ZwGJZwwk5q13crwR+r4bPOdepwYK7ZLTNZS+issdhtwUZBlQ17PCsIaexg7ei4
+ E2yIEScEwQZtk6Ov9EIzsIvjUtLt6tmvruc+Ws+hpt5pjFNKiQPTPm9+6hnoyCjXunOUUM
+ Kqpnm6yb8C9M240yl/+OtGhWMcF12O6FDrIlG849Cudz5atjba5Tkik4HnPwORXn8ZRa9c
+ apUpIY+t+N6srYvBgfgOaY7gdXWd1m6ajupXKB0egKFwTRyRFAZ5nXiJwb2CLA==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1712327263;
+ s=2020e; t=1712327264;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=mjwX3QlCU66IDmZDq9AA2g57L+zVqsIfccpIYP3wU0M=;
- b=v85ZY+SPcP+PELYUMVRwAbut83JgGfsyxn1HY9ALBMCGxc7Ft0wH8BL1TSyfbjsmAvX5LT
- 5B/F/qwofPMl8tAg==
+ bh=J5+Ui7f7wPR3cxxqtyYSsU0h2Riqeo+WaN5i1s2XWPs=;
+ b=u2YUmi3DWT5vvxj7i48WBivN1eQurC6htNRvtme2O4XtfoBqR7TAz9LCZsWQGpPvUHnc+D
+ Rh/Mn8ealsnuj/Ag==
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@linux.intel.com>,
@@ -46,12 +46,10 @@ Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  Thomas Gleixner <tglx@linutronix.de>,
  Tvrtko Ursulin <tursulin@ursulin.net>,
  Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Clark Williams <williams@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH 07/10] drm/i915/gt: Use spin_lock_irq() instead of
- local_irq_disable() + spin_lock()
-Date: Fri,  5 Apr 2024 16:18:25 +0200
-Message-ID: <20240405142737.920626-8-bigeasy@linutronix.de>
+ "John B. Wyatt IV" <jwyatt@redhat.com>
+Subject: [PATCH 09/10] drm/i915/guc: Consider also RCU depth in busy loop.
+Date: Fri,  5 Apr 2024 16:18:27 +0200
+Message-ID: <20240405142737.920626-10-bigeasy@linutronix.de>
 In-Reply-To: <20240405142737.920626-1-bigeasy@linutronix.de>
 References: <20240405142737.920626-1-bigeasy@linutronix.de>
 MIME-Version: 1.0
@@ -70,98 +68,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-execlists_dequeue() is invoked from a function which uses
-local_irq_disable() to disable interrupts so the spin_lock() behaves
-like spin_lock_irq().
-This breaks PREEMPT_RT because local_irq_disable() + spin_lock() is not
-the same as spin_lock_irq().
+intel_guc_send_busy_loop() looks at in_atomic() and irqs_disabled() to
+decide if it should busy-spin while waiting or if it may sleep.
+Both checks will report false on PREEMPT_RT if sleeping spinlocks are
+acquired leading to RCU splats while the function sleeps.
 
-execlists_dequeue_irq() and execlists_dequeue() has each one caller
-only. If intel_engine_cs::active::lock is acquired and released with the
-_irq suffix then it behaves almost as if execlists_dequeue() would be
-invoked with disabled interrupts. The difference is the last part of the
-function which is then invoked with enabled interrupts.
-I can't tell if this makes a difference. From looking at it, it might
-work to move the last unlock at the end of the function as I didn't find
-anything that would acquire the lock again.
+Check also if RCU has been disabled.
 
-Reported-by: Clark Williams <williams@redhat.com>
+Reported-by: "John B. Wyatt IV" <jwyatt@redhat.com>
 Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- .../drm/i915/gt/intel_execlists_submission.c    | 17 +++++------------
- 1 file changed, 5 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers=
-/gpu/drm/i915/gt/intel_execlists_submission.c
-index b061a0a0d6b08..80240ec45cb9f 100644
---- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-@@ -1303,7 +1303,7 @@ static void execlists_dequeue(struct intel_engine_cs =
-*engine)
- 	 * and context switches) submission.
- 	 */
-=20
--	spin_lock(&sched_engine->lock);
-+	spin_lock_irq(&sched_engine->lock);
-=20
- 	/*
- 	 * If the queue is higher priority than the last
-@@ -1403,7 +1403,7 @@ static void execlists_dequeue(struct intel_engine_cs =
-*engine)
- 				 * Even if ELSP[1] is occupied and not worthy
- 				 * of timeslices, our queue might be.
- 				 */
--				spin_unlock(&sched_engine->lock);
-+				spin_unlock_irq(&sched_engine->lock);
- 				return;
- 			}
- 		}
-@@ -1429,7 +1429,7 @@ static void execlists_dequeue(struct intel_engine_cs =
-*engine)
-=20
- 		if (last && !can_merge_rq(last, rq)) {
- 			spin_unlock(&ve->base.sched_engine->lock);
--			spin_unlock(&engine->sched_engine->lock);
-+			spin_unlock_irq(&engine->sched_engine->lock);
- 			return; /* leave this for another sibling */
- 		}
-=20
-@@ -1591,7 +1591,7 @@ static void execlists_dequeue(struct intel_engine_cs =
-*engine)
- 	 */
- 	sched_engine->queue_priority_hint =3D queue_prio(sched_engine);
- 	i915_sched_engine_reset_on_empty(sched_engine);
--	spin_unlock(&sched_engine->lock);
-+	spin_unlock_irq(&sched_engine->lock);
-=20
- 	/*
- 	 * We can skip poking the HW if we ended up with exactly the same set
-@@ -1617,13 +1617,6 @@ static void execlists_dequeue(struct intel_engine_cs=
- *engine)
- 	}
- }
-=20
--static void execlists_dequeue_irq(struct intel_engine_cs *engine)
--{
--	local_irq_disable(); /* Suspend interrupts across request submission */
--	execlists_dequeue(engine);
--	local_irq_enable(); /* flush irq_work (e.g. breadcrumb enabling) */
--}
--
- static void clear_ports(struct i915_request **ports, int count)
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/=
+gt/uc/intel_guc.h
+index be70c46604b49..387cc1911302f 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+@@ -360,7 +360,7 @@ static inline int intel_guc_send_busy_loop(struct intel=
+_guc *guc,
  {
- 	memset_p((void **)ports, NULL, count);
-@@ -2478,7 +2471,7 @@ static void execlists_submission_tasklet(struct taskl=
-et_struct *t)
- 	}
+ 	int err;
+ 	unsigned int sleep_period_ms =3D 1;
+-	bool not_atomic =3D !in_atomic() && !irqs_disabled();
++	bool not_atomic =3D !in_atomic() && !irqs_disabled() && !rcu_preempt_dept=
+h();
 =20
- 	if (!engine->execlists.pending[0]) {
--		execlists_dequeue_irq(engine);
-+		execlists_dequeue(engine);
- 		start_timeslice(engine);
- 	}
-=20
+ 	/*
+ 	 * FIXME: Have caller pass in if we are in an atomic context to avoid
 --=20
 2.43.0
 
