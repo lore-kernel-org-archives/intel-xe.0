@@ -4,160 +4,109 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79B1ACD1284
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Apr 2024 23:45:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2A45CD1284
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 00:39:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8A0E113683;
-	Thu,  4 Apr 2024 23:45:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 472D911370E;
+	Fri,  5 Apr 2024 00:39:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bp3qXcFx";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="SuQZG1ni";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EB5E113682;
- Thu,  4 Apr 2024 23:45:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712274320; x=1743810320;
- h=message-id:date:subject:from:to:cc:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=0/917F9tC/WIyIAEQTzeG0Rjg61Uvz5xhh4DLtFBZRE=;
- b=bp3qXcFxfSevbMRuWsJzGMVYGMdN1BeBrvLhCmTKvw0Rz87nUejynQfT
- DWD+r3RQxsGp39/3Nym3KQYE9TItWahvafUi4wGp3cD/Q/qE21P7FoZoD
- Y5Xx7eZft/jqWW7DQXuyYLMucW4GiH8KD9ZTyhCZDaKlgWO0lg04zBCQG
- bSV5/VNpeiNuuMEvwE606S+7pYjNSP7yW6mzZC+jAARoJpEZM9GjoV7wN
- NBzNJ0dWe4eE+RrEc5lbqepoTIvDBX9of4nux0Qo9OQvzJYyynnxQ0G/I
- gX7kiOGmpBiqfork1FXXgnJyyimw3HM3TqYWAxe6ONTxbnww/0NPs/ujS A==;
-X-CSE-ConnectionGUID: f5DZOAkzTvahlYhZL0/P0w==
-X-CSE-MsgGUID: l+DofkuGThiLeTkRQWgWFA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="7475433"
-X-IronPort-AV: E=Sophos;i="6.07,180,1708416000"; 
-   d="scan'208";a="7475433"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2024 16:45:14 -0700
-X-CSE-ConnectionGUID: LlaV0RpSTiKBLtVg7Rt/9w==
-X-CSE-MsgGUID: 8GqSe78jS3+P9WTVJTOmzA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,180,1708416000"; d="scan'208";a="19070336"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmviesa008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 04 Apr 2024 16:45:13 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 4 Apr 2024 16:45:12 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 4 Apr 2024 16:45:12 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Thu, 4 Apr 2024 16:45:12 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 4 Apr 2024 16:45:12 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2118.outbound.protection.outlook.com [40.107.223.118])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1D7611370F;
+ Fri,  5 Apr 2024 00:39:31 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OnaLKygFDExtLiXDOwbUusDzVAxGj5CkxPx7Pmw/L/R/ZXaoWaxCrhOTEJn3XD5uwAym6urHW8uu76uGgCSazDLEeeAPZwj9C1bv73JdtL5W3Xug4nhSeCd22Di3ADcFhHjw9QvBQk71XBY2WSh06qgseeMskVfifGkyX6/3owXEBQV9J2CU74Ey8VpwxQ0r9CsOxdJEMQFH6MFNBWECT/1Nu4bs2ITiomwHtSOP98PuMzIJDd6IY28R0uviprpWfY1pXafofWL9eggzCr8aF66rXSDU8pjyFff7UhYoQdX29UPngdy/ETwTVQxXfblxN9MtoeHMwzaHZKhHOo3A0w==
+ b=Liqe2kBGrQd1FnJIZPonVWxdZGT8uaMURkguZrJECyoyo3yWr0FtSdsr2pIBEB64HmMMSiG1A2ieNzSuBLeq2mO6mNrKreWLXO1LpXyBcbHcvkY+NVnTF3u7CkmW1RjpnI1mMlMM+9GjGxBiGN7aoSktjHfd+EYevrYrLdB1ubV7njaX/1zAZozBAjckfA3ivt5YacmIhBm3IjKHo5Q3Wz+hJ59QBaVjGU6cNZOAJnXYFZ0U5BAr11iL9CYeH7QErkvN8E+5xeCJ9QBZLzmW+b/6V//6QtVgvDDKuyDDUW0CskVY6s64+BZ1KIDOJzSGfALd7p6+If4kf2SDrMszyg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xgBzpq4epl62PtQwddMs9AO6HeZlS2USD/OgDMN9SgQ=;
- b=YFS5QFIklyQyRr6xtKonheKK5WGRmYddjrxj5SUHLuwqnPczO44zV7ffgs5GCo6rtAAj/2HVTsi4Azu4/1Czi8JA7LFQ4stLR7wpAczBmxhYZ3XCGVUfmBYxpRr9BKS5LHpjcftT6iZGWGbpj/8lkG1tqhCL92dQdrBOfJsmSmhNFw5DuUewAYMnzDCZlOLLLdgD6bLZ9RBPkCJTl82mpX9fT6U8S2jdcIIOMEtO/s38fnrtN5x3mcjXjaLOr/xpC005ksR2q0kfmacrfbevgKksPgU+cfzSa9z4HlZamowJO8Yl8xIXwetynyAJ3u24SYd7ReZl0LlPPc3zjfG+Mw==
+ bh=RQWCIEnc/fstAu1vVsGcwYzGEcsW0EndKbty4ysr13A=;
+ b=HBJvREdHiE1dhW4UrGpzugn1Egc4YGifki0Q3D8Van1sNlZdLFBk/FMzSoQQrI4RbRtjn9SaShAHmgzLVy2FmSgSCGnbmnsBJ0LhUso75kenWYZsnkCkYgBT5zWXoP+M4zECJ43mF7K7zyGA0P3shdWlOd08HDudPvDjjGGXOVyuI/vFdZNPwf7qQAeYyxbpCbAo+6Vg383K3MbnsSs4Xjrb7S43PIFnT23pSOp5/y/uBHG3BT01lYessheHl/UIJ803++2TXKhbzjeNob7lfyVApDbqSj85vcvydTtaOR8aiHDz6lneZJXjUO4rKY2N/mhEDQVaDGO4ScKogoCMqQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CH3PR11MB8441.namprd11.prod.outlook.com (2603:10b6:610:1bc::12)
- by SJ0PR11MB5184.namprd11.prod.outlook.com (2603:10b6:a03:2d5::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.21; Thu, 4 Apr
- 2024 23:45:10 +0000
-Received: from CH3PR11MB8441.namprd11.prod.outlook.com
- ([fe80::71ea:e0ea:808d:793b]) by CH3PR11MB8441.namprd11.prod.outlook.com
- ([fe80::71ea:e0ea:808d:793b%4]) with mapi id 15.20.7452.019; Thu, 4 Apr 2024
- 23:45:10 +0000
-Message-ID: <3f5a262a-25eb-4415-aefb-b9f9fcd1d702@intel.com>
-Date: Thu, 4 Apr 2024 16:45:04 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 i-g-t] tests/xe_exec_threads: Make hang tests reset
- domain aware
-From: John Harrison <john.c.harrison@intel.com>
-To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>, "De Marchi, Lucas"
- <lucas.demarchi@intel.com>, "Roper, Matthew D" <matthew.d.roper@intel.com>
-CC: "igt-dev@lists.freedesktop.org" <igt-dev@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Brost,
- Matthew" <matthew.brost@intel.com>
-References: <20240402122223.643413-1-tejas.upadhyay@intel.com>
- <20240402194017.GJ6574@mdroper-desk1.amr.corp.intel.com>
- <kss23fgx24bvhlarkvrivrvvh32pxugpvgavdo3tc4u55jmidf@rnr7terjza6w>
- <SJ1PR11MB62041F26676765342848070D813D2@SJ1PR11MB6204.namprd11.prod.outlook.com>
- <7eac7b89-8c32-4261-b288-0cf2002b4e93@intel.com>
-Content-Language: en-GB
-In-Reply-To: <7eac7b89-8c32-4261-b288-0cf2002b4e93@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ0PR13CA0055.namprd13.prod.outlook.com
- (2603:10b6:a03:2c2::30) To CH3PR11MB8441.namprd11.prod.outlook.com
- (2603:10b6:610:1bc::12)
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RQWCIEnc/fstAu1vVsGcwYzGEcsW0EndKbty4ysr13A=;
+ b=SuQZG1niouHfFeOmTc5Hd7oGvuMPHhJh2G+5iNyb8x/xMspQ0w2lY5uf3z1hWcGiLn2ATDj2d3o3H4WIuo6y8k7Ktt7ky8tITBVV2BmpLX/RNgK6jiDd9Fhw/kgys3C94W8qeZn0FR6c85vaRAdBVOKzFQCCmEdi5I1YqgQh1rx82i6N5gikGfzWHMCWyGcuOKz6RnFL5xv+WFxexe/sVQ3wG3CRACnaeiat+tWNPkszBHUxsJnkWY4sVUEIlXkvF2zzKkKBUngXtTg2/UbjgB7EFL4eRq/7k79Vyod1eoaCU9xp9U5I+NKfF0UrHdymQNegIF/Pc+lnu0fDfSwkKg==
+Received: from DM6PR12MB3849.namprd12.prod.outlook.com (2603:10b6:5:1c7::26)
+ by SJ2PR12MB9192.namprd12.prod.outlook.com (2603:10b6:a03:55d::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Fri, 5 Apr
+ 2024 00:39:28 +0000
+Received: from DM6PR12MB3849.namprd12.prod.outlook.com
+ ([fe80::6aec:dbca:a593:a222]) by DM6PR12MB3849.namprd12.prod.outlook.com
+ ([fe80::6aec:dbca:a593:a222%5]) with mapi id 15.20.7409.042; Fri, 5 Apr 2024
+ 00:39:28 +0000
+Date: Thu, 4 Apr 2024 21:39:27 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Oak Zeng <oak.zeng@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ matthew.brost@intel.com, Thomas.Hellstrom@linux.intel.com,
+ brian.welty@intel.com, himal.prasad.ghimiray@intel.com,
+ krishnaiah.bommu@intel.com, niranjana.vishwanathapura@intel.com,
+ Leon Romanovsky <leon@kernel.org>
+Subject: Re: [PATCH 06/23] drm/xe/svm: Introduce a helper to build sg table
+ from hmm range
+Message-ID: <20240405003927.GA11940@nvidia.com>
+References: <20240117221223.18540-1-oak.zeng@intel.com>
+ <20240117221223.18540-7-oak.zeng@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240117221223.18540-7-oak.zeng@intel.com>
+X-ClientProxiedBy: MN2PR15CA0014.namprd15.prod.outlook.com
+ (2603:10b6:208:1b4::27) To DM6PR12MB3849.namprd12.prod.outlook.com
+ (2603:10b6:5:1c7::26)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR11MB8441:EE_|SJ0PR11MB5184:EE_
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3849:EE_|SJ2PR12MB9192:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7XmwDorN0pIPgtqMOcjq4+PUtrEMaus1gjKEjMOe4n4RJurVIy4wqkVseug8D6ELVXATRtjYf61KhOMGg16CeP9yCDFj/6zBoFETkT648xHILHN1gMyntvljXiVYk1H/xTKd66VcKu73fPbeCG8uwW9SS9fCfK5AKTuKvvJyek/dTRHsk5MBybH+subqj2Euvzr8D2wkA4pbXOGRuCIaehNDRhbv73dW8cI1trqtxI7H5o4ImWC0XaIbm/IXTpktWrVSEGqHSdCJkQ6dNK7NZ7oCKmbMqd1KNUEULJW3lLL2ntfXwEG41LNglQX+xMFKhp20XO1uWeuvXZwY83ULsuQSfyie49PXF9FsBXjwcf+5mjGrnXGoAxuiPtP/JOGzlCqzCmq+blpK5tPRHTGFYktq+ZMLTRnKfstumUHdtYZnCuP4aueggzRsUJJngGwMYrDfEqjQhGlOgOL8XZFZkmCPxH4m4Vg5tVIDu6F6ELqQUC5mDBfIKCHOHW47GdWyPfpbiRM8HyChXSwFrlt+IPieNnAkwse9nOS+cqPcOOXYr9ANkGrJMn7tQWL9NpPKsJ4oJwFnGKbGRbte6QCUU2NftCW0XaYy1XOEZqFKxyoX1d9NFZCt0mGNAb9zmUnwBmP1mStqeuGlr24+190u6a/JygMCdhz3xjoMlRY+4QQ=
+X-Microsoft-Antispam-Message-Info: nMK4PxEbFRVKmXNLjZk875tqJ+mdYDPYyftT2/ON6JiTwJY7naKLEjrN2JeTBDdVPlVnAEq0WlJt+iLlOmDPuo3NdQykKY90JmFoSc3LnYeivRipq63psofsORmRgIdt00hcLt5px4xuGmCKG6rja3UEfuj4kBd5Mrbyh49GpbW5blRiHt4/i0afEYfDtX/ZtfzCybzcUXDrRgtbBTbLFKo49piqkOr51Q6h9PpDXAwiN5ZBbbKspESfc/mo8CNPvX2i0eUu8OYGSm6QuUjdabdC0ruzx4fk/5U7Enrfnc1rXvcfokTadqiU917Rc9Udd30srvPrvXvQijknapJ8BhqSzXp+xkHOsELGsvPBOJ74jV0Yf7nIhwhEopJSD7tdeRFRhdlTxAOwdFBFoqU3iY9SMnoHS/fnJouSp2xAFUaiSpoOhLLyxgLNu4IIXrHef5ZAaualgXRBi4yryrVGVeSKUpKQ2NDVSm+B255GY1VBvr0qieoqweVBTZwIO7GR6sQRREBfzMlELhKMBz+1ldqgQWwo3Z+49FNoseY37D7EI3qTgb7honJildx633mfgAnbWjiICvPXEorh1rQJ7vBr2QJ1LcI6CbH72twQDkEXZgZpOlJ6mL5hc5SOq04WjWhNFUBaZcwW3itwo/ogu9O7P6J//zcC5MGITdQg6rQ=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH3PR11MB8441.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366007)(1800799015)(376005); DIR:OUT; SFP:1102; 
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB3849.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7416005)(376005)(366007)(1800799015); DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c1UrZWpZR3FDMWxhQTJyc2dkaEhvbGJyWXdXc3A0T3ZjMmh1bm02R1Z6bi9K?=
- =?utf-8?B?T3ZrcXJjL3hhdHk2NGVqSU5UYUt0RmpNSnZQdllQYk14OENwVjJaNExydG0v?=
- =?utf-8?B?bWtDYlgxQVFaWDlSK0U0L3hCN2NIclFTRGdnOCtEa2dHZDFzY3NUUWhWS2hO?=
- =?utf-8?B?N1BadGlJTjRTbUE5MzM0T1hKdGt4WjBxNjEyd3cyT1FqcWo5NjdoVXY4cWpW?=
- =?utf-8?B?K2JRYnQ5VzUxNnpOZXhvQ05sTzQyRkV1SWNIZzlYVVVCOGdJUGt1bGVGOEk3?=
- =?utf-8?B?QVBqYkFReGJRT3NaM2RzV2luN1lpRWtFRStEVytXbjZGQnZ0Q09UU3dCZUE4?=
- =?utf-8?B?MmRJZGczdWVqUnAyLyt4S3RqZElwaTRld1ZXTVJWa2psRzV4ZFN0Q0dGM3VC?=
- =?utf-8?B?STE4NXNKQk5UVFhRR3ZIcDBuTlo5OWVEVW9pNld1bSs1MzYvaVI1cXZvNVZB?=
- =?utf-8?B?MHhzQ3R6MVpTSUtua2N5UFdKSjNHU25VUFIwUzROQ0RLY2NCL1R2OUxGdVNl?=
- =?utf-8?B?TllDYnU1WXpVOUJXam82djAyUWhuQUNVUjlMQ1hCRE53VWloSExrTnVaRER2?=
- =?utf-8?B?WnBiRkNQYXhpdU5oemlXdXVKUXlyRU9hT3ZpVzl6Rjl0SCtKV2xpR0VsOW9l?=
- =?utf-8?B?dXdDSFIvT01RQmdoa2J6L1BhRG9GWjFGZDF1T3YvZzdwdXhyUmxPdUYyMWtx?=
- =?utf-8?B?K29DS0pLajUyVVgvVmx5WUgvVmZtcVl0cmE0TmNDSTl2K3VYZEs0YkdrdHpk?=
- =?utf-8?B?Y3IxZTN6eVU3ZkJXSEdOVldtTXlhYWFoUDRBZEJmaFFqN1BRTzBxWDk3NjJZ?=
- =?utf-8?B?Ni9CbHdqY1g1dWZRN3htY1NCVzN5MUZmL2Q4amZwa3FTMW9YNmdmRjdCckFq?=
- =?utf-8?B?eVV6NDFKSlVyaEk2cU1mTG5vaDNUbjU0a0k4MFJxeEczNUJKL0JKcktENmgw?=
- =?utf-8?B?czU5SDI4M1duWlhONHpMamlFb0k3dGhhN3NON3h6NFE2SWVqWDZyckhVTUJi?=
- =?utf-8?B?dlZRLytFcDFIL0U0NGVtZEpQUFZCMGd0SDl6ZkJGc2E3akJUbUhjZS9TWjV5?=
- =?utf-8?B?UUtlT1RkQ2NGcFF1bGVDV3F2OHEzd0YwTTM2Q0NLUWZ6bmRGVUtES2grNEY3?=
- =?utf-8?B?Z0R2Nkk0ZVBZZjFaY0VMSzVnK0txMHdqNWlVVFpIbEJ3eTYxTFl2R3dUbTVr?=
- =?utf-8?B?dVlLb2E5dU40M3d5U09MMjhTdGtQdkcyQm95azIxZnp0SFpUeCsyT1BSUHRj?=
- =?utf-8?B?K3NyZ2t5QWxPeXFmdVdEbDZiSVlzVTNPWHdxbGswQldncTJuSGQ3SjgwanJO?=
- =?utf-8?B?cGVzckxuZzZwNkV5K215cXllQit2VWZEanNpMHczMnZ1Q2xOMTQvWXBobUpP?=
- =?utf-8?B?cHZwUjlYVmlWMzV5TkI2OUx4QUk3NkVRS3pKRWNwMWl2M0RYSlVQdGFZSFdH?=
- =?utf-8?B?bG9oUkNTVUM3KzRBWkt5Z2twRHR4TnpHK1J3L0JHM2RKN2d5N0lObTIxZlN1?=
- =?utf-8?B?YW1wREFBVWlYemN3cmZFeW9helFGbWZ0RjltSGVESjdOQndhRi9VZXMvc3Jx?=
- =?utf-8?B?VUtadURCa2pZTVlqYWlubVdpM2t6dHd5TUFodlNMaFVNeUFyVm1vU2VEQ1FL?=
- =?utf-8?B?OC9IdENMbk9pUkdGbDdFeVk5c2tkZDRBRUllODVWaEhyWDdRZzhCZkp5TzM3?=
- =?utf-8?B?SlhyUGhiYjByeUhCQ3VLZG11aWc4cHArQUMrOXNoaHRxWlBJYnNtdmpNRUJK?=
- =?utf-8?B?b09RdzhoV1RVOFRvMEo3T2sxZXVyMTBvMEozVWlRaXo2dUdNNC9NVW5SaURm?=
- =?utf-8?B?eHREQ290VFQ1WkdkKzdEUTUva0RqUGZ0djBSazg1MXdaL1VkUnhvMlE4eWV0?=
- =?utf-8?B?ZVlHOGE2dy83R1c2Y3NlMmVHdGtYdjVZWExDbGtYdVNkeU42cTNhQ0NKbHZW?=
- =?utf-8?B?SDlBTU1GZ1BFQWpWdG1DclVoQ1RNUXhKM2F1a3hEMmkvaDhKSWdNeFZ3VUJJ?=
- =?utf-8?B?UTE2V0NqZjdJZHZpRXVIdUl3M2l2WVNGVFJWeElJcmFHeGpuQ0dINFBqdDlJ?=
- =?utf-8?B?MldzaDVwOXVrYlNmTHVDcXlyWm5uM0tKOXI2V2pjbUZoOVp2bFJCOEpOSkR4?=
- =?utf-8?B?YUQrNXo2SU56REtSYUJmTjB4cStUT3QzOGNpZEV0emhiYkh1MFFHazFhcjZS?=
- =?utf-8?B?SVE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: bf6b61d8-ba83-4b4c-337f-08dc550143c3
-X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8441.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?LePs3CFRTMYQu6Xyai9GMccF7YLCs7WhGZWILNHTwNkXBtk3d4/4CJlmx50F?=
+ =?us-ascii?Q?8StX3533uqwvA9BJU7yeOJkmlW+NkBsX+m9g9cMySeQV3Z57SZaC9ZGNOUsG?=
+ =?us-ascii?Q?A92Xrz8S3Pc18o5cGvgDtUFI3c+FMDphD6CyVAHfEiAamocv6oSWNT12HpDa?=
+ =?us-ascii?Q?jXb5ppcfdfbEzDJ2EmSFsNSZ77MawgxsZsLrIYxh1rfITuKMAQgNkSOyYSnK?=
+ =?us-ascii?Q?NiCU6yZHESma0dkVWgRxVDpD5vQtreW18kHAkdGiQaRmis7n6baaMYmdPm8W?=
+ =?us-ascii?Q?Okkt1hq2nSUoEjHAUcdaTyfMylSdyi+4PSKKsUH1/VPRubMqZzRSHmHIA7m/?=
+ =?us-ascii?Q?CE52pxtZGIu/AvBGjX6dK/Sns9az7Aau2LjgaF6eieIc8Q/odlpS5sH4dV3m?=
+ =?us-ascii?Q?y+cgPqDHfSh+FOqgEEGKTEXPzLrDK2srm5TnIKFp26y/E+9yXmjqiehAWJn+?=
+ =?us-ascii?Q?VCAJbjhaHP8Z9LhmHPWMqQUWglNQfq1/cS+ywqn54+YLiInziBwehwql6i8I?=
+ =?us-ascii?Q?5HoG5MIji1CWZO47lMDMXyXPWVI5VRX2UGr9DizLdONnd1Y7s9Hc7A5EV6tx?=
+ =?us-ascii?Q?uBS6SSbGWZaQW+5hX6QC+T5hAI5+5IVaK7ePOSacP9++8k7mrvQOMw9Hog8R?=
+ =?us-ascii?Q?jsxqXg77aQAiN4VYH5eWaLD0ltENoBZJuliFY1JnqXB7jL1Fds3bx0+owI1x?=
+ =?us-ascii?Q?gHEeHe2FPwja9yWYiyXs8Y4lD9YPkK7VKzBFdETEq+EZhAC9IY42LYW1RYMw?=
+ =?us-ascii?Q?+iHGB2Bxa88xyOEvuWudmnMs/Ly3DFE4IP2+bt6R8iSCPnKCT0y6CyL/NQzn?=
+ =?us-ascii?Q?76fx2Cg7w1T7i6DHVDoS4EZH6b0kxeJFCQnt23iGpBP/X+2sYWW1N697LbU+?=
+ =?us-ascii?Q?70lzGNVQ/RaCGbozAdrEEFC9je/xb2EIvGKDvKFqeFWy1Q8g/iw7hBAqPyV2?=
+ =?us-ascii?Q?f6cRQtIqKENS8we2KPPyJTStGDTPCHwh+O0QZbfNLRE+gWfPm8QPEfQk8des?=
+ =?us-ascii?Q?vlbBa3c21NNoOWBbqr4XgUqvX+mbJhaOPJ1oPT1s6yiA7lokpCj7EEf8whIr?=
+ =?us-ascii?Q?zGvqWlqP5J+GMzpl6jRVyi/OvSKq9Q2sw4qS8WbUrdyxaVbpZqa1i4+dOCpl?=
+ =?us-ascii?Q?AeErIqvZXEGIAhjFNkA6JXxOZlbCGUXcavIhXR7syahZxMBBfClHG+YiSRbB?=
+ =?us-ascii?Q?J45/7w20zrmqFFwQQu65tVnd8kRjz8vXJyzMinj2t99CUKN0ydpmozhKj0eo?=
+ =?us-ascii?Q?ezysOEAY8d5e1cLvObcddTbq98O5+P20X7QC3DsaH69WQCz7P1TCupR5hrVd?=
+ =?us-ascii?Q?0RNoE3ODB7o4LUkZUJ/BR8MQjVavTbrpxCRSEhjOnObUZQEzm4WCiJWE8ZHG?=
+ =?us-ascii?Q?AOrBeiceKzwXn9KXzyGtvPZtUi/HK7CRk3pEqsHCy/FxRM9pWcFda43trX/N?=
+ =?us-ascii?Q?btHrcQBjoKjySorsjfWpwqNj3Lh2p9yrweq+N6HsaQ6o8FYYXZQKW6uk/apQ?=
+ =?us-ascii?Q?m8jiW0kDFWWeAjLnsAjcmObt2k1ava0J0pTN1hUuB2Aoy+2DN8TuoJIhjbz1?=
+ =?us-ascii?Q?1Pq8kQvQLHQLNvFV/+nQHrerY1vrv5kB1I5tbQC3?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2203dd98-46fe-4e49-aacc-08dc5508d9c2
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3849.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Apr 2024 23:45:10.1355 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2024 00:39:28.3968 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gw4poAysihWNEG3LyR3JKrWhN5NucP8dpD2T4qMe/RdVvE37rZXpNzPQZly6NfwhT7upBDwQyKQfHOGPOsMFR9ygziKWHPhHPMbJXlXzzqc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5184
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5i3eW41w2CNONpLUjVIZFQ4m697ckarqhHpnM2pUsSmOBAQ8usOSQbN7mWpbqRdF
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB9192
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -172,169 +121,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 4/4/2024 16:22, John Harrison wrote:
-> On 4/2/2024 22:35, Upadhyay, Tejas wrote:
->>> -----Original Message-----
->>> From: De Marchi, Lucas <lucas.demarchi@intel.com>
->>> Sent: Wednesday, April 3, 2024 2:26 AM
->>> To: Roper, Matthew D <matthew.d.roper@intel.com>
->>> Cc: Upadhyay, Tejas <tejas.upadhyay@intel.com>; igt-
->>> dev@lists.freedesktop.org; intel-xe@lists.freedesktop.org; Brost, 
->>> Matthew
->>> <matthew.brost@intel.com>
->>> Subject: Re: [PATCH V2 i-g-t] tests/xe_exec_threads: Make hang tests 
->>> reset
->>> domain aware
->>>
->>> On Tue, Apr 02, 2024 at 12:40:17PM -0700, Matt Roper wrote:
->>>> On Tue, Apr 02, 2024 at 05:52:23PM +0530, Tejas Upadhyay wrote:
->>>>> RCS/CCS are dependent engines as they are sharing reset domain.
->>>>> Whenever there is reset from CCS, all the exec queues running on RCS
->>>>> are victimised mainly on Lunarlake.
->>>>>
->>>>> Lets skip parallel execution on CCS with RCS.
->>>> I haven't really looked at this specific test in detail, but based on
->>>> your explanation here, you're also going to run into problems with
->>>> multiple CCS engines since they all share the same reset. You won't
->>>> see that on platforms like LNL that only have a single CCS, but
->>>> platforms
->>> but it is seen on LNL because of having both RCS and CCS.
->>>
->>>> like PVC, ATS-M, DG2, etc. can all have multiple CCS where a reset on
->>>> one kills anything running on the others.
->>>>
->>>>
->>>> Matt
->>>>
->>>>> It helps in fixing following errors:
->>>>> 1. Test assertion failure function test_legacy_mode, file, Failed
->>>>> assertion: data[i].data == 0xc0ffee
->>>>>
->>>>> 2.Test assertion failure function xe_exec, file ../lib/xe/xe_ioctl.c,
->>>>> Failed assertion: __xe_exec(fd, exec) == 0, error: -125 != 0
->>>>>
->>>>> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
->>>>> ---
->>>>>   tests/intel/xe_exec_threads.c | 26 +++++++++++++++++++++++++-
->>>>>   1 file changed, 25 insertions(+), 1 deletion(-)
->>>>>
->>>>> diff --git a/tests/intel/xe_exec_threads.c
->>>>> b/tests/intel/xe_exec_threads.c index 8083980f9..31af61dc9 100644
->>>>> --- a/tests/intel/xe_exec_threads.c
->>>>> +++ b/tests/intel/xe_exec_threads.c
->>>>> @@ -710,6 +710,17 @@ static void *thread(void *data)
->>>>>       return NULL;
->>>>>   }
->>>>>
->>>>> +static bool is_engine_contexts_victimized(int fd, unsigned int
->>>>> +flags) {
->>>>> +    if (!IS_LUNARLAKE(intel_get_drm_devid(fd)))
->>>>> +        return false;
->>> as above, I don't think we should add any platform check here. It's 
->>> impossible
->>> to keep it up to date and it's also testing the wrong thing.
->>> AFAIU you don't want parallel submission on engines that share the same
->>> reset domain. So, this is actually what should be tested.
->> Platforms like  PVC, ATS-M, DG2, etc. have some kind of WA/noWA which 
->> helps to run things parallelly on engines in same reset domain and 
->> apparently BMG/LNL does not have that kind of support so applicable 
->> for LNL/BMG with parallel submission on RCS/CCS only.
->>
->> @Harrison, John C please reply if you have any other input here.
-> I don't get what you mean by 'have some kind of WA/noWA'. All 
-> platforms with compute engines have shared reset domains. That is all 
-> there is to it. I.e. everything from TGL onwards. That includes RCS 
-> and all CCS engines. So RCS + CCS, CCS0 + CCS1, RCS + CC0 + CCS1, etc. 
-> Any platform with multiple engines that talk to EUs will reset all of 
-> those engines in parallel.
->
-> There are w/a's which make the situation even worse. E.g. on DG2/MTL 
-> you are not allowed to context switch one of those engines while 
-> another is busy. Which means that if one hangs, they all hang - you 
-> cannot just wait for other workloads to complete and/or pre-empt them 
-> off the engine prior to doing the shared reset. But there is nothing 
-> that makes it better.
->
-> I assume we are talking about GuC triggered engine resets here? As 
-> opposed to driver triggered full GT resets?
->
-> The GuC will attempt to idle all other connected engines first by 
-> pre-empting out any executing contexts. If those contexts are 
-> pre-emptible then they will survive - GuC will automatically restart 
-> them once the reset is complete. If they are not (or at least not 
-> pre-emptible within the pre-emption timeout limit) then they will be 
-> killed as collateral damage.
->
-> What are the workloads being submitted by this test? Are the 
-> pre-emptible spinners? If so, then they should survive (assuming you 
-> don't have the DG2/MTL RCS/CCS w/a in effect). If they are 
-> non-preemptible spinners then they are toast.
->
-> John.
->
->
->>
->> Thanks,
->> Tejas
->>> Lucas De Marchi
->>>
->>>>> +
->>>>> +    if (flags & HANG)
->>>>> +        return true;
->>>>> +
->>>>> +    return false;
->>>>> +}
->>>>> +
->>>>>   /**
->>>>>    * SUBTEST: threads-%s
->>>>>    * Description: Run threads %arg[1] test with multi threads @@
->>>>> -955,9 +966,13 @@ static void threads(int fd, int flags)
->>>>>       bool go = false;
->>>>>       int n_threads = 0;
->>>>>       int gt;
->>>>> +    bool has_rcs = false;
->>>>>
->>>>> -    xe_for_each_engine(fd, hwe)
->>>>> +    xe_for_each_engine(fd, hwe) {
->>>>> +        if (hwe->engine_class == DRM_XE_ENGINE_CLASS_RENDER)
->>>>> +            has_rcs = true;
->>>>>           ++n_engines;
->>>>> +    }
->>>>>
->>>>>       if (flags & BALANCER) {
->>>>>           xe_for_each_gt(fd, gt)
->>>>> @@ -990,6 +1005,15 @@ static void threads(int fd, int flags)
-PS: There is nothing in the function name that suggests this is a reset 
-specific test. If this is common code for multiple tests including some 
-that do not expect to hit resets, then removing all testing of compute 
-engines is a bad idea.
+On Wed, Jan 17, 2024 at 05:12:06PM -0500, Oak Zeng wrote:
+> +/**
+> + * xe_svm_build_sg() - build a scatter gather table for all the physical pages/pfn
+> + * in a hmm_range.
+> + *
+> + * @range: the hmm range that we build the sg table from. range->hmm_pfns[]
+> + * has the pfn numbers of pages that back up this hmm address range.
+> + * @st: pointer to the sg table.
+> + *
+> + * All the contiguous pfns will be collapsed into one entry in
+> + * the scatter gather table. This is for the convenience of
+> + * later on operations to bind address range to GPU page table.
+> + *
+> + * This function allocates the storage of the sg table. It is
+> + * caller's responsibility to free it calling sg_free_table.
+> + *
+> + * Returns 0 if successful; -ENOMEM if fails to allocate memory
+> + */
+> +int xe_svm_build_sg(struct hmm_range *range,
+> +			     struct sg_table *st)
+> +{
+> +	struct scatterlist *sg;
+> +	u64 i, npages;
+> +
+> +	sg = NULL;
+> +	st->nents = 0;
+> +	npages = ((range->end - 1) >> PAGE_SHIFT) - (range->start >> PAGE_SHIFT) + 1;
+> +
+> +	if (unlikely(sg_alloc_table(st, npages, GFP_KERNEL)))
+> +		return -ENOMEM;
+> +
+> +	for (i = 0; i < npages; i++) {
+> +		unsigned long addr = range->hmm_pfns[i];
+> +
+> +		if (sg && (addr == (sg_dma_address(sg) + sg->length))) {
+> +			sg->length += PAGE_SIZE;
+> +			sg_dma_len(sg) += PAGE_SIZE;
+> +			continue;
+> +		}
+> +
+> +		sg =  sg ? sg_next(sg) : st->sgl;
+> +		sg_dma_address(sg) = addr;
+> +		sg_dma_len(sg) = PAGE_SIZE;
+> +		sg->length = PAGE_SIZE;
+> +		st->nents++;
+> +	}
+> +
+> +	sg_mark_end(sg);
+> +	return 0;
+> +}
 
-John.
+I didn't look at this series a lot but I wanted to make a few
+remarks.. This I don't like quite a lot. Yes, the DMA API interaction
+with hmm_range_fault is pretty bad, but it should not be hacked
+around like this. Leon is working on a series to improve it:
 
+https://lore.kernel.org/linux-rdma/cover.1709635535.git.leon@kernel.org/
 
->>>>>       }
->>>>>
->>>>>       xe_for_each_engine(fd, hwe) {
->>>>> +        /* RCS/CCS sharing reset domain hence dependent engines.
->>>>> +         * When CCS is doing reset, all the contexts of RCS are
->>>>> +         * victimized, so skip the compute engine avoiding
->>>>> +         * parallel execution with RCS
->>>>> +         */
->>>>> +        if (has_rcs && hwe->engine_class ==
->>> DRM_XE_ENGINE_CLASS_COMPUTE &&
->>>>> + is_engine_contexts_victimized(fd, flags))
->>>>> +            continue;
->>>>> +
->>>>>           threads_data[i].mutex = &mutex;
->>>>>           threads_data[i].cond = &cond;
->>>>>   #define ADDRESS_SHIFT    39
->>>>> -- 
->>>>> 2.25.1
->>>>>
->>>> -- 
->>>> Matt Roper
->>>> Graphics Software Engineer
->>>> Linux GPU Platform Enablement
->>>> Intel Corporation
->
+Please participate there too. In the mean time you should just call
+dma_map_page for every single page like ODP does.
 
+Also, I tried to follow the large discussion in the end but it was
+quite hard to read the text in Lore for some reason.
+
+I would just opine some general points on how I see hmm_range_fault
+being used by drivers.
+
+First of all, the device should have a private page table. At least
+one, but ideally many. Obviously it should work, so I found it a bit
+puzzling the talk about problems with virtualization. Either the
+private page table works virtualized, including faults, or it should
+not be available..
+
+Second, I see hmm_range_fault as having two main design patterns
+interactions. Either it is the entire exclusive owner of a single
+device private page table and fully mirrors the mm page table into the
+device table.
+
+Or it is a selective mirror where it copies part of the mm page table
+into a "vma" of a possibly shared device page table. The
+hmm_range_fault bit would exclusively own it's bit of VMA.
+
+So I find it a quite strange that this RFC is creating VMA's,
+notifiers and ranges on the fly. That should happen when userspace
+indicates it wants some/all of the MM to be bound to a specific device
+private pagetable/address space.
+
+I also agree with the general spirit of the remarks that there should
+not be a process binding or any kind of "global" character
+device. Device private page tables are by their very nature private to
+the device and should be created through a device specific char
+dev. If you have a VMA concept for these page tables then a HMM
+mirroring one is simply a different type of VMA along with all the
+others.
+
+I was also looking at the mmu notifier register/unregister with some
+suspicion, it seems wrong to have a patch talking about "process
+exit". Notifiers should be destroyed when the device private page
+table is destroyed, or the VMA is destroyed. Attempting to connect it
+to a process beyond tying the lifetime of a page table to a FD is
+nonsensical.
+
+Jason
