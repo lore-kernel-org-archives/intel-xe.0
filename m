@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E730CD1296
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 18:51:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF2D3C67861
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 18:52:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACE9410FA6A;
-	Fri,  5 Apr 2024 18:51:46 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B82B810FA6A;
- Fri,  5 Apr 2024 18:51:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6785947454237330185=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8165D10FA6A;
+	Fri,  5 Apr 2024 18:52:18 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cI/G8fZm";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC8CD10FA6A
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 Apr 2024 18:52:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1712343137; x=1743879137;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=pQyC98b0CzbgVtvez6W90FrcWnGP35wt8lg3ZkZtYK0=;
+ b=cI/G8fZm7tmA/rvvhB0Y2KAOSd/cdx92iBPUfBzxx9CZH5BPn7iUjuwS
+ HgC60e4qv6vHFei1ptFHDk7TQ6CACEWh4QBym51bK0awz75tYQSRaBvZ3
+ J7RDvXXMwFaJjB7IRDVLGHEmhiW3zEdr4/MBC/fUVNSBlXEzguHapx0pN
+ JiNUbEpfgUgm0uBkIs1ZVnpvZBgr9E/3bd1qV/y72X+XUCN5T06kbVrbs
+ ZoeyvFo2f7K6ogUpi7KfpYkLt8jyOzpFvA/k6MLFHDkL6qKnZRIwDCDFo
+ LyZV7IfP7l69IVvJyRqLf2j1ayoSCm57H3K0L0M5iz3xju2S2Uk5jLSxE w==;
+X-CSE-ConnectionGUID: NelFM13CTGiUqDYToVffDw==
+X-CSE-MsgGUID: BUN9kKK8RWqdpO83Kk+GOg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11035"; a="7546787"
+X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; 
+   d="scan'208";a="7546787"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2024 11:51:31 -0700
+X-CSE-ConnectionGUID: S1duqrGoQnGt8ljo9WNrKA==
+X-CSE-MsgGUID: VIF2dXrJRjGmQ3eE4hTw3w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="19794100"
+Received: from himal-super-server.iind.intel.com ([10.145.169.168])
+ by orviesa008.jf.intel.com with ESMTP; 05 Apr 2024 11:51:30 -0700
+From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v3 0/2] Use hmm_range_fault to populate user page
+Date: Sat,  6 Apr 2024 00:35:06 +0530
+Message-Id: <20240405190508.244177-1-himal.prasad.ghimiray@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Remove_debug_message_f?=
- =?utf-8?q?rom_migrate=5Fclear=28=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 05 Apr 2024 18:51:45 -0000
-Message-ID: <171234310575.1239329.13666570540218801847@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240405153849.44906-1-jose.souza@intel.com>
-In-Reply-To: <20240405153849.44906-1-jose.souza@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,144 +62,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6785947454237330185==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This is an effort to unify hmmptr (system allocator) and userptr.
+A helper xe_userptr_populate_range is created to populate a user
+page using hmm_range_fault, instead of using get_user_pages_fast.
+This helper is then used to replace some userptr codes.
 
-== Series Details ==
+The same helper will be used later for hmmptr.
 
-Series: drm/xe: Remove debug message from migrate_clear()
-URL   : https://patchwork.freedesktop.org/series/132088/
-State : success
+This is part of the hmmptr (system allocator) codes. Since this
+part can be merged separately, send it out for CI and review first.
+It will be followed by other hmmptr codes.
 
-== Summary ==
+-v3
+Squashed patches 1 and 2.
+Address review comments.
 
-CI Bug Log - changes from xe-1048-8cb1ee178ef7e504e233814ef50c1f18f42dac72_BAT -> xe-pw-132088v1_BAT
-====================================================
+Oak Zeng (2):
+  drm/xe: Introduce helper to populate userptr
+  drm/xe: Use hmm_range_fault to populate user pages
 
-Summary
--------
+ drivers/gpu/drm/xe/Kconfig  |   1 +
+ drivers/gpu/drm/xe/Makefile |   2 +
+ drivers/gpu/drm/xe/xe_hmm.c | 253 ++++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_hmm.h |  11 ++
+ drivers/gpu/drm/xe/xe_vm.c  | 117 +----------------
+ 5 files changed, 273 insertions(+), 111 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_hmm.c
+ create mode 100644 drivers/gpu/drm/xe/xe_hmm.h
 
-  **SUCCESS**
+-- 
+2.25.1
 
-  No regressions found.
-
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-132088v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_evict@evict-mixed-threads-small:
-    - bat-dg2-oem2:       [TIMEOUT][1] ([Intel XE#1259] / [Intel XE#1473]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1048-8cb1ee178ef7e504e233814ef50c1f18f42dac72/bat-dg2-oem2/igt@xe_evict@evict-mixed-threads-small.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132088v1/bat-dg2-oem2/igt@xe_evict@evict-mixed-threads-small.html
-
-  * igt@xe_exec_threads@threads-mixed-userptr-invalidate:
-    - {bat-lnl-1}:        [FAIL][3] -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1048-8cb1ee178ef7e504e233814ef50c1f18f42dac72/bat-lnl-1/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132088v1/bat-lnl-1/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#1259]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1259
-  [Intel XE#1473]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1473
-
-
-Build changes
--------------
-
-  * Linux: xe-1048-8cb1ee178ef7e504e233814ef50c1f18f42dac72 -> xe-pw-132088v1
-
-  IGT_7801: 7801
-  xe-1048-8cb1ee178ef7e504e233814ef50c1f18f42dac72: 8cb1ee178ef7e504e233814ef50c1f18f42dac72
-  xe-pw-132088v1: 132088v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132088v1/index.html
-
---===============6785947454237330185==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Remove debug message from migrate_clear()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132088/">https://patchwork.freedesktop.org/series/132088/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132088v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132088v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1048-8cb1ee178ef7e504e233814ef50c1f18f42dac72_BAT -&gt; xe-pw-132088v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-132088v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@xe_evict@evict-mixed-threads-small:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1048-8cb1ee178ef7e504e233814ef50c1f18f42dac72/bat-dg2-oem2/igt@xe_evict@evict-mixed-threads-small.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1259">Intel XE#1259</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1473">Intel XE#1473</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132088v1/bat-dg2-oem2/igt@xe_evict@evict-mixed-threads-small.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_threads@threads-mixed-userptr-invalidate:</p>
-<ul>
-<li>{bat-lnl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1048-8cb1ee178ef7e504e233814ef50c1f18f42dac72/bat-lnl-1/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132088v1/bat-lnl-1/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1048-8cb1ee178ef7e504e233814ef50c1f18f42dac72 -&gt; xe-pw-132088v1</li>
-</ul>
-<p>IGT_7801: 7801<br />
-  xe-1048-8cb1ee178ef7e504e233814ef50c1f18f42dac72: 8cb1ee178ef7e504e233814ef50c1f18f42dac72<br />
-  xe-pw-132088v1: 132088v1</p>
-
-</body>
-</html>
-
---===============6785947454237330185==--
