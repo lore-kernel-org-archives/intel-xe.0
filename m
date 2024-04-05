@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42427CD11C2
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 14:05:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F209CC67861
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 14:06:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A48DB113C6A;
-	Fri,  5 Apr 2024 14:05:25 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60C02113C2F;
- Fri,  5 Apr 2024 14:05:15 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8085532472766297802=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92E5610EC32;
+	Fri,  5 Apr 2024 14:06:22 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aZ/c3N1q";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E572E10EC32
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 Apr 2024 14:06:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1712325981; x=1743861981;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=SrAPxF0xyxsgi3G6fGNBNf/YT4V+frKOXVOe3qTZmQA=;
+ b=aZ/c3N1q9jmapCK2angVPnt7Z6ruBcoWHX5AG0Hj0BbQR8FoVRp1oO8F
+ mo2/BAavQzWCq0PmxJSRf6VKC+T0Dx+3QYwmo0rCzY6+4KHphNRse2PRJ
+ QQmK6dtZdvrH716Gc1gEI4hqaJmO3uZWPNnKET0mhd7rd5lm44tITfA8I
+ UVZTD2z9z+JNYnZSkEw31AYS0yUBOFyKtVWJV41AOZcrcq6L7lZ1RqyPE
+ UdhX/4dbRjcNC4d0NxRPxBp9urkx3yjVMVGzYbvwqF1DLXm8TOYFlOFIe
+ vUsF79urNcCaDVUazoE0lkq4SlsPHotp/FY6KK2+brytD28QUtDEg8Oad g==;
+X-CSE-ConnectionGUID: lY7fhKNNRpCY0aVU/+VVQg==
+X-CSE-MsgGUID: ADHR+Xf8SDSJlUPWYorz8A==
+X-IronPort-AV: E=McAfee;i="6600,9927,11035"; a="7782429"
+X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; 
+   d="scan'208";a="7782429"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2024 07:06:19 -0700
+X-CSE-ConnectionGUID: UkBcW55oS/GHM14+ULnmkQ==
+X-CSE-MsgGUID: WW4whrfvTMmEhE+Lpsvs4Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="19197796"
+Received: from dut-internal-9dd7.jf.intel.com ([10.165.21.194])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2024 07:06:19 -0700
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: saurabhg.gupta@intel.com, jonathan.cavitt@intel.com,
+ matthew.brost@intel.com, lucas.demarchi@intel.com,
+ john.c.harrison@intel.com
+Subject: [PATCH v3 3/3] drm/xe/xe_guc_submit: Declare reset if banned or killed
+Date: Fri,  5 Apr 2024 06:51:00 -0700
+Message-Id: <20240405135100.967990-3-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240405135100.967990-1-jonathan.cavitt@intel.com>
+References: <20240405135100.967990-1-jonathan.cavitt@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Move_PTE/PDE_bit_defin?=
- =?utf-8?q?itions_to_proper_header?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 05 Apr 2024 14:05:15 -0000
-Message-ID: <171232591539.1236346.5174319004390415683@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240405123520.847-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20240405123520.847-1-michal.wajdeczko@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +66,35 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8085532472766297802==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Add an additional condition to the reset_status guc_exec_queue_op that
+returns true if the exec queue has been banned or killed.  The
+reset_status op is only used for exiting any xe_wait_user_fence_ioctl
+that waits on an exec queue without timing out, so doing this will exit
+the ioctl early in cases where the exec queue can no longer function,
+such as after a GuC stop during a reset.
 
-== Series Details ==
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_submit.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Series: drm/xe: Move PTE/PDE bit definitions to proper header
-URL   : https://patchwork.freedesktop.org/series/132077/
-State : success
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 7e851cd486c92..03060b23d0f55 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1371,7 +1371,7 @@ static void guc_exec_queue_resume(struct xe_exec_queue *q)
+ 
+ static bool guc_exec_queue_reset_status(struct xe_exec_queue *q)
+ {
+-	return exec_queue_reset(q);
++	return exec_queue_reset(q) || exec_queue_killed_or_banned(q);
+ }
+ 
+ /*
+-- 
+2.25.1
 
-== Summary ==
-
-CI Bug Log - changes from xe-1045-019010dd870216d30458836f988b4461674a051a_BAT -> xe-pw-132077v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-132077v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [FAIL][1] ([Intel XE#616]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1045-019010dd870216d30458836f988b4461674a051a/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132077v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [Intel XE#616]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/616
-
-
-Build changes
--------------
-
-  * Linux: xe-1045-019010dd870216d30458836f988b4461674a051a -> xe-pw-132077v1
-
-  IGT_7800: 7800
-  xe-1045-019010dd870216d30458836f988b4461674a051a: 019010dd870216d30458836f988b4461674a051a
-  xe-pw-132077v1: 132077v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132077v1/index.html
-
---===============8085532472766297802==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Move PTE/PDE bit definitions to proper header</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132077/">https://patchwork.freedesktop.org/series/132077/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132077v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132077v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1045-019010dd870216d30458836f988b4461674a051a_BAT -&gt; xe-pw-132077v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-132077v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1045-019010dd870216d30458836f988b4461674a051a/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/616">Intel XE#616</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132077v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1045-019010dd870216d30458836f988b4461674a051a -&gt; xe-pw-132077v1</li>
-</ul>
-<p>IGT_7800: 7800<br />
-  xe-1045-019010dd870216d30458836f988b4461674a051a: 019010dd870216d30458836f988b4461674a051a<br />
-  xe-pw-132077v1: 132077v1</p>
-
-</body>
-</html>
-
---===============8085532472766297802==--
