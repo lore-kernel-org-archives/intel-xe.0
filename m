@@ -4,65 +4,115 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81104CD1299
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 12:36:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9E47CD11C2
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 12:37:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B810B113BB4;
-	Fri,  5 Apr 2024 12:36:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E3A9113BB3;
+	Fri,  5 Apr 2024 12:37:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lfpVLEZd";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="fTNbZi+P";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E98F3113BAE;
- Fri,  5 Apr 2024 12:36:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712320582; x=1743856582;
- h=message-id:date:mime-version:from:to:cc:subject:
- content-transfer-encoding;
- bh=Wj2ayH1gXwiwnbEewC8gc/flNEJ4suafKnHA5yHB1O0=;
- b=lfpVLEZdJ/weP+EHJXuEPmA2YzQ5DEmNKlzX9E3tM0dhTxBToHAc1E2f
- u2ztUAIshYL11xlK1eT0JlkACt0mA18oINbxGcjnptBOZ3lrwbD9PDSmr
- ouk3/w5TTGP6zvrTnQVXLMCx8YcueeH1dXKkuiUmovluDVinEF2bXPJ8b
- OgtD1bXg5np3joysdIAx4b/TblXtDuAoUyD72DY8yjiPbWxfWrLusjfMn
- VXkD39EmJSU7ObXrLllZPQXiKw4DdgN/mWJpEwUPtDr4ANaP5KDqlMRTc
- 2H36SVGvNcbJIWwt0BV7JCNZ+iKaXm3n6xK+CNINAI1DFaV4RM8beNfnB A==;
-X-CSE-ConnectionGUID: fmCfjNPaSFu0XYo8v5E0+Q==
-X-CSE-MsgGUID: F2iy940jTRq/qYnI+s8J7Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="11439454"
-X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="11439454"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2024 05:36:21 -0700
-X-CSE-ConnectionGUID: M8v7V3OlQm+hSaL1ZdVMjg==
-X-CSE-MsgGUID: jOHhIdRSQcK/CwKSmJDJ7w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="19712021"
-Received: from vdesserx-mobl1.ger.corp.intel.com (HELO [10.251.214.130])
- ([10.251.214.130])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2024 05:36:17 -0700
-Message-ID: <2ad89d5a-4096-4cc5-badb-4ad61ff1df7d@linux.intel.com>
-Date: Fri, 5 Apr 2024 14:36:30 +0200
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com
+ (mail-bn1nam02on2101.outbound.protection.outlook.com [40.107.212.101])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F288E113BB3;
+ Fri,  5 Apr 2024 12:37:35 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Y6sEAVVioaaVznHd590Qh05peCjUqdz8nsgG1VpSlEeMA88u48efuCkXRdvHLJrcwcjddq2BfnAfEifgMpdg68F/F9/LRmhDaTL7ZJp81G66Ef4aNo7012ia9ZwD4d+qZ2VOZBRKAwhpWJk6TfBSxnFtr07zEigMpgXAR7Tc3wwzGgWVOHPIHeybZoiVdvR75rBTUDevHswG6AeD4kVPRm7TjENCJi7uSpw9dgoOPxm2xCw67GaD4x16WTiKoxWXXmCMIAifOdjd45ln77PxEEslgufA00fp+kxBAcj6gB6X9wL/FABCENhVtkxJUZCvysMHyxCrmqqVTKAX5C4uAw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=oiAUSCgQNOHGNEiHKEs1Xp3XuZZ8hFRYFuzzgK1U9q8=;
+ b=Uufzr+XaoMEguQXWdKM/VIHudIUYcc/B+TNUR/XkXcig+KhUeSIjFuZfPjCKA12Tghk7AI8Ea9eCzOgOwVQsKXTXij2/Gfy/iJgoJlj7F9D4wAf22XYLA+DLHAOujvuNKofV9NkgY6C36E76an1bCnAAQMOLoHePkQDlOENn3HnefWY+G+kebgd/CC0bzlCxpTRYHNPZMQnaqSiacHmYJ7Nirord+y8qP9Vh85iy5CUN7Ukg8CUtr3mimu0h0HbG6o4VIv32tI4IAN88bt4SRGo6vo5JcDSX1YuNZECUNZKFgDtrQ6y8fQmXZYqQx3NTRlg+NFNtdhhA0qQbSMwO3Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oiAUSCgQNOHGNEiHKEs1Xp3XuZZ8hFRYFuzzgK1U9q8=;
+ b=fTNbZi+PbSK7vn6pUWf9v1wWxjDKH2TqAR5AY8zFgaYLRwgiyWidiKkV+qrNH+gHKWrh1n3+OX5xNVPqxMMCnUo4evO0lyaaekctX1sBEeLvGigNOpgkDQnBbHulwuv9Uikr8NZJ4S6jMS/06Fnc3rH4xaGf+NnDmh61cSnwn3A3Xe5TveRHVFKF5Vnz8My70JsspbEJyJ/sPHAdbtUbBfDmRnXyu5EENsPffsXb6OSL8lSUbRbGAqanPw+jKYlt8OTaEIWeTwyOQfdPe4rVYzemDeY7JXwOViEO7QUJEjY6+IKygZC3+mRMuK8Uv844qUfGJHGuJHY3MM/+hAQ97A==
+Received: from DM6PR12MB3849.namprd12.prod.outlook.com (2603:10b6:5:1c7::26)
+ by SJ2PR12MB9087.namprd12.prod.outlook.com (2603:10b6:a03:562::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Fri, 5 Apr
+ 2024 12:37:26 +0000
+Received: from DM6PR12MB3849.namprd12.prod.outlook.com
+ ([fe80::6aec:dbca:a593:a222]) by DM6PR12MB3849.namprd12.prod.outlook.com
+ ([fe80::6aec:dbca:a593:a222%5]) with mapi id 15.20.7409.042; Fri, 5 Apr 2024
+ 12:37:26 +0000
+Date: Fri, 5 Apr 2024 09:37:25 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: "Zeng, Oak" <oak.zeng@intel.com>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Brost, Matthew" <matthew.brost@intel.com>,
+ "Thomas.Hellstrom@linux.intel.com" <Thomas.Hellstrom@linux.intel.com>,
+ "Welty, Brian" <brian.welty@intel.com>,
+ "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>,
+ "Bommu, Krishnaiah" <krishnaiah.bommu@intel.com>,
+ "Vishwanathapura, Niranjana" <niranjana.vishwanathapura@intel.com>,
+ Leon Romanovsky <leon@kernel.org>
+Subject: Re: [PATCH 06/23] drm/xe/svm: Introduce a helper to build sg table
+ from hmm range
+Message-ID: <20240405123725.GD5383@nvidia.com>
+References: <20240117221223.18540-1-oak.zeng@intel.com>
+ <20240117221223.18540-7-oak.zeng@intel.com>
+ <20240405003927.GA11940@nvidia.com>
+ <SA1PR11MB6991E4CDCD61A5D1909BB4EF92032@SA1PR11MB6991.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <SA1PR11MB6991E4CDCD61A5D1909BB4EF92032@SA1PR11MB6991.namprd11.prod.outlook.com>
+X-ClientProxiedBy: BL1PR13CA0286.namprd13.prod.outlook.com
+ (2603:10b6:208:2bc::21) To DM6PR12MB3849.namprd12.prod.outlook.com
+ (2603:10b6:5:1c7::26)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
- <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PULL] drm-misc-next
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3849:EE_|SJ2PR12MB9087:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: q6BLRkHSpryShCq6kpVPIRk8fPUFlpYiifIwdnBeua3LBpRbERfOnACOxqyxjwPzGq2Bw3FYitJY1oeHkUzL1MNAFACQF6jfiDlgGeYRO2CQckl+DK/vQaTPG+PP19JipudL1V4eQviMApK02aG9UJoU1NOYcVVLI5IMkVb1qUW2ZNxv6Ucsuss1IARK+lpNXDa6WPpwp2tVTGPGpuhPR2OA9QDhVVFIoLAcdp9OGbUGPkpfCPxtShphUtMNdImVnob67FK2N1CItn3bnD7yrOy/HzEok8nHAWR44Npp74zAYLxLsayA6XOP8VsAX2JQ9nPjMb/3eY5O7RSHKOugdDp0sxTo7ZxFPmgvoxhTS99soIf8nPzE7PkurNqSzz/pfINsiiHn1tRo8p1j/B9zH+Q3+6yJ7qSWXqofN9q7qj1faXbbJLQx336EOIUEckYCLWR75YsueQOf5b9AsQJZUyV9JfazJv8kaYeSoaawPAUdgJK+DDWPG+eJahkvSmbKcB65zqFWxB98uf2sX94iak3jAXtOgV0giziGNrtM/BZsq+uavClaGXVbs1tFXjbV1BtbHD7xO+ql2NLu1WGXu0Yu7P8cef1qm5bVug0Da5pjNi44bsP1bSn6bFZg/X0JZZPeo4l49BK0CvENhep8+VJ+ks9bUyy0jMkuDP6uIlk=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB3849.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7416005)(1800799015)(376005)(366007); DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?4Yz8CohObqcPKlfCThnkpPwGZd6TNQLKzqLA7uoy/9rfO6UNA1xGsdYHO9sb?=
+ =?us-ascii?Q?8dWbZL4SmJIlZnD0hl4/FuYFNAn0/dkT4KmCxQe7Rod0a/G0GeSDBIzzJD5+?=
+ =?us-ascii?Q?W5oC7Hgkf9RfDHNR0TfyGTrp8LmcYp+DhrDdF76BZJe3tFFDnguh/4EKuSvo?=
+ =?us-ascii?Q?R3mqkkYUnbWXkGz42E9Tp3MkGXf4NIRklHZ8n9yKX4BZyzV8kzMUGoxMVsOE?=
+ =?us-ascii?Q?PYBvINu7B919GvYEMzQK+tYECBbrBdMU/S2Pf/w01c5RbyxJYKHTl85UMHHV?=
+ =?us-ascii?Q?9DolhGt1pWUCQBfdJzvuvDjDlBw61ui7hpINGGidbWDKdxGmGuO13Tnz3SX0?=
+ =?us-ascii?Q?7CZsaJ7BJaBgS+RJ3uW1W8Y4V9MrA+aIoiar3T7dUUho9qpMLbaiGmhorHYD?=
+ =?us-ascii?Q?q8i9I0ga+cFY/p7EKzBXNzYD+Kg6vQzPQy9PJyRscrMwg0zuWCaj622jifjc?=
+ =?us-ascii?Q?1XL8koMRtgqupM/qmJk05Ye8tMNlDUTed5/QpBDpKclTRbBtuaCz6Fq/Mr2X?=
+ =?us-ascii?Q?WxHe/dNQC6o0GKLxD2m69dgRadZhGB0nzAmJM9CuVo446WfJPpOpjHTgNq9v?=
+ =?us-ascii?Q?8Lam1EsFk7m7H/FnYljyVkBoEETdDTRYJaw6EdasRhfaBcfYQ74WSIHuauCG?=
+ =?us-ascii?Q?bxdyRQTKzqad8ch5WHoog5ZGsmEP+dypGEGRKU9pweY8netIYiwFc5g/yAa2?=
+ =?us-ascii?Q?WkfEtwLT9wpABMqrg3II1P2rU/ZefABOKpyFLha+ZK4osybwSGZYgzxBrwh8?=
+ =?us-ascii?Q?TpOKRk+2TSElhTzUq+55Dqi/HLBXLMusm3mWgJ6KttNUym/wzbra8Iy9xJP1?=
+ =?us-ascii?Q?MQtuj2nngXMTTHiwX0xghjHMpwPfvfL4ZY2HTEeGMmV0e8ED65f6L29rf83R?=
+ =?us-ascii?Q?/YRi3010tGdlTENramZNmEzrX6yF2OJHYi7hJunKVlxbTCOlfulMxtnG6acF?=
+ =?us-ascii?Q?1FyRRYBBjnYyps/1cIxtwQ7+f9ztJLwzXWdGqyXJWQZspjj/k8z/WujgLDBf?=
+ =?us-ascii?Q?1RrEzWXdYQZITTglBH1ifIsgGCpmXfeY99ST8QFGrf156uMpBhuelhI9bTdQ?=
+ =?us-ascii?Q?ubYx2sEdg8fpRNePQomF4GQwf9q2Dyym1TzrqWg4oBd5ugutCMmj2uEG3KuX?=
+ =?us-ascii?Q?p0z436fWqhWb08hO8YSG/8CPIUhd71M0shtNw+CGihaYJ9E2DbjgvNekPbMJ?=
+ =?us-ascii?Q?S/USQIt0/zHviDrd0cyFwjllR4BxrE6lsB0oc/zp0Sd1IqtdjI5s3dfkDuc0?=
+ =?us-ascii?Q?f9GGCiFeqjK5PGJ7mbiEQbHCY8bPnK6pNM7Ump8AqdXXviaAQChn8ABR6RCj?=
+ =?us-ascii?Q?gDWZMFwgqQAE+WW7qb6z4ce+gG02ASlG8udU1Wr8RJ83MsKVGlSMCaoBncxV?=
+ =?us-ascii?Q?Dh+7S1tFwy8xqXC5ez76R86dqPIGDMsGapyc7XFJoJ3tnxnGPvj895bHAeFT?=
+ =?us-ascii?Q?+i6A4rXY3TPMVlB6hWN/hoyz6UwV0JD6n57mEzlBNEA/NSk601LUAozUkmvp?=
+ =?us-ascii?Q?sa/0V3pSt2q8YeikbD1q8g9+WXGbLJLbtJfwO7k1R+m64DJJHYoJgdD0Kkuv?=
+ =?us-ascii?Q?Qior9EE52N4q3b6S8FR1VFbwEi0eQzVHl45h0GpZ?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 97432e00-e012-4a67-b930-08dc556d265a
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3849.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2024 12:37:26.4154 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: b1F6yUQEb5M+4Wg28B4u3almhd411/3Lbeo3EOuDCiHi6stJmztSGSrQulNOO/X0
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB9087
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,313 +127,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+On Fri, Apr 05, 2024 at 03:33:10AM +0000, Zeng, Oak wrote:
+> > 
+> > I didn't look at this series a lot but I wanted to make a few
+> > remarks.. This I don't like quite a lot. Yes, the DMA API interaction
+> > with hmm_range_fault is pretty bad, but it should not be hacked
+> > around like this. Leon is working on a series to improve it:
+> > 
+> > https://lore.kernel.org/linux-rdma/cover.1709635535.git.leon@kernel.org/
+> 
+> 
+> I completely agree above codes are really ugly. We definitely want
+> to adapt to a better way. I will spend some time on above series.
+> 
+> > 
+> > Please participate there too. In the mean time you should just call
+> > dma_map_page for every single page like ODP does.
+> 
+> Above codes deal with a case where dma map is not needed. As I
+> understand it, whether we need a dma map depends on the devices
+> topology. For example, when device access host memory or another
+> device's memory through pcie, we need dma mapping; if the connection
+> b/t devices is xelink (similar to nvidia's nvlink), all device's
+> memory can be in same address space, so no dma mapping is needed.
 
-Everyone seems to be out on vacation, so the pull request is pretty empty.
+Then you call dma_map_page to do your DMA side and you avoid it for
+the DEVICE_PRIVATE side. SG list doesn't help this anyhow.
 
-Cheers,
-~Maarten
+> > Also, I tried to follow the large discussion in the end but it was
+> > quite hard to read the text in Lore for some reason.
+> 
+> Did you mean this discussion: https://lore.kernel.org/dri-devel/?q=Making+drm_gpuvm+work+across+gpu+devices? This link works good for me with chrome browser.
 
-drm-misc-next-2024-04-05:
-drm-misc-next for v6.10:
+That is the one I am referring to
 
-Core Changes:
-- Fix DRM_DISPLAY_DP_HELPER dependencies.
+> > I would just opine some general points on how I see hmm_range_fault
+> > being used by drivers.
+> > 
+> > First of all, the device should have a private page table. At least
+> > one, but ideally many. Obviously it should work, so I found it a bit
+> > puzzling the talk about problems with virtualization. Either the
+> > private page table works virtualized, including faults, or it should
+> > not be available..
+>
+> To be very honest, I was also very confused. In this series, I had
+> one very fundamental assumption that with hmm any valid cpu virtual
+> address is also a valid gpu virtual address. But Christian had a
+> very strong opinion that the gpu va can have an offset to cpu va. He
+> mentioned a failed use case with amdkfd and claimed an offset can
+> solve their problem.
 
-Driver Changes:
-- i2c and polling fixes to ast.
-- Small fixes to panthor.
-- Allow IRQ to share GPIO pins in bridge/adv7511.
-The following changes since commit 39cd87c4eb2b893354f3b850f916353f2658ae6f:
+Offset is something different, I said the VM's view of the page table
+should fully work. You shouldn't get into a weird situation where the
+VM is populating the page table and can't handle faults or something.
 
-   Linux 6.9-rc2 (2024-03-31 14:32:39 -0700)
+If the VMM has a weird design where there is only one page table and
+it needs to partition space based on slicing it into regions then
+fine, but the delegated region to the guest OS should still work
+fully.
 
-are available in the Git repository at:
+> > Or it is a selective mirror where it copies part of the mm page table
+> > into a "vma" of a possibly shared device page table. The
+> > hmm_range_fault bit would exclusively own it's bit of VMA.
+> 
+> Can you explain what is "hmm_range_fault bit"?
 
-   https://gitlab.freedesktop.org/drm/misc/kernel.git 
-tags/drm-misc-next-2024-04-05
+I mean if you setup a mirror VMA in a device private page table then that
+range of VA will be owned by the hmm_range_fault code and will mirror
+a subset of a mm into that VMA. This is the offset you mention
+above. The MM's VA and the device private page table VA do not have to
+be the same (eg we implement this option in RDMA's ODP)
 
-for you to fetch changes up to d1ef8fc18be6adbbffdee06fbb5b33699e2852be:
+A 1:1 SVA mapping is a special case of this where there is a single
+GPU VMA that spans the entire process address space with a 1:1 VA (no
+offset).
 
-   drm: fix DRM_DISPLAY_DP_HELPER dependencies (2024-04-04 16:20:57 +0200)
+> Do you think register a huge mmu notifier to cover the whole address
+> space would be good? I don't know here but there would be much more
+> unnecessary callbacks from mmu to device driver.
 
-----------------------------------------------------------------
-drm-misc-next for v6.10:
+Yes. IMHO you should try to optimize the invalidations away in driver
+logic not through dynamic mmu notifiers. Installing and removing a
+notifier is very expensive.
 
-Core Changes:
-- Fix DRM_DISPLAY_DP_HELPER dependencies.
+> Similarly, we create range only the fly for those range that is
+> accessed by gpu. But we have some idea to keep one gigantic
+> range/VMA representing the whole address space while creating only
+> some "gpu page table state range" on the fly. This idea requires
+> some refactor to our xe driver and we will evaluate it more to
+> decide whether we want to go this way.
 
-Driver Changes:
-- i2c and polling fixes to ast.
-- Small fixes to panthor.
-- Allow IRQ to share GPIO pins in bridge/adv7511.
+This is a better direction.
+ 
+> > I also agree with the general spirit of the remarks that there should
+> > not be a process binding or any kind of "global" character
+> > device. 
+> 
+> Even though a global pseudo device looks bad, it does come with some
+> benefit. For example, if you want to set a memory attributes to a
+> shared virtual address range b/t all devices, you can set such
+> attributes through a ioctl of the global device. We have agreed to
+> remove our global character device and we will repeat the memory
+> attributes setting on all devices one by one.
 
-----------------------------------------------------------------
-Adam Ford (1):
-       drm/bridge: adv7511: Allow IRQ to share GPIO pins
+That implies you have a global shared device private page table which
+is sort of impossible because of how the DMA API works.
 
-Adrián Larumbe (1):
-       ABI: sysfs-driver-panfrost-profiling: fix indentation problem
+Having the kernel iterate over all the private page tables vs having
+the userspace iterate over all the private page tables doesn't seem
+like a worthwile difference to justify a global cdev.
 
-Arnd Bergmann (1):
-       drm: fix DRM_DISPLAY_DP_HELPER dependencies
+> Is /dev/nvidia-uvm a global character device for uvm purpose?
 
-Boris Brezillon (3):
-       drm/panthor: Fix IO-page mmap() for 32-bit userspace on 64-bit kernel
-       drm/panthor: Fix ordering in _irq_suspend()
-       drm/panthor: Drop the dev_enter/exit() sections in 
-_irq_suspend/resume()
+No idea, I wouldn't assume anything the nvidia drivers do is aligned
+with what upstream expects.
 
-Chris Morgan (3):
-       dt-bindings: vendor-prefix: Add prefix for GameForce
-       dt-bindings: display: Add GameForce Chi Panel
-       drm/panel: st7703: Add GameForce Chi Panel Support
-
-Christian Hewitt (1):
-       drm/meson: vclk: fix calculation of 59.94 fractional rates
-
-Dan Carpenter (3):
-       drm/panthor: Fix a couple -ENOMEM error codes
-       drm/panthor: Fix error code in panthor_gpu_init()
-       drm/panthor: Fix off by one in panthor_fw_get_cs_iface()
-
-Harshit Mogalapalli (2):
-       drm/panthor: Fix NULL vs IS_ERR() bug in panthor_probe()
-       drm/panthor: Don't return NULL from panthor_vm_get_heap_pool()
-
-Ian Forbes (1):
-       drm/vmwgfx: Remove unused code
-
-Liviu Dudau (2):
-       drm/panthor: Cleanup unused variable 'cookie'
-       drm/panthor: Fix some kerneldoc warnings
-
-Nathan Chancellor (1):
-       drm/panthor: Fix clang -Wunused-but-set-variable in tick_ctx_apply()
-
-Thomas Zimmermann (14):
-       Merge drm/drm-next into drm-misc-next
-       drm/ast: Include <linux/of.h> where necessary
-       drm/ast: Fail probing if DDC channel could not be initialized
-       drm/ast: Remove struct ast_{vga,sil165}_connector
-       drm/ast: Allocate instance of struct ast_i2c_chan with managed 
-helpers
-       drm/ast: Move DDC code to ast_ddc.{c,h}
-       drm/ast: Rename struct ast_i2c_chan to struct ast_ddc
-       drm/ast: Pass AST device to ast_ddc_create()
-       drm/ast: Store AST device in struct ast_ddc
-       drm/ast: Rename struct i2c_algo_bit_data callbacks and their 
-parameters
-       drm/ast: Acquire I/O-register lock in DDC code
-       drm/ast: Use drm_connector_helper_get_modes()
-       drm/ast: Implement polling for VGA and SIL164 connectors
-       drm/ast: Automatically clean up poll helper
-
-  .../ABI/testing/sysfs-driver-panfrost-profiling    |   10 +
-  .../bindings/display/bridge/lvds-codec.yaml        |    1 +
-  .../bindings/display/panel/ilitek,ili9881c.yaml    |    1 +
-  .../bindings/display/panel/novatek,nt35950.yaml    |    3 +-
-  .../bindings/display/panel/novatek,nt36523.yaml    |   25 +-
-  .../bindings/display/panel/panel-common-dual.yaml  |   47 +
-  .../bindings/display/panel/panel-simple-dsi.yaml   |    2 +
-  .../bindings/display/panel/panel-simple.yaml       |    4 +
-  .../display/panel/rocktech,jh057n00900.yaml        |    2 +
-  .../bindings/display/panel/sony,td4353-jdi.yaml    |    2 +
-  .../bindings/gpu/arm,mali-valhall-csf.yaml         |  147 +
-  .../devicetree/bindings/vendor-prefixes.yaml       |    4 +
-  Documentation/gpu/driver-uapi.rst                  |    5 +
-  Documentation/gpu/panfrost.rst                     |    9 +
-  MAINTAINERS                                        |  183 +-
-  arch/m68k/include/asm/pgtable.h                    |    2 +
-  arch/parisc/configs/generic-32bit_defconfig        |    2 +-
-  drivers/gpu/drm/Kconfig                            |   23 +-
-  drivers/gpu/drm/Makefile                           |   29 +
-  drivers/gpu/drm/amd/amdgpu/Kconfig                 |   12 +-
-  drivers/gpu/drm/amd/amdgpu/amdgpu_object.c         |    6 +
-  drivers/gpu/drm/ast/Makefile                       |   10 +-
-  drivers/gpu/drm/ast/{ast_i2c.c => ast_ddc.c}       |  120 +-
-  drivers/gpu/drm/ast/ast_ddc.h                      |   20 +
-  drivers/gpu/drm/ast/ast_drv.c                      |    1 +
-  drivers/gpu/drm/ast/ast_drv.h                      |   39 +-
-  drivers/gpu/drm/ast/ast_main.c                     |    1 +
-  drivers/gpu/drm/ast/ast_mode.c                     |  147 +-
-  drivers/gpu/drm/bridge/Kconfig                     |   29 +-
-  drivers/gpu/drm/bridge/adv7511/adv7511_drv.c       |    8 +-
-  drivers/gpu/drm/bridge/analogix/Kconfig            |   16 +-
-  drivers/gpu/drm/bridge/cadence/Kconfig             |    8 +-
-  drivers/gpu/drm/bridge/imx/Kconfig                 |    4 +-
-  drivers/gpu/drm/bridge/ite-it66121.c               |   25 +-
-  drivers/gpu/drm/bridge/synopsys/Kconfig            |    4 +-
-  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          |   31 +-
-  drivers/gpu/drm/bridge/thc63lvd1024.c              |   21 +-
-  drivers/gpu/drm/ci/test.yml                        |    6 +-
-  drivers/gpu/drm/display/Kconfig                    |   71 +-
-  drivers/gpu/drm/display/Makefile                   |    6 +-
-  drivers/gpu/drm/display/drm_dp_helper.c            |    2 +-
-  drivers/gpu/drm/display/drm_dp_helper_internal.h   |    2 +-
-  .../gpu/drm/display/drm_dp_mst_topology_internal.h |    4 +-
-  drivers/gpu/drm/display/drm_dp_tunnel.c            |   10 +-
-  drivers/gpu/drm/drm_bridge.c                       |   24 +-
-  drivers/gpu/drm/drm_client.c                       |   92 +-
-  drivers/gpu/drm/drm_crtc_helper_internal.h         |   15 +-
-  drivers/gpu/drm/drm_crtc_internal.h                |    7 +
-  drivers/gpu/drm/drm_edid.c                         |  147 +-
-  drivers/gpu/drm/drm_fbdev_generic.c                |    4 +-
-  drivers/gpu/drm/drm_gem.c                          |   34 +-
-  drivers/gpu/drm/drm_gem_shmem_helper.c             |    7 +-
-  drivers/gpu/drm/drm_gem_vram_helper.c              |  101 +-
-  drivers/gpu/drm/drm_internal.h                     |    7 +
-  drivers/gpu/drm/drm_probe_helper.c                 |   56 +
-  drivers/gpu/drm/exynos/Kconfig                     |    4 +-
-  drivers/gpu/drm/gma500/oaktrail_lvds.c             |    2 -
-  drivers/gpu/drm/i915/Kconfig                       |    8 +-
-  drivers/gpu/drm/i915/Kconfig.debug                 |    4 +-
-  drivers/gpu/drm/imagination/pvr_vm_mips.c          |    4 +-
-  drivers/gpu/drm/imx/ipuv3/Kconfig                  |    5 +-
-  drivers/gpu/drm/ingenic/Kconfig                    |    2 +-
-  drivers/gpu/drm/loongson/lsdc_gem.c                |   13 +-
-  drivers/gpu/drm/mediatek/Kconfig                   |    6 +-
-  drivers/gpu/drm/meson/Kconfig                      |    2 +-
-  drivers/gpu/drm/meson/meson_vclk.c                 |    6 +-
-  drivers/gpu/drm/msm/Kconfig                        |    8 +-
-  drivers/gpu/drm/msm/msm_gem.c                      |   20 +-
-  drivers/gpu/drm/msm/msm_gem.h                      |    4 +-
-  drivers/gpu/drm/msm/msm_gem_prime.c                |   20 +-
-  drivers/gpu/drm/mxsfb/lcdif_drv.c                  |    6 +-
-  drivers/gpu/drm/nouveau/Kconfig                    |   10 +-
-  drivers/gpu/drm/nouveau/nouveau_abi16.c            |   20 +-
-  drivers/gpu/drm/nouveau/nouveau_abi16.h            |   12 -
-  drivers/gpu/drm/nouveau/nouveau_bo.c               |   43 +-
-  drivers/gpu/drm/nouveau/nouveau_bo.h               |    2 +
-  drivers/gpu/drm/nouveau/nouveau_prime.c            |    8 +-
-  drivers/gpu/drm/nouveau/nvkm/engine/disp/r535.c    |    2 +-
-  drivers/gpu/drm/omapdrm/Kconfig                    |    2 +-
-  drivers/gpu/drm/omapdrm/omap_fbdev.c               |   40 +-
-  drivers/gpu/drm/panel/Kconfig                      |   41 +-
-  drivers/gpu/drm/panel/Makefile                     |    1 +
-  drivers/gpu/drm/panel/panel-edp.c                  |   85 +-
-  drivers/gpu/drm/panel/panel-ilitek-ili9881c.c      |  228 +-
-  drivers/gpu/drm/panel/panel-leadtek-ltk050h3146w.c |    5 +-
-  drivers/gpu/drm/panel/panel-samsung-atna33xc20.c   |   22 +-
-  drivers/gpu/drm/panel/panel-samsung-s6e3fa7.c      |  285 ++
-  drivers/gpu/drm/panel/panel-simple.c               |   58 +
-  drivers/gpu/drm/panel/panel-sitronix-st7703.c      |   87 +
-  drivers/gpu/drm/panfrost/Makefile                  |    2 -
-  drivers/gpu/drm/panfrost/panfrost_debugfs.c        |   21 -
-  drivers/gpu/drm/panfrost/panfrost_debugfs.h        |   14 -
-  drivers/gpu/drm/panfrost/panfrost_device.h         |    2 +-
-  drivers/gpu/drm/panfrost/panfrost_drv.c            |   50 +-
-  drivers/gpu/drm/panfrost/panfrost_job.c            |    2 +-
-  drivers/gpu/drm/panthor/Kconfig                    |   23 +
-  drivers/gpu/drm/panthor/Makefile                   |   14 +
-  drivers/gpu/drm/panthor/panthor_devfreq.c          |  283 ++
-  drivers/gpu/drm/panthor/panthor_devfreq.h          |   21 +
-  drivers/gpu/drm/panthor/panthor_device.c           |  561 ++++
-  drivers/gpu/drm/panthor/panthor_device.h           |  357 ++
-  drivers/gpu/drm/panthor/panthor_drv.c              | 1488 +++++++++
-  drivers/gpu/drm/panthor/panthor_fw.c               | 1362 ++++++++
-  drivers/gpu/drm/panthor/panthor_fw.h               |  503 +++
-  drivers/gpu/drm/panthor/panthor_gem.c              |  230 ++
-  drivers/gpu/drm/panthor/panthor_gem.h              |  142 +
-  drivers/gpu/drm/panthor/panthor_gpu.c              |  482 +++
-  drivers/gpu/drm/panthor/panthor_gpu.h              |   52 +
-  drivers/gpu/drm/panthor/panthor_heap.c             |  597 ++++
-  drivers/gpu/drm/panthor/panthor_heap.h             |   39 +
-  drivers/gpu/drm/panthor/panthor_mmu.c              | 2774 ++++++++++++++++
-  drivers/gpu/drm/panthor/panthor_mmu.h              |  102 +
-  drivers/gpu/drm/panthor/panthor_regs.h             |  239 ++
-  drivers/gpu/drm/panthor/panthor_sched.c            | 3499 
-++++++++++++++++++++
-  drivers/gpu/drm/panthor/panthor_sched.h            |   50 +
-  drivers/gpu/drm/qxl/qxl_object.c                   |   26 +-
-  drivers/gpu/drm/qxl/qxl_object.h                   |    2 +
-  drivers/gpu/drm/qxl/qxl_prime.c                    |    4 +-
-  drivers/gpu/drm/radeon/Kconfig                     |    8 +-
-  drivers/gpu/drm/radeon/radeon_prime.c              |   11 -
-  drivers/gpu/drm/renesas/rcar-du/Kconfig            |    2 +-
-  drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.c       |    3 -
-  drivers/gpu/drm/rockchip/Kconfig                   |   10 +-
-  drivers/gpu/drm/sun4i/Kconfig                      |    2 +-
-  drivers/gpu/drm/tegra/Kconfig                      |    8 +-
-  drivers/gpu/drm/tidss/tidss_kms.c                  |    3 +-
-  drivers/gpu/drm/ttm/ttm_bo.c                       |  231 +-
-  drivers/gpu/drm/ttm/ttm_resource.c                 |   17 +-
-  drivers/gpu/drm/vc4/Kconfig                        |   10 +-
-  drivers/gpu/drm/vmwgfx/ttm_object.c                |    4 -
-  drivers/gpu/drm/vmwgfx/vmwgfx_drv.h                |   27 -
-  drivers/gpu/drm/vmwgfx/vmwgfx_gem.c                |   25 +-
-  drivers/gpu/drm/vmwgfx/vmwgfx_kms.c                |   12 -
-  drivers/gpu/drm/vmwgfx/vmwgfx_kms.h                |   16 -
-  drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c               |    3 -
-  drivers/gpu/drm/vmwgfx/vmwgfx_ttm_glue.c           |  110 -
-  drivers/gpu/drm/vmwgfx/vmwgfx_validation.c         |   19 +-
-  drivers/gpu/drm/vmwgfx/vmwgfx_validation.h         |    7 -
-  drivers/gpu/drm/xe/Kconfig                         |   13 +-
-  drivers/gpu/drm/xlnx/Kconfig                       |    8 +-
-  drivers/gpu/drm/xlnx/zynqmp_dp.c                   |    4 +
-  drivers/video/fbdev/core/Kconfig                   |    6 +
-  include/drm/amd_asic_type.h                        |    3 +
-  include/drm/bridge/samsung-dsim.h                  |    4 +-
-  include/drm/display/drm_dp_helper.h                |   15 +-
-  include/drm/display/drm_dp_mst_helper.h            |    1 -
-  include/drm/drm_client.h                           |   10 +
-  include/drm/drm_debugfs_crc.h                      |    8 +-
-  include/drm/drm_edid.h                             |   12 +-
-  include/drm/drm_encoder_slave.h                    |   91 +-
-  include/drm/drm_format_helper.h                    |    1 +
-  include/drm/drm_gem.h                              |    3 +
-  include/drm/drm_gem_shmem_helper.h                 |    7 +-
-  include/drm/drm_gem_vram_helper.h                  |    1 -
-  include/drm/drm_kunit_helpers.h                    |    2 +-
-  include/drm/drm_lease.h                            |    2 +
-  include/drm/drm_of.h                               |    1 +
-  include/drm/drm_probe_helper.h                     |    6 +
-  include/drm/drm_suballoc.h                         |    2 +-
-  include/drm/i2c/ch7006.h                           |    1 +
-  include/drm/i2c/sil164.h                           |    1 +
-  include/drm/i915_gsc_proxy_mei_interface.h         |    4 +-
-  include/drm/i915_hdcp_interface.h                  |   18 +-
-  include/drm/i915_pxp_tee_interface.h               |   27 +-
-  include/drm/ttm/ttm_bo.h                           |   17 +-
-  include/drm/ttm/ttm_caching.h                      |    2 +
-  include/drm/ttm/ttm_execbuf_util.h                 |    7 +-
-  include/drm/ttm/ttm_kmap_iter.h                    |    4 +-
-  include/drm/ttm/ttm_pool.h                         |    5 +-
-  include/drm/ttm/ttm_resource.h                     |    6 +-
-  include/linux/fb.h                                 |    4 +
-  include/uapi/drm/nouveau_drm.h                     |   22 +
-  include/uapi/drm/panthor_drm.h                     |  945 ++++++
-  173 files changed, 16184 insertions(+), 1211 deletions(-)
-  create mode 100644 
-Documentation/ABI/testing/sysfs-driver-panfrost-profiling
-  create mode 100644 
-Documentation/devicetree/bindings/display/panel/panel-common-dual.yaml
-  create mode 100644 
-Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
-  rename drivers/gpu/drm/ast/{ast_i2c.c => ast_ddc.c} (54%)
-  create mode 100644 drivers/gpu/drm/ast/ast_ddc.h
-  create mode 100644 drivers/gpu/drm/panel/panel-samsung-s6e3fa7.c
-  delete mode 100644 drivers/gpu/drm/panfrost/panfrost_debugfs.c
-  delete mode 100644 drivers/gpu/drm/panfrost/panfrost_debugfs.h
-  create mode 100644 drivers/gpu/drm/panthor/Kconfig
-  create mode 100644 drivers/gpu/drm/panthor/Makefile
-  create mode 100644 drivers/gpu/drm/panthor/panthor_devfreq.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_devfreq.h
-  create mode 100644 drivers/gpu/drm/panthor/panthor_device.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_device.h
-  create mode 100644 drivers/gpu/drm/panthor/panthor_drv.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_fw.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_fw.h
-  create mode 100644 drivers/gpu/drm/panthor/panthor_gem.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_gem.h
-  create mode 100644 drivers/gpu/drm/panthor/panthor_gpu.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_gpu.h
-  create mode 100644 drivers/gpu/drm/panthor/panthor_heap.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_heap.h
-  create mode 100644 drivers/gpu/drm/panthor/panthor_mmu.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_mmu.h
-  create mode 100644 drivers/gpu/drm/panthor/panthor_regs.h
-  create mode 100644 drivers/gpu/drm/panthor/panthor_sched.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_sched.h
-  delete mode 100644 drivers/gpu/drm/vmwgfx/vmwgfx_ttm_glue.c
-  create mode 100644 include/uapi/drm/panthor_drm.h
+Jason
