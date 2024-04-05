@@ -4,142 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 408A0C67861
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 20:16:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 995C4CD1296
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 20:17:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2FAE10EED8;
-	Fri,  5 Apr 2024 20:16:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C25810E255;
+	Fri,  5 Apr 2024 20:17:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ixn5KtRF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GKmGyo+Y";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E10E10EED8
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Apr 2024 20:16:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D8DE10E906
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 Apr 2024 20:17:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712348214; x=1743884214;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=CaUBkKzBa+1lSRKgqeFdC1HlbcXhCAOzh3YKzx6Kx1M=;
- b=Ixn5KtRFcgMARc/U8kU2KUHPYrqpDASZwFoEq2bhDaJMObR1XPKoNr9N
- JofYPrTJUAqWHpM4xBJGH3fXZnmqmIdqmNgbf77hdf/yLFZozOBirJrlF
- KZAkBfUKM/LlNwsKAMkeXDiBwIVK7i2Z7UMICHI8D17OlMuxOIt9jkB61
- evGASLtTieJ0WEtMFESg1vbTbFb2hTW4aTxM+qa61Xf3F4B29uJxZztcF
- qIQZyHPPzSih9BvAAnIczDKs6VzZ5t2s7t1ct84+rIwmQVAtHGNG1+mKy
- jTVWpQ0Ievrk/VADQDShDbxmmWucRj3nyhoTrYjLKVSD2/0SD3xW+XAsF Q==;
-X-CSE-ConnectionGUID: QB9YQg3iRqWPwv5hsnToGQ==
-X-CSE-MsgGUID: MTrl3AhaTfGNGGQ+s1bT+w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11035"; a="7573933"
+ t=1712348255; x=1743884255;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zRGEQj22RP5V28bnerzNuQXbeTNctbFwMMHfMLsdAM8=;
+ b=GKmGyo+YUhrJ+UsAmYSpcqedM0N9k4Bafp6JxCxtt41nzm6KVwMJgfJ7
+ xuiwRUTKVCn5LV3dfW/W1XswWUqpzgil/V1oZGNlfd+Lhv2EWjVeWMlA9
+ XR8O15q2NYcc/1jIit3euG175nKE5c/CyuckbyiD96LP7FIBK2stRunq9
+ vsIzR5s50uIqF3mIS42d/aLayocCXZSyzevZkeL+uCggp2/Cie/2c5eoZ
+ KNd055Q3gMoZKCwT1+Fw/Bte6AB4p58XL7rNcEo2tUjT+qk8N0o+u5iwM
+ xvQsQlZXxpOolRhpL+SkY5z/gkOCOgHz4G6vEjmSxzqohpEZO/8vIVVAa g==;
+X-CSE-ConnectionGUID: vO+avheZS5yr9fgJtiTLzw==
+X-CSE-MsgGUID: KyxLl+xmSYmaLmngdSgTgQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11035"; a="7788590"
 X-IronPort-AV: E=Sophos;i="6.07,182,1708416000"; 
-   d="scan'208";a="7573933"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2024 13:16:53 -0700
-X-CSE-ConnectionGUID: MumoMlX7RSCqfoGYaOf+hw==
-X-CSE-MsgGUID: JMGpKeQYR46fvCcPDfTyiw==
+   d="scan'208";a="7788590"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2024 13:17:34 -0700
+X-CSE-ConnectionGUID: EMaIzJpwSkqwrNbo+ydTDQ==
+X-CSE-MsgGUID: 3hFz/OH+Q9uU95bh1r0DVQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,182,1708416000"; d="scan'208";a="23906250"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 05 Apr 2024 13:16:51 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 5 Apr 2024 13:16:50 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 5 Apr 2024 13:16:50 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Fri, 5 Apr 2024 13:16:50 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Fri, 5 Apr 2024 13:15:56 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MEDaDGKuve5RFxPyNZ1tbD0S6llY4Ub7/Fc09xv9S3+wYJtEfpefUj5DQeO+ysxfvMMfqoRF+ejrIdgUnbehQwiB6KP0/vu9JL4IQwpHFs8TckdszL38Zw71SqDVsKl0ujsI2oGHjBm0GbegK51IXg4gc0KIFL/I6bI8GZ/FT2vzAAysdG/ZKJvVtADR7/cWidIs+L2JDkhTUfKV3eJ1FsjtrL8+JznuM+qXQMUfZ5VHHRlFWutFFAcXg3w4nyRLyXIiNlpTH8XkJZNynI/UVAuf2pC+0l0ucHF9OqZ8OxWVtV+yrK1ikt1bP0AT+IZO/eWerkGhou1jIW18OE5uFQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1DfPbDZ3IFuPQT9KYBHt3afkrX4FuDquaMikEVbtmc8=;
- b=VwV7lnPQat4n65Y5Qbt0Y5t8w4IlH701C8rMDjK+M3yhTq8RNi9JBYv+h1rpHtnNl8bcTAyxfivS9fOTsCqVaqrAAK//BTnWmSc1TsfctFXOz+2CIykFrIxImVVfl+wZHw8vBNEr3BG1ehEQD4swLVZ+VPomD9g1F5FuYmBe7MB3jVSLo/2M3vl5LBKLA1Hc4AT5mEuk4VDo4BZR5d1fjJIb0/lZEMajcsR+x3078UK8JhHGnys9G6rpMVa0F2PEfMLaYjup5DqHIgJyHxq0DhB/I9OYu3zJdGGnbKcqmmYV5L4Fesf8W7JHMeFx+li+1JjLD60kWXiIwD7HQiK7Og==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by CH3PR11MB8364.namprd11.prod.outlook.com (2603:10b6:610:174::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.26; Fri, 5 Apr
- 2024 20:15:53 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::e9dd:320:976f:e257]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::e9dd:320:976f:e257%4]) with mapi id 15.20.7452.019; Fri, 5 Apr 2024
- 20:15:53 +0000
-Date: Fri, 5 Apr 2024 15:15:47 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [RFC PATCH] drm/xe: Wedged state PoC
-Message-ID: <yl2jtllbhav644f5bosst4zfjuk55isf4yt7csmgnm54xibqux@baym2l2smhx6>
-X-Patchwork-Hint: comment
-References: <20240405195358.210783-1-matthew.brost@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20240405195358.210783-1-matthew.brost@intel.com>
-X-ClientProxiedBy: BY3PR05CA0019.namprd05.prod.outlook.com
- (2603:10b6:a03:254::24) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+X-IronPort-AV: E=Sophos;i="6.07,182,1708416000"; d="scan'208";a="23998502"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2024 13:17:33 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Cc: Matthew Brost <matthew.brost@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [RFC PATCH v2] drm/xe: Wedged state PoC
+Date: Fri,  5 Apr 2024 13:17:59 -0700
+Message-Id: <20240405201759.217919-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|CH3PR11MB8364:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: UeRt4xx9N9d5/kD+Pc1U9F2u38pq6VLuBXkGsFBR209pCStb4vEyHhSL7eQlgbs/0pyijuOfyb2dmVzJ3E7+Z7wahD12hzWGGqO9Exnw4I+7W+yE71yDQ6W7tPeKucB5s3h5EMu3FXZmcLRlZsW05rfq8cwPl5sUaU1Soj6g17ypCskqkRZxZ9GfAt9M+mMzIhEbeDeocnGaV+hAbs75rSYGl/E68q+eEQYKwuZz4aPPWMbAuCQlCabpHXgmtGg0m8UIw93vlpNLvEUKxzWrJetv9gUcyK/4T/qJBF1PVZF3sgFL4XjPNTWdrDTRD768LAaYAEmxB5U3qriAehGR7/Dm34mNV4tsinrUif7eIIoIktlLbkQQgx/FJxLz0EBKDXWtfjbTc/YUIms71GLZ+woSrXI4L/hiqVt+BR3Tnww3+gn1LhcRh1X1uy+BqtCSfR4j04JIOuOaqDPIqB4hH4RDp4uLsF//oLYuY7r3ki3y9EDw4slYBs19KmUmL3AQzTLy2Bsyn79xhzBQxv8P+BAgVLd/s8bff3LTH/F8gltxtA/LbRABcEdharj0QEkviQH075vQYw43QQjHfmQSzqVR2lkAC648K2LHHvTgMom5L2FUqsYp1yPthffBBl1q
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(376005)(366007); DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?eqXtxTIJKBtBHl9I6N0vFLpH4JkCflZvmvqFvXy2vR/k2VQ5djRBUsxiGl1D?=
- =?us-ascii?Q?AVVWDVCA5FeESEiyd2rzSCCGbyxly+y1TTL6YiQy2sbA19mtv7JpxJD4kEWG?=
- =?us-ascii?Q?56H7gM6NynnlrdqrmKO0TPdfZF0M7OroJ5SWZt3/mxei0H9HXWMD/9x4wXMF?=
- =?us-ascii?Q?w7+5yO0WS+E3e8YccSJZ+zB+wryi9ziXH9BtdNGGy6hrc9YotLUpYb1V6EYn?=
- =?us-ascii?Q?rfTGqcbbLocQ/w/fylH9LfwHnxf62W6qZ0VmJm7ZZOYCGcoZ5JqNpYvM3arC?=
- =?us-ascii?Q?C3f8ZM8QYn00m3kuRl3YDYbtVNJAvDwHINWmkU7twD8gW+uzxOerJ5phZHHN?=
- =?us-ascii?Q?UqFd3RSIv3pbt1kMiXHuLhD/g06UHzBDK5aW2dxvZg7hN+t8IY9VKPJUJvnl?=
- =?us-ascii?Q?GePYDsGAL/Zr5yi+LvJHYoYUFP5QD5PisrlqwPWpt9QxEaZoXIKC1bHrJcpl?=
- =?us-ascii?Q?s5+Iey+ftggIgnLDQklO/fs3LIkD4zfUTsqF/0eNp+82TnFB2D8ORF3QSVUa?=
- =?us-ascii?Q?g8/mIyuHxf37nvr6nQQcw6D/t53HKnE25GYHdVowl6c3VDCvUF3wwvURcNL9?=
- =?us-ascii?Q?ncpX+1CIvulVUw0XY3kheue53XrN3bTn2MGO9jwgcWuOzsUfcB7LoYe7OkmS?=
- =?us-ascii?Q?nEYzyzaQL5CjIHChr+EA3qVcwmwwmXSyYakL9v8+QW1ovu3FImmoNEIuvebJ?=
- =?us-ascii?Q?s4PD7PJg6P7wu9TDq+u1KKpZY193KkewtJcXPxEtcFSeC9nySa4Qs3/5nl5T?=
- =?us-ascii?Q?zzO8WDJrEZ0wsTvYn39c4fMLtW/QlL9miE257zPE/RnObk+uRIU1X07cExl1?=
- =?us-ascii?Q?xvzbmDeJ1ZOW2MqVRztfuWp/LB3wXQEw6KlXTJ+ppUu9rG3rKKyUv162XHJ+?=
- =?us-ascii?Q?HPvf4FTtJVxCUiEw1nIhca6fibRHwMhvnFmbXFZzxXbkbQvpg5bhEcG+cpud?=
- =?us-ascii?Q?lnsQ82e106+nsRX82VWfzZt+tolS6T0D/yFlsr1d83VpJCPwBC2/h4bAMwUY?=
- =?us-ascii?Q?pF9taqUEbrLHgAXn1DYY5FmTOZ5o9yNAVLwzHPKopOyEpjk+yC1uIMzyYTT/?=
- =?us-ascii?Q?3Zq/lLDyZUlAqrNw+Rjq+GJXirgLu7vt80ujbDJx3/r9/PARiYJYnw24+rQH?=
- =?us-ascii?Q?VArn9VssE/4D+2q4PPyBK0e4LOLhRsJ7h0FF4+RZ0a2Ym8hIB/0RD6OrNvto?=
- =?us-ascii?Q?xJBVvvXNHOY3lactvLpJTiMAsg4uvAxTUyRZbJhz2jZ6TKvVevHlG2dLUY2K?=
- =?us-ascii?Q?3JQejmwQdDD0captMBj6qYuqqrEiFvKFScer6yrTfj6fXnLwIepCMBKaLI4t?=
- =?us-ascii?Q?KpksprdULilrs50SCfTnjW6yFyjKF0JFhCOR+0PGXVtjC/Pq4lAyhT7LAFju?=
- =?us-ascii?Q?NIBTio/M5FaIOuNdK7/9kL8BE6+nDZe9uM2reZlgwlSP6cg6O4WRPD7G0zP1?=
- =?us-ascii?Q?Qi5N9ucWVipk07pAZP9nguvenb66l+NBCdcJgnFc8OJUOHsStgeKtuOC2gDw?=
- =?us-ascii?Q?aBxxloHX6y6Nd3QlbUGOh7eczrZO0ltF//hPTZ7MtZtzz8J+Gf4HLOi/SL6i?=
- =?us-ascii?Q?h0B5g1slCOt8EFs3RbCqLH786oCy8h+3hzcybh4KmGdEtu2DvzAPkOUJNjHR?=
- =?us-ascii?Q?eQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8dad3334-1c72-4ed5-7221-08dc55ad318d
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2024 20:15:53.1147 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: he2BVruhUOnbl978HYcyeRsC3h6gnjWJFKP8qLFFliA3l+1IxKk2PAy4+iG6BsZpA7CyE+sHrPQTzoYVTwABSsdcgFmQnTMZiwMNo2KIKYQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8364
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,647 +66,664 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Apr 05, 2024 at 12:53:58PM -0700, Matthew Brost wrote:
->Simple PoC for wedged state based on [1].
->
->Expands on [2] by taking a ref to all exec queues when a jobs times out
->and stopping all interaction with the GuC. Ref to exec queues dropped on
->module unload. The idea being if we have ref to the exec queue the state
+Simple PoC for wedged state based on [1].
 
-  ^^^^^^^^^^^^^
+Expands on [2] by taking a ref to all exec queues when a jobs times out
+and stopping all interaction with the GuC. Ref to exec queues dropped on
+module unload. The idea being if we have ref to the exec queue the state
+associated exec queue / GuC state can be examined via debugfs, memory
+debug tools, etc... Jobs are currently canceled and cleanup natrually as
+they do not hold much state aside from batch address and seqno. This can
+be revisited if needed.
 
-AFAICS you added the unref in guc_submit_fini(), so I guess here you
-meant module unbind?
+v2:
+ - Fix unload after Rodrigo shared script to remove devcore dump
 
-Lucas De Marchi
+[1] https://patchwork.freedesktop.org/series/131998/
+[2] https://patchwork.freedesktop.org/patch/586968/?series=131998&rev=1
 
->associated exec queue / GuC state can be examined via debugfs, memory
->debug tools, etc... Jobs are currently canceled and cleanup natrually as
->they do not hold much state aside from batch address and seqno. This can
->be revisited if needed.
->
->[1] https://patchwork.freedesktop.org/series/131998/
->[2] https://patchwork.freedesktop.org/patch/586968/?series=131998&rev=1
->
->Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->---
-> drivers/gpu/drm/xe/xe_devcoredump.c  |  2 +-
-> drivers/gpu/drm/xe/xe_device.c       | 38 +++++++++++
-> drivers/gpu/drm/xe/xe_device.h       |  7 ++
-> drivers/gpu/drm/xe/xe_device_types.h |  3 +
-> drivers/gpu/drm/xe/xe_exec_queue.h   |  9 +++
-> drivers/gpu/drm/xe/xe_gt.c           |  5 +-
-> drivers/gpu/drm/xe/xe_guc.c          | 41 +++++-------
-> drivers/gpu/drm/xe/xe_guc_ads.c      |  9 ++-
-> drivers/gpu/drm/xe/xe_guc_ct.c       |  2 +-
-> drivers/gpu/drm/xe/xe_guc_pc.c       |  3 +
-> drivers/gpu/drm/xe/xe_guc_submit.c   | 99 ++++++++++++++++++----------
-> drivers/gpu/drm/xe/xe_guc_submit.h   |  4 +-
-> drivers/gpu/drm/xe/xe_module.c       |  5 ++
-> drivers/gpu/drm/xe/xe_module.h       |  1 +
-> 14 files changed, 164 insertions(+), 64 deletions(-)
->
->diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
->index a951043b2943..283ca7518aff 100644
->--- a/drivers/gpu/drm/xe/xe_devcoredump.c
->+++ b/drivers/gpu/drm/xe/xe_devcoredump.c
->@@ -188,7 +188,7 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
-> 		xe_gt_info(ss->gt, "failed to get forcewake for coredump capture\n");
->
-> 	coredump->snapshot.ct = xe_guc_ct_snapshot_capture(&guc->ct, true);
->-	coredump->snapshot.ge = xe_guc_exec_queue_snapshot_capture(job);
->+	coredump->snapshot.ge = xe_guc_exec_queue_snapshot_capture(q);
-> 	coredump->snapshot.job = xe_sched_job_snapshot_capture(job);
-> 	coredump->snapshot.vm = xe_vm_snapshot_capture(q->vm);
->
->diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
->index 9083f5e02dd9..7928a5470cee 100644
->--- a/drivers/gpu/drm/xe/xe_device.c
->+++ b/drivers/gpu/drm/xe/xe_device.c
->@@ -142,6 +142,9 @@ static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
-> 	struct xe_device *xe = to_xe_device(file_priv->minor->dev);
-> 	long ret;
->
->+	if (xe_device_wedged(xe))
->+		return -ECANCELED;
->+
-> 	ret = xe_pm_runtime_get_ioctl(xe);
-> 	if (ret >= 0)
-> 		ret = drm_ioctl(file, cmd, arg);
->@@ -157,6 +160,9 @@ static long xe_drm_compat_ioctl(struct file *file, unsigned int cmd, unsigned lo
-> 	struct xe_device *xe = to_xe_device(file_priv->minor->dev);
-> 	long ret;
->
->+	if (xe_device_wedged(xe))
->+		return -ECANCELED;
->+
-> 	ret = xe_pm_runtime_get_ioctl(xe);
-> 	if (ret >= 0)
-> 		ret = drm_compat_ioctl(file, cmd, arg);
->@@ -779,3 +785,35 @@ u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64 address)
-> {
-> 	return address & GENMASK_ULL(xe->info.va_bits - 1, 0);
-> }
->+
->+/**
->+ * xe_device_declare_wedged - Declare device wedged
->+ * @xe: xe device instance
->+ *
->+ * This is a final state that can only be cleared with a module
->+ * re-probe (unbind + bind).
->+ * In this state every IOCTL will be blocked so the GT cannot be used.
->+ * In general it will be called upon any critical error such as gt reset
->+ * failure or guc loading failure.
->+ * If xe.wedged module parameter is set to 2, this function will be called
->+ * on every single execution timeout (a.k.a. GPU hang) right after devcoredump
->+ * snapshot capture. In this mode, GT reset won't be attempted so the state of
->+ * the issue is preserved for further debugging.
->+ */
->+void xe_device_declare_wedged(struct xe_device *xe)
->+{
->+	if (xe_modparam.wedged_mode == 0)
->+		return;
->+
->+	if (!atomic_xchg(&xe->wedged, 1)) {
->+		xe->needs_flr_on_fini = true;
->+		drm_err(&xe->drm,
->+			"CRITICAL: Xe has declared device %s as wedged.\n"
->+			"IOCTLs and executions are blocked until device is probed again with unbind and bind operations:\n"
->+			"echo '%s' | sudo tee /sys/bus/pci/drivers/xe/unbind\n"
->+			"echo '%s' | sudo tee /sys/bus/pci/drivers/xe/bind\n"
->+			"Please file a _new_ bug report at https://gitlab.freedesktop.org/drm/xe/kernel/issues/new\n",
->+			dev_name(xe->drm.dev), dev_name(xe->drm.dev),
->+			dev_name(xe->drm.dev));
->+	}
->+}
->diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
->index d413bc2c6be5..0fea5c18f76d 100644
->--- a/drivers/gpu/drm/xe/xe_device.h
->+++ b/drivers/gpu/drm/xe/xe_device.h
->@@ -176,4 +176,11 @@ void xe_device_snapshot_print(struct xe_device *xe, struct drm_printer *p);
-> u64 xe_device_canonicalize_addr(struct xe_device *xe, u64 address);
-> u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64 address);
->
->+static inline bool xe_device_wedged(struct xe_device *xe)
->+{
->+	return atomic_read(&xe->wedged);
->+}
->+
->+void xe_device_declare_wedged(struct xe_device *xe);
->+
-> #endif
->diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
->index c710cec835a7..290fdebaffe1 100644
->--- a/drivers/gpu/drm/xe/xe_device_types.h
->+++ b/drivers/gpu/drm/xe/xe_device_types.h
->@@ -458,6 +458,9 @@ struct xe_device {
-> 	/** @needs_flr_on_fini: requests function-reset on fini */
-> 	bool needs_flr_on_fini;
->
->+	/** @wedged: Xe device faced a critical error and is now blocked. */
->+	atomic_t wedged;
->+
-> 	/* private: */
->
-> #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
->index 02ce8d204622..c6e7f0b9037b 100644
->--- a/drivers/gpu/drm/xe/xe_exec_queue.h
->+++ b/drivers/gpu/drm/xe/xe_exec_queue.h
->@@ -28,6 +28,15 @@ void xe_exec_queue_assign_name(struct xe_exec_queue *q, u32 instance);
->
-> struct xe_exec_queue *xe_exec_queue_lookup(struct xe_file *xef, u32 id);
->
->+static inline struct xe_exec_queue *
->+xe_exec_queue_get_unless_zero(struct xe_exec_queue *q)
->+{
->+	if (kref_get_unless_zero(&q->refcount))
->+		return q;
->+
->+	return NULL;
->+}
->+
-> static inline struct xe_exec_queue *xe_exec_queue_get(struct xe_exec_queue *q)
-> {
-> 	kref_get(&q->refcount);
->diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
->index cfa5da900461..0844081b88ef 100644
->--- a/drivers/gpu/drm/xe/xe_gt.c
->+++ b/drivers/gpu/drm/xe/xe_gt.c
->@@ -633,6 +633,9 @@ static int gt_reset(struct xe_gt *gt)
-> {
-> 	int err;
->
->+	if (xe_device_wedged(gt_to_xe(gt)))
->+		return -ECANCELED;
->+
-> 	/* We only support GT resets with GuC submission */
-> 	if (!xe_device_uc_enabled(gt_to_xe(gt)))
-> 		return -ENODEV;
->@@ -685,7 +688,7 @@ static int gt_reset(struct xe_gt *gt)
-> err_fail:
-> 	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
->
->-	gt_to_xe(gt)->needs_flr_on_fini = true;
->+	xe_device_declare_wedged(gt_to_xe(gt));
->
-> 	return err;
-> }
->diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
->index 77be3bc2d7c0..a7cd65a9cf32 100644
->--- a/drivers/gpu/drm/xe/xe_guc.c
->+++ b/drivers/gpu/drm/xe/xe_guc.c
->@@ -452,7 +452,7 @@ static int guc_xfer_rsa(struct xe_guc *guc)
-> 	return 0;
-> }
->
->-static int guc_wait_ucode(struct xe_guc *guc)
->+static void guc_wait_ucode(struct xe_guc *guc)
-> {
-> 	struct xe_device *xe = guc_to_xe(guc);
-> 	u32 status;
->@@ -482,31 +482,28 @@ static int guc_wait_ucode(struct xe_guc *guc)
-> 	if (ret) {
-> 		struct drm_device *drm = &xe->drm;
->
->-		drm_info(drm, "GuC load failed: status = 0x%08X\n", status);
->-		drm_info(drm, "GuC load failed: status: Reset = %d, BootROM = 0x%02X, UKernel = 0x%02X, MIA = 0x%02X, Auth = 0x%02X\n",
->-			 REG_FIELD_GET(GS_MIA_IN_RESET, status),
->-			 REG_FIELD_GET(GS_BOOTROM_MASK, status),
->-			 REG_FIELD_GET(GS_UKERNEL_MASK, status),
->-			 REG_FIELD_GET(GS_MIA_MASK, status),
->-			 REG_FIELD_GET(GS_AUTH_STATUS_MASK, status));
->-
->-		if ((status & GS_BOOTROM_MASK) == GS_BOOTROM_RSA_FAILED) {
->-			drm_info(drm, "GuC firmware signature verification failed\n");
->-			ret = -ENOEXEC;
->-		}
->+		drm_err(drm, "GuC load failed: status = 0x%08X\n", status);
->+		drm_err(drm, "GuC load failed: status: Reset = %d, BootROM = 0x%02X, UKernel = 0x%02X, MIA = 0x%02X, Auth = 0x%02X\n",
->+			REG_FIELD_GET(GS_MIA_IN_RESET, status),
->+			REG_FIELD_GET(GS_BOOTROM_MASK, status),
->+			REG_FIELD_GET(GS_UKERNEL_MASK, status),
->+			REG_FIELD_GET(GS_MIA_MASK, status),
->+			REG_FIELD_GET(GS_AUTH_STATUS_MASK, status));
->+
->+		if ((status & GS_BOOTROM_MASK) == GS_BOOTROM_RSA_FAILED)
->+			drm_err(drm, "GuC firmware signature verification failed\n");
->
-> 		if (REG_FIELD_GET(GS_UKERNEL_MASK, status) ==
-> 		    XE_GUC_LOAD_STATUS_EXCEPTION) {
->-			drm_info(drm, "GuC firmware exception. EIP: %#x\n",
->-				 xe_mmio_read32(guc_to_gt(guc),
->-						SOFT_SCRATCH(13)));
->-			ret = -ENXIO;
->+			drm_err(drm, "GuC firmware exception. EIP: %#x\n",
->+				xe_mmio_read32(guc_to_gt(guc),
->+					       SOFT_SCRATCH(13)));
-> 		}
->+
->+		xe_device_declare_wedged(xe);
-> 	} else {
-> 		drm_dbg(&xe->drm, "GuC successfully loaded");
-> 	}
->-
->-	return ret;
-> }
->
-> static int __xe_guc_upload(struct xe_guc *guc)
->@@ -536,16 +533,14 @@ static int __xe_guc_upload(struct xe_guc *guc)
-> 		goto out;
->
-> 	/* Wait for authentication */
->-	ret = guc_wait_ucode(guc);
->-	if (ret)
->-		goto out;
->+	guc_wait_ucode(guc);
->
-> 	xe_uc_fw_change_status(&guc->fw, XE_UC_FIRMWARE_RUNNING);
-> 	return 0;
->
-> out:
-> 	xe_uc_fw_change_status(&guc->fw, XE_UC_FIRMWARE_LOAD_FAIL);
->-	return 0	/* FIXME: ret, don't want to stop load currently */;
->+	return ret;
-> }
->
-> /**
->diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
->index e025f3e10c9b..37f30c333c93 100644
->--- a/drivers/gpu/drm/xe/xe_guc_ads.c
->+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
->@@ -18,6 +18,7 @@
-> #include "xe_lrc.h"
-> #include "xe_map.h"
-> #include "xe_mmio.h"
->+#include "xe_module.h"
-> #include "xe_platform_types.h"
->
-> /* Slack of a few additional entries per engine */
->@@ -313,11 +314,17 @@ int xe_guc_ads_init_post_hwconfig(struct xe_guc_ads *ads)
->
-> static void guc_policies_init(struct xe_guc_ads *ads)
-> {
->+	u32 global_flags = 0;
->+
-> 	ads_blob_write(ads, policies.dpc_promote_time,
-> 		       GLOBAL_POLICY_DEFAULT_DPC_PROMOTE_TIME_US);
-> 	ads_blob_write(ads, policies.max_num_work_items,
-> 		       GLOBAL_POLICY_MAX_NUM_WI);
->-	ads_blob_write(ads, policies.global_flags, 0);
->+
->+	if (xe_modparam.wedged_mode == 2)
->+		global_flags |= GLOBAL_POLICY_DISABLE_ENGINE_RESET;
->+
->+	ads_blob_write(ads, policies.global_flags, global_flags);
-> 	ads_blob_write(ads, policies.is_valid, 1);
-> }
->
->diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
->index 6c37f4f9bddd..0aa3abaca66d 100644
->--- a/drivers/gpu/drm/xe/xe_guc_ct.c
->+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
->@@ -1403,7 +1403,7 @@ struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct,
-> 		return NULL;
-> 	}
->
->-	if (xe_guc_ct_enabled(ct)) {
->+	if (xe_guc_ct_enabled(ct) || ct->state == XE_GUC_CT_STATE_STOPPED) {
-> 		snapshot->ct_enabled = true;
-> 		snapshot->g2h_outstanding = READ_ONCE(ct->g2h_outstanding);
-> 		guc_ctb_snapshot_capture(xe, &ct->ctbs.h2g,
->diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
->index 521ae24f2314..f4663f1b0a80 100644
->--- a/drivers/gpu/drm/xe/xe_guc_pc.c
->+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
->@@ -902,6 +902,9 @@ static void xe_guc_pc_fini(struct drm_device *drm, void *arg)
-> 		return;
-> 	}
->
->+	if (xe_device_wedged(xe))
->+		return;
->+
-> 	XE_WARN_ON(xe_force_wake_get(gt_to_fw(pc_to_gt(pc)), XE_FORCEWAKE_ALL));
-> 	XE_WARN_ON(xe_guc_pc_gucrc_disable(pc));
-> 	XE_WARN_ON(xe_guc_pc_stop(pc));
->diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
->index 9c30bd9ac8c0..0970e5674954 100644
->--- a/drivers/gpu/drm/xe/xe_guc_submit.c
->+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
->@@ -34,6 +34,7 @@
-> #include "xe_lrc.h"
-> #include "xe_macros.h"
-> #include "xe_map.h"
->+#include "xe_module.h"
-> #include "xe_mocs.h"
-> #include "xe_ring_ops_types.h"
-> #include "xe_sched_job.h"
->@@ -59,6 +60,7 @@ exec_queue_to_guc(struct xe_exec_queue *q)
-> #define ENGINE_STATE_SUSPENDED		(1 << 5)
-> #define EXEC_QUEUE_STATE_RESET		(1 << 6)
-> #define ENGINE_STATE_KILLED		(1 << 7)
->+#define EXEC_QUEUE_STATE_WEDGED		(1 << 8)
->
-> static bool exec_queue_registered(struct xe_exec_queue *q)
-> {
->@@ -175,9 +177,20 @@ static void set_exec_queue_killed(struct xe_exec_queue *q)
-> 	atomic_or(ENGINE_STATE_KILLED, &q->guc->state);
-> }
->
->-static bool exec_queue_killed_or_banned(struct xe_exec_queue *q)
->+static bool exec_queue_wedged(struct xe_exec_queue *q)
-> {
->-	return exec_queue_killed(q) || exec_queue_banned(q);
->+	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_WEDGED;
->+}
->+
->+static void set_exec_queue_wedged(struct xe_exec_queue *q)
->+{
->+	atomic_or(EXEC_QUEUE_STATE_WEDGED, &q->guc->state);
->+}
->+
->+static bool exec_queue_killed_or_banned_or_wedged(struct xe_exec_queue *q)
->+{
->+	return exec_queue_banned(q) || (atomic_read(&q->guc->state) &
->+		(EXEC_QUEUE_STATE_WEDGED | ENGINE_STATE_KILLED));
-> }
->
-> #ifdef CONFIG_PROVE_LOCKING
->@@ -235,6 +248,12 @@ static struct workqueue_struct *get_submit_wq(struct xe_guc *guc)
-> static void guc_submit_fini(struct drm_device *drm, void *arg)
-> {
-> 	struct xe_guc *guc = arg;
->+	struct xe_exec_queue *q;
->+	unsigned long index;
->+
->+	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
->+		if (exec_queue_wedged(q))
->+			xe_exec_queue_put(q);
->
-> 	xa_destroy(&guc->submission_state.exec_queue_lookup);
-> 	free_submit_wq(guc);
->@@ -710,7 +729,7 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
->
-> 	trace_xe_sched_job_run(job);
->
->-	if (!exec_queue_killed_or_banned(q) && !xe_sched_job_is_error(job)) {
->+	if (!exec_queue_killed_or_banned_or_wedged(q) && !xe_sched_job_is_error(job)) {
-> 		if (!exec_queue_registered(q))
-> 			register_engine(q);
-> 		if (!lr)	/* LR jobs are emitted in the exec IOCTL */
->@@ -846,6 +865,22 @@ static void xe_guc_exec_queue_trigger_cleanup(struct xe_exec_queue *q)
-> 		xe_sched_tdr_queue_imm(&q->guc->sched);
-> }
->
->+static void guc_submit_wedge(struct xe_guc *guc)
->+{
->+	struct xe_exec_queue *q;
->+	unsigned long index;
->+
->+	xe_device_declare_wedged(guc_to_xe(guc));
->+	xe_guc_submit_reset_prepare(guc);
->+	xe_guc_ct_stop(&guc->ct);
->+
->+	mutex_lock(&guc->submission_state.lock);
->+	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
->+		if (xe_exec_queue_get_unless_zero(q))
->+			set_exec_queue_wedged(q);
->+	mutex_unlock(&guc->submission_state.lock);
->+}
->+
-> static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
-> {
-> 	struct xe_guc_exec_queue *ge =
->@@ -854,10 +889,16 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
-> 	struct xe_guc *guc = exec_queue_to_guc(q);
-> 	struct xe_device *xe = guc_to_xe(guc);
-> 	struct xe_gpu_scheduler *sched = &ge->sched;
->+	bool wedged = xe_device_wedged(xe);
->
-> 	xe_assert(xe, xe_exec_queue_is_lr(q));
-> 	trace_xe_exec_queue_lr_cleanup(q);
->
->+	if (!wedged && xe_modparam.wedged_mode == 2) {
->+		guc_submit_wedge(guc);
->+		wedged = true;
->+	}
->+
-> 	/* Kill the run_job / process_msg entry points */
-> 	xe_sched_submission_stop(sched);
->
->@@ -872,7 +913,7 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
-> 	 * xe_guc_deregister_done_handler() which treats it as an unexpected
-> 	 * state.
-> 	 */
->-	if (exec_queue_registered(q) && !exec_queue_destroyed(q)) {
->+	if (!wedged && exec_queue_registered(q) && !exec_queue_destroyed(q)) {
-> 		struct xe_guc *guc = exec_queue_to_guc(q);
-> 		int ret;
->
->@@ -907,6 +948,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
-> 	struct xe_device *xe = guc_to_xe(exec_queue_to_guc(q));
-> 	int err = -ETIME;
-> 	int i = 0;
->+	bool wedged = xe_device_wedged(xe);
->
-> 	/*
-> 	 * TDR has fired before free job worker. Common if exec queue
->@@ -930,6 +972,11 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
->
-> 	trace_xe_sched_job_timedout(job);
->
->+	if (!wedged && xe_modparam.wedged_mode == 2) {
->+		guc_submit_wedge(exec_queue_to_guc(q));
->+		wedged = true;
->+	}
->+
-> 	/* Kill the run_job entry point */
-> 	xe_sched_submission_stop(sched);
->
->@@ -937,8 +984,8 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
-> 	 * Kernel jobs should never fail, nor should VM jobs if they do
-> 	 * somethings has gone wrong and the GT needs a reset
-> 	 */
->-	if (q->flags & EXEC_QUEUE_FLAG_KERNEL ||
->-	    (q->flags & EXEC_QUEUE_FLAG_VM && !exec_queue_killed(q))) {
->+	if (!wedged && (q->flags & EXEC_QUEUE_FLAG_KERNEL ||
->+	    (q->flags & EXEC_QUEUE_FLAG_VM && !exec_queue_killed(q)))) {
-> 		if (!xe_sched_invalidate_job(job, 2)) {
-> 			xe_sched_add_pending_job(sched, job);
-> 			xe_sched_submission_start(sched);
->@@ -948,7 +995,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
-> 	}
->
-> 	/* Engine state now stable, disable scheduling if needed */
->-	if (exec_queue_registered(q)) {
->+	if (!wedged && exec_queue_registered(q)) {
-> 		struct xe_guc *guc = exec_queue_to_guc(q);
-> 		int ret;
->
->@@ -1065,7 +1112,7 @@ static void __guc_exec_queue_process_msg_cleanup(struct xe_sched_msg *msg)
->
-> static bool guc_exec_queue_allowed_to_change_state(struct xe_exec_queue *q)
-> {
->-	return !exec_queue_killed_or_banned(q) && exec_queue_registered(q);
->+	return !exec_queue_killed_or_banned_or_wedged(q) && exec_queue_registered(q);
-> }
->
-> static void __guc_exec_queue_process_msg_set_sched_props(struct xe_sched_msg *msg)
->@@ -1276,7 +1323,7 @@ static void guc_exec_queue_fini(struct xe_exec_queue *q)
-> {
-> 	struct xe_sched_msg *msg = q->guc->static_msgs + STATIC_MSG_CLEANUP;
->
->-	if (!(q->flags & EXEC_QUEUE_FLAG_PERMANENT))
->+	if (!(q->flags & EXEC_QUEUE_FLAG_PERMANENT) && !exec_queue_wedged(q))
-> 		guc_exec_queue_add_msg(q, msg, CLEANUP);
-> 	else
-> 		__guc_exec_queue_fini(exec_queue_to_guc(q), q);
->@@ -1287,7 +1334,8 @@ static int guc_exec_queue_set_priority(struct xe_exec_queue *q,
-> {
-> 	struct xe_sched_msg *msg;
->
->-	if (q->sched_props.priority == priority || exec_queue_killed_or_banned(q))
->+	if (q->sched_props.priority == priority ||
->+	    exec_queue_killed_or_banned_or_wedged(q))
-> 		return 0;
->
-> 	msg = kmalloc(sizeof(*msg), GFP_KERNEL);
->@@ -1305,7 +1353,7 @@ static int guc_exec_queue_set_timeslice(struct xe_exec_queue *q, u32 timeslice_u
-> 	struct xe_sched_msg *msg;
->
-> 	if (q->sched_props.timeslice_us == timeslice_us ||
->-	    exec_queue_killed_or_banned(q))
->+	    exec_queue_killed_or_banned_or_wedged(q))
-> 		return 0;
->
-> 	msg = kmalloc(sizeof(*msg), GFP_KERNEL);
->@@ -1324,7 +1372,7 @@ static int guc_exec_queue_set_preempt_timeout(struct xe_exec_queue *q,
-> 	struct xe_sched_msg *msg;
->
-> 	if (q->sched_props.preempt_timeout_us == preempt_timeout_us ||
->-	    exec_queue_killed_or_banned(q))
->+	    exec_queue_killed_or_banned_or_wedged(q))
-> 		return 0;
->
-> 	msg = kmalloc(sizeof(*msg), GFP_KERNEL);
->@@ -1341,7 +1389,7 @@ static int guc_exec_queue_suspend(struct xe_exec_queue *q)
-> {
-> 	struct xe_sched_msg *msg = q->guc->static_msgs + STATIC_MSG_SUSPEND;
->
->-	if (exec_queue_killed_or_banned(q) || q->guc->suspend_pending)
->+	if (exec_queue_killed_or_banned_or_wedged(q) || q->guc->suspend_pending)
-> 		return -EINVAL;
->
-> 	q->guc->suspend_pending = true;
->@@ -1487,7 +1535,7 @@ static void guc_exec_queue_start(struct xe_exec_queue *q)
-> {
-> 	struct xe_gpu_scheduler *sched = &q->guc->sched;
->
->-	if (!exec_queue_killed_or_banned(q)) {
->+	if (!exec_queue_killed_or_banned_or_wedged(q)) {
-> 		int i;
->
-> 		trace_xe_exec_queue_resubmit(q);
->@@ -1786,9 +1834,8 @@ guc_exec_queue_wq_snapshot_print(struct xe_guc_submit_exec_queue_snapshot *snaps
->  * caller, using `xe_guc_exec_queue_snapshot_free`.
->  */
-> struct xe_guc_submit_exec_queue_snapshot *
->-xe_guc_exec_queue_snapshot_capture(struct xe_sched_job *job)
->+xe_guc_exec_queue_snapshot_capture(struct xe_exec_queue *q)
-> {
->-	struct xe_exec_queue *q = job->q;
-> 	struct xe_gpu_scheduler *sched = &q->guc->sched;
-> 	struct xe_guc_submit_exec_queue_snapshot *snapshot;
-> 	int i;
->@@ -1944,28 +1991,10 @@ void xe_guc_exec_queue_snapshot_free(struct xe_guc_submit_exec_queue_snapshot *s
-> static void guc_exec_queue_print(struct xe_exec_queue *q, struct drm_printer *p)
-> {
-> 	struct xe_guc_submit_exec_queue_snapshot *snapshot;
->-	struct xe_gpu_scheduler *sched = &q->guc->sched;
->-	struct xe_sched_job *job;
->-	bool found = false;
->
->-	spin_lock(&sched->base.job_list_lock);
->-	list_for_each_entry(job, &sched->base.pending_list, drm.list) {
->-		if (job->q == q) {
->-			xe_sched_job_get(job);
->-			found = true;
->-			break;
->-		}
->-	}
->-	spin_unlock(&sched->base.job_list_lock);
->-
->-	if (!found)
->-		return;
->-
->-	snapshot = xe_guc_exec_queue_snapshot_capture(job);
->+	snapshot = xe_guc_exec_queue_snapshot_capture(q);
-> 	xe_guc_exec_queue_snapshot_print(snapshot, p);
-> 	xe_guc_exec_queue_snapshot_free(snapshot);
->-
->-	xe_sched_job_put(job);
-> }
->
-> /**
->diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
->index 2f14dfd04722..fad0421ead36 100644
->--- a/drivers/gpu/drm/xe/xe_guc_submit.h
->+++ b/drivers/gpu/drm/xe/xe_guc_submit.h
->@@ -9,8 +9,8 @@
-> #include <linux/types.h>
->
-> struct drm_printer;
->+struct xe_exec_queue;
-> struct xe_guc;
->-struct xe_sched_job;
->
-> int xe_guc_submit_init(struct xe_guc *guc);
->
->@@ -27,7 +27,7 @@ int xe_guc_exec_queue_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
-> int xe_guc_exec_queue_reset_failure_handler(struct xe_guc *guc, u32 *msg, u32 len);
->
-> struct xe_guc_submit_exec_queue_snapshot *
->-xe_guc_exec_queue_snapshot_capture(struct xe_sched_job *job);
->+xe_guc_exec_queue_snapshot_capture(struct xe_exec_queue *q);
-> void
-> xe_guc_exec_queue_snapshot_capture_delayed(struct xe_guc_submit_exec_queue_snapshot *snapshot);
-> void
->diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
->index 110b69864656..5e023df0bea9 100644
->--- a/drivers/gpu/drm/xe/xe_module.c
->+++ b/drivers/gpu/drm/xe/xe_module.c
->@@ -17,6 +17,7 @@ struct xe_modparam xe_modparam = {
-> 	.enable_display = true,
-> 	.guc_log_level = 5,
-> 	.force_probe = CONFIG_DRM_XE_FORCE_PROBE,
->+	.wedged_mode = 1,
-> 	/* the rest are 0 by default */
-> };
->
->@@ -48,6 +49,10 @@ module_param_named_unsafe(force_probe, xe_modparam.force_probe, charp, 0400);
-> MODULE_PARM_DESC(force_probe,
-> 		 "Force probe options for specified devices. See CONFIG_DRM_XE_FORCE_PROBE for details.");
->
->+module_param_named_unsafe(wedged_mode, xe_modparam.wedged_mode, int, 0600);
->+MODULE_PARM_DESC(wedged_mode,
->+		 "Module's default policy for the wedged mode - 0=never, 1=upon-critical-errors[default], 2=upon-any-hang");
->+
-> struct init_funcs {
-> 	int (*init)(void);
-> 	void (*exit)(void);
->diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
->index 88ef0e8b2bfd..bc6f370c9a8e 100644
->--- a/drivers/gpu/drm/xe/xe_module.h
->+++ b/drivers/gpu/drm/xe/xe_module.h
->@@ -18,6 +18,7 @@ struct xe_modparam {
-> 	char *huc_firmware_path;
-> 	char *gsc_firmware_path;
-> 	char *force_probe;
->+	int wedged_mode;
-> };
->
-> extern struct xe_modparam xe_modparam;
->-- 
->2.34.1
->
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_devcoredump.c  |   2 +-
+ drivers/gpu/drm/xe/xe_device.c       |  38 ++++++++++
+ drivers/gpu/drm/xe/xe_device.h       |   7 ++
+ drivers/gpu/drm/xe/xe_device_types.h |   3 +
+ drivers/gpu/drm/xe/xe_exec_queue.h   |   9 +++
+ drivers/gpu/drm/xe/xe_gt.c           |   5 +-
+ drivers/gpu/drm/xe/xe_guc.c          |  41 +++++------
+ drivers/gpu/drm/xe/xe_guc_ads.c      |   9 ++-
+ drivers/gpu/drm/xe/xe_guc_ct.c       |   2 +-
+ drivers/gpu/drm/xe/xe_guc_pc.c       |   3 +
+ drivers/gpu/drm/xe/xe_guc_submit.c   | 105 +++++++++++++++++----------
+ drivers/gpu/drm/xe/xe_guc_submit.h   |   4 +-
+ drivers/gpu/drm/xe/xe_module.c       |   5 ++
+ drivers/gpu/drm/xe/xe_module.h       |   1 +
+ 14 files changed, 167 insertions(+), 67 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index a951043b2943..283ca7518aff 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -188,7 +188,7 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 		xe_gt_info(ss->gt, "failed to get forcewake for coredump capture\n");
+ 
+ 	coredump->snapshot.ct = xe_guc_ct_snapshot_capture(&guc->ct, true);
+-	coredump->snapshot.ge = xe_guc_exec_queue_snapshot_capture(job);
++	coredump->snapshot.ge = xe_guc_exec_queue_snapshot_capture(q);
+ 	coredump->snapshot.job = xe_sched_job_snapshot_capture(job);
+ 	coredump->snapshot.vm = xe_vm_snapshot_capture(q->vm);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 9083f5e02dd9..7928a5470cee 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -142,6 +142,9 @@ static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
+ 	struct xe_device *xe = to_xe_device(file_priv->minor->dev);
+ 	long ret;
+ 
++	if (xe_device_wedged(xe))
++		return -ECANCELED;
++
+ 	ret = xe_pm_runtime_get_ioctl(xe);
+ 	if (ret >= 0)
+ 		ret = drm_ioctl(file, cmd, arg);
+@@ -157,6 +160,9 @@ static long xe_drm_compat_ioctl(struct file *file, unsigned int cmd, unsigned lo
+ 	struct xe_device *xe = to_xe_device(file_priv->minor->dev);
+ 	long ret;
+ 
++	if (xe_device_wedged(xe))
++		return -ECANCELED;
++
+ 	ret = xe_pm_runtime_get_ioctl(xe);
+ 	if (ret >= 0)
+ 		ret = drm_compat_ioctl(file, cmd, arg);
+@@ -779,3 +785,35 @@ u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64 address)
+ {
+ 	return address & GENMASK_ULL(xe->info.va_bits - 1, 0);
+ }
++
++/**
++ * xe_device_declare_wedged - Declare device wedged
++ * @xe: xe device instance
++ *
++ * This is a final state that can only be cleared with a module
++ * re-probe (unbind + bind).
++ * In this state every IOCTL will be blocked so the GT cannot be used.
++ * In general it will be called upon any critical error such as gt reset
++ * failure or guc loading failure.
++ * If xe.wedged module parameter is set to 2, this function will be called
++ * on every single execution timeout (a.k.a. GPU hang) right after devcoredump
++ * snapshot capture. In this mode, GT reset won't be attempted so the state of
++ * the issue is preserved for further debugging.
++ */
++void xe_device_declare_wedged(struct xe_device *xe)
++{
++	if (xe_modparam.wedged_mode == 0)
++		return;
++
++	if (!atomic_xchg(&xe->wedged, 1)) {
++		xe->needs_flr_on_fini = true;
++		drm_err(&xe->drm,
++			"CRITICAL: Xe has declared device %s as wedged.\n"
++			"IOCTLs and executions are blocked until device is probed again with unbind and bind operations:\n"
++			"echo '%s' | sudo tee /sys/bus/pci/drivers/xe/unbind\n"
++			"echo '%s' | sudo tee /sys/bus/pci/drivers/xe/bind\n"
++			"Please file a _new_ bug report at https://gitlab.freedesktop.org/drm/xe/kernel/issues/new\n",
++			dev_name(xe->drm.dev), dev_name(xe->drm.dev),
++			dev_name(xe->drm.dev));
++	}
++}
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index d413bc2c6be5..0fea5c18f76d 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -176,4 +176,11 @@ void xe_device_snapshot_print(struct xe_device *xe, struct drm_printer *p);
+ u64 xe_device_canonicalize_addr(struct xe_device *xe, u64 address);
+ u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64 address);
+ 
++static inline bool xe_device_wedged(struct xe_device *xe)
++{
++	return atomic_read(&xe->wedged);
++}
++
++void xe_device_declare_wedged(struct xe_device *xe);
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index c710cec835a7..290fdebaffe1 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -458,6 +458,9 @@ struct xe_device {
+ 	/** @needs_flr_on_fini: requests function-reset on fini */
+ 	bool needs_flr_on_fini;
+ 
++	/** @wedged: Xe device faced a critical error and is now blocked. */
++	atomic_t wedged;
++
+ 	/* private: */
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
+index 02ce8d204622..c6e7f0b9037b 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue.h
+@@ -28,6 +28,15 @@ void xe_exec_queue_assign_name(struct xe_exec_queue *q, u32 instance);
+ 
+ struct xe_exec_queue *xe_exec_queue_lookup(struct xe_file *xef, u32 id);
+ 
++static inline struct xe_exec_queue *
++xe_exec_queue_get_unless_zero(struct xe_exec_queue *q)
++{
++	if (kref_get_unless_zero(&q->refcount))
++		return q;
++
++	return NULL;
++}
++
+ static inline struct xe_exec_queue *xe_exec_queue_get(struct xe_exec_queue *q)
+ {
+ 	kref_get(&q->refcount);
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index cfa5da900461..0844081b88ef 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -633,6 +633,9 @@ static int gt_reset(struct xe_gt *gt)
+ {
+ 	int err;
+ 
++	if (xe_device_wedged(gt_to_xe(gt)))
++		return -ECANCELED;
++
+ 	/* We only support GT resets with GuC submission */
+ 	if (!xe_device_uc_enabled(gt_to_xe(gt)))
+ 		return -ENODEV;
+@@ -685,7 +688,7 @@ static int gt_reset(struct xe_gt *gt)
+ err_fail:
+ 	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
+ 
+-	gt_to_xe(gt)->needs_flr_on_fini = true;
++	xe_device_declare_wedged(gt_to_xe(gt));
+ 
+ 	return err;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 77be3bc2d7c0..a7cd65a9cf32 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -452,7 +452,7 @@ static int guc_xfer_rsa(struct xe_guc *guc)
+ 	return 0;
+ }
+ 
+-static int guc_wait_ucode(struct xe_guc *guc)
++static void guc_wait_ucode(struct xe_guc *guc)
+ {
+ 	struct xe_device *xe = guc_to_xe(guc);
+ 	u32 status;
+@@ -482,31 +482,28 @@ static int guc_wait_ucode(struct xe_guc *guc)
+ 	if (ret) {
+ 		struct drm_device *drm = &xe->drm;
+ 
+-		drm_info(drm, "GuC load failed: status = 0x%08X\n", status);
+-		drm_info(drm, "GuC load failed: status: Reset = %d, BootROM = 0x%02X, UKernel = 0x%02X, MIA = 0x%02X, Auth = 0x%02X\n",
+-			 REG_FIELD_GET(GS_MIA_IN_RESET, status),
+-			 REG_FIELD_GET(GS_BOOTROM_MASK, status),
+-			 REG_FIELD_GET(GS_UKERNEL_MASK, status),
+-			 REG_FIELD_GET(GS_MIA_MASK, status),
+-			 REG_FIELD_GET(GS_AUTH_STATUS_MASK, status));
+-
+-		if ((status & GS_BOOTROM_MASK) == GS_BOOTROM_RSA_FAILED) {
+-			drm_info(drm, "GuC firmware signature verification failed\n");
+-			ret = -ENOEXEC;
+-		}
++		drm_err(drm, "GuC load failed: status = 0x%08X\n", status);
++		drm_err(drm, "GuC load failed: status: Reset = %d, BootROM = 0x%02X, UKernel = 0x%02X, MIA = 0x%02X, Auth = 0x%02X\n",
++			REG_FIELD_GET(GS_MIA_IN_RESET, status),
++			REG_FIELD_GET(GS_BOOTROM_MASK, status),
++			REG_FIELD_GET(GS_UKERNEL_MASK, status),
++			REG_FIELD_GET(GS_MIA_MASK, status),
++			REG_FIELD_GET(GS_AUTH_STATUS_MASK, status));
++
++		if ((status & GS_BOOTROM_MASK) == GS_BOOTROM_RSA_FAILED)
++			drm_err(drm, "GuC firmware signature verification failed\n");
+ 
+ 		if (REG_FIELD_GET(GS_UKERNEL_MASK, status) ==
+ 		    XE_GUC_LOAD_STATUS_EXCEPTION) {
+-			drm_info(drm, "GuC firmware exception. EIP: %#x\n",
+-				 xe_mmio_read32(guc_to_gt(guc),
+-						SOFT_SCRATCH(13)));
+-			ret = -ENXIO;
++			drm_err(drm, "GuC firmware exception. EIP: %#x\n",
++				xe_mmio_read32(guc_to_gt(guc),
++					       SOFT_SCRATCH(13)));
+ 		}
++
++		xe_device_declare_wedged(xe);
+ 	} else {
+ 		drm_dbg(&xe->drm, "GuC successfully loaded");
+ 	}
+-
+-	return ret;
+ }
+ 
+ static int __xe_guc_upload(struct xe_guc *guc)
+@@ -536,16 +533,14 @@ static int __xe_guc_upload(struct xe_guc *guc)
+ 		goto out;
+ 
+ 	/* Wait for authentication */
+-	ret = guc_wait_ucode(guc);
+-	if (ret)
+-		goto out;
++	guc_wait_ucode(guc);
+ 
+ 	xe_uc_fw_change_status(&guc->fw, XE_UC_FIRMWARE_RUNNING);
+ 	return 0;
+ 
+ out:
+ 	xe_uc_fw_change_status(&guc->fw, XE_UC_FIRMWARE_LOAD_FAIL);
+-	return 0	/* FIXME: ret, don't want to stop load currently */;
++	return ret;
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index e025f3e10c9b..37f30c333c93 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -18,6 +18,7 @@
+ #include "xe_lrc.h"
+ #include "xe_map.h"
+ #include "xe_mmio.h"
++#include "xe_module.h"
+ #include "xe_platform_types.h"
+ 
+ /* Slack of a few additional entries per engine */
+@@ -313,11 +314,17 @@ int xe_guc_ads_init_post_hwconfig(struct xe_guc_ads *ads)
+ 
+ static void guc_policies_init(struct xe_guc_ads *ads)
+ {
++	u32 global_flags = 0;
++
+ 	ads_blob_write(ads, policies.dpc_promote_time,
+ 		       GLOBAL_POLICY_DEFAULT_DPC_PROMOTE_TIME_US);
+ 	ads_blob_write(ads, policies.max_num_work_items,
+ 		       GLOBAL_POLICY_MAX_NUM_WI);
+-	ads_blob_write(ads, policies.global_flags, 0);
++
++	if (xe_modparam.wedged_mode == 2)
++		global_flags |= GLOBAL_POLICY_DISABLE_ENGINE_RESET;
++
++	ads_blob_write(ads, policies.global_flags, global_flags);
+ 	ads_blob_write(ads, policies.is_valid, 1);
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 6c37f4f9bddd..0aa3abaca66d 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -1403,7 +1403,7 @@ struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct,
+ 		return NULL;
+ 	}
+ 
+-	if (xe_guc_ct_enabled(ct)) {
++	if (xe_guc_ct_enabled(ct) || ct->state == XE_GUC_CT_STATE_STOPPED) {
+ 		snapshot->ct_enabled = true;
+ 		snapshot->g2h_outstanding = READ_ONCE(ct->g2h_outstanding);
+ 		guc_ctb_snapshot_capture(xe, &ct->ctbs.h2g,
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index 521ae24f2314..f4663f1b0a80 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -902,6 +902,9 @@ static void xe_guc_pc_fini(struct drm_device *drm, void *arg)
+ 		return;
+ 	}
+ 
++	if (xe_device_wedged(xe))
++		return;
++
+ 	XE_WARN_ON(xe_force_wake_get(gt_to_fw(pc_to_gt(pc)), XE_FORCEWAKE_ALL));
+ 	XE_WARN_ON(xe_guc_pc_gucrc_disable(pc));
+ 	XE_WARN_ON(xe_guc_pc_stop(pc));
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 9c30bd9ac8c0..544ac59c65d6 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -34,6 +34,7 @@
+ #include "xe_lrc.h"
+ #include "xe_macros.h"
+ #include "xe_map.h"
++#include "xe_module.h"
+ #include "xe_mocs.h"
+ #include "xe_ring_ops_types.h"
+ #include "xe_sched_job.h"
+@@ -59,6 +60,7 @@ exec_queue_to_guc(struct xe_exec_queue *q)
+ #define ENGINE_STATE_SUSPENDED		(1 << 5)
+ #define EXEC_QUEUE_STATE_RESET		(1 << 6)
+ #define ENGINE_STATE_KILLED		(1 << 7)
++#define EXEC_QUEUE_STATE_WEDGED		(1 << 8)
+ 
+ static bool exec_queue_registered(struct xe_exec_queue *q)
+ {
+@@ -175,9 +177,20 @@ static void set_exec_queue_killed(struct xe_exec_queue *q)
+ 	atomic_or(ENGINE_STATE_KILLED, &q->guc->state);
+ }
+ 
+-static bool exec_queue_killed_or_banned(struct xe_exec_queue *q)
++static bool exec_queue_wedged(struct xe_exec_queue *q)
+ {
+-	return exec_queue_killed(q) || exec_queue_banned(q);
++	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_WEDGED;
++}
++
++static void set_exec_queue_wedged(struct xe_exec_queue *q)
++{
++	atomic_or(EXEC_QUEUE_STATE_WEDGED, &q->guc->state);
++}
++
++static bool exec_queue_killed_or_banned_or_wedged(struct xe_exec_queue *q)
++{
++	return exec_queue_banned(q) || (atomic_read(&q->guc->state) &
++		(EXEC_QUEUE_STATE_WEDGED | ENGINE_STATE_KILLED));
+ }
+ 
+ #ifdef CONFIG_PROVE_LOCKING
+@@ -235,6 +248,12 @@ static struct workqueue_struct *get_submit_wq(struct xe_guc *guc)
+ static void guc_submit_fini(struct drm_device *drm, void *arg)
+ {
+ 	struct xe_guc *guc = arg;
++	struct xe_exec_queue *q;
++	unsigned long index;
++
++	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
++		if (exec_queue_wedged(q))
++			xe_exec_queue_put(q);
+ 
+ 	xa_destroy(&guc->submission_state.exec_queue_lookup);
+ 	free_submit_wq(guc);
+@@ -277,11 +296,11 @@ int xe_guc_submit_init(struct xe_guc *guc)
+ 
+ 	primelockdep(guc);
+ 
+-	err = drmm_add_action_or_reset(&xe->drm, guc_submit_fini, guc);
++	err = xe_guc_id_mgr_init(&guc->submission_state.idm, ~0);
+ 	if (err)
+ 		return err;
+ 
+-	err = xe_guc_id_mgr_init(&guc->submission_state.idm, ~0);
++	err = drmm_add_action_or_reset(&xe->drm, guc_submit_fini, guc);
+ 	if (err)
+ 		return err;
+ 
+@@ -710,7 +729,7 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
+ 
+ 	trace_xe_sched_job_run(job);
+ 
+-	if (!exec_queue_killed_or_banned(q) && !xe_sched_job_is_error(job)) {
++	if (!exec_queue_killed_or_banned_or_wedged(q) && !xe_sched_job_is_error(job)) {
+ 		if (!exec_queue_registered(q))
+ 			register_engine(q);
+ 		if (!lr)	/* LR jobs are emitted in the exec IOCTL */
+@@ -846,6 +865,22 @@ static void xe_guc_exec_queue_trigger_cleanup(struct xe_exec_queue *q)
+ 		xe_sched_tdr_queue_imm(&q->guc->sched);
+ }
+ 
++static void guc_submit_wedge(struct xe_guc *guc)
++{
++	struct xe_exec_queue *q;
++	unsigned long index;
++
++	xe_device_declare_wedged(guc_to_xe(guc));
++	xe_guc_submit_reset_prepare(guc);
++	xe_guc_ct_stop(&guc->ct);
++
++	mutex_lock(&guc->submission_state.lock);
++	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
++		if (xe_exec_queue_get_unless_zero(q))
++			set_exec_queue_wedged(q);
++	mutex_unlock(&guc->submission_state.lock);
++}
++
+ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
+ {
+ 	struct xe_guc_exec_queue *ge =
+@@ -854,10 +889,16 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
+ 	struct xe_guc *guc = exec_queue_to_guc(q);
+ 	struct xe_device *xe = guc_to_xe(guc);
+ 	struct xe_gpu_scheduler *sched = &ge->sched;
++	bool wedged = xe_device_wedged(xe);
+ 
+ 	xe_assert(xe, xe_exec_queue_is_lr(q));
+ 	trace_xe_exec_queue_lr_cleanup(q);
+ 
++	if (!wedged && xe_modparam.wedged_mode == 2) {
++		guc_submit_wedge(guc);
++		wedged = true;
++	}
++
+ 	/* Kill the run_job / process_msg entry points */
+ 	xe_sched_submission_stop(sched);
+ 
+@@ -872,7 +913,7 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
+ 	 * xe_guc_deregister_done_handler() which treats it as an unexpected
+ 	 * state.
+ 	 */
+-	if (exec_queue_registered(q) && !exec_queue_destroyed(q)) {
++	if (!wedged && exec_queue_registered(q) && !exec_queue_destroyed(q)) {
+ 		struct xe_guc *guc = exec_queue_to_guc(q);
+ 		int ret;
+ 
+@@ -907,6 +948,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 	struct xe_device *xe = guc_to_xe(exec_queue_to_guc(q));
+ 	int err = -ETIME;
+ 	int i = 0;
++	bool wedged = xe_device_wedged(xe);
+ 
+ 	/*
+ 	 * TDR has fired before free job worker. Common if exec queue
+@@ -930,6 +972,11 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 
+ 	trace_xe_sched_job_timedout(job);
+ 
++	if (!wedged && xe_modparam.wedged_mode == 2) {
++		guc_submit_wedge(exec_queue_to_guc(q));
++		wedged = true;
++	}
++
+ 	/* Kill the run_job entry point */
+ 	xe_sched_submission_stop(sched);
+ 
+@@ -937,8 +984,8 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 	 * Kernel jobs should never fail, nor should VM jobs if they do
+ 	 * somethings has gone wrong and the GT needs a reset
+ 	 */
+-	if (q->flags & EXEC_QUEUE_FLAG_KERNEL ||
+-	    (q->flags & EXEC_QUEUE_FLAG_VM && !exec_queue_killed(q))) {
++	if (!wedged && (q->flags & EXEC_QUEUE_FLAG_KERNEL ||
++	    (q->flags & EXEC_QUEUE_FLAG_VM && !exec_queue_killed(q)))) {
+ 		if (!xe_sched_invalidate_job(job, 2)) {
+ 			xe_sched_add_pending_job(sched, job);
+ 			xe_sched_submission_start(sched);
+@@ -948,7 +995,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 	}
+ 
+ 	/* Engine state now stable, disable scheduling if needed */
+-	if (exec_queue_registered(q)) {
++	if (!wedged && exec_queue_registered(q)) {
+ 		struct xe_guc *guc = exec_queue_to_guc(q);
+ 		int ret;
+ 
+@@ -1030,7 +1077,7 @@ static void guc_exec_queue_fini_async(struct xe_exec_queue *q)
+ 	INIT_WORK(&q->guc->fini_async, __guc_exec_queue_fini_async);
+ 
+ 	/* We must block on kernel engines so slabs are empty on driver unload */
+-	if (q->flags & EXEC_QUEUE_FLAG_PERMANENT)
++	if (q->flags & EXEC_QUEUE_FLAG_PERMANENT || exec_queue_wedged(q))
+ 		__guc_exec_queue_fini_async(&q->guc->fini_async);
+ 	else
+ 		queue_work(system_wq, &q->guc->fini_async);
+@@ -1065,7 +1112,7 @@ static void __guc_exec_queue_process_msg_cleanup(struct xe_sched_msg *msg)
+ 
+ static bool guc_exec_queue_allowed_to_change_state(struct xe_exec_queue *q)
+ {
+-	return !exec_queue_killed_or_banned(q) && exec_queue_registered(q);
++	return !exec_queue_killed_or_banned_or_wedged(q) && exec_queue_registered(q);
+ }
+ 
+ static void __guc_exec_queue_process_msg_set_sched_props(struct xe_sched_msg *msg)
+@@ -1276,7 +1323,7 @@ static void guc_exec_queue_fini(struct xe_exec_queue *q)
+ {
+ 	struct xe_sched_msg *msg = q->guc->static_msgs + STATIC_MSG_CLEANUP;
+ 
+-	if (!(q->flags & EXEC_QUEUE_FLAG_PERMANENT))
++	if (!(q->flags & EXEC_QUEUE_FLAG_PERMANENT) && !exec_queue_wedged(q))
+ 		guc_exec_queue_add_msg(q, msg, CLEANUP);
+ 	else
+ 		__guc_exec_queue_fini(exec_queue_to_guc(q), q);
+@@ -1287,7 +1334,8 @@ static int guc_exec_queue_set_priority(struct xe_exec_queue *q,
+ {
+ 	struct xe_sched_msg *msg;
+ 
+-	if (q->sched_props.priority == priority || exec_queue_killed_or_banned(q))
++	if (q->sched_props.priority == priority ||
++	    exec_queue_killed_or_banned_or_wedged(q))
+ 		return 0;
+ 
+ 	msg = kmalloc(sizeof(*msg), GFP_KERNEL);
+@@ -1305,7 +1353,7 @@ static int guc_exec_queue_set_timeslice(struct xe_exec_queue *q, u32 timeslice_u
+ 	struct xe_sched_msg *msg;
+ 
+ 	if (q->sched_props.timeslice_us == timeslice_us ||
+-	    exec_queue_killed_or_banned(q))
++	    exec_queue_killed_or_banned_or_wedged(q))
+ 		return 0;
+ 
+ 	msg = kmalloc(sizeof(*msg), GFP_KERNEL);
+@@ -1324,7 +1372,7 @@ static int guc_exec_queue_set_preempt_timeout(struct xe_exec_queue *q,
+ 	struct xe_sched_msg *msg;
+ 
+ 	if (q->sched_props.preempt_timeout_us == preempt_timeout_us ||
+-	    exec_queue_killed_or_banned(q))
++	    exec_queue_killed_or_banned_or_wedged(q))
+ 		return 0;
+ 
+ 	msg = kmalloc(sizeof(*msg), GFP_KERNEL);
+@@ -1341,7 +1389,7 @@ static int guc_exec_queue_suspend(struct xe_exec_queue *q)
+ {
+ 	struct xe_sched_msg *msg = q->guc->static_msgs + STATIC_MSG_SUSPEND;
+ 
+-	if (exec_queue_killed_or_banned(q) || q->guc->suspend_pending)
++	if (exec_queue_killed_or_banned_or_wedged(q) || q->guc->suspend_pending)
+ 		return -EINVAL;
+ 
+ 	q->guc->suspend_pending = true;
+@@ -1487,7 +1535,7 @@ static void guc_exec_queue_start(struct xe_exec_queue *q)
+ {
+ 	struct xe_gpu_scheduler *sched = &q->guc->sched;
+ 
+-	if (!exec_queue_killed_or_banned(q)) {
++	if (!exec_queue_killed_or_banned_or_wedged(q)) {
+ 		int i;
+ 
+ 		trace_xe_exec_queue_resubmit(q);
+@@ -1786,9 +1834,8 @@ guc_exec_queue_wq_snapshot_print(struct xe_guc_submit_exec_queue_snapshot *snaps
+  * caller, using `xe_guc_exec_queue_snapshot_free`.
+  */
+ struct xe_guc_submit_exec_queue_snapshot *
+-xe_guc_exec_queue_snapshot_capture(struct xe_sched_job *job)
++xe_guc_exec_queue_snapshot_capture(struct xe_exec_queue *q)
+ {
+-	struct xe_exec_queue *q = job->q;
+ 	struct xe_gpu_scheduler *sched = &q->guc->sched;
+ 	struct xe_guc_submit_exec_queue_snapshot *snapshot;
+ 	int i;
+@@ -1944,28 +1991,10 @@ void xe_guc_exec_queue_snapshot_free(struct xe_guc_submit_exec_queue_snapshot *s
+ static void guc_exec_queue_print(struct xe_exec_queue *q, struct drm_printer *p)
+ {
+ 	struct xe_guc_submit_exec_queue_snapshot *snapshot;
+-	struct xe_gpu_scheduler *sched = &q->guc->sched;
+-	struct xe_sched_job *job;
+-	bool found = false;
+-
+-	spin_lock(&sched->base.job_list_lock);
+-	list_for_each_entry(job, &sched->base.pending_list, drm.list) {
+-		if (job->q == q) {
+-			xe_sched_job_get(job);
+-			found = true;
+-			break;
+-		}
+-	}
+-	spin_unlock(&sched->base.job_list_lock);
+-
+-	if (!found)
+-		return;
+ 
+-	snapshot = xe_guc_exec_queue_snapshot_capture(job);
++	snapshot = xe_guc_exec_queue_snapshot_capture(q);
+ 	xe_guc_exec_queue_snapshot_print(snapshot, p);
+ 	xe_guc_exec_queue_snapshot_free(snapshot);
+-
+-	xe_sched_job_put(job);
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
+index 2f14dfd04722..fad0421ead36 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+@@ -9,8 +9,8 @@
+ #include <linux/types.h>
+ 
+ struct drm_printer;
++struct xe_exec_queue;
+ struct xe_guc;
+-struct xe_sched_job;
+ 
+ int xe_guc_submit_init(struct xe_guc *guc);
+ 
+@@ -27,7 +27,7 @@ int xe_guc_exec_queue_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
+ int xe_guc_exec_queue_reset_failure_handler(struct xe_guc *guc, u32 *msg, u32 len);
+ 
+ struct xe_guc_submit_exec_queue_snapshot *
+-xe_guc_exec_queue_snapshot_capture(struct xe_sched_job *job);
++xe_guc_exec_queue_snapshot_capture(struct xe_exec_queue *q);
+ void
+ xe_guc_exec_queue_snapshot_capture_delayed(struct xe_guc_submit_exec_queue_snapshot *snapshot);
+ void
+diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
+index 110b69864656..5e023df0bea9 100644
+--- a/drivers/gpu/drm/xe/xe_module.c
++++ b/drivers/gpu/drm/xe/xe_module.c
+@@ -17,6 +17,7 @@ struct xe_modparam xe_modparam = {
+ 	.enable_display = true,
+ 	.guc_log_level = 5,
+ 	.force_probe = CONFIG_DRM_XE_FORCE_PROBE,
++	.wedged_mode = 1,
+ 	/* the rest are 0 by default */
+ };
+ 
+@@ -48,6 +49,10 @@ module_param_named_unsafe(force_probe, xe_modparam.force_probe, charp, 0400);
+ MODULE_PARM_DESC(force_probe,
+ 		 "Force probe options for specified devices. See CONFIG_DRM_XE_FORCE_PROBE for details.");
+ 
++module_param_named_unsafe(wedged_mode, xe_modparam.wedged_mode, int, 0600);
++MODULE_PARM_DESC(wedged_mode,
++		 "Module's default policy for the wedged mode - 0=never, 1=upon-critical-errors[default], 2=upon-any-hang");
++
+ struct init_funcs {
+ 	int (*init)(void);
+ 	void (*exit)(void);
+diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
+index 88ef0e8b2bfd..bc6f370c9a8e 100644
+--- a/drivers/gpu/drm/xe/xe_module.h
++++ b/drivers/gpu/drm/xe/xe_module.h
+@@ -18,6 +18,7 @@ struct xe_modparam {
+ 	char *huc_firmware_path;
+ 	char *gsc_firmware_path;
+ 	char *force_probe;
++	int wedged_mode;
+ };
+ 
+ extern struct xe_modparam xe_modparam;
+-- 
+2.34.1
+
