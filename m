@@ -4,26 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB9DBCD11C2
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 13:03:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4491ACD11C2
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 13:18:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20DBD10E9DA;
-	Fri,  5 Apr 2024 13:03:02 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C11CD113C27;
- Fri,  5 Apr 2024 13:02:52 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v2] drm: Add drm_vblank_work_flush_all().
-Date: Fri,  5 Apr 2024 15:03:02 +0200
-Message-ID: <20240405130302.8086-1-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240404104813.150030-1-maarten.lankhorst@linux.intel.com>
-References: <20240404104813.150030-1-maarten.lankhorst@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6C7610E0E7;
+	Fri,  5 Apr 2024 13:18:58 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C70C10E83C;
+ Fri,  5 Apr 2024 13:18:56 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3591423268124439524=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_L3_bank_mask?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Francois Dugast" <francois.dugast@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 05 Apr 2024 13:18:56 -0000
+Message-ID: <171232313644.1229672.6056853050834200818@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240405115915.7-1-francois.dugast@intel.com>
+In-Reply-To: <20240405115915.7-1-francois.dugast@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,75 +35,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Maarten Lankhorst <dev@lankhorst.se>
+--===============3591423268124439524==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-In some cases we want to flush all vblank work, right before vblank_off
-for example. Add a simple function to make this possible.
+== Series Details ==
 
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
----
- drivers/gpu/drm/drm_vblank_work.c | 22 ++++++++++++++++++++++
- include/drm/drm_vblank_work.h     |  2 ++
- 2 files changed, 24 insertions(+)
+Series: L3 bank mask
+URL   : https://patchwork.freedesktop.org/series/132075/
+State : success
 
- Changes since v1:
-   Check in flush_all for waitqueue_active was inverted.
+== Summary ==
 
-diff --git a/drivers/gpu/drm/drm_vblank_work.c b/drivers/gpu/drm/drm_vblank_work.c
-index 43cd5c0f4f6f..6a53cede547a 100644
---- a/drivers/gpu/drm/drm_vblank_work.c
-+++ b/drivers/gpu/drm/drm_vblank_work.c
-@@ -232,6 +232,28 @@ void drm_vblank_work_flush(struct drm_vblank_work *work)
- }
- EXPORT_SYMBOL(drm_vblank_work_flush);
- 
-+/**
-+ * drm_vblank_work_flush_all - flush all currently pending vblank work on crtc.
-+ * @crtc: crtc for which vblank work to flush
-+ *
-+ * Wait until all currently queued vblank work on @crtc
-+ * has finished executing once.
-+ */
-+void drm_vblank_work_flush_all(struct drm_crtc *crtc)
-+{
-+	struct drm_device *dev = crtc->dev;
-+	struct drm_vblank_crtc *vblank = &dev->vblank[drm_crtc_index(crtc)];
-+
-+	spin_lock_irq(&dev->event_lock);
-+	wait_event_lock_irq(vblank->work_wait_queue,
-+			    !waitqueue_active(&vblank->work_wait_queue),
-+			    dev->event_lock);
-+	spin_unlock_irq(&dev->event_lock);
-+
-+	kthread_flush_worker(vblank->worker);
-+}
-+EXPORT_SYMBOL(drm_vblank_work_flush_all);
-+
- /**
-  * drm_vblank_work_init - initialize a vblank work item
-  * @work: vblank work item
-diff --git a/include/drm/drm_vblank_work.h b/include/drm/drm_vblank_work.h
-index eb41d0810c4f..e04d436b7297 100644
---- a/include/drm/drm_vblank_work.h
-+++ b/include/drm/drm_vblank_work.h
-@@ -17,6 +17,7 @@ struct drm_crtc;
-  * drm_vblank_work_init()
-  * drm_vblank_work_cancel_sync()
-  * drm_vblank_work_flush()
-+ * drm_vblank_work_flush_all()
-  */
- struct drm_vblank_work {
- 	/**
-@@ -67,5 +68,6 @@ void drm_vblank_work_init(struct drm_vblank_work *work, struct drm_crtc *crtc,
- 			  void (*func)(struct kthread_work *work));
- bool drm_vblank_work_cancel_sync(struct drm_vblank_work *work);
- void drm_vblank_work_flush(struct drm_vblank_work *work);
-+void drm_vblank_work_flush_all(struct drm_crtc *crtc);
- 
- #endif /* !_DRM_VBLANK_WORK_H_ */
--- 
-2.43.0
+CI Bug Log - changes from xe-1045-019010dd870216d30458836f988b4461674a051a_BAT -> xe-pw-132075v1_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (5 -> 5)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-1045-019010dd870216d30458836f988b4461674a051a -> xe-pw-132075v1
+
+  IGT_7800: 7800
+  xe-1045-019010dd870216d30458836f988b4461674a051a: 019010dd870216d30458836f988b4461674a051a
+  xe-pw-132075v1: 132075v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132075v1/index.html
+
+--===============3591423268124439524==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>L3 bank mask</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132075/">https://patchwork.freedesktop.org/series/132075/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132075v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132075v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1045-019010dd870216d30458836f988b4461674a051a_BAT -&gt; xe-pw-132075v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (5 -&gt; 5)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1045-019010dd870216d30458836f988b4461674a051a -&gt; xe-pw-132075v1</li>
+</ul>
+<p>IGT_7800: 7800<br />
+  xe-1045-019010dd870216d30458836f988b4461674a051a: 019010dd870216d30458836f988b4461674a051a<br />
+  xe-pw-132075v1: 132075v1</p>
+
+</body>
+</html>
+
+--===============3591423268124439524==--
