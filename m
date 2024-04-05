@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55AB7CD1299
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 13:39:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EA87CD11C2
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 13:39:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD51D10E50D;
-	Fri,  5 Apr 2024 13:39:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60184113C10;
+	Fri,  5 Apr 2024 13:39:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="huj/DFSv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jl25btjf";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E6E8113388
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Apr 2024 13:39:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5100C113C10
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 Apr 2024 13:39:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712324386; x=1743860386;
+ t=1712324387; x=1743860387;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=yW2tzQXpoqQgstYQy1YGQCT5I1kBT9kgfSgbm248bDE=;
- b=huj/DFSvVal/O9ryS8bMhGeDYW+kmcjHxicMWbcoGc2wNc5c+3KGc0n9
- rea/p5dadQe+12/UxLXye+Vnd5KGTcW3lzr4Rhx4eCB5lGiMK+UPVd+dz
- CPeyAMdTDLGnBYOzJK/f/CdeCAUYoKG0WGc8dl7J4YcD3FZvAXuT+cqOC
- gE9nCnrYrlGlPqCsnQTvp9NuA77NqcXEI85S1w+1vd4XoDea/AWF/Wa8C
- pjXFyygZ0bQVFYzc6fZlTVN/HXLnE7URMsikwqDEuGDcj4iDti3U9JU5u
- HzyBkmQWfxLezshhEaXTZW7Ab2JpQmTTMB6B5ezdQW/922WVsOilGwi5q Q==;
-X-CSE-ConnectionGUID: 9XjvjyGHRNOG1LPWTtU+zQ==
-X-CSE-MsgGUID: yHECSJzJT4OSaSLcWJOzCg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11035"; a="7838168"
+ bh=oJ/YfPNp+nf4nzcLqjmeGYHpmESlb5mp2ZmftErcbQs=;
+ b=Jl25btjfYZheb7qpIk86ISKMrplwex7UuL9P8cmI5Eo7LORYVcSL6dZl
+ ztxTxaPNRyLsEXBTv8hNQREq2yltPc3uLMFjZ7CCVI7IMP+uGogDDO0fS
+ Sm2uPXMpmRWqq2eUwlTE2XHdhQVMFOq9sh7G3CXKszgLFiZaGW2KhcaZG
+ 8W8odSz+sXBabUrB2dMHvSt/jiGVsl9CcMipC8hkO9uteF43vOtApUb95
+ NGWopYUOwtw5ni0zqmRGMZQjMLVIhCbEH4iy6eeJI0EF00+9gKsEq83Kv
+ SOfmyl2ez9/9GKFdp8DrcVQvEFxvi1utfyr44xfIWAErBu/OsKlqx6NSz Q==;
+X-CSE-ConnectionGUID: BrmpGgfrScmMLVP7tsFmVA==
+X-CSE-MsgGUID: pEPTjl6eR8yZabW3oV8mzg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11035"; a="7838169"
 X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; 
-   d="scan'208";a="7838168"
+   d="scan'208";a="7838169"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2024 06:39:46 -0700
-X-CSE-ConnectionGUID: /uyaTdzcSzGIR13M/yFTaQ==
-X-CSE-MsgGUID: SXSLjgvAQLOwg5jwEYT1cw==
+ 05 Apr 2024 06:39:47 -0700
+X-CSE-ConnectionGUID: u3pJChV/Tz6MUTbW2DRZgA==
+X-CSE-MsgGUID: H8vIQSn7TyKJC8Z4rleoBA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="19239414"
+X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="19239419"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.143.198])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2024 06:39:45 -0700
+ 05 Apr 2024 06:39:46 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 2/3] drm/xe/vf: Don't try to program MOCS if VF
-Date: Fri,  5 Apr 2024 15:39:35 +0200
-Message-Id: <20240405133936.891-3-michal.wajdeczko@intel.com>
+Subject: [PATCH 3/3] drm/xe/vf: Don't try to read legacy GuC MMIO notification
+ if VF
+Date: Fri,  5 Apr 2024 15:39:36 +0200
+Message-Id: <20240405133936.891-4-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240405133936.891-1-michal.wajdeczko@intel.com>
 References: <20240405133936.891-1-michal.wajdeczko@intel.com>
@@ -66,28 +67,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-VFs drivers don't have access to MOCS registers. It is a PF driver
-responsibility to program MOCS according to the HW team guidelines.
+Legacy SOFT_SCRATCH registers are not accessible from the VF. Any
+G2H notification posted there will be handled by the PF driver.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_mocs.c | 3 +++
+ drivers/gpu/drm/xe/xe_guc.c | 3 +++
  1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
-index bff659d20062..d16fa64da881 100644
---- a/drivers/gpu/drm/xe/xe_mocs.c
-+++ b/drivers/gpu/drm/xe/xe_mocs.c
-@@ -568,6 +568,9 @@ void xe_mocs_init(struct xe_gt *gt)
- 	flags = get_mocs_settings(gt_to_xe(gt), &table);
- 	mocs_dbg(gt, "flag:0x%x\n", flags);
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 59fe73770711..240e7a4bbff1 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -591,6 +591,9 @@ static void guc_handle_mmio_msg(struct xe_guc *guc)
+ 	struct xe_gt *gt = guc_to_gt(guc);
+ 	u32 msg;
  
-+	if (IS_SRIOV_VF(gt_to_xe(gt)))
++	if (IS_SRIOV_VF(guc_to_xe(guc)))
 +		return;
 +
- 	if (flags & HAS_GLOBAL_MOCS)
- 		__init_mocs_table(gt, &table);
- 	if (flags & HAS_LNCF_MOCS)
+ 	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
+ 
+ 	msg = xe_mmio_read32(gt, SOFT_SCRATCH(15));
 -- 
 2.43.0
 
