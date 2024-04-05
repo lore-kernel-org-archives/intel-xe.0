@@ -4,28 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DDC6C67861
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 19:37:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40F61CD1296
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 19:37:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D327810E79B;
-	Fri,  5 Apr 2024 19:37:38 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CC2B10E7C6;
- Fri,  5 Apr 2024 19:37:36 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id C94A8113068;
+	Fri,  5 Apr 2024 19:37:54 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YvHkwre0";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B57B10E813;
+ Fri,  5 Apr 2024 19:37:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1712345871; x=1743881871;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=h/P1H+MG27GlN69wspdFApT2EApSLLGceOqoe2NkHLM=;
+ b=YvHkwre0M56a8d+NiqyweBR10X78vFKoU4T8H02a7TwOp+C7jMMPKn7S
+ VkfFE95rWhukscCvLgSrEXDTLIUZ+fnMrRFdxtCv3YeHgZNSafw0LTO2+
+ yglHhW2MTYISJ2lsPLHQoZNktxFI+zyDWs95t6UBh7VaIwml8YVjLaH40
+ KsNP3aZbSh8d+99tOei35ltX+uwYubHi6sp3Ck8Y6fytWXNCcW0BFgCMT
+ YfbhYsZ3+dZpPQQKTkE05MUfh+JFIUeHvYZDd7YAj8Pltwq3vUsFSAtNP
+ Ow44cUJtI5or0JkbxRqBEM0BJRBEyNlfGXo/M5ck1Gk+/rhhXrj4SuWNM A==;
+X-CSE-ConnectionGUID: eLv8Bgg1TEaF+raeY6APog==
+X-CSE-MsgGUID: RrnKPWqmTmmWs4z6LFbOdA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11035"; a="19124064"
+X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="19124064"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2024 12:37:49 -0700
+X-CSE-ConnectionGUID: CiPiNGABSk+BOrrFg+dJ+A==
+X-CSE-MsgGUID: LhZI6lf6TdmF5iHvna//wQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="23755930"
+Received: from dtorrice-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.41.202])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2024 12:37:47 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+	lucas.demarchi@intel.com
+Subject: [PATCH 0/6] drm/i915 and drm/xe display integration cleanups
+Date: Fri,  5 Apr 2024 22:37:37 +0300
+Message-Id: <cover.1712345787.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_series_starting_with_=5B?=
- =?utf-8?q?v4=2C1/3=5D_drm/xe/xe=5Fguc=5Fsubmit=3A_Fix_exec_queue_stop_race_?=
- =?utf-8?q?condition?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 05 Apr 2024 19:37:36 -0000
-Message-ID: <171234585644.1239316.8594445649114750755@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240405175505.1161756-1-jonathan.cavitt@intel.com>
-In-Reply-To: <20240405175505.1161756-1-jonathan.cavitt@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,37 +65,39 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Some cleanups on i915 side, and subsequent cleanups on xe side. I'd like
+to merge all of these via drm-intel-next.
 
-Series: series starting with [v4,1/3] drm/xe/xe_guc_submit: Fix exec queue stop race condition
-URL   : https://patchwork.freedesktop.org/series/132094/
-State : success
+BR,
+Jani.
 
-== Summary ==
+Jani Nikula (6):
+  drm/i915: use IS_JASPERLAKE()/IS_ELKHARTLAKE() instead of
+    IS_PLATFORM()
+  drm/i915/dmc: define firmware URL locally
+  drm/i915: move i915_fixed.h to display/intel_fixed.h
+  drm/xe/display: clean up a lot of cruft from compat i915_drv.h
+  drm/xe/display: remove compat i915_gem.h
+  drm/xe/display: clean up compat i915_vgpu.h
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 11155f150a41d028c6ac7a141924fd4c8798721d
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+ .../drm/i915/display/intel_ddi_buf_trans.c    |  4 +--
+ drivers/gpu/drm/i915/display/intel_dmc.c      |  4 ++-
+ .../{i915_fixed.h => display/intel_fixed.h}   |  0
+ drivers/gpu/drm/i915/display/skl_watermark.c  |  2 +-
+ .../gpu/drm/xe/compat-i915-headers/i915_drv.h | 34 -------------------
+ .../drm/xe/compat-i915-headers/i915_fixed.h   |  6 ----
+ .../gpu/drm/xe/compat-i915-headers/i915_gem.h |  9 -----
+ .../drm/xe/compat-i915-headers/i915_vgpu.h    | 26 --------------
+ .../drm/xe/compat-i915-headers/intel_uc_fw.h  | 11 ------
+ 9 files changed, 6 insertions(+), 90 deletions(-)
+ rename drivers/gpu/drm/i915/{i915_fixed.h => display/intel_fixed.h} (100%)
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_fixed.h
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_gem.h
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_uc_fw.h
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+-- 
+2.39.2
 
