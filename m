@@ -4,57 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0048FC67861
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DA5CCD11C2
 	for <intel-xe@archiver.kernel.org>; Fri,  5 Apr 2024 11:59:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DCB9113B69;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43CAA113B64;
 	Fri,  5 Apr 2024 11:59:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GEir6jSc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GmdF8o9B";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF6E1113B64
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Apr 2024 11:59:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53463113B64
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 Apr 2024 11:59:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712318378; x=1743854378;
+ t=1712318377; x=1743854377;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5ias+t3ffyrTULW7J+zIhpys1KBuKVWq+eFyTuUHJt0=;
- b=GEir6jScIcfjOGDaXHb2mXDDi/6fo1dbtAbVtzKcVGSwoT6CEuSkPArw
- tgpIgK4nwZxF/JFMXwnlcDDoxE9Y1NX3D6kPCENlAoLkEPI9dxEqhTNm6
- VEdmT4QiFVwt2WnIIquj2U/g75aEVxYmodW/1EGUWUiKeDZ5id2/WFe1A
- LEUXz09VUpK8krOAry9bhKdwz3tCQwSheGQTfsZCikmxPQy8LNPTD4ZLD
- ZO6tQA9klk4+XzdU4hufWvVHNJlGHD0hllS2Ha8vGxwl4Xyu1UGzwGRmm
- yD6s3LtB+QKjjXMPLzPGPy3fR1sOFf1exXhh2eqhMkLT+qcAKN6/3VWTN w==;
-X-CSE-ConnectionGUID: 7V493ih/SNKiF+ZPAuIAbw==
-X-CSE-MsgGUID: F1ZEp1egTmCvo0Mf8Tnbbw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="7877536"
+ bh=iZa2BS5LKXu/bIahtytEwP8MKt8v2OACojw0nLaM9Xk=;
+ b=GmdF8o9BJrM4Quv+Zb0fJLZ0rLKc6T0ZFdb9XQBxLv35p8NKO/nOHpEg
+ HHOGTljSjvJgdBTcenhJwr6OROSx35xc1V0rCpI8eez7ICC0QpwMF/U/+
+ FoRTEM8XR6xKwT51tuVapgPWF8Ldi7hMnQl5JLozsac0zgDoCOaPOYzON
+ 3rdirGMYsn0wpk4joWQS9/RdD698SVo46QdHp5jqavYS9Aws7CfurNCDK
+ k5EBxhRbtVDinyB017Yb9XlzXA0o1/PXOq0mBCbJwE5MGItmPVXJs4hzP
+ Yq877gUhM6eBVzGWJTY/On+43uWiYuIECqIfH+ltwojG6d/6O11+TWh6e w==;
+X-CSE-ConnectionGUID: 9bQtGpd/RPKNWflXYttLDg==
+X-CSE-MsgGUID: OYU6uctNRDqDMjcJubBJEg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="7877534"
 X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; 
-   d="scan'208";a="7877536"
+   d="scan'208";a="7877534"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2024 04:59:38 -0700
-X-CSE-ConnectionGUID: sTBRWD+PTNSE0bhIcydiSA==
-X-CSE-MsgGUID: JTS5++IlSWeb9dupWGfIZg==
+ 05 Apr 2024 04:59:37 -0700
+X-CSE-ConnectionGUID: 0YUe4lo/Ss2MpVXolcQs6g==
+X-CSE-MsgGUID: 1XvhI8kfQrq2VhIlRTkECA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="19594015"
+X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="19594011"
 Received: from ettammin-desk.ger.corp.intel.com (HELO b12736dfd7b0.intel.com)
  ([10.252.41.208])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2024 04:59:37 -0700
+ 05 Apr 2024 04:59:36 -0700
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Francois Dugast <francois.dugast@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Robert Krzemien <robert.krzemien@intel.com>
-Subject: [PATCH 2/2] drm/xe/uapi: Expose the L3 bank mask
-Date: Fri,  5 Apr 2024 11:59:15 +0000
-Message-Id: <20240405115915.7-3-francois.dugast@intel.com>
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: [PATCH 1/2] drm/xe/gt: Add L3 bank mask to GT topology
+Date: Fri,  5 Apr 2024 11:59:14 +0000
+Message-Id: <20240405115915.7-2-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240405115915.7-1-francois.dugast@intel.com>
 References: <20240405115915.7-1-francois.dugast@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,69 +70,211 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Extend the topology query to include the mask of enabled L3 banks on
-the GT. This information is needed for user space components which
-provide metrics depending on the exact hardware configuration. In this
-case, the L3 bank count is not sufficient as on some platforms not
-all L3 banks might be enabled, hence the mask exposed by this query.
+Generate the mask of enabled L3 banks for the GT. It is stored with the
+rest of the GT topology in a consistent representation across platforms.
+For now the L3 bank mask is just printed in the log for developers to
+easily figure out the fusing characteristics of machines that they are
+trying to debug issues on. Later it can be used to replace existing code
+in the driver that requires the L3 bank count (not mask). Also the mask
+can easily be exposed to user space in a new query if needed.
 
+Bspec: 52545, 52546, 62482
 Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Robert Krzemien <robert.krzemien@intel.com>
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 ---
- drivers/gpu/drm/xe/xe_query.c | 9 ++++++++-
- include/uapi/drm/xe_drm.h     | 2 ++
- 2 files changed, 10 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |   3 +
+ drivers/gpu/drm/xe/xe_gt_topology.c  | 107 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_types.h     |  13 +++-
+ 3 files changed, 119 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index df407d73e5f5..6e0170bdae44 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -454,9 +454,10 @@ static int query_hwconfig(struct xe_device *xe,
- static size_t calc_topo_query_size(struct xe_device *xe)
- {
- 	return xe->info.gt_count *
--		(3 * sizeof(struct drm_xe_query_topology_mask) +
-+		(4 * sizeof(struct drm_xe_query_topology_mask) +
- 		 sizeof_field(struct xe_gt, fuse_topo.g_dss_mask) +
- 		 sizeof_field(struct xe_gt, fuse_topo.c_dss_mask) +
-+		 sizeof_field(struct xe_gt, fuse_topo.l3_bank_mask) +
- 		 sizeof_field(struct xe_gt, fuse_topo.eu_mask_per_dss));
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 6617c86a096b..c026b9d3ca15 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -157,7 +157,10 @@
+ #define	MIRROR_FUSE3				XE_REG(0x9118)
+ #define   XE2_NODE_ENABLE_MASK			REG_GENMASK(31, 16)
+ #define   L3BANK_PAIR_COUNT			4
++#define   XEHPC_GT_L3_MODE_MASK			REG_GENMASK(7, 4)
++#define   XE2_GT_L3_MODE_MASK			REG_GENMASK(7, 4)
+ #define   L3BANK_MASK				REG_GENMASK(3, 0)
++#define   XELP_GT_L3_MODE_MASK			REG_GENMASK(7, 0)
+ /* on Xe_HP the same fuses indicates mslices instead of L3 banks */
+ #define   MAX_MSLICES				4
+ #define   MEML3_EN_MASK				REG_GENMASK(3, 0)
+diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
+index f5773a14f3c8..de2ba412e86c 100644
+--- a/drivers/gpu/drm/xe/xe_gt_topology.c
++++ b/drivers/gpu/drm/xe/xe_gt_topology.c
+@@ -8,6 +8,7 @@
+ #include <linux/bitmap.h>
+ 
+ #include "regs/xe_gt_regs.h"
++#include "xe_assert.h"
+ #include "xe_gt.h"
+ #include "xe_mmio.h"
+ 
+@@ -59,6 +60,109 @@ load_eu_mask(struct xe_gt *gt, xe_eu_mask_t mask)
+ 	bitmap_from_arr32(mask, &val, XE_MAX_EU_FUSE_BITS);
  }
  
-@@ -510,6 +511,12 @@ static int query_gt_topology(struct xe_device *xe,
- 		if (err)
- 			return err;
- 
-+		topo.type = DRM_XE_TOPO_L3_BANK;
-+		err = copy_mask(&query_ptr, &topo, gt->fuse_topo.l3_bank_mask,
-+				sizeof(gt->fuse_topo.l3_bank_mask));
-+		if (err)
-+			return err;
++/**
++ * replicate_by_mask - Replicate a bit pattern according to a mask
++ *
++ * It is used to compute the L3 bank masks in a generic format on
++ * various platforms where the internal representation of L3 node
++ * and masks from registers are different.
++ *
++ * @xe: device
++ * @dst: destination
++ * @pattern: pattern to replicate
++ * @mask: mask describing where to replicate the pattern
++ * @maskbits: how many bits represents each bit in the mask
++ *
++ * Example 1:
++ * ----------
++ * @pattern = 0b1111
++ *              └┬─┘
++ * @maskbits =   4 (bits)
++ * @mask = 0b0101
++ *           ││││
++ *           │││└────────────────── 0b1111 (=1×0b1111)
++ *           ││└──────────── 0b0000    │   (=0×0b1111)
++ *           │└────── 0b1111    │      │   (=1×0b1111)
++ *           └ 0b0000    │      │      │   (=0×0b1111)
++ *                │      │      │      │
++ * @dst =      0b0000 0b1111 0b0000 0b1111
++ *
++ * Example 2:
++ * ----------
++ * @pattern = 0b11111111
++ *              └┬─────┘
++ * @maskbits =   8 (bits)
++ * @mask = 0b10
++ *           ││
++ *           ││
++ *           ││
++ *           │└────────── 0b00000000 (=0×0b11111111)
++ *           └ 0b11111111      │     (=1×0b11111111)
++ *                  │          │
++ * @dst =      0b11111111 0b00000000
++ */
++static void
++replicate_by_mask(struct xe_device *xe, xe_l3_bank_mask_t dst,
++		  xe_l3_bank_mask_t pattern, unsigned long mask, int maskbits)
++{
++	unsigned long bit;
 +
- 		topo.type = DRM_XE_TOPO_EU_PER_DSS;
- 		err = copy_mask(&query_ptr, &topo,
- 				gt->fuse_topo.eu_mask_per_dss,
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 95a8ecca21f4..e7d0f94940d4 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -508,6 +508,7 @@ struct drm_xe_query_gt_list {
-  *    containing the following in mask:
-  *    ``DSS_COMPUTE    ff ff ff ff 00 00 00 00``
-  *    means 32 DSS are available for compute.
-+ *  - %DRM_XE_TOPO_L3_BANK - To query the mask of enabled L3 banks
-  *  - %DRM_XE_TOPO_EU_PER_DSS - To query the mask of Execution Units (EU)
-  *    available per Dual Sub Slices (DSS). For example a query response
-  *    containing the following in mask:
-@@ -520,6 +521,7 @@ struct drm_xe_query_topology_mask {
++	xe_assert(xe, fls(mask) <= maskbits);
++	for_each_set_bit(bit, &mask, 32) {
++		xe_l3_bank_mask_t shifted_pattern = {};
++
++		bitmap_shift_left(shifted_pattern, pattern, bit * maskbits,
++				  XE_MAX_L3_BANK_MASK_BITS);
++		bitmap_or(dst, dst, shifted_pattern, XE_MAX_L3_BANK_MASK_BITS);
++	}
++}
++
++static void
++load_l3_bank_mask(struct xe_gt *gt, xe_l3_bank_mask_t l3_bank_mask)
++{
++	struct xe_device *xe = gt_to_xe(gt);
++	u32 fuse3 = xe_mmio_read32(gt, MIRROR_FUSE3);
++
++	if (GRAPHICS_VER(xe) >= 20) {
++		xe_l3_bank_mask_t per_node = {};
++		u32 meml3_en = REG_FIELD_GET(XE2_NODE_ENABLE_MASK, fuse3);
++		u32 bank_val = REG_FIELD_GET(XE2_GT_L3_MODE_MASK, fuse3);
++
++		bitmap_from_arr32(per_node, &bank_val, 32);
++		replicate_by_mask(xe, l3_bank_mask, per_node, meml3_en, 4);
++	} else if (GRAPHICS_VERx100(xe) >= 1270) {
++		xe_l3_bank_mask_t per_node = {};
++		xe_l3_bank_mask_t per_mask_bit = {};
++		u32 meml3_en = REG_FIELD_GET(MEML3_EN_MASK, fuse3);
++		u32 fuse4 = xe_mmio_read32(gt, XEHP_FUSE4);
++		u32 bank_val = REG_FIELD_GET(GT_L3_EXC_MASK, fuse4);
++
++		bitmap_set_value8(per_mask_bit, 0x3, 0);
++		replicate_by_mask(xe, per_node, per_mask_bit, bank_val, 2);
++		replicate_by_mask(xe, l3_bank_mask, per_node, meml3_en, 4);
++	} else if (xe->info.platform == XE_PVC) {
++		xe_l3_bank_mask_t per_node = {};
++		xe_l3_bank_mask_t per_mask_bit = {};
++		u32 meml3_en = REG_FIELD_GET(MEML3_EN_MASK, fuse3);
++		u32 bank_val = REG_FIELD_GET(XEHPC_GT_L3_MODE_MASK, fuse3);
++
++		bitmap_set_value8(per_mask_bit, 0xf, 0);
++		replicate_by_mask(xe, per_node, per_mask_bit, bank_val, 4);
++		replicate_by_mask(xe, l3_bank_mask, per_node, meml3_en, 16);
++	} else if (xe->info.platform == XE_DG2) {
++		xe_l3_bank_mask_t per_node = {};
++		u32 mask = REG_FIELD_GET(MEML3_EN_MASK, fuse3);
++
++		bitmap_set_value8(per_node, 0xff, 0);
++		replicate_by_mask(xe, l3_bank_mask, per_node, mask, 8);
++	} else {
++		/* 1:1 register bit to mask bit (inverted register bits) */
++		u32 mask = REG_FIELD_GET(XELP_GT_L3_MODE_MASK, ~fuse3);
++
++		bitmap_from_arr32(l3_bank_mask, &mask, 32);
++	}
++}
++
+ static void
+ get_num_dss_regs(struct xe_device *xe, int *geometry_regs, int *compute_regs)
+ {
+@@ -103,6 +207,7 @@ xe_gt_topology_init(struct xe_gt *gt)
+ 		      XEHPC_GT_COMPUTE_DSS_ENABLE_EXT,
+ 		      XE2_GT_COMPUTE_DSS_2);
+ 	load_eu_mask(gt, gt->fuse_topo.eu_mask_per_dss);
++	load_l3_bank_mask(gt, gt->fuse_topo.l3_bank_mask);
  
- #define DRM_XE_TOPO_DSS_GEOMETRY	1
- #define DRM_XE_TOPO_DSS_COMPUTE		2
-+#define DRM_XE_TOPO_L3_BANK		3
- #define DRM_XE_TOPO_EU_PER_DSS		4
- 	/** @type: type of mask */
- 	__u16 type;
+ 	p = drm_dbg_printer(&gt_to_xe(gt)->drm, DRM_UT_DRIVER, "GT topology");
+ 
+@@ -120,6 +225,8 @@ xe_gt_topology_dump(struct xe_gt *gt, struct drm_printer *p)
+ 	drm_printf(p, "EU mask per DSS:     %*pb\n", XE_MAX_EU_FUSE_BITS,
+ 		   gt->fuse_topo.eu_mask_per_dss);
+ 
++	drm_printf(p, "L3 bank mask:        %*pb\n", XE_MAX_L3_BANK_MASK_BITS,
++		   gt->fuse_topo.l3_bank_mask);
+ }
+ 
+ /*
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index 2143dffcaf11..e60156871026 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -24,13 +24,15 @@ enum xe_gt_type {
+ 	XE_GT_TYPE_MEDIA,
+ };
+ 
+-#define XE_MAX_DSS_FUSE_REGS	3
+-#define XE_MAX_DSS_FUSE_BITS	(32 * XE_MAX_DSS_FUSE_REGS)
+-#define XE_MAX_EU_FUSE_REGS	1
+-#define XE_MAX_EU_FUSE_BITS	(32 * XE_MAX_EU_FUSE_REGS)
++#define XE_MAX_DSS_FUSE_REGS		3
++#define XE_MAX_DSS_FUSE_BITS		(32 * XE_MAX_DSS_FUSE_REGS)
++#define XE_MAX_EU_FUSE_REGS		1
++#define XE_MAX_EU_FUSE_BITS		(32 * XE_MAX_EU_FUSE_REGS)
++#define XE_MAX_L3_BANK_MASK_BITS	64
+ 
+ typedef unsigned long xe_dss_mask_t[BITS_TO_LONGS(XE_MAX_DSS_FUSE_BITS)];
+ typedef unsigned long xe_eu_mask_t[BITS_TO_LONGS(XE_MAX_EU_FUSE_BITS)];
++typedef unsigned long xe_l3_bank_mask_t[BITS_TO_LONGS(XE_MAX_L3_BANK_MASK_BITS)];
+ 
+ struct xe_mmio_range {
+ 	u32 start;
+@@ -327,6 +329,9 @@ struct xe_gt {
+ 
+ 		/** @fuse_topo.eu_mask_per_dss: EU mask per DSS*/
+ 		xe_eu_mask_t eu_mask_per_dss;
++
++		/** @fuse_topo.l3_bank_mask: L3 bank mask */
++		xe_l3_bank_mask_t l3_bank_mask;
+ 	} fuse_topo;
+ 
+ 	/** @steering: register steering for individual HW units */
 -- 
 2.34.1
 
