@@ -4,28 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46063C67861
-	for <intel-xe@archiver.kernel.org>; Sat,  6 Apr 2024 15:29:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 971FCC67861
+	for <intel-xe@archiver.kernel.org>; Sat,  6 Apr 2024 17:53:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA40510F203;
-	Sat,  6 Apr 2024 15:29:46 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DD1710F201;
- Sat,  6 Apr 2024 15:29:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4454974935079894415=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D9A710E929;
+	Sat,  6 Apr 2024 17:53:06 +0000 (UTC)
+X-Greylist: delayed 466 seconds by postgrey-1.36 at gabe;
+ Sat, 06 Apr 2024 17:53:05 UTC
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25EAD10E929;
+ Sat,  6 Apr 2024 17:53:04 +0000 (UTC)
+Message-ID: <6ea5a8c3-e4f1-4df7-ac23-d04f3599b516@lankhorst.se>
+Date: Sat, 6 Apr 2024 19:45:16 +0200
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_series_starting_with_=5B1/2=5D_d?=
- =?utf-8?q?rm/xe/guc=3A_Use_drm=5Fdevice-managed_version_of_mutex=5Finit=28?=
- =?utf-8?q?=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 06 Apr 2024 15:29:45 -0000
-Message-ID: <171241738524.1255282.14990289170083469257@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240406143946.979-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20240406143946.979-1-michal.wajdeczko@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [rebase 1/3] drm: Add drm_vblank_work_flush_all().
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+References: <20240404104813.150030-1-maarten.lankhorst@linux.intel.com>
+ <smeojxujor4l3bfq4leozrbqvqufbe7elznkrbhwtvduqzqu2p@op4kymwaxudz>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <smeojxujor4l3bfq4leozrbqvqufbe7elznkrbhwtvduqzqu2p@op4kymwaxudz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,158 +41,101 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4454974935079894415==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hey,
 
-== Series Details ==
+On 2024-04-05 15:36, Lucas De Marchi wrote:
+> what does "rebase" instead of "PATCH" is supposed to mean here?
+> And then we have a "PATCH v2" as reply to this one.
+> 
+> Shouldn't this go to dri-devel (too)?
+> 
+> Lucas De Marchi
+I was rebasing so no changes were originally made.
 
-Series: series starting with [1/2] drm/xe/guc: Use drm_device-managed version of mutex_init()
-URL   : https://patchwork.freedesktop.org/series/132118/
-State : failure
+Afterwards I found out why the patch series failed,
+and sent a v2 patch for that specifically.
 
-== Summary ==
+I think this should go to dri-devel, forgot this patch required it. :)
 
-CI Bug Log - changes from xe-1050-1bace689230323abe9cd3dfc6dd011fa5f9e6a05_BAT -> xe-pw-132118v1_BAT
-====================================================
+Can send a full v2 patch series in the beginning of next week. It looks 
+like I still missed a uaf even with this fix. :(
 
-Summary
--------
+Cheers,
+~Maarten
 
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-132118v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-132118v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-132118v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind:
-    - bat-pvc-2:          [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1050-1bace689230323abe9cd3dfc6dd011fa5f9e6a05/bat-pvc-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132118v1/bat-pvc-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - {bat-lnl-1}:        [PASS][3] -> [FAIL][4] +1 other test fail
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1050-1bace689230323abe9cd3dfc6dd011fa5f9e6a05/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132118v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-
-
-Build changes
--------------
-
-  * Linux: xe-1050-1bace689230323abe9cd3dfc6dd011fa5f9e6a05 -> xe-pw-132118v1
-
-  IGT_7801: 7801
-  xe-1050-1bace689230323abe9cd3dfc6dd011fa5f9e6a05: 1bace689230323abe9cd3dfc6dd011fa5f9e6a05
-  xe-pw-132118v1: 132118v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132118v1/index.html
-
---===============4454974935079894415==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/xe/guc: Use drm_device-managed version of mutex_init()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132118/">https://patchwork.freedesktop.org/series/132118/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132118v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132118v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1050-1bace689230323abe9cd3dfc6dd011fa5f9e6a05_BAT -&gt; xe-pw-132118v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-132118v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-132118v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-132118v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind:<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1050-1bace689230323abe9cd3dfc6dd011fa5f9e6a05/bat-pvc-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132118v1/bat-pvc-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
-<li>{bat-lnl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1050-1bace689230323abe9cd3dfc6dd011fa5f9e6a05/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132118v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">FAIL</a> +1 other test fail</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1050-1bace689230323abe9cd3dfc6dd011fa5f9e6a05 -&gt; xe-pw-132118v1</li>
-</ul>
-<p>IGT_7801: 7801<br />
-  xe-1050-1bace689230323abe9cd3dfc6dd011fa5f9e6a05: 1bace689230323abe9cd3dfc6dd011fa5f9e6a05<br />
-  xe-pw-132118v1: 132118v1</p>
-
-</body>
-</html>
-
---===============4454974935079894415==--
+> 
+> On Thu, Apr 04, 2024 at 12:48:11PM +0200, Maarten Lankhorst wrote:
+>> From: Maarten Lankhorst <dev@lankhorst.se>
+>>
+>> In some cases we want to flush all vblank work, right before vblank_off
+>> for example. Add a simple function to make this possible.
+>>
+>> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+>> ---
+>> drivers/gpu/drm/drm_vblank_work.c | 22 ++++++++++++++++++++++
+>> include/drm/drm_vblank_work.h     |  2 ++
+>> 2 files changed, 24 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/drm_vblank_work.c 
+>> b/drivers/gpu/drm/drm_vblank_work.c
+>> index 43cd5c0f4f6f..ff86f2b2e052 100644
+>> --- a/drivers/gpu/drm/drm_vblank_work.c
+>> +++ b/drivers/gpu/drm/drm_vblank_work.c
+>> @@ -232,6 +232,28 @@ void drm_vblank_work_flush(struct drm_vblank_work 
+>> *work)
+>> }
+>> EXPORT_SYMBOL(drm_vblank_work_flush);
+>>
+>> +/**
+>> + * drm_vblank_work_flush_all - flush all currently pending vblank 
+>> work on crtc.
+>> + * @crtc: crtc for which vblank work to flush
+>> + *
+>> + * Wait until all currently queued vblank work on @crtc
+>> + * has finished executing once.
+>> + */
+>> +void drm_vblank_work_flush_all(struct drm_crtc *crtc)
+>> +{
+>> +    struct drm_device *dev = crtc->dev;
+>> +    struct drm_vblank_crtc *vblank = &dev->vblank[drm_crtc_index(crtc)];
+>> +
+>> +    spin_lock_irq(&dev->event_lock);
+>> +    wait_event_lock_irq(vblank->work_wait_queue,
+>> +                waitqueue_active(&vblank->work_wait_queue),
+>> +                dev->event_lock);
+>> +    spin_unlock_irq(&dev->event_lock);
+>> +
+>> +    kthread_flush_worker(vblank->worker);
+>> +}
+>> +EXPORT_SYMBOL(drm_vblank_work_flush_all);
+>> +
+>> /**
+>>  * drm_vblank_work_init - initialize a vblank work item
+>>  * @work: vblank work item
+>> diff --git a/include/drm/drm_vblank_work.h 
+>> b/include/drm/drm_vblank_work.h
+>> index eb41d0810c4f..e04d436b7297 100644
+>> --- a/include/drm/drm_vblank_work.h
+>> +++ b/include/drm/drm_vblank_work.h
+>> @@ -17,6 +17,7 @@ struct drm_crtc;
+>>  * drm_vblank_work_init()
+>>  * drm_vblank_work_cancel_sync()
+>>  * drm_vblank_work_flush()
+>> + * drm_vblank_work_flush_all()
+>>  */
+>> struct drm_vblank_work {
+>>     /**
+>> @@ -67,5 +68,6 @@ void drm_vblank_work_init(struct drm_vblank_work 
+>> *work, struct drm_crtc *crtc,
+>>               void (*func)(struct kthread_work *work));
+>> bool drm_vblank_work_cancel_sync(struct drm_vblank_work *work);
+>> void drm_vblank_work_flush(struct drm_vblank_work *work);
+>> +void drm_vblank_work_flush_all(struct drm_crtc *crtc);
+>>
+>> #endif /* !_DRM_VBLANK_WORK_H_ */
+>> -- 
+>> 2.43.0
+>>
