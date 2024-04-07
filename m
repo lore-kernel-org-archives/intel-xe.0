@@ -4,53 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9392DCD128A
-	for <intel-xe@archiver.kernel.org>; Sun,  7 Apr 2024 13:12:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79E4ACD1292
+	for <intel-xe@archiver.kernel.org>; Sun,  7 Apr 2024 17:50:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF7A910E041;
-	Sun,  7 Apr 2024 13:12:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A10910FB77;
+	Sun,  7 Apr 2024 17:50:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Gvfb/Mt+";
+	dkim=pass (2048-bit key; secure) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="I8rcFXs8";
 	dkim-atps=neutral
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB9E510E153;
- Sun,  7 Apr 2024 13:12:01 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id BA97ECE0AD4;
- Sun,  7 Apr 2024 13:11:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAB04C433A6;
- Sun,  7 Apr 2024 13:11:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1712495518;
- bh=aTWtRfUCjhuH9NSo70GCmFUYOJph1+AAFA4H+EN+RJg=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Gvfb/Mt+tBlEm7D4LzR2J2qnEW6rzlOR1KgIajMrHvMtFgzv9dQPAfIzhEtasUpL/
- SZzDVKQnFVmR4oma3dk7okZ/uILxQrdpkFfVSB/Fsvu/1kYTWwihuaZkZb4C8daO+m
- weegH1PXJuA/851dnstIHSD+4NPn1UImXmZ2QGZ7Er8gp+9vb7Y/LadF8d4YwFbEIJ
- h+GN068rShXPiuge8nVyXjDhYGFUGunmHE1gLtdCb5ORPjsdalsuyl5hwS4nL1zimS
- CimkVE2+1I7NtjjpfySBQnuFsNx9o2mEP3kj/hflWWxGgPxwCnRc3lYgDhwKJoOPEO
- drbbgEzTGyoXQ==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Guenter Roeck <linux@roeck-us.net>, Jani Nikula <jani.nikula@intel.com>,
- Sasha Levin <sashal@kernel.org>, ogabbay@kernel.org,
- thomas.hellstrom@linux.intel.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
- daniel@ffwll.ch, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.8 16/25] drm/xe: Fix END redefinition
-Date: Sun,  7 Apr 2024 09:11:04 -0400
-Message-ID: <20240407131130.1050321-16-sashal@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240407131130.1050321-1-sashal@kernel.org>
-References: <20240407131130.1050321-1-sashal@kernel.org>
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AD8E10FB78
+ for <intel-xe@lists.freedesktop.org>; Sun,  7 Apr 2024 17:50:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ sang-engineering.com; h=date:from:to:cc:subject:message-id
+ :references:mime-version:content-type:in-reply-to; s=k1; bh=4t2Y
+ Q/qy30jidZ7O24IB3uqzEABMi7K+pNMZ6EvQcas=; b=I8rcFXs8Ya99YYGwKQjv
+ BDixyZfMkAM0HErrUX9O+UN9Cl4QLLoj+1+tW9ghHFlZcZLg19vMflJtIBWr6mWI
+ kiREuEovpji1/WrfPNyyxzK+loDURCBXJYw+OqS0f5b7x/XJw2SkAD3LRrOpJ5T6
+ T0JwU2yacMK0fgWJzl8kuPxknxooMbcY0LcPQsVNdLuBpf1Lnq1jdSlIfvMEfSAE
+ STnGfKR202alQDncdL3TVlC5VPbqov6TNPuwo0CLHEtm3j9qvg4XBx392N8pPGLG
+ 5D6FQEzlzMX8kvu28JTDoA2tgyNWbZmW6r2OsRZBr5oP4flPBJMXUjGFHhLf8d2Y
+ 6w==
+Received: (qmail 538382 invoked from network); 7 Apr 2024 19:50:45 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted,
+ authenticated); 7 Apr 2024 19:50:45 +0200
+X-UD-Smtp-Session: l3s3148p1@Dli0U4UVEoUgAQnoAF4/ADroH6KhJW9n
+Date: Sun, 7 Apr 2024 19:50:39 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Easwar Hariharan <eahariha@linux.microsoft.com>
+Cc: "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>, 
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ open list <linux-kernel@vger.kernel.org>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>, 
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>, 
+ "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <nouveau@lists.freedesktop.org>, 
+ "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
+ "open list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>,
+ "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>
+Subject: Re: [PATCH v0 00/14] Make I2C terminology more inclusive for I2C
+ Algobit and consumers
+Message-ID: <20240407175039.za3eg7la7i2jwvun@kunai>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Easwar Hariharan <eahariha@linux.microsoft.com>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ open list <linux-kernel@vger.kernel.org>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>, 
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>, 
+ "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <nouveau@lists.freedesktop.org>, 
+ "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
+ "open list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>,
+ "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>
+References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
+ <ffumcagmzdstcf3qcn3f26555pnu7i6azjppciyd4zvcoit7pv@vu262tsfnqyr>
+ <3bd8d2f6-dfe1-479f-bff1-f2921b1940ed@linux.microsoft.com>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.8.4
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="otbz5n53lv3dv44g"
+Content-Disposition: inline
+In-Reply-To: <3bd8d2f6-dfe1-479f-bff1-f2921b1940ed@linux.microsoft.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,125 +83,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Lucas De Marchi <lucas.demarchi@intel.com>
 
-[ Upstream commit 0d8cf0c924732a045273c6aca6900a340ac88529 ]
+--otbz5n53lv3dv44g
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-mips declares an END macro in its headers so it can't be used without
-namespace in a driver like xe.
+Hi Easwar,
 
-Instead of coming up with a longer name, just remove the macro and
-replace its use with 0 since it's still clear what that means:
-set_offsets() was already using that implicitly when checking the data
-variable.
+> Sorry, got excited. :) There were drivers I'd been part of that I specifi=
+cally
+> wanted to fixup, but then the scope grew to other users of algobit.
 
-Reported-by: Guenter Roeck <linux@roeck-us.net>
-Closes: http://kisskb.ellerman.id.au/kisskb/buildresult/15143996/
-Tested-by: Guenter Roeck <linux@roeck-us.net>
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20240322145037.196548-1-lucas.demarchi@intel.com
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-(cherry picked from commit 35b22649eb4155ca6bcffcb2c6e2a1d311aaaf72)
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/gpu/drm/xe/xe_lrc.c | 20 +++++++++-----------
- 1 file changed, 9 insertions(+), 11 deletions(-)
+Well, you got some positive feedback, so that is good.
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index b38319d2801e0..0aa4bcfb90d9d 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -95,7 +95,6 @@ static void set_offsets(u32 *regs,
- #define REG16(x) \
- 	(((x) >> 9) | BIT(7) | BUILD_BUG_ON_ZERO(x >= 0x10000)), \
- 	(((x) >> 2) & 0x7f)
--#define END 0
- {
- 	const u32 base = hwe->mmio_base;
- 
-@@ -166,7 +165,7 @@ static const u8 gen12_xcs_offsets[] = {
- 	REG16(0x274),
- 	REG16(0x270),
- 
--	END
-+	0
- };
- 
- static const u8 dg2_xcs_offsets[] = {
-@@ -200,7 +199,7 @@ static const u8 dg2_xcs_offsets[] = {
- 	REG16(0x274),
- 	REG16(0x270),
- 
--	END
-+	0
- };
- 
- static const u8 gen12_rcs_offsets[] = {
-@@ -296,7 +295,7 @@ static const u8 gen12_rcs_offsets[] = {
- 	REG(0x084),
- 	NOP(1),
- 
--	END
-+	0
- };
- 
- static const u8 xehp_rcs_offsets[] = {
-@@ -337,7 +336,7 @@ static const u8 xehp_rcs_offsets[] = {
- 	LRI(1, 0),
- 	REG(0x0c8),
- 
--	END
-+	0
- };
- 
- static const u8 dg2_rcs_offsets[] = {
-@@ -380,7 +379,7 @@ static const u8 dg2_rcs_offsets[] = {
- 	LRI(1, 0),
- 	REG(0x0c8),
- 
--	END
-+	0
- };
- 
- static const u8 mtl_rcs_offsets[] = {
-@@ -423,7 +422,7 @@ static const u8 mtl_rcs_offsets[] = {
- 	LRI(1, 0),
- 	REG(0x0c8),
- 
--	END
-+	0
- };
- 
- #define XE2_CTX_COMMON \
-@@ -469,7 +468,7 @@ static const u8 xe2_rcs_offsets[] = {
- 	LRI(1, 0),              /* [0x47] */
- 	REG(0x0c8),             /* [0x48] R_PWR_CLK_STATE */
- 
--	END
-+	0
- };
- 
- static const u8 xe2_bcs_offsets[] = {
-@@ -480,16 +479,15 @@ static const u8 xe2_bcs_offsets[] = {
- 	REG16(0x200),           /* [0x42] BCS_SWCTRL */
- 	REG16(0x204),           /* [0x44] BLIT_CCTL */
- 
--	END
-+	0
- };
- 
- static const u8 xe2_xcs_offsets[] = {
- 	XE2_CTX_COMMON,
- 
--	END
-+	0
- };
- 
--#undef END
- #undef REG16
- #undef REG
- #undef LRI
--- 
-2.43.0
+> > It is true that I changed quite some controller drivers within the i2c
+> > realm. I did this to gain experience. As you also noticed quite some
+> > questions came up. We need to agree on answers first. And once we are
+> > happy with the answers we found, then IMO we can go outside of the i2c
+> > realm and send patches to other subsystems referencing agreed
+> > precedence. I intentionally did not go outside i2c yet. Since your
+> > patches are already there, you probably want to foster them until they
+> > are ready for inclusion.
+>=20
+> Sorry, I don't quite follow what you mean by foster in this context. Are
+> you asking me to hold off on merging the series, or to follow through on
+> getting it merged?
 
+I think they are your patches, so this is up to you to decide. With
+"foster", I meant you keep working on them until everyone is happy. I
+haven't looked at the drivers you modify. I can't tell if they can be
+converted right away or if they use a lot of I2C API calls, so that it
+makes sense to wait until the core is converted. I trust you to decide
+this.
+
+Happy hacking,
+
+   Wolfram
+
+--otbz5n53lv3dv44g
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmYS3OoACgkQFA3kzBSg
+KbYf7g/+KaVes7wupe7nkKcoPIanoG7cxHpUDAmN7oUnNvo+ohAUMW4QQArNIm2s
+5XNlfsu3X6VylCN8OD2kzHwBeAv706tbSViyjCtxmeVKAaXEh7/WMAfKBkrcDZMr
+RCcbCz3DiLj7jX+r4iaSebNE3FBuLX6seWUJgN0vF0M+RvsS5uQhsmUd4+cUHBo3
+pMk38vgS7Q3H47QRW64JJRKsKT3N5S8NMoYZKGDMt8omF6hnkvgJ9W0TnvenD6Q9
+QTMZur4Z25/gnF3Ds2WS4R4Y0VNo6EFludz5hNNg56DuMF9ErhUkGeixAYIgRJG2
+6YxZ1f003gWC3SgXuw91vD32QNJoR49DTaE4AnRhSx/EFK7zvwMoA7jOj7xx43i1
+xUPEpGjI4K68E32JP9wLj/rvjAW7REQyA+nKVaO7O6vbKVihpdMr/HgMq/UE3sIK
+CpMJ1Czfd56FUKE38vNihyL4V70O9iqMMiJmGd0gTQZ+WLYootZU9u68kQeMDah7
+2bbZnQzBSDy/xGzVdfrozrUkvAqd0Lo9qIJcCxTqMSrC7QWBGLkQXMOTWivlCRe7
+TtE5kBO4N4deizuNFwQEnoBpM9RCV+P/Jxd9EXHbQ8uwVWC2xU0QAJdWJwjicO5x
+Qmmz2/i/uKhU6Xwi82t8aASq+Lyc/L5LLwBDymYh51o1dRG3mVM=
+=V5fB
+-----END PGP SIGNATURE-----
+
+--otbz5n53lv3dv44g--
