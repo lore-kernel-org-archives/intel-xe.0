@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E70EBCD1292
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 08:08:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88A2ECD128A
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 08:56:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D418112239;
-	Mon,  8 Apr 2024 08:08:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1489C1122E9;
+	Mon,  8 Apr 2024 08:56:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S9p5xxWE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qaf5IX9r";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81469112239;
- Mon,  8 Apr 2024 08:08:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8DC91122EC;
+ Mon,  8 Apr 2024 08:56:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712563686; x=1744099686;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=rGneWe+OdaC4FnfcvDpkq11V8zlVTZTmUlhJkUZwhNc=;
- b=S9p5xxWE+1gmWOo1+wkAqojoJ4aNwkJkX5aZLq87WWizrGjt0f7fDKhv
- E4+UFOM+Ev94LJ8wTQ712CrmVTCP5Nm0MQ5Hz2B487Z/owBP7JBn3hfiO
- c6hCu/bek0YFxYZzmp4BXnCC2qRES0uLJhutoGaHyPAatnO8t4zkboWb9
- hCvnLSXOS0q3dkijpLQbGqikVfl87P5RLHc/V1Uo8evKtGfX9TnVpwRvO
- q7SiB2fyUpg6P8YyOndWiMXViWbzo63zerugPJTiqnX0AHnF8r13Zo/Oe
- Gk1+5UrG/zzCXgzk4DoWidsE3U8s25x0Oh6r4pNHpEE35iPpb7o/OoxgX g==;
-X-CSE-ConnectionGUID: WrlnYMnBTo2P64fdrie+/w==
-X-CSE-MsgGUID: HlqD3HsiQ9qHsWYOBiROUQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11037"; a="25327364"
-X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="25327364"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 01:08:05 -0700
-X-CSE-ConnectionGUID: ah9xejhPRpOuebc0/WazNw==
-X-CSE-MsgGUID: XXyL/sxLSZySiDpD9HCpsg==
+ t=1712566576; x=1744102576;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=mMXlBr3fwxSXtK++lAqLr71hg/Wb8m6Y/ViAeMTchB0=;
+ b=Qaf5IX9r1S57F8loHtub8DfXEQR1tO7pg5edvA4UZUm7fNqZhpsJw8wn
+ 3+sfo/XAEhqaHLCcmUjjhZzZpK81QP+0LVJHHLDLMhELeXHoGoO+gRDD8
+ fTTXcc4nSU3U7k13Sy8a1gBssC7zeVLnEl6anFR7q1aaeIxJQigEzSdra
+ tri5HiUxNqhPIODAWp0yIgCTudoqpYTGXaO0UEe+fYhodPEe45iE00ALq
+ j0STkZ/p2N5zfKvPjBqfGt/ZewAbMMDwZwrsy8c4r0RnkA34G7/n6QSgT
+ zwOYifiHSuGP0idyflWGJLMNZw33Ui21HUXJfiA+MViJoD8KPs0KLp+lY g==;
+X-CSE-ConnectionGUID: OCe8VaL0TIOLrFdkyQfsAQ==
+X-CSE-MsgGUID: Gghd80ZyQwSxfXdCCQSDMg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11037"; a="7997449"
+X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; 
+   d="scan'208";a="7997449"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2024 01:56:15 -0700
+X-CSE-ConnectionGUID: 4SfsvSLHT8OyiFXefk64+g==
+X-CSE-MsgGUID: wLiWZB1FRnG4rhhQ7LzRTQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="24583173"
+X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="24294316"
 Received: from bauinger-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.42.71])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 01:08:03 -0700
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2024 01:56:12 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 0/6] drm/i915 and drm/xe display integration cleanups
-In-Reply-To: <ba7nesmtctmqypdwnnjyffh7x7ibewnqpoim2cuoawqp2nolb3@mrfm3h3rxaao>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1712345787.git.jani.nikula@intel.com>
- <ba7nesmtctmqypdwnnjyffh7x7ibewnqpoim2cuoawqp2nolb3@mrfm3h3rxaao>
-Date: Mon, 08 Apr 2024 11:07:59 +0300
-Message-ID: <87il0sb7kw.fsf@intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jani.nikula@intel.com
+Subject: [PATCH 0/7] drm/edid: cleanups, resend
+Date: Mon,  8 Apr 2024 11:56:01 +0300
+Message-Id: <cover.1712565984.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,60 +68,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 05 Apr 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> On Fri, Apr 05, 2024 at 10:37:37PM +0300, Jani Nikula wrote:
->>Some cleanups on i915 side, and subsequent cleanups on xe side. I'd like
->>to merge all of these via drm-intel-next.
->
-> For the entire series:
->
-> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
->
-> and ack on merging via drm-intel-next.
-
-Thanks, pushed to drm-intel-next. I think the firwmare url stuff can be
-sorted later.
-
-There were some CI failures, but there are really no functional changes
-here, it should all have failed at build time.
+Combine [1] and [2] as a resend, and add a few patches on top.
 
 BR,
 Jani.
 
->
-> Lucas De Marchi
->
->>
->>BR,
->>Jani.
->>
->>Jani Nikula (6):
->>  drm/i915: use IS_JASPERLAKE()/IS_ELKHARTLAKE() instead of
->>    IS_PLATFORM()
->>  drm/i915/dmc: define firmware URL locally
->>  drm/i915: move i915_fixed.h to display/intel_fixed.h
->>  drm/xe/display: clean up a lot of cruft from compat i915_drv.h
->>  drm/xe/display: remove compat i915_gem.h
->>  drm/xe/display: clean up compat i915_vgpu.h
->>
->> .../drm/i915/display/intel_ddi_buf_trans.c    |  4 +--
->> drivers/gpu/drm/i915/display/intel_dmc.c      |  4 ++-
->> .../{i915_fixed.h => display/intel_fixed.h}   |  0
->> drivers/gpu/drm/i915/display/skl_watermark.c  |  2 +-
->> .../gpu/drm/xe/compat-i915-headers/i915_drv.h | 34 -------------------
->> .../drm/xe/compat-i915-headers/i915_fixed.h   |  6 ----
->> .../gpu/drm/xe/compat-i915-headers/i915_gem.h |  9 -----
->> .../drm/xe/compat-i915-headers/i915_vgpu.h    | 26 --------------
->> .../drm/xe/compat-i915-headers/intel_uc_fw.h  | 11 ------
->> 9 files changed, 6 insertions(+), 90 deletions(-)
->> rename drivers/gpu/drm/i915/{i915_fixed.h => display/intel_fixed.h} (100%)
->> delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_fixed.h
->> delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_gem.h
->> delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_uc_fw.h
->>
->>-- 
->>2.39.2
->>
+[1] https://patchwork.freedesktop.org/series/131133/
+[2] https://patchwork.freedesktop.org/series/131412/
+
+Jani Nikula (7):
+  drm/displayid: move drm_displayid.h to drm_displayd_internal.h
+  drm/edid: move all internal declarations to drm_crtc_internal.h
+  drm/edid: group struct drm_edid based declarations together
+  drm/edid: rename drm_find_edid_extension() to
+    drm_edid_find_extension()
+  drm/edid: avoid drm_edid_find_extension() internally
+  drm/edid: make drm_edid_are_equal() static
+  drm/edid: make drm_edid_are_equal() more convenient for its single
+    user
+
+ drivers/gpu/drm/drm_crtc_internal.h           |  6 ++
+ drivers/gpu/drm/drm_displayid.c               |  7 ++-
+ .../gpu/drm/drm_displayid_internal.h          |  5 +-
+ drivers/gpu/drm/drm_edid.c                    | 60 +++++++++----------
+ drivers/gpu/drm/drm_eld.c                     |  4 +-
+ drivers/gpu/drm/drm_internal.h                |  5 --
+ include/drm/drm_edid.h                        | 13 ++--
+ 7 files changed, 50 insertions(+), 50 deletions(-)
+ rename include/drm/drm_displayid.h => drivers/gpu/drm/drm_displayid_internal.h (98%)
 
 -- 
-Jani Nikula, Intel
+2.39.2
+
