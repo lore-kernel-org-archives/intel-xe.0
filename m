@@ -4,57 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D546DCD129C
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 17:06:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3F9AC67861
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 17:06:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A3B01128C8;
-	Mon,  8 Apr 2024 17:06:01 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B+bfDG0N";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F36411128C2
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Apr 2024 17:05:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712595935; x=1744131935;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=EaZn3FJwlyWdNmW+5VEiKFTMYQK1PGqZU1g3/jRMXTQ=;
- b=B+bfDG0NMTo0kM/uWjI+OuWq6l07c9PC62PBBty7ZfKBPmAGmOriR43T
- GTXS14LDrhwpGZt99nx/4ifE7lY2HpAIotIoiIteO9ULbcIUsxvbOYYMj
- lbMy3aDoi78kZy1BsL9BZEGS0JaPYmQlJcuWQwCN2auNEt5oajZ9mubmw
- jVzMhuQVWUHi8/lFpZMc8ZAXogFQ/OWHmx3MVdomcJ8kiWtwAmha5TZm6
- w4gva7vDBx7I/+Koo3q3zZZK5A0l18rhY5pvlScs0bTBPek3+80WwRpMD
- bWDIy/XaQe3MxWu+b5Ov51XWOAod2WmhJG2N4SHFCBopPOL8nKhAQnoRo g==;
-X-CSE-ConnectionGUID: o5RHwWxUTAa2YxH5NsfOkQ==
-X-CSE-MsgGUID: xJRsIKrdTpCQMnH+CIVg1Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="11679148"
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="11679148"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 10:05:34 -0700
-X-CSE-ConnectionGUID: rP4s6VUUQpavuKjERmnICQ==
-X-CSE-MsgGUID: G/sfKGfkQkytsFz5lciKVw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="24733858"
-Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 10:05:33 -0700
-From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Matt Roper <matthew.d.roper@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Subject: [PATCH v3 05/11] drm/xe/bmg: Program an additional discrete-specific
- PAT setting
-Date: Mon,  8 Apr 2024 22:35:39 +0530
-Message-Id: <20240408170545.3769566-6-balasubramani.vivekanandan@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240408170545.3769566-1-balasubramani.vivekanandan@intel.com>
-References: <20240408170545.3769566-1-balasubramani.vivekanandan@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3E821128C8;
+	Mon,  8 Apr 2024 17:06:55 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A5B21128C3;
+ Mon,  8 Apr 2024 17:06:54 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 66C0C612FB;
+ Mon,  8 Apr 2024 17:06:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D84FC433C7;
+ Mon,  8 Apr 2024 17:06:52 +0000 (UTC)
+Date: Mon, 8 Apr 2024 13:06:50 -0400
+From: Steven Rostedt <rostedt@goodmis.org>
+To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Jani
+ Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Tvrtko Ursulin <tursulin@ursulin.net>
+Subject: Re: [PATCH 05/10] drm/i915: skip DRM_I915_LOW_LEVEL_TRACEPOINTS
+ with NOTRACE
+Message-ID: <20240408130650.6f9c1e1c@rorschach.local.home>
+In-Reply-To: <20240405142737.920626-6-bigeasy@linutronix.de>
+References: <20240405142737.920626-1-bigeasy@linutronix.de>
+ <20240405142737.920626-6-bigeasy@linutronix.de>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,52 +48,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matt Roper <matthew.d.roper@intel.com>
+On Fri,  5 Apr 2024 16:18:23 +0200
+Sebastian Andrzej Siewior <bigeasy@linutronix.de> wrote:
 
-Discrete Xe2 platforms require programming of one additional row of PAT
-settings which controls the access characteristics for PPGTT and LMTT
-page tables.  Integrated GPUs do not need this programming and will
-leave the register at its hardware default value.
+> The order of the header files is important. If this header file is
+> included after tracepoint.h was included then the NOTRACE here becomes a
+> nop. Currently this happens for two .c files which use the tracepoitns
+> behind DRM_I915_LOW_LEVEL_TRACEPOINTS.
 
-Bspec:  71582
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
----
- drivers/gpu/drm/xe/xe_pat.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+The NOTRACE should not be included in the individual trace files.
 
-diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-index 66d8e3dd8237..13812042177d 100644
---- a/drivers/gpu/drm/xe/xe_pat.c
-+++ b/drivers/gpu/drm/xe/xe_pat.c
-@@ -142,6 +142,7 @@ static const struct xe_pat_table_entry xe2_pat_table[] = {
- 
- /* Special PAT values programmed outside the main table */
- static const struct xe_pat_table_entry xe2_pat_ats = XE2_PAT( 0, 0, 0, 0, 3, 3 );
-+static const struct xe_pat_table_entry xe2_pat_pta = XE2_PAT( 0, 0, 0, 0, 3, 0 );
- 
- u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index)
- {
-@@ -302,6 +303,9 @@ static void xe2lpg_program_pat(struct xe_gt *gt, const struct xe_pat_table_entry
- {
- 	program_pat_mcr(gt, table, n_entries);
- 	xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_ATS), xe2_pat_ats.value);
-+
-+	if (IS_DGFX(gt_to_xe(gt)))
-+		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_PTA), xe2_pat_pta.value);
- }
- 
- static void xe2lpm_program_pat(struct xe_gt *gt, const struct xe_pat_table_entry table[],
-@@ -309,6 +313,9 @@ static void xe2lpm_program_pat(struct xe_gt *gt, const struct xe_pat_table_entry
- {
- 	program_pat(gt, table, n_entries);
- 	xe_mmio_write32(gt, XE_REG(_PAT_ATS), xe2_pat_ats.value);
-+
-+	if (IS_DGFX(gt_to_xe(gt)))
-+		xe_mmio_write32(gt, XE_REG(_PAT_PTA), xe2_pat_pta.value);
- }
- 
- static void xe2_dump(struct xe_gt *gt, struct drm_printer *p)
--- 
-2.25.1
+Can you show where this is an issue. I think this is fixing the symptom
+and not the bug itself.
+
+-- Steve
+
+
+> 
+> Cc: Steven Rostedt <rostedt@goodmis.org>
+> Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+> Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
+> ---
+>  drivers/gpu/drm/i915/i915_trace.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_trace.h
+> index c54653cf72c95..3c51620d011b1 100644
+> --- a/drivers/gpu/drm/i915/i915_trace.h
+> +++ b/drivers/gpu/drm/i915/i915_trace.h
+> @@ -326,7 +326,7 @@ DEFINE_EVENT(i915_request, i915_request_add,
+>  	     TP_ARGS(rq)
+>  );
+>  
+> -#if defined(CONFIG_DRM_I915_LOW_LEVEL_TRACEPOINTS)
+> +#if defined(CONFIG_DRM_I915_LOW_LEVEL_TRACEPOINTS) && !defined(NOTRACE)
+>  DEFINE_EVENT(i915_request, i915_request_guc_submit,
+>  	     TP_PROTO(struct i915_request *rq),
+>  	     TP_ARGS(rq)
 
