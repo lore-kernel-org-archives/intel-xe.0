@@ -4,58 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6B8BC67861
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 18:16:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60CDFC67861
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 18:28:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95464112937;
-	Mon,  8 Apr 2024 18:16:24 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cXbJHhGN";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E494112937;
- Mon,  8 Apr 2024 18:16:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712600182; x=1744136182;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=WD1Q0QCQQFVQAwJuHQRTqNBZeO1ouQRB6V5QNOC+zw8=;
- b=cXbJHhGN+v2s3799AdBuGkQjLbzmsre8fGzlCOTKye69eilF5nRyCoxl
- a3/Bmf2yeAH897+nAkJVOSwn8+T5bccNmyR+DxGa0OZghqeq9Taplp+JF
- FIeBltVIuwIDXHC1BPgRti/UJ3BN9qRTbkWVIKLKHZMYCxzq2+mNRifvm
- ug+DJyTJHo3yIBF5Y+Y+Y2LgqSqlF5XlCSRJYC2AYZDqrBnY/1reSOuBI
- BNGRVSmllC69Ak8aDiMrtGGQrdcmZCJ6oqaTbWidgNUC0JtHLxTyDa5R5
- 7YTgAkyfEx8Pl+yay1xP8pMP+AVxLKqY4DnIWBp6MT6f5gVYTChg0gwsz w==;
-X-CSE-ConnectionGUID: 3Heo+u+nRVC5+fWKa3GRNA==
-X-CSE-MsgGUID: 0GaFw1kzQ7Kj5dZ4dhXUzA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="8018772"
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; 
-   d="scan'208";a="8018772"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 11:16:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="827792370"
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="827792370"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 08 Apr 2024 11:16:00 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 08 Apr 2024 21:15:59 +0300
-Date: Mon, 8 Apr 2024 21:15:59 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- lucas.demarchi@intel.com
-Subject: Re: [PATCH 0/8] drm/i915: drm_i915_private and xe_device cleanups
-Message-ID: <ZhQ0X5SQ-3AuMCuS@intel.com>
-References: <cover.1712599670.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB96110EAA7;
+	Mon,  8 Apr 2024 18:28:03 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A268F112917;
+ Mon,  8 Apr 2024 18:27:55 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6064812984800048510=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cover.1712599670.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Remove_dead_clock_code?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 08 Apr 2024 18:27:55 -0000
+Message-ID: <171260087566.1286970.3238157480377769083@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240408151312.2100304-1-lucas.demarchi@intel.com>
+In-Reply-To: <20240408151312.2100304-1-lucas.demarchi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,53 +35,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Apr 08, 2024 at 09:08:35PM +0300, Jani Nikula wrote:
-> Continue cleaning up the members from drm_i915_private and xe_device to
-> struct intel_display.
-> 
-> Jani Nikula (8):
->   drm/i915/gt: drop display clock info from gt debugfs
->   drm/i915: move skl_preferred_vco_freq to display substruct
->   drm/i915: move max_dotclk_freq to display substruct
->   drm/i915: move vblank_enabled to display substruct
->   drm/i915: move display_irqs_enabled to display substruct
->   drm/i915: move de_irq_mask to display substruct
->   drm/i915: move pipestat_irq_mask to display substruct
->   drm/xe/display: remove unused xe->enabled_irq_mask
+--===============6064812984800048510==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Looks reasonable.
+== Series Details ==
 
-Series is
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Series: drm/xe: Remove dead clock code
+URL   : https://patchwork.freedesktop.org/series/132159/
+State : success
 
-> 
->  drivers/gpu/drm/i915/display/intel_cdclk.c    | 23 ++++----
->  drivers/gpu/drm/i915/display/intel_crt.c      |  2 +-
->  drivers/gpu/drm/i915/display/intel_display.c  |  6 +-
->  .../gpu/drm/i915/display/intel_display_core.h | 12 ++++
->  .../gpu/drm/i915/display/intel_display_irq.c  | 57 ++++++++++---------
->  drivers/gpu/drm/i915/display/intel_dp.c       |  4 +-
->  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  2 +-
->  drivers/gpu/drm/i915/display/intel_dsi.c      |  2 +-
->  drivers/gpu/drm/i915/display/intel_dvo.c      |  2 +-
->  drivers/gpu/drm/i915/display/intel_hdmi.c     |  2 +-
->  .../gpu/drm/i915/display/intel_hotplug_irq.c  |  2 +-
->  drivers/gpu/drm/i915/display/intel_lvds.c     |  2 +-
->  drivers/gpu/drm/i915/display/intel_sdvo.c     |  2 +-
->  drivers/gpu/drm/i915/display/intel_tv.c       |  2 +-
->  drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c |  4 --
->  drivers/gpu/drm/i915/i915_drv.h               | 13 +----
->  drivers/gpu/drm/i915/i915_irq.c               |  8 +--
->  drivers/gpu/drm/xe/display/xe_display.c       |  1 -
->  drivers/gpu/drm/xe/xe_device_types.h          | 15 +----
->  19 files changed, 73 insertions(+), 88 deletions(-)
-> 
-> -- 
-> 2.39.2
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+CI Bug Log - changes from xe-1055-a533b51ca017728c1228432e8e1e9aba4fd65b02_BAT -> xe-pw-132159v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (5 -> 5)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-1055-a533b51ca017728c1228432e8e1e9aba4fd65b02 -> xe-pw-132159v1
+
+  IGT_7801: 7801
+  xe-1055-a533b51ca017728c1228432e8e1e9aba4fd65b02: a533b51ca017728c1228432e8e1e9aba4fd65b02
+  xe-pw-132159v1: 132159v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132159v1/index.html
+
+--===============6064812984800048510==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Remove dead clock code</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132159/">https://patchwork.freedesktop.org/series/132159/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132159v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132159v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1055-a533b51ca017728c1228432e8e1e9aba4fd65b02_BAT -&gt; xe-pw-132159v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (5 -&gt; 5)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1055-a533b51ca017728c1228432e8e1e9aba4fd65b02 -&gt; xe-pw-132159v1</li>
+</ul>
+<p>IGT_7801: 7801<br />
+  xe-1055-a533b51ca017728c1228432e8e1e9aba4fd65b02: a533b51ca017728c1228432e8e1e9aba4fd65b02<br />
+  xe-pw-132159v1: 132159v1</p>
+
+</body>
+</html>
+
+--===============6064812984800048510==--
