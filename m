@@ -4,28 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BA67C67861
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 16:19:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCAADCD1296
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 16:28:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 129C7112752;
-	Mon,  8 Apr 2024 16:19:35 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7CA7112752;
- Mon,  8 Apr 2024 16:19:33 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6357911276F;
+	Mon,  8 Apr 2024 16:28:59 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UihQqxLi";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B1E311276F
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Apr 2024 16:28:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1712593738; x=1744129738;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=bADVwGAKO1ivpEKDpZ5fmJW7xpdHKrh1ySNQuTcIjWU=;
+ b=UihQqxLihGk50Pe7e+ZQEBLydpxZvblwDAIEXgOIOfJ84F44O8ruWlbp
+ yjH41BpudEcqueXlVJbUpiILWYB6gXuafsub6VinoLJePWxkeEDfUVBxX
+ iocGgcQWmefL1ihjPDdfiJG/LJS3ic4s0L4CQVxFND7qdyV5OpXobLw1+
+ Tuukr/zH8XvR31Nvzc39Zz186PTJXxeMld5cfB9yQnOORAxAjrZbjFZ9h
+ jgqi4FSuJIfWYFPYZYgAJRGYqE+JIetFfVtjC/dNch/lgffK6yK68CLqU
+ e6kkUU7NtJLw9uiSXkOo77gQBSgV1WxOgx3SAgVrnBd6lnmd/aqpX20TZ w==;
+X-CSE-ConnectionGUID: znbAT3WFTP2xWcdQs7mmuA==
+X-CSE-MsgGUID: 1Sce55TQRiCFChoGlj9GhA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="19024931"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="19024931"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2024 09:28:57 -0700
+X-CSE-ConnectionGUID: cJdaCFW3QEuLuTQlkLpi/g==
+X-CSE-MsgGUID: lvn+mLNKSCK/M67sFAs98A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="24683317"
+Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2024 09:28:54 -0700
+From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Subject: [PATCH v2 00/11] Add Battlemage support
+Date: Mon,  8 Apr 2024 21:58:57 +0530
+Message-Id: <20240408162916.3767771-1-balasubramani.vivekanandan@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_series_starting_with_=5B?=
- =?utf-8?q?v6=2C1/3=5D_drm/xe=3A_Store_xe=5Fhe=5Fengine_in_xe=5Fhw=5Fengine?=
- =?utf-8?q?=5Fsnapshot_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 08 Apr 2024 16:19:33 -0000
-Message-ID: <171259317388.1285949.16630838222804612646@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240405182326.72157-1-jose.souza@intel.com>
-In-Reply-To: <20240405182326.72157-1-jose.souza@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,37 +63,67 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Add basic support for Battlemage, which is a discrete graphics card
+based on Xe2 architecture.
+This series provides basic enabling support. This will be followed with
+further patches series to enable display support and loading of required
+firwares.
 
-Series: series starting with [v6,1/3] drm/xe: Store xe_he_engine in xe_hw_engine_snapshot (rev2)
-URL   : https://patchwork.freedesktop.org/series/132095/
-State : success
+v2:
+* Removed the BMG PCI IDs to stop driver from binding to it. Will be
+  added later after enabling patches are merged.
+* Function argument modified for function get_flat_ccs_offset
+* Removed WA_16020183090 which is no more applicable.
+  Extended WA_18033852989,WA_18034896535 to xe2hpg
+* Switched to open upper bound for "Tuning: L3 Cache" setting
+* improved commit description for
+  "drm/xe/xe2hpg: Remove extra allocation of CCS pages for dgfx"
+* Included the patch from [1] as the patch "Add initial GT workarounds"
+  has a dependency on it
+  [1]: https://patchwork.freedesktop.org/patch/587168/?series=131912&rev=3
 
-== Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast a533b51ca017728c1228432e8e1e9aba4fd65b02
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+Akshata Jahagirdar (1):
+  drm/xe/xe2hpg: Remove extra allocation of CCS pages for dgfx
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Balasubramani Vivekanandan (1):
+  drm/xe/bmg: Add BMG mocs table
 
+Bommu Krishnaiah (1):
+  drm/xe/xe2: Add workaround 18034896535
+
+Gustavo Sousa (1):
+  drm/xe/xe2hpm: Add initial set of workarounds
+
+Haridhar Kalvala (1):
+  drm/xe/xe2hpg: Add initial GT workarounds
+
+Himal Prasad Ghimiray (1):
+  drm/xe/xe2hpg: Determine flat ccs offset for vram
+
+Matt Roper (4):
+  drm/xe/xe2: Recognize Xe2_HPG IP
+  drm/xe/xe2: Recognize Xe2_HPM IP
+  drm/xe/bmg: Add BMG platform definition
+  drm/xe/bmg: Program an additional discrete-specific PAT setting
+
+Shekhar Chauhan (1):
+  drm/xe/xe2hpg: Introduce performance tuning changes for Xe2_HPG.
+
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h   |  14 ++++
+ drivers/gpu/drm/xe/xe_bo.c             |   3 +
+ drivers/gpu/drm/xe/xe_mmio.c           |  39 +++++++++-
+ drivers/gpu/drm/xe/xe_mocs.c           |   1 +
+ drivers/gpu/drm/xe/xe_pat.c            |   7 ++
+ drivers/gpu/drm/xe/xe_pci.c            |  12 ++-
+ drivers/gpu/drm/xe/xe_platform_types.h |   1 +
+ drivers/gpu/drm/xe/xe_tuning.c         |   6 +-
+ drivers/gpu/drm/xe/xe_wa.c             | 102 ++++++++++++++++++++++++-
+ 9 files changed, 177 insertions(+), 8 deletions(-)
+
+-- 
+2.25.1
 
