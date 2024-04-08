@@ -4,64 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55A69CD1296
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 13:05:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E30CCCD1296
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 13:09:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFF97112585;
-	Mon,  8 Apr 2024 13:05:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78AD7112592;
+	Mon,  8 Apr 2024 13:09:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FMYod2hd";
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="Q5CPyhyR";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F96A11257C;
- Mon,  8 Apr 2024 13:05:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712581509; x=1744117509;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=4c3II6I63b5zQez61oUwFmcWIu64F+YsDN+bWmgEMvU=;
- b=FMYod2hdyxOPMck0g9YYdYvSR+FvwgyGibalLRsq1Igoa1Vbh0GkUoop
- EX8SbyvTZoLCK2SBA1STdHhH650GhDDS5IVJATDzCEXYQbPPozNevkD9i
- zXLpy8VTs8kR4jUA9sxd6sq5KnaQ6JEhp/nVYuTae4sqi7SUS6uj8pipI
- IpIpUCEqwE6mm4OsrrgWn1oJ25NjSR02XIz8sEpIA6HZJj6SuY6zv5l5v
- 3U5EbKH0/wyWPy1RpkmPUgypwQWpHekoqYBW3bWV/EPEyPD6Vj5tnwoe5
- sT6hZKkJxmTVmTwjd3SIVNeSL/IfskghEy69qRGUUzuVBhqXZWo+PEsSy Q==;
-X-CSE-ConnectionGUID: K9Rf7jekTn6ljWFJSk+9rA==
-X-CSE-MsgGUID: rx8KeiKBSseLQup8llE5LA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="7713325"
-X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; 
-   d="scan'208";a="7713325"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 06:05:05 -0700
-X-CSE-ConnectionGUID: wOU44WP1RGGcgbHb5T83dA==
-X-CSE-MsgGUID: 9cPMaisRQ5qjx5FXNAhd3g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="57351107"
-Received: from sbint17x-mobl.gar.corp.intel.com (HELO [10.249.254.38])
- ([10.249.254.38])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 06:05:04 -0700
-Message-ID: <2b1773f0872b27ca6610c44d56c6e33b11b4013b.camel@linux.intel.com>
-Subject: Re: [RFC PATCH 0/8] TTM shrinker helpers and xe buffer object shrinker
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: "Somalapuram, Amaranath" <asomalap@amd.com>, 
- intel-xe@lists.freedesktop.org
-Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, Christian
- =?ISO-8859-1?Q?K=F6nig?=
- <christian.koenig@amd.com>, dri-devel@lists.freedesktop.org
-Date: Mon, 08 Apr 2024 15:05:00 +0200
-In-Reply-To: <8dcfeda5-fa95-39c5-6264-248941934ee6@amd.com>
-References: <20240329145707.3087-1-thomas.hellstrom@linux.intel.com>
- <8dcfeda5-fa95-39c5-6264-248941934ee6@amd.com>
-Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
- keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6C0B112592
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Apr 2024 13:09:34 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id BF8D561208;
+ Mon,  8 Apr 2024 13:09:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D345C433F1;
+ Mon,  8 Apr 2024 13:09:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1712581773;
+ bh=mN/7eVPKnNP5nlhRT6fAB7m1zWiRmxxEHpqAJV5LIhY=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=Q5CPyhyRXWToNyYL4lKU6k+rrAQo7tThKm61hoVxZAsYESTnc8BZOnvQpupwpN8Cy
+ SQ1D3rKfEc2yjeiLll3s53IxUF2fjSz1l1NTToMdzPMjmWabWWEOaUxJvwfqmnlwty
+ dH4xWZoS/Jqj2kLy0Et3Fzvd7+JAhYcKvDfqYaeY=
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: stable@vger.kernel.org
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, patches@lists.linux.dev,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Sasha Levin <sashal@kernel.org>
+Subject: [PATCH 6.8 019/273] drm/xe: Remove unused xe_bo->props struct
+Date: Mon,  8 Apr 2024 14:54:54 +0200
+Message-ID: <20240408125309.891281897@linuxfoundation.org>
+X-Mailer: git-send-email 2.44.0
+In-Reply-To: <20240408125309.280181634@linuxfoundation.org>
+References: <20240408125309.280181634@linuxfoundation.org>
+User-Agent: quilt/0.67
+X-stable: review
+X-Patchwork-Hint: ignore
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,177 +60,179 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Amaranath,
+6.8-stable review patch.  If anyone has any objections, please let me know.
 
-On Tue, 2024-04-02 at 17:25 +0530, Somalapuram, Amaranath wrote:
->=20
-> On 3/29/2024 8:26 PM, Thomas Hellstr=C3=B6m wrote:
-> > This series implements TTM shrinker / eviction helpers and an xe bo
-> > shrinker. It builds on two previous series. First
-> >=20
-> > https://www.mail-archive.com/dri-devel@lists.freedesktop.org/msg484425.=
-html
-> >=20
-> > for patch 1-4, which IMO still could be reviewed and pushed as a
-> > separate series.
-> >=20
-> > Second the previous TTM shrinker series=20
-> On the latest drm-misc good amount of conflicts on both patch series,
-> able to re-base first one, Second on has 16 patches.
-> If you have latest re-base patches, Please share it.
+------------------
 
-I was a bit unclear here. This series includes a rebased variant of the
-first series, and the rest of this series is a rework of the remaining
-patches in the second series below.
+From: Nirmoy Das <nirmoy.das@intel.com>
 
-So this series is self-contained and the links are provided only for
-reference and context. This series still seems to apply using git am -3
-on drm-tip, and with a minor single conflict on drm-misc-next.
-(Typically we send the patches against drm-tip since that's what CI is
-using).
+[ Upstream commit fd00fe8cdbb241644131ece133a2eb1c3951f21e ]
 
-The below series has not been rebased but I have a version of this
-series with a direct-swap-cache insertion backend lying around
-somewhere. I can post it or share it on gitlab if you want.
+Property struct is not being used so remove it and related dead code.
 
-Thanks,
-/Thomas
+Fixes: ddfa2d6a846a ("drm/xe/uapi: Kill VM_MADVISE IOCTL")
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20240311151159.10036-1-nirmoy.das@intel.com
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+(cherry picked from commit 002d8f0b4f76aabbf8e00c538a124b91625d7260)
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/gpu/drm/xe/xe_bo.c       | 59 +++++---------------------------
+ drivers/gpu/drm/xe/xe_bo_types.h | 19 ----------
+ 2 files changed, 9 insertions(+), 69 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 4d3b80ec906d0..eb2c44a328278 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -140,9 +140,6 @@ static void try_add_system(struct xe_device *xe, struct xe_bo *bo,
+ 			.mem_type = XE_PL_TT,
+ 		};
+ 		*c += 1;
+-
+-		if (bo->props.preferred_mem_type == XE_BO_PROPS_INVALID)
+-			bo->props.preferred_mem_type = XE_PL_TT;
+ 	}
+ }
+ 
+@@ -177,25 +174,15 @@ static void add_vram(struct xe_device *xe, struct xe_bo *bo,
+ 	}
+ 	places[*c] = place;
+ 	*c += 1;
+-
+-	if (bo->props.preferred_mem_type == XE_BO_PROPS_INVALID)
+-		bo->props.preferred_mem_type = mem_type;
+ }
+ 
+ static void try_add_vram(struct xe_device *xe, struct xe_bo *bo,
+ 			 u32 bo_flags, u32 *c)
+ {
+-	if (bo->props.preferred_gt == XE_GT1) {
+-		if (bo_flags & XE_BO_CREATE_VRAM1_BIT)
+-			add_vram(xe, bo, bo->placements, bo_flags, XE_PL_VRAM1, c);
+-		if (bo_flags & XE_BO_CREATE_VRAM0_BIT)
+-			add_vram(xe, bo, bo->placements, bo_flags, XE_PL_VRAM0, c);
+-	} else {
+-		if (bo_flags & XE_BO_CREATE_VRAM0_BIT)
+-			add_vram(xe, bo, bo->placements, bo_flags, XE_PL_VRAM0, c);
+-		if (bo_flags & XE_BO_CREATE_VRAM1_BIT)
+-			add_vram(xe, bo, bo->placements, bo_flags, XE_PL_VRAM1, c);
+-	}
++	if (bo_flags & XE_BO_CREATE_VRAM0_BIT)
++		add_vram(xe, bo, bo->placements, bo_flags, XE_PL_VRAM0, c);
++	if (bo_flags & XE_BO_CREATE_VRAM1_BIT)
++		add_vram(xe, bo, bo->placements, bo_flags, XE_PL_VRAM1, c);
+ }
+ 
+ static void try_add_stolen(struct xe_device *xe, struct xe_bo *bo,
+@@ -219,17 +206,8 @@ static int __xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
+ {
+ 	u32 c = 0;
+ 
+-	bo->props.preferred_mem_type = XE_BO_PROPS_INVALID;
+-
+-	/* The order of placements should indicate preferred location */
+-
+-	if (bo->props.preferred_mem_class == DRM_XE_MEM_REGION_CLASS_SYSMEM) {
+-		try_add_system(xe, bo, bo_flags, &c);
+-		try_add_vram(xe, bo, bo_flags, &c);
+-	} else {
+-		try_add_vram(xe, bo, bo_flags, &c);
+-		try_add_system(xe, bo, bo_flags, &c);
+-	}
++	try_add_vram(xe, bo, bo_flags, &c);
++	try_add_system(xe, bo, bo_flags, &c);
+ 	try_add_stolen(xe, bo, bo_flags, &c);
+ 
+ 	if (!c)
+@@ -1106,19 +1084,12 @@ static void xe_gem_object_close(struct drm_gem_object *obj,
+ 	}
+ }
+ 
+-static bool should_migrate_to_system(struct xe_bo *bo)
+-{
+-	struct xe_device *xe = xe_bo_device(bo);
+-
+-	return xe_device_in_fault_mode(xe) && bo->props.cpu_atomic;
+-}
+-
+ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
+ {
+ 	struct ttm_buffer_object *tbo = vmf->vma->vm_private_data;
+ 	struct drm_device *ddev = tbo->base.dev;
+ 	vm_fault_t ret;
+-	int idx, r = 0;
++	int idx;
+ 
+ 	ret = ttm_bo_vm_reserve(tbo, vmf);
+ 	if (ret)
+@@ -1129,17 +1100,8 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
+ 
+ 		trace_xe_bo_cpu_fault(bo);
+ 
+-		if (should_migrate_to_system(bo)) {
+-			r = xe_bo_migrate(bo, XE_PL_TT);
+-			if (r == -EBUSY || r == -ERESTARTSYS || r == -EINTR)
+-				ret = VM_FAULT_NOPAGE;
+-			else if (r)
+-				ret = VM_FAULT_SIGBUS;
+-		}
+-		if (!ret)
+-			ret = ttm_bo_vm_fault_reserved(vmf,
+-						       vmf->vma->vm_page_prot,
+-						       TTM_BO_VM_NUM_PREFAULT);
++		ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma->vm_page_prot,
++					       TTM_BO_VM_NUM_PREFAULT);
+ 		drm_dev_exit(idx);
+ 	} else {
+ 		ret = ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
+@@ -1253,9 +1215,6 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
+ 	bo->flags = flags;
+ 	bo->cpu_caching = cpu_caching;
+ 	bo->ttm.base.funcs = &xe_gem_object_funcs;
+-	bo->props.preferred_mem_class = XE_BO_PROPS_INVALID;
+-	bo->props.preferred_gt = XE_BO_PROPS_INVALID;
+-	bo->props.preferred_mem_type = XE_BO_PROPS_INVALID;
+ 	bo->ttm.priority = XE_BO_PRIORITY_NORMAL;
+ 	INIT_LIST_HEAD(&bo->pinned_link);
+ #ifdef CONFIG_PROC_FS
+diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+index 64c2249a4e407..81dca15315d5c 100644
+--- a/drivers/gpu/drm/xe/xe_bo_types.h
++++ b/drivers/gpu/drm/xe/xe_bo_types.h
+@@ -56,25 +56,6 @@ struct xe_bo {
+ 	 */
+ 	struct list_head client_link;
+ #endif
+-	/** @props: BO user controlled properties */
+-	struct {
+-		/** @preferred_mem: preferred memory class for this BO */
+-		s16 preferred_mem_class;
+-		/** @prefered_gt: preferred GT for this BO */
+-		s16 preferred_gt;
+-		/** @preferred_mem_type: preferred memory type */
+-		s32 preferred_mem_type;
+-		/**
+-		 * @cpu_atomic: the CPU expects to do atomics operations to
+-		 * this BO
+-		 */
+-		bool cpu_atomic;
+-		/**
+-		 * @device_atomic: the device expects to do atomics operations
+-		 * to this BO
+-		 */
+-		bool device_atomic;
+-	} props;
+ 	/** @freed: List node for delayed put. */
+ 	struct llist_node freed;
+ 	/** @created: Whether the bo has passed initial creation */
+-- 
+2.43.0
 
 
-
->=20
-> Regards,
-> S.Amarnath
-> > https://lore.kernel.org/linux-mm/b7491378-defd-4f1c-31e2-29e4c77e2d67@a=
-md.com/T/
-> >=20
-> > Where the comment about layering
-> > https://lore.kernel.org/linux-mm/b7491378-defd-4f1c-31e2-29e4c77e2d67@a=
-md.com/T/#ma918844aa8a6efe8768fdcda0c6590d5c93850c9
-> >=20
-> > now addressed, and this version also implements shmem objects for
-> > backup
-> > rather than direct swap-cache insertions, which was used in the
-> > previuos
-> > series. It turns out that with per-page backup / shrinking, shmem
-> > objects
-> > appears to work just as well as direct swap-cache insertions with
-> > the
-> > added benefit that was introduced in the previous TTM shrinker
-> > series to
-> > avoid running out of swap entries isn't really needed.
-> >=20
-> > In any case, patch 1-4 are better described in their separate
-> > series.
-> > (RFC is removed for those).
-> >=20
-> > Patch 5 could in theory be skipped but introduces a possibility to
-> > easily
-> > add or test multiple backup backends, like the direct swap-cache
-> > insertion or even files into fast dedicated nvme storage for for
-> > example.
-> >=20
-> > Patch 6 introduces helpers in the ttm_pool code for page-by-page
-> > shrinking
-> > and recovery. It avoids having to temporarily allocate a huge
-> > amount of
-> > memory to be able to shrink a buffer object. It also introduces the
-> > possibility to immediately write-back pages if needed, since that
-> > tends
-> > to be a bit delayed when left to kswapd.
-> >=20
-> > Patch 7 introduces a LRU walk helper for eviction and shrinking.
-> > It's
-> > currently xe-only but not xe-specific and can easily be moved to
-> > TTM when
-> > used by more than one driver or when eviction is implemented using
-> > it.
-> >=20
-> > Patch 8 introduces a helper callback for shrinking (Also ready to
-> > be
-> > moved to TTM) and an xe-specific shrinker implementation.
-> >=20
-> > Testing:
-> > ATM I don't think we have good tests to cover the shrinking
-> > functionality
-> > The series has been tested with a hack that continously creates
-> > TTM_TT buffer objects until system memory and swap space is
-> > exhausted,
-> > and then reads them back and frees them. However, these tests
-> > seem to be very slow.
-> > Ideally a similar test on a machine with very fast solid state or
-> > similar storage should be set up. Ideally also verifying content
-> > preservation.
-> >=20
-> > Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-> > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
-> > Cc: <dri-devel@lists.freedesktop.org>
-> >=20
-> > Thomas Hellstr=C3=B6m (8):
-> > =C2=A0=C2=A0 drm/ttm: Allow TTM LRU list nodes of different types
-> > =C2=A0=C2=A0 drm/ttm: Use LRU hitches
-> > =C2=A0=C2=A0 drm/ttm, drm/amdgpu, drm/xe: Consider hitch moves within b=
-ulk
-> > sublist
-> > =C2=A0=C2=A0=C2=A0=C2=A0 moves
-> > =C2=A0=C2=A0 drm/ttm: Allow continued swapout after -ENOSPC falure
-> > =C2=A0=C2=A0 drm/ttm: Add a virtual base class for graphics memory back=
-up
-> > =C2=A0=C2=A0 drm/ttm/pool: Provide a helper to shrink pages.
-> > =C2=A0=C2=A0 drm/xe, drm/ttm: Provide a generic LRU walker helper
-> > =C2=A0=C2=A0 drm/xe: Add a shrinker for xe bos
-> >=20
-> > =C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c |=C2=A0=C2=A0 4 +
-> > =C2=A0 drivers/gpu/drm/ttm/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
-> > =C2=A0 drivers/gpu/drm/ttm/ttm_backup_shmem.c | 137 +++++++++
-> > =C2=A0 drivers/gpu/drm/ttm/ttm_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> > =C2=A0 drivers/gpu/drm/ttm/ttm_device.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 |=C2=A0 33 ++-
-> > =C2=A0 drivers/gpu/drm/ttm/ttm_pool.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 | 391
-> > ++++++++++++++++++++++++-
-> > =C2=A0 drivers/gpu/drm/ttm/ttm_resource.c=C2=A0=C2=A0=C2=A0=C2=A0 | 231=
- ++++++++++++---
-> > =C2=A0 drivers/gpu/drm/ttm/ttm_tt.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 34 +++
-> > =C2=A0 drivers/gpu/drm/xe/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +
-> > =C2=A0 drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 123 ++++++--
-> > =C2=A0 drivers/gpu/drm/xe/xe_bo.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +
-> > =C2=A0 drivers/gpu/drm/xe/xe_device.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 8 +
-> > =C2=A0 drivers/gpu/drm/xe/xe_device_types.h=C2=A0=C2=A0 |=C2=A0=C2=A0 2=
- +
-> > =C2=A0 drivers/gpu/drm/xe/xe_shrinker.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 | 237 +++++++++++++++
-> > =C2=A0 drivers/gpu/drm/xe/xe_shrinker.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 |=C2=A0 18 ++
-> > =C2=A0 drivers/gpu/drm/xe/xe_ttm_helpers.c=C2=A0=C2=A0=C2=A0 | 224 ++++=
-++++++++++
-> > =C2=A0 drivers/gpu/drm/xe/xe_ttm_helpers.h=C2=A0=C2=A0=C2=A0 |=C2=A0 63=
- ++++
-> > =C2=A0 drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 4 +
-> > =C2=A0 include/drm/ttm/ttm_backup.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 | 136 +++++++++
-> > =C2=A0 include/drm/ttm/ttm_device.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +
-> > =C2=A0 include/drm/ttm/ttm_pool.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 4 +
-> > =C2=A0 include/drm/ttm/ttm_resource.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 |=C2=A0 96 +++++-
-> > =C2=A0 include/drm/ttm/ttm_tt.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 19 ++
-> > =C2=A0 23 files changed, 1683 insertions(+), 91 deletions(-)
-> > =C2=A0 create mode 100644 drivers/gpu/drm/ttm/ttm_backup_shmem.c
-> > =C2=A0 create mode 100644 drivers/gpu/drm/xe/xe_shrinker.c
-> > =C2=A0 create mode 100644 drivers/gpu/drm/xe/xe_shrinker.h
-> > =C2=A0 create mode 100644 drivers/gpu/drm/xe/xe_ttm_helpers.c
-> > =C2=A0 create mode 100644 drivers/gpu/drm/xe/xe_ttm_helpers.h
-> > =C2=A0 create mode 100644 include/drm/ttm/ttm_backup.h
-> >=20
 
