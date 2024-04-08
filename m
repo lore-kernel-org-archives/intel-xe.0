@@ -4,58 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE64CCD129A
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 16:29:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E313CC67861
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 16:50:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D10811277B;
-	Mon,  8 Apr 2024 16:29:42 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gZjhTpxf";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2308C11277B
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Apr 2024 16:29:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712593774; x=1744129774;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=YMoD3REsghGXvfVeETvR+x3teWwOcKE2nvVuQn8Pz0Q=;
- b=gZjhTpxfqkIXmA057lsVRs9JwEp4km/K+AlO0ERlNj+cdIomfupyZ8ac
- Vsdyw6BIPGBcb9u5RQSw/fZ503k7J4C96BWoe/vFyyunMWapH/vlGAMjN
- vtYPKBrFRx2AUJrZBWJbucgKG3C98zqE+ytOmM0fDxw17XbN2teFhRZH3
- dwBzkg2JlyguRqJZr2pQEI95vJ9OkAEpZxyIIskTstCVmDEdr0ifDOk0J
- 1Xb2ine5X/QZcjELxzTwiacL4zhvhBkZtSb89GjqnTugeD3czIacYnQeM
- Ii6i5RR8VlO9bvb9MBu0a1DjLFHLaFCE7VDE+ni7OssGrrx8J0WVsit+T Q==;
-X-CSE-ConnectionGUID: xA/rivPfSQC9pEIq8uXhSQ==
-X-CSE-MsgGUID: II+P5jpSQdKULrzISwr/SA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="19024995"
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="19024995"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 09:29:34 -0700
-X-CSE-ConnectionGUID: IG1xFOypTKmMRsnQZRZ+Og==
-X-CSE-MsgGUID: gSZ1I1P+T7K7sfCU0jhUkA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="24683565"
-Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 09:29:32 -0700
-From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Matt Roper <matthew.d.roper@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Shekhar Chauhan <shekhar.chauhan@intel.com>,
- Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Subject: [PATCH v2 10/11] drm/xe/xe2hpg: Introduce performance tuning changes
- for Xe2_HPG.
-Date: Mon,  8 Apr 2024 21:59:15 +0530
-Message-Id: <20240408162916.3767771-19-balasubramani.vivekanandan@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240408162916.3767771-1-balasubramani.vivekanandan@intel.com>
-References: <20240408162916.3767771-1-balasubramani.vivekanandan@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D61511280F;
+	Mon,  8 Apr 2024 16:50:20 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4A3311280F;
+ Mon,  8 Apr 2024 16:50:18 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3607259594133415107=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5Bv6=2C1/3?=
+ =?utf-8?q?=5D_drm/xe=3A_Store_xe=5Fhe=5Fengine_in_xe=5Fhw=5Fengine=5Fsnapsh?=
+ =?utf-8?q?ot_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 08 Apr 2024 16:50:18 -0000
+Message-ID: <171259501880.1286010.11323856459201960129@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240405182326.72157-1-jose.souza@intel.com>
+In-Reply-To: <20240405182326.72157-1-jose.souza@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,51 +37,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Shekhar Chauhan <shekhar.chauhan@intel.com>
+--===============3607259594133415107==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Introduces performance tuning guide changes for Xe_HPG.
+== Series Details ==
 
-BSpec: 72161
+Series: series starting with [v6,1/3] drm/xe: Store xe_he_engine in xe_hw_engine_snapshot (rev2)
+URL   : https://patchwork.freedesktop.org/series/132095/
+State : success
 
-v2: Switched to open upper bound for "Tuning: L3 Cache" setting.
+== Summary ==
 
-Signed-off-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
-Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/xe/xe_tuning.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+CI Bug Log - changes from xe-1053-3f6d14414476985621a86e8aee7d3d9bb2070cd1_BAT -> xe-pw-132095v2_BAT
+====================================================
 
-diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
-index bb6db2817ada..d4e6fa918942 100644
---- a/drivers/gpu/drm/xe/xe_tuning.c
-+++ b/drivers/gpu/drm/xe/xe_tuning.c
-@@ -28,7 +28,7 @@ static const struct xe_rtp_entry_sr gt_tunings[] = {
- 	/* Xe2 */
- 
- 	{ XE_RTP_NAME("Tuning: L3 cache"),
--	  XE_RTP_RULES(GRAPHICS_VERSION(2004)),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, XE_RTP_END_VERSION_UNDEFINED)),
- 	  XE_RTP_ACTIONS(FIELD_SET(XEHP_L3SQCREG5, L3_PWM_TIMER_INIT_VAL_MASK,
- 				   REG_FIELD_PREP(L3_PWM_TIMER_INIT_VAL_MASK, 0x7f)))
- 	},
-@@ -38,11 +38,11 @@ static const struct xe_rtp_entry_sr gt_tunings[] = {
- 				   REG_FIELD_PREP(L3_PWM_TIMER_INIT_VAL_MASK, 0x7f)))
- 	},
- 	{ XE_RTP_NAME("Tuning: Compression Overfetch"),
--	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2004, XE_RTP_END_VERSION_UNDEFINED)),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, XE_RTP_END_VERSION_UNDEFINED)),
- 	  XE_RTP_ACTIONS(CLR(CCCHKNREG1, ENCOMPPERFFIX)),
- 	},
- 	{ XE_RTP_NAME("Tuning: Enable compressible partial write overfetch in L3"),
--	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2004, XE_RTP_END_VERSION_UNDEFINED)),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, XE_RTP_END_VERSION_UNDEFINED)),
- 	  XE_RTP_ACTIONS(SET(L3SQCREG3, COMPPWOVERFETCHEN))
- 	},
- 	{}
--- 
-2.25.1
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (5 -> 5)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-132095v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_exec_threads@threads-basic:
+    - {bat-lnl-1}:        [FAIL][1] -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1053-3f6d14414476985621a86e8aee7d3d9bb2070cd1/bat-lnl-1/igt@xe_exec_threads@threads-basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132095v2/bat-lnl-1/igt@xe_exec_threads@threads-basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+
+
+Build changes
+-------------
+
+  * Linux: xe-1053-3f6d14414476985621a86e8aee7d3d9bb2070cd1 -> xe-pw-132095v2
+
+  IGT_7801: 7801
+  xe-1053-3f6d14414476985621a86e8aee7d3d9bb2070cd1: 3f6d14414476985621a86e8aee7d3d9bb2070cd1
+  xe-pw-132095v2: 132095v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132095v2/index.html
+
+--===============3607259594133415107==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v6,1/3] drm/xe: Store xe_he_engine in xe_hw_engine_snapshot (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132095/">https://patchwork.freedesktop.org/series/132095/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132095v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132095v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1053-3f6d14414476985621a86e8aee7d3d9bb2070cd1_BAT -&gt; xe-pw-132095v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (5 -&gt; 5)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-132095v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_exec_threads@threads-basic:<ul>
+<li>{bat-lnl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1053-3f6d14414476985621a86e8aee7d3d9bb2070cd1/bat-lnl-1/igt@xe_exec_threads@threads-basic.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132095v2/bat-lnl-1/igt@xe_exec_threads@threads-basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1053-3f6d14414476985621a86e8aee7d3d9bb2070cd1 -&gt; xe-pw-132095v2</li>
+</ul>
+<p>IGT_7801: 7801<br />
+  xe-1053-3f6d14414476985621a86e8aee7d3d9bb2070cd1: 3f6d14414476985621a86e8aee7d3d9bb2070cd1<br />
+  xe-pw-132095v2: 132095v2</p>
+
+</body>
+</html>
+
+--===============3607259594133415107==--
