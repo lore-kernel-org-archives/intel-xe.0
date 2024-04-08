@@ -4,150 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7519DC67861
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 13:00:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55A69CD1296
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 13:05:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3754E11256B;
-	Mon,  8 Apr 2024 13:00:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFF97112585;
+	Mon,  8 Apr 2024 13:05:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H3sm7fM5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FMYod2hd";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DF85112495;
- Mon,  8 Apr 2024 13:00:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F96A11257C;
+ Mon,  8 Apr 2024 13:05:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712581224; x=1744117224;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=6zcVT7EK3XSYwhoAr8ZWUoLYP/XR+/nUDYnLVfu2aq8=;
- b=H3sm7fM5yp2QQMIRBgI/KiD08H0l5Yy6X4iigDuf03uTQbWHnt/jZlt3
- T09pqJJzeO+bK7uy1e7g1FZZ144q9XK2PN/zeY0yzJFvjCzI/VGvtOX10
- K7/mVSd3SxLvvVrWgBMqUIIzuKKfo+tyufdvJxGKglFaWp0Dv53Ja5Ju7
- owOmg1s8HypiRemfKACQ16Si6c9hdAWtL33H/qGrh0350aA267jPyJFA5
- yk3ktqcGKf0uCosNakvvUpgZ+GoHArSrdcUXYZStc3ydgLWNOsG04BNRn
- 7NPxGaI0aLkf/fO3xfgkOse44artCumlNbrfbx+zMwFq1njyrFvW4DhZC A==;
-X-CSE-ConnectionGUID: fh0EGd9tS6SKLkGjTQHcRA==
-X-CSE-MsgGUID: rpvdoyenSreo/NKIh286nw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="18999176"
-X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="18999176"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 06:00:13 -0700
-X-CSE-ConnectionGUID: TGqKYvIDQeawEBs4txS1/Q==
-X-CSE-MsgGUID: y4GdTqrGQ4WjamMxgXDIsQ==
+ t=1712581509; x=1744117509;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=4c3II6I63b5zQez61oUwFmcWIu64F+YsDN+bWmgEMvU=;
+ b=FMYod2hdyxOPMck0g9YYdYvSR+FvwgyGibalLRsq1Igoa1Vbh0GkUoop
+ EX8SbyvTZoLCK2SBA1STdHhH650GhDDS5IVJATDzCEXYQbPPozNevkD9i
+ zXLpy8VTs8kR4jUA9sxd6sq5KnaQ6JEhp/nVYuTae4sqi7SUS6uj8pipI
+ IpIpUCEqwE6mm4OsrrgWn1oJ25NjSR02XIz8sEpIA6HZJj6SuY6zv5l5v
+ 3U5EbKH0/wyWPy1RpkmPUgypwQWpHekoqYBW3bWV/EPEyPD6Vj5tnwoe5
+ sT6hZKkJxmTVmTwjd3SIVNeSL/IfskghEy69qRGUUzuVBhqXZWo+PEsSy Q==;
+X-CSE-ConnectionGUID: K9Rf7jekTn6ljWFJSk+9rA==
+X-CSE-MsgGUID: rx8KeiKBSseLQup8llE5LA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="7713325"
+X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; 
+   d="scan'208";a="7713325"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2024 06:05:05 -0700
+X-CSE-ConnectionGUID: wOU44WP1RGGcgbHb5T83dA==
+X-CSE-MsgGUID: 9cPMaisRQ5qjx5FXNAhd3g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="43043511"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 08 Apr 2024 06:00:13 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 8 Apr 2024 06:00:12 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 8 Apr 2024 06:00:12 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Mon, 8 Apr 2024 06:00:12 -0700
-Received: from outbound.mail.protection.outlook.com (104.47.66.40) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Mon, 8 Apr 2024 06:00:12 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=H04Eh/aTtdMa4c9VrJfKqDQHRMQbDJjSj1Ugt8VcgkJCOMSfMtgaG/0w5AesbgQX/Fmh0cw1R9c8vnyrGYyDWII+F0lDTIry+aVRqZEk3j6LLZ3RiAgJvLgcYIk+0WmIJseLu4cKjXXbbiuSBVWLxV/fVRnRLiW71RcnKtFinbCZCAbnHim2JBno4hhePgogRw69zslVGA8RfE/0Y9T/qRKMtQwB1cyNoLH0Y+C36Ck1Qi5c6g7pPCyq06KaisWw7MmDF4NcbMpXQVhjhV/h2sQXPEFiUmo9N+y1uhpK1rY2sXduKVAfz5qH2KCeGPZi6fFfOhshhyM7112YfsgYlA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sjhUmygvqTRqVPQD8i2ug+l9HThxqo4CncibW9c9q/A=;
- b=LR3aS13Sx9bZb6SXTfEo4JFyvsPbmR1l81WX/K7/BelgEeFxKBx3W7a7k0hcGy8GioaJOMS+dUTz/upKNhrYovxmkfipwLjx8F9CfwWrWVdjQr8bRfOCYDYFx57x3HgbBcrl6+SvbhpR00gsMTk5JO23y0c6R/nWQ89Iu+osUnMbUphK6NssHki57p8PRjooemBczMAflWBdn5iSrf+XQsyu352p+KPyS/93NWPah0alo3DIPk6pSK1AR/m4JtNgOgJh1rqPm7mchiULyswLEsrf/Ag6JwfrtYP0YhgvMMyMNNN7o7gPbNS1vpheIKC7y83MhCa1dYnNVD702tCScA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from IA1PR11MB6266.namprd11.prod.outlook.com (2603:10b6:208:3e6::12)
- by CH3PR11MB8093.namprd11.prod.outlook.com (2603:10b6:610:139::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7430.46; Mon, 8 Apr
- 2024 13:00:10 +0000
-Received: from IA1PR11MB6266.namprd11.prod.outlook.com
- ([fe80::3e5:27b2:966b:5a2b]) by IA1PR11MB6266.namprd11.prod.outlook.com
- ([fe80::3e5:27b2:966b:5a2b%4]) with mapi id 15.20.7452.019; Mon, 8 Apr 2024
- 13:00:10 +0000
-From: "Bhadane, Dnyaneshwar" <dnyaneshwar.bhadane@intel.com>
-To: "Vivekanandan, Balasubramani" <balasubramani.vivekanandan@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Roper, Matthew D" <matthew.d.roper@intel.com>, "De Marchi, Lucas"
- <lucas.demarchi@intel.com>, "Vivekanandan, Balasubramani"
- <balasubramani.vivekanandan@intel.com>
-Subject: RE: [PATCH v2 20/25] drm/i915/bmg: BMG should re-use MTL's south
- display logic
-Thread-Topic: [PATCH v2 20/25] drm/i915/bmg: BMG should re-use MTL's south
- display logic
-Thread-Index: AQHahbloEHl8yb5/l0eF4Xo9aMBYjLFeKWEA
-Date: Mon, 8 Apr 2024 13:00:10 +0000
-Message-ID: <IA1PR11MB62661388DCE7ECDAB4D6B0FCE2002@IA1PR11MB6266.namprd11.prod.outlook.com>
-References: <20240403112253.1432390-1-balasubramani.vivekanandan@intel.com>
- <20240403112253.1432390-21-balasubramani.vivekanandan@intel.com>
-In-Reply-To: <20240403112253.1432390-21-balasubramani.vivekanandan@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA1PR11MB6266:EE_|CH3PR11MB8093:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: H9TblNIl+hn0JhgljVpa5kPdXt3MtaEP/ZXKfqsJ5H2F2f2DfvMRTOzCIUD8t0XRd2vQCBbhZVqOTrJVaKa0JdDHofIrlxOlC0d4EhQUV8VEIBUdEQe04OmhB7or3T9kSGk0tWNX9DiurTVHOreKo/gCOTuqiaWD7x30O9hxeSm7nF27DOI+LePhfyEVeN9qOhUZP1RT5C270nZgO7bjhpvCJIUzCF3CAG7GDuC9JZC6DvbXwhJJQBfxeY1zNlDD5ExqTWNAyEI6F5zYi+ZF5lYp5X8WguLNAOHgitsQAcjrabMOQ4HeQBoE+4Qs6zEC8kq3yAymJJbB2qIEQuGYnncsOjMN1jHsa54llQ35fxWINEKaGBTSgKWVed/z7yUtU6pXV1cIy5USs/SwGUtHjbXAg5ATCM5EQQyRPBK36DrFaIExfXkQcw22Ay+Elwn/F0CPhm+pl1Fs7+4q6K8jRGOsp/xCE/gJrB9Ld+EPsO++NkYO2DI/j/f6VYr+RzkbqFbpl0QTJOV98uhEXbM7uMzmlaAgda50MEcFbszx2U/w5ndvO/PcMgBLCIxbbjvY92EscTIqVDwgPrg7eOd4nauT8qiD0ZdNH1nIIMbluI9qgLuwsPK/7gC4AOOGgKgENfFDuA5eWZ6hbnINbtmxFC8QuR/PcJUkQrIQX6z/UyI=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA1PR11MB6266.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(366007)(1800799015); DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?COhvO5XTNs7iUAbwLAcDEEtpF/U9MOQNVuszk7I9tHXlAh7nideawyN7JspD?=
- =?us-ascii?Q?exEnHm+N4nDiNIAJwQY97nOAq+RnQkECA7gbMOma5r0KGGYh8hMpJfPzzXKS?=
- =?us-ascii?Q?9ld91ulCcRQVmiHnukUCyZVZGEZwYjSJei+mNayt7FiDGERLB8MU2g5SAwuW?=
- =?us-ascii?Q?Smu+ArHM0j4T9+XAtQiolSyp8iWnnkCJ17W5p8f8zwlGCxzTglewmW3iK/73?=
- =?us-ascii?Q?zqC5T2MNC/soUvPnsr3DTSWPThw77BAEYk4MOMgMDhy3W8rjw3WRVDGKNu7e?=
- =?us-ascii?Q?xx6iLdLzt9PGqINmXjONo7jzqbRBS4yBvVoh6lNh/YPzLvvdY9MHeJutu/L6?=
- =?us-ascii?Q?nHotLr/UTeC7entON2FBoz8Xm4Es2QYsI7HrVLeZsgtI3m72WIrdQ/Oi1lCB?=
- =?us-ascii?Q?LgpqcsNUguyoi8LJcOU2KV17eNmyj+CqqhLeKrUHlyqno+y9tMPnSBNZHoGb?=
- =?us-ascii?Q?DbuCKzQFtkWboCaK7UIPKGH+T+CUxBU249Whrt1MR2rPnpXtJvFNuB1YlVyJ?=
- =?us-ascii?Q?tpb5WjapixVE5tJuS8jyLZeNedYuoYgHrjrnGdAJ3Xc4fol0a1+xYe+3gyBu?=
- =?us-ascii?Q?RsTpct1nprScjHzIx6C1t/If9Na5pqkHtZmjaLXbhTHD46YwUY12YSoMCHfa?=
- =?us-ascii?Q?hGyXzGiWBOFnbj6E3TiRh6YfZziYiVeeNy9P/NqWFchShRl+xDSmr6sbFlW2?=
- =?us-ascii?Q?lGAuORFQaRjw+pgfN1CH4Lkj8dfpox5tG1J7BFb4KSe8EylgnDykcpWG/axY?=
- =?us-ascii?Q?/sQ5BdvO5HqHP0GsN56GOb9o/cnenukXeEUMkf/NI07yWakDBXvPiE7m95hn?=
- =?us-ascii?Q?HxkVvZzxOstHEavFW7BqC0iGeq4xCs+gZ1qI84yrOb5YTyrKH7yd0Skjoq5X?=
- =?us-ascii?Q?jVMBB9wq3oSFL/C1YY6ZplkmNI311hibxW3KbWrNDqFontVShkW/CwXDLKWk?=
- =?us-ascii?Q?n1n4kb0MZtuTRFKF9g5oe9nX0/7dH/96kqqVB0slRq43xtjv9hZqu2FeLI5E?=
- =?us-ascii?Q?l2KME9Wejs4PPrMTqESVoUU/+MKCiyQf1QvxBUpuLB7gJO/6dmXKCb2+qcl2?=
- =?us-ascii?Q?umQF7YFU+4l4pYGlgWJYFHPQCq8mU8Bo+iSWZ9QU8yQzrD8ruXU3tvwdXeVM?=
- =?us-ascii?Q?/0TXxYGt8BspH8OrsHJcCU6v4owdG4VNoGEvcfKZVfR6Tdw9zwJSptgkn5G8?=
- =?us-ascii?Q?gRyrt5ecfZeechNifb4qIir57swlNHm+ZW8vcd4LqqUhZYIu29FfeJ0NJ8lY?=
- =?us-ascii?Q?c1Volgzzzs3y5pJlqNEcpB+RRF9Rtfe8h2Vrd43QYSAHzNAAf9zIGYZvgbSI?=
- =?us-ascii?Q?Ww2WWWVTwEM/ncxfSSqJd1eEGuj2J2GGYwWSfIAROKVB/F4q3AIlyijN/fik?=
- =?us-ascii?Q?pt8vvtbXn3EMUJy49N85uIDEm8ksOPzru6xrkzGTIri8yTlQu/FZAVnXlBwW?=
- =?us-ascii?Q?a9Op/SjG+oOHkkiApS2UO8EBNMaoP7YH9FOwfH1/xgpL3Ggr6HPD9q0t9RU3?=
- =?us-ascii?Q?yKX3eHL4JjHt9PV66XG1iC5kPfuWq+2RL0tbAV6D4WBFMhw6/taTNx9YviGq?=
- =?us-ascii?Q?KkrnVS7ssmTASh/+JfkhUke/YHp/kPEEk/nG8/tmMbhrk0ONVQPUq6PD7I5U?=
- =?us-ascii?Q?zQ=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
+X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="57351107"
+Received: from sbint17x-mobl.gar.corp.intel.com (HELO [10.249.254.38])
+ ([10.249.254.38])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2024 06:05:04 -0700
+Message-ID: <2b1773f0872b27ca6610c44d56c6e33b11b4013b.camel@linux.intel.com>
+Subject: Re: [RFC PATCH 0/8] TTM shrinker helpers and xe buffer object shrinker
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: "Somalapuram, Amaranath" <asomalap@amd.com>, 
+ intel-xe@lists.freedesktop.org
+Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, Christian
+ =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, dri-devel@lists.freedesktop.org
+Date: Mon, 08 Apr 2024 15:05:00 +0200
+In-Reply-To: <8dcfeda5-fa95-39c5-6264-248941934ee6@amd.com>
+References: <20240329145707.3087-1-thomas.hellstrom@linux.intel.com>
+ <8dcfeda5-fa95-39c5-6264-248941934ee6@amd.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6266.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 48b633a9-1a74-4188-0305-08dc57cbd2a4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Apr 2024 13:00:10.3261 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: z4MLkVcfuT9l4kHka+AVU1ow5MBNyyYJeZJCNafkOiXz2IIP7fBS0c8Z4/YOeuQgmU368wiusZ8GjGjJYO6WuEi3wuSqdQW3+UrAYicDKPY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8093
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,60 +76,177 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi, Amaranath,
 
-
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
-> Balasubramani Vivekanandan
-> Sent: Wednesday, April 3, 2024 4:53 PM
-> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> Cc: Roper, Matthew D <matthew.d.roper@intel.com>; De Marchi, Lucas
-> <lucas.demarchi@intel.com>; Vivekanandan, Balasubramani
-> <balasubramani.vivekanandan@intel.com>
-> Subject: [PATCH v2 20/25] drm/i915/bmg: BMG should re-use MTL's south
-> display logic
+On Tue, 2024-04-02 at 17:25 +0530, Somalapuram, Amaranath wrote:
 >=20
-> From: Matt Roper <matthew.d.roper@intel.com>
->=20
-> Battlemage's south display is the same as Meteor Lake's, including the ne=
-ed to
-							                          ^^^
-Hi Bala,
-We might want to rephrase this description a bit to fit in sentence.
-> invert the HPD pins, which Lunar Lake does not need.
->=20
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Balasubramani Vivekanandan
-> <balasubramani.vivekanandan@intel.com>
-> ---
+> On 3/29/2024 8:26 PM, Thomas Hellstr=C3=B6m wrote:
+> > This series implements TTM shrinker / eviction helpers and an xe bo
+> > shrinker. It builds on two previous series. First
+> >=20
+> > https://www.mail-archive.com/dri-devel@lists.freedesktop.org/msg484425.=
+html
+> >=20
+> > for patch 1-4, which IMO still could be reviewed and pushed as a
+> > separate series.
+> >=20
+> > Second the previous TTM shrinker series=20
+> On the latest drm-misc good amount of conflicts on both patch series,
+> able to re-base first one, Second on has 16 patches.
+> If you have latest re-base patches, Please share it.
 
-With this change LGTM.
-Reviewed-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+I was a bit unclear here. This series includes a rebased variant of the
+first series, and the rest of this series is a rework of the remaining
+patches in the second series below.
 
-Dnyaneshwar Bhadane
+So this series is self-contained and the links are provided only for
+reference and context. This series still seems to apply using git am -3
+on drm-tip, and with a minor single conflict on drm-misc-next.
+(Typically we send the patches against drm-tip since that's what CI is
+using).
 
->  drivers/gpu/drm/i915/soc/intel_pch.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+The below series has not been rebased but I have a version of this
+series with a direct-swap-cache insertion backend lying around
+somewhere. I can post it or share it on gitlab if you want.
+
+Thanks,
+/Thomas
+
+
+
 >=20
-> diff --git a/drivers/gpu/drm/i915/soc/intel_pch.c
-> b/drivers/gpu/drm/i915/soc/intel_pch.c
-> index 3cad6dac06b0..542eea50093c 100644
-> --- a/drivers/gpu/drm/i915/soc/intel_pch.c
-> +++ b/drivers/gpu/drm/i915/soc/intel_pch.c
-> @@ -218,10 +218,10 @@ void intel_detect_pch(struct drm_i915_private
-> *dev_priv)
->  	if (DISPLAY_VER(dev_priv) >=3D 20) {
->  		dev_priv->pch_type =3D PCH_LNL;
->  		return;
-> -	} else if (IS_METEORLAKE(dev_priv)) {
-> +	} else if (IS_BATTLEMAGE(dev_priv) || IS_METEORLAKE(dev_priv)) {
->  		/*
->  		 * Both north display and south display are on the SoC die.
-> -		 * The real PCH is uninvolved in display.
-> +		 * The real PCH (if it even exists) is uninvolved in display.
->  		 */
->  		dev_priv->pch_type =3D PCH_MTL;
->  		return;
-> --
-> 2.25.1
+> Regards,
+> S.Amarnath
+> > https://lore.kernel.org/linux-mm/b7491378-defd-4f1c-31e2-29e4c77e2d67@a=
+md.com/T/
+> >=20
+> > Where the comment about layering
+> > https://lore.kernel.org/linux-mm/b7491378-defd-4f1c-31e2-29e4c77e2d67@a=
+md.com/T/#ma918844aa8a6efe8768fdcda0c6590d5c93850c9
+> >=20
+> > now addressed, and this version also implements shmem objects for
+> > backup
+> > rather than direct swap-cache insertions, which was used in the
+> > previuos
+> > series. It turns out that with per-page backup / shrinking, shmem
+> > objects
+> > appears to work just as well as direct swap-cache insertions with
+> > the
+> > added benefit that was introduced in the previous TTM shrinker
+> > series to
+> > avoid running out of swap entries isn't really needed.
+> >=20
+> > In any case, patch 1-4 are better described in their separate
+> > series.
+> > (RFC is removed for those).
+> >=20
+> > Patch 5 could in theory be skipped but introduces a possibility to
+> > easily
+> > add or test multiple backup backends, like the direct swap-cache
+> > insertion or even files into fast dedicated nvme storage for for
+> > example.
+> >=20
+> > Patch 6 introduces helpers in the ttm_pool code for page-by-page
+> > shrinking
+> > and recovery. It avoids having to temporarily allocate a huge
+> > amount of
+> > memory to be able to shrink a buffer object. It also introduces the
+> > possibility to immediately write-back pages if needed, since that
+> > tends
+> > to be a bit delayed when left to kswapd.
+> >=20
+> > Patch 7 introduces a LRU walk helper for eviction and shrinking.
+> > It's
+> > currently xe-only but not xe-specific and can easily be moved to
+> > TTM when
+> > used by more than one driver or when eviction is implemented using
+> > it.
+> >=20
+> > Patch 8 introduces a helper callback for shrinking (Also ready to
+> > be
+> > moved to TTM) and an xe-specific shrinker implementation.
+> >=20
+> > Testing:
+> > ATM I don't think we have good tests to cover the shrinking
+> > functionality
+> > The series has been tested with a hack that continously creates
+> > TTM_TT buffer objects until system memory and swap space is
+> > exhausted,
+> > and then reads them back and frees them. However, these tests
+> > seem to be very slow.
+> > Ideally a similar test on a machine with very fast solid state or
+> > similar storage should be set up. Ideally also verifying content
+> > preservation.
+> >=20
+> > Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+> > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > Cc: <dri-devel@lists.freedesktop.org>
+> >=20
+> > Thomas Hellstr=C3=B6m (8):
+> > =C2=A0=C2=A0 drm/ttm: Allow TTM LRU list nodes of different types
+> > =C2=A0=C2=A0 drm/ttm: Use LRU hitches
+> > =C2=A0=C2=A0 drm/ttm, drm/amdgpu, drm/xe: Consider hitch moves within b=
+ulk
+> > sublist
+> > =C2=A0=C2=A0=C2=A0=C2=A0 moves
+> > =C2=A0=C2=A0 drm/ttm: Allow continued swapout after -ENOSPC falure
+> > =C2=A0=C2=A0 drm/ttm: Add a virtual base class for graphics memory back=
+up
+> > =C2=A0=C2=A0 drm/ttm/pool: Provide a helper to shrink pages.
+> > =C2=A0=C2=A0 drm/xe, drm/ttm: Provide a generic LRU walker helper
+> > =C2=A0=C2=A0 drm/xe: Add a shrinker for xe bos
+> >=20
+> > =C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c |=C2=A0=C2=A0 4 +
+> > =C2=A0 drivers/gpu/drm/ttm/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> > =C2=A0 drivers/gpu/drm/ttm/ttm_backup_shmem.c | 137 +++++++++
+> > =C2=A0 drivers/gpu/drm/ttm/ttm_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> > =C2=A0 drivers/gpu/drm/ttm/ttm_device.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0 33 ++-
+> > =C2=A0 drivers/gpu/drm/ttm/ttm_pool.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 | 391
+> > ++++++++++++++++++++++++-
+> > =C2=A0 drivers/gpu/drm/ttm/ttm_resource.c=C2=A0=C2=A0=C2=A0=C2=A0 | 231=
+ ++++++++++++---
+> > =C2=A0 drivers/gpu/drm/ttm/ttm_tt.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 34 +++
+> > =C2=A0 drivers/gpu/drm/xe/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +
+> > =C2=A0 drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 123 ++++++--
+> > =C2=A0 drivers/gpu/drm/xe/xe_bo.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +
+> > =C2=A0 drivers/gpu/drm/xe/xe_device.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 8 +
+> > =C2=A0 drivers/gpu/drm/xe/xe_device_types.h=C2=A0=C2=A0 |=C2=A0=C2=A0 2=
+ +
+> > =C2=A0 drivers/gpu/drm/xe/xe_shrinker.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 | 237 +++++++++++++++
+> > =C2=A0 drivers/gpu/drm/xe/xe_shrinker.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0 18 ++
+> > =C2=A0 drivers/gpu/drm/xe/xe_ttm_helpers.c=C2=A0=C2=A0=C2=A0 | 224 ++++=
+++++++++++
+> > =C2=A0 drivers/gpu/drm/xe/xe_ttm_helpers.h=C2=A0=C2=A0=C2=A0 |=C2=A0 63=
+ ++++
+> > =C2=A0 drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 4 +
+> > =C2=A0 include/drm/ttm/ttm_backup.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 | 136 +++++++++
+> > =C2=A0 include/drm/ttm/ttm_device.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +
+> > =C2=A0 include/drm/ttm/ttm_pool.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 4 +
+> > =C2=A0 include/drm/ttm/ttm_resource.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0 96 +++++-
+> > =C2=A0 include/drm/ttm/ttm_tt.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 19 ++
+> > =C2=A0 23 files changed, 1683 insertions(+), 91 deletions(-)
+> > =C2=A0 create mode 100644 drivers/gpu/drm/ttm/ttm_backup_shmem.c
+> > =C2=A0 create mode 100644 drivers/gpu/drm/xe/xe_shrinker.c
+> > =C2=A0 create mode 100644 drivers/gpu/drm/xe/xe_shrinker.h
+> > =C2=A0 create mode 100644 drivers/gpu/drm/xe/xe_ttm_helpers.c
+> > =C2=A0 create mode 100644 drivers/gpu/drm/xe/xe_ttm_helpers.h
+> > =C2=A0 create mode 100644 include/drm/ttm/ttm_backup.h
+> >=20
 
