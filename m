@@ -4,52 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCAADCD1296
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 16:28:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56A67C67861
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 16:29:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6357911276F;
-	Mon,  8 Apr 2024 16:28:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDF9911276E;
+	Mon,  8 Apr 2024 16:29:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UihQqxLi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="htpaKlwr";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B1E311276F
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Apr 2024 16:28:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2FE011276F
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Apr 2024 16:28:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712593738; x=1744129738;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=bADVwGAKO1ivpEKDpZ5fmJW7xpdHKrh1ySNQuTcIjWU=;
- b=UihQqxLihGk50Pe7e+ZQEBLydpxZvblwDAIEXgOIOfJ84F44O8ruWlbp
- yjH41BpudEcqueXlVJbUpiILWYB6gXuafsub6VinoLJePWxkeEDfUVBxX
- iocGgcQWmefL1ihjPDdfiJG/LJS3ic4s0L4CQVxFND7qdyV5OpXobLw1+
- Tuukr/zH8XvR31Nvzc39Zz186PTJXxeMld5cfB9yQnOORAxAjrZbjFZ9h
- jgqi4FSuJIfWYFPYZYgAJRGYqE+JIetFfVtjC/dNch/lgffK6yK68CLqU
- e6kkUU7NtJLw9uiSXkOo77gQBSgV1WxOgx3SAgVrnBd6lnmd/aqpX20TZ w==;
-X-CSE-ConnectionGUID: znbAT3WFTP2xWcdQs7mmuA==
-X-CSE-MsgGUID: 1Sce55TQRiCFChoGlj9GhA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="19024931"
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="19024931"
+ t=1712593739; x=1744129739;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=kvT6iN/Lva1IwXivt+JiVIGe9r9A8Lgu7mRCPqEmfzE=;
+ b=htpaKlwr4fOeRD54o/7Mt2dKM8ZRv0aXNph/hhWe2cd6lARvJgCi9MBN
+ DphFFBxjhSIpih1FQZawDHnoLYqIs4sUX7Ms3jIYFSen+VWckAmQDxCOf
+ nHqyuyuXw64Ql94rUT1yF93l+J7Uqfp8WjQxL3tSS0s5vgIOtzw/qBZhE
+ xWnKxo75tRX2G0WRlfJ36O45QkJwOENZ+BB6+aeacfFqKdtGVsenowMqF
+ bWPsB8Dy6KbSbSju7p5LFBeJGJPyEDCLF3Q91y6Ie0lIIknzqFWuFfpVp
+ XuWQb0HIw1I+A7V1hv54eGDq1x5gyAcC5jMfjtt6KtsEOdWtYzB+X0FHA Q==;
+X-CSE-ConnectionGUID: WQdLXr+SSLutEyweaB2L/w==
+X-CSE-MsgGUID: AgXvJ2tCSrSux6KwVboUtQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="19024937"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="19024937"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 09:28:57 -0700
-X-CSE-ConnectionGUID: cJdaCFW3QEuLuTQlkLpi/g==
-X-CSE-MsgGUID: lvn+mLNKSCK/M67sFAs98A==
+ 08 Apr 2024 09:28:59 -0700
+X-CSE-ConnectionGUID: G07DCvg2QF2Sb/DZ3R4iSw==
+X-CSE-MsgGUID: uX6viE4kSUqMQkfEI2NwzA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="24683317"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="24683330"
 Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 09:28:54 -0700
+ 08 Apr 2024 09:28:56 -0700
 From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
- Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Subject: [PATCH v2 00/11] Add Battlemage support
-Date: Mon,  8 Apr 2024 21:58:57 +0530
-Message-Id: <20240408162916.3767771-1-balasubramani.vivekanandan@intel.com>
+ Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH v2 01/11] drm/xe/xe2: Add workaround 18034896535
+Date: Mon,  8 Apr 2024 21:58:58 +0530
+Message-Id: <20240408162916.3767771-2-balasubramani.vivekanandan@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240408162916.3767771-1-balasubramani.vivekanandan@intel.com>
+References: <20240408162916.3767771-1-balasubramani.vivekanandan@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,64 +69,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add basic support for Battlemage, which is a discrete graphics card
-based on Xe2 architecture.
-This series provides basic enabling support. This will be followed with
-further patches series to enable display support and loading of required
-firwares.
+From: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
 
-v2:
-* Removed the BMG PCI IDs to stop driver from binding to it. Will be
-  added later after enabling patches are merged.
-* Function argument modified for function get_flat_ccs_offset
-* Removed WA_16020183090 which is no more applicable.
-  Extended WA_18033852989,WA_18034896535 to xe2hpg
-* Switched to open upper bound for "Tuning: L3 Cache" setting
-* improved commit description for
-  "drm/xe/xe2hpg: Remove extra allocation of CCS pages for dgfx"
-* Included the patch from [1] as the patch "Add initial GT workarounds"
-  has a dependency on it
-  [1]: https://patchwork.freedesktop.org/patch/587168/?series=131912&rev=3
+Add 18034896535 as driver permanent workaround.
 
+v2: 18034896535 and 16021540221 are two independent workarounds
+that just happen to have the same implementation, hence keeping it.
 
-Akshata Jahagirdar (1):
-  drm/xe/xe2hpg: Remove extra allocation of CCS pages for dgfx
+Signed-off-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/xe/xe_wa.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Balasubramani Vivekanandan (1):
-  drm/xe/bmg: Add BMG mocs table
-
-Bommu Krishnaiah (1):
-  drm/xe/xe2: Add workaround 18034896535
-
-Gustavo Sousa (1):
-  drm/xe/xe2hpm: Add initial set of workarounds
-
-Haridhar Kalvala (1):
-  drm/xe/xe2hpg: Add initial GT workarounds
-
-Himal Prasad Ghimiray (1):
-  drm/xe/xe2hpg: Determine flat ccs offset for vram
-
-Matt Roper (4):
-  drm/xe/xe2: Recognize Xe2_HPG IP
-  drm/xe/xe2: Recognize Xe2_HPM IP
-  drm/xe/bmg: Add BMG platform definition
-  drm/xe/bmg: Program an additional discrete-specific PAT setting
-
-Shekhar Chauhan (1):
-  drm/xe/xe2hpg: Introduce performance tuning changes for Xe2_HPG.
-
- drivers/gpu/drm/xe/regs/xe_gt_regs.h   |  14 ++++
- drivers/gpu/drm/xe/xe_bo.c             |   3 +
- drivers/gpu/drm/xe/xe_mmio.c           |  39 +++++++++-
- drivers/gpu/drm/xe/xe_mocs.c           |   1 +
- drivers/gpu/drm/xe/xe_pat.c            |   7 ++
- drivers/gpu/drm/xe/xe_pci.c            |  12 ++-
- drivers/gpu/drm/xe/xe_platform_types.h |   1 +
- drivers/gpu/drm/xe/xe_tuning.c         |   6 +-
- drivers/gpu/drm/xe/xe_wa.c             | 102 ++++++++++++++++++++++++-
- 9 files changed, 177 insertions(+), 8 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index c904e55ced9c..43fac92e5d20 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -428,6 +428,11 @@ static const struct xe_rtp_entry_sr engine_was[] = {
+ 		       FUNC(xe_rtp_match_first_render_or_compute)),
+ 	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4, DISABLE_TDL_PUSH))
+ 	},
++	{ XE_RTP_NAME("18034896535"),
++	  XE_RTP_RULES(GRAPHICS_VERSION(2004),
++		       FUNC(xe_rtp_match_first_render_or_compute)),
++	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4, DISABLE_TDL_PUSH))
++	},
+ 	{ XE_RTP_NAME("14019322943"),
+ 	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0),
+ 		       FUNC(xe_rtp_match_first_render_or_compute)),
 -- 
 2.25.1
 
