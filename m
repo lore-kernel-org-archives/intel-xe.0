@@ -4,57 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C74B5C67861
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 08:56:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EDDAC67861
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 09:06:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 225C61122FD;
-	Mon,  8 Apr 2024 08:56:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF6C611231D;
+	Mon,  8 Apr 2024 09:06:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nCMu5e0Z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ihRFdh/r";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C12E5112304;
- Mon,  8 Apr 2024 08:56:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3877D11231D
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Apr 2024 09:06:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712566609; x=1744102609;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=lXBq1nfGZPGeUC6reR+4rVR0wMMhreGWv4waRh0Cjz8=;
- b=nCMu5e0ZjXCmMvmI2AZoEG6KbCxdIv9gugbg3vxcHY3R2P/CrnF2vp+h
- 11MRLIVdHMdfJmsBBWt42uyg8x1XvdbnPu4n4vCWlzyCopKqphgBu2qns
- m8L8LreN0UWlDFqf68ch8mdVIOWS8PBY32vabjIfWqO3+7lsx+m2d87b2
- dDLeXPL8kFSqMuS/eVBj5gyEXQ0DAp5K3eLcZEoRVx3XhXFHEZhm9jVlS
- osfq9bK+lteu1W6791kizmedsfXIVOt0DGP8IpaJygBiyFk2ZrvprRDuC
- vpJegpqlybht9kusqsmP2/aX+Y1AfQx4ORqGlu6x1RMwDehypoJfJpeZm w==;
-X-CSE-ConnectionGUID: lC/djkOQRS6hV59jwkP1Yw==
-X-CSE-MsgGUID: gpTP/v77QK+Wezea8YaL9g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11037"; a="25279207"
-X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="25279207"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 01:56:49 -0700
-X-CSE-ConnectionGUID: SgP0SDUqRT+rAhzhkX49kw==
-X-CSE-MsgGUID: 6LTNVQSVQxOIgsuDp71I7Q==
+ t=1712567193; x=1744103193;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=oH/WUys/nptTV1r134mI7+xWZYIkEQFf9R20oVS1gQQ=;
+ b=ihRFdh/rTX4wAonvbo9aHJZKEMt1JN3uqg+9XBI00LKzn2EVZddc3zE0
+ LXQWevH04iY3/xvrEmxcEUWAOAzLGz1dutoKeajVkTuxU3Wen43YNriBa
+ JdBrmlg5o2GEGaZtu9o7whYoB1uiwE6NsGNJn1t40QQnVop7tq5JbFrHX
+ yIWmwJW2oISidR+34fXzXcm3Yag3XsqSpujyTkUKcomzF0Z/IpfAEaYBc
+ hVE7SiWwU6kaeepJnZikMOBe28VhYdwWrYQgCk4xK3+QUWbhClFZ89HPc
+ XzjObDY6sabMe2Y6KA151PvQEuMn5/Rot6qvXpMykuZ9vQQPkJVicnKbm w==;
+X-CSE-ConnectionGUID: NmoN0E8sQ9i8klR8HKwpyQ==
+X-CSE-MsgGUID: bGrvzeLGRPa49t1oyzT3MQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11037"; a="7936165"
+X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; 
+   d="scan'208";a="7936165"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2024 02:06:32 -0700
+X-CSE-ConnectionGUID: Q2nzezSSQY+lTygq8X/9eA==
+X-CSE-MsgGUID: 9f1/4giYTd2tGIrBV/YKeQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="19732939"
-Received: from bauinger-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.42.71])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 01:56:47 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@intel.com
-Subject: [PATCH 7/7] drm/edid: make drm_edid_are_equal() more convenient for
- its single user
-Date: Mon,  8 Apr 2024 11:56:08 +0300
-Message-Id: <9d12c1aa3fafe19c48b36da863702d8cd7b3668b.1712565984.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1712565984.git.jani.nikula@intel.com>
-References: <cover.1712565984.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="20254623"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orviesa007.jf.intel.com with ESMTP; 08 Apr 2024 02:06:31 -0700
+Received: from [10.249.158.202] (unknown [10.249.158.202])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 7527327BBD;
+ Mon,  8 Apr 2024 10:06:29 +0100 (IST)
+Message-ID: <13d417c7-365a-419a-8f9b-c6aaf695f1e6@intel.com>
+Date: Mon, 8 Apr 2024 11:06:27 +0200
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Check pat.ops before dumping PAT settings
+Content-Language: en-US
+To: =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+References: <20240405143625.935-1-michal.wajdeczko@intel.com>
+ <20240408072348.rvt333l6ckepylc4@intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20240408072348.rvt333l6ckepylc4@intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,81 +72,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Repurpose drm_edid_are_equal() to be more helpful for its single user,
-and rename drm_edid_eq(). Functionally deduce the length from the blob
-size, not the blob data, making it more robust against any errors.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/drm_edid.c | 41 ++++++++++++++------------------------
- 1 file changed, 15 insertions(+), 26 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-index c11421d43b4b..1d715634a988 100644
---- a/drivers/gpu/drm/drm_edid.c
-+++ b/drivers/gpu/drm/drm_edid.c
-@@ -1818,30 +1818,20 @@ static bool edid_block_is_zero(const void *edid)
- 	return !memchr_inv(edid, 0, EDID_LENGTH);
- }
- 
--/**
-- * drm_edid_are_equal - compare two edid blobs.
-- * @edid1: pointer to first blob
-- * @edid2: pointer to second blob
-- * This helper can be used during probing to determine if
-- * edid had changed.
-- */
--static bool drm_edid_are_equal(const struct edid *edid1, const struct edid *edid2)
-+static bool drm_edid_eq(const struct drm_edid *drm_edid,
-+			const void *raw_edid, size_t raw_edid_size)
- {
--	int edid1_len, edid2_len;
--	bool edid1_present = edid1 != NULL;
--	bool edid2_present = edid2 != NULL;
-+	bool edid1_present = drm_edid && drm_edid->edid && drm_edid->size;
-+	bool edid2_present = raw_edid && raw_edid_size;
- 
- 	if (edid1_present != edid2_present)
- 		return false;
- 
--	if (edid1) {
--		edid1_len = edid_size(edid1);
--		edid2_len = edid_size(edid2);
--
--		if (edid1_len != edid2_len)
-+	if (edid1_present) {
-+		if (drm_edid->size != raw_edid_size)
- 			return false;
- 
--		if (memcmp(edid1, edid2, edid1_len))
-+		if (memcmp(drm_edid->edid, raw_edid, drm_edid->size))
- 			return false;
- 	}
- 
-@@ -6877,15 +6867,14 @@ static int _drm_edid_connector_property_update(struct drm_connector *connector,
- 	int ret;
- 
- 	if (connector->edid_blob_ptr) {
--		const struct edid *old_edid = connector->edid_blob_ptr->data;
--
--		if (old_edid) {
--			if (!drm_edid_are_equal(drm_edid ? drm_edid->edid : NULL, old_edid)) {
--				connector->epoch_counter++;
--				drm_dbg_kms(dev, "[CONNECTOR:%d:%s] EDID changed, epoch counter %llu\n",
--					    connector->base.id, connector->name,
--					    connector->epoch_counter);
--			}
-+		const void *old_edid = connector->edid_blob_ptr->data;
-+		size_t old_edid_size = connector->edid_blob_ptr->length;
-+
-+		if (old_edid && !drm_edid_eq(drm_edid, old_edid, old_edid_size)) {
-+			connector->epoch_counter++;
-+			drm_dbg_kms(dev, "[CONNECTOR:%d:%s] EDID changed, epoch counter %llu\n",
-+				    connector->base.id, connector->name,
-+				    connector->epoch_counter);
- 		}
- 	}
- 
--- 
-2.39.2
+On 08.04.2024 09:23, Piotr Piórkowski wrote:
+> Michal Wajdeczko <michal.wajdeczko@intel.com> wrote on pią [2024-kwi-05 16:36:25 +0200]:
+>> We may leave pat.ops unset when running on brand new platform or
+>> when running as a VF.  While the former is unlikely, the latter
+>> is valid (future) use case and will cause NPD when someone will
+>> try to dump PAT settings by debugfs.
+>>
+>> It's better to check pointer to pat.ops instead of specific .dump
+>> hook, as we have this hook always defined for every .ops variant.
+>>
+>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> ---
+>>  drivers/gpu/drm/xe/xe_pat.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+>> index 66d8e3dd8237..f0031c2e9818 100644
+>> --- a/drivers/gpu/drm/xe/xe_pat.c
+>> +++ b/drivers/gpu/drm/xe/xe_pat.c
+>> @@ -447,7 +447,7 @@ void xe_pat_dump(struct xe_gt *gt, struct drm_printer *p)
+>>  {
+>>  	struct xe_device *xe = gt_to_xe(gt);
+>>  
+>> -	if (!xe->pat.ops->dump)
+>> +	if (!xe->pat.ops)
+> 
+> You are right that we currently have a dump pointer set for each xe_pat_ops structure,
+> and in this situation it is enough to check the ops for the cases you listed.
+> But I assume that since we are verifying the dump pointer here, that formally, for some
+> future case, we may not set this pointer.
+> Therefore, it seems to me that it would be more correct for you to check both pointers
+> here: ops and dump.
 
+that was also my first choice but after looking at xe_pat_init() and
+reviewing existing ops that choice didn't hold as IMO keeping runtime
+check for future potential lack of .dump hook is very questionable
+
+what I was considered instead was to add to xe_pat_init_early():
+
+	xe_assert(xe, !xe->pat.ops || xe->pat.ops.dump);
+
+to perform early checkout of the selected .ops and make sure that we
+didn't miss to setup .dump hoot but then realized that the other hook
+.program_media is used without any extra runtime or debug check while
+some .ops may have it unset. so finally decided to just go with quick
+fix to close existing gap, postpone further fixes to follow up series
+(that likely could be done by the PAT code owners)
+
+Michal
+
+> 
+> Thanks,
+> Piotr
+> 
+>>  		return;
+>>  
+>>  	xe->pat.ops->dump(gt, p);
+>> -- 
+>> 2.43.0
+>>
+> 
