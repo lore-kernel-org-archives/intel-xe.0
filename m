@@ -4,54 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5ED2CD1296
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 17:05:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DCEFCD129D
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 17:05:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 693151128C2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2E771128C9;
 	Mon,  8 Apr 2024 17:05:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GM3JfDwf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LfU64KYu";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 941B01128C7
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Apr 2024 17:05:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B35A91128CD
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Apr 2024 17:05:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712595937; x=1744131937;
+ t=1712595941; x=1744131941;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gH5rwxhvfSf04yeL00Kr/bTcufwAEPg+3vbJzh18nL0=;
- b=GM3JfDwf5Xo/BF3/5sbWEzXcHX4ShNHArPV3f4cigFT3jX+rWig8YVDZ
- lqqkxCTI2/nevDVEcjXIxULP4/948bBkpOtmxgu1mU0PvbqqaTVt9nR2N
- 9n7+Vk8HAiSi7iQA5LhWHoLe6tZUYEnwgaHghGVQmlwDEl7qihXSdfHBe
- eWTam5VUhOwExXDrjY+kjHTXNjkv/zLg9SqpcNGHfx++kcmbd6HbzFS45
- FK6c7BRHbKzgbCZGOPyb4+I9iZwvP26HsDAbW2B2Qs1zwgNs8S5qRB+yg
- NWETkEfG/lseX9z4/xgs6F8CeAFhNLWyBYjY/6Bo/rQDO0uJDNjNjyUh4 A==;
-X-CSE-ConnectionGUID: 9NX6Scn2QBaICzLiXg4ugA==
-X-CSE-MsgGUID: DZ3K/W6YSreLrsBfDqwcwA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="11679155"
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="11679155"
+ bh=kvT6iN/Lva1IwXivt+JiVIGe9r9A8Lgu7mRCPqEmfzE=;
+ b=LfU64KYuxwCNjs78Z9MJ8RiBrM1w4YJmgo+CRx/xrfD4ydr2N/UaNhMo
+ u5udXZ1EAIXznHZmUtJ83nLg7DLZGTqOdaLQLxd4y+QLvao0yBmqrsz7q
+ 2kfy4r70+IchQ2vLM54OC57u/SSiGP95oyjkmIyelfEvqwg72e4/TWqH/
+ rY+Gfeq96WbSXIryohDEfS1bbq9omW/fDFjBDMQJ/5dVtxfGktgDSjt6i
+ tcPZiDIEdwCSDXbfSW7pWIGt5Sloh5ur9sRmVxwU0rZjsGXF2+OQilRB5
+ zDhk9oDsADDvxM4yqhq3lmFLrouT+Mscp7kMedih8rsQDPBfffFgkZwbQ A==;
+X-CSE-ConnectionGUID: Av9XkpcVRROJvYjyfLe7dw==
+X-CSE-MsgGUID: jFyOCvNTTPuFjkdt7Mocsw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="11679162"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="11679162"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 10:05:37 -0700
-X-CSE-ConnectionGUID: THUc9fhFREm60QuhjDQbbQ==
-X-CSE-MsgGUID: pvQtZzjcRkKP5esA9fFV5g==
+ 08 Apr 2024 10:05:41 -0700
+X-CSE-ConnectionGUID: /kyBJ5GSQiiDBgqI+QQ8Bg==
+X-CSE-MsgGUID: 9zmr0FCjSxiBPHpC7FZC6A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="24733866"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="24733879"
 Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 10:05:35 -0700
+ 08 Apr 2024 10:05:39 -0700
 From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Akshata Jahagirdar <akshata.jahagirdar@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Subject: [PATCH v3 06/11] drm/xe/xe2hpg: Determine flat ccs offset for vram
-Date: Mon,  8 Apr 2024 22:35:40 +0530
-Message-Id: <20240408170545.3769566-7-balasubramani.vivekanandan@intel.com>
+ Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH v3 08/11] drm/xe/xe2: Add workaround 18034896535
+Date: Mon,  8 Apr 2024 22:35:42 +0530
+Message-Id: <20240408170545.3769566-9-balasubramani.vivekanandan@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240408170545.3769566-1-balasubramani.vivekanandan@intel.com>
 References: <20240408170545.3769566-1-balasubramani.vivekanandan@intel.com>
@@ -71,105 +69,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+From: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
 
-on Xe2 dgfx platform determine the offset using Flat CCS size
-bitfield of XE2_FLAT_CCS_BASE_RANGE_[UPPER/LOWER] mcr registers.
+Add 18034896535 as driver permanent workaround.
 
-Bspec: 68023
+v2: 18034896535 and 16021540221 are two independent workarounds
+that just happen to have the same implementation, hence keeping it.
 
-v2: function argument tile_size changed from pass by reference to pass
-by value
-
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Signed-off-by: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Signed-off-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gt_regs.h |  5 ++++
- drivers/gpu/drm/xe/xe_mmio.c         | 39 ++++++++++++++++++++++++++--
- 2 files changed, 42 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_wa.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 6617c86a096b..d404f211bc36 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -69,6 +69,7 @@
- 
- #define XEHP_TILE_ADDR_RANGE(_idx)		XE_REG_MCR(0x4900 + (_idx) * 4)
- #define XEHP_FLAT_CCS_BASE_ADDR			XE_REG_MCR(0x4910)
-+#define XEHP_FLAT_CCS_PTR			REG_GENMASK(31, 8)
- 
- #define WM_CHICKEN3				XE_REG_MCR(0x5588, XE_REG_OPTION_MASKED)
- #define   HIZ_PLANE_COMPRESSION_DIS		REG_BIT(10)
-@@ -142,6 +143,10 @@
- 
- #define XE2_FLAT_CCS_BASE_RANGE_LOWER		XE_REG_MCR(0x8800)
- #define   XE2_FLAT_CCS_ENABLE			REG_BIT(0)
-+#define XE2_FLAT_CCS_BASE_LOWER_ADDR_MASK	REG_GENMASK(31, 6)
-+
-+#define XE2_FLAT_CCS_BASE_RANGE_UPPER		XE_REG_MCR(0x8804)
-+#define XE2_FLAT_CCS_BASE_UPPER_ADDR_MASK	REG_GENMASK(7, 0)
- 
- #define GSCPSMI_BASE				XE_REG(0x880c)
- 
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 5d13fc7cb9d2..d66da1a9f165 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -163,6 +163,42 @@ static int xe_determine_lmem_bar_size(struct xe_device *xe)
- 	return 0;
- }
- 
-+static inline u64 get_flat_ccs_offset(struct xe_gt *gt, u64 tile_size)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+	u64 offset;
-+	u32 reg;
-+
-+	if (GRAPHICS_VER(xe) >= 20) {
-+		u64 ccs_size = tile_size / 512;
-+		u64 offset_hi, offset_lo;
-+		u32 nodes, num_enabled;
-+
-+		reg = xe_mmio_read32(gt, MIRROR_FUSE3);
-+		nodes = REG_FIELD_GET(XE2_NODE_ENABLE_MASK, reg);
-+		num_enabled = hweight32(nodes); /* Number of enabled l3 nodes */
-+
-+		reg = xe_gt_mcr_unicast_read_any(gt, XE2_FLAT_CCS_BASE_RANGE_LOWER);
-+		offset_lo = REG_FIELD_GET(XE2_FLAT_CCS_BASE_LOWER_ADDR_MASK, reg);
-+
-+		reg = xe_gt_mcr_unicast_read_any(gt, XE2_FLAT_CCS_BASE_RANGE_UPPER);
-+		offset_hi = REG_FIELD_GET(XE2_FLAT_CCS_BASE_UPPER_ADDR_MASK, reg);
-+
-+		offset = offset_hi << 32; /* HW view bits 39:32 */
-+		offset |= offset_lo << 6; /* HW view bits 31:6 */
-+		offset *= num_enabled; /* convert to SW view */
-+
-+		/* We don't expect any holes */
-+		xe_assert_msg(xe, offset == (xe_mmio_read64_2x32(gt, GSMBASE) - ccs_size),
-+			      "Hole between CCS and GSM.\n");
-+	} else {
-+		reg = xe_gt_mcr_unicast_read_any(gt, XEHP_FLAT_CCS_BASE_ADDR);
-+		offset = (u64)REG_FIELD_GET(XEHP_FLAT_CCS_PTR, reg) * SZ_64K;
-+	}
-+
-+	return offset;
-+}
-+
- /**
-  * xe_mmio_tile_vram_size() - Collect vram size and offset information
-  * @tile: tile to get info for
-@@ -207,8 +243,7 @@ static int xe_mmio_tile_vram_size(struct xe_tile *tile, u64 *vram_size,
- 
- 	/* minus device usage */
- 	if (xe->info.has_flat_ccs) {
--		reg = xe_gt_mcr_unicast_read_any(gt, XEHP_FLAT_CCS_BASE_ADDR);
--		offset = (u64)REG_FIELD_GET(GENMASK(31, 8), reg) * SZ_64K;
-+		offset = get_flat_ccs_offset(gt, *tile_size);
- 	} else {
- 		offset = xe_mmio_read64_2x32(gt, GSMBASE);
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index c904e55ced9c..43fac92e5d20 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -428,6 +428,11 @@ static const struct xe_rtp_entry_sr engine_was[] = {
+ 		       FUNC(xe_rtp_match_first_render_or_compute)),
+ 	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4, DISABLE_TDL_PUSH))
+ 	},
++	{ XE_RTP_NAME("18034896535"),
++	  XE_RTP_RULES(GRAPHICS_VERSION(2004),
++		       FUNC(xe_rtp_match_first_render_or_compute)),
++	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4, DISABLE_TDL_PUSH))
++	},
+ 	{ XE_RTP_NAME("14019322943"),
+ 	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0),
+ 		       FUNC(xe_rtp_match_first_render_or_compute)),
 -- 
 2.25.1
 
