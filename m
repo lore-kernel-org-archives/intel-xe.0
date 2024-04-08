@@ -4,56 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49CD9CD128A
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 09:26:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5152DCD128A
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 10:13:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DB9F112356;
-	Mon,  8 Apr 2024 09:26:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B23C310F6BF;
+	Mon,  8 Apr 2024 10:13:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ig+Uas/U";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KcyEpqm0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88562112356;
- Mon,  8 Apr 2024 09:26:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5633810F6BF
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Apr 2024 10:13:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712568373; x=1744104373;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=DjmA4pwOW5nrvcnms0nJQ8CUScq1u0/xrtZ+kmbQe7U=;
- b=Ig+Uas/Ul6H/NB014jCThKwQ82+nsUEeRapp9TabHsFvhvkRd0gQduv6
- PMLor0Id1A2bayS4g+ipmqKCSBBDASB6YqV1cNExp69wH08rRD3uc163B
- 2ELnne192GIwzo3FEaCtO0x810OeiQNni76Zb48dIee2uIjkvwjh4R+/w
- 9O3K/UktRN+zLtrYEeC0q458L9E0OOt6gfxgvOy4FsEOiwWTTawYLhBT/
- Q3gylcFbbNvpS3uT9nYoNM0NVcOnsrJY+9s0plkZB/9IpaRZ2M/wkPDvL
- OCoiowQuJQDND4g6SmEcpRH+SViIPTMZIb2y+y+RLgE+SKDhHp3u955XG Q==;
-X-CSE-ConnectionGUID: iQ//YW7YTVq/67N9BbQH5A==
-X-CSE-MsgGUID: HINCG7z/RNqBUdjxJzSr0g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11037"; a="18450603"
-X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="18450603"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 02:26:12 -0700
-X-CSE-ConnectionGUID: Oc2ykOJ8TE2EQMEwxCg1gw==
-X-CSE-MsgGUID: mrEUrC8sT8yTxrdQsyifLA==
+ t=1712571192; x=1744107192;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=zRzAGpjrWuZ9EFZvedjukv2D1hIx1Y8GLMnbDytAIZ8=;
+ b=KcyEpqm0BIWxynqyAuwSvIotbcXrtQOj5fZw+JKJyYDn8aViN46RR/i9
+ nQa4ych39T8Y0UCPtTTXDomJjDX6mLQEMDGQjYrO2pA9deu4Sei9B7ZM4
+ UjnZ0yIX6eQ6PJhVFr3JIFEAmDXdMx7fr/H1Kgk00d+habV8o6qYFCmwk
+ Nw5RbxY+PonD/1G/MFr5e6+oQ+yF8kwCIJ6SgFlWYZg0SXLQtUaeR0H+F
+ sFmAFBbt0VKTAbL6yuq7izpN3Gfbfmz7ad1TlAEcex6XrAek8HNjKEw4M
+ F9GaOBnxaccmfzjFD8RKezYB6Q0yMnCnPapmKOAMRlsVhSHv/VTpQiyro A==;
+X-CSE-ConnectionGUID: w2xLK82oRnOyq7GhYjekyw==
+X-CSE-MsgGUID: nSKqOMdoRuCtL8oCAk1oBQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11037"; a="30333621"
+X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="30333621"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2024 03:13:11 -0700
+X-CSE-ConnectionGUID: WnwEhwRvTpa5HAsgaxFviw==
+X-CSE-MsgGUID: DidAYF2lSJah1XOXCsatHg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="20260947"
-Received: from bauinger-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.42.71])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 02:26:10 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 0/6] drm: debug logging improvements
-In-Reply-To: <62365cd0-fadf-47da-b8bf-d33e11f6dec7@suse.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1709843865.git.jani.nikula@intel.com>
- <62365cd0-fadf-47da-b8bf-d33e11f6dec7@suse.de>
-Date: Mon, 08 Apr 2024 12:26:07 +0300
-Message-ID: <874jccb3yo.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="20402414"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.246.36.15])
+ ([10.246.36.15])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2024 03:13:08 -0700
+Message-ID: <c86e90ef-5bee-4638-9dcd-2666bb7f6e51@linux.intel.com>
+Date: Mon, 8 Apr 2024 12:13:06 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Fix bo leak in intel_fb_bo_framebuffer_init
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: stable@vger.kernel.org
+References: <20240404090302.68422-1-maarten.lankhorst@linux.intel.com>
+Content-Language: en-US
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <20240404090302.68422-1-maarten.lankhorst@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,44 +70,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 05 Apr 2024, Thomas Zimmermann <tzimmermann@suse.de> wrote:
-> Hi,
->
-> with your Oops on [5/6] fixed and my comment on [1/6] considered:
->
-> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
 
-Thanks! I ended up dropping a couple of patches based on Ville's comment
-about mode logging, and added a few more in v2. I tried to preserve your
-R-b where I think I didn't change much or nothing at all.
-
-BR,
-Jani.
-
+On 4/4/2024 11:03 AM, Maarten Lankhorst wrote:
+> Add a unreference bo in the error path, to prevent leaking a bo ref.
 >
-> Best regards
-> Thomas
+> Return 0 on success to clarify the success path.
 >
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Fixes: 44e694958b95 ("drm/xe/display: Implement display support")
+> Cc: <stable@vger.kernel.org> # v6.8+
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+> ---
+>   drivers/gpu/drm/xe/display/intel_fb_bo.c | 8 ++++++--
+>   1 file changed, 6 insertions(+), 2 deletions(-)
 >
-> Am 07.03.24 um 21:39 schrieb Jani Nikula:
->> Switch a handful of places over to drm device based logging and WARNs,
->> unify connector and crtc logging, etc.
->>
->> Jani Nikula (6):
->>    drm/modes: add drm_mode_print() to dump mode in drm_printer
->>    drm/probe-helper: switch to drm device based logging
->>    drm/modes: switch drm_mode_prune_invalid() to use struct drm_printer
->>    drm/modes: switch to drm device based error logging
->>    drm/sysfs: switch to drm device based logging
->>    drm/client: switch to drm device based logging, and more
->>
->>   drivers/gpu/drm/drm_client_modeset.c | 129 +++++++++++++++------------
->>   drivers/gpu/drm/drm_modes.c          |  51 +++++++----
->>   drivers/gpu/drm/drm_probe_helper.c   |  41 ++++-----
->>   drivers/gpu/drm/drm_sysfs.c          |  21 +++--
->>   include/drm/drm_modes.h              |   2 +
->>   5 files changed, 137 insertions(+), 107 deletions(-)
->>
-
--- 
-Jani Nikula, Intel
+> diff --git a/drivers/gpu/drm/xe/display/intel_fb_bo.c b/drivers/gpu/drm/xe/display/intel_fb_bo.c
+> index dba327f53ac5..e18521acc516 100644
+> --- a/drivers/gpu/drm/xe/display/intel_fb_bo.c
+> +++ b/drivers/gpu/drm/xe/display/intel_fb_bo.c
+> @@ -31,7 +31,7 @@ int intel_fb_bo_framebuffer_init(struct intel_framebuffer *intel_fb,
+>   
+>   	ret = ttm_bo_reserve(&bo->ttm, true, false, NULL);
+>   	if (ret)
+> -		return ret;
+> +		goto err;
+>   
+>   	if (!(bo->flags & XE_BO_FLAG_SCANOUT)) {
+>   		/*
+> @@ -42,12 +42,16 @@ int intel_fb_bo_framebuffer_init(struct intel_framebuffer *intel_fb,
+>   		 */
+>   		if (XE_IOCTL_DBG(i915, !list_empty(&bo->ttm.base.gpuva.list))) {
+>   			ttm_bo_unreserve(&bo->ttm);
+> -			return -EINVAL;
+> +			ret = -EINVAL;
+> +			goto err;
+>   		}
+>   		bo->flags |= XE_BO_FLAG_SCANOUT;
+>   	}
+>   	ttm_bo_unreserve(&bo->ttm);
+> +	return 0;
+>   
+> +err:
+> +	xe_bo_put(bo);
+>   	return ret;
+>   }
+>   
