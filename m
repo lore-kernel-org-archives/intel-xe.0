@@ -4,155 +4,148 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCCE1C67861
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 06:12:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D37D6CD128A
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 06:24:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A3AB112102;
-	Mon,  8 Apr 2024 06:12:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6679210E67B;
+	Mon,  8 Apr 2024 06:24:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aT7ZJGI2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AKxlHDTy";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4608C112102
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Apr 2024 06:12:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42E2710F78B;
+ Mon,  8 Apr 2024 06:24:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712556746; x=1744092746;
- h=message-id:date:subject:to:cc:references:from:
+ t=1712557465; x=1744093465;
+ h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=soPaHhbZqWTz0ZMrC6SuF6tmB2HRxH0c3zAB/HXAohk=;
- b=aT7ZJGI2hT1242W1MQaONqwg9QDS5NcVhlBktxlpKBCd5UH0dd75zEiY
- 232m9zXfHl5DxQ7tBV5K2MY9uPcI/PhKe6XfeXdtbPARjCvNXgHiwVNsf
- GqvdxAaIKTOxjFDCxu49vCK+NjuzkrykiJn7zSc9oXwMvEOW9el4HWfQJ
- q33HOo7Odh5P6MHemgTly8o9Fd1cZ40c0zpblQOD5ulry78LSfXqZT6BC
- MQpOyh/AiDokJ3YZ7VZz0iobX1lcinzrU6ERZ1UPMQbyNx/+PHvgRexja
- ZnPm8wA+TcDxorOLtpnIilK6nf0jdGyTGewd3mtRTz+8yDE/w7oko9PDP g==;
-X-CSE-ConnectionGUID: v56OPo5eQJG7o4M5Dycepg==
-X-CSE-MsgGUID: 272Ay6HlS1eKQ2WaLLQ+RQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11037"; a="11607253"
-X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208,217";a="11607253"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2024 23:12:25 -0700
-X-CSE-ConnectionGUID: iHB5SGgwTJqnVhcZ310xZA==
-X-CSE-MsgGUID: Y6v9bGbwROC1rZ2aUgsABw==
+ bh=6Vtf9aj5HN9ZdDPaRKeJxq8oGrCKiHpfa7irXlly1Ak=;
+ b=AKxlHDTyHrniI3DaEpt+zv6JNe0yrqFy/ARRg75Dy+ZxS09LVnbwcJlm
+ lIGjGwAbN/nNyshYRYtOiDtq7OCyRi2JYoaESvfLcA9bEhui84P2ZOgp3
+ YmgyH5RxO1rt+pFYX/mLuqqNus4/4d/Gl7AJxkNONj69WIa/VTxbjcN1Z
+ O9estIcYDBCNC/y++qVxbkDzT+VxCEGWqgv/xjH6G8ZnUFxsmLE/BmFce
+ s4WcmOYUWIvRoL9b89n4lBxQo5GOCGl4QtA1e/QN2JCnv1/oM4jEtU8CV
+ PZ8jjSXG0W7j3k1S65t5GeRkqRiPdt6Xj3dmi5cp3scmBo1OcqL4dan30 Q==;
+X-CSE-ConnectionGUID: tUa62HCxQ9yv8UkLpVqVHw==
+X-CSE-MsgGUID: fd6DUMZrS/W/4IG6rhKsWA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11037"; a="18388820"
+X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="18388820"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2024 23:24:23 -0700
+X-CSE-ConnectionGUID: hrg/FuXJQN2JR7U7vbbkaQ==
+X-CSE-MsgGUID: NkjGtJErQ26kcXON4M2i0w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208,217";a="20334287"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orviesa008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 07 Apr 2024 23:12:25 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Sun, 7 Apr 2024 23:12:25 -0700
+X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="19646616"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 07 Apr 2024 23:24:23 -0700
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Sun, 7 Apr 2024 23:12:24 -0700
+ 15.1.2507.35; Sun, 7 Apr 2024 23:24:22 -0700
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Sun, 7 Apr 2024 23:12:24 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
+ 15.1.2507.35 via Frontend Transport; Sun, 7 Apr 2024 23:24:22 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.171)
  by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Sun, 7 Apr 2024 23:12:24 -0700
+ 15.1.2507.35; Sun, 7 Apr 2024 23:24:22 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZiGp/neb5LAeBYvhlmj2XjG3u2fAZKRI9TxliKnbqsF16WokKxPY4pkJIzZlsQmIdVO3jRI2sQQXlKwp74ObVBwm/U39tGCwhZl95yZDOSPhWj7qbvWUVeMYJ8seQ6kV4O3vaqtDs7rtwXL2Qk/mkC597Idvp8voYc8LgL7keEzAFpwO5jRZ19wc+s5U5+JTuq/p5WkHccr6cF2NU6g9yZpaBF4viRGxIKyT2NgE8VVMybpzcnUQkWF3wWUE8DXqRcTvifaSECijkEAnBT6ycZagLDfrX8x7z8Gf0WSugbRtsWdWDZmArQqlGt08OVQVP13iu70YFQeVhzwacK25sA==
+ b=NevEOohNGocPC7BWHi+pxXJZwO/3F6hGEfMBMfr64iDR8lLn1TwTxCZMhlKtJ7yM/T5E7nvHNXDtP1paEW448H7pEnGfVbl7DbkVCqMAjbJlr+2xFYSZb8MORGwmBB/WU9bwxxCBJoelqh9FILO2Cp6tILO2YpSZU3JE9f/LDsBGFI9eiUcyIyuC/W0QOiyQ/7f+SGdEaqkH6pTNdoEYJ3esmFwabSKcM60DwkHcEUETKpsqxhF9hOm30mH63Fw4RS6bBh85+AwhrSVKd192RqLDngncdgSqh2J1VY9j1117oMorcqiHhhp/xryOw7v/5LaeQoSJ/QJd33IY05DPYw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PBPIftP2jD605IAdRaTUWRvJbSrMC+F6xc0g+QuGkS4=;
- b=dCBKJvdcwYR6nw0i6dq+cMxoxIvmk569TY+co3TQo3hhc8GpggWkf+CTSZxiR4/WKMWDeW4faT0dP0fLlIARkkTsAf3zBM2rcb90QB5hOqAZKn1ILJUP0aW3iJS44utwzFMeW7thWizkv75MORONHa6LoZMkjZ4FtwHPqzYL9qMCunFAgaetOp/AZyHfOos2h2TaeE/UGGZzy/E/AJ/PbdrrBPE3YNTr2ipL1ZZq+w8S3Et+2EczVJV5DVI5GYFTTQaYhi3duxue01hIH4ju7hehjMKYuXkvW4IhyzPJTEB/Dt8QB9RV9BHEshwAjvl2g5cEutBIfmV59dHxX4psOg==
+ bh=/UAU7X79fX/0sBHv7GPrJC6ZG60IMmICtOg1mK/6qkQ=;
+ b=kFoCIk76DEvbx1YCoQ1JXaJFKxRH3bxz9j6PZlqe7k94GSEqLzZrK2PP5VsXlaRGxdqI5lZZElEDb1L9CJZLDaOmipvgBa63rN5Kz4ZZMc1Gx9+U3MlpN8xwnVkv8ewPtrGSHZAF0MpfZIkhcDFpmMOs3zT25fYlSEX8c+RtoqGgPKQeZfmJ1Arlo8Y/FH17ut3nZ4Chs4rZ76TYOrgZsuoNNpmktcWTjWIHbD/lqYxe/hfGM7mXU/UWTB+zhfAMaUDVCSDUls4658DEhckGvrxBkRSxGGccpyLQ7Pzxccoj32KuuXMUG6kKMSb+aOdvCqVnqYB8SIUVEa13cRqo2g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from MW4PR11MB7056.namprd11.prod.outlook.com (2603:10b6:303:21a::12)
- by PH7PR11MB8572.namprd11.prod.outlook.com (2603:10b6:510:30a::9)
+Received: from PH8PR11MB6974.namprd11.prod.outlook.com (2603:10b6:510:225::16)
+ by PH7PR11MB6834.namprd11.prod.outlook.com (2603:10b6:510:1ed::19)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.25; Mon, 8 Apr
- 2024 06:12:22 +0000
-Received: from MW4PR11MB7056.namprd11.prod.outlook.com
- ([fe80::8664:8749:8357:f11a]) by MW4PR11MB7056.namprd11.prod.outlook.com
- ([fe80::8664:8749:8357:f11a%7]) with mapi id 15.20.7452.019; Mon, 8 Apr 2024
- 06:12:22 +0000
-Content-Type: multipart/alternative;
- boundary="------------t3qU01GD5GEyyVZI91voGsX9"
-Message-ID: <f60d691d-57d1-4933-9a36-c9186fbdfaa9@intel.com>
-Date: Mon, 8 Apr 2024 11:42:15 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] drm/xe: Introduce helper to populate userptr
-To: Matthew Brost <matthew.brost@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Oak Zeng <oak.zeng@intel.com>, Niranjana
- Vishwanathapura <niranjana.vishwanathapura@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@intel.com>, Brian Welty
- <brian.welty@intel.com>
-References: <20240405190508.244177-1-himal.prasad.ghimiray@intel.com>
- <20240405190508.244177-2-himal.prasad.ghimiray@intel.com>
- <ZhBtKA7YDQ3Q4W3L@DUT025-TGLU>
-Content-Language: en-US
-From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-In-Reply-To: <ZhBtKA7YDQ3Q4W3L@DUT025-TGLU>
-X-ClientProxiedBy: PN3PR01CA0008.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:95::20) To MW4PR11MB7056.namprd11.prod.outlook.com
- (2603:10b6:303:21a::12)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7430.46; Mon, 8 Apr
+ 2024 06:24:20 +0000
+Received: from PH8PR11MB6974.namprd11.prod.outlook.com
+ ([fe80::bf52:bbe7:ecec:9952]) by PH8PR11MB6974.namprd11.prod.outlook.com
+ ([fe80::bf52:bbe7:ecec:9952%5]) with mapi id 15.20.7452.019; Mon, 8 Apr 2024
+ 06:24:20 +0000
+Date: Mon, 8 Apr 2024 11:53:56 +0530
+From: "Vivekanandan, Balasubramani" <balasubramani.vivekanandan@intel.com>
+To: "Chauhan, Shekhar" <shekhar.chauhan@intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+CC: Matt Roper <matthew.d.roper@intel.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>
+Subject: Re: [PATCH v2 25/25] drm/xe/bmg: Enable the display support
+Message-ID: <ZhONfOcFNOq-MQGn@bvivekan-mobl2>
+References: <20240403112253.1432390-1-balasubramani.vivekanandan@intel.com>
+ <20240403112253.1432390-26-balasubramani.vivekanandan@intel.com>
+ <0f65f332-05f4-441d-8880-fbc36ec7f08f@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <0f65f332-05f4-441d-8880-fbc36ec7f08f@intel.com>
+X-ClientProxiedBy: SI1PR02CA0031.apcprd02.prod.outlook.com
+ (2603:1096:4:1f6::11) To PH8PR11MB6974.namprd11.prod.outlook.com
+ (2603:10b6:510:225::16)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MW4PR11MB7056:EE_|PH7PR11MB8572:EE_
+X-MS-TrafficTypeDiagnostic: PH8PR11MB6974:EE_|PH7PR11MB6834:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: SnOc6RDt+nk6Yf2K/kGRANkY/+jy0Yqs8oba6iOWX1h8jK2F3hCOPPscy/q5AM5OAJk+yXa/GzdynFOO1LtBi6pgtGfiDMU4KCizPZW3TS6H8Qmw+GN+4sstTnl9j4Er3NgixjzRjU2n9ID1I0PqU+ytwiK1cdFTI1OXrJx85C+xKubKmMubkotV37X/oqI/CRboVCCZxaTBjrTd5ku51TWZrQQdXjguFBuivEhvl6547GMwoLEL47fazSSymJL0ri4agv9JYXgeGdV56LMbjR+qC8+7M2nIXlQcQDAia2j6JnFsDrGBf9a/6A9ROB17MaQAuIK5u1fgd3eAayaK18sjFwVurA1sLf9elyqNT0V9pWlPiSO/+3MBQSSCE05ln7D/J5nOg2KHE05twttapTl05LYvLH910Fqk29Wg7qCN89PyOEhp7CkcsfVfml/Q91rAZs0sGGOgBtiDew6Myo586VX8FbvCk7A6tBmv/x0CAzTc0rs36+oFRs4pQHm5PCvpnIEkcQfbvkcfbnqx5/2oy5ae1hbIHMOPJEc2LuNoG8LuKRTGcU40q0M8LCPFta0KaU+EN61FWY8CXCPilX5bmZsNk+y2+V+HCkHYwkzLgdWuIrEhA8WY2+poxp+NOlemz7uO0E7WZoldzhV3SpRKx7CMPjBbIHyJZas/gMk=
+X-Microsoft-Antispam-Message-Info: bGIyyr7LgQcB0DDa2PYeXCqtYaOOrPhQqseGcmLPrKskbvjmtHfm1ETxV2QZp8tZPa4z57PK+RDaqSO0LaVwkrRd13ECo4b/BrRbun04hYC9HP2s8wQw//ovvVxjJfV4obC/uiw9zKsY7dr8F4aObIrk6OHcZ2srhf24nnrR74CfFp4+C5Y8GkqzuZnYYIGOIXJj9P8/cWmN7KmyRhyP6qLUOAfYK+3ABhrAo8uJJE8kY1wHyiPiN6RS2Yc87sBB3RcWNHYJAPToeoxeXWPTmIVGKYax5fpyIT5qyl9b4/yJfZxbzESfOBmHecu76Ziu1yMxPHrQx5M4dMVolVcjqJ4OimKh3Md/DOgFVVntSU86nCru2IobnrxlojZaRK6m0rPMiWCmh6G2gx6uEcrS1CORwcFOFa6jfVzVId/w7PY3xsptvOscIyJm87hpaPxQIi0+rMppuBRuEmgKOuQ278zsOwIgiwLGUQDlUfJsyZBHSLEPYkxra8k7uV2xU9pKUa71vaZZx1pIzHn5A1f3Of5GasjSCmicYvD4/SROl5cR/1qUjPvqL1dXgorfkELJaFcqXj4nCCcK3cZ5ppwlZ78SyLCVXfxKSUN2bSg4f9TTJ52FJeyv4gVxd9whDb8MNUtsJgvWeQ4JY27THzjURYi9n0NUoPDh7gMeR385Ees=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW4PR11MB7056.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB6974.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(376005)(1800799015)(366007); DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RlFpeXYya0JjRkpoOEZ0L2JBcW03WUQrUzRrME1COUp2TkpDalBOZVZyU1NR?=
- =?utf-8?B?Y3FTdGlTQVpDT2hXd09aMmRYRnZYcW5XWGZJSXJ6RlRiNmFmNjZvNkQ0aUlZ?=
- =?utf-8?B?UHRWb1hXZlVOMGUxSTRaU3hCTitYU2hPcHFXQzVTVHI3RHE0dk81NGRSbXhs?=
- =?utf-8?B?ekhPRmIvYTZrbEJHYW9zaEF3OURCRmNUWHRlOUg0Yitka2RWckF1bjloTFR6?=
- =?utf-8?B?NjNYcVVaYjBWQ1JuYUduYVRFNmhLUE9yYkIwWWEwcWs5UG44RkpwWG9sTXJn?=
- =?utf-8?B?aStmL3JTb2orRFg1ZDRkVXBhM2hwWDRWVTdPeDdLa1I2aWdYS3RrRDRoL2hN?=
- =?utf-8?B?UFlXWEMvRUVVZHQ1UEdremxxR2F2NEV5L2RtcllFdTZNSUdGbUZUUDZMRDhs?=
- =?utf-8?B?Z2YrZjlJb0J4T3hqYk0wLzVXYTltNEFTTm9rdWtvaDBpcVVZMy9Eb3JqTWxS?=
- =?utf-8?B?ci9zSklxT0N3Umo2ZTBMMjl3RGN1aE5hRWFjclFFME5OaVhTYWNpZmUyWFhC?=
- =?utf-8?B?OElXcUVpUzhrd1VtdHpTU2c1MTNEK1NpRlZ0aGRRbUZpWk0vWmFXZnlUQXlr?=
- =?utf-8?B?M0twNnI3TUJFUW41OVRwbjhBU3N2VU1DdUdDQUFoK1dPZ1BQUC9VTUNwMUI0?=
- =?utf-8?B?TnMvMWR4UWpDNldxK2M0cjJwaTJ0LzJwS3Z4ajYyQTZreERLUDh3TDhYbDkr?=
- =?utf-8?B?REllMk9kd0xGdzk3cDVFdEVXWitpN0dWaG11SHk3bklPaDFEUGI2S096TlM5?=
- =?utf-8?B?b3ZubWRDMDhYeTc4dk9LU2tvUndKSXZCMG52YUhYT3lobWNCZlJDd3NSR0Vs?=
- =?utf-8?B?L1B5em0wOW11RUR0d2JaeUhpUithL3BTdW91eEcvaWw3SmVpdVd4aVpvOXcx?=
- =?utf-8?B?QzdTTGlMMXVPSEFpeTNSRFR6QjBqcHpjUTlVdkZONmNtWWVuejZVbVJ3RTRD?=
- =?utf-8?B?dmNCNzF3Vkt0OG0vK0xvTThOR0M5MG5CcHQrcW5iMGlXUmUyY0JnNU9tSFRm?=
- =?utf-8?B?RlRQQkhpTFJkT1llVndCVVJ5NTVoY2xqSkptcUl1NjJIbVdaWmpwTUkvdDVn?=
- =?utf-8?B?bzRoN3BZSXVMSWJZeUhScUZ1YktST3VpSFh2ZGVzOXhwdGs2dVBqTGJINlBs?=
- =?utf-8?B?QlJKZmZDTFVNejcwL0JVR2VNVzZoTXEybk9uWkhQRXc4ajNQcVFlU3V4K3Nt?=
- =?utf-8?B?MERhMWI3TERQS0dGNVJTMUFpSys3cVV0NHJ1SGhtdDE1QXRyUU1FTWR0ZEZC?=
- =?utf-8?B?TXV2Y1hNUWxRWUFpTk56Vjlndk94RzlHVFExVTRkbkxEUTZCSUVSem1rVVdq?=
- =?utf-8?B?N2hpbm02djR4R29ZdE50VkRGT2k4RWNXMWhLWWlneHFDYXJEaHZkT2xwaXRn?=
- =?utf-8?B?UGd4Yk5UazlLZ21NaWFCckIrYkpRR2VDaVpFbDVvZXkxVFZQZm1UcTlMVWNk?=
- =?utf-8?B?V0pWKzdkS29Od25tUVFBVCtOZFk2L0RjczdKaGFINEZOaEhkQ251eVExZXNS?=
- =?utf-8?B?dU9iZk5NRkNEbFFHU3E3VXl0amhlWU8vdTlOeGNJdzJGSWxzOUdqVHo0RGp4?=
- =?utf-8?B?amJVQ0gxdERySmR3eW9SaDlrbHRDVWh4bS9ueWxIRG5EQVliVjMrTURhZlJ5?=
- =?utf-8?B?RkR5TkFyd0M1clRWWmRHNDMxMUNVak9Cclkvd2ZaNjIycDlUUFFFWE51bDlO?=
- =?utf-8?B?VFVwRXMxVW5SQ1g5U2ZhZDdzZGtyV3QweW1idTRscUxQU0dqZFlXTERUdDNF?=
- =?utf-8?B?dGFIMlpkOUV3Z3J6dVpqNGltVGwyNkRvRzZsNFNuWjBPK3dkQmlScjZuZ2xN?=
- =?utf-8?B?SGVZUDNGTVUrVWE1NzJlMzlCUlJYb2x0R09iNGs3N2dPSk90WFJIeCtnVTJj?=
- =?utf-8?B?Y2J2azJuU24vbkU5S1AwY21JeEtBYlRGeDMwV09XOEdXaWY1OXJQZ0RaWkp5?=
- =?utf-8?B?TGt5eWo5MWJibHBWM3BUcEFBK3k5dFQrMkFUWkJINVl0Y3I0UWQyZkRQS293?=
- =?utf-8?B?K1VHaGRuT0RXVlUyY3cwMUFuc0lTNTNRZE81aWhmZXk5Sk8xaEU2ZVFHMFEy?=
- =?utf-8?B?bk93cW12TjBvNWlTY1FsV3FvdU1Xb3NhQmhiNzFYYTNvYkJQSU5IYzlpZjF4?=
- =?utf-8?B?RTVySXNZcHNSaVBXODlFblJqR0phd0gvZGozQ2huNXR3WlRwOVRDVWtzc3NH?=
- =?utf-8?B?bHc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: e9a3dfce-3024-44da-3517-08dc5792da42
-X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB7056.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SDgyM2FNV1paY1dQOStFUTVlSFkxTWg2R1p6bk4vajNrOENkNXpLT200WnRm?=
+ =?utf-8?B?VUx3REY5Z3Z0WjNHNzVWM3hxaHdyWGFxN05qM1FFOTJUV1MwemEyeE96NXZi?=
+ =?utf-8?B?QUkxeUVmQmk1VHhtTkx5bnJzelVFZmNEK1RXckNKaHEvR1ZwUUIxbzUvTWt4?=
+ =?utf-8?B?RTZveERGczI4UXo1RENVaHRDaGQ1V0crYUlKSGFyYzh2YjI4amhTMVUvTzlF?=
+ =?utf-8?B?dHppYVY2ZzI5clYzM3pEOElvOHp1MGhIOEFsaGVQdHA4OGFybks1RmF4dk9I?=
+ =?utf-8?B?dDVqK00rYis3Rkl2Rzhqb0FGcndGazI1Q1d4NU5xZ1NPQ3AwTW0xeUdVNHhn?=
+ =?utf-8?B?T0lub2U5RUtVVkZpZHRTZjFKdmtvTVJtL1ZSamJGcFdTbnBiWTJnamdRYy9R?=
+ =?utf-8?B?eUREZGJPdTNoK2kzNHlWZlk1bGhRb0tST3FEbG5xTCtsS0pDUGxhQlNHbkxP?=
+ =?utf-8?B?V0gwU0t1ejBCd1BhWXZmNHhOclFIVWg3WEJGKzFJa3NTT2VnaGtPTG40TDNZ?=
+ =?utf-8?B?aC9lekcwTnFLZE5FOFVrenVuRkRvdUdnYTgyZ3MvckFEZTg1T0hvL2M3VEUw?=
+ =?utf-8?B?NThaUXU3TC9KNDZtMHV3V1JQYk9uZ1BETGpRbk00WGVJYkUzN29iSmZBdldY?=
+ =?utf-8?B?Lzc2NGhieW1ENnFFa0lkNWhrMkIxK0VoZEFSbWVKMHdram9sNTIxTEhMZ0Nr?=
+ =?utf-8?B?ZVlVN25najFCaU9oc3AzRWhzWVpwRHJjbVBYTFBJSmsrbkpsNFpBREhONUhG?=
+ =?utf-8?B?dzZFV3lGd3FYQzJzK2tEU0J1Z2N1aFc5bHh2OE5PYklZcS9VTHh0cm1OanQ4?=
+ =?utf-8?B?RkFicWtGVU0xK29aYmpkMWx6eWM0cnM3UEF2eGUvUERJUlRnSFFzc21OVGZu?=
+ =?utf-8?B?Sk5IaGl4SEtjV0t0VWVQSHZuV1VOV1NjWHZwTDlyUnFGSHpPUVhabWJrOTgv?=
+ =?utf-8?B?UTI3djJZaStNT0xPdm5iZldBRVRielNMNmtXQnAyRmhIN1RuT2M4UCtXak5E?=
+ =?utf-8?B?YjJDS05NZ1pWTitETHd6TktuTVoyaGJ5ZGxDcjRUYmtWMXZReGtoL0hGVk0r?=
+ =?utf-8?B?SVB6THF5RTBsRGRScjRMTGxHcFJOWndYN1kzRFI5UjI2eFp4WkRzT3E5Q1p1?=
+ =?utf-8?B?MHBsZHlaemJlT21jWS9EeHJuYWlnZ0JmdFNCc1JlbjhKS3RYYjc2aDE1cFZY?=
+ =?utf-8?B?ejI0ZndHY3F3R2czeVpmVWxmdlhocW5obzlJcHhJS2F0U3oyeFoxTjFpZnlN?=
+ =?utf-8?B?QXdqZDJPUU9TRkZGT2lVWmJoMHlrOURXS2d3VUV6aUh5SU4zWjc2cHIwZGNE?=
+ =?utf-8?B?Nk8rMTZxb3FmMFAzSHJJTFg4VUorWDFheUJKcFRUY3B1bTdmbUw1YTRCUlhH?=
+ =?utf-8?B?TkNtZWVrc3dORUR4cUs5NytuYk42dGp3RWJ1d3dQK2Rqc3p2SGNUa2tRRmxt?=
+ =?utf-8?B?UTc2VTU0WHVYOU9taUIwZjdOZTU5dlJXcFlXWkhyV1FPZXl0VzBncFl1TkdM?=
+ =?utf-8?B?R2FVa3pLakN2OHhzakREV3RaTTVTaUN5TXgxV29lQVdDSFZkNnFYWnNTUHRy?=
+ =?utf-8?B?Sjh3Ujl4bzVycXhVdjBtYjN1akdiL3VaK0NvSnowd3N5VjZCc1d1c3piY3Jt?=
+ =?utf-8?B?b2FqdDFrMlRFL1FEL21qamNSSlordWR5OVhFRWxLQU1RZ0hKWGg0aVMyaStG?=
+ =?utf-8?B?UXlBQyszYjBzWjhOb1NsSG5GbWg5QzdBS1E1dVlwSTYrQjhTbTlRbzRBVTZU?=
+ =?utf-8?B?UHZoS3NPMjRicUxRbnlrSDlmUDdOUXlEMWZaS0tIU0RndVdMalc1OWxLeG5O?=
+ =?utf-8?B?RHlRTTB3S08waVk3RFdFWWFPZEtvcWJLcWdNVXYybkFycXl4WmZxTmdaMC9l?=
+ =?utf-8?B?d2RzZmxxNkxSd1FBN05sWHNCYlhrTkc4MGFYN2liS1NBczhFbThxVVNFdC9l?=
+ =?utf-8?B?UHVzcjJQUzlMUDY1UDkzM1hRNitHemZadEJXV0U5SFJPSGx2NEFub3BXSnZz?=
+ =?utf-8?B?U0gwU1RGTzdQWStBZm1EMml2VVk0czQ4RHQ5THpzS0pVRjE0ek9pU3R1UXB4?=
+ =?utf-8?B?OURFVDJUemtzbENoWklVTWtRUXZnU3o3TUhMUnljdXhGdlo3d1NSbGRHc2ty?=
+ =?utf-8?B?Um40K1Y3cVpWdkgxckJLRVlmQWY3ZTUyc010bkxZUHVMWWNqWjlMZ1gwZzhl?=
+ =?utf-8?Q?1JiphZ8/yEndLZeDKgl1ONY=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 50c42021-5339-467e-4bd6-08dc5794865d
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB6974.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2024 06:12:22.1456 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2024 06:24:20.2851 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: v7t4U8gEZCPmfPbBVlJSiQE3cDnURoLWy2FO2vLJRUGsBve/Ty2wztV9ipHxAQd3RECT4hE53v1+PzZ5nz0D+oV67DczCljJmt7pS6TmI+c=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8572
+X-MS-Exchange-CrossTenant-UserPrincipalName: KCmKJ+ca+mnIQrmVZ5Zte4+CoydX3vrCduI1aVcX/WmzP2NMnMtdHKhSr3q1DoHKBKC1NTmFMz1BsejFhmrYKWddUvygdIKGY8Y67p5k4XfoZZsVHR4HLtvEP1tzYjLj
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6834
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -168,772 +161,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---------------t3qU01GD5GEyyVZI91voGsX9
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+On 08.04.2024 08:46, Chauhan, Shekhar wrote:
+> 
+> On 4/3/2024 16:52, Balasubramani Vivekanandan wrote:
+> > Enable the display support for Battlemage
+> > 
+> > Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+> > ---
+> >   drivers/gpu/drm/xe/xe_pci.c | 1 +
+> >   1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> > index b3158053baee..835c18ec8fb9 100644
+> > --- a/drivers/gpu/drm/xe/xe_pci.c
+> > +++ b/drivers/gpu/drm/xe/xe_pci.c
+> > @@ -340,6 +340,7 @@ static const struct xe_device_desc lnl_desc = {
+> >   static const struct xe_device_desc bmg_desc = {
+> >   	DGFX_FEATURES,
+> >   	PLATFORM(XE_BATTLEMAGE),
+> > +	.has_display = true,
+> 
+> Can it be squashed with the other commit 'drm/xe/bmg: Add BMG platform
+> definition'?
+The other commit, I have duplicated in this series to help build this
+patch series. That commit is actually part of my earlier patch series
+"Add Battlemage support" which enables the basic Battlemage support.
 
+Regards,
+Bala
 
-On 06-04-2024 02:59, Matthew Brost wrote:
-> On Sat, Apr 06, 2024 at 12:35:07AM +0530, Himal Prasad Ghimiray wrote:
->> From: Oak Zeng<oak.zeng@intel.com>
->>
->> Introduce a helper function xe_userptr_populate_range to populate
->> a a userptr range. This functions calls hmm_range_fault to read
->> CPU page tables and populate all pfns/pages of this virtual address
->> range.
->>
->> If the populated page is system memory page, dma-mapping is performed
->> to get a dma-address which can be used later for GPU to access pages.
->>
->> If the populated page is device private page, we calculate the dpa (
->> device physical address) of the page. This will be handled in future
->> patches.
->>
->> The dma-address or dpa is then saved in userptr's sg table. This is
->> prepare work to replace the get_user_pages_fast code in userptr code
->> path.
->>
->> v1: Address review comments:
->>      separate a npage_in_range function (Matt)
->>      reparameterize function xe_userptr_populate_range function (Matt)
->>      move mmu_interval_read_begin() call into while loop (Thomas)
->>      s/mark_range_accessed/xe_mark_range_accessed (Thomas)
->>      use set_page_dirty_lock (vs set_page_dirty) (Thomas)
->>      move a few checking in xe_vma_userptr_pin_pages to hmm.c (Matt)
->> v2: Remove device private page support. Only support system
->>      pages for now. use dma-map-sg rather than dma-map-page (Matt/Thomas)
->> v3: Address review comments:
->>      Squash patch "drm/xe: Introduce a helper to free sg table" to current
->>      patch (Matt)
->>      start and end addresses are already page aligned (Matt)
->>      Do mmap_read_lock and mmap_read_unlock for hmm_range_fault incase of
->>      non system allocator call. (Matt)
->>      Drop kthread_use_mm and kthread_unuse_mm. (Matt)
->>      No need of kernel-doc for static functions.(Matt)
->>      Modify function names. (Matt)
->>      Free sgtable incase of dma_map_sgtable failure.(Matt)
->>      Modify loop for hmm_range_fault.(Matt)
->> v4: Remove the dummy function for xe_hmm_userptr_populate_range
->>      since CONFIG_HMM_MIRROR is needed. (Matt)
->>      Change variable names start/end to userptr_start/userptr_end.(Matt)
->>
->> Signed-off-by: Oak Zeng<oak.zeng@intel.com>
->> Co-developed-by: Niranjana Vishwanathapura<niranjana.vishwanathapura@intel.com>
->> Signed-off-by: Niranjana Vishwanathapura<niranjana.vishwanathapura@intel.com>
->> Cc: Matthew Brost<matthew.brost@intel.com>
-> Reviewed-by: Matthew Brost<matthew.brost@intel.com>
-Thank you, Matt, for the review.
->
->> Cc: Thomas Hellström<thomas.hellstrom@intel.com>
->> Cc: Brian Welty<brian.welty@intel.com>
->> Signed-off-by: Himal Prasad Ghimiray<himal.prasad.ghimiray@intel.com>
->> ---
->>   drivers/gpu/drm/xe/Kconfig  |   1 +
->>   drivers/gpu/drm/xe/Makefile |   2 +
->>   drivers/gpu/drm/xe/xe_hmm.c | 253 ++++++++++++++++++++++++++++++++++++
->>   drivers/gpu/drm/xe/xe_hmm.h |  11 ++
->>   4 files changed, 267 insertions(+)
->>   create mode 100644 drivers/gpu/drm/xe/xe_hmm.c
->>   create mode 100644 drivers/gpu/drm/xe/xe_hmm.h
->>
->> diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
->> index 1a556d087e63..449a1ecbc92a 100644
->> --- a/drivers/gpu/drm/xe/Kconfig
->> +++ b/drivers/gpu/drm/xe/Kconfig
->> @@ -41,6 +41,7 @@ config DRM_XE
->>   	select MMU_NOTIFIER
->>   	select WANT_DEV_COREDUMP
->>   	select AUXILIARY_BUS
->> +	select HMM_MIRROR
->>   	help
->>   	  Experimental driver for Intel Xe series GPUs
->>   
->> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
->> index 21316ee47026..07031b5ba977 100644
->> --- a/drivers/gpu/drm/xe/Makefile
->> +++ b/drivers/gpu/drm/xe/Makefile
->> @@ -146,6 +146,8 @@ xe-y += xe_bb.o \
->>   	xe_wa.o \
->>   	xe_wopcm.o
->>   
->> +xe-$(CONFIG_HMM_MIRROR) += xe_hmm.o
->> +
->>   # graphics hardware monitoring (HWMON) support
->>   xe-$(CONFIG_HWMON) += xe_hwmon.o
->>   
->> diff --git a/drivers/gpu/drm/xe/xe_hmm.c b/drivers/gpu/drm/xe/xe_hmm.c
->> new file mode 100644
->> index 000000000000..2c32dc46f7d4
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_hmm.c
->> @@ -0,0 +1,253 @@
->> +// SPDX-License-Identifier: MIT
->> +/*
->> + * Copyright © 2024 Intel Corporation
->> + */
->> +
->> +#include <linux/scatterlist.h>
->> +#include <linux/mmu_notifier.h>
->> +#include <linux/dma-mapping.h>
->> +#include <linux/memremap.h>
->> +#include <linux/swap.h>
->> +#include <linux/hmm.h>
->> +#include <linux/mm.h>
->> +#include "xe_hmm.h"
->> +#include "xe_vm.h"
->> +#include "xe_bo.h"
->> +
->> +static u64 xe_npages_in_range(unsigned long start, unsigned long end)
->> +{
->> +	return (end - start) >> PAGE_SHIFT;
->> +}
->> +
->> +/*
->> + * xe_mark_range_accessed() - mark a range is accessed, so core mm
->> + * have such information for memory eviction or write back to
->> + * hard disk
->> + *
->> + * @range: the range to mark
->> + * @write: if write to this range, we mark pages in this range
->> + * as dirty
->> + */
->> +static void xe_mark_range_accessed(struct hmm_range *range, bool write)
->> +{
->> +	struct page *page;
->> +	u64 i, npages;
->> +
->> +	npages = xe_npages_in_range(range->start, range->end);
->> +	for (i = 0; i < npages; i++) {
->> +		page = hmm_pfn_to_page(range->hmm_pfns[i]);
->> +		if (write)
->> +			set_page_dirty_lock(page);
->> +
->> +		mark_page_accessed(page);
->> +	}
->> +}
->> +
->> +/*
->> + * xe_build_sg() - build a scatter gather table for all the physical pages/pfn
->> + * in a hmm_range. dma-map pages if necessary. dma-address is save in sg table
->> + * and will be used to program GPU page table later.
->> + *
->> + * @xe: the xe device who will access the dma-address in sg table
->> + * @range: the hmm range that we build the sg table from. range->hmm_pfns[]
->> + * has the pfn numbers of pages that back up this hmm address range.
->> + * @st: pointer to the sg table.
->> + * @write: whether we write to this range. This decides dma map direction
->> + * for system pages. If write we map it bi-diretional; otherwise
->> + * DMA_TO_DEVICE
->> + *
->> + * All the contiguous pfns will be collapsed into one entry in
->> + * the scatter gather table. This is for the purpose of efficiently
->> + * programming GPU page table.
->> + *
->> + * The dma_address in the sg table will later be used by GPU to
->> + * access memory. So if the memory is system memory, we need to
->> + * do a dma-mapping so it can be accessed by GPU/DMA.
->> + *
->> + * FIXME: This function currently only support pages in system
->> + * memory. If the memory is GPU local memory (of the GPU who
->> + * is going to access memory), we need gpu dpa (device physical
->> + * address), and there is no need of dma-mapping. This is TBD.
->> + *
->> + * FIXME: dma-mapping for peer gpu device to access remote gpu's
->> + * memory. Add this when you support p2p
->> + *
->> + * This function allocates the storage of the sg table. It is
->> + * caller's responsibility to free it calling sg_free_table.
->> + *
->> + * Returns 0 if successful; -ENOMEM if fails to allocate memory
->> + */
->> +static int xe_build_sg(struct xe_device *xe, struct hmm_range *range,
->> +		       struct sg_table *st, bool write)
->> +{
->> +	struct device *dev = xe->drm.dev;
->> +	struct page **pages;
->> +	u64 i, npages;
->> +	int ret;
->> +
->> +	npages = xe_npages_in_range(range->start, range->end);
->> +	pages = kvmalloc_array(npages, sizeof(*pages), GFP_KERNEL);
->> +	if (!pages)
->> +		return -ENOMEM;
->> +
->> +	for (i = 0; i < npages; i++) {
->> +		pages[i] = hmm_pfn_to_page(range->hmm_pfns[i]);
->> +		xe_assert(xe, !is_device_private_page(pages[i]));
->> +	}
->> +
->> +	ret = sg_alloc_table_from_pages_segment(st, pages, npages, 0, npages << PAGE_SHIFT,
->> +						xe_sg_segment_size(dev), GFP_KERNEL);
->> +	if (ret)
->> +		goto free_pages;
->> +
->> +	ret = dma_map_sgtable(dev, st, write ? DMA_BIDIRECTIONAL : DMA_TO_DEVICE,
->> +			      DMA_ATTR_SKIP_CPU_SYNC | DMA_ATTR_NO_KERNEL_MAPPING);
->> +	if (ret) {
->> +		sg_free_table(st);
->> +		st = NULL;
->> +	}
->> +
->> +free_pages:
->> +	kvfree(pages);
->> +	return ret;
->> +}
->> +
->> +/*
->> + * xe_hmm_userptr_free_sg() - Free the scatter gather table of userptr
->> + *
->> + * @uvma: the userptr vma which hold the scatter gather table
->> + *
->> + * With function xe_userptr_populate_range, we allocate storage of
->> + * the userptr sg table. This is a helper function to free this
->> + * sg table, and dma unmap the address in the table.
->> + */
->> +void xe_hmm_userptr_free_sg(struct xe_userptr_vma *uvma)
->> +{
->> +	struct xe_userptr *userptr = &uvma->userptr;
->> +	struct xe_vma *vma = &uvma->vma;
->> +	bool write = !xe_vma_read_only(vma);
->> +	struct xe_vm *vm = xe_vma_vm(vma);
->> +	struct xe_device *xe = vm->xe;
->> +	struct device *dev = xe->drm.dev;
->> +
->> +	xe_assert(xe, userptr->sg);
->> +	dma_unmap_sgtable(dev, userptr->sg,
->> +			  write ? DMA_BIDIRECTIONAL : DMA_TO_DEVICE, 0);
->> +
->> +	sg_free_table(userptr->sg);
->> +	userptr->sg = NULL;
->> +}
->> +
->> +/**
->> + * xe_hmm_userptr_populate_range() - Populate physical pages of a virtual
->> + * address range
->> + *
->> + * @uvma: userptr vma which has information of the range to populate.
->> + * @is_mm_mmap_locked: True if mmap_read_lock is already acquired by caller.
->> + *
->> + * This function populate the physical pages of a virtual
->> + * address range. The populated physical pages is saved in
->> + * userptr's sg table. It is similar to get_user_pages but call
->> + * hmm_range_fault.
->> + *
->> + * This function also read mmu notifier sequence # (
->> + * mmu_interval_read_begin), for the purpose of later
->> + * comparison (through mmu_interval_read_retry).
->> + *
->> + * This must be called with mmap read or write lock held.
->> + *
->> + * This function allocates the storage of the userptr sg table.
->> + * It is caller's responsibility to free it calling sg_free_table.
->> + *
->> + * returns: 0 for succuss; negative error no on failure
->> + */
->> +int xe_hmm_userptr_populate_range(struct xe_userptr_vma *uvma,
->> +				  bool is_mm_mmap_locked)
->> +{
->> +	unsigned long timeout =
->> +		jiffies + msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
->> +	unsigned long *pfns, flags = HMM_PFN_REQ_FAULT;
->> +	struct xe_userptr *userptr;
->> +	struct xe_vma *vma = &uvma->vma;
->> +	u64 userptr_start = xe_vma_userptr(vma);
->> +	u64 userptr_end = userptr_start + xe_vma_size(vma);
->> +	struct xe_vm *vm = xe_vma_vm(vma);
->> +	struct hmm_range hmm_range;
->> +	bool write = !xe_vma_read_only(vma);
->> +	unsigned long notifier_seq;
->> +	u64 npages;
->> +	int ret;
->> +
->> +	userptr = &uvma->userptr;
->> +
->> +	if (is_mm_mmap_locked)
->> +		mmap_assert_locked(userptr->notifier.mm);
->> +
->> +	if (vma->gpuva.flags & XE_VMA_DESTROYED)
->> +		return 0;
->> +
->> +	notifier_seq = mmu_interval_read_begin(&userptr->notifier);
->> +	if (notifier_seq == userptr->notifier_seq)
->> +		return 0;
->> +
->> +	if (userptr->sg)
->> +		xe_hmm_userptr_free_sg(uvma);
->> +
->> +	npages = xe_npages_in_range(userptr_start, userptr_end);
->> +	pfns = kvmalloc_array(npages, sizeof(*pfns), GFP_KERNEL);
->> +	if (unlikely(!pfns))
->> +		return -ENOMEM;
->> +
->> +	if (write)
->> +		flags |= HMM_PFN_REQ_WRITE;
->> +
->> +	if (!mmget_not_zero(userptr->notifier.mm)) {
->> +		ret = -EFAULT;
->> +		goto free_pfns;
->> +	}
->> +
->> +	hmm_range.default_flags = flags;
->> +	hmm_range.hmm_pfns = pfns;
->> +	hmm_range.notifier = &userptr->notifier;
->> +	hmm_range.start = userptr_start;
->> +	hmm_range.end = userptr_end;
->> +	hmm_range.dev_private_owner = vm->xe;
->> +
->> +	while (true) {
->> +		hmm_range.notifier_seq = mmu_interval_read_begin(&userptr->notifier);
->> +
->> +		if (!is_mm_mmap_locked)
->> +			mmap_read_lock(userptr->notifier.mm);
->> +
->> +		ret = hmm_range_fault(&hmm_range);
->> +
->> +		if (!is_mm_mmap_locked)
->> +			mmap_read_unlock(userptr->notifier.mm);
->> +
->> +		if (ret == -EBUSY) {
->> +			if (time_after(jiffies, timeout))
->> +				break;
->> +
->> +			continue;
->> +		}
->> +		break;
->> +	}
->> +
->> +	mmput(userptr->notifier.mm);
->> +
->> +	if (ret)
->> +		goto free_pfns;
->> +
->> +	ret = xe_build_sg(vm->xe, &hmm_range, &userptr->sgt, write);
->> +	if (ret)
->> +		goto free_pfns;
->> +
->> +	xe_mark_range_accessed(&hmm_range, write);
->> +	userptr->sg = &userptr->sgt;
->> +	userptr->notifier_seq = hmm_range.notifier_seq;
->> +
->> +free_pfns:
->> +	kvfree(pfns);
->> +	return ret;
->> +}
->> +
->> diff --git a/drivers/gpu/drm/xe/xe_hmm.h b/drivers/gpu/drm/xe/xe_hmm.h
->> new file mode 100644
->> index 000000000000..909dc2bdcd97
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_hmm.h
->> @@ -0,0 +1,11 @@
->> +/* SPDX-License-Identifier: MIT
->> + *
->> + * Copyright © 2024 Intel Corporation
->> + */
->> +
->> +#include <linux/types.h>
->> +
->> +struct xe_userptr_vma;
->> +
->> +int xe_hmm_userptr_populate_range(struct xe_userptr_vma *uvma, bool is_mm_mmap_locked);
->> +void xe_hmm_userptr_free_sg(struct xe_userptr_vma *uvma);
->> -- 
->> 2.25.1
->>
---------------t3qU01GD5GEyyVZI91voGsX9
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 06-04-2024 02:59, Matthew Brost
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:ZhBtKA7YDQ3Q4W3L@DUT025-TGLU">
-      <pre class="moz-quote-pre" wrap="">On Sat, Apr 06, 2024 at 12:35:07AM +0530, Himal Prasad Ghimiray wrote:
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">From: Oak Zeng <a class="moz-txt-link-rfc2396E" href="mailto:oak.zeng@intel.com">&lt;oak.zeng@intel.com&gt;</a>
-
-Introduce a helper function xe_userptr_populate_range to populate
-a a userptr range. This functions calls hmm_range_fault to read
-CPU page tables and populate all pfns/pages of this virtual address
-range.
-
-If the populated page is system memory page, dma-mapping is performed
-to get a dma-address which can be used later for GPU to access pages.
-
-If the populated page is device private page, we calculate the dpa (
-device physical address) of the page. This will be handled in future
-patches.
-
-The dma-address or dpa is then saved in userptr's sg table. This is
-prepare work to replace the get_user_pages_fast code in userptr code
-path.
-
-v1: Address review comments:
-    separate a npage_in_range function (Matt)
-    reparameterize function xe_userptr_populate_range function (Matt)
-    move mmu_interval_read_begin() call into while loop (Thomas)
-    s/mark_range_accessed/xe_mark_range_accessed (Thomas)
-    use set_page_dirty_lock (vs set_page_dirty) (Thomas)
-    move a few checking in xe_vma_userptr_pin_pages to hmm.c (Matt)
-v2: Remove device private page support. Only support system
-    pages for now. use dma-map-sg rather than dma-map-page (Matt/Thomas)
-v3: Address review comments:
-    Squash patch &quot;drm/xe: Introduce a helper to free sg table&quot; to current
-    patch (Matt)
-    start and end addresses are already page aligned (Matt)
-    Do mmap_read_lock and mmap_read_unlock for hmm_range_fault incase of
-    non system allocator call. (Matt)
-    Drop kthread_use_mm and kthread_unuse_mm. (Matt)
-    No need of kernel-doc for static functions.(Matt)
-    Modify function names. (Matt)
-    Free sgtable incase of dma_map_sgtable failure.(Matt)
-    Modify loop for hmm_range_fault.(Matt)
-v4: Remove the dummy function for xe_hmm_userptr_populate_range
-    since CONFIG_HMM_MIRROR is needed. (Matt)
-    Change variable names start/end to userptr_start/userptr_end.(Matt)
-
-Signed-off-by: Oak Zeng <a class="moz-txt-link-rfc2396E" href="mailto:oak.zeng@intel.com">&lt;oak.zeng@intel.com&gt;</a>
-Co-developed-by: Niranjana Vishwanathapura <a class="moz-txt-link-rfc2396E" href="mailto:niranjana.vishwanathapura@intel.com">&lt;niranjana.vishwanathapura@intel.com&gt;</a>
-Signed-off-by: Niranjana Vishwanathapura <a class="moz-txt-link-rfc2396E" href="mailto:niranjana.vishwanathapura@intel.com">&lt;niranjana.vishwanathapura@intel.com&gt;</a>
-Cc: Matthew Brost <a class="moz-txt-link-rfc2396E" href="mailto:matthew.brost@intel.com">&lt;matthew.brost@intel.com&gt;</a>
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">
-Reviewed-by: Matthew Brost <a class="moz-txt-link-rfc2396E" href="mailto:matthew.brost@intel.com">&lt;matthew.brost@intel.com&gt;</a></pre>
-    </blockquote>
-    <span style="color: rgb(13, 13, 13); font-family: Söhne, ui-sans-serif, system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, Ubuntu, Cantarell, &quot;Noto Sans&quot;, sans-serif, &quot;Helvetica Neue&quot;, Arial, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">Thank you, Matt, for the review.</span>
-    <blockquote type="cite" cite="mid:ZhBtKA7YDQ3Q4W3L@DUT025-TGLU">
-      <pre class="moz-quote-pre" wrap="">
-
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">Cc: Thomas Hellström <a class="moz-txt-link-rfc2396E" href="mailto:thomas.hellstrom@intel.com">&lt;thomas.hellstrom@intel.com&gt;</a>
-Cc: Brian Welty <a class="moz-txt-link-rfc2396E" href="mailto:brian.welty@intel.com">&lt;brian.welty@intel.com&gt;</a>
-Signed-off-by: Himal Prasad Ghimiray <a class="moz-txt-link-rfc2396E" href="mailto:himal.prasad.ghimiray@intel.com">&lt;himal.prasad.ghimiray@intel.com&gt;</a>
----
- drivers/gpu/drm/xe/Kconfig  |   1 +
- drivers/gpu/drm/xe/Makefile |   2 +
- drivers/gpu/drm/xe/xe_hmm.c | 253 ++++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_hmm.h |  11 ++
- 4 files changed, 267 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_hmm.c
- create mode 100644 drivers/gpu/drm/xe/xe_hmm.h
-
-diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-index 1a556d087e63..449a1ecbc92a 100644
---- a/drivers/gpu/drm/xe/Kconfig
-+++ b/drivers/gpu/drm/xe/Kconfig
-@@ -41,6 +41,7 @@ config DRM_XE
- 	select MMU_NOTIFIER
- 	select WANT_DEV_COREDUMP
- 	select AUXILIARY_BUS
-+	select HMM_MIRROR
- 	help
- 	  Experimental driver for Intel Xe series GPUs
- 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 21316ee47026..07031b5ba977 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -146,6 +146,8 @@ xe-y += xe_bb.o \
- 	xe_wa.o \
- 	xe_wopcm.o
- 
-+xe-$(CONFIG_HMM_MIRROR) += xe_hmm.o
-+
- # graphics hardware monitoring (HWMON) support
- xe-$(CONFIG_HWMON) += xe_hwmon.o
- 
-diff --git a/drivers/gpu/drm/xe/xe_hmm.c b/drivers/gpu/drm/xe/xe_hmm.c
-new file mode 100644
-index 000000000000..2c32dc46f7d4
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_hmm.c
-@@ -0,0 +1,253 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#include &lt;linux/scatterlist.h&gt;
-+#include &lt;linux/mmu_notifier.h&gt;
-+#include &lt;linux/dma-mapping.h&gt;
-+#include &lt;linux/memremap.h&gt;
-+#include &lt;linux/swap.h&gt;
-+#include &lt;linux/hmm.h&gt;
-+#include &lt;linux/mm.h&gt;
-+#include &quot;xe_hmm.h&quot;
-+#include &quot;xe_vm.h&quot;
-+#include &quot;xe_bo.h&quot;
-+
-+static u64 xe_npages_in_range(unsigned long start, unsigned long end)
-+{
-+	return (end - start) &gt;&gt; PAGE_SHIFT;
-+}
-+
-+/*
-+ * xe_mark_range_accessed() - mark a range is accessed, so core mm
-+ * have such information for memory eviction or write back to
-+ * hard disk
-+ *
-+ * @range: the range to mark
-+ * @write: if write to this range, we mark pages in this range
-+ * as dirty
-+ */
-+static void xe_mark_range_accessed(struct hmm_range *range, bool write)
-+{
-+	struct page *page;
-+	u64 i, npages;
-+
-+	npages = xe_npages_in_range(range-&gt;start, range-&gt;end);
-+	for (i = 0; i &lt; npages; i++) {
-+		page = hmm_pfn_to_page(range-&gt;hmm_pfns[i]);
-+		if (write)
-+			set_page_dirty_lock(page);
-+
-+		mark_page_accessed(page);
-+	}
-+}
-+
-+/*
-+ * xe_build_sg() - build a scatter gather table for all the physical pages/pfn
-+ * in a hmm_range. dma-map pages if necessary. dma-address is save in sg table
-+ * and will be used to program GPU page table later.
-+ *
-+ * @xe: the xe device who will access the dma-address in sg table
-+ * @range: the hmm range that we build the sg table from. range-&gt;hmm_pfns[]
-+ * has the pfn numbers of pages that back up this hmm address range.
-+ * @st: pointer to the sg table.
-+ * @write: whether we write to this range. This decides dma map direction
-+ * for system pages. If write we map it bi-diretional; otherwise
-+ * DMA_TO_DEVICE
-+ *
-+ * All the contiguous pfns will be collapsed into one entry in
-+ * the scatter gather table. This is for the purpose of efficiently
-+ * programming GPU page table.
-+ *
-+ * The dma_address in the sg table will later be used by GPU to
-+ * access memory. So if the memory is system memory, we need to
-+ * do a dma-mapping so it can be accessed by GPU/DMA.
-+ *
-+ * FIXME: This function currently only support pages in system
-+ * memory. If the memory is GPU local memory (of the GPU who
-+ * is going to access memory), we need gpu dpa (device physical
-+ * address), and there is no need of dma-mapping. This is TBD.
-+ *
-+ * FIXME: dma-mapping for peer gpu device to access remote gpu's
-+ * memory. Add this when you support p2p
-+ *
-+ * This function allocates the storage of the sg table. It is
-+ * caller's responsibility to free it calling sg_free_table.
-+ *
-+ * Returns 0 if successful; -ENOMEM if fails to allocate memory
-+ */
-+static int xe_build_sg(struct xe_device *xe, struct hmm_range *range,
-+		       struct sg_table *st, bool write)
-+{
-+	struct device *dev = xe-&gt;drm.dev;
-+	struct page **pages;
-+	u64 i, npages;
-+	int ret;
-+
-+	npages = xe_npages_in_range(range-&gt;start, range-&gt;end);
-+	pages = kvmalloc_array(npages, sizeof(*pages), GFP_KERNEL);
-+	if (!pages)
-+		return -ENOMEM;
-+
-+	for (i = 0; i &lt; npages; i++) {
-+		pages[i] = hmm_pfn_to_page(range-&gt;hmm_pfns[i]);
-+		xe_assert(xe, !is_device_private_page(pages[i]));
-+	}
-+
-+	ret = sg_alloc_table_from_pages_segment(st, pages, npages, 0, npages &lt;&lt; PAGE_SHIFT,
-+						xe_sg_segment_size(dev), GFP_KERNEL);
-+	if (ret)
-+		goto free_pages;
-+
-+	ret = dma_map_sgtable(dev, st, write ? DMA_BIDIRECTIONAL : DMA_TO_DEVICE,
-+			      DMA_ATTR_SKIP_CPU_SYNC | DMA_ATTR_NO_KERNEL_MAPPING);
-+	if (ret) {
-+		sg_free_table(st);
-+		st = NULL;
-+	}
-+
-+free_pages:
-+	kvfree(pages);
-+	return ret;
-+}
-+
-+/*
-+ * xe_hmm_userptr_free_sg() - Free the scatter gather table of userptr
-+ *
-+ * @uvma: the userptr vma which hold the scatter gather table
-+ *
-+ * With function xe_userptr_populate_range, we allocate storage of
-+ * the userptr sg table. This is a helper function to free this
-+ * sg table, and dma unmap the address in the table.
-+ */
-+void xe_hmm_userptr_free_sg(struct xe_userptr_vma *uvma)
-+{
-+	struct xe_userptr *userptr = &amp;uvma-&gt;userptr;
-+	struct xe_vma *vma = &amp;uvma-&gt;vma;
-+	bool write = !xe_vma_read_only(vma);
-+	struct xe_vm *vm = xe_vma_vm(vma);
-+	struct xe_device *xe = vm-&gt;xe;
-+	struct device *dev = xe-&gt;drm.dev;
-+
-+	xe_assert(xe, userptr-&gt;sg);
-+	dma_unmap_sgtable(dev, userptr-&gt;sg,
-+			  write ? DMA_BIDIRECTIONAL : DMA_TO_DEVICE, 0);
-+
-+	sg_free_table(userptr-&gt;sg);
-+	userptr-&gt;sg = NULL;
-+}
-+
-+/**
-+ * xe_hmm_userptr_populate_range() - Populate physical pages of a virtual
-+ * address range
-+ *
-+ * @uvma: userptr vma which has information of the range to populate.
-+ * @is_mm_mmap_locked: True if mmap_read_lock is already acquired by caller.
-+ *
-+ * This function populate the physical pages of a virtual
-+ * address range. The populated physical pages is saved in
-+ * userptr's sg table. It is similar to get_user_pages but call
-+ * hmm_range_fault.
-+ *
-+ * This function also read mmu notifier sequence # (
-+ * mmu_interval_read_begin), for the purpose of later
-+ * comparison (through mmu_interval_read_retry).
-+ *
-+ * This must be called with mmap read or write lock held.
-+ *
-+ * This function allocates the storage of the userptr sg table.
-+ * It is caller's responsibility to free it calling sg_free_table.
-+ *
-+ * returns: 0 for succuss; negative error no on failure
-+ */
-+int xe_hmm_userptr_populate_range(struct xe_userptr_vma *uvma,
-+				  bool is_mm_mmap_locked)
-+{
-+	unsigned long timeout =
-+		jiffies + msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
-+	unsigned long *pfns, flags = HMM_PFN_REQ_FAULT;
-+	struct xe_userptr *userptr;
-+	struct xe_vma *vma = &amp;uvma-&gt;vma;
-+	u64 userptr_start = xe_vma_userptr(vma);
-+	u64 userptr_end = userptr_start + xe_vma_size(vma);
-+	struct xe_vm *vm = xe_vma_vm(vma);
-+	struct hmm_range hmm_range;
-+	bool write = !xe_vma_read_only(vma);
-+	unsigned long notifier_seq;
-+	u64 npages;
-+	int ret;
-+
-+	userptr = &amp;uvma-&gt;userptr;
-+
-+	if (is_mm_mmap_locked)
-+		mmap_assert_locked(userptr-&gt;notifier.mm);
-+
-+	if (vma-&gt;gpuva.flags &amp; XE_VMA_DESTROYED)
-+		return 0;
-+
-+	notifier_seq = mmu_interval_read_begin(&amp;userptr-&gt;notifier);
-+	if (notifier_seq == userptr-&gt;notifier_seq)
-+		return 0;
-+
-+	if (userptr-&gt;sg)
-+		xe_hmm_userptr_free_sg(uvma);
-+
-+	npages = xe_npages_in_range(userptr_start, userptr_end);
-+	pfns = kvmalloc_array(npages, sizeof(*pfns), GFP_KERNEL);
-+	if (unlikely(!pfns))
-+		return -ENOMEM;
-+
-+	if (write)
-+		flags |= HMM_PFN_REQ_WRITE;
-+
-+	if (!mmget_not_zero(userptr-&gt;notifier.mm)) {
-+		ret = -EFAULT;
-+		goto free_pfns;
-+	}
-+
-+	hmm_range.default_flags = flags;
-+	hmm_range.hmm_pfns = pfns;
-+	hmm_range.notifier = &amp;userptr-&gt;notifier;
-+	hmm_range.start = userptr_start;
-+	hmm_range.end = userptr_end;
-+	hmm_range.dev_private_owner = vm-&gt;xe;
-+
-+	while (true) {
-+		hmm_range.notifier_seq = mmu_interval_read_begin(&amp;userptr-&gt;notifier);
-+
-+		if (!is_mm_mmap_locked)
-+			mmap_read_lock(userptr-&gt;notifier.mm);
-+
-+		ret = hmm_range_fault(&amp;hmm_range);
-+
-+		if (!is_mm_mmap_locked)
-+			mmap_read_unlock(userptr-&gt;notifier.mm);
-+
-+		if (ret == -EBUSY) {
-+			if (time_after(jiffies, timeout))
-+				break;
-+
-+			continue;
-+		}
-+		break;
-+	}
-+
-+	mmput(userptr-&gt;notifier.mm);
-+
-+	if (ret)
-+		goto free_pfns;
-+
-+	ret = xe_build_sg(vm-&gt;xe, &amp;hmm_range, &amp;userptr-&gt;sgt, write);
-+	if (ret)
-+		goto free_pfns;
-+
-+	xe_mark_range_accessed(&amp;hmm_range, write);
-+	userptr-&gt;sg = &amp;userptr-&gt;sgt;
-+	userptr-&gt;notifier_seq = hmm_range.notifier_seq;
-+
-+free_pfns:
-+	kvfree(pfns);
-+	return ret;
-+}
-+
-diff --git a/drivers/gpu/drm/xe/xe_hmm.h b/drivers/gpu/drm/xe/xe_hmm.h
-new file mode 100644
-index 000000000000..909dc2bdcd97
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_hmm.h
-@@ -0,0 +1,11 @@
-+/* SPDX-License-Identifier: MIT
-+ *
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#include &lt;linux/types.h&gt;
-+
-+struct xe_userptr_vma;
-+
-+int xe_hmm_userptr_populate_range(struct xe_userptr_vma *uvma, bool is_mm_mmap_locked);
-+void xe_hmm_userptr_free_sg(struct xe_userptr_vma *uvma);
--- 
-2.25.1
-
-</pre>
-      </blockquote>
-    </blockquote>
-  </body>
-</html>
-
---------------t3qU01GD5GEyyVZI91voGsX9--
+> 
+> If not, then, LGTM, and with that,
+> 
+> Reviewed-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
+> 
+> >   	.require_force_probe = true,
+> >   };
+> 
+> -- 
+> -shekhar
+> 
