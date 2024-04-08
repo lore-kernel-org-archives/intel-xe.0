@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30D20C67861
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 18:08:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4EECCD129A
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 18:09:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46DB510F9E5;
-	Mon,  8 Apr 2024 18:08:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02A331127E9;
+	Mon,  8 Apr 2024 18:09:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FsRPb+kZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QjTY9Jqw";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE15611256C;
- Mon,  8 Apr 2024 18:08:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D4A310F9E5;
+ Mon,  8 Apr 2024 18:09:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712599734; x=1744135734;
+ t=1712599758; x=1744135758;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8c1q5UkTt5s9w3/mz5cNUBo1nt0YNvhHOhM3lFRFsaE=;
- b=FsRPb+kZvAKMLnS6lg/tTxxIvoOJgGW3p2dBGWIobVcyT6Pz37393x6y
- fSqmWW+oap2eNvpGkKAYPGH7Y0gLU1wjaxEKmwE2XvvWH5Td3VdzILnQk
- 3IUYDhGzaeFIe3E9gS904m0whzgkpbl4EQzaRAKdCk4X9bp5Xy6x1JmOX
- 4Od5MMWZ9KYIiLN6dG1VIEZtypoQll6WNABIFKyoyFYrLrq7sdswme4EQ
- pGXfmlziF5Pe1Zv6TqKjZfIUp9C70pr8zdYuYsFfoGaXP1r+PLO+pTCzL
- dJOZrqIuyufTUSmdNUlg2maXINUag5B3cueuVBo6odGpx5bIsS2tmLNZ1 Q==;
-X-CSE-ConnectionGUID: vyxHwQ2tSi2zi7fGsKFAyA==
-X-CSE-MsgGUID: 2Lf5kn44SwCIaXtqbbMQdQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="19038618"
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="19038618"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 11:08:54 -0700
-X-CSE-ConnectionGUID: ez/yf6E3QVaFw8yLKpxLFw==
-X-CSE-MsgGUID: up5M6FKgROug0+Eyn0ZGOQ==
+ bh=GRihfidmdBVc9iN7rJPx7EnCUrQOrdwk4hBMe1kE2pU=;
+ b=QjTY9JqwTAqB5dBnS46cqYgKGZxmS26kmB3MbWxfPMRQoMEfgn52RVLd
+ e0XrRWBaJcRQJJqqnNgT7bgl5TaN/+vIrgJPiDkBIdnCho6s4jdhffHWO
+ 8XP9g4JPvw7WYQ9BlNvmFt9+ZG/F0gy5cCC55ilJjXI98fE1N3l8oUq38
+ WH0+EzGmvOQilv2UMmJBIONNwWEK9t03Q6LeNpZjqmXpd/OMC1kANhSMv
+ 9YaO4ucAhgaWEDSem3AoS5XoLq6NlGYQZ4ZePs44eGwX3dt/q2CHYhdij
+ CptHRSV/kYGY3IiL5R0hxLNbsOlEQL35i6o0KP7785kVWxmIjQAadngay Q==;
+X-CSE-ConnectionGUID: kzAkC5YYRkOR9cA2FA3UnQ==
+X-CSE-MsgGUID: lecgvxGBRiq8e0Ov4KZpEg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="11730234"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="11730234"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2024 11:09:18 -0700
+X-CSE-ConnectionGUID: K6JylDemRFe4Zm+OGtfjAg==
+X-CSE-MsgGUID: 2+Msl6OrSWWinK+nkKFLaw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="43145069"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="19915264"
 Received: from bauinger-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.42.71])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 11:08:52 -0700
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2024 11:09:15 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	lucas.demarchi@intel.com
-Subject: [PATCH 1/8] drm/i915/gt: drop display clock info from gt debugfs
-Date: Mon,  8 Apr 2024 21:08:36 +0300
-Message-Id: <50461f13ab09b162de25d3f3587890548f4db499.1712599670.git.jani.nikula@intel.com>
+Subject: [PATCH 5/8] drm/i915: move display_irqs_enabled to display substruct
+Date: Mon,  8 Apr 2024 21:08:40 +0300
+Message-Id: <f6ac8e4c6ec8621bacf3db58a2bf156bd636f1d1.1712599670.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1712599670.git.jani.nikula@intel.com>
 References: <cover.1712599670.git.jani.nikula@intel.com>
@@ -70,28 +70,161 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The same info is available in i915_cdclk_info.
+The info is related to display, and should be placed under
+i915->display.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c | 4 ----
- 1 file changed, 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_core.h |  2 ++
+ drivers/gpu/drm/i915/display/intel_display_irq.c  | 14 +++++++-------
+ drivers/gpu/drm/i915/display/intel_hotplug_irq.c  |  2 +-
+ drivers/gpu/drm/i915/i915_drv.h                   |  2 --
+ drivers/gpu/drm/i915/i915_irq.c                   |  8 ++++----
+ drivers/gpu/drm/xe/xe_device_types.h              |  1 -
+ 6 files changed, 14 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-index 37e8d50c99ed..4fcba42cfe34 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-@@ -392,10 +392,6 @@ void intel_gt_pm_frequency_dump(struct intel_gt *gt, struct drm_printer *p)
- 		drm_puts(p, "no P-state info available\n");
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+index 52f7d6e0324f..68aee44b4822 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_core.h
++++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+@@ -448,6 +448,8 @@ struct intel_display {
+ 	} ips;
  
--	drm_printf(p, "Current CD clock frequency: %d kHz\n", i915->display.cdclk.hw.cdclk);
--	drm_printf(p, "Max CD clock frequency: %d kHz\n", i915->display.cdclk.max_cdclk_freq);
--	drm_printf(p, "Max pixel clock frequency: %d kHz\n", i915->max_dotclk_freq);
--
- 	intel_runtime_pm_put(uncore->rpm, wakeref);
+ 	struct {
++		bool display_irqs_enabled;
++
+ 		/* For i915gm/i945gm vblank irq workaround */
+ 		u8 vblank_enabled;
+ 	} irq;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+index 6219b1a62210..e9fcdac90efd 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_irq.c
++++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+@@ -412,7 +412,7 @@ void i9xx_pipestat_irq_ack(struct drm_i915_private *dev_priv,
+ 
+ 	spin_lock(&dev_priv->irq_lock);
+ 
+-	if (!dev_priv->display_irqs_enabled) {
++	if (!dev_priv->display.irq.display_irqs_enabled) {
+ 		spin_unlock(&dev_priv->irq_lock);
+ 		return;
+ 	}
+@@ -1558,10 +1558,10 @@ void valleyview_enable_display_irqs(struct drm_i915_private *dev_priv)
+ {
+ 	lockdep_assert_held(&dev_priv->irq_lock);
+ 
+-	if (dev_priv->display_irqs_enabled)
++	if (dev_priv->display.irq.display_irqs_enabled)
+ 		return;
+ 
+-	dev_priv->display_irqs_enabled = true;
++	dev_priv->display.irq.display_irqs_enabled = true;
+ 
+ 	if (intel_irqs_enabled(dev_priv)) {
+ 		vlv_display_irq_reset(dev_priv);
+@@ -1573,10 +1573,10 @@ void valleyview_disable_display_irqs(struct drm_i915_private *dev_priv)
+ {
+ 	lockdep_assert_held(&dev_priv->irq_lock);
+ 
+-	if (!dev_priv->display_irqs_enabled)
++	if (!dev_priv->display.irq.display_irqs_enabled)
+ 		return;
+ 
+-	dev_priv->display_irqs_enabled = false;
++	dev_priv->display.irq.display_irqs_enabled = false;
+ 
+ 	if (intel_irqs_enabled(dev_priv))
+ 		vlv_display_irq_reset(dev_priv);
+@@ -1770,9 +1770,9 @@ void intel_display_irq_init(struct drm_i915_private *i915)
+ 	 * domain. We defer setting up the display irqs in this case to the
+ 	 * runtime pm.
+ 	 */
+-	i915->display_irqs_enabled = true;
++	i915->display.irq.display_irqs_enabled = true;
+ 	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
+-		i915->display_irqs_enabled = false;
++		i915->display.irq.display_irqs_enabled = false;
+ 
+ 	intel_hotplug_irq_init(i915);
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
+index 76076509f771..d270bb7b9462 100644
+--- a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
++++ b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
+@@ -1444,7 +1444,7 @@ void intel_hpd_enable_detection(struct intel_encoder *encoder)
+ 
+ void intel_hpd_irq_setup(struct drm_i915_private *i915)
+ {
+-	if (i915->display_irqs_enabled && i915->display.funcs.hotplug)
++	if (i915->display.irq.display_irqs_enabled && i915->display.funcs.hotplug)
+ 		i915->display.funcs.hotplug->hpd_irq_setup(i915);
  }
  
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index a83553731538..b3daca57f32c 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -235,8 +235,6 @@ struct drm_i915_private {
+ 	/* protects the irq masks */
+ 	spinlock_t irq_lock;
+ 
+-	bool display_irqs_enabled;
+-
+ 	/* Sideband mailbox protection */
+ 	struct mutex sb_lock;
+ 	struct pm_qos_request sb_qos;
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index 8130f043693b..678d632ed043 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -702,7 +702,7 @@ static void valleyview_irq_reset(struct drm_i915_private *dev_priv)
+ 	gen5_gt_irq_reset(to_gt(dev_priv));
+ 
+ 	spin_lock_irq(&dev_priv->irq_lock);
+-	if (dev_priv->display_irqs_enabled)
++	if (dev_priv->display.irq.display_irqs_enabled)
+ 		vlv_display_irq_reset(dev_priv);
+ 	spin_unlock_irq(&dev_priv->irq_lock);
+ }
+@@ -767,7 +767,7 @@ static void cherryview_irq_reset(struct drm_i915_private *dev_priv)
+ 	GEN3_IRQ_RESET(uncore, GEN8_PCU_);
+ 
+ 	spin_lock_irq(&dev_priv->irq_lock);
+-	if (dev_priv->display_irqs_enabled)
++	if (dev_priv->display.irq.display_irqs_enabled)
+ 		vlv_display_irq_reset(dev_priv);
+ 	spin_unlock_irq(&dev_priv->irq_lock);
+ }
+@@ -784,7 +784,7 @@ static void valleyview_irq_postinstall(struct drm_i915_private *dev_priv)
+ 	gen5_gt_irq_postinstall(to_gt(dev_priv));
+ 
+ 	spin_lock_irq(&dev_priv->irq_lock);
+-	if (dev_priv->display_irqs_enabled)
++	if (dev_priv->display.irq.display_irqs_enabled)
+ 		vlv_display_irq_postinstall(dev_priv);
+ 	spin_unlock_irq(&dev_priv->irq_lock);
+ 
+@@ -838,7 +838,7 @@ static void cherryview_irq_postinstall(struct drm_i915_private *dev_priv)
+ 	gen8_gt_irq_postinstall(to_gt(dev_priv));
+ 
+ 	spin_lock_irq(&dev_priv->irq_lock);
+-	if (dev_priv->display_irqs_enabled)
++	if (dev_priv->display.irq.display_irqs_enabled)
+ 		vlv_display_irq_postinstall(dev_priv);
+ 	spin_unlock_irq(&dev_priv->irq_lock);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index d6236133b143..956a5f5289bb 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -507,7 +507,6 @@ struct xe_device {
+ 	};
+ 	u32 pipestat_irq_mask[I915_MAX_PIPES];
+ 
+-	bool display_irqs_enabled;
+ 	u32 enabled_irq_mask;
+ 
+ 	struct intel_uncore {
 -- 
 2.39.2
 
