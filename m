@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 884C8C67861
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AE9CCD1299
 	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 16:29:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10E91112775;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E3B0112776;
 	Mon,  8 Apr 2024 16:29:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZGbHsUZZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VUMMrMvN";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77C6D112774
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Apr 2024 16:29:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2D88112772
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Apr 2024 16:29:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712593747; x=1744129747;
+ t=1712593741; x=1744129741;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ukOWG6pHW3LVkvOgPt6VlLTx4AXls+xcPa+HvtNGGJ0=;
- b=ZGbHsUZZgOkh+bAX6o0e73rnuGK8DMArXp1mmdD1M0xhy088muVGyj3o
- CMsPB8SoG+QxMGPwo7mm6BUtKwclnFbcEzcJ/cyq9Hk/RLhRJo+FJMmeL
- oViDaMtykJgVUhXURnLJJwwanLLN7ntEnXhHw2ty1egXwgEUo7+b+o8gD
- 7AHB0id03+MqK1Vg+9lpFXX8nD5Yx3B2vRgfGSm0541oKoNLd/WtxTGMw
- CfGqodgbnN5j6wQ+rQshPQREh5e1HIgBixWpXACXLPchcqJn5/jtuk7rk
- 1jwoES8/jpC7NRXfh5tYDd0B+7ZgS/ApxbSB7ndmZ1VxxAT82GB/hR4hT A==;
-X-CSE-ConnectionGUID: Ycfn3Wu+TjuBYClJsopBoA==
-X-CSE-MsgGUID: xhJDBMjyTgKoxYLbgrQvgw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="19024949"
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="19024949"
+ bh=7XPwr/rc1yu0i8HIPehhijaxzL7/+oi+tnhW1Ww1eAQ=;
+ b=VUMMrMvNJHBO+Ebvr1ZPuD9Ejf/qgIvkha/ocrkDsaJuGvSoWtjUzK1x
+ No9YRWk3RaPM7x57FryJapKvlqNtQTeSbpvJbGXozsZAaK1TrnxcZuJwZ
+ 0G4j52z9aAOAAM4ROaMlX5Cn4fznIgq/Pf7+lOl2tPdwNTBeFZqKVa/Tj
+ d6Dt36OWkly/sGEt2FDdN9xXhY6BfCVx87/pEQgBpKi0NMujfQyP9Cb2l
+ zEoplEtVALH33VQd2iUzNIYPa4T9z6tszWfizl/S8B0AjPTLwRQMAuv9U
+ P/YzA2ryNTgUw0LocbvT8cyY01cnW0F9sPgZe7CJfWS/yfUPIiudPV3+v g==;
+X-CSE-ConnectionGUID: XX5I4ZYBTZ+QIzHoj7eflg==
+X-CSE-MsgGUID: vGEixDsQSR2EFXEcUq1riA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="19024941"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="19024941"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 09:29:06 -0700
-X-CSE-ConnectionGUID: 1FHukDXNRim0+vHgWJulKQ==
-X-CSE-MsgGUID: l+wP1y8BT/CRXTSWdDuvgA==
+ 08 Apr 2024 09:29:01 -0700
+X-CSE-ConnectionGUID: UGz3tknMS468dwm4+LTVMA==
+X-CSE-MsgGUID: OgvvEMgqRaapFIi3OkfPhw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="24683417"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="24683341"
 Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 09:29:04 -0700
+ 08 Apr 2024 09:28:58 -0700
 From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Subject: [PATCH v2 03/11] drm/xe/bmg: Add BMG platform definition
-Date: Mon,  8 Apr 2024 21:59:02 +0530
-Message-Id: <20240408162916.3767771-6-balasubramani.vivekanandan@intel.com>
+Subject: [PATCH v2 01/11] drm/xe/xe2: Recognize Xe2_HPG IP
+Date: Mon,  8 Apr 2024 21:58:59 +0530
+Message-Id: <20240408162916.3767771-3-balasubramani.vivekanandan@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240408162916.3767771-1-balasubramani.vivekanandan@intel.com>
 References: <20240408162916.3767771-1-balasubramani.vivekanandan@intel.com>
@@ -70,50 +70,38 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Matt Roper <matthew.d.roper@intel.com>
 
-BMG is a discrete GPU based on the Xe2 architecture.
-No device ids are bound to the BMG platform descriptor yet.
-BMG device ids will be added once we have all the basic required
-platform enabling patches landed.
-
-v2: Removed device ids, deferring it to a later patch
+Xe2_HPG uses the same general feature flags as Xe2_LPG.  Xe2_HPG is
+identified as version 20.01 in the GMD_ID register.
 
 Bspec: 68090
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pci.c            | 6 ++++++
- drivers/gpu/drm/xe/xe_platform_types.h | 1 +
- 2 files changed, 7 insertions(+)
+ drivers/gpu/drm/xe/xe_pci.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 2d3b18d6404e..3b30353dbc09 100644
+index c47ab4b67467..6fd0f4258ba2 100644
 --- a/drivers/gpu/drm/xe/xe_pci.c
 +++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -337,6 +337,12 @@ static const struct xe_device_desc lnl_desc = {
- 	.require_force_probe = true,
+@@ -174,7 +174,7 @@ static const struct xe_graphics_desc graphics_xelpg = {
+ 		GENMASK(XE_HW_ENGINE_CCS3, XE_HW_ENGINE_CCS0)
+ 
+ static const struct xe_graphics_desc graphics_xe2 = {
+-	.name = "Xe2_LPG",
++	.name = "Xe2_LPG / Xe2_HPG",
+ 
+ 	XE2_GFX_FEATURES,
+ };
+@@ -345,6 +345,7 @@ static const struct gmdid_map graphics_ip_map[] = {
+ 	{ 1270, &graphics_xelpg },
+ 	{ 1271, &graphics_xelpg },
+ 	{ 1274, &graphics_xelpg },	/* Xe_LPG+ */
++	{ 2001, &graphics_xe2 },
+ 	{ 2004, &graphics_xe2 },
  };
  
-+static const struct xe_device_desc bmg_desc __maybe_unused = {
-+	DGFX_FEATURES,
-+	PLATFORM(XE_BATTLEMAGE),
-+	.require_force_probe = true,
-+};
-+
- #undef PLATFORM
- __diag_pop();
- 
-diff --git a/drivers/gpu/drm/xe/xe_platform_types.h b/drivers/gpu/drm/xe/xe_platform_types.h
-index 553f53dbd093..79b7042c4534 100644
---- a/drivers/gpu/drm/xe/xe_platform_types.h
-+++ b/drivers/gpu/drm/xe/xe_platform_types.h
-@@ -22,6 +22,7 @@ enum xe_platform {
- 	XE_PVC,
- 	XE_METEORLAKE,
- 	XE_LUNARLAKE,
-+	XE_BATTLEMAGE,
- };
- 
- enum xe_subplatform {
 -- 
 2.25.1
 
