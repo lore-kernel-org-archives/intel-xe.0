@@ -4,56 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2F88C67861
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 16:29:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE64CCD129A
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 16:29:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50D4C112774;
-	Mon,  8 Apr 2024 16:29:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D10811277B;
+	Mon,  8 Apr 2024 16:29:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zut0tiA7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gZjhTpxf";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3624111277E
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Apr 2024 16:29:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2308C11277B
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Apr 2024 16:29:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712593772; x=1744129772;
+ t=1712593774; x=1744129774;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wlGYplJr0qPjiP3N9ssyYv78e3A3c41Ij7i5v0ntiW8=;
- b=Zut0tiA7h0Oc/2mNB4MgYnsn0joU9cne1KHpQUCA36fImAn4wjmRgwUY
- gU3WMQKpoST0C8G/91lDosD51+aXezNvqGnP11onpQVwz7dJjMxjKSH1b
- Mmy5KulXqLlb7pHQthoxUsbAs7tMXWHhcoiQmt5qZPoQoTMekWeS0QmUj
- Pm9NADoecb+lgVRZEOLN7gB8+McQxi3mRFs2SgVFRSVS9LGc87p8hcXmf
- YYbqwME1zRDAAqm1tmSSlAzYFOmiYnUvwdCC2o1Awc9XM+bdrCXTqTT8T
- b0jcWpXmgrlap8vdeGy+lILoGBULSolZogcjCPWO4COwqx8EfBHGF/eER A==;
-X-CSE-ConnectionGUID: liU1IxyURKio69qCdBYGcA==
-X-CSE-MsgGUID: 1u/W7haZQz+FT2Cqx4Y+7A==
-X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="19024994"
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="19024994"
+ bh=YMoD3REsghGXvfVeETvR+x3teWwOcKE2nvVuQn8Pz0Q=;
+ b=gZjhTpxfqkIXmA057lsVRs9JwEp4km/K+AlO0ERlNj+cdIomfupyZ8ac
+ Vsdyw6BIPGBcb9u5RQSw/fZ503k7J4C96BWoe/vFyyunMWapH/vlGAMjN
+ vtYPKBrFRx2AUJrZBWJbucgKG3C98zqE+ytOmM0fDxw17XbN2teFhRZH3
+ dwBzkg2JlyguRqJZr2pQEI95vJ9OkAEpZxyIIskTstCVmDEdr0ifDOk0J
+ 1Xb2ine5X/QZcjELxzTwiacL4zhvhBkZtSb89GjqnTugeD3czIacYnQeM
+ Ii6i5RR8VlO9bvb9MBu0a1DjLFHLaFCE7VDE+ni7OssGrrx8J0WVsit+T Q==;
+X-CSE-ConnectionGUID: xA/rivPfSQC9pEIq8uXhSQ==
+X-CSE-MsgGUID: II+P5jpSQdKULrzISwr/SA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="19024995"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="19024995"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 09:29:32 -0700
-X-CSE-ConnectionGUID: Ckf23xV6RNeQUXQKRB8Cvw==
-X-CSE-MsgGUID: fOVYhTdDSt6SzVMpjPqpYw==
+ 08 Apr 2024 09:29:34 -0700
+X-CSE-ConnectionGUID: IG1xFOypTKmMRsnQZRZ+Og==
+X-CSE-MsgGUID: gSZ1I1P+T7K7sfCU0jhUkA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="24683554"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="24683565"
 Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 09:29:29 -0700
+ 08 Apr 2024 09:29:32 -0700
 From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
- Haridhar Kalvala <haridhar.kalvala@intel.com>,
- Clint Taylor <clinton.a.taylor@intel.com>,
- Gustavo Sousa <gustavo.sousa@intel.com>,
- Dnyaneshar Bhadane <dnyaneshwar.bhadane@intel.com>,
  Shekhar Chauhan <shekhar.chauhan@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Subject: [PATCH v2 09/11] drm/xe/xe2hpg: Add initial GT workarounds
-Date: Mon,  8 Apr 2024 21:59:14 +0530
-Message-Id: <20240408162916.3767771-18-balasubramani.vivekanandan@intel.com>
+Subject: [PATCH v2 10/11] drm/xe/xe2hpg: Introduce performance tuning changes
+ for Xe2_HPG.
+Date: Mon,  8 Apr 2024 21:59:15 +0530
+Message-Id: <20240408162916.3767771-19-balasubramani.vivekanandan@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240408162916.3767771-1-balasubramani.vivekanandan@intel.com>
 References: <20240408162916.3767771-1-balasubramani.vivekanandan@intel.com>
@@ -73,150 +70,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Haridhar Kalvala <haridhar.kalvala@intel.com>
+From: Shekhar Chauhan <shekhar.chauhan@intel.com>
 
-Add the initial set of Xe2_HPG gt/engine/lrc workarounds.
+Introduces performance tuning guide changes for Xe_HPG.
 
-v2: Removed WA_16020183090 which is no more applicable
-    Extended WA_18033852989,18034896535 also to xe2hpg
+BSpec: 72161
 
-Signed-off-by: Haridhar Kalvala <haridhar.kalvala@intel.com>
-Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-Signed-off-by: Dnyaneshar Bhadane <dnyaneshwar.bhadane@intel.com>
+v2: Switched to open upper bound for "Tuning: L3 Cache" setting.
+
 Signed-off-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
 Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gt_regs.h |  5 +++
- drivers/gpu/drm/xe/xe_wa.c           | 67 +++++++++++++++++++++++++++-
- 2 files changed, 70 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_tuning.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index d404f211bc36..0ce79ba19bda 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -74,6 +74,9 @@
- #define WM_CHICKEN3				XE_REG_MCR(0x5588, XE_REG_OPTION_MASKED)
- #define   HIZ_PLANE_COMPRESSION_DIS		REG_BIT(10)
+diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
+index bb6db2817ada..d4e6fa918942 100644
+--- a/drivers/gpu/drm/xe/xe_tuning.c
++++ b/drivers/gpu/drm/xe/xe_tuning.c
+@@ -28,7 +28,7 @@ static const struct xe_rtp_entry_sr gt_tunings[] = {
+ 	/* Xe2 */
  
-+#define CHICKEN_RASTER_1			XE_REG_MCR(0x6204, XE_REG_OPTION_MASKED)
-+#define   DIS_SF_ROUND_NEAREST_EVEN		REG_BIT(8)
-+
- #define CHICKEN_RASTER_2			XE_REG_MCR(0x6208, XE_REG_OPTION_MASKED)
- #define   TBIMR_FAST_CLIP			REG_BIT(5)
- 
-@@ -355,6 +358,7 @@
- #define   THREAD_EX_ARB_MODE_RR_AFTER_DEP	REG_FIELD_PREP(THREAD_EX_ARB_MODE, 0x2)
- 
- #define ROW_CHICKEN3				XE_REG_MCR(0xe49c, XE_REG_OPTION_MASKED)
-+#define   XE2_EUPEND_CHK_FLUSH_DIS		REG_BIT(14)
- #define   DIS_FIX_EOT1_FLUSH			REG_BIT(9)
- 
- #define TDL_TSL_CHICKEN				XE_REG_MCR(0xe4c4, XE_REG_OPTION_MASKED)
-@@ -385,6 +389,7 @@
- 
- #define LSC_CHICKEN_BIT_0			XE_REG_MCR(0xe7c8)
- #define   DISABLE_D8_D16_COASLESCE		REG_BIT(30)
-+#define   WR_REQ_CHAINING_DIS			REG_BIT(26)
- #define   TGM_WRITE_EOM_FORCE			REG_BIT(17)
- #define   FORCE_1_SUB_MESSAGE_PER_FRAGMENT	REG_BIT(15)
- #define   SEQUENTIAL_ACCESS_UPGRADE_DISABLE	REG_BIT(13)
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 43fac92e5d20..014d27c126ae 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -429,7 +429,7 @@ static const struct xe_rtp_entry_sr engine_was[] = {
- 	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4, DISABLE_TDL_PUSH))
+ 	{ XE_RTP_NAME("Tuning: L3 cache"),
+-	  XE_RTP_RULES(GRAPHICS_VERSION(2004)),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, XE_RTP_END_VERSION_UNDEFINED)),
+ 	  XE_RTP_ACTIONS(FIELD_SET(XEHP_L3SQCREG5, L3_PWM_TIMER_INIT_VAL_MASK,
+ 				   REG_FIELD_PREP(L3_PWM_TIMER_INIT_VAL_MASK, 0x7f)))
  	},
- 	{ XE_RTP_NAME("18034896535"),
--	  XE_RTP_RULES(GRAPHICS_VERSION(2004),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, 2004),
- 		       FUNC(xe_rtp_match_first_render_or_compute)),
- 	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4, DISABLE_TDL_PUSH))
+@@ -38,11 +38,11 @@ static const struct xe_rtp_entry_sr gt_tunings[] = {
+ 				   REG_FIELD_PREP(L3_PWM_TIMER_INIT_VAL_MASK, 0x7f)))
  	},
-@@ -464,6 +464,55 @@ static const struct xe_rtp_entry_sr engine_was[] = {
- 	  XE_RTP_RULES(GRAPHICS_VERSION(2004), FUNC(xe_rtp_match_first_render_or_compute)),
- 	  XE_RTP_ACTIONS(SET(TDL_TSL_CHICKEN, SLM_WMTP_RESTORE))
+ 	{ XE_RTP_NAME("Tuning: Compression Overfetch"),
+-	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2004, XE_RTP_END_VERSION_UNDEFINED)),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, XE_RTP_END_VERSION_UNDEFINED)),
+ 	  XE_RTP_ACTIONS(CLR(CCCHKNREG1, ENCOMPPERFFIX)),
  	},
-+
-+	/* Xe2_HPG */
-+
-+	{ XE_RTP_NAME("16018712365"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2001), FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0_UDW, XE2_ALLOC_DPA_STARVE_FIX_DIS))
-+	},
-+	{ XE_RTP_NAME("16018737384"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2001), FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(ROW_CHICKEN, EARLY_EOT_DIS))
-+	},
-+	{ XE_RTP_NAME("14019988906"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2001), FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(XEHP_PSS_CHICKEN, FLSH_IGNORES_PSD))
-+	},
-+	{ XE_RTP_NAME("14019877138"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2001), FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(XEHP_PSS_CHICKEN, FD_END_COLLECT))
-+	},
-+	{ XE_RTP_NAME("14020338487"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2001), FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(ROW_CHICKEN3, XE2_EUPEND_CHK_FLUSH_DIS))
-+	},
-+	{ XE_RTP_NAME("18032247524"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2001), FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0, SEQUENTIAL_ACCESS_UPGRADE_DISABLE))
-+	},
-+	{ XE_RTP_NAME("14018471104"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2001), FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0_UDW, ENABLE_SMP_LD_RENDER_SURFACE_CONTROL))
-+	},
-+	/*
-+	 * Although this workaround isn't required for the RCS, disabling these
-+	 * reports has no impact for our driver or the GuC, so we go ahead and
-+	 * apply this to all engines for simplicity.
-+	 */
-+	{ XE_RTP_NAME("16021639441"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2001)),
-+	  XE_RTP_ACTIONS(SET(CSFE_CHICKEN1(0),
-+			     GHWSP_CSB_REPORT_DIS |
-+			     PPHWSP_CSB_AND_TIMESTAMP_REPORT_DIS,
-+			     XE_RTP_ACTION_FLAG(ENGINE_BASE)))
-+	},
-+	{ XE_RTP_NAME("14019811474"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2001),
-+		       FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0, WR_REQ_CHAINING_DIS))
-+	},
-+
+ 	{ XE_RTP_NAME("Tuning: Enable compressible partial write overfetch in L3"),
+-	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2004, XE_RTP_END_VERSION_UNDEFINED)),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, XE_RTP_END_VERSION_UNDEFINED)),
+ 	  XE_RTP_ACTIONS(SET(L3SQCREG3, COMPPWOVERFETCHEN))
+ 	},
  	{}
- };
- 
-@@ -585,10 +634,24 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
- 	  XE_RTP_ACTIONS(SET(INSTPM(RENDER_RING_BASE), ENABLE_SEMAPHORE_POLL_BIT))
- 	},
- 	{ XE_RTP_NAME("18033852989"),
--	  XE_RTP_RULES(GRAPHICS_VERSION(2004), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, 2004), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(COMMON_SLICE_CHICKEN1, DISABLE_BOTTOM_CLIP_RECTANGLE_TEST))
- 	},
- 
-+	/* Xe2_HPG */
-+	{ XE_RTP_NAME("15010599737"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2001), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(SET(CHICKEN_RASTER_1, DIS_SF_ROUND_NEAREST_EVEN))
-+	},
-+	{ XE_RTP_NAME("14019386621"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2001), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(SET(VF_SCRATCHPAD, XE2_VFG_TED_CREDIT_INTERFACE_DISABLE))
-+	},
-+	{ XE_RTP_NAME("14020756599"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2001), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(SET(WM_CHICKEN3, HIZ_PLANE_COMPRESSION_DIS))
-+	},
-+
- 	{}
- };
- 
 -- 
 2.25.1
 
