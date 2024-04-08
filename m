@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9063CD1296
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 14:36:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77CC8CD1299
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 14:36:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FC7A112693;
-	Mon,  8 Apr 2024 14:36:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23F10112697;
+	Mon,  8 Apr 2024 14:36:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S5c0/3Rw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C8tpYj4U";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E775112691
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Apr 2024 14:36:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 427B2112694
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Apr 2024 14:36:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712586967; x=1744122967;
+ t=1712586970; x=1744122970;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=J7LBfOnwLTFoUJMpqzQU5aIlwqKPqNb1mcdUfIiqbsk=;
- b=S5c0/3RwO9c5QxI/JKC62XWdcrhYNVOVdrB16DrSj53fXE/YuF1HMK63
- tCiHy2F0eEJ9l4WkTiddsRXa4HdeGaqK8Qfwqp2hEQfE6xXEiqgHEIJTF
- 1wSXFyP3Fvu5ECKMsf130JrmsWRt9CUAI+YQFhcvvRvFpsIydpAbXtKw2
- PVPDPwCwaF2huQm9SOHb/Z4GN20mHhmy2sQTx/A56kxsZ8nw6R2AZ5A2Z
- zXtLuuYILyapOtYUnkbeASo27zZet4SE2SQiUtX3KDklDdDXZ/EEv7g9k
- UPYqi2AIPNSHrJVCykag6OleFTgeIKIdEHDiSRDBpxUjaR3FafHH5FyFY w==;
-X-CSE-ConnectionGUID: HKyUN0sATYiIUQFZWg0+oQ==
-X-CSE-MsgGUID: ImW6IZpATEWTCdfpUd9dWw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="33264148"
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="33264148"
+ bh=XDVYGAbysHUCNcTHgux6Acd/Y1hj2RJcLqEaFS0VTrA=;
+ b=C8tpYj4UFXyp2LIgFL2gMD4TVGgLsBmrTAGgwM4xnU9ITE0d/kJJdUbE
+ fq/1WaBanjbM/I9dTIpHXPjTzi/ak0kTFFALzmka/9LFOfxloUKQCXQ5B
+ DSY1fuglEGkKUDcWMg1GbYHYJ/WqviWNw1HH+qiAiY8gGjLZTtL0aSN/H
+ 830QgIA/eOh77LAXK246H+9MeIeHEv/axFACqNTmTpgJLaWuBymsun/yC
+ koV2kxIUcRP9ly06Mj55PM5n1vp1Gt/JWudXqZ/GjkkbvJxuBivUK7I4C
+ 8uhTcXDihT7xyjFE4PCp091CH2YYP13+E13NsWDpJ/vV5vKkZmCGDb43L g==;
+X-CSE-ConnectionGUID: GERif21yQauynUkwBGsfcg==
+X-CSE-MsgGUID: HI8G0R9mREOU7t9eaWyKfA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="33264154"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="33264154"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 07:36:06 -0700
-X-CSE-ConnectionGUID: MARp+XlKR5yld/xAxGOY8w==
-X-CSE-MsgGUID: 2AayDF/PRQSkTSGfDrTXqQ==
+ 08 Apr 2024 07:36:10 -0700
+X-CSE-ConnectionGUID: f7rNIg8SS5y3W3irbvuH5w==
+X-CSE-MsgGUID: ElnNYHiYThSvNIclEqd5QQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="24673125"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="24673149"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orviesa005.jf.intel.com with ESMTP; 08 Apr 2024 07:36:05 -0700
+ by orviesa005.jf.intel.com with ESMTP; 08 Apr 2024 07:36:09 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v2 1/4] drm/xe: Simplify function return using
- drmm_add_action_or_reset()
-Date: Mon,  8 Apr 2024 20:19:41 +0530
-Message-Id: <20240408144944.604448-2-himal.prasad.ghimiray@intel.com>
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Subject: [PATCH v2 3/4] drm/xe: Incase of action add failure,
+ free_gsc_pkt only once.
+Date: Mon,  8 Apr 2024 20:19:43 +0530
+Message-Id: <20240408144944.604448-4-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240408144944.604448-1-himal.prasad.ghimiray@intel.com>
 References: <20240408144944.604448-1-himal.prasad.ghimiray@intel.com>
@@ -68,142 +68,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Instead of assigning the value of drmm_add_action_or_reset() to err and
-returning err in case of failure and 0 in case of success, simply return
-the result of drmm_add_action_or_reset().
+The drmm_add_action_or_reset function automatically invokes the
+action (free_gsc_pkt) in the event of a failure; therefore, there's no
+necessity to call it within the return check.
 
--v2:
-cleanup in xe_display too.
-
+Fixes: d8b1571312b7 ("drm/xe/huc: HuC authentication via GSC")
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_display.c | 8 +-------
- drivers/gpu/drm/xe/xe_device.c          | 6 +-----
- drivers/gpu/drm/xe/xe_gsc_proxy.c       | 7 +------
- drivers/gpu/drm/xe/xe_gt.c              | 6 +-----
- drivers/gpu/drm/xe/xe_guc_pc.c          | 6 +-----
- drivers/gpu/drm/xe/xe_hw_engine.c       | 6 +-----
- 6 files changed, 6 insertions(+), 33 deletions(-)
+ drivers/gpu/drm/xe/xe_huc.c | 9 +--------
+ 1 file changed, 1 insertion(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 6ec375c1c4b6..63b27fbcdaca 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -101,8 +101,6 @@ static void display_destroy(struct drm_device *dev, void *dummy)
-  */
- int xe_display_create(struct xe_device *xe)
- {
--	int err;
--
- 	spin_lock_init(&xe->display.fb_tracking.lock);
- 
- 	xe->display.hotplug.dp_wq = alloc_ordered_workqueue("xe-dp", 0);
-@@ -110,11 +108,7 @@ int xe_display_create(struct xe_device *xe)
- 	drmm_mutex_init(&xe->drm, &xe->sb_lock);
- 	xe->enabled_irq_mask = ~0;
- 
--	err = drmm_add_action_or_reset(&xe->drm, display_destroy, NULL);
--	if (err)
--		return err;
--
--	return 0;
-+	return drmm_add_action_or_reset(&xe->drm, display_destroy, NULL);
- }
- 
- static void xe_display_fini_nommio(struct drm_device *dev, void *dummy)
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 9083f5e02dd9..ce8d632cb961 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -588,11 +588,7 @@ int xe_device_probe(struct xe_device *xe)
- 
- 	xe_hwmon_register(xe);
- 
--	err = drmm_add_action_or_reset(&xe->drm, xe_device_sanitize, xe);
--	if (err)
--		return err;
--
--	return 0;
-+	return drmm_add_action_or_reset(&xe->drm, xe_device_sanitize, xe);
- 
- err_fini_display:
- 	xe_display_driver_remove(xe);
-diff --git a/drivers/gpu/drm/xe/xe_gsc_proxy.c b/drivers/gpu/drm/xe/xe_gsc_proxy.c
-index 35e397b68dfc..1b908d238bd1 100644
---- a/drivers/gpu/drm/xe/xe_gsc_proxy.c
-+++ b/drivers/gpu/drm/xe/xe_gsc_proxy.c
-@@ -403,7 +403,6 @@ static int proxy_channel_alloc(struct xe_gsc *gsc)
+diff --git a/drivers/gpu/drm/xe/xe_huc.c b/drivers/gpu/drm/xe/xe_huc.c
+index 78318d73e4cf..39a484a57585 100644
+--- a/drivers/gpu/drm/xe/xe_huc.c
++++ b/drivers/gpu/drm/xe/xe_huc.c
+@@ -53,7 +53,6 @@ static int huc_alloc_gsc_pkt(struct xe_huc *huc)
+ 	struct xe_gt *gt = huc_to_gt(huc);
  	struct xe_device *xe = gt_to_xe(gt);
  	struct xe_bo *bo;
- 	void *csme;
 -	int err;
  
- 	csme = kzalloc(GSC_PROXY_CHANNEL_SIZE, GFP_KERNEL);
- 	if (!csme)
-@@ -424,11 +423,7 @@ static int proxy_channel_alloc(struct xe_gsc *gsc)
- 	gsc->proxy.to_csme = csme;
- 	gsc->proxy.from_csme = csme + GSC_PROXY_BUFFER_SIZE;
+ 	/* we use a single object for both input and output */
+ 	bo = xe_bo_create_pin_map(xe, gt_to_tile(gt), NULL,
+@@ -66,13 +65,7 @@ static int huc_alloc_gsc_pkt(struct xe_huc *huc)
  
--	err = drmm_add_action_or_reset(&xe->drm, proxy_channel_free, gsc);
--	if (err)
+ 	huc->gsc_pkt = bo;
+ 
+-	err = drmm_add_action_or_reset(&xe->drm, free_gsc_pkt, huc);
+-	if (err) {
+-		free_gsc_pkt(&xe->drm, huc);
 -		return err;
+-	}
 -
 -	return 0;
-+	return drmm_add_action_or_reset(&xe->drm, proxy_channel_free, gsc);
++	return drmm_add_action_or_reset(&xe->drm, free_gsc_pkt, huc);
  }
  
- /**
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index cfa5da900461..2421a8d34324 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -560,11 +560,7 @@ int xe_gt_init(struct xe_gt *gt)
- 	if (err)
- 		return err;
- 
--	err = drmm_add_action_or_reset(&gt_to_xe(gt)->drm, gt_fini, gt);
--	if (err)
--		return err;
--
--	return 0;
-+	return drmm_add_action_or_reset(&gt_to_xe(gt)->drm, gt_fini, gt);
- }
- 
- static int do_gt_reset(struct xe_gt *gt)
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index 521ae24f2314..509649d0e65e 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -937,9 +937,5 @@ int xe_guc_pc_init(struct xe_guc_pc *pc)
- 
- 	pc->bo = bo;
- 
--	err = drmm_add_action_or_reset(&xe->drm, xe_guc_pc_fini, pc);
--	if (err)
--		return err;
--
--	return 0;
-+	return drmm_add_action_or_reset(&xe->drm, xe_guc_pc_fini, pc);
- }
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index a688bb2d96ce..455f375c1cbd 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -550,11 +550,7 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
- 	if (xe->info.has_usm && hwe->class == XE_ENGINE_CLASS_COPY)
- 		gt->usm.reserved_bcs_instance = hwe->instance;
- 
--	err = drmm_add_action_or_reset(&xe->drm, hw_engine_fini, hwe);
--	if (err)
--		return err;
--
--	return 0;
-+	return drmm_add_action_or_reset(&xe->drm, hw_engine_fini, hwe);
- 
- err_kernel_lrc:
- 	xe_lrc_finish(&hwe->kernel_lrc);
+ int xe_huc_init(struct xe_huc *huc)
 -- 
 2.25.1
 
