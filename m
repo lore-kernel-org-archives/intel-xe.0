@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1273FCD1299
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A247CD129A
 	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 16:29:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 988A5112775;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7A53112772;
 	Mon,  8 Apr 2024 16:29:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H1zf2nL1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GwDCCryU";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E691112775
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Apr 2024 16:29:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52F7B112774
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Apr 2024 16:29:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712593766; x=1744129766;
+ t=1712593769; x=1744129769;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
  bh=6WGdwOlspgi+kVN01Piu3EGpbq0ktydWmViwiS4XzeU=;
- b=H1zf2nL1A+26/SX7PlQNlG4hmAxLlP0C1deKf2VT06s7oowlGOefoT7s
- 6s+I4cnA0NI++2nisgwfRZPhnkvln68+AHxKcJFrax2w3fBBEEWoNG0JR
- QRsbuDOzs8LN+BIiMYMcfITvI6QyhUQ8IfRhpGQgY+hcM4TzzoS0kOrbU
- hMfBbc5IkTOpgKmx/jLMQ7NUQZhG/acjXv+hWFpChOcg8UTmmFVhQjYRs
- psH9QgYceI60sU6iPP6owaeZpb5l2qr8P6/UuaG4fXXMhMhJJgCglT67M
- 0nB2mzAp5rbfMGndXNE7HR30ijy8Or/ivPQAdj5PHdHlsgvvGiyS7RDLB w==;
-X-CSE-ConnectionGUID: 7ptuZGTaTz+dIO4/xY8O/A==
-X-CSE-MsgGUID: dLLEKYyqRtWnySiiqkfPZw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="19024983"
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="19024983"
+ b=GwDCCryUeUsQduvRbjKmPd2qR36D1O3mQxM/iRuGig1rGuijc/5BnX4/
+ 1k08+8HP5dFJoifAcmRsy0KP44T9qYiND6Gfnjwrbekv4rjKjn5W7Q2ms
+ vPfAtnEjgHAENt0UKbI3h2mg6OFW4xBJQIxa97F9bMhqxhE1Bb4BoWkCS
+ lX6+cNo2IxjonVI86agGDz/EZsCrV2Nki2VhO6q2o3j3mg5Cc+A+UH4r+
+ TQ5OV4irT42Ii0pnq2zAzPvWlEiOfO1tmGG/bHvW5rWomz/lmmxvHRcOr
+ wx9n+Yy0aX3SP8Tx7YjzbxCO7WAAMt4GFtDInwWAJpWCEJXRCNKBj9WOh g==;
+X-CSE-ConnectionGUID: 9HWlSXUsR4Wlt9Q04ftQ7Q==
+X-CSE-MsgGUID: ZEJEeMhYSjKSv1niMt6iAA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="19024991"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="19024991"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 09:29:25 -0700
-X-CSE-ConnectionGUID: G5d8FgdBS++lzPw9MbmFQA==
-X-CSE-MsgGUID: LMqXbpHdRJinhcvjwzBoow==
+ 08 Apr 2024 09:29:29 -0700
+X-CSE-ConnectionGUID: 2obBybskT12vBKJaguHuVQ==
+X-CSE-MsgGUID: /0cjLsmwThSOrnSXVy/u8A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="24683524"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="24683540"
 Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 09:29:23 -0700
+ 08 Apr 2024 09:29:27 -0700
 From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  Akshata Jahagirdar <akshata.jahagirdar@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Subject: [PATCH v2 07/11] drm/xe/xe2hpg: Remove extra allocation of CCS pages
+Subject: [PATCH v2 08/11] drm/xe/xe2hpg: Remove extra allocation of CCS pages
  for dgfx
-Date: Mon,  8 Apr 2024 21:59:11 +0530
-Message-Id: <20240408162916.3767771-15-balasubramani.vivekanandan@intel.com>
+Date: Mon,  8 Apr 2024 21:59:13 +0530
+Message-Id: <20240408162916.3767771-17-balasubramani.vivekanandan@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240408162916.3767771-1-balasubramani.vivekanandan@intel.com>
 References: <20240408162916.3767771-1-balasubramani.vivekanandan@intel.com>
