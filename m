@@ -4,141 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5720FC67861
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 12:07:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 314EFCD128A
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 12:20:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFD00112505;
-	Mon,  8 Apr 2024 12:07:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2A3110F6CF;
+	Mon,  8 Apr 2024 12:20:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="X8OMWzX1";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="zy1rbN87";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="X8OMWzX1";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="zy1rbN87";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Olel7Zkt";
 	dkim-atps=neutral
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22EF6112501;
- Mon,  8 Apr 2024 12:07:08 +0000 (UTC)
-Received: from imap2.dmz-prg2.suse.org (imap2.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:98])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 9E3C52286B;
- Mon,  8 Apr 2024 12:07:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1712578025; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=qPRkwLM3l99ZaHWJ95ZYG/cJYATk7XbMOBcv729HU48=;
- b=X8OMWzX1A8IF+6oAXSOfgNydupnsgQot6UiCL5cGmowQyEJ9EGyxWn4H331aExgdqdyLmx
- 8cEZ1oSz6+W95YwZfD5LcTY7UinsDhEf0H4nqhgabef6zFaxQO/nfakOeD2weBLnmkbEnV
- /wNetEQd3H6VC4DnnQjkMeR6tJF4GQA=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1712578025;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=qPRkwLM3l99ZaHWJ95ZYG/cJYATk7XbMOBcv729HU48=;
- b=zy1rbN87Mtl5Ii8fn7Rl+NnVCkTBtpBrT5OC+7D9Yloq9VLAnVDZpfoJyczNRGPpAO6VaT
- YQAYM4n/Hh5YM9Cg==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=X8OMWzX1;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=zy1rbN87
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1712578025; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=qPRkwLM3l99ZaHWJ95ZYG/cJYATk7XbMOBcv729HU48=;
- b=X8OMWzX1A8IF+6oAXSOfgNydupnsgQot6UiCL5cGmowQyEJ9EGyxWn4H331aExgdqdyLmx
- 8cEZ1oSz6+W95YwZfD5LcTY7UinsDhEf0H4nqhgabef6zFaxQO/nfakOeD2weBLnmkbEnV
- /wNetEQd3H6VC4DnnQjkMeR6tJF4GQA=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1712578025;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=qPRkwLM3l99ZaHWJ95ZYG/cJYATk7XbMOBcv729HU48=;
- b=zy1rbN87Mtl5Ii8fn7Rl+NnVCkTBtpBrT5OC+7D9Yloq9VLAnVDZpfoJyczNRGPpAO6VaT
- YQAYM4n/Hh5YM9Cg==
-Received: from imap2.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap2.dmz-prg2.suse.org (Postfix) with ESMTPS id 1AEFD1332F;
- Mon,  8 Apr 2024 12:07:05 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap2.dmz-prg2.suse.org with ESMTPSA id S1kABendE2Y0TwAAn2gu4w
- (envelope-from <tzimmermann@suse.de>); Mon, 08 Apr 2024 12:07:05 +0000
-Message-ID: <67100444-2ea0-42c2-a6ba-d1444ded5c3f@suse.de>
-Date: Mon, 8 Apr 2024 14:07:04 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96DBC112518
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Apr 2024 12:20:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1712578826; x=1744114826;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=u616bXgszmO141y2D5LApXJ8FoEnQ4bfqwvSW7i9kjU=;
+ b=Olel7Zkt6/DOF2DI+cb1O9CB5G8ukMMrIWNwEW+zwkYxfYD687vZPkQH
+ oSTViBoVvAMWhk5cKf/yGAA6dBynyYtkou/3lkzaWBpWm2XB1I2IkCupa
+ 5SoXMJBh1MgR4EXiEqrn+0J5GvQxD5eZL7AkiNxTGcfAstvvTswkPhBNw
+ QbSszTgHU8YWYVreSW/IDvpYl0yP/BSbtdr8a4W0NHUWg/GQ72p08UAsl
+ uPuI0VQfeN/Xr3RU3HUpt+UuQ43sunHdKS/iU7N8METBLb5gAKX0xk6sM
+ HE4OmLLLJcr6oAdMPRXMxdf43b028YtRI2ExMRjRJT7WqzEmnaKYVoEH/ g==;
+X-CSE-ConnectionGUID: E39T/XnSQ1GKVjztPPZAVQ==
+X-CSE-MsgGUID: ZFciUwd4RTCjJQ/ackUb4Q==
+X-IronPort-AV: E=McAfee;i="6600,9927,11037"; a="18464859"
+X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="18464859"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2024 05:20:25 -0700
+X-CSE-ConnectionGUID: wcT+py8JToGuQKiibu8dhA==
+X-CSE-MsgGUID: VOvwxrNcRVel5nVXFZ2paw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="19732711"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orviesa010.jf.intel.com with ESMTP; 08 Apr 2024 05:20:23 -0700
+Received: from [10.249.158.202] (unknown [10.249.158.202])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 7B9B428169;
+ Mon,  8 Apr 2024 13:20:22 +0100 (IST)
+Message-ID: <6498954f-e539-4695-8338-4820d423731b@intel.com>
+Date: Mon, 8 Apr 2024 14:20:21 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 1/6] drm/client: Export drm_client_dev_unregister()
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- tvrtko.ursulin@linux.intel.com, ville.syrjala@linux.intel.com,
- imre.deak@intel.com, tejas.upadhyay@intel.com, jouni.hogander@intel.com,
- javierm@redhat.com, airlied@gmail.com, daniel@ffwll.ch,
- lucas.demarchi@intel.com, ogabbay@kernel.org,
- thomas.hellstrom@linux.intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-References: <20240301134448.31289-1-tzimmermann@suse.de>
- <20240301134448.31289-2-tzimmermann@suse.de> <ZeszikpTbZuYTav8@intel.com>
+Subject: Re: [PATCH] drm/xe: Promote make_u64 macro to .h file
 Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <ZeszikpTbZuYTav8@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+References: <20240213210543.1265-1-michal.wajdeczko@intel.com>
+ <Zcvq_kiF-EM5evIz@intel.com> <87cysz6ud7.fsf@intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <87cysz6ud7.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-4.50 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- XM_UA_NO_VERSION(0.01)[]; MX_GOOD(-0.01)[];
- RCPT_COUNT_TWELVE(0.00)[17]; FUZZY_BLOCKED(0.00)[rspamd.com];
- ARC_NA(0.00)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- MIME_TRACE(0.00)[0:+]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]; RCVD_TLS_ALL(0.00)[];
- TO_DN_SOME(0.00)[];
- SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:98:from];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- FREEMAIL_CC(0.00)[linux.intel.com,intel.com,redhat.com,gmail.com,ffwll.ch,kernel.org,lists.freedesktop.org];
- RCVD_COUNT_TWO(0.00)[2]; DWL_DNSWL_BLOCKED(0.00)[suse.de:dkim];
- MID_RHS_MATCH_FROM(0.00)[]; DKIM_TRACE(0.00)[suse.de:+];
- RCVD_VIA_SMTP_AUTH(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim, suse.de:email,
- imap2.dmz-prg2.suse.org:helo, imap2.dmz-prg2.suse.org:rdns]
-X-Rspamd-Action: no action
-X-Rspamd-Queue-Id: 9E3C52286B
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,71 +72,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi
 
-Am 08.03.24 um 16:49 schrieb Rodrigo Vivi:
-> On Fri, Mar 01, 2024 at 02:42:54PM +0100, Thomas Zimmermann wrote:
->> Export drm_client_dev_unregister() for use by the i915 driver. The
->> driver does not use drm_dev_unregister(),
-> Perhaps we should make i915 to call for the drm_dev_unregister since it calls
-> for drm_dev_register?
 
-Not that I disagree, but this appears to be a separate change unrelated 
-to fbdev support.
-
-Best regards
-Thomas
-
->
->> so it has to clean up the
->> in-kernel DRM clients by itself.
+On 14.02.2024 14:36, Jani Nikula wrote:
+> On Tue, 13 Feb 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+>> On Tue, Feb 13, 2024 at 10:05:43PM +0100, Michal Wajdeczko wrote:
+>>> We shouldn't hide generic macros inside .c files as this may lead
+>>> to unnecessary code duplication if similar functionality is needed
+>>> elsewhere.  Promote make_u64 to .h as soon we will want to reuse it.
 >>
->> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
->> ---
->>   drivers/gpu/drm/drm_client.c | 13 +++++++++++++
->>   1 file changed, 13 insertions(+)
+>> On the other hand, we shouldn't create an internal library of macros
+>> that then start to get used indiscriminately as if it was Linux core
+>> helpers.
 >>
->> diff --git a/drivers/gpu/drm/drm_client.c b/drivers/gpu/drm/drm_client.c
->> index 9403b3f576f7b..3d4f8b77d0789 100644
->> --- a/drivers/gpu/drm/drm_client.c
->> +++ b/drivers/gpu/drm/drm_client.c
->> @@ -172,6 +172,18 @@ void drm_client_release(struct drm_client_dev *client)
->>   }
->>   EXPORT_SYMBOL(drm_client_release);
->>   
->> +/**
->> + * drm_client_dev_unregister - Unregister clients
->> + * @dev: DRM device
->> + *
->> + * This function releases all clients by calling each client's
->> + * &drm_client_funcs.unregister callback. The callback function
->> + * is responsibe for releaseing all resources including the client
->> + * itself.
->> + *
->> + * The helper drm_dev_unregister() calls this function. Drivers
->> + * that use it don't need to call this function themselves.
->> + */
->>   void drm_client_dev_unregister(struct drm_device *dev)
->>   {
->>   	struct drm_client_dev *client, *tmp;
->> @@ -191,6 +203,7 @@ void drm_client_dev_unregister(struct drm_device *dev)
->>   	}
->>   	mutex_unlock(&dev->clientlist_mutex);
->>   }
->> +EXPORT_SYMBOL(drm_client_dev_unregister);
->>   
->>   /**
->>    * drm_client_dev_hotplug - Send hotplug event to clients
->> -- 
->> 2.43.2
+>> Changes like this was how the i915_utils.h started.
 >>
+>> If we really think that this macro is useful somewhere else, then
+>> we should be looking to make that as part of the linux/types.h
+> 
+> Agreed.
+> 
+> Well, maybe not specifically types.h, but maybe a separate header.
 
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+My attempts to promote this to a global macro reached dead end. To move
+forward please either engage in LKML [1] [2] discussions or accept this
+local solution or suggest other option.
 
+Michal
+
+[1]
+https://lore.kernel.org/lkml/20240214155408.1569-1-michal.wajdeczko@intel.com/
+
+[2]
+https://lore.kernel.org/lkml/20240214214654.1700-1-michal.wajdeczko@intel.com/
+
+
+> 
+> There's a need for something like this:
+> 
+> $ git grep "hi[ )]*<< *\(8\|16\|32\)[ )]*|.*lo"
+> 
+> Ditto for taking higher/lower half of a variable.
+> 
+> 
+> BR,
+> Jani.
+> 
+> 
+>>
+>>>
+>>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>> ---
+>>>  drivers/gpu/drm/xe/xe_gt_pagefault.c | 2 --
+>>>  drivers/gpu/drm/xe/xe_macros.h       | 8 ++++++++
+>>>  2 files changed, 8 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+>>> index c26e4fcca01e..76a018ec8136 100644
+>>> --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
+>>> +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+>>> @@ -557,8 +557,6 @@ static int handle_acc(struct xe_gt *gt, struct acc *acc)
+>>>  	return ret;
+>>>  }
+>>>  
+>>> -#define make_u64(hi__, low__)  ((u64)(hi__) << 32 | (u64)(low__))
+>>> -
+>>>  #define ACC_MSG_LEN_DW        4
+>>>  
+>>>  static bool get_acc(struct acc_queue *acc_queue, struct acc *acc)
+>>> diff --git a/drivers/gpu/drm/xe/xe_macros.h b/drivers/gpu/drm/xe/xe_macros.h
+>>> index daf56c846d03..b79d775c737e 100644
+>>> --- a/drivers/gpu/drm/xe/xe_macros.h
+>>> +++ b/drivers/gpu/drm/xe/xe_macros.h
+>>> @@ -7,6 +7,7 @@
+>>>  #define _XE_MACROS_H_
+>>>  
+>>>  #include <linux/bug.h>
+>>> +#include <linux/types.h>
+>>>  
+>>>  #define XE_WARN_ON WARN_ON
+>>>  
+>>> @@ -15,4 +16,11 @@
+>>>  			    "Ioctl argument check failed at %s:%d: %s", \
+>>>  			    __FILE__, __LINE__, #cond), 1))
+>>>  
+>>> +/**
+>>> + * make_u64 - make u64 value from two u32 values
+>>> + * @hi__: value representing upper 32 bits
+>>> + * @lo__: value representing lower 32 bits
+>>> + */
+>>> +#define make_u64(hi__, low__)  ((u64)(hi__) << 32 | (u64)(low__))
+>>> +
+>>>  #endif
+>>> -- 
+>>> 2.43.0
+>>>
+> 
