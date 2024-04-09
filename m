@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE3DBC67861
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Apr 2024 09:03:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CBB1C67861
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Apr 2024 09:04:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 433CC112BE4;
-	Tue,  9 Apr 2024 09:03:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E89D8112BE4;
+	Tue,  9 Apr 2024 09:04:13 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8651F112BE4;
- Tue,  9 Apr 2024 09:03:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AAD3112BE4;
+ Tue,  9 Apr 2024 09:04:10 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5BCI-only=2C1/4=5D_drm=3A_Add_drm=5Fvblank=5Fwork=5Fflush=5Fall?=
- =?utf-8?q?=28=29=2E?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5BC?=
+ =?utf-8?q?I-only=2C1/4=5D_drm=3A_Add_drm=5Fvblank=5Fwork=5Fflush=5Fall=28?=
+ =?utf-8?q?=29=2E?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 09 Apr 2024 09:03:55 -0000
-Message-ID: <171265343555.1300821.10291539325675120691@8e613ede5ea5>
+Date: Tue, 09 Apr 2024 09:04:10 -0000
+Message-ID: <171265345056.1300821.873945640348932443@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240409083140.27711-1-maarten.lankhorst@linux.intel.com>
 In-Reply-To: <20240409083140.27711-1-maarten.lankhorst@linux.intel.com>
@@ -45,16 +45,51 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: series starting with [CI-only,1/4] drm: Add drm_vblank_work_flush_all().
 URL   : https://patchwork.freedesktop.org/series/132197/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 5a898fb63049 drm-tip: 2024y-04m-09d-08h-35m-05s UTC integration manifest
-=== git am output follows ===
-Applying: drm: Add drm_vblank_work_flush_all().
-Applying: drm/i915: Use vblank worker to unpin old legacy cursor fb safely
-Applying: drm/i915: Use the same vblank worker for atomic unpin
-Applying: drm/i915: Hack to check use-after-free aggressively, and undo purpose of patches
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+10b531c2aeb176a1a539b4a77216232f97719cec
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6f688df986e284ba8923a1234f24c336966f424e
+Author: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Date:   Tue Apr 9 10:31:40 2024 +0200
+
+    drm/i915: Hack to check use-after-free aggressively, and undo purpose of patches
+    
+    Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
++ /mt/dim checkpatch 5a898fb63049703bffb8ec36b2af3c3bfb053fc4 drm-intel
+24a533aded53 drm: Add drm_vblank_work_flush_all().
+-:33: WARNING:WAITQUEUE_ACTIVE: waitqueue_active without comment
+#33: FILE: drivers/gpu/drm/drm_vblank_work.c:249:
++			    !waitqueue_active(&vblank->work_wait_queue),
+
+total: 0 errors, 1 warnings, 0 checks, 41 lines checked
+c07690e15ca3 drm/i915: Use vblank worker to unpin old legacy cursor fb safely
+a7b39145b246 drm/i915: Use the same vblank worker for atomic unpin
+-:107: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#107: FILE: drivers/gpu/drm/i915/display/intel_crtc.c:641:
++							 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
+
+-:110: WARNING:LONG_LINE_COMMENT: line length of 110 exceeds 100 columns
+#110: FILE: drivers/gpu/drm/i915/display/intel_crtc.c:644:
++				/* Remove plane from atomic state, cleanup/free is done from vblank worker. */
+
+total: 0 errors, 2 warnings, 0 checks, 98 lines checked
+6f688df986e2 drm/i915: Hack to check use-after-free aggressively, and undo purpose of patches
+-:8: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+-:18: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#18: FILE: drivers/gpu/drm/i915/display/intel_crtc.c:641:
++							 drm_crtc_accurate_vblank_count(&crtc->base),
+
+total: 0 errors, 2 warnings, 0 checks, 16 lines checked
 
 
