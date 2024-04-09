@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 863B2C67861
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Apr 2024 20:05:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C92CC67861
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Apr 2024 20:05:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3DA810E96D;
-	Tue,  9 Apr 2024 20:05:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72E9810E96D;
+	Tue,  9 Apr 2024 20:05:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XoQ4orYA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FNN1W0Nz";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F51D112F14
- for <intel-xe@lists.freedesktop.org>; Tue,  9 Apr 2024 20:04:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41E0410EE99
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 Apr 2024 20:04:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712693094; x=1744229094;
+ t=1712693093; x=1744229093;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=r2ghyJt981rHQ5b4lkJGto+QIAjeMH4SsY+sNoBrGHc=;
- b=XoQ4orYAsmebo5Fq9XpaZzDFbYG8B01d5A+bXHPuWvv0DohUsAF7NwsL
- MpxbEN6bQHU2LfjKXTr700RR/Z5dwl/0ffp62m8WeCFRUxo8LkL5d97WE
- VWSGsYmTqlNMwJKLlT0YePIpyCDioiDIdSWypFllVv1U7OFkMD/Ux2oz9
- 8GkpClkPTBMr/es+ZU3SpFOwBt50vHB1OBCWAKPNpeMv/UQBCe7MGM9EG
- JoxQgL9JtmpR7kLgOT4UYe5940LKlZci0Y8ljX6sgmpeqdzqXk2/RPQUF
- o2mTWiO0IYcTaPaAxP/40w9/87DFRGzyND/RrWLWh24h+uIzraA361lDG w==;
-X-CSE-ConnectionGUID: cqHEx0yDQq60TcNa25ls7Q==
-X-CSE-MsgGUID: 8T4EIC1BRmGHn2qf8BvOPg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="11803748"
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="11803748"
+ bh=IgTg5rpRtePLupWg3aD5I7Gh2zRaE7GKcIVij7uNhNM=;
+ b=FNN1W0Nz1qG5VDXJaha9j2NFTIO5TUdPqKphv6sLwfxFkKjCZWcKp/Hv
+ Q6a9ySXQfElJvl/BZ3MbfMW/R7AqkbaIRdCQQ7Xlp2RsCbce3DjoC7u46
+ XnicZmXn6Jt8+CieC1sxdRy2SK3pMOEaiFIYjZ6cUMSzNSgRyjberHL2X
+ bB/8AmusAolqu8G7nT4eHAghT0eryIRTVO1WIew8FSNhxjVYfS1TYHmAx
+ 9nkROiQeylWSJ/g/MQQNGKjLy0rKdhmGq+Y6yMprXJgxgVZFp7jVt6vRY
+ Y1PpDZiGH2XwenuamQh3zrLTd26P0D5V1dZFPqY0HakMw/85x6fx1SKB0 w==;
+X-CSE-ConnectionGUID: MC0fLxUNQTatD9nJyfZ1FA==
+X-CSE-MsgGUID: F63R5CJyQCqffVxeqbne+g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="11803741"
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="11803741"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2024 13:04:53 -0700
-X-CSE-ConnectionGUID: p/XPlH/tQ7OCK/eZWp8nZw==
-X-CSE-MsgGUID: /vl8+Z9aQiSlIxhDAPw3rQ==
+ 09 Apr 2024 13:04:52 -0700
+X-CSE-ConnectionGUID: g3LqPfJ6ROq0vuXQrL73KQ==
+X-CSE-MsgGUID: Z5eMPWSnSjex90a+cAntJw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="20773748"
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="20773717"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Apr 2024 13:04:52 -0700
@@ -46,9 +46,9 @@ To: intel-xe@lists.freedesktop.org
 Cc: himal.prasad.ghimiray@intel.com, krishnaiah.bommu@intel.com,
  matthew.brost@intel.com, Thomas.Hellstrom@linux.intel.com,
  brian.welty@intel.com
-Subject: [v2 12/31] drm/xe/svm: Remap and provide memmap backing for GPU vram
-Date: Tue,  9 Apr 2024 16:17:23 -0400
-Message-Id: <20240409201742.3042626-13-oak.zeng@intel.com>
+Subject: [v2 02/31] drm/xe/svm: Add SVM document
+Date: Tue,  9 Apr 2024 16:17:13 -0400
+Message-Id: <20240409201742.3042626-3-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240409201742.3042626-1-oak.zeng@intel.com>
 References: <20240409201742.3042626-1-oak.zeng@intel.com>
@@ -69,38 +69,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Memory remap GPU vram using devm_memremap_pages, so each GPU vram
-page is backed by a struct page.
-
-Those struct pages are created to allow hmm migrate buffer b/t
-GPU vram and CPU system memory using existing Linux migration
-mechanism (i.e., migrating b/t CPU system memory and hard disk).
-
-This is prepare work to enable svm (shared virtual memory) through
-Linux kernel hmm framework. The memory remap's page map type is set
-to MEMORY_DEVICE_PRIVATE for now. This means even though each GPU
-vram page get a struct page and can be mapped in CPU page table,
-but such pages are treated as GPU's private resource, so CPU can't
-access them. If CPU access such page, a page fault is triggered
-and page will be migrate to system memory.
-
-For GPU device which supports coherent memory protocol b/t CPU and
-GPU (such as CXL and CAPI protocol), we can remap device memory as
-MEMORY_DEVICE_COHERENT. This is TBD.
-
-v1:
-Changes per code review feedback from Matt:
-    change .o order in Makefile
-    fix indentation
-    change code order in mmio_fini
-    remove unnecessary header file
-    uniform xe_svm_devm_add/_remove parameter
-    use tile (vs dev) as pagemap.owner during memremap
-    only remap vram for platform that support usm
-Changes per review feedback from Brian:
-    s/xe_svm_devm_add/xe_devm_add
-    s/xe_svm_devm_remove/xe_devm_remove
-    move calling of xe_devm_add to xe_tile.c
+Add shared virtual memory document.
 
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 Co-developed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
@@ -109,216 +78,163 @@ Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@intel.com>
 Cc: Brian Welty <brian.welty@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile          |  1 +
- drivers/gpu/drm/xe/xe_device_types.h |  8 +++
- drivers/gpu/drm/xe/xe_mmio.c         |  6 ++
- drivers/gpu/drm/xe/xe_svm.h          | 15 +++++
- drivers/gpu/drm/xe/xe_svm_devmem.c   | 89 ++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_tile.c         |  4 ++
- 6 files changed, 123 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_svm.h
- create mode 100644 drivers/gpu/drm/xe/xe_svm_devmem.c
+ Documentation/gpu/xe/index.rst  |   1 +
+ Documentation/gpu/xe/xe_svm.rst |   8 +++
+ drivers/gpu/drm/xe/xe_svm_doc.h | 121 ++++++++++++++++++++++++++++++++
+ 3 files changed, 130 insertions(+)
+ create mode 100644 Documentation/gpu/xe/xe_svm.rst
+ create mode 100644 drivers/gpu/drm/xe/xe_svm_doc.h
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index fff70fc9a09e..cd5213ba182b 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -129,6 +129,7 @@ xe-y += xe_bb.o \
- 	xe_sa.o \
- 	xe_sched_job.o \
- 	xe_step.o \
-+	xe_svm_devmem.o \
- 	xe_sync.o \
- 	xe_tile.o \
- 	xe_tile_sysfs.o \
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index e73b9a086718..d6a14327986b 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -103,6 +103,14 @@ struct xe_mem_region {
- 	resource_size_t actual_physical_size;
- 	/** @mapping: pointer to VRAM mappable space */
- 	void __iomem *mapping;
-+	/** @pagemap: Used to remap device memory as ZONE_DEVICE */
-+	struct dev_pagemap pagemap;
-+	/**
-+	 * @hpa_base: base host physical address
-+	 *
-+	 * This is generated when remap device memory as ZONE_DEVICE
-+	 */
-+	resource_size_t hpa_base;
- };
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 7ba2477452d7..12923fe6abae 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -22,6 +22,7 @@
- #include "xe_module.h"
- #include "xe_sriov.h"
- #include "xe_tile.h"
-+#include "xe_svm.h"
- 
- #define XEHP_MTCFG_ADDR		XE_REG(0x101800)
- #define TILE_COUNT		REG_GENMASK(15, 8)
-@@ -354,6 +355,11 @@ void xe_mmio_probe_tiles(struct xe_device *xe)
- static void mmio_fini(struct drm_device *drm, void *arg)
- {
- 	struct xe_device *xe = arg;
-+	struct xe_tile *tile;
-+	u8 id;
-+
-+	for_each_tile(tile, xe, id)
-+		xe_devm_remove(tile, &tile->mem.vram);
- 
- 	pci_iounmap(to_pci_dev(xe->drm.dev), xe->mmio.regs);
- 	if (xe->mem.vram.mapping)
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+diff --git a/Documentation/gpu/xe/index.rst b/Documentation/gpu/xe/index.rst
+index c224ecaee81e..106b60aba1f0 100644
+--- a/Documentation/gpu/xe/index.rst
++++ b/Documentation/gpu/xe/index.rst
+@@ -23,3 +23,4 @@ DG2, etc is provided to prototype the driver.
+    xe_firmware
+    xe_tile
+    xe_debugging
++   xe_svm
+diff --git a/Documentation/gpu/xe/xe_svm.rst b/Documentation/gpu/xe/xe_svm.rst
 new file mode 100644
-index 000000000000..e944971cfc6d
+index 000000000000..62954ba1c6f8
 --- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -0,0 +1,15 @@
-+// SPDX-License-Identifier: MIT
++++ b/Documentation/gpu/xe/xe_svm.rst
+@@ -0,0 +1,8 @@
++.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++
++=============
++Shared virtual memory
++=============
++
++.. kernel-doc:: drivers/gpu/drm/xe/xe_svm_doc.h
++   :doc: Shared virtual memory
+diff --git a/drivers/gpu/drm/xe/xe_svm_doc.h b/drivers/gpu/drm/xe/xe_svm_doc.h
+new file mode 100644
+index 000000000000..de38ee3585e4
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_svm_doc.h
+@@ -0,0 +1,121 @@
++/* SPDX-License-Identifier: MIT */
 +/*
 + * Copyright © 2023 Intel Corporation
 + */
 +
-+#ifndef __XE_SVM_H
-+#define __XE_SVM_H
++#ifndef _XE_SVM_DOC_H_
++#define _XE_SVM_DOC_H_
 +
-+struct xe_tile;
-+struct xe_mem_region;
-+
-+int xe_devm_add(struct xe_tile *tile, struct xe_mem_region *mr);
-+void xe_devm_remove(struct xe_tile *tile, struct xe_mem_region *mr);
++/**
++ * DOC: Shared virtual memory
++ *
++ * Shared Virtual Memory (SVM) allows the programmer to use a single virtual
++ * address space shared between threads executing on CPUs and GPUs. It abstracts
++ * away from the user the location of the backing memory, and hence simplifies
++ * the user programming model. In a non-SVM memory model, user need to explicitly
++ * decide memory placement such as device or system memory, also user need to
++ * explicitly migrate memory b/t device and system memory.
++ *
++ * Interface
++ * =========
++ *
++ * SVM makes use of default OS memory allocation and mapping interface such as
++ * malloc() and mmap(). The pointer returned from malloc() and mmap() can be
++ * directly used on both CPU and GPU program.
++ *
++ * SVM also provides API to set virtual address range based memory attributes
++ * such as preferred memory location, memory migration granularity, and memory
++ * atomic attributes etc. This is similar to Linux madvise API.
++ *
++ * Basic implementation
++ * ==============
++ *
++ * XeKMD implementation is based on Linux kernel Heterogeneous Memory Management
++ * (HMM) framework. HMM’s address space mirroring support allows sharing of the
++ * address space by duplicating sections of CPU page tables in the device page
++ * tables. This enables both CPU and GPU access a physical memory location using
++ * the same virtual address.
++ *
++ * Linux kernel also provides the ability to plugin device memory to the system
++ * (as a special ZONE_DEVICE type) and allocates struct page for each device memory
++ * page.
++ *
++ * HMM also provides a mechanism to migrate pages from host to device memory and
++ * vice versa.
++ *
++ * More information on HMM can be found here.
++ * https://www.kernel.org/doc/Documentation/vm/hmm.rst
++ *
++ * Unlike the non-SVM memory allocator (such as gem_create, vm_bind etc), there
++ * is no buffer object (BO, such as struct ttm_buffer_object, struct drm_gem_object),
++ * in our SVM implementation. We delibrately choose this implementation option
++ * to achieve page granularity memory placement, validation, eviction and migration.
++ *
++ * The SVM layer directly allocate device memory from drm buddy subsystem. The
++ * memory is organized as many blocks each of which has 2^n pages. SVM subsystem
++ * then mark the usage of each page using a simple bitmap. When all pages in a
++ * block are not used anymore, SVM return this block back to drm buddy subsystem.
++ *
++ * There are 3 events which can trigger SVM subsystem in actions:
++ *
++ * 1. A mmu notifier callback
++ *
++ * Since SVM need to mirror the program's CPU virtual address space from GPU side,
++ * when program's CPU address space changes, SVM need to make an identical change
++ * from GPU side. SVM/hmm use mmu interval notifier to achieve this. SVM register
++ * a mmu interval notifier call back function to core mm, and whenever a CPU side
++ * virtual address space is changed (i.e., when a virtual address range is unmapped
++ * from CPU calling munmap), the registered callback function will be called from
++ * core mm. SVM then mirror the CPU address space change from GPU side, i.e., unmap
++ * or invalidate the virtual address range from GPU page table.
++ *
++ * 2. A GPU page fault
++ *
++ * At the very beginning of a process's life, no virtual address of the process
++ * is mapped on GPU page table. So when GPU access any virtual address of the process
++ * a GPU page fault is triggered. SVM then decide the best memory location of the
++ * fault address (mainly from performance consideration. Some times also consider
++ * correctness requirement such as whether GPU can perform atomics operation to
++ * certain memory location), migrate memory if necessary, and map the fault address
++ * to GPU page table.
++ *
++ * 3. A CPU page fault
++ *
++ * A CPU page fault is usually managed by Linux core mm. But in a CPU and GPU
++ * mix programming environment, the backing store of a virtual address range
++ * can be in GPU's local memory which is not visible to CPU (DEVICE_PRIVATE),
++ * so CPU page fault handler need to migrate such pages to system memory for
++ * CPU to be able to access them. Such memory migration is device specific.
++ * HMM has a callback function (migrate_to_ram function of the dev_pagemap_ops)
++ * for device driver to implement.
++ *
++ *
++ * Memory hints: TBD
++ * =================
++ *
++ * Memory eviction: TBD
++ * ===============
++ *
++ * Lock design
++ * ===========
++ *
++ * https://www.kernel.org/doc/Documentation/vm/hmm.rst section "Address space mirroring
++ * implemenation and API" described the locking scheme that driver writer has to
++ * respect. There are 3 lock mechanism involved in this scheme:
++ *
++ * 1. Use mmp_read/write_lock to protect VMA, cpu page table operations.  Operation such
++ * as munmap/mmap, page table update during numa balance must hold this lock. Hmm_range_fault
++ * is a helper function provided by HMM to populate the CPU page table, so it must be called
++ * with this lock
++ *
++ * 2. Use xe_svm::mutex to protect device side page table operation. Any attempt to bind an
++ * address range to GPU, or invalidate an address range from GPU, should hold this device lock
++ *
++ * 3. In the GPU page fault handler, during device page table update, we hold a xe_svm::mutex,
++ * but we don't hold the mmap_read/write_lock. So programm's address space can change during
++ * the GPU page table update. mmu notifier seq# is used to determine whether unmap happened
++ * during during device page table update, if yes, then retry.
++ *
++ */
 +
 +#endif
-diff --git a/drivers/gpu/drm/xe/xe_svm_devmem.c b/drivers/gpu/drm/xe/xe_svm_devmem.c
-new file mode 100644
-index 000000000000..31af56e8285a
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_svm_devmem.c
-@@ -0,0 +1,89 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#include <linux/mm_types.h>
-+#include <linux/sched/mm.h>
-+
-+#include "xe_device_types.h"
-+#include "xe_svm.h"
-+
-+
-+static vm_fault_t xe_devm_migrate_to_ram(struct vm_fault *vmf)
-+{
-+	return 0;
-+}
-+
-+static void xe_devm_page_free(struct page *page)
-+{
-+}
-+
-+static const struct dev_pagemap_ops xe_devm_pagemap_ops = {
-+	.page_free = xe_devm_page_free,
-+	.migrate_to_ram = xe_devm_migrate_to_ram,
-+};
-+
-+/**
-+ * xe_devm_add: Remap and provide memmap backing for device memory
-+ * @tile: tile that the memory region blongs to
-+ * @mr: memory region to remap
-+ *
-+ * This remap device memory to host physical address space and create
-+ * struct page to back device memory
-+ *
-+ * Return: 0 on success standard error code otherwise
-+ */
-+int xe_devm_add(struct xe_tile *tile, struct xe_mem_region *mr)
-+{
-+	struct xe_device *xe = tile_to_xe(tile);
-+	struct device *dev = &to_pci_dev(xe->drm.dev)->dev;
-+	struct resource *res;
-+	void *addr;
-+	int ret;
-+
-+	res = devm_request_free_mem_region(dev, &iomem_resource,
-+					   mr->usable_size);
-+	if (IS_ERR(res)) {
-+		ret = PTR_ERR(res);
-+		return ret;
-+	}
-+
-+	mr->pagemap.type = MEMORY_DEVICE_PRIVATE;
-+	mr->pagemap.range.start = res->start;
-+	mr->pagemap.range.end = res->end;
-+	mr->pagemap.nr_range = 1;
-+	mr->pagemap.ops = &xe_devm_pagemap_ops;
-+	mr->pagemap.owner = xe;
-+	addr = devm_memremap_pages(dev, &mr->pagemap);
-+	if (IS_ERR(addr)) {
-+		devm_release_mem_region(dev, res->start, resource_size(res));
-+		ret = PTR_ERR(addr);
-+		drm_err(&xe->drm, "Failed to remap tile %d memory, errno %d\n",
-+				tile->id, ret);
-+		return ret;
-+	}
-+	mr->hpa_base = res->start;
-+
-+	drm_info(&xe->drm, "Added tile %d memory [%llx-%llx] to devm, remapped to %pr\n",
-+			tile->id, mr->io_start, mr->io_start + mr->usable_size, res);
-+	return 0;
-+}
-+
-+/**
-+ * xe_devm_remove: Unmap device memory and free resources
-+ * @tile: xe tile
-+ * @mr: memory region to remove
-+ */
-+void xe_devm_remove(struct xe_tile *tile, struct xe_mem_region *mr)
-+{
-+	struct device *dev = &to_pci_dev(tile->xe->drm.dev)->dev;
-+
-+	/*FIXME: Does below cause a kernel hange during moduel remove?*/
-+	if (mr->hpa_base) {
-+		devm_memunmap_pages(dev, &mr->pagemap);
-+		devm_release_mem_region(dev, mr->pagemap.range.start,
-+			mr->pagemap.range.end - mr->pagemap.range.start + 1);
-+	}
-+}
-+
-diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-index 0650b2fa75ef..f1c4f9de51df 100644
---- a/drivers/gpu/drm/xe/xe_tile.c
-+++ b/drivers/gpu/drm/xe/xe_tile.c
-@@ -14,6 +14,7 @@
- #include "xe_tile_sysfs.h"
- #include "xe_ttm_vram_mgr.h"
- #include "xe_wa.h"
-+#include "xe_svm.h"
- 
- /**
-  * DOC: Multi-tile Design
-@@ -158,6 +159,7 @@ static int tile_ttm_mgr_init(struct xe_tile *tile)
-  */
- int xe_tile_init_noalloc(struct xe_tile *tile)
- {
-+	struct xe_device *xe = tile_to_xe(tile);
- 	int err;
- 
- 	xe_device_mem_access_get(tile_to_xe(tile));
-@@ -175,6 +177,8 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
- 
- 	xe_tile_sysfs_init(tile);
- 
-+	if (xe->info.has_usm)
-+		xe_devm_add(tile, &tile->mem.vram);
- err_mem_access:
- 	xe_device_mem_access_put(tile_to_xe(tile));
- 	return err;
 -- 
 2.26.3
 
