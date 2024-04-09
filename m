@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 570C0CD128A
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Apr 2024 20:04:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC747CD1299
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Apr 2024 20:04:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D954D112F14;
-	Tue,  9 Apr 2024 20:04:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61275112EFA;
+	Tue,  9 Apr 2024 20:04:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FEJC/KWc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XziYY76g";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D505B10E96D
- for <intel-xe@lists.freedesktop.org>; Tue,  9 Apr 2024 20:04:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36FF510E96D
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 Apr 2024 20:04:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712693093; x=1744229093;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=suqEkyZKPMS1cY2n8XwskxZpNI9tXsGXx/986Y3rmjA=;
- b=FEJC/KWctOwD0iMbw3B/AwHR0UNcpNZp53aWIyifBwpydtHsl9DIdSxS
- EdGFx5WS4HS4S27P8G/72d8YpI1Ok06ODDwPKbCU6Wc3gZ4rzQ6/Q2s6D
- iAeTpgxrUvBslaL0j0RKU1K3dk11m74v0uNuLcSHeIRhzOFUaLKF9bomu
- nwKemaCe/k4JVLT55CvrWjTbcIWaCRJ3EirYQWIoP25AKdmYyIfgi+KzI
- 1Pn/ff7NLX0d3NCwjaJAJg5cFGOgT90DO2aRCA5T9N2P4rcXxqUP4oOmW
- JEggSENQ5mazTzYg/aCs60cRExesA376+Ro16LkEnfyQchTIT/+S51Wbg Q==;
-X-CSE-ConnectionGUID: 6cqAHaQDT+iCvhorws7A7Q==
-X-CSE-MsgGUID: VwMh0btbTDe+qlB0tiK7xg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="11803740"
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="11803740"
+ t=1712693094; x=1744229094;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=e8BiX6pZr7Oe6NPZRv8GhTINFj6auFsH18DMTNw9J/E=;
+ b=XziYY76g9xkD8j1qODH7akZ5XgSozlrZBqGdKewpN3zatzoqZDbH+r7O
+ OoVapiqza3JnqRnD6FcoNvUCQ7dpABYJOwl3l1vUfnvkpBMKo0F9gdW1f
+ MhIr6YSJm/dv8jlk/C6zs70Qmxbx9tubNXESWqpxA2wZy3OsG9WmlgDsJ
+ OXcHqmSlnEqDVm87ElrryeAdTMkZUyvHlHAYin5bX59vwQcKc8ZAsmzyq
+ sCCawOTca2z0dAPuXtRldunHrM7mjmHrykpF8/49hiJ5SGYMYY4LeWX0f
+ hHEh6S4mp3gf1MzoSBpOq1geTsIWji31iaOQHuL2P0vZKx8v0j3U1bgub A==;
+X-CSE-ConnectionGUID: gbghZBR1SluyxVLqPMz0eg==
+X-CSE-MsgGUID: oGkDICz/QCWRvjAmGJrFbQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="11803747"
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="11803747"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Apr 2024 13:04:52 -0700
-X-CSE-ConnectionGUID: SdpYDAiKR2ifDHrSqXEuwQ==
-X-CSE-MsgGUID: Hm6uXfYWT7aw6ezjkTqcjg==
+X-CSE-ConnectionGUID: Du1SrL2sSOSbCq8J/ViE0A==
+X-CSE-MsgGUID: LHQ0fp/UR8GHNbaa+OhD1Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="20773710"
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="20773745"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2024 13:04:51 -0700
+ 09 Apr 2024 13:04:52 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: himal.prasad.ghimiray@intel.com, krishnaiah.bommu@intel.com,
  matthew.brost@intel.com, Thomas.Hellstrom@linux.intel.com,
  brian.welty@intel.com
-Subject: [v2 00/31] Basic system allocator support in xe driver
-Date: Tue,  9 Apr 2024 16:17:11 -0400
-Message-Id: <20240409201742.3042626-1-oak.zeng@intel.com>
+Subject: [v2 11/31] drm/xe: Use hmm_range_fault to populate user pages
+Date: Tue,  9 Apr 2024 16:17:22 -0400
+Message-Id: <20240409201742.3042626-12-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
+In-Reply-To: <20240409201742.3042626-1-oak.zeng@intel.com>
+References: <20240409201742.3042626-1-oak.zeng@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,154 +68,185 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is the v2 of basic system allocator support in xe kmd driver.
-v1 is here: https://lore.kernel.org/dri-devel/20240117221223.18540-1-oak.zeng@intel.com/
+This is an effort to unify hmmptr (aka system allocator)
+and userptr code. hmm_range_fault is used to populate
+a virtual address range for both hmmptr and userptr,
+instead of hmmptr using hmm_range_fault and userptr
+using get_user_pages_fast.
 
-Significant design changes were made since v1, based on drm community
-review feedback:
+This also aligns with AMD gpu driver's behavior. In
+long term, we plan to put some common helpers in this
+area to drm layer so it can be re-used by different
+vendors.
 
-1) Introduce vm_bind uAPI for system allocator. With this uAPI, user can
-optionally bind CPU virtual address range A..B to GPU virtual address
-range C..D. Right now we force A..B == C..D since we don't have
-a valid use case where A..B != C..D. But the interface is built so we
-can extend easily in the future if valid use case come out. See patch
-3 to 8 for this work.
+Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+---
+ drivers/gpu/drm/xe/xe_vm.c | 122 ++++---------------------------------
+ 1 file changed, 12 insertions(+), 110 deletions(-)
 
-2) Unify system allocator and user ptr code. Now system allocator and
-userptr share the same codes for gpu page table programming, mmu
-interval notifier and vma invalidation, page fault handling and lock
-design. The codes are more unified.
-
-This work is built on top of Matt Brost's huge vm_bind refactor series.
-The first patch is a squash of Matt's 30 patch series for reference
-purpose.
-
-This work is still at its early stage. It is sent out so we can get some
-early eyes on it. We are open to any comments and suggestions.
-
-The work that are planned in our bucket are:
-
-*Virtual address range based memory attributes and hints: We plan to
-expose uAPI for user to set memory attributes such as preferred location
-or migration granularity etc to a virtual address range. This is
-important to tune SVM performance.
-
-*GPU vram eviction: One key design choice of this series is, SVM
-layer allocate GPU memory directly from drm buddy allocator, instead
-of from xe vram manager. There is no BO (buffer object) concept
-in this implementation. The key benefit of this approach is we can
-migrate memory at page granularity easily. This also means SVM bypasses
-TTM's memory eviction logic. But we want the SVM memory and BO driver
-memory can mutually evicted each other. We have some prove of concept
-work to rework TTM resource manager for this purpose, see
-https://lore.kernel.org/dri-devel/20231102043306.2931989-1-oak.zeng@intel.com/
-We will continue work on that series then implement SVM's eviction
-function based on the concept of shared drm LRU list b/t SVM and TTM/BO
-driver.
-
-* Try 1 vma with N PT_state for system allocator and userptr. One
-gigantic vma to hold address space initial default constant state
-and N PT_state to hold mutable page table state. Also try to register
-only one mmu interval notifier for the whole address range.
-
-* Multiple GPU device support
-
-Matthew Brost (7):
-  drm/xe: Refactor vm_bind
-  drm/xe: Invalidate userptr VMA on page pin fault
-  drm/xe: Drop unused arguments from vm_bind_ioctl_ops_parse
-  drm/xe: Fix op->tile_mask for fault mode
-  drm/xe/uapi: Add DRM_XE_VM_BIND_FLAG_SYSTEM_ALLOCATOR flag
-  drm/xe: Create userptr if page fault occurs on system_allocator VMA
-  drm/xe: Add faulted userptr VMA garbage collector
-
-Oak Zeng (24):
-  drm/xe/svm: Add SVM document
-  drm/xe: Introduce helper to populate userptr
-  drm/xe: Introduce a helper to free sg table
-  drm/xe: Use hmm_range_fault to populate user pages
-  drm/xe/svm: Remap and provide memmap backing for GPU vram
-  drm/xe/svm: Introduce DRM_XE_SVM kernel config
-  drm/xe: Introduce helper to get tile from memory region
-  drm/xe: Introduce a helper to get dpa from pfn
-  drm/xe/svm: Get xe memory region from page
-  drm/xe: Get xe_vma from xe_userptr
-  drm/xe/svm: Build userptr sg table for device pages
-  drm/xe/svm: Determine a vma is backed by device memory
-  drm/xe: add xe lock document
-  drm/xe/svm: Introduce svm migration function
-  drm/xe/svm: implement functions to allocate and free device memory
-  drm/xe/svm: Trace buddy block allocation and free
-  drm/xe/svm: Create and destroy xe svm
-  drm/xe/svm: Add vm to xe_svm process
-  drm/xe: Make function lookup_vma public
-  drm/xe/svm: Handle CPU page fault
-  drm/xe/svm: Introduce helper to migrate vma to vram
-  drm/xe/svm: trace svm migration
-  drm/xe/svm: Add a helper to determine a vma is fault userptr
-  drm/xe/svm: Migration from sram to vram for system allocator
-
- Documentation/gpu/xe/index.rst              |    2 +
- Documentation/gpu/xe/xe_lock.rst            |    8 +
- Documentation/gpu/xe/xe_svm.rst             |    8 +
- drivers/gpu/drm/xe/Kconfig                  |   22 +
- drivers/gpu/drm/xe/Makefile                 |    6 +
- drivers/gpu/drm/xe/tests/xe_migrate.c       |   86 -
- drivers/gpu/drm/xe/xe_bo.c                  |    7 +-
- drivers/gpu/drm/xe/xe_bo.h                  |    4 +-
- drivers/gpu/drm/xe/xe_device.c              |   35 +
- drivers/gpu/drm/xe/xe_device.h              |   10 +
- drivers/gpu/drm/xe/xe_device_types.h        |   24 +
- drivers/gpu/drm/xe/xe_exec.c                |   41 +-
- drivers/gpu/drm/xe/xe_exec_queue.c          |  120 +-
- drivers/gpu/drm/xe/xe_exec_queue_types.h    |   20 +-
- drivers/gpu/drm/xe/xe_gt_pagefault.c        |   52 +-
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |   59 +-
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h |    3 +
- drivers/gpu/drm/xe/xe_guc_submit.c          |   22 +-
- drivers/gpu/drm/xe/xe_hmm.c                 |  329 ++++
- drivers/gpu/drm/xe/xe_hmm.h                 |   18 +
- drivers/gpu/drm/xe/xe_lock_doc.h            |  113 ++
- drivers/gpu/drm/xe/xe_migrate.c             |  602 ++++---
- drivers/gpu/drm/xe/xe_migrate.h             |   53 +-
- drivers/gpu/drm/xe/xe_mmio.c                |    6 +
- drivers/gpu/drm/xe/xe_pci.c                 |    1 +
- drivers/gpu/drm/xe/xe_pt.c                  | 1301 +++++++++-----
- drivers/gpu/drm/xe/xe_pt.h                  |   15 +-
- drivers/gpu/drm/xe/xe_pt_exec_queue.c       |  180 ++
- drivers/gpu/drm/xe/xe_pt_exec_queue.h       |   14 +
- drivers/gpu/drm/xe/xe_pt_types.h            |   53 +
- drivers/gpu/drm/xe/xe_sched_job.c           |   68 +-
- drivers/gpu/drm/xe/xe_sched_job_types.h     |   31 +-
- drivers/gpu/drm/xe/xe_svm.c                 |  122 ++
- drivers/gpu/drm/xe/xe_svm.h                 |   88 +
- drivers/gpu/drm/xe/xe_svm_devmem.c          |  231 +++
- drivers/gpu/drm/xe/xe_svm_doc.h             |  121 ++
- drivers/gpu/drm/xe/xe_svm_migrate.c         |  340 ++++
- drivers/gpu/drm/xe/xe_sync.c                |   15 +
- drivers/gpu/drm/xe/xe_sync.h                |    1 +
- drivers/gpu/drm/xe/xe_tile.c                |    7 +
- drivers/gpu/drm/xe/xe_trace.h               |   69 +-
- drivers/gpu/drm/xe/xe_uc_fw.c               |    1 +
- drivers/gpu/drm/xe/xe_vm.c                  | 1768 ++++++++++---------
- drivers/gpu/drm/xe/xe_vm.h                  |   40 +-
- drivers/gpu/drm/xe/xe_vm_types.h            |  229 ++-
- include/drm/xe_pciids.h                     |   16 +
- include/uapi/drm/xe_drm.h                   |   15 +-
- 47 files changed, 4432 insertions(+), 1944 deletions(-)
- create mode 100644 Documentation/gpu/xe/xe_lock.rst
- create mode 100644 Documentation/gpu/xe/xe_svm.rst
- create mode 100644 drivers/gpu/drm/xe/xe_hmm.c
- create mode 100644 drivers/gpu/drm/xe/xe_hmm.h
- create mode 100644 drivers/gpu/drm/xe/xe_lock_doc.h
- create mode 100644 drivers/gpu/drm/xe/xe_pt_exec_queue.c
- create mode 100644 drivers/gpu/drm/xe/xe_pt_exec_queue.h
- create mode 100644 drivers/gpu/drm/xe/xe_svm.c
- create mode 100644 drivers/gpu/drm/xe/xe_svm.h
- create mode 100644 drivers/gpu/drm/xe/xe_svm_devmem.c
- create mode 100644 drivers/gpu/drm/xe/xe_svm_doc.h
- create mode 100644 drivers/gpu/drm/xe/xe_svm_migrate.c
-
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 95dda229a9fe..61d336f24a65 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -39,6 +39,7 @@
+ #include "xe_sync.h"
+ #include "xe_trace.h"
+ #include "xe_wa.h"
++#include "xe_hmm.h"
+ 
+ static struct drm_gem_object *xe_vm_obj(struct xe_vm *vm)
+ {
+@@ -66,113 +67,21 @@ int xe_vma_userptr_check_repin(struct xe_userptr_vma *uvma)
+ 
+ int xe_vma_userptr_pin_pages(struct xe_userptr_vma *uvma)
+ {
+-	struct xe_userptr *userptr = &uvma->userptr;
+ 	struct xe_vma *vma = &uvma->vma;
+ 	struct xe_vm *vm = xe_vma_vm(vma);
+ 	struct xe_device *xe = vm->xe;
+-	const unsigned long num_pages = xe_vma_size(vma) >> PAGE_SHIFT;
+-	struct page **pages;
+-	bool in_kthread = !current->mm;
+-	unsigned long notifier_seq;
+-	int pinned, ret, i;
+-	bool read_only = xe_vma_read_only(vma);
++	struct xe_userptr *userptr;
++	int ret;
+ 
+ 	lockdep_assert_held(&vm->lock);
+ 	xe_assert(xe, xe_vma_is_userptr(vma));
+-retry:
+-	if (vma->gpuva.flags & XE_VMA_DESTROYED)
+-		return 0;
+-
+-	notifier_seq = mmu_interval_read_begin(&userptr->notifier);
+-	if (notifier_seq == userptr->notifier_seq)
+-		return 0;
+-
+-	pages = kvmalloc_array(num_pages, sizeof(*pages), GFP_KERNEL);
+-	if (!pages)
+-		return -ENOMEM;
+-
+-	if (userptr->sg) {
+-		dma_unmap_sgtable(xe->drm.dev,
+-				  userptr->sg,
+-				  read_only ? DMA_TO_DEVICE :
+-				  DMA_BIDIRECTIONAL, 0);
+-		sg_free_table(userptr->sg);
+-		userptr->sg = NULL;
+-	}
+-
+-	pinned = ret = 0;
+-	if (in_kthread) {
+-		if (!mmget_not_zero(userptr->notifier.mm)) {
+-			ret = -EFAULT;
+-			goto mm_closed;
+-		}
+-		kthread_use_mm(userptr->notifier.mm);
+-	}
+-
+-	while (pinned < num_pages) {
+-		ret = get_user_pages_fast(xe_vma_userptr(vma) +
+-					  pinned * PAGE_SIZE,
+-					  num_pages - pinned,
+-					  read_only ? 0 : FOLL_WRITE,
+-					  &pages[pinned]);
+-		if (ret < 0)
+-			break;
+-
+-		pinned += ret;
+-		ret = 0;
+-	}
+ 
+-	if (in_kthread) {
+-		kthread_unuse_mm(userptr->notifier.mm);
+-		mmput(userptr->notifier.mm);
+-	}
+-mm_closed:
+-	if (ret)
+-		goto out;
+-
+-	ret = sg_alloc_table_from_pages_segment(&userptr->sgt, pages,
+-						pinned, 0,
+-						(u64)pinned << PAGE_SHIFT,
+-						xe_sg_segment_size(xe->drm.dev),
+-						GFP_KERNEL);
+-	if (ret) {
+-		userptr->sg = NULL;
+-		goto out;
+-	}
+-	userptr->sg = &userptr->sgt;
+-
+-	ret = dma_map_sgtable(xe->drm.dev, userptr->sg,
+-			      read_only ? DMA_TO_DEVICE :
+-			      DMA_BIDIRECTIONAL,
+-			      DMA_ATTR_SKIP_CPU_SYNC |
+-			      DMA_ATTR_NO_KERNEL_MAPPING);
+-	if (ret) {
+-		sg_free_table(userptr->sg);
+-		userptr->sg = NULL;
+-		goto out;
+-	}
+-
+-	for (i = 0; i < pinned; ++i) {
+-		if (!read_only) {
+-			lock_page(pages[i]);
+-			set_page_dirty(pages[i]);
+-			unlock_page(pages[i]);
+-		}
++	userptr = &uvma->userptr;
++	mmap_read_lock(userptr->notifier.mm);
++	ret = xe_userptr_populate_range(uvma);
++	mmap_read_unlock(userptr->notifier.mm);
+ 
+-		mark_page_accessed(pages[i]);
+-	}
+-
+-out:
+-	release_pages(pages, pinned);
+-	kvfree(pages);
+-
+-	if (!(ret < 0)) {
+-		userptr->notifier_seq = notifier_seq;
+-		if (xe_vma_userptr_check_repin(uvma) == -EAGAIN)
+-			goto retry;
+-	}
+-
+-	return ret < 0 ? ret : 0;
++	return ret;
+ }
+ 
+ static bool preempt_fences_waiting(struct xe_vm *vm)
+@@ -1016,8 +925,6 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ static void xe_vma_destroy_late(struct xe_vma *vma)
+ {
+ 	struct xe_vm *vm = xe_vma_vm(vma);
+-	struct xe_device *xe = vm->xe;
+-	bool read_only = xe_vma_read_only(vma);
+ 
+ 	if (vma->ufence) {
+ 		xe_sync_ufence_put(vma->ufence);
+@@ -1025,16 +932,11 @@ static void xe_vma_destroy_late(struct xe_vma *vma)
+ 	}
+ 
+ 	if (xe_vma_is_userptr(vma)) {
+-		struct xe_userptr *userptr = &to_userptr_vma(vma)->userptr;
++		struct xe_userptr_vma *uvma = to_userptr_vma(vma);
++		struct xe_userptr *userptr = &uvma->userptr;
+ 
+-		if (userptr->sg) {
+-			dma_unmap_sgtable(xe->drm.dev,
+-					  userptr->sg,
+-					  read_only ? DMA_TO_DEVICE :
+-					  DMA_BIDIRECTIONAL, 0);
+-			sg_free_table(userptr->sg);
+-			userptr->sg = NULL;
+-		}
++		if (userptr->sg)
++			xe_userptr_free_sg(uvma);
+ 
+ 		/*
+ 		 * Since userptr pages are not pinned, we can't remove
 -- 
 2.26.3
 
