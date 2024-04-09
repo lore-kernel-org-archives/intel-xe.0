@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3A2ACD1284
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Apr 2024 08:43:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B196CD1284
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Apr 2024 08:53:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3935210FA5E;
-	Tue,  9 Apr 2024 08:43:19 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WZjP2yGI";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A443112BD0;
- Tue,  9 Apr 2024 08:43:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712652197; x=1744188197;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=4rOPs6lroRoqM9mieH5autv7ngl9VxKecDT47JkhsCs=;
- b=WZjP2yGIU3wbheyutVskwyJmU126Ae855OEOhIqdtFQDonTv/VfnoUzV
- Cln/Ye4c20RWwRbw8YbHLAcgk5z090vOMwsTzlkcgaV1H0TufwbzEHiqa
- OsIBa4ZooY173y5ds25RogwvRuHzz0VUoPGx02WXEwRI5FGuw7Xkr+bHb
- lA1sFmuXdTaLmIT1zMdpnVh3IApBnCuGN1Nt3BW498+zcgny6SCiEanYY
- oOJm42Z84vgrfws2Y8CmNtaTTBC7DvqhRWXUFs1Hbn/QutnmAGpwJSB48
- UKT/iMjnJoZEkbWttp4R0GpqARGmJ6DjWldNF3xjQF6I7rTazSPGmFnl/ w==;
-X-CSE-ConnectionGUID: f6c1dPBmRamHmB7HykJ/gg==
-X-CSE-MsgGUID: H94v+IFSR4Gpqhz/tjlKyQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="11753249"
-X-IronPort-AV: E=Sophos;i="6.07,189,1708416000"; d="scan'208";a="11753249"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2024 01:43:16 -0700
-X-CSE-ConnectionGUID: c9bnt/dcR6itAC5p4LV4yg==
-X-CSE-MsgGUID: 4K3lNVdLRs27SL//hPdT6w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,189,1708416000"; d="scan'208";a="24648620"
-Received: from mserban-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.59.228])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2024 01:43:13 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Ville
- Syrjala <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH 0/8] drm/i915: drm_i915_private and xe_device cleanups
-In-Reply-To: <umdjxcjjfmxpc52sai7d5ltgntcweilfd7e4n3pkvxvqhq23r4@5oaddgmh64mz>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1712599670.git.jani.nikula@intel.com>
- <877ch7a7qe.fsf@intel.com>
- <umdjxcjjfmxpc52sai7d5ltgntcweilfd7e4n3pkvxvqhq23r4@5oaddgmh64mz>
-Date: Tue, 09 Apr 2024 11:43:10 +0300
-Message-ID: <87y19n7wpt.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66E58112BD2;
+	Tue,  9 Apr 2024 08:53:55 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 984FE112BCD;
+ Tue,  9 Apr 2024 08:53:52 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6267119728102964889=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/=7Bi915=2Cxe=7D=3A_Convert_f?=
+ =?utf-8?q?bdev_to_DRM_client?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Thomas Zimmermann" <tzimmermann@suse.de>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 09 Apr 2024 08:53:52 -0000
+Message-ID: <171265283261.1300822.17154659664951609685@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240409081029.17843-1-tzimmermann@suse.de>
+In-Reply-To: <20240409081029.17843-1-tzimmermann@suse.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,35 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 08 Apr 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> On Tue, Apr 09, 2024 at 12:02:17AM +0300, Jani Nikula wrote:
->>On Mon, 08 Apr 2024, Jani Nikula <jani.nikula@intel.com> wrote:
->>> Continue cleaning up the members from drm_i915_private and xe_device to
->>> struct intel_display.
->>
->>Lucas, there's a bunch of xe changes included here, ack for merging via
->>drm-intel-next?
->
->
-> Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
->
-> I skimmed through the series and left just one comment. It may be very
-> well because I skimmed through it too fast though. I agree on merging
-> it through drm-intel-next.
+--===============6267119728102964889==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thanks for the review and ack, pushed patches 1-7 to drm-intel-next. I
-decided the renaming, if any, can come later.
+== Series Details ==
 
-There was a trivial conflict with patch 1, pushed it anyway, but skipped
-patch 8 for now also due to conflicts, and it didn't apply to
-drm-xe-next either. Need to sync up the branches first.
+Series: drm/{i915,xe}: Convert fbdev to DRM client
+URL   : https://patchwork.freedesktop.org/series/132193/
+State : success
 
-BR,
-Jani.
+== Summary ==
+
+CI Bug Log - changes from xe-1058-2417474ba0be0f6b5838349e9f44419f530511e4_BAT -> xe-pw-132193v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (5 -> 5)
+------------------------------
+
+  No changes in participating hosts
 
 
--- 
-Jani Nikula, Intel
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-1058-2417474ba0be0f6b5838349e9f44419f530511e4 -> xe-pw-132193v1
+
+  IGT_7802: 7802
+  xe-1058-2417474ba0be0f6b5838349e9f44419f530511e4: 2417474ba0be0f6b5838349e9f44419f530511e4
+  xe-pw-132193v1: 132193v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132193v1/index.html
+
+--===============6267119728102964889==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/{i915,xe}: Convert fbdev to DRM client</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132193/">https://patchwork.freedesktop.org/series/132193/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132193v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132193v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1058-2417474ba0be0f6b5838349e9f44419f530511e4_BAT -&gt; xe-pw-132193v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (5 -&gt; 5)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1058-2417474ba0be0f6b5838349e9f44419f530511e4 -&gt; xe-pw-132193v1</li>
+</ul>
+<p>IGT_7802: 7802<br />
+  xe-1058-2417474ba0be0f6b5838349e9f44419f530511e4: 2417474ba0be0f6b5838349e9f44419f530511e4<br />
+  xe-pw-132193v1: 132193v1</p>
+
+</body>
+</html>
+
+--===============6267119728102964889==--
