@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C92CC67861
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Apr 2024 20:05:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F265CD1299
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Apr 2024 20:05:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72E9810E96D;
-	Tue,  9 Apr 2024 20:05:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC69810FF70;
+	Tue,  9 Apr 2024 20:05:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FNN1W0Nz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DJ/2nRxF";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41E0410EE99
- for <intel-xe@lists.freedesktop.org>; Tue,  9 Apr 2024 20:04:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92F3110FF70
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 Apr 2024 20:04:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712693093; x=1744229093;
+ t=1712693094; x=1744229094;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=IgTg5rpRtePLupWg3aD5I7Gh2zRaE7GKcIVij7uNhNM=;
- b=FNN1W0Nz1qG5VDXJaha9j2NFTIO5TUdPqKphv6sLwfxFkKjCZWcKp/Hv
- Q6a9ySXQfElJvl/BZ3MbfMW/R7AqkbaIRdCQQ7Xlp2RsCbce3DjoC7u46
- XnicZmXn6Jt8+CieC1sxdRy2SK3pMOEaiFIYjZ6cUMSzNSgRyjberHL2X
- bB/8AmusAolqu8G7nT4eHAghT0eryIRTVO1WIew8FSNhxjVYfS1TYHmAx
- 9nkROiQeylWSJ/g/MQQNGKjLy0rKdhmGq+Y6yMprXJgxgVZFp7jVt6vRY
- Y1PpDZiGH2XwenuamQh3zrLTd26P0D5V1dZFPqY0HakMw/85x6fx1SKB0 w==;
-X-CSE-ConnectionGUID: MC0fLxUNQTatD9nJyfZ1FA==
-X-CSE-MsgGUID: F63R5CJyQCqffVxeqbne+g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="11803741"
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="11803741"
+ bh=2JBBFSdQ2qf8eXAqPly5LAO1+633Aclr2gZrhk50aFs=;
+ b=DJ/2nRxFfDY4iQT1eushENHJzWSIBeWZsNCKlLc0RnBnxpP4vSEiLZ+9
+ gV7AO7ug3yZlMlfQsWsL/IoNrJOFTIM0gRcf9YRyqgFtjj1RC3XiJYQdX
+ BSj2XSV5Vkf70I6u6KgpbBRfBUqBpGRTnHoiwaFgpEPsi0pZL9eqyg3Nl
+ iYsnEqs7vY3d+leUKyS8KQ4AnHLBs3OG0rH7qP8yPtFw/yzF69NOLWHNm
+ 3mfTHSdiir05XJxmHGnerS5YR8rWGNaeoTwOP8duYp+g279KmQsymd1cX
+ BUeW6koN41ntNGhkygk9B2Y5Bw9Xxsr4ISB0G5yECjHqgdBtFF80pf6Jf w==;
+X-CSE-ConnectionGUID: fTwbFPW6QD6pqDKNmb4jwg==
+X-CSE-MsgGUID: Z731imVvQPeQmOeBEidufw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="11803749"
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="11803749"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2024 13:04:52 -0700
-X-CSE-ConnectionGUID: g3LqPfJ6ROq0vuXQrL73KQ==
-X-CSE-MsgGUID: Z5eMPWSnSjex90a+cAntJw==
+ 09 Apr 2024 13:04:53 -0700
+X-CSE-ConnectionGUID: 6eoNBYlaSUWtHXup0n+XhA==
+X-CSE-MsgGUID: PBfxs2FIR3err5JrGEfAmQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="20773717"
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="20773723"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Apr 2024 13:04:52 -0700
@@ -46,14 +46,13 @@ To: intel-xe@lists.freedesktop.org
 Cc: himal.prasad.ghimiray@intel.com, krishnaiah.bommu@intel.com,
  matthew.brost@intel.com, Thomas.Hellstrom@linux.intel.com,
  brian.welty@intel.com
-Subject: [v2 02/31] drm/xe/svm: Add SVM document
-Date: Tue,  9 Apr 2024 16:17:13 -0400
-Message-Id: <20240409201742.3042626-3-oak.zeng@intel.com>
+Subject: [v2 04/31] drm/xe: Drop unused arguments from vm_bind_ioctl_ops_parse
+Date: Tue,  9 Apr 2024 16:17:15 -0400
+Message-Id: <20240409201742.3042626-5-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240409201742.3042626-1-oak.zeng@intel.com>
 References: <20240409201742.3042626-1-oak.zeng@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,172 +68,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add shared virtual memory document.
+From: Matthew Brost <matthew.brost@intel.com>
 
-Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-Co-developed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@intel.com>
-Cc: Brian Welty <brian.welty@intel.com>
+Drop exec queue and last arguments from vm_bind_ioctl_ops_parse as these
+are unused.
+
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- Documentation/gpu/xe/index.rst  |   1 +
- Documentation/gpu/xe/xe_svm.rst |   8 +++
- drivers/gpu/drm/xe/xe_svm_doc.h | 121 ++++++++++++++++++++++++++++++++
- 3 files changed, 130 insertions(+)
- create mode 100644 Documentation/gpu/xe/xe_svm.rst
- create mode 100644 drivers/gpu/drm/xe/xe_svm_doc.h
+ drivers/gpu/drm/xe/xe_vm.c | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
 
-diff --git a/Documentation/gpu/xe/index.rst b/Documentation/gpu/xe/index.rst
-index c224ecaee81e..106b60aba1f0 100644
---- a/Documentation/gpu/xe/index.rst
-+++ b/Documentation/gpu/xe/index.rst
-@@ -23,3 +23,4 @@ DG2, etc is provided to prototype the driver.
-    xe_firmware
-    xe_tile
-    xe_debugging
-+   xe_svm
-diff --git a/Documentation/gpu/xe/xe_svm.rst b/Documentation/gpu/xe/xe_svm.rst
-new file mode 100644
-index 000000000000..62954ba1c6f8
---- /dev/null
-+++ b/Documentation/gpu/xe/xe_svm.rst
-@@ -0,0 +1,8 @@
-+.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+=============
-+Shared virtual memory
-+=============
-+
-+.. kernel-doc:: drivers/gpu/drm/xe/xe_svm_doc.h
-+   :doc: Shared virtual memory
-diff --git a/drivers/gpu/drm/xe/xe_svm_doc.h b/drivers/gpu/drm/xe/xe_svm_doc.h
-new file mode 100644
-index 000000000000..de38ee3585e4
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_svm_doc.h
-@@ -0,0 +1,121 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef _XE_SVM_DOC_H_
-+#define _XE_SVM_DOC_H_
-+
-+/**
-+ * DOC: Shared virtual memory
-+ *
-+ * Shared Virtual Memory (SVM) allows the programmer to use a single virtual
-+ * address space shared between threads executing on CPUs and GPUs. It abstracts
-+ * away from the user the location of the backing memory, and hence simplifies
-+ * the user programming model. In a non-SVM memory model, user need to explicitly
-+ * decide memory placement such as device or system memory, also user need to
-+ * explicitly migrate memory b/t device and system memory.
-+ *
-+ * Interface
-+ * =========
-+ *
-+ * SVM makes use of default OS memory allocation and mapping interface such as
-+ * malloc() and mmap(). The pointer returned from malloc() and mmap() can be
-+ * directly used on both CPU and GPU program.
-+ *
-+ * SVM also provides API to set virtual address range based memory attributes
-+ * such as preferred memory location, memory migration granularity, and memory
-+ * atomic attributes etc. This is similar to Linux madvise API.
-+ *
-+ * Basic implementation
-+ * ==============
-+ *
-+ * XeKMD implementation is based on Linux kernel Heterogeneous Memory Management
-+ * (HMM) framework. HMM’s address space mirroring support allows sharing of the
-+ * address space by duplicating sections of CPU page tables in the device page
-+ * tables. This enables both CPU and GPU access a physical memory location using
-+ * the same virtual address.
-+ *
-+ * Linux kernel also provides the ability to plugin device memory to the system
-+ * (as a special ZONE_DEVICE type) and allocates struct page for each device memory
-+ * page.
-+ *
-+ * HMM also provides a mechanism to migrate pages from host to device memory and
-+ * vice versa.
-+ *
-+ * More information on HMM can be found here.
-+ * https://www.kernel.org/doc/Documentation/vm/hmm.rst
-+ *
-+ * Unlike the non-SVM memory allocator (such as gem_create, vm_bind etc), there
-+ * is no buffer object (BO, such as struct ttm_buffer_object, struct drm_gem_object),
-+ * in our SVM implementation. We delibrately choose this implementation option
-+ * to achieve page granularity memory placement, validation, eviction and migration.
-+ *
-+ * The SVM layer directly allocate device memory from drm buddy subsystem. The
-+ * memory is organized as many blocks each of which has 2^n pages. SVM subsystem
-+ * then mark the usage of each page using a simple bitmap. When all pages in a
-+ * block are not used anymore, SVM return this block back to drm buddy subsystem.
-+ *
-+ * There are 3 events which can trigger SVM subsystem in actions:
-+ *
-+ * 1. A mmu notifier callback
-+ *
-+ * Since SVM need to mirror the program's CPU virtual address space from GPU side,
-+ * when program's CPU address space changes, SVM need to make an identical change
-+ * from GPU side. SVM/hmm use mmu interval notifier to achieve this. SVM register
-+ * a mmu interval notifier call back function to core mm, and whenever a CPU side
-+ * virtual address space is changed (i.e., when a virtual address range is unmapped
-+ * from CPU calling munmap), the registered callback function will be called from
-+ * core mm. SVM then mirror the CPU address space change from GPU side, i.e., unmap
-+ * or invalidate the virtual address range from GPU page table.
-+ *
-+ * 2. A GPU page fault
-+ *
-+ * At the very beginning of a process's life, no virtual address of the process
-+ * is mapped on GPU page table. So when GPU access any virtual address of the process
-+ * a GPU page fault is triggered. SVM then decide the best memory location of the
-+ * fault address (mainly from performance consideration. Some times also consider
-+ * correctness requirement such as whether GPU can perform atomics operation to
-+ * certain memory location), migrate memory if necessary, and map the fault address
-+ * to GPU page table.
-+ *
-+ * 3. A CPU page fault
-+ *
-+ * A CPU page fault is usually managed by Linux core mm. But in a CPU and GPU
-+ * mix programming environment, the backing store of a virtual address range
-+ * can be in GPU's local memory which is not visible to CPU (DEVICE_PRIVATE),
-+ * so CPU page fault handler need to migrate such pages to system memory for
-+ * CPU to be able to access them. Such memory migration is device specific.
-+ * HMM has a callback function (migrate_to_ram function of the dev_pagemap_ops)
-+ * for device driver to implement.
-+ *
-+ *
-+ * Memory hints: TBD
-+ * =================
-+ *
-+ * Memory eviction: TBD
-+ * ===============
-+ *
-+ * Lock design
-+ * ===========
-+ *
-+ * https://www.kernel.org/doc/Documentation/vm/hmm.rst section "Address space mirroring
-+ * implemenation and API" described the locking scheme that driver writer has to
-+ * respect. There are 3 lock mechanism involved in this scheme:
-+ *
-+ * 1. Use mmp_read/write_lock to protect VMA, cpu page table operations.  Operation such
-+ * as munmap/mmap, page table update during numa balance must hold this lock. Hmm_range_fault
-+ * is a helper function provided by HMM to populate the CPU page table, so it must be called
-+ * with this lock
-+ *
-+ * 2. Use xe_svm::mutex to protect device side page table operation. Any attempt to bind an
-+ * address range to GPU, or invalidate an address range from GPU, should hold this device lock
-+ *
-+ * 3. In the GPU page fault handler, during device page table update, we hold a xe_svm::mutex,
-+ * but we don't hold the mmap_read/write_lock. So programm's address space can change during
-+ * the GPU page table update. mmu notifier seq# is used to determine whether unmap happened
-+ * during during device page table update, if yes, then retry.
-+ *
-+ */
-+
-+#endif
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index e1c1c18825ff..c0c6bb163a9e 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2142,10 +2142,9 @@ static int xe_vma_op_commit(struct xe_vm *vm, struct xe_vma_op *op)
+ 	return err;
+ }
+ 
+-static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
+-				   struct drm_gpuva_ops *ops,
++static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 				   struct xe_sync_entry *syncs, u32 num_syncs,
+-				   struct xe_vma_ops *vops, bool last)
++				   struct xe_vma_ops *vops)
+ {
+ 	struct xe_device *xe = vm->xe;
+ 	struct drm_gpuva_op *__op;
+@@ -3037,8 +3036,8 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 			goto unwind_ops;
+ 		}
+ 
+-		err = vm_bind_ioctl_ops_parse(vm, q, ops[i], syncs, num_syncs,
+-					      &vops, i == args->num_binds - 1);
++		err = vm_bind_ioctl_ops_parse(vm, ops[i], syncs, num_syncs,
++					      &vops);
+ 		if (err)
+ 			goto unwind_ops;
+ 
 -- 
 2.26.3
 
