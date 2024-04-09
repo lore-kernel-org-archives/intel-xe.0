@@ -4,32 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50461CD1284
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Apr 2024 08:10:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DAD1CD129A
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Apr 2024 08:10:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD25B112B6C;
-	Tue,  9 Apr 2024 08:10:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D71CB112B6B;
+	Tue,  9 Apr 2024 08:10:38 +0000 (UTC)
 Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC2CC112B69;
- Tue,  9 Apr 2024 08:10:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0279112B6B;
+ Tue,  9 Apr 2024 08:10:34 +0000 (UTC)
 Received: from imap2.dmz-prg2.suse.org (imap2.dmz-prg2.suse.org
  [IPv6:2a07:de40:b281:104:10:150:64:98])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 912282088D;
- Tue,  9 Apr 2024 08:10:32 +0000 (UTC)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 78D822088F;
+ Tue,  9 Apr 2024 08:10:33 +0000 (UTC)
 Authentication-Results: smtp-out2.suse.de;
 	none
 Received: from imap2.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap2.dmz-prg2.suse.org (Postfix) with ESMTPS id 1A1C213AA0;
- Tue,  9 Apr 2024 08:10:32 +0000 (UTC)
+ by imap2.dmz-prg2.suse.org (Postfix) with ESMTPS id 093FA13AA0;
+ Tue,  9 Apr 2024 08:10:33 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([10.150.64.162])
- by imap2.dmz-prg2.suse.org with ESMTPSA id EEgbBfj3FGbWNAAAn2gu4w
- (envelope-from <tzimmermann@suse.de>); Tue, 09 Apr 2024 08:10:32 +0000
+ by imap2.dmz-prg2.suse.org with ESMTPSA id 6KT0APn3FGbWNAAAn2gu4w
+ (envelope-from <tzimmermann@suse.de>); Tue, 09 Apr 2024 08:10:33 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
  rodrigo.vivi@intel.com, ville.syrjala@linux.intel.com, imre.deak@intel.com,
@@ -38,19 +38,21 @@ To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
  ogabbay@kernel.org, thomas.hellstrom@linux.intel.com
 Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v8 1/6] drm/client: Export drm_client_dev_unregister()
-Date: Tue,  9 Apr 2024 10:04:23 +0200
-Message-ID: <20240409081029.17843-2-tzimmermann@suse.de>
+Subject: [PATCH v8 3/6] drm/i915: Initialize fbdev DRM client with callback
+ functions
+Date: Tue,  9 Apr 2024 10:04:25 +0200
+Message-ID: <20240409081029.17843-4-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240409081029.17843-1-tzimmermann@suse.de>
 References: <20240409081029.17843-1-tzimmermann@suse.de>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Pre-Result: action=no action; module=replies;
  Message is reply to one we originated
 X-Spamd-Result: default: False [-4.00 / 50.00];
 	REPLY(-4.00)[]
-X-Rspamd-Queue-Id: 912282088D
+X-Rspamd-Queue-Id: 78D822088F
 X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
 X-Rspamd-Pre-Result: action=no action; module=replies;
  Message is reply to one we originated
@@ -69,46 +71,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Export drm_client_dev_unregister() for use by the i915 driver. The
-driver does not use drm_dev_unregister(), so it has to clean up the
-in-kernel DRM clients by itself.
+Initialize i915's fbdev client by giving an instance of struct
+drm_client_funcs to drm_client_init(). Also clean up with
+drm_client_release().
+
+Doing this in i915 prevents fbdev helpers from initializing and
+releasing the client internally (see drm_fb_helper_init()). No
+functional change yet; the client callbacks will be filled later.
+
+v6:
+- rename client to "intel-fbdev" (Jouni)
+
+v2:
+- call drm_fb_helper_unprepare() in error handling (Jani)
+- fix typo in commit message (Sam)
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/drm_client.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ drivers/gpu/drm/i915/display/intel_fbdev.c | 43 ++++++++++++++++++++--
+ 1 file changed, 39 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_client.c b/drivers/gpu/drm/drm_client.c
-index 77fe217aeaf36..2803ac111bbd8 100644
---- a/drivers/gpu/drm/drm_client.c
-+++ b/drivers/gpu/drm/drm_client.c
-@@ -172,6 +172,18 @@ void drm_client_release(struct drm_client_dev *client)
- }
- EXPORT_SYMBOL(drm_client_release);
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+index 2714e12a6c44c..4d0dba6c47d3a 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.c
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+@@ -291,6 +291,7 @@ static void intel_fbdev_destroy(struct intel_fbdev *ifbdev)
+ 	if (ifbdev->fb)
+ 		drm_framebuffer_remove(&ifbdev->fb->base);
  
-+/**
-+ * drm_client_dev_unregister - Unregister clients
-+ * @dev: DRM device
-+ *
-+ * This function releases all clients by calling each client's
-+ * &drm_client_funcs.unregister callback. The callback function
-+ * is responsibe for releaseing all resources including the client
-+ * itself.
-+ *
-+ * The helper drm_dev_unregister() calls this function. Drivers
-+ * that use it don't need to call this function themselves.
++	drm_client_release(&ifbdev->helper.client);
+ 	drm_fb_helper_unprepare(&ifbdev->helper);
+ 	kfree(ifbdev);
+ }
+@@ -584,6 +585,30 @@ void intel_fbdev_restore_mode(struct drm_i915_private *dev_priv)
+ 		intel_fbdev_invalidate(ifbdev);
+ }
+ 
++/*
++ * Fbdev client and struct drm_client_funcs
 + */
- void drm_client_dev_unregister(struct drm_device *dev)
++
++static void intel_fbdev_client_unregister(struct drm_client_dev *client)
++{ }
++
++static int intel_fbdev_client_restore(struct drm_client_dev *client)
++{
++	return 0;
++}
++
++static int intel_fbdev_client_hotplug(struct drm_client_dev *client)
++{
++	return 0;
++}
++
++static const struct drm_client_funcs intel_fbdev_client_funcs = {
++	.owner		= THIS_MODULE,
++	.unregister	= intel_fbdev_client_unregister,
++	.restore	= intel_fbdev_client_restore,
++	.hotplug	= intel_fbdev_client_hotplug,
++};
++
+ int intel_fbdev_init(struct drm_device *dev)
  {
- 	struct drm_client_dev *client, *tmp;
-@@ -191,6 +203,7 @@ void drm_client_dev_unregister(struct drm_device *dev)
- 	}
- 	mutex_unlock(&dev->clientlist_mutex);
- }
-+EXPORT_SYMBOL(drm_client_dev_unregister);
+ 	struct drm_i915_private *dev_priv = to_i915(dev);
+@@ -605,16 +630,26 @@ int intel_fbdev_init(struct drm_device *dev)
+ 	else
+ 		ifbdev->preferred_bpp = ifbdev->helper.preferred_bpp;
  
- /**
-  * drm_client_dev_hotplug - Send hotplug event to clients
++	ret = drm_client_init(dev, &ifbdev->helper.client, "intel-fbdev",
++			      &intel_fbdev_client_funcs);
++	if (ret)
++		goto err_drm_fb_helper_unprepare;
++
+ 	ret = drm_fb_helper_init(dev, &ifbdev->helper);
+-	if (ret) {
+-		kfree(ifbdev);
+-		return ret;
+-	}
++	if (ret)
++		goto err_drm_client_release;
+ 
+ 	dev_priv->display.fbdev.fbdev = ifbdev;
+ 	INIT_WORK(&dev_priv->display.fbdev.suspend_work, intel_fbdev_suspend_worker);
+ 
+ 	return 0;
++
++err_drm_client_release:
++	drm_client_release(&ifbdev->helper.client);
++err_drm_fb_helper_unprepare:
++	drm_fb_helper_unprepare(&ifbdev->helper);
++	kfree(ifbdev);
++	return ret;
+ }
+ 
+ static void intel_fbdev_initial_config(void *data, async_cookie_t cookie)
 -- 
 2.44.0
 
