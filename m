@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64E9FCD129C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB5E2CD129D
 	for <intel-xe@archiver.kernel.org>; Tue,  9 Apr 2024 20:05:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E56F310E96D;
-	Tue,  9 Apr 2024 20:05:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F7C0112EFA;
+	Tue,  9 Apr 2024 20:05:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XgUaUvLb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UQBdb0ca";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BF74112F2C
- for <intel-xe@lists.freedesktop.org>; Tue,  9 Apr 2024 20:04:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94318112F25
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 Apr 2024 20:04:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712693098; x=1744229098;
+ t=1712693095; x=1744229095;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=k0c1AmO1iGLyrh2xeo7Hf0ToaAChP3tw3m6rnS5HyYU=;
- b=XgUaUvLbAg48p4iogKhPOz8npexNOxJje/2hyPWkxNa+wC23MLv+HBJp
- LIPgaylHcmCMbaJRRcsFbiN8tnvguWG9taw1Za7LJzvUFA4DwkQ1bEYvQ
- dY5HcZfNO//VNEjtJ+barSFiDbt7yzmB6BUggkKScyZwNkkt+o36TMtYh
- 61f8uA3IEk+Reh3hBU9D0u/6NtokVHrSSbdGwzlov7vX0DB1TSGcLXGM6
- BLom+dgKKytFVGLvUDpv0nepKxOo1zrU43s08vlsd1slP65qbXr6efPu0
- VuwthXrYcIx4L8N4qrDVh/UpqNcgP2NRfA9wNHWYv/xlzFVuGY6BgifFt w==;
-X-CSE-ConnectionGUID: hjgMhgrUQ7mh5ga+JFsXww==
-X-CSE-MsgGUID: mj4lne+cSEa9aqzkoXkWOQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="11803771"
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="11803771"
+ bh=qv1cpVR5yQ8ZSXQI4tEUbPmaGpl2MmJOI4a+J/f95KQ=;
+ b=UQBdb0caEoASAxRwkJPNV4c8bMLV7+PVYNvah++o76xZhgi8MrM7VEeR
+ Nkk8nRBKvVPlM0F8MITUEVfRfDEKDBmZDmSNflKg6j0pTpdoOhzvJQ3Lf
+ LOn5u7gU9LfPXkQp/NY09I3SnUg9/K5lkRCzuSL6zoyB8UoIBQLE8lgsO
+ mQaTgsobKs6E/0aHDv3ESdupKmzA/nPIdS/hGPPfn3Cu2o1LEE8i23jei
+ zfupFX7qUsh6H/cpLvFkFV12dFKzP02R7zqEUnUQyveQM3qcgIzJyKTfn
+ rD2MiKPtkAdNAPth/BV5P5Av4kLpVdmTTPp+LmINhUZgrp0U277HAGH7o A==;
+X-CSE-ConnectionGUID: k32UzsdQSIKfbF0Ftogyqw==
+X-CSE-MsgGUID: Pf+Zo9bOQGq4vswFwSgHPQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="11803761"
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="11803761"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2024 13:04:54 -0700
-X-CSE-ConnectionGUID: p8gum6FORTev8QIO/js8Mw==
-X-CSE-MsgGUID: B59OQATeRUi0DO+GmCHw+Q==
+ 09 Apr 2024 13:04:53 -0700
+X-CSE-ConnectionGUID: vFCOMujESrO2CRfMCp48TA==
+X-CSE-MsgGUID: TuHycIOpSYC8NsS8F2Awqg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="20773799"
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="20773769"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2024 13:04:53 -0700
+ 09 Apr 2024 13:04:52 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: himal.prasad.ghimiray@intel.com, krishnaiah.bommu@intel.com,
  matthew.brost@intel.com, Thomas.Hellstrom@linux.intel.com,
  brian.welty@intel.com
-Subject: [v2 29/31] drm/xe/svm: trace svm migration
-Date: Tue,  9 Apr 2024 16:17:40 -0400
-Message-Id: <20240409201742.3042626-30-oak.zeng@intel.com>
+Subject: [v2 19/31] drm/xe/svm: Determine a vma is backed by device memory
+Date: Tue,  9 Apr 2024 16:17:30 -0400
+Message-Id: <20240409201742.3042626-20-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240409201742.3042626-1-oak.zeng@intel.com>
 References: <20240409201742.3042626-1-oak.zeng@intel.com>
@@ -68,60 +68,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add two trace points to trace svm migrations.
+With system allocator, a userptr can now be back by device
+memory also. Introduce a helper function xe_vma_is_devmem
+to determine whether a vma is backed by device memory.
 
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm_migrate.c |  5 ++++-
- drivers/gpu/drm/xe/xe_trace.h       | 11 +++++++++++
- 2 files changed, 15 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_pt.c | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_svm_migrate.c b/drivers/gpu/drm/xe/xe_svm_migrate.c
-index ab8dd1f58aa4..69096d81bf02 100644
---- a/drivers/gpu/drm/xe/xe_svm_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_svm_migrate.c
-@@ -211,8 +211,10 @@ vm_fault_t xe_svm_migrate_to_sram(struct vm_fault *vmf)
- 	xe_svm_for_each_vm(svm, vm) {
- 		xe_assert(xe, vm->mm == mm);
- 		xe_vma = xe_vm_lookup_vma(vm, vmf->address);
--		if (xe_vma)
-+		if (xe_vma) {
-+			trace_xe_svm_migrate_to_sram(xe_vma);
- 			xe_vm_invalidate_vma(xe_vma);
-+		}
- 	}
- 	migrate_vma_pages(&migrate_vma);
- 	migrate_vma_finalize(&migrate_vma);
-@@ -328,6 +330,7 @@ int xe_svm_migrate_vma_to_vram(struct xe_vm *vm,
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 846e896edcb5..525092111be9 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -577,6 +577,17 @@ static const struct xe_pt_walk_ops xe_pt_stage_bind_ops = {
+ 	.pt_entry = xe_pt_stage_bind_entry,
+ };
  
- 	migrate_vma_pages(&migrate);
- 	migrate_vma_finalize(&migrate);
-+	trace_xe_svm_migrate_to_vram(vma);
- free_dst_pages:
- 	if (ret)
- 		xe_devm_free_blocks(&blocks);
-diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-index f3fcce9f1434..12e0c9856540 100644
---- a/drivers/gpu/drm/xe/xe_trace.h
-+++ b/drivers/gpu/drm/xe/xe_trace.h
-@@ -480,6 +480,17 @@ DEFINE_EVENT(xe_vma, xe_vma_userptr_invalidate_complete,
- 	     TP_ARGS(vma)
- );
- 
-+DEFINE_EVENT(xe_vma, xe_svm_migrate_to_sram,
-+		    TP_PROTO(struct xe_vma *vma),
-+		    TP_ARGS(vma)
-+);
++static bool xe_vma_is_devmem(struct xe_vma *vma)
++{
++	if (xe_vma_is_userptr(vma)) {
++		struct xe_userptr_vma *uvma = to_userptr_vma(vma);
++		return uvma->userptr.is_device_pages;
++	} else {
++		struct xe_bo *bo = xe_vma_bo(vma);
++		return bo && (xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo));
++	}
++}
 +
-+
-+DEFINE_EVENT(xe_vma, xe_svm_migrate_to_vram,
-+		    TP_PROTO(struct xe_vma *vma),
-+		    TP_ARGS(vma)
-+);
-+
- DECLARE_EVENT_CLASS(xe_vm,
- 		    TP_PROTO(struct xe_vm *vm),
- 		    TP_ARGS(vm),
+ /**
+  * xe_pt_stage_bind() - Build a disconnected page-table tree for a given address
+  * range.
+@@ -601,8 +612,7 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
+ {
+ 	struct xe_device *xe = tile_to_xe(tile);
+ 	struct xe_bo *bo = xe_vma_bo(vma);
+-	bool is_devmem = !xe_vma_is_userptr(vma) && bo &&
+-		(xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo));
++	bool is_devmem = xe_vma_is_devmem(vma);
+ 	struct xe_res_cursor curs;
+ 	struct xe_pt_stage_bind_walk xe_walk = {
+ 		.base = {
 -- 
 2.26.3
 
