@@ -4,24 +4,21 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5ACACD129A
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Apr 2024 08:31:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCC1CCD129C
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Apr 2024 08:31:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44A3D112BA6;
-	Tue,  9 Apr 2024 08:31:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A681112BA8;
+	Tue,  9 Apr 2024 08:31:36 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B5FE112BA7;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A6A0112BA4;
  Tue,  9 Apr 2024 08:31:31 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [CI-only 4/4] drm/i915: Hack to check use-after-free aggressively,
- and undo purpose of patches
-Date: Tue,  9 Apr 2024 10:31:40 +0200
-Message-ID: <20240409083140.27711-4-maarten.lankhorst@linux.intel.com>
+Subject: [CI-only 1/4] drm: Add drm_vblank_work_flush_all().
+Date: Tue,  9 Apr 2024 10:31:37 +0200
+Message-ID: <20240409083140.27711-1-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240409083140.27711-1-maarten.lankhorst@linux.intel.com>
-References: <20240409083140.27711-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -38,38 +35,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+In some cases we want to flush all vblank work, right before vblank_off
+for example. Add a simple function to make this possible.
+
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc.c   | 2 +-
- drivers/gpu/drm/i915/display/intel_cursor.c | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/drm_vblank_work.c | 22 ++++++++++++++++++++++
+ include/drm/drm_vblank_work.h     |  2 ++
+ 2 files changed, 24 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 558e9b7404b5..0ec6c3a79ec1 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -640,7 +640,7 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
- 			if (old_plane_state->uapi.crtc == &crtc->base &&
- 			    old_plane_state->unpin_work.vblank) {
- 				drm_vblank_work_schedule(&old_plane_state->unpin_work,
--							 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
-+							 drm_crtc_accurate_vblank_count(&crtc->base),
- 							 false);
+diff --git a/drivers/gpu/drm/drm_vblank_work.c b/drivers/gpu/drm/drm_vblank_work.c
+index 43cd5c0f4f6f..6a53cede547a 100644
+--- a/drivers/gpu/drm/drm_vblank_work.c
++++ b/drivers/gpu/drm/drm_vblank_work.c
+@@ -232,6 +232,28 @@ void drm_vblank_work_flush(struct drm_vblank_work *work)
+ }
+ EXPORT_SYMBOL(drm_vblank_work_flush);
  
- 				/* Remove plane from atomic state, cleanup/free is done from vblank worker. */
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index e999ee8e9d94..f052c25b0675 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -833,7 +833,7 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 				     intel_cursor_unpin_work);
++/**
++ * drm_vblank_work_flush_all - flush all currently pending vblank work on crtc.
++ * @crtc: crtc for which vblank work to flush
++ *
++ * Wait until all currently queued vblank work on @crtc
++ * has finished executing once.
++ */
++void drm_vblank_work_flush_all(struct drm_crtc *crtc)
++{
++	struct drm_device *dev = crtc->dev;
++	struct drm_vblank_crtc *vblank = &dev->vblank[drm_crtc_index(crtc)];
++
++	spin_lock_irq(&dev->event_lock);
++	wait_event_lock_irq(vblank->work_wait_queue,
++			    !waitqueue_active(&vblank->work_wait_queue),
++			    dev->event_lock);
++	spin_unlock_irq(&dev->event_lock);
++
++	kthread_flush_worker(vblank->worker);
++}
++EXPORT_SYMBOL(drm_vblank_work_flush_all);
++
+ /**
+  * drm_vblank_work_init - initialize a vblank work item
+  * @work: vblank work item
+diff --git a/include/drm/drm_vblank_work.h b/include/drm/drm_vblank_work.h
+index eb41d0810c4f..e04d436b7297 100644
+--- a/include/drm/drm_vblank_work.h
++++ b/include/drm/drm_vblank_work.h
+@@ -17,6 +17,7 @@ struct drm_crtc;
+  * drm_vblank_work_init()
+  * drm_vblank_work_cancel_sync()
+  * drm_vblank_work_flush()
++ * drm_vblank_work_flush_all()
+  */
+ struct drm_vblank_work {
+ 	/**
+@@ -67,5 +68,6 @@ void drm_vblank_work_init(struct drm_vblank_work *work, struct drm_crtc *crtc,
+ 			  void (*func)(struct kthread_work *work));
+ bool drm_vblank_work_cancel_sync(struct drm_vblank_work *work);
+ void drm_vblank_work_flush(struct drm_vblank_work *work);
++void drm_vblank_work_flush_all(struct drm_crtc *crtc);
  
- 		drm_vblank_work_schedule(&old_plane_state->unpin_work,
--					 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
-+					 drm_crtc_accurate_vblank_count(&crtc->base),
- 					 false);
- 
- 		old_plane_state = NULL;
+ #endif /* !_DRM_VBLANK_WORK_H_ */
 -- 
 2.43.0
 
