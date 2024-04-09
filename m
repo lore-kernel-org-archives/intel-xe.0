@@ -4,59 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B640DCD1284
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Apr 2024 09:35:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D0F6C67861
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Apr 2024 09:43:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47B70112C0A;
-	Tue,  9 Apr 2024 09:35:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 308FE112C1B;
+	Tue,  9 Apr 2024 09:43:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n6CBrUa6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ffQq519U";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85841112C0A
- for <intel-xe@lists.freedesktop.org>; Tue,  9 Apr 2024 09:35:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A992112C1B
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 Apr 2024 09:43:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712655341; x=1744191341;
+ t=1712655794; x=1744191794;
  h=message-id:date:mime-version:subject:to:references:from:
  in-reply-to:content-transfer-encoding;
- bh=I3C6ZKHu0Un3WiZUQgrXgXGcE3IziOpLDqJFqrwM4e8=;
- b=n6CBrUa6RRod/mB9eBkdKjmBQaJATkVR3AA65Z/IhVvkBpVVIjETXW1l
- 2CsZd57g7NnI8KHPMLNPHK5j7tP7PQfJw9eqReRMCu68svX6FQ94yQQZY
- sCN4bLKerKpHSrP8mXKF/3ZoZsI6G6WUdxqhjCySS2dXFQe6lDPpk78Ge
- aHzPVGB4ay9r1sLQnEI19vU1JnaKW6ntMaVjx8sLWxvufZA0N9yHlrLyY
- 2lZWD6Dgd1qBlWYzaQ2lNEfyyPtmvRwypqr8//n/FpDrnEJOWC0p5gnWx
- ir+lgzFR53i0SFsYlWDIei13x+5CnESCkg455+p2v9EAYGGbLqvLNj0/b w==;
-X-CSE-ConnectionGUID: mm7TQxQvRxSm/3mJQ0zujw==
-X-CSE-MsgGUID: tJycWnuQTLa/gUbvFEfOUg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="8140013"
-X-IronPort-AV: E=Sophos;i="6.07,189,1708416000"; 
-   d="scan'208";a="8140013"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2024 02:35:37 -0700
-X-CSE-ConnectionGUID: Y+fn7tK+RtOtGecKioX1xQ==
-X-CSE-MsgGUID: MSm90RtPQdqrB96oqVTmfg==
+ bh=HGKPX1ooT6Yz8IY6OtyM6h0nzkLfEbOvPliUfQQze5w=;
+ b=ffQq519U3g1dMvIsiJHj9VsLvotdjymqgnzICtr7TUUCvsqSYxU8Sv/R
+ /QP7DaEpvP9LAxW//6rIKEbM1mRKCvtKWwss4F3G/K+iXpobd1xf/rmyF
+ KFH0vzvoRezOx2rb7S1X+3deQEOkIlPuv11tANZjKYGy8ut0d2nw3DdfA
+ q7qFZZnH0F2GazoskKiv0oACxzgsXZB86HUXdioGMGH3KnNetf9qiVRj+
+ S8X2RR3KFBXneFaTE3E0YrzTYYVcUeclX8Dhyxc2TYChpHJPH06BQCfby
+ vqN1YLP+rToQNVlheuBpczkFLlms6/2h41pH45bo6t4mhlG8wk6cfbQRn A==;
+X-CSE-ConnectionGUID: Vvvm+BFlSOelbPFVB5ljHg==
+X-CSE-MsgGUID: NNmSOY7eRGmxnHq9hpmi7A==
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="18528526"
+X-IronPort-AV: E=Sophos;i="6.07,189,1708416000"; d="scan'208";a="18528526"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2024 02:43:14 -0700
+X-CSE-ConnectionGUID: 9EpE0duPSMae3c2nRSxQgg==
+X-CSE-MsgGUID: VTpKfOncSY2K0bQpA5Yrww==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,189,1708416000"; d="scan'208";a="51366546"
+X-IronPort-AV: E=Sophos;i="6.07,189,1708416000"; d="scan'208";a="57633213"
 Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa001.fm.intel.com with ESMTP; 09 Apr 2024 02:35:35 -0700
+ by orviesa001.jf.intel.com with ESMTP; 09 Apr 2024 02:43:12 -0700
 Received: from [10.249.158.230] (unknown [10.249.158.230])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 5145B27BBC;
- Tue,  9 Apr 2024 10:35:28 +0100 (IST)
-Message-ID: <7f96ad9c-e16c-49ff-bb7f-ad9ad37f9a1c@intel.com>
-Date: Tue, 9 Apr 2024 11:35:27 +0200
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 886DB27BC6;
+ Tue,  9 Apr 2024 10:43:00 +0100 (IST)
+Message-ID: <2ad605ee-91a4-40a7-8996-e8e155a807f4@intel.com>
+Date: Tue, 9 Apr 2024 11:42:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 1/2] drm/xe/guc: Add helpers for GuC KLVs
 Content-Language: en-US
-To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>,
- intel-xe@lists.freedesktop.org
+To: John Harrison <john.c.harrison@intel.com>, intel-xe@lists.freedesktop.org
 References: <20240408181408.1023-1-michal.wajdeczko@intel.com>
  <20240408181408.1023-2-michal.wajdeczko@intel.com>
- <7ebc9a2e-e876-4471-aa26-c31f1d2e4ed7@intel.com>
+ <cceea6ca-4d04-445c-9153-993cd69d14f6@intel.com>
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <7ebc9a2e-e876-4471-aa26-c31f1d2e4ed7@intel.com>
+In-Reply-To: <cceea6ca-4d04-445c-9153-993cd69d14f6@intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -75,14 +73,13 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-On 08.04.2024 22:23, Ghimiray, Himal Prasad wrote:
-> 
-> On 08-04-2024 23:44, Michal Wajdeczko wrote:
+On 09.04.2024 00:00, John Harrison wrote:
+> On 4/8/2024 11:14, Michal Wajdeczko wrote:
 >> Many of the GuC actions use KLVs to pass additional parameters or
 >> configuration data. Add few helper functions for better reporting
 >> any information related to KLVs.
 >>
->> Signed-off-by: Michal Wajdeczko<michal.wajdeczko@intel.com>
+>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 >> ---
 >>   drivers/gpu/drm/xe/Makefile             |   1 +
 >>   drivers/gpu/drm/xe/xe_guc_klv_helpers.c | 133 ++++++++++++++++++++++++
@@ -122,22 +119,6 @@ On 08.04.2024 22:23, Ghimiray, Himal Prasad wrote:
 >> +#include "xe_guc_klv_helpers.h"
 >> +
 >> +#define make_u64(hi, lo) ((u64)((u64)(u32)(hi) << 32 | (u32)(lo)))
-> 
-> is this macro necessary, it's being called in one place ?
-> 
-> ((u64)hi << 32) | lo  should be enough.
-
-IMO it is better to have a macro (with name) than a magic formula
-besides, this macro here is (I hope) just temporary as either:
- - it will be promoted to xe_macros.h [1], or
- - something similar will be available in wordpart.h [2]
-
-[1] https://patchwork.freedesktop.org/series/129854/
-
-[2]
-https://lore.kernel.org/lkml/20240214214654.1700-1-michal.wajdeczko@intel.com/
-
-> 
 >> +
 >> +/**
 >> + * xe_guc_klv_key_to_string - Convert KLV key into friendly name.
@@ -176,22 +157,8 @@ https://lore.kernel.org/lkml/20240214214654.1700-1-michal.wajdeczko@intel.com/
 >> +        return "begin_db_id";
 >> +    case GUC_KLV_VF_CFG_BEGIN_CONTEXT_ID_KEY:
 >> +        return "begin_ctx_id";
-> 
-> default:
-> 
-> return "(unknown)";
-> 
-> Have seen warning/errors if default is not defined in switch-case.
-
-likely compiler was complaining because of enum being used in switch
-statement, but here it is u16, so there shouldn't be any warnings
-
-but can add 'default' case if you consider that as a blocker
-
-> 
 >> +    }
 >> +    return "(unknown)";
-> remove.
 >> +}
 >> +
 >> +/**
@@ -233,6 +200,26 @@ but can add 'default' case if you consider that as a blocker
 >> +        case 2:
 >> +            drm_printf(p, "{ key %#06x : 64b value %#llx } # %s\n",
 >> +                   key, make_u64(klvs[1], klvs[0]),
+> Or maybe it is actually two separate 32bit words? Why bother forcing it
+> to a u64 with a brand new custom helper? Seems simpler to just print it
+> as a pair of 32s, the reader can trivially combine it to a single 64 in
+> their head if printing as hex anyway.
+
+but majority (if not all) of KLVs with len=2 hold the 64b value and for
+remaining KLVs the reader can trivially split 64b hex value into two 32b
+
+> 
+> Also, there is no code to actually use any of these helpers yet? I
+> thought adding unused code was not allowed. You have to have a purpose,
+> at least in the same series if not the same patch.
+
+actual use is coming as part of the larger series with SR-IOV PF
+support, but sent helper separately to minimize this upcoming series and
+not distract reviewers with secondary helpers outside of SR-IOV scope
+
+> 
+> John.
+> 
 >> +                   xe_guc_klv_key_to_string(key));
 >> +            break;
 >> +        default:
@@ -258,9 +245,6 @@ but can add 'default' case if you consider that as a blocker
 >> + *
 >> + * Return: number of recognized KLVs or
 >> + *          a negative error code if KLV buffer is truncated.
-
-see here ^^^
-
 >> + */
 >> +int xe_guc_klv_count(const u32 *klvs, u32 num_dwords)
 >> +{
@@ -278,15 +262,6 @@ see here ^^^
 >> +    }
 >> +
 >> +    return num_dwords ? -ENODATA : num_klvs;
-> 
-> while loop can be terminated only if num_dwords < len + GUC_KLV_LEN_MIN
-> or num_dwords is 0. Therefore return num_klvs; should be fine.
-
-but then we won't catch the case with truncated buffer (which indicates
-bug somewhere in code or firmware) and it is one of the function goal
-and return value
-
-> 
 >> +}
 >> diff --git a/drivers/gpu/drm/xe/xe_guc_klv_helpers.h
 >> b/drivers/gpu/drm/xe/xe_guc_klv_helpers.h
@@ -351,3 +326,4 @@ and return value
 >> +    PREP_GUC_KLV_CONST(GUC_KLV_##TAG##_KEY, GUC_KLV_##TAG##_LEN)
 >> +
 >> +#endif
+> 
