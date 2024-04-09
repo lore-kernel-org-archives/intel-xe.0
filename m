@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A6C1CD128A
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Apr 2024 20:05:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 622A9CD1299
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Apr 2024 20:05:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5C7710EE99;
-	Tue,  9 Apr 2024 20:05:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5B5A10E96D;
+	Tue,  9 Apr 2024 20:05:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HBkc/UQO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DeG9ZXY+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0910112F11
- for <intel-xe@lists.freedesktop.org>; Tue,  9 Apr 2024 20:04:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EAADB112F1D
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 Apr 2024 20:04:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712693094; x=1744229094;
+ t=1712693095; x=1744229095;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nyyZeaNgbmIEevFgpzQe9GOEFHV56Ay+v9TsDym8Viw=;
- b=HBkc/UQOQr3QEqhqUgh2+7blKXWhO1lmvbCd6dh35jr3nGnMruhgilmc
- otrBr0ijLqj5cd7h7L0osqtVy65xDXAXHFQ/2BVLXgPoNHLRLsKcb2gI+
- MAVgB0JGpVwgBkkc/svwFk3nrrd1Ml5mv6FXeN3PIH3X+eepcWG+FmfIs
- rBwQ+eCbU3ZLwivN3NuIl3sLE3KfHDSUZlQGkDKPuPtkosLgKhjzunkEq
- +av0Zyj4RgWCCIOFMKfv3GqBrhLGyMkElmWUKkoZcbqP9C+NNo9/zU5nL
- /nwZww+GoeEXrjXEbc10gne5ZQHXR3pK9K0q9XdQxyan9v71OXyesChqo w==;
-X-CSE-ConnectionGUID: LmxM0hS9RLWexnC0tudK9g==
-X-CSE-MsgGUID: JczHHvo9T7+vYc+dpxWFHg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="11803746"
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="11803746"
+ bh=3VPZCVmTd1d2S4XEJY+ZAKWPcXVYUxr0yBo8esKXfp0=;
+ b=DeG9ZXY+cIXoaW7nWKkXHoqZQd6cRIb4q1pcS/fuJJ5CMZHrjtOir3+1
+ RoP/SxyoZ/Hj3GbyFkUAn7pi4wc43CPzlzW6X8aK/PtRIeYoyelB7j8Wt
+ r6P1z8LwoR7mhaBqhUXqkCC7V2uyBS7BdP6k8tYr+UCphCOchIJOLR/lM
+ kL+rxNkG14RYugRCjusX4aiexiwOUT2AFCI1GycYP9dI/NJhEFzdrl8ST
+ 9C+LGRC/5q5TvP+5TOR2om+dbleQruSz2z/J1hx5SzBBBjgK7aZ03Cp4T
+ yI2W7LhIWkgjw9Az0RodpGDqtLiGQOnrE05ixIJ3IseNx3AydnZn9hj8T w==;
+X-CSE-ConnectionGUID: Kh9weLlORF6Mahb7+sGQbg==
+X-CSE-MsgGUID: KMAxdafiT2ucx30HKuJ1Yw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="11803754"
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="11803754"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2024 13:04:52 -0700
-X-CSE-ConnectionGUID: fG6HTt4/SMymuHMkBpcKFw==
-X-CSE-MsgGUID: vpnCHpdgS1SZS1zakO9zhg==
+ 09 Apr 2024 13:04:53 -0700
+X-CSE-ConnectionGUID: tzRbeqkISmWZ3dVyhXQw6Q==
+X-CSE-MsgGUID: +JwfRHb3RLWyLG4Sa2g2pg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="20773742"
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="20773725"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Apr 2024 13:04:52 -0700
@@ -46,14 +46,13 @@ To: intel-xe@lists.freedesktop.org
 Cc: himal.prasad.ghimiray@intel.com, krishnaiah.bommu@intel.com,
  matthew.brost@intel.com, Thomas.Hellstrom@linux.intel.com,
  brian.welty@intel.com
-Subject: [v2 10/31] drm/xe: Introduce a helper to free sg table
-Date: Tue,  9 Apr 2024 16:17:21 -0400
-Message-Id: <20240409201742.3042626-11-oak.zeng@intel.com>
+Subject: [v2 05/31] drm/xe: Fix op->tile_mask for fault mode
+Date: Tue,  9 Apr 2024 16:17:16 -0400
+Message-Id: <20240409201742.3042626-6-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240409201742.3042626-1-oak.zeng@intel.com>
 References: <20240409201742.3042626-1-oak.zeng@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,80 +68,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce xe_userptr_free_sg helper to dma-unmap all
-addresses in userptr's sg table and free sg table.
+From: Matthew Brost <matthew.brost@intel.com>
 
-Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-Suggested by: Matthew Brost <matthew.brost@intel.com>
+op->tile_mask might be a subset of all tiles if in fault mode. Fix
+unmaps by setting op->tile_mask the unmapped VMA's tile_present field.
+
+FIXME: This should be squashed into an eariler patch
+
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hmm.c | 30 ++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_hmm.h |  1 +
- 2 files changed, 31 insertions(+)
+ drivers/gpu/drm/xe/xe_vm.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_hmm.c b/drivers/gpu/drm/xe/xe_hmm.c
-index 4011207630a5..427c6bc49949 100644
---- a/drivers/gpu/drm/xe/xe_hmm.c
-+++ b/drivers/gpu/drm/xe/xe_hmm.c
-@@ -3,6 +3,7 @@
-  * Copyright © 2024 Intel Corporation
-  */
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index c0c6bb163a9e..7ce7dbeb6f0a 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2190,6 +2190,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 			struct xe_vma *old =
+ 				gpuva_to_vma(op->base.remap.unmap->va);
  
-+#include <linux/scatterlist.h>
- #include <linux/mmu_notifier.h>
- #include <linux/dma-mapping.h>
- #include <linux/memremap.h>
-@@ -107,6 +108,32 @@ static int xe_build_sg(struct xe_device *xe, struct hmm_range *range,
- 	return ret;
- }
++			op->tile_mask = old->tile_present;
+ 			op->remap.start = xe_vma_start(old);
+ 			op->remap.range = xe_vma_size(old);
  
-+/**
-+ * xe_userptr_free_sg() - Free the scatter gather table of userptr
-+ *
-+ * @uvma: the userptr vma which hold the scatter gather table
-+ *
-+ * With function xe_userptr_populate_range, we allocate storage of
-+ * the userptr sg table. This is a helper function to free this
-+ * sg table, and dma unmap the address in the table.
-+ */
-+void xe_userptr_free_sg(struct xe_userptr_vma *uvma)
-+{
-+	struct xe_userptr *userptr = &uvma->userptr;
-+	struct xe_vma *vma = &uvma->vma;
-+	bool write = !xe_vma_read_only(vma);
-+	struct xe_vm *vm = xe_vma_vm(vma);
-+	struct xe_device *xe = vm->xe;
-+	struct device *dev = xe->drm.dev;
+@@ -2273,6 +2274,13 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 			break;
+ 		}
+ 		case DRM_GPUVA_OP_UNMAP:
++		{
++			struct xe_vma *vma = gpuva_to_vma(op->base.unmap.va);
 +
-+	xe_assert(xe, userptr->sg);
-+	dma_unmap_sgtable(dev, userptr->sg,
-+			write ? DMA_BIDIRECTIONAL : DMA_TO_DEVICE, 0);
-+
-+	sg_free_table(userptr->sg);
-+	userptr->sg = NULL;
-+}
-+
- /**
-  * xe_userptr_populate_range() - Populate physical pages of a virtual
-  * address range
-@@ -156,6 +183,9 @@ int xe_userptr_populate_range(struct xe_userptr_vma *uvma)
- 	if (notifier_seq == userptr->notifier_seq)
- 		return 0;
- 
-+	if (userptr->sg)
-+		xe_userptr_free_sg(uvma);
-+
- 	npages = xe_npages_in_range(start, end);
- 	pfns = kvmalloc_array(npages, sizeof(*pfns), GFP_KERNEL);
- 	if (unlikely(!pfns))
-diff --git a/drivers/gpu/drm/xe/xe_hmm.h b/drivers/gpu/drm/xe/xe_hmm.h
-index 91686a751711..7bb49bbde5a4 100644
---- a/drivers/gpu/drm/xe/xe_hmm.h
-+++ b/drivers/gpu/drm/xe/xe_hmm.h
-@@ -15,3 +15,4 @@ static inline int xe_userptr_populate_range(struct xe_userptr_vma *uvma)
- 	return -ENODEV;
- }
- #endif
-+void xe_userptr_free_sg(struct xe_userptr_vma *uvma);
++			op->tile_mask = vma->tile_present;
++			xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
++			break;
++		}
+ 		case DRM_GPUVA_OP_PREFETCH:
+ 			/* FIXME: Need to skip some prefetch ops */
+ 			xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
 -- 
 2.26.3
 
