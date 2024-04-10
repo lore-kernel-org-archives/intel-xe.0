@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0D48CD128A
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Apr 2024 11:09:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 556C6CD128A
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Apr 2024 11:14:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EF8B1132C2;
-	Wed, 10 Apr 2024 11:09:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C225F1132C5;
+	Wed, 10 Apr 2024 11:14:18 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB94611262B;
- Wed, 10 Apr 2024 11:09:23 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1720646557901294212=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8577A1132E9;
+ Wed, 10 Apr 2024 11:14:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm=3A_move_Intel_drm_headers_to?=
- =?utf-8?q?_a_subdirectory?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm=3A_move_Intel_dr?=
+ =?utf-8?q?m_headers_to_a_subdirectory_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 10 Apr 2024 11:09:23 -0000
-Message-ID: <171274736376.1319548.2841281713642912578@8e613ede5ea5>
+Date: Wed, 10 Apr 2024 11:14:16 -0000
+Message-ID: <171274765654.1319548.17265648731531168163@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <cover.1712743191.git.jani.nikula@intel.com>
 In-Reply-To: <cover.1712743191.git.jani.nikula@intel.com>
@@ -40,102 +40,26 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1720646557901294212==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm: move Intel drm headers to a subdirectory
+Series: drm: move Intel drm headers to a subdirectory (rev2)
 URL   : https://patchwork.freedesktop.org/series/132263/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-1066-c111f7a5945a5325e95fd38bfde2880263fce683_BAT -> xe-pw-132263v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: c111f7a5945a drm-tip: 2024y-04m-10d-09h-28m-42s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915: use system include for drm headers
+Applying: drm: move intel-gtt.h under include/drm/intel
+Applying: drm: move i915_gsc_proxy_mei_interface.h under include/drm/intel
+Applying: drm: move i915_component.h under include/drm/intel
+Applying: drm: move intel_lpe_audio.h under include/drm/intel
+Applying: drm: move i915_drm.h under include/drm/intel
+Applying: drm: move i915_pxp_tee_interface.h under include/drm/intel
+Applying: drm: move i915_pciids.h under include/drm/intel
+Applying: drm: move xe_pciids.h under include/drm/intel
+Applying: drm: move i915_hdcp_interface.h under include/drm/intel
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-1066-c111f7a5945a5325e95fd38bfde2880263fce683 -> xe-pw-132263v1
-
-  IGT_7803: 9669a17ae56f1dcd22ba4c5cb39b3cd334a46862 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1066-c111f7a5945a5325e95fd38bfde2880263fce683: c111f7a5945a5325e95fd38bfde2880263fce683
-  xe-pw-132263v1: 132263v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132263v1/index.html
-
---===============1720646557901294212==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: move Intel drm headers to a subdirectory</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132263/">https://patchwork.freedesktop.org/series/132263/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132263v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132263v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1066-c111f7a5945a5325e95fd38bfde2880263fce683_BAT -&gt; xe-pw-132263v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1066-c111f7a5945a5325e95fd38bfde2880263fce683 -&gt; xe-pw-132263v1</li>
-</ul>
-<p>IGT_7803: 9669a17ae56f1dcd22ba4c5cb39b3cd334a46862 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1066-c111f7a5945a5325e95fd38bfde2880263fce683: c111f7a5945a5325e95fd38bfde2880263fce683<br />
-  xe-pw-132263v1: 132263v1</p>
-
-</body>
-</html>
-
---===============1720646557901294212==--
