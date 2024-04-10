@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 914DECD129C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1862ECD1299
 	for <intel-xe@archiver.kernel.org>; Wed, 10 Apr 2024 12:31:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BC0510FFDD;
-	Wed, 10 Apr 2024 12:31:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3FA110F8CE;
+	Wed, 10 Apr 2024 12:31:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bHhnE6z7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V2rjEvfc";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1258810E704
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Apr 2024 12:31:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DB7610E704
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Apr 2024 12:31:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712752299; x=1744288299;
+ t=1712752301; x=1744288301;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=B3YiAnXKgu+hBQJWMMz8kOtYhesMS+vGQmWucJVI5jQ=;
- b=bHhnE6z73scH0WbM3eZIrjlr2fgEeT6KdhthYrzDK6oUXFFPrwbaCY5d
- FmBAu7WoTh5ucuPHJkQWJP0cdYGfP/i10l4UJdFhraXnyLAZ90jWbLqUY
- Vz+eVno+nOhDGGDNiCES72Th2tYHrJgrnWtMbGp0PPxt1RL0CdtLlIQPy
- EtOQsPVd0e0VrjboRfeLmem7ylOEeU5EW8q3BaMRDxr/XL2a5oBTNyUxL
- bQg79woJ6SxwLm/z2jW+H2YLeymmZZgWy2xlx33vNw9+gukqnDNI1b7BC
- bka3L4TFZ6Pwdn6D+98UnAXTLIDQC1wXgIFzFzz/XW4LZrPth/1zvIRIk w==;
-X-CSE-ConnectionGUID: ZWI1YSizTSOGnox1rOCYeQ==
-X-CSE-MsgGUID: Ug5Fbt+LRbiUO13A4UOE9w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="8212411"
+ bh=nEf0niNMltGg1DEKE4eJs5i2w/piXbpm4zL5N2DMmRk=;
+ b=V2rjEvfcwZfgThVfBdWtAXOXcb9asHJqy7YI32rUvKu2D5uBu6BAfRQk
+ FyPTxegbr5zEi9L26yfbIhUldl64EApmJycbRzS8vRxS+z7XiyBo/CL2i
+ YTpdNIpq1XBj8Z9jh/ZzSLSoePwRsnyhamPxm0NYuyLxd1CpDwZQcyo+u
+ TrS3LnqpD7We8vG1dEnZ2iCJ25PL3FcnobdOSd3RpD++6H4POI0kbCXPW
+ ZILZv4Pgf1SDVFaGxZO4QOUP0o71apA9J7HHkaO2m3e0p46w/hXkDukb2
+ /IkctgG3qD4447rlh71WAMF3Z4nzWLcbZYshyinJCw2XnAo2bWXf0NutJ g==;
+X-CSE-ConnectionGUID: uWuAN6FwR2y0yghj77rmZw==
+X-CSE-MsgGUID: oTvJvClMR/Gh6QV2pbpcCA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="8212417"
 X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; 
-   d="scan'208";a="8212411"
+   d="scan'208";a="8212417"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2024 05:31:39 -0700
-X-CSE-ConnectionGUID: /jHcRb9BSYKSEiwU4q3SSg==
-X-CSE-MsgGUID: PY385n3jTcqNcig41Kqlag==
+ 10 Apr 2024 05:31:41 -0700
+X-CSE-ConnectionGUID: 5v9ucuo3TqOhHill9M74VA==
+X-CSE-MsgGUID: 5259a+RsQgG1Mxtpn5YmfA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="57986317"
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="57986359"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.252.42.161])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2024 05:31:38 -0700
+ 10 Apr 2024 05:31:40 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 2/5] drm/xe/pf: Introduce helper functions for use by PF
-Date: Wed, 10 Apr 2024 14:31:22 +0200
-Message-Id: <20240410123125.1155-3-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Subject: [PATCH 4/5] drm/xe/guc: Add helpers for GuC KLVs
+Date: Wed, 10 Apr 2024 14:31:24 +0200
+Message-Id: <20240410123125.1155-5-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240410123125.1155-1-michal.wajdeczko@intel.com>
 References: <20240410123125.1155-1-michal.wajdeczko@intel.com>
@@ -68,114 +69,229 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-PF driver will maintain VF's configuration data mostly on the
-GT level, but some internal data is located at the device level.
-
-To allow easy access to that data from the GT level functions, and
-to minimize code duplications, introduce set of helper functions
-and macros for explicit use by the PF driver.
-
-We will use these helpers in upcoming patches.
+Many of the GuC actions use KLVs to pass additional parameters or
+configuration data. Add few helper functions for better reporting
+any information related to KLVs.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_helpers.h | 35 ++++++++++++++++
- drivers/gpu/drm/xe/xe_sriov_pf_helpers.h    | 46 +++++++++++++++++++++
- 2 files changed, 81 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_helpers.h
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
+v2: review comments from Himal
+---
+ drivers/gpu/drm/xe/Makefile             |   1 +
+ drivers/gpu/drm/xe/xe_guc_klv_helpers.c | 134 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_klv_helpers.h |  51 +++++++++
+ 3 files changed, 186 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_klv_helpers.c
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_klv_helpers.h
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_helpers.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_helpers.h
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 8d79df05b84f..ad238f48cf51 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -98,6 +98,7 @@ xe-y += xe_bb.o \
+ 	xe_guc_debugfs.o \
+ 	xe_guc_hwconfig.o \
+ 	xe_guc_id_mgr.o \
++	xe_guc_klv_helpers.o \
+ 	xe_guc_log.o \
+ 	xe_guc_pc.o \
+ 	xe_guc_submit.o \
+diff --git a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
 new file mode 100644
-index 000000000000..99472a48ec35
+index 000000000000..8927374f55ff
 --- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_helpers.h
-@@ -0,0 +1,35 @@
++++ b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
+@@ -0,0 +1,134 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2024 Intel Corporation
++ */
++
++#include <linux/bitfield.h>
++#include <drm/drm_print.h>
++
++#include "abi/guc_klvs_abi.h"
++#include "xe_guc_klv_helpers.h"
++
++#define make_u64(hi, lo) ((u64)((u64)(u32)(hi) << 32 | (u32)(lo)))
++
++/**
++ * xe_guc_klv_key_to_string - Convert KLV key into friendly name.
++ * @key: the `GuC KLV`_ key
++ *
++ * Return: name of the KLV key.
++ */
++const char *xe_guc_klv_key_to_string(u16 key)
++{
++	switch (key) {
++	/* VGT POLICY keys */
++	case GUC_KLV_VGT_POLICY_SCHED_IF_IDLE_KEY:
++		return "sched_if_idle";
++	case GUC_KLV_VGT_POLICY_ADVERSE_SAMPLE_PERIOD_KEY:
++		return "sample_period";
++	case GUC_KLV_VGT_POLICY_RESET_AFTER_VF_SWITCH_KEY:
++		return "reset_engine";
++	/* VF CFG keys */
++	case GUC_KLV_VF_CFG_GGTT_START_KEY:
++		return "ggtt_start";
++	case GUC_KLV_VF_CFG_GGTT_SIZE_KEY:
++		return "ggtt_size";
++	case GUC_KLV_VF_CFG_LMEM_SIZE_KEY:
++		return "lmem_size";
++	case GUC_KLV_VF_CFG_NUM_CONTEXTS_KEY:
++		return "num_contexts";
++	case GUC_KLV_VF_CFG_TILE_MASK_KEY:
++		return "tile_mask";
++	case GUC_KLV_VF_CFG_NUM_DOORBELLS_KEY:
++		return "num_doorbells";
++	case GUC_KLV_VF_CFG_EXEC_QUANTUM_KEY:
++		return "exec_quantum";
++	case GUC_KLV_VF_CFG_PREEMPT_TIMEOUT_KEY:
++		return "preempt_timeout";
++	case GUC_KLV_VF_CFG_BEGIN_DOORBELL_ID_KEY:
++		return "begin_db_id";
++	case GUC_KLV_VF_CFG_BEGIN_CONTEXT_ID_KEY:
++		return "begin_ctx_id";
++	default:
++		return "(unknown)";
++	}
++}
++
++/**
++ * xe_guc_klv_print - Print content of the buffer with `GuC KLV`_.
++ * @klvs: the buffer with KLVs
++ * @num_dwords: number of dwords (u32) available in the buffer
++ * @p: the &drm_printer
++ *
++ * The buffer may contain more than one KLV.
++ */
++void xe_guc_klv_print(const u32 *klvs, u32 num_dwords, struct drm_printer *p)
++{
++	while (num_dwords >= GUC_KLV_LEN_MIN) {
++		u32 key = FIELD_GET(GUC_KLV_0_KEY, klvs[0]);
++		u32 len = FIELD_GET(GUC_KLV_0_LEN, klvs[0]);
++
++		klvs += GUC_KLV_LEN_MIN;
++		num_dwords -= GUC_KLV_LEN_MIN;
++
++		if (num_dwords < len) {
++			drm_printf(p, "{ key %#06x : truncated %zu of %zu bytes %*ph } # %s\n",
++				   key, num_dwords * sizeof(u32), len * sizeof(u32),
++				   (int)(num_dwords * sizeof(u32)), klvs,
++				   xe_guc_klv_key_to_string(key));
++			return;
++		}
++
++		switch (len) {
++		case 0:
++			drm_printf(p, "{ key %#06x : no value } # %s\n",
++				   key, xe_guc_klv_key_to_string(key));
++			break;
++		case 1:
++			drm_printf(p, "{ key %#06x : 32b value %u } # %s\n",
++				   key, klvs[0], xe_guc_klv_key_to_string(key));
++			break;
++		case 2:
++			drm_printf(p, "{ key %#06x : 64b value %#llx } # %s\n",
++				   key, make_u64(klvs[1], klvs[0]),
++				   xe_guc_klv_key_to_string(key));
++			break;
++		default:
++			drm_printf(p, "{ key %#06x : %zu bytes %*ph } # %s\n",
++				   key, len * sizeof(u32), (int)(len * sizeof(u32)),
++				   klvs, xe_guc_klv_key_to_string(key));
++			break;
++		}
++
++		klvs += len;
++		num_dwords -= len;
++	}
++
++	/* we don't expect any leftovers, fix if KLV header is ever changed */
++	BUILD_BUG_ON(GUC_KLV_LEN_MIN > 1);
++}
++
++/**
++ * xe_guc_klv_count - Count KLVs present in the buffer.
++ * @klvs: the buffer with KLVs
++ * @num_dwords: number of dwords (u32) in the buffer
++ *
++ * Return: number of recognized KLVs or
++ *          a negative error code if KLV buffer is truncated.
++ */
++int xe_guc_klv_count(const u32 *klvs, u32 num_dwords)
++{
++	int num_klvs = 0;
++
++	while (num_dwords >= GUC_KLV_LEN_MIN) {
++		u32 len = FIELD_GET(GUC_KLV_0_LEN, klvs[0]);
++
++		if (num_dwords < len + GUC_KLV_LEN_MIN)
++			break;
++
++		klvs += GUC_KLV_LEN_MIN + len;
++		num_dwords -= GUC_KLV_LEN_MIN + len;
++		num_klvs++;
++	}
++
++	return num_dwords ? -ENODATA : num_klvs;
++}
+diff --git a/drivers/gpu/drm/xe/xe_guc_klv_helpers.h b/drivers/gpu/drm/xe/xe_guc_klv_helpers.h
+new file mode 100644
+index 000000000000..b835e0ebe6db
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_guc_klv_helpers.h
+@@ -0,0 +1,51 @@
 +/* SPDX-License-Identifier: MIT */
 +/*
-+ * Copyright © 2023-2024 Intel Corporation
++ * Copyright © 2024 Intel Corporation
 + */
 +
-+#ifndef _XE_GT_SRIOV_PF_HELPERS_H_
-+#define _XE_GT_SRIOV_PF_HELPERS_H_
++#ifndef _XE_GUC_KLV_HELPERS_H_
++#define _XE_GUC_KLV_HELPERS_H_
 +
-+#include "xe_gt_types.h"
-+#include "xe_sriov_pf_helpers.h"
++#include <linux/types.h>
++
++struct drm_printer;
++
++const char *xe_guc_klv_key_to_string(u16 key);
++
++void xe_guc_klv_print(const u32 *klvs, u32 num_dwords, struct drm_printer *p);
++int xe_guc_klv_count(const u32 *klvs, u32 num_dwords);
 +
 +/**
-+ * xe_sriov_pf_assert_vfid() - warn if &id is not a supported VF number when debugging.
-+ * @gt: the PF &xe_gt to assert on
-+ * @vfid: the VF number to assert
++ * PREP_GUC_KLV - Prepare KLV header value based on provided key and len.
++ * @key: KLV key
++ * @len: KLV length
 + *
-+ * Assert that &gt belongs to the Physical Function (PF) device and provided &vfid
-+ * is within a range of supported VF numbers (up to maximum number of VFs that
-+ * driver can support, including VF0 that represents the PF itself).
-+ *
-+ * Note: Effective only on debug builds. See `Xe ASSERTs`_ for more information.
++ * Return: value of the KLV header (u32).
 + */
-+#define xe_gt_sriov_pf_assert_vfid(gt, vfid)	xe_sriov_pf_assert_vfid(gt_to_xe(gt), (vfid))
-+
-+static inline int xe_gt_sriov_pf_get_totalvfs(struct xe_gt *gt)
-+{
-+	return xe_sriov_pf_get_totalvfs(gt_to_xe(gt));
-+}
-+
-+static inline struct mutex *xe_gt_sriov_pf_master_mutex(struct xe_gt *gt)
-+{
-+	return xe_sriov_pf_master_mutex(gt_to_xe(gt));
-+}
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h b/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
-new file mode 100644
-index 000000000000..7d156ba82479
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
-@@ -0,0 +1,46 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023-2024 Intel Corporation
-+ */
-+
-+#ifndef _XE_SRIOV_PF_HELPERS_H_
-+#define _XE_SRIOV_PF_HELPERS_H_
-+
-+#include "xe_assert.h"
-+#include "xe_device_types.h"
-+#include "xe_sriov.h"
-+#include "xe_sriov_types.h"
++#define PREP_GUC_KLV(key, len) \
++	(FIELD_PREP(GUC_KLV_0_KEY, (key)) | \
++	 FIELD_PREP(GUC_KLV_0_LEN, (len)))
 +
 +/**
-+ * xe_sriov_pf_assert_vfid() - warn if &id is not a supported VF number when debugging.
-+ * @xe: the PF &xe_device to assert on
-+ * @vfid: the VF number to assert
++ * PREP_GUC_KLV_CONST - Prepare KLV header value based on const key and len.
++ * @key: const KLV key
++ * @len: const KLV length
 + *
-+ * Assert that &xe represents the Physical Function (PF) device and provided &vfid
-+ * is within a range of supported VF numbers (up to maximum number of VFs that
-+ * driver can support, including VF0 that represents the PF itself).
-+ *
-+ * Note: Effective only on debug builds. See `Xe ASSERTs`_ for more information.
++ * Return: value of the KLV header (u32).
 + */
-+#define xe_sriov_pf_assert_vfid(xe, vfid) \
-+	xe_assert((xe), (vfid) <= xe_sriov_pf_get_totalvfs(xe))
++#define PREP_GUC_KLV_CONST(key, len) \
++	(FIELD_PREP_CONST(GUC_KLV_0_KEY, (key)) | \
++	 FIELD_PREP_CONST(GUC_KLV_0_LEN, (len)))
 +
 +/**
-+ * xe_sriov_pf_get_totalvfs() - Get maximum number of VFs that driver can support.
-+ * @xe: the &xe_device to query (shall be PF)
++ * PREP_GUC_KLV_TAG - Prepare KLV header value based on unique KLV definition tag.
++ * @TAG: unique tag of the KLV definition
 + *
-+ * Return: Maximum number of VFs that this PF driver supports.
++ * Combine separate KEY and LEN definitions of the KLV identified by the TAG.
++ *
++ * Return: value of the KLV header (u32).
 + */
-+static inline int xe_sriov_pf_get_totalvfs(struct xe_device *xe)
-+{
-+	xe_assert(xe, IS_SRIOV_PF(xe));
-+	return xe->sriov.pf.driver_max_vfs;
-+}
-+
-+static inline struct mutex *xe_sriov_pf_master_mutex(struct xe_device *xe)
-+{
-+	xe_assert(xe, IS_SRIOV_PF(xe));
-+	return &xe->sriov.pf.master_lock;
-+}
++#define PREP_GUC_KLV_TAG(TAG) \
++	PREP_GUC_KLV_CONST(GUC_KLV_##TAG##_KEY, GUC_KLV_##TAG##_LEN)
 +
 +#endif
 -- 
