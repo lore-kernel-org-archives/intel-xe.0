@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E87EBCD11C2
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Apr 2024 14:15:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5705CD128A
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Apr 2024 14:39:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76CCC1133BA;
-	Wed, 10 Apr 2024 14:15:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jo6Axgvi";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D26561133BA;
- Wed, 10 Apr 2024 14:15:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712758534; x=1744294534;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=lgWonirOd1sETtARBNmw+prVzZI11W2GXt5RjcCG9OA=;
- b=Jo6Axgvi5cFNpSBLOFHeshiDFFaQgGCrOXQv8o7r+Bhemuee/fClzC7w
- E33pp/5Xnycm10NCN04Vv3f7+DK94I/rqXhK8B+YmYpsy3NPfZnZ483yF
- nJL1JUD0W7FehwOD7gAAwothcCBREDcfFSzZXnvPWQ6+CFJm+WMFxTtF8
- m8KTeHeV6+YhSmRSt8B/L6Mg5oJx7o47Y4ia7Qdl0wS8IfvJD2jXNMjoI
- IQPxutL3g2wzrF+eWtsdaXwrRTPOWb7nzGFyrHbJ+NviU8KJwPDYk4kOA
- CsWWpPklxkiWZApdveiEgbRPBO8tXpY8I7KUtNYlakNEk9xj4JD9eKjt2 w==;
-X-CSE-ConnectionGUID: V8AQIWd0QBmiEZs9bcsA0w==
-X-CSE-MsgGUID: vMN87GEkT5yLBd3xm0OOfA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="8247847"
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; 
-   d="scan'208";a="8247847"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2024 07:15:28 -0700
-X-CSE-ConnectionGUID: Z7Q+9EQiQQSo04m09Ar0NQ==
-X-CSE-MsgGUID: 89xpGK3SSIOnUiPHzkuudA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="20994932"
-Received: from unknown (HELO intel.com) ([10.247.118.254])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2024 07:15:23 -0700
-Date: Wed, 10 Apr 2024 16:15:16 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Dave Airlie <airlied@gmail.com>, Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: Re: [PATCH 02/10] drm: move intel-gtt.h under include/drm/intel
-Message-ID: <Zhae9Cq37WShh7ge@ashyti-mobl2.lan>
-References: <cover.1712743191.git.jani.nikula@intel.com>
- <25b1e49297bcc2eda2a626e7fd0ee398df9e3f70.1712743191.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71D7210EC76;
+	Wed, 10 Apr 2024 14:39:49 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 038BF10E5A8;
+ Wed, 10 Apr 2024 14:39:47 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4491676761804217733=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <25b1e49297bcc2eda2a626e7fd0ee398df9e3f70.1712743191.git.jani.nikula@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm=3A_move_Intel_drm_headers_to?=
+ =?utf-8?q?_a_subdirectory_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 10 Apr 2024 14:39:47 -0000
+Message-ID: <171275998701.1320942.3982977228322760958@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <cover.1712743191.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1712743191.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,19 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Apr 10, 2024 at 01:05:09PM +0300, Jani Nikula wrote:
-> Clean up the top level include/drm directory by grouping all the Intel
-> specific files under a common subdirectory.
-> 
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: Dave Airlie <airlied@gmail.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+--===============4491676761804217733==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+== Series Details ==
 
-Thanks,
-Andi
+Series: drm: move Intel drm headers to a subdirectory (rev2)
+URL   : https://patchwork.freedesktop.org/series/132263/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-1067-284b05a047b8b3bca4682e963d8e6d93493e8430_BAT -> xe-pw-132263v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (5 -> 5)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-1067-284b05a047b8b3bca4682e963d8e6d93493e8430 -> xe-pw-132263v2
+
+  IGT_7803: 9669a17ae56f1dcd22ba4c5cb39b3cd334a46862 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1067-284b05a047b8b3bca4682e963d8e6d93493e8430: 284b05a047b8b3bca4682e963d8e6d93493e8430
+  xe-pw-132263v2: 132263v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132263v2/index.html
+
+--===============4491676761804217733==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm: move Intel drm headers to a subdirectory (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132263/">https://patchwork.freedesktop.org/series/132263/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132263v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132263v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1067-284b05a047b8b3bca4682e963d8e6d93493e8430_BAT -&gt; xe-pw-132263v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (5 -&gt; 5)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1067-284b05a047b8b3bca4682e963d8e6d93493e8430 -&gt; xe-pw-132263v2</li>
+</ul>
+<p>IGT_7803: 9669a17ae56f1dcd22ba4c5cb39b3cd334a46862 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1067-284b05a047b8b3bca4682e963d8e6d93493e8430: 284b05a047b8b3bca4682e963d8e6d93493e8430<br />
+  xe-pw-132263v2: 132263v2</p>
+
+</body>
+</html>
+
+--===============4491676761804217733==--
