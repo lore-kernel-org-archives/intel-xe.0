@@ -4,140 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECB63CD128A
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Apr 2024 16:26:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98B4DCD128A
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Apr 2024 16:29:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8714C10F84E;
-	Wed, 10 Apr 2024 16:26:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 363BF10ED35;
+	Wed, 10 Apr 2024 16:29:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kPAUszOc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BX9u5Mf+";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 219A010F84E
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Apr 2024 16:26:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E6F410ED35
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Apr 2024 16:28:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712766363; x=1744302363;
+ t=1712766539; x=1744302539;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=uQ5uifBlqTxsTufRiOdiB6KVhQAi1eAr8IiuHxnTW0o=;
- b=kPAUszOcdZuY+oYklyDiSE9vaY8zTwchjkS19I7Mwh9986KIpTUw85UD
- pC6NAko4bsFFuzEfS2RbXP52029V67hGtf3B4yD20CUIgbxuqqIkSqcAG
- Lg8Jxtlgfy+NtmS/aL5GJTlNLoyTHKsrRt6p7Uy80AxvNSetGPDNftCeh
- c0cZenuyulPmtqygSsYQEm3s6Hw4B5pFIKwxIjjOFK+W3od6OQAuSstIh
- 5yz64m6ZDdOTO0GKotldDC4FG6FPAnHuCzaZXQJ+3b+WyxdPRo+DOBeIo
- vJt5B0+VFE0n0jakESWo8IS8/1q3rJx30U93wHD3Np6Lkg7N6zLohhOqC w==;
-X-CSE-ConnectionGUID: 5QsTHu4ZTF6bV7LS+aKctg==
-X-CSE-MsgGUID: secFFNa3S/i2mTRaX2MA/Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="18701855"
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="18701855"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2024 09:26:01 -0700
-X-CSE-ConnectionGUID: o1Uu2JhuSiu+tqOfw+K85Q==
-X-CSE-MsgGUID: Wf9wLZeCRtCnJwZ3nfoG4Q==
+ bh=ns5ANpkvxAxnHRFlW0CnRO3IvUDj7PIDU1ixs/BJ+Ic=;
+ b=BX9u5Mf+rsxGeFeP31Y9Ai4Phe9L4H3IogJYYgcuLz/+8f+YjKx3dn6H
+ wg5jRsHrcEilrUKldh8/giRMFsT/EIKXHqehEnpg1HecXb2tJChO2vDWv
+ XwmlFNnRgRm7bDfT+ThXfdB9Xhoc2mW5U5kFA7xqEUSeZMacxWtdhrGqZ
+ iX0BibX2O/b4HgGnF2SkWKGFZRzRCvoVoY/vYROGsejUugp9SVnImsTni
+ j7Sq3Xy7lhELn2n6te9uIGvyGTUfHfP1S32ToGnxqnz4U4lwTBYxFY26a
+ tl6vxxnZkyQa8lc7vymYOYbJA5yObnschORWRRAbJEr5mDjVb6gG2DQ9/ g==;
+X-CSE-ConnectionGUID: +OcEqHCtQ7SiFNAfBEh8FQ==
+X-CSE-MsgGUID: 4dLW1kmKQJq8QB4h6yQXXw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="8303875"
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; 
+   d="scan'208";a="8303875"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2024 09:28:58 -0700
+X-CSE-ConnectionGUID: 04ayG6LaSSuZJPGZEldYyQ==
+X-CSE-MsgGUID: Sq6PYBo9SLqDLI7jm8oduA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="25099728"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmviesa005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 10 Apr 2024 09:26:00 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="20628590"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 10 Apr 2024 09:28:58 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 10 Apr 2024 09:25:59 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.1.2507.35; Wed, 10 Apr 2024 09:28:57 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 10 Apr 2024 09:25:59 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 10 Apr 2024 09:25:59 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.40) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Wed, 10 Apr 2024 09:28:57 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.173)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 10 Apr 2024 09:25:58 -0700
+ 15.1.2507.35; Wed, 10 Apr 2024 09:28:57 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XDoNFmKtX2MFs5PCdi+QOp2pAjaMraIH08SMOeH35rzYQnOn7zbDwm698y8O6KZTtgNYm9w9lViRsAEjxDVnRVmyH5DDEdq5EoSBBQjwmfkNP5IlhF71KT+FDjsJvMlAXY8lVWf9tS3z6aZfk/uYAnK7pQQKFXpJ5PYw2dEiZZBriXdQQy+whb9igzOUaGvftDSr5BCmnkemH+ud5TnOY1nt73RTb27oLY2bDpAOz+gWGza9cAhQTPSxe5VW97yVTp7gr5lKtA7OANe3F5++ICsbi9A5NeUYacr4QLng+mPpy6sLOa7uAx1RjbW7mx7mN/ecW3hHYoud+yf4npx+uA==
+ b=oVcj6Oq1IDEV01ehRX5JDi/Hw5Lc1NEq5kFdoHuXY1mce2SWBVqCDrFRs84XAESQgLleA44TlTZLuAVMXZTl1Nf0tPXqf/PSj47zFF4prO47ZCbWySk0y9wmZwhHl4MM5WQdyUqgMlxUwr1fH+xpCekxmNNmEms7ycWohxgFISeBSJ5irsrKKSOm+tz9gr5vgWH0zojs8Ze3H1kMl+YZuWMcv4TRRBjVGT1rueCSVA1vD2Az2KNJSWxY59ZC0C8R3OY4fps7sRMq0nNbIXc7OKZllUuFP6XfLLDc7AlYma3UoHJdp1UCcHuCwLt2BkHoAJ3D4djtNzo3jun7Upxzug==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=daezdtzSk3dL5X+hzM0xYfzd+CGl7VI5ey2/HJC8aGU=;
- b=JUc9EYanjStx9esYAaOeuMQaAK82XqyLQVdmnqGbA4GmOn7dW9Q4fcIOXVfD46MnoWoNkgKETHQ4hx9f0YmGo0Dib1gHUUWg71vHzwABnP8Jn77yFaoujlYr1ZiJwSKcBA7WeEqNmFEVhRF84YrZPy5tbTHW8pS0Gp56JCtR78KqxANK1AH+YpwXrP81FL3Sv3Pq5l+CS/9kpCsqPxwGLSFc8X9DZIIf7gC5ieiyVx+Azg1cKIh5PdLxwTCywJvyPR4y8hRQDDixjwDI/VYDpdFM1ZhlrZqoxC1iAplXa4Ih914qYVKMUPCPrtBcjcnYRv6ld+ONPx6IXoTxCj9U5Q==
+ bh=HrYE2X3Er8VpkvLNGLO21YjWjpWyM+uikM8DQ3XzJR8=;
+ b=hX96XN6Qck2iUuFIRcTyApqibUN2JoANH0X4DDLkhdNdAzMwo6l64zNNfy9nC4vGcOHKgN7/homNWS4Vqqv0/HWrmy4kpJwm84c2BJgRIzJUkKtddreLSpK3CzRNA0ZhIqt3PdEBwIm5kWffOi3O+Cp13eV5JkhiNPNv8BLlq1UkfjyQktM4Rzqe1ePP0qx6cVPQ4d14ittxwnAvWGCkmuoCi1NES5neDoBycBwNcjaz1umk1/hcz1dhCrJI3axsEV1h9Xv910gPwbqrfDCAaXSFzkzvuOB+pHR1AfIdiAffhQSvo0EiLHoSbQk90sB2GColCIQ7hKG3a6v6PVzwIg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SJ0PR11MB5893.namprd11.prod.outlook.com (2603:10b6:a03:429::13)
+ by LV8PR11MB8608.namprd11.prod.outlook.com (2603:10b6:408:1f0::15)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.26; Wed, 10 Apr
- 2024 16:25:54 +0000
+ 2024 16:28:55 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e7c:ccbc:a71c:6c15]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e7c:ccbc:a71c:6c15%5]) with mapi id 15.20.7452.019; Wed, 10 Apr 2024
- 16:25:54 +0000
-Date: Wed, 10 Apr 2024 16:24:48 +0000
+ 16:28:55 +0000
+Date: Wed, 10 Apr 2024 16:27:49 +0000
 From: Matthew Brost <matthew.brost@intel.com>
 To: Michal Wajdeczko <michal.wajdeczko@intel.com>
 CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 2/3] drm/xe/guc: Prefer GT oriented asserts in CTB code
-Message-ID: <Zha9UMBumnIRk1cK@DUT025-TGLU.fm.intel.com>
+Subject: Re: [PATCH 3/3] drm/xe/guc: Don't overuse ct_to_xe()
+Message-ID: <Zha+BaMJS3WGSV/E@DUT025-TGLU.fm.intel.com>
 References: <20240404193647.759-1-michal.wajdeczko@intel.com>
- <20240404193647.759-2-michal.wajdeczko@intel.com>
+ <20240404193647.759-3-michal.wajdeczko@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20240404193647.759-2-michal.wajdeczko@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0022.namprd03.prod.outlook.com
- (2603:10b6:a03:33a::27) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <20240404193647.759-3-michal.wajdeczko@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0172.namprd05.prod.outlook.com
+ (2603:10b6:a03:339::27) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SJ0PR11MB5893:EE_
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|LV8PR11MB8608:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: xTut1k5z4ejk/dYrotNzb6++XUYzLB0Wygo9iRavfIYZ3zFr9bLRD3eSW2XfcvwwXgG45eiFBR26f5q6eJsmt6tYW89dUsrtDL+aUhlfOjBuvpwDXYEafWIE2Wtw2tsN2sH0hpu1xWTZQH2Zz5vwwvK1G2I5BInCNd+QGpghHIoZFd9JYy2EvxSPbZnR2Y+9mK3bxhlb8m71vCQzL4kF/aN/+nKo1R1uv4nK7A4FyoOyu5m8tLKRGJBqFMo5qMKVKhSLZyzBwg/xkNQ2wVPa/F9WPovbgQA9IIBIHxYU3B3zVG++hvRf6qZ/FwAIGm3h9WS5eJjiQnlAbWb14NA6WSaxwhU+wxUsXFpw6VruH7Swpn36nSQMEi0XR9N18GPVMznaFWqwY9W7ePsNmG3xAbgNZKeeykxZ16ZrWTvC2mFpTp7lYIVDgtbPxupCdQzAAfLZpEXIO4y4Vp50hC94He/Fhn72InVEdu6RGuHmgVPz8X3301Mf8Kx5em2PzqH+o9ak5mUVNJ0yFAUuNXaIZt53NVt2x/l79roQlUuf+Y43KCRus7xhTufKzIroC6I0VG31r+ToMhTONwAP1DETriGtwQmtlne9FF0Ncu5kkaZYqgc6Tf1RMaj2hyPGqjzinJNR+i/0c6fJPia23y7VQtAJSIBY0zDzIIb4aSm5doA=
+X-Microsoft-Antispam-Message-Info: d8NIfEQCNeL9WM0faQXnKZXe1/I3FA2Z8FOCz7lRUKb7XPSGPPzcxwHtA1U4AVqf7chZCYZL4scXFS2gh/E2ilUFEZABetGR9xR60H033+I5CBaiQw+AVvkgjCMGPNIIYSTaZfi4+qdnIusmuEbz7tY9d4XSBzpA0HYhIF6w/OEExSjxtEYGSpamq3ezMno3IMUs9aLLH2vXgfutEge9+dVPco5Ryz/5cTPKA1kUAg5X/Uw9gAwDIbsFpXlHWnd/j2OrY5qOXxyGmVh1tRkP6UQ5juxny5JLvL14Qedd2WUP7z1orLit5rqbDuMYz9iufv58CA1hmXFgdNnp71dEKJgPWicUnyzXd4aZk29H6sAKlJSKix+ePaJaeXhgjmxkO24pmbiqEKknSkWooUZp5qOo3byCCuQosOo9dZn7/ay79Ve9BbJ7rLclL+sewm0l0WZQ+z1f3cfV4dNpS6PDcEp+11rjJYfBA1hlKjKAdj8xXt9BovUNiQ5cvwLMdJBocdAmilHgc6e0Ri3OiVuAE7GAdHJ0SHqWDeB0yb3HlfpJDJV/cI1eKTX+C9KteEMQq3o5fdA5+Gty0yneRtv58VHA5QCSwrRcjKTjiUOHiAM=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(1800799015)(366007); DIR:OUT; SFP:1102; 
+ SFS:(13230031)(366007)(1800799015)(376005); DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?pIRiyIYgkWYGIO5FE4L5GpbjVdtaDQz9G4jAIJP31Xuo2wYOhLGnVMImHgFa?=
- =?us-ascii?Q?6ggw+yoZRofmMqiSPSOEyT67Ss8t0JwCtjVYzXW9HzUpH3lghftHgK7jubi5?=
- =?us-ascii?Q?kUF+3xdvo1WK+2iDzyniLw25Udl5s81qdFOJEt6aJKW0u6LML7NLcMp4yKwc?=
- =?us-ascii?Q?3q2S/eOSlUYp4MEGxU+SQbZxWLPiONqGMUrECyOc92gr5yaCC+yU+yLfd0jR?=
- =?us-ascii?Q?A05yO9ETlANZxzK6vdRIBof+6IucPdu5sAI4tZfv7wdHr/SKNFIzBBcBe2us?=
- =?us-ascii?Q?WgMjW5u6sqX/qH/jj2DSysFMCbORXVOmBWCsIGIkD5aZpg5qtHvDdG/ht01B?=
- =?us-ascii?Q?434wZ8Zl9tMLRnXMeFwZ4ZnYCn6frTQ1q0OljEZHCkETx1/GCaGUQRDCRwmP?=
- =?us-ascii?Q?6cUNL2SJINLpA7qUc/gxEAqSf+oBTQ7uCtqNf8XMoQvdqtNa0LAmr43Q5TPI?=
- =?us-ascii?Q?n6SK90+8XZyvlPkL10zpdqIruBwG7ZqqEnORxhQIqF53ORPx4jEh4BJeejuj?=
- =?us-ascii?Q?dIWBEHeF+S9TBX8yzexzJ/iG20aRnN+ULCDhx+E+0+lrBKh0NEkyAJ1mFZ7Q?=
- =?us-ascii?Q?vyEwDuyDZIdTGmEGT7GQrArUQo+9LO4RXHcdoYmf1vMrpCU5oJg0X91w+eK6?=
- =?us-ascii?Q?DGIIFkIcDJVro4jV9DfpdkgjJqv/HdTMkswsqICxHdGERllAJaCKrNxkoTi2?=
- =?us-ascii?Q?Wp8UE8pnRHUgyhDoUKuPnm3leswjc453VRpKcBkbO3iJKxisDJpn9kJWmXkP?=
- =?us-ascii?Q?YBry4Asg2hcq7+fVcO9JiWFnVrtnFf+m6M5MBlrbIK4hFVQjnhc8taRzMKVq?=
- =?us-ascii?Q?s8T/oSSxWaPjO+GukUn8f8pKj3Gx/gZVy2p4vDH+LviId8M6VTb4waVcGb4m?=
- =?us-ascii?Q?yxdLE1w605tguRLXnSCUsp8d5foL6ug5czsXPj9MbeVJS3mE1s38BLK8pFh+?=
- =?us-ascii?Q?Bm4iNE+EOGcTkbbbHYwPezJ79+/XfbsUsqbMjwv87OdIBuU6T8JnmsdqpJxu?=
- =?us-ascii?Q?b/ayTf7tbhK5PuviBWo1zkMQdSAlZo0UBDK0sfIIboPR6WVGOfpAXTykBw7p?=
- =?us-ascii?Q?luF0jDhDe/x4A0P4jcPCelaoWZqSfXqRNaa4UbWldLh8YYpvXorhP/7lnH0S?=
- =?us-ascii?Q?vUXB6mgyGXwxhMJ81S4VGlE6skBMHYEGTosB36dB3rtWfUML8TpwmkDucxG1?=
- =?us-ascii?Q?yFDk5pPvOoltSSBg2ZsroHaj78mQEVyqp7kWoX0UUaCIMDC1NUBwOSeqCT0L?=
- =?us-ascii?Q?crpDupSUkZbXkYOqV+A8MhwfKa+jifxr0hy+DDMWEK8gA9tQSCffCWBQWliX?=
- =?us-ascii?Q?BR6wG4eo0g+TGaa66/YnmXM9DM4aFlscP3g4yhBAVkEQ77+9B4Th0engk7Wt?=
- =?us-ascii?Q?PffrAZdev1ZwVLjAF+yE06bGX3e8Mz/7WXxvIrxCSeUb3cPl5sHV4/p2vuNf?=
- =?us-ascii?Q?XxttESETED6qt49xbTv9ziuw+8rST9XBIpjTbqtQA6GaC3dom9Q3Q4OvtWQ2?=
- =?us-ascii?Q?oXHNBYDc6OY2x1UqmY1Pxe9eNzsCaKoNxwcrcPMhxEDd01AfM9MLNxjM10L+?=
- =?us-ascii?Q?rc3lMkaIlCdQ+cWcot4Sh2qNSJxyYZc+dJicTcW4cTo5EpHO/U68ZVsSEYDF?=
- =?us-ascii?Q?+A=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 730e253f-c4c6-4211-db77-08dc597ae51a
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+VyV64pPUs1G3I8JgrJD5jNinTQ8D0e9Kims+bL8ZPAM3Fed6oeLuO6mJn8h?=
+ =?us-ascii?Q?p1pNot6beS7kYkIlhuLsavGY0beqHuWdjmxMCknbTg7nQZbskMfh3nms+7Gj?=
+ =?us-ascii?Q?heTPz1mDGwzNAy5sGg3ggReGF8H1kOjh+e/HrCmyD+8vohPjunazI9fmGEG4?=
+ =?us-ascii?Q?Vt1VMn/0mLKgYS/K6DZMX5nLPBUnIBqoxB44/luVULd95xECbGSy2fqsY5S6?=
+ =?us-ascii?Q?TQiIwBcyzzAZAwGHAUuHv1nlcWx0kVxtHm6f7BsDKwtAvyatPQN0piLR7uuV?=
+ =?us-ascii?Q?jKOSOp50BSz8SuFdlarZfWQBswMP1b7xVsjXwmJPcrQQqVfK2PejoCf6pwWx?=
+ =?us-ascii?Q?fkMRsEqcZRoGmndTwmt2JPjKRFYv5ia3GaR29rPISMtJsxM9MF+Mb5CwSz7N?=
+ =?us-ascii?Q?93XARYlEd0iBkfaQ2eFPo73hs16XQUxWzyjf7quSThrTIfitdp3JtEKOKH+q?=
+ =?us-ascii?Q?opvAitfnS6G/fLVzt5aI8f2XtNlV1wFhEMs/DwGsAe/A47tnQKZ9CuLEJb4T?=
+ =?us-ascii?Q?rSojhNagv8vg9pQtxt6XSRELb3OYBUPyiBuk5k0hGARfOo18GB6mQfxgRPiI?=
+ =?us-ascii?Q?DlRLTCw9zfIO/ap1VarOqgk87V7WsLRsBsaMz03RsvYJ0jp/SfGdmniYnOf3?=
+ =?us-ascii?Q?RWTnDpwmfqEpKrIPffnTfv77KcTUC3MFH/n/fo2Bj1F5IQjdG7LorrYYhIVC?=
+ =?us-ascii?Q?4yGgRq+IiMCPG1gXuVQj+SflI26nYfofJhh/GwtFm1Zc5xOgjSyBkbWytMJT?=
+ =?us-ascii?Q?Jnz8hoFzbLL4NdEG2rQuFWZ6AzpTg7vO1wltasHiJLIr0+DsbpJCGEPlr0Zn?=
+ =?us-ascii?Q?IPqmOf+ZGNPzflSh0jKM1ziYFxU9Z6epDBT5YkAS63Mijjsf0F897TrweqeK?=
+ =?us-ascii?Q?PK95p9WE1E7d6uZAQNopVhEkSE/GmsB7iT73VJIWXe37Fz0KoyUcsf/crU6s?=
+ =?us-ascii?Q?hJFAJiNHfrEFW9bJIoaEGoocHeW/OH/2kZtbJYh4jCSLOLWqqO9oQl9/hTgE?=
+ =?us-ascii?Q?t7R2c39YHlOaH+zXCHZrlOV3YA5zpCs1zyy4PPZ+azvTi4Yfq0eboY2sTASt?=
+ =?us-ascii?Q?WQYqt9omjxWiEE4bTgQ2lFNIbJFtCL2SL4T2EyMeesHW2FA2eWAqGIAv/tpB?=
+ =?us-ascii?Q?YusC+kUZtP/6ISmlMc+/3MERx1hW3JFSg1SeAGVxEDH+yD4jHWQ5o8UGa3N5?=
+ =?us-ascii?Q?gWRhSQx8HFgIjJngD21B11ToyCpE6Ml6RG6Fy4smul9zwqlTFi05fDST5qG7?=
+ =?us-ascii?Q?mKbCoCfsOsRdQf2o4n9skpuz9HhRQsjCCKjGSCVBVLS4IBdNvsng6Owyf/zJ?=
+ =?us-ascii?Q?21DhHEFRlYjOewuQV1MXXw7ejB7sPNMjanjO8lcYQ353QBYZXIKuMkP/YskB?=
+ =?us-ascii?Q?K0DDkqQj5IQtzMMvW5TFIMez2a6K7g0Xl13tzNYM6u9hOtVobs29rcAsh67G?=
+ =?us-ascii?Q?5ieadp/C6Z4y0Owqlh4NGipoRzQtE+7NVyTd6VawCi6cEXdL9dx1wpzxegAW?=
+ =?us-ascii?Q?es5yZ/ganNFDJ2psdfaD6oSQOvLpsofIlSv+pZiNguo9ziQXcp2FxTXBW9TT?=
+ =?us-ascii?Q?iTs5AjYxVMISrSl9/ZYWWCmC/AA7ccaJ8udrjd66fACVmDjQnTQoEVKFx8Nq?=
+ =?us-ascii?Q?hg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: cd8be149-6ff3-4b17-b0fb-08dc597b5100
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2024 16:25:54.5498 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2024 16:28:55.5986 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zDn4K8az+wTT9eCEkuD3yPwL4Xn6hpvyepMz1tLjdB/oSQZ2hoLDVc6AzbdpRUpNlWspHlxlGx/950EMb+9Kig==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5893
+X-MS-Exchange-CrossTenant-UserPrincipalName: GIgyF60hYODjQYtd3g4v9TvUXbmJcKVtqyS/EhMXL8EQdl1rGM59mqoHlu3k0Hf0wNSlIIY+tFFPUXYLJNMcdQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR11MB8608
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -153,180 +150,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Apr 04, 2024 at 09:36:46PM +0200, Michal Wajdeczko wrote:
-> GuC CTB is related to the GT, so best to use xe_gt_assert().
+On Thu, Apr 04, 2024 at 09:36:47PM +0200, Michal Wajdeczko wrote:
+> Pointer to xe_device might be already available or could be added.
 > 
 > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+This is going to clash with [1] so I'd drop this for now and then
+revisit once [1] is merged since [1] is an actual functiona change that
+Rodrigo has been working on for a while now.
+
+Matt
+
+[1] https://patchwork.freedesktop.org/series/132240/
 
 > ---
->  drivers/gpu/drm/xe/xe_guc_ct.c | 44 +++++++++++++++++-----------------
->  1 file changed, 22 insertions(+), 22 deletions(-)
+>  drivers/gpu/drm/xe/xe_guc_ct.c | 11 ++++++-----
+>  1 file changed, 6 insertions(+), 5 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-> index 74acc4784a37..06952b0480f7 100644
+> index 06952b0480f7..ae255dab6516 100644
 > --- a/drivers/gpu/drm/xe/xe_guc_ct.c
 > +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-> @@ -144,7 +144,7 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
->  	struct xe_bo *bo;
->  	int err;
+> @@ -1210,8 +1210,8 @@ void xe_guc_ct_fast_path(struct xe_guc_ct *ct)
+>  	bool ongoing;
+>  	int len;
 >  
-> -	xe_assert(xe, !(guc_ct_size() % PAGE_SIZE));
-> +	xe_gt_assert(gt, !(guc_ct_size() % PAGE_SIZE));
+> -	ongoing = xe_device_mem_access_get_if_ongoing(ct_to_xe(ct));
+> -	if (!ongoing && xe_pm_read_callback_task(ct_to_xe(ct)) == NULL)
+> +	ongoing = xe_device_mem_access_get_if_ongoing(xe);
+> +	if (!ongoing && xe_pm_read_callback_task(xe) == NULL)
+>  		return;
 >  
->  	spin_lock_init(&ct->fast_lock);
->  	xa_init(&ct->fence_lookup);
-> @@ -171,7 +171,7 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
->  	if (err)
->  		return err;
->  
-> -	xe_assert(xe, ct->state == XE_GUC_CT_STATE_NOT_INITIALIZED);
-> +	xe_gt_assert(gt, ct->state == XE_GUC_CT_STATE_NOT_INITIALIZED);
->  	ct->state = XE_GUC_CT_STATE_DISABLED;
->  	return 0;
->  }
-> @@ -321,7 +321,7 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
+>  	spin_lock(&ct->fast_lock);
+> @@ -1254,6 +1254,7 @@ static int dequeue_one_g2h(struct xe_guc_ct *ct)
+>  static void g2h_worker_func(struct work_struct *w)
+>  {
+>  	struct xe_guc_ct *ct = container_of(w, struct xe_guc_ct, g2h_worker);
+> +	struct xe_device *xe = ct_to_xe(ct);
 >  	struct xe_gt *gt = ct_to_gt(ct);
->  	int err;
->  
-> -	xe_assert(xe, !xe_guc_ct_enabled(ct));
-> +	xe_gt_assert(gt, !xe_guc_ct_enabled(ct));
->  
->  	guc_ct_ctb_h2g_init(xe, &ct->ctbs.h2g, &ct->bo->vmap);
->  	guc_ct_ctb_g2h_init(xe, &ct->ctbs.g2h, &ct->bo->vmap);
-> @@ -428,7 +428,7 @@ static void h2g_reserve_space(struct xe_guc_ct *ct, u32 cmd_len)
->  
->  static void __g2h_reserve_space(struct xe_guc_ct *ct, u32 g2h_len, u32 num_g2h)
->  {
-> -	xe_assert(ct_to_xe(ct), g2h_len <= ct->ctbs.g2h.info.space);
-> +	xe_gt_assert(ct_to_gt(ct), g2h_len <= ct->ctbs.g2h.info.space);
->  
->  	if (g2h_len) {
->  		lockdep_assert_held(&ct->fast_lock);
-> @@ -441,8 +441,8 @@ static void __g2h_reserve_space(struct xe_guc_ct *ct, u32 g2h_len, u32 num_g2h)
->  static void __g2h_release_space(struct xe_guc_ct *ct, u32 g2h_len)
->  {
->  	lockdep_assert_held(&ct->fast_lock);
-> -	xe_assert(ct_to_xe(ct), ct->ctbs.g2h.info.space + g2h_len <=
-> -		  ct->ctbs.g2h.info.size - ct->ctbs.g2h.info.resv_space);
-> +	xe_gt_assert(ct_to_gt(ct), ct->ctbs.g2h.info.space + g2h_len <=
-> +		     ct->ctbs.g2h.info.size - ct->ctbs.g2h.info.resv_space);
->  
->  	ct->ctbs.g2h.info.space += g2h_len;
->  	--ct->g2h_outstanding;
-> @@ -461,6 +461,7 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
->  		     u32 ct_fence_value, bool want_response)
->  {
->  	struct xe_device *xe = ct_to_xe(ct);
-> +	struct xe_gt *gt = ct_to_gt(ct);
->  	struct guc_ctb *h2g = &ct->ctbs.h2g;
->  	u32 cmd[H2G_CT_HEADERS];
->  	u32 tail = h2g->info.tail;
-> @@ -471,8 +472,8 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
->  	full_len = len + GUC_CTB_HDR_LEN;
->  
->  	lockdep_assert_held(&ct->lock);
-> -	xe_assert(xe, full_len <= GUC_CTB_MSG_MAX_LEN);
-> -	xe_assert(xe, tail <= h2g->info.size);
-> +	xe_gt_assert(gt, full_len <= GUC_CTB_MSG_MAX_LEN);
-> +	xe_gt_assert(gt, tail <= h2g->info.size);
->  
->  	/* Command will wrap, zero fill (NOPs), return and check credits again */
->  	if (tail + full_len > h2g->info.size) {
-> @@ -521,7 +522,7 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
->  	/* Update descriptor */
->  	desc_write(xe, h2g, tail, h2g->info.tail);
->  
-> -	trace_xe_guc_ctb_h2g(ct_to_gt(ct)->info.id, *(action - 1), full_len,
-> +	trace_xe_guc_ctb_h2g(gt->info.id, *(action - 1), full_len,
->  			     desc_read(xe, h2g, head), h2g->info.tail);
->  
->  	return 0;
-> @@ -550,15 +551,15 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
->  				u32 len, u32 g2h_len, u32 num_g2h,
->  				struct g2h_fence *g2h_fence)
->  {
-> -	struct xe_device *xe = ct_to_xe(ct);
-> +	struct xe_gt *gt __maybe_unused = ct_to_gt(ct);
->  	u16 seqno;
+>  	bool ongoing;
 >  	int ret;
+> @@ -1281,8 +1282,8 @@ static void g2h_worker_func(struct work_struct *w)
+>  	 * responses, if the worker here is blocked on those callbacks
+>  	 * completing, creating a deadlock.
+>  	 */
+> -	ongoing = xe_device_mem_access_get_if_ongoing(ct_to_xe(ct));
+> -	if (!ongoing && xe_pm_read_callback_task(ct_to_xe(ct)) == NULL)
+> +	ongoing = xe_device_mem_access_get_if_ongoing(xe);
+> +	if (!ongoing && xe_pm_read_callback_task(xe) == NULL)
+>  		return;
 >  
-> -	xe_assert(xe, ct->state != XE_GUC_CT_STATE_NOT_INITIALIZED);
-> -	xe_assert(xe, !g2h_len || !g2h_fence);
-> -	xe_assert(xe, !num_g2h || !g2h_fence);
-> -	xe_assert(xe, !g2h_len || num_g2h);
-> -	xe_assert(xe, g2h_len || !num_g2h);
-> +	xe_gt_assert(gt, ct->state != XE_GUC_CT_STATE_NOT_INITIALIZED);
-> +	xe_gt_assert(gt, !g2h_len || !g2h_fence);
-> +	xe_gt_assert(gt, !num_g2h || !g2h_fence);
-> +	xe_gt_assert(gt, !g2h_len || num_g2h);
-> +	xe_gt_assert(gt, g2h_len || !num_g2h);
->  	lockdep_assert_held(&ct->lock);
+>  	do {
+> @@ -1299,7 +1300,7 @@ static void g2h_worker_func(struct work_struct *w)
+>  	} while (ret == 1);
 >  
->  	if (unlikely(ct->ctbs.h2g.info.broken)) {
-> @@ -576,7 +577,7 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
->  		goto out;
->  	}
+>  	if (ongoing)
+> -		xe_device_mem_access_put(ct_to_xe(ct));
+> +		xe_device_mem_access_put(xe);
+>  }
 >  
-> -	xe_assert(xe, xe_guc_ct_enabled(ct));
-> +	xe_gt_assert(gt, xe_guc_ct_enabled(ct));
->  
->  	if (g2h_fence) {
->  		g2h_len = GUC_CTB_HXG_MSG_MAX_LEN;
-> @@ -639,7 +640,7 @@ static int guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
->  	unsigned int sleep_period_ms = 1;
->  	int ret;
->  
-> -	xe_assert(ct_to_xe(ct), !g2h_len || !g2h_fence);
-> +	xe_gt_assert(gt, !g2h_len || !g2h_fence);
->  	lockdep_assert_held(&ct->lock);
->  	xe_device_assert_mem_access(ct_to_xe(ct));
->  
-> @@ -709,7 +710,7 @@ static int guc_ct_send(struct xe_guc_ct *ct, const u32 *action, u32 len,
->  {
->  	int ret;
->  
-> -	xe_assert(ct_to_xe(ct), !g2h_len || !g2h_fence);
-> +	xe_gt_assert(ct_to_gt(ct), !g2h_len || !g2h_fence);
->  
->  	mutex_lock(&ct->lock);
->  	ret = guc_ct_send_locked(ct, action, len, g2h_len, num_g2h, g2h_fence);
-> @@ -901,7 +902,6 @@ static int parse_g2h_event(struct xe_guc_ct *ct, u32 *msg, u32 len)
->  static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
->  {
->  	struct xe_gt *gt =  ct_to_gt(ct);
-> -	struct xe_device *xe = gt_to_xe(gt);
->  	u32 *hxg = msg_to_hxg(msg);
->  	u32 hxg_len = msg_len_to_hxg_len(len);
->  	u32 fence = FIELD_GET(GUC_CTB_MSG_0_FENCE, msg[0]);
-> @@ -939,7 +939,7 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
->  		return 0;
->  	}
->  
-> -	xe_assert(xe, fence == g2h_fence->seqno);
-> +	xe_gt_assert(gt, fence == g2h_fence->seqno);
->  
->  	if (type == GUC_HXG_TYPE_RESPONSE_FAILURE) {
->  		g2h_fence->fail = true;
-> @@ -1087,7 +1087,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
->  	u32 action;
->  	u32 *hxg;
->  
-> -	xe_assert(xe, ct->state != XE_GUC_CT_STATE_NOT_INITIALIZED);
-> +	xe_gt_assert(gt, ct->state != XE_GUC_CT_STATE_NOT_INITIALIZED);
->  	lockdep_assert_held(&ct->fast_lock);
->  
->  	if (ct->state == XE_GUC_CT_STATE_DISABLED)
-> @@ -1099,7 +1099,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
->  	if (g2h->info.broken)
->  		return -EPIPE;
->  
-> -	xe_assert(xe, xe_guc_ct_enabled(ct));
-> +	xe_gt_assert(gt, xe_guc_ct_enabled(ct));
->  
->  	/* Calculate DW available to read */
->  	tail = desc_read(xe, g2h, tail);
+>  static void guc_ctb_snapshot_capture(struct xe_device *xe, struct guc_ctb *ctb,
 > -- 
 > 2.43.0
 > 
