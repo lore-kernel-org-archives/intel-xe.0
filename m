@@ -4,56 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D581CD1297
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Apr 2024 00:26:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B4A8C67861
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Apr 2024 00:31:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F03F113036;
-	Wed, 10 Apr 2024 00:26:51 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b59WoXlP";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85777113037
- for <Intel-Xe@lists.freedesktop.org>; Wed, 10 Apr 2024 00:26:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712708808; x=1744244808;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=fQJOKVIj1iBIu8cErCfIAge4t6QYtsBoeaaaTC8FhDI=;
- b=b59WoXlPt6bFhC/EBHrfT8kl9/mqwauZa8eKSDxwHNxj0lBfU2w+jvZS
- HzaU6MpsGG4+eMDEC21BKagdbdLttMlPCr2PJt3MXmVtIeG3f0quQ4Sax
- UcEptG0U16DX+BUJQPXz07eTSE1OtRExtk9nL8t0n9F74LdMPdbSKfVZ9
- qmd5sGswgTp46eaFaw8cSUy9+KVApk2P79foG063OlJyNwrY/fuwnQ9Sm
- ebz8+k8sS6MFM1bMBSIYsvIrTiKgPTb+tplBRr7iVGMuXBZczBj+AgEWz
- GKrYEQh4Vyk0n/mMc+Jn+1TXWKq/H+erPpQybt0MO242YiMLtxGcUf4Td g==;
-X-CSE-ConnectionGUID: q23FcRBRQhC9IUAkmdftiQ==
-X-CSE-MsgGUID: gfp4Q+iOT16URpu/H3uw9Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="7907003"
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; 
-   d="scan'208";a="7907003"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2024 17:26:47 -0700
-X-CSE-ConnectionGUID: jxD3MgWhSHm+1cZ/tFzDLQ==
-X-CSE-MsgGUID: tgVgVgTNS+OMGCkTmWKZ9Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="51359636"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by orviesa002.jf.intel.com with ESMTP; 09 Apr 2024 17:26:46 -0700
-From: John.C.Harrison@Intel.com
-To: Intel-Xe@Lists.FreeDesktop.Org
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Subject: [PATCH 2/2] drm/xe/bmg: Some LNL workarounds also apply to BMG
-Date: Tue,  9 Apr 2024 17:26:46 -0700
-Message-ID: <20240410002646.3002394-3-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240410002646.3002394-1-John.C.Harrison@Intel.com>
-References: <20240410002646.3002394-1-John.C.Harrison@Intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB42111303A;
+	Wed, 10 Apr 2024 00:31:42 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C8EA11303A;
+ Wed, 10 Apr 2024 00:31:40 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_More_LNL_workarounds?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: john.c.harrison@intel.com
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 10 Apr 2024 00:31:40 -0000
+Message-ID: <171270910064.1318715.7592976751808576428@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240410002646.3002394-1-John.C.Harrison@Intel.com>
+In-Reply-To: <20240410002646.3002394-1-John.C.Harrison@Intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,33 +35,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+== Series Details ==
 
-Enable a couple of existing workarounds for a new platform.
+Series: More LNL workarounds
+URL   : https://patchwork.freedesktop.org/series/132237/
+State : success
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
----
- drivers/gpu/drm/xe/xe_wa_oob.rules | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index 5759b7bc1b70..eb647d5a1e16 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -21,6 +21,8 @@
- 		PLATFORM(DG2)
- 14018094691	GRAPHICS_VERSION(2004)
- 14019882105	GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0)
--18024947630	GRAPHICS_VERSION(2004)
-+18024947630	GRAPHICS_VERSION(2001)
-+		GRAPHICS_VERSION(2004)
- 		MEDIA_VERSION(2000)
--16022287689	GRAPHICS_VERSION(2004)
-+16022287689	GRAPHICS_VERSION(2001)
-+		GRAPHICS_VERSION(2004)
--- 
-2.43.2
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 057ec21a54cd drm-tip: 2024y-04m-09d-21h-23m-50s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/lnl: Enable more GuC based workarounds
+Applying: drm/xe/bmg: Some LNL workarounds also apply to BMG
+
 
