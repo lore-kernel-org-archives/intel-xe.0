@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90447CD11C2
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Apr 2024 09:38:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E45ECD1297
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Apr 2024 09:38:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BB5910E22E;
-	Wed, 10 Apr 2024 09:37:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC0DA10E142;
+	Wed, 10 Apr 2024 09:38:07 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 772D710E22E;
- Wed, 10 Apr 2024 09:37:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CBDE10E231;
+ Wed, 10 Apr 2024 09:38:04 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Pcode_init_status_an?=
- =?utf-8?q?d_lmem_check_=28rev5=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Pcode_init_status_and_lme?=
+ =?utf-8?q?m_check_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Riana Tauro" <riana.tauro@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 10 Apr 2024 09:37:48 -0000
-Message-ID: <171274186848.1319992.11012328157368129259@8e613ede5ea5>
+Date: Wed, 10 Apr 2024 09:38:04 -0000
+Message-ID: <171274188424.1319548.4181522586122487553@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240410085005.1126343-1-riana.tauro@intel.com>
 In-Reply-To: <20240410085005.1126343-1-riana.tauro@intel.com>
@@ -48,10 +48,41 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: c111f7a5945a drm-tip: 2024y-04m-10d-09h-28m-42s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: check pcode init status only on root gt of root tile
-Applying: drm/xe: re-order lmem init check and wait for initialization to complete
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+10b531c2aeb176a1a539b4a77216232f97719cec
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 0697cf16a87ae53f6a5e8261e7f890660baa3edf
+Author: Riana Tauro <riana.tauro@intel.com>
+Date:   Wed Apr 10 14:20:05 2024 +0530
+
+    drm/xe: re-order lmem init check and wait for initialization to complete
+    
+    Lmem init check should be done only after pcode initialization
+    status is complete. Move lmem init check after pcode status
+    check. Also wait for a short while after pcode status check
+    to allow completion of the task.
+    
+    Failing to do so, can lead to aborting the module load
+    leaving the system unusable. Wait until the lmem initialization
+    is complete within a timeout (60s) or till the user aborts.
+    
+    v2: use bool as return type
+        re-order the code comment (Rodrigo)
+        add comment for deferring probe (Himal)
+    
+    v3: rebase
+    
+    Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+    Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Reviewed-by: Himal Prasad Ghimiray<himal.prasad.ghimiray@intel.com>
++ /mt/dim checkpatch c111f7a5945a5325e95fd38bfde2880263fce683 drm-intel
+f87d02da7ec3 drm/xe: check pcode init status only on root gt of root tile
+0697cf16a87a drm/xe: re-order lmem init check and wait for initialization to complete
 
 
