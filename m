@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2213CD11C2
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Apr 2024 11:09:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0D48CD128A
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Apr 2024 11:09:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66B9A11262B;
-	Wed, 10 Apr 2024 11:09:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="hZyAfTue";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="vBgl9VBm";
-	dkim-atps=neutral
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2680D11262B;
- Wed, 10 Apr 2024 11:09:01 +0000 (UTC)
-Date: Wed, 10 Apr 2024 13:08:57 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1712747338;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=z4akau/w263RG4XtBCzgos4oOxf54v/WcYbiwj1itwE=;
- b=hZyAfTuewM1PgRpu/coMJ/K+VIhCWWXdNdCd7yAt+HHWuAhdn6jXMpEv8YbxZl65apDb+/
- I5Yh+60NFylyUJDT8Wz5OUJzTFXZ+uvz67QOIs1iCrAOVIUQ5VHvjGyi4n4+hJnLp0GU2v
- CrLuNAy/Ttj+Gbktp7hreHIW2bEmg41eO1VrHHCkO7wR5ZmqTKQPFZBqIttOletyYRIfG+
- s35WSRv1ypME5VYxudq7jg3JI9B5zuIAAJ2iGg1h3rYjkbbQiS0cBXgqY89G5e55g8UC1o
- O3Kph43X8D4PfHc7H/KcP2VrEI4XOTtYxrobKtSlPBfdRa3ZfapiFyJy4fWaDw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1712747338;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=z4akau/w263RG4XtBCzgos4oOxf54v/WcYbiwj1itwE=;
- b=vBgl9VBmebm9MuzLiR9PER31trEHxde3zLQJInLVIGJuYoMv4NytP1X8DUEQYwgCih1FNU
- exdvYNhPfIEHpMBg==
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-To: Steven Rostedt <rostedt@goodmis.org>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Gleixner <tglx@linutronix.de>, Tvrtko Ursulin <tursulin@ursulin.net>
-Subject: Re: [PATCH 05/10] drm/i915: skip DRM_I915_LOW_LEVEL_TRACEPOINTS with
- NOTRACE
-Message-ID: <20240410110857.BBV2fQYP@linutronix.de>
-References: <20240405142737.920626-1-bigeasy@linutronix.de>
- <20240405142737.920626-6-bigeasy@linutronix.de>
- <20240408130650.6f9c1e1c@rorschach.local.home>
- <20240409110601.FWFqmGjM@linutronix.de>
- <20240409115533.7c84b283@gandalf.local.home>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EF8B1132C2;
+	Wed, 10 Apr 2024 11:09:26 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB94611262B;
+ Wed, 10 Apr 2024 11:09:23 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1720646557901294212=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240409115533.7c84b283@gandalf.local.home>
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm=3A_move_Intel_drm_headers_to?=
+ =?utf-8?q?_a_subdirectory?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 10 Apr 2024 11:09:23 -0000
+Message-ID: <171274736376.1319548.2841281713642912578@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <cover.1712743191.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1712743191.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,89 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2024-04-09 11:55:33 [-0400], Steven Rostedt wrote:
-> I believe you need to do it in the .c file:
->=20
-> Can you try something like this?
->=20
-=E2=80=A6
->  ?
+--===============1720646557901294212==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I tried and nothing changed because the lowlevel config option isn't the
-problem. What about I drop this and replace 4/10 from this series with
-the patch below? After enabling all tracing I don't see any events in
-events/i915.
+== Series Details ==
 
-Sebastian
+Series: drm: move Intel drm headers to a subdirectory
+URL   : https://patchwork.freedesktop.org/series/132263/
+State : success
 
---------------------->8----------------------------
+== Summary ==
 
-=46rom: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Date: Thu, 6 Dec 2018 09:52:20 +0100
-Subject: [PATCH] drm/i915: Disable tracing points on PREEMPT_RT
+CI Bug Log - changes from xe-1066-c111f7a5945a5325e95fd38bfde2880263fce683_BAT -> xe-pw-132263v1_BAT
+====================================================
 
-Luca Abeni reported this:
-| BUG: scheduling while atomic: kworker/u8:2/15203/0x00000003
-| CPU: 1 PID: 15203 Comm: kworker/u8:2 Not tainted 4.19.1-rt3 #10
-| Call Trace:
-|  rt_spin_lock+0x3f/0x50
-|  gen6_read32+0x45/0x1d0 [i915]
-|  g4x_get_vblank_counter+0x36/0x40 [i915]
-|  trace_event_raw_event_i915_pipe_update_start+0x7d/0xf0 [i915]
+Summary
+-------
 
-The tracing events use trace_i915_pipe_update_start() among other events
-use functions acquire spinlock_t locks which are transformed into
-sleeping locks on PREEMPT_RT. A few trace points use
-intel_get_crtc_scanline(), others use ->get_vblank_counter() wich also
-might acquire a sleeping locks on PREEMPT_RT.
-At the time the arguments are evaluated within trace point, preemption
-is disabled and so the locks must not be acquired on PREEMPT_RT.
+  **SUCCESS**
 
-Based on this I don't see any other way than disable trace points on
-PREMPT_RT.
+  No regressions found.
 
-Reported-by: Luca Abeni <lucabe72@gmail.com>
-Cc: Steven Rostedt <rostedt@goodmis.org>
-Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
----
- drivers/gpu/drm/i915/display/intel_display_trace.h | 4 ++++
- drivers/gpu/drm/i915/i915_trace.h                  | 4 ++++
- 2 files changed, 8 insertions(+)
+  
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_trace.h b/drivers/g=
-pu/drm/i915/display/intel_display_trace.h
-index 7862e7cefe027..e4608d855bfba 100644
---- a/drivers/gpu/drm/i915/display/intel_display_trace.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_trace.h
-@@ -9,6 +9,10 @@
- #if !defined(__INTEL_DISPLAY_TRACE_H__) || defined(TRACE_HEADER_MULTI_READ)
- #define __INTEL_DISPLAY_TRACE_H__
-=20
-+#ifdef CONFIG_PREEMPT_RT
-+#define NOTRACE
-+#endif
-+
- #include <linux/string_helpers.h>
- #include <linux/types.h>
- #include <linux/tracepoint.h>
-diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_=
-trace.h
-index ce1cbee1b39dd..c54653cf72c95 100644
---- a/drivers/gpu/drm/i915/i915_trace.h
-+++ b/drivers/gpu/drm/i915/i915_trace.h
-@@ -6,6 +6,10 @@
- #if !defined(_I915_TRACE_H_) || defined(TRACE_HEADER_MULTI_READ)
- #define _I915_TRACE_H_
-=20
-+#ifdef CONFIG_PREEMPT_RT
-+#define NOTRACE
-+#endif
-+
- #include <linux/stringify.h>
- #include <linux/types.h>
- #include <linux/tracepoint.h>
---=20
-2.43.0
+Participating hosts (5 -> 5)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-1066-c111f7a5945a5325e95fd38bfde2880263fce683 -> xe-pw-132263v1
+
+  IGT_7803: 9669a17ae56f1dcd22ba4c5cb39b3cd334a46862 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1066-c111f7a5945a5325e95fd38bfde2880263fce683: c111f7a5945a5325e95fd38bfde2880263fce683
+  xe-pw-132263v1: 132263v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132263v1/index.html
+
+--===============1720646557901294212==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm: move Intel drm headers to a subdirectory</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132263/">https://patchwork.freedesktop.org/series/132263/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132263v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132263v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1066-c111f7a5945a5325e95fd38bfde2880263fce683_BAT -&gt; xe-pw-132263v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (5 -&gt; 5)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1066-c111f7a5945a5325e95fd38bfde2880263fce683 -&gt; xe-pw-132263v1</li>
+</ul>
+<p>IGT_7803: 9669a17ae56f1dcd22ba4c5cb39b3cd334a46862 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1066-c111f7a5945a5325e95fd38bfde2880263fce683: c111f7a5945a5325e95fd38bfde2880263fce683<br />
+  xe-pw-132263v1: 132263v1</p>
+
+</body>
+</html>
+
+--===============1720646557901294212==--
